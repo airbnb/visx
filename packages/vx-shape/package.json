@@ -1,0 +1,32 @@
+{
+  "name": "@vx/shape",
+  "version": "0.0.1",
+  "description": "vx shapes ",
+  "main": "buid/index.js",
+  "files": [
+    "build"
+  ],
+  "scripts": {
+    "build": "neutrino build --presets neutrino-preset-airbnb-base neutrino-preset-web",
+    "test": "neutrino test --presets neutrino-preset-airbnb-base neutrino-preset-web neutrino-preset-jest"
+  },
+  "keywords": [
+    "vx",
+    "react",
+    "d3",
+    "visualizations",
+    "charts"
+  ],
+  "author": "@hshoff",
+  "license": "MIT",
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "react": "^15.4.2"
+  },
+  "devDependencies": {
+    "neutrino": "^4.3.1",
+    "neutrino-preset-airbnb-base": "^4.3.1",
+    "neutrino-preset-jest": "^4.3.0",
+    "neutrino-preset-web": "^4.2.3"
+  }
+}
