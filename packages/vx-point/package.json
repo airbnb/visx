@@ -1,7 +1,6 @@
 {
   "name": "@vx/point",
-  "private": false,
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "vx point",
   "main": "build/index.js",
   "files": [
@@ -9,7 +8,8 @@
   ],
   "scripts": {
     "build": "neutrino build --presets neutrino-preset-airbnb-base neutrino-preset-node",
-    "test": "neutrino test --presets neutrino-preset-airbnb-base neutrino-preset-node neutrino-preset-jest"
+    "test": "neutrino test --presets neutrino-preset-airbnb-base neutrino-preset-node neutrino-preset-jest",
+    "lint": "neutrino build --presets neutrino-preset-airbnb-base"
   },
   "keywords": [
     "vx",
