@@ -1,7 +1,7 @@
 {
   "name": "@vx/point",
   "private": false,
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "vx point",
   "main": "build/index.js",
   "files": [
