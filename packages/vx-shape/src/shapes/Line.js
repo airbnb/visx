@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 
 export default function Line({
-  from = { x: 0, y: 0 },
+  from = new Point({ x: 0, y: 0 }),
   to = [1,1],
   stroke = {
     color: '#000',

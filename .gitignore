@@ -4,4 +4,3 @@ test/tmp
 *.log
 *.cache
 /.eslintcache
-build
