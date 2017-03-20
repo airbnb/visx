@@ -1,6 +1,6 @@
 {
   "name": "@vx/demo",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "vx demo",
   "main": "src/index.js",
   "repository": "https://github.com/hshoff/vx",
