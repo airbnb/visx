@@ -1,12 +1,12 @@
 {
   "name": "@vx/demo",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "vx demo",
   "main": "src/index.js",
   "repository": "https://github.com/hshoff/vx",
   "scripts": {
-    "start": "make start",
-    "build": "make build"
+    "start": "make start SRC=./src",
+    "build": "make build SRC=./src"
   },
   "keywords": [
     "vx",
@@ -16,8 +16,8 @@
   "author": "@hshoff",
   "license": "MIT",
   "dependencies": {
-    "@vx/curve": "^0.0.8",
-    "@vx/shape": "^0.0.8",
+    "@vx/curve": "^0.0.9",
+    "@vx/shape": "^0.0.9",
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
   },

@@ -1,6 +1,6 @@
 {
   "name": "@vx/point",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "vx point",
   "main": "build/index.js",
   "repository": "https://github.com/hshoff/vx",
@@ -8,7 +8,7 @@
     "build"
   ],
   "scripts": {
-    "build": "make build"
+    "build": "make build SRC=./src"
   },
   "keywords": [
     "vx",
