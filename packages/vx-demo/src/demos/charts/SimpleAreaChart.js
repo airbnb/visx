@@ -3,6 +3,7 @@ import Group from '@vx/group';
 import Axis from '@vx/axis';
 import Mock from '@vx/mock-data';
 import Scale from '@vx/scale';
+import Shape from '@vx/shape';
 
 export default function SimpleAreaChart({
   width,
@@ -44,8 +45,8 @@ export default function SimpleAreaChart({
           scale={yStockScale}
           width={xMax}
           strokeDasharray="2,2"
-        />
-        <Area
+        /> */}
+        <Shape.AreaClosed
           data={stock}
           xScale={xStockScale}
           yScale={yStockScale}
@@ -54,7 +55,7 @@ export default function SimpleAreaChart({
           strokeWidth={1}
           stroke={'url(#linear)'}
           fill={'url(#linear)'}
-        /> */}
+        />
       </Group>
       <Axis.AxisBottom
         top={height - margin.bottom}
