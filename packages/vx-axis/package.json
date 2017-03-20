@@ -1,6 +1,6 @@
 {
   "name": "@vx/axis",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "vx axis",
   "main": "build/index.js",
   "scripts": {
@@ -28,9 +28,9 @@
   },
   "homepage": "https://github.com/hshoff/vx#readme",
   "dependencies": {
-    "@vx/group": "0.0.15",
-    "@vx/point": "0.0.10",
-    "@vx/shape": "^0.0.15",
+    "@vx/group": "^0.0.16",
+    "@vx/point": "^0.0.16",
+    "@vx/shape": "^0.0.16",
     "classnames": "^2.2.5",
     "react": "^15.4.2"
   },
