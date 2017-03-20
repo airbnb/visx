@@ -1,33 +1,32 @@
 {
-  "name": "@vx/shape",
+  "name": "@vx/curve",
   "version": "0.0.6",
-  "description": "vx shapes ",
+  "description": "vx curve",
   "main": "build/index.js",
   "files": [
     "build"
   ],
   "scripts": {
-    "build": "neutrino build --presets neutrino-preset-airbnb-base neutrino-preset-web",
-    "test": "neutrino test --presets neutrino-preset-airbnb-base neutrino-preset-web neutrino-preset-jest",
+    "build": "neutrino build --presets neutrino-preset-airbnb-base neutrino-preset-node",
+    "test": "neutrino test --presets neutrino-preset-airbnb-base neutrino-preset-node neutrino-preset-jest",
     "lint": "neutrino build --presets neutrino-preset-airbnb-base"
   },
   "keywords": [
     "vx",
     "react",
     "d3",
-    "visualizations",
-    "charts"
+    "visualization",
+    "chart"
   ],
   "author": "@hshoff",
   "license": "MIT",
   "dependencies": {
-    "classnames": "^2.2.5",
-    "react": "^15.4.2"
+    "d3-shape": "^1.0.6"
   },
   "devDependencies": {
     "neutrino": "^4.3.1",
     "neutrino-preset-airbnb-base": "^4.3.1",
     "neutrino-preset-jest": "^4.3.0",
-    "neutrino-preset-web": "^4.2.3"
+    "neutrino-preset-node": "^4.2.2"
   }
 }

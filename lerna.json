@@ -1,7 +1,9 @@
 {
   "lerna": "2.0.0-beta.38",
   "packages": [
-    "packages/*"
+    "packages/vx-curve",
+    "packages/vx-shape",
+    "packages/vx-point"
   ],
-  "version": "0.0.5"
+  "version": "0.0.6"
 }
