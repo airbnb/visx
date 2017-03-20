@@ -36,5 +36,8 @@
     "@vx/point": "0.0.10",
     "@vx/shape": "^0.0.26",
     "classnames": "^2.2.5"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

@@ -37,5 +37,8 @@
     "transform": [
       "babelify"
     ]
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

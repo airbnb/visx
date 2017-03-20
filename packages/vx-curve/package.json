@@ -26,5 +26,8 @@
   "devDependencies": {
     "react-fatigue-dev": "github:tj/react-fatigue-dev",
     "react-tools": "^0.10.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
