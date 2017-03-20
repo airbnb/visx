@@ -1,6 +1,6 @@
 {
   "name": "@vx/demo",
-  "version": "0.0.23",
+  "version": "0.0.24",
   "description": "vx demo",
   "main": "src/index.js",
   "repository": "https://github.com/hshoff/vx",
@@ -17,13 +17,13 @@
   "author": "@hshoff",
   "license": "MIT",
   "dependencies": {
-    "@vx/axis": "^0.0.23",
+    "@vx/axis": "^0.0.24",
     "@vx/curve": "^0.0.16",
     "@vx/group": "0.0.15",
     "@vx/mock-data": "0.0.18",
     "@vx/point": "^0.0.16",
     "@vx/scale": "0.0.19",
-    "@vx/shape": "^0.0.16",
+    "@vx/shape": "^0.0.24",
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
   },
