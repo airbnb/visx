@@ -25,5 +25,3 @@ function Demo() {
     })
   );
 }
-
-(0, _reactDom.render)(_react2.default.createElement(Demo, null), document.getElementById('root'));

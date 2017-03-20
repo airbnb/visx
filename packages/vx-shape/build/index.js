@@ -4,11 +4,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _Line = require('./shapes/Line');
+var _Line = require('./src/shapes/Line');
 
 var _Line2 = _interopRequireDefault(_Line);
 
-var _LinePath = require('./shapes/LinePath');
+var _LinePath = require('./src/shapes/LinePath');
 
 var _LinePath2 = _interopRequireDefault(_LinePath);
 
