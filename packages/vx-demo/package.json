@@ -19,6 +19,7 @@
   "dependencies": {
     "@vx/axis": "^0.0.26",
     "@vx/curve": "^0.0.16",
+    "@vx/grid": "0.0.26",
     "@vx/group": "0.0.15",
     "@vx/mock-data": "0.0.18",
     "@vx/point": "^0.0.16",
