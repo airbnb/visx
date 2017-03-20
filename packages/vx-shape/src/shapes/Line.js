@@ -23,6 +23,7 @@ export default function Line({
       stroke={stroke.color}
       strokeWidth={stroke.width}
       strokeDasharray={stroke.dasharray}
+      transform={transform}
     />
   );
 }
