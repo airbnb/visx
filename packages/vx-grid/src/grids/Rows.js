@@ -11,6 +11,7 @@ export default function Rows({
   stroke = '#eaf0f6',
   strokeWidth = 1,
   strokeDasharray,
+  className,
 }) {
   return (
     <Group

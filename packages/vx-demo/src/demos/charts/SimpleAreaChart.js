@@ -4,6 +4,7 @@ import Axis from '@vx/axis';
 import Mock from '@vx/mock-data';
 import Scale from '@vx/scale';
 import Shape from '@vx/shape';
+import Grid from '@vx/grid';
 
 export default function SimpleAreaChart({
   width,
@@ -41,11 +42,11 @@ export default function SimpleAreaChart({
         </linearGradient>
       </defs>
       <Group top={margin.top} left={margin.left}>
-        {/* <Rows
+        <Grid.Rows
           scale={yStockScale}
           width={xMax}
           strokeDasharray="2,2"
-        /> */}
+        />
         <Shape.AreaClosed
           data={stock}
           xScale={xStockScale}
