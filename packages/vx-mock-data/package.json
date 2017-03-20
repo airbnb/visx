@@ -1,0 +1,34 @@
+{
+  "name": "@vx/mock-data",
+  "version": "0.0.1",
+  "description": "vx mock data",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "make build SRC=./src",
+    "prepublish": "make build SRC=./src"
+  },
+  "files": [
+    "build"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hshoff/vx.git"
+  },
+  "keywords": [
+    "vx",
+    "react",
+    "d3",
+    "visualizations",
+    "charts"
+  ],
+  "author": "@hshoff",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hshoff/vx/issues"
+  },
+  "homepage": "https://github.com/hshoff/vx#readme",
+  "devDependencies": {
+    "react-fatigue-dev": "github:tj/react-fatigue-dev",
+    "react-tools": "^0.10.0"
+  }
+}

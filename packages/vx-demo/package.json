@@ -17,7 +17,9 @@
   "author": "@hshoff",
   "license": "MIT",
   "dependencies": {
+    "@vx/axis": "0.0.17",
     "@vx/curve": "^0.0.16",
+    "@vx/group": "0.0.15",
     "@vx/point": "^0.0.16",
     "@vx/shape": "^0.0.16",
     "react": "^15.4.2",
