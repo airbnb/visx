@@ -24,7 +24,7 @@ export default function Grid({
     >
       <Rows
         className={className}
-        scale={xScale}
+        scale={yScale}
         width={width}
         stroke={stroke}
         strokeWidth={strokeWidth}
@@ -32,7 +32,7 @@ export default function Grid({
       />
       <Columns
         className={className}
-        scale={yScale}
+        scale={xScale}
         height={height}
         stroke={stroke}
         strokeWidth={strokeWidth}

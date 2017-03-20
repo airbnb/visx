@@ -4,10 +4,8 @@ import Point from '@vx/point';
 import Axis from '@vx/axis';
 import Scale from '@vx/scale';
 import Group from '@vx/group';
-import { max, extent } from 'd3-array';
-
-window.extent = extent;
-window.max = max;
+import Grid from '@vx/grid';
+import { extent, max } from 'd3-array';
 
 export default function SimpleLineChart({
   width,
@@ -52,6 +50,12 @@ export default function SimpleLineChart({
         top={margin.top}
         left={margin.left}
       >
+        <Grid.Grid
+          xScale={xScale}
+          yScale={yScale}
+          width={xMax}
+          height={yMax}
+        />
         {dataset.map((series, i) => {
           return (
             <Shape.LinePath
