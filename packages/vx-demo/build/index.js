@@ -19,9 +19,26 @@ var _point = require('@vx/point');
 
 var _point2 = _interopRequireDefault(_point);
 
+var _axis = require('@vx/axis');
+
+var _axis2 = _interopRequireDefault(_axis);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+console.log(_axis2.default);
+
 function Demo() {
+  var width = 800;
+  var height = 400;
+  var margin = {
+    top: 20,
+    bottom: 30,
+    left: 50,
+    right: 50
+  };
+
+  var xMax = width - margin.left - margin.right;
+  var yMax = height - margin.top - margin.bottom;
   return _react2.default.createElement(
     'svg',
     { width: 500, height: 300 },
