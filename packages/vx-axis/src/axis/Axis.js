@@ -87,7 +87,7 @@ export default function Axis({
               className='vx-axis-ticks'
             >
               {!hideTicks &&
-                <Line
+                <Shape.Line
                   from={tickFromPoint}
                   to={tickToPoint}
                   transform={transform}

@@ -22,6 +22,7 @@
     "@vx/group": "0.0.15",
     "@vx/mock-data": "0.0.18",
     "@vx/point": "^0.0.16",
+    "@vx/scale": "0.0.19",
     "@vx/shape": "^0.0.16",
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
