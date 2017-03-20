@@ -4,7 +4,8 @@
   "description": "vx axis",
   "main": "build/index.js",
   "scripts": {
-    "build": "make build SRC=./src"
+    "build": "make build SRC=./src",
+    "prepublish": "make build SRC=./src"
   },
   "files": [
     "build"
@@ -27,8 +28,10 @@
   },
   "homepage": "https://github.com/hshoff/vx#readme",
   "dependencies": {
+    "@vx/group": "0.0.15",
     "@vx/point": "0.0.10",
     "@vx/shape": "^0.0.15",
+    "classnames": "^2.2.5",
     "react": "^15.4.2"
   },
   "devDependencies": {

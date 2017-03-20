@@ -3,7 +3,7 @@ import cx from 'classnames';
 import Axis from './Axis';
 import ORIENT from '../constants/orientation';
 
-export default function AxisLeft({
+export default function AxisBottom({
   scale,
   tickFormat,
   top = 0,
@@ -14,8 +14,8 @@ export default function AxisLeft({
 }) {
   return (
     <Axis
-      className={cx('vx-axis-left', className)}
-      orient={ORIENT.left}
+      className={cx('vx-axis-bottom', className)}
+      orient={ORIENT.bottom}
       top={top}
       left={left}
       scale={scale}

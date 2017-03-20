@@ -4,7 +4,8 @@
   "description": "vx group",
   "main": "build/index.js",
   "scripts": {
-    "build": "make build SRC=./src"
+    "build": "make build SRC=./src",
+    "prepublish": "make build SRC=./src"
   },
   "files": [
     "build"

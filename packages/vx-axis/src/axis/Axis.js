@@ -1,9 +1,12 @@
 import React from 'react';
+import cx from 'classnames';
 import Shape from '@vx/shape';
 import Point from '@vx/point';
+import Group from '@vx/group';
+import ORIENT from '../constants/orientation';
 
 function isHorizontal(orient) {
-  return orient !== 'left' || orient !== 'right';
+  return orient !== ORIENT.left || orient !== ORIENT.right;
 }
 
 function center(scale) {
@@ -22,8 +25,11 @@ export default function Axis({
   scale,
   orient,
   tickFormat,
+  top = 0,
+  left = 0,
   hideAxisLine = false,
   hideTicks = false,
+  className,
 }) {
     const values = scale.ticks ? scale.ticks() : scale.domain();
     let format = scale.tickFormat ? scale.tickFormat() : identity;
@@ -50,7 +56,11 @@ export default function Axis({
     });
 
     return (
-      <g className='vx-axis'>
+      <Group
+        className={cx('vx-axis', className)}
+        top={top}
+        left={left}
+      >
         {!hideAxisLine &&
           <Shape.Line
             from={axisFromPoint}
@@ -70,8 +80,12 @@ export default function Axis({
             y: horizontal ? 0 : position(val);
           });
           const transform = horizontal ? `translate(${-tickLength})` : '';
+
           return (
-            <g key={`vx-tick-${val}-${i}`}>
+            <Group
+              key={`vx-tick-${val}-${i}`}
+              className='vx-axis-ticks'
+            >
               {!hideTicks &&
                 <Line
                   from={tickFromPoint}
@@ -84,15 +98,15 @@ export default function Axis({
                 y={tickToPoint.y}
                 dy={horizontal ? tickLength + tickPadding + fontSize : fontSize / 3}
                 dx={horizontal ? 0 : -tickPadding - (hideTicks ? tickPadding : tickLength)}
-                textAnchor={isVertical(orient) ? "middle" : "end"}
+                textAnchor={horizontal ? "middle" : "end"}
                 fontFamily="Arial"
                 fontSize={fontSize}
               >
                 {format(val)}
               </text>
-            </g>
+            </Group>
           );
         })}
-      </g>
+      </Group>
     );
 }

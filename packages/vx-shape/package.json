@@ -8,7 +8,8 @@
     "build"
   ],
   "scripts": {
-    "build": "make build SRC=./src"
+    "build": "make build SRC=./src",
+    "prepublish": "make build SRC=./src"
   },
   "keywords": [
     "vx",
