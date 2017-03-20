@@ -47,12 +47,12 @@ export default function Axis({
     const horizontal = isHorizontal(orient);
 
     const axisFromPoint = new Point({
-      x: horizontal ? range0 : 0,
-      y: horizontal ? 0 : range0,
+      x: horizontal ? 0 : range0,
+      y: horizontal ? range0 : 0,
     });
     const axisToPoint = new Point({
-      x: horizontal ? range1 : 0,
-      y: horizontal ? 0 : range1,
+      x: horizontal ? 0 : range1,
+      y: horizontal ? range1 : 0,
     });
 
     return (
@@ -72,14 +72,14 @@ export default function Axis({
         }
         {values.map((val, i) => {
           const tickFromPoint = new Point({
-            x: horizontal ? position(val) : 0,
-            y: horizontal ? tickLength : position(val),
+            x: horizontal ? 0 : position(val),
+            y: horizontal ? position(val) : tickLength,
           });
           const tickToPoint = new Point({
-            x: horizontal ? position(val) : tickLength,
-            y: horizontal ? 0 : position(val),
+            x: horizontal ? tickLength : position(val),
+            y: horizontal ? position(val) : 0,
           });
-          const transform = horizontal ? `translate(${-tickLength})` : '';
+          const transform = horizontal ? '' : `translate(${-tickLength})`;
 
           return (
             <Group
@@ -96,9 +96,9 @@ export default function Axis({
               <text
                 x={tickFromPoint.x}
                 y={tickToPoint.y}
-                dy={horizontal ? tickLength + tickPadding + fontSize : fontSize / 3}
-                dx={horizontal ? 0 : -tickPadding - (hideTicks ? tickPadding : tickLength)}
-                textAnchor={horizontal ? "middle" : "end"}
+                dy={horizontal ? fontSize / 3 : tickLength + tickPadding + fontSize}
+                dx={horizontal ? -tickPadding - (hideTicks ? tickPadding : tickLength) : 0}
+                textAnchor={horizontal ? "end" : "middle"}
                 fontFamily="Arial"
                 fontSize={fontSize}
               >

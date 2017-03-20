@@ -23,9 +23,20 @@ var _axis = require('@vx/axis');
 
 var _axis2 = _interopRequireDefault(_axis);
 
+var _scale = require('@vx/scale');
+
+var _scale2 = _interopRequireDefault(_scale);
+
+var _mockData = require('@vx/mock-data');
+
+var _mockData2 = _interopRequireDefault(_mockData);
+
+var _d3Array = require('d3-array');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-console.log(_axis2.default);
+var data1 = _mockData2.default.genDateValue(20);
+var data2 = _mockData2.default.genDateValue(20);
 
 function Demo() {
   var width = 800;
@@ -37,11 +48,33 @@ function Demo() {
     right: 50
   };
 
+  // bounds
   var xMax = width - margin.left - margin.right;
   var yMax = height - margin.top - margin.bottom;
+
+  // accessors
+  var x = function x(d) {
+    return d.date;
+  };
+  var y = function y(d) {
+    return d.value;
+  };
+
+  // scales
+  var xScale = _scale2.default.scaleTime({
+    range: [0, xMax],
+    domain: (0, _d3Array.extent)(data1.concat(data2), x),
+    nice: true
+  });
+  var yScale = _scale2.default.scaleLinear({
+    range: [yMax, 0],
+    domain: [0, (0, _d3Array.max)(data1.concat(data2), y)],
+    nice: true
+  });
+
   return _react2.default.createElement(
     'svg',
-    { width: 500, height: 300 },
+    { width: width, height: height },
     _react2.default.createElement(_shape2.default.Line, {
       from: new _point2.default({ x: 0, y: 0 }),
       to: new _point2.default({ x: 200, y: 200 }),
@@ -50,6 +83,11 @@ function Demo() {
         width: 2,
         dasharray: '5,5'
       }
+    }),
+    _react2.default.createElement(_axis2.default.AxisLeft, {
+      top: margin.top,
+      left: margin.left,
+      scale: yScale
     })
   );
 }
