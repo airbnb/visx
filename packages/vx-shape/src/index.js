@@ -1,5 +1,5 @@
-import Line from './src/shapes/Line';
-import LinePath from './src/shapes/LinePath';
+import Line from './shapes/Line';
+import LinePath from './shapes/LinePath';
 
 export default {
   Line,

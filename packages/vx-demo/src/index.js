@@ -1,17 +1,18 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Line } from '@vx/shape';
+import Shape from '@vx/shape';
+import Point from '@vx/point';
 
-function Demo() {
+export default function Demo() {
   return (
     <svg width={500} height={300}>
-      <Line
+      <Shape.Line
         from={new Point({ x: 0, y: 0 })}
         to={new Point({ x: 200, y: 200 })}
-        stroke = {{
-          color: '#000',
-          width: 1,
-          dasharray: '',
+        stroke={{
+          color: 'steelblue',
+          width: 2,
+          dasharray: '5,5',
         }}
       />
     </svg>

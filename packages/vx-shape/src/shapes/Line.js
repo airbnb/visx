@@ -1,5 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
+import Point from '@vx/point';
 
 export default function Line({
   from = new Point({ x: 0, y: 0 }),
@@ -19,6 +20,9 @@ export default function Line({
       y1={from.y}
       x2={to.x}
       y2={to.y}
+      stroke={stroke.color}
+      strokeWidth={stroke.width}
+      strokeDasharray={stroke.dasharray}
     />
   );
 }
