@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import Group from '@vx/group';
 import Rows from './Rows';
-import Columsn from './Columns';
+import Columns from './Columns';
 
 export default function Grid({
   top,

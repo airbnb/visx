@@ -42,9 +42,11 @@ export default function SimpleAreaChart({
         </linearGradient>
       </defs>
       <Group top={margin.top} left={margin.left}>
-        <Grid.Rows
-          scale={yStockScale}
+        <Grid.Grid
+          yScale={yStockScale}
+          xScale={xStockScale}
           width={xMax}
+          height={yMax}
           strokeDasharray="2,2"
         />
         <Shape.AreaClosed
