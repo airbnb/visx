@@ -1,6 +1,6 @@
 {
   "name": "@vx/shape",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "vx shape",
   "main": "build/index.js",
   "repository": "https://github.com/hshoff/vx",
