@@ -1,6 +1,6 @@
 {
   "name": "@vx/grid",
-  "version": "0.0.30",
+  "version": "0.0.31",
   "description": "vx grid",
   "main": "build/index.js",
   "files": [
