@@ -1,12 +1,12 @@
 {
   "name": "@vx/demo",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "vx demo",
   "main": "src/index.js",
   "repository": "https://github.com/hshoff/vx",
   "scripts": {
-    "start": "neutrino start --presets neutrino-preset-react",
-    "build": "neutrino build --presets neutrino-preset-react"
+    "start": "make start",
+    "build": "make build"
   },
   "keywords": [
     "vx",
@@ -15,15 +15,19 @@
   ],
   "author": "@hshoff",
   "license": "MIT",
-  "devDependencies": {
-    "neutrino": "^4.3.1",
-    "neutrino-preset-airbnb-base": "^4.3.1",
-    "neutrino-preset-react": "^4.2.3"
-  },
   "dependencies": {
-    "@vx/curve": "^0.0.7",
-    "@vx/shape": "^0.0.7",
+    "@vx/curve": "^0.0.8",
+    "@vx/shape": "^0.0.8",
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
+  },
+  "devDependencies": {
+    "react-fatigue-dev": "github:tj/react-fatigue-dev",
+    "react-tools": "^0.10.0"
+  },
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@vx/point",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "vx point",
   "main": "build/index.js",
   "repository": "https://github.com/hshoff/vx",
@@ -8,9 +8,7 @@
     "build"
   ],
   "scripts": {
-    "build": "neutrino build --presets neutrino-preset-airbnb-base neutrino-preset-node",
-    "test": "neutrino test --presets neutrino-preset-airbnb-base neutrino-preset-node neutrino-preset-jest",
-    "lint": "neutrino build --presets neutrino-preset-airbnb-base"
+    "build": "make build"
   },
   "keywords": [
     "vx",
@@ -21,9 +19,7 @@
   "author": "@hshoff",
   "license": "MIT",
   "devDependencies": {
-    "neutrino": "^4.3.1",
-    "neutrino-preset-airbnb-base": "^4.3.1",
-    "neutrino-preset-jest": "^4.3.0",
-    "neutrino-preset-node": "^4.2.2"
+    "react-fatigue-dev": "github:tj/react-fatigue-dev",
+    "react-tools": "^0.10.0"
   }
 }

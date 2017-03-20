@@ -1,16 +1,14 @@
 {
   "name": "@vx/shape",
-  "version": "0.0.7",
-  "description": "vx shapes ",
+  "version": "0.0.8",
+  "description": "vx shape",
   "main": "build/index.js",
   "repository": "https://github.com/hshoff/vx",
   "files": [
     "build"
   ],
   "scripts": {
-    "build": "neutrino build --presets neutrino-preset-airbnb-base neutrino-preset-node",
-    "test": "neutrino test --presets neutrino-preset-airbnb-base neutrino-preset-node neutrino-preset-jest",
-    "lint": "neutrino build --presets neutrino-preset-airbnb-base"
+    "build": "make build"
   },
   "keywords": [
     "vx",
@@ -26,10 +24,7 @@
     "react": "^15.4.2"
   },
   "devDependencies": {
-    "neutrino": "^4.3.1",
-    "neutrino-preset-airbnb-base": "^4.3.1",
-    "neutrino-preset-jest": "^4.3.0",
-    "neutrino-preset-node": "^4.2.2",
-    "neutrino-preset-react": "^4.2.3"
+    "react-fatigue-dev": "github:tj/react-fatigue-dev",
+    "react-tools": "^0.10.0"
   }
 }
