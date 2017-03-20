@@ -85,7 +85,8 @@ function Demo() {
     _react2.default.createElement(_axis2.default.AxisLeft, {
       top: margin.top,
       left: margin.left,
-      scale: yScale
+      scale: yScale,
+      hideZero: true
     }),
     _react2.default.createElement(
       _group2.default,
