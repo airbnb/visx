@@ -77,7 +77,7 @@ export default function Axis({
           });
           const tickToPoint = new Point({
             x: horizontal ? position(val) : tickLength,
-            y: horizontal ? 0 : position(val);
+            y: horizontal ? 0 : position(val),
           });
           const transform = horizontal ? `translate(${-tickLength})` : '';
 
