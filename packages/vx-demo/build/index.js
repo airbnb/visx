@@ -31,6 +31,14 @@ var _mockData = require('@vx/mock-data');
 
 var _mockData2 = _interopRequireDefault(_mockData);
 
+var _group = require('@vx/group');
+
+var _group2 = _interopRequireDefault(_group);
+
+var _curve = require('@vx/curve');
+
+var _curve2 = _interopRequireDefault(_curve);
+
 var _d3Array = require('d3-array');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -63,8 +71,7 @@ function Demo() {
   // scales
   var xScale = _scale2.default.scaleTime({
     range: [0, xMax],
-    domain: (0, _d3Array.extent)(data1.concat(data2), x),
-    nice: true
+    domain: (0, _d3Array.extent)(data1.concat(data2), x)
   });
   var yScale = _scale2.default.scaleLinear({
     range: [yMax, 0],
@@ -75,19 +82,40 @@ function Demo() {
   return _react2.default.createElement(
     'svg',
     { width: width, height: height },
-    _react2.default.createElement(_shape2.default.Line, {
-      from: new _point2.default({ x: 0, y: 0 }),
-      to: new _point2.default({ x: 200, y: 200 }),
-      stroke: {
-        color: 'steelblue',
-        width: 2,
-        dasharray: '5,5'
-      }
-    }),
     _react2.default.createElement(_axis2.default.AxisLeft, {
       top: margin.top,
       left: margin.left,
       scale: yScale
+    }),
+    _react2.default.createElement(
+      _group2.default,
+      {
+        top: margin.top,
+        left: margin.left
+      },
+      _react2.default.createElement(_shape2.default.LinePath, {
+        data: data1,
+        xScale: xScale,
+        yScale: yScale,
+        x: x,
+        y: y,
+        stroke: { color: '#6A7DD3', width: 2 },
+        points: true
+      }),
+      _react2.default.createElement(_shape2.default.LinePath, {
+        data: data2,
+        xScale: xScale,
+        yScale: yScale,
+        x: x,
+        y: y,
+        stroke: { width: 2, color: '#5A9C57', dasharray: "5,5" },
+        curve: _curve2.default.cardinal
+      })
+    ),
+    _react2.default.createElement(_axis2.default.AxisBottom, {
+      top: height - margin.bottom,
+      left: margin.left,
+      scale: xScale
     })
   );
 }

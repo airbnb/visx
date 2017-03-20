@@ -6,7 +6,7 @@ import Group from '@vx/group';
 import ORIENT from '../constants/orientation';
 
 function isHorizontal(orient) {
-  return orient !== ORIENT.left || orient !== ORIENT.right;
+  return orient !== ORIENT.left && orient !== ORIENT.right;
 }
 
 function center(scale) {
@@ -29,6 +29,7 @@ export default function Axis({
   left = 0,
   hideAxisLine = false,
   hideTicks = false,
+  hideZero = false,
   className,
 }) {
     const values = scale.ticks ? scale.ticks() : scale.domain();
@@ -47,12 +48,12 @@ export default function Axis({
     const horizontal = isHorizontal(orient);
 
     const axisFromPoint = new Point({
-      x: horizontal ? 0 : range0,
-      y: horizontal ? range0 : 0,
+      x: horizontal ? range0 : 0,
+      y: horizontal ? 0 : range0,
     });
     const axisToPoint = new Point({
-      x: horizontal ? 0 : range1,
-      y: horizontal ? range1 : 0,
+      x: horizontal ? range1 : 0,
+      y: horizontal ? 0 : range1,
     });
 
     return (
@@ -71,15 +72,17 @@ export default function Axis({
           />
         }
         {values.map((val, i) => {
+          if (hideZero && val === 0) return null;
+
           const tickFromPoint = new Point({
-            x: horizontal ? 0 : position(val),
-            y: horizontal ? position(val) : tickLength,
+            x: horizontal ? position(val) : 0,
+            y: horizontal ? tickLength : position(val),
           });
           const tickToPoint = new Point({
-            x: horizontal ? tickLength : position(val),
-            y: horizontal ? position(val) : 0,
+            x: horizontal ? position(val) : tickLength,
+            y: horizontal ? 0 : position(val),
           });
-          const transform = horizontal ? `translate(${-tickLength})` : '';
+          const transform = horizontal ? '' : `translate(${-tickLength})`;
 
           return (
             <Group
@@ -96,9 +99,9 @@ export default function Axis({
               <text
                 x={tickFromPoint.x}
                 y={tickToPoint.y}
-                dy={horizontal ? fontSize / 3 : tickLength + tickPadding + fontSize}
-                dx={horizontal ? -tickPadding - (hideTicks ? tickPadding : tickLength) : 0}
-                textAnchor={horizontal ? "end" : "middle"}
+                dy={horizontal ? tickLength + tickPadding + fontSize : fontSize / 3}
+                dx={horizontal ? 0 : -tickPadding - (hideTicks ? tickPadding : tickLength)}
+                textAnchor={horizontal ? "middle" : "end"}
                 fontFamily="Arial"
                 fontSize={fontSize}
               >

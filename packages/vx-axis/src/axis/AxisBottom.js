@@ -10,6 +10,7 @@ export default function AxisBottom({
   left = 0,
   hideAxisLine = false,
   hideTicks = false,
+  hideZero = false,
   className,
 }) {
   return (
@@ -22,6 +23,7 @@ export default function AxisBottom({
       tickFormat={tickFormat}
       hideAxisLine={hideAxisLine}
       hideTicks={hideTicks}
+      hideZero={hideZero}
     />
   );
 }
