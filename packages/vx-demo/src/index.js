@@ -42,15 +42,6 @@ export default function Demo() {
 
   return (
     <svg width={width} height={height}>
-      <Shape.Line
-        from={new Point({ x: 0, y: 0 })}
-        to={new Point({ x: 200, y: 200 })}
-        stroke={{
-          color: 'steelblue',
-          width: 2,
-          dasharray: '5,5',
-        }}
-      />
       <Axis.AxisLeft
         top={margin.top}
         left={margin.left}

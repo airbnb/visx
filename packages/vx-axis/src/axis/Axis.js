@@ -79,7 +79,7 @@ export default function Axis({
             x: horizontal ? tickLength : position(val),
             y: horizontal ? position(val) : 0,
           });
-          const transform = horizontal ? '' : `translate(${-tickLength})`;
+          const transform = horizontal ? `translate(${-tickLength})` : '';
 
           return (
             <Group
