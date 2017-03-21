@@ -3,23 +3,9 @@ import cx from 'classnames';
 import Shape from '@vx/shape';
 import Point from '@vx/point';
 import Group from '@vx/group';
-import ORIENT from '../constants/orientation';
-
-function isHorizontal(orient) {
-  return orient !== ORIENT.left && orient !== ORIENT.right;
-}
-
-function center(scale) {
-  var offset = scale.bandwidth() / 2;
-  if (scale.round()) offset = Math.round(offset);
-  return function(d) {
-    return scale(d) + offset;
-  };
-}
-
-function identity(x) {
-  return x;
-}
+import identity from '../utils/identity';
+import center from '../utils/center';
+import isHorizontal from '../utils/isHorizontal';
 
 export default function Axis({
   scale,
@@ -27,6 +13,11 @@ export default function Axis({
   tickFormat,
   top = 0,
   left = 0,
+  stroke = 'black',
+  strokeWidth = 1,
+  strokeDasharray,
+  tickStroke = 'black',
+  fontSize = 10,
   hideAxisLine = false,
   hideTicks = false,
   hideZero = false,
@@ -42,7 +33,6 @@ export default function Axis({
 
     const tickLength = 8;
     const tickPadding = 2;
-    const fontSize = 10;
 
     const position = (scale.bandwidth ? center : identity)(scale.copy());
     const horizontal = isHorizontal(orient);
@@ -66,13 +56,15 @@ export default function Axis({
           <Shape.Line
             from={axisFromPoint}
             to={axisToPoint}
-            stroke={{
-              color: 'black',
-            }}
+            stroke={stroke}
+            strokeWidth={strokeWidth}
+            strokeDasharray={strokeDasharray}
           />
         }
         {values.map((val, i) => {
           if (hideZero && val === 0) return null;
+
+          const transform = horizontal ? '' : `translate(${-tickLength})`;
 
           const tickFromPoint = new Point({
             x: horizontal ? position(val) : 0,
@@ -82,7 +74,6 @@ export default function Axis({
             x: horizontal ? position(val) : tickLength,
             y: horizontal ? 0 : position(val),
           });
-          const transform = horizontal ? '' : `translate(${-tickLength})`;
 
           return (
             <Group
@@ -94,6 +85,7 @@ export default function Axis({
                   from={tickFromPoint}
                   to={tickToPoint}
                   transform={transform}
+                  stroke={tickStroke || stroke}
                 />
               }
               <text

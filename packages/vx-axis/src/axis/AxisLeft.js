@@ -6,11 +6,16 @@ import ORIENT from '../constants/orientation';
 export default function AxisLeft({
   scale,
   tickFormat,
-  top = 0,
-  left = 0,
-  hideAxisLine = false,
-  hideTicks = false,
-  hideZero = false,
+  top,
+  left,
+  stroke,
+  strokeWidth,
+  strokeDasharray,
+  tickStroke,
+  fontSize,
+  hideAxisLine,
+  hideTicks,
+  hideZero,
   className,
 }) {
   return (
@@ -21,6 +26,9 @@ export default function AxisLeft({
       left={left}
       scale={scale}
       tickFormat={tickFormat}
+      stroke={stroke}
+      strokeWidth={strokeWidth}
+      strokeDasharray={strokeDasharray}
       hideAxisLine={hideAxisLine}
       hideTicks={hideTicks}
       hideZero={hideZero}

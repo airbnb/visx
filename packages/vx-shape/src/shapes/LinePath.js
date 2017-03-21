@@ -3,22 +3,6 @@ import cx from 'classnames';
 import { line } from 'd3-shape';
 import Curve from '@vx/curve';
 
-const defaultStroke = {
-  color: 'steelblue',
-  width: 1,
-  dasharray: '',
-};
-
-const defaultPoint = {
-  fill: defaultStroke.color,
-  r: 4,
-  stroke: {
-    width: 2,
-    color: 'white',
-    dasharray: '',
-  }
-};
-
 export default function LinePath({
   data,
   xScale,
@@ -27,15 +11,13 @@ export default function LinePath({
   y,
   defined,
   className,
-  pointClassName,
-  stroke = defaultStroke,
+  stroke = 'steelblue',
+  strokeWidth = 2,
+  strokeDasharray = '',
   fill = 'none',
   curve = Curve.linear,
-  points = false,
-  point = defaultPoint,
+  glyph,
 }) {
-  stroke = Object.assign(defaultStroke, stroke);
-  point = Object.assign(defaultPoint, point);
   const path = line()
     .x(d => xScale(x(d)))
     .y(d => yScale(y(d)))
@@ -46,28 +28,14 @@ export default function LinePath({
       <path
         className={cx('vx-linepath', className)}
         d={path(data)}
-        stroke={stroke.color}
-        strokeWidth={stroke.width}
-        strokeDasharray={stroke.dasharray}
+        stroke={stroke}
+        strokeWidth={strokeWidth}
+        strokeDasharray={strokeDasharray}
         fill={fill}
       />
-      {points &&
-        <g className='vx-linepath-points'>
-          {data.map((d,i) => {
-            return (
-              <circle
-                key={`point-${d}-${i}`}
-                className={cx('vx-linepath-point', pointClassName)}
-                cx={xScale(x(d))}
-                cy={yScale(y(d))}
-                r={point.r}
-                fill={point.fill}
-                stroke={point.stroke.color}
-                strokeWidth={point.stroke.width}
-                strokeDasharray={point.stroke.dasharray}
-              />
-            );
-          })}
+      {glyph &&
+        <g className='vx-linepath-glyphs'>
+          {data.map(glyph)}
         </g>
       }
     </g>

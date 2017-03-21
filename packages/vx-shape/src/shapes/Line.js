@@ -4,12 +4,10 @@ import Point from '@vx/point';
 
 export default function Line({
   from = new Point({ x: 0, y: 0 }),
-  to = [1,1],
-  stroke = {
-    color: '#000',
-    width: 1,
-    dasharray: '',
-  },
+  to = new Point({ x: 1, y: 1 }),
+  stroke = 'black',
+  strokeWidth = 1,
+  strokeDasharray = '',
   transform = '',
   className = '',
 }) {
@@ -20,9 +18,9 @@ export default function Line({
       y1={from.y}
       x2={to.x}
       y2={to.y}
-      stroke={stroke.color}
-      strokeWidth={stroke.width}
-      strokeDasharray={stroke.dasharray}
+      stroke={stroke}
+      strokeWidth={strokeWidth}
+      strokeDasharray={strokeDasharray}
       transform={transform}
     />
   );

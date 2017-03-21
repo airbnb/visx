@@ -35,11 +35,9 @@ export default function Columns({
             key={`column-line-${d}-${i}`}
             from={fromPoint}
             to={toPoint}
-            stroke={{
-              color: stroke,
-              width: strokeWidth,
-              dasharray: strokeDasharray,
-            }}
+            stroke={stroke}
+            strokeWidth={strokeWidth}
+            strokeDasharray={strokeDasharray}
           />
         );
       })}

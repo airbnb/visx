@@ -26,21 +26,9 @@ export default function Demo() {
         dataset={[{
           data: data1,
           chart: {
-            points: true,
-            stroke: {
-              color: '#6A7DD3',
-              width: 2,
-            },
-          }
-        }, {
-          data: data2,
-          chart: {
-            curve: Curve.cardinal,
-            stroke: {
-              width: 2,
-              color: '#5A9C57',
-              dasharray: "5,5",
-            }
+            stroke: '#6A7DD3',
+            strokeWidth: 4,
+            backgroundColor: 'white',
           }
         }]}
       />
