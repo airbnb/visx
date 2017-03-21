@@ -11,6 +11,7 @@ Super beta. Hold off on using this in production until I shake out some of the b
 1. [Motivation](#motivation)
 1. [Examples](#examples)
 1. [Packages](#packages)
+1. [FAQ](#faq)
 
 ## Motivation
 
@@ -32,3 +33,13 @@ Mixing two mental models for updating the DOM is never a good time. Copy and pas
 - [@vx/point](https://github.com/hshoff/vx/tree/master/packages/vx-point)
 - [@vx/scale](https://github.com/hshoff/vx/tree/master/packages/vx-scale)
 - [@vx/shape](https://github.com/hshoff/vx/tree/master/packages/vx-shape)
+
+## FAQ
+
+1. What does `vx` stand for?
+
+  > vx stands for visualization components.
+
+-----
+
+[@hshoff](https://twitter.com/hshoff) &bull; [MIT](https://github.com/hshoff/vx/tree/master/License)
