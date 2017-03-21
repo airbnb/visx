@@ -6,7 +6,7 @@ export default function Dot({
   top = 0,
   left = 0,
   className,
-  children
+  children,
   cx,
   cy,
   r,

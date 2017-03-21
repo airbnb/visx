@@ -33,6 +33,7 @@ Mixing two mental models for updating the DOM is never a good time. Copy and pas
 - [@vx/axis](https://github.com/hshoff/vx/tree/master/packages/vx-axis)
 - [@vx/curve](https://github.com/hshoff/vx/tree/master/packages/vx-curve)
 - [@vx/demo](https://github.com/hshoff/vx/tree/master/packages/vx-demo)
+- [@vx/glyph](https://github.com/hshoff/vx/tree/master/packages/vx-glyph)
 - [@vx/grid](https://github.com/hshoff/vx/tree/master/packages/vx-grid)
 - [@vx/group](https://github.com/hshoff/vx/tree/master/packages/vx-group)
 - [@vx/mock-data](https://github.com/hshoff/vx/tree/master/packages/vx-mock-data)
@@ -45,11 +46,11 @@ Mixing two mental models for updating the DOM is never a good time. Copy and pas
 1. What does `vx` stand for?
 
     > vx stands for visualization components.
-    
+
 1. Do you plan on supporting animation/transitions?
 
     > yup!
-    
+
 1. Do I have to use every package to make a chart?
 
     > nope! pick and choose the packages you need.
@@ -57,7 +58,7 @@ Mixing two mental models for updating the DOM is never a good time. Copy and pas
 1. Can I use this to create my own library of charts for my team?
 
     > Please do.
-    
+
 1. I like using d3.
 
     > Me too.

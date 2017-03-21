@@ -6,6 +6,7 @@ import Axis from '@vx/axis';
 import Scale from '@vx/scale';
 import Group from '@vx/group';
 import Grid from '@vx/grid';
+import Glyph from '@vx/glyph';
 import { extent, max } from 'd3-array';
 
 function identity(x) {

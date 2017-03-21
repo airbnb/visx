@@ -11,6 +11,7 @@
 - @vx/axis
 - [@vx/curve](https://github.com/hshoff/vx/tree/master/packages/vx-curve)
 - [@vx/demo](https://github.com/hshoff/vx/tree/master/packages/vx-demo)
+- [@vx/glyph](https://github.com/hshoff/vx/tree/master/packages/vx-glyph)
 - [@vx/grid](https://github.com/hshoff/vx/tree/master/packages/vx-grid)
 - [@vx/group](https://github.com/hshoff/vx/tree/master/packages/vx-group)
 - [@vx/mock-data](https://github.com/hshoff/vx/tree/master/packages/vx-mock-data)
