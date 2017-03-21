@@ -39,6 +39,14 @@ Mixing two mental models for updating the DOM is never a good time. Copy and pas
 1. What does `vx` stand for?
 
     > vx stands for visualization components.
+    
+1. Do you plan on supporting animation/transitions?
+
+    > yup!
+    
+1. Do I have to use every package to make a chart?
+
+    > nope! pick and choose the packages you need.
 
 -----
 
