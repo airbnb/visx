@@ -1,6 +1,10 @@
-### vx
+<p align="center">
+  <img src="./logo.png" />
+</p>
 
-`react + d3 = vx`
+<p align="center">
+  <code>react + d3 = vx</code>
+</p>
 
 A collection of reusable low-level visualization components. vx combines the power of d3 to generate your visualization and react for updating the DOM.
 
