@@ -14,7 +14,7 @@ Mixing two mental models for updating the DOM is never a good time. Copy and pas
 
 ## Examples
 
-+ [Simple line chart](https://github.com/hshoff/vx/blob/master/packages/vx-demo/src/demos/charts/SimpleAreaChart.js)
++ [Simple line chart](https://github.com/hshoff/vx/blob/master/packages/vx-demo/src/demos/charts/SimpleLineChart.js)
 + [Simple area chart](https://github.com/hshoff/vx/blob/master/packages/vx-demo/src/demos/charts/SimpleAreaChart.js)
 
 ## Packages
