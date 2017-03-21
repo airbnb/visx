@@ -38,7 +38,7 @@ Mixing two mental models for updating the DOM is never a good time. Copy and pas
 
 1. What does `vx` stand for?
 
-  > vx stands for visualization components.
+    > vx stands for visualization components.
 
 :v:
 
