@@ -5,6 +5,7 @@ A collection of reusable low-level visualization components. Super beta. Hold of
 ## Table of contents
 
 1. [Motivation](#motivation)
+1. [Examples](#examples)
 1. [Packages](#packages)
 
 ## Motivation
