@@ -1,5 +1,5 @@
 import React from 'react';
-import cx from 'classnames';
+import classnames from 'classnames';
 import Glyph from './Glyph';
 
 export default function Dot({
@@ -17,7 +17,7 @@ export default function Dot({
 }) {
   return (
     <Glyph
-      className={cx('vx-glyph-dot', className)}
+      className={classnames('vx-glyph-dot', className)}
       top={top}
       left={left}
     >

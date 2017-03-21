@@ -3,6 +3,7 @@ import Mock from '@vx/mock-data';
 import Curve from '@vx/curve';
 import SimpleLineChart from './demos/charts/SimpleLineChart';
 import SimpleAreaChart from './demos/charts/SimpleAreaChart';
+import SimpleLineWithGlyphsChart from './demos/charts/SimpleLineWithGlyphsChart';
 
 export default function Demo() {
   const data1 = Mock.genDateValue(20);
@@ -27,6 +28,20 @@ export default function Demo() {
           data: data1,
           chart: {
             stroke: '#6A7DD3',
+            strokeWidth: 4,
+            backgroundColor: 'white',
+          }
+        }]}
+      />
+
+      <SimpleLineWithGlyphsChart
+        width={width}
+        height={height}
+        margin={margin}
+        dataset={[{
+          data: data2,
+          chart: {
+            stroke: '#b531ce',
             strokeWidth: 4,
             backgroundColor: 'white',
           }

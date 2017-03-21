@@ -1,8 +1,8 @@
 import React from 'react';
-import cx from 'classnames';
 import Group from '@vx/group';
+import cx from 'classnames';
 
-export default function Dot({
+export default function Glyph({
   top = 0,
   left = 0,
   className,

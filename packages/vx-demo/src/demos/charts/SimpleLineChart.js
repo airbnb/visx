@@ -77,29 +77,6 @@ export default function SimpleLineChart({
               stroke={series.chart.stroke}
               strokeWidth={series.chart.strokeWidth}
               strokeDasharray={series.chart.strokeDasharray}
-              glyph={(d, i) => {
-                return (
-                  <g key={`line-point-${i}`}>
-                    <circle
-                      className={cx('vx-linepath-point')}
-                      cx={xScale(x(d))}
-                      cy={yScale(y(d))}
-                      r={5}
-                      fill={series.chart.stroke}
-                      stroke={series.chart.backgroundColor}
-                      strokeWidth={2}
-                    />
-                    <text
-                      x={xScale(x(d))}
-                      y={yScale(y(d))}
-                      dx={10}
-                      fontSize={11}
-                    >
-                      {yFormat(y(d))}
-                    </text>
-                  </g>
-                );
-              }}
             />
           );
         })}
