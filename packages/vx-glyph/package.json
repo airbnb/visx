@@ -1,18 +1,15 @@
 {
   "name": "@vx/glyph",
-  "version": "0.0.1",
+  "version": "0.0.36",
   "description": "vx glyph ",
   "main": "build/index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "files": [
-    "build"
-  ],
   "scripts": {
     "build": "make build SRC=./src",
     "prepublish": "make build SRC=./src"
   },
+  "files": [
+    "build"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hshoff/vx.git"
@@ -38,7 +35,7 @@
     "react-tools": "^0.10.0"
   },
   "dependencies": {
-    "@vx/group": "0.0.34",
+    "@vx/group": "^0.0.36",
     "classnames": "^2.2.5",
     "react": "^15.4.2"
   }
