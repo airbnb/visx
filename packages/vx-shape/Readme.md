@@ -1,5 +1,9 @@
 # @vx/shape
 
++ [`<AreaClosed />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/AreaClosed.js)
++ [`<Line />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/Line.js)
++ [`<LinePath />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/LinePath.js)
+
 ## vx packages
 
 - [@vx/axis](https://github.com/hshoff/vx/tree/master/packages/vx-axis)

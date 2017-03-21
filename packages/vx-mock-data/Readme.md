@@ -1,5 +1,11 @@
 # @vx/mock-data
 
++ generators/
+  - [genDateValue()](https://github.com/hshoff/vx/blob/master/packages/vx-mock-data/src/generators/genDateValue.js)
++ mocks/
+  - [appleStock](https://github.com/hshoff/vx/blob/master/packages/vx-mock-data/src/mocks/appleStock.js)
+  - [letterFrequency](https://github.com/hshoff/vx/blob/master/packages/vx-mock-data/src/mocks/letterFrequency.js)
+
 ## vx packages
 
 - [@vx/axis](https://github.com/hshoff/vx/tree/master/packages/vx-axis)

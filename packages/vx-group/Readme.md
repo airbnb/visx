@@ -1,5 +1,7 @@
 # @vx/group
 
++ [`<Group />`](https://github.com/hshoff/vx/blob/master/packages/vx-group/src/index.js)
+
 ## vx packages
 
 - [@vx/axis](https://github.com/hshoff/vx/tree/master/packages/vx-axis)
