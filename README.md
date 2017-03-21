@@ -6,6 +6,8 @@
   <code>react + d3 = vx</code>
 </p>
 
+### vx
+
 A collection of reusable low-level visualization components. vx combines the power of d3 to generate your visualization and react for updating the DOM.
 
 Super beta. Hold off on using this in production until I shake out some of the bigger API problems (post `v1.0.0+`).
@@ -62,4 +64,4 @@ Mixing two mental models for updating the DOM is never a good time. Copy and pas
 
 :v:
 
-[MIT](https://github.com/hshoff/vx/tree/master/License) &bull; [@hshoff](https://twitter.com/hshoff)
+[MIT](./LICENSE) &bull; [@hshoff](https://twitter.com/hshoff)
