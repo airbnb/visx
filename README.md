@@ -1,6 +1,10 @@
 ### vx
 
-A collection of reusable low-level visualization components. Super beta. Hold off on using this in production until I shake out some of the bigger API problems (`v1.0.0+`).
+`react + d3 = vx`
+
+A collection of reusable low-level visualization components. vx combines the power of d3 to generate your visualization and react for updating the DOM.
+
+:warning: Super beta. Hold off on using this in production until I shake out some of the bigger API problems (post `v1.0.0+`).
 
 ## Table of contents
 
