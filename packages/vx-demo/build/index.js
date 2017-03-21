@@ -25,6 +25,10 @@ var _SimpleAreaChart = require('./demos/charts/SimpleAreaChart');
 
 var _SimpleAreaChart2 = _interopRequireDefault(_SimpleAreaChart);
 
+var _SimpleLineWithGlyphsChart = require('./demos/charts/SimpleLineWithGlyphsChart');
+
+var _SimpleLineWithGlyphsChart2 = _interopRequireDefault(_SimpleLineWithGlyphsChart);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Demo() {
@@ -51,6 +55,19 @@ function Demo() {
         data: data1,
         chart: {
           stroke: '#6A7DD3',
+          strokeWidth: 4,
+          backgroundColor: 'white'
+        }
+      }]
+    }),
+    _react2.default.createElement(_SimpleLineWithGlyphsChart2.default, {
+      width: width,
+      height: height,
+      margin: margin,
+      dataset: [{
+        data: data2,
+        chart: {
+          stroke: '#b531ce',
           strokeWidth: 4,
           backgroundColor: 'white'
         }
