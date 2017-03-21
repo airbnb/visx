@@ -48,7 +48,13 @@ Mixing two mental models for updating the DOM is never a good time. Copy and pas
 
     > nope! pick and choose the packages you need.
 
------
+1. Can I use this to create my own library of charts for my team?
+
+    > Please do.
+    
+1. I like using d3.
+
+    > Me too.
 
 :v:
 
