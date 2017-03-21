@@ -7,9 +7,11 @@ A collection of reusable low-level visualization components. Super beta. Hold of
 1. [Motivation](#motivation)
 1. [Packages](#packages)
 
-## Motiviation
+## Motivation
 
-Don't copy and paste d3 code into `componentDidMount()`. Mixing two mental models for updating the DOM is never a good time. This collection of components lets you easily build your own reusable visualization charts or library.
+I never felt good copy and pasting d3 code into `componentDidMount()`. Mixing two mental models for updating the DOM is never a good time. I also don't enjoy trying shoehorn what I want to make into someone elses definition of a `chart`. So I'm making `vx`. 
+
+This collection of components lets you easily build your own reusable visualization charts or library without having to learn d3. No more selections or `enter()/exit()/update()`.
 
 ## Examples
 
