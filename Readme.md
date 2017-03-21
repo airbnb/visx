@@ -40,8 +40,8 @@ Mixing two mental models for updating the DOM is never a good time. Copy and pas
 
     > vx stands for visualization components.
 
-:v:
-
 -----
+
+:v:
 
 [MIT](https://github.com/hshoff/vx/tree/master/License) &bull; [@hshoff](https://twitter.com/hshoff)
