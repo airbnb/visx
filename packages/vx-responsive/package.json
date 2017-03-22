@@ -33,7 +33,6 @@
   },
   "dependencies": {
     "lodash.debounce": "^4.0.8",
-    "react": "^15.4.2",
-    "recompose": "^0.22.0"
+    "react": "^15.4.2"
   }
 }

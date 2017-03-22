@@ -1,4 +1,4 @@
-# @vx/shape
+# @vx/responsive
 
 ## vx packages
 
