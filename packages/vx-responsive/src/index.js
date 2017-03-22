@@ -3,7 +3,7 @@ import React from 'react';
 export default function ResponsiveSVG({
   children,
   preserveAspectRatio = 'xMinYMin meet',
-  viewBox = "0 0 300 300",
+  viewBox = '0 0 300 300',
 }) {
   return (
     <div style={{
