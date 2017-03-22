@@ -47,36 +47,48 @@ function Demo() {
   return _react2.default.createElement(
     'div',
     null,
-    _react2.default.createElement(_SimpleLineChart2.default, {
-      width: width,
-      height: height,
-      margin: margin,
-      dataset: [{
-        data: data1,
-        chart: {
-          stroke: '#6A7DD3',
-          strokeWidth: 4,
-          backgroundColor: 'white'
-        }
-      }]
-    }),
-    _react2.default.createElement(_SimpleLineWithGlyphsChart2.default, {
-      width: width,
-      height: height,
-      margin: margin,
-      dataset: [{
-        data: data2,
-        chart: {
-          stroke: '#b531ce',
-          strokeWidth: 4,
-          backgroundColor: 'white'
-        }
-      }]
-    }),
-    _react2.default.createElement(_SimpleAreaChart2.default, {
-      width: width,
-      height: height,
-      margin: margin
-    })
+    _react2.default.createElement(
+      'div',
+      null,
+      _react2.default.createElement(_SimpleLineChart2.default, {
+        width: width,
+        height: height,
+        margin: margin,
+        dataset: [{
+          data: data1,
+          chart: {
+            stroke: '#6A7DD3',
+            strokeWidth: 4,
+            backgroundColor: 'white'
+          }
+        }]
+      })
+    ),
+    _react2.default.createElement(
+      'div',
+      null,
+      _react2.default.createElement(_SimpleLineWithGlyphsChart2.default, {
+        width: width,
+        height: height,
+        margin: margin,
+        dataset: [{
+          data: data2,
+          chart: {
+            stroke: '#b531ce',
+            strokeWidth: 4,
+            backgroundColor: 'white'
+          }
+        }]
+      })
+    ),
+    _react2.default.createElement(
+      'div',
+      null,
+      _react2.default.createElement(_SimpleAreaChart2.default, {
+        width: width,
+        height: height,
+        margin: margin
+      })
+    )
   );
 }

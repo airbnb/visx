@@ -32,6 +32,8 @@
     "react-tools": "^0.10.0"
   },
   "dependencies": {
-    "react": "^15.4.2"
+    "lodash.debounce": "^4.0.8",
+    "react": "^15.4.2",
+    "recompose": "^0.22.0"
   }
 }

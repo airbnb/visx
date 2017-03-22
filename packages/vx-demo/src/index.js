@@ -20,39 +20,45 @@ export default function Demo() {
 
   return (
     <div>
-      <SimpleLineChart
-        width={width}
-        height={height}
-        margin={margin}
-        dataset={[{
-          data: data1,
-          chart: {
-            stroke: '#6A7DD3',
-            strokeWidth: 4,
-            backgroundColor: 'white',
-          }
-        }]}
-      />
+      <div>
+        <SimpleLineChart
+          width={width}
+          height={height}
+          margin={margin}
+          dataset={[{
+            data: data1,
+            chart: {
+              stroke: '#6A7DD3',
+              strokeWidth: 4,
+              backgroundColor: 'white',
+            }
+          }]}
+        />
+      </div>
 
-      <SimpleLineWithGlyphsChart
-        width={width}
-        height={height}
-        margin={margin}
-        dataset={[{
-          data: data2,
-          chart: {
-            stroke: '#b531ce',
-            strokeWidth: 4,
-            backgroundColor: 'white',
-          }
-        }]}
-      />
+      <div>
+        <SimpleLineWithGlyphsChart
+          width={width}
+          height={height}
+          margin={margin}
+          dataset={[{
+            data: data2,
+            chart: {
+              stroke: '#b531ce',
+              strokeWidth: 4,
+              backgroundColor: 'white',
+            }
+          }]}
+        />
+      </div>
 
-      <SimpleAreaChart
-        width={width}
-        height={height}
-        margin={margin}
-      />
+      <div>
+        <SimpleAreaChart
+          width={width}
+          height={height}
+          margin={margin}
+        />
+      </div>
     </div>
   );
 }

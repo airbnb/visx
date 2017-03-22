@@ -15,6 +15,8 @@ export default function Grid({
   stroke,
   strokeWidth,
   strokeDasharray,
+  numTicksRows,
+  numTicksColumns,
 }) {
   return (
     <Group
@@ -29,6 +31,7 @@ export default function Grid({
         stroke={stroke}
         strokeWidth={strokeWidth}
         strokeDasharray={strokeDasharray}
+        numTicks={numTicksRows}
       />
       <Columns
         className={className}
@@ -37,6 +40,7 @@ export default function Grid({
         stroke={stroke}
         strokeWidth={strokeWidth}
         strokeDasharray={strokeDasharray}
+        numTicks={numTicksColumns}
       />
     </Group>
   );

@@ -1,27 +1,7 @@
-import React from 'react';
+import ScaleSVG from './components/ScaleSVG';
+import withScreenSize from './enhancers/withScreenSize';
 
-export default function ResponsiveSVG({
-  children,
-  width,
-  height,
-  xOrigin = 0,
-  yOrigin = 0,
-  preserveAspectRatio = 'xMinYMin meet',
-}) {
-  return (
-    <div style={{
-      display: 'inline-block',
-      position: 'relative',
-      width: '100%',
-      verticalAling: 'top',
-      overflow: 'hidden',
-    }}>
-      <svg
-        preserveAspectRatio={preserveAspectRatio}
-        viewBox={`${xOrigin} ${yOrigin} ${width} ${height}`}
-      >
-        {children}
-      </svg>
-    </div>
-  );
+export default {
+  ScaleSVG,
+  withScreenSize,
 }

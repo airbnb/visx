@@ -7,20 +7,35 @@ import Scale from '@vx/scale';
 import Group from '@vx/group';
 import Grid from '@vx/grid';
 import Glyph from '@vx/glyph';
-import ResponsiveSVG from '@vx/responsive';
+import Responsive from '@vx/responsive';
 import { extent, max } from 'd3-array';
 
 function identity(x) {
   return x;
 }
 
-export default function SimpleLineChart({
-  width,
-  height,
+function numTicksForHeight(height) {
+  if (height <= 300) return 3;
+  if (300 < height && height <= 600) return 5;
+  return 10;
+}
+
+function numTicksForWidth(width) {
+  if (width <= 300) return 2;
+  if (300 < width && width <= 400) return 5;
+  return 10;
+}
+
+function SimpleLineChart({
   margin,
   dataset,
-}) {
+  screenWidth,
+  screenHeight,
+}, state, n) {
   if (!Array.isArray(dataset)) dataset = [dataset];
+
+  const width = screenWidth / 2;
+  const height = width / 2;
 
   const allData = dataset.reduce((rec, d) => {
     return rec.concat(d.data)
@@ -49,12 +64,13 @@ export default function SimpleLineChart({
   const yFormat = yScale.tickFormat ? yScale.tickFormat() : identity;
 
   return (
-    <ResponsiveSVG width={width} height={height}>
+    <svg width={width} height={height}>
       <Axis.AxisLeft
         top={margin.top}
         left={margin.left}
         scale={yScale}
         hideZero
+        numTicks={numTicksForHeight(height)}
       />
       <Group
         top={margin.top}
@@ -65,6 +81,8 @@ export default function SimpleLineChart({
           yScale={yScale}
           width={xMax}
           height={yMax}
+          numTicksRows={numTicksForHeight(height)}
+          numTicksColumns={numTicksForWidth(width)}
         />
         {dataset.map((series, i) => {
           return (
@@ -86,7 +104,10 @@ export default function SimpleLineChart({
         top={height - margin.bottom}
         left={margin.left}
         scale={xScale}
+        numTicks={numTicksForWidth(width)}
       />
-    </ResponsiveSVG>
+    </svg>
   );
 }
+
+export default Responsive.withScreenSize(SimpleLineChart);

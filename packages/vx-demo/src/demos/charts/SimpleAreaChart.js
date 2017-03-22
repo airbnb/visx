@@ -5,16 +5,31 @@ import Mock from '@vx/mock-data';
 import Scale from '@vx/scale';
 import Shape from '@vx/shape';
 import Grid from '@vx/grid';
-import ResponsiveSVG from '@vx/responsive';
+import Responsive from '@vx/responsive';
 import { extent, max } from 'd3-array';
 
-export default function SimpleAreaChart({
-  width,
-  height,
+function numTicksForHeight(height) {
+  if (height <= 300) return 3;
+  if (300 < height && height <= 600) return 5;
+  return 10;
+}
+
+function numTicksForWidth(width) {
+  if (width <= 300) return 2;
+  if (300 < width && width <= 400) return 5;
+  return 10;
+}
+
+function SimpleAreaChart({
   margin,
   data,
+  screenWidth,
+  screenHeight,
 }) {
   const stock = Mock.appleStock;
+
+  const width = screenWidth / 2;
+  const height = width / 2;
 
   // bounds
   const xMax = width - margin.left - margin.right;
@@ -36,7 +51,7 @@ export default function SimpleAreaChart({
   });
 
   return (
-    <ResponsiveSVG height={height} width={width}>
+    <svg height={height} width={width}>
       <defs>
         <linearGradient id="linear" x1="0%" y1="0%" x2="0%" y2="100%">
           <stop offset="0%"   stopColor="rgba(181, 49, 206, 1.000)"/>
@@ -48,6 +63,7 @@ export default function SimpleAreaChart({
           scale={yStockScale}
           width={xMax}
           strokeDasharray="2,2"
+          numTicks={numTicksForHeight(height)}
         />
         <Shape.AreaClosed
           data={stock}
@@ -64,15 +80,19 @@ export default function SimpleAreaChart({
         top={height - margin.bottom}
         left={margin.left}
         scale={xStockScale}
+        numTicks={numTicksForWidth(width)}
       />
       <Axis.AxisLeft
         top={margin.top}
         left={margin.left}
         scale={yStockScale}
+        numTicks={numTicksForHeight(height)}
         hideAxisLine
         hideTicks
         hideZero
       />
-    </ResponsiveSVG>
+    </svg>
   );
 }
+
+export default Responsive.withScreenSize(SimpleAreaChart);

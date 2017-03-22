@@ -13,6 +13,7 @@ export default function AxisBottom({
   strokeDasharray,
   tickStroke,
   fontSize,
+  numTicks,
   hideAxisLine,
   hideTicks,
   hideZero,
@@ -28,6 +29,8 @@ export default function AxisBottom({
       tickFormat={tickFormat}
       stroke={stroke}
       strokeWidth={strokeWidth}
+      strokeDasharray={strokeDasharray}
+      numTicks={numTicks}
       hideAxisLine={hideAxisLine}
       hideTicks={hideTicks}
       hideZero={hideZero}

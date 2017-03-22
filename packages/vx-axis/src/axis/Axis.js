@@ -18,12 +18,13 @@ export default function Axis({
   strokeDasharray,
   tickStroke = 'black',
   fontSize = 10,
+  numTicks = 10,
   hideAxisLine = false,
   hideTicks = false,
   hideZero = false,
   className,
 }) {
-    const values = scale.ticks ? scale.ticks() : scale.domain();
+    const values = scale.ticks ? scale.ticks(numTicks) : scale.domain();
     let format = scale.tickFormat ? scale.tickFormat() : identity;
     if (tickFormat) format = tickFormat;
 
