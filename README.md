@@ -38,6 +38,7 @@ Mixing two mental models for updating the DOM is never a good time. Copy and pas
 - [@vx/group](https://github.com/hshoff/vx/tree/master/packages/vx-group)
 - [@vx/mock-data](https://github.com/hshoff/vx/tree/master/packages/vx-mock-data)
 - [@vx/point](https://github.com/hshoff/vx/tree/master/packages/vx-point)
+- [@vx/responsive](https://github.com/hshoff/vx/tree/master/packages/vx-responsive)
 - [@vx/scale](https://github.com/hshoff/vx/tree/master/packages/vx-scale)
 - [@vx/shape](https://github.com/hshoff/vx/tree/master/packages/vx-shape)
 
