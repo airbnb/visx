@@ -59,6 +59,8 @@ Mixing two mental models for updating the DOM is never a good time. Copy and pas
 - controls
 - textures
 - gradients
+- animations
+- transitions
 - area
 - StackedArea
 - bar
