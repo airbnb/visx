@@ -17,6 +17,7 @@ Super beta. Hold off on using this in production until I shake out some of the b
 1. [Motivation](#motivation)
 1. [Examples](#examples)
 1. [Packages](#packages)
+1. [Roadmap](#roadmap)
 1. [FAQ](#faq)
 
 ## Motivation
@@ -42,6 +43,34 @@ Mixing two mental models for updating the DOM is never a good time. Copy and pas
 - [@vx/responsive](https://github.com/hshoff/vx/tree/master/packages/vx-responsive)
 - [@vx/scale](https://github.com/hshoff/vx/tree/master/packages/vx-scale)
 - [@vx/shape](https://github.com/hshoff/vx/tree/master/packages/vx-shape)
+
+## Roadmap
+
+- markers
+- annotations
+- threshold
+- regions
+- labels
+- legends
+- events
+- interactions
+- tooltips
+- brush
+- controls
+- textures
+- gradients
+- area
+- StackedArea
+- bar
+- radial
+- StackedBar
+- streamgraph
+- histogram
+- heatmap
+- textures
+- gradients
+- layouts
+- hierarchy
 
 ## FAQ
 
