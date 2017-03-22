@@ -7,6 +7,7 @@ import Scale from '@vx/scale';
 import Group from '@vx/group';
 import Grid from '@vx/grid';
 import Glyph from '@vx/glyph';
+import ResponsiveSVG from '@vx/responsive';
 import { extent, max } from 'd3-array';
 
 function identity(x) {
@@ -48,7 +49,7 @@ export default function SimpleLineChart({
   const yFormat = yScale.tickFormat ? yScale.tickFormat() : identity;
 
   return (
-    <svg width={width} height={height}>
+    <ResponsiveSVG width={width} height={height}>
       <Axis.AxisLeft
         top={margin.top}
         left={margin.left}
@@ -86,6 +87,6 @@ export default function SimpleLineChart({
         left={margin.left}
         scale={xScale}
       />
-    </svg>
+    </ResponsiveSVG>
   );
 }

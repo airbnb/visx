@@ -5,6 +5,7 @@ import Mock from '@vx/mock-data';
 import Scale from '@vx/scale';
 import Shape from '@vx/shape';
 import Grid from '@vx/grid';
+import ResponsiveSVG from '@vx/responsive';
 import { extent, max } from 'd3-array';
 
 export default function SimpleAreaChart({
@@ -35,7 +36,7 @@ export default function SimpleAreaChart({
   });
 
   return (
-    <svg height={height} width={width}>
+    <ResponsiveSVG height={height} width={width}>
       <defs>
         <linearGradient id="linear" x1="0%" y1="0%" x2="0%" y2="100%">
           <stop offset="0%"   stopColor="rgba(181, 49, 206, 1.000)"/>
@@ -72,6 +73,6 @@ export default function SimpleAreaChart({
         hideTicks
         hideZero
       />
-    </svg>
+    </ResponsiveSVG>
   );
 }
