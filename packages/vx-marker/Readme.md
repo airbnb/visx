@@ -1,6 +1,4 @@
-# @vx/group
-
-+ [`<Group />`](https://github.com/hshoff/vx/blob/master/packages/vx-group/src/index.js)
+# @vx/marker
 
 ## vx packages
 
@@ -9,8 +7,8 @@
 - [@vx/demo](https://github.com/hshoff/vx/tree/master/packages/vx-demo)
 - [@vx/glyph](https://github.com/hshoff/vx/tree/master/packages/vx-glyph)
 - [@vx/grid](https://github.com/hshoff/vx/tree/master/packages/vx-grid)
-- @vx/group
-- [@vx/marker](https://github.com/hshoff/vx/tree/master/packages/vx-marker)
+- [@vx/group](https://github.com/hshoff/vx/tree/master/packages/vx-group)
+- @vx/marker
 - [@vx/mock-data](https://github.com/hshoff/vx/tree/master/packages/vx-mock-data)
 - [@vx/point](https://github.com/hshoff/vx/tree/master/packages/vx-point)
 - [@vx/responsive](https://github.com/hshoff/vx/tree/master/packages/vx-responsive)

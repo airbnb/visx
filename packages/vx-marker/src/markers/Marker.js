@@ -20,6 +20,8 @@ export default function Marker({
   labelHorizontalAlign = 'right',
   labelDx = 0,
   labelDy = 0,
+  labelFill,
+  labelFontSize = 10,
   className,
 }) {
   return (
@@ -36,9 +38,11 @@ export default function Marker({
       {label &&
         <text
           x={from.x}
-          y={to.x}
+          y={from.y}
           dx={labelDx}
           dy={labelDy}
+          fontSize={labelFontSize}
+          fill={labelFill || stroke}
           textAnchor={labelAnchor}
         >
           {label}

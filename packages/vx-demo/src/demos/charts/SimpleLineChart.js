@@ -8,6 +8,7 @@ import Group from '@vx/group';
 import Grid from '@vx/grid';
 import Glyph from '@vx/glyph';
 import Responsive from '@vx/responsive';
+import Marker from '@vx/marker';
 import { extent, max } from 'd3-array';
 
 function identity(x) {
@@ -62,6 +63,18 @@ function SimpleLineChart({
   });
 
   const yFormat = yScale.tickFormat ? yScale.tickFormat() : identity;
+  const xFormat = xScale.tickFormat ? xScale.tickFormat() : identity;
+
+  const markerDatum = allData[3];
+  const markerLabel = `Deploy`;
+  const markerFrom = new Point({
+    x: xScale(x(markerDatum)),
+    y: 0,
+  });
+  const markerTo = new Point({
+    x: xScale(x(markerDatum)),
+    y: yMax,
+  });
 
   return (
     <svg width={width} height={height}>
@@ -99,6 +112,13 @@ function SimpleLineChart({
             />
           );
         })}
+        <Marker
+          from={markerFrom}
+          to={markerTo}
+          label={markerLabel}
+          labelDx={6}
+          labelDy={15}
+        />
       </Group>
       <Axis.AxisBottom
         top={height - margin.bottom}
