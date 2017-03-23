@@ -32,6 +32,7 @@ Mixing two mental models for updating the DOM is never a good time. Copy and pas
 
 ## Packages
 
+- [@vx/annotation](https://github.com/hshoff/vx/tree/master/packages/vx-annotation)
 - [@vx/axis](https://github.com/hshoff/vx/tree/master/packages/vx-axis)
 - [@vx/curve](https://github.com/hshoff/vx/tree/master/packages/vx-curve)
 - [@vx/demo](https://github.com/hshoff/vx/tree/master/packages/vx-demo)
@@ -47,7 +48,6 @@ Mixing two mental models for updating the DOM is never a good time. Copy and pas
 
 ## Roadmap
 
-- annotations
 - threshold
 - regions
 - labels
