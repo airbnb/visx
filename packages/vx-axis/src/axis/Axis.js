@@ -6,19 +6,30 @@ import Group from '@vx/group';
 import identity from '../utils/identity';
 import center from '../utils/center';
 import isHorizontal from '../utils/isHorizontal';
+import isLeft from '../utils/isLeft';
 
 export default function Axis({
   scale,
   orient,
-  tickFormat,
   top = 0,
   left = 0,
   stroke = 'black',
   strokeWidth = 1,
   strokeDasharray,
-  tickStroke = 'black',
   fontSize = 10,
   numTicks = 10,
+  tickFormat,
+  tickStroke = 'black',
+  tickLength = 8,
+  tickPadding = 2,
+  tickOffset = 0,
+  tickK = 1,
+  tickTransform,
+  tickTextAnchor = "start",
+  tickTextFontFamily = 'Arial',
+  tickTextFontSize = 10,
+  tickTextDx,
+  tickTextDy,
   hideAxisLine = false,
   hideTicks = false,
   hideZero = false,
@@ -32,11 +43,9 @@ export default function Axis({
     const range0 = range[0] + 0.5;
     const range1 = range[range.length - 1] + 0.5;
 
-    const tickLength = 8;
-    const tickPadding = 2;
-
-    const position = (scale.bandwidth ? center : identity)(scale.copy());
     const horizontal = isHorizontal(orient);
+    const transform = horizontal ? '' : `translate(${tickOffset})`;
+    const position = (scale.bandwidth ? center : identity)(scale.copy());
 
     const axisFromPoint = new Point({
       x: horizontal ? range0 : 0,
@@ -65,8 +74,6 @@ export default function Axis({
         {values.map((val, i) => {
           if (hideZero && val === 0) return null;
 
-          const transform = horizontal ? '' : `translate(${-tickLength})`;
-
           const tickFromPoint = new Point({
             x: horizontal ? position(val) : 0,
             y: horizontal ? tickLength : position(val),
@@ -85,18 +92,18 @@ export default function Axis({
                 <Shape.Line
                   from={tickFromPoint}
                   to={tickToPoint}
-                  transform={transform}
+                  transform={tickTransform || transform}
                   stroke={tickStroke || stroke}
                 />
               }
               <text
                 x={tickFromPoint.x}
                 y={tickToPoint.y}
-                dy={horizontal ? tickLength + tickPadding + fontSize : fontSize / 3}
-                dx={horizontal ? 0 : -tickPadding - (hideTicks ? tickPadding : tickLength)}
-                textAnchor={horizontal ? "middle" : "end"}
-                fontFamily="Arial"
-                fontSize={fontSize}
+                dy={tickTextDy}
+                dx={tickTextDx}
+                textAnchor={tickTextAnchor}
+                fontFamily={tickTextFontFamily}
+                fontSize={tickTextFontSize || fontSize}
               >
                 {format(val)}
               </text>

@@ -5,15 +5,25 @@ import ORIENT from '../constants/orientation';
 
 export default function AxisLeft({
   scale,
-  tickFormat,
   top,
   left,
   stroke,
   strokeWidth,
   strokeDasharray,
-  tickStroke,
   fontSize,
   numTicks,
+  tickFormat,
+  tickStroke,
+  tickK = -1,
+  tickOffset,
+  tickTransform,
+  tickLength = 8,
+  tickPadding = 2,
+  tickTextAnchor = "end",
+  tickTextFontFamily = "Arial",
+  tickTextFontSize = 10,
+  tickTextDy,
+  tickTextDx,
   hideAxisLine,
   hideTicks,
   hideZero,
@@ -26,11 +36,22 @@ export default function AxisLeft({
       top={top}
       left={left}
       scale={scale}
-      tickFormat={tickFormat}
       stroke={stroke}
       strokeWidth={strokeWidth}
       strokeDasharray={strokeDasharray}
       numTicks={numTicks}
+      tickK={tickK}
+      tickFormat={tickFormat}
+      tickLength={tickLength}
+      tickOffset={tickOffset || tickK * tickLength}
+      tickTransform={tickTransform || `translate(${tickOffset || tickK * tickLength})`}
+      tickStroke={tickStroke}
+      tickPadding={tickPadding}
+      tickTextDy={tickTextDy || tickTextFontSize / 3}
+      tickTextDx={tickTextDx || tickK * tickPadding + tickK * (hideTicks ? tickPadding : tickLength)}
+      tickTextAnchor={tickTextAnchor}
+      tickTextFontFamily={tickTextFontFamily}
+      tickTextFontSize={tickTextFontSize}
       hideAxisLine={hideAxisLine}
       hideTicks={hideTicks}
       hideZero={hideZero}

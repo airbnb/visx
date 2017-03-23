@@ -12,7 +12,7 @@ export default function Demo() {
   const width = 800;
   const height = 400;
   const margin = {
-    top: 20,
+    top: 50,
     bottom: 30,
     left: 50,
     right: 50,
@@ -37,6 +37,14 @@ export default function Demo() {
       </div>
 
       <div>
+        <SimpleAreaChart
+          width={width}
+          height={height}
+          margin={margin}
+        />
+      </div>
+
+      <div>
         <SimpleLineWithGlyphsChart
           width={width}
           height={height}
@@ -49,14 +57,6 @@ export default function Demo() {
               backgroundColor: 'white',
             }
           }]}
-        />
-      </div>
-
-      <div>
-        <SimpleAreaChart
-          width={width}
-          height={height}
-          margin={margin}
         />
       </div>
     </div>

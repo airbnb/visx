@@ -65,9 +65,9 @@ function SimpleLineWithGlyphsChart({
 
   return (
     <svg width={width} height={height}>
-      <Axis.AxisLeft
+      <Axis.AxisRight
         top={margin.top}
-        left={margin.left}
+        left={width - margin.right}
         scale={yScale}
         numTicks={numTicksForHeight(height)}
         hideZero
@@ -135,11 +135,12 @@ function SimpleLineWithGlyphsChart({
           );
         })}
       </Group>
-      <Axis.AxisBottom
-        top={height - margin.bottom}
+      <Axis.AxisTop
+        top={margin.top}
         left={margin.left}
         scale={xScale}
         numTicks={numTicksForWidth(width)}
+        hideTicks
       />
     </svg>
   );

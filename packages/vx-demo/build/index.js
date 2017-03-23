@@ -38,7 +38,7 @@ function Demo() {
   var width = 800;
   var height = 400;
   var margin = {
-    top: 20,
+    top: 50,
     bottom: 30,
     left: 50,
     right: 50
@@ -67,6 +67,15 @@ function Demo() {
     _react2.default.createElement(
       'div',
       null,
+      _react2.default.createElement(_SimpleAreaChart2.default, {
+        width: width,
+        height: height,
+        margin: margin
+      })
+    ),
+    _react2.default.createElement(
+      'div',
+      null,
       _react2.default.createElement(_SimpleLineWithGlyphsChart2.default, {
         width: width,
         height: height,
@@ -79,15 +88,6 @@ function Demo() {
             backgroundColor: 'white'
           }
         }]
-      })
-    ),
-    _react2.default.createElement(
-      'div',
-      null,
-      _react2.default.createElement(_SimpleAreaChart2.default, {
-        width: width,
-        height: height,
-        margin: margin
       })
     )
   );

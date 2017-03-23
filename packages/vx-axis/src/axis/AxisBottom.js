@@ -3,17 +3,27 @@ import cx from 'classnames';
 import Axis from './Axis';
 import ORIENT from '../constants/orientation';
 
-export default function AxisBottom({
+export default function AxisRight({
   scale,
-  tickFormat,
   top,
   left,
   stroke,
   strokeWidth,
   strokeDasharray,
-  tickStroke,
   fontSize,
   numTicks,
+  tickFormat,
+  tickStroke,
+  tickK = 1,
+  tickOffset,
+  tickTransform,
+  tickLength = 8,
+  tickPadding = 2,
+  tickTextAnchor = "middle",
+  tickTextFontFamily = "Arial",
+  tickTextFontSize = 10,
+  tickTextDy,
+  tickTextDx,
   hideAxisLine,
   hideTicks,
   hideZero,
@@ -26,11 +36,22 @@ export default function AxisBottom({
       top={top}
       left={left}
       scale={scale}
-      tickFormat={tickFormat}
       stroke={stroke}
       strokeWidth={strokeWidth}
       strokeDasharray={strokeDasharray}
       numTicks={numTicks}
+      tickK={tickK}
+      tickFormat={tickFormat}
+      tickLength={tickLength}
+      tickOffset={tickOffset || tickK * tickLength}
+      tickTransform={tickTransform || `translate(${tickOffset || 0})`}
+      tickStroke={tickStroke}
+      tickPadding={tickPadding}
+      tickTextDy={tickTextDy || tickLength + tickPadding + tickTextFontSize}
+      tickTextDx={tickTextDx || 0}
+      tickTextAnchor={tickTextAnchor}
+      tickTextFontFamily={tickTextFontFamily}
+      tickTextFontSize={tickTextFontSize}
       hideAxisLine={hideAxisLine}
       hideTicks={hideTicks}
       hideZero={hideZero}
