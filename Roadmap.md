@@ -1,0 +1,27 @@
+# vx Roadmap
+
+- threshold
+- regions
+- labels
+- legends
+- events
+- interactions
+- tooltips
+- brush
+- controls
+- textures
+- gradients
+- animations
+- transitions
+- area
+- StackedArea
+- bar
+- radial
+- StackedBar
+- streamgraph
+- histogram
+- heatmap
+- textures
+- gradients
+- layouts
+- hierarchy
