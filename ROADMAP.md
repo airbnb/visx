@@ -1,4 +1,4 @@
-# vx Roadmap
+# Roadmap
 
 - threshold
 - regions
