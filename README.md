@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/vx.png" />
+  <img src="./assets/vx.png" width="180" />
 </p>
 
 <p align="center">
