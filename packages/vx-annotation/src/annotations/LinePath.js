@@ -21,7 +21,11 @@ export default function LinePathAnnotation({
   labelDy = 0,
   labelFill,
   labelFontSize = 10,
+  labelStroke = 'white',
+  labelStrokeWidth = 3,
+  labelPaintOrder = 'stroke',
 }) {
+  const endPoint = points[points.length - 1];
   return (
     <Group
       className='vx-line-path-annotation-group'
@@ -41,12 +45,15 @@ export default function LinePathAnnotation({
       {label &&
         <text
           x={endPoint.x}
-          y={enPoint.y}
+          y={endPoint.y}
           dx={labelDx}
           dy={labelDy}
           fontSize={labelFontSize}
           fill={labelFill || stroke}
+          stroke={labelStroke}
+          strokeWidth={labelStrokeWidth}
           textAnchor={labelAnchor}
+          paintOrder={labelPaintOrder}
         >
           {label}
         </text>

@@ -22,6 +22,9 @@ export default function Marker({
   labelDy = 0,
   labelFill,
   labelFontSize = 10,
+  labelStroke = 'white',
+  labelStrokeWidth = 3,
+  labelPaintOrder = 'stroke',
   className,
 }) {
   return (
@@ -43,7 +46,10 @@ export default function Marker({
           dy={labelDy}
           fontSize={labelFontSize}
           fill={labelFill || stroke}
+          stroke={labelStroke}
+          strokeWidth={labelStrokeWidth}
           textAnchor={labelAnchor}
+          paintOrder={labelPaintOrder}
         >
           {label}
         </text>

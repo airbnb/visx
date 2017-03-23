@@ -9,6 +9,7 @@ import Grid from '@vx/grid';
 import Glyph from '@vx/glyph';
 import Responsive from '@vx/responsive';
 import Marker from '@vx/marker';
+import Annotation from '@vx/annotation';
 import { extent, max } from 'd3-array';
 
 function identity(x) {
@@ -76,6 +77,11 @@ function SimpleLineChart({
     y: yMax,
   });
 
+  const annotationPoint = new Point({
+    x: xScale(x(allData[3])),
+    y: yScale(y(allData[3])),
+  });
+
   return (
     <svg width={width} height={height}>
       <Axis.AxisLeft
@@ -118,6 +124,18 @@ function SimpleLineChart({
           label={markerLabel}
           labelDx={6}
           labelDy={15}
+        />
+        <Annotation.LinePathAnnotation
+          label={'expected from deploy'}
+          labelFill={'black'}
+          labelStrokeWidth={2}
+          points={[
+            annotationPoint,
+            new Point({
+              x: annotationPoint.x + 50,
+              y: annotationPoint.y - 50,
+            })
+          ]}
         />
       </Group>
       <Axis.AxisBottom
