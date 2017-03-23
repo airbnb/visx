@@ -12,6 +12,9 @@ A collection of reusable low-level visualization components. vx combines the pow
 
 Super beta. Hold off on using this in production until I shake out some of the bigger API problems (post `v1.0.0+`).
 
+[![npm version](https://img.shields.io/npm/v/@vx/demo.svg?style=flat-square)](https://www.npmjs.com/package/@vx/demo)
+[![npm downloads](https://img.shields.io/npm/dm/@vx/demo.svg?style=flat-square)](https://www.npmjs.com/package/@vx/demo)
+
 ## Table of contents
 
 1. [Motivation](#motivation)
