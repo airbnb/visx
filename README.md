@@ -48,31 +48,7 @@ Mixing two mental models for updating the DOM is never a good time. Copy and pas
 
 ## Roadmap
 
-- threshold
-- regions
-- labels
-- legends
-- events
-- interactions
-- tooltips
-- brush
-- controls
-- textures
-- gradients
-- animations
-- transitions
-- area
-- StackedArea
-- bar
-- radial
-- StackedBar
-- streamgraph
-- histogram
-- heatmap
-- textures
-- gradients
-- layouts
-- hierarchy
+Lots coming soon, check out the [roadmap](./ROADMAP.md).
 
 ## FAQ
 
