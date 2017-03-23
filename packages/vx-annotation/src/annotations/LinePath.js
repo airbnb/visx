@@ -5,7 +5,7 @@ import Shape from '@vx/shape';
 
 const identity = x => x;
 
-export default LinePathAnnotation({
+export default function LinePathAnnotation({
   top = 0,
   left = 0,
   points,
