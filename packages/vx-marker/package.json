@@ -1,6 +1,6 @@
 {
   "name": "@vx/marker",
-  "version": "0.0.49",
+  "version": "0.0.53",
   "description": "vx marker",
   "main": "build/index.js",
   "files": [
