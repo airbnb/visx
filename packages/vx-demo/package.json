@@ -29,6 +29,7 @@
     "@vx/responsive": "^0.0.60",
     "@vx/scale": "^0.0.49",
     "@vx/shape": "^0.0.49",
+    "@vx/text": "0.0.62",
     "d3-array": "^1.1.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2"

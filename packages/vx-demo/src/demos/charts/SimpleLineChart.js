@@ -10,6 +10,7 @@ import Glyph from '@vx/glyph';
 import Responsive from '@vx/responsive';
 import Marker from '@vx/marker';
 import Annotation from '@vx/annotation';
+import Text from '@vx/text';
 import { extent, max } from 'd3-array';
 
 function identity(x) {
@@ -103,16 +104,17 @@ function SimpleLineChart({
         top={margin.top}
         left={margin.left}
       >
-        <text
+        <Text.TextOutline
           dy={-margin.top / 2}
           dx={(width / 2) - margin.left}
+          textAnchor='middle'
           fontSize="16"
           fontFamily="Arial"
-          fill="black"
-          textAnchor={'middle'}
-        >
-          Simple line chart with a marker and annotation
-        </text>
+          fill="white"
+          outlineStroke="magenta"
+          outlineStrokeWidth={3}
+          text="Simple line chart with a marker and annotation"
+        />
         <Grid.Grid
           xScale={xScale}
           yScale={yScale}

@@ -3,39 +3,44 @@ import cx from 'classnames';
 
 const svgNS = "http://www.w3.org/2000/svg";
 
+/**
+ * TODO: this is horrible. figure this out.
+ */
+
 
 export default class TextWrap extends React.Component {
   componentDidMount() {
-    const { text, width, y, dy, lineHeight } = this.props;
+    const { text, width, y = 1, x = 1, dy = 0, lineHeight } = this.props;
 
     let lineNumber = 0;
     let line = [];
     let word;
+    let tspan = this.tspan;
 
     const words = text.split(/\s+/).reverse();
 
     while (word = words.pop()) {
       line.push(word);
-      this.tspan.textContent(line.join(" "));
-      if (this.getComputedTextLength() > width) {
+      let newText = line.join(" ");
+      tspan.textContent = newText;
+
+      if (tspan.getComputedTextLength() > width) {
         line.pop();
-        this.tspan.textContent(line.join(" "));
+        newText = line.join(" ");
+        tspan.textContent = newText;
+
         line = [word];
 
         let newLine = document.createElementNS(svgNS, 'tspan');
-        newLine.setAttribueNS(svgNS, 'x', 0);
+        newLine.setAttributeNS(svgNS, 'x', x);
         newLine.setAttributeNS(svgNS, 'y', y);
-        newLine.setAttributeNS(svgNS, 'dy', `${++lineNumber + lineHeight + dy}em`);
-        newLine.textContent(word);
+        newLine.setAttributeNS(svgNS, 'dy', `${++lineNumber * lineHeight}em`);
+        newLine.textContent = ` ${word}`;
 
-        this.tspan.append(newLine);
+        this.tspan.parentNode.append(newLine);
+        tspan = newLine;
       }
     }
-  }
-
-  getComputedTextLength() {
-    if (!this.tspan) return 0;
-    return this.tspan.getComputedTextLength();
   }
 
   render() {
@@ -44,6 +49,8 @@ export default class TextWrap extends React.Component {
       x,
       y,
       dy,
+      lineHeight,
+      width,
     } = this.props;
     return (
       <text>
@@ -52,9 +59,7 @@ export default class TextWrap extends React.Component {
           x={x}
           y={y}
           dy={dy}
-        >
-          {text}
-        </tspan>
+        />
       </text>
     );
   }

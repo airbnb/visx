@@ -246,6 +246,15 @@ function Demo() {
         }]
       })
     ),
+    _react2.default.createElement(
+      'div',
+      null,
+      _react2.default.createElement(
+        'a',
+        { href: 'https://github.com/hshoff/vx/blob/master/packages/vx-demo/src/demos/charts/SimpleLineChart.js' },
+        'View source'
+      )
+    ),
     _react2.default.createElement('br', null),
     _react2.default.createElement(
       'div',
@@ -255,6 +264,15 @@ function Demo() {
         height: height,
         margin: margin
       })
+    ),
+    _react2.default.createElement(
+      'div',
+      null,
+      _react2.default.createElement(
+        'a',
+        { href: 'https://github.com/hshoff/vx/blob/master/packages/vx-demo/src/demos/charts/SimpleAreaChart.js' },
+        'View source'
+      )
     ),
     _react2.default.createElement('br', null),
     _react2.default.createElement(
@@ -273,6 +291,15 @@ function Demo() {
           }
         }]
       })
+    ),
+    _react2.default.createElement(
+      'div',
+      null,
+      _react2.default.createElement(
+        'a',
+        { href: 'https://github.com/hshoff/vx/blob/master/packages/vx-demo/src/demos/charts/SimpleLineWithGlyphsChart.js' },
+        'View source'
+      )
     ),
     _react2.default.createElement(
       'h4',
