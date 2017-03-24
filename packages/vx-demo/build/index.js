@@ -38,10 +38,10 @@ function Demo() {
   var width = 800;
   var height = 400;
   var margin = {
-    top: 50,
-    bottom: 30,
-    left: 50,
-    right: 50
+    top: 60,
+    bottom: 60,
+    left: 80,
+    right: 80
   };
 
   return _react2.default.createElement(
@@ -64,6 +64,7 @@ function Demo() {
         }]
       })
     ),
+    _react2.default.createElement('br', null),
     _react2.default.createElement(
       'div',
       null,
@@ -73,6 +74,7 @@ function Demo() {
         margin: margin
       })
     ),
+    _react2.default.createElement('br', null),
     _react2.default.createElement(
       'div',
       null,
