@@ -60,6 +60,17 @@ function Demo() {
     _react2.default.createElement(
       'p',
       null,
+      'A collection of reusable low-level visualization components. vx combines the power of d3 to generate your visualization and react for updating the DOM.',
+      _react2.default.createElement('br', null),
+      _react2.default.createElement('br', null),
+      'Below are some simple examples of composing vx components to make reusable charts. They\'re responsive too.',
+      _react2.default.createElement('br', null),
+      _react2.default.createElement('br', null),
+      'Super beta. Hold off on using this in production until I shake out some of the bigger API problems (post v1.0.0+).'
+    ),
+    _react2.default.createElement(
+      'p',
+      null,
       _react2.default.createElement(
         'a',
         { href: 'https://github.com/hshoff/vx/tree/master/packages/vx-demo/src' },
