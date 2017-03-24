@@ -34,6 +34,7 @@ export default function Axis({
   hideTicks = false,
   hideZero = false,
   className,
+  label = 'default label',
 }) {
     const values = scale.ticks ? scale.ticks(numTicks) : scale.domain();
     let format = scale.tickFormat ? scale.tickFormat() : identity;
@@ -71,6 +72,17 @@ export default function Axis({
             strokeDasharray={strokeDasharray}
           />
         }
+        {/** TODO: pass label props in */}
+        <text
+          textAnchor="middle"
+          fontSize={10}
+          fill={'black'}
+          transform={horizontal ?  '' : `rotate(${tickK * 90})`}
+          x={horizontal ? range1 / 2 : tickK * (range0 / 2)}
+          y={horizontal ? tickK * (tickLength + tickOffset + fontSize + 14) : (orient == 'left' ? 1 : -1) * tickK * (tickLength + tickOffset + fontSize + 30)}
+        >
+          {label}
+        </text>
         {values.map((val, i) => {
           if (hideZero && val === 0) return null;
 

@@ -10,6 +10,7 @@ export default function AxisTop({
   stroke,
   strokeWidth,
   strokeDasharray,
+  label,
   fontSize,
   numTicks,
   tickFormat,
@@ -39,6 +40,7 @@ export default function AxisTop({
       stroke={stroke}
       strokeWidth={strokeWidth}
       strokeDasharray={strokeDasharray}
+      label={label}
       numTicks={numTicks}
       tickK={tickK}
       tickFormat={tickFormat}

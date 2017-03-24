@@ -11,6 +11,7 @@ export default function AxisRight({
   strokeWidth,
   strokeDasharray,
   fontSize,
+  label,
   numTicks,
   tickFormat,
   tickStroke,
@@ -39,6 +40,7 @@ export default function AxisRight({
       stroke={stroke}
       strokeWidth={strokeWidth}
       strokeDasharray={strokeDasharray}
+      label={label}
       numTicks={numTicks}
       tickK={tickK}
       tickFormat={tickFormat}

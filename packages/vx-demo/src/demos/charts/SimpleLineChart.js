@@ -36,7 +36,7 @@ function SimpleLineChart({
 }, state, n) {
   if (!Array.isArray(dataset)) dataset = [dataset];
 
-  const width = screenWidth / 2;
+  const width = screenWidth / 1.5;
   const height = width / 2;
 
   const allData = dataset.reduce((rec, d) => {
@@ -84,17 +84,35 @@ function SimpleLineChart({
 
   return (
     <svg width={width} height={height}>
+      <rect
+        width={width}
+        height={height}
+        stroke="black"
+        strokeWidth={1}
+        fill={'none'}
+      />
       <Axis.AxisLeft
         top={margin.top}
         left={margin.left}
         scale={yScale}
         hideZero
         numTicks={numTicksForHeight(height)}
+        label={'value'}
       />
       <Group
         top={margin.top}
         left={margin.left}
       >
+        <text
+          dy={-margin.top / 2}
+          dx={(width / 2) - margin.left}
+          fontSize="16"
+          fontFamily="Arial"
+          fill="black"
+          textAnchor={'middle'}
+        >
+          Simple line chart with a marker and annotation
+        </text>
         <Grid.Grid
           xScale={xScale}
           yScale={yScale}
@@ -132,8 +150,8 @@ function SimpleLineChart({
           points={[
             annotationPoint,
             new Point({
-              x: annotationPoint.x + 50,
-              y: annotationPoint.y - 50,
+              x: annotationPoint.x + (width / allData.length),
+              y: annotationPoint.y - (height / allData.length),
             })
           ]}
         />
@@ -143,6 +161,7 @@ function SimpleLineChart({
         left={margin.left}
         scale={xScale}
         numTicks={numTicksForWidth(width)}
+        label={'time'}
       />
     </svg>
   );

@@ -39,7 +39,7 @@ function SimpleLineWithGlyphsChart({
     return rec.concat(d.data)
   }, []);
 
-  const width = screenWidth / 2;
+  const width = screenWidth / 1.5;
   const height = width / 2;
 
   // bounds
@@ -65,11 +65,19 @@ function SimpleLineWithGlyphsChart({
 
   return (
     <svg width={width} height={height}>
+      <rect
+        width={width}
+        height={height}
+        stroke="black"
+        strokeWidth={1}
+        fill={'none'}
+      />
       <Axis.AxisRight
         top={margin.top}
         left={width - margin.right}
         scale={yScale}
         numTicks={numTicksForHeight(height)}
+        label={'value'}
         hideZero
       />
       <Group
@@ -135,11 +143,22 @@ function SimpleLineWithGlyphsChart({
           );
         })}
       </Group>
+      <text
+        y={height - (margin.bottom / 2)}
+        fontSize="16"
+        fontFamily="Arial"
+        fill="black"
+        dx={width / 2}
+        textAnchor={'middle'}
+      >
+        Simple line chart with glyphs
+      </text>
       <Axis.AxisTop
         top={margin.top}
         left={margin.left}
         scale={xScale}
         numTicks={numTicksForWidth(width)}
+        label={'time'}
         hideTicks
       />
     </svg>

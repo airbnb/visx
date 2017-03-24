@@ -28,7 +28,7 @@ function SimpleAreaChart({
 }) {
   const stock = Mock.appleStock;
 
-  const width = screenWidth / 2;
+  const width = screenWidth / 1.5;
   const height = width / 2;
 
   // bounds
@@ -58,7 +58,22 @@ function SimpleAreaChart({
           <stop offset="100%" stopColor="rgba(1, 179, 239, 1.000)"/>
         </linearGradient>
       </defs>
+      <rect
+        width={width}
+        height={height}
+        stroke="black"
+        strokeWidth={1}
+        fill={'none'}
+      />
       <Group top={margin.top} left={margin.left}>
+        <text
+          dy={-margin.top / 3}
+          fontSize="16"
+          fontFamily="Arial"
+          fill="black"
+        >
+          Simple area chart
+        </text>
         <Grid.Rows
           scale={yStockScale}
           width={xMax}
@@ -81,12 +96,14 @@ function SimpleAreaChart({
         left={margin.left}
         scale={xStockScale}
         numTicks={numTicksForWidth(width)}
+        label={'date'}
       />
       <Axis.AxisLeft
         top={margin.top}
         left={margin.left}
         scale={yStockScale}
         numTicks={numTicksForHeight(height)}
+        label={'close price ($)'}
         hideAxisLine
         hideTicks
         hideZero
