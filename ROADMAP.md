@@ -21,7 +21,7 @@
 - streamgraph
 - histogram
 - heatmap
-- textures
-- gradients
 - layouts
 - hierarchy
+- accessability
+- browser support
