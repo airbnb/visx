@@ -1,6 +1,6 @@
 {
   "name": "@vx/demo",
-  "version": "0.0.62",
+  "version": "0.0.63",
   "description": "vx demo",
   "main": "src/index.js",
   "repository": "https://github.com/hshoff/vx",
@@ -29,7 +29,7 @@
     "@vx/responsive": "^0.0.60",
     "@vx/scale": "^0.0.49",
     "@vx/shape": "^0.0.49",
-    "@vx/text": "0.0.62",
+    "@vx/text": "^0.0.63",
     "d3-array": "^1.1.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
