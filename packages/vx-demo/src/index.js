@@ -22,6 +22,13 @@ export default function Demo() {
     <div>
       <h2>vx | <a href="https://github.com/hshoff/vx">https://github.com/hshoff/vx</a></h2>
       <p>
+        A collection of reusable low-level visualization components. vx combines the power of d3 to generate your visualization and react for updating the DOM.
+        <br/><br/>
+        Below are some simple examples of composing vx components to make reusable charts. They're responsive too.
+        <br/><br/>
+        Super beta. Hold off on using this in production until I shake out some of the bigger API problems (post v1.0.0+).
+      </p>
+      <p>
         <a href="https://github.com/hshoff/vx/tree/master/packages/vx-demo/src">
           view source
         </a>

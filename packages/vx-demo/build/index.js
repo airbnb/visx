@@ -48,6 +48,25 @@ function Demo() {
     'div',
     null,
     _react2.default.createElement(
+      'h2',
+      null,
+      'vx | ',
+      _react2.default.createElement(
+        'a',
+        { href: 'https://github.com/hshoff/vx' },
+        'https://github.com/hshoff/vx'
+      )
+    ),
+    _react2.default.createElement(
+      'p',
+      null,
+      _react2.default.createElement(
+        'a',
+        { href: 'https://github.com/hshoff/vx/tree/master/packages/vx-demo/src' },
+        'view source'
+      )
+    ),
+    _react2.default.createElement(
       'div',
       null,
       _react2.default.createElement(_SimpleLineChart2.default, {
