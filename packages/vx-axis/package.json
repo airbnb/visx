@@ -1,6 +1,6 @@
 {
   "name": "@vx/axis",
-  "version": "0.0.56",
+  "version": "0.0.57",
   "description": "vx axis",
   "main": "build/index.js",
   "scripts": {
