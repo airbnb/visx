@@ -1,7 +1,7 @@
 # @vx/text
 
-- [`<TextOutline />`](https://github.com/hshoff/vx/blob/master/packages/vx-axis/src/text/TextOutline.js)
-- :warning: [`<TextWrap />`](https://github.com/hshoff/vx/blob/master/packages/vx-axis/src/text/TextWrap.js)
+- [`<TextOutline />`](https://github.com/hshoff/vx/blob/master/packages/vx-text/src/text/TextOutline.js)
+- :warning: [`<TextWrap />`](https://github.com/hshoff/vx/blob/master/packages/vx-text/src/text/TextWrap.js)
 
 ## vx packages
 
