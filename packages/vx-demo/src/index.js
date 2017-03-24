@@ -68,6 +68,11 @@ export default function Demo() {
           }]}
         />
       </div>
+      <div>
+        <a href="https://github.com/hshoff/vx/blob/master/packages/vx-demo/src/demos/charts/SimpleLineChart.js">
+          View source
+        </a>
+      </div>
       <br/>
       <div>
         <SimpleAreaChart
@@ -75,6 +80,11 @@ export default function Demo() {
           height={height}
           margin={margin}
         />
+      </div>
+      <div>
+        <a href="https://github.com/hshoff/vx/blob/master/packages/vx-demo/src/demos/charts/SimpleAreaChart.js">
+          View source
+        </a>
       </div>
       <br/>
       <div>
@@ -91,6 +101,11 @@ export default function Demo() {
             }
           }]}
         />
+      </div>
+      <div>
+        <a href="https://github.com/hshoff/vx/blob/master/packages/vx-demo/src/demos/charts/SimpleLineWithGlyphsChart.js">
+          View source
+        </a>
       </div>
       <h4>Roadmap</h4>
       <p>Lots coming soon, check out the <a href="/hshoff/vx/blob/master/ROADMAP.md">roadmap</a>.</p>
