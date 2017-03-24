@@ -1,6 +1,6 @@
 {
   "name": "@vx/annotation",
-  "version": "0.0.59",
+  "version": "0.0.60",
   "description": "vx annotation",
   "main": "build/index.js",
   "files": [
