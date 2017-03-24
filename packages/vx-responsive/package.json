@@ -34,5 +34,8 @@
   "dependencies": {
     "lodash.debounce": "^4.0.8",
     "react": "^15.4.2"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

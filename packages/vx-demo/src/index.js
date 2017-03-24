@@ -20,6 +20,12 @@ export default function Demo() {
 
   return (
     <div>
+      <h2>vx | <a href="https://github.com/hshoff/vx">https://github.com/hshoff/vx</a></h2>
+      <p>
+        <a href="https://github.com/hshoff/vx/tree/master/packages/vx-demo/src">
+          view source
+        </a>
+      </p>
       <div>
         <SimpleLineChart
           width={width}
