@@ -4,7 +4,7 @@ import cx from 'classnames';
 const svgNS = "http://www.w3.org/2000/svg";
 
 /**
- * TODO: this is horrible. figure this out.
+ * TODO: this is horrible and doesn't work. figure this out.
  */
 
 
@@ -48,12 +48,20 @@ export default class TextWrap extends React.Component {
       text,
       x,
       y,
+      dx,
       dy,
       lineHeight,
       width,
+      className,
     } = this.props;
     return (
-      <text>
+      <text
+        className={cx('vx-text-wrap', className)}
+        x={x}
+        y={y}
+        dx={dx}
+        dy={dy}
+      >
         <tspan
           ref={(c) => { this.tspan = c;}}
           x={x}
@@ -69,4 +77,7 @@ TextWrap.defaultProps = {
   lineHeight: 1.1,
   width: 140,
   x: 0,
+  y: 0,
+  dx: 0,
+  dy: 0,
 };

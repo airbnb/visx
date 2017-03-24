@@ -1,5 +1,5 @@
 import React from 'react';
-import textOutlineProps from '../fragments/textOutlineProps';
+import cx from 'classnames';
 
 export default function TextOutline({
   x = 0,
@@ -16,10 +16,12 @@ export default function TextOutline({
   outlineStroke = 'magenta',
   outlineStrokeWidth = 3,
   textAnchor = 'start',
+  className,
 }) {
   return (
     <g>
       <text
+        className={cx('vx-text-outline', className)}
         x={x}
         y={y}
         dx={dx}
