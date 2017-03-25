@@ -1,6 +1,6 @@
 {
   "name": "@vx/text",
-  "version": "0.0.68",
+  "version": "0.0.69",
   "description": "vx text",
   "main": "build/index.js",
   "files": [
@@ -34,5 +34,8 @@
   "devDependencies": {
     "react-fatigue-dev": "github:tj/react-fatigue-dev",
     "react-tools": "^0.10.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
