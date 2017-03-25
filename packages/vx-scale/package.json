@@ -1,6 +1,6 @@
 {
   "name": "@vx/scale",
-  "version": "0.0.68",
+  "version": "0.0.74",
   "description": "vx scale",
   "main": "build/index.js",
   "scripts": {

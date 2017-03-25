@@ -1,6 +1,6 @@
 {
   "name": "@vx/point",
-  "version": "0.0.68",
+  "version": "0.0.74",
   "description": "vx point",
   "main": "build/index.js",
   "repository": "https://github.com/hshoff/vx",
