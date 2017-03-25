@@ -1,0 +1,26 @@
+{
+  "name": "@vx/texture",
+  "version": "0.0.1",
+  "description": "vx texture",
+  "main": "build/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hshoff/vx.git"
+  },
+  "keywords": [
+    "vx",
+    "react",
+    "d3",
+    "visualization",
+    "charts"
+  ],
+  "author": "@hshoff",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hshoff/vx/issues"
+  },
+  "homepage": "https://github.com/hshoff/vx#readme"
+}
