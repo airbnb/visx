@@ -6,6 +6,7 @@ import Scale from '@vx/scale';
 import Shape from '@vx/shape';
 import Grid from '@vx/grid';
 import Responsive from '@vx/responsive';
+import Text from '@vx/text';
 import { extent, max } from 'd3-array';
 
 function numTicksForHeight(height) {
@@ -66,14 +67,15 @@ function SimpleAreaChart({
         fill={'none'}
       />
       <Group top={margin.top} left={margin.left}>
-        <text
+        <Text.TextBackground
           dy={-margin.top / 3}
           fontSize="16"
           fontFamily="Arial"
-          fill="black"
+          fill="white"
+          backgroundFill="black"
         >
           Simple area chart
-        </text>
+        </Text.TextBackground>
         <Grid.Rows
           scale={yStockScale}
           width={xMax}

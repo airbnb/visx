@@ -6,7 +6,7 @@ export default function TextOutline({
   y = 0,
   dx = 0,
   dy = 0,
-  text,
+  children,
   fontSize = 12,
   fontFamily = 'Arial',
   fill = 'white',
@@ -21,7 +21,7 @@ export default function TextOutline({
   return (
     <g>
       <text
-        className={cx('vx-text-outline', className)}
+        className={cx('vx-text-outline__outline', className)}
         x={x}
         y={y}
         dx={dx}
@@ -33,9 +33,10 @@ export default function TextOutline({
         strokeWidth={outlineStrokeWidth}
         textAnchor={textAnchor}
       >
-        {text}
+        {children}
       </text>
       <text
+        className={cx('vx-text-outline__text', className)}
         x={x}
         y={y}
         dx={dx}
@@ -47,7 +48,7 @@ export default function TextOutline({
         strokeWidth={strokeWidth}
         textAnchor={textAnchor}
       >
-        {text}
+        {children}
       </text>
     </g>
   );

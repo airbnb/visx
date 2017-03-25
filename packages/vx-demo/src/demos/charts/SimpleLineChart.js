@@ -113,8 +113,9 @@ function SimpleLineChart({
           fill="white"
           outlineStroke="magenta"
           outlineStrokeWidth={3}
-          text="Simple line chart with a marker and annotation"
-        />
+        >
+          Simple line chart with a marker and annotation
+        </Text.TextOutline>
         <Grid.Grid
           xScale={xScale}
           yScale={yScale}
