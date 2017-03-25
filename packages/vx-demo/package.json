@@ -25,6 +25,7 @@
     "@vx/group": "0.0.15",
     "@vx/marker": "^0.0.68",
     "@vx/mock-data": "^0.0.68",
+    "@vx/pattern": "0.0.72",
     "@vx/point": "^0.0.68",
     "@vx/responsive": "^0.0.68",
     "@vx/scale": "^0.0.68",
