@@ -1,6 +1,6 @@
 {
   "name": "@vx/texture",
-  "version": "0.0.1",
+  "version": "0.0.68",
   "description": "vx texture",
   "main": "build/index.js",
   "scripts": {

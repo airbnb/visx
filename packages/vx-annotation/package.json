@@ -1,6 +1,6 @@
 {
   "name": "@vx/annotation",
-  "version": "0.0.60",
+  "version": "0.0.68",
   "description": "vx annotation",
   "main": "build/index.js",
   "files": [
@@ -32,8 +32,8 @@
     "react-tools": "^0.10.0"
   },
   "dependencies": {
-    "@vx/group": "0.0.49",
-    "@vx/shape": "0.0.49",
+    "@vx/group": "^0.0.68",
+    "@vx/shape": "^0.0.68",
     "classnames": "^2.2.5"
   },
   "publishConfig": {
