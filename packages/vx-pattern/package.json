@@ -1,7 +1,7 @@
 {
-  "name": "@vx/texture",
+  "name": "@vx/pattern",
   "version": "0.0.70",
-  "description": "vx texture",
+  "description": "vx pattern",
   "main": "build/index.js",
   "files": [
     "build"
