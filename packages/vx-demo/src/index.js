@@ -53,7 +53,7 @@ export default function Demo() {
       <li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-shape">@vx/shape</a></li>
       <li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-text">@vx/text</a></li>
       </ul>
-      <h4>Demos</h4>
+      <h4>Examples</h4>
       <div>
         <SimpleLineChart
           width={width}

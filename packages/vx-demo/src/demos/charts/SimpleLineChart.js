@@ -110,7 +110,7 @@ function SimpleLineChart({
           textAnchor='middle'
           fontSize="16"
           fontFamily="Arial"
-          fill="white"
+          fill="black"
         >
           Simple line chart with a marker and annotation
         </text>
