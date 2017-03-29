@@ -7,6 +7,7 @@ import Shape from '@vx/shape';
 import Grid from '@vx/grid';
 import Responsive from '@vx/responsive';
 import Text from '@vx/text';
+import Pattern from '@vx/pattern';
 import { extent, max } from 'd3-array';
 
 function numTicksForHeight(height) {
@@ -59,6 +60,15 @@ function SimpleAreaChart({
           <stop offset="100%" stopColor="rgba(1, 179, 239, 1.000)"/>
         </linearGradient>
       </defs>
+      <Pattern.Circles
+        id="myPattern"
+        width={20}
+        height={20}
+        fill={'black'}
+        radius={4}
+        background={`darkorange`}
+        complement
+      />
       <rect
         width={width}
         height={height}
@@ -87,9 +97,9 @@ function SimpleAreaChart({
           yScale={yStockScale}
           x={xStock}
           y={yStock}
-          strokeWidth={1}
+          strokeWidth={2}
           stroke={'url(#linear)'}
-          fill={'url(#linear)'}
+          fill={'url(#myPattern)'}
         />
       </Group>
       <Axis.AxisBottom
