@@ -59,6 +59,7 @@ function SimpleLineWithGlyphsChart({
     range: [yMax, 0],
     domain: [0, max(allData, y)],
     nice: true,
+    clamp: true,
   });
 
   const yFormat = yScale.tickFormat ? yScale.tickFormat() : identity;

@@ -5,6 +5,7 @@ export default function linear({
   rangeRound,
   domain,
   nice = false,
+  clamp = false,
 }) {
   const scale = scaleLinear();
 
@@ -12,6 +13,7 @@ export default function linear({
   if (rangeRound) scale.rangeRound(rangeRound);
   if (domain) scale.domain(domain);
   if (nice) scale.nice();
+  if (clamp) scale.clamp(true);
 
   return scale;
 }

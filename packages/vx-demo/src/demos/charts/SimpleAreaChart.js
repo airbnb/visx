@@ -67,15 +67,14 @@ function SimpleAreaChart({
         fill={'none'}
       />
       <Group top={margin.top} left={margin.left}>
-        <Text.TextBackground
+        <text
           dy={-margin.top / 3}
           fontSize="16"
           fontFamily="Arial"
-          fill="white"
-          backgroundFill="black"
+          fill="black"
         >
           Simple area chart
-        </Text.TextBackground>
+        </text>
         <Grid.Rows
           scale={yStockScale}
           width={xMax}

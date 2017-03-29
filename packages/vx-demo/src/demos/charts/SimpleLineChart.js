@@ -104,18 +104,16 @@ function SimpleLineChart({
         top={margin.top}
         left={margin.left}
       >
-        <Text.TextOutline
+        <text
           dy={-margin.top / 2}
           dx={(width / 2) - margin.left}
           textAnchor='middle'
           fontSize="16"
           fontFamily="Arial"
           fill="white"
-          outlineStroke="magenta"
-          outlineStrokeWidth={3}
         >
           Simple line chart with a marker and annotation
-        </Text.TextOutline>
+        </text>
         <Grid.Grid
           xScale={xScale}
           yScale={yScale}
