@@ -1,9 +1,12 @@
 import React from 'react';
+import Head from 'next/head';
 import Mock from '@vx/mock-data';
 import Curve from '@vx/curve';
-import SimpleLineChart from './demos/charts/SimpleLineChart';
-import SimpleAreaChart from './demos/charts/SimpleAreaChart';
-import SimpleLineWithGlyphsChart from './demos/charts/SimpleLineWithGlyphsChart';
+import Layout from '../components/Layout';
+import SimpleLineChart from '../components/charts/SimpleLineChart';
+import SimpleAreaChart from '../components/charts/SimpleAreaChart';
+import SimpleLineWithGlyphsChart from '../components/charts/SimpleLineWithGlyphsChart';
+
 
 export default function Demo() {
   const data1 = Mock.genDateValue(20);
@@ -19,8 +22,7 @@ export default function Demo() {
   };
 
   return (
-    <div>
-      <h2>vx | <a href="https://github.com/hshoff/vx">https://github.com/hshoff/vx</a></h2>
+    <Layout>
       <p>
         A collection of reusable low-level visualization components. vx combines the power of d3 to generate your visualization and react for updating the DOM.
       </p>
@@ -30,11 +32,6 @@ export default function Demo() {
       </p>
       <p>
         Super beta. Hold off on using this in production until I shake out some of the bigger API problems (post v1.0.0+).
-      </p>
-      <p>
-        <a href="https://github.com/hshoff/vx/tree/master/packages/vx-demo/src">
-          view source
-        </a>
       </p>
       <h4>Packages</h4>
       <ul>
@@ -53,6 +50,7 @@ export default function Demo() {
       <li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-shape">@vx/shape</a></li>
       <li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-text">@vx/text</a></li>
       </ul>
+
       <h4>Examples</h4>
       <div>
         <SimpleLineChart
@@ -69,45 +67,7 @@ export default function Demo() {
           }]}
         />
       </div>
-      <div>
-        <a href="https://github.com/hshoff/vx/blob/master/packages/vx-demo/src/demos/charts/SimpleLineChart.js">
-          View source
-        </a>
-      </div>
-      <br/>
-      <div>
-        <SimpleAreaChart
-          width={width}
-          height={height}
-          margin={margin}
-        />
-      </div>
-      <div>
-        <a href="https://github.com/hshoff/vx/blob/master/packages/vx-demo/src/demos/charts/SimpleAreaChart.js">
-          View source
-        </a>
-      </div>
-      <br/>
-      <div>
-        <SimpleLineWithGlyphsChart
-          width={width}
-          height={height}
-          margin={margin}
-          dataset={[{
-            data: data2,
-            chart: {
-              stroke: '#b531ce',
-              strokeWidth: 4,
-              backgroundColor: 'white',
-            }
-          }]}
-        />
-      </div>
-      <div>
-        <a href="https://github.com/hshoff/vx/blob/master/packages/vx-demo/src/demos/charts/SimpleLineWithGlyphsChart.js">
-          View source
-        </a>
-      </div>
+
       <h4>Roadmap</h4>
       <p>Lots coming soon, check out the <a href="/hshoff/vx/blob/master/ROADMAP.md">roadmap</a>.</p>
       <h4>FAQ</h4>
@@ -144,6 +104,6 @@ export default function Demo() {
       </li>
       </ol>
       <a href="https://github.com/hshoff/vx">https://github.com/hshoff/vx</a>
-    </div>
+    </Layout>
   );
 }
