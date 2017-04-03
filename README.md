@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/tiger.png" />
+  <img src="./assets/tiger-sm.png" />
 </p>
 
 <p align="center">
