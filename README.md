@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/vx.png" width="180" />
+  <img src="./assets/tiger.png" />
 </p>
 
 <p align="center">

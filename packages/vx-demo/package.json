@@ -33,6 +33,7 @@
     "classnames": "^2.2.5",
     "d3-array": "^1.1.1",
     "next": "^2.0.1",
+    "nprogress": "^0.2.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "styled-jsx": "^0.5.7"
