@@ -22,7 +22,7 @@ export default () => (
           @vx/axis
           <ul>
             <li>
-              /axis
+              <strong>/axis</strong>
               <ul>
                 <li>Axis</li>
                 <li>AxisBottom</li>
@@ -32,13 +32,13 @@ export default () => (
               </ul>
             </li>
             <li>
-              /constants
+              <strong>/constants</strong>
               <ul>
                 <li>orientation</li>
               </ul>
             </li>
             <li>
-              /utils
+              <strong>/utils</strong>
               <ul>
                 <li>center</li>
                 <li>identity</li>
@@ -102,13 +102,13 @@ export default () => (
           @vx/mock-data
           <ul>
             <li>
-              /generators
+              <strong>/generators</strong>
               <ul>
                 <li>genDateValue</li>
               </ul>
             </li>
             <li>
-              /mocks
+              <strong>/mocks</strong>
               <ul>
                 <li>appleStock</li>
                 <li>letterFrequency</li>
@@ -137,13 +137,13 @@ export default () => (
           @vx/responsive
           <ul>
             <li>
-              /components
+              <strong>/components</strong>
               <ul>
                 <li>ScaleSVG</li>
               </ul>
             </li>
             <li>
-              /enhancers
+              <strong>/enhancers</strong>
               <ul>
                 <li>withScreenSize</li>
               </ul>
@@ -201,6 +201,11 @@ export default () => (
       li ul li {
         color: #000;
         font-weight: 400;
+      }
+
+      strong {
+        font-weight: 600;
+        opacity: 0.4;
       }
     `}</style>
   </Page>

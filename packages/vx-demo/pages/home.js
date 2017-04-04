@@ -11,6 +11,11 @@ export default () => (
       <p><code>react + d3 = vx</code></p>
       <p><a href="https://github.com/hshoff/vx">github.com/hshoff/vx</a></p>
       <h2><a name="motivation"></a>Motivation</h2>
+      <div><strong>Goal</strong></div>
+      <p>The goal is to create a library of components you can use to make both your own resuable chart library or your slick custom one-off chart. <code>vx</code> is largely unopinionated and is meant to be build on top of. Keep your bundle sizes down and use only the packages you need.</p>
+      <div><strong>How?</strong></div>
+      <p>Under the hood, <code>vx</code> is using <code>d3</code> for the calculations and math. If you're creating your own awesome chart library ontop of <code>vx</code>, it's easy to create a component api that hides <code>d3</code> entirely. Meaning your team could create charts as easily as using reusable react components.</p>
+      <div><strong>But why?</strong></div>
       <p>Mixing two mental models for updating the DOM is never a good time. Copy and pasting d3 code into <code>componentDidMount()</code> is just that. This collection of components lets you easily build your own reusable visualization charts or library without having to learn d3. No more selections or <code>enter()</code>/<code>exit()</code>/<code>update()</code>.</p>
       <h2><a name="status"></a>Status</h2>
       <p>
