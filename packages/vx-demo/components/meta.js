@@ -30,6 +30,42 @@ export default ({
         box-sizing: border-box;
       }
 
+      .page-left {
+        display: flex;
+        flex: 4;
+        flex-direction: column;
+        padding: 0 2rem 2rem;
+        margin-bottom: 50px;
+        margin-top: 140px;
+      }
+
+      .page-left h2:first-child {
+        margin-top: 0;
+        padding-top: 4px;
+      }
+
+      .page-right {
+        display: flex;
+        flex: 3;
+        flex-direction: column;
+        color: white;
+        padding: 10px 2rem 2rem;
+        margin-top: 140px;
+      }
+
+      .page-right > ul {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        font-family: 'Roboto';
+        color: #000;
+        margin-left: 3vw;
+      }
+
+      .page-right a {
+        font-size: 14px;
+      }
+
       li {
         list-style-type: none;
       }
