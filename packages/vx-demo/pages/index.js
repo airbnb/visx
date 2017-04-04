@@ -1,2 +1,2 @@
-import About from './about';
-export default About;
+import Home from './home';
+export default Home;
