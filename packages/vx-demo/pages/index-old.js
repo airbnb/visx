@@ -9,17 +9,17 @@
 //
 //
 // export default function Demo() {
-//   const data1 = Mock.genDateValue(20);
-//   const data2 = Mock.genDateValue(20);
-//
-//   const width = 800;
-//   const height = 400;
-//   const margin = {
-//     top: 60,
-//     bottom: 60,
-//     left: 80,
-//     right: 80,
-//   };
+  // const data1 = Mock.genDateValue(20);
+  // const data2 = Mock.genDateValue(20);
+  //
+  // const width = 800;
+  // const height = 400;
+  // const margin = {
+  //   top: 60,
+  //   bottom: 60,
+  //   left: 80,
+  //   right: 80,
+  // };
 //
 //   return (
 //     <Layout>

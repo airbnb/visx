@@ -39,7 +39,7 @@ function SimpleLineWithGlyphsChart({
     return rec.concat(d.data)
   }, []);
 
-  const width = screenWidth / 1.5;
+  const width = 480;
   const height = width / 2;
 
   // bounds
