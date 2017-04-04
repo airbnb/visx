@@ -36,7 +36,6 @@ export default () => {
               }
             }]}
           />
-          <h4>Simple line chart</h4>
         </div>
         <div className="item">
           <SimpleAreaChart
@@ -44,7 +43,6 @@ export default () => {
             height={height}
             margin={margin}
           />
-          <h4>Simple Area chart</h4>
         </div>
         <div className="item">
           <SimpleLineWithGlyphsChart
@@ -60,7 +58,6 @@ export default () => {
               }
             }]}
           />
-          <h4>Simple line chart w/ glyphs</h4>
         </div>
         <div className="item">
         </div>
@@ -69,19 +66,11 @@ export default () => {
       <style jsx>{`
         .gallery {
           margin-top: 120px;
-          display: flex;
-          flex: 1;
-          flex-direction: row;
-          flex-wrap: wrap;
-          justify-content: space-around;
         }
 
         .item {
-          width: 500px;
-          margin: 2rem;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
+          display: block;
+          margin-bottom: 4rem;
         }
 
         .item h4 {

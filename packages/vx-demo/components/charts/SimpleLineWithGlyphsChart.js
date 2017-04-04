@@ -39,7 +39,7 @@ function SimpleLineWithGlyphsChart({
     return rec.concat(d.data)
   }, []);
 
-  const width = 480;
+  const width = screenWidth / 1.5;
   const height = width / 2;
 
   // bounds
@@ -145,7 +145,7 @@ function SimpleLineWithGlyphsChart({
         })}
       </Group>
       <text
-        y={height - (margin.bottom / 2)}
+        y={margin.top / 2}
         fontSize="16"
         fontFamily="Arial"
         fill="black"
@@ -154,8 +154,8 @@ function SimpleLineWithGlyphsChart({
       >
         Simple line chart with glyphs
       </text>
-      <Axis.AxisTop
-        top={margin.top}
+      <Axis.AxisBottom
+        top={height - margin.bottom}
         left={margin.left}
         scale={xScale}
         numTicks={numTicksForWidth(width)}

@@ -37,7 +37,7 @@ function SimpleLineChart({
 }, state, n) {
   if (!Array.isArray(dataset)) dataset = [dataset];
 
-  const width = 480;
+  const width = screenWidth / 1.5;
   const height = width / 2;
 
   const allData = dataset.reduce((rec, d) => {
@@ -148,11 +148,10 @@ function SimpleLineChart({
           label={'expected from deploy'}
           labelFill={'black'}
           labelStrokeWidth={2}
-          labelAnchor="end"
           points={[
             annotationPoint,
             new Point({
-              x: annotationPoint.x - (width / allData.length),
+              x: annotationPoint.x + (width / allData.length),
               y: annotationPoint.y - (height / allData.length),
             })
           ]}

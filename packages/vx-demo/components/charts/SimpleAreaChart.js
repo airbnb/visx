@@ -30,7 +30,7 @@ function SimpleAreaChart({
 }) {
   const stock = Mock.appleStock;
 
-  const width = 480;
+  const width = screenWidth / 1.5;
   const height = width / 2;
 
   // bounds
@@ -99,7 +99,7 @@ function SimpleAreaChart({
           y={yStock}
           strokeWidth={2}
           stroke={'url(#linear)'}
-          fill={'url(#myPattern)'}
+          fill={'url(#linear)'}
         />
       </Group>
       <Axis.AxisBottom
