@@ -2,7 +2,7 @@ import React from 'react';
 import Page from '../components/page';
 
 export default () => (
-  <Page title="docs">
+  <Page title="documentation">
     <div className="page-left">
       <div className="comingsoon">
         <h2><a name="packages" />Packages</h2>
@@ -21,7 +21,31 @@ export default () => (
         <li>
           @vx/axis
           <ul>
-            <li>LinePath</li>
+            <li>
+              /axis
+              <ul>
+                <li>Axis</li>
+                <li>AxisBottom</li>
+                <li>AxisLeft</li>
+                <li>AxisRight</li>
+                <li>AxisTop</li>
+              </ul>
+            </li>
+            <li>
+              /constants
+              <ul>
+                <li>orientation</li>
+              </ul>
+            </li>
+            <li>
+              /utils
+              <ul>
+                <li>center</li>
+                <li>identity</li>
+                <li>isHorizontal</li>
+                <li>isLeft</li>
+              </ul>
+            </li>
           </ul>
         </li>
         <li>

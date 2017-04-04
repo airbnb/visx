@@ -7,8 +7,8 @@ export default () => (
     </Link>
     <ul>
       <Item href="/">Home</Item>
-      <Item href="/gallery">Gallery</Item>
       <Item href="/docs">Docs</Item>
+      <Item href="/gallery">Gallery</Item>
 
       <style jsx>{`
         ul {
