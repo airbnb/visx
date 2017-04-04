@@ -73,7 +73,6 @@ export default () => (
           </blockquote>
         </li>
       </ol>
-      <p><a href="https://github.com/hshoff/vx">github.com/hshoff/vx</a></p>
     </div>
     <div className="page-right">
       <ul>

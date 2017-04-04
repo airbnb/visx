@@ -97,8 +97,9 @@ export default ({
        }
 
        a {
-         color: #eb4225;
+         color: #fc2e1c;
          text-decoration: none;
+         font-weight: 600;
        }
 
        .logo {
@@ -116,7 +117,7 @@ export default ({
       }
 
       #nprogress .bar {
-        background: #fe2a00;
+        background: #fc2e1c;
         position: fixed;
         z-index: 1031;
         top: 0;

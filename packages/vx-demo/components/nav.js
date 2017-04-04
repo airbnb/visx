@@ -10,6 +10,10 @@ export default () => (
       <Item href="/docs">Docs</Item>
       <Item href="/gallery">Gallery</Item>
 
+      <Item href="https://github.com/hshoff/vx" className="github">
+        github
+      </Item>
+
       <style jsx>{`
         ul {
           list-style-type: none;
@@ -23,10 +27,10 @@ export default () => (
   </div>
 )
 
-const Item = ({ href, children }) => (
+const Item = ({ href, children, className }) => (
   <li>
     <Link prefetch href={href}>
-      <a>{ children }</a>
+      <a className={className}>{ children }</a>
     </Link>
 
     <style jsx>{`
@@ -35,6 +39,12 @@ const Item = ({ href, children }) => (
         padding: 10px;
         text-decoration: none;
         color: #000;
+        font-weight: 300;
+      }
+      .github {
+        margin-top: 1.5rem;
+        font-weight: 600;
+        color: #fc2e1c;
       }
     `}</style>
   </li>

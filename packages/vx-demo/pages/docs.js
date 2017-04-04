@@ -185,9 +185,9 @@ export default () => (
         display: block;
         padding-bottom: 150px;
       }
-      li {
+      .page-right li {
         color: #fc2e1c;
-        font-weight: 900;
+        font-weight: 600;
       }
       li ul {
         margin-top: 3px;
