@@ -3,8 +3,10 @@ import Router from 'next/router';
 import NProgress from 'nprogress';
 import ReactGA from 'react-ga';
 
-if (typeof window !== 'undefined') {
+if (typeof window !== 'undefined' && window.location.hostname !== 'localhost') {
   ReactGA.initialize('UA-96843800-1');
+  ReactGA.set({ page: window.location.pathname });
+  ReactGA.pageview(window.location.pathname);
 }
 
 
