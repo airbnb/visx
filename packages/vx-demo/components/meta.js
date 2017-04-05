@@ -27,6 +27,12 @@ export default ({
     <Head>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta charSet="utf-8" />
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:site" content="@hshoff" />
+      <meta name="twitter:title" content="vx | visualization components" />
+      <meta name="twitter:description" content="react + d3 = vx" />
+      <meta name="twitter:image" content="static/tiger.png" />
+      <meta name="twitter:image:alt" content="vx logo is a tiger leaper over the letters v and x" />
       <title>{ `vx | ${title}` }</title>
       <link rel="shortcut icon" type="image/png" href="static/favicon.ico"/>
       <link rel="stylesheet" href="static/prism/prism-funky.css"/>
