@@ -31,7 +31,7 @@ export default ({
       <meta name="twitter:site" content="@hshoff" />
       <meta name="twitter:title" content="vx | visualization components" />
       <meta name="twitter:description" content="react + d3 = vx" />
-      <meta name="twitter:image" content="static/tiger.png" />
+      <meta name="twitter:image" content="static/tiger-twitter-card.jpg" />
       <meta name="twitter:image:alt" content="vx logo is a tiger leaper over the letters v and x" />
       <title>{ `vx | ${title}` }</title>
       <link rel="shortcut icon" type="image/png" href="static/favicon.ico"/>
