@@ -1,6 +1,6 @@
 {
   "name": "@vx/group",
-  "version": "0.0.79",
+  "version": "0.0.84",
   "description": "vx group",
   "main": "build/index.js",
   "scripts": {
