@@ -2,6 +2,7 @@ import React from 'react';
 import Mock from '@vx/mock-data';
 import Scale from '@vx/scale';
 import { extent, max } from 'd3-array';
+import { stack } form 'd3-shape';
 
 export default ({
   margin,
@@ -14,6 +15,9 @@ export default ({
     range: [0, width],
     domain: d3.extent(data, d => d.date),
   });
+  const y = Scale.scaleLinear({
+    range: [height, 0],
+  })
 
   return (
 

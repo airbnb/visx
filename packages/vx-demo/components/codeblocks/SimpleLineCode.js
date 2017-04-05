@@ -62,11 +62,15 @@ function SimpleLineChart({
   return (
     <svg width={width} height={height}>
       <defs>
-        <linearGradient id="linear" x1="0%" y1="0%" x2="100%" y2="0%">
+        <linearGradient
+          id="linear" x1="0%" y1="0%" x2="100%" y2="0%"
+        >
           <stop offset="0%"   stopColor="#f101f6"/>
           <stop offset="100%" stopColor="#01d4f9"/>
         </linearGradient>
-        <linearGradient id="linearFade" x1="0%" y1="0%" x2="100%" y2="0%">
+        <linearGradient
+          id="linearFade" x1="0%" y1="0%" x2="100%" y2="0%"
+        >
           <stop offset="0%"   stopColor="#f101f6" stopOpacity="0.3"/>
           <stop offset="100%" stopColor="#01d4f9" stopOpacity="0.3"/>
         </linearGradient>

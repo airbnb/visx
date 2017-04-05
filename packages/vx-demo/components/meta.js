@@ -36,6 +36,7 @@ export default ({
       <title>{ `vx | ${title}` }</title>
       <link rel="shortcut icon" type="image/png" href="static/favicon.ico"/>
       <link rel="stylesheet" href="static/prism/prism-funky.css"/>
+      <link rel="stylesheet" href="static/prism/prism-line-numbers.css"/>
       <link href="https://fonts.googleapis.com/css?family=Karla|Roboto+Mono|Inconsolata" rel="stylesheet" />
     </Head>
     <style jsx global>{`
@@ -122,6 +123,10 @@ export default ({
          height: 120px;
          width: 200px;
          background-repeat: no-repeat;
+       }
+
+       .item-bottom .codeblock {
+         margin: 1em 0px 0;
        }
 
       /* loading progress bar styles */

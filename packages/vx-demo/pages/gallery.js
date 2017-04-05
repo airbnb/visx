@@ -153,7 +153,6 @@ export default () => {
 
         .item {
           display: block;
-          padding: 2rem 4rem 4rem;
           margin: 2rem;
           border: 1px solid #f0f0f0;
           border-radius: 3px;
@@ -171,7 +170,6 @@ export default () => {
 
         .item-bottom {
           color: white;
-          padding-left: 4rem;
         }
 
         .item:last-child {

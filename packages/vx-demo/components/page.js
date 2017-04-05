@@ -10,7 +10,6 @@ export default ({ children, title }) => (
     <div className="right">
       {children}
     </div>
-
     <style jsx>{`
       .main {
         display: flex;
