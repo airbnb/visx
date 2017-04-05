@@ -1,9 +1,21 @@
 import Head from 'next/head';
 import Router from 'next/router';
 import NProgress from 'nprogress';
+import ReactGA from 'react-ga';
+
+if (typeof window !== 'undefined') {
+  ReactGA.initialize('UA-96843800-1');
+}
+
 
 Router.onRouteChangeStart = () => NProgress.start()
-Router.onRouteChangeComplete = () => NProgress.done()
+Router.onRouteChangeComplete = () => {
+  NProgress.done()
+  if (typeof window !== 'undefined' && window.location.hostname !== 'localhost') {
+    ReactGA.set({ page: window.location.pathname });
+    ReactGA.pageview(window.location.pathname);
+  }
+}
 Router.onRouteChangeError = () => NProgress.done()
 
 export default ({

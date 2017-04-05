@@ -37,6 +37,7 @@
     "prismjs": "^1.6.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
+    "react-ga": "^2.1.2",
     "styled-jsx": "^0.5.7"
   },
   "browserify": {

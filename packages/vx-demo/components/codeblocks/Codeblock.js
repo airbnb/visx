@@ -9,8 +9,8 @@ export default ({ children }) => {
       <style jsx>{`
         .codeblock code {
           background: #090910;
-          max-height: 450px;
-          overflow: scroll;
+          max-height: 600px;
+          overflow-y: scroll;
           display: block;
           border: 1px solid #2b2a2e;
           padding: 0 2rem 2rem;
