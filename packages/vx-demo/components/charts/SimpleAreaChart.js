@@ -5,7 +5,6 @@ import Mock from '@vx/mock-data';
 import Scale from '@vx/scale';
 import Shape from '@vx/shape';
 import Grid from '@vx/grid';
-import Responsive from '@vx/responsive';
 import Text from '@vx/text';
 import Pattern from '@vx/pattern';
 import { extent, max } from 'd3-array';
@@ -22,16 +21,13 @@ function numTicksForWidth(width) {
   return 10;
 }
 
-function SimpleAreaChart({
+export default ({
   margin,
   data,
-  screenWidth,
-  screenHeight,
-}) {
+  width,
+  height,
+}) => {
   const stock = Mock.appleStock;
-
-  const width = screenWidth / 1.5;
-  const height = width / 2;
 
   // bounds
   const xMax = width - margin.left - margin.right;
@@ -60,13 +56,6 @@ function SimpleAreaChart({
           <stop offset="100%" stopColor="rgba(1, 179, 239, 1.000)"/>
         </linearGradient>
       </defs>
-      <rect
-        width={width}
-        height={height}
-        stroke="black"
-        strokeWidth={1}
-        fill={'white'}
-      />
       <Group top={margin.top} left={margin.left}>
         <Grid.Rows
           scale={yStockScale}
@@ -105,5 +94,3 @@ function SimpleAreaChart({
     </svg>
   );
 }
-
-export default Responsive.withScreenSize(SimpleAreaChart);

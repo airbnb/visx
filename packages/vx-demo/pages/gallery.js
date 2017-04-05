@@ -13,7 +13,7 @@ export default () => {
   const data1 = Mock.genDateValue(20);
   const data2 = Mock.genDateValue(20);
 
-  const width = 800;
+  const width = 720;
   const height = 400;
   const margin = {
     top: 60,
@@ -24,9 +24,16 @@ export default () => {
 
   return (
     <Page title="gallery">
-      <div className="gallery">
+      <div className="page-left gallery">
         <div className="item simpleline">
           <div className="item-top">
+            <div className="chart-title">
+              <a name="simpleline" />
+              Simple line chart
+              <a href="https://github.com/hshoff/vx/blob/master/packages/vx-demo/components/charts/SimpleLineChart.js">
+                <small> view source</small>
+              </a>
+            </div>
             <SimpleLineChart
               width={width}
               height={height}
@@ -39,7 +46,6 @@ export default () => {
             />
           </div>
           <div className="item-bottom">
-            <div>Simple line chart <a href="https://github.com/hshoff/vx/blob/master/packages/vx-demo/components/charts/SimpleLineChart.js">&lt;&gt;</a></div>
             <div>
               <SimpleLineCode />
             </div>
@@ -47,6 +53,13 @@ export default () => {
         </div>
         <div className="item simplearea">
           <div className="item-top">
+            <div className="chart-title">
+              <a name="simplearea" />
+              Simple area chart
+              <a href="https://github.com/hshoff/vx/blob/master/packages/vx-demo/components/charts/SimpleAreaChart.js">
+                <small> view source</small>
+              </a>
+            </div>
             <SimpleAreaChart
               width={width}
               height={height}
@@ -54,7 +67,6 @@ export default () => {
             />
           </div>
           <div className="item-bottom">
-            <div className="chart-title">Simple area chart <a href="https://github.com/hshoff/vx/blob/master/packages/vx-demo/components/charts/SimpleAreaChart.js">&lt;&gt;</a></div>
             <div>
               <SimpleAreaCode />
             </div>
@@ -62,6 +74,13 @@ export default () => {
         </div>
         <div className="item">
           <div className="item-top">
+            <div className="chart-title">
+              <a name="simplelineglyphs" />
+              Simple line with glyphs chart
+              <a href="https://github.com/hshoff/vx/blob/master/packages/vx-demo/components/charts/SimpleLineWithGlyphsChart.js">
+                <small> view source</small>
+              </a>
+            </div>
             <SimpleLineWithGlyphsChart
               width={width}
               height={height}
@@ -77,24 +96,41 @@ export default () => {
             />
           </div>
           <div className="item-bottom">
-            <div className="chart-title">Simple line with glyphs chart <a href="https://github.com/hshoff/vx/blob/master/packages/vx-demo/components/charts/SimpleLineWithGlyphsChart.js">&lt;&gt;</a></div>
             <div>
               <SimpleLineGlyphCode />
             </div>
           </div>
         </div>
       </div>
+    <div className="page-right">
+      <ul>
+        <li>
+          <a href="#simpleline">Simple line chart</a>
+        </li>
+        <li>
+          <a href="#simplearea">Simple area chart</a>
+        </li>
+        <li>
+          <a href="#simplelineglyphs">Simple line with glyphs chart</a>
+        </li>
+      </ul>
+    </div>
 
       <style jsx>{`
         .gallery {
           display: flex;
           flex: 1;
           flex-direction: column;
+          align-items: flex-start;
+          margin-top: 0;
         }
 
         .item {
           display: block;
-          padding: 4rem 4rem 0;
+          padding: 2rem 4rem 4rem;
+          margin: 2rem;
+          border: 1px solid #f0f0f0;
+          border-radius: 3px;
         }
 
         .item h4 {
@@ -105,7 +141,6 @@ export default () => {
         .item-top,
         .item-bottom {
           display: block;
-          max-width: 800px;
         }
 
         .item-bottom {
@@ -118,18 +153,21 @@ export default () => {
         }
 
         .simpleline {
+          color: white;
           background-color: #090910;
-          padding: 0 4rem 4rem;
-        }
-
-        .simplearea {
-          background-color: #efefef;
-          padding: 4rem;
         }
 
         .chart-title {
-          color: black;
           margin-top: 1rem;
+          margin-left: 4rem;
+        }
+
+        .page-right {
+          color: black;
+        }
+
+        .page-right ul {
+          position: fixed;
         }
       `}</style>
     </Page>

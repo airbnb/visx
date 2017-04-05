@@ -8,7 +8,6 @@ import Group from '@vx/group';
 import Grid from '@vx/grid';
 import Glyph from '@vx/glyph';
 import Curve from '@vx/curve';
-import Responsive from '@vx/responsive';
 import { extent, max } from 'd3-array';
 
 function identity(x) {
@@ -27,20 +26,17 @@ function numTicksForWidth(width) {
   return 10;
 }
 
-function SimpleLineWithGlyphsChart({
+export default ({
   margin,
   dataset,
-  screenWidth,
-  screenHeight,
-}) {
+  width,
+  height,
+}) => {
   if (!Array.isArray(dataset)) dataset = [dataset];
 
   const allData = dataset.reduce((rec, d) => {
     return rec.concat(d.data)
   }, []);
-
-  const width = screenWidth / 1.5;
-  const height = width / 2;
 
   // bounds
   const xMax = width - margin.left - margin.right;
@@ -148,5 +144,3 @@ function SimpleLineWithGlyphsChart({
     </svg>
   );
 }
-
-export default Responsive.withScreenSize(SimpleLineWithGlyphsChart);

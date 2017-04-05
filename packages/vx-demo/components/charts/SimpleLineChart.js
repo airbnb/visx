@@ -8,7 +8,6 @@ import Group from '@vx/group';
 import Grid from '@vx/grid';
 import Glyph from '@vx/glyph';
 import Curve from '@vx/curve';
-import Responsive from '@vx/responsive';
 import Marker from '@vx/marker';
 import Annotation from '@vx/annotation';
 import Text from '@vx/text';
@@ -30,16 +29,13 @@ function numTicksForWidth(width) {
   return 10;
 }
 
-function SimpleLineChart({
+export default ({
   margin,
   dataset,
-  screenWidth,
-  screenHeight,
-}, state, n) {
+  width,
+  height,
+}) => {
   if (!Array.isArray(dataset)) dataset = [dataset];
-
-  const width = screenWidth / 1.5;
-  const height = width / 2;
 
   const allData = dataset.reduce((rec, d) => {
     return rec.concat(d.data)
@@ -182,5 +178,3 @@ function SimpleLineChart({
     </svg>
   );
 }
-
-export default Responsive.withScreenSize(SimpleLineChart);
