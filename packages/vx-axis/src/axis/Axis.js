@@ -28,6 +28,7 @@ export default function Axis({
   tickTextAnchor = "start",
   tickTextFontFamily = 'Arial',
   tickTextFontSize = 10,
+  tickTextFill = 'black',
   tickTextDx,
   tickTextDy,
   hideAxisLine = false,
@@ -75,8 +76,8 @@ export default function Axis({
         {/** TODO: pass label props in */}
         <text
           textAnchor="middle"
-          fontSize={10}
-          fill={'black'}
+          fontSize={tickTextFontSize}
+          fill={tickTextFill}
           transform={horizontal ?  '' : `rotate(${tickK * 90})`}
           x={horizontal ? range1 / 2 : tickK * (range0 / 2)}
           y={horizontal ? tickK * (tickLength + tickOffset + fontSize + 14) : (orient == 'left' ? 1 : -1) * tickK * (tickLength + tickOffset + fontSize + 30)}
@@ -116,6 +117,7 @@ export default function Axis({
                 textAnchor={tickTextAnchor}
                 fontFamily={tickTextFontFamily}
                 fontSize={tickTextFontSize || fontSize}
+                fill={tickTextFill}
               >
                 {format(val)}
               </text>

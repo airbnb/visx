@@ -14,12 +14,14 @@ export default function AreaClosed({
   strokeWidth = 2,
   stroke = 'black',
   fill = rgba(0,0,0,0.3),
+  curve,
 }) {
   const path = area()
     .x(d => xScale(x(d)))
     .y0(yScale(0))
     .y1(d => yScale(y(d)))
     .defined(defined || (d => y(d) && x(d)));
+  if (curve) path.curve(curve);
   return (
     <g>
       <path

@@ -15,6 +15,7 @@ export default ({
       <meta charSet="utf-8" />
       <title>{ `vx | ${title}` }</title>
       <link rel="shortcut icon" type="image/png" href="static/favicon.ico"/>
+      <link rel="stylesheet" href="static/prism/prism-funky.css"/>
       <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono|Inconsolata" rel="stylesheet" />
     </Head>
     <style jsx global>{`

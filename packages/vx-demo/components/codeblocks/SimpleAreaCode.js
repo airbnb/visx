@@ -1,27 +1,10 @@
 import React from 'react';
-import Group from '@vx/group';
-import Axis from '@vx/axis';
-import Mock from '@vx/mock-data';
-import Scale from '@vx/scale';
-import Shape from '@vx/shape';
-import Grid from '@vx/grid';
-import Responsive from '@vx/responsive';
-import Text from '@vx/text';
-import Pattern from '@vx/pattern';
-import { extent, max } from 'd3-array';
+import Codeblock from './Codeblock';
 
-function numTicksForHeight(height) {
-  if (height <= 300) return 3;
-  if (300 < height && height <= 600) return 5;
-  return 10;
-}
-
-function numTicksForWidth(width) {
-  if (width <= 300) return 2;
-  if (300 < width && width <= 400) return 5;
-  return 10;
-}
-
+export default ({}) => {
+  return (
+    <Codeblock>
+      {`// SimpleAreaChart.js
 function SimpleAreaChart({
   margin,
   data,
@@ -65,7 +48,7 @@ function SimpleAreaChart({
         height={height}
         stroke="black"
         strokeWidth={1}
-        fill={'white'}
+        fill={'none'}
       />
       <Group top={margin.top} left={margin.left}>
         <Grid.Rows
@@ -106,4 +89,7 @@ function SimpleAreaChart({
   );
 }
 
-export default Responsive.withScreenSize(SimpleAreaChart);
+export default Responsive.withScreenSize(SimpleAreaChart);`}
+    </Codeblock>
+  );
+}

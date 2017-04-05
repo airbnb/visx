@@ -1,32 +1,10 @@
 import React from 'react';
-import cx from 'classnames';
-import Shape from '@vx/shape';
-import Point from '@vx/point';
-import Axis from '@vx/axis';
-import Scale from '@vx/scale';
-import Group from '@vx/group';
-import Grid from '@vx/grid';
-import Glyph from '@vx/glyph';
-import Curve from '@vx/curve';
-import Responsive from '@vx/responsive';
-import { extent, max } from 'd3-array';
+import Codeblock from './Codeblock';
 
-function identity(x) {
-  return x;
-}
-
-function numTicksForHeight(height) {
-  if (height <= 300) return 3;
-  if (300 < height && height <= 600) return 5;
-  return 10;
-}
-
-function numTicksForWidth(width) {
-  if (width <= 300) return 2;
-  if (300 < width && width <= 400) return 5;
-  return 10;
-}
-
+export default ({}) => {
+  return (
+    <Codeblock>
+      {`// SimpleLineWithGlyphsChart.js
 function SimpleLineWithGlyphsChart({
   margin,
   dataset,
@@ -89,7 +67,7 @@ function SimpleLineWithGlyphsChart({
         {dataset.map((series, i) => {
           return (
             <Shape.LinePath
-              key={`chart-line-${i}`}
+              key={'chart-line-{i}'}
               data={series.data}
               xScale={xScale}
               yScale={yScale}
@@ -101,7 +79,7 @@ function SimpleLineWithGlyphsChart({
               curve={Curve.monotoneX}
               glyph={(d, i) => {
                 return (
-                  <Glyph.Dot key={`line-point-${i}`}
+                  <Glyph.Dot key={'line-point-{i}'}
                     className={cx('vx-linepath-point')}
                     cx={xScale(x(d))}
                     cy={yScale(y(d))}
@@ -149,4 +127,7 @@ function SimpleLineWithGlyphsChart({
   );
 }
 
-export default Responsive.withScreenSize(SimpleLineWithGlyphsChart);
+export default Responsive.withScreenSize(SimpleLineWithGlyphsChart);`}
+    </Codeblock>
+  );
+}

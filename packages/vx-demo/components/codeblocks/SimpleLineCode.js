@@ -1,48 +1,23 @@
 import React from 'react';
-import cx from 'classnames';
-import Shape from '@vx/shape';
-import Point from '@vx/point';
-import Axis from '@vx/axis';
-import Scale from '@vx/scale';
-import Group from '@vx/group';
-import Grid from '@vx/grid';
-import Glyph from '@vx/glyph';
-import Curve from '@vx/curve';
-import Responsive from '@vx/responsive';
-import Marker from '@vx/marker';
-import Annotation from '@vx/annotation';
-import Text from '@vx/text';
-import { extent, max } from 'd3-array';
+import Codeblock from './Codeblock';
 
-function identity(x) {
-  return x;
-}
-
-function numTicksForHeight(height) {
-  if (height <= 300) return 3;
-  if (300 < height && height <= 600) return 5;
-  return 10;
-}
-
-function numTicksForWidth(width) {
-  if (width <= 300) return 2;
-  if (300 < width && width <= 400) return 5;
-  return 10;
-}
-
+export default ({}) => {
+  return (
+    <Codeblock>
+      {`// SimpleLineChart.js
 function SimpleLineChart({
   margin,
   dataset,
   screenWidth,
   screenHeight,
-}, state, n) {
+}) {
   if (!Array.isArray(dataset)) dataset = [dataset];
 
   const width = screenWidth / 1.5;
   const height = width / 2;
 
-  const allData = dataset.reduce((rec, d) => {
-    return rec.concat(d.data)
+  const allData = dataset.reduce((ret, d) => {
+    return ret.concat(d.data)
   }, []);
 
   // bounds
@@ -69,7 +44,7 @@ function SimpleLineChart({
   const xFormat = xScale.tickFormat ? xScale.tickFormat() : identity;
 
   const markerDatum = allData[3];
-  const markerLabel = `Deploy`;
+  const markerLabel = 'Deploy';
   const markerFrom = new Point({
     x: xScale(x(markerDatum)),
     y: 0,
@@ -80,8 +55,8 @@ function SimpleLineChart({
   });
 
   const annotationPoint = new Point({
-    x: xScale(x(allData[3])),
-    y: yScale(y(allData[3])),
+    x: xScale(x(markerDatum)),
+    y: yScale(y(markerDatum)),
   });
 
   return (
@@ -130,7 +105,6 @@ function SimpleLineChart({
           strokeWidth={2}
           stroke={"url('#linear')"}
           fill={"url('#linearFade')"}
-          curve={Curve.monotoneX}
         />
 
         <Shape.LinePath
@@ -141,8 +115,6 @@ function SimpleLineChart({
           y={y}
           stroke={"url('#linearFade')"}
           strokeWidth={2}
-          strokeDasharray={'5,5'}
-          curve={Curve.monotoneX}
         />
 
         <Marker
@@ -158,8 +130,8 @@ function SimpleLineChart({
           label={'expected from deploy'}
           stroke={'white'}
           labelFill={'white'}
-          labelStroke={'#1b1a1e'}
-          labelStrokeWidth={4}
+          labelStroke={'none'}
+          labelStrokeWidth={2}
           points={[
             annotationPoint,
             new Point({
@@ -183,4 +155,7 @@ function SimpleLineChart({
   );
 }
 
-export default Responsive.withScreenSize(SimpleLineChart);
+export default Responsive.withScreenSize(SimpleLineChart);`}
+    </Codeblock>
+  );
+}

@@ -23,6 +23,7 @@ export default function AxisLeft({
   tickTextAnchor = "end",
   tickTextFontFamily = "Arial",
   tickTextFontSize = 10,
+  tickTextFill = 'black',
   tickTextDy,
   tickTextDx,
   hideAxisLine,
@@ -54,6 +55,7 @@ export default function AxisLeft({
       tickTextAnchor={tickTextAnchor}
       tickTextFontFamily={tickTextFontFamily}
       tickTextFontSize={tickTextFontSize}
+      tickTextFill={tickTextFill}
       hideAxisLine={hideAxisLine}
       hideTicks={hideTicks}
       hideZero={hideZero}
