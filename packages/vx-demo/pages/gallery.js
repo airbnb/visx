@@ -5,9 +5,11 @@ import Curve from '@vx/curve';
 import SimpleLineChart from '../components/charts/SimpleLineChart';
 import SimpleAreaChart from '../components/charts/SimpleAreaChart';
 import SimpleLineWithGlyphsChart from '../components/charts/SimpleLineWithGlyphsChart';
+import SimpleBar from '../components/charts/SimpleBar';
 import SimpleLineCode from '../components/codeblocks/SimpleLineCode';
 import SimpleAreaCode from '../components/codeblocks/SimpleAreaCode';
 import SimpleLineGlyphCode from '../components/codeblocks/SimpleLineGlyphCode';
+import SimpleBarCode from '../components/codeblocks/SimpleBarCode';
 
 export default () => {
   const data1 = Mock.genDateValue(20);
@@ -25,6 +27,27 @@ export default () => {
   return (
     <Page title="gallery">
       <div className="page-left gallery">
+        <div className="item">
+          <div className="item-top">
+            <div className="chart-title">
+              <a name="simplebar" />
+              Simple bar chart
+              <a href="https://github.com/hshoff/vx/blob/master/packages/vx-demo/components/charts/SimpleBar.js">
+                <small> view source</small>
+              </a>
+            </div>
+            <SimpleBar
+              width={width}
+              height={height}
+              margin={margin}
+            />
+          </div>
+          <div className="item-bottom">
+            <div>
+              <SimpleBarCode />
+            </div>
+          </div>
+        </div>
         <div className="item simpleline">
           <div className="item-top">
             <div className="chart-title">
@@ -104,6 +127,9 @@ export default () => {
       </div>
     <div className="page-right">
       <ul>
+        <li>
+          <a href="#simplebar">Simple bar chart</a>
+        </li>
         <li>
           <a href="#simpleline">Simple line chart</a>
         </li>

@@ -36,19 +36,13 @@ export default ({
       <title>{ `vx | ${title}` }</title>
       <link rel="shortcut icon" type="image/png" href="static/favicon.ico"/>
       <link rel="stylesheet" href="static/prism/prism-funky.css"/>
-      <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono|Inconsolata" rel="stylesheet" />
+      <link href="https://fonts.googleapis.com/css?family=Karla|Roboto+Mono|Inconsolata" rel="stylesheet" />
     </Head>
     <style jsx global>{`
       body {
-        font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+        font-family: "Karla", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
         background: #fff;
         display: flex;
-      }
-
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
       }
 
       .page-left {
@@ -78,9 +72,8 @@ export default ({
         display: flex;
         flex-direction: column;
         flex: 1;
-        font-family: 'Roboto';
+        font-family: 'Karla';
         color: #000;
-        margin-left: 3vw;
       }
 
       .page-right a {
@@ -114,13 +107,12 @@ export default ({
          margin-bottom: .2rem;
          margin-top: 2rem;
          display: block;
-         font-family: 'Roboto';
+         font-family: 'Karla';
        }
 
        a {
          color: #fc2e1c;
          text-decoration: none;
-         font-weight: 600;
        }
 
        .logo {

@@ -165,6 +165,7 @@ export default () => (
           @vx/shape
           <ul>
             <li>AreaClosed</li>
+            <li>Bar</li>
             <li>Line</li>
             <li>LinePath</li>
           </ul>
@@ -190,7 +191,6 @@ export default () => (
       }
       .page-right li {
         color: #fc2e1c;
-        font-weight: 600;
       }
       li ul {
         margin-top: 3px;

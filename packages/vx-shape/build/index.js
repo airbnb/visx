@@ -16,10 +16,15 @@ var _AreaClosed = require('./shapes/AreaClosed');
 
 var _AreaClosed2 = _interopRequireDefault(_AreaClosed);
 
+var _Bar = require('./shapes/Bar');
+
+var _Bar2 = _interopRequireDefault(_Bar);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
   Line: _Line2.default,
   LinePath: _LinePath2.default,
-  AreaClosed: _AreaClosed2.default
+  AreaClosed: _AreaClosed2.default,
+  Bar: _Bar2.default
 };

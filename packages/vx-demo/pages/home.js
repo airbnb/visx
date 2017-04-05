@@ -106,7 +106,7 @@ export default () => (
         flex-direction: column;
         flex: 1;
         position: fixed;
-        font-family: 'Roboto';
+        font-family: 'Karla';
         color: #000;
         margin-left: 3vw;
       }
