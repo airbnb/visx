@@ -153,9 +153,12 @@ export default () => (
         <li>
           @vx/scale
           <ul>
-            <li>band</li>
-            <li>linear</li>
-            <li>time</li>
+            <li>scaleBand</li>
+            <li>scalePoint</li>
+            <li>scaleLinear</li>
+            <li>scaleTime</li>
+            <li>scaleLog</li>
+            <li>scalePower</li>
           </ul>
         </li>
         <li>

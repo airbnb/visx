@@ -1,12 +1,12 @@
 import { scaleBand } from 'd3-scale';
 
-export default function linear({
+export default ({
   range,
   rangeRound,
   domain,
   padding,
   nice = false,
-}) {
+}) => {
   const scale = scaleBand();
 
   if (range) scale.range(range);
