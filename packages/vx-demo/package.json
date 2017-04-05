@@ -1,6 +1,6 @@
 {
   "name": "@vx/demo",
-  "version": "0.0.84",
+  "version": "0.0.85",
   "description": "vx demo",
   "repository": "https://github.com/hshoff/vx",
   "scripts": {
@@ -27,7 +27,7 @@
     "@vx/pattern": "0.0.84",
     "@vx/point": "^0.0.49",
     "@vx/responsive": "0.0.84",
-    "@vx/scale": "0.0.84",
+    "@vx/scale": "0.0.85",
     "@vx/shape": "0.0.84",
     "@vx/text": "0.0.84",
     "classnames": "^2.2.5",
