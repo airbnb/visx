@@ -1,6 +1,6 @@
 {
   "name": "@vx/demo",
-  "version": "0.0.82",
+  "version": "0.0.83",
   "description": "vx demo",
   "repository": "https://github.com/hshoff/vx",
   "scripts": {
@@ -17,7 +17,7 @@
   "license": "MIT",
   "dependencies": {
     "@vx/annotation": "^0.0.60",
-    "@vx/axis": "^0.0.56",
+    "@vx/axis": "^0.0.83",
     "@vx/curve": "^0.0.49",
     "@vx/glyph": "^0.0.49",
     "@vx/grid": "^0.0.49",

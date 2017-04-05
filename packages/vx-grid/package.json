@@ -1,6 +1,6 @@
 {
   "name": "@vx/grid",
-  "version": "0.0.79",
+  "version": "0.0.83",
   "description": "vx grid",
   "main": "build/index.js",
   "files": [
@@ -34,7 +34,7 @@
   "dependencies": {
     "@vx/group": "0.0.15",
     "@vx/point": "0.0.10",
-    "@vx/shape": "^0.0.79",
+    "@vx/shape": "^0.0.83",
     "classnames": "^2.2.5"
   },
   "publishConfig": {
