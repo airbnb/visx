@@ -10,6 +10,7 @@ export default ({
   rx,
   ry,
   fill = 'steelblue',
+  fillOpacity,
   stroke,
   strokeWidth,
   strokeDasharray,
@@ -28,6 +29,7 @@ export default ({
       rx={rx}
       ry={ry}
       fill={fill}
+      fillOpacity={fillOpacity}
       stroke={stroke}
       strokeWidth={strokeWidth}
       strokeDasharray={strokeDasharray}

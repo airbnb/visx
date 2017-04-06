@@ -6,10 +6,12 @@ import SimpleLineChart from '../components/charts/SimpleLineChart';
 import SimpleAreaChart from '../components/charts/SimpleAreaChart';
 import SimpleLineWithGlyphsChart from '../components/charts/SimpleLineWithGlyphsChart';
 import SimpleBar from '../components/charts/SimpleBar';
+import StackedAreaChart from '../components/charts/StackedAreaChart';
 import SimpleLineCode from '../components/codeblocks/SimpleLineCode';
 import SimpleAreaCode from '../components/codeblocks/SimpleAreaCode';
 import SimpleLineGlyphCode from '../components/codeblocks/SimpleLineGlyphCode';
 import SimpleBarCode from '../components/codeblocks/SimpleBarCode';
+import StackedAreaCode from '../components/codeblocks/StackedAreaCode';
 
 export default () => {
   const data1 = Mock.genDateValue(20);
@@ -31,7 +33,7 @@ export default () => {
           <div className="item-top">
             <div className="chart-title">
               <a name="simplebar" />
-              Simple bar chart
+              Bar chart
               <a href="https://github.com/hshoff/vx/blob/master/packages/vx-demo/components/charts/SimpleBar.js">
                 <small> view source</small>
               </a>
@@ -48,11 +50,32 @@ export default () => {
             </div>
           </div>
         </div>
+        <div className="item">
+          <div className="item-top">
+            <div className="chart-title">
+              <a name="areastack" />
+              Stacked area chart
+              <a href="https://github.com/hshoff/vx/blob/master/packages/vx-demo/components/charts/StackedAreaChart.js">
+                <small> view source</small>
+              </a>
+            </div>
+            <StackedAreaChart
+              width={width}
+              height={height}
+              margin={margin}
+            />
+          </div>
+          <div className="item-bottom">
+            <div>
+              <StackedAreaCode />
+            </div>
+          </div>
+        </div>
         <div className="item simpleline">
           <div className="item-top">
             <div className="chart-title">
               <a name="simpleline" />
-              Simple line chart
+              Line chart
               <a href="https://github.com/hshoff/vx/blob/master/packages/vx-demo/components/charts/SimpleLineChart.js">
                 <small> view source</small>
               </a>
@@ -78,7 +101,7 @@ export default () => {
           <div className="item-top">
             <div className="chart-title">
               <a name="simplearea" />
-              Simple area chart
+              Area chart
               <a href="https://github.com/hshoff/vx/blob/master/packages/vx-demo/components/charts/SimpleAreaChart.js">
                 <small> view source</small>
               </a>
@@ -99,7 +122,7 @@ export default () => {
           <div className="item-top">
             <div className="chart-title">
               <a name="simplelineglyphs" />
-              Simple line with glyphs chart
+              Line with glyphs chart
               <a href="https://github.com/hshoff/vx/blob/master/packages/vx-demo/components/charts/SimpleLineWithGlyphsChart.js">
                 <small> view source</small>
               </a>
@@ -128,16 +151,19 @@ export default () => {
     <div className="page-right">
       <ul>
         <li>
-          <a href="#simplebar">Simple bar chart</a>
+          <a href="#simplebar">Bar chart</a>
         </li>
         <li>
-          <a href="#simpleline">Simple line chart</a>
+          <a href="#areastack">Stacked area chart</a>
         </li>
         <li>
-          <a href="#simplearea">Simple area chart</a>
+          <a href="#simpleline">Line chart</a>
         </li>
         <li>
-          <a href="#simplelineglyphs">Simple line with glyphs chart</a>
+          <a href="#simplearea">Area chart</a>
+        </li>
+        <li>
+          <a href="#simplelineglyphs">Line with glyphs chart</a>
         </li>
       </ul>
     </div>

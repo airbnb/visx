@@ -165,6 +165,7 @@ export default () => (
           @vx/shape
           <ul>
             <li>AreaClosed</li>
+            <li>AreaStack</li>
             <li>Bar</li>
             <li>Line</li>
             <li>LinePath</li>

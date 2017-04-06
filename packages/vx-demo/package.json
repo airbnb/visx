@@ -33,6 +33,7 @@
     "classnames": "^2.2.5",
     "d3-array": "^1.1.1",
     "d3-shape": "^1.0.6",
+    "d3-time-format": "^2.0.5",
     "next": "^2.0.1",
     "nprogress": "^0.2.0",
     "prismjs": "^1.6.0",

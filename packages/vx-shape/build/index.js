@@ -16,6 +16,10 @@ var _AreaClosed = require('./shapes/AreaClosed');
 
 var _AreaClosed2 = _interopRequireDefault(_AreaClosed);
 
+var _AreaStack = require('./shapes/AreaStack');
+
+var _AreaStack2 = _interopRequireDefault(_AreaStack);
+
 var _Bar = require('./shapes/Bar');
 
 var _Bar2 = _interopRequireDefault(_Bar);
@@ -26,5 +30,6 @@ exports.default = {
   Line: _Line2.default,
   LinePath: _LinePath2.default,
   AreaClosed: _AreaClosed2.default,
+  AreaStack: _AreaStack2.default,
   Bar: _Bar2.default
 };
