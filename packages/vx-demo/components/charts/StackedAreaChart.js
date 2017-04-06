@@ -5,6 +5,7 @@ import Group from '@vx/group';
 import Axis from '@vx/axis';
 import Shape from '@vx/shape';
 import Curve from '@vx/curve';
+import Text from '@vx/text';
 import { extent, max } from 'd3-array';
 import { stack as d3stack } from 'd3-shape';
 import { timeParse } from 'd3-time-format';
@@ -69,15 +70,19 @@ export default ({
           return (
             <g key={`labels-${series.key}`}>
               {lastPointY1 - lastPointY0 > 0.01 &&
-                <text
+                <Text.TextOutline
                   fontSize={10}
                   x={xMax}
                   y={yScale((lastPointY1 - ((lastPointY1 - lastPointY0) /2)))}
                   dy={'.5em'}
                   textAnchor={'end'}
+                  fill="black"
+                  outlineStroke={"rgba(255,255,255,0.5)"}
+                  outlineStrokeWidth={2}
+                  fontFamily={"Roboto Mono"}
                 >
                   {series.key}
-                </text>
+                </Text.TextOutline>
               }
             </g>
           );
