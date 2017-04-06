@@ -68,15 +68,18 @@ export default ({
           strokeWidth={1}
           reverse
         />
-        {stack(data).map((series,i) => {
-          const last = series.length - 1;
+        {stack(data).reverse().map((series,i) => {
+          const lastPoint = series[series.length - 1];
+          const lastPointY0 = lastPoint[0] / 100;
+          const lastPointY1 = lastPoint[1] / 100;
+
           return (
-            <g key={'labels-%{series.key}'}>
-              {series[last][1]/100 - series[last][0]/100 > 0.01 &&
+            <g key={'labels-{series.key}'}>
+              {lastPointY1 - lastPointY0 > 0.01 &&
                 <text
                   fontSize={10}
                   x={xMax}
-                  y={yScale((series[last][0]/100 + series[last][1]/100) / 2)}
+                  y={yScale((lastPointY1 - ((lastPointY1 - lastPointY0) /2)))}
                   dy={'.5em'}
                   textAnchor={'end'}
                 >

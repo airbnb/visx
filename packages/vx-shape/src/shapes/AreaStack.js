@@ -58,15 +58,15 @@ export default ({
             className={cx('vx-area-stack', className)}
             key={`area-stack-${i}-${series.key || ''}`}
             d={path(series)}
-            fill={callOrValue(fill, series[i], i)}
-            fillOpacity={callOrValue(fillOpacity, series[i], i)}
-            stroke={callOrValue(stroke, series[i], i)}
-            strokeWidth={callOrValue(strokeWidth, series[i], i)}
-            strokeDasharray={callOrValue(strokeDasharray, series[i], i)}
-            strokeLinecap={callOrValue(strokeLinecap, series[i], i)}
-            strokeLinejoin={callOrValue(strokeLinejoin, series[i], i)}
-            strokeMiterlimit={callOrValue(strokeMiterlimit, series[i], i)}
-            strokeOpacity={callOrValue(strokeOpacity, series[i], i)}
+            fill={callOrValue(fill, series, i)}
+            fillOpacity={callOrValue(fillOpacity, series, i)}
+            stroke={callOrValue(stroke, series, i)}
+            strokeWidth={callOrValue(strokeWidth, series, i)}
+            strokeDasharray={callOrValue(strokeDasharray, series, i)}
+            strokeLinecap={callOrValue(strokeLinecap, series, i)}
+            strokeLinejoin={callOrValue(strokeLinejoin, series, i)}
+            strokeMiterlimit={callOrValue(strokeMiterlimit, series, i)}
+            strokeOpacity={callOrValue(strokeOpacity, series, i)}
           />
         );
       })}
