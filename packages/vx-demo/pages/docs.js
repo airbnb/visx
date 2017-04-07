@@ -8,9 +8,6 @@ export default () => (
         <h2><a name="packages" />Packages</h2>
         <code>// TODO: write docs</code>
       </div>
-    </div>
-
-    <div className="page-right">
       <ul>
         <li>
           @vx/annotation
@@ -111,6 +108,8 @@ export default () => (
               <strong>/mocks</strong>
               <ul>
                 <li>appleStock</li>
+                <li>browserUsage</li>
+                <li>groupDateValue</li>
                 <li>letterFrequency</li>
               </ul>
             </li>
@@ -182,15 +181,22 @@ export default () => (
       </ul>
     </div>
 
+    <div className="page-right" />
+
     <style jsx>{`
-      .comingsoon {
-        position: fixed;
+      .page-left > ul {
+        column-count: 4;
+        column-gap: 2em;
+        padding: 0;
       }
-      .page-right > ul {
-        display: block;
-        padding-bottom: 150px;
+      .page-left > ul > li {
+        background-color: #f8f8f8;
+        padding: .5em;
+        display: inline-block;
+        margin: 0 0 1em;
+        width: 100%;
       }
-      .page-right li {
+      .page-left li {
         color: #fc2e1c;
       }
       li ul {
