@@ -3,11 +3,14 @@ import Page from '../components/page';
 import Mock from '@vx/mock-data';
 import Curve from '@vx/curve';
 import Footer from '../components/footer';
+
 import SimpleLineChart from '../components/charts/SimpleLineChart';
 import SimpleAreaChart from '../components/charts/SimpleAreaChart';
 import SimpleLineWithGlyphsChart from '../components/charts/SimpleLineWithGlyphsChart';
 import SimpleBar from '../components/charts/SimpleBar';
 import StackedAreaChart from '../components/charts/StackedAreaChart';
+import MultiSeriesLine from '../components/charts/MultiSeriesLine';
+
 import SimpleLineCode from '../components/codeblocks/SimpleLineCode';
 import SimpleAreaCode from '../components/codeblocks/SimpleAreaCode';
 import SimpleLineGlyphCode from '../components/codeblocks/SimpleLineGlyphCode';
@@ -30,6 +33,20 @@ export default () => {
   return (
     <Page title="gallery">
       <div className="page-left gallery">
+        <div className="item">
+          <div className="item-top">
+            <div className="chart-title">
+              <a name="animation" />
+              Multi-Series Line Chart
+            </div>
+            <MultiSeriesLine
+              width={width}
+              height={height}
+              margin={margin}
+            />
+          </div>
+          <div className="item-bottom"/>
+        </div>
         <div className="item">
           <div className="item-top">
             <div className="chart-title">

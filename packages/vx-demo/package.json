@@ -18,7 +18,7 @@
   "dependencies": {
     "@vx/annotation": "^0.0.60",
     "@vx/axis": "0.0.89",
-    "@vx/curve": "^0.0.49",
+    "@vx/curve": "0.0.84",
     "@vx/glyph": "^0.0.49",
     "@vx/grid": "^0.0.49",
     "@vx/group": "0.0.49",
