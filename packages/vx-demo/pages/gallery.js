@@ -39,6 +39,9 @@ export default () => {
             <div className="chart-title">
               <a name="mutliseriesline" />
               Multi-Series Line Chart
+              <a href="https://github.com/hshoff/vx/blob/master/packages/vx-demo/components/charts/MultiSeriesLine.js">
+                <small> view source</small>
+              </a>
             </div>
             <MultiSeriesLine
               width={width}

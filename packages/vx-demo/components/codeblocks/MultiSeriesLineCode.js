@@ -4,7 +4,7 @@ import Codeblock from './Codeblock';
 export default ({}) => {
   return (
     <Codeblock>
-      {`// SimpleAreaChart.js
+      {`// MultiSeriesLine.js
 import React from 'react';
 import Mock from '@vx/mock-data';
 import Group from '@vx/group';
