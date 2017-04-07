@@ -37,6 +37,12 @@ export default ({ children, title }) => (
         font-family: 'Roboto Mono';
         margin-left: 250px;
       }
+
+      @media (max-width: 600px) {
+        .main { flex-direction: column; position: relative; }
+        .left { position: relative; }
+        .right { margin-left: 0; }
+      }
     `}</style>
   </div>
 );

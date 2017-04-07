@@ -220,6 +220,18 @@ export default () => (
         font-weight: 600;
         opacity: 0.4;
       }
+
+      @media (max-width: 600px) {
+        .page-left {
+          margin-top: 10px;
+        }
+        .page-left > ul {
+          column-count: 1;
+          margin: 0 auto;
+        }
+        .page-right { flex: 1; padding: 1rem; }
+
+      }
     `}</style>
   </Page>
 )

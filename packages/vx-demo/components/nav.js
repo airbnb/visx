@@ -44,6 +44,22 @@ export default () => (
         padding-right: 10px;
         margin-top: 1rem;
       }
+
+      @media (max-width: 600px) {
+        .github-buttons {
+          display: none;
+        }
+        .Item {
+          float: left;
+        }
+
+        ul {
+          display: block;
+          padding-top: 0;
+          overflow: hidden;
+          margin-top: 0;
+        }
+      }
     `}</style>
   </div>
 )
@@ -66,6 +82,17 @@ const Item = ({ href, children, className }) => (
         margin-top: 1.5rem;
         font-weight: 600;
         color: #fc2e1c;
+      }
+
+      @media (max-width: 600px) {
+        .Item {
+          display: block;
+          float: left;
+        }
+
+        .Item .github {
+          margin-top: 0;
+        }
       }
     `}</style>
   </li>

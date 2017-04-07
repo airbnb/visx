@@ -116,6 +116,16 @@ export default () => (
       .faq {
         margin-bottom: 10vh;
       }
+
+      @media (max-width: 600px) {
+        .page-left {
+          margin-top: 10px;
+        }
+
+        .page-right {
+          opacity: 0;
+        }
+      }
     `}</style>
   </Page>
 )
