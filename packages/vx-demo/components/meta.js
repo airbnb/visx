@@ -38,6 +38,9 @@ export default ({
       <link rel="stylesheet" href="static/prism/prism-funky.css"/>
       <link rel="stylesheet" href="static/prism/prism-line-numbers.css"/>
       <link href="https://fonts.googleapis.com/css?family=Karla|Roboto+Mono|Inconsolata" rel="stylesheet" />
+      {(typeof window !== "undefined") &&
+        <script async defer src="https://buttons.github.io/buttons.js" />
+      }
     </Head>
     <style jsx global>{`
       body {
@@ -103,6 +106,8 @@ export default ({
          padding: .2rem .3rem;
          background-color: #fef052;
          border-radius: 3px;
+         line-height: 1.2em;
+         font-size: 14px;
        }
 
        h1 {

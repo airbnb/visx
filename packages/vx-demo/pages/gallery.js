@@ -226,7 +226,6 @@ export default () => {
         .footer {
           width: 100%;
         }
-
       `}</style>
     </Page>
   )
