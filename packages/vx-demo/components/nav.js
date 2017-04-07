@@ -5,19 +5,6 @@ export default () => (
     <Link prefetch href="/">
       <div className="logo" />
     </Link>
-    <div className="github-buttons">
-      <a
-        className="github-button"
-        href="https://github.com/hshoff/vx"
-        data-icon="octicon-star"
-        data-count-href="/hshoff/vx/stargazers"
-        data-count-api="/repos/hshoff/vx#stargazers_count"
-        data-count-aria-label="# stargazers on GitHub"
-        aria-label="Star hshoff/vx on GitHub"
-      >
-        Star
-      </a>
-    </div>
     <ul>
       <Item href="/">Home</Item>
       <Item href="/docs">Docs</Item>

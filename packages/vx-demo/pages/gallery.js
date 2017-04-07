@@ -16,6 +16,7 @@ import SimpleAreaCode from '../components/codeblocks/SimpleAreaCode';
 import SimpleLineGlyphCode from '../components/codeblocks/SimpleLineGlyphCode';
 import SimpleBarCode from '../components/codeblocks/SimpleBarCode';
 import StackedAreaCode from '../components/codeblocks/StackedAreaCode';
+import MultiSeriesLineCode from '../components/codeblocks/MultiSeriesLineCode';
 
 export default () => {
   const data1 = Mock.genDateValue(20);
@@ -36,7 +37,7 @@ export default () => {
         <div className="item">
           <div className="item-top">
             <div className="chart-title">
-              <a name="animation" />
+              <a name="mutliseriesline" />
               Multi-Series Line Chart
             </div>
             <MultiSeriesLine
@@ -45,7 +46,11 @@ export default () => {
               margin={margin}
             />
           </div>
-          <div className="item-bottom"/>
+          <div className="item-bottom">
+            <div>
+              <MultiSeriesLineCode />
+            </div>
+          </div>
         </div>
         <div className="item">
           <div className="item-top">
@@ -170,6 +175,9 @@ export default () => {
 
       <div className="page-right">
         <ul>
+          <li>
+            <a href="#mutliseriesline">Multi-Series Line Chart</a>
+          </li>
           <li>
             <a href="#simplebar">Bar chart</a>
           </li>

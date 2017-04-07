@@ -1,4 +1,11 @@
 import React from 'react';
+import Codeblock from './Codeblock';
+
+export default ({}) => {
+  return (
+    <Codeblock>
+      {`// SimpleAreaChart.js
+import React from 'react';
 import Mock from '@vx/mock-data';
 import Group from '@vx/group';
 import Curve from '@vx/curve';
@@ -111,7 +118,7 @@ export default class MultiSeriesLine extends React.Component {
             {!city && data.map((city) => {
               const lastDatum = city.values[city.values.length - 1];
               return (
-                <g key={`${city.id}`}>
+                <g key={'{city.id}'}>
                   <Shape.LinePath
                     data={city.values}
                     xScale={xScale}
@@ -142,14 +149,10 @@ export default class MultiSeriesLine extends React.Component {
             />
           </Group>
         </svg>
-
-        <style jsx>{`
-          .cities-select {
-            font-size: 10px;
-            margin-left: 4rem;
-          }
-        `}</style>
       </div>
     );
   }
+}`}
+    </Codeblock>
+  );
 }
