@@ -77,8 +77,8 @@ export default ({
                   dy={'.5em'}
                   textAnchor={'end'}
                   fill="black"
-                  outlineStroke={"rgba(255,255,255,0.5)"}
-                  outlineStrokeWidth={2}
+                  outlineStroke={"white"}
+                  outlineStrokeWidth={3}
                   fontFamily={"Roboto Mono"}
                 >
                   {series.key}

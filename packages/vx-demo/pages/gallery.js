@@ -2,6 +2,7 @@ import React from 'react';
 import Page from '../components/page';
 import Mock from '@vx/mock-data';
 import Curve from '@vx/curve';
+import Footer from '../components/footer';
 import SimpleLineChart from '../components/charts/SimpleLineChart';
 import SimpleAreaChart from '../components/charts/SimpleAreaChart';
 import SimpleLineWithGlyphsChart from '../components/charts/SimpleLineWithGlyphsChart';
@@ -147,26 +148,28 @@ export default () => {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
-    <div className="page-right">
-      <ul>
-        <li>
-          <a href="#simplebar">Bar chart</a>
-        </li>
-        <li>
-          <a href="#areastack">Stacked area chart</a>
-        </li>
-        <li>
-          <a href="#simpleline">Line chart</a>
-        </li>
-        <li>
-          <a href="#simplearea">Area chart</a>
-        </li>
-        <li>
-          <a href="#simplelineglyphs">Line with glyphs chart</a>
-        </li>
-      </ul>
-    </div>
+
+      <div className="page-right">
+        <ul>
+          <li>
+            <a href="#simplebar">Bar chart</a>
+          </li>
+          <li>
+            <a href="#areastack">Stacked area chart</a>
+          </li>
+          <li>
+            <a href="#simpleline">Line chart</a>
+          </li>
+          <li>
+            <a href="#simplearea">Area chart</a>
+          </li>
+          <li>
+            <a href="#simplelineglyphs">Line with glyphs chart</a>
+          </li>
+        </ul>
+      </div>
 
       <style jsx>{`
         .gallery {
@@ -219,6 +222,11 @@ export default () => {
         .page-right ul {
           position: fixed;
         }
+
+        .footer {
+          width: 100%;
+        }
+
       `}</style>
     </Page>
   )

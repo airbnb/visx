@@ -1,5 +1,6 @@
 import React from 'react';
 import Page from '../components/page';
+import Footer from '../components/footer';
 
 export default () => (
   <Page title="documentation">
@@ -179,6 +180,8 @@ export default () => (
           </ul>
         </li>
       </ul>
+
+      <Footer />
     </div>
 
     <div className="page-right" />

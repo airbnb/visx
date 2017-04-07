@@ -81,6 +81,14 @@ export default ({
         font-size: 14px;
       }
 
+      ol, ul {
+        padding-left: 0;
+      }
+
+      blockquote {
+        margin-left: 0;
+      }
+
       li {
         list-style-type: none;
       }
