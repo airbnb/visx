@@ -3,6 +3,7 @@ import appleStock from './mocks/appleStock';
 import letterFrequency from './mocks/letterFrequency';
 import browserUsage from './mocks/browserUsage';
 import groupDateValue from './mocks/groupDateValue';
+import cityTemperature from './mocks/cityTemperature';
 
 export default {
   genDateValue,
@@ -10,4 +11,5 @@ export default {
   letterFrequency,
   browserUsage,
   groupDateValue,
+  cityTemperature,
 }
