@@ -229,8 +229,12 @@ export default () => (
           column-count: 1;
           margin: 0 auto;
         }
-        .page-right { flex: 1; padding: 1rem; }
-
+        .page-right {
+          flex: 1;
+          padding: 1rem;
+          margin-top: 0;
+          padding: 0;
+        }
       }
     `}</style>
   </Page>

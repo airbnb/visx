@@ -124,6 +124,8 @@ export default () => (
 
         .page-right {
           opacity: 0;
+          margin-top: 0;
+          padding: 0;
         }
       }
     `}</style>

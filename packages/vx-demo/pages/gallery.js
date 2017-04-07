@@ -226,6 +226,24 @@ export default () => {
         .footer {
           width: 100%;
         }
+
+        @media (max-width: 600px) {
+          .page-left {
+            margin-top: 10px;
+            padding-left: 1rem;
+          }
+
+          .page-right {
+            opacity: 0;
+            margin-top: 0;
+            padding: 0;
+            position: relative;
+          }
+
+          .item {
+            margin: 0 0 2rem;
+          }
+        }
       `}</style>
     </Page>
   )

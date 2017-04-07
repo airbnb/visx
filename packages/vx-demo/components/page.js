@@ -41,7 +41,7 @@ export default ({ children, title }) => (
       @media (max-width: 600px) {
         .main { flex-direction: column; position: relative; }
         .left { position: relative; }
-        .right { margin-left: 0; }
+        .right { margin-left: 0; flex-direction: column; }
       }
     `}</style>
   </div>
