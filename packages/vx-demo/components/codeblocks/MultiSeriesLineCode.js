@@ -14,144 +14,172 @@ import Axis from '@vx/axis';
 import Shape from '@vx/shape';
 import { extent, max, min } from 'd3-array';
 import { timeParse } from 'd3-time-format';
+import { compose, withState, withHandlers } from 'recompose';
 
+// util
+const parseDate = timeParse("%Y%m%d");
+
+// [{date: "", new york: "", san francisco: "", austin: ""}]
 const rawData = Mock.cityTemperature;
-const cities = Object.keys(rawData[0]).filter(k => k !== 'date');
+const cityNames = Object.keys(rawData[0]).filter(k => k !== 'date');
 
-const data = cities.map((city) => {
+// rawData => [{id: "", values: [{ date, temperature }]}, ...]
+const data = cityNames.map((cityName) => {
   return {
-    id: city,
+    id: cityName,
     values: rawData.map((d) => ({
       date: d.date,
-      temperature: d[city],
+      temperature: d[cityName],
     })),
   }
 });
 
-export default class MultiSeriesLine extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      city: undefined,
-    };
-    this.handleChange = this.handleChange.bind(this);
-  }
+// utils
+const getCity = (cityId) => data.find((city) => city.id === cityId);
+const addCity = (selected, cityId) => selected.concat(cityId);
+const removeCity = (selected, cityId) => selected.filter((city) => city !== cityId);
+const removeCityOrResetSelected = (selected, cityId) => {
+  let nextSelected = removeCity(selected, cityId);
+  if (nextSelected.length === 0) nextSelected = initialSelectedState;
+  return nextSelected;
+}
 
-  handleChange(e) {
-    const value = e.target.value;
-    this.setState(() => ({ city: data[value] }))
-  }
+// recompose higher-order function for state and event handlers
+const initialSelectedState = cityNames;
+const withSelected = compose(
+  withState('selected', 'setSelected', initialSelectedState),
+  withHandlers({
+    updateSelected: ({ selected, setSelected }) => cityId => {
+      let fn = addCity;
+      if (selected.includes(cityId)) fn = removeCityOrResetSelected;
+      setSelected(fn(selected, cityId));
+    },
+    resetSelected: ({ setSelected }) => event => {
+      setSelected(initialSelectedState);
+    }
+  })
+);
 
-  render() {
-    const { width, height, margin } = this.props;
-    const { city } = this.state;
+// the chart
+export default withSelected(({
+  selected,
+  updateSelected,
+  resetSelected,
+  width,
+  height,
+  margin,
+}) => {
+  // bounds
+  const xMax = width - margin.left - margin.right;
+  const yMax = height - margin.top - margin.bottom;
 
-    const parseDate = timeParse("%Y%m%d");
+  // accessors
+  const x = d => parseDate(d.date);
+  const y = d => +d.temperature;
 
-    const xMax = width - margin.left - margin.right;
-    const yMax = height - margin.top - margin.bottom;
+  // scales
+  const xScale = Scale.scaleTime({
+    range: [0, xMax],
+    domain: extent(rawData, x),
+  });
+  const yScale = Scale.scaleLinear({
+    range: [yMax, 0],
+    domain: extent(selected.slice().reduce((ret, c) => {
+      return ret.concat(getCity(c).values)
+    }, []), y)
+  });
+  const color = Scale.scaleOrdinal({
+    range: ['#3b99d8', '#239f85', '#9a5cb4'],
+    domain: cityNames,
+  });
 
-    const x = d => parseDate(d.date);
-    const y = d => +d.temperature;
+  return (
+    <svg width={width} height={height}>
+      <Group top={margin.top} left={margin.left}>
+        <Axis.AxisBottom
+          label=''
+          top={yMax}
+          scale={xScale}
+          hideAxisLine
+        />
+        <Axis.AxisLeft
+          scale={yScale}
+          label="Temperature (ºF)"
+        />
+        {selected.map(getCity).map(({ id, values }) => {
+          const lastDatum = values[values.length - 1];
+          return (
+            <g key={'{id}'}>
+              <Shape.LinePath
+                data={values}
+                xScale={xScale}
+                yScale={yScale}
+                x={x}
+                y={y}
+                curve={Curve.basis}
+                stroke={color(id)}
+                strokeWidth={1}
+              />
+              <text
+                fontSize={9}
+                dy={"0.35em"}
+                dx={2}
+                x={xScale(x(lastDatum))}
+                y={yScale(y(lastDatum))}
+              >
+                {id}
+              </text>
+            </g>
+          );
+        })}
+        <Legend
+          data={data}
+          selected={selected}
+          xMax={xMax}
+          yMax={yMax}
+          color={color}
+          updateSelected={updateSelected}
+        />
+      </Group>
+    </svg>
+  );
+});
 
-    const xScale = Scale.scaleTime({
-      range: [0, xMax],
-      domain: extent(rawData, x),
-    });
-    const yScale = Scale.scaleLinear({
-      range: [yMax, 0],
-      domain: !!city ? extent(city.values, y) : [
-        min(data, (city) => min(city.values, y)),
-        max(data, (city) => max(city.values, y))
-      ],
-    });
-    const color = Scale.scaleOrdinal({
-      range: ['#3b99d8', '#239f85', '#9a5cb4'],
-      domain: cities,
-    });
-
-    return (
-      <div>
-        <form className="cities-select" onChange={this.handleChange}>
-          <label>
-            <input type="radio" name="city" value={-1} checked={!city}/>
-            All
-          </label>
-          {cities.map((city,i) => {
-            return (
-              <label key={city}>
-                <input type="radio" name="city" value={i} />
-                {city}
-              </label>
-            );
-          })}
-        </form>
-        <svg width={width} height={height}>
-          <Group top={margin.top} left={margin.left}>
-            <Axis.AxisLeft
-              scale={yScale}
-              label="Temperature (ºF)"
-            />
-            {!!city &&
-              <g>
-                <Shape.LinePath
-                  data={city.values}
-                  xScale={xScale}
-                  yScale={yScale}
-                  x={x}
-                  y={y}
-                  curve={Curve.basis}
-                  stroke={color(city.id)}
-                  strokeWidth={1}
-                />
-                <text
-                  fontSize={9}
-                  dy={"0.35em"}
-                  dx={2}
-                  x={xScale(x(city.values[city.values.length - 1]))}
-                  y={yScale(y(city.values[city.values.length - 1]))}
-                >
-                  {city.id}
-                </text>
-              </g>
-            }
-            {!city && data.map((city) => {
-              const lastDatum = city.values[city.values.length - 1];
-              return (
-                <g key={'{city.id}'}>
-                  <Shape.LinePath
-                    data={city.values}
-                    xScale={xScale}
-                    yScale={yScale}
-                    x={x}
-                    y={y}
-                    curve={Curve.basis}
-                    stroke={color(city.id)}
-                    strokeWidth={1}
-                  />
-                  <text
-                    fontSize={9}
-                    dy={"0.35em"}
-                    dx={2}
-                    x={xScale(x(lastDatum))}
-                    y={yScale(y(lastDatum))}
-                  >
-                    {city.id}
-                  </text>
-                </g>
-              );
-            })}
-            <Axis.AxisBottom
-              scale={xScale}
-              top={yMax}
-              label=''
-              hideAxisLine
-            />
-          </Group>
-        </svg>
-      </div>
-    );
-  }
+const Legend = ({
+  data,
+  selected,
+  updateSelected,
+  xMax,
+  yMax,
+  color,
+}) => {
+  const margin = 20;
+  const xPadding = 60;
+  const yPadding = 30;
+  const yOffset = yMax - yPadding;
+  const xOffset = xMax - xPadding;
+  const size = 8;
+  const fontSize = 12;
+  return (
+    <g>
+      {data.map(({ id, values }, i) => {
+        return (
+          <g
+            key={'legend-{id}'}
+            className="legend-item"
+            transform={'translate({xOffset}, {yOffset - i * margin})'}
+            onClick={() => updateSelected(id)}
+            fillOpacity={selected.includes(id) ? 1 : 0.5}
+          >
+            <rect width={size} height={size} fill={color(id)} />
+            <text fill={color(id)} dy={".7em"} dx={fontSize} fontSize={fontSize}>
+              {id}
+            </text>
+          </g>
+        );
+      })}
+    </g>
+  );
 }`}
     </Codeblock>
   );
