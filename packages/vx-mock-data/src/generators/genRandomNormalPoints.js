@@ -1,4 +1,4 @@
-import randomNormal from 'd3-random';
+import { randomNormal } from 'd3-random';
 
 const random = randomNormal(0, 0.2);
 const sqrt3 = Math.sqrt(3);
