@@ -10,6 +10,7 @@ import SimpleLineWithGlyphsChart from '../components/charts/SimpleLineWithGlyphs
 import SimpleBar from '../components/charts/SimpleBar';
 import StackedAreaChart from '../components/charts/StackedAreaChart';
 import MultiSeriesLine from '../components/charts/MultiSeriesLine';
+import BrushChart from '../components/charts/BrushChart';
 
 import SimpleLineCode from '../components/codeblocks/SimpleLineCode';
 import SimpleAreaCode from '../components/codeblocks/SimpleAreaCode';
@@ -34,6 +35,24 @@ export default () => {
   return (
     <Page title="gallery">
       <div className="page-left gallery">
+        <div className="item">
+          <div className="item-top">
+            <div className="chart-title">
+              <a name="mutliseriesline" />
+              Brush Chart
+              <a href="https://github.com/hshoff/vx/blob/master/packages/vx-demo/components/charts/BrushChart.js">
+                <small> view source</small>
+              </a>
+            </div>
+            <BrushChart
+              width={width}
+              height={height}
+              margin={margin}
+            />
+          </div>
+          <div className="item-bottom">
+          </div>
+        </div>
         <div className="item">
           <div className="item-top">
             <div className="chart-title">
