@@ -4,6 +4,7 @@ import Scale from '@vx/scale';
 import Group from '@vx/group';
 import Axis from '@vx/axis';
 import colors from '../util/sillyColorScale';
+import { Motion, spring } from 'react-motion';
 
 const points = Mock.genRandomNormalPoints();
 
@@ -176,13 +177,18 @@ export default class VXSvg extends React.Component {
         >
           {points.map((point) => {
             return (
-              <circle
-                key={`${x(point)}-${y(point)}-${z(point)}`}
-                fill={colors(z(point))}
-                cx={xScale(x(point))}
-                cy={yScale(y(point))}
-                r={3}
-              />
+              <Motion key={`${x(point)}-${y(point)}-${z(point)}`} defaultStyle={{x: xMax / 2, y: yMax / 2}} style={{x: spring(xScale(x(point))), y: spring(yScale(y(point)))}}>
+                {interpolatingStyle => {
+                  return (
+                    <circle
+                      fill={colors(z(point))}
+                      cx={interpolatingStyle.x}
+                      cy={interpolatingStyle.y}
+                      r={3}
+                    />
+                  );
+                }}
+              </Motion>
             );
           })}
           {false && hover &&
