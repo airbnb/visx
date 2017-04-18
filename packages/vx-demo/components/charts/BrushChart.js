@@ -13,6 +13,23 @@ const localXY = (event, svg, point) => {
   return point.matrixTransform(svg.getScreenCTM().inverse());
 }
 
+function getPlotCoords(node, event) {
+  if (!node) return;
+  const svg = node.ownerSVGElement || node;
+  if (svg.createSVGPoint) {
+    let point = svg.createSVGPoint();
+    point.x = event.clientX;
+    point.y = event.clientY;
+    point = point.matrixTransform(node.getScreenCTM().inverse());
+    return {x: point.x, y: point.y};
+  }
+  var rect = node.getBoundingClientRect();
+  return {
+    x: event.clientX - rect.left - node.clientLeft,
+    y: event.clientY - rect.top - node.clientTop
+  };
+}
+
 export default class VXSvg extends React.Component {
   constructor(props) {
     super(props);
@@ -26,12 +43,33 @@ export default class VXSvg extends React.Component {
     this.handleMouseMove = this.handleMouseMove.bind(this);
   }
 
-  componentDidMount() {
-    this.point = this.svg.createSVGPoint();
+  componentWillMount() {
+    const { width, height, margin } = this.props;
+    const k = height / width;
+    const x0 = [-4.5, 4.5];
+    const y0 = x0.map(x => x * k);
+    this.setState({
+      xScale: Scale.scaleLinear({
+        domain: x0,
+        range: [0, width - margin.left - margin.right],
+        clamp: true,
+      }),
+      yScale: Scale.scaleLinear({
+        domain: y0,
+        range: [height - margin.top - margin.bottom, 0],
+        clamp: true,
+      })
+    })
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextState.xDomain === this.state.xDomain && !this.state.dragging) return false;
+    if (nextState.yDomain === this.state.yDomain && !this.state.dragging) return false;
+    return true;
   }
 
   handleMouseDown(event) {
-    const { x, y } = localXY(event, this.svg, this.point);
+    const { x, y } = getPlotCoords(this.node, event);
     this.setState({
       start: { x, y },
       end: undefined,
@@ -40,17 +78,33 @@ export default class VXSvg extends React.Component {
   }
 
   handleMouseUp() {
-    const { x, y } = localXY(event, this.svg, this.point);
-    this.setState({
-      dragging: false,
-    });
+    const { start, end } = this.state;
+    const { x, y } = getPlotCoords(this.node, event);
+    if (end) {
+      return this.setState({
+        dragging: false,
+        xDomain: [start.x - this.props.margin.left, end.x - this.props.margin.left],
+        yDomain: [end.y - this.props.margin.top, start.y - this.props.margin.top],
+      });
+    } else {
+      this.setState({
+        dragging: false,
+        xDomain: undefined,
+        yDomain: undefined,
+      });
+    }
   }
 
   handleMouseMove(event) {
-    if (!this.state.dragging) return;
-    const { x, y } = localXY(event, this.svg, this.point);
+    const { x, y } = getPlotCoords(this.node, event);
+    if (!this.state.dragging) {
+      return this.setState({
+        hover: { x, y },
+      })
+    };
     this.setState({
-      end: {x, y},
+      end: { x, y },
+      hover: { x, y },
     });
   }
 
@@ -61,7 +115,10 @@ export default class VXSvg extends React.Component {
     let brushHeight;
     let cornerSize;
     const { width, height, margin } = this.props;
-    const { start, end } = this.state;
+    const { start, end, dragging, hover, xScale, yScale, xDomain, yDomain } = this.state;
+    const k = height / width;
+    const x0 = [-4.5, 4.5];
+    const y0 = x0.map(x => x * k);
 
     if (!!start && !!end) {
       xBrush = end.x < start.x ? end.x : start.x;
@@ -73,31 +130,30 @@ export default class VXSvg extends React.Component {
 
     const xMax = width - margin.left - margin.right;
     const yMax = height - margin.top - margin.bottom;
-    const k = height / width;
-    const x0 = [-4.5, 4.5];
-    const y0 = x0.map(x => x * k);
 
     const x = d => d[0];
     const y = d => d[1];
     const z = d => d[2];
 
-    const xScale = Scale.scaleLinear({
-      domain: x0,
-      range: [0, xMax],
-    });
-    const yScale = Scale.scaleLinear({
-      domain: y0,
-      range: [yMax, 0],
-    });
+    if (!!end && !dragging && !!xDomain) {
+      xScale.domain(xDomain.map(xScale.invert, xScale))
+    }
+
+    if (!!end && !dragging && !!yDomain) {
+      yScale.domain(yDomain.map(yScale.invert, xScale))
+    }
+
+    if (!yDomain) yScale.domain(y0);
+    if (!xDomain) xScale.domain(x0);
 
     return (
       <svg
-        ref={(c) => { this.svg = c; }}
+        width={width}
+        height={height}
+        ref={(c) => { this.node = c; }}
         onMouseDown={this.handleMouseDown}
         onMouseUp={this.handleMouseUp}
         onMouseMove={this.handleMouseMove}
-        width={width}
-        height={height}
       >
         <Axis.AxisBottom
           scale={xScale}
@@ -115,7 +171,9 @@ export default class VXSvg extends React.Component {
           stroke={'#1b1a1e'}
           tickTextFill={'#1b1a1e'}
         />
-        <Group top={margin.top} left={margin.left}>
+        <g
+          transform={`translate(${margin.left}, ${margin.top})`}
+        >
           {points.map((point) => {
             return (
               <circle
@@ -127,21 +185,39 @@ export default class VXSvg extends React.Component {
               />
             );
           })}
-        </Group>
-        {xBrush && yBrush &&
-          <g>
-            <rect
-              className="vx-brush"
-              fill={'rgba(102, 181, 245, 0.1)'}
-              stroke={'rgba(102, 181, 245, 1)'}
-              strokeWidth={1}
-              x={xBrush}
-              y={yBrush}
-              width={brushWidth}
-              height={brushHeight}
-            />
-          </g>
-        }
+          {false && hover &&
+            <g>
+              <rect
+                x={hover.x}
+                y={0}
+                width={1}
+                height={yMax}
+                fill={'blue'}
+              />
+              <rect
+                x={0}
+                y={hover.y}
+                width={xMax}
+                height={1}
+                fill={'blue'}
+              />
+            </g>
+          }
+          {xBrush && yBrush && dragging &&
+            <g>
+              <rect
+                className="vx-brush"
+                fill={'rgba(102, 181, 245, 0.1)'}
+                stroke={'rgba(102, 181, 245, 1)'}
+                strokeWidth={1}
+                x={xBrush - margin.left}
+                y={yBrush - margin.top}
+                width={brushWidth}
+                height={brushHeight}
+              />
+            </g>
+          }
+        </g>
       </svg>
     );
   }
