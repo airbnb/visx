@@ -8,12 +8,6 @@ import { Motion, spring } from 'react-motion';
 
 const points = Mock.genRandomNormalPoints();
 
-const localXY = (event, svg, point) => {
-  point.x = event.clientX;
-  point.y = event.clientY;
-  return point.matrixTransform(svg.getScreenCTM().inverse());
-}
-
 function getPlotCoords(node, event) {
   if (!node) return;
   const svg = node.ownerSVGElement || node;
@@ -177,7 +171,13 @@ export default class VXSvg extends React.Component {
         >
           {points.map((point) => {
             return (
-              <Motion key={`${x(point)}-${y(point)}-${z(point)}`} defaultStyle={{x: xMax / 2, y: yMax / 2}} style={{x: spring(xScale(x(point))), y: spring(yScale(y(point)))}}>
+              <Motion
+                key={`${x(point)}-${y(point)}-${z(point)}`}
+                defaultStyle={{ x: xMax / 2, y: yMax / 2 }}
+                style={{
+                  x: spring(xScale(x(point))),
+                  y: spring(yScale(y(point))),
+                }}>
                 {interpolatingStyle => {
                   return (
                     <circle
