@@ -1,6 +1,6 @@
 {
   "name": "@vx/demo",
-  "version": "0.0.95",
+  "version": "0.0.96",
   "description": "vx demo",
   "repository": "https://github.com/hshoff/vx",
   "scripts": {
@@ -40,6 +40,7 @@
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-ga": "^2.1.2",
+    "react-motion": "^0.4.7",
     "recompose": "^0.23.0"
   },
   "browserify": {

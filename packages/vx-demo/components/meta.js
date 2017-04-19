@@ -139,6 +139,10 @@ export default ({
          margin: 1em 0px 0;
        }
 
+       .vx-brush:hover {
+         cursor: move;
+       }
+
       /* loading progress bar styles */
       #nprogress {
         pointer-events: none;
@@ -163,6 +167,11 @@ export default ({
         box-shadow: 0 0 10px #ff9300, 0 0 5px #ff9300;
         opacity: 1.0;
         transform: rotate(3deg) translate(0px, -4px);
+      }
+
+      svg {
+        user-select: none;
+        cursor: crosshair;
       }
     `}</style>
   </div>
