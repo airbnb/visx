@@ -5,10 +5,11 @@ import Group from '@vx/group';
 import Axis from '@vx/axis';
 import colors from '../util/sillyColorScale';
 import { Motion, spring } from 'react-motion';
+import { compose, withState, withHandlers, pure } from 'recompose';
 
 const points = Mock.genRandomNormalPoints();
 
-function getPlotCoords(node, event) {
+function getCoordsFromEvent(node, event) {
   if (!node) return;
   const svg = node.ownerSVGElement || node;
   if (svg.createSVGPoint) {
@@ -16,139 +17,199 @@ function getPlotCoords(node, event) {
     point.x = event.clientX;
     point.y = event.clientY;
     point = point.matrixTransform(node.getScreenCTM().inverse());
-    return {x: point.x, y: point.y};
+    return {
+      x: point.x,
+      y: point.y
+    };
   }
-  var rect = node.getBoundingClientRect();
+  let rect = node.getBoundingClientRect();
   return {
     x: event.clientX - rect.left - node.clientLeft,
     y: event.clientY - rect.top - node.clientTop
   };
 }
 
-export default class VXSvg extends React.Component {
+function constrainToRegion({ region, x, y }) {
+  const { x0, x1, y0, y1 } = region;
+  return {
+    x: x < x0 ? x0 : x > x1 ? x1 : x,
+    y: y < y0 ? y0 : y > y1 ? y1 : y,
+  }
+}
+
+function CustomBrush(props) {
+  const { brush, extent, ...otherProps } = props;
+  console.log(otherProps)
+  const { start, end, isBrushing } = brush;
+  if (!start) return null;
+  if (!end) return null;
+  const x = end.x > start.x ? start.x : end.x;
+  const y = end.y > start.y ? start.y : end.y;
+  const width = Math.abs(start.x - end.x);
+  const height = Math.abs(start.y - end.y);
+  return (
+    <g className="vx-brush">
+      {isBrushing &&
+        <g>
+          <rect
+            fill="rgba(102, 181, 245, 0.1)"
+            stroke="rgba(102, 181, 245, 1)"
+            strokeWidth={1}
+            x={x}
+            y={y}
+            width={width}
+            height={height}
+          />
+        </g>
+      }
+    </g>
+  );
+}
+
+const withBrush = compose(
+  withState('brush', 'updateBrush', {
+    start: undefined,
+    end: undefined,
+    domain: undefined,
+    isBrushing: false,
+  }),
+  withHandlers({
+    onBrushStart: ({ updateBrush }) => ({ x, y }) => {
+      updateBrush((prevState) => ({
+        ...prevState,
+        start: { x, y },
+        isBrushing: true,
+        end: undefined,
+        domain: undefined,
+      }));
+    },
+    onBrushDrag: ({ updateBrush }) => ({ x, y }) => {
+      updateBrush((prevState) => ({
+        ...prevState,
+        end: { x, y },
+        domain: undefined,
+      }));
+    },
+    onBrushEnd: ({ updateBrush }) => ({ x, y }) => {
+      updateBrush((prevState) => {
+        const { start } = prevState;
+        return {
+          ...prevState,
+          isBrushing: false,
+          domain: {
+            x0: Math.min(start.x, x),
+            x1: Math.max(start.x, x),
+            y0: Math.min(start.y, y),
+            y1: Math.max(start.y, y),
+          }
+        }
+      });
+    },
+    onBrushReset: ({ updateBrush }) => event => {
+      updateBrush((prevState) => ({
+        start: undefined,
+        end: undefined,
+        domain: undefined,
+        isBrushing: false,
+      }));
+    }
+  })
+);
+
+class BrushChart extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      start: undefined,
-      end: undefined,
-      dragging: false,
+    const { width, height, margin } = props;
+
+    this.extent = {
+      x0: margin.left,
+      x1: width - margin.left,
+      y0: margin.top,
+      y1: height - margin.top,
     };
-    this.handleMouseUp = this.handleMouseUp.bind(this);
+
+    this.initialDomain = {
+      x: [-4.5, 4.5],
+      y: [-4.5 / 2, 4.5 / 2]
+    };
+
+    this.xScale = Scale.scaleLinear({
+      domain: this.initialDomain.x,
+      range: [0, width - margin.left - margin.right],
+      clamp: true,
+    });
+
+    this.yScale = Scale.scaleLinear({
+      domain: this.initialDomain.y,
+      range: [height - margin.top - margin.bottom, 0],
+      clamp: true,
+    });
+
     this.handleMouseDown = this.handleMouseDown.bind(this);
     this.handleMouseMove = this.handleMouseMove.bind(this);
+    this.handleMouseUp = this.handleMouseUp.bind(this);
   }
 
-  componentWillMount() {
-    const { width, height, margin } = this.props;
-    const k = height / width;
-    const x0 = [-4.5, 4.5];
-    const y0 = x0.map(x => x * k);
-    this.setState({
-      xScale: Scale.scaleLinear({
-        domain: x0,
-        range: [0, width - margin.left - margin.right],
-        clamp: true,
-      }),
-      yScale: Scale.scaleLinear({
-        domain: y0,
-        range: [height - margin.top - margin.bottom, 0],
-        clamp: true,
-      })
-    })
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    if (nextState.xDomain === this.state.xDomain && !this.state.dragging) return false;
-    if (nextState.yDomain === this.state.yDomain && !this.state.dragging) return false;
-    return true;
+  scaleReset() {
+    const { xScale, yScale, initialDomain } = this;
+    xScale.domain(initialDomain.x);
+    yScale.domain(initialDomain.y);
   }
 
   handleMouseDown(event) {
-    const { x, y } = getPlotCoords(this.node, event);
-    this.setState({
-      start: { x, y },
-      end: undefined,
-      dragging: true,
-    });
-  }
-
-  handleMouseUp() {
-    const { start, end } = this.state;
-    const { x, y } = getPlotCoords(this.node, event);
-    if (end) {
-      return this.setState({
-        dragging: false,
-        xDomain: [start.x - this.props.margin.left, end.x - this.props.margin.left],
-        yDomain: [end.y - this.props.margin.top, start.y - this.props.margin.top],
-      });
-    } else {
-      this.setState({
-        dragging: false,
-        xDomain: undefined,
-        yDomain: undefined,
-      });
-    }
+    const { onBrushStart } = this.props;
+    const { extent: region } = this;
+    const { x, y } = getCoordsFromEvent(this.svg, event);
+    onBrushStart(constrainToRegion({ region, x, y }));
   }
 
   handleMouseMove(event) {
-    const { x, y } = getPlotCoords(this.node, event);
-    if (!this.state.dragging) {
-      return this.setState({
-        hover: { x, y },
-      })
-    };
-    this.setState({
-      end: { x, y },
-      hover: { x, y },
-    });
+    const { brush, onBrushDrag, updateBrush } = this.props;
+    // only update the brush region if we're dragging
+    if (!brush.isBrushing) return;
+    const { extent: region } = this;
+    const { x, y } = getCoordsFromEvent(this.svg, event);
+    onBrushDrag(constrainToRegion({ region, x, y }));
+  }
+
+  handleMouseUp(event) {
+    const { brush, onBrushEnd, onBrushReset } = this.props;
+    const { extent: region } = this;
+    if (brush.end) {
+      const { x, y } = getCoordsFromEvent(this.svg, event);
+      onBrushEnd(constrainToRegion({ region, x, y }));
+      return;
+    }
+    onBrushReset(event);
+    this.scaleReset();
   }
 
   render() {
-    let xBrush;
-    let yBrush;
-    let brushWidth;
-    let brushHeight;
-    let cornerSize;
-    const { width, height, margin } = this.props;
-    const { start, end, dragging, hover, xScale, yScale, xDomain, yDomain } = this.state;
-    const k = height / width;
-    const x0 = [-4.5, 4.5];
-    const y0 = x0.map(x => x * k);
-
-    if (!!start && !!end) {
-      xBrush = end.x < start.x ? end.x : start.x;
-      yBrush = end.y < start.y ? end.y : start.y;
-      brushWidth = end.x >= start.x ? end.x - start.x : start.x - end.x;
-      brushHeight = end.y >= start.y ? end.y - start.y : start.y - end.y;
-      cornerSize = 4;
-    }
-
-    const xMax = width - margin.left - margin.right;
-    const yMax = height - margin.top - margin.bottom;
+    const { width, height, brush, margin } = this.props;
+    const { xScale, yScale } = this;
 
     const x = d => d[0];
     const y = d => d[1];
     const z = d => d[2];
 
-    if (!!end && !dragging && !!xDomain) {
-      xScale.domain(xDomain.map(xScale.invert, xScale))
-    }
+    const xMax = width - margin.left - margin.right;
+    const yMax = height - margin.top - margin.bottom;
 
-    if (!!end && !dragging && !!yDomain) {
-      yScale.domain(yDomain.map(yScale.invert, xScale))
+    if (brush.domain) {
+      const { domain } = brush;
+      const { x0, x1, y0, y1 } = domain;
+      xScale.domain([x0, x1].map(d => d - margin.left).map(xScale.invert));
+      yScale.domain([y1, y0].map(d => d - margin.top).map(yScale.invert));
     }
-
-    if (!yDomain) yScale.domain(y0);
-    if (!xDomain) xScale.domain(x0);
 
     return (
       <svg
+        ref={(c) => { this.svg = c; }}
         width={width}
         height={height}
-        ref={(c) => { this.node = c; }}
         onMouseDown={this.handleMouseDown}
-        onMouseUp={this.handleMouseUp}
         onMouseMove={this.handleMouseMove}
+        onMouseUp={this.handleMouseUp}
       >
         <Axis.AxisBottom
           scale={xScale}
@@ -166,9 +227,7 @@ export default class VXSvg extends React.Component {
           stroke={'#1b1a1e'}
           tickTextFill={'#1b1a1e'}
         />
-        <g
-          transform={`translate(${margin.left}, ${margin.top})`}
-        >
+        <Group top={margin.top} left={margin.left}>
           {points.map((point) => {
             return (
               <Motion
@@ -191,40 +250,15 @@ export default class VXSvg extends React.Component {
               </Motion>
             );
           })}
-          {false && hover &&
-            <g>
-              <rect
-                x={hover.x}
-                y={0}
-                width={1}
-                height={yMax}
-                fill={'blue'}
-              />
-              <rect
-                x={0}
-                y={hover.y}
-                width={xMax}
-                height={1}
-                fill={'blue'}
-              />
-            </g>
-          }
-          {xBrush && yBrush && dragging &&
-            <g>
-              <rect
-                className="vx-brush"
-                fill={'rgba(102, 181, 245, 0.1)'}
-                stroke={'rgba(102, 181, 245, 1)'}
-                strokeWidth={1}
-                x={xBrush - margin.left}
-                y={yBrush - margin.top}
-                width={brushWidth}
-                height={brushHeight}
-              />
-            </g>
-          }
-        </g>
+        </Group>
+        <CustomBrush
+          brush={brush}
+          fill={'black'}
+          onMouseDown={'blue'}
+        />
       </svg>
     );
   }
 }
+
+export default withBrush(BrushChart);
