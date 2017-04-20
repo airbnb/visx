@@ -1,6 +1,6 @@
 {
   "name": "@vx/brush",
-  "version": "0.0.96",
+  "version": "0.0.97",
   "description": "vx brush",
   "main": "build/index.js",
   "scripts": {
@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
-    "react": "^15.4.2"
+    "react": "^15.4.2",
+    "recompose": "^0.23.1"
   }
 }
