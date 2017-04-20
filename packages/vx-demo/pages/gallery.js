@@ -202,7 +202,7 @@ export default () => {
       <div className="page-right">
         <ul>
           <li>
-            <a href="#mutliseriesline">Brush + Zoom Chart</a>
+            <a href="#brushchart">Brush + Zoom Chart</a>
           </li>
           <li>
             <a href="#mutliseriesline">Multi-Series Line Chart</a>
