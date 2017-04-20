@@ -18,6 +18,7 @@ import SimpleLineGlyphCode from '../components/codeblocks/SimpleLineGlyphCode';
 import SimpleBarCode from '../components/codeblocks/SimpleBarCode';
 import StackedAreaCode from '../components/codeblocks/StackedAreaCode';
 import MultiSeriesLineCode from '../components/codeblocks/MultiSeriesLineCode';
+import BrushChartCode from '../components/codeblocks/BrushChartCode';
 
 export default () => {
   const data1 = Mock.genDateValue(20);
@@ -38,8 +39,8 @@ export default () => {
         <div className="item">
           <div className="item-top">
             <div className="chart-title">
-              <a name="mutliseriesline" />
-              Brush Chart
+              <a name="brushchart" />
+              Brush + Zoom Chart
               <a href="https://github.com/hshoff/vx/blob/master/packages/vx-demo/components/charts/BrushChart.js">
                 <small> view source</small>
               </a>
@@ -51,6 +52,9 @@ export default () => {
             />
           </div>
           <div className="item-bottom">
+            <div>
+              <BrushChartCode />
+            </div>
           </div>
         </div>
         <div className="item">
@@ -197,6 +201,9 @@ export default () => {
 
       <div className="page-right">
         <ul>
+          <li>
+            <a href="#mutliseriesline">Brush + Zoom Chart</a>
+          </li>
           <li>
             <a href="#mutliseriesline">Multi-Series Line Chart</a>
           </li>
