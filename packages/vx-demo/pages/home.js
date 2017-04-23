@@ -29,13 +29,16 @@ export default () => (
       <ul>
         <li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-annotation">@vx/annotation</a></li>
         <li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-axis">@vx/axis</a></li>
+        <li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-brush">@vx/brush</a></li>
         <li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-curve">@vx/curve</a></li>
         <li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-demo">@vx/demo</a></li>
         <li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-glyph">@vx/glyph</a></li>
+        <li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-gradient">@vx/gradient</a></li>
         <li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-grid">@vx/grid</a></li>
         <li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-group">@vx/group</a></li>
         <li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-marker">@vx/marker</a></li>
         <li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-mock-data">@vx/mock-data</a></li>
+        <li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-pattern">@vx/pattern</a></li>
         <li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-point">@vx/point</a></li>
         <li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-responsive">@vx/responsive</a></li>
         <li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-scale">@vx/scale</a></li>
