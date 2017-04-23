@@ -7,6 +7,7 @@ import Shape from '@vx/shape';
 import Grid from '@vx/grid';
 import Text from '@vx/text';
 import Pattern from '@vx/pattern';
+import Gradient from '@vx/gradient';
 import { extent, max } from 'd3-array';
 
 function numTicksForHeight(height) {
@@ -50,12 +51,7 @@ export default ({
 
   return (
     <svg height={height} width={width}>
-      <defs>
-        <linearGradient id="linear" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%"   stopColor="rgba(181, 49, 206, 1.000)"/>
-          <stop offset="100%" stopColor="rgba(1, 179, 239, 1.000)"/>
-        </linearGradient>
-      </defs>
+      <Gradient.OrangeRed id="pinkblue" />
       <Group top={margin.top} left={margin.left}>
         <Grid.Rows
           scale={yStockScale}
@@ -70,8 +66,8 @@ export default ({
           x={xStock}
           y={yStock}
           strokeWidth={2}
-          stroke={'url(#linear)'}
-          fill={'url(#linear)'}
+          stroke={'url(#pinkblue)'}
+          fill={'url(#pinkblue)'}
         />
       </Group>
       <Axis.AxisBottom
