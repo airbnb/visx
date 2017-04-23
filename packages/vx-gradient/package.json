@@ -1,19 +1,18 @@
 {
   "name": "@vx/gradient",
-  "version": "1.0.0",
+  "version": "0.0.100",
   "description": "vx gradient",
   "main": "build/index.js",
-  "repository": "https://github.com/hshoff/vx",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hshoff/vx.git"
+  },
   "files": [
     "build"
   ],
   "scripts": {
     "build": "make build SRC=./src",
     "prepublish": "make build SRC=./src"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/hshoff/vx.git"
   },
   "keywords": [
     "vx",
