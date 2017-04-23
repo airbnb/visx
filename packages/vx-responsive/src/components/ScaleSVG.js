@@ -13,7 +13,7 @@ export default function ResponsiveSVG({
       display: 'inline-block',
       position: 'relative',
       width: '100%',
-      verticalAling: 'top',
+      verticalAlign: 'top',
       overflow: 'hidden',
     }}>
       <svg
