@@ -15,6 +15,7 @@ export default function AreaClosed({
   stroke = 'black',
   fill = rgba(0,0,0,0.3),
   curve,
+  ...restProps,
 }) {
   const path = area()
     .x(d => xScale(x(d)))
@@ -31,6 +32,7 @@ export default function AreaClosed({
         strokeWidth={strokeWidth}
         strokeDasharray={strokeDasharray}
         fill={fill}
+        {...restProps}
       />
     </g>
   );

@@ -4,7 +4,7 @@ import { area, stack as d3stack } from 'd3-shape';
 
 function callOrValue(maybeFn, d, i) {
   if (typeof maybeFn === 'function') {
-    return maybeFn(d, i);
+    return maybeFn(d,i);
   }
   return maybeFn;
 }
@@ -23,17 +23,9 @@ export default ({
   x1,
   y0,
   y1,
-  fill,
-  fillOpacity,
-  stroke,
-  strokeWidth,
-  strokeDasharray,
-  strokeLinecap,
-  strokeLinejoin,
-  strokeMiterlimit,
-  strokeOpacity,
-  reverse = false,
   glyph,
+  reverse = false,
+  ...restProps,
 }) => {
   const stack = d3stack();
   if (keys) stack.keys(keys);
@@ -58,15 +50,10 @@ export default ({
             className={cx('vx-area-stack', className)}
             key={`area-stack-${i}-${series.key || ''}`}
             d={path(series)}
-            fill={callOrValue(fill, series, i)}
-            fillOpacity={callOrValue(fillOpacity, series, i)}
-            stroke={callOrValue(stroke, series, i)}
-            strokeWidth={callOrValue(strokeWidth, series, i)}
-            strokeDasharray={callOrValue(strokeDasharray, series, i)}
-            strokeLinecap={callOrValue(strokeLinecap, series, i)}
-            strokeLinejoin={callOrValue(strokeLinejoin, series, i)}
-            strokeMiterlimit={callOrValue(strokeMiterlimit, series, i)}
-            strokeOpacity={callOrValue(strokeOpacity, series, i)}
+            {...Object.keys(restProps).reduce((ret, cur) => {
+              ret[cur] = callOrValue(restProps[cur], series[i], i, series);
+              return ret;
+            }, {})}
           />
         );
       })}

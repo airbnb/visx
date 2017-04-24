@@ -1,9 +1,147 @@
 import React from 'react';
-import Page from '../components/page';
+import Page from '../components/page2';
 import Footer from '../components/footer';
+import Responsive from '@vx/responsive';
+import Pattern from '@vx/pattern';
+import Gradient from '@vx/gradient';
+import Mock from '@vx/mock-data';
+import Scale from '@vx/scale';
+import Group from '@vx/group';
+import Shape from '@vx/shape';
+import Curve from '@vx/curve';
+import Glyph from '@vx/glyph';
+import { extent, max } from 'd3-array';
+import LineChart from '../components/charts/SimpleLineChart';
+
+function identity(x) {
+  return x;
+}
+
+function numTicksForHeight(height) {
+  if (height <= 300) return 3;
+  if (300 < height && height <= 600) return 5;
+  return 10;
+}
+
+function numTicksForWidth(width) {
+  if (width <= 300) return 2;
+  if (300 < width && width <= 400) return 5;
+  return 10;
+}
+
+const dataset = [{
+  data: Mock.genDateValue(20),
+}, {
+  data: Mock.genDateValue(20)
+}]
+
+const Background = Responsive.withScreenSize(({
+  screenWidth,
+  screenHeight,
+}) => {
+  const width = screenWidth - 40;
+  const height = screenHeight;
+  const margin = {
+    top: 460,
+    bottom: 85,
+    left: 80,
+    right: 80,
+  };
+  const allData = dataset.reduce((rec, d) => {
+    return rec.concat(d.data)
+  }, []);
+
+  // bounds
+  const xMax = width - margin.left - margin.right;
+  const yMax = height - margin.top - margin.bottom;
+
+  // accessors
+  const x = d => d.date;
+  const y = d => d.value;
+
+  // scales
+  const xScale = Scale.scaleTime({
+    range: [0, width],
+    domain: extent(allData, x),
+  });
+  const yScale = Scale.scaleLinear({
+    range: [yMax, 0],
+    domain: [0, max(allData, y)],
+    nice: true,
+  });
+
+  const yFormat = yScale.tickFormat ? yScale.tickFormat() : identity;
+  const xFormat = xScale.tickFormat ? xScale.tickFormat() : identity;
+
+  return (
+    <svg className="grid" width={screenWidth - 30} height={screenHeight * .9}>
+      <Pattern.Circles id="dots" width={120} height={120} fill="rgba(255,255,255,0.3)" radius={1} complement/>
+      <Pattern.Circles id="dots2" width={30} height={30} fill="rgba(255,255,255,0.1)" radius={1} />
+      <Gradient.LinearGradient id="fade" from={"rgba(235, 66, 37, .3)"} to={"rgba(235, 66, 37, 0)"}/>
+      <Group left={20}>
+      <rect fill="url('#dots')" x={0} y={0} width={screenWidth - 40} height={screenHeight} />
+      <rect fill="url('#dots2')" x={0} y={0} width={screenWidth - 40} height={screenHeight} />
+    </Group>
+
+      <Group
+        top={margin.top}
+        left={20}
+      >
+        <Shape.LinePath
+          data={dataset[1].data}
+          xScale={xScale}
+          yScale={yScale}
+          x={x}
+          y={y}
+          stroke={"rgba(255,255,255,0.2)"}
+          strokeWidth={2}
+          strokeDasharray={'3,3'}
+          curve={Curve.monotoneX}
+          glyph={(d, i) => {
+            return (
+              <Glyph.Dot key={`line-point-${i}`}
+                className={'vx-linepath-point'}
+                cx={xScale(x(d))}
+                cy={yScale(y(d))}
+                r={4}
+                fill={'transparent'}
+                stroke={'rgba(255,255,255,0.6)'}
+                strokeWidth={2}
+              />
+            );
+          }}
+        />
+        <Shape.AreaClosed
+          data={dataset[0].data}
+          xScale={xScale}
+          yScale={yScale}
+          x={x}
+          y={y}
+          strokeWidth={2}
+          stroke={"url('#fade')"}
+          fill={"url('#fade')"}
+          curve={Curve.monotoneX}
+          fillOpacity={0.1}
+        />
+      </Group>
+      <style jsx>{`
+        .grid {
+          position: absolute;
+          z-index: 1;
+        }
+      `}</style>
+    </svg>
+  );
+})
 
 export default () => (
   <Page>
+    <div className="hero">
+      <Background />
+      <div className="hero-logo" />
+      <h1>react + d3 = vx</h1>
+      <a className="button" href="https://github.com/hshoff/vx">View on Github</a>
+    </div>
     <div className="page-left">
       <h2><a name="about"></a>About</h2>
       <p>
@@ -84,18 +222,66 @@ export default () => (
       </ol>
       <Footer />
     </div>
-    <div className="page-right">
-      <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#motivation">Motivation</a></li>
-        <li><a href="#status">Status</a></li>
-        <li><a href="#packages">Packages</a></li>
-        <li><a href="#roadmap">Roadmap</a></li>
-        <li><a href="#faq">FAQ</a></li>
-      </ul>
-    </div>
 
     <style jsx>{`
+      .hero-container {
+        position: relative;
+        height: 40vh;
+      }
+      .hero {
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero .button {
+        border: none;
+        background: white;
+        padding: .4rem 1.5rem;
+        border-radius: 4px;
+        color: black;
+        z-index: 1;
+        font-size: 14px;
+      }
+
+      .grid {
+        position: absolute;
+      }
+
+      .hero h1 {
+        font-family: 'Roboto Mono';
+        font-weight: 100;
+        font-size: 14px;
+      }
+
+      .hero-logo {
+        z-index: 0;
+        position: relative;
+        margin-top: 80px;
+        background-image: url('static/logo-dark.png');
+        height: 200px;
+        width: 400px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+
+      .hero button {
+        z-index: 2;
+        position: relative;
+      }
+
+      .page-left {
+        background: white;
+        color: black;
+        padding: 2rem 24rem;
+        margin-bottom: 0;
+      }
+
       .page-left blockquote {
         border-left: 2px solid #efefef;
         padding: .5rem 1rem;
@@ -121,8 +307,17 @@ export default () => (
       }
 
       @media (max-width: 600px) {
+        .hero {
+          width: 100%:
+        }
+
+        .hero-logo {
+          margin-top: 40px;
+        }
+
         .page-left {
           margin-top: 10px;
+          padding: 4rem 2rem;
         }
 
         .page-right {

@@ -11,14 +11,23 @@ import { stack as d3stack } from 'd3-shape';
 import { timeParse } from 'd3-time-format';
 import round from '../util/round';
 import colorScale from '../util/sillyColorScale';
+import withState from 'recompose/withState';
+import compose from 'recompose/compose';
 
-export default ({
+const enhance = compose(
+  withState('selected', 'updateSelected', [])
+);
+
+export default enhance(({
   margin,
   width,
   height,
+  selected,
+  updateSelected,
 }) => {
   const data = Mock.browserUsage;
   const keys = Object.keys(data[0]).filter(k => k !== 'date');
+  const browserNames = [...keys].reverse();
 
   const yMax = height - margin.top - margin.bottom;
   const xMax = width - margin.left - margin.right;
@@ -49,6 +58,7 @@ export default ({
       />
       <Group top={margin.top} left={margin.left}>
         <Shape.AreaStack
+          reverse
           top={margin.top}
           left={margin.left}
           keys={keys}
@@ -56,11 +66,20 @@ export default ({
           x={(d) => xScale(x(d.data))}
           y0={(d) => yScale(d[0] / 100)}
           y1={(d) => yScale(d[1] / 100)}
-          fill={(d,i) => colorScale(i)}
-          fillOpacity={0.8}
           stroke={(d,i) => colorScale(i)}
           strokeWidth={1}
-          reverse
+          fillOpacity={(d,i) => selected.includes(browserNames[i]) ? 0.8 : 0.2}
+          fill={(d,i) => colorScale(i)}
+          onClick={(d, i) => (event) => {
+            updateSelected((prevState) => {
+              console.log(d, i, browserNames[i])
+              const clicked = browserNames[i];
+              if (prevState.includes(clicked)) {
+                return prevState.filter(name => name !== clicked)
+              }
+              return [...prevState, clicked]
+            })
+          }}
         />
         {stack(data).reverse().map((series,i) => {
           const lastPoint = series[series.length - 1];
@@ -101,4 +120,4 @@ export default ({
       />
     </svg>
   );
-}
+})
