@@ -70,14 +70,13 @@ export default enhance(({
           strokeWidth={1}
           fillOpacity={(d,i) => selected.includes(browserNames[i]) ? 0.8 : 0.2}
           fill={(d,i) => colorScale(i)}
-          onClick={(d, i) => (event) => {
-            updateSelected((prevState) => {
-              console.log(d, i, browserNames[i])
-              const clicked = browserNames[i];
-              if (prevState.includes(clicked)) {
-                return prevState.filter(name => name !== clicked)
-              }
-              return [...prevState, clicked]
+          onMouseEnter={(d, i) => event => {
+            updateSelected((prevState) => ([browserNames[i]]))
+          }}
+          onMouseLeave={(d,i) => event => {
+            updateSelected(prevState => {
+              if (prevState.includes(browserNames[i])) return [];
+              return prevState;
             })
           }}
         />
