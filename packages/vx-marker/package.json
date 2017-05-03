@@ -1,6 +1,6 @@
 {
   "name": "@vx/marker",
-  "version": "0.0.103",
+  "version": "0.0.106",
   "description": "vx marker",
   "main": "build/index.js",
   "files": [
@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "@vx/group": "0.0.100",
-    "@vx/shape": "0.0.103",
+    "@vx/shape": "0.0.106",
     "classnames": "^2.2.5"
   },
   "publishConfig": {
