@@ -21,7 +21,7 @@ export default () => (
         flex-direction: row;
         flex: 1;
         align-items: center;
-        padding: 10px;
+        padding: 0 10px;
         font-size: 14px;
         position: relative;
         z-index: 3;
@@ -57,7 +57,7 @@ export default () => (
 
 const Item = ({ href, children, className }) => (
   <li className="Item">
-    <Link prefetch href={href}>
+    <Link href={href}>
       <a className={className}>{ children }</a>
     </Link>
 
@@ -66,8 +66,8 @@ const Item = ({ href, children, className }) => (
         display: inline-block;
         padding: 10px;
         text-decoration: none;
-        color: white;
-        font-weight: 300;
+        color: #fc2e1c;
+        font-weight: 600;
       }
       .Item .github {
         font-weight: 600;

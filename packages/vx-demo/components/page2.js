@@ -9,7 +9,15 @@ export default ({ children, title }) => (
       {children}
     </div>
     <style jsx>{`
-
+      .main {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: white;
+        color: #161616;
+      }
     `}</style>
   </div>
 );

@@ -24,7 +24,7 @@ background: transparent;
 }
 
 ::-webkit-scrollbar-track-piece {
-	background-color: transparent;
+	background-color: white;
 }
 
 ::-webkit-scrollbar-corner {
@@ -32,7 +32,7 @@ background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-	background-color: #ADADAD;
+	background-color: #eb4226;
 }
 
 ::-webkit-scrollbar-thumb:hover {
