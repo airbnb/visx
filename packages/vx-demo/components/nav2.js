@@ -43,13 +43,6 @@ export default () => (
         .Item {
           float: left;
         }
-
-        ul {
-          display: block;
-          padding-top: 0;
-          overflow: hidden;
-          margin-top: 0;
-        }
       }
     `}</style>
   </div>

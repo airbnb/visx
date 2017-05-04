@@ -66,30 +66,32 @@ export default () => (
     <style jsx>{`
       .btn {
         padding: 8px 20px;
-        background-color: #eb4226;
-        // border: 3px solid #eb4226;
+        background-color: #fc2e1c;
         border-radius: 30px;
+        border-top-right-radius: 0;
         color: #FFFFFF;
         font-family: "Montserrat";
         text-transform: uppercase;
+        margin-top: 8rem;
       }
 
       .home {
         display: flex;
         flex-direction: column;
         background: white;
+        padding: 1rem;
+        border-bottom: 1rem solid #fc2e1c;
       }
 
       .home h1 {
         font-family: "Montserrat";
-        color: #eb4226;
+        color: #fc2e1c;
         font-size: 95pt;
         line-height: 1em;
         margin: 0;
         padding: 0;
         opacity: .9;
         margin-top: 280px;
-        padding-bottom: 80px;
         letter-spacing: 20px;
         text-transform: uppercase;
         text-align: center;
@@ -100,7 +102,7 @@ export default () => (
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        height: 80vh;
+        height: 60vh;
         background-size: 50%;
         background-repeat: no-repeat;
         background-position: center;
@@ -137,6 +139,31 @@ export default () => (
 
       .faq {
         min-width: 640px;
+      }
+
+      @media (max-width: 600px) {
+        .hero h1 {
+          font-size: 35pt;
+          margin-top: 40px;
+          padding: 0;
+        }
+
+        .btn {
+          font-size: 12px;
+          padding: 4px 20px;
+          margin-top: 2rem;
+        }
+
+        .hero {
+          height: 50vh;
+          background-size: 90%;
+          margin-bottom: 1rem;
+        }
+
+        .content,
+        .faq {
+          min-width: 300px;
+        }
       }
     `}</style>
   </Page>
