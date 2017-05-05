@@ -7,8 +7,14 @@ export default () => (
   <Page>
     <div className="home">
       <div className="hero">
-        <h1>React + D3 = VX</h1>
-        <a className="btn" href="https://github.com/hshoff/vx">View on Github</a>
+        <h1>
+          React + D3 = VX
+        </h1>
+        <div className="btn-container">
+          <a className="btn" href="https://github.com/hshoff/vx">
+            View on Github
+          </a>
+        </div>
       </div>
       <div className="container">
         <div className="content"><p><code>vx</code> is collection of reusable low-level visualization components. <code>vx</code> combines the power of <code>d3</code> to generate your visualization with the benefits of <code>react</code> for updating the DOM.</p></div>
@@ -72,7 +78,15 @@ export default () => (
         color: #FFFFFF;
         font-family: "Montserrat";
         text-transform: uppercase;
+        margin-right: 1rem;
+      }
+
+      .btn-container {
         margin-top: 8rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
       }
 
       .home {
@@ -102,11 +116,12 @@ export default () => (
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        height: 60vh;
+        min-height: 60vh;
         background-size: 50%;
         background-repeat: no-repeat;
         background-position: center;
         background-image: url('static/tiger-gray.png');
+        margin-bottom: 1rem;
       }
 
       .container {

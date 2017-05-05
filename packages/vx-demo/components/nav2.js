@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import GithubButton from 'react-github-button';
 
 export default () => (
   <div className='nav'>
@@ -10,9 +11,11 @@ export default () => (
       <Item href="/docs">Docs</Item>
       <Item href="/gallery">Gallery</Item>
 
-      <Item href="https://github.com/hshoff/vx" className="github">
-        github
-      </Item>
+      <GithubButton
+        type="stargazers"
+        namespace="hshoff"
+        repo="vx"
+      />
     </ul>
 
     <style jsx>{`
@@ -21,10 +24,14 @@ export default () => (
         flex-direction: row;
         flex: 1;
         align-items: center;
+        justify-content: center;
         padding: 0 10px;
         font-size: 14px;
-        position: relative;
         z-index: 3;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
       }
       ul {
         list-style-type: none;
@@ -35,6 +42,7 @@ export default () => (
         margin: 0;
         color: white;
         justify-content: flex-end;
+        align-items: center;
       }
       @media (max-width: 600px) {
         .github-buttons {
