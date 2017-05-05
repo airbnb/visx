@@ -1,9 +1,5 @@
 <p align="center">
-  <img src="./assets/tiger-sm.png" />
-</p>
-
-<p align="center">
-  <code>react + d3 = vx</code>
+  <img src="./assets/Screen Shot 2017-05-05 at 6.55.56 AM.png" />
 </p>
 
 <p align="center">
