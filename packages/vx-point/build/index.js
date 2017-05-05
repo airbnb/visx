@@ -30,6 +30,11 @@ var Point = function () {
         y: this.y
       };
     }
+  }, {
+    key: "toArray",
+    value: function toArray() {
+      return [this.x, this.y];
+    }
   }]);
 
   return Point;

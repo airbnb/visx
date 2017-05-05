@@ -42,6 +42,7 @@
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-ga": "^2.1.2",
+    "react-github-button": "^0.1.10",
     "react-motion": "^0.4.7",
     "recompose": "^0.23.0"
   },
