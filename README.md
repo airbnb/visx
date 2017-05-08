@@ -56,7 +56,7 @@ const yScale = Scale.scaleLinear({
 const bars = data.map((d, i) => {
   const barHeight = yMax - yScale(y(d));
   return (
-    <Group key={`bar-${x(d)}`}>
+    <Group key={`bar-${x(d)}-${i}`}>
       <Shape.Bar
         width={xScale.bandwidth()}
         height={barHeight}
