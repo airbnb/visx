@@ -11,11 +11,11 @@
 
 vx is collection of reusable low-level visualization components. vx combines the power of d3 to generate your visualization with the benefits of react for updating the DOM.
 
-## Simple Usage
+## Usage
 
 We can create a simple bar graph pretty easily.
 
-```
+```javascript
 import React from 'react';
 import Mock from '@vx/mock-data';
 import Group from '@vx/group';
