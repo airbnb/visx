@@ -15,7 +15,9 @@ vx is collection of reusable low-level visualization components. vx combines the
 
 ## Usage
 
-We can create a simple bar graph pretty easily.
+Let's make a simple bar graph.
+
+<img src="./assets/simplebar.png" height="150" />
 
 ```javascript
 import React from 'react';
@@ -62,17 +64,21 @@ const bars = data.map((d, i) => {
         height={barHeight}
         x={xScale(x(d))}
         y={yMax - barHeight}
+        fill='#fc2e1c'
       />
     </Group>
   );
 });
 
 // Finally we'll embed it all in an SVG
-const barGraph = (
+const BarGraph = (props) => (
   <svg width={width} height={height}>
-      {bars}
+    {bars}
   </svg>
 );
+
+// ... somewhere else, render it ...
+// <BarGraph />
 ```
 
 ## Motivation
