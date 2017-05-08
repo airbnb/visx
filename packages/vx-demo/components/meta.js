@@ -42,7 +42,7 @@ export default ({
     <style jsx global>{`
       body {
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-        background: #1a1a1a;
+        background: #ffffff;
         display: flex;
         color: white;
         padding: 0;

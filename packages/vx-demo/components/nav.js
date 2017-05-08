@@ -9,13 +9,13 @@ export default () => (
     <ul>
       <Item href="/">Home</Item>
       <Item href="/gallery">Gallery</Item>
-
-      <GithubButton
-        type="stargazers"
-        namespace="hshoff"
-        repo="vx"
-      />
     </ul>
+
+    <GithubButton
+      type="stargazers"
+      namespace="hshoff"
+      repo="vx"
+    />
 
     <style jsx>{`
       .nav {
@@ -31,6 +31,9 @@ export default () => (
         top: 0;
         left: 0;
         right: 0;
+        max-width: 95vw;
+        margin: 0 auto;
+        background: #ffffff;
       }
       ul {
         list-style-type: none;
@@ -40,7 +43,7 @@ export default () => (
         padding: 0;
         margin: 0;
         color: white;
-        justify-content: flex-end;
+        justify-content: flex-start;
         align-items: center;
       }
       @media (max-width: 600px) {
