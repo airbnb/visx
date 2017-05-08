@@ -71,15 +71,19 @@ const bars = data.map((d, i) => {
 });
 
 // Finally we'll embed it all in an SVG
-const BarGraph = (props) => (
-  <svg width={width} height={height}>
-    {bars}
-  </svg>
+function BarGraph(props) {
+  return (
+    <svg width={width} height={height}>
+      {bars}
+    </svg>
+  );
 );
 
 // ... somewhere else, render it ...
 // <BarGraph />
 ```
+
+For more examples using `vx`, check out the [gallery](https://vx-demo.now.sh/gallery).
 
 ## Motivation
 
