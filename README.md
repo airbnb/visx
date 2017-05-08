@@ -11,6 +11,8 @@
 
 vx is collection of reusable low-level visualization components. vx combines the power of d3 to generate your visualization with the benefits of react for updating the DOM.
 
+### [View Docs](https://vx-demo.now.sh)
+
 ## Usage
 
 We can create a simple bar graph pretty easily.
@@ -72,8 +74,6 @@ const barGraph = (
   </svg>
 );
 ```
-
-### [View Docs](https://vx-demo.now.sh)
 
 ## Motivation
 
