@@ -13,6 +13,68 @@ vx is collection of reusable low-level visualization components. vx combines the
 
 ### [View Docs](https://vx-demo.now.sh)
 
+## Usage
+
+We can create a simple bar graph pretty easily.
+
+```javascript
+import React from 'react';
+import Mock from '@vx/mock-data';
+import Group from '@vx/group';
+import Shape from '@vx/shape';
+import Scale from '@vx/scale';
+import { max } from 'd3-array'
+
+// We'll use some mock data from `@vx/mock-data` for this.
+const data = Mock.letterFrequency;
+
+// Create the bounds around our graph
+const width = 500;
+const height = 500;
+const margin = { top: 20, bottom: 20, left: 20, right: 20 };
+
+// Then we'll create some bounds
+const xMax = width - margin.left - margin.right;
+const yMax = height - margin.top - margin.bottom;
+
+// We'll make some helpers to get at the data we want
+const x = d => d.letter;
+const y = d => +d.frequency * 100;
+
+// And then scale the graph by our data
+const xScale = Scale.scaleBand({
+  rangeRound: [0, xMax],
+  domain: data.map(x),
+  padding: 0.4,
+});
+const yScale = Scale.scaleLinear({
+  rangeRound: [yMax, 0],
+  domain: [0, max(data, y)],
+});
+
+// We'll render the bars based on the data
+const bars = data.map((d, i) => {
+  const barHeight = yMax - yScale(y(d));
+  return (
+    <Group key={`bar-${x(d)}`}>
+      <Shape.Bar
+        width={xScale.bandwidth()}
+        height={barHeight}
+        x={xScale(x(d))}
+        y={yMax - barHeight}
+      />
+    </Group>
+  );
+});
+
+// Finally we'll embed it all in an SVG
+const barGraph = (
+  <svg width={width} height={height}>
+      {bars}
+  </svg>
+);
+```
+
 ## Motivation
 
 **Goal**
