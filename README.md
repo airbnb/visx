@@ -29,7 +29,7 @@ import Scale from '@vx/scale';
 // We'll use some mock data from `@vx/mock-data` for this.
 const data = Mock.letterFrequency;
 
-// Create the bounds around our graph
+// Define the graph dimensions and margins
 const width = 500;
 const height = 500;
 const margin = { top: 20, bottom: 20, left: 20, right: 20 };
@@ -53,27 +53,29 @@ const yScale = Scale.scaleLinear({
   domain: [0, Math.max(...data.map(y))],
 });
 
-// We'll render the bars based on the data
-const bars = data.map((d, i) => {
-  const barHeight = yMax - yScale(y(d));
-  return (
-    <Group key={`bar-${x(d)}-${i}`}>
-      <Shape.Bar
-        width={xScale.bandwidth()}
-        height={barHeight}
-        x={xScale(x(d))}
-        y={yMax - barHeight}
-        fill='#fc2e1c'
-      />
-    </Group>
-  );
-});
+// Compose together the scale and accessor functions to get point functions
+const compose = (scale, accessor) => (data) => scale(accessor(data));
+const xPoint = compose(xScale, x);
+const yPoint = compose(yScale, y);
 
 // Finally we'll embed it all in an SVG
 function BarGraph(props) {
   return (
     <svg width={width} height={height}>
-      {bars}
+      {data.map((d, i) => {
+        const barHeight = yMax - yPoint(d);
+        return (
+          <Group key={`bar-${i}`}>
+            <Shape.Bar
+              x={xPoint(d)}
+              y={yMax - barHeight}
+              height={barHeight}
+              width={xScale.bandwidth()}
+              fill='#fc2e1c'
+            />
+          </Group>
+        );
+      })}
     </svg>
   );
 }
