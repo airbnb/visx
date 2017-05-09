@@ -25,7 +25,6 @@ import Mock from '@vx/mock-data';
 import Group from '@vx/group';
 import Shape from '@vx/shape';
 import Scale from '@vx/scale';
-import { max } from 'd3-array'
 
 // We'll use some mock data from `@vx/mock-data` for this.
 const data = Mock.letterFrequency;
@@ -51,7 +50,7 @@ const xScale = Scale.scaleBand({
 });
 const yScale = Scale.scaleLinear({
   rangeRound: [yMax, 0],
-  domain: [0, max(data, y)],
+  domain: [0, Math.max(...data.map(y))],
 });
 
 // We'll render the bars based on the data
@@ -77,7 +76,7 @@ function BarGraph(props) {
       {bars}
     </svg>
   );
-);
+}
 
 // ... somewhere else, render it ...
 // <BarGraph />
