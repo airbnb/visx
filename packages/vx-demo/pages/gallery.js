@@ -114,8 +114,11 @@ export default class Gallery extends React.Component {
             </div>
           </div>
           <div className="gallery-item" style={{ background: items[1] }} ref={d => this.nodes.add(d)}>
-            <div className="image"></div>
-            <div className="details color-blue">
+            <div className="image">
+              <Shape.Bar
+              />
+            </div>
+            <div className="details color-purple">
               <div className="title">Bars</div>
               <div className="description">
                 <pre>{`<Shape.Bar />`}</pre>
@@ -138,6 +141,22 @@ export default class Gallery extends React.Component {
           <div className="gallery-item" style={{ background: items[4] }} ref={d => this.nodes.add(d)}>
             <div className="image"></div>
             <div className="details">{items[4]}</div>
+          </div>
+          <div className="gallery-item" style={{ background: items[5] }} ref={d => this.nodes.add(d)}>
+            <div className="image"></div>
+            <div className="details">{items[5]}</div>
+          </div>
+          <div className="gallery-item" style={{ background: items[6] }} ref={d => this.nodes.add(d)}>
+            <div className="image"></div>
+            <div className="details">{items[6]}</div>
+          </div>
+          <div className="gallery-item" style={{ background: items[7] }} ref={d => this.nodes.add(d)}>
+            <div className="image"></div>
+            <div className="details">{items[7]}</div>
+          </div>
+          <div className="gallery-item" style={{ background: items[8] }} ref={d => this.nodes.add(d)}>
+            <div className="image"></div>
+            <div className="details">{items[8]}</div>
           </div>
         </div>
         <style jsx>{`
@@ -187,6 +206,7 @@ export default class Gallery extends React.Component {
           }
           .color-blue { color: #333; }
           .color-yellow { opacity: 0.5; }
+          .color-purple { color: #7c79b5; }
 
           @media (max-width: 960px) {
             .gallery-item {
