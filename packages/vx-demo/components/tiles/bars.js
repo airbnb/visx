@@ -1,0 +1,58 @@
+import React from 'react';
+import Mock from '@vx/mock-data';
+import Group from '@vx/group';
+import Shape from '@vx/shape';
+import Scale from '@vx/scale';
+import { extent, max } from 'd3-array';
+
+const data = Mock.letterFrequency.slice(5);
+
+function round(value, precision) {
+  var multiplier = Math.pow(10, precision || 0);
+  return Math.round(value * multiplier) / multiplier;
+}
+
+// accessors
+const x = d => d.letter;
+const y = d => +d.frequency * 100;
+
+export default ({
+  width,
+  height,
+}) => {
+  // bounds
+  const xMax = width;
+  const yMax = height - 120;
+
+  // scales
+  const xScale = Scale.scaleBand({
+    rangeRound: [0, xMax],
+    domain: data.map(x),
+    padding: 0.4,
+  });
+  const yScale = Scale.scaleLinear({
+    rangeRound: [yMax, 0],
+    domain: [0, max(data, y)],
+  });
+
+  return (
+    <svg width={width} height={height}>
+      <Group top={40}>
+        {data.map((d, i) => {
+          const barHeight = yMax - yScale(y(d));
+          return (
+            <Group key={`bar-${x(d)}`}>
+              <Shape.Bar
+                width={xScale.bandwidth()}
+                height={barHeight}
+                x={xScale(x(d))}
+                y={yMax - barHeight}
+                fill="rgba(87, 67, 214, .7)"
+              />
+            </Group>
+          );
+        })}
+      </Group>
+    </svg>
+  );
+}

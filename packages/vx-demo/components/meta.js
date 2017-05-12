@@ -175,7 +175,7 @@ export default ({
 
       svg {
         user-select: none;
-        cursor: crosshair;
+        cursor: pointer;
       }
     `}</style>
   </div>

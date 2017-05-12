@@ -7,6 +7,9 @@ import Scale from '@vx/scale';
 import Curve from '@vx/curve';
 import Group from '@vx/group';
 import { extent, max } from 'd3-array';
+import Lines from '../components/tiles/lines';
+import Bars from '../components/tiles/bars';
+import Dots from '../components/tiles/dots';
 
 const items = [
   "#242424",
@@ -23,16 +26,9 @@ const items = [
   "#ff657c"
 ];
 
-function genLines(num) {
-  return new Array(num).fill(1).map(() => {
-    return { data: Mock.genDateValue(20) };
-  })
-}
-
 export default class Gallery extends React.Component {
   constructor() {
     super();
-    this.t1data = genLines(12);
     this.nodes = new Set();
     this.state = { dimensions: [] };
     this.resize = this.resize.bind(this);
@@ -40,7 +36,6 @@ export default class Gallery extends React.Component {
 
   componentDidMount() {
     window.addEventListener('resize', this.resize, false);
-    console.log('mount')
     this.resize();
   }
 
@@ -50,33 +45,13 @@ export default class Gallery extends React.Component {
       if (!node) return;
       newState.push([node.offsetWidth,node.offsetHeight]);
     });
-    this.setState({dimensions: newState})
+    this.setState({ dimensions: newState });
   }
 
   render() {
     const t1 = this.state.dimensions[0] || [8, 300];
-
-    const allData = this.t1data.reduce((rec, d) => {
-      return rec.concat(d.data)
-    }, []);
-
-    // bounds
-    const xMax = t1[0];
-    const yMax = t1[1] / 8;
-
-    // accessors
-    const x = d => d.date;
-    const y = d => d.value;
-
-    // scales
-    const xScale = Scale.scaleTime({
-      range: [0, xMax],
-      domain: extent(allData, x),
-    });
-    const yScale = Scale.scaleLinear({
-      range: [yMax, 0],
-      domain: [0, max(allData, y)],
-    });
+    const t2 = this.state.dimensions[1] || [8, 300];
+    const t3 = this.state.dimensions[2] || [8, 300];
 
     return (
       <Page title="gallery">
@@ -87,24 +62,10 @@ export default class Gallery extends React.Component {
             ref={d => this.nodes.add(d)}
           >
             <div className="image">
-              <svg width={t1[0]} height={t1[1]}>
-                {xMax > 8 && this.t1data.map((d, i) => {
-                  return (
-                    <Group key={i} top={i * yMax/2}>
-                      <Shape.LinePath
-                        data={d.data}
-                        xScale={xScale}
-                        yScale={yScale}
-                        x={x}
-                        y={y}
-                        stroke={"#ffffff"}
-                        strokeWidth={1}
-                        curve={i % 2 == 0 ? Curve.monotoneX : undefined}
-                      />
-                    </Group>
-                  );
-                })}
-              </svg>
+              <Lines
+                width={t1[0]}
+                height={t1[1]}
+              />
             </div>
             <div className="details">
               <div className="title">Lines</div>
@@ -115,10 +76,12 @@ export default class Gallery extends React.Component {
           </div>
           <div className="gallery-item" style={{ background: items[1] }} ref={d => this.nodes.add(d)}>
             <div className="image">
-              <Shape.Bar
+              <Bars
+                width={t2[0]}
+                height={t2[1]}
               />
             </div>
-            <div className="details color-purple">
+            <div className="details color-blue">
               <div className="title">Bars</div>
               <div className="description">
                 <pre>{`<Shape.Bar />`}</pre>
@@ -126,7 +89,12 @@ export default class Gallery extends React.Component {
             </div>
           </div>
           <div className="gallery-item" style={{ background: items[2] }} ref={d => this.nodes.add(d)}>
-            <div className="image"></div>
+            <div className="image">
+              <Dots
+                width={t3[0]}
+                height={t3[1]}
+              />
+            </div>
             <div className="details color-yellow">
               <div className="title">Dots</div>
               <div className="description">
@@ -204,9 +172,8 @@ export default class Gallery extends React.Component {
           pre {
             margin: 0;
           }
-          .color-blue { color: #333; }
-          .color-yellow { opacity: 0.5; }
-          .color-purple { color: #7c79b5; }
+          .color-blue { color: rgba(87, 67, 214, .7); }
+          .color-yellow { color: #f6c431; }
 
           @media (max-width: 960px) {
             .gallery-item {
