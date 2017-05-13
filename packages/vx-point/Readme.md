@@ -4,7 +4,7 @@ A simple class to represent an x, y coordinate.
 
 ## Example Usage
 
-```
+```js
 import Point from '@vx/point';
 
 let point  = new Point({x: 2, y: 3});
