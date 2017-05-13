@@ -28,6 +28,150 @@ const bars = data.map((d, i) => {
 
 **Note:** This example represents how to use a yScale, but skipped a lot of details about how to make a bar chart. If you're trying to do that, you should check out [this example](https://github.com/hshoff/vx/blob/master/packages/vx-demo/components/charts/SimpleBar.js).
 
+## Current Scaling Options
+
+### Color Scaling
+Color scales convert a point to a series of colors. D3 comes with a number of schemes that you can use just like any other scale.
+
+[Original d3 docs with colors](https://github.com/d3/d3-scale/blob/master/README.md#schemeCategory10)
+
+#### Scale 10 colors
+![scale10 colors](https://raw.githubusercontent.com/d3/d3-scale/master/img/category10.png)
+
+#### Scale 20 colors
+![scale20 colors](https://raw.githubusercontent.com/d3/d3-scale/master/img/category20.png)
+
+#### Scale 20b colors
+![scale20b colors](https://raw.githubusercontent.com/d3/d3-scale/master/img/category20b.png)
+
+#### Scale 20c colors
+![scale20c colors](https://raw.githubusercontent.com/d3/d3-scale/master/img/category20c.png)
+
+Example:
+``` javascript
+const scale10 = Scale.schemeCategory10({ /* range, domain, unknown */})
+const scale20 = Scale.schemeCategory20({ /* range, domain, unknown */})
+const scale20b = Scale.schemeCategory20b({ /* range, domain, unknown */})
+const scale20c = Scale.schemeCategory20c({ /* range, domain, unknown */})
+```
+
+### Band Scaling
+
+[Original d3 docs](https://github.com/d3/d3-scale/blob/master/README.md#_band)
+
+Example:
+``` javascript
+const scale = Scale.scaleBand({
+  /*
+    range,
+    rangeRound,
+    domain,
+    padding,
+    nice = false
+  */
+});
+```
+
+### Linear Scaling
+
+[Original d3 docs](https://github.com/d3/d3-scale/blob/master/README.md#scaleLinear)
+
+Example:
+``` javascript
+const scale = Scale.scaleLinear({
+  /*
+    range,
+    rangeRound,
+    domain,
+    nice = false,
+    clamp = false,
+  */
+});
+```
+
+### Log Scaling
+
+[Original d3 docs](https://github.com/d3/d3-scale/blob/master/README.md#scaleLog)
+
+Example:
+``` javascript
+const scale = Scale.scaleLog({
+  /*
+    range,
+    rangeRound,
+    domain,
+    base,
+    nice = false,
+    clamp = false,
+  */
+});
+```
+
+### Ordinal Scaling
+[Original d3 docs](https://github.com/d3/d3-scale/blob/master/README.md#scaleOrdinal)
+
+Example:
+``` javascript
+const scale = Scale.scaleOrdinal({
+  /*
+    range,
+    domain,
+    unknown,
+  */
+});
+```
+
+### Point Scaling
+[Original d3 docs](https://github.com/d3/d3-scale/blob/master/README.md#scalePoint)
+
+Example:
+``` javascript
+const scale = Scale.scalePoint({
+  /*
+    range,
+    rangeRound,
+    domain,
+    padding,
+    align,
+    nice = false,
+  */
+});
+```
+
+### Power Scaling
+[Original d3 docs](https://github.com/d3/d3-scale/blob/master/README.md#scalePow)
+
+Example:
+``` javascript
+const scale = Scale.scalePower({
+  /*
+    range,
+    rangeRound,
+    domain,
+    base,
+    nice = false,
+    clamp = false,
+  */
+});
+```
+
+### Time Scaling
+[Original d3 docs](https://github.com/d3/d3-scale/blob/master/README.md#scaleTime)
+
+Example:
+``` javascript
+const scale = Scale.scaleTime({
+  /*
+    range,
+    rangeRound,
+    domain,
+    nice = false,
+    clamp = false,
+    scaleUtc = false,
+   */
+})
+```
+
 ## vx packages
 
 - [@vx/axis](https://github.com/hshoff/vx/tree/master/packages/vx-axis)
