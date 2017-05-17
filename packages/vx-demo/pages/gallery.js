@@ -315,8 +315,15 @@ export default class Gallery extends React.Component {
               </div>
             </Link>
           </Tilt>
-          <div><br/><h1 style={{textAlign: 'center', lineHeight: '.8em'}}>More coming soon</h1></div>
+          <div>
+            <br/>
+            <h1 style={{textAlign: 'center', lineHeight: '.8em'}}>
+              More on the way!
+            </h1>
+          </div>
         </div>
+
+        <Footer />
 
         <style jsx>{`
           h3 {
