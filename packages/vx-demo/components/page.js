@@ -5,7 +5,9 @@ import cx from 'classnames';
 export default ({ children, title, className }) => (
   <div className={cx("main", className)}>
     <Meta title={title} />
-    <Nav />
+    <div className="nav-container">
+      <Nav />
+    </div>
     <div className="page-content">
       {children}
     </div>
@@ -18,6 +20,10 @@ export default ({ children, title, className }) => (
         bottom: 0;
         color: #161616;
         overflow-x: hidden;
+      }
+
+      .nav-container {
+        background: #ffffff;
       }
     `}</style>
   </div>

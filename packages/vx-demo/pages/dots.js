@@ -1,4 +1,11 @@
 import React from 'react';
+import Show from '../components/show';
+import Dots from '../components/tiles/dots';
+
+export default () => {
+  return (
+    <Show component={Dots} title="Dots">
+{`import React from 'react';
 import Scale from '@vx/scale';
 import Group from '@vx/group';
 import Gradient from '@vx/gradient';
@@ -33,21 +40,21 @@ export default ({
 
   return (
     <svg width={width} height={height}>
-      <Gradient.PinkRed id='pink' />
+      <Gradient.PinkRed id="pink" />
       <rect
         x={0}
         y={0}
         width={width}
         height={height}
         rx={14}
-        fill={`url(#pink)`}
+        fill="url(#pink)"
       />
       <Group>
         {points.map((point,i) => {
           return (
             <circle
-              key={`point-${point.x}-${i}`}
-              fill={'#f6c431'}
+              key={\`point-\${point.x}-\${i}\`}
+              fill="#f6c431"
               cx={xScale(x(point))}
               cy={yScale(y(point))}
               r={i % 3 === 0 ? 2 : 3}
@@ -56,5 +63,8 @@ export default ({
         })}
       </Group>
     </svg>
+  );
+}`}
+    </Show>
   );
 }

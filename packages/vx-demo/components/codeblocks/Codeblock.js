@@ -28,18 +28,27 @@ export default ({ children }) => {
       <code dangerouslySetInnerHTML={{__html: html}} />
       <style jsx>{`
         .codeblock code {
-          background: #090910;
-          max-height: 600px;
-          overflow-y: scroll;
           display: block;
-          padding: 0 0 2rem 3rem;
+          padding: 0 0 0 1.5rem;
           border-radius: 0;
-          border-bottom-right-radius: 3px;
-          border-bottom-left-radius: 3px;
+          font-weight: 300;
+          font-size: 14px;
+          line-height: 1.4em;
+          background: white;
+          color: #495057;
         }
 
         .codeblock.line-numbers {
           padding-left: 0;
+        }
+
+        @media (max-width: 600px) {
+          .codeblock code {
+            font-size: 10px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 0;
+          }
         }
       `}</style>
     </pre>

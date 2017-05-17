@@ -51,6 +51,12 @@ export default ({
         line-height: 1.8em;
       }
 
+      .tilt {
+        display: flex;
+        flex: 1;
+        min-width: 33%;
+      }
+
       .page-left {
         display: flex;
         flex: 4;
@@ -103,11 +109,11 @@ export default ({
        }
 
        code {
-         font-family: 'Inconsolata', monospace;
+         font-family: "Menlo", monospace;
          font-weight: bold;
          padding: .2rem .3rem;
          background-color: #ebebeb;
-         line-height: 1.2em;
+         line-height: 1.8em;
          font-size: 14px;
        }
 
@@ -122,7 +128,6 @@ export default ({
          margin-bottom: .2rem;
          margin-top: 2rem;
          display: block;
-         font-family: 'Karla';
        }
 
        a {
@@ -176,6 +181,18 @@ export default ({
       svg {
         user-select: none;
         cursor: pointer;
+      }
+
+      @media (max-width: 960px) {
+        .tilt {
+          min-width: 45%;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .tilt {
+          min-width: 100%;
+        }
       }
     `}</style>
   </div>

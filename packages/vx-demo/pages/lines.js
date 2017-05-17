@@ -1,4 +1,11 @@
 import React from 'react';
+import Show from '../components/show';
+import Lines from '../components/tiles/lines';
+
+export default () => {
+  return (
+    <Show component={Lines} title="Lines">
+{`import React from 'react';
 import Mock from '@vx/mock-data';
 import Curve from '@vx/curve';
 import Scale from '@vx/scale';
@@ -50,21 +57,31 @@ export default ({
         rx={14}
       />
       {xMax > 8 && series.map((d, i) => {
+        const offset = i * yMax / 2;
+        const curve = i % 2 == 0
+          ? Curve.monotoneX
+          : undefined;
         return (
-          <Group key={`lines-${i}`} top={i * yMax/2}>
+          <Group
+            key={\`lines-\${i}\`}
+            top={offset}
+          >
             <Shape.LinePath
               data={d}
               xScale={xScale}
               yScale={yScale}
               x={x}
               y={y}
-              stroke={"#ffffff"}
+              stroke="#ffffff"
               strokeWidth={1}
-              curve={i % 2 == 0 ? Curve.monotoneX : undefined}
+              curve={curve}
             />
           </Group>
         );
       })}
     </svg>
+  );
+}`}
+    </Show>
   );
 }

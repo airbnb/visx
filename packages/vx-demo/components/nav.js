@@ -3,21 +3,32 @@ import GithubButton from 'react-github-button';
 
 export default () => (
   <div className='nav'>
-    <Link prefetch href="/">
-      <div className="logo" />
-    </Link>
-    <ul>
-      <Item href="/">Home</Item>
-      <Item href="/gallery">Gallery</Item>
-    </ul>
+    <div className='nav-inner'>
+      <Link href="/">
+        <div className="logo" />
+      </Link>
+      <ul>
+        <Item href="/">Home</Item>
+        <Item href="/docs">Docs</Item>
+        <Item href="/gallery">Gallery</Item>
+      </ul>
 
-    <GithubButton
-      type="stargazers"
-      namespace="hshoff"
-      repo="vx"
-    />
+      <GithubButton
+        type="stargazers"
+        namespace="hshoff"
+        repo="vx"
+      />
+    </div>
 
     <style jsx>{`
+      .nav-inner {
+        width: 95vw;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+      }
       .nav {
         display: flex;
         flex-direction: row;
@@ -31,8 +42,7 @@ export default () => (
         top: 0;
         left: 0;
         right: 0;
-        max-width: 95vw;
-        margin: 0 auto;
+        margin: 0;
         background: #ffffff;
       }
       ul {
@@ -60,7 +70,7 @@ export default () => (
 
 const Item = ({ href, children, className }) => (
   <li className="Item">
-    <Link href={href}>
+    <Link prefetch href={href}>
       <a className={className}>{ children }</a>
     </Link>
 
