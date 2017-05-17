@@ -45,9 +45,8 @@ export default ({ children }) => {
         @media (max-width: 600px) {
           .codeblock code {
             font-size: 10px;
-            overflow-x: auto;
-            overflow-y: hidden;
             padding: 0;
+            pointer-events: none;
           }
         }
       `}</style>
