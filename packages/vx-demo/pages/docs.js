@@ -6,7 +6,7 @@ export default () => (
   <Page title="documentation">
     <div className="page-left">
       <div className="comingsoon">
-        <h2><a name="packages" />Packages</h2>
+        <h1><a name="packages" />Packages</h1>
         <code>// TODO: write docs</code>
       </div>
       <ul>
@@ -184,9 +184,10 @@ export default () => (
       <Footer />
     </div>
 
-    <div className="page-right" />
-
     <style jsx>{`
+      .page-left {
+        margin-top: 55px;
+      }
       .page-left > ul {
         column-count: 4;
         column-gap: 2em;
@@ -222,9 +223,6 @@ export default () => (
       }
 
       @media (max-width: 600px) {
-        .page-left {
-          margin-top: 10px;
-        }
         .page-left > ul {
           column-count: 1;
           margin: 0 auto;

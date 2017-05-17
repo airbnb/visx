@@ -1,5 +1,5 @@
 import React from 'react';
-import Page from '../components/page2';
+import Page from '../components/page';
 import Footer from '../components/footer';
 
 

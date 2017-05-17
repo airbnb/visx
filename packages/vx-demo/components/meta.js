@@ -37,13 +37,24 @@ export default ({
       <link rel="shortcut icon" type="image/png" href="static/favicon.ico"/>
       <link rel="stylesheet" href="static/prism/prism-funky.css"/>
       <link rel="stylesheet" href="static/prism/prism-line-numbers.css"/>
-      <link href="https://fonts.googleapis.com/css?family=Karla|Roboto+Mono|Inconsolata" rel="stylesheet" />
+      <link href="https://fonts.googleapis.com/css?family=Montserrat:800" rel="stylesheet" />
     </Head>
     <style jsx global>{`
       body {
-        font-family: "Karla", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-        background: #fff;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+        background: #ffffff;
         display: flex;
+        color: white;
+        padding: 0;
+        margin: 0;
+        font-size: 18px;
+        line-height: 1.8em;
+      }
+
+      .tilt {
+        display: flex;
+        flex: 1;
+        min-width: 33%;
       }
 
       .page-left {
@@ -98,12 +109,11 @@ export default ({
        }
 
        code {
-         font-family: 'Inconsolata', monospace;
+         font-family: "Menlo", monospace;
          font-weight: bold;
          padding: .2rem .3rem;
-         background-color: #fef052;
-         border-radius: 3px;
-         line-height: 1.2em;
+         background-color: #ebebeb;
+         line-height: 1.8em;
          font-size: 14px;
        }
 
@@ -118,7 +128,6 @@ export default ({
          margin-bottom: .2rem;
          margin-top: 2rem;
          display: block;
-         font-family: 'Karla';
        }
 
        a {
@@ -171,7 +180,19 @@ export default ({
 
       svg {
         user-select: none;
-        cursor: crosshair;
+        cursor: pointer;
+      }
+
+      @media (max-width: 960px) {
+        .tilt {
+          min-width: 45%;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .tilt {
+          min-width: 100%;
+        }
       }
     `}</style>
   </div>

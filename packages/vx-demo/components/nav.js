@@ -1,50 +1,67 @@
 import Link from 'next/link';
+import GithubButton from 'react-github-button';
 
 export default () => (
-  <div>
-    <Link prefetch href="/">
-      <div className="logo" />
-    </Link>
-    <ul>
-      <Item href="/">Home</Item>
-      <Item href="/docs">Docs</Item>
-      <Item href="/gallery">Gallery</Item>
+  <div className='nav'>
+    <div className='nav-inner'>
+      <Link href="/">
+        <div className="logo" />
+      </Link>
+      <ul>
+        <Item href="/">Home</Item>
+        <Item href="/docs">Docs</Item>
+        <Item href="/gallery">Gallery</Item>
+      </ul>
 
-      <Item href="https://github.com/hshoff/vx" className="github">
-        github
-      </Item>
-    </ul>
+      <GithubButton
+        type="stargazers"
+        namespace="hshoff"
+        repo="vx"
+      />
+    </div>
 
     <style jsx>{`
+      .nav-inner {
+        width: 95vw;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+      }
+      .nav {
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+        align-items: center;
+        justify-content: center;
+        padding: 0 10px;
+        font-size: 14px;
+        z-index: 3;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin: 0;
+        background: #ffffff;
+      }
       ul {
         list-style-type: none;
         display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        padding-top: 20px;
+        flex: 1;
+        flex-direction: row;
+        padding: 0;
+        margin: 0;
+        color: white;
+        justify-content: flex-start;
+        align-items: center;
       }
-
-      .github-buttons {
-        align-items: flex-end;
-        display: flex;
-        flex-direction: column;
-        padding-right: 10px;
-        margin-top: 1rem;
-      }
-
       @media (max-width: 600px) {
         .github-buttons {
           display: none;
         }
         .Item {
           float: left;
-        }
-
-        ul {
-          display: block;
-          padding-top: 0;
-          overflow: hidden;
-          margin-top: 0;
         }
       }
     `}</style>
@@ -53,7 +70,7 @@ export default () => (
 
 const Item = ({ href, children, className }) => (
   <li className="Item">
-    <Link href={href}>
+    <Link prefetch href={href}>
       <a className={className}>{ children }</a>
     </Link>
 
@@ -62,11 +79,10 @@ const Item = ({ href, children, className }) => (
         display: inline-block;
         padding: 10px;
         text-decoration: none;
-        color: #000;
-        font-weight: 300;
+        color: #fc2e1c;
+        font-weight: 600;
       }
       .Item .github {
-        margin-top: 1.5rem;
         font-weight: 600;
         color: #fc2e1c;
       }
