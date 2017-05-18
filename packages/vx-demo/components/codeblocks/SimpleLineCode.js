@@ -159,7 +159,7 @@ function SimpleLineChart({
   );
 }
 
-export default Responsive.withScreenSize(SimpleLineChart);`}
+export default withScreenSize(SimpleLineChart);`}
     </Codeblock>
   );
 }

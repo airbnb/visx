@@ -127,7 +127,7 @@ function SimpleLineWithGlyphsChart({
   );
 }
 
-export default Responsive.withScreenSize(SimpleLineWithGlyphsChart);`}
+export default withScreenSize(SimpleLineWithGlyphsChart);`}
     </Codeblock>
   );
 }

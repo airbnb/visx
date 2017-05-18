@@ -1,12 +1,12 @@
 import React from 'react';
 import cx from 'classnames';
-import Responsive from '@vx/responsive';
+import { withScreenSize } from '@vx/responsive';
 import Page from '../components/page';
 import Footer from '../components/footer';
 import Bars from '../components/tiles/bars';
 import Codeblock from '../components/codeblocks/Codeblock';
 
-export default Responsive.withScreenSize(({
+export default withScreenSize(({
   screenWidth,
   screenHeight,
   children,

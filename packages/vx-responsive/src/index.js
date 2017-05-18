@@ -1,7 +1,2 @@
-import ScaleSVG from './components/ScaleSVG';
-import withScreenSize from './enhancers/withScreenSize';
-
-export default {
-  ScaleSVG,
-  withScreenSize,
-}
+export { default as ScaleSVG } from './components/ScaleSVG';
+export { default as withScreenSize } from './enhancers/withScreenSize';
