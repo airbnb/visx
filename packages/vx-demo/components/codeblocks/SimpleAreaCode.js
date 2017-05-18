@@ -11,7 +11,7 @@ function SimpleAreaChart({
   screenWidth,
   screenHeight,
 }) {
-  const stock = Mock.appleStock;
+  const stock = appleStock;
 
   const width = screenWidth / 1.5;
   const height = width / 2;

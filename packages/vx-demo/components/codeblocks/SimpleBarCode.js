@@ -6,14 +6,14 @@ export default ({}) => {
     <Codeblock>
       {`// SimpleBar.js
 import React from 'react';
-import Mock from '@vx/mock-data';
+import { letterFrequency } from '@vx/mock-data';
 import Group from '@vx/group';
 import Shape from '@vx/shape';
 import Scale from '@vx/scale';
 import Pattern from '@vx/pattern';
 import { max } from 'd3-array';
 
-const data = Mock.letterFrequency;
+const data = letterFrequency;
 
 function round(value, precision) {
   var multiplier = Math.pow(10, precision || 0);

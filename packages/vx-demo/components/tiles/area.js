@@ -1,13 +1,13 @@
 import React from 'react';
 import Shape from '@vx/shape';
-import Mock from '@vx/mock-data';
+import { appleStock } from '@vx/mock-data';
 import Scale from '@vx/scale';
 import { curveMonotoneX } from '@vx/curve';
 import { LinearGradient } from '@vx/gradient';
 import { GridRows, GridColumns } from '@vx/grid';
 import { extent, max } from 'd3-array';
 
-const stock = Mock.appleStock.slice(800);
+const stock = appleStock.slice(800);
 
 // accessors
 const xStock = d => new Date(d.date);

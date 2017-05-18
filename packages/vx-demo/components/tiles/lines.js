@@ -1,5 +1,5 @@
 import React from 'react';
-import Mock from '@vx/mock-data';
+import { genDateValue } from '@vx/mock-data';
 import { curveMonotoneX } from '@vx/curve';
 import Scale from '@vx/scale';
 import Group from '@vx/group';
@@ -8,7 +8,7 @@ import { extent, max } from 'd3-array';
 
 function genLines(num) {
   return new Array(num).fill(1).map(() => {
-    return Mock.genDateValue(25);
+    return genDateValue(25);
   })
 }
 

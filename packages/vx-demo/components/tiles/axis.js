@@ -2,7 +2,7 @@ import React from 'react';
 import { AxisLeft, AxisBottom } from '@vx/axis';
 import Scale from '@vx/scale';
 import Group from '@vx/group';
-import Mock from '@vx/mock-data';
+import { genDateValue } from '@vx/mock-data';
 import { Grid } from '@vx/grid';
 import Shape from '@vx/shape';
 import { curveBasis } from '@vx/curve';
@@ -10,7 +10,7 @@ import { OrangeRed } from '@vx/gradient';
 import { extent, max } from 'd3-array';
 
 
-const data = Mock.genDateValue(20);
+const data = genDateValue(20);
 
 // accessors
 const x = d => d.date;

@@ -1,12 +1,12 @@
 import React from 'react';
-import Mock from '@vx/mock-data';
+import { letterFrequency } from '@vx/mock-data';
 import Group from '@vx/group';
 import Shape from '@vx/shape';
 import Scale from '@vx/scale';
 import { TealBlue } from '@vx/gradient';
 import { extent, max } from 'd3-array';
 
-const data = Mock.letterFrequency.slice(5);
+const data = letterFrequency.slice(5);
 
 function round(value, precision) {
   var multiplier = Math.pow(10, precision || 0);

@@ -6,7 +6,7 @@ export default ({}) => {
     <Codeblock>
       {`// MultiSeriesLine.js
 import React from 'react';
-import Mock from '@vx/mock-data';
+import { cityTemperature } from '@vx/mock-data';
 import Group from '@vx/group';
 import Curve from '@vx/curve';
 import Scale from '@vx/scale';
@@ -20,7 +20,7 @@ import { compose, withState, withHandlers } from 'recompose';
 const parseDate = timeParse("%Y%m%d");
 
 // [{date: "", new york: "", san francisco: "", austin: ""}]
-const rawData = Mock.cityTemperature;
+const rawData = cityTemperature;
 const cityNames = Object.keys(rawData[0]).filter(k => k !== 'date');
 
 // rawData => [{id: "", values: [{ date, temperature }]}, ...]

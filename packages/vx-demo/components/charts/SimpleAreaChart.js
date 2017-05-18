@@ -1,7 +1,7 @@
 import React from 'react';
 import Group from '@vx/group';
 import Axis from '@vx/axis';
-import Mock from '@vx/mock-data';
+import { appleStock } from '@vx/mock-data';
 import Scale from '@vx/scale';
 import Shape from '@vx/shape';
 import { GridRows } from '@vx/grid';
@@ -28,7 +28,7 @@ export default ({
   width,
   height,
 }) => {
-  const stock = Mock.appleStock;
+  const stock = appleStock;
 
   // bounds
   const xMax = width - margin.left - margin.right;

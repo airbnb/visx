@@ -3,9 +3,9 @@ import Scale from '@vx/scale';
 import Group from '@vx/group';
 import { GlyphDot } from '@vx/glyph';
 import { PinkRed } from '@vx/gradient';
-import Mock from '@vx/mock-data';
+import { genRandomNormalPoints } from '@vx/mock-data';
 
-const points = Mock.genRandomNormalPoints(600).filter((d,i) => {
+const points = genRandomNormalPoints(600).filter((d,i) => {
   return i < 600;
 });
 

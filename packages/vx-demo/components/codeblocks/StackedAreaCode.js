@@ -6,7 +6,7 @@ export default ({}) => {
     <Codeblock>
       {`// StackAreaChart.js
 import React from 'react';
-import Mock from '@vx/mock-data';
+import { browserUsage } from '@vx/mock-data';
 import Scale from '@vx/scale';
 import Group from '@vx/group';
 import Axis from '@vx/axis';
@@ -32,7 +32,7 @@ export default enhance(({
   selected,
   updateSelected,
 }) => {
-  const data = Mock.browserUsage;
+  const data = browserUsage;
   const keys = Object.keys(data[0]).filter(k => k !== 'date');
   const browserNames = [...keys].reverse();
 

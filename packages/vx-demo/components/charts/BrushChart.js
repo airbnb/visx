@@ -1,5 +1,5 @@
 import React from 'react';
-import Mock from '@vx/mock-data';
+import { genRandomNormalPoints } from '@vx/mock-data';
 import Scale from '@vx/scale';
 import Group from '@vx/group';
 import { AxisLeft, AxisBottom } from '@vx/axis';
@@ -12,7 +12,7 @@ import {
   constrainToRegion
 } from '@vx/brush';
 
-const points = Mock.genRandomNormalPoints();
+const points = genRandomNormalPoints();
 
 class BrushChart extends React.Component {
   constructor(props) {

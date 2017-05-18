@@ -1,5 +1,5 @@
 import React from 'react';
-import Mock from '@vx/mock-data';
+import { genDateValue } from '@vx/mock-data';
 import { curveMonotoneX, curveBasis } from '@vx/curve';
 import Scale from '@vx/scale';
 import Shape from '@vx/shape';
@@ -7,7 +7,7 @@ import { GlyphDot } from '@vx/glyph';
 import Group from '@vx/group';
 import { extent, max, min } from 'd3-array';
 
-const data = Mock.genDateValue(15);
+const data = genDateValue(15);
 
 // accessors
 const x = d => d.date;

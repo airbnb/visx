@@ -1,5 +1,5 @@
 import React from 'react';
-import Mock from '@vx/mock-data';
+import { browserUsage } from '@vx/mock-data';
 import Scale from '@vx/scale';
 import Shape from '@vx/shape';
 import { OrangeRed } from '@vx/gradient'
@@ -7,7 +7,7 @@ import { extent, max } from 'd3-array';
 import { stack as d3stack } from 'd3-shape';
 import { timeParse } from 'd3-time-format';
 
-const data = Mock.browserUsage;
+const data = browserUsage;
 const keys = Object.keys(data[0]).filter(k => k !== 'date');
 const browserNames = [...keys].reverse();
 const parseDate = timeParse("%Y %b %d");
