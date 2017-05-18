@@ -3,7 +3,7 @@ import { AxisLeft, AxisBottom } from '@vx/axis';
 import Scale from '@vx/scale';
 import Group from '@vx/group';
 import Mock from '@vx/mock-data';
-import Grid from '@vx/grid';
+import { Grid } from '@vx/grid';
 import Shape from '@vx/shape';
 import { curveBasis } from '@vx/curve';
 import { OrangeRed } from '@vx/gradient';
@@ -64,7 +64,7 @@ export default ({
         fill="#f4419f"
         rx={14}
       />
-      <Grid.Grid
+      <Grid
         top={margin.top}
         left={margin.left}
         xScale={xScale}

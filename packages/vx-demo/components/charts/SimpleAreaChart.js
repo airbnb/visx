@@ -4,7 +4,7 @@ import Axis from '@vx/axis';
 import Mock from '@vx/mock-data';
 import Scale from '@vx/scale';
 import Shape from '@vx/shape';
-import Grid from '@vx/grid';
+import { GridRows } from '@vx/grid';
 import Text from '@vx/text';
 import Pattern from '@vx/pattern';
 import { OrangeRed } from '@vx/gradient';
@@ -53,7 +53,7 @@ export default ({
     <svg height={height} width={width}>
       <OrangeRed id="gradient" />
       <Group top={margin.top} left={margin.left}>
-        <Grid.Rows
+        <GridRows
           scale={yStockScale}
           width={xMax}
           strokeDasharray="2,2"

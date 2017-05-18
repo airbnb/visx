@@ -56,7 +56,7 @@ function SimpleLineWithGlyphsChart({
         top={margin.top}
         left={margin.left}
       >
-        <Grid.Grid
+        <Grid
           xScale={xScale}
           yScale={yScale}
           width={xMax}

@@ -16,7 +16,7 @@ import Mock from '@vx/mock-data';
 import Scale from '@vx/scale';
 import { curveMonotoneX } from '@vx/curve';
 import { LinearGradient } from '@vx/gradient';
-import Grid from '@vx/grid';
+import { Rows, Columns } from '@vx/grid';
 import { extent, max } from 'd3-array';
 
 const stock = Mock.appleStock.slice(800);
@@ -61,13 +61,13 @@ export default ({
         from='#ffffff'
         to='rgba(255,255,255,0.2)'
       />
-      <Grid.Rows
+      <Rows
         scale={yScale}
         width={xMax}
         strokeDasharray='2,2'
         stroke='rgba(255,255,255,0.3)'
       />
-      <Grid.Columns
+      <Columns
         scale={xScale}
         height={yMax}
         strokeDasharray='2,2'

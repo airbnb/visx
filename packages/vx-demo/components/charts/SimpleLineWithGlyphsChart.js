@@ -5,7 +5,7 @@ import Point from '@vx/point';
 import Axis from '@vx/axis';
 import Scale from '@vx/scale';
 import Group from '@vx/group';
-import Grid from '@vx/grid';
+import { Grid } from '@vx/grid';
 import { Dot } from '@vx/glyph';
 import Curve from '@vx/curve';
 import { extent, max } from 'd3-array';
@@ -74,7 +74,7 @@ export default ({
         top={margin.top}
         left={margin.left}
       >
-        <Grid.Grid
+        <Grid
           xScale={xScale}
           yScale={yScale}
           width={xMax}
