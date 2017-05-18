@@ -4,7 +4,6 @@ import Link from 'next/link';
 import Mock from '@vx/mock-data';
 import Shape from '@vx/shape';
 import Scale from '@vx/scale';
-import Curve from '@vx/curve';
 import Group from '@vx/group';
 import { extent, max } from 'd3-array';
 

@@ -7,7 +7,7 @@ export default () => {
     <Show component={Lines} title="Lines">
 {`import React from 'react';
 import Mock from '@vx/mock-data';
-import Curve from '@vx/curve';
+import { curveMonotoneX } from '@vx/curve';
 import Scale from '@vx/scale';
 import Group from '@vx/group';
 import Shape from '@vx/shape';
@@ -59,7 +59,7 @@ export default ({
       {xMax > 8 && series.map((d, i) => {
         const offset = i * yMax / 2;
         const curve = i % 2 == 0
-          ? Curve.monotoneX
+          ? curveMonotoneX
           : undefined;
         return (
           <Group

@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { line } from 'd3-shape';
-import Curve from '@vx/curve';
+import { curveLinear } from '@vx/curve';
 
 export default function LinePath({
   data,
@@ -15,7 +15,7 @@ export default function LinePath({
   strokeWidth = 2,
   strokeDasharray = '',
   fill = 'none',
-  curve = Curve.linear,
+  curve = curveLinear,
   glyph,
 }) {
   const path = line()

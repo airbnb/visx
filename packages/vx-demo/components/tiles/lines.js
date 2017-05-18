@@ -1,6 +1,6 @@
 import React from 'react';
 import Mock from '@vx/mock-data';
-import Curve from '@vx/curve';
+import { curveMonotoneX } from '@vx/curve';
 import Scale from '@vx/scale';
 import Group from '@vx/group';
 import Shape from '@vx/shape';
@@ -60,7 +60,7 @@ export default ({
               y={y}
               stroke={"#ffffff"}
               strokeWidth={1}
-              curve={i % 2 == 0 ? Curve.monotoneX : undefined}
+              curve={i % 2 == 0 ? curveMonotoneX : undefined}
             />
           </Group>
         );

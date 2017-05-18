@@ -1,4 +1,4 @@
-import {
+export {
   curveBasis,
   curveBasisClosed,
   curveBasisOpen,
@@ -18,24 +18,3 @@ import {
   curveMonotoneY,
   curveNatural,
 } from 'd3-shape';
-
-export default {
-  basis: curveBasis,
-  basisClose: curveBasisClosed,
-  basisOpen: curveBasisOpen,
-  step: curveStep,
-  stepAfter: curveStepAfter,
-  stepBefore: curveStepbefore,
-  bundle: curveBundle,
-  linear: curveLinear,
-  linearClosed: curveLinearClosed,
-  monotoneX: curveMonotoneX,
-  monotoneY: curveMonotoneY,
-  cardinal: curveCardinal,
-  cardinalClosed: curveCardinalClosed,
-  cardinalOpen: curveCardinalOpen,
-  catmullRom: curveCatmullRom,
-  catmullRomClosed: curveCatmullRomClosed,
-  catmullRomOpen: curveCatmullRomOpen,
-  natural: curveNatural,
-};

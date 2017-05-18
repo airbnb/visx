@@ -14,7 +14,7 @@ export default () => {
 import Shape from '@vx/shape';
 import Mock from '@vx/mock-data';
 import Scale from '@vx/scale';
-import Curve from '@vx/curve';
+import { curveMonotoneX } from '@vx/curve';
 import Gradient from '@vx/gradient';
 import Grid from '@vx/grid';
 import { extent, max } from 'd3-array';
@@ -82,7 +82,7 @@ export default ({
         strokeWidth={1}
         stroke={'url(#gradient)'}
         fill={'url(#gradient)'}
-        curve={Curve.monotoneX}
+        curve={curveMonotoneX}
       />
     </svg>
   );

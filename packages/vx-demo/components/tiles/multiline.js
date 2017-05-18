@@ -1,6 +1,6 @@
 import React from 'react';
 import Mock from '@vx/mock-data';
-import Curve from '@vx/curve';
+import { curveMonotoneX, curveBasis } from '@vx/curve';
 import Scale from '@vx/scale';
 import Shape from '@vx/shape';
 import Glyph from '@vx/glyph';
@@ -52,7 +52,7 @@ export default ({
           stroke={'rgba(126, 31, 220, 1.000)'}
           strokeWidth={2}
           strokeDasharray='2,2'
-          curve={Curve.basis}
+          curve={curveBasis}
         />
         <Shape.LinePath
           data={data}
@@ -62,7 +62,7 @@ export default ({
           y={y}
           stroke={'rgba(126, 31, 220, 1.000)'}
           strokeWidth={3}
-          curve={Curve.monotoneX}
+          curve={curveMonotoneX}
           glyph={(d,i) => {
             return (
               <g key={`line-point-${i}`}>

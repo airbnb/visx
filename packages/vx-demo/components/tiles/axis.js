@@ -5,7 +5,7 @@ import Group from '@vx/group';
 import Mock from '@vx/mock-data';
 import Grid from '@vx/grid';
 import Shape from '@vx/shape';
-import Curve from '@vx/curve';
+import { curveBasis } from '@vx/curve';
 import Gradient from '@vx/gradient';
 import { extent, max } from 'd3-array';
 
@@ -88,7 +88,7 @@ export default ({
           stroke={'transparent'}
           fill={'url(#linear)'}
           fillOpacity='0.9'
-          curve={Curve.basis}
+          curve={curveBasis}
         />
         <Shape.LinePath
           data={data}
@@ -98,7 +98,7 @@ export default ({
           y={y}
           stroke={"url('#linear')"}
           strokeWidth={2}
-          curve={Curve.basis}
+          curve={curveBasis}
         />
       </Group>
       <AxisLeft

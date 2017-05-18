@@ -14,7 +14,6 @@ export default () => {
 import Mock from '@vx/mock-data';
 import Scale from '@vx/scale';
 import Shape from '@vx/shape';
-import Curve from '@vx/curve';
 import Gradient from '@vx/gradient'
 import { extent, max } from 'd3-array';
 import { stack as d3stack } from 'd3-shape';
