@@ -1,7 +1,7 @@
 import React from 'react';
 import Scale from '@vx/scale';
 import Group from '@vx/group';
-import Gradient from '@vx/gradient';
+import { PinkRed } from '@vx/gradient';
 import Mock from '@vx/mock-data';
 
 const points = Mock.genRandomNormalPoints(600).filter((d,i) => {
@@ -33,7 +33,7 @@ export default ({
 
   return (
     <svg width={width} height={height}>
-      <Gradient.PinkRed id='pink' />
+      <PinkRed id='pink' />
       <rect
         x={0}
         y={0}

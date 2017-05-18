@@ -9,7 +9,18 @@ export default () => {
     }}>
 {`import React from 'react';
 import Shape from '@vx/shape';
-import Gradient from '@vx/gradient';
+import {
+  DarkgreenGreen,
+  LightgreenGreen,
+  OrangeRed,
+  PinkBlue,
+  PinkRed,
+  PurpleOrange,
+  PurpleRed,
+  PurpleTeal,
+  SteelPurple,
+  TealBlue
+} from '@vx/gradient';
 
 export default ({
   width,
@@ -19,16 +30,16 @@ export default ({
   const h = (height - 80) / 2;
   return (
     <svg width={width} height={height}>
-      <Gradient.DarkgreenGreen id="DarkgreenGreen" />
-      <Gradient.LightgreenGreen id="LightgreenGreen" />
-      <Gradient.OrangeRed id="OrangeRed" />
-      <Gradient.PinkBlue id="PinkBlue" />
-      <Gradient.PinkRed id="PinkRed" />
-      <Gradient.PurpleOrange id="PurpleOrange" />
-      <Gradient.PurpleRed id="PurpleRed" />
-      <Gradient.PurpleTeal id="PurpleTeal" />
-      <Gradient.SteelPurple id="SteelPurple" />
-      <Gradient.TealBlue id="TealBlue" />
+      <DarkgreenGreen id="DarkgreenGreen" />
+      <LightgreenGreen id="LightgreenGreen" />
+      <OrangeRed id="OrangeRed" />
+      <PinkBlue id="PinkBlue" />
+      <PinkRed id="PinkRed" />
+      <PurpleOrange id="PurpleOrange" />
+      <PurpleRed id="PurpleRed" />
+      <PurpleTeal id="PurpleTeal" />
+      <SteelPurple id="SteelPurple" />
+      <TealBlue id="TealBlue" />
       <rect
         x={0}
         y={0}

@@ -14,7 +14,7 @@ export default () => {
 import Mock from '@vx/mock-data';
 import Scale from '@vx/scale';
 import Shape from '@vx/shape';
-import Gradient from '@vx/gradient'
+import { OrangeRed } from '@vx/gradient'
 import { extent, max } from 'd3-array';
 import { stack as d3stack } from 'd3-shape';
 import { timeParse } from 'd3-time-format';
@@ -45,6 +45,7 @@ export default ({
 
   return (
     <svg width={width} height={height}>
+      <OrangeRed id="OrangeRed" />
       <rect
         x={0}
         y={0}
@@ -53,7 +54,6 @@ export default ({
         fill="#f38181"
         rx={14}
       />
-      <Gradient.OrangeRed id="OrangeRed" />
       <Shape.AreaStack
         reverse
         top={margin.top}

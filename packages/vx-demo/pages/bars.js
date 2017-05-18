@@ -10,7 +10,7 @@ import Mock from '@vx/mock-data';
 import Group from '@vx/group';
 import Shape from '@vx/shape';
 import Scale from '@vx/scale';
-import Gradient from '@vx/gradient';
+import { TealBlue } from '@vx/gradient';
 import { extent, max } from 'd3-array';
 
 const data = Mock.letterFrequency.slice(5);
@@ -47,7 +47,7 @@ export default ({
 
   return (
     <svg width={width} height={height}>
-      <Gradient.TealBlue id="teal" />
+      <TealBlue id="teal" />
       <rect
         x={0}
         y={0}

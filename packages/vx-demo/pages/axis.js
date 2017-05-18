@@ -18,7 +18,7 @@ import Mock from '@vx/mock-data';
 import Grid from '@vx/grid';
 import Shape from '@vx/shape';
 import { curveBasis } from '@vx/curve';
-import Gradient from '@vx/gradient';
+import { OrangeRed } from '@vx/gradient';
 import { extent, max } from 'd3-array';
 
 const data = Mock.genDateValue(20);
@@ -66,9 +66,7 @@ export default ({
 
   return (
     <svg width={width} height={height}>
-      <Gradient.OrangeRed
-        id="linear"
-      />
+      <OrangeRed id="linear" />
       <Grid.Grid
         top={margin.top}
         left={margin.left}

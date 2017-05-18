@@ -3,7 +3,7 @@ import Shape from '@vx/shape';
 import Mock from '@vx/mock-data';
 import Scale from '@vx/scale';
 import { curveMonotoneX } from '@vx/curve';
-import Gradient from '@vx/gradient';
+import { LinearGradient } from '@vx/gradient';
 import Grid from '@vx/grid';
 import { extent, max } from 'd3-array';
 
@@ -44,7 +44,7 @@ export default ({
         fill="#32deaa"
         rx={14}
       />
-      <Gradient.LinearGradient
+      <LinearGradient
         id={'gradient'}
         from='#ffffff'
         to='rgba(255,255,255,0.2)'
