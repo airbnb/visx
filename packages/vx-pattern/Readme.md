@@ -6,12 +6,12 @@ Inspired by: http://riccardoscalco.github.io/textures/
 
 ``` js
 import Shape from '@vx/shape';
-import Pattern from '@vx/pattern';
+import { PatternLines } from '@vx/pattern';
 
 const PatternArea = () => {
     return (
       <svg>
-        <Pattern.Lines
+        <PatternLines
           id="lines"
           height={5}
           width={5}
@@ -27,19 +27,19 @@ const PatternArea = () => {
 
 ## The Definition Caveat
 
-Like gradients, patterns are "defined." When you put down a `<Pattern.XYZ />`, it's putting a [`<pattern/>`](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Patterns) attribute in the SVG.
+Like gradients, patterns are "defined." When you put down a `<PatternXYZ />`, it's putting a [`<pattern/>`](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Patterns) attribute in the SVG.
 
 It's often better to think of these as variable definitions rather than true DOM elements. When you use `fill="url('#pattern')"` you're referencing the pattern's id: `pattern`.
 
 
 ## Pre-Made Patterns
 
-### `Patterns.Circles`
+### `PatternsCircles`
 
 ![circles example](http://i.imgur.com/jd9YGJi.png)
 
 ``` js
-<Pattern.Circles
+<PatternCircles
   id="circles"
   height={6}
   width={6}
@@ -48,12 +48,12 @@ It's often better to think of these as variable definitions rather than true DOM
 />
 ```
 
-### `Patterns.Hexagons`
+### `PatternsHexagons`
 
 ![hexagon example](http://i.imgur.com/3EL1Lza.png)
 
 ``` js
-<Pattern.Hexagons
+<PatternHexagons
   id="hexagons"
   height={3}
   size={8}
@@ -62,12 +62,12 @@ It's often better to think of these as variable definitions rather than true DOM
 />
 ```
 
-### `Patterns.Lines`
+### `PatternsLines`
 
 ![lines example](http://i.imgur.com/E3cTmLZ.png)
 
 ``` js
-<Pattern.Lines
+<PatternLines
   id="lines"
   height={5}
   width={5}
@@ -77,12 +77,12 @@ It's often better to think of these as variable definitions rather than true DOM
 />
 ```
 
-### `Patterns.Waves`
+### `PatternsWaves`
 
 ![waves example](http://i.imgur.com/4fdwbhv.png)
 
 ``` js
-<Pattern.Waves
+<PatternWaves
   id="waves"
   height={4}
   width={4}
@@ -93,9 +93,9 @@ It's often better to think of these as variable definitions rather than true DOM
 
 ## Source For Components
 
-+ [`<Pattern.Circles />`](https://github.com/hshoff/vx/blob/master/packages/vx-pattern/src/patterns/Circles.js)
-+ [`<Pattern.Hexagons />`](https://github.com/hshoff/vx/blob/master/packages/vx-pattern/src/patterns/Hexagons.js)
-+ [`<Pattern.Lines />`](https://github.com/hshoff/vx/blob/master/packages/vx-pattern/src/patterns/Lines.js)
-+ [`<Pattern.Path />`](https://github.com/hshoff/vx/blob/master/packages/vx-pattern/src/patterns/Path.js)
-+ [`<Pattern.Pattern />`](https://github.com/hshoff/vx/blob/master/packages/vx-pattern/src/patterns/Pattern.js)
-+ [`<Pattern.Path />`](https://github.com/hshoff/vx/blob/master/packages/vx-pattern/src/patterns/Waves.js)
++ [`<PatternCircles />`](https://github.com/hshoff/vx/blob/master/packages/vx-pattern/src/patterns/Circles.js)
++ [`<PatternHexagons />`](https://github.com/hshoff/vx/blob/master/packages/vx-pattern/src/patterns/Hexagons.js)
++ [`<PatternLines />`](https://github.com/hshoff/vx/blob/master/packages/vx-pattern/src/patterns/Lines.js)
++ [`<PatternPath />`](https://github.com/hshoff/vx/blob/master/packages/vx-pattern/src/patterns/Path.js)
++ [`<PatternPattern />`](https://github.com/hshoff/vx/blob/master/packages/vx-pattern/src/patterns/Pattern.js)
++ [`<PatternPath />`](https://github.com/hshoff/vx/blob/master/packages/vx-pattern/src/patterns/Waves.js)

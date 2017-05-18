@@ -119,12 +119,13 @@ export default () => (
         <li>
           @vx/pattern
           <ul>
-            <li>Circles</li>
-            <li>Hexagons</li>
-            <li>Lines</li>
-            <li>Path</li>
+            <li>PatternCircles</li>
+            <li>PatternHexagons</li>
+            <li>PatternLines</li>
+            <li>PatternPath</li>
             <li>Pattern</li>
-            <li>Waves</li>
+            <li>PatternWaves</li>
+            <li>PatternOrientation</li>
           </ul>
         </li>
         <li>

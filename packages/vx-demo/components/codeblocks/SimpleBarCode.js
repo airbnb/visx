@@ -10,7 +10,7 @@ import { letterFrequency } from '@vx/mock-data';
 import { Group } from '@vx/group';
 import Shape from '@vx/shape';
 import Scale from '@vx/scale';
-import Pattern from '@vx/pattern';
+import { PatternLines } from '@vx/pattern';
 import { max } from 'd3-array';
 
 const data = letterFrequency;
@@ -46,7 +46,7 @@ export default ({
 
   return (
     <svg width={width} height={height}>
-      <Pattern.Lines
+      <PatternLines
         id="lines"
         height={5}
         width={5}
