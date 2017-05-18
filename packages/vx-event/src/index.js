@@ -1,5 +1,1 @@
-import localPoint from './localPoint';
-
-export default {
-  localPoint,
-}
+export { default as localPoint } from './localPoint';
