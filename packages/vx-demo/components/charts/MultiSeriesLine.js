@@ -1,7 +1,7 @@
 import React from 'react';
 import Mock from '@vx/mock-data';
 import Group from '@vx/group';
-import Curve from '@vx/curve';
+import { curveBasis } from '@vx/curve';
 import Scale from '@vx/scale';
 import Axis from '@vx/axis';
 import Shape from '@vx/shape';
@@ -109,7 +109,7 @@ export default withSelected(({
                 yScale={yScale}
                 x={x}
                 y={y}
-                curve={Curve.basis}
+                curve={curveBasis}
                 stroke={color(id)}
                 strokeWidth={1}
               />

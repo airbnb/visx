@@ -6,7 +6,7 @@ import Axis from '@vx/axis';
 import Scale from '@vx/scale';
 import Group from '@vx/group';
 import { Grid } from '@vx/grid';
-import { Dot } from '@vx/glyph';
+import { GlyphDot } from '@vx/glyph';
 import Curve from '@vx/curve';
 import { extent, max } from 'd3-array';
 
@@ -97,7 +97,7 @@ export default ({
               curve={Curve.monotoneX}
               glyph={(d, i) => {
                 return (
-                  <Dot key={`line-point-${i}`}
+                  <GlyphDot key={`line-point-${i}`}
                     className={cx('vx-linepath-point')}
                     cx={xScale(x(d))}
                     cy={yScale(y(d))}
@@ -126,7 +126,7 @@ export default ({
                     >
                       {yFormat(y(d))}
                     </text>
-                  </Dot>
+                  </GlyphDot>
                 );
               }}
             />

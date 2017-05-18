@@ -5,14 +5,14 @@ Glyphs are small icons that you can use in your graphs. Some elements, like `Lin
 For example:
 ```js
 import { LinePath } from '@vx/shape';
-import { Dot } from '@vx/glyph';
+import { GlyphDot } from '@vx/glyph';
 
 let line = (
   <LinePath
     ...
     glyph={(d, i) => {
       return (
-        <Dot
+        <GlyphDot
           className={"glyph-dots"}
           key={'line-dot-{i}'}
           cx={xScale(x(d))}
@@ -32,7 +32,7 @@ You also can incorporate child elements into your glyph to add labels and such.
 ```js
 import { Dot } from '@vx/glyph';
 
-<Dot ... >
+<GlyphDot ... >
   <text
     x={xScale(x(d))}
     y={yScale(y(d))}
@@ -44,10 +44,10 @@ import { Dot } from '@vx/glyph';
   >
     {"Hi there!"}
   </text>
-</Dot>
+</GlyphDot>
 ```
 
-## `Glyph.Dot`
+## `Glyph.GlyphDot`
 
 |      Name       | Default |  Type  |                    Description                    |
 |:--------------- |:------- |:------ |:------------------------------------------------- |

@@ -72,7 +72,7 @@ export default () => (
         <li>
           @vx/glyph
           <ul>
-            <li>Dot</li>
+            <li>GlyphDot</li>
             <li>Glyph</li>
           </ul>
         </li>

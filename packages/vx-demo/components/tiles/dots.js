@@ -1,6 +1,7 @@
 import React from 'react';
 import Scale from '@vx/scale';
 import Group from '@vx/group';
+import { GlyphDot } from '@vx/glyph';
 import { PinkRed } from '@vx/gradient';
 import Mock from '@vx/mock-data';
 
@@ -45,7 +46,7 @@ export default ({
       <Group>
         {points.map((point,i) => {
           return (
-            <circle
+            <GlyphDot
               key={`point-${point.x}-${i}`}
               fill={'#f6c431'}
               cx={xScale(x(point))}

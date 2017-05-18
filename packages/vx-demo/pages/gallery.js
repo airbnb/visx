@@ -146,7 +146,7 @@ export default class Gallery extends React.Component {
                 <div className="details color-yellow">
                   <div className="title">Dots</div>
                   <div className="description">
-                    <pre>{`<Shape.Circle />`}</pre>
+                    <pre>{`<Glyph.GlyphDot />`}</pre>
                   </div>
                 </div>
               </div>
@@ -281,7 +281,7 @@ export default class Gallery extends React.Component {
                 <div className="details" style={{  color: 'rgba(126, 31, 220, 1.000)' }}>
                   <div className="title">Glyphs</div>
                   <div className="description">
-                    <pre>{`<Glyph.Dot />`}</pre>
+                    <pre>{`<Glyph.GlyphDot />`}</pre>
                   </div>
                 </div>
               </div>

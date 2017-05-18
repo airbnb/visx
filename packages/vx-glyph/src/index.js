@@ -1,2 +1,2 @@
 export { default as Glyph } from './glyphs/Glyph';
-export { default as Dot } from './glyphs/Dot';
+export { default as GlyphDot } from './glyphs/Dot';

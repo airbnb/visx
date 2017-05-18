@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import Shape from '@vx/shape';
 import Point from '@vx/point';
-import Axis from '@vx/axis';
+import { AxisLeft, AxisBottom } from '@vx/axis';
 import Scale from '@vx/scale';
 import Group from '@vx/group';
 import { Grid } from '@vx/grid';
@@ -91,7 +91,7 @@ export default ({
           <stop offset="100%" stopColor="#01d4f9" stopOpacity="0.3"/>
         </linearGradient>
       </defs>
-      <Axis.AxisLeft
+      <AxisLeft
         top={margin.top}
         left={margin.left}
         scale={yScale}
@@ -164,7 +164,7 @@ export default ({
           ]}
         />
       </Group>
-      <Axis.AxisBottom
+      <AxisBottom
         top={height - margin.bottom}
         left={margin.left}
         scale={xScale}

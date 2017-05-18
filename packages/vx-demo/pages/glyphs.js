@@ -15,7 +15,7 @@ import Mock from '@vx/mock-data';
 import { curveBasis, curveMonotoneX } from '@vx/curve';
 import Scale from '@vx/scale';
 import Shape from '@vx/shape';
-import { Dot } from '@vx/glyph';
+import { GlyphDot } from '@vx/glyph';
 import Group from '@vx/group';
 import { extent, max, min } from 'd3-array';
 
@@ -79,7 +79,7 @@ export default ({
           glyph={(d,i) => {
             return (
               <g key={\`line-point-\${i}\`}>
-                <Dot
+                <GlyphDot
                   cx={xScale(x(d))}
                   cy={yScale(y(d))}
                   r={6}
@@ -87,7 +87,7 @@ export default ({
                   stroke='#01f2ff'
                   strokeWidth={10}
                 />
-                <Dot
+                <GlyphDot
                   cx={xScale(x(d))}
                   cy={yScale(y(d))}
                   r={6}
@@ -95,7 +95,7 @@ export default ({
                   stroke='#7e20dc'
                   strokeWidth={3}
                 />
-                <Dot
+                <GlyphDot
                   cx={xScale(x(d))}
                   cy={yScale(y(d))}
                   r={4}
