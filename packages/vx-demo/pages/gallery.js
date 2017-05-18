@@ -309,7 +309,7 @@ export default class Gallery extends React.Component {
                 <div className="details" style={{ color: '#8e205f'}}>
                   <div className="title">Axis</div>
                   <div className="description">
-                    <pre>{`<Axis.Left /> + <Axis.Bottom />`}</pre>
+                    <pre>{`<Axis.AxisLeft /> + <Axis.AxisBottom />`}</pre>
                   </div>
                 </div>
               </div>

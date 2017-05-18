@@ -130,7 +130,7 @@ function SimpleLineChart({
           labelDx={6}
           labelDy={15}
         />
-        <Annotation.LinePathAnnotation
+        <LinePathAnnotation
           label={'expected from deploy'}
           stroke={'white'}
           labelFill={'white'}

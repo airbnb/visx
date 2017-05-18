@@ -1,5 +1,5 @@
 import React from 'react';
-import Axis from '@vx/axis';
+import { AxisLeft, AxisBottom } from '@vx/axis';
 import Scale from '@vx/scale';
 import Group from '@vx/group';
 import Mock from '@vx/mock-data';
@@ -8,6 +8,7 @@ import Shape from '@vx/shape';
 import Curve from '@vx/curve';
 import Gradient from '@vx/gradient';
 import { extent, max } from 'd3-array';
+
 
 const data = Mock.genDateValue(20);
 
@@ -100,7 +101,7 @@ export default ({
           curve={Curve.basis}
         />
       </Group>
-      <Axis.AxisLeft
+      <AxisLeft
         top={margin.top}
         left={margin.left}
         scale={yScale}
@@ -110,7 +111,7 @@ export default ({
         stroke={'#1b1a1e'}
         tickTextFill={'#8e205f'}
       />
-      <Axis.AxisBottom
+      <AxisBottom
         top={height - margin.bottom}
         left={margin.left}
         scale={xScale}

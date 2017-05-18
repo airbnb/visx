@@ -9,7 +9,7 @@ import Grid from '@vx/grid';
 import Glyph from '@vx/glyph';
 import Curve from '@vx/curve';
 import Marker from '@vx/marker';
-import Annotation from '@vx/annotation';
+import { LinePathAnnotation } from '@vx/annotation';
 import Text from '@vx/text';
 import { extent, max } from 'd3-array';
 
@@ -150,7 +150,7 @@ export default ({
           labelDx={6}
           labelDy={15}
         />
-        <Annotation.LinePathAnnotation
+        <LinePathAnnotation
           label={'expected from deploy'}
           stroke={'white'}
           labelFill={'white'}

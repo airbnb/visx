@@ -1,13 +1,5 @@
-import Axis from './axis/Axis';
-import AxisLeft from './axis/AxisLeft';
-import AxisRight from './axis/AxisRight';
-import AxisTop from './axis/AxisTop';
-import AxisBottom from './axis/AxisBottom';
-
-export default {
-  Axis,
-  AxisLeft,
-  AxisRight,
-  AxisTop,
-  AxisBottom,
-}
+export { default as Axis } from './axis/Axis';
+export { default as AxisLeft } from './axis/AxisLeft';
+export { default as AxisRight } from './axis/AxisRight';
+export { default as AxisTop } from './axis/AxisTop';
+export { default as AxisBottom } from './axis/AxisBottom';
