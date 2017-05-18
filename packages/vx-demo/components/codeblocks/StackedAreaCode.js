@@ -12,7 +12,7 @@ import { Group } from '@vx/group';
 import Axis from '@vx/axis';
 import Shape from '@vx/shape';
 import Curve from '@vx/curve';
-import Text from '@vx/text';
+import { TextOutline } from '@vx/text';
 import { extent, max } from 'd3-array';
 import { stack as d3stack } from 'd3-shape';
 import { timeParse } from 'd3-time-format';
@@ -95,7 +95,7 @@ export default enhance(({
           return (
             <g key={'labels-%{series.key}'}>
               {lastPointY1 - lastPointY0 > 0.01 &&
-                <Text.TextOutline
+                <TextOutline
                   fontSize={10}
                   x={xMax}
                   y={yScale((lastPointY1 - ((lastPointY1 - lastPointY0) /2)))}
@@ -107,7 +107,7 @@ export default enhance(({
                   fontFamily={"Roboto Mono"}
                 >
                   {series.key}
-                </Text.TextOutline>
+                </TextOutline>
               }
             </g>
           );

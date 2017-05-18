@@ -5,7 +5,6 @@ import { appleStock } from '@vx/mock-data';
 import Scale from '@vx/scale';
 import Shape from '@vx/shape';
 import { GridRows } from '@vx/grid';
-import Text from '@vx/text';
 import { OrangeRed } from '@vx/gradient';
 import { extent, max } from 'd3-array';
 

@@ -89,7 +89,7 @@ function SimpleAreaChart({
   );
 }
 
-export default Responsive.withScreenSize(SimpleAreaChart);`}
+export default withScreenSize(SimpleAreaChart);`}
     </Codeblock>
   );
 }

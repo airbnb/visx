@@ -31,7 +31,7 @@
     "@vx/responsive": "0.0.103",
     "@vx/scale": "0.0.92",
     "@vx/shape": "0.0.109",
-    "@vx/text": "0.0.84",
+    "@vx/text": "0.0.109",
     "classnames": "^2.2.5",
     "d3-array": "^1.1.1",
     "d3-shape": "^1.0.6",
