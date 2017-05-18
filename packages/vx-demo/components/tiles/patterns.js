@@ -1,6 +1,6 @@
 import React from 'react';
 import Pattern from '@vx/pattern';
-import Group from '@vx/group';
+import { Group } from '@vx/group';
 import Shape from '@vx/shape';
 
 const blocklist = ["Pattern", "Path", "Orientation"];

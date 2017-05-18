@@ -4,7 +4,8 @@ A Group is a container for other objects. It lets you pass in a top and left mar
 
 Example usage:
 
-``` js
+```js
+import { Group } from '@vx/group';
 const myGroup = (
   <Group top={50} left={20}>
     /* Children here */

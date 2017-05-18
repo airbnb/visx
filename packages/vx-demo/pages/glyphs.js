@@ -16,7 +16,7 @@ import { curveBasis, curveMonotoneX } from '@vx/curve';
 import Scale from '@vx/scale';
 import Shape from '@vx/shape';
 import { GlyphDot } from '@vx/glyph';
-import Group from '@vx/group';
+import { Group } from '@vx/group';
 import { extent, max, min } from 'd3-array';
 
 const data = Mock.genDateValue(15);

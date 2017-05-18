@@ -4,7 +4,7 @@ import Shape from '@vx/shape';
 import Point from '@vx/point';
 import Axis from '@vx/axis';
 import Scale from '@vx/scale';
-import Group from '@vx/group';
+import { Group } from '@vx/group';
 import { Grid } from '@vx/grid';
 import { GlyphDot } from '@vx/glyph';
 import Curve from '@vx/curve';

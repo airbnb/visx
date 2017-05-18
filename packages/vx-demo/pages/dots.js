@@ -7,7 +7,7 @@ export default () => {
     <Show component={Dots} title="Dots">
 {`import React from 'react';
 import Scale from '@vx/scale';
-import Group from '@vx/group';
+import { Group } from '@vx/group';
 import { GlyphDot } from '@vx/glyph';
 import { PinkRed } from '@vx/gradient';
 import Mock from '@vx/mock-data';

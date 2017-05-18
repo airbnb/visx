@@ -7,7 +7,7 @@ export default () => {
     <Show component={Bars} title="Bars">
 {`import React from 'react';
 import Mock from '@vx/mock-data';
-import Group from '@vx/group';
+import { Group } from '@vx/group';
 import Shape from '@vx/shape';
 import Scale from '@vx/scale';
 import { TealBlue } from '@vx/gradient';

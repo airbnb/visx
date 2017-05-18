@@ -1,5 +1,5 @@
 import React from 'react';
-import Group from '@vx/group';
+import { Group } from '@vx/group';
 import Axis from '@vx/axis';
 import { appleStock } from '@vx/mock-data';
 import Scale from '@vx/scale';

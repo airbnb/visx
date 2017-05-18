@@ -13,7 +13,7 @@ export default () => {
 {`import React from 'react';
 import { AxisLeft, AxisBottom } from '@vx/axis';
 import Scale from '@vx/scale';
-import Group from '@vx/group';
+import { Group } from '@vx/group';
 import Mock from '@vx/mock-data';
 import Grid from '@vx/grid';
 import Shape from '@vx/shape';

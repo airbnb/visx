@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import Shape from '@vx/shape';
 import Point from '@vx/point';
-import Group from '@vx/group';
+import { Group } from '@vx/group';
 import identity from '../utils/identity';
 import center from '../utils/center';
 import isHorizontal from '../utils/isHorizontal';

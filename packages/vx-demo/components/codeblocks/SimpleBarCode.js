@@ -7,7 +7,7 @@ export default ({}) => {
       {`// SimpleBar.js
 import React from 'react';
 import { letterFrequency } from '@vx/mock-data';
-import Group from '@vx/group';
+import { Group } from '@vx/group';
 import Shape from '@vx/shape';
 import Scale from '@vx/scale';
 import Pattern from '@vx/pattern';

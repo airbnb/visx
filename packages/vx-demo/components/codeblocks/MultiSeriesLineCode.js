@@ -7,7 +7,7 @@ export default ({}) => {
       {`// MultiSeriesLine.js
 import React from 'react';
 import { cityTemperature } from '@vx/mock-data';
-import Group from '@vx/group';
+import { Group } from '@vx/group';
 import Curve from '@vx/curve';
 import Scale from '@vx/scale';
 import Axis from '@vx/axis';

@@ -1,6 +1,6 @@
 import React from 'react';
 import Scale from '@vx/scale';
-import Group from '@vx/group';
+import { Group } from '@vx/group';
 import { GlyphDot } from '@vx/glyph';
 import { PinkRed } from '@vx/gradient';
 import { genRandomNormalPoints } from '@vx/mock-data';

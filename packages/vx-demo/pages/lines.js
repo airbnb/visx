@@ -9,7 +9,7 @@ export default () => {
 import Mock from '@vx/mock-data';
 import { curveMonotoneX } from '@vx/curve';
 import Scale from '@vx/scale';
-import Group from '@vx/group';
+import { Group } from '@vx/group';
 import Shape from '@vx/shape';
 import { extent, max } from 'd3-array';
 

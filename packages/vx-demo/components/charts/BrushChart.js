@@ -1,7 +1,7 @@
 import React from 'react';
 import { genRandomNormalPoints } from '@vx/mock-data';
 import Scale from '@vx/scale';
-import Group from '@vx/group';
+import { Group } from '@vx/group';
 import { AxisLeft, AxisBottom } from '@vx/axis';
 import colors from '../util/sillyColorScale';
 import { Motion, spring } from 'react-motion';
