@@ -6,7 +6,6 @@ import Axis from '@vx/axis';
 import Scale from '@vx/scale';
 import Group from '@vx/group';
 import Grid from '@vx/grid';
-import Glyph from '@vx/glyph';
 import Curve from '@vx/curve';
 import Marker from '@vx/marker';
 import { LinePathAnnotation } from '@vx/annotation';
