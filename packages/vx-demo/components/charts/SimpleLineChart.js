@@ -7,7 +7,7 @@ import Scale from '@vx/scale';
 import Group from '@vx/group';
 import { Grid } from '@vx/grid';
 import Curve from '@vx/curve';
-import Marker from '@vx/marker';
+import { Marker } from '@vx/marker';
 import { LinePathAnnotation } from '@vx/annotation';
 import Text from '@vx/text';
 import { extent, max } from 'd3-array';
