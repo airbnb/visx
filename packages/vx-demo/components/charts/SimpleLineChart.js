@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import Shape from '@vx/shape';
-import Point from '@vx/point';
+import { Point } from '@vx/point';
 import { AxisLeft, AxisBottom } from '@vx/axis';
 import Scale from '@vx/scale';
 import { Group } from '@vx/group';

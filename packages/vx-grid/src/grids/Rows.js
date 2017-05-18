@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import { Group } from '@vx/group';
 import Shape from '@vx/shape';
-import Point from '@vx/point';
+import { Point } from '@vx/point';
 
 export default function Rows({
   top = 0,
