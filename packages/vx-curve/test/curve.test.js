@@ -17,7 +17,7 @@ import {
   curveMonotoneX,
   curveMonotoneY,
   curveNatural,
-} from './index';
+} from '../src';
 
 test('curveBasis', () => {
   expect(curveBasis).toBeDefined()
