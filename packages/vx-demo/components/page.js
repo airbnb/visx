@@ -1,47 +1,29 @@
 import Meta from './meta';
 import Nav from './nav';
+import cx from 'classnames';
 
-export default ({ children, title }) => (
-  <div className="main">
+export default ({ children, title, className }) => (
+  <div className={cx("main", className)}>
     <Meta title={title} />
-    <div className="left">
+    <div className="nav-container">
       <Nav />
     </div>
-    <div className="right">
+    <div className="page-content">
       {children}
     </div>
     <style jsx>{`
       .main {
-        display: flex;
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        font-size: 16px;
+        color: #161616;
+        overflow-x: hidden;
       }
 
-      .left {
-        display: flex;
-        flex: 1;
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        left: 0;
-      }
-
-      .right {
-        display: flex;
-        flex: 5;
-        line-height: 2rem;
-        font-family: 'Roboto Mono';
-        margin-left: 250px;
-      }
-
-      @media (max-width: 600px) {
-        .main { flex-direction: column; position: relative; }
-        .left { position: relative; }
-        .right { margin-left: 0; flex-direction: column; }
+      .nav-container {
+        background: #ffffff;
       }
     `}</style>
   </div>

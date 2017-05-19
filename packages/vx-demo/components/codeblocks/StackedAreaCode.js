@@ -6,13 +6,12 @@ export default ({}) => {
     <Codeblock>
       {`// StackAreaChart.js
 import React from 'react';
-import Mock from '@vx/mock-data';
-import Scale from '@vx/scale';
-import Group from '@vx/group';
-import Axis from '@vx/axis';
-import Shape from '@vx/shape';
-import Curve from '@vx/curve';
-import Text from '@vx/text';
+import { Group } from '@vx/group';
+import { AreaStack } from '@vx/shape';
+import { TextOutline } from '@vx/text';
+import { browserUsage } from '@vx/mock-data';
+import { AxisLeft, AxisBottom } from '@vx/axis';
+import { scaleTime, scaleLinear } from '@vx/scale';
 import { extent, max } from 'd3-array';
 import { stack as d3stack } from 'd3-shape';
 import { timeParse } from 'd3-time-format';
@@ -32,7 +31,7 @@ export default enhance(({
   selected,
   updateSelected,
 }) => {
-  const data = Mock.browserUsage;
+  const data = browserUsage;
   const keys = Object.keys(data[0]).filter(k => k !== 'date');
   const browserNames = [...keys].reverse();
 
@@ -44,17 +43,17 @@ export default enhance(({
 
   const stack = d3stack().keys(keys);
 
-  const xScale = Scale.scaleTime({
+  const xScale = scaleTime({
     range: [0, xMax],
     domain: extent(data, x),
   });
-  const yScale = Scale.scaleLinear({
+  const yScale = scaleLinear({
     range: [yMax, 0],
   });
 
   return (
     <svg height={height} width={width}>
-      <Axis.AxisLeft
+      <AxisLeft
         top={margin.top}
         left={margin.left}
         scale={yScale}
@@ -64,7 +63,7 @@ export default enhance(({
         tickTextFill={'#000'}
       />
       <Group top={margin.top} left={margin.left}>
-        <Shape.AreaStack
+        <AreaStack
           reverse
           top={margin.top}
           left={margin.left}
@@ -95,7 +94,7 @@ export default enhance(({
           return (
             <g key={'labels-%{series.key}'}>
               {lastPointY1 - lastPointY0 > 0.01 &&
-                <Text.TextOutline
+                <TextOutline
                   fontSize={10}
                   x={xMax}
                   y={yScale((lastPointY1 - ((lastPointY1 - lastPointY0) /2)))}
@@ -107,13 +106,13 @@ export default enhance(({
                   fontFamily={"Roboto Mono"}
                 >
                   {series.key}
-                </Text.TextOutline>
+                </TextOutline>
               }
             </g>
           );
         })}
       </Group>
-      <Axis.AxisBottom
+      <AxisBottom
         top={height - margin.bottom}
         left={margin.left}
         scale={xScale}

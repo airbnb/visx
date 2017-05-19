@@ -1,5 +1,5 @@
 import React from 'react';
-import Group from '@vx/group';
+import { Group } from '@vx/group';
 import cx from 'classnames';
 
 export default function Glyph({

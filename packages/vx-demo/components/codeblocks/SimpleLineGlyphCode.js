@@ -44,7 +44,7 @@ function SimpleLineWithGlyphsChart({
 
   return (
     <svg width={width} height={height}>
-      <Axis.AxisRight
+      <AxisRight
         top={margin.top}
         left={width - margin.right}
         scale={yScale}
@@ -56,7 +56,7 @@ function SimpleLineWithGlyphsChart({
         top={margin.top}
         left={margin.left}
       >
-        <Grid.Grid
+        <Grid
           xScale={xScale}
           yScale={yScale}
           width={xMax}
@@ -79,7 +79,7 @@ function SimpleLineWithGlyphsChart({
               curve={Curve.monotoneX}
               glyph={(d, i) => {
                 return (
-                  <Glyph.Dot key={'line-point-{i}'}
+                  <GlyphDot key={'line-point-{i}'}
                     className={cx('vx-linepath-point')}
                     cx={xScale(x(d))}
                     cy={yScale(y(d))}
@@ -115,7 +115,7 @@ function SimpleLineWithGlyphsChart({
           );
         })}
       </Group>
-      <Axis.AxisBottom
+      <AxisBottom
         top={height - margin.bottom}
         left={margin.left}
         scale={xScale}
@@ -127,7 +127,7 @@ function SimpleLineWithGlyphsChart({
   );
 }
 
-export default Responsive.withScreenSize(SimpleLineWithGlyphsChart);`}
+export default withScreenSize(SimpleLineWithGlyphsChart);`}
     </Codeblock>
   );
 }

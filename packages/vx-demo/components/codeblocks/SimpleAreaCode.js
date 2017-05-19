@@ -11,7 +11,7 @@ function SimpleAreaChart({
   screenWidth,
   screenHeight,
 }) {
-  const stock = Mock.appleStock;
+  const stock = appleStock;
 
   const width = screenWidth / 1.5;
   const height = width / 2;
@@ -51,7 +51,7 @@ function SimpleAreaChart({
         fill={'none'}
       />
       <Group top={margin.top} left={margin.left}>
-        <Grid.Rows
+        <GridRows
           scale={yStockScale}
           width={xMax}
           strokeDasharray="2,2"
@@ -68,14 +68,14 @@ function SimpleAreaChart({
           fill={'url(#linear)'}
         />
       </Group>
-      <Axis.AxisBottom
+      <AxisBottom
         top={height - margin.bottom}
         left={margin.left}
         scale={xStockScale}
         numTicks={numTicksForWidth(width)}
         label={'date'}
       />
-      <Axis.AxisLeft
+      <AxisLeft
         top={margin.top}
         left={margin.left}
         scale={yStockScale}
@@ -89,7 +89,7 @@ function SimpleAreaChart({
   );
 }
 
-export default Responsive.withScreenSize(SimpleAreaChart);`}
+export default withScreenSize(SimpleAreaChart);`}
     </Codeblock>
   );
 }

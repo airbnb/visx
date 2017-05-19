@@ -11,7 +11,14 @@
 
 vx is collection of reusable low-level visualization components. vx combines the power of d3 to generate your visualization with the benefits of react for updating the DOM.
 
+<p align="center">
+  <a href="https://vx-demo.now.sh/gallery">
+    <img src="./assets/vx-gallery.png" />
+  </a>
+</p>
+
 ### [View Docs](https://vx-demo.now.sh)
+### [View Gallery](https://vx-demo.now.sh/gallery)
 
 ## Usage
 
@@ -21,13 +28,13 @@ Let's make a simple bar graph.
 
 ```javascript
 import React from 'react';
-import Mock from '@vx/mock-data';
-import Group from '@vx/group';
-import Shape from '@vx/shape';
-import Scale from '@vx/scale';
+import { letterFrequency } from '@vx/mock-data';
+import { Group } from '@vx/group';
+import { Bar } from '@vx/shape';
+import { scaleLinear, scaleBand } from '@vx/scale';
 
 // We'll use some mock data from `@vx/mock-data` for this.
-const data = Mock.letterFrequency;
+const data = letterFrequency;
 
 // Define the graph dimensions and margins
 const width = 500;
@@ -43,12 +50,12 @@ const x = d => d.letter;
 const y = d => +d.frequency * 100;
 
 // And then scale the graph by our data
-const xScale = Scale.scaleBand({
+const xScale = scaleBand({
   rangeRound: [0, xMax],
   domain: data.map(x),
   padding: 0.4,
 });
-const yScale = Scale.scaleLinear({
+const yScale = scaleLinear({
   rangeRound: [yMax, 0],
   domain: [0, Math.max(...data.map(y))],
 });
@@ -66,7 +73,7 @@ function BarGraph(props) {
         const barHeight = yMax - yPoint(d);
         return (
           <Group key={`bar-${i}`}>
-            <Shape.Bar
+            <Bar
               x={xPoint(d)}
               y={yMax - barHeight}
               height={barHeight}

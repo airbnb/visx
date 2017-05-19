@@ -1,3 +1,1 @@
-import Marker from './markers/Marker';
-
-export default Marker;
+export { default as Marker } from './markers/Marker';

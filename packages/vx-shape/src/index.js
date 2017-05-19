@@ -1,13 +1,5 @@
-import Line from './shapes/Line';
-import LinePath from './shapes/LinePath';
-import AreaClosed from './shapes/AreaClosed';
-import AreaStack from './shapes/AreaStack';
-import Bar from './shapes/Bar';
-
-export default {
-  Line,
-  LinePath,
-  AreaClosed,
-  AreaStack,
-  Bar,
-};
+export { default as Line } from './shapes/Line';
+export { default as LinePath } from './shapes/LinePath';
+export { default as AreaClosed } from './shapes/AreaClosed';
+export { default as AreaStack } from './shapes/AreaStack';
+export { default as Bar } from './shapes/Bar';

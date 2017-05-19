@@ -1,7 +1,2 @@
-import Glyph from './glyphs/Glyph';
-import Dot from './glyphs/Dot';
-
-export default {
-  Glyph,
-  Dot,
-}
+export { default as Glyph } from './glyphs/Glyph';
+export { default as GlyphDot } from './glyphs/Dot';

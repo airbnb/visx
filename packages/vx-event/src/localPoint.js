@@ -1,4 +1,4 @@
-import Point from '@vx/point';
+import { Point } from '@vx/point';
 
 export default function localPoint(node, event) {
   if (!node) return;

@@ -2,6 +2,7 @@
   font: bold 11px/14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
   height: 20px;
   overflow: hidden;
+  margin-right: 10px;
 }
 .gh-btn,
 .gh-count,
@@ -123,7 +124,7 @@
 
 
 ::-webkit-scrollbar {
-background: transparent;
+  background: transparent;
 	overflow: visible;
 	width: 10px;
 }
@@ -156,18 +157,17 @@ background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-	background-color: #fc2e1c;
+  background-color: #999;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-	background-color: #999;
+	background-color: #fc2e1c;
 }
 
 pre.line-numbers {
 	position: relative;
-	padding-left: 3.8em;
+	padding-left: 3em;
 	counter-reset: linenumber;
-	border-top: 1px solid #222;
 }
 
 pre.line-numbers > code {
@@ -180,15 +180,22 @@ pre.line-numbers > code {
 	top: 0;
 	font-size: 100%;
 	left: -.8em;
-	width: 3em; /* works for line-numbers below 1000 lines */
+	width: 2em; /* works for line-numbers below 1000 lines */
 	letter-spacing: -1px;
-	border-right: 1px solid #222;
 
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+}
 
+@media (max-width: 600px) {
+  .line-numbers .line-numbers-rows {
+    display: none;
+  }
+  .github-btn {
+    margin-right: 5px;
+  }
 }
 
 	.line-numbers-rows > span {
@@ -199,7 +206,7 @@ pre.line-numbers > code {
 
 		.line-numbers-rows > span:before {
 			content: counter(linenumber);
-			color: #999;
+			color: #ced3d7;
 			display: block;
 			padding-right: 0.8em;
 			text-align: right;

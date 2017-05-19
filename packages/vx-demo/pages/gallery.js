@@ -1,304 +1,388 @@
 import React from 'react';
+import Tilt from 'react-tilt';
+import Link from 'next/link';
+import { extent, max } from 'd3-array';
+
 import Page from '../components/page';
-import Mock from '@vx/mock-data';
-import Curve from '@vx/curve';
 import Footer from '../components/footer';
 
-import SimpleLineChart from '../components/charts/SimpleLineChart';
-import SimpleAreaChart from '../components/charts/SimpleAreaChart';
-import SimpleLineWithGlyphsChart from '../components/charts/SimpleLineWithGlyphsChart';
-import SimpleBar from '../components/charts/SimpleBar';
-import StackedAreaChart from '../components/charts/StackedAreaChart';
-import MultiSeriesLine from '../components/charts/MultiSeriesLine';
-import BrushChart from '../components/charts/BrushChart';
+import Lines from '../components/tiles/lines';
+import Bars from '../components/tiles/bars';
+import Dots from '../components/tiles/dots';
+import Patterns from '../components/tiles/patterns';
+import Gradients from '../components/tiles/gradients';
+import Area from '../components/tiles/area';
+import Stacked from '../components/tiles/stacked';
+import MultiLine from '../components/tiles/multiline';
+import Axis from '../components/tiles/axis';
 
-import SimpleLineCode from '../components/codeblocks/SimpleLineCode';
-import SimpleAreaCode from '../components/codeblocks/SimpleAreaCode';
-import SimpleLineGlyphCode from '../components/codeblocks/SimpleLineGlyphCode';
-import SimpleBarCode from '../components/codeblocks/SimpleBarCode';
-import StackedAreaCode from '../components/codeblocks/StackedAreaCode';
-import MultiSeriesLineCode from '../components/codeblocks/MultiSeriesLineCode';
-import BrushChartCode from '../components/codeblocks/BrushChartCode';
+const items = [
+  "#242424",
+  "#c3dae8",
+  "#ef5843",
+  "#f5f2e3",
+  "#f6c431",
+  "#32deaa",
+  "rgba(243, 129, 129, 1.000)",
+  "#00f2ff",
+  "#f4419f",
+  "#3130e3",
+  "#12122e",
+  "#ff657c"
+];
 
-export default () => {
-  const data1 = Mock.genDateValue(20);
-  const data2 = Mock.genDateValue(20);
+export default class Gallery extends React.Component {
+  constructor() {
+    super();
+    this.nodes = new Set();
+    this.state = { dimensions: [] };
+    this.resize = this.resize.bind(this);
+  }
 
-  const width = 720;
-  const height = 400;
-  const margin = {
-    top: 60,
-    bottom: 60,
-    left: 80,
-    right: 80,
-  };
+  componentDidMount() {
+    window.addEventListener('resize', this.resize, false);
+    setTimeout(() => {
+      this.resize();
+    }, 1);
+  }
 
-  return (
-    <Page title="gallery">
-      <div className="page-left gallery">
-        <div className="item">
-          <div className="item-top">
-            <div className="chart-title">
-              <a name="brushchart" />
-              Brush + Zoom Chart
-              <a href="https://github.com/hshoff/vx/blob/master/packages/vx-demo/components/charts/BrushChart.js">
-                <small> view source</small>
-              </a>
-            </div>
-            <BrushChart
-              width={width}
-              height={height}
-              margin={margin}
-            />
-          </div>
-          <div className="item-bottom">
-            <div>
-              <BrushChartCode />
-            </div>
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.resize);
+  }
+
+  resize() {
+    const newState = [];
+    this.nodes.forEach((node) => {
+      if (!node) return;
+      newState.push([node.offsetWidth, node.clientHeight]);
+    });
+    this.setState({ dimensions: newState });
+  }
+
+  render() {
+    const t1 = this.state.dimensions[0] || [8, 300];
+    const t2 = this.state.dimensions[1] || [8, 300];
+    const t3 = this.state.dimensions[2] || [8, 300];
+    const t4 = this.state.dimensions[3] || [8, 300];
+    const t5 = this.state.dimensions[4] || [8, 300];
+    const t6 = this.state.dimensions[5] || [8, 300];
+    const t7 = this.state.dimensions[6] || [8, 300];
+    const t8 = this.state.dimensions[7] || [8, 300];
+    const t9 = this.state.dimensions[8] || [8, 300];
+
+    return (
+      <Page title="gallery">
+        <div className="gallery">
+          <Tilt
+            className="tilt"
+            options={{ max: 8, scale: 1 }}
+          >
+            <Link prefetch href="/lines">
+              <div
+                className="gallery-item"
+                style={{ background: items[0] }}
+                ref={d => this.nodes.add(d)}
+              >
+                <div className="image">
+                  <Lines
+                    width={t1[0]}
+                    height={t1[1]}
+                  />
+                </div>
+                <div className="details">
+                  <div className="title">Lines</div>
+                  <div className="description">
+                    <pre>{`<Shape.Line />`}</pre>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </Tilt>
+          <Tilt
+            className="tilt"
+            options={{ max: 8, scale: 1 }}
+          >
+            <Link prefetch href="/bars">
+              <div
+                className="gallery-item"
+                style={{ background: items[1] }}
+                ref={d => this.nodes.add(d)}
+              >
+                <div className="image">
+                  <Bars
+                    width={t2[0]}
+                    height={t2[1]}
+                  />
+                </div>
+                <div className="details color-blue">
+                  <div className="title">Bars</div>
+                  <div className="description">
+                    <pre>{`<Shape.Bar />`}</pre>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </Tilt>
+          <Tilt
+            className="tilt"
+            options={{ max: 8, scale: 1 }}
+          >
+            <Link prefetch href="/dots">
+              <div
+                className="gallery-item"
+                style={{ background: items[2] }}
+                ref={d => this.nodes.add(d)}
+              >
+                <div className="image">
+                  <Dots
+                    width={t3[0]}
+                    height={t3[1]}
+                  />
+                </div>
+                <div className="details color-yellow">
+                  <div className="title">Dots</div>
+                  <div className="description">
+                    <pre>{`<Glyph.GlyphDot />`}</pre>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </Tilt>
+          <Tilt
+            className="tilt"
+            options={{ max: 8, scale: 1 }}
+          >
+            <Link prefetch href="/patterns">
+              <div
+                className="gallery-item"
+                style={{ background: items[3] }}
+                ref={d => this.nodes.add(d)}
+              >
+                <div className="image">
+                  <Patterns
+                    width={t4[0]}
+                    height={t4[1]}
+                  />
+                </div>
+                <div className="details color-gray">
+                  <div className="title">Patterns</div>
+                  <div className="description">
+                    <pre>{`<Pattern />`}</pre>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </Tilt>
+          <Tilt
+            className="tilt"
+            options={{ max: 8, scale: 1 }}
+          >
+            <Link prefetch href="/areas">
+              <div
+                className="gallery-item"
+                style={{ background: items[5] }}
+                ref={d => this.nodes.add(d)}
+              >
+                <div className="image">
+                  <Area
+                    width={t5[0]}
+                    height={t5[1]}
+                    margin={{
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      bottom: 80,
+                    }}
+                  />
+                </div>
+                <div className="details">
+                  <div className="title">Areas</div>
+                  <div className="description">
+                    <pre>{`<Shape.AreaClosed />`}</pre>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </Tilt>
+          <Tilt
+            className="tilt"
+            options={{ max: 8, scale: 1 }}
+          >
+            <Link prefetch href="/stacked-areas">
+              <div
+                className="gallery-item"
+                style={{ background: items[6] }}
+                ref={d => this.nodes.add(d)}
+              >
+                <div className="image">
+                  <Stacked
+                    width={t6[0]}
+                    height={t6[1]}
+                    margin={{
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      bottom: 80,
+                    }}
+                  />
+                </div>
+                <div className="details" style={{ color: "rgba(251, 224, 137, 1.000)"}}>
+                  <div className="title">Stacked Areas</div>
+                  <div className="description">
+                    <pre>{`<Shape.AreaStack />`}</pre>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </Tilt>
+          <Tilt
+            className="tilt"
+            options={{ max: 8, scale: 1 }}
+          >
+            <Link prefetch href="/gradients">
+              <div className="gallery-item" style={{ background: 'white', boxShadow: '0 1px 6px rgba(0,0,0,0.1)' }} ref={d => this.nodes.add(d)}>
+                <div className="image">
+                  <Gradients
+                    width={t7[0]}
+                    height={t7[1]}
+                  />
+                </div>
+                <div className="details color-gray">
+                  <div className="title">Gradients</div>
+                  <div className="description">
+                    <pre>{`<Gradient />`}</pre>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </Tilt>
+          <Tilt
+            className="tilt"
+            options={{ max: 8, scale: 1 }}
+          >
+            <Link prefetch href="/glyphs">
+              <div className="gallery-item" style={{ background: items[7] }} ref={d => this.nodes.add(d)}>
+                <div className="image">
+                  <MultiLine
+                    width={t8[0]}
+                    height={t8[1]}
+                    margin={{
+                      top: 10,
+                      left: 0,
+                      right: 0,
+                      bottom: 80,
+                    }}
+                  />
+                </div>
+                <div className="details" style={{  color: 'rgba(126, 31, 220, 1.000)' }}>
+                  <div className="title">Glyphs</div>
+                  <div className="description">
+                    <pre>{`<Glyph.GlyphDot />`}</pre>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </Tilt>
+          <Tilt
+            className="tilt"
+            options={{ max: 8, scale: 1 }}
+          >
+            <Link prefetch href="/axis">
+              <div className="gallery-item" style={{ background: items[8] }} ref={d => this.nodes.add(d)}>
+                <div className="image">
+                  <Axis
+                    width={t9[0]}
+                    height={t9[1]}
+                    margin={{
+                      top: 20,
+                      left: 60,
+                      right: 40,
+                      bottom: 120,
+                    }}
+                  />
+                </div>
+                <div className="details" style={{ color: '#8e205f'}}>
+                  <div className="title">Axis</div>
+                  <div className="description">
+                    <pre>{`<Axis.AxisLeft /> + <Axis.AxisBottom />`}</pre>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </Tilt>
+          <div>
+            <br/>
+            <h1 style={{textAlign: 'center', lineHeight: '.8em'}}>
+              More on the way!
+            </h1>
           </div>
         </div>
-        <div className="item">
-          <div className="item-top">
-            <div className="chart-title">
-              <a name="mutliseriesline" />
-              Multi-Series Line Chart
-              <a href="https://github.com/hshoff/vx/blob/master/packages/vx-demo/components/charts/MultiSeriesLine.js">
-                <small> view source</small>
-              </a>
-            </div>
-            <MultiSeriesLine
-              width={width}
-              height={height}
-              margin={margin}
-            />
-          </div>
-          <div className="item-bottom">
-            <div>
-              <MultiSeriesLineCode />
-            </div>
-          </div>
-        </div>
-        <div className="item">
-          <div className="item-top">
-            <div className="chart-title">
-              <a name="simplebar" />
-              Bar chart
-              <a href="https://github.com/hshoff/vx/blob/master/packages/vx-demo/components/charts/SimpleBar.js">
-                <small> view source</small>
-              </a>
-            </div>
-            <SimpleBar
-              width={width}
-              height={height}
-              margin={margin}
-            />
-          </div>
-          <div className="item-bottom">
-            <div>
-              <SimpleBarCode />
-            </div>
-          </div>
-        </div>
-        <div className="item">
-          <div className="item-top">
-            <div className="chart-title">
-              <a name="areastack" />
-              Stacked area chart
-              <a href="https://github.com/hshoff/vx/blob/master/packages/vx-demo/components/charts/StackedAreaChart.js">
-                <small> view source</small>
-              </a>
-            </div>
-            <StackedAreaChart
-              width={width}
-              height={height}
-              margin={margin}
-            />
-          </div>
-          <div className="item-bottom">
-            <div>
-              <StackedAreaCode />
-            </div>
-          </div>
-        </div>
-        <div className="item simpleline">
-          <div className="item-top">
-            <div className="chart-title">
-              <a name="simpleline" />
-              Line chart
-              <a href="https://github.com/hshoff/vx/blob/master/packages/vx-demo/components/charts/SimpleLineChart.js">
-                <small> view source</small>
-              </a>
-            </div>
-            <SimpleLineChart
-              width={width}
-              height={height}
-              margin={margin}
-              dataset={[{
-                data: data1,
-              }, {
-                data: data2
-              }]}
-            />
-          </div>
-          <div className="item-bottom">
-            <div>
-              <SimpleLineCode />
-            </div>
-          </div>
-        </div>
-        <div className="item simplearea">
-          <div className="item-top">
-            <div className="chart-title">
-              <a name="simplearea" />
-              Area chart
-              <a href="https://github.com/hshoff/vx/blob/master/packages/vx-demo/components/charts/SimpleAreaChart.js">
-                <small> view source</small>
-              </a>
-            </div>
-            <SimpleAreaChart
-              width={width}
-              height={height}
-              margin={margin}
-            />
-          </div>
-          <div className="item-bottom">
-            <div>
-              <SimpleAreaCode />
-            </div>
-          </div>
-        </div>
-        <div className="item">
-          <div className="item-top">
-            <div className="chart-title">
-              <a name="simplelineglyphs" />
-              Line with glyphs chart
-              <a href="https://github.com/hshoff/vx/blob/master/packages/vx-demo/components/charts/SimpleLineWithGlyphsChart.js">
-                <small> view source</small>
-              </a>
-            </div>
-            <SimpleLineWithGlyphsChart
-              width={width}
-              height={height}
-              margin={margin}
-              dataset={[{
-                data: data2,
-                chart: {
-                  stroke: '#6A7DD3',
-                  strokeWidth: 4,
-                  backgroundColor: 'white',
-                }
-              }]}
-            />
-          </div>
-          <div className="item-bottom">
-            <div>
-              <SimpleLineGlyphCode />
-            </div>
-          </div>
-        </div>
+
         <Footer />
-      </div>
 
-      <div className="page-right">
-        <ul>
-          <li>
-            <a href="#brushchart">Brush + Zoom Chart</a>
-          </li>
-          <li>
-            <a href="#mutliseriesline">Multi-Series Line Chart</a>
-          </li>
-          <li>
-            <a href="#simplebar">Bar chart</a>
-          </li>
-          <li>
-            <a href="#areastack">Stacked area chart</a>
-          </li>
-          <li>
-            <a href="#simpleline">Line chart</a>
-          </li>
-          <li>
-            <a href="#simplearea">Area chart</a>
-          </li>
-          <li>
-            <a href="#simplelineglyphs">Line with glyphs chart</a>
-          </li>
-        </ul>
-      </div>
-
-      <style jsx>{`
-        .gallery {
-          display: flex;
-          flex: 1;
-          flex-direction: column;
-          align-items: flex-start;
-          margin-top: 0;
-        }
-
-        .item {
-          display: block;
-          margin: 2rem;
-          border: 1px solid #f0f0f0;
-          border-radius: 3px;
-        }
-
-        .item h4 {
-          text-align: center;
-          margin-top: .5rem;
-        }
-
-        .item-top,
-        .item-bottom {
-          display: block;
-        }
-
-        .item-bottom {
-          color: white;
-        }
-
-        .item:last-child {
-          margin-bottom: 100px;
-        }
-
-        .simpleline {
-          color: white;
-          background-color: #090910;
-        }
-
-        .chart-title {
-          margin-top: 1rem;
-          margin-left: 4rem;
-        }
-
-        .page-right {
-          color: black;
-        }
-
-        .page-right ul {
-          position: fixed;
-        }
-
-        .footer {
-          width: 100%;
-        }
-
-        @media (max-width: 600px) {
-          .page-left {
-            margin-top: 10px;
-            padding-left: 1rem;
-          }
-
-          .page-right {
-            opacity: 0;
+        <style jsx>{`
+          h3 {
             margin-top: 0;
-            padding: 0;
-            position: relative;
+            margin-left: 40px;
+            margin-bottom: 0;
+          }
+          .gallery {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            max-width: 95vw;
+            margin: 55px auto 40px;
+            overflow-x: hidden;
+            padding-bottom: 20px;
+          }
+          .gallery-item {
+            background-color: lightgray;
+            margin: 5px;
+            display: flex;
+            height: 390px;
+            flex: 1;
+            min-width: 25%;
+            flex-direction: column;
+            border-radius: 14px;
+          }
+          .image {
+            flex: 1;
+            display: flex;
+          }
+          .details {
+            text-align: center;
+            padding: 15px 20px;
+            color: #ffffff;
+          }
+          .title {
+            font-weight: 900;
+            line-height: 0.9rem;
+          }
+          .description {
+            font-weight: 300;
+            font-size: 14px;
+          }
+          pre {
+            margin: 0;
+          }
+          .color-blue { color: rgba(25, 231, 217, 1.000); }
+          .color-yellow { color: #f6c431; }
+          .color-gray { color: #333; }
+
+          @media (max-width: 960px) {
+            .gallery-item {
+              min-width: 45%;
+            }
           }
 
-          .item {
-            margin: 0 0 2rem;
+          @media (max-width: 600px) {
+            .gallery-item {
+              min-width: 100%;
+            }
           }
-        }
-      `}</style>
-    </Page>
-  )
+        `}</style>
+      </Page>
+    );
+  }
 }

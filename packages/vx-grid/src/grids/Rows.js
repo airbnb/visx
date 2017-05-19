@@ -1,8 +1,8 @@
 import React from 'react';
 import cx from 'classnames';
-import Group from '@vx/group';
-import Shape from '@vx/shape';
-import Point from '@vx/point';
+import { Line } from '@vx/shape';
+import { Group } from '@vx/group';
+import { Point } from '@vx/point';
 
 export default function Rows({
   top = 0,
@@ -32,7 +32,7 @@ export default function Rows({
           y
         });
         return (
-          <Shape.Line
+          <Line
             key={`row-line-${d}-${i}`}
             from={fromPoint}
             to={toPoint}

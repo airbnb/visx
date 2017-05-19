@@ -6,7 +6,7 @@
 
 code[class*="language-"],
 pre[class*="language-"] {
-	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	font-family: "Menlo", monospace;
 	text-align: left;
 	white-space: pre;
 	word-spacing: normal;
@@ -68,7 +68,7 @@ code[class*="language-"] {
 .token.number,
 .token.constant,
 .token.symbol {
-	color: #0cf;
+	color: #4398c6;
 }
 
 .token.selector,
@@ -76,7 +76,7 @@ code[class*="language-"] {
 .token.string,
 .token.char,
 .token.builtin {
-	color: yellow;
+	color: #868e96;
 }
 
 .token.operator,
@@ -85,13 +85,14 @@ code[class*="language-"] {
 .language-css .token.string,
 .toke.variable,
 .token.inserted {
-	color: yellowgreen;
+	color: #ec5592;
+	font-weight: 600;
 }
 
 .token.atrule,
 .token.attr-value,
 .token.keyword {
-	color: deeppink;
+	color: #202123;
 }
 
 .token.regex,

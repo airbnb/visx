@@ -6,23 +6,111 @@ Object.defineProperty(exports, "__esModule", {
 
 var _d3Shape = require('d3-shape');
 
-exports.default = {
-  basis: _d3Shape.curveBasis,
-  basisClose: _d3Shape.curveBasisClosed,
-  basisOpen: _d3Shape.curveBasisOpen,
-  step: _d3Shape.curveStep,
-  stepAfter: _d3Shape.curveStepAfter,
-  stepBefore: _d3Shape.curveStepbefore,
-  bundle: _d3Shape.curveBundle,
-  linear: _d3Shape.curveLinear,
-  linearClosed: _d3Shape.curveLinearClosed,
-  monotoneX: _d3Shape.curveMonotoneX,
-  monotoneY: _d3Shape.curveMonotoneY,
-  cardinal: _d3Shape.curveCardinal,
-  cardinalClosed: _d3Shape.curveCardinalClosed,
-  cardinalOpen: _d3Shape.curveCardinalOpen,
-  catmullRom: _d3Shape.curveCatmullRom,
-  catmullRomClosed: _d3Shape.curveCatmullRomClosed,
-  catmullRomOpen: _d3Shape.curveCatmullRomOpen,
-  natural: _d3Shape.curveNatural
-};
+Object.defineProperty(exports, 'curveBasis', {
+  enumerable: true,
+  get: function get() {
+    return _d3Shape.curveBasis;
+  }
+});
+Object.defineProperty(exports, 'curveBasisClosed', {
+  enumerable: true,
+  get: function get() {
+    return _d3Shape.curveBasisClosed;
+  }
+});
+Object.defineProperty(exports, 'curveBasisOpen', {
+  enumerable: true,
+  get: function get() {
+    return _d3Shape.curveBasisOpen;
+  }
+});
+Object.defineProperty(exports, 'curveStep', {
+  enumerable: true,
+  get: function get() {
+    return _d3Shape.curveStep;
+  }
+});
+Object.defineProperty(exports, 'curveStepAfter', {
+  enumerable: true,
+  get: function get() {
+    return _d3Shape.curveStepAfter;
+  }
+});
+Object.defineProperty(exports, 'curveStepbefore', {
+  enumerable: true,
+  get: function get() {
+    return _d3Shape.curveStepbefore;
+  }
+});
+Object.defineProperty(exports, 'curveBundle', {
+  enumerable: true,
+  get: function get() {
+    return _d3Shape.curveBundle;
+  }
+});
+Object.defineProperty(exports, 'curveLinear', {
+  enumerable: true,
+  get: function get() {
+    return _d3Shape.curveLinear;
+  }
+});
+Object.defineProperty(exports, 'curveLinearClosed', {
+  enumerable: true,
+  get: function get() {
+    return _d3Shape.curveLinearClosed;
+  }
+});
+Object.defineProperty(exports, 'curveCardinal', {
+  enumerable: true,
+  get: function get() {
+    return _d3Shape.curveCardinal;
+  }
+});
+Object.defineProperty(exports, 'curveCardinalClosed', {
+  enumerable: true,
+  get: function get() {
+    return _d3Shape.curveCardinalClosed;
+  }
+});
+Object.defineProperty(exports, 'curveCardinalOpen', {
+  enumerable: true,
+  get: function get() {
+    return _d3Shape.curveCardinalOpen;
+  }
+});
+Object.defineProperty(exports, 'curveCatmullRom', {
+  enumerable: true,
+  get: function get() {
+    return _d3Shape.curveCatmullRom;
+  }
+});
+Object.defineProperty(exports, 'curveCatmullRomClosed', {
+  enumerable: true,
+  get: function get() {
+    return _d3Shape.curveCatmullRomClosed;
+  }
+});
+Object.defineProperty(exports, 'curveCatmullRomOpen', {
+  enumerable: true,
+  get: function get() {
+    return _d3Shape.curveCatmullRomOpen;
+  }
+});
+Object.defineProperty(exports, 'curveMonotoneX', {
+  enumerable: true,
+  get: function get() {
+    return _d3Shape.curveMonotoneX;
+  }
+});
+Object.defineProperty(exports, 'curveMonotoneY', {
+  enumerable: true,
+  get: function get() {
+    return _d3Shape.curveMonotoneY;
+  }
+});
+Object.defineProperty(exports, 'curveNatural', {
+  enumerable: true,
+  get: function get() {
+    return _d3Shape.curveNatural;
+  }
+});

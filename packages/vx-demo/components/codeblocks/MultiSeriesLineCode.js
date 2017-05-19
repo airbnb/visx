@@ -6,12 +6,12 @@ export default ({}) => {
     <Codeblock>
       {`// MultiSeriesLine.js
 import React from 'react';
-import Mock from '@vx/mock-data';
-import Group from '@vx/group';
-import Curve from '@vx/curve';
-import Scale from '@vx/scale';
 import Axis from '@vx/axis';
-import Shape from '@vx/shape';
+import Curve from '@vx/curve';
+import { Group } from '@vx/group';
+import { LinePath } from '@vx/shape';
+import { cityTemperature } from '@vx/mock-data';
+import { scaleTime, scaleLinear, scaleOrdinal } from '@vx/scale';
 import { extent, max, min } from 'd3-array';
 import { timeParse } from 'd3-time-format';
 import { compose, withState, withHandlers } from 'recompose';
@@ -20,7 +20,7 @@ import { compose, withState, withHandlers } from 'recompose';
 const parseDate = timeParse("%Y%m%d");
 
 // [{date: "", new york: "", san francisco: "", austin: ""}]
-const rawData = Mock.cityTemperature;
+const rawData = cityTemperature;
 const cityNames = Object.keys(rawData[0]).filter(k => k !== 'date');
 
 // rawData => [{id: "", values: [{ date, temperature }]}, ...]
@@ -78,17 +78,17 @@ export default withSelected(({
   const y = d => +d.temperature;
 
   // scales
-  const xScale = Scale.scaleTime({
+  const xScale = scaleTime({
     range: [0, xMax],
     domain: extent(rawData, x),
   });
-  const yScale = Scale.scaleLinear({
+  const yScale = scaleLinear({
     range: [yMax, 0],
     domain: extent(selected.slice().reduce((ret, c) => {
       return ret.concat(getCity(c).values)
     }, []), y)
   });
-  const color = Scale.scaleOrdinal({
+  const color = scaleOrdinal({
     range: ['#3b99d8', '#239f85', '#9a5cb4'],
     domain: cityNames,
   });
@@ -110,7 +110,7 @@ export default withSelected(({
           const lastDatum = values[values.length - 1];
           return (
             <g key={'{id}'}>
-              <Shape.LinePath
+              <LinePath
                 data={values}
                 xScale={xScale}
                 yScale={yScale}
