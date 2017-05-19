@@ -7,14 +7,19 @@ The `@vx/grid` package lets you create rows and columns. Or, you can use a `<Gri
 ![grid example](http://i.imgur.com/KPmq4XV.png)
 
 ``` js
-<Grid.Grid
+import { Grid } from '@vx/grid';
+// or
+// import * as Grid from '@vx/grid';
+// <Grid.Grid />
+
+const grid = (<Grid
   xScale={xScale}
   yScale={yScale}
   width={xMax}
   height={yMax}
   numTicksRows={numTicksForHeight(height)}
   numTicksColumns={numTicksForWidth(width)}
-/>
+/>);
 ```
 
 ## `<Grid />`

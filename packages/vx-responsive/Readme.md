@@ -2,30 +2,37 @@
 
 The `@vx/responsive` package is here to help you make responsive graphs.
 
-If you would like your graph to adapt to the screen size, you can use `Responsive.withScreenSize()` to take an element and attach events that will resize the graph to maintain the same size of the screen.
+If you would like your graph to adapt to the screen size, you can use `withScreenSize()` to take an element and attach events that will resize the graph to maintain the same size of the screen.
 
 ## Example:
 ``` js
-import Responsive from `@vx/responsive`;
-let chartToRender = Responsive.withScreenSize(MySuperCoolVxChart);
+import { withScreenSize } from `@vx/responsive`;
+// or
+// import * as Responsive from '@vx/responsive';
+// Responsive.withScreenSize(...);
+
+let chartToRender = withScreenSize(MySuperCoolVxChart);
 
 // ... Render the chartToRender somewhere
 ```
 
-You can also create a responsive chart with a specific viewBox with the `<Responsive.ScaleSVG />` component.
+You can also create a responsive chart with a specific viewBox with the `<ScaleSVG />` component.
 
 ## Example:
 
 ``` js
-import Responsive from `@vx/responsive`;
+import { ScaleSVG } from `@vx/responsive`;
+// or
+// import * as Responsive from '@vx/responsive';
+// <Responsive.ScaleSVG />
 
 let chartToRender = (
-  <Responsive.ScaleSVG
+  <ScaleSVG
     width={400}
     height={400}
   >
     <MySuperCoolVXChart/>
-  </Responsive.ScaleSVG>
+  </ScaleSVG>
 )
 ```
 

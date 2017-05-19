@@ -9,25 +9,32 @@ You can use one of the 4 pre-made axes or you can create your own based on the `
 ![Axis Example](http://i.imgur.com/uNIgPsg.png)
 
 ``` js
-<Axis.AxisBottom
-  scale={xScale}
-  top={yMax + margin.top}
-  left={margin.left}
-  label={''}
-  stroke={'#1b1a1e'}
-  tickTextFill={'#1b1a1e'}
-/>
-<Axis.AxisLeft
-  scale={yScale}
-  top={margin.top}
-  left={margin.left}
-  label={''}
-  stroke={'#1b1a1e'}
-  tickTextFill={'#1b1a1e'}
-/>
+import {AxisBottom, AxisLeft} from '@vx/axis';
+// or
+// import * as Axis from '@vx/axis';
+// <Axis.AxisBottom />
+
+const axis = (
+  <AxisBottom
+    scale={xScale}
+    top={yMax + margin.top}
+    left={margin.left}
+    label={''}
+    stroke={'#1b1a1e'}
+    tickTextFill={'#1b1a1e'}
+  />
+  <AxisLeft
+    scale={yScale}
+    top={margin.top}
+    left={margin.left}
+    label={''}
+    stroke={'#1b1a1e'}
+    tickTextFill={'#1b1a1e'}
+  />
+);
 ```
 
-## `<Axis.AxisTop/>`
+## `<AxisTop/>`
 
 |        Name        | Default  |   Type   |                                                   Description                                                   |
 |:------------------ |:-------- |:-------- |:--------------------------------------------------------------------------------------------------------------- |
@@ -57,7 +64,7 @@ You can use one of the 4 pre-made axes or you can create your own based on the `
 | hideZero           | false    | bool     | If true, will hide '0' values.                                                                                  |
 | className          |          | string   | The class name applied to the axis group element.                                                               |
 
-## `<Axis.AxisBottom/>`
+## `<AxisBottom/>`
 
 |        Name        | Default  |   Type   |                                                   Description                                                   |
 |:------------------ |:-------- |:-------- |:--------------------------------------------------------------------------------------------------------------- |
@@ -87,7 +94,7 @@ You can use one of the 4 pre-made axes or you can create your own based on the `
 | hideZero           | false    | bool     | If true, will hide '0' values.                                                                                  |
 | className          |          | string   | The class name applied to the axis group element.                                                               |
 
-## `<Axis.AxisLeft/>`
+## `<AxisLeft/>`
 
 |        Name        | Default |   Type   |                                                   Description                                                   |
 |:------------------ |:------- |:-------- |:--------------------------------------------------------------------------------------------------------------- |
@@ -117,7 +124,7 @@ You can use one of the 4 pre-made axes or you can create your own based on the `
 | hideZero           | false   | bool     | If true, will hide '0' values.                                                                                  |
 | className          |         | string   | The class name applied to the axis group element.                                                               |
 
-## `<Axis.AxisRight/>`
+## `<AxisRight/>`
 
 |        Name        | Default |   Type   |                                                   Description                                                   |
 |:------------------ |:------- |:-------- |:--------------------------------------------------------------------------------------------------------------- |
@@ -147,7 +154,7 @@ You can use one of the 4 pre-made axes or you can create your own based on the `
 | hideZero           | false   | bool     | If true, will hide '0' values.                                                                                  |
 | className          |         | string   | The class name applied to the axis group element.                                                               |
 
-## `<Axis.Axis />`
+## `<Axis />`
 
 |        Name        |     Default     |   Type   |                                                   Description                                                   |
 |:------------------ |:--------------- |:-------- |:--------------------------------------------------------------------------------------------------------------- |
