@@ -1,5 +1,5 @@
 import React from 'react';
-import Shape from '@vx/shape';
+import { Bar } from '@vx/shape';
 import {
   DarkgreenGreen,
   LightgreenGreen,
@@ -37,7 +37,7 @@ export default ({
       <PurpleTeal id="PurpleTeal" />
       <SteelPurple id="SteelPurple" />
       <TealBlue id="TealBlue" />
-      <rect
+      <Bar
         x={0}
         y={0}
         width={w}
@@ -47,7 +47,7 @@ export default ({
         strokeWidth={8}
         rx={14}
       />
-      <rect
+      <Bar
         x={w}
         y={0}
         width={w}
@@ -57,7 +57,7 @@ export default ({
         stroke='#ffffff'
         strokeWidth={8}
       />
-      <rect
+      <Bar
         x={w * 2}
         y={0}
         width={w}
@@ -67,7 +67,7 @@ export default ({
         stroke='#ffffff'
         strokeWidth={8}
       />
-      <rect
+      <Bar
         x={w * 3}
         y={0}
         width={w}
@@ -77,7 +77,7 @@ export default ({
         stroke='#ffffff'
         strokeWidth={8}
       />
-      <rect
+      <Bar
         x={0}
         y={h}
         width={w}
@@ -87,7 +87,7 @@ export default ({
         stroke='#ffffff'
         strokeWidth={8}
       />
-      <rect
+      <Bar
         x={w}
         y={h}
         width={w}
@@ -97,7 +97,7 @@ export default ({
         stroke='#ffffff'
         strokeWidth={8}
       />
-      <rect
+      <Bar
         x={w * 2}
         y={h}
         width={w}
@@ -107,7 +107,7 @@ export default ({
         stroke='#ffffff'
         strokeWidth={8}
       />
-      <rect
+      <Bar
         x={w * 3}
         y={h}
         width={w}

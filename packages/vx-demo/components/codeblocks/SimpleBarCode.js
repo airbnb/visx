@@ -6,11 +6,11 @@ export default ({}) => {
     <Codeblock>
       {`// SimpleBar.js
 import React from 'react';
-import { letterFrequency } from '@vx/mock-data';
+import { Bar } from '@vx/shape';
 import { Group } from '@vx/group';
-import Shape from '@vx/shape';
-import { scaleBand, scaleLinear } from '@vx/scale';
 import { PatternLines } from '@vx/pattern';
+import { letterFrequency } from '@vx/mock-data';
+import { scaleBand, scaleLinear } from '@vx/scale';
 import { max } from 'd3-array';
 
 const data = letterFrequency;
@@ -58,7 +58,7 @@ export default ({
         const barHeight = yMax - yScale(y(d));
         return (
           <Group key={'bar-{x(d)}'} left={margin.left} top={margin.top}>
-            <Shape.Bar
+            <Bar
               width={xScale.bandwidth()}
               height={barHeight}
               x={xScale(x(d))}

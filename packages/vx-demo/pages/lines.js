@@ -6,8 +6,8 @@ export default () => {
   return (
     <Show component={Lines} title="Lines">
 {`import React from 'react';
-import Shape from '@vx/shape';
 import { Group } from '@vx/group';
+import { LinePath } from '@vx/shape';
 import { curveMonotoneX } from '@vx/curve';
 import { genDateValue } from '@vx/mock-data';
 import { scaleTime, scaleLinear } from '@vx/scale';
@@ -66,7 +66,7 @@ export default ({
             key={\`lines-\${i}\`}
             top={offset}
           >
-            <Shape.LinePath
+            <LinePath
               data={d}
               xScale={xScale}
               yScale={yScale}

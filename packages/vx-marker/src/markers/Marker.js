@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
+import { Line } from '@vx/shape';
 import { Group } from '@vx/group';
-import Shape from '@vx/shape';
 
 export default function Marker({
   top = 0,
@@ -29,7 +29,7 @@ export default function Marker({
 }) {
   return (
     <Group top={top} left={left}>
-      <Shape.Line
+      <Line
         className={cx('vx-marker-line', className)}
         from={from}
         to={to}

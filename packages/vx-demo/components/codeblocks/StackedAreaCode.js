@@ -6,12 +6,12 @@ export default ({}) => {
     <Codeblock>
       {`// StackAreaChart.js
 import React from 'react';
-import { browserUsage } from '@vx/mock-data';
-import { scaleTime, scaleLinear } from '@vx/scale';
 import { Group } from '@vx/group';
-import { AxisLeft, AxisBottom } from '@vx/axis';
-import Shape from '@vx/shape';
+import { AreaStack } from '@vx/shape';
 import { TextOutline } from '@vx/text';
+import { browserUsage } from '@vx/mock-data';
+import { AxisLeft, AxisBottom } from '@vx/axis';
+import { scaleTime, scaleLinear } from '@vx/scale';
 import { extent, max } from 'd3-array';
 import { stack as d3stack } from 'd3-shape';
 import { timeParse } from 'd3-time-format';
@@ -63,7 +63,7 @@ export default enhance(({
         tickTextFill={'#000'}
       />
       <Group top={margin.top} left={margin.left}>
-        <Shape.AreaStack
+        <AreaStack
           reverse
           top={margin.top}
           left={margin.left}

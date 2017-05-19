@@ -11,9 +11,9 @@ export default () => {
       bottom: 0,
     }}>
 {`import React from 'react';
-import Shape from '@vx/shape';
 import { Group } from '@vx/group';
 import { GlyphDot } from '@vx/glyph';
+import { LinePath } from '@vx/shape';
 import { genDateValue } from '@vx/mock-data';
 import { scaleTime, scaleLinear } from '@vx/scale';
 import { curveBasis, curveMonotoneX } from '@vx/curve';
@@ -56,7 +56,7 @@ export default ({
         rx={14}
       />
       <Group top={margin.top}>
-        <Shape.LinePath
+        <LinePath
           data={data}
           xScale={xScale}
           yScale={yScale}
@@ -67,7 +67,7 @@ export default ({
           strokeDasharray='2,2'
           curve={curveBasis}
         />
-        <Shape.LinePath
+        <LinePath
           data={data}
           xScale={xScale}
           yScale={yScale}

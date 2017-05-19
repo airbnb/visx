@@ -6,30 +6,47 @@ Object.defineProperty(exports, "__esModule", {
 
 var _Line = require('./shapes/Line');
 
-var _Line2 = _interopRequireDefault(_Line);
+Object.defineProperty(exports, 'Line', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_Line).default;
+  }
+});
 
 var _LinePath = require('./shapes/LinePath');
 
-var _LinePath2 = _interopRequireDefault(_LinePath);
+Object.defineProperty(exports, 'LinePath', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_LinePath).default;
+  }
+});
 
 var _AreaClosed = require('./shapes/AreaClosed');
 
-var _AreaClosed2 = _interopRequireDefault(_AreaClosed);
+Object.defineProperty(exports, 'AreaClosed', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_AreaClosed).default;
+  }
+});
 
 var _AreaStack = require('./shapes/AreaStack');
 
-var _AreaStack2 = _interopRequireDefault(_AreaStack);
+Object.defineProperty(exports, 'AreaStack', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_AreaStack).default;
+  }
+});
 
 var _Bar = require('./shapes/Bar');
 
-var _Bar2 = _interopRequireDefault(_Bar);
+Object.defineProperty(exports, 'Bar', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_Bar).default;
+  }
+});
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-  Line: _Line2.default,
-  LinePath: _LinePath2.default,
-  AreaClosed: _AreaClosed2.default,
-  AreaStack: _AreaStack2.default,
-  Bar: _Bar2.default
-};

@@ -1,13 +1,13 @@
 import React from 'react';
 import cx from 'classnames';
-import Shape from '@vx/shape';
-import { Point } from '@vx/point';
-import { AxisLeft, AxisBottom } from '@vx/axis';
-import { scaleTime, scaleLinear } from '@vx/scale';
-import { Group } from '@vx/group';
 import { Grid } from '@vx/grid';
-import Curve from '@vx/curve';
+import { Group } from '@vx/group';
+import { Point } from '@vx/point';
 import { Marker } from '@vx/marker';
+import { curveMonotoneX } from '@vx/curve';
+import { AxisLeft, AxisBottom } from '@vx/axis';
+import { AreaClosed, LinePath } from '@vx/shape';
+import { scaleTime, scaleLinear } from '@vx/scale';
 import { LinePathAnnotation } from '@vx/annotation';
 import { extent, max } from 'd3-array';
 
@@ -115,7 +115,7 @@ export default ({
           tickStroke={'#1b1a1e'}
         />
 
-        <Shape.AreaClosed
+        <AreaClosed
           data={dataset[0].data}
           xScale={xScale}
           yScale={yScale}
@@ -124,10 +124,10 @@ export default ({
           strokeWidth={2}
           stroke={"url('#linear')"}
           fill={"url('#linearFade')"}
-          curve={Curve.monotoneX}
+          curve={curveMonotoneX}
         />
 
-        <Shape.LinePath
+        <LinePath
           data={dataset[1].data}
           xScale={xScale}
           yScale={yScale}
@@ -136,7 +136,7 @@ export default ({
           stroke={"url('#linearFade')"}
           strokeWidth={2}
           strokeDasharray={'5,5'}
-          curve={Curve.monotoneX}
+          curve={curveMonotoneX}
         />
 
         <Marker

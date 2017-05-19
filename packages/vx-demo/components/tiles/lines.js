@@ -1,6 +1,6 @@
 import React from 'react';
-import Shape from '@vx/shape';
 import { Group } from '@vx/group';
+import { LinePath } from '@vx/shape';
 import { curveMonotoneX } from '@vx/curve';
 import { genDateValue } from '@vx/mock-data';
 import { scaleTime, scaleLinear } from '@vx/scale';
@@ -52,7 +52,7 @@ export default ({
       {xMax > 8 && series.map((d, i) => {
         return (
           <Group key={`lines-${i}`} top={i * yMax/2}>
-            <Shape.LinePath
+            <LinePath
               data={d}
               xScale={xScale}
               yScale={yScale}

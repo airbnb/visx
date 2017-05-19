@@ -10,7 +10,7 @@ AreaClosed is a closed area under a curve.
 ![AreaClosed Example](http://i.imgur.com/hT0q8qx.png)
 
 ``` js
-<Shape.AreaClosed
+<AreaClosed
   data={myData}
   xScale={myXScale}
   yScale={myYScale}
@@ -47,7 +47,7 @@ An `<AreaStack />` is used to represent several area's stacked on top of each ot
 ![AreaStack Example](http://i.imgur.com/Gh930t7.png)
 
 ``` js
-<Shape.AreaStack
+<AreaStack
   reverse
   top={margin.top}
   left={margin.left}
@@ -100,7 +100,7 @@ A simple rectangle (a `<rect>` element) to use in your graphs.
 ![bar example](http://i.imgur.com/pvV9BJU.png)
 
 ``` js
-<Shape.Bar
+<Bar
   width={xScale.bandwidth()}
   height={barHeight}
   x={xScale(x(d))}
@@ -139,7 +139,7 @@ A simple line. Good for drawing in the sand.
 ### Example
 
 ``` js
-<Shape.Line
+<Line
   from={new Point({x:0, y:3})}
   to={new Point({x:0, y:10})}
 />
@@ -167,7 +167,7 @@ A more complicated line path. A `<LinePath />` is useful for making line graphs 
 ![Linepath example](http://i.imgur.com/YoDZrGi.png)
 
 ``` js
-<Shape.LinePath
+<LinePath
   data={dataset[1].data}
   xScale={xScale}
   yScale={yScale}

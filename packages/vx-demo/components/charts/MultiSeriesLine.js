@@ -1,10 +1,10 @@
 import React from 'react';
-import { cityTemperature } from '@vx/mock-data';
 import { Group } from '@vx/group';
+import { LinePath } from '@vx/shape';
 import { curveBasis } from '@vx/curve';
-import { scaleTime, scaleLinear, scaleOrdinal } from '@vx/scale';
+import { cityTemperature } from '@vx/mock-data';
 import { AxisLeft, AxisBottom } from '@vx/axis';
-import Shape from '@vx/shape';
+import { scaleTime, scaleLinear, scaleOrdinal } from '@vx/scale';
 import { extent, max, min } from 'd3-array';
 import { timeParse } from 'd3-time-format';
 import { compose, withState, withHandlers } from 'recompose';
@@ -103,7 +103,7 @@ export default withSelected(({
           const lastDatum = values[values.length - 1];
           return (
             <g key={`${id}`}>
-              <Shape.LinePath
+              <LinePath
                 data={values}
                 xScale={xScale}
                 yScale={yScale}

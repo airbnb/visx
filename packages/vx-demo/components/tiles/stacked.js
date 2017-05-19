@@ -1,11 +1,11 @@
 import React from 'react';
-import Shape from '@vx/shape';
-import { OrangeRed } from '@vx/gradient'
+import { AreaStack } from '@vx/shape';
+import { OrangeRed } from '@vx/gradient';
 import { browserUsage } from '@vx/mock-data';
 import { scaleTime, scaleLinear } from '@vx/scale';
 import { extent, max } from 'd3-array';
-import { stack as d3stack } from 'd3-shape';
 import { timeParse } from 'd3-time-format';
+import { stack as d3stack } from 'd3-shape';
 
 const data = browserUsage;
 const keys = Object.keys(data[0]).filter(k => k !== 'date');
@@ -41,7 +41,7 @@ export default ({
         fill="#f38181"
         rx={14}
       />
-      <Shape.AreaStack
+      <AreaStack
         reverse
         top={margin.top}
         left={margin.left}

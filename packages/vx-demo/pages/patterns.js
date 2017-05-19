@@ -11,7 +11,7 @@ export default () => {
       bottom: 10,
     }}>
 {`import React from 'react';
-import Shape from '@vx/shape';
+import { Bar } from '@vx/shape';
 import {
   PatternLines,
   PatternCircles,
@@ -91,7 +91,7 @@ export default ({
         strokeWidth={1}
         complement
       />
-      <Shape.Bar
+      <Bar
         fill={\`url(#vLines)\`}
         height={pHeight}
         width={pWidth}
@@ -99,7 +99,7 @@ export default ({
         y={0}
         rx={14}
       />
-      <Shape.Bar
+      <Bar
         fill={\`url(#hLines)\`}
         height={pHeight}
         width={pWidth}
@@ -107,7 +107,7 @@ export default ({
         y={0}
         rx={14}
       />
-      <Shape.Bar
+      <Bar
         fill={\`url(#dLines)\`}
         height={pHeight}
         width={pWidth}
@@ -115,7 +115,7 @@ export default ({
         y={0}
         rx={14}
       />
-      <Shape.Bar
+      <Bar
         fill={\`url(#dhLines)\`}
         height={pHeight}
         width={pWidth}
@@ -123,7 +123,7 @@ export default ({
         y={0}
         rx={14}
       />
-      <Shape.Bar
+      <Bar
         fill={\`url(#Circles)\`}
         height={pHeight}
         width={pWidth}
@@ -131,7 +131,7 @@ export default ({
         y={pHeight}
         rx={14}
       />
-      <Shape.Bar
+      <Bar
         fill={\`url(#cCircles)\`}
         height={pHeight}
         width={pWidth}
@@ -139,7 +139,7 @@ export default ({
         y={pHeight}
         rx={14}
       />
-      <Shape.Bar
+      <Bar
         fill={\`url(#Waves)\`}
         height={pHeight}
         width={pWidth}
@@ -147,7 +147,7 @@ export default ({
         y={pHeight}
         rx={14}
       />
-      <Shape.Bar
+      <Bar
         fill={\`url(#bWaves)\`}
         height={pHeight}
         width={pWidth}

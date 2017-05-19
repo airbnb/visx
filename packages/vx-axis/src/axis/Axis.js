@@ -1,12 +1,12 @@
 import React from 'react';
 import cx from 'classnames';
-import Shape from '@vx/shape';
+import { Line } from '@vx/shape';
 import { Point } from '@vx/point';
 import { Group } from '@vx/group';
-import identity from '../utils/identity';
 import center from '../utils/center';
-import isHorizontal from '../utils/isHorizontal';
 import isLeft from '../utils/isLeft';
+import identity from '../utils/identity';
+import isHorizontal from '../utils/isHorizontal';
 
 export default function Axis({
   scale,
@@ -65,7 +65,7 @@ export default function Axis({
         left={left}
       >
         {!hideAxisLine &&
-          <Shape.Line
+          <Line
             from={axisFromPoint}
             to={axisToPoint}
             stroke={stroke}
@@ -102,7 +102,7 @@ export default function Axis({
               className='vx-axis-ticks'
             >
               {!hideTicks &&
-                <Shape.Line
+                <Line
                   from={tickFromPoint}
                   to={tickToPoint}
                   transform={tickTransform || transform}

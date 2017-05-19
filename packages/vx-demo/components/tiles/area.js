@@ -1,5 +1,5 @@
 import React from 'react';
-import Shape from '@vx/shape';
+import { AreaClosed } from '@vx/shape';
 import { appleStock } from '@vx/mock-data';
 import { curveMonotoneX } from '@vx/curve';
 import { LinearGradient } from '@vx/gradient';
@@ -61,7 +61,7 @@ export default ({
         strokeDasharray='2,2'
         stroke='rgba(255,255,255,0.3)'
       />
-      <Shape.AreaClosed
+      <AreaClosed
         data={stock}
         xScale={xScale}
         yScale={yScale}

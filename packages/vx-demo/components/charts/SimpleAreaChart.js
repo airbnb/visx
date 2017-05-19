@@ -1,11 +1,11 @@
 import React from 'react';
 import { Group } from '@vx/group';
-import { AxisLeft, AxisBottom } from '@vx/axis';
-import { appleStock } from '@vx/mock-data';
-import { scaleTime, scaleLinear } from '@vx/scale';
-import Shape from '@vx/shape';
 import { GridRows } from '@vx/grid';
+import { AreaClosed } from '@vx/shape';
 import { OrangeRed } from '@vx/gradient';
+import { appleStock } from '@vx/mock-data';
+import { AxisLeft, AxisBottom } from '@vx/axis';
+import { scaleTime, scaleLinear } from '@vx/scale';
 import { extent, max } from 'd3-array';
 
 function numTicksForHeight(height) {
@@ -57,7 +57,7 @@ export default ({
           strokeDasharray="2,2"
           numTicks={numTicksForHeight(height)}
         />
-        <Shape.AreaClosed
+        <AreaClosed
           data={stock}
           xScale={xStockScale}
           yScale={yStockScale}

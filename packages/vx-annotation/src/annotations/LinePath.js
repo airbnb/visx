@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { Group } from '@vx/group';
-import Shape from '@vx/shape';
+import { LinePath } from '@vx/shape';
 
 const identity = x => x;
 
@@ -32,7 +32,7 @@ export default function LinePathAnnotation({
       top={top}
       left={left}
     >
-      <Shape.LinePath
+      <LinePath
         className={cx('vx-line-path-annotation', className)}
         data={points}
         x={p => p.x}

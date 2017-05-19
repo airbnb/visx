@@ -5,7 +5,7 @@ Inspired by: http://riccardoscalco.github.io/textures/
 ## Example
 
 ``` js
-import Shape from '@vx/shape';
+import { AreaClose } from '@vx/shape';
 import { PatternLines } from '@vx/pattern';
 
 const PatternArea = () => {
@@ -19,7 +19,7 @@ const PatternArea = () => {
           strokeWidth={1}
           orientation={['diagonal']}
         />
-        <Shape.AreaClose fill="url('#lines')" />
+        <AreaClose fill="url('#lines')" />
       </svg>
     );
 };

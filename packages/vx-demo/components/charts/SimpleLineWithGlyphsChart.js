@@ -1,13 +1,13 @@
 import React from 'react';
 import cx from 'classnames';
-import Shape from '@vx/shape';
-import { Point } from '@vx/point';
-import Axis from '@vx/axis';
-import { scaleTime, scaleLinear } from '@vx/scale';
-import { Group } from '@vx/group';
 import { Grid } from '@vx/grid';
+import { Group } from '@vx/group';
+import { Point } from '@vx/point';
 import { GlyphDot } from '@vx/glyph';
-import Curve from '@vx/curve';
+import { LinePath } from '@vx/shape';
+import { curveMonotoneX } from '@vx/curve';
+import { AxisRight, AxisBottom } from '@vx/axis';
+import { scaleTime, scaleLinear } from '@vx/scale';
 import { extent, max } from 'd3-array';
 
 function identity(x) {
@@ -62,7 +62,7 @@ export default ({
 
   return (
     <svg width={width} height={height}>
-      <Axis.AxisRight
+      <AxisRight
         top={margin.top}
         left={width - margin.right}
         scale={yScale}
@@ -84,7 +84,7 @@ export default ({
         />
         {dataset.map((series, i) => {
           return (
-            <Shape.LinePath
+            <LinePath
               key={`chart-line-${i}`}
               data={series.data}
               xScale={xScale}
@@ -94,7 +94,7 @@ export default ({
               stroke={series.chart.stroke}
               strokeWidth={series.chart.strokeWidth}
               strokeDasharray={series.chart.strokeDasharray}
-              curve={Curve.monotoneX}
+              curve={curveMonotoneX}
               glyph={(d, i) => {
                 return (
                   <GlyphDot key={`line-point-${i}`}
@@ -133,7 +133,7 @@ export default ({
           );
         })}
       </Group>
-      <Axis.AxisBottom
+      <AxisBottom
         top={height - margin.bottom}
         left={margin.left}
         scale={xScale}

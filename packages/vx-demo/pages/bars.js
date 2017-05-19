@@ -6,7 +6,7 @@ export default () => {
   return (
     <Show component={Bars} title="Bars">
 {`import React from 'react';
-import Shape from '@vx/shape';
+import { Bar } from '@vx/shape';
 import { Group } from '@vx/group';
 import { TealBlue } from '@vx/gradient';
 import { letterFrequency } from '@vx/mock-data';
@@ -61,7 +61,7 @@ export default ({
           const barHeight = yMax - yScale(y(d));
           return (
             <Group key={\`bar-\${x(d)}\`}>
-              <Shape.Bar
+              <Bar
                 width={xScale.bandwidth()}
                 height={barHeight}
                 x={xScale(x(d))}

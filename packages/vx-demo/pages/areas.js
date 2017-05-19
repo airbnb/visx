@@ -11,7 +11,7 @@ export default () => {
       bottom: 0,
     }}>
 {`import React from 'react';
-import Shape from '@vx/shape';
+import { AreaClosed } from '@vx/shape';
 import { Rows, Columns } from '@vx/grid';
 import { curveMonotoneX } from '@vx/curve';
 import { appleStock } from '@vx/mock-data';
@@ -73,7 +73,7 @@ export default ({
         strokeDasharray='2,2'
         stroke='rgba(255,255,255,0.3)'
       />
-      <Shape.AreaClosed
+      <AreaClosed
         data={stock}
         xScale={xScale}
         yScale={yScale}

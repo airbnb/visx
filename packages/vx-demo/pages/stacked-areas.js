@@ -11,8 +11,8 @@ export default () => {
       bottom: 10,
     }}>
 {`import React from 'react';
-import Shape from '@vx/shape';
-import { OrangeRed } from '@vx/gradient'
+import { AreaStack } from '@vx/shape';
+import { OrangeRed } from '@vx/gradient';
 import { browserUsage } from '@vx/mock-data';
 import { scaleTime, scaleLinear } from '@vx/scale';
 import { extent, max } from 'd3-array';
@@ -54,7 +54,7 @@ export default ({
         fill="#f38181"
         rx={14}
       />
-      <Shape.AreaStack
+      <AreaStack
         reverse
         top={margin.top}
         left={margin.left}

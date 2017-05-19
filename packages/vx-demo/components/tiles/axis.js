@@ -5,8 +5,8 @@ import { curveBasis } from '@vx/curve';
 import { OrangeRed } from '@vx/gradient';
 import { genDateValue } from '@vx/mock-data';
 import { AxisLeft, AxisBottom } from '@vx/axis';
+import { AreaClosed, LinePath } from '@vx/shape';
 import { scaleTime, scaleLinear } from '@vx/scale';
-import Shape from '@vx/shape';
 import { extent, max } from 'd3-array';
 
 
@@ -76,7 +76,7 @@ export default ({
         numTicksColumns={numTicksForWidth(width)}
       />
       <Group top={margin.top} left={margin.left}>
-        <Shape.AreaClosed
+        <AreaClosed
           data={data}
           xScale={xScale}
           yScale={yScale}
@@ -88,7 +88,7 @@ export default ({
           fillOpacity='0.9'
           curve={curveBasis}
         />
-        <Shape.LinePath
+        <LinePath
           data={data}
           xScale={xScale}
           yScale={yScale}
