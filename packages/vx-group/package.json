@@ -6,7 +6,7 @@
   "scripts": {
     "build": "make build SRC=./src",
     "prepublish": "make build SRC=./src",
-    "test": "jest"
+    "test": "./node_modules/.bin/jest"
   },
   "files": [
     "build"
