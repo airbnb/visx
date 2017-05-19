@@ -14,10 +14,9 @@ export default function AxisLeft({
   numTicks,
   tickFormat,
   tickStroke,
-  tickOffset,
   tickTransform,
   tickLength = 8,
-  tickLabelPadding = 30,
+  tickLabelOffset = 36,
   tickLabelComponent = (
     <text
       textAnchor="end"
@@ -58,10 +57,9 @@ export default function AxisLeft({
       numTicks={numTicks}
       tickFormat={tickFormat}
       tickLength={tickLength}
-      tickOffset={tickOffset || -1 * tickLength}
-      tickTransform={tickTransform || `translate(${tickOffset || -1 * tickLength})`}
+      tickTransform={tickTransform}
       tickStroke={tickStroke}
-      tickLabelPadding={tickLabelPadding}
+      tickLabelOffset={tickLabelOffset}
       tickLabelComponent={tickLabelComponent}
       hideAxisLine={hideAxisLine}
       hideTicks={hideTicks}

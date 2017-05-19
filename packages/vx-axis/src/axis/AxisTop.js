@@ -11,14 +11,12 @@ export default function AxisTop({
   strokeWidth,
   strokeDasharray,
   label,
-  fontSize,
   numTicks,
   tickFormat,
   tickStroke,
-  tickOffset,
   tickTransform,
   tickLength = 8,
-  tickLabelPadding = 14,
+  tickLabelOffset = 8,
   tickLabelComponent = (
     <text
       textAnchor="middle"
@@ -58,10 +56,9 @@ export default function AxisTop({
       numTicks={numTicks}
       tickFormat={tickFormat}
       tickLength={tickLength}
-      tickOffset={tickOffset || -1 * tickLength}
-      tickTransform={tickTransform || `translate(0, ${tickOffset || -1 * tickLength})`}
+      tickTransform={tickTransform}
       tickStroke={tickStroke}
-      tickLabelPadding={tickLabelPadding}
+      tickLabelOffset={tickLabelOffset}
       tickLabelComponent={tickLabelComponent}
       hideAxisLine={hideAxisLine}
       hideTicks={hideTicks}

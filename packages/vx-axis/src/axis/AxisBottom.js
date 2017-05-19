@@ -14,10 +14,9 @@ export default function AxisBottom({
   numTicks,
   tickFormat,
   tickStroke,
-  tickOffset,
   tickTransform,
   tickLength = 8,
-  tickLabelPadding = 14,
+  tickLabelOffset = 8,
   tickLabelComponent = (
     <text
       textAnchor="middle"
@@ -57,10 +56,9 @@ export default function AxisBottom({
       numTicks={numTicks}
       tickFormat={tickFormat}
       tickLength={tickLength}
-      tickOffset={tickOffset || tickLength}
-      tickTransform={tickTransform || `translate(${tickOffset || 0})`}
+      tickTransform={tickTransform}
       tickStroke={tickStroke}
-      tickLabelPadding={tickLabelPadding}
+      tickLabelOffset={tickLabelOffset}
       tickLabelComponent={tickLabelComponent}
       hideAxisLine={hideAxisLine}
       hideTicks={hideTicks}

@@ -14,10 +14,9 @@ export default function AxisRight({
   numTicks,
   tickFormat,
   tickStroke,
-  tickOffset,
   tickTransform,
   tickLength = 8,
-  tickLabelPadding = 30,
+  tickLabelOffset = 36,
   tickLabelComponent = (
     <text
       textAnchor="start"
@@ -58,10 +57,9 @@ export default function AxisRight({
       numTicks={numTicks}
       tickFormat={tickFormat}
       tickLength={tickLength}
-      tickOffset={tickOffset || tickLength}
-      tickTransform={tickTransform || `translate(${tickOffset || 0})`}
+      tickTransform={tickTransform}
       tickStroke={tickStroke}
-      tickLabelPadding={tickLabelPadding}
+      tickLabelOffset={tickLabelOffset}
       tickLabelComponent={tickLabelComponent}
       hideAxisLine={hideAxisLine}
       hideTicks={hideTicks}
