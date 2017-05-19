@@ -1,19 +1,39 @@
 import React from 'react';
 import cx from 'classnames';
+import PropTypes from 'prop-types';
 import { Group } from '@vx/group';
 import { LinePath } from '@vx/shape';
 
 const identity = x => x;
 
+LinePathAnnotation.propTypes = {
+  top: PropTypes.number,
+  left: PropTypes.number,
+  points: PropTypes.array,
+  stroke: PropTypes.string,
+  strokeWidth: PropTypes.number,
+  className: PropTypes.string,
+  label: PropTypes.string,
+  labelAnchor: PropTypes.oneOf(['start', 'middle', 'end']),
+  labelOrientation: PropTypes.string,
+  labelDx: PropTypes.number,
+  labelDy: PropTypes.number,
+  labelFill: PropTypes.string,
+  labelFontSize: PropTypes.number,
+  labelStroke: PropTypes.string,
+  labelStrokeWidth: PropTypes.number,
+  labelPaintOrder: PropTypes.string
+};
+
 export default function LinePathAnnotation({
   top = 0,
   left = 0,
-  points,
+  points = [],
   stroke = 'black',
   strokeWidth = 1,
   className,
   label,
-  labelAnchor = 'left',
+  labelAnchor = 'middle',
   labelOrientation = 'horizontal',
   labelVerticalAlign = 'top',
   labelHorizontalAlign = 'right',
