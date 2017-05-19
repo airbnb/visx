@@ -6,12 +6,12 @@ Inspired by: https://dribbble.com/shots/3380672-Sketch-Gradients-Freebie
 
 ```js
 import { AreaClose } from '@vx/shape';
-import { PinkBlue } from '@vx/gradient';
+import { GradientPinkBlue } from '@vx/gradient';
 
 const GradientArea = () => {
     return (
       <svg>
-        <PinkBlue id="gradient" />
+        <GradientPinkBlue id="gradient" />
         <AreaClose fill="url('#gradient')" />
       </svg>
     );
@@ -30,15 +30,15 @@ vx comes with a couple pre-made gradients for you to use.
 
 |    Gradients Available     |
 | -------------------------- |
-| `DarkgreenGreen`           |
-| `LightgreenGreen`          |
-| `OrangeRed`                |
-| `PinkBlue`                 |
-| `PinkRed`                  |
-| `PurpleOrange`             |
-| `PurpleTeal`               |
-| `SteelPurple`              |
-| `TealBlue`                 |
+| `GradientDarkgreenGreen`   |
+| `GradientLightgreenGreen`  |
+| `GradientOrangeRed`        |
+| `GradientPinkBlue`         |
+| `GradientPinkRed`          |
+| `GradientPurpleOrange`     |
+| `GradientPurpleTeal`       |
+| `GradientSteelPurple`      |
+| `GradientTealBlue`         |
 
 
 ## Make your own!

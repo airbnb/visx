@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid } from '@vx/grid';
 import { Group } from '@vx/group';
 import { curveBasis } from '@vx/curve';
-import { OrangeRed } from '@vx/gradient';
+import { GradientOrangeRed } from '@vx/gradient';
 import { genDateValue } from '@vx/mock-data';
 import { AxisLeft, AxisBottom } from '@vx/axis';
 import { AreaClosed, LinePath } from '@vx/shape';
@@ -55,7 +55,7 @@ export default ({
 
   return (
     <svg width={width} height={height}>
-      <OrangeRed id="linear" />
+      <GradientOrangeRed id="linear" />
       <rect
         x={0}
         y={0}

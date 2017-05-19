@@ -10,16 +10,16 @@ export default () => {
 {`import React from 'react';
 import { Bar } from '@vx/shape';
 import {
-  DarkgreenGreen,
-  LightgreenGreen,
-  OrangeRed,
-  PinkBlue,
-  PinkRed,
-  PurpleOrange,
-  PurpleRed,
-  PurpleTeal,
-  SteelPurple,
-  TealBlue
+  GradientDarkgreenGreen,
+  GradientLightgreenGreen,
+  GradientOrangeRed,
+  GradientPinkBlue,
+  GradientPinkRed,
+  GradientPurpleOrange,
+  GradientPurpleRed,
+  GradientPurpleTeal,
+  GradientSteelPurple,
+  GradientTealBlue
 } from '@vx/gradient';
 
 export default ({

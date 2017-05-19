@@ -8,7 +8,7 @@ export default () => {
 {`import React from 'react';
 import { Group } from '@vx/group';
 import { GlyphDot } from '@vx/glyph';
-import { PinkRed } from '@vx/gradient';
+import { GradientPinkRed } from '@vx/gradient';
 import { scaleLinear } from '@vx/scale';
 import { genRandomNormalPoints } from '@vx/mock-data';
 
@@ -41,7 +41,7 @@ export default ({
 
   return (
     <svg width={width} height={height}>
-      <PinkRed id="pink" />
+      <GradientPinkRed id="pink" />
       <rect
         x={0}
         y={0}

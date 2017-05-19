@@ -2,7 +2,7 @@ import React from 'react';
 import { Group } from '@vx/group';
 import { GridRows } from '@vx/grid';
 import { AreaClosed } from '@vx/shape';
-import { OrangeRed } from '@vx/gradient';
+import { GradientOrangeRed } from '@vx/gradient';
 import { appleStock } from '@vx/mock-data';
 import { AxisLeft, AxisBottom } from '@vx/axis';
 import { scaleTime, scaleLinear } from '@vx/scale';
@@ -49,7 +49,7 @@ export default ({
 
   return (
     <svg height={height} width={width}>
-      <OrangeRed id="gradient" />
+      <GradientOrangeRed id="gradient" />
       <Group top={margin.top} left={margin.left}>
         <GridRows
           scale={yStockScale}

@@ -1,16 +1,16 @@
 import React from 'react';
 import { Bar } from '@vx/shape';
 import {
-  DarkgreenGreen,
-  LightgreenGreen,
-  OrangeRed,
-  PinkBlue,
-  PinkRed,
-  PurpleOrange,
-  PurpleRed,
-  PurpleTeal,
-  SteelPurple,
-  TealBlue
+  GradientDarkgreenGreen,
+  GradientLightgreenGreen,
+  GradientOrangeRed,
+  GradientPinkBlue,
+  GradientPinkRed,
+  GradientPurpleOrange,
+  GradientPurpleRed,
+  GradientPurpleTeal,
+  GradientSteelPurple,
+  GradientTealBlue
 } from '@vx/gradient';
 
 export default ({
@@ -27,16 +27,16 @@ export default ({
   const h = (height - margin.bottom) / 2;
   return (
     <svg width={width} height={height}>
-      <DarkgreenGreen id="DarkgreenGreen" />
-      <LightgreenGreen id="LightgreenGreen" />
-      <OrangeRed id="OrangeRed" />
-      <PinkBlue id="PinkBlue" />
-      <PinkRed id="PinkRed" />
-      <PurpleOrange id="PurpleOrange" />
-      <PurpleRed id="PurpleRed" />
-      <PurpleTeal id="PurpleTeal" />
-      <SteelPurple id="SteelPurple" />
-      <TealBlue id="TealBlue" />
+      <GradientDarkgreenGreen id="DarkgreenGreen" />
+      <GradientLightgreenGreen id="LightgreenGreen" />
+      <GradientOrangeRed id="OrangeRed" />
+      <GradientPinkBlue id="PinkBlue" />
+      <GradientPinkRed id="PinkRed" />
+      <GradientPurpleOrange id="PurpleOrange" />
+      <GradientPurpleRed id="PurpleRed" />
+      <GradientPurpleTeal id="PurpleTeal" />
+      <GradientSteelPurple id="SteelPurple" />
+      <GradientTealBlue id="TealBlue" />
       <Bar
         x={0}
         y={0}

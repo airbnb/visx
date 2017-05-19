@@ -12,7 +12,7 @@ export default () => {
     }}>
 {`import React from 'react';
 import { AreaStack } from '@vx/shape';
-import { OrangeRed } from '@vx/gradient';
+import { GradientOrangeRed } from '@vx/gradient';
 import { browserUsage } from '@vx/mock-data';
 import { scaleTime, scaleLinear } from '@vx/scale';
 import { extent, max } from 'd3-array';
@@ -45,7 +45,7 @@ export default ({
 
   return (
     <svg width={width} height={height}>
-      <OrangeRed id="OrangeRed" />
+      <GradientOrangeRed id="OrangeRed" />
       <rect
         x={0}
         y={0}

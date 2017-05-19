@@ -8,7 +8,7 @@ export default () => {
 {`import React from 'react';
 import { Bar } from '@vx/shape';
 import { Group } from '@vx/group';
-import { TealBlue } from '@vx/gradient';
+import { GradientTealBlue } from '@vx/gradient';
 import { letterFrequency } from '@vx/mock-data';
 import { scaleBand, scaleLinear } from '@vx/scale';
 import { extent, max } from 'd3-array';
@@ -47,7 +47,7 @@ export default ({
 
   return (
     <svg width={width} height={height}>
-      <TealBlue id="teal" />
+      <GradientTealBlue id="teal" />
       <rect
         x={0}
         y={0}
