@@ -8,7 +8,8 @@
   ],
   "scripts": {
     "build": "make build SRC=./src",
-    "prepublish": "make build SRC=./src"
+    "prepublish": "make build SRC=./src",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
