@@ -11,7 +11,14 @@
 
 vx is collection of reusable low-level visualization components. vx combines the power of d3 to generate your visualization with the benefits of react for updating the DOM.
 
+<p align="center">
+  <a href="https://vx-demo.now.sh/gallery">
+    <img src="./assets/vx-gallery.png" />
+  </a>
+</p>
+
 ### [View Docs](https://vx-demo.now.sh)
+### [View Gallery](https://vx-demo.now.sh/gallery)
 
 ## Usage
 
