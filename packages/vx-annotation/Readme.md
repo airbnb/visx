@@ -6,8 +6,13 @@
 Line Path Annotations add a bit of text and a line coming from a point. They're useful for adding info to your graphs.
 
 ``` javascript
+import { LinePathAnnotation } from '@vx/annotation';
+// or
+// import * as Annotation from '@vx/annotation'; 
+// <Annotation.LinePathAnnotation />
+
 const annotation = (
-  <Annotation.LinePathAnnotation
+  <LinePathAnnotation
     label={'expected from deploy'}
     stroke={'white'}
     labelFill={'white'}

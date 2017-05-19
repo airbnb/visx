@@ -1,11 +1,4 @@
-import withBrush from './enhancers/withBrush';
-import BoxBrush from './brushes/BoxBrush';
-import constrainToRegion from './utils/constrainToRegion';
-import getCoordsFromEvent from './utils/getCoordsFromEvent';
-
-export default {
-  withBrush,
-  BoxBrush,
-  constrainToRegion,
-  getCoordsFromEvent,
-}
+export { default as withBrush } from './enhancers/withBrush';
+export { default as BoxBrush } from './brushes/BoxBrush';
+export { default as constrainToRegion } from './utils/constrainToRegion';
+export { default as getCoordsFromEvent } from './utils/getCoordsFromEvent';

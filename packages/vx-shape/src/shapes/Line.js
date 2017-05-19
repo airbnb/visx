@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import Point from '@vx/point';
+import { Point } from '@vx/point';
 
 export default function Line({
   from = new Point({ x: 0, y: 0 }),

@@ -1,16 +1,14 @@
 import React from 'react';
 import cx from 'classnames';
-import Shape from '@vx/shape';
-import Point from '@vx/point';
-import Axis from '@vx/axis';
-import Scale from '@vx/scale';
-import Group from '@vx/group';
-import Grid from '@vx/grid';
-import Glyph from '@vx/glyph';
-import Curve from '@vx/curve';
-import Marker from '@vx/marker';
-import Annotation from '@vx/annotation';
-import Text from '@vx/text';
+import { Grid } from '@vx/grid';
+import { Group } from '@vx/group';
+import { Point } from '@vx/point';
+import { Marker } from '@vx/marker';
+import { curveMonotoneX } from '@vx/curve';
+import { AxisLeft, AxisBottom } from '@vx/axis';
+import { AreaClosed, LinePath } from '@vx/shape';
+import { scaleTime, scaleLinear } from '@vx/scale';
+import { LinePathAnnotation } from '@vx/annotation';
 import { extent, max } from 'd3-array';
 
 function identity(x) {
@@ -50,12 +48,12 @@ export default ({
   const y = d => d.value;
 
   // scales
-  const xScale = Scale.scaleTime({
+  const xScale = scaleTime({
     range: [0, xMax],
     domain: extent(allData, x),
     nice: true,
   });
-  const yScale = Scale.scaleLinear({
+  const yScale = scaleLinear({
     range: [yMax, 0],
     domain: [0, max(allData, y)],
     nice: true,
@@ -92,7 +90,7 @@ export default ({
           <stop offset="100%" stopColor="#01d4f9" stopOpacity="0.3"/>
         </linearGradient>
       </defs>
-      <Axis.AxisLeft
+      <AxisLeft
         top={margin.top}
         left={margin.left}
         scale={yScale}
@@ -106,7 +104,7 @@ export default ({
         top={margin.top}
         left={margin.left}
       >
-        <Grid.Grid
+        <Grid
           xScale={xScale}
           yScale={yScale}
           width={xMax}
@@ -117,7 +115,7 @@ export default ({
           tickStroke={'#1b1a1e'}
         />
 
-        <Shape.AreaClosed
+        <AreaClosed
           data={dataset[0].data}
           xScale={xScale}
           yScale={yScale}
@@ -126,10 +124,10 @@ export default ({
           strokeWidth={2}
           stroke={"url('#linear')"}
           fill={"url('#linearFade')"}
-          curve={Curve.monotoneX}
+          curve={curveMonotoneX}
         />
 
-        <Shape.LinePath
+        <LinePath
           data={dataset[1].data}
           xScale={xScale}
           yScale={yScale}
@@ -138,7 +136,7 @@ export default ({
           stroke={"url('#linearFade')"}
           strokeWidth={2}
           strokeDasharray={'5,5'}
-          curve={Curve.monotoneX}
+          curve={curveMonotoneX}
         />
 
         <Marker
@@ -150,7 +148,7 @@ export default ({
           labelDx={6}
           labelDy={15}
         />
-        <Annotation.LinePathAnnotation
+        <LinePathAnnotation
           label={'expected from deploy'}
           stroke={'white'}
           labelFill={'white'}
@@ -165,7 +163,7 @@ export default ({
           ]}
         />
       </Group>
-      <Axis.AxisBottom
+      <AxisBottom
         top={height - margin.bottom}
         left={margin.left}
         scale={xScale}

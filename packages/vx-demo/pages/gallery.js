@@ -1,11 +1,6 @@
 import React from 'react';
 import Tilt from 'react-tilt';
 import Link from 'next/link';
-import Mock from '@vx/mock-data';
-import Shape from '@vx/shape';
-import Scale from '@vx/scale';
-import Curve from '@vx/curve';
-import Group from '@vx/group';
 import { extent, max } from 'd3-array';
 
 import Page from '../components/page';
@@ -147,7 +142,7 @@ export default class Gallery extends React.Component {
                 <div className="details color-yellow">
                   <div className="title">Dots</div>
                   <div className="description">
-                    <pre>{`<Shape.Circle />`}</pre>
+                    <pre>{`<Glyph.GlyphDot />`}</pre>
                   </div>
                 </div>
               </div>
@@ -282,7 +277,7 @@ export default class Gallery extends React.Component {
                 <div className="details" style={{  color: 'rgba(126, 31, 220, 1.000)' }}>
                   <div className="title">Glyphs</div>
                   <div className="description">
-                    <pre>{`<Glyph.Dot />`}</pre>
+                    <pre>{`<Glyph.GlyphDot />`}</pre>
                   </div>
                 </div>
               </div>
@@ -309,7 +304,7 @@ export default class Gallery extends React.Component {
                 <div className="details" style={{ color: '#8e205f'}}>
                   <div className="title">Axis</div>
                   <div className="description">
-                    <pre>{`<Axis.Left /> + <Axis.Bottom />`}</pre>
+                    <pre>{`<Axis.AxisLeft /> + <Axis.AxisBottom />`}</pre>
                   </div>
                 </div>
               </div>

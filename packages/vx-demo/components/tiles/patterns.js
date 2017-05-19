@@ -1,10 +1,11 @@
 import React from 'react';
-import Pattern from '@vx/pattern';
-import Group from '@vx/group';
-import Shape from '@vx/shape';
-
-const blocklist = ["Pattern", "Path", "Orientation"];
-const PATTERNS = Object.keys(Pattern).filter((p) => !blocklist.includes(p));
+import { Bar } from '@vx/shape';
+import { Group } from '@vx/group';
+import {
+  PatternLines,
+  PatternCircles,
+  PatternWaves
+} from '@vx/pattern';
 
 export default ({
   width,
@@ -31,14 +32,14 @@ export default ({
         fill="#f5f2e3"
         rx={14}
       />
-      <Pattern.Lines
+      <PatternLines
         id='vLines'
         height={6}
         width={6}
         stroke='black'
         strokeWidth={1}
       />
-      <Pattern.Lines
+      <PatternLines
         id='hLines'
         height={6}
         width={6}
@@ -46,7 +47,7 @@ export default ({
         strokeWidth={1}
         orientation={['horizontal']}
       />
-      <Pattern.Lines
+      <PatternLines
         id='dLines'
         height={6}
         width={6}
@@ -54,7 +55,7 @@ export default ({
         strokeWidth={1}
         orientation={['diagonal']}
       />
-      <Pattern.Lines
+      <PatternLines
         id='dhLines'
         height={6}
         width={6}
@@ -62,20 +63,20 @@ export default ({
         strokeWidth={1}
         orientation={['vertical', 'horizontal']}
       />
-      <Pattern.Circles
+      <PatternCircles
         id='Circles'
         height={6}
         width={6}
         fill="black"
       />
-      <Pattern.Circles
+      <PatternCircles
         id='cCircles'
         height={10}
         width={10}
         fill="black"
         complement
       />
-      <Pattern.Waves
+      <PatternWaves
         id='Waves'
         height={6}
         width={6}
@@ -84,7 +85,7 @@ export default ({
         strokeWidth={1}
         complement
       />
-      <Pattern.Waves
+      <PatternWaves
         id='bWaves'
         height={12}
         width={12}
@@ -94,7 +95,7 @@ export default ({
         complement
       />
       <Group top={margin.top} left={margin.left}>
-        <Shape.Bar
+        <Bar
           fill={`url(#vLines)`}
           height={pHeight}
           width={pWidth}
@@ -102,7 +103,7 @@ export default ({
           y={0}
           rx={14}
         />
-        <Shape.Bar
+        <Bar
           fill={`url(#hLines)`}
           height={pHeight}
           width={pWidth}
@@ -110,7 +111,7 @@ export default ({
           y={0}
           rx={14}
         />
-        <Shape.Bar
+        <Bar
           fill={`url(#dLines)`}
           height={pHeight}
           width={pWidth}
@@ -118,7 +119,7 @@ export default ({
           y={0}
           rx={14}
         />
-        <Shape.Bar
+        <Bar
           fill={`url(#dhLines)`}
           height={pHeight}
           width={pWidth}
@@ -126,7 +127,7 @@ export default ({
           y={0}
           rx={14}
         />
-        <Shape.Bar
+        <Bar
           fill={`url(#Circles)`}
           height={pHeight}
           width={pWidth}
@@ -134,7 +135,7 @@ export default ({
           y={pHeight}
           rx={14}
         />
-        <Shape.Bar
+        <Bar
           fill={`url(#cCircles)`}
           height={pHeight}
           width={pWidth}
@@ -142,7 +143,7 @@ export default ({
           y={pHeight}
           rx={14}
         />
-        <Shape.Bar
+        <Bar
           fill={`url(#Waves)`}
           height={pHeight}
           width={pWidth}
@@ -150,7 +151,7 @@ export default ({
           y={pHeight}
           rx={14}
         />
-        <Shape.Bar
+        <Bar
           fill={`url(#bWaves)`}
           height={pHeight}
           width={pWidth}

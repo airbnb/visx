@@ -1,17 +1,7 @@
-import Pattern from './patterns/Pattern';
-import Lines from './patterns/Lines';
-import Circles from './patterns/Circles';
-import Waves from './patterns/Waves';
-import Hexagons from './patterns/Hexagons';
-import Path from './patterns/Path';
-import Orientation from './constants';
-
-export default {
-  Pattern,
-  Lines,
-  Circles,
-  Waves,
-  Hexagons,
-  Path,
-  Orientation,
-}
+export { default as Pattern } from './patterns/Pattern';
+export { default as PatternLines } from './patterns/Lines';
+export { default as PatternCircles } from './patterns/Circles';
+export { default as PatternWaves } from './patterns/Waves';
+export { default as PatternHexagons } from './patterns/Hexagons';
+export { default as PatternPath } from './patterns/Path';
+export { default as PatternOrientation } from './constants';

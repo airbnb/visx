@@ -1,6 +1,17 @@
 import React from 'react';
-import Shape from '@vx/shape';
-import Gradient from '@vx/gradient';
+import { Bar } from '@vx/shape';
+import {
+  GradientDarkgreenGreen,
+  GradientLightgreenGreen,
+  GradientOrangeRed,
+  GradientPinkBlue,
+  GradientPinkRed,
+  GradientPurpleOrange,
+  GradientPurpleRed,
+  GradientPurpleTeal,
+  GradientSteelPurple,
+  GradientTealBlue
+} from '@vx/gradient';
 
 export default ({
   width,
@@ -16,17 +27,17 @@ export default ({
   const h = (height - margin.bottom) / 2;
   return (
     <svg width={width} height={height}>
-      <Gradient.DarkgreenGreen id="DarkgreenGreen" />
-      <Gradient.LightgreenGreen id="LightgreenGreen" />
-      <Gradient.OrangeRed id="OrangeRed" />
-      <Gradient.PinkBlue id="PinkBlue" />
-      <Gradient.PinkRed id="PinkRed" />
-      <Gradient.PurpleOrange id="PurpleOrange" />
-      <Gradient.PurpleRed id="PurpleRed" />
-      <Gradient.PurpleTeal id="PurpleTeal" />
-      <Gradient.SteelPurple id="SteelPurple" />
-      <Gradient.TealBlue id="TealBlue" />
-      <rect
+      <GradientDarkgreenGreen id="DarkgreenGreen" />
+      <GradientLightgreenGreen id="LightgreenGreen" />
+      <GradientOrangeRed id="OrangeRed" />
+      <GradientPinkBlue id="PinkBlue" />
+      <GradientPinkRed id="PinkRed" />
+      <GradientPurpleOrange id="PurpleOrange" />
+      <GradientPurpleRed id="PurpleRed" />
+      <GradientPurpleTeal id="PurpleTeal" />
+      <GradientSteelPurple id="SteelPurple" />
+      <GradientTealBlue id="TealBlue" />
+      <Bar
         x={0}
         y={0}
         width={w}
@@ -36,7 +47,7 @@ export default ({
         strokeWidth={8}
         rx={14}
       />
-      <rect
+      <Bar
         x={w}
         y={0}
         width={w}
@@ -46,7 +57,7 @@ export default ({
         stroke='#ffffff'
         strokeWidth={8}
       />
-      <rect
+      <Bar
         x={w * 2}
         y={0}
         width={w}
@@ -56,7 +67,7 @@ export default ({
         stroke='#ffffff'
         strokeWidth={8}
       />
-      <rect
+      <Bar
         x={w * 3}
         y={0}
         width={w}
@@ -66,7 +77,7 @@ export default ({
         stroke='#ffffff'
         strokeWidth={8}
       />
-      <rect
+      <Bar
         x={0}
         y={h}
         width={w}
@@ -76,7 +87,7 @@ export default ({
         stroke='#ffffff'
         strokeWidth={8}
       />
-      <rect
+      <Bar
         x={w}
         y={h}
         width={w}
@@ -86,7 +97,7 @@ export default ({
         stroke='#ffffff'
         strokeWidth={8}
       />
-      <rect
+      <Bar
         x={w * 2}
         y={h}
         width={w}
@@ -96,7 +107,7 @@ export default ({
         stroke='#ffffff'
         strokeWidth={8}
       />
-      <rect
+      <Bar
         x={w * 3}
         y={h}
         width={w}

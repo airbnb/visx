@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import Group from '@vx/group';
+import { Group } from '@vx/group';
 import Rows from './Rows';
 import Columns from './Columns';
 

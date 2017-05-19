@@ -49,30 +49,30 @@ export default () => (
         <li>
           @vx/curve
           <ul>
-            <li>basis</li>
-            <li>basisClose</li>
-            <li>basisOpen</li>
-            <li>step</li>
-            <li>stepAfter</li>
-            <li>stepBefore</li>
-            <li>bundle</li>
-            <li>linear</li>
-            <li>linearClosed</li>
-            <li>monotoneX</li>
-            <li>monotoneY</li>
-            <li>cardinal</li>
-            <li>cardinalClosed</li>
-            <li>cardinalOpen</li>
-            <li>catmullRom</li>
-            <li>catmullRomClosed</li>
-            <li>catmullRomOpen</li>
-            <li>natural</li>
+            <li>curveBasis</li>
+            <li>curveBasisClose</li>
+            <li>curveBasisOpen</li>
+            <li>curveStep</li>
+            <li>curveStepAfter</li>
+            <li>curveStepBefore</li>
+            <li>curveBundle</li>
+            <li>curveLinear</li>
+            <li>curveLinearClosed</li>
+            <li>curveMonotoneX</li>
+            <li>curveMonotoneY</li>
+            <li>curveCardinal</li>
+            <li>curveCardinalClosed</li>
+            <li>curveCardinalOpen</li>
+            <li>curveCatmullRom</li>
+            <li>curveCatmullRomClosed</li>
+            <li>curveCatmullRomOpen</li>
+            <li>curveNatural</li>
           </ul>
         </li>
         <li>
           @vx/glyph
           <ul>
-            <li>Dot</li>
+            <li>GlyphDot</li>
             <li>Glyph</li>
           </ul>
         </li>
@@ -119,12 +119,13 @@ export default () => (
         <li>
           @vx/pattern
           <ul>
-            <li>Circles</li>
-            <li>Hexagons</li>
-            <li>Lines</li>
-            <li>Path</li>
+            <li>PatternCircles</li>
+            <li>PatternHexagons</li>
+            <li>PatternLines</li>
+            <li>PatternPath</li>
             <li>Pattern</li>
-            <li>Waves</li>
+            <li>PatternWaves</li>
+            <li>PatternOrientation</li>
           </ul>
         </li>
         <li>

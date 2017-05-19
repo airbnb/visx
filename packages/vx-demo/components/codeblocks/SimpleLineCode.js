@@ -75,7 +75,7 @@ function SimpleLineChart({
           <stop offset="100%" stopColor="#01d4f9" stopOpacity="0.3"/>
         </linearGradient>
       </defs>
-      <Axis.AxisLeft
+      <AxisLeft
         top={margin.top}
         left={margin.left}
         scale={yScale}
@@ -89,7 +89,7 @@ function SimpleLineChart({
         top={margin.top}
         left={margin.left}
       >
-        <Grid.Grid
+        <Grid
           xScale={xScale}
           yScale={yScale}
           width={xMax}
@@ -130,7 +130,7 @@ function SimpleLineChart({
           labelDx={6}
           labelDy={15}
         />
-        <Annotation.LinePathAnnotation
+        <LinePathAnnotation
           label={'expected from deploy'}
           stroke={'white'}
           labelFill={'white'}
@@ -145,7 +145,7 @@ function SimpleLineChart({
           ]}
         />
       </Group>
-      <Axis.AxisBottom
+      <AxisBottom
         top={height - margin.bottom}
         left={margin.left}
         scale={xScale}
@@ -159,7 +159,7 @@ function SimpleLineChart({
   );
 }
 
-export default Responsive.withScreenSize(SimpleLineChart);`}
+export default withScreenSize(SimpleLineChart);`}
     </Codeblock>
   );
 }

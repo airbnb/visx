@@ -1,13 +1,18 @@
 import React from 'react';
-import Mock from '@vx/mock-data';
-import Scale from '@vx/scale';
-import Group from '@vx/group';
-import Axis from '@vx/axis';
-import Brush from '@vx/brush';
+import { genRandomNormalPoints } from '@vx/mock-data';
+import { scaleLinear } from '@vx/scale';
+import { Group } from '@vx/group';
+import { AxisLeft, AxisBottom } from '@vx/axis';
+import {
+  BoxBrush,
+  withBrush,
+  getCoordsFromEvent,
+  constrainToRegion
+} from '@vx/brush';
 import colors from '../util/sillyColorScale';
 import { Motion, spring } from 'react-motion';
 
-const points = Mock.genRandomNormalPoints();
+const points = genRandomNormalPoints();
 
 class BrushChart extends React.Component {
   constructor(props) {
@@ -26,13 +31,13 @@ class BrushChart extends React.Component {
       y: [-4.5 / 2, 4.5 / 2]
     };
 
-    this.xScale = Scale.scaleLinear({
+    this.xScale = scaleLinear({
       domain: this.initialDomain.x,
       range: [0, width - margin.left - margin.right],
       clamp: true,
     });
 
-    this.yScale = Scale.scaleLinear({
+    this.yScale = scaleLinear({
       domain: this.initialDomain.y,
       range: [height - margin.top - margin.bottom, 0],
       clamp: true,
@@ -52,8 +57,8 @@ class BrushChart extends React.Component {
   handleMouseDown(event) {
     const { onBrushStart } = this.props;
     const { extent: region } = this;
-    const { x, y } = Brush.getCoordsFromEvent(this.svg, event);
-    onBrushStart(Brush.constrainToRegion({ region, x, y }));
+    const { x, y } = getCoordsFromEvent(this.svg, event);
+    onBrushStart(constrainToRegion({ region, x, y }));
   }
 
   handleMouseMove(event) {
@@ -61,16 +66,16 @@ class BrushChart extends React.Component {
     // only update the brush region if we're dragging
     if (!brush.isBrushing) return;
     const { extent: region } = this;
-    const { x, y } = Brush.getCoordsFromEvent(this.svg, event);
-    onBrushDrag(Brush.constrainToRegion({ region, x, y }));
+    const { x, y } = getCoordsFromEvent(this.svg, event);
+    onBrushDrag(constrainToRegion({ region, x, y }));
   }
 
   handleMouseUp(event) {
     const { brush, onBrushEnd, onBrushReset } = this.props;
     const { extent: region } = this;
     if (brush.end) {
-      const { x, y } = Brush.getCoordsFromEvent(this.svg, event);
-      onBrushEnd(Brush.constrainToRegion({ region, x, y }));
+      const { x, y } = getCoordsFromEvent(this.svg, event);
+      onBrushEnd(constrainToRegion({ region, x, y }));
       return;
     }
     onBrushReset(event);
@@ -104,7 +109,7 @@ class BrushChart extends React.Component {
         onMouseMove={this.handleMouseMove}
         onMouseUp={this.handleMouseUp}
       >
-        <Axis.AxisBottom
+        <AxisBottom
           scale={xScale}
           top={yMax + margin.top}
           left={margin.left}
@@ -112,7 +117,7 @@ class BrushChart extends React.Component {
           stroke={'#1b1a1e'}
           tickTextFill={'#1b1a1e'}
         />
-        <Axis.AxisLeft
+        <AxisLeft
           scale={yScale}
           top={margin.top}
           left={margin.left}
@@ -144,10 +149,10 @@ class BrushChart extends React.Component {
             );
           })}
         </Group>
-        <Brush.BoxBrush brush={brush} />
+        <BoxBrush brush={brush} />
       </svg>
     );
   }
 }
 
-export default Brush.withBrush(BrushChart);
+export default withBrush(BrushChart);

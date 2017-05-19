@@ -11,16 +11,15 @@ export default () => {
       bottom: 10,
     }}>
 {`import React from 'react';
-import Mock from '@vx/mock-data';
-import Scale from '@vx/scale';
-import Shape from '@vx/shape';
-import Curve from '@vx/curve';
-import Gradient from '@vx/gradient'
+import { AreaStack } from '@vx/shape';
+import { GradientOrangeRed } from '@vx/gradient';
+import { browserUsage } from '@vx/mock-data';
+import { scaleTime, scaleLinear } from '@vx/scale';
 import { extent, max } from 'd3-array';
-import { stack as d3stack } from 'd3-shape';
 import { timeParse } from 'd3-time-format';
+import { stack as d3stack } from 'd3-shape';
 
-const data = Mock.browserUsage;
+const data = browserUsage;
 const keys = Object.keys(data[0])
   .filter(k => k !== 'date');
 const browserNames = [...keys].reverse();
@@ -36,16 +35,17 @@ export default ({
   const yMax = height - margin.top - margin.bottom;
   const xMax = width - margin.left - margin.right;
 
-  const xScale = Scale.scaleTime({
+  const xScale = scaleTime({
     range: [0, xMax],
     domain: extent(data, x),
   });
-  const yScale = Scale.scaleLinear({
+  const yScale = scaleLinear({
     range: [yMax, 0],
   });
 
   return (
     <svg width={width} height={height}>
+      <GradientOrangeRed id="OrangeRed" />
       <rect
         x={0}
         y={0}
@@ -54,8 +54,7 @@ export default ({
         fill="#f38181"
         rx={14}
       />
-      <Gradient.OrangeRed id="OrangeRed" />
-      <Shape.AreaStack
+      <AreaStack
         reverse
         top={margin.top}
         left={margin.left}

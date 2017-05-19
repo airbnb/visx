@@ -1,13 +1,11 @@
 import React from 'react';
-import Group from '@vx/group';
-import Axis from '@vx/axis';
-import Mock from '@vx/mock-data';
-import Scale from '@vx/scale';
-import Shape from '@vx/shape';
-import Grid from '@vx/grid';
-import Text from '@vx/text';
-import Pattern from '@vx/pattern';
-import Gradient from '@vx/gradient';
+import { Group } from '@vx/group';
+import { GridRows } from '@vx/grid';
+import { AreaClosed } from '@vx/shape';
+import { GradientOrangeRed } from '@vx/gradient';
+import { appleStock } from '@vx/mock-data';
+import { AxisLeft, AxisBottom } from '@vx/axis';
+import { scaleTime, scaleLinear } from '@vx/scale';
 import { extent, max } from 'd3-array';
 
 function numTicksForHeight(height) {
@@ -28,7 +26,7 @@ export default ({
   width,
   height,
 }) => {
-  const stock = Mock.appleStock;
+  const stock = appleStock;
 
   // bounds
   const xMax = width - margin.left - margin.right;
@@ -39,11 +37,11 @@ export default ({
   const yStock = d => d.close;
 
   // scales
-  const xStockScale = Scale.scaleTime({
+  const xStockScale = scaleTime({
     range: [0, xMax],
     domain: extent(stock, xStock),
   });
-  const yStockScale = Scale.scaleLinear({
+  const yStockScale = scaleLinear({
     range: [yMax, 0],
     domain: [0, max(stock, yStock)],
     nice: true,
@@ -51,33 +49,33 @@ export default ({
 
   return (
     <svg height={height} width={width}>
-      <Gradient.OrangeRed id="pinkblue" />
+      <GradientOrangeRed id="gradient" />
       <Group top={margin.top} left={margin.left}>
-        <Grid.Rows
+        <GridRows
           scale={yStockScale}
           width={xMax}
           strokeDasharray="2,2"
           numTicks={numTicksForHeight(height)}
         />
-        <Shape.AreaClosed
+        <AreaClosed
           data={stock}
           xScale={xStockScale}
           yScale={yStockScale}
           x={xStock}
           y={yStock}
           strokeWidth={2}
-          stroke={'url(#pinkblue)'}
-          fill={'url(#pinkblue)'}
+          stroke={'url(#gradient)'}
+          fill={'url(#gradient)'}
         />
       </Group>
-      <Axis.AxisBottom
+      <AxisBottom
         top={height - margin.bottom}
         left={margin.left}
         scale={xStockScale}
         numTicks={numTicksForWidth(width)}
         label={'date'}
       />
-      <Axis.AxisLeft
+      <AxisLeft
         top={margin.top}
         left={margin.left}
         scale={yStockScale}

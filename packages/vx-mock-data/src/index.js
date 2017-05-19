@@ -1,17 +1,7 @@
-import genDateValue from './generators/genDateValue';
-import genRandomNormalPoints from './generators/genRandomNormalPoints';
-import appleStock from './mocks/appleStock';
-import letterFrequency from './mocks/letterFrequency';
-import browserUsage from './mocks/browserUsage';
-import groupDateValue from './mocks/groupDateValue';
-import cityTemperature from './mocks/cityTemperature';
-
-export default {
-  genDateValue,
-  genRandomNormalPoints,
-  appleStock,
-  letterFrequency,
-  browserUsage,
-  groupDateValue,
-  cityTemperature,
-}
+export { default as genDateValue } from './generators/genDateValue';
+export { default as genRandomNormalPoints } from './generators/genRandomNormalPoints';
+export { default as appleStock } from './mocks/appleStock';
+export { default as letterFrequency } from './mocks/letterFrequency';
+export { default as browserUsage } from './mocks/browserUsage';
+export { default as groupDateValue } from './mocks/groupDateValue';
+export { default as cityTemperature } from './mocks/cityTemperature';

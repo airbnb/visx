@@ -11,17 +11,17 @@ export default () => {
       bottom: 60,
     }}>
 {`import React from 'react';
-import Axis from '@vx/axis';
-import Scale from '@vx/scale';
-import Group from '@vx/group';
-import Mock from '@vx/mock-data';
-import Grid from '@vx/grid';
-import Shape from '@vx/shape';
-import Curve from '@vx/curve';
-import Gradient from '@vx/gradient';
+import { Grid } from '@vx/grid';
+import { Group } from '@vx/group';
+import { curveBasis } from '@vx/curve';
+import { GradientOrangeRed } from '@vx/gradient';
+import { genDateValue} from '@vx/mock-data';
+import { AxisLeft, AxisBottom } from '@vx/axis';
+import { AreaClosed, LinePath } from '@vx/shape';
+import { scaleTime, scaleLinear } from '@vx/scale';
 import { extent, max } from 'd3-array';
 
-const data = Mock.genDateValue(20);
+const data = genDateValue(20);
 
 // accessors
 const x = d => d.date;
@@ -50,11 +50,11 @@ export default ({
   const yMax = height - margin.top - margin.bottom;
 
   // scales
-  const xScale = Scale.scaleTime({
+  const xScale = scaleTime({
     range: [0, xMax],
     domain: extent(data, x),
   });
-  const yScale = Scale.scaleLinear({
+  const yScale = scaleLinear({
     range: [yMax, 0],
     domain: [0, max(data, y)],
     nice: true,
@@ -66,10 +66,8 @@ export default ({
 
   return (
     <svg width={width} height={height}>
-      <Gradient.OrangeRed
-        id="linear"
-      />
-      <Grid.Grid
+      <GradientOrangeRed id="linear" />
+      <Grid
         top={margin.top}
         left={margin.left}
         xScale={xScale}
@@ -81,7 +79,7 @@ export default ({
         numTicksColumns={numTicksForWidth(width)}
       />
       <Group top={margin.top} left={margin.left}>
-        <Shape.AreaClosed
+        <AreaClosed
           data={data}
           xScale={xScale}
           yScale={yScale}
@@ -91,9 +89,9 @@ export default ({
           stroke='transparent'
           fill="url('#linear')"
           fillOpacity='0.9'
-          curve={Curve.basis}
+          curve={curveBasis}
         />
-        <Shape.LinePath
+        <LinePath
           data={data}
           xScale={xScale}
           yScale={yScale}
@@ -101,10 +99,10 @@ export default ({
           y={y}
           stroke="url('#linear')"
           strokeWidth={2}
-          curve={Curve.basis}
+          curve={curveBasis}
         />
       </Group>
-      <Axis.AxisLeft
+      <AxisLeft
         top={margin.top}
         left={margin.left}
         scale={yScale}
@@ -114,7 +112,7 @@ export default ({
         stroke='#1b1a1e'
         tickTextFill='#8e205f'
       />
-      <Axis.AxisBottom
+      <AxisBottom
         top={height - margin.bottom}
         left={margin.left}
         scale={xScale}

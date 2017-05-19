@@ -11,8 +11,10 @@ TextOutline can add an outline around your text to help it be more readable.
 
 ![text outline picture](http://i.imgur.com/mpbbNTn.png)
 
-``` js
-<Text.TextOutline
+```js
+import { TextOutline } from '@vx/text';
+
+<TextOutline
   fontSize={10}
   x={x}
   y={y}
@@ -24,7 +26,7 @@ TextOutline can add an outline around your text to help it be more readable.
   fontFamily={"Roboto Mono"}
 >
   {"Woo text!"}
-</Text.TextOutline>
+</TextOutline>
 ```
 
 ### Properties

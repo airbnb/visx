@@ -1,25 +1,11 @@
-import scaleBand from './scales/band';
-import scalePoint from './scales/point';
-import scaleLinear from './scales/linear';
-import scaleTime from './scales/time';
-import scaleLog from './scales/log';
-import scalePower from './scales/power';
-import scaleOrdinal from './scales/ordinal';
-import schemeCategory10 from './scales/color/schemeCategory10';
-import schemeCategory20 from './scales/color/schemeCategory20';
-import schemeCategory20b from './scales/color/schemeCategory20b';
-import schemeCategory20c from './scales/color/schemeCategory20c';
-
-export default {
-  scaleBand,
-  scalePoint,
-  scaleLinear,
-  scaleTime,
-  scaleLog,
-  scalePower,
-  scaleOrdinal,
-  schemeCategory10,
-  schemeCategory20,
-  schemeCategory20b,
-  schemeCategory20c,
-}
+export { default as scaleBand } from './scales/band';
+export { default as scalePoint } from './scales/point';
+export { default as scaleLinear } from './scales/linear';
+export { default as scaleTime } from './scales/time';
+export { default as scaleLog } from './scales/log';
+export { default as scalePower } from './scales/power';
+export { default as scaleOrdinal } from './scales/ordinal';
+export { default as schemeCategory10 } from './scales/color/schemeCategory10';
+export { default as schemeCategory20 } from './scales/color/schemeCategory20';
+export { default as schemeCategory20b } from './scales/color/schemeCategory20b';
+export { default as schemeCategory20c } from './scales/color/schemeCategory20c';

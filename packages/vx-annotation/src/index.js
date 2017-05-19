@@ -1,5 +1,1 @@
-import LinePathAnnotation from './annotations/LinePath.js';
-
-export default {
-  LinePathAnnotation,
-}
+export { default as LinePathAnnotation } from './annotations/LinePath';

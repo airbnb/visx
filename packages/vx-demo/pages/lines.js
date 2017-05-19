@@ -6,16 +6,16 @@ export default () => {
   return (
     <Show component={Lines} title="Lines">
 {`import React from 'react';
-import Mock from '@vx/mock-data';
-import Curve from '@vx/curve';
-import Scale from '@vx/scale';
-import Group from '@vx/group';
-import Shape from '@vx/shape';
+import { Group } from '@vx/group';
+import { LinePath } from '@vx/shape';
+import { curveMonotoneX } from '@vx/curve';
+import { genDateValue } from '@vx/mock-data';
+import { scaleTime, scaleLinear } from '@vx/scale';
 import { extent, max } from 'd3-array';
 
 function genLines(num) {
   return new Array(num).fill(1).map(() => {
-    return Mock.genDateValue(25);
+    return genDateValue(25);
   })
 }
 
@@ -37,11 +37,11 @@ export default ({
   const yMax = height / 8;
 
   // scales
-  const xScale = Scale.scaleTime({
+  const xScale = scaleTime({
     range: [0, xMax],
     domain: extent(data, x),
   });
-  const yScale = Scale.scaleLinear({
+  const yScale = scaleLinear({
     range: [yMax, 0],
     domain: [0, max(data, y)],
   });
@@ -59,14 +59,14 @@ export default ({
       {xMax > 8 && series.map((d, i) => {
         const offset = i * yMax / 2;
         const curve = i % 2 == 0
-          ? Curve.monotoneX
+          ? curveMonotoneX
           : undefined;
         return (
           <Group
             key={\`lines-\${i}\`}
             top={offset}
           >
-            <Shape.LinePath
+            <LinePath
               data={d}
               xScale={xScale}
               yScale={yScale}
