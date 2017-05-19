@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Pattern from './Pattern';
 import Orientation from '../constants';
@@ -27,7 +28,7 @@ function pathForOrientation({
   return path;
 }
 
-export default function Lines({
+export default function PatternLines({
   id,
   width,
   height,
@@ -73,4 +74,15 @@ export default function Lines({
       })}
     </Pattern>
   );
+}
+
+PatternLines.propTypes = {
+  id: PropTypes.string.isRequired,
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  background: PropTypes.string,
+  stroke: PropTypes.string.isRequired,
+  strokeWidth: PropTypes.number.isRequired,
+  strokeDasharray: PropTypes.string,
+  className: PropTypes.string,
 }

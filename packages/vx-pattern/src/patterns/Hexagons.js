@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Path from './Path';
 
-export default function Hexagons({
+export default function PatternHexagons({
   id,
   width,
   height,
@@ -34,4 +35,17 @@ export default function Hexagons({
       background={background}
     />
   );
+}
+
+PatternHexagons.propTypes = {
+  id: PropTypes.string.isRequired,
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  size: PropTypes.number,
+  fill: PropTypes.string,
+  className: PropTypes.string,
+  background: PropTypes.string,
+  stroke: PropTypes.string,
+  strokeWidth: PropTypes.number,
+  strokeDasharray: PropTypes.string,
 }

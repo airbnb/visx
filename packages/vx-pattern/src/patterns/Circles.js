@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import cxx from 'classnames';
 import Pattern from './Pattern';
 
-export default function Circles({
+export default function PatternCircles({
   id,
   width,
   height,
@@ -64,4 +65,17 @@ export default function Circles({
       })}
     </Pattern>
   );
+}
+
+PatternCircles.propTypes = {
+  id: PropTypes.string.isRequired,
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  radius: PropTypes.number,
+  fill: PropTypes.string,
+  className: PropTypes.string,
+  stroke: PropTypes.string,
+  strokeWidth: PropTypes.number,
+  strokeDasharray: PropTypes.string,
+  complement: PropTypes.bool
 }
