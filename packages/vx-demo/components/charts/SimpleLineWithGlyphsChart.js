@@ -3,7 +3,7 @@ import cx from 'classnames';
 import Shape from '@vx/shape';
 import { Point } from '@vx/point';
 import Axis from '@vx/axis';
-import Scale from '@vx/scale';
+import { scaleTime, scaleLinear } from '@vx/scale';
 import { Group } from '@vx/group';
 import { Grid } from '@vx/grid';
 import { GlyphDot } from '@vx/glyph';
@@ -47,11 +47,11 @@ export default ({
   const y = d => d.value;
 
   // scales
-  const xScale = Scale.scaleTime({
+  const xScale = scaleTime({
     range: [0, xMax],
     domain: extent(allData, x),
   });
-  const yScale = Scale.scaleLinear({
+  const yScale = scaleLinear({
     range: [yMax, 0],
     domain: [0, max(allData, y)],
     nice: true,

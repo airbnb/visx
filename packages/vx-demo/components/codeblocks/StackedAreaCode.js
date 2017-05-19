@@ -7,11 +7,10 @@ export default ({}) => {
       {`// StackAreaChart.js
 import React from 'react';
 import { browserUsage } from '@vx/mock-data';
-import Scale from '@vx/scale';
+import { scaleTime, scaleLinear } from '@vx/scale';
 import { Group } from '@vx/group';
-import Axis from '@vx/axis';
+import { AxisLeft, AxisBottom } from '@vx/axis';
 import Shape from '@vx/shape';
-import Curve from '@vx/curve';
 import { TextOutline } from '@vx/text';
 import { extent, max } from 'd3-array';
 import { stack as d3stack } from 'd3-shape';
@@ -44,17 +43,17 @@ export default enhance(({
 
   const stack = d3stack().keys(keys);
 
-  const xScale = Scale.scaleTime({
+  const xScale = scaleTime({
     range: [0, xMax],
     domain: extent(data, x),
   });
-  const yScale = Scale.scaleLinear({
+  const yScale = scaleLinear({
     range: [yMax, 0],
   });
 
   return (
     <svg height={height} width={width}>
-      <Axis.AxisLeft
+      <AxisLeft
         top={margin.top}
         left={margin.left}
         scale={yScale}
@@ -113,7 +112,7 @@ export default enhance(({
           );
         })}
       </Group>
-      <Axis.AxisBottom
+      <AxisBottom
         top={height - margin.bottom}
         left={margin.left}
         scale={xScale}

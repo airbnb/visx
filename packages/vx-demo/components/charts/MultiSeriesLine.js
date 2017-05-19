@@ -2,8 +2,8 @@ import React from 'react';
 import { cityTemperature } from '@vx/mock-data';
 import { Group } from '@vx/group';
 import { curveBasis } from '@vx/curve';
-import Scale from '@vx/scale';
-import Axis from '@vx/axis';
+import { scaleTime, scaleLinear, scaleOrdinal } from '@vx/scale';
+import { AxisLeft, AxisBottom } from '@vx/axis';
 import Shape from '@vx/shape';
 import { extent, max, min } from 'd3-array';
 import { timeParse } from 'd3-time-format';
@@ -71,17 +71,17 @@ export default withSelected(({
   const y = d => +d.temperature;
 
   // scales
-  const xScale = Scale.scaleTime({
+  const xScale = scaleTime({
     range: [0, xMax],
     domain: extent(rawData, x),
   });
-  const yScale = Scale.scaleLinear({
+  const yScale = scaleLinear({
     range: [yMax, 0],
     domain: extent(selected.slice().reduce((ret, c) => {
       return ret.concat(getCity(c).values)
     }, []), y)
   });
-  const color = Scale.scaleOrdinal({
+  const color = scaleOrdinal({
     range: ['#3b99d8', '#239f85', '#9a5cb4'],
     domain: cityNames,
   });
@@ -89,13 +89,13 @@ export default withSelected(({
   return (
     <svg width={width} height={height}>
       <Group top={margin.top} left={margin.left}>
-        <Axis.AxisBottom
+        <AxisBottom
           label=''
           top={yMax}
           scale={xScale}
           hideAxisLine
         />
-        <Axis.AxisLeft
+        <AxisLeft
           scale={yScale}
           label="Temperature (ºF)"
         />

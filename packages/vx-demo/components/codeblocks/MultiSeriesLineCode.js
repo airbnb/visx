@@ -9,7 +9,7 @@ import React from 'react';
 import { cityTemperature } from '@vx/mock-data';
 import { Group } from '@vx/group';
 import Curve from '@vx/curve';
-import Scale from '@vx/scale';
+import { scaleTime, scaleLinear, scaleOrdinal } from '@vx/scale';
 import Axis from '@vx/axis';
 import Shape from '@vx/shape';
 import { extent, max, min } from 'd3-array';
@@ -78,17 +78,17 @@ export default withSelected(({
   const y = d => +d.temperature;
 
   // scales
-  const xScale = Scale.scaleTime({
+  const xScale = scaleTime({
     range: [0, xMax],
     domain: extent(rawData, x),
   });
-  const yScale = Scale.scaleLinear({
+  const yScale = scaleLinear({
     range: [yMax, 0],
     domain: extent(selected.slice().reduce((ret, c) => {
       return ret.concat(getCity(c).values)
     }, []), y)
   });
-  const color = Scale.scaleOrdinal({
+  const color = scaleOrdinal({
     range: ['#3b99d8', '#239f85', '#9a5cb4'],
     domain: cityNames,
   });

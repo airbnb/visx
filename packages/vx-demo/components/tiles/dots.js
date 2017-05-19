@@ -1,8 +1,8 @@
 import React from 'react';
-import Scale from '@vx/scale';
 import { Group } from '@vx/group';
 import { GlyphDot } from '@vx/glyph';
 import { PinkRed } from '@vx/gradient';
+import { scaleLinear } from '@vx/scale';
 import { genRandomNormalPoints } from '@vx/mock-data';
 
 const points = genRandomNormalPoints(600).filter((d,i) => {
@@ -21,12 +21,12 @@ export default ({
   const yMax = height - 80;
   if (width < 10) return null;
 
-  const xScale = Scale.scaleLinear({
+  const xScale = scaleLinear({
     domain: [1.3, 2.2],
     range: [0, xMax],
     clamp: true,
   });
-  const yScale = Scale.scaleLinear({
+  const yScale = scaleLinear({
     domain: [.75, 1.6],
     range: [yMax, 0],
     clamp: true,

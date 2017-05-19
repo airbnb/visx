@@ -1,12 +1,12 @@
 import React from 'react';
-import { AxisLeft, AxisBottom } from '@vx/axis';
-import Scale from '@vx/scale';
-import { Group } from '@vx/group';
-import { genDateValue } from '@vx/mock-data';
 import { Grid } from '@vx/grid';
-import Shape from '@vx/shape';
+import { Group } from '@vx/group';
 import { curveBasis } from '@vx/curve';
 import { OrangeRed } from '@vx/gradient';
+import { genDateValue } from '@vx/mock-data';
+import { AxisLeft, AxisBottom } from '@vx/axis';
+import { scaleTime, scaleLinear } from '@vx/scale';
+import Shape from '@vx/shape';
 import { extent, max } from 'd3-array';
 
 
@@ -39,11 +39,11 @@ export default ({
   const yMax = height - margin.top - margin.bottom;
 
   // scales
-  const xScale = Scale.scaleTime({
+  const xScale = scaleTime({
     range: [0, xMax],
     domain: extent(data, x),
   });
-  const yScale = Scale.scaleLinear({
+  const yScale = scaleLinear({
     range: [yMax, 0],
     domain: [0, max(data, y)],
     nice: true,

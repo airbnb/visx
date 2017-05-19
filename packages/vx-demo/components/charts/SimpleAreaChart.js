@@ -1,8 +1,8 @@
 import React from 'react';
 import { Group } from '@vx/group';
-import Axis from '@vx/axis';
+import { AxisLeft, AxisBottom } from '@vx/axis';
 import { appleStock } from '@vx/mock-data';
-import Scale from '@vx/scale';
+import { scaleTime, scaleLinear } from '@vx/scale';
 import Shape from '@vx/shape';
 import { GridRows } from '@vx/grid';
 import { OrangeRed } from '@vx/gradient';
@@ -37,11 +37,11 @@ export default ({
   const yStock = d => d.close;
 
   // scales
-  const xStockScale = Scale.scaleTime({
+  const xStockScale = scaleTime({
     range: [0, xMax],
     domain: extent(stock, xStock),
   });
-  const yStockScale = Scale.scaleLinear({
+  const yStockScale = scaleLinear({
     range: [yMax, 0],
     domain: [0, max(stock, yStock)],
     nice: true,
@@ -68,14 +68,14 @@ export default ({
           fill={'url(#gradient)'}
         />
       </Group>
-      <Axis.AxisBottom
+      <AxisBottom
         top={height - margin.bottom}
         left={margin.left}
         scale={xStockScale}
         numTicks={numTicksForWidth(width)}
         label={'date'}
       />
-      <Axis.AxisLeft
+      <AxisLeft
         top={margin.top}
         left={margin.left}
         scale={yStockScale}

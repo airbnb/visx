@@ -1,9 +1,9 @@
 import React from 'react';
-import { letterFrequency } from '@vx/mock-data';
-import { Group } from '@vx/group';
 import Shape from '@vx/shape';
-import Scale from '@vx/scale';
+import { Group } from '@vx/group';
 import { TealBlue } from '@vx/gradient';
+import { letterFrequency } from '@vx/mock-data';
+import { scaleBand, scaleLinear } from '@vx/scale';
 import { extent, max } from 'd3-array';
 
 const data = letterFrequency.slice(5);
@@ -28,12 +28,12 @@ export default ({
   const yMax = height - 120;
 
   // scales
-  const xScale = Scale.scaleBand({
+  const xScale = scaleBand({
     rangeRound: [0, xMax],
     domain: data.map(x),
     padding: 0.4,
   });
-  const yScale = Scale.scaleLinear({
+  const yScale = scaleLinear({
     rangeRound: [yMax, 0],
     domain: [0, max(data, y)],
   });

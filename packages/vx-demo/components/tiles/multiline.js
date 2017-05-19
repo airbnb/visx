@@ -1,10 +1,10 @@
 import React from 'react';
-import { genDateValue } from '@vx/mock-data';
-import { curveMonotoneX, curveBasis } from '@vx/curve';
-import Scale from '@vx/scale';
 import Shape from '@vx/shape';
-import { GlyphDot } from '@vx/glyph';
 import { Group } from '@vx/group';
+import { GlyphDot } from '@vx/glyph';
+import { genDateValue } from '@vx/mock-data';
+import { scaleTime, scaleLinear } from '@vx/scale';
+import { curveMonotoneX, curveBasis } from '@vx/curve';
 import { extent, max, min } from 'd3-array';
 
 const data = genDateValue(15);
@@ -23,11 +23,11 @@ export default ({
   const yMax = height - margin.top - margin.bottom;
 
   // scales
-  const xScale = Scale.scaleTime({
+  const xScale = scaleTime({
     range: [0, xMax],
     domain: extent(data, x),
   });
-  const yScale = Scale.scaleLinear({
+  const yScale = scaleLinear({
     range: [yMax, 0],
     domain: [0, max(data, y)],
   });

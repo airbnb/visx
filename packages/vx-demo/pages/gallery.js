@@ -1,10 +1,6 @@
 import React from 'react';
 import Tilt from 'react-tilt';
 import Link from 'next/link';
-import Mock from '@vx/mock-data';
-import Shape from '@vx/shape';
-import Scale from '@vx/scale';
-import { Group } from '@vx/group';
 import { extent, max } from 'd3-array';
 
 import Page from '../components/page';

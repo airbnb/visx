@@ -7,7 +7,7 @@ export default ({}) => {
       {`// BrushChart.js
 import React from 'react';
 import { genRandomNormalPoints } from '@vx/mock-data';
-import Scale from '@vx/scale';
+import { scaleLinear } from '@vx/scale';
 import { Group } from '@vx/group';
 import { AxisLeft, AxisBottom } from '@vx/axis';
 import colors from '../util/sillyColorScale';
@@ -38,13 +38,13 @@ class BrushChart extends React.Component {
       y: [-4.5 / 2, 4.5 / 2]
     };
 
-    this.xScale = Scale.scaleLinear({
+    this.xScale = scaleLinear({
       domain: this.initialDomain.x,
       range: [0, width - margin.left - margin.right],
       clamp: true,
     });
 
-    this.yScale = Scale.scaleLinear({
+    this.yScale = scaleLinear({
       domain: this.initialDomain.y,
       range: [height - margin.top - margin.bottom, 0],
       clamp: true,

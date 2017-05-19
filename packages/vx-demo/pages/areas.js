@@ -12,14 +12,14 @@ export default () => {
     }}>
 {`import React from 'react';
 import Shape from '@vx/shape';
-import Mock from '@vx/mock-data';
-import Scale from '@vx/scale';
-import { curveMonotoneX } from '@vx/curve';
-import { LinearGradient } from '@vx/gradient';
 import { Rows, Columns } from '@vx/grid';
+import { curveMonotoneX } from '@vx/curve';
+import { appleStock } from '@vx/mock-data';
+import { LinearGradient } from '@vx/gradient';
+import { scaleTime, scaleLinear } from '@vx/scale';
 import { extent, max } from 'd3-array';
 
-const stock = Mock.appleStock.slice(800);
+const stock = appleStock.slice(800);
 
 // accessors
 const xStock = d => new Date(d.date);
@@ -36,11 +36,11 @@ export default ({
   const yMax = height - margin.top - margin.bottom;
 
   // scales
-  const xScale = Scale.scaleTime({
+  const xScale = scaleTime({
     range: [0, xMax],
     domain: extent(stock, xStock),
   });
-  const yScale = Scale.scaleLinear({
+  const yScale = scaleLinear({
     range: [yMax, 0],
     domain: [0, max(stock, yStock) + yMax / 3],
     nice: true,

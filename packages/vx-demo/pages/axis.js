@@ -11,17 +11,17 @@ export default () => {
       bottom: 60,
     }}>
 {`import React from 'react';
-import { AxisLeft, AxisBottom } from '@vx/axis';
-import Scale from '@vx/scale';
-import { Group } from '@vx/group';
-import Mock from '@vx/mock-data';
-import Grid from '@vx/grid';
 import Shape from '@vx/shape';
+import { Grid } from '@vx/grid';
+import { Group } from '@vx/group';
 import { curveBasis } from '@vx/curve';
 import { OrangeRed } from '@vx/gradient';
+import { genDateValue} from '@vx/mock-data';
+import { AxisLeft, AxisBottom } from '@vx/axis';
+import { scaleTime, scaleLinear } from '@vx/scale';
 import { extent, max } from 'd3-array';
 
-const data = Mock.genDateValue(20);
+const data = genDateValue(20);
 
 // accessors
 const x = d => d.date;
@@ -50,11 +50,11 @@ export default ({
   const yMax = height - margin.top - margin.bottom;
 
   // scales
-  const xScale = Scale.scaleTime({
+  const xScale = scaleTime({
     range: [0, xMax],
     domain: extent(data, x),
   });
-  const yScale = Scale.scaleLinear({
+  const yScale = scaleLinear({
     range: [yMax, 0],
     domain: [0, max(data, y)],
     nice: true,
@@ -67,7 +67,7 @@ export default ({
   return (
     <svg width={width} height={height}>
       <OrangeRed id="linear" />
-      <Grid.Grid
+      <Grid
         top={margin.top}
         left={margin.left}
         xScale={xScale}
