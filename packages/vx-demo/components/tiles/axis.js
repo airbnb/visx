@@ -107,19 +107,54 @@ export default ({
         scale={yScale}
         hideZero
         numTicks={numTicksForHeight(height)}
-        label={'value'}
-        stroke={'#1b1a1e'}
-        tickTextFill={'#8e205f'}
+        label={
+          <text
+            fill="#8e205f"
+            textAnchor="middle"
+            fontSize={10}
+            fontFamily="Arial"
+          >
+            value
+          </text>
+        }
+        stroke="#1b1a1e"
+        tickLabelComponent={
+          <text
+            fill="#8e205f"
+            textAnchor="end"
+            fontSize={10}
+            fontFamily="Arial"
+            dx="-0.25em"
+            dy="0.25em"
+          />
+        }
       />
       <AxisBottom
         top={height - margin.bottom}
         left={margin.left}
         scale={xScale}
         numTicks={numTicksForWidth(width)}
-        label={'time'}
+        label={
+          <text
+            fill="#8e205f"
+            textAnchor="middle"
+            fontSize={10}
+            fontFamily="Arial"
+          >
+            time
+          </text>
+        }
         stroke={'#1b1a1e'}
         tickStroke={'#1b1a1e'}
-        tickTextFill={'#8e205f'}
+        tickLabelComponent={
+          <text
+            fill="#8e205f"
+            textAnchor="middle"
+            fontSize={10}
+            fontFamily="Arial"
+            dy="0.25em"
+          />
+        }
       />
     </svg>
   );

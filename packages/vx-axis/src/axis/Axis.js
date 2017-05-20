@@ -85,6 +85,7 @@ export default function Axis({
         top={top}
         left={left}
       >
+        {React.cloneElement(labelComponent, labelProps)}
         {values.map((val, i) => {
           if (hideZero && val === 0) return null;
 
