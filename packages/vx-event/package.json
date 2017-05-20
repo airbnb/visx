@@ -1,6 +1,6 @@
 {
   "name": "@vx/event",
-  "version": "0.0.111",
+  "version": "0.0.112",
   "description": "vx event",
   "main": "build/index.js",
   "scripts": {
@@ -35,6 +35,6 @@
     "react-tools": "^0.10.0"
   },
   "dependencies": {
-    "@vx/point": "0.0.111"
+    "@vx/point": "0.0.112"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@vx/glyph",
-  "version": "0.0.111",
+  "version": "0.0.112",
   "description": "vx glyph ",
   "main": "build/index.js",
   "scripts": {
@@ -41,7 +41,7 @@
     "regenerator-runtime": "^0.10.5"
   },
   "dependencies": {
-    "@vx/group": "0.0.111",
+    "@vx/group": "0.0.112",
     "classnames": "^2.2.5",
     "react": "^15.4.2"
   }
