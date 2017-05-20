@@ -1,0 +1,165 @@
+
+  <html>
+    <head>
+      <link rel="stylesheet" type="text/css" href="../doc_styles.css">
+    </head>
+
+    <h1 id="-vx-mock-data">@vx/mock-data</h1>
+<p>The <code>@vx/mock-data</code> package is here to help you test out your graphs.</p>
+<h2 id="generators">Generators</h2>
+<p>Generators can create simple generic data for you like this:</p>
+<pre><code class="lang-js">import Mock from &#39;@vx/mock-data&#39;;
+const points = Mock.genRandomNormalPoints();
+</code></pre>
+<h3 id="-mock-genrandomnormalpoints-"><code>Mock.genRandomNormalPoints()</code></h3>
+<p>Returns a series of random normal x,y points.  </p>
+<h3 id="-mock-getdatevalue-n-"><code>Mock.getDateValue(n)</code></h3>
+<p>Generates <code>n</code> date values an hour apart from each other starting with the current time. </p>
+<h2 id="mocks">Mocks</h2>
+<p>Mock are essentially a bunch of data dumps that you can use like this:</p>
+<pre><code class="lang-js">import Mock from &#39;@vx/mock-data&#39;;
+const data = Mock.cityTemperature;
+</code></pre>
+<h3 id="-mock-applestock-"><code>Mock.appleStock</code></h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>date</td>
+</tr>
+<tr>
+<td>close</td>
+</tr>
+</tbody>
+</table>
+<h3 id="-mock-browserusage-"><code>Mock.browserUsage</code></h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>date</td>
+</tr>
+<tr>
+<td>Google Chrome</td>
+</tr>
+<tr>
+<td>Internet Explorer</td>
+</tr>
+<tr>
+<td>Firefox</td>
+</tr>
+<tr>
+<td>Safari</td>
+</tr>
+<tr>
+<td>Microsoft Edge</td>
+</tr>
+<tr>
+<td>Opera</td>
+</tr>
+<tr>
+<td>Mozilla</td>
+</tr>
+<tr>
+<td>Other/Unknown</td>
+</tr>
+</tbody>
+</table>
+<h3 id="-mock-citytemperature-"><code>Mock.cityTemperature</code></h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>date</td>
+</tr>
+<tr>
+<td>New York</td>
+</tr>
+<tr>
+<td>San Francisco</td>
+</tr>
+<tr>
+<td>Austin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="-mock-groupdatevalue-"><code>Mock.groupDateValue</code></h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>date</td>
+</tr>
+<tr>
+<td>key</td>
+</tr>
+<tr>
+<td>value</td>
+</tr>
+</tbody>
+</table>
+<h3 id="-mock-letterfrequency-"><code>Mock.letterFrequency</code></h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>letter</td>
+</tr>
+<tr>
+<td>frequency</td>
+</tr>
+</tbody>
+</table>
+<h2 id="source-for-components">Source For Components</h2>
+<ul>
+<li>generators/<ul>
+<li><a href="https://github.com/hshoff/vx/blob/master/packages/vx-mock-data/src/generators/genDateValue.js">genDateValue()</a></li>
+<li><a href="https://github.com/hshoff/vx/blob/master/packages/vx-mock-data/src/generators/genRandomNormalPoints.js">genRandomNormalPoints()</a></li>
+</ul>
+</li>
+<li>mocks/<ul>
+<li><a href="https://github.com/hshoff/vx/blob/master/packages/vx-mock-data/src/mocks/appleStock.js">appleStock</a></li>
+<li><a href="https://github.com/hshoff/vx/blob/master/packages/vx-mock-data/src/mocks/browserUsage.js">browserUsage</a></li>
+<li><a href="https://github.com/hshoff/vx/blob/master/packages/vx-mock-data/src/mocks/cityTemperature.js">cityTemperature</a></li>
+<li><a href="https://github.com/hshoff/vx/blob/master/packages/vx-mock-data/src/mocks/groupDateValue.js">groupDateValue</a></li>
+<li><a href="https://github.com/hshoff/vx/blob/master/packages/vx-mock-data/src/mocks/letterFrequency.js">letterFrequency</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="vx-packages">vx packages</h2>
+<ul>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-axis">@vx/axis</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-curve">@vx/curve</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-demo">@vx/demo</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-glyph">@vx/glyph</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-grid">@vx/grid</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-group">@vx/group</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-marker">@vx/marker</a></li>
+<li>@vx/mock-data</li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-point">@vx/point</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-responsive">@vx/responsive</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-scale">@vx/scale</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-shape">@vx/shape</a></li>
+</ul>
+
+  </html>

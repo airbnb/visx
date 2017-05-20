@@ -1,0 +1,84 @@
+
+  <html>
+    <head>
+      <link rel="stylesheet" type="text/css" href="../doc_styles.css">
+    </head>
+
+    <h1 id="-vx-pattern">@vx/pattern</h1>
+<p>Inspired by: <a href="http://riccardoscalco.github.io/textures/">http://riccardoscalco.github.io/textures/</a></p>
+<h2 id="example">Example</h2>
+<pre><code class="lang-js">import { AreaClose } from &#39;@vx/shape&#39;;
+import { PatternLines } from &#39;@vx/pattern&#39;;
+
+const PatternArea = () =&gt; {
+    return (
+      &lt;svg&gt;
+        &lt;PatternLines
+          id=&quot;lines&quot;
+          height={5}
+          width={5}
+          stroke={&#39;black&#39;}
+          strokeWidth={1}
+          orientation={[&#39;diagonal&#39;]}
+        /&gt;
+        &lt;AreaClose fill=&quot;url(&#39;#lines&#39;)&quot; /&gt;
+      &lt;/svg&gt;
+    );
+};
+</code></pre>
+<h2 id="the-definition-caveat">The Definition Caveat</h2>
+<p>Like gradients, patterns are &quot;defined.&quot; When you put down a <code>&lt;PatternXYZ /&gt;</code>, it&#39;s putting a <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Patterns"><code>&lt;pattern/&gt;</code></a> attribute in the SVG.</p>
+<p>It&#39;s often better to think of these as variable definitions rather than true DOM elements. When you use <code>fill=&quot;url(&#39;#pattern&#39;)&quot;</code> you&#39;re referencing the pattern&#39;s id: <code>pattern</code>.</p>
+<h2 id="pre-made-patterns">Pre-Made Patterns</h2>
+<h3 id="-patternscircles-"><code>PatternsCircles</code></h3>
+<p><img src="http://i.imgur.com/jd9YGJi.png" alt="circles example"></p>
+<pre><code class="lang-js">&lt;PatternCircles
+  id=&quot;circles&quot;
+  height={6}
+  width={6}
+  stroke={&#39;black&#39;}
+  strokeWidth={1}
+/&gt;
+</code></pre>
+<h3 id="-patternshexagons-"><code>PatternsHexagons</code></h3>
+<p><img src="http://i.imgur.com/3EL1Lza.png" alt="hexagon example"></p>
+<pre><code class="lang-js">&lt;PatternHexagons
+  id=&quot;hexagons&quot;
+  height={3}
+  size={8}
+  stroke={&#39;red&#39;}
+  strokeWidth={1}
+/&gt;
+</code></pre>
+<h3 id="-patternslines-"><code>PatternsLines</code></h3>
+<p><img src="http://i.imgur.com/E3cTmLZ.png" alt="lines example"></p>
+<pre><code class="lang-js">&lt;PatternLines
+  id=&quot;lines&quot;
+  height={5}
+  width={5}
+  stroke={&#39;black&#39;}
+  strokeWidth={1}
+  orientation={[&#39;diagonal&#39;]}
+/&gt;
+</code></pre>
+<h3 id="-patternswaves-"><code>PatternsWaves</code></h3>
+<p><img src="http://i.imgur.com/4fdwbhv.png" alt="waves example"></p>
+<pre><code class="lang-js">&lt;PatternWaves
+  id=&quot;waves&quot;
+  height={4}
+  width={4}
+  stroke={&#39;blue&#39;}
+  strokeWidth={1}
+/&gt;
+</code></pre>
+<h2 id="source-for-components">Source For Components</h2>
+<ul>
+<li><a href="https://github.com/hshoff/vx/blob/master/packages/vx-pattern/src/patterns/Circles.js"><code>&lt;PatternCircles /&gt;</code></a></li>
+<li><a href="https://github.com/hshoff/vx/blob/master/packages/vx-pattern/src/patterns/Hexagons.js"><code>&lt;PatternHexagons /&gt;</code></a></li>
+<li><a href="https://github.com/hshoff/vx/blob/master/packages/vx-pattern/src/patterns/Lines.js"><code>&lt;PatternLines /&gt;</code></a></li>
+<li><a href="https://github.com/hshoff/vx/blob/master/packages/vx-pattern/src/patterns/Path.js"><code>&lt;PatternPath /&gt;</code></a></li>
+<li><a href="https://github.com/hshoff/vx/blob/master/packages/vx-pattern/src/patterns/Pattern.js"><code>&lt;PatternPattern /&gt;</code></a></li>
+<li><a href="https://github.com/hshoff/vx/blob/master/packages/vx-pattern/src/patterns/Waves.js"><code>&lt;PatternPath /&gt;</code></a></li>
+</ul>
+
+  </html>

@@ -1,0 +1,153 @@
+
+  <html>
+    <head>
+      <link rel="stylesheet" type="text/css" href="../doc_styles.css">
+    </head>
+
+    <h1 id="-vx-annotation">@vx/annotation</h1>
+<h2 id="linepathannotation">LinePathAnnotation</h2>
+<p>Line Path Annotations add a bit of text and a line coming from a point. They&#39;re useful for adding info to your graphs.</p>
+<pre><code class="lang-javascript">import { LinePathAnnotation } from &#39;@vx/annotation&#39;;
+// or
+// import * as Annotation from &#39;@vx/annotation&#39;; 
+// &lt;Annotation.LinePathAnnotation /&gt;
+
+const annotation = (
+  &lt;LinePathAnnotation
+    label={&#39;expected from deploy&#39;}
+    stroke={&#39;white&#39;}
+    labelFill={&#39;white&#39;}
+    labelStroke={&#39;none&#39;}
+    labelStrokeWidth={2}
+    points={[
+      annotationPoint,
+      new Point({
+        x: annotationPoint.x + (width / allData.length),
+        y: annotationPoint.y - (height / allData.length),
+      })
+    ]}
+  /&gt;
+);
+</code></pre>
+<p><img src="http://i.imgur.com/o5jnHFS.png" alt="image output"></p>
+<h1 id="properties">Properties</h1>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Default</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">top</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">Margin on top</td>
+</tr>
+<tr>
+<td style="text-align:left">left</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">Margin on left</td>
+</tr>
+<tr>
+<td style="text-align:left">points</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">array</td>
+<td style="text-align:left">Points describing the line path</td>
+</tr>
+<tr>
+<td style="text-align:left">stroke</td>
+<td style="text-align:left">black</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The color of the line</td>
+</tr>
+<tr>
+<td style="text-align:left">strokeWidth</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The pixel width of the line</td>
+</tr>
+<tr>
+<td style="text-align:left">className</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The class name associated of the LinePath shape</td>
+</tr>
+<tr>
+<td style="text-align:left">label</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The text for your label</td>
+</tr>
+<tr>
+<td style="text-align:left">labelAnchor</td>
+<td style="text-align:left">left</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The label&#39;s textAnchor</td>
+</tr>
+<tr>
+<td style="text-align:left">labelDx</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The x-coordinate shift to the label</td>
+</tr>
+<tr>
+<td style="text-align:left">labelDy</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The y-coordinate shift to the label</td>
+</tr>
+<tr>
+<td style="text-align:left">labelFill</td>
+<td style="text-align:left"><stroke></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The color of label. Defaults to the stroke color</td>
+</tr>
+<tr>
+<td style="text-align:left">labelFontSize</td>
+<td style="text-align:left">10</td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The font size of the label text</td>
+</tr>
+<tr>
+<td style="text-align:left">labelStroke</td>
+<td style="text-align:left">white</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The color of the label</td>
+</tr>
+<tr>
+<td style="text-align:left">labelStrokeWidth</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The stroke width of the label text</td>
+</tr>
+<tr>
+<td style="text-align:left">labelPaintOrder</td>
+<td style="text-align:left">stroke</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The label&#39;s SVG <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/paint-order">paint-order</a>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="vx-packages">vx packages</h2>
+<ul>
+<li>@vx/annotation</li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-axis">@vx/axis</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-curve">@vx/curve</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-demo">@vx/demo</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-glyph">@vx/glyph</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-grid">@vx/grid</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-group">@vx/group</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-marker">@vx/marker</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-mock-data">@vx/mock-data</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-point">@vx/point</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-responsive">@vx/responsive</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-scale">@vx/scale</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-shape">@vx/shape</a></li>
+</ul>
+
+  </html>

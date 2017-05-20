@@ -1,0 +1,73 @@
+
+  <html>
+    <head>
+      <link rel="stylesheet" type="text/css" href="../doc_styles.css">
+    </head>
+
+    <h1 id="-vx-gradient">@vx/gradient</h1>
+<p>Inspired by: <a href="https://dribbble.com/shots/3380672-Sketch-Gradients-Freebie">https://dribbble.com/shots/3380672-Sketch-Gradients-Freebie</a></p>
+<h2 id="example">Example</h2>
+<pre><code class="lang-js">import { AreaClose } from &#39;@vx/shape&#39;;
+import { GradientPinkBlue } from &#39;@vx/gradient&#39;;
+
+const GradientArea = () =&gt; {
+    return (
+      &lt;svg&gt;
+        &lt;GradientPinkBlue id=&quot;gradient&quot; /&gt;
+        &lt;AreaClose fill=&quot;url(&#39;#gradient&#39;)&quot; /&gt;
+      &lt;/svg&gt;
+    );
+}
+</code></pre>
+<h2 id="the-definition-caveat">The Definition Caveat</h2>
+<p>Like patterns, gradients are &quot;defined.&quot; When you put down a <code>&lt;PinkBlue /&gt;</code>, it&#39;s putting a <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/linearGradient"><code>&lt;linearGradient/&gt;</code></a> attribute inside a <code>&lt;def&gt;</code> in the SVG.</p>
+<p>It&#39;s often better to think of these as variable definitions rather than true DOM elements. When you use <code>fill=&quot;url(&#39;#gradient&#39;)&quot;</code> you&#39;re referencing the gradient&#39;s id: <code>gradient</code>.</p>
+<h2 id="premades">Premades</h2>
+<p>vx comes with a couple pre-made gradients for you to use.</p>
+<table>
+<thead>
+<tr>
+<th>Gradients Available</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GradientDarkgreenGreen</code></td>
+</tr>
+<tr>
+<td><code>GradientLightgreenGreen</code></td>
+</tr>
+<tr>
+<td><code>GradientOrangeRed</code></td>
+</tr>
+<tr>
+<td><code>GradientPinkBlue</code></td>
+</tr>
+<tr>
+<td><code>GradientPinkRed</code></td>
+</tr>
+<tr>
+<td><code>GradientPurpleOrange</code></td>
+</tr>
+<tr>
+<td><code>GradientPurpleTeal</code></td>
+</tr>
+<tr>
+<td><code>GradientSteelPurple</code></td>
+</tr>
+<tr>
+<td><code>GradientTealBlue</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="make-your-own-">Make your own!</h2>
+<p>You can make any linear gradient like so:</p>
+<pre><code class="lang-js">import { LinearGradient } from &#39;@vx/gradient&#39;;
+
+&lt;LinearGradient
+  from=&#39;#a18cd1&#39;
+  to=&#39;#fbc2eb&#39;
+/&gt;
+</code></pre>
+
+  </html>

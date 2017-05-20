@@ -1,0 +1,168 @@
+
+  <html>
+    <head>
+      <link rel="stylesheet" type="text/css" href="../doc_styles.css">
+    </head>
+
+    <h1 id="-vx-marker">@vx/marker</h1>
+<p>A Marker is a line with a piece of text attached to it. It&#39;s great for highlighting locations in your graph.  </p>
+<h2 id="example">Example</h2>
+<p><img src="http://i.imgur.com/vbW3Ysa.png" alt="marker example"></p>
+<pre><code class="lang-js">&lt;Marker
+  from={markerFrom}
+  to={markerTo}
+  stroke={&#39;white&#39;}
+  label={&#39;deploy&#39;}
+  labelStroke={&#39;none&#39;}
+  labelDx={6}
+  labelDy={15}
+/&gt;
+</code></pre>
+<h2 id="properties">Properties</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Default</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">top</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The margin on top.</td>
+</tr>
+<tr>
+<td style="text-align:left">left</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The margin on the left.</td>
+</tr>
+<tr>
+<td style="text-align:left">from</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">point</td>
+<td style="text-align:left">The start point for the line.</td>
+</tr>
+<tr>
+<td style="text-align:left">to</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">point</td>
+<td style="text-align:left">The end point for the line.</td>
+</tr>
+<tr>
+<td style="text-align:left">stroke</td>
+<td style="text-align:left">magenta</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The color of the stroke for the line.</td>
+</tr>
+<tr>
+<td style="text-align:left">strokeWidth</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The width of the stroke for the line.</td>
+</tr>
+<tr>
+<td style="text-align:left">strokeDasharray</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">array</td>
+<td style="text-align:left">The <a href="https://mzl.la/1l7EiTQ">pattern of dashes</a> in the stroke.</td>
+</tr>
+<tr>
+<td style="text-align:left">fill</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The color for the fill of the line.</td>
+</tr>
+<tr>
+<td style="text-align:left">transform</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">An <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/transform">SVG transform</a>.</td>
+</tr>
+<tr>
+<td style="text-align:left">label</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The text for the label.</td>
+</tr>
+<tr>
+<td style="text-align:left">labelAnchor</td>
+<td style="text-align:left">left</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The label&#39;s <code>textAnchor</code></td>
+</tr>
+<tr>
+<td style="text-align:left">labelDx</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The x-coordinate shift to the label.</td>
+</tr>
+<tr>
+<td style="text-align:left">labelDy</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The y-coordinate shift to the label.</td>
+</tr>
+<tr>
+<td style="text-align:left">labelFill</td>
+<td style="text-align:left"><stroke></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The fill color for the label.</td>
+</tr>
+<tr>
+<td style="text-align:left">labelFontSize</td>
+<td style="text-align:left">10</td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The font size for the label text.</td>
+</tr>
+<tr>
+<td style="text-align:left">labelStroke</td>
+<td style="text-align:left">white</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The color for the label&#39;s stroke.</td>
+</tr>
+<tr>
+<td style="text-align:left">labelStrokeWidth</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The width of the label&#39;s stroke.</td>
+</tr>
+<tr>
+<td style="text-align:left">labelPaintOrder</td>
+<td style="text-align:left">stroke</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The label&#39;s SVG <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/paint-order">paint-order</a>.</td>
+</tr>
+<tr>
+<td style="text-align:left">className</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The class name for the line.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="source-for-components">Source For Components</h2>
+<ul>
+<li><a href="https://github.com/hshoff/vx/blob/master/packages/vx-marker/src/markers/Marker.js"><code>&lt;Marker /&gt;</code></a></li>
+</ul>
+<h2 id="vx-packages">vx packages</h2>
+<ul>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-axis">@vx/axis</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-curve">@vx/curve</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-demo">@vx/demo</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-glyph">@vx/glyph</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-grid">@vx/grid</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-group">@vx/group</a></li>
+<li>@vx/marker</li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-mock-data">@vx/mock-data</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-point">@vx/point</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-responsive">@vx/responsive</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-scale">@vx/scale</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-shape">@vx/shape</a></li>
+</ul>
+
+  </html>

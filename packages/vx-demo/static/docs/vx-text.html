@@ -1,0 +1,149 @@
+
+  <html>
+    <head>
+      <link rel="stylesheet" type="text/css" href="../doc_styles.css">
+    </head>
+
+    <h1 id="-vx-text">@vx/text</h1>
+<p>The <code>@vx/text</code> package contains components useful for adding labels to your graphs.</p>
+<h2 id="-textoutline-"><code>&lt;TextOutline /&gt;</code></h2>
+<p>TextOutline can add an outline around your text to help it be more readable.</p>
+<h2 id="example">Example</h2>
+<p><img src="http://i.imgur.com/mpbbNTn.png" alt="text outline picture"></p>
+<pre><code class="lang-js">import { TextOutline } from &#39;@vx/text&#39;;
+
+&lt;TextOutline
+  fontSize={10}
+  x={x}
+  y={y}
+  dy={&#39;.5em&#39;}
+  textAnchor={&#39;end&#39;}
+  fill=&quot;black&quot;
+  outlineStroke={&quot;white&quot;}
+  outlineStrokeWidth={3}
+  fontFamily={&quot;Roboto Mono&quot;}
+&gt;
+  {&quot;Woo text!&quot;}
+&lt;/TextOutline&gt;
+</code></pre>
+<h3 id="properties">Properties</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Default</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">x</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The x coordinate position.</td>
+</tr>
+<tr>
+<td style="text-align:left">y</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The y coordinate position.</td>
+</tr>
+<tr>
+<td style="text-align:left">dx</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The x-offset.</td>
+</tr>
+<tr>
+<td style="text-align:left">dy</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The y-offset.</td>
+</tr>
+<tr>
+<td style="text-align:left">fontSize</td>
+<td style="text-align:left">12</td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The fontSize for the text.</td>
+</tr>
+<tr>
+<td style="text-align:left">fontFamily</td>
+<td style="text-align:left">Arial</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The fontFamily for the text.</td>
+</tr>
+<tr>
+<td style="text-align:left">fill</td>
+<td style="text-align:left">white</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The fill color for the inner text.</td>
+</tr>
+<tr>
+<td style="text-align:left">stroke</td>
+<td style="text-align:left">none</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The stroke color for the inner text.</td>
+</tr>
+<tr>
+<td style="text-align:left">strokeWidth</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The strokeWidth for the inner text.</td>
+</tr>
+<tr>
+<td style="text-align:left">outlineFill</td>
+<td style="text-align:left">white</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The fill color for the outline.</td>
+</tr>
+<tr>
+<td style="text-align:left">outlineStroke</td>
+<td style="text-align:left">magenta</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The stroke color of the outline.</td>
+</tr>
+<tr>
+<td style="text-align:left">outlineStrokeWidth</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The stroke width in pixels of the outline.</td>
+</tr>
+<tr>
+<td style="text-align:left">textAnchor</td>
+<td style="text-align:left">start</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The <a href="https://mzl.la/2pDkPXM">svg textAnchor</a> for the text.</td>
+</tr>
+<tr>
+<td style="text-align:left">className</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">A classname to be applied to both the inner and outer text.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="source-for-components">Source For Components</h2>
+<ul>
+<li><a href="https://github.com/hshoff/vx/blob/master/packages/vx-text/src/text/TextOutline.js"><code>&lt;TextOutline /&gt;</code></a></li>
+<li>:warning: <a href="https://github.com/hshoff/vx/blob/master/packages/vx-text/src/text/TextWrap.js"><code>&lt;TextWrap /&gt;</code></a></li>
+</ul>
+<h2 id="vx-packages">vx packages</h2>
+<ul>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-annotation">@vx/annotation</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-axis">@vx/axis</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-curve">@vx/curve</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-demo">@vx/demo</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-glyph">@vx/glyph</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-grid">@vx/grid</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-group">@vx/group</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-marker">@vx/marker</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-mock-data">@vx/mock-data</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-point">@vx/point</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-responsive">@vx/responsive</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-scale">@vx/scale</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-shape">@vx/shape</a></li>
+<li>@vx/text</li>
+</ul>
+
+  </html>
