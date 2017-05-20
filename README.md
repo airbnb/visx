@@ -3,8 +3,15 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/npm/v/@vx/demo.svg?style=flat-square" />
-  <img src="https://img.shields.io/npm/dm/@vx/demo.svg?style=flat-square" />
+  <a title="npm version" href="https://www.npmjs.com/~vx">
+    <img src="https://img.shields.io/npm/v/@vx/demo.svg?style=flat-square" />
+  </a>
+  <a title="build status" href="https://travis-ci.org/hshoff/vx">
+    <img src="https://travis-ci.org/hshoff/vx.svg" />
+  </a>
+  <a title="@vx/demo npm downloads" href="https://www.npmjs.com/package/@vx/demo">
+    <img src="https://img.shields.io/npm/dm/@vx/demo.svg?style=flat-square" />
+  </a>
 </p>
 
 ### vx
