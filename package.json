@@ -7,7 +7,7 @@
   "description": "Low-level visualization components",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "lerna exec npm install && lerna run test"
   },
   "keywords": [
     "react",

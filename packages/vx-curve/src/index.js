@@ -4,7 +4,7 @@ export {
   curveBasisOpen,
   curveStep,
   curveStepAfter,
-  curveStepbefore,
+  curveStepBefore,
   curveBundle,
   curveLinear,
   curveLinearClosed,

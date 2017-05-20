@@ -36,10 +36,10 @@ Object.defineProperty(exports, 'curveStepAfter', {
     return _d3Shape.curveStepAfter;
   }
 });
-Object.defineProperty(exports, 'curveStepbefore', {
+Object.defineProperty(exports, 'curveStepBefore', {
   enumerable: true,
   get: function get() {
-    return _d3Shape.curveStepbefore;
+    return _d3Shape.curveStepBefore;
   }
 });
 Object.defineProperty(exports, 'curveBundle', {

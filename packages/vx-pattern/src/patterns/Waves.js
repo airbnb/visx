@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Path from './Path';
 
-export default function Waves({
+export default function PatternWaves({
   id,
   width,
   height,
@@ -35,4 +36,16 @@ export default function Waves({
       background={background}
     />
   );
+}
+
+PatternWaves.propTypes = {
+  id: PropTypes.string.isRequired,
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  fill: PropTypes.string,
+  className: PropTypes.string,
+  background: PropTypes.string,
+  stroke: PropTypes.string,
+  strokeWidth: PropTypes.number,
+  strokeDasharray: PropTypes.string,
 }

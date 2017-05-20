@@ -18,6 +18,8 @@ export default ({
   height,
   margin,
 }) => {
+  if (width < 10) return null;
+
   // bounds
   const xMax = width - margin.left - margin.right;
   const yMax = height - margin.top - margin.bottom;

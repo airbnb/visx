@@ -19,9 +19,13 @@ export default ({
   height,
   margin,
 }) => {
+  if (width < 10) return null;
+
+  // bounds
   const yMax = height - margin.top - margin.bottom;
   const xMax = width - margin.left - margin.right;
 
+  // scales
   const xScale = scaleTime({
     range: [0, xMax],
     domain: extent(data, x),
