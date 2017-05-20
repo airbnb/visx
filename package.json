@@ -17,8 +17,5 @@
     "charts"
   ],
   "author": "@hshoff",
-  "license": "MIT",
-  "dependencies": {
-    "cheerio": "^0.22.0"
-  }
+  "license": "MIT"
 }
