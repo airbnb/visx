@@ -11,12 +11,12 @@ export default function AxisRight({
   strokeWidth,
   strokeDasharray,
   label,
+  labelOffset = 36,
   numTicks,
   tickFormat,
   tickStroke,
   tickTransform,
   tickLength = 8,
-  tickLabelOffset = 36,
   tickLabelComponent = (
     <text
       textAnchor="start"
@@ -59,7 +59,7 @@ export default function AxisRight({
       tickLength={tickLength}
       tickTransform={tickTransform}
       tickStroke={tickStroke}
-      tickLabelOffset={tickLabelOffset}
+      labelOffset={labelOffset}
       tickLabelComponent={tickLabelComponent}
       hideAxisLine={hideAxisLine}
       hideTicks={hideTicks}

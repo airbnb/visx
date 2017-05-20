@@ -5,6 +5,7 @@ import { Point } from '@vx/point';
 import { Group } from '@vx/group';
 import center from '../utils/center';
 import identity from '../utils/identity';
+import getLabelTransform from '../utils/labelTransform';
 import ORIENT from '../constants/orientation';
 
 export default function Axis({
@@ -19,21 +20,12 @@ export default function Axis({
   tickFormat,
   tickStroke = 'black',
   tickLength = 8,
-  tickLabelOffset = 14,
   tickTransform,
   hideAxisLine = false,
   hideTicks = false,
   hideZero = false,
-  labelComponent = (
-    <text
-      textAnchor="middle"
-      fontFamily="Arial"
-      fontSize={10}
-      fill="black"
-    >
-      default label
-    </text>
-  ),
+  labelOffset = 14,
+  labelComponent,
   tickLabelComponent = (
     <text
       textAnchor="middle"
@@ -68,16 +60,16 @@ export default function Axis({
       y: horizontal ? 0 : range1,
     });
 
-    const labelFontSize = labelComponent.props.fontSize || 10;
     const tickLabelFontSize = tickLabelComponent.props.fontSize || 10;
 
-    const labelProps = {
-      transform: horizontal ?  '' : `rotate(${tickSign * 90})`,
-      x: horizontal ? range1 / 2 : tickSign * (range0 / 2),
-      y: horizontal ?
-        (tickSign * (tickLength + tickLabelOffset + tickLabelFontSize + (!isTop ? labelFontSize : 0)))
-        : (isLeft ? 1 : -1) * tickSign * (tickLength + tickLabelOffset),
-    };
+    const labelTransform = getLabelTransform({
+      tickLength,
+      labelComponent,
+      labelOffset,
+      tickLabelFontSize,
+      orientation,
+      range,
+    });
 
     return (
       <Group
@@ -85,7 +77,7 @@ export default function Axis({
         top={top}
         left={left}
       >
-        {React.cloneElement(labelComponent, labelProps)}
+        {labelComponent && React.cloneElement(labelComponent, labelTransform)}
         {values.map((val, i) => {
           if (hideZero && val === 0) return null;
 

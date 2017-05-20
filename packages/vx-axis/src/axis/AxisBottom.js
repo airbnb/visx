@@ -11,12 +11,12 @@ export default function AxisBottom({
   strokeWidth,
   strokeDasharray,
   label,
+  labelOffset = 8,
   numTicks,
   tickFormat,
   tickStroke,
   tickTransform,
   tickLength = 8,
-  tickLabelOffset = 8,
   tickLabelComponent = (
     <text
       textAnchor="middle"
@@ -58,7 +58,7 @@ export default function AxisBottom({
       tickLength={tickLength}
       tickTransform={tickTransform}
       tickStroke={tickStroke}
-      tickLabelOffset={tickLabelOffset}
+      labelOffset={labelOffset}
       tickLabelComponent={tickLabelComponent}
       hideAxisLine={hideAxisLine}
       hideTicks={hideTicks}
