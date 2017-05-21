@@ -1,6 +1,6 @@
 {
   "name": "@vx/marker",
-  "version": "0.0.112",
+  "version": "0.0.113",
   "description": "vx marker",
   "main": "build/index.js",
   "files": [
@@ -32,7 +32,7 @@
     "react-tools": "^0.10.0"
   },
   "dependencies": {
-    "@vx/group": "0.0.112",
+    "@vx/group": "0.0.113",
     "@vx/shape": "0.0.112",
     "classnames": "^2.2.5"
   },
