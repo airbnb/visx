@@ -34,6 +34,10 @@ vx is collection of reusable low-level visualization components. vx combines the
   </strong>
   &bull;
   <strong>
+    <a href="./CHANGELOG.md">Changelog</a>
+  </strong>
+  &bull;
+  <strong>
     <a href="https://medium.com/vx-code/getting-started-with-vx-1756bb661410">Getting started tutorial</a>
   </strong>
 </p>
