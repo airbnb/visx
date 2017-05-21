@@ -10,6 +10,10 @@
 ### @vx/axis
 
   - axis labels and tickLabels are now passed in as components [#31](https://github.com/hshoff/vx/pull/31) &bull; [example diff](https://github.com/hshoff/vx/pull/31/files#diff-427e08aaa7d707f2374af36902ff0e15)
+  
+### @vx/group
+
+  - added `transform` prop [#31](https://github.com/hshoff/vx/pull/31)
 
 # v0.0.112
 
