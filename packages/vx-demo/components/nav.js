@@ -9,8 +9,8 @@ export default () => (
       </Link>
       <ul>
         <Item href="/">Home</Item>
-        <Item href="https://medium.com/vx-code">Blog</Item>
         <Item href="/docs">Docs</Item>
+        <Item href="https://medium.com/vx-code">Guides</Item>
         <Item href="/gallery">Gallery</Item>
       </ul>
 
