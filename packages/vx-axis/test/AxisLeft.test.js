@@ -38,4 +38,20 @@ describe('<AxisLeft />', () => {
     const wrapper = shallow(<AxisLeft tickLength={tickLength} />)
     expect(wrapper.prop('tickLength')).toEqual(tickLength)
   })
+
+  test('it should set labelComponent prop if label prop is string', () => {
+    const label = 'test'
+    const wrapper = shallow(<AxisLeft label={label} />)
+    const labelComponent = shallow(wrapper.prop('labelComponent'))
+    expect(labelComponent.prop('children')).toEqual(label)
+  })
+
+  test('it should set labelComponent prop if label is a component', () => {
+    const labelText = 'test'
+    const label = (<text>{labelText}</text>)
+    const wrapper = shallow(<AxisLeft label={label} />)
+    const labelComponent = shallow(wrapper.prop('labelComponent'))
+    expect(labelComponent.node.type).toEqual('text')
+    expect(labelComponent.prop('children')).toEqual(labelText)
+  })
 })
