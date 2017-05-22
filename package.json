@@ -23,7 +23,7 @@
     "collectCoverage": true,
     "coverageDirectory": "<rootDir>/coverage",
     "coveragePathIgnorePatterns": [
-      "/node_modules/",
+      "/node_modules/"
     ],
     "coverageReporters": [
       "text",
