@@ -24,7 +24,7 @@
     "coverageDirectory": "<rootDir>/coverage",
     "coveragePathIgnorePatterns": [
       "/node_modules/",
-      "<rootDir>/packages/**/build/"
+      "/build/"
     ],
     "coverageReporters": [
       "text",
