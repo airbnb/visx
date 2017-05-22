@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { callOrValue } from '../util/callOrValue';
+import callOrValue from '../util/callOrValue';
 import { area, stack as d3stack } from 'd3-shape';
 
 export default ({
