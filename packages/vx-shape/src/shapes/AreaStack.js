@@ -1,14 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
+import { callOrValue } from '../util/callOrValue';
 import { area, stack as d3stack } from 'd3-shape';
-
-function callOrValue(maybeFn, d, i) {
-  if (typeof maybeFn === 'function') {
-    return maybeFn(d,i);
-  }
-  return maybeFn;
-}
-
 
 export default ({
   className,

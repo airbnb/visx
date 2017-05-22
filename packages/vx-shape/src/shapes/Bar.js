@@ -3,6 +3,7 @@ import cx from 'classnames';
 
 export default ({
   className,
+  data,
   x = 0,
   y = 0,
   width,
@@ -18,6 +19,7 @@ export default ({
   strokeLinejoin,
   strokeMiterlimit,
   strokeOpacity,
+  ...restProps,
 }) => {
   return (
     <rect
@@ -37,6 +39,10 @@ export default ({
       strokeLinejoin={strokeLinejoin}
       strokeMiterlimit={strokeMiterlimit}
       strokeOpacity={strokeOpacity}
+      {...Object.keys(restProps).reduce((ret, cur) => {
+        ret[cur] = callOrValue(restProps[cur], data);
+        return ret;
+      }, {})}
     />
   );
 }
