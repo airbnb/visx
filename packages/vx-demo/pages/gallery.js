@@ -15,6 +15,8 @@ import Area from '../components/tiles/area';
 import Stacked from '../components/tiles/stacked';
 import MultiLine from '../components/tiles/multiline';
 import Axis from '../components/tiles/axis';
+import BarGroup from '../components/tiles/bargroup';
+import BarStack from '../components/tiles/barstack';
 
 const items = [
   "#242424",
@@ -69,6 +71,8 @@ export default class Gallery extends React.Component {
     const t7 = this.state.dimensions[6] || [8, 300];
     const t8 = this.state.dimensions[7] || [8, 300];
     const t9 = this.state.dimensions[8] || [8, 300];
+    const t10 = this.state.dimensions[9] || [8, 300];
+    const t11 = this.state.dimensions[10] || [8, 300];
 
     return (
       <Page title="gallery">
@@ -310,12 +314,54 @@ export default class Gallery extends React.Component {
               </div>
             </Link>
           </Tilt>
-          <div>
-            <br/>
-            <h1 style={{textAlign: 'center', lineHeight: '.8em'}}>
-              More on the way!
-            </h1>
-          </div>
+          <Tilt
+            className="tilt"
+            options={{ max: 8, scale: 1 }}
+          >
+            <Link prefetch href="/bargroup">
+              <div className="gallery-item" style={{ background: '#612efb' }} ref={d => this.nodes.add(d)}>
+                <div className="image">
+                  <BarGroup
+                    width={t10[0]}
+                    height={t10[1]}
+                  />
+                </div>
+                <div className="details" style={{ color: '#e5fd3d'}}>
+                  <div className="title">Bar Group</div>
+                  <div className="description">
+                    <pre>{`<Shape.BarGroup />`}</pre>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </Tilt>
+          <Tilt
+            className="tilt"
+            options={{ max: 8, scale: 1 }}
+          >
+            <Link prefetch href="/barstack">
+              <div className="gallery-item" style={{ background: '#eaedff' }} ref={d => this.nodes.add(d)}>
+                <div className="image">
+                  <BarStack
+                    width={t11[0]}
+                    height={t11[1]}
+                  />
+                </div>
+                <div className="details" style={{ color: '#a44afe'}}>
+                  <div className="title">Bar Stack</div>
+                  <div className="description">
+                    <pre>{`<Shape.BarStack />`}</pre>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </Tilt>
+        </div>
+
+        <div>
+          <h1 style={{textAlign: 'center', lineHeight: '.8em'}}>
+            More on the way!
+          </h1>
         </div>
 
         <Footer />
