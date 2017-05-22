@@ -26,4 +26,10 @@ describe('<BarGroup />', () => {
     expect(console.error).toBeCalled()
     expect(console.error.mock.calls[0][0]).toEqual("Warning: Failed prop type: The prop `data` is marked as required in `BarGroup`, but its value is `undefined`.\n    in BarGroup")
   })
+
+  test('it should set top & left props', () => {
+    const wrapper = shallow(<BarGroup className='test' data={[]} top={2} left={3} />)
+    expect(wrapper.prop('top')).toEqual(2)
+    expect(wrapper.prop('left')).toEqual(3)
+  })
 })
