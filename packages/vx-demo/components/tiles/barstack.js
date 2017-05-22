@@ -1,5 +1,5 @@
 import React from 'react';
-import { BarGroup } from '@vx/shape';
+import { BarStack } from '@vx/shape';
 import { Group } from '@vx/group';
 import { AxisBottom } from '@vx/axis';
 import { cityTemperature } from '@vx/mock-data';
@@ -7,15 +7,24 @@ import { scaleBand, scaleLinear, scaleOrdinal } from '@vx/scale';
 import { timeParse, timeFormat } from 'd3-time-format';
 import { extent, max } from 'd3-array';
 
-const data = cityTemperature.slice(0, 8);
+const data = cityTemperature.slice(0, 12);
 const keys = Object.keys(data[0]).filter(d => d !== 'date');
 const parseDate = timeParse("%Y%m%d");
 const format = timeFormat("%b %d");
 const formatDate = (date) => format(parseDate(date));
 
 // accessors
-const x0 = d => d.date;
+const x = d => d.date;
 const y = d => d.value;
+
+const totals = data.reduce((ret, cur) => {
+  const t = keys.reduce((dailyTotal, k) => {
+    dailyTotal += +cur[k]
+    return dailyTotal;
+  }, 0)
+  ret.push(t)
+  return ret;
+}, [])
 
 export default ({
   width,
@@ -31,26 +40,20 @@ export default ({
   const yMax = height - margin.top - 100;
 
   // // scales
-  const x0Scale = scaleBand({
+  const xScale = scaleBand({
     rangeRound: [0, xMax],
-    domain: data.map(x0),
+    domain: data.map(x),
     padding: 0.2,
     tickFormat: () => (val) => formatDate(val)
   });
-  const x1Scale = scaleBand({
-    rangeRound: [0, x0Scale.bandwidth()],
-    domain: keys,
-    padding: .1
-  });
   const yScale = scaleLinear({
     rangeRound: [yMax, 0],
-    domain: [0, max(data, (d) => {
-      return max(keys, (key) => d[key])
-    })],
+    nice: true,
+    domain: [0, max(totals)],
   });
   const zScale = scaleOrdinal({
     domain: keys,
-    range: ['#aeeef8', '#e5fd3d', '#9caff6']
+    range: ['#6c5efb', '#c998ff', '#a44afe']
   })
 
   return (
@@ -60,30 +63,28 @@ export default ({
         y={0}
         width={width}
         height={height}
-        fill={`#612efb`}
+        fill={`#eaedff`}
         rx={14}
       />
-      <BarGroup
+      <BarStack
         top={margin.top}
         data={data}
         keys={keys}
         height={yMax}
-        x0={x0}
-        x0Scale={x0Scale}
-        x1Scale={x1Scale}
+        x={x}
+        xScale={xScale}
         yScale={yScale}
         zScale={zScale}
-        rx={4}
+
       />
       <AxisBottom
-        scale={x0Scale}
+        scale={xScale}
         top={yMax + margin.top}
-        stroke='#e5fd3d'
-        tickStroke='#e5fd3d'
-        hideAxisLine
+        stroke='#a44afe'
+        tickStroke='#a44afe'
         tickLabelComponent={(
           <text
-            fill='#e5fd3d'
+            fill='#a44afe'
             fontSize={11}
             textAnchor="middle"
           />

@@ -58,6 +58,15 @@ Object.defineProperty(exports, 'BarGroup', {
   }
 });
 
+var _BarStack = require('./shapes/BarStack');
+
+Object.defineProperty(exports, 'BarStack', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_BarStack).default;
+  }
+});
+
 var _callOrValue = require('./util/callOrValue');
 
 Object.defineProperty(exports, 'callOrValue', {
