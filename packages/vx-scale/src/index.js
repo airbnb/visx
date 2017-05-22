@@ -9,3 +9,4 @@ export { default as schemeCategory10 } from './scales/color/schemeCategory10';
 export { default as schemeCategory20 } from './scales/color/schemeCategory20';
 export { default as schemeCategory20b } from './scales/color/schemeCategory20b';
 export { default as schemeCategory20c } from './scales/color/schemeCategory20c';
+export { default as updateScale } from './util/updateScale';
