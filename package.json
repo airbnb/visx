@@ -22,6 +22,10 @@
     ],
     "collectCoverage": true,
     "coverageDirectory": "<rootDir>/coverage",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "<rootDir>/packages/**/build/",
+    ],
     "coverageReporters": [
       "text",
       "lcov"
