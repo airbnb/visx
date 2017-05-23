@@ -1,9 +1,20 @@
 # Changelog
 
+- [v0.0.114](#v00114)
 - [v0.0.113](#v00113)
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.114
+
+### @vx/shape
+
+  - added `<BarGroup />` & `<BarStack />` [#39](https://github.com/hshoff/vx/pull/39)
+  
+### general
+
+  - added jest + enzyme tests & travis + coveralls ci
 
 # v0.0.113
 
