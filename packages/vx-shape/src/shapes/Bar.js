@@ -18,6 +18,8 @@ export default ({
   strokeLinejoin,
   strokeMiterlimit,
   strokeOpacity,
+  onMouseEnter,
+  onMouseLeave,
 }) => {
   return (
     <rect
@@ -37,6 +39,8 @@ export default ({
       strokeLinejoin={strokeLinejoin}
       strokeMiterlimit={strokeMiterlimit}
       strokeOpacity={strokeOpacity}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
     />
   );
 }
