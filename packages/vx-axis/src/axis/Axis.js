@@ -13,6 +13,7 @@ export default function Axis({
   orientation,
   top = 0,
   left = 0,
+  rangePadding = 0,
   stroke = 'black',
   strokeWidth = 1,
   strokeDasharray,
@@ -41,8 +42,8 @@ export default function Axis({
     if (tickFormat) format = tickFormat;
 
     const range = scale.range();
-    const range0 = range[0] + 0.5;
-    const range1 = range[range.length - 1] + 0.5;
+    const range0 = range[0] + 0.5 - rangePadding;
+    const range1 = range[range.length - 1] + 0.5 + rangePadding;
 
     const horizontal = orientation !== ORIENT.left && orientation !== ORIENT.right;
     const isLeft = orientation === ORIENT.left;

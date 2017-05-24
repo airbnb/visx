@@ -10,6 +10,7 @@ export default function AxisBottom({
   stroke,
   strokeWidth,
   strokeDasharray,
+  rangePadding,
   label,
   labelOffset = 8,
   numTicks,
@@ -41,6 +42,7 @@ export default function AxisBottom({
       stroke={stroke}
       strokeWidth={strokeWidth}
       strokeDasharray={strokeDasharray}
+      rangePadding={rangePadding}
       labelComponent={
         typeof label === 'string' ?
         <text
