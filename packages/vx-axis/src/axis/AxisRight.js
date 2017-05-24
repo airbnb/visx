@@ -47,7 +47,7 @@ export default function AxisRight({
       labelComponent={
         typeof label === 'string' ?
         <text
-          textAnchor="start"
+          textAnchor="middle"
           fontFamily="Arial"
           fontSize={10}
           fill="black"
