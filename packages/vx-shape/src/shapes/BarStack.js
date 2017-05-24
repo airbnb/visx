@@ -4,7 +4,6 @@ import cx from 'classnames';
 import { Group } from '@vx/group';
 import Bar from './Bar';
 import { stack as d3stack } from 'd3-shape';
-import callOrValue from '../util/callOrValue';
 
 export default function BarStack({
   data,
@@ -20,6 +19,7 @@ export default function BarStack({
   ...restProps
 }) {
   const series = d3stack().keys(keys)(data);
+  const format = xScale.tickFormat ? xScale.tickFormat() : d => d;
   return (
     <Group
       className={cx('vx-bar-stack', className)}
@@ -38,10 +38,13 @@ export default function BarStack({
                   width={xScale.bandwidth()}
                   height={yScale(d[0]) - yScale(d[1])}
                   fill={zScale(s.key)}
-                  {...Object.keys(restProps).reduce((ret, cur) => {
-                    ret[cur] = callOrValue(restProps[cur], data);
-                    return ret;
-                  }, {})}
+                  data={{
+                    key: s.key,
+                    value: d[1],
+                    x: format(x(d.data)),
+                    data: d.data
+                  }}
+                  {...restProps}
                 />
               );
             })}

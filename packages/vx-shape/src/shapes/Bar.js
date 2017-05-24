@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import callOrValue from '../util/callOrValue';
+import additionalProps from '../util/additionalProps';
 
 export default ({
   className,
@@ -40,10 +40,7 @@ export default ({
       strokeLinejoin={strokeLinejoin}
       strokeMiterlimit={strokeMiterlimit}
       strokeOpacity={strokeOpacity}
-      {...Object.keys(restProps).reduce((ret, cur) => {
-        ret[cur] = callOrValue(restProps[cur], data);
-        return ret;
-      }, {})}
+      {...additionalProps(restProps, data)}
     />
   );
 }

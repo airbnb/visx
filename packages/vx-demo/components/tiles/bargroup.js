@@ -20,6 +20,7 @@ const y = d => d.value;
 export default ({
   width,
   height,
+  events = false,
   margin = {
     top: 40
   }
@@ -74,6 +75,10 @@ export default ({
         yScale={yScale}
         zScale={zScale}
         rx={4}
+        onClick={data => event => {
+          if (!events) return;
+          alert(`clicked: ${JSON.stringify(data)}`)
+        }}
       />
       <AxisBottom
         scale={x0Scale}

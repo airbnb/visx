@@ -1,6 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { Point } from '@vx/point';
+import additionalProps from '../util/additionalProps';
 
 export default function Line({
   from = new Point({ x: 0, y: 0 }),
@@ -10,6 +11,8 @@ export default function Line({
   strokeDasharray = '',
   transform = '',
   className = '',
+  data,
+  ...restProps
 }) {
   return (
     <line
@@ -22,6 +25,7 @@ export default function Line({
       strokeWidth={strokeWidth}
       strokeDasharray={strokeDasharray}
       transform={transform}
+      {...additionalProps(restProps, data)}
     />
   );
 }

@@ -29,6 +29,7 @@ const totals = data.reduce((ret, cur) => {
 export default ({
   width,
   height,
+  events = false,
   margin = {
     top: 40
   }
@@ -75,7 +76,10 @@ export default ({
         xScale={xScale}
         yScale={yScale}
         zScale={zScale}
-
+        onClick={(data) => (event) => {
+          if (!events) return;
+          alert(`clicked: ${JSON.stringify(data)}`)
+        }}
       />
       <AxisBottom
         scale={xScale}

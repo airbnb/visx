@@ -20,6 +20,7 @@ const y = d => +d.frequency * 100;
 export default ({
   width,
   height,
+  events = false,
 }) => {
   if (width < 10) return null;
 
@@ -60,6 +61,11 @@ export default ({
                 x={xScale(x(d))}
                 y={yMax - barHeight}
                 fill="rgba(23, 233, 217, .5)"
+                data={{ x: x(d), y: y(d) }}
+                onClick={(data) => (event) => {
+                  if (!events) return;
+                  alert(`clicked: ${JSON.stringify(data)}`)
+                }}
               />
             </Group>
           );
