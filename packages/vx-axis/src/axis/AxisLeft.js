@@ -10,7 +10,7 @@ export default function AxisLeft({
   stroke,
   strokeWidth,
   strokeDasharray,
-  rangePadding
+  rangePadding,
   label,
   labelOffset = 36,
   numTicks,
