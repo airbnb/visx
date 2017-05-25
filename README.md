@@ -177,3 +177,5 @@ Lots coming soon, check out the [roadmap](./ROADMAP.md).
 :v:
 
 [MIT](./LICENSE) &bull; [@hshoff](https://twitter.com/hshoff)
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fhshoff%2Fvx.svg?type=large)](https://app.fossa.io/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fhshoff%2Fvx?ref=badge_large)
