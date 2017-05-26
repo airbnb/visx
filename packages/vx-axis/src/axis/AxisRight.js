@@ -10,6 +10,7 @@ export default function AxisRight({
   stroke,
   strokeWidth,
   strokeDasharray,
+  rangePadding,
   label,
   labelOffset = 36,
   numTicks,
@@ -42,10 +43,11 @@ export default function AxisRight({
       stroke={stroke}
       strokeWidth={strokeWidth}
       strokeDasharray={strokeDasharray}
+      rangePadding={rangePadding}
       labelComponent={
         typeof label === 'string' ?
         <text
-          textAnchor="start"
+          textAnchor="middle"
           fontFamily="Arial"
           fontSize={10}
           fill="black"
