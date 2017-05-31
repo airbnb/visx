@@ -40,7 +40,7 @@ export default function withParentSize(BaseComponent) {
       const { parentWidth, parentHeight } = this.state;
       return (
         <div
-          style={{ width: '100%', height: '100%', background: 'LightYellow' }}
+          style={{ width: '100%', height: '100%' }}
           ref={(ref) => { this.container = ref; }}
         >
           {parentWidth !== null && parentHeight !== null &&
