@@ -4,7 +4,11 @@ import BarGroup from '../components/tiles/bargroup';
 
 export default () => {
   return (
-    <Show margin={{top: 80}} component={BarGroup} title="Bar Group">
+    <Show
+      events={true}
+      margin={{top: 80}}
+      component={BarGroup}
+      title="Bar Group">
 {`import React from 'react';
 import { BarGroup } from '@vx/shape';
 import { Group } from '@vx/group';
@@ -81,6 +85,10 @@ export default ({
         x1Scale={x1Scale}
         yScale={yScale}
         zScale={zScale}
+        rx={4}
+        onClick={data => event => {
+          alert(\`clicked: \${JSON.stringify(data)}\`)
+        }}
       />
       <AxisBottom
         scale={x0Scale}

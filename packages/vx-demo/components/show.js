@@ -13,6 +13,7 @@ export default withScreenSize(({
   title,
   component,
   shadow = false,
+  events = false,
   margin = { top: 0, left: 0, right: 0, bottom: 80 }
 }) => {
   const padding = 40;
@@ -30,7 +31,7 @@ export default withScreenSize(({
           'shadow': !!shadow
           }, title.split(' ').join('-'), 'chart')
         }>
-          {component({ width, height, margin })}
+          {component({ width, height, margin, events })}
         </div>
         <div style={{width: width}}>
           <h2>Code</h2>

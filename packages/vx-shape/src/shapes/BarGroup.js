@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { Group } from '@vx/group';
 import Bar from './Bar';
-import callOrValue from '../util/callOrValue';
+import additionalProps from '../util/additionalProps';
 
 export default function BarGroup({
   data,
@@ -19,6 +19,7 @@ export default function BarGroup({
   height,
   ...restProps
 }) {
+  const format = x0Scale.tickFormat ? x0Scale.tickFormat() : d => d;
   return (
     <Group
       className={cx('vx-bar-group', className)}
@@ -41,10 +42,13 @@ export default function BarGroup({
                   width={x1Scale.bandwidth()}
                   height={height - yScale(value)}
                   fill={zScale(key)}
-                  {...Object.keys(restProps).reduce((ret, cur) => {
-                    ret[cur] = callOrValue(restProps[cur], data);
-                    return ret;
-                  }, {})}
+                  data={{
+                    key,
+                    value,
+                    x: format(x0(d)),
+                    data: d
+                  }}
+                  {...restProps}
                 />
               );
             })}

@@ -4,7 +4,12 @@ import BarStack from '../components/tiles/barstack';
 
 export default () => {
   return (
-    <Show margin={{top: 80}} component={BarStack} title="Bar Stack">
+    <Show
+      events
+      margin={{top: 80}}
+      component={BarStack}
+      title="Bar Stack"
+    >
 {`import React from 'react';
 import { BarStack } from '@vx/shape';
 import { Group } from '@vx/group';
@@ -82,7 +87,9 @@ export default ({
         xScale={xScale}
         yScale={yScale}
         zScale={zScale}
-
+        onClick={data => event => {
+          alert(\`clicked: \${JSON.stringify(data)}\`)
+        }}
       />
       <AxisBottom
         scale={xScale}
