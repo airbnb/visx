@@ -1,6 +1,6 @@
 {
   "name": "@vx/heatmap",
-  "version": "1.0.0",
+  "version": "0.0.115",
   "description": "vx heatmap",
   "main": "build/index.js",
   "repository": {
