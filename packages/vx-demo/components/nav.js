@@ -64,6 +64,14 @@ export default () => (
         .Item {
           float: left;
         }
+
+        .nav {
+          padding: 0;
+        }
+
+        .nav-inner {
+          width: 99vw;
+        }
       }
     `}</style>
   </div>

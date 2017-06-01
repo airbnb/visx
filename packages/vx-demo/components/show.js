@@ -5,6 +5,7 @@ import Page from '../components/page';
 import Footer from '../components/footer';
 import Bars from '../components/tiles/bars';
 import Codeblock from '../components/codeblocks/Codeblock';
+import Gallery from '../components/gallery';
 
 export default withScreenSize(({
   screenWidth,
@@ -42,7 +43,9 @@ export default withScreenSize(({
           </Codeblock>
         </div>
       </div>
-      <Footer />
+      <div style={{marginTop: '40px'}}>
+        <Gallery />
+      </div>
       <style jsx>{`
         .container {
           display: flex;

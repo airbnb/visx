@@ -77,7 +77,7 @@ export default ({
           yScale={yScale}
           colorScale={colorScale}
           opacityScale={opacityScale}
-          binWidth={bWidth}
+          binWidth={bWidth + 4}
           step={dStep}
           gap={4}
         />

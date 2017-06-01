@@ -105,7 +105,7 @@ export default () => (
         margin: 0;
         padding: 0;
         opacity: .9;
-        margin-top: 280px;
+        margin-top: 130px;
         letter-spacing: 20px;
         text-transform: uppercase;
         text-align: center;
