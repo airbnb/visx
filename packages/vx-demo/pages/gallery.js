@@ -17,6 +17,7 @@ import MultiLine from '../components/tiles/multiline';
 import Axis from '../components/tiles/axis';
 import BarGroup from '../components/tiles/bargroup';
 import BarStack from '../components/tiles/barstack';
+import Heatmap from '../components/tiles/heatmap';
 
 const items = [
   "#242424",
@@ -73,6 +74,7 @@ export default class Gallery extends React.Component {
     const t9 = this.state.dimensions[8] || [8, 300];
     const t10 = this.state.dimensions[9] || [8, 300];
     const t11 = this.state.dimensions[10] || [8, 300];
+    const t12 = this.state.dimensions[11] || [8, 300];
 
     return (
       <Page title="gallery">
@@ -356,6 +358,27 @@ export default class Gallery extends React.Component {
               </div>
             </Link>
           </Tilt>
+          <Tilt
+            className="tilt"
+            options={{ max: 8, scale: 1 }}
+          >
+            <Link prefetch href="/heatmaps">
+              <div className="gallery-item" style={{ background: '#28272c' }} ref={d => this.nodes.add(d)}>
+                <div className="image">
+                  <Heatmap
+                    width={t12[0]}
+                    height={t12[1]}
+                  />
+                </div>
+                <div className="details" style={{ color: 'rgba(255,255,255,0.3)'}}>
+                  <div className="title">Heatmaps</div>
+                  <div className="description">
+                    <pre>{`<HeatmapCircle /> + <HeatmapRect />`}</pre>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </Tilt>
         </div>
 
         <div>
@@ -380,6 +403,8 @@ export default class Gallery extends React.Component {
             max-width: 95vw;
             margin: 55px auto 40px;
             overflow-x: hidden;
+            overflow-y: scroll;
+            -webkit-overflow-scrolling: touch;
             padding-bottom: 20px;
           }
           .gallery-item {
