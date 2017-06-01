@@ -1,6 +1,12 @@
 body {
+  overflow-x: hidden;
   padding: 50px;
   font: 15px/1.6 Helvetica, Arial, sans-serif;
+}
+
+body:first-child {
+  overflow-x: hidden;
+  width: 100%;
 }
 
 .github-btn {

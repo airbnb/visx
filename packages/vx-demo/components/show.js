@@ -49,9 +49,6 @@ export default withScreenSize(({
           flex-direction: column;
           align-items: center;
         }
-        .container:first-child {
-          margin-top: 55px;
-        }
         .container h1 {
           margin-top: 15px;
           line-height: .9em;

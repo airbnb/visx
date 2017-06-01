@@ -400,11 +400,7 @@ export default class Gallery extends React.Component {
             flex-direction: row;
             flex-wrap: wrap;
             justify-content: space-around;
-            max-width: 95vw;
-            margin: 55px auto 40px;
             overflow-x: hidden;
-            overflow-y: scroll;
-            -webkit-overflow-scrolling: touch;
             padding-bottom: 20px;
           }
           .gallery-item {

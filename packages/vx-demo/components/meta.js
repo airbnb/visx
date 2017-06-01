@@ -41,6 +41,8 @@ export default ({
     </Head>
     <style jsx global>{`
       body {
+        width: 100vw;
+        overflow-x: hidden;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
         background: #ffffff;
         display: flex;
