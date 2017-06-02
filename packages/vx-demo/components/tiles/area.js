@@ -45,11 +45,12 @@ export default ({
         fill="#32deaa"
         rx={14}
       />
-      <LinearGradient
-        id={'gradient'}
-        from='#ffffff'
-        to='rgba(255,255,255,0.2)'
-      />
+      <defs>
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#FFFFFF" stopOpacity={1} />
+          <stop offset="100%" stopColor="#FFFFFF" stopOpacity={.2} />
+        </linearGradient>
+      </defs>
       <GridRows
         scale={yScale}
         width={xMax}
