@@ -18,6 +18,7 @@ import Axis from '../components/tiles/axis';
 import BarGroup from '../components/tiles/bargroup';
 import BarStack from '../components/tiles/barstack';
 import Heatmap from '../components/tiles/heatmap';
+import LineRadial from '../components/tiles/lineradial';
 
 const items = [
   "#242424",
@@ -75,6 +76,7 @@ export default class Gallery extends React.Component {
     const t10 = this.state.dimensions[9] || [8, 300];
     const t11 = this.state.dimensions[10] || [8, 300];
     const t12 = this.state.dimensions[11] || [8, 300];
+    const t13 = this.state.dimensions[12] || [8, 300];
 
     return (
       <div>
@@ -379,6 +381,29 @@ export default class Gallery extends React.Component {
               </div>
             </Link>
           </Tilt>
+          <Tilt
+            className="tilt"
+            options={{ max: 8, scale: 1 }}
+          >
+            <Link prefetch href="/lineradial">
+              <div className="gallery-item" style={{ background: '#744cca' }} ref={d => this.nodes.add(d)}>
+                <div className="image">
+                  <LineRadial
+                    width={t13[0]}
+                    height={t13[1] - 80}
+                  />
+                </div>
+                <div className="details" style={{ color: '#dff84d'}}>
+                  <div className="title">Radial Lines</div>
+                  <div className="description">
+                    <pre>{`<Shape.LineRadial />`}</pre>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </Tilt>
+          <div className="gallery-item placeholder" />
+          <div className="gallery-item placeholder" />
         </div>
 
         <div>
@@ -404,7 +429,7 @@ export default class Gallery extends React.Component {
             padding-bottom: 20px;
           }
           .gallery-item {
-            background-color: lightgray;
+            background-color: white;
             margin: 5px;
             display: flex;
             height: 390px;
@@ -413,6 +438,7 @@ export default class Gallery extends React.Component {
             flex-direction: column;
             border-radius: 14px;
           }
+          .gallery-item.placeholder { height: 1px; }
           .image {
             flex: 1;
             display: flex;

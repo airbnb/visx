@@ -22,6 +22,15 @@ Object.defineProperty(exports, 'LinePath', {
   }
 });
 
+var _LineRadial = require('./shapes/LineRadial');
+
+Object.defineProperty(exports, 'LineRadial', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_LineRadial).default;
+  }
+});
+
 var _AreaClosed = require('./shapes/AreaClosed');
 
 Object.defineProperty(exports, 'AreaClosed', {
