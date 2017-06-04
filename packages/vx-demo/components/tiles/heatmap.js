@@ -77,9 +77,13 @@ export default ({
           yScale={yScale}
           colorScale={colorScale}
           opacityScale={opacityScale}
-          binWidth={bWidth + 4}
+          radius={(bWidth + 4) / 2}
           step={dStep}
           gap={4}
+          onClick={data => event => {
+            if (!events) return;
+            alert(`clicked: ${JSON.stringify(data.bin)}`)
+          }}
         />
       </Group>
       <Group top={margin.top} left={xMax + margin.left}>
@@ -93,6 +97,10 @@ export default ({
           binHeight={bWidth}
           step={dStep}
           gap={0}
+          onClick={data => event => {
+            if (!events) return;
+            alert(`clicked: ${JSON.stringify(data.bin)}`)
+          }}
         />
       </Group>
     </svg>

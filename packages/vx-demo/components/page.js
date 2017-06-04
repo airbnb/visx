@@ -21,7 +21,7 @@ export default ({ children, title, className }) => (
         width: 95vw;
         margin: 55px auto 40px;
         color: #161616;
-        overflow-y: scroll;
+        overflow-y: auto;
         overflow-x: hidden;
         -webkit-overflow-scrolling: touch;
       }

@@ -4,6 +4,15 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _Arc = require('./shapes/Arc');
+
+Object.defineProperty(exports, 'Arc', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_Arc).default;
+  }
+});
+
 var _Line = require('./shapes/Line');
 
 Object.defineProperty(exports, 'Line', {
@@ -19,6 +28,15 @@ Object.defineProperty(exports, 'LinePath', {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_LinePath).default;
+  }
+});
+
+var _LineRadial = require('./shapes/LineRadial');
+
+Object.defineProperty(exports, 'LineRadial', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_LineRadial).default;
   }
 });
 
