@@ -168,10 +168,23 @@ const scale = Scale.scaleTime({
     nice = false,
     clamp = false,
    */
-})
+});
 ```
 
+You also can scale time with Coordinated Universal Time via `scaleUtc`.
 
+Example:
+``` javascript
+const scale = Scale.scaleUtc({
+  /*
+    range,
+    rangeRound,
+    domain,
+    nice = false,
+    clamp = false,
+   */
+});
+```
 
 ## vx packages
 
