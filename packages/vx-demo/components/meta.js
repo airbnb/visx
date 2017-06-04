@@ -185,6 +185,12 @@ export default ({
         cursor: pointer;
       }
 
+      .vx-heatmap-circle:hover,
+      .vx-heatmap-rect:hover {
+        stroke: white;
+        stroke-width: 1;
+      }
+
       @media (max-width: 960px) {
         .tilt {
           min-width: 45%;

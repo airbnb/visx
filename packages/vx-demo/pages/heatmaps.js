@@ -5,6 +5,7 @@ import Heatmap from '../components/tiles/heatmap';
 export default () => {
   return (
     <Show
+      events
       margin={{
         top: 10,
         left: 40,
