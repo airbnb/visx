@@ -15,7 +15,6 @@ export default ({
   if (domain) scale.domain(domain);
   if (nice) scale.nice();
   if (clamp) scale.clamp(true);
-  if (scaleUtc) scale.scaleUtc();
 
   return scale;
 }
