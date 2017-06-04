@@ -167,7 +167,6 @@ const scale = Scale.scaleTime({
     domain,
     nice = false,
     clamp = false,
-    scaleUtc = false,
    */
 })
 ```
