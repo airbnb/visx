@@ -1,4 +1,4 @@
-import { scaleTime } from 'd3-scale';
+import { scaleUtc } from 'd3-scale';
 
 export default ({
   range,
@@ -7,7 +7,7 @@ export default ({
   nice = false,
   clamp = false,
 }) => {
-  const scale = scaleTime();
+  const scale = scaleUtc();
 
   if (range) scale.range(range)
   if (rangeRound) scale.rangeRound(rangeRound);
