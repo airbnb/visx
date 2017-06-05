@@ -4,16 +4,26 @@ import { Group } from '@vx/group';
 import { arc as d3Arc, pie as d3Pie } from 'd3-shape';
 import additionalProps from '../util/additionalProps';
 
+const data = [
+  {"age":"<5","population":2704659},
+  {"age":"5-13","population":4499890},
+  {"age":"14-17","population":2159981},
+  {"age":"18-24","population":3853788},
+  {"age":"25-44","population":14106543},
+  {"age":"45-64","population":8819342},
+  {"age":"≥65","population":612463}
+];
+
 export default function Arc({
   className = '',
   top = 0,
   left = 0,
   data,
   centroid,
-  innerRadius,
+  innerRadius = 0,
   outerRadius,
   cornerRadius,
-  startAngle,
+  startAngle = 0,
   endAngle,
   padAngle,
   padRadius,
@@ -22,29 +32,29 @@ export default function Arc({
   ...restProps
 }) {
   const path = d3Arc();
-  if (centroid) path.centroid(centroid);
-  if (innerRadius) path.innerRadius(innerRadius);
+  path.innerRadius(innerRadius);
   if (outerRadius) path.outerRadius(outerRadius);
   if (cornerRadius) path.cornerRadius(cornerRadius);
-  if (startAngle) path.startAngle(startAngle);
-  if (endAngle) path.endAngle(endAngle);
-  if (padAngle) path.padAngle(padAngle);
   if (padRadius) path.padRadius(padRadius);
   const pie = d3Pie();
   if (pieSort) pie.sort(pieSort);
   if (pieValue) pie.value(pieValue);
+  if (padAngle) pie.padAngle(padAngle);
   const arcs = pie(data);
   return (
     <Group className="vx-arcs-group" top={top} left={left}>
       {arcs.map((arc, i) => {
-        const d = path(arc);
         return (
-          <path
-            key={`arc-${i}`}
-            className={cx('vx-arc', className)}
-            d={d.includes('NaN') ? '' : d}
-            {...additionalProps(restProps, i)}
-          />
+          <g key={`arc-${i}`}>
+            <path
+              className={cx('vx-arc', className)}
+              d={path(arc)}
+              {...additionalProps(restProps, arc)}
+            />
+            {centroid &&
+              centroid(path.centroid(arc), arc)
+            }
+          </g>
         );
       })}
     </Group>

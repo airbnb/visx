@@ -1,21 +1,4 @@
 import React from 'react';
-import Show from '../components/show';
-import Arc from '../components/tiles/arc';
-
-export default () => {
-  return (
-    <Show
-      events
-      margin={{
-        top: 10,
-        left: 40,
-        right: 30,
-        bottom: 80,
-      }}
-      component={Arc}
-      title="Arcs"
-    >
-{`import React from 'react';
 import { Arc } from '@vx/shape';
 import { Group } from '@vx/group';
 import { GradientPinkBlue } from '@vx/gradient';
@@ -95,8 +78,5 @@ export default ({
         />
       </Group>
     </svg>
-  );
-}`}
-    </Show>
   );
 }

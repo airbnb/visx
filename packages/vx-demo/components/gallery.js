@@ -19,6 +19,7 @@ import BarGroup from '../components/tiles/bargroup';
 import BarStack from '../components/tiles/barstack';
 import Heatmap from '../components/tiles/heatmap';
 import LineRadial from '../components/tiles/lineradial';
+import Arcs from '../components/tiles/arc';
 
 const items = [
   "#242424",
@@ -77,6 +78,7 @@ export default class Gallery extends React.Component {
     const t11 = this.state.dimensions[10] || [8, 300];
     const t12 = this.state.dimensions[11] || [8, 300];
     const t13 = this.state.dimensions[12] || [8, 300];
+    const t14 = this.state.dimensions[13] || [8, 300];
 
     return (
       <div>
@@ -393,10 +395,31 @@ export default class Gallery extends React.Component {
                     height={t13[1] - 80}
                   />
                 </div>
-                <div className="details" style={{ color: '#dff84d'}}>
+                <div className="details" style={{ color: '#919fe5'}}>
                   <div className="title">Radial Lines</div>
                   <div className="description">
                     <pre>{`<Shape.LineRadial />`}</pre>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </Tilt>
+          <Tilt
+            className="tilt"
+            options={{ max: 8, scale: 1 }}
+          >
+            <Link prefetch href="/arcs">
+              <div className="gallery-item" style={{ background: '#c94acc' }} ref={d => this.nodes.add(d)}>
+                <div className="image">
+                  <Arcs
+                    width={t14[0]}
+                    height={t14[1]}
+                  />
+                </div>
+                <div className="details" style={{ color: 'white'}}>
+                  <div className="title">Arcs</div>
+                  <div className="description">
+                    <pre>{`<Shape.Arc />`}</pre>
                   </div>
                 </div>
               </div>
