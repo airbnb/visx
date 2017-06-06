@@ -40,6 +40,33 @@ Object.defineProperty(exports, 'LineRadial', {
   }
 });
 
+var _LinkHorizontal = require('./shapes/LinkHorizontal');
+
+Object.defineProperty(exports, 'LinkHorizontal', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_LinkHorizontal).default;
+  }
+});
+
+var _LinkVertical = require('./shapes/LinkVertical');
+
+Object.defineProperty(exports, 'LinkVertical', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_LinkVertical).default;
+  }
+});
+
+var _LinkRadial = require('./shapes/LinkRadial');
+
+Object.defineProperty(exports, 'LinkRadial', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_LinkRadial).default;
+  }
+});
+
 var _AreaClosed = require('./shapes/AreaClosed');
 
 Object.defineProperty(exports, 'AreaClosed', {
