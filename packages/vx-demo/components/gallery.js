@@ -20,6 +20,8 @@ import BarStack from '../components/tiles/barstack';
 import Heatmap from '../components/tiles/heatmap';
 import LineRadial from '../components/tiles/lineradial';
 import Arcs from '../components/tiles/arc';
+import Trees from '../components/tiles/tree';
+import Cluster from '../components/tiles/dendogram';
 
 const items = [
   "#242424",
@@ -79,6 +81,7 @@ export default class Gallery extends React.Component {
     const t12 = this.state.dimensions[11] || [8, 300];
     const t13 = this.state.dimensions[12] || [8, 300];
     const t14 = this.state.dimensions[13] || [8, 300];
+    const t15 = this.state.dimensions[14] || [8, 300];
 
     return (
       <div>
@@ -425,8 +428,50 @@ export default class Gallery extends React.Component {
               </div>
             </Link>
           </Tilt>
-          <div className="gallery-item placeholder" />
-          <div className="gallery-item placeholder" />
+          <Tilt
+            className="tilt"
+            options={{ max: 8, scale: 1 }}
+          >
+            <Link prefetch href="/trees">
+              <div className="gallery-item" style={{ background: '#272b4d' }} ref={d => this.nodes.add(d)}>
+                <div className="image">
+                  <Trees
+                    width={t15[0]}
+                    height={t15[1]}
+                  />
+                </div>
+                <div className="details" style={{ color: '#269688'}}>
+                  <div className="title">Trees</div>
+                  <div className="description">
+                    <pre>{`<Hierarchy.Tree /> + <Shape.LinkHorizontal />`}</pre>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </Tilt>
+          <Tilt
+            className="tilt"
+            options={{ max: 8, scale: 1 }}
+          >
+            <Link prefetch href="/dendograms">
+              <div className="gallery-item" style={{ background: '#306c90' }} ref={d => this.nodes.add(d)}>
+                <div className="image">
+                  <Cluster
+                    width={t15[0]}
+                    height={t15[1]}
+                  />
+                </div>
+                <div className="details" style={{ color: '#5dc26f'}}>
+                  <div className="title">Dendograms</div>
+                  <div className="description">
+                    <pre>{`<Hierarchy.Cluster /> + <Shape.LinkVertical />`}</pre>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </Tilt>
+          <div className="gallery-item" />
+          <div className="gallery-item" />
         </div>
 
         <div>
