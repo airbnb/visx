@@ -21,7 +21,7 @@ import Heatmap from '../components/tiles/heatmap';
 import LineRadial from '../components/tiles/lineradial';
 import Arcs from '../components/tiles/arc';
 import Trees from '../components/tiles/tree';
-import Cluster from '../components/tiles/dendogram';
+import Cluster from '../components/tiles/dendrogram';
 
 const items = [
   "#242424",
@@ -453,7 +453,7 @@ export default class Gallery extends React.Component {
             className="tilt"
             options={{ max: 8, scale: 1 }}
           >
-            <Link prefetch href="/dendograms">
+            <Link prefetch href="/dendrograms">
               <div className="gallery-item" style={{ background: '#306c90' }} ref={d => this.nodes.add(d)}>
                 <div className="image">
                   <Cluster
@@ -462,7 +462,7 @@ export default class Gallery extends React.Component {
                   />
                 </div>
                 <div className="details" style={{ color: '#5dc26f'}}>
-                  <div className="title">Dendograms</div>
+                  <div className="title">Dendrograms</div>
                   <div className="description">
                     <pre>{`<Hierarchy.Cluster /> + <Shape.LinkVertical />`}</pre>
                   </div>
@@ -470,8 +470,8 @@ export default class Gallery extends React.Component {
               </div>
             </Link>
           </Tilt>
-          <div className="gallery-item" />
-          <div className="gallery-item" />
+          <div className="gallery-item placeholder" />
+          <div className="gallery-item placeholder" />
         </div>
 
         <div>
