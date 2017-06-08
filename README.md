@@ -59,6 +59,12 @@ vx is collection of reusable low-level visualization components. vx combines the
 
 Let's make a simple bar graph.
 
+First we'll install the relevant packages: 
+
+```
+$ npm install --save @vx/mock-data @vx/group @vx/shape @vx/scale
+```
+
 <img src="./assets/simplebar.png" height="150" />
 
 ```javascript
