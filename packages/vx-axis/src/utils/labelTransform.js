@@ -14,11 +14,11 @@ export default function labelTransform({
 
   let x, y, transform = null;
   if (orientation === ORIENT.top || orientation === ORIENT.bottom) {
-    x = range[1] / 2;
+    x = Math.max(...range) / 2;
     y = sign * (tickLength + labelOffset + tickLabelFontSize +
       (orientation === ORIENT.bottom ? fontSize : 0));
   } else {
-    x = sign * (range[0] / 2);
+    x = sign * (Math.max(...range) / 2);
     y = -(tickLength + labelOffset);
     transform = `rotate(${sign * 90})`;
   }
