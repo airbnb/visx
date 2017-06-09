@@ -7,11 +7,13 @@ export default function Group({
   transform,
   className,
   children,
+  ...restProps,
 }) {
   return (
     <g
       className={cx('cx-group', className)}
       transform={transform || `translate(${left}, ${top})`}
+      {...restProps}
     >
       {children}
     </g>
