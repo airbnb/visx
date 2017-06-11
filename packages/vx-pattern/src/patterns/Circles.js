@@ -3,6 +3,35 @@ import PropTypes from 'prop-types';
 import cxx from 'classnames';
 import Pattern from './Pattern';
 
+/**
+ * Creates an array of cirlces for a list of corners
+ * in the format [[cornerX, cornerY], ...]
+ */
+export function createCircles({
+  corners,
+  id,
+  radius,
+  fill,
+  stroke,
+  strokeWidth,
+  strokeDasharray,
+  className
+}) {
+  return corners.map(([cornerX, cornerY]) =>
+    <circle
+      key={`${id}-complement-${cornerX}-${cornerY}`}
+      className={cxx('vx-pattern-circle vx-pattern-circle-complement', className)}
+      cx={cornerX}
+      cy={cornerY}
+      r={radius}
+      fill={fill}
+      stroke={stroke}
+      strokeWidth={strokeWidth}
+      strokeDasharray={strokeDasharray}
+    />
+  );
+}
+
 export default function PatternCircles({
   id,
   width,
@@ -48,20 +77,14 @@ export default function PatternCircles({
         strokeWidth={strokeWidth}
         strokeDasharray={strokeDasharray}
       />
-      {complement && corners.map(([cornerX, cornerY]) => {
-        return (
-          <circle
-            key={`${id}-complement-${cornerX}-${cornerY}`}
-            className={cxx('vx-pattern-circle vx-pattern-circle-complement', className)}
-            cx={cornerX}
-            cy={cornerY}
-            r={radius}
-            fill={fill}
-            stroke={stroke}
-            strokeWidth={strokeWidth}
-            strokeDasharray={strokeDasharray}
-          />
-        );
+      {complement && createCircles({
+        corners,
+        id,
+        radius,
+        fill,
+        stroke,
+        strokeWidth,
+        strokeDasharray
       })}
     </Pattern>
   );
