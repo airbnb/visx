@@ -196,6 +196,34 @@ A more complicated line path. A `<LinePath />` is useful for making line graphs 
 | curve           | Curve.linear | function | The [curve function](https://github.com/hshoff/vx/tree/master/packages/vx-curve)                            |
 | glyph           |              | glyph    | [A glyph](https://github.com/hshoff/vx/tree/master/packages/vx-glyph) to be added to the line.               |
 
+## `<LineRadial />`
+
+![LineRadial Example](http://i.imgur.com/Zcud84N.png)
+
+``` js
+<LineRadial
+  data={appleStock}
+  angle={d => xScale(x(d))}
+  radius={d => yScale(y(d))}
+  fill="none"
+  stroke={"url('#line-gradient')"}
+  strokeWidth={2}
+  strokeOpacity={.7}
+  curve={curveBasisOpen}
+  strokeLinecap="round"
+/>
+```
+
+### Properties
+|   Name    | Default |   Type   |                                                 Description                                                 |
+|:--------- |:------- |:-------- |:----------------------------------------------------------------------------------------------------------- |
+| className |         | string   | The class for the <path /> element.                                                                         |
+| angle     |         | function | The angle at each point.                                                                                    |
+| radius    |         | function | The radius at each angle.                                                                                   |
+| defined   |         | function | A [function](https://github.com/d3/d3-shape/blob/master/README.md#area_defined) called by `area.defined()`. |
+| curve     |         | function | The [curve function](https://github.com/hshoff/vx/tree/master/packages/vx-curve)                            |
+| data      |         | array    | An array of x and y data.                                                                                   |
+
 
 ## Sources For Components
 + [`<AreaClosed />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/AreaClosed.js)
