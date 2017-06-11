@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import { PatternCircles } from '../src';
+import { createCircles } from '../src/patterns/Circles';
 
 describe('<PatternCircles />', () => {
   beforeEach(() => {
@@ -65,5 +66,34 @@ describe('<PatternCircles />', () => {
       />
     );
     expect(wrapper.find('rect').length).toEqual(0)
+  })
+})
+
+describe('createCircles()', () => {
+
+  function getDummyCircle() {
+    return createCircles({
+      corners: [[20, 20]],
+      id: "hey",
+      radius: 5,
+      fill: "none",
+      stroke: "black",
+      strokeWidth: 3,
+      strokeDasharray: "none",
+      className: "blah"
+    })[0];
+  }
+
+  beforeEach(() => {
+    global.console.error = jest.fn()
+  })
+
+  test('it should be defined', () => {
+    expect(createCircles).toBeDefined()
+  })
+
+  test('it should render a <circle />', () => {
+    const wrapper = mount(getDummyCircle());
+    expect(wrapper.find('circle').length).toEqual(1);
   })
 })
