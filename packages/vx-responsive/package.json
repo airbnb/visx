@@ -38,7 +38,7 @@
     "regenerator-runtime": "^0.10.5"
   },
   "dependencies": {
-    "lodash.debounce": "^4.0.8",
+    "lodash": "^4.0.8",
     "react": "^15.4.2"
   },
   "publishConfig": {
