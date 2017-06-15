@@ -25,7 +25,7 @@
     "url": "https://github.com/hshoff/vx/issues"
   },
   "homepage": "https://github.com/hshoff/vx#readme",
-    "devDependencies": {
+  "devDependencies": {
     "babel-jest": "^20.0.3",
     "enzyme": "^2.8.2",
     "jest": "^20.0.3",
@@ -38,7 +38,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@vx/group": "0.0.114",
-    "classnames": "^2.2.5"
+    "classnames": "^2.2.5",
+    "prop-types": "^15.5.10"
   }
 }
