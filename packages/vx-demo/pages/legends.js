@@ -1,5 +1,15 @@
-import { LegendQuantile, LegendLinear, LegendOrdinal, LegendThreshold } from '@vx/legend';
-import { scaleQuantize, scaleLinear, scaleOrdinal, scaleThreshold } from '@vx/scale';
+import {
+  LegendQuantile,
+  LegendLinear,
+  LegendOrdinal,
+  LegendThreshold,
+} from '@vx/legend';
+import {
+  scaleQuantize,
+  scaleLinear,
+  scaleOrdinal,
+  scaleThreshold,
+} from '@vx/scale';
 import { format } from 'd3-format';
 
 const oneDecimalFormat = format('.1f');
