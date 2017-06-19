@@ -158,6 +158,11 @@ If you're a curious coder, feel free to install and play around with the package
 
 Lots coming soon, check out the [roadmap](./ROADMAP.md).
 
+## In the wild
+
+- [williaster/data-ui](https://github.com/williaster/data-ui) ([Demo](https://williaster.github.io/data-ui/))
+- Have a project that's using vx? Open a pull request and we'll add it to the list. 
+
 ## FAQ
 
 1. What does `vx` stand for?
