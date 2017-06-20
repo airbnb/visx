@@ -14,6 +14,7 @@ export default function LinePath({
   stroke = 'steelblue',
   strokeWidth = 2,
   strokeDasharray = '',
+  strokeDashoffset = 0,
   fill = 'none',
   curve = curveLinear,
   glyph,
@@ -31,6 +32,7 @@ export default function LinePath({
         stroke={stroke}
         strokeWidth={strokeWidth}
         strokeDasharray={strokeDasharray}
+        strokeDashoffset={strokeDashoffset}
         fill={fill}
       />
       {glyph &&
