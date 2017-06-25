@@ -19,7 +19,7 @@ export default function AreaClosed({
 }) {
   const path = area()
     .x(d => xScale(x(d)))
-    .y0(yScale(yScale.domain()[0]))
+    .y0(yScale.range()[0])
     .y1(d => yScale(y(d)))
     .defined(defined || (d => y(d) && x(d)));
   if (curve) path.curve(curve);
