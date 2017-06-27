@@ -14,6 +14,7 @@ export default function GlyphDot({
   stroke,
   strokeWidth,
   strokeDasharray,
+  ...restProps
 }) {
   return (
     <Glyph
@@ -29,6 +30,7 @@ export default function GlyphDot({
         stroke={stroke}
         strokeWidth={strokeWidth}
         strokeDasharray={strokeDasharray}
+        {...restProps}
       />
       {children}
     </Glyph>

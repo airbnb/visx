@@ -2,6 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import { line } from 'd3-shape';
 import { curveLinear } from '@vx/curve';
+import additionalProps from '../util/additionalProps';
 
 export default function LinePath({
   data,
@@ -18,6 +19,7 @@ export default function LinePath({
   fill = 'none',
   curve = curveLinear,
   glyph,
+  ...restProps
 }) {
   const path = line()
     .x(d => xScale(x(d)))
@@ -34,12 +36,12 @@ export default function LinePath({
         strokeDasharray={strokeDasharray}
         strokeDashoffset={strokeDashoffset}
         fill={fill}
+        {...additionalProps(restProps, data)}
       />
       {glyph &&
-        <g className='vx-linepath-glyphs'>
+        <g className="vx-linepath-glyphs">
           {data.map(glyph)}
-        </g>
-      }
+        </g>}
     </g>
   );
 }
