@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import callOrValue from '../util/callOrValue';
+import additionalProps from '../util/additionalProps';
 import { area, stack as d3stack } from 'd3-shape';
 
 export default ({
@@ -18,7 +18,7 @@ export default ({
   y1,
   glyph,
   reverse = false,
-  ...restProps,
+  ...restProps
 }) => {
   const stack = d3stack();
   if (keys) stack.keys(keys);
@@ -43,18 +43,18 @@ export default ({
             className={cx('vx-area-stack', className)}
             key={`area-stack-${i}-${series.key || ''}`}
             d={path(series)}
-            {...Object.keys(restProps).reduce((ret, cur) => {
-              ret[cur] = callOrValue(restProps[cur], series[i], i, series);
-              return ret;
-            }, {})}
+            {...additionalProps(restProps, {
+              datum: series[i],
+              index: i,
+              series,
+            })}
           />
         );
       })}
       {!!glyph &&
-        <g className='vx-area-stack-glyphs'>
+        <g className="vx-area-stack-glyphs">
           {data.map(glyph)}
-        </g>
-      }
+        </g>}
     </g>
   );
-}
+};
