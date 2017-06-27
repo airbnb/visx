@@ -1,10 +1,18 @@
 # Changelog
 
+- [v0.0.120](#v00120)
+- ...
 - [v0.0.114](#v00114)
 - [v0.0.113](#v00113)
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.120
+
+- https://github.com/hshoff/vx/pulls?q=is%3Apr+is%3Aclosed+milestone%3Av0.0.120
+
+# ...
 
 # v0.0.114
 
