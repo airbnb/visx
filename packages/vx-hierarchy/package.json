@@ -32,7 +32,8 @@
     "react-addons-test-utils": "^15.5.1",
     "react-fatigue-dev": "github:tj/react-fatigue-dev",
     "react-tools": "^0.10.0",
-    "regenerator-runtime": "^0.10.5"
+    "regenerator-runtime": "^0.10.5",
+    "react": "^15.0.0 || 15.x"
   },
   "publishConfig": {
     "access": "public"
@@ -41,5 +42,8 @@
     "@vx/group": "0.0.114",
     "classnames": "^2.2.5",
     "d3-hierarchy": "^1.1.4"
+  },
+  "peerDependencies": {
+    "react": "^15.0.0 || 15.x"
   }
 }
