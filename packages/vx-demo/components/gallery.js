@@ -22,6 +22,7 @@ import LineRadial from '../components/tiles/lineradial';
 import Arcs from '../components/tiles/arc';
 import Trees from '../components/tiles/tree';
 import Cluster from '../components/tiles/dendrogram';
+import Voronoi from '../components/tiles/voronoi';
 import Legends from '../components/tiles/legends';
 
 const items = [
@@ -83,6 +84,7 @@ export default class Gallery extends React.Component {
     const t13 = this.state.dimensions[12] || [8, 300];
     const t14 = this.state.dimensions[13] || [8, 300];
     const t15 = this.state.dimensions[14] || [8, 300];
+    const t16 = this.state.dimensions[15] || [8, 300];
 
     return (
       <div>
@@ -456,6 +458,30 @@ export default class Gallery extends React.Component {
                   <div className="title">Legends</div>
                   <div className="description">
                     <pre>{`<Legend />`}</pre>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </Tilt>
+          <Tilt
+            className="tilt"
+            options={{ max: 8, scale: 1 }}
+          >
+            <Link prefetch href="/voronoi">
+              <div
+                className="gallery-item"
+                ref={d => this.nodes.add(d)}
+              >
+                <div className="image">
+                  <Voronoi
+                    width={t16[0]}
+                    height={t16[1]}
+                  />
+                </div>
+                <div className="details" style={{ color: '#F54EA2'}}>
+                  <div className="title">Voronoi</div>
+                  <div className="description">
+                    <pre>{`<Voronoi.VoronoiPolygon /> `}</pre>
                   </div>
                 </div>
               </div>
