@@ -1,5 +1,7 @@
 # Changelog
 
+- [v0.0.123](#v00123)
+- [v0.0.122](#v00122)
 - [v0.0.121](#v00121)
 - [v0.0.120](#v00120)
 - [v0.0.114](#v00114)
@@ -7,6 +9,26 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.123
+
+- add `@vx/voronoi` [#78](https://github.com/hshoff/vx/pull/78)
+
+```bash
+Changes:
+- @vx/demo: 0.0.122 => 0.0.123
+- @vx/voronoi: 1.0.0 => 0.0.123
+```
+
+# v0.0.122
+
+- ignore this one, I ran `lerna publish --exact` before `lerna bootstrap` and it failed to publish, but managed to increment versions and couldn't figure how to "undo" it so rolling foward to v0.0.123
+
+```bash
+Changes:
+- @vx/demo: 0.0.122 => 0.0.122
+- @vx/voronoi: 0.0.0 => 0.0.122
+```
 
 # v0.0.121
 
