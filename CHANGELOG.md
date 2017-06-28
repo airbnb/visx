@@ -1,11 +1,26 @@
 # Changelog
 
+- [v0.0.121](#v00121)
 - [v0.0.120](#v00120)
 - [v0.0.114](#v00114)
 - [v0.0.113](#v00113)
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.121
+
+- add `@vx/legend` [#77](https://github.com/hshoff/vx/pull/77)
+- add `scaleQuantize`, `scaleQuantile`, `scaleThreshold`
+- added `GlyphCross` but it's not working yet
+
+```bash
+Changes:
+- @vx/demo: 0.0.120 => 0.0.121
+- @vx/glyph: 0.0.120 => 0.0.121
+- @vx/legend: 1.0.0 => 0.0.121
+- @vx/scale: 0.0.117 => 0.0.121
+```
 
 # v0.0.120
 
@@ -18,7 +33,7 @@
 - add @vx/clip-path [#61](https://github.com/hshoff/vx/pull/61)
 - fix axis label transform [#59](https://github.com/hshoff/vx/pull/59)
 
-```
+```bash
 Changes:
 - @vx/annotation: 0.0.119 => 0.0.120
 - @vx/axis: 0.0.119 => 0.0.120
