@@ -1,6 +1,6 @@
 {
   "name": "@vx/glyph",
-  "version": "0.0.120",
+  "version": "0.0.121",
   "description": "vx glyph ",
   "main": "build/index.js",
   "scripts": {
