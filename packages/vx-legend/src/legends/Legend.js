@@ -4,19 +4,13 @@ import PropTypes from 'prop-types';
 import LegendItem from './LegendItem';
 import LegendLabel from './LegendLabel';
 import LegendShape from './LegendShape';
-import labelQuantile from '../labels/quantile';
+import valueOrIdentity from '../util/valueOrIdentity';
 
 Legend.propTypes = {
   className: PropTypes.string,
   style: PropTypes.object,
-  scale: PropTypes.func.isRequired,
-  labels: PropTypes.arrayOf(
-    PropTypes.shape({
-      extend: PropTypes.array,
-      text: PropTypes.string,
-      value: PropTypes.any,
-    })
-  ),
+  scale: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
+    .isRequired,
   shapeWidth: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string,
@@ -30,14 +24,23 @@ Legend.propTypes = {
   itemMargin: PropTypes.string,
   direction: PropTypes.string,
   itemDirection: PropTypes.string,
+  fill: PropTypes.func,
+  shape: PropTypes.func,
+  labelFormat: PropTypes.func,
+  labelTransform: PropTypes.func,
 };
 
 export default function Legend({
   className,
   style,
+  shapeStyle,
   scale,
   shape,
-  labels,
+  domain,
+  fill = valueOrIdentity,
+  size = valueOrIdentity,
+  labelFormat = valueOrIdentity,
+  labelTransform = defaultTransform,
   shapeWidth = 15,
   shapeHeight = 15,
   shapeMargin = '2px 4px 2px 0',
@@ -46,8 +49,10 @@ export default function Legend({
   itemMargin = '0',
   direction = 'column',
   itemDirection = 'row',
-  ...restProps,
+  ...restProps
 }) {
+  domain = domain || scale.domain();
+  const labels = domain.map(labelTransform({ scale, labelFormat }));
   return (
     <div
       className={cx('vx-legend', className)}
@@ -58,7 +63,7 @@ export default function Legend({
       }}
     >
       {labels.map((label, i) => {
-        const { text, value } = label;
+        const { text } = label;
         return (
           <LegendItem
             key={`legend-${label}-${i}`}
@@ -67,10 +72,13 @@ export default function Legend({
           >
             <LegendShape
               shape={shape}
-              value={value}
               height={shapeHeight}
               width={shapeWidth}
               margin={shapeMargin}
+              label={label}
+              fill={fill}
+              size={size}
+              shapeStyle={shapeStyle}
             />
             <LegendLabel
               label={text}
@@ -82,4 +90,15 @@ export default function Legend({
       })}
     </div>
   );
+}
+
+function defaultTransform({ scale, labelFormat }) {
+  return (d, i) => {
+    return {
+      datum: d,
+      index: i,
+      text: `${labelFormat(d, i)}`,
+      value: scale(d),
+    };
+  };
 }

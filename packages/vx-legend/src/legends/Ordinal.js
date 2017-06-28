@@ -1,21 +1,40 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Legend from './Legend';
-import labelOrdinal from '../labels/ordinal';
+import valueOrIdentity from '../util/valueOrIdentity';
+
+LegendOrdinal.propTypes = {
+  scale: PropTypes.func.isRequired,
+  domain: PropTypes.array,
+  labelTransform: PropTypes.func,
+  labelFormat: PropTypes.func,
+};
 
 export default function LegendOrdinal({
   scale,
-  labelFormat = x => x,
-  ...restProps,
+  domain,
+  labelTransform = defaultTransform,
+  labelFormat = valueOrIdentity,
+  ...restProps
 }) {
-  const labels = labelOrdinal({
-    scale,
-    labelFormat,
-  });
   return (
     <Legend
       scale={scale}
-      labels={labels}
+      domain={domain}
+      labelFormat={labelFormat}
+      labelTransform={labelTransform}
       {...restProps}
     />
   );
+}
+
+function defaultTransform({ scale, labelFormat }) {
+  return (d, i) => {
+    return {
+      datum: d,
+      index: i,
+      text: `${labelFormat(d, i)}`,
+      value: scale(d),
+    };
+  };
 }

@@ -1,24 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ShapeRect from '../shapes/Rect';
+import renderShape from '../util/renderShape';
 
 export default function LegendShape({
-  shape,
+  shape = ShapeRect,
   width,
   height,
   margin,
-  value,
+  label,
+  fill,
+  size,
+  shapeStyle,
 }) {
   return (
     <div
-      className='vx-legend-shape'
+      className="vx-legend-shape"
       style={{
-        width,
-        height,
+        display: 'flex',
+        width: !!size ? size({ ...label }) : width,
+        height: !!size ? size({ ...label }) : height,
         margin,
-        background: value,
       }}
     >
-      {shape}
+      {renderShape({
+        shape,
+        label,
+        width,
+        height,
+        fill,
+        shapeStyle,
+      })}
     </div>
   );
 }

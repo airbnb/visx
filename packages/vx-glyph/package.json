@@ -46,6 +46,7 @@
   },
   "dependencies": {
     "@vx/group": "0.0.120",
-    "classnames": "^2.2.5"
+    "classnames": "^2.2.5",
+    "d3-shape": "^1.2.0"
   }
 }
