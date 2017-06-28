@@ -22,20 +22,21 @@ import LineRadial from '../components/tiles/lineradial';
 import Arcs from '../components/tiles/arc';
 import Trees from '../components/tiles/tree';
 import Cluster from '../components/tiles/dendrogram';
+import Legends from '../components/tiles/legends';
 
 const items = [
-  "#242424",
-  "#c3dae8",
-  "#ef5843",
-  "#f5f2e3",
-  "#f6c431",
-  "#32deaa",
-  "rgba(243, 129, 129, 1.000)",
-  "#00f2ff",
-  "#f4419f",
-  "#3130e3",
-  "#12122e",
-  "#ff657c"
+  '#242424',
+  '#c3dae8',
+  '#ef5843',
+  '#f5f2e3',
+  '#f6c431',
+  '#32deaa',
+  'rgba(243, 129, 129, 1.000)',
+  '#00f2ff',
+  '#f4419f',
+  '#3130e3',
+  '#12122e',
+  '#ff657c',
 ];
 
 export default class Gallery extends React.Component {
@@ -59,7 +60,7 @@ export default class Gallery extends React.Component {
 
   resize() {
     const newState = [];
-    this.nodes.forEach((node) => {
+    this.nodes.forEach(node => {
       if (!node) return;
       newState.push([node.offsetWidth, node.clientHeight]);
     });
@@ -86,10 +87,7 @@ export default class Gallery extends React.Component {
     return (
       <div>
         <div className="gallery">
-          <Tilt
-            className="tilt"
-            options={{ max: 8, scale: 1 }}
-          >
+          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
             <Link prefetch href="/lines">
               <div
                 className="gallery-item"
@@ -97,10 +95,7 @@ export default class Gallery extends React.Component {
                 ref={d => this.nodes.add(d)}
               >
                 <div className="image">
-                  <Lines
-                    width={t1[0]}
-                    height={t1[1]}
-                  />
+                  <Lines width={t1[0]} height={t1[1]} />
                 </div>
                 <div className="details">
                   <div className="title">Lines</div>
@@ -111,10 +106,7 @@ export default class Gallery extends React.Component {
               </div>
             </Link>
           </Tilt>
-          <Tilt
-            className="tilt"
-            options={{ max: 8, scale: 1 }}
-          >
+          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
             <Link prefetch href="/bars">
               <div
                 className="gallery-item"
@@ -122,10 +114,7 @@ export default class Gallery extends React.Component {
                 ref={d => this.nodes.add(d)}
               >
                 <div className="image">
-                  <Bars
-                    width={t2[0]}
-                    height={t2[1]}
-                  />
+                  <Bars width={t2[0]} height={t2[1]} />
                 </div>
                 <div className="details color-blue">
                   <div className="title">Bars</div>
@@ -136,10 +125,7 @@ export default class Gallery extends React.Component {
               </div>
             </Link>
           </Tilt>
-          <Tilt
-            className="tilt"
-            options={{ max: 8, scale: 1 }}
-          >
+          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
             <Link prefetch href="/dots">
               <div
                 className="gallery-item"
@@ -147,10 +133,7 @@ export default class Gallery extends React.Component {
                 ref={d => this.nodes.add(d)}
               >
                 <div className="image">
-                  <Dots
-                    width={t3[0]}
-                    height={t3[1]}
-                  />
+                  <Dots width={t3[0]} height={t3[1]} />
                 </div>
                 <div className="details color-yellow">
                   <div className="title">Dots</div>
@@ -161,10 +144,7 @@ export default class Gallery extends React.Component {
               </div>
             </Link>
           </Tilt>
-          <Tilt
-            className="tilt"
-            options={{ max: 8, scale: 1 }}
-          >
+          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
             <Link prefetch href="/patterns">
               <div
                 className="gallery-item"
@@ -172,10 +152,7 @@ export default class Gallery extends React.Component {
                 ref={d => this.nodes.add(d)}
               >
                 <div className="image">
-                  <Patterns
-                    width={t4[0]}
-                    height={t4[1]}
-                  />
+                  <Patterns width={t4[0]} height={t4[1]} />
                 </div>
                 <div className="details color-gray">
                   <div className="title">Patterns</div>
@@ -186,10 +163,7 @@ export default class Gallery extends React.Component {
               </div>
             </Link>
           </Tilt>
-          <Tilt
-            className="tilt"
-            options={{ max: 8, scale: 1 }}
-          >
+          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
             <Link prefetch href="/areas">
               <div
                 className="gallery-item"
@@ -217,10 +191,7 @@ export default class Gallery extends React.Component {
               </div>
             </Link>
           </Tilt>
-          <Tilt
-            className="tilt"
-            options={{ max: 8, scale: 1 }}
-          >
+          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
             <Link prefetch href="/stacked-areas">
               <div
                 className="gallery-item"
@@ -239,7 +210,10 @@ export default class Gallery extends React.Component {
                     }}
                   />
                 </div>
-                <div className="details" style={{ color: "rgba(251, 224, 137, 1.000)"}}>
+                <div
+                  className="details"
+                  style={{ color: 'rgba(251, 224, 137, 1.000)' }}
+                >
                   <div className="title">Stacked Areas</div>
                   <div className="description">
                     <pre>{`<Shape.AreaStack />`}</pre>
@@ -248,17 +222,18 @@ export default class Gallery extends React.Component {
               </div>
             </Link>
           </Tilt>
-          <Tilt
-            className="tilt"
-            options={{ max: 8, scale: 1 }}
-          >
+          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
             <Link prefetch href="/gradients">
-              <div className="gallery-item" style={{ background: 'white', boxShadow: '0 1px 6px rgba(0,0,0,0.1)' }} ref={d => this.nodes.add(d)}>
+              <div
+                className="gallery-item"
+                style={{
+                  background: 'white',
+                  boxShadow: '0 1px 6px rgba(0,0,0,0.1)',
+                }}
+                ref={d => this.nodes.add(d)}
+              >
                 <div className="image">
-                  <Gradients
-                    width={t7[0]}
-                    height={t7[1]}
-                  />
+                  <Gradients width={t7[0]} height={t7[1]} />
                 </div>
                 <div className="details color-gray">
                   <div className="title">Gradients</div>
@@ -269,12 +244,13 @@ export default class Gallery extends React.Component {
               </div>
             </Link>
           </Tilt>
-          <Tilt
-            className="tilt"
-            options={{ max: 8, scale: 1 }}
-          >
+          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
             <Link prefetch href="/glyphs">
-              <div className="gallery-item" style={{ background: items[7] }} ref={d => this.nodes.add(d)}>
+              <div
+                className="gallery-item"
+                style={{ background: items[7] }}
+                ref={d => this.nodes.add(d)}
+              >
                 <div className="image">
                   <MultiLine
                     width={t8[0]}
@@ -287,7 +263,10 @@ export default class Gallery extends React.Component {
                     }}
                   />
                 </div>
-                <div className="details" style={{  color: 'rgba(126, 31, 220, 1.000)' }}>
+                <div
+                  className="details"
+                  style={{ color: 'rgba(126, 31, 220, 1.000)' }}
+                >
                   <div className="title">Glyphs</div>
                   <div className="description">
                     <pre>{`<Glyph.GlyphDot />`}</pre>
@@ -296,12 +275,13 @@ export default class Gallery extends React.Component {
               </div>
             </Link>
           </Tilt>
-          <Tilt
-            className="tilt"
-            options={{ max: 8, scale: 1 }}
-          >
+          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
             <Link prefetch href="/axis">
-              <div className="gallery-item" style={{ background: items[8] }} ref={d => this.nodes.add(d)}>
+              <div
+                className="gallery-item"
+                style={{ background: items[8] }}
+                ref={d => this.nodes.add(d)}
+              >
                 <div className="image">
                   <Axis
                     width={t9[0]}
@@ -314,28 +294,27 @@ export default class Gallery extends React.Component {
                     }}
                   />
                 </div>
-                <div className="details" style={{ color: '#8e205f'}}>
+                <div className="details" style={{ color: '#8e205f' }}>
                   <div className="title">Axis</div>
                   <div className="description">
-                    <pre>{`<Axis.AxisLeft /> + <Axis.AxisBottom />`}</pre>
+                    <pre
+                    >{`<Axis.AxisLeft /> + <Axis.AxisBottom />`}</pre>
                   </div>
                 </div>
               </div>
             </Link>
           </Tilt>
-          <Tilt
-            className="tilt"
-            options={{ max: 8, scale: 1 }}
-          >
+          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
             <Link prefetch href="/bargroup">
-              <div className="gallery-item" style={{ background: '#612efb' }} ref={d => this.nodes.add(d)}>
+              <div
+                className="gallery-item"
+                style={{ background: '#612efb' }}
+                ref={d => this.nodes.add(d)}
+              >
                 <div className="image">
-                  <BarGroup
-                    width={t10[0]}
-                    height={t10[1]}
-                  />
+                  <BarGroup width={t10[0]} height={t10[1]} />
                 </div>
-                <div className="details" style={{ color: '#e5fd3d'}}>
+                <div className="details" style={{ color: '#e5fd3d' }}>
                   <div className="title">Bar Group</div>
                   <div className="description">
                     <pre>{`<Shape.BarGroup />`}</pre>
@@ -344,19 +323,17 @@ export default class Gallery extends React.Component {
               </div>
             </Link>
           </Tilt>
-          <Tilt
-            className="tilt"
-            options={{ max: 8, scale: 1 }}
-          >
+          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
             <Link prefetch href="/barstack">
-              <div className="gallery-item" style={{ background: '#eaedff' }} ref={d => this.nodes.add(d)}>
+              <div
+                className="gallery-item"
+                style={{ background: '#eaedff' }}
+                ref={d => this.nodes.add(d)}
+              >
                 <div className="image">
-                  <BarStack
-                    width={t11[0]}
-                    height={t11[1]}
-                  />
+                  <BarStack width={t11[0]} height={t11[1]} />
                 </div>
-                <div className="details" style={{ color: '#a44afe'}}>
+                <div className="details" style={{ color: '#a44afe' }}>
                   <div className="title">Bar Stack</div>
                   <div className="description">
                     <pre>{`<Shape.BarStack />`}</pre>
@@ -365,19 +342,20 @@ export default class Gallery extends React.Component {
               </div>
             </Link>
           </Tilt>
-          <Tilt
-            className="tilt"
-            options={{ max: 8, scale: 1 }}
-          >
+          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
             <Link prefetch href="/heatmaps">
-              <div className="gallery-item" style={{ background: '#28272c' }} ref={d => this.nodes.add(d)}>
+              <div
+                className="gallery-item"
+                style={{ background: '#28272c' }}
+                ref={d => this.nodes.add(d)}
+              >
                 <div className="image">
-                  <Heatmap
-                    width={t12[0]}
-                    height={t12[1]}
-                  />
+                  <Heatmap width={t12[0]} height={t12[1]} />
                 </div>
-                <div className="details" style={{ color: 'rgba(255,255,255,0.3)'}}>
+                <div
+                  className="details"
+                  style={{ color: 'rgba(255,255,255,0.3)' }}
+                >
                   <div className="title">Heatmaps</div>
                   <div className="description">
                     <pre>{`<HeatmapCircle /> + <HeatmapRect />`}</pre>
@@ -386,19 +364,17 @@ export default class Gallery extends React.Component {
               </div>
             </Link>
           </Tilt>
-          <Tilt
-            className="tilt"
-            options={{ max: 8, scale: 1 }}
-          >
+          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
             <Link prefetch href="/lineradial">
-              <div className="gallery-item" style={{ background: '#744cca' }} ref={d => this.nodes.add(d)}>
+              <div
+                className="gallery-item"
+                style={{ background: '#744cca' }}
+                ref={d => this.nodes.add(d)}
+              >
                 <div className="image">
-                  <LineRadial
-                    width={t13[0]}
-                    height={t13[1] - 80}
-                  />
+                  <LineRadial width={t13[0]} height={t13[1] - 80} />
                 </div>
-                <div className="details" style={{ color: '#919fe5'}}>
+                <div className="details" style={{ color: '#919fe5' }}>
                   <div className="title">Radial Lines</div>
                   <div className="description">
                     <pre>{`<Shape.LineRadial />`}</pre>
@@ -407,19 +383,17 @@ export default class Gallery extends React.Component {
               </div>
             </Link>
           </Tilt>
-          <Tilt
-            className="tilt"
-            options={{ max: 8, scale: 1 }}
-          >
+          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
             <Link prefetch href="/arcs">
-              <div className="gallery-item" style={{ background: '#c94acc' }} ref={d => this.nodes.add(d)}>
+              <div
+                className="gallery-item"
+                style={{ background: '#c94acc' }}
+                ref={d => this.nodes.add(d)}
+              >
                 <div className="image">
-                  <Arcs
-                    width={t14[0]}
-                    height={t14[1]}
-                  />
+                  <Arcs width={t14[0]} height={t14[1]} />
                 </div>
-                <div className="details" style={{ color: 'white'}}>
+                <div className="details" style={{ color: 'white' }}>
                   <div className="title">Arcs</div>
                   <div className="description">
                     <pre>{`<Shape.Arc />`}</pre>
@@ -428,54 +402,70 @@ export default class Gallery extends React.Component {
               </div>
             </Link>
           </Tilt>
-          <Tilt
-            className="tilt"
-            options={{ max: 8, scale: 1 }}
-          >
+          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
             <Link prefetch href="/trees">
-              <div className="gallery-item" style={{ background: '#272b4d' }} ref={d => this.nodes.add(d)}>
+              <div
+                className="gallery-item"
+                style={{ background: '#272b4d' }}
+                ref={d => this.nodes.add(d)}
+              >
                 <div className="image">
-                  <Trees
-                    width={t15[0]}
-                    height={t15[1]}
-                  />
+                  <Trees width={t15[0]} height={t15[1]} />
                 </div>
-                <div className="details" style={{ color: '#269688'}}>
+                <div className="details" style={{ color: '#269688' }}>
                   <div className="title">Trees</div>
                   <div className="description">
-                    <pre>{`<Hierarchy.Tree /> + <Shape.LinkHorizontal />`}</pre>
+                    <pre
+                    >{`<Hierarchy.Tree /> + <Shape.LinkHorizontal />`}</pre>
                   </div>
                 </div>
               </div>
             </Link>
           </Tilt>
-          <Tilt
-            className="tilt"
-            options={{ max: 8, scale: 1 }}
-          >
+          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
             <Link prefetch href="/dendrograms">
-              <div className="gallery-item" style={{ background: '#306c90' }} ref={d => this.nodes.add(d)}>
+              <div
+                className="gallery-item"
+                style={{ background: '#306c90' }}
+                ref={d => this.nodes.add(d)}
+              >
                 <div className="image">
-                  <Cluster
-                    width={t15[0]}
-                    height={t15[1]}
-                  />
+                  <Cluster width={t15[0]} height={t15[1]} />
                 </div>
-                <div className="details" style={{ color: '#5dc26f'}}>
+                <div className="details" style={{ color: '#5dc26f' }}>
                   <div className="title">Dendrograms</div>
                   <div className="description">
-                    <pre>{`<Hierarchy.Cluster /> + <Shape.LinkVertical />`}</pre>
+                    <pre
+                    >{`<Hierarchy.Cluster /> + <Shape.LinkVertical />`}</pre>
                   </div>
                 </div>
               </div>
             </Link>
           </Tilt>
-          <div className="gallery-item placeholder" />
+          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+            <Link prefetch href="/legends">
+              <div
+                className="gallery-item"
+                style={{ background: 'white' }}
+                ref={d => this.nodes.add(d)}
+              >
+                <div className="image">
+                  <Legends />
+                </div>
+                <div className="details" style={{ color: '#333' }}>
+                  <div className="title">Legends</div>
+                  <div className="description">
+                    <pre>{`<Legend />`}</pre>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </Tilt>
           <div className="gallery-item placeholder" />
         </div>
 
         <div>
-          <h1 style={{textAlign: 'center', lineHeight: '.8em'}}>
+          <h1 style={{ textAlign: 'center', lineHeight: '.8em' }}>
             More on the way!
           </h1>
         </div>
@@ -506,7 +496,9 @@ export default class Gallery extends React.Component {
             flex-direction: column;
             border-radius: 14px;
           }
-          .gallery-item.placeholder { height: 1px; }
+          .gallery-item.placeholder {
+            height: 1px;
+          }
           .image {
             flex: 1;
             display: flex;
@@ -527,16 +519,20 @@ export default class Gallery extends React.Component {
           pre {
             margin: 0;
           }
-          .color-blue { color: rgba(25, 231, 217, 1.000); }
-          .color-yellow { color: #f6c431; }
-          .color-gray { color: #333; }
-
+          .color-blue {
+            color: rgba(25, 231, 217, 1.000);
+          }
+          .color-yellow {
+            color: #f6c431;
+          }
+          .color-gray {
+            color: #333;
+          }
           @media (max-width: 960px) {
             .gallery-item {
               min-width: 45%;
             }
           }
-
           @media (max-width: 600px) {
             .gallery-item {
               min-width: 100%;
