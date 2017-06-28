@@ -54,8 +54,9 @@ return (
 
 ```
 
-For more advanced usage with events, see [this example](https://vx-demo.now.sh/voronoi) and read
-the d3 documentation about the [voronoi layout + diagram api](https://github.com/d3/d3-voronoi).
+For more advanced usage with events, see [this example](https://vx-demo.now.sh/voronoi). Additional
+information about the voronoi layout + diagram can be found in the
+[d3-voronoi documentation](https://github.com/d3/d3-voronoi).
 
 
 ## vx packages
