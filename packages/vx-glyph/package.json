@@ -1,6 +1,6 @@
 {
   "name": "@vx/glyph",
-  "version": "0.0.120",
+  "version": "0.0.121",
   "description": "vx glyph ",
   "main": "build/index.js",
   "scripts": {
@@ -46,6 +46,7 @@
   },
   "dependencies": {
     "@vx/group": "0.0.120",
-    "classnames": "^2.2.5"
+    "classnames": "^2.2.5",
+    "d3-shape": "^1.2.0"
   }
 }
