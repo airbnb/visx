@@ -140,7 +140,7 @@ export default class Gallery extends React.Component {
                 <div className="details color-yellow">
                   <div className="title">Dots</div>
                   <div className="description">
-                    <pre>{`<Glyph.GlyphDot />`}</pre>
+                    <pre>{`<Glyph.GlyphCircle />`}</pre>
                   </div>
                 </div>
               </div>
