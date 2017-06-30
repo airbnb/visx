@@ -468,6 +468,9 @@ export default class Gallery extends React.Component {
               <div
                 className="gallery-item"
                 ref={d => this.nodes.add(d)}
+                style={{
+                  boxShadow: 'rgba(0, 0, 0, 0.1) 0px 1px 6px',
+                }}
               >
                 <div
                   className="image"
