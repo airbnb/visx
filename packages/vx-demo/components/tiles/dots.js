@@ -48,7 +48,7 @@ export default ({ width, height }) => {
               fill={'#f6c431'}
               left={xScale(x(point))}
               top={yScale(y(point))}
-              size={i % 3 === 0 ? 2 : 3}
+              size={i % 3 === 0 ? 12 : 24}
             />
           );
         })}
