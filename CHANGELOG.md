@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.124](#v00124)
 - [v0.0.123](#v00123)
 - [v0.0.122](#v00122)
 - [v0.0.121](#v00121)
@@ -9,6 +10,22 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.124
+
+- [glyph] add remaining d3 symbols [#84](https://github.com/hshoff/vx/pull/84) + [#81](https://github.com/hshoff/vx/pull/81)
+- [gradient] add horizontal linear gradients, make more flexible [#82](https://github.com/hshoff/vx/pull/82)
+- [axis] export orientation constants [#80](https://github.com/hshoff/vx/pull/80)
+- [legend] fix proptypes check on shape prop [#82](https://github.com/hshoff/vx/pull/82)
+
+```bash
+Changes:
+- @vx/axis: 0.0.120 => 0.0.124
+- @vx/demo: 0.0.123 => 0.0.124
+- @vx/glyph: 0.0.121 => 0.0.124
+- @vx/gradient: 0.0.120 => 0.0.124
+- @vx/legend: 0.0.121 => 0.0.124
+```
 
 # v0.0.123
 
