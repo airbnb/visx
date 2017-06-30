@@ -9,7 +9,6 @@ import { AreaClosed, LinePath } from '@vx/shape';
 import { scaleTime, scaleLinear } from '@vx/scale';
 import { extent, max } from 'd3-array';
 
-
 const data = genDateValue(20);
 
 // accessors
@@ -29,11 +28,7 @@ function numTicksForWidth(width) {
   return 10;
 }
 
-export default ({
-  width,
-  height,
-  margin,
-}) => {
+export default ({ width, height, margin }) => {
   if (width < 10) return null;
 
   // bounds
@@ -57,7 +52,7 @@ export default ({
 
   return (
     <svg width={width} height={height}>
-      <GradientOrangeRed id="linear" />
+      <GradientOrangeRed id="linear" vertical={false} />
       <rect
         x={0}
         y={0}
@@ -71,7 +66,7 @@ export default ({
         left={margin.left}
         xScale={xScale}
         yScale={yScale}
-        stroke='rgba(142, 32, 95, 0.9)'
+        stroke="rgba(142, 32, 95, 0.9)"
         width={xMax}
         height={yMax}
         numTicksRows={numTicksForHeight(height)}
@@ -87,7 +82,7 @@ export default ({
           strokeWidth={2}
           stroke={'transparent'}
           fill={'url(#linear)'}
-          fillOpacity='0.9'
+          fillOpacity="0.9"
           curve={curveBasis}
         />
         <LinePath
@@ -158,4 +153,4 @@ export default ({
       />
     </svg>
   );
-}
+};

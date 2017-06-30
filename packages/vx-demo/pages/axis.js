@@ -4,13 +4,17 @@ import Axis from '../components/tiles/axis';
 
 export default () => {
   return (
-    <Show component={Axis} title="Axis" margin={{
-      top: 20,
-      left: 60,
-      right: 40,
-      bottom: 60,
-    }}>
-{`import React from 'react';
+    <Show
+      component={Axis}
+      title="Axis"
+      margin={{
+        top: 20,
+        left: 60,
+        right: 40,
+        bottom: 60,
+      }}
+    >
+      {`import React from 'react';
 import { Grid } from '@vx/grid';
 import { Group } from '@vx/group';
 import { curveBasis } from '@vx/curve';
@@ -66,7 +70,7 @@ export default ({
 
   return (
     <svg width={width} height={height}>
-      <GradientOrangeRed id="linear" />
+      <GradientOrangeRed id="linear" vertical={false} />
       <Grid
         top={margin.top}
         left={margin.left}
@@ -162,4 +166,4 @@ export default ({
 }`}
     </Show>
   );
-}
+};
