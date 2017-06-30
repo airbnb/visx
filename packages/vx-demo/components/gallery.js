@@ -448,13 +448,13 @@ export default class Gallery extends React.Component {
             <Link prefetch href="/legends">
               <div
                 className="gallery-item"
-                style={{ background: 'white' }}
+                style={{ backgroundColor: 'black' }}
                 ref={d => this.nodes.add(d)}
               >
                 <div className="image">
                   <Legends />
                 </div>
-                <div className="details" style={{ color: '#333' }}>
+                <div className="details" style={{ color: '#494949' }}>
                   <div className="title">Legends</div>
                   <div className="description">
                     <pre>{`<Legend />`}</pre>
@@ -463,22 +463,22 @@ export default class Gallery extends React.Component {
               </div>
             </Link>
           </Tilt>
-          <Tilt
-            className="tilt"
-            options={{ max: 8, scale: 1 }}
-          >
+          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
             <Link prefetch href="/voronoi">
               <div
                 className="gallery-item"
                 ref={d => this.nodes.add(d)}
               >
-                <div className="image">
-                  <Voronoi
-                    width={t16[0]}
-                    height={t16[1]}
-                  />
+                <div
+                  className="image"
+                  style={{
+                    backgroundColor: '#eb6d88',
+                    borderRadius: 14,
+                  }}
+                >
+                  <Voronoi width={t16[0]} height={t16[1]} />
                 </div>
-                <div className="details" style={{ color: '#F54EA2'}}>
+                <div className="details" style={{ color: '#F54EA2' }}>
                   <div className="title">Voronoi</div>
                   <div className="description">
                     <pre>{`<Voronoi.VoronoiPolygon /> `}</pre>

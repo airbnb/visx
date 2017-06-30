@@ -20,17 +20,22 @@ const twoDecimalFormat = format('.2f');
 
 const quantile = scaleQuantize({
   domain: [0, 0.15],
-  range: ['#fdd0a2', '#fdae6b', '#fd8d3c', '#f16913', '#d94801'],
+  range: ['#eb4d70', '#f19938', '#6ce18b', '#78f6ef', '#9096f8'],
 });
 
 const linear = scaleLinear({
   domain: [0, 10],
-  range: ['#0068af', '#c00029'],
+  range: ['#ed4fbb', '#e9a039'],
 });
 
 const ordinalColor = scaleOrdinal({
   domain: ['a', 'b', 'c', 'd'],
-  range: ['#160689', '#a72297', '#f68e44', '#f8e126'].reverse(),
+  range: ['#7d81f6', '#4899f1', '#71f5ef', '#66d981'].reverse(),
+});
+
+const ordinalColor2 = scaleOrdinal({
+  domain: ['a', 'b', 'c', 'd'],
+  range: ['#8386f7', '#e64357', '#f29b38', '#fae856'].reverse(),
 });
 
 const ordinalShape = scaleOrdinal({
@@ -84,6 +89,11 @@ const sizeOpacity = scaleLinear({
   range: [0.4, 1],
 });
 
+const sizeColor = scaleLinear({
+  domain: [0, 10],
+  range: ['#75fcfc', '#3236b8'],
+});
+
 function LegendDemo({ title, children }) {
   return (
     <div className="legend">
@@ -92,16 +102,14 @@ function LegendDemo({ title, children }) {
       <style jsx>{`
         .legend {
           line-height: .9em;
-          color: #333;
-          margin: 0 5px 10px;
-          float: left;
-          clear: top;
+          color: #efefef;
           font-size: 10px;
           font-family: arial;
-          border: 1px solid #efefef;
-          padding: 10px;
-          border-radius: 6px;
-          flex: initial;
+          padding: 10px 10px;
+          float: left;
+          border: 1px solid rgba(255, 255, 255, 0.3);
+          border-radius: 8px;
+          margin: 5px 5px;
         }
         .title {
           font-size: 12px;
@@ -117,91 +125,100 @@ export default ({ width, height, margin }) => {
   if (width < 10) return null;
   return (
     <div className="chart">
-      <div>
-        <LegendDemo title="Size">
-          <LegendSize
-            itemMargin="0"
-            shapeMargin="5px 0"
-            itemDirection="column"
-            scale={size}
-            shapeStyle={props => {
-              return {
-                fill: '#b2212b',
-                fillOpacity: sizeOpacity(props.datum),
-              };
-            }}
-            shape={props => {
-              const { size } = props;
-              return (
-                <svg width={size} height={size}>
-                  <rect {...props} width={size} height={size} />
-                </svg>
-              );
-            }}
-          />
-        </LegendDemo>
-        <LegendDemo title="Quantile">
-          <LegendQuantile shape="circle" scale={quantile} />
-        </LegendDemo>
-        <LegendDemo title="Linear">
-          <LegendLinear
-            shape="circle"
-            scale={linear}
-            labelFormat={(d, i) => {
-              if (i % 2 === 0) return oneDecimalFormat(d);
-              return '';
-            }}
-          />
-        </LegendDemo>
-        <LegendDemo title="Threshold">
-          <LegendThreshold
-            direction="column-reverse"
-            itemDirection="row-reverse"
-            labelMargin="0 20px 0 0"
-            shapeMargin="1px 0 0"
-            scale={threshold}
-          />
-        </LegendDemo>
-        <LegendDemo title="Ordinal">
-          <LegendOrdinal
-            direction="column"
-            scale={ordinalColor}
-            shape="rect"
-            fill={({ datum }) => ordinalColor(datum)}
-            labelFormat={label => `Type ${label.toUpperCase()}`}
-          />
-        </LegendDemo>
-        <LegendDemo title="Custom Legend">
-          <Legend
-            direction="row"
-            itemDirection="column"
-            labelMargin="0"
-            shapeMargin="0 0 8px 0"
-            itemMargin="0 4px 0 0"
-            scale={ordinalShape}
-            fill={({ datum }) => ordinalColor(datum)}
-            shape={props => {
-              return (
-                <svg width={props.width} height={props.height}>
-                  {React.createElement(
-                    ordinalShape(props.label.datum),
-                    {
-                      ...props,
-                    },
-                  )}
-                </svg>
-              );
-            }}
-          />
-        </LegendDemo>
-      </div>
+      <LegendDemo title="Size">
+        <LegendSize
+          itemMargin="0"
+          shapeMargin="5px 0"
+          itemDirection="row"
+          scale={size}
+          shapeStyle={props => {
+            return {
+              fill: sizeColor(props.datum),
+            };
+          }}
+          shape={props => {
+            const { size } = props;
+            return (
+              <svg width={size} height={size}>
+                <circle
+                  {...props}
+                  r={size / 2}
+                  cx={size / 2}
+                  cy={size / 2}
+                />
+              </svg>
+            );
+          }}
+        />
+      </LegendDemo>
+      <LegendDemo title="Quantile">
+        <LegendQuantile shape="circle" scale={quantile} />
+      </LegendDemo>
+      <LegendDemo title="Linear">
+        <LegendLinear
+          shape="circle"
+          scale={linear}
+          labelFormat={(d, i) => {
+            if (i % 2 === 0) return oneDecimalFormat(d);
+            return '';
+          }}
+        />
+      </LegendDemo>
+      <LegendDemo title="Threshold">
+        <LegendThreshold
+          direction="column-reverse"
+          itemDirection="row"
+          labelMargin="2px 0 0 10px"
+          shapeMargin="1px 0 0"
+          scale={threshold}
+        />
+      </LegendDemo>
+      <LegendDemo title="Ordinal">
+        <LegendOrdinal
+          direction="row"
+          itemDirection="row"
+          shapeMargin="0"
+          labelMargin="0 0 0 4px"
+          itemMargin="0 5px"
+          scale={ordinalColor}
+          shape="rect"
+          fill={({ datum }) => ordinalColor(datum)}
+          labelFormat={label => `${label.toUpperCase()}`}
+        />
+      </LegendDemo>
+      <LegendDemo title="Custom Legend">
+        <Legend
+          direction="row"
+          itemDirection="column"
+          labelMargin="0"
+          shapeMargin="0 0 8px 0"
+          itemMargin="0 4px 0 0"
+          scale={ordinalShape}
+          fill={({ datum }) => ordinalColor2(datum)}
+          shape={props => {
+            return (
+              <svg width={props.width} height={props.height}>
+                {React.createElement(
+                  ordinalShape(props.label.datum),
+                  {
+                    ...props,
+                  },
+                )}
+              </svg>
+            );
+          }}
+        />
+      </LegendDemo>
 
       <style jsx>{`
         .chart {
           font-family: arial;
           font-weight: 900;
-          display: flex;
-          flex-direction: column;
+          background-color: black;
+          border-top-left-radius: 14px;
+          border-top-right-radius: 14px;
+          padding: 20px 20px 20px 28px;
+          overflow-y: auto;
         }
         .chart h2 {
           margin-left: 10px;

@@ -12,9 +12,10 @@ export default ({
     top: 0,
     left: 0,
     right: 0,
-    bottom: 80,
+    bottom: 70,
   },
 }) => {
+  if (width < 10) return <div />;
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
 
@@ -48,19 +49,19 @@ export default ({
         left={margin.left}
         clipPath="url(#voronoi_clip)"
       >
-        {polygons.map((polygon) => (
+        {polygons.map(polygon =>
           <VoronoiPolygon
             key={`polygon-${polygon.data.id}`}
             polygon={polygon}
-            fill={(d) => (
-              d.id.toLowerCase() <= 'a' ?
-              'url(#voronoi_orange_red)' : 'url(#voronoi_pink_red)'
-            )}
+            fill={d =>
+              d.id.toLowerCase() <= 'a'
+                ? 'url(#voronoi_orange_red)'
+                : 'url(#voronoi_pink_red)'}
             stroke="#fff"
             strokeWidth={1}
-          />
-        ))}
-        {data.map((d) => (
+          />,
+        )}
+        {data.map(d =>
           <circle
             key={`circle-${d.id}`}
             r={2}
@@ -68,9 +69,9 @@ export default ({
             cy={d.y}
             fill="#ffffff"
             fillOpacity={0.2}
-          />
-        ))}
+          />,
+        )}
       </Group>
     </svg>
   );
-}
+};
