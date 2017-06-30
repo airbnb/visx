@@ -70,7 +70,12 @@ export default ({
 
   return (
     <svg width={width} height={height}>
-      <GradientOrangeRed id="linear" vertical={false} />
+      <GradientOrangeRed
+        id="linear"
+        vertical={false}
+        fromOpacity={0.8}
+        toOpacity={0.3}
+      />
       <Grid
         top={margin.top}
         left={margin.left}
@@ -92,7 +97,6 @@ export default ({
           strokeWidth={2}
           stroke='transparent'
           fill="url('#linear')"
-          fillOpacity='0.9'
           curve={curveBasis}
         />
         <LinePath
