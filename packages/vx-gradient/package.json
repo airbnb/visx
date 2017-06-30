@@ -29,7 +29,8 @@
   },
   "homepage": "https://github.com/hshoff/vx#readme",
   "dependencies": {
-    "classnames": "^2.2.5"
+    "classnames": "^2.2.5",
+    "prop-types": "^15.5.7"
   },
   "devDependencies": {
     "babel-jest": "^20.0.3",

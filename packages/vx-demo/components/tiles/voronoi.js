@@ -12,7 +12,7 @@ export default ({
     top: 0,
     left: 0,
     right: 0,
-    bottom: 70,
+    bottom: 76,
   },
 }) => {
   if (width < 10) return <div />;

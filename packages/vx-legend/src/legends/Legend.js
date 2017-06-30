@@ -25,7 +25,7 @@ Legend.propTypes = {
   direction: PropTypes.string,
   itemDirection: PropTypes.string,
   fill: PropTypes.func,
-  shape: PropTypes.func,
+  shape: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   labelFormat: PropTypes.func,
   labelTransform: PropTypes.func,
 };
