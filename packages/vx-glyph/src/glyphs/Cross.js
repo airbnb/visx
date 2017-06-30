@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { symbol, symbolCross } from 'd3-shape';
-import { Glyph } from './Glyph';
+import Glyph from './Glyph';
 import additionalProps from '../util/additionalProps';
 
 export default function GlyphCross({
@@ -22,7 +22,7 @@ export default function GlyphCross({
       className={cx('vx-glyph-cross', className)}
     >
       <path
-        d={path}
+        d={path()}
         {...additionalProps(restProps)}
       />
       {children}
