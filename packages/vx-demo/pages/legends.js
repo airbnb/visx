@@ -32,6 +32,13 @@ import {
   scaleThreshold,
 } from '@vx/scale';
 
+import {
+  GlyphStar,
+  GlyphWye,
+  GlyphTriangle,
+  GlyphDiamond,
+} from '@vx/glyph';
+
 const oneDecimalFormat = format('.1f');
 const twoDecimalFormat = format('.2f');
 
@@ -56,29 +63,24 @@ const ordinalColor2 = scaleOrdinal({
 });
 
 const ordinalShape = scaleOrdinal({
-  domain: ['a', 'b', 'c', 'd'],
+  domain: ['a', 'b', 'c', 'd', 'e'],
   range: [
+    <GlyphStar size={50} top={50 / 6} left={50 / 6} fill="#dd59b8" />,
+    <GlyphWye size={50} top={50 / 6} left={50 / 6} fill="#de6a9a" />,
+    <GlyphTriangle
+      size={50}
+      top={50 / 6}
+      left={50 / 6}
+      fill="#de7d7b"
+    />,
+    <GlyphDiamond
+      size={50}
+      top={50 / 6}
+      left={50 / 6}
+      fill="#df905f"
+    />,
     props =>
-      <circle
-        {...{
-          r: props.width / 2,
-          cx: props.width / 2,
-          cy: props.width / 2,
-        }}
-        {...props}
-      />,
-    props => <rect {...props} />,
-    props =>
-      <circle
-        {...{
-          r: props.width / 2,
-          cx: props.width / 2,
-          cy: props.width / 2,
-        }}
-        {...props}
-      />,
-    props =>
-      <text fontSize="12" dy="1em" dx=".33em" {...props}>
+      <text fontSize="12" dy="1em" dx=".33em" fill="#e0a346">
         $
       </text>,
   ],
@@ -194,15 +196,23 @@ export default ({ width, height, margin }) => {
           itemMargin="0 4px 0 0"
           scale={ordinalShape}
           fill={({ datum }) => ordinalColor2(datum)}
+          shapeWidth={15}
           shape={props => {
             return (
               <svg width={props.width} height={props.height}>
-                {React.createElement(
+                {!React.isValidElement(
                   ordinalShape(props.label.datum),
-                  {
-                    ...props,
-                  },
-                )}
+                ) &&
+                  React.createElement(
+                    ordinalShape(props.label.datum),
+                    {
+                      ...props,
+                    },
+                  )}
+                {React.isValidElement(
+                  ordinalShape(props.label.datum),
+                ) &&
+                  React.cloneElement(ordinalShape(props.label.datum))}
               </svg>
             );
           }}
@@ -211,6 +221,7 @@ export default ({ width, height, margin }) => {
     </div>
   );
 };
+
 `}
     </Show>
   );
