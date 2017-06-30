@@ -17,11 +17,7 @@ function round(value, precision) {
 const x = d => d.letter;
 const y = d => +d.frequency * 100;
 
-export default ({
-  width,
-  height,
-  events = false,
-}) => {
+export default ({ width, height, events = false }) => {
   if (width < 10) return null;
 
   // bounds
@@ -62,9 +58,9 @@ export default ({
                 y={yMax - barHeight}
                 fill="rgba(23, 233, 217, .5)"
                 data={{ x: x(d), y: y(d) }}
-                onClick={(data) => (event) => {
+                onClick={data => event => {
                   if (!events) return;
-                  alert(`clicked: ${JSON.stringify(data)}`)
+                  alert(`clicked: ${JSON.stringify(data)}`);
                 }}
               />
             </Group>
@@ -73,4 +69,4 @@ export default ({
       </Group>
     </svg>
   );
-}
+};
