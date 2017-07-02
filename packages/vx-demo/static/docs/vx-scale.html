@@ -1,0 +1,156 @@
+
+  <html>
+    <head>
+      <link rel="stylesheet" type="text/css" href="../doc_styles.css">
+    </head>
+
+    <h1 id="-vx-scale">@vx/scale</h1>
+<h2 id="overview-of-scaling">Overview of Scaling</h2>
+<p>The <code>@vx/scale</code> package aims to provide a wrapper around existing d3 scaling originally defined in the <a href="https://github.com/d3/d3-scale">d3-scale</a> package.</p>
+<p>Scales are functions that help you map your data to the physical pixel size that your graph requires. For example, let&#39;s say you wanted to create a bar chart to show populations per country. If you were to use a 1-to-1 scale (IE: 1 pixel per y value) your bar for the USA would be about 321.4 million pixels high!</p>
+<p>Instead, you can tell vx a function to use that takes a value (like your population per country) and spits out another value.</p>
+<p>For example, we could create a linear scale like this:</p>
+<pre><code class="lang-javascript">const graphHeight = 500; // We&#39;ll have a 500 pixel high graph
+const maxPopulation = getMostPopulatedCountryInTheWorld();
+
+const yScale = Scale.scaleLinear({
+  rangeRound: [graphHeight, 0],
+  domain: [0, maxPopulation],
+});
+
+// ...
+
+const bars = data.map((d, i) =&gt; {
+  const barHeight = graphHeight - yScale(d.y);
+  return &lt;Shape.Bar height={barHeight} y={graphHeight - barHeight} /&gt;
+})
+</code></pre>
+<p><strong>Note:</strong> This example represents how to use a yScale, but skipped a lot of details about how to make a bar chart. If you&#39;re trying to do that, you should check out <a href="https://github.com/hshoff/vx/blob/master/packages/vx-demo/components/charts/SimpleBar.js">this example</a>.</p>
+<h2 id="current-scaling-options">Current Scaling Options</h2>
+<h3 id="color-scaling">Color Scaling</h3>
+<p>Color scales convert a point to a series of colors. D3 comes with a number of schemes that you can use just like any other scale.</p>
+<p><a href="https://github.com/d3/d3-scale/blob/master/README.md#schemeCategory10">Original d3 docs with colors</a></p>
+<h4 id="scale-10-colors">Scale 10 colors</h4>
+<p><img src="https://raw.githubusercontent.com/d3/d3-scale/master/img/category10.png" alt="scale10 colors"></p>
+<h4 id="scale-20-colors">Scale 20 colors</h4>
+<p><img src="https://raw.githubusercontent.com/d3/d3-scale/master/img/category20.png" alt="scale20 colors"></p>
+<h4 id="scale-20b-colors">Scale 20b colors</h4>
+<p><img src="https://raw.githubusercontent.com/d3/d3-scale/master/img/category20b.png" alt="scale20b colors"></p>
+<h4 id="scale-20c-colors">Scale 20c colors</h4>
+<p><img src="https://raw.githubusercontent.com/d3/d3-scale/master/img/category20c.png" alt="scale20c colors"></p>
+<p>Example:</p>
+<pre><code class="lang-javascript">const scale10 = Scale.schemeCategory10({ /* range, domain, unknown */})
+const scale20 = Scale.schemeCategory20({ /* range, domain, unknown */})
+const scale20b = Scale.schemeCategory20b({ /* range, domain, unknown */})
+const scale20c = Scale.schemeCategory20c({ /* range, domain, unknown */})
+</code></pre>
+<h3 id="band-scaling">Band Scaling</h3>
+<p><a href="https://github.com/d3/d3-scale/blob/master/README.md#_band">Original d3 docs</a></p>
+<p>Example:</p>
+<pre><code class="lang-javascript">const scale = Scale.scaleBand({
+  /*
+    range,
+    rangeRound,
+    domain,
+    padding,
+    nice = false
+  */
+});
+</code></pre>
+<h3 id="linear-scaling">Linear Scaling</h3>
+<p><a href="https://github.com/d3/d3-scale/blob/master/README.md#scaleLinear">Original d3 docs</a></p>
+<p>Example:</p>
+<pre><code class="lang-javascript">const scale = Scale.scaleLinear({
+  /*
+    range,
+    rangeRound,
+    domain,
+    nice = false,
+    clamp = false,
+  */
+});
+</code></pre>
+<h3 id="log-scaling">Log Scaling</h3>
+<p><a href="https://github.com/d3/d3-scale/blob/master/README.md#scaleLog">Original d3 docs</a></p>
+<p>Example:</p>
+<pre><code class="lang-javascript">const scale = Scale.scaleLog({
+  /*
+    range,
+    rangeRound,
+    domain,
+    base,
+    nice = false,
+    clamp = false,
+  */
+});
+</code></pre>
+<h3 id="ordinal-scaling">Ordinal Scaling</h3>
+<p><a href="https://github.com/d3/d3-scale/blob/master/README.md#scaleOrdinal">Original d3 docs</a></p>
+<p>Example:</p>
+<pre><code class="lang-javascript">const scale = Scale.scaleOrdinal({
+  /*
+    range,
+    domain,
+    unknown,
+  */
+});
+</code></pre>
+<h3 id="point-scaling">Point Scaling</h3>
+<p><a href="https://github.com/d3/d3-scale/blob/master/README.md#scalePoint">Original d3 docs</a></p>
+<p>Example:</p>
+<pre><code class="lang-javascript">const scale = Scale.scalePoint({
+  /*
+    range,
+    rangeRound,
+    domain,
+    padding,
+    align,
+    nice = false,
+  */
+});
+</code></pre>
+<h3 id="power-scaling">Power Scaling</h3>
+<p><a href="https://github.com/d3/d3-scale/blob/master/README.md#scalePow">Original d3 docs</a></p>
+<p>Example:</p>
+<pre><code class="lang-javascript">const scale = Scale.scalePower({
+  /*
+    range,
+    rangeRound,
+    domain,
+    base,
+    nice = false,
+    clamp = false,
+  */
+});
+</code></pre>
+<h3 id="time-scaling">Time Scaling</h3>
+<p><a href="https://github.com/d3/d3-scale/blob/master/README.md#scaleTime">Original d3 docs</a></p>
+<p>Example:</p>
+<pre><code class="lang-javascript">const scale = Scale.scaleTime({
+  /*
+    range,
+    rangeRound,
+    domain,
+    nice = false,
+    clamp = false,
+    scaleUtc = false,
+   */
+})
+</code></pre>
+<h2 id="vx-packages">vx packages</h2>
+<ul>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-axis">@vx/axis</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-curve">@vx/curve</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-demo">@vx/demo</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-glyph">@vx/glyph</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-grid">@vx/grid</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-group">@vx/group</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-marker">@vx/marker</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-mock-data">@vx/mock-data</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-point">@vx/point</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-responsive">@vx/responsive</a></li>
+<li>@vx/scale</li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-shape">@vx/shape</a></li>
+</ul>
+
+  </html>

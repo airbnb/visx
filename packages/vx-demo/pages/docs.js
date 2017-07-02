@@ -7,17 +7,16 @@ export default () => (
     <div className="page-left">
       <div className="comingsoon">
         <h1><a name="packages" />Packages</h1>
-        <code>// TODO: write docs</code>
       </div>
       <ul>
         <li>
-          @vx/annotation
+          <a href="/static/docs/vx-annotation.html"> @vx/annotation </a>
           <ul>
             <li>LinePath</li>
           </ul>
         </li>
         <li>
-          @vx/axis
+          <a href="/static/docs/vx-axis.html"> @vx/axis </a>
           <ul>
             <li>
               <strong>/axis</strong>
@@ -47,7 +46,7 @@ export default () => (
           </ul>
         </li>
         <li>
-          @vx/curve
+          <a href="/static/docs/vx-curve.html"> @vx/curve </a>
           <ul>
             <li>curveBasis</li>
             <li>curveBasisClose</li>
@@ -70,14 +69,14 @@ export default () => (
           </ul>
         </li>
         <li>
-          @vx/glyph
+          <a href="/static/docs/vx-glyph.html"> @vx/glyph </a>
           <ul>
             <li>GlyphDot</li>
             <li>Glyph</li>
           </ul>
         </li>
         <li>
-          @vx/grid
+          <a href="/static/docs/vx-grid.html"> @vx/grid </a>
           <ul>
             <li>Grid</li>
             <li>Columns</li>
@@ -85,19 +84,19 @@ export default () => (
           </ul>
         </li>
         <li>
-          @vx/group
+          <a href="/static/docs/vx-group.html"> @vx/group </a>
           <ul>
             <li>Group</li>
           </ul>
         </li>
         <li>
-          @vx/marker
+          <a href="/static/docs/vx-marker.html"> @vx/marker </a>
           <ul>
             <li>Marker</li>
           </ul>
         </li>
         <li>
-          @vx/mock-data
+          <a href="/static/docs/vx-mock-data.html"> @vx/mock-data </a>
           <ul>
             <li>
               <strong>/generators</strong>
@@ -117,7 +116,7 @@ export default () => (
           </ul>
         </li>
         <li>
-          @vx/pattern
+          <a href="/static/docs/vx-pattern.html"> @vx/pattern </a>
           <ul>
             <li>PatternCircles</li>
             <li>PatternHexagons</li>
@@ -129,13 +128,15 @@ export default () => (
           </ul>
         </li>
         <li>
-          @vx/point
+          <a href="/static/docs/vx-point.html">
+            @vx/point
+          </a>
           <ul>
             <li>Point</li>
           </ul>
         </li>
         <li>
-          @vx/responsive
+          <a href="/static/docs/vx-responsive.html"> @vx/responsive </a>
           <ul>
             <li>
               <strong>/components</strong>
@@ -152,7 +153,7 @@ export default () => (
           </ul>
         </li>
         <li>
-          @vx/scale
+          <a href="/static/docs/vx-scale.html"> @vx/scale </a>
           <ul>
             <li>scaleBand</li>
             <li>scalePoint</li>
@@ -163,7 +164,7 @@ export default () => (
           </ul>
         </li>
         <li>
-          @vx/shape
+          <a href="/static/docs/vx-shape.html"> @vx/shape </a>
           <ul>
             <li>AreaClosed</li>
             <li>AreaStack</li>
@@ -173,7 +174,7 @@ export default () => (
           </ul>
         </li>
         <li>
-          @vx/text
+          <a href="/static/docs/vx-text.html"> @vx/text </a>
           <ul>
             <li>TextBackground</li>
             <li>TextOutline</li>

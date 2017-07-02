@@ -1,0 +1,122 @@
+
+  <html>
+    <head>
+      <link rel="stylesheet" type="text/css" href="../doc_styles.css">
+    </head>
+
+    <h1 id="-vx-curve">@vx/curve</h1>
+<h2 id="overview">Overview</h2>
+<p>A curve is a function that can be passed into other vx objects, mainly a LinePath to change the way the line is structured.</p>
+<p>For example, checkout the difference between a <code>Curve.natural</code>:</p>
+<p><img src="https://raw.githubusercontent.com/d3/d3-shape/master/img/natural.png" alt="natural curve"></p>
+<p>and a <code>Curve.step</code>:</p>
+<p><img src="https://raw.githubusercontent.com/d3/d3-shape/master/img/step.png" alt="step curve"></p>
+<p>The <code>@vx/curve</code> package is a wrapper over <a href="https://github.com/d3/d3-shape">d3-shape</a> curve functions.</p>
+<p>Any function with the prefix <code>curve</code> in d3 can be used through <code>vx</code> like so:</p>
+<pre><code class="lang-javascript">import { curveCatmullRomOpen } from &#39;@vx/curve&#39;;
+let line = (&lt;Shape.LinePath curve={curveCatmullRomOpen} /&gt;)
+
+// or if you want namespace all Curves under the `Curve`
+import * as Curve from `@vx/curve`;
+let line = (&lt;Shape.LinePath curve={Curve.curveCatmullRomOpen} /&gt;)
+</code></pre>
+<h2 id="functions">Functions</h2>
+<table>
+<thead>
+<tr>
+<th>vx</th>
+<th>d3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>curveBasis</td>
+<td><a href="https://github.com/d3/d3-shape#curveBasis">curveBasis</a></td>
+</tr>
+<tr>
+<td>curveBasisClose</td>
+<td><a href="https://github.com/d3/d3-shape#curveBasisClosed">curveBasisClosed</a></td>
+</tr>
+<tr>
+<td>curveBasisOpen</td>
+<td><a href="https://github.com/d3/d3-shape#curveBasisOpen">curveBasisOpen</a></td>
+</tr>
+<tr>
+<td>curveStep</td>
+<td><a href="https://github.com/d3/d3-shape#curveStep">curveStep</a></td>
+</tr>
+<tr>
+<td>curveStepAfter</td>
+<td><a href="https://github.com/d3/d3-shape#curveStepAfter">curveStepAfter</a></td>
+</tr>
+<tr>
+<td>curveStepBefore</td>
+<td><a href="https://github.com/d3/d3-shape#curveStepBefore">curveStepbefore</a></td>
+</tr>
+<tr>
+<td>curveBundle</td>
+<td><a href="https://github.com/d3/d3-shape#curveBundle">curveBundle</a></td>
+</tr>
+<tr>
+<td>curveLinear</td>
+<td><a href="https://github.com/d3/d3-shape#curveLinear">curveLinear</a></td>
+</tr>
+<tr>
+<td>curveLinearClosed</td>
+<td><a href="https://github.com/d3/d3-shape#curveLinearClosed">curveLinearClosed</a></td>
+</tr>
+<tr>
+<td>curveMonotoneX</td>
+<td><a href="https://github.com/d3/d3-shape#curveMonotoneX">curveMonotoneX</a></td>
+</tr>
+<tr>
+<td>curveMonotoneY</td>
+<td><a href="https://github.com/d3/d3-shape#curveMonotoneY">curveMonotoneY</a></td>
+</tr>
+<tr>
+<td>curveCardinal</td>
+<td><a href="https://github.com/d3/d3-shape#curveCardinal">curveCardinal</a></td>
+</tr>
+<tr>
+<td>curveCardinalClosed</td>
+<td><a href="https://github.com/d3/d3-shape#curveCardinalClosed">curveCardinalClosed</a></td>
+</tr>
+<tr>
+<td>curveCardinalOpen</td>
+<td><a href="https://github.com/d3/d3-shape#curveCardinalOpen">curveCardinalOpen</a></td>
+</tr>
+<tr>
+<td>curveCatmullRom</td>
+<td><a href="https://github.com/d3/d3-shape#curveCatmullRom">curveCatmullRom</a></td>
+</tr>
+<tr>
+<td>curveCatmullRomClosed</td>
+<td><a href="https://github.com/d3/d3-shape#curveCatmullRomClosed">curveCatmullRomClosed</a></td>
+</tr>
+<tr>
+<td>curveCatmullRomOpen</td>
+<td><a href="https://github.com/d3/d3-shape#curveCatmullRomOpen">curveCatmullRomOpen</a></td>
+</tr>
+<tr>
+<td>curveNatural</td>
+<td><a href="https://github.com/d3/d3-shape#curveNatural">curveNatural</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="vx-packages">vx packages</h2>
+<ul>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-axis">@vx/axis</a></li>
+<li>@vx/curve</li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-demo">@vx/demo</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-glyph">@vx/glyph</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-grid">@vx/grid</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-group">@vx/group</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-marker">@vx/marker</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-mock-data">@vx/mock-data</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-point">@vx/point</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-responsive">@vx/responsive</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-scale">@vx/scale</a></li>
+<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-shape">@vx/shape</a></li>
+</ul>
+
+  </html>
