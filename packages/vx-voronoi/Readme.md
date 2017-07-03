@@ -1,5 +1,9 @@
 # @vx/voronoi
 
+```
+npm install --save @vx/voronoi
+```
+
 ## Overview
 A Voronoi diagram partitions a two-dimensional plane into regions based on a set of input points.
 Each unique input point maps to a corresponding region, where each region represents _all points
@@ -58,19 +62,3 @@ For more advanced usage with events, see [this example](https://vx-demo.now.sh/v
 information about the voronoi layout + diagram can be found in the
 [d3-voronoi documentation](https://github.com/d3/d3-voronoi).
 
-
-## vx packages
-
-- [@vx/axis](https://github.com/hshoff/vx/tree/master/packages/vx-axis)
-- [@vx/curve](https://github.com/hshoff/vx/tree/master/packages/vx-curve)
-- [@vx/demo](https://github.com/hshoff/vx/tree/master/packages/vx-demo)
-- [@vx/glyph](https://github.com/hshoff/vx/tree/master/packages/vx-glyph)
-- [@vx/grid](https://github.com/hshoff/vx/tree/master/packages/vx-grid)
-- [@vx/group](https://github.com/hshoff/vx/tree/master/packages/vx-group)
-- [@vx/marker](https://github.com/hshoff/vx/tree/master/packages/vx-marker)
-- [@vx/mock-data](https://github.com/hshoff/vx/tree/master/packages/vx-mock-data)
-- [@vx/point](https://github.com/hshoff/vx/tree/master/packages/vx-point)
-- [@vx/responsive](https://github.com/hshoff/vx/tree/master/packages/vx-responsive)
-- [@vx/scale](https://github.com/hshoff/vx/tree/master/packages/vx-scale)
-- [@vx/shape](https://github.com/hshoff/vx/tree/master/packages/vx-shape)
-- @vx/voronoi

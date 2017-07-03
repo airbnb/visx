@@ -41,10 +41,10 @@ function getReadmeText(pkg) {
  * From a package directory, get the html from the markdown
  * @return {pkg, html}
  */
-function getDocObject(dir) {
+function getDocObject(dir, info) {
   const markdown = getReadmeText(dir);
   const html = marked(markdown);
-  const cleanedHTML = prepareHTML(html);
+  const cleanedHTML = prepareHTML(html, info);
   return {pkg: dir, html: cleanedHTML};
 }
 
@@ -52,25 +52,61 @@ function getDocObject(dir) {
  * Wraps HTML content in a proper <html> and
  * adds css.
  */
-function prepareHTML(html) {
+function prepareHTML(html, info) {
   const cssPath = `../doc_styles.css`;
-
+  const nav = info.map((p) => {
+    return (`<li><a href="/static/docs/${p.name.replace('@vx/','vx-')}.html">${p.name}</a></li>`);
+  })
   return `
   <html>
     <head>
       <link rel="stylesheet" type="text/css" href="${cssPath}">
     </head>
-
-    ${html}
+    <div class="nav-container">
+      <div class="nav">
+        <div class="nav-inner">
+          <div class="logo"></div>
+          <ul>
+          <li class="Item">
+            <a href="/">Home</a>
+          </li>
+          <li class="Item">
+            <a href="/docs">Docs</a>
+          </li>
+          <li class="Item">
+            <a href="https://medium.com/vx-code">Guides</a>
+          </li>
+          <li class="Item">
+            <a href="/gallery">Gallery</a>
+          </li>
+          </ul>
+          <a class="github-button" href="https://github.com/hshoff/vx" data-show-count="true" aria-label="Star hshoff/vx on GitHub">Star</a>
+          </div>
+        </div>
+    </div>
+    <div class="doc-container">
+      <div class="doc-nav">
+        <ul>
+        <li>Packages</li>
+        ${nav.join('')}
+        </ul>
+      </div>
+      <div class="content">
+      ${html}
+      </div>
+    </div>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
   </html>`;
 }
 
 function readDocs() {
   const dirs = atPackagesDirectory().list(); // Get all the pkg directories
-
+  const info = dirs.map(d => {
+    return atPackagesDirectory().dir(d).read('./package.json');
+  }).map(JSON.parse)
   const docs = [];
   for (let pkg of dirs) {
-    docs.push(getDocObject(pkg));
+    docs.push(getDocObject(pkg, info));
   }
 
   return docs;
@@ -79,10 +115,10 @@ function readDocs() {
 function writeDocs(docs) {
   const filePointer = atDocsDirectory();
 
-  for (let { pkg, html } of docs) {
+  docs.forEach(({ pkg, html }, i) => {
     const fileName = `${pkg}.html`;
     filePointer.write(fileName, html);
-  }
+  })
 }
 
 const docs = readDocs();

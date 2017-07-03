@@ -33,9 +33,57 @@
         </ul>
       </div>
       <div class="content">
-      <h1 id="-vx-drag">@vx/drag</h1>
-<pre><code>npm install --save @vx/drag
+      <h1 id="-vx-voronoi">@vx/voronoi</h1>
+<pre><code>npm install --save @vx/voronoi
+</code></pre><h2 id="overview">Overview</h2>
+<p>A Voronoi diagram partitions a two-dimensional plane into regions based on a set of input points.
+Each unique input point maps to a corresponding region, where each region represents <em>all points
+that are closer to the input point than to any other input point</em>.</p>
+<p>Not only are Voronoi diagrams :heart_eyes:, but they can be used to <a href="https://www.visualcinnamon.com/2015/07/voronoi.html">improve the interactive experience
+of a visualization</a>. This is most often
+accomplished by overlaying an invisible voronoi grid on top of the visualization to increase the
+target area of interaction sites such as points on a scatter plot.</p>
+<p>The <code>@vx/voronoi</code> package provides a wrapper around the existing <a href="https://github.com/d3/d3-voronoi">d3-voronoi</a>
+package.</p>
+<h2 id="usage">Usage</h2>
+<p>The <code>@vx/voronoi</code> package exports a wrapped version of the d3 <code>voronoi</code> layout for flexible usage,
+as well as a <code>&lt;VoronoiPolygon /&gt;</code> component for rendering Voronoi regions.</p>
+<pre><code class="lang-js">import { voronoi, VoronoiPolygon } from &#39;@vx/voronoi&#39;;
+
+const points = Array(n).fill(null).map(() =&gt; ({
+  x: Math.random() * innerWidth,
+  y: Math.random() * innerHeight,
+}));
+
+// width + height set an extent on the voronoi
+// x + y set relevant accessors depending on the shape of your data
+const voronoiLayout = voronoi({
+  x: d =&gt; d.x, // maybe pass a scale here?
+  y: d =&gt; d.y,
+  width,
+  height,
+});
+
+const voronoiDiagram = voronoiLayout(data);
+const polygons = voronoiLayout.polygons(points); // equivalent to voronoiDiagram.polygons()
+
+return (
+  &lt;svg&gt;
+    &lt;Group&gt;
+      {polygons.map((polygon) =&gt; (
+        &lt;VoronoiPolygon key={...} polygon={polygon} /&gt;
+      ))}
+      {points.map(({ x, y }) =&gt; (
+        &lt;circle key={...} cx={x} cy={y} /&gt;
+      )}
+    &lt;/Group&gt;
+  &lt;/svg&gt;
+)
 </code></pre>
+<p>For more advanced usage with events, see <a href="https://vx-demo.now.sh/voronoi">this example</a>. Additional
+information about the voronoi layout + diagram can be found in the
+<a href="https://github.com/d3/d3-voronoi">d3-voronoi documentation</a>.</p>
+
       </div>
     </div>
     <script async defer src="https://buttons.github.io/buttons.js"></script>

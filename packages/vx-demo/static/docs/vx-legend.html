@@ -33,9 +33,66 @@
         </ul>
       </div>
       <div class="content">
-      <h1 id="-vx-drag">@vx/drag</h1>
-<pre><code>npm install --save @vx/drag
+      <h1 id="-vx-legend">@vx/legend</h1>
+<pre><code>npm install --save @vx/legend
+</code></pre><p>Legends associate shapes and colors to data.</p>
+<pre><code class="lang-js">// legends for linear scales
+import { LegendLinear } from &#39;@vx/legend&#39;;
+
+// legends for quantile scales
+import { LegendQuantile } from &#39;@vx/legend&#39;;
+
+// legends for ordinal scales
+import { LegendOrdinal } from &#39;@vx/legend&#39;;
+
+// legends for size scales
+import { LegendSize } from &#39;@vx/legend&#39;;
+
+// legends for threshold scales
+import { LegendThreshold } from &#39;@vx/legend&#39;;
+
+// custom legends
+import { Legend } from &#39;@vx/legend&#39;;
 </code></pre>
+<h2 id="api">API</h2>
+<h4 id="legendlinear">LegendLinear</h4>
+<h4 id="legendquantile">LegendQuantile</h4>
+<h4 id="legendordinal">LegendOrdinal</h4>
+<h4 id="legendthreshold">LegendThreshold</h4>
+<h4 id="legendsize">LegendSize</h4>
+<h4 id="legend">Legend</h4>
+<h2 id="example">Example</h2>
+<pre><code class="lang-js">import { LegendThreshold } from &#39;@vx/legend&#39;;
+import { scaleThreshold } from &#39;@vx/scale&#39;;
+
+const threshold = scaleThreshold({
+  domain: [0.02, 0.04, 0.06, 0.08, 0.1],
+  range: [
+    &#39;#f2f0f7&#39;,
+    &#39;#dadaeb&#39;,
+    &#39;#bcbddc&#39;,
+    &#39;#9e9ac8&#39;,
+    &#39;#756bb1&#39;,
+    &#39;#54278f&#39;,
+  ],
+});
+
+function MyChart() {
+  return (
+    &lt;div&gt;
+      &lt;svg&gt;{/** chart stuff */}&lt;/svg&gt;
+      &lt;LegendThreshold
+        scale={threshold}
+        direction=&quot;column-reverse&quot;
+        itemDirection=&quot;row-reverse&quot;
+        labelMargin=&quot;0 20px 0 0&quot;
+        shapeMargin=&quot;1px 0 0&quot;
+      /&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+
       </div>
     </div>
     <script async defer src="https://buttons.github.io/buttons.js"></script>

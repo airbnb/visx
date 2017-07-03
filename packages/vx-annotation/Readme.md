@@ -1,5 +1,8 @@
 # @vx/annotation
 
+```
+npm install --save @vx/annotation
+```
 
 ## LinePathAnnotation
 
@@ -31,7 +34,7 @@ const annotation = (
 
 ![image output](http://i.imgur.com/o5jnHFS.png)
 
-# Properties
+## Properties
 
 |         Name         |  Default   |  Type  |                                              Description                                               |
 |:-------------------- |:---------- |:------ |:------------------------------------------------------------------------------------------------------ |
@@ -50,20 +53,3 @@ const annotation = (
 | labelStroke          | white      | string | The color of the label                                                                                 |
 | labelStrokeWidth     | 3          | number | The stroke width of the label text                                                                     |
 | labelPaintOrder      | stroke     | string | The label's SVG [paint-order](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/paint-order). |
-
-
-## vx packages
-
-- @vx/annotation
-- [@vx/axis](https://github.com/hshoff/vx/tree/master/packages/vx-axis)
-- [@vx/curve](https://github.com/hshoff/vx/tree/master/packages/vx-curve)
-- [@vx/demo](https://github.com/hshoff/vx/tree/master/packages/vx-demo)
-- [@vx/glyph](https://github.com/hshoff/vx/tree/master/packages/vx-glyph)
-- [@vx/grid](https://github.com/hshoff/vx/tree/master/packages/vx-grid)
-- [@vx/group](https://github.com/hshoff/vx/tree/master/packages/vx-group)
-- [@vx/marker](https://github.com/hshoff/vx/tree/master/packages/vx-marker)
-- [@vx/mock-data](https://github.com/hshoff/vx/tree/master/packages/vx-mock-data)
-- [@vx/point](https://github.com/hshoff/vx/tree/master/packages/vx-point)
-- [@vx/responsive](https://github.com/hshoff/vx/tree/master/packages/vx-responsive)
-- [@vx/scale](https://github.com/hshoff/vx/tree/master/packages/vx-scale)
-- [@vx/shape](https://github.com/hshoff/vx/tree/master/packages/vx-shape)

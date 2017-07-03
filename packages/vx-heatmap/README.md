@@ -1,5 +1,9 @@
 # @vx/heatmap
 
+```
+npm install --save @vx/heatmap
+```
+
 A Heatmap is a series of shapes where the data values are represented as colors.
 
 ## Example
