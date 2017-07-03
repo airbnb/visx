@@ -7,49 +7,49 @@ img {
   max-height: 50vh;
 }
 
-      body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-        background: #ffffff;
-        font-size: 18px;
-        line-height: 1.8em;
-      }
+body {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+background: #ffffff;
+font-size: 18px;
+line-height: 1.8em;
+}
 
-             code {
-         font-family: "Menlo", monospace;
-         font-weight: bold;
-         padding: .2rem .3rem;
-         background-color: #ebebeb;
-         line-height: 1.8em;
-         font-size: 14px;
-       }
+code {
+  font-family: "Menlo", monospace;
+  font-weight: bold;
+  padding: .2rem .3rem;
+  background-color: #ebebeb;
+  line-height: 1.8em;
+  font-size: 14px;
+}
 
-       pre > code {
-         background-color: transparent;
-         font-weight: 300;
-       }
+pre > code {
+  background-color: transparent;
+  font-weight: 300;
+}
 
-       pre {
-         background-color: #f7f9fa;
-         display: inline-block;
-         padding: .5em;
-         min-width: 33vw;
-         border-radius: 3px;
-       }
+pre {
+  background-color: #f7f9fa;
+  display: inline-block;
+  padding: .5em;
+  min-width: 33vw;
+  border-radius: 3px;
+}
 
 
-       a {
-         color: #fc2e1c;
-         text-decoration: none;
-       }
+a {
+  color: #fc2e1c;
+  text-decoration: none;
+}
 
-       .logo {
-         background-image: url('favicon.ico');
-         background-position: center;
-         background-size: cover;
-         height: 24px;
-         width: 24px;
-         background-repeat: no-repeat;
-       }
+.logo {
+  background-image: url('favicon.ico');
+  background-position: center;
+  background-size: cover;
+  height: 24px;
+  width: 24px;
+  background-repeat: no-repeat;
+}
 
 
 .nav-inner {
@@ -162,24 +162,24 @@ th, td {
 }
 
 .Item a {
-        display: inline-block;
-        padding: 10px;
-        text-decoration: none;
-        color: #fc2e1c;
-        font-weight: 600;
-      }
-      .Item .github {
-        font-weight: 600;
-        color: #fc2e1c;
-      }
+  display: inline-block;
+  padding: 10px;
+  text-decoration: none;
+  color: #fc2e1c;
+  font-weight: 600;
+}
+.Item .github {
+  font-weight: 600;
+  color: #fc2e1c;
+}
 
-      @media (max-width: 600px) {
-        .Item {
-          display: block;
-          float: left;
-        }
+@media (max-width: 600px) {
+  .Item {
+    display: block;
+    float: left;
+  }
 
-        .Item .github {
-          margin-top: 0;
-        }
-      }
+  .Item .github {
+    margin-top: 0;
+  }
+}
