@@ -1,5 +1,9 @@
 # @vx/legend
 
+```
+npm install --save @vx/legend
+```
+
 Legends associate shapes and colors to data.
 
 ```js

@@ -3,9 +3,38 @@
     <head>
       <link rel="stylesheet" type="text/css" href="../doc_styles.css">
     </head>
-
-    <h1 id="-vx-shape">@vx/shape</h1>
-<p>Shapes are the core elements of vx. Most of what you see on the screen, like lines, bars, and areas are shapes.</p>
+    <div class="nav-container">
+    <div class="nav">
+    <div class="nav-inner">
+    <div class="logo"></div>
+    <ul>
+    <li class="Item">
+      <a href="/">Home</a>
+    </li>
+    <li class="Item">
+      <a href="/docs">Docs</a>
+    </li>
+    <li class="Item">
+      <a href="https://medium.com/vx-code">Guides</a>
+    </li>
+    <li class="Item">
+      <a href="/gallery">Gallery</a>
+    </li>
+    </ul>
+    <!-- Place this tag where you want the button to render. -->
+<a class="github-button" href="https://github.com/hshoff/vx" data-show-count="true" aria-label="Star hshoff/vx on GitHub">Star</a>
+    </div></div></div>
+    <div class="doc-container">
+      <div class="doc-nav">
+        <ul>
+        <li>Packages</li>
+        <li><a href="/static/docs/vx-annotation.html">@vx/annotation</a></li><li><a href="/static/docs/vx-axis.html">@vx/axis</a></li><li><a href="/static/docs/vx-brush.html">@vx/brush</a></li><li><a href="/static/docs/vx-clip-path.html">@vx/clip-path</a></li><li><a href="/static/docs/vx-curve.html">@vx/curve</a></li><li><a href="/static/docs/vx-demo.html">@vx/demo</a></li><li><a href="/static/docs/vx-drag.html">@vx/drag</a></li><li><a href="/static/docs/vx-event.html">@vx/event</a></li><li><a href="/static/docs/vx-glyph.html">@vx/glyph</a></li><li><a href="/static/docs/vx-gradient.html">@vx/gradient</a></li><li><a href="/static/docs/vx-grid.html">@vx/grid</a></li><li><a href="/static/docs/vx-group.html">@vx/group</a></li><li><a href="/static/docs/vx-heatmap.html">@vx/heatmap</a></li><li><a href="/static/docs/vx-hierarchy.html">@vx/hierarchy</a></li><li><a href="/static/docs/vx-legend.html">@vx/legend</a></li><li><a href="/static/docs/vx-marker.html">@vx/marker</a></li><li><a href="/static/docs/vx-mock-data.html">@vx/mock-data</a></li><li><a href="/static/docs/vx-pattern.html">@vx/pattern</a></li><li><a href="/static/docs/vx-point.html">@vx/point</a></li><li><a href="/static/docs/vx-responsive.html">@vx/responsive</a></li><li><a href="/static/docs/vx-scale.html">@vx/scale</a></li><li><a href="/static/docs/vx-shape.html">@vx/shape</a></li><li><a href="/static/docs/vx-text.html">@vx/text</a></li><li><a href="/static/docs/vx-voronoi.html">@vx/voronoi</a></li><li><a href="/static/docs/vx-zoom.html">@vx/zoom</a></li>
+        </ul>
+      </div>
+      <div class="content">
+      <h1 id="-vx-shape">@vx/shape</h1>
+<pre><code>npm install --save @vx/shape
+</code></pre><p>Shapes are the core elements of vx. Most of what you see on the screen, like lines, bars, and areas are shapes.</p>
 <h2 id="-areaclosed-"><code>&lt;AreaClosed /&gt;</code></h2>
 <p>AreaClosed is a closed area under a curve.</p>
 <h3 id="example">Example</h3>
@@ -522,6 +551,69 @@
 </tr>
 </tbody>
 </table>
+<h2 id="-lineradial-"><code>&lt;LineRadial /&gt;</code></h2>
+<p><img src="http://i.imgur.com/Zcud84N.png" alt="LineRadial Example"></p>
+<pre><code class="lang-js">&lt;LineRadial
+  data={appleStock}
+  angle={d =&gt; xScale(x(d))}
+  radius={d =&gt; yScale(y(d))}
+  fill=&quot;none&quot;
+  stroke={&quot;url(&#39;#line-gradient&#39;)&quot;}
+  strokeWidth={2}
+  strokeOpacity={.7}
+  curve={curveBasisOpen}
+  strokeLinecap=&quot;round&quot;
+/&gt;
+</code></pre>
+<h3 id="properties">Properties</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Default</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">className</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The class for the <path /> element.</td>
+</tr>
+<tr>
+<td style="text-align:left">angle</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">function</td>
+<td style="text-align:left">The angle at each point.</td>
+</tr>
+<tr>
+<td style="text-align:left">radius</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">function</td>
+<td style="text-align:left">The radius at each angle.</td>
+</tr>
+<tr>
+<td style="text-align:left">defined</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">function</td>
+<td style="text-align:left">A <a href="https://github.com/d3/d3-shape/blob/master/README.md#area_defined">function</a> called by <code>area.defined()</code>.</td>
+</tr>
+<tr>
+<td style="text-align:left">curve</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">function</td>
+<td style="text-align:left">The <a href="https://github.com/hshoff/vx/tree/master/packages/vx-curve">curve function</a></td>
+</tr>
+<tr>
+<td style="text-align:left">data</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">array</td>
+<td style="text-align:left">An array of x and y data.</td>
+</tr>
+</tbody>
+</table>
 <h2 id="sources-for-components">Sources For Components</h2>
 <ul>
 <li><a href="https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/AreaClosed.js"><code>&lt;AreaClosed /&gt;</code></a></li>
@@ -529,21 +621,11 @@
 <li><a href="https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/Bar.js"><code>&lt;Bar /&gt;</code></a></li>
 <li><a href="https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/Line.js"><code>&lt;Line /&gt;</code></a></li>
 <li><a href="https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/LinePath.js"><code>&lt;LinePath /&gt;</code></a></li>
-</ul>
-<h2 id="vx-packages">vx packages</h2>
-<ul>
-<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-axis">@vx/axis</a></li>
-<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-curve">@vx/curve</a></li>
-<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-demo">@vx/demo</a></li>
-<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-glyph">@vx/glyph</a></li>
-<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-grid">@vx/grid</a></li>
-<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-group">@vx/group</a></li>
-<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-marker">@vx/marker</a></li>
-<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-mock-data">@vx/mock-data</a></li>
-<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-point">@vx/point</a></li>
-<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-responsive">@vx/responsive</a></li>
-<li><a href="https://github.com/hshoff/vx/tree/master/packages/vx-scale">@vx/scale</a></li>
-<li>@vx/shape</li>
+<li><a href="https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/LinkRadial.js"><code>&lt;LineRadial /&gt;</code></a></li>
 </ul>
 
+      </div>
+    </div>
+    <!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
   </html>

@@ -1,5 +1,9 @@
 # @vx/glyph
 
+```
+npm install --save @vx/glyph
+```
+
 Glyphs are small icons that you can use in your graphs. Some elements, like `LinePath`, can take a function that returns a glyph.
 
 For example:
@@ -61,18 +65,3 @@ import { Dot } from '@vx/glyph';
 | stroke          |         | string | The color of the circle's stroke                  |
 | strokeWidth     |         | number | The width of the circle's stroke                  |
 | strokeDasharray |         | array  | An array that controls the pattern of dashes in the stroke. [See more here.](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray)                                                  |
-
-## vx packages
-
-- [@vx/axis](https://github.com/hshoff/vx/tree/master/packages/vx-axis)
-- [@vx/curve](https://github.com/hshoff/vx/tree/master/packages/vx-curve)
-- [@vx/demo](https://github.com/hshoff/vx/tree/master/packages/vx-demo)
-- @vx/glyph
-- [@vx/grid](https://github.com/hshoff/vx/tree/master/packages/vx-grid)
-- [@vx/group](https://github.com/hshoff/vx/tree/master/packages/vx-group)
-- [@vx/marker](https://github.com/hshoff/vx/tree/master/packages/vx-marker)
-- [@vx/mock-data](https://github.com/hshoff/vx/tree/master/packages/vx-mock-data)
-- [@vx/point](https://github.com/hshoff/vx/tree/master/packages/vx-point)
-- [@vx/responsive](https://github.com/hshoff/vx/tree/master/packages/vx-responsive)
-- [@vx/scale](https://github.com/hshoff/vx/tree/master/packages/vx-scale)
-- [@vx/shape](https://github.com/hshoff/vx/tree/master/packages/vx-shape)

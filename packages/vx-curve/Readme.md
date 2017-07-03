@@ -1,5 +1,9 @@
 # @vx/curve
 
+```
+npm install --save @vx/curve
+```
+
 ## Overview
 
 A curve is a function that can be passed into other vx objects, mainly a LinePath to change the way the line is structured.
@@ -47,18 +51,3 @@ let line = (<Shape.LinePath curve={Curve.curveCatmullRomOpen} />)
 | curveCatmullRomClosed | [curveCatmullRomClosed](https://github.com/d3/d3-shape#curveCatmullRomClosed) |
 | curveCatmullRomOpen   | [curveCatmullRomOpen](https://github.com/d3/d3-shape#curveCatmullRomOpen)     |
 | curveNatural          | [curveNatural](https://github.com/d3/d3-shape#curveNatural)                   |
-
-## vx packages
-
-- [@vx/axis](https://github.com/hshoff/vx/tree/master/packages/vx-axis)
-- @vx/curve
-- [@vx/demo](https://github.com/hshoff/vx/tree/master/packages/vx-demo)
-- [@vx/glyph](https://github.com/hshoff/vx/tree/master/packages/vx-glyph)
-- [@vx/grid](https://github.com/hshoff/vx/tree/master/packages/vx-grid)
-- [@vx/group](https://github.com/hshoff/vx/tree/master/packages/vx-group)
-- [@vx/marker](https://github.com/hshoff/vx/tree/master/packages/vx-marker)
-- [@vx/mock-data](https://github.com/hshoff/vx/tree/master/packages/vx-mock-data)
-- [@vx/point](https://github.com/hshoff/vx/tree/master/packages/vx-point)
-- [@vx/responsive](https://github.com/hshoff/vx/tree/master/packages/vx-responsive)
-- [@vx/scale](https://github.com/hshoff/vx/tree/master/packages/vx-scale)
-- [@vx/shape](https://github.com/hshoff/vx/tree/master/packages/vx-shape)
