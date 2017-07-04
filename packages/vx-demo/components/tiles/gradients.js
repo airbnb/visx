@@ -10,7 +10,7 @@ import {
   GradientPurpleRed,
   GradientPurpleTeal,
   GradientSteelPurple,
-  GradientTealBlue
+  GradientTealBlue,
 } from '@vx/gradient';
 
 export default ({
@@ -20,8 +20,8 @@ export default ({
     top: 0,
     left: 0,
     right: 0,
-    bottom: 80
-  }
+    bottom: 80,
+  },
 }) => {
   const w = width / 4;
   const h = (height - margin.bottom) / 2;
@@ -31,19 +31,19 @@ export default ({
       <GradientLightgreenGreen id="LightgreenGreen" />
       <GradientOrangeRed id="OrangeRed" />
       <GradientPinkBlue id="PinkBlue" />
-      <GradientPinkRed id="PinkRed" />
-      <GradientPurpleOrange id="PurpleOrange" />
-      <GradientPurpleRed id="PurpleRed" />
-      <GradientPurpleTeal id="PurpleTeal" />
-      <GradientSteelPurple id="SteelPurple" />
-      <GradientTealBlue id="TealBlue" />
+      <GradientPinkRed id="PinkRed" vertical={false} />
+      <GradientPurpleOrange id="PurpleOrange" vertical={false} />
+      <GradientPurpleRed id="PurpleRed" vertical={false} />
+      <GradientPurpleTeal id="PurpleTeal" vertical={false} />
+      <GradientSteelPurple id="SteelPurple" vertical={false} />
+      <GradientTealBlue id="TealBlue" vertical={false} />
       <Bar
         x={0}
         y={0}
         width={w}
         height={h}
         fill={`url(#LightgreenGreen)`}
-        stroke='#ffffff'
+        stroke="#ffffff"
         strokeWidth={8}
         rx={14}
       />
@@ -54,7 +54,7 @@ export default ({
         height={h}
         fill={`url(#OrangeRed)`}
         rx={14}
-        stroke='#ffffff'
+        stroke="#ffffff"
         strokeWidth={8}
       />
       <Bar
@@ -64,7 +64,7 @@ export default ({
         height={h}
         fill={`url(#PinkBlue)`}
         rx={14}
-        stroke='#ffffff'
+        stroke="#ffffff"
         strokeWidth={8}
       />
       <Bar
@@ -74,7 +74,7 @@ export default ({
         height={h}
         fill={`url(#DarkgreenGreen)`}
         rx={14}
-        stroke='#ffffff'
+        stroke="#ffffff"
         strokeWidth={8}
       />
       <Bar
@@ -84,7 +84,7 @@ export default ({
         height={h}
         fill={`url(#PinkRed)`}
         rx={14}
-        stroke='#ffffff'
+        stroke="#ffffff"
         strokeWidth={8}
       />
       <Bar
@@ -94,7 +94,7 @@ export default ({
         height={h}
         fill={`url(#TealBlue)`}
         rx={14}
-        stroke='#ffffff'
+        stroke="#ffffff"
         strokeWidth={8}
       />
       <Bar
@@ -104,7 +104,7 @@ export default ({
         height={h}
         fill={`url(#PurpleOrange)`}
         rx={14}
-        stroke='#ffffff'
+        stroke="#ffffff"
         strokeWidth={8}
       />
       <Bar
@@ -114,9 +114,9 @@ export default ({
         height={h}
         fill={`url(#PurpleTeal)`}
         rx={14}
-        stroke='#ffffff'
+        stroke="#ffffff"
         strokeWidth={8}
       />
     </svg>
   );
-}
+};

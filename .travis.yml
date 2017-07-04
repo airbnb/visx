@@ -1,6 +1,7 @@
 language: node_js
 node_js:
-  - "7"
   - "6"
-  - "5"
-  - "4"
+cache:
+  directories:
+    - node_modules
+after_script: "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"

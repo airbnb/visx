@@ -3,13 +3,50 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/npm/v/@vx/demo.svg?style=flat-square" />
-  <img src="https://img.shields.io/npm/dm/@vx/demo.svg?style=flat-square" />
+  <a title="npm version" href="https://www.npmjs.com/~vx">
+    <img src="https://img.shields.io/npm/v/@vx/demo.svg?style=flat-square" />
+  </a>
+  <a title="build status" href="https://travis-ci.org/hshoff/vx">
+    <img src="https://travis-ci.org/hshoff/vx.svg?branch=master" />
+  </a>
+  <a href='https://coveralls.io/github/hshoff/vx?branch=master'>
+    <img src='https://coveralls.io/repos/github/hshoff/vx/badge.svg?branch=master' alt='Coverage Status' />
+  </a>
+  <a title="@vx/demo npm downloads" href="https://www.npmjs.com/package/@vx/demo">
+    <img src="https://img.shields.io/npm/dm/@vx/demo.svg?style=flat-square" />
+  </a>
+  <a href="https://app.fossa.io/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fhshoff%2Fvx?ref=badge_shield" alt="FOSSA Status">     <img src="https://app.fossa.io/api/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fhshoff%2Fvx.svg?type=shield"/>
+  </a>
 </p>
 
 ### vx
 
 vx is collection of reusable low-level visualization components. vx combines the power of d3 to generate your visualization with the benefits of react for updating the DOM.
+
+<br />
+
+<p align="center">
+  <strong>
+    <a href="https://vx-demo.now.sh">Docs</a>
+  </strong>
+  &bull;
+  <strong>
+    <a href="https://vx-demo.now.sh/gallery">Gallery</a>
+  </strong>
+  &bull;
+  <strong>
+    <a href="https://medium.com/vx-code/getting-started-with-vx-1756bb661410">Blog</a>
+  </strong>
+  &bull;
+  <strong>
+    <a href="./CHANGELOG.md">Changelog</a>
+  </strong>
+  &bull;
+  <strong>
+    <a href="https://medium.com/vx-code/getting-started-with-vx-1756bb661410">Getting started tutorial</a>
+  </strong>
+</p>
+
 
 <p align="center">
   <a href="https://vx-demo.now.sh/gallery">
@@ -17,12 +54,18 @@ vx is collection of reusable low-level visualization components. vx combines the
   </a>
 </p>
 
-### [View Docs](https://vx-demo.now.sh)
-### [View Gallery](https://vx-demo.now.sh/gallery)
 
 ## Usage
 
+[![Remix on Glitch](https://cdn.glitch.com/2703baf2-b643-4da7-ab91-7ee2a2d00b5b%2Fremix-button.svg)](https://glitch.com/edit/#!/remix/kind-modem)
+
 Let's make a simple bar graph.
+
+First we'll install the relevant packages: 
+
+```
+$ npm install --save @vx/mock-data @vx/group @vx/shape @vx/scale
+```
 
 <img src="./assets/simplebar.png" height="150" />
 
@@ -117,6 +160,12 @@ If you're a curious coder, feel free to install and play around with the package
 
 Lots coming soon, check out the [roadmap](./ROADMAP.md).
 
+## In the wild
+
+- [williaster/data-ui](https://github.com/williaster/data-ui) ([Demo](https://williaster.github.io/data-ui/))
+- [Flaque/data-structures](https://github.com/Flaque/data-structures) ([Interactive explanation of the trie data structure](https://trie.now.sh/))
+- Have a project that's using vx? Open a pull request and we'll add it to the list. 
+
 ## FAQ
 
 1. What does `vx` stand for?
@@ -142,3 +191,5 @@ Lots coming soon, check out the [roadmap](./ROADMAP.md).
 :v:
 
 [MIT](./LICENSE) &bull; [@hshoff](https://twitter.com/hshoff)
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fhshoff%2Fvx.svg?type=large)](https://app.fossa.io/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fhshoff%2Fvx?ref=badge_large)

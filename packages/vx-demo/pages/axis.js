@@ -4,13 +4,17 @@ import Axis from '../components/tiles/axis';
 
 export default () => {
   return (
-    <Show component={Axis} title="Axis" margin={{
-      top: 20,
-      left: 60,
-      right: 40,
-      bottom: 60,
-    }}>
-{`import React from 'react';
+    <Show
+      component={Axis}
+      title="Axis"
+      margin={{
+        top: 20,
+        left: 60,
+        right: 40,
+        bottom: 60,
+      }}
+    >
+      {`import React from 'react';
 import { Grid } from '@vx/grid';
 import { Group } from '@vx/group';
 import { curveBasis } from '@vx/curve';
@@ -66,7 +70,12 @@ export default ({
 
   return (
     <svg width={width} height={height}>
-      <GradientOrangeRed id="linear" />
+      <GradientOrangeRed
+        id="linear"
+        vertical={false}
+        fromOpacity={0.8}
+        toOpacity={0.3}
+      />
       <Grid
         top={margin.top}
         left={margin.left}
@@ -88,7 +97,6 @@ export default ({
           strokeWidth={2}
           stroke='transparent'
           fill="url('#linear')"
-          fillOpacity='0.9'
           curve={curveBasis}
         />
         <LinePath
@@ -108,23 +116,58 @@ export default ({
         scale={yScale}
         hideZero
         numTicks={numTicksForHeight(height)}
-        label='value'
-        stroke='#1b1a1e'
-        tickTextFill='#8e205f'
+        label={
+          <text
+            fill="#8e205f"
+            textAnchor="middle"
+            fontSize={10}
+            fontFamily="Arial"
+          >
+            value
+          </text>
+        }
+        stroke="#1b1a1e"
+        tickLabelComponent={
+          <text
+            fill="#8e205f"
+            textAnchor="end"
+            fontSize={10}
+            fontFamily="Arial"
+            dx="-0.25em"
+            dy="0.25em"
+          />
+        }
       />
       <AxisBottom
         top={height - margin.bottom}
         left={margin.left}
         scale={xScale}
         numTicks={numTicksForWidth(width)}
-        label={'time'}
-        stroke='#1b1a1e'
-        tickStroke='#1b1a1e'
-        tickTextFill='#8e205f'
+        label={
+          <text
+            fill="#8e205f"
+            textAnchor="middle"
+            fontSize={10}
+            fontFamily="Arial"
+          >
+            time
+          </text>
+        }
+        stroke={'#1b1a1e'}
+        tickStroke={'#1b1a1e'}
+        tickLabelComponent={
+          <text
+            fill="#8e205f"
+            textAnchor="middle"
+            fontSize={10}
+            fontFamily="Arial"
+            dy="0.25em"
+          />
+        }
       />
     </svg>
   );
 }`}
     </Show>
   );
-}
+};

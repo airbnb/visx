@@ -2,7 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import Glyph from './Glyph';
 
-export default function Dot({
+export default function GlyphDot({
   top = 0,
   left = 0,
   className,
@@ -14,6 +14,7 @@ export default function Dot({
   stroke,
   strokeWidth,
   strokeDasharray,
+  ...restProps
 }) {
   return (
     <Glyph
@@ -29,6 +30,7 @@ export default function Dot({
         stroke={stroke}
         strokeWidth={strokeWidth}
         strokeDasharray={strokeDasharray}
+        {...restProps}
       />
       {children}
     </Glyph>

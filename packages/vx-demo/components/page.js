@@ -13,13 +13,17 @@ export default ({ children, title, className }) => (
     </div>
     <style jsx>{`
       .main {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        color: #161616;
+        width: 100vw;
+        margin: 0 auto;
         overflow-x: hidden;
+      }
+      .page-content {
+        width: 95vw;
+        margin: 55px auto 40px;
+        color: #161616;
+        overflow-y: auto;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
       }
 
       .nav-container {

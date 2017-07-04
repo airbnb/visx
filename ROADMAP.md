@@ -8,20 +8,19 @@
 - interactions
 - tooltips
 - brush
+- ~~textures~~
+- ~~gradients~~
 - controls
-- textures
-- gradients
 - animations
 - transitions
-- area
-- StackedArea
-- bar
-- radial
-- StackedBar
+- ~~area~~
+- ~~stacked area~~
+- ~~bar~~
+- ~~radial~~
 - streamgraph
 - histogram
-- heatmap
+- ~~heatmap~~
 - layouts
-- hierarchy
+- ~~hierarchy~~
 - accessability
 - browser support

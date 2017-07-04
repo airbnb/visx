@@ -1,5 +1,9 @@
 # @vx/marker
 
+```
+npm install --save @vx/marker
+```
+
 A Marker is a line with a piece of text attached to it. It's great for highlighting locations in your graph.  
 
 ## Example
@@ -45,18 +49,3 @@ A Marker is a line with a piece of text attached to it. It's great for highlight
 ## Source For Components
 
 + [`<Marker />`](https://github.com/hshoff/vx/blob/master/packages/vx-marker/src/markers/Marker.js)
-
-## vx packages
-
-- [@vx/axis](https://github.com/hshoff/vx/tree/master/packages/vx-axis)
-- [@vx/curve](https://github.com/hshoff/vx/tree/master/packages/vx-curve)
-- [@vx/demo](https://github.com/hshoff/vx/tree/master/packages/vx-demo)
-- [@vx/glyph](https://github.com/hshoff/vx/tree/master/packages/vx-glyph)
-- [@vx/grid](https://github.com/hshoff/vx/tree/master/packages/vx-grid)
-- [@vx/group](https://github.com/hshoff/vx/tree/master/packages/vx-group)
-- @vx/marker
-- [@vx/mock-data](https://github.com/hshoff/vx/tree/master/packages/vx-mock-data)
-- [@vx/point](https://github.com/hshoff/vx/tree/master/packages/vx-point)
-- [@vx/responsive](https://github.com/hshoff/vx/tree/master/packages/vx-responsive)
-- [@vx/scale](https://github.com/hshoff/vx/tree/master/packages/vx-scale)
-- [@vx/shape](https://github.com/hshoff/vx/tree/master/packages/vx-shape)

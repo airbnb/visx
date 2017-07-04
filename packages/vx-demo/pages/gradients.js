@@ -4,10 +4,15 @@ import Gradients from '../components/tiles/gradients';
 
 export default () => {
   return (
-    <Show component={Gradients} title="Gradients" shadow margin={{
-      bottom: 0,
-    }}>
-{`import React from 'react';
+    <Show
+      component={Gradients}
+      title="Gradients"
+      shadow
+      margin={{
+        bottom: 0,
+      }}
+    >
+      {`import React from 'react';
 import { Bar } from '@vx/shape';
 import {
   GradientDarkgreenGreen,
@@ -34,12 +39,12 @@ export default ({
       <LightgreenGreen id="LightgreenGreen" />
       <OrangeRed id="OrangeRed" />
       <PinkBlue id="PinkBlue" />
-      <PinkRed id="PinkRed" />
-      <PurpleOrange id="PurpleOrange" />
-      <PurpleRed id="PurpleRed" />
-      <PurpleTeal id="PurpleTeal" />
-      <SteelPurple id="SteelPurple" />
-      <TealBlue id="TealBlue" />
+      <PinkRed id="PinkRed" vertical={false} />
+      <PurpleOrange id="PurpleOrange" vertical={false} />
+      <PurpleRed id="PurpleRed" vertical={false} />
+      <PurpleTeal id="PurpleTeal" vertical={false} />
+      <SteelPurple id="SteelPurple" vertical={false} />
+      <TealBlue id="TealBlue" vertical={false} />
       <Bar
         x={0}
         y={0}
@@ -125,4 +130,4 @@ export default ({
 }`}
     </Show>
   );
-}
+};

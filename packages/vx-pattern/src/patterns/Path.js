@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Pattern from './Pattern';
 
-export default function Path({
+export default function PatternPath({
   id,
   width,
   height,
@@ -41,4 +42,16 @@ export default function Path({
       />
     </Pattern>
   );
+}
+
+PatternPath.propTypes = {
+  id: PropTypes.string.isRequired,
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  fill: PropTypes.string,
+  className: PropTypes.string,
+  background: PropTypes.string,
+  stroke: PropTypes.string,
+  strokeWidth: PropTypes.number,
+  strokeDasharray: PropTypes.string,
 }

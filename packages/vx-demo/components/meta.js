@@ -41,6 +41,8 @@ export default ({
     </Head>
     <style jsx global>{`
       body {
+        width: 100vw;
+        overflow-x: hidden;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
         background: #ffffff;
         display: flex;
@@ -181,6 +183,12 @@ export default ({
       svg {
         user-select: none;
         cursor: pointer;
+      }
+
+      .vx-heatmap-circle:hover,
+      .vx-heatmap-rect:hover {
+        stroke: white;
+        stroke-width: 1;
       }
 
       @media (max-width: 960px) {

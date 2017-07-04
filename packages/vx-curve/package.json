@@ -1,6 +1,6 @@
 {
   "name": "@vx/curve",
-  "version": "0.0.111",
+  "version": "0.0.112",
   "description": "vx curve",
   "main": "build/index.js",
   "repository": "https://github.com/hshoff/vx",
@@ -9,7 +9,8 @@
   ],
   "scripts": {
     "build": "make build SRC=./src",
-    "prepublish": "make build SRC=./src"
+    "prepublish": "make build SRC=./src",
+    "test": "jest"
   },
   "keywords": [
     "vx",
@@ -24,8 +25,11 @@
     "d3-shape": "^1.0.6"
   },
   "devDependencies": {
+    "babel-jest": "^20.0.3",
+    "jest": "^20.0.3",
     "react-fatigue-dev": "github:tj/react-fatigue-dev",
-    "react-tools": "^0.10.0"
+    "react-tools": "^0.10.0",
+    "regenerator-runtime": "^0.10.5"
   },
   "publishConfig": {
     "access": "public"

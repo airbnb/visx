@@ -4,7 +4,11 @@ import Bars from '../components/tiles/bars';
 
 export default () => {
   return (
-    <Show component={Bars} title="Bars">
+    <Show
+      events
+      component={Bars}
+      title="Bars"
+    >
 {`import React from 'react';
 import { Bar } from '@vx/shape';
 import { Group } from '@vx/group';
@@ -67,6 +71,10 @@ export default ({
                 x={xScale(x(d))}
                 y={yMax - barHeight}
                 fill=\`rgba(23, 233, 217, .5)\`
+                data={{ x: x(d), y: y(d) }}
+                onClick={data => event => {
+                  alert(\`clicked: \${JSON.stringify(data)}\`)
+                }}
               />
             </Group>
           );

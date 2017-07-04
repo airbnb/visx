@@ -1,5 +1,9 @@
 # @vx/pattern
 
+```
+npm install --save @vx/pattern
+```
+
 Inspired by: http://riccardoscalco.github.io/textures/
 
 ## Example

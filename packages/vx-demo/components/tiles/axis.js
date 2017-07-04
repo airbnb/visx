@@ -9,7 +9,6 @@ import { AreaClosed, LinePath } from '@vx/shape';
 import { scaleTime, scaleLinear } from '@vx/scale';
 import { extent, max } from 'd3-array';
 
-
 const data = genDateValue(20);
 
 // accessors
@@ -29,11 +28,9 @@ function numTicksForWidth(width) {
   return 10;
 }
 
-export default ({
-  width,
-  height,
-  margin,
-}) => {
+export default ({ width, height, margin }) => {
+  if (width < 10) return null;
+
   // bounds
   const xMax = width - margin.left - margin.right;
   const yMax = height - margin.top - margin.bottom;
@@ -55,7 +52,12 @@ export default ({
 
   return (
     <svg width={width} height={height}>
-      <GradientOrangeRed id="linear" />
+      <GradientOrangeRed
+        id="linear"
+        vertical={false}
+        fromOpacity={0.8}
+        toOpacity={0.3}
+      />
       <rect
         x={0}
         y={0}
@@ -69,7 +71,7 @@ export default ({
         left={margin.left}
         xScale={xScale}
         yScale={yScale}
-        stroke='rgba(142, 32, 95, 0.9)'
+        stroke="rgba(142, 32, 95, 0.9)"
         width={xMax}
         height={yMax}
         numTicksRows={numTicksForHeight(height)}
@@ -85,7 +87,6 @@ export default ({
           strokeWidth={2}
           stroke={'transparent'}
           fill={'url(#linear)'}
-          fillOpacity='0.9'
           curve={curveBasis}
         />
         <LinePath
@@ -105,20 +106,55 @@ export default ({
         scale={yScale}
         hideZero
         numTicks={numTicksForHeight(height)}
-        label={'value'}
-        stroke={'#1b1a1e'}
-        tickTextFill={'#8e205f'}
+        label={
+          <text
+            fill="#8e205f"
+            textAnchor="middle"
+            fontSize={10}
+            fontFamily="Arial"
+          >
+            value
+          </text>
+        }
+        stroke="#1b1a1e"
+        tickLabelComponent={
+          <text
+            fill="#8e205f"
+            textAnchor="end"
+            fontSize={10}
+            fontFamily="Arial"
+            dx="-0.25em"
+            dy="0.25em"
+          />
+        }
       />
       <AxisBottom
         top={height - margin.bottom}
         left={margin.left}
         scale={xScale}
         numTicks={numTicksForWidth(width)}
-        label={'time'}
+        label={
+          <text
+            fill="#8e205f"
+            textAnchor="middle"
+            fontSize={10}
+            fontFamily="Arial"
+          >
+            time
+          </text>
+        }
         stroke={'#1b1a1e'}
         tickStroke={'#1b1a1e'}
-        tickTextFill={'#8e205f'}
+        tickLabelComponent={
+          <text
+            fill="#8e205f"
+            textAnchor="middle"
+            fontSize={10}
+            fontFamily="Arial"
+            dy="0.25em"
+          />
+        }
       />
     </svg>
   );
-}
+};

@@ -1,11 +1,12 @@
 {
   "name": "@vx/event",
-  "version": "0.0.111",
+  "version": "0.0.114",
   "description": "vx event",
   "main": "build/index.js",
   "scripts": {
     "build": "make build SRC=./src",
-    "prepublish": "make build SRC=./src"
+    "prepublish": "make build SRC=./src",
+    "test": "jest"
   },
   "files": [
     "build"
@@ -31,10 +32,15 @@
     "access": "public"
   },
   "devDependencies": {
+    "babel-jest": "^20.0.3",
+    "enzyme": "^2.8.2",
+    "jest": "^20.0.3",
+    "react-addons-test-utils": "^15.5.1",
     "react-fatigue-dev": "github:tj/react-fatigue-dev",
-    "react-tools": "^0.10.0"
+    "react-tools": "^0.10.0",
+    "regenerator-runtime": "^0.10.5"
   },
   "dependencies": {
-    "@vx/point": "0.0.111"
+    "@vx/point": "0.0.112"
   }
 }

@@ -3,29 +3,30 @@ import cx from 'classnames';
 import Axis from './Axis';
 import ORIENT from '../constants/orientation';
 
-export default function AxisRight({
+export default function AxisBottom({
   scale,
   top,
   left,
   stroke,
   strokeWidth,
   strokeDasharray,
-  fontSize,
+  rangePadding,
   label,
+  labelOffset = 8,
   numTicks,
   tickFormat,
   tickStroke,
-  tickK = 1,
-  tickOffset,
   tickTransform,
   tickLength = 8,
-  tickPadding = 2,
-  tickTextAnchor = "middle",
-  tickTextFontFamily = "Arial",
-  tickTextFontSize = 10,
-  tickTextFill = 'black',
-  tickTextDy,
-  tickTextDx,
+  tickLabelComponent = (
+    <text
+      textAnchor="middle"
+      fontFamily="Arial"
+      fontSize={10}
+      fill="black"
+      dy="0.25em"
+    />
+  ),
   hideAxisLine,
   hideTicks,
   hideZero,
@@ -34,28 +35,33 @@ export default function AxisRight({
   return (
     <Axis
       className={cx('vx-axis-bottom', className)}
-      orient={ORIENT.bottom}
+      orientation={ORIENT.bottom}
       top={top}
       left={left}
       scale={scale}
       stroke={stroke}
       strokeWidth={strokeWidth}
       strokeDasharray={strokeDasharray}
-      label={label}
+      rangePadding={rangePadding}
+      labelComponent={
+        typeof label === 'string' ?
+        <text
+          textAnchor="middle"
+          fontFamily="Arial"
+          fontSize={10}
+          fill="black"
+        >
+          {label}
+        </text>
+        : label
+      }
       numTicks={numTicks}
-      tickK={tickK}
       tickFormat={tickFormat}
       tickLength={tickLength}
-      tickOffset={tickOffset || tickK * tickLength}
-      tickTransform={tickTransform || `translate(${tickOffset || 0})`}
+      tickTransform={tickTransform}
       tickStroke={tickStroke}
-      tickPadding={tickPadding}
-      tickTextDy={tickTextDy || tickLength + tickPadding + tickTextFontSize}
-      tickTextDx={tickTextDx || 0}
-      tickTextAnchor={tickTextAnchor}
-      tickTextFontFamily={tickTextFontFamily}
-      tickTextFontSize={tickTextFontSize}
-      tickTextFill={tickTextFill}
+      labelOffset={labelOffset}
+      tickLabelComponent={tickLabelComponent}
       hideAxisLine={hideAxisLine}
       hideTicks={hideTicks}
       hideZero={hideZero}

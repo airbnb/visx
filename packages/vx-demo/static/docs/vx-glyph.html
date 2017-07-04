@@ -1,0 +1,156 @@
+
+  <html>
+    <head>
+      <link rel="stylesheet" type="text/css" href="../doc_styles.css">
+    </head>
+    <div class="nav-container">
+      <div class="nav">
+        <div class="nav-inner">
+          <div class="logo"></div>
+          <ul>
+          <li class="Item">
+            <a href="/">Home</a>
+          </li>
+          <li class="Item">
+            <a href="/docs">Docs</a>
+          </li>
+          <li class="Item">
+            <a href="https://medium.com/vx-code">Guides</a>
+          </li>
+          <li class="Item">
+            <a href="/gallery">Gallery</a>
+          </li>
+          </ul>
+          <a class="github-button" href="https://github.com/hshoff/vx" data-show-count="true" aria-label="Star hshoff/vx on GitHub">Star</a>
+          </div>
+        </div>
+    </div>
+    <div class="doc-container">
+      <div class="doc-nav">
+        <ul>
+        <li>Packages</li>
+        <li><a href="/static/docs/vx-annotation.html">@vx/annotation</a></li><li><a href="/static/docs/vx-axis.html">@vx/axis</a></li><li><a href="/static/docs/vx-brush.html">@vx/brush</a></li><li><a href="/static/docs/vx-clip-path.html">@vx/clip-path</a></li><li><a href="/static/docs/vx-curve.html">@vx/curve</a></li><li><a href="/static/docs/vx-demo.html">@vx/demo</a></li><li><a href="/static/docs/vx-drag.html">@vx/drag</a></li><li><a href="/static/docs/vx-event.html">@vx/event</a></li><li><a href="/static/docs/vx-glyph.html">@vx/glyph</a></li><li><a href="/static/docs/vx-gradient.html">@vx/gradient</a></li><li><a href="/static/docs/vx-grid.html">@vx/grid</a></li><li><a href="/static/docs/vx-group.html">@vx/group</a></li><li><a href="/static/docs/vx-heatmap.html">@vx/heatmap</a></li><li><a href="/static/docs/vx-hierarchy.html">@vx/hierarchy</a></li><li><a href="/static/docs/vx-legend.html">@vx/legend</a></li><li><a href="/static/docs/vx-marker.html">@vx/marker</a></li><li><a href="/static/docs/vx-mock-data.html">@vx/mock-data</a></li><li><a href="/static/docs/vx-pattern.html">@vx/pattern</a></li><li><a href="/static/docs/vx-point.html">@vx/point</a></li><li><a href="/static/docs/vx-responsive.html">@vx/responsive</a></li><li><a href="/static/docs/vx-scale.html">@vx/scale</a></li><li><a href="/static/docs/vx-shape.html">@vx/shape</a></li><li><a href="/static/docs/vx-text.html">@vx/text</a></li><li><a href="/static/docs/vx-voronoi.html">@vx/voronoi</a></li><li><a href="/static/docs/vx-zoom.html">@vx/zoom</a></li>
+        </ul>
+      </div>
+      <div class="content">
+      <h1 id="-vx-glyph">@vx/glyph</h1>
+<pre><code>npm install --save @vx/glyph
+</code></pre><p>Glyphs are small icons that you can use in your graphs. Some elements, like <code>LinePath</code>, can take a function that returns a glyph.</p>
+<p>For example:</p>
+<pre><code class="lang-js">import { LinePath } from &#39;@vx/shape&#39;;
+import { GlyphDot } from &#39;@vx/glyph&#39;;
+
+let line = (
+  &lt;LinePath
+    ...
+    glyph={(d, i) =&gt; {
+      return (
+        &lt;GlyphDot
+          className={&quot;glyph-dots&quot;}
+          key={&#39;line-dot-{i}&#39;}
+          cx={xScale(x(d))}
+          cy={yScale(y(d))}
+          r={6}
+          fill={&quot;white&quot;}
+          stroke={&quot;black&quot;}
+          strokeWidth={3} /&gt;
+      )
+    }}
+  /&gt;
+)
+</code></pre>
+<p>You also can incorporate child elements into your glyph to add labels and such.</p>
+<pre><code class="lang-js">import { Dot } from &#39;@vx/glyph&#39;;
+
+&lt;GlyphDot ... &gt;
+  &lt;text
+    x={xScale(x(d))}
+    y={yScale(y(d))}
+    dx={10}
+    fill={&quot;white&quot;}
+    stroke={&quot;black&quot;}
+    strokeWidth={6}
+    fontSize={11}
+  &gt;
+    {&quot;Hi there!&quot;}
+  &lt;/text&gt;
+&lt;/GlyphDot&gt;
+</code></pre>
+<h2 id="-glyph-glyphdot-"><code>Glyph.GlyphDot</code></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Default</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">top</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">Margin on top</td>
+</tr>
+<tr>
+<td style="text-align:left">left</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">Margin on left</td>
+</tr>
+<tr>
+<td style="text-align:left">className</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The class name associated of the LinePath shape</td>
+</tr>
+<tr>
+<td style="text-align:left">cx</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The x-axis coordinate at the center of the circle</td>
+</tr>
+<tr>
+<td style="text-align:left">cy</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The y-axis coordinate at the center of the circle</td>
+</tr>
+<tr>
+<td style="text-align:left">r</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The radius of the circle</td>
+</tr>
+<tr>
+<td style="text-align:left">fill</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The color of the circle&#39;s fill</td>
+</tr>
+<tr>
+<td style="text-align:left">stroke</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The color of the circle&#39;s stroke</td>
+</tr>
+<tr>
+<td style="text-align:left">strokeWidth</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The width of the circle&#39;s stroke</td>
+</tr>
+<tr>
+<td style="text-align:left">strokeDasharray</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">array</td>
+<td style="text-align:left">An array that controls the pattern of dashes in the stroke. <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray">See more here.</a></td>
+</tr>
+</tbody>
+</table>
+
+      </div>
+    </div>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+  </html>

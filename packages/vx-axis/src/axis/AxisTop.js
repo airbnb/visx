@@ -10,22 +10,23 @@ export default function AxisTop({
   stroke,
   strokeWidth,
   strokeDasharray,
+  rangePadding,
   label,
-  fontSize,
+  labelOffset = 8,
   numTicks,
   tickFormat,
   tickStroke,
-  tickK = -1,
-  tickOffset,
   tickTransform,
   tickLength = 8,
-  tickPadding = 2,
-  tickTextAnchor = "middle",
-  tickTextFontFamily = "Arial",
-  tickTextFontSize = 10,
-  tickTextFill = 'black',
-  tickTextDy,
-  tickTextDx,
+  tickLabelComponent = (
+    <text
+      textAnchor="middle"
+      fontFamily="Arial"
+      fontSize={10}
+      fill="black"
+      dy="-0.25em"
+    />
+  ),
   hideAxisLine,
   hideTicks,
   hideZero,
@@ -34,28 +35,33 @@ export default function AxisTop({
   return (
     <Axis
       className={cx('vx-axis-top', className)}
-      orient={ORIENT.top}
+      orientation={ORIENT.top}
       top={top}
       left={left}
       scale={scale}
       stroke={stroke}
       strokeWidth={strokeWidth}
       strokeDasharray={strokeDasharray}
-      label={label}
+      rangePadding={rangePadding}
+      labelComponent={
+        typeof label === 'string' ?
+        <text
+          textAnchor="middle"
+          fontFamily="Arial"
+          fontSize={10}
+          fill="black"
+        >
+          {label}
+        </text>
+        : label
+      }
       numTicks={numTicks}
-      tickK={tickK}
       tickFormat={tickFormat}
       tickLength={tickLength}
-      tickOffset={tickOffset || tickK * tickLength}
-      tickTransform={tickTransform || `translate(0, ${tickOffset || tickK * tickLength})`}
+      tickTransform={tickTransform}
       tickStroke={tickStroke}
-      tickPadding={tickPadding}
-      tickTextDy={tickTextDy || tickK * tickPadding + tickK * (hideTicks ? tickPadding : tickLength)}
-      tickTextDx={tickTextDx || 0}
-      tickTextAnchor={tickTextAnchor}
-      tickTextFontFamily={tickTextFontFamily}
-      tickTextFontSize={tickTextFontSize}
-      tickTextFill={tickTextFill}
+      labelOffset={labelOffset}
+      tickLabelComponent={tickLabelComponent}
       hideAxisLine={hideAxisLine}
       hideTicks={hideTicks}
       hideZero={hideZero}

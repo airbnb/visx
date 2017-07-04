@@ -5,9 +5,9 @@ import Dots from '../components/tiles/dots';
 export default () => {
   return (
     <Show component={Dots} title="Dots">
-{`import React from 'react';
+      {`import React from 'react';
 import { Group } from '@vx/group';
-import { GlyphDot } from '@vx/glyph';
+import { GlyphCircle } from '@vx/glyph';
 import { GradientPinkRed } from '@vx/gradient';
 import { scaleLinear } from '@vx/scale';
 import { genRandomNormalPoints } from '@vx/mock-data';
@@ -53,12 +53,12 @@ export default ({
       <Group>
         {points.map((point,i) => {
           return (
-            <GlyphDot
+            <GlyphCircle
               key={\`point-\${point.x}-\${i}\`}
-              fill="#f6c431"
-              cx={xScale(x(point))}
-              cy={yScale(y(point))}
-              r={i % 3 === 0 ? 2 : 3}
+              fill={'#f6c431'}
+              left={xScale(x(point))}
+              top={yScale(y(point))}
+              size={i % 3 === 0 ? 2 : 3}
             />
           );
         })}
@@ -68,4 +68,4 @@ export default ({
 }`}
     </Show>
   );
-}
+};

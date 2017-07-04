@@ -1,5 +1,9 @@
 # @vx/mock-data
 
+```
+npm install --save @vx/mock-data
+```
+
 The `@vx/mock-data` package is here to help you test out your graphs.
 
 ## Generators
@@ -84,18 +88,3 @@ const data = Mock.cityTemperature;
   - [cityTemperature](https://github.com/hshoff/vx/blob/master/packages/vx-mock-data/src/mocks/cityTemperature.js)
   - [groupDateValue](https://github.com/hshoff/vx/blob/master/packages/vx-mock-data/src/mocks/groupDateValue.js)
   - [letterFrequency](https://github.com/hshoff/vx/blob/master/packages/vx-mock-data/src/mocks/letterFrequency.js)
-
-## vx packages
-
-- [@vx/axis](https://github.com/hshoff/vx/tree/master/packages/vx-axis)
-- [@vx/curve](https://github.com/hshoff/vx/tree/master/packages/vx-curve)
-- [@vx/demo](https://github.com/hshoff/vx/tree/master/packages/vx-demo)
-- [@vx/glyph](https://github.com/hshoff/vx/tree/master/packages/vx-glyph)
-- [@vx/grid](https://github.com/hshoff/vx/tree/master/packages/vx-grid)
-- [@vx/group](https://github.com/hshoff/vx/tree/master/packages/vx-group)
-- [@vx/marker](https://github.com/hshoff/vx/tree/master/packages/vx-marker)
-- @vx/mock-data
-- [@vx/point](https://github.com/hshoff/vx/tree/master/packages/vx-point)
-- [@vx/responsive](https://github.com/hshoff/vx/tree/master/packages/vx-responsive)
-- [@vx/scale](https://github.com/hshoff/vx/tree/master/packages/vx-scale)
-- [@vx/shape](https://github.com/hshoff/vx/tree/master/packages/vx-shape)

@@ -5,6 +5,7 @@ import Page from '../components/page';
 import Footer from '../components/footer';
 import Bars from '../components/tiles/bars';
 import Codeblock from '../components/codeblocks/Codeblock';
+import Gallery from '../components/gallery';
 
 export default withScreenSize(({
   screenWidth,
@@ -13,6 +14,7 @@ export default withScreenSize(({
   title,
   component,
   shadow = false,
+  events = false,
   margin = { top: 0, left: 0, right: 0, bottom: 80 }
 }) => {
   const padding = 40;
@@ -30,7 +32,7 @@ export default withScreenSize(({
           'shadow': !!shadow
           }, title.split(' ').join('-'), 'chart')
         }>
-          {component({ width, height, margin })}
+          {component({ width, height, margin, events })}
         </div>
         <div style={{width: width}}>
           <h2>Code</h2>
@@ -41,15 +43,14 @@ export default withScreenSize(({
           </Codeblock>
         </div>
       </div>
-      <Footer />
+      <div style={{marginTop: '40px'}}>
+        <Gallery />
+      </div>
       <style jsx>{`
         .container {
           display: flex;
           flex-direction: column;
           align-items: center;
-        }
-        .container:first-child {
-          margin-top: 55px;
         }
         .container h1 {
           margin-top: 15px;

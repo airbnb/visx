@@ -1,8 +1,10 @@
 import React from 'react';
 import cx from 'classnames';
+import additionalProps from '../util/additionalProps';
 
 export default ({
   className,
+  data,
   x = 0,
   y = 0,
   width,
@@ -18,6 +20,7 @@ export default ({
   strokeLinejoin,
   strokeMiterlimit,
   strokeOpacity,
+  ...restProps,
 }) => {
   return (
     <rect
@@ -37,6 +40,7 @@ export default ({
       strokeLinejoin={strokeLinejoin}
       strokeMiterlimit={strokeMiterlimit}
       strokeOpacity={strokeOpacity}
+      {...additionalProps(restProps, data)}
     />
   );
 }

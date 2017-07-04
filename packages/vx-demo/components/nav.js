@@ -10,6 +10,7 @@ export default () => (
       <ul>
         <Item href="/">Home</Item>
         <Item href="/docs">Docs</Item>
+        <Item href="https://medium.com/vx-code">Guides</Item>
         <Item href="/gallery">Gallery</Item>
       </ul>
 
@@ -62,6 +63,14 @@ export default () => (
         }
         .Item {
           float: left;
+        }
+
+        .nav {
+          padding: 0;
+        }
+
+        .nav-inner {
+          width: 99vw;
         }
       }
     `}</style>
