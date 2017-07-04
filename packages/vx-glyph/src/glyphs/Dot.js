@@ -17,12 +17,9 @@ export default function GlyphDot({
   ...restProps
 }) {
   return (
-    <Glyph
-      className={classnames('vx-glyph-dot', className)}
-      top={top}
-      left={left}
-    >
+    <Glyph top={top} left={left}>
       <circle
+        className={classnames('vx-glyph-dot', className)}
         cx={cx}
         cy={cy}
         r={r}

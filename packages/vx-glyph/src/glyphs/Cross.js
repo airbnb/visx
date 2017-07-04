@@ -16,12 +16,9 @@ export default function GlyphCross({
   path.type(symbolCross);
   if (size) path.size(size);
   return (
-    <Glyph
-      top={top}
-      left={left}
-      className={cx('vx-glyph-cross', className)}
-    >
+    <Glyph top={top} left={left}>
       <path
+        className={cx('vx-glyph-cross', className)}
         d={path()}
         {...additionalProps(restProps)}
       />

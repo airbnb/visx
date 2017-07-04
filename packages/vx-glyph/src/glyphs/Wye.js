@@ -16,12 +16,12 @@ export default function GlyphWye({
   path.type(symbolWye);
   if (size) path.size(size);
   return (
-    <Glyph
-      top={top}
-      left={left}
-      className={cx('vx-glyph-wye', className)}
-    >
-      <path d={path()} {...additionalProps(restProps)} />
+    <Glyph top={top} left={left}>
+      <path
+        className={cx('vx-glyph-wye', className)}
+        d={path()}
+        {...additionalProps(restProps)}
+      />
       {children}
     </Glyph>
   );
