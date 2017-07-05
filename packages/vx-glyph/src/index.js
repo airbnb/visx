@@ -7,4 +7,3 @@ export { default as GlyphTriangle } from './glyphs/Triangle';
 export { default as GlyphWye } from './glyphs/Wye';
 export { default as GlyphSquare } from './glyphs/Square';
 export { default as GlyphCircle } from './glyphs/Circle';
-export { default as GlyphBoxPlot } from './glyphs/statistics/BoxPlot';
