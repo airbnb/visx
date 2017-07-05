@@ -16,12 +16,12 @@ export default function GlyphTriangle({
   path.type(symbolTriangle);
   if (size) path.size(size);
   return (
-    <Glyph
-      top={top}
-      left={left}
-      className={cx('vx-glyph-triangle', className)}
-    >
-      <path d={path()} {...additionalProps(restProps)} />
+    <Glyph top={top} left={left}>
+      <path
+        className={cx('vx-glyph-triangle', className)}
+        d={path()}
+        {...additionalProps(restProps)}
+      />
       {children}
     </Glyph>
   );

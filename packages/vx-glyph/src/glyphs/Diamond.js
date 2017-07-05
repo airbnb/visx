@@ -16,12 +16,12 @@ export default function GlyphDiamond({
   path.type(symbolDiamond);
   if (size) path.size(size);
   return (
-    <Glyph
-      top={top}
-      left={left}
-      className={cx('vx-glyph-diamond', className)}
-    >
-      <path d={path()} {...additionalProps(restProps)} />
+    <Glyph top={top} left={left}>
+      <path
+        className={cx('vx-glyph-diamond', className)}
+        d={path()}
+        {...additionalProps(restProps)}
+      />
       {children}
     </Glyph>
   );

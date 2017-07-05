@@ -16,12 +16,12 @@ export default function GlyphStar({
   path.type(symbolStar);
   if (size) path.size(size);
   return (
-    <Glyph
-      top={top}
-      left={left}
-      className={cx('vx-glyph-star', className)}
-    >
-      <path d={path()} {...additionalProps(restProps)} />
+    <Glyph top={top} left={left}>
+      <path
+        className={cx('vx-glyph-star', className)}
+        d={path()}
+        {...additionalProps(restProps)}
+      />
       {children}
     </Glyph>
   );

@@ -16,12 +16,12 @@ export default function GlyphCircle({
   path.type(symbolCircle);
   if (size) path.size(size);
   return (
-    <Glyph
-      top={top}
-      left={left}
-      className={cx('vx-glyph-circle', className)}
-    >
-      <path d={path()} {...additionalProps(restProps)} />
+    <Glyph top={top} left={left}>
+      <path
+        className={cx('vx-glyph-circle', className)}
+        d={path()}
+        {...additionalProps(restProps)}
+      />
       {children}
     </Glyph>
   );
