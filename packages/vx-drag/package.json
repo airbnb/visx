@@ -1,6 +1,6 @@
 {
   "name": "@vx/drag",
-  "version": "0.0.120",
+  "version": "0.0.125",
   "description": "vx drag",
   "main": "build/index.js",
   "scripts": {

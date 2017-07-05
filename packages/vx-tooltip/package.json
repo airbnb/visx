@@ -1,6 +1,6 @@
 {
   "name": "@vx/tooltip",
-  "version": "1.0.0",
+  "version": "0.0.125",
   "description": "vx tooltip",
   "main": "build/index.js",
   "scripts": {

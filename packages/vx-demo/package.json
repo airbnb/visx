@@ -1,6 +1,6 @@
 {
   "name": "@vx/demo",
-  "version": "0.0.124",
+  "version": "0.0.125",
   "description": "vx demo",
   "repository": "https://github.com/hshoff/vx",
   "scripts": {
@@ -9,32 +9,36 @@
     "start": "next start",
     "test": "jest"
   },
-  "keywords": ["vx", "demo", "examples"],
+  "keywords": [
+    "vx",
+    "demo",
+    "examples"
+  ],
   "author": "@hshoff",
   "license": "MIT",
   "dependencies": {
-    "@vx/annotation": "0.0.120",
-    "@vx/axis": "0.0.124",
-    "@vx/brush": "0.0.120",
-    "@vx/clip-path": "0.0.120",
-    "@vx/curve": "0.0.112",
-    "@vx/glyph": "0.0.124",
-    "@vx/gradient": "0.0.124",
-    "@vx/grid": "0.0.120",
-    "@vx/group": "0.0.120",
-    "@vx/heatmap": "0.0.120",
-    "@vx/hierarchy": "0.0.120",
-    "@vx/legend": "0.0.124",
-    "@vx/marker": "0.0.120",
-    "@vx/mock-data": "0.0.115",
-    "@vx/pattern": "0.0.120",
-    "@vx/point": "0.0.112",
-    "@vx/responsive": "0.0.120",
-    "@vx/scale": "0.0.121",
-    "@vx/shape": "0.0.120",
-    "@vx/text": "0.0.120",
-    "@vx/tooltip": "1.0.0",
-    "@vx/voronoi": "0.0.123",
+    "@vx/annotation": "0.0.125",
+    "@vx/axis": "0.0.125",
+    "@vx/brush": "0.0.125",
+    "@vx/clip-path": "0.0.125",
+    "@vx/curve": "0.0.125",
+    "@vx/glyph": "0.0.125",
+    "@vx/gradient": "0.0.125",
+    "@vx/grid": "0.0.125",
+    "@vx/group": "0.0.125",
+    "@vx/heatmap": "0.0.125",
+    "@vx/hierarchy": "0.0.125",
+    "@vx/legend": "0.0.125",
+    "@vx/marker": "0.0.125",
+    "@vx/mock-data": "0.0.125",
+    "@vx/pattern": "0.0.125",
+    "@vx/point": "0.0.125",
+    "@vx/responsive": "0.0.125",
+    "@vx/scale": "0.0.125",
+    "@vx/shape": "0.0.125",
+    "@vx/text": "0.0.125",
+    "@vx/tooltip": "0.0.125",
+    "@vx/voronoi": "0.0.125",
     "classnames": "^2.2.5",
     "d3-array": "^1.1.1",
     "d3-format": "^1.2.0",
@@ -53,7 +57,9 @@
     "recompose": "^0.23.0"
   },
   "browserify": {
-    "transform": ["babelify"]
+    "transform": [
+      "babelify"
+    ]
   },
   "publishConfig": {
     "access": "public"
