@@ -8,8 +8,6 @@ export default function Tooltip(props) {
       className={cx('vx-tooltip-portal', className)}
       style={{
         position: 'absolute',
-        top: props.top,
-        left: props.left,
         backgroundColor: 'white',
         color: '#666666',
         padding: '.3rem .5rem',
