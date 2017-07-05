@@ -24,6 +24,7 @@ import Trees from '../components/tiles/tree';
 import Cluster from '../components/tiles/dendrogram';
 import Voronoi from '../components/tiles/voronoi';
 import Legends from '../components/tiles/legends';
+import BoxPlot from '../components/tiles/boxplot';
 
 const items = [
   '#242424',
@@ -85,6 +86,7 @@ export default class Gallery extends React.Component {
     const t14 = this.state.dimensions[13] || [8, 300];
     const t15 = this.state.dimensions[14] || [8, 300];
     const t16 = this.state.dimensions[15] || [8, 300];
+    const t17 = this.state.dimensions[16] || [8, 300];
 
     return (
       <div>
@@ -491,6 +493,27 @@ export default class Gallery extends React.Component {
               </div>
             </Link>
           </Tilt>
+
+          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+            <Link prefetch href="/boxplot">
+              <div
+                className="gallery-item"
+                ref={d => this.nodes.add(d)}
+                style={{background:"#fd7e14"}}
+              >
+                <div className="image">
+                  <BoxPlot width={t17[0]} height={t17[1]} />
+                </div>
+                <div className="details" style={{ color: '#FFFFFF' }}>
+                  <div className="title">BoxPlot</div>
+                  <div className="description">
+                    <pre>{`<Glyph.GlyphBoxPlot /> `}</pre>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </Tilt>
+          <div className="gallery-item placeholder" />
           <div className="gallery-item placeholder" />
         </div>
 
