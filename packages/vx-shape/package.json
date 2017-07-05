@@ -1,6 +1,6 @@
 {
   "name": "@vx/shape",
-  "version": "0.0.125",
+  "version": "0.0.126",
   "description": "vx shape",
   "main": "build/index.js",
   "repository": "https://github.com/hshoff/vx",
@@ -22,9 +22,9 @@
   "author": "@hshoff",
   "license": "MIT",
   "dependencies": {
-    "@vx/curve": "0.0.125",
-    "@vx/group": "0.0.125",
-    "@vx/point": "0.0.125",
+    "@vx/curve": "0.0.126",
+    "@vx/group": "0.0.126",
+    "@vx/point": "0.0.126",
     "classnames": "^2.2.5",
     "d3-shape": "^1.2.0",
     "prop-types": "^15.5.10"
