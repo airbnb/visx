@@ -20,37 +20,46 @@ export default function BarStack({
 }) {
   const series = d3stack().keys(keys)(data);
   const format = xScale.tickFormat ? xScale.tickFormat() : d => d;
+  const bandwidth = xScale.bandwidth();
+  const step = xScale.step();
+  const paddingInner = xScale.paddingInner();
+  const paddingOuter = xScale.paddingOuter();
   return (
-    <Group
-      className={cx('vx-bar-stack', className)}
-      top={top}
-      left={left}
-    >
-      {series && series.map((s, i) => {
-        return (
-          <Group key={`vx-bar-stack-${i}`}>
-            {s.map((d, ii) => {
-              return (
-                <Bar
-                  key={`bar-group-bar-${i}-${ii}-${s.key}`}
-                  x={xScale(x(d.data))}
-                  y={yScale(d[1])}
-                  width={xScale.bandwidth()}
-                  height={yScale(d[0]) - yScale(d[1])}
-                  fill={zScale(s.key)}
-                  data={{
-                    key: s.key,
-                    value: d[1],
-                    x: format(x(d.data)),
-                    data: d.data
-                  }}
-                  {...restProps}
-                />
-              );
-            })}
-          </Group>
-        );
-      })}
+    <Group className={cx('vx-bar-stack', className)} top={top} left={left}>
+      {series &&
+        series.map((s, i) => {
+          return (
+            <Group key={`vx-bar-stack-${i}`}>
+              {s.map((d, ii) => {
+                const barHeight = yScale(d[0]) - yScale(d[1]);
+                return (
+                  <Bar
+                    key={`bar-group-bar-${i}-${ii}-${s.key}`}
+                    x={xScale(x(d.data))}
+                    y={yScale(d[1])}
+                    width={bandwidth}
+                    height={barHeight}
+                    fill={zScale(s.key)}
+                    data={{
+                      bandwidth,
+                      paddingInner,
+                      paddingOuter,
+                      step,
+                      key: s.key,
+                      value: d[1],
+                      height: barHeight,
+                      width: bandwidth,
+                      x: x(d.data),
+                      xFormatted: format(x(d.data)),
+                      data: d.data,
+                    }}
+                    {...restProps}
+                  />
+                );
+              })}
+            </Group>
+          );
+        })}
     </Group>
   );
 }

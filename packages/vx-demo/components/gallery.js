@@ -137,7 +137,7 @@ export default class Gallery extends React.Component {
                 <div className="image">
                   <Dots width={t3[0]} height={t3[1]} />
                 </div>
-                <div className="details color-yellow">
+                <div className="details color-yellow" style={{ zIndex: 1 }}>
                   <div className="title">Dots</div>
                   <div className="description">
                     <pre>{`<Glyph.GlyphCircle />`}</pre>
@@ -299,8 +299,7 @@ export default class Gallery extends React.Component {
                 <div className="details" style={{ color: '#8e205f' }}>
                   <div className="title">Axis</div>
                   <div className="description">
-                    <pre
-                    >{`<Axis.AxisLeft /> + <Axis.AxisBottom />`}</pre>
+                    <pre>{`<Axis.AxisLeft /> + <Axis.AxisBottom />`}</pre>
                   </div>
                 </div>
               </div>
@@ -335,7 +334,10 @@ export default class Gallery extends React.Component {
                 <div className="image">
                   <BarStack width={t11[0]} height={t11[1]} />
                 </div>
-                <div className="details" style={{ color: '#a44afe' }}>
+                <div
+                  className="details"
+                  style={{ color: '#a44afe', zIndex: 1 }}
+                >
                   <div className="title">Bar Stack</div>
                   <div className="description">
                     <pre>{`<Shape.BarStack />`}</pre>
@@ -417,8 +419,7 @@ export default class Gallery extends React.Component {
                 <div className="details" style={{ color: '#269688' }}>
                   <div className="title">Trees</div>
                   <div className="description">
-                    <pre
-                    >{`<Hierarchy.Tree /> + <Shape.LinkHorizontal />`}</pre>
+                    <pre>{`<Hierarchy.Tree /> + <Shape.LinkHorizontal />`}</pre>
                   </div>
                 </div>
               </div>

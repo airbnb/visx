@@ -16,7 +16,7 @@ export default withScreenSize(
     component,
     shadow = false,
     events = false,
-    margin = { top: 0, left: 0, right: 0, bottom: 80 }
+    margin = { top: 0, left: 0, right: 0, bottom: 80 },
   }) => {
     const padding = 40;
     const height = screenHeight * 0.6;
@@ -34,10 +34,10 @@ export default withScreenSize(
           <div
             className={cx(
               {
-                shadow: !!shadow
+                shadow: !!shadow,
               },
               title.split(' ').join('-'),
-              'chart'
+              'chart',
             )}
           >
             {React.createElement(component, { width, height, margin, events })}
@@ -70,7 +70,6 @@ export default withScreenSize(
             margin-bottom: 5px;
           }
           .chart {
-            overflow: hidden;
             border-radius: 14px;
           }
           .shadow {
@@ -80,5 +79,5 @@ export default withScreenSize(
         `}</style>
       </Page>
     );
-  }
+  },
 );
