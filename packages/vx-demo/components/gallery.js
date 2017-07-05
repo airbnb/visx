@@ -139,7 +139,10 @@ export default class Gallery extends React.Component {
                 <div className="image">
                   <Dots width={t3[0]} height={t3[1]} />
                 </div>
-                <div className="details color-yellow" style={{ zIndex: 1 }}>
+                <div
+                  className="details color-yellow"
+                  style={{ zIndex: 1 }}
+                >
                   <div className="title">Dots</div>
                   <div className="description">
                     <pre>{`<Glyph.GlyphCircle />`}</pre>
@@ -301,7 +304,8 @@ export default class Gallery extends React.Component {
                 <div className="details" style={{ color: '#8e205f' }}>
                   <div className="title">Axis</div>
                   <div className="description">
-                    <pre>{`<Axis.AxisLeft /> + <Axis.AxisBottom />`}</pre>
+                    <pre
+                    >{`<Axis.AxisLeft /> + <Axis.AxisBottom />`}</pre>
                   </div>
                 </div>
               </div>
@@ -421,7 +425,8 @@ export default class Gallery extends React.Component {
                 <div className="details" style={{ color: '#269688' }}>
                   <div className="title">Trees</div>
                   <div className="description">
-                    <pre>{`<Hierarchy.Tree /> + <Shape.LinkHorizontal />`}</pre>
+                    <pre
+                    >{`<Hierarchy.Tree /> + <Shape.LinkHorizontal />`}</pre>
                   </div>
                 </div>
               </div>
@@ -499,15 +504,18 @@ export default class Gallery extends React.Component {
               <div
                 className="gallery-item"
                 ref={d => this.nodes.add(d)}
-                style={{background:"#fd7e14"}}
+                style={{ background: '#fd7e14' }}
               >
                 <div className="image">
                   <BoxPlot width={t17[0]} height={t17[1]} />
                 </div>
-                <div className="details" style={{ color: '#FFFFFF' }}>
+                <div
+                  className="details"
+                  style={{ color: '#FFFFFF', zIndex: 1 }}
+                >
                   <div className="title">BoxPlot</div>
                   <div className="description">
-                    <pre>{`<Glyph.GlyphBoxPlot /> `}</pre>
+                    <pre>{`<BoxPlot /> `}</pre>
                   </div>
                 </div>
               </div>

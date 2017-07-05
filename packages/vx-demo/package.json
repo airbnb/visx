@@ -9,16 +9,13 @@
     "start": "next start",
     "test": "jest"
   },
-  "keywords": [
-    "vx",
-    "demo",
-    "examples"
-  ],
+  "keywords": ["vx", "demo", "examples"],
   "author": "@hshoff",
   "license": "MIT",
   "dependencies": {
     "@vx/annotation": "0.0.126",
     "@vx/axis": "0.0.126",
+    "@vx/boxplot": "1.0.0",
     "@vx/brush": "0.0.126",
     "@vx/clip-path": "0.0.126",
     "@vx/curve": "0.0.126",
@@ -57,9 +54,7 @@
     "recompose": "^0.23.0"
   },
   "browserify": {
-    "transform": [
-      "babelify"
-    ]
+    "transform": ["babelify"]
   },
   "publishConfig": {
     "access": "public"
