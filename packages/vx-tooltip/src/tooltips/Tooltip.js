@@ -1,9 +1,11 @@
 import React from 'react';
+import cx from 'classnames';
 
 export default function Tooltip(props) {
+  const { className, ...restProps } = props;
   return (
     <div
-      className="vx-tooltip-portal"
+      className={cx('vx-tooltip-portal', className)}
       style={{
         position: 'absolute',
         top: props.top,
@@ -16,7 +18,7 @@ export default function Tooltip(props) {
         boxShadow: '0 1px 2px rgba(33,33,33,0.2)',
         lineHeight: '1em',
         pointerEvents: 'none',
-        ...props.style
+        ...restProps,
       }}
     >
       {props.children}
