@@ -1,5 +1,7 @@
 # Changelog
 
+- [v0.0.126](#v00126)
+- [v0.0.125](#v00125)
 - [v0.0.124](#v00124)
 - [v0.0.123](#v00123)
 - [v0.0.122](#v00122)
@@ -10,6 +12,56 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.127
+
+- [boxplot] add `@vx/boxplot` [#89](https://github.com/hshoff/vx/pull/89)
+- [mock data] add `genBoxPlot()` [#89](https://github.com/hshoff/vx/pull/89)
+- [tooltip] fix pass through style and restProps [#89](https://github.com/hshoff/vx/pull/89)
+- [shape] fix BarStack.test.js [#88](https://github.com/hshoff/vx/pull/88)
+
+```bash
+Changes:
+- @vx/annotation: 0.0.126 => 0.0.127
+- @vx/axis: 0.0.126 => 0.0.127
+- @vx/boxplot: 1.0.0 => 0.0.127
+- @vx/brush: 0.0.126 => 0.0.127
+- @vx/clip-path: 0.0.126 => 0.0.127
+- @vx/curve: 0.0.126 => 0.0.127
+- @vx/demo: 0.0.126 => 0.0.127
+- @vx/drag: 0.0.126 => 0.0.127
+- @vx/event: 0.0.126 => 0.0.127
+- @vx/glyph: 0.0.126 => 0.0.127
+- @vx/gradient: 0.0.126 => 0.0.127
+- @vx/grid: 0.0.126 => 0.0.127
+- @vx/group: 0.0.126 => 0.0.127
+- @vx/heatmap: 0.0.126 => 0.0.127
+- @vx/hierarchy: 0.0.126 => 0.0.127
+- @vx/legend: 0.0.126 => 0.0.127
+- @vx/marker: 0.0.126 => 0.0.127
+- @vx/mock-data: 0.0.126 => 0.0.127
+- @vx/pattern: 0.0.126 => 0.0.127
+- @vx/point: 0.0.126 => 0.0.127
+- @vx/responsive: 0.0.126 => 0.0.127
+- @vx/scale: 0.0.126 => 0.0.127
+- @vx/shape: 0.0.126 => 0.0.127
+- @vx/text: 0.0.126 => 0.0.127
+- @vx/tooltip: 0.0.126 => 0.0.127
+- @vx/voronoi: 0.0.126 => 0.0.127
+- @vx/zoom: 0.0.126 => 0.0.127
+```
+
+# v0.0.126
+
+- [tooltip] add @vx/tooltip [#87](https://github.com/hshoff/vx/pull/87)
+- [glyph] put classname on the <path> not on <g> [#87](https://github.com/hshoff/vx/pull/87)
+- [mock data] add mock/bitcoinPrice [#87](https://github.com/hshoff/vx/pull/87)
+- [demo] add tooltip demo to dots and barstack, add legend to barstack [#87](https://github.com/hshoff/vx/pull/87)
+- [shape] update `data` passed to each bar in <BarStack /> [#87](https://github.com/hshoff/vx/pull/87)
+
+# v0.0.125
+
+- ignore this one, `lerna publish` failed midway through
 
 # v0.0.124
 
