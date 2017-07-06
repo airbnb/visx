@@ -11,6 +11,7 @@ import {
   GradientPurpleTeal,
   GradientSteelPurple,
   GradientTealBlue,
+  RadialGradient,
 } from '@vx/gradient';
 
 export default ({
@@ -34,7 +35,7 @@ export default ({
       <GradientPinkRed id="PinkRed" vertical={false} />
       <GradientPurpleOrange id="PurpleOrange" vertical={false} />
       <GradientPurpleRed id="PurpleRed" vertical={false} />
-      <GradientPurpleTeal id="PurpleTeal" vertical={false} />
+      <RadialGradient from="#55bdd5" to="#4f3681" id="Radial" r={'80%'} />
       <GradientSteelPurple id="SteelPurple" vertical={false} />
       <GradientTealBlue id="TealBlue" vertical={false} />
       <Bar
@@ -112,7 +113,7 @@ export default ({
         y={h}
         width={w}
         height={h}
-        fill={`url(#PurpleTeal)`}
+        fill={`url(#Radial)`}
         rx={14}
         stroke="#ffffff"
         strokeWidth={8}

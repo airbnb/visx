@@ -10,7 +10,9 @@ import { LinearGradient } from '@vx/gradient';
 const x = d => new Date(d.date);
 const y = d => d.close;
 
-const capPoints = [appleStock[0]].concat([appleStock[appleStock.length - 1]]);
+const capPoints = [appleStock[0]].concat([
+  appleStock[appleStock.length - 1],
+]);
 
 export default function LineRadialTile({
   width,
@@ -20,7 +22,7 @@ export default function LineRadialTile({
     left: 10,
     right: 10,
     bottom: 120,
-  }
+  },
 }) {
   if (width < 10) return null;
 
@@ -36,7 +38,11 @@ export default function LineRadialTile({
   });
   return (
     <svg width={width} height={height}>
-      <LinearGradient from="#e5fd3d" to="#aeeef8" id="line-gradient" />
+      <LinearGradient
+        from="#e5fd3d"
+        to="#aeeef8"
+        id="line-gradient"
+      />
       <rect
         x={0}
         y={0}
@@ -45,7 +51,7 @@ export default function LineRadialTile({
         fill="#744cca"
         rx={14}
       />
-      <Group top={height / 2 } left={width / 2}>
+      <Group top={height / 2} left={width / 2}>
         {yScale.ticks().map((tick, i) => {
           return (
             <g key={`radial-grid-${i}`}>
@@ -54,7 +60,7 @@ export default function LineRadialTile({
                 stroke="#aeeef8"
                 strokeWidth={1}
                 fill="#aeeef8"
-                fillOpacity={(1 / (i + 1)) - ((1 / i) * .2)}
+                fillOpacity={1 / (i + 1) - 1 / i * 0.2}
                 strokeOpacity={0.2}
               />
               <text
@@ -77,7 +83,7 @@ export default function LineRadialTile({
           fill="none"
           stroke={"url('#line-gradient')"}
           strokeWidth={2}
-          strokeOpacity={.8}
+          strokeOpacity={0.8}
           curve={curveBasisOpen}
           strokeLinecap="round"
         />
