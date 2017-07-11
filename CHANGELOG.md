@@ -1,5 +1,7 @@
 # Changelog
 
+- [v0.0.129](#v00129)
+- [v0.0.128](#v00128)
 - [v0.0.127](#v00127)
 - [v0.0.126](#v00126)
 - [v0.0.125](#v00125)
@@ -13,6 +15,29 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.129
+
+- [gradient] add <RadialGradient /> [#90](https://github.com/hshoff/vx/pull/90)
+- [bounds] add `@vx/bounds` package with `withBoundingRects()` HOC  [#91](https://github.com/hshoff/vx/pull/91)
+
+```bash
+Changes:
+- @vx/bounds: 0.0.128 => 0.0.129
+- @vx/demo: 0.0.128 => 0.0.129
+- @vx/gradient: 0.0.128 => 0.0.129
+```
+
+# v0.0.128
+
+- ignore this one, `lerna publish` failed midway through
+
+```bash
+Changes:
+- @vx/bounds: 0.0.0 => 0.0.128
+- @vx/demo: 0.0.127 => 0.0.128
+- @vx/gradient: 0.0.127 => 0.0.128
+```
 
 # v0.0.127
 
