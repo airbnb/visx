@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.130](#v00130)
 - [v0.0.129](#v00129)
 - [v0.0.128](#v00128)
 - [v0.0.127](#v00127)
@@ -15,6 +16,21 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.130
+
+- [shape] Add tests for Arc, AreaClosed, & Line, fix AreaClosed error [#95](https://github.com/hshoff/vx/pull/95)
+- [Axis] Add tests to Axis.test.js [#95](https://github.com/hshoff/vx/pull/94)
+
+```bash
+Changes:
+- @vx/annotation: 0.0.127 => 0.0.130
+- @vx/axis: 0.0.127 => 0.0.130
+- @vx/demo: 0.0.129 => 0.0.130
+- @vx/grid: 0.0.127 => 0.0.130
+- @vx/marker: 0.0.127 => 0.0.130
+- @vx/shape: 0.0.127 => 0.0.130
+```
 
 # v0.0.129
 
