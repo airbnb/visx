@@ -20,7 +20,7 @@
 # v0.0.130
 
 - [shape] Add tests for Arc, AreaClosed, & Line, fix AreaClosed error [#95](https://github.com/hshoff/vx/pull/95)
-- [Axis] Add tests to Axis.test.js [#95](https://github.com/hshoff/vx/pull/94)
+- [Axis] Add tests to Axis.test.js [#94](https://github.com/hshoff/vx/pull/94)
 
 ```bash
 Changes:
