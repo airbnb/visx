@@ -2,19 +2,18 @@ import React from 'react';
 import Show from '../components/show';
 import Axis from '../components/tiles/axis';
 
-export default () => {
-  return (
-    <Show
-      component={Axis}
-      title="Axis"
-      margin={{
-        top: 20,
-        left: 60,
-        right: 40,
-        bottom: 60,
-      }}
-    >
-      {`import React from 'react';
+export default () => (
+  <Show
+    component={Axis}
+    title="Axis"
+    margin={{
+      top: 20,
+      left: 60,
+      right: 40,
+      bottom: 60,
+    }}
+  >
+    {`import React from 'react';
 import { Grid } from '@vx/grid';
 import { Group } from '@vx/group';
 import { curveBasis } from '@vx/curve';
@@ -168,6 +167,5 @@ export default ({
     </svg>
   );
 }`}
-    </Show>
+  </Show>
   );
-};

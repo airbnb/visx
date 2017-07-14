@@ -10,5 +10,5 @@ export default [
   { key: 'Group3', value: '44', date: '04/25/12' },
   { key: 'Group1', value: '24', date: '04/26/12' },
   { key: 'Group2', value: '52', date: '04/26/12' },
-  { key: 'Group3', value: '64', date: '04/26/12' }
+  { key: 'Group3', value: '64', date: '04/26/12' },
 ];

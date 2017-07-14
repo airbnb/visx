@@ -8,7 +8,7 @@ export default function LegendItem({
 }) {
   return (
     <div
-      className='vx-legend-item'
+      className="vx-legend-item"
       style={{
         display: 'flex',
         alignItems: 'center',

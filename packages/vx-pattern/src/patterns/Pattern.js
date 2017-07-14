@@ -28,5 +28,5 @@ Pattern.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
-  ]).isRequired
-}
+  ]).isRequired,
+};

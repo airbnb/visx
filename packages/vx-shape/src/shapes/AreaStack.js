@@ -37,20 +37,18 @@ export default ({
 
   return (
     <g>
-      {seriesData.map((series, i) => {
-        return (
-          <path
-            className={cx('vx-area-stack', className)}
-            key={`area-stack-${i}-${series.key || ''}`}
-            d={path(series)}
-            {...additionalProps(restProps, {
-              datum: series[i],
-              index: i,
-              series,
-            })}
-          />
-        );
-      })}
+      {seriesData.map((series, i) => (
+        <path
+          className={cx('vx-area-stack', className)}
+          key={`area-stack-${i}-${series.key || ''}`}
+          d={path(series)}
+          {...additionalProps(restProps, {
+            datum: series[i],
+            index: i,
+            series,
+          })}
+        />
+        ))}
       {!!glyph &&
         <g className="vx-area-stack-glyphs">
           {data.map(glyph)}

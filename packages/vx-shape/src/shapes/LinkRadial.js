@@ -10,7 +10,7 @@ export default function LinkRadial({
   radius = d => d.y,
   ...restProps
 }) {
-  const link = linkRadial()
+  const link = linkRadial();
   link.angle(angle);
   link.radius(radius);
   return (

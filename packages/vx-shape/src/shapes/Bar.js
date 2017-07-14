@@ -20,27 +20,25 @@ export default ({
   strokeLinejoin,
   strokeMiterlimit,
   strokeOpacity,
-  ...restProps,
-}) => {
-  return (
-    <rect
-      className={cx('vx-bar', className)}
-      x={x}
-      y={y}
-      width={width}
-      height={height}
-      rx={rx}
-      ry={ry}
-      fill={fill}
-      fillOpacity={fillOpacity}
-      stroke={stroke}
-      strokeWidth={strokeWidth}
-      strokeDasharray={strokeDasharray}
-      strokeLinecap={strokeLinecap}
-      strokeLinejoin={strokeLinejoin}
-      strokeMiterlimit={strokeMiterlimit}
-      strokeOpacity={strokeOpacity}
-      {...additionalProps(restProps, data)}
-    />
+  ...restProps
+}) => (
+  <rect
+    className={cx('vx-bar', className)}
+    x={x}
+    y={y}
+    width={width}
+    height={height}
+    rx={rx}
+    ry={ry}
+    fill={fill}
+    fillOpacity={fillOpacity}
+    stroke={stroke}
+    strokeWidth={strokeWidth}
+    strokeDasharray={strokeDasharray}
+    strokeLinecap={strokeLinecap}
+    strokeLinejoin={strokeLinejoin}
+    strokeMiterlimit={strokeMiterlimit}
+    strokeOpacity={strokeOpacity}
+    {...additionalProps(restProps, data)}
+  />
   );
-}

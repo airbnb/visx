@@ -77,7 +77,7 @@ export default withTooltip(
             y={0}
             width={width}
             height={height}
-            fill={`#eaedff`}
+            fill={'#eaedff'}
             rx={14}
           />
           <BarStack
@@ -89,16 +89,16 @@ export default withTooltip(
             xScale={xScale}
             yScale={yScale}
             zScale={zScale}
-            onClick={data => event => {
+            onClick={data => (event) => {
               if (!events) return;
               alert(`clicked: ${JSON.stringify(data)}`);
             }}
-            onMouseLeave={data => event => {
+            onMouseLeave={data => (event) => {
               tooltipTimeout = setTimeout(() => {
                 hideTooltip();
               }, 300);
             }}
-            onMouseMove={data => event => {
+            onMouseMove={data => (event) => {
               if (tooltipTimeout) clearTimeout(tooltipTimeout);
               const top = event.clientY - margin.top - data.height;
               const left =

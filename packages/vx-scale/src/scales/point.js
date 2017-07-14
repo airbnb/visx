@@ -18,4 +18,4 @@ export default ({
   if (align) scale.align(align);
 
   return scale;
-}
+};

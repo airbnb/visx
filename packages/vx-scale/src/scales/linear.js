@@ -16,4 +16,4 @@ export default ({
   if (clamp) scale.clamp(true);
 
   return scale;
-}
+};

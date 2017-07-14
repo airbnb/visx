@@ -26,35 +26,33 @@ export default function BarGroup({
       top={top}
       left={left}
     >
-      {data && data.map((d, i) => {
-        return (
-          <Group
-            key={`bar-group-${i}-${x0(d)}`}
-            left={x0Scale(x0(d))}
-          >
-            {keys && keys.map((key, i) => {
-              const value = d[key];
-              return (
-                <Bar
-                  key={`bar-group-bar-${i}-${value}-${key}`}
-                  x={x1Scale(key)}
-                  y={yScale(value)}
-                  width={x1Scale.bandwidth()}
-                  height={height - yScale(value)}
-                  fill={zScale(key)}
-                  data={{
-                    key,
-                    value,
-                    x: format(x0(d)),
-                    data: d
-                  }}
-                  {...restProps}
-                />
-              );
-            })}
-          </Group>
-        );
-      })}
+      {data && data.map((d, i) => (
+        <Group
+          key={`bar-group-${i}-${x0(d)}`}
+          left={x0Scale(x0(d))}
+        >
+          {keys && keys.map((key, i) => {
+            const value = d[key];
+            return (
+              <Bar
+                key={`bar-group-bar-${i}-${value}-${key}`}
+                x={x1Scale(key)}
+                y={yScale(value)}
+                width={x1Scale.bandwidth()}
+                height={height - yScale(value)}
+                fill={zScale(key)}
+                data={{
+                  key,
+                  value,
+                  x: format(x0(d)),
+                  data: d,
+                }}
+                {...restProps}
+              />
+            );
+          })}
+        </Group>
+        ))}
     </Group>
   );
 }

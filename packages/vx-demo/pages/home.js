@@ -36,31 +36,31 @@ export default () => (
             <li>
               <p>What does <code>vx</code> stand for?</p>
               <blockquote>
-              <p>vx stands for visualization components.</p>
+                <p>vx stands for visualization components.</p>
               </blockquote>
             </li>
             <li>
               <p>Do you plan on supporting animation/transitions?</p>
               <blockquote>
-              <p>yup!</p>
+                <p>yup!</p>
               </blockquote>
             </li>
             <li>
               <p>Do I have to use every package to make a chart?</p>
               <blockquote>
-              <p>nope! pick and choose the packages you need.</p>
+                <p>nope! pick and choose the packages you need.</p>
               </blockquote>
             </li>
             <li>
               <p>Can I use this to create my own library of charts for my team?</p>
               <blockquote>
-              <p>Please do.</p>
+                <p>Please do.</p>
               </blockquote>
             </li>
             <li>
               <p>I like using <code>d3</code>.</p>
               <blockquote>
-              <p>Me too.</p>
+                <p>Me too.</p>
               </blockquote>
             </li>
           </ol>
@@ -182,4 +182,4 @@ export default () => (
       }
     `}</style>
   </Page>
-)
+);

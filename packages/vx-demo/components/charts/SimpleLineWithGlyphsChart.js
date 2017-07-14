@@ -16,13 +16,13 @@ function identity(x) {
 
 function numTicksForHeight(height) {
   if (height <= 300) return 3;
-  if (300 < height && height <= 600) return 5;
+  if (height > 300 && height <= 600) return 5;
   return 10;
 }
 
 function numTicksForWidth(width) {
   if (width <= 300) return 2;
-  if (300 < width && width <= 400) return 5;
+  if (width > 300 && width <= 400) return 5;
   return 10;
 }
 
@@ -34,9 +34,7 @@ export default ({
 }) => {
   if (!Array.isArray(dataset)) dataset = [dataset];
 
-  const allData = dataset.reduce((rec, d) => {
-    return rec.concat(d.data)
-  }, []);
+  const allData = dataset.reduce((rec, d) => rec.concat(d.data), []);
 
   // bounds
   const xMax = width - margin.left - margin.right;
@@ -82,56 +80,53 @@ export default ({
           numTicksRows={numTicksForHeight(height)}
           numTicksColumns={numTicksForWidth(width)}
         />
-        {dataset.map((series, i) => {
-          return (
-            <LinePath
-              key={`chart-line-${i}`}
-              data={series.data}
-              xScale={xScale}
-              yScale={yScale}
-              x={x}
-              y={y}
-              stroke={series.chart.stroke}
-              strokeWidth={series.chart.strokeWidth}
-              strokeDasharray={series.chart.strokeDasharray}
-              curve={curveMonotoneX}
-              glyph={(d, i) => {
-                return (
-                  <GlyphDot key={`line-point-${i}`}
-                    className={cx('vx-linepath-point')}
-                    cx={xScale(x(d))}
-                    cy={yScale(y(d))}
-                    r={6}
-                    fill={series.chart.stroke}
-                    stroke={series.chart.backgroundColor}
-                    strokeWidth={3}
-                  >
-                    <text
-                      x={xScale(x(d))}
-                      y={yScale(y(d))}
-                      dx={10}
-                      fill={series.chart.stroke}
-                      stroke={series.chart.backgroundColor}
-                      strokeWidth={6}
-                      fontSize={11}
-                    >
-                      {yFormat(y(d))}
-                    </text>
-                    <text
-                      x={xScale(x(d))}
-                      y={yScale(y(d))}
-                      dx={10}
-                      fill={series.chart.stroke}
-                      fontSize={11}
-                    >
-                      {yFormat(y(d))}
-                    </text>
-                  </GlyphDot>
-                );
-              }}
-            />
-          );
-        })}
+        {dataset.map((series, i) => (
+          <LinePath
+            key={`chart-line-${i}`}
+            data={series.data}
+            xScale={xScale}
+            yScale={yScale}
+            x={x}
+            y={y}
+            stroke={series.chart.stroke}
+            strokeWidth={series.chart.strokeWidth}
+            strokeDasharray={series.chart.strokeDasharray}
+            curve={curveMonotoneX}
+            glyph={(d, i) => (
+              <GlyphDot
+                key={`line-point-${i}`}
+                className={cx('vx-linepath-point')}
+                cx={xScale(x(d))}
+                cy={yScale(y(d))}
+                r={6}
+                fill={series.chart.stroke}
+                stroke={series.chart.backgroundColor}
+                strokeWidth={3}
+              >
+                <text
+                  x={xScale(x(d))}
+                  y={yScale(y(d))}
+                  dx={10}
+                  fill={series.chart.stroke}
+                  stroke={series.chart.backgroundColor}
+                  strokeWidth={6}
+                  fontSize={11}
+                >
+                  {yFormat(y(d))}
+                </text>
+                <text
+                  x={xScale(x(d))}
+                  y={yScale(y(d))}
+                  dx={10}
+                  fill={series.chart.stroke}
+                  fontSize={11}
+                >
+                  {yFormat(y(d))}
+                </text>
+              </GlyphDot>
+                )}
+          />
+          ))}
       </Group>
       <AxisBottom
         top={height - margin.bottom}
@@ -143,4 +138,4 @@ export default ({
       />
     </svg>
   );
-}
+};

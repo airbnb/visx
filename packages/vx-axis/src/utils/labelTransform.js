@@ -12,7 +12,9 @@ export default function labelTransform({
   const sign = orientation === ORIENT.left || orientation === ORIENT.top ? -1 : 1;
   const { fontSize = 10 } = labelComponent.props;
 
-  let x, y, transform = null;
+  let x,
+    y,
+    transform = null;
   if (orientation === ORIENT.top || orientation === ORIENT.bottom) {
     x = Math.max(...range) / 2;
     y = sign * (tickLength + labelOffset + tickLabelFontSize +

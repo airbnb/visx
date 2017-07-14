@@ -2,20 +2,19 @@ import React from 'react';
 import Show from '../components/show';
 import Legends from '../components/tiles/legends';
 
-export default () => {
-  return (
-    <Show
-      events
-      margin={{
-        top: 10,
-        left: 40,
-        right: 30,
-        bottom: 80,
-      }}
-      component={Legends}
-      title="Legends"
-    >
-      {`import React from 'react';
+export default () => (
+  <Show
+    events
+    margin={{
+      top: 10,
+      left: 40,
+      right: 30,
+      bottom: 80,
+    }}
+    component={Legends}
+    title="Legends"
+  >
+    {`import React from 'react';
 import { format } from 'd3-format';
 import {
   Legend,
@@ -223,6 +222,5 @@ export default ({ width, height, margin }) => {
 };
 
 `}
-    </Show>
+  </Show>
   );
-};

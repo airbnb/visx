@@ -8,7 +8,7 @@ export default function withTooltip(BaseComponent) {
         tooltipOpen: false,
         tooltipLeft: undefined,
         tooltipTop: undefined,
-        tooltipData: undefined
+        tooltipData: undefined,
       };
       this.updateTooltip = this.updateTooltip.bind(this);
       this.showTooltip = this.showTooltip.bind(this);
@@ -20,7 +20,7 @@ export default function withTooltip(BaseComponent) {
         tooltipOpen,
         tooltipLeft,
         tooltipTop,
-        tooltipData
+        tooltipData,
       }));
     }
     showTooltip({ tooltipLeft, tooltipTop, tooltipData }) {
@@ -28,7 +28,7 @@ export default function withTooltip(BaseComponent) {
         tooltipOpen: true,
         tooltipLeft,
         tooltipTop,
-        tooltipData
+        tooltipData,
       });
     }
     hideTooltip() {
@@ -36,7 +36,7 @@ export default function withTooltip(BaseComponent) {
         tooltipOpen: false,
         tooltipLeft: undefined,
         tooltipTop: undefined,
-        tooltipData: undefined
+        tooltipData: undefined,
       });
     }
     render() {

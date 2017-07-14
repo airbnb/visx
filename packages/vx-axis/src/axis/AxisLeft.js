@@ -46,14 +46,14 @@ export default function AxisLeft({
       rangePadding={rangePadding}
       labelComponent={
         typeof label === 'string' ?
-        <text
-          textAnchor="middle"
-          fontFamily="Arial"
-          fontSize={10}
-          fill="black"
-        >
-          {label}
-        </text>
+          <text
+            textAnchor="middle"
+            fontFamily="Arial"
+            fontSize={10}
+            fill="black"
+          >
+            {label}
+          </text>
         : label
       }
       numTicks={numTicks}

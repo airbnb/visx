@@ -24,20 +24,16 @@ export default function Cluster({
   const descendants = root.descendants();
   return (
     <Group top={top} left={left}>
-      {linkComponent && links.map((link, i) => {
-        return (
-          <Group key={`cluster-link-${i}`}>
-            {React.createElement(linkComponent, { link })}
-          </Group>
-        );
-      })}
-      {nodeComponent && descendants.map((node, i) => {
-        return (
-          <Group key={`cluster-node-${i}`}>
-            {React.createElement(nodeComponent, { node })}
-          </Group>
-        );
-      })}
+      {linkComponent && links.map((link, i) => (
+        <Group key={`cluster-link-${i}`}>
+          {React.createElement(linkComponent, { link })}
+        </Group>
+        ))}
+      {nodeComponent && descendants.map((node, i) => (
+        <Group key={`cluster-node-${i}`}>
+          {React.createElement(nodeComponent, { node })}
+        </Group>
+        ))}
     </Group>
   );
 }

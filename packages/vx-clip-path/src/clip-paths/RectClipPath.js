@@ -7,7 +7,7 @@ export default ({
   y = 0,
   width = 1,
   height = 1,
-  ...restProps,
+  ...restProps
 }) => (
   <ClipPath id={id}>
     <rect

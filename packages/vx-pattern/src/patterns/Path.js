@@ -54,4 +54,4 @@ PatternPath.propTypes = {
   stroke: PropTypes.string,
   strokeWidth: PropTypes.number,
   strokeDasharray: PropTypes.string,
-}
+};

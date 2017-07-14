@@ -42,7 +42,7 @@ export default function BoxPlot({
           data,
           max,
           x1: centerX - boxWidth / 4,
-          x2: centerX + boxWidth / 4
+          x2: centerX + boxWidth / 4,
         })}
       />
       <line
@@ -73,7 +73,7 @@ export default function BoxPlot({
           min,
           max,
           x1: left,
-          x2: left + boxWidth
+          x2: left + boxWidth,
         })}
       />
       <line
@@ -88,7 +88,7 @@ export default function BoxPlot({
           data,
           median,
           x1: left,
-          x2: left + boxWidth
+          x2: left + boxWidth,
         })}
       />
       <line
@@ -111,7 +111,7 @@ export default function BoxPlot({
           data,
           min,
           x1: centerX - boxWidth / 4,
-          x2: centerX + boxWidth / 4
+          x2: centerX + boxWidth / 4,
         })}
       />
       {container &&
@@ -129,7 +129,7 @@ export default function BoxPlot({
             max,
             min,
             thirdQuartile,
-            firstQuartile
+            firstQuartile,
           })}
         />}
     </Group>

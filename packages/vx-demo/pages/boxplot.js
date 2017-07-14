@@ -2,15 +2,14 @@ import React from 'react';
 import Show from '../components/show';
 import BoxPlot from '../components/tiles/boxplot';
 
-export default () => {
-  return (
-    <Show
-      events={true}
-      margin={{ top: 80 }}
-      component={BoxPlot}
-      title="Box Plot"
-    >
-      {`import React from 'react';
+export default () => (
+  <Show
+    events
+    margin={{ top: 80 }}
+    component={BoxPlot}
+    title="Box Plot"
+  >
+    {`import React from 'react';
 import { Group } from '@vx/group';
 import { BoxPlot } from '@vx/boxplot';
 import { LinearGradient } from '@vx/gradient';
@@ -209,6 +208,5 @@ export default withTooltip(
   }
 );
 `}
-    </Show>
+  </Show>
   );
-};

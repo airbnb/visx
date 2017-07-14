@@ -1,10 +1,9 @@
 import React from 'react';
 import Codeblock from './Codeblock';
 
-export default ({}) => {
-  return (
-    <Codeblock>
-      {`// MultiSeriesLine.js
+export default ({}) => (
+  <Codeblock>
+    {`// MultiSeriesLine.js
 import React from 'react';
 import Axis from '@vx/axis';
 import Curve from '@vx/curve';
@@ -181,6 +180,5 @@ const Legend = ({
     </g>
   );
 }`}
-    </Codeblock>
+  </Codeblock>
   );
-}

@@ -2,8 +2,8 @@ import Link from 'next/link';
 import GithubButton from 'react-github-button';
 
 export default () => (
-  <div className='nav'>
-    <div className='nav-inner'>
+  <div className="nav">
+    <div className="nav-inner">
       <Link href="/">
         <div className="logo" />
       </Link>
@@ -75,7 +75,7 @@ export default () => (
       }
     `}</style>
   </div>
-)
+);
 
 const Item = ({ href, children, className }) => (
   <li className="Item">
@@ -108,4 +108,4 @@ const Item = ({ href, children, className }) => (
       }
     `}</style>
   </li>
-)
+);

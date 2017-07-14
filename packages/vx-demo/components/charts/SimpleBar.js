@@ -9,7 +9,7 @@ import { extent, max } from 'd3-array';
 const data = letterFrequency;
 
 function round(value, precision) {
-  var multiplier = Math.pow(10, precision || 0);
+  const multiplier = Math.pow(10, precision || 0);
   return Math.round(value * multiplier) / multiplier;
 }
 
@@ -62,7 +62,7 @@ export default ({
             />
             <text
               x={xScale(x(d))}
-              y={yMax-barHeight}
+              y={yMax - barHeight}
               fill="black"
               fontSize={14}
               dy={'-.2em'}
@@ -84,4 +84,4 @@ export default ({
       })}
     </svg>
   );
-}
+};

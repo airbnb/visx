@@ -18,7 +18,7 @@ export default function Tooltip(props) {
         pointerEvents: 'none',
         top,
         left,
-        ...style
+        ...style,
       }}
       {...restProps}
     >

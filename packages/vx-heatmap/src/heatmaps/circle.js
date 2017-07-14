@@ -21,35 +21,31 @@ export default function HeatmapCircle({
   const r = radius - gap;
   return (
     <Group>
-      {data.map((d, i) => {
-        return (
-          <Group
-            key={`heatmap-${i}`}
-            className='vx-heatmap-column'
-            left={xScale(bin(d))}
-          >
-            {bins(d).map((b, j) => {
-              return (
-                <circle
-                  key={`heatmap-tile-circle-${j}`}
-                  className={cx('vx-heatmap-circle', className)}
-                  fill={colorScale(count(b))}
-                  r={r}
-                  cx={radius}
-                  cy={yScale(bin(b) + step) + radius} fillOpacity={opacityScale(count(b))}
-                  {...additionalProps(restProps, {
-                    bin: b,
-                    index: j,
-                    datum: d,
-                    datumIndex: i,
-                    data
-                  })}
-                />
-              );
-            })}
-          </Group>
-        );
-      })}
+      {data.map((d, i) => (
+        <Group
+          key={`heatmap-${i}`}
+          className="vx-heatmap-column"
+          left={xScale(bin(d))}
+        >
+          {bins(d).map((b, j) => (
+            <circle
+              key={`heatmap-tile-circle-${j}`}
+              className={cx('vx-heatmap-circle', className)}
+              fill={colorScale(count(b))}
+              r={r}
+              cx={radius}
+              cy={yScale(bin(b) + step) + radius} fillOpacity={opacityScale(count(b))}
+              {...additionalProps(restProps, {
+                bin: b,
+                index: j,
+                datum: d,
+                datumIndex: i,
+                data,
+              })}
+            />
+              ))}
+        </Group>
+        ))}
     </Group>
   );
 }

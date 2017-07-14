@@ -2,15 +2,16 @@ import React from 'react';
 import Show from '../components/show';
 import Glyphs from '../components/tiles/multiline';
 
-export default () => {
-  return (
-    <Show component={Glyphs} title="Glyphs" margin={{
+export default () => (
+  <Show
+    component={Glyphs} title="Glyphs" margin={{
       top: 0,
       left: 0,
       right: 0,
       bottom: 0,
-    }}>
-{`import React from 'react';
+    }}
+  >
+    {`import React from 'react';
 import { Group } from '@vx/group';
 import { GlyphDot } from '@vx/glyph';
 import { LinePath } from '@vx/shape';
@@ -110,6 +111,5 @@ export default ({
   );
 }
 `}
-    </Show>
+  </Show>
   );
-}

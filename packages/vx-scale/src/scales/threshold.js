@@ -10,4 +10,4 @@ export default ({
   if (domain) scale.domain(domain);
 
   return scale;
-}
+};

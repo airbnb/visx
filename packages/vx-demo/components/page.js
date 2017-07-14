@@ -3,7 +3,7 @@ import Nav from './nav';
 import cx from 'classnames';
 
 export default ({ children, title, className }) => (
-  <div className={cx("main", className)}>
+  <div className={cx('main', className)}>
     <Meta title={title} />
     <div className="nav-container">
       <Nav />

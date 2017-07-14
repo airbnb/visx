@@ -53,7 +53,7 @@ export default ({
           y={y}
           stroke={'rgba(126, 31, 220, 1.000)'}
           strokeWidth={2}
-          strokeDasharray='2,2'
+          strokeDasharray="2,2"
           curve={curveBasis}
         />
         <LinePath
@@ -65,36 +65,34 @@ export default ({
           stroke={'rgba(126, 31, 220, 1.000)'}
           strokeWidth={3}
           curve={curveMonotoneX}
-          glyph={(d,i) => {
-            return (
-              <g key={`line-point-${i}`}>
-                <GlyphDot
-                  cx={xScale(x(d))}
-                  cy={yScale(y(d))}
-                  r={6}
-                  fill='#fff'
-                  stroke='rgba(0, 242, 255, 1.000)'
-                  strokeWidth={10}
-                />
-                <GlyphDot
-                  cx={xScale(x(d))}
-                  cy={yScale(y(d))}
-                  r={6}
-                  fill='rgba(0, 242, 255, 1.000)'
-                  stroke={'rgba(126, 31, 220, 1.000)'}
-                  strokeWidth={3}
-                />
-                <GlyphDot
-                  cx={xScale(x(d))}
-                  cy={yScale(y(d))}
-                  r={4}
-                  fill='#ffffff'
-                />
-              </g>
-            );
-          }}
+          glyph={(d, i) => (
+            <g key={`line-point-${i}`}>
+              <GlyphDot
+                cx={xScale(x(d))}
+                cy={yScale(y(d))}
+                r={6}
+                fill="#fff"
+                stroke="rgba(0, 242, 255, 1.000)"
+                strokeWidth={10}
+              />
+              <GlyphDot
+                cx={xScale(x(d))}
+                cy={yScale(y(d))}
+                r={6}
+                fill="rgba(0, 242, 255, 1.000)"
+                stroke={'rgba(126, 31, 220, 1.000)'}
+                strokeWidth={3}
+              />
+              <GlyphDot
+                cx={xScale(x(d))}
+                cy={yScale(y(d))}
+                r={4}
+                fill="#ffffff"
+              />
+            </g>
+            )}
         />
       </Group>
     </svg>
   );
-}
+};

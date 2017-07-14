@@ -19,4 +19,4 @@ export default ({
   ]);
 
   return voronoi;
-}
+};

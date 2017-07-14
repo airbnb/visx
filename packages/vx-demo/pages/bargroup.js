@@ -2,14 +2,14 @@ import React from 'react';
 import Show from '../components/show';
 import BarGroup from '../components/tiles/bargroup';
 
-export default () => {
-  return (
-    <Show
-      events={true}
-      margin={{top: 80}}
-      component={BarGroup}
-      title="Bar Group">
-{`import React from 'react';
+export default () => (
+  <Show
+    events
+    margin={{ top: 80 }}
+    component={BarGroup}
+    title="Bar Group"
+  >
+    {`import React from 'react';
 import { BarGroup } from '@vx/shape';
 import { Group } from '@vx/group';
 import { AxisBottom } from '@vx/axis';
@@ -107,6 +107,5 @@ export default ({
     </svg>
   );
 }`}
-    </Show>
+  </Show>
   );
-}

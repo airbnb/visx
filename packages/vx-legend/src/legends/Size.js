@@ -34,12 +34,10 @@ function defaultDomain({ steps, scale }) {
 }
 
 function defaultTransform({ scale, labelFormat }) {
-  return (d, i) => {
-    return {
-      text: `${labelFormat(d, i)}`,
-      value: scale(d),
-      datum: d,
-      index: i,
-    };
-  };
+  return (d, i) => ({
+    text: `${labelFormat(d, i)}`,
+    value: scale(d),
+    datum: d,
+    index: i,
+  });
 }

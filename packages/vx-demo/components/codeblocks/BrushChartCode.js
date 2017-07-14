@@ -1,10 +1,9 @@
 import React from 'react';
 import Codeblock from './Codeblock';
 
-export default ({}) => {
-  return (
-    <Codeblock>
-      {`// BrushChart.js
+export default ({}) => (
+  <Codeblock>
+    {`// BrushChart.js
 import React from 'react';
 import { genRandomNormalPoints } from '@vx/mock-data';
 import { scaleLinear } from '@vx/scale';
@@ -164,6 +163,5 @@ class BrushChart extends React.Component {
 
 export default withBrush(BrushChart);
 `}
-    </Codeblock>
+  </Codeblock>
   );
-}

@@ -24,20 +24,16 @@ export default function Tree({
   const descendants = root.descendants();
   return (
     <Group top={top} left={left}>
-      {linkComponent && links.map((link, i) => {
-        return (
-          <Group key={`tree-link-${i}`}>
-            {React.createElement(linkComponent, { link })}
-          </Group>
-        );
-      })}
-      {nodeComponent && descendants.map((node, i) => {
-        return (
-          <Group key={`tree-node-${i}`}>
-            {React.createElement(nodeComponent, { node })}
-          </Group>
-        );
-      })}
+      {linkComponent && links.map((link, i) => (
+        <Group key={`tree-link-${i}`}>
+          {React.createElement(linkComponent, { link })}
+        </Group>
+        ))}
+      {nodeComponent && descendants.map((node, i) => (
+        <Group key={`tree-node-${i}`}>
+          {React.createElement(nodeComponent, { node })}
+        </Group>
+        ))}
     </Group>
   );
 }

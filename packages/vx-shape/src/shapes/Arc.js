@@ -33,18 +33,16 @@ export default function Arc({
   const arcs = pie(data);
   return (
     <Group className="vx-arcs-group" top={top} left={left}>
-      {arcs.map((arc, i) => {
-        return (
-          <g key={`arc-${i}`}>
-            <path
-              className={cx('vx-arc', className)}
-              d={path(arc)}
-              {...additionalProps(restProps, arc)}
-            />
-            {centroid && centroid(path.centroid(arc), arc)}
-          </g>
-        );
-      })}
+      {arcs.map((arc, i) => (
+        <g key={`arc-${i}`}>
+          <path
+            className={cx('vx-arc', className)}
+            d={path(arc)}
+            {...additionalProps(restProps, arc)}
+          />
+          {centroid && centroid(path.centroid(arc), arc)}
+        </g>
+        ))}
     </Group>
   );
 }

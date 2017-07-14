@@ -4,7 +4,7 @@ import { Group } from '@vx/group';
 import {
   PatternLines,
   PatternCircles,
-  PatternWaves
+  PatternWaves,
 } from '@vx/pattern';
 
 export default ({
@@ -14,7 +14,7 @@ export default ({
     top: 0,
     left: 0,
     right: 0,
-    bottom: 80
+    bottom: 80,
   },
 }) => {
   const xMax = width - margin.left - margin.right;
@@ -33,51 +33,51 @@ export default ({
         rx={14}
       />
       <PatternLines
-        id='vLines'
+        id="vLines"
         height={6}
         width={6}
-        stroke='black'
+        stroke="black"
         strokeWidth={1}
       />
       <PatternLines
-        id='hLines'
+        id="hLines"
         height={6}
         width={6}
-        stroke='black'
+        stroke="black"
         strokeWidth={1}
         orientation={['horizontal']}
       />
       <PatternLines
-        id='dLines'
+        id="dLines"
         height={6}
         width={6}
-        stroke='black'
+        stroke="black"
         strokeWidth={1}
         orientation={['diagonal']}
       />
       <PatternLines
-        id='dhLines'
+        id="dhLines"
         height={6}
         width={6}
-        stroke='black'
+        stroke="black"
         strokeWidth={1}
         orientation={['vertical', 'horizontal']}
       />
       <PatternCircles
-        id='Circles'
+        id="Circles"
         height={6}
         width={6}
         fill="black"
       />
       <PatternCircles
-        id='cCircles'
+        id="cCircles"
         height={10}
         width={10}
         fill="black"
         complement
       />
       <PatternWaves
-        id='Waves'
+        id="Waves"
         height={6}
         width={6}
         fill="transparent"
@@ -86,7 +86,7 @@ export default ({
         complement
       />
       <PatternWaves
-        id='bWaves'
+        id="bWaves"
         height={12}
         width={12}
         fill="transparent"
@@ -96,7 +96,7 @@ export default ({
       />
       <Group top={margin.top} left={margin.left}>
         <Bar
-          fill={`url(#vLines)`}
+          fill={'url(#vLines)'}
           height={pHeight}
           width={pWidth}
           x={0}
@@ -104,7 +104,7 @@ export default ({
           rx={14}
         />
         <Bar
-          fill={`url(#hLines)`}
+          fill={'url(#hLines)'}
           height={pHeight}
           width={pWidth}
           x={pWidth}
@@ -112,7 +112,7 @@ export default ({
           rx={14}
         />
         <Bar
-          fill={`url(#dLines)`}
+          fill={'url(#dLines)'}
           height={pHeight}
           width={pWidth}
           x={pWidth * 2}
@@ -120,7 +120,7 @@ export default ({
           rx={14}
         />
         <Bar
-          fill={`url(#dhLines)`}
+          fill={'url(#dhLines)'}
           height={pHeight}
           width={pWidth}
           x={pWidth * 3}
@@ -128,7 +128,7 @@ export default ({
           rx={14}
         />
         <Bar
-          fill={`url(#Circles)`}
+          fill={'url(#Circles)'}
           height={pHeight}
           width={pWidth}
           x={0}
@@ -136,7 +136,7 @@ export default ({
           rx={14}
         />
         <Bar
-          fill={`url(#cCircles)`}
+          fill={'url(#cCircles)'}
           height={pHeight}
           width={pWidth}
           x={pWidth}
@@ -144,7 +144,7 @@ export default ({
           rx={14}
         />
         <Bar
-          fill={`url(#Waves)`}
+          fill={'url(#Waves)'}
           height={pHeight}
           width={pWidth}
           x={pWidth * 2}
@@ -152,7 +152,7 @@ export default ({
           rx={14}
         />
         <Bar
-          fill={`url(#bWaves)`}
+          fill={'url(#bWaves)'}
           height={pHeight}
           width={pWidth}
           x={pWidth * 3}
@@ -162,4 +162,4 @@ export default ({
       </Group>
     </svg>
   );
-}
+};

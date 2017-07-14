@@ -21,15 +21,15 @@ export default function Rows({
       top={top}
       left={left}
     >
-      {scale.ticks && scale.ticks(numTicks).map((d,i) => {
+      {scale.ticks && scale.ticks(numTicks).map((d, i) => {
         const y = scale(d);
         const fromPoint = new Point({
           x: 0,
-          y
+          y,
         });
         const toPoint = new Point({
           x: width,
-          y
+          y,
         });
         return (
           <Line

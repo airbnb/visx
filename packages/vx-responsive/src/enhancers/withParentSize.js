@@ -9,11 +9,11 @@ export default function withParentSize(BaseComponent) {
       this.state = {
         parentWidth: null,
         parentHeight: null,
-      }
+      };
 
       this.handleResize = debounce(
         this.resize.bind(this),
-        props.windowResizeDebounceTime
+        props.windowResizeDebounceTime,
       ).bind(this);
     }
 
@@ -28,7 +28,7 @@ export default function withParentSize(BaseComponent) {
 
     resize(event) {
       if (this.container) {
-        var boundingRect = this.container.getBoundingClientRect();
+        const boundingRect = this.container.getBoundingClientRect();
         this.setState((prevState, props) => ({
           parentWidth: boundingRect.width,
           parentHeight: boundingRect.height,

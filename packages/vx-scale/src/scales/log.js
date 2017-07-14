@@ -18,4 +18,4 @@ export default ({
   if (base) scale.base(base);
 
   return scale;
-}
+};

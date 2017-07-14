@@ -1,10 +1,9 @@
 import React from 'react';
 import Codeblock from './Codeblock';
 
-export default ({}) => {
-  return (
-    <Codeblock>
-      {`// SimpleLineWithGlyphsChart.js
+export default ({}) => (
+  <Codeblock>
+    {`// SimpleLineWithGlyphsChart.js
 function SimpleLineWithGlyphsChart({
   margin,
   dataset,
@@ -128,6 +127,5 @@ function SimpleLineWithGlyphsChart({
 }
 
 export default withScreenSize(SimpleLineWithGlyphsChart);`}
-    </Codeblock>
+  </Codeblock>
   );
-}

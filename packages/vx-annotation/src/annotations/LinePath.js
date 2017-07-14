@@ -22,7 +22,7 @@ LinePathAnnotation.propTypes = {
   labelFontSize: PropTypes.number,
   labelStroke: PropTypes.string,
   labelStrokeWidth: PropTypes.number,
-  labelPaintOrder: PropTypes.string
+  labelPaintOrder: PropTypes.string,
 };
 
 export default function LinePathAnnotation({
@@ -48,7 +48,7 @@ export default function LinePathAnnotation({
   const endPoint = points[points.length - 1];
   return (
     <Group
-      className='vx-line-path-annotation-group'
+      className="vx-line-path-annotation-group"
       top={top}
       left={left}
     >

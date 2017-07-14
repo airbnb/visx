@@ -23,7 +23,8 @@
     "docs": "node ./scripts/docs/index.js",
     "prepare-release": "git checkout master && git pull --rebase origin master && npm run docs && lerna updated",
     "release": "npm run prepare-release && lerna publish --exact",
-    "lint": "eslint --ignore-path=.eslintignore --ext .js,.jsx ./packages/"
+    "lint": "eslint --ignore-path=.eslintignore --ext .js,.jsx ./packages/",
+    "lint-fix": "eslint --fix --ignore-path=.eslintignore --ext .js,.jsx ./packages/"
   },
   "jest": {
     "projects": [

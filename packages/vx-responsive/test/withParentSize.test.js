@@ -19,7 +19,7 @@ describe('withParentSize', () => {
   });
 
   test('it chould pass parentWidth and parentHeight props to its child', () => {
-    const Component = (props) => <div />;
+    const Component = props => <div />;
     const HOC = withParentSize(Component);
     const wrapper = mount(<HOC />);
     const RenderedComponent = wrapper.find(Component);
@@ -27,4 +27,4 @@ describe('withParentSize', () => {
     expect(RenderedComponent.prop('parentWidth')).toBe(220);
     expect(RenderedComponent.prop('parentHeight')).toBe(120);
   });
-})
+});

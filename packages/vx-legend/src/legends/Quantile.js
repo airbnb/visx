@@ -33,19 +33,17 @@ export default function LegendQuantile({
 }
 
 function defaultTransform({ labelDelimiter }) {
-  return ({ scale, labelFormat }) => {
-    return (d, i) => {
-      const [x0, x1] = scale.invertExtent(d);
-      return {
-        extent: [x0, x1],
-        text: `${labelFormat(x0, i)} ${labelDelimiter} ${labelFormat(
+  return ({ scale, labelFormat }) => (d, i) => {
+    const [x0, x1] = scale.invertExtent(d);
+    return {
+      extent: [x0, x1],
+      text: `${labelFormat(x0, i)} ${labelDelimiter} ${labelFormat(
           x1,
           i,
         )}`,
-        value: scale(x0),
-        datum: d,
-        index: i,
-      };
+      value: scale(x0),
+      datum: d,
+      index: i,
     };
   };
 }

@@ -10,7 +10,7 @@ export default function LinkHorizontal({
   y = d => d.x,
   ...restProps
 }) {
-  const link = linkHorizontal()
+  const link = linkHorizontal();
   link.x(x);
   link.y(y);
   return (

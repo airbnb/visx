@@ -18,8 +18,8 @@ export default function LegendShape({
       className="vx-legend-shape"
       style={{
         display: 'flex',
-        width: !!size ? size({ ...label }) : width,
-        height: !!size ? size({ ...label }) : height,
+        width: size ? size({ ...label }) : width,
+        height: size ? size({ ...label }) : height,
         margin,
       }}
     >

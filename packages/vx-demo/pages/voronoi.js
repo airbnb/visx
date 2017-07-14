@@ -2,19 +2,18 @@ import React from 'react';
 import Show from '../components/show';
 import VoronoiChart from '../components/charts/VoronoiChart';
 
-export default () => {
-  return (
-    <Show
-      events
-      margin={{
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-      }}
-      component={VoronoiChart}
-      title="VoronoiChart with mouseover"
-    >
+export default () => (
+  <Show
+    events
+    margin={{
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+    }}
+    component={VoronoiChart}
+    title="VoronoiChart with mouseover"
+  >
     {`import React from 'react';
 import { extent } from 'd3-array';
 import { Group } from '@vx/group';
@@ -166,6 +165,5 @@ class VoronoiChart extends React.PureComponent {
   }
 }
 `}
-    </Show>
+  </Show>
   );
-}

@@ -7,7 +7,7 @@ import {
   BoxBrush,
   withBrush,
   getCoordsFromEvent,
-  constrainToRegion
+  constrainToRegion,
 } from '@vx/brush';
 import colors from '../util/sillyColorScale';
 import { Motion, spring } from 'react-motion';
@@ -28,7 +28,7 @@ class BrushChart extends React.Component {
 
     this.initialDomain = {
       x: [-4.5, 4.5],
-      y: [-4.5 / 2, 4.5 / 2]
+      y: [-4.5 / 2, 4.5 / 2],
     };
 
     this.xScale = scaleLinear({
@@ -126,28 +126,25 @@ class BrushChart extends React.Component {
           tickTextFill={'#1b1a1e'}
         />
         <Group top={margin.top} left={margin.left}>
-          {points.map((point) => {
-            return (
-              <Motion
-                key={`${x(point)}-${y(point)}-${z(point)}`}
-                defaultStyle={{ x: xMax / 2, y: yMax / 2 }}
-                style={{
-                  x: spring(xScale(x(point))),
-                  y: spring(yScale(y(point))),
-                }}>
-                {interpolatingStyle => {
-                  return (
-                    <circle
-                      fill={colors(z(point))}
-                      cx={interpolatingStyle.x}
-                      cy={interpolatingStyle.y}
-                      r={3}
-                    />
-                  );
-                }}
-              </Motion>
-            );
-          })}
+          {points.map(point => (
+            <Motion
+              key={`${x(point)}-${y(point)}-${z(point)}`}
+              defaultStyle={{ x: xMax / 2, y: yMax / 2 }}
+              style={{
+                x: spring(xScale(x(point))),
+                y: spring(yScale(y(point))),
+              }}
+            >
+              {interpolatingStyle => (
+                <circle
+                  fill={colors(z(point))}
+                  cx={interpolatingStyle.x}
+                  cy={interpolatingStyle.y}
+                  r={3}
+                />
+                  )}
+            </Motion>
+            ))}
         </Group>
         <BoxBrush brush={brush} />
       </svg>
