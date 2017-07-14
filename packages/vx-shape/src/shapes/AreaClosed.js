@@ -13,7 +13,7 @@ export default function AreaClosed({
   strokeDasharray,
   strokeWidth = 2,
   stroke = 'black',
-  fill = "rgba(0,0,0,0.3)",
+  fill = 'rgba(0,0,0,0.3)',
   curve,
   ...restProps,
 }) {
