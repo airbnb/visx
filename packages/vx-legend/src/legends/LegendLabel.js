@@ -13,7 +13,7 @@ export default function LegendLabel({
 }) {
   return (
     <div
-      className='vx-legend-label'
+      className="vx-legend-label"
       style={{
         justifyContent: align,
         display: 'flex',

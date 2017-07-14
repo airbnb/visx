@@ -1,10 +1,9 @@
 import React from 'react';
 import Codeblock from './Codeblock';
 
-export default ({}) => {
-  return (
-    <Codeblock>
-      {`// StackAreaChart.js
+export default ({}) => (
+  <Codeblock>
+    {`// StackAreaChart.js
 import React from 'react';
 import { Group } from '@vx/group';
 import { AreaStack } from '@vx/shape';
@@ -126,6 +125,5 @@ export default enhance(({
     </svg>
   );
 })`}
-    </Codeblock>
+  </Codeblock>
   );
-}

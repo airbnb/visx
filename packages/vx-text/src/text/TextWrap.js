@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 
-const svgNS = "http://www.w3.org/2000/svg";
+const svgNS = 'http://www.w3.org/2000/svg';
 
 /**
  * TODO: this is horrible and doesn't work. figure this out.
@@ -21,17 +21,17 @@ export default class TextWrap extends React.Component {
 
     while (word = words.pop()) {
       line.push(word);
-      let newText = line.join(" ");
+      let newText = line.join(' ');
       tspan.textContent = newText;
 
       if (tspan.getComputedTextLength() > width) {
         line.pop();
-        newText = line.join(" ");
+        newText = line.join(' ');
         tspan.textContent = newText;
 
         line = [word];
 
-        let newLine = document.createElementNS(svgNS, 'tspan');
+        const newLine = document.createElementNS(svgNS, 'tspan');
         newLine.setAttributeNS(svgNS, 'x', x);
         newLine.setAttributeNS(svgNS, 'y', y);
         newLine.setAttributeNS(svgNS, 'dy', `${++lineNumber * lineHeight}em`);
@@ -63,7 +63,7 @@ export default class TextWrap extends React.Component {
         dy={dy}
       >
         <tspan
-          ref={(c) => { this.tspan = c;}}
+          ref={(c) => { this.tspan = c; }}
           x={x}
           y={y}
           dy={dy}

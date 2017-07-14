@@ -9,13 +9,15 @@ export default function ResponsiveSVG({
   preserveAspectRatio = 'xMinYMin meet',
 }) {
   return (
-    <div style={{
-      display: 'inline-block',
-      position: 'relative',
-      width: '100%',
-      verticalAlign: 'top',
-      overflow: 'hidden',
-    }}>
+    <div
+      style={{
+        display: 'inline-block',
+        position: 'relative',
+        width: '100%',
+        verticalAlign: 'top',
+        overflow: 'hidden',
+      }}
+    >
       <svg
         preserveAspectRatio={preserveAspectRatio}
         viewBox={`${xOrigin} ${yOrigin} ${width} ${height}`}

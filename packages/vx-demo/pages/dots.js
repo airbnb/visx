@@ -2,10 +2,9 @@ import React from 'react';
 import Show from '../components/show';
 import Dots from '../components/tiles/dots';
 
-export default () => {
-  return (
-    <Show component={Dots} title="Dots">
-      {`import React from 'react';
+export default () => (
+  <Show component={Dots} title="Dots">
+    {`import React from 'react';
 import { Group } from '@vx/group';
 import { GlyphCircle } from '@vx/glyph';
 import { GradientPinkRed } from '@vx/gradient';
@@ -106,6 +105,5 @@ export default withTooltip(props => {
   );
 });
 `}
-    </Show>
+  </Show>
   );
-};

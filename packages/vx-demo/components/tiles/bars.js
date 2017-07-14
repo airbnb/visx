@@ -9,7 +9,7 @@ import { extent, max } from 'd3-array';
 const data = letterFrequency.slice(5);
 
 function round(value, precision) {
-  var multiplier = Math.pow(10, precision || 0);
+  const multiplier = Math.pow(10, precision || 0);
   return Math.round(value * multiplier) / multiplier;
 }
 
@@ -43,7 +43,7 @@ export default ({ width, height, events = false }) => {
         y={0}
         width={width}
         height={height}
-        fill={`url(#teal)`}
+        fill={'url(#teal)'}
         rx={14}
       />
       <Group top={40}>
@@ -58,7 +58,7 @@ export default ({ width, height, events = false }) => {
                 y={yMax - barHeight}
                 fill="rgba(23, 233, 217, .5)"
                 data={{ x: x(d), y: y(d) }}
-                onClick={data => event => {
+                onClick={data => (event) => {
                   if (!events) return;
                   alert(`clicked: ${JSON.stringify(data)}`);
                 }}

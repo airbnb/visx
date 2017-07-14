@@ -6,28 +6,28 @@ import { hierarchy } from 'd3-hierarchy';
 import { LinearGradient } from '@vx/gradient';
 
 const raw = {
-  "name": "$",
-  "children": [{ 
-    "name": "A",
-    "children": [
-      { "name": "A1" },
-      { "name": "A2" },
-      { "name": "C",
-        "children": [{
-          "name": "C1"
-        }]},
-    ]}, {
-    "name": "B",
-    "children": [
-      { "name": "B1"},
-      { "name": "B2"},
-      { "name": "B3"},
-    ]}, {
-      "name": "X",
-      "children": [{
-        "name": "Z"
-      }]
-    }
+  name: '$',
+  children: [{
+    name: 'A',
+    children: [
+      { name: 'A1' },
+      { name: 'A2' },
+      { name: 'C',
+        children: [{
+          name: 'C1',
+        }] },
+    ] }, {
+      name: 'B',
+      children: [
+      { name: 'B1' },
+      { name: 'B2' },
+      { name: 'B3' },
+      ] }, {
+        name: 'X',
+        children: [{
+          name: 'Z',
+        }],
+      },
   ],
 };
 
@@ -49,20 +49,20 @@ function Node({ node, events }) {
         <circle
           r={12}
           fill="#306c90"
-          stroke={node.children ? "white" : "#ddf163"}
+          stroke={node.children ? 'white' : '#ddf163'}
           onClick={() => {
             if (!events) return;
-            alert(`clicked: ${JSON.stringify(node.data.name)}`)
+            alert(`clicked: ${JSON.stringify(node.data.name)}`);
           }}
         />
       }
       <text
-        dy={".33em"}
+        dy={'.33em'}
         fontSize={9}
         fontFamily="Arial"
-        textAnchor={"middle"}
-        style={{ pointerEvents: "none" }}
-        fill={node.depth === 0 ? "#286875" : node.children ? "white" : "#ddf163"}
+        textAnchor={'middle'}
+        style={{ pointerEvents: 'none' }}
+        fill={node.depth === 0 ? '#286875' : node.children ? 'white' : '#ddf163'}
       >
         {node.data.name}
       </text>
@@ -91,7 +91,7 @@ export default ({
     left: 0,
     right: 0,
     bottom: 110,
-  }
+  },
 }) => {
   if (width < 10) return null;
   const data = hierarchy(raw);
@@ -110,11 +110,11 @@ export default ({
         root={data}
         size={[
           width - margin.left - margin.right,
-          height - margin.top - margin.bottom
+          height - margin.top - margin.bottom,
         ]}
         nodeComponent={({ node }) => <Node node={node} events={events} />}
         linkComponent={Link}
       />
     </svg>
   );
-}
+};

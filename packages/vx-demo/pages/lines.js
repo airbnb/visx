@@ -2,10 +2,9 @@ import React from 'react';
 import Show from '../components/show';
 import Lines from '../components/tiles/lines';
 
-export default () => {
-  return (
-    <Show component={Lines} title="Lines">
-{`import React from 'react';
+export default () => (
+  <Show component={Lines} title="Lines">
+    {`import React from 'react';
 import { Group } from '@vx/group';
 import { LinePath } from '@vx/shape';
 import { curveMonotoneX } from '@vx/curve';
@@ -82,6 +81,5 @@ export default ({
     </svg>
   );
 }`}
-    </Show>
+  </Show>
   );
-}

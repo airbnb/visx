@@ -29,7 +29,7 @@ export default withTooltip(
     tooltipTop,
     tooltipData,
     showTooltip,
-    hideTooltip
+    hideTooltip,
   }) => {
     if (width < 10) return null;
 
@@ -41,23 +41,23 @@ export default withTooltip(
     const xScale = scaleBand({
       rangeRound: [0, xMax],
       domain: data.map(x),
-      padding: 0.4
+      padding: 0.4,
     });
 
     const values = data.reduce(
       (r, e) => r.push(e.min, e.max) && r,
-      []
+      [],
     );
     const minYValue = Math.min(...values);
     const maxYValue = Math.max(...values);
     const yDomain = [
       minYValue - 0.1 * Math.abs(minYValue),
-      maxYValue + 0.1 * Math.abs(minYValue)
+      maxYValue + 0.1 * Math.abs(minYValue),
     ];
 
     const yScale = scaleLinear({
       rangeRound: [yMax, 0],
-      domain: [minYValue, maxYValue]
+      domain: [minYValue, maxYValue],
     });
 
     const boxWidth = xScale.bandwidth();
@@ -72,7 +72,7 @@ export default withTooltip(
             y={0}
             width={width}
             height={height}
-            fill={`url(#boxplot)`}
+            fill={'url(#boxplot)'}
             rx={14}
           />
           <Group top={40}>
@@ -92,69 +92,69 @@ export default withTooltip(
                 stroke="#FFFFFF"
                 strokeWidth={2}
                 minProps={{
-                  onMouseOver: data => event => {
+                  onMouseOver: data => (event) => {
                     showTooltip({
                       tooltipTop: yScale(data.data.min) + 40,
                       tooltipLeft: data.x2 + 5,
                       tooltipData: {
                         min: data.data.min,
-                        name: x(d)
-                      }
+                        name: x(d),
+                      },
                     });
                   },
-                  onMouseLeave: event => event => {
+                  onMouseLeave: event => (event) => {
                     hideTooltip();
-                  }
+                  },
                 }}
                 maxProps={{
-                  onMouseOver: data => event => {
+                  onMouseOver: data => (event) => {
                     showTooltip({
                       tooltipTop: yScale(data.data.max) + 40,
                       tooltipLeft: data.x2 + 5,
                       tooltipData: {
                         max: data.data.max,
-                        name: x(d)
-                      }
+                        name: x(d),
+                      },
                     });
                   },
-                  onMouseLeave: event => event => {
+                  onMouseLeave: event => (event) => {
                     hideTooltip();
-                  }
+                  },
                 }}
                 boxProps={{
-                  onMouseOver: data => event => {
+                  onMouseOver: data => (event) => {
                     showTooltip({
                       tooltipTop: yScale(data.data.median) + 40,
                       tooltipLeft: data.x2 + 5,
                       tooltipData: {
                         ...data.data,
-                        name: x(d)
-                      }
+                        name: x(d),
+                      },
                     });
                   },
-                  onMouseLeave: event => event => {
+                  onMouseLeave: event => (event) => {
                     hideTooltip();
-                  }
+                  },
                 }}
                 medianProps={{
                   style: {
-                    stroke: 'white'
+                    stroke: 'white',
                   },
-                  onMouseOver: data => event => {
+                  onMouseOver: data => (event) => {
                     showTooltip({
                       tooltipTop: data.median + 40,
                       tooltipLeft: data.x2 + 5,
                       tooltipData: {
                         median: data.data.median,
-                        name: x(d)
-                      }
+                        name: x(d),
+                      },
                     });
                   },
-                  onMouseLeave: data => event => {
+                  onMouseLeave: data => (event) => {
                     hideTooltip();
-                  }
+                  },
                 }}
-              />
+              />,
             )}
           </Group>
         </svg>
@@ -194,5 +194,5 @@ export default withTooltip(
           </Tooltip>}
       </div>
     );
-  }
+  },
 );

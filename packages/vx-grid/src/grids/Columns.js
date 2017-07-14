@@ -21,7 +21,7 @@ export default function Columns({
       top={top}
       left={left}
     >
-      {scale.ticks && scale.ticks(numTicks).map((d,i) => {
+      {scale.ticks && scale.ticks(numTicks).map((d, i) => {
         const x = scale(d);
         const fromPoint = new Point({
           x,

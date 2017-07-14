@@ -2,17 +2,16 @@ import React from 'react';
 import Show from '../components/show';
 import Gradients from '../components/tiles/gradients';
 
-export default () => {
-  return (
-    <Show
-      component={Gradients}
-      title="Gradients"
-      shadow
-      margin={{
-        bottom: 0,
-      }}
-    >
-      {`import React from 'react';
+export default () => (
+  <Show
+    component={Gradients}
+    title="Gradients"
+    shadow
+    margin={{
+      bottom: 0,
+    }}
+  >
+    {`import React from 'react';
 import { Bar } from '@vx/shape';
 import {
   GradientDarkgreenGreen,
@@ -136,6 +135,5 @@ export default ({
   );
 };
 `}
-    </Show>
+  </Show>
   );
-};

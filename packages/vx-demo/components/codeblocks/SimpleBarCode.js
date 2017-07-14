@@ -1,10 +1,9 @@
 import React from 'react';
 import Codeblock from './Codeblock';
 
-export default ({}) => {
-  return (
-    <Codeblock>
-      {`// SimpleBar.js
+export default ({}) => (
+  <Codeblock>
+    {`// SimpleBar.js
 import React from 'react';
 import { Bar } from '@vx/shape';
 import { Group } from '@vx/group';
@@ -92,6 +91,5 @@ export default ({
     </svg>
   );
 }`}
-    </Codeblock>
+  </Codeblock>
   );
-}

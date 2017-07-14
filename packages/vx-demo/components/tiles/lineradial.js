@@ -52,30 +52,28 @@ export default function LineRadialTile({
         rx={14}
       />
       <Group top={height / 2} left={width / 2}>
-        {yScale.ticks().map((tick, i) => {
-          return (
-            <g key={`radial-grid-${i}`}>
-              <circle
-                r={yScale(tick)}
-                stroke="#aeeef8"
-                strokeWidth={1}
-                fill="#aeeef8"
-                fillOpacity={1 / (i + 1) - 1 / i * 0.2}
-                strokeOpacity={0.2}
-              />
-              <text
-                y={-yScale(tick)}
-                textAnchor="middle"
-                dy={'-.33em'}
-                fontSize={8}
-                fill="#aeeef8"
-                fillOpacity={0.6}
-              >
-                {tick}
-              </text>
-            </g>
-          );
-        })}
+        {yScale.ticks().map((tick, i) => (
+          <g key={`radial-grid-${i}`}>
+            <circle
+              r={yScale(tick)}
+              stroke="#aeeef8"
+              strokeWidth={1}
+              fill="#aeeef8"
+              fillOpacity={1 / (i + 1) - 1 / i * 0.2}
+              strokeOpacity={0.2}
+            />
+            <text
+              y={-yScale(tick)}
+              textAnchor="middle"
+              dy={'-.33em'}
+              fontSize={8}
+              fill="#aeeef8"
+              fillOpacity={0.6}
+            >
+              {tick}
+            </text>
+          </g>
+          ))}
         <LineRadial
           data={appleStock}
           angle={d => xScale(x(d))}
@@ -87,17 +85,15 @@ export default function LineRadialTile({
           curve={curveBasisOpen}
           strokeLinecap="round"
         />
-        {capPoints.map((d, i) => {
-          return (
-            <circle
-              key={`line-cap-${i}`}
-              cy={-yScale(y(d))}
-              cx={xScale(x(d)) * Math.PI / 180}
-              r={3}
-              fill="#dff84d"
-            />
-          );
-        })}
+        {capPoints.map((d, i) => (
+          <circle
+            key={`line-cap-${i}`}
+            cy={-yScale(y(d))}
+            cx={xScale(x(d)) * Math.PI / 180}
+            r={3}
+            fill="#dff84d"
+          />
+          ))}
       </Group>
     </svg>
   );

@@ -10,18 +10,18 @@ if (typeof window !== 'undefined' && window.location.hostname !== 'localhost') {
 }
 
 
-Router.onRouteChangeStart = () => NProgress.start()
+Router.onRouteChangeStart = () => NProgress.start();
 Router.onRouteChangeComplete = () => {
-  NProgress.done()
+  NProgress.done();
   if (typeof window !== 'undefined' && window.location.hostname !== 'localhost') {
     ReactGA.set({ page: window.location.pathname });
     ReactGA.pageview(window.location.pathname);
   }
-}
-Router.onRouteChangeError = () => NProgress.done()
+};
+Router.onRouteChangeError = () => NProgress.done();
 
 export default ({
-  title = 'visualization components'
+  title = 'visualization components',
 }) => (
   <div>
     <Head>
@@ -34,9 +34,9 @@ export default ({
       <meta name="twitter:image" content="https://raw.githubusercontent.com/hshoff/vx/master/packages/vx-demo/static/tiger-twitter-card.jpg" />
       <meta name="twitter:image:alt" content="vx logo is a tiger leaper over the letters v and x" />
       <title>{ `vx | ${title}` }</title>
-      <link rel="shortcut icon" type="image/png" href="static/favicon.ico"/>
-      <link rel="stylesheet" href="static/prism/prism-funky.css"/>
-      <link rel="stylesheet" href="static/prism/prism-line-numbers.css"/>
+      <link rel="shortcut icon" type="image/png" href="static/favicon.ico" />
+      <link rel="stylesheet" href="static/prism/prism-funky.css" />
+      <link rel="stylesheet" href="static/prism/prism-line-numbers.css" />
       <link href="https://fonts.googleapis.com/css?family=Montserrat:800" rel="stylesheet" />
     </Head>
     <style jsx global>{`
@@ -204,4 +204,4 @@ export default ({
       }
     `}</style>
   </div>
-)
+);

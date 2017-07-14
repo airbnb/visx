@@ -10,7 +10,7 @@ export default function LinkVertical({
   y = d => d.y,
   ...restProps
 }) {
-  const link = linkVertical()
+  const link = linkVertical();
   link.x(x);
   link.y(y);
   return (

@@ -6,9 +6,7 @@ import { scaleLinear } from '@vx/scale';
 import { genRandomNormalPoints } from '@vx/mock-data';
 import { withTooltip, Tooltip } from '@vx/tooltip';
 
-const points = genRandomNormalPoints(600).filter((d, i) => {
-  return i < 600;
-});
+const points = genRandomNormalPoints(600).filter((d, i) => i < 600);
 
 const x = d => d[0];
 const y = d => d[1];
@@ -16,7 +14,7 @@ const z = d => d[2];
 
 let tooltipTimeout;
 
-export default withTooltip(props => {
+export default withTooltip((props) => {
   const { width, height } = props;
   const xMax = width;
   const yMax = height - 80;
@@ -43,47 +41,45 @@ export default withTooltip(props => {
           width={width}
           height={height}
           rx={14}
-          fill={`url(#pink)`}
+          fill={'url(#pink)'}
         />
         <Group
-          onTouchStart={() => event => {
+          onTouchStart={() => (event) => {
             if (tooltipTimeout) clearTimeout(tooltipTimeout);
             props.hideTooltip();
           }}
         >
-          {points.map((point, i) => {
-            return (
-              <GlyphCircle
-                className="dot"
-                key={`point-${point.x}-${i}`}
-                fill={'#f6c431'}
-                left={xScale(x(point))}
-                top={yScale(y(point))}
-                size={i % 3 === 0 ? 12 : 24}
-                onMouseEnter={() => event => {
-                  if (tooltipTimeout) clearTimeout(tooltipTimeout);
-                  props.showTooltip({
-                    tooltipLeft: xScale(x(point)),
-                    tooltipTop: yScale(y(point)) + 20,
-                    tooltipData: point,
-                  });
-                }}
-                onTouchStart={() => event => {
-                  if (tooltipTimeout) clearTimeout(tooltipTimeout);
-                  props.showTooltip({
-                    tooltipLeft: xScale(x(point)),
-                    tooltipTop: yScale(y(point)) - 30,
-                    tooltipData: point,
-                  });
-                }}
-                onMouseLeave={() => event => {
-                  tooltipTimeout = setTimeout(() => {
-                    props.hideTooltip();
-                  }, 300);
-                }}
-              />
-            );
-          })}
+          {points.map((point, i) => (
+            <GlyphCircle
+              className="dot"
+              key={`point-${point.x}-${i}`}
+              fill={'#f6c431'}
+              left={xScale(x(point))}
+              top={yScale(y(point))}
+              size={i % 3 === 0 ? 12 : 24}
+              onMouseEnter={() => (event) => {
+                if (tooltipTimeout) clearTimeout(tooltipTimeout);
+                props.showTooltip({
+                  tooltipLeft: xScale(x(point)),
+                  tooltipTop: yScale(y(point)) + 20,
+                  tooltipData: point,
+                });
+              }}
+              onTouchStart={() => (event) => {
+                if (tooltipTimeout) clearTimeout(tooltipTimeout);
+                props.showTooltip({
+                  tooltipLeft: xScale(x(point)),
+                  tooltipTop: yScale(y(point)) - 30,
+                  tooltipData: point,
+                });
+              }}
+              onMouseLeave={() => (event) => {
+                tooltipTimeout = setTimeout(() => {
+                  props.hideTooltip();
+                }, 300);
+              }}
+            />
+            ))}
         </Group>
       </svg>
       {props.tooltipOpen &&

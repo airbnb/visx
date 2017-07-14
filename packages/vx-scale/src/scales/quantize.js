@@ -16,4 +16,4 @@ export default ({
   if (tickFormat) scale.tickFormat(tickFormat);
 
   return scale;
-}
+};

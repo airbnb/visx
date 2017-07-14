@@ -2,6 +2,11 @@
   "devDependencies": {
     "babel-jest": "^20.0.3",
     "coveralls": "^2.13.1",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.3",
     "jest": "^20.0.3",
     "lerna": "2.0.0-beta.38",
     "react": "^15.5.4",
@@ -17,7 +22,9 @@
     "test": "lerna exec npm install && jest",
     "docs": "node ./scripts/docs/index.js",
     "prepare-release": "git checkout master && git pull --rebase origin master && npm run docs && lerna updated",
-    "release": "npm run prepare-release && lerna publish --exact"
+    "release": "npm run prepare-release && lerna publish --exact",
+    "lint": "eslint --ignore-path=.eslintignore --ext .js,.jsx ./packages/",
+    "lint-fix": "eslint --fix --ignore-path=.eslintignore --ext .js,.jsx ./packages/"
   },
   "jest": {
     "projects": [

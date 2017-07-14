@@ -10,7 +10,7 @@ export default compose(
   }),
   withHandlers({
     onBrushStart: ({ updateBrush }) => ({ x, y }) => {
-      updateBrush((prevState) => ({
+      updateBrush(prevState => ({
         ...prevState,
         start: { x, y },
         isBrushing: true,
@@ -19,7 +19,7 @@ export default compose(
       }));
     },
     onBrushDrag: ({ updateBrush }) => ({ x, y }) => {
-      updateBrush((prevState) => ({
+      updateBrush(prevState => ({
         ...prevState,
         end: { x, y },
         domain: undefined,
@@ -36,17 +36,17 @@ export default compose(
             x1: Math.max(start.x, x),
             y0: Math.min(start.y, y),
             y1: Math.max(start.y, y),
-          }
-        }
+          },
+        };
       });
     },
-    onBrushReset: ({ updateBrush }) => event => {
-      updateBrush((prevState) => ({
+    onBrushReset: ({ updateBrush }) => (event) => {
+      updateBrush(prevState => ({
         start: undefined,
         end: undefined,
         domain: undefined,
         isBrushing: false,
       }));
-    }
-  })
+    },
+  }),
 );

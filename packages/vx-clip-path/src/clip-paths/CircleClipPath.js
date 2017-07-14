@@ -6,7 +6,7 @@ export default ({
   cx,
   cy,
   r,
-  ...restProps,
+  ...restProps
 }) => (
   <ClipPath id={id}>
     <circle

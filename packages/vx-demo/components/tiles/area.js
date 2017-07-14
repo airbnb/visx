@@ -48,20 +48,20 @@ export default ({
       <defs>
         <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
           <stop offset="0%" stopColor="#FFFFFF" stopOpacity={1} />
-          <stop offset="100%" stopColor="#FFFFFF" stopOpacity={.2} />
+          <stop offset="100%" stopColor="#FFFFFF" stopOpacity={0.2} />
         </linearGradient>
       </defs>
       <GridRows
         scale={yScale}
         width={xMax}
-        strokeDasharray='2,2'
-        stroke='rgba(255,255,255,0.3)'
+        strokeDasharray="2,2"
+        stroke="rgba(255,255,255,0.3)"
       />
       <GridColumns
         scale={xScale}
         height={yMax}
-        strokeDasharray='2,2'
-        stroke='rgba(255,255,255,0.3)'
+        strokeDasharray="2,2"
+        stroke="rgba(255,255,255,0.3)"
       />
       <AreaClosed
         data={stock}
@@ -76,4 +76,4 @@ export default ({
       />
     </svg>
   );
-}
+};

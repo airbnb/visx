@@ -62,7 +62,7 @@ export default class Gallery extends React.Component {
 
   resize() {
     const newState = [];
-    this.nodes.forEach(node => {
+    this.nodes.forEach((node) => {
       if (!node) return;
       newState.push([node.offsetWidth, node.clientHeight]);
     });
@@ -104,7 +104,7 @@ export default class Gallery extends React.Component {
                 <div className="details">
                   <div className="title">Lines</div>
                   <div className="description">
-                    <pre>{`<Shape.Line />`}</pre>
+                    <pre>{'<Shape.Line />'}</pre>
                   </div>
                 </div>
               </div>
@@ -123,7 +123,7 @@ export default class Gallery extends React.Component {
                 <div className="details color-blue">
                   <div className="title">Bars</div>
                   <div className="description">
-                    <pre>{`<Shape.Bar />`}</pre>
+                    <pre>{'<Shape.Bar />'}</pre>
                   </div>
                 </div>
               </div>
@@ -145,7 +145,7 @@ export default class Gallery extends React.Component {
                 >
                   <div className="title">Dots</div>
                   <div className="description">
-                    <pre>{`<Glyph.GlyphCircle />`}</pre>
+                    <pre>{'<Glyph.GlyphCircle />'}</pre>
                   </div>
                 </div>
               </div>
@@ -164,7 +164,7 @@ export default class Gallery extends React.Component {
                 <div className="details color-gray">
                   <div className="title">Patterns</div>
                   <div className="description">
-                    <pre>{`<Pattern />`}</pre>
+                    <pre>{'<Pattern />'}</pre>
                   </div>
                 </div>
               </div>
@@ -192,7 +192,7 @@ export default class Gallery extends React.Component {
                 <div className="details">
                   <div className="title">Areas</div>
                   <div className="description">
-                    <pre>{`<Shape.AreaClosed />`}</pre>
+                    <pre>{'<Shape.AreaClosed />'}</pre>
                   </div>
                 </div>
               </div>
@@ -223,7 +223,7 @@ export default class Gallery extends React.Component {
                 >
                   <div className="title">Stacked Areas</div>
                   <div className="description">
-                    <pre>{`<Shape.AreaStack />`}</pre>
+                    <pre>{'<Shape.AreaStack />'}</pre>
                   </div>
                 </div>
               </div>
@@ -245,7 +245,7 @@ export default class Gallery extends React.Component {
                 <div className="details color-gray">
                   <div className="title">Gradients</div>
                   <div className="description">
-                    <pre>{`<Gradient />`}</pre>
+                    <pre>{'<Gradient />'}</pre>
                   </div>
                 </div>
               </div>
@@ -276,7 +276,7 @@ export default class Gallery extends React.Component {
                 >
                   <div className="title">Glyphs</div>
                   <div className="description">
-                    <pre>{`<Glyph.GlyphDot />`}</pre>
+                    <pre>{'<Glyph.GlyphDot />'}</pre>
                   </div>
                 </div>
               </div>
@@ -304,8 +304,7 @@ export default class Gallery extends React.Component {
                 <div className="details" style={{ color: '#8e205f' }}>
                   <div className="title">Axis</div>
                   <div className="description">
-                    <pre
-                    >{`<Axis.AxisLeft /> + <Axis.AxisBottom />`}</pre>
+                    <pre >{'<Axis.AxisLeft /> + <Axis.AxisBottom />'}</pre>
                   </div>
                 </div>
               </div>
@@ -324,7 +323,7 @@ export default class Gallery extends React.Component {
                 <div className="details" style={{ color: '#e5fd3d' }}>
                   <div className="title">Bar Group</div>
                   <div className="description">
-                    <pre>{`<Shape.BarGroup />`}</pre>
+                    <pre>{'<Shape.BarGroup />'}</pre>
                   </div>
                 </div>
               </div>
@@ -346,7 +345,7 @@ export default class Gallery extends React.Component {
                 >
                   <div className="title">Bar Stack</div>
                   <div className="description">
-                    <pre>{`<Shape.BarStack />`}</pre>
+                    <pre>{'<Shape.BarStack />'}</pre>
                   </div>
                 </div>
               </div>
@@ -368,7 +367,7 @@ export default class Gallery extends React.Component {
                 >
                   <div className="title">Heatmaps</div>
                   <div className="description">
-                    <pre>{`<HeatmapCircle /> + <HeatmapRect />`}</pre>
+                    <pre>{'<HeatmapCircle /> + <HeatmapRect />'}</pre>
                   </div>
                 </div>
               </div>
@@ -387,7 +386,7 @@ export default class Gallery extends React.Component {
                 <div className="details" style={{ color: '#919fe5' }}>
                   <div className="title">Radial Lines</div>
                   <div className="description">
-                    <pre>{`<Shape.LineRadial />`}</pre>
+                    <pre>{'<Shape.LineRadial />'}</pre>
                   </div>
                 </div>
               </div>
@@ -406,7 +405,7 @@ export default class Gallery extends React.Component {
                 <div className="details" style={{ color: 'white' }}>
                   <div className="title">Arcs</div>
                   <div className="description">
-                    <pre>{`<Shape.Arc />`}</pre>
+                    <pre>{'<Shape.Arc />'}</pre>
                   </div>
                 </div>
               </div>
@@ -425,8 +424,7 @@ export default class Gallery extends React.Component {
                 <div className="details" style={{ color: '#269688' }}>
                   <div className="title">Trees</div>
                   <div className="description">
-                    <pre
-                    >{`<Hierarchy.Tree /> + <Shape.LinkHorizontal />`}</pre>
+                    <pre >{'<Hierarchy.Tree /> + <Shape.LinkHorizontal />'}</pre>
                   </div>
                 </div>
               </div>
@@ -445,8 +443,7 @@ export default class Gallery extends React.Component {
                 <div className="details" style={{ color: '#5dc26f' }}>
                   <div className="title">Dendrograms</div>
                   <div className="description">
-                    <pre
-                    >{`<Hierarchy.Cluster /> + <Shape.LinkVertical />`}</pre>
+                    <pre >{'<Hierarchy.Cluster /> + <Shape.LinkVertical />'}</pre>
                   </div>
                 </div>
               </div>
@@ -465,7 +462,7 @@ export default class Gallery extends React.Component {
                 <div className="details" style={{ color: '#494949' }}>
                   <div className="title">Legends</div>
                   <div className="description">
-                    <pre>{`<Legend />`}</pre>
+                    <pre>{'<Legend />'}</pre>
                   </div>
                 </div>
               </div>
@@ -492,7 +489,7 @@ export default class Gallery extends React.Component {
                 <div className="details" style={{ color: '#F54EA2' }}>
                   <div className="title">Voronoi</div>
                   <div className="description">
-                    <pre>{`<Voronoi.VoronoiPolygon /> `}</pre>
+                    <pre>{'<Voronoi.VoronoiPolygon /> '}</pre>
                   </div>
                 </div>
               </div>
@@ -515,7 +512,7 @@ export default class Gallery extends React.Component {
                 >
                   <div className="title">BoxPlot</div>
                   <div className="description">
-                    <pre>{`<BoxPlot /> `}</pre>
+                    <pre>{'<BoxPlot /> '}</pre>
                   </div>
                 </div>
               </div>

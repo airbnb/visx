@@ -29,12 +29,10 @@ export default function LegendOrdinal({
 }
 
 function defaultTransform({ scale, labelFormat }) {
-  return (d, i) => {
-    return {
-      datum: d,
-      index: i,
-      text: `${labelFormat(d, i)}`,
-      value: scale(d),
-    };
-  };
+  return (d, i) => ({
+    datum: d,
+    index: i,
+    text: `${labelFormat(d, i)}`,
+    value: scale(d),
+  });
 }

@@ -10,7 +10,7 @@ import { stack as d3stack } from 'd3-shape';
 const data = browserUsage;
 const keys = Object.keys(data[0]).filter(k => k !== 'date');
 const browserNames = [...keys].reverse();
-const parseDate = timeParse("%Y %b %d");
+const parseDate = timeParse('%Y %b %d');
 const x = d => parseDate(d.date);
 const stack = d3stack().keys(keys);
 
@@ -51,13 +51,13 @@ export default ({
         left={margin.left}
         keys={keys}
         data={data}
-        x={(d) => xScale(x(d.data))}
-        y0={(d) => yScale(d[0] / 100)}
-        y1={(d) => yScale(d[1] / 100)}
+        x={d => xScale(x(d.data))}
+        y0={d => yScale(d[0] / 100)}
+        y1={d => yScale(d[1] / 100)}
         strokeWidth={0}
-        fill='url(#OrangeRed)'
-        fillOpacity='1'
+        fill="url(#OrangeRed)"
+        fillOpacity="1"
       />
     </svg>
   );
-}
+};

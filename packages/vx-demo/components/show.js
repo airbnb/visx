@@ -26,7 +26,7 @@ export default withScreenSize(
     return (
       <Page title={title}>
         <div className="container">
-          <div style={{ width: width }}>
+          <div style={{ width }}>
             <h1>
               {title}
             </h1>
@@ -42,10 +42,10 @@ export default withScreenSize(
           >
             {React.createElement(component, { width, height, margin, events })}
           </div>
-          <div style={{ width: width }}>
+          <div style={{ width }}>
             <h2>Code</h2>
           </div>
-          <div className="code" style={{ width: width }}>
+          <div className="code" style={{ width }}>
             <Codeblock>
               {children}
             </Codeblock>

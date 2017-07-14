@@ -238,4 +238,4 @@ export default () => (
       }
     `}</style>
   </Page>
-)
+);

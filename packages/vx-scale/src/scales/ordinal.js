@@ -12,4 +12,4 @@ export default ({
   if (unknown) scale.unknown(unknown);
 
   return scale;
-}
+};

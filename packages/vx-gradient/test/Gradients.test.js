@@ -13,60 +13,60 @@ import {
 
 describe('<GradientDarkgreenGreen />', () => {
   test('it should be defined', () => {
-    expect(GradientDarkgreenGreen).toBeDefined()
-  })
-})
+    expect(GradientDarkgreenGreen).toBeDefined();
+  });
+});
 
 describe('<GradientLightgreenGreen />', () => {
   test('it should be defined', () => {
-    expect(GradientLightgreenGreen).toBeDefined()
-  })
-})
+    expect(GradientLightgreenGreen).toBeDefined();
+  });
+});
 
 describe('<GradientOrangeRed />', () => {
   test('it should be defined', () => {
-    expect(GradientOrangeRed).toBeDefined()
-  })
-})
+    expect(GradientOrangeRed).toBeDefined();
+  });
+});
 
 describe('<GradientPinkBlue />', () => {
   test('it should be defined', () => {
-    expect(GradientPinkBlue).toBeDefined()
-  })
-})
+    expect(GradientPinkBlue).toBeDefined();
+  });
+});
 
 describe('<GradientPinkRed />', () => {
   test('it should be defined', () => {
-    expect(GradientPinkRed).toBeDefined()
-  })
-})
+    expect(GradientPinkRed).toBeDefined();
+  });
+});
 
 describe('<GradientPurpleOrange />', () => {
   test('it should be defined', () => {
-    expect(GradientPurpleOrange).toBeDefined()
-  })
-})
+    expect(GradientPurpleOrange).toBeDefined();
+  });
+});
 
 describe('<GradientPurpleRed />', () => {
   test('it should be defined', () => {
-    expect(GradientPurpleRed).toBeDefined()
-  })
-})
+    expect(GradientPurpleRed).toBeDefined();
+  });
+});
 
 describe('<GradientPurpleTeal />', () => {
   test('it should be defined', () => {
-    expect(GradientPurpleTeal).toBeDefined()
-  })
-})
+    expect(GradientPurpleTeal).toBeDefined();
+  });
+});
 
 describe('<GradientSteelPurple />', () => {
   test('it should be defined', () => {
-    expect(GradientSteelPurple).toBeDefined()
-  })
-})
+    expect(GradientSteelPurple).toBeDefined();
+  });
+});
 
 describe('<GradientTealBlue />', () => {
   test('it should be defined', () => {
-    expect(GradientTealBlue).toBeDefined()
-  })
-})
+    expect(GradientTealBlue).toBeDefined();
+  });
+});

@@ -1,5 +1,1 @@
-export default ({ source }) => {
-  return source.split('\n').reduce((lines, line) => {
-    return lines.concat(line.split(' '));
-  }, []);
-}
+export default ({ source }) => source.split('\n').reduce((lines, line) => lines.concat(line.split(' ')), []);

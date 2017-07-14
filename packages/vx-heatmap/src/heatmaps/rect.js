@@ -24,37 +24,33 @@ export default function HeatmapRect({
   const height = binHeight - gap;
   return (
     <Group>
-      {data.map((d, i) => {
-        return (
-          <Group
-            key={`heatmap-${i}`}
-            className='vx-heatmap-column'
-            left={xScale(bin(d))}
-          >
-            {bins(d).map((b, j) => {
-              return (
-                <rect
-                  key={`heatmap-tile-rect-${j}`}
-                  className={cx('vx-heatmap-rect', className)}
-                  fill={colorScale(count(b))}
-                  width={width}
-                  height={height}
-                  x={x}
-                  y={yScale(bin(b) + step) + gap}
-                  fillOpacity={opacityScale(count(b))}
-                  {...additionalProps(restProps, {
-                    bin: b,
-                    index: j,
-                    datum: d,
-                    datumIndex: i,
-                    data
-                  })}
-                />
-              );
-            })}
-          </Group>
-        );
-      })}
+      {data.map((d, i) => (
+        <Group
+          key={`heatmap-${i}`}
+          className="vx-heatmap-column"
+          left={xScale(bin(d))}
+        >
+          {bins(d).map((b, j) => (
+            <rect
+              key={`heatmap-tile-rect-${j}`}
+              className={cx('vx-heatmap-rect', className)}
+              fill={colorScale(count(b))}
+              width={width}
+              height={height}
+              x={x}
+              y={yScale(bin(b) + step) + gap}
+              fillOpacity={opacityScale(count(b))}
+              {...additionalProps(restProps, {
+                bin: b,
+                index: j,
+                datum: d,
+                datumIndex: i,
+                data,
+              })}
+            />
+              ))}
+        </Group>
+        ))}
     </Group>
   );
 }

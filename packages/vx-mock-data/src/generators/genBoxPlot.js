@@ -14,7 +14,7 @@ export default function genBoxPlot(number) {
       firstQuartile: points[1],
       median: points[2],
       thirdQuartile: points[3],
-      max: points[4]
+      max: points[4],
     });
   }
   return data;

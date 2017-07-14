@@ -78,7 +78,7 @@ class VoronoiChart extends React.PureComponent {
         const { left, right } = edge;
         if (left && left !== closest) neighbors[left.data.id] = true;
         else if (right && right !== closest) neighbors[right.data.id] = true;
-      })
+      });
       this.setState({ selected: closest, neighbors });
     }
   }
@@ -119,22 +119,22 @@ class VoronoiChart extends React.PureComponent {
           onMouseMove={this.handleMouseMove}
           onMouseLeave={() => { this.setState({ selected: null, neighbors: null }); }}
         >
-          {polygons.map((polygon) => (
+          {polygons.map(polygon => (
             <VoronoiPolygon
               key={`polygon-${polygon.data.id}`}
               polygon={polygon}
-              fill={(d) => (
+              fill={d => (
                 selected && (d.id === selected.data.id || neighbors[d.id]) ?
                 'url(#voronoi_orange_red)' : 'url(#voronoi_pink_red)'
               )}
-              fillOpacity={(d) => (
+              fillOpacity={d => (
                 neighbors && neighbors[d.id] ? 0.4 : 1
               )}
               stroke="#fff"
               strokeWidth={1}
             />
           ))}
-          {data.map((d) => (
+          {data.map(d => (
             <circle
               key={`circle-${d.id}`}
               r={2}

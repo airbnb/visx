@@ -20,10 +20,10 @@ describe('<Group />', () => {
   test('it should set props top, left, className', () => {
     const wrapper = shallow(
       <Group
-        className='test'
+        className="test"
         top={3}
         left={4}
-      />
+      />,
     );
     expect(wrapper.prop('transform')).toEqual('translate(4, 3)');
     expect(wrapper.prop('className')).toEqual('cx-group test');

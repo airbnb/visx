@@ -133,12 +133,10 @@ export default ({ width, height, margin }) => {
           shapeMargin="5px 0"
           itemDirection="row"
           scale={size}
-          shapeStyle={props => {
-            return {
-              fill: sizeColor(props.datum),
-            };
-          }}
-          shape={props => {
+          shapeStyle={props => ({
+            fill: sizeColor(props.datum),
+          })}
+          shape={(props) => {
             const { size } = props;
             return (
               <svg width={size} height={size}>
@@ -198,10 +196,9 @@ export default ({ width, height, margin }) => {
           scale={ordinalShape}
           fill={({ datum }) => ordinalColor2(datum)}
           shapeWidth={15}
-          shape={props => {
-            return (
-              <svg width={props.width} height={props.height}>
-                {!React.isValidElement(
+          shape={props => (
+            <svg width={props.width} height={props.height}>
+              {!React.isValidElement(
                   ordinalShape(props.label.datum),
                 ) &&
                   React.createElement(
@@ -210,13 +207,12 @@ export default ({ width, height, margin }) => {
                       ...props,
                     },
                   )}
-                {React.isValidElement(
+              {React.isValidElement(
                   ordinalShape(props.label.datum),
                 ) &&
                   React.cloneElement(ordinalShape(props.label.datum))}
-              </svg>
-            );
-          }}
+            </svg>
+            )}
         />
       </LegendDemo>
 

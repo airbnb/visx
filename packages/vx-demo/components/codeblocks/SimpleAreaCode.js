@@ -1,10 +1,9 @@
 import React from 'react';
 import Codeblock from './Codeblock';
 
-export default ({}) => {
-  return (
-    <Codeblock>
-      {`// SimpleAreaChart.js
+export default ({}) => (
+  <Codeblock>
+    {`// SimpleAreaChart.js
 function SimpleAreaChart({
   margin,
   data,
@@ -90,6 +89,5 @@ function SimpleAreaChart({
 }
 
 export default withScreenSize(SimpleAreaChart);`}
-    </Codeblock>
+  </Codeblock>
   );
-}
