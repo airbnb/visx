@@ -10,7 +10,7 @@ export default function LinePath({
   yScale,
   x,
   y,
-  defined,
+  defined = () => true,
   className,
   stroke = 'steelblue',
   strokeWidth = 2,
@@ -24,7 +24,7 @@ export default function LinePath({
   const path = line()
     .x(d => xScale(x(d)))
     .y(d => yScale(y(d)))
-    .defined(defined || (d => y(d) && x(d)))
+    .defined(defined)
     .curve(curve);
   return (
     <g>

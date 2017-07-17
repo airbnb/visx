@@ -8,20 +8,20 @@ export default function AreaClosed({
   xScale,
   yScale,
   data,
-  defined,
+  defined = () => true,
   className,
   strokeDasharray,
   strokeWidth = 2,
   stroke = 'black',
   fill = 'rgba(0,0,0,0.3)',
   curve,
-  ...restProps,
+  ...restProps
 }) {
   const path = area()
     .x(d => xScale(x(d)))
     .y0(yScale.range()[0])
     .y1(d => yScale(y(d)))
-    .defined(defined || (d => y(d) && x(d)));
+    .defined(defined);
   if (curve) path.curve(curve);
   return (
     <g>

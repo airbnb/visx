@@ -34,14 +34,16 @@ export default function Arc({
   return (
     <Group className="vx-arcs-group" top={top} left={left}>
       {arcs.map((arc, i) => {
+        let c;
+        if (centroid) c = path.centroid(arc);
         return (
           <g key={`arc-${i}`}>
             <path
               className={cx('vx-arc', className)}
               d={path(arc)}
-              {...additionalProps(restProps, arc)}
+              {...additionalProps(restProps, { ...arc, index: i, centroid: c })}
             />
-            {centroid && centroid(path.centroid(arc), arc)}
+            {centroid && centroid(c, arc)}
           </g>
         );
       })}
