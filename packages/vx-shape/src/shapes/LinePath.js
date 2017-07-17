@@ -4,17 +4,13 @@ import { line } from 'd3-shape';
 import { curveLinear } from '@vx/curve';
 import additionalProps from '../util/additionalProps';
 
-function defaultDefined() {
-  return true;
-}
-
 export default function LinePath({
   data,
   xScale,
   yScale,
   x,
   y,
-  defined,
+  defined = () => true,
   className,
   stroke = 'steelblue',
   strokeWidth = 2,
@@ -25,11 +21,11 @@ export default function LinePath({
   glyph,
   ...restProps
 }) {
-  const path = line();
-  if (xScale) path.x(d => xScale(x(d)));
-  if (yScale) path.y(d => yScale(y(d)));
-  path.defined(defined || defaultDefined);
-  path.curve(curve);
+  const path = line()
+    .x(d => xScale(x(d)))
+    .y(d => yScale(y(d)))
+    .defined(defined)
+    .curve(curve);
   return (
     <g>
       <path

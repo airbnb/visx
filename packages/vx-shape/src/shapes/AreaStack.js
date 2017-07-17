@@ -3,7 +3,7 @@ import cx from 'classnames';
 import additionalProps from '../util/additionalProps';
 import { area, stack as d3stack } from 'd3-shape';
 
-export default ({
+export default function AreaStack({
   className,
   top = 0,
   left = 0,
@@ -19,7 +19,7 @@ export default ({
   glyph,
   reverse = false,
   ...restProps
-}) => {
+}) {
   const stack = d3stack();
   if (keys) stack.keys(keys);
 
@@ -46,7 +46,7 @@ export default ({
             {...additionalProps(restProps, {
               datum: series[i],
               index: i,
-              series,
+              series
             })}
           />
         );
@@ -57,4 +57,4 @@ export default ({
         </g>}
     </g>
   );
-};
+}
