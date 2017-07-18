@@ -14,6 +14,8 @@ export default function Columns({
   strokeDasharray,
   className,
   numTicks = 10,
+  lineStyle,
+  ...restProps
 }) {
   return (
     <Group
@@ -21,27 +23,30 @@ export default function Columns({
       top={top}
       left={left}
     >
-      {scale.ticks && scale.ticks(numTicks).map((d,i) => {
-        const x = scale(d);
-        const fromPoint = new Point({
-          x,
-          y: 0,
-        });
-        const toPoint = new Point({
-          x,
-          y: height,
-        });
-        return (
-          <Line
-            key={`column-line-${d}-${i}`}
-            from={fromPoint}
-            to={toPoint}
-            stroke={stroke}
-            strokeWidth={strokeWidth}
-            strokeDasharray={strokeDasharray}
-          />
-        );
-      })}
+      {scale.ticks &&
+        scale.ticks(numTicks).map((d, i) => {
+          const x = scale(d);
+          const fromPoint = new Point({
+            x,
+            y: 0,
+          });
+          const toPoint = new Point({
+            x,
+            y: height,
+          });
+          return (
+            <Line
+              key={`column-line-${d}-${i}`}
+              from={fromPoint}
+              to={toPoint}
+              stroke={stroke}
+              strokeWidth={strokeWidth}
+              strokeDasharray={strokeDasharray}
+              style={lineStyle}
+              {...restProps}
+            />
+          );
+        })}
     </Group>
   );
 }
