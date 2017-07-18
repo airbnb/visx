@@ -1,6 +1,6 @@
 {
   "name": "@vx/boxplot",
-  "version": "0.0.127",
+  "version": "0.0.131",
   "description": "vx box plot",
   "main": "build/index.js",
   "scripts": {
