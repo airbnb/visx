@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.131](#v00131)
 - [v0.0.130](#v00130)
 - [v0.0.129](#v00129)
 - [v0.0.128](#v00128)
@@ -16,6 +17,24 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.131
+
+- [shape] LinePath.defined should default to true [#101](https://github.com/hshoff/vx/pull/101)
+- [boxplot] add docs [#102](https://github.com/hshoff/vx/pull/102)
+- [shape] add x-value mouseover to area demo [#103](https://github.com/hshoff/vx/pull/103)
+- [grid] add styles and restProps support for grid lines [#103](https://github.com/hshoff/vx/pull/103)
+
+```bash
+Changes:
+- @vx/annotation: 0.0.130 => 0.0.131
+- @vx/axis: 0.0.130 => 0.0.131
+- @vx/boxplot: 0.0.127 => 0.0.131
+- @vx/demo: 0.0.130 => 0.0.131
+- @vx/grid: 0.0.130 => 0.0.131
+- @vx/marker: 0.0.130 => 0.0.131
+- @vx/shape: 0.0.130 => 0.0.131
+```
 
 # v0.0.130
 
