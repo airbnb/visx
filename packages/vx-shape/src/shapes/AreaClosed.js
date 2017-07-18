@@ -1,6 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { area } from 'd3-shape';
+import additionalProps from '../util/additionalProps';
 
 export default function AreaClosed({
   x,
@@ -32,7 +33,7 @@ export default function AreaClosed({
         strokeWidth={strokeWidth}
         strokeDasharray={strokeDasharray}
         fill={fill}
-        {...restProps}
+        {...additionalProps(restProps, data)}
       />
     </g>
   );

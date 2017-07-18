@@ -17,13 +17,11 @@ export default function Grid({
   strokeDasharray,
   numTicksRows,
   numTicksColumns,
+  rowLineStyle,
+  columnLineStyle,
 }) {
   return (
-    <Group
-      className={cx('vx-grid', className)}
-      top={top}
-      left={left}
-    >
+    <Group className={cx('vx-grid', className)} top={top} left={left}>
       <Rows
         className={className}
         scale={yScale}
@@ -32,6 +30,7 @@ export default function Grid({
         strokeWidth={strokeWidth}
         strokeDasharray={strokeDasharray}
         numTicks={numTicksRows}
+        style={rowLineStyle}
       />
       <Columns
         className={className}
@@ -41,6 +40,7 @@ export default function Grid({
         strokeWidth={strokeWidth}
         strokeDasharray={strokeDasharray}
         numTicks={numTicksColumns}
+        style={columnLineStyle}
       />
     </Group>
   );

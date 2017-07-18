@@ -23,6 +23,7 @@
     "@vx/brush": "0.0.127",
     "@vx/clip-path": "0.0.127",
     "@vx/curve": "0.0.127",
+    "@vx/event": "0.0.127",
     "@vx/glyph": "0.0.127",
     "@vx/gradient": "^0.0.129",
     "@vx/grid": "0.0.130",
