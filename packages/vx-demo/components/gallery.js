@@ -25,6 +25,7 @@ import Cluster from '../components/tiles/dendrogram';
 import Voronoi from '../components/tiles/voronoi';
 import Legends from '../components/tiles/legends';
 import BoxPlot from '../components/tiles/boxplot';
+import GeoMercator from '../components/tiles/geo-mercator';
 
 const items = [
   '#242424',
@@ -87,6 +88,7 @@ export default class Gallery extends React.Component {
     const t15 = this.state.dimensions[14] || [8, 300];
     const t16 = this.state.dimensions[15] || [8, 300];
     const t17 = this.state.dimensions[16] || [8, 300];
+    const t18 = this.state.dimensions[17] || [8, 300];
 
     return (
       <div>
@@ -521,6 +523,26 @@ export default class Gallery extends React.Component {
               </div>
             </Link>
           </Tilt>
+
+          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+            <Link prefetch href="/geo-mercator">
+              <div
+                className="gallery-item"
+                ref={d => this.nodes.add(d)}
+              >
+                <div className="image">
+                  <GeoMercator width={t18[0]} height={t18[1]} />
+                </div>
+                <div className="details" style={{ color: '#ffffff', textShadow: '0 0 1px #333' }}>
+                  <div className="title">Geo</div>
+                  <div className="description">
+                    <pre>{`<Geo.Mercator />`}</pre>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </Tilt>
+
           <div className="gallery-item placeholder" />
           <div className="gallery-item placeholder" />
         </div>
