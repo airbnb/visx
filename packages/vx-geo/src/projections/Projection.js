@@ -47,23 +47,32 @@ export default function Projection({
 
   return (
     <Group className={`vx-${projection}-group`}>
-      {data.map((feature, i) =>
-        <g key={`${projection}-${i}`}>
-          <path
-            className={classnames(`vx-${projection}`, className)}
-            d={path(feature)}
-            {...additionalProps(restProps, feature)}
-          />
-          {centroid && centroid(path.centroid(feature), feature)}
-        </g>
-      )}
+      {data.map((feature, i) => {
+        let c;
+        if (centroid) c = path.centroid(feature);
+        return (
+          <g key={`${projection}-${i}`}>
+            <path
+              className={classnames(`vx-${projection}`, className)}
+              d={path(feature)}
+              {...additionalProps(restProps, {
+                ...feature,
+                index: i,
+                centroid: c
+              })}
+            />
+            {centroid && centroid(c, feature)}
+          </g>
+        );
+      })}
+      {/* TODO: Maybe find a different way to pass projection function to use for example invert */}
       {projectionFunc && projectionFunc(currProjection)}
     </Group>
   );
 }
 
 Projection.propTypes = {
-  data: PropTypes.array,
+  data: PropTypes.array.isRequired,
   projection: PropTypes.string,
   projectionFunc: PropTypes.func,
   clipAngle: PropTypes.number,
