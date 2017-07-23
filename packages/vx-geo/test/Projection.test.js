@@ -1,5 +1,5 @@
 import React from 'react';
-import Projection from '../src/components/Projection';
+import Projection from '../src/projections/Projection';
 import topology from './topo.json';
 import { feature } from 'topojson-client';
 import { shallow } from 'enzyme';

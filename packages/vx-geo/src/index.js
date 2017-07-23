@@ -1,3 +1,3 @@
-export { default as Albers } from './components/Albers';
-export { default as Mercator } from './components/Mercator';
-export { default as Orthographic } from './components/Orthographic';
+export { default as Albers } from './projections/Albers';
+export { default as Mercator } from './projections/Mercator';
+export { default as Orthographic } from './projections/Orthographic';
