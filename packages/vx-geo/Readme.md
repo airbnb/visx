@@ -7,10 +7,11 @@ npm install --save @vx/geo
 Draw GeoJSON/TopoJSON features with different projections using d3-geo and react to render it.
 
 ## `<Mercator />`
-
 The spherical Mercator projection. Many online street mapping services use a variant of the spherical Mercator projection (OpenStreetMap, Bing Maps, Google Maps, ...).
 
 ### Example
+
+<img width="500" src="https://user-images.githubusercontent.com/3831579/28503643-0fb53628-700b-11e7-824c-293f5df0caf5.png" alt="vx-geo-mercator">
 
 ```js
 <Mercator
@@ -49,6 +50,8 @@ The orthographic projection.
 
 ### Example
 
+<img width="200" src="https://user-images.githubusercontent.com/3831579/28503686-bfb776f8-700b-11e7-942d-8c3124f1f618.png" alt="vx-geo-mercator">
+
 ```js
 <Orthographic
   data={myData}
@@ -73,6 +76,8 @@ Same properties as Mercator.
 The albers projection.
 
 ### Example
+
+<img width="250" src="https://user-images.githubusercontent.com/3831579/28503693-d27ed9fc-700b-11e7-9e0a-e6b54a4a9b83.png" alt="vx-geo-mercator">
 
 ```js
 <Albers
