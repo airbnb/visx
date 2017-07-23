@@ -34,7 +34,6 @@ export default ({ width, height, events = false }) => {
         onClick={data => event => {
           if (!events) return;
           alert(`Clicked: ${data.properties.name} (${data.id})`);
-          prop;
         }}
       />
     </svg>

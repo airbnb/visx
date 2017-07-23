@@ -5,6 +5,7 @@ import { Group } from '@vx/group';
 import additionalProps from '../util/additionalProps';
 import { geoOrthographic, geoAlbers, geoMercator, geoPath } from 'd3-geo';
 
+// TODO: Implement all projections of d3-geo
 const projectionMapping = {
   orthographic: geoOrthographic(),
   albers: geoAlbers(),
@@ -40,8 +41,8 @@ export default function Projection({
   if (center) currProjection.translate(center);
   if (rotate) currProjection.rotate(rotate);
   if (precision) currProjection.rotate(precision);
-  if (fitExtent) currProjection.fitExtent(fitExtent);
-  if (fitSize) currProjection.fitSize(fitSize);
+  if (fitExtent) currProjection.fitExtent(...fitExtent);
+  if (fitSize) currProjection.fitSize(...fitSize);
 
   const path = geoPath().projection(currProjection);
 
