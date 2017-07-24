@@ -7,9 +7,9 @@ import { geoOrthographic, geoAlbers, geoMercator, geoPath } from 'd3-geo';
 
 // TODO: Implement all projections of d3-geo
 const projectionMapping = {
-  orthographic: geoOrthographic(),
-  albers: geoAlbers(),
-  mercator: geoMercator()
+  orthographic: () => geoOrthographic(),
+  albers: () => geoAlbers(),
+  mercator: () => geoMercator()
 };
 
 /**
@@ -32,7 +32,7 @@ export default function Projection({
   className,
   ...restProps
 }) {
-  const currProjection = projectionMapping[projection];
+  const currProjection = projectionMapping[projection]();
 
   if (clipAngle) currProjection.clipAngle(clipAngle);
   if (clipExtent) currProjection.clipExtent(clipExtent);
