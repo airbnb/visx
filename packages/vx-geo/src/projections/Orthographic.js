@@ -1,6 +1,6 @@
 import React from 'react';
 import Projection from './Projection';
 
-export default function Orthographic({ ...restProps }) {
-  return <Projection projection="orthographic" {...restProps} />;
+export default function Orthographic(props) {
+  return <Projection projection="orthographic" {...props} />;
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import Projection from './Projection';
 
-export default function Mercator({ ...restProps }) {
-  return <Projection projection="mercator" {...restProps} />;
+export default function Mercator(props) {
+  return <Projection projection="mercator" {...props} />;
 }
