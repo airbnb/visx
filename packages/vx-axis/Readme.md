@@ -13,7 +13,7 @@ You can use one of the 4 pre-made axes or you can create your own based on the `
 ![Axis Example](http://i.imgur.com/uNIgPsg.png)
 
 ``` js
-import {AxisBottom, AxisLeft} from '@vx/axis';
+import { AxisBottom, AxisLeft } from '@vx/axis';
 // or
 // import * as Axis from '@vx/axis';
 // <Axis.AxisBottom />
@@ -23,7 +23,7 @@ const axis = (
     scale={xScale}
     top={yMax + margin.top}
     left={margin.left}
-    label={''}
+    label={'My string label'}
     stroke={'#1b1a1e'}
     tickTextFill={'#1b1a1e'}
   />
@@ -31,7 +31,7 @@ const axis = (
     scale={yScale}
     top={margin.top}
     left={margin.left}
-    label={''}
+    label={<text {...labelStyles}>My component label</text>}
     stroke={'#1b1a1e'}
     tickTextFill={'#1b1a1e'}
   />
@@ -48,11 +48,12 @@ const axis = (
 | stroke             |          | string   | The color for the stroke of the lines.                                                                          |
 | strokeWidth        |          | number   | The pixel value for the width of the lines.                                                                     |
 | strokeDasharray    |          | array    | The [pattern of dashes](https://mzl.la/1l7EiTQ) in the stroke.                                                  |
-| label              |          | string   | The text for the axis label.                                                                                    |
+| label              |          | string or node | The text for the axis label, or a label component                                                         |
 | numTicks           | 10       | number   | The number of ticks wanted for the axis.                                                                        |
 | tickFormat         |          | function | A [d3 formatter](https://github.com/d3/d3-scale/blob/master/README.md#continuous_tickFormat) for the tick text. |
 | tickStroke         | black    | string   | The color for the tick's stroke value.                                                                          |
-| tickK              | -1        | number   | A value that determines an offset in the tick position.                                                         |
+| tickValues         |          | Array    | An array of values that determine the number and values of the ticks. Falls back to scale.ticks() or .domain(). |
+| tickK              | -1       | number   | A value that determines an offset in the tick position.                                                         |
 | tickOffset         |          | number   | A value that determines the y offset in the tick position.                                                      |
 | tickTransform      |          | string   | A custom SVG transform value to be applied to the ticks.                                                        |
 | tickLength         | 8        | number   | The length of the tick lines.                                                                                   |
@@ -82,6 +83,7 @@ const axis = (
 | numTicks           | 10       | number   | The number of ticks wanted for the axis.                                                                        |
 | tickFormat         |          | function | A [d3 formatter](https://github.com/d3/d3-scale/blob/master/README.md#continuous_tickFormat) for the tick text. |
 | tickStroke         | black    | string   | The color for the tick's stroke value.                                                                          |
+| tickValues         |          | Array    | An array of values that determine the number and values of the ticks. Falls back to scale.ticks() or .domain(). |
 | tickK              | 1        | number   | A value that determines an offset in the tick position.                                                         |
 | tickOffset         |          | number   | A value that determines the y offset in the tick position.                                                      |
 | tickTransform      |          | string   | A custom SVG transform value to be applied to the ticks.                                                        |
@@ -112,6 +114,7 @@ const axis = (
 | numTicks           | 10      | number   | The number of ticks wanted for the axis.                                                                        |
 | tickFormat         |         | function | A [d3 formatter](https://github.com/d3/d3-scale/blob/master/README.md#continuous_tickFormat) for the tick text. |
 | tickStroke         | black   | string   | The color for the tick's stroke value.                                                                          |
+| tickValues         |         | Array    | An array of values that determine the number and values of the ticks. Falls back to scale.ticks() or .domain(). |
 | tickK              | -1      | number   | A value that determines an offset in the tick position.                                                         |
 | tickOffset         |         | number   | A value that determines the y offset in the tick position.                                                      |
 | tickTransform      |         | string   | A custom SVG transform value to be applied to the ticks.                                                        |
@@ -142,6 +145,7 @@ const axis = (
 | numTicks           | 10      | number   | The number of ticks wanted for the axis.                                                                        |
 | tickFormat         |         | function | A [d3 formatter](https://github.com/d3/d3-scale/blob/master/README.md#continuous_tickFormat) for the tick text. |
 | tickStroke         | black   | string   | The color for the tick's stroke value.                                                                          |
+| tickValues         |         | Array    | An array of values that determine the number and values of the ticks. Falls back to scale.ticks() or .domain(). |
 | tickK              | 1       | number   | A value that determines an offset in the tick position.                                                         |
 | tickOffset         |         | number   | A value that determines the y offset in the tick position.                                                      |
 | tickTransform      |         | string   | A custom SVG transform value to be applied to the ticks.                                                        |
@@ -172,7 +176,8 @@ const axis = (
 | label              | "default label" | string   | The text for the axis label.                                                                                    |
 | numTicks           | 10              | number   | The number of ticks wanted for the axis.                                                                        |
 | tickFormat         |                 | function | A [d3 formatter](https://github.com/d3/d3-scale/blob/master/README.md#continuous_tickFormat) for the tick text. |
-| tickStroke         | black           | string   | The color for the tick's stroke value.                                                                          |
+| tickStroke         | black           | string   | The color for the tick's stroke value.                                                                          
+| tickValues         |                 | Array    | An array of values that determine the number and values of the ticks. Falls back to scale.ticks() or .domain(). |
 | tickK              | 1               | number   | A value that determines an offset in the tick position.                                                         |
 | tickOffset         |                 | number   | A value that determines the y offset in the tick position.                                                      |
 | tickTransform      |                 | string   | A custom SVG transform value to be applied to the ticks.                                                        |
