@@ -1,8 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import cx from 'classnames';
 
-export default function Tooltip(props) {
-  const { className, top, left, style, ...restProps } = props;
+export default function Tooltip({ className, top, left, style, children, ...restProps }) {
   return (
     <div
       className={cx('vx-tooltip-portal', className)}
@@ -22,7 +22,15 @@ export default function Tooltip(props) {
       }}
       {...restProps}
     >
-      {props.children}
+      {children}
     </div>
   );
 }
+
+Tooltip.propTypes = {
+  left: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  top: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  className: PropTypes.string,
+  style: PropTypes.object,
+  children: PropTypes.any,
+};

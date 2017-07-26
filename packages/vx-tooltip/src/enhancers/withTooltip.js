@@ -1,4 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
+export const withTooltipPropTypes = {
+  tooltipOpen: PropTypes.bool,
+  tooltipLeft: PropTypes.number,
+  tooltipTop: PropTypes.number,
+  tooltipData: PropTypes.object,
+  updateTooltip: PropTypes.func,
+  showTooltip: PropTypes.func,
+  hideTooltip: PropTypes.func,
+};
 
 export default function withTooltip(BaseComponent) {
   class WrappedComponent extends React.PureComponent {
