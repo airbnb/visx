@@ -108,7 +108,7 @@ export default function Axis({
                   stroke={tickStroke || stroke}
                 />
               }
-              {React.cloneElement(tickLabelComponent, tickLabelProps, format(val))}
+              {React.cloneElement(tickLabelComponent, tickLabelProps, format(val, i))}
             </Group>
           );
         })}
