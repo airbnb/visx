@@ -17,6 +17,7 @@ export default function AxisRight({
   tickFormat,
   tickStroke,
   tickTransform,
+  tickValues,
   tickLength = 8,
   tickLabelComponent = (
     <text
@@ -61,6 +62,7 @@ export default function AxisRight({
       tickLength={tickLength}
       tickTransform={tickTransform}
       tickStroke={tickStroke}
+      tickValues={tickValues}
       labelOffset={labelOffset}
       tickLabelComponent={tickLabelComponent}
       hideAxisLine={hideAxisLine}

@@ -22,6 +22,7 @@ export default function Axis({
   tickStroke = 'black',
   tickLength = 8,
   tickTransform,
+  tickValues,
   hideAxisLine = false,
   hideTicks = false,
   hideZero = false,
@@ -37,7 +38,8 @@ export default function Axis({
   ),
   className,
 }) {
-    const values = scale.ticks ? scale.ticks(numTicks) : scale.domain();
+    let values = scale.ticks ? scale.ticks(numTicks) : scale.domain();
+    if (tickValues) values = tickValues;
     let format = scale.tickFormat ? scale.tickFormat() : identity;
     if (tickFormat) format = tickFormat;
 
