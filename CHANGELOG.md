@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.133](#v00133)
 - [v0.0.132](#v00132)
 - [v0.0.131](#v00131)
 - [v0.0.130](#v00130)
@@ -18,6 +19,32 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.134
+
+- [axis] make ticks more customizable [#109](https://github.com/hshoff/vx/pull/109)
+- [tooltip] add `<TooltipWithBounds />` and PropTypes to `@vx/tooltip` exports [#108](https://github.com/hshoff/vx/pull/108)
+- [demo] use @vx/geo version in deps [#106](https://github.com/hshoff/vx/pull/106)
+
+
+```bash
+Changes:
+- @vx/axis: 0.0.133 => 0.0.134
+- @vx/demo: 0.0.133 => 0.0.134
+- @vx/tooltip: 0.0.133 => 0.0.134
+```
+
+
+# v0.0.133
+
+- ignore this version, lerna got into a bad state.
+
+```bash
+Changes:
+- @vx/axis: 0.0.131 => 0.0.133
+- @vx/demo: 0.0.132 => 0.0.133
+- @vx/tooltip: 0.0.127 => 0.0.133
+```
 
 # v0.0.132
 
