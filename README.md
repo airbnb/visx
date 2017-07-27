@@ -21,7 +21,7 @@
 
 ### vx
 
-vx is collection of reusable low-level visualization components. vx combines the power of d3 to generate your visualization with the benefits of react for updating the DOM.
+vx is a collection of reusable low-level visualization components. vx combines the power of d3 to generate your visualization with the benefits of react for updating the DOM.
 
 <br />
 
@@ -61,7 +61,7 @@ vx is collection of reusable low-level visualization components. vx combines the
 
 Let's make a simple bar graph.
 
-First we'll install the relevant packages: 
+First we'll install the relevant packages:
 
 ```
 $ npm install --save @vx/mock-data @vx/group @vx/shape @vx/scale
@@ -164,7 +164,7 @@ Lots coming soon, check out the [roadmap](./ROADMAP.md).
 
 - [williaster/data-ui](https://github.com/williaster/data-ui) ([Demo](https://williaster.github.io/data-ui/))
 - [Flaque/data-structures](https://github.com/Flaque/data-structures) ([Interactive explanation of the trie data structure](https://trie.now.sh/))
-- Have a project that's using vx? Open a pull request and we'll add it to the list. 
+- Have a project that's using vx? Open a pull request and we'll add it to the list.
 
 ## FAQ
 
