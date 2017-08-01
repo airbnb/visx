@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { Group } from '@vx/group';
 import additionalProps from '../util/additionalProps';
+import Graticule from '../graticule/Graticule';
 import { geoOrthographic, geoAlbers, geoMercator, geoPath } from 'd3-geo';
 
 // TODO: Implement all projections of d3-geo
@@ -29,6 +30,9 @@ export default function Projection({
   fitExtent,
   fitSize,
   centroid,
+  graticule,
+  graticuleLines,
+  graticuleOutline,
   className,
   ...restProps
 }) {
@@ -47,14 +51,24 @@ export default function Projection({
   const path = geoPath().projection(currProjection);
 
   return (
-    <Group className={`vx-${projection}-group`}>
+    <Group className={`vx-geo`}>
+      {graticule &&
+        !graticule.foreGround &&
+        <Graticule graticule={g => path(g)} {...graticule} />}
+      {graticuleLines &&
+        !graticuleLines.foreGround &&
+        <Graticule lines={g => path(g)} {...graticuleLines} />}
+      {graticuleOutline &&
+        !graticuleOutline.foreGround &&
+        <Graticule outline={g => path(g)} {...graticuleOutline} />}
+
       {data.map((feature, i) => {
         let c;
         if (centroid) c = path.centroid(feature);
         return (
           <g key={`${projection}-${i}`}>
             <path
-              className={classnames(`vx-${projection}`, className)}
+              className={`vx-geo-${projection}`}
               d={path(feature)}
               {...additionalProps(restProps, {
                 ...feature,
@@ -68,6 +82,16 @@ export default function Projection({
       })}
       {/* TODO: Maybe find a different way to pass projection function to use for example invert */}
       {projectionFunc && projectionFunc(currProjection)}
+
+      {graticule &&
+        graticule.foreGround &&
+        <Graticule graticule={g => path(g)} {...graticule} />}
+      {graticuleLines &&
+        graticuleLines.foreGround &&
+        <Graticule lines={g => path(g)} {...graticuleLines} />}
+      {graticuleOutline &&
+        graticuleOutline.foreGround &&
+        <Graticule outline={g => path(g)} {...graticuleOutline} />}
     </Group>
   );
 }
