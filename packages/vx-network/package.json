@@ -1,0 +1,37 @@
+{
+  "name": "@vx/network",
+  "version": "0.0.127",
+  "description": "vx graph",
+  "main": "build/index.js",
+  "repository": "https://github.com/hshoff/vx",
+  "files": [
+    "build"
+  ],
+  "scripts": {
+    "build": "make build SRC=./src",
+    "prepublish": "make build SRC=./src",
+    "test": "jest"
+  },
+  "keywords": [
+    "vx",
+    "data",
+    "visualizations",
+    "charts"
+  ],
+  "author": "@andyfang_dz",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-jest": "^20.0.3",
+    "jest": "^20.0.3",
+    "react-fatigue-dev": "github:tj/react-fatigue-dev",
+    "react-tools": "^0.10.0",
+    "regenerator-runtime": "^0.10.5"
+  },
+  "dependencies": {
+    "@vx/group": "0.0.127",
+    "d3-force": "^1.0.6"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

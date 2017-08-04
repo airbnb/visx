@@ -10,3 +10,4 @@ export { default as letterFrequency } from './mocks/letterFrequency';
 export { default as browserUsage } from './mocks/browserUsage';
 export { default as groupDateValue } from './mocks/groupDateValue';
 export { default as cityTemperature } from './mocks/cityTemperature';
+export { default as lesMiserables} from './mocks/lesMiserables';
