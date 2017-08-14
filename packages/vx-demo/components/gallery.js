@@ -535,7 +535,7 @@ export default class Gallery extends React.Component {
                 <div className="image">
                   <GeoMercator width={t18[0]} height={t18[1]} />
                 </div>
-                <div className="details" style={{ color: '#ffffff', textShadow: '0 0 1px #333' }}>
+                <div className="details" style={{ color: '#f63a48' }}>
                   <div className="title">Geo</div>
                   <div className="description">
                     <pre>{`<Geo.Mercator />`}</pre>
@@ -554,7 +554,13 @@ export default class Gallery extends React.Component {
                 <div className="image">
                   <Network width={t19[0]} height={t19[1]} />
                 </div>
-                <div className="details" style={{ color: '#ffffff', textShadow: '0 0 1px #333' }}>
+                <div
+                  className="details"
+                  style={{
+                    color: '#ffffff',
+                    textShadow: '0 0 1px #333',
+                  }}
+                >
                   <div className="title">Network</div>
                   <div className="description">
                     <pre>{`<Network />`}</pre>
