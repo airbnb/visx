@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "@vx/group": "0.0.127",
+    "classnames": "^2.2.5",
     "d3-force": "^1.0.6"
   },
   "publishConfig": {
