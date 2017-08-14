@@ -45,10 +45,10 @@ export default function Graticule({
               stroke="black"
               {...additionalProps(restProps, {
                 ...line,
-                index: i
+                index: i,
               })}
             />
-          </g>
+          </g>,
         )}
       {outline &&
         <path
@@ -64,5 +64,5 @@ export default function Graticule({
 Graticule.propTypes = {
   graticule: PropTypes.func,
   lines: PropTypes.func,
-  outline: PropTypes.func
+  outline: PropTypes.func,
 };
