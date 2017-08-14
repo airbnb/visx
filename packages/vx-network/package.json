@@ -1,6 +1,6 @@
 {
   "name": "@vx/network",
-  "version": "0.0.127",
+  "version": "0.0.135",
   "description": "vx graph",
   "main": "build/index.js",
   "repository": "https://github.com/hshoff/vx",
