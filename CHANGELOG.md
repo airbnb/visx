@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.135](#v00135)
 - [v0.0.134](#v00134)
 - [v0.0.133](#v00133)
 - [v0.0.132](#v00132)
@@ -20,6 +21,21 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.135
+
+- [geo] add graticule [#111](https://github.com/hshoff/vx/pull/111)
+- [network] add @vx/network [#113](https://github.com/hshoff/vx/pull/113)
+- [demo] fix invalid JSX [#118](https://github.com/hshoff/vx/pull/118)
+- [network][geo][demo] polish for v0.0.135 [#119](https://github.com/hshoff/vx/pull/119)
+
+```bash
+Changes:
+- @vx/demo: 0.0.134 => 0.0.135
+- @vx/geo: 0.0.134 => 0.0.135
+- @vx/mock-data: 0.0.127 => 0.0.135
+- @vx/network: 0.0.127 => 0.0.135
+```
 
 # v0.0.134
 
