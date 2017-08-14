@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
+import cx from 'classnames';
 import { Group } from '@vx/group';
 import additionalProps from '../util/additionalProps';
 import Graticule from '../graticule/Graticule';
@@ -73,7 +73,7 @@ export default function Projection({
         return (
           <g key={`${projection}-${i}`}>
             <path
-              className={`vx-geo-${projection}`}
+              className={cx(`vx-geo-${projection}`, className)}
               d={path(feature)}
               {...additionalProps(restProps, {
                 ...feature,
