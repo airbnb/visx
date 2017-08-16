@@ -3,10 +3,10 @@
 - threshold
 - regions
 - labels
-- legends
-- events
+- ~~legends~~
+- ~~events~~
 - interactions
-- tooltips
+- ~~tooltips~~
 - brush
 - ~~textures~~
 - ~~gradients~~
