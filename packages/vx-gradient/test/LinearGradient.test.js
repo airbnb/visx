@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom'
 import { LinearGradient } from '../src'
 
 describe('<LinearGradient />', () => {
-  it('should be defined', () => {
+  test('should be defined', () => {
     expect(LinearGradient).toBeDefined()
   })
 
-  it('should render without crashing', () => {
+  test('should render without crashing', () => {
     const div = document.createElement('div')
     ReactDOM.render(<LinearGradient id="linear" />, div)
   })
