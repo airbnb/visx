@@ -558,12 +558,11 @@ export default class Gallery extends React.Component {
                   className="details"
                   style={{
                     color: '#ffffff',
-                    textShadow: '0 0 1px #333',
                   }}
                 >
                   <div className="title">Network</div>
                   <div className="description">
-                    <pre>{`<Network />`}</pre>
+                    <pre>{`<Network.Graph />`}</pre>
                   </div>
                 </div>
               </div>
