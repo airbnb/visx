@@ -76,6 +76,14 @@ export default () => (
           </ul>
         </li>
         <li>
+          <a href="/static/docs/vx-geo.html"> @vx/geo </a>
+          <ul>
+            <li>Mercator</li>
+            <li>Orthographic</li>
+            <li>Albers</li>
+          </ul>
+        </li>
+          <li>
           <a href="/static/docs/vx-gradient.html"> @vx/gradient </a>
           <ul>
             <li>GradientDarkgreenGreen</li>
