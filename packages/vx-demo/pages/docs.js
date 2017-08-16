@@ -76,6 +76,21 @@ export default () => (
           </ul>
         </li>
         <li>
+          <a href="/static/docs/vx-gradient.html"> @vx/gradient </a>
+          <ul>
+            <li>GradientDarkgreenGreen</li>
+            <li>GradientLightgreenGreen</li>
+            <li>GradientOrangeRed</li>
+            <li>GradientPinkBlue</li>
+            <li>GradientPinkRed</li>
+            <li>GradientPurpleOrange</li>
+            <li>GradientPurpleTeal</li>
+            <li>GradientSteelPurple</li>
+            <li>GaradientTealBlue</li>
+            <li>LinearGradient</li>
+          </ul>
+        </li>
+        <li>
           <a href="/static/docs/vx-grid.html"> @vx/grid </a>
           <ul>
             <li>Grid</li>
