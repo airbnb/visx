@@ -113,6 +113,13 @@ export default () => (
           </ul>
         </li>
         <li>
+          <a href="/static/docs/vx-heatmap.html"> @vx/heatmap </a>
+          <ul>
+            <li>HeatmapRect</li>
+            <li>HeatmapCircle</li>
+          </ul>
+        </li>
+        <li>
           <a href="/static/docs/vx-marker.html"> @vx/marker </a>
           <ul>
             <li>Marker</li>
