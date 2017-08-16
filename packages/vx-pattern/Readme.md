@@ -9,7 +9,7 @@ Inspired by: http://riccardoscalco.github.io/textures/
 ## Example
 
 ``` js
-import { AreaClose } from '@vx/shape';
+import { AreaClosed } from '@vx/shape';
 import { PatternLines } from '@vx/pattern';
 
 const PatternArea = () => {
@@ -23,7 +23,7 @@ const PatternArea = () => {
           strokeWidth={1}
           orientation={['diagonal']}
         />
-        <AreaClose fill="url('#lines')" />
+        <AreaClosed fill="url('#lines')" />
       </svg>
     );
 };
