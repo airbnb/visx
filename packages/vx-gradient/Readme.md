@@ -9,14 +9,14 @@ Inspired by: https://dribbble.com/shots/3380672-Sketch-Gradients-Freebie
 ## Example
 
 ```js
-import { AreaClose } from '@vx/shape';
+import { AreaClosed } from '@vx/shape';
 import { GradientPinkBlue } from '@vx/gradient';
 
 const GradientArea = () => {
     return (
       <svg>
         <GradientPinkBlue id="gradient" />
-        <AreaClose fill="url('#gradient')" />
+        <AreaClosed fill="url('#gradient')" />
       </svg>
     );
 }
