@@ -29,13 +29,41 @@
       <div class="doc-nav">
         <ul>
         <li>Packages</li>
-        <li><a href="/static/docs/vx-annotation.html">@vx/annotation</a></li><li><a href="/static/docs/vx-axis.html">@vx/axis</a></li><li><a href="/static/docs/vx-brush.html">@vx/brush</a></li><li><a href="/static/docs/vx-clip-path.html">@vx/clip-path</a></li><li><a href="/static/docs/vx-curve.html">@vx/curve</a></li><li><a href="/static/docs/vx-demo.html">@vx/demo</a></li><li><a href="/static/docs/vx-drag.html">@vx/drag</a></li><li><a href="/static/docs/vx-event.html">@vx/event</a></li><li><a href="/static/docs/vx-glyph.html">@vx/glyph</a></li><li><a href="/static/docs/vx-gradient.html">@vx/gradient</a></li><li><a href="/static/docs/vx-grid.html">@vx/grid</a></li><li><a href="/static/docs/vx-group.html">@vx/group</a></li><li><a href="/static/docs/vx-heatmap.html">@vx/heatmap</a></li><li><a href="/static/docs/vx-hierarchy.html">@vx/hierarchy</a></li><li><a href="/static/docs/vx-legend.html">@vx/legend</a></li><li><a href="/static/docs/vx-marker.html">@vx/marker</a></li><li><a href="/static/docs/vx-mock-data.html">@vx/mock-data</a></li><li><a href="/static/docs/vx-pattern.html">@vx/pattern</a></li><li><a href="/static/docs/vx-point.html">@vx/point</a></li><li><a href="/static/docs/vx-responsive.html">@vx/responsive</a></li><li><a href="/static/docs/vx-scale.html">@vx/scale</a></li><li><a href="/static/docs/vx-shape.html">@vx/shape</a></li><li><a href="/static/docs/vx-text.html">@vx/text</a></li><li><a href="/static/docs/vx-tooltip.html">@vx/tooltip</a></li><li><a href="/static/docs/vx-voronoi.html">@vx/voronoi</a></li><li><a href="/static/docs/vx-zoom.html">@vx/zoom</a></li>
+        <li><a href="/static/docs/vx-annotation.html">@vx/annotation</a></li><li><a href="/static/docs/vx-axis.html">@vx/axis</a></li><li><a href="/static/docs/vx-bounds.html">@vx/bounds</a></li><li><a href="/static/docs/vx-boxplot.html">@vx/boxplot</a></li><li><a href="/static/docs/vx-brush.html">@vx/brush</a></li><li><a href="/static/docs/vx-clip-path.html">@vx/clip-path</a></li><li><a href="/static/docs/vx-curve.html">@vx/curve</a></li><li><a href="/static/docs/vx-demo.html">@vx/demo</a></li><li><a href="/static/docs/vx-drag.html">@vx/drag</a></li><li><a href="/static/docs/vx-event.html">@vx/event</a></li><li><a href="/static/docs/vx-geo.html">@vx/geo</a></li><li><a href="/static/docs/vx-glyph.html">@vx/glyph</a></li><li><a href="/static/docs/vx-gradient.html">@vx/gradient</a></li><li><a href="/static/docs/vx-grid.html">@vx/grid</a></li><li><a href="/static/docs/vx-group.html">@vx/group</a></li><li><a href="/static/docs/vx-heatmap.html">@vx/heatmap</a></li><li><a href="/static/docs/vx-hierarchy.html">@vx/hierarchy</a></li><li><a href="/static/docs/vx-legend.html">@vx/legend</a></li><li><a href="/static/docs/vx-marker.html">@vx/marker</a></li><li><a href="/static/docs/vx-mock-data.html">@vx/mock-data</a></li><li><a href="/static/docs/vx-network.html">@vx/network</a></li><li><a href="/static/docs/vx-pattern.html">@vx/pattern</a></li><li><a href="/static/docs/vx-point.html">@vx/point</a></li><li><a href="/static/docs/vx-responsive.html">@vx/responsive</a></li><li><a href="/static/docs/vx-scale.html">@vx/scale</a></li><li><a href="/static/docs/vx-shape.html">@vx/shape</a></li><li><a href="/static/docs/vx-text.html">@vx/text</a></li><li><a href="/static/docs/vx-tooltip.html">@vx/tooltip</a></li><li><a href="/static/docs/vx-voronoi.html">@vx/voronoi</a></li><li><a href="/static/docs/vx-zoom.html">@vx/zoom</a></li>
         </ul>
       </div>
       <div class="content">
       <h1 id="-vx-responsive">@vx/responsive</h1>
 <pre><code>npm install --save @vx/responsive
+</code></pre><p>The <code>@vx/responsive</code> package is here to help you make responsive graphs.</p>
+<p>If you would like your graph to adapt to the screen size, you can use <code>withScreenSize()</code> to take an element and attach events that will resize the graph to maintain the same size of the screen.</p>
+<h2 id="example-">Example:</h2>
+<pre><code class="lang-js">import { withScreenSize } from `@vx/responsive`;
+// or
+// import * as Responsive from &#39;@vx/responsive&#39;;
+// Responsive.withScreenSize(...);
+
+let chartToRender = withScreenSize(MySuperCoolVxChart);
+
+// ... Render the chartToRender somewhere
 </code></pre>
+<p>You can also create a responsive chart with a specific viewBox with the <code>&lt;ScaleSVG /&gt;</code> component.</p>
+<h2 id="example-">Example:</h2>
+<pre><code class="lang-js">import { ScaleSVG } from `@vx/responsive`;
+// or
+// import * as Responsive from &#39;@vx/responsive&#39;;
+// &lt;Responsive.ScaleSVG /&gt;
+
+let chartToRender = (
+  &lt;ScaleSVG
+    width={400}
+    height={400}
+  &gt;
+    &lt;MySuperCoolVXChart/&gt;
+  &lt;/ScaleSVG&gt;
+)
+</code></pre>
+
       </div>
     </div>
     <script async defer src="https://buttons.github.io/buttons.js"></script>

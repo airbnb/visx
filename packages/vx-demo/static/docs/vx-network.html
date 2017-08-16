@@ -33,9 +33,33 @@
         </ul>
       </div>
       <div class="content">
-      <h1 id="-vx-event">@vx/event</h1>
-<pre><code>npm install --save @vx/event
+      <h1 id="-vx-network">@vx/network</h1>
+<pre><code>npm install --save @vx/network
+</code></pre><p>A simple package to represent a network graph.</p>
+<h2 id="example-usage">Example Usage</h2>
+<pre><code class="lang-js">
+import {Graph, DefaultLink, DefaultNode} from &#39;@vx/graph&#39;;
+const nodes =
+  [{x: 50, y: 20}, {x: 200, y: 300}, {x: 300, y: 40}];
+
+const dataSample = {
+  nodes,
+  links: [
+    {source: nodes[0], target: nodes[1]},
+    {source: nodes[1], target: nodes[2]},
+    {source: nodes[2], target: nodes[0]}
+  ]
+};
+
+const MyGraph = () =&gt; &lt;Graph graph={dataSample}
+    linkComponent={DefaultLink} nodeComponent={DefaultNode} /&gt;;
 </code></pre>
+<h2 id="methods">Methods</h2>
+<h3 id="-point-value-"><code>point.value()</code></h3>
+<p>Returns an <code>{x, y}</code> object with the x and y coordinates.</p>
+<h3 id="-point-toarray-"><code>point.toArray()</code></h3>
+<p>Returns the coordinates as an array <code>[x, y]</code>.</p>
+
       </div>
     </div>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
