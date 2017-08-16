@@ -8,3 +8,6 @@ test/tmp
 /.eslintcache
 .next
 coverage
+package-lock.json
+npm-shrinkwrap.json
+yarn.lock
