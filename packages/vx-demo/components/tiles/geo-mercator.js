@@ -58,6 +58,9 @@ export default ({ width, height, events = false }) => {
           if (!events) return;
           alert(`Clicked: ${data.properties.name} (${data.id})`);
         }}
+        graticule={{
+          stroke: 'rgba(33,33,33,0.05)',
+        }}
       />
     </svg>
   );
