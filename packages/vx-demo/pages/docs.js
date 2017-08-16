@@ -120,6 +120,17 @@ export default () => (
           </ul>
         </li>
         <li>
+          <a href="/static/docs/vx-legend.html"> @vx/legend </a>
+          <ul>
+            <li>LegendLinear</li>
+            <li>LegendQuantile</li>
+            <li>LegendOrdinal</li>
+            <li>LegendThreshold</li>
+            <li>LegendSize</li>
+            <li>Legend</li>
+          </ul>
+        </li>
+        <li>
           <a href="/static/docs/vx-marker.html"> @vx/marker </a>
           <ul>
             <li>Marker</li>
