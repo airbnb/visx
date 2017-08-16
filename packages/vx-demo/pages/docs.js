@@ -222,6 +222,12 @@ export default () => (
             <li>TextWrap</li>
           </ul>
         </li>
+        <li>
+          <a href="/static/docs/vx-voronoi.html"> @vx/voronoi </a>
+          <ul>
+            <li>Voronoi</li>
+          </ul>
+        </li>
       </ul>
 
       <Footer />
