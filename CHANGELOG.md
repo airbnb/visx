@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.136](#v00136)
 - [v0.0.135](#v00135)
 - [v0.0.134](#v00134)
 - [v0.0.133](#v00133)
@@ -21,6 +22,49 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.136
+
+- [all] add package-lock=false to .npmrc fixes [#93](https://github.com/hshoff/vx/issues/93) [#129](https://github.com/hshoff/vx/pull/129)
+- [demo][docs] sync vx-demo site documentation with packages [#125](https://github.com/hshoff/vx/pull/125)
+- [gradient][pattern] fix typos [#121](https://github.com/hshoff/vx/pull/121)
+- [demo] updated geo + network tiles [#120](https://github.com/hshoff/vx/pull/120)
+- [event] add touch point [#116](https://github.com/hshoff/vx/pull/116)
+- [gradient] Add minimal rendering tests [#114](https://github.com/hshoff/vx/pull/114)
+
+```bash
+Changes:
+- @vx/annotation: 0.0.131 => 0.0.136
+- @vx/axis: 0.0.134 => 0.0.136
+- @vx/bounds: 0.0.129 => 0.0.136
+- @vx/boxplot: 0.0.131 => 0.0.136
+- @vx/brush: 0.0.127 => 0.0.136
+- @vx/clip-path: 0.0.127 => 0.0.136
+- @vx/curve: 0.0.127 => 0.0.136
+- @vx/demo: 0.0.135 => 0.0.136
+- @vx/drag: 0.0.127 => 0.0.136
+- @vx/event: 0.0.127 => 0.0.136
+- @vx/geo: 0.0.135 => 0.0.136
+- @vx/glyph: 0.0.127 => 0.0.136
+- @vx/gradient: 0.0.129 => 0.0.136
+- @vx/grid: 0.0.131 => 0.0.136
+- @vx/group: 0.0.127 => 0.0.136
+- @vx/heatmap: 0.0.127 => 0.0.136
+- @vx/hierarchy: 0.0.127 => 0.0.136
+- @vx/legend: 0.0.127 => 0.0.136
+- @vx/marker: 0.0.131 => 0.0.136
+- @vx/mock-data: 0.0.135 => 0.0.136
+- @vx/network: 0.0.135 => 0.0.136
+- @vx/pattern: 0.0.127 => 0.0.136
+- @vx/point: 0.0.127 => 0.0.136
+- @vx/responsive: 0.0.127 => 0.0.136
+- @vx/scale: 0.0.127 => 0.0.136
+- @vx/shape: 0.0.131 => 0.0.136
+- @vx/text: 0.0.127 => 0.0.136
+- @vx/tooltip: 0.0.134 => 0.0.136
+- @vx/voronoi: 0.0.127 => 0.0.136
+- @vx/zoom: 0.0.127 => 0.0.136
+```
 
 # v0.0.135
 
