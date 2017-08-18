@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.137](#v00137)
 - [v0.0.136](#v00136)
 - [v0.0.135](#v00135)
 - [v0.0.134](#v00134)
@@ -22,6 +23,19 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.137
+
+- [vx] add one stop install pkg @vx/vx [#131](https://github.com/hshoff/vx/pull/131)
+- [bounds] move react-dom to peerDeps [#132](https://github.com/hshoff/vx/pull/132)
+
+```bash
+Changes:
+- @vx/bounds: 0.0.136 => 0.0.137
+- @vx/demo: 0.0.136 => 0.0.137
+- @vx/tooltip: 0.0.136 => 0.0.137
+- @vx/vx: 1.0.0 => 0.0.137
+```
 
 # v0.0.136
 
