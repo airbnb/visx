@@ -1,0 +1,216 @@
+
+  <html>
+    <head>
+      <link rel="stylesheet" type="text/css" href="../doc_styles.css">
+    </head>
+    <div class="nav-container">
+      <div class="nav">
+        <div class="nav-inner">
+          <div class="logo"></div>
+          <ul>
+          <li class="Item">
+            <a href="/">Home</a>
+          </li>
+          <li class="Item">
+            <a href="/docs">Docs</a>
+          </li>
+          <li class="Item">
+            <a href="https://medium.com/vx-code">Guides</a>
+          </li>
+          <li class="Item">
+            <a href="/gallery">Gallery</a>
+          </li>
+          </ul>
+          <a class="github-button" href="https://github.com/hshoff/vx" data-show-count="true" aria-label="Star hshoff/vx on GitHub">Star</a>
+          </div>
+        </div>
+    </div>
+    <div class="doc-container">
+      <div class="doc-nav">
+        <ul>
+        <li>Packages</li>
+        <li><a href="/static/docs/vx-annotation.html">@vx/annotation</a></li><li><a href="/static/docs/vx-axis.html">@vx/axis</a></li><li><a href="/static/docs/vx-bounds.html">@vx/bounds</a></li><li><a href="/static/docs/vx-boxplot.html">@vx/boxplot</a></li><li><a href="/static/docs/vx-brush.html">@vx/brush</a></li><li><a href="/static/docs/vx-clip-path.html">@vx/clip-path</a></li><li><a href="/static/docs/vx-curve.html">@vx/curve</a></li><li><a href="/static/docs/vx-demo.html">@vx/demo</a></li><li><a href="/static/docs/vx-drag.html">@vx/drag</a></li><li><a href="/static/docs/vx-event.html">@vx/event</a></li><li><a href="/static/docs/vx-geo.html">@vx/geo</a></li><li><a href="/static/docs/vx-glyph.html">@vx/glyph</a></li><li><a href="/static/docs/vx-gradient.html">@vx/gradient</a></li><li><a href="/static/docs/vx-grid.html">@vx/grid</a></li><li><a href="/static/docs/vx-group.html">@vx/group</a></li><li><a href="/static/docs/vx-heatmap.html">@vx/heatmap</a></li><li><a href="/static/docs/vx-hierarchy.html">@vx/hierarchy</a></li><li><a href="/static/docs/vx-legend.html">@vx/legend</a></li><li><a href="/static/docs/vx-marker.html">@vx/marker</a></li><li><a href="/static/docs/vx-mock-data.html">@vx/mock-data</a></li><li><a href="/static/docs/vx-network.html">@vx/network</a></li><li><a href="/static/docs/vx-pattern.html">@vx/pattern</a></li><li><a href="/static/docs/vx-point.html">@vx/point</a></li><li><a href="/static/docs/vx-responsive.html">@vx/responsive</a></li><li><a href="/static/docs/vx-scale.html">@vx/scale</a></li><li><a href="/static/docs/vx-shape.html">@vx/shape</a></li><li><a href="/static/docs/vx-text.html">@vx/text</a></li><li><a href="/static/docs/vx-tooltip.html">@vx/tooltip</a></li><li><a href="/static/docs/vx-voronoi.html">@vx/voronoi</a></li><li><a href="/static/docs/vx-zoom.html">@vx/zoom</a></li>
+        </ul>
+      </div>
+      <div class="content">
+      <h1 id="-vx-geo">@vx/geo</h1>
+<pre><code>npm install --save @vx/geo
+</code></pre><p>Draw GeoJSON/TopoJSON features with different projections using d3-geo and react to render it.</p>
+<h2 id="-mercator-"><code>&lt;Mercator /&gt;</code></h2>
+<p>The spherical Mercator projection. Many online street mapping services use a variant of the spherical Mercator projection (OpenStreetMap, Bing Maps, Google Maps, ...).</p>
+<h3 id="example">Example</h3>
+<p><img width="500" src="https://user-images.githubusercontent.com/3831579/28503643-0fb53628-700b-11e7-824c-293f5df0caf5.png" alt="vx-geo-mercator"></p>
+<pre><code class="lang-js">&lt;Mercator
+  data={myData}
+  scale={myScale}
+  translate={[width / 2, height / 2]}
+  fill={(feature) =&gt; &#39;#aaaaaa&#39;}
+  onClick={data =&gt; event =&gt; {
+    alert(`Clicked!`);
+  }}
+/&gt;
+</code></pre>
+<h3 id="properties">Properties</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Default</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">data</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">object</td>
+<td style="text-align:left">GeoJSON/TopoJSON features.</td>
+</tr>
+<tr>
+<td style="text-align:left">projectionFunc</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">function</td>
+<td style="text-align:left">Returns projection function.</td>
+</tr>
+<tr>
+<td style="text-align:left">clipAngle</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">Sets the projection’s clipping circle radius.</td>
+</tr>
+<tr>
+<td style="text-align:left">clipExtent</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">array</td>
+<td style="text-align:left">Sets the projection’s viewport clip extent.</td>
+</tr>
+<tr>
+<td style="text-align:left">scale</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">Sets the projection’s scale.</td>
+</tr>
+<tr>
+<td style="text-align:left">translate</td>
+<td style="text-align:left">[480, 250]</td>
+<td style="text-align:left">array</td>
+<td style="text-align:left">Sets the projection’s translation offset.</td>
+</tr>
+<tr>
+<td style="text-align:left">center</td>
+<td style="text-align:left">[0, 0]</td>
+<td style="text-align:left">array</td>
+<td style="text-align:left">Sets the projection’s center.</td>
+</tr>
+<tr>
+<td style="text-align:left">rotate</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">array</td>
+<td style="text-align:left">Sets the projection’s three-axis rotation.</td>
+</tr>
+<tr>
+<td style="text-align:left">precision</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">Sets the threshold for the projection’s adaptive resampling.</td>
+</tr>
+<tr>
+<td style="text-align:left">fitExtent</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">array</td>
+<td style="text-align:left">Sets the projection’s scale and translate. [extend, object]</td>
+</tr>
+<tr>
+<td style="text-align:left">fitSize</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">array</td>
+<td style="text-align:left">A convenience method for fitExtent. [size, object]</td>
+</tr>
+<tr>
+<td style="text-align:left">centroid</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">function</td>
+<td style="text-align:left">Get centroid of path.</td>
+</tr>
+<tr>
+<td style="text-align:left">className</td>
+<td style="text-align:left"><code>vx-mercator</code></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The class name for the <code>path</code> element.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="-orthographic-"><code>&lt;Orthographic /&gt;</code></h2>
+<p>The orthographic projection.</p>
+<h3 id="example">Example</h3>
+<p><img width="200" src="https://user-images.githubusercontent.com/3831579/28503686-bfb776f8-700b-11e7-942d-8c3124f1f618.png" alt="vx-geo-mercator"></p>
+<pre><code class="lang-js">&lt;Orthographic
+  data={myData}
+  scale={myScale}
+  translate={[width / 2, height / 2]}
+  fill={(feature) =&gt; &#39;#aaaaaa&#39;}
+  onClick={data =&gt; event =&gt; {
+    alert(`Clicked!`);
+  }}
+/&gt;
+</code></pre>
+<h3 id="properties">Properties</h3>
+<p>Same properties as Mercator.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Default</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">className</td>
+<td style="text-align:left"><code>vx-orthographic</code></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The class name for the <code>path</code> element.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="-albers-"><code>&lt;Albers /&gt;</code></h2>
+<p>The albers projection.</p>
+<h3 id="example">Example</h3>
+<p><img width="250" src="https://user-images.githubusercontent.com/3831579/28503693-d27ed9fc-700b-11e7-9e0a-e6b54a4a9b83.png" alt="vx-geo-mercator"></p>
+<pre><code class="lang-js">&lt;Albers
+  data={myData}
+  scale={myScale}
+  translate={[width / 2, height / 2]}
+  fill={(feature) =&gt; &#39;#aaaaaa&#39;}
+  onClick={data =&gt; event =&gt; {
+    alert(`Clicked!`);
+  }}
+/&gt;
+</code></pre>
+<h3 id="properties">Properties</h3>
+<p>Same properties as Mercator.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Default</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">className</td>
+<td style="text-align:left"><code>vx-albers</code></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The class name for the <code>path</code> element.</td>
+</tr>
+</tbody>
+</table>
+
+      </div>
+    </div>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+  </html>

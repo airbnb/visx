@@ -33,9 +33,55 @@
         </ul>
       </div>
       <div class="content">
-      <h1 id="-vx-event">@vx/event</h1>
-<pre><code>npm install --save @vx/event
+      <h1 id="-vx-bounds">@vx/bounds</h1>
+<pre><code>npm install --save @vx/bounds
+</code></pre><h3 id="-withboundingrects-hoc"><code>withBoundingRects</code> HOC</h3>
+<p>It&#39;s often useful to determine whether elements (e.g., tooltips) overflow the bounds of their parent container and adjust positioning accordingly. The <code>withBoundingRects</code> higher-order component is meant to simplify this computation by passing in a component&#39;s bounding rect as well as its <em>parent&#39;s</em> bounding rect.</p>
+<h3 id="example-usage">Example usage</h3>
+<p>Example usage with a <code>&lt;Tooltip /&gt;</code> component</p>
+<pre><code class="lang-javascript">import React from &#39;react&#39;;
+import PropTypes from &#39;prop-types&#39;;
+import { withBoundingRects, withBoundingRectsProps } from &#39;@vx/bounds&#39;;
+
+const propTypes = {
+  ...withBoundingRectsProps,
+  left: PropTypes.number.isRequired,
+  top: PropTypes.number.isRequired,
+  children: PropTypes.node,
+};
+
+const defaultProps = {
+  children: null,
+};
+
+function Tooltip({
+  left: initialLeft,
+  top: initialTop,
+  rect,
+  parentRect,
+  children,
+}) {
+  let left = initialLeft;
+  let top = initialTop;
+
+  if (rect &amp;&amp; parentRect) {
+    left = rect.right &gt; parentRect.right ? (left - rect.width) : left;
+    top = rect.bottom &gt; parentRect.bottom ? (top - rect.height) : top;
+  }
+
+  return (
+    &lt;div style={{ top, left, ...myTheme }}&gt;
+      {children}
+    &lt;/div&gt;
+  );
+}
+
+Tooltip.propTypes = propTypes;
+Tooltip.defaultProps = defaultProps;
+
+export default withBoundingRects(Tooltip);
 </code></pre>
+
       </div>
     </div>
     <script async defer src="https://buttons.github.io/buttons.js"></script>

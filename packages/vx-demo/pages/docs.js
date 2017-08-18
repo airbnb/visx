@@ -76,6 +76,29 @@ export default () => (
           </ul>
         </li>
         <li>
+          <a href="/static/docs/vx-geo.html"> @vx/geo </a>
+          <ul>
+            <li>Mercator</li>
+            <li>Orthographic</li>
+            <li>Albers</li>
+          </ul>
+        </li>
+          <li>
+          <a href="/static/docs/vx-gradient.html"> @vx/gradient </a>
+          <ul>
+            <li>GradientDarkgreenGreen</li>
+            <li>GradientLightgreenGreen</li>
+            <li>GradientOrangeRed</li>
+            <li>GradientPinkBlue</li>
+            <li>GradientPinkRed</li>
+            <li>GradientPurpleOrange</li>
+            <li>GradientPurpleTeal</li>
+            <li>GradientSteelPurple</li>
+            <li>GaradientTealBlue</li>
+            <li>LinearGradient</li>
+          </ul>
+        </li>
+        <li>
           <a href="/static/docs/vx-grid.html"> @vx/grid </a>
           <ul>
             <li>Grid</li>
@@ -87,6 +110,24 @@ export default () => (
           <a href="/static/docs/vx-group.html"> @vx/group </a>
           <ul>
             <li>Group</li>
+          </ul>
+        </li>
+        <li>
+          <a href="/static/docs/vx-heatmap.html"> @vx/heatmap </a>
+          <ul>
+            <li>HeatmapRect</li>
+            <li>HeatmapCircle</li>
+          </ul>
+        </li>
+        <li>
+          <a href="/static/docs/vx-legend.html"> @vx/legend </a>
+          <ul>
+            <li>LegendLinear</li>
+            <li>LegendQuantile</li>
+            <li>LegendOrdinal</li>
+            <li>LegendThreshold</li>
+            <li>LegendSize</li>
+            <li>Legend</li>
           </ul>
         </li>
         <li>
@@ -179,6 +220,12 @@ export default () => (
             <li>TextBackground</li>
             <li>TextOutline</li>
             <li>TextWrap</li>
+          </ul>
+        </li>
+        <li>
+          <a href="/static/docs/vx-voronoi.html"> @vx/voronoi </a>
+          <ul>
+            <li>Voronoi</li>
           </ul>
         </li>
       </ul>

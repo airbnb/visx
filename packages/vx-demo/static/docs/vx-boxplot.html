@@ -1,0 +1,184 @@
+
+  <html>
+    <head>
+      <link rel="stylesheet" type="text/css" href="../doc_styles.css">
+    </head>
+    <div class="nav-container">
+      <div class="nav">
+        <div class="nav-inner">
+          <div class="logo"></div>
+          <ul>
+          <li class="Item">
+            <a href="/">Home</a>
+          </li>
+          <li class="Item">
+            <a href="/docs">Docs</a>
+          </li>
+          <li class="Item">
+            <a href="https://medium.com/vx-code">Guides</a>
+          </li>
+          <li class="Item">
+            <a href="/gallery">Gallery</a>
+          </li>
+          </ul>
+          <a class="github-button" href="https://github.com/hshoff/vx" data-show-count="true" aria-label="Star hshoff/vx on GitHub">Star</a>
+          </div>
+        </div>
+    </div>
+    <div class="doc-container">
+      <div class="doc-nav">
+        <ul>
+        <li>Packages</li>
+        <li><a href="/static/docs/vx-annotation.html">@vx/annotation</a></li><li><a href="/static/docs/vx-axis.html">@vx/axis</a></li><li><a href="/static/docs/vx-bounds.html">@vx/bounds</a></li><li><a href="/static/docs/vx-boxplot.html">@vx/boxplot</a></li><li><a href="/static/docs/vx-brush.html">@vx/brush</a></li><li><a href="/static/docs/vx-clip-path.html">@vx/clip-path</a></li><li><a href="/static/docs/vx-curve.html">@vx/curve</a></li><li><a href="/static/docs/vx-demo.html">@vx/demo</a></li><li><a href="/static/docs/vx-drag.html">@vx/drag</a></li><li><a href="/static/docs/vx-event.html">@vx/event</a></li><li><a href="/static/docs/vx-geo.html">@vx/geo</a></li><li><a href="/static/docs/vx-glyph.html">@vx/glyph</a></li><li><a href="/static/docs/vx-gradient.html">@vx/gradient</a></li><li><a href="/static/docs/vx-grid.html">@vx/grid</a></li><li><a href="/static/docs/vx-group.html">@vx/group</a></li><li><a href="/static/docs/vx-heatmap.html">@vx/heatmap</a></li><li><a href="/static/docs/vx-hierarchy.html">@vx/hierarchy</a></li><li><a href="/static/docs/vx-legend.html">@vx/legend</a></li><li><a href="/static/docs/vx-marker.html">@vx/marker</a></li><li><a href="/static/docs/vx-mock-data.html">@vx/mock-data</a></li><li><a href="/static/docs/vx-network.html">@vx/network</a></li><li><a href="/static/docs/vx-pattern.html">@vx/pattern</a></li><li><a href="/static/docs/vx-point.html">@vx/point</a></li><li><a href="/static/docs/vx-responsive.html">@vx/responsive</a></li><li><a href="/static/docs/vx-scale.html">@vx/scale</a></li><li><a href="/static/docs/vx-shape.html">@vx/shape</a></li><li><a href="/static/docs/vx-text.html">@vx/text</a></li><li><a href="/static/docs/vx-tooltip.html">@vx/tooltip</a></li><li><a href="/static/docs/vx-voronoi.html">@vx/voronoi</a></li><li><a href="/static/docs/vx-zoom.html">@vx/zoom</a></li>
+        </ul>
+      </div>
+      <div class="content">
+      <h1 id="-vx-boxplot">@vx/boxplot</h1>
+<pre><code>npm install --save @vx/boxplot
+</code></pre><p>A boxplot shows the minimum, maximum, and quartiles of a dataset.</p>
+<p>You can pass in props to target the <code>min</code>, <code>max</code>, <code>median</code>, and <code>box (interquartile range)</code> shapes using <code>minProps</code>, <code>maxProps</code>, <code>medianProps</code>, and <code>boxProps</code>.</p>
+<p>If you are looking to add events over the each boxplot group you can pass in <code>container={true}</code> and <code>containerProps={{ /** */ }}</code>.</p>
+<h2 id="-boxplot-properties"><BoxPlot /> Properties</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Default</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">className</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The className for the boxplot</td>
+</tr>
+<tr>
+<td style="text-align:left">left</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The left offset of the boxplot</td>
+</tr>
+<tr>
+<td style="text-align:left">data</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">array</td>
+<td style="text-align:left">An array of data</td>
+</tr>
+<tr>
+<td style="text-align:left">max</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The maximum value for boxplot</td>
+</tr>
+<tr>
+<td style="text-align:left">min</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The minimum value for boxplot</td>
+</tr>
+<tr>
+<td style="text-align:left">firstQuartile</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The value for the first quartile for the boxplot</td>
+</tr>
+<tr>
+<td style="text-align:left">thirdQuartile</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The value for the third quartile for the boxplot</td>
+</tr>
+<tr>
+<td style="text-align:left">median</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The median value for the boxplot</td>
+</tr>
+<tr>
+<td style="text-align:left">boxWidth</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The width of the box</td>
+</tr>
+<tr>
+<td style="text-align:left">fill</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The color of the box</td>
+</tr>
+<tr>
+<td style="text-align:left">fillOpacity</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The opacity of the box</td>
+</tr>
+<tr>
+<td style="text-align:left">stroke</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The color of the lines in boxplot</td>
+</tr>
+<tr>
+<td style="text-align:left">strokeWidth</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">Width of the lines in boxplot</td>
+</tr>
+<tr>
+<td style="text-align:left">rx</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/rx">x-axis radius</a> for the box</td>
+</tr>
+<tr>
+<td style="text-align:left">ry</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/ry">y-axis radius</a> for the box</td>
+</tr>
+<tr>
+<td style="text-align:left">container</td>
+<td style="text-align:left">false</td>
+<td style="text-align:left">boolean</td>
+<td style="text-align:left">Set to true and add <code>containerProps = {{ /** */}}</code> to add events to each boxplot group</td>
+</tr>
+<tr>
+<td style="text-align:left">maxProps</td>
+<td style="text-align:left">{}</td>
+<td style="text-align:left">object</td>
+<td style="text-align:left">Props passed to target the <code>line</code> shape for the maximum</td>
+</tr>
+<tr>
+<td style="text-align:left">minProps</td>
+<td style="text-align:left">{}</td>
+<td style="text-align:left">object</td>
+<td style="text-align:left">Props passed to target the <code>line</code> shape for the minimum</td>
+</tr>
+<tr>
+<td style="text-align:left">medianProps</td>
+<td style="text-align:left">{}</td>
+<td style="text-align:left">object</td>
+<td style="text-align:left">Props passed to target the <code>line</code> shape for the median</td>
+</tr>
+<tr>
+<td style="text-align:left">boxProps</td>
+<td style="text-align:left">{}</td>
+<td style="text-align:left">object</td>
+<td style="text-align:left">Props passed to target the <code>rect</code> shape for the box</td>
+</tr>
+<tr>
+<td style="text-align:left">containerProps</td>
+<td style="text-align:left">{}</td>
+<td style="text-align:left">object</td>
+<td style="text-align:left">Props passed to add events over each boxplot group (requires <code>container={true}</code>)</td>
+</tr>
+</tbody>
+</table>
+
+      </div>
+    </div>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+  </html>
