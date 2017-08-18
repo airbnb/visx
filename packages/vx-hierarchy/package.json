@@ -1,6 +1,6 @@
 {
   "name": "@vx/hierarchy",
-  "version": "0.0.127",
+  "version": "0.0.136",
   "description": "vx tree",
   "main": "build/index.js",
   "scripts": {
@@ -39,7 +39,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@vx/group": "0.0.127",
+    "@vx/group": "0.0.136",
     "classnames": "^2.2.5",
     "d3-hierarchy": "^1.1.4"
   },

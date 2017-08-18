@@ -1,6 +1,6 @@
 {
   "name": "@vx/curve",
-  "version": "0.0.127",
+  "version": "0.0.136",
   "description": "vx curve",
   "main": "build/index.js",
   "repository": "https://github.com/hshoff/vx",

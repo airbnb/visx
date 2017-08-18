@@ -1,6 +1,6 @@
 {
   "name": "@vx/geo",
-  "version": "0.0.135",
+  "version": "0.0.136",
   "description": "vx geo",
   "main": "build/index.js",
   "scripts": {
@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/hshoff/vx#readme",
   "dependencies": {
-    "@vx/group": "0.0.127",
+    "@vx/group": "0.0.136",
     "classnames": "^2.2.5",
     "d3-geo": "^1.6.4",
     "prop-types": "^15.5.10"

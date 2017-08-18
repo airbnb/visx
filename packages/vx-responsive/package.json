@@ -1,6 +1,6 @@
 {
   "name": "@vx/responsive",
-  "version": "0.0.127",
+  "version": "0.0.136",
   "description": "vx responsive svg",
   "main": "build/index.js",
   "files": [

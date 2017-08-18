@@ -1,6 +1,6 @@
 {
   "name": "@vx/event",
-  "version": "0.0.127",
+  "version": "0.0.136",
   "description": "vx event",
   "main": "build/index.js",
   "scripts": {
@@ -41,6 +41,6 @@
     "regenerator-runtime": "^0.10.5"
   },
   "dependencies": {
-    "@vx/point": "0.0.127"
+    "@vx/point": "0.0.136"
   }
 }

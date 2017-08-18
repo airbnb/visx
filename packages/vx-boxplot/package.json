@@ -1,6 +1,6 @@
 {
   "name": "@vx/boxplot",
-  "version": "0.0.131",
+  "version": "0.0.136",
   "description": "vx box plot",
   "main": "build/index.js",
   "scripts": {
@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/hshoff/vx#readme",
   "dependencies": {
-    "@vx/group": "0.0.127",
+    "@vx/group": "0.0.136",
     "classnames": "^2.2.5"
   },
   "devDependencies": {

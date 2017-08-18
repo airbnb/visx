@@ -1,6 +1,6 @@
 {
   "name": "@vx/heatmap",
-  "version": "0.0.127",
+  "version": "0.0.136",
   "description": "vx heatmap",
   "main": "build/index.js",
   "repository": {
@@ -45,7 +45,7 @@
     "react": "^15.0.0 || 15.x"
   },
   "dependencies": {
-    "@vx/group": "0.0.127",
+    "@vx/group": "0.0.136",
     "classnames": "^2.2.5"
   }
 }

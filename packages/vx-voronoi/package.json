@@ -1,6 +1,6 @@
 {
   "name": "@vx/voronoi",
-  "version": "0.0.127",
+  "version": "0.0.136",
   "description": "vx voronoi",
   "main": "build/index.js",
   "scripts": {
@@ -42,7 +42,7 @@
     "regenerator-runtime": "^0.10.5"
   },
   "dependencies": {
-    "@vx/group": "0.0.127",
+    "@vx/group": "0.0.136",
     "classnames": "^2.2.5",
     "d3-voronoi": "^1.1.2"
   },
