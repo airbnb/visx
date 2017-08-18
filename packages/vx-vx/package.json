@@ -1,0 +1,69 @@
+{
+  "name": "@vx/vx",
+  "version": "1.0.0",
+  "description": "One stop install for all vx packages",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "make build SRC=./src",
+    "prepublish": "make build SRC=./src",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hshoff/vx.git"
+  },
+  "keywords": ["vx", "react", "d3", "visualizations", "charts"],
+  "author": "@hshoff",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hshoff/vx/issues"
+  },
+  "homepage": "https://github.com/hshoff/vx#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "react": "^15.0.0 || 15.x"
+  },
+  "devDependencies": {
+    "babel-jest": "^20.0.3",
+    "enzyme": "^2.8.2",
+    "jest": "^20.0.3",
+    "react": "^15.0.0 || 15.x",
+    "react-addons-test-utils": "^15.4.2",
+    "react-fatigue-dev": "github:tj/react-fatigue-dev",
+    "react-tools": "^0.10.0",
+    "regenerator-runtime": "^0.10.5"
+  },
+  "dependencies": {
+    "@vx/annotation": "0.0.136",
+    "@vx/axis": "0.0.136",
+    "@vx/bounds": "0.0.136",
+    "@vx/boxplot": "0.0.136",
+    "@vx/brush": "0.0.136",
+    "@vx/clip-path": "0.0.136",
+    "@vx/curve": "0.0.136",
+    "@vx/drag": "0.0.136",
+    "@vx/event": "0.0.136",
+    "@vx/geo": "0.0.136",
+    "@vx/glyph": "0.0.136",
+    "@vx/gradient": "0.0.136",
+    "@vx/grid": "0.0.136",
+    "@vx/group": "0.0.136",
+    "@vx/heatmap": "0.0.136",
+    "@vx/hierarchy": "0.0.136",
+    "@vx/legend": "0.0.136",
+    "@vx/marker": "0.0.136",
+    "@vx/mock-data": "0.0.136",
+    "@vx/network": "0.0.136",
+    "@vx/pattern": "0.0.136",
+    "@vx/point": "0.0.136",
+    "@vx/responsive": "0.0.136",
+    "@vx/scale": "0.0.136",
+    "@vx/shape": "0.0.136",
+    "@vx/text": "0.0.136",
+    "@vx/tooltip": "0.0.136",
+    "@vx/voronoi": "0.0.136",
+    "@vx/zoom": "0.0.136"
+  }
+}
