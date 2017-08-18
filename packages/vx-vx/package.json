@@ -1,6 +1,6 @@
 {
   "name": "@vx/vx",
-  "version": "1.0.0",
+  "version": "0.0.137",
   "description": "One stop install for all vx packages",
   "main": "build/index.js",
   "scripts": {
@@ -12,7 +12,13 @@
     "type": "git",
     "url": "git+https://github.com/hshoff/vx.git"
   },
-  "keywords": ["vx", "react", "d3", "visualizations", "charts"],
+  "keywords": [
+    "vx",
+    "react",
+    "d3",
+    "visualizations",
+    "charts"
+  ],
   "author": "@hshoff",
   "license": "MIT",
   "bugs": {
@@ -38,7 +44,7 @@
   "dependencies": {
     "@vx/annotation": "0.0.136",
     "@vx/axis": "0.0.136",
-    "@vx/bounds": "0.0.136",
+    "@vx/bounds": "0.0.137",
     "@vx/boxplot": "0.0.136",
     "@vx/brush": "0.0.136",
     "@vx/clip-path": "0.0.136",
@@ -62,7 +68,7 @@
     "@vx/scale": "0.0.136",
     "@vx/shape": "0.0.136",
     "@vx/text": "0.0.136",
-    "@vx/tooltip": "0.0.136",
+    "@vx/tooltip": "0.0.137",
     "@vx/voronoi": "0.0.136",
     "@vx/zoom": "0.0.136"
   }

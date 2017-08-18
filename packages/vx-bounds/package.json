@@ -1,6 +1,6 @@
 {
   "name": "@vx/bounds",
-  "version": "0.0.136",
+  "version": "0.0.137",
   "description": "Utilities to make your life with bounding boxes better",
   "main": "build/index.js",
   "scripts": {
@@ -8,12 +8,19 @@
     "prepublish": "make build SRC=./src",
     "test": "jest"
   },
-  "files": ["build"],
+  "files": [
+    "build"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hshoff/vx.git"
   },
-  "keywords": ["vx", "react", "visualizations", "charts"],
+  "keywords": [
+    "vx",
+    "react",
+    "visualizations",
+    "charts"
+  ],
   "author": "Chris Williams @williaster",
   "license": "MIT",
   "bugs": {
