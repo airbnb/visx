@@ -9,11 +9,7 @@
     "start": "next start",
     "test": "jest"
   },
-  "keywords": [
-    "vx",
-    "demo",
-    "examples"
-  ],
+  "keywords": ["vx", "demo", "examples"],
   "author": "@hshoff",
   "license": "MIT",
   "dependencies": {
@@ -66,9 +62,7 @@
     "topojson-client": "^3.0.0"
   },
   "browserify": {
-    "transform": [
-      "babelify"
-    ]
+    "transform": ["babelify"]
   },
   "publishConfig": {
     "access": "public"
