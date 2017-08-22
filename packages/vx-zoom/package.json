@@ -39,5 +39,8 @@
     "react-test-renderer": "^15.6.1",
     "react-tools": "^0.10.0",
     "regenerator-runtime": "^0.10.5"
+  },
+  "dependencies": {
+    "@vx/point": "0.0.136"
   }
 }
