@@ -1,7 +1,21 @@
-import { Zoom } from '../src';
+import { withZoom, ZoomTransform, zoomIdentity } from '../src';
 
 describe('Zoom', () => {
-  test('it should be defined', () => {
-    expect(Zoom).toBeDefined()
-  })
-})
+  describe('withZoom()', () => {
+    test('it should be defined', () => {
+      expect(withZoom).toBeDefined();
+    });
+  });
+
+  describe('ZoomTransform', () => {
+    test('it should be defined', () => {
+      expect(ZoomTransform).toBeDefined();
+    });
+  });
+
+  describe('zoomIdentity', () => {
+    test('it should be defined', () => {
+      expect(zoomIdentity).toBeDefined();
+    });
+  });
+});
