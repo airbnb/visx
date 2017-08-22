@@ -36,7 +36,7 @@ export default withZoom(
         new Transform()
           .translate(center.x, center.y)
           .scale(0.5, 0.5)
-          .translate(-center.x, -center.y)
+          .translate(-center.x, -center.y),
       );
     }
 
@@ -47,7 +47,7 @@ export default withZoom(
         zoomTransform
           .translate(point.x, point.y)
           .scale(1.1, 1.1)
-          .translate(-point.x, -point.y)
+          .translate(-point.x, -point.y),
       );
     }
 
@@ -58,7 +58,7 @@ export default withZoom(
         zoomTransform
           .translate(point.x, point.y)
           .scale(0.9, 0.9)
-          .translate(-point.x, -point.y)
+          .translate(-point.x, -point.y),
       );
     }
 
@@ -70,7 +70,7 @@ export default withZoom(
         new Transform()
           .translate(center.x, center.y)
           .scale(scaleX, scaleY)
-          .translate(-center.x, -center.y)
+          .translate(-center.x, -center.y),
       );
     }
 
@@ -84,7 +84,7 @@ export default withZoom(
         zoomTransform
           .translate(tPoint.x, tPoint.y)
           .scale(scaleBy, scaleBy)
-          .translate(-tPoint.x, -tPoint.y)
+          .translate(-tPoint.x, -tPoint.y),
       );
     }
 
@@ -100,7 +100,7 @@ export default withZoom(
         zoomTransform
           .translate(tPoint.x, tPoint.y)
           .scale(scaleBy, scaleBy)
-          .translate(-tPoint.x, -tPoint.y)
+          .translate(-tPoint.x, -tPoint.y),
       );
     }
 
@@ -128,7 +128,7 @@ export default withZoom(
       }
       const move = new Point({
         x: end.x - this.lastMove.x,
-        y: end.y - this.lastMove.y
+        y: end.y - this.lastMove.y,
       });
       updateZoomTransform(zoomTransform.translate(move.x, move.y));
     }
@@ -143,7 +143,11 @@ export default withZoom(
             <button onClick={this.decrease}>-</button>
             <button onClick={this.increase}>+</button>
           </div>
-          <svg width={width} height={height} ref={s => (this.svg = s)}>
+          <svg
+            width={width}
+            height={height}
+            ref={s => (this.svg = s)}
+          >
             <rect width={width} height={height} fill="#fdf6e6" />
             <g transform={`${zoomTransform.toString()}`}>
               {data.map((d, i) => {
@@ -181,10 +185,12 @@ export default withZoom(
             </div>
             <div>
               <div>
-                translateX: {`${zoomTransform.getTranslate().translateX}`}
+                translateX:{' '}
+                {`${zoomTransform.getTranslate().translateX}`}
               </div>
               <div>
-                translateY: {`${zoomTransform.getTranslate().translateY}`}
+                translateY:{' '}
+                {`${zoomTransform.getTranslate().translateY}`}
               </div>
             </div>
           </div>
@@ -215,5 +221,5 @@ export default withZoom(
         </div>
       );
     }
-  }
+  },
 );
