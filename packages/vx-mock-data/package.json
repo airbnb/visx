@@ -46,6 +46,7 @@
     "access": "public"
   },
   "dependencies": {
+    "@vx/point": "0.0.136",
     "d3-random": "^1.0.3"
   },
   "jest": {
