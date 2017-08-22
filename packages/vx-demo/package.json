@@ -9,7 +9,11 @@
     "start": "next start",
     "test": "jest"
   },
-  "keywords": ["vx", "demo", "examples"],
+  "keywords": [
+    "vx",
+    "demo",
+    "examples"
+  ],
   "author": "@hshoff",
   "license": "MIT",
   "dependencies": {
@@ -68,7 +72,9 @@
 >>>>>>> [transform] add @vx/transform
   },
   "browserify": {
-    "transform": ["babelify"]
+    "transform": [
+      "babelify"
+    ]
   },
   "publishConfig": {
     "access": "public"
