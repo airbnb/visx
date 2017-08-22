@@ -39,5 +39,8 @@
     "react-fatigue-dev": "github:tj/react-fatigue-dev",
     "react-tools": "^0.10.0",
     "regenerator-runtime": "^0.10.5"
+  },
+  "dependencies": {
+    "@vx/point": "0.0.136"
   }
 }
