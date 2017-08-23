@@ -174,7 +174,7 @@ Lots coming soon, check out the [roadmap](./ROADMAP.md).
 
 1. Do you plan on supporting animation/transitions?
 
-    > yup!
+    > more info: https://github.com/hshoff/vx/issues/6
 
 1. Do I have to use every package to make a chart?
 
@@ -183,6 +183,10 @@ Lots coming soon, check out the [roadmap](./ROADMAP.md).
 1. Can I use this to create my own library of charts for my team?
 
     > Please do.
+
+1. Does vx work with [preact](https://preactjs.com/)?
+
+    > yup! need to alias `react` + `react-dom` and using `preact-compat`. Here's a quick demo: https://vx-preact.now.sh/. [more info](https://preactjs.com/guide/switching-to-preact#how-to-alias-preact-compat)
 
 1. I like using d3.
 
