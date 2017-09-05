@@ -8,35 +8,69 @@ import identity from '../utils/identity';
 import getLabelTransform from '../utils/labelTransform';
 import ORIENT from '../constants/orientation';
 
+const propTypes = {
+  axisClassName: PropTypes.string,
+  axisLineClassName: PropTypes.string,
+  hideAxisLine: PropTypes.bool,
+  hideTicks: PropTypes.bool,
+  hideZero: PropTypes.bool,
+  label: PropTypes.string,
+  labelClassName: PropTypes.string,
+  labelOffset: PropTypes.number,
+  labelProps: PropTypes.object,
+  left: PropTypes.number,
+  numTicks: PropTypes.number,
+  orientation: PropTypes.oneOf([ORIENT.top, ORIENT.right, ORIENT.bottom, ORIENT.left]).isRequired,
+  rangePadding: PropTypes.number,
+  scale: PropTypes.func.isRequired,
+  stroke: PropTypes.string,
+  strokeWidth: PropTypes.number,
+  strokeDasharray: PropTypes.string,
+  tickClassName: PropTypes.string,
+  tickFormat: PropTypes.func,
+  tickLabelProps: PropTypes.func,
+  tickLength: PropTypes.number,
+  tickStroke: PropTypes.string,
+  tickTransform: PropTypes.string,
+  tickValues: PropTypes.arrayOf(PropTypes.number),
+  top: PropTypes.number,
+};
+
 export default function Axis({
-  scale,
-  orientation,
-  top = 0,
-  left = 0,
-  rangePadding = 0,
-  stroke = 'black',
-  strokeWidth = 1,
-  strokeDasharray,
-  numTicks = 10,
-  tickFormat,
-  tickStroke = 'black',
-  tickLength = 8,
-  tickTransform,
-  tickValues,
+  axisClassName,
+  axisLineClassName,
   hideAxisLine = false,
   hideTicks = false,
   hideZero = false,
+  label = '',
+  labelClassName,
   labelOffset = 14,
-  labelComponent,
-  tickLabelComponent = (
-    <text
-      textAnchor="middle"
-      fontFamily="Arial"
-      fontSize={10}
-      fill="black"
-    />
-  ),
-  className,
+  labelProps = {
+    textAnchor: 'middle',
+    fontFamily: 'Arial',
+    fontSize: 10,
+    fill: 'black',
+  },
+  left = 0,
+  numTicks = 10,
+  rangePadding = 0,
+  scale,
+  stroke = 'black',
+  strokeWidth = 1,
+  strokeDasharray,
+  tickClassName,
+  tickFormat,
+  tickLabelProps = ({ tick, index }) => ({
+    textAnchor: 'middle',
+    fontFamily: 'Arial',
+    fontSize: 10,
+    fill: 'black',
+  }),
+  tickLength = 8,
+  tickStroke = 'black',
+  tickTransform,
+  tickValues,
+  top = 0,
 }) {
     let values = scale.ticks ? scale.ticks(numTicks) : scale.domain();
     if (tickValues) values = tickValues;
@@ -63,25 +97,15 @@ export default function Axis({
       y: horizontal ? 0 : range1,
     });
 
-    const tickLabelFontSize = tickLabelComponent.props.fontSize || 10;
-
-    const labelTransform = getLabelTransform({
-      tickLength,
-      labelComponent,
-      labelOffset,
-      tickLabelFontSize,
-      orientation,
-      range,
-    });
+    let tickLabelFontSize = 10; // track the max tick label size to compute label offset
 
     return (
       <Group
-        className={cx('vx-axis', className)}
+        className={cx('vx-axis', axisClassName)}
         top={top}
         left={left}
       >
-        {labelComponent && React.cloneElement(labelComponent, labelTransform)}
-        {values.map((val, i) => {
+        {values.map((val, index) => {
           if (hideZero && val === 0) return null;
 
           const tickFromPoint = new Point({
@@ -92,15 +116,14 @@ export default function Axis({
             x: horizontal ? position(val) : (tickSign * tickLength),
             y: horizontal ? (tickLength * tickSign) : position(val),
           });
-           const tickLabelProps = {
-            x: tickToPoint.x,
-            y: tickToPoint.y + (horizontal && !isTop ? tickLabelFontSize : 0),
-          };
+
+          const tickLabelPropsObj = tickLabelProps(val, index);
+          tickLabelFontSize = Math.max(tickLabelFontSize, tickLabelPropsObj.fontSize || 0);
 
           return (
             <Group
-              key={`vx-tick-${val}-${i}`}
-              className='vx-axis-ticks'
+              key={`vx-tick-${val}-${index}`}
+              className={cx('vx-axis-tick', tickClassName)}
               transform={tickTransform}
             >
               {!hideTicks &&
@@ -110,12 +133,20 @@ export default function Axis({
                   stroke={tickStroke || stroke}
                 />
               }
-              {React.cloneElement(tickLabelComponent, tickLabelProps, format(val, i))}
+              <text
+                x={tickToPoint.x}
+                y={tickToPoint.y + (horizontal && !isTop ? tickLabelFontSize : 0)}
+                {...tickLabelPropsObj}
+              >
+                {format(val, index)}
+              </text>
             </Group>
           );
         })}
+
         {!hideAxisLine &&
           <Line
+            className={axisLineClassName}
             from={axisFromPoint}
             to={axisToPoint}
             stroke={stroke}
@@ -123,6 +154,24 @@ export default function Axis({
             strokeDasharray={strokeDasharray}
           />
         }
+
+        {label &&
+          <text
+            className={cx('vx-axis-label', labelClassName)}
+            {...getLabelTransform({
+              labelOffset,
+              labelProps,
+              orientation,
+              range,
+              tickLabelFontSize,
+              tickLength,
+            })}
+            {...labelProps}
+          >
+            {label}
+          </text>}
       </Group>
     );
 }
+
+Axis.propTypes = propTypes;
