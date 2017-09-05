@@ -3,71 +3,95 @@ import cx from 'classnames';
 import Axis from './Axis';
 import ORIENT from '../constants/orientation';
 
+const propTypes = {
+  axisClassName: PropTypes.string,
+  axisLineClassName: PropTypes.string,
+  hideAxisLine: PropTypes.bool,
+  hideTicks: PropTypes.bool,
+  hideZero: PropTypes.bool,
+  label: PropTypes.string,
+  labelClassName: PropTypes.string,
+  labelOffset: PropTypes.number,
+  labelProps: PropTypes.object,
+  left: PropTypes.number,
+  numTicks: PropTypes.number,
+  rangePadding: PropTypes.number,
+  scale: PropTypes.func.isRequired,
+  stroke: PropTypes.string,
+  strokeWidth: PropTypes.number,
+  strokeDasharray: PropTypes.string,
+  tickClassName: PropTypes.string,
+  tickFormat: PropTypes.func,
+  tickLabelProps: PropTypes.func,
+  tickLength: PropTypes.number,
+  tickStroke: PropTypes.string,
+  tickTransform: PropTypes.string,
+  tickValues: PropTypes.arrayOf(PropTypes.number),
+  top: PropTypes.number,
+};
+
 export default function AxisRight({
-  scale,
-  top,
-  left,
-  stroke,
-  strokeWidth,
-  strokeDasharray,
-  rangePadding,
-  label,
-  labelOffset = 36,
-  numTicks,
-  tickFormat,
-  tickStroke,
-  tickTransform,
-  tickValues,
-  tickLength = 8,
-  tickLabelComponent = (
-    <text
-      textAnchor="start"
-      fontFamily="Arial"
-      fontSize={10}
-      fill="black"
-      dx="0.25em"
-      dy="0.25em"
-    />
-  ),
+  axisClassName,
+  axisLineClassName,
   hideAxisLine,
   hideTicks,
   hideZero,
-  className,
+  label,
+  labelClassName,
+  labelOffset = 36,
+  labelProps,
+  left,
+  numTicks,
+  rangePadding,
+  scale,
+  stroke,
+  strokeWidth,
+  strokeDasharray,
+  tickClassName,
+  tickFormat,
+  tickLabelProps = ({ tick, index }) => ({
+    dx: '0.25em',
+    dy: '0.25em',
+    fill: 'black',
+    fontFamily: 'Arial',
+    fontSize: 10,
+    textAnchor: 'start',
+  }),
+  tickLength,
+  tickStroke,
+  tickTransform,
+  tickValues,
+  top,
 }) {
   return (
     <Axis
-      className={cx('vx-axis-right', className)}
-      orientation={ORIENT.right}
-      top={top}
+      axisClassName={cx('vx-axis-right', axisClassName)}
+      axisLineClassName={axisLineClassName}
+      hideAxisLine={hideAxisLine}
+      hideTicks={hideTicks}
+      hideZero={hideZero}
+      label={label}
+      labelClassName={labelClassName}
+      labelOffset={labelOffset}
+      labelProps={labelProps}
       left={left}
+      numTicks={numTicks}
+      orientation={ORIENT.right}
+      rangePadding={rangePadding}
       scale={scale}
       stroke={stroke}
       strokeWidth={strokeWidth}
       strokeDasharray={strokeDasharray}
-      rangePadding={rangePadding}
-      labelComponent={
-        typeof label === 'string' ?
-        <text
-          textAnchor="middle"
-          fontFamily="Arial"
-          fontSize={10}
-          fill="black"
-        >
-          {label}
-        </text>
-        : label
-      }
-      numTicks={numTicks}
+      tickClassName={tickClassName}
       tickFormat={tickFormat}
+      tickLabelProps={tickLabelProps}
       tickLength={tickLength}
-      tickTransform={tickTransform}
       tickStroke={tickStroke}
+      tickTransform={tickTransform}
       tickValues={tickValues}
-      labelOffset={labelOffset}
-      tickLabelComponent={tickLabelComponent}
-      hideAxisLine={hideAxisLine}
-      hideTicks={hideTicks}
-      hideZero={hideZero}
+      top={top}
     />
   );
 }
+
+AxisRight.propTypes = propTypes;
