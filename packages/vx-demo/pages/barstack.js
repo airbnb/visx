@@ -122,9 +122,11 @@ export default withTooltip(
             top={yMax + margin.top}
             stroke="#a44afe"
             tickStroke="#a44afe"
-            tickLabelComponent={
-              <text fill="#a44afe" fontSize={11} textAnchor="middle" />
-            }
+            tickLabelProps={(value, index) => ({
+              fill: '#a44afe',
+              fontSize: 11,
+              textAnchor: 'middle',
+            })}
           />
         </svg>
         <div
