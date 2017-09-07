@@ -189,7 +189,7 @@ function MyChart() {
 | labelProps         | `{ textAnchor: 'middle', fontFamily: 'Arial', fontSize: 10, fill: 'black' }` | object | Props applied to the axis label component              |
 | left               | `0`             | number   | A left pixel offset applied to the entire axis.                                                                 |
 | numTicks           | `10`            | number   | The number of ticks wanted for the axis (note this is approximate)                                              |
-| orientation        | REQUIRED        | 'top', 'right', 'bottom', or 'left' | Specifies the orientation of the axis.                                               |
+| orientation        | `bottom`        | 'top', 'right', 'bottom', or 'left' | Specifies the orientation of the axis.                                               |
 | rangePadding       | `0`             | number   | Px padding to apply to both sides of the axis                                                                   |
 | scale              | REQUIRED        | function | A d3 [scale function](https://github.com/hshoff/vx/tree/master/packages/vx-scale).                              |
 | stroke             | `black`         | string   | The color for the stroke of the lines.                                                                          |

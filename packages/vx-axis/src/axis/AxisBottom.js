@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Axis from './Axis';
 import ORIENT from '../constants/orientation';
@@ -56,7 +57,7 @@ export default function AxisBottom({
     fontSize: 10,
     textAnchor: 'middle',
   }),
-  tickLength,
+  tickLength = 8,
   tickStroke,
   tickTransform,
   tickValues,
