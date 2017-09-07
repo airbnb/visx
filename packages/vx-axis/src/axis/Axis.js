@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { Line } from '@vx/shape';
 import { Point } from '@vx/point';
@@ -20,7 +21,7 @@ const propTypes = {
   labelProps: PropTypes.object,
   left: PropTypes.number,
   numTicks: PropTypes.number,
-  orientation: PropTypes.oneOf([ORIENT.top, ORIENT.right, ORIENT.bottom, ORIENT.left]).isRequired,
+  orientation: PropTypes.oneOf([ORIENT.top, ORIENT.right, ORIENT.bottom, ORIENT.left]),
   rangePadding: PropTypes.number,
   scale: PropTypes.func.isRequired,
   stroke: PropTypes.string,
@@ -53,6 +54,7 @@ export default function Axis({
   },
   left = 0,
   numTicks = 10,
+  orientation = ORIENT.bottom,
   rangePadding = 0,
   scale,
   stroke = 'black',
@@ -60,7 +62,7 @@ export default function Axis({
   strokeDasharray,
   tickClassName,
   tickFormat,
-  tickLabelProps = ({ tick, index }) => ({
+  tickLabelProps = (tickValue, index) => ({
     textAnchor: 'middle',
     fontFamily: 'Arial',
     fontSize: 10,

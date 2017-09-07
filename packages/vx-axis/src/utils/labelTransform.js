@@ -14,7 +14,7 @@ export default function labelTransform({
   if (orientation === ORIENT.top || orientation === ORIENT.bottom) {
     x = Math.max(...range) / 2;
     y = sign * (tickLength + labelOffset + tickLabelFontSize +
-      (orientation === ORIENT.bottom ? fontSize : 0));
+      (orientation === ORIENT.bottom ? labelProps.fontSize : 0));
   } else {
     x = sign * (Math.max(...range) / 2);
     y = -(tickLength + labelOffset);
