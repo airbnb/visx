@@ -33,7 +33,7 @@
     "@vx/point": "0.0.136",
     "@vx/shape": "0.0.136",
     "classnames": "^2.2.5",
-    "prop-types": "^15.5.10"
+    "prop-types": "15.5.10"
   },
   "devDependencies": {
     "babel-jest": "^20.0.3",
