@@ -148,7 +148,7 @@ export default function Axis({
 
         {!hideAxisLine &&
           <Line
-            className={axisLineClassName}
+            className={cx('vx-axis-line', axisLineClassName)}
             from={axisFromPoint}
             to={axisToPoint}
             stroke={stroke}
