@@ -86,13 +86,11 @@ export default ({
         stroke='#e5fd3d'
         tickStroke='#e5fd3d'
         hideAxisLine
-        tickLabelComponent={(
-          <text
-            fill='#e5fd3d'
-            fontSize={11}
-            textAnchor="middle"
-          />
-        )}
+        tickLabelProps={(value, index) => ({
+          fill: '#e5fd3d',
+          fontSize: 11,
+          textAnchor: 'middle',
+        })}
       />
     </svg>
   );

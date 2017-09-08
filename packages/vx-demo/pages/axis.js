@@ -116,54 +116,45 @@ export default ({
         scale={yScale}
         hideZero
         numTicks={numTicksForHeight(height)}
-        label={
-          <text
-            fill="#8e205f"
-            textAnchor="middle"
-            fontSize={10}
-            fontFamily="Arial"
-          >
-            value
-          </text>
-        }
+        label="value"
+        labelProps={{
+          fill: '#8e205f',
+          textAnchor: 'middle',
+          fontSize: 12,
+          fontFamily: 'Arial',
+        }}
         stroke="#1b1a1e"
-        tickLabelComponent={
-          <text
-            fill="#8e205f"
-            textAnchor="end"
-            fontSize={10}
-            fontFamily="Arial"
-            dx="-0.25em"
-            dy="0.25em"
-          />
-        }
+        tickStroke="#8e205f"
+        tickLabelProps={(value, index) => ({
+          fill: '#8e205f',
+          textAnchor: 'end',
+          fontSize: 10,
+          fontFamily: 'Arial',
+          dx: '-0.25em',
+          dy: '0.25em',
+        })}
       />
       <AxisBottom
         top={height - margin.bottom}
         left={margin.left}
         scale={xScale}
         numTicks={numTicksForWidth(width)}
-        label={
-          <text
-            fill="#8e205f"
-            textAnchor="middle"
-            fontSize={10}
-            fontFamily="Arial"
-          >
-            time
-          </text>
-        }
-        stroke={'#1b1a1e'}
-        tickStroke={'#1b1a1e'}
-        tickLabelComponent={
-          <text
-            fill="#8e205f"
-            textAnchor="middle"
-            fontSize={10}
-            fontFamily="Arial"
-            dy="0.25em"
-          />
-        }
+        label="time"
+        labelProps={{
+          fill: '#8e205f',
+          textAnchor: 'middle',
+          fontSize: 12,
+          fontFamily: 'Arial',
+        }}
+        stroke="#1b1a1e"
+        tickStroke="#8e205f"
+        tickLabelProps={(value, index) => ({
+          fill: '#8e205f',
+          textAnchor: 'middle',
+          fontSize: 10,
+          fontFamily: 'Arial',
+          dy: '0.25em',
+        })}
       />
     </svg>
   );
