@@ -3,9 +3,10 @@
   "version": "0.0.136",
   "description": "vx axis",
   "main": "build/index.js",
+  "module": "module/index.js",
   "scripts": {
-    "build": "make build SRC=./src",
-    "prepublish": "make build SRC=./src",
+    "build": "make build SRC=./src && BABEL_ENV=es6 node_modules/.bin/babel -d module ./src",
+    "prepublish": "npm run build",
     "test": "jest"
   },
   "files": [
