@@ -1,6 +1,6 @@
 {
   "name": "@vx/vx",
-  "version": "0.0.137",
+  "version": "0.0.138",
   "description": "One stop install for all vx packages",
   "main": "build/index.js",
   "scripts": {
@@ -43,7 +43,7 @@
   },
   "dependencies": {
     "@vx/annotation": "0.0.136",
-    "@vx/axis": "0.0.136",
+    "@vx/axis": "0.0.138",
     "@vx/bounds": "0.0.137",
     "@vx/boxplot": "0.0.136",
     "@vx/brush": "0.0.136",
@@ -57,7 +57,7 @@
     "@vx/grid": "0.0.136",
     "@vx/group": "0.0.136",
     "@vx/heatmap": "0.0.136",
-    "@vx/hierarchy": "0.0.136",
+    "@vx/hierarchy": "0.0.138",
     "@vx/legend": "0.0.136",
     "@vx/marker": "0.0.136",
     "@vx/mock-data": "0.0.136",
