@@ -2,6 +2,8 @@ import React from "react";
 import cx from "classnames";
 import { Group } from "@vx/group";
 import { tree as d3tree } from "d3-hierarchy";
+import DefaultLink from "../DefaultLink";
+import DefaultNode from "../DefaultNode";
 
 export default function Tree({
   top,
@@ -11,8 +13,8 @@ export default function Tree({
   size,
   nodeSize,
   separation,
-  linkComponent,
-  nodeComponent,
+  linkComponent = DefaultLink,
+  nodeComponent = DefaultNode,
   ...restProps
 }) {
   const tree = d3tree();
