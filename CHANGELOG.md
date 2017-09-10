@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.138](#v00138)
 - [v0.0.137](#v00137)
 - [v0.0.136](#v00136)
 - [v0.0.135](#v00135)
@@ -23,6 +24,26 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.138
+
+### :boom: Breaking Changes
+
+  - [axis] improve `@vx/axis` api, update docs [#142](https://github.com/hshoff/vx/pull/142)
+
+### :memo: Documentation
+  - [hierarchy] add readme for vx/hierarchy [#136](https://github.com/hshoff/vx/pull/136)
+  
+### :house: Internal
+  - [vx][pkg] bump lerna 2.0.0-beta.38 => 2.1.2 [#145](https://github.com/hshoff/vx/pull/145)
+
+```bash
+Changes:
+ - @vx/axis: 0.0.136 => 0.0.138
+ - @vx/demo: 0.0.137 => 0.0.138
+ - @vx/hierarchy: 0.0.136 => 0.0.138
+ - @vx/vx: 0.0.137 => 0.0.138
+```
 
 # v0.0.137
 
