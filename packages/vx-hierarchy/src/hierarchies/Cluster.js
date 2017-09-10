@@ -1,7 +1,7 @@
-import React from 'react';
-import cx from 'classnames';
-import { Group } from '@vx/group';
-import { cluster as d3cluster } from 'd3-hierarchy';
+import React from "react";
+import cx from "classnames";
+import { Group } from "@vx/group";
+import { cluster as d3cluster } from "d3-hierarchy";
 
 export default function Cluster({
   top,
@@ -23,21 +23,23 @@ export default function Cluster({
   const links = data.links();
   const descendants = root.descendants();
   return (
-    <Group top={top} left={left}>
-      {linkComponent && links.map((link, i) => {
-        return (
-          <Group key={`cluster-link-${i}`}>
-            {React.createElement(linkComponent, { link })}
-          </Group>
-        );
-      })}
-      {nodeComponent && descendants.map((node, i) => {
-        return (
-          <Group key={`cluster-node-${i}`}>
-            {React.createElement(nodeComponent, { node })}
-          </Group>
-        );
-      })}
+    <Group top={top} left={left} className={className}>
+      {linkComponent &&
+        links.map((link, i) => {
+          return (
+            <Group key={`cluster-link-${i}`}>
+              {React.createElement(linkComponent, { link })}
+            </Group>
+          );
+        })}
+      {nodeComponent &&
+        descendants.map((node, i) => {
+          return (
+            <Group key={`cluster-node-${i}`} className={className}>
+              {React.createElement(nodeComponent, { node })}
+            </Group>
+          );
+        })}
     </Group>
   );
 }
