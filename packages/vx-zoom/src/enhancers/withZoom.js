@@ -5,7 +5,7 @@ export default function withZoom(BaseComponent) {
   class WrappedComponent extends React.Component {
     constructor(props) {
       super(props);
-
+      this.updateZoomTransform = this.updateZoomTransform.bind(this);
       this.state = { zoomTransform: new Transform() };
     }
 
@@ -15,7 +15,13 @@ export default function withZoom(BaseComponent) {
 
     render() {
       const { zoomTransform } = this.state;
-      return <BaseComponent zoomTransform={zoomTransform} {...this.props} />;
+      return (
+        <BaseComponent
+          zoomTransform={zoomTransform}
+          updateZoomTransform={this.updateZoomTransform}
+          {...this.props}
+        />
+      );
     }
   }
   WrappedComponent.displayName = 'withZoom()';

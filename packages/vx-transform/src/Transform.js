@@ -9,7 +9,7 @@ import {
   toString
 } from 'transformation-matrix';
 
-class Transform {
+export default class Transform {
   constructor(matrix) {
     this.matrix = matrix || identity();
   }
@@ -22,6 +22,33 @@ class Transform {
   getScale() {
     const { scaleX, scaleY } = this.decompose();
     return { scaleX, scaleY };
+  }
+
+  rescale(scale, invert) {
+    const newDomain = scale.range().map(invert).map(scale.invert);
+    return scale.copy().domain(newDomain);
+  }
+
+  rescaleX(scale) {
+    return this.rescale(scale, this.invertX);
+  }
+
+  rescaleY(scale) {
+    return this.rescale(scale, this.invertY);
+  }
+
+  invert(x, y) {
+    return [this.invertX(x), this.invertY(y)];
+  }
+
+  invertY(y) {
+    const { translateY, scaleY } = this.decompose();
+    return (y - translateY) / scaleY;
+  }
+
+  invertX(x) {
+    const { translateX, scaleX } = this.decompose();
+    return (x - translateX) / scaleX;
   }
 
   decompose() {
@@ -52,5 +79,3 @@ class Transform {
     return toString(this.matrix);
   }
 }
-
-export default Transform;
