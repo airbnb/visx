@@ -22,7 +22,6 @@ export default withZoom(
       this.decrease = this.decrease.bind(this);
       this.center = this.center.bind(this);
       this.handleWheel = this.handleWheel.bind(this);
-      this.handleClick = this.handleClick.bind(this);
       this.handleDoubleClick = this.handleDoubleClick.bind(this);
       this.handleMouseDown = this.handleMouseDown.bind(this);
       this.handleMouseMove = this.handleMouseMove.bind(this);
@@ -42,7 +41,7 @@ export default withZoom(
     }
 
     increase() {
-      const { zoomTransform } = this.props;
+      const { zoomTransform, updateZoomTransform } = this.props;
       const point = this.point || center;
       updateZoomTransform(
         zoomTransform
@@ -53,7 +52,7 @@ export default withZoom(
     }
 
     decrease() {
-      const { zoomTransform } = this.props;
+      const { zoomTransform, updateZoomTransform } = this.props;
       const point = this.point || center;
       updateZoomTransform(
         zoomTransform
@@ -64,63 +63,52 @@ export default withZoom(
     }
 
     center() {
-      const { zoomTransform } = this.props;
+      const { zoomTransform, updateZoomTransform } = this.props;
+      const { scaleX, scaleY } = zoomTransform.getScale();
       this.point = center;
       updateZoomTransform(
         new Transform()
           .translate(center.x, center.y)
-          .scale(transform.getScale().scaleX, transform.getScale().scaleY)
+          .scale(scaleX, scaleY)
           .translate(-center.x, -center.y)
       );
     }
 
-    handleClick(event) {
-      const { transform } = this.state;
-      const tCenter = transform.transformPoint(center.x, center.y);
-      const move = new Point({
-        x: tCenter.x - this.point.x,
-        y: tCenter.y - this.point.y
-      });
-      this.setState({
-        transform: transform.translate(move.x, move.y)
-      });
-    }
-
     handleDoubleClick(event) {
-      const { transform } = this.state;
+      const { zoomTransform, updateZoomTransform } = this.props;
       const scaleBy = 1.5;
       const { x, y } = localPoint(this.svg, event);
-      const tPoint = transform.transformPoint(x, y);
+      const tPoint = zoomTransform.transformPoint(x, y);
       this.point = tPoint;
-      this.setState({
-        transform: transform
+      updateZoomTransform(
+        zoomTransform
           .translate(tPoint.x, tPoint.y)
           .scale(scaleBy, scaleBy)
           .translate(-tPoint.x, -tPoint.y)
-      });
+      );
     }
 
     handleWheel(event) {
       event.preventDefault();
-      const { transform } = this.state;
+      const { zoomTransform, updateZoomTransform } = this.props;
       const increase = event.deltaY > 0;
       const scaleBy = increase ? 1.1 : 0.9;
       const { x, y } = localPoint(this.svg, event);
-      const tPoint = transform.transformPoint(x, y);
+      const tPoint = zoomTransform.transformPoint(x, y);
       this.point = tPoint;
-      this.setState({
-        transform: transform
+      updateZoomTransform(
+        zoomTransform
           .translate(tPoint.x, tPoint.y)
           .scale(scaleBy, scaleBy)
           .translate(-tPoint.x, -tPoint.y)
-      });
+      );
     }
 
     handleMouseDown(event) {
       this.dragging = true;
-      const { transform } = this.state;
+      const { zoomTransform } = this.props;
       const { x, y } = localPoint(this.svg, event);
-      const tPoint = transform.transformPoint(x, y);
+      const tPoint = zoomTransform.transformPoint(x, y);
       this.point = new Point({ x: tPoint.x, y: tPoint.y });
     }
 
@@ -131,9 +119,9 @@ export default withZoom(
 
     handleMouseMove(event) {
       if (!this.dragging) return;
-      const { transform } = this.state;
+      const { zoomTransform, updateZoomTransform } = this.props;
       const { x, y } = localPoint(this.svg, event);
-      const end = transform.transformPoint(x, y);
+      const end = zoomTransform.transformPoint(x, y);
 
       if (!this.lastMove) {
         this.lastMove = end;
@@ -142,10 +130,7 @@ export default withZoom(
         x: end.x - this.lastMove.x,
         y: end.y - this.lastMove.y
       });
-      console.log(transform.translate(move.x, move.y));
-      this.setState({
-        transform: transform.translate(move.x, move.y)
-      });
+      updateZoomTransform(zoomTransform.translate(move.x, move.y));
     }
 
     render() {
@@ -155,9 +140,6 @@ export default withZoom(
           <div>
             <button onClick={this.reset}>Reset</button>
             <button onClick={this.center}>Center</button>
-            <button onClick={this.centerActivePoint}>
-              Center active point
-            </button>
             <button onClick={this.decrease}>-</button>
             <button onClick={this.increase}>+</button>
           </div>
@@ -176,18 +158,17 @@ export default withZoom(
                   />
                 );
               })}
-              <rect
-                width={width}
-                height={height}
-                fill="transparent"
-                onWheel={this.handleWheel}
-                onMouseDown={this.handleMouseDown}
-                onMouseUp={this.handleMouseUp}
-                onMouseMove={this.handleMouseMove}
-                onClick={this.handleClick}
-                onDoubleClick={this.handleDoubleClick}
-              />
             </g>
+            <rect
+              width={width}
+              height={height}
+              fill="transparent"
+              onWheel={this.handleWheel}
+              onMouseDown={this.handleMouseDown}
+              onMouseUp={this.handleMouseUp}
+              onMouseMove={this.handleMouseMove}
+              onDoubleClick={this.handleDoubleClick}
+            />
           </svg>
           <div className="deets">
             <div>
