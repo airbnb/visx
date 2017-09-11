@@ -25,7 +25,7 @@ export default function Tree({
   const links = data.links();
   const descendants = root.descendants();
   return (
-    <Group top={top} left={left} className={className}>
+    <Group top={top} left={left} className={cx("vx-tree", className)}>
       {linkComponent &&
         links.map((link, i) => {
           return (
@@ -37,7 +37,7 @@ export default function Tree({
       {nodeComponent &&
         descendants.map((node, i) => {
           return (
-            <Group key={`tree-node-${i}`} className={className}>
+            <Group key={`tree-node-${i}`}>
               {React.createElement(nodeComponent, { node })}
             </Group>
           );

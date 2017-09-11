@@ -25,7 +25,7 @@ export default function Cluster({
   const links = data.links();
   const descendants = root.descendants();
   return (
-    <Group top={top} left={left} className={className}>
+    <Group top={top} left={left} className={cx("vx-cluster", className)}>
       {linkComponent &&
         links.map((link, i) => {
           return (
@@ -37,7 +37,7 @@ export default function Cluster({
       {nodeComponent &&
         descendants.map((node, i) => {
           return (
-            <Group key={`cluster-node-${i}`} className={className}>
+            <Group key={`cluster-node-${i}`}>
               {React.createElement(nodeComponent, { node })}
             </Group>
           );
