@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function DefaultLink({ link }) {
+export default function HierarchyDefaultLink({ link }) {
   return (
     <line
       x1={link.source.x}

@@ -1,13 +1,13 @@
-import { DefaultLink, DefaultNode } from "../src";
+import { HierarchyDefaultLink, HierarchyDefaultNode } from "../src";
 
 describe("<DefaultLink />", () => {
   test("it should be defined", () => {
-    expect(DefaultLink).toBeDefined();
+    expect(HierarchyDefaultLink).toBeDefined();
   });
 });
 
 describe("<DefaultNode />", () => {
   test("it should be defined", () => {
-    expect(DefaultNode).toBeDefined();
+    expect(HierarchyDefaultNode).toBeDefined();
   });
 });

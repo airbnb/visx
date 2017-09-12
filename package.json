@@ -1,15 +1,5 @@
 {
-  "devDependencies": {
-    "babel-jest": "^20.0.3",
-    "coveralls": "^2.13.1",
-    "jest": "^20.0.3",
-    "lerna": "2.1.2",
-    "react": "^15.5.4",
-    "react-addons-test-utils": "^15.5.1",
-    "react-dom": "^15.5.4",
-    "regenerator-runtime": "^0.10.5"
-  },
-  "name": "@vx/vx",
+  "name": "@vx/dev",
   "version": "0.0.1",
   "description": "Low-level visualization components",
   "main": "index.js",
@@ -41,5 +31,15 @@
     "charts"
   ],
   "author": "@hshoff",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "babel-jest": "^20.0.3",
+    "coveralls": "^2.13.1",
+    "jest": "^20.0.3",
+    "lerna": "2.1.2",
+    "react": "^15.5.4",
+    "react-addons-test-utils": "^15.5.1",
+    "react-dom": "^15.5.4",
+    "regenerator-runtime": "^0.10.5"
+  }
 }
