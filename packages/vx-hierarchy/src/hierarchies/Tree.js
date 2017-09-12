@@ -1,7 +1,9 @@
-import React from 'react';
-import cx from 'classnames';
-import { Group } from '@vx/group';
-import { tree as d3tree } from 'd3-hierarchy';
+import React from "react";
+import cx from "classnames";
+import { Group } from "@vx/group";
+import { tree as d3tree } from "d3-hierarchy";
+import DefaultLink from "../DefaultLink";
+import DefaultNode from "../DefaultNode";
 
 export default function Tree({
   top,
@@ -11,8 +13,8 @@ export default function Tree({
   size,
   nodeSize,
   separation,
-  linkComponent,
-  nodeComponent,
+  linkComponent = DefaultLink,
+  nodeComponent = DefaultNode,
   ...restProps
 }) {
   const tree = d3tree();
@@ -23,21 +25,23 @@ export default function Tree({
   const links = data.links();
   const descendants = root.descendants();
   return (
-    <Group top={top} left={left}>
-      {linkComponent && links.map((link, i) => {
-        return (
-          <Group key={`tree-link-${i}`}>
-            {React.createElement(linkComponent, { link })}
-          </Group>
-        );
-      })}
-      {nodeComponent && descendants.map((node, i) => {
-        return (
-          <Group key={`tree-node-${i}`}>
-            {React.createElement(nodeComponent, { node })}
-          </Group>
-        );
-      })}
+    <Group top={top} left={left} className={cx("vx-tree", className)}>
+      {linkComponent &&
+        links.map((link, i) => {
+          return (
+            <Group key={`tree-link-${i}`}>
+              {React.createElement(linkComponent, { link })}
+            </Group>
+          );
+        })}
+      {nodeComponent &&
+        descendants.map((node, i) => {
+          return (
+            <Group key={`tree-node-${i}`}>
+              {React.createElement(nodeComponent, { node })}
+            </Group>
+          );
+        })}
     </Group>
   );
 }
