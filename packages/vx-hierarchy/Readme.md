@@ -19,19 +19,20 @@ See [this example](https://vx-demo.now.sh/trees) for additional details.
 ## `<Tree />` and `<Cluster />`
 
 ### Properties
-<!-- Notes
-* className is passed as a prop, but is never called in the component... am I missing something?
-* size, nodeSize, and separation are all passed to the d3 layout... should we mention this? Are the links sufficient?
-* does this need more detail on linkComponent and nodeComponent?
- -->
 
 | Name          | Default | Type | Description |
 |:--------------|:--------|:-----|:------------
 | top           | 0 | number    | Margin to top 
 | left          | 0 | number    | Margin on left 
+| className     |   | string    | The className for the component
 | root          |   | object    | Root node for hierarchical data; see [`d3.hierarchy()`](https://github.com/d3/d3-hierarchy#hierarchy)
-| size          | [1, 1] | array     | Size of tree layout specified by `[width, height]`; see [`tree.size()`](https://github.com/d3/d3-hierarchy#tree_size) 
-| nodeSize      | null | array     | Size of tree layout's node size specified by `[width, height]`; see [`tree.nodeSize()`](https://github.com/d3/d3-hierarchy#tree_nodeSize)
-| separation    |  | function  | Separation accessor for tree layout; see [`tree.separation()`](https://github.com/d3/d3-hierarchy#tree_separation) 
-| nodeComponent |  | Component | Component to render for links between nodes
-| linkComponent |  | Component | Component to render for each node 
+| size          | [1, 1] | array     | Size of tree/cluster layout specified by `[width, height]`; see [`tree.size()`](https://github.com/d3/d3-hierarchy#tree_size) 
+| nodeSize      | null | array     | Size of tree/cluster layout's nodes specified by `[width, height]`; see [`tree.nodeSize()`](https://github.com/d3/d3-hierarchy#tree_nodeSize)
+| separation    |  | function  | Separation accessor for tree/cluster layout; see [`tree.separation()`](https://github.com/d3/d3-hierarchy#tree_separation) 
+| nodeComponent | [`<HierarchyDefaultNode />`](https://github.com/hshoff/vx/blob/master/packages/vx-hierarchy/src/HierarchyDefaultNode.js) | Component | Component to render for each node 
+| linkComponent | [`<HierarchyDefaultLink />`](https://github.com/hshoff/vx/blob/master/packages/vx-hierarchy/src/HierarchyDefaultLink.js) | Component | Component to render for links between nodes
+
+## Source For Components
+
+* [`<Tree />`](https://github.com/hshoff/vx/blob/master/packages/vx-hierarchy/src/hierarchies/Tree.js)
+* [`<Cluster />`](https://github.com/hshoff/vx/blob/master/packages/vx-hierarchy/src/hierarchies/Cluster.js)
