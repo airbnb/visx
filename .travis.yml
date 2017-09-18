@@ -4,4 +4,6 @@ node_js:
 cache:
   directories:
     - node_modules
+before_install:
+  - npm i -g npm@5
 after_script: "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
