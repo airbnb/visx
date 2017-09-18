@@ -30,9 +30,13 @@ Legend.propTypes = {
   labelTransform: PropTypes.func,
 };
 
+const defaultStyle = {
+  display: 'flex',
+};
+
 export default function Legend({
   className,
-  style,
+  style = defaultStyle,
   shapeStyle,
   scale,
   shape,
@@ -56,9 +60,8 @@ export default function Legend({
   return (
     <div
       className={cx('vx-legend', className)}
-      style={style}
       style={{
-        display: 'flex',
+        ...style,
         flexDirection: direction,
       }}
     >
