@@ -1,10 +1,6 @@
 {
   "name": "@vx/marker",
-  "version": "0.0.140",
   "description": "vx marker",
-  "main": "build/index.js",
-  "files": [
-    "build"
   ],
   "scripts": {
     "build": "make build SRC=./src",
