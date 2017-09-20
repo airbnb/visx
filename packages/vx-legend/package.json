@@ -1,6 +1,6 @@
 {
   "name": "@vx/legend",
-  "version": "0.0.136",
+  "version": "0.0.139",
   "description": "vx legend",
   "main": "build/index.js",
   "scripts": {
@@ -29,11 +29,11 @@
     "babel-jest": "^20.0.3",
     "enzyme": "^2.8.2",
     "jest": "^20.0.3",
+    "react": "^15.0.0 || 15.x",
     "react-addons-test-utils": "^15.5.1",
     "react-fatigue-dev": "github:tj/react-fatigue-dev",
     "react-tools": "^0.10.0",
-    "regenerator-runtime": "^0.10.5",
-    "react": "^15.0.0 || 15.x"
+    "regenerator-runtime": "^0.10.5"
   },
   "peerDependencies": {
     "react": "^15.0.0 || 15.x"

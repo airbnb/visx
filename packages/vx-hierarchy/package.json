@@ -1,6 +1,6 @@
 {
   "name": "@vx/hierarchy",
-  "version": "0.0.138",
+  "version": "0.0.139",
   "description": "vx tree",
   "main": "build/index.js",
   "scripts": {
