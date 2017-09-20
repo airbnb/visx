@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.139](#v00139)
 - [v0.0.138](#v00138)
 - [v0.0.137](#v00137)
 - [v0.0.136](#v00136)
@@ -24,6 +25,33 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.139
+
+#### :rocket: Enhancement
+  
+  - [shape] add `<Stack />` for streamgraphs and other fun + exciting things [#153](https://github.com/hshoff/vx/pull/153)
+  
+#### :bug: Bug Fix
+
+  - [legend] fix legend style prop [#151](https://github.com/hshoff/vx/pull/151)
+  - [hierarchy] fix name collisions [#147](https://github.com/hshoff/vx/pull/147)
+
+### :memo: Documentation
+  - [hierarchy] update links and descriptions in readme [#148](https://github.com/hshoff/vx/pull/148)
+  
+```bash
+Changes:
+ - @vx/annotation: 0.0.136 => 0.0.139
+ - @vx/axis: 0.0.138 => 0.0.139
+ - @vx/demo: 0.0.138 => 0.0.139
+ - @vx/grid: 0.0.136 => 0.0.139
+ - @vx/hierarchy: 0.0.138 => 0.0.139
+ - @vx/legend: 0.0.136 => 0.0.139
+ - @vx/marker: 0.0.136 => 0.0.139
+ - @vx/shape: 0.0.136 => 0.0.139
+ - @vx/vx: 0.0.138 => 0.0.139
+```
 
 # v0.0.138
 
