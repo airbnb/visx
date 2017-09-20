@@ -27,6 +27,7 @@ import Legends from '../components/tiles/legends';
 import BoxPlot from '../components/tiles/boxplot';
 import GeoMercator from '../components/tiles/geo-mercator';
 import Network from '../components/tiles/network';
+import Streamgraph from '../components/tiles/streamgraph';
 
 const items = [
   '#242424',
@@ -91,6 +92,7 @@ export default class Gallery extends React.Component {
     const t17 = this.state.dimensions[16] || [8, 300];
     const t18 = this.state.dimensions[17] || [8, 300];
     const t19 = this.state.dimensions[18] || [8, 300];
+    const t20 = this.state.dimensions[19] || [8, 300];
 
     return (
       <div>
@@ -569,6 +571,30 @@ export default class Gallery extends React.Component {
             </Link>
           </Tilt>
 
+          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+            <Link prefetch href="/streamgraph">
+              <div
+                className="gallery-item"
+                ref={d => this.nodes.add(d)}
+                style={{ background: '#ffd7d9' }}
+              >
+                <div className="image">
+                  <Streamgraph width={t20[0]} height={t20[1]} />
+                </div>
+                <div
+                  className="details"
+                  style={{
+                    color: '#036ecd',
+                  }}
+                >
+                  <div className="title">Streamgraph</div>
+                  <div className="description">
+                    <pre>{`<Shape.Stack />`}</pre>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </Tilt>
           <div className="gallery-item placeholder" />
           <div className="gallery-item placeholder" />
         </div>
@@ -629,7 +655,7 @@ export default class Gallery extends React.Component {
             margin: 0;
           }
           .color-blue {
-            color: rgba(25, 231, 217, 1.000);
+            color: rgba(25, 231, 217, 1);
           }
           .color-yellow {
             color: #f6c431;
