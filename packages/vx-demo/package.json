@@ -45,6 +45,7 @@
     "@vx/voronoi": "0.0.136",
     "classnames": "^2.2.5",
     "d3-array": "^1.1.1",
+    "d3-collection": "^1.0.4",
     "d3-format": "^1.2.0",
     "d3-hierarchy": "^1.1.4",
     "d3-scale": "^1.0.6",

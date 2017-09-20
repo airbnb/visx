@@ -27,9 +27,7 @@ export default withScreenSize(
       <Page title={title}>
         <div className="container">
           <div style={{ width: width }}>
-            <h1>
-              {title}
-            </h1>
+            <h1>{title}</h1>
           </div>
           <div
             className={cx(
@@ -40,15 +38,18 @@ export default withScreenSize(
               'chart',
             )}
           >
-            {React.createElement(component, { width, height, margin, events })}
+            {React.createElement(component, {
+              width,
+              height,
+              margin,
+              events,
+            })}
           </div>
           <div style={{ width: width }}>
             <h2>Code</h2>
           </div>
           <div className="code" style={{ width: width }}>
-            <Codeblock>
-              {children}
-            </Codeblock>
+            <Codeblock>{children}</Codeblock>
           </div>
         </div>
         <div style={{ marginTop: '40px' }}>
@@ -62,7 +63,7 @@ export default withScreenSize(
           }
           .container h1 {
             margin-top: 15px;
-            line-height: .9em;
+            line-height: 0.9em;
             letter-spacing: -.03em;
           }
           .container h2 {
