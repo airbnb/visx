@@ -112,12 +112,63 @@ Object.defineProperty(exports, 'BarStack', {
   }
 });
 
+var _Stack = require('./shapes/Stack');
+
+Object.defineProperty(exports, 'Stack', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_Stack).default;
+  }
+});
+
 var _callOrValue = require('./util/callOrValue');
 
 Object.defineProperty(exports, 'callOrValue', {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_callOrValue).default;
+  }
+});
+
+var _stackOffset = require('./util/stackOffset');
+
+Object.defineProperty(exports, 'stackOffset', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_stackOffset).default;
+  }
+});
+Object.defineProperty(exports, 'STACK_OFFSETS', {
+  enumerable: true,
+  get: function get() {
+    return _stackOffset.STACK_OFFSETS;
+  }
+});
+Object.defineProperty(exports, 'STACK_OFFSET_NAMES', {
+  enumerable: true,
+  get: function get() {
+    return _stackOffset.STACK_OFFSET_NAMES;
+  }
+});
+
+var _stackOrder = require('./util/stackOrder');
+
+Object.defineProperty(exports, 'stackOrder', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_stackOrder).default;
+  }
+});
+Object.defineProperty(exports, 'STACK_ORDERS', {
+  enumerable: true,
+  get: function get() {
+    return _stackOrder.STACK_ORDERS;
+  }
+});
+Object.defineProperty(exports, 'STACK_ORDER_NAMES', {
+  enumerable: true,
+  get: function get() {
+    return _stackOrder.STACK_ORDER_NAMES;
   }
 });
 
