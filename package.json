@@ -6,30 +6,18 @@
   "scripts": {
     "test": "lerna exec npm install && jest",
     "docs": "node ./scripts/docs/index.js",
-    "prepare-release": "git checkout master && git pull --rebase origin master && npm run docs && lerna updated",
+    "prepare-release":
+      "git checkout master && git pull --rebase origin master && npm run docs && lerna updated",
     "release": "npm run prepare-release && lerna publish --exact"
   },
   "jest": {
-    "projects": [
-      "<rootDir>/packages/*"
-    ],
+    "projects": ["<rootDir>/packages/*"],
     "collectCoverage": true,
     "coverageDirectory": "<rootDir>/coverage",
-    "coveragePathIgnorePatterns": [
-      "/node_modules/"
-    ],
-    "coverageReporters": [
-      "text",
-      "lcov"
-    ]
+    "coveragePathIgnorePatterns": ["/node_modules/"],
+    "coverageReporters": ["text", "lcov"]
   },
-  "keywords": [
-    "react",
-    "d3",
-    "visualization",
-    "vx",
-    "charts"
-  ],
+  "keywords": ["react", "d3", "visualization", "vx", "charts"],
   "author": "@hshoff",
   "license": "MIT",
   "devDependencies": {
@@ -37,9 +25,8 @@
     "coveralls": "^2.13.1",
     "jest": "^20.0.3",
     "lerna": "2.1.2",
-    "react": "^15.5.4",
-    "react-addons-test-utils": "^15.5.1",
-    "react-dom": "^15.5.4",
+    "react": "^15.0.0-0 || ^16.0.0-0",
+    "react-dom": "^15.0.0-0 || ^16.0.0-0",
     "regenerator-runtime": "^0.10.5"
   }
 }

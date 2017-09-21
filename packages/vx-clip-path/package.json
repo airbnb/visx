@@ -8,9 +8,7 @@
     "prepublish": "make build SRC=./src",
     "test": "jest"
   },
-  "files": [
-    "build"
-  ],
+  "files": ["build"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hshoff/vx.git"
@@ -37,10 +35,10 @@
     "react-fatigue-dev": "github:tj/react-fatigue-dev",
     "react-tools": "^0.10.0",
     "regenerator-runtime": "^0.10.5",
-    "react": "^15.0.0 || 15.x"
+    "react": "^15.0.0-0 || ^16.0.0-0"
   },
   "peerDependencies": {
-    "react": "^15.0.0 || 15.x"
+    "react": "^15.0.0-0 || ^16.0.0-0"
   },
   "publishConfig": {
     "access": "public"
