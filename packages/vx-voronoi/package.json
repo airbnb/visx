@@ -28,7 +28,7 @@
     "enzyme": "^2.8.2",
     "jest": "^20.0.3",
     "react": "^15.0.0-0 || ^16.0.0-0",
-    "react-addons-test-utils": "^15.4.2",
+    "react-test-renderer": "^15.6.1",
     "react-fatigue-dev": "github:tj/react-fatigue-dev",
     "react-tools": "^0.10.0",
     "regenerator-runtime": "^0.10.5"

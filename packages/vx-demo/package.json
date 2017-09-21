@@ -69,7 +69,7 @@
     "babel-jest": "^20.0.3",
     "enzyme": "^2.8.2",
     "jest": "^20.0.3",
-    "react-addons-test-utils": "^15.5.1",
+    "react-test-renderer": "^15.6.1",
     "regenerator-runtime": "^0.10.5"
   }
 }
