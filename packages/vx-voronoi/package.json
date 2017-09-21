@@ -8,20 +8,12 @@
     "prepublish": "make build SRC=./src",
     "test": "jest"
   },
-  "files": [
-    "build"
-  ],
+  "files": ["build"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hshoff/vx.git"
   },
-  "keywords": [
-    "vx",
-    "react",
-    "d3",
-    "visualizations",
-    "charts"
-  ],
+  "keywords": ["vx", "react", "d3", "visualizations", "charts"],
   "author": "Chris Williams @williaster",
   "license": "MIT",
   "bugs": {
@@ -35,7 +27,7 @@
     "babel-jest": "^20.0.3",
     "enzyme": "^2.8.2",
     "jest": "^20.0.3",
-    "react": "^15.0.0 || 15.x",
+    "react": "^15.0.0 || 15.x || >16.0.0-rc || 16.x",
     "react-addons-test-utils": "^15.4.2",
     "react-fatigue-dev": "github:tj/react-fatigue-dev",
     "react-tools": "^0.10.0",
@@ -47,6 +39,6 @@
     "d3-voronoi": "^1.1.2"
   },
   "peerDependencies": {
-    "react": "^15.0.0 || 15.x"
+    "react": "^15.0.0 || 15.x || >16.0.0-rc || 16.x"
   }
 }

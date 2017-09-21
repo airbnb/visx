@@ -12,13 +12,7 @@
     "type": "git",
     "url": "git+https://github.com/hshoff/vx.git"
   },
-  "keywords": [
-    "vx",
-    "d3",
-    "react",
-    "visualizations",
-    "charts"
-  ],
+  "keywords": ["vx", "d3", "react", "visualizations", "charts"],
   "author": "@hshoff",
   "license": "MIT",
   "bugs": {
@@ -29,7 +23,7 @@
     "babel-jest": "^20.0.3",
     "enzyme": "^2.8.2",
     "jest": "^20.0.3",
-    "react": "^15.0.0 || 15.x",
+    "react": "^15.0.0 || 15.x || >16.0.0-rc || 16.x",
     "react-addons-test-utils": "^15.5.1",
     "react-fatigue-dev": "github:tj/react-fatigue-dev",
     "react-tools": "^0.10.0",
@@ -44,6 +38,6 @@
     "d3-hierarchy": "^1.1.4"
   },
   "peerDependencies": {
-    "react": "^15.0.0 || 15.x"
+    "react": "^15.0.0 || 15.x || >16.0.0-rc || 16.x"
   }
 }
