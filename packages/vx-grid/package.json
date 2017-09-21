@@ -1,9 +1,11 @@
 {
   "name": "@vx/grid",
-  "version": "0.0.139",
+  "version": "0.0.140",
   "description": "vx grid",
   "main": "build/index.js",
-  "files": ["build"],
+  "files": [
+    "build"
+  ],
   "scripts": {
     "build": "make build SRC=./src",
     "prepublish": "make build SRC=./src",
@@ -13,7 +15,13 @@
     "type": "git",
     "url": "git+https://github.com/hshoff/vx.git"
   },
-  "keywords": ["vx", "react", "d3", "visualizations", "charts"],
+  "keywords": [
+    "vx",
+    "react",
+    "d3",
+    "visualizations",
+    "charts"
+  ],
   "author": "@hshoff",
   "license": "MIT",
   "bugs": {
@@ -25,8 +33,8 @@
     "enzyme": "^2.8.2",
     "jest": "^20.0.3",
     "react": "^15.0.0-0 || ^16.0.0-0",
-    "react-test-renderer": "^15.6.1",
     "react-fatigue-dev": "github:tj/react-fatigue-dev",
+    "react-test-renderer": "^15.6.1",
     "react-tools": "^0.10.0",
     "regenerator-runtime": "^0.10.5"
   },
@@ -34,9 +42,9 @@
     "react": "^15.0.0-0 || ^16.0.0-0"
   },
   "dependencies": {
-    "@vx/group": "0.0.136",
+    "@vx/group": "0.0.140",
     "@vx/point": "0.0.136",
-    "@vx/shape": "0.0.139",
+    "@vx/shape": "0.0.140",
     "classnames": "^2.2.5"
   },
   "publishConfig": {

@@ -1,6 +1,6 @@
 {
   "name": "@vx/boxplot",
-  "version": "0.0.136",
+  "version": "0.0.140",
   "description": "vx box plot",
   "main": "build/index.js",
   "scripts": {
@@ -12,7 +12,13 @@
     "type": "git",
     "url": "git+https://github.com/hshoff/vx.git"
   },
-  "keywords": ["vx", "react", "d3", "visualizations", "charts"],
+  "keywords": [
+    "vx",
+    "react",
+    "d3",
+    "visualizations",
+    "charts"
+  ],
   "author": "@conglei",
   "license": "MIT",
   "bugs": {
@@ -20,18 +26,18 @@
   },
   "homepage": "https://github.com/hshoff/vx#readme",
   "dependencies": {
-    "@vx/group": "0.0.136",
+    "@vx/group": "0.0.140",
     "classnames": "^2.2.5"
   },
   "devDependencies": {
     "babel-jest": "^20.0.3",
     "enzyme": "^2.8.2",
     "jest": "^20.0.3",
-    "react-test-renderer": "^15.6.1",
+    "react": "^15.0.0-0 || ^16.0.0-0",
     "react-fatigue-dev": "github:tj/react-fatigue-dev",
+    "react-test-renderer": "^15.6.1",
     "react-tools": "^0.10.0",
-    "regenerator-runtime": "^0.10.5",
-    "react": "^15.0.0-0 || ^16.0.0-0"
+    "regenerator-runtime": "^0.10.5"
   },
   "peerDependencies": {
     "react": "^15.0.0-0 || ^16.0.0-0"

@@ -1,6 +1,6 @@
 {
   "name": "@vx/geo",
-  "version": "0.0.136",
+  "version": "0.0.140",
   "description": "vx geo",
   "main": "build/index.js",
   "scripts": {
@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/hshoff/vx#readme",
   "dependencies": {
-    "@vx/group": "0.0.136",
+    "@vx/group": "0.0.140",
     "classnames": "^2.2.5",
     "d3-geo": "^1.6.4",
     "prop-types": "^15.5.10"
@@ -37,7 +37,6 @@
     "enzyme": "^2.9.1",
     "jest": "^20.0.4",
     "react": "^15.0.0-0 || ^16.0.0-0",
-    "react-test-renderer": "^15.6.1",
     "react-fatigue-dev": "github:tj/react-fatigue-dev",
     "react-test-renderer": "^15.6.1",
     "react-tools": "^0.13.3",
