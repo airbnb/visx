@@ -164,6 +164,7 @@ Lots coming soon, check out the [roadmap](./ROADMAP.md).
 
 - [williaster/data-ui](https://github.com/williaster/data-ui) ([Demo](https://williaster.github.io/data-ui/))
 - [Flaque/data-structures](https://github.com/Flaque/data-structures) ([Interactive explanation of the trie data structure](https://trie.now.sh/))
+- [dylanmoz/trello](https://github.com/DylanMoz/dylanmoz.github.io/blob/source/src/pages/trello/TrelloGraph.js) ([Demo](http://dylanmoz.github.io/trello/)) ([How to Make Beautiful Graphs With vx and React-Motion](https://devblog.classy.org/how-to-make-beautiful-graphs-with-vx-and-react-motion-6ffe7aecf6f3))
 - Have a project that's using vx? Open a pull request and we'll add it to the list.
 
 ## FAQ
