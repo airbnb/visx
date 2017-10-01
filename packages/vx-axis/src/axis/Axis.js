@@ -132,7 +132,7 @@ export default function Axis({
                 <Line
                   from={tickFromPoint}
                   to={tickToPoint}
-                  stroke={tickStroke || stroke}
+                  stroke={tickStroke}
                 />
               }
               <text
