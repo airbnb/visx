@@ -29,9 +29,11 @@ const propTypes = {
   tickTransform: PropTypes.string,
   tickValues: PropTypes.arrayOf(PropTypes.number),
   top: PropTypes.number,
+  children: PropTypes.func,
 };
 
 export default function AxisLeft({
+  children,
   axisClassName,
   axisLineClassName,
   hideAxisLine,
@@ -91,6 +93,7 @@ export default function AxisLeft({
       tickTransform={tickTransform}
       tickValues={tickValues}
       top={top}
+      children={children}
     />
   );
 }
