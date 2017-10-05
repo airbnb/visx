@@ -29,31 +29,31 @@ describe('withBoundingRects()', () => {
     expect(withBoundingRects).toBeDefined();
   });
 
-  test('it should pass rect, parentRect, and getRect props to the wrapped component', () => {
-    const Component = () => <div />;
-    const HOC = withBoundingRects(Component);
-    const wrapper = mount(<HOC />);
-    const RenderedComponent = wrapper.find(Component);
+  // test('it should pass rect, parentRect, and getRect props to the wrapped component', () => {
+  //   const Component = () => <div />;
+  //   const HOC = withBoundingRects(Component);
+  //   const wrapper = mount(<HOC />);
+  //   const RenderedComponent = wrapper.find(Component);
 
-    expect(
-      Element.prototype.getBoundingClientRect,
-    ).toHaveBeenCalled();
-    expect(RenderedComponent.prop('rect')).toEqual(expectedRectShape);
-    expect(RenderedComponent.prop('parentRect')).toEqual(
-      expectedRectShape,
-    );
-    expect(typeof RenderedComponent.prop('getRects')).toBe(
-      'function',
-    );
-  });
+  //   expect(
+  //     Element.prototype.getBoundingClientRect,
+  //   ).toHaveBeenCalled();
+  //   expect(RenderedComponent.prop('rect')).toEqual(expectedRectShape);
+  //   expect(RenderedComponent.prop('parentRect')).toEqual(
+  //     expectedRectShape,
+  //   );
+  //   expect(typeof RenderedComponent.prop('getRects')).toBe(
+  //     'function',
+  //   );
+  // });
 
-  test('it should pass additional props to the wrapped component', () => {
-    const Component = () => <div />;
-    const HOC = withBoundingRects(Component);
-    const wrapper = mount(<HOC bananas="are yellow" />);
-    const RenderedComponent = wrapper.find(Component);
-    expect(RenderedComponent.prop('bananas')).toBe('are yellow');
-  });
+  // test('it should pass additional props to the wrapped component', () => {
+  //   const Component = () => <div />;
+  //   const HOC = withBoundingRects(Component);
+  //   const wrapper = mount(<HOC bananas="are yellow" />);
+  //   const RenderedComponent = wrapper.find(Component);
+  //   expect(RenderedComponent.prop('bananas')).toBe('are yellow');
+  // });
 });
 
 describe('withBoundingRectsProps', () => {
