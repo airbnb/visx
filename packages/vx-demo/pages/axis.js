@@ -19,9 +19,9 @@ import { Grid } from '@vx/grid';
 import { Group } from '@vx/group';
 import { curveBasis } from '@vx/curve';
 import { GradientOrangeRed } from '@vx/gradient';
-import { genDateValue} from '@vx/mock-data';
+import { genDateValue } from '@vx/mock-data';
 import { AxisLeft, AxisBottom } from '@vx/axis';
-import { AreaClosed, LinePath } from '@vx/shape';
+import { AreaClosed, LinePath, Line } from '@vx/shape';
 import { scaleTime, scaleLinear } from '@vx/scale';
 import { extent, max } from 'd3-array';
 
@@ -44,11 +44,9 @@ function numTicksForWidth(width) {
   return 10;
 }
 
-export default ({
-  width,
-  height,
-  margin,
-}) => {
+export default ({ width, height, margin }) => {
+  if (width < 10) return null;
+
   // bounds
   const xMax = width - margin.left - margin.right;
   const yMax = height - margin.top - margin.bottom;
@@ -76,12 +74,20 @@ export default ({
         fromOpacity={0.8}
         toOpacity={0.3}
       />
+      <rect
+        x={0}
+        y={0}
+        width={width}
+        height={height}
+        fill="#f4419f"
+        rx={14}
+      />
       <Grid
         top={margin.top}
         left={margin.left}
         xScale={xScale}
         yScale={yScale}
-        stroke='#8a265f'
+        stroke="rgba(142, 32, 95, 0.9)"
         width={xMax}
         height={yMax}
         numTicksRows={numTicksForHeight(height)}
@@ -95,8 +101,8 @@ export default ({
           x={x}
           y={y}
           strokeWidth={2}
-          stroke='transparent'
-          fill="url('#linear')"
+          stroke={'transparent'}
+          fill={'url(#linear)'}
           curve={curveBasis}
         />
         <LinePath
@@ -105,7 +111,7 @@ export default ({
           yScale={yScale}
           x={x}
           y={y}
-          stroke="url('#linear')"
+          stroke={"url('#linear')"}
           strokeWidth={2}
           curve={curveBasis}
         />
@@ -140,25 +146,55 @@ export default ({
         scale={xScale}
         numTicks={numTicksForWidth(width)}
         label="time"
-        labelProps={{
-          fill: '#8e205f',
-          textAnchor: 'middle',
-          fontSize: 12,
-          fontFamily: 'Arial',
+      >
+        {props => {
+          console.log('Custom AxisBottom props', props);
+          const tickLabelSize = 10;
+          const tickRotate = 45;
+          const tickColor = '#8e205f';
+          const axisCenter =
+            (props.axisToPoint.x - props.axisFromPoint.x) / 2;
+          return (
+            <g className="my-custom-bottom-axis">
+              {props.ticks.map((tick, i) => {
+                const tickX = tick.to.x;
+                const tickY =
+                  tick.to.y + tickLabelSize + props.tickLength;
+                return (
+                  <Group
+                    key={\`vx-tick-\${tick.value}-\${i}\`}
+                    className={'vx-axis-tick'}
+                  >
+                    <Line
+                      from={tick.from}
+                      to={tick.to}
+                      stroke={tickColor}
+                    />
+                    <text
+                      transform={\`translate(\${tickX}, \${tickY}) rotate(\${tickRotate})\`}
+                      fontSize={tickLabelSize}
+                      textAnchor="middle"
+                      fill={tickColor}
+                    >
+                      {tick.formattedValue}
+                    </text>
+                  </Group>
+                );
+              })}
+              <text
+                textAnchor="middle"
+                transform={\`translate(\${axisCenter}, 50)\`}
+                fontSize="8"
+              >
+                {props.label}
+              </text>
+            </g>
+          );
         }}
-        stroke="#1b1a1e"
-        tickStroke="#8e205f"
-        tickLabelProps={(value, index) => ({
-          fill: '#8e205f',
-          textAnchor: 'middle',
-          fontSize: 10,
-          fontFamily: 'Arial',
-          dy: '0.25em',
-        })}
-      />
+      </AxisBottom>
     </svg>
   );
-}`}
+};`}
     </Show>
   );
 };
