@@ -6,7 +6,7 @@ import {
   translate,
   applyToPoint,
   inverse,
-  toString
+  toString,
 } from 'transformation-matrix';
 
 export default class Transform {
@@ -25,7 +25,10 @@ export default class Transform {
   }
 
   rescale(scale, invert) {
-    const newDomain = scale.range().map(invert).map(scale.invert);
+    const newDomain = scale
+      .range()
+      .map(invert.bind(this))
+      .map(scale.invert);
     return scale.copy().domain(newDomain);
   }
 
@@ -57,12 +60,15 @@ export default class Transform {
       scaleX: a,
       scaleY: d,
       translateX: e,
-      translateY: f
+      translateY: f,
     };
   }
 
   translate(translateX, translateY) {
-    this.matrix = transform(this.matrix, translate(translateX, translateY));
+    this.matrix = transform(
+      this.matrix,
+      translate(translateX, translateY),
+    );
     return this;
   }
 

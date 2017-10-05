@@ -27,11 +27,11 @@ export default function LinePath({
   innerRef,
   ...restProps
 }) {
-  const path = line()
-    .x(d => xScale(x(d)))
-    .y(d => yScale(y(d)))
-    .defined(defined)
-    .curve(curve);
+  const path = line();
+  if (x) path.x(d => xScale(x(d)));
+  if (y) path.y(d => yScale(y(d)));
+  if (defined) path.defined(defined);
+  if (curve) path.curve(curve);
   return (
     <g>
       <path
