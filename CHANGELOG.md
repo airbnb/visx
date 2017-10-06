@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.141](#v00141)
 - [v0.0.140](#v00140)
 - [v0.0.139](#v00139)
 - [v0.0.138](#v00138)
@@ -26,6 +27,35 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.141
+
+#### :rocket: Enhancement
+
+- [hierarchy] add render prop to <Tree /> + <Cluster /> [#163](https://github.com/hshoff/vx/pull/163)
+- [axis] render prop for axis, full control over rendering [#165](https://github.com/hshoff/vx/pull/165)
+- [event] add touch event support to localPoint(), find owner svg for single arity call  [#167](https://github.com/hshoff/vx/pull/167)
+
+#### :bug: Bug Fix
+
+- [shape] fix typo in stack order enum [#164](https://github.com/hshoff/vx/pull/164)
+- [legend] fix legend threshold [#166](https://github.com/hshoff/vx/pull/166)
+
+```bash
+Changes:
+ - @vx/annotation: 0.0.140 => 0.0.141
+ - @vx/axis: 0.0.140 => 0.0.141
+ - @vx/bounds: 0.0.140 => 0.0.141
+ - @vx/demo: 0.0.140 => 0.0.141
+ - @vx/event: 0.0.140 => 0.0.141
+ - @vx/grid: 0.0.140 => 0.0.141
+ - @vx/hierarchy: 0.0.140 => 0.0.141
+ - @vx/legend: 0.0.140 => 0.0.141
+ - @vx/marker: 0.0.140 => 0.0.141
+ - @vx/shape: 0.0.140 => 0.0.141
+ - @vx/tooltip: 0.0.140 => 0.0.141
+ - @vx/vx: 0.0.140 => 0.0.141
+ ```
 
 # v0.0.140
   
