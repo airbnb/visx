@@ -1,6 +1,6 @@
 {
   "name": "@vx/event",
-  "version": "0.0.140",
+  "version": "0.0.141",
   "description": "vx event",
   "main": "build/index.js",
   "scripts": {
