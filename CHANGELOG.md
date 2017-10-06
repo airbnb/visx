@@ -32,7 +32,7 @@
 
 #### :rocket: Enhancement
 
-- [hierarchy] add render prop to <Tree /> + <Cluster /> [#163](https://github.com/hshoff/vx/pull/163)
+- [hierarchy] add render prop to `<Tree />` + `<Cluster />` [#163](https://github.com/hshoff/vx/pull/163)
 - [axis] render prop for axis, full control over rendering [#165](https://github.com/hshoff/vx/pull/165)
 - [event] add touch event support to localPoint(), find owner svg for single arity call  [#167](https://github.com/hshoff/vx/pull/167)
 
