@@ -152,7 +152,7 @@ Mixing two mental models for updating the DOM is never a good time. Copy and pas
 
 ## Status
 
-`Super beta` Hold off on using this in production until I shake out some of the bigger API problems (post v1.0.0+). Check out [the road to v1](https://github.com/hshoff/vx/projects/1).
+`Beta` We're still in pre v1. Need to add interactions. No breaking changes planned right now [read more](https://github.com/hshoff/vx/issues/156#issuecomment-331318108). Check out [the road to v1](https://github.com/hshoff/vx/projects/1).
 
 If you're a curious coder, feel free to install and play around with the packages. I recommend using `--save-exact` when you `npm install`.
 
