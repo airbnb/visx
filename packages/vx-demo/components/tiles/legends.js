@@ -62,15 +62,16 @@ const ordinalShape = scaleOrdinal({
       left={50 / 6}
       fill="#df905f"
     />,
-    props =>
+    props => (
       <text fontSize="12" dy="1em" dx=".33em" fill="#e0a346">
         $
-      </text>,
+      </text>
+    ),
   ],
 });
 
 const threshold = scaleThreshold({
-  domain: [0.02, 0.04, 0.06, 0.08, 0.1],
+  domain: [0.01, 0.02, 0.04, 0.06, 0.08, 0.1],
   range: [
     '#f2f0f7',
     '#dadaeb',
@@ -103,7 +104,7 @@ function LegendDemo({ title, children }) {
       {children}
       <style jsx>{`
         .legend {
-          line-height: .9em;
+          line-height: 0.9em;
           color: #efefef;
           font-size: 10px;
           font-family: arial;

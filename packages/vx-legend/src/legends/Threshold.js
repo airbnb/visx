@@ -48,17 +48,24 @@ function defaultTransform({
 }) {
   return ({ scale, labelFormat }) => {
     function format(labelFormat, value, i) {
-      return labelFormat(value, i) || '';
+      const formattedValue = labelFormat(value, i);
+      if (formattedValue === 0) return '0';
+      return formattedValue || '';
     }
     return (d, i) => {
       let [x0, x1] = scale.invertExtent(d);
       let delimiter = ` ${labelDelimiter} `;
-      let value = x1;
-      if (!x0) {
+      let value;
+      if (x0 !== 0 && !x0 && (x1 === 0 || !!x1)) {
+        // lower threshold
+        value = x1 - 1;
         delimiter = labelLower;
-      }
-      if (!x1) {
+      } else if ((x0 === 0 || !!x0) && (x1 === 0 || !!x1)) {
+        // threshold step
         value = x0;
+      } else if (!x1 && (x0 === 0 || !!x0)) {
+        // upper threshold
+        value = x0 + scale.domain()[1];
         x1 = x0;
         x0 = undefined;
         delimiter = labelUpper;
