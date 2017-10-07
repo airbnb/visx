@@ -1,9 +1,15 @@
 import React from 'react';
 import cx from 'classnames';
+import PropTypes from 'prop-types';
 import additionalProps from '../util/additionalProps';
 
-export default ({
+Bar.propTypes = {
+  innerRef: PropTypes.func,
+};
+
+export default function Bar({
   className,
+  innerRef,
   data,
   x = 0,
   y = 0,
@@ -21,9 +27,10 @@ export default ({
   strokeMiterlimit,
   strokeOpacity,
   ...restProps,
-}) => {
+}) {
   return (
     <rect
+      ref={innerRef}
       className={cx('vx-bar', className)}
       x={x}
       y={y}
