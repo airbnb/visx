@@ -1,7 +1,12 @@
 import React from 'react';
 import cx from 'classnames';
+import PropTypes from 'prop-types';
 import { Point } from '@vx/point';
 import additionalProps from '../util/additionalProps';
+
+Line.propTypes = {
+  innerRef: PropTypes.func,
+};
 
 export default function Line({
   from = new Point({ x: 0, y: 0 }),
@@ -12,10 +17,12 @@ export default function Line({
   transform = '',
   className = '',
   data,
+  innerRef,
   ...restProps
 }) {
   return (
     <line
+      ref={innerRef}
       className={cx('vx-line', className)}
       x1={from.x}
       y1={from.y}
