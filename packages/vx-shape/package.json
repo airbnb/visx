@@ -4,13 +4,21 @@
   "description": "vx shape",
   "main": "build/index.js",
   "repository": "https://github.com/hshoff/vx",
-  "files": ["build"],
+  "files": [
+    "build"
+  ],
   "scripts": {
     "build": "make build SRC=./src",
     "prepublish": "make build SRC=./src",
     "test": "jest"
   },
-  "keywords": ["vx", "react", "d3", "visualizations", "charts"],
+  "keywords": [
+    "vx",
+    "react",
+    "d3",
+    "visualizations",
+    "charts"
+  ],
   "author": "@hshoff",
   "license": "MIT",
   "dependencies": {
@@ -24,6 +32,7 @@
   "devDependencies": {
     "babel-jest": "^20.0.3",
     "d3-array": "^1.2.0",
+    "d3-hierarchy": "^1.1.5",
     "enzyme": "^2.8.2",
     "jest": "^20.0.3",
     "react": "^15.0.0-0 || ^16.0.0-0",
