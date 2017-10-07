@@ -1,6 +1,6 @@
 {
   "name": "@vx/axis",
-  "version": "0.0.141",
+  "version": "0.0.142",
   "description": "vx axis",
   "main": "build/index.js",
   "scripts": {
@@ -31,7 +31,7 @@
   "dependencies": {
     "@vx/group": "0.0.140",
     "@vx/point": "0.0.136",
-    "@vx/shape": "0.0.141",
+    "@vx/shape": "0.0.142",
     "classnames": "^2.2.5",
     "prop-types": "15.5.10"
   },
