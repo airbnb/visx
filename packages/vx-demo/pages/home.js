@@ -2,14 +2,11 @@ import React from 'react';
 import Page from '../components/page';
 import Footer from '../components/footer';
 
-
 export default () => (
   <Page>
     <div className="home">
       <div className="hero">
-        <h1>
-          React + D3 = VX
-        </h1>
+        <h1>React + D3 = VX</h1>
         <div className="btn-container">
           <a className="btn" href="https://github.com/hshoff/vx">
             View on Github
@@ -17,50 +14,85 @@ export default () => (
         </div>
       </div>
       <div className="container">
-        <div className="content"><p><code>vx</code> is collection of reusable low-level visualization components. <code>vx</code> combines the power of <code>d3</code> to generate your visualization with the benefits of <code>react</code> for updating the DOM.</p></div>
+        <div className="content">
+          <p>
+            <code>vx</code> is collection of reusable low-level
+            visualization components. <code>vx</code> combines the
+            power of <code>d3</code> to generate your visualization
+            with the benefits of <code>react</code> for updating the
+            DOM.
+          </p>
+        </div>
         <div className="content">
           <h3>Goal</h3>
-          <p>The goal is to create a library of components you can use to make both your own resuable chart library or your slick custom one-off chart. <code>vx</code> is largely unopinionated and is meant to be build on top of. Keep your bundle sizes down and use only the packages you need.</p>
+          <p>
+            The goal is to create a library of components you can use
+            to make both your own reusable chart library or your slick
+            custom one-off chart. <code>vx</code> is largely
+            unopinionated and is meant to be build on top of. Keep
+            your bundle sizes down and use only the packages you need.
+          </p>
         </div>
         <div className="content">
           <h3>How?</h3>
-          <p>Under the hood, <code>vx</code> is using <code>d3</code> for the calculations and math. If you're creating your own awesome chart library ontop of vx, it's easy to create a component api that hides <code>d3</code> entirely. Meaning your team could create charts as easily as using reusable react components.</p>
+          <p>
+            Under the hood, <code>vx</code> is using <code>d3</code>{' '}
+            for the calculations and math. If you're creating your own
+            awesome chart library ontop of vx, it's easy to create a
+            component api that hides <code>d3</code> entirely. Meaning
+            your team could create charts as easily as using reusable
+            react components.
+          </p>
         </div>
         <div className="content">
           <h3>But why?</h3>
-          <p>Mixing two mental models for updating the DOM is never a good time. Copy and pasting d3 code into <code>componentDidMount()</code> is just that. This collection of components lets you easily build your own reusable visualization charts or library without having to learn d3. No more selections or <code>enter()</code>/<code>exit()</code>/<code>update()</code>.</p>
+          <p>
+            Mixing two mental models for updating the DOM is never a
+            good time. Copy and pasting d3 code into{' '}
+            <code>componentDidMount()</code> is just that. This
+            collection of components lets you easily build your own
+            reusable visualization charts or library without having to
+            learn d3. No more selections or <code>enter()</code>/<code>exit()</code>/<code>update()</code>.
+          </p>
         </div>
         <div className="content">
           <h3>FAQ</h3>
           <ol className="faq">
             <li>
-              <p>What does <code>vx</code> stand for?</p>
+              <p>
+                What does <code>vx</code> stand for?
+              </p>
               <blockquote>
-              <p>vx stands for visualization components.</p>
+                <p>vx stands for visualization components.</p>
               </blockquote>
             </li>
             <li>
               <p>Do you plan on supporting animation/transitions?</p>
               <blockquote>
-              <p>yup!</p>
+                <p>yup!</p>
               </blockquote>
             </li>
             <li>
               <p>Do I have to use every package to make a chart?</p>
               <blockquote>
-              <p>nope! pick and choose the packages you need.</p>
+                <p>nope! pick and choose the packages you need.</p>
               </blockquote>
             </li>
             <li>
-              <p>Can I use this to create my own library of charts for my team?</p>
+              <p>
+                Can I use this to create my own library of charts for
+                my team?
+              </p>
               <blockquote>
-              <p>Please do.</p>
+                <p>Please do.</p>
               </blockquote>
             </li>
             <li>
-              <p>I like using <code>d3</code>.</p>
+              <p>
+                I like using <code>d3</code>.
+              </p>
               <blockquote>
-              <p>Me too.</p>
+                <p>Me too.</p>
               </blockquote>
             </li>
           </ol>
@@ -75,8 +107,8 @@ export default () => (
         background-color: #fc2e1c;
         border-radius: 30px;
         border-top-right-radius: 0;
-        color: #FFFFFF;
-        font-family: "Montserrat";
+        color: #ffffff;
+        font-family: 'Montserrat';
         text-transform: uppercase;
         margin-right: 1rem;
       }
@@ -98,13 +130,13 @@ export default () => (
       }
 
       .home h1 {
-        font-family: "Montserrat";
+        font-family: 'Montserrat';
         color: #fc2e1c;
         font-size: 95pt;
         line-height: 1em;
         margin: 0;
         padding: 0;
-        opacity: .9;
+        opacity: 0.9;
         margin-top: 130px;
         letter-spacing: 20px;
         text-transform: uppercase;
@@ -144,7 +176,7 @@ export default () => (
 
       blockquote {
         border-left: 2px solid #efefef;
-        padding: .5rem 1rem;
+        padding: 0.5rem 1rem;
         color: #777;
       }
 
@@ -182,4 +214,4 @@ export default () => (
       }
     `}</style>
   </Page>
-)
+);
