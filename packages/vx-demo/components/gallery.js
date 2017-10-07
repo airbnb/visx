@@ -195,7 +195,7 @@ export default class Gallery extends React.Component {
                     }}
                   />
                 </div>
-                <div className="details">
+                <div className="details" style={{ zIndex: 1 }}>
                   <div className="title">Areas</div>
                   <div className="description">
                     <pre>{`<Shape.AreaClosed />`}</pre>
