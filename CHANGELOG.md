@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.142](#v00142)
 - [v0.0.141](#v00141)
 - [v0.0.140](#v00140)
 - [v0.0.139](#v00139)
@@ -27,6 +28,27 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.142
+
+#### :rocket: Enhancement
+
+- [shape] add innerRef prop to shapes [#168](https://github.com/hshoff/vx/pull/168)
+
+### :memo: Documentation
+
+- [demo] fix typo on /, fix areas tile details [#169](https://github.com/hshoff/vx/pull/169)
+
+```bash
+Changes:
+ - @vx/annotation: 0.0.141 => 0.0.142
+ - @vx/axis: 0.0.141 => 0.0.142
+ - @vx/demo: 0.0.141 => 0.0.142
+ - @vx/grid: 0.0.141 => 0.0.142
+ - @vx/marker: 0.0.141 => 0.0.142
+ - @vx/shape: 0.0.141 => 0.0.142
+ - @vx/vx: 0.0.141 => 0.0.142
+```
 
 # v0.0.141
 
