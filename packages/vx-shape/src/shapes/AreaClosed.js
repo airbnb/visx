@@ -1,7 +1,12 @@
 import React from 'react';
 import cx from 'classnames';
+import PropTypes from 'prop-types';
 import { area } from 'd3-shape';
 import additionalProps from '../util/additionalProps';
+
+AreaClosed.propTypes = {
+  innerRef: PropTypes.func,
+};
 
 export default function AreaClosed({
   x,
@@ -16,6 +21,7 @@ export default function AreaClosed({
   stroke = 'black',
   fill = 'rgba(0,0,0,0.3)',
   curve,
+  innerRef,
   ...restProps
 }) {
   const path = area()
@@ -27,6 +33,7 @@ export default function AreaClosed({
   return (
     <g>
       <path
+        ref={innerRef}
         className={cx('vx-area-closed', className)}
         d={path(data)}
         stroke={stroke}
