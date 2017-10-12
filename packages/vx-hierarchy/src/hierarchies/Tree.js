@@ -7,7 +7,7 @@ import DefaultLink from '../HierarchyDefaultLink';
 import DefaultNode from '../HierarchyDefaultNode';
 
 Tree.propTypes = {
-  root: PropTypes.object.isRequired,
+  data: PropTypes.object.isRequired,
   children: PropTypes.func,
 };
 
@@ -15,7 +15,7 @@ export default function Tree({
   top,
   left,
   className,
-  root,
+  data,
   size,
   nodeSize,
   separation,
@@ -29,9 +29,7 @@ export default function Tree({
   if (nodeSize) tree.nodeSize(nodeSize);
   if (separation) tree.separation(separation);
 
-  const data = tree(root);
-  const links = data.links();
-  const descendants = root.descendants();
+  const root = tree(data);
 
   if (!!children) {
     return (
@@ -40,7 +38,7 @@ export default function Tree({
         left={left}
         className={cx('vx-tree', className)}
       >
-        {children({ data, links, root, descendants })}
+        {children({ root })}
       </Group>
     );
   }
@@ -48,7 +46,7 @@ export default function Tree({
   return (
     <Group top={top} left={left} className={cx('vx-tree', className)}>
       {linkComponent &&
-        links.map((link, i) => {
+        root.links().map((link, i) => {
           return (
             <Group key={`tree-link-${i}`}>
               {React.createElement(linkComponent, { link })}
@@ -56,7 +54,7 @@ export default function Tree({
           );
         })}
       {nodeComponent &&
-        descendants.map((node, i) => {
+        root.descendants().map((node, i) => {
           return (
             <Group key={`tree-node-${i}`}>
               {React.createElement(nodeComponent, { node })}
