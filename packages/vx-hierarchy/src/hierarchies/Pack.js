@@ -6,7 +6,7 @@ import { pack as d3pack } from 'd3-hierarchy';
 import DefaultNode from '../HierarchyDefaultNode';
 
 Pack.propTypes = {
-  data: PropTypes.object.isRequired,
+  root: PropTypes.object.isRequired,
   children: PropTypes.func
 };
 
@@ -14,7 +14,7 @@ export default function Pack({
   top,
   left,
   className,
-  data,
+  root,
   radius,
   size,
   padding,
@@ -27,12 +27,12 @@ export default function Pack({
   if (radius) pack.radius(radius);
   if (padding) pack.padding(padding);
 
-  const root = pack(data);
+  const data = pack(root);
 
   if (!!children) {
     return (
       <Group top={top} left={left} className={cx('vx-pack', className)}>
-        {children({ root })}
+        {children({ data })}
       </Group>
     );
   }
@@ -40,7 +40,7 @@ export default function Pack({
   return (
     <Group top={top} left={left} className={cx('vx-pack', className)}>
       {nodeComponent &&
-        root.descendants().map((node, i) => {
+        data.descendants().map((node, i) => {
           return (
             <Group key={`pack-node-${i}`}>
               {React.createElement(nodeComponent, { node })}

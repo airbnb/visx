@@ -14,7 +14,7 @@ export default function Treemap({
   top,
   left,
   className,
-  data,
+  root,
   tile,
   size,
   round,
@@ -41,12 +41,12 @@ export default function Treemap({
   if (paddingBottom) treemap.paddingBottom(paddingBottom);
   if (paddingLeft) treemap.paddingLeft(paddingLeft);
 
-  const root = treemap(data);
+  const data = treemap(root);
 
   if (!!children) {
     return (
       <Group top={top} left={left} className={cx('vx-treemap', className)}>
-        {children({ root })}
+        {children({ data })}
       </Group>
     );
   }
@@ -54,7 +54,7 @@ export default function Treemap({
   return (
     <Group top={top} left={left} className={cx('vx-treemap', className)}>
       {nodeComponent &&
-        root.descendants().map((node, i) => {
+        data.descendants().map((node, i) => {
           return (
             <Group key={`treemap-node-${i}`}>
               {React.createElement(nodeComponent, { node })}

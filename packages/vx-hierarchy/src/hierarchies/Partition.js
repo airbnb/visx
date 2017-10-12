@@ -6,7 +6,7 @@ import { partition as d3partition } from 'd3-hierarchy';
 import DefaultNode from '../HierarchyDefaultNode';
 
 Partition.propTypes = {
-  data: PropTypes.object.isRequired,
+  root: PropTypes.object.isRequired,
   children: PropTypes.func
 };
 
@@ -14,7 +14,7 @@ export default function Partition({
   top,
   left,
   className,
-  data,
+  root,
   size,
   round,
   padding,
@@ -27,12 +27,12 @@ export default function Partition({
   if (round) partition.round(round);
   if (padding) partition.padding(padding);
 
-  const root = partition(data);
+  const data = partition(root);
 
   if (!!children) {
     return (
       <Group top={top} left={left} className={cx('vx-pack', className)}>
-        {children({ root })}
+        {children({ data })}
       </Group>
     );
   }
@@ -40,7 +40,7 @@ export default function Partition({
   return (
     <Group top={top} left={left} className={cx('vx-pack', className)}>
       {nodeComponent &&
-        root.descendants().map((node, i) => {
+        data.descendants().map((node, i) => {
           return (
             <Group key={`pack-node-${i}`}>
               {React.createElement(nodeComponent, { node })}
