@@ -28,9 +28,8 @@ export default function Cluster({
   if (size) cluster.size(size);
   if (nodeSize) cluster.nodeSize(nodeSize);
   if (separation) cluster.separation(separation);
+
   const data = cluster(root);
-  const links = data.links();
-  const descendants = root.descendants();
 
   if (!!children) {
     return (
@@ -39,7 +38,7 @@ export default function Cluster({
         left={left}
         className={cx('vx-cluster', className)}
       >
-        {children({ data, links, root, descendants })}
+        {children({ data })}
       </Group>
     );
   }
@@ -51,7 +50,7 @@ export default function Cluster({
       className={cx('vx-cluster', className)}
     >
       {linkComponent &&
-        links.map((link, i) => {
+        data.links().map((link, i) => {
           return (
             <Group key={`cluster-link-${i}`}>
               {React.createElement(linkComponent, { link })}
@@ -59,7 +58,7 @@ export default function Cluster({
           );
         })}
       {nodeComponent &&
-        descendants.map((node, i) => {
+        data.descendants().map((node, i) => {
           return (
             <Group key={`cluster-node-${i}`}>
               {React.createElement(nodeComponent, { node })}
