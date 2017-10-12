@@ -39,6 +39,10 @@ vx is a collection of reusable low-level visualization components. vx combines t
   </strong>
   &bull;
   <strong>
+    <a href="https://d3-slackin.herokuapp.com/" title="Join https://d3js.slack.com">Slack #vx</a>
+  </strong>
+  &bull;
+  <strong>
     <a href="./CHANGELOG.md">Changelog</a>
   </strong>
   &bull;
