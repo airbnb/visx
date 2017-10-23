@@ -9,6 +9,6 @@ describe('<RadialGradient />', () => {
 
   test('it should render without crashing', () => {
     const div = document.createElement('div')
-    ReactDOM.render(<RadialGradient id="radial" />, div)
+    ReactDOM.render(<svg><RadialGradient id="radial" /></svg>, div)
   })
 })
