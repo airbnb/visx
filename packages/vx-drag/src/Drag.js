@@ -30,31 +30,27 @@ export default class Drag extends React.Component {
     this.setState(() => nextState);
   }
   dragMove(event) {
-    const { isDragging, transform } = this.state;
+    const { isDragging, transform, startPoint } = this.state;
     const { svg } = this.props;
 
     if (!isDragging) return;
 
     const currentPoint = localPoint(svg, event);
-    const end = transform.transformPoint(
-      currentPoint.x,
-      currentPoint.y,
-    );
 
-    if (!this.lastMove) this.lastMove = end;
+    if (!this.lastMove) this.lastMove = startPoint;
 
     const move = new Point({
-      x: end.x - this.lastMove.x,
-      y: end.y - this.lastMove.y,
+      x: currentPoint.x - this.lastMove.x,
+      y: currentPoint.y - this.lastMove.y,
     });
 
-    const nextTransform = transform.translate(move.x, move.y);
-    const { translateX, translateY } = nextTransform.getTranslate();
+    this.lastMove = currentPoint;
+
     const nextState = {
-      transform: nextTransform,
-      dx: translateX,
-      dy: translateY,
+      dx: move.x,
+      dy: move.y,
       currentPoint,
+      startPoint,
       lastPoint: this.lastMove,
     };
     if (this.props.onDragMove)

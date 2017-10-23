@@ -4,9 +4,7 @@
   "description": "vx text",
   "sideEffects": false,
   "main": "build/index.js",
-  "files": [
-    "build"
-  ],
+  "files": ["build"],
   "scripts": {
     "build": "make build SRC=./src",
     "prepublish": "make build SRC=./src",
