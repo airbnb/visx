@@ -1,6 +1,6 @@
 {
   "name": "@vx/legend",
-  "version": "0.0.141",
+  "version": "0.0.143",
   "description": "vx legend",
   "main": "build/index.js",
   "scripts": {
@@ -45,7 +45,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@vx/group": "0.0.140",
+    "@vx/group": "0.0.143",
     "classnames": "^2.2.5",
     "prop-types": "^15.5.10"
   },

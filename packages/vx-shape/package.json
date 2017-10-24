@@ -1,6 +1,6 @@
 {
   "name": "@vx/shape",
-  "version": "0.0.142",
+  "version": "0.0.143",
   "description": "vx shape",
   "main": "build/index.js",
   "repository": "https://github.com/hshoff/vx",
@@ -22,17 +22,17 @@
   "author": "@hshoff",
   "license": "MIT",
   "dependencies": {
-    "@vx/curve": "0.0.140",
-    "@vx/group": "0.0.140",
-    "@vx/point": "0.0.136",
+    "@vx/curve": "0.0.143",
+    "@vx/group": "0.0.143",
+    "@vx/point": "0.0.143",
     "classnames": "^2.2.5",
     "d3-shape": "^1.2.0",
     "prop-types": "^15.5.10"
   },
   "devDependencies": {
+    "babel-jest": "^21.2.0",
     "d3-array": "^1.2.0",
     "d3-hierarchy": "^1.1.5",
-    "babel-jest": "^21.2.0",
     "enzyme": "^3.1.0",
     "enzyme-adapter-react-16": "^1.0.2",
     "jest": "^21.2.1",

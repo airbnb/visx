@@ -1,6 +1,6 @@
 {
   "name": "@vx/network",
-  "version": "0.0.140",
+  "version": "0.0.143",
   "description": "vx graph",
   "main": "build/index.js",
   "repository": "https://github.com/hshoff/vx",
@@ -34,7 +34,7 @@
     "regenerator-runtime": "^0.10.5"
   },
   "dependencies": {
-    "@vx/group": "0.0.140",
+    "@vx/group": "0.0.143",
     "classnames": "^2.2.5",
     "d3-force": "^1.0.6"
   },

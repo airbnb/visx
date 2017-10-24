@@ -1,6 +1,6 @@
 {
   "name": "@vx/text",
-  "version": "0.0.140",
+  "version": "0.0.143",
   "description": "vx text",
   "main": "build/index.js",
   "files": [

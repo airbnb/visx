@@ -1,6 +1,6 @@
 {
   "name": "@vx/brush",
-  "version": "0.0.140",
+  "version": "0.0.143",
   "description": "vx brush",
   "main": "build/index.js",
   "scripts": {

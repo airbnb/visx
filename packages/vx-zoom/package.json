@@ -1,6 +1,6 @@
 {
   "name": "@vx/zoom",
-  "version": "0.0.140",
+  "version": "0.0.143",
   "description": "vx zoom",
   "main": "build/index.js",
   "scripts": {

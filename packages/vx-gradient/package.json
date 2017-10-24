@@ -1,6 +1,6 @@
 {
   "name": "@vx/gradient",
-  "version": "0.0.140",
+  "version": "0.0.143",
   "description": "vx gradient",
   "main": "build/index.js",
   "repository": {

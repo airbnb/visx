@@ -1,6 +1,6 @@
 {
   "name": "@vx/clip-path",
-  "version": "0.0.140",
+  "version": "0.0.143",
   "description": "vx clip-path",
   "main": "build/index.js",
   "scripts": {
