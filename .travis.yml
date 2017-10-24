@@ -1,5 +1,8 @@
+git:
+  depth: 10
 language: node_js
 node_js:
+  - "8"
   - "6"
 cache:
   directories:

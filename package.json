@@ -4,7 +4,7 @@
   "description": "Low-level visualization components",
   "main": "index.js",
   "scripts": {
-    "test": "lerna exec npm install && jest",
+    "test": "lerna clean && lerna exec npm install --silent && lerna run test --parallel",
     "docs": "node ./scripts/docs/index.js",
     "prepare-release": "git checkout master && git pull --rebase origin master && npm run docs && lerna updated",
     "release": "npm run prepare-release && lerna publish --exact"
