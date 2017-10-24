@@ -28,8 +28,5 @@ describe('<Tree />', () => {
     const args = childrenFunc.mock.calls[0][0];
     expect(childrenFunc.mock.calls.length).toBe(1);
     expect(args.data).toBeDefined();
-    expect(args.links).toBeDefined();
-    expect(args.descendants).toBeDefined();
-    expect(args.root).toBeDefined();
   });
 });
