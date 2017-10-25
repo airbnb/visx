@@ -13,3 +13,4 @@ export { default as cityTemperature } from './mocks/cityTemperature';
 export { default as lesMiserables } from './mocks/lesMiserables';
 export { default as exoplanets } from './mocks/exoplanets';
 export { default as planets } from './mocks/planets';
+export { default as shakespeare } from './mocks/shakespeare';
