@@ -28,6 +28,7 @@ import BoxPlot from '../components/tiles/boxplot';
 import GeoMercator from '../components/tiles/geo-mercator';
 import Network from '../components/tiles/network';
 import Streamgraph from '../components/tiles/streamgraph';
+import Pack from '../components/tiles/pack';
 
 const items = [
   '#242424',
@@ -93,6 +94,7 @@ export default class Gallery extends React.Component {
     const t18 = this.state.dimensions[17] || [8, 300];
     const t19 = this.state.dimensions[18] || [8, 300];
     const t20 = this.state.dimensions[19] || [8, 300];
+    const t21 = this.state.dimensions[19] || [8, 300];
 
     return (
       <div>
@@ -595,7 +597,33 @@ export default class Gallery extends React.Component {
               </div>
             </Link>
           </Tilt>
-          <div className="gallery-item placeholder" />
+          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+            <Link prefetch href="/pack">
+              <div
+                className="gallery-item"
+                ref={d => this.nodes.add(d)}
+                style={{
+                  background: '#ffffff',
+                  boxShadow: 'rgba(0, 0, 0, 0.1) 0px 1px 6px',
+                }}
+              >
+                <div className="image">
+                  <Pack width={t21[0]} height={t21[1]} />
+                </div>
+                <div
+                  className="details"
+                  style={{
+                    color: '#fd6c6f',
+                  }}
+                >
+                  <div className="title">Pack</div>
+                  <div className="description">
+                    <pre>{`<Hierarchy.Pack />`}</pre>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </Tilt>
           <div className="gallery-item placeholder" />
         </div>
 
