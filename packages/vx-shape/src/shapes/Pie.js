@@ -4,7 +4,7 @@ import { Group } from '@vx/group';
 import { arc as d3Arc, pie as d3Pie } from 'd3-shape';
 import additionalProps from '../util/additionalProps';
 
-export default function Arc({
+export default function Pie({
   className = '',
   top = 0,
   left = 0,
@@ -32,16 +32,20 @@ export default function Arc({
   if (padAngle) pie.padAngle(padAngle);
   const arcs = pie(data);
   return (
-    <Group className="vx-arcs-group" top={top} left={left}>
+    <Group className="vx-pie-arcs-group" top={top} left={left}>
       {arcs.map((arc, i) => {
         let c;
         if (centroid) c = path.centroid(arc);
         return (
-          <g key={`arc-${i}`}>
+          <g key={`pie-arc-${i}`}>
             <path
-              className={cx('vx-arc', className)}
+              className={cx('vx-pie-arc', className)}
               d={path(arc)}
-              {...additionalProps(restProps, { ...arc, index: i, centroid: c })}
+              {...additionalProps(restProps, {
+                ...arc,
+                index: i,
+                centroid: c,
+              })}
             />
             {centroid && centroid(c, arc)}
           </g>

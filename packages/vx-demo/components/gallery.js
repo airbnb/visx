@@ -19,7 +19,7 @@ import BarGroup from '../components/tiles/bargroup';
 import BarStack from '../components/tiles/barstack';
 import Heatmap from '../components/tiles/heatmap';
 import LineRadial from '../components/tiles/lineradial';
-import Arcs from '../components/tiles/arc';
+import Pies from '../components/tiles/pie';
 import Trees from '../components/tiles/tree';
 import Cluster from '../components/tiles/dendrogram';
 import Voronoi from '../components/tiles/voronoi';
@@ -404,19 +404,19 @@ export default class Gallery extends React.Component {
             </Link>
           </Tilt>
           <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-            <Link prefetch href="/arcs">
+            <Link prefetch href="/pies">
               <div
                 className="gallery-item"
                 style={{ background: '#c94acc' }}
                 ref={d => this.nodes.add(d)}
               >
                 <div className="image">
-                  <Arcs width={t14[0]} height={t14[1]} />
+                  <Pies width={t14[0]} height={t14[1]} />
                 </div>
                 <div className="details" style={{ color: 'white' }}>
-                  <div className="title">Arcs</div>
+                  <div className="title">Pies</div>
                   <div className="description">
-                    <pre>{`<Shape.Arc />`}</pre>
+                    <pre>{`<Shape.Pie />`}</pre>
                   </div>
                 </div>
               </div>

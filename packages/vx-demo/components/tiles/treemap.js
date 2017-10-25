@@ -7,11 +7,6 @@ import { treemapSquarify } from 'd3-hierarchy';
 import { scaleLinear } from '@vx/scale';
 import { interpolateRgb } from 'd3-interpolate';
 
-const color = scaleLinear({
-  domain: [0, Math.max(...shakespeare.map(d => d.size || 0))],
-  range: ['#0373d9', '#00ff70'],
-});
-
 export default ({
   width,
   height,
@@ -24,6 +19,10 @@ export default ({
   },
 }) => {
   if (width < 10) return null;
+  const color = scaleLinear({
+    domain: [0, Math.max(...shakespeare.map(d => d.size || 0))],
+    range: ['#0373d9', '#00ff70'],
+  });
   const nodes = stratify()
     .id(d => d.id)
     .parentId(d => d.parent)(shakespeare).sum(d => d.size || 0);

@@ -1,4 +1,4 @@
-export { default as Arc } from './shapes/Arc';
+export { default as Pie } from './shapes/Pie';
 export { default as Line } from './shapes/Line';
 export { default as LinePath } from './shapes/LinePath';
 export { default as LineRadial } from './shapes/LineRadial';
