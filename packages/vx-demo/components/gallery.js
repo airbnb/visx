@@ -29,6 +29,7 @@ import GeoMercator from '../components/tiles/geo-mercator';
 import Network from '../components/tiles/network';
 import Streamgraph from '../components/tiles/streamgraph';
 import Pack from '../components/tiles/pack';
+import Treemap from '../components/tiles/treemap';
 
 const items = [
   '#242424',
@@ -94,7 +95,8 @@ export default class Gallery extends React.Component {
     const t18 = this.state.dimensions[17] || [8, 300];
     const t19 = this.state.dimensions[18] || [8, 300];
     const t20 = this.state.dimensions[19] || [8, 300];
-    const t21 = this.state.dimensions[19] || [8, 300];
+    const t21 = this.state.dimensions[20] || [8, 300];
+    const t22 = this.state.dimensions[21] || [8, 300];
 
     return (
       <div>
@@ -624,7 +626,33 @@ export default class Gallery extends React.Component {
               </div>
             </Link>
           </Tilt>
-          <div className="gallery-item placeholder" />
+          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+            <Link prefetch href="/treemap">
+              <div
+                className="gallery-item"
+                ref={d => this.nodes.add(d)}
+                style={{
+                  background: '#3436b8',
+                }}
+              >
+                <div className="image">
+                  <Treemap width={t22[0]} height={t22[1]} />
+                </div>
+                <div
+                  className="details"
+                  style={{
+                    color: '#00ff70',
+                  }}
+                >
+                  <div className="title">Treemap</div>
+                  <div className="description">
+                    <pre>{`<Hierarchy.Treemap />`}</pre>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </Tilt>
+          {false && <div className="gallery-item placeholder" />}
         </div>
 
         <div>

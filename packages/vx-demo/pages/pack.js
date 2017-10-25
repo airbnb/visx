@@ -33,7 +33,6 @@ const color = scaleQuantize({
 export default ({
   width,
   height,
-  events = false,
   margin = {
     top: 10,
     left: 30,
