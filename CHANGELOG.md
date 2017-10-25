@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.144](#v00144)
 - [v0.0.143](#v00143)
 - [v0.0.142](#v00142)
 - [v0.0.141](#v00141)
@@ -29,6 +30,35 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.144
+
+#### 💥 Breaking Changes
+
+- [shape] `<Arc />` renamed `<Pie />`, new `<Arc />` not dependent on d3-shape pie generator. [#179](https://github.com/hshoff/vx/pull/179)
+
+#### 🚀 Enhancements
+
+- [demo] add `<Pack />` and `<Treemap />` demo tiles + pages. [#179](https://github.com/hshoff/vx/pull/179)
+- [mock] add exoplanets, planets, and shakespeare mocks. [#179](https://github.com/hshoff/vx/pull/179)
+
+#### 🐛 Bug Fix
+
+- [hierarchy] rename `<Partition />` classnames from `vx-pack` => `vx-partition`. [#179](https://github.com/hshoff/vx/pull/179)
+- [hierarchy] export partition, treemap, and pack from index. [#179](https://github.com/hshoff/vx/pull/179)
+
+```bash
+Changes:
+ - @vx/annotation: 0.0.143 => 0.0.144
+ - @vx/axis: 0.0.143 => 0.0.144
+ - @vx/demo: 0.0.143 => 0.0.144
+ - @vx/grid: 0.0.143 => 0.0.144
+ - @vx/hierarchy: 0.0.143 => 0.0.144
+ - @vx/marker: 0.0.143 => 0.0.144
+ - @vx/mock-data: 0.0.143 => 0.0.144
+ - @vx/shape: 0.0.143 => 0.0.144
+ - @vx/vx: 0.0.143 => 0.0.144
+```
 
 # v0.0.143
 
