@@ -4,6 +4,15 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _Arc = require('./shapes/Arc');
+
+Object.defineProperty(exports, 'Arc', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_Arc).default;
+  }
+});
+
 var _Pie = require('./shapes/Pie');
 
 Object.defineProperty(exports, 'Pie', {
