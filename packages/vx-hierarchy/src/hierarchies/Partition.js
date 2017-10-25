@@ -7,7 +7,7 @@ import DefaultNode from '../HierarchyDefaultNode';
 
 Partition.propTypes = {
   root: PropTypes.object.isRequired,
-  children: PropTypes.func
+  children: PropTypes.func,
 };
 
 export default function Partition({
@@ -31,18 +31,26 @@ export default function Partition({
 
   if (!!children) {
     return (
-      <Group top={top} left={left} className={cx('vx-pack', className)}>
+      <Group
+        top={top}
+        left={left}
+        className={cx('vx-partition', className)}
+      >
         {children({ data })}
       </Group>
     );
   }
 
   return (
-    <Group top={top} left={left} className={cx('vx-pack', className)}>
+    <Group
+      top={top}
+      left={left}
+      className={cx('vx-partition', className)}
+    >
       {nodeComponent &&
         data.descendants().map((node, i) => {
           return (
-            <Group key={`pack-node-${i}`}>
+            <Group key={`partition-node-${i}`}>
               {React.createElement(nodeComponent, { node })}
             </Group>
           );

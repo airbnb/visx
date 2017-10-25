@@ -1,52 +1,35 @@
 import React from 'react';
 import cx from 'classnames';
-import { Group } from '@vx/group';
-import { arc as d3Arc, pie as d3Pie } from 'd3-shape';
+import { arc as d3Arc } from 'd3-shape';
 import additionalProps from '../util/additionalProps';
 
 export default function Arc({
-  className = '',
-  top = 0,
-  left = 0,
+  className,
   data,
   centroid,
-  innerRadius = 0,
+  innerRadius,
   outerRadius,
   cornerRadius,
-  startAngle = 0,
+  startAngle,
   endAngle,
   padAngle,
   padRadius,
-  pieSort,
-  pieValue,
   ...restProps
 }) {
-  const path = d3Arc();
-  path.innerRadius(innerRadius);
-  if (outerRadius) path.outerRadius(outerRadius);
-  if (cornerRadius) path.cornerRadius(cornerRadius);
-  if (padRadius) path.padRadius(padRadius);
-  const pie = d3Pie();
-  if (pieSort) pie.sort(pieSort);
-  if (pieValue) pie.value(pieValue);
-  if (padAngle) pie.padAngle(padAngle);
-  const arcs = pie(data);
+  const arc = d3Arc();
+  if (centroid) arc.centroid(centroid);
+  if (innerRadius) arc.innerRadius(innerRadius);
+  if (outerRadius) arc.outerRadius(outerRadius);
+  if (cornerRadius) arc.cornerRadius(cornerRadius);
+  if (startAngle) arc.startAngle(startAngle);
+  if (endAngle) arc.endAngle(endAngle);
+  if (padAngle) arc.padAngle(padAngle);
+  if (padRadius) arc.padRadius(padRadius);
   return (
-    <Group className="vx-arcs-group" top={top} left={left}>
-      {arcs.map((arc, i) => {
-        let c;
-        if (centroid) c = path.centroid(arc);
-        return (
-          <g key={`arc-${i}`}>
-            <path
-              className={cx('vx-arc', className)}
-              d={path(arc)}
-              {...additionalProps(restProps, { ...arc, index: i, centroid: c })}
-            />
-            {centroid && centroid(c, arc)}
-          </g>
-        );
-      })}
-    </Group>
+    <path
+      className={cx('vx-arc', className)}
+      d={arc(data)}
+      {...additionalProps(restProps, data)}
+    />
   );
 }

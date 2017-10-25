@@ -1,6 +1,6 @@
 export { default as genDateValue } from './generators/genDateValue';
 export {
-  default as genRandomNormalPoints
+  default as genRandomNormalPoints,
 } from './generators/genRandomNormalPoints';
 export { default as genBin } from './generators/genBin';
 export { default as genBins } from './generators/genBins';
@@ -10,4 +10,7 @@ export { default as letterFrequency } from './mocks/letterFrequency';
 export { default as browserUsage } from './mocks/browserUsage';
 export { default as groupDateValue } from './mocks/groupDateValue';
 export { default as cityTemperature } from './mocks/cityTemperature';
-export { default as lesMiserables} from './mocks/lesMiserables';
+export { default as lesMiserables } from './mocks/lesMiserables';
+export { default as exoplanets } from './mocks/exoplanets';
+export { default as planets } from './mocks/planets';
+export { default as shakespeare } from './mocks/shakespeare';

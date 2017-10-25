@@ -1,6 +1,6 @@
 import React from 'react';
 import Show from '../components/show';
-import Arc from '../components/tiles/arc';
+import Pie from '../components/tiles/pie';
 
 export default () => {
   return (
@@ -12,11 +12,11 @@ export default () => {
         right: 30,
         bottom: 80,
       }}
-      component={Arc}
-      title="Arcs"
+      component={Pie}
+      title="Pies"
     >
       {`import React from 'react';
-import { Arc } from '@vx/shape';
+import { Pie } from '@vx/shape';
 import { Group } from '@vx/group';
 import { GradientPinkBlue } from '@vx/gradient';
 import { letterFrequency, browserUsage } from '@vx/mock-data';
@@ -66,7 +66,7 @@ export default ({
         fill="url('#gradients')"
       />
       <Group top={height / 2 - margin.top} left={width / 2}>
-        <Arc
+        <Pie
           data={browsers}
           pieValue={d => d.usage}
           outerRadius={radius - 80}
@@ -82,7 +82,7 @@ export default ({
             return <Label x={x} y={y}>{arc.data.label}</Label>;
           }}
         />
-        <Arc
+        <Pie
           data={letters}
           pieValue={d => d.frequency}
           outerRadius={radius - 135}

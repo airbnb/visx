@@ -126,7 +126,6 @@ export default () => (
         flex-direction: column;
         background: white;
         padding: 1rem;
-        border-bottom: 1rem solid #fc2e1c;
       }
 
       .home h1 {

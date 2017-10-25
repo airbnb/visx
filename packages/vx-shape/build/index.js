@@ -13,6 +13,15 @@ Object.defineProperty(exports, 'Arc', {
   }
 });
 
+var _Pie = require('./shapes/Pie');
+
+Object.defineProperty(exports, 'Pie', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_Pie).default;
+  }
+});
+
 var _Line = require('./shapes/Line');
 
 Object.defineProperty(exports, 'Line', {
