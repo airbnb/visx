@@ -1,7 +1,8 @@
 import React from 'react';
 import { Axis } from '../src';
 import { shallow } from 'enzyme';
-import { scaleLinear } from '../../vx-scale';
+import { scaleLinear, scaleBand } from '../../vx-scale';
+import { Line } from '@vx/shape';
 
 const axisProps = {
   orientation: 'left',
@@ -238,4 +239,27 @@ describe('<Axis />', () => {
         .text(),
     ).toBe('0');
   });
+
+  test('it should use center if scale is band', () => {
+    const axisProps = {
+      scale: scaleBand({
+        rangeRound: [10, 0],
+        domain: [0, 10],
+      })
+    };
+    const wrapper = shallow(
+      <Axis {...axisProps} tickStroke="blue" />
+    )
+    const points = wrapper.children().find(Line)
+    // First point
+    expect(points.at(0).prop('from')).toEqual({x: 8, y: 0})
+    expect(points.at(0).prop('to')).toEqual({x: 8, y: 8})
+    // Second point
+    expect(points.at(1).prop('from')).toEqual({x: 3, y: 0})
+    expect(points.at(1).prop('to')).toEqual({x: 3, y: 8})
+    // Third point
+    expect(points.at(2).prop('from')).toEqual({x: 10.5, y: 0})
+    expect(points.at(2).prop('to')).toEqual({x: 0.5, y: 0})
+  })
+
 });

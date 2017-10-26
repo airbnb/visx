@@ -185,7 +185,7 @@ export default function Axis({
               <Line
                 from={tickFromPoint}
                 to={tickToPoint}
-                stroke={tickStroke || stroke}
+                stroke={tickStroke}
               />
             )}
             <text
@@ -193,6 +193,7 @@ export default function Axis({
               y={
                 tickToPoint.y +
                 (horizontal && !isTop ? tickLabelFontSize : 0)
+
               }
               {...tickLabelPropsObj}
             >
