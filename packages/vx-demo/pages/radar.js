@@ -1,15 +1,22 @@
 import React from 'react';
+import Show from '../components/show';
+import Radar from '../components/tiles/radar';
+
+export default () => {
+  return (
+    <Show component={Radar} title="Radar">
+      {`import React from 'react';
+import { Treemap } from '@vx/hierarchy';
 import { Group } from '@vx/group';
 import { letterFrequency } from '@vx/mock-data';
 import { scaleLinear } from '@vx/scale';
 import { Point } from '@vx/point';
 import { Line, LineRadial } from '@vx/shape';
-import { max, min } from 'd3-array';
-
-
-const ANG = 360;
+import { max } from 'd3-array';
 
 const _data = letterFrequency.slice(2, 12);
+
+const ANG = 360;
 const calcAxis = (length) => {
   if (!length) return [];
   else return new Array(length + 1)
@@ -36,7 +43,7 @@ function calcCoordinates (data, scale, access) {
           const x = scale(access(data[i - 1])) * Math.sin(i * step);
           const y = scale(access(data[i - 1])) * Math.cos(i * step);
           points[i - 1] = { x, y };
-          return res += `${x},${y} `;
+          return res += \`$\{x\},$\{y\} \`;
         });
 
   points.str = pointStr;
@@ -47,16 +54,15 @@ export default ({
   width,
   height,
   events = false,
-  margin = { top: 80, left: 80, right: 80, bottom: 80 },
-  levels = 5,
+  margin = 80,
+  labelMargin = 50,
 }) => {
   if (width < 10) return null;
 
   const webs = calcAxis(_data.length);
-  const radius = min([width, height]) / 2 - max(Object.values(margin));
+  const levels = 5;
+  const radius = width / 2 - margin;
   const points = calcPoints(_data.length, radius);
-  const labelMargin = max(Object.values(margin)) - 20;
-  console.log(labelMargin);
 
   const x = d => d.letter;
   const y = d => d.frequency;
@@ -135,5 +141,9 @@ export default ({
       ))}
       </Group>
     </svg>
+  );
+};
+`}
+    </Show>
   );
 };
