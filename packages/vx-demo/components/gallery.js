@@ -19,7 +19,7 @@ import BarGroup from '../components/tiles/bargroup';
 import BarStack from '../components/tiles/barstack';
 import Heatmap from '../components/tiles/heatmap';
 import LineRadial from '../components/tiles/lineradial';
-import Arcs from '../components/tiles/arc';
+import Pies from '../components/tiles/pie';
 import Trees from '../components/tiles/tree';
 import Cluster from '../components/tiles/dendrogram';
 import Voronoi from '../components/tiles/voronoi';
@@ -28,6 +28,9 @@ import BoxPlot from '../components/tiles/boxplot';
 import GeoMercator from '../components/tiles/geo-mercator';
 import Network from '../components/tiles/network';
 import Streamgraph from '../components/tiles/streamgraph';
+import Pack from '../components/tiles/pack';
+import Treemap from '../components/tiles/treemap';
+import Radar from '../components/tiles/radar';
 
 const items = [
   '#242424',
@@ -93,6 +96,9 @@ export default class Gallery extends React.Component {
     const t18 = this.state.dimensions[17] || [8, 300];
     const t19 = this.state.dimensions[18] || [8, 300];
     const t20 = this.state.dimensions[19] || [8, 300];
+    const t21 = this.state.dimensions[20] || [8, 300];
+    const t22 = this.state.dimensions[21] || [8, 300];
+    const t23 = this.state.dimensions[22] || [8, 300];
 
     return (
       <div>
@@ -195,7 +201,7 @@ export default class Gallery extends React.Component {
                     }}
                   />
                 </div>
-                <div className="details">
+                <div className="details" style={{ zIndex: 1 }}>
                   <div className="title">Areas</div>
                   <div className="description">
                     <pre>{`<Shape.AreaClosed />`}</pre>
@@ -400,19 +406,19 @@ export default class Gallery extends React.Component {
             </Link>
           </Tilt>
           <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-            <Link prefetch href="/arcs">
+            <Link prefetch href="/pies">
               <div
                 className="gallery-item"
                 style={{ background: '#c94acc' }}
                 ref={d => this.nodes.add(d)}
               >
                 <div className="image">
-                  <Arcs width={t14[0]} height={t14[1]} />
+                  <Pies width={t14[0]} height={t14[1]} />
                 </div>
                 <div className="details" style={{ color: 'white' }}>
-                  <div className="title">Arcs</div>
+                  <div className="title">Pies</div>
                   <div className="description">
-                    <pre>{`<Shape.Arc />`}</pre>
+                    <pre>{`<Shape.Pie />`}</pre>
                   </div>
                 </div>
               </div>
@@ -595,8 +601,87 @@ export default class Gallery extends React.Component {
               </div>
             </Link>
           </Tilt>
-          <div className="gallery-item placeholder" />
-          <div className="gallery-item placeholder" />
+          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+            <Link prefetch href="/pack">
+              <div
+                className="gallery-item"
+                ref={d => this.nodes.add(d)}
+                style={{
+                  background: '#ffffff',
+                  boxShadow: 'rgba(0, 0, 0, 0.1) 0px 1px 6px',
+                }}
+              >
+                <div className="image">
+                  <Pack width={t21[0]} height={t21[1]} />
+                </div>
+                <div
+                  className="details"
+                  style={{
+                    color: '#fd6c6f',
+                  }}
+                >
+                  <div className="title">Pack</div>
+                  <div className="description">
+                    <pre>{`<Hierarchy.Pack />`}</pre>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </Tilt>
+          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+            <Link prefetch href="/treemap">
+              <div
+                className="gallery-item"
+                ref={d => this.nodes.add(d)}
+                style={{
+                  background: '#3436b8',
+                }}
+              >
+                <div className="image">
+                  <Treemap width={t22[0]} height={t22[1]} />
+                </div>
+                <div
+                  className="details"
+                  style={{
+                    color: '#00ff70',
+                  }}
+                >
+                  <div className="title">Treemap</div>
+                  <div className="description">
+                    <pre>{`<Hierarchy.Treemap />`}</pre>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </Tilt>
+          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+            <Link prefetch href="/radar">
+              <div
+                className="gallery-item"
+                ref={d => this.nodes.add(d)}
+                style={{
+                  background: '#FAF7E9',
+                }}
+              >
+                <div className="image">
+                  <Radar width={t23[0]} height={t23[1]} />
+                </div>
+                <div
+                  className="details"
+                  style={{
+                    color: '#f5810c',
+                  }}
+                >
+                  <div className="title">Radar</div>
+                  <div className="description">
+                    <pre>{`<Radar />`}</pre>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </Tilt>
+          {<div className="gallery-item placeholder" />}
+          {<div className="gallery-item placeholder" />}
         </div>
 
         <div>

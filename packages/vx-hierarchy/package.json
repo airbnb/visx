@@ -1,6 +1,6 @@
 {
   "name": "@vx/hierarchy",
-  "version": "0.0.140",
+  "version": "0.0.144",
   "description": "vx tree",
   "main": "build/index.js",
   "scripts": {
@@ -26,12 +26,15 @@
   },
   "homepage": "https://github.com/hshoff/vx#readme",
   "devDependencies": {
-    "babel-jest": "^20.0.3",
-    "enzyme": "^2.8.2",
-    "jest": "^20.0.3",
-    "react": "^15.0.0-0 || ^16.0.0-0",
+    "babel-jest": "^21.2.0",
+    "enzyme": "^3.1.0",
+    "enzyme-adapter-react-16": "^1.0.2",
+    "jest": "^21.2.1",
+    "raf": "^3.4.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "react-fatigue-dev": "github:tj/react-fatigue-dev",
-    "react-test-renderer": "^15.6.1",
+    "react-test-renderer": "^16.0.0",
     "react-tools": "^0.10.0",
     "regenerator-runtime": "^0.10.5"
   },
@@ -39,11 +42,17 @@
     "access": "public"
   },
   "dependencies": {
-    "@vx/group": "0.0.140",
+    "@vx/group": "0.0.143",
     "classnames": "^2.2.5",
     "d3-hierarchy": "^1.1.4"
   },
   "peerDependencies": {
     "react": "^15.0.0-0 || ^16.0.0-0"
+  },
+  "jest": {
+    "setupFiles": [
+      "raf/polyfill",
+      "<rootDir>/test/enzyme-setup.js"
+    ]
   }
 }

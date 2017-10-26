@@ -1,6 +1,6 @@
 {
   "name": "@vx/shape",
-  "version": "0.0.140",
+  "version": "0.0.144",
   "description": "vx shape",
   "main": "build/index.js",
   "repository": "https://github.com/hshoff/vx",
@@ -22,21 +22,25 @@
   "author": "@hshoff",
   "license": "MIT",
   "dependencies": {
-    "@vx/curve": "0.0.140",
-    "@vx/group": "0.0.140",
-    "@vx/point": "0.0.136",
+    "@vx/curve": "0.0.143",
+    "@vx/group": "0.0.143",
+    "@vx/point": "0.0.143",
     "classnames": "^2.2.5",
     "d3-shape": "^1.2.0",
     "prop-types": "^15.5.10"
   },
   "devDependencies": {
-    "babel-jest": "^20.0.3",
+    "babel-jest": "^21.2.0",
     "d3-array": "^1.2.0",
-    "enzyme": "^2.8.2",
-    "jest": "^20.0.3",
-    "react": "^15.0.0-0 || ^16.0.0-0",
+    "d3-hierarchy": "^1.1.5",
+    "enzyme": "^3.1.0",
+    "enzyme-adapter-react-16": "^1.0.2",
+    "jest": "^21.2.1",
+    "raf": "^3.4.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "react-fatigue-dev": "github:tj/react-fatigue-dev",
-    "react-test-renderer": "^15.6.1",
+    "react-test-renderer": "^16.0.0",
     "react-tools": "^0.10.0",
     "regenerator-runtime": "^0.10.5"
   },
@@ -45,5 +49,11 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "jest": {
+    "setupFiles": [
+      "raf/polyfill",
+      "<rootDir>/test/enzyme-setup.js"
+    ]
   }
 }

@@ -39,6 +39,10 @@ vx is a collection of reusable low-level visualization components. vx combines t
   </strong>
   &bull;
   <strong>
+    <a href="https://d3-slackin.herokuapp.com/" title="Join https://d3js.slack.com">Slack #vx</a>
+  </strong>
+  &bull;
+  <strong>
     <a href="./CHANGELOG.md">Changelog</a>
   </strong>
   &bull;
@@ -152,7 +156,7 @@ Mixing two mental models for updating the DOM is never a good time. Copy and pas
 
 ## Status
 
-`Super beta` Hold off on using this in production until I shake out some of the bigger API problems (post v1.0.0+). Check out [the road to v1](https://github.com/hshoff/vx/projects/1).
+`Beta` We're still in pre v1. Need to add interactions. No breaking changes planned right now [read more](https://github.com/hshoff/vx/issues/156#issuecomment-331318108). Check out [the road to v1](https://github.com/hshoff/vx/projects/1).
 
 If you're a curious coder, feel free to install and play around with the packages. I recommend using `--save-exact` when you `npm install`.
 
@@ -165,6 +169,10 @@ Lots coming soon, check out the [roadmap](./ROADMAP.md).
 - [williaster/data-ui](https://github.com/williaster/data-ui) ([Demo](https://williaster.github.io/data-ui/))
 - [Flaque/data-structures](https://github.com/Flaque/data-structures) ([Interactive explanation of the trie data structure](https://trie.now.sh/))
 - [dylanmoz/trello](https://github.com/DylanMoz/dylanmoz.github.io/blob/source/src/pages/trello/TrelloGraph.js) ([Demo](http://dylanmoz.github.io/trello/)) ([How to Make Beautiful Graphs With vx and React-Motion](https://devblog.classy.org/how-to-make-beautiful-graphs-with-vx-and-react-motion-6ffe7aecf6f3))
+- [gkunthara/Crypto-Chart](https://github.com/gkunthara/Crypto-Chart) ([Demo](https://www.crypto-chart.com/home)) ([Tutorial](https://medium.com/@georgekunthara/after-the-tutorial-the-first-react-app-4dce6645634e))
+- Collapsible tree with react-move by [@techniq](https://github.com/techniq) ([Demo](https://codesandbox.io/s/n3w687vmqj)) ([Radial demo](https://codesandbox.io/s/vmqwrkl395)) ([More info](https://github.com/hshoff/vx/issues/162#issuecomment-335029517))
+- Bitcoin 30-day price by [@hshoff](https://github.com/hshoff) ([Demo](https://viewsource.now.sh/bitcoin)) ([Github](https://github.com/hshoff/viewsource#1-bitcoin-price-chart)) ([YouTube](https://www.youtube.com/watch?v=oeE2tuspdHg))
+- Ethereum candlestick chart by [@hshoff](https://github.com/hshoff) ([Demo](https://viewsource.now.sh/ethereum)) ([Github](https://github.com/hshoff/viewsource#2-ethereum-candlestick-chart))
 - Have a project that's using vx? Open a pull request and we'll add it to the list.
 
 ## FAQ

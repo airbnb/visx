@@ -1,6 +1,6 @@
 {
   "name": "@vx/geo",
-  "version": "0.0.140",
+  "version": "0.0.143",
   "description": "vx geo",
   "main": "build/index.js",
   "scripts": {
@@ -27,18 +27,21 @@
   },
   "homepage": "https://github.com/hshoff/vx#readme",
   "dependencies": {
-    "@vx/group": "0.0.140",
+    "@vx/group": "0.0.143",
     "classnames": "^2.2.5",
     "d3-geo": "^1.6.4",
     "prop-types": "^15.5.10"
   },
   "devDependencies": {
-    "babel-jest": "^20.0.3",
-    "enzyme": "^2.9.1",
-    "jest": "^20.0.4",
-    "react": "^15.0.0-0 || ^16.0.0-0",
+    "babel-jest": "^21.2.0",
+    "enzyme": "^3.1.0",
+    "enzyme-adapter-react-16": "^1.0.2",
+    "jest": "^21.2.1",
+    "raf": "^3.4.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "react-fatigue-dev": "github:tj/react-fatigue-dev",
-    "react-test-renderer": "^15.6.1",
+    "react-test-renderer": "^16.0.0",
     "react-tools": "^0.13.3",
     "regenerator-runtime": "^0.10.5",
     "topojson-client": "^3.0.0"
@@ -48,5 +51,11 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "jest": {
+    "setupFiles": [
+      "raf/polyfill",
+      "<rootDir>/test/enzyme-setup.js"
+    ]
   }
 }

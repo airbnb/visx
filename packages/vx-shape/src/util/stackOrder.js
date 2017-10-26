@@ -8,7 +8,7 @@ import {
 
 export const STACK_ORDERS = {
   ascending: stackOrderAscending,
-  descrending: stackOrderDescending,
+  descending: stackOrderDescending,
   insideout: stackOrderInsideOut,
   none: stackOrderNone,
   reverse: stackOrderReverse,

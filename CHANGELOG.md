@@ -1,5 +1,9 @@
 # Changelog
 
+- [v0.0.144](#v00144)
+- [v0.0.143](#v00143)
+- [v0.0.142](#v00142)
+- [v0.0.141](#v00141)
 - [v0.0.140](#v00140)
 - [v0.0.139](#v00139)
 - [v0.0.138](#v00138)
@@ -26,6 +30,134 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.144
+
+#### 💥 Breaking Changes
+
+- [shape] `<Arc />` renamed `<Pie />`, new `<Arc />` not dependent on d3-shape pie generator. [#179](https://github.com/hshoff/vx/pull/179)
+
+#### 🚀 Enhancements
+
+- [demo] add `<Pack />` and `<Treemap />` demo tiles + pages. [#179](https://github.com/hshoff/vx/pull/179)
+- [mock] add exoplanets, planets, and shakespeare mocks. [#179](https://github.com/hshoff/vx/pull/179)
+
+#### 🐛 Bug Fix
+
+- [hierarchy] rename `<Partition />` classnames from `vx-pack` => `vx-partition`. [#179](https://github.com/hshoff/vx/pull/179)
+- [hierarchy] export partition, treemap, and pack from index. [#179](https://github.com/hshoff/vx/pull/179)
+
+```bash
+Changes:
+ - @vx/annotation: 0.0.143 => 0.0.144
+ - @vx/axis: 0.0.143 => 0.0.144
+ - @vx/demo: 0.0.143 => 0.0.144
+ - @vx/grid: 0.0.143 => 0.0.144
+ - @vx/hierarchy: 0.0.143 => 0.0.144
+ - @vx/marker: 0.0.143 => 0.0.144
+ - @vx/mock-data: 0.0.143 => 0.0.144
+ - @vx/shape: 0.0.143 => 0.0.144
+ - @vx/vx: 0.0.143 => 0.0.144
+```
+
+# v0.0.143
+
+#### :boom: Breaking Changes
+
+- [hierarchy] `<Tree />` & `<Cluster />` now only pass `data` as an argument to the child render function [#173](https://github.com/hshoff/vx/pull/173)
+
+#### :rocket: Enhancement
+
+- [hierarchy] add `<Pack />`, `<Partition />`, & `<Treemap />` [#173](https://github.com/hshoff/vx/pull/173)
+
+#### :house: Internal
+
+- [deps][tests] use react 16 dev dep, enzyme 3, jest 21. fix tests. [#178](https://github.com/hshoff/vx/pull/178)
+
+```bash
+Changes:
+ - @vx/annotation: 0.0.142 => 0.0.143
+ - @vx/axis: 0.0.142 => 0.0.143
+ - @vx/bounds: 0.0.141 => 0.0.143
+ - @vx/boxplot: 0.0.140 => 0.0.143
+ - @vx/brush: 0.0.140 => 0.0.143
+ - @vx/clip-path: 0.0.140 => 0.0.143
+ - @vx/curve: 0.0.140 => 0.0.143
+ - @vx/demo: 0.0.142 => 0.0.143
+ - @vx/drag: 0.0.140 => 0.0.143
+ - @vx/event: 0.0.141 => 0.0.143
+ - @vx/geo: 0.0.140 => 0.0.143
+ - @vx/glyph: 0.0.140 => 0.0.143
+ - @vx/gradient: 0.0.140 => 0.0.143
+ - @vx/grid: 0.0.142 => 0.0.143
+ - @vx/group: 0.0.140 => 0.0.143
+ - @vx/heatmap: 0.0.140 => 0.0.143
+ - @vx/hierarchy: 0.0.141 => 0.0.143
+ - @vx/legend: 0.0.141 => 0.0.143
+ - @vx/marker: 0.0.142 => 0.0.143
+ - @vx/mock-data: 0.0.136 => 0.0.143
+ - @vx/network: 0.0.140 => 0.0.143
+ - @vx/pattern: 0.0.140 => 0.0.143
+ - @vx/point: 0.0.136 => 0.0.143
+ - @vx/responsive: 0.0.140 => 0.0.143
+ - @vx/scale: 0.0.140 => 0.0.143
+ - @vx/shape: 0.0.142 => 0.0.143
+ - @vx/text: 0.0.140 => 0.0.143
+ - @vx/tooltip: 0.0.141 => 0.0.143
+ - @vx/voronoi: 0.0.140 => 0.0.143
+ - @vx/vx: 0.0.142 => 0.0.143
+ - @vx/zoom: 0.0.140 => 0.0.143
+```
+
+# v0.0.142
+
+#### :rocket: Enhancement
+
+- [shape] add innerRef prop to shapes [#168](https://github.com/hshoff/vx/pull/168)
+
+### :memo: Documentation
+
+- [demo] fix typo on /, fix areas tile details [#169](https://github.com/hshoff/vx/pull/169)
+
+```bash
+Changes:
+ - @vx/annotation: 0.0.141 => 0.0.142
+ - @vx/axis: 0.0.141 => 0.0.142
+ - @vx/demo: 0.0.141 => 0.0.142
+ - @vx/grid: 0.0.141 => 0.0.142
+ - @vx/marker: 0.0.141 => 0.0.142
+ - @vx/shape: 0.0.141 => 0.0.142
+ - @vx/vx: 0.0.141 => 0.0.142
+```
+
+# v0.0.141
+
+#### :rocket: Enhancement
+
+- [hierarchy] add render prop to `<Tree />` + `<Cluster />` [#163](https://github.com/hshoff/vx/pull/163)
+- [axis] render prop for axis, full control over rendering [#165](https://github.com/hshoff/vx/pull/165)
+- [event] add touch event support to localPoint(), find owner svg for single arity call  [#167](https://github.com/hshoff/vx/pull/167)
+
+#### :bug: Bug Fix
+
+- [shape] fix typo in stack order enum [#164](https://github.com/hshoff/vx/pull/164)
+- [legend] fix legend threshold [#166](https://github.com/hshoff/vx/pull/166)
+
+```bash
+Changes:
+ - @vx/annotation: 0.0.140 => 0.0.141
+ - @vx/axis: 0.0.140 => 0.0.141
+ - @vx/bounds: 0.0.140 => 0.0.141
+ - @vx/demo: 0.0.140 => 0.0.141
+ - @vx/event: 0.0.140 => 0.0.141
+ - @vx/grid: 0.0.140 => 0.0.141
+ - @vx/hierarchy: 0.0.140 => 0.0.141
+ - @vx/legend: 0.0.140 => 0.0.141
+ - @vx/marker: 0.0.140 => 0.0.141
+ - @vx/shape: 0.0.140 => 0.0.141
+ - @vx/tooltip: 0.0.140 => 0.0.141
+ - @vx/vx: 0.0.140 => 0.0.141
+ ```
 
 # v0.0.140
   

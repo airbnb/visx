@@ -19,6 +19,27 @@ const yStock = d => d.close;
 const bisectDate = bisector(d => new Date(d.date)).left;
 
 class Area extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleTooltip = this.handleTooltip.bind(this);
+  }
+  handleTooltip({ event, data, xStock, xScale, yScale }) {
+    const { showTooltip } = this.props;
+    const { x } = localPoint(event);
+    const x0 = xScale.invert(x);
+    const index = bisectDate(data, x0, 1);
+    const d0 = data[index - 1];
+    const d1 = data[index];
+    let d = d0;
+    if (d1 && d1.date) {
+      d = x0 - xStock(d0.date) > xStock(d1.date) - x0 ? d1 : d0;
+    }
+    showTooltip({
+      tooltipData: d,
+      tooltipLeft: x,
+      tooltipTop: yScale(d.close),
+    });
+  }
   render() {
     const {
       width,
@@ -108,28 +129,33 @@ class Area extends React.Component {
             fill="transparent"
             rx={14}
             data={stock}
+            onTouchStart={data => event =>
+              this.handleTooltip({
+                event,
+                data,
+                xStock,
+                xScale,
+                yScale,
+              })}
+            onTouchMove={data => event =>
+              this.handleTooltip({
+                event,
+                data,
+                xStock,
+                xScale,
+                yScale,
+              })}
+            onMouseMove={data => event =>
+              this.handleTooltip({
+                event,
+                data,
+                xStock,
+                xScale,
+                yScale,
+              })}
             onMouseLeave={data => event => hideTooltip()}
-            onMouseMove={data => event => {
-              const { x } = localPoint(this.svg, event);
-              const x0 = xScale.invert(x);
-              const index = bisectDate(data, x0, 1);
-              const d0 = data[index - 1];
-              const d1 = data[index];
-              let d = d0;
-              if (d1 && d1.date) {
-                d =
-                  x0 - xStock(d0.date) > xStock(d1.date) - x0
-                    ? d1
-                    : d0;
-              }
-              showTooltip({
-                tooltipData: d,
-                tooltipLeft: x,
-                tooltipTop: yScale(d.close),
-              });
-            }}
           />
-          {tooltipData &&
+          {tooltipData && (
             <g>
               <Line
                 from={{ x: tooltipLeft, y: 0 }}
@@ -159,9 +185,10 @@ class Area extends React.Component {
                 strokeWidth={2}
                 style={{ pointerEvents: 'none' }}
               />
-            </g>}
+            </g>
+          )}
         </svg>
-        {tooltipData &&
+        {tooltipData && (
           <div>
             <Tooltip
               top={tooltipTop - 12}
@@ -182,7 +209,8 @@ class Area extends React.Component {
             >
               {formatDate(xStock(tooltipData))}
             </Tooltip>
-          </div>}
+          </div>
+        )}
       </div>
     );
   }

@@ -20,7 +20,7 @@ describe('<GradientDarkgreenGreen />', () => {
 
   test('it should render without crashing', () => {
     const div = document.createElement('div')
-    ReactDOM.render(<GradientDarkgreenGreen id="gradient" />, div)
+    ReactDOM.render(<svg><GradientDarkgreenGreen id="gradient" /></svg>, div)
   })
 })
 
@@ -31,7 +31,7 @@ describe('<GradientLightgreenGreen />', () => {
 
   test('it should render without crashing', () => {
     const div = document.createElement('div')
-    ReactDOM.render(<GradientLightgreenGreen id="gradient" />, div)
+    ReactDOM.render(<svg><GradientLightgreenGreen id="gradient" /></svg>, div)
   })
 })
 
@@ -42,7 +42,7 @@ describe('<GradientOrangeRed />', () => {
 
   test('it should render without crashing', () => {
     const div = document.createElement('div')
-    ReactDOM.render(<GradientOrangeRed id="gradient" />, div)
+    ReactDOM.render(<svg><GradientOrangeRed id="gradient" /></svg>, div)
   })
 })
 
@@ -53,7 +53,7 @@ describe('<GradientPinkBlue />', () => {
 
   test('it should render without crashing', () => {
     const div = document.createElement('div')
-    ReactDOM.render(<GradientPinkBlue id="gradient" />, div)
+    ReactDOM.render(<svg><GradientPinkBlue id="gradient" /></svg>, div)
   })
 })
 
@@ -64,7 +64,7 @@ describe('<GradientPinkRed />', () => {
 
   test('it should render without crashing', () => {
     const div = document.createElement('div')
-    ReactDOM.render(<GradientPinkRed id="gradient" />, div)
+    ReactDOM.render(<svg><GradientPinkRed id="gradient" /></svg>, div)
   })
 })
 
@@ -75,7 +75,7 @@ describe('<GradientPurpleOrange />', () => {
 
   test('it should render without crashing', () => {
     const div = document.createElement('div')
-    ReactDOM.render(<GradientPurpleOrange id="gradient" />, div)
+    ReactDOM.render(<svg><GradientPurpleOrange id="gradient" /></svg>, div)
   })
 })
 
@@ -86,7 +86,7 @@ describe('<GradientPurpleRed />', () => {
 
   test('it should render without crashing', () => {
     const div = document.createElement('div')
-    ReactDOM.render(<GradientPurpleRed id="gradient" />, div)
+    ReactDOM.render(<svg><GradientPurpleRed id="gradient" /></svg>, div)
   })
 })
 
@@ -97,7 +97,7 @@ describe('<GradientPurpleTeal />', () => {
 
   test('it should render without crashing', () => {
     const div = document.createElement('div')
-    ReactDOM.render(<GradientPurpleTeal id="gradient" />, div)
+    ReactDOM.render(<svg><GradientPurpleTeal id="gradient" /></svg>, div)
   })
 })
 
@@ -108,7 +108,7 @@ describe('<GradientSteelPurple />', () => {
 
   test('it should render without crashing', () => {
     const div = document.createElement('div')
-    ReactDOM.render(<GradientSteelPurple id="gradient" />, div)
+    ReactDOM.render(<svg><GradientSteelPurple id="gradient" /></svg>, div)
   })
 })
 
@@ -119,6 +119,6 @@ describe('<GradientTealBlue />', () => {
 
   test('it should render without crashing', () => {
     const div = document.createElement('div')
-    ReactDOM.render(<GradientTealBlue id="gradient" />, div)
+    ReactDOM.render(<svg><GradientTealBlue id="gradient" /></svg>, div)
   })
 })

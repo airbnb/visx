@@ -3,24 +3,21 @@
 - threshold
 - regions
 - labels
+- interactions
+- brush
+- controls
+- layouts
+- accessability
+- browser support
 - ~~legends~~
 - ~~events~~
-- interactions
 - ~~tooltips~~
-- brush
 - ~~textures~~
 - ~~gradients~~
-- controls
-- animations
-- transitions
 - ~~area~~
 - ~~stacked area~~
 - ~~bar~~
 - ~~radial~~
-- streamgraph
-- histogram
+- ~~streamgraph~~
 - ~~heatmap~~
-- layouts
 - ~~hierarchy~~
-- accessability
-- browser support
