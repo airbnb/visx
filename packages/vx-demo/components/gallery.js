@@ -30,6 +30,7 @@ import Network from '../components/tiles/network';
 import Streamgraph from '../components/tiles/streamgraph';
 import Pack from '../components/tiles/pack';
 import Treemap from '../components/tiles/treemap';
+import Radar from '../components/tiles/radar';
 
 const items = [
   '#242424',
@@ -97,6 +98,7 @@ export default class Gallery extends React.Component {
     const t20 = this.state.dimensions[19] || [8, 300];
     const t21 = this.state.dimensions[20] || [8, 300];
     const t22 = this.state.dimensions[21] || [8, 300];
+    const t23 = this.state.dimensions[22] || [8, 300];
 
     return (
       <div>
@@ -652,7 +654,34 @@ export default class Gallery extends React.Component {
               </div>
             </Link>
           </Tilt>
-          {false && <div className="gallery-item placeholder" />}
+          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+            <Link prefetch href="/radar">
+              <div
+                className="gallery-item"
+                ref={d => this.nodes.add(d)}
+                style={{
+                  background: '#FAF7E9',
+                }}
+              >
+                <div className="image">
+                  <Radar width={t23[0]} height={t23[1]} />
+                </div>
+                <div
+                  className="details"
+                  style={{
+                    color: '#f5810c',
+                  }}
+                >
+                  <div className="title">Radar</div>
+                  <div className="description">
+                    <pre>{`<Radar />`}</pre>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </Tilt>
+          {<div className="gallery-item placeholder" />}
+          {<div className="gallery-item placeholder" />}
         </div>
 
         <div>
