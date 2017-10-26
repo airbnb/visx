@@ -660,7 +660,7 @@ export default class Gallery extends React.Component {
                 className="gallery-item"
                 ref={d => this.nodes.add(d)}
                 style={{
-                  background: '#fefefe',
+                  background: '#FAF7E9',
                 }}
               >
                 <div className="image">
@@ -680,7 +680,8 @@ export default class Gallery extends React.Component {
               </div>
             </Link>
           </Tilt>
-          {false && <div className="gallery-item placeholder" />}
+          {<div className="gallery-item placeholder" />}
+          {<div className="gallery-item placeholder" />}
         </div>
 
         <div>

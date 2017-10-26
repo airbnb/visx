@@ -6,17 +6,17 @@ export default () => {
   return (
     <Show component={Radar} title="Radar">
       {`import React from 'react';
-import { Treemap } from '@vx/hierarchy';
 import { Group } from '@vx/group';
 import { letterFrequency } from '@vx/mock-data';
 import { scaleLinear } from '@vx/scale';
 import { Point } from '@vx/point';
 import { Line, LineRadial } from '@vx/shape';
-import { max } from 'd3-array';
+import { max, min } from 'd3-array';
 
-const _data = letterFrequency.slice(2, 12);
 
 const ANG = 360;
+
+const _data = letterFrequency.slice(2, 12);
 const calcAxis = (length) => {
   if (!length) return [];
   else return new Array(length + 1)
@@ -54,15 +54,15 @@ export default ({
   width,
   height,
   events = false,
-  margin = 80,
-  labelMargin = 50,
+  margin = { top: 80, left: 80, right: 80, bottom: 80 },
+  levels = 5,
 }) => {
   if (width < 10) return null;
 
   const webs = calcAxis(_data.length);
-  const levels = 5;
-  const radius = width / 2 - margin;
+  const radius = min([width, height]) / 2 - max(Object.values(margin));
   const points = calcPoints(_data.length, radius);
+  const labelMargin = max(Object.values(margin)) - 20;
 
   const x = d => d.letter;
   const y = d => d.frequency;
@@ -78,7 +78,6 @@ export default ({
   });
 
   const polyPoints = calcCoordinates(_data, yScale, y);
-  const textCoordinates = calcCoordinates(new Array(_data.length).fill(width / 2 - labelMargin), d => d, d => d);
 
   return (
     <svg width={width} height={height}>
@@ -125,19 +124,6 @@ export default ({
           fill="#f5810c"
           className="dots"
         />
-      ))}
-      </Group>
-      <Group top={height / 2} left={width / 2}>
-      {textCoordinates.map((v, i) => (
-        <text
-          key={i}
-          x={v.x}
-          y={v.y}
-          fill="#f5810c"
-          dx="-15"
-        >
-        {x(_data[i])}
-        </text>
       ))}
       </Group>
     </svg>

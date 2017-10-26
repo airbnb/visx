@@ -56,7 +56,6 @@ export default ({
   const radius = min([width, height]) / 2 - max(Object.values(margin));
   const points = calcPoints(_data.length, radius);
   const labelMargin = max(Object.values(margin)) - 20;
-  console.log(labelMargin);
 
   const x = d => d.letter;
   const y = d => d.frequency;
@@ -72,7 +71,6 @@ export default ({
   });
 
   const polyPoints = calcCoordinates(_data, yScale, y);
-  const textCoordinates = calcCoordinates(new Array(_data.length).fill(width / 2 - labelMargin), d => d, d => d);
 
   return (
     <svg width={width} height={height}>
@@ -119,19 +117,6 @@ export default ({
           fill="#f5810c"
           className="dots"
         />
-      ))}
-      </Group>
-      <Group top={height / 2} left={width / 2}>
-      {textCoordinates.map((v, i) => (
-        <text
-          key={i}
-          x={v.x}
-          y={v.y}
-          fill="#f5810c"
-          dx="-15"
-        >
-        {x(_data[i])}
-        </text>
       ))}
       </Group>
     </svg>
