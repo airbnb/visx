@@ -27,7 +27,7 @@ const propTypes = {
   tickLength: PropTypes.number,
   tickStroke: PropTypes.string,
   tickTransform: PropTypes.string,
-  tickValues: PropTypes.arrayOf(PropTypes.number),
+  tickValues: PropTypes.array,
   top: PropTypes.number,
   children: PropTypes.func,
 };
