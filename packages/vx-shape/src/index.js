@@ -6,6 +6,7 @@ export { default as LineRadial } from './shapes/LineRadial';
 export { default as LinkHorizontal } from './shapes/LinkHorizontal';
 export { default as LinkVertical } from './shapes/LinkVertical';
 export { default as LinkRadial } from './shapes/LinkRadial';
+export { default as Area } from './shapes/Area';
 export { default as AreaClosed } from './shapes/AreaClosed';
 export { default as AreaStack } from './shapes/AreaStack';
 export { default as Bar } from './shapes/Bar';

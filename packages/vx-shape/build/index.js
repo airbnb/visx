@@ -76,6 +76,15 @@ Object.defineProperty(exports, 'LinkRadial', {
   }
 });
 
+var _Area = require('./shapes/Area');
+
+Object.defineProperty(exports, 'Area', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_Area).default;
+  }
+});
+
 var _AreaClosed = require('./shapes/AreaClosed');
 
 Object.defineProperty(exports, 'AreaClosed', {
