@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.145](#v00145)
 - [v0.0.144](#v00144)
 - [v0.0.143](#v00143)
 - [v0.0.142](#v00142)
@@ -30,6 +31,29 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.145
+
+#### :rocket: Enhancements
+
+- [shape] add `<Area />` and tests [#183](https://github.com/hshoff/vx/pull/183)
+- [demo] add Radar chart [#180](https://github.com/hshoff/vx/pull/180)
+- [axis] add additional tests [#161](https://github.com/hshoff/vx/pull/161)
+
+#### :bug: Bug Fix
+
+- [axis] less restrictive tickValue propTypes [#184](https://github.com/hshoff/vx/pull/184)
+
+```bash
+Changes:
+ - @vx/annotation: 0.0.144 => 0.0.145
+ - @vx/axis: 0.0.144 => 0.0.145
+ - @vx/demo: 0.0.144 => 0.0.145
+ - @vx/grid: 0.0.144 => 0.0.145
+ - @vx/marker: 0.0.144 => 0.0.145
+ - @vx/shape: 0.0.144 => 0.0.145
+ - @vx/vx: 0.0.144 => 0.0.145
+```
 
 # v0.0.144
 
