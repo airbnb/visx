@@ -12,6 +12,7 @@ export { default as AreaStack } from './shapes/AreaStack';
 export { default as Bar } from './shapes/Bar';
 export { default as BarGroup } from './shapes/BarGroup';
 export { default as BarStack } from './shapes/BarStack';
+export { default as BarStackHorizontal } from './shapes/BarStackHorizontal';
 export { default as Stack } from './shapes/Stack';
 export { default as callOrValue } from './util/callOrValue';
 export {
