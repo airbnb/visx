@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.146](#v00146)
 - [v0.0.145](#v00145)
 - [v0.0.144](#v00144)
 - [v0.0.143](#v00143)
@@ -31,6 +32,33 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.146
+
+#### :rocket: Enhancements
+
+- [shape] add `<BarStackHorizontal />` [#185](https://github.com/hshoff/vx/pull/185)
+
+#### :memo: Documentation
+
+- [demo] add `<BarStackHorizontal />` [#185](https://github.com/hshoff/vx/pull/185)
+- [demo] tile updates [#186](https://github.com/hshoff/vx/pull/186)
+
+#### :house: Internal
+
+- [shape] remove build/index.js [#186](https://github.com/hshoff/vx/pull/186)
+
+
+```bash
+Changes:
+ - @vx/annotation: 0.0.145 => 0.0.146
+ - @vx/axis: 0.0.145 => 0.0.146
+ - @vx/demo: 0.0.145 => 0.0.146
+ - @vx/grid: 0.0.145 => 0.0.146
+ - @vx/marker: 0.0.145 => 0.0.146
+ - @vx/shape: 0.0.145 => 0.0.146
+ - @vx/vx: 0.0.145 => 0.0.146
+```
 
 # v0.0.145
 
