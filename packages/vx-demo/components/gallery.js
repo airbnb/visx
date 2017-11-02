@@ -676,7 +676,8 @@ export default class Gallery extends React.Component {
                 >
                   <div className="title">Radar</div>
                   <div className="description">
-                    <pre>{`<Radar />`}</pre>
+                    <pre
+                    >{`<Shape.Line /> + <Shape.LineRadial />`}</pre>
                   </div>
                 </div>
               </div>
@@ -692,7 +693,10 @@ export default class Gallery extends React.Component {
                 }}
               >
                 <div className="image">
-                  <BarStackHorizontal width={t24[0]} height={t24[1]} />
+                  <BarStackHorizontal
+                    width={t24[0]}
+                    height={t24[1]}
+                  />
                 </div>
                 <div
                   className="details"
@@ -705,7 +709,7 @@ export default class Gallery extends React.Component {
                 </div>
               </div>
             </Link>
-          </Tilt>          
+          </Tilt>
           {<div className="gallery-item placeholder" />}
           {<div className="gallery-item placeholder" />}
         </div>

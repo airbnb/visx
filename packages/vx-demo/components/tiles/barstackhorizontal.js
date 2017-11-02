@@ -9,6 +9,21 @@ import { withTooltip, Tooltip } from '@vx/tooltip';
 import { LegendOrdinal } from '@vx/legend';
 import { extent, max } from 'd3-array';
 
+const data = cityTemperature.slice(0, 12);
+const keys = Object.keys(data[0]).filter(d => d !== 'date');
+const parseDate = timeParse('%Y%m%d');
+const format = timeFormat('%b %d');
+const formatDate = date => format(parseDate(date));
+
+const totals = data.reduce((ret, cur) => {
+  const t = keys.reduce((dailyTotal, k) => {
+    dailyTotal += +cur[k];
+    return dailyTotal;
+  }, 0);
+  ret.push(t);
+  return ret;
+}, []);
+
 export default withTooltip(
   ({
     width,
@@ -16,55 +31,42 @@ export default withTooltip(
     events = false,
     margin = {
       top: 40,
-      left: 0,
+      left: 50,
+      right: 40,
+      bottom: 100,
     },
     tooltipOpen,
     tooltipLeft,
     tooltipTop,
     tooltipData,
     hideTooltip,
-    showTooltip
+    showTooltip,
   }) => {
     if (width < 10) return null;
 
-    const data = cityTemperature.slice(0, 12);
-    const keys = Object.keys(data[0]).filter(d => d !== 'date');
-    const parseDate = timeParse('%Y%m%d');
-    const format = timeFormat('%b %d');
-    const formatDate = date => format(parseDate(date));
-    
     // accessors
     const y = d => d.date;
     const x = d => d.value;
-    
-    const totals = data.reduce((ret, cur) => {
-      const t = keys.reduce((dailyTotal, k) => {
-        dailyTotal += +cur[k];
-        return dailyTotal;
-      }, 0);
-      ret.push(t);
-      return ret;
-    }, []);
 
     // bounds
-    const xMax = width;
-    const yMax = height - margin.top - 100;
+    const xMax = width - margin.left - margin.right;
+    const yMax = height - margin.top - margin.bottom;
 
     // // scales
     const xScale = scaleLinear({
       rangeRound: [0, xMax],
-      domain: [0, max(totals)],      
-      nice: true,      
+      domain: [0, max(totals)],
+      nice: true,
     });
     const yScale = scaleBand({
       rangeRound: [yMax, 0],
-      domain: data.map(y),      
+      domain: data.map(y),
       padding: 0.2,
-      tickFormat: () => val => formatDate(val)
+      tickFormat: () => val => formatDate(val),
     });
     const zScale = scaleOrdinal({
       domain: keys,
-      range: ['#6c5efb', '#c998ff', '#a44afe']
+      range: ['#6c5efb', '#c998ff', '#a44afe'],
     });
 
     let tooltipTimeout;
@@ -77,63 +79,61 @@ export default withTooltip(
             y={0}
             width={width}
             height={height}
-            fill='#eaedff'
+            fill="#eaedff"
             rx={14}
           />
-          <BarStackHorizontal
-            top={margin.top}
-            left={50 + margin.left}
-            data={data}
-            keys={keys}
-            height={yMax}
-            y={y}
-            xScale={xScale}
-            yScale={yScale}
-            zScale={zScale}
-            onClick={data => event => {
-              if (!events) return;
-              alert(`clicked: ${JSON.stringify(data)}`);
-            }}
-            onMouseLeave={data => event => {
-              tooltipTimeout = setTimeout(() => {
-                hideTooltip();
-              }, 300);
-            }}
-            onMouseMove={data => event => {
-              if (tooltipTimeout) clearTimeout(tooltipTimeout);
-              showTooltip({
-                tooltipData: data,
-                tooltipTop: margin.top + yScale(y(data.data)),
-                tooltipLeft: margin.left + data.width + 75,
-              });
-            }}
-          />
-          <AxisLeft
-            hideAxisLine={true}
-            hideTicks={true}
-            scale={yScale}
-            top={margin.top}
-            left={margin.left + 30}
-            stroke="#a44afe"
-            tickStroke="#a44afe"
-            tickLabelProps={(value, index) => ({
-              fill: '#a44afe',
-              fontSize: 11,
-              textAnchor: 'middle',
-            })}
-          />
-          <AxisBottom
-            scale={xScale}
-            top={yMax + margin.top}
-            left={50 + margin.left}
-            stroke="#a44afe"
-            tickStroke="#a44afe"
-            tickLabelProps={(value, index) => ({
-              fill: '#a44afe',
-              fontSize: 11,
-              textAnchor: 'middle',
-            })}
-          />
+          <Group top={margin.top} left={margin.left}>
+            <BarStackHorizontal
+              data={data}
+              keys={keys}
+              height={yMax}
+              y={y}
+              xScale={xScale}
+              yScale={yScale}
+              zScale={zScale}
+              onClick={data => event => {
+                if (!events) return;
+                alert(`clicked: ${JSON.stringify(data)}`);
+              }}
+              onMouseLeave={data => event => {
+                tooltipTimeout = setTimeout(() => {
+                  hideTooltip();
+                }, 300);
+              }}
+              onMouseMove={data => event => {
+                if (tooltipTimeout) clearTimeout(tooltipTimeout);
+                showTooltip({
+                  tooltipData: data,
+                  tooltipTop: margin.top + yScale(y(data.data)),
+                  tooltipLeft: margin.left + data.width + 75,
+                });
+              }}
+            />
+            <AxisLeft
+              hideAxisLine={true}
+              hideTicks={true}
+              scale={yScale}
+              stroke="#a44afe"
+              tickStroke="#a44afe"
+              tickLabelProps={(value, index) => ({
+                fill: '#a44afe',
+                fontSize: 11,
+                textAnchor: 'end',
+                dy: '0.33em',
+              })}
+            />
+            <AxisBottom
+              scale={xScale}
+              top={yMax}
+              stroke="#a44afe"
+              tickStroke="#a44afe"
+              tickLabelProps={(value, index) => ({
+                fill: '#a44afe',
+                fontSize: 11,
+                textAnchor: 'middle',
+              })}
+            />
+          </Group>
         </svg>
         <div
           style={{
@@ -142,7 +142,7 @@ export default withTooltip(
             width: '100%',
             display: 'flex',
             justifyContent: 'center',
-            fontSize: '14px'
+            fontSize: '14px',
           }}
         >
           <LegendOrdinal
@@ -151,31 +151,26 @@ export default withTooltip(
             labelMargin="0 15px 0 0"
           />
         </div>
-        {tooltipOpen &&
+        {tooltipOpen && (
           <Tooltip
             top={tooltipTop}
             left={tooltipLeft}
             style={{
               minWidth: 60,
               backgroundColor: 'rgba(0,0,0,0.9)',
-              color: 'white'
+              color: 'white',
             }}
           >
             <div style={{ color: zScale(tooltipData.key) }}>
-              <strong>
-                {tooltipData.key}
-              </strong>
+              <strong>{tooltipData.key}</strong>
             </div>
+            <div>{tooltipData.data[tooltipData.key]}℉</div>
             <div>
-              {tooltipData.data[tooltipData.key]}℉
+              <small>{tooltipData.xFormatted}</small>
             </div>
-            <div>
-              <small>
-                {tooltipData.xFormatted}
-              </small>
-            </div>
-          </Tooltip>}
+          </Tooltip>
+        )}
       </div>
     );
-  }
+  },
 );

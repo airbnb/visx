@@ -68,25 +68,6 @@ export default ({
                         stroke={'#3436b8'}
                       />
                     )}
-
-                    <clipPath id={`clip-${i}`}>
-                      <use xlinkHref={`#rect-${i}`} />
-                    </clipPath>
-
-                    {node.depth === 1 && (
-                      <text
-                        x={(node.x1 - node.x0) / 2}
-                        y={(node.y1 - node.y0) / 2}
-                        dx={-30}
-                        fill={'white'}
-                        clipPath={`url(#clip-${i})`}
-                        style={{
-                          font: '18px sans-serif',
-                        }}
-                      >
-                        {node.data.id}
-                      </text>
-                    )}
                   </Group>
                 ))}
             </Group>
