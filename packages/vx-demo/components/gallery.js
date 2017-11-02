@@ -17,6 +17,7 @@ import MultiLine from '../components/tiles/multiline';
 import Axis from '../components/tiles/axis';
 import BarGroup from '../components/tiles/bargroup';
 import BarStack from '../components/tiles/barstack';
+import BarStackHorizontal from '../components/tiles/barstackhorizontal';
 import Heatmap from '../components/tiles/heatmap';
 import LineRadial from '../components/tiles/lineradial';
 import Pies from '../components/tiles/pie';
@@ -99,6 +100,7 @@ export default class Gallery extends React.Component {
     const t21 = this.state.dimensions[20] || [8, 300];
     const t22 = this.state.dimensions[21] || [8, 300];
     const t23 = this.state.dimensions[22] || [8, 300];
+    const t24 = this.state.dimensions[23] || [8, 300];
 
     return (
       <div>
@@ -680,6 +682,30 @@ export default class Gallery extends React.Component {
               </div>
             </Link>
           </Tilt>
+          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+            <Link prefetch href="/barstackhorizontal">
+              <div
+                className="gallery-item"
+                ref={d => this.nodes.add(d)}
+                style={{
+                  background: '#FAF7E9',
+                }}
+              >
+                <div className="image">
+                  <BarStackHorizontal width={t24[0]} height={t24[1]} />
+                </div>
+                <div
+                  className="details"
+                  style={{ color: '#a44afe', zIndex: 1 }}
+                >
+                  <div className="title">Bar Stack Horizontal</div>
+                  <div className="description">
+                    <pre>{`<Shape.BarStackHorizontal />`}</pre>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </Tilt>          
           {<div className="gallery-item placeholder" />}
           {<div className="gallery-item placeholder" />}
         </div>
