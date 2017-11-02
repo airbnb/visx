@@ -710,8 +710,7 @@ export default class Gallery extends React.Component {
               </div>
             </Link>
           </Tilt>
-          {<div className="gallery-item placeholder" />}
-          {<div className="gallery-item placeholder" />}
+          <div className="gallery-item placeholder" />
         </div>
 
         <div>
