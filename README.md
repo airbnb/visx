@@ -12,7 +12,7 @@
   <a href='https://coveralls.io/github/hshoff/vx?branch=master'>
     <img src='https://coveralls.io/repos/github/hshoff/vx/badge.svg?branch=master' alt='Coverage Status' />
   </a>
-  <a title="@vx/demo npm downloads" href="https://www.npmjs.com/package/@vx/demo">
+  <a title="@vx/shape npm downloads" href="https://www.npmjs.com/package/@vx/shape">
     <img src="https://img.shields.io/npm/dm/@vx/shape.svg?style=flat-square" />
   </a>
   <a href="https://app.fossa.io/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fhshoff%2Fvx?ref=badge_shield" alt="FOSSA Status">     <img src="https://app.fossa.io/api/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fhshoff%2Fvx.svg?type=shield"/>
