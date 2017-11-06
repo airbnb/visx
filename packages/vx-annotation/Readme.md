@@ -1,5 +1,9 @@
 # @vx/annotation
 
+**Status**
+
+We recommend using [react-annotation](http://react-annotation.susielu.com/) by @susielu. This package is a work in progress. In the future we may make some helpers built on top of react-annotation.
+
 ```
 npm install --save @vx/annotation
 ```
