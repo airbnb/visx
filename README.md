@@ -17,6 +17,9 @@
   </a>
   <a href="https://app.fossa.io/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fhshoff%2Fvx?ref=badge_shield" alt="FOSSA Status">     <img src="https://app.fossa.io/api/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fhshoff%2Fvx.svg?type=shield"/>
   </a>
+  <a href="https://lernajs.io/" alt="lerna">
+     <img src="https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg"/>
+  </a>
 </p>
 
 ### vx
