@@ -40,7 +40,7 @@ export default function withBoundingRects(BaseComponent) {
 
     componentDidMount() {
       this.node = ReactDOM.findDOMNode(this);
-      this.setState(this.getRects());
+      this.setState(() => this.getRects());
     }
 
     getRects() {
