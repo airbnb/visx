@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import { linkHorizontal } from 'd3-shape';
-import additionalProps from '../util/additionalProps';
+import additionalProps from '../../../util/additionalProps';
 
 LinkHorizontal.propTypes = {
   innerRef: PropTypes.func,
