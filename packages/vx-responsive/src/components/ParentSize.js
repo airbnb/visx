@@ -5,7 +5,7 @@ import ResizeObserver from 'resize-observer-polyfill';
 export default class ParentSize extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { width: 0, height: 0, top: 0, left: 0 };
     this.resize = this.resize.bind(this);
     this.setTarget = this.setTarget.bind(this);
   }
@@ -40,7 +40,11 @@ export default class ParentSize extends React.Component {
   render() {
     const { className, children } = this.props;
     return (
-      <div ref={this.setTarget} className={className}>
+      <div
+        style={{ width: '100%', height: '100%' }}
+        ref={this.setTarget}
+        className={className}
+      >
         {children({
           ...this.state,
           ref: this.target,

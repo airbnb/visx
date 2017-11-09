@@ -34,7 +34,7 @@
     "regenerator-runtime": "^0.10.5"
   },
   "dependencies": {
-    "lodash": "4.0.8",
+    "lodash": "^4.0.8",
     "resize-observer-polyfill": "1.4.2"
   },
   "peerDependencies": {
