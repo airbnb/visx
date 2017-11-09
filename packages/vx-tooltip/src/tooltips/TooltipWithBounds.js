@@ -8,6 +8,8 @@ import Tooltip from './Tooltip';
 const propTypes = {
   ...withBoundingRectsProps,
   ...Tooltip.propTypes,
+  offsetLeft: PropTypes.number,
+  offsetTop: PropTypes.number,
 };
 
 const defaultProps = {};
@@ -15,6 +17,8 @@ const defaultProps = {};
 function TooltipWithBounds({
   left: initialLeft,
   top: initialTop,
+  offsetLeft = 10,
+  offsetTop = 10,
   rect,
   parentRect,
   children,
@@ -24,8 +28,11 @@ function TooltipWithBounds({
   let top = initialTop;
 
   if (rect && parentRect) {
-    left = rect.right > parentRect.right ? (left - rect.width) : left;
-    top = rect.bottom > parentRect.bottom ? (top - rect.height) : top;
+    left = (offsetLeft + rect.right) > parentRect.right
+      ? (left - rect.width - offsetLeft) : left + offsetLeft;
+
+    top = (offsetTop + rect.bottom) > parentRect.bottom
+      ? (top - rect.height - offsetTop) : top + offsetTop;
   }
 
   return (
