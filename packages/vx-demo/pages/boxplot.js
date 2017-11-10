@@ -8,7 +8,7 @@ export default () => {
       events={true}
       margin={{ top: 80 }}
       component={BoxPlot}
-      title="Box Plot"
+      title="BoxPlot With ViolinPlot"
     >
       {`import React from 'react';
 import { Group } from '@vx/group';

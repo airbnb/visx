@@ -40,8 +40,8 @@ export default withTooltip(
     const yMax = height - 120;
 
     // scales
-    const yScale = scaleBand({
-      rangeRound: [0, yMax],
+    const xScale = scaleBand({
+      rangeRound: [0, xMax],
       domain: data.map(x),
       padding: 0.4
     });
@@ -50,19 +50,19 @@ export default withTooltip(
       (r, { boxPlot:e }) => r.push(e.min, e.max) && r,
       []
     );
-    const minValue = Math.min(...values);
-    const maxValue = Math.max(...values);
-    const valueDomain = [
-      minValue - 0.1 * Math.abs(minValue),
-      maxValue + 0.1 * Math.abs(maxValue)
+    const minYValue = Math.min(...values);
+    const maxYValue = Math.max(...values);
+    const yDomain = [
+      minYValue - 0.1 * Math.abs(minYValue),
+      maxYValue + 0.1 * Math.abs(minYValue)
     ];
 
-    const xScale = scaleLinear({
-      rangeRound: [20, xMax-20],
-      domain: [minValue, maxValue]
+    const yScale = scaleLinear({
+      rangeRound: [yMax, 0],
+      domain: [minYValue, maxYValue]
     });
 
-    const boxWidth = yScale.bandwidth();
+    const boxWidth = xScale.bandwidth();
     const actualyWidth = Math.min(40, boxWidth);
 
     return (
@@ -84,6 +84,7 @@ export default withTooltip(
             stroke='#ced4da'
             strokeWidth={1}
             fill='rgba(0,0,0,0.3)'
+            orientation={['horizontal']}
           />
           <Group top={40}>
             {data.map((d, i) =>
@@ -91,17 +92,16 @@ export default withTooltip(
                 <ViolinPlot
                   stroke='#dee2e6'
                   binData={d.binData}
-                  top={yScale(x(d))}
+                  left={xScale(x(d))}
                   width={actualyWidth}
-                  valueScale={xScale}
+                  valueScale={yScale}
                   fill="url(#hViolinLines)"
-                  horizontal
                 />
                 <BoxPlot
                   data={d}
                   min={min(d)}
                   max={max(d)}
-                  top={yScale(x(d))+0.3*actualyWidth}
+                  left={xScale(x(d))+0.3*actualyWidth}
                   firstQuartile={firstQuartile(d)}
                   thirdQuartile={thirdQuartile(d)}
                   median={median(d)}
@@ -110,8 +110,7 @@ export default withTooltip(
                   fillOpacity={0.3}
                   stroke="#FFFFFF"
                   strokeWidth={2}
-                  horizontal
-                  valueScale={xScale}
+                  valueScale={yScale}
                   outliers={outliers(d)}
                   minProps={{
                     onMouseOver: data => event => {
@@ -131,7 +130,7 @@ export default withTooltip(
                   maxProps={{
                     onMouseOver: data => event => {
                       showTooltip({
-                        tooltipTop: xScale(data.data.boxPlot.max) + 40,
+                        tooltipTop: yScale(data.data.boxPlot.max) + 40,
                         tooltipLeft: data.x2 + 5,
                         tooltipData: {
                           max: data.data.boxPlot.max,
@@ -146,7 +145,7 @@ export default withTooltip(
                   boxProps={{
                     onMouseOver: data => event => {
                       showTooltip({
-                        tooltipTop: xScale(data.data.boxPlot.median) + 40,
+                        tooltipTop: yScale(data.data.boxPlot.median) + 40,
                         tooltipLeft: data.x2 + 5,
                         tooltipData: {
                           ...data.data.boxPlot,
