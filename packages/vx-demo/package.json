@@ -43,6 +43,7 @@
     "@vx/text": "0.0.143",
     "@vx/tooltip": "0.0.143",
     "@vx/voronoi": "0.0.143",
+    "@vx/stats": "0.0.143",
     "classnames": "^2.2.5",
     "d3-array": "^1.1.1",
     "d3-collection": "^1.0.4",

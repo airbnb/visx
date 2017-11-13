@@ -527,9 +527,9 @@ export default class Gallery extends React.Component {
                   className="details"
                   style={{ color: '#FFFFFF', zIndex: 1 }}
                 >
-                  <div className="title">BoxPlot</div>
+                  <div className="title">Stats Plots</div>
                   <div className="description">
-                    <pre>{`<BoxPlot /> `}</pre>
+                    <pre>{`<BoxPlot /> + <ViolinPlot /> `}</pre>
                   </div>
                 </div>
               </div>
