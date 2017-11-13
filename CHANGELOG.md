@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.147](#v00147)
 - [v0.0.146](#v00146)
 - [v0.0.145](#v00145)
 - [v0.0.144](#v00144)
@@ -32,6 +33,40 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.147
+
+#### :boom: Breaking Changes
+
+- [shape] deep links to `@vx/shape/shapes/Link{Horizontal, Vertical, Radial}.js` => `@vx/shape/shapes/link/diagonal/Link{Horizontal, Vertical, Radial}.js`. [#194](https://github.com/hshoff/vx/pull/194)
+
+#### :rocket: Enhancements
+
+- [tooltip] add offset props to <TooltipWithBounds />. [#193](https://github.com/hshoff/vx/pull/193)
+- [shape] Add support for step, curve, and line links. [#194](https://github.com/hshoff/vx/pull/194)
+- [responsive] add `<ParentSize />` component. [#198](https://github.com/hshoff/vx/pull/198)
+- [stats] added vx-stats for statistic related glyphs (boxplot and violinplot). [#197](https://github.com/hshoff/vx/pull/197) **note:** `@vx/boxplot` is deprecated in favor of `@vx/stats` in a future release `@vx/boxplot` will be removed
+
+#### :house: Internal
+
+- [demo] update gallery tiles to use `<ParentSize />`. [#198](https://github.com/hshoff/vx/pull/198)
+- [demo] add /responsive gallery tile + page. [#198](https://github.com/hshoff/vx/pull/198)
+
+```bash
+Changes:
+ - @vx/annotation: 0.0.146 => 0.0.147
+ - @vx/axis: 0.0.146 => 0.0.147
+ - @vx/bounds: 0.0.143 => 0.0.147
+ - @vx/demo: 0.0.146 => 0.0.147
+ - @vx/grid: 0.0.146 => 0.0.147
+ - @vx/marker: 0.0.146 => 0.0.147
+ - @vx/mock-data: 0.0.144 => 0.0.147
+ - @vx/responsive: 0.0.143 => 0.0.147
+ - @vx/shape: 0.0.146 => 0.0.147
+ - @vx/stats: 0.0.143 => 0.0.147
+ - @vx/tooltip: 0.0.143 => 0.0.147
+ - @vx/vx: 0.0.146 => 0.0.147
+```
 
 # v0.0.146
 
