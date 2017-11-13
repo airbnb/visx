@@ -42,7 +42,7 @@
 
 #### :rocket: Enhancements
 
-- [tooltip] add offset props to <TooltipWithBounds />. [#193](https://github.com/hshoff/vx/pull/193)
+- [tooltip] add offset props to `<TooltipWithBounds />`. [#193](https://github.com/hshoff/vx/pull/193)
 - [shape] Add support for step, curve, and line links. [#194](https://github.com/hshoff/vx/pull/194)
 - [responsive] add `<ParentSize />` component. [#198](https://github.com/hshoff/vx/pull/198)
 - [stats] added vx-stats for statistic related glyphs (boxplot and violinplot). [#197](https://github.com/hshoff/vx/pull/197) **note:** `@vx/boxplot` is deprecated in favor of `@vx/stats` in a future release `@vx/boxplot` will be removed
