@@ -33,6 +33,7 @@ import Streamgraph from '../components/tiles/streamgraph';
 import Pack from '../components/tiles/pack';
 import Treemap from '../components/tiles/treemap';
 import Radar from '../components/tiles/radar';
+import Responsive from '../components/tiles/responsive';
 
 const items = [
   '#242424',
@@ -53,7 +54,6 @@ export default class Gallery extends React.Component {
   constructor(props) {
     super(props);
   }
-
   render() {
     const detailsHeight = 76;
     return (
@@ -797,7 +797,45 @@ export default class Gallery extends React.Component {
               </div>
             </Link>
           </Tilt>
-          <div className="gallery-item placeholder" />
+          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+            <Link prefetch href="/responsive">
+              <div
+                className="gallery-item"
+                style={{
+                  background: 'white',
+                }}
+              >
+                <div className="image">
+                  <ParentSize>
+                    {({ width, height }) => (
+                      <Responsive
+                        width={width}
+                        height={height}
+                        events={true}
+                      />
+                    )}
+                  </ParentSize>
+                </div>
+                <div
+                  className="details"
+                  style={{
+                    color: '#232323',
+                    zIndex: 1,
+                    border: '1px solid lightgray',
+                    borderTop: 'none',
+                    borderBottomLeftRadius: '14px',
+                    borderBottomRightRadius: '14px',
+                  }}
+                >
+                  <div className="title">Responsive</div>
+                  <div className="description">
+                    <pre>{`<Responsive.ParentSize />`}</pre>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </Tilt>
+          {false && <div className="gallery-item placeholder" />}
         </div>
 
         <div>

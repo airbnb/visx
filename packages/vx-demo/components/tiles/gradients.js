@@ -24,8 +24,10 @@ export default ({
     bottom: 80,
   },
 }) => {
-  const w = width / 4;
-  const h = (height - margin.bottom) / 2;
+  let w = width / 4;
+  let h = (height - margin.bottom) / 2;
+  w = w < 0 ? 0 : w;
+  h = h < 0 ? 0 : h;
   return (
     <svg width={width} height={height}>
       <GradientDarkgreenGreen id="DarkgreenGreen" />
@@ -35,7 +37,12 @@ export default ({
       <GradientPinkRed id="PinkRed" vertical={false} />
       <GradientPurpleOrange id="PurpleOrange" vertical={false} />
       <GradientPurpleRed id="PurpleRed" vertical={false} />
-      <RadialGradient from="#55bdd5" to="#4f3681" id="Radial" r={'80%'} />
+      <RadialGradient
+        from="#55bdd5"
+        to="#4f3681"
+        id="Radial"
+        r={'80%'}
+      />
       <GradientSteelPurple id="SteelPurple" vertical={false} />
       <GradientTealBlue id="TealBlue" vertical={false} />
       <Bar
