@@ -1,6 +1,6 @@
 {
   "name": "@vx/stats",
-  "version": "0.0.143",
+  "version": "0.0.147",
   "description": "vx stats box violin",
   "main": "build/index.js",
   "scripts": {
@@ -36,13 +36,13 @@
     "enzyme": "^3.1.0",
     "enzyme-adapter-react-16": "^1.0.2",
     "jest": "^21.2.1",
+    "raf": "^3.4.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-fatigue-dev": "github:tj/react-fatigue-dev",
     "react-test-renderer": "^16.0.0",
     "react-tools": "^0.10.0",
-    "regenerator-runtime": "^0.10.5",
-    "raf": "^3.4.0"
+    "regenerator-runtime": "^0.10.5"
   },
   "peerDependencies": {
     "react": "^15.0.0-0 || ^16.0.0-0"

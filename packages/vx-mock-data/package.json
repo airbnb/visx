@@ -1,6 +1,6 @@
 {
   "name": "@vx/mock-data",
-  "version": "0.0.144",
+  "version": "0.0.147",
   "description": "vx mock data",
   "main": "build/index.js",
   "scripts": {
