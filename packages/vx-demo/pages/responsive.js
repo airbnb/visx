@@ -7,7 +7,7 @@ export default () => {
     <Show component={Responsive} title="Responsive">
       {`import React from 'react';
 import { ParentSize } from '@vx/responsive';
-import Treemap from './treemap';
+import Lines from './lines';
 
 function Nav() {
   return (
@@ -54,7 +54,7 @@ export default class App extends React.Component {
             <ParentSize className="graph-container">
               {({ width: w, height: h }) => {
                 return (
-                  <Treemap
+                  <Lines
                     width={w}
                     height={h}
                     margin={{
