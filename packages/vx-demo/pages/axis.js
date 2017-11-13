@@ -148,7 +148,6 @@ export default ({ width, height, margin }) => {
         label="time"
       >
         {props => {
-          console.log('Custom AxisBottom props', props);
           const tickLabelSize = 10;
           const tickRotate = 45;
           const tickColor = '#8e205f';
