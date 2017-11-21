@@ -38,12 +38,16 @@ export default function BoxPlot({
 }) {
   const offset = horizontal? top: left;
   const center = offset + boxWidth / 2;
+
   let maxLinePos = Array(4).fill(0);
   let maxToBoxLinePos = Array(4).fill(0);
   let boxPos = Array(4).fill(0);
   let medianLinePos = Array(4).fill(0);
   let minToBoxLinePos = Array(4).fill(0);
   let minLinePos = Array(4).fill(0);
+  let containerPos = Array(4).fill(0);
+
+  // all of these are [x0, y0, x1, y1]
   maxLinePos[0] = center - boxWidth / 4;
   maxLinePos[1] = valueScale(max);
   maxLinePos[2] = center + boxWidth / 4;
@@ -73,6 +77,13 @@ export default function BoxPlot({
   minLinePos[1] = valueScale(min);
   minLinePos[2] = center + boxWidth / 4;
   minLinePos[3] = valueScale(min);
+
+  const valueRange = valueScale.range();
+  containerPos[0] = boxPos[0];
+  containerPos[1] = Math.min(...valueRange);
+  containerPos[2] = boxPos[2];
+  containerPos[3] = Math.abs(valueRange[0] - valueRange[1]);
+
   if (horizontal) {
     maxLinePos = verticalToHorizontal(maxLinePos);
     maxToBoxLinePos = verticalToHorizontal(maxToBoxLinePos);
@@ -81,9 +92,33 @@ export default function BoxPlot({
     medianLinePos = verticalToHorizontal(medianLinePos);
     minToBoxLinePos = verticalToHorizontal(minToBoxLinePos);
     minLinePos = verticalToHorizontal(minLinePos);
+    containerPos = verticalToHorizontal(containerPos);
+    containerPos[0] = Math.min(...valueRange);
   }
   return (
     <Group className={classnames('vx-boxplot', className)}>
+      {outliers.map((d, i) => {
+        const cx = horizontal ? valueScale(d) : center;
+        const cy = horizontal ? center : valueScale(d);
+        return (
+          <circle
+            key={i}
+            className="vx-boxplot-outlier"
+            cx={cx}
+            cy={cy}
+            stroke={stroke}
+            strokeWidth={1}
+            fill={fill}
+            fillOpacity={fillOpacity}
+            r="4"
+            {...additionalProps(outlierProps, {
+              data: d,
+              cx,
+              cy
+            })}
+          />);
+        })
+      }
       <line
         className="vx-boxplot-max"
         x1={maxLinePos[0]}
@@ -97,6 +132,8 @@ export default function BoxPlot({
           max,
           x1: maxLinePos[0],
           x2: maxLinePos[2],
+          y1: maxLinePos[1],
+          y2: maxLinePos[3],
         })}
       />
       <line
@@ -108,6 +145,7 @@ export default function BoxPlot({
         strokeWidth={strokeWidth}
       />
       <rect
+        className="vx-boxplot-box"
         x={boxPos[0]}
         y={boxPos[1]}
         width={boxPos[2]}
@@ -127,7 +165,9 @@ export default function BoxPlot({
           min,
           max,
           x1: boxPos[0],
-          x2: boxPos[0] + boxPos[2]
+          x2: boxPos[0] + boxPos[2],
+          y1: boxPos[1],
+          y2: boxPos[1] + boxPos[3],
         })}
       />
       <line
@@ -142,7 +182,9 @@ export default function BoxPlot({
           data,
           median,
           x1: medianLinePos[0],
-          x2: medianLinePos[2]
+          x2: medianLinePos[2],
+          y1: medianLinePos[1],
+          y2: medianLinePos[3],
         })}
       />
       <line
@@ -166,35 +208,23 @@ export default function BoxPlot({
           min,
           x1: minLinePos[0],
           x2: minLinePos[2],
+          y1: minLinePos[1],
+          y2: minLinePos[3],
         })}
       />
-      {outliers.map((d, i) => {
-        return (
-          <circle
-            key={i}
-            cx={horizontal?valueScale(d):center}
-            cy={horizontal?center:valueScale(d)}
-            strokeWidth={strokeWidth}
-            fill={fill}
-            fillOpacity={fillOpacity}
-            r="5"
-            {...additionalProps(outlierProps, {
-              data: d,
-            })}
-          />);
-        })
-      }
       {container &&
         <rect
-          x={left}
-          y={max}
-          width={boxWidth}
-          height={min - max}
+          x={containerPos[0]}
+          y={containerPos[1]}
+          width={containerPos[2]}
+          height={containerPos[3]}
           fillOpacity="0"
           {...additionalProps(containerProps, {
             data,
-            x1: left,
-            x2: left + boxWidth,
+            x1: containerPos[0],
+            x2: containerPos[0] + containerPos[2],
+            y1: containerPos[1],
+            y2: containerPos[1] + containerPos[3],
             median,
             max,
             min,
