@@ -1,14 +1,12 @@
 import React from 'react';
 import { Point } from '@vx/point';
 import { localPoint } from '@vx/event';
-import { Transform } from '@vx/transform';
 
 export default class Drag extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      transform: new Transform(),
       isDragging: false,
       dx: 0,
       dy: 0,
@@ -25,12 +23,17 @@ export default class Drag extends React.Component {
       currentPoint,
       startPoint: currentPoint,
     };
-    if (this.props.onDragStart)
-      this.props.onDragStart({ ...nextState, raise: this.raise });
+    if (this.props.onDragStart) {
+      this.props.onDragStart({
+        ...nextState,
+        raise: this.raise,
+        event
+      });
+    }
     this.setState(() => nextState);
   }
   dragMove(event) {
-    const { isDragging, transform, startPoint } = this.state;
+    const { isDragging, startPoint } = this.state;
     const { svg } = this.props;
 
     if (!isDragging) return;
@@ -63,8 +66,13 @@ export default class Drag extends React.Component {
   }
   dragEnd(event) {
     this.lastMove = null;
-    if (this.props.onDragEnd)
-      this.props.onDragEnd({ ...this.state, isDragging: false });
+    if (this.props.onDragEnd) {
+      this.props.onDragEnd({
+        ...this.state,
+        isDragging: false,
+        event
+      });
+    }
     this.setState(() => ({ isDragging: false }));
   }
   raise(items, raiseIndex) {
@@ -77,7 +85,6 @@ export default class Drag extends React.Component {
   render() {
     const {
       isDragging,
-      transform,
       dx,
       dy,
       currentPoint,
@@ -97,7 +104,6 @@ export default class Drag extends React.Component {
           />
         )}
         {this.props.children({
-          transform,
           isDragging,
           dx,
           dy,
