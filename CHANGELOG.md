@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.148](#v00148)
 - [v0.0.147](#v00147)
 - [v0.0.146](#v00146)
 - [v0.0.145](#v00145)
@@ -33,6 +34,21 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.148
+
+#### :bug: Bug Fix
+
+- [stats] [boxplot] fix container props calculation [#203](https://github.com/hshoff/vx/pull/203)
+- [tooltip] fix tootlip with bounds offset [#204](https://github.com/hshoff/vx/pull/204)
+
+```bash
+Changes:
+ - @vx/demo: 0.0.147 => 0.0.148
+ - @vx/stats: 0.0.147 => 0.0.148
+ - @vx/tooltip: 0.0.147 => 0.0.148
+ - @vx/vx: 0.0.147 => 0.0.148
+ ```
 
 # v0.0.147
 
