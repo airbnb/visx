@@ -36,7 +36,7 @@ function TooltipWithBounds({
   }
 
   return (
-    <Tooltip style={{ top, left, ...style }}>
+    <Tooltip style={{ top: 0, transform: `translate(${left}px, ${top}px)`, ...style }}>
       {children}
     </Tooltip>
   );
