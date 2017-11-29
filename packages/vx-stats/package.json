@@ -1,6 +1,6 @@
 {
   "name": "@vx/stats",
-  "version": "0.0.147",
+  "version": "0.0.148",
   "description": "vx stats box violin",
   "main": "build/index.js",
   "scripts": {

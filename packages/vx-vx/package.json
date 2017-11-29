@@ -1,6 +1,6 @@
 {
   "name": "@vx/vx",
-  "version": "0.0.147",
+  "version": "0.0.148",
   "description": "One stop install for all vx packages",
   "main": "build/index.js",
   "scripts": {
@@ -71,7 +71,7 @@
     "@vx/scale": "0.0.143",
     "@vx/shape": "0.0.147",
     "@vx/text": "0.0.143",
-    "@vx/tooltip": "0.0.147",
+    "@vx/tooltip": "0.0.148",
     "@vx/voronoi": "0.0.143",
     "@vx/zoom": "0.0.143"
   },
