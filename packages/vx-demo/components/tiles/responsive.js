@@ -92,6 +92,7 @@ export default class App extends React.Component {
           .app-graph {
             display: flex;
             flex: 1;
+            overflow: hidden;
           }
         `}</style>
       </div>

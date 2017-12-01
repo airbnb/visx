@@ -88,7 +88,7 @@ export default class Gallery extends React.Component {
             <Link prefetch href="/bars">
               <div
                 className="gallery-item"
-                style={{ background: items[1] }}
+                style={{ background: '#5290e7' }}
               >
                 <div className="image">
                   <ParentSize>
@@ -113,7 +113,7 @@ export default class Gallery extends React.Component {
             <Link prefetch href="/dots">
               <div
                 className="gallery-item"
-                style={{ background: items[2] }}
+                style={{ background: '#fd6e7f' }}
               >
                 <div className="image">
                   <ParentSize>
@@ -121,6 +121,12 @@ export default class Gallery extends React.Component {
                       <Dots
                         width={width}
                         height={height + detailsHeight}
+                        margin={{
+                          top: 0,
+                          left: 0,
+                          right: 0,
+                          bottom: 80,
+                        }}
                       />
                     )}
                   </ParentSize>
@@ -434,7 +440,7 @@ export default class Gallery extends React.Component {
             <Link prefetch href="/pies">
               <div
                 className="gallery-item"
-                style={{ background: '#c94acc' }}
+                style={{ background: '#7f82e3' }}
               >
                 <div className="image">
                   <ParentSize>
@@ -563,7 +569,7 @@ export default class Gallery extends React.Component {
             <Link prefetch href="/boxplot">
               <div
                 className="gallery-item"
-                style={{ background: '#88d1d9' }}
+                style={{ background: '#8a88e3' }}
               >
                 <div className="image">
                   <ParentSize>
@@ -590,7 +596,7 @@ export default class Gallery extends React.Component {
 
           <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
             <Link prefetch href="/geo-mercator">
-              <div className="gallery-item">
+              <div className="gallery-item" style={{ background: '#f9f7e8'}}>
                 <div className="image">
                   <ParentSize>
                     {({ width, height }) => (
@@ -613,7 +619,7 @@ export default class Gallery extends React.Component {
 
           <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
             <Link prefetch href="/network">
-              <div className="gallery-item">
+              <div className="gallery-item" style={{ background: '#272b4d'}}>
                 <div className="image">
                   <ParentSize>
                     {({ width, height }) => (
@@ -643,7 +649,7 @@ export default class Gallery extends React.Component {
             <Link prefetch href="/streamgraph">
               <div
                 className="gallery-item"
-                style={{ background: '#ffd7d9' }}
+                style={{ background: '#ffdede' }}
               >
                 <div className="image">
                   <ParentSize>
@@ -772,7 +778,7 @@ export default class Gallery extends React.Component {
               <div
                 className="gallery-item"
                 style={{
-                  background: '#FAF7E9',
+                  background: '#eaedff',
                 }}
               >
                 <div className="image">
@@ -876,6 +882,7 @@ export default class Gallery extends React.Component {
           .image {
             flex: 1;
             display: flex;
+            overflow: hidden;
           }
           .details {
             text-align: center;
