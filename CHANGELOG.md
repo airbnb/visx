@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.149](#v00149)
 - [v0.0.148](#v00148)
 - [v0.0.147](#v00147)
 - [v0.0.146](#v00146)
@@ -34,6 +35,23 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.149
+
+#### :rocket: Enhancements
+
+- [responsive] bump `resize-observer-polyfill` [#206](https://github.com/hshoff/vx/pull/206)
+
+#### :bug: Bug Fix
+
+- [demo] add overflow hidden on flex: 1 `<ParentSize />` parents [#206](https://github.com/hshoff/vx/pull/206)
+
+```bash
+Changes:
+ - @vx/demo: 0.0.148 => 0.0.149
+ - @vx/responsive: 0.0.147 => 0.0.149
+ - @vx/vx: 0.0.148 => 0.0.149
+```
 
 # v0.0.148
 
