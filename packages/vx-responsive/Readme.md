@@ -10,7 +10,7 @@ If you would like your graph to adapt to the screen size, you can use `withScree
 
 ## Example:
 ``` js
-import { withScreenSize } from `@vx/responsive`;
+import { withScreenSize } from '@vx/responsive';
 // or
 // import * as Responsive from '@vx/responsive';
 // Responsive.withScreenSize(...);
@@ -25,7 +25,7 @@ You can also create a responsive chart with a specific viewBox with the `<ScaleS
 ## Example:
 
 ``` js
-import { ScaleSVG } from `@vx/responsive`;
+import { ScaleSVG } from '@vx/responsive';
 // or
 // import * as Responsive from '@vx/responsive';
 // <Responsive.ScaleSVG />
