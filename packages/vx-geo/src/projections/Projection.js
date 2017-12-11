@@ -39,6 +39,8 @@ export default function Projection({
   graticuleLines,
   graticuleOutline,
   className,
+  innerRef,
+  pointRadius,
   ...restProps
 }) {
   const currProjection = projectionMapping[projection]();
@@ -47,13 +49,16 @@ export default function Projection({
   if (clipExtent) currProjection.clipExtent(clipExtent);
   if (scale) currProjection.scale(scale);
   if (translate) currProjection.translate(translate);
-  if (center) currProjection.translate(center);
+  if (center) currProjection.center(center);
   if (rotate) currProjection.rotate(rotate);
   if (precision) currProjection.rotate(precision);
   if (fitExtent) currProjection.fitExtent(...fitExtent);
   if (fitSize) currProjection.fitSize(...fitSize);
 
   const path = geoPath().projection(currProjection);
+
+  if (pointRadius) path.pointRadius(pointRadius);
+
 
   return (
     <Group className={`vx-geo`}>
@@ -75,6 +80,7 @@ export default function Projection({
             <path
               className={cx(`vx-geo-${projection}`, className)}
               d={path(feature)}
+              ref={ref => innerRef && innerRef(ref, feature, i)}
               {...additionalProps(restProps, {
                 ...feature,
                 index: i,
