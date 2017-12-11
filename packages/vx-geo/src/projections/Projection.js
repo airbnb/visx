@@ -79,7 +79,7 @@ export default function Projection({
             <path
               className={cx(`vx-geo-${projection}`, className)}
               d={path(feature)}
-              ref={ref => innerRef && innerRef(ref, feature, i)}
+              ref={innerRef && innerRef(feature, i)}
               {...additionalProps(restProps, {
                 ...feature,
                 index: i,
