@@ -59,7 +59,6 @@ export default function Projection({
 
   if (pointRadius) path.pointRadius(pointRadius);
 
-
   return (
     <Group className={`vx-geo`}>
       {graticule &&
