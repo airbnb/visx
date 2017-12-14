@@ -45,12 +45,16 @@ export default withScreenSize(
               events,
             })}
           </div>
-          <div style={{ width: width }}>
-            <h2>Code</h2>
-          </div>
-          <div className="code" style={{ width: width }}>
-            <Codeblock>{children}</Codeblock>
-          </div>
+          {children && (
+            <div style={{ width: width }}>
+              <h2>Code</h2>
+            </div>
+          )}
+          {children && (
+            <div className="code" style={{ width: width }}>
+              <Codeblock>{children}</Codeblock>
+            </div>
+          )}
         </div>
         <div style={{ marginTop: '40px' }}>
           <Gallery />

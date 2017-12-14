@@ -596,7 +596,10 @@ export default class Gallery extends React.Component {
 
           <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
             <Link prefetch href="/geo-mercator">
-              <div className="gallery-item" style={{ background: '#f9f7e8'}}>
+              <div
+                className="gallery-item"
+                style={{ background: '#f9f7e8' }}
+              >
                 <div className="image">
                   <ParentSize>
                     {({ width, height }) => (
@@ -619,7 +622,10 @@ export default class Gallery extends React.Component {
 
           <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
             <Link prefetch href="/network">
-              <div className="gallery-item" style={{ background: '#272b4d'}}>
+              <div
+                className="gallery-item"
+                style={{ background: '#272b4d' }}
+              >
                 <div className="image">
                   <ParentSize>
                     {({ width, height }) => (
@@ -841,7 +847,36 @@ export default class Gallery extends React.Component {
               </div>
             </Link>
           </Tilt>
-          {false && <div className="gallery-item placeholder" />}
+          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+            <Link prefetch href="/text">
+              <div
+                className="gallery-item"
+                style={{
+                  background: 'white',
+                  border: '1px solid lightgray',
+                  borderRadius: '14px',
+                }}
+              >
+                <div className="image">
+                  <div className="text-demo">Flexible SVG Text</div>
+                </div>
+                <div
+                  className="details"
+                  style={{
+                    color: '#232323',
+                    zIndex: 1,
+                  }}
+                >
+                  <div className="title">Text</div>
+                  <div className="description">
+                    <pre>{`<Text.Text />`}</pre>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </Tilt>
+          <div className="gallery-item placeholder" />
+          <div className="gallery-item placeholder" />
         </div>
 
         <div>
@@ -908,6 +943,16 @@ export default class Gallery extends React.Component {
           }
           .color-gray {
             color: #333;
+          }
+          .text-demo {
+            font-size: 64px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+            line-height: 1em;
+            padding: 1rem;
           }
           @media (max-width: 960px) {
             .gallery-item {
