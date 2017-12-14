@@ -1,6 +1,6 @@
 {
   "name": "@vx/geo",
-  "version": "0.0.143",
+  "version": "0.0.150",
   "description": "vx geo",
   "main": "build/index.js",
   "scripts": {

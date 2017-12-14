@@ -1,6 +1,6 @@
 {
   "name": "@vx/vx",
-  "version": "0.0.149",
+  "version": "0.0.150",
   "description": "One stop install for all vx packages",
   "main": "build/index.js",
   "scripts": {
@@ -54,7 +54,7 @@
     "@vx/curve": "0.0.143",
     "@vx/drag": "0.0.143",
     "@vx/event": "0.0.143",
-    "@vx/geo": "0.0.143",
+    "@vx/geo": "0.0.150",
     "@vx/glyph": "0.0.143",
     "@vx/gradient": "0.0.143",
     "@vx/grid": "0.0.147",
@@ -67,10 +67,10 @@
     "@vx/network": "0.0.143",
     "@vx/pattern": "0.0.143",
     "@vx/point": "0.0.143",
-    "@vx/responsive": "0.0.149",
+    "@vx/responsive": "0.0.150",
     "@vx/scale": "0.0.143",
     "@vx/shape": "0.0.147",
-    "@vx/text": "0.0.143",
+    "@vx/text": "0.0.150",
     "@vx/tooltip": "0.0.148",
     "@vx/voronoi": "0.0.143",
     "@vx/zoom": "0.0.143"
