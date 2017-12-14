@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.150](#v00150)
 - [v0.0.149](#v00149)
 - [v0.0.148](#v00148)
 - [v0.0.147](#v00147)
@@ -35,6 +36,42 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.150
+
+#### :boom: Breaking Changes
+
+- [text] Removes `<TextWrap>`, `<TextOutline>` and `<TextBackground>` components, which were incomplete [#208](https://github.com/hshoff/vx/pull/208)
+
+#### :rocket: Enhancements
+
+- [geo] Added pointRadius and fixed center [#213](https://github.com/hshoff/vx/pull/213)
+- [text] Add new `<Text>`, with the following features
+  - Word-wrapping (when width prop is defined)
+  - Vertical alignment (verticalAnchor prop)
+  - Rotation (angle prop)
+  - Scale-to-fit text (scaleToFit prop)
+
+#### :bug: Bug Fix
+
+- [geo] Fixed center typo [#213](https://github.com/hshoff/vx/pull/213)
+
+#### :memo: Documentation
+
+- [responsive] Backticks import not working so, copy paste broken [#212](https://github.com/hshoff/vx/pull/212)
+
+#### :house: Internal
+
+- [text] Update `vx-text` author to @techniq [#210](https://github.com/hshoff/vx/pull/210)
+
+```bash
+Changes:
+ - @vx/demo: 0.0.149 => 0.0.150
+ - @vx/geo: 0.0.143 => 0.0.150
+ - @vx/responsive: 0.0.149 => 0.0.150
+ - @vx/text: 0.0.143 => 0.0.150
+ - @vx/vx: 0.0.149 => 0.0.150
+```
 
 # v0.0.149
 
