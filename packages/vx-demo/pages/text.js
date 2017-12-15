@@ -16,6 +16,7 @@ class TextDemo extends Component {
     verticalAnchor: 'start',
     fontSize: '1em',
     fontFamily: 'Arial',
+    fontWeight: 400,
     lineHeight: '1em',
     showAnchor: true,
     resizeSvg: true,
@@ -59,6 +60,7 @@ class TextDemo extends Component {
                 style={{
                   fontSize: this.state.fontSize,
                   fontFamily: this.state.fontFamily,
+                  fontWeight: this.state.fontWeight,
                 }}
               >
                 {this.state.exampleText}
@@ -235,6 +237,17 @@ class TextDemo extends Component {
                 value={this.state.fontFamily}
                 onChange={e =>
                   this.setState({ fontFamily: e.target.value })
+                }
+              />
+            </div>
+            
+            <div>
+              fontWeight:
+              <input
+                type="text"
+                value={this.state.fontWeight}
+                onChange={e =>
+                  this.setState({ fontWeight: e.target.value })
                 }
               />
             </div>

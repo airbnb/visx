@@ -22,4 +22,4 @@ function getStringWidth(str, style) {
   }
 }
 
-export default memoize(getStringWidth);
+export default memoize(getStringWidth, (str, style) => `${str}_${JSON.stringify(style)}`);
