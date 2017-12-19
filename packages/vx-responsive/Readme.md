@@ -34,18 +34,20 @@ You might do the same thing using the `ParentSize` component.
 ``` js
 import { ParentSize } from "@vx/responsive";
 
-class ChartToRender extends React.Component {
-  render() {
-    <ParentSize>
-      {size => (
-          <MySuperCoolVxChart 
-            width={size.width}
-            height={size.height}
-          />
-      }
-    </ParentSize>
-  }
-}
+let chartToRender = (
+  <ParentSize>
+    {parent => (
+      <MySuperCoolVxChart 
+        parentWidth={parent.width}
+        parentHeight={parent.height}
+        parentTop={parent.top}
+        paretnLeft={parent.left}
+        parentRef={parent.ref}
+        resizeParent={parent.resize}
+      />)
+    }
+  </ParentSize>
+);
 
 ```
 
