@@ -18,6 +18,7 @@ import { withParentSize, withScreenSize } from '@vx/responsive';
 // or
 // import * as Responsive from '@vx/responsive';
 // Responsive.withScreenSize(...);
+// Responsive.withParentSize(...);
 
 let chartToRender = withScreenSize(MySuperCoolVxChart);
 let otherChartToRender = withParentSize(MySuperCoolVxChart);
@@ -36,10 +37,10 @@ import { ParentSize } from "@vx/responsive";
 class ChartToRender extends React.Component {
   render() {
     <ParentSize>
-      {a => (
+      {size => (
           <MySuperCoolVxChart 
-            width={a.width}
-            height={a.height}
+            width={size.width}
+            height={size.height}
           />
       }
     </ParentSize>
