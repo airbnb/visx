@@ -6,31 +6,57 @@ npm install --save @vx/responsive
 
 The `@vx/responsive` package is here to help you make responsive graphs.
 
-## With Enhancers
+**With Enhancers**
 
-If you would like your graph to adapt to the screen size, you can use `withScreenSize()` to take an element and attach events that will resize the graph to maintain the same size of the screen.
+`withScreenSize`
+
+`withParentSize`
+
+**With Components**
+
+`ParentSize`
+
+`ScaleSVG`
+
+## `withScreenSize`
+
+If you would like your graph to adapt to the screen size, you can use `withScreenSize()` to give the argument the `screenWidth` and `screenHeight` props containing the respective screen dimensions.
 
 If you want your graph to adapth to the parent component, use the `withParentSize()` instead.
 
-## Example:
+### Example:
 ``` js
-import { withParentSize, withScreenSize } from '@vx/responsive';
+import { withScreenSize } from '@vx/responsive';
 // or
 // import * as Responsive from '@vx/responsive';
 // Responsive.withScreenSize(...);
-// Responsive.withParentSize(...);
 
 let chartToRender = withScreenSize(MySuperCoolVxChart);
-let otherChartToRender = withParentSize(MySuperCoolVxChart);
 
 // ... Render the chartToRender somewhere
 ```
 
-## With Components
+## `withParentSize`
+
+If you would like your graph to adapt to it's parent size, you can use `withParentSize()` to give the argument the `parentWidth` and `parentHeight` props containing the respective parent's dimensions.
+
+### Example:
+``` js
+import { withParentSize } from '@vx/responsive';
+// or
+// import * as Responsive from '@vx/responsive';
+// Responsive.withParentSize(...);
+
+let chartToRender = withParentSize(MySuperCoolVxChart);
+
+// ... Render the chartToRender somewhere
+```
+
+## `ParentSize`
 
 You might do the same thing using the `ParentSize` component.
 
-## Example:
+### Example:
 ``` js
 import { ParentSize } from "@vx/responsive";
 
@@ -51,9 +77,11 @@ let chartToRender = (
 
 ```
 
-You can also create a responsive chart with a specific viewBox with the `<ScaleSVG />` component.
+## `ScaleSVG`
 
-## Example:
+You can also create a responsive chart with a specific viewBox with the `ScaleSVG` component.
+
+### Example:
 
 ``` js
 import { ScaleSVG } from '@vx/responsive';
