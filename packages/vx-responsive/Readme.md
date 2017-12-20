@@ -20,7 +20,7 @@ The `@vx/responsive` package is here to help you make responsive graphs.
 
 ## `withScreenSize`
 
-If you would like your graph to adapt to the screen size, you can use `withScreenSize()` to give the argument the `screenWidth` and `screenHeight` props containing the respective screen dimensions.
+If you would like your graph to adapt to the screen size, you can use `withScreenSize()`. The resulting component will pass `screenWidth` and `screenHeight` props to the wrapped component containing the respective screen dimensions.
 
 ### Example:
 ``` js
@@ -36,7 +36,7 @@ let chartToRender = withScreenSize(MySuperCoolVxChart);
 
 ## `withParentSize`
 
-If you would like your graph to adapt to it's parent component's size, you can use `withParentSize()` to give the argument the `parentWidth` and `parentHeight` props containing the respective parent's dimensions.
+If you would like your graph to adapt to it's parent component's size, you can use `withParentSize()`. The resulting component will pass `parentWidth` and `parentHeight` props to the wrapped component containing the respective parent's dimensions.
 
 ### Example:
 ``` js
@@ -68,8 +68,10 @@ let chartToRender = (
         parentWidth={parent.width}
         parentHeight={parent.height}
         parentTop={parent.top}
-        paretnLeft={parent.left}
+        parentLeft={parent.left}
+        // this is the referer to the wrapper component
         parentRef={parent.ref}
+        // this function can be called inside MySuperCoolVxChart to cause a resize of the wrapper component
         resizeParent={parent.resize}
       />)
     }
