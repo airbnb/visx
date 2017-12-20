@@ -57,6 +57,9 @@ You might do the same thing using the `ParentSize` component.
 ### Example:
 ``` js
 import { ParentSize } from "@vx/responsive";
+// or
+// import * as Responsive from '@vx/responsive';
+// <Responsive.ParentSize />;
 
 let chartToRender = (
   <ParentSize>
@@ -73,6 +76,7 @@ let chartToRender = (
   </ParentSize>
 );
 
+// ... Render the chartToRender somewhere
 ```
 
 ## `ScaleSVG`
@@ -92,7 +96,9 @@ let chartToRender = (
     width={400}
     height={400}
   >
-    <MySuperCoolVXChart/>
+    <MySuperCoolVXChart />
   </ScaleSVG>
-)
+);
+
+// ... Render the chartToRender somewhere
 ```
