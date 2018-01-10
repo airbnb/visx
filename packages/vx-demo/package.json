@@ -1,6 +1,6 @@
 {
   "name": "@vx/demo",
-  "version": "0.0.150",
+  "version": "0.0.151",
   "description": "vx demo",
   "repository": "https://github.com/hshoff/vx",
   "scripts": {
@@ -18,7 +18,7 @@
   "license": "MIT",
   "dependencies": {
     "@vx/annotation": "0.0.147",
-    "@vx/axis": "0.0.147",
+    "@vx/axis": "0.0.151",
     "@vx/boxplot": "0.0.143",
     "@vx/brush": "0.0.143",
     "@vx/clip-path": "0.0.143",
@@ -37,11 +37,11 @@
     "@vx/network": "0.0.143",
     "@vx/pattern": "0.0.143",
     "@vx/point": "0.0.143",
-    "@vx/responsive": "0.0.150",
-    "@vx/scale": "0.0.143",
+    "@vx/responsive": "0.0.151",
+    "@vx/scale": "0.0.151",
     "@vx/shape": "0.0.147",
-    "@vx/stats": "0.0.148",
-    "@vx/text": "0.0.150",
+    "@vx/stats": "0.0.151",
+    "@vx/text": "0.0.151",
     "@vx/tooltip": "0.0.148",
     "@vx/voronoi": "0.0.143",
     "classnames": "^2.2.5",
