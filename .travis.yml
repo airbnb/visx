@@ -6,4 +6,5 @@ node_js:
 cache:
   directories:
     - node_modules
+script: travis_wait npm test
 after_script: "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
