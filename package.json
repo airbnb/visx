@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test":
-      "lerna bootstrap && lerna exec npm run build && lerna exec npm run test",
+      "lerna bootstrap && lerna exec npm run test && lerna exec npm run test",
     "docs": "node ./scripts/docs/index.js",
     "prepare-release":
       "git checkout master && git pull --rebase origin master && npm run docs && lerna updated",
