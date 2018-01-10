@@ -106,7 +106,7 @@ describe('vx', () => {
   });
 
   test('it should export @vx/text', () => {
-    expect(vx.TextOutline).toBeDefined();
+    expect(vx.Text).toBeDefined();
   });
 
   test('it should export @vx/tooltip', () => {
