@@ -4,7 +4,7 @@ export default ({
   range,
   rangeRound,
   domain,
-  base,
+  exponent,
   nice = false,
   clamp = false,
 }) => {
@@ -15,7 +15,7 @@ export default ({
   if (domain) scale.domain(domain);
   if (nice) scale.nice();
   if (clamp) scale.clamp(true);
-  if (base) scale.base(base);
+  if (exponent) scale.exponent(exponent);
 
   return scale;
 }

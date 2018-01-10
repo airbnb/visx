@@ -152,7 +152,7 @@ const scale = Scale.scalePower({
     range,
     rangeRound,
     domain,
-    base,
+    exponent,
     nice = false,
     clamp = false,
   */
