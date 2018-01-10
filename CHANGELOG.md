@@ -1,5 +1,7 @@
 # Changelog
 
+- [v0.0.152](#v00152)
+- [v0.0.151](#v00151)
 - [v0.0.150](#v00150)
 - [v0.0.149](#v00149)
 - [v0.0.148](#v00148)
@@ -36,6 +38,62 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.152
+
+#### :rocket: Enhancements
+
+- [text] add `fontWeight` option to vx-text demo [#215](https://github.com/hshoff/vx/pull/215)
+
+#### :memo: Documentation
+
+- [demo] add vx-text tile and update /text demo [#214](https://github.com/hshoff/vx/pull/214)
+- [responsive] add description and example of each component and enhancer [#217](https://github.com/hshoff/vx/pull/217)
+
+#### :bug: Bug Fix
+
+- [text] fix memoized `getStringWidth` ignoring styles [#215](https://github.com/hshoff/vx/pull/215)
+- [text] remove default width and height from measurement SVG [#219](https://github.com/hshoff/vx/pull/219)
+- [scale] fix scalePower api to take in exponent instead of base [#223](https://github.com/hshoff/vx/pull/223)
+
+#### :house: Internal
+
+- [travis] fix for travis failing for timing out when [not receiving output for 10min](https://docs.travis-ci.com/user/common-build-problems/#Build-times-out-because-no-output-was-received) [#224](https://github.com/hshoff/vx/pull/224)
+- [vx][test] fix `@vx/vx` text test. It was looking for `TextOutline` export which was removed with the [new `@vx/text`](https://github.com/hshoff/vx/pull/208) [#224](https://github.com/hshoff/vx/pull/224)
+- [axis] bump `prop-types` dep and use `^` [#224](https://github.com/hshoff/vx/pull/224)
+
+#### :trophy: Contributers
+
+- [techniq](https://github.com/techniq)
+- [hshoff](https://github.com/hshoff)
+- [katerineknox](https://github.com/katerineknox)
+- [crcarlo](https://github.com/crcarlo)
+
+```bash
+Changes:
+ - @vx/axis: 0.0.151 => 0.0.152
+ - @vx/demo: 0.0.151 => 0.0.152
+ - @vx/responsive: 0.0.151 => 0.0.152
+ - @vx/scale: 0.0.151 => 0.0.152
+ - @vx/stats: 0.0.151 => 0.0.152
+ - @vx/text: 0.0.151 => 0.0.152
+ - @vx/vx: 0.0.151 => 0.0.152
+```
+
+# v0.0.151
+
+- ignore this one, v0.0.152 includes what v0.0.151 was supposed be. i messed up the publish.
+
+```bash
+Changes:
+ - @vx/axis: 0.0.147 => 0.0.151
+ - @vx/demo: 0.0.150 => 0.0.151
+ - @vx/responsive: 0.0.150 => 0.0.151
+ - @vx/scale: 0.0.143 => 0.0.151
+ - @vx/stats: 0.0.148 => 0.0.151
+ - @vx/text: 0.0.150 => 0.0.151
+ - @vx/vx: 0.0.150 => 0.0.151
+```
 
 # v0.0.150
 
