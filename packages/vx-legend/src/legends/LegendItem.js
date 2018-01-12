@@ -2,6 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import additonalProps from '../util/additionalProps';
 
+LegendItem.propTypes = {
+  flexDirection: PropTypes.string,
+  margin: PropTypes.string,
+  label: PropTypes.object.isRequired,
+};
+
 export default function LegendItem({
   children,
   flexDirection,
