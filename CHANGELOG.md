@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.154](#v00154)
 - [v0.0.153](#v00153)
 - [v0.0.152](#v00152)
 - [v0.0.151](#v00151)
@@ -39,6 +40,23 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.154
+
+#### :rocket: Enhancements
+
+- [legend] make legend items clickable, add `<LegendItem />` propTypes, add click test [#227](https://github.com/hshoff/vx/pull/227)
+
+#### :trophy: Contributers
+
+- [hshoff](https://github.com/hshoff)
+
+```bash
+Changes:
+ - @vx/demo: 0.0.153 => 0.0.154
+ - @vx/legend: 0.0.153 => 0.0.154
+ - @vx/vx: 0.0.153 => 0.0.154
+```
 
 # v0.0.153
 
