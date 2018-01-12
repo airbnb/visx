@@ -1,6 +1,6 @@
 {
   "name": "@vx/legend",
-  "version": "0.0.153",
+  "version": "0.0.154",
   "description": "vx legend",
   "sideEffects": false,
   "main": "build/index.js",

@@ -1,6 +1,6 @@
 {
   "name": "@vx/vx",
-  "version": "0.0.153",
+  "version": "0.0.154",
   "description": "One stop install for all vx packages",
   "sideEffects": false,
   "main": "build/index.js",
@@ -62,7 +62,7 @@
     "@vx/group": "0.0.153",
     "@vx/heatmap": "0.0.153",
     "@vx/hierarchy": "0.0.153",
-    "@vx/legend": "0.0.153",
+    "@vx/legend": "0.0.154",
     "@vx/marker": "0.0.153",
     "@vx/mock-data": "0.0.153",
     "@vx/network": "0.0.153",
