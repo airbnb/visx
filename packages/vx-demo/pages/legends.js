@@ -79,15 +79,16 @@ const ordinalShape = scaleOrdinal({
       left={50 / 6}
       fill="#df905f"
     />,
-    props =>
+    props => (
       <text fontSize="12" dy="1em" dx=".33em" fill="#e0a346">
         $
-      </text>,
+      </text>
+    ),
   ],
 });
 
 const threshold = scaleThreshold({
-  domain: [0.02, 0.04, 0.06, 0.08, 0.1],
+  domain: [0.01, 0.02, 0.04, 0.06, 0.08, 0.1],
   range: [
     '#f2f0f7',
     '#dadaeb',
@@ -118,6 +119,24 @@ function LegendDemo({ title, children }) {
     <div className="legend">
       <div className="title">{title}</div>
       {children}
+      <style jsx>{\`
+        .legend {
+          line-height: 0.9em;
+          color: #efefef;
+          font-size: 10px;
+          font-family: arial;
+          padding: 10px 10px;
+          float: left;
+          border: 1px solid rgba(255, 255, 255, 0.3);
+          border-radius: 8px;
+          margin: 5px 5px;
+        }
+        .title {
+          font-size: 12px;
+          margin-bottom: 10px;
+          font-weight: 100;
+        }
+      \`}</style>
     </div>
   );
 }
@@ -132,6 +151,15 @@ export default ({ width, height, margin }) => {
           shapeMargin="5px 0"
           itemDirection="row"
           scale={size}
+          onClick={data => event => {
+            alert(\`clicked: \`\${JSON.stringify(data)}\`);
+          }}
+          onMouseOver={data => event => {
+            console.log(
+              \`mouse over: \${data.text}\`,
+              \`index: \${data.index}\`,
+            );
+          }}
           shapeStyle={props => {
             return {
               fill: sizeColor(props.datum),
@@ -153,7 +181,19 @@ export default ({ width, height, margin }) => {
         />
       </LegendDemo>
       <LegendDemo title="Quantile">
-        <LegendQuantile shape="circle" scale={quantile} />
+        <LegendQuantile
+          shape="circle"
+          scale={quantile}
+          onClick={data => event => {
+            alert(\`clicked: \`\${JSON.stringify(data)}\`);
+          }}
+          onMouseOver={data => event => {
+            console.log(
+              \`mouse over: \${data.text}\`,
+              \`index: \${data.index}\`,
+            );
+          }}
+        />
       </LegendDemo>
       <LegendDemo title="Linear">
         <LegendLinear
@@ -162,6 +202,15 @@ export default ({ width, height, margin }) => {
           labelFormat={(d, i) => {
             if (i % 2 === 0) return oneDecimalFormat(d);
             return '';
+          }}
+          onClick={data => event => {
+            alert(\`clicked: \`\${JSON.stringify(data)}\`);
+          }}
+          onMouseOver={data => event => {
+            console.log(
+              \`mouse over: \${data.text}\`,
+              \`index: \${data.index}\`,
+            );
           }}
         />
       </LegendDemo>
@@ -172,6 +221,15 @@ export default ({ width, height, margin }) => {
           labelMargin="2px 0 0 10px"
           shapeMargin="1px 0 0"
           scale={threshold}
+          onClick={data => event => {
+            alert(\`clicked: \`\${JSON.stringify(data)}\`);
+          }}
+          onMouseOver={data => event => {
+            console.log(
+              \`mouse over: \${data.text}\`,
+              \`index: \${data.index}\`,
+            );
+          }}
         />
       </LegendDemo>
       <LegendDemo title="Ordinal">
@@ -185,6 +243,15 @@ export default ({ width, height, margin }) => {
           shape="rect"
           fill={({ datum }) => ordinalColor(datum)}
           labelFormat={label => \`\${label.toUpperCase()}\`}
+          onClick={data => event => {
+            alert(\`clicked: \`\${JSON.stringify(data)}\`);
+          }}
+          onMouseOver={data => event => {
+            console.log(
+              \`mouse over: \${data.text}\`,
+              \`index: \${data.index}\`,
+            );
+          }}
         />
       </LegendDemo>
       <LegendDemo title="Custom Legend">
@@ -197,6 +264,15 @@ export default ({ width, height, margin }) => {
           scale={ordinalShape}
           fill={({ datum }) => ordinalColor2(datum)}
           shapeWidth={15}
+          onClick={data => event => {
+            alert(\`clicked: \`\${JSON.stringify(data)}\`);
+          }}
+          onMouseOver={data => event => {
+            console.log(
+              \`mouse over: \${data.text}\`,
+              \`index: \${data.index}\`,
+            );
+          }}
           shape={props => {
             return (
               <svg width={props.width} height={props.height}>
@@ -221,7 +297,6 @@ export default ({ width, height, margin }) => {
     </div>
   );
 };
-
 `}
     </Show>
   );

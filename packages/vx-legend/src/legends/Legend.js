@@ -72,6 +72,8 @@ export default function Legend({
             key={`legend-${label}-${i}`}
             margin={itemMargin}
             flexDirection={itemDirection}
+            label={label}
+            {...restProps}
           >
             <LegendShape
               shape={shape}
