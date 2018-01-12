@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.153](#v00153)
 - [v0.0.152](#v00152)
 - [v0.0.151](#v00151)
 - [v0.0.150](#v00150)
@@ -38,6 +39,52 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.153
+
+#### :house: Internal
+
+- [internal] add sideEffects: false to pkg for webpack 4 [#225](https://github.com/hshoff/vx/pull/225)
+
+#### :trophy: Contributers
+
+- [hshoff](https://github.com/hshoff)
+
+```bash
+Changes:
+ - @vx/annotation: 0.0.147 => 0.0.153
+ - @vx/axis: 0.0.152 => 0.0.153
+ - @vx/bounds: 0.0.147 => 0.0.153
+ - @vx/boxplot: 0.0.143 => 0.0.153
+ - @vx/brush: 0.0.143 => 0.0.153
+ - @vx/clip-path: 0.0.143 => 0.0.153
+ - @vx/curve: 0.0.143 => 0.0.153
+ - @vx/demo: 0.0.152 => 0.0.153
+ - @vx/drag: 0.0.143 => 0.0.153
+ - @vx/event: 0.0.143 => 0.0.153
+ - @vx/geo: 0.0.150 => 0.0.153
+ - @vx/glyph: 0.0.143 => 0.0.153
+ - @vx/gradient: 0.0.143 => 0.0.153
+ - @vx/grid: 0.0.147 => 0.0.153
+ - @vx/group: 0.0.143 => 0.0.153
+ - @vx/heatmap: 0.0.143 => 0.0.153
+ - @vx/hierarchy: 0.0.144 => 0.0.153
+ - @vx/legend: 0.0.143 => 0.0.153
+ - @vx/marker: 0.0.147 => 0.0.153
+ - @vx/mock-data: 0.0.147 => 0.0.153
+ - @vx/network: 0.0.143 => 0.0.153
+ - @vx/pattern: 0.0.143 => 0.0.153
+ - @vx/point: 0.0.143 => 0.0.153
+ - @vx/responsive: 0.0.152 => 0.0.153
+ - @vx/scale: 0.0.152 => 0.0.153
+ - @vx/shape: 0.0.147 => 0.0.153
+ - @vx/stats: 0.0.152 => 0.0.153
+ - @vx/text: 0.0.152 => 0.0.153
+ - @vx/tooltip: 0.0.148 => 0.0.153
+ - @vx/voronoi: 0.0.143 => 0.0.153
+ - @vx/vx: 0.0.152 => 0.0.153
+ - @vx/zoom: 0.0.143 => 0.0.153
+```
 
 # v0.0.152
 
