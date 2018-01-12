@@ -2,10 +2,9 @@
   "name": "@vx/text",
   "version": "0.0.152",
   "description": "vx text",
+  "sideEffects": false,
   "main": "build/index.js",
-  "files": [
-    "build"
-  ],
+  "files": ["build"],
   "scripts": {
     "build": "make build SRC=./src",
     "prepublish": "make build SRC=./src",
@@ -15,13 +14,7 @@
     "type": "git",
     "url": "git+https://github.com/hshoff/vx.git"
   },
-  "keywords": [
-    "vx",
-    "react",
-    "d3",
-    "visualization",
-    "chart"
-  ],
+  "keywords": ["vx", "react", "d3", "visualization", "chart"],
   "author": "@techniq",
   "license": "MIT",
   "bugs": {
@@ -53,9 +46,6 @@
     "access": "public"
   },
   "jest": {
-    "setupFiles": [
-      "raf/polyfill",
-      "<rootDir>/test/enzyme-setup.js"
-    ]
+    "setupFiles": ["raf/polyfill", "<rootDir>/test/enzyme-setup.js"]
   }
 }

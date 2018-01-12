@@ -2,23 +2,16 @@
   "name": "@vx/shape",
   "version": "0.0.147",
   "description": "vx shape",
+  "sideEffects": false,
   "main": "build/index.js",
   "repository": "https://github.com/hshoff/vx",
-  "files": [
-    "build"
-  ],
+  "files": ["build"],
   "scripts": {
     "build": "make build SRC=./src",
     "prepublish": "make build SRC=./src",
     "test": "jest"
   },
-  "keywords": [
-    "vx",
-    "react",
-    "d3",
-    "visualizations",
-    "charts"
-  ],
+  "keywords": ["vx", "react", "d3", "visualizations", "charts"],
   "author": "@hshoff",
   "license": "MIT",
   "dependencies": {
@@ -51,9 +44,6 @@
     "access": "public"
   },
   "jest": {
-    "setupFiles": [
-      "raf/polyfill",
-      "<rootDir>/test/enzyme-setup.js"
-    ]
+    "setupFiles": ["raf/polyfill", "<rootDir>/test/enzyme-setup.js"]
   }
 }

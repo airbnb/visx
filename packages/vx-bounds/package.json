@@ -1,26 +1,21 @@
 {
   "name": "@vx/bounds",
   "version": "0.0.147",
-  "description": "Utilities to make your life with bounding boxes better",
+  "description":
+    "Utilities to make your life with bounding boxes better",
+  "sideEffects": false,
   "main": "build/index.js",
   "scripts": {
     "build": "make build SRC=./src",
     "prepublish": "make build SRC=./src",
     "test": "jest"
   },
-  "files": [
-    "build"
-  ],
+  "files": ["build"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hshoff/vx.git"
   },
-  "keywords": [
-    "vx",
-    "react",
-    "visualizations",
-    "charts"
-  ],
+  "keywords": ["vx", "react", "visualizations", "charts"],
   "author": "Chris Williams @williaster",
   "license": "MIT",
   "bugs": {
@@ -51,9 +46,6 @@
     "react-dom": "^15.0.0-0 || ^16.0.0-0"
   },
   "jest": {
-    "setupFiles": [
-      "raf/polyfill",
-      "<rootDir>/test/enzyme-setup.js"
-    ]
+    "setupFiles": ["raf/polyfill", "<rootDir>/test/enzyme-setup.js"]
   }
 }
