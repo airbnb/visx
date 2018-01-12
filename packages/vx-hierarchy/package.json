@@ -21,7 +21,6 @@
   },
   "homepage": "https://github.com/hshoff/vx#readme",
   "devDependencies": {
-<<<<<<< HEAD
     "babel-jest": "^21.2.0",
     "enzyme": "^3.1.0",
     "enzyme-adapter-react-16": "^1.0.2",
@@ -29,12 +28,6 @@
     "raf": "^3.4.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-=======
-    "babel-jest": "^20.0.3",
-    "enzyme": "2.8.2",
-    "jest": "^20.0.3",
-    "react": "^15.0.0-0 || ^16.0.0-0",
->>>>>>> [deps] lock enzyme + brush example
     "react-fatigue-dev": "github:tj/react-fatigue-dev",
     "react-test-renderer": "^16.0.0",
     "react-tools": "^0.10.0",
@@ -52,9 +45,6 @@
     "react": "^15.0.0-0 || ^16.0.0-0"
   },
   "jest": {
-    "setupFiles": [
-      "raf/polyfill",
-      "<rootDir>/test/enzyme-setup.js"
-    ]
+    "setupFiles": ["raf/polyfill", "<rootDir>/test/enzyme-setup.js"]
   }
 }
