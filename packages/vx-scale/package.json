@@ -1,6 +1,6 @@
 {
   "name": "@vx/scale",
-  "version": "0.0.152",
+  "version": "0.0.153",
   "description": "vx scale",
   "sideEffects": false,
   "main": "build/index.js",
@@ -9,12 +9,20 @@
     "prepublish": "make build SRC=./src",
     "test": "jest"
   },
-  "files": ["build"],
+  "files": [
+    "build"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hshoff/vx.git"
   },
-  "keywords": ["vx", "react", "d3", "visualizations", "charts"],
+  "keywords": [
+    "vx",
+    "react",
+    "d3",
+    "visualizations",
+    "charts"
+  ],
   "author": "@hshoff",
   "license": "MIT",
   "bugs": {
@@ -41,6 +49,9 @@
     "access": "public"
   },
   "jest": {
-    "setupFiles": ["raf/polyfill", "<rootDir>/test/enzyme-setup.js"]
+    "setupFiles": [
+      "raf/polyfill",
+      "<rootDir>/test/enzyme-setup.js"
+    ]
   }
 }

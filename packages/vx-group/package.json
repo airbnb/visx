@@ -1,6 +1,6 @@
 {
   "name": "@vx/group",
-  "version": "0.0.143",
+  "version": "0.0.153",
   "description": "vx group",
   "sideEffects": false,
   "main": "build/index.js",
@@ -9,7 +9,9 @@
     "prepublish": "make build SRC=./src",
     "test": "jest"
   },
-  "files": ["build"],
+  "files": [
+    "build"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hshoff/vx.git"
@@ -51,6 +53,9 @@
     "access": "public"
   },
   "jest": {
-    "setupFiles": ["raf/polyfill", "<rootDir>/test/enzyme-setup.js"]
+    "setupFiles": [
+      "raf/polyfill",
+      "<rootDir>/test/enzyme-setup.js"
+    ]
   }
 }

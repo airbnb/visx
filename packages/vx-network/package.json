@@ -1,17 +1,24 @@
 {
   "name": "@vx/network",
-  "version": "0.0.143",
+  "version": "0.0.153",
   "description": "vx network",
   "sideEffects": false,
   "main": "build/index.js",
   "repository": "https://github.com/hshoff/vx",
-  "files": ["build"],
+  "files": [
+    "build"
+  ],
   "scripts": {
     "build": "make build SRC=./src",
     "prepublish": "make build SRC=./src",
     "test": "jest"
   },
-  "keywords": ["vx", "data", "visualizations", "charts"],
+  "keywords": [
+    "vx",
+    "data",
+    "visualizations",
+    "charts"
+  ],
   "author": "@andyfang_dz",
   "license": "MIT",
   "devDependencies": {
@@ -28,7 +35,7 @@
     "regenerator-runtime": "^0.10.5"
   },
   "dependencies": {
-    "@vx/group": "0.0.143",
+    "@vx/group": "0.0.153",
     "classnames": "^2.2.5",
     "d3-force": "^1.0.6"
   },
@@ -39,6 +46,9 @@
     "access": "public"
   },
   "jest": {
-    "setupFiles": ["raf/polyfill", "<rootDir>/test/enzyme-setup.js"]
+    "setupFiles": [
+      "raf/polyfill",
+      "<rootDir>/test/enzyme-setup.js"
+    ]
   }
 }

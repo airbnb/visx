@@ -1,10 +1,12 @@
 {
   "name": "@vx/grid",
-  "version": "0.0.147",
+  "version": "0.0.153",
   "description": "vx grid",
   "sideEffects": false,
   "main": "build/index.js",
-  "files": ["build"],
+  "files": [
+    "build"
+  ],
   "scripts": {
     "build": "make build SRC=./src",
     "prepublish": "make build SRC=./src",
@@ -14,7 +16,13 @@
     "type": "git",
     "url": "git+https://github.com/hshoff/vx.git"
   },
-  "keywords": ["vx", "react", "d3", "visualizations", "charts"],
+  "keywords": [
+    "vx",
+    "react",
+    "d3",
+    "visualizations",
+    "charts"
+  ],
   "author": "@hshoff",
   "license": "MIT",
   "bugs": {
@@ -38,15 +46,18 @@
     "react": "^15.0.0-0 || ^16.0.0-0"
   },
   "dependencies": {
-    "@vx/group": "0.0.143",
-    "@vx/point": "0.0.143",
-    "@vx/shape": "0.0.147",
+    "@vx/group": "0.0.153",
+    "@vx/point": "0.0.153",
+    "@vx/shape": "0.0.153",
     "classnames": "^2.2.5"
   },
   "publishConfig": {
     "access": "public"
   },
   "jest": {
-    "setupFiles": ["raf/polyfill", "<rootDir>/test/enzyme-setup.js"]
+    "setupFiles": [
+      "raf/polyfill",
+      "<rootDir>/test/enzyme-setup.js"
+    ]
   }
 }

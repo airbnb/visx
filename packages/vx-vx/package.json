@@ -1,6 +1,6 @@
 {
   "name": "@vx/vx",
-  "version": "0.0.152",
+  "version": "0.0.153",
   "description": "One stop install for all vx packages",
   "sideEffects": false,
   "main": "build/index.js",
@@ -13,7 +13,13 @@
     "type": "git",
     "url": "git+https://github.com/hshoff/vx.git"
   },
-  "keywords": ["vx", "react", "d3", "visualizations", "charts"],
+  "keywords": [
+    "vx",
+    "react",
+    "d3",
+    "visualizations",
+    "charts"
+  ],
   "author": "@hshoff",
   "license": "MIT",
   "bugs": {
@@ -40,37 +46,40 @@
     "regenerator-runtime": "^0.10.5"
   },
   "dependencies": {
-    "@vx/annotation": "0.0.147",
-    "@vx/axis": "^0.0.152",
-    "@vx/bounds": "0.0.147",
-    "@vx/boxplot": "0.0.143",
-    "@vx/brush": "0.0.143",
-    "@vx/clip-path": "0.0.143",
-    "@vx/curve": "0.0.143",
-    "@vx/drag": "0.0.143",
-    "@vx/event": "0.0.143",
-    "@vx/geo": "0.0.150",
-    "@vx/glyph": "0.0.143",
-    "@vx/gradient": "0.0.143",
-    "@vx/grid": "0.0.147",
-    "@vx/group": "0.0.143",
-    "@vx/heatmap": "0.0.143",
-    "@vx/hierarchy": "0.0.144",
-    "@vx/legend": "0.0.143",
-    "@vx/marker": "0.0.147",
-    "@vx/mock-data": "0.0.147",
-    "@vx/network": "0.0.143",
-    "@vx/pattern": "0.0.143",
-    "@vx/point": "0.0.143",
-    "@vx/responsive": "^0.0.152",
-    "@vx/scale": "^0.0.152",
-    "@vx/shape": "0.0.147",
-    "@vx/text": "^0.0.152",
-    "@vx/tooltip": "0.0.148",
-    "@vx/voronoi": "0.0.143",
-    "@vx/zoom": "0.0.143"
+    "@vx/annotation": "0.0.153",
+    "@vx/axis": "0.0.153",
+    "@vx/bounds": "0.0.153",
+    "@vx/boxplot": "0.0.153",
+    "@vx/brush": "0.0.153",
+    "@vx/clip-path": "0.0.153",
+    "@vx/curve": "0.0.153",
+    "@vx/drag": "0.0.153",
+    "@vx/event": "0.0.153",
+    "@vx/geo": "0.0.153",
+    "@vx/glyph": "0.0.153",
+    "@vx/gradient": "0.0.153",
+    "@vx/grid": "0.0.153",
+    "@vx/group": "0.0.153",
+    "@vx/heatmap": "0.0.153",
+    "@vx/hierarchy": "0.0.153",
+    "@vx/legend": "0.0.153",
+    "@vx/marker": "0.0.153",
+    "@vx/mock-data": "0.0.153",
+    "@vx/network": "0.0.153",
+    "@vx/pattern": "0.0.153",
+    "@vx/point": "0.0.153",
+    "@vx/responsive": "0.0.153",
+    "@vx/scale": "0.0.153",
+    "@vx/shape": "0.0.153",
+    "@vx/text": "0.0.153",
+    "@vx/tooltip": "0.0.153",
+    "@vx/voronoi": "0.0.153",
+    "@vx/zoom": "0.0.153"
   },
   "jest": {
-    "setupFiles": ["raf/polyfill", "<rootDir>/test/enzyme-setup.js"]
+    "setupFiles": [
+      "raf/polyfill",
+      "<rootDir>/test/enzyme-setup.js"
+    ]
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@vx/gradient",
-  "version": "0.0.143",
+  "version": "0.0.153",
   "description": "vx gradient",
   "sideEffects": false,
   "main": "build/index.js",
@@ -8,13 +8,21 @@
     "type": "git",
     "url": "git+https://github.com/hshoff/vx.git"
   },
-  "files": ["build"],
+  "files": [
+    "build"
+  ],
   "scripts": {
     "build": "make build SRC=./src",
     "prepublish": "make build SRC=./src",
     "test": "jest"
   },
-  "keywords": ["vx", "react", "d3", "visualizations", "charts"],
+  "keywords": [
+    "vx",
+    "react",
+    "d3",
+    "visualizations",
+    "charts"
+  ],
   "author": "@hshoff",
   "license": "MIT",
   "bugs": {
@@ -45,6 +53,9 @@
     "access": "public"
   },
   "jest": {
-    "setupFiles": ["raf/polyfill", "<rootDir>/test/enzyme-setup.js"]
+    "setupFiles": [
+      "raf/polyfill",
+      "<rootDir>/test/enzyme-setup.js"
+    ]
   }
 }

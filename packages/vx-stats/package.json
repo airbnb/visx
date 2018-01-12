@@ -1,6 +1,6 @@
 {
   "name": "@vx/stats",
-  "version": "0.0.152",
+  "version": "0.0.153",
   "description": "vx stats box violin",
   "sideEffects": false,
   "main": "build/index.js",
@@ -13,7 +13,13 @@
     "type": "git",
     "url": "git+https://github.com/hshoff/vx.git"
   },
-  "keywords": ["vx", "react", "d3", "visualizations", "charts"],
+  "keywords": [
+    "vx",
+    "react",
+    "d3",
+    "visualizations",
+    "charts"
+  ],
   "author": "@conglei",
   "license": "MIT",
   "bugs": {
@@ -21,8 +27,8 @@
   },
   "homepage": "https://github.com/hshoff/vx#readme",
   "dependencies": {
-    "@vx/group": "0.0.143",
-    "@vx/scale": "^0.0.152",
+    "@vx/group": "0.0.153",
+    "@vx/scale": "0.0.153",
     "classnames": "^2.2.5",
     "d3-shape": "^1.2.0"
   },
@@ -46,6 +52,9 @@
     "access": "public"
   },
   "jest": {
-    "setupFiles": ["raf/polyfill", "<rootDir>/test/enzyme-setup.js"]
+    "setupFiles": [
+      "raf/polyfill",
+      "<rootDir>/test/enzyme-setup.js"
+    ]
   }
 }

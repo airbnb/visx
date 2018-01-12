@@ -1,6 +1,6 @@
 {
   "name": "@vx/boxplot",
-  "version": "0.0.143",
+  "version": "0.0.153",
   "description": "vx box plot",
   "sideEffects": false,
   "main": "build/index.js",
@@ -13,7 +13,13 @@
     "type": "git",
     "url": "git+https://github.com/hshoff/vx.git"
   },
-  "keywords": ["vx", "react", "d3", "visualizations", "charts"],
+  "keywords": [
+    "vx",
+    "react",
+    "d3",
+    "visualizations",
+    "charts"
+  ],
   "author": "@conglei",
   "license": "MIT",
   "bugs": {
@@ -21,7 +27,7 @@
   },
   "homepage": "https://github.com/hshoff/vx#readme",
   "dependencies": {
-    "@vx/group": "0.0.143",
+    "@vx/group": "0.0.153",
     "classnames": "^2.2.5"
   },
   "devDependencies": {
@@ -44,6 +50,9 @@
     "access": "public"
   },
   "jest": {
-    "setupFiles": ["raf/polyfill", "<rootDir>/test/enzyme-setup.js"]
+    "setupFiles": [
+      "raf/polyfill",
+      "<rootDir>/test/enzyme-setup.js"
+    ]
   }
 }

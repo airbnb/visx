@@ -1,17 +1,24 @@
 {
   "name": "@vx/point",
-  "version": "0.0.143",
+  "version": "0.0.153",
   "description": "vx point",
   "sideEffects": false,
   "main": "build/index.js",
   "repository": "https://github.com/hshoff/vx",
-  "files": ["build"],
+  "files": [
+    "build"
+  ],
   "scripts": {
     "build": "make build SRC=./src",
     "prepublish": "make build SRC=./src",
     "test": "jest"
   },
-  "keywords": ["vx", "data", "visualizations", "charts"],
+  "keywords": [
+    "vx",
+    "data",
+    "visualizations",
+    "charts"
+  ],
   "author": "@hshoff",
   "license": "MIT",
   "devDependencies": {
@@ -31,6 +38,9 @@
     "access": "public"
   },
   "jest": {
-    "setupFiles": ["raf/polyfill", "<rootDir>/test/enzyme-setup.js"]
+    "setupFiles": [
+      "raf/polyfill",
+      "<rootDir>/test/enzyme-setup.js"
+    ]
   }
 }

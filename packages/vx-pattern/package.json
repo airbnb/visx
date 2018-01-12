@@ -1,10 +1,12 @@
 {
   "name": "@vx/pattern",
-  "version": "0.0.143",
+  "version": "0.0.153",
   "description": "vx pattern",
   "sideEffects": false,
   "main": "build/index.js",
-  "files": ["build"],
+  "files": [
+    "build"
+  ],
   "scripts": {
     "build": "make build SRC=./src",
     "prepublish": "make build SRC=./src",
@@ -14,7 +16,13 @@
     "type": "git",
     "url": "git+https://github.com/hshoff/vx.git"
   },
-  "keywords": ["vx", "react", "d3", "visualization", "charts"],
+  "keywords": [
+    "vx",
+    "react",
+    "d3",
+    "visualization",
+    "charts"
+  ],
   "author": "@hshoff",
   "license": "MIT",
   "bugs": {
@@ -45,6 +53,9 @@
     "access": "public"
   },
   "jest": {
-    "setupFiles": ["raf/polyfill", "<rootDir>/test/enzyme-setup.js"]
+    "setupFiles": [
+      "raf/polyfill",
+      "<rootDir>/test/enzyme-setup.js"
+    ]
   }
 }
