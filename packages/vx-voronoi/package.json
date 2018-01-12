@@ -2,26 +2,19 @@
   "name": "@vx/voronoi",
   "version": "0.0.143",
   "description": "vx voronoi",
+  "sideEffects": false,
   "main": "build/index.js",
   "scripts": {
     "build": "make build SRC=./src",
     "prepublish": "make build SRC=./src",
     "test": "jest"
   },
-  "files": [
-    "build"
-  ],
+  "files": ["build"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hshoff/vx.git"
   },
-  "keywords": [
-    "vx",
-    "react",
-    "d3",
-    "visualizations",
-    "charts"
-  ],
+  "keywords": ["vx", "react", "d3", "visualizations", "charts"],
   "author": "Chris Williams @williaster",
   "license": "MIT",
   "bugs": {
@@ -53,9 +46,6 @@
     "react": "^15.0.0-0 || ^16.0.0-0"
   },
   "jest": {
-    "setupFiles": [
-      "raf/polyfill",
-      "<rootDir>/test/enzyme-setup.js"
-    ]
+    "setupFiles": ["raf/polyfill", "<rootDir>/test/enzyme-setup.js"]
   }
 }

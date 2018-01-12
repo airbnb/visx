@@ -2,15 +2,14 @@
   "name": "@vx/clip-path",
   "version": "0.0.143",
   "description": "vx clip-path",
+  "sideEffects": false,
   "main": "build/index.js",
   "scripts": {
     "build": "make build SRC=./src",
     "prepublish": "make build SRC=./src",
     "test": "jest"
   },
-  "files": [
-    "build"
-  ],
+  "files": ["build"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hshoff/vx.git"
@@ -49,9 +48,6 @@
     "access": "public"
   },
   "jest": {
-    "setupFiles": [
-      "raf/polyfill",
-      "<rootDir>/test/enzyme-setup.js"
-    ]
+    "setupFiles": ["raf/polyfill", "<rootDir>/test/enzyme-setup.js"]
   }
 }

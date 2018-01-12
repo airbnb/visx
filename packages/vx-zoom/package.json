@@ -2,26 +2,19 @@
   "name": "@vx/zoom",
   "version": "0.0.143",
   "description": "vx zoom",
+  "sideEffects": false,
   "main": "build/index.js",
   "scripts": {
     "build": "make build SRC=./src",
     "prepublish": "make build SRC=./src",
     "test": "jest"
   },
-  "files": [
-    "build"
-  ],
+  "files": ["build"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hshoff/vx.git"
   },
-  "keywords": [
-    "vx",
-    "react",
-    "d3",
-    "visualizations",
-    "charts"
-  ],
+  "keywords": ["vx", "react", "d3", "visualizations", "charts"],
   "author": "@hshoff",
   "license": "MIT",
   "bugs": {
@@ -45,9 +38,6 @@
     "regenerator-runtime": "^0.10.5"
   },
   "jest": {
-    "setupFiles": [
-      "raf/polyfill",
-      "<rootDir>/test/enzyme-setup.js"
-    ]
+    "setupFiles": ["raf/polyfill", "<rootDir>/test/enzyme-setup.js"]
   }
 }

@@ -1,27 +1,20 @@
 {
   "name": "@vx/glyph",
   "version": "0.0.143",
-  "description": "vx glyph ",
+  "description": "vx glyph",
+  "sideEffects": false,
   "main": "build/index.js",
   "scripts": {
     "build": "make build SRC=./src",
     "prepublish": "make build SRC=./src",
     "test": "jest"
   },
-  "files": [
-    "build"
-  ],
+  "files": ["build"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hshoff/vx.git"
   },
-  "keywords": [
-    "vx",
-    "react",
-    "d3",
-    "visualizations",
-    "charts"
-  ],
+  "keywords": ["vx", "react", "d3", "visualizations", "charts"],
   "author": "@hshoff",
   "license": "MIT",
   "bugs": {
@@ -53,9 +46,6 @@
     "d3-shape": "^1.2.0"
   },
   "jest": {
-    "setupFiles": [
-      "raf/polyfill",
-      "<rootDir>/test/enzyme-setup.js"
-    ]
+    "setupFiles": ["raf/polyfill", "<rootDir>/test/enzyme-setup.js"]
   }
 }

@@ -2,26 +2,19 @@
   "name": "@vx/brush",
   "version": "0.0.143",
   "description": "vx brush",
+  "sideEffects": false,
   "main": "build/index.js",
   "scripts": {
     "build": "make build SRC=./src",
     "prepublish": "make build SRC=./src",
     "test": "jest"
   },
-  "files": [
-    "build"
-  ],
+  "files": ["build"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hshoff/vx.git"
   },
-  "keywords": [
-    "vx",
-    "d3",
-    "react",
-    "visualizations",
-    "charts"
-  ],
+  "keywords": ["vx", "d3", "react", "visualizations", "charts"],
   "author": "@hshoff",
   "license": "MIT",
   "bugs": {
@@ -52,9 +45,6 @@
     "recompose": "^0.23.1"
   },
   "jest": {
-    "setupFiles": [
-      "raf/polyfill",
-      "<rootDir>/test/enzyme-setup.js"
-    ]
+    "setupFiles": ["raf/polyfill", "<rootDir>/test/enzyme-setup.js"]
   }
 }
