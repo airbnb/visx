@@ -38,7 +38,8 @@
     "regenerator-runtime": "^0.10.5"
   },
   "dependencies": {
-    "@vx/point": "0.0.153"
+    "@vx/point": "0.0.153",
+    "@vx/transform": "1.0.0"
   },
   "jest": {
     "setupFiles": ["raf/polyfill", "<rootDir>/test/enzyme-setup.js"]
