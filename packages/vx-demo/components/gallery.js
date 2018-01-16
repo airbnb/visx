@@ -34,6 +34,7 @@ import Pack from '../components/tiles/pack';
 import Treemap from '../components/tiles/treemap';
 import Radar from '../components/tiles/radar';
 import Responsive from '../components/tiles/responsive';
+import DragI from '../components/tiles/drag-i';
 
 const items = [
   '#242424',
@@ -875,7 +876,41 @@ export default class Gallery extends React.Component {
               </div>
             </Link>
           </Tilt>
-          <div className="gallery-item placeholder" />
+          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+            <Link prefetch href="/drag-i">
+              <div
+                className="gallery-item"
+                style={{
+                  background: '#c4c3cb',
+                  borderRadius: '14px',
+                }}
+              >
+                <div className="image">
+                  <ParentSize>
+                    {({ width, height }) => (
+                      <DragI
+                        width={543}
+                        height={390}
+                        events={false}
+                      />
+                    )}
+                  </ParentSize>
+                </div>
+                <div
+                  className="details"
+                  style={{
+                    color: '#6437d6',
+                    zIndex: 1,
+                  }}
+                >
+                  <div className="title">Drag</div>
+                  <div className="description">
+                    <pre>{`<Drag.Drag />`}</pre>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </Tilt>
           <div className="gallery-item placeholder" />
         </div>
 
