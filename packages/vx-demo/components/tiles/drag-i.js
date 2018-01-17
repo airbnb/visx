@@ -1,7 +1,5 @@
 import React from 'react';
-import { localPoint } from '@vx/event';
 import { scaleOrdinal } from '@vx/scale';
-import { withParentSize } from '@vx/responsive';
 import { LinearGradient } from '@vx/gradient';
 import { Drag, raise } from '@vx/drag';
 
@@ -50,6 +48,10 @@ export default class DragI extends React.Component {
       range: colors,
       domain: this.state.items.map(d => d.id),
     });
+  }
+
+  componentDidMount() {
+    this.forceUpdate();
   }
 
   render() {
@@ -108,6 +110,9 @@ export default class DragI extends React.Component {
                     onMouseMove={dragMove}
                     onMouseUp={dragEnd}
                     onMouseDown={dragStart}
+                    onTouchStart={dragStart}
+                    onTouchMove={dragMove}
+                    onTouchEnd={dragEnd}
                   />
                 );
               }}

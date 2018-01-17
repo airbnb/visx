@@ -6,9 +6,7 @@ export default () => {
   return (
     <Show component={DragI} title="Drag I">
       {`import React from 'react';
-import { localPoint } from '@vx/event';
 import { scaleOrdinal } from '@vx/scale';
-import { withParentSize } from '@vx/responsive';
 import { LinearGradient } from '@vx/gradient';
 import { Drag, raise } from '@vx/drag';
 

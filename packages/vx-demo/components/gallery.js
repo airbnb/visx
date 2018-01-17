@@ -3,6 +3,7 @@ import Tilt from 'react-tilt';
 import Link from 'next/link';
 import { ParentSize } from '@vx/responsive';
 import { extent, max } from 'd3-array';
+import drawData from './util/drawData';
 
 import Page from '../components/page';
 import Footer from '../components/footer';
@@ -35,6 +36,7 @@ import Treemap from '../components/tiles/treemap';
 import Radar from '../components/tiles/radar';
 import Responsive from '../components/tiles/responsive';
 import DragI from '../components/tiles/drag-i';
+import DragII from '../components/tiles/drag-ii';
 
 const items = [
   '#242424',
@@ -911,7 +913,43 @@ export default class Gallery extends React.Component {
               </div>
             </Link>
           </Tilt>
-          <div className="gallery-item placeholder" />
+          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+            <Link prefetch href="/drag-ii">
+              <div
+                className="gallery-item"
+                style={{
+                  background: '#04002b',
+                  borderRadius: '14px',
+                }}
+              >
+                <div className="image">
+                  <ParentSize>
+                    {({ width, height }) => (
+                      <DragII
+                        width={543}
+                        height={390}
+                        events={false}
+                        data={drawData}
+                      />
+                    )}
+                  </ParentSize>
+                </div>
+                <div
+                  className="details"
+                  style={{
+                    color: '#ff614e',
+                    zIndex: 1,
+                  }}
+                >
+                  <div className="title">Drag</div>
+                  <div className="description">
+                    <pre>{`<Drag.Drag />`}</pre>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </Tilt>
+          {false && <div className="gallery-item placeholder" />}
         </div>
 
         <div>
