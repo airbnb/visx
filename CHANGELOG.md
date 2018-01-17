@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.156](#v00156)
 - [v0.0.155](#v00155)
 - [v0.0.154](#v00154)
 - [v0.0.153](#v00153)
@@ -41,6 +42,27 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.156
+
+#### :rocket: Enhancements
+
+- [drag] add `resetOnStart` prop (default to false). When true, it will reset drag `x,y` to the start point from the mousedown/touchstart event and `dx,dy` to 0 on drag start [#231](https://github.com/hshoff/vx/pull/231)
+
+#### :memo: Documentation
+
+- [demo] add /drag-ii demo of a drawboard made with drag [#231](https://github.com/hshoff/vx/pull/231)
+
+#### :trophy: Contributers
+
+- [hshoff](https://github.com/hshoff)
+
+```bash
+Changes:
+ - @vx/demo: 0.0.155 => 0.0.156
+ - @vx/drag: 0.0.155 => 0.0.156
+ - @vx/vx: 0.0.155 => 0.0.156
+```
 
 # v0.0.155
 
