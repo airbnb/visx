@@ -1,6 +1,6 @@
 {
   "name": "@vx/demo",
-  "version": "0.0.155",
+  "version": "0.0.156",
   "description": "vx demo",
   "repository": "https://github.com/hshoff/vx",
   "scripts": {
@@ -23,7 +23,7 @@
     "@vx/brush": "0.0.153",
     "@vx/clip-path": "0.0.153",
     "@vx/curve": "0.0.153",
-    "@vx/drag": "0.0.155",
+    "@vx/drag": "0.0.156",
     "@vx/event": "0.0.153",
     "@vx/geo": "0.0.153",
     "@vx/glyph": "0.0.153",
