@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.155](#v00155)
 - [v0.0.154](#v00154)
 - [v0.0.153](#v00153)
 - [v0.0.152](#v00152)
@@ -40,6 +41,23 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.155
+
+#### :rocket: Enhancements
+
+- [drag] add `<Drag />` component + demo [#229](https://github.com/hshoff/vx/pull/229)
+
+#### :trophy: Contributers
+
+- [hshoff](https://github.com/hshoff)
+
+```bash
+Changes:
+ - @vx/demo: 0.0.154 => 0.0.155
+ - @vx/drag: 0.0.153 => 0.0.155
+ - @vx/vx: 0.0.154 => 0.0.155
+```
 
 # v0.0.154
 
