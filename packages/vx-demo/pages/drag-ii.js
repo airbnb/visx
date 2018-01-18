@@ -16,17 +16,16 @@ export default class DragII extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [],
+      data: props.data || [],
     };
   }
-  componentDidMount() {
-    this.forceUpdate();
-  }
+
   render() {
     const { width, height } = this.props;
+    if (width < 10) return null;
     return (
-      <div className="DragII">
-        <svg width={width} height={height} ref={s => (this.svg = s)}>
+      <div className="DragII" style={{ touchAction: 'none' }}>
+        <svg width={width} height={height}>
           <LinearGradient id="stroke" from="#ff614e" to="#ffdc64" />
           <rect
             fill="#04002b"
@@ -50,7 +49,6 @@ export default class DragII extends React.Component {
             );
           })}
           <Drag
-            svg={this.svg}
             width={width}
             height={height}
             resetOnStart={true}
@@ -115,6 +113,9 @@ export default class DragII extends React.Component {
                     onMouseDown={dragStart}
                     onMouseUp={dragEnd}
                     onMouseMove={dragMove}
+                    onTouchStart={dragStart}
+                    onTouchEnd={dragEnd}
+                    onTouchMove={dragMove}
                   />
                 </g>
               );

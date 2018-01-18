@@ -7,7 +7,6 @@ export default class Drag extends React.Component {
     children: PropTypes.func.isRequired,
     width: PropTypes.number.isRequired,
     height: PropTypes.number.isRequired,
-    svg: PropTypes.element,
     captureDragArea: PropTypes.bool,
     resetOnStart: PropTypes.bool,
   };
@@ -32,9 +31,9 @@ export default class Drag extends React.Component {
   }
 
   dragStart(event) {
-    const { svg, onDragStart, resetOnStart } = this.props;
+    const { onDragStart, resetOnStart } = this.props;
     const { dx, dy } = this.state;
-    const point = localPoint(svg, event);
+    const point = localPoint(event);
     const nextState = {
       ...this.state,
       isDragging: true,
@@ -48,10 +47,10 @@ export default class Drag extends React.Component {
   }
 
   dragMove(event) {
-    const { svg, onDragMove } = this.props;
+    const { onDragMove } = this.props;
     const { x, y, isDragging } = this.state;
     if (!isDragging) return;
-    const point = localPoint(svg, event);
+    const point = localPoint(event);
     const nextState = {
       ...this.state,
       isDragging: true,
@@ -63,8 +62,8 @@ export default class Drag extends React.Component {
   }
 
   dragEnd(event) {
-    const { svg, onDragEnd } = this.props;
-    const point = localPoint(svg, event);
+    const { onDragEnd } = this.props;
+    const point = localPoint(event);
     const nextState = {
       ...this.state,
       isDragging: false,
