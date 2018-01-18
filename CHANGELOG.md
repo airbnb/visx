@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.157](#v00157)
 - [v0.0.156](#v00156)
 - [v0.0.155](#v00155)
 - [v0.0.154](#v00154)
@@ -42,6 +43,27 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.157
+
+#### :rocket: Enhancements
+
+- [drag] remove `svg` prop. This was causing hacky problems like calling `forceUpdate` in `cDM`. `localPoint()` now finds svg from the event argument [#233](https://github.com/hshoff/vx/pull/233)
+
+#### :memo: Documentation
+
+- [demo] update drag demos, add `touch-action: none` on drag demos so no scrolling when dragging [#233](https://github.com/hshoff/vx/pull/233)
+
+#### :trophy: Contributers
+
+- [hshoff](https://github.com/hshoff)
+
+```bash
+Changes:
+ - @vx/demo: 0.0.156 => 0.0.157
+ - @vx/drag: 0.0.156 => 0.0.157
+ - @vx/vx: 0.0.156 => 0.0.157
+```
 
 # v0.0.156
 
