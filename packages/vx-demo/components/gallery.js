@@ -891,8 +891,8 @@ export default class Gallery extends React.Component {
                   <ParentSize>
                     {({ width, height }) => (
                       <DragI
-                        width={543}
-                        height={390}
+                        width={width}
+                        height={height}
                         events={false}
                       />
                     )}
@@ -926,8 +926,8 @@ export default class Gallery extends React.Component {
                   <ParentSize>
                     {({ width, height }) => (
                       <DragII
-                        width={543}
-                        height={390}
+                        width={width}
+                        height={height}
                         events={false}
                         data={drawData}
                       />

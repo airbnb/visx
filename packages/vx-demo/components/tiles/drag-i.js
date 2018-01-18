@@ -9,7 +9,7 @@ const colors = [
   '#02efff',
   '#03aeed',
   '#0384d7',
-  `#edfdff`,
+  '#edfdff',
   '#ab31ff',
   '#5924d7',
   '#d145ff',
@@ -34,15 +34,18 @@ function genCircles({ num, width, height }) {
     });
 }
 
+const genItems = ({ width, height }) =>
+  genCircles({
+    num: width < 360 ? 40 : 185,
+    width,
+    height,
+  });
+
 export default class DragI extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: genCircles({
-        num: 185,
-        width: props.width,
-        height: props.height,
-      }),
+      items: genItems({ ...props }),
     };
     this.colorScale = scaleOrdinal({
       range: colors,
@@ -50,15 +53,23 @@ export default class DragI extends React.Component {
     });
   }
 
-  componentDidMount() {
-    this.forceUpdate();
+  componentWillReceiveProps(nextProps) {
+    const { width, height } = nextProps;
+    if (width !== this.props.width) {
+      this.setState(() => {
+        return {
+          items: genItems({ ...nextProps }),
+        };
+      });
+    }
   }
 
   render() {
     const { width, height } = this.props;
+    if (width < 10) return null;
     return (
-      <div className="Drag">
-        <svg width={width} height={height} ref={s => (this.svg = s)}>
+      <div className="Drag" style={{ touchAction: 'none' }}>
+        <svg width={width} height={height}>
           <LinearGradient id="stroke" from="#ff00a5" to="#ffc500" />
           <rect
             fill="#c4c3cb"
@@ -69,7 +80,6 @@ export default class DragI extends React.Component {
           {this.state.items.map((d, i) => (
             <Drag
               key={`${d.id}`}
-              svg={this.svg}
               width={width}
               height={height}
               onDragStart={() => {
