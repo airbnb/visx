@@ -189,7 +189,7 @@ export default class extends React.Component {
                   return (
                     <LinkComponent
                       data={link}
-                      percent={stepPercent}
+                      percent={+stepPercent}
                       stroke="#374469"
                       strokeWidth="1"
                       fill="none"
