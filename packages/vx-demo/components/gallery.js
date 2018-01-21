@@ -37,6 +37,7 @@ import Radar from '../components/tiles/radar';
 import Responsive from '../components/tiles/responsive';
 import DragI from '../components/tiles/drag-i';
 import DragII from '../components/tiles/drag-ii';
+import LinkTypes from '../components/tiles/linkTypes';
 
 const items = [
   '#242424',
@@ -949,7 +950,34 @@ export default class Gallery extends React.Component {
               </div>
             </Link>
           </Tilt>
-          {false && <div className="gallery-item placeholder" />}
+          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+            <Link prefetch href="/linkTypes">
+              <div
+                className="gallery-item"
+                style={{ background: '#272b4d' }}
+              >
+                <div className="image">
+                  <ParentSize>
+                    {({ width, height }) => (
+                      <LinkTypes
+                        width={width}
+                        height={height + detailsHeight}
+                      />
+                    )}
+                  </ParentSize>
+                </div>
+                <div className="details" style={{ color: '#269688' }}>
+                  <div className="title">Link Types</div>
+                  <div className="description">
+                    <pre
+                    >{`<Shape.Link* />`}</pre>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </Tilt>
+          <div className="gallery-item placeholder" />
+          <div className="gallery-item placeholder" />
         </div>
 
         <div>
