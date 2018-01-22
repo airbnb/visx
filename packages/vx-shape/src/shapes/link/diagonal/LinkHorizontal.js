@@ -14,11 +14,16 @@ export default function LinkHorizontal({
   data,
   x = d => d.y,
   y = d => d.x,
+  source = d => d.source,
+  target = d => d.target,
   ...restProps
 }) {
   const link = linkHorizontal();
   link.x(x);
   link.y(y);
+  link.source(source);
+  link.target(target);
+
   return (
     <path
       ref={innerRef}

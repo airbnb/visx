@@ -1,6 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
+import { path as d3Path } from 'd3-path';
 import additionalProps from '../../../util/additionalProps';
 
 LinkVerticalLine.propTypes = {
@@ -13,18 +14,31 @@ export default function LinkVerticalLine({
   data,
   x = d => d.x,
   y = d => d.y,
+  source = d => d.source,
+  target = d => d.target,
   ...restProps
 }) {
-  const line = (source, target) => `
-    M${x(source)},${y(source)}
-    L${x(target)},${y(target)}
-  `;
+  const link = (data) => {
+    const sourceData = source(data);
+    const targetData = target(data);
+
+    const sx = x(sourceData);
+    const sy = y(sourceData);
+    const tx = x(targetData);
+    const ty = y(targetData);
+
+    const path =  d3Path();
+    path.moveTo(sx, sy)
+    path.lineTo(tx, ty)
+
+    return path.toString();
+  };
 
   return (
     <path
       ref={innerRef}
       className={cx('vx-link', className)}
-      d={line(data.source, data.target)}
+      d={link(data)}
       {...restProps}
     />
   );
