@@ -14,11 +14,16 @@ export default function LinkRadial({
   data,
   angle = d => d.x,
   radius = d => d.y,
+  source = d => d.source,
+  target = d => d.target, 
   ...restProps
 }) {
   const link = linkRadial()
   link.angle(angle);
   link.radius(radius);
+  link.source(source);
+  link.target(target);
+
   return (
     <path
       ref={innerRef}

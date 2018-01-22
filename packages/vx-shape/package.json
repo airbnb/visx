@@ -27,6 +27,7 @@
     "@vx/group": "0.0.153",
     "@vx/point": "0.0.153",
     "classnames": "^2.2.5",
+    "d3-path": "^1.0.5",
     "d3-shape": "^1.2.0",
     "prop-types": "^15.5.10"
   },
