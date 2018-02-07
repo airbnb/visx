@@ -2,11 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ResizeObserver from 'resize-observer-polyfill';
 
+import debounce from 'lodash/debounce';
+
 export default class ParentSize extends React.Component {
+  static defaultProps = {
+    debounceTime: 300,
+  };
+
   constructor(props) {
     super(props);
     this.state = { width: 0, height: 0, top: 0, left: 0 };
-    this.resize = this.resize.bind(this);
+    this.resize = debounce(this.resize.bind(this), props.debounceTime);
     this.setTarget = this.setTarget.bind(this);
   }
   componentDidMount() {
@@ -58,4 +64,5 @@ export default class ParentSize extends React.Component {
 ParentSize.propTypes = {
   className: PropTypes.string,
   children: PropTypes.func.isRequired,
+  debounceTime: PropTypes.number,
 };
