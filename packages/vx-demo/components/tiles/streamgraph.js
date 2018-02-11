@@ -87,10 +87,10 @@ export default class Streamgraph extends React.Component {
         'mustard',
         'cherry',
         'navy',
-        'transparent',
-        'transparent',
-        'transparent',
-        'transparent',
+        'circles',
+        'circles',
+        'circles',
+        'circles',
       ],
     });
 
@@ -122,7 +122,7 @@ export default class Streamgraph extends React.Component {
           complement
         />
         <PatternCircles
-          id="transparent"
+          id="circles"
           height={60}
           width={60}
           radius={10}
@@ -156,10 +156,12 @@ export default class Streamgraph extends React.Component {
                       d={path(series)}
                       fill={zScale(series.key)}
                     />
-                    <path
-                      d={path(series)}
-                      fill={`url(#${patternScale(series.key)})`}
-                    />
+                    {patternScale(series.key) !== 'circles' && (
+                      <path
+                        d={path(series)}
+                        fill={`url(#${patternScale(series.key)})`}
+                      />
+                    )}
                   </g>
                 );
               });
