@@ -28,10 +28,10 @@ function TooltipWithBounds({
   let top = initialTop;
 
   if (rect && parentRect) {
-    left = (offsetLeft + rect.right) > parentRect.right
+    left = ((offsetLeft + rect.right) > parentRect.right || (offsetLeft + rect.right) > window.innerWidth)
       ? (left - rect.width - offsetLeft) : left + offsetLeft;
 
-    top = (offsetTop + rect.bottom) > parentRect.bottom
+    top = ((offsetTop + rect.bottom) > parentRect.bottom || (offsetTop + rect.bottom) > window.innerHeight)
       ? (top - rect.height - offsetTop) : top + offsetTop;
   }
 
