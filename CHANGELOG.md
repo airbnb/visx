@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.158](#v00158)
 - [v0.0.157](#v00157)
 - [v0.0.156](#v00156)
 - [v0.0.155](#v00155)
@@ -43,6 +44,30 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.158
+
+#### :rocket: Enhancements
+
+- [responsive] add debounceTime prop to `<ParentSize />` with a default of 300ms. [#241](https://github.com/hshoff/vx/pull/241)
+- [tooltip] `<TooltipWithBounds />` now also reconsiders window bounds [#240](https://github.com/hshoff/vx/pull/240)
+
+#### :house: Internal
+
+- [demo] fix streamgraph transparent fill [#242](https://github.com/hshoff/vx/pull/242)
+
+```bash
+Changes:
+ - @vx/annotation: 0.0.153 => 0.0.158
+ - @vx/axis: 0.0.153 => 0.0.158
+ - @vx/demo: 0.0.157 => 0.0.158
+ - @vx/grid: 0.0.153 => 0.0.158
+ - @vx/marker: 0.0.153 => 0.0.158
+ - @vx/responsive: 0.0.153 => 0.0.158
+ - @vx/shape: 0.0.153 => 0.0.158
+ - @vx/tooltip: 0.0.153 => 0.0.158
+ - @vx/vx: 0.0.157 => 0.0.158
+```
 
 # v0.0.157
 
