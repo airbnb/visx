@@ -26,7 +26,6 @@ const formatDate = (date) => format(parseDate(date));
 
 // accessors
 const x0 = d => d.date;
-const y = d => d.value;
 
 export default ({
   width,
@@ -80,7 +79,6 @@ export default ({
         keys={keys}
         height={yMax}
         x0={x0}
-        y={y}
         x0Scale={x0Scale}
         x1Scale={x1Scale}
         yScale={yScale}
