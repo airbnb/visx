@@ -84,7 +84,7 @@ export default withTooltip(
             y={0}
             width={width}
             height={height}
-            fill='#eaedff'}
+            fill='#eaedff'
             rx={14}
           />
           <BarStack
