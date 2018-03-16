@@ -1,6 +1,11 @@
 import React from 'react';
 import { ParentSize } from '@vx/responsive';
 import Lines from './lines';
+import ResizeObserver from 'resize-observer-polyfill';
+
+if (!window.ResizeObserver) {
+  window.ResizeObserver = ResizeObserver;
+}
 
 function Nav() {
   return (
