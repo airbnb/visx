@@ -16,7 +16,7 @@ Simple demo to show off a useful feature.  Since svg `<text>` itself does not su
 ```jsx
 import React from 'react';
 import { render } from 'react-dom';
-import Text from 'react-svg-text';
+import { Text } from '@vx/text';
 
 const App = () => (
   <svg>
