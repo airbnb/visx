@@ -219,6 +219,38 @@ Lots coming soon, check out the [roadmap](./ROADMAP.md).
 
     > Me too.
 
+## Development
+[lerna](https://github.com/lerna/lerna/) is used to manage versions and dependencies between
+packages in the umbrella vx repo.
+
+```
+vx/
+  lerna.json
+  package.json
+  packages/
+    vx-package-1/
+      src/
+      test/
+      build/
+      package.json
+      ...
+    vx-package-2/
+      ...
+    ...
+```
+
+For easiest development clone or fork vx, install the _root_ dependencies including lerna,
+then have lerna install package dependencies and manage the symlinking between packages for you by using the [`lerna bootstrap`](https://github.com/lerna/lerna#bootstrap) command:
+
+```sh
+git clone git@github.com:hshoff/vx.git # or your fork
+cd vx
+npm install # installs root vx deps
+lerna bootstrap # installs all package deps, sym-links within-vx deps
+```
+
+Upon modification of a given package you can run `npm run build` from that package's folder to re-build the package with your changes. You can use the local dev server within `packages/vx-demo` to view and iterate on your changes in the gallery. From the `packages/vx-demo` folder run `npm run dev` to start the next server which (if correctly sym-linked with lerna) will also watch for changes you make to other packages.
+
 :v:
 
 [MIT](./LICENSE) &bull; [@hshoff](https://twitter.com/hshoff)
