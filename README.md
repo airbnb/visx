@@ -173,12 +173,13 @@ Lots coming soon, check out the [roadmap](./ROADMAP.md).
 - [Flaque/data-structures](https://github.com/Flaque/data-structures) ([Interactive explanation of the trie data structure](https://trie.now.sh/))
 - [dylanmoz/trello](https://github.com/DylanMoz/dylanmoz.github.io/blob/source/src/pages/trello/TrelloGraph.js) ([Demo](http://dylanmoz.github.io/trello/)) ([How to Make Beautiful Graphs With vx and React-Motion](https://devblog.classy.org/how-to-make-beautiful-graphs-with-vx-and-react-motion-6ffe7aecf6f3))
 - [gkunthara/Crypto-Chart](https://github.com/gkunthara/Crypto-Chart) ([Demo](https://www.crypto-chart.com/home)) ([Tutorial](https://medium.com/@georgekunthara/after-the-tutorial-the-first-react-app-4dce6645634e))
-- Collapsible tree with react-move by [@techniq](https://github.com/techniq) ([Demo](https://codesandbox.io/s/n3w687vmqj)) ([Radial demo](https://codesandbox.io/s/vmqwrkl395)) ([More info](https://github.com/hshoff/vx/issues/162#issuecomment-335029517))
+- Collapsible tree with [`react-move`](https://github.com/react-tools/react-move) by [@techniq](https://github.com/techniq) ([Demo](https://codesandbox.io/s/n3w687vmqj)) ([Radial demo](https://codesandbox.io/s/vmqwrkl395)) ([More info](https://github.com/hshoff/vx/issues/162#issuecomment-335029517))
 - Bitcoin 30-day price by [@hshoff](https://github.com/hshoff) ([Demo](https://viewsource.now.sh/bitcoin)) ([Github](https://github.com/hshoff/viewsource#1-bitcoin-price-chart)) ([YouTube](https://www.youtube.com/watch?v=oeE2tuspdHg))
 - Ethereum candlestick chart by [@hshoff](https://github.com/hshoff) ([Demo](https://viewsource.now.sh/ethereum)) ([Github](https://github.com/hshoff/viewsource#2-ethereum-candlestick-chart))
 - Song data visualization through spotify by [@bother7](https://github.com/bother7) ([Demo](https://spotalyzer-frontend.herokuapp.com/demo) ([Github](https://github.com/bother7/spotalyzer_frontend))
 - Investment Calculator ([website](https://investmentcalculator.io/))
 - Cryptagon - crypto portfolio tracker ([website](https://cryptagon.io/))
+- Animation with [`react-spring`](https://github.com/drcmda/react-spring/) by [@drcmda](https://github.com/drcmda) ([Demo](https://codesandbox.io/embed/j3x61vjz5v))
 - Have a project that's using vx? Open a pull request and we'll add it to the list.
 
 ## FAQ
@@ -188,8 +189,19 @@ Lots coming soon, check out the [roadmap](./ROADMAP.md).
     > vx stands for visualization components.
 
 1. Do you plan on supporting animation/transitions?
-
+    > A common criticism of vx is it doesn't have animation baked in, but this was a concious choice. It's a powerful feature to not bake it in.
+    >
+    > Imagine your app already bundles `react-motion`, adding a hypothetical `@vx/animation` is bloat. Since vx is react, it already supports all react animation libs.
+    >
+    > Charting libraries are like style guides. Each org or app will eventually want full control over their own implementation. 
+    >
+    > vx makes this easier for everyone. No need to reinvent the wheel each time.
+    >
     > more info: https://github.com/hshoff/vx/issues/6
+    >
+    > examples:
+    >   - Collapsible tree with [`react-move`](https://github.com/react-tools/react-move) by [@techniq](https://github.com/techniq) ([Demo](https://codesandbox.io/s/n3w687vmqj)) ([Radial demo](https://codesandbox.io/s/vmqwrkl395))
+    >   - Animation with `react-spring` by [@drcmda](https://github.com/drcmda) ([Demo](https://codesandbox.io/embed/j3x61vjz5v))
 
 1. Do I have to use every package to make a chart?
 
