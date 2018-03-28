@@ -69,6 +69,6 @@ describe('<AxisLeft />', () => {
     const label = 'test';
     const wrapper = shallow(<AxisLeft {...axisProps} label={label} />).dive();
     const text = wrapper.find('.vx-axis-label');
-    expect(text.text()).toEqual(label);
+    expect(text.prop('children')).toEqual(label);
   });
 });

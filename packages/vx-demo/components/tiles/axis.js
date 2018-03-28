@@ -123,6 +123,9 @@ export default ({ width, height, margin }) => {
           dx: '-0.25em',
           dy: '0.25em',
         })}
+        tickComponent={({ formattedValue, ...tickProps}) => (
+          <text {...tickProps}>{formattedValue}</text>
+        )}
       />
       <AxisBottom
         top={height - margin.bottom}
