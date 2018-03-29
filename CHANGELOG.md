@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.159](#v00159)
 - [v0.0.158](#v00158)
 - [v0.0.157](#v00157)
 - [v0.0.156](#v00156)
@@ -44,6 +45,66 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.159
+
+#### :rocket: Enhancements
+
+- [axis] By default `<Axis />` components now use `@vx/text` to render tick labels. This enables multi line labels and scaling text to fit in a certain amount of space. [#260](https://github.com/hshoff/vx/pull/260)
+
+Example:
+```jsx
+<Axis 
+  {...axisProps}
+  tickLabelProps = (tickValue, index) => ({
+    textAnchor: 'middle',
+    verticalAnchor: 'middle',
+    width: 100,
+    scaleToFit: true
+  })
+/>
+```
+
+- [axis] `<Axis />` components got a new prop `tickComponent` to enable rendering of custom ticks. With this prop one can completely customize ticks without having to create a new custom `<Axis />` component. [#260](https://github.com/hshoff/vx/pull/260)
+
+Example:
+```jsx
+<Axis
+  {...axisProps}
+  tickComponent={({ x, y, formattedValue }) => (
+    <g>
+      <circle cx={x} cy={y} r={2} fill='rebeccapurple' />
+      <text x={x + 4} y={y}>{formattedValue}</text>
+    </g>
+  )}
+/>
+```
+
+`tickComponent` accepts a function and gets called with the following attribute:
+```js
+tickComponent({ x, y, formattedValue, ...tickLabelPropsObj })
+```
+
+#### :memo: Documentation
+
+- [axis] update `@vx/axis` documentation. [#260](https://github.com/hshoff/vx/pull/260)
+- [demo] fix bargroup example code. [#250](https://github.com/hshoff/vx/pull/250)
+- [demo] fix barstack example code. [#249](https://github.com/hshoff/vx/pull/249)
+- [text] fix readme.md of `@vx/text` package. [#257](https://https://github.com/hshoff/vx/pull/257)
+
+#### :trophy: Contributers
+
+ - [bulat-f](https://github.com/bulat-f)
+ - [sto3psl](https://github.com/sto3psl)
+ - [browniefed](https://github.com/browniefed)
+
+```bash
+Changes:
+ - @vx/axis: 0.0.158 => 0.0.159
+ - @vx/demo: 0.0.158 => 0.0.159
+ - @vx/text: 0.0.153 => 0.0.159
+ - @vx/vx: 0.0.158 => 0.0.159
+ ```
 
 # v0.0.158
 
