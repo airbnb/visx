@@ -3,6 +3,7 @@ import { Axis } from '../src';
 import { shallow } from 'enzyme';
 import { scaleLinear, scaleBand } from '../../vx-scale';
 import { Line } from '@vx/shape';
+import { Text } from '@vx/text'
 
 const axisProps = {
   orientation: 'left',
@@ -79,7 +80,7 @@ describe('<Axis />', () => {
 
     const ticks = wrapper.find('.vx-axis-tick');
     ticks.forEach(tick => {
-      expect(tick.find('text').props()).toEqual(
+      expect(tick.find(Text).props()).toEqual(
         expect.objectContaining(tickProps),
       );
     });
@@ -109,7 +110,7 @@ describe('<Axis />', () => {
     );
 
     const label = wrapper.find('.vx-axis-label');
-    expect(label.find('text').props()).toEqual(
+    expect(label.find(Text).props()).toEqual(
       expect.objectContaining(labelProps),
     );
   });
@@ -218,8 +219,8 @@ describe('<Axis />', () => {
       wrapper
         .children()
         .find('.vx-axis-tick')
-        .find('text')
-        .text(),
+        .find(Text)
+        .prop('children')
     ).toBe('test!!!');
   });
 
@@ -235,9 +236,9 @@ describe('<Axis />', () => {
       wrapper
         .children()
         .find('.vx-axis-tick')
-        .find('text')
-        .text(),
-    ).toBe('0');
+        .find(Text)
+        .prop('children')
+    ).toBe(0);
   });
 
   test('it should use center if scale is band', () => {

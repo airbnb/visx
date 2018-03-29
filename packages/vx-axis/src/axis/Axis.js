@@ -4,6 +4,7 @@ import cx from 'classnames';
 import { Line } from '@vx/shape';
 import { Point } from '@vx/point';
 import { Group } from '@vx/group';
+import { Text } from '@vx/text';
 import center from '../utils/center';
 import identity from '../utils/identity';
 import getLabelTransform from '../utils/labelTransform';
@@ -39,6 +40,7 @@ const propTypes = {
   tickStroke: PropTypes.string,
   tickTransform: PropTypes.string,
   tickValues: PropTypes.array,
+  tickComponent: PropTypes.func,
   top: PropTypes.number,
   children: PropTypes.func,
 };
@@ -79,6 +81,7 @@ export default function Axis({
   tickStroke = 'black',
   tickTransform,
   tickValues,
+  tickComponent,
   top = 0,
 }) {
   let values = scale.ticks ? scale.ticks(numTicks) : scale.domain();
@@ -187,18 +190,25 @@ export default function Axis({
                 to={tickToPoint}
                 stroke={tickStroke}
               />
+              )}
+            {tickComponent ? tickComponent({
+              x: tickToPoint.x,
+              y: tickToPoint.y + (horizontal && !isTop ? tickLabelFontSize : 0),
+              formattedValue: format(val, index),
+              ...tickLabelPropsObj
+            }) : (
+              <Text
+                x={tickToPoint.x}
+                y={
+                  tickToPoint.y +
+                  (horizontal && !isTop ? tickLabelFontSize : 0)
+  
+                }
+                {...tickLabelPropsObj}
+              >
+                {format(val, index)}
+              </Text>
             )}
-            <text
-              x={tickToPoint.x}
-              y={
-                tickToPoint.y +
-                (horizontal && !isTop ? tickLabelFontSize : 0)
-
-              }
-              {...tickLabelPropsObj}
-            >
-              {format(val, index)}
-            </text>
           </Group>
         );
       })}
@@ -215,7 +225,7 @@ export default function Axis({
       )}
 
       {label && (
-        <text
+        <Text
           className={cx('vx-axis-label', labelClassName)}
           {...getLabelTransform({
             labelOffset,
@@ -228,7 +238,7 @@ export default function Axis({
           {...labelProps}
         >
           {label}
-        </text>
+        </Text>
       )}
     </Group>
   );

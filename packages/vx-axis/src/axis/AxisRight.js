@@ -28,6 +28,7 @@ const propTypes = {
   tickStroke: PropTypes.string,
   tickTransform: PropTypes.string,
   tickValues: PropTypes.array,
+  tickComponent: PropTypes.func,
   top: PropTypes.number,
   children: PropTypes.func,
 };
@@ -64,6 +65,7 @@ export default function AxisRight({
   tickStroke,
   tickTransform,
   tickValues,
+  tickComponent,
   top,
 }) {
   return (
@@ -92,6 +94,7 @@ export default function AxisRight({
       tickStroke={tickStroke}
       tickTransform={tickTransform}
       tickValues={tickValues}
+      tickComponent={tickComponent}
       top={top}
       children={children}
     />
