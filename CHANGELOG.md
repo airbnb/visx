@@ -92,7 +92,7 @@ tickComponent({ x, y, formattedValue, ...tickLabelPropsObj })
 - [demo] fix barstack example code. [#249](https://github.com/hshoff/vx/pull/249)
 - [text] fix readme.md of `@vx/text` package. [#257](https://https://github.com/hshoff/vx/pull/257)
 
-#### :trophy: Contributers
+#### :trophy: Contributors
 
  - [bulat-f](https://github.com/bulat-f)
  - [sto3psl](https://github.com/sto3psl)
@@ -117,6 +117,12 @@ Changes:
 
 - [demo] fix streamgraph transparent fill [#242](https://github.com/hshoff/vx/pull/242)
 
+#### :trophy: Contributors
+
+- [AlexJuarez](https://github.com/AlexJuarez)
+- [manuelrocha88](https://github.com/manuelrocha88)
+- [hshoff](https://github.com/hshoff)
+
 ```bash
 Changes:
  - @vx/annotation: 0.0.153 => 0.0.158
@@ -140,7 +146,7 @@ Changes:
 
 - [demo] update drag demos, add `touch-action: none` on drag demos so no scrolling when dragging [#233](https://github.com/hshoff/vx/pull/233)
 
-#### :trophy: Contributers
+#### :trophy: Contributors
 
 - [hshoff](https://github.com/hshoff)
 
@@ -161,7 +167,7 @@ Changes:
 
 - [demo] add /drag-ii demo of a drawboard made with drag [#231](https://github.com/hshoff/vx/pull/231)
 
-#### :trophy: Contributers
+#### :trophy: Contributors
 
 - [hshoff](https://github.com/hshoff)
 
@@ -178,7 +184,7 @@ Changes:
 
 - [drag] add `<Drag />` component + demo [#229](https://github.com/hshoff/vx/pull/229)
 
-#### :trophy: Contributers
+#### :trophy: Contributors
 
 - [hshoff](https://github.com/hshoff)
 
@@ -195,7 +201,7 @@ Changes:
 
 - [legend] make legend items clickable, add `<LegendItem />` propTypes, add click test [#227](https://github.com/hshoff/vx/pull/227)
 
-#### :trophy: Contributers
+#### :trophy: Contributors
 
 - [hshoff](https://github.com/hshoff)
 
@@ -212,7 +218,7 @@ Changes:
 
 - [internal] add sideEffects: false to pkg for webpack 4 [#225](https://github.com/hshoff/vx/pull/225)
 
-#### :trophy: Contributers
+#### :trophy: Contributors
 
 - [hshoff](https://github.com/hshoff)
 
@@ -275,7 +281,7 @@ Changes:
 - [vx][test] fix `@vx/vx` text test. It was looking for `TextOutline` export which was removed with the [new `@vx/text`](https://github.com/hshoff/vx/pull/208) [#224](https://github.com/hshoff/vx/pull/224)
 - [axis] bump `prop-types` dep and use `^` [#224](https://github.com/hshoff/vx/pull/224)
 
-#### :trophy: Contributers
+#### :trophy: Contributors
 
 - [techniq](https://github.com/techniq)
 - [hshoff](https://github.com/hshoff)
