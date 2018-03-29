@@ -246,7 +246,7 @@ then have lerna install package dependencies and manage the symlinking between p
 git clone git@github.com:hshoff/vx.git # or your fork
 cd vx
 npm install # installs root vx deps
-lerna bootstrap # installs all package deps, sym-links within-vx deps
+./node_modules/.bin/lerna bootstrap # installs all package deps, sym-links within-vx deps
 ```
 
 Upon modification of a given package you can run `npm run build` from that package's folder to re-build the package with your changes. You can use the local dev server within `packages/vx-demo` to view and iterate on your changes in the gallery. From the `packages/vx-demo` folder run `npm run dev` to start the next server which (if correctly sym-linked with lerna) will also watch for changes you make to other packages.
