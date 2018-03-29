@@ -1,6 +1,6 @@
 {
   "name": "@vx/vx",
-  "version": "0.0.158",
+  "version": "0.0.159",
   "description": "One stop install for all vx packages",
   "sideEffects": false,
   "main": "build/index.js",
@@ -47,7 +47,7 @@
   },
   "dependencies": {
     "@vx/annotation": "0.0.158",
-    "@vx/axis": "0.0.158",
+    "@vx/axis": "0.0.159",
     "@vx/bounds": "0.0.153",
     "@vx/boxplot": "0.0.153",
     "@vx/brush": "0.0.153",
@@ -71,7 +71,7 @@
     "@vx/responsive": "0.0.158",
     "@vx/scale": "0.0.153",
     "@vx/shape": "0.0.158",
-    "@vx/text": "0.0.153",
+    "@vx/text": "0.0.159",
     "@vx/tooltip": "0.0.158",
     "@vx/voronoi": "0.0.153",
     "@vx/zoom": "0.0.153"
