@@ -23,6 +23,7 @@ function TooltipWithBounds({
   parentRect,
   children,
   style,
+  ...otherProps,
 }) {
   let left = initialLeft;
   let top = initialTop;
@@ -36,7 +37,7 @@ function TooltipWithBounds({
   }
 
   return (
-    <Tooltip style={{ top: 0, transform: `translate(${left}px, ${top}px)`, ...style }}>
+    <Tooltip style={{ top: 0, transform: `translate(${left}px, ${top}px)`, ...style }} {...otherProps}>
       {children}
     </Tooltip>
   );
