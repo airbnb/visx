@@ -15,6 +15,9 @@
   <a title="@vx/shape npm downloads" href="https://www.npmjs.com/package/@vx/shape">
     <img src="https://img.shields.io/npm/dm/@vx/shape.svg?style=flat-square" />
   </a>
+  <a title="Join the community on Spectrum" href="https://spectrum.chat/vx">
+    <img src="https://withspectrum.github.io/badge/badge.svg" />
+  </a>
   <a href="https://app.fossa.io/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fhshoff%2Fvx?ref=badge_shield" alt="FOSSA Status">     <img src="https://app.fossa.io/api/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fhshoff%2Fvx.svg?type=shield"/>
   </a>
   <a href="https://lernajs.io/" alt="lerna">
