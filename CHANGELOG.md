@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.160](#v00160)
 - [v0.0.159](#v00159)
 - [v0.0.158](#v00158)
 - [v0.0.157](#v00157)
@@ -45,6 +46,33 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.160
+
+#### :boom: Breaking Changes
+
+- [shape] `<Link* />` components now use `...additionalProps()` everywhere for consistency. So function props get passed data. example: `onClick={event => // stuff}` becomes `onClick={data => event => // stuff}` and now you can stroke/fill/attr based on data `stroke={({ target }) => target.data.children ? 'yellow' : 'blue' }. [#265](https://github.com/hshoff/vx/pull/265)
+
+#### :rocket: Enhancements
+
+- [shape] export link path generators. fixes: [#263](https://github.com/hshoff/vx/issues/263). [#265](https://github.com/hshoff/vx/pull/265)
+- [shape] add optional `path` prop so you can pass in path generator function instead of creating the generator every render. [#265](https://github.com/hshoff/vx/pull/265)
+
+#### :trophy: Contributors
+
+- [hshoff](https://github.com/hshoff)
+
+```bash
+Changes:
+ - @vx/annotation: 0.0.158 => 0.0.160
+ - @vx/axis: 0.0.159 => 0.0.160
+ - @vx/demo: 0.0.159 => 0.0.160
+ - @vx/grid: 0.0.158 => 0.0.160
+ - @vx/marker: 0.0.158 => 0.0.160
+ - @vx/shape: 0.0.158 => 0.0.160
+ - @vx/tooltip: 0.0.158 => 0.0.160
+ - @vx/vx: 0.0.159 => 0.0.160
+```
 
 # v0.0.159
 
