@@ -6,10 +6,18 @@ import { hierarchy } from 'd3-hierarchy';
 import { pointRadial } from 'd3-shape';
 
 import {
-  LinkHorizontal, LinkVertical, LinkRadial,
-  LinkHorizontalStep, LinkVerticalStep, LinkRadialStep,
-  LinkHorizontalCurve, LinkVerticalCurve, LinkRadialCurve,
-  LinkHorizontalLine, LinkVerticalLine, LinkRadialLine
+  LinkHorizontal,
+  LinkVertical,
+  LinkRadial,
+  LinkHorizontalStep,
+  LinkVerticalStep,
+  LinkRadialStep,
+  LinkHorizontalCurve,
+  LinkVerticalCurve,
+  LinkRadialCurve,
+  LinkHorizontalLine,
+  LinkVerticalLine,
+  LinkRadialLine
 } from '@vx/shape';
 
 const data = {
@@ -25,32 +33,32 @@ const data = {
           name: 'C',
           children: [
             {
-              name: 'C1',
+              name: 'C1'
             },
             {
               name: 'D',
               children: [
                 {
-                  name: 'D1',
+                  name: 'D1'
                 },
                 {
-                  name: 'D2',
+                  name: 'D2'
                 },
                 {
-                  name: 'D3',
-                },
-              ],
-            },
-          ],
-        },
-      ],
+                  name: 'D3'
+                }
+              ]
+            }
+          ]
+        }
+      ]
     },
     { name: 'Z' },
     {
       name: 'B',
-      children: [{ name: 'B1' }, { name: 'B2' }, { name: 'B3' }],
-    },
-  ],
+      children: [{ name: 'B1' }, { name: 'B2' }, { name: 'B3' }]
+    }
+  ]
 };
 
 export default class extends React.Component {
@@ -89,9 +97,9 @@ export default class extends React.Component {
       origin = {
         x: innerWidth / 2,
         y: innerHeight / 2
-      }
-      sizeWidth = 2 * Math.PI
-      sizeHeight = Math.min(innerWidth, innerHeight) / 2
+      };
+      sizeWidth = 2 * Math.PI;
+      sizeHeight = Math.min(innerWidth, innerHeight) / 2;
     } else {
       origin = { x: 0, y: 0 };
       if (orientation === 'vertical') {
@@ -105,21 +113,34 @@ export default class extends React.Component {
 
     return (
       <div>
-        <div>
+        <div style={{ color: 'rgba(38, 150, 136, 1.000)', fontSize: 10 }}>
           <label>layout:</label>
-          <select onChange={e => this.setState({ layout: e.target.value })} value={layout}>
+          <select
+            onClick={e => e.stopPropagation()}
+            onChange={e => this.setState({ layout: e.target.value })}
+            value={layout}
+          >
             <option value="cartesian">cartesian</option>
             <option value="polar">polar</option>
           </select>
 
           <label>orientation:</label>
-          <select onChange={e => this.setState({ orientation: e.target.value })} value={orientation} disabled={layout === 'polar'}>
+          <select
+            onClick={e => e.stopPropagation()}
+            onChange={e => this.setState({ orientation: e.target.value })}
+            value={orientation}
+            disabled={layout === 'polar'}
+          >
             <option value="vertical">vertical</option>
             <option value="horizontal">horizontal</option>
           </select>
 
           <label>link:</label>
-          <select onChange={e => this.setState({ linkType: e.target.value })} value={linkType}>
+          <select
+            onClick={e => e.stopPropagation()}
+            onChange={e => this.setState({ linkType: e.target.value })}
+            value={linkType}
+          >
             <option value="diagonal">diagonal</option>
             <option value="step">step</option>
             <option value="curve">curve</option>
@@ -127,7 +148,16 @@ export default class extends React.Component {
           </select>
 
           <label>step:</label>
-          <input type="range" min={0} max={1} step={.1} onChange={e => this.setState({ stepPercent: e.target.value })} value={stepPercent} disabled={linkType !== 'step' || layout === 'polar'} />
+          <input
+            onClick={e => e.stopPropagation()}
+            type="range"
+            min={0}
+            max={1}
+            step={0.1}
+            onChange={e => this.setState({ stepPercent: e.target.value })}
+            value={stepPercent}
+            disabled={linkType !== 'step' || layout === 'polar'}
+          />
         </div>
 
         <svg width={width} height={height}>
@@ -136,40 +166,33 @@ export default class extends React.Component {
           <Tree
             top={margin.top}
             left={margin.left}
-            root={hierarchy(data, d => (d.isExpanded ? d.children : null))}
-            size={[
-              sizeWidth,
-              sizeHeight
-            ]}
-            separation={(a, b) => (a.parent == b.parent ? 1 : .5) / a.depth}
+            root={hierarchy(data, d => (d.isExpanded ? null : d.children))}
+            size={[sizeWidth, sizeHeight]}
+            separation={(a, b) => (a.parent == b.parent ? 1 : 0.5) / a.depth}
           >
             {({ data }) => (
-              <Group
-                top={origin.y}
-                left={origin.x}
-              >
+              <Group top={origin.y} left={origin.x}>
                 {data.links().map((link, i) => {
-
                   let LinkComponent;
 
                   if (layout === 'polar') {
                     if (linkType === 'step') {
                       LinkComponent = LinkRadialStep;
                     } else if (linkType === 'curve') {
-                      LinkComponent = LinkRadialCurve
+                      LinkComponent = LinkRadialCurve;
                     } else if (linkType === 'line') {
-                      LinkComponent = LinkRadialLine
+                      LinkComponent = LinkRadialLine;
                     } else {
-                      LinkComponent = LinkRadial
+                      LinkComponent = LinkRadial;
                     }
                   } else {
                     if (orientation === 'vertical') {
                       if (linkType === 'step') {
                         LinkComponent = LinkVerticalStep;
                       } else if (linkType === 'curve') {
-                        LinkComponent = LinkVerticalCurve
+                        LinkComponent = LinkVerticalCurve;
                       } else if (linkType === 'line') {
-                        LinkComponent = LinkVerticalLine
+                        LinkComponent = LinkVerticalLine;
                       } else {
                         LinkComponent = LinkVertical;
                       }
@@ -177,9 +200,9 @@ export default class extends React.Component {
                       if (linkType === 'step') {
                         LinkComponent = LinkHorizontalStep;
                       } else if (linkType === 'curve') {
-                        LinkComponent = LinkHorizontalCurve
+                        LinkComponent = LinkHorizontalCurve;
                       } else if (linkType === 'line') {
-                        LinkComponent = LinkHorizontalLine
+                        LinkComponent = LinkHorizontalLine;
                       } else {
                         LinkComponent = LinkHorizontal;
                       }
@@ -194,8 +217,11 @@ export default class extends React.Component {
                       strokeWidth="1"
                       fill="none"
                       key={i}
+                      onClick={data => event => {
+                        console.log(data);
+                      }}
                     />
-                  )
+                  );
                 })}
 
                 {data.descendants().map((node, key) => {
@@ -257,13 +283,9 @@ export default class extends React.Component {
                         textAnchor={'middle'}
                         style={{ pointerEvents: 'none' }}
                         fill={
-                          node.depth === 0 ? (
-                            '#71248e'
-                          ) : node.children ? (
-                            'white'
-                          ) : (
-                            '#26deb0'
-                          )
+                          node.depth === 0
+                            ? '#71248e'
+                            : node.children ? 'white' : '#26deb0'
                         }
                       >
                         {node.data.name}
