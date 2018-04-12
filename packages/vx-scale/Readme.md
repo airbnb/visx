@@ -34,31 +34,6 @@ const bars = data.map((d, i) => {
 
 ## Current Scaling Options
 
-### Color Scaling
-Color scales convert a point to a series of colors. D3 comes with a number of schemes that you can use just like any other scale.
-
-[Original d3 docs with colors](https://github.com/d3/d3-scale/blob/master/README.md#schemeCategory10)
-
-#### Scale 10 colors
-![scale10 colors](https://raw.githubusercontent.com/d3/d3-scale/master/img/category10.png)
-
-#### Scale 20 colors
-![scale20 colors](https://raw.githubusercontent.com/d3/d3-scale/master/img/category20.png)
-
-#### Scale 20b colors
-![scale20b colors](https://raw.githubusercontent.com/d3/d3-scale/master/img/category20b.png)
-
-#### Scale 20c colors
-![scale20c colors](https://raw.githubusercontent.com/d3/d3-scale/master/img/category20c.png)
-
-Example:
-``` javascript
-const scale10 = Scale.schemeCategory10({ /* range, domain, unknown */})
-const scale20 = Scale.schemeCategory20({ /* range, domain, unknown */})
-const scale20b = Scale.schemeCategory20b({ /* range, domain, unknown */})
-const scale20c = Scale.schemeCategory20c({ /* range, domain, unknown */})
-```
-
 ### Band Scaling
 
 [Original d3 docs](https://github.com/d3/d3-scale/blob/master/README.md#_band)
@@ -189,3 +164,31 @@ const scale = Scale.scaleUtc({
    */
 });
 ```
+
+### Color Scales
+
+D3 scales offer the ability to map points to colors.  You can use [`d3-scale-chromatic`](https://github.com/d3/d3-scale-chromatic) in conjunction with vx's `scaleOrdinal` to make color scales.
+
+You can install `d3-scale-chromatic` with npm:
+
+```
+npm install --save d3-scale-chromatic
+```
+
+You create a color scale like so:
+
+```javascript
+import { scaleOrdinal } from '@vx/scale';
+import { schemeSet1 } from 'd3-scale-chromatic';
+
+const colorScale = scaleOrdinal({
+  domain: arrayOfThings,
+  range: schemeSet1
+});
+```
+
+This generates a color scale with the following colors:
+
+![d3-scale-chromatic schemeSet1](https://raw.githubusercontent.com/d3/d3-scale-chromatic/master/img/Set1.png)
+
+There are a number of other [categorical color schemes](https://github.com/d3/d3-scale-chromatic/blob/master/README.md#categorical) available, along with other continuous color schemes.
