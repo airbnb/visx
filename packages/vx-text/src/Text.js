@@ -103,8 +103,8 @@ class Text extends Component {
     } = this.props;
     const { wordsByLines } = this.state;
 
-    const x = textProps.x + dx;
-    const y = textProps.y + dy;
+    const x = textProps.x;
+    const y = textProps.y;
 
     let startDy;
     switch (verticalAnchor) {
@@ -139,10 +139,12 @@ class Text extends Component {
 
     return (
       <text
-        x={x}
-        y={y}
-        textAnchor={textAnchor}
         {...textProps}
+        textAnchor={textAnchor}
+        style={{
+          transform: `translate(${dx}, ${dy})`,
+          ...textProps.style
+        }}
       >
         {
         wordsByLines.map((line, index) => (
