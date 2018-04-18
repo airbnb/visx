@@ -138,22 +138,20 @@ class Text extends Component {
     }
 
     return (
-      <text
-        {...textProps}
-        textAnchor={textAnchor}
-        style={{
-          transform: `translate(${dx}, ${dy})`,
-          ...textProps.style
-        }}
-      >
-        {
-        wordsByLines.map((line, index) => (
-          <tspan x={x} dy={index === 0 ? startDy : lineHeight} key={index}>
-            {line.words.join(' ')}
-          </tspan>
-        ))
-      }
-      </text>
+      <svg x={dx} y={dy} fontSize={textProps.fontSize} style={{ overflow: 'visible' }}>
+        <text
+          {...textProps}
+          textAnchor={textAnchor}
+        >
+          {
+          wordsByLines.map((line, index) => (
+            <tspan x={x} dy={index === 0 ? startDy : lineHeight} key={index}>
+              {line.words.join(' ')}
+            </tspan>
+          ))
+        }
+        </text>
+      </svg>
     );
   }
 }
