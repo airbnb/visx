@@ -103,8 +103,8 @@ class Text extends Component {
     } = this.props;
     const { wordsByLines } = this.state;
 
-    const x = textProps.x + dx;
-    const y = textProps.y + dy;
+    const x = textProps.x;
+    const y = textProps.y;
 
     let startDy;
     switch (verticalAnchor) {
@@ -138,20 +138,20 @@ class Text extends Component {
     }
 
     return (
-      <text
-        x={x}
-        y={y}
-        textAnchor={textAnchor}
-        {...textProps}
-      >
-        {
-        wordsByLines.map((line, index) => (
-          <tspan x={x} dy={index === 0 ? startDy : lineHeight} key={index}>
-            {line.words.join(' ')}
-          </tspan>
-        ))
-      }
-      </text>
+      <svg x={dx} y={dy} fontSize={textProps.fontSize} style={{ overflow: 'visible' }}>
+        <text
+          {...textProps}
+          textAnchor={textAnchor}
+        >
+          {
+          wordsByLines.map((line, index) => (
+            <tspan x={x} dy={index === 0 ? startDy : lineHeight} key={index}>
+              {line.words.join(' ')}
+            </tspan>
+          ))
+        }
+        </text>
+      </svg>
     );
   }
 }
