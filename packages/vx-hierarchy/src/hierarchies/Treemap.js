@@ -56,9 +56,7 @@ export default function Treemap({
       {nodeComponent &&
         data.descendants().map((node, i) => {
           return (
-            <Group key={`treemap-node-${i}`}>
-              {React.createElement(nodeComponent, { node })}
-            </Group>
+            <Group key={`treemap-node-${i}`}>{React.createElement(nodeComponent, { node })}</Group>
           );
         })}
     </Group>

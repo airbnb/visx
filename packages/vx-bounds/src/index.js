@@ -1,1 +1,4 @@
-export { default as withBoundingRects, withBoundingRectsProps } from './enhancers/withBoundingRects';
+export {
+  default as withBoundingRects,
+  withBoundingRectsProps
+} from './enhancers/withBoundingRects';

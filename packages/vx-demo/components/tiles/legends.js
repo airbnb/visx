@@ -6,43 +6,33 @@ import {
   LegendQuantile,
   LegendOrdinal,
   LegendSize,
-  LegendThreshold,
+  LegendThreshold
 } from '@vx/legend';
-import {
-  scaleQuantize,
-  scaleLinear,
-  scaleOrdinal,
-  scaleThreshold,
-} from '@vx/scale';
+import { scaleQuantize, scaleLinear, scaleOrdinal, scaleThreshold } from '@vx/scale';
 
-import {
-  GlyphStar,
-  GlyphWye,
-  GlyphTriangle,
-  GlyphDiamond,
-} from '@vx/glyph';
+import { GlyphStar, GlyphWye, GlyphTriangle, GlyphDiamond } from '@vx/glyph';
 
 const oneDecimalFormat = format('.1f');
 const twoDecimalFormat = format('.2f');
 
 const quantile = scaleQuantize({
   domain: [0, 0.15],
-  range: ['#eb4d70', '#f19938', '#6ce18b', '#78f6ef', '#9096f8'],
+  range: ['#eb4d70', '#f19938', '#6ce18b', '#78f6ef', '#9096f8']
 });
 
 const linear = scaleLinear({
   domain: [0, 10],
-  range: ['#ed4fbb', '#e9a039'],
+  range: ['#ed4fbb', '#e9a039']
 });
 
 const ordinalColor = scaleOrdinal({
   domain: ['a', 'b', 'c', 'd'],
-  range: ['#7d81f6', '#4899f1', '#71f5ef', '#66d981'].reverse(),
+  range: ['#7d81f6', '#4899f1', '#71f5ef', '#66d981'].reverse()
 });
 
 const ordinalColor2 = scaleOrdinal({
   domain: ['a', 'b', 'c', 'd'],
-  range: ['#8386f7', '#e64357', '#f29b38', '#fae856'].reverse(),
+  range: ['#8386f7', '#e64357', '#f29b38', '#fae856'].reverse()
 });
 
 const ordinalShape = scaleOrdinal({
@@ -50,51 +40,34 @@ const ordinalShape = scaleOrdinal({
   range: [
     <GlyphStar size={50} top={50 / 6} left={50 / 6} fill="#dd59b8" />,
     <GlyphWye size={50} top={50 / 6} left={50 / 6} fill="#de6a9a" />,
-    <GlyphTriangle
-      size={50}
-      top={50 / 6}
-      left={50 / 6}
-      fill="#de7d7b"
-    />,
-    <GlyphDiamond
-      size={50}
-      top={50 / 6}
-      left={50 / 6}
-      fill="#df905f"
-    />,
+    <GlyphTriangle size={50} top={50 / 6} left={50 / 6} fill="#de7d7b" />,
+    <GlyphDiamond size={50} top={50 / 6} left={50 / 6} fill="#df905f" />,
     props => (
       <text fontSize="12" dy="1em" dx=".33em" fill="#e0a346">
         $
       </text>
-    ),
-  ],
+    )
+  ]
 });
 
 const threshold = scaleThreshold({
   domain: [0.01, 0.02, 0.04, 0.06, 0.08, 0.1],
-  range: [
-    '#f2f0f7',
-    '#dadaeb',
-    '#bcbddc',
-    '#9e9ac8',
-    '#756bb1',
-    '#54278f',
-  ],
+  range: ['#f2f0f7', '#dadaeb', '#bcbddc', '#9e9ac8', '#756bb1', '#54278f']
 });
 
 const size = scaleLinear({
   domain: [0, 10],
-  range: [10, 30],
+  range: [10, 30]
 });
 
 const sizeOpacity = scaleLinear({
   domain: [0, 10],
-  range: [0.4, 1],
+  range: [0.4, 1]
 });
 
 const sizeColor = scaleLinear({
   domain: [0, 10],
-  range: ['#75fcfc', '#3236b8'],
+  range: ['#75fcfc', '#3236b8']
 });
 
 function LegendDemo({ title, children }) {
@@ -138,26 +111,18 @@ export default ({ width, height, margin }) => {
             alert(`clicked: ${JSON.stringify(data)}`);
           }}
           onMouseOver={data => event => {
-            console.log(
-              `mouse over: ${data.text}`,
-              `index: ${data.index}`,
-            );
+            console.log(`mouse over: ${data.text}`, `index: ${data.index}`);
           }}
           shapeStyle={props => {
             return {
-              fill: sizeColor(props.datum),
+              fill: sizeColor(props.datum)
             };
           }}
           shape={props => {
             const { size } = props;
             return (
               <svg width={size} height={size}>
-                <circle
-                  {...props}
-                  r={size / 2}
-                  cx={size / 2}
-                  cy={size / 2}
-                />
+                <circle {...props} r={size / 2} cx={size / 2} cy={size / 2} />
               </svg>
             );
           }}
@@ -171,10 +136,7 @@ export default ({ width, height, margin }) => {
             alert(`clicked: ${JSON.stringify(data)}`);
           }}
           onMouseOver={data => event => {
-            console.log(
-              `mouse over: ${data.text}`,
-              `index: ${data.index}`,
-            );
+            console.log(`mouse over: ${data.text}`, `index: ${data.index}`);
           }}
         />
       </LegendDemo>
@@ -190,10 +152,7 @@ export default ({ width, height, margin }) => {
             alert(`clicked: ${JSON.stringify(data)}`);
           }}
           onMouseOver={data => event => {
-            console.log(
-              `mouse over: ${data.text}`,
-              `index: ${data.index}`,
-            );
+            console.log(`mouse over: ${data.text}`, `index: ${data.index}`);
           }}
         />
       </LegendDemo>
@@ -208,10 +167,7 @@ export default ({ width, height, margin }) => {
             alert(`clicked: ${JSON.stringify(data)}`);
           }}
           onMouseOver={data => event => {
-            console.log(
-              `mouse over: ${data.text}`,
-              `index: ${data.index}`,
-            );
+            console.log(`mouse over: ${data.text}`, `index: ${data.index}`);
           }}
         />
       </LegendDemo>
@@ -230,10 +186,7 @@ export default ({ width, height, margin }) => {
             alert(`clicked: ${JSON.stringify(data)}`);
           }}
           onMouseOver={data => event => {
-            console.log(
-              `mouse over: ${data.text}`,
-              `index: ${data.index}`,
-            );
+            console.log(`mouse over: ${data.text}`, `index: ${data.index}`);
           }}
         />
       </LegendDemo>
@@ -251,26 +204,16 @@ export default ({ width, height, margin }) => {
             alert(`clicked: ${JSON.stringify(data)}`);
           }}
           onMouseOver={data => event => {
-            console.log(
-              `mouse over: ${data.text}`,
-              `index: ${data.index}`,
-            );
+            console.log(`mouse over: ${data.text}`, `index: ${data.index}`);
           }}
           shape={props => {
             return (
               <svg width={props.width} height={props.height}>
-                {!React.isValidElement(
-                  ordinalShape(props.label.datum),
-                ) &&
-                  React.createElement(
-                    ordinalShape(props.label.datum),
-                    {
-                      ...props,
-                    },
-                  )}
-                {React.isValidElement(
-                  ordinalShape(props.label.datum),
-                ) &&
+                {!React.isValidElement(ordinalShape(props.label.datum)) &&
+                  React.createElement(ordinalShape(props.label.datum), {
+                    ...props
+                  })}
+                {React.isValidElement(ordinalShape(props.label.datum)) &&
                   React.cloneElement(ordinalShape(props.label.datum))}
               </svg>
             );

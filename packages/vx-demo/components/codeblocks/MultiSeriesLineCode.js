@@ -183,4 +183,4 @@ const Legend = ({
 }`}
     </Codeblock>
   );
-}
+};

@@ -12,10 +12,10 @@ export default ({}) => {
         top: 80,
         left: 10,
         right: 10,
-        bottom: 80,
+        bottom: 80
       }}
     >
-    {`import React from 'react';
+      {`import React from 'react';
 import { Group } from '@vx/group';
 import { Cluster } from '@vx/hierarchy';
 import { LinkVertical } from '@vx/shape';
@@ -134,4 +134,4 @@ export default ({
 }`}
     </Show>
   );
-}
+};

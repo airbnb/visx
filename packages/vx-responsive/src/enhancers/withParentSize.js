@@ -8,13 +8,12 @@ export default function withParentSize(BaseComponent) {
 
       this.state = {
         parentWidth: null,
-        parentHeight: null,
-      }
+        parentHeight: null
+      };
 
-      this.handleResize = debounce(
-        this.resize.bind(this),
-        props.windowResizeDebounceTime
-      ).bind(this);
+      this.handleResize = debounce(this.resize.bind(this), props.windowResizeDebounceTime).bind(
+        this
+      );
     }
 
     componentDidMount() {
@@ -31,7 +30,7 @@ export default function withParentSize(BaseComponent) {
         var boundingRect = this.container.getBoundingClientRect();
         this.setState((prevState, props) => ({
           parentWidth: boundingRect.width,
-          parentHeight: boundingRect.height,
+          parentHeight: boundingRect.height
         }));
       }
     }
@@ -41,21 +40,25 @@ export default function withParentSize(BaseComponent) {
       return (
         <div
           style={{ width: '100%', height: '100%' }}
-          ref={(ref) => { this.container = ref; }}
+          ref={ref => {
+            this.container = ref;
+          }}
         >
-          {parentWidth !== null && parentHeight !== null &&
-            <BaseComponent
-              parentWidth={parentWidth}
-              parentHeight={parentHeight}
-              {...this.props}
-            />}
+          {parentWidth !== null &&
+            parentHeight !== null && (
+              <BaseComponent
+                parentWidth={parentWidth}
+                parentHeight={parentHeight}
+                {...this.props}
+              />
+            )}
         </div>
       );
     }
   }
 
   WrappedComponent.defaultProps = {
-    windowResizeDebounceTime: 300,
+    windowResizeDebounceTime: 300
   };
 
   return WrappedComponent;

@@ -19,14 +19,14 @@ Area.propTypes = {
     PropTypes.string,
     PropTypes.bool,
     PropTypes.object,
-    PropTypes.array,
+    PropTypes.array
   ]),
   innerRef: PropTypes.func,
   strokeDasharray: PropTypes.string,
   strokeWidth: PropTypes.number,
   stroke: PropTypes.string,
   fill: PropTypes.string,
-  curve: PropTypes.func,
+  curve: PropTypes.func
 };
 
 export default function Area({

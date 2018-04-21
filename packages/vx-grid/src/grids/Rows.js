@@ -24,11 +24,11 @@ export default function Rows({
           const y = scale(d);
           const fromPoint = new Point({
             x: 0,
-            y,
+            y
           });
           const toPoint = new Point({
             x: width,
-            y,
+            y
           });
           return (
             <Line

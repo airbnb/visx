@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import additionalProps from '../util/additionalProps';
 
 Bar.propTypes = {
-  innerRef: PropTypes.func,
+  innerRef: PropTypes.func
 };
 
 export default function Bar({
@@ -26,7 +26,7 @@ export default function Bar({
   strokeLinejoin,
   strokeMiterlimit,
   strokeOpacity,
-  ...restProps,
+  ...restProps
 }) {
   return (
     <rect

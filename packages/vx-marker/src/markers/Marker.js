@@ -25,7 +25,7 @@ export default function Marker({
   labelStroke = 'white',
   labelStrokeWidth = 3,
   labelPaintOrder = 'stroke',
-  className,
+  className
 }) {
   return (
     <Group top={top} left={left}>
@@ -38,7 +38,7 @@ export default function Marker({
         strokeDasharray={strokeDasharray}
         transform={transform}
       />
-      {label &&
+      {label && (
         <text
           x={from.x}
           y={from.y}
@@ -53,7 +53,7 @@ export default function Marker({
         >
           {label}
         </text>
-      }
+      )}
     </Group>
   );
 }

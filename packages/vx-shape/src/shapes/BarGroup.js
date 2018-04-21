@@ -21,40 +21,35 @@ export default function BarGroup({
 }) {
   const format = x0Scale.tickFormat ? x0Scale.tickFormat() : d => d;
   return (
-    <Group
-      className={cx('vx-bar-group', className)}
-      top={top}
-      left={left}
-    >
-      {data && data.map((d, i) => {
-        return (
-          <Group
-            key={`bar-group-${i}-${x0(d)}`}
-            left={x0Scale(x0(d))}
-          >
-            {keys && keys.map((key, i) => {
-              const value = d[key];
-              return (
-                <Bar
-                  key={`bar-group-bar-${i}-${value}-${key}`}
-                  x={x1Scale(key)}
-                  y={yScale(value)}
-                  width={x1Scale.bandwidth()}
-                  height={height - yScale(value)}
-                  fill={zScale(key)}
-                  data={{
-                    key,
-                    value,
-                    x: format(x0(d)),
-                    data: d
-                  }}
-                  {...restProps}
-                />
-              );
-            })}
-          </Group>
-        );
-      })}
+    <Group className={cx('vx-bar-group', className)} top={top} left={left}>
+      {data &&
+        data.map((d, i) => {
+          return (
+            <Group key={`bar-group-${i}-${x0(d)}`} left={x0Scale(x0(d))}>
+              {keys &&
+                keys.map((key, i) => {
+                  const value = d[key];
+                  return (
+                    <Bar
+                      key={`bar-group-bar-${i}-${value}-${key}`}
+                      x={x1Scale(key)}
+                      y={yScale(value)}
+                      width={x1Scale.bandwidth()}
+                      height={height - yScale(value)}
+                      fill={zScale(key)}
+                      data={{
+                        key,
+                        value,
+                        x: format(x0(d)),
+                        data: d
+                      }}
+                      {...restProps}
+                    />
+                  );
+                })}
+            </Group>
+          );
+        })}
     </Group>
   );
 }
@@ -70,5 +65,5 @@ BarGroup.propTypes = {
   height: PropTypes.number.isRequired,
   className: PropTypes.string,
   top: PropTypes.number,
-  left: PropTypes.number,
+  left: PropTypes.number
 };

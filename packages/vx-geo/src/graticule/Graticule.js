@@ -29,15 +29,11 @@ export default function Graticule({
 
   return (
     <Group className={`vx-geo-graticule`}>
-      {graticule &&
-        <path
-          d={graticule(currGraticule())}
-          fill="none"
-          stroke="black"
-          {...restProps}
-        />}
+      {graticule && (
+        <path d={graticule(currGraticule())} fill="none" stroke="black" {...restProps} />
+      )}
       {lines &&
-        currGraticule.lines().map((line, i) =>
+        currGraticule.lines().map((line, i) => (
           <g key={i}>
             <path
               d={lines(line)}
@@ -45,18 +41,14 @@ export default function Graticule({
               stroke="black"
               {...additionalProps(restProps, {
                 ...line,
-                index: i,
+                index: i
               })}
             />
-          </g>,
-        )}
-      {outline &&
-        <path
-          d={outline(currGraticule.outline())}
-          fill="none"
-          stroke="black"
-          {...restProps}
-        />}
+          </g>
+        ))}
+      {outline && (
+        <path d={outline(currGraticule.outline())} fill="none" stroke="black" {...restProps} />
+      )}
     </Group>
   );
 }
@@ -64,5 +56,5 @@ export default function Graticule({
 Graticule.propTypes = {
   graticule: PropTypes.func,
   lines: PropTypes.func,
-  outline: PropTypes.func,
+  outline: PropTypes.func
 };

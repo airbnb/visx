@@ -130,4 +130,4 @@ function SimpleLineWithGlyphsChart({
 export default withScreenSize(SimpleLineWithGlyphsChart);`}
     </Codeblock>
   );
-}
+};

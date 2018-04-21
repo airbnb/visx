@@ -7,7 +7,7 @@ const linePathProps = {
   x: d => d.x,
   y: d => d.y,
   xScale: d => d,
-  yScale: d => d,
+  yScale: d => d
 };
 
 describe('<LinePath />', () => {
@@ -21,9 +21,6 @@ describe('<LinePath />', () => {
       expect(n.tagName).toEqual('PATH');
       done();
     };
-    ReactDOM.render(
-      <LinePath innerRef={refCallback} {...linePathProps} />,
-      node,
-    );
+    ReactDOM.render(<LinePath innerRef={refCallback} {...linePathProps} />, node);
   });
 });

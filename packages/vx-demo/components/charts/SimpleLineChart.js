@@ -27,16 +27,11 @@ function numTicksForWidth(width) {
   return 10;
 }
 
-export default ({
-  margin,
-  dataset,
-  width,
-  height,
-}) => {
+export default ({ margin, dataset, width, height }) => {
   if (!Array.isArray(dataset)) dataset = [dataset];
 
   const allData = dataset.reduce((rec, d) => {
-    return rec.concat(d.data)
+    return rec.concat(d.data);
   }, []);
 
   // bounds
@@ -51,12 +46,12 @@ export default ({
   const xScale = scaleTime({
     range: [0, xMax],
     domain: extent(allData, x),
-    nice: true,
+    nice: true
   });
   const yScale = scaleLinear({
     range: [yMax, 0],
     domain: [0, max(allData, y)],
-    nice: true,
+    nice: true
   });
 
   const yFormat = yScale.tickFormat ? yScale.tickFormat() : identity;
@@ -66,28 +61,28 @@ export default ({
   const markerLabel = `Deploy`;
   const markerFrom = new Point({
     x: xScale(x(markerDatum)),
-    y: 0,
+    y: 0
   });
   const markerTo = new Point({
     x: xScale(x(markerDatum)),
-    y: yMax,
+    y: yMax
   });
 
   const annotationPoint = new Point({
     x: xScale(x(allData[3])),
-    y: yScale(y(allData[3])),
+    y: yScale(y(allData[3]))
   });
 
   return (
     <svg width={width} height={height}>
       <defs>
         <linearGradient id="linear" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%"   stopColor="#f101f6"/>
-          <stop offset="100%" stopColor="#01d4f9"/>
+          <stop offset="0%" stopColor="#f101f6" />
+          <stop offset="100%" stopColor="#01d4f9" />
         </linearGradient>
         <linearGradient id="linearFade" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%"   stopColor="#f101f6" stopOpacity="0.3"/>
-          <stop offset="100%" stopColor="#01d4f9" stopOpacity="0.3"/>
+          <stop offset="0%" stopColor="#f101f6" stopOpacity="0.3" />
+          <stop offset="100%" stopColor="#01d4f9" stopOpacity="0.3" />
         </linearGradient>
       </defs>
       <AxisLeft
@@ -100,10 +95,7 @@ export default ({
         stroke={'#1b1a1e'}
         tickTextFill={'#fff'}
       />
-      <Group
-        top={margin.top}
-        left={margin.left}
-      >
+      <Group top={margin.top} left={margin.left}>
         <Grid
           xScale={xScale}
           yScale={yScale}
@@ -157,8 +149,8 @@ export default ({
           points={[
             annotationPoint,
             new Point({
-              x: annotationPoint.x + (width / allData.length),
-              y: annotationPoint.y - (height / allData.length),
+              x: annotationPoint.x + width / allData.length,
+              y: annotationPoint.y - height / allData.length
             })
           ]}
         />
@@ -175,4 +167,4 @@ export default ({
       />
     </svg>
   );
-}
+};

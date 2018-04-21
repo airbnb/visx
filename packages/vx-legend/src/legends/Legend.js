@@ -9,16 +9,9 @@ import valueOrIdentity from '../util/valueOrIdentity';
 Legend.propTypes = {
   className: PropTypes.string,
   style: PropTypes.object,
-  scale: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
-    .isRequired,
-  shapeWidth: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string,
-  ]),
-  shapeHeight: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string,
-  ]),
+  scale: PropTypes.oneOfType([PropTypes.func, PropTypes.object]).isRequired,
+  shapeWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  shapeHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   shapeMargin: PropTypes.string,
   labelMargin: PropTypes.string,
   itemMargin: PropTypes.string,
@@ -27,11 +20,11 @@ Legend.propTypes = {
   fill: PropTypes.func,
   shape: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   labelFormat: PropTypes.func,
-  labelTransform: PropTypes.func,
+  labelTransform: PropTypes.func
 };
 
 const defaultStyle = {
-  display: 'flex',
+  display: 'flex'
 };
 
 export default function Legend({
@@ -62,7 +55,7 @@ export default function Legend({
       className={cx('vx-legend', className)}
       style={{
         ...style,
-        flexDirection: direction,
+        flexDirection: direction
       }}
     >
       {labels.map((label, i) => {
@@ -85,11 +78,7 @@ export default function Legend({
               size={size}
               shapeStyle={shapeStyle}
             />
-            <LegendLabel
-              label={text}
-              margin={labelMargin}
-              align={labelAlign}
-            />
+            <LegendLabel label={text} margin={labelMargin} align={labelAlign} />
           </LegendItem>
         );
       })}
@@ -103,7 +92,7 @@ function defaultTransform({ scale, labelFormat }) {
       datum: d,
       index: i,
       text: `${labelFormat(d, i)}`,
-      value: scale(d),
+      value: scale(d)
     };
   };
 }

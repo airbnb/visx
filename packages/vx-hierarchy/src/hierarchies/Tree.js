@@ -8,7 +8,7 @@ import DefaultNode from '../HierarchyDefaultNode';
 
 Tree.propTypes = {
   root: PropTypes.object.isRequired,
-  children: PropTypes.func,
+  children: PropTypes.func
 };
 
 export default function Tree({
@@ -33,11 +33,7 @@ export default function Tree({
 
   if (!!children) {
     return (
-      <Group
-        top={top}
-        left={left}
-        className={cx('vx-tree', className)}
-      >
+      <Group top={top} left={left} className={cx('vx-tree', className)}>
         {children({ data })}
       </Group>
     );
@@ -48,17 +44,13 @@ export default function Tree({
       {linkComponent &&
         data.links().map((link, i) => {
           return (
-            <Group key={`tree-link-${i}`}>
-              {React.createElement(linkComponent, { link })}
-            </Group>
+            <Group key={`tree-link-${i}`}>{React.createElement(linkComponent, { link })}</Group>
           );
         })}
       {nodeComponent &&
         data.descendants().map((node, i) => {
           return (
-            <Group key={`tree-node-${i}`}>
-              {React.createElement(nodeComponent, { node })}
-            </Group>
+            <Group key={`tree-node-${i}`}>{React.createElement(nodeComponent, { node })}</Group>
           );
         })}
     </Group>

@@ -1,10 +1,6 @@
 import React from 'react';
 
-export default ({
-  id,
-  children,
-  ...restProps
-}) => (
+export default ({ id, children, ...restProps }) => (
   <defs>
     <clipPath id={id} {...restProps}>
       {children}

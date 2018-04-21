@@ -26,4 +26,4 @@ describe('voronoi', () => {
     expect(x1).toEqual(width + 1);
     expect(y1).toEqual(height + 1);
   });
-})
+});

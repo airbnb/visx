@@ -11,10 +11,7 @@ const ANG = 360;
 const data = letterFrequency.slice(2, 12);
 const calcAxis = length => {
   if (!length) return [];
-  else
-    return new Array(length + 1)
-      .fill(0)
-      .map((v, i) => ({ angle: i * (ANG / length) }));
+  else return new Array(length + 1).fill(0).map((v, i) => ({ angle: i * (ANG / length) }));
 };
 
 function calcPoints(length, radius) {
@@ -22,7 +19,7 @@ function calcPoints(length, radius) {
   return new Array(length).fill(0).map((v, i) => {
     return {
       x: radius * Math.sin(i * step),
-      y: radius * Math.cos(i * step),
+      y: radius * Math.cos(i * step)
     };
   });
 }
@@ -30,15 +27,13 @@ function calcPoints(length, radius) {
 function calcCoordinates(data, scale, access) {
   const step = Math.PI * 2 / data.length;
   const points = new Array(data.length).fill({});
-  const pointStr = new Array(data.length + 1)
-    .fill('')
-    .reduce((res, v, i) => {
-      if (i > data.length) return res;
-      const x = scale(access(data[i - 1])) * Math.sin(i * step);
-      const y = scale(access(data[i - 1])) * Math.cos(i * step);
-      points[i - 1] = { x, y };
-      return (res += `${x},${y} `);
-    });
+  const pointStr = new Array(data.length + 1).fill('').reduce((res, v, i) => {
+    if (i > data.length) return res;
+    const x = scale(access(data[i - 1])) * Math.sin(i * step);
+    const y = scale(access(data[i - 1])) * Math.cos(i * step);
+    points[i - 1] = { x, y };
+    return (res += `${x},${y} `);
+  });
 
   points.str = pointStr;
   return points;
@@ -49,7 +44,7 @@ export default ({
   height,
   events = false,
   margin = { top: 40, left: 80, right: 80, bottom: 80 },
-  levels = 5,
+  levels = 5
 }) => {
   if (width < 10) return null;
 
@@ -66,12 +61,12 @@ export default ({
 
   const rScale = scaleLinear({
     range: [0, Math.PI * 2],
-    domain: [ANG, 0],
+    domain: [ANG, 0]
   });
 
   const yScale = scaleLinear({
     range: [0, radius],
-    domain: [0, max(data, y)],
+    domain: [0, max(data, y)]
   });
 
   const polyPoints = calcCoordinates(data, yScale, y);
@@ -109,14 +104,7 @@ export default ({
           strokeWidth={1}
         />
         {polyPoints.map((v, i) => (
-          <circle
-            key={`point-${i}`}
-            cx={v.x}
-            cy={v.y}
-            r={4}
-            fill="#f5810c"
-            className="dots"
-          />
+          <circle key={`point-${i}`} cx={v.x} cy={v.y} r={4} fill="#f5810c" className="dots" />
         ))}
       </Group>
     </svg>

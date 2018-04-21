@@ -26,16 +26,11 @@ function numTicksForWidth(width) {
   return 10;
 }
 
-export default ({
-  margin,
-  dataset,
-  width,
-  height,
-}) => {
+export default ({ margin, dataset, width, height }) => {
   if (!Array.isArray(dataset)) dataset = [dataset];
 
   const allData = dataset.reduce((rec, d) => {
-    return rec.concat(d.data)
+    return rec.concat(d.data);
   }, []);
 
   // bounds
@@ -49,13 +44,13 @@ export default ({
   // scales
   const xScale = scaleTime({
     range: [0, xMax],
-    domain: extent(allData, x),
+    domain: extent(allData, x)
   });
   const yScale = scaleLinear({
     range: [yMax, 0],
     domain: [0, max(allData, y)],
     nice: true,
-    clamp: true,
+    clamp: true
   });
 
   const yFormat = yScale.tickFormat ? yScale.tickFormat() : identity;
@@ -70,10 +65,7 @@ export default ({
         label={'value'}
         hideZero
       />
-      <Group
-        top={margin.top}
-        left={margin.left}
-      >
+      <Group top={margin.top} left={margin.left}>
         <Grid
           xScale={xScale}
           yScale={yScale}
@@ -97,7 +89,8 @@ export default ({
               curve={curveMonotoneX}
               glyph={(d, i) => {
                 return (
-                  <GlyphDot key={`line-point-${i}`}
+                  <GlyphDot
+                    key={`line-point-${i}`}
                     className={cx('vx-linepath-point')}
                     cx={xScale(x(d))}
                     cy={yScale(y(d))}
@@ -143,4 +136,4 @@ export default ({
       />
     </svg>
   );
-}
+};

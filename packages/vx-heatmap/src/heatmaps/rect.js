@@ -26,11 +26,7 @@ export default function HeatmapRect({
     <Group>
       {data.map((d, i) => {
         return (
-          <Group
-            key={`heatmap-${i}`}
-            className='vx-heatmap-column'
-            left={xScale(bin(d))}
-          >
+          <Group key={`heatmap-${i}`} className="vx-heatmap-column" left={xScale(bin(d))}>
             {bins(d).map((b, j) => {
               return (
                 <rect

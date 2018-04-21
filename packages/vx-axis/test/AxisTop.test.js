@@ -6,8 +6,8 @@ import { scaleLinear } from '../../vx-scale';
 const axisProps = {
   scale: scaleLinear({
     rangeRound: [10, 0],
-    domain: [0, 10],
-  }),
+    domain: [0, 10]
+  })
 };
 
 describe('<AxisTop />', () => {
@@ -71,4 +71,4 @@ describe('<AxisTop />', () => {
     const text = wrapper.find('.vx-axis-label');
     expect(text.prop('children')).toEqual(label);
   });
-})
+});

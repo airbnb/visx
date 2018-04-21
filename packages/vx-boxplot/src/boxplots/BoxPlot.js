@@ -114,7 +114,7 @@ export default function BoxPlot({
           x2: centerX + boxWidth / 4
         })}
       />
-      {container &&
+      {container && (
         <rect
           x={left}
           y={max}
@@ -131,7 +131,8 @@ export default function BoxPlot({
             thirdQuartile,
             firstQuartile
           })}
-        />}
+        />
+      )}
     </Group>
   );
 }

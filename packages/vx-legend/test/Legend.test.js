@@ -6,8 +6,8 @@ import { scaleLinear } from '../../vx-scale';
 const defaultProps = {
   scale: scaleLinear({
     rangeRound: [10, 0],
-    domain: [0, 10],
-  }),
+    domain: [0, 10]
+  })
 };
 
 describe('<Legend />', () => {
@@ -19,36 +19,30 @@ describe('<Legend />', () => {
     const wrapper = shallow(<Legend {...defaultProps} />);
     expect(wrapper.prop('style')).toEqual({
       display: 'flex',
-      flexDirection: 'column',
+      flexDirection: 'column'
     });
   });
 
   test('it should extend style prop', () => {
-    const wrapper = shallow(
-      <Legend {...defaultProps} style={{ display: 'block' }} />,
-    );
+    const wrapper = shallow(<Legend {...defaultProps} style={{ display: 'block' }} />);
     expect(wrapper.prop('style')).toEqual({
       display: 'block',
-      flexDirection: 'column',
+      flexDirection: 'column'
     });
   });
 
   test('it should pass through direction prop to style prop', () => {
-    const wrapper = shallow(
-      <Legend {...defaultProps} direction="row" />,
-    );
+    const wrapper = shallow(<Legend {...defaultProps} direction="row" />);
     expect(wrapper.prop('style')).toEqual({
       display: 'flex',
-      flexDirection: 'row',
+      flexDirection: 'row'
     });
   });
 
   test('it should pass onClick prop to <LegendItem />', () => {
     const event = jest.fn(event => jest.fn());
     const onClick = jest.fn(data => event);
-    const wrapper = mount(
-      <Legend {...defaultProps} onClick={onClick} />,
-    );
+    const wrapper = mount(<Legend {...defaultProps} onClick={onClick} />);
     wrapper
       .find('LegendItem')
       .last()
@@ -62,7 +56,7 @@ describe('<Legend />', () => {
       datum: 10,
       index: 1,
       text: '10',
-      value: 0,
+      value: 0
     });
   });
 });

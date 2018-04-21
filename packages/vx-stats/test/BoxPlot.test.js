@@ -5,14 +5,7 @@ import { BoxPlot, computeStats } from '../src';
 
 const data = [1, 2, 3, 4, 5, 6, 6, 7, 8, 9, 1];
 const { boxPlot: boxPlotData } = computeStats(data);
-const {
-  min,
-  firstQuartile,
-  median,
-  thirdQuartile,
-  max,
-  outliers,
-} = boxPlotData;
+const { min, firstQuartile, median, thirdQuartile, max, outliers } = boxPlotData;
 
 const valueScale = scaleLinear({
   rangeRound: [10, 0],
@@ -60,5 +53,4 @@ describe('<BoxPlot />', () => {
     expect(wrapper.find('line').length).toEqual(5);
     expect(wrapper.find('rect').length).toEqual(1);
   });
-
 });

@@ -2,13 +2,7 @@
 
 const jetpack = require('fs-jetpack'); // filesystem
 const marked = require('marked'); // markdown parser
-const {
-  DOCS,
-  PACKAGES,
-  README,
-  ASSETS,
-  CSS_PATH,
-} = require('./constants.js');
+const { DOCS, PACKAGES, README, ASSETS, CSS_PATH } = require('./constants.js');
 
 // Stop someone from running the script from it's directory
 const ROOT = process.cwd();
@@ -32,7 +26,9 @@ function atDocsDirectory() {
  * Returns the text of a README at a specific package
  */
 function getReadmeText(pkg) {
-  const text = atPackagesDirectory().dir(pkg).read(README);
+  const text = atPackagesDirectory()
+    .dir(pkg)
+    .read(README);
   if (text) return text;
   else return ''; // don't return "undefined"
 }
@@ -45,7 +41,7 @@ function getDocObject(dir, info) {
   const markdown = getReadmeText(dir);
   const html = marked(markdown);
   const cleanedHTML = prepareHTML(html, info);
-  return {pkg: dir, html: cleanedHTML};
+  return { pkg: dir, html: cleanedHTML };
 }
 
 /**
@@ -54,9 +50,9 @@ function getDocObject(dir, info) {
  */
 function prepareHTML(html, info) {
   const cssPath = `../doc_styles.css`;
-  const nav = info.map((p) => {
-    return (`<li><a href="/static/docs/${p.name.replace('@vx/','vx-')}.html">${p.name}</a></li>`);
-  })
+  const nav = info.map(p => {
+    return `<li><a href="/static/docs/${p.name.replace('@vx/', 'vx-')}.html">${p.name}</a></li>`;
+  });
   return `
   <html>
     <head>
@@ -101,9 +97,13 @@ function prepareHTML(html, info) {
 
 function readDocs() {
   const dirs = atPackagesDirectory().list(); // Get all the pkg directories
-  const info = dirs.map(d => {
-    return atPackagesDirectory().dir(d).read('./package.json');
-  }).map(JSON.parse)
+  const info = dirs
+    .map(d => {
+      return atPackagesDirectory()
+        .dir(d)
+        .read('./package.json');
+    })
+    .map(JSON.parse);
   const docs = [];
   for (let pkg of dirs) {
     docs.push(getDocObject(pkg, info));
@@ -118,7 +118,7 @@ function writeDocs(docs) {
   docs.forEach(({ pkg, html }, i) => {
     const fileName = `${pkg}.html`;
     filePointer.write(fileName, html);
-  })
+  });
 }
 
 const docs = readDocs();

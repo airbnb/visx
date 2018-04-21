@@ -5,7 +5,7 @@ import LineRadial from '../components/tiles/lineradial';
 export default () => {
   return (
     <Show component={LineRadial} title="Line Radial">
-{`import React from 'react';
+      {`import React from 'react';
 import { Group } from '@vx/group';
 import { LineRadial } from '@vx/shape';
 import { scaleTime, scaleLog } from '@vx/scale';
@@ -105,4 +105,4 @@ export default function LineRadialTile({
 }`}
     </Show>
   );
-}
+};

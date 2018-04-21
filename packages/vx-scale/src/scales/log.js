@@ -1,13 +1,6 @@
 import { scaleLog } from 'd3-scale';
 
-export default ({
-  range,
-  rangeRound,
-  domain,
-  base,
-  nice = false,
-  clamp = false,
-}) => {
+export default ({ range, rangeRound, domain, base, nice = false, clamp = false }) => {
   const scale = scaleLog();
 
   if (range) scale.range(range);
@@ -18,4 +11,4 @@ export default ({
   if (base) scale.base(base);
 
   return scale;
-}
+};

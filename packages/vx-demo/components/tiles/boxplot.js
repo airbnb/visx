@@ -46,16 +46,10 @@ export default withTooltip(
       padding: 0.4
     });
 
-    const values = data.reduce(
-      (r, { boxPlot:e }) => r.push(e.min, e.max) && r,
-      []
-    );
+    const values = data.reduce((r, { boxPlot: e }) => r.push(e.min, e.max) && r, []);
     const minYValue = Math.min(...values);
     const maxYValue = Math.max(...values);
-    const yDomain = [
-      minYValue - 0.1 * Math.abs(minYValue),
-      maxYValue + 0.1 * Math.abs(minYValue)
-    ];
+    const yDomain = [minYValue - 0.1 * Math.abs(minYValue), maxYValue + 0.1 * Math.abs(minYValue)];
 
     const yScale = scaleLinear({
       rangeRound: [yMax, 0],
@@ -69,28 +63,21 @@ export default withTooltip(
       <div style={{ position: 'relative' }}>
         <svg width={width} height={height}>
           <LinearGradient id="boxplot" to="#8b6ce7" from="#87f2d4" />
-          <rect
-            x={0}
-            y={0}
-            width={width}
-            height={height}
-            fill={`url(#boxplot)`}
-            rx={14}
-          />
+          <rect x={0} y={0} width={width} height={height} fill={`url(#boxplot)`} rx={14} />
           <PatternLines
-            id='hViolinLines'
+            id="hViolinLines"
             height={3}
             width={3}
-            stroke='#ced4da'
+            stroke="#ced4da"
             strokeWidth={1}
-            fill='rgba(0,0,0,0.3)'
+            fill="rgba(0,0,0,0.3)"
             orientation={['horizontal']}
           />
           <Group top={40}>
-            {data.map((d, i) =>
+            {data.map((d, i) => (
               <g key={i}>
                 <ViolinPlot
-                  stroke='#dee2e6'
+                  stroke="#dee2e6"
                   binData={d.binData}
                   left={xScale(x(d))}
                   width={actualyWidth}
@@ -101,11 +88,11 @@ export default withTooltip(
                   data={d}
                   min={min(d)}
                   max={max(d)}
-                  left={xScale(x(d))+0.3*actualyWidth}
+                  left={xScale(x(d)) + 0.3 * actualyWidth}
                   firstQuartile={firstQuartile(d)}
                   thirdQuartile={thirdQuartile(d)}
                   median={median(d)}
-                  boxWidth={actualyWidth*0.4}
+                  boxWidth={actualyWidth * 0.4}
                   fill="#FFFFFF"
                   fillOpacity={0.3}
                   stroke="#FFFFFF"
@@ -177,43 +164,27 @@ export default withTooltip(
                   }}
                 />
               </g>
-            )}
+            ))}
           </Group>
         </svg>
-        {tooltipOpen &&
+        {tooltipOpen && (
           <Tooltip
             top={tooltipTop}
             left={tooltipLeft}
             style={{ backgroundColor: '#283238', color: 'white' }}
           >
             <div>
-              <strong>
-                {tooltipData.name}
-              </strong>
+              <strong>{tooltipData.name}</strong>
             </div>
             <div style={{ marginTop: '5px', fontSize: '12px' }}>
-              {tooltipData.max &&
-                <div>
-                  max: {tooltipData.max}
-                </div>}
-              {tooltipData.thirdQuartile &&
-                <div>
-                  third quartile: {tooltipData.thirdQuartile}
-                </div>}
-              {tooltipData.median &&
-                <div>
-                  median: {tooltipData.median}
-                </div>}
-              {tooltipData.firstQuartile &&
-                <div>
-                  first quartile: {tooltipData.firstQuartile}
-                </div>}
-              {tooltipData.min &&
-                <div>
-                  min: {tooltipData.min}
-                </div>}
+              {tooltipData.max && <div>max: {tooltipData.max}</div>}
+              {tooltipData.thirdQuartile && <div>third quartile: {tooltipData.thirdQuartile}</div>}
+              {tooltipData.median && <div>median: {tooltipData.median}</div>}
+              {tooltipData.firstQuartile && <div>first quartile: {tooltipData.firstQuartile}</div>}
+              {tooltipData.min && <div>min: {tooltipData.min}</div>}
             </div>
-          </Tooltip>}
+          </Tooltip>
+        )}
       </div>
     );
   }

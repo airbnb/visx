@@ -1,10 +1,6 @@
 import React from 'react';
 
-import {
-  ClipPath,
-  CircleClipPath,
-  RectClipPath,
-} from '../src';
+import { ClipPath, CircleClipPath, RectClipPath } from '../src';
 
 import { shallow } from 'enzyme';
 
@@ -20,7 +16,7 @@ describe('<ClipPath />', () => {
   });
 
   test('it should assign the passed id to the clipPath', () => {
-    const wrapper = shallow(<ClipPath id="best_clip"/>);
+    const wrapper = shallow(<ClipPath id="best_clip" />);
     expect(wrapper.find('clipPath#best_clip').length).toBe(1);
   });
 });

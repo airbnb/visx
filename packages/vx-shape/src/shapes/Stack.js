@@ -62,7 +62,7 @@ export default function Stack({
             {...additionalProps(restProps, {
               datum: series[i],
               index: i,
-              series,
+              series
             })}
           />
         );

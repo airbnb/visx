@@ -18,26 +18,15 @@ describe('<VoilinPlot />', () => {
 
   test('it should have className .vx-violin', () => {
     const wrapper = shallow(
-      <ViolinPlot
-        binData={binData}
-        left={3}
-        width={100}
-        valueScale={valueScale}
-      />,
+      <ViolinPlot binData={binData} left={3} width={100} valueScale={valueScale} />
     );
     expect(wrapper.prop('className')).toEqual('vx-violin');
   });
 
   test('it should render one path element', () => {
     const wrapper = shallow(
-      <ViolinPlot
-        binData={binData}
-        left={3}
-        width={100}
-        valueScale={valueScale}
-      />,
+      <ViolinPlot binData={binData} left={3} width={100} valueScale={valueScale} />
     );
     expect(wrapper.find('path').length).toEqual(1);
   });
-
 });

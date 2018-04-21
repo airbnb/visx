@@ -3,8 +3,12 @@ import React from 'react';
 export default () => {
   return (
     <div className="footer">
-      <div><img src="static/favicon.ico" /></div>
-      <div>made by <a href="https://twitter.com/hshoff">@hshoff</a></div>
+      <div>
+        <img src="static/favicon.ico" />
+      </div>
+      <div>
+        made by <a href="https://twitter.com/hshoff">@hshoff</a>
+      </div>
       <style jsx>{`
         .footer {
           text-align: center;
@@ -17,4 +21,4 @@ export default () => {
       `}</style>
     </div>
   );
-}
+};

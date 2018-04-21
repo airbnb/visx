@@ -4,14 +4,7 @@ import { symbol, symbolCross } from 'd3-shape';
 import Glyph from './Glyph';
 import additionalProps from '../util/additionalProps';
 
-export default function GlyphCross({
-  children,
-  className,
-  top,
-  left,
-  size,
-  ...restProps
-}) {
+export default function GlyphCross({ children, className, top, left, size, ...restProps }) {
   const path = symbol();
   path.type(symbolCross);
   if (size) path.size(size);

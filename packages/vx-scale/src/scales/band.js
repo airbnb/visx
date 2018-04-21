@@ -8,7 +8,7 @@ export default ({
   paddingInner,
   paddingOuter,
   align,
-  tickFormat,
+  tickFormat
 }) => {
   const scale = scaleBand();
 
@@ -22,4 +22,4 @@ export default ({
   if (tickFormat) scale.tickFormat = tickFormat;
 
   return scale;
-}
+};

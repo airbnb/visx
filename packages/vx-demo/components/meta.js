@@ -9,20 +9,17 @@ if (typeof window !== 'undefined' && window.location.hostname !== 'localhost') {
   ReactGA.pageview(window.location.pathname);
 }
 
-
-Router.onRouteChangeStart = () => NProgress.start()
+Router.onRouteChangeStart = () => NProgress.start();
 Router.onRouteChangeComplete = () => {
-  NProgress.done()
+  NProgress.done();
   if (typeof window !== 'undefined' && window.location.hostname !== 'localhost') {
     ReactGA.set({ page: window.location.pathname });
     ReactGA.pageview(window.location.pathname);
   }
-}
-Router.onRouteChangeError = () => NProgress.done()
+};
+Router.onRouteChangeError = () => NProgress.done();
 
-export default ({
-  title = 'visualization components'
-}) => (
+export default ({ title = 'visualization components' }) => (
   <div>
     <Head>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -31,19 +28,23 @@ export default ({
       <meta name="twitter:site" content="@hshoff" />
       <meta name="twitter:title" content="vx | visualization components" />
       <meta name="twitter:description" content="react + d3 = vx" />
-      <meta name="twitter:image" content="https://raw.githubusercontent.com/hshoff/vx/master/packages/vx-demo/static/tiger-twitter-card.jpg" />
+      <meta
+        name="twitter:image"
+        content="https://raw.githubusercontent.com/hshoff/vx/master/packages/vx-demo/static/tiger-twitter-card.jpg"
+      />
       <meta name="twitter:image:alt" content="vx logo is a tiger leaper over the letters v and x" />
-      <title>{ `vx | ${title}` }</title>
-      <link rel="shortcut icon" type="image/png" href="static/favicon.ico"/>
-      <link rel="stylesheet" href="static/prism/prism-funky.css"/>
-      <link rel="stylesheet" href="static/prism/prism-line-numbers.css"/>
+      <title>{`vx | ${title}`}</title>
+      <link rel="shortcut icon" type="image/png" href="static/favicon.ico" />
+      <link rel="stylesheet" href="static/prism/prism-funky.css" />
+      <link rel="stylesheet" href="static/prism/prism-line-numbers.css" />
       <link href="https://fonts.googleapis.com/css?family=Montserrat:800" rel="stylesheet" />
     </Head>
     <style jsx global>{`
       body {
         width: 100vw;
         overflow-x: hidden;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell',
+          'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
         background: #ffffff;
         display: flex;
         color: white;
@@ -94,7 +95,8 @@ export default ({
         font-size: 14px;
       }
 
-      ol, ul {
+      ol,
+      ul {
         padding-left: 0;
       }
 
@@ -106,53 +108,53 @@ export default ({
         list-style-type: none;
       }
 
-       p {
-         margin: 1rem 0;
-       }
+      p {
+        margin: 1rem 0;
+      }
 
-       code {
-         font-family: "Menlo", monospace;
-         font-weight: bold;
-         padding: .2rem .3rem;
-         background-color: #ebebeb;
-         line-height: 1.8em;
-         font-size: 14px;
-       }
+      code {
+        font-family: 'Menlo', monospace;
+        font-weight: bold;
+        padding: 0.2rem 0.3rem;
+        background-color: #ebebeb;
+        line-height: 1.8em;
+        font-size: 14px;
+      }
 
-       h1 {
-         font-size: 54px;
-         display: block;
-         margin-bottom: 3rem;
-       }
+      h1 {
+        font-size: 54px;
+        display: block;
+        margin-bottom: 3rem;
+      }
 
-       h2 {
-         font-size: 19px;
-         margin-bottom: .2rem;
-         margin-top: 2rem;
-         display: block;
-       }
+      h2 {
+        font-size: 19px;
+        margin-bottom: 0.2rem;
+        margin-top: 2rem;
+        display: block;
+      }
 
-       a {
-         color: #fc2e1c;
-         text-decoration: none;
-       }
+      a {
+        color: #fc2e1c;
+        text-decoration: none;
+      }
 
-       .logo {
-         background-image: url('static/favicon.ico');
-         background-position: center;
-         background-size: cover;
-         height: 24px;
-         width: 24px;
-         background-repeat: no-repeat;
-       }
+      .logo {
+        background-image: url('static/favicon.ico');
+        background-position: center;
+        background-size: cover;
+        height: 24px;
+        width: 24px;
+        background-repeat: no-repeat;
+      }
 
-       .item-bottom .codeblock {
-         margin: 1em 0px 0;
-       }
+      .item-bottom .codeblock {
+        margin: 1em 0px 0;
+      }
 
-       .vx-brush:hover {
-         cursor: move;
-       }
+      .vx-brush:hover {
+        cursor: move;
+      }
 
       /* loading progress bar styles */
       #nprogress {
@@ -176,7 +178,7 @@ export default ({
         width: 100px;
         height: 100%;
         box-shadow: 0 0 10px #ff9300, 0 0 5px #ff9300;
-        opacity: 1.0;
+        opacity: 1;
         transform: rotate(3deg) translate(0px, -4px);
       }
 
@@ -204,4 +206,4 @@ export default ({
       }
     `}</style>
   </div>
-)
+);

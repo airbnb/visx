@@ -39,7 +39,7 @@ function defaultTransform({ scale, labelFormat }) {
       text: `${labelFormat(d, i)}`,
       value: scale(d),
       datum: d,
-      index: i,
+      index: i
     };
   };
 }

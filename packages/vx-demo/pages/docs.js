@@ -6,7 +6,9 @@ export default () => (
   <Page title="documentation">
     <div className="page-left">
       <div className="comingsoon">
-        <h1><a name="packages" />Packages</h1>
+        <h1>
+          <a name="packages" />Packages
+        </h1>
       </div>
       <ul>
         <li>
@@ -83,7 +85,7 @@ export default () => (
             <li>Albers</li>
           </ul>
         </li>
-          <li>
+        <li>
           <a href="/static/docs/vx-gradient.html"> @vx/gradient </a>
           <ul>
             <li>GradientDarkgreenGreen</li>
@@ -169,9 +171,7 @@ export default () => (
           </ul>
         </li>
         <li>
-          <a href="/static/docs/vx-point.html">
-            @vx/point
-          </a>
+          <a href="/static/docs/vx-point.html">@vx/point</a>
           <ul>
             <li>Point</li>
           </ul>
@@ -244,7 +244,7 @@ export default () => (
       }
       .page-left > ul > li {
         background-color: #f8f8f8;
-        padding: .5em;
+        padding: 0.5em;
         display: inline-block;
         margin: 0 0 1em;
         width: 100%;
@@ -285,4 +285,4 @@ export default () => (
       }
     `}</style>
   </Page>
-)
+);

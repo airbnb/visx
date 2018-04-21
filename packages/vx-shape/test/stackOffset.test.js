@@ -1,8 +1,4 @@
-import {
-  stackOffset,
-  STACK_OFFSETS,
-  STACK_OFFSET_NAMES,
-} from '../src';
+import { stackOffset, STACK_OFFSETS, STACK_OFFSET_NAMES } from '../src';
 
 describe('STACK_OFFSETS', () => {
   test('it should be defined', () => {

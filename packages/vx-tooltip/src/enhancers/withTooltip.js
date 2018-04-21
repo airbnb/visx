@@ -8,7 +8,7 @@ export const withTooltipPropTypes = {
   tooltipData: PropTypes.object,
   updateTooltip: PropTypes.func,
   showTooltip: PropTypes.func,
-  hideTooltip: PropTypes.func,
+  hideTooltip: PropTypes.func
 };
 
 export default function withTooltip(
@@ -17,9 +17,9 @@ export default function withTooltip(
     style: {
       position: 'relative',
       width: 'inherit',
-      height: 'inherit',
-    },
-  },
+      height: 'inherit'
+    }
+  }
 ) {
   class WrappedComponent extends React.PureComponent {
     constructor(props) {

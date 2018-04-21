@@ -4,12 +4,7 @@ import BoxPlot from '../components/tiles/boxplot';
 
 export default () => {
   return (
-    <Show
-      events={true}
-      margin={{ top: 80 }}
-      component={BoxPlot}
-      title="BoxPlot With ViolinPlot"
-    >
+    <Show events={true} margin={{ top: 80 }} component={BoxPlot} title="BoxPlot With ViolinPlot">
       {`import React from 'react';
 import { Group } from '@vx/group';
 import { BoxPlot } from '@vx/boxplot';

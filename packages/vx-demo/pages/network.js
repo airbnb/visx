@@ -5,7 +5,7 @@ import Network from '../components/tiles/network';
 export default () => {
   return (
     <Show component={Network} title="Network">
-{`import React from 'react';
+      {`import React from 'react';
 import { Graph } from '@vx/network'
 import {scaleOrdinal, schemeCategory20c} from 'd3-scale';
 
@@ -39,4 +39,4 @@ export default ({
 `}
     </Show>
   );
-}
+};

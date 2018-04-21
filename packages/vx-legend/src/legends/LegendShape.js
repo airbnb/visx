@@ -11,7 +11,7 @@ export default function LegendShape({
   label,
   fill,
   size,
-  shapeStyle,
+  shapeStyle
 }) {
   return (
     <div
@@ -20,7 +20,7 @@ export default function LegendShape({
         display: 'flex',
         width: !!size ? size({ ...label }) : width,
         height: !!size ? size({ ...label }) : height,
-        margin,
+        margin
       }}
     >
       {renderShape({
@@ -29,7 +29,7 @@ export default function LegendShape({
         width,
         height,
         fill,
-        shapeStyle,
+        shapeStyle
       })}
     </div>
   );

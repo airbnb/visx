@@ -42,9 +42,7 @@ export default function Pack({
       {nodeComponent &&
         data.descendants().map((node, i) => {
           return (
-            <Group key={`pack-node-${i}`}>
-              {React.createElement(nodeComponent, { node })}
-            </Group>
+            <Group key={`pack-node-${i}`}>{React.createElement(nodeComponent, { node })}</Group>
           );
         })}
     </Group>

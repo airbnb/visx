@@ -17,7 +17,7 @@ export function createCircles({
   strokeDasharray,
   className
 }) {
-  return corners.map(([cornerX, cornerY]) =>
+  return corners.map(([cornerX, cornerY]) => (
     <circle
       key={`${id}-complement-${cornerX}-${cornerY}`}
       className={cxx('vx-pattern-circle vx-pattern-circle-complement', className)}
@@ -29,7 +29,7 @@ export function createCircles({
       strokeWidth={strokeWidth}
       strokeDasharray={strokeDasharray}
     />
-  );
+  ));
 }
 
 export default function PatternCircles({
@@ -43,30 +43,15 @@ export default function PatternCircles({
   strokeDasharray,
   background,
   complement = false,
-  className,
+  className
 }) {
   let corners;
   if (complement) {
-    corners = [
-      [0,0],
-      [0, height],
-      [width, 0],
-      [width, height]
-    ];
+    corners = [[0, 0], [0, height], [width, 0], [width, height]];
   }
   return (
-    <Pattern
-      id={id}
-      width={width}
-      height={height}
-    >
-      {!!background &&
-        <rect
-          width={width}
-          height={height}
-          fill={background}
-        />
-      }
+    <Pattern id={id} width={width} height={height}>
+      {!!background && <rect width={width} height={height} fill={background} />}
       <circle
         className={cxx('vx-pattern-circle', className)}
         cx={width / 2}
@@ -77,15 +62,16 @@ export default function PatternCircles({
         strokeWidth={strokeWidth}
         strokeDasharray={strokeDasharray}
       />
-      {complement && createCircles({
-        corners,
-        id,
-        radius,
-        fill,
-        stroke,
-        strokeWidth,
-        strokeDasharray
-      })}
+      {complement &&
+        createCircles({
+          corners,
+          id,
+          radius,
+          fill,
+          stroke,
+          strokeWidth,
+          strokeDasharray
+        })}
     </Pattern>
   );
 }
@@ -101,4 +87,4 @@ PatternCircles.propTypes = {
   strokeWidth: PropTypes.number,
   strokeDasharray: PropTypes.string,
   complement: PropTypes.bool
-}
+};

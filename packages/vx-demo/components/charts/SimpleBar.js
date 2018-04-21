@@ -13,11 +13,7 @@ function round(value, precision) {
   return Math.round(value * multiplier) / multiplier;
 }
 
-export default ({
-  width,
-  height,
-  margin,
-}) => {
+export default ({ width, height, margin }) => {
   // accessors
   const x = d => d.letter;
   const y = d => +d.frequency * 100;
@@ -30,11 +26,11 @@ export default ({
   const xScale = scaleBand({
     rangeRound: [0, xMax],
     domain: data.map(x),
-    padding: 0.4,
+    padding: 0.4
   });
   const yScale = scaleLinear({
     rangeRound: [yMax, 0],
-    domain: [0, max(data, y)],
+    domain: [0, max(data, y)]
   });
 
   return (
@@ -60,23 +56,10 @@ export default ({
               stroke={'black'}
               strokeWidth={1}
             />
-            <text
-              x={xScale(x(d))}
-              y={yMax-barHeight}
-              fill="black"
-              fontSize={14}
-              dy={'-.2em'}
-            >
+            <text x={xScale(x(d))} y={yMax - barHeight} fill="black" fontSize={14} dy={'-.2em'}>
               {`${round(y(d))}%`}
             </text>
-            <text
-              x={xScale(x(d))}
-              y={yMax}
-              fill="black"
-              fontSize={14}
-              dx={'.32em'}
-              dy={'1em'}
-            >
+            <text x={xScale(x(d))} y={yMax} fill="black" fontSize={14} dx={'.32em'} dy={'1em'}>
               {x(d)}
             </text>
           </Group>
@@ -84,4 +67,4 @@ export default ({
       })}
     </svg>
   );
-}
+};

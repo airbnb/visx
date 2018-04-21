@@ -44,7 +44,7 @@ export default function Pie({
               {...additionalProps(restProps, {
                 ...arc,
                 index: i,
-                centroid: c,
+                centroid: c
               })}
             />
             {centroid && centroid(c, arc)}

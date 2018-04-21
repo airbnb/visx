@@ -1,4 +1,4 @@
 test('it should be defined', () => {
-  const d = true
-  expect(d).toBeDefined()
-})
+  const d = true;
+  expect(d).toBeDefined();
+});

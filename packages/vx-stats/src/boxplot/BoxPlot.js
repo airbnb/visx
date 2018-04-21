@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import { Group } from '@vx/group';
 import additionalProps from '../util/additionalProps';
 
-function verticalToHorizontal([x1, y1, x2, y2]){
+function verticalToHorizontal([x1, y1, x2, y2]) {
   return [y1, x1, y2, x2];
 }
 
@@ -36,7 +36,7 @@ export default function BoxPlot({
   containerProps = {},
   ...restProps
 }) {
-  const offset = horizontal? top: left;
+  const offset = horizontal ? top : left;
   const center = offset + boxWidth / 2;
 
   let maxLinePos = Array(4).fill(0);
@@ -116,9 +116,9 @@ export default function BoxPlot({
               cx,
               cy
             })}
-          />);
-        })
-      }
+          />
+        );
+      })}
       <line
         className="vx-boxplot-max"
         x1={maxLinePos[0]}
@@ -133,7 +133,7 @@ export default function BoxPlot({
           x1: maxLinePos[0],
           x2: maxLinePos[2],
           y1: maxLinePos[1],
-          y2: maxLinePos[3],
+          y2: maxLinePos[3]
         })}
       />
       <line
@@ -167,7 +167,7 @@ export default function BoxPlot({
           x1: boxPos[0],
           x2: boxPos[0] + boxPos[2],
           y1: boxPos[1],
-          y2: boxPos[1] + boxPos[3],
+          y2: boxPos[1] + boxPos[3]
         })}
       />
       <line
@@ -184,7 +184,7 @@ export default function BoxPlot({
           x1: medianLinePos[0],
           x2: medianLinePos[2],
           y1: medianLinePos[1],
-          y2: medianLinePos[3],
+          y2: medianLinePos[3]
         })}
       />
       <line
@@ -209,10 +209,10 @@ export default function BoxPlot({
           x1: minLinePos[0],
           x2: minLinePos[2],
           y1: minLinePos[1],
-          y2: minLinePos[3],
+          y2: minLinePos[3]
         })}
       />
-      {container &&
+      {container && (
         <rect
           x={containerPos[0]}
           y={containerPos[1]}
@@ -231,7 +231,8 @@ export default function BoxPlot({
             thirdQuartile,
             firstQuartile
           })}
-        />}
+        />
+      )}
     </Group>
   );
 }

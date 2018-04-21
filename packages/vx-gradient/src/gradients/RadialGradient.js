@@ -10,7 +10,7 @@ RadialGradient.propTypes = {
   toOffset: PropTypes.string,
   toOpacity: PropTypes.number,
   rotate: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  transform: PropTypes.string,
+  transform: PropTypes.string
 };
 
 export default function RadialGradient({
@@ -34,18 +34,8 @@ export default function RadialGradient({
         {...restProps}
       >
         {!!children && children}
-        {!children &&
-          <stop
-            offset={fromOffset}
-            stopColor={from}
-            stopOpacity={fromOpacity}
-          />}
-        {!children &&
-          <stop
-            offset={toOffset}
-            stopColor={to}
-            stopOpacity={toOpacity}
-          />}
+        {!children && <stop offset={fromOffset} stopColor={from} stopOpacity={fromOpacity} />}
+        {!children && <stop offset={toOffset} stopColor={to} stopOpacity={toOpacity} />}
       </radialGradient>
     </defs>
   );

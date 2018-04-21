@@ -25,26 +25,19 @@ export default withTooltip(props => {
   const xScale = scaleLinear({
     domain: [1.3, 2.2],
     range: [0, xMax],
-    clamp: true,
+    clamp: true
   });
   const yScale = scaleLinear({
     domain: [0.75, 1.6],
     range: [yMax, 0],
-    clamp: true,
+    clamp: true
   });
 
   return (
     <div>
       <svg width={width} height={height}>
         <GradientPinkRed id="pink" />
-        <rect
-          x={0}
-          y={0}
-          width={width}
-          height={height}
-          rx={14}
-          fill={`url(#pink)`}
-        />
+        <rect x={0} y={0} width={width} height={height} rx={14} fill={`url(#pink)`} />
         <Group
           onTouchStart={() => event => {
             if (tooltipTimeout) clearTimeout(tooltipTimeout);
@@ -65,7 +58,7 @@ export default withTooltip(props => {
                   props.showTooltip({
                     tooltipLeft: xScale(x(point)),
                     tooltipTop: yScale(y(point)) + 20,
-                    tooltipData: point,
+                    tooltipData: point
                   });
                 }}
                 onTouchStart={() => event => {
@@ -73,7 +66,7 @@ export default withTooltip(props => {
                   props.showTooltip({
                     tooltipLeft: xScale(x(point)),
                     tooltipTop: yScale(y(point)) - 30,
-                    tooltipData: point,
+                    tooltipData: point
                   });
                 }}
                 onMouseLeave={() => event => {
@@ -86,7 +79,7 @@ export default withTooltip(props => {
           })}
         </Group>
       </svg>
-      {props.tooltipOpen &&
+      {props.tooltipOpen && (
         <Tooltip left={props.tooltipLeft} top={props.tooltipTop}>
           <div>
             <strong>x:</strong> {props.tooltipData[0]}
@@ -94,7 +87,8 @@ export default withTooltip(props => {
           <div>
             <strong>y:</strong> {props.tooltipData[1]}
           </div>
-        </Tooltip>}
+        </Tooltip>
+      )}
     </div>
   );
 });

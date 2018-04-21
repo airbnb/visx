@@ -12,10 +12,10 @@ export default ({}) => {
         top: 40,
         left: 40,
         right: 40,
-        bottom: 40,
+        bottom: 40
       }}
     >
-    {`import React from 'react';
+      {`import React from 'react';
 import { Group } from '@vx/group';
 import { Tree } from '@vx/hierarchy';
 import { LinearGradient } from '@vx/gradient';
@@ -298,4 +298,4 @@ export default class extends React.Component {
 }`}
     </Show>
   );
-}
+};

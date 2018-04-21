@@ -10,7 +10,7 @@ export default function renderShape({
   width,
   height,
   label,
-  shapeStyle = x => undefined,
+  shapeStyle = x => undefined
 }) {
   const props = {
     width,
@@ -18,7 +18,7 @@ export default function renderShape({
     label,
     fill: fill({ ...label }),
     size: size({ ...label }),
-    style: shapeStyle({ ...label }),
+    style: shapeStyle({ ...label })
   };
   if (typeof shape === 'string') {
     if (shape === 'rect') {

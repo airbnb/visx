@@ -166,4 +166,4 @@ export default withBrush(BrushChart);
 `}
     </Codeblock>
   );
-}
+};

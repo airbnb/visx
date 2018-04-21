@@ -5,16 +5,10 @@ import additonalProps from '../util/additionalProps';
 LegendItem.propTypes = {
   flexDirection: PropTypes.string,
   margin: PropTypes.string,
-  label: PropTypes.object.isRequired,
+  label: PropTypes.object.isRequired
 };
 
-export default function LegendItem({
-  children,
-  flexDirection,
-  margin,
-  label,
-  ...restProps
-}) {
+export default function LegendItem({ children, flexDirection, margin, label, ...restProps }) {
   return (
     <div
       className="vx-legend-item"
@@ -22,7 +16,7 @@ export default function LegendItem({
         display: 'flex',
         alignItems: 'center',
         flexDirection,
-        margin,
+        margin
       }}
       {...additonalProps(restProps, label)}
     >

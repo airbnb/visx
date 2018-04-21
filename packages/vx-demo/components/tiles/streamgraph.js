@@ -15,10 +15,7 @@ import { transpose } from 'd3-array';
 // utils
 const max = (data, accessor) => Math.max(...data.map(accessor));
 const min = (data, accessor) => Math.min(...data.map(accessor));
-const extent = (data, accessor) => [
-  min(data, accessor),
-  max(data, accessor),
-];
+const extent = (data, accessor) => [min(data, accessor), max(data, accessor)];
 const range = n => Array.from(Array(n), (d, i) => i);
 
 const numLayers = 20;
@@ -52,58 +49,33 @@ export default class Streamgraph extends React.Component {
       height,
       events = false,
       margin = {
-        top: 40,
-      },
+        top: 40
+      }
     } = this.props;
     if (width < 10) return null;
 
-    const layers = transpose(
-      keys.map(d => bumps(samplesPerLayer, bumpsPerLayer)),
-    );
+    const layers = transpose(keys.map(d => bumps(samplesPerLayer, bumpsPerLayer)));
 
     const xScale = scaleLinear({
       range: [0, width],
-      domain: [0, samplesPerLayer - 1],
+      domain: [0, samplesPerLayer - 1]
     });
     const yScale = scaleLinear({
       range: [height, 0],
-      domain: [-30, 50],
+      domain: [-30, 50]
     });
     const zScale = scaleOrdinal({
       domain: keys,
-      range: [
-        '#ffc409',
-        '#f14702',
-        '#262d97',
-        'white',
-        '#036ecd',
-        '#9ecadd',
-        '#51666e',
-      ],
+      range: ['#ffc409', '#f14702', '#262d97', 'white', '#036ecd', '#9ecadd', '#51666e']
     });
     const patternScale = scaleOrdinal({
       domain: keys,
-      range: [
-        'mustard',
-        'cherry',
-        'navy',
-        'circles',
-        'circles',
-        'circles',
-        'circles',
-      ],
+      range: ['mustard', 'cherry', 'navy', 'circles', 'circles', 'circles', 'circles']
     });
 
     return (
       <svg width={width} height={height}>
-        <PatternCircles
-          id="mustard"
-          height={40}
-          width={40}
-          radius={5}
-          fill="#036ecf"
-          complement
-        />
+        <PatternCircles id="mustard" height={40} width={40} radius={5} fill="#036ecf" complement />
         <PatternWaves
           id="cherry"
           height={12}
@@ -113,14 +85,7 @@ export default class Streamgraph extends React.Component {
           strokeWidth={1}
           complement
         />
-        <PatternCircles
-          id="navy"
-          height={60}
-          width={60}
-          radius={10}
-          fill="white"
-          complement
-        />
+        <PatternCircles id="navy" height={60} width={60} radius={10} fill="white" complement />
         <PatternCircles
           id="circles"
           height={60}
@@ -129,18 +94,8 @@ export default class Streamgraph extends React.Component {
           fill="transparent"
           complement
         />
-        <g
-          onClick={event => this.forceUpdate()}
-          onTouchStart={event => this.forceUpdate()}
-        >
-          <rect
-            x={0}
-            y={0}
-            width={width}
-            height={height}
-            fill={`#ffdede`}
-            rx={14}
-          />
+        <g onClick={event => this.forceUpdate()} onTouchStart={event => this.forceUpdate()}>
+          <rect x={0} y={0} width={width} height={height} fill={`#ffdede`} rx={14} />
           <Stack
             data={layers}
             keys={keys}
@@ -152,15 +107,9 @@ export default class Streamgraph extends React.Component {
               return seriesData.map((series, i) => {
                 return (
                   <g key={`series-${series.key}`}>
-                    <path
-                      d={path(series)}
-                      fill={zScale(series.key)}
-                    />
+                    <path d={path(series)} fill={zScale(series.key)} />
                     {patternScale(series.key) !== 'circles' && (
-                      <path
-                        d={path(series)}
-                        fill={`url(#${patternScale(series.key)})`}
-                      />
+                      <path d={path(series)} fill={`url(#${patternScale(series.key)})`} />
                     )}
                   </g>
                 );

@@ -92,4 +92,4 @@ function SimpleAreaChart({
 export default withScreenSize(SimpleAreaChart);`}
     </Codeblock>
   );
-}
+};

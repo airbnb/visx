@@ -10,13 +10,12 @@ const mockHierarchy = hierarchy({
     { name: 'Cain' },
     {
       name: 'Seth',
-      children: [{ name: 'Enos' }, { name: 'Noam' }],
-    },
-  ],
+      children: [{ name: 'Enos' }, { name: 'Noam' }]
+    }
+  ]
 });
 
-const ClusterWrapper = ({ ...restProps }) =>
-  shallow(<Cluster {...restProps} />);
+const ClusterWrapper = ({ ...restProps }) => shallow(<Cluster {...restProps} />);
 
 describe('<Cluster />', () => {
   test('it should be defined', () => {

@@ -3,14 +3,12 @@ import Nav from './nav';
 import cx from 'classnames';
 
 export default ({ children, title, className }) => (
-  <div className={cx("main", className)}>
+  <div className={cx('main', className)}>
     <Meta title={title} />
     <div className="nav-container">
       <Nav />
     </div>
-    <div className="page-content">
-      {children}
-    </div>
+    <div className="page-content">{children}</div>
     <style jsx>{`
       .main {
         width: 100vw;

@@ -16,77 +16,77 @@ import {
   curveCatmullRomOpen,
   curveMonotoneX,
   curveMonotoneY,
-  curveNatural,
+  curveNatural
 } from '../src';
 
 test('curveBasis', () => {
-  expect(curveBasis).toBeDefined()
-})
+  expect(curveBasis).toBeDefined();
+});
 
 test('curveBasisClosed', () => {
-  expect(curveBasisClosed).toBeDefined()
-})
+  expect(curveBasisClosed).toBeDefined();
+});
 
 test('curveBasisOpen', () => {
-  expect(curveBasisOpen).toBeDefined()
-})
+  expect(curveBasisOpen).toBeDefined();
+});
 
 test('curveStep', () => {
-  expect(curveStep).toBeDefined()
-})
+  expect(curveStep).toBeDefined();
+});
 
 test('curveStepAfter', () => {
-  expect(curveStepAfter).toBeDefined()
-})
+  expect(curveStepAfter).toBeDefined();
+});
 
 test('curveStepBefore', () => {
-  expect(curveStepBefore).toBeDefined()
-})
+  expect(curveStepBefore).toBeDefined();
+});
 
 test('curveBundle', () => {
-  expect(curveBundle).toBeDefined()
-})
+  expect(curveBundle).toBeDefined();
+});
 
 test('curveLinear', () => {
-  expect(curveLinear).toBeDefined()
-})
+  expect(curveLinear).toBeDefined();
+});
 
 test('curveLinearClosed', () => {
-  expect(curveLinearClosed).toBeDefined()
-})
+  expect(curveLinearClosed).toBeDefined();
+});
 
 test('curveCardinal', () => {
-  expect(curveCardinal).toBeDefined()
-})
+  expect(curveCardinal).toBeDefined();
+});
 
 test('curveCardinalClosed', () => {
-  expect(curveCardinalClosed).toBeDefined()
-})
+  expect(curveCardinalClosed).toBeDefined();
+});
 
 test('curveCardinalOpen', () => {
-  expect(curveCardinalOpen).toBeDefined()
-})
+  expect(curveCardinalOpen).toBeDefined();
+});
 
 test('curveCatmullRom', () => {
-  expect(curveCatmullRom).toBeDefined()
-})
+  expect(curveCatmullRom).toBeDefined();
+});
 
 test('curveCatmullRomClosed', () => {
-  expect(curveCatmullRomClosed).toBeDefined()
-})
+  expect(curveCatmullRomClosed).toBeDefined();
+});
 
 test('curveCatmullRomOpen', () => {
-  expect(curveCatmullRomOpen).toBeDefined()
-})
+  expect(curveCatmullRomOpen).toBeDefined();
+});
 
 test('curveMonotoneX', () => {
-  expect(curveMonotoneX).toBeDefined()
-})
+  expect(curveMonotoneX).toBeDefined();
+});
 
 test('curveMonotoneY', () => {
-  expect(curveMonotoneY).toBeDefined()
-})
+  expect(curveMonotoneY).toBeDefined();
+});
 
 test('curveNatural', () => {
-  expect(curveNatural).toBeDefined()
-})
+  expect(curveNatural).toBeDefined();
+});
