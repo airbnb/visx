@@ -6,25 +6,52 @@
   "scripts": {
     "test": "lerna bootstrap && lerna exec npm run test",
     "docs": "node ./scripts/docs/index.js",
-    "prepare-release":
-      "git checkout master && git pull --rebase origin master && npm run docs && lerna updated",
-    "release": "npm run prepare-release && lerna publish --exact"
+    "prepare-release": "git checkout master && git pull --rebase origin master && npm run docs && lerna updated",
+    "release": "npm run prepare-release && lerna publish --exact",
+    "format": "prettier \"{packages,scripts}/**/*.js\" --write",
+    "precommit": "lint-staged"
+  },
+  "prettier": {
+    "printWidth": 100,
+    "singleQuote": true
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "jest": {
-    "projects": ["<rootDir>/packages/*"],
+    "projects": [
+      "<rootDir>/packages/*"
+    ],
     "collectCoverage": true,
     "coverageDirectory": "<rootDir>/coverage",
-    "coveragePathIgnorePatterns": ["/node_modules/"],
-    "coverageReporters": ["text", "lcov"]
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "coverageReporters": [
+      "text",
+      "lcov"
+    ]
   },
-  "keywords": ["react", "d3", "visualization", "vx", "charts"],
+  "keywords": [
+    "react",
+    "d3",
+    "visualization",
+    "vx",
+    "charts"
+  ],
   "author": "@hshoff",
   "license": "MIT",
   "devDependencies": {
     "babel-jest": "^20.0.3",
     "coveralls": "^2.13.1",
+    "husky": "^0.14.3",
     "jest": "^20.0.3",
     "lerna": "2.1.2",
+    "lint-staged": "^7.0.4",
+    "prettier": "^1.12.1",
     "react": "^15.0.0-0 || ^16.0.0-0",
     "react-dom": "^15.0.0-0 || ^16.0.0-0",
     "regenerator-runtime": "^0.10.5"
