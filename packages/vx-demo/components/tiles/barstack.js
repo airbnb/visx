@@ -1,6 +1,7 @@
 import React from 'react';
 import { BarStack } from '@vx/shape';
 import { Group } from '@vx/group';
+import { Grid } from '@vx/grid';
 import { AxisBottom } from '@vx/axis';
 import { cityTemperature } from '@vx/mock-data';
 import { scaleBand, scaleLinear, scaleOrdinal } from '@vx/scale';
@@ -73,6 +74,17 @@ export default withTooltip(
       <div style={{ position: 'relative' }}>
         <svg width={width} height={height}>
           <rect x={0} y={0} width={width} height={height} fill={`#eaedff`} rx={14} />
+          <Grid
+            top={margin.top}
+            left={margin.left}
+            xScale={xScale}
+            yScale={yScale}
+            width={xMax}
+            height={yMax}
+            stroke={'black'}
+            strokeOpacity={0.1}
+            xOffset={xScale.bandwidth() / 2}
+          />
           <BarStack
             top={margin.top}
             data={data}

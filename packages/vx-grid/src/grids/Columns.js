@@ -15,34 +15,35 @@ export default function Columns({
   className,
   numTicks = 10,
   lineStyle,
+  offset,
   ...restProps
 }) {
+  const ticks = scale.ticks ? scale.ticks(numTicks) : scale.domain();
   return (
     <Group className={cx('vx-columns', className)} top={top} left={left}>
-      {scale.ticks &&
-        scale.ticks(numTicks).map((d, i) => {
-          const x = scale(d);
-          const fromPoint = new Point({
-            x,
-            y: 0
-          });
-          const toPoint = new Point({
-            x,
-            y: height
-          });
-          return (
-            <Line
-              key={`column-line-${d}-${i}`}
-              from={fromPoint}
-              to={toPoint}
-              stroke={stroke}
-              strokeWidth={strokeWidth}
-              strokeDasharray={strokeDasharray}
-              style={lineStyle}
-              {...restProps}
-            />
-          );
-        })}
+      {ticks.map((d, i) => {
+        const x = offset ? scale(d) + offset : scale(d);
+        const fromPoint = new Point({
+          x,
+          y: 0
+        });
+        const toPoint = new Point({
+          x,
+          y: height
+        });
+        return (
+          <Line
+            key={`column-line-${d}-${i}`}
+            from={fromPoint}
+            to={toPoint}
+            stroke={stroke}
+            strokeWidth={strokeWidth}
+            strokeDasharray={strokeDasharray}
+            style={lineStyle}
+            {...restProps}
+          />
+        );
+      })}
     </Group>
   );
 }
