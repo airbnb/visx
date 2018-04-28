@@ -1,6 +1,6 @@
 {
   "name": "@vx/event",
-  "version": "0.0.153",
+  "version": "0.0.161",
   "description": "vx event",
   "sideEffects": false,
   "main": "build/index.js",
@@ -46,7 +46,7 @@
     "regenerator-runtime": "^0.10.5"
   },
   "dependencies": {
-    "@vx/point": "0.0.153"
+    "@vx/point": "0.0.161"
   },
   "jest": {
     "setupFiles": [

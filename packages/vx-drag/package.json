@@ -1,6 +1,6 @@
 {
   "name": "@vx/drag",
-  "version": "0.0.157",
+  "version": "0.0.161",
   "description": "vx drag",
   "sideEffects": false,
   "main": "build/index.js",
@@ -55,6 +55,6 @@
     ]
   },
   "dependencies": {
-    "@vx/event": "0.0.153"
+    "@vx/event": "0.0.161"
   }
 }

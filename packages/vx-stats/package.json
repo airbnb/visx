@@ -1,6 +1,6 @@
 {
   "name": "@vx/stats",
-  "version": "0.0.153",
+  "version": "0.0.161",
   "description": "vx stats box violin",
   "sideEffects": false,
   "main": "build/index.js",
@@ -27,8 +27,8 @@
   },
   "homepage": "https://github.com/hshoff/vx#readme",
   "dependencies": {
-    "@vx/group": "0.0.153",
-    "@vx/scale": "0.0.153",
+    "@vx/group": "0.0.161",
+    "@vx/scale": "0.0.161",
     "classnames": "^2.2.5",
     "d3-shape": "^1.2.0"
   },

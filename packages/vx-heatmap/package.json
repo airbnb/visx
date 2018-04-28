@@ -1,6 +1,6 @@
 {
   "name": "@vx/heatmap",
-  "version": "0.0.153",
+  "version": "0.0.161",
   "description": "vx heatmap",
   "sideEffects": false,
   "main": "build/index.js",
@@ -49,7 +49,7 @@
     "react": "^15.0.0-0 || ^16.0.0-0"
   },
   "dependencies": {
-    "@vx/group": "0.0.153",
+    "@vx/group": "0.0.161",
     "classnames": "^2.2.5"
   },
   "jest": {
