@@ -29,7 +29,7 @@
       <div class="doc-nav">
         <ul>
         <li>Packages</li>
-        <li><a href="/static/docs/vx-annotation.html">@vx/annotation</a></li><li><a href="/static/docs/vx-axis.html">@vx/axis</a></li><li><a href="/static/docs/vx-bounds.html">@vx/bounds</a></li><li><a href="/static/docs/vx-boxplot.html">@vx/boxplot</a></li><li><a href="/static/docs/vx-brush.html">@vx/brush</a></li><li><a href="/static/docs/vx-clip-path.html">@vx/clip-path</a></li><li><a href="/static/docs/vx-curve.html">@vx/curve</a></li><li><a href="/static/docs/vx-demo.html">@vx/demo</a></li><li><a href="/static/docs/vx-drag.html">@vx/drag</a></li><li><a href="/static/docs/vx-event.html">@vx/event</a></li><li><a href="/static/docs/vx-geo.html">@vx/geo</a></li><li><a href="/static/docs/vx-glyph.html">@vx/glyph</a></li><li><a href="/static/docs/vx-gradient.html">@vx/gradient</a></li><li><a href="/static/docs/vx-grid.html">@vx/grid</a></li><li><a href="/static/docs/vx-group.html">@vx/group</a></li><li><a href="/static/docs/vx-heatmap.html">@vx/heatmap</a></li><li><a href="/static/docs/vx-hierarchy.html">@vx/hierarchy</a></li><li><a href="/static/docs/vx-legend.html">@vx/legend</a></li><li><a href="/static/docs/vx-marker.html">@vx/marker</a></li><li><a href="/static/docs/vx-mock-data.html">@vx/mock-data</a></li><li><a href="/static/docs/vx-network.html">@vx/network</a></li><li><a href="/static/docs/vx-pattern.html">@vx/pattern</a></li><li><a href="/static/docs/vx-point.html">@vx/point</a></li><li><a href="/static/docs/vx-responsive.html">@vx/responsive</a></li><li><a href="/static/docs/vx-scale.html">@vx/scale</a></li><li><a href="/static/docs/vx-shape.html">@vx/shape</a></li><li><a href="/static/docs/vx-text.html">@vx/text</a></li><li><a href="/static/docs/vx-tooltip.html">@vx/tooltip</a></li><li><a href="/static/docs/vx-voronoi.html">@vx/voronoi</a></li><li><a href="/static/docs/vx-zoom.html">@vx/zoom</a></li>
+        <li><a href="/static/docs/vx-annotation.html">@vx/annotation</a></li><li><a href="/static/docs/vx-axis.html">@vx/axis</a></li><li><a href="/static/docs/vx-bounds.html">@vx/bounds</a></li><li><a href="/static/docs/vx-boxplot.html">@vx/boxplot</a></li><li><a href="/static/docs/vx-brush.html">@vx/brush</a></li><li><a href="/static/docs/vx-clip-path.html">@vx/clip-path</a></li><li><a href="/static/docs/vx-curve.html">@vx/curve</a></li><li><a href="/static/docs/vx-demo.html">@vx/demo</a></li><li><a href="/static/docs/vx-drag.html">@vx/drag</a></li><li><a href="/static/docs/vx-event.html">@vx/event</a></li><li><a href="/static/docs/vx-geo.html">@vx/geo</a></li><li><a href="/static/docs/vx-glyph.html">@vx/glyph</a></li><li><a href="/static/docs/vx-gradient.html">@vx/gradient</a></li><li><a href="/static/docs/vx-grid.html">@vx/grid</a></li><li><a href="/static/docs/vx-group.html">@vx/group</a></li><li><a href="/static/docs/vx-heatmap.html">@vx/heatmap</a></li><li><a href="/static/docs/vx-hierarchy.html">@vx/hierarchy</a></li><li><a href="/static/docs/vx-legend.html">@vx/legend</a></li><li><a href="/static/docs/vx-marker.html">@vx/marker</a></li><li><a href="/static/docs/vx-mock-data.html">@vx/mock-data</a></li><li><a href="/static/docs/vx-network.html">@vx/network</a></li><li><a href="/static/docs/vx-pattern.html">@vx/pattern</a></li><li><a href="/static/docs/vx-point.html">@vx/point</a></li><li><a href="/static/docs/vx-responsive.html">@vx/responsive</a></li><li><a href="/static/docs/vx-scale.html">@vx/scale</a></li><li><a href="/static/docs/vx-shape.html">@vx/shape</a></li><li><a href="/static/docs/vx-stats.html">@vx/stats</a></li><li><a href="/static/docs/vx-text.html">@vx/text</a></li><li><a href="/static/docs/vx-tooltip.html">@vx/tooltip</a></li><li><a href="/static/docs/vx-voronoi.html">@vx/voronoi</a></li><li><a href="/static/docs/vx-vx.html">@vx/vx</a></li><li><a href="/static/docs/vx-zoom.html">@vx/zoom</a></li>
         </ul>
       </div>
       <div class="content">
@@ -57,23 +57,6 @@ const bars = data.map((d, i) =&gt; {
 </code></pre>
 <p><strong>Note:</strong> This example represents how to use a yScale, but skipped a lot of details about how to make a bar chart. If you&#39;re trying to do that, you should check out <a href="https://github.com/hshoff/vx/blob/master/packages/vx-demo/components/charts/SimpleBar.js">this example</a>.</p>
 <h2 id="current-scaling-options">Current Scaling Options</h2>
-<h3 id="color-scaling">Color Scaling</h3>
-<p>Color scales convert a point to a series of colors. D3 comes with a number of schemes that you can use just like any other scale.</p>
-<p><a href="https://github.com/d3/d3-scale/blob/master/README.md#schemeCategory10">Original d3 docs with colors</a></p>
-<h4 id="scale-10-colors">Scale 10 colors</h4>
-<p><img src="https://raw.githubusercontent.com/d3/d3-scale/master/img/category10.png" alt="scale10 colors"></p>
-<h4 id="scale-20-colors">Scale 20 colors</h4>
-<p><img src="https://raw.githubusercontent.com/d3/d3-scale/master/img/category20.png" alt="scale20 colors"></p>
-<h4 id="scale-20b-colors">Scale 20b colors</h4>
-<p><img src="https://raw.githubusercontent.com/d3/d3-scale/master/img/category20b.png" alt="scale20b colors"></p>
-<h4 id="scale-20c-colors">Scale 20c colors</h4>
-<p><img src="https://raw.githubusercontent.com/d3/d3-scale/master/img/category20c.png" alt="scale20c colors"></p>
-<p>Example:</p>
-<pre><code class="lang-javascript">const scale10 = Scale.schemeCategory10({ /* range, domain, unknown */})
-const scale20 = Scale.schemeCategory20({ /* range, domain, unknown */})
-const scale20b = Scale.schemeCategory20b({ /* range, domain, unknown */})
-const scale20c = Scale.schemeCategory20c({ /* range, domain, unknown */})
-</code></pre>
 <h3 id="band-scaling">Band Scaling</h3>
 <p><a href="https://github.com/d3/d3-scale/blob/master/README.md#_band">Original d3 docs</a></p>
 <p>Example:</p>
@@ -147,7 +130,7 @@ const scale20c = Scale.schemeCategory20c({ /* range, domain, unknown */})
     range,
     rangeRound,
     domain,
-    base,
+    exponent,
     nice = false,
     clamp = false,
   */
@@ -178,6 +161,22 @@ const scale20c = Scale.schemeCategory20c({ /* range, domain, unknown */})
    */
 });
 </code></pre>
+<h3 id="color-scales">Color Scales</h3>
+<p>D3 scales offer the ability to map points to colors.  You can use <a href="https://github.com/d3/d3-scale-chromatic"><code>d3-scale-chromatic</code></a> in conjunction with vx&#39;s <code>scaleOrdinal</code> to make color scales.</p>
+<p>You can install <code>d3-scale-chromatic</code> with npm:</p>
+<pre><code>npm install --save d3-scale-chromatic
+</code></pre><p>You create a color scale like so:</p>
+<pre><code class="lang-javascript">import { scaleOrdinal } from &#39;@vx/scale&#39;;
+import { schemeSet1 } from &#39;d3-scale-chromatic&#39;;
+
+const colorScale = scaleOrdinal({
+  domain: arrayOfThings,
+  range: schemeSet1
+});
+</code></pre>
+<p>This generates a color scale with the following colors:</p>
+<p><img src="https://raw.githubusercontent.com/d3/d3-scale-chromatic/master/img/Set1.png" alt="d3-scale-chromatic schemeSet1"></p>
+<p>There are a number of other <a href="https://github.com/d3/d3-scale-chromatic/blob/master/README.md#categorical">categorical color schemes</a> available, along with other continuous color schemes.</p>
 
       </div>
     </div>

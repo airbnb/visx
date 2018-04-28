@@ -29,41 +29,59 @@
       <div class="doc-nav">
         <ul>
         <li>Packages</li>
-        <li><a href="/static/docs/vx-annotation.html">@vx/annotation</a></li><li><a href="/static/docs/vx-axis.html">@vx/axis</a></li><li><a href="/static/docs/vx-bounds.html">@vx/bounds</a></li><li><a href="/static/docs/vx-boxplot.html">@vx/boxplot</a></li><li><a href="/static/docs/vx-brush.html">@vx/brush</a></li><li><a href="/static/docs/vx-clip-path.html">@vx/clip-path</a></li><li><a href="/static/docs/vx-curve.html">@vx/curve</a></li><li><a href="/static/docs/vx-demo.html">@vx/demo</a></li><li><a href="/static/docs/vx-drag.html">@vx/drag</a></li><li><a href="/static/docs/vx-event.html">@vx/event</a></li><li><a href="/static/docs/vx-geo.html">@vx/geo</a></li><li><a href="/static/docs/vx-glyph.html">@vx/glyph</a></li><li><a href="/static/docs/vx-gradient.html">@vx/gradient</a></li><li><a href="/static/docs/vx-grid.html">@vx/grid</a></li><li><a href="/static/docs/vx-group.html">@vx/group</a></li><li><a href="/static/docs/vx-heatmap.html">@vx/heatmap</a></li><li><a href="/static/docs/vx-hierarchy.html">@vx/hierarchy</a></li><li><a href="/static/docs/vx-legend.html">@vx/legend</a></li><li><a href="/static/docs/vx-marker.html">@vx/marker</a></li><li><a href="/static/docs/vx-mock-data.html">@vx/mock-data</a></li><li><a href="/static/docs/vx-network.html">@vx/network</a></li><li><a href="/static/docs/vx-pattern.html">@vx/pattern</a></li><li><a href="/static/docs/vx-point.html">@vx/point</a></li><li><a href="/static/docs/vx-responsive.html">@vx/responsive</a></li><li><a href="/static/docs/vx-scale.html">@vx/scale</a></li><li><a href="/static/docs/vx-shape.html">@vx/shape</a></li><li><a href="/static/docs/vx-text.html">@vx/text</a></li><li><a href="/static/docs/vx-tooltip.html">@vx/tooltip</a></li><li><a href="/static/docs/vx-voronoi.html">@vx/voronoi</a></li><li><a href="/static/docs/vx-zoom.html">@vx/zoom</a></li>
+        <li><a href="/static/docs/vx-annotation.html">@vx/annotation</a></li><li><a href="/static/docs/vx-axis.html">@vx/axis</a></li><li><a href="/static/docs/vx-bounds.html">@vx/bounds</a></li><li><a href="/static/docs/vx-boxplot.html">@vx/boxplot</a></li><li><a href="/static/docs/vx-brush.html">@vx/brush</a></li><li><a href="/static/docs/vx-clip-path.html">@vx/clip-path</a></li><li><a href="/static/docs/vx-curve.html">@vx/curve</a></li><li><a href="/static/docs/vx-demo.html">@vx/demo</a></li><li><a href="/static/docs/vx-drag.html">@vx/drag</a></li><li><a href="/static/docs/vx-event.html">@vx/event</a></li><li><a href="/static/docs/vx-geo.html">@vx/geo</a></li><li><a href="/static/docs/vx-glyph.html">@vx/glyph</a></li><li><a href="/static/docs/vx-gradient.html">@vx/gradient</a></li><li><a href="/static/docs/vx-grid.html">@vx/grid</a></li><li><a href="/static/docs/vx-group.html">@vx/group</a></li><li><a href="/static/docs/vx-heatmap.html">@vx/heatmap</a></li><li><a href="/static/docs/vx-hierarchy.html">@vx/hierarchy</a></li><li><a href="/static/docs/vx-legend.html">@vx/legend</a></li><li><a href="/static/docs/vx-marker.html">@vx/marker</a></li><li><a href="/static/docs/vx-mock-data.html">@vx/mock-data</a></li><li><a href="/static/docs/vx-network.html">@vx/network</a></li><li><a href="/static/docs/vx-pattern.html">@vx/pattern</a></li><li><a href="/static/docs/vx-point.html">@vx/point</a></li><li><a href="/static/docs/vx-responsive.html">@vx/responsive</a></li><li><a href="/static/docs/vx-scale.html">@vx/scale</a></li><li><a href="/static/docs/vx-shape.html">@vx/shape</a></li><li><a href="/static/docs/vx-stats.html">@vx/stats</a></li><li><a href="/static/docs/vx-text.html">@vx/text</a></li><li><a href="/static/docs/vx-tooltip.html">@vx/tooltip</a></li><li><a href="/static/docs/vx-voronoi.html">@vx/voronoi</a></li><li><a href="/static/docs/vx-vx.html">@vx/vx</a></li><li><a href="/static/docs/vx-zoom.html">@vx/zoom</a></li>
         </ul>
       </div>
       <div class="content">
       <h1 id="-vx-axis">@vx/axis</h1>
 <pre><code>npm install --save @vx/axis
-</code></pre><p>An axis is a line with ticks that helps you label your graphs.</p>
-<p>You can use one of the 4 pre-made axes or you can create your own based on the <code>&lt;Axis /&gt;</code> element.</p>
+</code></pre><p>An axis component consists of a line with ticks, tick labels, and an axis label that helps viewers interpret your graph.</p>
+<p>You can use one of the 4 pre-made axes, or you can create your own based on the <code>&lt;Axis /&gt;</code> element.</p>
 <h2 id="example">Example</h2>
 <p><img src="http://i.imgur.com/uNIgPsg.png" alt="Axis Example"></p>
-<pre><code class="lang-js">import { AxisBottom, AxisLeft } from &#39;@vx/axis&#39;;
+<pre><code class="lang-javascript">import { AxisBottom, AxisLeft } from &#39;@vx/axis&#39;;
 // or
 // import * as Axis from &#39;@vx/axis&#39;;
 // &lt;Axis.AxisBottom /&gt;
+// or
+// import AxisBottom from &#39;@vx/axis/build/Axis/AxisBottom&#39;;
 
-const axis = (
-  &lt;AxisBottom
-    scale={xScale}
-    top={yMax + margin.top}
-    left={margin.left}
-    label={&#39;My string label&#39;}
-    stroke={&#39;#1b1a1e&#39;}
-    tickTextFill={&#39;#1b1a1e&#39;}
-  /&gt;
-  &lt;AxisLeft
-    scale={yScale}
-    top={margin.top}
-    left={margin.left}
-    label={&lt;text {...labelStyles}&gt;My component label&lt;/text&gt;}
-    stroke={&#39;#1b1a1e&#39;}
-    tickTextFill={&#39;#1b1a1e&#39;}
-  /&gt;
-);
+
+function MyChart() {
+  // ...
+  return (
+    &lt;svg&gt;
+      // ...
+      &lt;AxisBottom
+        scale={xScale}
+        top={yMax + margin.top}
+        left={margin.left}
+        axisClassName=&quot;axis-class&quot;
+        labelClassName=&quot;axis-label-class&quot;
+        tickClassName=&quot;tick-label-class&quot;
+        label=&quot;Bottom axis label&quot;
+        stroke=&quot;#333333&quot;
+        tickStroke=&quot;#333333&quot;
+      /&gt;
+      &lt;AxisLeft
+        scale={yScale}
+        top={margin.top}
+        left={margin.left}
+        label=&quot;Left axis label&quot;
+        labelProps={{ fontSize: 12, fill: &#39;black&#39; }}
+        tickFormat={(value, index) =&gt; `$${value}`}
+        tickProps={(value, index) =&gt; ({
+          dx: &quot;0.33em&quot;,
+          fill: &quot;black&quot;,
+          fontSize: 8,
+          opacity: index % 2 === 0 ? 0.5 : 0.9,
+        })}
+      /&gt;
+    &lt;/svg&gt;
+  );
+}
 </code></pre>
-<h2 id="-axistop-"><code>&lt;AxisTop/&gt;</code></h2>
+<h2 id="axisbottom-"><code>&lt;AxisBottom /&gt;</code></h2>
 <table>
 <thead>
 <tr>
@@ -75,239 +93,136 @@ const axis = (
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">scale</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">A d3 <a href="https://github.com/hshoff/vx/tree/master/packages/vx-scale">scale function</a>.</td>
-</tr>
-<tr>
-<td style="text-align:left">top</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">A pixel value for the top margin.</td>
-</tr>
-<tr>
-<td style="text-align:left">left</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">A pixel value for the top margin.</td>
-</tr>
-<tr>
-<td style="text-align:left">stroke</td>
+<td style="text-align:left">axisClassName</td>
 <td style="text-align:left"></td>
 <td style="text-align:left">string</td>
-<td style="text-align:left">The color for the stroke of the lines.</td>
+<td style="text-align:left">The class name applied to the outermost axis group element.</td>
 </tr>
 <tr>
-<td style="text-align:left">strokeWidth</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The pixel value for the width of the lines.</td>
-</tr>
-<tr>
-<td style="text-align:left">strokeDasharray</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">array</td>
-<td style="text-align:left">The <a href="https://mzl.la/1l7EiTQ">pattern of dashes</a> in the stroke.</td>
-</tr>
-<tr>
-<td style="text-align:left">label</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">string or node</td>
-<td style="text-align:left">The text for the axis label, or a label component</td>
-</tr>
-<tr>
-<td style="text-align:left">numTicks</td>
-<td style="text-align:left">10</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The number of ticks wanted for the axis.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickFormat</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">A <a href="https://github.com/d3/d3-scale/blob/master/README.md#continuous_tickFormat">d3 formatter</a> for the tick text.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickStroke</td>
-<td style="text-align:left">black</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The color for the tick&#39;s stroke value.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickValues</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">Array</td>
-<td style="text-align:left">An array of values that determine the number and values of the ticks. Falls back to scale.ticks() or .domain().</td>
-</tr>
-<tr>
-<td style="text-align:left">tickK</td>
-<td style="text-align:left">-1</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">A value that determines an offset in the tick position.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickOffset</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">A value that determines the y offset in the tick position.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickTransform</td>
+<td style="text-align:left">axisLineClassName</td>
 <td style="text-align:left"></td>
 <td style="text-align:left">string</td>
-<td style="text-align:left">A custom SVG transform value to be applied to the ticks.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickLength</td>
-<td style="text-align:left">8</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The length of the tick lines.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickPadding</td>
-<td style="text-align:left">2</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The padding between the ticks and their labels.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickTextAnchor</td>
-<td style="text-align:left">&quot;middle&quot;</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The textAnchor value for the tick&#39;s text.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickTextFontFamily</td>
-<td style="text-align:left">&quot;Arial&quot;</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The font for the ticks.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickTextFontSize</td>
-<td style="text-align:left">10</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The font size for the ticks.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickTextFill</td>
-<td style="text-align:left">black</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The text fill color for the tick&#39;s text.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickTextDy</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The y offset to the tick&#39;s text.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickTextDx</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The x offset to the tick&#39;s text.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickComponent</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">Function returning a React component to render as tick.</td>
+<td style="text-align:left">The class name applied to the axis line element.</td>
 </tr>
 <tr>
 <td style="text-align:left">hideAxisLine</td>
-<td style="text-align:left">false</td>
+<td style="text-align:left"><code>false</code></td>
 <td style="text-align:left">bool</td>
 <td style="text-align:left">If true, will hide the axis line.</td>
 </tr>
 <tr>
 <td style="text-align:left">hideTicks</td>
-<td style="text-align:left">false</td>
+<td style="text-align:left"><code>false</code></td>
 <td style="text-align:left">bool</td>
-<td style="text-align:left">If true, will hide the ticks.</td>
+<td style="text-align:left">If true, will hide the ticks (but not the tick labels).</td>
 </tr>
 <tr>
 <td style="text-align:left">hideZero</td>
-<td style="text-align:left">false</td>
+<td style="text-align:left"><code>false</code></td>
 <td style="text-align:left">bool</td>
-<td style="text-align:left">If true, will hide &#39;0&#39; values.</td>
-</tr>
-<tr>
-<td style="text-align:left">className</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The class name applied to the axis group element.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="-axisbottom-"><code>&lt;AxisBottom/&gt;</code></h2>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Name</th>
-<th style="text-align:left">Default</th>
-<th style="text-align:left">Type</th>
-<th style="text-align:left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">scale</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">A d3 <a href="https://github.com/hshoff/vx/tree/master/packages/vx-scale">scale function</a>.</td>
-</tr>
-<tr>
-<td style="text-align:left">top</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">A pixel value for the top margin.</td>
-</tr>
-<tr>
-<td style="text-align:left">left</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">A pixel value for the top margin.</td>
-</tr>
-<tr>
-<td style="text-align:left">stroke</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The color for the stroke of the lines.</td>
-</tr>
-<tr>
-<td style="text-align:left">strokeWidth</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The pixel value for the width of the lines.</td>
-</tr>
-<tr>
-<td style="text-align:left">strokeDasharray</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">array</td>
-<td style="text-align:left">The <a href="https://mzl.la/1l7EiTQ">pattern of dashes</a> in the stroke.</td>
+<td style="text-align:left">If true, will hide the &#39;0&#39; value tick and tick label.</td>
 </tr>
 <tr>
 <td style="text-align:left">label</td>
-<td style="text-align:left"></td>
+<td style="text-align:left"><code>&quot;&quot;</code></td>
 <td style="text-align:left">string</td>
 <td style="text-align:left">The text for the axis label.</td>
 </tr>
 <tr>
-<td style="text-align:left">numTicks</td>
-<td style="text-align:left">10</td>
+<td style="text-align:left">labelClassName</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The class name applied to the axis label text element.</td>
+</tr>
+<tr>
+<td style="text-align:left">labelOffset</td>
+<td style="text-align:left"><code>8</code></td>
 <td style="text-align:left">number</td>
-<td style="text-align:left">The number of ticks wanted for the axis.</td>
+<td style="text-align:left">Px offset of the axis label (does not include tick label font size, which is accounted for automatically)</td>
+</tr>
+<tr>
+<td style="text-align:left">labelProps</td>
+<td style="text-align:left"><code>{ textAnchor: &#39;middle&#39;, fontFamily: &#39;Arial&#39;, fontSize: 10, fill: &#39;black&#39; }</code></td>
+<td style="text-align:left">object</td>
+<td style="text-align:left">Props applied to the axis label component.</td>
+</tr>
+<tr>
+<td style="text-align:left">left</td>
+<td style="text-align:left"><code>0</code></td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">A left pixel offset applied to the entire axis.</td>
+</tr>
+<tr>
+<td style="text-align:left">numTicks</td>
+<td style="text-align:left"><code>10</code></td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The number of ticks wanted for the axis (note this is approximate)</td>
+</tr>
+<tr>
+<td style="text-align:left">rangePadding</td>
+<td style="text-align:left"><code>0</code></td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">Px padding to apply to both sides of the axis</td>
+</tr>
+<tr>
+<td style="text-align:left">scale</td>
+<td style="text-align:left">REQUIRED</td>
+<td style="text-align:left">function</td>
+<td style="text-align:left">A d3 <a href="https://github.com/hshoff/vx/tree/master/packages/vx-scale">scale function</a>.</td>
+</tr>
+<tr>
+<td style="text-align:left">stroke</td>
+<td style="text-align:left"><code>black</code></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The color for the stroke of the lines.</td>
+</tr>
+<tr>
+<td style="text-align:left">strokeWidth</td>
+<td style="text-align:left"><code>1</code></td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The pixel value for the width of the lines.</td>
+</tr>
+<tr>
+<td style="text-align:left">strokeDasharray</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The <a href="https://mzl.la/1l7EiTQ">pattern of dashes</a> in the stroke.</td>
+</tr>
+<tr>
+<td style="text-align:left">tickClassName</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The class name applied to each tick group.</td>
 </tr>
 <tr>
 <td style="text-align:left">tickFormat</td>
-<td style="text-align:left"></td>
+<td style="text-align:left"><code>(val, i) =&gt; val</code></td>
 <td style="text-align:left">function</td>
 <td style="text-align:left">A <a href="https://github.com/d3/d3-scale/blob/master/README.md#continuous_tickFormat">d3 formatter</a> for the tick text.</td>
 </tr>
 <tr>
+<td style="text-align:left">tickLabelProps</td>
+<td style="text-align:left"><code>(val, i) =&gt; ({ dy: &#39;0.25em&#39;, textAnchor: &#39;middle&#39;, fontFamily: &#39;Arial&#39;, fontSize: 10, fill: &#39;black&#39; })</code></td>
+<td style="text-align:left">function</td>
+<td style="text-align:left">function that returns props for a given tick label.</td>
+</tr>
+<tr>
+<td style="text-align:left">tickLength</td>
+<td style="text-align:left"><code>8</code></td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The length of the tick lines.</td>
+</tr>
+<tr>
 <td style="text-align:left">tickStroke</td>
-<td style="text-align:left">black</td>
+<td style="text-align:left"><code>black</code></td>
 <td style="text-align:left">string</td>
 <td style="text-align:left">The color for the tick&#39;s stroke value.</td>
+</tr>
+<tr>
+<td style="text-align:left">tickTransform</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">A custom SVG transform value to be applied to each tick group.</td>
 </tr>
 <tr>
 <td style="text-align:left">tickValues</td>
@@ -316,104 +231,14 @@ const axis = (
 <td style="text-align:left">An array of values that determine the number and values of the ticks. Falls back to scale.ticks() or .domain().</td>
 </tr>
 <tr>
-<td style="text-align:left">tickK</td>
-<td style="text-align:left">1</td>
+<td style="text-align:left">top</td>
+<td style="text-align:left"><code>0</code></td>
 <td style="text-align:left">number</td>
-<td style="text-align:left">A value that determines an offset in the tick position.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickOffset</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">A value that determines the y offset in the tick position.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickTransform</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">A custom SVG transform value to be applied to the ticks.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickLength</td>
-<td style="text-align:left">8</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The length of the tick lines.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickPadding</td>
-<td style="text-align:left">2</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The padding between the ticks and their labels.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickTextAnchor</td>
-<td style="text-align:left">&quot;middle&quot;</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The textAnchor value for the tick&#39;s text.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickTextFontFamily</td>
-<td style="text-align:left">&quot;Arial&quot;</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The font for the ticks.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickTextFontSize</td>
-<td style="text-align:left">10</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The font size for the ticks.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickTextFill</td>
-<td style="text-align:left">black</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The text fill color for the tick&#39;s text.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickTextDy</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The y offset to the tick&#39;s text.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickTextDx</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The x offset to the tick&#39;s text.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickComponent</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">Function returning a React component to render as tick.</td>
-</tr>
-<tr>
-<td style="text-align:left">hideAxisLine</td>
-<td style="text-align:left">false</td>
-<td style="text-align:left">bool</td>
-<td style="text-align:left">If true, will hide the axis line.</td>
-</tr>
-<tr>
-<td style="text-align:left">hideTicks</td>
-<td style="text-align:left">false</td>
-<td style="text-align:left">bool</td>
-<td style="text-align:left">If true, will hide the ticks.</td>
-</tr>
-<tr>
-<td style="text-align:left">hideZero</td>
-<td style="text-align:left">false</td>
-<td style="text-align:left">bool</td>
-<td style="text-align:left">If true, will hide &#39;0&#39; values.</td>
-</tr>
-<tr>
-<td style="text-align:left">className</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The class name applied to the axis group element.</td>
+<td style="text-align:left">A top pixel offset applied to the entire axis.</td>
 </tr>
 </tbody>
 </table>
-<h2 id="-axisleft-"><code>&lt;AxisLeft/&gt;</code></h2>
+<h2 id="axisleft-"><code>&lt;AxisLeft /&gt;</code></h2>
 <table>
 <thead>
 <tr>
@@ -425,64 +250,136 @@ const axis = (
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">scale</td>
+<td style="text-align:left">axisClassName</td>
 <td style="text-align:left"></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The class name applied to the outermost axis group element.</td>
+</tr>
+<tr>
+<td style="text-align:left">axisLineClassName</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The class name applied to the axis line element.</td>
+</tr>
+<tr>
+<td style="text-align:left">hideAxisLine</td>
+<td style="text-align:left"><code>false</code></td>
+<td style="text-align:left">bool</td>
+<td style="text-align:left">If true, will hide the axis line.</td>
+</tr>
+<tr>
+<td style="text-align:left">hideTicks</td>
+<td style="text-align:left"><code>false</code></td>
+<td style="text-align:left">bool</td>
+<td style="text-align:left">If true, will hide the ticks (but not the tick labels).</td>
+</tr>
+<tr>
+<td style="text-align:left">hideZero</td>
+<td style="text-align:left"><code>false</code></td>
+<td style="text-align:left">bool</td>
+<td style="text-align:left">If true, will hide the &#39;0&#39; value tick and tick label.</td>
+</tr>
+<tr>
+<td style="text-align:left">label</td>
+<td style="text-align:left"><code>&quot;&quot;</code></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The text for the axis label.</td>
+</tr>
+<tr>
+<td style="text-align:left">labelClassName</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The class name applied to the axis label text element.</td>
+</tr>
+<tr>
+<td style="text-align:left">labelOffset</td>
+<td style="text-align:left"><code>36</code></td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">Px offset of the axis label (does not include tick label font size, which is accounted for automatically)</td>
+</tr>
+<tr>
+<td style="text-align:left">labelProps</td>
+<td style="text-align:left"><code>{ textAnchor: &#39;middle&#39;, fontFamily: &#39;Arial&#39;, fontSize: 10, fill: &#39;black&#39; }</code></td>
+<td style="text-align:left">object</td>
+<td style="text-align:left">Props applied to the axis label component.</td>
+</tr>
+<tr>
+<td style="text-align:left">left</td>
+<td style="text-align:left"><code>0</code></td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">A left pixel offset applied to the entire axis.</td>
+</tr>
+<tr>
+<td style="text-align:left">numTicks</td>
+<td style="text-align:left"><code>10</code></td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The number of ticks wanted for the axis (note this is approximate)</td>
+</tr>
+<tr>
+<td style="text-align:left">rangePadding</td>
+<td style="text-align:left"><code>0</code></td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">Px padding to apply to both sides of the axis</td>
+</tr>
+<tr>
+<td style="text-align:left">scale</td>
+<td style="text-align:left">REQUIRED</td>
 <td style="text-align:left">function</td>
 <td style="text-align:left">A d3 <a href="https://github.com/hshoff/vx/tree/master/packages/vx-scale">scale function</a>.</td>
 </tr>
 <tr>
-<td style="text-align:left">top</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">A pixel value for the top margin.</td>
-</tr>
-<tr>
-<td style="text-align:left">left</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">A pixel value for the top margin.</td>
-</tr>
-<tr>
 <td style="text-align:left">stroke</td>
-<td style="text-align:left"></td>
+<td style="text-align:left"><code>black</code></td>
 <td style="text-align:left">string</td>
 <td style="text-align:left">The color for the stroke of the lines.</td>
 </tr>
 <tr>
 <td style="text-align:left">strokeWidth</td>
-<td style="text-align:left"></td>
+<td style="text-align:left"><code>1</code></td>
 <td style="text-align:left">number</td>
 <td style="text-align:left">The pixel value for the width of the lines.</td>
 </tr>
 <tr>
 <td style="text-align:left">strokeDasharray</td>
 <td style="text-align:left"></td>
-<td style="text-align:left">array</td>
+<td style="text-align:left">string</td>
 <td style="text-align:left">The <a href="https://mzl.la/1l7EiTQ">pattern of dashes</a> in the stroke.</td>
 </tr>
 <tr>
-<td style="text-align:left">label</td>
+<td style="text-align:left">tickClassName</td>
 <td style="text-align:left"></td>
 <td style="text-align:left">string</td>
-<td style="text-align:left">The text for the axis label.</td>
-</tr>
-<tr>
-<td style="text-align:left">numTicks</td>
-<td style="text-align:left">10</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The number of ticks wanted for the axis.</td>
+<td style="text-align:left">The class name applied to each tick group.</td>
 </tr>
 <tr>
 <td style="text-align:left">tickFormat</td>
-<td style="text-align:left"></td>
+<td style="text-align:left"><code>(val, i) =&gt; val</code></td>
 <td style="text-align:left">function</td>
 <td style="text-align:left">A <a href="https://github.com/d3/d3-scale/blob/master/README.md#continuous_tickFormat">d3 formatter</a> for the tick text.</td>
 </tr>
 <tr>
+<td style="text-align:left">tickLabelProps</td>
+<td style="text-align:left"><code>(val, i) =&gt; ({ dx: &#39;-0.25em&#39;, dy: &#39;0.25em&#39;, textAnchor: &#39;end&#39;, fontFamily: &#39;Arial&#39;, fontSize: 10, fill: &#39;black&#39; })</code></td>
+<td style="text-align:left">function</td>
+<td style="text-align:left">function that returns props for a given tick label.</td>
+</tr>
+<tr>
+<td style="text-align:left">tickLength</td>
+<td style="text-align:left"><code>8</code></td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The length of the tick lines.</td>
+</tr>
+<tr>
 <td style="text-align:left">tickStroke</td>
-<td style="text-align:left">black</td>
+<td style="text-align:left"><code>black</code></td>
 <td style="text-align:left">string</td>
 <td style="text-align:left">The color for the tick&#39;s stroke value.</td>
+</tr>
+<tr>
+<td style="text-align:left">tickTransform</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">A custom SVG transform value to be applied to each tick group.</td>
 </tr>
 <tr>
 <td style="text-align:left">tickValues</td>
@@ -491,104 +388,14 @@ const axis = (
 <td style="text-align:left">An array of values that determine the number and values of the ticks. Falls back to scale.ticks() or .domain().</td>
 </tr>
 <tr>
-<td style="text-align:left">tickK</td>
-<td style="text-align:left">-1</td>
+<td style="text-align:left">top</td>
+<td style="text-align:left"><code>0</code></td>
 <td style="text-align:left">number</td>
-<td style="text-align:left">A value that determines an offset in the tick position.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickOffset</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">A value that determines the y offset in the tick position.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickTransform</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">A custom SVG transform value to be applied to the ticks.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickLength</td>
-<td style="text-align:left">8</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The length of the tick lines.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickPadding</td>
-<td style="text-align:left">2</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The padding between the ticks and their labels.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickTextAnchor</td>
-<td style="text-align:left">&quot;end&quot;</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The textAnchor value for the tick&#39;s text.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickTextFontFamily</td>
-<td style="text-align:left">&quot;Arial&quot;</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The font for the ticks.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickTextFontSize</td>
-<td style="text-align:left">10</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The font size for the ticks.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickTextFill</td>
-<td style="text-align:left">black</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The text fill color for the tick&#39;s text.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickTextDy</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The y offset to the tick&#39;s text.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickTextDx</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The x offset to the tick&#39;s text.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickComponent</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">Function returning a React component to render as tick.</td>
-</tr>
-<tr>
-<td style="text-align:left">hideAxisLine</td>
-<td style="text-align:left">false</td>
-<td style="text-align:left">bool</td>
-<td style="text-align:left">If true, will hide the axis line.</td>
-</tr>
-<tr>
-<td style="text-align:left">hideTicks</td>
-<td style="text-align:left">false</td>
-<td style="text-align:left">bool</td>
-<td style="text-align:left">If true, will hide the ticks.</td>
-</tr>
-<tr>
-<td style="text-align:left">hideZero</td>
-<td style="text-align:left">false</td>
-<td style="text-align:left">bool</td>
-<td style="text-align:left">If true, will hide &#39;0&#39; values.</td>
-</tr>
-<tr>
-<td style="text-align:left">className</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The class name applied to the axis group element.</td>
+<td style="text-align:left">A top pixel offset applied to the entire axis.</td>
 </tr>
 </tbody>
 </table>
-<h2 id="-axisright-"><code>&lt;AxisRight/&gt;</code></h2>
+<h2 id="axisright-"><code>&lt;AxisRight /&gt;</code></h2>
 <table>
 <thead>
 <tr>
@@ -600,64 +407,136 @@ const axis = (
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">scale</td>
+<td style="text-align:left">axisClassName</td>
 <td style="text-align:left"></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The class name applied to the outermost axis group element.</td>
+</tr>
+<tr>
+<td style="text-align:left">axisLineClassName</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The class name applied to the axis line element.</td>
+</tr>
+<tr>
+<td style="text-align:left">hideAxisLine</td>
+<td style="text-align:left"><code>false</code></td>
+<td style="text-align:left">bool</td>
+<td style="text-align:left">If true, will hide the axis line.</td>
+</tr>
+<tr>
+<td style="text-align:left">hideTicks</td>
+<td style="text-align:left"><code>false</code></td>
+<td style="text-align:left">bool</td>
+<td style="text-align:left">If true, will hide the ticks (but not the tick labels).</td>
+</tr>
+<tr>
+<td style="text-align:left">hideZero</td>
+<td style="text-align:left"><code>false</code></td>
+<td style="text-align:left">bool</td>
+<td style="text-align:left">If true, will hide the &#39;0&#39; value tick and tick label.</td>
+</tr>
+<tr>
+<td style="text-align:left">label</td>
+<td style="text-align:left"><code>&quot;&quot;</code></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The text for the axis label.</td>
+</tr>
+<tr>
+<td style="text-align:left">labelClassName</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The class name applied to the axis label text element.</td>
+</tr>
+<tr>
+<td style="text-align:left">labelOffset</td>
+<td style="text-align:left"><code>36</code></td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">Px offset of the axis label (does not include tick label font size, which is accounted for automatically)</td>
+</tr>
+<tr>
+<td style="text-align:left">labelProps</td>
+<td style="text-align:left"><code>{ textAnchor: &#39;middle&#39;, fontFamily: &#39;Arial&#39;, fontSize: 10, fill: &#39;black&#39; }</code></td>
+<td style="text-align:left">object</td>
+<td style="text-align:left">Props applied to the axis label component.</td>
+</tr>
+<tr>
+<td style="text-align:left">left</td>
+<td style="text-align:left"><code>0</code></td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">A left pixel offset applied to the entire axis.</td>
+</tr>
+<tr>
+<td style="text-align:left">numTicks</td>
+<td style="text-align:left"><code>10</code></td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The number of ticks wanted for the axis (note this is approximate)</td>
+</tr>
+<tr>
+<td style="text-align:left">rangePadding</td>
+<td style="text-align:left"><code>0</code></td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">Px padding to apply to both sides of the axis</td>
+</tr>
+<tr>
+<td style="text-align:left">scale</td>
+<td style="text-align:left">REQUIRED</td>
 <td style="text-align:left">function</td>
 <td style="text-align:left">A d3 <a href="https://github.com/hshoff/vx/tree/master/packages/vx-scale">scale function</a>.</td>
 </tr>
 <tr>
-<td style="text-align:left">top</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">A pixel value for the top margin.</td>
-</tr>
-<tr>
-<td style="text-align:left">left</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">A pixel value for the top margin.</td>
-</tr>
-<tr>
 <td style="text-align:left">stroke</td>
-<td style="text-align:left"></td>
+<td style="text-align:left"><code>black</code></td>
 <td style="text-align:left">string</td>
 <td style="text-align:left">The color for the stroke of the lines.</td>
 </tr>
 <tr>
 <td style="text-align:left">strokeWidth</td>
-<td style="text-align:left"></td>
+<td style="text-align:left"><code>1</code></td>
 <td style="text-align:left">number</td>
 <td style="text-align:left">The pixel value for the width of the lines.</td>
 </tr>
 <tr>
 <td style="text-align:left">strokeDasharray</td>
 <td style="text-align:left"></td>
-<td style="text-align:left">array</td>
+<td style="text-align:left">string</td>
 <td style="text-align:left">The <a href="https://mzl.la/1l7EiTQ">pattern of dashes</a> in the stroke.</td>
 </tr>
 <tr>
-<td style="text-align:left">label</td>
+<td style="text-align:left">tickClassName</td>
 <td style="text-align:left"></td>
 <td style="text-align:left">string</td>
-<td style="text-align:left">The text for the axis label.</td>
-</tr>
-<tr>
-<td style="text-align:left">numTicks</td>
-<td style="text-align:left">10</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The number of ticks wanted for the axis.</td>
+<td style="text-align:left">The class name applied to each tick group.</td>
 </tr>
 <tr>
 <td style="text-align:left">tickFormat</td>
-<td style="text-align:left"></td>
+<td style="text-align:left"><code>(val, i) =&gt; val</code></td>
 <td style="text-align:left">function</td>
 <td style="text-align:left">A <a href="https://github.com/d3/d3-scale/blob/master/README.md#continuous_tickFormat">d3 formatter</a> for the tick text.</td>
 </tr>
 <tr>
+<td style="text-align:left">tickLabelProps</td>
+<td style="text-align:left"><code>(val, i) =&gt; ({ dx: &#39;0.25em&#39;, dy: &#39;0.25em&#39;, textAnchor: &#39;start&#39;, fontFamily: &#39;Arial&#39;, fontSize: 10, fill: &#39;black&#39; })</code></td>
+<td style="text-align:left">function</td>
+<td style="text-align:left">function that returns props for a given tick label.</td>
+</tr>
+<tr>
+<td style="text-align:left">tickLength</td>
+<td style="text-align:left"><code>8</code></td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The length of the tick lines.</td>
+</tr>
+<tr>
 <td style="text-align:left">tickStroke</td>
-<td style="text-align:left">black</td>
+<td style="text-align:left"><code>black</code></td>
 <td style="text-align:left">string</td>
 <td style="text-align:left">The color for the tick&#39;s stroke value.</td>
+</tr>
+<tr>
+<td style="text-align:left">tickTransform</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">A custom SVG transform value to be applied to each tick group.</td>
 </tr>
 <tr>
 <td style="text-align:left">tickValues</td>
@@ -666,104 +545,14 @@ const axis = (
 <td style="text-align:left">An array of values that determine the number and values of the ticks. Falls back to scale.ticks() or .domain().</td>
 </tr>
 <tr>
-<td style="text-align:left">tickK</td>
-<td style="text-align:left">1</td>
+<td style="text-align:left">top</td>
+<td style="text-align:left"><code>0</code></td>
 <td style="text-align:left">number</td>
-<td style="text-align:left">A value that determines an offset in the tick position.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickOffset</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">A value that determines the y offset in the tick position.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickTransform</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">A custom SVG transform value to be applied to the ticks.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickLength</td>
-<td style="text-align:left">8</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The length of the tick lines.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickPadding</td>
-<td style="text-align:left">2</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The padding between the ticks and their labels.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickTextAnchor</td>
-<td style="text-align:left">&quot;start&quot;</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The textAnchor value for the tick&#39;s text.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickTextFontFamily</td>
-<td style="text-align:left">&quot;Arial&quot;</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The font for the ticks.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickTextFontSize</td>
-<td style="text-align:left">10</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The font size for the ticks.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickTextFill</td>
-<td style="text-align:left">black</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The text fill color for the tick&#39;s text.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickTextDy</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The y offset to the tick&#39;s text.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickTextDx</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The x offset to the tick&#39;s text.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickComponent</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">Function returning a React component to render as tick.</td>
-</tr>
-<tr>
-<td style="text-align:left">hideAxisLine</td>
-<td style="text-align:left">false</td>
-<td style="text-align:left">bool</td>
-<td style="text-align:left">If true, will hide the axis line.</td>
-</tr>
-<tr>
-<td style="text-align:left">hideTicks</td>
-<td style="text-align:left">false</td>
-<td style="text-align:left">bool</td>
-<td style="text-align:left">If true, will hide the ticks.</td>
-</tr>
-<tr>
-<td style="text-align:left">hideZero</td>
-<td style="text-align:left">false</td>
-<td style="text-align:left">bool</td>
-<td style="text-align:left">If true, will hide &#39;0&#39; values.</td>
-</tr>
-<tr>
-<td style="text-align:left">className</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The class name applied to the axis group element.</td>
+<td style="text-align:left">A top pixel offset applied to the entire axis.</td>
 </tr>
 </tbody>
 </table>
-<h2 id="-axis-"><code>&lt;Axis /&gt;</code></h2>
+<h2 id="axistop-"><code>&lt;AxisTop /&gt;</code></h2>
 <table>
 <thead>
 <tr>
@@ -775,70 +564,136 @@ const axis = (
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">scale</td>
+<td style="text-align:left">axisClassName</td>
 <td style="text-align:left"></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The class name applied to the outermost axis group element.</td>
+</tr>
+<tr>
+<td style="text-align:left">axisLineClassName</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The class name applied to the axis line element.</td>
+</tr>
+<tr>
+<td style="text-align:left">hideAxisLine</td>
+<td style="text-align:left"><code>false</code></td>
+<td style="text-align:left">bool</td>
+<td style="text-align:left">If true, will hide the axis line.</td>
+</tr>
+<tr>
+<td style="text-align:left">hideTicks</td>
+<td style="text-align:left"><code>false</code></td>
+<td style="text-align:left">bool</td>
+<td style="text-align:left">If true, will hide the ticks (but not the tick labels).</td>
+</tr>
+<tr>
+<td style="text-align:left">hideZero</td>
+<td style="text-align:left"><code>false</code></td>
+<td style="text-align:left">bool</td>
+<td style="text-align:left">If true, will hide the &#39;0&#39; value tick and tick label.</td>
+</tr>
+<tr>
+<td style="text-align:left">label</td>
+<td style="text-align:left"><code>&quot;&quot;</code></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The text for the axis label.</td>
+</tr>
+<tr>
+<td style="text-align:left">labelClassName</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The class name applied to the axis label text element.</td>
+</tr>
+<tr>
+<td style="text-align:left">labelOffset</td>
+<td style="text-align:left"><code>8</code></td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">Px offset of the axis label (does not include tick label font size, which is accounted for automatically)</td>
+</tr>
+<tr>
+<td style="text-align:left">labelProps</td>
+<td style="text-align:left"><code>{ textAnchor: &#39;middle&#39;, fontFamily: &#39;Arial&#39;, fontSize: 10, fill: &#39;black&#39; }</code></td>
+<td style="text-align:left">object</td>
+<td style="text-align:left">Props applied to the axis label component.</td>
+</tr>
+<tr>
+<td style="text-align:left">left</td>
+<td style="text-align:left"><code>0</code></td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">A left pixel offset applied to the entire axis.</td>
+</tr>
+<tr>
+<td style="text-align:left">numTicks</td>
+<td style="text-align:left"><code>10</code></td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The number of ticks wanted for the axis (note this is approximate)</td>
+</tr>
+<tr>
+<td style="text-align:left">rangePadding</td>
+<td style="text-align:left"><code>0</code></td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">Px padding to apply to both sides of the axis</td>
+</tr>
+<tr>
+<td style="text-align:left">scale</td>
+<td style="text-align:left">REQUIRED</td>
 <td style="text-align:left">function</td>
 <td style="text-align:left">A d3 <a href="https://github.com/hshoff/vx/tree/master/packages/vx-scale">scale function</a>.</td>
 </tr>
 <tr>
-<td style="text-align:left">orient</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">An orientation defined as &#39;top&#39;, &#39;bottom&#39;, &#39;left&#39;, or &#39;right&#39;.</td>
-</tr>
-<tr>
-<td style="text-align:left">top</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">A pixel value for the top margin.</td>
-</tr>
-<tr>
-<td style="text-align:left">left</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">A pixel value for the top margin.</td>
-</tr>
-<tr>
 <td style="text-align:left">stroke</td>
-<td style="text-align:left"></td>
+<td style="text-align:left"><code>black</code></td>
 <td style="text-align:left">string</td>
 <td style="text-align:left">The color for the stroke of the lines.</td>
 </tr>
 <tr>
 <td style="text-align:left">strokeWidth</td>
-<td style="text-align:left"></td>
+<td style="text-align:left"><code>1</code></td>
 <td style="text-align:left">number</td>
 <td style="text-align:left">The pixel value for the width of the lines.</td>
 </tr>
 <tr>
 <td style="text-align:left">strokeDasharray</td>
 <td style="text-align:left"></td>
-<td style="text-align:left">array</td>
+<td style="text-align:left">string</td>
 <td style="text-align:left">The <a href="https://mzl.la/1l7EiTQ">pattern of dashes</a> in the stroke.</td>
 </tr>
 <tr>
-<td style="text-align:left">label</td>
-<td style="text-align:left">&quot;default label&quot;</td>
+<td style="text-align:left">tickClassName</td>
+<td style="text-align:left"></td>
 <td style="text-align:left">string</td>
-<td style="text-align:left">The text for the axis label.</td>
-</tr>
-<tr>
-<td style="text-align:left">numTicks</td>
-<td style="text-align:left">10</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The number of ticks wanted for the axis.</td>
+<td style="text-align:left">The class name applied to each tick group.</td>
 </tr>
 <tr>
 <td style="text-align:left">tickFormat</td>
-<td style="text-align:left"></td>
+<td style="text-align:left"><code>(val, i) =&gt; val</code></td>
 <td style="text-align:left">function</td>
 <td style="text-align:left">A <a href="https://github.com/d3/d3-scale/blob/master/README.md#continuous_tickFormat">d3 formatter</a> for the tick text.</td>
 </tr>
 <tr>
+<td style="text-align:left">tickLabelProps</td>
+<td style="text-align:left"><code>(val, i) =&gt; ({ dy: &#39;-0.25em&#39;, textAnchor: &#39;middle&#39;, fontFamily: &#39;Arial&#39;, fontSize: 10, fill: &#39;black&#39; })</code></td>
+<td style="text-align:left">function</td>
+<td style="text-align:left">function that returns props for a given tick label.</td>
+</tr>
+<tr>
+<td style="text-align:left">tickLength</td>
+<td style="text-align:left"><code>8</code></td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The length of the tick lines.</td>
+</tr>
+<tr>
 <td style="text-align:left">tickStroke</td>
-<td style="text-align:left">black</td>
+<td style="text-align:left"><code>black</code></td>
 <td style="text-align:left">string</td>
-<td style="text-align:left">The color for the tick&#39;s stroke value.                                                                          </td>
+<td style="text-align:left">The color for the tick&#39;s stroke value.</td>
+</tr>
+<tr>
+<td style="text-align:left">tickTransform</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">A custom SVG transform value to be applied to each tick group.</td>
 </tr>
 <tr>
 <td style="text-align:left">tickValues</td>
@@ -847,103 +702,177 @@ const axis = (
 <td style="text-align:left">An array of values that determine the number and values of the ticks. Falls back to scale.ticks() or .domain().</td>
 </tr>
 <tr>
-<td style="text-align:left">tickK</td>
-<td style="text-align:left">1</td>
+<td style="text-align:left">top</td>
+<td style="text-align:left"><code>0</code></td>
 <td style="text-align:left">number</td>
-<td style="text-align:left">A value that determines an offset in the tick position.</td>
+<td style="text-align:left">A top pixel offset applied to the entire axis.</td>
 </tr>
+</tbody>
+</table>
+<h2 id="axis-"><code>&lt;Axis /&gt;</code></h2>
+<table>
+<thead>
 <tr>
-<td style="text-align:left">tickOffset</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">A value that determines the y offset in the tick position.</td>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Default</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
 </tr>
+</thead>
+<tbody>
 <tr>
-<td style="text-align:left">tickTransform</td>
+<td style="text-align:left">axisClassName</td>
 <td style="text-align:left"></td>
 <td style="text-align:left">string</td>
-<td style="text-align:left">A custom SVG transform value to be applied to the ticks.</td>
+<td style="text-align:left">The class name applied to the outermost axis group element.</td>
 </tr>
 <tr>
-<td style="text-align:left">tickLength</td>
-<td style="text-align:left">8</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The length of the tick lines.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickPadding</td>
-<td style="text-align:left">2</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The padding between the ticks and their labels.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickTextAnchor</td>
-<td style="text-align:left">&quot;start&quot;</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The textAnchor value for the tick&#39;s text.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickTextFontFamily</td>
-<td style="text-align:left">&quot;Arial&quot;</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The font for the ticks.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickTextFontSize</td>
-<td style="text-align:left">10</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The font size for the ticks.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickTextFill</td>
-<td style="text-align:left">black</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The text fill color for the tick&#39;s text.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickTextDy</td>
+<td style="text-align:left">axisLineClassName</td>
 <td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The y offset to the tick&#39;s text.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickTextDx</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The x offset to the tick&#39;s text.</td>
-</tr>
-<tr>
-<td style="text-align:left">tickComponent</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">Function returning a React component to render as tick.</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The class name applied to the axis line element.</td>
 </tr>
 <tr>
 <td style="text-align:left">hideAxisLine</td>
-<td style="text-align:left">false</td>
+<td style="text-align:left"><code>false</code></td>
 <td style="text-align:left">bool</td>
 <td style="text-align:left">If true, will hide the axis line.</td>
 </tr>
 <tr>
 <td style="text-align:left">hideTicks</td>
-<td style="text-align:left">false</td>
+<td style="text-align:left"><code>false</code></td>
 <td style="text-align:left">bool</td>
-<td style="text-align:left">If true, will hide the ticks.</td>
+<td style="text-align:left">If true, will hide the ticks (but not the tick labels).</td>
 </tr>
 <tr>
 <td style="text-align:left">hideZero</td>
-<td style="text-align:left">false</td>
+<td style="text-align:left"><code>false</code></td>
 <td style="text-align:left">bool</td>
-<td style="text-align:left">If true, will hide &#39;0&#39; values.</td>
+<td style="text-align:left">If true, will hide the &#39;0&#39; value tick and tick label.</td>
 </tr>
 <tr>
-<td style="text-align:left">className</td>
+<td style="text-align:left">label</td>
+<td style="text-align:left"><code>&quot;&quot;</code></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The text for the axis label.</td>
+</tr>
+<tr>
+<td style="text-align:left">labelClassName</td>
 <td style="text-align:left"></td>
 <td style="text-align:left">string</td>
-<td style="text-align:left">The class name applied to the axis group element.</td>
+<td style="text-align:left">The class name applied to the axis label text element.</td>
+</tr>
+<tr>
+<td style="text-align:left">labelOffset</td>
+<td style="text-align:left"><code>14</code></td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">Px offset of the axis label (does not include tick label font size, which is accounted for automatically)</td>
+</tr>
+<tr>
+<td style="text-align:left">labelProps</td>
+<td style="text-align:left"><code>{ textAnchor: &#39;middle&#39;, fontFamily: &#39;Arial&#39;, fontSize: 10, fill: &#39;black&#39; }</code></td>
+<td style="text-align:left">object</td>
+<td style="text-align:left">Props applied to the axis label component</td>
+</tr>
+<tr>
+<td style="text-align:left">left</td>
+<td style="text-align:left"><code>0</code></td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">A left pixel offset applied to the entire axis.</td>
+</tr>
+<tr>
+<td style="text-align:left">numTicks</td>
+<td style="text-align:left"><code>10</code></td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The number of ticks wanted for the axis (note this is approximate)</td>
+</tr>
+<tr>
+<td style="text-align:left">orientation</td>
+<td style="text-align:left"><code>bottom</code></td>
+<td style="text-align:left">&#39;top&#39;, &#39;right&#39;, &#39;bottom&#39;, or &#39;left&#39;</td>
+<td style="text-align:left">Specifies the orientation of the axis.</td>
+</tr>
+<tr>
+<td style="text-align:left">rangePadding</td>
+<td style="text-align:left"><code>0</code></td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">Px padding to apply to both sides of the axis</td>
+</tr>
+<tr>
+<td style="text-align:left">scale</td>
+<td style="text-align:left">REQUIRED</td>
+<td style="text-align:left">function</td>
+<td style="text-align:left">A d3 <a href="https://github.com/hshoff/vx/tree/master/packages/vx-scale">scale function</a>.</td>
+</tr>
+<tr>
+<td style="text-align:left">stroke</td>
+<td style="text-align:left"><code>black</code></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The color for the stroke of the lines.</td>
+</tr>
+<tr>
+<td style="text-align:left">strokeWidth</td>
+<td style="text-align:left"><code>1</code></td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The pixel value for the width of the lines.</td>
+</tr>
+<tr>
+<td style="text-align:left">strokeDasharray</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The <a href="https://mzl.la/1l7EiTQ">pattern of dashes</a> in the stroke.</td>
+</tr>
+<tr>
+<td style="text-align:left">tickClassName</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The class name applied to each tick group.</td>
+</tr>
+<tr>
+<td style="text-align:left">tickFormat</td>
+<td style="text-align:left"><code>(val, i) =&gt; val</code></td>
+<td style="text-align:left">function</td>
+<td style="text-align:left">A <a href="https://github.com/d3/d3-scale/blob/master/README.md#continuous_tickFormat">d3 formatter</a> for the tick text.</td>
+</tr>
+<tr>
+<td style="text-align:left">tickLabelProps</td>
+<td style="text-align:left"><code>(val, i) =&gt; ({ textAnchor: &#39;middle&#39;, fontFamily: &#39;Arial&#39;, fontSize: 10, fill: &#39;black&#39; })</code></td>
+<td style="text-align:left">function</td>
+<td style="text-align:left">function that returns props for a given tick label.</td>
+</tr>
+<tr>
+<td style="text-align:left">tickLength</td>
+<td style="text-align:left"><code>8</code></td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The length of the tick lines.</td>
+</tr>
+<tr>
+<td style="text-align:left">tickStroke</td>
+<td style="text-align:left"><code>black</code></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">The color for the tick&#39;s stroke value.</td>
+</tr>
+<tr>
+<td style="text-align:left">tickTransform</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">A custom SVG transform value to be applied to each tick group.</td>
+</tr>
+<tr>
+<td style="text-align:left">tickValues</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">Array</td>
+<td style="text-align:left">An array of values that determine the number and values of the ticks. Falls back to scale.ticks() or .domain().</td>
+</tr>
+<tr>
+<td style="text-align:left">top</td>
+<td style="text-align:left"><code>0</code></td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">A top pixel offset applied to the entire axis.</td>
 </tr>
 </tbody>
 </table>
+<h2 id="source-code">Source code</h2>
 <ul>
 <li><a href="https://github.com/hshoff/vx/blob/master/packages/vx-axis/src/axis/Axis.js"><code>&lt;Axis /&gt;</code></a></li>
 <li><a href="https://github.com/hshoff/vx/blob/master/packages/vx-axis/src/axis/AxisLeft.js"><code>&lt;AxisLeft /&gt;</code></a></li>
