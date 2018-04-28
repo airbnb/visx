@@ -29,13 +29,212 @@
       <div class="doc-nav">
         <ul>
         <li>Packages</li>
-        <li><a href="/static/docs/vx-annotation.html">@vx/annotation</a></li><li><a href="/static/docs/vx-axis.html">@vx/axis</a></li><li><a href="/static/docs/vx-bounds.html">@vx/bounds</a></li><li><a href="/static/docs/vx-boxplot.html">@vx/boxplot</a></li><li><a href="/static/docs/vx-brush.html">@vx/brush</a></li><li><a href="/static/docs/vx-clip-path.html">@vx/clip-path</a></li><li><a href="/static/docs/vx-curve.html">@vx/curve</a></li><li><a href="/static/docs/vx-demo.html">@vx/demo</a></li><li><a href="/static/docs/vx-drag.html">@vx/drag</a></li><li><a href="/static/docs/vx-event.html">@vx/event</a></li><li><a href="/static/docs/vx-geo.html">@vx/geo</a></li><li><a href="/static/docs/vx-glyph.html">@vx/glyph</a></li><li><a href="/static/docs/vx-gradient.html">@vx/gradient</a></li><li><a href="/static/docs/vx-grid.html">@vx/grid</a></li><li><a href="/static/docs/vx-group.html">@vx/group</a></li><li><a href="/static/docs/vx-heatmap.html">@vx/heatmap</a></li><li><a href="/static/docs/vx-hierarchy.html">@vx/hierarchy</a></li><li><a href="/static/docs/vx-legend.html">@vx/legend</a></li><li><a href="/static/docs/vx-marker.html">@vx/marker</a></li><li><a href="/static/docs/vx-mock-data.html">@vx/mock-data</a></li><li><a href="/static/docs/vx-network.html">@vx/network</a></li><li><a href="/static/docs/vx-pattern.html">@vx/pattern</a></li><li><a href="/static/docs/vx-point.html">@vx/point</a></li><li><a href="/static/docs/vx-responsive.html">@vx/responsive</a></li><li><a href="/static/docs/vx-scale.html">@vx/scale</a></li><li><a href="/static/docs/vx-shape.html">@vx/shape</a></li><li><a href="/static/docs/vx-text.html">@vx/text</a></li><li><a href="/static/docs/vx-tooltip.html">@vx/tooltip</a></li><li><a href="/static/docs/vx-voronoi.html">@vx/voronoi</a></li><li><a href="/static/docs/vx-zoom.html">@vx/zoom</a></li>
+        <li><a href="/static/docs/vx-annotation.html">@vx/annotation</a></li><li><a href="/static/docs/vx-axis.html">@vx/axis</a></li><li><a href="/static/docs/vx-bounds.html">@vx/bounds</a></li><li><a href="/static/docs/vx-boxplot.html">@vx/boxplot</a></li><li><a href="/static/docs/vx-brush.html">@vx/brush</a></li><li><a href="/static/docs/vx-clip-path.html">@vx/clip-path</a></li><li><a href="/static/docs/vx-curve.html">@vx/curve</a></li><li><a href="/static/docs/vx-demo.html">@vx/demo</a></li><li><a href="/static/docs/vx-drag.html">@vx/drag</a></li><li><a href="/static/docs/vx-event.html">@vx/event</a></li><li><a href="/static/docs/vx-geo.html">@vx/geo</a></li><li><a href="/static/docs/vx-glyph.html">@vx/glyph</a></li><li><a href="/static/docs/vx-gradient.html">@vx/gradient</a></li><li><a href="/static/docs/vx-grid.html">@vx/grid</a></li><li><a href="/static/docs/vx-group.html">@vx/group</a></li><li><a href="/static/docs/vx-heatmap.html">@vx/heatmap</a></li><li><a href="/static/docs/vx-hierarchy.html">@vx/hierarchy</a></li><li><a href="/static/docs/vx-legend.html">@vx/legend</a></li><li><a href="/static/docs/vx-marker.html">@vx/marker</a></li><li><a href="/static/docs/vx-mock-data.html">@vx/mock-data</a></li><li><a href="/static/docs/vx-network.html">@vx/network</a></li><li><a href="/static/docs/vx-pattern.html">@vx/pattern</a></li><li><a href="/static/docs/vx-point.html">@vx/point</a></li><li><a href="/static/docs/vx-responsive.html">@vx/responsive</a></li><li><a href="/static/docs/vx-scale.html">@vx/scale</a></li><li><a href="/static/docs/vx-shape.html">@vx/shape</a></li><li><a href="/static/docs/vx-stats.html">@vx/stats</a></li><li><a href="/static/docs/vx-text.html">@vx/text</a></li><li><a href="/static/docs/vx-tooltip.html">@vx/tooltip</a></li><li><a href="/static/docs/vx-voronoi.html">@vx/voronoi</a></li><li><a href="/static/docs/vx-vx.html">@vx/vx</a></li><li><a href="/static/docs/vx-zoom.html">@vx/zoom</a></li>
         </ul>
       </div>
       <div class="content">
       <h1 id="-vx-tooltip">@vx/tooltip</h1>
 <pre><code>npm install --save @vx/tooltip
+</code></pre><p>The <code>@vx/tooltip</code> package provides utilities for making it easy to add <code>Tooltip</code>s to a visualization and includes higher-order component (HOC) enhancers and Tooltip components.</p>
+<h3 id="example-">Example:</h3>
+<pre><code class="lang-js">import { withTooltip, TooltipWithBounds } from &#39;@vx/tooltip&#39;;
+import { localPoint } from &#39;@vx/event&#39;;
+
+class Chart extends React.Component {
+  handleMouseOver = (event, datum) =&gt; {
+    const coords = localPoint(event.target.ownerSVGElement, event);
+    this.props.showTooltip({
+      tooltipLeft: coords.x,
+      tooltipTop: coords.y,
+      tooltipData: datum
+    });
+  };
+
+  render() {
+    const {
+      tooltipData,
+      tooltipLeft,
+      tooltipTop,
+      tooltipOpen,
+      hideTooltip
+    } = this.props;
+
+    return (
+      // note React.Frament is only available in &gt;= react@16.2
+      &lt;React.Fragment&gt;
+        &lt;svg width={...} height={...}&gt;
+          // Chart here...
+          &lt;SomeChartElement onMouseOver={this.handleMouseOver} onMouseOut={hideTooltip} /&gt;
+        &lt;/svg&gt;
+
+        {tooltipOpen &amp;&amp; (
+          &lt;TooltipWithBounds
+            // set this to random so it correctly updates with parent bounds
+            key={Math.random()}
+            top={tooltipTop}
+            left={tooltipLeft}
+          &gt;
+            Data value &lt;strong&gt;{tooltipData}&lt;/strong&gt;
+          &lt;/TooltipWithBounds&gt;
+        )}
+      &lt;/React.Fragment&gt;
+    );
+  }
+}
+
+const ChartWithTooltip = withTooltip(Chart);
+
+render(&lt;ChartWithTooltip /&gt;, document.getElementById(&quot;root&quot;));
 </code></pre>
+<p>Example codesandbox <a href="https://codesandbox.io/s/kw02m019mr">here</a>.</p>
+<h3 id="enhancers">Enhancers</h3>
+<h4 id="withtooltip-basecomponent-containerprops-">withTooltip(BaseComponent [, containerProps])</h4>
+<p>If you would like to add tooltip state logic to your component, you may wrap it in <code>withTooltip(BaseComponent [, containerProps])</code>.
+The HOC will wrap your component in a <code>div</code> with <code>relative</code> positioning by default and handle state for tooltip positioning, visibility, and content by injecting the following props into your <code>BaseComponent</code>:</p>
+<p>You may override the container by specifying <code>containerProps</code> as the second argument to <code>withTooltip</code>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">showTooltip</td>
+<td style="text-align:left">func</td>
+<td style="text-align:left">Call this function with the signature <code>func({ tooltipData, tooltipLeft, tooltipTop })</code> to set the tooltip state to the specified values.</td>
+</tr>
+<tr>
+<td style="text-align:left">hideTooltip</td>
+<td style="text-align:left">func</td>
+<td style="text-align:left">Call this function to close a tooltip, i.e., set the <code>showTooltip</code> state to <code>false</code>.</td>
+</tr>
+<tr>
+<td style="text-align:left">tooltipOpen</td>
+<td style="text-align:left">bool</td>
+<td style="text-align:left">Whether the tooltip state is open or closed</td>
+</tr>
+<tr>
+<td style="text-align:left">tooltipLeft</td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The <code>tooltipLeft</code> position passed to the <code>showTooltip</code> func, intended to be used for tooltip positioning</td>
+</tr>
+<tr>
+<td style="text-align:left">tooltipTop</td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">The <code>tooltipTop</code> position passed to the <code>showTooltip</code> func, intended to be used for tooltip positioning</td>
+</tr>
+<tr>
+<td style="text-align:left">tooltipData</td>
+<td style="text-align:left">any</td>
+<td style="text-align:left">The <code>tooltipData</code> value passed to the <code>showTooltip</code> func, intended to be used for any data that your tooltip might need to render</td>
+</tr>
+<tr>
+<td style="text-align:left">updateTooltip</td>
+<td style="text-align:left">func</td>
+<td style="text-align:left">Call this function with the signature <code>func({ tooltipOpen, tooltipLeft, tooltipTop, tooltipData })</code> to set the tooltip state to the specified values.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="components">Components</h3>
+<h4 id="-tooltip-"><Tooltip /></h4>
+<p>This is a simple Tooltip container component meant to be used to actually render a Tooltip. It accepts the following props, and will spread any additional props on the tooltip container div (i.e., ...restProps):</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Default</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">left</td>
+<td style="text-align:left">number or string</td>
+<td style="text-align:left">--</td>
+<td style="text-align:left">Sets style.left of the tooltip container</td>
+</tr>
+<tr>
+<td style="text-align:left">top</td>
+<td style="text-align:left">number or string</td>
+<td style="text-align:left">--</td>
+<td style="text-align:left">Sets style.top of the tooltip container</td>
+</tr>
+<tr>
+<td style="text-align:left">className</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">--</td>
+<td style="text-align:left">Adds a class (in addition to <code>vx-tooltip-portal</code>) to the tooltip container</td>
+</tr>
+<tr>
+<td style="text-align:left">style</td>
+<td style="text-align:left">object</td>
+<td style="text-align:left">--</td>
+<td style="text-align:left">Sets / overrides any styles on the tooltip container (including top and left)</td>
+</tr>
+<tr>
+<td style="text-align:left">children</td>
+<td style="text-align:left">node</td>
+<td style="text-align:left">--</td>
+<td style="text-align:left">Sets the children of the tooltip, i.e., the actual content</td>
+</tr>
+</tbody>
+</table>
+<h4 id="tooltipwithbounds">TooltipWithBounds</h4>
+<p>This tooltip component is exactly the same as <code>Tooltip</code> above, but it is aware of its boundaries meaning that it will flip left/right and bottom/top based on whether it would overflow its parent&#39;s boundaries. It accepts the following props, and will spread any additional props on the Tooltip component (i.e., ...restProps):</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Default</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">left</td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">--</td>
+<td style="text-align:left">The horizontal position of the cursor, tooltip will be place to the left or right of this coordinate depending on the width of the tooltip and the size of the parent container.</td>
+</tr>
+<tr>
+<td style="text-align:left">top</td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">--</td>
+<td style="text-align:left">The vertical position of the cursor, tooltip will be place to the bottom or top of this coordinate depending on the height of the tooltip and the size of the parent container.</td>
+</tr>
+<tr>
+<td style="text-align:left">offsetLeft</td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">10</td>
+<td style="text-align:left">Horizontal offset of the tooltip from the passed <code>left</code> value, functions as a horizontal padding.</td>
+</tr>
+<tr>
+<td style="text-align:left">offsetRight</td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">10</td>
+<td style="text-align:left">Vertical offset of the tooltip from the passed <code>top</code> value, functions as a vertical padding.</td>
+</tr>
+<tr>
+<td style="text-align:left">style</td>
+<td style="text-align:left">object</td>
+<td style="text-align:left">--</td>
+<td style="text-align:left">Sets / overrides any styles on the tooltip container (including top and left)</td>
+</tr>
+<tr>
+<td style="text-align:left">children</td>
+<td style="text-align:left">node</td>
+<td style="text-align:left">--</td>
+<td style="text-align:left">Sets the children of the tooltip, i.e., the actual content</td>
+</tr>
+</tbody>
+</table>
+<p>Note that this component is positioned using a <code>tranform</code>, so overriding <code>left</code> and <code>top</code> via styles may have no effect.</p>
+
       </div>
     </div>
     <script async defer src="https://buttons.github.io/buttons.js"></script>

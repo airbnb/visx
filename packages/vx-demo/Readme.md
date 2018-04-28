@@ -1,6 +1,10 @@
 # @vx/demo
 
-+ [Simple line chart](https://github.com/hshoff/vx/blob/master/packages/vx-demo/src/demos/charts/SimpleAreaChart.js)
-+ [Simple line with glyphs chart](https://github.com/hshoff/vx/blob/master/packages/vx-demo/src/demos/charts/SimpleLineWithGlyphsChart.js)
-+ [Simple area chart](https://github.com/hshoff/vx/blob/master/packages/vx-demo/src/demos/charts/SimpleAreaChart.js)
+<a href="https://vx-demo.now.sh/gallery">https://vx-demo.now.sh/gallery</a>
+
+<p align="center">
+  <a href="https://vx-demo.now.sh/gallery">
+    <img width="578" height="770" src="/static/vx-gallery.png" />
+  </a>
+</p>
 

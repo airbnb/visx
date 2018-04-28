@@ -29,135 +29,118 @@
       <div class="doc-nav">
         <ul>
         <li>Packages</li>
-        <li><a href="/static/docs/vx-annotation.html">@vx/annotation</a></li><li><a href="/static/docs/vx-axis.html">@vx/axis</a></li><li><a href="/static/docs/vx-bounds.html">@vx/bounds</a></li><li><a href="/static/docs/vx-boxplot.html">@vx/boxplot</a></li><li><a href="/static/docs/vx-brush.html">@vx/brush</a></li><li><a href="/static/docs/vx-clip-path.html">@vx/clip-path</a></li><li><a href="/static/docs/vx-curve.html">@vx/curve</a></li><li><a href="/static/docs/vx-demo.html">@vx/demo</a></li><li><a href="/static/docs/vx-drag.html">@vx/drag</a></li><li><a href="/static/docs/vx-event.html">@vx/event</a></li><li><a href="/static/docs/vx-geo.html">@vx/geo</a></li><li><a href="/static/docs/vx-glyph.html">@vx/glyph</a></li><li><a href="/static/docs/vx-gradient.html">@vx/gradient</a></li><li><a href="/static/docs/vx-grid.html">@vx/grid</a></li><li><a href="/static/docs/vx-group.html">@vx/group</a></li><li><a href="/static/docs/vx-heatmap.html">@vx/heatmap</a></li><li><a href="/static/docs/vx-hierarchy.html">@vx/hierarchy</a></li><li><a href="/static/docs/vx-legend.html">@vx/legend</a></li><li><a href="/static/docs/vx-marker.html">@vx/marker</a></li><li><a href="/static/docs/vx-mock-data.html">@vx/mock-data</a></li><li><a href="/static/docs/vx-network.html">@vx/network</a></li><li><a href="/static/docs/vx-pattern.html">@vx/pattern</a></li><li><a href="/static/docs/vx-point.html">@vx/point</a></li><li><a href="/static/docs/vx-responsive.html">@vx/responsive</a></li><li><a href="/static/docs/vx-scale.html">@vx/scale</a></li><li><a href="/static/docs/vx-shape.html">@vx/shape</a></li><li><a href="/static/docs/vx-text.html">@vx/text</a></li><li><a href="/static/docs/vx-tooltip.html">@vx/tooltip</a></li><li><a href="/static/docs/vx-voronoi.html">@vx/voronoi</a></li><li><a href="/static/docs/vx-zoom.html">@vx/zoom</a></li>
+        <li><a href="/static/docs/vx-annotation.html">@vx/annotation</a></li><li><a href="/static/docs/vx-axis.html">@vx/axis</a></li><li><a href="/static/docs/vx-bounds.html">@vx/bounds</a></li><li><a href="/static/docs/vx-boxplot.html">@vx/boxplot</a></li><li><a href="/static/docs/vx-brush.html">@vx/brush</a></li><li><a href="/static/docs/vx-clip-path.html">@vx/clip-path</a></li><li><a href="/static/docs/vx-curve.html">@vx/curve</a></li><li><a href="/static/docs/vx-demo.html">@vx/demo</a></li><li><a href="/static/docs/vx-drag.html">@vx/drag</a></li><li><a href="/static/docs/vx-event.html">@vx/event</a></li><li><a href="/static/docs/vx-geo.html">@vx/geo</a></li><li><a href="/static/docs/vx-glyph.html">@vx/glyph</a></li><li><a href="/static/docs/vx-gradient.html">@vx/gradient</a></li><li><a href="/static/docs/vx-grid.html">@vx/grid</a></li><li><a href="/static/docs/vx-group.html">@vx/group</a></li><li><a href="/static/docs/vx-heatmap.html">@vx/heatmap</a></li><li><a href="/static/docs/vx-hierarchy.html">@vx/hierarchy</a></li><li><a href="/static/docs/vx-legend.html">@vx/legend</a></li><li><a href="/static/docs/vx-marker.html">@vx/marker</a></li><li><a href="/static/docs/vx-mock-data.html">@vx/mock-data</a></li><li><a href="/static/docs/vx-network.html">@vx/network</a></li><li><a href="/static/docs/vx-pattern.html">@vx/pattern</a></li><li><a href="/static/docs/vx-point.html">@vx/point</a></li><li><a href="/static/docs/vx-responsive.html">@vx/responsive</a></li><li><a href="/static/docs/vx-scale.html">@vx/scale</a></li><li><a href="/static/docs/vx-shape.html">@vx/shape</a></li><li><a href="/static/docs/vx-stats.html">@vx/stats</a></li><li><a href="/static/docs/vx-text.html">@vx/text</a></li><li><a href="/static/docs/vx-tooltip.html">@vx/tooltip</a></li><li><a href="/static/docs/vx-voronoi.html">@vx/voronoi</a></li><li><a href="/static/docs/vx-vx.html">@vx/vx</a></li><li><a href="/static/docs/vx-zoom.html">@vx/zoom</a></li>
         </ul>
       </div>
       <div class="content">
       <h1 id="-vx-text">@vx/text</h1>
 <pre><code>npm install --save @vx/text
-</code></pre><p>The <code>@vx/text</code> package contains components useful for adding labels to your graphs.</p>
-<h2 id="-textoutline-"><code>&lt;TextOutline /&gt;</code></h2>
-<p>TextOutline can add an outline around your text to help it be more readable.</p>
+</code></pre><p>The <code>@vx/text</code> provides a better SVG <code>&lt;Text&gt;</code> component with the following features</p>
+<ul>
+<li>Word-wrapping (when <code>width</code> prop is defined)</li>
+<li>Vertical alignment (<code>verticalAnchor</code> prop)</li>
+<li>Rotation (<code>angle</code> prop)</li>
+<li>Scale-to-fit text (<code>scaleToFit</code> prop)</li>
+</ul>
 <h2 id="example">Example</h2>
-<p><img src="http://i.imgur.com/mpbbNTn.png" alt="text outline picture"></p>
-<pre><code class="lang-js">import { TextOutline } from &#39;@vx/text&#39;;
+<p>Simple demo to show off a useful feature.  Since svg <code>&lt;text&gt;</code> itself does not support <code>verticalAnchor</code>, normally text rendered at <code>0,0</code> would be outside the viewport and thus not visible.  By using <code>&lt;Text&gt;</code> with the <code>verticalAnchor=&quot;start&quot;</code> prop, the text will now be visible as you&#39;d expect.</p>
+<pre><code class="lang-jsx">import React from &#39;react&#39;;
+import { render } from &#39;react-dom&#39;;
+import { Text } from &#39;@vx/text&#39;;
 
-&lt;TextOutline
-  fontSize={10}
-  x={x}
-  y={y}
-  dy={&#39;.5em&#39;}
-  textAnchor={&#39;end&#39;}
-  fill=&quot;black&quot;
-  outlineStroke={&quot;white&quot;}
-  outlineStrokeWidth={3}
-  fontFamily={&quot;Roboto Mono&quot;}
-&gt;
-  {&quot;Woo text!&quot;}
-&lt;/TextOutline&gt;
+const App = () =&gt; (
+  &lt;svg&gt;
+    &lt;Text verticalAnchor=&quot;start&quot;&gt;Hello world&lt;/Text&gt;
+  &lt;/svg&gt;
+);
+
+render(&lt;App /&gt;, document.getElementById(&#39;root&#39;));
 </code></pre>
-<h3 id="properties">Properties</h3>
+<h2 id="props">Props</h2>
 <table>
 <thead>
 <tr>
-<th style="text-align:left">Name</th>
-<th style="text-align:left">Default</th>
-<th style="text-align:left">Type</th>
-<th style="text-align:left">Description</th>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">x</td>
-<td style="text-align:left">0</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The x coordinate position.</td>
+<td><code>x</code></td>
+<td>number</td>
+<td></td>
+<td>x coordinate to use as a basis for positioning the text element</td>
 </tr>
 <tr>
-<td style="text-align:left">y</td>
-<td style="text-align:left">0</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The y coordinate position.</td>
+<td><code>y</code></td>
+<td>number</td>
+<td></td>
+<td>y coordinate to use as a basis for positioning the text element</td>
 </tr>
 <tr>
-<td style="text-align:left">dx</td>
-<td style="text-align:left">0</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The x-offset.</td>
+<td><code>dx</code></td>
+<td>number</td>
+<td></td>
+<td>Horizontal shift from the x coordinate</td>
 </tr>
 <tr>
-<td style="text-align:left">dy</td>
-<td style="text-align:left">0</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The y-offset.</td>
+<td><code>dy</code></td>
+<td>number</td>
+<td></td>
+<td>Vertical shift from the y coordinate</td>
 </tr>
 <tr>
-<td style="text-align:left">fontSize</td>
-<td style="text-align:left">12</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The fontSize for the text.</td>
+<td><code>width</code></td>
+<td>number</td>
+<td></td>
+<td>Width of text container.  Used to implement word wrapping and for context when <code>scaleToFit</code> is true</td>
 </tr>
 <tr>
-<td style="text-align:left">fontFamily</td>
-<td style="text-align:left">Arial</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The fontFamily for the text.</td>
+<td><code>scaleToFit</code></td>
+<td>bool</td>
+<td>false</td>
+<td>Resize text to fit container width</td>
 </tr>
 <tr>
-<td style="text-align:left">fill</td>
-<td style="text-align:left">white</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The fill color for the inner text.</td>
+<td><code>angle</code></td>
+<td>number</td>
+<td></td>
+<td>Rotate text around origin (defined by <code>textAnchor</code> and <code>verticalAnchor</code>)</td>
 </tr>
 <tr>
-<td style="text-align:left">stroke</td>
-<td style="text-align:left">none</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The stroke color for the inner text.</td>
+<td><code>textAnchor</code></td>
+<td>string</td>
+<td>start</td>
+<td>How the text is horizontally positioned relative to the given <code>x</code> and <code>y</code> coordinates. Options are <code>start</code>, <code>middle</code>, <code>end</code>, and <code>inherit</code>.</td>
 </tr>
 <tr>
-<td style="text-align:left">strokeWidth</td>
-<td style="text-align:left">0</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The strokeWidth for the inner text.</td>
+<td><code>verticalAnchor</code></td>
+<td>string</td>
+<td>end</td>
+<td>How text is vertically positioned relative to the given <code>x</code> and <code>y</code> coordinates. Options are <code>start</code>, <code>middle</code>, <code>end</code></td>
 </tr>
 <tr>
-<td style="text-align:left">outlineFill</td>
-<td style="text-align:left">white</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The fill color for the outline.</td>
+<td><code>lineHeight</code></td>
+<td>string</td>
+<td>1em</td>
+<td>How much space a single line of text should take up</td>
 </tr>
 <tr>
-<td style="text-align:left">outlineStroke</td>
-<td style="text-align:left">magenta</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The stroke color of the outline.</td>
+<td><code>capHeight</code></td>
+<td>string</td>
+<td>0.71em (Magic number from d3)</td>
+<td>Defines a text metric for the font being used: the expected height of capital letters. This is necessary because of SVG, which (a) positions the bottom of the text at y, and (b) has no notion of line height. This prop should be given as a number of ems</td>
 </tr>
 <tr>
-<td style="text-align:left">outlineStrokeWidth</td>
-<td style="text-align:left">3</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The stroke width in pixels of the outline.</td>
-</tr>
-<tr>
-<td style="text-align:left">textAnchor</td>
-<td style="text-align:left">start</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The <a href="https://mzl.la/2pDkPXM">svg textAnchor</a> for the text.</td>
-</tr>
-<tr>
-<td style="text-align:left">className</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">A classname to be applied to both the inner and outer text.</td>
+<td>additional props</td>
+<td></td>
+<td></td>
+<td>Additional props are passed down to underlying <code>&lt;text&gt;</code> component, including <code>style</code> and <code>className</code></td>
 </tr>
 </tbody>
 </table>
-<h2 id="source-for-components">Source For Components</h2>
-<ul>
-<li><a href="https://github.com/hshoff/vx/blob/master/packages/vx-text/src/text/TextOutline.js"><code>&lt;TextOutline /&gt;</code></a></li>
-<li>:warning: <a href="https://github.com/hshoff/vx/blob/master/packages/vx-text/src/text/TextWrap.js"><code>&lt;TextWrap /&gt;</code></a></li>
-</ul>
 
       </div>
     </div>
