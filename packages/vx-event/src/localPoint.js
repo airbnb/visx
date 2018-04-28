@@ -34,7 +34,7 @@ export default function localPoint(node, event) {
     point = point.matrixTransform(node.getScreenCTM().inverse());
     return new Point({
       x: point.x,
-      y: point.y,
+      y: point.y
     });
   }
 
@@ -42,6 +42,6 @@ export default function localPoint(node, event) {
   let rect = node.getBoundingClientRect();
   return new Point({
     x: clientX - rect.left - node.clientLeft,
-    y: clientY - rect.top - node.clientTop,
+    y: clientY - rect.top - node.clientTop
   });
 }

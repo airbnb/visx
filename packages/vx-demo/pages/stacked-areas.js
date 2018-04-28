@@ -4,13 +4,17 @@ import StackedAreas from '../components/tiles/stacked';
 
 export default () => {
   return (
-    <Show component={StackedAreas} title="Stacked Areas" margin={{
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 10,
-    }}>
-{`import React from 'react';
+    <Show
+      component={StackedAreas}
+      title="Stacked Areas"
+      margin={{
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 10
+      }}
+    >
+      {`import React from 'react';
 import { AreaStack } from '@vx/shape';
 import { GradientOrangeRed } from '@vx/gradient';
 import { browserUsage } from '@vx/mock-data';
@@ -72,4 +76,4 @@ export default ({
 }`}
     </Show>
   );
-}
+};

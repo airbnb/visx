@@ -1,12 +1,6 @@
 import { scaleQuantize } from 'd3-scale';
 
-export default ({
-  range,
-  domain,
-  ticks,
-  tickFormat,
-  nice = false,
-}) => {
+export default ({ range, domain, ticks, tickFormat, nice = false }) => {
   const scale = scaleQuantize();
 
   if (range) scale.range(range);
@@ -16,4 +10,4 @@ export default ({
   if (tickFormat) scale.tickFormat(tickFormat);
 
   return scale;
-}
+};

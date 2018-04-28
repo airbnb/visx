@@ -30,7 +30,7 @@ const propTypes = {
   tickValues: PropTypes.array,
   tickComponent: PropTypes.func,
   top: PropTypes.number,
-  children: PropTypes.func,
+  children: PropTypes.func
 };
 
 export default function AxisLeft({
@@ -59,14 +59,14 @@ export default function AxisLeft({
     fill: 'black',
     fontFamily: 'Arial',
     fontSize: 10,
-    textAnchor: 'end',
+    textAnchor: 'end'
   }),
   tickLength = 8,
   tickStroke,
   tickTransform,
   tickValues,
   tickComponent,
-  top,
+  top
 }) {
   return (
     <Axis

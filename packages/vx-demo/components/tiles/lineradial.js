@@ -10,9 +10,7 @@ import { LinearGradient } from '@vx/gradient';
 const x = d => new Date(d.date);
 const y = d => d.close;
 
-const capPoints = [appleStock[0]].concat([
-  appleStock[appleStock.length - 1],
-]);
+const capPoints = [appleStock[0]].concat([appleStock[appleStock.length - 1]]);
 
 export default function LineRadialTile({
   width,
@@ -21,8 +19,8 @@ export default function LineRadialTile({
     top: 10,
     left: 10,
     right: 10,
-    bottom: 120,
-  },
+    bottom: 120
+  }
 }) {
   if (width < 10) return null;
 
@@ -30,27 +28,16 @@ export default function LineRadialTile({
 
   const xScale = scaleTime({
     range: [0, Math.PI * 2],
-    domain: extent(appleStock, x),
+    domain: extent(appleStock, x)
   });
   const yScale = scaleLog({
     range: [0, height / 2 - 20],
-    domain: extent(appleStock, y),
+    domain: extent(appleStock, y)
   });
   return (
     <svg width={width} height={height}>
-      <LinearGradient
-        from="#e5fd3d"
-        to="#aeeef8"
-        id="line-gradient"
-      />
-      <rect
-        x={0}
-        y={0}
-        width={width}
-        height={height}
-        fill="#744cca"
-        rx={14}
-      />
+      <LinearGradient from="#e5fd3d" to="#aeeef8" id="line-gradient" />
+      <rect x={0} y={0} width={width} height={height} fill="#744cca" rx={14} />
       <Group top={height / 2} left={width / 2}>
         {yScale.ticks().map((tick, i) => {
           return (

@@ -23,11 +23,7 @@ export default function HeatmapCircle({
     <Group>
       {data.map((d, i) => {
         return (
-          <Group
-            key={`heatmap-${i}`}
-            className='vx-heatmap-column'
-            left={xScale(bin(d))}
-          >
+          <Group key={`heatmap-${i}`} className="vx-heatmap-column" left={xScale(bin(d))}>
             {bins(d).map((b, j) => {
               return (
                 <circle
@@ -36,7 +32,8 @@ export default function HeatmapCircle({
                   fill={colorScale(count(b))}
                   r={r}
                   cx={radius}
-                  cy={yScale(bin(b) + step) + radius} fillOpacity={opacityScale(count(b))}
+                  cy={yScale(bin(b) + step) + radius}
+                  fillOpacity={opacityScale(count(b))}
                   {...additionalProps(restProps, {
                     bin: b,
                     index: j,

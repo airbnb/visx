@@ -11,14 +11,7 @@ const browsers = Object.keys(browserUsage[0])
 
 function Label({ x, y, children }) {
   return (
-    <text
-      fill="white"
-      textAnchor="middle"
-      x={x}
-      y={y}
-      dy=".33em"
-      fontSize={9}
-    >
+    <text fill="white" textAnchor="middle" x={x} y={y} dy=".33em" fontSize={9}>
       {children}
     </text>
   );
@@ -32,22 +25,15 @@ export default ({
     top: 30,
     left: 20,
     right: 20,
-    bottom: 110,
-  },
+    bottom: 110
+  }
 }) => {
   if (width < 10) return null;
   const radius = Math.min(width, height) / 2;
   return (
     <svg width={width} height={height}>
       <GradientPinkBlue id="gradients" />
-      <rect
-        x={0}
-        y={0}
-        rx={14}
-        width={width}
-        height={height}
-        fill="url('#gradients')"
-      />
+      <rect x={0} y={0} rx={14} width={width} height={height} fill="url('#gradients')" />
       <Group top={height / 2 - margin.top} left={width / 2}>
         <Pie
           data={browsers}

@@ -51,7 +51,7 @@ export default function BarStackHorizontal({
                       width: barWidth,
                       y: y(d.data),
                       yFormatted: format(y(d.data)),
-                      data: d.data,
+                      data: d.data
                     }}
                     {...restProps}
                   />
@@ -73,5 +73,5 @@ BarStackHorizontal.propTypes = {
   keys: PropTypes.array.isRequired,
   className: PropTypes.string,
   top: PropTypes.number,
-  left: PropTypes.number,
+  left: PropTypes.number
 };

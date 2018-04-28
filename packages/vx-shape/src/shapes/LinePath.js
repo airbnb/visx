@@ -6,7 +6,7 @@ import { curveLinear } from '@vx/curve';
 import additionalProps from '../util/additionalProps';
 
 LinePath.propTypes = {
-  innerRef: PropTypes.func,
+  innerRef: PropTypes.func
 };
 
 export default function LinePath({
@@ -45,9 +45,7 @@ export default function LinePath({
         fill={fill}
         {...additionalProps(restProps, data)}
       />
-      {glyph && (
-        <g className="vx-linepath-glyphs">{data.map(glyph)}</g>
-      )}
+      {glyph && <g className="vx-linepath-glyphs">{data.map(glyph)}</g>}
     </g>
   );
 }

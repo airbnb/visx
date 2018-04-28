@@ -3,8 +3,7 @@ import { shallow } from 'enzyme';
 import { Arc } from '../src';
 import { browserUsage } from '../../vx-mock-data';
 
-const ArcWrapper = ({ ...restProps }) =>
-  shallow(<Arc data={browserUsage} {...restProps} />);
+const ArcWrapper = ({ ...restProps }) => shallow(<Arc data={browserUsage} {...restProps} />);
 
 describe('<Arc />', () => {
   test('it should be defined', () => {

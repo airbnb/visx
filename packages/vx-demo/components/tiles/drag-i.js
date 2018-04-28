@@ -17,7 +17,7 @@ const colors = [
   '#e582ff',
   '#ff00d4',
   '#270eff',
-  '#827ce2',
+  '#827ce2'
 ];
 
 function genCircles({ num, width, height }) {
@@ -29,7 +29,7 @@ function genCircles({ num, width, height }) {
         id: i,
         radius,
         x: Math.round(Math.random() * (width - radius * 2) + radius),
-        y: Math.round(Math.random() * (height - radius * 2) + radius),
+        y: Math.round(Math.random() * (height - radius * 2) + radius)
       };
     });
 }
@@ -38,18 +38,18 @@ const genItems = ({ width, height }) =>
   genCircles({
     num: width < 360 ? 40 : 185,
     width,
-    height,
+    height
   });
 
 export default class DragI extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: genItems({ ...props }),
+      items: genItems({ ...props })
     };
     this.colorScale = scaleOrdinal({
       range: colors,
-      domain: this.state.items.map(d => d.id),
+      domain: this.state.items.map(d => d.id)
     });
   }
 
@@ -58,7 +58,7 @@ export default class DragI extends React.Component {
     if (width !== this.props.width) {
       this.setState(() => {
         return {
-          items: genItems({ ...nextProps }),
+          items: genItems({ ...nextProps })
         };
       });
     }
@@ -71,12 +71,7 @@ export default class DragI extends React.Component {
       <div className="Drag" style={{ touchAction: 'none' }}>
         <svg width={width} height={height}>
           <LinearGradient id="stroke" from="#ff00a5" to="#ffc500" />
-          <rect
-            fill="#c4c3cb"
-            width={width}
-            height={height}
-            rx={14}
-          />
+          <rect fill="#c4c3cb" width={width} height={height} rx={14} />
           {this.state.items.map((d, i) => (
             <Drag
               key={`${d.id}`}
@@ -89,30 +84,19 @@ export default class DragI extends React.Component {
                 // "on top of" the other data items
                 this.setState((state, props) => {
                   return {
-                    items: raise(state.items, i),
+                    items: raise(state.items, i)
                   };
                 });
               }}
             >
-              {({
-                dragStart,
-                dragEnd,
-                dragMove,
-                isDragging,
-                dx,
-                dy,
-              }) => {
+              {({ dragStart, dragEnd, dragMove, isDragging, dx, dy }) => {
                 return (
                   <circle
                     key={`dot-${d.id}`}
                     cx={d.x}
                     cy={d.y}
                     r={isDragging ? d.radius + 4 : d.radius}
-                    fill={
-                      isDragging
-                        ? 'url(#stroke)'
-                        : this.colorScale(d.id)
-                    }
+                    fill={isDragging ? 'url(#stroke)' : this.colorScale(d.id)}
                     transform={`translate(${dx}, ${dy})`}
                     fillOpacity={0.9}
                     stroke={isDragging ? 'white' : 'transparent'}

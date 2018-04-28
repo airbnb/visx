@@ -162,4 +162,4 @@ function SimpleLineChart({
 export default withScreenSize(SimpleLineChart);`}
     </Codeblock>
   );
-}
+};

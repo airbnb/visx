@@ -15,17 +15,18 @@ export default ({
     top: 0,
     left: 30,
     right: 40,
-    bottom: 80,
-  },
+    bottom: 80
+  }
 }) => {
   if (width < 10) return null;
   const color = scaleLinear({
     domain: [0, Math.max(...shakespeare.map(d => d.size || 0))],
-    range: ['#0373d9', '#00ff70'],
+    range: ['#0373d9', '#00ff70']
   });
   const nodes = stratify()
     .id(d => d.id)
-    .parentId(d => d.parent)(shakespeare).sum(d => d.size || 0);
+    .parentId(d => d.parent)(shakespeare)
+    .sum(d => d.size || 0);
   const data = hierarchy(nodes).sort((a, b) => b.value - a.value);
   return (
     <svg width={width} height={height}>
@@ -44,11 +45,7 @@ export default ({
                 .descendants()
                 .reverse()
                 .map((node, i) => (
-                  <Group
-                    top={node.y0}
-                    left={node.x0}
-                    key={`node-${i}`}
-                  >
+                  <Group top={node.y0} left={node.x0} key={`node-${i}`}>
                     {node.depth == 1 && (
                       <rect
                         id={`rect-${i}`}

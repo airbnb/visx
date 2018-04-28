@@ -9,7 +9,7 @@ const propTypes = {
   ...withBoundingRectsProps,
   ...Tooltip.propTypes,
   offsetLeft: PropTypes.number,
-  offsetTop: PropTypes.number,
+  offsetTop: PropTypes.number
 };
 
 const defaultProps = {};
@@ -23,21 +23,28 @@ function TooltipWithBounds({
   parentRect,
   children,
   style,
-  ...otherProps,
+  ...otherProps
 }) {
   let left = initialLeft;
   let top = initialTop;
 
   if (rect && parentRect) {
-    left = ((offsetLeft + rect.right) > parentRect.right || (offsetLeft + rect.right) > window.innerWidth)
-      ? (left - rect.width - offsetLeft) : left + offsetLeft;
+    left =
+      offsetLeft + rect.right > parentRect.right || offsetLeft + rect.right > window.innerWidth
+        ? left - rect.width - offsetLeft
+        : left + offsetLeft;
 
-    top = ((offsetTop + rect.bottom) > parentRect.bottom || (offsetTop + rect.bottom) > window.innerHeight)
-      ? (top - rect.height - offsetTop) : top + offsetTop;
+    top =
+      offsetTop + rect.bottom > parentRect.bottom || offsetTop + rect.bottom > window.innerHeight
+        ? top - rect.height - offsetTop
+        : top + offsetTop;
   }
 
   return (
-    <Tooltip style={{ top: 0, transform: `translate(${left}px, ${top}px)`, ...style }} {...otherProps}>
+    <Tooltip
+      style={{ top: 0, transform: `translate(${left}px, ${top}px)`, ...style }}
+      {...otherProps}
+    >
       {children}
     </Tooltip>
   );

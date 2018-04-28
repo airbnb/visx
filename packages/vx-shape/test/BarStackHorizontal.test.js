@@ -24,7 +24,7 @@ describe('<BarStackHorizontal />', () => {
         yScale={yScale}
         zScale={d => d}
         keys={[]}
-      />,
+      />
     );
     expect(wrapper.prop('className')).toEqual('vx-bar-stack-horizontal');
   });
@@ -41,7 +41,7 @@ describe('<BarStackHorizontal />', () => {
         yScale={yScale}
         zScale={d => d}
         keys={[]}
-      />,
+      />
     );
     expect(wrapper.prop('className')).toEqual('vx-bar-stack-horizontal test');
   });
@@ -58,7 +58,7 @@ describe('<BarStackHorizontal />', () => {
         yScale={yScale}
         zScale={d => d}
         keys={[]}
-      />,
+      />
     );
     expect(wrapper.prop('top')).toEqual(2);
     expect(wrapper.prop('left')).toEqual(3);

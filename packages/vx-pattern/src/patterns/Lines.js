@@ -4,25 +4,23 @@ import cx from 'classnames';
 import Pattern from './Pattern';
 import Orientation from '../constants';
 
-function pathForOrientation({
-  height,
-  orientation
-}) {
+function pathForOrientation({ height, orientation }) {
   let path;
 
   switch (orientation) {
     case Orientation.vertical:
-      path = `M ${height/2}, 0 l 0, ${height}`;
+      path = `M ${height / 2}, 0 l 0, ${height}`;
       break;
     case Orientation.horizontal:
-      path = `M 0,${height/2} l ${height},0`
+      path = `M 0,${height / 2} l ${height},0`;
       break;
     case Orientation.diagonal:
-      path = `M 0,${height} l ${height},${-height} M ${-height/4},${height/4} l ${height/2},${-height/2}
-             M ${3/4*height},${5/4*height} l ${height/2},${-height/2}`
+      path = `M 0,${height} l ${height},${-height} M ${-height / 4},${height / 4} l ${height /
+        2},${-height / 2}
+             M ${3 / 4 * height},${5 / 4 * height} l ${height / 2},${-height / 2}`;
       break;
     default:
-      path = `M ${height/2}, 0 l 0, ${height}`;
+      path = `M ${height / 2}, 0 l 0, ${height}`;
   }
 
   return path;
@@ -40,24 +38,20 @@ export default function PatternLines({
   shapeRendering = 'auto',
   orientation = ['vertical'],
   background,
-  className,
+  className
 }) {
   if (!Array.isArray(orientation)) orientation = [orientation];
 
   return (
-    <Pattern
-      id={id}
-      width={width}
-      height={height}
-    >
-      {!!background &&
+    <Pattern id={id} width={width} height={height}>
+      {!!background && (
         <rect
           className={cx('vx-pattern-line-background')}
           width={width}
           height={height}
           fill={background}
         />
-      }
+      )}
       {orientation.map((o, i) => {
         return (
           <path
@@ -84,5 +78,5 @@ PatternLines.propTypes = {
   stroke: PropTypes.string.isRequired,
   strokeWidth: PropTypes.number.isRequired,
   strokeDasharray: PropTypes.string,
-  className: PropTypes.string,
-}
+  className: PropTypes.string
+};

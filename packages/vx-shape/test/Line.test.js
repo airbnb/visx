@@ -3,8 +3,7 @@ import ReactDOM from 'react-dom';
 import { shallow } from 'enzyme';
 import { Line } from '../src';
 
-const LineWrapper = ({ ...restProps }) =>
-  shallow(<Line {...restProps} />);
+const LineWrapper = ({ ...restProps }) => shallow(<Line {...restProps} />);
 
 describe('<Line />', () => {
   test('it should be defined', () => {

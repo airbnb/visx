@@ -18,32 +18,32 @@ const raw = {
           name: 'C',
           children: [
             {
-              name: 'C1',
+              name: 'C1'
             },
             {
               name: 'D',
               children: [
                 {
-                  name: 'D1',
+                  name: 'D1'
                 },
                 {
-                  name: 'D2',
+                  name: 'D2'
                 },
                 {
-                  name: 'D3',
-                },
-              ],
-            },
-          ],
-        },
-      ],
+                  name: 'D3'
+                }
+              ]
+            }
+          ]
+        }
+      ]
     },
     { name: 'Z' },
     {
       name: 'B',
-      children: [{ name: 'B1' }, { name: 'B2' }, { name: 'B3' }],
-    },
-  ],
+      children: [{ name: 'B1' }, { name: 'B2' }, { name: 'B3' }]
+    }
+  ]
 };
 
 function Node({ node, events }) {
@@ -76,15 +76,7 @@ function Node({ node, events }) {
         fontFamily="Arial"
         textAnchor={'middle'}
         style={{ pointerEvents: 'none' }}
-        fill={
-          node.depth === 0 ? (
-            '#71248e'
-          ) : node.children ? (
-            'white'
-          ) : (
-            '#26deb0'
-          )
-        }
+        fill={node.depth === 0 ? '#71248e' : node.children ? 'white' : '#26deb0'}
       >
         {node.data.name}
       </text>
@@ -93,14 +85,7 @@ function Node({ node, events }) {
 }
 
 function Link({ link }) {
-  return (
-    <LinkHorizontal
-      data={link}
-      stroke="#374469"
-      strokeWidth="1"
-      fill="none"
-    />
-  );
+  return <LinkHorizontal data={link} stroke="#374469" strokeWidth="1" fill="none" />;
 }
 
 export default ({
@@ -111,8 +96,8 @@ export default ({
     top: 10,
     left: 30,
     right: 40,
-    bottom: 80,
-  },
+    bottom: 80
+  }
 }) => {
   if (width < 10) return null;
   const data = hierarchy(raw);
@@ -124,13 +109,8 @@ export default ({
         top={margin.top}
         left={margin.left}
         root={data}
-        size={[
-          height - margin.top - margin.bottom,
-          width - margin.left - margin.right,
-        ]}
-        nodeComponent={({ node }) => (
-          <Node node={node} events={events} />
-        )}
+        size={[height - margin.top - margin.bottom, width - margin.left - margin.right]}
+        nodeComponent={({ node }) => <Node node={node} events={events} />}
         linkComponent={Link}
       />
     </svg>

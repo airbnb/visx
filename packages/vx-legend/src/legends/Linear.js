@@ -7,7 +7,7 @@ LegendLinear.propTypes = {
   domain: PropTypes.array,
   steps: PropTypes.number,
   labelFormat: PropTypes.func,
-  labelTransform: PropTypes.func,
+  labelTransform: PropTypes.func
 };
 
 export default function LegendLinear({
@@ -45,7 +45,7 @@ function defaultTransform({ scale, labelFormat }) {
   return (d, i) => {
     return {
       text: `${labelFormat(d, i)}`,
-      value: scale(d),
+      value: scale(d)
     };
   };
 }

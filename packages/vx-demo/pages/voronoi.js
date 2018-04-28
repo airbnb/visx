@@ -10,12 +10,12 @@ export default () => {
         top: 0,
         left: 0,
         right: 0,
-        bottom: 0,
+        bottom: 0
       }}
       component={VoronoiChart}
       title="VoronoiChart with mouseover"
     >
-    {`import React from 'react';
+      {`import React from 'react';
 import { extent } from 'd3-array';
 import { Group } from '@vx/group';
 import { GradientOrangeRed, GradientPinkRed } from '@vx/gradient';
@@ -168,4 +168,4 @@ class VoronoiChart extends React.PureComponent {
 `}
     </Show>
   );
-}
+};

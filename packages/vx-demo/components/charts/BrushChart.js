@@ -3,12 +3,7 @@ import { genRandomNormalPoints } from '@vx/mock-data';
 import { scaleLinear } from '@vx/scale';
 import { Group } from '@vx/group';
 import { AxisLeft, AxisBottom } from '@vx/axis';
-import {
-  BoxBrush,
-  withBrush,
-  getCoordsFromEvent,
-  constrainToRegion
-} from '@vx/brush';
+import { BoxBrush, withBrush, getCoordsFromEvent, constrainToRegion } from '@vx/brush';
 import colors from '../util/sillyColorScale';
 import { Motion, spring } from 'react-motion';
 
@@ -23,7 +18,7 @@ class BrushChart extends React.Component {
       x0: margin.left,
       x1: width - margin.left,
       y0: margin.top,
-      y1: height - margin.top,
+      y1: height - margin.top
     };
 
     this.initialDomain = {
@@ -34,13 +29,13 @@ class BrushChart extends React.Component {
     this.xScale = scaleLinear({
       domain: this.initialDomain.x,
       range: [0, width - margin.left - margin.right],
-      clamp: true,
+      clamp: true
     });
 
     this.yScale = scaleLinear({
       domain: this.initialDomain.y,
       range: [height - margin.top - margin.bottom, 0],
-      clamp: true,
+      clamp: true
     });
 
     this.handleMouseDown = this.handleMouseDown.bind(this);
@@ -102,7 +97,9 @@ class BrushChart extends React.Component {
 
     return (
       <svg
-        ref={(c) => { this.svg = c; }}
+        ref={c => {
+          this.svg = c;
+        }}
         width={width}
         height={height}
         onMouseDown={this.handleMouseDown}
@@ -126,15 +123,16 @@ class BrushChart extends React.Component {
           tickTextFill={'#1b1a1e'}
         />
         <Group top={margin.top} left={margin.left}>
-          {points.map((point) => {
+          {points.map(point => {
             return (
               <Motion
                 key={`${x(point)}-${y(point)}-${z(point)}`}
                 defaultStyle={{ x: xMax / 2, y: yMax / 2 }}
                 style={{
                   x: spring(xScale(x(point))),
-                  y: spring(yScale(y(point))),
-                }}>
+                  y: spring(yScale(y(point)))
+                }}
+              >
                 {interpolatingStyle => {
                   return (
                     <circle

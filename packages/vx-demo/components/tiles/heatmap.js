@@ -20,16 +20,14 @@ export default ({
     top: 10,
     left: 20,
     right: 20,
-    bottom: 110,
+    bottom: 110
   }
 }) => {
   if (width < 10) return null;
 
   // bounds
-  const size =  width > (margin.left + margin.right)
-    ? width - margin.left - margin.right
-    : width;
-  const xMax =  size / 2;
+  const size = width > margin.left + margin.right ? width - margin.left - margin.right : width;
+  const xMax = size / 2;
   const yMax = height - margin.bottom;
   const dMin = min(data, d => min(y(d), x));
   const dMax = max(data, d => max(y(d), x));
@@ -56,20 +54,13 @@ export default ({
     domain: [0, colorMax]
   });
   const opacityScale = scaleLinear({
-    range: [.1, 1],
+    range: [0.1, 1],
     domain: [0, colorMax]
   });
 
   return (
     <svg width={width} height={height}>
-      <rect
-        x={0}
-        y={0}
-        width={width}
-        height={height}
-        rx={14}
-        fill="#28272c"
-      />
+      <rect x={0} y={0} width={width} height={height} rx={14} fill="#28272c" />
       <Group top={margin.top} left={5}>
         <HeatmapCircle
           data={data}
@@ -82,7 +73,7 @@ export default ({
           gap={4}
           onClick={data => event => {
             if (!events) return;
-            alert(`clicked: ${JSON.stringify(data.bin)}`)
+            alert(`clicked: ${JSON.stringify(data.bin)}`);
           }}
         />
       </Group>
@@ -99,10 +90,10 @@ export default ({
           gap={0}
           onClick={data => event => {
             if (!events) return;
-            alert(`clicked: ${JSON.stringify(data.bin)}`)
+            alert(`clicked: ${JSON.stringify(data.bin)}`);
           }}
         />
       </Group>
     </svg>
   );
-}
+};

@@ -282,11 +282,7 @@ export default class extends React.Component {
                         fontFamily="Arial"
                         textAnchor={'middle'}
                         style={{ pointerEvents: 'none' }}
-                        fill={
-                          node.depth === 0
-                            ? '#71248e'
-                            : node.children ? 'white' : '#26deb0'
-                        }
+                        fill={node.depth === 0 ? '#71248e' : node.children ? 'white' : '#26deb0'}
                       >
                         {node.data.name}
                       </text>

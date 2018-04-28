@@ -9,7 +9,7 @@ export default class DragII extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: props.data || [],
+      data: props.data || []
     };
   }
 
@@ -20,12 +20,7 @@ export default class DragII extends React.Component {
       <div className="DragII" style={{ touchAction: 'none' }}>
         <svg width={width} height={height}>
           <LinearGradient id="stroke" from="#ff614e" to="#ffdc64" />
-          <rect
-            fill="#04002b"
-            width={width}
-            height={height}
-            rx={14}
-          />
+          <rect fill="#04002b" width={width} height={height} rx={14} />
           {this.state.data.map((d, i) => {
             return (
               <LinePath
@@ -50,7 +45,7 @@ export default class DragII extends React.Component {
               this.setState((state, props) => {
                 const newLine = [{ x, y }];
                 return {
-                  data: state.data.concat([newLine]),
+                  data: state.data.concat([newLine])
                 };
               });
             }}
@@ -65,16 +60,7 @@ export default class DragII extends React.Component {
               });
             }}
           >
-            {({
-              x,
-              y,
-              dx,
-              dy,
-              isDragging,
-              dragStart,
-              dragEnd,
-              dragMove,
-            }) => {
+            {({ x, y, dx, dy, isDragging, dragStart, dragEnd, dragMove }) => {
               return (
                 <g>
                   {/* decorate the currently drawing line */}
@@ -118,9 +104,7 @@ export default class DragII extends React.Component {
         <div className="deets">
           <div>
             Based on Mike Bostock's{' '}
-            <a href="https://bl.ocks.org/mbostock/f705fc55e6f26df29354">
-              Line Drawing
-            </a>
+            <a href="https://bl.ocks.org/mbostock/f705fc55e6f26df29354">Line Drawing</a>
           </div>
         </div>
 

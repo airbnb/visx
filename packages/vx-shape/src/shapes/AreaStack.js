@@ -51,10 +51,7 @@ export default function AreaStack({
           />
         );
       })}
-      {!!glyph &&
-        <g className="vx-area-stack-glyphs">
-          {data.map(glyph)}
-        </g>}
+      {!!glyph && <g className="vx-area-stack-glyphs">{data.map(glyph)}</g>}
     </g>
   );
 }

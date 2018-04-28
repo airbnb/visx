@@ -16,13 +16,16 @@ export default function PatternHexagons({
   shapeRendering,
   background,
   className,
-  size = 3,
+  size = 3
 }) {
   const s = Math.sqrt(size);
   return (
     <Path
       className={cx('vx-pattern-hexagon', className)}
-      path={`M ${height},0 l ${height},0 l ${height/2},${(height*s/2)} l ${(-height/2)},${(height*s/2)} l ${(-height)},0 l ${(-height/2)},${(-height*s/2)} Z M 0,${height*s/2} l ${height/2},0 M ${(3*height)},${height*s/2} l ${(-height/2)},0`}
+      path={`M ${height},0 l ${height},0 l ${height / 2},${height * s / 2} l ${-height /
+        2},${height * s / 2} l ${-height},0 l ${-height / 2},${-height * s / 2} Z M 0,${height *
+        s /
+        2} l ${height / 2},0 M ${3 * height},${height * s / 2} l ${-height / 2},0`}
       id={id}
       width={size}
       height={s}
@@ -47,5 +50,5 @@ PatternHexagons.propTypes = {
   background: PropTypes.string,
   stroke: PropTypes.string,
   strokeWidth: PropTypes.number,
-  strokeDasharray: PropTypes.string,
-}
+  strokeDasharray: PropTypes.string
+};

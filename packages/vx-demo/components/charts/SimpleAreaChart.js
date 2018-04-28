@@ -20,12 +20,7 @@ function numTicksForWidth(width) {
   return 10;
 }
 
-export default ({
-  margin,
-  data,
-  width,
-  height,
-}) => {
+export default ({ margin, data, width, height }) => {
   const stock = appleStock;
 
   // bounds
@@ -39,12 +34,12 @@ export default ({
   // scales
   const xStockScale = scaleTime({
     range: [0, xMax],
-    domain: extent(stock, xStock),
+    domain: extent(stock, xStock)
   });
   const yStockScale = scaleLinear({
     range: [yMax, 0],
     domain: [0, max(stock, yStock)],
-    nice: true,
+    nice: true
   });
 
   return (
@@ -87,4 +82,4 @@ export default ({
       />
     </svg>
   );
-}
+};

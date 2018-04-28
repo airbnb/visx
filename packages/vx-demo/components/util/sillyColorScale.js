@@ -1,5 +1,5 @@
-const colors = ['#458aea','#f7a055','#9b3655','red','yellow','#3f56d1','#4fd5ef','#2fd371'];
+const colors = ['#458aea', '#f7a055', '#9b3655', 'red', 'yellow', '#3f56d1', '#4fd5ef', '#2fd371'];
 
-export default (i) => {
+export default i => {
   return colors[i] || colors[0];
-}
+};

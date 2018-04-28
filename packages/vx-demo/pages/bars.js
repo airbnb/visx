@@ -4,12 +4,8 @@ import Bars from '../components/tiles/bars';
 
 export default () => {
   return (
-    <Show
-      events
-      component={Bars}
-      title="Bars"
-    >
-{`import React from 'react';
+    <Show events component={Bars} title="Bars">
+      {`import React from 'react';
 import { Bar } from '@vx/shape';
 import { Group } from '@vx/group';
 import { GradientTealBlue } from '@vx/gradient';
@@ -85,4 +81,4 @@ export default ({
 }`}
     </Show>
   );
-}
+};

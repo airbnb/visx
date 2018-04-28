@@ -4,14 +4,7 @@ import { symbol, symbolDiamond } from 'd3-shape';
 import Glyph from './Glyph';
 import additionalProps from '../util/additionalProps';
 
-export default function GlyphDiamond({
-  children,
-  className,
-  top,
-  left,
-  size,
-  ...restProps
-}) {
+export default function GlyphDiamond({ children, className, top, left, size, ...restProps }) {
   const path = symbol();
   path.type(symbolDiamond);
   if (size) path.size(size);

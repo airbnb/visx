@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { LineRadial } from '../src';
 
 const lineRadialProps = {
-  data: [{ x: 0, y: 0 }, { x: 1, y: 1 }],
+  data: [{ x: 0, y: 0 }, { x: 1, y: 1 }]
 };
 
 describe('<LineRadial />', () => {
@@ -17,9 +17,6 @@ describe('<LineRadial />', () => {
       expect(n.tagName).toEqual('PATH');
       done();
     };
-    ReactDOM.render(
-      <LineRadial innerRef={refCallback} {...lineRadialProps} />,
-      node,
-    );
+    ReactDOM.render(<LineRadial innerRef={refCallback} {...lineRadialProps} />, node);
   });
 });

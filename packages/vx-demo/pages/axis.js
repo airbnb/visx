@@ -11,7 +11,7 @@ export default () => {
         top: 20,
         left: 60,
         right: 40,
-        bottom: 60,
+        bottom: 60
       }}
     >
       {`import React from 'react';

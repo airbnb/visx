@@ -6,7 +6,7 @@ import debounce from 'lodash/debounce';
 
 export default class ParentSize extends React.Component {
   static defaultProps = {
-    debounceTime: 300,
+    debounceTime: 300
   };
 
   constructor(props) {
@@ -23,7 +23,7 @@ export default class ParentSize extends React.Component {
           width,
           height,
           top,
-          left,
+          left
         });
       }
     });
@@ -37,7 +37,7 @@ export default class ParentSize extends React.Component {
       width,
       height,
       top,
-      left,
+      left
     }));
   }
   setTarget(ref) {
@@ -46,15 +46,11 @@ export default class ParentSize extends React.Component {
   render() {
     const { className, children } = this.props;
     return (
-      <div
-        style={{ width: '100%', height: '100%' }}
-        ref={this.setTarget}
-        className={className}
-      >
+      <div style={{ width: '100%', height: '100%' }} ref={this.setTarget} className={className}>
         {children({
           ...this.state,
           ref: this.target,
-          resize: this.resize,
+          resize: this.resize
         })}
       </div>
     );
@@ -64,5 +60,5 @@ export default class ParentSize extends React.Component {
 ParentSize.propTypes = {
   className: PropTypes.string,
   children: PropTypes.func.isRequired,
-  debounceTime: PropTypes.number,
+  debounceTime: PropTypes.number
 };

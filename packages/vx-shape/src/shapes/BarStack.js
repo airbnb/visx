@@ -51,7 +51,7 @@ export default function BarStack({
                       width: bandwidth,
                       x: x(d.data),
                       xFormatted: format(x(d.data)),
-                      data: d.data,
+                      data: d.data
                     }}
                     {...restProps}
                   />
@@ -73,5 +73,5 @@ BarStack.propTypes = {
   keys: PropTypes.array.isRequired,
   className: PropTypes.string,
   top: PropTypes.number,
-  left: PropTypes.number,
+  left: PropTypes.number
 };

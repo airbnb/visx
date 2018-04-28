@@ -5,7 +5,7 @@ import { area } from 'd3-shape';
 import additionalProps from '../util/additionalProps';
 
 AreaClosed.propTypes = {
-  innerRef: PropTypes.func,
+  innerRef: PropTypes.func
 };
 
 export default function AreaClosed({

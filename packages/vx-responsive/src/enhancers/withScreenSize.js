@@ -8,13 +8,12 @@ export default function withScreenSize(BaseComponent) {
 
       this.state = {
         screenWidth: null,
-        screenHeight: null,
-      }
+        screenHeight: null
+      };
 
-      this.handleResize = debounce(
-        this.resize.bind(this),
-        props.windowResizeDebounceTime
-      ).bind(this);
+      this.handleResize = debounce(this.resize.bind(this), props.windowResizeDebounceTime).bind(
+        this
+      );
     }
 
     componentDidMount() {
@@ -30,29 +29,22 @@ export default function withScreenSize(BaseComponent) {
       this.setState((prevState, props) => {
         return {
           screenWidth: window.innerWidth,
-          screenHeight: window.innerHeight,
-        }
+          screenHeight: window.innerHeight
+        };
       });
     }
 
     render() {
-      const {
-        screenWidth,
-        screenHeight,
-      } = this.state;
+      const { screenWidth, screenHeight } = this.state;
       if (!screenWidth && !screenHeight) return null;
       return (
-        <BaseComponent
-          screenWidth={screenWidth}
-          screenHeight={screenHeight}
-          {...this.props}
-        />
+        <BaseComponent screenWidth={screenWidth} screenHeight={screenHeight} {...this.props} />
       );
     }
   }
 
   WrappedComponent.defaultProps = {
-    windowResizeDebounceTime: 300,
+    windowResizeDebounceTime: 300
   };
 
   return WrappedComponent;

@@ -9,11 +9,7 @@ function range(n) {
 
 export function genPointsRange(n, [offsetX, offsetY, index]) {
   return range(n).map(() => {
-    return [
-      random() + offsetX,
-      random() + offsetY,
-      index
-    ];
+    return [random() + offsetX, random() + offsetY, index];
   });
 }
 

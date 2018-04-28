@@ -26,10 +26,6 @@ export default function Arc({
   if (padAngle) arc.padAngle(padAngle);
   if (padRadius) arc.padRadius(padRadius);
   return (
-    <path
-      className={cx('vx-arc', className)}
-      d={arc(data)}
-      {...additionalProps(restProps, data)}
-    />
+    <path className={cx('vx-arc', className)} d={arc(data)} {...additionalProps(restProps, data)} />
   );
 }

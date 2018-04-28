@@ -11,13 +11,13 @@ const yStock = d => d.close;
 
 const fakeXScale = scaleTime({
   range: [0, 100],
-  domain: extent(appleStock, xStock),
+  domain: extent(appleStock, xStock)
 });
 
 const fakeYScale = scaleLinear({
   range: [100, 0],
   domain: [0, max(appleStock, yStock)],
-  nice: true,
+  nice: true
 });
 
 const AreaClosedWrapper = ({ ...restProps }) =>
@@ -29,7 +29,7 @@ const AreaClosedWrapper = ({ ...restProps }) =>
       x={xStock}
       y={yStock}
       {...restProps}
-    />,
+    />
   );
 
 describe('<AreaClosed />', () => {
@@ -41,7 +41,7 @@ describe('<AreaClosed />', () => {
     expect(
       AreaClosedWrapper()
         .find('path')
-        .prop('className'),
+        .prop('className')
     ).toBe('vx-area-closed');
   });
 
@@ -60,7 +60,7 @@ describe('<AreaClosed />', () => {
         y={yStock}
         innerRef={refCallback}
       />,
-      node,
+      node
     );
   });
 });

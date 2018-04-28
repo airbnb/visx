@@ -3,8 +3,7 @@ import { shallow } from 'enzyme';
 import { Pie } from '../src';
 import { browserUsage } from '../../vx-mock-data';
 
-const PieWrapper = ({ ...restProps }) =>
-  shallow(<Pie data={browserUsage} {...restProps} />);
+const PieWrapper = ({ ...restProps }) => shallow(<Pie data={browserUsage} {...restProps} />);
 
 describe('<Pie />', () => {
   test('it should be defined', () => {

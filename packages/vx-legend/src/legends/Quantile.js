@@ -7,7 +7,7 @@ LegendQuantile.propTypes = {
   domain: PropTypes.array,
   labelFormat: PropTypes.func,
   labelTransform: PropTypes.func,
-  labelDelimiter: PropTypes.string,
+  labelDelimiter: PropTypes.string
 };
 
 export default function LegendQuantile({
@@ -19,8 +19,7 @@ export default function LegendQuantile({
   ...restProps
 }) {
   domain = domain || scale.range();
-  labelTransform =
-    labelTransform || defaultTransform({ labelDelimiter });
+  labelTransform = labelTransform || defaultTransform({ labelDelimiter });
   return (
     <Legend
       scale={scale}
@@ -38,13 +37,10 @@ function defaultTransform({ labelDelimiter }) {
       const [x0, x1] = scale.invertExtent(d);
       return {
         extent: [x0, x1],
-        text: `${labelFormat(x0, i)} ${labelDelimiter} ${labelFormat(
-          x1,
-          i,
-        )}`,
+        text: `${labelFormat(x0, i)} ${labelDelimiter} ${labelFormat(x1, i)}`,
         value: scale(x0),
         datum: d,
-        index: i,
+        index: i
       };
     };
   };

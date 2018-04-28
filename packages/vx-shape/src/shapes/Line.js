@@ -5,7 +5,7 @@ import { Point } from '@vx/point';
 import additionalProps from '../util/additionalProps';
 
 Line.propTypes = {
-  innerRef: PropTypes.func,
+  innerRef: PropTypes.func
 };
 
 export default function Line({

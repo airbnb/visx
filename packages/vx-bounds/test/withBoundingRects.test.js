@@ -9,7 +9,7 @@ const expectedRectShape = expect.objectContaining({
   bottom: expect.any(Number),
   left: expect.any(Number),
   width: expect.any(Number),
-  height: expect.any(Number),
+  height: expect.any(Number)
 });
 
 describe('withBoundingRects()', () => {
@@ -21,7 +21,7 @@ describe('withBoundingRects()', () => {
       top: 0,
       left: 0,
       bottom: 0,
-      right: 0,
+      right: 0
     }));
   });
 

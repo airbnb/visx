@@ -1,14 +1,19 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { LinearGradient } from '../src'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { LinearGradient } from '../src';
 
 describe('<LinearGradient />', () => {
   test('it should be defined', () => {
-    expect(LinearGradient).toBeDefined()
-  })
+    expect(LinearGradient).toBeDefined();
+  });
 
   test('it should render without crashing', () => {
-    const div = document.createElement('div')
-    ReactDOM.render(<svg><LinearGradient id="linear" /></svg>, div)
-  })
-})
+    const div = document.createElement('div');
+    ReactDOM.render(
+      <svg>
+        <LinearGradient id="linear" />
+      </svg>,
+      div
+    );
+  });
+});

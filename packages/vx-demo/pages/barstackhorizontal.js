@@ -10,7 +10,7 @@ export default () => {
         top: 80,
         left: 80,
         right: 40,
-        bottom: 100,
+        bottom: 100
       }}
       component={BarStackHorizontal}
       title="Bar Stack Horizontal"

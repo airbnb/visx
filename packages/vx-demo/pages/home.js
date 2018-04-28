@@ -16,43 +16,38 @@ export default () => (
       <div className="container">
         <div className="content">
           <p>
-            <code>vx</code> is collection of reusable low-level
-            visualization components. <code>vx</code> combines the
-            power of <code>d3</code> to generate your visualization
-            with the benefits of <code>react</code> for updating the
-            DOM.
+            <code>vx</code> is collection of reusable low-level visualization components.{' '}
+            <code>vx</code> combines the power of <code>d3</code> to generate your visualization
+            with the benefits of <code>react</code> for updating the DOM.
           </p>
         </div>
         <div className="content">
           <h3>Goal</h3>
           <p>
-            The goal is to create a library of components you can use
-            to make both your own reusable chart library or your slick
-            custom one-off chart. <code>vx</code> is largely
-            unopinionated and is meant to be build on top of. Keep
-            your bundle sizes down and use only the packages you need.
+            The goal is to create a library of components you can use to make both your own reusable
+            chart library or your slick custom one-off chart. <code>vx</code> is largely
+            unopinionated and is meant to be build on top of. Keep your bundle sizes down and use
+            only the packages you need.
           </p>
         </div>
         <div className="content">
           <h3>How?</h3>
           <p>
-            Under the hood, <code>vx</code> is using <code>d3</code>{' '}
-            for the calculations and math. If you're creating your own
-            awesome chart library ontop of vx, it's easy to create a
-            component api that hides <code>d3</code> entirely. Meaning
-            your team could create charts as easily as using reusable
-            react components.
+            Under the hood, <code>vx</code> is using <code>d3</code> for the calculations and math.
+            If you're creating your own awesome chart library ontop of vx, it's easy to create a
+            component api that hides <code>d3</code> entirely. Meaning your team could create charts
+            as easily as using reusable react components.
           </p>
         </div>
         <div className="content">
           <h3>But why?</h3>
           <p>
-            Mixing two mental models for updating the DOM is never a
-            good time. Copy and pasting d3 code into{' '}
-            <code>componentDidMount()</code> is just that. This
-            collection of components lets you easily build your own
-            reusable visualization charts or library without having to
-            learn d3. No more selections or <code>enter()</code>/<code>exit()</code>/<code>update()</code>.
+            Mixing two mental models for updating the DOM is never a good time. Copy and pasting d3
+            code into <code>componentDidMount()</code> is just that. This collection of components
+            lets you easily build your own reusable visualization charts or library without having
+            to learn d3. No more selections or <code>enter()</code>/<code>exit()</code>/<code>
+              update()
+            </code>.
           </p>
         </div>
         <div className="content">
@@ -79,10 +74,7 @@ export default () => (
               </blockquote>
             </li>
             <li>
-              <p>
-                Can I use this to create my own library of charts for
-                my team?
-              </p>
+              <p>Can I use this to create my own library of charts for my team?</p>
               <blockquote>
                 <p>Please do.</p>
               </blockquote>

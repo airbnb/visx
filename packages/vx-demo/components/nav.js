@@ -2,8 +2,8 @@ import Link from 'next/link';
 import GithubButton from 'react-github-button';
 
 export default () => (
-  <div className='nav'>
-    <div className='nav-inner'>
+  <div className="nav">
+    <div className="nav-inner">
       <Link href="/">
         <div className="logo" />
       </Link>
@@ -14,11 +14,7 @@ export default () => (
         <Item href="/gallery">Gallery</Item>
       </ul>
 
-      <GithubButton
-        type="stargazers"
-        namespace="hshoff"
-        repo="vx"
-      />
+      <GithubButton type="stargazers" namespace="hshoff" repo="vx" />
     </div>
 
     <style jsx>{`
@@ -75,12 +71,12 @@ export default () => (
       }
     `}</style>
   </div>
-)
+);
 
 const Item = ({ href, children, className }) => (
   <li className="Item">
     <Link prefetch href={href}>
-      <a className={className}>{ children }</a>
+      <a className={className}>{children}</a>
     </Link>
 
     <style jsx>{`
@@ -108,4 +104,4 @@ const Item = ({ href, children, className }) => (
       }
     `}</style>
   </li>
-)
+);

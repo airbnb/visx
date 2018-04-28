@@ -10,12 +10,12 @@ export default () => {
         top: 10,
         left: 40,
         right: 30,
-        bottom: 80,
+        bottom: 80
       }}
       component={Heatmap}
       title="Heatmaps"
     >
-{`import React from 'react';
+      {`import React from 'react';
 import { Group } from '@vx/group';
 import { genBins } from '@vx/mock-data';
 import { scaleBand, scaleLinear } from '@vx/scale';
@@ -125,4 +125,4 @@ export default ({
 }`}
     </Show>
   );
-}
+};

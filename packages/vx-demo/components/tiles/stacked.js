@@ -10,15 +10,11 @@ import { stack as d3stack } from 'd3-shape';
 const data = browserUsage;
 const keys = Object.keys(data[0]).filter(k => k !== 'date');
 const browserNames = [...keys].reverse();
-const parseDate = timeParse("%Y %b %d");
+const parseDate = timeParse('%Y %b %d');
 const x = d => parseDate(d.date);
 const stack = d3stack().keys(keys);
 
-export default ({
-  width,
-  height,
-  margin,
-}) => {
+export default ({ width, height, margin }) => {
   if (width < 10) return null;
 
   // bounds
@@ -28,36 +24,29 @@ export default ({
   // scales
   const xScale = scaleTime({
     range: [0, xMax],
-    domain: extent(data, x),
+    domain: extent(data, x)
   });
   const yScale = scaleLinear({
-    range: [yMax, 0],
+    range: [yMax, 0]
   });
 
   return (
     <svg width={width} height={height}>
       <GradientOrangeRed id="OrangeRed" />
-      <rect
-        x={0}
-        y={0}
-        width={width}
-        height={height}
-        fill="#f38181"
-        rx={14}
-      />
+      <rect x={0} y={0} width={width} height={height} fill="#f38181" rx={14} />
       <AreaStack
         reverse
         top={margin.top}
         left={margin.left}
         keys={keys}
         data={data}
-        x={(d) => xScale(x(d.data))}
-        y0={(d) => yScale(d[0] / 100)}
-        y1={(d) => yScale(d[1] / 100)}
+        x={d => xScale(x(d.data))}
+        y0={d => yScale(d[0] / 100)}
+        y1={d => yScale(d[1] / 100)}
         strokeWidth={0}
-        fill='url(#OrangeRed)'
-        fillOpacity='1'
+        fill="url(#OrangeRed)"
+        fillOpacity="1"
       />
     </svg>
   );
-}
+};

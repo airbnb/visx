@@ -20,15 +20,15 @@ export default function ViolinPlot({
   horizontal,
   ...restProps
 }) {
-  const center = (horizontal?top:left) + width/2;
+  const center = (horizontal ? top : left) + width / 2;
   const binCounts = binData.map(bin => bin.count);
   const widthScale = scaleLinear({
-    rangeRound: [0, width/2],
+    rangeRound: [0, width / 2],
     domain: [0, Math.max(...binCounts)]
   });
 
-  let path = "";
-  if (horizontal){
+  let path = '';
+  if (horizontal) {
     const topCurve = line()
       .x(d => valueScale(d.value))
       .y(d => center - widthScale(d.count))
@@ -41,7 +41,7 @@ export default function ViolinPlot({
 
     const topCurvePath = topCurve(binData);
     const bottomCurvePath = bottomCurve([...binData].reverse());
-    path = `${topCurvePath} ${bottomCurvePath.replace('M','L')} Z`;
+    path = `${topCurvePath} ${bottomCurvePath.replace('M', 'L')} Z`;
   } else {
     const rightCurve = line()
       .x(d => center + widthScale(d.count))
@@ -55,7 +55,7 @@ export default function ViolinPlot({
 
     const rightCurvePath = rightCurve(binData);
     const leftCurvePath = leftCurve([...binData].reverse());
-    path = `${rightCurvePath} ${leftCurvePath.replace('M','L')} Z`;
+    path = `${rightCurvePath} ${leftCurvePath.replace('M', 'L')} Z`;
   }
   return (
     <Group className={classnames('vx-violin', className)}>

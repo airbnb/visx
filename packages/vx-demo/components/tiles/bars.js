@@ -28,24 +28,17 @@ export default ({ width, height, events = false }) => {
   const xScale = scaleBand({
     rangeRound: [0, xMax],
     domain: data.map(x),
-    padding: 0.4,
+    padding: 0.4
   });
   const yScale = scaleLinear({
     rangeRound: [yMax, 0],
-    domain: [0, max(data, y)],
+    domain: [0, max(data, y)]
   });
 
   return (
     <svg width={width} height={height}>
       <GradientTealBlue id="teal" />
-      <rect
-        x={0}
-        y={0}
-        width={width}
-        height={height}
-        fill={`url(#teal)`}
-        rx={14}
-      />
+      <rect x={0} y={0} width={width} height={height} fill={`url(#teal)`} rx={14} />
       <Group top={40}>
         {data.map((d, i) => {
           const barHeight = yMax - yScale(y(d));

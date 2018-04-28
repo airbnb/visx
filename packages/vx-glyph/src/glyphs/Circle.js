@@ -4,14 +4,7 @@ import { symbol, symbolCircle } from 'd3-shape';
 import Glyph from './Glyph';
 import additionalProps from '../util/additionalProps';
 
-export default function GlyphCircle({
-  children,
-  className,
-  top,
-  left,
-  size,
-  ...restProps
-}) {
+export default function GlyphCircle({ children, className, top, left, size, ...restProps }) {
   const path = symbol();
   path.type(symbolCircle);
   if (size) path.size(size);

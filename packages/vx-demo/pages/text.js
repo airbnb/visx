@@ -19,24 +19,24 @@ class TextDemo extends Component {
     fontWeight: 400,
     lineHeight: '1em',
     showAnchor: true,
-    resizeSvg: true,
+    resizeSvg: true
   };
 
   render() {
     const styles = {
       exampleText: {
-        width: 200,
+        width: 200
       },
       range: {
         marginLeft: 20,
-        width: 225,
+        width: 225
       },
       svg: {
         height: 200,
         display: 'block',
         border: '1px solid #aaa',
-        marginBottom: 10,
-      },
+        marginBottom: 10
+      }
     };
 
     return (
@@ -44,10 +44,7 @@ class TextDemo extends Component {
         <div className="text-demo">
           <div className="text-demo--left">
             <h6>Demo</h6>
-            <svg
-              width={this.state.resizeSvg ? this.state.width : 225}
-              style={styles.svg}
-            >
+            <svg width={this.state.resizeSvg ? this.state.width : 225} style={styles.svg}>
               <Text
                 x={this.state.x}
                 y={this.state.y}
@@ -60,18 +57,13 @@ class TextDemo extends Component {
                 style={{
                   fontSize: this.state.fontSize,
                   fontFamily: this.state.fontFamily,
-                  fontWeight: this.state.fontWeight,
+                  fontWeight: this.state.fontWeight
                 }}
               >
                 {this.state.exampleText}
               </Text>
               {this.state.showAnchor && (
-                <circle
-                  cx={this.state.x}
-                  cy={this.state.y}
-                  r="2"
-                  fill="red"
-                />
+                <circle cx={this.state.x} cy={this.state.y} r="2" fill="red" />
               )}
             </svg>
           </div>
@@ -82,9 +74,7 @@ class TextDemo extends Component {
                 type="text"
                 style={styles.exampleText}
                 value={this.state.exampleText}
-                onChange={e =>
-                  this.setState({ exampleText: e.target.value })
-                }
+                onChange={e => this.setState({ exampleText: e.target.value })}
               />
             </div>
 
@@ -96,16 +86,12 @@ class TextDemo extends Component {
                 min="0"
                 max="225"
                 value={this.state.x}
-                onChange={e =>
-                  this.setState({ x: Number(e.target.value) })
-                }
+                onChange={e => this.setState({ x: Number(e.target.value) })}
               />
               <input
                 type="text"
                 value={this.state.x}
-                onChange={e =>
-                  this.setState({ x: Number(e.target.value) })
-                }
+                onChange={e => this.setState({ x: Number(e.target.value) })}
               />
             </div>
 
@@ -117,16 +103,12 @@ class TextDemo extends Component {
                 min="0"
                 max="200"
                 value={this.state.y}
-                onChange={e =>
-                  this.setState({ y: Number(e.target.value) })
-                }
+                onChange={e => this.setState({ y: Number(e.target.value) })}
               />
               <input
                 type="text"
                 value={this.state.y}
-                onChange={e =>
-                  this.setState({ y: Number(e.target.value) })
-                }
+                onChange={e => this.setState({ y: Number(e.target.value) })}
               />
             </div>
 
@@ -138,9 +120,7 @@ class TextDemo extends Component {
                 min="25"
                 max="225"
                 value={this.state.width}
-                onChange={e =>
-                  this.setState({ width: Number(e.target.value) })
-                }
+                onChange={e => this.setState({ width: Number(e.target.value) })}
               />{' '}
               {this.state.width}
             </div>
@@ -151,9 +131,7 @@ class TextDemo extends Component {
                 <input
                   type="radio"
                   value="start"
-                  onChange={e =>
-                    this.setState({ textAnchor: e.target.value })
-                  }
+                  onChange={e => this.setState({ textAnchor: e.target.value })}
                   checked={this.state.textAnchor === 'start'}
                 />{' '}
                 start
@@ -162,9 +140,7 @@ class TextDemo extends Component {
                 <input
                   type="radio"
                   value="middle"
-                  onChange={e =>
-                    this.setState({ textAnchor: e.target.value })
-                  }
+                  onChange={e => this.setState({ textAnchor: e.target.value })}
                   checked={this.state.textAnchor === 'middle'}
                 />{' '}
                 middle
@@ -173,9 +149,7 @@ class TextDemo extends Component {
                 <input
                   type="radio"
                   value="end"
-                  onChange={e =>
-                    this.setState({ textAnchor: e.target.value })
-                  }
+                  onChange={e => this.setState({ textAnchor: e.target.value })}
                   checked={this.state.textAnchor === 'end'}
                 />{' '}
                 end
@@ -188,9 +162,7 @@ class TextDemo extends Component {
                 <input
                   type="radio"
                   value="start"
-                  onChange={e =>
-                    this.setState({ verticalAnchor: e.target.value })
-                  }
+                  onChange={e => this.setState({ verticalAnchor: e.target.value })}
                   checked={this.state.verticalAnchor === 'start'}
                 />{' '}
                 start
@@ -199,9 +171,7 @@ class TextDemo extends Component {
                 <input
                   type="radio"
                   value="middle"
-                  onChange={e =>
-                    this.setState({ verticalAnchor: e.target.value })
-                  }
+                  onChange={e => this.setState({ verticalAnchor: e.target.value })}
                   checked={this.state.verticalAnchor === 'middle'}
                 />{' '}
                 middle
@@ -210,9 +180,7 @@ class TextDemo extends Component {
                 <input
                   type="radio"
                   value="end"
-                  onChange={e =>
-                    this.setState({ verticalAnchor: e.target.value })
-                  }
+                  onChange={e => this.setState({ verticalAnchor: e.target.value })}
                   checked={this.state.verticalAnchor === 'end'}
                 />{' '}
                 end
@@ -224,9 +192,7 @@ class TextDemo extends Component {
               <input
                 type="text"
                 value={this.state.fontSize}
-                onChange={e =>
-                  this.setState({ fontSize: e.target.value })
-                }
+                onChange={e => this.setState({ fontSize: e.target.value })}
               />
             </div>
 
@@ -235,20 +201,16 @@ class TextDemo extends Component {
               <input
                 type="text"
                 value={this.state.fontFamily}
-                onChange={e =>
-                  this.setState({ fontFamily: e.target.value })
-                }
+                onChange={e => this.setState({ fontFamily: e.target.value })}
               />
             </div>
-            
+
             <div>
               fontWeight:
               <input
                 type="text"
                 value={this.state.fontWeight}
-                onChange={e =>
-                  this.setState({ fontWeight: e.target.value })
-                }
+                onChange={e => this.setState({ fontWeight: e.target.value })}
               />
             </div>
 
@@ -257,9 +219,7 @@ class TextDemo extends Component {
               <input
                 type="text"
                 value={this.state.lineHeight}
-                onChange={e =>
-                  this.setState({ lineHeight: e.target.value })
-                }
+                onChange={e => this.setState({ lineHeight: e.target.value })}
               />
             </div>
 
@@ -270,9 +230,7 @@ class TextDemo extends Component {
                 min="0"
                 max="360"
                 value={this.state.angle}
-                onChange={e =>
-                  this.setState({ angle: Number(e.target.value) })
-                }
+                onChange={e => this.setState({ angle: Number(e.target.value) })}
               />
             </div>
 
@@ -283,7 +241,7 @@ class TextDemo extends Component {
                   type="checkbox"
                   onChange={e =>
                     this.setState({
-                      scaleToFit: !this.state.scaleToFit,
+                      scaleToFit: !this.state.scaleToFit
                     })
                   }
                   checked={this.state.scaleToFit}
@@ -298,7 +256,7 @@ class TextDemo extends Component {
                   type="checkbox"
                   onChange={e =>
                     this.setState({
-                      showAnchor: !this.state.showAnchor,
+                      showAnchor: !this.state.showAnchor
                     })
                   }
                   checked={this.state.showAnchor}
@@ -313,7 +271,7 @@ class TextDemo extends Component {
                   type="checkbox"
                   onChange={e =>
                     this.setState({
-                      resizeSvg: !this.state.resizeSvg,
+                      resizeSvg: !this.state.resizeSvg
                     })
                   }
                   checked={this.state.resizeSvg}
@@ -325,15 +283,8 @@ class TextDemo extends Component {
         <div className="text-demos">
           <div>
             <h6>Simple</h6>
-            <svg
-              width={this.state.resizeSvg ? this.state.width : 225}
-              style={styles.svg}
-            >
-              <Text
-                x={0}
-                width={this.state.width}
-                verticalAnchor="start"
-              >
+            <svg width={this.state.resizeSvg ? this.state.width : 225} style={styles.svg}>
+              <Text x={0} width={this.state.width} verticalAnchor="start">
                 {this.state.exampleText}
               </Text>
             </svg>
@@ -360,10 +311,7 @@ class TextDemo extends Component {
 
           <div>
             <h6>Centered</h6>
-            <svg
-              width={this.state.resizeSvg ? this.state.width : 225}
-              style={styles.svg}
-            >
+            <svg width={this.state.resizeSvg ? this.state.width : 225} style={styles.svg}>
               <Text
                 x={this.state.width / 2}
                 width={this.state.width}
@@ -397,10 +345,7 @@ class TextDemo extends Component {
 
           <div>
             <h6>Right-aligned</h6>
-            <svg
-              width={this.state.resizeSvg ? this.state.width : 225}
-              style={styles.svg}
-            >
+            <svg width={this.state.resizeSvg ? this.state.width : 225} style={styles.svg}>
               <Text
                 x={this.state.width}
                 width={this.state.width}
@@ -434,16 +379,8 @@ class TextDemo extends Component {
 
           <div>
             <h6>Line height</h6>
-            <svg
-              width={this.state.resizeSvg ? this.state.width : 225}
-              style={styles.svg}
-            >
-              <Text
-                x={0}
-                width={this.state.width}
-                verticalAnchor="start"
-                lineHeight="2em"
-              >
+            <svg width={this.state.resizeSvg ? this.state.width : 225} style={styles.svg}>
+              <Text x={0} width={this.state.width} verticalAnchor="start" lineHeight="2em">
                 {this.state.exampleText}
               </Text>
             </svg>
@@ -471,10 +408,7 @@ class TextDemo extends Component {
 
           <div>
             <h6>Styled text (fontWeight)</h6>
-            <svg
-              width={this.state.resizeSvg ? this.state.width : 225}
-              style={styles.svg}
-            >
+            <svg width={this.state.resizeSvg ? this.state.width : 225} style={styles.svg}>
               <Text
                 x={0}
                 width={this.state.width}
@@ -508,10 +442,7 @@ class TextDemo extends Component {
 
           <div>
             <h6>Styled (fontSize px)</h6>
-            <svg
-              width={this.state.resizeSvg ? this.state.width : 225}
-              style={styles.svg}
-            >
+            <svg width={this.state.resizeSvg ? this.state.width : 225} style={styles.svg}>
               <Text
                 x={0}
                 width={this.state.width}
@@ -545,10 +476,7 @@ class TextDemo extends Component {
 
           <div>
             <h6>Styled (fontSize em)</h6>
-            <svg
-              width={this.state.resizeSvg ? this.state.width : 225}
-              style={styles.svg}
-            >
+            <svg width={this.state.resizeSvg ? this.state.width : 225} style={styles.svg}>
               <Text
                 x={0}
                 width={this.state.width}
@@ -582,10 +510,7 @@ class TextDemo extends Component {
 
           <div>
             <h6>Styled (fontSize rem)</h6>
-            <svg
-              width={this.state.resizeSvg ? this.state.width : 225}
-              style={styles.svg}
-            >
+            <svg width={this.state.resizeSvg ? this.state.width : 225} style={styles.svg}>
               <Text
                 x={0}
                 width={this.state.width}
@@ -619,10 +544,7 @@ class TextDemo extends Component {
 
           <div>
             <h6>Styled (fontSize %)</h6>
-            <svg
-              width={this.state.resizeSvg ? this.state.width : 225}
-              style={styles.svg}
-            >
+            <svg width={this.state.resizeSvg ? this.state.width : 225} style={styles.svg}>
               <Text
                 x={0}
                 width={this.state.width}
@@ -656,15 +578,8 @@ class TextDemo extends Component {
 
           <div>
             <h6>Fit</h6>
-            <svg
-              width={this.state.resizeSvg ? this.state.width : 225}
-              style={styles.svg}
-            >
-              <Text
-                width={this.state.width}
-                verticalAnchor="start"
-                scaleToFit
-              >
+            <svg width={this.state.resizeSvg ? this.state.width : 225} style={styles.svg}>
+              <Text width={this.state.width} verticalAnchor="start" scaleToFit>
                 {this.state.exampleText}
               </Text>
             </svg>
@@ -691,18 +606,8 @@ class TextDemo extends Component {
 
           <div>
             <h6>dx & dy</h6>
-            <svg
-              width={this.state.resizeSvg ? this.state.width : 225}
-              style={styles.svg}
-            >
-              <Text
-                x={50}
-                y={50}
-                dx={10}
-                dy={-10}
-                width={this.state.width}
-                verticalAnchor="start"
-              >
+            <svg width={this.state.resizeSvg ? this.state.width : 225} style={styles.svg}>
+              <Text x={50} y={50} dx={10} dy={-10} width={this.state.width} verticalAnchor="start">
                 {this.state.exampleText}
               </Text>
             </svg>
@@ -781,7 +686,7 @@ export default () => {
         top: 0,
         left: 0,
         right: 0,
-        bottom: 10,
+        bottom: 10
       }}
     />
   );

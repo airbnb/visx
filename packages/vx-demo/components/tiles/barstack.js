@@ -35,14 +35,14 @@ export default withTooltip(
     height,
     events = false,
     margin = {
-      top: 40,
+      top: 40
     },
     tooltipOpen,
     tooltipLeft,
     tooltipTop,
     tooltipData,
     hideTooltip,
-    showTooltip,
+    showTooltip
   }) => {
     if (width < 10) return null;
 
@@ -55,16 +55,16 @@ export default withTooltip(
       rangeRound: [0, xMax],
       domain: data.map(x),
       padding: 0.2,
-      tickFormat: () => val => formatDate(val),
+      tickFormat: () => val => formatDate(val)
     });
     const yScale = scaleLinear({
       rangeRound: [yMax, 0],
       nice: true,
-      domain: [0, max(totals)],
+      domain: [0, max(totals)]
     });
     const zScale = scaleOrdinal({
       domain: keys,
-      range: ['#6c5efb', '#c998ff', '#a44afe'],
+      range: ['#6c5efb', '#c998ff', '#a44afe']
     });
 
     let tooltipTimeout;
@@ -72,14 +72,7 @@ export default withTooltip(
     return (
       <div style={{ position: 'relative' }}>
         <svg width={width} height={height}>
-          <rect
-            x={0}
-            y={0}
-            width={width}
-            height={height}
-            fill={`#eaedff`}
-            rx={14}
-          />
+          <rect x={0} y={0} width={width} height={height} fill={`#eaedff`} rx={14} />
           <BarStack
             top={margin.top}
             data={data}
@@ -101,12 +94,11 @@ export default withTooltip(
             onMouseMove={data => event => {
               if (tooltipTimeout) clearTimeout(tooltipTimeout);
               const top = event.clientY - margin.top - data.height;
-              const left =
-                xScale(data.x) + data.width + data.paddingInner * data.step / 2;
+              const left = xScale(data.x) + data.width + data.paddingInner * data.step / 2;
               showTooltip({
                 tooltipData: data,
                 tooltipTop: top,
-                tooltipLeft: left,
+                tooltipLeft: left
               });
             }}
           />
@@ -118,7 +110,7 @@ export default withTooltip(
             tickLabelProps={(value, index) => ({
               fill: '#a44afe',
               fontSize: 11,
-              textAnchor: 'middle',
+              textAnchor: 'middle'
             })}
           />
         </svg>
@@ -129,40 +121,31 @@ export default withTooltip(
             width: '100%',
             display: 'flex',
             justifyContent: 'center',
-            fontSize: '14px',
+            fontSize: '14px'
           }}
         >
-          <LegendOrdinal
-            scale={zScale}
-            direction="row"
-            labelMargin="0 15px 0 0"
-          />
+          <LegendOrdinal scale={zScale} direction="row" labelMargin="0 15px 0 0" />
         </div>
-        {tooltipOpen &&
+        {tooltipOpen && (
           <Tooltip
             top={tooltipTop}
             left={tooltipLeft}
             style={{
               minWidth: 60,
               backgroundColor: 'rgba(0,0,0,0.9)',
-              color: 'white',
+              color: 'white'
             }}
           >
             <div style={{ color: zScale(tooltipData.key) }}>
-              <strong>
-                {tooltipData.key}
-              </strong>
+              <strong>{tooltipData.key}</strong>
             </div>
+            <div>{tooltipData.data[tooltipData.key]}℉</div>
             <div>
-              {tooltipData.data[tooltipData.key]}℉
+              <small>{tooltipData.xFormatted}</small>
             </div>
-            <div>
-              <small>
-                {tooltipData.xFormatted}
-              </small>
-            </div>
-          </Tooltip>}
+          </Tooltip>
+        )}
       </div>
     );
-  },
+  }
 );

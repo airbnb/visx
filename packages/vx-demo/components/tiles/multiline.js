@@ -13,11 +13,7 @@ const data = genDateValue(15);
 const x = d => d.date;
 const y = d => d.value;
 
-export default ({
-  width,
-  height,
-  margin,
-}) => {
+export default ({ width, height, margin }) => {
   if (width < 10) return null;
 
   // bounds
@@ -27,23 +23,16 @@ export default ({
   // scales
   const xScale = scaleTime({
     range: [0, xMax],
-    domain: extent(data, x),
+    domain: extent(data, x)
   });
   const yScale = scaleLinear({
     range: [yMax, 0],
-    domain: [0, max(data, y)],
+    domain: [0, max(data, y)]
   });
 
   return (
     <svg width={width} height={height}>
-      <rect
-        x={0}
-        y={0}
-        width={width}
-        height={height}
-        fill="#00f2ff"
-        rx={14}
-      />
+      <rect x={0} y={0} width={width} height={height} fill="#00f2ff" rx={14} />
       <Group top={margin.top}>
         <LinePath
           data={data}
@@ -53,7 +42,7 @@ export default ({
           y={y}
           stroke={'rgba(126, 31, 220, 1.000)'}
           strokeWidth={2}
-          strokeDasharray='2,2'
+          strokeDasharray="2,2"
           curve={curveBasis}
         />
         <LinePath
@@ -65,31 +54,26 @@ export default ({
           stroke={'rgba(126, 31, 220, 1.000)'}
           strokeWidth={3}
           curve={curveMonotoneX}
-          glyph={(d,i) => {
+          glyph={(d, i) => {
             return (
               <g key={`line-point-${i}`}>
                 <GlyphDot
                   cx={xScale(x(d))}
                   cy={yScale(y(d))}
                   r={6}
-                  fill='#fff'
-                  stroke='rgba(0, 242, 255, 1.000)'
+                  fill="#fff"
+                  stroke="rgba(0, 242, 255, 1.000)"
                   strokeWidth={10}
                 />
                 <GlyphDot
                   cx={xScale(x(d))}
                   cy={yScale(y(d))}
                   r={6}
-                  fill='rgba(0, 242, 255, 1.000)'
+                  fill="rgba(0, 242, 255, 1.000)"
                   stroke={'rgba(126, 31, 220, 1.000)'}
                   strokeWidth={3}
                 />
-                <GlyphDot
-                  cx={xScale(x(d))}
-                  cy={yScale(y(d))}
-                  r={4}
-                  fill='#ffffff'
-                />
+                <GlyphDot cx={xScale(x(d))} cy={yScale(y(d))} r={4} fill="#ffffff" />
               </g>
             );
           }}
@@ -97,4 +81,4 @@ export default ({
       </Group>
     </svg>
   );
-}
+};

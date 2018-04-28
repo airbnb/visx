@@ -1,13 +1,13 @@
 import React from 'react';
 import { shallow, render } from 'enzyme';
-import { Text } from  '../src';
+import { Text } from '../src';
 
 // TODO: Fix tests (jsdom does not support getComputedTextLength() or getBoundingClientRect()).  Maybe use puppeteer
 
 describe('<Text />', () => {
   it('should be defined', () => {
-    expect(Text).toBeDefined()
-  })
+    expect(Text).toBeDefined();
+  });
 
   // it('Does not wrap long text if enough width', () => {
   //   const wrapper = shallow(

@@ -9,7 +9,7 @@ export default () => {
       title="Gradients"
       shadow
       margin={{
-        bottom: 0,
+        bottom: 0
       }}
     >
       {`import React from 'react';

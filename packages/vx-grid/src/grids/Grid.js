@@ -18,7 +18,7 @@ export default function Grid({
   numTicksRows,
   numTicksColumns,
   rowLineStyle,
-  columnLineStyle,
+  columnLineStyle
 }) {
   return (
     <Group className={cx('vx-grid', className)} top={top} left={left}>

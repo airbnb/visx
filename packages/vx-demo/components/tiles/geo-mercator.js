@@ -12,41 +12,16 @@ export default ({ width, height, events = false }) => {
 
   const color = scaleQuantize({
     domain: [
-      Math.min(
-        ...world.features.map(f => f.geometry.coordinates.length),
-      ),
-      Math.max(
-        ...world.features.map(f => f.geometry.coordinates.length),
-      ),
+      Math.min(...world.features.map(f => f.geometry.coordinates.length)),
+      Math.max(...world.features.map(f => f.geometry.coordinates.length))
     ],
-    range: [
-      '#ffb01d',
-      '#ffa020',
-      '#ff9221',
-      '#ff8424',
-      '#ff7425',
-      '#fc5e2f',
-      '#f94b3a',
-      '#f63a48',
-    ],
+    range: ['#ffb01d', '#ffa020', '#ff9221', '#ff8424', '#ff7425', '#fc5e2f', '#f94b3a', '#f63a48']
   });
 
   return (
     <svg width={width} height={height}>
-      <LinearGradient
-        id="geo_mercator_radial"
-        from="#dc22af"
-        to="#fd7e0f"
-        r={'80%'}
-      />
-      <rect
-        x={0}
-        y={0}
-        width={width}
-        height={height}
-        fill={`#f9f7e8`}
-        rx={14}
-      />
+      <LinearGradient id="geo_mercator_radial" from="#dc22af" to="#fd7e0f" r={'80%'} />
+      <rect x={0} y={0} width={width} height={height} fill={`#f9f7e8`} rx={14} />
       <Mercator
         data={world.features}
         scale={width / 630 * 100}
@@ -59,7 +34,7 @@ export default ({ width, height, events = false }) => {
           alert(`Clicked: ${data.properties.name} (${data.id})`);
         }}
         graticule={{
-          stroke: 'rgba(33,33,33,0.05)',
+          stroke: 'rgba(33,33,33,0.05)'
         }}
       />
     </svg>

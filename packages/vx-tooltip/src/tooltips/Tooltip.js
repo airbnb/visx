@@ -32,5 +32,5 @@ Tooltip.propTypes = {
   top: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   className: PropTypes.string,
   style: PropTypes.object,
-  children: PropTypes.any,
+  children: PropTypes.any
 };

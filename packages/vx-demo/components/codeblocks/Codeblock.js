@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOMServer from 'react-dom/server'
+import ReactDOMServer from 'react-dom/server';
 import Prism from 'prismjs';
 import 'prismjs/components/prism-jsx.min';
 
@@ -7,12 +7,12 @@ const Lines = ({ lines }) => {
   const size = lines.length;
   return (
     <span aria-hidden="true" className="line-numbers-rows">
-      {lines.map((l,i) => {
-        return <span key={`line-number-${size}-${i}`} />
+      {lines.map((l, i) => {
+        return <span key={`line-number-${size}-${i}`} />;
       })}
     </span>
   );
-}
+};
 
 export default ({ children }) => {
   const match = children.match(/\n(?!$)/g);
@@ -25,7 +25,7 @@ export default ({ children }) => {
 
   return (
     <pre className="codeblock line-numbers">
-      <code dangerouslySetInnerHTML={{__html: html}} />
+      <code dangerouslySetInnerHTML={{ __html: html }} />
       <style jsx>{`
         .codeblock code {
           display: block;
@@ -52,4 +52,4 @@ export default ({ children }) => {
       `}</style>
     </pre>
   );
-}
+};

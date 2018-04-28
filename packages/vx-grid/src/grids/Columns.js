@@ -18,21 +18,17 @@ export default function Columns({
   ...restProps
 }) {
   return (
-    <Group
-      className={cx('vx-columns', className)}
-      top={top}
-      left={left}
-    >
+    <Group className={cx('vx-columns', className)} top={top} left={left}>
       {scale.ticks &&
         scale.ticks(numTicks).map((d, i) => {
           const x = scale(d);
           const fromPoint = new Point({
             x,
-            y: 0,
+            y: 0
           });
           const toPoint = new Point({
             x,
-            y: height,
+            y: height
           });
           return (
             <Line

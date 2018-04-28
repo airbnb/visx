@@ -12,15 +12,8 @@ const planets = data.filter(d => d.distance !== 0);
 const raw = { children: [{ children: planets }].concat(exoplanets) };
 
 const color = scaleQuantize({
-  range: [
-    '#49f4e7',
-    '#11d2f9',
-    '#855af2',
-    '#fd6d6f',
-    '#ffc10e',
-    '#ffe108',
-  ].reverse(),
-  domain: extent(data, d => +d.radius),
+  range: ['#49f4e7', '#11d2f9', '#855af2', '#fd6d6f', '#ffc10e', '#ffe108'].reverse(),
+  domain: extent(data, d => +d.radius)
 });
 
 export default ({
@@ -31,8 +24,8 @@ export default ({
     top: 10,
     left: 30,
     right: 40,
-    bottom: 80,
-  },
+    bottom: 80
+  }
 }) => {
   if (width < 10) return null;
   const data = hierarchy(raw)
@@ -57,13 +50,7 @@ export default ({
           const desc = data.descendants().slice(2);
           return desc.map((d, i) => {
             return (
-              <circle
-                key={`cir-${i}`}
-                r={d.r}
-                cx={d.x}
-                cy={d.y}
-                fill={color(+d.data.radius)}
-              />
+              <circle key={`cir-${i}`} r={d.r} cx={d.x} cy={d.y} fill={color(+d.data.radius)} />
             );
           });
         }}
