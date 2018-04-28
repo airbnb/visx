@@ -4,7 +4,7 @@ import { Group } from '@vx/group';
 import { curveBasis } from '@vx/curve';
 import { GradientOrangeRed } from '@vx/gradient';
 import { genDateValue } from '@vx/mock-data';
-import { AxisLeft, AxisBottom } from '@vx/axis';
+import { AxisLeft, AxisRight, AxisBottom } from '@vx/axis';
 import { AreaClosed, LinePath, Line } from '@vx/shape';
 import { scaleTime, scaleLinear } from '@vx/scale';
 import { extent, max } from 'd3-array';
@@ -94,7 +94,7 @@ export default ({ width, height, margin }) => {
         scale={yScale}
         hideZero
         numTicks={numTicksForHeight(height)}
-        label="value"
+        label="Axis Left Label"
         labelProps={{
           fill: '#8e205f',
           textAnchor: 'middle',
@@ -115,12 +115,36 @@ export default ({ width, height, margin }) => {
           <text {...tickProps}>{formattedValue}</text>
         )}
       />
+      <AxisRight
+        top={margin.top}
+        left={xMax + margin.left}
+        scale={yScale}
+        hideZero
+        numTicks={numTicksForHeight(height)}
+        label="Axis Right Label"
+        labelProps={{
+          fill: '#8e205f',
+          textAnchor: 'middle',
+          fontSize: 12,
+          fontFamily: 'Arial'
+        }}
+        stroke="#1b1a1e"
+        tickStroke="#8e205f"
+        tickLabelProps={(value, index) => ({
+          fill: '#8e205f',
+          textAnchor: 'start',
+          fontSize: 10,
+          fontFamily: 'Arial',
+          dx: '0.25em',
+          dy: '0.25em'
+        })}
+      />
       <AxisBottom
         top={height - margin.bottom}
         left={margin.left}
         scale={xScale}
         numTicks={numTicksForWidth(width)}
-        label="time"
+        label="Time"
       >
         {props => {
           const tickLabelSize = 10;
