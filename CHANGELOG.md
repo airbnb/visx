@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.161](#v00161)
 - [v0.0.160](#v00160)
 - [v0.0.159](#v00159)
 - [v0.0.158](#v00158)
@@ -46,6 +47,74 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.161
+
+#### :boom: Breaking Changes
+
+- [scale] Removed color scales, recommend users to use [`d3-scale-chromatic`](https://github.com/d3/d3-scale-chromatic), following d3's lead in release [5.0.0](https://github.com/d3/d3/releases/tag/v5.0.0). [#270](https://github.com/hshoff/vx/pull/270)
+- [scale] The following files/tests/documentation are no longer part of `@vx/scale`: `schemeCategory10`, `schemeCategory20`, `schemeCategory20b`, `schemeCategory20c`. [#270](https://github.com/hshoff/vx/pull/270)
+
+#### :rocket: Enhancements
+
+- [tooltip] adds an optional `containerProps` as a second HOC "config" argument of `withTooltip(BaseComponent [, containerProps])`. This exposes a hook to enable users to customize any props on the container element. [#272](https://github.com/hshoff/vx/pull/272)
+- [tooltip] sets `width` and `height` to `inherit` by default on the container. I'm kind of on the edge with this and am open to removing it because it may be an edge case, but my reasoning is as follows: if a user is combining `withTooltip` and a responsive component like `ParentSize` like this example, they'll have to update the `withTooltip` container `div` to also have full width/height so this would be a "smart default". [#272](https://github.com/hshoff/vx/pull/272)
+  
+#### :memo: Documentation
+
+- [scale] Added a section on color scales, which goes over how one would use `d3-scale-chromatic` with `vx/scale`. [#270](https://github.com/hshoff/vx/pull/270)
+- [tooltip] Adds a readme for `@vx/tooltip` components + enhancer. [#272](https://github.com/hshoff/vx/pull/272)
+- [demo] add `<AxisRight />` to /axis demo tile. [#280](https://github.com/hshoff/vx/pull/280)
+- [demo] update vx-demo.now.sh doc pages. [#281](https://github.com/hshoff/vx/pull/281)
+
+#### :house: Internal
+
+- Add configuration for [Prettier](https://prettier.io) and format the existing codebase. [#275](https://github.com/hshoff/vx/pull/275)
+- Add pre-commit hook to format changed files before commits. [#275](https://github.com/hshoff/vx/pull/275)
+- [docs] fix `npm run docs` script. [#281](https://github.com/hshoff/vx/pull/281)
+
+#### :trophy: Contributors
+
+- [sto3psl](https://github.com/sto3psl)
+- [williaster](https://github.com/williaster)
+- [trainorpj](https://github.com/trainorpj)
+- [hshoff](https://github.com/hshoff)
+
+```bash
+Changes:
+ - @vx/annotation: 0.0.160 => 0.0.161
+ - @vx/axis: 0.0.160 => 0.0.161
+ - @vx/bounds: 0.0.153 => 0.0.161
+ - @vx/boxplot: 0.0.153 => 0.0.161
+ - @vx/brush: 0.0.153 => 0.0.161
+ - @vx/clip-path: 0.0.153 => 0.0.161
+ - @vx/curve: 0.0.153 => 0.0.161
+ - @vx/demo: 0.0.160 => 0.0.161
+ - @vx/drag: 0.0.157 => 0.0.161
+ - @vx/event: 0.0.153 => 0.0.161
+ - @vx/geo: 0.0.153 => 0.0.161
+ - @vx/glyph: 0.0.153 => 0.0.161
+ - @vx/gradient: 0.0.153 => 0.0.161
+ - @vx/grid: 0.0.160 => 0.0.161
+ - @vx/group: 0.0.153 => 0.0.161
+ - @vx/heatmap: 0.0.153 => 0.0.161
+ - @vx/hierarchy: 0.0.153 => 0.0.161
+ - @vx/legend: 0.0.154 => 0.0.161
+ - @vx/marker: 0.0.160 => 0.0.161
+ - @vx/mock-data: 0.0.153 => 0.0.161
+ - @vx/network: 0.0.153 => 0.0.161
+ - @vx/pattern: 0.0.153 => 0.0.161
+ - @vx/point: 0.0.153 => 0.0.161
+ - @vx/responsive: 0.0.158 => 0.0.161
+ - @vx/scale: 0.0.153 => 0.0.161
+ - @vx/shape: 0.0.160 => 0.0.161
+ - @vx/stats: 0.0.153 => 0.0.161
+ - @vx/text: 0.0.159 => 0.0.161
+ - @vx/tooltip: 0.0.160 => 0.0.161
+ - @vx/voronoi: 0.0.153 => 0.0.161
+ - @vx/vx: 0.0.160 => 0.0.161
+ - @vx/zoom: 0.0.153 => 0.0.161
+```
 
 # v0.0.160
 
