@@ -8,6 +8,7 @@ export default () => {
       {`import React from 'react';
 import { BarStack } from '@vx/shape';
 import { Group } from '@vx/group';
+import { Grid } from '@vx/grid';
 import { AxisBottom } from '@vx/axis';
 import { cityTemperature } from '@vx/mock-data';
 import { scaleBand, scaleLinear, scaleOrdinal } from '@vx/scale';
@@ -79,13 +80,17 @@ export default withTooltip(
     return (
       <div style={{ position: 'relative' }}>
         <svg width={width} height={height}>
-          <rect
-            x={0}
-            y={0}
-            width={width}
-            height={height}
-            fill='#eaedff'
-            rx={14}
+          <rect x={0} y={0} width={width} height={height} fill={\`#eaedff\`} rx={14} />
+          <Grid
+            top={margin.top}
+            left={margin.left}
+            xScale={xScale}
+            yScale={yScale}
+            width={xMax}
+            height={yMax}
+            stroke={'black'}
+            strokeOpacity={0.1}
+            xOffset={xScale.bandwidth() / 2}
           />
           <BarStack
             top={margin.top}
@@ -108,8 +113,7 @@ export default withTooltip(
             onMouseMove={data => event => {
               if (tooltipTimeout) clearTimeout(tooltipTimeout);
               const top = event.clientY - margin.top - data.height;
-              const left =
-                xScale(data.x) + data.width + data.paddingInner * data.step / 2;
+              const left = xScale(data.x) + data.width + data.paddingInner * data.step / 2;
               showTooltip({
                 tooltipData: data,
                 tooltipTop: top,
@@ -125,7 +129,7 @@ export default withTooltip(
             tickLabelProps={(value, index) => ({
               fill: '#a44afe',
               fontSize: 11,
-              textAnchor: 'middle',
+              textAnchor: 'middle'
             })}
           />
         </svg>
@@ -139,13 +143,9 @@ export default withTooltip(
             fontSize: '14px'
           }}
         >
-          <LegendOrdinal
-            scale={zScale}
-            direction="row"
-            labelMargin="0 15px 0 0"
-          />
+          <LegendOrdinal scale={zScale} direction="row" labelMargin="0 15px 0 0" />
         </div>
-        {tooltipOpen &&
+        {tooltipOpen && (
           <Tooltip
             top={tooltipTop}
             left={tooltipLeft}
@@ -156,24 +156,18 @@ export default withTooltip(
             }}
           >
             <div style={{ color: zScale(tooltipData.key) }}>
-              <strong>
-                {tooltipData.key}
-              </strong>
+              <strong>{tooltipData.key}</strong>
             </div>
+            <div>{tooltipData.data[tooltipData.key]}℉</div>
             <div>
-              {tooltipData.data[tooltipData.key]}℉
+              <small>{tooltipData.xFormatted}</small>
             </div>
-            <div>
-              <small>
-                {tooltipData.xFormatted}
-              </small>
-            </div>
-          </Tooltip>}
+          </Tooltip>
+        )}
       </div>
     );
   }
-);
-`}
+);`}
     </Show>
   );
 };
