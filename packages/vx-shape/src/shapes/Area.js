@@ -30,6 +30,7 @@ Area.propTypes = {
 };
 
 export default function Area({
+  children,
   x,
   x0,
   x1,
@@ -58,6 +59,7 @@ export default function Area({
   if (y1) path.y1(d => yScale(y1(d)));
   if (defined) path.defined(defined);
   if (curve) path.curve(curve);
+  if (children) return children({ path });
   return (
     <g>
       <path

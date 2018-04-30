@@ -9,11 +9,7 @@
     "start": "next start",
     "test": "jest"
   },
-  "keywords": [
-    "vx",
-    "demo",
-    "examples"
-  ],
+  "keywords": ["vx", "demo", "examples"],
   "author": "@hshoff",
   "license": "MIT",
   "dependencies": {
@@ -43,6 +39,7 @@
     "@vx/shape": "0.0.161",
     "@vx/stats": "0.0.161",
     "@vx/text": "0.0.161",
+    "@vx/threshold": "0.0.1",
     "@vx/tooltip": "0.0.161",
     "@vx/voronoi": "0.0.161",
     "classnames": "^2.2.5",
@@ -67,9 +64,7 @@
     "topojson-client": "^3.0.0"
   },
   "browserify": {
-    "transform": [
-      "babelify"
-    ]
+    "transform": ["babelify"]
   },
   "publishConfig": {
     "access": "public"
