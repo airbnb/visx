@@ -2,11 +2,23 @@ import React from 'react';
 import Show from '../components/show';
 import Threshold from '../components/tiles/threshold';
 
+function Description({ width }) {
+  return (
+    <div style={{ width, fontSize: 14 }}>
+      Based on Mike Bostock's{' '}
+      <a href="https://bl.ocks.org/mbostock/3894205" target="_blank">
+        Difference Chart
+      </a>
+    </div>
+  );
+}
+
 export default () => {
   return (
     <Show
       component={Threshold}
       title="Threshold"
+      description={Description}
       margin={{
         top: 40,
         left: 40,

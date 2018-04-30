@@ -16,7 +16,8 @@ export default withScreenSize(
     component,
     shadow = false,
     events = false,
-    margin = { top: 0, left: 0, right: 0, bottom: 80 }
+    margin = { top: 0, left: 0, right: 0, bottom: 80 },
+    description
   }) => {
     const padding = 40;
     let width = screenWidth - padding;
@@ -45,6 +46,7 @@ export default withScreenSize(
               events
             })}
           </div>
+          {description && React.createElement(description, { width, height })}
           {children && (
             <div style={{ width: width }}>
               <h2>Code</h2>
