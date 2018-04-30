@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.162](#v00162)
 - [v0.0.161](#v00161)
 - [v0.0.160](#v00160)
 - [v0.0.159](#v00159)
@@ -47,6 +48,35 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.162
+
+#### :rocket: Enhancements
+
+- [threshold] add `<Threshold />` [#285](https://github.com/hshoff/vx/pull/285)
+- [grid] add support for band scales [#282](https://github.com/hshoff/vx/pull/282)
+- [shape] <Area /> now supports function as children [#285](https://github.com/hshoff/vx/pull/285)
+
+#### :memo: Documentation
+
+- [demo] add /threshold demo [#285](https://github.com/hshoff/vx/pull/285)
+- [demo] demo band scale grid on /barstack [#282](https://github.com/hshoff/vx/pull/282)
+
+#### :trophy: Contributors
+
+- [hshoff](https://github.com/hshoff)
+
+```
+Changes:
+ - @vx/annotation: 0.0.161 => 0.0.162
+ - @vx/axis: 0.0.161 => 0.0.162
+ - @vx/demo: 0.0.161 => 0.0.162
+ - @vx/grid: 0.0.161 => 0.0.162
+ - @vx/marker: 0.0.161 => 0.0.162
+ - @vx/shape: 0.0.161 => 0.0.162
+ - @vx/threshold: 0.0.1 => 0.0.162
+ - @vx/vx: 0.0.161 => 0.0.162
+```
 
 # v0.0.161
 
