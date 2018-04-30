@@ -1,6 +1,6 @@
 {
   "name": "@vx/shape",
-  "version": "0.0.161",
+  "version": "0.0.162",
   "description": "vx shape",
   "sideEffects": false,
   "main": "build/index.js",
