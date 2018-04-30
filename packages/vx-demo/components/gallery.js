@@ -38,6 +38,7 @@ import Responsive from '../components/tiles/responsive';
 import DragI from '../components/tiles/drag-i';
 import DragII from '../components/tiles/drag-ii';
 import LinkTypes from '../components/tiles/linkTypes';
+import Threshold from '../components/tiles/threshold';
 
 const items = [
   '#242424',
@@ -801,7 +802,34 @@ export default class Gallery extends React.Component {
               </div>
             </Link>
           </Tilt>
-          <div className="gallery-item placeholder" />
+          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+            <Link prefetch href="/threshold">
+              <div className="gallery-item" style={{ background: '#f3f3f3' }}>
+                <div className="image">
+                  <ParentSize>
+                    {({ width, height }) => (
+                      <Threshold
+                        width={width}
+                        height={height}
+                        margin={{
+                          top: 40,
+                          left: 40,
+                          right: 20,
+                          bottom: 30
+                        }}
+                      />
+                    )}
+                  </ParentSize>
+                </div>
+                <div className="details" style={{ color: '#111' }}>
+                  <div className="title">Threshold</div>
+                  <div className="description">
+                    <pre>{`<Threshold />`}</pre>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </Tilt>
           <div className="gallery-item placeholder" />
         </div>
 
