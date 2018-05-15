@@ -1,6 +1,6 @@
 {
   "name": "@vx/demo",
-  "version": "0.0.162",
+  "version": "0.0.163",
   "description": "vx demo",
   "repository": "https://github.com/hshoff/vx",
   "scripts": {
@@ -44,7 +44,7 @@
     "@vx/stats": "0.0.161",
     "@vx/text": "0.0.161",
     "@vx/threshold": "0.0.162",
-    "@vx/tooltip": "0.0.161",
+    "@vx/tooltip": "0.0.163",
     "@vx/voronoi": "0.0.161",
     "classnames": "^2.2.5",
     "d3-array": "^1.1.1",
