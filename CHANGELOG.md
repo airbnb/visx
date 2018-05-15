@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.163](#v00163)
 - [v0.0.162](#v00162)
 - [v0.0.161](#v00161)
 - [v0.0.160](#v00160)
@@ -48,6 +49,23 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.163
+
+#### :bug: Bug Fix
+
+- [tooltip] don't pass `getRects` func prop from `withBoundingRects` to `Tooltip` [#290](https://github.com/hshoff/vx/pull/290)
+
+#### :trophy: Contributors
+
+- [williaster](https://github.com/williaster)
+
+```
+Changes:
+ - @vx/demo: 0.0.162 => 0.0.163
+ - @vx/tooltip: 0.0.161 => 0.0.163
+ - @vx/vx: 0.0.162 => 0.0.163
+```
 
 # v0.0.162
 
