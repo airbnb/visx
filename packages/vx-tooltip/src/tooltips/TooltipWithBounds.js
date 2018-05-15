@@ -21,6 +21,7 @@ function TooltipWithBounds({
   offsetTop = 10,
   rect,
   parentRect,
+  getRects,
   children,
   style,
   ...otherProps
