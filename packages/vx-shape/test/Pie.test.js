@@ -10,6 +10,17 @@ describe('<Pie />', () => {
     expect(Pie).toBeDefined();
   });
 
+  test('it should not break on sort callbacks', () => {
+    expect(() => {
+      PieWrapper({ pieSort: () => 0, pieSortValues: () => 0 });
+    }).not.toThrow();
+  });
+
+  test('it should not break on invalid sort callbacks', () => {
+    expect(() => PieWrapper({ pieSort: 12 })).toThrow();
+    expect(() => PieWrapper({ pieSortValues: 12 })).toThrow();
+  });
+
   test('it should have the .vx-pie-arcs-group class', () => {
     expect(PieWrapper().prop('className')).toBe('vx-pie-arcs-group');
   });
