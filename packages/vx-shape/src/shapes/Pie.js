@@ -18,6 +18,7 @@ export default function Pie({
   padAngle,
   padRadius,
   pieSort,
+  pieSortValues,
   pieValue,
   ...restProps
 }) {
@@ -28,8 +29,11 @@ export default function Pie({
   if (padRadius) path.padRadius(padRadius);
   const pie = d3Pie();
   if (pieSort) pie.sort(pieSort);
+  if (pieSortValues) pie.sortValues(pieSortValues);
   if (pieValue) pie.value(pieValue);
-  if (padAngle) pie.padAngle(padAngle);
+  if (padAngle != null) pie.padAngle(padAngle);
+  if (startAngle != null) pie.startAngle(startAngle);
+  if (endAngle != null) pie.endAngle(endAngle);
   const arcs = pie(data);
   return (
     <Group className="vx-pie-arcs-group" top={top} left={left}>
