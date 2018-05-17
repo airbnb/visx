@@ -18,6 +18,7 @@ export default function Pie({
   padAngle,
   padRadius,
   pieSort,
+  pieSortValues,
   pieValue,
   ...restProps
 }) {
@@ -28,6 +29,7 @@ export default function Pie({
   if (padRadius) path.padRadius(padRadius);
   const pie = d3Pie();
   if (pieSort) pie.sort(pieSort);
+  if (pieSortValues) pie.sortValues(pieSortValues);
   if (pieValue) pie.value(pieValue);
   if (padAngle) pie.padAngle(padAngle);
   const arcs = pie(data);
