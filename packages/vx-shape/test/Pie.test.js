@@ -16,7 +16,7 @@ describe('<Pie />', () => {
     }).not.toThrow();
   });
 
-  test('it should not break on invalid sort callbacks', () => {
+  test('it should break on invalid sort callbacks', () => {
     expect(() => PieWrapper({ pieSort: 12 })).toThrow();
     expect(() => PieWrapper({ pieSortValues: 12 })).toThrow();
   });
