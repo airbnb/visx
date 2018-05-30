@@ -228,6 +228,47 @@ A more complicated line path. A `<LinePath />` is useful for making line graphs 
 | curve     |         | function | The [curve function](https://github.com/hshoff/vx/tree/master/packages/vx-curve)                            |
 | data      |         | array    | An array of x and y data.                                                                                   |
 
+## `<Pie />`
+
+![Pie Example](https://i.imgur.com/OLKpcX1.png)
+
+```js
+<Pie
+  data={browsers}
+  pieValue={d => d.usage}
+  outerRadius={radius - 80}
+  innerRadius={radius - 120}
+  fill="white"
+  fillOpacity={d => 1 / (d.index + 2) }
+  cornerRadius={3}
+  padAngle={0}
+  centroid={(centroid, arc) => {
+    const [x, y] = centroid;
+    const { startAngle, endAngle } = arc;
+    if (endAngle - startAngle < .1) return null;
+    return <Label x={x} y={y}>{arc.data.label}</Label>;
+  }}
+/>
+```
+
+### Properties
+| Name          | Default | Type     | Description                                                                                                                        |
+| :------------ | :------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------- |
+| className     |         | string   | The class for the <path /> element.                                                                                                |
+| top           | 0       | number   | The distance in pixels from the top.                                                                                               |
+| left          | 0       | number   | The distance in pixels from the left.                                                                                              |
+| data          |         | array    | An array of data elements.                                                                                                         |
+| pieValue      |         | function | A function that takes a data element and returns the value for the corresponding pie’s slice.                                      |
+| innerRadius   | 0       | number   | The distance of arcs’ inner side from the center of the pie. Make it non-zero to have a “donut” chart.                             |
+| outerRadius   |         | number   | The total radius of the pie.                                                                                                       |
+| cornerRadius  | 0       | number   | The corner radius of pie arcs in pixels.                                                                                           |
+| startAngle    | 0       | number   | The angle in radians at which the pie should start.                                                                                |
+| endAngle      | 2π      | number   | The angle in radians at which the pie should end.                                                                                  |
+| padAngle      | 0       | number   | The pad (or gutter) between arcs in radians.                                                                                       |
+| padRadius     |         | number   | Set the arc [padRadius](https://github.com/d3/d3-shape#arc_padRadius)                                                              |
+| pieSort       |         | function | A comparator function which takes two data elements and returns `-1`, `0` or `+1` to sort arcs.                                    |
+| pieSortValues |         | function | A comparator function which takes two values (as returned from `pieValue`) and returns `-1`, `0` or `+1` to sort arcs.             |
+| centroid      |         | function | A render function which takes a [centroid](https://github.com/d3/d3-shape#arc_centroid) and an `arc` argument called for each arc. |
 
 ## Sources For Components
 + [`<AreaClosed />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/AreaClosed.js)
@@ -236,3 +277,4 @@ A more complicated line path. A `<LinePath />` is useful for making line graphs 
 + [`<Line />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/Line.js)
 + [`<LinePath />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/LinePath.js)
 + [`<LineRadial />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/LineRadial.js)
++ [`<Pie />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/Pie.js)
