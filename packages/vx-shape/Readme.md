@@ -235,4 +235,4 @@ A more complicated line path. A `<LinePath />` is useful for making line graphs 
 + [`<Bar />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/Bar.js)
 + [`<Line />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/Line.js)
 + [`<LinePath />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/LinePath.js)
-+ [`<LineRadial />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/LinkRadial.js)
++ [`<LineRadial />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/LineRadial.js)
