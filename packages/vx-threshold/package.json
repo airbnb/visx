@@ -1,6 +1,6 @@
 {
   "name": "@vx/threshold",
-  "version": "0.0.162",
+  "version": "0.0.164",
   "description": "vx threshold",
   "sideEffects": false,
   "main": "build/index.js",
@@ -24,7 +24,7 @@
   "license": "MIT",
   "dependencies": {
     "@vx/clip-path": "0.0.161",
-    "@vx/shape": "0.0.162",
+    "@vx/shape": "0.0.164",
     "classnames": "^2.2.5",
     "prop-types": "^15.5.10"
   },
