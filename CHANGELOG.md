@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.164](#v00164)
 - [v0.0.163](#v00163)
 - [v0.0.162](#v00162)
 - [v0.0.161](#v00161)
@@ -49,6 +50,44 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.164
+
+#### :rocket: Enhancements
+
+- [shape] Add support for `startAngle` and `endAngle` props in the `Pie` component. [#292](https://github.com/hshoff/vx/pull/292)
+- [shape] Add support for `pieSortValues` prop. This maps to d3’s `pie.sortValues()` which lets you sort by extracted values instead of data. [#292](https://github.com/hshoff/vx/pull/292)
+
+#### :bug: Bug Fix
+
+- [shape] Add _actual_ support for `startAngle` and `endAngle` props in the `Pie` component. [#292](https://github.com/hshoff/vx/pull/292)
+- [shape] Check for `!= null` for numeric props in `Pie` component. [#292](https://github.com/hshoff/vx/pull/292)
+
+#### :memo: Documentation
+
+- [shape] Fix `LineRadial` link. [#297](https://github.com/hshoff/vx/pull/297)
+- [shape] Make `<code>` inside headings bigger than `<code>` inside paragraphs so components headings are actually clearer as such… [#297](https://github.com/hshoff/vx/pull/297)
+- [shape] Add Pie documentation. [#297](https://github.com/hshoff/vx/pull/297)
+
+#### :white_check_mark: Tests
+
+- [shape] Add tests for sort callbacks in the `Pie` component. [#292](https://github.com/hshoff/vx/pull/292)
+
+#### :trophy: Contributors
+
+- [yuchi](https://github.com/yuchi)
+
+```
+Changes:
+ - @vx/annotation: 0.0.162 => 0.0.164
+ - @vx/axis: 0.0.162 => 0.0.164
+ - @vx/demo: 0.0.163 => 0.0.164
+ - @vx/grid: 0.0.162 => 0.0.164
+ - @vx/marker: 0.0.162 => 0.0.164
+ - @vx/shape: 0.0.162 => 0.0.164
+ - @vx/threshold: 0.0.162 => 0.0.164
+ - @vx/vx: 0.0.163 => 0.0.164
+ ```
 
 # v0.0.163
 
