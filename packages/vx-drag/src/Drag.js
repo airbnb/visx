@@ -1,21 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import { localPoint } from '@vx/event';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 export default class Drag extends React.Component {
-  static propTypes = {
-    children: PropTypes.func.isRequired,
-    width: PropTypes.number.isRequired,
-    height: PropTypes.number.isRequired,
-    captureDragArea: PropTypes.bool,
-    resetOnStart: PropTypes.bool
-  };
-
-  static defaultProps = {
-    captureDragArea: true,
-    resetOnStart: false
-  };
-
   constructor(props) {
     super(props);
     this.state = {
@@ -101,3 +88,16 @@ export default class Drag extends React.Component {
     );
   }
 }
+
+Drag.propTypes = {
+  children: PropTypes.func.isRequired,
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  captureDragArea: PropTypes.bool,
+  resetOnStart: PropTypes.bool
+};
+
+Drag.defaultProps = {
+  captureDragArea: true,
+  resetOnStart: false
+};
