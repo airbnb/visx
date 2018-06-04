@@ -10,19 +10,12 @@
     "prepublish": "npm run build",
     "test": "jest"
   },
-  "files": [
-    "build"
-  ],
+  "files": ["dist"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hshoff/vx.git"
   },
-  "keywords": [
-    "vx",
-    "react",
-    "visualizations",
-    "charts"
-  ],
+  "keywords": ["vx", "react", "visualizations", "charts"],
   "author": "Chris Williams @williaster",
   "license": "MIT",
   "bugs": {
@@ -59,9 +52,6 @@
     "react-dom": "^15.0.0-0 || ^16.0.0-0"
   },
   "jest": {
-    "setupFiles": [
-      "raf/polyfill",
-      "<rootDir>/test/enzyme-setup.js"
-    ]
+    "setupFiles": ["raf/polyfill", "<rootDir>/test/enzyme-setup.js"]
   }
 }

@@ -6,21 +6,13 @@
   "main": "dist/vx-shape.umd.js",
   "module": "dist/vx-shape.es.js",
   "repository": "https://github.com/hshoff/vx",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "scripts": {
     "build": "rm -rf dist && mkdir dist && rollup -c",
     "prepublish": "npm run build",
     "test": "jest"
   },
-  "keywords": [
-    "vx",
-    "react",
-    "d3",
-    "visualizations",
-    "charts"
-  ],
+  "keywords": ["vx", "react", "d3", "visualizations", "charts"],
   "author": "@hshoff",
   "license": "MIT",
   "dependencies": {
@@ -61,9 +53,6 @@
     "access": "public"
   },
   "jest": {
-    "setupFiles": [
-      "raf/polyfill",
-      "<rootDir>/test/enzyme-setup.js"
-    ]
+    "setupFiles": ["raf/polyfill", "<rootDir>/test/enzyme-setup.js"]
   }
 }

@@ -5,6 +5,7 @@
   "sideEffects": false,
   "main": "dist/vx-boxplot.umd.js",
   "module": "dist/vx-boxplot.es.js",
+  "files": ["dist"],
   "scripts": {
     "build": "rm -rf dist && mkdir dist && rollup -c",
     "prepublish": "npm run build",
@@ -14,13 +15,7 @@
     "type": "git",
     "url": "git+https://github.com/hshoff/vx.git"
   },
-  "keywords": [
-    "vx",
-    "react",
-    "d3",
-    "visualizations",
-    "charts"
-  ],
+  "keywords": ["vx", "react", "d3", "visualizations", "charts"],
   "author": "@conglei",
   "license": "MIT",
   "bugs": {
@@ -57,9 +52,6 @@
     "access": "public"
   },
   "jest": {
-    "setupFiles": [
-      "raf/polyfill",
-      "<rootDir>/test/enzyme-setup.js"
-    ]
+    "setupFiles": ["raf/polyfill", "<rootDir>/test/enzyme-setup.js"]
   }
 }
