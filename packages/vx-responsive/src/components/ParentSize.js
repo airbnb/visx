@@ -1,14 +1,9 @@
-import React from 'react';
+import debounce from 'lodash/debounce';
 import PropTypes from 'prop-types';
+import React from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 
-import debounce from 'lodash/debounce';
-
 export default class ParentSize extends React.Component {
-  static defaultProps = {
-    debounceTime: 300
-  };
-
   constructor(props) {
     super(props);
     this.state = { width: 0, height: 0, top: 0, left: 0 };
@@ -56,6 +51,10 @@ export default class ParentSize extends React.Component {
     );
   }
 }
+
+ParentSize.defaultProps = {
+  debounceTime: 300
+};
 
 ParentSize.propTypes = {
   className: PropTypes.string,
