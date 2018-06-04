@@ -1,31 +1,8 @@
-(function(global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined'
-    ? factory(
-        exports,
-        require('react'),
-        require('classnames'),
-        require('d3-shape'),
-        require('@vx/group'),
-        require('prop-types'),
-        require('@vx/point'),
-        require('@vx/curve'),
-        require('d3-path')
-      )
-    : typeof define === 'function' && define.amd
-      ? define([
-          'exports',
-          'react',
-          'classnames',
-          'd3-shape',
-          '@vx/group',
-          'prop-types',
-          '@vx/point',
-          '@vx/curve',
-          'd3-path'
-        ], factory)
-      : factory((global.vx = global.vx || {}), null, null, null, null, null, null, null, null);
-})(this, function(exports, React, cx, d3Shape, group, PropTypes, point, curve, d3Path) {
-  'use strict';
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react'), require('classnames'), require('d3-shape'), require('@vx/group'), require('prop-types'), require('@vx/point'), require('@vx/curve'), require('d3-path')) :
+  typeof define === 'function' && define.amd ? define(['exports', 'react', 'classnames', 'd3-shape', '@vx/group', 'prop-types', '@vx/point', '@vx/curve', 'd3-path'], factory) :
+  (factory((global.vx = global.vx || {}),global.React,global.classNames,global.d3,global.vx,global.PropTypes,global.vx,global.vx,global.d3));
+}(this, (function (exports,React,cx,d3Shape,group,PropTypes,point,curve,d3Path) { 'use strict';
 
   React = React && React.hasOwnProperty('default') ? React['default'] : React;
   cx = cx && cx.hasOwnProperty('default') ? cx['default'] : cx;
@@ -39,29 +16,27 @@
   }
 
   function additionalProps(restProps, data) {
-    return Object.keys(restProps).reduce(function(ret, cur) {
+    return Object.keys(restProps).reduce(function (ret, cur) {
       ret[cur] = callOrValue(restProps[cur], data);
       return ret;
     }, {});
   }
 
-  var _extends =
-    Object.assign ||
-    function(target) {
-      for (var i = 1; i < arguments.length; i++) {
-        var source = arguments[i];
+  var _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
 
-        for (var key in source) {
-          if (Object.prototype.hasOwnProperty.call(source, key)) {
-            target[key] = source[key];
-          }
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
         }
       }
+    }
 
-      return target;
-    };
+    return target;
+  };
 
-  var objectWithoutProperties = function(obj, keys) {
+  var objectWithoutProperties = function (obj, keys) {
     var target = {};
 
     for (var i in obj) {
@@ -75,27 +50,16 @@
 
   function Arc(_ref) {
     var className = _ref.className,
-      data = _ref.data,
-      centroid = _ref.centroid,
-      innerRadius = _ref.innerRadius,
-      outerRadius = _ref.outerRadius,
-      cornerRadius = _ref.cornerRadius,
-      startAngle = _ref.startAngle,
-      endAngle = _ref.endAngle,
-      padAngle = _ref.padAngle,
-      padRadius = _ref.padRadius,
-      restProps = objectWithoutProperties(_ref, [
-        'className',
-        'data',
-        'centroid',
-        'innerRadius',
-        'outerRadius',
-        'cornerRadius',
-        'startAngle',
-        'endAngle',
-        'padAngle',
-        'padRadius'
-      ]);
+        data = _ref.data,
+        centroid = _ref.centroid,
+        innerRadius = _ref.innerRadius,
+        outerRadius = _ref.outerRadius,
+        cornerRadius = _ref.cornerRadius,
+        startAngle = _ref.startAngle,
+        endAngle = _ref.endAngle,
+        padAngle = _ref.padAngle,
+        padRadius = _ref.padRadius,
+        restProps = objectWithoutProperties(_ref, ['className', 'data', 'centroid', 'innerRadius', 'outerRadius', 'cornerRadius', 'startAngle', 'endAngle', 'padAngle', 'padRadius']);
 
     var arc = d3Shape.arc();
     if (centroid) arc.centroid(centroid);
@@ -106,53 +70,31 @@
     if (endAngle) arc.endAngle(endAngle);
     if (padAngle) arc.padAngle(padAngle);
     if (padRadius) arc.padRadius(padRadius);
-    return React.createElement(
-      'path',
-      _extends(
-        { className: cx('vx-arc', className), d: arc(data) },
-        additionalProps(restProps, data)
-      )
-    );
+    return React.createElement('path', _extends({ className: cx('vx-arc', className), d: arc(data) }, additionalProps(restProps, data)));
   }
 
   function Pie(_ref) {
     var _ref$className = _ref.className,
-      className = _ref$className === undefined ? '' : _ref$className,
-      _ref$top = _ref.top,
-      top = _ref$top === undefined ? 0 : _ref$top,
-      _ref$left = _ref.left,
-      left = _ref$left === undefined ? 0 : _ref$left,
-      data = _ref.data,
-      centroid = _ref.centroid,
-      _ref$innerRadius = _ref.innerRadius,
-      innerRadius = _ref$innerRadius === undefined ? 0 : _ref$innerRadius,
-      outerRadius = _ref.outerRadius,
-      cornerRadius = _ref.cornerRadius,
-      _ref$startAngle = _ref.startAngle,
-      startAngle = _ref$startAngle === undefined ? 0 : _ref$startAngle,
-      endAngle = _ref.endAngle,
-      padAngle = _ref.padAngle,
-      padRadius = _ref.padRadius,
-      pieSort = _ref.pieSort,
-      pieSortValues = _ref.pieSortValues,
-      pieValue = _ref.pieValue,
-      restProps = objectWithoutProperties(_ref, [
-        'className',
-        'top',
-        'left',
-        'data',
-        'centroid',
-        'innerRadius',
-        'outerRadius',
-        'cornerRadius',
-        'startAngle',
-        'endAngle',
-        'padAngle',
-        'padRadius',
-        'pieSort',
-        'pieSortValues',
-        'pieValue'
-      ]);
+        className = _ref$className === undefined ? '' : _ref$className,
+        _ref$top = _ref.top,
+        top = _ref$top === undefined ? 0 : _ref$top,
+        _ref$left = _ref.left,
+        left = _ref$left === undefined ? 0 : _ref$left,
+        data = _ref.data,
+        centroid = _ref.centroid,
+        _ref$innerRadius = _ref.innerRadius,
+        innerRadius = _ref$innerRadius === undefined ? 0 : _ref$innerRadius,
+        outerRadius = _ref.outerRadius,
+        cornerRadius = _ref.cornerRadius,
+        _ref$startAngle = _ref.startAngle,
+        startAngle = _ref$startAngle === undefined ? 0 : _ref$startAngle,
+        endAngle = _ref.endAngle,
+        padAngle = _ref.padAngle,
+        padRadius = _ref.padRadius,
+        pieSort = _ref.pieSort,
+        pieSortValues = _ref.pieSortValues,
+        pieValue = _ref.pieValue,
+        restProps = objectWithoutProperties(_ref, ['className', 'top', 'left', 'data', 'centroid', 'innerRadius', 'outerRadius', 'cornerRadius', 'startAngle', 'endAngle', 'padAngle', 'padRadius', 'pieSort', 'pieSortValues', 'pieValue']);
 
     var path = d3Shape.arc();
     path.innerRadius(innerRadius);
@@ -170,28 +112,19 @@
     return React.createElement(
       group.Group,
       { className: 'vx-pie-arcs-group', top: top, left: left },
-      arcs.map(function(arc, i) {
+      arcs.map(function (arc, i) {
         var c = void 0;
         if (centroid) c = path.centroid(arc);
         return React.createElement(
           'g',
           { key: 'pie-arc-' + i },
-          React.createElement(
-            'path',
-            _extends(
-              {
-                className: cx('vx-pie-arc', className),
-                d: path(arc)
-              },
-              additionalProps(
-                restProps,
-                _extends({}, arc, {
-                  index: i,
-                  centroid: c
-                })
-              )
-            )
-          ),
+          React.createElement('path', _extends({
+            className: cx('vx-pie-arc', className),
+            d: path(arc)
+          }, additionalProps(restProps, _extends({}, arc, {
+            index: i,
+            centroid: c
+          })))),
           centroid && centroid(c, arc)
         );
       })
@@ -204,51 +137,35 @@
 
   function Line(_ref) {
     var _ref$from = _ref.from,
-      from = _ref$from === undefined ? new point.Point({ x: 0, y: 0 }) : _ref$from,
-      _ref$to = _ref.to,
-      to = _ref$to === undefined ? new point.Point({ x: 1, y: 1 }) : _ref$to,
-      _ref$stroke = _ref.stroke,
-      stroke = _ref$stroke === undefined ? 'black' : _ref$stroke,
-      _ref$strokeWidth = _ref.strokeWidth,
-      strokeWidth = _ref$strokeWidth === undefined ? 1 : _ref$strokeWidth,
-      _ref$strokeDasharray = _ref.strokeDasharray,
-      strokeDasharray = _ref$strokeDasharray === undefined ? '' : _ref$strokeDasharray,
-      _ref$transform = _ref.transform,
-      transform = _ref$transform === undefined ? '' : _ref$transform,
-      _ref$className = _ref.className,
-      className = _ref$className === undefined ? '' : _ref$className,
-      data = _ref.data,
-      innerRef = _ref.innerRef,
-      restProps = objectWithoutProperties(_ref, [
-        'from',
-        'to',
-        'stroke',
-        'strokeWidth',
-        'strokeDasharray',
-        'transform',
-        'className',
-        'data',
-        'innerRef'
-      ]);
+        from = _ref$from === undefined ? new point.Point({ x: 0, y: 0 }) : _ref$from,
+        _ref$to = _ref.to,
+        to = _ref$to === undefined ? new point.Point({ x: 1, y: 1 }) : _ref$to,
+        _ref$stroke = _ref.stroke,
+        stroke = _ref$stroke === undefined ? 'black' : _ref$stroke,
+        _ref$strokeWidth = _ref.strokeWidth,
+        strokeWidth = _ref$strokeWidth === undefined ? 1 : _ref$strokeWidth,
+        _ref$strokeDasharray = _ref.strokeDasharray,
+        strokeDasharray = _ref$strokeDasharray === undefined ? '' : _ref$strokeDasharray,
+        _ref$transform = _ref.transform,
+        transform = _ref$transform === undefined ? '' : _ref$transform,
+        _ref$className = _ref.className,
+        className = _ref$className === undefined ? '' : _ref$className,
+        data = _ref.data,
+        innerRef = _ref.innerRef,
+        restProps = objectWithoutProperties(_ref, ['from', 'to', 'stroke', 'strokeWidth', 'strokeDasharray', 'transform', 'className', 'data', 'innerRef']);
 
-    return React.createElement(
-      'line',
-      _extends(
-        {
-          ref: innerRef,
-          className: cx('vx-line', className),
-          x1: from.x,
-          y1: from.y,
-          x2: to.x,
-          y2: to.y,
-          stroke: stroke,
-          strokeWidth: strokeWidth,
-          strokeDasharray: strokeDasharray,
-          transform: transform
-        },
-        additionalProps(restProps, data)
-      )
-    );
+    return React.createElement('line', _extends({
+      ref: innerRef,
+      className: cx('vx-line', className),
+      x1: from.x,
+      y1: from.y,
+      x2: to.x,
+      y2: to.y,
+      stroke: stroke,
+      strokeWidth: strokeWidth,
+      strokeDasharray: strokeDasharray,
+      transform: transform
+    }, additionalProps(restProps, data)));
   }
 
   LinePath.propTypes = {
@@ -257,80 +174,54 @@
 
   function LinePath(_ref) {
     var data = _ref.data,
-      xScale = _ref.xScale,
-      yScale = _ref.yScale,
-      x = _ref.x,
-      y = _ref.y,
-      _ref$defined = _ref.defined,
-      defined =
-        _ref$defined === undefined
-          ? function() {
-              return true;
-            }
-          : _ref$defined,
-      className = _ref.className,
-      _ref$stroke = _ref.stroke,
-      stroke = _ref$stroke === undefined ? 'steelblue' : _ref$stroke,
-      _ref$strokeWidth = _ref.strokeWidth,
-      strokeWidth = _ref$strokeWidth === undefined ? 2 : _ref$strokeWidth,
-      _ref$strokeDasharray = _ref.strokeDasharray,
-      strokeDasharray = _ref$strokeDasharray === undefined ? '' : _ref$strokeDasharray,
-      _ref$strokeDashoffset = _ref.strokeDashoffset,
-      strokeDashoffset = _ref$strokeDashoffset === undefined ? 0 : _ref$strokeDashoffset,
-      _ref$fill = _ref.fill,
-      fill = _ref$fill === undefined ? 'none' : _ref$fill,
-      _ref$curve = _ref.curve,
-      curve$$1 = _ref$curve === undefined ? curve.curveLinear : _ref$curve,
-      glyph = _ref.glyph,
-      innerRef = _ref.innerRef,
-      restProps = objectWithoutProperties(_ref, [
-        'data',
-        'xScale',
-        'yScale',
-        'x',
-        'y',
-        'defined',
-        'className',
-        'stroke',
-        'strokeWidth',
-        'strokeDasharray',
-        'strokeDashoffset',
-        'fill',
-        'curve',
-        'glyph',
-        'innerRef'
-      ]);
+        xScale = _ref.xScale,
+        yScale = _ref.yScale,
+        x = _ref.x,
+        y = _ref.y,
+        _ref$defined = _ref.defined,
+        defined = _ref$defined === undefined ? function () {
+      return true;
+    } : _ref$defined,
+        className = _ref.className,
+        _ref$stroke = _ref.stroke,
+        stroke = _ref$stroke === undefined ? 'steelblue' : _ref$stroke,
+        _ref$strokeWidth = _ref.strokeWidth,
+        strokeWidth = _ref$strokeWidth === undefined ? 2 : _ref$strokeWidth,
+        _ref$strokeDasharray = _ref.strokeDasharray,
+        strokeDasharray = _ref$strokeDasharray === undefined ? '' : _ref$strokeDasharray,
+        _ref$strokeDashoffset = _ref.strokeDashoffset,
+        strokeDashoffset = _ref$strokeDashoffset === undefined ? 0 : _ref$strokeDashoffset,
+        _ref$fill = _ref.fill,
+        fill = _ref$fill === undefined ? 'none' : _ref$fill,
+        _ref$curve = _ref.curve,
+        curve$$1 = _ref$curve === undefined ? curve.curveLinear : _ref$curve,
+        glyph = _ref.glyph,
+        innerRef = _ref.innerRef,
+        restProps = objectWithoutProperties(_ref, ['data', 'xScale', 'yScale', 'x', 'y', 'defined', 'className', 'stroke', 'strokeWidth', 'strokeDasharray', 'strokeDashoffset', 'fill', 'curve', 'glyph', 'innerRef']);
 
-    var path = d3Shape
-      .line()
-      .x(function(d) {
-        return xScale(x(d));
-      })
-      .y(function(d) {
-        return yScale(y(d));
-      })
-      .defined(defined)
-      .curve(curve$$1);
+    var path = d3Shape.line().x(function (d) {
+      return xScale(x(d));
+    }).y(function (d) {
+      return yScale(y(d));
+    }).defined(defined).curve(curve$$1);
     return React.createElement(
       'g',
       null,
-      React.createElement(
-        'path',
-        _extends(
-          {
-            ref: innerRef,
-            className: cx('vx-linepath', className),
-            d: path(data),
-            stroke: stroke,
-            strokeWidth: strokeWidth,
-            strokeDasharray: strokeDasharray,
-            strokeDashoffset: strokeDashoffset,
-            fill: fill
-          },
-          additionalProps(restProps, data)
-        )
-      ),
-      glyph && React.createElement('g', { className: 'vx-linepath-glyphs' }, data.map(glyph))
+      React.createElement('path', _extends({
+        ref: innerRef,
+        className: cx('vx-linepath', className),
+        d: path(data),
+        stroke: stroke,
+        strokeWidth: strokeWidth,
+        strokeDasharray: strokeDasharray,
+        strokeDashoffset: strokeDashoffset,
+        fill: fill
+      }, additionalProps(restProps, data))),
+      glyph && React.createElement(
+        'g',
+        { className: 'vx-linepath-glyphs' },
+        data.map(glyph)
+      )
     );
   }
 
@@ -340,22 +231,14 @@
 
   function LineRadial(_ref) {
     var _ref$className = _ref.className,
-      className = _ref$className === undefined ? '' : _ref$className,
-      angle = _ref.angle,
-      radius = _ref.radius,
-      defined = _ref.defined,
-      curve$$1 = _ref.curve,
-      data = _ref.data,
-      innerRef = _ref.innerRef,
-      restProps = objectWithoutProperties(_ref, [
-        'className',
-        'angle',
-        'radius',
-        'defined',
-        'curve',
-        'data',
-        'innerRef'
-      ]);
+        className = _ref$className === undefined ? '' : _ref$className,
+        angle = _ref.angle,
+        radius = _ref.radius,
+        defined = _ref.defined,
+        curve$$1 = _ref.curve,
+        data = _ref.data,
+        innerRef = _ref.innerRef,
+        restProps = objectWithoutProperties(_ref, ['className', 'angle', 'radius', 'defined', 'curve', 'data', 'innerRef']);
 
     var path = d3Shape.radialLine();
     if (angle) path.angle(angle);
@@ -365,17 +248,11 @@
     return React.createElement(
       'g',
       null,
-      React.createElement(
-        'path',
-        _extends(
-          {
-            ref: innerRef,
-            className: cx('vx-line-radial', className),
-            d: path(data)
-          },
-          additionalProps(restProps, data)
-        )
-      )
+      React.createElement('path', _extends({
+        ref: innerRef,
+        className: cx('vx-line-radial', className),
+        d: path(data)
+      }, additionalProps(restProps, data)))
     );
   }
 
@@ -390,12 +267,7 @@
     yScale: PropTypes.func,
     data: PropTypes.array,
     defined: PropTypes.func,
-    className: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.bool,
-      PropTypes.object,
-      PropTypes.array
-    ]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.bool, PropTypes.object, PropTypes.array]),
     innerRef: PropTypes.func,
     strokeDasharray: PropTypes.string,
     strokeWidth: PropTypes.number,
@@ -406,100 +278,66 @@
 
   function Area(_ref) {
     var children = _ref.children,
-      x = _ref.x,
-      x0 = _ref.x0,
-      x1 = _ref.x1,
-      y = _ref.y,
-      y0 = _ref.y0,
-      y1 = _ref.y1,
-      xScale = _ref.xScale,
-      yScale = _ref.yScale,
-      _ref$data = _ref.data,
-      data = _ref$data === undefined ? [] : _ref$data,
-      _ref$defined = _ref.defined,
-      defined =
-        _ref$defined === undefined
-          ? function() {
-              return true;
-            }
-          : _ref$defined,
-      className = _ref.className,
-      strokeDasharray = _ref.strokeDasharray,
-      _ref$strokeWidth = _ref.strokeWidth,
-      strokeWidth = _ref$strokeWidth === undefined ? 2 : _ref$strokeWidth,
-      _ref$stroke = _ref.stroke,
-      stroke = _ref$stroke === undefined ? 'black' : _ref$stroke,
-      _ref$fill = _ref.fill,
-      fill = _ref$fill === undefined ? 'rgba(0,0,0,0.3)' : _ref$fill,
-      curve$$1 = _ref.curve,
-      innerRef = _ref.innerRef,
-      restProps = objectWithoutProperties(_ref, [
-        'children',
-        'x',
-        'x0',
-        'x1',
-        'y',
-        'y0',
-        'y1',
-        'xScale',
-        'yScale',
-        'data',
-        'defined',
-        'className',
-        'strokeDasharray',
-        'strokeWidth',
-        'stroke',
-        'fill',
-        'curve',
-        'innerRef'
-      ]);
+        x = _ref.x,
+        x0 = _ref.x0,
+        x1 = _ref.x1,
+        y = _ref.y,
+        y0 = _ref.y0,
+        y1 = _ref.y1,
+        xScale = _ref.xScale,
+        yScale = _ref.yScale,
+        _ref$data = _ref.data,
+        data = _ref$data === undefined ? [] : _ref$data,
+        _ref$defined = _ref.defined,
+        defined = _ref$defined === undefined ? function () {
+      return true;
+    } : _ref$defined,
+        className = _ref.className,
+        strokeDasharray = _ref.strokeDasharray,
+        _ref$strokeWidth = _ref.strokeWidth,
+        strokeWidth = _ref$strokeWidth === undefined ? 2 : _ref$strokeWidth,
+        _ref$stroke = _ref.stroke,
+        stroke = _ref$stroke === undefined ? 'black' : _ref$stroke,
+        _ref$fill = _ref.fill,
+        fill = _ref$fill === undefined ? 'rgba(0,0,0,0.3)' : _ref$fill,
+        curve$$1 = _ref.curve,
+        innerRef = _ref.innerRef,
+        restProps = objectWithoutProperties(_ref, ['children', 'x', 'x0', 'x1', 'y', 'y0', 'y1', 'xScale', 'yScale', 'data', 'defined', 'className', 'strokeDasharray', 'strokeWidth', 'stroke', 'fill', 'curve', 'innerRef']);
 
     var path = d3Shape.area();
-    if (x)
-      path.x(function(d) {
-        return xScale(x(d));
-      });
-    if (x0)
-      path.x0(function(d) {
-        return xScale(x0(d));
-      });
-    if (x1)
-      path.x1(function(d) {
-        return xScale(x1(d));
-      });
-    if (y)
-      path.y(function(d) {
-        return yScale(y(d));
-      });
-    if (y0)
-      path.y0(function(d) {
-        return yScale(y0(d));
-      });
-    if (y1)
-      path.y1(function(d) {
-        return yScale(y1(d));
-      });
+    if (x) path.x(function (d) {
+      return xScale(x(d));
+    });
+    if (x0) path.x0(function (d) {
+      return xScale(x0(d));
+    });
+    if (x1) path.x1(function (d) {
+      return xScale(x1(d));
+    });
+    if (y) path.y(function (d) {
+      return yScale(y(d));
+    });
+    if (y0) path.y0(function (d) {
+      return yScale(y0(d));
+    });
+    if (y1) path.y1(function (d) {
+      return yScale(y1(d));
+    });
     if (defined) path.defined(defined);
     if (curve$$1) path.curve(curve$$1);
     if (children) return children({ path: path });
     return React.createElement(
       'g',
       null,
-      React.createElement(
-        'path',
-        _extends(
-          {
-            ref: innerRef,
-            className: cx('vx-area', className),
-            d: path(data),
-            stroke: stroke,
-            strokeWidth: strokeWidth,
-            strokeDasharray: strokeDasharray,
-            fill: fill
-          },
-          additionalProps(restProps, data)
-        )
-      )
+      React.createElement('path', _extends({
+        ref: innerRef,
+        className: cx('vx-area', className),
+        d: path(data),
+        stroke: stroke,
+        strokeWidth: strokeWidth,
+        strokeDasharray: strokeDasharray,
+        fill: fill
+      }, additionalProps(restProps, data)))
     );
   }
 
@@ -509,107 +347,64 @@
 
   function AreaClosed(_ref) {
     var x = _ref.x,
-      y = _ref.y,
-      xScale = _ref.xScale,
-      yScale = _ref.yScale,
-      data = _ref.data,
-      _ref$defined = _ref.defined,
-      defined =
-        _ref$defined === undefined
-          ? function() {
-              return true;
-            }
-          : _ref$defined,
-      className = _ref.className,
-      strokeDasharray = _ref.strokeDasharray,
-      _ref$strokeWidth = _ref.strokeWidth,
-      strokeWidth = _ref$strokeWidth === undefined ? 2 : _ref$strokeWidth,
-      _ref$stroke = _ref.stroke,
-      stroke = _ref$stroke === undefined ? 'black' : _ref$stroke,
-      _ref$fill = _ref.fill,
-      fill = _ref$fill === undefined ? 'rgba(0,0,0,0.3)' : _ref$fill,
-      curve$$1 = _ref.curve,
-      innerRef = _ref.innerRef,
-      restProps = objectWithoutProperties(_ref, [
-        'x',
-        'y',
-        'xScale',
-        'yScale',
-        'data',
-        'defined',
-        'className',
-        'strokeDasharray',
-        'strokeWidth',
-        'stroke',
-        'fill',
-        'curve',
-        'innerRef'
-      ]);
+        y = _ref.y,
+        xScale = _ref.xScale,
+        yScale = _ref.yScale,
+        data = _ref.data,
+        _ref$defined = _ref.defined,
+        defined = _ref$defined === undefined ? function () {
+      return true;
+    } : _ref$defined,
+        className = _ref.className,
+        strokeDasharray = _ref.strokeDasharray,
+        _ref$strokeWidth = _ref.strokeWidth,
+        strokeWidth = _ref$strokeWidth === undefined ? 2 : _ref$strokeWidth,
+        _ref$stroke = _ref.stroke,
+        stroke = _ref$stroke === undefined ? 'black' : _ref$stroke,
+        _ref$fill = _ref.fill,
+        fill = _ref$fill === undefined ? 'rgba(0,0,0,0.3)' : _ref$fill,
+        curve$$1 = _ref.curve,
+        innerRef = _ref.innerRef,
+        restProps = objectWithoutProperties(_ref, ['x', 'y', 'xScale', 'yScale', 'data', 'defined', 'className', 'strokeDasharray', 'strokeWidth', 'stroke', 'fill', 'curve', 'innerRef']);
 
-    var path = d3Shape
-      .area()
-      .x(function(d) {
-        return xScale(x(d));
-      })
-      .y0(yScale.range()[0])
-      .y1(function(d) {
-        return yScale(y(d));
-      })
-      .defined(defined);
+    var path = d3Shape.area().x(function (d) {
+      return xScale(x(d));
+    }).y0(yScale.range()[0]).y1(function (d) {
+      return yScale(y(d));
+    }).defined(defined);
     if (curve$$1) path.curve(curve$$1);
     return React.createElement(
       'g',
       null,
-      React.createElement(
-        'path',
-        _extends(
-          {
-            ref: innerRef,
-            className: cx('vx-area-closed', className),
-            d: path(data),
-            stroke: stroke,
-            strokeWidth: strokeWidth,
-            strokeDasharray: strokeDasharray,
-            fill: fill
-          },
-          additionalProps(restProps, data)
-        )
-      )
+      React.createElement('path', _extends({
+        ref: innerRef,
+        className: cx('vx-area-closed', className),
+        d: path(data),
+        stroke: stroke,
+        strokeWidth: strokeWidth,
+        strokeDasharray: strokeDasharray,
+        fill: fill
+      }, additionalProps(restProps, data)))
     );
   }
 
   function AreaStack(_ref) {
     var className = _ref.className,
-      _ref$top = _ref.top,
-      _ref$left = _ref.left,
-      keys = _ref.keys,
-      data = _ref.data,
-      curve$$1 = _ref.curve,
-      defined = _ref.defined,
-      x = _ref.x,
-      x0 = _ref.x0,
-      x1 = _ref.x1,
-      y0 = _ref.y0,
-      y1 = _ref.y1,
-      glyph = _ref.glyph,
-      _ref$reverse = _ref.reverse,
-      reverse = _ref$reverse === undefined ? false : _ref$reverse,
-      restProps = objectWithoutProperties(_ref, [
-        'className',
-        'top',
-        'left',
-        'keys',
-        'data',
-        'curve',
-        'defined',
-        'x',
-        'x0',
-        'x1',
-        'y0',
-        'y1',
-        'glyph',
-        'reverse'
-      ]);
+        _ref$top = _ref.top,
+        _ref$left = _ref.left,
+        keys = _ref.keys,
+        data = _ref.data,
+        curve$$1 = _ref.curve,
+        defined = _ref.defined,
+        x = _ref.x,
+        x0 = _ref.x0,
+        x1 = _ref.x1,
+        y0 = _ref.y0,
+        y1 = _ref.y1,
+        glyph = _ref.glyph,
+        _ref$reverse = _ref.reverse,
+        reverse = _ref$reverse === undefined ? false : _ref$reverse,
+        restProps = objectWithoutProperties(_ref, ['className', 'top', 'left', 'keys', 'data', 'curve', 'defined', 'x', 'x0', 'x1', 'y0', 'y1', 'glyph', 'reverse']);
 
     var stack = d3Shape.stack();
     if (keys) stack.keys(keys);
@@ -629,24 +424,22 @@
     return React.createElement(
       'g',
       null,
-      seriesData.map(function(series, i) {
-        return React.createElement(
-          'path',
-          _extends(
-            {
-              className: cx('vx-area-stack', className),
-              key: 'area-stack-' + i + '-' + (series.key || ''),
-              d: path(series)
-            },
-            additionalProps(restProps, {
-              datum: series[i],
-              index: i,
-              series: series
-            })
-          )
-        );
+      seriesData.map(function (series, i) {
+        return React.createElement('path', _extends({
+          className: cx('vx-area-stack', className),
+          key: 'area-stack-' + i + '-' + (series.key || ''),
+          d: path(series)
+        }, additionalProps(restProps, {
+          datum: series[i],
+          index: i,
+          series: series
+        })));
       }),
-      !!glyph && React.createElement('g', { className: 'vx-area-stack-glyphs' }, data.map(glyph))
+      !!glyph && React.createElement(
+        'g',
+        { className: 'vx-area-stack-glyphs' },
+        data.map(glyph)
+      )
     );
   }
 
@@ -656,139 +449,92 @@
 
   function Bar(_ref) {
     var className = _ref.className,
-      innerRef = _ref.innerRef,
-      data = _ref.data,
-      _ref$x = _ref.x,
-      x = _ref$x === undefined ? 0 : _ref$x,
-      _ref$y = _ref.y,
-      y = _ref$y === undefined ? 0 : _ref$y,
-      width = _ref.width,
-      height = _ref.height,
-      rx = _ref.rx,
-      ry = _ref.ry,
-      _ref$fill = _ref.fill,
-      fill = _ref$fill === undefined ? 'steelblue' : _ref$fill,
-      fillOpacity = _ref.fillOpacity,
-      stroke = _ref.stroke,
-      strokeWidth = _ref.strokeWidth,
-      strokeDasharray = _ref.strokeDasharray,
-      strokeLinecap = _ref.strokeLinecap,
-      strokeLinejoin = _ref.strokeLinejoin,
-      strokeMiterlimit = _ref.strokeMiterlimit,
-      strokeOpacity = _ref.strokeOpacity,
-      restProps = objectWithoutProperties(_ref, [
-        'className',
-        'innerRef',
-        'data',
-        'x',
-        'y',
-        'width',
-        'height',
-        'rx',
-        'ry',
-        'fill',
-        'fillOpacity',
-        'stroke',
-        'strokeWidth',
-        'strokeDasharray',
-        'strokeLinecap',
-        'strokeLinejoin',
-        'strokeMiterlimit',
-        'strokeOpacity'
-      ]);
+        innerRef = _ref.innerRef,
+        data = _ref.data,
+        _ref$x = _ref.x,
+        x = _ref$x === undefined ? 0 : _ref$x,
+        _ref$y = _ref.y,
+        y = _ref$y === undefined ? 0 : _ref$y,
+        width = _ref.width,
+        height = _ref.height,
+        rx = _ref.rx,
+        ry = _ref.ry,
+        _ref$fill = _ref.fill,
+        fill = _ref$fill === undefined ? 'steelblue' : _ref$fill,
+        fillOpacity = _ref.fillOpacity,
+        stroke = _ref.stroke,
+        strokeWidth = _ref.strokeWidth,
+        strokeDasharray = _ref.strokeDasharray,
+        strokeLinecap = _ref.strokeLinecap,
+        strokeLinejoin = _ref.strokeLinejoin,
+        strokeMiterlimit = _ref.strokeMiterlimit,
+        strokeOpacity = _ref.strokeOpacity,
+        restProps = objectWithoutProperties(_ref, ['className', 'innerRef', 'data', 'x', 'y', 'width', 'height', 'rx', 'ry', 'fill', 'fillOpacity', 'stroke', 'strokeWidth', 'strokeDasharray', 'strokeLinecap', 'strokeLinejoin', 'strokeMiterlimit', 'strokeOpacity']);
 
-    return React.createElement(
-      'rect',
-      _extends(
-        {
-          ref: innerRef,
-          className: cx('vx-bar', className),
-          x: x,
-          y: y,
-          width: width,
-          height: height,
-          rx: rx,
-          ry: ry,
-          fill: fill,
-          fillOpacity: fillOpacity,
-          stroke: stroke,
-          strokeWidth: strokeWidth,
-          strokeDasharray: strokeDasharray,
-          strokeLinecap: strokeLinecap,
-          strokeLinejoin: strokeLinejoin,
-          strokeMiterlimit: strokeMiterlimit,
-          strokeOpacity: strokeOpacity
-        },
-        additionalProps(restProps, data)
-      )
-    );
+    return React.createElement('rect', _extends({
+      ref: innerRef,
+      className: cx('vx-bar', className),
+      x: x,
+      y: y,
+      width: width,
+      height: height,
+      rx: rx,
+      ry: ry,
+      fill: fill,
+      fillOpacity: fillOpacity,
+      stroke: stroke,
+      strokeWidth: strokeWidth,
+      strokeDasharray: strokeDasharray,
+      strokeLinecap: strokeLinecap,
+      strokeLinejoin: strokeLinejoin,
+      strokeMiterlimit: strokeMiterlimit,
+      strokeOpacity: strokeOpacity
+    }, additionalProps(restProps, data)));
   }
 
   function BarGroup(_ref) {
     var data = _ref.data,
-      className = _ref.className,
-      top = _ref.top,
-      left = _ref.left,
-      x0 = _ref.x0,
-      x0Scale = _ref.x0Scale,
-      x1Scale = _ref.x1Scale,
-      yScale = _ref.yScale,
-      zScale = _ref.zScale,
-      keys = _ref.keys,
-      height = _ref.height,
-      restProps = objectWithoutProperties(_ref, [
-        'data',
-        'className',
-        'top',
-        'left',
-        'x0',
-        'x0Scale',
-        'x1Scale',
-        'yScale',
-        'zScale',
-        'keys',
-        'height'
-      ]);
+        className = _ref.className,
+        top = _ref.top,
+        left = _ref.left,
+        x0 = _ref.x0,
+        x0Scale = _ref.x0Scale,
+        x1Scale = _ref.x1Scale,
+        yScale = _ref.yScale,
+        zScale = _ref.zScale,
+        keys = _ref.keys,
+        height = _ref.height,
+        restProps = objectWithoutProperties(_ref, ['data', 'className', 'top', 'left', 'x0', 'x0Scale', 'x1Scale', 'yScale', 'zScale', 'keys', 'height']);
 
-    var format = x0Scale.tickFormat
-      ? x0Scale.tickFormat()
-      : function(d) {
-          return d;
-        };
+    var format = x0Scale.tickFormat ? x0Scale.tickFormat() : function (d) {
+      return d;
+    };
     return React.createElement(
       group.Group,
       { className: cx('vx-bar-group', className), top: top, left: left },
-      data &&
-        data.map(function(d, i) {
-          return React.createElement(
-            group.Group,
-            { key: 'bar-group-' + i + '-' + x0(d), left: x0Scale(x0(d)) },
-            keys &&
-              keys.map(function(key, i) {
-                var value = d[key];
-                return React.createElement(
-                  Bar,
-                  _extends(
-                    {
-                      key: 'bar-group-bar-' + i + '-' + value + '-' + key,
-                      x: x1Scale(key),
-                      y: yScale(value),
-                      width: x1Scale.bandwidth(),
-                      height: height - yScale(value),
-                      fill: zScale(key),
-                      data: {
-                        key: key,
-                        value: value,
-                        x: format(x0(d)),
-                        data: d
-                      }
-                    },
-                    restProps
-                  )
-                );
-              })
-          );
-        })
+      data && data.map(function (d, i) {
+        return React.createElement(
+          group.Group,
+          { key: 'bar-group-' + i + '-' + x0(d), left: x0Scale(x0(d)) },
+          keys && keys.map(function (key, i) {
+            var value = d[key];
+            return React.createElement(Bar, _extends({
+              key: 'bar-group-bar-' + i + '-' + value + '-' + key,
+              x: x1Scale(key),
+              y: yScale(value),
+              width: x1Scale.bandwidth(),
+              height: height - yScale(value),
+              fill: zScale(key),
+              data: {
+                key: key,
+                value: value,
+                x: format(x0(d)),
+                data: d
+              }
+            }, restProps));
+          })
+        );
+      })
     );
   }
 
@@ -808,34 +554,21 @@
 
   function BarStack(_ref) {
     var data = _ref.data,
-      className = _ref.className,
-      top = _ref.top,
-      left = _ref.left,
-      x = _ref.x,
-      xScale = _ref.xScale,
-      yScale = _ref.yScale,
-      zScale = _ref.zScale,
-      keys = _ref.keys,
-      height = _ref.height,
-      restProps = objectWithoutProperties(_ref, [
-        'data',
-        'className',
-        'top',
-        'left',
-        'x',
-        'xScale',
-        'yScale',
-        'zScale',
-        'keys',
-        'height'
-      ]);
+        className = _ref.className,
+        top = _ref.top,
+        left = _ref.left,
+        x = _ref.x,
+        xScale = _ref.xScale,
+        yScale = _ref.yScale,
+        zScale = _ref.zScale,
+        keys = _ref.keys,
+        height = _ref.height,
+        restProps = objectWithoutProperties(_ref, ['data', 'className', 'top', 'left', 'x', 'xScale', 'yScale', 'zScale', 'keys', 'height']);
 
     var series = d3Shape.stack().keys(keys)(data);
-    var format = xScale.tickFormat
-      ? xScale.tickFormat()
-      : function(d) {
-          return d;
-        };
+    var format = xScale.tickFormat ? xScale.tickFormat() : function (d) {
+      return d;
+    };
     var bandwidth = xScale.bandwidth();
     var step = xScale.step();
     var paddingInner = xScale.paddingInner();
@@ -843,43 +576,36 @@
     return React.createElement(
       group.Group,
       { className: cx('vx-bar-stack', className), top: top, left: left },
-      series &&
-        series.map(function(s, i) {
-          return React.createElement(
-            group.Group,
-            { key: 'vx-bar-stack-' + i },
-            s.map(function(d, ii) {
-              var barHeight = yScale(d[0]) - yScale(d[1]);
-              return React.createElement(
-                Bar,
-                _extends(
-                  {
-                    key: 'bar-group-bar-' + i + '-' + ii + '-' + s.key,
-                    x: xScale(x(d.data)),
-                    y: yScale(d[1]),
-                    width: bandwidth,
-                    height: barHeight,
-                    fill: zScale(s.key),
-                    data: {
-                      bandwidth: bandwidth,
-                      paddingInner: paddingInner,
-                      paddingOuter: paddingOuter,
-                      step: step,
-                      key: s.key,
-                      value: d[1],
-                      height: barHeight,
-                      width: bandwidth,
-                      x: x(d.data),
-                      xFormatted: format(x(d.data)),
-                      data: d.data
-                    }
-                  },
-                  restProps
-                )
-              );
-            })
-          );
-        })
+      series && series.map(function (s, i) {
+        return React.createElement(
+          group.Group,
+          { key: 'vx-bar-stack-' + i },
+          s.map(function (d, ii) {
+            var barHeight = yScale(d[0]) - yScale(d[1]);
+            return React.createElement(Bar, _extends({
+              key: 'bar-group-bar-' + i + '-' + ii + '-' + s.key,
+              x: xScale(x(d.data)),
+              y: yScale(d[1]),
+              width: bandwidth,
+              height: barHeight,
+              fill: zScale(s.key),
+              data: {
+                bandwidth: bandwidth,
+                paddingInner: paddingInner,
+                paddingOuter: paddingOuter,
+                step: step,
+                key: s.key,
+                value: d[1],
+                height: barHeight,
+                width: bandwidth,
+                x: x(d.data),
+                xFormatted: format(x(d.data)),
+                data: d.data
+              }
+            }, restProps));
+          })
+        );
+      })
     );
   }
 
@@ -897,34 +623,21 @@
 
   function BarStackHorizontal(_ref) {
     var data = _ref.data,
-      className = _ref.className,
-      top = _ref.top,
-      left = _ref.left,
-      y = _ref.y,
-      xScale = _ref.xScale,
-      yScale = _ref.yScale,
-      zScale = _ref.zScale,
-      keys = _ref.keys,
-      height = _ref.height,
-      restProps = objectWithoutProperties(_ref, [
-        'data',
-        'className',
-        'top',
-        'left',
-        'y',
-        'xScale',
-        'yScale',
-        'zScale',
-        'keys',
-        'height'
-      ]);
+        className = _ref.className,
+        top = _ref.top,
+        left = _ref.left,
+        y = _ref.y,
+        xScale = _ref.xScale,
+        yScale = _ref.yScale,
+        zScale = _ref.zScale,
+        keys = _ref.keys,
+        height = _ref.height,
+        restProps = objectWithoutProperties(_ref, ['data', 'className', 'top', 'left', 'y', 'xScale', 'yScale', 'zScale', 'keys', 'height']);
 
     var series = d3Shape.stack().keys(keys)(data);
-    var format = yScale.tickFormat
-      ? yScale.tickFormat()
-      : function(d) {
-          return d;
-        };
+    var format = yScale.tickFormat ? yScale.tickFormat() : function (d) {
+      return d;
+    };
     var bandwidth = yScale.bandwidth();
     var step = yScale.step();
     var paddingInner = yScale.paddingInner();
@@ -932,43 +645,36 @@
     return React.createElement(
       group.Group,
       { className: cx('vx-bar-stack-horizontal', className), top: top, left: left },
-      series &&
-        series.map(function(s, i) {
-          return React.createElement(
-            group.Group,
-            { key: 'vx-bar-stack-horizontal-' + i },
-            s.map(function(d, ii) {
-              var barWidth = xScale(d[1]) - xScale(d[0]);
-              return React.createElement(
-                Bar,
-                _extends(
-                  {
-                    key: 'bar-group-bar-' + i + '-' + ii + '-' + s.key,
-                    x: xScale(d[0]),
-                    y: yScale(y(d.data)),
-                    width: barWidth,
-                    height: bandwidth,
-                    fill: zScale(s.key),
-                    data: {
-                      bandwidth: bandwidth,
-                      paddingInner: paddingInner,
-                      paddingOuter: paddingOuter,
-                      step: step,
-                      key: s.key,
-                      value: d[0],
-                      height: bandwidth,
-                      width: barWidth,
-                      y: y(d.data),
-                      yFormatted: format(y(d.data)),
-                      data: d.data
-                    }
-                  },
-                  restProps
-                )
-              );
-            })
-          );
-        })
+      series && series.map(function (s, i) {
+        return React.createElement(
+          group.Group,
+          { key: 'vx-bar-stack-horizontal-' + i },
+          s.map(function (d, ii) {
+            var barWidth = xScale(d[1]) - xScale(d[0]);
+            return React.createElement(Bar, _extends({
+              key: 'bar-group-bar-' + i + '-' + ii + '-' + s.key,
+              x: xScale(d[0]),
+              y: yScale(y(d.data)),
+              width: barWidth,
+              height: bandwidth,
+              fill: zScale(s.key),
+              data: {
+                bandwidth: bandwidth,
+                paddingInner: paddingInner,
+                paddingOuter: paddingOuter,
+                step: step,
+                key: s.key,
+                value: d[0],
+                height: bandwidth,
+                width: barWidth,
+                y: y(d.data),
+                yFormatted: format(y(d.data)),
+                data: d.data
+              }
+            }, restProps));
+          })
+        );
+      })
     );
   }
 
@@ -1014,44 +720,26 @@
 
   function Stack(_ref) {
     var className = _ref.className,
-      _ref$top = _ref.top,
-      top = _ref$top === undefined ? 0 : _ref$top,
-      _ref$left = _ref.left,
-      left = _ref$left === undefined ? 0 : _ref$left,
-      keys = _ref.keys,
-      data = _ref.data,
-      curve$$1 = _ref.curve,
-      defined = _ref.defined,
-      x = _ref.x,
-      x0 = _ref.x0,
-      x1 = _ref.x1,
-      y0 = _ref.y0,
-      y1 = _ref.y1,
-      value = _ref.value,
-      order = _ref.order,
-      offset = _ref.offset,
-      render = _ref.render,
-      _ref$reverse = _ref.reverse,
-      reverse = _ref$reverse === undefined ? false : _ref$reverse,
-      restProps = objectWithoutProperties(_ref, [
-        'className',
-        'top',
-        'left',
-        'keys',
-        'data',
-        'curve',
-        'defined',
-        'x',
-        'x0',
-        'x1',
-        'y0',
-        'y1',
-        'value',
-        'order',
-        'offset',
-        'render',
-        'reverse'
-      ]);
+        _ref$top = _ref.top,
+        top = _ref$top === undefined ? 0 : _ref$top,
+        _ref$left = _ref.left,
+        left = _ref$left === undefined ? 0 : _ref$left,
+        keys = _ref.keys,
+        data = _ref.data,
+        curve$$1 = _ref.curve,
+        defined = _ref.defined,
+        x = _ref.x,
+        x0 = _ref.x0,
+        x1 = _ref.x1,
+        y0 = _ref.y0,
+        y1 = _ref.y1,
+        value = _ref.value,
+        order = _ref.order,
+        offset = _ref.offset,
+        render = _ref.render,
+        _ref$reverse = _ref.reverse,
+        reverse = _ref$reverse === undefined ? false : _ref$reverse,
+        restProps = objectWithoutProperties(_ref, ['className', 'top', 'left', 'keys', 'data', 'curve', 'defined', 'x', 'x0', 'x1', 'y0', 'y1', 'value', 'order', 'offset', 'render', 'reverse']);
 
     var stack = d3Shape.stack();
     if (keys) stack.keys(keys);
@@ -1071,43 +759,36 @@
     var seriesData = stack(data);
     if (reverse) seriesData.reverse();
 
-    if (render)
-      return React.createElement(
-        group.Group,
-        { top: top, left: left },
-        render({ seriesData: seriesData, path: path })
-      );
+    if (render) return React.createElement(
+      group.Group,
+      { top: top, left: left },
+      render({ seriesData: seriesData, path: path })
+    );
 
     return React.createElement(
       group.Group,
       { top: top, left: left },
-      seriesData.map(function(series, i) {
-        return React.createElement(
-          'path',
-          _extends(
-            {
-              className: cx('vx-stack', className),
-              key: 'stack-' + i + '-' + (series.key || ''),
-              d: path(series)
-            },
-            additionalProps(restProps, {
-              datum: series[i],
-              index: i,
-              series: series
-            })
-          )
-        );
+      seriesData.map(function (series, i) {
+        return React.createElement('path', _extends({
+          className: cx('vx-stack', className),
+          key: 'stack-' + i + '-' + (series.key || ''),
+          d: path(series)
+        }, additionalProps(restProps, {
+          datum: series[i],
+          index: i,
+          series: series
+        })));
       })
     );
   }
 
   function pathHorizontalDiagonal(_ref) {
     var source = _ref.source,
-      target = _ref.target,
-      x = _ref.x,
-      y = _ref.y;
+        target = _ref.target,
+        x = _ref.x,
+        y = _ref.y;
 
-    return function(data) {
+    return function (data) {
       var link = d3Shape.linkHorizontal();
       link.x(x);
       link.y(y);
@@ -1128,69 +809,42 @@
 
   function LinkHorizontal(_ref2) {
     var className = _ref2.className,
-      innerRef = _ref2.innerRef,
-      data = _ref2.data,
-      path = _ref2.path,
-      _ref2$x = _ref2.x,
-      x =
-        _ref2$x === undefined
-          ? function(d) {
-              return d.y;
-            }
-          : _ref2$x,
-      _ref2$y = _ref2.y,
-      y =
-        _ref2$y === undefined
-          ? function(d) {
-              return d.x;
-            }
-          : _ref2$y,
-      _ref2$source = _ref2.source,
-      source =
-        _ref2$source === undefined
-          ? function(d) {
-              return d.source;
-            }
-          : _ref2$source,
-      _ref2$target = _ref2.target,
-      target =
-        _ref2$target === undefined
-          ? function(d) {
-              return d.target;
-            }
-          : _ref2$target,
-      restProps = objectWithoutProperties(_ref2, [
-        'className',
-        'innerRef',
-        'data',
-        'path',
-        'x',
-        'y',
-        'source',
-        'target'
-      ]);
+        innerRef = _ref2.innerRef,
+        data = _ref2.data,
+        path = _ref2.path,
+        _ref2$x = _ref2.x,
+        x = _ref2$x === undefined ? function (d) {
+      return d.y;
+    } : _ref2$x,
+        _ref2$y = _ref2.y,
+        y = _ref2$y === undefined ? function (d) {
+      return d.x;
+    } : _ref2$y,
+        _ref2$source = _ref2.source,
+        source = _ref2$source === undefined ? function (d) {
+      return d.source;
+    } : _ref2$source,
+        _ref2$target = _ref2.target,
+        target = _ref2$target === undefined ? function (d) {
+      return d.target;
+    } : _ref2$target,
+        restProps = objectWithoutProperties(_ref2, ['className', 'innerRef', 'data', 'path', 'x', 'y', 'source', 'target']);
 
     path = path || pathHorizontalDiagonal({ source: source, target: target, x: x, y: y });
-    return React.createElement(
-      'path',
-      _extends(
-        {
-          ref: innerRef,
-          className: cx('vx-link-horizontal', className),
-          d: path(data)
-        },
-        additionalProps(restProps, data)
-      )
-    );
+    return React.createElement('path', _extends({
+      ref: innerRef,
+      className: cx('vx-link-horizontal', className),
+      d: path(data)
+    }, additionalProps(restProps, data)));
   }
 
   function pathVerticalDiagonal(_ref) {
     var source = _ref.source,
-      target = _ref.target,
-      x = _ref.x,
-      y = _ref.y;
+        target = _ref.target,
+        x = _ref.x,
+        y = _ref.y;
 
-    return function(data) {
+    return function (data) {
       var link = d3Shape.linkVertical();
       link.x(x);
       link.y(y);
@@ -1211,69 +865,42 @@
 
   function LinkVertical(_ref2) {
     var className = _ref2.className,
-      innerRef = _ref2.innerRef,
-      data = _ref2.data,
-      path = _ref2.path,
-      _ref2$x = _ref2.x,
-      x =
-        _ref2$x === undefined
-          ? function(d) {
-              return d.x;
-            }
-          : _ref2$x,
-      _ref2$y = _ref2.y,
-      y =
-        _ref2$y === undefined
-          ? function(d) {
-              return d.y;
-            }
-          : _ref2$y,
-      _ref2$source = _ref2.source,
-      source =
-        _ref2$source === undefined
-          ? function(d) {
-              return d.source;
-            }
-          : _ref2$source,
-      _ref2$target = _ref2.target,
-      target =
-        _ref2$target === undefined
-          ? function(d) {
-              return d.target;
-            }
-          : _ref2$target,
-      restProps = objectWithoutProperties(_ref2, [
-        'className',
-        'innerRef',
-        'data',
-        'path',
-        'x',
-        'y',
-        'source',
-        'target'
-      ]);
+        innerRef = _ref2.innerRef,
+        data = _ref2.data,
+        path = _ref2.path,
+        _ref2$x = _ref2.x,
+        x = _ref2$x === undefined ? function (d) {
+      return d.x;
+    } : _ref2$x,
+        _ref2$y = _ref2.y,
+        y = _ref2$y === undefined ? function (d) {
+      return d.y;
+    } : _ref2$y,
+        _ref2$source = _ref2.source,
+        source = _ref2$source === undefined ? function (d) {
+      return d.source;
+    } : _ref2$source,
+        _ref2$target = _ref2.target,
+        target = _ref2$target === undefined ? function (d) {
+      return d.target;
+    } : _ref2$target,
+        restProps = objectWithoutProperties(_ref2, ['className', 'innerRef', 'data', 'path', 'x', 'y', 'source', 'target']);
 
     path = path || pathVerticalDiagonal({ source: source, target: target, x: x, y: y });
-    return React.createElement(
-      'path',
-      _extends(
-        {
-          ref: innerRef,
-          className: cx('vx-link-vertical', className),
-          d: path(data)
-        },
-        additionalProps(restProps, data)
-      )
-    );
+    return React.createElement('path', _extends({
+      ref: innerRef,
+      className: cx('vx-link-vertical', className),
+      d: path(data)
+    }, additionalProps(restProps, data)));
   }
 
   function pathRadialDiagonal(_ref) {
     var source = _ref.source,
-      target = _ref.target,
-      angle = _ref.angle,
-      radius = _ref.radius;
+        target = _ref.target,
+        angle = _ref.angle,
+        radius = _ref.radius;
 
-    return function(data) {
+    return function (data) {
       var link = d3Shape.linkRadial();
       link.angle(angle);
       link.radius(radius);
@@ -1294,71 +921,43 @@
 
   function LinkRadial(_ref2) {
     var className = _ref2.className,
-      innerRef = _ref2.innerRef,
-      data = _ref2.data,
-      path = _ref2.path,
-      _ref2$angle = _ref2.angle,
-      angle =
-        _ref2$angle === undefined
-          ? function(d) {
-              return d.x;
-            }
-          : _ref2$angle,
-      _ref2$radius = _ref2.radius,
-      radius =
-        _ref2$radius === undefined
-          ? function(d) {
-              return d.y;
-            }
-          : _ref2$radius,
-      _ref2$source = _ref2.source,
-      source =
-        _ref2$source === undefined
-          ? function(d) {
-              return d.source;
-            }
-          : _ref2$source,
-      _ref2$target = _ref2.target,
-      target =
-        _ref2$target === undefined
-          ? function(d) {
-              return d.target;
-            }
-          : _ref2$target,
-      restProps = objectWithoutProperties(_ref2, [
-        'className',
-        'innerRef',
-        'data',
-        'path',
-        'angle',
-        'radius',
-        'source',
-        'target'
-      ]);
+        innerRef = _ref2.innerRef,
+        data = _ref2.data,
+        path = _ref2.path,
+        _ref2$angle = _ref2.angle,
+        angle = _ref2$angle === undefined ? function (d) {
+      return d.x;
+    } : _ref2$angle,
+        _ref2$radius = _ref2.radius,
+        radius = _ref2$radius === undefined ? function (d) {
+      return d.y;
+    } : _ref2$radius,
+        _ref2$source = _ref2.source,
+        source = _ref2$source === undefined ? function (d) {
+      return d.source;
+    } : _ref2$source,
+        _ref2$target = _ref2.target,
+        target = _ref2$target === undefined ? function (d) {
+      return d.target;
+    } : _ref2$target,
+        restProps = objectWithoutProperties(_ref2, ['className', 'innerRef', 'data', 'path', 'angle', 'radius', 'source', 'target']);
 
-    path =
-      path || pathRadialDiagonal({ source: source, target: target, angle: angle, radius: radius });
-    return React.createElement(
-      'path',
-      _extends(
-        {
-          ref: innerRef,
-          className: cx('vx-link-radius', className),
-          d: path(data)
-        },
-        additionalProps(restProps, data)
-      )
-    );
+    path = path || pathRadialDiagonal({ source: source, target: target, angle: angle, radius: radius });
+    return React.createElement('path', _extends({
+      ref: innerRef,
+      className: cx('vx-link-radius', className),
+      d: path(data)
+    }, additionalProps(restProps, data)));
   }
 
   function pathHorizontalCurve(_ref) {
     var source = _ref.source,
-      target = _ref.target,
-      x = _ref.x,
-      y = _ref.y,
-      percent = _ref.percent;
+        target = _ref.target,
+        x = _ref.x,
+        y = _ref.y,
+        percent = _ref.percent;
 
-    return function(data) {
+    return function (data) {
       var sourceData = source(data);
       var targetData = target(data);
 
@@ -1392,74 +991,45 @@
 
   function LinkHorizontalCurve(_ref2) {
     var className = _ref2.className,
-      innerRef = _ref2.innerRef,
-      data = _ref2.data,
-      path = _ref2.path,
-      _ref2$x = _ref2.x,
-      x =
-        _ref2$x === undefined
-          ? function(d) {
-              return d.y;
-            }
-          : _ref2$x,
-      _ref2$y = _ref2.y,
-      y =
-        _ref2$y === undefined
-          ? function(d) {
-              return d.x;
-            }
-          : _ref2$y,
-      _ref2$source = _ref2.source,
-      source =
-        _ref2$source === undefined
-          ? function(d) {
-              return d.source;
-            }
-          : _ref2$source,
-      _ref2$target = _ref2.target,
-      target =
-        _ref2$target === undefined
-          ? function(d) {
-              return d.target;
-            }
-          : _ref2$target,
-      _ref2$percent = _ref2.percent,
-      percent = _ref2$percent === undefined ? 0.2 : _ref2$percent,
-      restProps = objectWithoutProperties(_ref2, [
-        'className',
-        'innerRef',
-        'data',
-        'path',
-        'x',
-        'y',
-        'source',
-        'target',
-        'percent'
-      ]);
+        innerRef = _ref2.innerRef,
+        data = _ref2.data,
+        path = _ref2.path,
+        _ref2$x = _ref2.x,
+        x = _ref2$x === undefined ? function (d) {
+      return d.y;
+    } : _ref2$x,
+        _ref2$y = _ref2.y,
+        y = _ref2$y === undefined ? function (d) {
+      return d.x;
+    } : _ref2$y,
+        _ref2$source = _ref2.source,
+        source = _ref2$source === undefined ? function (d) {
+      return d.source;
+    } : _ref2$source,
+        _ref2$target = _ref2.target,
+        target = _ref2$target === undefined ? function (d) {
+      return d.target;
+    } : _ref2$target,
+        _ref2$percent = _ref2.percent,
+        percent = _ref2$percent === undefined ? 0.2 : _ref2$percent,
+        restProps = objectWithoutProperties(_ref2, ['className', 'innerRef', 'data', 'path', 'x', 'y', 'source', 'target', 'percent']);
 
-    path =
-      path || pathHorizontalCurve({ source: source, target: target, x: x, y: y, percent: percent });
-    return React.createElement(
-      'path',
-      _extends(
-        {
-          ref: innerRef,
-          className: cx('vx-link', className),
-          d: path(data)
-        },
-        additionalProps(restProps, data)
-      )
-    );
+    path = path || pathHorizontalCurve({ source: source, target: target, x: x, y: y, percent: percent });
+    return React.createElement('path', _extends({
+      ref: innerRef,
+      className: cx('vx-link', className),
+      d: path(data)
+    }, additionalProps(restProps, data)));
   }
 
   function pathVerticalCurve(_ref) {
     var source = _ref.source,
-      target = _ref.target,
-      x = _ref.x,
-      y = _ref.y,
-      percent = _ref.percent;
+        target = _ref.target,
+        x = _ref.x,
+        y = _ref.y,
+        percent = _ref.percent;
 
-    return function(data) {
+    return function (data) {
       var sourceData = source(data);
       var targetData = target(data);
 
@@ -1493,74 +1063,45 @@
 
   function LinkVerticalCurve(_ref2) {
     var className = _ref2.className,
-      innerRef = _ref2.innerRef,
-      data = _ref2.data,
-      path = _ref2.path,
-      _ref2$x = _ref2.x,
-      x =
-        _ref2$x === undefined
-          ? function(d) {
-              return d.x;
-            }
-          : _ref2$x,
-      _ref2$y = _ref2.y,
-      y =
-        _ref2$y === undefined
-          ? function(d) {
-              return d.y;
-            }
-          : _ref2$y,
-      _ref2$source = _ref2.source,
-      source =
-        _ref2$source === undefined
-          ? function(d) {
-              return d.source;
-            }
-          : _ref2$source,
-      _ref2$target = _ref2.target,
-      target =
-        _ref2$target === undefined
-          ? function(d) {
-              return d.target;
-            }
-          : _ref2$target,
-      _ref2$percent = _ref2.percent,
-      percent = _ref2$percent === undefined ? 0.2 : _ref2$percent,
-      restProps = objectWithoutProperties(_ref2, [
-        'className',
-        'innerRef',
-        'data',
-        'path',
-        'x',
-        'y',
-        'source',
-        'target',
-        'percent'
-      ]);
+        innerRef = _ref2.innerRef,
+        data = _ref2.data,
+        path = _ref2.path,
+        _ref2$x = _ref2.x,
+        x = _ref2$x === undefined ? function (d) {
+      return d.x;
+    } : _ref2$x,
+        _ref2$y = _ref2.y,
+        y = _ref2$y === undefined ? function (d) {
+      return d.y;
+    } : _ref2$y,
+        _ref2$source = _ref2.source,
+        source = _ref2$source === undefined ? function (d) {
+      return d.source;
+    } : _ref2$source,
+        _ref2$target = _ref2.target,
+        target = _ref2$target === undefined ? function (d) {
+      return d.target;
+    } : _ref2$target,
+        _ref2$percent = _ref2.percent,
+        percent = _ref2$percent === undefined ? 0.2 : _ref2$percent,
+        restProps = objectWithoutProperties(_ref2, ['className', 'innerRef', 'data', 'path', 'x', 'y', 'source', 'target', 'percent']);
 
-    path =
-      path || pathVerticalCurve({ source: source, target: target, x: x, y: y, percent: percent });
-    return React.createElement(
-      'path',
-      _extends(
-        {
-          ref: innerRef,
-          className: cx('vx-link', className),
-          d: path(data)
-        },
-        additionalProps(restProps, data)
-      )
-    );
+    path = path || pathVerticalCurve({ source: source, target: target, x: x, y: y, percent: percent });
+    return React.createElement('path', _extends({
+      ref: innerRef,
+      className: cx('vx-link', className),
+      d: path(data)
+    }, additionalProps(restProps, data)));
   }
 
   function pathRadialCurve(_ref) {
     var source = _ref.source,
-      target = _ref.target,
-      x = _ref.x,
-      y = _ref.y,
-      percent = _ref.percent;
+        target = _ref.target,
+        x = _ref.x,
+        y = _ref.y,
+        percent = _ref.percent;
 
-    return function(data) {
+    return function (data) {
       var sourceData = source(data);
       var targetData = target(data);
 
@@ -1604,73 +1145,44 @@
 
   function LinkRadialCurve(_ref2) {
     var className = _ref2.className,
-      innerRef = _ref2.innerRef,
-      data = _ref2.data,
-      path = _ref2.path,
-      _ref2$x = _ref2.x,
-      x =
-        _ref2$x === undefined
-          ? function(d) {
-              return d.x;
-            }
-          : _ref2$x,
-      _ref2$y = _ref2.y,
-      y =
-        _ref2$y === undefined
-          ? function(d) {
-              return d.y;
-            }
-          : _ref2$y,
-      _ref2$source = _ref2.source,
-      source =
-        _ref2$source === undefined
-          ? function(d) {
-              return d.source;
-            }
-          : _ref2$source,
-      _ref2$target = _ref2.target,
-      target =
-        _ref2$target === undefined
-          ? function(d) {
-              return d.target;
-            }
-          : _ref2$target,
-      _ref2$percent = _ref2.percent,
-      percent = _ref2$percent === undefined ? 0.2 : _ref2$percent,
-      restProps = objectWithoutProperties(_ref2, [
-        'className',
-        'innerRef',
-        'data',
-        'path',
-        'x',
-        'y',
-        'source',
-        'target',
-        'percent'
-      ]);
+        innerRef = _ref2.innerRef,
+        data = _ref2.data,
+        path = _ref2.path,
+        _ref2$x = _ref2.x,
+        x = _ref2$x === undefined ? function (d) {
+      return d.x;
+    } : _ref2$x,
+        _ref2$y = _ref2.y,
+        y = _ref2$y === undefined ? function (d) {
+      return d.y;
+    } : _ref2$y,
+        _ref2$source = _ref2.source,
+        source = _ref2$source === undefined ? function (d) {
+      return d.source;
+    } : _ref2$source,
+        _ref2$target = _ref2.target,
+        target = _ref2$target === undefined ? function (d) {
+      return d.target;
+    } : _ref2$target,
+        _ref2$percent = _ref2.percent,
+        percent = _ref2$percent === undefined ? 0.2 : _ref2$percent,
+        restProps = objectWithoutProperties(_ref2, ['className', 'innerRef', 'data', 'path', 'x', 'y', 'source', 'target', 'percent']);
 
-    path =
-      path || pathRadialCurve({ source: source, target: target, x: x, y: y, percent: percent });
-    return React.createElement(
-      'path',
-      _extends(
-        {
-          ref: innerRef,
-          className: cx('vx-link', className),
-          d: path(data)
-        },
-        additionalProps(restProps, data)
-      )
-    );
+    path = path || pathRadialCurve({ source: source, target: target, x: x, y: y, percent: percent });
+    return React.createElement('path', _extends({
+      ref: innerRef,
+      className: cx('vx-link', className),
+      d: path(data)
+    }, additionalProps(restProps, data)));
   }
 
   function pathHorizontalLine(_ref) {
     var source = _ref.source,
-      target = _ref.target,
-      x = _ref.x,
-      y = _ref.y;
+        target = _ref.target,
+        x = _ref.x,
+        y = _ref.y;
 
-    return function(data) {
+    return function (data) {
       var sourceData = source(data);
       var targetData = target(data);
 
@@ -1698,69 +1210,42 @@
 
   function LinkHorizontalLine(_ref2) {
     var className = _ref2.className,
-      innerRef = _ref2.innerRef,
-      data = _ref2.data,
-      path = _ref2.path,
-      _ref2$x = _ref2.x,
-      x =
-        _ref2$x === undefined
-          ? function(d) {
-              return d.y;
-            }
-          : _ref2$x,
-      _ref2$y = _ref2.y,
-      y =
-        _ref2$y === undefined
-          ? function(d) {
-              return d.x;
-            }
-          : _ref2$y,
-      _ref2$source = _ref2.source,
-      source =
-        _ref2$source === undefined
-          ? function(d) {
-              return d.source;
-            }
-          : _ref2$source,
-      _ref2$target = _ref2.target,
-      target =
-        _ref2$target === undefined
-          ? function(d) {
-              return d.target;
-            }
-          : _ref2$target,
-      restProps = objectWithoutProperties(_ref2, [
-        'className',
-        'innerRef',
-        'data',
-        'path',
-        'x',
-        'y',
-        'source',
-        'target'
-      ]);
+        innerRef = _ref2.innerRef,
+        data = _ref2.data,
+        path = _ref2.path,
+        _ref2$x = _ref2.x,
+        x = _ref2$x === undefined ? function (d) {
+      return d.y;
+    } : _ref2$x,
+        _ref2$y = _ref2.y,
+        y = _ref2$y === undefined ? function (d) {
+      return d.x;
+    } : _ref2$y,
+        _ref2$source = _ref2.source,
+        source = _ref2$source === undefined ? function (d) {
+      return d.source;
+    } : _ref2$source,
+        _ref2$target = _ref2.target,
+        target = _ref2$target === undefined ? function (d) {
+      return d.target;
+    } : _ref2$target,
+        restProps = objectWithoutProperties(_ref2, ['className', 'innerRef', 'data', 'path', 'x', 'y', 'source', 'target']);
 
     path = path || pathHorizontalLine({ source: source, target: target, x: x, y: y });
-    return React.createElement(
-      'path',
-      _extends(
-        {
-          ref: innerRef,
-          className: cx('vx-link', className),
-          d: path(data)
-        },
-        additionalProps(restProps, data)
-      )
-    );
+    return React.createElement('path', _extends({
+      ref: innerRef,
+      className: cx('vx-link', className),
+      d: path(data)
+    }, additionalProps(restProps, data)));
   }
 
   function pathVerticalLine(_ref) {
     var source = _ref.source,
-      target = _ref.target,
-      x = _ref.x,
-      y = _ref.y;
+        target = _ref.target,
+        x = _ref.x,
+        y = _ref.y;
 
-    return function(data) {
+    return function (data) {
       var sourceData = source(data);
       var targetData = target(data);
 
@@ -1788,69 +1273,42 @@
 
   function LinkVerticalLine(_ref2) {
     var className = _ref2.className,
-      innerRef = _ref2.innerRef,
-      data = _ref2.data,
-      path = _ref2.path,
-      _ref2$x = _ref2.x,
-      x =
-        _ref2$x === undefined
-          ? function(d) {
-              return d.x;
-            }
-          : _ref2$x,
-      _ref2$y = _ref2.y,
-      y =
-        _ref2$y === undefined
-          ? function(d) {
-              return d.y;
-            }
-          : _ref2$y,
-      _ref2$source = _ref2.source,
-      source =
-        _ref2$source === undefined
-          ? function(d) {
-              return d.source;
-            }
-          : _ref2$source,
-      _ref2$target = _ref2.target,
-      target =
-        _ref2$target === undefined
-          ? function(d) {
-              return d.target;
-            }
-          : _ref2$target,
-      restProps = objectWithoutProperties(_ref2, [
-        'className',
-        'innerRef',
-        'data',
-        'path',
-        'x',
-        'y',
-        'source',
-        'target'
-      ]);
+        innerRef = _ref2.innerRef,
+        data = _ref2.data,
+        path = _ref2.path,
+        _ref2$x = _ref2.x,
+        x = _ref2$x === undefined ? function (d) {
+      return d.x;
+    } : _ref2$x,
+        _ref2$y = _ref2.y,
+        y = _ref2$y === undefined ? function (d) {
+      return d.y;
+    } : _ref2$y,
+        _ref2$source = _ref2.source,
+        source = _ref2$source === undefined ? function (d) {
+      return d.source;
+    } : _ref2$source,
+        _ref2$target = _ref2.target,
+        target = _ref2$target === undefined ? function (d) {
+      return d.target;
+    } : _ref2$target,
+        restProps = objectWithoutProperties(_ref2, ['className', 'innerRef', 'data', 'path', 'x', 'y', 'source', 'target']);
 
     path = path || pathVerticalLine({ source: source, target: target, x: x, y: y });
-    return React.createElement(
-      'path',
-      _extends(
-        {
-          ref: innerRef,
-          className: cx('vx-link', className),
-          d: path(data)
-        },
-        additionalProps(restProps, data)
-      )
-    );
+    return React.createElement('path', _extends({
+      ref: innerRef,
+      className: cx('vx-link', className),
+      d: path(data)
+    }, additionalProps(restProps, data)));
   }
 
   function pathRadialLine(_ref) {
     var source = _ref.source,
-      target = _ref.target,
-      x = _ref.x,
-      y = _ref.y;
+        target = _ref.target,
+        x = _ref.x,
+        y = _ref.y;
 
-    return function(data) {
+    return function (data) {
       var sourceData = source(data);
       var targetData = target(data);
 
@@ -1883,70 +1341,43 @@
 
   function LinkRadialStep(_ref2) {
     var className = _ref2.className,
-      innerRef = _ref2.innerRef,
-      data = _ref2.data,
-      path = _ref2.path,
-      _ref2$x = _ref2.x,
-      x =
-        _ref2$x === undefined
-          ? function(d) {
-              return d.x;
-            }
-          : _ref2$x,
-      _ref2$y = _ref2.y,
-      y =
-        _ref2$y === undefined
-          ? function(d) {
-              return d.y;
-            }
-          : _ref2$y,
-      _ref2$source = _ref2.source,
-      source =
-        _ref2$source === undefined
-          ? function(d) {
-              return d.source;
-            }
-          : _ref2$source,
-      _ref2$target = _ref2.target,
-      target =
-        _ref2$target === undefined
-          ? function(d) {
-              return d.target;
-            }
-          : _ref2$target,
-      restProps = objectWithoutProperties(_ref2, [
-        'className',
-        'innerRef',
-        'data',
-        'path',
-        'x',
-        'y',
-        'source',
-        'target'
-      ]);
+        innerRef = _ref2.innerRef,
+        data = _ref2.data,
+        path = _ref2.path,
+        _ref2$x = _ref2.x,
+        x = _ref2$x === undefined ? function (d) {
+      return d.x;
+    } : _ref2$x,
+        _ref2$y = _ref2.y,
+        y = _ref2$y === undefined ? function (d) {
+      return d.y;
+    } : _ref2$y,
+        _ref2$source = _ref2.source,
+        source = _ref2$source === undefined ? function (d) {
+      return d.source;
+    } : _ref2$source,
+        _ref2$target = _ref2.target,
+        target = _ref2$target === undefined ? function (d) {
+      return d.target;
+    } : _ref2$target,
+        restProps = objectWithoutProperties(_ref2, ['className', 'innerRef', 'data', 'path', 'x', 'y', 'source', 'target']);
 
     path = path || pathRadialLine({ source: source, target: target, x: x, y: y });
-    return React.createElement(
-      'path',
-      _extends(
-        {
-          ref: innerRef,
-          className: cx('vx-link', className),
-          d: path(data)
-        },
-        additionalProps(restProps, data)
-      )
-    );
+    return React.createElement('path', _extends({
+      ref: innerRef,
+      className: cx('vx-link', className),
+      d: path(data)
+    }, additionalProps(restProps, data)));
   }
 
   function pathHorizontalStep(_ref) {
     var source = _ref.source,
-      target = _ref.target,
-      x = _ref.x,
-      y = _ref.y,
-      percent = _ref.percent;
+        target = _ref.target,
+        x = _ref.x,
+        y = _ref.y,
+        percent = _ref.percent;
 
-    return function(data) {
+    return function (data) {
       var sourceData = source(data);
       var targetData = target(data);
 
@@ -1977,74 +1408,45 @@
 
   function LinkHorizontalStep(_ref2) {
     var className = _ref2.className,
-      innerRef = _ref2.innerRef,
-      data = _ref2.data,
-      path = _ref2.path,
-      _ref2$percent = _ref2.percent,
-      percent = _ref2$percent === undefined ? 0.5 : _ref2$percent,
-      _ref2$x = _ref2.x,
-      x =
-        _ref2$x === undefined
-          ? function(d) {
-              return d.y;
-            }
-          : _ref2$x,
-      _ref2$y = _ref2.y,
-      y =
-        _ref2$y === undefined
-          ? function(d) {
-              return d.x;
-            }
-          : _ref2$y,
-      _ref2$source = _ref2.source,
-      source =
-        _ref2$source === undefined
-          ? function(d) {
-              return d.source;
-            }
-          : _ref2$source,
-      _ref2$target = _ref2.target,
-      target =
-        _ref2$target === undefined
-          ? function(d) {
-              return d.target;
-            }
-          : _ref2$target,
-      restProps = objectWithoutProperties(_ref2, [
-        'className',
-        'innerRef',
-        'data',
-        'path',
-        'percent',
-        'x',
-        'y',
-        'source',
-        'target'
-      ]);
+        innerRef = _ref2.innerRef,
+        data = _ref2.data,
+        path = _ref2.path,
+        _ref2$percent = _ref2.percent,
+        percent = _ref2$percent === undefined ? 0.5 : _ref2$percent,
+        _ref2$x = _ref2.x,
+        x = _ref2$x === undefined ? function (d) {
+      return d.y;
+    } : _ref2$x,
+        _ref2$y = _ref2.y,
+        y = _ref2$y === undefined ? function (d) {
+      return d.x;
+    } : _ref2$y,
+        _ref2$source = _ref2.source,
+        source = _ref2$source === undefined ? function (d) {
+      return d.source;
+    } : _ref2$source,
+        _ref2$target = _ref2.target,
+        target = _ref2$target === undefined ? function (d) {
+      return d.target;
+    } : _ref2$target,
+        restProps = objectWithoutProperties(_ref2, ['className', 'innerRef', 'data', 'path', 'percent', 'x', 'y', 'source', 'target']);
 
-    path =
-      path || pathHorizontalStep({ source: source, target: target, x: x, y: y, percent: percent });
-    return React.createElement(
-      'path',
-      _extends(
-        {
-          ref: innerRef,
-          className: cx('vx-link', className),
-          d: path(data)
-        },
-        additionalProps(restProps, data)
-      )
-    );
+    path = path || pathHorizontalStep({ source: source, target: target, x: x, y: y, percent: percent });
+    return React.createElement('path', _extends({
+      ref: innerRef,
+      className: cx('vx-link', className),
+      d: path(data)
+    }, additionalProps(restProps, data)));
   }
 
   function pathVerticalStep(_ref) {
     var source = _ref.source,
-      target = _ref.target,
-      x = _ref.x,
-      y = _ref.y,
-      percent = _ref.percent;
+        target = _ref.target,
+        x = _ref.x,
+        y = _ref.y,
+        percent = _ref.percent;
 
-    return function(data) {
+    return function (data) {
       var sourceData = source(data);
       var targetData = target(data);
 
@@ -2075,73 +1477,44 @@
 
   function LinkVerticalStep(_ref2) {
     var className = _ref2.className,
-      innerRef = _ref2.innerRef,
-      data = _ref2.data,
-      path = _ref2.path,
-      _ref2$percent = _ref2.percent,
-      percent = _ref2$percent === undefined ? 0.5 : _ref2$percent,
-      _ref2$x = _ref2.x,
-      x =
-        _ref2$x === undefined
-          ? function(d) {
-              return d.x;
-            }
-          : _ref2$x,
-      _ref2$y = _ref2.y,
-      y =
-        _ref2$y === undefined
-          ? function(d) {
-              return d.y;
-            }
-          : _ref2$y,
-      _ref2$source = _ref2.source,
-      source =
-        _ref2$source === undefined
-          ? function(d) {
-              return d.source;
-            }
-          : _ref2$source,
-      _ref2$target = _ref2.target,
-      target =
-        _ref2$target === undefined
-          ? function(d) {
-              return d.target;
-            }
-          : _ref2$target,
-      restProps = objectWithoutProperties(_ref2, [
-        'className',
-        'innerRef',
-        'data',
-        'path',
-        'percent',
-        'x',
-        'y',
-        'source',
-        'target'
-      ]);
+        innerRef = _ref2.innerRef,
+        data = _ref2.data,
+        path = _ref2.path,
+        _ref2$percent = _ref2.percent,
+        percent = _ref2$percent === undefined ? 0.5 : _ref2$percent,
+        _ref2$x = _ref2.x,
+        x = _ref2$x === undefined ? function (d) {
+      return d.x;
+    } : _ref2$x,
+        _ref2$y = _ref2.y,
+        y = _ref2$y === undefined ? function (d) {
+      return d.y;
+    } : _ref2$y,
+        _ref2$source = _ref2.source,
+        source = _ref2$source === undefined ? function (d) {
+      return d.source;
+    } : _ref2$source,
+        _ref2$target = _ref2.target,
+        target = _ref2$target === undefined ? function (d) {
+      return d.target;
+    } : _ref2$target,
+        restProps = objectWithoutProperties(_ref2, ['className', 'innerRef', 'data', 'path', 'percent', 'x', 'y', 'source', 'target']);
 
-    path =
-      path || pathVerticalStep({ source: source, target: target, x: x, y: y, percent: percent });
-    return React.createElement(
-      'path',
-      _extends(
-        {
-          ref: innerRef,
-          className: cx('vx-link', className),
-          d: path(data)
-        },
-        additionalProps(restProps, data)
-      )
-    );
+    path = path || pathVerticalStep({ source: source, target: target, x: x, y: y, percent: percent });
+    return React.createElement('path', _extends({
+      ref: innerRef,
+      className: cx('vx-link', className),
+      d: path(data)
+    }, additionalProps(restProps, data)));
   }
 
   function pathRadialStep(_ref) {
     var source = _ref.source,
-      target = _ref.target,
-      x = _ref.x,
-      y = _ref.y;
+        target = _ref.target,
+        x = _ref.x,
+        y = _ref.y;
 
-    return function(data) {
+    return function (data) {
       var sourceData = source(data);
       var targetData = target(data);
 
@@ -2161,27 +1534,7 @@
       var ts = Math.sin(ta);
       var sf = Math.abs(ta - sa) > Math.PI ? ta <= sa : ta > sa;
 
-      return (
-        '\n      M' +
-        sr * sc +
-        ',' +
-        sr * ss +
-        '\n      A' +
-        sr +
-        ',' +
-        sr +
-        ',0,0,' +
-        (sf ? 1 : 0) +
-        ',' +
-        sr * tc +
-        ',' +
-        sr * ts +
-        '\n      L' +
-        tr * tc +
-        ',' +
-        tr * ts +
-        '\n    '
-      );
+      return '\n      M' + sr * sc + ',' + sr * ss + '\n      A' + sr + ',' + sr + ',0,0,' + (sf ? 1 : 0) + ',' + sr * tc + ',' + sr * ts + '\n      L' + tr * tc + ',' + tr * ts + '\n    ';
     };
   }
 
@@ -2196,60 +1549,33 @@
 
   function LinkRadialStep$1(_ref2) {
     var className = _ref2.className,
-      innerRef = _ref2.innerRef,
-      data = _ref2.data,
-      path = _ref2.path,
-      _ref2$x = _ref2.x,
-      x =
-        _ref2$x === undefined
-          ? function(d) {
-              return d.x;
-            }
-          : _ref2$x,
-      _ref2$y = _ref2.y,
-      y =
-        _ref2$y === undefined
-          ? function(d) {
-              return d.y;
-            }
-          : _ref2$y,
-      _ref2$source = _ref2.source,
-      source =
-        _ref2$source === undefined
-          ? function(d) {
-              return d.source;
-            }
-          : _ref2$source,
-      _ref2$target = _ref2.target,
-      target =
-        _ref2$target === undefined
-          ? function(d) {
-              return d.target;
-            }
-          : _ref2$target,
-      restProps = objectWithoutProperties(_ref2, [
-        'className',
-        'innerRef',
-        'data',
-        'path',
-        'x',
-        'y',
-        'source',
-        'target'
-      ]);
+        innerRef = _ref2.innerRef,
+        data = _ref2.data,
+        path = _ref2.path,
+        _ref2$x = _ref2.x,
+        x = _ref2$x === undefined ? function (d) {
+      return d.x;
+    } : _ref2$x,
+        _ref2$y = _ref2.y,
+        y = _ref2$y === undefined ? function (d) {
+      return d.y;
+    } : _ref2$y,
+        _ref2$source = _ref2.source,
+        source = _ref2$source === undefined ? function (d) {
+      return d.source;
+    } : _ref2$source,
+        _ref2$target = _ref2.target,
+        target = _ref2$target === undefined ? function (d) {
+      return d.target;
+    } : _ref2$target,
+        restProps = objectWithoutProperties(_ref2, ['className', 'innerRef', 'data', 'path', 'x', 'y', 'source', 'target']);
 
     path = path || pathRadialStep({ source: source, target: target, x: x, y: y });
-    return React.createElement(
-      'path',
-      _extends(
-        {
-          ref: innerRef,
-          className: cx('vx-link', className),
-          d: path(data)
-        },
-        additionalProps(restProps, data)
-      )
-    );
+    return React.createElement('path', _extends({
+      ref: innerRef,
+      className: cx('vx-link', className),
+      d: path(data)
+    }, additionalProps(restProps, data)));
   }
 
   exports.Arc = Arc;
@@ -2298,4 +1624,5 @@
   exports.pathRadialStep = pathRadialStep;
 
   Object.defineProperty(exports, '__esModule', { value: true });
-});
+
+})));

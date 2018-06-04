@@ -8,6 +8,28 @@ const deps = Object.keys({
   ...pkg.peerDependencies
 });
 
+const globals = deps.reduce((o, name) => {
+  if (name.includes('@vx/')) {
+    o[name] = 'vx';
+  }
+  if (name.includes('d3-')) {
+    o[name] = 'd3';
+  }
+  if (name === 'react') {
+    o[name] = 'React';
+  }
+  if (name === 'react-dom') {
+    o[name] = 'ReactDOM';
+  }
+  if (name === 'prop-types') {
+    o[name] = 'PropTypes';
+  }
+  if (name === 'classnames') {
+    o[name] = 'classNames';
+  }
+  return o;
+}, {});
+
 export default [
   {
     input: 'src/index',
@@ -23,7 +45,7 @@ export default [
       extend: true,
       file: pkg.main,
       format: 'umd',
-      globals: deps,
+      globals,
       name: 'vx'
     }
   },
