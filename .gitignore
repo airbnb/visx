@@ -1,6 +1,7 @@
 .DS_Store
 node_modules
 build
+dist
 bundle.js
 test/tmp
 *.log
