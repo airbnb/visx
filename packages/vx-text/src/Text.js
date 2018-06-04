@@ -1,32 +1,15 @@
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import reduceCSSCalc from 'reduce-css-calc';
 import getStringWidth from './util/getStringWidth';
 
 class Text extends Component {
-  static propTypes = {
-    scaleToFit: PropTypes.bool,
-    angle: PropTypes.number,
-    textAnchor: PropTypes.oneOf(['start', 'middle', 'end', 'inherit']),
-    verticalAnchor: PropTypes.oneOf(['start', 'middle', 'end']),
-    style: PropTypes.object
-  };
-
-  static defaultProps = {
-    x: 0,
-    y: 0,
-    dx: 0,
-    dy: 0,
-    lineHeight: '1em',
-    capHeight: '0.71em', // Magic number from d3
-    scaleToFit: false,
-    textAnchor: 'start',
-    verticalAnchor: 'end' // default SVG behavior
-  };
-
-  state = {
-    wordsByLines: []
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      wordsByLines: []
+    };
+  }
 
   componentWillMount() {
     this.updateWordsByLines(this.props, true);
@@ -150,5 +133,25 @@ class Text extends Component {
     );
   }
 }
+
+Text.defaultProps = {
+  x: 0,
+  y: 0,
+  dx: 0,
+  dy: 0,
+  lineHeight: '1em',
+  capHeight: '0.71em', // Magic number from d3
+  scaleToFit: false,
+  textAnchor: 'start',
+  verticalAnchor: 'end' // default SVG behavior
+};
+
+Text.propTypes = {
+  scaleToFit: PropTypes.bool,
+  angle: PropTypes.number,
+  textAnchor: PropTypes.oneOf(['start', 'middle', 'end', 'inherit']),
+  verticalAnchor: PropTypes.oneOf(['start', 'middle', 'end']),
+  style: PropTypes.object
+};
 
 export default Text;
