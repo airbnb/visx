@@ -8,7 +8,8 @@
     "docs": "node ./scripts/docs/index.js",
     "prepare-release": "git checkout master && git pull --rebase origin master && npm run docs && lerna updated",
     "release": "npm run prepare-release && lerna publish --exact",
-    "format": "prettier \"{packages,scripts}/**/*.js\" --write"
+    "format": "prettier \"{packages,scripts}/**/*.js\" --write",
+    "precommit": "lint-staged"
   },
   "prettier": {
     "printWidth": 100,
