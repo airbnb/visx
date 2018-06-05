@@ -1,9 +1,10 @@
 const pkg = require('./package.json');
 const resolve = require('rollup-plugin-node-resolve');
 const babel = require('rollup-plugin-babel');
+const replace = require('rollup-plugin-replace');
 const commonjs = require('rollup-plugin-commonjs');
+const uglify = require('rollup-plugin-uglify').uglify;
 
-const name = pkg.name.replace('@vx/', '');
 const deps = Object.keys({
   ...pkg.dependencies,
   ...pkg.peerDependencies
@@ -28,7 +29,7 @@ const globals = deps.reduce((o, name) => {
   if (name === 'classnames') {
     o[name] = 'classNames';
   }
-  if (name === 'lodash-es') {
+  if (name === 'lodash') {
     o[name] = 'lodash';
   }
   return o;
@@ -44,7 +45,11 @@ export default [
         exclude: 'node_modules/**',
         plugins: ['lodash', 'external-helpers']
       }),
-      commonjs()
+      commonjs(),
+      replace({
+        ENV: JSON.stringify('production')
+      }),
+      uglify()
     ],
     output: {
       extend: true,
@@ -63,7 +68,10 @@ export default [
         exclude: 'node_modules/**',
         plugins: ['lodash', 'external-helpers']
       }),
-      commonjs()
+      commonjs(),
+      replace({
+        ENV: JSON.stringify('production')
+      })
     ],
     output: [{ file: pkg.module, format: 'es' }]
   }

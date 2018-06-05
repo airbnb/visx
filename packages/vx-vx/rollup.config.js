@@ -1,8 +1,9 @@
 const pkg = require('./package.json');
 const resolve = require('rollup-plugin-node-resolve');
 const babel = require('rollup-plugin-babel');
+const replace = require('rollup-plugin-replace');
+const uglify = require('rollup-plugin-uglify').uglify;
 
-const name = pkg.name.replace('@vx/', '');
 const deps = Object.keys({
   ...pkg.dependencies,
   ...pkg.peerDependencies
@@ -39,7 +40,11 @@ export default [
       babel({
         exclude: 'node_modules/**',
         plugins: ['external-helpers']
-      })
+      }),
+      replace({
+        ENV: JSON.stringify('production')
+      }),
+      uglify()
     ],
     output: {
       extend: true,
@@ -57,6 +62,9 @@ export default [
       babel({
         exclude: 'node_modules/**',
         plugins: ['external-helpers']
+      }),
+      replace({
+        ENV: JSON.stringify('production')
       })
     ],
     output: [{ file: pkg.module, format: 'es' }]
