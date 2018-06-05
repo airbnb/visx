@@ -1,24 +1,15 @@
+import { shallow } from 'enzyme';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { shallow } from 'enzyme';
-import { extent, max } from 'd3-array';
-import { AreaClosed } from '../src';
 import { appleStock } from '../../vx-mock-data';
-import { scaleTime, scaleLinear } from '../../vx-scale';
+import { AreaClosed } from '../src';
 
 const xStock = d => new Date(d.date);
 const yStock = d => d.close;
 
-const fakeXScale = scaleTime({
-  range: [0, 100],
-  domain: extent(appleStock, xStock)
-});
-
-const fakeYScale = scaleLinear({
-  range: [100, 0],
-  domain: [0, max(appleStock, yStock)],
-  nice: true
-});
+const fakeXScale = val => 50;
+const fakeYScale = val => 50;
+fakeYScale.range = () => [100, 0];
 
 const AreaClosedWrapper = ({ ...restProps }) =>
   shallow(

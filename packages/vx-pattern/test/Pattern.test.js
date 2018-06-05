@@ -1,6 +1,5 @@
+import { mount } from 'enzyme';
 import React from 'react';
-import { shallow, mount } from 'enzyme';
-
 import { Pattern } from '../';
 
 describe('<Pattern />', () => {
@@ -20,7 +19,7 @@ describe('<Pattern />', () => {
     );
     expect(console.error).toBeCalled();
     expect(console.error.mock.calls[0][0]).toEqual(
-      'Warning: Failed prop type: The prop `id` is marked as required in `Pattern`, but its value is `undefined`.\n    in Pattern'
+      'Warning: Failed prop type: The prop `id` is marked as required in `W`, but its value is `undefined`.\n    in W'
     );
   });
 
@@ -32,7 +31,7 @@ describe('<Pattern />', () => {
     );
     expect(console.error).toBeCalled();
     expect(console.error.mock.calls[0][0]).toEqual(
-      'Warning: Failed prop type: The prop `width` is marked as required in `Pattern`, but its value is `undefined`.\n    in Pattern'
+      'Warning: Failed prop type: The prop `width` is marked as required in `W`, but its value is `undefined`.\n    in W'
     );
   });
 
@@ -44,7 +43,7 @@ describe('<Pattern />', () => {
     );
     expect(console.error).toBeCalled();
     expect(console.error.mock.calls[0][0]).toEqual(
-      'Warning: Failed prop type: The prop `height` is marked as required in `Pattern`, but its value is `undefined`.\n    in Pattern'
+      'Warning: Failed prop type: The prop `height` is marked as required in `W`, but its value is `undefined`.\n    in W'
     );
   });
 
@@ -52,7 +51,7 @@ describe('<Pattern />', () => {
     const wrapper = mount(<Pattern id="test" width={4} />);
     expect(console.error).toBeCalled();
     expect(console.error.mock.calls[0][0]).toEqual(
-      'Warning: Failed prop type: The prop `children` is marked as required in `Pattern`, but its value is `undefined`.\n    in Pattern'
+      'Warning: Failed prop type: The prop `children` is marked as required in `W`, but its value is `undefined`.\n    in W'
     );
   });
 });

@@ -1,8 +1,6 @@
+import { mount, shallow } from 'enzyme';
 import React from 'react';
-import { shallow, mount } from 'enzyme';
-import { extent } from 'd3-array';
 import { Area } from '../src';
-import { scaleTime, scaleLinear } from '../../vx-scale';
 
 const fakeData = [
   { x: new Date('2017-01-01'), y: 5 },
@@ -13,15 +11,9 @@ const fakeData = [
 const x = d => d.x;
 const y = d => d.y;
 
-const fakeXScale = scaleTime({
-  range: [0, 100],
-  domain: extent(fakeData, x)
-});
-
-const fakeYScale = scaleLinear({
-  range: [100, 0],
-  domain: extent(fakeData, y)
-});
+const fakeXScale = val => 50;
+const fakeYScale = val => 50;
+fakeYScale.range = () => [100, 0];
 
 describe('<Area />', () => {
   test('it should be defined', () => {

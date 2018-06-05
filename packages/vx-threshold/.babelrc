@@ -1,18 +1,34 @@
 {
-  "presets": ["es2015", "react", "stage-0"],
-  "plugins": [],
+  "presets": [
+    "stage-0",
+    "react",
+    [
+      "env",
+      {
+        "modules": false,
+        "targets": {
+          "android": 30,
+          "chrome": 35,
+          "edge": 14,
+          "explorer": 9,
+          "firefox": 52,
+          "safari": 8,
+          "ucandroid": 1
+        }
+      }
+    ]
+  ],
   "env": {
-    "development": {
-      "plugins": [
-        ["react-transform", {
-          "transforms": [{
-            "transform": "react-transform-hmr",
-            "imports": ["react"],
-            "locals": ["module"]
-          }]
-        }],
-        "transform-runtime",
-        "transform-decorators-legacy"
+    "test": {
+      "presets": [
+        "stage-0",
+        "react",
+        [
+          "env",
+          {
+            "modules": "commonjs"
+          }
+        ]
       ]
     }
   }

@@ -1,7 +1,10 @@
 {
   "lerna": "2.1.2",
-  "packages": [
-    "packages/*"
-  ],
-  "version": "0.0.164"
+  "packages": ["packages/*"],
+  "version": "0.0.164",
+  "command": {
+    "publish": {
+      "allowBranch": "master"
+    }
+  }
 }

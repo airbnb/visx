@@ -1,5 +1,5 @@
-import React from 'react';
 import debounce from 'lodash/debounce';
+import React from 'react';
 
 export default function withScreenSize(BaseComponent) {
   class WrappedComponent extends React.Component {

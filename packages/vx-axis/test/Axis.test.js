@@ -1,9 +1,9 @@
-import React from 'react';
-import { Axis } from '../src';
-import { shallow } from 'enzyme';
-import { scaleLinear, scaleBand } from '../../vx-scale';
 import { Line } from '@vx/shape';
 import { Text } from '@vx/text';
+import { shallow } from 'enzyme';
+import React from 'react';
+import { scaleBand, scaleLinear } from '../../vx-scale';
+import { Axis } from '../src';
 
 const axisProps = {
   orientation: 'left',
@@ -125,7 +125,7 @@ describe('<Axis />', () => {
       wrapper
         .children()
         .not('.vx-axis-tick')
-        .find('Line').length
+        .find('.vx-axis-line').length
     ).toBe(1);
   });
 
@@ -141,12 +141,7 @@ describe('<Axis />', () => {
 
   test('it should SHOW ticks if hideTicks is false', () => {
     const wrapper = shallow(<Axis {...axisProps} hideTicks={false} />);
-    expect(
-      wrapper
-        .children()
-        .find('.vx-axis-tick')
-        .find('Line').length
-    ).toBeGreaterThan(0);
+    expect(wrapper.children().find('.vx-axis-tick').length).toBeGreaterThan(0);
   });
 
   test('it should HIDE ticks if hideTicks is true', () => {
@@ -165,24 +160,15 @@ describe('<Axis />', () => {
       wrapper
         .children()
         .find('.vx-axis-tick')
+        .not('.vx-axis-line')
         .find('Line').length
     ).toBe(0);
 
-    wrapper = shallow(<Axis {...axisProps} tickValues={[0]} />);
-    expect(
-      wrapper
-        .children()
-        .find('.vx-axis-tick')
-        .find('Line').length
-    ).toBe(1);
+    wrapper = shallow(<Axis {...axisProps} tickValues={[2]} />);
+    expect(wrapper.children().find('.vx-axis-tick').length).toBe(1);
 
     wrapper = shallow(<Axis {...axisProps} tickValues={[0, 1, 2, 3, 4, 5, 6]} />);
-    expect(
-      wrapper
-        .children()
-        .find('.vx-axis-tick')
-        .find('Line').length
-    ).toBe(7);
+    expect(wrapper.children().find('.vx-axis-tick').length).toBe(7);
   });
 
   test('it should use tickFormat to format ticks if passed', () => {
