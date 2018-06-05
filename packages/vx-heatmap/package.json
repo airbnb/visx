@@ -1,6 +1,6 @@
 {
   "name": "@vx/heatmap",
-  "version": "0.0.161",
+  "version": "0.0.165-beta.0",
   "description": "vx heatmap",
   "sideEffects": false,
   "main": "dist/vx-heatmap.umd.js",
@@ -63,7 +63,7 @@
     "react": "^15.0.0-0 || ^16.0.0-0"
   },
   "dependencies": {
-    "@vx/group": "0.0.161",
+    "@vx/group": "0.0.165-beta.0",
     "classnames": "^2.2.5"
   },
   "jest": {

@@ -1,6 +1,6 @@
 {
   "name": "@vx/clip-path",
-  "version": "0.0.161",
+  "version": "0.0.165-beta.0",
   "description": "vx clip-path",
   "sideEffects": false,
   "main": "dist/vx-clip-path.umd.js",

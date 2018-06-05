@@ -1,6 +1,6 @@
 {
   "name": "@vx/zoom",
-  "version": "0.0.161",
+  "version": "0.0.165-beta.0",
   "description": "vx zoom",
   "sideEffects": false,
   "main": "dist/vx-zoom.umd.js",

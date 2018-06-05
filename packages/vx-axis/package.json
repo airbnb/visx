@@ -1,6 +1,6 @@
 {
   "name": "@vx/axis",
-  "version": "0.0.164",
+  "version": "0.0.165-beta.0",
   "description": "vx axis",
   "sideEffects": false,
   "main": "dist/vx-axis.umd.js",
@@ -34,10 +34,10 @@
   },
   "homepage": "https://github.com/hshoff/vx#readme",
   "dependencies": {
-    "@vx/group": "0.0.161",
-    "@vx/point": "0.0.161",
-    "@vx/shape": "0.0.164",
-    "@vx/text": "0.0.161",
+    "@vx/group": "0.0.165-beta.0",
+    "@vx/point": "0.0.165-beta.0",
+    "@vx/shape": "0.0.165-beta.0",
+    "@vx/text": "0.0.165-beta.0",
     "classnames": "^2.2.5",
     "prop-types": "^15.6.0"
   },

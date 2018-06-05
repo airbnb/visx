@@ -1,6 +1,6 @@
 {
   "name": "@vx/bounds",
-  "version": "0.0.161",
+  "version": "0.0.165-beta.0",
   "description": "Utilities to make your life with bounding boxes better",
   "sideEffects": false,
   "main": "dist/vx-bounds.umd.js",

@@ -1,6 +1,6 @@
 {
   "name": "@vx/curve",
-  "version": "0.0.161",
+  "version": "0.0.165-beta.0",
   "description": "vx curve",
   "sideEffects": false,
   "main": "dist/vx-curve.umd.js",

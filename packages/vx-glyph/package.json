@@ -1,6 +1,6 @@
 {
   "name": "@vx/glyph",
-  "version": "0.0.161",
+  "version": "0.0.165-beta.0",
   "description": "vx glyph",
   "sideEffects": false,
   "main": "dist/vx-glyph.umd.js",
@@ -63,7 +63,7 @@
     "react": "^15.0.0-0 || ^16.0.0-0"
   },
   "dependencies": {
-    "@vx/group": "0.0.161",
+    "@vx/group": "0.0.165-beta.0",
     "classnames": "^2.2.5",
     "d3-shape": "^1.2.0"
   },

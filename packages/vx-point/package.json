@@ -1,6 +1,6 @@
 {
   "name": "@vx/point",
-  "version": "0.0.161",
+  "version": "0.0.165-beta.0",
   "description": "vx point",
   "sideEffects": false,
   "main": "dist/vx-point.umd.js",
