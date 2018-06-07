@@ -1,6 +1,11 @@
 import React from 'react';
-import { shallow, render } from 'enzyme';
-import { Text } from '../src';
+import { Text, getStringWidth } from '../src';
+
+describe('getStringWidth()', () => {
+  it('should be defined', () => {
+    expect(getStringWidth).toBeDefined();
+  });
+});
 
 // TODO: Fix tests (jsdom does not support getComputedTextLength() or getBoundingClientRect()).  Maybe use puppeteer
 
