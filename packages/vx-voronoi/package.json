@@ -8,25 +8,17 @@
   "scripts": {
     "build": "npm run build:babel && npm run build:dist",
     "build:dist": "rm -rf dist && mkdir dist && rollup -c",
-    "build:babel": "rm -rf build && mkdir build && babel src --out-dir build --ignore node_modules/ --presets stage-0,react,env --plugins external-helpers",
+    "build:babel":
+      "rm -rf build && mkdir build && babel src --out-dir build --ignore node_modules/ --presets stage-0,react,env",
     "prepublish": "npm run build",
     "test": "jest"
   },
-  "files": [
-    "dist",
-    "build"
-  ],
+  "files": ["dist", "build"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hshoff/vx.git"
   },
-  "keywords": [
-    "vx",
-    "react",
-    "d3",
-    "visualizations",
-    "charts"
-  ],
+  "keywords": ["vx", "react", "d3", "visualizations", "charts"],
   "author": "Chris Williams @williaster",
   "license": "MIT",
   "bugs": {
@@ -69,9 +61,6 @@
     "react": "^15.0.0-0 || ^16.0.0-0"
   },
   "jest": {
-    "setupFiles": [
-      "raf/polyfill",
-      "<rootDir>/test/enzyme-setup.js"
-    ]
+    "setupFiles": ["raf/polyfill", "<rootDir>/test/enzyme-setup.js"]
   }
 }
