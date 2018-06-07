@@ -12,7 +12,7 @@
   "scripts": {
     "build": "npm run build:babel && npm run build:dist",
     "build:dist": "rm -rf dist && mkdir dist && rollup -c",
-    "build:babel": "rm -rf build && mkdir build && babel src --out-dir build --ignore node_modules/ --presets stage-0,react,env --plugins lodash,external-helpers",
+    "build:babel": "rm -rf build && mkdir build && babel src --out-dir build --ignore node_modules/ --presets stage-0,react,env --plugins lodash",
     "prepublish": "npm run build",
     "test": "jest"
   },
