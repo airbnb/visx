@@ -1,21 +1,29 @@
 {
   "name": "@vx/curve",
-  "version": "0.0.165-beta.0",
+  "version": "0.0.165-beta.1",
   "description": "vx curve",
   "sideEffects": false,
   "main": "dist/vx-curve.umd.js",
   "module": "dist/vx-curve.es.js",
   "repository": "https://github.com/hshoff/vx",
-  "files": ["dist", "build"],
+  "files": [
+    "dist",
+    "build"
+  ],
   "scripts": {
     "build": "npm run build:babel && npm run build:dist",
     "build:dist": "rm -rf dist && mkdir dist && rollup -c",
-    "build:babel":
-      "rm -rf build && mkdir build && babel src --out-dir build --ignore node_modules/ --presets stage-0,react,env",
+    "build:babel": "rm -rf build && mkdir build && babel src --out-dir build --ignore node_modules/ --presets stage-0,react,env",
     "prepublish": "npm run build",
     "test": "jest"
   },
-  "keywords": ["vx", "react", "d3", "visualization", "chart"],
+  "keywords": [
+    "vx",
+    "react",
+    "d3",
+    "visualization",
+    "chart"
+  ],
   "author": "@hshoff",
   "license": "MIT",
   "dependencies": {
@@ -48,6 +56,9 @@
     "access": "public"
   },
   "jest": {
-    "setupFiles": ["raf/polyfill", "<rootDir>/test/enzyme-setup.js"]
+    "setupFiles": [
+      "raf/polyfill",
+      "<rootDir>/test/enzyme-setup.js"
+    ]
   }
 }

@@ -1,16 +1,18 @@
 {
   "name": "@vx/tooltip",
-  "version": "0.0.165-beta.0",
+  "version": "0.0.165-beta.1",
   "description": "vx tooltip",
   "sideEffects": false,
   "main": "dist/vx-tooltip.umd.js",
   "module": "dist/vx-tooltip.es.js",
-  "files": ["dist", "build"],
+  "files": [
+    "dist",
+    "build"
+  ],
   "scripts": {
     "build": "npm run build:babel && npm run build:dist",
     "build:dist": "rm -rf dist && mkdir dist && rollup -c",
-    "build:babel":
-      "rm -rf build && mkdir build && babel src --out-dir build --ignore node_modules/ --presets stage-0,react,env",
+    "build:babel": "rm -rf build && mkdir build && babel src --out-dir build --ignore node_modules/ --presets stage-0,react,env",
     "prepublish": "npm run build",
     "test": "jest"
   },
@@ -18,7 +20,13 @@
     "type": "git",
     "url": "git+https://github.com/hshoff/vx.git"
   },
-  "keywords": ["vx", "react", "d3", "visualizations", "charts"],
+  "keywords": [
+    "vx",
+    "react",
+    "d3",
+    "visualizations",
+    "charts"
+  ],
   "author": "@hshoff",
   "license": "MIT",
   "bugs": {
@@ -26,7 +34,7 @@
   },
   "homepage": "https://github.com/hshoff/vx#readme",
   "dependencies": {
-    "@vx/bounds": "0.0.165-beta.0",
+    "@vx/bounds": "0.0.165-beta.1",
     "classnames": "^2.2.5",
     "prop-types": "^15.5.10"
   },
@@ -60,6 +68,9 @@
     "access": "public"
   },
   "jest": {
-    "setupFiles": ["raf/polyfill", "<rootDir>/test/enzyme-setup.js"]
+    "setupFiles": [
+      "raf/polyfill",
+      "<rootDir>/test/enzyme-setup.js"
+    ]
   }
 }

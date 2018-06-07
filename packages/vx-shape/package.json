@@ -1,27 +1,35 @@
 {
   "name": "@vx/shape",
-  "version": "0.0.165-beta.0",
+  "version": "0.0.165-beta.1",
   "description": "vx shape",
   "sideEffects": false,
   "main": "dist/vx-shape.umd.js",
   "module": "dist/vx-shape.es.js",
   "repository": "https://github.com/hshoff/vx",
-  "files": ["dist", "build"],
+  "files": [
+    "dist",
+    "build"
+  ],
   "scripts": {
     "build": "npm run build:babel && npm run build:dist",
     "build:dist": "rm -rf dist && mkdir dist && rollup -c",
-    "build:babel":
-      "rm -rf build && mkdir build && babel src --out-dir build --ignore node_modules/ --presets stage-0,react,env",
+    "build:babel": "rm -rf build && mkdir build && babel src --out-dir build --ignore node_modules/ --presets stage-0,react,env",
     "prepublish": "npm run build",
     "test": "jest"
   },
-  "keywords": ["vx", "react", "d3", "visualizations", "charts"],
+  "keywords": [
+    "vx",
+    "react",
+    "d3",
+    "visualizations",
+    "charts"
+  ],
   "author": "@hshoff",
   "license": "MIT",
   "dependencies": {
-    "@vx/curve": "0.0.165-beta.0",
-    "@vx/group": "0.0.165-beta.0",
-    "@vx/point": "0.0.165-beta.0",
+    "@vx/curve": "0.0.165-beta.1",
+    "@vx/group": "0.0.165-beta.1",
+    "@vx/point": "0.0.165-beta.1",
     "classnames": "^2.2.5",
     "d3-path": "^1.0.5",
     "d3-shape": "^1.2.0",
@@ -59,6 +67,9 @@
     "access": "public"
   },
   "jest": {
-    "setupFiles": ["raf/polyfill", "<rootDir>/test/enzyme-setup.js"]
+    "setupFiles": [
+      "raf/polyfill",
+      "<rootDir>/test/enzyme-setup.js"
+    ]
   }
 }

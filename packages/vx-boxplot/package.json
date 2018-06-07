@@ -1,16 +1,18 @@
 {
   "name": "@vx/boxplot",
-  "version": "0.0.165-beta.0",
+  "version": "0.0.165-beta.1",
   "description": "vx box plot",
   "sideEffects": false,
   "main": "dist/vx-boxplot.umd.js",
   "module": "dist/vx-boxplot.es.js",
-  "files": ["dist", "build"],
+  "files": [
+    "dist",
+    "build"
+  ],
   "scripts": {
     "build": "npm run build:babel && npm run build:dist",
     "build:dist": "rm -rf dist && mkdir dist && rollup -c",
-    "build:babel":
-      "rm -rf build && mkdir build && babel src --out-dir build --ignore node_modules/ --presets stage-0,react,env",
+    "build:babel": "rm -rf build && mkdir build && babel src --out-dir build --ignore node_modules/ --presets stage-0,react,env",
     "prepublish": "npm run build",
     "test": "jest"
   },
@@ -18,7 +20,13 @@
     "type": "git",
     "url": "git+https://github.com/hshoff/vx.git"
   },
-  "keywords": ["vx", "react", "d3", "visualizations", "charts"],
+  "keywords": [
+    "vx",
+    "react",
+    "d3",
+    "visualizations",
+    "charts"
+  ],
   "author": "@conglei",
   "license": "MIT",
   "bugs": {
@@ -26,7 +34,7 @@
   },
   "homepage": "https://github.com/hshoff/vx#readme",
   "dependencies": {
-    "@vx/group": "0.0.165-beta.0",
+    "@vx/group": "0.0.165-beta.1",
     "classnames": "^2.2.5"
   },
   "devDependencies": {
@@ -59,6 +67,9 @@
     "access": "public"
   },
   "jest": {
-    "setupFiles": ["raf/polyfill", "<rootDir>/test/enzyme-setup.js"]
+    "setupFiles": [
+      "raf/polyfill",
+      "<rootDir>/test/enzyme-setup.js"
+    ]
   }
 }
