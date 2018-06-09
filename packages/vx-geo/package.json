@@ -1,6 +1,6 @@
 {
   "name": "@vx/geo",
-  "version": "0.0.165-beta.1",
+  "version": "0.0.165",
   "description": "vx geo",
   "sideEffects": false,
   "main": "dist/vx-geo.umd.js",
@@ -35,7 +35,7 @@
   },
   "homepage": "https://github.com/hshoff/vx#readme",
   "dependencies": {
-    "@vx/group": "0.0.165-beta.1",
+    "@vx/group": "0.0.165",
     "classnames": "^2.2.5",
     "d3-geo": "^1.6.4",
     "prop-types": "^15.5.10"

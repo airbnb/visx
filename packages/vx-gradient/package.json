@@ -1,6 +1,6 @@
 {
   "name": "@vx/gradient",
-  "version": "0.0.165-beta.1",
+  "version": "0.0.165",
   "description": "vx gradient",
   "sideEffects": false,
   "main": "dist/vx-gradient.umd.js",

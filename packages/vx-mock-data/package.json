@@ -1,6 +1,6 @@
 {
   "name": "@vx/mock-data",
-  "version": "0.0.165-beta.1",
+  "version": "0.0.165",
   "description": "vx mock data",
   "sideEffects": false,
   "main": "dist/vx-mock-data.umd.js",
