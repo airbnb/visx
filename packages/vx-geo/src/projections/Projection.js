@@ -4,13 +4,14 @@ import cx from 'classnames';
 import { Group } from '@vx/group';
 import additionalProps from '../util/additionalProps';
 import Graticule from '../graticule/Graticule';
-import { geoOrthographic, geoAlbers, geoMercator, geoPath } from 'd3-geo';
+import { geoOrthographic, geoAlbers, geoMercator, geoNaturalEarth1, geoPath } from 'd3-geo';
 
 // TODO: Implement all projections of d3-geo
 const projectionMapping = {
   orthographic: () => geoOrthographic(),
   albers: () => geoAlbers(),
-  mercator: () => geoMercator()
+  mercator: () => geoMercator(),
+  naturalEarth: () => geoNaturalEarth1()
 };
 
 /**
