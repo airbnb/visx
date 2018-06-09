@@ -97,3 +97,28 @@ Same properties as Mercator.
 |      Name       |       Default       |   Type   |                                                 Description                                                 |
 |:--------------- |:------------------- |:-------- |:----------------------------------------------------------------------------------------------------------- |
 | className       | `vx-albers`         | string   | The class name for the `path` element.                                                                      |
+
+## `<NaturalEarth />`
+
+The Natural Earth projection.
+
+### Example
+
+```js
+<NaturalEarth
+  data={myData}
+  scale={myScale}
+  translate={[width / 2, height / 2]}
+  fill={(feature) => '#aaaaaa'}
+  onClick={data => event => {
+    alert(`Clicked!`);
+  }}
+/>
+```
+
+### Properties
+Same properties as Mercator.
+
+|      Name       |       Default                 |   Type   |                                                 Description                                                 |
+|:--------------- |:----------------------------- |:-------- |:----------------------------------------------------------------------------------------------------------- |
+| className       | `vx-geo-naturalEarth`         | string   | The class name for the `path` element. 
