@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.165](#v00165)
 - [v0.0.164](#v00164)
 - [v0.0.163](#v00163)
 - [v0.0.162](#v00162)
@@ -50,6 +51,62 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.165
+
+#### :rocket: Enhancements
+
+- [text] export getStringWidth() util. [#301](https://github.com/hshoff/vx/pull/301)
+
+#### :house: Internal
+
+- [build] use [rollup](http://rollupjs.org/) for build [#298](https://github.com/hshoff/vx/pull/298)
+  - adds `dist/vx-{name}.{umd,es}.js` files
+  - adds `module` field to `package.json` that points to `dist/vx-{name}.es.js` for bundlers that support it (webpack, rollup, etc)
+  - `main` field points to `dist/vx-{name}.umd.js`
+  - removes [`react-fatigue-dev`](https://github.com/tj/react-fatigue-dev) + Makefile build (means you can build on windows now)
+  - build targets  `"android": 30, "chrome": 35, "edge": 14, "explorer": 9, "firefox": 52, "safari": 8, "ucandroid": 1` (matching [airbnb-babel-preset](https://github.com/airbnb/babel-preset-airbnb/blob/master/index.js#L9-L17))
+  - keeps `build/` with `cjs` babel build files for [deep paths](https://github.com/hshoff/vx/issues/143#issuecomment-367649444) (no breaking changes 🤞)
+  
+#### :trophy: Contributors
+
+- [hshoff](https://github.com/hshoff)
+
+```
+ - @vx/annotation: 0.0.165-beta.1 => 0.0.165
+ - @vx/axis: 0.0.165-beta.1 => 0.0.165
+ - @vx/bounds: 0.0.165-beta.1 => 0.0.165
+ - @vx/boxplot: 0.0.165-beta.1 => 0.0.165
+ - @vx/brush: 0.0.165-beta.1 => 0.0.165
+ - @vx/clip-path: 0.0.165-beta.1 => 0.0.165
+ - @vx/curve: 0.0.165-beta.1 => 0.0.165
+ - @vx/demo: 0.0.165-beta.1 => 0.0.165
+ - @vx/drag: 0.0.165-beta.1 => 0.0.165
+ - @vx/event: 0.0.165-beta.1 => 0.0.165
+ - @vx/geo: 0.0.165-beta.1 => 0.0.165
+ - @vx/glyph: 0.0.165-beta.1 => 0.0.165
+ - @vx/gradient: 0.0.165-beta.1 => 0.0.165
+ - @vx/grid: 0.0.165-beta.1 => 0.0.165
+ - @vx/group: 0.0.165-beta.1 => 0.0.165
+ - @vx/heatmap: 0.0.165-beta.1 => 0.0.165
+ - @vx/hierarchy: 0.0.165-beta.1 => 0.0.165
+ - @vx/legend: 0.0.165-beta.1 => 0.0.165
+ - @vx/marker: 0.0.165-beta.1 => 0.0.165
+ - @vx/mock-data: 0.0.165-beta.1 => 0.0.165
+ - @vx/network: 0.0.165-beta.1 => 0.0.165
+ - @vx/pattern: 0.0.165-beta.1 => 0.0.165
+ - @vx/point: 0.0.165-beta.1 => 0.0.165
+ - @vx/responsive: 0.0.165-beta.1 => 0.0.165
+ - @vx/scale: 0.0.165-beta.1 => 0.0.165
+ - @vx/shape: 0.0.165-beta.1 => 0.0.165
+ - @vx/stats: 0.0.165-beta.1 => 0.0.165
+ - @vx/text: 0.0.165-beta.1 => 0.0.165
+ - @vx/threshold: 0.0.165-beta.1 => 0.0.165
+ - @vx/tooltip: 0.0.165-beta.1 => 0.0.165
+ - @vx/voronoi: 0.0.165-beta.1 => 0.0.165
+ - @vx/vx: 0.0.165-beta.1 => 0.0.165
+ - @vx/zoom: 0.0.165-beta.1 => 0.0.165
+```
 
 # v0.0.164
 
