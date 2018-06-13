@@ -1,15 +1,26 @@
-import React from 'react';
-import cx from 'classnames';
-import PropTypes from 'prop-types';
-import { line } from 'd3-shape';
 import { curveLinear } from '@vx/curve';
+import cx from 'classnames';
+import { line } from 'd3-shape';
+import PropTypes from 'prop-types';
+import React from 'react';
 import additionalProps from '../util/additionalProps';
 
 LinePath.propTypes = {
-  innerRef: PropTypes.func
+  innerRef: PropTypes.func,
+  xScale: PropTypes.func,
+  yScale: PropTypes.func,
+  data: PropTypes.array,
+  x: PropTypes.func,
+  y: PropTypes.func,
+  defined: PropTypes.func,
+  stroke: PropTypes.string,
+  strokeWidth: PropTypes.number,
+  glyph: PropTypes.bool,
+  curve: PropTypes.func
 };
 
 export default function LinePath({
+  children,
   data,
   xScale,
   yScale,
@@ -28,10 +39,11 @@ export default function LinePath({
   ...restProps
 }) {
   const path = line()
-    .x(d => xScale(x(d)))
-    .y(d => yScale(y(d)))
+    .x((d, i) => xScale(x(d, i)))
+    .y((d, i) => yScale(y(d, i)))
     .defined(defined)
     .curve(curve);
+  if (children) return children({ path });
   return (
     <g>
       <path
