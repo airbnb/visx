@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.166](#v00166)
 - [v0.0.165](#v00165)
 - [v0.0.164](#v00164)
 - [v0.0.163](#v00163)
@@ -52,6 +53,41 @@
 
 ------
 
+# v0.0.166
+
+#### :rocket: Enhancements
+
+- [chord] add `@vx/chord` - `<Chord />`, `<Ribbon />`. [#308](https://github.com/hshoff/vx/pull/308)
+- [demo][shape] add chord demo, fix prop types. [#308](https://github.com/hshoff/vx/pull/308)
+- [shape] updated accessors to pass all the arguments from D3 for LinePath, AreaClosed, and Area. [#309](https://github.com/hshoff/vx/pull/309)
+- [heatmap] add index + yBin to heatmap circle/rect. [#307](https://github.com/hshoff/vx/pull/307)
+- [geo] add Natural Earth (1) projection. [#304](https://github.com/hshoff/vx/pull/304)
+
+#### :memo: Documentation
+
+- [shape] Updated documentation for LinePath and AreaClosed. [#309](https://github.com/hshoff/vx/pull/309)
+
+#### :trophy: Contributors
+ 
+- [davidandrus](https://github.com/davidandrus)
+- [JacquiManzi](https://github.com/JacquiManzi)
+- [hshoff](https://github.com/hshoff)
+
+```
+Changes:
+ - @vx/annotation: 0.0.165 => 0.0.166
+ - @vx/axis: 0.0.165 => 0.0.166
+ - @vx/chord: 0.0.1 => 0.0.166
+ - @vx/demo: 0.0.165 => 0.0.166
+ - @vx/geo: 0.0.165 => 0.0.166
+ - @vx/grid: 0.0.165 => 0.0.166
+ - @vx/heatmap: 0.0.165 => 0.0.166
+ - @vx/marker: 0.0.165 => 0.0.166
+ - @vx/shape: 0.0.165 => 0.0.166
+ - @vx/threshold: 0.0.165 => 0.0.166
+ - @vx/vx: 0.0.165 => 0.0.166
+ ```
+
 # v0.0.165
 
 #### :rocket: Enhancements
@@ -73,6 +109,7 @@
 - [hshoff](https://github.com/hshoff)
 
 ```
+Changes:
  - @vx/annotation: 0.0.165-beta.1 => 0.0.165
  - @vx/axis: 0.0.165-beta.1 => 0.0.165
  - @vx/bounds: 0.0.165-beta.1 => 0.0.165
