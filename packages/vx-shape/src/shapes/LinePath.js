@@ -15,7 +15,7 @@ LinePath.propTypes = {
   defined: PropTypes.func,
   stroke: PropTypes.string,
   strokeWidth: PropTypes.number,
-  glyph: PropTypes.bool,
+  glyph: PropTypes.func,
   curve: PropTypes.func
 };
 

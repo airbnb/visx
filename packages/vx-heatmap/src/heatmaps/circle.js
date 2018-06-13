@@ -5,7 +5,7 @@ import React from 'react';
 import additionalProps from '../util/additionalProps';
 
 HeatmapCircle.propTypes = {
-  data: PropTypes.func,
+  data: PropTypes.array,
   gap: PropTypes.number,
   step: PropTypes.number,
   radius: PropTypes.number,

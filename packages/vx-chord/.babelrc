@@ -1,0 +1,35 @@
+{
+  "presets": [
+    "stage-0",
+    "react",
+    [
+      "env",
+      {
+        "modules": false,
+        "targets": {
+          "android": 30,
+          "chrome": 35,
+          "edge": 14,
+          "explorer": 9,
+          "firefox": 52,
+          "safari": 8,
+          "ucandroid": 1
+        }
+      }
+    ]
+  ],
+  "env": {
+    "test": {
+      "presets": [
+        "stage-0",
+        "react",
+        [
+          "env",
+          {
+            "modules": "commonjs"
+          }
+        ]
+      ]
+    }
+  }
+}

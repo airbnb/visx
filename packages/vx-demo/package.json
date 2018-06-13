@@ -9,11 +9,7 @@
     "start": "next start",
     "test": "jest"
   },
-  "keywords": [
-    "vx",
-    "demo",
-    "examples"
-  ],
+  "keywords": ["vx", "demo", "examples"],
   "author": "@hshoff",
   "license": "MIT",
   "dependencies": {
@@ -21,6 +17,7 @@
     "@vx/axis": "0.0.165",
     "@vx/boxplot": "0.0.165",
     "@vx/brush": "0.0.165",
+    "@vx/chord": "0.0.1",
     "@vx/clip-path": "0.0.165",
     "@vx/curve": "0.0.165",
     "@vx/drag": "0.0.165",
@@ -68,9 +65,7 @@
     "topojson-client": "^3.0.0"
   },
   "browserify": {
-    "transform": [
-      "babelify"
-    ]
+    "transform": ["babelify"]
   },
   "publishConfig": {
     "access": "public"
