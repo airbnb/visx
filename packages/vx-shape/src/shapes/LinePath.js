@@ -39,8 +39,8 @@ export default function LinePath({
   ...restProps
 }) {
   const path = line()
-    .x((d, i) => xScale(x(d, i)))
-    .y((d, i) => yScale(y(d, i)))
+    .x((...args) => xScale(x(...args)))
+    .y((...args) => yScale(y(...args)))
     .defined(defined)
     .curve(curve);
   if (children) return children({ path });

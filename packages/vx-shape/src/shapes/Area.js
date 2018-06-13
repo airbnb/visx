@@ -51,12 +51,12 @@ export default function Area({
   ...restProps
 }) {
   const path = area();
-  if (x) path.x(d => xScale(x(d)));
-  if (x0) path.x0(d => xScale(x0(d)));
-  if (x1) path.x1(d => xScale(x1(d)));
-  if (y) path.y(d => yScale(y(d)));
-  if (y0) path.y0(d => yScale(y0(d)));
-  if (y1) path.y1(d => yScale(y1(d)));
+  if (x) path.x((...args) => xScale(x(...args)));
+  if (x0) path.x0((...args) => xScale(x0(...args)));
+  if (x1) path.x1((...args) => xScale(x1(...args)));
+  if (y) path.y((...args) => yScale(y(...args)));
+  if (y0) path.y0((...args) => yScale(y0(...args)));
+  if (y1) path.y1((...args) => yScale(y1(...args)));
   if (defined) path.defined(defined);
   if (curve) path.curve(curve);
   if (children) return children({ path });
