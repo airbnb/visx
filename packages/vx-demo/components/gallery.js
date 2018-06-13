@@ -39,6 +39,7 @@ import DragI from '../components/tiles/drag-i';
 import DragII from '../components/tiles/drag-ii';
 import LinkTypes from '../components/tiles/linkTypes';
 import Threshold from '../components/tiles/threshold';
+import Chord from '../components/tiles/chord';
 
 const items = [
   '#242424',
@@ -830,7 +831,36 @@ export default class Gallery extends React.Component {
               </div>
             </Link>
           </Tilt>
-          <div className="gallery-item placeholder" />
+          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+            <Link prefetch href="/chord">
+              <div className="gallery-item" style={{ background: '#e4e3d8' }}>
+                <div className="image">
+                  <ParentSize>
+                    {({ width, height }) => (
+                      <Chord
+                        width={width}
+                        height={height}
+                        centerSize={10}
+                        margin={{
+                          top: 0,
+                          left: 0,
+                          right: 0,
+                          bottom: 30
+                        }}
+                      />
+                    )}
+                  </ParentSize>
+                </div>
+                <div className="details" style={{ color: '#111' }}>
+                  <div className="title">Chords</div>
+                  <div className="description">
+                    <pre>{`<Chord.Chord /> + <Chord.Ribbon />`}</pre>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </Tilt>
+          {false && <div className="gallery-item placeholder" />}
         </div>
 
         <div>

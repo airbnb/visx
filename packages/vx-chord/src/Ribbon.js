@@ -7,10 +7,11 @@ Ribbon.propTypes = {
   chord: PropTypes.object.isRequired,
   source: PropTypes.func,
   target: PropTypes.func,
-  radius: PropTypes.func,
-  startAngle: PropTypes.func,
-  endAngle: PropTypes.func,
-  children: PropTypes.func
+  radius: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+  startAngle: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+  endAngle: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+  children: PropTypes.func,
+  className: PropTypes.string
 };
 
 export default function Ribbon({
@@ -21,6 +22,7 @@ export default function Ribbon({
   startAngle,
   endAngle,
   children,
+  className,
   ...restProps
 }) {
   const ribbon = d3ribbon();
