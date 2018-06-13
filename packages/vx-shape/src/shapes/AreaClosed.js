@@ -25,9 +25,9 @@ export default function AreaClosed({
   ...restProps
 }) {
   const path = area()
-    .x(d => xScale(x(d)))
+    .x((...args) => xScale(x(...args)))
     .y0(yScale.range()[0])
-    .y1(d => yScale(y(d)))
+    .y1((...args) => yScale(y(...args)))
     .defined(defined);
   if (curve) path.curve(curve);
   return (

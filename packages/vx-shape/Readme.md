@@ -30,8 +30,8 @@ AreaClosed is a closed area under a curve.
 
 |      Name       |       Default       |   Type   |                                                 Description                                                 |
 |:--------------- |:------------------- |:-------- |:----------------------------------------------------------------------------------------------------------- |
-| x               |                     | function | A function that takes in a data element and returns the x value.                                            |
-| y               |                     | function | A function that takes in a data element and returns the y value.                                            |
+| x               |                     | function | The d3 [x function](https://github.com/d3/d3-shape#area_x).                                                 |
+| y               |                     | function | The d3 [y1 function](https://github.com/d3/d3-shape#area_y1).                                               |
 | xScale          |                     | function | A [scale function](https://github.com/hshoff/vx/tree/master/packages/vx-scale) for the xs.                  |
 | yScale          |                     | function | A [scale function](https://github.com/hshoff/vx/tree/master/packages/vx-scale) for the ys.                  |
 | data            |                     | array    | An array of x and y data.                                                                                   |
@@ -189,8 +189,8 @@ A more complicated line path. A `<LinePath />` is useful for making line graphs 
 | data            |              | array    | The data in x, y.                                                                                           |
 | xScale          |              | function | A [scale function](https://github.com/hshoff/vx/tree/master/packages/vx-scale) for the xs.                  |
 | yScale          |              | function | A [scale function](https://github.com/hshoff/vx/tree/master/packages/vx-scale) for the ys.                  |
-| x               |              | function | A function that takes in a data element and returns the x value.                                            |
-| y               |              | function | A function that takes in a data element and returns the y value.                                            |
+| x               |              | function | The d3 [x function](https://github.com/d3/d3-shape#line_x).                                                 |
+| y               |              | function | The d3 [y function](https://github.com/d3/d3-shape#line_y).                                                 |
 | defined         |              | function | A [function](https://github.com/d3/d3-shape/blob/master/README.md#line_defined) called by `line.defined()`. |
 | className       |              | string   | The class name for the `path` element.                                                                      |
 | stroke          | steelblue    | string   | The color of the stroke.                                                                                    |
@@ -198,7 +198,7 @@ A more complicated line path. A `<LinePath />` is useful for making line graphs 
 | strokeDasharray |              | array    | The [pattern of dashes](https://mzl.la/1l7EiTQ) in the stroke.                                              |
 | fill            | none         | string   | The color of the fill for the `path` element.                                                               |
 | curve           | Curve.linear | function | The [curve function](https://github.com/hshoff/vx/tree/master/packages/vx-curve)                            |
-| glyph           |              | glyph    | [A glyph](https://github.com/hshoff/vx/tree/master/packages/vx-glyph) to be added to the line.               |
+| glyph           |              | glyph    | [A glyph](https://github.com/hshoff/vx/tree/master/packages/vx-glyph) to be added to the line.              |
 
 ## `<LineRadial />`
 
