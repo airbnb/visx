@@ -5,7 +5,7 @@ import { arc as d3Arc, pie as d3Pie } from 'd3-shape';
 import additionalProps from '../util/additionalProps';
 
 export default function Pie({
-  className = "",
+  className = '',
   top = 0,
   left = 0,
   data,
@@ -36,10 +36,10 @@ export default function Pie({
   if (startAngle != null) pie.startAngle(startAngle);
   if (endAngle != null) pie.endAngle(endAngle);
   const arcs = pie(data);
-  const renderGroupArg = {
+  const renderFunctionArg = {
     arcs,
     generatePathProps: (arc, index) => ({
-      className: cx("vx-pie-arc", className),
+      className: cx('vx-pie-arc', className),
       d: path(arc),
       ...additionalProps(restProps, {
         ...arc,
@@ -50,15 +50,15 @@ export default function Pie({
     generateCentroid: arc => centroid && centroid(path.centroid(arc), arc)
   };
   return (
-    <Group className="vx-pie-arcs-group" top={top} left={left}>
+    <Group className='vx-pie-arcs-group' top={top} left={left}>
       {children
-        ? children(renderGroupArg)
+        ? children(renderFunctionArg)
         : arcs.map((arc, i) => {
-            const pathProps = renderGroupArg.generatePathProps(arc, i);
+            const pathProps = renderFunctionArg.generatePathProps(arc, i);
             return (
               <g key={`pie-arc-${i}`}>
                 <path {...pathProps} />
-                {renderGroupArg.generateCentroid(arc)}
+                {renderFunctionArg.generateCentroid(arc)}
               </g>
             );
           })}
