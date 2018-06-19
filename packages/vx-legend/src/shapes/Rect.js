@@ -7,7 +7,7 @@ export default function ShapeRect({ fill, width, height, style }) {
         width,
         height,
         background: fill,
-        style
+        ...style
       }}
     />
   );
