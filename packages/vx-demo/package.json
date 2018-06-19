@@ -1,6 +1,6 @@
 {
   "name": "@vx/demo",
-  "version": "0.0.166",
+  "version": "0.0.167",
   "description": "vx demo",
   "repository": "https://github.com/hshoff/vx",
   "scripts": {
@@ -33,7 +33,7 @@
     "@vx/group": "0.0.165",
     "@vx/heatmap": "0.0.166",
     "@vx/hierarchy": "0.0.165",
-    "@vx/legend": "0.0.165",
+    "@vx/legend": "0.0.167",
     "@vx/marker": "0.0.166",
     "@vx/mock-data": "0.0.165",
     "@vx/network": "0.0.165",
