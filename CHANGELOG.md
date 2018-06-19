@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.167](#v00167)
 - [v0.0.166](#v00166)
 - [v0.0.165](#v00165)
 - [v0.0.164](#v00164)
@@ -52,6 +53,23 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.167
+
+#### :bug: Bug Fix
+
+- [legend] spread style prop on rect legend shape. [#313](https://github.com/hshoff/vx/pull/313)
+
+#### :trophy: Contributors
+
+- [hshoff](https://github.com/hshoff)
+
+```
+Changes:
+ - @vx/demo: 0.0.166 => 0.0.167
+ - @vx/legend: 0.0.165 => 0.0.167
+ - @vx/vx: 0.0.166 => 0.0.167
+```
 
 # v0.0.166
 
