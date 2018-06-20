@@ -20,6 +20,7 @@ export default function Pie({
   pieSort,
   pieSortValues,
   pieValue,
+  children,
   ...restProps
 }) {
   const path = d3Arc();
@@ -35,26 +36,32 @@ export default function Pie({
   if (startAngle != null) pie.startAngle(startAngle);
   if (endAngle != null) pie.endAngle(endAngle);
   const arcs = pie(data);
+  const renderFunctionArg = {
+    arcs,
+    generatePathProps: (arc, index) => ({
+      className: cx('vx-pie-arc', className),
+      d: path(arc),
+      ...additionalProps(restProps, {
+        ...arc,
+        index,
+        centroid: centroid ? path.centroid(arc) : undefined
+      })
+    }),
+    generateCentroid: arc => centroid && centroid(path.centroid(arc), arc)
+  };
   return (
-    <Group className="vx-pie-arcs-group" top={top} left={left}>
-      {arcs.map((arc, i) => {
-        let c;
-        if (centroid) c = path.centroid(arc);
-        return (
-          <g key={`pie-arc-${i}`}>
-            <path
-              className={cx('vx-pie-arc', className)}
-              d={path(arc)}
-              {...additionalProps(restProps, {
-                ...arc,
-                index: i,
-                centroid: c
-              })}
-            />
-            {centroid && centroid(c, arc)}
-          </g>
-        );
-      })}
+    <Group className='vx-pie-arcs-group' top={top} left={left}>
+      {children
+        ? children(renderFunctionArg)
+        : arcs.map((arc, i) => {
+            const pathProps = renderFunctionArg.generatePathProps(arc, i);
+            return (
+              <g key={`pie-arc-${i}`}>
+                <path {...pathProps} />
+                {renderFunctionArg.generateCentroid(arc)}
+              </g>
+            );
+          })}
     </Group>
   );
 }
