@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.168](#v00168)
 - [v0.0.167](#v00167)
 - [v0.0.166](#v00166)
 - [v0.0.165](#v00165)
@@ -53,6 +54,28 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.168
+
+#### :rocket: Enhancements
+
+- [shape] add optional render function as child of `<Pie />` to allow more fine grained control of rendering. [#311](https://github.com/hshoff/vx/pull/311)
+
+#### :trophy: Contributors
+
+- [psachs21](https://github.com/psachs21)
+
+```
+Changes:
+ - @vx/annotation: 0.0.166 => 0.0.168
+ - @vx/axis: 0.0.166 => 0.0.168
+ - @vx/demo: 0.0.167 => 0.0.168
+ - @vx/grid: 0.0.166 => 0.0.168
+ - @vx/marker: 0.0.166 => 0.0.168
+ - @vx/shape: 0.0.166 => 0.0.168
+ - @vx/threshold: 0.0.166 => 0.0.168
+ - @vx/vx: 0.0.167 => 0.0.168
+```
 
 # v0.0.167
 
