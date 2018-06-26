@@ -6,7 +6,8 @@
   "main": "dist/vx-grid.umd.js",
   "module": "dist/vx-grid.es.js",
   "files": [
-    "dist"
+    "dist",
+    "build"
   ],
   "scripts": {
     "build": "npm run build:babel && npm run build:dist",
