@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.169](#v00169)
 - [v0.0.168](#v00168)
 - [v0.0.167](#v00167)
 - [v0.0.166](#v00166)
@@ -54,6 +55,23 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.169
+
+#### :bug: Bug Fix
+
+- [grid] include `build/` dir in package. [#315](https://github.com/hshoff/vx/pull/315)
+
+#### :trophy: Contributors
+
+- [williaster](https://github.com/williaster)
+
+```
+Changes:
+ - @vx/demo: 0.0.168 => 0.0.169
+ - @vx/grid: 0.0.168 => 0.0.169
+ - @vx/vx: 0.0.168 => 0.0.169
+ ```
 
 # v0.0.168
 
