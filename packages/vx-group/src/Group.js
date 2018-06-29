@@ -4,7 +4,7 @@ import cx from 'classnames';
 export default function Group({ top = 0, left = 0, transform, className, children, ...restProps }) {
   return (
     <g
-      className={cx('cx-group', className)}
+      className={cx('vx-group', className)}
       transform={transform || `translate(${left}, ${top})`}
       {...restProps}
     >
