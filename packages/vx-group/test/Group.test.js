@@ -7,9 +7,9 @@ describe('<Group />', () => {
     expect(Group).toBeDefined();
   });
 
-  test("it should have class='cx-group'", () => {
+  test("it should have class='vx-group'", () => {
     const wrapper = shallow(<Group />);
-    expect(wrapper.prop('className')).toEqual('cx-group');
+    expect(wrapper.prop('className')).toEqual('vx-group');
   });
 
   test('it should default props top=0 left=0', () => {
