@@ -11,6 +11,7 @@ AreaClosed.propTypes = {
 export default function AreaClosed({
   x,
   y,
+  y0,
   xScale,
   yScale,
   data,
@@ -26,7 +27,7 @@ export default function AreaClosed({
 }) {
   const path = area()
     .x((...args) => xScale(x(...args)))
-    .y0(yScale.range()[0])
+    .y0(y0 || yScale.range()[0])
     .y1((...args) => yScale(y(...args)))
     .defined(defined);
   if (curve) path.curve(curve);
