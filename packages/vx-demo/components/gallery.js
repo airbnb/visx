@@ -18,6 +18,7 @@ import Stacked from '../components/tiles/stacked';
 import MultiLine from '../components/tiles/multiline';
 import Axis from '../components/tiles/axis';
 import BarGroup from '../components/tiles/bargroup';
+import BarGroupHorizontal from '../components/tiles/bargrouphorizontal';
 import BarStack from '../components/tiles/barstack';
 import BarStackHorizontal from '../components/tiles/barstackhorizontal';
 import Heatmap from '../components/tiles/heatmap';
@@ -860,7 +861,27 @@ export default class Gallery extends React.Component {
               </div>
             </Link>
           </Tilt>
-          {false && <div className="gallery-item placeholder" />}
+          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+            <Link prefetch href="/bargrouphorizontal">
+              <div className="gallery-item" style={{ background: '#612efb' }}>
+                <div className="image">
+                  <ParentSize>
+                    {({ width, height }) => (
+                      <BarGroupHorizontal width={width} height={height + detailsHeight} />
+                    )}
+                  </ParentSize>
+                </div>
+                <div className="details" style={{ color: '#e5fd3d' }}>
+                  <div className="title">Bar Group Horizontal</div>
+                  <div className="description">
+                    <pre>{`<Shape.BarGroupHorizontal />`}</pre>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </Tilt>
+          <div className="gallery-item placeholder" />
+          <div className="gallery-item placeholder" />
         </div>
 
         <div>
