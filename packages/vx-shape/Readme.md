@@ -136,6 +136,73 @@ A simple rectangle (a `<rect>` element) to use in your graphs.
 | strokeMiterlimit |           | number | The svg [Miterlimit](https://mzl.la/2pLVE13) of the stroke.    |
 | strokeOpacity    |           | number | The svg opacity.                                               |
 
+## `<BarGroup />`
+
+![BarGroup Example](https://i.imgur.com/Ef9fVqe.png)
+
+```js
+<BarGroup
+  data={data}
+  keys={keys}
+  height={yMax}
+  x0={x0}
+  x0Scale={x0Scale}
+  x1Scale={x1Scale}
+  yScale={yScale}
+  zScale={zScale}
+  rx={4}
+/>
+```
+
+### Properties
+|       Name       |  Default  |  Type    | Description                                                                                                                     |
+|:---------------- |:--------- |:-------- |:------------------------------------------------------------------------------------------------------------------------------- |
+| data             |           | array    | An array of data elements.                                                                                                      |
+| className        |           | string   | The class name for the `path` element.                                                                                          |
+| top              |           | number   | The margin on top.                                                                                                              |
+| left             |           | number   | The margin on the left.                                                                                                         |
+| x0               |           | function | xs accessor function.                                                                                                           |
+| x0Scale          |           | function | A [scale band function](https://github.com/hshoff/vx/tree/master/packages/vx-scale#band-scaling) for the bar group.             |
+| x1Scale          |           | function | A [scale band function](https://github.com/hshoff/vx/tree/master/packages/vx-scale#band-scaling) for each bar within the group. |
+| yScale           |           | function | A [scale function](https://github.com/hshoff/vx/tree/master/packages/vx-scale) for the ys.                                      |
+| zScale           |           | function | A [scale function](https://github.com/hshoff/vx/tree/master/packages/vx-scale) for the keys.                                    |
+| keys             |           | array    | A list of data keys                                                                                                             |
+| height           |           | number   | The pixel height of the bar group.                                                                                              |
+
+
+## `<BarGroupHorizontal />`
+
+![BarGroupHorizontal Example](https://i.imgur.com/RDBJewO.png)
+
+```js
+<BarGroupHorizontal
+  data={data}
+  keys={keys}
+  width={xMax}
+  y0={y0}
+  y0Scale={y0Scale}
+  y1Scale={y1Scale}
+  xScale={xScale}
+  zScale={zScale}
+  rx={4}
+/>
+```
+
+### Properties
+|       Name       |  Default  |  Type    | Description                                                                                                                     |
+|:---------------- |:--------- |:-------- |:------------------------------------------------------------------------------------------------------------------------------- |
+| data             |           | array    | An array of data elements.                                                                                                      |
+| className        |           | string   | The class name for the `path` element.                                                                                          |
+| top              |           | number   | The margin on top.                                                                                                              |
+| left             |           | number   | The margin on the left.                                                                                                         |
+| y0               |           | function | ys accessor function.                                                                                                           |
+| y0Scale          |           | function | A [scale band function](https://github.com/hshoff/vx/tree/master/packages/vx-scale#band-scaling) for the bar group.             |
+| y1Scale          |           | function | A [scale band function](https://github.com/hshoff/vx/tree/master/packages/vx-scale#band-scaling) for each bar within the group. |
+| xScale           |           | function | A [scale function](https://github.com/hshoff/vx/tree/master/packages/vx-scale) for the xs.                                      |
+| zScale           |           | function | A [scale function](https://github.com/hshoff/vx/tree/master/packages/vx-scale) for the keys.                                    |
+| keys             |           | array    | A list of data keys                                                                                                             |
+| height           |           | number   | The pixel height of the bar group.                                                                                              |
+
 ## `<Line />`
 
 A simple line. Good for drawing in the sand.
@@ -274,6 +341,8 @@ A more complicated line path. A `<LinePath />` is useful for making line graphs 
 + [`<AreaClosed />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/AreaClosed.js)
 + [`<AreaStack />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/AreaStack.js)
 + [`<Bar />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/Bar.js)
++ [`<BarGroup />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/BarGroup.js)
++ [`<BarGroupHorizontal />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/BarGroupHorizontal.js)
 + [`<Line />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/Line.js)
 + [`<LinePath />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/LinePath.js)
 + [`<LineRadial />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/LineRadial.js)
