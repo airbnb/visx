@@ -1,6 +1,6 @@
 {
   "name": "@vx/boxplot",
-  "version": "0.0.165",
+  "version": "0.0.170",
   "description": "vx box plot",
   "sideEffects": false,
   "main": "dist/vx-boxplot.umd.js",
@@ -34,7 +34,7 @@
   },
   "homepage": "https://github.com/hshoff/vx#readme",
   "dependencies": {
-    "@vx/group": "0.0.165",
+    "@vx/group": "0.0.170",
     "classnames": "^2.2.5"
   },
   "devDependencies": {

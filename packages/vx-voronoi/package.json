@@ -1,6 +1,6 @@
 {
   "name": "@vx/voronoi",
-  "version": "0.0.165",
+  "version": "0.0.170",
   "description": "vx voronoi",
   "sideEffects": false,
   "main": "dist/vx-voronoi.umd.js",
@@ -60,7 +60,7 @@
     "rollup-plugin-uglify": "^4.0.0"
   },
   "dependencies": {
-    "@vx/group": "0.0.165",
+    "@vx/group": "0.0.170",
     "classnames": "^2.2.5",
     "d3-voronoi": "^1.1.2",
     "prop-types": "^15.6.1"
