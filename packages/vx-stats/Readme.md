@@ -1,8 +1,10 @@
-# @vx/boxplot
+# @vx/stats
 
 ```
-npm install --save @vx/boxplot
+npm install --save @vx/stats
 ```
+
+## BoxPlot
 
 A boxplot shows the minimum, maximum, and quartiles of a dataset.
 
