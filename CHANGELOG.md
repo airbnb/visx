@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.170](#v00170)
 - [v0.0.169](#v00169)
 - [v0.0.168](#v00168)
 - [v0.0.167](#v00167)
@@ -55,6 +56,52 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.170
+
+#### :rocket: Enhancements
+
+- [shape] add `<BarGroupHorizontal />` component. [#320](https://github.com/hshoff/vx/pull/320)
+- [shape] add optional `y0` prop to `<AreaClosed />` for custom area fills. [#319](https://github.com/hshoff/vx/pull/319)
+
+#### :bug: Bug Fix
+
+- [group] <possibly breaking change> fix `<Group />` classname. should be `vx-group`, not `cx-group`. [#316](https://github.com/hshoff/vx/pull/316)
+
+#### :memo: Documentation
+
+- [docs] run readme docs sync. [#325](https://github.com/hshoff/vx/pull/325)
+- [stats] update `@vx/stats` readme name to stats. [#324](https://github.com/hshoff/vx/pull/324)
+- [shape] add docs for `<BarGroup />` and `<BarGroupHorizontal />`. [#320](https://github.com/hshoff/vx/pull/320)
+
+#### :trophy: Contributors
+
+- [sdd](https://github.com/sdd)
+- [rjatkinson2](https://github.com/rjatkinson2)
+- [spiderbites](https://github.com/spiderbites)
+- [hshoff](https://github.com/hshoff)
+
+```
+Changes:
+ - @vx/annotation: 0.0.168 => 0.0.170
+ - @vx/axis: 0.0.168 => 0.0.170
+ - @vx/boxplot: 0.0.165 => 0.0.170
+ - @vx/demo: 0.0.169 => 0.0.170
+ - @vx/geo: 0.0.166 => 0.0.170
+ - @vx/glyph: 0.0.165 => 0.0.170
+ - @vx/grid: 0.0.169 => 0.0.170
+ - @vx/group: 0.0.165 => 0.0.170
+ - @vx/heatmap: 0.0.166 => 0.0.170
+ - @vx/hierarchy: 0.0.165 => 0.0.170
+ - @vx/legend: 0.0.167 => 0.0.170
+ - @vx/marker: 0.0.168 => 0.0.170
+ - @vx/network: 0.0.165 => 0.0.170
+ - @vx/shape: 0.0.168 => 0.0.170
+ - @vx/stats: 0.0.165 => 0.0.170
+ - @vx/threshold: 0.0.168 => 0.0.170
+ - @vx/voronoi: 0.0.165 => 0.0.170
+ - @vx/vx: 0.0.169 => 0.0.170
+ ```
 
 # v0.0.169
 
