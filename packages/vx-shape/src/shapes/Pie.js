@@ -29,8 +29,8 @@ export default function Pie({
   if (cornerRadius) path.cornerRadius(cornerRadius);
   if (padRadius) path.padRadius(padRadius);
   const pie = d3Pie();
-  if (pieSort) pie.sort(pieSort);
-  if (pieSortValues) pie.sortValues(pieSortValues);
+  if (pieSort !== undefined) pie.sort(pieSort);
+  if (pieSortValues !== undefined) pie.sortValues(pieSortValues);
   if (pieValue) pie.value(pieValue);
   if (padAngle != null) pie.padAngle(padAngle);
   if (startAngle != null) pie.startAngle(startAngle);
@@ -50,7 +50,7 @@ export default function Pie({
     generateCentroid: arc => centroid && centroid(path.centroid(arc), arc)
   };
   return (
-    <Group className='vx-pie-arcs-group' top={top} left={left}>
+    <Group className="vx-pie-arcs-group" top={top} left={left}>
       {children
         ? children(renderFunctionArg)
         : arcs.map((arc, i) => {

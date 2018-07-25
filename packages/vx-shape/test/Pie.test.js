@@ -16,6 +16,27 @@ describe('<Pie />', () => {
     }).not.toThrow();
   });
 
+  test('it should accept null sort callbacks', () => {
+    expect.assertions(3);
+
+    expect(() => {
+      PieWrapper({ pieSort: null, pieSortValues: null });
+    }).not.toThrow();
+
+    // Should sort the arcs the same order as the input data
+    // The default pieSortValues sorts data by descending values
+    const A = 1;
+    const B = 20;
+    shallow(
+      <Pie data={[A, B]} pieSortValues={null}>
+        {({ arcs }) => {
+          expect(arcs[0]).toMatchObject({ value: A, index: 0 });
+          expect(arcs[1]).toMatchObject({ value: B, index: 1 });
+        }}
+      </Pie>
+    );
+  });
+
   test('it should break on invalid sort callbacks', () => {
     expect(() => PieWrapper({ pieSort: 12 })).toThrow();
     expect(() => PieWrapper({ pieSortValues: 12 })).toThrow();
