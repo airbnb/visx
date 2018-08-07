@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.171](#v00171)
 - [v0.0.170](#v00170)
 - [v0.0.169](#v00169)
 - [v0.0.168](#v00168)
@@ -56,6 +57,28 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.171
+
+#### :bug: Bug Fix
+
+- [shape] `<Pie />` allow null sort callbacks. `<Pie pieSort={null} pieSortValues={null} />` isn't ignored. [#327](https://github.com/hshoff/vx/pull/327)
+
+#### :trophy: Contributors
+
+- [Gosha](https://github.com/Gosha)
+
+```
+Changes:
+ - @vx/annotation: 0.0.170 => 0.0.171
+ - @vx/axis: 0.0.170 => 0.0.171
+ - @vx/demo: 0.0.170 => 0.0.171
+ - @vx/grid: 0.0.170 => 0.0.171
+ - @vx/marker: 0.0.170 => 0.0.171
+ - @vx/shape: 0.0.170 => 0.0.171
+ - @vx/threshold: 0.0.170 => 0.0.171
+ - @vx/vx: 0.0.170 => 0.0.171
+ ```
 
 # v0.0.170
 
