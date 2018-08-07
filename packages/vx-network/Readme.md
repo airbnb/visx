@@ -27,13 +27,3 @@ const MyGraph = () => <Graph graph={dataSample}
     linkComponent={DefaultLink} nodeComponent={DefaultNode} />;
 
 ```
-
-## Methods
-
-### `point.value()`
-
-Returns an `{x, y}` object with the x and y coordinates.
-
-### `point.toArray()`
-
-Returns the coordinates as an array `[x, y]`.
