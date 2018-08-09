@@ -69,7 +69,7 @@ export default ({
           colorScale={colorScale}
           opacityScale={opacityScale}
           radius={min([bWidth, bHeight]) / 2}
-          gap={4}
+          gap={2}
           onClick={data => event => {
             if (!events) return;
             alert(`clicked: ${JSON.stringify(data.bin)}`);
