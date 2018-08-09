@@ -10,13 +10,10 @@ HeatmapRect.propTypes = {
   binHeight: PropTypes.number,
   x: PropTypes.number,
   gap: PropTypes.number,
-  step: PropTypes.number,
   xScale: PropTypes.func,
   yScale: PropTypes.func,
   colorScale: PropTypes.func,
   opacityScale: PropTypes.func,
-  yBin: PropTypes.func,
-  bin: PropTypes.func,
   bins: PropTypes.func,
   count: PropTypes.func
 };
@@ -28,26 +25,22 @@ export default function HeatmapRect({
   binHeight,
   x = 0,
   gap = 1,
-  step = 0,
   xScale,
   yScale,
   colorScale,
   opacityScale = d => 1,
-  yBin,
-  bin = (d, i) => d.bin,
-  bins = (d, i) => d.bins,
+  bins = d => d.bins,
   count = d => d.count,
   ...restProps
 }) {
-  yBin = yBin || bin;
   const width = binWidth - gap;
   const height = binHeight - gap;
   return (
     <Group>
       {data.map((d, i) => {
         return (
-          <Group key={`heatmap-${i}`} className="vx-heatmap-column" left={xScale(bin(d, i))}>
-            {bins(d, i).map((b, j) => {
+          <Group key={`heatmap-${i}`} className="vx-heatmap-column" left={xScale(i)}>
+            {bins(d).map((b, j) => {
               return (
                 <rect
                   key={`heatmap-tile-rect-${j}`}
@@ -56,7 +49,7 @@ export default function HeatmapRect({
                   width={width}
                   height={height}
                   x={x}
-                  y={yScale(yBin(b, j) + step) + gap}
+                  y={yScale(j) + gap}
                   fillOpacity={opacityScale(count(b))}
                   {...additionalProps(restProps, {
                     bin: b,
