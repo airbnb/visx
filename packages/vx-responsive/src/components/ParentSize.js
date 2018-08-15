@@ -9,22 +9,26 @@ export default class ParentSize extends React.Component {
     this.state = { width: 0, height: 0, top: 0, left: 0 };
     this.resize = debounce(this.resize.bind(this), props.debounceTime);
     this.setTarget = this.setTarget.bind(this);
+    this.animationFrameID = null;
   }
   componentDidMount() {
     this.ro = new ResizeObserver((entries, observer) => {
       for (const entry of entries) {
         const { left, top, width, height } = entry.contentRect;
-        this.resize({
-          width,
-          height,
-          top,
-          left
+        this.animationFrameID = window.requestAnimationFrame(() => {
+          this.resize({
+            width,
+            height,
+            top,
+            left
+          });
         });
       }
     });
     this.ro.observe(this.target);
   }
   componentWillUnmount() {
+    window.cancelAnimationFrame(this.animationFrameID);
     this.ro.disconnect();
   }
   resize({ width, height, top, left }) {
