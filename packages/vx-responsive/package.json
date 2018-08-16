@@ -1,6 +1,6 @@
 {
   "name": "@vx/responsive",
-  "version": "0.0.165",
+  "version": "0.0.172",
   "description": "vx responsive svg",
   "sideEffects": false,
   "main": "dist/vx-responsive.umd.js",

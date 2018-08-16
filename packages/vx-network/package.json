@@ -1,6 +1,6 @@
 {
   "name": "@vx/network",
-  "version": "0.0.170",
+  "version": "0.0.172",
   "description": "vx network",
   "sideEffects": false,
   "main": "dist/vx-network.umd.js",
