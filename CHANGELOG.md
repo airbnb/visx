@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.172](#v00172)
 - [v0.0.171](#v00171)
 - [v0.0.170](#v00170)
 - [v0.0.169](#v00169)
@@ -57,6 +58,29 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.172
+
+#### :bug: Bug Fix
+
+- [responsive] Avoid `ResizeObserver` loop limit exceeded. The issues surfaces on Chrome version >=64. [#335](https://github.com/hshoff/vx/pull/335)
+
+#### :memo: Documentation
+
+- [network] remove unrelated docs from readme. [#330](https://github.com/hshoff/vx/pull/330)
+
+#### :trophy: Contributors
+
+- [kristw](https://github.com/kristw)
+- [hshoff](https://github.com/hshoff)
+
+```
+Changes:
+ - @vx/demo: 0.0.171 => 0.0.172
+ - @vx/network: 0.0.170 => 0.0.172
+ - @vx/responsive: 0.0.165 => 0.0.172
+ - @vx/vx: 0.0.171 => 0.0.172
+```
 
 # v0.0.171
 
