@@ -1,14 +1,14 @@
 # Roadmap
 
-- threshold
-- regions
-- labels
-- interactions
 - brush
+- zoom
+- pan
 - controls
 - layouts
 - accessability
 - browser support
+- ~~threshold~~
+- ~~drag~~
 - ~~legends~~
 - ~~events~~
 - ~~tooltips~~
