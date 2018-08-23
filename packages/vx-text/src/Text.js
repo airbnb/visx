@@ -82,6 +82,7 @@ class Text extends Component {
       angle,
       lineHeight,
       capHeight,
+      innerRef,
       ...textProps
     } = this.props;
     const { wordsByLines } = this.state;
@@ -121,7 +122,13 @@ class Text extends Component {
     }
 
     return (
-      <svg x={dx} y={dy} fontSize={textProps.fontSize} style={{ overflow: 'visible' }}>
+      <svg
+        ref={innerRef}
+        x={dx}
+        y={dy}
+        fontSize={textProps.fontSize}
+        style={{ overflow: 'visible' }}
+      >
         <text {...textProps} textAnchor={textAnchor}>
           {wordsByLines.map((line, index) => (
             <tspan x={x} dy={index === 0 ? startDy : lineHeight} key={index}>
@@ -151,7 +158,8 @@ Text.propTypes = {
   angle: PropTypes.number,
   textAnchor: PropTypes.oneOf(['start', 'middle', 'end', 'inherit']),
   verticalAnchor: PropTypes.oneOf(['start', 'middle', 'end']),
-  style: PropTypes.object
+  style: PropTypes.object,
+  innerRef: PropTypes.func
 };
 
 export default Text;
