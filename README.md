@@ -183,6 +183,9 @@ Lots coming soon, check out the [roadmap](./ROADMAP.md).
 - Investment Calculator ([website](https://investmentcalculator.io/))
 - Cryptagon - crypto portfolio tracker ([website](https://cryptagon.io/))
 - Animation with [`react-spring`](https://github.com/drcmda/react-spring/) by [@drcmda](https://github.com/drcmda) ([Demo](https://codesandbox.io/embed/j3x61vjz5v))
+- Code Coverage Dashboard by [@ezy](https://github.com/ezy)
+([Demo](https://codecov-dash.herokuapp.com/))
+([Github](https://github.com/ezy/code-coverage-dashboard))
 - Have a project that's using vx? Open a pull request and we'll add it to the list.
 
 ## FAQ
@@ -196,7 +199,7 @@ Lots coming soon, check out the [roadmap](./ROADMAP.md).
     >
     > Imagine your app already bundles `react-motion`, adding a hypothetical `@vx/animation` is bloat. Since vx is react, it already supports all react animation libs.
     >
-    > Charting libraries are like style guides. Each org or app will eventually want full control over their own implementation. 
+    > Charting libraries are like style guides. Each org or app will eventually want full control over their own implementation.
     >
     > vx makes this easier for everyone. No need to reinvent the wheel each time.
     >
