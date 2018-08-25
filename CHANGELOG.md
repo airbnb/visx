@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.173](#v00173)
 - [v0.0.172](#v00172)
 - [v0.0.171](#v00171)
 - [v0.0.170](#v00170)
@@ -58,6 +59,35 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.173
+
+#### :boom: Breaking Changes
+
+- [heatmap] simplify `heatmap` API. [#332](https://github.com/hshoff/vx/pull/332)
+
+#### :rocket: Enhancements
+
+- [text] add innerRef prop. [#339](https://github.com/hshoff/vx/pull/339)
+
+#### :memo: Documentation
+
+- [docs] add code coverage demo to readme. [#337](https://github.com/hshoff/vx/pull/337)
+
+#### :trophy: Contributors
+
+- [jens-ox](https://github.com/jens-ox)
+- [ezy](https://github.com/ezy)
+- [hshoff](https://github.com/hshoff)
+
+```
+Changes:
+ - @vx/axis: 0.0.171 => 0.0.173
+ - @vx/demo: 0.0.172 => 0.0.173
+ - @vx/heatmap: 0.0.170 => 0.0.173
+ - @vx/text: 0.0.165 => 0.0.173
+ - @vx/vx: 0.0.172 => 0.0.173
+ ```
 
 # v0.0.172
 
