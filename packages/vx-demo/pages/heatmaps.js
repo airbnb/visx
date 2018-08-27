@@ -32,37 +32,33 @@ const z = d => d.count;
 export default ({
   width,
   height,
-  events = false,
   margin = {
     top: 10,
     left: 20,
     right: 20,
-    bottom: 110,
-  }
+    bottom: 110
+  },
+  separation = 20
 }) => {
-  if (width < 10) return null;
-
+  
   // bounds
-  const size =  width > (margin.left + margin.right)
-    ? width - margin.left - margin.right
-    : width;
-  const xMax =  size / 2;
-  const yMax = height - margin.bottom;
-  const dMin = min(data, d => min(y(d), x));
-  const dMax = max(data, d => max(y(d), x));
-  const dStep = dMax / data[0].bins.length;
+  const size =
+    width > margin.left + margin.right ? width - margin.left - margin.right - separation : width;
+  const xMax = size / 2;
+  const yMax = height - margin.bottom - margin.top;
+  const maxBucketSize = max(data, d => y(d).length);
   const bWidth = xMax / data.length;
-  const bHeight = yMax / data[0].bins.length;
+  const bHeight = yMax / maxBucketSize;
   const colorMax = max(data, d => max(y(d), z));
 
   // scales
   const xScale = scaleLinear({
     range: [0, xMax],
-    domain: extent(data, x)
+    domain: [0, data.length]
   });
   const yScale = scaleLinear({
     range: [yMax, 0],
-    domain: [dMin, dMax]
+    domain: [0, maxBucketSize]
   });
   const colorScale = scaleLinear({
     range: ['#77312f', '#f33d15'],
@@ -73,37 +69,28 @@ export default ({
     domain: [0, colorMax]
   });
   const opacityScale = scaleLinear({
-    range: [.1, 1],
+    range: [0.1, 1],
     domain: [0, colorMax]
   });
 
   return (
     <svg width={width} height={height}>
-      <rect
-        x={0}
-        y={0}
-        width={width}
-        height={height}
-        rx={14}
-        fill="#28272c"
-      />
-      <Group top={margin.top} left={5}>
+      <rect x={0} y={0} width={width} height={height} rx={14} fill="#28272c" />
+      <Group top={margin.top} left={margin.left}>
         <HeatmapCircle
           data={data}
           xScale={xScale}
           yScale={yScale}
           colorScale={colorScale}
           opacityScale={opacityScale}
-          radius={(bWidth + 4) / 2}
-          step={dStep}
-          gap={4}
+          radius={min([bWidth, bHeight]) / 2}
+          gap={2}
           onClick={data => event => {
-            if (!events) return;
-            alert(\`clicked: \${JSON.stringify(data.bin)}\`)
+            alert(\`clicked: \${JSON.stringify(data.bin)}\`);
           }}
         />
       </Group>
-      <Group top={margin.top} left={xMax + margin.left}>
+      <Group top={margin.top} left={xMax + margin.left + separation}>
         <HeatmapRect
           data={data}
           xScale={xScale}
@@ -112,17 +99,15 @@ export default ({
           opacityScale={opacityScale}
           binWidth={bWidth}
           binHeight={bWidth}
-          step={dStep}
-          gap={0}
+          gap={2}
           onClick={data => event => {
-            if (!events) return;
-            alert(\`clicked: \${JSON.stringify(data.bin)}\`)
+            alert(\`clicked: \${JSON.stringify(data.bin)}\`);
           }}
         />
       </Group>
     </svg>
   );
-}`}
+};`}
     </Show>
   );
 };
