@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.174](#v00174)
 - [v0.0.173](#v00173)
 - [v0.0.172](#v00172)
 - [v0.0.171](#v00171)
@@ -59,6 +60,26 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.174
+
+#### :rocket: Enhancements
+
+- [threshold] add id prop for unique clip-path ids. [#342](https://github.com/hshoff/vx/pull/342)
+
+#### :memo: Documentation
+
+- [demo] update heatmap example code to match new api. [#340](https://github.com/hshoff/vx/pull/340)
+
+#### :trophy: Contributors
+
+- [hshoff](https://github.com/hshoff)
+
+```
+Changes:
+ - @vx/demo: 0.0.173 => 0.0.174
+ - @vx/threshold: 0.0.171 => 0.0.174
+```
 
 # v0.0.173
 
