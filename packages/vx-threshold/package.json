@@ -1,6 +1,6 @@
 {
   "name": "@vx/threshold",
-  "version": "0.0.171",
+  "version": "0.0.174",
   "description": "vx threshold",
   "sideEffects": false,
   "main": "dist/vx-threshold.umd.js",
