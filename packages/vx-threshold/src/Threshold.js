@@ -15,7 +15,8 @@ export default function Threshold({
   y0,
   y1,
   aboveAreaProps,
-  belowAreaProps
+  belowAreaProps,
+  id
 }) {
   return (
     <g className={cx('vx-threshold', className)}>
@@ -23,10 +24,10 @@ export default function Threshold({
         {({ path }) => {
           return (
             <g>
-              <ClipPath id="threshold-clip-below">
+              <ClipPath id={`threshold-clip-below-${id}`}>
                 <path d={path.y0(clipBelowTo)(data)} />
               </ClipPath>
-              <ClipPath id="threshold-clip-above">
+              <ClipPath id={`threshold-clip-above-${id}`}>
                 <path d={path.y0(clipAboveTo)(data)} />
               </ClipPath>
             </g>
@@ -42,7 +43,7 @@ export default function Threshold({
         xScale={xScale}
         yScale={yScale}
         strokeWidth={0}
-        clipPath="url(#threshold-clip-below)"
+        clipPath={`url(#threshold-clip-below-${id})`}
         {...belowAreaProps}
       />
       <Area
@@ -54,7 +55,7 @@ export default function Threshold({
         xScale={xScale}
         yScale={yScale}
         strokeWidth={0}
-        clipPath="url(#threshold-clip-above)"
+        clipPath={`url(#threshold-clip-above-${id})`}
         {...aboveAreaProps}
       />
     </g>
