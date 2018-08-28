@@ -54,6 +54,8 @@ let chartToRender = withParentSize(MySuperCoolVxChart);
 
 You might do the same thing using the `ParentSize` component.
 
+*Note: `ParentSize` uses [ResizeObserver](https://developers.google.com/web/updates/2016/10/resizeobserver) which is currently only supported in Chrome 64 and newer ([caniuse](https://caniuse.com/#feat=resizeobserver)). If you need support for other browsers you need a polyfill like `resize-observer-polyfill` which is only a `npm install -S resize-observer-polyfill` away.*
+
 ### Example:
 ``` js
 import { ParentSize } from "@vx/responsive";
