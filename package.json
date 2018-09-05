@@ -8,7 +8,7 @@
     "docs": "node ./scripts/docs/index.js",
     "prepare-release": "git checkout master && git pull --rebase origin master && npm run docs && lerna updated",
     "release": "npm run prepare-release && lerna publish --exact",
-    "format": "prettier \"{packages,scripts}/**/*.js\" --write",
+    "format": "prettier-eslint \"{packages,scripts}/**/*.js\" --write",
     "precommit": "lint-staged"
   },
   "prettier": {
@@ -17,7 +17,7 @@
   },
   "lint-staged": {
     "*.js": [
-      "prettier --write",
+      "prettier-eslint --write",
       "git add"
     ]
   },
@@ -54,6 +54,7 @@
     "lint-staged": "^7.0.4",
     "marked": "^0.3.19",
     "prettier": "^1.12.1",
+    "prettier-eslint-cli": "^4.7.1",
     "react": "^15.0.0-0 || ^16.0.0-0",
     "react-dom": "^15.0.0-0 || ^16.0.0-0",
     "regenerator-runtime": "^0.10.5"
