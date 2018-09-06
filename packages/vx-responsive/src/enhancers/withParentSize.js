@@ -1,5 +1,6 @@
-import debounce from 'lodash/debounce';
 import React from 'react';
+import debounce from 'lodash/debounce';
+import ResizeObserver from 'resize-observer-polyfill';
 
 export default function withParentSize(BaseComponent) {
   class WrappedComponent extends React.Component {
@@ -11,28 +12,35 @@ export default function withParentSize(BaseComponent) {
         parentHeight: null
       };
 
-      this.handleResize = debounce(this.resize.bind(this), props.windowResizeDebounceTime).bind(
-        this
-      );
+      this.animationFrameID = null;
+      this.debouncedResize = debounce(this.resize.bind(this), props.debounceTime).bind(this);
     }
 
     componentDidMount() {
-      window.addEventListener('resize', this.handleResize, false);
-      this.resize();
+      this.ro = new ResizeObserver((entries, observer) => {
+        entries.forEach(entry => {
+          const { width, height } = entry.contentRect;
+          this.animationFrameID = window.requestAnimationFrame(() => {
+            this.debouncedResize({
+              width,
+              height
+            });
+          });
+        });
+      });
+      this.ro.observe(this.container);
     }
 
     componentWillUnmount() {
-      window.removeEventListener('resize', this.handleResize, false);
+      window.cancelAnimationFrame(this.animationFrameID);
+      this.ro.disconnect();
     }
 
-    resize(event) {
-      if (this.container) {
-        var boundingRect = this.container.getBoundingClientRect();
-        this.setState((prevState, props) => ({
-          parentWidth: boundingRect.width,
-          parentHeight: boundingRect.height
-        }));
-      }
+    resize({ width, height }) {
+      this.setState({
+        parentWidth: width,
+        parentHeight: height
+      });
     }
 
     render() {
@@ -58,7 +66,7 @@ export default function withParentSize(BaseComponent) {
   }
 
   WrappedComponent.defaultProps = {
-    windowResizeDebounceTime: 300
+    debounceTime: 300
   };
 
   return WrappedComponent;
