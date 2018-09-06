@@ -14,7 +14,7 @@ export default function labelTransform({
     y,
     transform = null;
   if (orientation === ORIENT.top || orientation === ORIENT.bottom) {
-    x = Math.max(...range) / 2;
+    x = (range[0] + range[range.length - 1]) / 2;
     y =
       sign *
       (tickLength +
@@ -22,7 +22,7 @@ export default function labelTransform({
         tickLabelFontSize +
         (orientation === ORIENT.bottom ? labelProps.fontSize : 0));
   } else {
-    x = sign * (Math.max(...range) / 2);
+    x = sign * ((range[0] + range[range.length - 1]) / 2);
     y = -(tickLength + labelOffset);
     transform = `rotate(${sign * 90})`;
   }
