@@ -23,9 +23,13 @@ describe('withParentSize', () => {
     const Component = props => <div />;
     const HOC = withParentSize(Component);
     const wrapper = mount(<HOC />);
-    const RenderedComponent = wrapper.find(Component);
-    expect(Element.prototype.getBoundingClientRect).toHaveBeenCalled();
-    expect(RenderedComponent.prop('parentWidth')).toBe(220);
-    expect(RenderedComponent.prop('parentHeight')).toBe(120);
+
+    // wait for the resizeObserver to run
+    setTimeout(() => {
+      const RenderedComponent = wrapper.find(Component);
+      expect(Element.prototype.getBoundingClientRect).toHaveBeenCalled();
+      expect(RenderedComponent.prop('parentWidth')).toBe(220);
+      expect(RenderedComponent.prop('parentHeight')).toBe(120);
+    }, 0);
   });
 });
