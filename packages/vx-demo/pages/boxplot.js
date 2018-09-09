@@ -2,20 +2,19 @@ import React from 'react';
 import Show from '../components/show';
 import BoxPlot from '../components/tiles/boxplot';
 
-export default () => {
-  return (
-    <Show events={true} margin={{ top: 80 }} component={BoxPlot} title="BoxPlot With ViolinPlot">
-      {`import React from 'react';
+export default () => (
+  <Show events margin={{ top: 80 }} component={BoxPlot} title="BoxPlot With ViolinPlot">
+    {`import React from 'react';
 import { Group } from '@vx/group';
 import { BoxPlot } from '@vx/boxplot';
 import { LinearGradient } from '@vx/gradient';
 import { scaleBand, scaleLinear } from '@vx/scale';
-import { genBoxPlot } from '@vx/mock-data';
+import { genStats } from '@vx/mock-data';
 import { withTooltip, Tooltip } from '@vx/tooltip';
 import { extent } from 'd3-array';
 import { format } from 'd3-format';
 
-const data = genBoxPlot(5);
+const data = genStats(5);
 const twoDecimalFormat = format('.2f');
 
 // accessors
@@ -204,6 +203,5 @@ export default withTooltip(
   }
 );
 `}
-    </Show>
-  );
-};
+  </Show>
+);
