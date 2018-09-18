@@ -5,42 +5,43 @@ import { ParentSize } from '@vx/responsive';
 import { extent, max } from 'd3-array';
 import drawData from './util/drawData';
 
-import Page from '../components/page';
-import Footer from '../components/footer';
+import Page from './page';
+import Footer from './footer';
 
-import Lines from '../components/tiles/lines';
-import Bars from '../components/tiles/bars';
-import Dots from '../components/tiles/dots';
-import Patterns from '../components/tiles/patterns';
-import Gradients from '../components/tiles/gradients';
-import Area from '../components/tiles/area';
-import Stacked from '../components/tiles/stacked';
-import MultiLine from '../components/tiles/multiline';
-import Axis from '../components/tiles/axis';
-import BarGroup from '../components/tiles/bargroup';
-import BarGroupHorizontal from '../components/tiles/bargrouphorizontal';
-import BarStack from '../components/tiles/barstack';
-import BarStackHorizontal from '../components/tiles/barstackhorizontal';
-import Heatmap from '../components/tiles/heatmap';
-import LineRadial from '../components/tiles/lineradial';
-import Pies from '../components/tiles/pie';
-import Trees from '../components/tiles/tree';
-import Cluster from '../components/tiles/dendrogram';
-import Voronoi from '../components/tiles/voronoi';
-import Legends from '../components/tiles/legends';
-import BoxPlot from '../components/tiles/boxplot';
-import GeoMercator from '../components/tiles/geo-mercator';
-import Network from '../components/tiles/network';
-import Streamgraph from '../components/tiles/streamgraph';
-import Pack from '../components/tiles/pack';
-import Treemap from '../components/tiles/treemap';
-import Radar from '../components/tiles/radar';
-import Responsive from '../components/tiles/responsive';
-import DragI from '../components/tiles/drag-i';
-import DragII from '../components/tiles/drag-ii';
-import LinkTypes from '../components/tiles/linkTypes';
-import Threshold from '../components/tiles/threshold';
-import Chord from '../components/tiles/chord';
+import Lines from './tiles/lines';
+import Bars from './tiles/bars';
+import Dots from './tiles/dots';
+import Patterns from './tiles/patterns';
+import Gradients from './tiles/gradients';
+import Area from './tiles/area';
+import Stacked from './tiles/stacked';
+import MultiLine from './tiles/multiline';
+import Axis from './tiles/axis';
+import BarGroup from './tiles/bargroup';
+import BarGroupHorizontal from './tiles/bargrouphorizontal';
+import BarStack from './tiles/barstack';
+import BarStackHorizontal from './tiles/barstackhorizontal';
+import Heatmap from './tiles/heatmap';
+import LineRadial from './tiles/lineradial';
+import Pies from './tiles/pie';
+import Trees from './tiles/tree';
+import Cluster from './tiles/dendrogram';
+import Voronoi from './tiles/voronoi';
+import Legends from './tiles/legends';
+import BoxPlot from './tiles/boxplot';
+import GeoMercator from './tiles/geo-mercator';
+import Network from './tiles/network';
+import Streamgraph from './tiles/streamgraph';
+import Pack from './tiles/pack';
+import Treemap from './tiles/treemap';
+import Radar from './tiles/radar';
+import Responsive from './tiles/responsive';
+import DragI from './tiles/drag-i';
+import DragII from './tiles/drag-ii';
+import LinkTypes from './tiles/linkTypes';
+import Threshold from './tiles/threshold';
+import Chord from './tiles/chord';
+import Polygons from './tiles/polygons';
 
 const items = [
   '#242424',
@@ -54,13 +55,14 @@ const items = [
   '#f4419f',
   '#3130e3',
   '#12122e',
-  '#ff657c'
+  '#ff657c',
 ];
 
 export default class Gallery extends React.Component {
   constructor(props) {
     super(props);
   }
+
   render() {
     const detailsHeight = 76;
     return (
@@ -77,7 +79,7 @@ export default class Gallery extends React.Component {
                 <div className="details">
                   <div className="title">Lines</div>
                   <div className="description">
-                    <pre>{`<Shape.Line />`}</pre>
+                    <pre>{'<Shape.Line />'}</pre>
                   </div>
                 </div>
               </div>
@@ -94,7 +96,7 @@ export default class Gallery extends React.Component {
                 <div className="details color-blue">
                   <div className="title">Bars</div>
                   <div className="description">
-                    <pre>{`<Shape.Bar />`}</pre>
+                    <pre>{'<Shape.Bar />'}</pre>
                   </div>
                 </div>
               </div>
@@ -113,7 +115,7 @@ export default class Gallery extends React.Component {
                           top: 0,
                           left: 0,
                           right: 0,
-                          bottom: 80
+                          bottom: 80,
                         }}
                       />
                     )}
@@ -122,7 +124,7 @@ export default class Gallery extends React.Component {
                 <div className="details color-yellow" style={{ zIndex: 1 }}>
                   <div className="title">Dots</div>
                   <div className="description">
-                    <pre>{`<Glyph.GlyphCircle />`}</pre>
+                    <pre>{'<Glyph.GlyphCircle />'}</pre>
                   </div>
                 </div>
               </div>
@@ -141,7 +143,7 @@ export default class Gallery extends React.Component {
                 <div className="details color-gray">
                   <div className="title">Patterns</div>
                   <div className="description">
-                    <pre>{`<Pattern />`}</pre>
+                    <pre>{'<Pattern />'}</pre>
                   </div>
                 </div>
               </div>
@@ -160,7 +162,7 @@ export default class Gallery extends React.Component {
                           top: 0,
                           left: 0,
                           right: 0,
-                          bottom: 80
+                          bottom: 80,
                         }}
                       />
                     )}
@@ -169,7 +171,7 @@ export default class Gallery extends React.Component {
                 <div className="details" style={{ zIndex: 1 }}>
                   <div className="title">Areas</div>
                   <div className="description">
-                    <pre>{`<Shape.AreaClosed />`}</pre>
+                    <pre>{'<Shape.AreaClosed />'}</pre>
                   </div>
                 </div>
               </div>
@@ -188,7 +190,7 @@ export default class Gallery extends React.Component {
                           top: 0,
                           left: 0,
                           right: 0,
-                          bottom: 80
+                          bottom: 80,
                         }}
                       />
                     )}
@@ -197,7 +199,7 @@ export default class Gallery extends React.Component {
                 <div className="details" style={{ color: 'rgba(251, 224, 137, 1.000)' }}>
                   <div className="title">Stacked Areas</div>
                   <div className="description">
-                    <pre>{`<Shape.AreaStack />`}</pre>
+                    <pre>{'<Shape.AreaStack />'}</pre>
                   </div>
                 </div>
               </div>
@@ -209,7 +211,7 @@ export default class Gallery extends React.Component {
                 className="gallery-item"
                 style={{
                   background: 'white',
-                  boxShadow: '0 1px 6px rgba(0,0,0,0.1)'
+                  boxShadow: '0 1px 6px rgba(0,0,0,0.1)',
                 }}
               >
                 <div className="image">
@@ -222,7 +224,7 @@ export default class Gallery extends React.Component {
                           top: 0,
                           left: 0,
                           right: 0,
-                          bottom: 80
+                          bottom: 80,
                         }}
                       />
                     )}
@@ -231,7 +233,7 @@ export default class Gallery extends React.Component {
                 <div className="details color-gray">
                   <div className="title">Gradients</div>
                   <div className="description">
-                    <pre>{`<Gradient />`}</pre>
+                    <pre>{'<Gradient />'}</pre>
                   </div>
                 </div>
               </div>
@@ -250,7 +252,7 @@ export default class Gallery extends React.Component {
                           top: 0,
                           left: 0,
                           right: 0,
-                          bottom: 80
+                          bottom: 80,
                         }}
                       />
                     )}
@@ -259,7 +261,7 @@ export default class Gallery extends React.Component {
                 <div className="details" style={{ color: 'rgba(126, 31, 220, 1.000)' }}>
                   <div className="title">Glyphs</div>
                   <div className="description">
-                    <pre>{`<Glyph.GlyphDot />`}</pre>
+                    <pre>{'<Glyph.GlyphDot />'}</pre>
                   </div>
                 </div>
               </div>
@@ -278,7 +280,7 @@ export default class Gallery extends React.Component {
                           top: 20,
                           left: 60,
                           right: 40,
-                          bottom: 120
+                          bottom: 120,
                         }}
                       />
                     )}
@@ -287,7 +289,7 @@ export default class Gallery extends React.Component {
                 <div className="details" style={{ color: '#8e205f' }}>
                   <div className="title">Axis</div>
                   <div className="description">
-                    <pre>{`<Axis.AxisLeft /> + <Axis.AxisBottom />`}</pre>
+                    <pre>{'<Axis.AxisLeft /> + <Axis.AxisBottom />'}</pre>
                   </div>
                 </div>
               </div>
@@ -306,7 +308,7 @@ export default class Gallery extends React.Component {
                 <div className="details" style={{ color: '#e5fd3d' }}>
                   <div className="title">Bar Group</div>
                   <div className="description">
-                    <pre>{`<Shape.BarGroup />`}</pre>
+                    <pre>{'<Shape.BarGroup />'}</pre>
                   </div>
                 </div>
               </div>
@@ -325,7 +327,7 @@ export default class Gallery extends React.Component {
                 <div className="details" style={{ color: '#a44afe', zIndex: 1 }}>
                   <div className="title">Bar Stack</div>
                   <div className="description">
-                    <pre>{`<Shape.BarStack />`}</pre>
+                    <pre>{'<Shape.BarStack />'}</pre>
                   </div>
                 </div>
               </div>
@@ -344,7 +346,7 @@ export default class Gallery extends React.Component {
                 <div className="details" style={{ color: 'rgba(255,255,255,0.3)' }}>
                   <div className="title">Heatmaps</div>
                   <div className="description">
-                    <pre>{`<HeatmapCircle /> + <HeatmapRect />`}</pre>
+                    <pre>{'<HeatmapCircle /> + <HeatmapRect />'}</pre>
                   </div>
                 </div>
               </div>
@@ -361,7 +363,7 @@ export default class Gallery extends React.Component {
                 <div className="details" style={{ color: '#919fe5' }}>
                   <div className="title">Radial Lines</div>
                   <div className="description">
-                    <pre>{`<Shape.LineRadial />`}</pre>
+                    <pre>{'<Shape.LineRadial />'}</pre>
                   </div>
                 </div>
               </div>
@@ -378,7 +380,7 @@ export default class Gallery extends React.Component {
                 <div className="details" style={{ color: 'white' }}>
                   <div className="title">Pies</div>
                   <div className="description">
-                    <pre>{`<Shape.Pie />`}</pre>
+                    <pre>{'<Shape.Pie />'}</pre>
                   </div>
                 </div>
               </div>
@@ -395,7 +397,7 @@ export default class Gallery extends React.Component {
                 <div className="details" style={{ color: '#269688' }}>
                   <div className="title">Trees</div>
                   <div className="description">
-                    <pre>{`<Hierarchy.Tree /> + <Shape.LinkHorizontal />`}</pre>
+                    <pre>{'<Hierarchy.Tree /> + <Shape.LinkHorizontal />'}</pre>
                   </div>
                 </div>
               </div>
@@ -414,7 +416,7 @@ export default class Gallery extends React.Component {
                 <div className="details" style={{ color: '#5dc26f' }}>
                   <div className="title">Dendrograms</div>
                   <div className="description">
-                    <pre>{`<Hierarchy.Cluster /> + <Shape.LinkVertical />`}</pre>
+                    <pre>{'<Hierarchy.Cluster /> + <Shape.LinkVertical />'}</pre>
                   </div>
                 </div>
               </div>
@@ -429,7 +431,7 @@ export default class Gallery extends React.Component {
                 <div className="details" style={{ color: '#494949' }}>
                   <div className="title">Legends</div>
                   <div className="description">
-                    <pre>{`<Legend />`}</pre>
+                    <pre>{'<Legend />'}</pre>
                   </div>
                 </div>
               </div>
@@ -440,14 +442,14 @@ export default class Gallery extends React.Component {
               <div
                 className="gallery-item"
                 style={{
-                  boxShadow: 'rgba(0, 0, 0, 0.1) 0px 1px 6px'
+                  boxShadow: 'rgba(0, 0, 0, 0.1) 0px 1px 6px',
                 }}
               >
                 <div
                   className="image"
                   style={{
                     backgroundColor: '#eb6d88',
-                    borderRadius: 14
+                    borderRadius: 14,
                   }}
                 >
                   <ParentSize>
@@ -459,7 +461,7 @@ export default class Gallery extends React.Component {
                 <div className="details" style={{ color: '#F54EA2' }}>
                   <div className="title">Voronoi</div>
                   <div className="description">
-                    <pre>{`<Voronoi.VoronoiPolygon /> `}</pre>
+                    <pre>{'<Voronoi.VoronoiPolygon /> '}</pre>
                   </div>
                 </div>
               </div>
@@ -479,7 +481,7 @@ export default class Gallery extends React.Component {
                 <div className="details" style={{ color: '#FFFFFF', zIndex: 1 }}>
                   <div className="title">Stats Plots</div>
                   <div className="description">
-                    <pre>{`<BoxPlot /> + <ViolinPlot /> `}</pre>
+                    <pre>{'<BoxPlot /> + <ViolinPlot /> '}</pre>
                   </div>
                 </div>
               </div>
@@ -499,7 +501,7 @@ export default class Gallery extends React.Component {
                 <div className="details" style={{ color: '#f63a48' }}>
                   <div className="title">Geo</div>
                   <div className="description">
-                    <pre>{`<Geo.Mercator />`}</pre>
+                    <pre>{'<Geo.Mercator />'}</pre>
                   </div>
                 </div>
               </div>
@@ -519,12 +521,12 @@ export default class Gallery extends React.Component {
                 <div
                   className="details"
                   style={{
-                    color: '#ffffff'
+                    color: '#ffffff',
                   }}
                 >
                   <div className="title">Network</div>
                   <div className="description">
-                    <pre>{`<Network.Graph />`}</pre>
+                    <pre>{'<Network.Graph />'}</pre>
                   </div>
                 </div>
               </div>
@@ -544,12 +546,12 @@ export default class Gallery extends React.Component {
                 <div
                   className="details"
                   style={{
-                    color: '#036ecd'
+                    color: '#036ecd',
                   }}
                 >
                   <div className="title">Streamgraph</div>
                   <div className="description">
-                    <pre>{`<Shape.Stack />`}</pre>
+                    <pre>{'<Shape.Stack />'}</pre>
                   </div>
                 </div>
               </div>
@@ -561,7 +563,7 @@ export default class Gallery extends React.Component {
                 className="gallery-item"
                 style={{
                   background: '#ffffff',
-                  boxShadow: 'rgba(0, 0, 0, 0.1) 0px 1px 6px'
+                  boxShadow: 'rgba(0, 0, 0, 0.1) 0px 1px 6px',
                 }}
               >
                 <div className="image">
@@ -572,12 +574,12 @@ export default class Gallery extends React.Component {
                 <div
                   className="details"
                   style={{
-                    color: '#fd6c6f'
+                    color: '#fd6c6f',
                   }}
                 >
                   <div className="title">Pack</div>
                   <div className="description">
-                    <pre>{`<Hierarchy.Pack />`}</pre>
+                    <pre>{'<Hierarchy.Pack />'}</pre>
                   </div>
                 </div>
               </div>
@@ -588,7 +590,7 @@ export default class Gallery extends React.Component {
               <div
                 className="gallery-item"
                 style={{
-                  background: '#3436b8'
+                  background: '#3436b8',
                 }}
               >
                 <div className="image">
@@ -601,12 +603,12 @@ export default class Gallery extends React.Component {
                 <div
                   className="details"
                   style={{
-                    color: '#00ff70'
+                    color: '#00ff70',
                   }}
                 >
                   <div className="title">Treemap</div>
                   <div className="description">
-                    <pre>{`<Hierarchy.Treemap />`}</pre>
+                    <pre>{'<Hierarchy.Treemap />'}</pre>
                   </div>
                 </div>
               </div>
@@ -617,7 +619,7 @@ export default class Gallery extends React.Component {
               <div
                 className="gallery-item"
                 style={{
-                  background: '#FAF7E9'
+                  background: '#FAF7E9',
                 }}
               >
                 <div className="image">
@@ -628,12 +630,12 @@ export default class Gallery extends React.Component {
                 <div
                   className="details"
                   style={{
-                    color: '#f5810c'
+                    color: '#f5810c',
                   }}
                 >
                   <div className="title">Radar</div>
                   <div className="description">
-                    <pre>{`<Shape.Line /> + <Shape.LineRadial />`}</pre>
+                    <pre>{'<Shape.Line /> + <Shape.LineRadial />'}</pre>
                   </div>
                 </div>
               </div>
@@ -644,7 +646,7 @@ export default class Gallery extends React.Component {
               <div
                 className="gallery-item"
                 style={{
-                  background: '#eaedff'
+                  background: '#eaedff',
                 }}
               >
                 <div className="image">
@@ -657,7 +659,7 @@ export default class Gallery extends React.Component {
                 <div className="details" style={{ color: '#a44afe', zIndex: 1 }}>
                   <div className="title">Bar Stack Horizontal</div>
                   <div className="description">
-                    <pre>{`<Shape.BarStackHorizontal />`}</pre>
+                    <pre>{'<Shape.BarStackHorizontal />'}</pre>
                   </div>
                 </div>
               </div>
@@ -668,13 +670,13 @@ export default class Gallery extends React.Component {
               <div
                 className="gallery-item"
                 style={{
-                  background: 'white'
+                  background: 'white',
                 }}
               >
                 <div className="image">
                   <ParentSize>
                     {({ width, height }) => (
-                      <Responsive width={width} height={height} events={true} />
+                      <Responsive width={width} height={height} events />
                     )}
                   </ParentSize>
                 </div>
@@ -686,12 +688,12 @@ export default class Gallery extends React.Component {
                     border: '1px solid lightgray',
                     borderTop: 'none',
                     borderBottomLeftRadius: '14px',
-                    borderBottomRightRadius: '14px'
+                    borderBottomRightRadius: '14px',
                   }}
                 >
                   <div className="title">Responsive</div>
                   <div className="description">
-                    <pre>{`<Responsive.ParentSize />`}</pre>
+                    <pre>{'<Responsive.ParentSize />'}</pre>
                   </div>
                 </div>
               </div>
@@ -704,7 +706,7 @@ export default class Gallery extends React.Component {
                 style={{
                   background: 'white',
                   border: '1px solid lightgray',
-                  borderRadius: '14px'
+                  borderRadius: '14px',
                 }}
               >
                 <div className="image">
@@ -714,12 +716,12 @@ export default class Gallery extends React.Component {
                   className="details"
                   style={{
                     color: '#232323',
-                    zIndex: 1
+                    zIndex: 1,
                   }}
                 >
                   <div className="title">Text</div>
                   <div className="description">
-                    <pre>{`<Text.Text />`}</pre>
+                    <pre>{'<Text.Text />'}</pre>
                   </div>
                 </div>
               </div>
@@ -731,7 +733,7 @@ export default class Gallery extends React.Component {
                 className="gallery-item"
                 style={{
                   background: '#c4c3cb',
-                  borderRadius: '14px'
+                  borderRadius: '14px',
                 }}
               >
                 <div className="image">
@@ -743,12 +745,12 @@ export default class Gallery extends React.Component {
                   className="details"
                   style={{
                     color: '#6437d6',
-                    zIndex: 1
+                    zIndex: 1,
                   }}
                 >
                   <div className="title">Drag</div>
                   <div className="description">
-                    <pre>{`<Drag.Drag />`}</pre>
+                    <pre>{'<Drag.Drag />'}</pre>
                   </div>
                 </div>
               </div>
@@ -760,7 +762,7 @@ export default class Gallery extends React.Component {
                 className="gallery-item"
                 style={{
                   background: '#04002b',
-                  borderRadius: '14px'
+                  borderRadius: '14px',
                 }}
               >
                 <div className="image">
@@ -774,12 +776,12 @@ export default class Gallery extends React.Component {
                   className="details"
                   style={{
                     color: '#ff614e',
-                    zIndex: 1
+                    zIndex: 1,
                   }}
                 >
                   <div className="title">Drag</div>
                   <div className="description">
-                    <pre>{`<Drag.Drag />`}</pre>
+                    <pre>{'<Drag.Drag />'}</pre>
                   </div>
                 </div>
               </div>
@@ -798,7 +800,7 @@ export default class Gallery extends React.Component {
                 <div className="details" style={{ color: '#269688' }}>
                   <div className="title">Link Types</div>
                   <div className="description">
-                    <pre>{`<Shape.Link* />`}</pre>
+                    <pre>{'<Shape.Link* />'}</pre>
                   </div>
                 </div>
               </div>
@@ -817,7 +819,7 @@ export default class Gallery extends React.Component {
                           top: 40,
                           left: 40,
                           right: 20,
-                          bottom: 30
+                          bottom: 30,
                         }}
                       />
                     )}
@@ -826,7 +828,7 @@ export default class Gallery extends React.Component {
                 <div className="details" style={{ color: '#111' }}>
                   <div className="title">Threshold</div>
                   <div className="description">
-                    <pre>{`<Threshold />`}</pre>
+                    <pre>{'<Threshold />'}</pre>
                   </div>
                 </div>
               </div>
@@ -846,7 +848,7 @@ export default class Gallery extends React.Component {
                           top: 0,
                           left: 0,
                           right: 0,
-                          bottom: 30
+                          bottom: 30,
                         }}
                       />
                     )}
@@ -855,7 +857,7 @@ export default class Gallery extends React.Component {
                 <div className="details" style={{ color: '#111' }}>
                   <div className="title">Chords</div>
                   <div className="description">
-                    <pre>{`<Chord.Chord /> + <Chord.Ribbon />`}</pre>
+                    <pre>{'<Chord.Chord /> + <Chord.Ribbon />'}</pre>
                   </div>
                 </div>
               </div>
@@ -874,7 +876,24 @@ export default class Gallery extends React.Component {
                 <div className="details" style={{ color: '#e5fd3d' }}>
                   <div className="title">Bar Group Horizontal</div>
                   <div className="description">
-                    <pre>{`<Shape.BarGroupHorizontal />`}</pre>
+                    <pre>{'<Shape.BarGroupHorizontal />'}</pre>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </Tilt>
+          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+            <Link prefetch href="/polygons">
+              <div className="gallery-item" style={{ background: '#7f82e3' }}>
+                <div className="image">
+                  <ParentSize>
+                    {({ width, height }) => <Polygons width={width} height={height} />}
+                  </ParentSize>
+                </div>
+                <div className="details" style={{ color: 'white' }}>
+                  <div className="title">Polygons</div>
+                  <div className="description">
+                    <pre>{'<Shape.Polygon />'}</pre>
                   </div>
                 </div>
               </div>
@@ -890,7 +909,8 @@ export default class Gallery extends React.Component {
 
         <Footer />
 
-        <style jsx>{`
+        <style jsx>
+          {`
           h3 {
             margin-top: 0;
             margin-left: 40px;
@@ -967,7 +987,8 @@ export default class Gallery extends React.Component {
               min-width: 100%;
             }
           }
-        `}</style>
+        `}
+        </style>
       </div>
     );
   }

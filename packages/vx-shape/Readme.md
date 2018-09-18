@@ -337,6 +337,30 @@ A more complicated line path. A `<LinePath />` is useful for making line graphs 
 | pieSortValues |         | function | A comparator function which takes two values (as returned from `pieValue`) and returns `-1`, `0` or `+1` to sort arcs.             |
 | centroid      |         | function | A render function which takes a [centroid](https://github.com/d3/d3-shape#arc_centroid) and an `arc` argument called for each arc. |
 
+## `<Polygon />`
+
+A simple polygon shape. Supply the sides and the length and we will do the rest.
+
+### Example
+
+```js
+// hexagon
+<Polygon sides={6} size={25} {...additionalProps[i]} />
+```
+
+### Properties
+
+| Name            | Default                  | Type     | Description                                                                                    |
+| :-------------- | :----------------------- | :------- | :--------------------------------------------------------------------------------------------- |
+| sides           |                          | number   | The number of sides in the polygon.                                                            |
+| size            | 25                       | number   | The length of each side of the polygon.                                                       |
+| rotate          | 0                        | number   | The angle in degrees to rotate the polygon.                                                    |
+| center          | new Point({ x: 0 y: 0 }) | Point    | The center of the polygon [point](https://github.com/hshoff/vx/tree/master/packages/vx-point). |
+| stroke          | black                    | string   | The color of the stroke.                                                                       |
+| strokeWidth     | 1                        | number   | The pixel width of the stroke.                                                                 |
+| strokeDasharray |                          | array    | The [pattern of dashes](https://mzl.la/1l7EiTQ) in the stroke.                                 |
+| className       |                          | string   | The class name for the `line` element.                                                         |
+
 ## Sources For Components
 + [`<AreaClosed />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/AreaClosed.js)
 + [`<AreaStack />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/AreaStack.js)
@@ -347,3 +371,4 @@ A more complicated line path. A `<LinePath />` is useful for making line graphs 
 + [`<LinePath />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/LinePath.js)
 + [`<LineRadial />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/LineRadial.js)
 + [`<Pie />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/Pie.js)
++ [`<Polygon`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/Polygon.js)
