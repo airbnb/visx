@@ -10,7 +10,9 @@ function getStringWidth(str, style) {
       const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
       svg.style.width = 0;
       svg.style.height = 0;
-      svg.style.display = 'none';
+      svg.style.position = 'absolute';
+      svg.style.top = '-100%';
+      svg.style.left = '-100%';
       textEl = document.createElementNS('http://www.w3.org/2000/svg', 'text');
       textEl.setAttribute('id', MEASUREMENT_ELEMENT_ID);
       svg.appendChild(textEl);
