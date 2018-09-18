@@ -9,7 +9,6 @@ Polygon.propTypes = {
   size: PropTypes.number.isRequired,
   className: PropTypes.string,
   rotate: PropTypes.number,
-  clickHandler: PropTypes.func,
   fill: PropTypes.string,
   strokeDasharray: PropTypes.string,
   strokeWidth: PropTypes.number,
@@ -31,7 +30,11 @@ export const getPoint = ({
 export const getPoints = ({
   sides, size, center, rotate,
 }) => [...Array(sides).keys()].map(side => getPoint({
-  sides, size, center, rotate, side,
+  sides,
+  size,
+  center,
+  rotate,
+  side,
 }));
 
 export default function Polygon({
@@ -48,18 +51,13 @@ export default function Polygon({
   ...restProps
 }) {
   const points = getPoints({
-    sides, size, center, rotate,
+    sides,
+    size,
+    center,
+    rotate,
   })
     .map(p => p.toArray())
     .join(' ');
 
-  return (
-    <polygon
-      points={points}
-      className={className}
-      fill={fill}
-      onClick={clickHandler}
-      {...restProps}
-    />
-  );
+  return <polygon points={points} className={className} fill={fill} {...restProps} />;
 }

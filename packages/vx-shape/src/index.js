@@ -15,6 +15,7 @@ export { default as Stack } from './shapes/Stack';
 export { default as callOrValue } from './util/callOrValue';
 export { default as stackOffset, STACK_OFFSETS, STACK_OFFSET_NAMES } from './util/stackOffset';
 export { default as stackOrder, STACK_ORDERS, STACK_ORDER_NAMES } from './util/stackOrder';
+export { degreesToRadians } from './util/trigonometry';
 export {
   default as LinkHorizontal,
   pathHorizontalDiagonal,

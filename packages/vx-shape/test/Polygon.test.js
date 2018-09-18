@@ -25,14 +25,14 @@ describe('<Polygon />', () => {
     expect(wrapper.prop('className')).toBe('a-polygon');
   });
 
-  it('should add click handler', () => {
+  it('should add onClick handler', () => {
     const fn = jest.fn();
 
     const wrapper = PolygonWrapper({
       sides: 6,
       size: 25,
       className: 'a-polygon',
-      clickHandler: fn,
+      onClick: fn,
     });
 
     wrapper.simulate('click');

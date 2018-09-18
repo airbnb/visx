@@ -353,10 +353,9 @@ A simple polygon shape. Supply the sides and the length and we will do the rest.
 | Name            | Default                  | Type     | Description                                                                                    |
 | :-------------- | :----------------------- | :------- | :--------------------------------------------------------------------------------------------- |
 | sides           |                          | number   | The number of sides in the polygon.                                                            |
-| size            | 25                       | number   | The length of eacch side of the polygon.                                                       |
+| size            | 25                       | number   | The length of each side of the polygon.                                                       |
 | rotate          | 0                        | number   | The angle in degrees to rotate the polygon.                                                    |
 | center          | new Point({ x: 0 y: 0 }) | Point    | The center of the polygon [point](https://github.com/hshoff/vx/tree/master/packages/vx-point). |
-| clickHandler    |                          | function | Assign a click handler                                                                         |
 | stroke          | black                    | string   | The color of the stroke.                                                                       |
 | strokeWidth     | 1                        | number   | The pixel width of the stroke.                                                                 |
 | strokeDasharray |                          | array    | The [pattern of dashes](https://mzl.la/1l7EiTQ) in the stroke.                                 |
