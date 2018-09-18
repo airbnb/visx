@@ -11,6 +11,8 @@ function getStringWidth(str, style) {
       svg.style.width = 0;
       svg.style.height = 0;
       svg.style.position = 'absolute';
+      svg.style.top = '-99px';
+      svg.style.left = '-99px';
       textEl = document.createElementNS('http://www.w3.org/2000/svg', 'text');
       textEl.setAttribute('id', MEASUREMENT_ELEMENT_ID);
       svg.appendChild(textEl);
