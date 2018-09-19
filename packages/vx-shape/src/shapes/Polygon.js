@@ -9,16 +9,12 @@ Polygon.propTypes = {
   size: PropTypes.number.isRequired,
   className: PropTypes.string,
   rotate: PropTypes.number,
-  fill: PropTypes.string,
-  strokeDasharray: PropTypes.string,
-  strokeWidth: PropTypes.number,
-  stroke: PropTypes.string,
 };
 
 export const getPoint = ({
   sides, size, center, rotate, side,
 }) => {
-  const degrees = (360 / sides) * side - rotate;
+  const degrees = 360 / sides * side - rotate;
   const radians = degreesToRadians(degrees);
 
   return new Point({
@@ -43,11 +39,6 @@ export default function Polygon({
   center = new Point({ x: 0, y: 0 }),
   rotate = 0,
   className,
-  clickHandler,
-  fill,
-  strokeDasharray,
-  strokeWidth = 1,
-  stroke = 'black',
   ...restProps
 }) {
   const points = getPoints({
@@ -59,5 +50,5 @@ export default function Polygon({
     .map(p => p.toArray())
     .join(' ');
 
-  return <polygon points={points} className={className} fill={fill} {...restProps} />;
+  return <polygon points={points} className={className} {...restProps} />;
 }

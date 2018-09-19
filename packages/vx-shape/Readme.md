@@ -11,9 +11,10 @@ Shapes are the core elements of vx. Most of what you see on the screen, like lin
 AreaClosed is a closed area under a curve.
 
 ### Example
+
 ![AreaClosed Example](http://i.imgur.com/hT0q8qx.png)
 
-``` js
+```js
 <AreaClosed
   data={myData}
   xScale={myXScale}
@@ -28,8 +29,8 @@ AreaClosed is a closed area under a curve.
 
 ### Properties
 
-|      Name       |       Default       |   Type   |                                                 Description                                                 |
-|:--------------- |:------------------- |:-------- |:----------------------------------------------------------------------------------------------------------- |
+| Name            | Default             | Type     | Description                                                                                                 |
+| :-------------- | :------------------ | :------- | :---------------------------------------------------------------------------------------------------------- |
 | x               |                     | function | The d3 [x function](https://github.com/d3/d3-shape#area_x).                                                 |
 | y               |                     | function | The d3 [y1 function](https://github.com/d3/d3-shape#area_y1).                                               |
 | xScale          |                     | function | A [scale function](https://github.com/hshoff/vx/tree/master/packages/vx-scale) for the xs.                  |
@@ -48,38 +49,39 @@ AreaClosed is a closed area under a curve.
 An `<AreaStack />` is used to represent several area's stacked on top of each other.
 
 ### Example
+
 ![AreaStack Example](http://i.imgur.com/Gh930t7.png)
 
-``` js
+```js
 <AreaStack
   reverse
   top={margin.top}
   left={margin.left}
   keys={keys}
   data={data}
-  x={(d) => xScale(x(d.data))}
-  y0={(d) => yScale(d[0] / 100)}
-  y1={(d) => yScale(d[1] / 100)}
-  stroke={(d,i) => colorScale(i)}
+  x={d => xScale(x(d.data))}
+  y0={d => yScale(d[0] / 100)}
+  y1={d => yScale(d[1] / 100)}
+  stroke={(d, i) => colorScale(i)}
   strokeWidth={1}
-  fillOpacity={(d,i) => selected.includes(browserNames[i]) ? 0.8 : 0.2}
-  fill={(d,i) => colorScale(i)}
+  fillOpacity={(d, i) => (selected.includes(browserNames[i]) ? 0.8 : 0.2)}
+  fill={(d, i) => colorScale(i)}
   onMouseEnter={(d, i) => event => {
-    updateSelected((prevState) => ([browserNames[i]]))
+    updateSelected(prevState => [browserNames[i]]);
   }}
-  onMouseLeave={(d,i) => event => {
+  onMouseLeave={(d, i) => event => {
     updateSelected(prevState => {
       if (prevState.includes(browserNames[i])) return [];
       return prevState;
-    })
+    });
   }}
 />
 ```
 
 ### Properties
 
-|   Name    | Default |   Type   |                                                 Description                                                 |
-|:--------- |:------- |:-------- |:----------------------------------------------------------------------------------------------------------- |
+| Name      | Default | Type     | Description                                                                                                 |
+| :-------- | :------ | :------- | :---------------------------------------------------------------------------------------------------------- |
 | className |         | string   | The class name for the `path` element.                                                                      |
 | top       | 0       | number   | The margin on top.                                                                                          |
 | left      | 0       | number   | The margin on the left.                                                                                     |
@@ -103,7 +105,7 @@ A simple rectangle (a `<rect>` element) to use in your graphs.
 
 ![bar example](http://i.imgur.com/pvV9BJU.png)
 
-``` js
+```js
 <Bar
   width={xScale.bandwidth()}
   height={barHeight}
@@ -117,8 +119,8 @@ A simple rectangle (a `<rect>` element) to use in your graphs.
 
 ### Properties
 
-|       Name       |  Default  |  Type  |                          Description                           |
-|:---------------- |:--------- |:------ |:-------------------------------------------------------------- |
+| Name             | Default   | Type   | Description                                                    |
+| :--------------- | :-------- | :----- | :------------------------------------------------------------- |
 | className        |           | string | The class name for the `path` element.                         |
 | x                | 0         | number | A number or function for the x coordinate.                     |
 | y                | 0         | number | A number or function for the y coordinate.                     |
@@ -155,20 +157,20 @@ A simple rectangle (a `<rect>` element) to use in your graphs.
 ```
 
 ### Properties
-|       Name       |  Default  |  Type    | Description                                                                                                                     |
-|:---------------- |:--------- |:-------- |:------------------------------------------------------------------------------------------------------------------------------- |
-| data             |           | array    | An array of data elements.                                                                                                      |
-| className        |           | string   | The class name for the `path` element.                                                                                          |
-| top              |           | number   | The margin on top.                                                                                                              |
-| left             |           | number   | The margin on the left.                                                                                                         |
-| x0               |           | function | xs accessor function.                                                                                                           |
-| x0Scale          |           | function | A [scale band function](https://github.com/hshoff/vx/tree/master/packages/vx-scale#band-scaling) for the bar group.             |
-| x1Scale          |           | function | A [scale band function](https://github.com/hshoff/vx/tree/master/packages/vx-scale#band-scaling) for each bar within the group. |
-| yScale           |           | function | A [scale function](https://github.com/hshoff/vx/tree/master/packages/vx-scale) for the ys.                                      |
-| zScale           |           | function | A [scale function](https://github.com/hshoff/vx/tree/master/packages/vx-scale) for the keys.                                    |
-| keys             |           | array    | A list of data keys                                                                                                             |
-| height           |           | number   | The pixel height of the bar group.                                                                                              |
 
+| Name      | Default | Type     | Description                                                                                                                     |
+| :-------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------ |
+| data      |         | array    | An array of data elements.                                                                                                      |
+| className |         | string   | The class name for the `path` element.                                                                                          |
+| top       |         | number   | The margin on top.                                                                                                              |
+| left      |         | number   | The margin on the left.                                                                                                         |
+| x0        |         | function | xs accessor function.                                                                                                           |
+| x0Scale   |         | function | A [scale band function](https://github.com/hshoff/vx/tree/master/packages/vx-scale#band-scaling) for the bar group.             |
+| x1Scale   |         | function | A [scale band function](https://github.com/hshoff/vx/tree/master/packages/vx-scale#band-scaling) for each bar within the group. |
+| yScale    |         | function | A [scale function](https://github.com/hshoff/vx/tree/master/packages/vx-scale) for the ys.                                      |
+| zScale    |         | function | A [scale function](https://github.com/hshoff/vx/tree/master/packages/vx-scale) for the keys.                                    |
+| keys      |         | array    | A list of data keys                                                                                                             |
+| height    |         | number   | The pixel height of the bar group.                                                                                              |
 
 ## `<BarGroupHorizontal />`
 
@@ -189,19 +191,20 @@ A simple rectangle (a `<rect>` element) to use in your graphs.
 ```
 
 ### Properties
-|       Name       |  Default  |  Type    | Description                                                                                                                     |
-|:---------------- |:--------- |:-------- |:------------------------------------------------------------------------------------------------------------------------------- |
-| data             |           | array    | An array of data elements.                                                                                                      |
-| className        |           | string   | The class name for the `path` element.                                                                                          |
-| top              |           | number   | The margin on top.                                                                                                              |
-| left             |           | number   | The margin on the left.                                                                                                         |
-| y0               |           | function | ys accessor function.                                                                                                           |
-| y0Scale          |           | function | A [scale band function](https://github.com/hshoff/vx/tree/master/packages/vx-scale#band-scaling) for the bar group.             |
-| y1Scale          |           | function | A [scale band function](https://github.com/hshoff/vx/tree/master/packages/vx-scale#band-scaling) for each bar within the group. |
-| xScale           |           | function | A [scale function](https://github.com/hshoff/vx/tree/master/packages/vx-scale) for the xs.                                      |
-| zScale           |           | function | A [scale function](https://github.com/hshoff/vx/tree/master/packages/vx-scale) for the keys.                                    |
-| keys             |           | array    | A list of data keys                                                                                                             |
-| height           |           | number   | The pixel height of the bar group.                                                                                              |
+
+| Name      | Default | Type     | Description                                                                                                                     |
+| :-------- | :------ | :------- | :------------------------------------------------------------------------------------------------------------------------------ |
+| data      |         | array    | An array of data elements.                                                                                                      |
+| className |         | string   | The class name for the `path` element.                                                                                          |
+| top       |         | number   | The margin on top.                                                                                                              |
+| left      |         | number   | The margin on the left.                                                                                                         |
+| y0        |         | function | ys accessor function.                                                                                                           |
+| y0Scale   |         | function | A [scale band function](https://github.com/hshoff/vx/tree/master/packages/vx-scale#band-scaling) for the bar group.             |
+| y1Scale   |         | function | A [scale band function](https://github.com/hshoff/vx/tree/master/packages/vx-scale#band-scaling) for each bar within the group. |
+| xScale    |         | function | A [scale function](https://github.com/hshoff/vx/tree/master/packages/vx-scale) for the xs.                                      |
+| zScale    |         | function | A [scale function](https://github.com/hshoff/vx/tree/master/packages/vx-scale) for the keys.                                    |
+| keys      |         | array    | A list of data keys                                                                                                             |
+| height    |         | number   | The pixel height of the bar group.                                                                                              |
 
 ## `<Line />`
 
@@ -209,17 +212,14 @@ A simple line. Good for drawing in the sand.
 
 ### Example
 
-``` js
-<Line
-  from={new Point({x:0, y:3})}
-  to={new Point({x:0, y:10})}
-/>
+```js
+<Line from={new Point({ x: 0, y: 3 })} to={new Point({ x: 0, y: 10 })} />
 ```
 
 ### Properties
 
-|      Name       |         Default          |  Type  |                                        Description                                        |
-|:--------------- |:------------------------ |:------ |:----------------------------------------------------------------------------------------- |
+| Name            | Default                  | Type   | Description                                                                               |
+| :-------------- | :----------------------- | :----- | :---------------------------------------------------------------------------------------- |
 | from            | new Point({ x: 0 y: 0 }) | Point  | The beginning [point](https://github.com/hshoff/vx/tree/master/packages/vx-point).        |
 | to              | new Point({ x: 1 y: 1 }) | Point  | The end [point](https://github.com/hshoff/vx/tree/master/packages/vx-point).              |
 | stroke          | black                    | string | The color of the stroke.                                                                  |
@@ -227,7 +227,6 @@ A simple line. Good for drawing in the sand.
 | strokeDasharray |                          | array  | The [pattern of dashes](https://mzl.la/1l7EiTQ) in the stroke.                            |
 | transform       |                          | string | An [SVG transform.](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/transform) |
 | className       |                          | string | The class name for the `line` element.                                                    |
-
 
 ## `<LinePath />`
 
@@ -237,22 +236,22 @@ A more complicated line path. A `<LinePath />` is useful for making line graphs 
 
 ![Linepath example](http://i.imgur.com/YoDZrGi.png)
 
-``` js
+```js
 <LinePath
   data={dataset[1].data}
   xScale={xScale}
   yScale={yScale}
   x={x}
   y={y}
-  stroke={"black"}
+  stroke={'black'}
   strokeWidth={2}
 />
 ```
 
 ### Properties
 
-|      Name       |   Default    |   Type   |                                                 Description                                                 |
-|:--------------- |:------------ |:-------- |:----------------------------------------------------------------------------------------------------------- |
+| Name            | Default      | Type     | Description                                                                                                 |
+| :-------------- | :----------- | :------- | :---------------------------------------------------------------------------------------------------------- |
 | data            |              | array    | The data in x, y.                                                                                           |
 | xScale          |              | function | A [scale function](https://github.com/hshoff/vx/tree/master/packages/vx-scale) for the xs.                  |
 | yScale          |              | function | A [scale function](https://github.com/hshoff/vx/tree/master/packages/vx-scale) for the ys.                  |
@@ -271,7 +270,7 @@ A more complicated line path. A `<LinePath />` is useful for making line graphs 
 
 ![LineRadial Example](http://i.imgur.com/Zcud84N.png)
 
-``` js
+```js
 <LineRadial
   data={appleStock}
   angle={d => xScale(x(d))}
@@ -279,15 +278,16 @@ A more complicated line path. A `<LinePath />` is useful for making line graphs 
   fill="none"
   stroke={"url('#line-gradient')"}
   strokeWidth={2}
-  strokeOpacity={.7}
+  strokeOpacity={0.7}
   curve={curveBasisOpen}
   strokeLinecap="round"
 />
 ```
 
 ### Properties
-|   Name    | Default |   Type   |                                                 Description                                                 |
-|:--------- |:------- |:-------- |:----------------------------------------------------------------------------------------------------------- |
+
+| Name      | Default | Type     | Description                                                                                                 |
+| :-------- | :------ | :------- | :---------------------------------------------------------------------------------------------------------- |
 | className |         | string   | The class for the <path /> element.                                                                         |
 | angle     |         | function | The angle at each point.                                                                                    |
 | radius    |         | function | The radius at each angle.                                                                                   |
@@ -306,19 +306,24 @@ A more complicated line path. A `<LinePath />` is useful for making line graphs 
   outerRadius={radius - 80}
   innerRadius={radius - 120}
   fill="white"
-  fillOpacity={d => 1 / (d.index + 2) }
+  fillOpacity={d => 1 / (d.index + 2)}
   cornerRadius={3}
   padAngle={0}
   centroid={(centroid, arc) => {
     const [x, y] = centroid;
     const { startAngle, endAngle } = arc;
-    if (endAngle - startAngle < .1) return null;
-    return <Label x={x} y={y}>{arc.data.label}</Label>;
+    if (endAngle - startAngle < 0.1) return null;
+    return (
+      <Label x={x} y={y}>
+        {arc.data.label}
+      </Label>
+    );
   }}
 />
 ```
 
 ### Properties
+
 | Name          | Default | Type     | Description                                                                                                                        |
 | :------------ | :------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------- |
 | className     |         | string   | The class for the <path /> element.                                                                                                |
@@ -350,25 +355,22 @@ A simple polygon shape. Supply the sides and the length and we will do the rest.
 
 ### Properties
 
-| Name            | Default                  | Type     | Description                                                                                    |
-| :-------------- | :----------------------- | :------- | :--------------------------------------------------------------------------------------------- |
-| sides           |                          | number   | The number of sides in the polygon.                                                            |
-| size            | 25                       | number   | The length of each side of the polygon.                                                       |
-| rotate          | 0                        | number   | The angle in degrees to rotate the polygon.                                                    |
-| center          | new Point({ x: 0 y: 0 }) | Point    | The center of the polygon [point](https://github.com/hshoff/vx/tree/master/packages/vx-point). |
-| stroke          | black                    | string   | The color of the stroke.                                                                       |
-| strokeWidth     | 1                        | number   | The pixel width of the stroke.                                                                 |
-| strokeDasharray |                          | array    | The [pattern of dashes](https://mzl.la/1l7EiTQ) in the stroke.                                 |
-| className       |                          | string   | The class name for the `line` element.                                                         |
+| Name   | Default                  | Type   | Description                                                                                    |
+| :----- | :----------------------- | :----- | :--------------------------------------------------------------------------------------------- |
+| sides  |                          | number | The number of sides in the polygon.                                                            |
+| size   | 25                       | number | The length of each side of the polygon.                                                        |
+| rotate | 0                        | number | The angle in degrees to rotate the polygon.                                                    |
+| center | new Point({ x: 0 y: 0 }) | Point  | The center of the polygon [point](https://github.com/hshoff/vx/tree/master/packages/vx-point). |
 
 ## Sources For Components
-+ [`<AreaClosed />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/AreaClosed.js)
-+ [`<AreaStack />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/AreaStack.js)
-+ [`<Bar />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/Bar.js)
-+ [`<BarGroup />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/BarGroup.js)
-+ [`<BarGroupHorizontal />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/BarGroupHorizontal.js)
-+ [`<Line />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/Line.js)
-+ [`<LinePath />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/LinePath.js)
-+ [`<LineRadial />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/LineRadial.js)
-+ [`<Pie />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/Pie.js)
-+ [`<Polygon`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/Polygon.js)
+
+* [`<AreaClosed />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/AreaClosed.js)
+* [`<AreaStack />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/AreaStack.js)
+* [`<Bar />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/Bar.js)
+* [`<BarGroup />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/BarGroup.js)
+* [`<BarGroupHorizontal />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/BarGroupHorizontal.js)
+* [`<Line />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/Line.js)
+* [`<LinePath />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/LinePath.js)
+* [`<LineRadial />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/LineRadial.js)
+* [`<Pie />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/Pie.js)
+* [`<Polygon`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/Polygon.js)
