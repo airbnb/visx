@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.176](#00176)
 - [v0.0.175](#v00175)
 - [v0.0.174](#v00174)
 - [v0.0.173](#v00173)
@@ -61,6 +62,28 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.176
+
+#### :bug: Bug Fix
+
+- [shape] fix for `<Polygon />` rest props
+
+#### :trophy: Contributors
+
+- [hshoff](https://github.com/hshoff)
+
+```
+Changes:
+ - @vx/annotation: 0.0.175 => 0.0.176
+ - @vx/axis: 0.0.175 => 0.0.176
+ - @vx/demo: 0.0.175 => 0.0.176
+ - @vx/grid: 0.0.175 => 0.0.176
+ - @vx/marker: 0.0.175 => 0.0.176
+ - @vx/shape: 0.0.175 => 0.0.176
+ - @vx/threshold: 0.0.175 => 0.0.176
+ - @vx/vx: 0.0.175 => 0.0.176
+ ```
 
 # v0.0.175
 
