@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.175](#v00175)
 - [v0.0.174](#v00174)
 - [v0.0.173](#v00173)
 - [v0.0.172](#v00172)
@@ -60,6 +61,54 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.175
+
+#### :boom: Breaking Changes
+
+- [responsive] Rewrite withParentSize using ResizeObserver. `withParentSize()` changed `windowResizeDebounceTime` prop to `debounceTime` to match `<ParentSize />`. [#348](https://github.com/hshoff/vx/pull/348)
+
+#### :bug: Bug Fix
+
+- [axis] fix `labelTransform` function in *@vx/axis* to correctly align the axis label when different values for the scale's *range* are specified, in particular when it does not start (or end) with a 0. [#349](https://github.com/hshoff/vx/pull/349)
+- [text] change measurement svg `display: none` =>  `position: absolute` and position the svg offscreen. [#358](https://github.com/hshoff/vx/pull/358)
+
+#### :rocket: Enhancements
+
+- [shape] add `<Polygon />` component. [#355](https://github.com/hshoff/vx/pull/355)
+
+#### :memo: Documentation
+
+- [demo] update /boxplot example code. [#354](https://github.com/hshoff/vx/pull/354)
+- [demo] add /polygons example. [#355](https://github.com/hshoff/vx/pull/355)
+
+#### :house: Internal
+
+- [dev] add linting. [#346](https://github.com/hshoff/vx/pull/346)
+
+#### :trophy: Contributors
+
+- [lucafalasco](https://github.com/lucafalasco)
+- [marcofugaro](https://github.com/marcofugaro)
+- [geekplux](https://github.com/geekplux)
+- [ezy](https://github.com/ezy)
+- [dagda1](https://github.com/dagda1)
+- [mmartinsky](https://github.com/mmartinsky)
+- [hshoff](https://github.com/hshoff)
+
+```
+Changes:
+ - @vx/annotation: 0.0.171 => 0.0.175
+ - @vx/axis: 0.0.173 => 0.0.175
+ - @vx/demo: 0.0.174 => 0.0.175
+ - @vx/grid: 0.0.171 => 0.0.175
+ - @vx/marker: 0.0.171 => 0.0.175
+ - @vx/responsive: 0.0.172 => 0.0.175
+ - @vx/shape: 0.0.171 => 0.0.175
+ - @vx/text: 0.0.173 => 0.0.175
+ - @vx/threshold: 0.0.174 => 0.0.175
+ - @vx/vx: 0.0.173 => 0.0.175
+```
 
 # v0.0.174
 
