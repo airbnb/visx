@@ -43,9 +43,9 @@ export default class ParentSize extends React.Component {
     this.target = ref;
   }
   render() {
-    const { className, children } = this.props;
+    const { className, children, ...rest } = this.props;
     return (
-      <div style={{ width: '100%', height: '100%' }} ref={this.setTarget} className={className}>
+      <div style={{ width: '100%', height: '100%' }} ref={this.setTarget} className={className} {...rest}>
         {children({
           ...this.state,
           ref: this.target,
