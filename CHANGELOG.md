@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.177](#v00177)
 - [v0.0.176](#00176)
 - [v0.0.175](#v00175)
 - [v0.0.174](#v00174)
@@ -62,6 +63,24 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.177
+
+#### :rocket: Enhancements
+
+- [responsive] add rest props to `<ParentSize />` wrapper internal div. [#363](https://github.com/hshoff/vx/pull/363), [#365](https://github.com/hshoff/vx/pull/365)
+
+#### :trophy: Contributors
+
+- [giulioz](https://github.com/giulioz)
+- [hshoff](https://github.com/hshoff)
+
+```
+Changes:
+ - @vx/demo: 0.0.176 => 0.0.177
+ - @vx/responsive: 0.0.175 => 0.0.177
+ - @vx/vx: 0.0.176 => 0.0.177
+```
 
 # v0.0.176
 
