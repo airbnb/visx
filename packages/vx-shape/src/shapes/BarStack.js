@@ -4,6 +4,15 @@ import cx from 'classnames';
 import { Group } from '@vx/group';
 import Bar from './Bar';
 import { stack as d3stack } from 'd3-shape';
+import { isScaleBand, isScalePoint } from '@vx/scale';
+
+function scaleHasBandwidth(scale) {
+  return isScaleBand(scale) || isScalePoint(scale);
+}
+
+function scaleHasStep(scale) {
+  return isScaleBand(scale) || isScalePoint(scale);
+}
 
 export default function BarStack({
   data,
@@ -15,15 +24,14 @@ export default function BarStack({
   yScale,
   zScale,
   keys,
+  width,
   height,
   ...restProps
 }) {
   const series = d3stack().keys(keys)(data);
   const format = xScale.tickFormat ? xScale.tickFormat() : d => d;
-  const bandwidth = xScale.bandwidth();
-  const step = xScale.step();
-  const paddingInner = xScale.paddingInner();
-  const paddingOuter = xScale.paddingOuter();
+  const xRange = xScale.range();
+  const xDomain = xScale.domain();
   return (
     <Group className={cx('vx-bar-stack', className)} top={top} left={left}>
       {series &&
@@ -32,23 +40,31 @@ export default function BarStack({
             <Group key={`vx-bar-stack-${i}`}>
               {s.map((d, ii) => {
                 const barHeight = yScale(d[0]) - yScale(d[1]);
+                const barWidth =
+                  width ||
+                  (scaleHasBandwidth(xScale)
+                    ? xScale.bandwidth()
+                    : Math.abs(xRange[xRange.length - 1] - xRange[0]) / xDomain.length);
+
+                const barX = scaleHasBandwidth(xScale)
+                  ? xScale(x(d.data))
+                  : xScale(x(d.data)) - barWidth / 2;
                 return (
                   <Bar
                     key={`bar-group-bar-${i}-${ii}-${s.key}`}
-                    x={xScale(x(d.data))}
+                    x={barX}
                     y={yScale(d[1])}
-                    width={bandwidth}
+                    width={barWidth}
                     height={barHeight}
                     fill={zScale(s.key)}
                     data={{
-                      bandwidth,
-                      paddingInner,
-                      paddingOuter,
-                      step,
+                      paddingInner: isScaleBand(xScale) && xScale.paddingInner(),
+                      paddingOuter: isScaleBand(xScale) && xScale.paddingOuter(),
+                      step: scaleHasStep(xScale) && xScale.step(),
                       key: s.key,
                       value: d[1],
                       height: barHeight,
-                      width: bandwidth,
+                      width: barWidth,
                       x: x(d.data),
                       xFormatted: format(x(d.data)),
                       data: d.data
