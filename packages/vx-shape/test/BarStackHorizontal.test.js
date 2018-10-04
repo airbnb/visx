@@ -3,6 +3,8 @@ import { BarStackHorizontal } from '../src';
 import { shallow } from 'enzyme';
 
 const yScale = jest.fn();
+yScale.domain = () => [0, 100];
+yScale.range = () => [0, 100];
 yScale.bandwidth = jest.fn();
 yScale.step = jest.fn();
 yScale.paddingInner = jest.fn();
