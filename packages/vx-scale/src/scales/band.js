@@ -11,6 +11,7 @@ export default ({
   tickFormat
 }) => {
   const scale = scaleBand();
+  scale.type = 'band';
 
   if (range) scale.range(range);
   if (rangeRound) scale.rangeRound(rangeRound);
