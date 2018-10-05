@@ -13,6 +13,8 @@ Legend.propTypes = {
   shapeWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   shapeHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   shapeMargin: PropTypes.string,
+  labelAlign: PropTypes.string,
+  labelFlex: PropTypes.string,
   labelMargin: PropTypes.string,
   itemMargin: PropTypes.string,
   direction: PropTypes.string,
@@ -42,6 +44,7 @@ export default function Legend({
   shapeHeight = 15,
   shapeMargin = '2px 4px 2px 0',
   labelAlign = 'left',
+  labelFlex = '1',
   labelMargin = '0 4px',
   itemMargin = '0',
   direction = 'column',
@@ -78,7 +81,7 @@ export default function Legend({
               size={size}
               shapeStyle={shapeStyle}
             />
-            <LegendLabel label={text} margin={labelMargin} align={labelAlign} />
+            <LegendLabel label={text} flex={labelFlex} margin={labelMargin} align={labelAlign} />
           </LegendItem>
         );
       })}
