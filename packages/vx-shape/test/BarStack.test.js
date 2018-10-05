@@ -3,6 +3,8 @@ import { BarStack } from '../src';
 import { shallow } from 'enzyme';
 
 const xScale = jest.fn();
+xScale.domain = () => [0, 100];
+xScale.range = () => [0, 100];
 xScale.bandwidth = jest.fn();
 xScale.step = jest.fn();
 xScale.paddingInner = jest.fn();
