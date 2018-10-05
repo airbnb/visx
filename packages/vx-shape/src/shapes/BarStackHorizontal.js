@@ -4,15 +4,7 @@ import cx from 'classnames';
 import { Group } from '@vx/group';
 import Bar from './Bar';
 import { stack as d3stack } from 'd3-shape';
-import { isScaleBand, isScalePoint } from '@vx/scale';
-
-function scaleHasBandwidth(scale) {
-  return isScaleBand(scale) || isScalePoint(scale);
-}
-
-function scaleHasStep(scale) {
-  return isScaleBand(scale) || isScalePoint(scale);
-}
+import objHasMethod from '../util/objHasMethod';
 
 export default function BarStackHorizontal({
   data,
@@ -42,11 +34,11 @@ export default function BarStackHorizontal({
                 const barWidth = xScale(d[1]) - xScale(d[0]);
                 const barHeight =
                   width ||
-                  (scaleHasBandwidth(yScale)
+                  (objHasMethod(yScale, 'bandwidth')
                     ? yScale.bandwidth()
                     : Math.abs(yRange[yRange.length - 1] - yRange[0]) / yDomain.length);
 
-                const barY = scaleHasBandwidth(yScale)
+                const barY = objHasMethod(yScale, 'bandwidth')
                   ? yScale(y(d.data))
                   : yScale(y(d.data)) - barHeight / 2;
                 return (
@@ -58,9 +50,9 @@ export default function BarStackHorizontal({
                     height={barHeight}
                     fill={zScale(s.key)}
                     data={{
-                      paddingInner: isScaleBand(yScale) && yScale.paddingInner(),
-                      paddingOuter: isScaleBand(yScale) && yScale.paddingOuter(),
-                      step: scaleHasStep(yScale) && yScale.step(),
+                      paddingInner: objHasMethod(yScale, 'paddingInner') && yScale.paddingInner(),
+                      paddingOuter: objHasMethod(yScale, 'paddingOuter') && yScale.paddingOuter(),
+                      step: objHasMethod(yScale, 'step') && yScale.step(),
                       key: s.key,
                       value: d[0],
                       height: barHeight,

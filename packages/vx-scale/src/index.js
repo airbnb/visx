@@ -10,4 +10,3 @@ export { default as scaleQuantize } from './scales/quantize';
 export { default as scaleQuantile } from './scales/quantile';
 export { default as scaleThreshold } from './scales/threshold';
 export { default as updateScale } from './util/updateScale';
-export { isScaleBand, isScalePoint } from './util/scaleType';
