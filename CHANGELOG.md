@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.178](#v00178)
 - [v0.0.177](#v00177)
 - [v0.0.176](#00176)
 - [v0.0.175](#v00175)
@@ -63,6 +64,38 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.178
+
+#### :rocket: Enhancements
+
+- [scale] add `type` property. [#367](https://github.com/hshoff/vx/pull/367)
+- [legend] add optional `flex` prop for overriding `flex` css property to `<LegendLabel />`. [#370](https://github.com/hshoff/vx/pull/370)
+- [shape] add support for non-scaleBand scales to `<BarStack />` and `<BarStackHorizontal />`. [#368](https://github.com/hshoff/vx/pull/368)
+
+#### :bug: Bug Fix
+
+- [legend] allow overriding flex property to fix [IE flexbox bug](https://stackoverflow.com/questions/39192995/flex-container-wont-expand-to-fit-content-in-ie). IE 11 does not seem to expand to minimum content width when flex-basis is 0px (this is the case when using the shorthand `flex: 1`). [#370](https://github.com/hshoff/vx/pull/370)
+
+#### :trophy: Contributors
+
+- [jdmoody](https://github.com/jdmoody)
+- [lucafalasco](https://github.com/lucafalasco)
+
+```
+Changes:
+ - @vx/annotation: 0.0.176 => 0.0.178
+ - @vx/axis: 0.0.176 => 0.0.178
+ - @vx/demo: 0.0.177 => 0.0.178
+ - @vx/grid: 0.0.176 => 0.0.178
+ - @vx/legend: 0.0.170 => 0.0.178
+ - @vx/marker: 0.0.176 => 0.0.178
+ - @vx/scale: 0.0.165 => 0.0.178
+ - @vx/shape: 0.0.176 => 0.0.178
+ - @vx/stats: 0.0.170 => 0.0.178
+ - @vx/threshold: 0.0.176 => 0.0.178
+ - @vx/vx: 0.0.177 => 0.0.178
+```
 
 # v0.0.177
 
