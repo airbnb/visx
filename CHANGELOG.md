@@ -1,8 +1,9 @@
 # Changelog
 
+- [v0.0.179](#v00179)
 - [v0.0.178](#v00178)
 - [v0.0.177](#v00177)
-- [v0.0.176](#00176)
+- [v0.0.176](#v00176)
 - [v0.0.175](#v00175)
 - [v0.0.174](#v00174)
 - [v0.0.173](#v00173)
@@ -64,6 +65,53 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.179
+
+#### :boom: Breaking Changes
+
+- [vx] there's a possibility that new prop type checks might not be as care free as before. [#371](https://github.com/hshoff/vx/pull/371)
+
+#### :rocket: Enhancements
+
+- [vx] add missing `propTypes` to all components. [#371](https://github.com/hshoff/vx/pull/371)
+
+#### :house: Internal
+
+- [vx] add `.eslintrc`. [#371](https://github.com/hshoff/vx/pull/371)
+- [vx] fix all eslint errors + warnings. [#371](https://github.com/hshoff/vx/pull/371)
+
+#### :trophy: Contributors
+
+- [hshoff](https://github.com/hshoff)
+
+```
+Changes:
+ - @vx/annotation: 0.0.178 => 0.0.179
+ - @vx/axis: 0.0.178 => 0.0.179
+ - @vx/brush: 0.0.165 => 0.0.179
+ - @vx/demo: 0.0.178 => 0.0.179
+ - @vx/drag: 0.0.165 => 0.0.179
+ - @vx/event: 0.0.165 => 0.0.179
+ - @vx/geo: 0.0.170 => 0.0.179
+ - @vx/glyph: 0.0.170 => 0.0.179
+ - @vx/grid: 0.0.178 => 0.0.179
+ - @vx/heatmap: 0.0.173 => 0.0.179
+ - @vx/hierarchy: 0.0.170 => 0.0.179
+ - @vx/legend: 0.0.178 => 0.0.179
+ - @vx/marker: 0.0.178 => 0.0.179
+ - @vx/mock-data: 0.0.165 => 0.0.179
+ - @vx/network: 0.0.172 => 0.0.179
+ - @vx/pattern: 0.0.165 => 0.0.179
+ - @vx/responsive: 0.0.177 => 0.0.179
+ - @vx/scale: 0.0.178 => 0.0.179
+ - @vx/shape: 0.0.178 => 0.0.179
+ - @vx/stats: 0.0.178 => 0.0.179
+ - @vx/text: 0.0.175 => 0.0.179
+ - @vx/threshold: 0.0.178 => 0.0.179
+ - @vx/tooltip: 0.0.165 => 0.0.179
+ - @vx/vx: 0.0.178 => 0.0.179
+```
 
 # v0.0.178
 
