@@ -3,11 +3,25 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Path from './Path';
 
+PatternHexagons.propTypes = {
+  id: PropTypes.string.isRequired,
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  size: PropTypes.number,
+  fill: PropTypes.string,
+  className: PropTypes.string,
+  background: PropTypes.string,
+  stroke: PropTypes.string,
+  strokeWidth: PropTypes.number,
+  strokeDasharray: PropTypes.string,
+  strokeLinecap: PropTypes.string,
+  shapeRendering: PropTypes.string
+};
+
 export default function PatternHexagons({
   id,
   width,
   height,
-  path,
   fill,
   stroke,
   strokeWidth,
@@ -39,16 +53,3 @@ export default function PatternHexagons({
     />
   );
 }
-
-PatternHexagons.propTypes = {
-  id: PropTypes.string.isRequired,
-  width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired,
-  size: PropTypes.number,
-  fill: PropTypes.string,
-  className: PropTypes.string,
-  background: PropTypes.string,
-  stroke: PropTypes.string,
-  strokeWidth: PropTypes.number,
-  strokeDasharray: PropTypes.string
-};

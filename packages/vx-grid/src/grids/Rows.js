@@ -1,8 +1,23 @@
 import React from 'react';
 import cx from 'classnames';
+import PropTypes from 'prop-types';
 import { Line } from '@vx/shape';
 import { Group } from '@vx/group';
 import { Point } from '@vx/point';
+
+Rows.propTypes = {
+  top: PropTypes.number,
+  left: PropTypes.number,
+  className: PropTypes.string,
+  stroke: PropTypes.string,
+  strokeWidth: PropTypes.string,
+  strokeDasharray: PropTypes.string,
+  numTicks: PropTypes.number,
+  lineStyle: PropTypes.object,
+  offset: PropTypes.number,
+  scale: PropTypes.func.isRequired,
+  width: PropTypes.number.isRequired
+};
 
 export default function Rows({
   top = 0,

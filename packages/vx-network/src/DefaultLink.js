@@ -1,4 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
+DefaultLink.propTypes = {
+  link: PropTypes.object
+};
 
 export default function DefaultLink({ link }) {
   return (

@@ -38,10 +38,13 @@ PatternPath.propTypes = {
   id: PropTypes.string.isRequired,
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
+  path: PropTypes.string,
   fill: PropTypes.string,
   className: PropTypes.string,
   background: PropTypes.string,
   stroke: PropTypes.string,
   strokeWidth: PropTypes.number,
-  strokeDasharray: PropTypes.string
+  strokeDasharray: PropTypes.string,
+  strokeLinecap: PropTypes.string,
+  shapeRendering: PropTypes.string
 };

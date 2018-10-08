@@ -17,7 +17,7 @@ function pathForOrientation({ height, orientation }) {
     case Orientation.diagonal:
       path = `M 0,${height} l ${height},${-height} M ${-height / 4},${height / 4} l ${height /
         2},${-height / 2}
-             M ${3 / 4 * height},${5 / 4 * height} l ${height / 2},${-height / 2}`;
+             M ${(3 / 4) * height},${(5 / 4) * height} l ${height / 2},${-height / 2}`;
       break;
     default:
       path = `M ${height / 2}, 0 l 0, ${height}`;
@@ -30,7 +30,6 @@ export default function PatternLines({
   id,
   width,
   height,
-  path,
   stroke,
   strokeWidth,
   strokeDasharray,
@@ -78,5 +77,8 @@ PatternLines.propTypes = {
   stroke: PropTypes.string.isRequired,
   strokeWidth: PropTypes.number.isRequired,
   strokeDasharray: PropTypes.string,
-  className: PropTypes.string
+  className: PropTypes.string,
+  strokeLinecap: PropTypes.string,
+  shapeRendering: PropTypes.string,
+  orientation: PropTypes.array
 };

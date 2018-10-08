@@ -3,7 +3,20 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { Group } from '@vx/group';
 import Bar from './Bar';
-import additionalProps from '../util/additionalProps';
+
+BarGroup.propTypes = {
+  data: PropTypes.array.isRequired,
+  x0: PropTypes.func.isRequired,
+  x0Scale: PropTypes.func.isRequired,
+  x1Scale: PropTypes.func.isRequired,
+  yScale: PropTypes.func.isRequired,
+  zScale: PropTypes.func.isRequired,
+  keys: PropTypes.array.isRequired,
+  height: PropTypes.number.isRequired,
+  className: PropTypes.string,
+  top: PropTypes.number,
+  left: PropTypes.number
+};
 
 export default function BarGroup({
   data,
@@ -27,11 +40,11 @@ export default function BarGroup({
           return (
             <Group key={`bar-group-${i}-${x0(d)}`} left={x0Scale(x0(d))}>
               {keys &&
-                keys.map((key, i) => {
+                keys.map((key, j) => {
                   const value = d[key];
                   return (
                     <Bar
-                      key={`bar-group-bar-${i}-${value}-${key}`}
+                      key={`bar-group-bar-${i}-${j}-${value}-${key}`}
                       x={x1Scale(key)}
                       y={yScale(value)}
                       width={x1Scale.bandwidth()}
@@ -53,17 +66,3 @@ export default function BarGroup({
     </Group>
   );
 }
-
-BarGroup.propTypes = {
-  data: PropTypes.array.isRequired,
-  x0: PropTypes.func.isRequired,
-  x0Scale: PropTypes.func.isRequired,
-  x1Scale: PropTypes.func.isRequired,
-  yScale: PropTypes.func.isRequired,
-  zScale: PropTypes.func.isRequired,
-  keys: PropTypes.array.isRequired,
-  height: PropTypes.number.isRequired,
-  className: PropTypes.string,
-  top: PropTypes.number,
-  left: PropTypes.number
-};

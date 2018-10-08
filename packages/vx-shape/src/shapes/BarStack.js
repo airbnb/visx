@@ -6,6 +6,20 @@ import Bar from './Bar';
 import { stack as d3stack } from 'd3-shape';
 import objHasMethod from '../util/objHasMethod';
 
+BarStack.propTypes = {
+  data: PropTypes.array.isRequired,
+  x: PropTypes.func.isRequired,
+  xScale: PropTypes.func.isRequired,
+  yScale: PropTypes.func.isRequired,
+  zScale: PropTypes.func.isRequired,
+  keys: PropTypes.array.isRequired,
+  className: PropTypes.string,
+  top: PropTypes.number,
+  left: PropTypes.number,
+  width: PropTypes.number,
+  height: PropTypes.number
+};
+
 export default function BarStack({
   data,
   className,
@@ -71,15 +85,3 @@ export default function BarStack({
     </Group>
   );
 }
-
-BarStack.propTypes = {
-  data: PropTypes.array.isRequired,
-  x: PropTypes.func.isRequired,
-  xScale: PropTypes.func.isRequired,
-  yScale: PropTypes.func.isRequired,
-  zScale: PropTypes.func.isRequired,
-  keys: PropTypes.array.isRequired,
-  className: PropTypes.string,
-  top: PropTypes.number,
-  left: PropTypes.number
-};

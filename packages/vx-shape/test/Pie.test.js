@@ -6,6 +6,10 @@ import { browserUsage } from '../../vx-mock-data';
 const PieWrapper = ({ ...restProps }) => shallow(<Pie data={browserUsage} {...restProps} />);
 
 describe('<Pie />', () => {
+  beforeEach(() => {
+    global.console.error = jest.fn();
+  });
+
   test('it should be defined', () => {
     expect(Pie).toBeDefined();
   });
@@ -40,6 +44,8 @@ describe('<Pie />', () => {
   test('it should break on invalid sort callbacks', () => {
     expect(() => PieWrapper({ pieSort: 12 })).toThrow();
     expect(() => PieWrapper({ pieSortValues: 12 })).toThrow();
+    expect(console.error).toBeCalled();
+    expect(console.error.mock.calls.length).toEqual(2);
   });
 
   test('it should have the .vx-pie-arcs-group class', () => {

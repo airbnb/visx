@@ -39,7 +39,7 @@ export default function localPoint(node, event) {
   }
 
   // fallback to calculating position from non-svg dom node
-  let rect = node.getBoundingClientRect();
+  const rect = node.getBoundingClientRect();
   return new Point({
     x: clientX - rect.left - node.clientLeft,
     y: clientY - rect.top - node.clientTop

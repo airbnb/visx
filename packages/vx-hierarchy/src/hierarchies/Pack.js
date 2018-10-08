@@ -7,7 +7,14 @@ import DefaultNode from '../HierarchyDefaultNode';
 
 Pack.propTypes = {
   root: PropTypes.object.isRequired,
-  children: PropTypes.func
+  children: PropTypes.func,
+  top: PropTypes.number,
+  left: PropTypes.number,
+  className: PropTypes.string,
+  radius: PropTypes.func,
+  size: PropTypes.arrayOf(PropTypes.number),
+  padding: PropTypes.number,
+  nodeComponent: PropTypes.any
 };
 
 export default function Pack({
@@ -23,8 +30,9 @@ export default function Pack({
   ...restProps
 }) {
   const pack = d3pack();
+
   if (size) pack.size(size);
-  if (radius) pack.radius(radius);
+  if (radius !== undefined) pack.radius(radius);
   if (padding) pack.padding(padding);
 
   const data = pack(root);

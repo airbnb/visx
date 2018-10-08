@@ -32,6 +32,20 @@ export function createCircles({
   ));
 }
 
+PatternCircles.propTypes = {
+  id: PropTypes.string.isRequired,
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  radius: PropTypes.number,
+  fill: PropTypes.string,
+  className: PropTypes.string,
+  stroke: PropTypes.string,
+  strokeWidth: PropTypes.number,
+  strokeDasharray: PropTypes.string,
+  complement: PropTypes.bool,
+  background: PropTypes.string
+};
+
 export default function PatternCircles({
   id,
   width,
@@ -75,16 +89,3 @@ export default function PatternCircles({
     </Pattern>
   );
 }
-
-PatternCircles.propTypes = {
-  id: PropTypes.string.isRequired,
-  width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired,
-  radius: PropTypes.number,
-  fill: PropTypes.string,
-  className: PropTypes.string,
-  stroke: PropTypes.string,
-  strokeWidth: PropTypes.number,
-  strokeDasharray: PropTypes.string,
-  complement: PropTypes.bool
-};

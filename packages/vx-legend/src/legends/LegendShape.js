@@ -3,6 +3,17 @@ import PropTypes from 'prop-types';
 import ShapeRect from '../shapes/Rect';
 import renderShape from '../util/renderShape';
 
+LegendShape.propTypes = {
+  shape: PropTypes.any,
+  width: PropTypes.any,
+  height: PropTypes.any,
+  margin: PropTypes.any,
+  label: PropTypes.any,
+  fill: PropTypes.any,
+  size: PropTypes.any,
+  shapeStyle: PropTypes.any
+};
+
 export default function LegendShape({
   shape = ShapeRect,
   width,

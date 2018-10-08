@@ -28,7 +28,7 @@ export default function Graticule({
   if (precision) currGraticule.stepMinor(precision);
 
   return (
-    <Group className={`vx-geo-graticule`}>
+    <Group className="vx-geo-graticule">
       {graticule && (
         <path d={graticule(currGraticule())} fill="none" stroke="black" {...restProps} />
       )}

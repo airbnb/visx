@@ -1,0 +1,37 @@
+{
+  "extends": "airbnb",
+  "env": {
+    "node": true,
+    "es6": true,
+    "browser": true
+  },
+  "rules": {
+    "linebreak-style": 0,
+    "operator-linebreak": 0,
+    "comma-dangle": 0,
+    "no-use-before-define": 0,
+    "object-curly-newline": 0,
+    "indent": 0,
+    "arrow-parens": 0,
+    "consistent-return": 0,
+    "no-restricted-syntax": 0,
+    "no-nested-ternary": 0,
+    "no-bitwise": 0,
+    "no-unused-vars": 0,
+    "no-mixed-operators": 0,
+    "no-param-reassign": 0,
+    "no-extra-boolean-cast": 0,
+    "prefer-destructuring": 0,
+    "lines-between-class-members": 0,
+    "arrow-body-style": 0,
+    "import/prefer-default-export": 0,
+    "import/order": 0,
+    "react/sort-comp": 0,
+    "react/jsx-filename-extension": 0,
+    "react/require-default-props": 0,
+    "react/forbid-prop-types": 0,
+    "react/destructuring-assignment": 0,
+    "react/no-array-index-key": 0,
+    "react/no-children-prop": 0
+  }
+}

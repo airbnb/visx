@@ -1,7 +1,29 @@
 import React from 'react';
 import cx from 'classnames';
+import PropTypes from 'prop-types';
 import { Line } from '@vx/shape';
 import { Group } from '@vx/group';
+
+Marker.propTypes = {
+  top: PropTypes.number,
+  left: PropTypes.number,
+  from: PropTypes.object,
+  to: PropTypes.object,
+  stroke: PropTypes.string,
+  strokeWidth: PropTypes.number,
+  strokeDasharray: PropTypes.string,
+  transform: PropTypes.string,
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  labelAnchor: PropTypes.string,
+  labelDx: PropTypes.number,
+  labelDy: PropTypes.number,
+  labelFill: PropTypes.string,
+  labelStroke: PropTypes.string,
+  labelStrokeWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  labelFontSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  labelPaintOrder: PropTypes.string,
+  className: PropTypes.string
+};
 
 export default function Marker({
   top = 0,
@@ -11,13 +33,9 @@ export default function Marker({
   stroke = 'magenta',
   strokeWidth = 2,
   strokeDasharray,
-  fill,
   transform,
   label,
   labelAnchor = 'left',
-  labelOrientation = 'horizontal',
-  labelVerticalAlign = 'top',
-  labelHorizontalAlign = 'right',
   labelDx = 0,
   labelDy = 0,
   labelFill,

@@ -8,30 +8,30 @@ Polygon.propTypes = {
   sides: PropTypes.number.isRequired,
   size: PropTypes.number.isRequired,
   className: PropTypes.string,
-  rotate: PropTypes.number,
+  rotate: PropTypes.number
 };
 
-export const getPoint = ({
-  sides, size, center, rotate, side,
-}) => {
-  const degrees = 360 / sides * side - rotate;
+export const getPoint = ({ sides, size, center, rotate, side }) => {
+  const degrees = (360 / sides) * side - rotate;
   const radians = degreesToRadians(degrees);
 
   return new Point({
     x: center.x + size * Math.cos(radians),
-    y: center.y + size * Math.sin(radians),
+    y: center.y + size * Math.sin(radians)
   });
 };
 
-export const getPoints = ({
-  sides, size, center, rotate,
-}) => [...Array(sides).keys()].map(side => getPoint({
-  sides,
-  size,
-  center,
-  rotate,
-  side,
-}));
+export const getPoints = ({ sides, size, center, rotate }) => {
+  return [...Array(sides).keys()].map(side => {
+    return getPoint({
+      sides,
+      size,
+      center,
+      rotate,
+      side
+    });
+  });
+};
 
 export default function Polygon({
   sides,
@@ -45,10 +45,10 @@ export default function Polygon({
     sides,
     size,
     center,
-    rotate,
+    rotate
   })
     .map(p => p.toArray())
     .join(' ');
 
-  return <polygon points={points} className={className} {...restProps} />;
+  return <polygon points={points} className={cx('vx-polygon', className)} {...restProps} />;
 }

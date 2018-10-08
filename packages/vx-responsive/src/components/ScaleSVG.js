@@ -1,4 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
+ResponsiveSVG.propTypes = {
+  children: PropTypes.func,
+  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  xOrigin: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  yOrigin: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  preserveAspectRatio: PropTypes.string
+};
 
 export default function ResponsiveSVG({
   children,

@@ -7,7 +7,21 @@ import DefaultNode from '../HierarchyDefaultNode';
 
 Treemap.propTypes = {
   root: PropTypes.object.isRequired,
-  children: PropTypes.func
+  children: PropTypes.func,
+  top: PropTypes.number,
+  left: PropTypes.number,
+  className: PropTypes.string,
+  tile: PropTypes.func,
+  size: PropTypes.arrayOf(PropTypes.number),
+  round: PropTypes.bool,
+  padding: PropTypes.oneOfType([PropTypes.number, PropTypes.func]),
+  paddingInner: PropTypes.oneOfType([PropTypes.number, PropTypes.func]),
+  paddingOuter: PropTypes.oneOfType([PropTypes.number, PropTypes.func]),
+  paddingTop: PropTypes.oneOfType([PropTypes.number, PropTypes.func]),
+  paddingRight: PropTypes.oneOfType([PropTypes.number, PropTypes.func]),
+  paddingBottom: PropTypes.oneOfType([PropTypes.number, PropTypes.func]),
+  paddingLeft: PropTypes.oneOfType([PropTypes.number, PropTypes.func]),
+  nodeComponent: PropTypes.any
 };
 
 export default function Treemap({
@@ -30,6 +44,7 @@ export default function Treemap({
   ...restProps
 }) {
   const treemap = d3treemap();
+
   if (tile) treemap.tile(tile);
   if (size) treemap.size(size);
   if (round) treemap.round(round);

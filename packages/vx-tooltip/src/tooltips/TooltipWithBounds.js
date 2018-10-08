@@ -1,13 +1,35 @@
-/* eslint react/forbid-prop-types: 0 */
-import PropTypes from 'prop-types';
 import React from 'react';
-import { withBoundingRects, withBoundingRectsProps } from '@vx/bounds';
+import PropTypes from 'prop-types';
+import { withBoundingRects } from '@vx/bounds';
 
 import Tooltip from './Tooltip';
 
+const rectShape = PropTypes.shape({
+  top: PropTypes.number.isRequired,
+  right: PropTypes.number.isRequired,
+  bottom: PropTypes.number.isRequired,
+  left: PropTypes.number.isRequired,
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired
+});
+
+const withBoundingRectsProps = {
+  getRects: PropTypes.func,
+  rect: rectShape,
+  parentRect: rectShape
+};
+
+const tooltipProps = {
+  left: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  top: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  className: PropTypes.string,
+  style: PropTypes.object,
+  children: PropTypes.any
+};
+
 const propTypes = {
   ...withBoundingRectsProps,
-  ...Tooltip.propTypes,
+  ...tooltipProps,
   offsetLeft: PropTypes.number,
   offsetTop: PropTypes.number
 };

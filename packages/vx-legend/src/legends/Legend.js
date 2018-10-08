@@ -8,19 +8,22 @@ import valueOrIdentity from '../util/valueOrIdentity';
 
 Legend.propTypes = {
   className: PropTypes.string,
-  style: PropTypes.object,
+  style: PropTypes.any,
+  domain: PropTypes.array,
   scale: PropTypes.oneOfType([PropTypes.func, PropTypes.object]).isRequired,
   shapeWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   shapeHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  shapeMargin: PropTypes.string,
+  shapeMargin: PropTypes.any,
   labelAlign: PropTypes.string,
   labelFlex: PropTypes.string,
   labelMargin: PropTypes.string,
   itemMargin: PropTypes.string,
   direction: PropTypes.string,
   itemDirection: PropTypes.string,
-  fill: PropTypes.func,
-  shape: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  fill: PropTypes.any,
+  size: PropTypes.any,
+  shape: PropTypes.any,
+  shapeStyle: PropTypes.any,
   labelFormat: PropTypes.func,
   labelTransform: PropTypes.func
 };

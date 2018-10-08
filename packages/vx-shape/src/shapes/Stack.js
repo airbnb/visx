@@ -1,10 +1,32 @@
 import React from 'react';
 import cx from 'classnames';
+import PropTypes from 'prop-types';
 import { Group } from '@vx/group';
 import additionalProps from '../util/additionalProps';
 import stackOrder from '../util/stackOrder';
 import stackOffset from '../util/stackOffset';
 import { area, stack as d3stack } from 'd3-shape';
+
+Stack.propTypes = {
+  className: PropTypes.string,
+  top: PropTypes.number,
+  left: PropTypes.number,
+  keys: PropTypes.array,
+  data: PropTypes.array,
+  curve: PropTypes.func,
+  defined: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
+  x: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+  x0: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+  x1: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+  y: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+  y0: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+  y1: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+  value: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+  order: PropTypes.oneOfType([PropTypes.func, PropTypes.array, PropTypes.string]),
+  offset: PropTypes.oneOfType([PropTypes.func, PropTypes.array, PropTypes.string]),
+  render: PropTypes.func,
+  reverse: PropTypes.bool
+};
 
 export default function Stack({
   className,
@@ -44,12 +66,13 @@ export default function Stack({
   const seriesData = stack(data);
   if (reverse) seriesData.reverse();
 
-  if (render)
+  if (render) {
     return (
       <Group top={top} left={left}>
         {render({ seriesData, path })}
       </Group>
     );
+  }
 
   return (
     <Group top={top} left={left}>

@@ -10,9 +10,10 @@ export default function labelTransform({
 }) {
   const sign = orientation === ORIENT.left || orientation === ORIENT.top ? -1 : 1;
 
-  let x,
-    y,
-    transform = null;
+  let x;
+  let y;
+  let transform = null;
+
   if (orientation === ORIENT.top || orientation === ORIENT.bottom) {
     x = (range[0] + range[range.length - 1]) / 2;
     y =

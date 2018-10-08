@@ -2,6 +2,10 @@
 node_modules
 build
 dist
+test
+rollup.config.js
+vx-demo
+scripts
 bundle.js
 test/tmp
 *.log

@@ -1,4 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
+HierarchyDefaultLink.propTypes = {
+  link: PropTypes.object
+};
 
 export default function HierarchyDefaultLink({ link }) {
   return (

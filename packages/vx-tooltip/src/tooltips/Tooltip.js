@@ -2,6 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
+Tooltip.propTypes = {
+  left: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  top: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  className: PropTypes.string,
+  style: PropTypes.object,
+  children: PropTypes.any
+};
+
 export default function Tooltip({ className, top, left, style, children, ...restProps }) {
   return (
     <div
@@ -26,11 +34,3 @@ export default function Tooltip({ className, top, left, style, children, ...rest
     </div>
   );
 }
-
-Tooltip.propTypes = {
-  left: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  top: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  className: PropTypes.string,
-  style: PropTypes.object,
-  children: PropTypes.any
-};
