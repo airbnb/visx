@@ -73,7 +73,7 @@ export default class Drag extends React.Component {
               onMouseUp={this.dragEnd}
               fill="transparent"
             />
-          )}
+        )}
         {children({
           x,
           y,
@@ -94,7 +94,10 @@ Drag.propTypes = {
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
   captureDragArea: PropTypes.bool,
-  resetOnStart: PropTypes.bool
+  resetOnStart: PropTypes.bool,
+  onDragEnd: PropTypes.func,
+  onDragMove: PropTypes.func,
+  onDragStart: PropTypes.func
 };
 
 Drag.defaultProps = {

@@ -3,7 +3,20 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { Group } from '@vx/group';
 import Bar from './Bar';
-import additionalProps from '../util/additionalProps';
+
+BarGroupHorizontal.propTypes = {
+  data: PropTypes.array.isRequired,
+  y0: PropTypes.func.isRequired,
+  y0Scale: PropTypes.func.isRequired,
+  y1Scale: PropTypes.func.isRequired,
+  xScale: PropTypes.func.isRequired,
+  zScale: PropTypes.func.isRequired,
+  keys: PropTypes.array.isRequired,
+  width: PropTypes.number.isRequired,
+  className: PropTypes.string,
+  top: PropTypes.number,
+  left: PropTypes.number
+};
 
 export default function BarGroupHorizontal({
   data,
@@ -27,11 +40,11 @@ export default function BarGroupHorizontal({
           return (
             <Group key={`bar-group-${i}-${y0(d)}`} top={y0Scale(y0(d))}>
               {keys &&
-                keys.map((key, i) => {
+                keys.map((key, j) => {
                   const value = d[key];
                   return (
                     <Bar
-                      key={`bar-group-bar-${i}-${value}-${key}`}
+                      key={`bar-group-bar-${i}-${j}-${value}-${key}`}
                       x={0}
                       y={y1Scale(key)}
                       width={width - xScale(value)}
@@ -53,17 +66,3 @@ export default function BarGroupHorizontal({
     </Group>
   );
 }
-
-BarGroupHorizontal.propTypes = {
-  data: PropTypes.array.isRequired,
-  y0: PropTypes.func.isRequired,
-  y0Scale: PropTypes.func.isRequired,
-  y1Scale: PropTypes.func.isRequired,
-  xScale: PropTypes.func.isRequired,
-  zScale: PropTypes.func.isRequired,
-  keys: PropTypes.array.isRequired,
-  width: PropTypes.number.isRequired,
-  className: PropTypes.string,
-  top: PropTypes.number,
-  left: PropTypes.number
-};

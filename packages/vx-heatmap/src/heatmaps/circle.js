@@ -13,7 +13,8 @@ HeatmapCircle.propTypes = {
   colorScale: PropTypes.func,
   opacityScale: PropTypes.func,
   bins: PropTypes.func,
-  count: PropTypes.func
+  count: PropTypes.func,
+  className: PropTypes.string
 };
 
 export default function HeatmapCircle({

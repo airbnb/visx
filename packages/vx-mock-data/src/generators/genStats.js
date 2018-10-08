@@ -18,7 +18,7 @@ export default function genStats(number) {
     points.sort((a, b) => a - b);
 
     const firstQuartile = points[Math.round(sampleSize / 4)];
-    const thirdQuartile = points[Math.round(3 * sampleSize / 4)];
+    const thirdQuartile = points[Math.round((3 * sampleSize) / 4)];
     const IQR = thirdQuartile - firstQuartile;
 
     const min = firstQuartile - 1.5 * IQR;
@@ -32,8 +32,8 @@ export default function genStats(number) {
     const bins = Array(binNum + 2).fill(0);
     const values = Array(binNum + 2).fill(min);
 
-    for (let i = 1; i <= binNum; i += 1) {
-      values[i] += actualBinWidth * (i - 0.5);
+    for (let ii = 1; ii <= binNum; ii += 1) {
+      values[ii] += actualBinWidth * (ii - 0.5);
     }
 
     values[values.length - 1] = max;
@@ -42,9 +42,9 @@ export default function genStats(number) {
       bins[Math.floor((p - min) / actualBinWidth) + 1] += 1;
     });
 
-    const binData = values.map((v, i) => ({
+    const binData = values.map((v, index) => ({
       value: v,
-      count: bins[i]
+      count: bins[index]
     }));
 
     const boxPlot = {

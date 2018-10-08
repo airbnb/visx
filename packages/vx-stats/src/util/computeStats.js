@@ -1,8 +1,8 @@
-export default function(numericalArray) {
+export default function computeStats(numericalArray) {
   const points = [...numericalArray].sort((a, b) => a - b);
   const sampleSize = points.length;
   const firstQuartile = points[Math.round(sampleSize / 4)];
-  const thirdQuartile = points[Math.round(3 * sampleSize / 4)];
+  const thirdQuartile = points[Math.round((3 * sampleSize) / 4)];
   const IQR = thirdQuartile - firstQuartile;
 
   const min = firstQuartile - 1.5 * IQR;

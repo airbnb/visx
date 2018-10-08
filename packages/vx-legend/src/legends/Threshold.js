@@ -43,8 +43,8 @@ export default function LegendThreshold({
 
 function defaultTransform({ labelDelimiter, labelLower, labelUpper }) {
   return ({ scale, labelFormat }) => {
-    function format(labelFormat, value, i) {
-      const formattedValue = labelFormat(value, i);
+    function format(_labelFormat, value, i) {
+      const formattedValue = _labelFormat(value, i);
       if (formattedValue === 0) return '0';
       return formattedValue || '';
     }

@@ -1,7 +1,21 @@
 import React from 'react';
 import cx from 'classnames';
+import PropTypes from 'prop-types';
 import { arc as d3Arc } from 'd3-shape';
 import additionalProps from '../util/additionalProps';
+
+Arc.propTypes = {
+  className: PropTypes.string,
+  data: PropTypes.array,
+  centroid: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+  innerRadius: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+  outerRadius: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+  cornerRadius: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+  startAngle: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+  endAngle: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+  padAngle: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+  padRadius: PropTypes.oneOfType([PropTypes.func, PropTypes.number])
+};
 
 export default function Arc({
   className,

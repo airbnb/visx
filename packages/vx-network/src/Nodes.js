@@ -1,6 +1,13 @@
-import { Group } from '@vx/group';
-import cx from 'classnames';
 import React from 'react';
+import cx from 'classnames';
+import PropTypes from 'prop-types';
+import { Group } from '@vx/group';
+
+Nodes.propTypes = {
+  nodes: PropTypes.array,
+  nodeComponent: PropTypes.element,
+  className: PropTypes.string
+};
 
 export default function Nodes({ nodes, nodeComponent, className }) {
   return (

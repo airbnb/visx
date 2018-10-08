@@ -1,12 +1,29 @@
 import React from 'react';
 import cx from 'classnames';
+import PropTypes from 'prop-types';
 import additionalProps from '../util/additionalProps';
 import { area, stack as d3stack } from 'd3-shape';
 
+AreaStack.propTypes = {
+  className: PropTypes.string,
+  top: PropTypes.number,
+  left: PropTypes.number,
+  keys: PropTypes.array,
+  data: PropTypes.array,
+  curve: PropTypes.func,
+  defined: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
+  x: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+  x0: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+  x1: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+  y: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+  y0: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+  y1: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+  glyph: PropTypes.bool,
+  reverse: PropTypes.bool
+};
+
 export default function AreaStack({
   className,
-  top = 0,
-  left = 0,
   keys,
   data,
   curve,

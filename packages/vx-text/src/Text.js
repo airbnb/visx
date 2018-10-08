@@ -87,8 +87,7 @@ class Text extends Component {
     } = this.props;
     const { wordsByLines } = this.state;
 
-    const x = textProps.x;
-    const y = textProps.y;
+    const { x, y } = textProps;
 
     let startDy;
     switch (verticalAnchor) {
@@ -159,7 +158,13 @@ Text.propTypes = {
   textAnchor: PropTypes.oneOf(['start', 'middle', 'end', 'inherit']),
   verticalAnchor: PropTypes.oneOf(['start', 'middle', 'end']),
   style: PropTypes.object,
-  innerRef: PropTypes.func
+  innerRef: PropTypes.func,
+  x: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  y: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  dx: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  dy: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  lineHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  capHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 };
 
 export default Text;

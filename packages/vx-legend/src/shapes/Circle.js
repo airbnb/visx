@@ -1,5 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Group } from '@vx/group';
+
+ShapeCircle.propTypes = {
+  fill: PropTypes.string,
+  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  style: PropTypes.object
+};
 
 export default function ShapeCircle({ fill, width, height, style }) {
   if (typeof width === 'string') width = 0;

@@ -14,6 +14,23 @@ const projectionMapping = {
   naturalEarth: () => geoNaturalEarth1()
 };
 
+Projection.propTypes = {
+  data: PropTypes.array.isRequired,
+  projection: PropTypes.string,
+  projectionFunc: PropTypes.func,
+  clipAngle: PropTypes.number,
+  clipExtent: PropTypes.array,
+  scale: PropTypes.number,
+  translate: PropTypes.array,
+  center: PropTypes.array,
+  rotate: PropTypes.array,
+  precision: PropTypes.number,
+  fitExtent: PropTypes.array,
+  fitSize: PropTypes.array,
+  centroid: PropTypes.func,
+  className: PropTypes.string
+};
+
 /**
  * Component for all projections.
  */
@@ -56,7 +73,7 @@ export default function Projection({
   if (pointRadius) path.pointRadius(pointRadius);
 
   return (
-    <Group className={`vx-geo`}>
+    <Group className="vx-geo">
       {graticule && !graticule.foreground && <Graticule graticule={g => path(g)} {...graticule} />}
       {graticuleLines &&
         !graticuleLines.foreground && <Graticule lines={g => path(g)} {...graticuleLines} />}
@@ -93,20 +110,3 @@ export default function Projection({
     </Group>
   );
 }
-
-Projection.propTypes = {
-  data: PropTypes.array.isRequired,
-  projection: PropTypes.string,
-  projectionFunc: PropTypes.func,
-  clipAngle: PropTypes.number,
-  clipExtent: PropTypes.array,
-  scale: PropTypes.number,
-  translate: PropTypes.array,
-  center: PropTypes.array,
-  rotate: PropTypes.array,
-  precision: PropTypes.number,
-  fitExtent: PropTypes.array,
-  fitSize: PropTypes.array,
-  centroid: PropTypes.func,
-  className: PropTypes.string
-};

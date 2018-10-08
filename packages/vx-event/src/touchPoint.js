@@ -1,4 +1,5 @@
 import { Point } from '@vx/point';
+
 export default function touchPoint(node, event) {
   if (!node) return;
   const svg = node.ownerSVGElement || node;

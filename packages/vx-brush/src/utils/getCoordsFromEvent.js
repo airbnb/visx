@@ -11,7 +11,7 @@ export default function getCoordsFromEvent(node, event) {
       y: point.y
     };
   }
-  let rect = node.getBoundingClientRect();
+  const rect = node.getBoundingClientRect();
   return {
     x: event.clientX - rect.left - node.clientLeft,
     y: event.clientY - rect.top - node.clientTop

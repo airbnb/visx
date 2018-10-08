@@ -1,8 +1,28 @@
 import React from 'react';
 import cx from 'classnames';
+import PropTypes from 'prop-types';
 import { Group } from '@vx/group';
 import { arc as d3Arc, pie as d3Pie } from 'd3-shape';
 import additionalProps from '../util/additionalProps';
+
+Pie.propTypes = {
+  className: PropTypes.string,
+  top: PropTypes.number,
+  left: PropTypes.number,
+  data: PropTypes.array,
+  centroid: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+  innerRadius: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+  outerRadius: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+  cornerRadius: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+  startAngle: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+  endAngle: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+  padAngle: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+  padRadius: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+  pieSort: PropTypes.func,
+  pieSortValues: PropTypes.func,
+  pieValue: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+  children: PropTypes.func
+};
 
 export default function Pie({
   className = '',
@@ -54,14 +74,14 @@ export default function Pie({
       {children
         ? children(renderFunctionArg)
         : arcs.map((arc, i) => {
-            const pathProps = renderFunctionArg.generatePathProps(arc, i);
-            return (
-              <g key={`pie-arc-${i}`}>
-                <path {...pathProps} />
-                {renderFunctionArg.generateCentroid(arc)}
-              </g>
-            );
-          })}
+          const pathProps = renderFunctionArg.generatePathProps(arc, i);
+          return (
+            <g key={`pie-arc-${i}`}>
+              <path {...pathProps} />
+              {renderFunctionArg.generateCentroid(arc)}
+            </g>
+          );
+        })}
     </Group>
   );
 }
