@@ -8,7 +8,15 @@ import DefaultNode from '../HierarchyDefaultNode';
 
 Cluster.propTypes = {
   root: PropTypes.object.isRequired,
-  children: PropTypes.func
+  children: PropTypes.func,
+  top: PropTypes.number,
+  left: PropTypes.number,
+  className: PropTypes.string,
+  size: PropTypes.arrayOf(PropTypes.number),
+  nodeSize: PropTypes.arrayOf(PropTypes.number),
+  separation: PropTypes.func,
+  linkComponent: PropTypes.any,
+  nodeComponent: PropTypes.any
 };
 
 export default function Cluster({
@@ -25,6 +33,7 @@ export default function Cluster({
   ...restProps
 }) {
   const cluster = d3cluster();
+
   if (size) cluster.size(size);
   if (nodeSize) cluster.nodeSize(nodeSize);
   if (separation) cluster.separation(separation);

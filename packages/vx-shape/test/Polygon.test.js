@@ -22,7 +22,7 @@ describe('<Polygon />', () => {
   it('should add classname', () => {
     const wrapper = PolygonWrapper({ sides: 6, size: 25, className: 'a-polygon' });
 
-    expect(wrapper.prop('className')).toBe('a-polygon');
+    expect(wrapper.prop('className')).toBe('vx-polygon a-polygon');
   });
 
   it('should add onClick handler', () => {
@@ -32,7 +32,7 @@ describe('<Polygon />', () => {
       sides: 6,
       size: 25,
       className: 'a-polygon',
-      onClick: fn,
+      onClick: fn
     });
 
     wrapper.simulate('click');

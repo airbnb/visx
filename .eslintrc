@@ -11,7 +11,7 @@
     "comma-dangle": 0,
     "no-use-before-define": 0,
     "object-curly-newline": 0,
-    "indent": 1,
+    "indent": 0,
     "arrow-parens": 0,
     "consistent-return": 0,
     "no-restricted-syntax": 0,

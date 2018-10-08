@@ -22,8 +22,8 @@ Stack.propTypes = {
   y0: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
   y1: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
   value: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
-  order: PropTypes.oneOfType([PropTypes.func, PropTypes.array]),
-  offset: PropTypes.oneOfType([PropTypes.func, PropTypes.array]),
+  order: PropTypes.oneOfType([PropTypes.func, PropTypes.array, PropTypes.string]),
+  offset: PropTypes.oneOfType([PropTypes.func, PropTypes.array, PropTypes.string]),
   render: PropTypes.func,
   reverse: PropTypes.bool
 };

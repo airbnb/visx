@@ -5,7 +5,7 @@ import { Group } from '@vx/group';
 
 Nodes.propTypes = {
   nodes: PropTypes.array,
-  nodeComponent: PropTypes.element,
+  nodeComponent: PropTypes.any,
   className: PropTypes.string
 };
 

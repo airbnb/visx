@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 ShapeRect.propTypes = {
-  fill: PropTypes.string,
+  fill: PropTypes.any,
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   style: PropTypes.object

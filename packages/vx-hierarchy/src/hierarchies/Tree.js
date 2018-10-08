@@ -8,7 +8,15 @@ import DefaultNode from '../HierarchyDefaultNode';
 
 Tree.propTypes = {
   root: PropTypes.object.isRequired,
-  children: PropTypes.func
+  children: PropTypes.func,
+  top: PropTypes.number,
+  left: PropTypes.number,
+  className: PropTypes.string,
+  size: PropTypes.arrayOf(PropTypes.number),
+  nodeSize: PropTypes.arrayOf(PropTypes.number),
+  separation: PropTypes.func,
+  linkComponent: PropTypes.any,
+  nodeComponent: PropTypes.any
 };
 
 export default function Tree({

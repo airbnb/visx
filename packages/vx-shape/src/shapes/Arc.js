@@ -6,7 +6,7 @@ import additionalProps from '../util/additionalProps';
 
 Arc.propTypes = {
   className: PropTypes.string,
-  data: PropTypes.array,
+  data: PropTypes.any,
   centroid: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
   innerRadius: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
   outerRadius: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),

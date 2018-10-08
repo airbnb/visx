@@ -7,7 +7,14 @@ import DefaultNode from '../HierarchyDefaultNode';
 
 Partition.propTypes = {
   root: PropTypes.object.isRequired,
-  children: PropTypes.func
+  children: PropTypes.func,
+  top: PropTypes.number,
+  left: PropTypes.number,
+  className: PropTypes.string,
+  size: PropTypes.arrayOf(PropTypes.number),
+  round: PropTypes.bool,
+  padding: PropTypes.number,
+  nodeComponent: PropTypes.any
 };
 
 export default function Partition({

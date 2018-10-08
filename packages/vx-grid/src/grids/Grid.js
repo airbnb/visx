@@ -1,8 +1,28 @@
 import React from 'react';
 import cx from 'classnames';
+import PropTypes from 'prop-types';
 import { Group } from '@vx/group';
 import Rows from './Rows';
 import Columns from './Columns';
+
+Grid.propTypes = {
+  top: PropTypes.number,
+  left: PropTypes.number,
+  className: PropTypes.string,
+  stroke: PropTypes.string,
+  strokeWidth: PropTypes.string,
+  strokeDasharray: PropTypes.string,
+  numTicksRows: PropTypes.number,
+  numTicksColumns: PropTypes.number,
+  rowLineStyle: PropTypes.object,
+  columnLineStyle: PropTypes.object,
+  xOffset: PropTypes.number,
+  yOffset: PropTypes.number,
+  xScale: PropTypes.func.isRequired,
+  yScale: PropTypes.func.isRequired,
+  height: PropTypes.number.isRequired,
+  width: PropTypes.number.isRequired
+};
 
 export default function Grid({
   top,

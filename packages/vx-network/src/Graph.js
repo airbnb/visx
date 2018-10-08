@@ -8,8 +8,8 @@ import DefaultNode from './DefaultNode';
 
 Graph.propTypes = {
   graph: PropTypes.object,
-  linkComponent: PropTypes.element,
-  nodeComponent: PropTypes.element
+  linkComponent: PropTypes.any,
+  nodeComponent: PropTypes.any
 };
 
 export default function Graph({ graph, linkComponent = DefaultLink, nodeComponent = DefaultNode }) {

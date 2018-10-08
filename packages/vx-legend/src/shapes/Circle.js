@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Group } from '@vx/group';
 
 ShapeCircle.propTypes = {
-  fill: PropTypes.string,
+  fill: PropTypes.any,
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   style: PropTypes.object
