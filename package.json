@@ -6,11 +6,12 @@
   "scripts": {
     "test": "lerna bootstrap && lerna exec npm run test",
     "docs": "node ./scripts/docs/index.js",
-    "prepare-release": "git checkout master && git pull --rebase origin master && npm run docs && lerna updated",
+    "prepare-release":
+      "git checkout master && git pull --rebase origin master && npm run docs && lerna updated",
     "release": "npm run prepare-release && lerna publish --exact",
-    "lint": "eslint \"{packages}/**/*.js\" --config \"./.eslintrc\"",
-    "lint:fix": "eslint \"{packages}/**/*.js\" --config \"./.eslintrc\" --fix",
-    "format": "prettier-eslint \"{packages}/**/*.js\" --config \"./.eslintrc\" --write",
+    "lint": "eslint \"packages/**/*.js\" --config \"./.eslintrc\"",
+    "lint:fix": "eslint \"packages/**/*.js\" --config \"./.eslintrc\" --fix",
+    "format": "prettier-eslint \"packages/**/*.js\" --config \"./.eslintrc\" --write",
     "precommit": "lint-staged"
   },
   "eslintConfig": {
@@ -21,32 +22,16 @@
     "singleQuote": true
   },
   "lint-staged": {
-    "*.js": [
-      "prettier-eslint --write",
-      "git add"
-    ]
+    "*.js": ["prettier-eslint --write", "git add"]
   },
   "jest": {
-    "projects": [
-      "<rootDir>/packages/*"
-    ],
+    "projects": ["<rootDir>/packages/*"],
     "collectCoverage": true,
     "coverageDirectory": "<rootDir>/coverage",
-    "coveragePathIgnorePatterns": [
-      "/node_modules/"
-    ],
-    "coverageReporters": [
-      "text",
-      "lcov"
-    ]
+    "coveragePathIgnorePatterns": ["/node_modules/"],
+    "coverageReporters": ["text", "lcov"]
   },
-  "keywords": [
-    "react",
-    "d3",
-    "visualization",
-    "vx",
-    "charts"
-  ],
+  "keywords": ["react", "d3", "visualization", "vx", "charts"],
   "author": "@hshoff",
   "license": "MIT",
   "devDependencies": {
