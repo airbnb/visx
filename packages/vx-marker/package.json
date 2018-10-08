@@ -1,6 +1,6 @@
 {
   "name": "@vx/marker",
-  "version": "0.0.178",
+  "version": "0.0.179",
   "description": "vx marker",
   "sideEffects": false,
   "main": "dist/vx-marker.umd.js",
@@ -58,7 +58,7 @@
   },
   "dependencies": {
     "@vx/group": "0.0.170",
-    "@vx/shape": "0.0.178",
+    "@vx/shape": "0.0.179",
     "classnames": "^2.2.5",
     "prop-types": "^15.6.2"
   },

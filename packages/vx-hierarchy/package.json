@@ -1,6 +1,6 @@
 {
   "name": "@vx/hierarchy",
-  "version": "0.0.170",
+  "version": "0.0.179",
   "description": "vx tree",
   "sideEffects": false,
   "main": "dist/vx-hierarchy.umd.js",

@@ -1,6 +1,6 @@
 {
   "name": "@vx/scale",
-  "version": "0.0.178",
+  "version": "0.0.179",
   "description": "vx scale",
   "sideEffects": false,
   "main": "dist/vx-scale.umd.js",

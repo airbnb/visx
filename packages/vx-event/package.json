@@ -1,6 +1,6 @@
 {
   "name": "@vx/event",
-  "version": "0.0.165",
+  "version": "0.0.179",
   "description": "vx event",
   "sideEffects": false,
   "main": "dist/vx-event.umd.js",

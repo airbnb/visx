@@ -1,6 +1,6 @@
 {
   "name": "@vx/brush",
-  "version": "0.0.165",
+  "version": "0.0.179",
   "description": "vx brush",
   "sideEffects": false,
   "main": "dist/vx-brush.umd.js",

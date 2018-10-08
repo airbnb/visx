@@ -1,6 +1,6 @@
 {
   "name": "@vx/heatmap",
-  "version": "0.0.173",
+  "version": "0.0.179",
   "description": "vx heatmap",
   "sideEffects": false,
   "main": "dist/vx-heatmap.umd.js",

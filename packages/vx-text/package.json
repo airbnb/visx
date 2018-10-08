@@ -1,6 +1,6 @@
 {
   "name": "@vx/text",
-  "version": "0.0.175",
+  "version": "0.0.179",
   "description": "vx text",
   "sideEffects": false,
   "main": "dist/vx-text.umd.js",
