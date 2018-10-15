@@ -15,7 +15,8 @@ BarGroupHorizontal.propTypes = {
   width: PropTypes.number.isRequired,
   className: PropTypes.string,
   top: PropTypes.number,
-  left: PropTypes.number
+  left: PropTypes.number,
+  children: PropTypes.func
 };
 
 export default function BarGroupHorizontal({
@@ -30,39 +31,51 @@ export default function BarGroupHorizontal({
   zScale,
   keys,
   width,
+  children,
   ...restProps
 }) {
-  const format = y0Scale.tickFormat ? y0Scale.tickFormat() : d => d;
+  const barHeight = y1Scale.bandwidth();
+  const barGroups = data.map((group, i) => {
+    return {
+      index: i,
+      y0: y0Scale(y0(group)),
+      keys: keys.map((key, j) => {
+        const value = group[key];
+        return {
+          index: j,
+          key,
+          value,
+          barHeight,
+          x: xScale(value),
+          y: y1Scale(key),
+          fill: zScale(key),
+          barWidth: width - xScale(value)
+        };
+      })
+    };
+  });
+  if (children) return children({ barGroups });
   return (
     <Group className={cx('vx-bar-group-horizontal', className)} top={top} left={left}>
-      {data &&
-        data.map((d, i) => {
-          return (
-            <Group key={`bar-group-${i}-${y0(d)}`} top={y0Scale(y0(d))}>
-              {keys &&
-                keys.map((key, j) => {
-                  const value = d[key];
-                  return (
-                    <Bar
-                      key={`bar-group-bar-${i}-${j}-${value}-${key}`}
-                      x={0}
-                      y={y1Scale(key)}
-                      width={width - xScale(value)}
-                      height={y1Scale.bandwidth()}
-                      fill={zScale(key)}
-                      data={{
-                        key,
-                        value,
-                        y: format(y0(d)),
-                        data: d
-                      }}
-                      {...restProps}
-                    />
-                  );
-                })}
-            </Group>
-          );
-        })}
+      {barGroups.map(barGroup => {
+        return (
+          <Group key={`bar-group-${barGroup.index}-${barGroup.y0}`} left={barGroup.y0}>
+            {barGroup.keys.map(key => {
+              return (
+                <Bar
+                  key={`bar-group-bar-${barGroup.index}-${key.index}-${key.value}-${key.key}`}
+                  x={key.x}
+                  y={key.y}
+                  width={key.barWidth}
+                  height={key.barHeight}
+                  fill={key.fill}
+                  {...restProps}
+                />
+              );
+            })}
+          </Group>
+        );
+      })}
     </Group>
   );
 }

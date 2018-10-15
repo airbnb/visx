@@ -1,7 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
-import additionalProps from '../util/additionalProps';
 import { area, stack as d3stack } from 'd3-shape';
 
 AreaStack.propTypes = {
@@ -18,7 +17,6 @@ AreaStack.propTypes = {
   y: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
   y0: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
   y1: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
-  glyph: PropTypes.bool,
   reverse: PropTypes.bool
 };
 
@@ -33,7 +31,6 @@ export default function AreaStack({
   x1,
   y0,
   y1,
-  glyph,
   reverse = false,
   ...restProps
 }) {
@@ -60,15 +57,10 @@ export default function AreaStack({
             className={cx('vx-area-stack', className)}
             key={`area-stack-${i}-${series.key || ''}`}
             d={path(series)}
-            {...additionalProps(restProps, {
-              datum: series[i],
-              index: i,
-              series
-            })}
+            {...restProps}
           />
         );
       })}
-      {!!glyph && <g className="vx-area-stack-glyphs">{data.map(glyph)}</g>}
     </g>
   );
 }

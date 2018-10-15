@@ -2,20 +2,25 @@ import React from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import { radialLine } from 'd3-shape';
-import additionalProps from '../util/additionalProps';
 
 LineRadial.propTypes = {
-  innerRef: PropTypes.func
+  innerRef: PropTypes.func,
+  className: PropTypes.string,
+  data: PropTypes.any,
+  curve: PropTypes.func,
+  angle: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+  radius: PropTypes.oneOfType([PropTypes.func, PropTypes.number])
 };
 
 export default function LineRadial({
-  className = '',
+  className,
   angle,
   radius,
   defined,
   curve,
   data,
   innerRef,
+  children,
   ...restProps
 }) {
   const path = radialLine();
@@ -23,14 +28,13 @@ export default function LineRadial({
   if (radius) path.radius(radius);
   if (defined) path.defined(defined);
   if (curve) path.curve(curve);
+  if (children) return children({ path });
   return (
-    <g>
-      <path
-        ref={innerRef}
-        className={cx('vx-line-radial', className)}
-        d={path(data)}
-        {...additionalProps(restProps, data)}
-      />
-    </g>
+    <path
+      ref={innerRef}
+      className={cx('vx-line-radial', className)}
+      d={path(data)}
+      {...restProps}
+    />
   );
 }

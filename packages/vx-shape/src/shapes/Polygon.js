@@ -1,14 +1,16 @@
 import React from 'react';
-import { Point } from '@vx/point';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
+import { Point } from '@vx/point';
 import { degreesToRadians } from '../util/trigonometry';
 
 Polygon.propTypes = {
   sides: PropTypes.number.isRequired,
   size: PropTypes.number.isRequired,
   className: PropTypes.string,
-  rotate: PropTypes.number
+  rotate: PropTypes.number,
+  children: PropTypes.func,
+  center: PropTypes.shape({ x: PropTypes.number, y: PropTypes.number })
 };
 
 export const getPoint = ({ sides, size, center, rotate, side }) => {
@@ -39,6 +41,7 @@ export default function Polygon({
   center = new Point({ x: 0, y: 0 }),
   rotate = 0,
   className,
+  children,
   ...restProps
 }) {
   const points = getPoints({
@@ -46,9 +49,11 @@ export default function Polygon({
     size,
     center,
     rotate
-  })
-    .map(p => p.toArray())
-    .join(' ');
+  }).map(p => p.toArray());
 
-  return <polygon points={points} className={cx('vx-polygon', className)} {...restProps} />;
+  if (children) return children({ points });
+
+  return (
+    <polygon className={cx('vx-polygon', className)} points={points.join(' ')} {...restProps} />
+  );
 }

@@ -2,31 +2,20 @@ import React from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import { area } from 'd3-shape';
-import additionalProps from '../util/additionalProps';
 
 Area.propTypes = {
-  x: PropTypes.func,
-  x0: PropTypes.func,
-  x1: PropTypes.func,
-  y: PropTypes.func,
-  y0: PropTypes.func,
-  y1: PropTypes.func,
-  xScale: PropTypes.func,
-  yScale: PropTypes.func,
-  data: PropTypes.array,
+  children: PropTypes.func,
+  className: PropTypes.string,
+  data: PropTypes.any,
   defined: PropTypes.func,
-  className: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.bool,
-    PropTypes.object,
-    PropTypes.array
-  ]),
   innerRef: PropTypes.func,
-  strokeDasharray: PropTypes.string,
-  strokeWidth: PropTypes.number,
-  stroke: PropTypes.string,
-  fill: PropTypes.string,
-  curve: PropTypes.func
+  curve: PropTypes.func,
+  x: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+  x0: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+  x1: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+  y: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+  y0: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+  y1: PropTypes.oneOfType([PropTypes.func, PropTypes.number])
 };
 
 export default function Area({
@@ -37,41 +26,26 @@ export default function Area({
   y,
   y0,
   y1,
-  xScale,
-  yScale,
-  data = [],
+  data,
   defined = () => true,
   className,
-  strokeDasharray,
-  strokeWidth = 2,
-  stroke = 'black',
-  fill = 'rgba(0,0,0,0.3)',
   curve,
   innerRef,
   ...restProps
 }) {
   const path = area();
-  if (x) path.x((...args) => xScale(x(...args)));
-  if (x0) path.x0((...args) => xScale(x0(...args)));
-  if (x1) path.x1((...args) => xScale(x1(...args)));
-  if (y) path.y((...args) => yScale(y(...args)));
-  if (y0) path.y0((...args) => yScale(y0(...args)));
-  if (y1) path.y1((...args) => yScale(y1(...args)));
+  if (x) path.x(x);
+  if (x0) path.x0(x0);
+  if (x1) path.x1(x1);
+  if (y) path.y(y);
+  if (y0) path.y0(y0);
+  if (y1) path.y1(y1);
   if (defined) path.defined(defined);
   if (curve) path.curve(curve);
   if (children) return children({ path });
   return (
     <g>
-      <path
-        ref={innerRef}
-        className={cx('vx-area', className)}
-        d={path(data)}
-        stroke={stroke}
-        strokeWidth={strokeWidth}
-        strokeDasharray={strokeDasharray}
-        fill={fill}
-        {...additionalProps(restProps, data)}
-      />
+      <path ref={innerRef} className={cx('vx-area', className)} d={path(data)} {...restProps} />
     </g>
   );
 }

@@ -3,7 +3,6 @@ import cx from 'classnames';
 import PropTypes from 'prop-types';
 import { Group } from '@vx/group';
 import { arc as d3Arc, pie as d3Pie } from 'd3-shape';
-import additionalProps from '../util/additionalProps';
 
 Pie.propTypes = {
   className: PropTypes.string,
@@ -18,22 +17,22 @@ Pie.propTypes = {
   endAngle: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
   padAngle: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
   padRadius: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+  pieValue: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
   pieSort: PropTypes.func,
   pieSortValues: PropTypes.func,
-  pieValue: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
   children: PropTypes.func
 };
 
 export default function Pie({
-  className = '',
-  top = 0,
-  left = 0,
+  className,
+  top,
+  left,
   data,
   centroid,
-  innerRadius = 0,
+  innerRadius,
   outerRadius,
   cornerRadius,
-  startAngle = 0,
+  startAngle,
   endAngle,
   padAngle,
   padRadius,
@@ -44,10 +43,11 @@ export default function Pie({
   ...restProps
 }) {
   const path = d3Arc();
-  path.innerRadius(innerRadius);
+  if (innerRadius) path.innerRadius(innerRadius);
   if (outerRadius) path.outerRadius(outerRadius);
   if (cornerRadius) path.cornerRadius(cornerRadius);
   if (padRadius) path.padRadius(padRadius);
+
   const pie = d3Pie();
   if (pieSort !== undefined) pie.sort(pieSort);
   if (pieSortValues !== undefined) pie.sortValues(pieSortValues);
@@ -55,33 +55,21 @@ export default function Pie({
   if (padAngle != null) pie.padAngle(padAngle);
   if (startAngle != null) pie.startAngle(startAngle);
   if (endAngle != null) pie.endAngle(endAngle);
+
   const arcs = pie(data);
-  const renderFunctionArg = {
-    arcs,
-    generatePathProps: (arc, index) => ({
-      className: cx('vx-pie-arc', className),
-      d: path(arc),
-      ...additionalProps(restProps, {
-        ...arc,
-        index,
-        centroid: centroid ? path.centroid(arc) : undefined
-      })
-    }),
-    generateCentroid: arc => centroid && centroid(path.centroid(arc), arc)
-  };
+
+  if (children) return children({ arcs, path, pie });
+
   return (
     <Group className="vx-pie-arcs-group" top={top} left={left}>
-      {children
-        ? children(renderFunctionArg)
-        : arcs.map((arc, i) => {
-          const pathProps = renderFunctionArg.generatePathProps(arc, i);
-          return (
-            <g key={`pie-arc-${i}`}>
-              <path {...pathProps} />
-              {renderFunctionArg.generateCentroid(arc)}
-            </g>
-          );
-        })}
+      {arcs.map((arc, i) => {
+        return (
+          <g key={`pie-arc-${i}`}>
+            <path className={cx('vx-pie-arc', className)} d={path(arc)} {...restProps} />
+            {centroid && centroid(path.centroid(arc), arc)}
+          </g>
+        );
+      })}
     </Group>
   );
 }
