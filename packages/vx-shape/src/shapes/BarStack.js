@@ -2,22 +2,28 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { Group } from '@vx/group';
-import Bar from './Bar';
 import { stack as d3stack } from 'd3-shape';
+import stackOrder from '../util/stackOrder';
+import stackOffset from '../util/stackOffset';
 import objHasMethod from '../util/objHasMethod';
+import Bar from './Bar';
 
 BarStack.propTypes = {
   data: PropTypes.array.isRequired,
   x: PropTypes.func.isRequired,
   xScale: PropTypes.func.isRequired,
   yScale: PropTypes.func.isRequired,
-  zScale: PropTypes.func.isRequired,
+  color: PropTypes.func.isRequired,
   keys: PropTypes.array.isRequired,
   className: PropTypes.string,
   top: PropTypes.number,
   left: PropTypes.number,
-  width: PropTypes.number,
-  height: PropTypes.number
+  children: PropTypes.number,
+  y0: PropTypes.func,
+  y1: PropTypes.func,
+  order: PropTypes.oneOfType([PropTypes.func, PropTypes.array, PropTypes.string]),
+  offset: PropTypes.oneOfType([PropTypes.func, PropTypes.array, PropTypes.string]),
+  value: PropTypes.oneOfType([PropTypes.func, PropTypes.number])
 };
 
 export default function BarStack({
@@ -26,62 +32,74 @@ export default function BarStack({
   top,
   left,
   x,
+  y0 = d => d[0],
+  y1 = d => d[1],
   xScale,
   yScale,
-  zScale,
+  color,
   keys,
-  width,
-  height,
+  value,
+  order,
+  offset,
+  children,
   ...restProps
 }) {
-  const series = d3stack().keys(keys)(data);
-  const format = xScale.tickFormat ? xScale.tickFormat() : d => d;
+  const stack = d3stack();
+  if (keys) stack.keys(keys);
+  if (value) stack.value(value);
+  if (order) stack.order(stackOrder(order));
+  if (offset) stack.offset(stackOffset(offset));
+
+  const stacks = stack(data);
+
   const xRange = xScale.range();
   const xDomain = xScale.domain();
+  const barWidth = objHasMethod(xScale, 'bandwidth')
+    ? xScale.bandwidth()
+    : Math.abs(xRange[xRange.length - 1] - xRange[0]) / xDomain.length;
+
+  const barStacks = stacks.map((barStack, i) => {
+    return {
+      index: i,
+      key: barStack.key,
+      bars: barStack.map((bar, j) => {
+        const barHeight = yScale(y0(bar)) - yScale(y1(bar));
+        const barY = yScale(y1(bar));
+        const barX = objHasMethod(xScale, 'bandwidth')
+          ? xScale(x(bar.data))
+          : Math.max(xScale(x(bar.data)) - barWidth / 2);
+        return {
+          bar,
+          index: j,
+          height: barHeight,
+          width: barWidth,
+          x: barX,
+          y: barY,
+          color: color(bar.key, j)
+        };
+      })
+    };
+  });
+
+  if (children) return children({ barStacks });
+
   return (
     <Group className={cx('vx-bar-stack', className)} top={top} left={left}>
-      {series &&
-        series.map((s, i) => {
+      {barStacks.map(barStack => {
+        return barStack.bars.map(bar => {
           return (
-            <Group key={`vx-bar-stack-${i}`}>
-              {s.map((d, ii) => {
-                const barHeight = yScale(d[0]) - yScale(d[1]);
-                const barWidth =
-                  width ||
-                  (objHasMethod(xScale, 'bandwidth')
-                    ? xScale.bandwidth()
-                    : Math.abs(xRange[xRange.length - 1] - xRange[0]) / xDomain.length);
-
-                const barX = objHasMethod(xScale, 'bandwidth')
-                  ? xScale(x(d.data))
-                  : xScale(x(d.data)) - barWidth / 2;
-                return (
-                  <Bar
-                    key={`bar-group-bar-${i}-${ii}-${s.key}`}
-                    x={barX}
-                    y={yScale(d[1])}
-                    width={barWidth}
-                    height={barHeight}
-                    fill={zScale(s.key)}
-                    data={{
-                      paddingInner: objHasMethod(xScale, 'paddingInner') && xScale.paddingInner(),
-                      paddingOuter: objHasMethod(xScale, 'paddingOuter') && xScale.paddingOuter(),
-                      step: objHasMethod(xScale, 'step') && xScale.step(),
-                      key: s.key,
-                      value: d[1],
-                      height: barHeight,
-                      width: barWidth,
-                      x: x(d.data),
-                      xFormatted: format(x(d.data)),
-                      data: d.data
-                    }}
-                    {...restProps}
-                  />
-                );
-              })}
-            </Group>
+            <Bar
+              key={`bar-stack-${barStack.index}-${bar.index}`}
+              x={bar.x}
+              y={bar.y}
+              height={bar.height}
+              width={bar.width}
+              fill={bar.color}
+              {...restProps}
+            />
           );
-        })}
+        });
+      })}
     </Group>
   );
 }

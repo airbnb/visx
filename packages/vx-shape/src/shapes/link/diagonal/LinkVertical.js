@@ -2,7 +2,6 @@ import React from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import { linkVertical } from 'd3-shape';
-import additionalProps from '../../../util/additionalProps';
 
 export function pathVerticalDiagonal({ source, target, x, y }) {
   return data => {
@@ -33,15 +32,17 @@ export default function LinkVertical({
   y = d => d.y,
   source = d => d.source,
   target = d => d.target,
+  children,
   ...restProps
 }) {
   path = path || pathVerticalDiagonal({ source, target, x, y });
+  if (children) return children({ path });
   return (
     <path
       ref={innerRef}
-      className={cx('vx-link-vertical', className)}
+      className={cx('vx-link vx-link-vertical-diagonal', className)}
       d={path(data)}
-      {...additionalProps(restProps, data)}
+      {...restProps}
     />
   );
 }

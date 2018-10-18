@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { Group } from '@vx/group';
+import objHasMethod from '../util/objHasMethod';
 import Bar from './Bar';
 
 BarGroupHorizontal.propTypes = {
@@ -10,7 +11,7 @@ BarGroupHorizontal.propTypes = {
   y0Scale: PropTypes.func.isRequired,
   y1Scale: PropTypes.func.isRequired,
   xScale: PropTypes.func.isRequired,
-  zScale: PropTypes.func.isRequired,
+  color: PropTypes.func.isRequired,
   keys: PropTypes.array.isRequired,
   width: PropTypes.number.isRequired,
   className: PropTypes.string,
@@ -28,47 +29,54 @@ export default function BarGroupHorizontal({
   y0Scale,
   y1Scale,
   xScale,
-  zScale,
+  color,
   keys,
   width,
   children,
   ...restProps
 }) {
-  const barHeight = y1Scale.bandwidth();
+  const y1Range = y1Scale.range();
+  const y1Domain = y1Scale.domain();
+  const barHeight = objHasMethod(y1Scale, 'bandwidth')
+    ? y1Scale.bandwidth()
+    : Math.abs(y1Range[y1Range.length - 1] - y1Range[0]) / y1Domain.length;
+
   const barGroups = data.map((group, i) => {
     return {
       index: i,
       y0: y0Scale(y0(group)),
-      keys: keys.map((key, j) => {
+      bars: keys.map((key, j) => {
         const value = group[key];
         return {
           index: j,
           key,
           value,
-          barHeight,
+          height: barHeight,
           x: xScale(value),
           y: y1Scale(key),
-          fill: zScale(key),
-          barWidth: width - xScale(value)
+          color: color(key, j),
+          width: width - xScale(value)
         };
       })
     };
   });
+
   if (children) return children({ barGroups });
+
   return (
     <Group className={cx('vx-bar-group-horizontal', className)} top={top} left={left}>
       {barGroups.map(barGroup => {
         return (
           <Group key={`bar-group-${barGroup.index}-${barGroup.y0}`} left={barGroup.y0}>
-            {barGroup.keys.map(key => {
+            {barGroup.bars.map(bar => {
               return (
                 <Bar
-                  key={`bar-group-bar-${barGroup.index}-${key.index}-${key.value}-${key.key}`}
-                  x={key.x}
-                  y={key.y}
-                  width={key.barWidth}
-                  height={key.barHeight}
-                  fill={key.fill}
+                  key={`bar-group-bar-${barGroup.index}-${bar.index}-${bar.value}-${bar.key}`}
+                  x={bar.x}
+                  y={bar.y}
+                  width={bar.width}
+                  height={bar.height}
+                  fill={bar.color}
                   {...restProps}
                 />
               );

@@ -10,6 +10,7 @@ Polygon.propTypes = {
   className: PropTypes.string,
   rotate: PropTypes.number,
   children: PropTypes.func,
+  innerRef: PropTypes.func,
   center: PropTypes.shape({ x: PropTypes.number, y: PropTypes.number })
 };
 
@@ -42,6 +43,7 @@ export default function Polygon({
   rotate = 0,
   className,
   children,
+  innerRef,
   ...restProps
 }) {
   const points = getPoints({
@@ -54,6 +56,11 @@ export default function Polygon({
   if (children) return children({ points });
 
   return (
-    <polygon className={cx('vx-polygon', className)} points={points.join(' ')} {...restProps} />
+    <polygon
+      ref={innerRef}
+      className={cx('vx-polygon', className)}
+      points={points.join(' ')}
+      {...restProps}
+    />
   );
 }

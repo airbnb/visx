@@ -11,7 +11,7 @@ BarStackHorizontal.propTypes = {
   y: PropTypes.func.isRequired,
   xScale: PropTypes.func.isRequired,
   yScale: PropTypes.func.isRequired,
-  zScale: PropTypes.func.isRequired,
+  color: PropTypes.func.isRequired,
   keys: PropTypes.array.isRequired,
   className: PropTypes.string,
   top: PropTypes.number,
@@ -28,7 +28,7 @@ export default function BarStackHorizontal({
   y,
   xScale,
   yScale,
-  zScale,
+  color,
   keys,
   width,
   height,
@@ -62,7 +62,7 @@ export default function BarStackHorizontal({
                     y={barY}
                     width={barWidth}
                     height={barHeight}
-                    fill={zScale(s.key)}
+                    fill={color(s.key)}
                     data={{
                       paddingInner: objHasMethod(yScale, 'paddingInner') && yScale.paddingInner(),
                       paddingOuter: objHasMethod(yScale, 'paddingOuter') && yScale.paddingOuter(),

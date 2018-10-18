@@ -7,13 +7,13 @@ import stackOrder from '../util/stackOrder';
 import stackOffset from '../util/stackOffset';
 
 Stack.propTypes = {
+  data: PropTypes.array.isRequired,
   className: PropTypes.string,
   top: PropTypes.number,
   left: PropTypes.number,
-  keys: PropTypes.array,
-  data: PropTypes.array,
   curve: PropTypes.func,
-  reverse: PropTypes.bool,
+  color: PropTypes.func,
+  keys: PropTypes.array,
   children: PropTypes.func,
   x: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
   x0: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
@@ -43,8 +43,8 @@ export default function Stack({
   value,
   order,
   offset,
+  color,
   children,
-  reverse = false,
   ...restProps
 }) {
   const stack = d3stack();
@@ -63,7 +63,6 @@ export default function Stack({
   if (defined) path.defined(defined);
 
   const stacks = stack(data);
-  if (reverse) stacks.reverse();
 
   if (children) return children({ stacks, path, stack });
 
@@ -75,6 +74,7 @@ export default function Stack({
             className={cx('vx-stack', className)}
             key={`stack-${i}-${series.key || ''}`}
             d={path(series)}
+            fill={color(series.key, i)}
             {...restProps}
           />
         );
