@@ -24,15 +24,9 @@ describe('<Projection />', () => {
   });
 
   test('it should pass prop to path', () => {
-    const wrapper = shallow(<Projection stroke={data => 'red'} {...props} />);
+    const wrapper = shallow(<Projection stroke={'red'} {...props} />);
     expect(wrapper.find('path').get(0).props.stroke).toBe('red');
     expect(wrapper.find('path').get(1).props.stroke).toBe('red');
-  });
-
-  test('it should pass prop to specific path', () => {
-    const wrapper = shallow(<Projection fill={data => data.id === 'poly2' && 'red'} {...props} />);
-    expect(wrapper.find('path').get(0).props.fill).not.toBe('red');
-    expect(wrapper.find('path').get(1).props.fill).toBe('red');
   });
 
   test('it should call projectionFunc prop function', () => {

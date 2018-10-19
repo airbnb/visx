@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { Group } from '@vx/group';
-import additionalProps from '../util/additionalProps';
 import Graticule from '../graticule/Graticule';
 import { geoOrthographic, geoAlbers, geoMercator, geoNaturalEarth1, geoPath } from 'd3-geo';
 
@@ -28,7 +27,8 @@ Projection.propTypes = {
   fitExtent: PropTypes.array,
   fitSize: PropTypes.array,
   centroid: PropTypes.func,
-  className: PropTypes.string
+  className: PropTypes.string,
+  children: PropTypes.func
 };
 
 /**
@@ -54,6 +54,7 @@ export default function Projection({
   className,
   innerRef,
   pointRadius,
+  children,
   ...restProps
 }) {
   const currProjection = projectionMapping[projection]();
@@ -72,6 +73,19 @@ export default function Projection({
 
   if (pointRadius) path.pointRadius(pointRadius);
 
+  const features = data.map((feature, i) => {
+    return {
+      feature,
+      type: projection,
+      projection: currProjection,
+      index: i,
+      centroid: path.centroid(feature),
+      d: path(feature)
+    };
+  });
+
+  if (children) return children({ path, features });
+
   return (
     <Group className="vx-geo">
       {graticule && !graticule.foreground && <Graticule graticule={g => path(g)} {...graticule} />}
@@ -80,22 +94,16 @@ export default function Projection({
       {graticuleOutline &&
         !graticuleOutline.foreground && <Graticule outline={g => path(g)} {...graticuleOutline} />}
 
-      {data.map((feature, i) => {
-        let c;
-        if (centroid) c = path.centroid(feature);
+      {features.map((feature, i) => {
         return (
           <g key={`${projection}-${i}`}>
             <path
               className={cx(`vx-geo-${projection}`, className)}
-              d={path(feature)}
+              d={feature.path}
               ref={innerRef && innerRef(feature, i)}
-              {...additionalProps(restProps, {
-                ...feature,
-                index: i,
-                centroid: c
-              })}
+              {...restProps}
             />
-            {centroid && centroid(c, feature)}
+            {centroid && centroid(feature.centroid, feature)}
           </g>
         );
       })}
