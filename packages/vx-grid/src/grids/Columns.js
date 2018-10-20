@@ -16,7 +16,8 @@ Columns.propTypes = {
   lineStyle: PropTypes.object,
   offset: PropTypes.number,
   scale: PropTypes.func.isRequired,
-  height: PropTypes.number.isRequired
+  height: PropTypes.number.isRequired,
+  tickValues: PropTypes.array
 };
 
 export default function Columns({
@@ -31,9 +32,11 @@ export default function Columns({
   numTicks = 10,
   lineStyle,
   offset,
+  tickValues,
   ...restProps
 }) {
-  const ticks = scale.ticks ? scale.ticks(numTicks) : scale.domain();
+  let ticks = scale.ticks ? scale.ticks(numTicks) : scale.domain();
+  if (tickValues) ticks = tickValues;
   return (
     <Group className={cx('vx-columns', className)} top={top} left={left}>
       {ticks.map((d, i) => {
