@@ -21,7 +21,9 @@ Grid.propTypes = {
   xScale: PropTypes.func.isRequired,
   yScale: PropTypes.func.isRequired,
   height: PropTypes.number.isRequired,
-  width: PropTypes.number.isRequired
+  width: PropTypes.number.isRequired,
+  rowTickValues: PropTypes.array,
+  columnTickValues: PropTypes.array
 };
 
 export default function Grid({
@@ -41,6 +43,8 @@ export default function Grid({
   columnLineStyle,
   xOffset,
   yOffset,
+  rowTickValues,
+  columnTickValues,
   ...restProps
 }) {
   return (
@@ -55,6 +59,7 @@ export default function Grid({
         numTicks={numTicksRows}
         style={rowLineStyle}
         offset={yOffset}
+        tickValues={rowTickValues}
         {...restProps}
       />
       <Columns
@@ -67,6 +72,7 @@ export default function Grid({
         numTicks={numTicksColumns}
         style={columnLineStyle}
         offset={xOffset}
+        tickValues={columnTickValues}
         {...restProps}
       />
     </Group>
