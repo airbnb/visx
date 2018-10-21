@@ -16,7 +16,8 @@ Rows.propTypes = {
   lineStyle: PropTypes.object,
   offset: PropTypes.number,
   scale: PropTypes.func.isRequired,
-  width: PropTypes.number.isRequired
+  width: PropTypes.number.isRequired,
+  tickValues: PropTypes.array
 };
 
 export default function Rows({
@@ -31,9 +32,11 @@ export default function Rows({
   numTicks = 10,
   lineStyle,
   offset,
+  tickValues,
   ...restProps
 }) {
-  const ticks = scale.ticks ? scale.ticks(numTicks) : scale.domain();
+  let ticks = scale.ticks ? scale.ticks(numTicks) : scale.domain();
+  if (tickValues) ticks = tickValues;
   return (
     <Group className={cx('vx-rows', className)} top={top} left={left}>
       {ticks.map((d, i) => {
