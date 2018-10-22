@@ -1,17 +1,50 @@
 import React from 'react';
 import classnames from 'classnames';
+import PropTypes from 'prop-types';
 import { Group } from '@vx/group';
-import additionalProps from '../util/additionalProps';
 
-function verticalToHorizontal([x1, y1, x2, y2]) {
-  return [y1, x1, y2, x2];
+function verticalToHorizontal({ x1, x2, y1, y2 }) {
+  return {
+    x1: y1,
+    x2: y2,
+    y1: x1,
+    y2: x2
+  };
 }
+
+BoxPlot.propTypes = {
+  left: PropTypes.number,
+  top: PropTypes.number,
+  className: PropTypes.string,
+  max: PropTypes.number,
+  min: PropTypes.number,
+  firstQuartile: PropTypes.number,
+  thirdQuartile: PropTypes.number,
+  median: PropTypes.number,
+  boxWidth: PropTypes.number,
+  fill: PropTypes.string,
+  fillOpacity: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  stroke: PropTypes.string,
+  strokeWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  rx: PropTypes.number,
+  ry: PropTypes.number,
+  valueScale: PropTypes.func,
+  outliers: PropTypes.array,
+  horizontal: PropTypes.bool,
+  medianProps: PropTypes.object,
+  maxProps: PropTypes.object,
+  minProps: PropTypes.object,
+  boxProps: PropTypes.object,
+  outlierProps: PropTypes.object,
+  container: PropTypes.bool,
+  containerProps: PropTypes.object,
+  children: PropTypes.func
+};
 
 export default function BoxPlot({
   left = 0,
   top = 0,
   className,
-  data,
   max,
   min,
   firstQuartile,
@@ -25,7 +58,7 @@ export default function BoxPlot({
   rx = 2,
   ry = 2,
   valueScale,
-  outliers,
+  outliers = [],
   horizontal,
   medianProps = {},
   maxProps = {},
@@ -34,67 +67,75 @@ export default function BoxPlot({
   outlierProps = {},
   container = false,
   containerProps = {},
-  ...restProps
+  children
 }) {
   const offset = horizontal ? top : left;
   const center = offset + boxWidth / 2;
-
-  let maxLinePos = Array(4).fill(0);
-  let maxToBoxLinePos = Array(4).fill(0);
-  let boxPos = Array(4).fill(0);
-  let medianLinePos = Array(4).fill(0);
-  let minToBoxLinePos = Array(4).fill(0);
-  let minLinePos = Array(4).fill(0);
-  let containerPos = Array(4).fill(0);
-
-  // all of these are [x0, y0, x1, y1]
-  maxLinePos[0] = center - boxWidth / 4;
-  maxLinePos[1] = valueScale(max);
-  maxLinePos[2] = center + boxWidth / 4;
-  maxLinePos[3] = valueScale(max);
-
-  maxToBoxLinePos[0] = center;
-  maxToBoxLinePos[1] = valueScale(max);
-  maxToBoxLinePos[2] = center;
-  maxToBoxLinePos[3] = valueScale(thirdQuartile);
-
-  boxPos[0] = offset;
-  boxPos[1] = valueScale(thirdQuartile);
-  boxPos[2] = boxWidth;
-  boxPos[3] = Math.abs(valueScale(thirdQuartile) - valueScale(firstQuartile));
-
-  medianLinePos[0] = offset;
-  medianLinePos[1] = valueScale(median);
-  medianLinePos[2] = offset + boxWidth;
-  medianLinePos[3] = valueScale(median);
-
-  minToBoxLinePos[0] = center;
-  minToBoxLinePos[1] = valueScale(firstQuartile);
-  minToBoxLinePos[2] = center;
-  minToBoxLinePos[3] = valueScale(min);
-
-  minLinePos[0] = center - boxWidth / 4;
-  minLinePos[1] = valueScale(min);
-  minLinePos[2] = center + boxWidth / 4;
-  minLinePos[3] = valueScale(min);
-
   const valueRange = valueScale.range();
-  containerPos[0] = boxPos[0];
-  containerPos[1] = Math.min(...valueRange);
-  containerPos[2] = boxPos[2];
-  containerPos[3] = Math.abs(valueRange[0] - valueRange[1]);
+
+  const boxplot = {
+    valueRange,
+    center,
+    offset,
+    boxWidth,
+    max: {
+      x1: center - boxWidth / 4,
+      x2: center + boxWidth / 4,
+      y1: valueScale(max),
+      y2: valueScale(max)
+    },
+    maxToThird: {
+      x1: center,
+      x2: center,
+      y1: valueScale(max),
+      y2: valueScale(thirdQuartile)
+    },
+    median: {
+      x1: offset,
+      x2: offset + boxWidth,
+      y1: valueScale(median),
+      y2: valueScale(median)
+    },
+    minToFirst: {
+      x1: center,
+      x2: center,
+      y1: valueScale(firstQuartile),
+      y2: valueScale(min)
+    },
+    min: {
+      x1: center - boxWidth / 4,
+      x2: center + boxWidth / 4,
+      y1: valueScale(min),
+      y2: valueScale(min)
+    },
+    box: {
+      x1: offset,
+      x2: boxWidth,
+      y1: valueScale(thirdQuartile),
+      y2: Math.abs(valueScale(thirdQuartile) - valueScale(firstQuartile))
+    },
+    container: {
+      x1: offset,
+      x2: boxWidth,
+      y1: Math.min(...valueRange),
+      y2: Math.abs(valueRange[0] - valueRange[1])
+    }
+  };
 
   if (horizontal) {
-    maxLinePos = verticalToHorizontal(maxLinePos);
-    maxToBoxLinePos = verticalToHorizontal(maxToBoxLinePos);
-    boxPos = verticalToHorizontal(boxPos);
-    boxPos[0] = valueScale(firstQuartile);
-    medianLinePos = verticalToHorizontal(medianLinePos);
-    minToBoxLinePos = verticalToHorizontal(minToBoxLinePos);
-    minLinePos = verticalToHorizontal(minLinePos);
-    containerPos = verticalToHorizontal(containerPos);
-    containerPos[0] = Math.min(...valueRange);
+    boxplot.max = verticalToHorizontal(boxplot.max);
+    boxplot.maxToThird = verticalToHorizontal(boxplot.maxToThird);
+    boxplot.box = verticalToHorizontal(boxplot.box);
+    boxplot.box.y1 = valueScale(firstQuartile);
+    boxplot.median = verticalToHorizontal(boxplot.median);
+    boxplot.minToFirst = verticalToHorizontal(boxplot.minToFirst);
+    boxplot.min = verticalToHorizontal(boxplot.min);
+    boxplot.container = verticalToHorizontal(boxplot.container);
+    boxplot.container.y1 = Math.min(...valueRange);
   }
+
+  if (children) return children(boxplot);
+
   return (
     <Group className={classnames('vx-boxplot', className)}>
       {outliers.map((d, i) => {
@@ -102,135 +143,89 @@ export default function BoxPlot({
         const cy = horizontal ? center : valueScale(d);
         return (
           <circle
-            key={i}
+            key={`vx-boxplot-outlier-${i}`}
             className="vx-boxplot-outlier"
             cx={cx}
             cy={cy}
+            r={4}
             stroke={stroke}
-            strokeWidth={1}
+            strokeWidth={strokeWidth}
             fill={fill}
             fillOpacity={fillOpacity}
-            r="4"
-            {...additionalProps(outlierProps, {
-              data: d,
-              cx,
-              cy
-            })}
+            {...outlierProps}
           />
         );
       })}
       <line
         className="vx-boxplot-max"
-        x1={maxLinePos[0]}
-        y1={maxLinePos[1]}
-        x2={maxLinePos[2]}
-        y2={maxLinePos[3]}
+        x1={boxplot.max.x1}
+        y1={boxplot.max.y1}
+        x2={boxplot.max.x2}
+        y2={boxplot.max.y2}
         stroke={stroke}
         strokeWidth={strokeWidth}
-        {...additionalProps(maxProps, {
-          data,
-          max,
-          x1: maxLinePos[0],
-          x2: maxLinePos[2],
-          y1: maxLinePos[1],
-          y2: maxLinePos[3]
-        })}
+        {...maxProps}
       />
       <line
-        x1={maxToBoxLinePos[0]}
-        y1={maxToBoxLinePos[1]}
-        x2={maxToBoxLinePos[2]}
-        y2={maxToBoxLinePos[3]}
+        className="vx-boxplot-max-to-third"
+        x1={boxplot.maxToThird.x1}
+        y1={boxplot.maxToThird.y1}
+        x2={boxplot.maxToThird.x2}
+        y2={boxplot.maxToThird.y2}
         stroke={stroke}
         strokeWidth={strokeWidth}
       />
       <rect
         className="vx-boxplot-box"
-        x={boxPos[0]}
-        y={boxPos[1]}
-        width={boxPos[2]}
-        height={boxPos[3]}
+        x={boxplot.box.x1}
+        y={boxplot.box.y1}
+        width={boxplot.box.x2}
+        height={boxplot.box.y2}
         stroke={stroke}
         strokeWidth={strokeWidth}
         fill={fill}
         fillOpacity={fillOpacity}
         rx={rx}
         ry={ry}
-        {...additionalProps(boxProps, {
-          data,
-          height: boxPos[3],
-          median,
-          firstQuartile,
-          thirdQuartile,
-          min,
-          max,
-          x1: boxPos[0],
-          x2: boxPos[0] + boxPos[2],
-          y1: boxPos[1],
-          y2: boxPos[1] + boxPos[3]
-        })}
+        {...boxProps}
       />
       <line
         className="vx-boxplot-median"
-        x1={medianLinePos[0]}
-        y1={medianLinePos[1]}
-        x2={medianLinePos[2]}
-        y2={medianLinePos[3]}
+        x1={boxplot.median.x1}
+        y1={boxplot.median.y1}
+        x2={boxplot.median.x2}
+        y2={boxplot.median.y2}
         stroke={stroke}
         strokeWidth={strokeWidth}
-        {...additionalProps(medianProps, {
-          data,
-          median,
-          x1: medianLinePos[0],
-          x2: medianLinePos[2],
-          y1: medianLinePos[1],
-          y2: medianLinePos[3]
-        })}
+        {...medianProps}
       />
       <line
-        x1={minToBoxLinePos[0]}
-        y1={minToBoxLinePos[1]}
-        x2={minToBoxLinePos[2]}
-        y2={minToBoxLinePos[3]}
+        className="vx-boxplot-min-to-first"
+        x1={boxplot.minToFirst.x1}
+        y1={boxplot.minToFirst.y1}
+        x2={boxplot.minToFirst.x2}
+        y2={boxplot.minToFirst.y2}
         stroke={stroke}
         strokeWidth={strokeWidth}
       />
       <line
         className="vx-boxplot-min"
-        x1={minLinePos[0]}
-        y1={minLinePos[1]}
-        x2={minLinePos[2]}
-        y2={minLinePos[3]}
+        x1={boxplot.min.x1}
+        y1={boxplot.min.y1}
+        x2={boxplot.min.x2}
+        y2={boxplot.min.y2}
         stroke={stroke}
         strokeWidth={strokeWidth}
-        {...additionalProps(minProps, {
-          data,
-          min,
-          x1: minLinePos[0],
-          x2: minLinePos[2],
-          y1: minLinePos[1],
-          y2: minLinePos[3]
-        })}
+        {...minProps}
       />
       {container && (
         <rect
-          x={containerPos[0]}
-          y={containerPos[1]}
-          width={containerPos[2]}
-          height={containerPos[3]}
+          x={boxplot.container.x1}
+          y={boxplot.container.y1}
+          width={boxplot.container.x2}
+          height={boxplot.container.y2}
           fillOpacity="0"
-          {...additionalProps(containerProps, {
-            data,
-            x1: containerPos[0],
-            x2: containerPos[0] + containerPos[2],
-            y1: containerPos[1],
-            y2: containerPos[1] + containerPos[3],
-            median,
-            max,
-            min,
-            thirdQuartile,
-            firstQuartile
-          })}
+          {...containerProps}
         />
       )}
     </Group>
