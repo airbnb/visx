@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import additonalProps from '../util/additionalProps';
 
 LegendItem.propTypes = {
   flexDirection: PropTypes.string,
@@ -18,7 +17,7 @@ export default function LegendItem({ children, flexDirection, margin, label, ...
         flexDirection,
         margin
       }}
-      {...additonalProps(restProps, label)}
+      {...restProps}
     >
       {children}
     </div>
