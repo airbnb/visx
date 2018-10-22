@@ -4,14 +4,8 @@ import { Group } from '@vx/group';
 import { GradientTealBlue } from '@vx/gradient';
 import { letterFrequency } from '@vx/mock-data';
 import { scaleBand, scaleLinear } from '@vx/scale';
-import { extent, max } from 'd3-array';
 
 const data = letterFrequency.slice(5);
-
-function round(value, precision) {
-  var multiplier = Math.pow(10, precision || 0);
-  return Math.round(value * multiplier) / multiplier;
-}
 
 // accessors
 const x = d => d.letter;
@@ -32,31 +26,33 @@ export default ({ width, height, events = false }) => {
   });
   const yScale = scaleLinear({
     rangeRound: [yMax, 0],
-    domain: [0, max(data, y)]
+    domain: [0, Math.max(...data.map(y))]
   });
 
   return (
     <svg width={width} height={height}>
       <GradientTealBlue id="teal" />
-      <rect x={0} y={0} width={width} height={height} fill={`url(#teal)`} rx={14} />
+      <rect width={width} height={height} fill={`url(#teal)`} rx={14} />
       <Group top={40}>
         {data.map((d, i) => {
+          const letter = x(d);
+          const barWidth = xScale.bandwidth();
           const barHeight = yMax - yScale(y(d));
+          const barX = xScale(letter);
+          const barY = yMax - barHeight;
           return (
-            <Group key={`bar-${x(d)}`}>
-              <Bar
-                width={xScale.bandwidth()}
-                height={barHeight}
-                x={xScale(x(d))}
-                y={yMax - barHeight}
-                fill="rgba(23, 233, 217, .5)"
-                data={{ x: x(d), y: y(d) }}
-                onClick={data => event => {
-                  if (!events) return;
-                  alert(`clicked: ${JSON.stringify(data)}`);
-                }}
-              />
-            </Group>
+            <Bar
+              key={`bar-${letter}`}
+              x={barX}
+              y={barY}
+              width={barWidth}
+              height={barHeight}
+              fill="rgba(23, 233, 217, .5)"
+              onClick={event => {
+                if (!events) return;
+                alert(`clicked: ${JSON.stringify(Object.values(d))}`);
+              }}
+            />
           );
         })}
       </Group>

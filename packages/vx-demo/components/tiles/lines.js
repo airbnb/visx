@@ -45,12 +45,11 @@ export default ({ width, height }) => {
             <Group key={`lines-${i}`} top={i * yMax / 2}>
               <LinePath
                 data={d}
-                xScale={xScale}
-                yScale={yScale}
-                x={x}
-                y={y}
+                x={d => xScale(x(d))}
+                y={d => yScale(y(d))}
                 stroke={'#ffffff'}
                 strokeWidth={1}
+                fill={'transparent'}
                 curve={i % 2 == 0 ? curveMonotoneX : undefined}
               />
             </Group>

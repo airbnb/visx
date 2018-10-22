@@ -3,16 +3,15 @@ import { AreaStack } from '@vx/shape';
 import { GradientOrangeRed } from '@vx/gradient';
 import { browserUsage } from '@vx/mock-data';
 import { scaleTime, scaleLinear } from '@vx/scale';
-import { extent, max } from 'd3-array';
 import { timeParse } from 'd3-time-format';
-import { stack as d3stack } from 'd3-shape';
 
 const data = browserUsage;
 const keys = Object.keys(data[0]).filter(k => k !== 'date');
-const browserNames = [...keys].reverse();
 const parseDate = timeParse('%Y %b %d');
+
 const x = d => parseDate(d.date);
-const stack = d3stack().keys(keys);
+const y0 = d => d[0] / 100;
+const y1 = d => d[1] / 100;
 
 export default ({ width, height, margin }) => {
   if (width < 10) return null;
@@ -24,7 +23,7 @@ export default ({ width, height, margin }) => {
   // scales
   const xScale = scaleTime({
     range: [0, xMax],
-    domain: extent(data, x)
+    domain: [Math.min(...data.map(x)), Math.max(...data.map(x))]
   });
   const yScale = scaleLinear({
     range: [yMax, 0]
@@ -35,18 +34,29 @@ export default ({ width, height, margin }) => {
       <GradientOrangeRed id="OrangeRed" />
       <rect x={0} y={0} width={width} height={height} fill="#f38181" rx={14} />
       <AreaStack
-        reverse
         top={margin.top}
         left={margin.left}
         keys={keys}
         data={data}
         x={d => xScale(x(d.data))}
-        y0={d => yScale(d[0] / 100)}
-        y1={d => yScale(d[1] / 100)}
-        strokeWidth={0}
-        fill="url(#OrangeRed)"
-        fillOpacity="1"
-      />
+        y0={d => yScale(y0(d))}
+        y1={d => yScale(y1(d))}
+      >
+        {area => {
+          const { stacks, path } = area;
+          return stacks.map(stack => {
+            return (
+              <path
+                key={`stack-${stack.key}`}
+                d={path(stack)}
+                stroke="transparent"
+                fill="url(#OrangeRed)"
+                onClick={event => alert(`${stack.key}`)}
+              />
+            );
+          });
+        }}
+      </AreaStack>
     </svg>
   );
 };

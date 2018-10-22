@@ -18,7 +18,6 @@ export default () => {
 import { AreaClosed, Line, Bar } from '@vx/shape';
 import { appleStock } from '@vx/mock-data';
 import { curveMonotoneX } from '@vx/curve';
-import { LinearGradient } from '@vx/gradient';
 import { GridRows, GridColumns } from '@vx/grid';
 import { scaleTime, scaleLinear } from '@vx/scale';
 import { withTooltip, Tooltip } from '@vx/tooltip';
@@ -39,6 +38,7 @@ class Area extends React.Component {
     super(props);
     this.handleTooltip = this.handleTooltip.bind(this);
   }
+
   handleTooltip({ event, data, xStock, xScale, yScale }) {
     const { showTooltip } = this.props;
     const { x } = localPoint(event);
@@ -53,23 +53,20 @@ class Area extends React.Component {
     showTooltip({
       tooltipData: d,
       tooltipLeft: x,
-      tooltipTop: yScale(d.close),
+      tooltipTop: yScale(d.close)
     });
   }
+
   render() {
     const {
       width,
       height,
       margin,
-      showTooltip,
       hideTooltip,
       tooltipData,
       tooltipTop,
       tooltipLeft,
-      events,
     } = this.props;
-    if (width < 10) return null;
-
     // bounds
     const xMax = width - margin.left - margin.right;
     const yMax = height - margin.top - margin.bottom;
@@ -77,43 +74,22 @@ class Area extends React.Component {
     // scales
     const xScale = scaleTime({
       range: [0, xMax],
-      domain: extent(stock, xStock),
+      domain: extent(stock, xStock)
     });
     const yScale = scaleLinear({
       range: [yMax, 0],
       domain: [0, max(stock, yStock) + yMax / 3],
-      nice: true,
+      nice: true
     });
 
     return (
       <div>
         <svg ref={s => (this.svg = s)} width={width} height={height}>
-          <rect
-            x={0}
-            y={0}
-            width={width}
-            height={height}
-            fill="#32deaa"
-            rx={14}
-          />
+          <rect x={0} y={0} width={width} height={height} fill="#32deaa" rx={14} />
           <defs>
-            <linearGradient
-              id="gradient"
-              x1="0%"
-              y1="0%"
-              x2="0%"
-              y2="100%"
-            >
-              <stop
-                offset="0%"
-                stopColor="#FFFFFF"
-                stopOpacity={1}
-              />
-              <stop
-                offset="100%"
-                stopColor="#FFFFFF"
-                stopOpacity={0.2}
-              />
+            <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#FFFFFF" stopOpacity={1} />
+              <stop offset="100%" stopColor="#FFFFFF" stopOpacity={0.2} />
             </linearGradient>
           </defs>
           <GridRows
@@ -132,10 +108,9 @@ class Area extends React.Component {
           />
           <AreaClosed
             data={stock}
-            xScale={xScale}
-            yScale={yScale}
-            x={xStock}
-            y={yStock}
+            x={d => xScale(xStock(d))}
+            y0={yScale.range()[0]}
+            y1={d => yScale(yStock(d))}
             strokeWidth={1}
             stroke={'url(#gradient)'}
             fill={'url(#gradient)'}
@@ -149,31 +124,34 @@ class Area extends React.Component {
             fill="transparent"
             rx={14}
             data={stock}
-            onTouchStart={data => event =>
+            onTouchStart={event =>
               this.handleTooltip({
                 event,
-                data,
                 xStock,
                 xScale,
                 yScale,
-              })}
-            onTouchMove={data => event =>
+                data: stock
+              })
+            }
+            onTouchMove={event =>
               this.handleTooltip({
                 event,
-                data,
                 xStock,
                 xScale,
                 yScale,
-              })}
-            onMouseMove={data => event =>
+                data: stock
+              })
+            }
+            onMouseMove={event =>
               this.handleTooltip({
                 event,
-                data,
                 xStock,
                 xScale,
                 yScale,
-              })}
-            onMouseLeave={data => event => hideTooltip()}
+                data: stock
+              })
+            }
+            onMouseLeave={event => hideTooltip()}
           />
           {tooltipData && (
             <g>
@@ -215,7 +193,7 @@ class Area extends React.Component {
               left={tooltipLeft + 12}
               style={{
                 backgroundColor: 'rgba(92, 119, 235, 1.000)',
-                color: 'white',
+                color: 'white'
               }}
             >
               {\`$\${yStock(tooltipData)}\`}
@@ -224,7 +202,7 @@ class Area extends React.Component {
               top={yMax - 14}
               left={tooltipLeft}
               style={{
-                transform: 'translateX(-50%)',
+                transform: 'translateX(-50%)'
               }}
             >
               {formatDate(xStock(tooltipData))}
@@ -236,7 +214,8 @@ class Area extends React.Component {
   }
 }
 
-export default withTooltip(Area);`}
+export default withTooltip(Area);
+`}
     </Show>
   );
 };

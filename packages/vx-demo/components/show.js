@@ -2,8 +2,6 @@ import React from 'react';
 import cx from 'classnames';
 import { withScreenSize } from '@vx/responsive';
 import Page from '../components/page';
-import Footer from '../components/footer';
-import Bars from '../components/tiles/bars';
 import Codeblock from '../components/codeblocks/Codeblock';
 import Gallery from '../components/gallery';
 
@@ -58,9 +56,11 @@ export default withScreenSize(
             </div>
           )}
         </div>
-        <div style={{ marginTop: '40px' }}>
-          <Gallery />
-        </div>
+        {false && (
+          <div style={{ marginTop: '40px' }}>
+            <Gallery />
+          </div>
+        )}
         <style jsx>{`
           .container {
             display: flex;
