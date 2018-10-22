@@ -35,11 +35,4 @@ describe('<VoronoiPolygon />', () => {
     const wrapper = shallow(<VoronoiPolygon {...props} fill="orange" />);
     expect(wrapper.find('path').props().fill).toEqual('orange');
   });
-
-  test('it should pass `polygon.data` to extra functional props', () => {
-    const fill = jest.fn();
-    const wrapper = shallow(<VoronoiPolygon {...props} fill={fill} />);
-    expect(fill).toHaveBeenCalledTimes(1);
-    expect(fill).toHaveBeenCalledWith(data);
-  });
 });

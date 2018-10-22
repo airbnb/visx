@@ -1,23 +1,16 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import cx from 'classnames';
+import PropTypes from 'prop-types';
 
-import additionalProps from '../util/additionalProps';
-
-const propTypes = {
-  polygon: PropTypes.arrayOf(PropTypes.array)
+VoronoiPolygon.propTypes = {
+  polygon: PropTypes.arrayOf(PropTypes.array),
+  className: PropTypes.string,
+  children: PropTypes.func
 };
 
-export default function VoronoiPolygon({ polygon, className, ...restProps }) {
+export default function VoronoiPolygon({ polygon, className, children, ...restProps }) {
   if (!polygon) return null;
-  const data = polygon.data;
-  return (
-    <path
-      className={cx('vx-voronoi-polygon', className)}
-      d={`M${polygon.join('L')}Z`}
-      {...additionalProps(restProps, data)}
-    />
-  );
+  const path = `M${polygon.join('L')}Z`;
+  if (children) return children({ path, polygon });
+  return <path className={cx('vx-voronoi-polygon', className)} d={path} {...restProps} />;
 }
-
-VoronoiPolygon.propTypes = propTypes;
