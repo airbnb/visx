@@ -66,6 +66,7 @@ export default withScreenSize(
             display: flex;
             flex-direction: column;
             align-items: center;
+            overflow: hidden;
           }
           .container h1 {
             margin-top: 15px;

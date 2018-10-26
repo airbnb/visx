@@ -21,82 +21,92 @@ import { Group } from '@vx/group';
 import { GradientPinkBlue } from '@vx/gradient';
 import { letterFrequency, browserUsage } from '@vx/mock-data';
 
+const white = '#ffffff';
+const black = '#000000';
+
 const letters = letterFrequency.slice(0, 4);
-const browsers = Object.keys(browserUsage[0])
-  .filter(k => k !== "date")
-  .map(k => ({ label: k, usage: browserUsage[0][k] }));
+const browserNames = Object.keys(browserUsage[0]).filter(k => k !== 'date');
+const browsers = browserNames.map(k => ({ label: k, usage: browserUsage[0][k] }));
 
-function Label({ x, y, children }) {
-  return (
-    <text
-      fill="white"
-      textAnchor="middle"
-      x={x}
-      y={y}
-      dy=".33em"
-      fontSize={9}
-    >
-      {children}
-    </text>
-  );
-}
+const usage = d => d.usage;
+const frequency = d => d.frequency;
 
-export default ({
-  width,
-  height,
-  events = false,
-  margin = {
-    top: 30,
-    left: 20,
-    right: 20,
-    bottom: 110,
-  }
-}) => {
-  if (width < 10) return null;
+export default ({ width, height, margin }) => {
   const radius = Math.min(width, height) / 2;
+  const centerY = height / 2;
+  const centerX = width / 2;
+
   return (
     <svg width={width} height={height}>
-      <GradientPinkBlue id="gradients" />
-      <rect
-        x={0}
-        y={0}
-        rx={14}
-        width={width}
-        height={height}
-        fill="url('#gradients')"
-      />
-      <Group top={height / 2 - margin.top} left={width / 2}>
+      <GradientPinkBlue id="pie-gradients" />
+      <rect rx={14} width={width} height={height} fill="url('#pie-gradients')" />
+      <Group top={centerY - margin.top} left={centerX}>
         <Pie
           data={browsers}
-          pieValue={d => d.usage}
+          pieValue={usage}
           outerRadius={radius - 80}
           innerRadius={radius - 120}
-          fill="white"
-          fillOpacity={d => 1 / (d.index + 2) }
           cornerRadius={3}
           padAngle={0}
-          centroid={(centroid, arc) => {
-            const [x, y] = centroid;
-            const { startAngle, endAngle } = arc;
-            if (endAngle - startAngle < .1) return null;
-            return <Label x={x} y={y}>{arc.data.label}</Label>;
+        >
+          {pie => {
+            return pie.arcs.map((arc, i) => {
+              const opacity = 1 / (i + 2);
+              const [centroidX, centroidY] = pie.path.centroid(arc);
+              const { startAngle, endAngle } = arc;
+              const hasSpaceForLabel = endAngle - startAngle >= 0.1;
+              return (
+                <g key={\`browser-\${arc.data.label}-\${i}\`}>
+                  <path d={pie.path(arc)} fill={white} fillOpacity={opacity} />
+                  {hasSpaceForLabel && (
+                    <text
+                      fill={white}
+                      x={centroidX}
+                      y={centroidY}
+                      dy=".33em"
+                      fontSize={9}
+                      textAnchor="middle"
+                    >
+                      {arc.data.label}
+                    </text>
+                  )}
+                </g>
+              );
+            });
           }}
-        />
+        </Pie>
         <Pie
           data={letters}
-          pieValue={d => d.frequency}
+          pieValue={frequency}
+          pieSortValues={(a, b) => -1}
           outerRadius={radius - 135}
-          fill="black"
-          fillOpacity={d => 1 / (d.index + 2) }
-          centroid={(centroid, arc) => {
-            const [x, y] = centroid;
-            return <Label x={x} y={y}>{arc.data.letter}</Label>;
+        >
+          {pie => {
+            return pie.arcs.map((arc, i) => {
+              const opacity = 1 / (i + 2);
+              const [centroidX, centroidY] = pie.path.centroid(arc);
+              return (
+                <g key={\`letters-\${arc.data.label}-\${i}\`}>
+                  <path d={pie.path(arc)} fill={black} fillOpacity={opacity} />
+                  <text
+                    fill="white"
+                    textAnchor="middle"
+                    x={centroidX}
+                    y={centroidY}
+                    dy=".33em"
+                    fontSize={9}
+                  >
+                    {arc.data.letter}
+                  </text>
+                </g>
+              );
+            });
           }}
-        />
+        </Pie>
       </Group>
     </svg>
   );
-}`}
+};`}
     </Show>
   );
 };

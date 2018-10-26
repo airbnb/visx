@@ -20,99 +20,78 @@ import { GlyphDot } from '@vx/glyph';
 import { LinePath } from '@vx/shape';
 import { genDateValue } from '@vx/mock-data';
 import { scaleTime, scaleLinear } from '@vx/scale';
-import { curveBasis, curveMonotoneX } from '@vx/curve';
-import { extent, max, min } from 'd3-array';
+import { curveMonotoneX, curveBasis } from '@vx/curve';
 
 const data = genDateValue(15);
 
 // accessors
-const x = d => d.date;
-const y = d => d.value;
+const date = d => d.date;
+const value = d => d.value;
 
-export default ({
-  width,
-  height,
-  margin,
-}) => {
+// scales
+const xScale = scaleTime({
+  domain: [Math.min(...data.map(date)), Math.max(...data.map(date))]
+});
+const yScale = scaleLinear({
+  domain: [0, Math.max(...data.map(value))]
+});
+
+// positions
+const x = d => xScale(date(d));
+const y = d => yScale(value(d));
+
+// colors
+const primary = '#8921e0';
+const secondary = '#00f2ff';
+const contrast = '#ffffff';
+
+export default ({ width, height, margin }) => {
   // bounds
   const xMax = width - margin.left - margin.right;
   const yMax = height - margin.top - margin.bottom;
 
-  // scales
-  const xScale = scaleTime({
-    range: [0, xMax],
-    domain: extent(data, x),
-  });
-  const yScale = scaleLinear({
-    range: [yMax, 0],
-    domain: [0, max(data, y)],
-    nice: true,
-  });
+  // update scale range to match bounds
+  xScale.range([0, xMax]);
+  yScale.range([yMax, 0]);
 
   return (
     <svg width={width} height={height}>
-      <rect
-        x={0}
-        y={0}
-        width={width}
-        height={height}
-        fill="#00f2ff"
-        rx={14}
-      />
+      <rect x={0} y={0} width={width} height={height} fill={secondary} rx={14} />
       <Group top={margin.top}>
         <LinePath
           data={data}
-          xScale={xScale}
-          yScale={yScale}
           x={x}
           y={y}
-          stroke='#7e20dc'
+          stroke={primary}
           strokeWidth={2}
-          strokeDasharray='2,2'
+          strokeDasharray="2,2"
           curve={curveBasis}
+          fill="transparent"
         />
         <LinePath
           data={data}
-          xScale={xScale}
-          yScale={yScale}
           x={x}
           y={y}
-          stroke='#7e20dc'
+          stroke={primary}
           strokeWidth={3}
+          fill="transparent"
           curve={curveMonotoneX}
-          glyph={(d,i) => {
-            return (
-              <g key={\`line-point-\${i}\`}>
-                <GlyphDot
-                  cx={xScale(x(d))}
-                  cy={yScale(y(d))}
-                  r={6}
-                  fill='#fff'
-                  stroke='#01f2ff'
-                  strokeWidth={10}
-                />
-                <GlyphDot
-                  cx={xScale(x(d))}
-                  cy={yScale(y(d))}
-                  r={6}
-                  fill='#01f2ff'
-                  stroke='#7e20dc'
-                  strokeWidth={3}
-                />
-                <GlyphDot
-                  cx={xScale(x(d))}
-                  cy={yScale(y(d))}
-                  r={4}
-                  fill='#ffffff'
-                />
-              </g>
-            );
-          }}
         />
+        {data.map((d, i) => {
+          const cx = x(d);
+          const cy = y(d);
+          return (
+            <g key={\`line-point-\${i}\`}>
+              <GlyphDot cx={cx} cy={cy} r={6} fill={contrast} stroke={secondary} strokeWidth={10} />
+              <GlyphDot cx={cx} cy={cy} r={6} fill={secondary} stroke={primary} strokeWidth={3} />
+              <GlyphDot cx={cx} cy={cy} r={4} fill={contrast} />
+            </g>
+          );
+        })}
       </Group>
     </svg>
   );
-}
+};
 `}
     </Show>
   );

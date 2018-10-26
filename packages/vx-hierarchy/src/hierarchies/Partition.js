@@ -36,13 +36,7 @@ export default function Partition({
 
   const data = partition(root);
 
-  if (!!children) {
-    return (
-      <Group top={top} left={left} className={cx('vx-partition', className)}>
-        {children({ data })}
-      </Group>
-    );
-  }
+  if (children) return children(data);
 
   return (
     <Group top={top} left={left} className={cx('vx-partition', className)}>

@@ -80,7 +80,7 @@ export default function Projection({
       projection: currProjection,
       index: i,
       centroid: path.centroid(feature),
-      d: path(feature)
+      path: path(feature)
     };
   });
 

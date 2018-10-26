@@ -5,7 +5,14 @@ import { LinkVertical } from '@vx/shape';
 import { hierarchy } from 'd3-hierarchy';
 import { LinearGradient } from '@vx/gradient';
 
-const raw = {
+const citrus = '#ddf163';
+const white = '#ffffff';
+const green = '#79d259';
+const aqua = '#37ac8c';
+const merlinsbeard = '#f7f7f3';
+const bg = '#306c90';
+
+const cluster = {
   name: '$',
   children: [
     {
@@ -38,21 +45,20 @@ const raw = {
   ]
 };
 
-function Node({ node, events }) {
-  const width = 40;
-  const height = 20;
+function Node({ node }) {
+  const isRoot = node.depth === 0;
+  const isParent = !!node.children;
+
+  if (isRoot) return <RootNode node={node} />;
+
   return (
     <Group top={node.y} left={node.x}>
-      {node.depth === 0 && (
-        <rect width={width} height={height} y={-height / 2} x={-width / 2} fill="url('#top')" />
-      )}
       {node.depth !== 0 && (
         <circle
           r={12}
-          fill="#306c90"
-          stroke={node.children ? 'white' : '#ddf163'}
+          fill={bg}
+          stroke={isParent ? white : citrus}
           onClick={() => {
-            if (!events) return;
             alert(`clicked: ${JSON.stringify(node.data.name)}`);
           }}
         />
@@ -63,7 +69,7 @@ function Node({ node, events }) {
         fontFamily="Arial"
         textAnchor={'middle'}
         style={{ pointerEvents: 'none' }}
-        fill={node.depth === 0 ? '#286875' : node.children ? 'white' : '#ddf163'}
+        fill={isParent ? white : citrus}
       >
         {node.data.name}
       </text>
@@ -71,16 +77,32 @@ function Node({ node, events }) {
   );
 }
 
-function Link({ link }) {
+function RootNode({ node }) {
+  const width = 40;
+  const height = 20;
+  const centerX = -width / 2;
+  const centerY = -height / 2;
+
   return (
-    <LinkVertical data={link} stroke="#f7f7f3" strokeWidth="1" strokeOpacity={0.2} fill="none" />
+    <Group top={node.y} left={node.x}>
+      <rect width={width} height={height} y={centerY} x={centerX} fill="url('#top')" />
+      <text
+        dy={'.33em'}
+        fontSize={9}
+        fontFamily="Arial"
+        textAnchor={'middle'}
+        style={{ pointerEvents: 'none' }}
+        fill={bg}
+      >
+        {node.data.name}
+      </text>
+    </Group>
   );
 }
 
 export default ({
   width,
   height,
-  events = false,
   margin = {
     top: 40,
     left: 0,
@@ -89,19 +111,38 @@ export default ({
   }
 }) => {
   if (width < 10) return null;
-  const data = hierarchy(raw);
+
+  const data = hierarchy(cluster);
+  const xMax = width - margin.left - margin.right;
+  const yMax = height - margin.top - margin.bottom;
+
   return (
     <svg width={width} height={height}>
-      <LinearGradient id="top" from="#79d259" to="#37ac8c" />
-      <rect width={width} height={height} rx={14} fill="#306c90" />
-      <Cluster
-        top={margin.top}
-        left={margin.left}
-        root={data}
-        size={[width - margin.left - margin.right, height - margin.top - margin.bottom]}
-        nodeComponent={({ node }) => <Node node={node} events={events} />}
-        linkComponent={Link}
-      />
+      <LinearGradient id="top" from={green} to={aqua} />
+      <rect width={width} height={height} rx={14} fill={bg} />
+      <Cluster root={data} size={[xMax, yMax]}>
+        {cluster => {
+          return (
+            <Group top={margin.top} left={margin.left}>
+              {cluster.links().map((link, i) => {
+                return (
+                  <LinkVertical
+                    key={`cluster-link-${i}`}
+                    data={link}
+                    stroke={merlinsbeard}
+                    strokeWidth="1"
+                    strokeOpacity={0.2}
+                    fill="none"
+                  />
+                );
+              })}
+              {cluster.descendants().map((node, i) => {
+                return <Node key={`cluster-node-${i}`} node={node} />;
+              })}
+            </Group>
+          );
+        }}
+      </Cluster>
     </svg>
   );
 };

@@ -39,13 +39,7 @@ export default function Tree({
 
   const data = tree(root);
 
-  if (!!children) {
-    return (
-      <Group top={top} left={left} className={cx('vx-tree', className)}>
-        {children({ data })}
-      </Group>
-    );
-  }
+  if (children) return children(data);
 
   return (
     <Group top={top} left={left} className={cx('vx-tree', className)}>

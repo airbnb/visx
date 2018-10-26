@@ -58,13 +58,7 @@ export default function Treemap({
 
   const data = treemap(root);
 
-  if (!!children) {
-    return (
-      <Group top={top} left={left} className={cx('vx-treemap', className)}>
-        {children({ data })}
-      </Group>
-    );
-  }
+  if (children) return children(data);
 
   return (
     <Group top={top} left={left} className={cx('vx-treemap', className)}>

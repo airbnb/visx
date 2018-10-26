@@ -29,7 +29,7 @@ export default function Pie({
   left,
   data,
   centroid,
-  innerRadius,
+  innerRadius = 0,
   outerRadius,
   cornerRadius,
   startAngle,
@@ -43,10 +43,10 @@ export default function Pie({
   ...restProps
 }) {
   const path = d3Arc();
-  if (innerRadius) path.innerRadius(innerRadius);
-  if (outerRadius) path.outerRadius(outerRadius);
-  if (cornerRadius) path.cornerRadius(cornerRadius);
-  if (padRadius) path.padRadius(padRadius);
+  if (innerRadius != null) path.innerRadius(innerRadius);
+  if (outerRadius != null) path.outerRadius(outerRadius);
+  if (cornerRadius != null) path.cornerRadius(cornerRadius);
+  if (padRadius != null) path.padRadius(padRadius);
 
   const pie = d3Pie();
   if (pieSort !== undefined) pie.sort(pieSort);

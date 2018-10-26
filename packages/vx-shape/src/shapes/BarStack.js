@@ -18,7 +18,7 @@ BarStack.propTypes = {
   className: PropTypes.string,
   top: PropTypes.number,
   left: PropTypes.number,
-  children: PropTypes.number,
+  children: PropTypes.func,
   y0: PropTypes.func,
   y1: PropTypes.func,
   order: PropTypes.oneOfType([PropTypes.func, PropTypes.array, PropTypes.string]),
@@ -59,9 +59,10 @@ export default function BarStack({
     : Math.abs(xRange[xRange.length - 1] - xRange[0]) / xDomain.length;
 
   const barStacks = stacks.map((barStack, i) => {
+    const key = barStack.key;
     return {
       index: i,
-      key: barStack.key,
+      key,
       bars: barStack.map((bar, j) => {
         const barHeight = yScale(y0(bar)) - yScale(y1(bar));
         const barY = yScale(y1(bar));
@@ -70,12 +71,13 @@ export default function BarStack({
           : Math.max(xScale(x(bar.data)) - barWidth / 2);
         return {
           bar,
+          key,
           index: j,
           height: barHeight,
           width: barWidth,
           x: barX,
           y: barY,
-          color: color(bar.key, j)
+          color: color(barStack.key, j)
         };
       })
     };

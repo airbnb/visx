@@ -9,7 +9,7 @@ HeatmapRect.propTypes = {
   left: PropTypes.number,
   binWidth: PropTypes.number,
   binHeight: PropTypes.number,
-  x: PropTypes.number,
+  x0: PropTypes.number,
   gap: PropTypes.number,
   xScale: PropTypes.func,
   yScale: PropTypes.func,
@@ -28,7 +28,7 @@ export default function HeatmapRect({
   data,
   binWidth,
   binHeight,
-  x = 0,
+  x0 = 0,
   gap = 1,
   xScale,
   yScale,
@@ -42,7 +42,7 @@ export default function HeatmapRect({
   const width = binWidth - gap;
   const height = binHeight - gap;
   const heatmap = data.map((datum, column) => {
-    const x0 = xScale(column);
+    const x = xScale(column);
     return bins(datum).map((bin, row) => {
       const countValue = count(bin);
       return {
@@ -54,8 +54,7 @@ export default function HeatmapRect({
         height,
         gap,
         count: countValue,
-        x,
-        x0,
+        x: x + x0,
         y: yScale(row) + gap,
         color: colorScale(countValue),
         opacity: opacityScale(countValue)

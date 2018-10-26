@@ -3,17 +3,25 @@ import PropTypes from 'prop-types';
 
 LegendItem.propTypes = {
   flexDirection: PropTypes.string,
-  margin: PropTypes.string,
-  label: PropTypes.object.isRequired
+  alignItems: PropTypes.string,
+  margin: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  children: PropTypes.any
 };
 
-export default function LegendItem({ children, flexDirection, margin, label, ...restProps }) {
+export default function LegendItem({
+  flexDirection = 'row',
+  alignItems = 'center',
+  margin = '0',
+  display = 'flex',
+  children,
+  ...restProps
+}) {
   return (
     <div
       className="vx-legend-item"
       style={{
-        display: 'flex',
-        alignItems: 'center',
+        display,
+        alignItems,
         flexDirection,
         margin
       }}

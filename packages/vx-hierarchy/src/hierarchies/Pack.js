@@ -37,13 +37,7 @@ export default function Pack({
 
   const data = pack(root);
 
-  if (!!children) {
-    return (
-      <Group top={top} left={left} className={cx('vx-pack', className)}>
-        {children({ data })}
-      </Group>
-    );
-  }
+  if (children) return children(data);
 
   return (
     <Group top={top} left={left} className={cx('vx-pack', className)}>

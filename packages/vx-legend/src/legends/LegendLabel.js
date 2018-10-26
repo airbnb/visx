@@ -2,13 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 LegendLabel.propTypes = {
-  align: PropTypes.string.isRequired,
-  flex: PropTypes.string,
-  label: PropTypes.string.isRequired,
-  margin: PropTypes.string.isRequired
+  align: PropTypes.string,
+  label: PropTypes.any,
+  flex: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  margin: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  children: PropTypes.any
 };
 
-export default function LegendLabel({ flex = '1', label, margin, align }) {
+export default function LegendLabel({
+  flex = '1',
+  label,
+  margin = '5px 0',
+  align = 'left',
+  children
+}) {
   return (
     <div
       className="vx-legend-label"
@@ -19,7 +26,7 @@ export default function LegendLabel({ flex = '1', label, margin, align }) {
         margin
       }}
     >
-      {label}
+      {children || label}
     </div>
   );
 }
