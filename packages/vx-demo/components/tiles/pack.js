@@ -2,24 +2,26 @@ import React from 'react';
 import { Group } from '@vx/group';
 import { Pack } from '@vx/hierarchy';
 import { hierarchy } from 'd3-hierarchy';
-import { LinearGradient } from '@vx/gradient';
 import { scaleQuantize } from '@vx/scale';
 import { exoplanets as data } from '@vx/mock-data';
-import { extent } from 'd3-array';
+
+const extent = (data, value = d => d) => [
+  Math.min(...data.map(value)),
+  Math.max(...data.map(value))
+];
 
 const exoplanets = data.filter(d => d.distance === 0);
 const planets = data.filter(d => d.distance !== 0);
-const raw = { children: [{ children: planets }].concat(exoplanets) };
+const pack = { children: [{ children: planets }].concat(exoplanets) };
 
-const color = scaleQuantize({
-  range: ['#49f4e7', '#11d2f9', '#855af2', '#fd6d6f', '#ffc10e', '#ffe108'].reverse(),
-  domain: extent(data, d => +d.radius)
+const colorScale = scaleQuantize({
+  domain: extent(data, d => d.radius),
+  range: ['#ffe108', '#ffc10e', '#fd6d6f', '#855af2', '#11d2f9', '#49f4e7']
 });
 
 export default ({
   width,
   height,
-  events = false,
   margin = {
     top: 10,
     left: 30,
@@ -28,7 +30,8 @@ export default ({
   }
 }) => {
   if (width < 10) return null;
-  const data = hierarchy(raw)
+
+  const data = hierarchy(pack)
     .sum(d => d.radius * d.radius)
     .sort((a, b) => {
       return (
@@ -37,22 +40,28 @@ export default ({
         a.data.distance - b.data.distance
       );
     });
+
   return (
     <svg width={width} height={height}>
       <rect width={width} height={height} rx={14} fill="#ffffff" />
-      <Pack
-        top={-height - margin.bottom}
-        left={-width / 2}
-        root={data}
-        size={[width * 2, height * 2]}
-      >
-        {({ data }) => {
-          const desc = data.descendants().slice(2);
-          return desc.map((d, i) => {
-            return (
-              <circle key={`cir-${i}`} r={d.r} cx={d.x} cy={d.y} fill={color(+d.data.radius)} />
-            );
-          });
+      <Pack root={data} size={[width * 2, height * 2]}>
+        {pack => {
+          const circles = pack.descendants().slice(2);
+          return (
+            <Group top={-height - margin.bottom} left={-width / 2}>
+              {circles.map((circle, i) => {
+                return (
+                  <circle
+                    key={`cir-${i}`}
+                    r={circle.r}
+                    cx={circle.x}
+                    cy={circle.y}
+                    fill={colorScale(circle.data.radius)}
+                  />
+                );
+              })}
+            </Group>
+          );
         }}
       </Pack>
     </svg>
