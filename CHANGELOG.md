@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.180](#v00180)
 - [v0.0.179](#v00179)
 - [v0.0.178](#v00178)
 - [v0.0.177](#v00177)
@@ -65,6 +66,30 @@
 - [v0.0.112](#v00112)
 
 ------
+
+# v0.0.180
+
+#### :rocket: Enhancements
+
+- [grid] allow passing in `tickValues` prop to both Columns and Rows, to render grid lines at specific values. [#376](https://github.com/hshoff/vx/pull/376)
+- [grid] allow passing in `rowTickValues` prop and `columnTickValues` prop to Grid. [#376](https://github.com/hshoff/vx/pull/376)
+- [grid] update vx-grid's Readme.md to reflect the changes above.[#376](https://github.com/hshoff/vx/pull/376)
+
+#### :bug: Bug Fix
+
+- [grid] updates `strokeWidth` `propTypes` in the `@vx/grid` components to allow numbers in addition to strings. [#380](https://github.com/hshoff/vx/pull/380)
+
+#### :trophy: Contributors
+
+- [robinsoncol](https://github.com/robinsoncol)
+- [williaster](https://github.com/williaster)
+
+```
+Changes:
+ - @vx/demo: 0.0.179 => 0.0.180
+ - @vx/grid: 0.0.179 => 0.0.180
+ - @vx/vx: 0.0.179 => 0.0.180
+ ```
 
 # v0.0.179
 
