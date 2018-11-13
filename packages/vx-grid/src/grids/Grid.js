@@ -10,7 +10,7 @@ Grid.propTypes = {
   left: PropTypes.number,
   className: PropTypes.string,
   stroke: PropTypes.string,
-  strokeWidth: PropTypes.string,
+  strokeWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   strokeDasharray: PropTypes.string,
   numTicksRows: PropTypes.number,
   numTicksColumns: PropTypes.number,
