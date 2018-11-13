@@ -1,6 +1,6 @@
 {
   "name": "@vx/grid",
-  "version": "0.0.179",
+  "version": "0.0.180",
   "description": "vx grid",
   "sideEffects": false,
   "main": "dist/vx-grid.umd.js",
