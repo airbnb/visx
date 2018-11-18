@@ -315,19 +315,19 @@ export default class Gallery extends React.Component {
             </Link>
           </Tilt>
           <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-            <Link prefetch href="/barstack">
-              <div className="gallery-item" style={{ background: '#eaedff' }}>
+            <Link prefetch href="/bargrouphorizontal">
+              <div className="gallery-item" style={{ background: '#612efb' }}>
                 <div className="image">
                   <ParentSize>
                     {({ width, height }) => (
-                      <BarStack width={width} height={height + detailsHeight} />
+                      <BarGroupHorizontal width={width} height={height + detailsHeight} />
                     )}
                   </ParentSize>
                 </div>
-                <div className="details" style={{ color: '#a44afe', zIndex: 1 }}>
-                  <div className="title">Bar Stack</div>
+                <div className="details" style={{ color: '#e5fd3d' }}>
+                  <div className="title">Bar Group Horizontal</div>
                   <div className="description">
-                    <pre>{'<Shape.BarStack />'}</pre>
+                    <pre>{'<Shape.BarGroupHorizontal />'}</pre>
                   </div>
                 </div>
               </div>
@@ -353,6 +353,49 @@ export default class Gallery extends React.Component {
             </Link>
           </Tilt>
           <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+            <Link prefetch href="/barstack">
+              <div className="gallery-item" style={{ background: '#eaedff' }}>
+                <div className="image">
+                  <ParentSize>
+                    {({ width, height }) => (
+                      <BarStack width={width} height={height + detailsHeight} />
+                    )}
+                  </ParentSize>
+                </div>
+                <div className="details" style={{ color: '#a44afe', zIndex: 1 }}>
+                  <div className="title">Bar Stack</div>
+                  <div className="description">
+                    <pre>{'<Shape.BarStack />'}</pre>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </Tilt>
+          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+            <Link prefetch href="/barstackhorizontal">
+              <div
+                className="gallery-item"
+                style={{
+                  background: '#eaedff'
+                }}
+              >
+                <div className="image">
+                  <ParentSize>
+                    {({ width, height }) => (
+                      <BarStackHorizontal width={width} height={height + detailsHeight} />
+                    )}
+                  </ParentSize>
+                </div>
+                <div className="details" style={{ color: '#a44afe', zIndex: 1 }}>
+                  <div className="title">Bar Stack Horizontal</div>
+                  <div className="description">
+                    <pre>{'<Shape.BarStackHorizontal />'}</pre>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </Tilt>
+          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
             <Link prefetch href="/lineradial">
               <div className="gallery-item" style={{ background: '#744cca' }}>
                 <div className="image">
@@ -364,29 +407,6 @@ export default class Gallery extends React.Component {
                   <div className="title">Radial Lines</div>
                   <div className="description">
                     <pre>{'<Shape.LineRadial />'}</pre>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          </Tilt>
-          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-            <Link prefetch href="/pies">
-              <div className="gallery-item" style={{ background: '#7f82e3' }}>
-                <div className="image">
-                  <ParentSize>
-                    {({ width, height }) => (
-                      <Pies
-                        width={width}
-                        height={height + detailsHeight}
-                        margin={{ top: 0, left: 0, right: 0, bottom: 0 }}
-                      />
-                    )}
-                  </ParentSize>
-                </div>
-                <div className="details" style={{ color: 'white' }}>
-                  <div className="title">Pies</div>
-                  <div className="description">
-                    <pre>{'<Shape.Pie />'}</pre>
                   </div>
                 </div>
               </div>
@@ -423,6 +443,29 @@ export default class Gallery extends React.Component {
                   <div className="title">Dendrograms</div>
                   <div className="description">
                     <pre>{'<Hierarchy.Cluster /> + <Shape.LinkVertical />'}</pre>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </Tilt>
+          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+            <Link prefetch href="/pies">
+              <div className="gallery-item" style={{ background: '#7f82e3' }}>
+                <div className="image">
+                  <ParentSize>
+                    {({ width, height }) => (
+                      <Pies
+                        width={width}
+                        height={height + detailsHeight}
+                        margin={{ top: 0, left: 0, right: 0, bottom: 0 }}
+                      />
+                    )}
+                  </ParentSize>
+                </div>
+                <div className="details" style={{ color: 'white' }}>
+                  <div className="title">Pies</div>
+                  <div className="description">
+                    <pre>{'<Shape.Pie />'}</pre>
                   </div>
                 </div>
               </div>
@@ -648,30 +691,6 @@ export default class Gallery extends React.Component {
             </Link>
           </Tilt>
           <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-            <Link prefetch href="/barstackhorizontal">
-              <div
-                className="gallery-item"
-                style={{
-                  background: '#eaedff'
-                }}
-              >
-                <div className="image">
-                  <ParentSize>
-                    {({ width, height }) => (
-                      <BarStackHorizontal width={width} height={height + detailsHeight} />
-                    )}
-                  </ParentSize>
-                </div>
-                <div className="details" style={{ color: '#a44afe', zIndex: 1 }}>
-                  <div className="title">Bar Stack Horizontal</div>
-                  <div className="description">
-                    <pre>{'<Shape.BarStackHorizontal />'}</pre>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          </Tilt>
-          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
             <Link prefetch href="/responsive">
               <div
                 className="gallery-item"
@@ -862,25 +881,6 @@ export default class Gallery extends React.Component {
                   <div className="title">Chords</div>
                   <div className="description">
                     <pre>{'<Chord.Chord /> + <Chord.Ribbon />'}</pre>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          </Tilt>
-          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-            <Link prefetch href="/bargrouphorizontal">
-              <div className="gallery-item" style={{ background: '#612efb' }}>
-                <div className="image">
-                  <ParentSize>
-                    {({ width, height }) => (
-                      <BarGroupHorizontal width={width} height={height + detailsHeight} />
-                    )}
-                  </ParentSize>
-                </div>
-                <div className="details" style={{ color: '#e5fd3d' }}>
-                  <div className="title">Bar Group Horizontal</div>
-                  <div className="description">
-                    <pre>{'<Shape.BarGroupHorizontal />'}</pre>
                   </div>
                 </div>
               </div>
