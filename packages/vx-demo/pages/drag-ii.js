@@ -22,7 +22,6 @@ export default class DragII extends React.Component {
 
   render() {
     const { width, height } = this.props;
-    if (width < 10) return null;
     return (
       <div className="DragII" style={{ touchAction: 'none' }}>
         <svg width={width} height={height}>
@@ -37,6 +36,7 @@ export default class DragII extends React.Component {
             return (
               <LinePath
                 key={\`line-\${i}\`}
+                fill={'transparent'}
                 stroke="url(#stroke)"
                 strokeWidth={3}
                 data={d}
@@ -122,14 +122,6 @@ export default class DragII extends React.Component {
             }}
           </Drag>
         </svg>
-        <div className="deets">
-          <div>
-            Based on Mike Bostock's{' '}
-            <a href="https://bl.ocks.org/mbostock/f705fc55e6f26df29354">
-              Line Drawing
-            </a>
-          </div>
-        </div>
       </div>
     );
   }

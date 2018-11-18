@@ -7,8 +7,8 @@ export default () => (
     {`import React from 'react';
 import { Polygon } from '@vx/shape';
 import { Group } from '@vx/group';
-import { GradientPinkRed } from '@vx/gradient';
 import { scaleBand } from '@vx/scale';
+import { GradientPinkRed } from '@vx/gradient';
 
 const polygons = [
   {
@@ -33,15 +33,16 @@ const polygons = [
   }
 ];
 
+const yScale = scaleBand({
+  domain: polygons.map((p, i) => i),
+  padding: 0.5
+});
+
 export default ({ width, height }) => {
-  const yScale = scaleBand({
-    rangeRound: [0, height],
-    domain: polygons.map((p, i) => i),
-    padding: 0.5
-  });
+  yScale.rangeRound([0, height]);
   return (
     <svg width={width} height={height}>
-      <rect x={0} y={0} width={width} height={height} fill="#7f82e3" rx={14} />
+      <rect width={width} height={height} fill="#7f82e3" rx={14} />
       <GradientPinkRed id="polygon-pink" />
       {polygons.map((polygon, i) => (
         <Group key={\`polygon-\${i}\`} top={yScale(i)} left={width / 2}>
@@ -50,6 +51,7 @@ export default ({ width, height }) => {
       ))}
     </svg>
   );
-};`}
+};
+`}
   </Show>
 );

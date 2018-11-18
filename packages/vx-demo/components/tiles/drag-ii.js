@@ -25,6 +25,7 @@ export default class DragII extends React.Component {
             return (
               <LinePath
                 key={`line-${i}`}
+                fill={'transparent'}
                 stroke="url(#stroke)"
                 strokeWidth={3}
                 data={d}

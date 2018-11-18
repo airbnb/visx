@@ -73,7 +73,6 @@ export default class DragI extends React.Component {
 
   render() {
     const { width, height } = this.props;
-    if (width < 10) return null;
     return (
       <div className="Drag" style={{ touchAction: 'none' }}>
         <svg width={width} height={height}>
@@ -115,12 +114,12 @@ export default class DragI extends React.Component {
                     cx={d.x}
                     cy={d.y}
                     r={isDragging ? d.radius + 4 : d.radius}
+                    transform={\`translate(\${dx}, \${dy})\`}
                     fill={
                       isDragging
                         ? 'url(#stroke)'
                         : this.colorScale(d.id)
                     }
-                    transform={\`translate(\${dx}, \${dy})\`}
                     fillOpacity={0.9}
                     stroke={isDragging ? 'white' : 'transparent'}
                     strokeWidth={2}
@@ -136,14 +135,6 @@ export default class DragI extends React.Component {
             </Drag>
           ))}
         </svg>
-        <div className="deets">
-          <div>
-            Based on Mike Bostock's{' '}
-            <a href="https://bl.ocks.org/mbostock/c206c20294258c18832ff80d8fd395c3">
-              Circle Dragging II
-            </a>
-          </div>
-        </div>
       </div>
     );
   }

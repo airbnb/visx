@@ -374,7 +374,13 @@ export default class Gallery extends React.Component {
               <div className="gallery-item" style={{ background: '#7f82e3' }}>
                 <div className="image">
                   <ParentSize>
-                    {({ width, height }) => <Pies width={width} height={height + detailsHeight} />}
+                    {({ width, height }) => (
+                      <Pies
+                        width={width}
+                        height={height + detailsHeight}
+                        margin={{ top: 0, left: 0, right: 0, bottom: 0 }}
+                      />
+                    )}
                   </ParentSize>
                 </div>
                 <div className="details" style={{ color: 'white' }}>

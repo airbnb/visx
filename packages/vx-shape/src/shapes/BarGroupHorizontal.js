@@ -15,6 +15,7 @@ BarGroupHorizontal.propTypes = {
   keys: PropTypes.array.isRequired,
   width: PropTypes.number.isRequired,
   className: PropTypes.string,
+  x: PropTypes.func,
   top: PropTypes.number,
   left: PropTypes.number,
   children: PropTypes.func
@@ -25,6 +26,7 @@ export default function BarGroupHorizontal({
   className,
   top,
   left,
+  x = val => 0,
   y0,
   y0Scale,
   y1Scale,
@@ -52,7 +54,7 @@ export default function BarGroupHorizontal({
           key,
           value,
           height: barHeight,
-          x: xScale(value),
+          x: x(value),
           y: y1Scale(key),
           color: color(key, j),
           width: width - xScale(value)
@@ -67,7 +69,7 @@ export default function BarGroupHorizontal({
     <Group className={cx('vx-bar-group-horizontal', className)} top={top} left={left}>
       {barGroups.map(barGroup => {
         return (
-          <Group key={`bar-group-${barGroup.index}-${barGroup.y0}`} left={barGroup.y0}>
+          <Group key={`bar-group-${barGroup.index}-${barGroup.y0}`} top={barGroup.y0}>
             {barGroup.bars.map(bar => {
               return (
                 <Bar
