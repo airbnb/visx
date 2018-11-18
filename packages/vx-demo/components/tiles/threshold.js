@@ -52,6 +52,7 @@ export default function Theshold({ width, height, margin, events }) {
             Temperature (°F)
           </text>
           <Threshold
+            id={Math.random()}
             data={data}
             x={d => xScale(date(d))}
             y0={d => yScale(ny(d))}
