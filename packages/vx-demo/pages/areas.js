@@ -22,11 +22,16 @@ import { GridRows, GridColumns } from '@vx/grid';
 import { scaleTime, scaleLinear } from '@vx/scale';
 import { withTooltip, Tooltip } from '@vx/tooltip';
 import { localPoint } from '@vx/event';
-import { extent, max, bisector } from 'd3-array';
+import { bisector } from 'd3-array';
 import { timeFormat } from 'd3-time-format';
 
 const stock = appleStock.slice(800);
+
+// util
 const formatDate = timeFormat("%b %d, '%y");
+const min = (arr, fn) => Math.min(...arr.map(fn));
+const max = (arr, fn) => Math.max(...arr.map(fn));
+const extent = (arr, fn) => [min(arr, fn), max(arr, fn)];
 
 // accessors
 const xStock = d => new Date(d.date);
@@ -38,7 +43,6 @@ class Area extends React.Component {
     super(props);
     this.handleTooltip = this.handleTooltip.bind(this);
   }
-
   handleTooltip({ event, data, xStock, xScale, yScale }) {
     const { showTooltip } = this.props;
     const { x } = localPoint(event);
@@ -56,7 +60,6 @@ class Area extends React.Component {
       tooltipTop: yScale(d.close)
     });
   }
-
   render() {
     const {
       width,
@@ -66,7 +69,10 @@ class Area extends React.Component {
       tooltipData,
       tooltipTop,
       tooltipLeft,
+      events
     } = this.props;
+    if (width < 10) return null;
+
     // bounds
     const xMax = width - margin.left - margin.right;
     const yMax = height - margin.top - margin.bottom;
@@ -109,8 +115,8 @@ class Area extends React.Component {
           <AreaClosed
             data={stock}
             x={d => xScale(xStock(d))}
-            y0={yScale.range()[0]}
-            y1={d => yScale(yStock(d))}
+            y={d => yScale(yStock(d))}
+            yScale={yScale}
             strokeWidth={1}
             stroke={'url(#gradient)'}
             fill={'url(#gradient)'}

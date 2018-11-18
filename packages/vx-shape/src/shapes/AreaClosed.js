@@ -22,6 +22,7 @@ export default function AreaClosed({
   x,
   x0,
   x1,
+  y,
   y1,
   y0,
   yScale,
@@ -42,7 +43,8 @@ export default function AreaClosed({
   } else {
     path.y0(yScale.range()[0]);
   }
-  if (y1) path.y1(y1);
+  if (y && !y1) path.y1(y);
+  if (y1 && !y) path.y1(y1);
   if (defined) path.defined(defined);
   if (curve) path.curve(curve);
   if (children) return children({ path });
