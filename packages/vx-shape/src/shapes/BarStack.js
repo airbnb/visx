@@ -83,7 +83,7 @@ export default function BarStack({
     };
   });
 
-  if (children) return children({ barStacks });
+  if (children) return children(barStacks);
 
   return (
     <Group className={cx('vx-bar-stack', className)} top={top} left={left}>

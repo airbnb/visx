@@ -70,7 +70,7 @@ export default ({
           xScale={xScale}
           color={color}
         >
-          {({ barGroups }) => {
+          {barGroups => {
             return barGroups.map(barGroup => {
               return (
                 <Group

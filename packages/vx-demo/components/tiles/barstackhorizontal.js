@@ -91,7 +91,7 @@ export default withTooltip(
               yScale={yScale}
               color={color}
             >
-              {({ barStacks }) => {
+              {barStacks => {
                 return barStacks.map(barStack => {
                   return barStack.bars.map(bar => {
                     return (

@@ -89,7 +89,7 @@ export default withTooltip(
           />
           <Group top={margin.top}>
             <BarStack data={data} keys={keys} x={x} xScale={xScale} yScale={yScale} color={color}>
-              {({ barStacks }) => {
+              {barStacks => {
                 return barStacks.map(barStack => {
                   return barStack.bars.map(bar => {
                     return (
@@ -112,7 +112,7 @@ export default withTooltip(
                         onMouseMove={event => {
                           if (tooltipTimeout) clearTimeout(tooltipTimeout);
                           const top = event.clientY - margin.top - bar.height;
-                          const offset = xScale.paddingInner() * xScale.step() / 2;
+                          const offset = (xScale.paddingInner() * xScale.step()) / 2;
                           const left = bar.x + bar.width + offset;
                           showTooltip({
                             tooltipData: bar,

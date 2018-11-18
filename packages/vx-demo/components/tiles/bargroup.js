@@ -70,7 +70,7 @@ export default ({
           yScale={yScale}
           color={color}
         >
-          {({ barGroups }) => {
+          {barGroups => {
             return barGroups.map(barGroup => {
               return (
                 <Group key={`bar-group-${barGroup.index}-${barGroup.x0}`} left={barGroup.x0}>

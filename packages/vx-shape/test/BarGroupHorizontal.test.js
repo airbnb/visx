@@ -87,19 +87,18 @@ describe('<BarGroupHorizontal />', () => {
     expect(fn).toHaveBeenCalled();
   });
 
-  test('it should call children function with { barGroups }', () => {
+  test('it should call children function with [barGroups]', () => {
     const fn = jest.fn();
     const wrapper = BarGroupChildren({ children: fn });
     const args = fn.mock.calls[0][0];
-    const keys = Object.keys(args);
-    expect(keys.includes('barGroups')).toEqual(true);
+    expect(!!args.length).toEqual(true);
   });
 
   test('it should create barGroup with shape { index, x0, bars }', () => {
     const fn = jest.fn();
     const wrapper = BarGroupChildren({ children: fn });
     const args = fn.mock.calls[0][0];
-    const { barGroups } = args;
+    const barGroups = args;
     const group = barGroups[0];
     expect(Object.keys(group)).toEqual(['index', 'y0', 'bars']);
     expect(group.index).toBe(0);
