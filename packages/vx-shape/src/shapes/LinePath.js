@@ -17,6 +17,7 @@ export default function LinePath({
   data,
   x,
   y,
+  fill = 'transparent',
   className,
   curve,
   innerRef,
@@ -30,6 +31,12 @@ export default function LinePath({
   if (curve) path.curve(curve);
   if (children) return children({ path });
   return (
-    <path ref={innerRef} className={cx('vx-linepath', className)} d={path(data)} {...restProps} />
+    <path
+      ref={innerRef}
+      className={cx('vx-linepath', className)}
+      d={path(data)}
+      fill={fill}
+      {...restProps}
+    />
   );
 }

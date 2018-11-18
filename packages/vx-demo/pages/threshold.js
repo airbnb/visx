@@ -103,7 +103,6 @@ export default function Theshold({ width, height, margin }) {
             strokeWidth={1.5}
             strokeOpacity={0.8}
             strokeDasharray="1,2"
-            fill="transparent"
           />
           <LinePath
             data={data}
@@ -112,7 +111,6 @@ export default function Theshold({ width, height, margin }) {
             y={d => yScale(ny(d))}
             stroke="#000"
             strokeWidth={1.5}
-            fill="transparent"
           />
         </Group>
       </svg>

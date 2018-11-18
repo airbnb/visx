@@ -90,7 +90,6 @@ export default ({ width, height, margin }) => {
           data={data}
           x={d => xScale(x(d))}
           y={d => yScale(y(d))}
-          fill="transparent"
           stroke={"url('#linear')"}
           strokeWidth={2}
           curve={curveBasis}

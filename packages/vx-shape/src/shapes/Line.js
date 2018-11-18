@@ -13,6 +13,7 @@ Line.propTypes = {
 export default function Line({
   from = new Point({ x: 0, y: 0 }),
   to = new Point({ x: 1, y: 1 }),
+  fill = 'transparent',
   className = '',
   innerRef,
   ...restProps
@@ -25,6 +26,7 @@ export default function Line({
       y1={from.y}
       x2={to.x}
       y2={to.y}
+      fill={fill}
       {...restProps}
     />
   );

@@ -32,8 +32,6 @@ export default class DragII extends React.Component {
                 curve={curveBasis}
                 x={d => d.x}
                 y={d => d.y}
-                xScale={d => d}
-                yScale={d => d}
               />
             );
           })}

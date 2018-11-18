@@ -52,17 +52,8 @@ export default ({ width, height, margin }) => {
           strokeWidth={2}
           strokeDasharray="2,2"
           curve={curveBasis}
-          fill="transparent"
         />
-        <LinePath
-          data={data}
-          x={x}
-          y={y}
-          stroke={primary}
-          strokeWidth={3}
-          fill="transparent"
-          curve={curveMonotoneX}
-        />
+        <LinePath data={data} x={x} y={y} stroke={primary} strokeWidth={3} curve={curveMonotoneX} />
         {data.map((d, i) => {
           const cx = x(d);
           const cy = y(d);

@@ -66,7 +66,6 @@ export default ({ width, height, margin }) => {
           strokeWidth={2}
           strokeDasharray="2,2"
           curve={curveBasis}
-          fill="transparent"
         />
         <LinePath
           data={data}
@@ -74,7 +73,6 @@ export default ({ width, height, margin }) => {
           y={y}
           stroke={primary}
           strokeWidth={3}
-          fill="transparent"
           curve={curveMonotoneX}
         />
         {data.map((d, i) => {

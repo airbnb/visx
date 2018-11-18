@@ -46,7 +46,6 @@ export default ({
   }
 }) => {
   if (width < 10) return null;
-  console.log(margin);
 
   // bounds
   const xMax = width - margin.left - margin.right;

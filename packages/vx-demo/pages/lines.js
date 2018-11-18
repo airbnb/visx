@@ -56,7 +56,6 @@ export default ({ width, height }) => {
                 y={d => yScale(y(d))}
                 stroke={'#ffffff'}
                 strokeWidth={1}
-                fill={'transparent'}
                 curve={i % 2 == 0 ? curveMonotoneX : undefined}
               />
             </Group>

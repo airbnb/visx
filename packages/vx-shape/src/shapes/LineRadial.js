@@ -21,6 +21,7 @@ export default function LineRadial({
   data,
   innerRef,
   children,
+  fill = 'transparent',
   ...restProps
 }) {
   const path = radialLine();
@@ -34,6 +35,7 @@ export default function LineRadial({
       ref={innerRef}
       className={cx('vx-line-radial', className)}
       d={path(data)}
+      fill={fill}
       {...restProps}
     />
   );
