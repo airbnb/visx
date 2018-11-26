@@ -1,6 +1,6 @@
 {
   "name": "@vx/legend",
-  "version": "0.0.179",
+  "version": "0.0.181",
   "description": "vx legend",
   "sideEffects": false,
   "main": "dist/vx-legend.umd.js",

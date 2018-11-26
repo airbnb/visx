@@ -1,6 +1,6 @@
 {
   "name": "@vx/stats",
-  "version": "0.0.179",
+  "version": "0.0.181",
   "description": "vx stats box violin",
   "sideEffects": false,
   "main": "dist/vx-stats.umd.js",

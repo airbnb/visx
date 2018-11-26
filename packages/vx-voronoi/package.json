@@ -1,6 +1,6 @@
 {
   "name": "@vx/voronoi",
-  "version": "0.0.170",
+  "version": "0.0.181",
   "description": "vx voronoi",
   "sideEffects": false,
   "main": "dist/vx-voronoi.umd.js",

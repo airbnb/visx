@@ -1,6 +1,6 @@
 {
   "name": "@vx/axis",
-  "version": "0.0.179",
+  "version": "0.0.181",
   "description": "vx axis",
   "sideEffects": false,
   "main": "dist/vx-axis.umd.js",
@@ -36,7 +36,7 @@
   "dependencies": {
     "@vx/group": "0.0.170",
     "@vx/point": "0.0.165",
-    "@vx/shape": "0.0.179",
+    "@vx/shape": "0.0.181",
     "@vx/text": "0.0.179",
     "classnames": "^2.2.5",
     "prop-types": "^15.6.0"

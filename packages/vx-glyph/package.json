@@ -1,6 +1,6 @@
 {
   "name": "@vx/glyph",
-  "version": "0.0.179",
+  "version": "0.0.181",
   "description": "vx glyph",
   "sideEffects": false,
   "main": "dist/vx-glyph.umd.js",
