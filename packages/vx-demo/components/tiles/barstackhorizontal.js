@@ -7,13 +7,16 @@ import { scaleBand, scaleLinear, scaleOrdinal } from '@vx/scale';
 import { timeParse, timeFormat } from 'd3-time-format';
 import { withTooltip, Tooltip } from '@vx/tooltip';
 import { LegendOrdinal } from '@vx/legend';
-import { extent, max } from 'd3-array';
+import { max } from 'd3-array';
+import barstack from './barstack';
+
+const purple1 = '#6c5efb';
+const purple2 = '#c998ff';
+const purple3 = '#a44afe';
+const bg = '#eaedff';
 
 const data = cityTemperature.slice(0, 12);
 const keys = Object.keys(data[0]).filter(d => d !== 'date');
-const parseDate = timeParse('%Y%m%d');
-const format = timeFormat('%b %d');
-const formatDate = date => format(parseDate(date));
 
 const totals = data.reduce((ret, cur) => {
   const t = keys.reduce((dailyTotal, k) => {
@@ -23,6 +26,29 @@ const totals = data.reduce((ret, cur) => {
   ret.push(t);
   return ret;
 }, []);
+
+const parseDate = timeParse('%Y%m%d');
+const format = timeFormat('%b %d');
+const formatDate = date => format(parseDate(date));
+
+// accessors
+const y = d => d.date;
+
+// scales
+const xScale = scaleLinear({
+  domain: [0, Math.max(...totals)],
+  nice: true
+});
+const yScale = scaleBand({
+  domain: data.map(y),
+  padding: 0.2
+});
+const color = scaleOrdinal({
+  domain: keys,
+  range: [purple1, purple2, purple3]
+});
+
+let tooltipTimeout;
 
 export default withTooltip(
   ({
@@ -44,37 +70,17 @@ export default withTooltip(
   }) => {
     if (width < 10) return null;
 
-    // accessors
-    const y = d => d.date;
-    const x = d => d.value;
-
     // bounds
     const xMax = width - margin.left - margin.right;
     const yMax = height - margin.top - margin.bottom;
 
-    // // scales
-    const xScale = scaleLinear({
-      rangeRound: [0, xMax],
-      domain: [0, max(totals)],
-      nice: true
-    });
-    const yScale = scaleBand({
-      rangeRound: [yMax, 0],
-      domain: data.map(y),
-      padding: 0.2,
-      tickFormat: () => val => formatDate(val)
-    });
-    const zScale = scaleOrdinal({
-      domain: keys,
-      range: ['#6c5efb', '#c998ff', '#a44afe']
-    });
-
-    let tooltipTimeout;
+    xScale.rangeRound([0, xMax]);
+    yScale.rangeRound([yMax, 0]);
 
     return (
       <div style={{ position: 'relative' }}>
         <svg width={width} height={height}>
-          <rect x={0} y={0} width={width} height={height} fill="#eaedff" rx={14} />
+          <rect width={width} height={height} fill={bg} rx={14} />
           <Group top={margin.top} left={margin.left}>
             <BarStackHorizontal
               data={data}
@@ -83,45 +89,65 @@ export default withTooltip(
               y={y}
               xScale={xScale}
               yScale={yScale}
-              zScale={zScale}
-              onClick={data => event => {
-                if (!events) return;
-                alert(`clicked: ${JSON.stringify(data)}`);
-              }}
-              onMouseLeave={data => event => {
-                tooltipTimeout = setTimeout(() => {
-                  hideTooltip();
-                }, 300);
-              }}
-              onMouseMove={data => event => {
-                if (tooltipTimeout) clearTimeout(tooltipTimeout);
-                showTooltip({
-                  tooltipData: data,
-                  tooltipTop: margin.top + yScale(y(data.data)),
-                  tooltipLeft: margin.left + data.width + 75
+              color={color}
+            >
+              {barStacks => {
+                return barStacks.map(barStack => {
+                  return barStack.bars.map(bar => {
+                    return (
+                      <rect
+                        key={`barstack-horizontal-${barStack.index}-${bar.index}`}
+                        x={bar.x}
+                        y={bar.y}
+                        width={bar.width}
+                        height={bar.height}
+                        fill={bar.color}
+                        onClick={event => {
+                          if (!events) return;
+                          alert(`clicked: ${JSON.stringify(bar)}`);
+                        }}
+                        onMouseLeave={event => {
+                          tooltipTimeout = setTimeout(() => {
+                            hideTooltip();
+                          }, 300);
+                        }}
+                        onMouseMove={event => {
+                          if (tooltipTimeout) clearTimeout(tooltipTimeout);
+                          const top = bar.y + margin.top;
+                          const left = bar.x + bar.width + margin.left;
+                          showTooltip({
+                            tooltipData: bar,
+                            tooltipTop: top,
+                            tooltipLeft: left
+                          });
+                        }}
+                      />
+                    );
+                  });
                 });
               }}
-            />
+            </BarStackHorizontal>
             <AxisLeft
               hideAxisLine={true}
               hideTicks={true}
               scale={yScale}
-              stroke="#a44afe"
-              tickStroke="#a44afe"
+              tickFormat={formatDate}
+              stroke={purple3}
+              tickStroke={purple3}
               tickLabelProps={(value, index) => ({
-                fill: '#a44afe',
+                fill: purple3,
                 fontSize: 11,
                 textAnchor: 'end',
                 dy: '0.33em'
               })}
             />
             <AxisBottom
-              scale={xScale}
               top={yMax}
-              stroke="#a44afe"
-              tickStroke="#a44afe"
+              scale={xScale}
+              stroke={purple3}
+              tickStroke={purple3}
               tickLabelProps={(value, index) => ({
-                fill: '#a44afe',
+                fill: purple3,
                 fontSize: 11,
                 textAnchor: 'middle'
               })}
@@ -138,7 +164,7 @@ export default withTooltip(
             fontSize: '14px'
           }}
         >
-          <LegendOrdinal scale={zScale} direction="row" labelMargin="0 15px 0 0" />
+          <LegendOrdinal scale={color} direction="row" labelMargin="0 15px 0 0" />
         </div>
         {tooltipOpen && (
           <Tooltip
@@ -150,12 +176,12 @@ export default withTooltip(
               color: 'white'
             }}
           >
-            <div style={{ color: zScale(tooltipData.key) }}>
+            <div style={{ color: color(tooltipData.key) }}>
               <strong>{tooltipData.key}</strong>
             </div>
-            <div>{tooltipData.data[tooltipData.key]}℉</div>
+            <div>{tooltipData.bar.data[tooltipData.key]}℉</div>
             <div>
-              <small>{tooltipData.xFormatted}</small>
+              <small>{formatDate(y(tooltipData.bar.data))}</small>
             </div>
           </Tooltip>
         )}

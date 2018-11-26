@@ -350,7 +350,7 @@ A simple polygon shape. Supply the sides and the length and we will do the rest.
 
 ```js
 // hexagon
-<Polygon sides={6} size={25} {...additionalProps[i]} />
+<Polygon sides={6} size={25} />
 ```
 
 ### Properties
@@ -364,13 +364,13 @@ A simple polygon shape. Supply the sides and the length and we will do the rest.
 
 ## Sources For Components
 
-* [`<AreaClosed />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/AreaClosed.js)
-* [`<AreaStack />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/AreaStack.js)
-* [`<Bar />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/Bar.js)
-* [`<BarGroup />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/BarGroup.js)
-* [`<BarGroupHorizontal />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/BarGroupHorizontal.js)
-* [`<Line />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/Line.js)
-* [`<LinePath />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/LinePath.js)
-* [`<LineRadial />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/LineRadial.js)
-* [`<Pie />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/Pie.js)
-* [`<Polygon`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/Polygon.js)
+- [`<AreaClosed />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/AreaClosed.js)
+- [`<AreaStack />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/AreaStack.js)
+- [`<Bar />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/Bar.js)
+- [`<BarGroup />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/BarGroup.js)
+- [`<BarGroupHorizontal />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/BarGroupHorizontal.js)
+- [`<Line />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/Line.js)
+- [`<LinePath />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/LinePath.js)
+- [`<LineRadial />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/LineRadial.js)
+- [`<Pie />`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/Pie.js)
+- [`<Polygon`](https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/Polygon.js)

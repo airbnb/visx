@@ -1,9 +1,38 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Pie } from '../src';
-import { browserUsage } from '../../vx-mock-data';
+const browserUsage = [
+  {
+    date: '2015 Jun 15',
+    'Google Chrome': '48.09',
+    'Internet Explorer': '24.14',
+    Firefox: '18.82',
+    Safari: '7.46',
+    'Microsoft Edge': '0.03',
+    Opera: '1.32',
+    Mozilla: '0.12',
+    'Other/Unknown': '0.01'
+  },
+  {
+    date: '2015 Jun 16',
+    'Google Chrome': '48',
+    'Internet Explorer': '24.19',
+    Firefox: '18.96',
+    Safari: '7.36',
+    'Microsoft Edge': '0.03',
+    Opera: '1.32',
+    Mozilla: '0.12',
+    'Other/Unknown': '0.01'
+  }
+];
 
 const PieWrapper = ({ ...restProps }) => shallow(<Pie data={browserUsage} {...restProps} />);
+const PieChildren = ({ children, ...restProps }) =>
+  shallow(
+    <Pie data={browserUsage} {...restProps}>
+      {children}
+    </Pie>
+  );
 
 describe('<Pie />', () => {
   beforeEach(() => {
@@ -54,5 +83,21 @@ describe('<Pie />', () => {
 
   test('it should contain paths', () => {
     expect(PieWrapper().find('path').length).toBeGreaterThan(0);
+  });
+
+  test('it should take a children as function prop', () => {
+    const fn = jest.fn();
+    const wrapper = PieChildren({ children: fn });
+    expect(fn).toHaveBeenCalled();
+  });
+
+  test('it should call children function with { arcs, path, pie }', () => {
+    const fn = jest.fn();
+    const wrapper = PieChildren({ children: fn });
+    const args = fn.mock.calls[0][0];
+    const keys = Object.keys(args);
+    expect(keys.includes('path')).toEqual(true);
+    expect(keys.includes('arcs')).toEqual(true);
+    expect(keys.includes('pie')).toEqual(true);
   });
 });

@@ -2,19 +2,19 @@ import React from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import { Group } from '@vx/group';
-import additionalProps from '../util/additionalProps';
+import { area, stack as d3stack } from 'd3-shape';
 import stackOrder from '../util/stackOrder';
 import stackOffset from '../util/stackOffset';
-import { area, stack as d3stack } from 'd3-shape';
 
 Stack.propTypes = {
+  data: PropTypes.array.isRequired,
   className: PropTypes.string,
   top: PropTypes.number,
   left: PropTypes.number,
-  keys: PropTypes.array,
-  data: PropTypes.array,
   curve: PropTypes.func,
-  defined: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
+  color: PropTypes.func,
+  keys: PropTypes.array,
+  children: PropTypes.func,
   x: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
   x0: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
   x1: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
@@ -22,16 +22,15 @@ Stack.propTypes = {
   y0: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
   y1: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
   value: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+  defined: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
   order: PropTypes.oneOfType([PropTypes.func, PropTypes.array, PropTypes.string]),
-  offset: PropTypes.oneOfType([PropTypes.func, PropTypes.array, PropTypes.string]),
-  render: PropTypes.func,
-  reverse: PropTypes.bool
+  offset: PropTypes.oneOfType([PropTypes.func, PropTypes.array, PropTypes.string])
 };
 
 export default function Stack({
   className,
-  top = 0,
-  left = 0,
+  top,
+  left,
   keys,
   data,
   curve,
@@ -44,8 +43,8 @@ export default function Stack({
   value,
   order,
   offset,
-  render,
-  reverse = false,
+  color,
+  children,
   ...restProps
 }) {
   const stack = d3stack();
@@ -63,30 +62,20 @@ export default function Stack({
   if (curve) path.curve(curve);
   if (defined) path.defined(defined);
 
-  const seriesData = stack(data);
-  if (reverse) seriesData.reverse();
+  const stacks = stack(data);
 
-  if (render) {
-    return (
-      <Group top={top} left={left}>
-        {render({ seriesData, path })}
-      </Group>
-    );
-  }
+  if (children) return children({ stacks, path, stack });
 
   return (
     <Group top={top} left={left}>
-      {seriesData.map((series, i) => {
+      {stacks.map((series, i) => {
         return (
           <path
             className={cx('vx-stack', className)}
             key={`stack-${i}-${series.key || ''}`}
             d={path(series)}
-            {...additionalProps(restProps, {
-              datum: series[i],
-              index: i,
-              series
-            })}
+            fill={color(series.key, i)}
+            {...restProps}
           />
         );
       })}

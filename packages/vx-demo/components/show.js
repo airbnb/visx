@@ -2,8 +2,6 @@ import React from 'react';
 import cx from 'classnames';
 import { withScreenSize } from '@vx/responsive';
 import Page from '../components/page';
-import Footer from '../components/footer';
-import Bars from '../components/tiles/bars';
 import Codeblock from '../components/codeblocks/Codeblock';
 import Gallery from '../components/gallery';
 
@@ -66,6 +64,7 @@ export default withScreenSize(
             display: flex;
             flex-direction: column;
             align-items: center;
+            overflow: hidden;
           }
           .container h1 {
             margin-top: 15px;

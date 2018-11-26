@@ -1,63 +1,79 @@
-import { Group } from '@vx/group';
+import React from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
-import React from 'react';
-import additionalProps from '../util/additionalProps';
+import { Group } from '@vx/group';
 
 HeatmapCircle.propTypes = {
   data: PropTypes.array,
+  left: PropTypes.number,
+  top: PropTypes.number,
   gap: PropTypes.number,
   radius: PropTypes.number,
-  xScale: PropTypes.func,
-  yScale: PropTypes.func,
+  xScale: PropTypes.func.isRequired,
+  yScale: PropTypes.func.isRequired,
   colorScale: PropTypes.func,
   opacityScale: PropTypes.func,
   bins: PropTypes.func,
   count: PropTypes.func,
-  className: PropTypes.string
+  className: PropTypes.string,
+  children: PropTypes.func
 };
 
 export default function HeatmapCircle({
   className,
+  top,
+  left,
   data,
   gap = 1,
   radius = 6,
   xScale,
   yScale,
-  colorScale,
+  colorScale = d => undefined,
   opacityScale = d => 1,
   bins = d => d.bins,
   count = d => d.count,
+  children,
   ...restProps
 }) {
   const r = radius - gap;
+  const heatmap = data.map((datum, column) => {
+    const x = xScale(column);
+    return bins(datum).map((bin, row) => {
+      const countValue = count(bin);
+      return {
+        bin,
+        row,
+        column,
+        datum,
+        r,
+        radius,
+        gap,
+        count: countValue,
+        cx: radius + x,
+        cy: yScale(row) + gap + radius,
+        opacity: opacityScale(countValue),
+        color: colorScale(countValue)
+      };
+    });
+  });
+  if (children) return children(heatmap);
   return (
-    <Group>
-      {data.map((d, i) => {
-        return (
-          <Group key={`heatmap-${i}`} className="vx-heatmap-column" left={xScale(i)}>
-            {bins(d).map((b, j) => {
-              return (
-                <circle
-                  key={`heatmap-tile-circle-${j}`}
-                  className={cx('vx-heatmap-circle', className)}
-                  fill={colorScale(count(b))}
-                  r={r}
-                  cx={radius}
-                  cy={yScale(j) + gap + radius}
-                  fillOpacity={opacityScale(count(b))}
-                  {...additionalProps(restProps, {
-                    bin: b,
-                    index: j,
-                    datum: d,
-                    datumIndex: i,
-                    data
-                  })}
-                />
-              );
-            })}
-          </Group>
-        );
+    <Group className="vx-heatmap-circles" top={top} left={left}>
+      {heatmap.map(_bins => {
+        return _bins.map(bin => {
+          return (
+            <circle
+              key={`heatmap-tile-circle-${bin.row}-${bin.column}`}
+              className={cx('vx-heatmap-circle', className)}
+              r={bin.r}
+              cx={bin.cx}
+              cy={bin.cy}
+              fill={bin.color}
+              fillOpacity={bin.opacity}
+              {...restProps}
+            />
+          );
+        });
       })}
     </Group>
   );

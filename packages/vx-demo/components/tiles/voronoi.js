@@ -44,17 +44,21 @@ export default ({
       <GradientPinkRed id="voronoi_pink_red" />
       <RectClipPath id="voronoi_clip" width={innerWidth} height={innerHeight} rx={14} />
       <Group top={margin.top} left={margin.left} clipPath="url(#voronoi_clip)">
-        {polygons.map(polygon => (
-          <VoronoiPolygon
-            key={`polygon-${polygon.data.id}`}
-            polygon={polygon}
-            fill={d =>
-              d.id.toLowerCase() <= 'a' ? 'url(#voronoi_orange_red)' : 'url(#voronoi_pink_red)'
-            }
-            stroke="#fff"
-            strokeWidth={1}
-          />
-        ))}
+        {polygons.map(polygon => {
+          const fill =
+            polygon.data.id.toLowerCase() <= 'a'
+              ? 'url(#voronoi_orange_red)'
+              : 'url(#voronoi_pink_red)';
+          return (
+            <VoronoiPolygon
+              key={`polygon-${polygon.data.id}`}
+              polygon={polygon}
+              fill={fill}
+              stroke="#fff"
+              strokeWidth={1}
+            />
+          );
+        })}
         {data.map(d => (
           <circle key={`circle-${d.id}`} r={2} cx={d.x} cy={d.y} fill="#ffffff" fillOpacity={0.2} />
         ))}

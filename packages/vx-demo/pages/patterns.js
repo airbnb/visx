@@ -30,7 +30,7 @@ export default ({
   const yMax = height - 80;
   const pWidth = xMax / 4;
   const pHeight = yMax / 2;
-  if (width < 10) return null;
+
   return (
     <svg width={width} height={height}>
       <PatternLines

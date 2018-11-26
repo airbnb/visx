@@ -18,96 +18,150 @@ export default () => {
       {`import React from 'react';
 import { Group } from '@vx/group';
 import { genBins } from '@vx/mock-data';
-import { scaleBand, scaleLinear } from '@vx/scale';
+import { scaleLinear } from '@vx/scale';
 import { HeatmapCircle, HeatmapRect } from '@vx/heatmap';
-import { extent, min, max } from 'd3-array';
+
+const hot1 = '#77312f';
+const hot2 = '#f33d15';
+const cool1 = '#122549';
+const cool2 = '#b4fbde';
+const bg = '#28272c';
 
 const data = genBins(16, 16);
 
+// utils
+const max = (data, value = d => d) => Math.max(...data.map(value));
+const min = (data, value = d => d) => Math.min(...data.map(value));
+
 // accessors
-const x = d => d.bin;
-const y = d => d.bins;
-const z = d => d.count;
+const bins = d => d.bins;
+const count = d => d.count;
+
+const colorMax = max(data, d => max(bins(d), count));
+const bucketSizeMax = max(data, d => bins(d).length);
+
+// scales
+const xScale = scaleLinear({
+  domain: [0, data.length]
+});
+const yScale = scaleLinear({
+  domain: [0, bucketSizeMax]
+});
+const circleColorScale = scaleLinear({
+  range: [hot1, hot2],
+  domain: [0, colorMax]
+});
+const rectColorScale = scaleLinear({
+  range: [cool1, cool2],
+  domain: [0, colorMax]
+});
+const opacityScale = scaleLinear({
+  range: [0.1, 1],
+  domain: [0, colorMax]
+});
 
 export default ({
   width,
   height,
+  separation = 20,
   margin = {
     top: 10,
     left: 20,
     right: 20,
     bottom: 110
-  },
-  separation = 20
+  }
 }) => {
-  
   // bounds
-  const size =
-    width > margin.left + margin.right ? width - margin.left - margin.right - separation : width;
+  let size = width;
+  if (size > margin.left + margin.right) {
+    size = width - margin.left - margin.right - separation;
+  }
+
   const xMax = size / 2;
   const yMax = height - margin.bottom - margin.top;
-  const maxBucketSize = max(data, d => y(d).length);
-  const bWidth = xMax / data.length;
-  const bHeight = yMax / maxBucketSize;
-  const colorMax = max(data, d => max(y(d), z));
 
-  // scales
-  const xScale = scaleLinear({
-    range: [0, xMax],
-    domain: [0, data.length]
-  });
-  const yScale = scaleLinear({
-    range: [yMax, 0],
-    domain: [0, maxBucketSize]
-  });
-  const colorScale = scaleLinear({
-    range: ['#77312f', '#f33d15'],
-    domain: [0, colorMax]
-  });
-  const colorScale2 = scaleLinear({
-    range: ['#122549', '#b4fbde'],
-    domain: [0, colorMax]
-  });
-  const opacityScale = scaleLinear({
-    range: [0.1, 1],
-    domain: [0, colorMax]
-  });
+  const binWidth = xMax / data.length;
+  const binHeight = yMax / bucketSizeMax;
+  const radius = min([binWidth, binHeight]) / 2;
+
+  xScale.range([0, xMax]);
+  yScale.range([yMax, 0]);
 
   return (
     <svg width={width} height={height}>
-      <rect x={0} y={0} width={width} height={height} rx={14} fill="#28272c" />
+      <rect x={0} y={0} width={width} height={height} rx={14} fill={bg} />
       <Group top={margin.top} left={margin.left}>
         <HeatmapCircle
           data={data}
           xScale={xScale}
           yScale={yScale}
-          colorScale={colorScale}
+          colorScale={circleColorScale}
           opacityScale={opacityScale}
-          radius={min([bWidth, bHeight]) / 2}
+          radius={radius}
           gap={2}
-          onClick={data => event => {
-            alert(\`clicked: \${JSON.stringify(data.bin)}\`);
+        >
+          {heatmap => {
+            return heatmap.map(bins => {
+              return bins.map(bin => {
+                return (
+                  <circle
+                    key={\`heatmap-circle-\${bin.row}-\${bin.column}\`}
+                    className="vx-heatmap-circle"
+                    cx={bin.cx}
+                    cy={bin.cy}
+                    r={bin.r}
+                    fill={bin.color}
+                    fillOpacity={bin.opacity}
+                    onClick={event => {
+                      const { row, column } = bin;
+                      alert(JSON.stringify({ row, column, ...bin.bin }));
+                    }}
+                  />
+                );
+              });
+            });
           }}
-        />
+        </HeatmapCircle>
       </Group>
       <Group top={margin.top} left={xMax + margin.left + separation}>
         <HeatmapRect
           data={data}
           xScale={xScale}
           yScale={yScale}
-          colorScale={colorScale2}
+          colorScale={rectColorScale}
           opacityScale={opacityScale}
-          binWidth={bWidth}
-          binHeight={bWidth}
+          binWidth={binWidth}
+          binHeight={binWidth}
           gap={2}
-          onClick={data => event => {
-            alert(\`clicked: \${JSON.stringify(data.bin)}\`);
+        >
+          {heatmap => {
+            return heatmap.map(bins => {
+              return bins.map(bin => {
+                return (
+                  <rect
+                    key={\`heatmap-rect-\${bin.row}-\${bin.column}\`}
+                    className="vx-heatmap-rect"
+                    width={bin.width}
+                    height={bin.height}
+                    x={bin.x}
+                    y={bin.y}
+                    fill={bin.color}
+                    fillOpacity={bin.opacity}
+                    onClick={event => {
+                      const { row, column } = bin;
+                      alert(JSON.stringify({ row, column, ...bin.bin }));
+                    }}
+                  />
+                );
+              });
+            });
           }}
-        />
+        </HeatmapRect>
       </Group>
     </svg>
   );
-};`}
+};
+`}
     </Show>
   );
 };

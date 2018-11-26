@@ -1,73 +1,73 @@
 import React from 'react';
-import classnames from 'classnames';
-import { Group } from '@vx/group';
+import cx from 'classnames';
+import PropTypes from 'prop-types';
 import { scaleLinear } from '@vx/scale';
 import { line, curveCardinal } from 'd3-shape';
-import additionalProps from '../util/additionalProps';
+
+ViolinPlot.propTypes = {
+  left: PropTypes.number,
+  top: PropTypes.number,
+  className: PropTypes.string,
+  data: PropTypes.array.isRequired,
+  width: PropTypes.number,
+  count: PropTypes.func,
+  value: PropTypes.func,
+  valueScale: PropTypes.func,
+  horizontal: PropTypes.bool,
+  children: PropTypes.func
+};
 
 export default function ViolinPlot({
   left = 0,
   top = 0,
   className,
-  binData,
-  stroke = 'black',
-  fill = 'rgba(0,0,0,0.3)',
-  opacity,
-  strokeWidth,
+  data,
   width,
+  count = d => d.count,
+  value = d => d.value,
   valueScale,
-  strokeDasharray,
   horizontal,
+  children,
   ...restProps
 }) {
   const center = (horizontal ? top : left) + width / 2;
-  const binCounts = binData.map(bin => bin.count);
+  const binCounts = data.map(bin => bin.count);
   const widthScale = scaleLinear({
     rangeRound: [0, width / 2],
     domain: [0, Math.max(...binCounts)]
   });
 
   let path = '';
+
   if (horizontal) {
     const topCurve = line()
-      .x(d => valueScale(d.value))
-      .y(d => center - widthScale(d.count))
+      .x(d => valueScale(value(d)))
+      .y(d => center - widthScale(count(d)))
       .curve(curveCardinal);
 
     const bottomCurve = line()
-      .x(d => valueScale(d.value))
-      .y(d => center + widthScale(d.count))
+      .x(d => valueScale(value(d)))
+      .y(d => center + widthScale(count(d)))
       .curve(curveCardinal);
 
-    const topCurvePath = topCurve(binData);
-    const bottomCurvePath = bottomCurve([...binData].reverse());
+    const topCurvePath = topCurve(data);
+    const bottomCurvePath = bottomCurve([...data].reverse());
     path = `${topCurvePath} ${bottomCurvePath.replace('M', 'L')} Z`;
   } else {
     const rightCurve = line()
-      .x(d => center + widthScale(d.count))
-      .y(d => valueScale(d.value))
+      .x(d => center + widthScale(count(d)))
+      .y(d => valueScale(value(d)))
       .curve(curveCardinal);
 
     const leftCurve = line()
-      .x(d => center - widthScale(d.count))
-      .y(d => valueScale(d.value))
+      .x(d => center - widthScale(count(d)))
+      .y(d => valueScale(value(d)))
       .curve(curveCardinal);
 
-    const rightCurvePath = rightCurve(binData);
-    const leftCurvePath = leftCurve([...binData].reverse());
+    const rightCurvePath = rightCurve(data);
+    const leftCurvePath = leftCurve([...data].reverse());
     path = `${rightCurvePath} ${leftCurvePath.replace('M', 'L')} Z`;
   }
-  return (
-    <Group className={classnames('vx-violin', className)}>
-      <path
-        d={path}
-        stroke={stroke}
-        strokeWidth={strokeWidth}
-        strokeDasharray={strokeDasharray}
-        fill={fill}
-        fillOpacity={opacity}
-        {...additionalProps(restProps, binData)}
-      />
-    </Group>
-  );
+  if (children) return children({ path });
+  return <path className={cx('vx-violin', className)} d={path} {...restProps} />;
 }

@@ -24,7 +24,7 @@ describe('<BarStack />', () => {
         x={d => d}
         xScale={xScale}
         yScale={d => d}
-        zScale={d => d}
+        color={d => d}
         keys={[]}
       />
     );
@@ -41,7 +41,7 @@ describe('<BarStack />', () => {
         x={d => d}
         xScale={xScale}
         yScale={d => d}
-        zScale={d => d}
+        color={d => d}
         keys={[]}
       />
     );
@@ -58,7 +58,7 @@ describe('<BarStack />', () => {
         x={d => d}
         xScale={xScale}
         yScale={d => d}
-        zScale={d => d}
+        color={d => d}
         keys={[]}
       />
     );

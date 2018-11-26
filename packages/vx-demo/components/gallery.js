@@ -55,7 +55,7 @@ const items = [
   '#f4419f',
   '#3130e3',
   '#12122e',
-  '#ff657c',
+  '#ff657c'
 ];
 
 export default class Gallery extends React.Component {
@@ -115,7 +115,7 @@ export default class Gallery extends React.Component {
                           top: 0,
                           left: 0,
                           right: 0,
-                          bottom: 80,
+                          bottom: 80
                         }}
                       />
                     )}
@@ -124,7 +124,7 @@ export default class Gallery extends React.Component {
                 <div className="details color-yellow" style={{ zIndex: 1 }}>
                   <div className="title">Dots</div>
                   <div className="description">
-                    <pre>{'<Glyph.GlyphCircle />'}</pre>
+                    <pre>{'<Shape.Circle />'}</pre>
                   </div>
                 </div>
               </div>
@@ -162,7 +162,7 @@ export default class Gallery extends React.Component {
                           top: 0,
                           left: 0,
                           right: 0,
-                          bottom: 80,
+                          bottom: 80
                         }}
                       />
                     )}
@@ -190,7 +190,7 @@ export default class Gallery extends React.Component {
                           top: 0,
                           left: 0,
                           right: 0,
-                          bottom: 80,
+                          bottom: 80
                         }}
                       />
                     )}
@@ -211,7 +211,7 @@ export default class Gallery extends React.Component {
                 className="gallery-item"
                 style={{
                   background: 'white',
-                  boxShadow: '0 1px 6px rgba(0,0,0,0.1)',
+                  boxShadow: '0 1px 6px rgba(0,0,0,0.1)'
                 }}
               >
                 <div className="image">
@@ -224,7 +224,7 @@ export default class Gallery extends React.Component {
                           top: 0,
                           left: 0,
                           right: 0,
-                          bottom: 80,
+                          bottom: 80
                         }}
                       />
                     )}
@@ -252,7 +252,7 @@ export default class Gallery extends React.Component {
                           top: 0,
                           left: 0,
                           right: 0,
-                          bottom: 80,
+                          bottom: 80
                         }}
                       />
                     )}
@@ -280,7 +280,7 @@ export default class Gallery extends React.Component {
                           top: 20,
                           left: 60,
                           right: 40,
-                          bottom: 120,
+                          bottom: 120
                         }}
                       />
                     )}
@@ -315,19 +315,19 @@ export default class Gallery extends React.Component {
             </Link>
           </Tilt>
           <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-            <Link prefetch href="/barstack">
-              <div className="gallery-item" style={{ background: '#eaedff' }}>
+            <Link prefetch href="/bargrouphorizontal">
+              <div className="gallery-item" style={{ background: '#612efb' }}>
                 <div className="image">
                   <ParentSize>
                     {({ width, height }) => (
-                      <BarStack width={width} height={height + detailsHeight} />
+                      <BarGroupHorizontal width={width} height={height + detailsHeight} />
                     )}
                   </ParentSize>
                 </div>
-                <div className="details" style={{ color: '#a44afe', zIndex: 1 }}>
-                  <div className="title">Bar Stack</div>
+                <div className="details" style={{ color: '#e5fd3d' }}>
+                  <div className="title">Bar Group Horizontal</div>
                   <div className="description">
-                    <pre>{'<Shape.BarStack />'}</pre>
+                    <pre>{'<Shape.BarGroupHorizontal />'}</pre>
                   </div>
                 </div>
               </div>
@@ -353,6 +353,49 @@ export default class Gallery extends React.Component {
             </Link>
           </Tilt>
           <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+            <Link prefetch href="/barstack">
+              <div className="gallery-item" style={{ background: '#eaedff' }}>
+                <div className="image">
+                  <ParentSize>
+                    {({ width, height }) => (
+                      <BarStack width={width} height={height + detailsHeight} />
+                    )}
+                  </ParentSize>
+                </div>
+                <div className="details" style={{ color: '#a44afe', zIndex: 1 }}>
+                  <div className="title">Bar Stack</div>
+                  <div className="description">
+                    <pre>{'<Shape.BarStack />'}</pre>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </Tilt>
+          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+            <Link prefetch href="/barstackhorizontal">
+              <div
+                className="gallery-item"
+                style={{
+                  background: '#eaedff'
+                }}
+              >
+                <div className="image">
+                  <ParentSize>
+                    {({ width, height }) => (
+                      <BarStackHorizontal width={width} height={height + detailsHeight} />
+                    )}
+                  </ParentSize>
+                </div>
+                <div className="details" style={{ color: '#a44afe', zIndex: 1 }}>
+                  <div className="title">Bar Stack Horizontal</div>
+                  <div className="description">
+                    <pre>{'<Shape.BarStackHorizontal />'}</pre>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </Tilt>
+          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
             <Link prefetch href="/lineradial">
               <div className="gallery-item" style={{ background: '#744cca' }}>
                 <div className="image">
@@ -364,23 +407,6 @@ export default class Gallery extends React.Component {
                   <div className="title">Radial Lines</div>
                   <div className="description">
                     <pre>{'<Shape.LineRadial />'}</pre>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          </Tilt>
-          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-            <Link prefetch href="/pies">
-              <div className="gallery-item" style={{ background: '#7f82e3' }}>
-                <div className="image">
-                  <ParentSize>
-                    {({ width, height }) => <Pies width={width} height={height + detailsHeight} />}
-                  </ParentSize>
-                </div>
-                <div className="details" style={{ color: 'white' }}>
-                  <div className="title">Pies</div>
-                  <div className="description">
-                    <pre>{'<Shape.Pie />'}</pre>
                   </div>
                 </div>
               </div>
@@ -423,6 +449,29 @@ export default class Gallery extends React.Component {
             </Link>
           </Tilt>
           <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+            <Link prefetch href="/pies">
+              <div className="gallery-item" style={{ background: '#7f82e3' }}>
+                <div className="image">
+                  <ParentSize>
+                    {({ width, height }) => (
+                      <Pies
+                        width={width}
+                        height={height + detailsHeight}
+                        margin={{ top: 0, left: 0, right: 0, bottom: 0 }}
+                      />
+                    )}
+                  </ParentSize>
+                </div>
+                <div className="details" style={{ color: 'white' }}>
+                  <div className="title">Pies</div>
+                  <div className="description">
+                    <pre>{'<Shape.Pie />'}</pre>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </Tilt>
+          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
             <Link prefetch href="/legends">
               <div className="gallery-item" style={{ backgroundColor: 'black' }}>
                 <div className="image">
@@ -442,14 +491,14 @@ export default class Gallery extends React.Component {
               <div
                 className="gallery-item"
                 style={{
-                  boxShadow: 'rgba(0, 0, 0, 0.1) 0px 1px 6px',
+                  boxShadow: 'rgba(0, 0, 0, 0.1) 0px 1px 6px'
                 }}
               >
                 <div
                   className="image"
                   style={{
                     backgroundColor: '#eb6d88',
-                    borderRadius: 14,
+                    borderRadius: 14
                   }}
                 >
                   <ParentSize>
@@ -521,7 +570,7 @@ export default class Gallery extends React.Component {
                 <div
                   className="details"
                   style={{
-                    color: '#ffffff',
+                    color: '#ffffff'
                   }}
                 >
                   <div className="title">Network</div>
@@ -546,7 +595,7 @@ export default class Gallery extends React.Component {
                 <div
                   className="details"
                   style={{
-                    color: '#036ecd',
+                    color: '#036ecd'
                   }}
                 >
                   <div className="title">Streamgraph</div>
@@ -563,7 +612,7 @@ export default class Gallery extends React.Component {
                 className="gallery-item"
                 style={{
                   background: '#ffffff',
-                  boxShadow: 'rgba(0, 0, 0, 0.1) 0px 1px 6px',
+                  boxShadow: 'rgba(0, 0, 0, 0.1) 0px 1px 6px'
                 }}
               >
                 <div className="image">
@@ -574,7 +623,7 @@ export default class Gallery extends React.Component {
                 <div
                   className="details"
                   style={{
-                    color: '#fd6c6f',
+                    color: '#fd6c6f'
                   }}
                 >
                   <div className="title">Pack</div>
@@ -590,7 +639,7 @@ export default class Gallery extends React.Component {
               <div
                 className="gallery-item"
                 style={{
-                  background: '#3436b8',
+                  background: '#3436b8'
                 }}
               >
                 <div className="image">
@@ -603,7 +652,7 @@ export default class Gallery extends React.Component {
                 <div
                   className="details"
                   style={{
-                    color: '#00ff70',
+                    color: '#00ff70'
                   }}
                 >
                   <div className="title">Treemap</div>
@@ -619,7 +668,7 @@ export default class Gallery extends React.Component {
               <div
                 className="gallery-item"
                 style={{
-                  background: '#FAF7E9',
+                  background: '#FAF7E9'
                 }}
               >
                 <div className="image">
@@ -630,7 +679,7 @@ export default class Gallery extends React.Component {
                 <div
                   className="details"
                   style={{
-                    color: '#f5810c',
+                    color: '#f5810c'
                   }}
                 >
                   <div className="title">Radar</div>
@@ -642,42 +691,16 @@ export default class Gallery extends React.Component {
             </Link>
           </Tilt>
           <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-            <Link prefetch href="/barstackhorizontal">
-              <div
-                className="gallery-item"
-                style={{
-                  background: '#eaedff',
-                }}
-              >
-                <div className="image">
-                  <ParentSize>
-                    {({ width, height }) => (
-                      <BarStackHorizontal width={width} height={height + detailsHeight} />
-                    )}
-                  </ParentSize>
-                </div>
-                <div className="details" style={{ color: '#a44afe', zIndex: 1 }}>
-                  <div className="title">Bar Stack Horizontal</div>
-                  <div className="description">
-                    <pre>{'<Shape.BarStackHorizontal />'}</pre>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          </Tilt>
-          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
             <Link prefetch href="/responsive">
               <div
                 className="gallery-item"
                 style={{
-                  background: 'white',
+                  background: 'white'
                 }}
               >
                 <div className="image">
                   <ParentSize>
-                    {({ width, height }) => (
-                      <Responsive width={width} height={height} events />
-                    )}
+                    {({ width, height }) => <Responsive width={width} height={height} events />}
                   </ParentSize>
                 </div>
                 <div
@@ -688,7 +711,7 @@ export default class Gallery extends React.Component {
                     border: '1px solid lightgray',
                     borderTop: 'none',
                     borderBottomLeftRadius: '14px',
-                    borderBottomRightRadius: '14px',
+                    borderBottomRightRadius: '14px'
                   }}
                 >
                   <div className="title">Responsive</div>
@@ -706,7 +729,7 @@ export default class Gallery extends React.Component {
                 style={{
                   background: 'white',
                   border: '1px solid lightgray',
-                  borderRadius: '14px',
+                  borderRadius: '14px'
                 }}
               >
                 <div className="image">
@@ -716,7 +739,7 @@ export default class Gallery extends React.Component {
                   className="details"
                   style={{
                     color: '#232323',
-                    zIndex: 1,
+                    zIndex: 1
                   }}
                 >
                   <div className="title">Text</div>
@@ -733,7 +756,7 @@ export default class Gallery extends React.Component {
                 className="gallery-item"
                 style={{
                   background: '#c4c3cb',
-                  borderRadius: '14px',
+                  borderRadius: '14px'
                 }}
               >
                 <div className="image">
@@ -745,7 +768,7 @@ export default class Gallery extends React.Component {
                   className="details"
                   style={{
                     color: '#6437d6',
-                    zIndex: 1,
+                    zIndex: 1
                   }}
                 >
                   <div className="title">Drag</div>
@@ -762,7 +785,7 @@ export default class Gallery extends React.Component {
                 className="gallery-item"
                 style={{
                   background: '#04002b',
-                  borderRadius: '14px',
+                  borderRadius: '14px'
                 }}
               >
                 <div className="image">
@@ -776,7 +799,7 @@ export default class Gallery extends React.Component {
                   className="details"
                   style={{
                     color: '#ff614e',
-                    zIndex: 1,
+                    zIndex: 1
                   }}
                 >
                   <div className="title">Drag</div>
@@ -819,7 +842,7 @@ export default class Gallery extends React.Component {
                           top: 40,
                           left: 40,
                           right: 20,
-                          bottom: 30,
+                          bottom: 30
                         }}
                       />
                     )}
@@ -848,7 +871,7 @@ export default class Gallery extends React.Component {
                           top: 0,
                           left: 0,
                           right: 0,
-                          bottom: 30,
+                          bottom: 30
                         }}
                       />
                     )}
@@ -858,25 +881,6 @@ export default class Gallery extends React.Component {
                   <div className="title">Chords</div>
                   <div className="description">
                     <pre>{'<Chord.Chord /> + <Chord.Ribbon />'}</pre>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          </Tilt>
-          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-            <Link prefetch href="/bargrouphorizontal">
-              <div className="gallery-item" style={{ background: '#612efb' }}>
-                <div className="image">
-                  <ParentSize>
-                    {({ width, height }) => (
-                      <BarGroupHorizontal width={width} height={height + detailsHeight} />
-                    )}
-                  </ParentSize>
-                </div>
-                <div className="details" style={{ color: '#e5fd3d' }}>
-                  <div className="title">Bar Group Horizontal</div>
-                  <div className="description">
-                    <pre>{'<Shape.BarGroupHorizontal />'}</pre>
                   </div>
                 </div>
               </div>
@@ -911,83 +915,83 @@ export default class Gallery extends React.Component {
 
         <style jsx>
           {`
-          h3 {
-            margin-top: 0;
-            margin-left: 40px;
-            margin-bottom: 0;
-          }
-          .gallery {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            overflow-x: hidden;
-            padding-bottom: 20px;
-          }
-          .gallery-item {
-            background-color: white;
-            margin: 5px;
-            display: flex;
-            height: 390px;
-            flex: 1;
-            min-width: 25%;
-            flex-direction: column;
-            border-radius: 14px;
-          }
-          .gallery-item.placeholder {
-            height: 1px;
-          }
-          .image {
-            flex: 1;
-            display: flex;
-            overflow: hidden;
-          }
-          .details {
-            text-align: center;
-            padding: 15px 20px;
-            color: #ffffff;
-          }
-          .title {
-            font-weight: 900;
-            line-height: 0.9rem;
-          }
-          .description {
-            font-weight: 300;
-            font-size: 14px;
-          }
-          pre {
-            margin: 0;
-          }
-          .color-blue {
-            color: rgba(25, 231, 217, 1);
-          }
-          .color-yellow {
-            color: #f6c431;
-          }
-          .color-gray {
-            color: #333;
-          }
-          .text-demo {
-            font-size: 64px;
-            font-weight: bold;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex: 1;
-            line-height: 1em;
-            padding: 1rem;
-          }
-          @media (max-width: 960px) {
-            .gallery-item {
-              min-width: 45%;
+            h3 {
+              margin-top: 0;
+              margin-left: 40px;
+              margin-bottom: 0;
             }
-          }
-          @media (max-width: 600px) {
-            .gallery-item {
-              min-width: 100%;
+            .gallery {
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+              justify-content: space-around;
+              overflow-x: hidden;
+              padding-bottom: 20px;
             }
-          }
-        `}
+            .gallery-item {
+              background-color: white;
+              margin: 5px;
+              display: flex;
+              height: 390px;
+              flex: 1;
+              min-width: 25%;
+              flex-direction: column;
+              border-radius: 14px;
+            }
+            .gallery-item.placeholder {
+              height: 1px;
+            }
+            .image {
+              flex: 1;
+              display: flex;
+              overflow: hidden;
+            }
+            .details {
+              text-align: center;
+              padding: 15px 20px;
+              color: #ffffff;
+            }
+            .title {
+              font-weight: 900;
+              line-height: 0.9rem;
+            }
+            .description {
+              font-weight: 300;
+              font-size: 14px;
+            }
+            pre {
+              margin: 0;
+            }
+            .color-blue {
+              color: rgba(25, 231, 217, 1);
+            }
+            .color-yellow {
+              color: #f6c431;
+            }
+            .color-gray {
+              color: #333;
+            }
+            .text-demo {
+              font-size: 64px;
+              font-weight: bold;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              flex: 1;
+              line-height: 1em;
+              padding: 1rem;
+            }
+            @media (max-width: 960px) {
+              .gallery-item {
+                min-width: 45%;
+              }
+            }
+            @media (max-width: 600px) {
+              .gallery-item {
+                min-width: 100%;
+              }
+            }
+          `}
         </style>
       </div>
     );

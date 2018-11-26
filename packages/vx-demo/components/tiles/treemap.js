@@ -5,7 +5,20 @@ import { hierarchy, stratify } from 'd3-hierarchy';
 import { shakespeare } from '@vx/mock-data';
 import { treemapSquarify } from 'd3-hierarchy';
 import { scaleLinear } from '@vx/scale';
-import { interpolateRgb } from 'd3-interpolate';
+
+const blue = '#0373d9';
+const green = '#00ff70';
+const bg = '#3436b8';
+
+const colorScale = scaleLinear({
+  domain: [0, Math.max(...shakespeare.map(d => d.size || 0))],
+  range: [blue, green]
+});
+
+const data = stratify()
+  .id(d => d.id)
+  .parentId(d => d.parent)(shakespeare)
+  .sum(d => d.size || 0);
 
 export default ({
   width,
@@ -19,54 +32,49 @@ export default ({
   }
 }) => {
   if (width < 10) return null;
-  const color = scaleLinear({
-    domain: [0, Math.max(...shakespeare.map(d => d.size || 0))],
-    range: ['#0373d9', '#00ff70']
-  });
-  const nodes = stratify()
-    .id(d => d.id)
-    .parentId(d => d.parent)(shakespeare)
-    .sum(d => d.size || 0);
-  const data = hierarchy(nodes).sort((a, b) => b.value - a.value);
+
+  const yMax = height - margin.top - margin.bottom;
+  const root = hierarchy(data).sort((a, b) => b.value - a.value);
+
   return (
     <svg width={width} height={height}>
-      <rect width={width} height={height} rx={14} fill="#3436b8" />
+      <rect width={width} height={height} rx={14} fill={bg} />
       <Treemap
         top={margin.top}
-        root={data}
-        size={[width, height - margin.top - margin.bottom]}
+        root={root}
+        size={[width, yMax]}
         tile={treemapSquarify}
         round={true}
       >
-        {({ data }) => {
+        {treemap => {
+          const nodes = treemap.descendants().reverse();
           return (
             <Group>
-              {data
-                .descendants()
-                .reverse()
-                .map((node, i) => (
-                  <Group top={node.y0} left={node.x0} key={`node-${i}`}>
+              {nodes.map((node, i) => {
+                const width = node.x1 - node.x0;
+                const height = node.y1 - node.y0;
+                return (
+                  <Group key={`node-${i}`} top={node.y0} left={node.x0}>
                     {node.depth == 1 && (
                       <rect
-                        id={`rect-${i}`}
-                        width={node.x1 - node.x0}
-                        height={node.y1 - node.y0}
-                        fill={'transparent'}
-                        stroke={'#3436b8'}
+                        width={width}
+                        height={height}
+                        stroke={bg}
                         strokeWidth={4}
+                        fill={'transparent'}
                       />
                     )}
                     {node.depth > 2 && (
                       <rect
-                        id={`rect-${i}`}
-                        width={node.x1 - node.x0}
-                        height={node.y1 - node.y0}
-                        fill={color(node.value)}
-                        stroke={'#3436b8'}
+                        width={width}
+                        height={height}
+                        stroke={bg}
+                        fill={colorScale(node.value)}
                       />
                     )}
                   </Group>
-                ))}
+                );
+              })}
             </Group>
           );
         }}

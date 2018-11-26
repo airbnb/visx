@@ -35,7 +35,8 @@
   "homepage": "https://github.com/hshoff/vx#readme",
   "dependencies": {
     "@vx/group": "0.0.170",
-    "classnames": "^2.2.5"
+    "classnames": "^2.2.5",
+    "prop-types": "^15.5.10"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

@@ -2,21 +2,19 @@ import React from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import { Point } from '@vx/point';
-import additionalProps from '../util/additionalProps';
 
 Line.propTypes = {
-  innerRef: PropTypes.func
+  className: PropTypes.string,
+  innerRef: PropTypes.func,
+  from: PropTypes.shape({ x: PropTypes.number, y: PropTypes.number }),
+  to: PropTypes.shape({ x: PropTypes.number, y: PropTypes.number })
 };
 
 export default function Line({
   from = new Point({ x: 0, y: 0 }),
   to = new Point({ x: 1, y: 1 }),
-  stroke = 'black',
-  strokeWidth = 1,
-  strokeDasharray = '',
-  transform = '',
+  fill = 'transparent',
   className = '',
-  data,
   innerRef,
   ...restProps
 }) {
@@ -28,11 +26,8 @@ export default function Line({
       y1={from.y}
       x2={to.x}
       y2={to.y}
-      stroke={stroke}
-      strokeWidth={strokeWidth}
-      strokeDasharray={strokeDasharray}
-      transform={transform}
-      {...additionalProps(restProps, data)}
+      fill={fill}
+      {...restProps}
     />
   );
 }

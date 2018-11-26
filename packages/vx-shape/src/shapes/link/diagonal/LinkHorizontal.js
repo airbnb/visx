@@ -2,7 +2,6 @@ import React from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import { linkHorizontal } from 'd3-shape';
-import additionalProps from '../../../util/additionalProps';
 
 export function pathHorizontalDiagonal({ source, target, x, y }) {
   return data => {
@@ -21,7 +20,8 @@ LinkHorizontal.propTypes = {
   y: PropTypes.func,
   source: PropTypes.func,
   target: PropTypes.func,
-  path: PropTypes.func
+  path: PropTypes.func,
+  children: PropTypes.func
 };
 
 export default function LinkHorizontal({
@@ -33,15 +33,17 @@ export default function LinkHorizontal({
   y = d => d.x,
   source = d => d.source,
   target = d => d.target,
+  children,
   ...restProps
 }) {
   path = path || pathHorizontalDiagonal({ source, target, x, y });
+  if (children) return children({ path });
   return (
     <path
       ref={innerRef}
-      className={cx('vx-link-horizontal', className)}
+      className={cx('vx-link vx-link-horizontal-diagonal', className)}
       d={path(data)}
-      {...additionalProps(restProps, data)}
+      {...restProps}
     />
   );
 }

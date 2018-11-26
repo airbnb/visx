@@ -25,7 +25,8 @@ Legend.propTypes = {
   shape: PropTypes.any,
   shapeStyle: PropTypes.any,
   labelFormat: PropTypes.func,
-  labelTransform: PropTypes.func
+  labelTransform: PropTypes.func,
+  children: PropTypes.func
 };
 
 const defaultStyle = {
@@ -52,10 +53,12 @@ export default function Legend({
   itemMargin = '0',
   direction = 'column',
   itemDirection = 'row',
+  children,
   ...restProps
 }) {
   domain = domain || scale.domain();
   const labels = domain.map(labelTransform({ scale, labelFormat }));
+  if (children) return children(labels);
   return (
     <div
       className={cx('vx-legend', className)}

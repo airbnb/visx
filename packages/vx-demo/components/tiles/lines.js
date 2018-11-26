@@ -42,13 +42,11 @@ export default ({ width, height }) => {
       {xMax > 8 &&
         series.map((d, i) => {
           return (
-            <Group key={`lines-${i}`} top={i * yMax / 2}>
+            <Group key={`lines-${i}`} top={(i * yMax) / 2}>
               <LinePath
                 data={d}
-                xScale={xScale}
-                yScale={yScale}
-                x={x}
-                y={y}
+                x={d => xScale(x(d))}
+                y={d => yScale(y(d))}
                 stroke={'#ffffff'}
                 strokeWidth={1}
                 curve={i % 2 == 0 ? curveMonotoneX : undefined}

@@ -1,7 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
-import additionalProps from '../../../util/additionalProps';
 
 export function pathRadialStep({ source, target, x, y }) {
   return data => {
@@ -38,7 +37,8 @@ LinkRadialStep.propTypes = {
   y: PropTypes.func,
   source: PropTypes.func,
   target: PropTypes.func,
-  path: PropTypes.func
+  path: PropTypes.func,
+  children: PropTypes.func
 };
 
 export default function LinkRadialStep({
@@ -50,15 +50,17 @@ export default function LinkRadialStep({
   y = d => d.y,
   source = d => d.source,
   target = d => d.target,
+  children,
   ...restProps
 }) {
   path = path || pathRadialStep({ source, target, x, y });
+  if (children) return children({ path });
   return (
     <path
       ref={innerRef}
-      className={cx('vx-link', className)}
+      className={cx('vx-link vx-link-radial-step', className)}
       d={path(data)}
-      {...additionalProps(restProps, data)}
+      {...restProps}
     />
   );
 }

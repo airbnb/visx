@@ -5,9 +5,9 @@ import { curveBasis } from '@vx/curve';
 import { GradientOrangeRed } from '@vx/gradient';
 import { genDateValue } from '@vx/mock-data';
 import { AxisLeft, AxisRight, AxisBottom } from '@vx/axis';
-import { AreaClosed, LinePath, Line } from '@vx/shape';
+import { Area, LinePath, Line } from '@vx/shape';
 import { scaleTime, scaleLinear } from '@vx/scale';
-import { extent, max } from 'd3-array';
+import { extent } from 'd3-array';
 
 const data = genDateValue(20);
 
@@ -42,13 +42,9 @@ export default ({ width, height, margin }) => {
   });
   const yScale = scaleLinear({
     range: [yMax, 0],
-    domain: [0, max(data, y)],
+    domain: [0, Math.max(...data.map(y))],
     nice: true
   });
-
-  // scale tick formats
-  const yFormat = yScale.tickFormat ? yScale.tickFormat() : identity;
-  const xFormat = xScale.tickFormat ? xScale.tickFormat() : identity;
 
   return (
     <svg width={width} height={height}>
@@ -66,12 +62,11 @@ export default ({ width, height, margin }) => {
         numTicksColumns={numTicksForWidth(width)}
       />
       <Group top={margin.top} left={margin.left}>
-        <AreaClosed
+        <Area
           data={data}
-          xScale={xScale}
-          yScale={yScale}
-          x={x}
-          y={y}
+          x={d => xScale(x(d))}
+          y0={d => yScale.range()[0]}
+          y1={d => yScale(y(d))}
           strokeWidth={2}
           stroke={'transparent'}
           fill={'url(#linear)'}
@@ -79,10 +74,8 @@ export default ({ width, height, margin }) => {
         />
         <LinePath
           data={data}
-          xScale={xScale}
-          yScale={yScale}
-          x={x}
-          y={y}
+          x={d => xScale(x(d))}
+          y={d => yScale(y(d))}
           stroke={"url('#linear')"}
           strokeWidth={2}
           curve={curveBasis}
@@ -147,16 +140,16 @@ export default ({ width, height, margin }) => {
           numTicks={numTicksForWidth(width)}
           label="Time"
         >
-          {props => {
+          {axis => {
             const tickLabelSize = 10;
             const tickRotate = 45;
             const tickColor = '#8e205f';
-            const axisCenter = (props.axisToPoint.x - props.axisFromPoint.x) / 2;
+            const axisCenter = (axis.axisToPoint.x - axis.axisFromPoint.x) / 2;
             return (
               <g className="my-custom-bottom-axis">
-                {props.ticks.map((tick, i) => {
+                {axis.ticks.map((tick, i) => {
                   const tickX = tick.to.x;
-                  const tickY = tick.to.y + tickLabelSize + props.tickLength;
+                  const tickY = tick.to.y + tickLabelSize + axis.tickLength;
                   return (
                     <Group key={`vx-tick-${tick.value}-${i}`} className={'vx-axis-tick'}>
                       <Line from={tick.from} to={tick.to} stroke={tickColor} />
@@ -172,7 +165,7 @@ export default ({ width, height, margin }) => {
                   );
                 })}
                 <text textAnchor="middle" transform={`translate(${axisCenter}, 50)`} fontSize="8">
-                  {props.label}
+                  {axis.label}
                 </text>
               </g>
             );

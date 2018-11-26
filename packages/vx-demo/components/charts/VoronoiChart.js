@@ -1,14 +1,17 @@
 import React from 'react';
-import { extent } from 'd3-array';
 import { Group } from '@vx/group';
 import { GradientOrangeRed, GradientPinkRed } from '@vx/gradient';
 import { RectClipPath } from '@vx/clip-path';
 import { scaleLinear } from '@vx/scale';
-import { getCoordsFromEvent } from '@vx/brush';
-
+import { localPoint } from '@vx/event';
 import { voronoi, VoronoiPolygon } from '@vx/voronoi';
 
 const neighborRadius = 75;
+
+const extent = (data, value = d => d) => [
+  Math.min(...data.map(value)),
+  Math.max(...data.map(value))
+];
 
 const data = Array(200)
   .fill(null)
@@ -68,13 +71,12 @@ class VoronoiChart extends React.PureComponent {
 
   handleMouseMove(event) {
     const { voronoiDiagram } = this.state;
-    const { x, y } = getCoordsFromEvent(this.svg, event);
+    const { x, y } = localPoint(this.svg, event);
     const closest = voronoiDiagram.find(x, y, neighborRadius);
     if (closest) {
       const neighbors = {};
       const cell = voronoiDiagram.cells[closest.index];
       cell.halfedges.forEach(index => {
-        debugger;
         const edge = voronoiDiagram.edges[index];
         const { left, right } = edge;
         if (left && left !== closest) neighbors[left.data.id] = true;
@@ -109,6 +111,7 @@ class VoronoiChart extends React.PureComponent {
       >
         <GradientOrangeRed id="voronoi_orange_red" />
         <GradientPinkRed id="voronoi_pink_red" />
+        <rect fill="url(#voronoi_pink_red)" width={innerWidth} height={innerHeight} rx={14} />
         <RectClipPath id="voronoi_clip" width={innerWidth} height={innerHeight} rx={14} />
         <Group
           top={margin.top}
@@ -123,14 +126,14 @@ class VoronoiChart extends React.PureComponent {
             <VoronoiPolygon
               key={`polygon-${polygon.data.id}`}
               polygon={polygon}
-              fill={d =>
-                selected && (d.id === selected.data.id || neighbors[d.id])
+              stroke="#fff"
+              strokeWidth={1}
+              fill={
+                selected && (polygon.data.id === selected.data.id || neighbors[polygon.data.id])
                   ? 'url(#voronoi_orange_red)'
                   : 'url(#voronoi_pink_red)'
               }
-              fillOpacity={d => (neighbors && neighbors[d.id] ? 0.4 : 1)}
-              stroke="#fff"
-              strokeWidth={1}
+              fillOpacity={neighbors && neighbors[polygon.data.id] ? 0.4 : 1}
             />
           ))}
           {data.map(d => (
