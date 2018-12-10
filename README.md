@@ -186,6 +186,9 @@ Lots coming soon, check out the [roadmap](./ROADMAP.md).
 - Code Coverage Dashboard by [@ezy](https://github.com/ezy)
 ([Demo](https://codecov-dash.herokuapp.com/))
 ([Github](https://github.com/ezy/code-coverage-dashboard))
+- Ethereum Portfolio Toolkit by [@JayWelsh](https://github.com/JayWelsh)
+([Demo](https://cryptocape.com/))
+([Github](https://github.com/JayWelsh/CryptoCape))
 - Have a project that's using vx? Open a pull request and we'll add it to the list.
 
 ## FAQ
