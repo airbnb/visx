@@ -63,6 +63,9 @@ function TooltipWithBounds({
         : top + offsetTop;
   }
 
+  left = Math.round(left);
+  top = Math.round(top);
+
   return (
     <Tooltip
       style={{ top: 0, transform: `translate(${left}px, ${top}px)`, ...style }}
