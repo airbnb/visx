@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.182](#v00182)
 - [v0.0.181](#v00181)
 - [v0.0.180](#v00180)
 - [v0.0.179](#v00179)
@@ -72,6 +73,65 @@
 </details>
 
 ------
+
+# v0.0.182
+
+#### :bug: Bug Fix
+
+- [tooltip] fractional pixel values can sometimes lead to shaky rendering when using Firefox. [#389](https://github.com/hshoff/vx/pull/389)
+
+#### :memo: Documentation
+
+- [gallery] add `<BarStackHorizontal />` example code back. [#387](https://github.com/hshoff/vx/pull/387)
+- [readme] add a new demo of a project using vx components. [#391](https://github.com/hshoff/vx/pull/391)
+
+#### :house: Internal
+
+- [internal] upgrade to [babel@7](https://babeljs.io/docs/en/v7-migration.html). [#387](https://github.com/hshoff/vx/pull/387)
+
+#### :trophy: Contributors
+
+- [abradley](https://github.com/abradley)
+- [JayWelsh](https://github.com/JayWelsh)
+- [hshoff](https://github.com/hshoff)
+
+```
+Changes:
+ - @vx/annotation: 0.0.181 => 0.0.182
+ - @vx/axis: 0.0.181 => 0.0.182
+ - @vx/bounds: 0.0.165 => 0.0.182
+ - @vx/boxplot: 0.0.181 => 0.0.182
+ - @vx/brush: 0.0.179 => 0.0.182
+ - @vx/chord: 0.0.166 => 0.0.182
+ - @vx/clip-path: 0.0.165 => 0.0.182
+ - @vx/curve: 0.0.165 => 0.0.182
+ - @vx/demo: 0.0.181 => 0.0.182
+ - @vx/drag: 0.0.179 => 0.0.182
+ - @vx/event: 0.0.179 => 0.0.182
+ - @vx/geo: 0.0.181 => 0.0.182
+ - @vx/glyph: 0.0.181 => 0.0.182
+ - @vx/gradient: 0.0.165 => 0.0.182
+ - @vx/grid: 0.0.181 => 0.0.182
+ - @vx/group: 0.0.170 => 0.0.182
+ - @vx/heatmap: 0.0.181 => 0.0.182
+ - @vx/hierarchy: 0.0.181 => 0.0.182
+ - @vx/legend: 0.0.181 => 0.0.182
+ - @vx/marker: 0.0.181 => 0.0.182
+ - @vx/mock-data: 0.0.179 => 0.0.182
+ - @vx/network: 0.0.179 => 0.0.182
+ - @vx/pattern: 0.0.179 => 0.0.182
+ - @vx/point: 0.0.165 => 0.0.182
+ - @vx/responsive: 0.0.179 => 0.0.182
+ - @vx/scale: 0.0.179 => 0.0.182
+ - @vx/shape: 0.0.181 => 0.0.182
+ - @vx/stats: 0.0.181 => 0.0.182
+ - @vx/text: 0.0.179 => 0.0.182
+ - @vx/threshold: 0.0.181 => 0.0.182
+ - @vx/tooltip: 0.0.179 => 0.0.182
+ - @vx/voronoi: 0.0.181 => 0.0.182
+ - @vx/vx: 0.0.181 => 0.0.182
+ - @vx/zoom: 0.0.165 => 0.0.182
+```
 
 # v0.0.181
 
