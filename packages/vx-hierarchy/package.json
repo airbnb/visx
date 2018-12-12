@@ -1,6 +1,6 @@
 {
   "name": "@vx/hierarchy",
-  "version": "0.0.181",
+  "version": "0.0.182",
   "description": "vx tree",
   "sideEffects": false,
   "main": "dist/vx-hierarchy.umd.js",
@@ -76,7 +76,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@vx/group": "0.0.170",
+    "@vx/group": "0.0.182",
     "classnames": "^2.2.5",
     "d3-hierarchy": "^1.1.4",
     "prop-types": "^15.6.1"

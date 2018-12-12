@@ -1,6 +1,6 @@
 {
   "name": "@vx/marker",
-  "version": "0.0.181",
+  "version": "0.0.182",
   "description": "vx marker",
   "sideEffects": false,
   "main": "dist/vx-marker.umd.js",
@@ -73,8 +73,8 @@
     "rollup-plugin-uglify": "^4.0.0"
   },
   "dependencies": {
-    "@vx/group": "0.0.170",
-    "@vx/shape": "0.0.181",
+    "@vx/group": "0.0.182",
+    "@vx/shape": "0.0.182",
     "classnames": "^2.2.5",
     "prop-types": "^15.6.2"
   },

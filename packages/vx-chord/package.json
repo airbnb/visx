@@ -1,6 +1,6 @@
 {
   "name": "@vx/chord",
-  "version": "0.0.166",
+  "version": "0.0.182",
   "description": "vx group",
   "sideEffects": false,
   "main": "dist/vx-chord.umd.js",

@@ -1,6 +1,6 @@
 {
   "name": "@vx/network",
-  "version": "0.0.179",
+  "version": "0.0.182",
   "description": "vx network",
   "sideEffects": false,
   "main": "dist/vx-network.umd.js",
@@ -65,7 +65,7 @@
     "rollup-plugin-uglify": "^4.0.0"
   },
   "dependencies": {
-    "@vx/group": "0.0.170",
+    "@vx/group": "0.0.182",
     "classnames": "^2.2.5",
     "d3-force": "^1.0.6",
     "prop-types": "^15.6.2"

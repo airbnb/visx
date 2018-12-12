@@ -1,6 +1,6 @@
 {
   "name": "@vx/stats",
-  "version": "0.0.181",
+  "version": "0.0.182",
   "description": "vx stats box violin",
   "sideEffects": false,
   "main": "dist/vx-stats.umd.js",
@@ -34,8 +34,8 @@
   },
   "homepage": "https://github.com/hshoff/vx#readme",
   "dependencies": {
-    "@vx/group": "0.0.170",
-    "@vx/scale": "0.0.179",
+    "@vx/group": "0.0.182",
+    "@vx/scale": "0.0.182",
     "classnames": "^2.2.5",
     "d3-shape": "^1.2.0",
     "prop-types": "^15.5.10"

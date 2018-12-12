@@ -1,6 +1,6 @@
 {
   "name": "@vx/event",
-  "version": "0.0.179",
+  "version": "0.0.182",
   "description": "vx event",
   "sideEffects": false,
   "main": "dist/vx-event.umd.js",
@@ -76,7 +76,7 @@
     "rollup-plugin-uglify": "^4.0.0"
   },
   "dependencies": {
-    "@vx/point": "0.0.165"
+    "@vx/point": "0.0.182"
   },
   "jest": {
     "setupFiles": [

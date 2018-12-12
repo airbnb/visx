@@ -1,6 +1,6 @@
 {
   "name": "@vx/tooltip",
-  "version": "0.0.179",
+  "version": "0.0.182",
   "description": "vx tooltip",
   "sideEffects": false,
   "main": "dist/vx-tooltip.umd.js",
@@ -34,7 +34,7 @@
   },
   "homepage": "https://github.com/hshoff/vx#readme",
   "dependencies": {
-    "@vx/bounds": "0.0.165",
+    "@vx/bounds": "0.0.182",
     "classnames": "^2.2.5",
     "prop-types": "^15.5.10"
   },

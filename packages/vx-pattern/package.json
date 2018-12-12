@@ -1,6 +1,6 @@
 {
   "name": "@vx/pattern",
-  "version": "0.0.179",
+  "version": "0.0.182",
   "description": "vx pattern",
   "sideEffects": false,
   "main": "dist/vx-pattern.umd.js",
