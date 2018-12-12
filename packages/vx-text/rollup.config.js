@@ -32,6 +32,9 @@ const globals = deps.reduce((o, name) => {
   if (name === 'lodash') {
     o[name] = 'lodash';
   }
+  if (name === 'reduce-css-calc') {
+    o[name] = 'reduceCSSCalc';
+  }
   return o;
 }, {});
 export default [
@@ -41,8 +44,7 @@ export default [
     plugins: [
       resolve(),
       babel({
-        exclude: 'node_modules/**',
-        plugins: ['lodash', 'external-helpers']
+        exclude: 'node_modules/**'
       }),
       commonjs(),
       replace({
@@ -64,8 +66,7 @@ export default [
     plugins: [
       resolve(),
       babel({
-        exclude: 'node_modules/**',
-        plugins: ['lodash', 'external-helpers']
+        exclude: 'node_modules/**'
       }),
       commonjs(),
       replace({

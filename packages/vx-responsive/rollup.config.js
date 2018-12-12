@@ -32,6 +32,9 @@ const globals = deps.reduce((o, name) => {
   if (name === 'lodash') {
     o[name] = 'lodash';
   }
+  if (name === 'resize-observer-polyfill') {
+    o[name] = 'ResizeObserver';
+  }
   return o;
 }, {});
 
@@ -42,8 +45,7 @@ export default [
     plugins: [
       resolve(),
       babel({
-        exclude: 'node_modules/**',
-        plugins: ['lodash', 'external-helpers']
+        exclude: 'node_modules/**'
       }),
       commonjs(),
       replace({
@@ -65,8 +67,7 @@ export default [
     plugins: [
       resolve(),
       babel({
-        exclude: 'node_modules/**',
-        plugins: ['lodash', 'external-helpers']
+        exclude: 'node_modules/**'
       }),
       commonjs(),
       replace({

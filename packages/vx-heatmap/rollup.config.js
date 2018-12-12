@@ -38,8 +38,7 @@ export default [
     plugins: [
       resolve(),
       babel({
-        exclude: 'node_modules/**',
-        plugins: ['external-helpers']
+        exclude: 'node_modules/**'
       }),
       replace({
         ENV: JSON.stringify('production')
@@ -60,8 +59,7 @@ export default [
     plugins: [
       resolve(),
       babel({
-        exclude: 'node_modules/**',
-        plugins: ['external-helpers']
+        exclude: 'node_modules/**'
       }),
       replace({
         ENV: JSON.stringify('production')

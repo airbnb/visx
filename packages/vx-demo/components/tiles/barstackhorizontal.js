@@ -7,8 +7,6 @@ import { scaleBand, scaleLinear, scaleOrdinal } from '@vx/scale';
 import { timeParse, timeFormat } from 'd3-time-format';
 import { withTooltip, Tooltip } from '@vx/tooltip';
 import { LegendOrdinal } from '@vx/legend';
-import { max } from 'd3-array';
-import barstack from './barstack';
 
 const purple1 = '#6c5efb';
 const purple2 = '#c998ff';
