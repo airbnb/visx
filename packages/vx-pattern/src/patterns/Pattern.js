@@ -1,6 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+Pattern.propTypes = {
+  id: PropTypes.string.isRequired,
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired
+};
+
 export default function Pattern({ id, width, height, children }) {
   return (
     <defs>
@@ -10,10 +17,3 @@ export default function Pattern({ id, width, height, children }) {
     </defs>
   );
 }
-
-Pattern.propTypes = {
-  id: PropTypes.string.isRequired,
-  width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired,
-  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired
-};

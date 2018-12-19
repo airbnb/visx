@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import { Group } from '@vx/group';
 
 Glyph.propTypes = {
-  top: PropTypes.number,
-  left: PropTypes.number,
+  children: PropTypes.any,
   className: PropTypes.string,
-  children: PropTypes.any
+  top: PropTypes.number,
+  left: PropTypes.number
 };
 
 export default function Glyph({ top = 0, left = 0, className, children }) {

@@ -7,6 +7,13 @@ Graticule.propTypes = {
   graticule: PropTypes.func,
   lines: PropTypes.func,
   outline: PropTypes.func,
+  extent: PropTypes.array,
+  extentMajor: PropTypes.array,
+  extentMinor: PropTypes.array,
+  step: PropTypes.array,
+  stepMajor: PropTypes.array,
+  stepMinor: PropTypes.array,
+  precision: PropTypes.number,
   children: PropTypes.func
 };
 

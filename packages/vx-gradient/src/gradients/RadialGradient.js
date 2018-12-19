@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 RadialGradient.propTypes = {
+  children: PropTypes.func,
   id: PropTypes.string.isRequired,
   from: PropTypes.string,
   to: PropTypes.string,

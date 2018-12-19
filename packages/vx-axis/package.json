@@ -39,7 +39,7 @@
     "@vx/shape": "0.0.182",
     "@vx/text": "0.0.182",
     "classnames": "^2.2.5",
-    "prop-types": "^15.6.0"
+    "prop-types": "^15.6.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",

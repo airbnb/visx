@@ -3,6 +3,21 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Pattern from './Pattern';
 
+PatternPath.propTypes = {
+  id: PropTypes.string.isRequired,
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  path: PropTypes.string,
+  fill: PropTypes.string,
+  className: PropTypes.string,
+  background: PropTypes.string,
+  stroke: PropTypes.string,
+  strokeWidth: PropTypes.number,
+  strokeDasharray: PropTypes.string,
+  strokeLinecap: PropTypes.string,
+  shapeRendering: PropTypes.string
+};
+
 export default function PatternPath({
   id,
   width,
@@ -33,18 +48,3 @@ export default function PatternPath({
     </Pattern>
   );
 }
-
-PatternPath.propTypes = {
-  id: PropTypes.string.isRequired,
-  width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired,
-  path: PropTypes.string,
-  fill: PropTypes.string,
-  className: PropTypes.string,
-  background: PropTypes.string,
-  stroke: PropTypes.string,
-  strokeWidth: PropTypes.number,
-  strokeDasharray: PropTypes.string,
-  strokeLinecap: PropTypes.string,
-  shapeRendering: PropTypes.string
-};

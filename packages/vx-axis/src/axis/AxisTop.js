@@ -4,7 +4,7 @@ import cx from 'classnames';
 import Axis from './Axis';
 import ORIENT from '../constants/orientation';
 
-const propTypes = {
+AxisTop.propTypes = {
   axisClassName: PropTypes.string,
   axisLineClassName: PropTypes.string,
   hideAxisLine: PropTypes.bool,
@@ -99,5 +99,3 @@ export default function AxisTop({
     />
   );
 }
-
-AxisTop.propTypes = propTypes;

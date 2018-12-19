@@ -26,6 +26,20 @@ function pathForOrientation({ height, orientation }) {
   return path;
 }
 
+PatternLines.propTypes = {
+  id: PropTypes.string.isRequired,
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  background: PropTypes.string,
+  stroke: PropTypes.string.isRequired,
+  strokeWidth: PropTypes.number.isRequired,
+  strokeDasharray: PropTypes.string,
+  className: PropTypes.string,
+  strokeLinecap: PropTypes.string,
+  shapeRendering: PropTypes.string,
+  orientation: PropTypes.array
+};
+
 export default function PatternLines({
   id,
   width,
@@ -68,17 +82,3 @@ export default function PatternLines({
     </Pattern>
   );
 }
-
-PatternLines.propTypes = {
-  id: PropTypes.string.isRequired,
-  width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired,
-  background: PropTypes.string,
-  stroke: PropTypes.string.isRequired,
-  strokeWidth: PropTypes.number.isRequired,
-  strokeDasharray: PropTypes.string,
-  className: PropTypes.string,
-  strokeLinecap: PropTypes.string,
-  shapeRendering: PropTypes.string,
-  orientation: PropTypes.array
-};

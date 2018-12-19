@@ -2,18 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 LinearGradient.propTypes = {
+  children: PropTypes.func,
   id: PropTypes.string.isRequired,
   from: PropTypes.string,
   to: PropTypes.string,
   x1: PropTypes.string,
   y1: PropTypes.string,
+  x2: PropTypes.string,
   y2: PropTypes.string,
   fromOffset: PropTypes.string,
   fromOpacity: PropTypes.number,
   toOffset: PropTypes.string,
   toOpacity: PropTypes.number,
   rotate: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  transform: PropTypes.string
+  transform: PropTypes.string,
+  vertical: PropTypes.bool
 };
 
 export default function LinearGradient({

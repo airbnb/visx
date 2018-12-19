@@ -1,15 +1,23 @@
 import React from 'react';
 import cx from 'classnames';
+import PropTypes from 'prop-types';
 
-export default props => {
-  const {
-    brush,
-    className,
-    fill = 'rgba(102, 181, 245, 0.1)',
-    stroke = 'rgba(102, 181, 245, 1)',
-    strokeWidth = 1,
-    ...otherProps
-  } = props;
+BoxPlot.propTypes = {
+  brush: PropTypes.object,
+  className: PropTypes.string,
+  fill: PropTypes.string,
+  stroke: PropTypes.string,
+  strokeWidth: PropTypes.number
+};
+
+export default function BoxPlot({
+  brush,
+  className,
+  fill = 'rgba(102, 181, 245, 0.1)',
+  stroke = 'rgba(102, 181, 245, 1)',
+  strokeWidth = 1,
+  ...otherProps
+}) {
   const { start, end, isBrushing } = brush;
   if (!start) return null;
   if (!end) return null;
@@ -33,4 +41,4 @@ export default props => {
       )}
     </g>
   );
-};
+}

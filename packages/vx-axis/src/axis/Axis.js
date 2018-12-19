@@ -10,7 +10,7 @@ import identity from '../utils/identity';
 import getLabelTransform from '../utils/labelTransform';
 import ORIENT from '../constants/orientation';
 
-const propTypes = {
+Axis.propTypes = {
   axisClassName: PropTypes.string,
   axisLineClassName: PropTypes.string,
   hideAxisLine: PropTypes.bool,
@@ -216,5 +216,3 @@ export default function Axis({
     </Group>
   );
 }
-
-Axis.propTypes = propTypes;

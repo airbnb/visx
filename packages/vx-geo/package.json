@@ -38,7 +38,7 @@
     "@vx/group": "0.0.182",
     "classnames": "^2.2.5",
     "d3-geo": "^1.6.4",
-    "prop-types": "^15.5.10"
+    "prop-types": "^15.6.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",

@@ -2,6 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Legend from './Legend';
 
+LegendSize.propTypes = {
+  scale: PropTypes.func.isRequired,
+  domain: PropTypes.array,
+  steps: PropTypes.number,
+  labelFormat: PropTypes.func,
+  labelTransform: PropTypes.func
+};
+
 export default function LegendSize({
   scale,
   domain,

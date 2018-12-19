@@ -84,5 +84,8 @@
       "raf/polyfill",
       "<rootDir>/test/enzyme-setup.js"
     ]
+  },
+  "dependencies": {
+    "prop-types": "^15.6.2"
   }
 }

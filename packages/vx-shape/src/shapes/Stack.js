@@ -18,7 +18,6 @@ Stack.propTypes = {
   x: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
   x0: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
   x1: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
-  y: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
   y0: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
   y1: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
   value: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
