@@ -11,38 +11,50 @@ class Text extends Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.updateWordsByLines(this.props, true);
   }
 
-  componentWillReceiveProps(nextProps) {
-    const needCalculate =
-      this.props.children !== nextProps.children || this.props.style !== nextProps.style;
-    this.updateWordsByLines(nextProps, needCalculate);
+  componentDidUpdate(nextProps) {
+    const { width, scaleToFit, children } = this.props;
+
+    if (width || scaleToFit) {
+      if (width === nextProps.width && scaleToFit === nextProps.scaleToFit) {
+        return;
+      }
+
+      const needCalculate =
+        this.props.children !== nextProps.children || this.props.style !== nextProps.style;
+
+      this.updateWordsByLines(nextProps, needCalculate);
+
+      return;
+    }
+
+    if (nextProps.children === children) {
+      return;
+    }
+
+    this.updateWordsWithoutCalculate(nextProps);
   }
 
   updateWordsByLines(props, needCalculate) {
-    // Only perform calculations if using features that require them (multiline, scaleToFit)
-    if (props.width || props.scaleToFit) {
-      if (needCalculate) {
-        const words = props.children ? props.children.toString().split(/\s+/) : [];
+    if (needCalculate) {
+      const words = props.children ? props.children.toString().split(/\s+/) : [];
 
-        this.wordsWithComputedWidth = words.map(word => ({
-          word,
-          width: getStringWidth(word, props.style)
-        }));
-        this.spaceWidth = getStringWidth('\u00A0', props.style);
-      }
-
-      const wordsByLines = this.calculateWordsByLines(
-        this.wordsWithComputedWidth,
-        this.spaceWidth,
-        props.width
-      );
-      this.setState({ wordsByLines });
-    } else {
-      this.updateWordsWithoutCalculate(props);
+      this.wordsWithComputedWidth = words.map(word => ({
+        word,
+        width: getStringWidth(word, props.style)
+      }));
+      this.spaceWidth = getStringWidth('\u00A0', props.style);
     }
+
+    const wordsByLines = this.calculateWordsByLines(
+      this.wordsWithComputedWidth,
+      this.spaceWidth,
+      props.width
+    );
+    this.setState({ wordsByLines });
   }
 
   updateWordsWithoutCalculate(props) {
