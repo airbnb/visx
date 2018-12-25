@@ -7,18 +7,21 @@ class Text extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      wordsByLines: []
+      wordsByLines: [],
+      firstRender: true
     };
   }
 
-  componentWillMount() {
-    this.updateWordsByLines(this.props, true);
-  }
+  componentDidUpdate(prevProps) {
+    if (prevProps === this.props) {
+      return;
+    }
 
-  componentWillReceiveProps(nextProps) {
     const needCalculate =
-      this.props.children !== nextProps.children || this.props.style !== nextProps.style;
-    this.updateWordsByLines(nextProps, needCalculate);
+      this.props.children !== prevProps.children || this.props.style !== prevProps.style;
+    const wordsByLines = this.updateWordsByLines(prevProps, needCalculate);
+
+    this.setState({ wordsByLines, firstRender: false });
   }
 
   updateWordsByLines(props, needCalculate) {
@@ -31,6 +34,7 @@ class Text extends Component {
           word,
           width: getStringWidth(word, props.style)
         }));
+
         this.spaceWidth = getStringWidth('\u00A0', props.style);
       }
 
@@ -39,15 +43,16 @@ class Text extends Component {
         this.spaceWidth,
         props.width
       );
-      this.setState({ wordsByLines });
-    } else {
-      this.updateWordsWithoutCalculate(props);
+
+      return wordsByLines;
     }
+      return this.updateWordsWithoutCalculate(props);
   }
 
   updateWordsWithoutCalculate(props) {
     const words = props.children ? props.children.toString().split(/\s+/) : [];
-    this.setState({ wordsByLines: [{ words }] });
+
+    return { wordsByLines: [{ words }] };
   }
 
   calculateWordsByLines(wordsWithComputedWidth, spaceWidth, lineWidth) {
@@ -85,7 +90,9 @@ class Text extends Component {
       innerRef,
       ...textProps
     } = this.props;
-    const { wordsByLines } = this.state;
+    const wordsByLines = this.state.firstRender
+      ? this.updateWordsByLines(this.props, true)
+      : this.state.wordsByLines;
 
     const { x, y } = textProps;
 
