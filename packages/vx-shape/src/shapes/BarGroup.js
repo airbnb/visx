@@ -6,20 +6,57 @@ import objHasMethod from '../util/objHasMethod';
 import Bar from './Bar';
 
 BarGroup.propTypes = {
+  /**
+   * An array of bar group objects. Typically, this looks like:
+   * ```js
+   * const data = [{
+   *  date: value,
+   *  key1: value,
+   *  key2: value,
+   *  key3: value
+   * }, ...];
+   * const x0 = d => d.date;
+   * const keys = [key1, key2, key3];
+   * ```
+   */
   data: PropTypes.array.isRequired,
+  /**
+   * ```js
+   * x0(barGroup)
+   * ```
+   * An accessor function that returns the `x0` value for each datum in *props*.**data**.
+   */
   x0: PropTypes.func.isRequired,
   /**
-   * Positions the bar groups.
+   * ```js
+   * x0Scale(x0(barGroup))
+   * ```
+   * A scale function that returns the x position of the bar group.
    */
   x0Scale: PropTypes.func.isRequired,
   /**
-   * Position each bar in the group.
+   * ```js
+   * x1Scale(key)
+   * ```
+   * A scale function that returns the x position of the bar within a bar group.
    */
   x1Scale: PropTypes.func.isRequired,
+  /**
+   * ```js
+   * yScale(value)
+   * ```
+   * A scale function that retuns the y position of the bar within a bar group. `value` is the value of the `key` in the bar group.
+   */
   yScale: PropTypes.func.isRequired,
+  /**
+   * ```js
+   * color(key, barIndex)
+   * ```
+   * A function that returns color for each bar within a bar group.
+   */
   color: PropTypes.func.isRequired,
   /**
-   * An array of strings containing the key for each bar group.
+   * An array of strings containing the key for each bar group. Each bar within a bar group will follow the order of this array.
    */
   keys: PropTypes.array.isRequired,
   /**
@@ -39,11 +76,30 @@ BarGroup.propTypes = {
    */
   left: PropTypes.number,
   /**
-   * For more control over rendering or to add event handlers to datum, pass a function as children.
+   * A function that returns a react component. Useful for generating the bar group data with full control over what is rendered. The functions first argument will be the bar groups data as an array of objects with the following properties:
+   *
+   *  - `index<number>` - the index of the group based on *props*.**data** array.
+   *  - `x0<number>` - the position of the group based on *props*.**x0** & *props*.**x0Scale**.
+   *  - `bars<array>` - array of objects, ordered by *props*.**keys**, with the following properties:
+   *    + `index<number>` - the index of the bar for the current group.
+   *    + `key<string>` - the key of the bar.
+   *    + `width<number>` - the width of the bar. This will be `x1Scale.bandwidth()`. If `x1Scale` does not have a bandwidth property, then it becomes:
+   *      ```js
+   *      x1Range = x1Scale.range();
+   *      x1Domain = x1Scale.domain();
+   *      barWidth = Math.abs(x1Range[x1Range.length - 1] - x1Range[0]) / x1Domain.length
+   *      ```
+   *    + `height<number>` - the height of the bar.
+   *    + `x<number>` - the x position of the bar.
+   *    + `y<number>` - the y position of the bar.
+   *    + `color<string>` - the color of the bar.
    */
   children: PropTypes.func
 };
 
+/**
+ * Generates bar groups as an array of objects and renders `<rect />`s for each datum grouped by `key`.
+ */
 export default function BarGroup({
   data,
   className,

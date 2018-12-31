@@ -12,7 +12,7 @@ function generateTitle(name) {
 }
 
 function generateDesciption(description) {
-  return description + '\n';
+  return description + '\n\n';
 }
 
 function generatePropType(type) {
@@ -34,16 +34,16 @@ function generatePropType(type) {
 }
 
 function generatePropDefaultValue(value) {
-  return '`default: ' + value.value + '`';
+  return `\n\nDefault:\n\`\`\`js\n${value.value}\n\`\`\`\n`;
 }
 
 function generateProp(propName, prop, name) {
-  const anchor = `\"#${name}__${propName}\"`;
+  const anchor = `${name}__${propName}`;
   return (
-    `<a name=${anchor} href=${anchor}>#</a> ` +
-    `_${name}_.__${propName}__${prop.type ? `&lt;${generatePropType(prop.type)}&gt;` : ''} ${
+    `<a name=\"${anchor}\" href=\"#${anchor}\">#</a> ` +
+    `*${name}*.**${propName}**${prop.type ? `&lt;${generatePropType(prop.type)}&gt;` : ''} ${
       prop.required ? '`required`' : ''
-    } ${prop.defaultValue ? generatePropDefaultValue(prop.defaultValue) : ''}` +
+    }${prop.defaultValue ? generatePropDefaultValue(prop.defaultValue) : ''}` +
     (prop.description ? `\n\n${prop.description}` + ' ' : ' ') +
     '\n'
   );
