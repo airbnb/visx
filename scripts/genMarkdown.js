@@ -43,8 +43,9 @@ function generateProp(propName, prop, name) {
     `<a name=\"${anchor}\" href=\"#${anchor}\">#</a> ` +
     `*${name}*.**${propName}**${prop.type ? `&lt;${generatePropType(prop.type)}&gt;` : ''} ${
       prop.required ? '`required`' : ''
-    }${prop.defaultValue ? generatePropDefaultValue(prop.defaultValue) : ''}` +
+    }` +
     (prop.description ? `\n\n${prop.description}` + ' ' : ' ') +
+    `${prop.defaultValue ? generatePropDefaultValue(prop.defaultValue) : ''}` +
     '\n'
   );
 }
