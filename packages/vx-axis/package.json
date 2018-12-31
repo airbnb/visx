@@ -13,7 +13,7 @@
     "prepublish": "npm run build",
     "test": "jest",
     "docs":
-      "rm -rf  ./docs && mkdir ./docs && cd ./docs && ../../../node_modules/.bin/react-docgen ../src/axis  | ../../../scripts/buildDocs.sh"
+      "cd ./docs && ../../../node_modules/.bin/react-docgen ../src/axis/  | ../../../scripts/buildDocs.sh"
   },
   "files": ["dist", "build"],
   "repository": {
