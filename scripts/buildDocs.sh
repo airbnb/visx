@@ -36,7 +36,7 @@ function buildDocs(api) {
   const apiDocs = md.join('\n');
   const install = fs.readFileSync(`${docPath}/install.md`, { encoding: 'utf-8' });
   const description = fs.readFileSync(`${docPath}/description.md`, { encoding: 'utf-8' });
-  const docs = [description, toc, install, "## API\n\n", apiDocs].join('\n\n');
+  const docs = [description, install, "## Components\n\n", toc, "## API\n\n", apiDocs].join('\n\n');
 
   fs.writeFileSync('api.md', apiDocs);
   process.stdout.write(' -> ' + 'api.md\n');

@@ -7,6 +7,17 @@
 Shapes are the core elements of vx. Most of what you see on the screen, like lines, bars, and areas are shapes.
 
 
+## Installation
+
+```
+npm install --save @vx/shape
+```
+
+
+## Components
+
+
+
   - [Arc](#arc-)
   - [Area](#area-)
   - [AreaClosed](#areaclosed-)
@@ -35,13 +46,6 @@ Shapes are the core elements of vx. Most of what you see on the screen, like lin
   - [LinkHorizontalStep](#linkhorizontalstep-)
   - [LinkRadialStep](#linkradialstep-)
   - [LinkVerticalStep](#linkverticalstep-)
-
-## Installation
-
-```
-npm install --save @vx/shape
-```
-
 
 ## API
 
