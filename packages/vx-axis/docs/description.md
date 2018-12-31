@@ -1,8 +1,8 @@
-# @vx/shape
+# @vx/axis
 
 <p>
-  <a title="@vx/shape npm downloads" href="https://www.npmjs.com/package/@vx/axis">
-    <img src="https://img.shields.io/npm/dm/@vx/shape.svg?style=flat-square" />
+  <a title="@vx/axis npm downloads" href="https://www.npmjs.com/package/@vx/axis">
+    <img src="https://img.shields.io/npm/dm/@vx/axis.svg?style=flat-square" />
   </a>
 </p>
 
