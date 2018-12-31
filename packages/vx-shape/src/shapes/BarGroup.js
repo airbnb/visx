@@ -64,7 +64,7 @@ BarGroup.propTypes = {
    */
   height: PropTypes.number.isRequired,
   /**
-   * Add a class name to the containing <g>.
+   * Add a class name to the containing `<g>` element.
    */
   className: PropTypes.string,
   /**
