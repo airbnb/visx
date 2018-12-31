@@ -8,15 +8,39 @@ import Bar from './Bar';
 BarGroup.propTypes = {
   data: PropTypes.array.isRequired,
   x0: PropTypes.func.isRequired,
+  /**
+   * Positions the bar groups.
+   */
   x0Scale: PropTypes.func.isRequired,
+  /**
+   * Position each bar in the group.
+   */
   x1Scale: PropTypes.func.isRequired,
   yScale: PropTypes.func.isRequired,
   color: PropTypes.func.isRequired,
+  /**
+   * An array of strings containing the key for each bar group.
+   */
   keys: PropTypes.array.isRequired,
+  /**
+   * Height is used to align the bottom of the the bars. barHeight = height - yScale(bar.value), where bar.y = yScale(bar.value).
+   */
   height: PropTypes.number.isRequired,
+  /**
+   * Add a class name to the containing <g>.
+   */
   className: PropTypes.string,
+  /**
+   * A top pixel offset applied to the entire bar group.
+   */
   top: PropTypes.number,
+  /**
+   * A left pixel offset applied to the entire bar group.
+   */
   left: PropTypes.number,
+  /**
+   * For more control over rendering or to add event handlers to datum, pass a function as children.
+   */
   children: PropTypes.func
 };
 

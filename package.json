@@ -66,6 +66,7 @@
     "prettier": "^1.12.1",
     "prettier-eslint-cli": "^4.7.1",
     "react": "^15.0.0-0 || ^16.0.0-0",
+    "react-docgen": "^2.21.0",
     "react-dom": "^15.0.0-0 || ^16.0.0-0",
     "regenerator-runtime": "^0.10.5"
   }
