@@ -1,1 +1,1 @@
-export { default as LinePathAnnotation } from './annotations/LinePath';
+export { default as LinePathAnnotation } from './annotations/LinePathAnnotation';
