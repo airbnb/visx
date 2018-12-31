@@ -23,13 +23,21 @@ process.stdin.on('end', function() {
 });
 
 function buildDocs(api) {
-  // api is an object keyed by filepath. We use the file name as component name.
+  const docPath = path.resolve(`${Object.keys(api)[0]}`, '../../../docs');
+
   const md = Object.keys(api).map(filepath => {
     var name = getComponentName(filepath);
     return generateMarkdown(name, api[filepath]);
   })
-  const docs = md.join('\n');
-  fs.writeFileSync('docs' + '.md', docs);
+
+  const apiDocs = md.join('\n');
+  const install = fs.readFileSync(`${docPath}/install.md`, { encoding: 'utf-8' });
+  const description = fs.readFileSync(`${docPath}/description.md`, { encoding: 'utf-8' });
+  const docs = [description, install, "## API\n\n", apiDocs].join('\n\n');
+
+  fs.writeFileSync('api.md', apiDocs);
+  process.stdout.write(' -> ' + 'api.md\n');
+  fs.writeFileSync('docs.md', docs);
   process.stdout.write(' -> ' + 'docs.md\n');
 }
 
