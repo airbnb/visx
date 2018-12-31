@@ -99,6 +99,8 @@ BarGroup.propTypes = {
 
 /**
  * Generates bar groups as an array of objects and renders `<rect />`s for each datum grouped by `key`.
+ *
+ * Exampled: [https://vx-demo.now.sh/bargroup](https://vx-demo.now.sh/bargroup)
  */
 export default function BarGroup({
   data,

@@ -140,6 +140,8 @@ Default:
 ### &lt;BarGroup /&gt;
 Generates bar groups as an array of objects and renders `<rect />`s for each datum grouped by `key`.
 
+Exampled: [https://vx-demo.now.sh/bargroup](https://vx-demo.now.sh/bargroup)
+
 <a name="BarGroup__children" href="#BarGroup__children">#</a> *BarGroup*.**children**&lt;func&gt; 
 
 A function that returns a react component. Useful for generating the bar group data with full control over what is rendered. The functions first argument will be the bar groups data as an array of objects with the following properties:
@@ -162,7 +164,7 @@ A function that returns a react component. Useful for generating the bar group d
 
 <a name="BarGroup__className" href="#BarGroup__className">#</a> *BarGroup*.**className**&lt;string&gt; 
 
-Add a class name to the containing <g>. 
+Add a class name to the containing `<g>` element. 
 
 <a name="BarGroup__color" href="#BarGroup__color">#</a> *BarGroup*.**color**&lt;func&gt; `required`
 
