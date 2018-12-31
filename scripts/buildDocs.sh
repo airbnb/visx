@@ -24,7 +24,10 @@ process.stdin.on('end', function() {
 
 function buildDocs(api) {
   const docPath = path.resolve(`${Object.keys(api)[0]}`, '../../../docs');
-
+  const toc = Object.keys(api).map(filepath => {
+    const name = getComponentName(filepath);
+    return `  - [${name}](#${name.toLowerCase()}-)`;
+  }).join('\n');
   const md = Object.keys(api).map(filepath => {
     var name = getComponentName(filepath);
     return generateMarkdown(name, api[filepath]);
@@ -33,7 +36,7 @@ function buildDocs(api) {
   const apiDocs = md.join('\n');
   const install = fs.readFileSync(`${docPath}/install.md`, { encoding: 'utf-8' });
   const description = fs.readFileSync(`${docPath}/description.md`, { encoding: 'utf-8' });
-  const docs = [description, install, "## API\n\n", apiDocs].join('\n\n');
+  const docs = [description, toc, install, "## API\n\n", apiDocs].join('\n\n');
 
   fs.writeFileSync('api.md', apiDocs);
   process.stdout.write(' -> ' + 'api.md\n');
