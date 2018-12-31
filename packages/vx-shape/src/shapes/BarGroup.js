@@ -7,17 +7,7 @@ import Bar from './Bar';
 
 BarGroup.propTypes = {
   /**
-   * An array of bar group objects. Typically, this looks like:
-   * ```js
-   * const data = [{
-   *  date: value,
-   *  key1: value,
-   *  key2: value,
-   *  key3: value
-   * }, ...];
-   * const x0 = d => d.date;
-   * const keys = [key1, key2, key3];
-   * ```
+   * An array of bar group objects.
    */
   data: PropTypes.array.isRequired,
   /**
@@ -98,9 +88,42 @@ BarGroup.propTypes = {
 };
 
 /**
- * Generates bar groups as an array of objects and renders `<rect />`s for each datum grouped by `key`.
+ * Generates bar groups as an array of objects and renders `<rect />`s for each datum grouped by `key`. A general setup might look like this:
  *
- * Exampled: [https://vx-demo.now.sh/bargroup](https://vx-demo.now.sh/bargroup)
+ * ```js
+ * const data = [{
+ *  date: date1,
+ *  key1: value,
+ *  key2: value,
+ *  key3: value
+ * }, {
+ *  date: date2,
+ *  key1: value,
+ *  key2: value,
+ *  key3: value,
+ * }];
+ *
+ * const x0 = d => d.date;
+ * const keys = [key1, key2, key3];
+ *
+ * const x0Scale = scaleBand({
+ *  domain: data.map(x0),
+ *  padding: 0.2
+ * });
+ * const x1Scale = scaleBand({
+ *  domain: keys,
+ *  padding: 0.1
+ * });
+ * const yScale = scaleLinear({
+ *   domain: [0, Math.max(...data.map(d => Math.max(...keys.map(key => d[key]))))]
+ * });
+ * const color = scaleOrdinal({
+ *   domain: keys,
+ *   range: [blue, green, purple]
+ * });
+ * ```
+ *
+ * Example: [https://vx-demo.now.sh/bargroup](https://vx-demo.now.sh/bargroup)
  */
 export default function BarGroup({
   data,
