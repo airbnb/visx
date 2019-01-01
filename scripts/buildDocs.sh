@@ -23,7 +23,9 @@ process.stdin.on('end', function() {
 });
 
 function buildDocs(api) {
-  const docPath = path.resolve(`${Object.keys(api)[0]}`, '../../../docs');
+  const dir = path.dirname(Object.keys(api)[0]);
+  const p = dir === '../src' ? '../../docs' : '../../../docs';
+  const docPath = path.resolve(`${Object.keys(api)[0]}`, p);
   const toc = Object.keys(api).map(filepath => {
     const name = getComponentName(filepath);
     return `  - [${name}](#${name.toLowerCase()}-)`;
