@@ -1,9 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export default ({ id, children, ...restProps }) => (
-  <defs>
-    <clipPath id={id} {...restProps}>
-      {children}
-    </clipPath>
-  </defs>
-);
+ClipPath.propTypes = {
+  id: PropTypes.string.isRequired,
+  children: PropTypes.any.isRequired
+};
+
+export default function ClipPath({ id, children, ...restProps }) {
+  return (
+    <defs>
+      <clipPath id={id} {...restProps}>
+        {children}
+      </clipPath>
+    </defs>
+  );
+}
