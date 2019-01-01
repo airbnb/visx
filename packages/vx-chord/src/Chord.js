@@ -26,5 +26,8 @@ export default function Chord({
   if (sortSubgroups) chord.sortSubgroups(sortSubgroups);
   if (sortChords) chord.sortChords(sortChords);
   const chords = chord(matrix);
-  return children({ chords });
+  if (!!children) return children({ chords });
+
+  // so react-docgen picks it up
+  return <g />;
 }
