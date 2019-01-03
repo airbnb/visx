@@ -5,28 +5,22 @@
   "sideEffects": false,
   "main": "dist/vx-stats.umd.js",
   "module": "dist/vx-stats.es.js",
-  "files": [
-    "dist",
-    "build"
-  ],
+  "files": ["dist", "build"],
   "scripts": {
     "build": "npm run build:babel && npm run build:dist",
     "build:dist": "rm -rf dist && mkdir dist && rollup -c",
-    "build:babel": "rm -rf build && mkdir build && babel src --out-dir build --ignore node_modules/ --presets @babel/preset-react,@babel/preset-env",
+    "build:babel":
+      "rm -rf build && mkdir build && babel src --out-dir build --ignore node_modules/ --presets @babel/preset-react,@babel/preset-env",
     "prepublish": "npm run build",
-    "test": "jest"
+    "test": "jest",
+    "docs":
+      "cd ./docs && ../../../node_modules/.bin/react-docgen ../src/{boxplot,violinplot} | ../../../scripts/buildDocs.sh"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hshoff/vx.git"
   },
-  "keywords": [
-    "vx",
-    "react",
-    "d3",
-    "visualizations",
-    "charts"
-  ],
+  "keywords": ["vx", "react", "d3", "visualizations", "charts"],
   "author": "@conglei",
   "license": "MIT",
   "bugs": {
@@ -86,9 +80,6 @@
     "access": "public"
   },
   "jest": {
-    "setupFiles": [
-      "raf/polyfill",
-      "<rootDir>/test/enzyme-setup.js"
-    ]
+    "setupFiles": ["raf/polyfill", "<rootDir>/test/enzyme-setup.js"]
   }
 }
