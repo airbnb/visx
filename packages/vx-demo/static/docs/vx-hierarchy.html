@@ -34,86 +34,105 @@
       </div>
       <div class="content">
       <h1 id="-vx-hierarchy">@vx/hierarchy</h1>
-<pre><code>npm install --save @vx/hierarchy
-</code></pre><p>This package contains two components, <code>&lt;Tree /&gt;</code> and <code>&lt;Cluster /&gt;</code>, both of which render trees as a node-link diagram.</p>
+<p><a title="@vx/hierarchy npm downloads" href="https://www.npmjs.com/package/@vx/hierarchy">
+  <img src="https://img.shields.io/npm/dm/@vx/hierarchy.svg?style=flat-square" />
+</a></p>
+<p>This package contains two components, <code>&lt;Tree /&gt;</code> and <code>&lt;Cluster /&gt;</code>, both of which render trees as a node-link diagram.</p>
 <p>The <code>&lt;Tree /&gt;</code> component uses the <a href="https://github.com/d3/d3-hierarchy#tree">d3 tree layout</a>, which produces a tidy node-link diagram.</p>
-<p>The <code>&lt;Cluster /&gt;</code> component uses the <a href="https://github.com/d3/d3-hierarchy#cluster">d3 cluster layout</a>, which produces the leaf nodes of the tree at the same depth.  This is also known as a <a href="https://en.wikipedia.org/wiki/Dendrogram">dendrogram</a>.</p>
-<p>Both components use the same properties.  The data must be a root node, as specified in the <a href="https://github.com/d3/d3-hierarchy">d3-hierarchy</a> module.  Note that you can use <a href="https://github.com/d3/d3-hierarchy#hierarchy"><code>d3.hierarchy()</code></a> to generate a root node from hierarchical data.</p>
+<p>The <code>&lt;Cluster /&gt;</code> component uses the <a href="https://github.com/d3/d3-hierarchy#cluster">d3 cluster layout</a>, which produces the leaf nodes of the tree at the same depth. This is also known as a <a href="https://en.wikipedia.org/wiki/Dendrogram">dendrogram</a>.</p>
+<p>Both components use the same properties. The data must be a root node, as specified in the <a href="https://github.com/d3/d3-hierarchy">d3-hierarchy</a> module. Note that you can use <a href="https://github.com/d3/d3-hierarchy#hierarchy"><code>d3.hierarchy()</code></a> to generate a root node from hierarchical data.</p>
 <p>Furthermore, they take in <code>nodeComponent</code> and <code>linkComponent</code> as props, which are required to render the tree.</p>
 <p>See <a href="https://vx-demo.now.sh/trees">this example</a> for additional details.</p>
-<h2 id="-tree-and-cluster-"><code>&lt;Tree /&gt;</code> and <code>&lt;Cluster /&gt;</code></h2>
-<h3 id="properties">Properties</h3>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Name</th>
-<th style="text-align:left">Default</th>
-<th style="text-align:left">Type</th>
-<th style="text-align:left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">top</td>
-<td style="text-align:left">0</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">Margin to top </td>
-</tr>
-<tr>
-<td style="text-align:left">left</td>
-<td style="text-align:left">0</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">Margin on left </td>
-</tr>
-<tr>
-<td style="text-align:left">className</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The className for the component</td>
-</tr>
-<tr>
-<td style="text-align:left">root</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">object</td>
-<td style="text-align:left">Root node for hierarchical data; see <a href="https://github.com/d3/d3-hierarchy#hierarchy"><code>d3.hierarchy()</code></a></td>
-</tr>
-<tr>
-<td style="text-align:left">size</td>
-<td style="text-align:left">[1, 1]</td>
-<td style="text-align:left">array</td>
-<td style="text-align:left">Size of tree/cluster layout specified by <code>[width, height]</code>; see <a href="https://github.com/d3/d3-hierarchy#tree_size"><code>tree.size()</code></a> </td>
-</tr>
-<tr>
-<td style="text-align:left">nodeSize</td>
-<td style="text-align:left">null</td>
-<td style="text-align:left">array</td>
-<td style="text-align:left">Size of tree/cluster layout&#39;s nodes specified by <code>[width, height]</code>; see <a href="https://github.com/d3/d3-hierarchy#tree_nodeSize"><code>tree.nodeSize()</code></a></td>
-</tr>
-<tr>
-<td style="text-align:left">separation</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">Separation accessor for tree/cluster layout; see <a href="https://github.com/d3/d3-hierarchy#tree_separation"><code>tree.separation()</code></a> </td>
-</tr>
-<tr>
-<td style="text-align:left">nodeComponent</td>
-<td style="text-align:left"><a href="https://github.com/hshoff/vx/blob/master/packages/vx-hierarchy/src/HierarchyDefaultNode.js"><code>&lt;HierarchyDefaultNode /&gt;</code></a></td>
-<td style="text-align:left">Component</td>
-<td style="text-align:left">Component to render for each node </td>
-</tr>
-<tr>
-<td style="text-align:left">linkComponent</td>
-<td style="text-align:left"><a href="https://github.com/hshoff/vx/blob/master/packages/vx-hierarchy/src/HierarchyDefaultLink.js"><code>&lt;HierarchyDefaultLink /&gt;</code></a></td>
-<td style="text-align:left">Component</td>
-<td style="text-align:left">Component to render for links between nodes</td>
-</tr>
-</tbody>
-</table>
-<h2 id="source-for-components">Source For Components</h2>
+<h2 id="installation">Installation</h2>
+<pre><code>npm install --save @vx/hierarchy
+</code></pre><h2 id="components">Components</h2>
 <ul>
-<li><a href="https://github.com/hshoff/vx/blob/master/packages/vx-hierarchy/src/hierarchies/Tree.js"><code>&lt;Tree /&gt;</code></a></li>
-<li><a href="https://github.com/hshoff/vx/blob/master/packages/vx-hierarchy/src/hierarchies/Cluster.js"><code>&lt;Cluster /&gt;</code></a></li>
+<li><a href="#hierarchydefaultlink-">HierarchyDefaultLink</a></li>
+<li><a href="#hierarchydefaultnode-">HierarchyDefaultNode</a></li>
+<li><a href="#cluster-">Cluster</a></li>
+<li><a href="#pack-">Pack</a></li>
+<li><a href="#partition-">Partition</a></li>
+<li><a href="#tree-">Tree</a></li>
+<li><a href="#treemap-">Treemap</a></li>
 </ul>
+<h2 id="api">API</h2>
+<h3 id="hierarchydefaultlink-">&lt;HierarchyDefaultLink /&gt;</h3>
+
+
+<p><a id="#HierarchyDefaultLink__link" name="HierarchyDefaultLink__link" href="#HierarchyDefaultLink__link">#</a> <em>HierarchyDefaultLink</em>.<strong>link</strong>&lt;object&gt;  </p>
+<h3 id="hierarchydefaultnode-">&lt;HierarchyDefaultNode /&gt;</h3>
+
+
+<p><a id="#HierarchyDefaultNode__node" name="HierarchyDefaultNode__node" href="#HierarchyDefaultNode__node">#</a> <em>HierarchyDefaultNode</em>.<strong>node</strong>&lt;object&gt;  </p>
+<h3 id="cluster-">&lt;Cluster /&gt;</h3>
+
+
+<p><a id="#Cluster__children" name="Cluster__children" href="#Cluster__children">#</a> <em>Cluster</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#Cluster__className" name="Cluster__className" href="#Cluster__className">#</a> <em>Cluster</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#Cluster__left" name="Cluster__left" href="#Cluster__left">#</a> <em>Cluster</em>.<strong>left</strong>&lt;number&gt;  </p>
+<p><a id="#Cluster__linkComponent" name="Cluster__linkComponent" href="#Cluster__linkComponent">#</a> <em>Cluster</em>.<strong>linkComponent</strong>&lt;any&gt;  <table><tr><td><strong>Default</strong></td><td>DefaultLink</td></td></table></p>
+<p><a id="#Cluster__nodeComponent" name="Cluster__nodeComponent" href="#Cluster__nodeComponent">#</a> <em>Cluster</em>.<strong>nodeComponent</strong>&lt;any&gt;  <table><tr><td><strong>Default</strong></td><td>DefaultNode</td></td></table></p>
+<p><a id="#Cluster__nodeSize" name="Cluster__nodeSize" href="#Cluster__nodeSize">#</a> <em>Cluster</em>.<strong>nodeSize</strong>&lt;arrayOf[object Object]&gt;  </p>
+<p><a id="#Cluster__root" name="Cluster__root" href="#Cluster__root">#</a> <em>Cluster</em>.<strong>root</strong>&lt;object&gt; <code>required</code> </p>
+<p><a id="#Cluster__separation" name="Cluster__separation" href="#Cluster__separation">#</a> <em>Cluster</em>.<strong>separation</strong>&lt;func&gt;  </p>
+<p><a id="#Cluster__size" name="Cluster__size" href="#Cluster__size">#</a> <em>Cluster</em>.<strong>size</strong>&lt;arrayOf[object Object]&gt;  </p>
+<p><a id="#Cluster__top" name="Cluster__top" href="#Cluster__top">#</a> <em>Cluster</em>.<strong>top</strong>&lt;number&gt;  </p>
+<h3 id="pack-">&lt;Pack /&gt;</h3>
+
+
+<p><a id="#Pack__children" name="Pack__children" href="#Pack__children">#</a> <em>Pack</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#Pack__className" name="Pack__className" href="#Pack__className">#</a> <em>Pack</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#Pack__left" name="Pack__left" href="#Pack__left">#</a> <em>Pack</em>.<strong>left</strong>&lt;number&gt;  </p>
+<p><a id="#Pack__nodeComponent" name="Pack__nodeComponent" href="#Pack__nodeComponent">#</a> <em>Pack</em>.<strong>nodeComponent</strong>&lt;any&gt;  <table><tr><td><strong>Default</strong></td><td>DefaultNode</td></td></table></p>
+<p><a id="#Pack__padding" name="Pack__padding" href="#Pack__padding">#</a> <em>Pack</em>.<strong>padding</strong>&lt;number&gt;  </p>
+<p><a id="#Pack__radius" name="Pack__radius" href="#Pack__radius">#</a> <em>Pack</em>.<strong>radius</strong>&lt;func&gt;  </p>
+<p><a id="#Pack__root" name="Pack__root" href="#Pack__root">#</a> <em>Pack</em>.<strong>root</strong>&lt;object&gt; <code>required</code> </p>
+<p><a id="#Pack__size" name="Pack__size" href="#Pack__size">#</a> <em>Pack</em>.<strong>size</strong>&lt;arrayOf[object Object]&gt;  </p>
+<p><a id="#Pack__top" name="Pack__top" href="#Pack__top">#</a> <em>Pack</em>.<strong>top</strong>&lt;number&gt;  </p>
+<h3 id="partition-">&lt;Partition /&gt;</h3>
+
+
+<p><a id="#Partition__children" name="Partition__children" href="#Partition__children">#</a> <em>Partition</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#Partition__className" name="Partition__className" href="#Partition__className">#</a> <em>Partition</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#Partition__left" name="Partition__left" href="#Partition__left">#</a> <em>Partition</em>.<strong>left</strong>&lt;number&gt;  </p>
+<p><a id="#Partition__nodeComponent" name="Partition__nodeComponent" href="#Partition__nodeComponent">#</a> <em>Partition</em>.<strong>nodeComponent</strong>&lt;any&gt;  <table><tr><td><strong>Default</strong></td><td>DefaultNode</td></td></table></p>
+<p><a id="#Partition__padding" name="Partition__padding" href="#Partition__padding">#</a> <em>Partition</em>.<strong>padding</strong>&lt;number&gt;  </p>
+<p><a id="#Partition__root" name="Partition__root" href="#Partition__root">#</a> <em>Partition</em>.<strong>root</strong>&lt;object&gt; <code>required</code> </p>
+<p><a id="#Partition__round" name="Partition__round" href="#Partition__round">#</a> <em>Partition</em>.<strong>round</strong>&lt;bool&gt;  </p>
+<p><a id="#Partition__size" name="Partition__size" href="#Partition__size">#</a> <em>Partition</em>.<strong>size</strong>&lt;arrayOf[object Object]&gt;  </p>
+<p><a id="#Partition__top" name="Partition__top" href="#Partition__top">#</a> <em>Partition</em>.<strong>top</strong>&lt;number&gt;  </p>
+<h3 id="tree-">&lt;Tree /&gt;</h3>
+
+
+<p><a id="#Tree__children" name="Tree__children" href="#Tree__children">#</a> <em>Tree</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#Tree__className" name="Tree__className" href="#Tree__className">#</a> <em>Tree</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#Tree__left" name="Tree__left" href="#Tree__left">#</a> <em>Tree</em>.<strong>left</strong>&lt;number&gt;  </p>
+<p><a id="#Tree__linkComponent" name="Tree__linkComponent" href="#Tree__linkComponent">#</a> <em>Tree</em>.<strong>linkComponent</strong>&lt;any&gt;  <table><tr><td><strong>Default</strong></td><td>DefaultLink</td></td></table></p>
+<p><a id="#Tree__nodeComponent" name="Tree__nodeComponent" href="#Tree__nodeComponent">#</a> <em>Tree</em>.<strong>nodeComponent</strong>&lt;any&gt;  <table><tr><td><strong>Default</strong></td><td>DefaultNode</td></td></table></p>
+<p><a id="#Tree__nodeSize" name="Tree__nodeSize" href="#Tree__nodeSize">#</a> <em>Tree</em>.<strong>nodeSize</strong>&lt;arrayOf[object Object]&gt;  </p>
+<p><a id="#Tree__root" name="Tree__root" href="#Tree__root">#</a> <em>Tree</em>.<strong>root</strong>&lt;object&gt; <code>required</code> </p>
+<p><a id="#Tree__separation" name="Tree__separation" href="#Tree__separation">#</a> <em>Tree</em>.<strong>separation</strong>&lt;func&gt;  </p>
+<p><a id="#Tree__size" name="Tree__size" href="#Tree__size">#</a> <em>Tree</em>.<strong>size</strong>&lt;arrayOf[object Object]&gt;  </p>
+<p><a id="#Tree__top" name="Tree__top" href="#Tree__top">#</a> <em>Tree</em>.<strong>top</strong>&lt;number&gt;  </p>
+<h3 id="treemap-">&lt;Treemap /&gt;</h3>
+
+
+<p><a id="#Treemap__children" name="Treemap__children" href="#Treemap__children">#</a> <em>Treemap</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#Treemap__className" name="Treemap__className" href="#Treemap__className">#</a> <em>Treemap</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#Treemap__left" name="Treemap__left" href="#Treemap__left">#</a> <em>Treemap</em>.<strong>left</strong>&lt;number&gt;  </p>
+<p><a id="#Treemap__nodeComponent" name="Treemap__nodeComponent" href="#Treemap__nodeComponent">#</a> <em>Treemap</em>.<strong>nodeComponent</strong>&lt;any&gt;  <table><tr><td><strong>Default</strong></td><td>DefaultNode</td></td></table></p>
+<p><a id="#Treemap__padding" name="Treemap__padding" href="#Treemap__padding">#</a> <em>Treemap</em>.<strong>padding</strong>&lt;union(number|func)&gt;  </p>
+<p><a id="#Treemap__paddingBottom" name="Treemap__paddingBottom" href="#Treemap__paddingBottom">#</a> <em>Treemap</em>.<strong>paddingBottom</strong>&lt;union(number|func)&gt;  </p>
+<p><a id="#Treemap__paddingInner" name="Treemap__paddingInner" href="#Treemap__paddingInner">#</a> <em>Treemap</em>.<strong>paddingInner</strong>&lt;union(number|func)&gt;  </p>
+<p><a id="#Treemap__paddingLeft" name="Treemap__paddingLeft" href="#Treemap__paddingLeft">#</a> <em>Treemap</em>.<strong>paddingLeft</strong>&lt;union(number|func)&gt;  </p>
+<p><a id="#Treemap__paddingOuter" name="Treemap__paddingOuter" href="#Treemap__paddingOuter">#</a> <em>Treemap</em>.<strong>paddingOuter</strong>&lt;union(number|func)&gt;  </p>
+<p><a id="#Treemap__paddingRight" name="Treemap__paddingRight" href="#Treemap__paddingRight">#</a> <em>Treemap</em>.<strong>paddingRight</strong>&lt;union(number|func)&gt;  </p>
+<p><a id="#Treemap__paddingTop" name="Treemap__paddingTop" href="#Treemap__paddingTop">#</a> <em>Treemap</em>.<strong>paddingTop</strong>&lt;union(number|func)&gt;  </p>
+<p><a id="#Treemap__root" name="Treemap__root" href="#Treemap__root">#</a> <em>Treemap</em>.<strong>root</strong>&lt;object&gt; <code>required</code> </p>
+<p><a id="#Treemap__round" name="Treemap__round" href="#Treemap__round">#</a> <em>Treemap</em>.<strong>round</strong>&lt;bool&gt;  </p>
+<p><a id="#Treemap__size" name="Treemap__size" href="#Treemap__size">#</a> <em>Treemap</em>.<strong>size</strong>&lt;arrayOf[object Object]&gt;  </p>
+<p><a id="#Treemap__tile" name="Treemap__tile" href="#Treemap__tile">#</a> <em>Treemap</em>.<strong>tile</strong>&lt;func&gt;  </p>
+<p><a id="#Treemap__top" name="Treemap__top" href="#Treemap__top">#</a> <em>Treemap</em>.<strong>top</strong>&lt;number&gt;  </p>
 
       </div>
     </div>

@@ -7,7 +7,7 @@ function stringOfLength(string, length) {
 }
 
 function generateTitle(name) {
-  const title = '### &lt;' + name + ' /&gt;';
+  const title = `<h3 id=\"${name.toLowerCase()}-\">&lt;${name} /&gt;</h3>`;
   return title + '\n';
 }
 
@@ -41,7 +41,7 @@ function generatePropDefaultValue(value) {
 function generateProp(propName, prop, name) {
   const anchor = `${name}__${propName}`;
   return (
-    `<a name=\"${anchor}\" href=\"#${anchor}\">#</a> ` +
+    `<a id=\"#${anchor}\" name=\"${anchor}\" href=\"#${anchor}\">#</a> ` +
     `*${name}*.**${propName}**${prop.type ? `&lt;${generatePropType(prop.type)}&gt;` : ''} ${
       prop.required ? '`required`' : ''
     }` +

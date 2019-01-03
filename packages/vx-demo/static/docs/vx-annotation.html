@@ -34,137 +34,54 @@
       </div>
       <div class="content">
       <h1 id="-vx-annotation">@vx/annotation</h1>
+<p>
+  <a title="@vx/annotation npm downloads" href="https://www.npmjs.com/package/@vx/annotation">
+    <img src="https://img.shields.io/npm/dm/@vx/annotation.svg?style=flat-square" />
+  </a>
+</p>
+
 <p><strong>Status</strong></p>
 <p>We recommend using <a href="http://react-annotation.susielu.com/">react-annotation</a> by @susielu. This package is a work in progress. In the future we may make some helpers built on top of react-annotation.</p>
+<h2 id="installation">Installation</h2>
 <pre><code>npm install --save @vx/annotation
-</code></pre><h2 id="linepathannotation">LinePathAnnotation</h2>
-<p>Line Path Annotations add a bit of text and a line coming from a point. They&#39;re useful for adding info to your graphs.</p>
-<pre><code class="lang-javascript">import { LinePathAnnotation } from &#39;@vx/annotation&#39;;
-// or
-// import * as Annotation from &#39;@vx/annotation&#39;; 
-// &lt;Annotation.LinePathAnnotation /&gt;
+</code></pre><h2 id="components">Components</h2>
+<ul>
+<li><a href="#linepathannotation-">LinePathAnnotation</a></li>
+</ul>
+<h2 id="api">API</h2>
+<h3 id="linepathannotation-">&lt;LinePathAnnotation /&gt;</h3>
 
-const annotation = (
-  &lt;LinePathAnnotation
-    label={&#39;expected from deploy&#39;}
-    stroke={&#39;white&#39;}
-    labelFill={&#39;white&#39;}
-    labelStroke={&#39;none&#39;}
-    labelStrokeWidth={2}
-    points={[
-      annotationPoint,
-      new Point({
-        x: annotationPoint.x + (width / allData.length),
-        y: annotationPoint.y - (height / allData.length),
-      })
-    ]}
-  /&gt;
-);
-</code></pre>
-<p><img src="http://i.imgur.com/o5jnHFS.png" alt="image output"></p>
-<h2 id="properties">Properties</h2>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Name</th>
-<th style="text-align:left">Default</th>
-<th style="text-align:left">Type</th>
-<th style="text-align:left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">top</td>
-<td style="text-align:left">0</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">Margin on top</td>
-</tr>
-<tr>
-<td style="text-align:left">left</td>
-<td style="text-align:left">0</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">Margin on left</td>
-</tr>
-<tr>
-<td style="text-align:left">points</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">array</td>
-<td style="text-align:left">Points describing the line path</td>
-</tr>
-<tr>
-<td style="text-align:left">stroke</td>
-<td style="text-align:left">black</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The color of the line</td>
-</tr>
-<tr>
-<td style="text-align:left">strokeWidth</td>
-<td style="text-align:left">1</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The pixel width of the line</td>
-</tr>
-<tr>
-<td style="text-align:left">className</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The class name associated of the LinePath shape</td>
-</tr>
-<tr>
-<td style="text-align:left">label</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The text for your label</td>
-</tr>
-<tr>
-<td style="text-align:left">labelAnchor</td>
-<td style="text-align:left">left</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The label&#39;s textAnchor</td>
-</tr>
-<tr>
-<td style="text-align:left">labelDx</td>
-<td style="text-align:left">0</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The x-coordinate shift to the label</td>
-</tr>
-<tr>
-<td style="text-align:left">labelDy</td>
-<td style="text-align:left">0</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The y-coordinate shift to the label</td>
-</tr>
-<tr>
-<td style="text-align:left">labelFill</td>
-<td style="text-align:left"><stroke></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The color of label. Defaults to the stroke color</td>
-</tr>
-<tr>
-<td style="text-align:left">labelFontSize</td>
-<td style="text-align:left">10</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The font size of the label text</td>
-</tr>
-<tr>
-<td style="text-align:left">labelStroke</td>
-<td style="text-align:left">white</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The color of the label</td>
-</tr>
-<tr>
-<td style="text-align:left">labelStrokeWidth</td>
-<td style="text-align:left">3</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The stroke width of the label text</td>
-</tr>
-<tr>
-<td style="text-align:left">labelPaintOrder</td>
-<td style="text-align:left">stroke</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The label&#39;s SVG <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/paint-order">paint-order</a>.</td>
-</tr>
-</tbody>
-</table>
+
+<p><a id="#LinePathAnnotation__className" name="LinePathAnnotation__className" href="#LinePathAnnotation__className">#</a> <em>LinePathAnnotation</em>.<strong>className</strong>&lt;string&gt; </p>
+<p>Add a class name to the line path. </p>
+<p><a id="#LinePathAnnotation__label" name="LinePathAnnotation__label" href="#LinePathAnnotation__label">#</a> <em>LinePathAnnotation</em>.<strong>label</strong>&lt;string&gt; </p>
+<p>The text for your label. </p>
+<p><a id="#LinePathAnnotation__labelAnchor" name="LinePathAnnotation__labelAnchor" href="#LinePathAnnotation__labelAnchor">#</a> <em>LinePathAnnotation</em>.<strong>labelAnchor</strong>&lt;enum(&#39;start&#39;|&#39;middle&#39;|&#39;end&#39;)&gt; </p>
+<p>The label&#39;s textAnchor. <table><tr><td><strong>Default</strong></td><td>&#39;middle&#39;</td></td></table></p>
+<p><a id="#LinePathAnnotation__labelDx" name="LinePathAnnotation__labelDx" href="#LinePathAnnotation__labelDx">#</a> <em>LinePathAnnotation</em>.<strong>labelDx</strong>&lt;number&gt; </p>
+<p>The x-coordinate shift to the label. <table><tr><td><strong>Default</strong></td><td>0</td></td></table></p>
+<p><a id="#LinePathAnnotation__labelDy" name="LinePathAnnotation__labelDy" href="#LinePathAnnotation__labelDy">#</a> <em>LinePathAnnotation</em>.<strong>labelDy</strong>&lt;number&gt; </p>
+<p>The y-coordinate shift to the label <table><tr><td><strong>Default</strong></td><td>0</td></td></table></p>
+<p><a id="#LinePathAnnotation__labelFill" name="LinePathAnnotation__labelFill" href="#LinePathAnnotation__labelFill">#</a> <em>LinePathAnnotation</em>.<strong>labelFill</strong>&lt;string&gt; </p>
+<p>The color of label. Defaults to <em>props</em>.<strong>stroke</strong>. </p>
+<p><a id="#LinePathAnnotation__labelFontSize" name="LinePathAnnotation__labelFontSize" href="#LinePathAnnotation__labelFontSize">#</a> <em>LinePathAnnotation</em>.<strong>labelFontSize</strong>&lt;number&gt; </p>
+<p>The font size of the label text. <table><tr><td><strong>Default</strong></td><td>10</td></td></table></p>
+<p><a id="#LinePathAnnotation__labelPaintOrder" name="LinePathAnnotation__labelPaintOrder" href="#LinePathAnnotation__labelPaintOrder">#</a> <em>LinePathAnnotation</em>.<strong>labelPaintOrder</strong>&lt;string&gt; </p>
+<p>The label&#39;s SVG <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/paint-order">paint-order</a>. <table><tr><td><strong>Default</strong></td><td>&#39;stroke&#39;</td></td></table></p>
+<p><a id="#LinePathAnnotation__labelStroke" name="LinePathAnnotation__labelStroke" href="#LinePathAnnotation__labelStroke">#</a> <em>LinePathAnnotation</em>.<strong>labelStroke</strong>&lt;string&gt; </p>
+<p>The color of the label. <table><tr><td><strong>Default</strong></td><td>&#39;white&#39;</td></td></table></p>
+<p><a id="#LinePathAnnotation__labelStrokeWidth" name="LinePathAnnotation__labelStrokeWidth" href="#LinePathAnnotation__labelStrokeWidth">#</a> <em>LinePathAnnotation</em>.<strong>labelStrokeWidth</strong>&lt;number&gt; </p>
+<p>The stroke width of the label text. <table><tr><td><strong>Default</strong></td><td>3</td></td></table></p>
+<p><a id="#LinePathAnnotation__left" name="LinePathAnnotation__left" href="#LinePathAnnotation__left">#</a> <em>LinePathAnnotation</em>.<strong>left</strong>&lt;number&gt; </p>
+<p>A left pixel offset applied to the entire bar group. <table><tr><td><strong>Default</strong></td><td>0</td></td></table></p>
+<p><a id="#LinePathAnnotation__points" name="LinePathAnnotation__points" href="#LinePathAnnotation__points">#</a> <em>LinePathAnnotation</em>.<strong>points</strong>&lt;array&gt; </p>
+<p>An array of points describing the line path. <table><tr><td><strong>Default</strong></td><td>[]</td></td></table></p>
+<p><a id="#LinePathAnnotation__stroke" name="LinePathAnnotation__stroke" href="#LinePathAnnotation__stroke">#</a> <em>LinePathAnnotation</em>.<strong>stroke</strong>&lt;string&gt; </p>
+<p>The color of the line. <table><tr><td><strong>Default</strong></td><td>&#39;black&#39;</td></td></table></p>
+<p><a id="#LinePathAnnotation__strokeWidth" name="LinePathAnnotation__strokeWidth" href="#LinePathAnnotation__strokeWidth">#</a> <em>LinePathAnnotation</em>.<strong>strokeWidth</strong>&lt;number&gt; </p>
+<p>The pixel width of the line. <table><tr><td><strong>Default</strong></td><td>1</td></td></table></p>
+<p><a id="#LinePathAnnotation__top" name="LinePathAnnotation__top" href="#LinePathAnnotation__top">#</a> <em>LinePathAnnotation</em>.<strong>top</strong>&lt;number&gt; </p>
+<p>A top pixel offset applied to the entire bar group. <table><tr><td><strong>Default</strong></td><td>0</td></td></table></p>
 
       </div>
     </div>

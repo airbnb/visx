@@ -1,16 +1,16 @@
 # @vx/marker
 
-```
-npm install --save @vx/marker
-```
+<a title="@vx/marker npm downloads" href="https://www.npmjs.com/package/@vx/marker">
+  <img src="https://img.shields.io/npm/dm/@vx/marker.svg?style=flat-square" />
+</a>
 
-A Marker is a line with a piece of text attached to it. It's great for highlighting locations in your graph.  
+A Marker is a line with a piece of text attached to it. It's great for highlighting locations in your graph.
 
 ## Example
 
 ![marker example](http://i.imgur.com/vbW3Ysa.png)
 
-``` js
+```js
 <Marker
   from={markerFrom}
   to={markerTo}
@@ -22,30 +22,59 @@ A Marker is a line with a piece of text attached to it. It's great for highlight
 />
 ```
 
-## Properties
 
-|       Name       | Default  |  Type  |                                              Description                                               |
-|:---------------- |:-------- |:------ |:------------------------------------------------------------------------------------------------------ |
-| top              | 0        | number | The margin on top.                                                                                     |
-| left             | 0        | number | The margin on the left.                                                                                |
-| from             |          | point  | The start point for the line.                                                                          |
-| to               |          | point  | The end point for the line.                                                                            |
-| stroke           | magenta  | string | The color of the stroke for the line.                                                                  |
-| strokeWidth      | 2        | number | The width of the stroke for the line.                                                                  |
-| strokeDasharray  |          | array  | The [pattern of dashes](https://mzl.la/1l7EiTQ) in the stroke.                                         |
-| fill             |          | string | The color for the fill of the line.                                                                    |
-| transform        |          | string | An [SVG transform](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/transform).              |
-| label            |          | string | The text for the label.                                                                                |
-| labelAnchor      | left     | string | The label's `textAnchor`                                                                               |
-| labelDx          | 0        | number | The x-coordinate shift to the label.                                                                   |
-| labelDy          | 0        | number | The y-coordinate shift to the label.                                                                   |
-| labelFill        | <stroke> | string | The fill color for the label.                                                                          |
-| labelFontSize    | 10       | number | The font size for the label text.                                                                      |
-| labelStroke      | white    | string | The color for the label's stroke.                                                                      |
-| labelStrokeWidth | 3        | number | The width of the label's stroke.                                                                       |
-| labelPaintOrder  | stroke   | string | The label's SVG [paint-order](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/paint-order). |
-| className        |          | string | The class name for the line.                                                                           |
+## Installation
 
-## Source For Components
+```
+npm install --save @vx/marker
+```
 
-+ [`<Marker />`](https://github.com/hshoff/vx/blob/master/packages/vx-marker/src/markers/Marker.js)
+
+## Components
+
+
+
+  - [Marker](#marker-)
+
+## API
+
+
+
+<h3 id="marker-">&lt;Marker /&gt;</h3>
+
+
+<a id="#Marker__className" name="Marker__className" href="#Marker__className">#</a> *Marker*.**className**&lt;string&gt;  
+
+<a id="#Marker__from" name="Marker__from" href="#Marker__from">#</a> *Marker*.**from**&lt;object&gt;  
+
+<a id="#Marker__label" name="Marker__label" href="#Marker__label">#</a> *Marker*.**label**&lt;union(string|func)&gt;  
+
+<a id="#Marker__labelAnchor" name="Marker__labelAnchor" href="#Marker__labelAnchor">#</a> *Marker*.**labelAnchor**&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>'left'</td></td></table>
+
+<a id="#Marker__labelDx" name="Marker__labelDx" href="#Marker__labelDx">#</a> *Marker*.**labelDx**&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table>
+
+<a id="#Marker__labelDy" name="Marker__labelDy" href="#Marker__labelDy">#</a> *Marker*.**labelDy**&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table>
+
+<a id="#Marker__labelFill" name="Marker__labelFill" href="#Marker__labelFill">#</a> *Marker*.**labelFill**&lt;string&gt;  
+
+<a id="#Marker__labelFontSize" name="Marker__labelFontSize" href="#Marker__labelFontSize">#</a> *Marker*.**labelFontSize**&lt;union(string|number)&gt;  <table><tr><td><strong>Default</strong></td><td>10</td></td></table>
+
+<a id="#Marker__labelPaintOrder" name="Marker__labelPaintOrder" href="#Marker__labelPaintOrder">#</a> *Marker*.**labelPaintOrder**&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>'stroke'</td></td></table>
+
+<a id="#Marker__labelStroke" name="Marker__labelStroke" href="#Marker__labelStroke">#</a> *Marker*.**labelStroke**&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>'white'</td></td></table>
+
+<a id="#Marker__labelStrokeWidth" name="Marker__labelStrokeWidth" href="#Marker__labelStrokeWidth">#</a> *Marker*.**labelStrokeWidth**&lt;union(string|number)&gt;  <table><tr><td><strong>Default</strong></td><td>3</td></td></table>
+
+<a id="#Marker__left" name="Marker__left" href="#Marker__left">#</a> *Marker*.**left**&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table>
+
+<a id="#Marker__stroke" name="Marker__stroke" href="#Marker__stroke">#</a> *Marker*.**stroke**&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>'magenta'</td></td></table>
+
+<a id="#Marker__strokeDasharray" name="Marker__strokeDasharray" href="#Marker__strokeDasharray">#</a> *Marker*.**strokeDasharray**&lt;string&gt;  
+
+<a id="#Marker__strokeWidth" name="Marker__strokeWidth" href="#Marker__strokeWidth">#</a> *Marker*.**strokeWidth**&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>2</td></td></table>
+
+<a id="#Marker__to" name="Marker__to" href="#Marker__to">#</a> *Marker*.**to**&lt;object&gt;  
+
+<a id="#Marker__top" name="Marker__top" href="#Marker__top">#</a> *Marker*.**top**&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table>
+
+<a id="#Marker__transform" name="Marker__transform" href="#Marker__transform">#</a> *Marker*.**transform**&lt;string&gt;  

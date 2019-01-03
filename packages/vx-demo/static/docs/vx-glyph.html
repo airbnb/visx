@@ -34,8 +34,10 @@
       </div>
       <div class="content">
       <h1 id="-vx-glyph">@vx/glyph</h1>
-<pre><code>npm install --save @vx/glyph
-</code></pre><p>Glyphs are small icons that you can use in your graphs. Some elements, like <code>LinePath</code>, can take a function that returns a glyph.</p>
+<p><a title="@vx/glyph npm downloads" href="https://www.npmjs.com/package/@vx/glyph">
+  <img src="https://img.shields.io/npm/dm/@vx/glyph.svg?style=flat-square" />
+</a></p>
+<p>Glyphs are small icons that you can use in your graphs. Some elements, like <code>LinePath</code>, can take a function that returns a glyph.</p>
 <p>For example:</p>
 <pre><code class="lang-js">import { LinePath } from &#39;@vx/shape&#39;;
 import { GlyphDot } from &#39;@vx/glyph&#39;;
@@ -76,79 +78,91 @@ let line = (
   &lt;/text&gt;
 &lt;/GlyphDot&gt;
 </code></pre>
-<h2 id="-glyph-glyphdot-"><code>Glyph.GlyphDot</code></h2>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Name</th>
-<th style="text-align:left">Default</th>
-<th style="text-align:left">Type</th>
-<th style="text-align:left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">top</td>
-<td style="text-align:left">0</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">Margin on top</td>
-</tr>
-<tr>
-<td style="text-align:left">left</td>
-<td style="text-align:left">0</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">Margin on left</td>
-</tr>
-<tr>
-<td style="text-align:left">className</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The class name associated of the LinePath shape</td>
-</tr>
-<tr>
-<td style="text-align:left">cx</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The x-axis coordinate at the center of the circle</td>
-</tr>
-<tr>
-<td style="text-align:left">cy</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The y-axis coordinate at the center of the circle</td>
-</tr>
-<tr>
-<td style="text-align:left">r</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The radius of the circle</td>
-</tr>
-<tr>
-<td style="text-align:left">fill</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The color of the circle&#39;s fill</td>
-</tr>
-<tr>
-<td style="text-align:left">stroke</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The color of the circle&#39;s stroke</td>
-</tr>
-<tr>
-<td style="text-align:left">strokeWidth</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The width of the circle&#39;s stroke</td>
-</tr>
-<tr>
-<td style="text-align:left">strokeDasharray</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">array</td>
-<td style="text-align:left">An array that controls the pattern of dashes in the stroke. <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray">See more here.</a></td>
-</tr>
-</tbody>
-</table>
+<h2 id="installation">Installation</h2>
+<pre><code>npm install --save @vx/glyph
+</code></pre><h2 id="components">Components</h2>
+<ul>
+<li><a href="#glyph-">Glyph</a></li>
+<li><a href="#glyphcircle-">GlyphCircle</a></li>
+<li><a href="#glyphcross-">GlyphCross</a></li>
+<li><a href="#glyphdiamond-">GlyphDiamond</a></li>
+<li><a href="#glyphdot-">GlyphDot</a></li>
+<li><a href="#glyphsquare-">GlyphSquare</a></li>
+<li><a href="#glyphstar-">GlyphStar</a></li>
+<li><a href="#glyphtriangle-">GlyphTriangle</a></li>
+<li><a href="#glyphwye-">GlyphWye</a></li>
+</ul>
+<h2 id="api">API</h2>
+<h3 id="glyph-">&lt;Glyph /&gt;</h3>
+
+
+<p><a id="#Glyph__children" name="Glyph__children" href="#Glyph__children">#</a> <em>Glyph</em>.<strong>children</strong>&lt;any&gt;  </p>
+<p><a id="#Glyph__className" name="Glyph__className" href="#Glyph__className">#</a> <em>Glyph</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#Glyph__left" name="Glyph__left" href="#Glyph__left">#</a> <em>Glyph</em>.<strong>left</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table></p>
+<p><a id="#Glyph__top" name="Glyph__top" href="#Glyph__top">#</a> <em>Glyph</em>.<strong>top</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table></p>
+<h3 id="glyphcircle-">&lt;GlyphCircle /&gt;</h3>
+
+
+<p><a id="#GlyphCircle__children" name="GlyphCircle__children" href="#GlyphCircle__children">#</a> <em>GlyphCircle</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#GlyphCircle__className" name="GlyphCircle__className" href="#GlyphCircle__className">#</a> <em>GlyphCircle</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#GlyphCircle__left" name="GlyphCircle__left" href="#GlyphCircle__left">#</a> <em>GlyphCircle</em>.<strong>left</strong>&lt;number&gt;  </p>
+<p><a id="#GlyphCircle__size" name="GlyphCircle__size" href="#GlyphCircle__size">#</a> <em>GlyphCircle</em>.<strong>size</strong>&lt;union(number|func)&gt;  </p>
+<p><a id="#GlyphCircle__top" name="GlyphCircle__top" href="#GlyphCircle__top">#</a> <em>GlyphCircle</em>.<strong>top</strong>&lt;number&gt;  </p>
+<h3 id="glyphcross-">&lt;GlyphCross /&gt;</h3>
+
+
+<p><a id="#GlyphCross__children" name="GlyphCross__children" href="#GlyphCross__children">#</a> <em>GlyphCross</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#GlyphCross__className" name="GlyphCross__className" href="#GlyphCross__className">#</a> <em>GlyphCross</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#GlyphCross__left" name="GlyphCross__left" href="#GlyphCross__left">#</a> <em>GlyphCross</em>.<strong>left</strong>&lt;number&gt;  </p>
+<p><a id="#GlyphCross__size" name="GlyphCross__size" href="#GlyphCross__size">#</a> <em>GlyphCross</em>.<strong>size</strong>&lt;union(number|func)&gt;  </p>
+<p><a id="#GlyphCross__top" name="GlyphCross__top" href="#GlyphCross__top">#</a> <em>GlyphCross</em>.<strong>top</strong>&lt;number&gt;  </p>
+<h3 id="glyphdiamond-">&lt;GlyphDiamond /&gt;</h3>
+
+
+<p><a id="#GlyphDiamond__children" name="GlyphDiamond__children" href="#GlyphDiamond__children">#</a> <em>GlyphDiamond</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#GlyphDiamond__className" name="GlyphDiamond__className" href="#GlyphDiamond__className">#</a> <em>GlyphDiamond</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#GlyphDiamond__left" name="GlyphDiamond__left" href="#GlyphDiamond__left">#</a> <em>GlyphDiamond</em>.<strong>left</strong>&lt;number&gt;  </p>
+<p><a id="#GlyphDiamond__size" name="GlyphDiamond__size" href="#GlyphDiamond__size">#</a> <em>GlyphDiamond</em>.<strong>size</strong>&lt;union(number|func)&gt;  </p>
+<p><a id="#GlyphDiamond__top" name="GlyphDiamond__top" href="#GlyphDiamond__top">#</a> <em>GlyphDiamond</em>.<strong>top</strong>&lt;number&gt;  </p>
+<h3 id="glyphdot-">&lt;GlyphDot /&gt;</h3>
+
+
+<p><a id="#GlyphDot__children" name="GlyphDot__children" href="#GlyphDot__children">#</a> <em>GlyphDot</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#GlyphDot__className" name="GlyphDot__className" href="#GlyphDot__className">#</a> <em>GlyphDot</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#GlyphDot__left" name="GlyphDot__left" href="#GlyphDot__left">#</a> <em>GlyphDot</em>.<strong>left</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table></p>
+<p><a id="#GlyphDot__top" name="GlyphDot__top" href="#GlyphDot__top">#</a> <em>GlyphDot</em>.<strong>top</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table></p>
+<h3 id="glyphsquare-">&lt;GlyphSquare /&gt;</h3>
+
+
+<p><a id="#GlyphSquare__children" name="GlyphSquare__children" href="#GlyphSquare__children">#</a> <em>GlyphSquare</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#GlyphSquare__className" name="GlyphSquare__className" href="#GlyphSquare__className">#</a> <em>GlyphSquare</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#GlyphSquare__left" name="GlyphSquare__left" href="#GlyphSquare__left">#</a> <em>GlyphSquare</em>.<strong>left</strong>&lt;number&gt;  </p>
+<p><a id="#GlyphSquare__size" name="GlyphSquare__size" href="#GlyphSquare__size">#</a> <em>GlyphSquare</em>.<strong>size</strong>&lt;union(number|func)&gt;  </p>
+<p><a id="#GlyphSquare__top" name="GlyphSquare__top" href="#GlyphSquare__top">#</a> <em>GlyphSquare</em>.<strong>top</strong>&lt;number&gt;  </p>
+<h3 id="glyphstar-">&lt;GlyphStar /&gt;</h3>
+
+
+<p><a id="#GlyphStar__children" name="GlyphStar__children" href="#GlyphStar__children">#</a> <em>GlyphStar</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#GlyphStar__className" name="GlyphStar__className" href="#GlyphStar__className">#</a> <em>GlyphStar</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#GlyphStar__left" name="GlyphStar__left" href="#GlyphStar__left">#</a> <em>GlyphStar</em>.<strong>left</strong>&lt;number&gt;  </p>
+<p><a id="#GlyphStar__size" name="GlyphStar__size" href="#GlyphStar__size">#</a> <em>GlyphStar</em>.<strong>size</strong>&lt;union(number|func)&gt;  </p>
+<p><a id="#GlyphStar__top" name="GlyphStar__top" href="#GlyphStar__top">#</a> <em>GlyphStar</em>.<strong>top</strong>&lt;number&gt;  </p>
+<h3 id="glyphtriangle-">&lt;GlyphTriangle /&gt;</h3>
+
+
+<p><a id="#GlyphTriangle__children" name="GlyphTriangle__children" href="#GlyphTriangle__children">#</a> <em>GlyphTriangle</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#GlyphTriangle__className" name="GlyphTriangle__className" href="#GlyphTriangle__className">#</a> <em>GlyphTriangle</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#GlyphTriangle__left" name="GlyphTriangle__left" href="#GlyphTriangle__left">#</a> <em>GlyphTriangle</em>.<strong>left</strong>&lt;number&gt;  </p>
+<p><a id="#GlyphTriangle__size" name="GlyphTriangle__size" href="#GlyphTriangle__size">#</a> <em>GlyphTriangle</em>.<strong>size</strong>&lt;union(number|func)&gt;  </p>
+<p><a id="#GlyphTriangle__top" name="GlyphTriangle__top" href="#GlyphTriangle__top">#</a> <em>GlyphTriangle</em>.<strong>top</strong>&lt;number&gt;  </p>
+<h3 id="glyphwye-">&lt;GlyphWye /&gt;</h3>
+
+
+<p><a id="#GlyphWye__children" name="GlyphWye__children" href="#GlyphWye__children">#</a> <em>GlyphWye</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#GlyphWye__className" name="GlyphWye__className" href="#GlyphWye__className">#</a> <em>GlyphWye</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#GlyphWye__left" name="GlyphWye__left" href="#GlyphWye__left">#</a> <em>GlyphWye</em>.<strong>left</strong>&lt;number&gt;  </p>
+<p><a id="#GlyphWye__size" name="GlyphWye__size" href="#GlyphWye__size">#</a> <em>GlyphWye</em>.<strong>size</strong>&lt;union(number|func)&gt;  </p>
+<p><a id="#GlyphWye__top" name="GlyphWye__top" href="#GlyphWye__top">#</a> <em>GlyphWye</em>.<strong>top</strong>&lt;number&gt;  </p>
 
       </div>
     </div>

@@ -1,18 +1,20 @@
 # @vx/text
 
-```
-npm install --save @vx/text
-```
+<a title="@vx/text npm downloads" href="https://www.npmjs.com/package/@vx/text">
+  <img src="https://img.shields.io/npm/dm/@vx/text.svg?style=flat-square" />
+</a>
 
 The `@vx/text` provides a better SVG `<Text>` component with the following features
 
-- Word-wrapping (when `width` prop is defined)
-- Vertical alignment (`verticalAnchor` prop)
-- Rotation (`angle` prop)
-- Scale-to-fit text (`scaleToFit` prop)
+* Word-wrapping (when `width` prop is defined)
+* Vertical alignment (`verticalAnchor` prop)
+* Rotation (`angle` prop)
+* Scale-to-fit text (`scaleToFit` prop)
 
 ## Example
-Simple demo to show off a useful feature.  Since svg `<text>` itself does not support `verticalAnchor`, normally text rendered at `0,0` would be outside the viewport and thus not visible.  By using `<Text>` with the `verticalAnchor="start"` prop, the text will now be visible as you'd expect.
+
+Simple demo to show off a useful feature. Since svg `<text>` itself does not support `verticalAnchor`, normally text rendered at `0,0` would be outside the viewport and thus not visible. By using `<Text>` with the `verticalAnchor="start"` prop, the text will now be visible as you'd expect.
+
 ```jsx
 import React from 'react';
 import { render } from 'react-dom';
@@ -27,18 +29,47 @@ const App = () => (
 render(<App />, document.getElementById('root'));
 ```
 
-## Props
-Property | Type | Default | Description
--------- | ---- | ------- | -----------
-`x` | number | | x coordinate to use as a basis for positioning the text element
-`y` | number | | y coordinate to use as a basis for positioning the text element
-`dx` | number | | Horizontal shift from the x coordinate
-`dy` | number | | Vertical shift from the y coordinate
-`width` | number | | Width of text container.  Used to implement word wrapping and for context when `scaleToFit` is true
-`scaleToFit` | bool | false | Resize text to fit container width
-`angle` | number | | Rotate text around origin (defined by `textAnchor` and `verticalAnchor`)
-`textAnchor` | string | start | How the text is horizontally positioned relative to the given `x` and `y` coordinates. Options are `start`, `middle`, `end`, and `inherit`.
-`verticalAnchor` | string | end | How text is vertically positioned relative to the given `x` and `y` coordinates. Options are `start`, `middle`, `end`
-`lineHeight` | string | 1em | How much space a single line of text should take up
-`capHeight` | string | 0.71em (Magic number from d3) | Defines a text metric for the font being used: the expected height of capital letters. This is necessary because of SVG, which (a) positions the bottom of the text at y, and (b) has no notion of line height. This prop should be given as a number of ems
-additional props | | | Additional props are passed down to underlying `<text>` component, including `style` and `className`
+
+## Installation
+
+```
+npm install --save @vx/text
+```
+
+
+## Components
+
+
+
+  - [Text](#text-)
+
+## API
+
+
+
+<h3 id="text-">&lt;Text /&gt;</h3>
+
+
+<a id="#Text__angle" name="Text__angle" href="#Text__angle">#</a> *Text*.**angle**&lt;number&gt;  
+
+<a id="#Text__capHeight" name="Text__capHeight" href="#Text__capHeight">#</a> *Text*.**capHeight**&lt;union(number|string)&gt;  <table><tr><td><strong>Default</strong></td><td>'0.71em'</td></td></table>
+
+<a id="#Text__dx" name="Text__dx" href="#Text__dx">#</a> *Text*.**dx**&lt;union(number|string)&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table>
+
+<a id="#Text__dy" name="Text__dy" href="#Text__dy">#</a> *Text*.**dy**&lt;union(number|string)&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table>
+
+<a id="#Text__innerRef" name="Text__innerRef" href="#Text__innerRef">#</a> *Text*.**innerRef**&lt;func&gt;  
+
+<a id="#Text__lineHeight" name="Text__lineHeight" href="#Text__lineHeight">#</a> *Text*.**lineHeight**&lt;union(number|string)&gt;  <table><tr><td><strong>Default</strong></td><td>'1em'</td></td></table>
+
+<a id="#Text__scaleToFit" name="Text__scaleToFit" href="#Text__scaleToFit">#</a> *Text*.**scaleToFit**&lt;bool&gt;  <table><tr><td><strong>Default</strong></td><td>false</td></td></table>
+
+<a id="#Text__style" name="Text__style" href="#Text__style">#</a> *Text*.**style**&lt;object&gt;  
+
+<a id="#Text__textAnchor" name="Text__textAnchor" href="#Text__textAnchor">#</a> *Text*.**textAnchor**&lt;enum('start'|'middle'|'end'|'inherit')&gt;  <table><tr><td><strong>Default</strong></td><td>'start'</td></td></table>
+
+<a id="#Text__verticalAnchor" name="Text__verticalAnchor" href="#Text__verticalAnchor">#</a> *Text*.**verticalAnchor**&lt;enum('start'|'middle'|'end')&gt;  <table><tr><td><strong>Default</strong></td><td>'end'</td></td></table>
+
+<a id="#Text__x" name="Text__x" href="#Text__x">#</a> *Text*.**x**&lt;union(number|string)&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table>
+
+<a id="#Text__y" name="Text__y" href="#Text__y">#</a> *Text*.**y**&lt;union(number|string)&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table>

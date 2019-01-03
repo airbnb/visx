@@ -1,124 +1,88 @@
 # @vx/geo
 
+<a title="@vx/geo npm downloads" href="https://www.npmjs.com/package/@vx/geo">
+  <img src="https://img.shields.io/npm/dm/@vx/geo.svg?style=flat-square" />
+</a>
+
+
+## Installation
+
 ```
 npm install --save @vx/geo
 ```
 
-Draw GeoJSON/TopoJSON features with different projections using d3-geo and react to render it.
 
-## `<Mercator />`
-The spherical Mercator projection. Many online street mapping services use a variant of the spherical Mercator projection (OpenStreetMap, Bing Maps, Google Maps, ...).
-
-### Example
-
-<img width="500" src="https://user-images.githubusercontent.com/3831579/28503643-0fb53628-700b-11e7-824c-293f5df0caf5.png" alt="vx-geo-mercator">
-
-```js
-<Mercator
-  data={myData}
-  scale={myScale}
-  translate={[width / 2, height / 2]}
-  fill={(feature) => '#aaaaaa'}
-  onClick={data => event => {
-    alert(`Clicked!`);
-  }}
-/>
-```
-
-### Properties
-
-|      Name       |       Default       |   Type   |                                                 Description                                                 |
-|:--------------- |:------------------- |:-------- |:----------------------------------------------------------------------------------------------------------- |
-| data            |                     | object   | GeoJSON/TopoJSON features.                                                                                  |
-| projectionFunc  |                     | function | Returns projection function.                                                                                |
-| clipAngle       |                     | number   | Sets the projection’s clipping circle radius.                                                               |
-| clipExtent      |                     | array    | Sets the projection’s viewport clip extent.                                                                 |
-| scale           |                     | number   | Sets the projection’s scale.                                                                                |
-| translate       | [480, 250]          | array    | Sets the projection’s translation offset.                                                                   |
-| center          | [0, 0]              | array    | Sets the projection’s center.                                                                               |
-| rotate          |                     | array    | Sets the projection’s three-axis rotation.                                                                  |
-| precision       |                     | number   | Sets the threshold for the projection’s adaptive resampling.                                                |
-| fitExtent       |                     | array    | Sets the projection’s scale and translate. [extend, object]                                                 |
-| fitSize         |                     | array    | A convenience method for fitExtent. [size, object]                                                          |
-| centroid        |                     | function | Get centroid of path.                                                                                       |
-| className       | `vx-mercator`       | string   | The class name for the `path` element.                                                                      |
+## Components
 
 
-## `<Orthographic />`
 
-The orthographic projection.
+  - [Graticule](#graticule-)
+  - [Albers](#albers-)
+  - [Mercator](#mercator-)
+  - [NaturalEarth](#naturalearth-)
+  - [Orthographic](#orthographic-)
+  - [Projection](#projection-)
 
-### Example
+## API
 
-<img width="200" src="https://user-images.githubusercontent.com/3831579/28503686-bfb776f8-700b-11e7-942d-8c3124f1f618.png" alt="vx-geo-mercator">
 
-```js
-<Orthographic
-  data={myData}
-  scale={myScale}
-  translate={[width / 2, height / 2]}
-  fill={(feature) => '#aaaaaa'}
-  onClick={data => event => {
-    alert(`Clicked!`);
-  }}
-/>
-```
 
-### Properties
-Same properties as Mercator.
+<h3 id="graticule-">&lt;Graticule /&gt;</h3>
 
-|      Name       |       Default       |   Type   |                                                 Description                                                 |
-|:--------------- |:------------------- |:-------- |:----------------------------------------------------------------------------------------------------------- |
-| className       | `vx-orthographic`   | string   | The class name for the `path` element.                                                                      |
 
-## `<Albers />`
+<a id="#Graticule__children" name="Graticule__children" href="#Graticule__children">#</a> *Graticule*.**children**&lt;func&gt;  
 
-The albers projection.
+<a id="#Graticule__graticule" name="Graticule__graticule" href="#Graticule__graticule">#</a> *Graticule*.**graticule**&lt;func&gt;  
 
-### Example
+<a id="#Graticule__lines" name="Graticule__lines" href="#Graticule__lines">#</a> *Graticule*.**lines**&lt;func&gt;  
 
-<img width="250" src="https://user-images.githubusercontent.com/3831579/28503693-d27ed9fc-700b-11e7-9e0a-e6b54a4a9b83.png" alt="vx-geo-mercator">
+<a id="#Graticule__outline" name="Graticule__outline" href="#Graticule__outline">#</a> *Graticule*.**outline**&lt;func&gt;  
 
-```js
-<Albers
-  data={myData}
-  scale={myScale}
-  translate={[width / 2, height / 2]}
-  fill={(feature) => '#aaaaaa'}
-  onClick={data => event => {
-    alert(`Clicked!`);
-  }}
-/>
-```
+<h3 id="albers-">&lt;Albers /&gt;</h3>
+All props pass through to `<Projection projection="albers" {...props} />`
 
-### Properties
-Same properties as Mercator.
 
-|      Name       |       Default       |   Type   |                                                 Description                                                 |
-|:--------------- |:------------------- |:-------- |:----------------------------------------------------------------------------------------------------------- |
-| className       | `vx-albers`         | string   | The class name for the `path` element.                                                                      |
+<h3 id="mercator-">&lt;Mercator /&gt;</h3>
+All props pass through to `<Projection projection="mercator" {...props} />`
 
-## `<NaturalEarth />`
 
-The Natural Earth projection.
+<h3 id="naturalearth-">&lt;NaturalEarth /&gt;</h3>
+All props pass through to `<Projection projection="naturalEarth" {...props} />`
 
-### Example
 
-```js
-<NaturalEarth
-  data={myData}
-  scale={myScale}
-  translate={[width / 2, height / 2]}
-  fill={(feature) => '#aaaaaa'}
-  onClick={data => event => {
-    alert(`Clicked!`);
-  }}
-/>
-```
+<h3 id="orthographic-">&lt;Orthographic /&gt;</h3>
+All props pass through to `<Projection projection="orthographic" {...props} />`
 
-### Properties
-Same properties as Mercator.
 
-|      Name       |       Default                 |   Type   |                                                 Description                                                 |
-|:--------------- |:----------------------------- |:-------- |:----------------------------------------------------------------------------------------------------------- |
-| className       | `vx-geo-naturalEarth`         | string   | The class name for the `path` element. 
+<h3 id="projection-">&lt;Projection /&gt;</h3>
+Component for all projections.
+
+<a id="#Projection__center" name="Projection__center" href="#Projection__center">#</a> *Projection*.**center**&lt;array&gt;  
+
+<a id="#Projection__centroid" name="Projection__centroid" href="#Projection__centroid">#</a> *Projection*.**centroid**&lt;func&gt;  
+
+<a id="#Projection__children" name="Projection__children" href="#Projection__children">#</a> *Projection*.**children**&lt;func&gt;  
+
+<a id="#Projection__className" name="Projection__className" href="#Projection__className">#</a> *Projection*.**className**&lt;string&gt;  
+
+<a id="#Projection__clipAngle" name="Projection__clipAngle" href="#Projection__clipAngle">#</a> *Projection*.**clipAngle**&lt;number&gt;  
+
+<a id="#Projection__clipExtent" name="Projection__clipExtent" href="#Projection__clipExtent">#</a> *Projection*.**clipExtent**&lt;array&gt;  
+
+<a id="#Projection__data" name="Projection__data" href="#Projection__data">#</a> *Projection*.**data**&lt;array&gt; `required` 
+
+<a id="#Projection__fitExtent" name="Projection__fitExtent" href="#Projection__fitExtent">#</a> *Projection*.**fitExtent**&lt;array&gt;  
+
+<a id="#Projection__fitSize" name="Projection__fitSize" href="#Projection__fitSize">#</a> *Projection*.**fitSize**&lt;array&gt;  
+
+<a id="#Projection__precision" name="Projection__precision" href="#Projection__precision">#</a> *Projection*.**precision**&lt;number&gt;  
+
+<a id="#Projection__projection" name="Projection__projection" href="#Projection__projection">#</a> *Projection*.**projection**&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>'mercator'</td></td></table>
+
+<a id="#Projection__projectionFunc" name="Projection__projectionFunc" href="#Projection__projectionFunc">#</a> *Projection*.**projectionFunc**&lt;func&gt;  
+
+<a id="#Projection__rotate" name="Projection__rotate" href="#Projection__rotate">#</a> *Projection*.**rotate**&lt;array&gt;  
+
+<a id="#Projection__scale" name="Projection__scale" href="#Projection__scale">#</a> *Projection*.**scale**&lt;number&gt;  
+
+<a id="#Projection__translate" name="Projection__translate" href="#Projection__translate">#</a> *Projection*.**translate**&lt;array&gt;  
