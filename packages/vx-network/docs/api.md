@@ -6,7 +6,7 @@
 ### &lt;DefaultNode /&gt;
 
 
-No props
+
 ### &lt;Graph /&gt;
 
 

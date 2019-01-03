@@ -51,7 +51,7 @@ function generateProp(propName, prop, name) {
 }
 
 function generateProps(props, name) {
-  if (!props || !Object.keys(props)) return 'No props';
+  if (!props || !Object.keys(props)) return '';
   return Object.keys(props)
     .sort()
     .map(function(propName) {

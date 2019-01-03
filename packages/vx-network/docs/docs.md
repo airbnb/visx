@@ -56,7 +56,7 @@ npm install --save @vx/network
 ### &lt;DefaultNode /&gt;
 
 
-No props
+
 ### &lt;Graph /&gt;
 
 
