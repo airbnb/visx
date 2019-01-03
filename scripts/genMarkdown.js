@@ -34,7 +34,8 @@ function generatePropType(type) {
 }
 
 function generatePropDefaultValue(value) {
-  return `\n\nDefault:\n\`\`\`js\n${value.value}\n\`\`\`\n`;
+  const strValue = `${value.value}`;
+  return `<table><tr><td><strong>Default</strong></td><td>${strValue}</td></td></table>`;
 }
 
 function generateProp(propName, prop, name) {

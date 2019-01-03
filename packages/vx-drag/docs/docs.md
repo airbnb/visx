@@ -25,13 +25,7 @@ npm install --save @vx/drag
 ### &lt;Drag /&gt;
 
 
-<a name="Drag__captureDragArea" href="#Drag__captureDragArea">#</a> *Drag*.**captureDragArea**&lt;bool&gt;  
-
-Default:
-```js
-true
-```
-
+<a name="Drag__captureDragArea" href="#Drag__captureDragArea">#</a> *Drag*.**captureDragArea**&lt;bool&gt;  <table><tr><td><strong>Default</strong></td><td>true</td></td></table>
 
 <a name="Drag__children" href="#Drag__children">#</a> *Drag*.**children**&lt;func&gt; `required` 
 
@@ -43,12 +37,6 @@ true
 
 <a name="Drag__onDragStart" href="#Drag__onDragStart">#</a> *Drag*.**onDragStart**&lt;func&gt;  
 
-<a name="Drag__resetOnStart" href="#Drag__resetOnStart">#</a> *Drag*.**resetOnStart**&lt;bool&gt;  
-
-Default:
-```js
-false
-```
-
+<a name="Drag__resetOnStart" href="#Drag__resetOnStart">#</a> *Drag*.**resetOnStart**&lt;bool&gt;  <table><tr><td><strong>Default</strong></td><td>false</td></td></table>
 
 <a name="Drag__width" href="#Drag__width">#</a> *Drag*.**width**&lt;number&gt; `required` 

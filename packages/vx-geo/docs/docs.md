@@ -77,13 +77,7 @@ Component for all projections.
 
 <a name="Projection__precision" href="#Projection__precision">#</a> *Projection*.**precision**&lt;number&gt;  
 
-<a name="Projection__projection" href="#Projection__projection">#</a> *Projection*.**projection**&lt;string&gt;  
-
-Default:
-```js
-'mercator'
-```
-
+<a name="Projection__projection" href="#Projection__projection">#</a> *Projection*.**projection**&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>'mercator'</td></td></table>
 
 <a name="Projection__projectionFunc" href="#Projection__projectionFunc">#</a> *Projection*.**projectionFunc**&lt;func&gt;  
 

@@ -19,36 +19,12 @@
 ### &lt;RectClipPath /&gt;
 
 
-<a name="RectClipPath__height" href="#RectClipPath__height">#</a> *RectClipPath*.**height**&lt;union(string|number)&gt;  
-
-Default:
-```js
-1
-```
-
+<a name="RectClipPath__height" href="#RectClipPath__height">#</a> *RectClipPath*.**height**&lt;union(string|number)&gt;  <table><tr><td><strong>Default</strong></td><td>1</td></td></table>
 
 <a name="RectClipPath__id" href="#RectClipPath__id">#</a> *RectClipPath*.**id**&lt;string&gt; `required` 
 
-<a name="RectClipPath__width" href="#RectClipPath__width">#</a> *RectClipPath*.**width**&lt;union(string|number)&gt;  
+<a name="RectClipPath__width" href="#RectClipPath__width">#</a> *RectClipPath*.**width**&lt;union(string|number)&gt;  <table><tr><td><strong>Default</strong></td><td>1</td></td></table>
 
-Default:
-```js
-1
-```
+<a name="RectClipPath__x" href="#RectClipPath__x">#</a> *RectClipPath*.**x**&lt;union(string|number)&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table>
 
-
-<a name="RectClipPath__x" href="#RectClipPath__x">#</a> *RectClipPath*.**x**&lt;union(string|number)&gt;  
-
-Default:
-```js
-0
-```
-
-
-<a name="RectClipPath__y" href="#RectClipPath__y">#</a> *RectClipPath*.**y**&lt;union(string|number)&gt;  
-
-Default:
-```js
-0
-```
-
+<a name="RectClipPath__y" href="#RectClipPath__y">#</a> *RectClipPath*.**y**&lt;union(string|number)&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table>

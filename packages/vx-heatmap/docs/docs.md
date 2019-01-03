@@ -77,61 +77,25 @@ npm install --save @vx/heatmap
 ### &lt;HeatmapCircle /&gt;
 
 
-<a name="HeatmapCircle__bins" href="#HeatmapCircle__bins">#</a> *HeatmapCircle*.**bins**&lt;func&gt;  
-
-Default:
-```js
-d => d.bins
-```
-
+<a name="HeatmapCircle__bins" href="#HeatmapCircle__bins">#</a> *HeatmapCircle*.**bins**&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d => d.bins</td></td></table>
 
 <a name="HeatmapCircle__children" href="#HeatmapCircle__children">#</a> *HeatmapCircle*.**children**&lt;func&gt;  
 
 <a name="HeatmapCircle__className" href="#HeatmapCircle__className">#</a> *HeatmapCircle*.**className**&lt;string&gt;  
 
-<a name="HeatmapCircle__colorScale" href="#HeatmapCircle__colorScale">#</a> *HeatmapCircle*.**colorScale**&lt;func&gt;  
+<a name="HeatmapCircle__colorScale" href="#HeatmapCircle__colorScale">#</a> *HeatmapCircle*.**colorScale**&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d => undefined</td></td></table>
 
-Default:
-```js
-d => undefined
-```
-
-
-<a name="HeatmapCircle__count" href="#HeatmapCircle__count">#</a> *HeatmapCircle*.**count**&lt;func&gt;  
-
-Default:
-```js
-d => d.count
-```
-
+<a name="HeatmapCircle__count" href="#HeatmapCircle__count">#</a> *HeatmapCircle*.**count**&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d => d.count</td></td></table>
 
 <a name="HeatmapCircle__data" href="#HeatmapCircle__data">#</a> *HeatmapCircle*.**data**&lt;array&gt;  
 
-<a name="HeatmapCircle__gap" href="#HeatmapCircle__gap">#</a> *HeatmapCircle*.**gap**&lt;number&gt;  
-
-Default:
-```js
-1
-```
-
+<a name="HeatmapCircle__gap" href="#HeatmapCircle__gap">#</a> *HeatmapCircle*.**gap**&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>1</td></td></table>
 
 <a name="HeatmapCircle__left" href="#HeatmapCircle__left">#</a> *HeatmapCircle*.**left**&lt;number&gt;  
 
-<a name="HeatmapCircle__opacityScale" href="#HeatmapCircle__opacityScale">#</a> *HeatmapCircle*.**opacityScale**&lt;func&gt;  
+<a name="HeatmapCircle__opacityScale" href="#HeatmapCircle__opacityScale">#</a> *HeatmapCircle*.**opacityScale**&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d => 1</td></td></table>
 
-Default:
-```js
-d => 1
-```
-
-
-<a name="HeatmapCircle__radius" href="#HeatmapCircle__radius">#</a> *HeatmapCircle*.**radius**&lt;number&gt;  
-
-Default:
-```js
-6
-```
-
+<a name="HeatmapCircle__radius" href="#HeatmapCircle__radius">#</a> *HeatmapCircle*.**radius**&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>6</td></td></table>
 
 <a name="HeatmapCircle__top" href="#HeatmapCircle__top">#</a> *HeatmapCircle*.**top**&lt;number&gt;  
 
@@ -146,63 +110,27 @@ Default:
 
 <a name="HeatmapRect__binWidth" href="#HeatmapRect__binWidth">#</a> *HeatmapRect*.**binWidth**&lt;number&gt;  
 
-<a name="HeatmapRect__bins" href="#HeatmapRect__bins">#</a> *HeatmapRect*.**bins**&lt;func&gt;  
-
-Default:
-```js
-d => d.bins
-```
-
+<a name="HeatmapRect__bins" href="#HeatmapRect__bins">#</a> *HeatmapRect*.**bins**&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d => d.bins</td></td></table>
 
 <a name="HeatmapRect__children" href="#HeatmapRect__children">#</a> *HeatmapRect*.**children**&lt;func&gt;  
 
 <a name="HeatmapRect__className" href="#HeatmapRect__className">#</a> *HeatmapRect*.**className**&lt;string&gt;  
 
-<a name="HeatmapRect__colorScale" href="#HeatmapRect__colorScale">#</a> *HeatmapRect*.**colorScale**&lt;func&gt;  
+<a name="HeatmapRect__colorScale" href="#HeatmapRect__colorScale">#</a> *HeatmapRect*.**colorScale**&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d => undefined</td></td></table>
 
-Default:
-```js
-d => undefined
-```
-
-
-<a name="HeatmapRect__count" href="#HeatmapRect__count">#</a> *HeatmapRect*.**count**&lt;func&gt;  
-
-Default:
-```js
-d => d.count
-```
-
+<a name="HeatmapRect__count" href="#HeatmapRect__count">#</a> *HeatmapRect*.**count**&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d => d.count</td></td></table>
 
 <a name="HeatmapRect__data" href="#HeatmapRect__data">#</a> *HeatmapRect*.**data**&lt;array&gt;  
 
-<a name="HeatmapRect__gap" href="#HeatmapRect__gap">#</a> *HeatmapRect*.**gap**&lt;number&gt;  
-
-Default:
-```js
-1
-```
-
+<a name="HeatmapRect__gap" href="#HeatmapRect__gap">#</a> *HeatmapRect*.**gap**&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>1</td></td></table>
 
 <a name="HeatmapRect__left" href="#HeatmapRect__left">#</a> *HeatmapRect*.**left**&lt;number&gt;  
 
-<a name="HeatmapRect__opacityScale" href="#HeatmapRect__opacityScale">#</a> *HeatmapRect*.**opacityScale**&lt;func&gt;  
-
-Default:
-```js
-d => 1
-```
-
+<a name="HeatmapRect__opacityScale" href="#HeatmapRect__opacityScale">#</a> *HeatmapRect*.**opacityScale**&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d => 1</td></td></table>
 
 <a name="HeatmapRect__top" href="#HeatmapRect__top">#</a> *HeatmapRect*.**top**&lt;number&gt;  
 
-<a name="HeatmapRect__x0" href="#HeatmapRect__x0">#</a> *HeatmapRect*.**x0**&lt;number&gt;  
-
-Default:
-```js
-0
-```
-
+<a name="HeatmapRect__x0" href="#HeatmapRect__x0">#</a> *HeatmapRect*.**x0**&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table>
 
 <a name="HeatmapRect__xScale" href="#HeatmapRect__xScale">#</a> *HeatmapRect*.**xScale**&lt;func&gt;  
 

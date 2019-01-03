@@ -41,112 +41,40 @@ npm install --save @vx/axis
 
 <a name="Axis__children" href="#Axis__children">#</a> *Axis*.**children**&lt;func&gt;  
 
-<a name="Axis__hideAxisLine" href="#Axis__hideAxisLine">#</a> *Axis*.**hideAxisLine**&lt;bool&gt;  
+<a name="Axis__hideAxisLine" href="#Axis__hideAxisLine">#</a> *Axis*.**hideAxisLine**&lt;bool&gt;  <table><tr><td><strong>Default</strong></td><td>false</td></td></table>
 
-Default:
-```js
-false
-```
+<a name="Axis__hideTicks" href="#Axis__hideTicks">#</a> *Axis*.**hideTicks**&lt;bool&gt;  <table><tr><td><strong>Default</strong></td><td>false</td></td></table>
 
+<a name="Axis__hideZero" href="#Axis__hideZero">#</a> *Axis*.**hideZero**&lt;bool&gt;  <table><tr><td><strong>Default</strong></td><td>false</td></td></table>
 
-<a name="Axis__hideTicks" href="#Axis__hideTicks">#</a> *Axis*.**hideTicks**&lt;bool&gt;  
-
-Default:
-```js
-false
-```
-
-
-<a name="Axis__hideZero" href="#Axis__hideZero">#</a> *Axis*.**hideZero**&lt;bool&gt;  
-
-Default:
-```js
-false
-```
-
-
-<a name="Axis__label" href="#Axis__label">#</a> *Axis*.**label**&lt;string&gt;  
-
-Default:
-```js
-''
-```
-
+<a name="Axis__label" href="#Axis__label">#</a> *Axis*.**label**&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>''</td></td></table>
 
 <a name="Axis__labelClassName" href="#Axis__labelClassName">#</a> *Axis*.**labelClassName**&lt;string&gt;  
 
-<a name="Axis__labelOffset" href="#Axis__labelOffset">#</a> *Axis*.**labelOffset**&lt;number&gt;  
+<a name="Axis__labelOffset" href="#Axis__labelOffset">#</a> *Axis*.**labelOffset**&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>14</td></td></table>
 
-Default:
-```js
-14
-```
-
-
-<a name="Axis__labelProps" href="#Axis__labelProps">#</a> *Axis*.**labelProps**&lt;object&gt;  
-
-Default:
-```js
-{
+<a name="Axis__labelProps" href="#Axis__labelProps">#</a> *Axis*.**labelProps**&lt;object&gt;  <table><tr><td><strong>Default</strong></td><td>{
   textAnchor: 'middle',
   fontFamily: 'Arial',
   fontSize: 10,
   fill: 'black'
-}
-```
+}</td></td></table>
 
+<a name="Axis__left" href="#Axis__left">#</a> *Axis*.**left**&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table>
 
-<a name="Axis__left" href="#Axis__left">#</a> *Axis*.**left**&lt;number&gt;  
+<a name="Axis__numTicks" href="#Axis__numTicks">#</a> *Axis*.**numTicks**&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>10</td></td></table>
 
-Default:
-```js
-0
-```
+<a name="Axis__orientation" href="#Axis__orientation">#</a> *Axis*.**orientation**&lt;enum(ORIENT.top|ORIENT.right|ORIENT.bottom|ORIENT.left)&gt;  <table><tr><td><strong>Default</strong></td><td>ORIENT.bottom</td></td></table>
 
-
-<a name="Axis__numTicks" href="#Axis__numTicks">#</a> *Axis*.**numTicks**&lt;number&gt;  
-
-Default:
-```js
-10
-```
-
-
-<a name="Axis__orientation" href="#Axis__orientation">#</a> *Axis*.**orientation**&lt;enum(ORIENT.top|ORIENT.right|ORIENT.bottom|ORIENT.left)&gt;  
-
-Default:
-```js
-ORIENT.bottom
-```
-
-
-<a name="Axis__rangePadding" href="#Axis__rangePadding">#</a> *Axis*.**rangePadding**&lt;number&gt;  
-
-Default:
-```js
-0
-```
-
+<a name="Axis__rangePadding" href="#Axis__rangePadding">#</a> *Axis*.**rangePadding**&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table>
 
 <a name="Axis__scale" href="#Axis__scale">#</a> *Axis*.**scale**&lt;func&gt; `required` 
 
-<a name="Axis__stroke" href="#Axis__stroke">#</a> *Axis*.**stroke**&lt;string&gt;  
-
-Default:
-```js
-'black'
-```
-
+<a name="Axis__stroke" href="#Axis__stroke">#</a> *Axis*.**stroke**&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>'black'</td></td></table>
 
 <a name="Axis__strokeDasharray" href="#Axis__strokeDasharray">#</a> *Axis*.**strokeDasharray**&lt;string&gt;  
 
-<a name="Axis__strokeWidth" href="#Axis__strokeWidth">#</a> *Axis*.**strokeWidth**&lt;number&gt;  
-
-Default:
-```js
-1
-```
-
+<a name="Axis__strokeWidth" href="#Axis__strokeWidth">#</a> *Axis*.**strokeWidth**&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>1</td></td></table>
 
 <a name="Axis__tickClassName" href="#Axis__tickClassName">#</a> *Axis*.**tickClassName**&lt;string&gt;  
 
@@ -154,46 +82,22 @@ Default:
 
 <a name="Axis__tickFormat" href="#Axis__tickFormat">#</a> *Axis*.**tickFormat**&lt;func&gt;  
 
-<a name="Axis__tickLabelProps" href="#Axis__tickLabelProps">#</a> *Axis*.**tickLabelProps**&lt;func&gt;  
-
-Default:
-```js
-(tickValue, index) => ({
+<a name="Axis__tickLabelProps" href="#Axis__tickLabelProps">#</a> *Axis*.**tickLabelProps**&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>(tickValue, index) => ({
   textAnchor: 'middle',
   fontFamily: 'Arial',
   fontSize: 10,
   fill: 'black'
-})
-```
+})</td></td></table>
 
+<a name="Axis__tickLength" href="#Axis__tickLength">#</a> *Axis*.**tickLength**&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>8</td></td></table>
 
-<a name="Axis__tickLength" href="#Axis__tickLength">#</a> *Axis*.**tickLength**&lt;number&gt;  
-
-Default:
-```js
-8
-```
-
-
-<a name="Axis__tickStroke" href="#Axis__tickStroke">#</a> *Axis*.**tickStroke**&lt;string&gt;  
-
-Default:
-```js
-'black'
-```
-
+<a name="Axis__tickStroke" href="#Axis__tickStroke">#</a> *Axis*.**tickStroke**&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>'black'</td></td></table>
 
 <a name="Axis__tickTransform" href="#Axis__tickTransform">#</a> *Axis*.**tickTransform**&lt;string&gt;  
 
 <a name="Axis__tickValues" href="#Axis__tickValues">#</a> *Axis*.**tickValues**&lt;array&gt;  
 
-<a name="Axis__top" href="#Axis__top">#</a> *Axis*.**top**&lt;number&gt;  
-
-Default:
-```js
-0
-```
-
+<a name="Axis__top" href="#Axis__top">#</a> *Axis*.**top**&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table>
 
 ### &lt;AxisBottom /&gt;
 
@@ -232,13 +136,7 @@ The class name applied to the axis label text element.
 
 <a name="AxisBottom__labelOffset" href="#AxisBottom__labelOffset">#</a> *AxisBottom*.**labelOffset**&lt;number&gt; 
 
-Pixel offset of the axis label (does not include tick label font size, which is accounted for automatically) 
-
-Default:
-```js
-8
-```
-
+Pixel offset of the axis label (does not include tick label font size, which is accounted for automatically) <table><tr><td><strong>Default</strong></td><td>8</td></td></table>
 
 <a name="AxisBottom__labelProps" href="#AxisBottom__labelProps">#</a> *AxisBottom*.**labelProps**&lt;object&gt; 
 
@@ -284,29 +182,17 @@ A [d3 formatter](https://github.com/d3/d3-scale/blob/master/README.md#continuous
 
 <a name="AxisBottom__tickLabelProps" href="#AxisBottom__tickLabelProps">#</a> *AxisBottom*.**tickLabelProps**&lt;func&gt; 
 
-A function that returns props for a given tick label. 
-
-Default:
-```js
-({ tick, index }) => ({
+A function that returns props for a given tick label. <table><tr><td><strong>Default</strong></td><td>({ tick, index }) => ({
   dy: '0.25em',
   fill: 'black',
   fontFamily: 'Arial',
   fontSize: 10,
   textAnchor: 'middle'
-})
-```
-
+})</td></td></table>
 
 <a name="AxisBottom__tickLength" href="#AxisBottom__tickLength">#</a> *AxisBottom*.**tickLength**&lt;number&gt; 
 
-The length of the tick lines. 
-
-Default:
-```js
-8
-```
-
+The length of the tick lines. <table><tr><td><strong>Default</strong></td><td>8</td></td></table>
 
 <a name="AxisBottom__tickStroke" href="#AxisBottom__tickStroke">#</a> *AxisBottom*.**tickStroke**&lt;string&gt; 
 
@@ -343,13 +229,7 @@ A top pixel offset applied to the entire axis.
 
 <a name="AxisLeft__labelClassName" href="#AxisLeft__labelClassName">#</a> *AxisLeft*.**labelClassName**&lt;string&gt;  
 
-<a name="AxisLeft__labelOffset" href="#AxisLeft__labelOffset">#</a> *AxisLeft*.**labelOffset**&lt;number&gt;  
-
-Default:
-```js
-36
-```
-
+<a name="AxisLeft__labelOffset" href="#AxisLeft__labelOffset">#</a> *AxisLeft*.**labelOffset**&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>36</td></td></table>
 
 <a name="AxisLeft__labelProps" href="#AxisLeft__labelProps">#</a> *AxisLeft*.**labelProps**&lt;object&gt;  
 
@@ -373,28 +253,16 @@ Default:
 
 <a name="AxisLeft__tickFormat" href="#AxisLeft__tickFormat">#</a> *AxisLeft*.**tickFormat**&lt;func&gt;  
 
-<a name="AxisLeft__tickLabelProps" href="#AxisLeft__tickLabelProps">#</a> *AxisLeft*.**tickLabelProps**&lt;func&gt;  
-
-Default:
-```js
-({ tick, index }) => ({
+<a name="AxisLeft__tickLabelProps" href="#AxisLeft__tickLabelProps">#</a> *AxisLeft*.**tickLabelProps**&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>({ tick, index }) => ({
   dx: '-0.25em',
   dy: '0.25em',
   fill: 'black',
   fontFamily: 'Arial',
   fontSize: 10,
   textAnchor: 'end'
-})
-```
+})</td></td></table>
 
-
-<a name="AxisLeft__tickLength" href="#AxisLeft__tickLength">#</a> *AxisLeft*.**tickLength**&lt;number&gt;  
-
-Default:
-```js
-8
-```
-
+<a name="AxisLeft__tickLength" href="#AxisLeft__tickLength">#</a> *AxisLeft*.**tickLength**&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>8</td></td></table>
 
 <a name="AxisLeft__tickStroke" href="#AxisLeft__tickStroke">#</a> *AxisLeft*.**tickStroke**&lt;string&gt;  
 
@@ -423,13 +291,7 @@ Default:
 
 <a name="AxisRight__labelClassName" href="#AxisRight__labelClassName">#</a> *AxisRight*.**labelClassName**&lt;string&gt;  
 
-<a name="AxisRight__labelOffset" href="#AxisRight__labelOffset">#</a> *AxisRight*.**labelOffset**&lt;number&gt;  
-
-Default:
-```js
-36
-```
-
+<a name="AxisRight__labelOffset" href="#AxisRight__labelOffset">#</a> *AxisRight*.**labelOffset**&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>36</td></td></table>
 
 <a name="AxisRight__labelProps" href="#AxisRight__labelProps">#</a> *AxisRight*.**labelProps**&lt;object&gt;  
 
@@ -453,28 +315,16 @@ Default:
 
 <a name="AxisRight__tickFormat" href="#AxisRight__tickFormat">#</a> *AxisRight*.**tickFormat**&lt;func&gt;  
 
-<a name="AxisRight__tickLabelProps" href="#AxisRight__tickLabelProps">#</a> *AxisRight*.**tickLabelProps**&lt;func&gt;  
-
-Default:
-```js
-({ tick, index }) => ({
+<a name="AxisRight__tickLabelProps" href="#AxisRight__tickLabelProps">#</a> *AxisRight*.**tickLabelProps**&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>({ tick, index }) => ({
   dx: '0.25em',
   dy: '0.25em',
   fill: 'black',
   fontFamily: 'Arial',
   fontSize: 10,
   textAnchor: 'start'
-})
-```
+})</td></td></table>
 
-
-<a name="AxisRight__tickLength" href="#AxisRight__tickLength">#</a> *AxisRight*.**tickLength**&lt;number&gt;  
-
-Default:
-```js
-8
-```
-
+<a name="AxisRight__tickLength" href="#AxisRight__tickLength">#</a> *AxisRight*.**tickLength**&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>8</td></td></table>
 
 <a name="AxisRight__tickStroke" href="#AxisRight__tickStroke">#</a> *AxisRight*.**tickStroke**&lt;string&gt;  
 
@@ -503,13 +353,7 @@ Default:
 
 <a name="AxisTop__labelClassName" href="#AxisTop__labelClassName">#</a> *AxisTop*.**labelClassName**&lt;string&gt;  
 
-<a name="AxisTop__labelOffset" href="#AxisTop__labelOffset">#</a> *AxisTop*.**labelOffset**&lt;number&gt;  
-
-Default:
-```js
-8
-```
-
+<a name="AxisTop__labelOffset" href="#AxisTop__labelOffset">#</a> *AxisTop*.**labelOffset**&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>8</td></td></table>
 
 <a name="AxisTop__labelProps" href="#AxisTop__labelProps">#</a> *AxisTop*.**labelProps**&lt;object&gt;  
 
@@ -533,27 +377,15 @@ Default:
 
 <a name="AxisTop__tickFormat" href="#AxisTop__tickFormat">#</a> *AxisTop*.**tickFormat**&lt;func&gt;  
 
-<a name="AxisTop__tickLabelProps" href="#AxisTop__tickLabelProps">#</a> *AxisTop*.**tickLabelProps**&lt;func&gt;  
-
-Default:
-```js
-({ tick, index }) => ({
+<a name="AxisTop__tickLabelProps" href="#AxisTop__tickLabelProps">#</a> *AxisTop*.**tickLabelProps**&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>({ tick, index }) => ({
   dy: '-0.25em',
   fill: 'black',
   fontFamily: 'Arial',
   fontSize: 10,
   textAnchor: 'middle'
-})
-```
+})</td></td></table>
 
-
-<a name="AxisTop__tickLength" href="#AxisTop__tickLength">#</a> *AxisTop*.**tickLength**&lt;number&gt;  
-
-Default:
-```js
-8
-```
-
+<a name="AxisTop__tickLength" href="#AxisTop__tickLength">#</a> *AxisTop*.**tickLength**&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>8</td></td></table>
 
 <a name="AxisTop__tickStroke" href="#AxisTop__tickStroke">#</a> *AxisTop*.**tickStroke**&lt;string&gt;  
 

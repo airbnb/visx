@@ -62,21 +62,9 @@ npm install --save @vx/network
 
 <a name="Graph__graph" href="#Graph__graph">#</a> *Graph*.**graph**&lt;object&gt;  
 
-<a name="Graph__linkComponent" href="#Graph__linkComponent">#</a> *Graph*.**linkComponent**&lt;any&gt;  
+<a name="Graph__linkComponent" href="#Graph__linkComponent">#</a> *Graph*.**linkComponent**&lt;any&gt;  <table><tr><td><strong>Default</strong></td><td>DefaultLink</td></td></table>
 
-Default:
-```js
-DefaultLink
-```
-
-
-<a name="Graph__nodeComponent" href="#Graph__nodeComponent">#</a> *Graph*.**nodeComponent**&lt;any&gt;  
-
-Default:
-```js
-DefaultNode
-```
-
+<a name="Graph__nodeComponent" href="#Graph__nodeComponent">#</a> *Graph*.**nodeComponent**&lt;any&gt;  <table><tr><td><strong>Default</strong></td><td>DefaultNode</td></td></table>
 
 ### &lt;Links /&gt;
 

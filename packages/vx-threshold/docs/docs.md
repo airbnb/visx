@@ -39,13 +39,7 @@ npm install --save @vx/threshold
 
 <a name="Threshold__data" href="#Threshold__data">#</a> *Threshold*.**data**&lt;any&gt; `required` 
 
-<a name="Threshold__id" href="#Threshold__id">#</a> *Threshold*.**id**&lt;string&gt;  
-
-Default:
-```js
-''
-```
-
+<a name="Threshold__id" href="#Threshold__id">#</a> *Threshold*.**id**&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>''</td></td></table>
 
 <a name="Threshold__x" href="#Threshold__x">#</a> *Threshold*.**x**&lt;union(func|number)&gt; `required` 
 

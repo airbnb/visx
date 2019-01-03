@@ -106,13 +106,7 @@ npm install --save @vx/pattern
 
 <a name="Circles__className" href="#Circles__className">#</a> *Circles*.**className**&lt;string&gt;  
 
-<a name="Circles__complement" href="#Circles__complement">#</a> *Circles*.**complement**&lt;bool&gt;  
-
-Default:
-```js
-false
-```
-
+<a name="Circles__complement" href="#Circles__complement">#</a> *Circles*.**complement**&lt;bool&gt;  <table><tr><td><strong>Default</strong></td><td>false</td></td></table>
 
 <a name="Circles__fill" href="#Circles__fill">#</a> *Circles*.**fill**&lt;string&gt;  
 
@@ -120,13 +114,7 @@ false
 
 <a name="Circles__id" href="#Circles__id">#</a> *Circles*.**id**&lt;string&gt; `required` 
 
-<a name="Circles__radius" href="#Circles__radius">#</a> *Circles*.**radius**&lt;number&gt;  
-
-Default:
-```js
-2
-```
-
+<a name="Circles__radius" href="#Circles__radius">#</a> *Circles*.**radius**&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>2</td></td></table>
 
 <a name="Circles__stroke" href="#Circles__stroke">#</a> *Circles*.**stroke**&lt;string&gt;  
 
@@ -151,13 +139,7 @@ Default:
 
 <a name="Hexagons__shapeRendering" href="#Hexagons__shapeRendering">#</a> *Hexagons*.**shapeRendering**&lt;string&gt;  
 
-<a name="Hexagons__size" href="#Hexagons__size">#</a> *Hexagons*.**size**&lt;number&gt;  
-
-Default:
-```js
-3
-```
-
+<a name="Hexagons__size" href="#Hexagons__size">#</a> *Hexagons*.**size**&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>3</td></td></table>
 
 <a name="Hexagons__stroke" href="#Hexagons__stroke">#</a> *Hexagons*.**stroke**&lt;string&gt;  
 
@@ -180,33 +162,15 @@ Default:
 
 <a name="Lines__id" href="#Lines__id">#</a> *Lines*.**id**&lt;string&gt; `required` 
 
-<a name="Lines__orientation" href="#Lines__orientation">#</a> *Lines*.**orientation**&lt;array&gt;  
+<a name="Lines__orientation" href="#Lines__orientation">#</a> *Lines*.**orientation**&lt;array&gt;  <table><tr><td><strong>Default</strong></td><td>['vertical']</td></td></table>
 
-Default:
-```js
-['vertical']
-```
-
-
-<a name="Lines__shapeRendering" href="#Lines__shapeRendering">#</a> *Lines*.**shapeRendering**&lt;string&gt;  
-
-Default:
-```js
-'auto'
-```
-
+<a name="Lines__shapeRendering" href="#Lines__shapeRendering">#</a> *Lines*.**shapeRendering**&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>'auto'</td></td></table>
 
 <a name="Lines__stroke" href="#Lines__stroke">#</a> *Lines*.**stroke**&lt;string&gt; `required` 
 
 <a name="Lines__strokeDasharray" href="#Lines__strokeDasharray">#</a> *Lines*.**strokeDasharray**&lt;string&gt;  
 
-<a name="Lines__strokeLinecap" href="#Lines__strokeLinecap">#</a> *Lines*.**strokeLinecap**&lt;string&gt;  
-
-Default:
-```js
-'square'
-```
-
+<a name="Lines__strokeLinecap" href="#Lines__strokeLinecap">#</a> *Lines*.**strokeLinecap**&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>'square'</td></td></table>
 
 <a name="Lines__strokeWidth" href="#Lines__strokeWidth">#</a> *Lines*.**strokeWidth**&lt;number&gt; `required` 
 
@@ -219,13 +183,7 @@ Default:
 
 <a name="Path__className" href="#Path__className">#</a> *Path*.**className**&lt;string&gt;  
 
-<a name="Path__fill" href="#Path__fill">#</a> *Path*.**fill**&lt;string&gt;  
-
-Default:
-```js
-'transparent'
-```
-
+<a name="Path__fill" href="#Path__fill">#</a> *Path*.**fill**&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>'transparent'</td></td></table>
 
 <a name="Path__height" href="#Path__height">#</a> *Path*.**height**&lt;number&gt; `required` 
 
@@ -233,25 +191,13 @@ Default:
 
 <a name="Path__path" href="#Path__path">#</a> *Path*.**path**&lt;string&gt;  
 
-<a name="Path__shapeRendering" href="#Path__shapeRendering">#</a> *Path*.**shapeRendering**&lt;string&gt;  
-
-Default:
-```js
-'auto'
-```
-
+<a name="Path__shapeRendering" href="#Path__shapeRendering">#</a> *Path*.**shapeRendering**&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>'auto'</td></td></table>
 
 <a name="Path__stroke" href="#Path__stroke">#</a> *Path*.**stroke**&lt;string&gt;  
 
 <a name="Path__strokeDasharray" href="#Path__strokeDasharray">#</a> *Path*.**strokeDasharray**&lt;string&gt;  
 
-<a name="Path__strokeLinecap" href="#Path__strokeLinecap">#</a> *Path*.**strokeLinecap**&lt;string&gt;  
-
-Default:
-```js
-'square'
-```
-
+<a name="Path__strokeLinecap" href="#Path__strokeLinecap">#</a> *Path*.**strokeLinecap**&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>'square'</td></td></table>
 
 <a name="Path__strokeWidth" href="#Path__strokeWidth">#</a> *Path*.**strokeWidth**&lt;number&gt;  
 
