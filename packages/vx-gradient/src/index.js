@@ -1,5 +1,5 @@
 export { default as LinearGradient } from './gradients/LinearGradient';
-export { default as RadialGradient } from './gradients/GradientRadialGradient';
+export { default as RadialGradient } from './gradients/RadialGradient';
 export { default as GradientDarkgreenGreen } from './gradients/GradientDarkgreenGreen';
 export { default as GradientLightgreenGreen } from './gradients/GradientLightgreenGreen';
 export { default as GradientOrangeRed } from './gradients/GradientOrangeRed';
