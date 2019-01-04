@@ -8,16 +8,17 @@ img {
 }
 
 body {
-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-background: #ffffff;
-font-size: 18px;
-line-height: 1.8em;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell',
+    'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  background: #ffffff;
+  font-size: 18px;
+  line-height: 1.8em;
 }
 
 code {
-  font-family: "Menlo", monospace;
+  font-family: 'Menlo', monospace;
   font-weight: bold;
-  padding: .2rem .3rem;
+  padding: 0.2rem 0.3rem;
   background-color: #ebebeb;
   line-height: 1.8em;
   font-size: 0.8em;
@@ -31,11 +32,10 @@ pre > code {
 pre {
   background-color: #f7f9fa;
   display: inline-block;
-  padding: .5em;
+  padding: 0.5em;
   min-width: 33vw;
   border-radius: 3px;
 }
-
 
 a {
   color: #fc2e1c;
@@ -50,7 +50,6 @@ a {
   width: 24px;
   background-repeat: no-repeat;
 }
-
 
 .nav-inner {
   width: 95vw;
@@ -95,7 +94,8 @@ a {
 table {
   border-collapse: collapse;
 }
-th, td {
+th,
+td {
   border: 1px solid;
   padding: 5px 10px 5px 5px;
 }
@@ -148,13 +148,16 @@ th, td {
     margin: 0;
   }
 
-  .content, pre {
+  .content,
+  pre {
     min-width: 90vw;
     max-width: 90vw;
     word-break: break-all;
   }
 
-  code {word-break: break-all;}
+  code {
+    word-break: break-all;
+  }
 
   body {
     padding: 10px;
@@ -182,4 +185,12 @@ th, td {
   .Item .github {
     margin-top: 0;
   }
+}
+
+table {
+  border-collapse: collapse;
+  font-size: 12px;
+  font-family: monospace;
+  border-color: #efefef;
+  margin-top: 0.25rem;
 }

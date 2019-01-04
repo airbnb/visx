@@ -30,6 +30,7 @@ npm install --save @vx/geo
 <h3 id="graticule-">&lt;Graticule /&gt;</h3>
 
 
+
 <a id="#Graticule__children" name="Graticule__children" href="#Graticule__children">#</a> *Graticule*.**children**&lt;func&gt;  
 
 <a id="#Graticule__graticule" name="Graticule__graticule" href="#Graticule__graticule">#</a> *Graticule*.**graticule**&lt;func&gt;  
@@ -39,22 +40,27 @@ npm install --save @vx/geo
 <a id="#Graticule__outline" name="Graticule__outline" href="#Graticule__outline">#</a> *Graticule*.**outline**&lt;func&gt;  
 
 <h3 id="albers-">&lt;Albers /&gt;</h3>
+
 All props pass through to `<Projection projection="albers" {...props} />`
 
 
 <h3 id="mercator-">&lt;Mercator /&gt;</h3>
+
 All props pass through to `<Projection projection="mercator" {...props} />`
 
 
 <h3 id="naturalearth-">&lt;NaturalEarth /&gt;</h3>
+
 All props pass through to `<Projection projection="naturalEarth" {...props} />`
 
 
 <h3 id="orthographic-">&lt;Orthographic /&gt;</h3>
+
 All props pass through to `<Projection projection="orthographic" {...props} />`
 
 
 <h3 id="projection-">&lt;Projection /&gt;</h3>
+
 Component for all projections.
 
 <a id="#Projection__center" name="Projection__center" href="#Projection__center">#</a> *Projection*.**center**&lt;array&gt;  

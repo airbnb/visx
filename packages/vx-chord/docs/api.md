@@ -1,6 +1,7 @@
 <h3 id="chord-">&lt;Chord /&gt;</h3>
 
 
+
 <a id="#Chord__children" name="Chord__children" href="#Chord__children">#</a> *Chord*.**children**&lt;func&gt; `required` 
 
 <a id="#Chord__matrix" name="Chord__matrix" href="#Chord__matrix">#</a> *Chord*.**matrix**&lt;array&gt; `required` 
@@ -14,6 +15,7 @@
 <a id="#Chord__sortSubgroups" name="Chord__sortSubgroups" href="#Chord__sortSubgroups">#</a> *Chord*.**sortSubgroups**&lt;func&gt;  
 
 <h3 id="ribbon-">&lt;Ribbon /&gt;</h3>
+
 
 
 <a id="#Ribbon__children" name="Ribbon__children" href="#Ribbon__children">#</a> *Ribbon*.**children**&lt;func&gt;  

@@ -35,6 +35,7 @@ npm install --save @vx/axis
 <h3 id="axis-">&lt;Axis /&gt;</h3>
 
 
+
 <a id="#Axis__axisClassName" name="Axis__axisClassName" href="#Axis__axisClassName">#</a> *Axis*.**axisClassName**&lt;string&gt;  
 
 <a id="#Axis__axisLineClassName" name="Axis__axisLineClassName" href="#Axis__axisLineClassName">#</a> *Axis*.**axisLineClassName**&lt;string&gt;  
@@ -100,6 +101,7 @@ npm install --save @vx/axis
 <a id="#Axis__top" name="Axis__top" href="#Axis__top">#</a> *Axis*.**top**&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table>
 
 <h3 id="axisbottom-">&lt;AxisBottom /&gt;</h3>
+
 
 
 <a id="#AxisBottom__axisClassName" name="AxisBottom__axisClassName" href="#AxisBottom__axisClassName">#</a> *AxisBottom*.**axisClassName**&lt;string&gt; 
@@ -213,6 +215,7 @@ A top pixel offset applied to the entire axis.
 <h3 id="axisleft-">&lt;AxisLeft /&gt;</h3>
 
 
+
 <a id="#AxisLeft__axisClassName" name="AxisLeft__axisClassName" href="#AxisLeft__axisClassName">#</a> *AxisLeft*.**axisClassName**&lt;string&gt;  
 
 <a id="#AxisLeft__axisLineClassName" name="AxisLeft__axisLineClassName" href="#AxisLeft__axisLineClassName">#</a> *AxisLeft*.**axisLineClassName**&lt;string&gt;  
@@ -275,6 +278,7 @@ A top pixel offset applied to the entire axis.
 <h3 id="axisright-">&lt;AxisRight /&gt;</h3>
 
 
+
 <a id="#AxisRight__axisClassName" name="AxisRight__axisClassName" href="#AxisRight__axisClassName">#</a> *AxisRight*.**axisClassName**&lt;string&gt;  
 
 <a id="#AxisRight__axisLineClassName" name="AxisRight__axisLineClassName" href="#AxisRight__axisLineClassName">#</a> *AxisRight*.**axisLineClassName**&lt;string&gt;  
@@ -335,6 +339,7 @@ A top pixel offset applied to the entire axis.
 <a id="#AxisRight__top" name="AxisRight__top" href="#AxisRight__top">#</a> *AxisRight*.**top**&lt;number&gt;  
 
 <h3 id="axistop-">&lt;AxisTop /&gt;</h3>
+
 
 
 <a id="#AxisTop__axisClassName" name="AxisTop__axisClassName" href="#AxisTop__axisClassName">#</a> *AxisTop*.**axisClassName**&lt;string&gt;  

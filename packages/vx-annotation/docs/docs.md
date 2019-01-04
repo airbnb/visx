@@ -31,6 +31,7 @@ npm install --save @vx/annotation
 <h3 id="linepathannotation-">&lt;LinePathAnnotation /&gt;</h3>
 
 
+
 <a id="#LinePathAnnotation__className" name="LinePathAnnotation__className" href="#LinePathAnnotation__className">#</a> *LinePathAnnotation*.**className**&lt;string&gt; 
 
 Add a class name to the line path. 

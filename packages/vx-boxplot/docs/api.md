@@ -1,6 +1,7 @@
 <h3 id="boxplot-">&lt;BoxPlot /&gt;</h3>
 
 
+
 <a id="#BoxPlot__boxProps" name="BoxPlot__boxProps" href="#BoxPlot__boxProps">#</a> *BoxPlot*.**boxProps**&lt;object&gt;  <table><tr><td><strong>Default</strong></td><td>{}</td></td></table>
 
 <a id="#BoxPlot__boxWidth" name="BoxPlot__boxWidth" href="#BoxPlot__boxWidth">#</a> *BoxPlot*.**boxWidth**&lt;number&gt;  

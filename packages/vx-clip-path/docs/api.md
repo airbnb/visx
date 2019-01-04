@@ -1,6 +1,7 @@
 <h3 id="circleclippath-">&lt;CircleClipPath /&gt;</h3>
 
 
+
 <a id="#CircleClipPath__cx" name="CircleClipPath__cx" href="#CircleClipPath__cx">#</a> *CircleClipPath*.**cx**&lt;union(string|number)&gt;  
 
 <a id="#CircleClipPath__cy" name="CircleClipPath__cy" href="#CircleClipPath__cy">#</a> *CircleClipPath*.**cy**&lt;union(string|number)&gt;  
@@ -12,11 +13,13 @@
 <h3 id="clippath-">&lt;ClipPath /&gt;</h3>
 
 
+
 <a id="#ClipPath__children" name="ClipPath__children" href="#ClipPath__children">#</a> *ClipPath*.**children**&lt;any&gt; `required` 
 
 <a id="#ClipPath__id" name="ClipPath__id" href="#ClipPath__id">#</a> *ClipPath*.**id**&lt;string&gt; `required` 
 
 <h3 id="rectclippath-">&lt;RectClipPath /&gt;</h3>
+
 
 
 <a id="#RectClipPath__height" name="RectClipPath__height" href="#RectClipPath__height">#</a> *RectClipPath*.**height**&lt;union(string|number)&gt;  <table><tr><td><strong>Default</strong></td><td>1</td></td></table>

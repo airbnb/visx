@@ -25,6 +25,7 @@ npm install --save @vx/threshold
 <h3 id="threshold-">&lt;Threshold /&gt;</h3>
 
 
+
 <a id="#Threshold__aboveAreaProps" name="Threshold__aboveAreaProps" href="#Threshold__aboveAreaProps">#</a> *Threshold*.**aboveAreaProps**&lt;object&gt;  
 
 <a id="#Threshold__belowAreaProps" name="Threshold__belowAreaProps" href="#Threshold__belowAreaProps">#</a> *Threshold*.**belowAreaProps**&lt;object&gt;  

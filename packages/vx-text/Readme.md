@@ -50,6 +50,7 @@ npm install --save @vx/text
 <h3 id="text-">&lt;Text /&gt;</h3>
 
 
+
 <a id="#Text__angle" name="Text__angle" href="#Text__angle">#</a> *Text*.**angle**&lt;number&gt;  
 
 <a id="#Text__capHeight" name="Text__capHeight" href="#Text__capHeight">#</a> *Text*.**capHeight**&lt;union(number|string)&gt;  <table><tr><td><strong>Default</strong></td><td>'0.71em'</td></td></table>

@@ -102,6 +102,7 @@ npm install --save @vx/pattern
 <h3 id="circles-">&lt;Circles /&gt;</h3>
 
 
+
 <a id="#Circles__background" name="Circles__background" href="#Circles__background">#</a> *Circles*.**background**&lt;string&gt;  
 
 <a id="#Circles__className" name="Circles__className" href="#Circles__className">#</a> *Circles*.**className**&lt;string&gt;  
@@ -125,6 +126,7 @@ npm install --save @vx/pattern
 <a id="#Circles__width" name="Circles__width" href="#Circles__width">#</a> *Circles*.**width**&lt;number&gt; `required` 
 
 <h3 id="hexagons-">&lt;Hexagons /&gt;</h3>
+
 
 
 <a id="#Hexagons__background" name="Hexagons__background" href="#Hexagons__background">#</a> *Hexagons*.**background**&lt;string&gt;  
@@ -154,6 +156,7 @@ npm install --save @vx/pattern
 <h3 id="lines-">&lt;Lines /&gt;</h3>
 
 
+
 <a id="#Lines__background" name="Lines__background" href="#Lines__background">#</a> *Lines*.**background**&lt;string&gt;  
 
 <a id="#Lines__className" name="Lines__className" href="#Lines__className">#</a> *Lines*.**className**&lt;string&gt;  
@@ -177,6 +180,7 @@ npm install --save @vx/pattern
 <a id="#Lines__width" name="Lines__width" href="#Lines__width">#</a> *Lines*.**width**&lt;number&gt; `required` 
 
 <h3 id="path-">&lt;Path /&gt;</h3>
+
 
 
 <a id="#Path__background" name="Path__background" href="#Path__background">#</a> *Path*.**background**&lt;string&gt;  
@@ -206,6 +210,7 @@ npm install --save @vx/pattern
 <h3 id="pattern-">&lt;Pattern /&gt;</h3>
 
 
+
 <a id="#Pattern__children" name="Pattern__children" href="#Pattern__children">#</a> *Pattern*.**children**&lt;union(arrayOf|node)&gt; `required` 
 
 <a id="#Pattern__height" name="Pattern__height" href="#Pattern__height">#</a> *Pattern*.**height**&lt;number&gt; `required` 
@@ -215,6 +220,7 @@ npm install --save @vx/pattern
 <a id="#Pattern__width" name="Pattern__width" href="#Pattern__width">#</a> *Pattern*.**width**&lt;number&gt; `required` 
 
 <h3 id="waves-">&lt;Waves /&gt;</h3>
+
 
 
 <a id="#Waves__background" name="Waves__background" href="#Waves__background">#</a> *Waves*.**background**&lt;string&gt;  

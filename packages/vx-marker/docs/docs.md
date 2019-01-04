@@ -43,6 +43,7 @@ npm install --save @vx/marker
 <h3 id="marker-">&lt;Marker /&gt;</h3>
 
 
+
 <a id="#Marker__className" name="Marker__className" href="#Marker__className">#</a> *Marker*.**className**&lt;string&gt;  
 
 <a id="#Marker__from" name="Marker__from" href="#Marker__from">#</a> *Marker*.**from**&lt;object&gt;  

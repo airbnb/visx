@@ -12,7 +12,7 @@ function generateTitle(name) {
 }
 
 function generateDesciption(description) {
-  return description + '\n\n';
+  return `\n${description}\n\n`;
 }
 
 function generatePropType(type) {

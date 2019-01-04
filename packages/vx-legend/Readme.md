@@ -64,6 +64,7 @@ npm install --save @vx/legend
 <h3 id="legend-">&lt;Legend /&gt;</h3>
 
 
+
 <a id="#Legend__children" name="Legend__children" href="#Legend__children">#</a> *Legend*.**children**&lt;func&gt;  
 
 <a id="#Legend__className" name="Legend__className" href="#Legend__className">#</a> *Legend*.**className**&lt;string&gt;  
@@ -118,6 +119,7 @@ npm install --save @vx/legend
 <h3 id="legenditem-">&lt;LegendItem /&gt;</h3>
 
 
+
 <a id="#LegendItem__alignItems" name="LegendItem__alignItems" href="#LegendItem__alignItems">#</a> *LegendItem*.**alignItems**&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>'center'</td></td></table>
 
 <a id="#LegendItem__children" name="LegendItem__children" href="#LegendItem__children">#</a> *LegendItem*.**children**&lt;any&gt;  
@@ -131,6 +133,7 @@ npm install --save @vx/legend
 <h3 id="legendlabel-">&lt;LegendLabel /&gt;</h3>
 
 
+
 <a id="#LegendLabel__align" name="LegendLabel__align" href="#LegendLabel__align">#</a> *LegendLabel*.**align**&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>'left'</td></td></table>
 
 <a id="#LegendLabel__children" name="LegendLabel__children" href="#LegendLabel__children">#</a> *LegendLabel*.**children**&lt;any&gt;  
@@ -142,6 +145,7 @@ npm install --save @vx/legend
 <a id="#LegendLabel__margin" name="LegendLabel__margin" href="#LegendLabel__margin">#</a> *LegendLabel*.**margin**&lt;union(string|number)&gt;  <table><tr><td><strong>Default</strong></td><td>'5px 0'</td></td></table>
 
 <h3 id="legendshape-">&lt;LegendShape /&gt;</h3>
+
 
 
 <a id="#LegendShape__fill" name="LegendShape__fill" href="#LegendShape__fill">#</a> *LegendShape*.**fill**&lt;any&gt;  
@@ -161,6 +165,7 @@ npm install --save @vx/legend
 <a id="#LegendShape__width" name="LegendShape__width" href="#LegendShape__width">#</a> *LegendShape*.**width**&lt;any&gt;  
 
 <h3 id="linear-">&lt;Linear /&gt;</h3>
+
 
 
 <a id="#Linear__domain" name="Linear__domain" href="#Linear__domain">#</a> *Linear*.**domain**&lt;array&gt;  
@@ -183,6 +188,7 @@ npm install --save @vx/legend
 <h3 id="ordinal-">&lt;Ordinal /&gt;</h3>
 
 
+
 <a id="#Ordinal__domain" name="Ordinal__domain" href="#Ordinal__domain">#</a> *Ordinal*.**domain**&lt;array&gt;  
 
 <a id="#Ordinal__labelFormat" name="Ordinal__labelFormat" href="#Ordinal__labelFormat">#</a> *Ordinal*.**labelFormat**&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>valueOrIdentity</td></td></table>
@@ -203,6 +209,7 @@ npm install --save @vx/legend
 <h3 id="quantile-">&lt;Quantile /&gt;</h3>
 
 
+
 <a id="#Quantile__domain" name="Quantile__domain" href="#Quantile__domain">#</a> *Quantile*.**domain**&lt;array&gt;  
 
 <a id="#Quantile__labelDelimiter" name="Quantile__labelDelimiter" href="#Quantile__labelDelimiter">#</a> *Quantile*.**labelDelimiter**&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>'-'</td></td></table>
@@ -214,6 +221,7 @@ npm install --save @vx/legend
 <a id="#Quantile__scale" name="Quantile__scale" href="#Quantile__scale">#</a> *Quantile*.**scale**&lt;func&gt; `required` 
 
 <h3 id="size-">&lt;Size /&gt;</h3>
+
 
 
 <a id="#Size__labelFormat" name="Size__labelFormat" href="#Size__labelFormat">#</a> *Size*.**labelFormat**  <table><tr><td><strong>Default</strong></td><td>x => x</td></td></table>
@@ -234,6 +242,7 @@ npm install --save @vx/legend
 <h3 id="threshold-">&lt;Threshold /&gt;</h3>
 
 
+
 <a id="#Threshold__domain" name="Threshold__domain" href="#Threshold__domain">#</a> *Threshold*.**domain**&lt;array&gt;  
 
 <a id="#Threshold__labelDelimiter" name="Threshold__labelDelimiter" href="#Threshold__labelDelimiter">#</a> *Threshold*.**labelDelimiter**&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>'to'</td></td></table>
@@ -251,6 +260,7 @@ npm install --save @vx/legend
 <h3 id="circle-">&lt;Circle /&gt;</h3>
 
 
+
 <a id="#Circle__fill" name="Circle__fill" href="#Circle__fill">#</a> *Circle*.**fill**&lt;any&gt;  
 
 <a id="#Circle__height" name="Circle__height" href="#Circle__height">#</a> *Circle*.**height**&lt;union(number|string)&gt;  
@@ -260,6 +270,7 @@ npm install --save @vx/legend
 <a id="#Circle__width" name="Circle__width" href="#Circle__width">#</a> *Circle*.**width**&lt;union(number|string)&gt;  
 
 <h3 id="rect-">&lt;Rect /&gt;</h3>
+
 
 
 <a id="#Rect__fill" name="Rect__fill" href="#Rect__fill">#</a> *Rect*.**fill**&lt;any&gt;  

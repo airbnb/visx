@@ -75,6 +75,7 @@
 <h3 id="arc-">&lt;Arc /&gt;</h3>
 
 
+
 <p><a id="#Arc__centroid" name="Arc__centroid" href="#Arc__centroid">#</a> <em>Arc</em>.<strong>centroid</strong>&lt;union(func|number)&gt;  </p>
 <p><a id="#Arc__children" name="Arc__children" href="#Arc__children">#</a> <em>Arc</em>.<strong>children</strong>&lt;func&gt;  </p>
 <p><a id="#Arc__className" name="Arc__className" href="#Arc__className">#</a> <em>Arc</em>.<strong>className</strong>&lt;string&gt;  </p>
@@ -88,6 +89,7 @@
 <p><a id="#Arc__padRadius" name="Arc__padRadius" href="#Arc__padRadius">#</a> <em>Arc</em>.<strong>padRadius</strong>&lt;union(func|number)&gt;  </p>
 <p><a id="#Arc__startAngle" name="Arc__startAngle" href="#Arc__startAngle">#</a> <em>Arc</em>.<strong>startAngle</strong>&lt;union(func|number)&gt;  </p>
 <h3 id="area-">&lt;Area /&gt;</h3>
+
 
 
 <p><a id="#Area__children" name="Area__children" href="#Area__children">#</a> <em>Area</em>.<strong>children</strong>&lt;func&gt;  </p>
@@ -105,6 +107,7 @@
 <h3 id="areaclosed-">&lt;AreaClosed /&gt;</h3>
 
 
+
 <p><a id="#AreaClosed__children" name="AreaClosed__children" href="#AreaClosed__children">#</a> <em>AreaClosed</em>.<strong>children</strong>&lt;func&gt;  </p>
 <p><a id="#AreaClosed__className" name="AreaClosed__className" href="#AreaClosed__className">#</a> <em>AreaClosed</em>.<strong>className</strong>&lt;string&gt;  </p>
 <p><a id="#AreaClosed__curve" name="AreaClosed__curve" href="#AreaClosed__curve">#</a> <em>AreaClosed</em>.<strong>curve</strong>&lt;func&gt;  </p>
@@ -118,6 +121,7 @@
 <p><a id="#AreaClosed__y1" name="AreaClosed__y1" href="#AreaClosed__y1">#</a> <em>AreaClosed</em>.<strong>y1</strong>&lt;union(func|number)&gt;  </p>
 <p><a id="#AreaClosed__yScale" name="AreaClosed__yScale" href="#AreaClosed__yScale">#</a> <em>AreaClosed</em>.<strong>yScale</strong>&lt;func&gt;  </p>
 <h3 id="areastack-">&lt;AreaStack /&gt;</h3>
+
 
 
 <p><a id="#AreaStack__children" name="AreaStack__children" href="#AreaStack__children">#</a> <em>AreaStack</em>.<strong>children</strong>&lt;func&gt;  </p>
@@ -141,13 +145,13 @@
 <h3 id="bar-">&lt;Bar /&gt;</h3>
 
 
+
 <p><a id="#Bar__className" name="Bar__className" href="#Bar__className">#</a> <em>Bar</em>.<strong>className</strong>&lt;string&gt;  </p>
 <p><a id="#Bar__innerRef" name="Bar__innerRef" href="#Bar__innerRef">#</a> <em>Bar</em>.<strong>innerRef</strong>&lt;func&gt;  </p>
 <h3 id="bargroup-">&lt;BarGroup /&gt;</h3>
-Generates bar groups as an array of objects and renders <code>&lt;rect /&gt;</code>s for each datum grouped by <code>key</code>. A general setup might look like this:
 
-<code>js
-const data = [{
+<p>Generates bar groups as an array of objects and renders <code>&lt;rect /&gt;</code>s for each datum grouped by <code>key</code>. A general setup might look like this:</p>
+<pre><code class="lang-js">const data = [{
  date: date1,
  key1: value,
  key2: value,
@@ -176,84 +180,63 @@ const yScale = scaleLinear({
 const color = scaleOrdinal({
   domain: keys,
   range: [blue, green, purple]
-});</code>
-
-Example: <a href="https://vx-demo.now.sh/bargroup">https://vx-demo.now.sh/bargroup</a>
-
-<a id="#BarGroup__children" name="BarGroup__children" href="#BarGroup__children">#</a> <em>BarGroup</em>.<strong>children</strong>&lt;func&gt; 
-
-A function that returns a react component. Useful for generating the bar group data with full control over what is rendered. The functions first argument will be the bar groups data as an array of objects with the following properties:
-
- - <code>index&lt;number&gt;</code> - the index of the group based on <em>props</em>.<strong>data</strong> array.
- - <code>x0&lt;number&gt;</code> - the position of the group based on <em>props</em>.<strong>x0</strong> &amp; <em>props</em>.<strong>x0Scale</strong>.
- - <code>bars&lt;array&gt;</code> - array of objects, ordered by <em>props</em>.<strong>keys</strong>, with the following properties:
-   + <code>index&lt;number&gt;</code> - the index of the bar for the current group.
-   + <code>key&lt;string&gt;</code> - the key of the bar.
-   + <code>width&lt;number&gt;</code> - the width of the bar. This will be <code>x1Scale.bandwidth()</code>. If <code>x1Scale</code> does not have a bandwidth property, then it becomes:
-     <code>js
-     x1Range = x1Scale.range();
-     x1Domain = x1Scale.domain();
-     barWidth = Math.abs(x1Range[x1Range.length - 1] - x1Range[0]) / x1Domain.length</code>
-   + <code>height&lt;number&gt;</code> - the height of the bar.
-   + <code>x&lt;number&gt;</code> - the x position of the bar.
-   + <code>y&lt;number&gt;</code> - the y position of the bar.
-   + <code>color&lt;string&gt;</code> - the color of the bar. 
-
-<a id="#BarGroup__className" name="BarGroup__className" href="#BarGroup__className">#</a> <em>BarGroup</em>.<strong>className</strong>&lt;string&gt; 
-
-Add a class name to the containing <code>&lt;g&gt;</code> element. 
-
-<a id="#BarGroup__color" name="BarGroup__color" href="#BarGroup__color">#</a> <em>BarGroup</em>.<strong>color</strong>&lt;func&gt; <code>required</code>
-
-<code>js
-color(key, barIndex)</code>
-A function that returns color for each bar within a bar group. 
-
-<a id="#BarGroup__data" name="BarGroup__data" href="#BarGroup__data">#</a> <em>BarGroup</em>.<strong>data</strong>&lt;array&gt; <code>required</code>
-
-An array of bar group objects. 
-
-<a id="#BarGroup__height" name="BarGroup__height" href="#BarGroup__height">#</a> <em>BarGroup</em>.<strong>height</strong>&lt;number&gt; <code>required</code>
-
-Height is used to align the bottom of the the bars. barHeight = height - yScale(bar.value), where bar.y = yScale(bar.value). 
-
-<a id="#BarGroup__keys" name="BarGroup__keys" href="#BarGroup__keys">#</a> <em>BarGroup</em>.<strong>keys</strong>&lt;array&gt; <code>required</code>
-
-An array of strings containing the key for each bar group. Each bar within a bar group will follow the order of this array. 
-
-<a id="#BarGroup__left" name="BarGroup__left" href="#BarGroup__left">#</a> <em>BarGroup</em>.<strong>left</strong>&lt;number&gt; 
-
-A left pixel offset applied to the entire bar group. 
-
-<a id="#BarGroup__top" name="BarGroup__top" href="#BarGroup__top">#</a> <em>BarGroup</em>.<strong>top</strong>&lt;number&gt; 
-
-A top pixel offset applied to the entire bar group. 
-
-<a id="#BarGroup__x0" name="BarGroup__x0" href="#BarGroup__x0">#</a> <em>BarGroup</em>.<strong>x0</strong>&lt;func&gt; <code>required</code>
-
-<code>js
-x0(barGroup)</code>
-An accessor function that returns the <code>x0</code> value for each datum in <em>props</em>.<strong>data</strong>. 
-
-<a id="#BarGroup__x0Scale" name="BarGroup__x0Scale" href="#BarGroup__x0Scale">#</a> <em>BarGroup</em>.<strong>x0Scale</strong>&lt;func&gt; <code>required</code>
-
-<code>js
-x0Scale(x0(barGroup))</code>
-A scale function that returns the x position of the bar group. 
-
-<a id="#BarGroup__x1Scale" name="BarGroup__x1Scale" href="#BarGroup__x1Scale">#</a> <em>BarGroup</em>.<strong>x1Scale</strong>&lt;func&gt; <code>required</code>
-
-<code>js
-x1Scale(key)</code>
-A scale function that returns the x position of the bar within a bar group. 
-
-<a id="#BarGroup__yScale" name="BarGroup__yScale" href="#BarGroup__yScale">#</a> <em>BarGroup</em>.<strong>yScale</strong>&lt;func&gt; <code>required</code>
-
-<code>js
-yScale(value)</code>
-A scale function that retuns the y position of the bar within a bar group. <code>value</code> is the value of the <code>key</code> in the bar group. 
-
+});
+</code></pre>
+<p>Example: <a href="https://vx-demo.now.sh/bargroup">https://vx-demo.now.sh/bargroup</a></p>
+<p><a id="#BarGroup__children" name="BarGroup__children" href="#BarGroup__children">#</a> <em>BarGroup</em>.<strong>children</strong>&lt;func&gt; </p>
+<p>A function that returns a react component. Useful for generating the bar group data with full control over what is rendered. The functions first argument will be the bar groups data as an array of objects with the following properties:</p>
+<ul>
+<li><code>index&lt;number&gt;</code> - the index of the group based on <em>props</em>.<strong>data</strong> array.</li>
+<li><code>x0&lt;number&gt;</code> - the position of the group based on <em>props</em>.<strong>x0</strong> &amp; <em>props</em>.<strong>x0Scale</strong>.</li>
+<li><code>bars&lt;array&gt;</code> - array of objects, ordered by <em>props</em>.<strong>keys</strong>, with the following properties:<ul>
+<li><code>index&lt;number&gt;</code> - the index of the bar for the current group.</li>
+<li><code>key&lt;string&gt;</code> - the key of the bar.</li>
+<li><code>width&lt;number&gt;</code> - the width of the bar. This will be <code>x1Scale.bandwidth()</code>. If <code>x1Scale</code> does not have a bandwidth property, then it becomes:<pre><code class="lang-js">x1Range = x1Scale.range();
+x1Domain = x1Scale.domain();
+barWidth = Math.abs(x1Range[x1Range.length - 1] - x1Range[0]) / x1Domain.length
+</code></pre>
+</li>
+<li><code>height&lt;number&gt;</code> - the height of the bar.</li>
+<li><code>x&lt;number&gt;</code> - the x position of the bar.</li>
+<li><code>y&lt;number&gt;</code> - the y position of the bar.</li>
+<li><code>color&lt;string&gt;</code> - the color of the bar. </li>
+</ul>
+</li>
+</ul>
+<p><a id="#BarGroup__className" name="BarGroup__className" href="#BarGroup__className">#</a> <em>BarGroup</em>.<strong>className</strong>&lt;string&gt; </p>
+<p>Add a class name to the containing <code>&lt;g&gt;</code> element. </p>
+<p><a id="#BarGroup__color" name="BarGroup__color" href="#BarGroup__color">#</a> <em>BarGroup</em>.<strong>color</strong>&lt;func&gt; <code>required</code></p>
+<pre><code class="lang-js">color(key, barIndex)
+</code></pre>
+<p>A function that returns color for each bar within a bar group. </p>
+<p><a id="#BarGroup__data" name="BarGroup__data" href="#BarGroup__data">#</a> <em>BarGroup</em>.<strong>data</strong>&lt;array&gt; <code>required</code></p>
+<p>An array of bar group objects. </p>
+<p><a id="#BarGroup__height" name="BarGroup__height" href="#BarGroup__height">#</a> <em>BarGroup</em>.<strong>height</strong>&lt;number&gt; <code>required</code></p>
+<p>Height is used to align the bottom of the the bars. barHeight = height - yScale(bar.value), where bar.y = yScale(bar.value). </p>
+<p><a id="#BarGroup__keys" name="BarGroup__keys" href="#BarGroup__keys">#</a> <em>BarGroup</em>.<strong>keys</strong>&lt;array&gt; <code>required</code></p>
+<p>An array of strings containing the key for each bar group. Each bar within a bar group will follow the order of this array. </p>
+<p><a id="#BarGroup__left" name="BarGroup__left" href="#BarGroup__left">#</a> <em>BarGroup</em>.<strong>left</strong>&lt;number&gt; </p>
+<p>A left pixel offset applied to the entire bar group. </p>
+<p><a id="#BarGroup__top" name="BarGroup__top" href="#BarGroup__top">#</a> <em>BarGroup</em>.<strong>top</strong>&lt;number&gt; </p>
+<p>A top pixel offset applied to the entire bar group. </p>
+<p><a id="#BarGroup__x0" name="BarGroup__x0" href="#BarGroup__x0">#</a> <em>BarGroup</em>.<strong>x0</strong>&lt;func&gt; <code>required</code></p>
+<pre><code class="lang-js">x0(barGroup)
+</code></pre>
+<p>An accessor function that returns the <code>x0</code> value for each datum in <em>props</em>.<strong>data</strong>. </p>
+<p><a id="#BarGroup__x0Scale" name="BarGroup__x0Scale" href="#BarGroup__x0Scale">#</a> <em>BarGroup</em>.<strong>x0Scale</strong>&lt;func&gt; <code>required</code></p>
+<pre><code class="lang-js">x0Scale(x0(barGroup))
+</code></pre>
+<p>A scale function that returns the x position of the bar group. </p>
+<p><a id="#BarGroup__x1Scale" name="BarGroup__x1Scale" href="#BarGroup__x1Scale">#</a> <em>BarGroup</em>.<strong>x1Scale</strong>&lt;func&gt; <code>required</code></p>
+<pre><code class="lang-js">x1Scale(key)
+</code></pre>
+<p>A scale function that returns the x position of the bar within a bar group. </p>
+<p><a id="#BarGroup__yScale" name="BarGroup__yScale" href="#BarGroup__yScale">#</a> <em>BarGroup</em>.<strong>yScale</strong>&lt;func&gt; <code>required</code></p>
+<pre><code class="lang-js">yScale(value)
+</code></pre>
+<p>A scale function that retuns the y position of the bar within a bar group. <code>value</code> is the value of the <code>key</code> in the bar group. </p>
 <h3 id="bargrouphorizontal-">&lt;BarGroupHorizontal /&gt;</h3>
+
 
 
 <p><a id="#BarGroupHorizontal__children" name="BarGroupHorizontal__children" href="#BarGroupHorizontal__children">#</a> <em>BarGroupHorizontal</em>.<strong>children</strong>&lt;func&gt;  </p>
@@ -270,6 +253,7 @@ A scale function that retuns the y position of the bar within a bar group. <code
 <p><a id="#BarGroupHorizontal__y0Scale" name="BarGroupHorizontal__y0Scale" href="#BarGroupHorizontal__y0Scale">#</a> <em>BarGroupHorizontal</em>.<strong>y0Scale</strong>&lt;func&gt; <code>required</code> </p>
 <p><a id="#BarGroupHorizontal__y1Scale" name="BarGroupHorizontal__y1Scale" href="#BarGroupHorizontal__y1Scale">#</a> <em>BarGroupHorizontal</em>.<strong>y1Scale</strong>&lt;func&gt; <code>required</code> </p>
 <h3 id="barstack-">&lt;BarStack /&gt;</h3>
+
 
 
 <p><a id="#BarStack__children" name="BarStack__children" href="#BarStack__children">#</a> <em>BarStack</em>.<strong>children</strong>&lt;func&gt;  </p>
@@ -290,6 +274,7 @@ A scale function that retuns the y position of the bar within a bar group. <code
 <h3 id="barstackhorizontal-">&lt;BarStackHorizontal /&gt;</h3>
 
 
+
 <p><a id="#BarStackHorizontal__children" name="BarStackHorizontal__children" href="#BarStackHorizontal__children">#</a> <em>BarStackHorizontal</em>.<strong>children</strong>&lt;func&gt;  </p>
 <p><a id="#BarStackHorizontal__className" name="BarStackHorizontal__className" href="#BarStackHorizontal__className">#</a> <em>BarStackHorizontal</em>.<strong>className</strong>&lt;string&gt;  </p>
 <p><a id="#BarStackHorizontal__color" name="BarStackHorizontal__color" href="#BarStackHorizontal__color">#</a> <em>BarStackHorizontal</em>.<strong>color</strong>&lt;func&gt; <code>required</code> </p>
@@ -308,9 +293,11 @@ A scale function that retuns the y position of the bar within a bar group. <code
 <h3 id="circle-">&lt;Circle /&gt;</h3>
 
 
+
 <p><a id="#Circle__className" name="Circle__className" href="#Circle__className">#</a> <em>Circle</em>.<strong>className</strong>&lt;string&gt;  </p>
 <p><a id="#Circle__innerRef" name="Circle__innerRef" href="#Circle__innerRef">#</a> <em>Circle</em>.<strong>innerRef</strong>&lt;func&gt;  </p>
 <h3 id="line-">&lt;Line /&gt;</h3>
+
 
 
 <p><a id="#Line__className" name="Line__className" href="#Line__className">#</a> <em>Line</em>.<strong>className</strong>&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>&#39;&#39;</td></td></table></p>
@@ -319,6 +306,7 @@ A scale function that retuns the y position of the bar within a bar group. <code
 <p><a id="#Line__innerRef" name="Line__innerRef" href="#Line__innerRef">#</a> <em>Line</em>.<strong>innerRef</strong>&lt;func&gt;  </p>
 <p><a id="#Line__to" name="Line__to" href="#Line__to">#</a> <em>Line</em>.<strong>to</strong>&lt;shape[object Object]&gt;  <table><tr><td><strong>Default</strong></td><td>new Point({ x: 1, y: 1 })</td></td></table></p>
 <h3 id="linepath-">&lt;LinePath /&gt;</h3>
+
 
 
 <p><a id="#LinePath__curve" name="LinePath__curve" href="#LinePath__curve">#</a> <em>LinePath</em>.<strong>curve</strong>&lt;func&gt;  </p>
@@ -331,6 +319,7 @@ A scale function that retuns the y position of the bar within a bar group. <code
 <h3 id="lineradial-">&lt;LineRadial /&gt;</h3>
 
 
+
 <p><a id="#LineRadial__angle" name="LineRadial__angle" href="#LineRadial__angle">#</a> <em>LineRadial</em>.<strong>angle</strong>&lt;union(func|number)&gt;  </p>
 <p><a id="#LineRadial__className" name="LineRadial__className" href="#LineRadial__className">#</a> <em>LineRadial</em>.<strong>className</strong>&lt;string&gt;  </p>
 <p><a id="#LineRadial__curve" name="LineRadial__curve" href="#LineRadial__curve">#</a> <em>LineRadial</em>.<strong>curve</strong>&lt;func&gt;  </p>
@@ -339,6 +328,7 @@ A scale function that retuns the y position of the bar within a bar group. <code
 <p><a id="#LineRadial__innerRef" name="LineRadial__innerRef" href="#LineRadial__innerRef">#</a> <em>LineRadial</em>.<strong>innerRef</strong>&lt;func&gt;  </p>
 <p><a id="#LineRadial__radius" name="LineRadial__radius" href="#LineRadial__radius">#</a> <em>LineRadial</em>.<strong>radius</strong>&lt;union(func|number)&gt;  </p>
 <h3 id="pie-">&lt;Pie /&gt;</h3>
+
 
 
 <p><a id="#Pie__centroid" name="Pie__centroid" href="#Pie__centroid">#</a> <em>Pie</em>.<strong>centroid</strong>&lt;union(func|number)&gt;  </p>
@@ -360,6 +350,7 @@ A scale function that retuns the y position of the bar within a bar group. <code
 <h3 id="polygon-">&lt;Polygon /&gt;</h3>
 
 
+
 <p><a id="#Polygon__center" name="Polygon__center" href="#Polygon__center">#</a> <em>Polygon</em>.<strong>center</strong>&lt;shape[object Object]&gt;  <table><tr><td><strong>Default</strong></td><td>new Point({ x: 0, y: 0 })</td></td></table></p>
 <p><a id="#Polygon__children" name="Polygon__children" href="#Polygon__children">#</a> <em>Polygon</em>.<strong>children</strong>&lt;func&gt;  </p>
 <p><a id="#Polygon__className" name="Polygon__className" href="#Polygon__className">#</a> <em>Polygon</em>.<strong>className</strong>&lt;string&gt;  </p>
@@ -368,6 +359,7 @@ A scale function that retuns the y position of the bar within a bar group. <code
 <p><a id="#Polygon__sides" name="Polygon__sides" href="#Polygon__sides">#</a> <em>Polygon</em>.<strong>sides</strong>&lt;number&gt; <code>required</code> </p>
 <p><a id="#Polygon__size" name="Polygon__size" href="#Polygon__size">#</a> <em>Polygon</em>.<strong>size</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>25</td></td></table></p>
 <h3 id="stack-">&lt;Stack /&gt;</h3>
+
 
 
 <p><a id="#Stack__children" name="Stack__children" href="#Stack__children">#</a> <em>Stack</em>.<strong>children</strong>&lt;func&gt;  </p>
@@ -391,6 +383,7 @@ A scale function that retuns the y position of the bar within a bar group. <code
 <h3 id="linkhorizontalcurve-">&lt;LinkHorizontalCurve /&gt;</h3>
 
 
+
 <p><a id="#LinkHorizontalCurve__children" name="LinkHorizontalCurve__children" href="#LinkHorizontalCurve__children">#</a> <em>LinkHorizontalCurve</em>.<strong>children</strong>&lt;func&gt;  </p>
 <p><a id="#LinkHorizontalCurve__innerRef" name="LinkHorizontalCurve__innerRef" href="#LinkHorizontalCurve__innerRef">#</a> <em>LinkHorizontalCurve</em>.<strong>innerRef</strong>&lt;func&gt;  </p>
 <p><a id="#LinkHorizontalCurve__path" name="LinkHorizontalCurve__path" href="#LinkHorizontalCurve__path">#</a> <em>LinkHorizontalCurve</em>.<strong>path</strong>&lt;func&gt;  </p>
@@ -400,6 +393,7 @@ A scale function that retuns the y position of the bar within a bar group. <code
 <p><a id="#LinkHorizontalCurve__x" name="LinkHorizontalCurve__x" href="#LinkHorizontalCurve__x">#</a> <em>LinkHorizontalCurve</em>.<strong>x</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.y</td></td></table></p>
 <p><a id="#LinkHorizontalCurve__y" name="LinkHorizontalCurve__y" href="#LinkHorizontalCurve__y">#</a> <em>LinkHorizontalCurve</em>.<strong>y</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.x</td></td></table></p>
 <h3 id="linkradialcurve-">&lt;LinkRadialCurve /&gt;</h3>
+
 
 
 <p><a id="#LinkRadialCurve__children" name="LinkRadialCurve__children" href="#LinkRadialCurve__children">#</a> <em>LinkRadialCurve</em>.<strong>children</strong>&lt;func&gt;  </p>
@@ -413,6 +407,7 @@ A scale function that retuns the y position of the bar within a bar group. <code
 <h3 id="linkverticalcurve-">&lt;LinkVerticalCurve /&gt;</h3>
 
 
+
 <p><a id="#LinkVerticalCurve__children" name="LinkVerticalCurve__children" href="#LinkVerticalCurve__children">#</a> <em>LinkVerticalCurve</em>.<strong>children</strong>&lt;func&gt;  </p>
 <p><a id="#LinkVerticalCurve__innerRef" name="LinkVerticalCurve__innerRef" href="#LinkVerticalCurve__innerRef">#</a> <em>LinkVerticalCurve</em>.<strong>innerRef</strong>&lt;func&gt;  </p>
 <p><a id="#LinkVerticalCurve__path" name="LinkVerticalCurve__path" href="#LinkVerticalCurve__path">#</a> <em>LinkVerticalCurve</em>.<strong>path</strong>&lt;func&gt;  </p>
@@ -422,6 +417,7 @@ A scale function that retuns the y position of the bar within a bar group. <code
 <p><a id="#LinkVerticalCurve__x" name="LinkVerticalCurve__x" href="#LinkVerticalCurve__x">#</a> <em>LinkVerticalCurve</em>.<strong>x</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.x</td></td></table></p>
 <p><a id="#LinkVerticalCurve__y" name="LinkVerticalCurve__y" href="#LinkVerticalCurve__y">#</a> <em>LinkVerticalCurve</em>.<strong>y</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.y</td></td></table></p>
 <h3 id="linkhorizontal-">&lt;LinkHorizontal /&gt;</h3>
+
 
 
 <p><a id="#LinkHorizontal__children" name="LinkHorizontal__children" href="#LinkHorizontal__children">#</a> <em>LinkHorizontal</em>.<strong>children</strong>&lt;func&gt;  </p>
@@ -434,6 +430,7 @@ A scale function that retuns the y position of the bar within a bar group. <code
 <h3 id="linkradial-">&lt;LinkRadial /&gt;</h3>
 
 
+
 <p><a id="#LinkRadial__angle" name="LinkRadial__angle" href="#LinkRadial__angle">#</a> <em>LinkRadial</em>.<strong>angle</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.x</td></td></table></p>
 <p><a id="#LinkRadial__children" name="LinkRadial__children" href="#LinkRadial__children">#</a> <em>LinkRadial</em>.<strong>children</strong>&lt;func&gt;  </p>
 <p><a id="#LinkRadial__innerRef" name="LinkRadial__innerRef" href="#LinkRadial__innerRef">#</a> <em>LinkRadial</em>.<strong>innerRef</strong>&lt;func&gt;  </p>
@@ -444,6 +441,7 @@ A scale function that retuns the y position of the bar within a bar group. <code
 <h3 id="linkvertical-">&lt;LinkVertical /&gt;</h3>
 
 
+
 <p><a id="#LinkVertical__innerRef" name="LinkVertical__innerRef" href="#LinkVertical__innerRef">#</a> <em>LinkVertical</em>.<strong>innerRef</strong>&lt;func&gt;  </p>
 <p><a id="#LinkVertical__path" name="LinkVertical__path" href="#LinkVertical__path">#</a> <em>LinkVertical</em>.<strong>path</strong>&lt;func&gt;  </p>
 <p><a id="#LinkVertical__source" name="LinkVertical__source" href="#LinkVertical__source">#</a> <em>LinkVertical</em>.<strong>source</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.source</td></td></table></p>
@@ -451,6 +449,7 @@ A scale function that retuns the y position of the bar within a bar group. <code
 <p><a id="#LinkVertical__x" name="LinkVertical__x" href="#LinkVertical__x">#</a> <em>LinkVertical</em>.<strong>x</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.x</td></td></table></p>
 <p><a id="#LinkVertical__y" name="LinkVertical__y" href="#LinkVertical__y">#</a> <em>LinkVertical</em>.<strong>y</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.y</td></td></table></p>
 <h3 id="linkhorizontalline-">&lt;LinkHorizontalLine /&gt;</h3>
+
 
 
 <p><a id="#LinkHorizontalLine__children" name="LinkHorizontalLine__children" href="#LinkHorizontalLine__children">#</a> <em>LinkHorizontalLine</em>.<strong>children</strong>&lt;func&gt;  </p>
@@ -463,6 +462,7 @@ A scale function that retuns the y position of the bar within a bar group. <code
 <h3 id="linkradialline-">&lt;LinkRadialLine /&gt;</h3>
 
 
+
 <p><a id="#LinkRadialLine__children" name="LinkRadialLine__children" href="#LinkRadialLine__children">#</a> <em>LinkRadialLine</em>.<strong>children</strong>&lt;func&gt;  </p>
 <p><a id="#LinkRadialLine__innerRef" name="LinkRadialLine__innerRef" href="#LinkRadialLine__innerRef">#</a> <em>LinkRadialLine</em>.<strong>innerRef</strong>&lt;func&gt;  </p>
 <p><a id="#LinkRadialLine__path" name="LinkRadialLine__path" href="#LinkRadialLine__path">#</a> <em>LinkRadialLine</em>.<strong>path</strong>&lt;func&gt;  </p>
@@ -473,6 +473,7 @@ A scale function that retuns the y position of the bar within a bar group. <code
 <h3 id="linkverticalline-">&lt;LinkVerticalLine /&gt;</h3>
 
 
+
 <p><a id="#LinkVerticalLine__children" name="LinkVerticalLine__children" href="#LinkVerticalLine__children">#</a> <em>LinkVerticalLine</em>.<strong>children</strong>&lt;func&gt;  </p>
 <p><a id="#LinkVerticalLine__innerRef" name="LinkVerticalLine__innerRef" href="#LinkVerticalLine__innerRef">#</a> <em>LinkVerticalLine</em>.<strong>innerRef</strong>&lt;func&gt;  </p>
 <p><a id="#LinkVerticalLine__path" name="LinkVerticalLine__path" href="#LinkVerticalLine__path">#</a> <em>LinkVerticalLine</em>.<strong>path</strong>&lt;func&gt;  </p>
@@ -481,6 +482,7 @@ A scale function that retuns the y position of the bar within a bar group. <code
 <p><a id="#LinkVerticalLine__x" name="LinkVerticalLine__x" href="#LinkVerticalLine__x">#</a> <em>LinkVerticalLine</em>.<strong>x</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.x</td></td></table></p>
 <p><a id="#LinkVerticalLine__y" name="LinkVerticalLine__y" href="#LinkVerticalLine__y">#</a> <em>LinkVerticalLine</em>.<strong>y</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.y</td></td></table></p>
 <h3 id="linkhorizontalstep-">&lt;LinkHorizontalStep /&gt;</h3>
+
 
 
 <p><a id="#LinkHorizontalStep__children" name="LinkHorizontalStep__children" href="#LinkHorizontalStep__children">#</a> <em>LinkHorizontalStep</em>.<strong>children</strong>&lt;func&gt;  </p>
@@ -494,6 +496,7 @@ A scale function that retuns the y position of the bar within a bar group. <code
 <h3 id="linkradialstep-">&lt;LinkRadialStep /&gt;</h3>
 
 
+
 <p><a id="#LinkRadialStep__children" name="LinkRadialStep__children" href="#LinkRadialStep__children">#</a> <em>LinkRadialStep</em>.<strong>children</strong>&lt;func&gt;  </p>
 <p><a id="#LinkRadialStep__innerRef" name="LinkRadialStep__innerRef" href="#LinkRadialStep__innerRef">#</a> <em>LinkRadialStep</em>.<strong>innerRef</strong>&lt;func&gt;  </p>
 <p><a id="#LinkRadialStep__path" name="LinkRadialStep__path" href="#LinkRadialStep__path">#</a> <em>LinkRadialStep</em>.<strong>path</strong>&lt;func&gt;  </p>
@@ -502,6 +505,7 @@ A scale function that retuns the y position of the bar within a bar group. <code
 <p><a id="#LinkRadialStep__x" name="LinkRadialStep__x" href="#LinkRadialStep__x">#</a> <em>LinkRadialStep</em>.<strong>x</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.x</td></td></table></p>
 <p><a id="#LinkRadialStep__y" name="LinkRadialStep__y" href="#LinkRadialStep__y">#</a> <em>LinkRadialStep</em>.<strong>y</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.y</td></td></table></p>
 <h3 id="linkverticalstep-">&lt;LinkVerticalStep /&gt;</h3>
+
 
 
 <p><a id="#LinkVerticalStep__children" name="LinkVerticalStep__children" href="#LinkVerticalStep__children">#</a> <em>LinkVerticalStep</em>.<strong>children</strong>&lt;func&gt;  </p>

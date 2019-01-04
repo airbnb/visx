@@ -43,14 +43,17 @@ npm install --save @vx/hierarchy
 <h3 id="hierarchydefaultlink-">&lt;HierarchyDefaultLink /&gt;</h3>
 
 
+
 <a id="#HierarchyDefaultLink__link" name="HierarchyDefaultLink__link" href="#HierarchyDefaultLink__link">#</a> *HierarchyDefaultLink*.**link**&lt;object&gt;  
 
 <h3 id="hierarchydefaultnode-">&lt;HierarchyDefaultNode /&gt;</h3>
 
 
+
 <a id="#HierarchyDefaultNode__node" name="HierarchyDefaultNode__node" href="#HierarchyDefaultNode__node">#</a> *HierarchyDefaultNode*.**node**&lt;object&gt;  
 
 <h3 id="cluster-">&lt;Cluster /&gt;</h3>
+
 
 
 <a id="#Cluster__children" name="Cluster__children" href="#Cluster__children">#</a> *Cluster*.**children**&lt;func&gt;  
@@ -76,6 +79,7 @@ npm install --save @vx/hierarchy
 <h3 id="pack-">&lt;Pack /&gt;</h3>
 
 
+
 <a id="#Pack__children" name="Pack__children" href="#Pack__children">#</a> *Pack*.**children**&lt;func&gt;  
 
 <a id="#Pack__className" name="Pack__className" href="#Pack__className">#</a> *Pack*.**className**&lt;string&gt;  
@@ -95,6 +99,7 @@ npm install --save @vx/hierarchy
 <a id="#Pack__top" name="Pack__top" href="#Pack__top">#</a> *Pack*.**top**&lt;number&gt;  
 
 <h3 id="partition-">&lt;Partition /&gt;</h3>
+
 
 
 <a id="#Partition__children" name="Partition__children" href="#Partition__children">#</a> *Partition*.**children**&lt;func&gt;  
@@ -118,6 +123,7 @@ npm install --save @vx/hierarchy
 <h3 id="tree-">&lt;Tree /&gt;</h3>
 
 
+
 <a id="#Tree__children" name="Tree__children" href="#Tree__children">#</a> *Tree*.**children**&lt;func&gt;  
 
 <a id="#Tree__className" name="Tree__className" href="#Tree__className">#</a> *Tree*.**className**&lt;string&gt;  
@@ -139,6 +145,7 @@ npm install --save @vx/hierarchy
 <a id="#Tree__top" name="Tree__top" href="#Tree__top">#</a> *Tree*.**top**&lt;number&gt;  
 
 <h3 id="treemap-">&lt;Treemap /&gt;</h3>
+
 
 
 <a id="#Treemap__children" name="Treemap__children" href="#Treemap__children">#</a> *Treemap*.**children**&lt;func&gt;  

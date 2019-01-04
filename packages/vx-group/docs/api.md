@@ -1,6 +1,7 @@
 <h3 id="group-">&lt;Group /&gt;</h3>
 
 
+
 <a id="#Group__children" name="Group__children" href="#Group__children">#</a> *Group*.**children**&lt;any&gt;  
 
 <a id="#Group__className" name="Group__className" href="#Group__className">#</a> *Group*.**className**&lt;string&gt;  

@@ -1,6 +1,7 @@
 <h3 id="heatmapcircle-">&lt;HeatmapCircle /&gt;</h3>
 
 
+
 <a id="#HeatmapCircle__bins" name="HeatmapCircle__bins" href="#HeatmapCircle__bins">#</a> *HeatmapCircle*.**bins**&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d => d.bins</td></td></table>
 
 <a id="#HeatmapCircle__children" name="HeatmapCircle__children" href="#HeatmapCircle__children">#</a> *HeatmapCircle*.**children**&lt;func&gt;  
@@ -28,6 +29,7 @@
 <a id="#HeatmapCircle__yScale" name="HeatmapCircle__yScale" href="#HeatmapCircle__yScale">#</a> *HeatmapCircle*.**yScale**&lt;func&gt; `required` 
 
 <h3 id="heatmaprect-">&lt;HeatmapRect /&gt;</h3>
+
 
 
 <a id="#HeatmapRect__binHeight" name="HeatmapRect__binHeight" href="#HeatmapRect__binHeight">#</a> *HeatmapRect*.**binHeight**&lt;number&gt;  

@@ -127,6 +127,7 @@ npm install --save @vx/responsive
 <h3 id="parentsize-">&lt;ParentSize /&gt;</h3>
 
 
+
 <a id="#ParentSize__children" name="ParentSize__children" href="#ParentSize__children">#</a> *ParentSize*.**children**&lt;func&gt; `required` 
 
 <a id="#ParentSize__className" name="ParentSize__className" href="#ParentSize__className">#</a> *ParentSize*.**className**&lt;string&gt;  
@@ -134,6 +135,7 @@ npm install --save @vx/responsive
 <a id="#ParentSize__debounceTime" name="ParentSize__debounceTime" href="#ParentSize__debounceTime">#</a> *ParentSize*.**debounceTime**&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>300</td></td></table>
 
 <h3 id="scalesvg-">&lt;ScaleSVG /&gt;</h3>
+
 
 
 <a id="#ScaleSVG__children" name="ScaleSVG__children" href="#ScaleSVG__children">#</a> *ScaleSVG*.**children**&lt;func&gt;  

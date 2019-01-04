@@ -51,6 +51,7 @@ npm install --save @vx/grid
 <h3 id="grid-">&lt;Grid /&gt;</h3>
 
 
+
 <a id="#Grid__className" name="Grid__className" href="#Grid__className">#</a> *Grid*.**className**&lt;string&gt;  
 
 <a id="#Grid__columnLineStyle" name="Grid__columnLineStyle" href="#Grid__columnLineStyle">#</a> *Grid*.**columnLineStyle**&lt;object&gt;  
@@ -90,6 +91,7 @@ npm install --save @vx/grid
 <h3 id="gridcolumns-">&lt;GridColumns /&gt;</h3>
 
 
+
 <a id="#GridColumns__className" name="GridColumns__className" href="#GridColumns__className">#</a> *GridColumns*.**className**&lt;string&gt;  
 
 <a id="#GridColumns__height" name="GridColumns__height" href="#GridColumns__height">#</a> *GridColumns*.**height**&lt;number&gt; `required` 
@@ -115,6 +117,7 @@ npm install --save @vx/grid
 <a id="#GridColumns__top" name="GridColumns__top" href="#GridColumns__top">#</a> *GridColumns*.**top**&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table>
 
 <h3 id="gridrows-">&lt;GridRows /&gt;</h3>
+
 
 
 <a id="#GridRows__className" name="GridRows__className" href="#GridRows__className">#</a> *GridRows*.**className**&lt;string&gt;  
