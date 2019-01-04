@@ -32,9 +32,9 @@ npm install --save @vx/threshold
 
 <a id="#Threshold__className" name="Threshold__className" href="#Threshold__className">#</a> *Threshold*.**className**&lt;string&gt;  
 
-<a id="#Threshold__clipAboveTo" name="Threshold__clipAboveTo" href="#Threshold__clipAboveTo">#</a> *Threshold*.**clipAboveTo**&lt;func&gt;  
+<a id="#Threshold__clipAboveTo" name="Threshold__clipAboveTo" href="#Threshold__clipAboveTo">#</a> *Threshold*.**clipAboveTo**&lt;union(func|number)&gt;  
 
-<a id="#Threshold__clipBelowTo" name="Threshold__clipBelowTo" href="#Threshold__clipBelowTo">#</a> *Threshold*.**clipBelowTo**&lt;func&gt;  
+<a id="#Threshold__clipBelowTo" name="Threshold__clipBelowTo" href="#Threshold__clipBelowTo">#</a> *Threshold*.**clipBelowTo**&lt;union(func|number)&gt;  
 
 <a id="#Threshold__curve" name="Threshold__curve" href="#Threshold__curve">#</a> *Threshold*.**curve**&lt;func&gt;  
 
