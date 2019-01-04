@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.183](#v00183)
 - [v0.0.182](#v00182)
 - [v0.0.181](#v00181)
 - [v0.0.180](#v00180)
@@ -73,6 +74,57 @@
 </details>
 
 ------
+
+# v0.0.183
+
+#### :rocket: Enhancements
+
+- [responsive] add `innerRef` prop to `<ScaleSVG />`. [#393](https://github.com/hshoff/vx/pull/393)
+
+#### :memo: Documentation
+
+- [docs] use [react-docgen](https://github.com/reactjs/react-docgen) to generate docs from prop-types and comments. [#399](https://github.com/hshoff/vx/pull/399)
+- [responsive][docs] add innerRef prop docs. [#400](https://github.com/hshoff/vx/pull/400)
+- [threshold][docs] update `clipAboveTo` and `clipBelowTo` prop types to `number|func`. [#401](https://github.com/hshoff/vx/pull/401)
+
+#### :house: Internal
+
+- [docs] add script to sync files -> docs -> readme -> [vx-demo.now.sh/docs](https://vx-demo.now.sh/docs). [#399](https://github.com/hshoff/vx/pull/399)
+
+
+#### :trophy: Contributors
+
+- [dagda1](https://github.com/dagda1)
+- [hshoff](https://github.com/hshoff)
+
+```
+Changes:
+ - @vx/annotation: 0.0.182 => 0.0.183
+ - @vx/axis: 0.0.182 => 0.0.183
+ - @vx/boxplot: 0.0.182 => 0.0.183
+ - @vx/chord: 0.0.182 => 0.0.183
+ - @vx/clip-path: 0.0.182 => 0.0.183
+ - @vx/demo: 0.0.182 => 0.0.183
+ - @vx/drag: 0.0.182 => 0.0.183
+ - @vx/geo: 0.0.182 => 0.0.183
+ - @vx/glyph: 0.0.182 => 0.0.183
+ - @vx/gradient: 0.0.182 => 0.0.183
+ - @vx/grid: 0.0.182 => 0.0.183
+ - @vx/group: 0.0.182 => 0.0.183
+ - @vx/heatmap: 0.0.182 => 0.0.183
+ - @vx/hierarchy: 0.0.182 => 0.0.183
+ - @vx/legend: 0.0.182 => 0.0.183
+ - @vx/marker: 0.0.182 => 0.0.183
+ - @vx/network: 0.0.182 => 0.0.183
+ - @vx/pattern: 0.0.182 => 0.0.183
+ - @vx/responsive: 0.0.182 => 0.0.183
+ - @vx/shape: 0.0.182 => 0.0.183
+ - @vx/stats: 0.0.182 => 0.0.183
+ - @vx/text: 0.0.182 => 0.0.183
+ - @vx/threshold: 0.0.182 => 0.0.183
+ - @vx/voronoi: 0.0.182 => 0.0.183
+ - @vx/vx: 0.0.182 => 0.0.183
+```
 
 # v0.0.182
 
