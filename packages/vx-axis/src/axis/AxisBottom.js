@@ -70,7 +70,7 @@ const propTypes = {
    */
   strokeDasharray: PropTypes.string,
   /**
-   * The class name applied to each tick grou
+   * The class name applied to each tick group.
    */
   tickClassName: PropTypes.string,
   /**

@@ -140,7 +140,7 @@ The pixel value for the width of the lines.
 
 <a id="#AxisBottom__tickClassName" name="AxisBottom__tickClassName" href="#AxisBottom__tickClassName">#</a> *AxisBottom*.**tickClassName**&lt;string&gt; 
 
-The class name applied to each tick grou 
+The class name applied to each tick group. 
 
 <a id="#AxisBottom__tickComponent" name="AxisBottom__tickComponent" href="#AxisBottom__tickComponent">#</a> *AxisBottom*.**tickComponent**&lt;func&gt;  
 
