@@ -1,26 +1,33 @@
 {
   "name": "@vx/hierarchy",
-  "version": "0.0.182",
+  "version": "0.0.183",
   "description": "vx tree",
   "sideEffects": false,
   "main": "dist/vx-hierarchy.umd.js",
   "module": "dist/vx-hierarchy.es.js",
-  "files": ["dist", "build"],
+  "files": [
+    "dist",
+    "build"
+  ],
   "scripts": {
     "build": "npm run build:babel && npm run build:dist",
     "build:dist": "rm -rf dist && mkdir dist && rollup -c",
-    "build:babel":
-      "rm -rf build && mkdir build && babel src --out-dir build --ignore node_modules/ --presets @babel/preset-react,@babel/preset-env",
+    "build:babel": "rm -rf build && mkdir build && babel src --out-dir build --ignore node_modules/ --presets @babel/preset-react,@babel/preset-env",
     "prepublish": "npm run build",
     "test": "jest",
-    "docs":
-      "cd ./docs && ../../../node_modules/.bin/react-docgen --exclude index.js ../src  | ../../../scripts/buildDocs.sh"
+    "docs": "cd ./docs && ../../../node_modules/.bin/react-docgen --exclude index.js ../src  | ../../../scripts/buildDocs.sh"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hshoff/vx.git"
   },
-  "keywords": ["vx", "d3", "react", "visualizations", "charts"],
+  "keywords": [
+    "vx",
+    "d3",
+    "react",
+    "visualizations",
+    "charts"
+  ],
   "author": "@hshoff",
   "license": "MIT",
   "bugs": {
@@ -70,7 +77,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@vx/group": "0.0.182",
+    "@vx/group": "0.0.183",
     "classnames": "^2.2.5",
     "d3-hierarchy": "^1.1.4",
     "prop-types": "^15.6.1"
@@ -79,6 +86,9 @@
     "react": "^15.0.0-0 || ^16.0.0-0"
   },
   "jest": {
-    "setupFiles": ["raf/polyfill", "<rootDir>/test/enzyme-setup.js"]
+    "setupFiles": [
+      "raf/polyfill",
+      "<rootDir>/test/enzyme-setup.js"
+    ]
   }
 }

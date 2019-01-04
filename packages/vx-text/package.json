@@ -1,26 +1,33 @@
 {
   "name": "@vx/text",
-  "version": "0.0.182",
+  "version": "0.0.183",
   "description": "vx text",
   "sideEffects": false,
   "main": "dist/vx-text.umd.js",
   "module": "dist/vx-text.es.js",
-  "files": ["dist", "build"],
+  "files": [
+    "dist",
+    "build"
+  ],
   "scripts": {
     "build": "npm run build:babel && npm run build:dist",
     "build:dist": "rm -rf dist && mkdir dist && rollup -c",
-    "build:babel":
-      "rm -rf build && mkdir build && babel src --out-dir build --ignore node_modules/ --presets @babel/preset-react,@babel/preset-env --plugins lodash",
+    "build:babel": "rm -rf build && mkdir build && babel src --out-dir build --ignore node_modules/ --presets @babel/preset-react,@babel/preset-env --plugins lodash",
     "prepublish": "npm run build",
     "test": "jest",
-    "docs":
-      "cd ./docs && ../../../node_modules/.bin/react-docgen --exclude ../src/index.js,../src/util ../src/ | ../../../scripts/buildDocs.sh"
+    "docs": "cd ./docs && ../../../node_modules/.bin/react-docgen --exclude ../src/index.js,../src/util ../src/ | ../../../scripts/buildDocs.sh"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hshoff/vx.git"
   },
-  "keywords": ["vx", "react", "d3", "visualization", "chart"],
+  "keywords": [
+    "vx",
+    "react",
+    "d3",
+    "visualization",
+    "chart"
+  ],
   "author": "@techniq",
   "license": "MIT",
   "bugs": {
@@ -81,6 +88,9 @@
     "access": "public"
   },
   "jest": {
-    "setupFiles": ["raf/polyfill", "<rootDir>/test/enzyme-setup.js"]
+    "setupFiles": [
+      "raf/polyfill",
+      "<rootDir>/test/enzyme-setup.js"
+    ]
   }
 }

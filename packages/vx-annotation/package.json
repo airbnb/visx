@@ -1,26 +1,33 @@
 {
   "name": "@vx/annotation",
-  "version": "0.0.182",
+  "version": "0.0.183",
   "description": "vx annotation",
   "sideEffects": false,
   "main": "dist/vx-annotation.umd.js",
   "module": "dist/vx-annotation.es.js",
-  "files": ["dist", "build"],
+  "files": [
+    "dist",
+    "build"
+  ],
   "scripts": {
     "build": "npm run build:babel && npm run build:dist",
     "build:dist": "rm -rf dist && mkdir dist && rollup -c",
-    "build:babel":
-      "rm -rf build && mkdir build && babel src --out-dir build --ignore node_modules/ --presets @babel/preset-react,@babel/preset-env",
+    "build:babel": "rm -rf build && mkdir build && babel src --out-dir build --ignore node_modules/ --presets @babel/preset-react,@babel/preset-env",
     "prepublish": "npm run build",
     "test": "jest",
-    "docs":
-      "cd ./docs && ../../../node_modules/.bin/react-docgen ../src/annotations/  | ../../../scripts/buildDocs.sh"
+    "docs": "cd ./docs && ../../../node_modules/.bin/react-docgen ../src/annotations/  | ../../../scripts/buildDocs.sh"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hshoff/vx.git"
   },
-  "keywords": ["vx", "react", "d3", "visualizations", "charts"],
+  "keywords": [
+    "vx",
+    "react",
+    "d3",
+    "visualizations",
+    "charts"
+  ],
   "author": "@hshoff",
   "license": "MIT",
   "bugs": {
@@ -70,9 +77,9 @@
     "react": "^15.0.0-0 || ^16.0.0-0"
   },
   "dependencies": {
-    "@vx/group": "0.0.182",
+    "@vx/group": "0.0.183",
     "@vx/point": "0.0.182",
-    "@vx/shape": "0.0.182",
+    "@vx/shape": "0.0.183",
     "classnames": "^2.2.5",
     "prop-types": "^15.5.10"
   },
@@ -80,6 +87,9 @@
     "access": "public"
   },
   "jest": {
-    "setupFiles": ["raf/polyfill", "<rootDir>/test/enzyme-setup.js"]
+    "setupFiles": [
+      "raf/polyfill",
+      "<rootDir>/test/enzyme-setup.js"
+    ]
   }
 }

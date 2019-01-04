@@ -1,28 +1,35 @@
 {
   "name": "@vx/shape",
-  "version": "0.0.182",
+  "version": "0.0.183",
   "description": "vx shape",
   "sideEffects": false,
   "main": "dist/vx-shape.umd.js",
   "module": "dist/vx-shape.es.js",
   "repository": "https://github.com/hshoff/vx",
-  "files": ["dist", "build"],
+  "files": [
+    "dist",
+    "build"
+  ],
   "scripts": {
     "build": "npm run build:babel && npm run build:dist",
     "build:dist": "rm -rf dist && mkdir dist && rollup -c",
-    "build:babel":
-      "rm -rf build && mkdir build && babel src --out-dir build --ignore node_modules/ --presets @babel/preset-react,@babel/preset-env",
+    "build:babel": "rm -rf build && mkdir build && babel src --out-dir build --ignore node_modules/ --presets @babel/preset-react,@babel/preset-env",
     "prepublish": "npm run build",
     "test": "jest",
-    "docs":
-      "cd ./docs && ../../../node_modules/.bin/react-docgen ../src/shapes/  | ../../../scripts/buildDocs.sh"
+    "docs": "cd ./docs && ../../../node_modules/.bin/react-docgen ../src/shapes/  | ../../../scripts/buildDocs.sh"
   },
-  "keywords": ["vx", "react", "d3", "visualizations", "charts"],
+  "keywords": [
+    "vx",
+    "react",
+    "d3",
+    "visualizations",
+    "charts"
+  ],
   "author": "@hshoff",
   "license": "MIT",
   "dependencies": {
     "@vx/curve": "0.0.182",
-    "@vx/group": "0.0.182",
+    "@vx/group": "0.0.183",
     "@vx/point": "0.0.182",
     "classnames": "^2.2.5",
     "d3-path": "^1.0.5",
@@ -77,6 +84,9 @@
     "access": "public"
   },
   "jest": {
-    "setupFiles": ["raf/polyfill", "<rootDir>/test/enzyme-setup.js"]
+    "setupFiles": [
+      "raf/polyfill",
+      "<rootDir>/test/enzyme-setup.js"
+    ]
   }
 }
