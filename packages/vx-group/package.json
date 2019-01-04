@@ -8,26 +8,19 @@
   "scripts": {
     "build": "npm run build:babel && npm run build:dist",
     "build:dist": "rm -rf dist && mkdir dist && rollup -c",
-    "build:babel": "rm -rf build && mkdir build && babel src --out-dir build --ignore node_modules/ --presets @babel/preset-react,@babel/preset-env",
+    "build:babel":
+      "rm -rf build && mkdir build && babel src --out-dir build --ignore node_modules/ --presets @babel/preset-react,@babel/preset-env",
     "prepublish": "npm run build",
-    "test": "jest"
+    "test": "jest",
+    "docs":
+      "cd ./docs && ../../../node_modules/.bin/react-docgen --exclude index.js ../src  | ../../../scripts/buildDocs.sh"
   },
-  "files": [
-    "dist",
-    "build"
-  ],
+  "files": ["dist", "build"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hshoff/vx.git"
   },
-  "keywords": [
-    "vx",
-    "react",
-    "d3",
-    "visualizations",
-    "charts",
-    "svg"
-  ],
+  "keywords": ["vx", "react", "d3", "visualizations", "charts", "svg"],
   "author": "@hshoff",
   "license": "MIT",
   "bugs": {
@@ -76,15 +69,13 @@
     "react": "^15.0.0-0 || ^16.0.0-0"
   },
   "dependencies": {
-    "classnames": "^2.2.5"
+    "classnames": "^2.2.5",
+    "prop-types": "^15.6.2"
   },
   "publishConfig": {
     "access": "public"
   },
   "jest": {
-    "setupFiles": [
-      "raf/polyfill",
-      "<rootDir>/test/enzyme-setup.js"
-    ]
+    "setupFiles": ["raf/polyfill", "<rootDir>/test/enzyme-setup.js"]
   }
 }

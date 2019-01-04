@@ -34,8 +34,10 @@
       </div>
       <div class="content">
       <h1 id="-vx-grid">@vx/grid</h1>
-<pre><code>npm install --save @vx/grid
-</code></pre><p>The <code>@vx/grid</code> package lets you create rows and columns. Or, you can use a <code>&lt;Grid /&gt;</code> to get them both at once!</p>
+<p><a title="@vx/grid npm downloads" href="https://www.npmjs.com/package/@vx/grid">
+  <img src="https://img.shields.io/npm/dm/@vx/grid.svg?style=flat-square" />
+</a></p>
+<p>The <code>@vx/grid</code> package lets you create rows and columns. Or, you can use a <code>&lt;Grid /&gt;</code> to get them both at once!</p>
 <h2 id="example">Example</h2>
 <p><img src="http://i.imgur.com/KPmq4XV.png" alt="grid example"></p>
 <pre><code class="lang-js">import { Grid } from &#39;@vx/grid&#39;;
@@ -43,240 +45,80 @@
 // import * as Grid from &#39;@vx/grid&#39;;
 // &lt;Grid.Grid /&gt;
 
-const grid = (&lt;Grid
-  xScale={xScale}
-  yScale={yScale}
-  width={xMax}
-  height={yMax}
-  numTicksRows={numTicksForHeight(height)}
-  numTicksColumns={numTicksForWidth(width)}
-/&gt;);
+const grid = (
+  &lt;Grid
+    xScale={xScale}
+    yScale={yScale}
+    width={xMax}
+    height={yMax}
+    numTicksRows={numTicksForHeight(height)}
+    numTicksColumns={numTicksForWidth(width)}
+  /&gt;
+);
 </code></pre>
-<h2 id="-grid-"><code>&lt;Grid /&gt;</code></h2>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Name</th>
-<th style="text-align:left">Default</th>
-<th style="text-align:left">Type</th>
-<th style="text-align:left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">top</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The top margin in pixels.</td>
-</tr>
-<tr>
-<td style="text-align:left">left</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The left margin in pixels.</td>
-</tr>
-<tr>
-<td style="text-align:left">xScale</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">A <a href="https://github.com/hshoff/vx/tree/master/packages/vx-scale">scale function</a> for the xs.</td>
-</tr>
-<tr>
-<td style="text-align:left">yScale</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">A <a href="https://github.com/hshoff/vx/tree/master/packages/vx-scale">scale function</a> for the ys.</td>
-</tr>
-<tr>
-<td style="text-align:left">width</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The pixel width of the grid.</td>
-</tr>
-<tr>
-<td style="text-align:left">height</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The pixel height of the grid.</td>
-</tr>
-<tr>
-<td style="text-align:left">className</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The class name for the Group element.</td>
-</tr>
-<tr>
-<td style="text-align:left">stroke</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The color for the stroke of the grid.</td>
-</tr>
-<tr>
-<td style="text-align:left">strokeWidth</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The width of the lines in the stroke.</td>
-</tr>
-<tr>
-<td style="text-align:left">strokeDasharray</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">array</td>
-<td style="text-align:left">The <a href="https://mzl.la/1l7EiTQ">pattern of dashes</a> in the stroke.</td>
-</tr>
-<tr>
-<td style="text-align:left">numTicksRows</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The number of row lines.</td>
-</tr>
-<tr>
-<td style="text-align:left">numTicksColumns</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The number of column lines.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="-rows-"><code>&lt;Rows /&gt;</code></h2>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Name</th>
-<th style="text-align:left">Default</th>
-<th style="text-align:left">Type</th>
-<th style="text-align:left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">top</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The top margin in pixels.</td>
-</tr>
-<tr>
-<td style="text-align:left">left</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The left margin in pixels.</td>
-</tr>
-<tr>
-<td style="text-align:left">scale</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">A <a href="https://github.com/hshoff/vx/tree/master/packages/vx-scale">scale function</a> for the rows.</td>
-</tr>
-<tr>
-<td style="text-align:left">width</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The pixel width of the grid.</td>
-</tr>
-<tr>
-<td style="text-align:left">stroke</td>
-<td style="text-align:left">#eaf0f6</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The color for the stroke of the lines.</td>
-</tr>
-<tr>
-<td style="text-align:left">strokeWidth</td>
-<td style="text-align:left">1</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The width of the lines in the stroke.</td>
-</tr>
-<tr>
-<td style="text-align:left">strokeDasharray</td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left">The <a href="https://mzl.la/1l7EiTQ">pattern of dashes</a> in the stroke.</td>
-</tr>
-<tr>
-<td style="text-align:left">className</td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left">The class name for the Group element.</td>
-</tr>
-<tr>
-<td style="text-align:left">numTicks</td>
-<td style="text-align:left">10</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The number of row lines.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="-columns-"><code>&lt;Columns /&gt;</code></h2>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Name</th>
-<th style="text-align:left">Default</th>
-<th style="text-align:left">Type</th>
-<th style="text-align:left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">top</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The top margin in pixels.</td>
-</tr>
-<tr>
-<td style="text-align:left">left</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The left margin in pixels.</td>
-</tr>
-<tr>
-<td style="text-align:left">scale</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">A <a href="https://github.com/hshoff/vx/tree/master/packages/vx-scale">scale function</a> for the rows.</td>
-</tr>
-<tr>
-<td style="text-align:left">height</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The pixel height of the grid.</td>
-</tr>
-<tr>
-<td style="text-align:left">stroke</td>
-<td style="text-align:left">#eaf0f6</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The color for the stroke of the lines.</td>
-</tr>
-<tr>
-<td style="text-align:left">strokeWidth</td>
-<td style="text-align:left">1</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The width of the lines in the stroke.</td>
-</tr>
-<tr>
-<td style="text-align:left">strokeDasharray</td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left">The <a href="https://mzl.la/1l7EiTQ">pattern of dashes</a> in the stroke.</td>
-</tr>
-<tr>
-<td style="text-align:left">className</td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left">The class name for the Group element.</td>
-</tr>
-<tr>
-<td style="text-align:left">numTicks</td>
-<td style="text-align:left">10</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The number of row lines.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="source-for-components">Source For Components</h2>
+<h2 id="installation">Installation</h2>
+<pre><code>npm install --save @vx/grid
+</code></pre><h2 id="components">Components</h2>
 <ul>
-<li><a href="https://github.com/hshoff/vx/blob/master/packages/vx-grid/src/grids/Grid.js"><code>&lt;Grid /&gt;</code></a></li>
-<li><a href="https://github.com/hshoff/vx/blob/master/packages/vx-grid/src/grids/Rows.js"><code>&lt;Rows /&gt;</code></a></li>
-<li><a href="https://github.com/hshoff/vx/blob/master/packages/vx-grid/src/grids/Columns.js"><code>&lt;Columns /&gt;</code></a></li>
+<li><a href="#grid-">Grid</a></li>
+<li><a href="#gridcolumns-">GridColumns</a></li>
+<li><a href="#gridrows-">GridRows</a></li>
 </ul>
+<h2 id="api">API</h2>
+<h3 id="grid-">&lt;Grid /&gt;</h3>
+
+
+
+<p><a id="#Grid__className" name="Grid__className" href="#Grid__className">#</a> <em>Grid</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#Grid__columnLineStyle" name="Grid__columnLineStyle" href="#Grid__columnLineStyle">#</a> <em>Grid</em>.<strong>columnLineStyle</strong>&lt;object&gt;  </p>
+<p><a id="#Grid__columnTickValues" name="Grid__columnTickValues" href="#Grid__columnTickValues">#</a> <em>Grid</em>.<strong>columnTickValues</strong>&lt;array&gt;  </p>
+<p><a id="#Grid__height" name="Grid__height" href="#Grid__height">#</a> <em>Grid</em>.<strong>height</strong>&lt;number&gt; <code>required</code> </p>
+<p><a id="#Grid__left" name="Grid__left" href="#Grid__left">#</a> <em>Grid</em>.<strong>left</strong>&lt;number&gt;  </p>
+<p><a id="#Grid__numTicksColumns" name="Grid__numTicksColumns" href="#Grid__numTicksColumns">#</a> <em>Grid</em>.<strong>numTicksColumns</strong>&lt;number&gt;  </p>
+<p><a id="#Grid__numTicksRows" name="Grid__numTicksRows" href="#Grid__numTicksRows">#</a> <em>Grid</em>.<strong>numTicksRows</strong>&lt;number&gt;  </p>
+<p><a id="#Grid__rowLineStyle" name="Grid__rowLineStyle" href="#Grid__rowLineStyle">#</a> <em>Grid</em>.<strong>rowLineStyle</strong>&lt;object&gt;  </p>
+<p><a id="#Grid__rowTickValues" name="Grid__rowTickValues" href="#Grid__rowTickValues">#</a> <em>Grid</em>.<strong>rowTickValues</strong>&lt;array&gt;  </p>
+<p><a id="#Grid__stroke" name="Grid__stroke" href="#Grid__stroke">#</a> <em>Grid</em>.<strong>stroke</strong>&lt;string&gt;  </p>
+<p><a id="#Grid__strokeDasharray" name="Grid__strokeDasharray" href="#Grid__strokeDasharray">#</a> <em>Grid</em>.<strong>strokeDasharray</strong>&lt;string&gt;  </p>
+<p><a id="#Grid__strokeWidth" name="Grid__strokeWidth" href="#Grid__strokeWidth">#</a> <em>Grid</em>.<strong>strokeWidth</strong>&lt;union(string|number)&gt;  </p>
+<p><a id="#Grid__top" name="Grid__top" href="#Grid__top">#</a> <em>Grid</em>.<strong>top</strong>&lt;number&gt;  </p>
+<p><a id="#Grid__width" name="Grid__width" href="#Grid__width">#</a> <em>Grid</em>.<strong>width</strong>&lt;number&gt; <code>required</code> </p>
+<p><a id="#Grid__xOffset" name="Grid__xOffset" href="#Grid__xOffset">#</a> <em>Grid</em>.<strong>xOffset</strong>&lt;number&gt;  </p>
+<p><a id="#Grid__xScale" name="Grid__xScale" href="#Grid__xScale">#</a> <em>Grid</em>.<strong>xScale</strong>&lt;func&gt; <code>required</code> </p>
+<p><a id="#Grid__yOffset" name="Grid__yOffset" href="#Grid__yOffset">#</a> <em>Grid</em>.<strong>yOffset</strong>&lt;number&gt;  </p>
+<p><a id="#Grid__yScale" name="Grid__yScale" href="#Grid__yScale">#</a> <em>Grid</em>.<strong>yScale</strong>&lt;func&gt; <code>required</code> </p>
+<h3 id="gridcolumns-">&lt;GridColumns /&gt;</h3>
+
+
+
+<p><a id="#GridColumns__className" name="GridColumns__className" href="#GridColumns__className">#</a> <em>GridColumns</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#GridColumns__height" name="GridColumns__height" href="#GridColumns__height">#</a> <em>GridColumns</em>.<strong>height</strong>&lt;number&gt; <code>required</code> </p>
+<p><a id="#GridColumns__left" name="GridColumns__left" href="#GridColumns__left">#</a> <em>GridColumns</em>.<strong>left</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table></p>
+<p><a id="#GridColumns__lineStyle" name="GridColumns__lineStyle" href="#GridColumns__lineStyle">#</a> <em>GridColumns</em>.<strong>lineStyle</strong>&lt;object&gt;  </p>
+<p><a id="#GridColumns__numTicks" name="GridColumns__numTicks" href="#GridColumns__numTicks">#</a> <em>GridColumns</em>.<strong>numTicks</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>10</td></td></table></p>
+<p><a id="#GridColumns__offset" name="GridColumns__offset" href="#GridColumns__offset">#</a> <em>GridColumns</em>.<strong>offset</strong>&lt;number&gt;  </p>
+<p><a id="#GridColumns__scale" name="GridColumns__scale" href="#GridColumns__scale">#</a> <em>GridColumns</em>.<strong>scale</strong>&lt;func&gt; <code>required</code> </p>
+<p><a id="#GridColumns__stroke" name="GridColumns__stroke" href="#GridColumns__stroke">#</a> <em>GridColumns</em>.<strong>stroke</strong>&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>&#39;#eaf0f6&#39;</td></td></table></p>
+<p><a id="#GridColumns__strokeDasharray" name="GridColumns__strokeDasharray" href="#GridColumns__strokeDasharray">#</a> <em>GridColumns</em>.<strong>strokeDasharray</strong>&lt;string&gt;  </p>
+<p><a id="#GridColumns__strokeWidth" name="GridColumns__strokeWidth" href="#GridColumns__strokeWidth">#</a> <em>GridColumns</em>.<strong>strokeWidth</strong>&lt;union(string|number)&gt;  <table><tr><td><strong>Default</strong></td><td>1</td></td></table></p>
+<p><a id="#GridColumns__tickValues" name="GridColumns__tickValues" href="#GridColumns__tickValues">#</a> <em>GridColumns</em>.<strong>tickValues</strong>&lt;array&gt;  </p>
+<p><a id="#GridColumns__top" name="GridColumns__top" href="#GridColumns__top">#</a> <em>GridColumns</em>.<strong>top</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table></p>
+<h3 id="gridrows-">&lt;GridRows /&gt;</h3>
+
+
+
+<p><a id="#GridRows__className" name="GridRows__className" href="#GridRows__className">#</a> <em>GridRows</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#GridRows__left" name="GridRows__left" href="#GridRows__left">#</a> <em>GridRows</em>.<strong>left</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table></p>
+<p><a id="#GridRows__lineStyle" name="GridRows__lineStyle" href="#GridRows__lineStyle">#</a> <em>GridRows</em>.<strong>lineStyle</strong>&lt;object&gt;  </p>
+<p><a id="#GridRows__numTicks" name="GridRows__numTicks" href="#GridRows__numTicks">#</a> <em>GridRows</em>.<strong>numTicks</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>10</td></td></table></p>
+<p><a id="#GridRows__offset" name="GridRows__offset" href="#GridRows__offset">#</a> <em>GridRows</em>.<strong>offset</strong>&lt;number&gt;  </p>
+<p><a id="#GridRows__scale" name="GridRows__scale" href="#GridRows__scale">#</a> <em>GridRows</em>.<strong>scale</strong>&lt;func&gt; <code>required</code> </p>
+<p><a id="#GridRows__stroke" name="GridRows__stroke" href="#GridRows__stroke">#</a> <em>GridRows</em>.<strong>stroke</strong>&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>&#39;#eaf0f6&#39;</td></td></table></p>
+<p><a id="#GridRows__strokeDasharray" name="GridRows__strokeDasharray" href="#GridRows__strokeDasharray">#</a> <em>GridRows</em>.<strong>strokeDasharray</strong>&lt;string&gt;  </p>
+<p><a id="#GridRows__strokeWidth" name="GridRows__strokeWidth" href="#GridRows__strokeWidth">#</a> <em>GridRows</em>.<strong>strokeWidth</strong>&lt;union(string|number)&gt;  <table><tr><td><strong>Default</strong></td><td>1</td></td></table></p>
+<p><a id="#GridRows__tickValues" name="GridRows__tickValues" href="#GridRows__tickValues">#</a> <em>GridRows</em>.<strong>tickValues</strong>&lt;array&gt;  </p>
+<p><a id="#GridRows__top" name="GridRows__top" href="#GridRows__top">#</a> <em>GridRows</em>.<strong>top</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table></p>
+<p><a id="#GridRows__width" name="GridRows__width" href="#GridRows__width">#</a> <em>GridRows</em>.<strong>width</strong>&lt;number&gt; <code>required</code> </p>
 
       </div>
     </div>

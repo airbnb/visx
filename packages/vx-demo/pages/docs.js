@@ -13,220 +13,60 @@ export default () => (
       <ul>
         <li>
           <a href="/static/docs/vx-annotation.html"> @vx/annotation </a>
-          <ul>
-            <li>LinePath</li>
-          </ul>
         </li>
         <li>
           <a href="/static/docs/vx-axis.html"> @vx/axis </a>
-          <ul>
-            <li>
-              <strong>/axis</strong>
-              <ul>
-                <li>Axis</li>
-                <li>AxisBottom</li>
-                <li>AxisLeft</li>
-                <li>AxisRight</li>
-                <li>AxisTop</li>
-              </ul>
-            </li>
-            <li>
-              <strong>/constants</strong>
-              <ul>
-                <li>orientation</li>
-              </ul>
-            </li>
-            <li>
-              <strong>/utils</strong>
-              <ul>
-                <li>center</li>
-                <li>identity</li>
-                <li>isHorizontal</li>
-                <li>isLeft</li>
-              </ul>
-            </li>
-          </ul>
         </li>
         <li>
           <a href="/static/docs/vx-curve.html"> @vx/curve </a>
-          <ul>
-            <li>curveBasis</li>
-            <li>curveBasisClose</li>
-            <li>curveBasisOpen</li>
-            <li>curveStep</li>
-            <li>curveStepAfter</li>
-            <li>curveStepBefore</li>
-            <li>curveBundle</li>
-            <li>curveLinear</li>
-            <li>curveLinearClosed</li>
-            <li>curveMonotoneX</li>
-            <li>curveMonotoneY</li>
-            <li>curveCardinal</li>
-            <li>curveCardinalClosed</li>
-            <li>curveCardinalOpen</li>
-            <li>curveCatmullRom</li>
-            <li>curveCatmullRomClosed</li>
-            <li>curveCatmullRomOpen</li>
-            <li>curveNatural</li>
-          </ul>
         </li>
         <li>
           <a href="/static/docs/vx-glyph.html"> @vx/glyph </a>
-          <ul>
-            <li>GlyphDot</li>
-            <li>Glyph</li>
-          </ul>
         </li>
         <li>
           <a href="/static/docs/vx-geo.html"> @vx/geo </a>
-          <ul>
-            <li>Mercator</li>
-            <li>Orthographic</li>
-            <li>Albers</li>
-          </ul>
         </li>
         <li>
           <a href="/static/docs/vx-gradient.html"> @vx/gradient </a>
-          <ul>
-            <li>GradientDarkgreenGreen</li>
-            <li>GradientLightgreenGreen</li>
-            <li>GradientOrangeRed</li>
-            <li>GradientPinkBlue</li>
-            <li>GradientPinkRed</li>
-            <li>GradientPurpleOrange</li>
-            <li>GradientPurpleTeal</li>
-            <li>GradientSteelPurple</li>
-            <li>GaradientTealBlue</li>
-            <li>LinearGradient</li>
-          </ul>
         </li>
         <li>
           <a href="/static/docs/vx-grid.html"> @vx/grid </a>
-          <ul>
-            <li>Grid</li>
-            <li>Columns</li>
-            <li>Rows</li>
-          </ul>
         </li>
         <li>
           <a href="/static/docs/vx-group.html"> @vx/group </a>
-          <ul>
-            <li>Group</li>
-          </ul>
         </li>
         <li>
           <a href="/static/docs/vx-heatmap.html"> @vx/heatmap </a>
-          <ul>
-            <li>HeatmapRect</li>
-            <li>HeatmapCircle</li>
-          </ul>
         </li>
         <li>
           <a href="/static/docs/vx-legend.html"> @vx/legend </a>
-          <ul>
-            <li>LegendLinear</li>
-            <li>LegendQuantile</li>
-            <li>LegendOrdinal</li>
-            <li>LegendThreshold</li>
-            <li>LegendSize</li>
-            <li>Legend</li>
-          </ul>
         </li>
         <li>
           <a href="/static/docs/vx-marker.html"> @vx/marker </a>
-          <ul>
-            <li>Marker</li>
-          </ul>
         </li>
         <li>
           <a href="/static/docs/vx-mock-data.html"> @vx/mock-data </a>
-          <ul>
-            <li>
-              <strong>/generators</strong>
-              <ul>
-                <li>genDateValue</li>
-              </ul>
-            </li>
-            <li>
-              <strong>/mocks</strong>
-              <ul>
-                <li>appleStock</li>
-                <li>browserUsage</li>
-                <li>groupDateValue</li>
-                <li>letterFrequency</li>
-              </ul>
-            </li>
-          </ul>
         </li>
         <li>
           <a href="/static/docs/vx-pattern.html"> @vx/pattern </a>
-          <ul>
-            <li>PatternCircles</li>
-            <li>PatternHexagons</li>
-            <li>PatternLines</li>
-            <li>PatternPath</li>
-            <li>Pattern</li>
-            <li>PatternWaves</li>
-            <li>PatternOrientation</li>
-          </ul>
         </li>
         <li>
-          <a href="/static/docs/vx-point.html">@vx/point</a>
-          <ul>
-            <li>Point</li>
-          </ul>
+          <a href="/static/docs/vx-point.html"> @vx/point </a>
         </li>
         <li>
           <a href="/static/docs/vx-responsive.html"> @vx/responsive </a>
-          <ul>
-            <li>
-              <strong>/components</strong>
-              <ul>
-                <li>ScaleSVG</li>
-              </ul>
-            </li>
-            <li>
-              <strong>/enhancers</strong>
-              <ul>
-                <li>withScreenSize</li>
-              </ul>
-            </li>
-          </ul>
         </li>
         <li>
           <a href="/static/docs/vx-scale.html"> @vx/scale </a>
-          <ul>
-            <li>scaleBand</li>
-            <li>scalePoint</li>
-            <li>scaleLinear</li>
-            <li>scaleTime</li>
-            <li>scaleLog</li>
-            <li>scalePower</li>
-          </ul>
         </li>
         <li>
           <a href="/static/docs/vx-shape.html"> @vx/shape </a>
-          <ul>
-            <li>AreaClosed</li>
-            <li>AreaStack</li>
-            <li>Bar</li>
-            <li>Line</li>
-            <li>LinePath</li>
-          </ul>
         </li>
         <li>
           <a href="/static/docs/vx-text.html"> @vx/text </a>
-          <ul>
-            <li>TextBackground</li>
-            <li>TextOutline</li>
-            <li>TextWrap</li>
-          </ul>
         </li>
         <li>
           <a href="/static/docs/vx-voronoi.html"> @vx/voronoi </a>
-          <ul>
-            <li>Voronoi</li>
-          </ul>
         </li>
       </ul>
 

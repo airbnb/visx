@@ -34,214 +34,59 @@
       </div>
       <div class="content">
       <h1 id="-vx-geo">@vx/geo</h1>
+<p><a title="@vx/geo npm downloads" href="https://www.npmjs.com/package/@vx/geo">
+  <img src="https://img.shields.io/npm/dm/@vx/geo.svg?style=flat-square" />
+</a></p>
+<h2 id="installation">Installation</h2>
 <pre><code>npm install --save @vx/geo
-</code></pre><p>Draw GeoJSON/TopoJSON features with different projections using d3-geo and react to render it.</p>
-<h2 id="-mercator-"><code>&lt;Mercator /&gt;</code></h2>
-<p>The spherical Mercator projection. Many online street mapping services use a variant of the spherical Mercator projection (OpenStreetMap, Bing Maps, Google Maps, ...).</p>
-<h3 id="example">Example</h3>
-<p><img width="500" src="https://user-images.githubusercontent.com/3831579/28503643-0fb53628-700b-11e7-824c-293f5df0caf5.png" alt="vx-geo-mercator"></p>
-<pre><code class="lang-js">&lt;Mercator
-  data={myData}
-  scale={myScale}
-  translate={[width / 2, height / 2]}
-  fill={(feature) =&gt; &#39;#aaaaaa&#39;}
-  onClick={data =&gt; event =&gt; {
-    alert(`Clicked!`);
-  }}
-/&gt;
-</code></pre>
-<h3 id="properties">Properties</h3>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Name</th>
-<th style="text-align:left">Default</th>
-<th style="text-align:left">Type</th>
-<th style="text-align:left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">data</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">object</td>
-<td style="text-align:left">GeoJSON/TopoJSON features.</td>
-</tr>
-<tr>
-<td style="text-align:left">projectionFunc</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">Returns projection function.</td>
-</tr>
-<tr>
-<td style="text-align:left">clipAngle</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">Sets the projection’s clipping circle radius.</td>
-</tr>
-<tr>
-<td style="text-align:left">clipExtent</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">array</td>
-<td style="text-align:left">Sets the projection’s viewport clip extent.</td>
-</tr>
-<tr>
-<td style="text-align:left">scale</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">Sets the projection’s scale.</td>
-</tr>
-<tr>
-<td style="text-align:left">translate</td>
-<td style="text-align:left">[480, 250]</td>
-<td style="text-align:left">array</td>
-<td style="text-align:left">Sets the projection’s translation offset.</td>
-</tr>
-<tr>
-<td style="text-align:left">center</td>
-<td style="text-align:left">[0, 0]</td>
-<td style="text-align:left">array</td>
-<td style="text-align:left">Sets the projection’s center.</td>
-</tr>
-<tr>
-<td style="text-align:left">rotate</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">array</td>
-<td style="text-align:left">Sets the projection’s three-axis rotation.</td>
-</tr>
-<tr>
-<td style="text-align:left">precision</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">Sets the threshold for the projection’s adaptive resampling.</td>
-</tr>
-<tr>
-<td style="text-align:left">fitExtent</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">array</td>
-<td style="text-align:left">Sets the projection’s scale and translate. [extend, object]</td>
-</tr>
-<tr>
-<td style="text-align:left">fitSize</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">array</td>
-<td style="text-align:left">A convenience method for fitExtent. [size, object]</td>
-</tr>
-<tr>
-<td style="text-align:left">centroid</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">Get centroid of path.</td>
-</tr>
-<tr>
-<td style="text-align:left">className</td>
-<td style="text-align:left"><code>vx-mercator</code></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The class name for the <code>path</code> element.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="-orthographic-"><code>&lt;Orthographic /&gt;</code></h2>
-<p>The orthographic projection.</p>
-<h3 id="example">Example</h3>
-<p><img width="200" src="https://user-images.githubusercontent.com/3831579/28503686-bfb776f8-700b-11e7-942d-8c3124f1f618.png" alt="vx-geo-mercator"></p>
-<pre><code class="lang-js">&lt;Orthographic
-  data={myData}
-  scale={myScale}
-  translate={[width / 2, height / 2]}
-  fill={(feature) =&gt; &#39;#aaaaaa&#39;}
-  onClick={data =&gt; event =&gt; {
-    alert(`Clicked!`);
-  }}
-/&gt;
-</code></pre>
-<h3 id="properties">Properties</h3>
-<p>Same properties as Mercator.</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Name</th>
-<th style="text-align:left">Default</th>
-<th style="text-align:left">Type</th>
-<th style="text-align:left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">className</td>
-<td style="text-align:left"><code>vx-orthographic</code></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The class name for the <code>path</code> element.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="-albers-"><code>&lt;Albers /&gt;</code></h2>
-<p>The albers projection.</p>
-<h3 id="example">Example</h3>
-<p><img width="250" src="https://user-images.githubusercontent.com/3831579/28503693-d27ed9fc-700b-11e7-9e0a-e6b54a4a9b83.png" alt="vx-geo-mercator"></p>
-<pre><code class="lang-js">&lt;Albers
-  data={myData}
-  scale={myScale}
-  translate={[width / 2, height / 2]}
-  fill={(feature) =&gt; &#39;#aaaaaa&#39;}
-  onClick={data =&gt; event =&gt; {
-    alert(`Clicked!`);
-  }}
-/&gt;
-</code></pre>
-<h3 id="properties">Properties</h3>
-<p>Same properties as Mercator.</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Name</th>
-<th style="text-align:left">Default</th>
-<th style="text-align:left">Type</th>
-<th style="text-align:left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">className</td>
-<td style="text-align:left"><code>vx-albers</code></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The class name for the <code>path</code> element.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="-naturalearth-"><code>&lt;NaturalEarth /&gt;</code></h2>
-<p>The Natural Earth projection.</p>
-<h3 id="example">Example</h3>
-<pre><code class="lang-js">&lt;NaturalEarth
-  data={myData}
-  scale={myScale}
-  translate={[width / 2, height / 2]}
-  fill={(feature) =&gt; &#39;#aaaaaa&#39;}
-  onClick={data =&gt; event =&gt; {
-    alert(`Clicked!`);
-  }}
-/&gt;
-</code></pre>
-<h3 id="properties">Properties</h3>
-<p>Same properties as Mercator.</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Name</th>
-<th style="text-align:left">Default</th>
-<th style="text-align:left">Type</th>
-<th style="text-align:left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">className</td>
-<td style="text-align:left"><code>vx-geo-naturalEarth</code></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The class name for the <code>path</code> element. </td>
-</tr>
-</tbody>
-</table>
+</code></pre><h2 id="components">Components</h2>
+<ul>
+<li><a href="#graticule-">Graticule</a></li>
+<li><a href="#albers-">Albers</a></li>
+<li><a href="#mercator-">Mercator</a></li>
+<li><a href="#naturalearth-">NaturalEarth</a></li>
+<li><a href="#orthographic-">Orthographic</a></li>
+<li><a href="#projection-">Projection</a></li>
+</ul>
+<h2 id="api">API</h2>
+<h3 id="graticule-">&lt;Graticule /&gt;</h3>
+
+
+
+<p><a id="#Graticule__children" name="Graticule__children" href="#Graticule__children">#</a> <em>Graticule</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#Graticule__graticule" name="Graticule__graticule" href="#Graticule__graticule">#</a> <em>Graticule</em>.<strong>graticule</strong>&lt;func&gt;  </p>
+<p><a id="#Graticule__lines" name="Graticule__lines" href="#Graticule__lines">#</a> <em>Graticule</em>.<strong>lines</strong>&lt;func&gt;  </p>
+<p><a id="#Graticule__outline" name="Graticule__outline" href="#Graticule__outline">#</a> <em>Graticule</em>.<strong>outline</strong>&lt;func&gt;  </p>
+<h3 id="albers-">&lt;Albers /&gt;</h3>
+
+<p>All props pass through to <code>&lt;Projection projection=&quot;albers&quot; {...props} /&gt;</code></p>
+<h3 id="mercator-">&lt;Mercator /&gt;</h3>
+
+<p>All props pass through to <code>&lt;Projection projection=&quot;mercator&quot; {...props} /&gt;</code></p>
+<h3 id="naturalearth-">&lt;NaturalEarth /&gt;</h3>
+
+<p>All props pass through to <code>&lt;Projection projection=&quot;naturalEarth&quot; {...props} /&gt;</code></p>
+<h3 id="orthographic-">&lt;Orthographic /&gt;</h3>
+
+<p>All props pass through to <code>&lt;Projection projection=&quot;orthographic&quot; {...props} /&gt;</code></p>
+<h3 id="projection-">&lt;Projection /&gt;</h3>
+
+<p>Component for all projections.</p>
+<p><a id="#Projection__center" name="Projection__center" href="#Projection__center">#</a> <em>Projection</em>.<strong>center</strong>&lt;array&gt;  </p>
+<p><a id="#Projection__centroid" name="Projection__centroid" href="#Projection__centroid">#</a> <em>Projection</em>.<strong>centroid</strong>&lt;func&gt;  </p>
+<p><a id="#Projection__children" name="Projection__children" href="#Projection__children">#</a> <em>Projection</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#Projection__className" name="Projection__className" href="#Projection__className">#</a> <em>Projection</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#Projection__clipAngle" name="Projection__clipAngle" href="#Projection__clipAngle">#</a> <em>Projection</em>.<strong>clipAngle</strong>&lt;number&gt;  </p>
+<p><a id="#Projection__clipExtent" name="Projection__clipExtent" href="#Projection__clipExtent">#</a> <em>Projection</em>.<strong>clipExtent</strong>&lt;array&gt;  </p>
+<p><a id="#Projection__data" name="Projection__data" href="#Projection__data">#</a> <em>Projection</em>.<strong>data</strong>&lt;array&gt; <code>required</code> </p>
+<p><a id="#Projection__fitExtent" name="Projection__fitExtent" href="#Projection__fitExtent">#</a> <em>Projection</em>.<strong>fitExtent</strong>&lt;array&gt;  </p>
+<p><a id="#Projection__fitSize" name="Projection__fitSize" href="#Projection__fitSize">#</a> <em>Projection</em>.<strong>fitSize</strong>&lt;array&gt;  </p>
+<p><a id="#Projection__precision" name="Projection__precision" href="#Projection__precision">#</a> <em>Projection</em>.<strong>precision</strong>&lt;number&gt;  </p>
+<p><a id="#Projection__projection" name="Projection__projection" href="#Projection__projection">#</a> <em>Projection</em>.<strong>projection</strong>&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>&#39;mercator&#39;</td></td></table></p>
+<p><a id="#Projection__projectionFunc" name="Projection__projectionFunc" href="#Projection__projectionFunc">#</a> <em>Projection</em>.<strong>projectionFunc</strong>&lt;func&gt;  </p>
+<p><a id="#Projection__rotate" name="Projection__rotate" href="#Projection__rotate">#</a> <em>Projection</em>.<strong>rotate</strong>&lt;array&gt;  </p>
+<p><a id="#Projection__scale" name="Projection__scale" href="#Projection__scale">#</a> <em>Projection</em>.<strong>scale</strong>&lt;number&gt;  </p>
+<p><a id="#Projection__translate" name="Projection__translate" href="#Projection__translate">#</a> <em>Projection</em>.<strong>translate</strong>&lt;array&gt;  </p>
 
       </div>
     </div>

@@ -34,8 +34,10 @@
       </div>
       <div class="content">
       <h1 id="-vx-heatmap">@vx/heatmap</h1>
-<pre><code>npm install --save @vx/heatmap
-</code></pre><p>A Heatmap is a series of shapes where the data values are represented as colors.</p>
+<p><a title="@vx/heatmap npm downloads" href="https://www.npmjs.com/package/@vx/heatmap">
+  <img src="https://img.shields.io/npm/dm/@vx/heatmap.svg?style=flat-square" />
+</a></p>
+<p>A Heatmap is a series of shapes where the data values are represented as colors.</p>
 <h2 id="example">Example</h2>
 <p><img src="http://i.imgur.com/OzSD3X3.png" alt="Example heatmap"></p>
 <pre><code class="lang-js">&lt;HeatmapRect
@@ -51,13 +53,17 @@
 /&gt;
 </code></pre>
 <p>Heatmaps generally require structure that has this shape:</p>
-<pre><code class="lang-js">[{
-  bin: 1,
-  bins: [{
-    count: 20,
-    bin: 23
-  }]
-}]
+<pre><code class="lang-js">[
+  {
+    bin: 1,
+    bins: [
+      {
+        count: 20,
+        bin: 23
+      }
+    ]
+  }
+];
 </code></pre>
 <p>However, you&#39;re welcome to use your own structure by defining <code>x</code>, <code>y</code>, <code>z</code> accessors such as:</p>
 <pre><code class="lang-js">// Example accessors
@@ -71,206 +77,50 @@ const xScale = scaleLinear({
   domain: extent(data, x)
 });
 </code></pre>
-<h2 id="-heatmaprect-properties"><code>&lt;HeatmapRect /&gt;</code> Properties</h2>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Name</th>
-<th style="text-align:left">Default</th>
-<th style="text-align:left">Type</th>
-<th style="text-align:left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">className</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">className for each <rect/></td>
-</tr>
-<tr>
-<td style="text-align:left">data</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">array</td>
-<td style="text-align:left">The data for your chart</td>
-</tr>
-<tr>
-<td style="text-align:left">binWidth</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The width of the bin.</td>
-</tr>
-<tr>
-<td style="text-align:left">binHeight</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The height of the bin.</td>
-</tr>
-<tr>
-<td style="text-align:left">x</td>
-<td style="text-align:left">0</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The x coordinate for heatmap.</td>
-</tr>
-<tr>
-<td style="text-align:left">gap</td>
-<td style="text-align:left">1</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The gap between heatmap shapes.</td>
-</tr>
-<tr>
-<td style="text-align:left">step</td>
-<td style="text-align:left">0</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The step between heatmap shapes.</td>
-</tr>
-<tr>
-<td style="text-align:left">xScale</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">A <a href="https://github.com/hshoff/vx/tree/master/packages/vx-scale">scale function</a> for the xs.</td>
-</tr>
-<tr>
-<td style="text-align:left">yScale</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">A <a href="https://github.com/hshoff/vx/tree/master/packages/vx-scale">scale function</a> for the ys.</td>
-</tr>
-<tr>
-<td style="text-align:left">colorScale</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">A <a href="https://github.com/hshoff/vx/tree/master/packages/vx-scale">color scale function</a>.</td>
-</tr>
-<tr>
-<td style="text-align:left">opacityScale</td>
-<td style="text-align:left">d =&gt; 1</td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">A <a href="https://github.com/hshoff/vx/tree/master/packages/vx-scale">scale function</a> between 1 and 0.</td>
-</tr>
-<tr>
-<td style="text-align:left">bin</td>
-<td style="text-align:left">d =&gt; d.bin</td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">An accessor function get the &quot;bin&quot;.</td>
-</tr>
-<tr>
-<td style="text-align:left">bins</td>
-<td style="text-align:left">d =&gt; d.bins</td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">An accessor function get the &quot;bins&quot;.</td>
-</tr>
-<tr>
-<td style="text-align:left">count</td>
-<td style="text-align:left">d =&gt; d.count</td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">An accessor function get the &quot;count&quot;.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="-heatmapcircle-properties"><code>&lt;HeatmapCircle /&gt;</code> Properties</h2>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Name</th>
-<th style="text-align:left">Default</th>
-<th style="text-align:left">Type</th>
-<th style="text-align:left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">className</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">className for each <circle/></td>
-</tr>
-<tr>
-<td style="text-align:left">data</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">array</td>
-<td style="text-align:left">The data for your chart</td>
-</tr>
-<tr>
-<td style="text-align:left">binWidth</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The width of the bin.</td>
-</tr>
-<tr>
-<td style="text-align:left">binHeight</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The height of the bin.</td>
-</tr>
-<tr>
-<td style="text-align:left">x</td>
-<td style="text-align:left">0</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The x coordinate for heatmap.</td>
-</tr>
-<tr>
-<td style="text-align:left">gap</td>
-<td style="text-align:left">1</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The gap between heatmap shapes.</td>
-</tr>
-<tr>
-<td style="text-align:left">step</td>
-<td style="text-align:left">0</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The step between heatmap shapes.</td>
-</tr>
-<tr>
-<td style="text-align:left">radius</td>
-<td style="text-align:left">6</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The radius of each circle.</td>
-</tr>
-<tr>
-<td style="text-align:left">xScale</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">A <a href="https://github.com/hshoff/vx/tree/master/packages/vx-scale">scale function</a> for the xs.</td>
-</tr>
-<tr>
-<td style="text-align:left">yScale</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">A <a href="https://github.com/hshoff/vx/tree/master/packages/vx-scale">scale function</a> for the ys.</td>
-</tr>
-<tr>
-<td style="text-align:left">colorScale</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">A <a href="https://github.com/hshoff/vx/tree/master/packages/vx-scale">color scale function</a>.</td>
-</tr>
-<tr>
-<td style="text-align:left">opacityScale</td>
-<td style="text-align:left">d =&gt; 1</td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">A <a href="https://github.com/hshoff/vx/tree/master/packages/vx-scale">scale function</a> between 1 and 0.</td>
-</tr>
-<tr>
-<td style="text-align:left">bin</td>
-<td style="text-align:left">d =&gt; d.bin</td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">An accessor function get the &quot;bin&quot;.</td>
-</tr>
-<tr>
-<td style="text-align:left">bins</td>
-<td style="text-align:left">d =&gt; d.bins</td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">An accessor function get the &quot;bins&quot;.</td>
-</tr>
-<tr>
-<td style="text-align:left">count</td>
-<td style="text-align:left">d =&gt; d.count</td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">An accessor function get the &quot;count&quot;.</td>
-</tr>
-</tbody>
-</table>
+<h2 id="installation">Installation</h2>
+<pre><code>npm install --save @vx/heatmap
+</code></pre><h2 id="components">Components</h2>
+<ul>
+<li><a href="#heatmapcircle-">HeatmapCircle</a></li>
+<li><a href="#heatmaprect-">HeatmapRect</a></li>
+</ul>
+<h2 id="api">API</h2>
+<h3 id="heatmapcircle-">&lt;HeatmapCircle /&gt;</h3>
+
+
+
+<p><a id="#HeatmapCircle__bins" name="HeatmapCircle__bins" href="#HeatmapCircle__bins">#</a> <em>HeatmapCircle</em>.<strong>bins</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.bins</td></td></table></p>
+<p><a id="#HeatmapCircle__children" name="HeatmapCircle__children" href="#HeatmapCircle__children">#</a> <em>HeatmapCircle</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#HeatmapCircle__className" name="HeatmapCircle__className" href="#HeatmapCircle__className">#</a> <em>HeatmapCircle</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#HeatmapCircle__colorScale" name="HeatmapCircle__colorScale" href="#HeatmapCircle__colorScale">#</a> <em>HeatmapCircle</em>.<strong>colorScale</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; undefined</td></td></table></p>
+<p><a id="#HeatmapCircle__count" name="HeatmapCircle__count" href="#HeatmapCircle__count">#</a> <em>HeatmapCircle</em>.<strong>count</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.count</td></td></table></p>
+<p><a id="#HeatmapCircle__data" name="HeatmapCircle__data" href="#HeatmapCircle__data">#</a> <em>HeatmapCircle</em>.<strong>data</strong>&lt;array&gt;  </p>
+<p><a id="#HeatmapCircle__gap" name="HeatmapCircle__gap" href="#HeatmapCircle__gap">#</a> <em>HeatmapCircle</em>.<strong>gap</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>1</td></td></table></p>
+<p><a id="#HeatmapCircle__left" name="HeatmapCircle__left" href="#HeatmapCircle__left">#</a> <em>HeatmapCircle</em>.<strong>left</strong>&lt;number&gt;  </p>
+<p><a id="#HeatmapCircle__opacityScale" name="HeatmapCircle__opacityScale" href="#HeatmapCircle__opacityScale">#</a> <em>HeatmapCircle</em>.<strong>opacityScale</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; 1</td></td></table></p>
+<p><a id="#HeatmapCircle__radius" name="HeatmapCircle__radius" href="#HeatmapCircle__radius">#</a> <em>HeatmapCircle</em>.<strong>radius</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>6</td></td></table></p>
+<p><a id="#HeatmapCircle__top" name="HeatmapCircle__top" href="#HeatmapCircle__top">#</a> <em>HeatmapCircle</em>.<strong>top</strong>&lt;number&gt;  </p>
+<p><a id="#HeatmapCircle__xScale" name="HeatmapCircle__xScale" href="#HeatmapCircle__xScale">#</a> <em>HeatmapCircle</em>.<strong>xScale</strong>&lt;func&gt; <code>required</code> </p>
+<p><a id="#HeatmapCircle__yScale" name="HeatmapCircle__yScale" href="#HeatmapCircle__yScale">#</a> <em>HeatmapCircle</em>.<strong>yScale</strong>&lt;func&gt; <code>required</code> </p>
+<h3 id="heatmaprect-">&lt;HeatmapRect /&gt;</h3>
+
+
+
+<p><a id="#HeatmapRect__binHeight" name="HeatmapRect__binHeight" href="#HeatmapRect__binHeight">#</a> <em>HeatmapRect</em>.<strong>binHeight</strong>&lt;number&gt;  </p>
+<p><a id="#HeatmapRect__binWidth" name="HeatmapRect__binWidth" href="#HeatmapRect__binWidth">#</a> <em>HeatmapRect</em>.<strong>binWidth</strong>&lt;number&gt;  </p>
+<p><a id="#HeatmapRect__bins" name="HeatmapRect__bins" href="#HeatmapRect__bins">#</a> <em>HeatmapRect</em>.<strong>bins</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.bins</td></td></table></p>
+<p><a id="#HeatmapRect__children" name="HeatmapRect__children" href="#HeatmapRect__children">#</a> <em>HeatmapRect</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#HeatmapRect__className" name="HeatmapRect__className" href="#HeatmapRect__className">#</a> <em>HeatmapRect</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#HeatmapRect__colorScale" name="HeatmapRect__colorScale" href="#HeatmapRect__colorScale">#</a> <em>HeatmapRect</em>.<strong>colorScale</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; undefined</td></td></table></p>
+<p><a id="#HeatmapRect__count" name="HeatmapRect__count" href="#HeatmapRect__count">#</a> <em>HeatmapRect</em>.<strong>count</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.count</td></td></table></p>
+<p><a id="#HeatmapRect__data" name="HeatmapRect__data" href="#HeatmapRect__data">#</a> <em>HeatmapRect</em>.<strong>data</strong>&lt;array&gt;  </p>
+<p><a id="#HeatmapRect__gap" name="HeatmapRect__gap" href="#HeatmapRect__gap">#</a> <em>HeatmapRect</em>.<strong>gap</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>1</td></td></table></p>
+<p><a id="#HeatmapRect__left" name="HeatmapRect__left" href="#HeatmapRect__left">#</a> <em>HeatmapRect</em>.<strong>left</strong>&lt;number&gt;  </p>
+<p><a id="#HeatmapRect__opacityScale" name="HeatmapRect__opacityScale" href="#HeatmapRect__opacityScale">#</a> <em>HeatmapRect</em>.<strong>opacityScale</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; 1</td></td></table></p>
+<p><a id="#HeatmapRect__top" name="HeatmapRect__top" href="#HeatmapRect__top">#</a> <em>HeatmapRect</em>.<strong>top</strong>&lt;number&gt;  </p>
+<p><a id="#HeatmapRect__x0" name="HeatmapRect__x0" href="#HeatmapRect__x0">#</a> <em>HeatmapRect</em>.<strong>x0</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table></p>
+<p><a id="#HeatmapRect__xScale" name="HeatmapRect__xScale" href="#HeatmapRect__xScale">#</a> <em>HeatmapRect</em>.<strong>xScale</strong>&lt;func&gt;  </p>
+<p><a id="#HeatmapRect__yScale" name="HeatmapRect__yScale" href="#HeatmapRect__yScale">#</a> <em>HeatmapRect</em>.<strong>yScale</strong>&lt;func&gt;  </p>
 
       </div>
     </div>

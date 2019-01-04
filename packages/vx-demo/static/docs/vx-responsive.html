@@ -34,8 +34,10 @@
       </div>
       <div class="content">
       <h1 id="-vx-responsive">@vx/responsive</h1>
-<pre><code>npm install --save @vx/responsive
-</code></pre><p>The <code>@vx/responsive</code> package is here to help you make responsive graphs.</p>
+<p><a title="@vx/responsive npm downloads" href="https://www.npmjs.com/package/@vx/responsive">
+  <img src="https://img.shields.io/npm/dm/@vx/responsive.svg?style=flat-square" />
+</a></p>
+<p>The <code>@vx/responsive</code> package is here to help you make responsive graphs.</p>
 <p><strong>With Enhancers</strong></p>
 <p><code>withScreenSize</code></p>
 <p><code>withParentSize</code></p>
@@ -69,7 +71,7 @@ let chartToRender = withParentSize(MySuperCoolVxChart);
 <h2 id="-parentsize-"><code>ParentSize</code></h2>
 <p>You might do the same thing using the <code>ParentSize</code> component.</p>
 <h3 id="example-">Example:</h3>
-<pre><code class="lang-js">import { ParentSize } from &quot;@vx/responsive&quot;;
+<pre><code class="lang-js">import { ParentSize } from &#39;@vx/responsive&#39;;
 // or
 // import * as Responsive from &#39;@vx/responsive&#39;;
 // &lt;Responsive.ParentSize /&gt;;
@@ -77,7 +79,7 @@ let chartToRender = withParentSize(MySuperCoolVxChart);
 let chartToRender = (
   &lt;ParentSize&gt;
     {parent =&gt; (
-      &lt;MySuperCoolVxChart 
+      &lt;MySuperCoolVxChart
         parentWidth={parent.width}
         parentHeight={parent.height}
         parentTop={parent.top}
@@ -86,8 +88,8 @@ let chartToRender = (
         parentRef={parent.ref}
         // this function can be called inside MySuperCoolVxChart to cause a resize of the wrapper component
         resizeParent={parent.resize}
-      /&gt;)
-    }
+      /&gt;
+    )}
   &lt;/ParentSize&gt;
 );
 
@@ -102,16 +104,38 @@ let chartToRender = (
 // &lt;Responsive.ScaleSVG /&gt;
 
 let chartToRender = (
-  &lt;ScaleSVG
-    width={400}
-    height={400}
-  &gt;
+  &lt;ScaleSVG width={400} height={400}&gt;
     &lt;MySuperCoolVXChart /&gt;
   &lt;/ScaleSVG&gt;
 );
 
 // ... Render the chartToRender somewhere
 </code></pre>
+<h2 id="installation">Installation</h2>
+<pre><code>npm install --save @vx/responsive
+</code></pre><h2 id="components">Components</h2>
+<ul>
+<li><a href="#parentsize-">ParentSize</a></li>
+<li><a href="#scalesvg-">ScaleSVG</a></li>
+</ul>
+<h2 id="api">API</h2>
+<h3 id="parentsize-">&lt;ParentSize /&gt;</h3>
+
+
+
+<p><a id="#ParentSize__children" name="ParentSize__children" href="#ParentSize__children">#</a> <em>ParentSize</em>.<strong>children</strong>&lt;func&gt; <code>required</code> </p>
+<p><a id="#ParentSize__className" name="ParentSize__className" href="#ParentSize__className">#</a> <em>ParentSize</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#ParentSize__debounceTime" name="ParentSize__debounceTime" href="#ParentSize__debounceTime">#</a> <em>ParentSize</em>.<strong>debounceTime</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>300</td></td></table></p>
+<h3 id="scalesvg-">&lt;ScaleSVG /&gt;</h3>
+
+
+
+<p><a id="#ScaleSVG__children" name="ScaleSVG__children" href="#ScaleSVG__children">#</a> <em>ScaleSVG</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#ScaleSVG__height" name="ScaleSVG__height" href="#ScaleSVG__height">#</a> <em>ScaleSVG</em>.<strong>height</strong>&lt;union(number|string)&gt;  </p>
+<p><a id="#ScaleSVG__preserveAspectRatio" name="ScaleSVG__preserveAspectRatio" href="#ScaleSVG__preserveAspectRatio">#</a> <em>ScaleSVG</em>.<strong>preserveAspectRatio</strong>&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>&#39;xMinYMin meet&#39;</td></td></table></p>
+<p><a id="#ScaleSVG__width" name="ScaleSVG__width" href="#ScaleSVG__width">#</a> <em>ScaleSVG</em>.<strong>width</strong>&lt;union(number|string)&gt;  </p>
+<p><a id="#ScaleSVG__xOrigin" name="ScaleSVG__xOrigin" href="#ScaleSVG__xOrigin">#</a> <em>ScaleSVG</em>.<strong>xOrigin</strong>&lt;union(number|string)&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table></p>
+<p><a id="#ScaleSVG__yOrigin" name="ScaleSVG__yOrigin" href="#ScaleSVG__yOrigin">#</a> <em>ScaleSVG</em>.<strong>yOrigin</strong>&lt;union(number|string)&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table></p>
 
       </div>
     </div>
