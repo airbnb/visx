@@ -7,8 +7,8 @@ import { ClipPath } from '@vx/clip-path';
 Threshold.propTypes = {
   className: PropTypes.string,
   curve: PropTypes.func,
-  clipAboveTo: PropTypes.func,
-  clipBelowTo: PropTypes.func,
+  clipAboveTo: PropTypes.oneOfType([PropTypes.func, PropTypes.number]).isRequired,
+  clipBelowTo: PropTypes.oneOfType([PropTypes.func, PropTypes.number]).isRequired,
   id: PropTypes.string,
   data: PropTypes.any.isRequired,
   x: PropTypes.oneOfType([PropTypes.func, PropTypes.number]).isRequired,
