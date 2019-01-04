@@ -40,7 +40,7 @@ npm install --save @vx/clip-path
 
 
 
-<a id="#ClipPath__children" name="ClipPath__children" href="#ClipPath__children">#</a> *ClipPath*.**children**&lt;any&gt; `required` 
+<a id="#ClipPath__children" name="ClipPath__children" href="#ClipPath__children">#</a> *ClipPath*.**children**&lt;any&gt;  
 
 <a id="#ClipPath__id" name="ClipPath__id" href="#ClipPath__id">#</a> *ClipPath*.**id**&lt;string&gt; `required` 
 
