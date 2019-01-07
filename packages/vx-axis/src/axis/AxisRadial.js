@@ -182,7 +182,7 @@ export default function AxisRadial({
     .map((val, index) => {
       if (hideZero && val === 0) return null;
 
-      const angle = scale(val) - Math.PI / 2; // @TODO why is this off by 45°?
+      const angle = scale(val) - Math.PI / 2;
       const tickFromPoint = new Point(polarToCartesian({ angle, radius }));
       const tickToPoint = new Point(polarToCartesian({ angle, radius: radius + tickLength }));
 

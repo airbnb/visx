@@ -7,8 +7,8 @@ export default function radialTickLabelTransform(fromPoint, toPoint) {
   const dy = toPoint.y - fromPoint.y;
 
   // offset the label in the same direction as the tick orientation
-  const x = toPoint.x + dx;
-  const y = toPoint.y + dy;
+  const x = toPoint.x + dx / 2;
+  const y = toPoint.y + dy / 2;
 
   // positive dx means tick points right
   if (dx > CENTER_ALIGN_THRESHOLD) {
