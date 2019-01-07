@@ -1,15 +1,18 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Group } from '@vx/group';
+import { Text } from '@vx/text';
 
 import { AxisRadial } from '../src';
 import { scaleLinear } from '../../vx-scale';
 
 const axisProps = {
   scale: scaleLinear({
-    rangeRound: [10, 0],
-    domain: [0, 10]
-  })
+    domain: [0, 10],
+    range: [0, 2 * Math.PI]
+  }),
+  radius: 100,
+  label: 'Radial axis label'
 };
 
 describe('<AxisRadial />', () => {
@@ -19,7 +22,12 @@ describe('<AxisRadial />', () => {
 
   test('it should render with class .vx-axis-radial', () => {
     const wrapper = shallow(<AxisRadial {...axisProps} />);
-    expect(wrapper.find(Group).prop('className')).toEqual('vx-axis-radial');
+    expect(
+      wrapper
+        .find(Group)
+        .first()
+        .prop('className')
+    ).toEqual('vx-axis-radial');
   });
 
   test('it should set user-specified axisClassName, axisLineClassName, labelClassName, and tickClassName', () => {
@@ -68,7 +76,10 @@ describe('<AxisRadial />', () => {
     expect(args.tickLength).toEqual(expect.any(Number));
     expect(args.tickFormat).toEqual(expect.any(Function));
     expect(args.ticks).toEqual(expect.any(Array));
-    expect(Object.keys(args.ticks[0])).toEqual(['x', 'y', 'textAnchor', 'verticalAnchor']);
+
+    expect(Object.keys(args.ticks[0])).toEqual(
+      expect.arrayContaining(['x', 'y', 'textAnchor', 'verticalAnchor'])
+    );
   });
 
   test('it should call the tickLabelProps func with the signature (tickValue, index)', () => {
@@ -180,7 +191,9 @@ describe('<AxisRadial />', () => {
   });
 
   test('tickFormat should have access to tick index', () => {
-    const wrapper = shallow(<AxisRadial {...axisProps} tickValues={[9]} tickFormat={(val, i) => i} />);
+    const wrapper = shallow(
+      <AxisRadial {...axisProps} tickValues={[9]} tickFormat={(val, i) => i} />
+    );
     expect(
       wrapper
         .children()

@@ -8,6 +8,7 @@ import { Text } from '@vx/text';
 import { curveCardinal } from '@vx/curve';
 
 import ORIENT from '../constants/orientation';
+import polarToCartesian from '../utils/polarToCartesian';
 import radialLabelTransform from '../utils/radialLabelTransform';
 import radialTickLabelTransform from '../utils/radialTickLabelTransform';
 import identity from '../utils/identity';
@@ -42,13 +43,21 @@ const propTypes = {
    */
   labelClassName: PropTypes.string,
   /**
-   * Pixel offset of the axis label (does not include tick length or tick label font size, which is accounted for automatically)
+   * Pixel offset of the axis label (does not include tick length or
+   * tick label font size, which is accounted for automatically)
    */
   labelOffset: PropTypes.number,
   /**
-   * Props applied to the axis label component.
+   * High-leevl positioning of axis label component. Can be
+   * refined or customized further using labelProps.
    */
-  labelOrientation: PropTypes.oneOf(['top', 'right', 'bottom', 'left', 'center']),
+  labelOrientation: PropTypes.oneOf([
+    ORIENT.top,
+    ORIENT.right,
+    ORIENT.bottom,
+    ORIENT.left,
+    ORIENT.center
+  ]),
   /**
    * Props applied to the axis label component.
    */
@@ -106,7 +115,8 @@ const propTypes = {
    */
   tickTransform: PropTypes.string,
   /**
-   * An array of values that determine the number and values of the ticks. Falls back to `scale.ticks()` or `.domain()`.
+   * An array of values that determine the number and values of the ticks.
+   * Falls back to `scale.ticks()` or `.domain()`.
    */
   tickValues: PropTypes.array,
   /**
@@ -120,7 +130,7 @@ const propTypes = {
   /**
    * For more control over rendering or to add event handlers to datum, pass a function as children.
    */
-  children: PropTypes.func,
+  children: PropTypes.func
 };
 
 export default function AxisRadial({
@@ -138,7 +148,7 @@ export default function AxisRadial({
     fontFamily: 'Arial',
     fontSize: 12,
     fontWeight: 'bold',
-    fill: 'black',
+    fill: 'black'
   },
   left = 0,
   numTicks = 10,
@@ -152,14 +162,14 @@ export default function AxisRadial({
   tickLabelProps = (tickValue, index) => ({
     fontFamily: 'Arial',
     fontSize: 10,
-    fill: 'black',
+    fill: 'black'
   }),
   tickLength = 8,
   tickStroke = 'black',
   tickTransform,
   tickValues,
   tickComponent,
-  top = 0,
+  top = 0
 }) {
   let values = scale.ticks ? scale.ticks(numTicks) : scale.domain();
   if (tickValues) values = tickValues;
@@ -176,7 +186,7 @@ export default function AxisRadial({
       const tickFromPoint = new Point(polarToCartesian({ angle, radius }));
       const tickToPoint = new Point(polarToCartesian({ angle, radius: radius + tickLength }));
 
-      const tickOrientationProps = getTickLabelOrientationProps(tickFromPoint, tickToPoint);
+      const tickOrientationProps = radialTickLabelTransform(tickFromPoint, tickToPoint);
       const tickLabelPropsObj = { ...tickOrientationProps, ...tickLabelProps(val, index) };
       tickLabelFontSize = Math.max(tickLabelFontSize, tickLabelPropsObj.fontSize || 0);
 
@@ -198,7 +208,7 @@ export default function AxisRadial({
           radius,
           tickLength,
           tickFormat: format,
-          ticks,
+          ticks
         })}
       </Group>
     );
@@ -212,24 +222,27 @@ export default function AxisRadial({
         const tickAngle = scale(val) - Math.PI / 2; // @TODO why is this off by 45°?
         const tickFromPoint = new Point(polarToCartesian({ angle: tickAngle, radius }));
         const tickToPoint = new Point(
-          polarToCartesian({ angle: tickAngle, radius: radius + tickLength }),
+          polarToCartesian({ angle: tickAngle, radius: radius + tickLength })
         );
 
         const tickOrientationProps = radialTickLabelTransform(tickFromPoint, tickToPoint);
-        const tickLabelPropsObj = { ...tickOrientationProps, ...tickLabelProps(val, index) };
+        const tickLabelPropsObj = {
+          ...tickOrientationProps,
+          ...tickLabelProps(val, index)
+        };
         const formattedValue = format(val, index);
 
         return (
           <Group
             key={`vx-tick-${val}-${index}`}
-            className={cx('vx-radial-axis-tick', tickClassName)}
+            className={cx('vx-axis-tick', tickClassName)}
             transform={tickTransform}
           >
             {!hideTicks && <Line from={tickFromPoint} to={tickToPoint} stroke={tickStroke} />}
             {tickComponent ? (
               tickComponent({
                 formattedValue,
-                ...tickLabelPropsObj,
+                ...tickLabelPropsObj
               })
             ) : (
               <Text {...tickLabelPropsObj}>{formattedValue}</Text>
@@ -240,7 +253,7 @@ export default function AxisRadial({
 
       {!hideAxisLine && (
         <LineRadial
-          className={cx('vx-radial-axis-line', axisLineClassName)}
+          className={cx('vx-axis-line', axisLineClassName)}
           data={axisLineData}
           angle={angle}
           radius={radius}
@@ -253,14 +266,14 @@ export default function AxisRadial({
 
       {label && (
         <Text
-          className={cx('vx-radial-axis-label', labelClassName)}
+          className={cx('vx-axis-label', labelClassName)}
           {...radialLabelTransform({
             labelOffset,
             labelOrientation,
             labelProps,
             radius,
             tickLabelFontSize,
-            tickLength,
+            tickLength
           })}
           {...labelProps}
         >
