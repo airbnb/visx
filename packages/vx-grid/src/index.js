@@ -1,5 +1,5 @@
 export { default as GridRows } from './grids/GridRows';
 export { default as GridColumns } from './grids/GridColumns';
 export { default as Grid } from './grids/Grid';
-export { default as PolarGrid } from './grids/PolarGrid';
-export { default as RadialGrid } from './grids/RadialGrid';
+export { default as GridPolar } from './grids/GridPolar';
+export { default as GridRadial } from './grids/GridRadial';

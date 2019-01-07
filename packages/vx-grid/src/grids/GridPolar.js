@@ -65,7 +65,7 @@ const propTypes = {
   top: PropTypes.number
 };
 
-export default function PolarGrid({
+export default function GridPolar({
   className,
   innerRadius,
   left = 0,
@@ -84,7 +84,7 @@ export default function PolarGrid({
   let ticks = scale.ticks ? scale.ticks(numTicks) : scale.domain();
   if (tickValues) ticks = tickValues;
   return (
-    <Group className={cx('vx-polar-grid', className)} top={top} left={left}>
+    <Group className={cx('vx-grid-polar', className)} top={top} left={left}>
       {ticks.map((tick, i) => {
         const angle = scale(tick) - Math.PI / 2;
         const fromPoint = new Point(polarToCartesian({ angle, radius: innerRadius }));
@@ -107,4 +107,4 @@ export default function PolarGrid({
   );
 }
 
-PolarGrid.propTypes = propTypes;
+GridPolar.propTypes = propTypes;

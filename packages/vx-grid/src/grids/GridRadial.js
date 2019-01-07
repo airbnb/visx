@@ -69,7 +69,7 @@ const propTypes = {
   top: PropTypes.number
 };
 
-export default function RadialGrid({
+export default function GridRadial({
   arcScale,
   className,
   fill = 'transparent',
@@ -92,7 +92,7 @@ export default function RadialGrid({
   const arcPathData = arcScale.ticks ? arcScale.ticks(numRadialPoints) : arcScale.domain();
 
   return (
-    <Group className={cx('vx-radial-grid', className)} top={top} left={left}>
+    <Group className={cx('vx-grid-radial', className)} top={top} left={left}>
       {radii.map((radius, i) => (
         <LineRadial
           key={`radial-grid-${radius}-${i}`}
@@ -113,4 +113,4 @@ export default function RadialGrid({
   );
 }
 
-RadialGrid.propTypes = propTypes;
+GridRadial.propTypes = propTypes;
