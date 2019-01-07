@@ -31,7 +31,7 @@ class Chart extends React.Component {
     } = this.props;
 
     return (
-      // note React.Frament is only available in >= react@16.2
+      // note React.Fragment is only available in >= react@16.2
       <React.Fragment>
         <svg width={...} height={...}>
           // Chart here...
@@ -80,7 +80,7 @@ You may override the container by specifying `containerProps` as the second argu
 
 
 ### Components
-#### <Tooltip />
+#### Tooltip
 This is a simple Tooltip container component meant to be used to actually render a Tooltip. It accepts the following props, and will spread any additional props on the tooltip container div (i.e., ...restProps):
 
 | Name | Type | Default | Description |
@@ -104,4 +104,4 @@ This tooltip component is exactly the same as `Tooltip` above, but it is aware o
 | style | object | -- | Sets / overrides any styles on the tooltip container (including top and left)
 | children | node | -- | Sets the children of the tooltip, i.e., the actual content
 
-Note that this component is positioned using a `tranform`, so overriding `left` and `top` via styles may have no effect.
+Note that this component is positioned using a `transform`, so overriding `left` and `top` via styles may have no effect.
