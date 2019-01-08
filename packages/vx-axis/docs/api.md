@@ -241,6 +241,130 @@ A top pixel offset applied to the entire axis.
 
 <a id="#AxisLeft__top" name="AxisLeft__top" href="#AxisLeft__top">#</a> *AxisLeft*.**top**&lt;number&gt;  
 
+<h3 id="axisradial-">&lt;AxisRadial /&gt;</h3>
+
+
+
+<a id="#AxisRadial__axisClassName" name="AxisRadial__axisClassName" href="#AxisRadial__axisClassName">#</a> *AxisRadial*.**axisClassName**&lt;string&gt; 
+
+The class name applied to the outermost axis group element. 
+
+<a id="#AxisRadial__axisLineClassName" name="AxisRadial__axisLineClassName" href="#AxisRadial__axisLineClassName">#</a> *AxisRadial*.**axisLineClassName**&lt;string&gt; 
+
+The class name applied to the axis line element. 
+
+<a id="#AxisRadial__children" name="AxisRadial__children" href="#AxisRadial__children">#</a> *AxisRadial*.**children**&lt;func&gt; 
+
+For more control over rendering or to add event handlers to datum, pass a function as children. 
+
+<a id="#AxisRadial__hideAxisLine" name="AxisRadial__hideAxisLine" href="#AxisRadial__hideAxisLine">#</a> *AxisRadial*.**hideAxisLine**&lt;bool&gt; 
+
+If true, will hide the axis line. <table><tr><td><strong>Default</strong></td><td>false</td></td></table>
+
+<a id="#AxisRadial__hideTicks" name="AxisRadial__hideTicks" href="#AxisRadial__hideTicks">#</a> *AxisRadial*.**hideTicks**&lt;bool&gt; 
+
+If true, will hide the ticks (but not the tick labels). <table><tr><td><strong>Default</strong></td><td>false</td></td></table>
+
+<a id="#AxisRadial__hideZero" name="AxisRadial__hideZero" href="#AxisRadial__hideZero">#</a> *AxisRadial*.**hideZero**&lt;bool&gt; 
+
+If true, will hide the '0' value tick and tick label. <table><tr><td><strong>Default</strong></td><td>false</td></td></table>
+
+<a id="#AxisRadial__label" name="AxisRadial__label" href="#AxisRadial__label">#</a> *AxisRadial*.**label**&lt;string&gt; 
+
+The text for the axis label. <table><tr><td><strong>Default</strong></td><td>''</td></td></table>
+
+<a id="#AxisRadial__labelClassName" name="AxisRadial__labelClassName" href="#AxisRadial__labelClassName">#</a> *AxisRadial*.**labelClassName**&lt;string&gt; 
+
+The class name applied to the axis label text element. 
+
+<a id="#AxisRadial__labelOffset" name="AxisRadial__labelOffset" href="#AxisRadial__labelOffset">#</a> *AxisRadial*.**labelOffset**&lt;number&gt; 
+
+Pixel offset of the axis label (does not include tick length or
+tick label font size, which is accounted for automatically) <table><tr><td><strong>Default</strong></td><td>14</td></td></table>
+
+<a id="#AxisRadial__labelOrientation" name="AxisRadial__labelOrientation" href="#AxisRadial__labelOrientation">#</a> *AxisRadial*.**labelOrientation**&lt;enum(ORIENT.top|ORIENT.right|ORIENT.bottom|ORIENT.left|ORIENT.center)&gt; 
+
+High-leevl positioning of axis label component. Can be
+refined or customized further using labelProps. <table><tr><td><strong>Default</strong></td><td>'top'</td></td></table>
+
+<a id="#AxisRadial__labelProps" name="AxisRadial__labelProps" href="#AxisRadial__labelProps">#</a> *AxisRadial*.**labelProps**&lt;object&gt; 
+
+Props applied to the axis label component. <table><tr><td><strong>Default</strong></td><td>{
+  fontFamily: 'Arial',
+  fontSize: 12,
+  fontWeight: 'bold',
+  fill: 'black'
+}</td></td></table>
+
+<a id="#AxisRadial__left" name="AxisRadial__left" href="#AxisRadial__left">#</a> *AxisRadial*.**left**&lt;number&gt; 
+
+A left pixel offset applied to the entire axis. <table><tr><td><strong>Default</strong></td><td>0</td></td></table>
+
+<a id="#AxisRadial__numTicks" name="AxisRadial__numTicks" href="#AxisRadial__numTicks">#</a> *AxisRadial*.**numTicks**&lt;number&gt; 
+
+The number of ticks wanted for the axis (note this is approximate due to d3's algorithm) <table><tr><td><strong>Default</strong></td><td>10</td></td></table>
+
+<a id="#AxisRadial__radius" name="AxisRadial__radius" href="#AxisRadial__radius">#</a> *AxisRadial*.**radius**&lt;number&gt; `required`
+
+The required pixel size of the radius of the radial axis 
+
+<a id="#AxisRadial__scale" name="AxisRadial__scale" href="#AxisRadial__scale">#</a> *AxisRadial*.**scale**&lt;func&gt; `required`
+
+A [d3](https://github.com/d3/d3-scale) or [vx](https://github.com/hshoff/vx/tree/master/packages/vx-scale) scale function. 
+
+<a id="#AxisRadial__stroke" name="AxisRadial__stroke" href="#AxisRadial__stroke">#</a> *AxisRadial*.**stroke**&lt;string&gt; 
+
+The color for the stroke of the lines. <table><tr><td><strong>Default</strong></td><td>'black'</td></td></table>
+
+<a id="#AxisRadial__strokeDasharray" name="AxisRadial__strokeDasharray" href="#AxisRadial__strokeDasharray">#</a> *AxisRadial*.**strokeDasharray**&lt;string&gt; 
+
+The pattern of dashes in the stroke. 
+
+<a id="#AxisRadial__strokeWidth" name="AxisRadial__strokeWidth" href="#AxisRadial__strokeWidth">#</a> *AxisRadial*.**strokeWidth**&lt;number&gt; 
+
+The pixel value for the width of the lines. <table><tr><td><strong>Default</strong></td><td>1</td></td></table>
+
+<a id="#AxisRadial__tickClassName" name="AxisRadial__tickClassName" href="#AxisRadial__tickClassName">#</a> *AxisRadial*.**tickClassName**&lt;string&gt; 
+
+The class name applied to each tick group 
+
+<a id="#AxisRadial__tickComponent" name="AxisRadial__tickComponent" href="#AxisRadial__tickComponent">#</a> *AxisRadial*.**tickComponent**&lt;func&gt; 
+
+For more control over tick label rendering, pass a function 
+
+<a id="#AxisRadial__tickFormat" name="AxisRadial__tickFormat" href="#AxisRadial__tickFormat">#</a> *AxisRadial*.**tickFormat**&lt;func&gt; 
+
+A [d3 formatter](https://github.com/d3/d3-scale/blob/master/README.md#continuous_tickFormat) for the tick text. 
+
+<a id="#AxisRadial__tickLabelProps" name="AxisRadial__tickLabelProps" href="#AxisRadial__tickLabelProps">#</a> *AxisRadial*.**tickLabelProps**&lt;func&gt; 
+
+A function that returns props for a given tick value and index. <table><tr><td><strong>Default</strong></td><td>(tickValue, index) => ({
+  fontFamily: 'Arial',
+  fontSize: 10,
+  fill: 'black'
+})</td></td></table>
+
+<a id="#AxisRadial__tickLength" name="AxisRadial__tickLength" href="#AxisRadial__tickLength">#</a> *AxisRadial*.**tickLength**&lt;number&gt; 
+
+The length of the tick lines. <table><tr><td><strong>Default</strong></td><td>8</td></td></table>
+
+<a id="#AxisRadial__tickStroke" name="AxisRadial__tickStroke" href="#AxisRadial__tickStroke">#</a> *AxisRadial*.**tickStroke**&lt;string&gt; 
+
+The color for the tick's stroke value. <table><tr><td><strong>Default</strong></td><td>'black'</td></td></table>
+
+<a id="#AxisRadial__tickTransform" name="AxisRadial__tickTransform" href="#AxisRadial__tickTransform">#</a> *AxisRadial*.**tickTransform**&lt;string&gt; 
+
+A custom SVG transform value to be applied to each tick group. 
+
+<a id="#AxisRadial__tickValues" name="AxisRadial__tickValues" href="#AxisRadial__tickValues">#</a> *AxisRadial*.**tickValues**&lt;array&gt; 
+
+An array of values that determine the number and values of the ticks.
+Falls back to `scale.ticks()` or `.domain()`. 
+
+<a id="#AxisRadial__top" name="AxisRadial__top" href="#AxisRadial__top">#</a> *AxisRadial*.**top**&lt;number&gt; 
+
+A top pixel offset applied to the entire axis. <table><tr><td><strong>Default</strong></td><td>0</td></td></table>
+
 <h3 id="axisright-">&lt;AxisRight /&gt;</h3>
 
 
