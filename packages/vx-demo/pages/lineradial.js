@@ -73,7 +73,7 @@ export default ({ width, height }) => {
           const y = yScale(tick);
           const opacity = 1 / (i + 1) - (1 / i) * 0.2;
           return (
-            <g key={`radial-grid-${i}`}>
+            <g key={radial-grid-{i}}>
               <circle
                 r={y}
                 stroke={blue}
@@ -109,7 +109,7 @@ export default ({ width, height }) => {
         {[firstPoint, lastPoint].map((d, i) => {
           const cx = (xScale(date(d)) * Math.PI) / 180;
           const cy = -yScale(close(d));
-          return <circle key={`line-cap-${i}`} cx={cx} cy={cy} fill={darkgreen} r={3} />;
+          return <circle key={line-cap-{i}} cx={cx} cy={cy} fill={darkgreen} r={3} />;
         })}
       </Group>
     </svg>
