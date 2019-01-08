@@ -1,7 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
-import { curveCardinal } from '@vx/curve';
 import { LineRadial, Arc } from '@vx/shape';
 import { Group } from '@vx/group';
 
