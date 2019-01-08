@@ -57,26 +57,28 @@ export default ({ width, height }) => {
       <LinearGradient from={green} to={blue} id="line-gradient" />
       <rect width={width} height={height} fill={bg} rx={14} />
       <Group top={height / 2} left={width / 2}>
+        <GridPolar
+          scale={xScale}
+          outerRadius={height / 2 - padding}
+          stroke={green}
+          strokeWidth={1}
+          strokeOpacity={0.3}
+          strokeDasharray="5,2"
+          numTicks={20}
+        />
         <GridRadial
           scale={yScale}
+          numTicks={5}
           stroke={blue}
           strokeWidth={1}
           fill={blue}
           fillOpacity={0.1}
           strokeOpacity={0.2}
         />
-        <GridPolar
-          scale={xScale}
-          outerRadius={height / 2 - padding}
-          stroke={blue}
-          strokeWidth={1}
-          strokeOpacity={0.1}
-          strokeDasharray="5,2"
-          numTicks={20}
-        />
         <AxisLeft
           top={-height / 2 + padding}
           scale={reverseYScale}
+          numTicks={5}
           tickStroke="none"
           tickLabelProps={val => ({
             fontSize: 8,
@@ -106,12 +108,13 @@ export default ({ width, height }) => {
         {[firstPoint, lastPoint].map((d, i) => {
           const cx = (xScale(date(d)) * Math.PI) / 180;
           const cy = -yScale(close(d));
-          return <circle key={'line-cap-{i}'} cx={cx} cy={cy} fill={darkgreen} r={3} />;
+          return <circle key={line-cap-\${i}} cx={cx} cy={cy} fill={darkgreen} r={3} />;
         })}
       </Group>
     </svg>
   );
 };
+
 `}
     </Show>
   );
