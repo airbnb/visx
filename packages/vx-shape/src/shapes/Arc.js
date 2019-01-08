@@ -18,6 +18,8 @@ Arc.propTypes = {
   padRadius: PropTypes.oneOfType([PropTypes.func, PropTypes.number])
 };
 
+const isDefined = _ => typeof _ !== 'undefined';
+
 export default function Arc({
   className,
   data,
@@ -34,14 +36,14 @@ export default function Arc({
   ...restProps
 }) {
   const arc = d3Arc();
-  if (centroid) arc.centroid(centroid);
-  if (innerRadius !== undefined) arc.innerRadius(innerRadius);
-  if (outerRadius !== undefined) arc.outerRadius(outerRadius);
-  if (cornerRadius !== undefined) arc.cornerRadius(cornerRadius);
-  if (startAngle !== undefined) arc.startAngle(startAngle);
-  if (endAngle !== undefined) arc.endAngle(endAngle);
-  if (padAngle !== undefined) arc.padAngle(padAngle);
-  if (padRadius !== undefined) arc.padRadius(padRadius);
+  if (isDefined(centroid)) arc.centroid(centroid);
+  if (isDefined(innerRadius)) arc.innerRadius(innerRadius);
+  if (isDefined(outerRadius)) arc.outerRadius(outerRadius);
+  if (isDefined(cornerRadius)) arc.cornerRadius(cornerRadius);
+  if (isDefined(startAngle)) arc.startAngle(startAngle);
+  if (isDefined(endAngle)) arc.endAngle(endAngle);
+  if (isDefined(padAngle)) arc.padAngle(padAngle);
+  if (isDefined(padRadius)) arc.padRadius(padRadius);
   if (children) return children({ path: arc });
   return <path ref={innerRef} className={cx('vx-arc', className)} d={arc(data)} {...restProps} />;
 }

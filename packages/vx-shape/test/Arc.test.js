@@ -1,4 +1,5 @@
 import { Arc } from '../src';
+
 const browserUsage = [
   {
     date: '2015 Jun 15',
@@ -25,11 +26,10 @@ const browserUsage = [
 ];
 
 const ArcWrapper = ({ ...restProps }) => shallow(<Arc data={browserUsage} {...restProps} />);
-const ArcChildren = ({ children, ...restProps }) =>
-  shallow(
-    <Arc data={browserUsage} {...restProps}>
-      {children}
-    </Arc>
+const ArcChildren = ({ children, ...restProps }) => shallow(
+  <Arc data={browserUsage} {...restProps}>
+    {children}
+  </Arc>
   );
 
 describe('<Arc />', () => {
@@ -61,9 +61,12 @@ describe('<Arc />', () => {
 
   test('it should take an innerRadius number prop', () => {
     const fn = jest.fn();
-    const wrapper = ArcChildren({ children: fn, innerRadius: 42 });
-    const args = fn.mock.calls[0][0];
-    expect(args.path.innerRadius()()).toBe(42);
+    ArcChildren({ children: fn, innerRadius: 42 });
+    ArcChildren({ children: fn, innerRadius: 0 });
+    const args0 = fn.mock.calls[0][0];
+    const args1 = fn.mock.calls[1][0];
+    expect(args0.path.innerRadius()()).toBe(42);
+    expect(args1.path.innerRadius()()).toBe(0);
   });
 
   test('it should take an innerRadius fn prop', () => {
@@ -75,9 +78,12 @@ describe('<Arc />', () => {
 
   test('it should take an outerRadius number prop', () => {
     const fn = jest.fn();
-    const wrapper = ArcChildren({ children: fn, outerRadius: 42 });
-    const args = fn.mock.calls[0][0];
-    expect(args.path.outerRadius()()).toBe(42);
+    ArcChildren({ children: fn, outerRadius: 42 });
+    ArcChildren({ children: fn, outerRadius: 0 });
+    const args0 = fn.mock.calls[0][0];
+    const args1 = fn.mock.calls[1][0];
+    expect(args0.path.outerRadius()()).toBe(42);
+    expect(args1.path.outerRadius()()).toBe(0);
   });
 
   test('it should take an outerRadius fn prop', () => {
@@ -89,9 +95,12 @@ describe('<Arc />', () => {
 
   test('it should take a cornerRadius number prop', () => {
     const fn = jest.fn();
-    const wrapper = ArcChildren({ children: fn, cornerRadius: 42 });
-    const args = fn.mock.calls[0][0];
-    expect(args.path.cornerRadius()()).toBe(42);
+    ArcChildren({ children: fn, cornerRadius: 42 });
+    ArcChildren({ children: fn, cornerRadius: 0 });
+    const args0 = fn.mock.calls[0][0];
+    const args1 = fn.mock.calls[1][0];
+    expect(args0.path.cornerRadius()()).toBe(42);
+    expect(args1.path.cornerRadius()()).toBe(0);
   });
 
   test('it should take a cornerRadius fn prop', () => {
