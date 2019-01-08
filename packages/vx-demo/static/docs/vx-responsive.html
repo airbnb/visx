@@ -44,7 +44,7 @@
 <p><strong>With Components</strong></p>
 <p><code>ParentSize</code></p>
 <p><code>ScaleSVG</code></p>
-<h2 id="-withscreensize-"><code>withScreenSize</code></h2>
+<h2 id="withscreensize"><code>withScreenSize</code></h2>
 <p>If you would like your graph to adapt to the screen size, you can use <code>withScreenSize()</code>. The resulting component will pass <code>screenWidth</code> and <code>screenHeight</code> props to the wrapped component containing the respective screen dimensions.</p>
 <h3 id="example-">Example:</h3>
 <pre><code class="lang-js">import { withScreenSize } from &#39;@vx/responsive&#39;;
@@ -56,7 +56,7 @@ let chartToRender = withScreenSize(MySuperCoolVxChart);
 
 // ... Render the chartToRender somewhere
 </code></pre>
-<h2 id="-withparentsize-"><code>withParentSize</code></h2>
+<h2 id="withparentsize"><code>withParentSize</code></h2>
 <p>If you would like your graph to adapt to it&#39;s parent component&#39;s size, you can use <code>withParentSize()</code>. The resulting component will pass <code>parentWidth</code> and <code>parentHeight</code> props to the wrapped component containing the respective parent&#39;s dimensions.</p>
 <h3 id="example-">Example:</h3>
 <pre><code class="lang-js">import { withParentSize } from &#39;@vx/responsive&#39;;
@@ -68,7 +68,7 @@ let chartToRender = withParentSize(MySuperCoolVxChart);
 
 // ... Render the chartToRender somewhere
 </code></pre>
-<h2 id="-parentsize-"><code>ParentSize</code></h2>
+<h2 id="parentsize"><code>ParentSize</code></h2>
 <p>You might do the same thing using the <code>ParentSize</code> component.</p>
 <h3 id="example-">Example:</h3>
 <pre><code class="lang-js">import { ParentSize } from &#39;@vx/responsive&#39;;
@@ -95,7 +95,7 @@ let chartToRender = (
 
 // ... Render the chartToRender somewhere
 </code></pre>
-<h2 id="-scalesvg-"><code>ScaleSVG</code></h2>
+<h2 id="scalesvg"><code>ScaleSVG</code></h2>
 <p>You can also create a responsive chart with a specific viewBox with the <code>ScaleSVG</code> component.</p>
 <h3 id="example-">Example:</h3>
 <pre><code class="lang-js">import { ScaleSVG } from &#39;@vx/responsive&#39;;

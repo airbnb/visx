@@ -38,7 +38,7 @@
   "dependencies": {
     "@vx/group": "0.0.183",
     "classnames": "^2.2.5",
-    "d3-geo": "^1.6.4",
+    "d3-geo": "^1.11.3",
     "prop-types": "^15.5.10"
   },
   "devDependencies": {
