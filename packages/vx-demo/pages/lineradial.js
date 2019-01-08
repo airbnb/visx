@@ -106,7 +106,7 @@ export default ({ width, height }) => {
         {[firstPoint, lastPoint].map((d, i) => {
           const cx = (xScale(date(d)) * Math.PI) / 180;
           const cy = -yScale(close(d));
-          return <circle key={`line-cap-${i}`} cx={cx} cy={cy} fill={darkgreen} r={3} />;
+          return <circle key={'line-cap-{i}'} cx={cx} cy={cy} fill={darkgreen} r={3} />;
         })}
       </Group>
     </svg>
