@@ -15,7 +15,7 @@ const propTypes = {
   /**
    * Radius which determines the start position of polar lines
    */
-  innerRadius: PropTypes.number.isRequired,
+  innerRadius: PropTypes.number,
   /**
    * A left pixel offset applied to the entire grid group.
    */
@@ -67,7 +67,7 @@ const propTypes = {
 
 export default function GridPolar({
   className,
-  innerRadius,
+  innerRadius = 0,
   left = 0,
   lineClassName,
   lineStyle,
