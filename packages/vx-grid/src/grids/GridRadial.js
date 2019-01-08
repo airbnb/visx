@@ -2,21 +2,22 @@ import React from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import { curveCardinal } from '@vx/curve';
-import { LineRadial } from '@vx/shape';
+import { LineRadial, Arc } from '@vx/shape';
 import { Group } from '@vx/group';
 
 const propTypes = {
   /**
-   * A [d3](https://github.com/d3/d3-scale) or [vx](https://github.com/hshoff/vx/tree/master/packages/vx-scale)
-   * scale function whose domain determines the start and end points of generated radial arc lines.
-   * e.g., domains of [-Math.PI, Math.PI] or [0, 2 * Math.PI] would generate full arcs whereas a
-   * domain of [0, Math.PI] would generate a half arc
+   * If specified, the arc of each radial grid line will have this thickness, useful for fills.
    */
-  arcScale: PropTypes.func.isRequired,
+  arcThickness: PropTypes.number,
   /**
    * The class name applied to the entire grid group.
    */
   className: PropTypes.string,
+  /**
+   * The end angle of the arc of radial grid lines.
+   */
+  endAngle: PropTypes.number,
   /**
    * The color applied to the fill of the radial lines.
    */
@@ -34,10 +35,6 @@ const propTypes = {
    */
   lineStyle: PropTypes.object,
   /**
-   * Number of points used for the radial line interpolation
-   */
-  numRadialPoints: PropTypes.number,
-  /**
    * The number of ticks wanted for the grid (note this is approximate due to d3's algorithm)
    */
   numTicks: PropTypes.number,
@@ -45,7 +42,11 @@ const propTypes = {
    * A [d3](https://github.com/d3/d3-scale) or [vx](https://github.com/hshoff/vx/tree/master/packages/vx-scale)
    * scale function used to generate the radius of radial lines.
    */
-  radialScale: PropTypes.func.isRequired,
+  scale: PropTypes.func.isRequired,
+  /**
+   * The start angle of the arc of radial grid lines.
+   */
+  startAngle: PropTypes.number,
   /**
    * The color applied to the stroke of the radial lines.
    */
@@ -70,15 +71,16 @@ const propTypes = {
 };
 
 export default function GridRadial({
-  arcScale,
+  arcThickness,
   className,
+  endAngle = 2 * Math.PI,
   fill = 'transparent',
   left = 0,
   lineClassName,
   lineStyle,
   numTicks = 10,
-  numRadialPoints = 50,
-  radialScale,
+  scale,
+  startAngle = 0,
   stroke = '#eaf0f6',
   strokeWidth = 1,
   strokeDasharray,
@@ -86,21 +88,21 @@ export default function GridRadial({
   top = 0,
   ...restProps
 }) {
-  let radii = radialScale.ticks ? radialScale.ticks(numTicks) : radialScale.domain();
+  let radii = scale.ticks ? scale.ticks(numTicks) : scale.domain();
   if (tickValues) radii = tickValues;
 
-  const arcPathData = arcScale.ticks ? arcScale.ticks(numRadialPoints) : arcScale.domain();
+  const innerRadius = Math.min(...scale.domain());
 
   return (
     <Group className={cx('vx-grid-radial', className)} top={top} left={left}>
       {radii.map((radius, i) => (
-        <LineRadial
+        <Arc
           key={`radial-grid-${radius}-${i}`}
           className={lineClassName}
-          curve={curveCardinal}
-          data={arcPathData}
-          angle={d => arcScale(d)}
-          radius={() => radialScale(radius)}
+          startAngle={startAngle}
+          endAngle={endAngle}
+          innerRadius={scale(arcThickness ? radius - arcThickness : innerRadius)}
+          outerRadius={scale(radius)}
           fill={fill}
           stroke={stroke}
           strokeWidth={strokeWidth}

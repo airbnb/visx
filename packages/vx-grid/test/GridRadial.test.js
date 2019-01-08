@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { LineRadial } from '@vx/shape';
+import { Arc } from '@vx/shape';
 import { GridRadial } from '../src';
 import { scaleLinear } from '../../vx-scale';
 import * as polarToCartesian from '../src/utils/polarToCartesian';
@@ -9,11 +9,7 @@ import * as polarToCartesian from '../src/utils/polarToCartesian';
 const gridProps = {
   innerRadius: 0,
   outerRadius: 10,
-  arcScale: scaleLinear({
-    range: [0, 2 * Math.PI],
-    domain: [1, 10]
-  }),
-  radialScale: scaleLinear({ range: [1, 100], domain: [1, 10] })
+  scale: scaleLinear({ range: [1, 100], domain: [1, 10] })
 };
 
 describe('<GridRadial />', () => {
@@ -31,17 +27,17 @@ describe('<GridRadial />', () => {
     expect(wrapper.find('.test-class').length).toBeGreaterThan(0);
   });
 
-  it('should render `numTicks` grid lines', () => {
+  it('should render `numTicks` grid line arcs', () => {
     const fiveTickWrapper = shallow(<GridRadial {...gridProps} numTicks={5} />);
     const tenTickWrapper = shallow(<GridRadial {...gridProps} numTicks={10} />);
 
-    expect(fiveTickWrapper.find(LineRadial).length).toBe(5);
-    expect(tenTickWrapper.find(LineRadial).length).toBe(10);
+    expect(fiveTickWrapper.find(Arc).length).toBe(5);
+    expect(tenTickWrapper.find(Arc).length).toBe(10);
   });
 
-  it('should render grid lines according to tickValues', () => {
+  it('should render grid line arcs according to tickValues', () => {
     const wrapper = shallow(<GridRadial {...gridProps} tickValues={[1, 2, 3]} />);
 
-    expect(wrapper.find(LineRadial).length).toBe(3);
+    expect(wrapper.find(Arc).length).toBe(3);
   });
 });
