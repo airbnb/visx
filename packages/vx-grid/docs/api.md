@@ -66,6 +66,131 @@
 
 <a id="#GridColumns__top" name="GridColumns__top" href="#GridColumns__top">#</a> *GridColumns*.**top**&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table>
 
+<h3 id="gridpolar-">&lt;GridPolar /&gt;</h3>
+
+
+
+<a id="#GridPolar__className" name="GridPolar__className" href="#GridPolar__className">#</a> *GridPolar*.**className**&lt;string&gt; 
+
+The class name applied to the entire grid group. 
+
+<a id="#GridPolar__innerRadius" name="GridPolar__innerRadius" href="#GridPolar__innerRadius">#</a> *GridPolar*.**innerRadius**&lt;number&gt; 
+
+Radius which determines the start position of polar lines <table><tr><td><strong>Default</strong></td><td>0</td></td></table>
+
+<a id="#GridPolar__left" name="GridPolar__left" href="#GridPolar__left">#</a> *GridPolar*.**left**&lt;number&gt; 
+
+A left pixel offset applied to the entire grid group. <table><tr><td><strong>Default</strong></td><td>0</td></td></table>
+
+<a id="#GridPolar__lineClassName" name="GridPolar__lineClassName" href="#GridPolar__lineClassName">#</a> *GridPolar*.**lineClassName**&lt;string&gt; 
+
+The class name applied to all polar lines. 
+
+<a id="#GridPolar__lineStyle" name="GridPolar__lineStyle" href="#GridPolar__lineStyle">#</a> *GridPolar*.**lineStyle**&lt;object&gt; 
+
+Style object set as the polar line path style attribute. 
+
+<a id="#GridPolar__numTicks" name="GridPolar__numTicks" href="#GridPolar__numTicks">#</a> *GridPolar*.**numTicks**&lt;number&gt; 
+
+The number of ticks wanted for the grid. Note this is approximate due to d3's algorithm,
+you can use tickValues for greater control <table><tr><td><strong>Default</strong></td><td>10</td></td></table>
+
+<a id="#GridPolar__outerRadius" name="GridPolar__outerRadius" href="#GridPolar__outerRadius">#</a> *GridPolar*.**outerRadius**&lt;number&gt; `required`
+
+Radius which determines the end position of polar lines 
+
+<a id="#GridPolar__scale" name="GridPolar__scale" href="#GridPolar__scale">#</a> *GridPolar*.**scale**&lt;func&gt; `required`
+
+A [d3](https://github.com/d3/d3-scale) or [vx](https://github.com/hshoff/vx/tree/master/packages/vx-scale)
+scale function used to generate the angle of polar lines. 
+
+<a id="#GridPolar__stroke" name="GridPolar__stroke" href="#GridPolar__stroke">#</a> *GridPolar*.**stroke**&lt;string&gt; 
+
+The color applied to the stroke of the polar lines. <table><tr><td><strong>Default</strong></td><td>'#eaf0f6'</td></td></table>
+
+<a id="#GridPolar__strokeDasharray" name="GridPolar__strokeDasharray" href="#GridPolar__strokeDasharray">#</a> *GridPolar*.**strokeDasharray**&lt;string&gt; 
+
+The pattern of dashes in the stroke. 
+
+<a id="#GridPolar__strokeWidth" name="GridPolar__strokeWidth" href="#GridPolar__strokeWidth">#</a> *GridPolar*.**strokeWidth**&lt;union(string|number)&gt; 
+
+The pixel value for the width of the polar lines. <table><tr><td><strong>Default</strong></td><td>1</td></td></table>
+
+<a id="#GridPolar__tickValues" name="GridPolar__tickValues" href="#GridPolar__tickValues">#</a> *GridPolar*.**tickValues**&lt;array&gt; 
+
+An array of values that determine the number and values of the ticks. Falls
+back to `scale.ticks()` or `.domain()`. 
+
+<a id="#GridPolar__top" name="GridPolar__top" href="#GridPolar__top">#</a> *GridPolar*.**top**&lt;number&gt; 
+
+A top pixel offset applied to the entire grid group. <table><tr><td><strong>Default</strong></td><td>0</td></td></table>
+
+<h3 id="gridradial-">&lt;GridRadial /&gt;</h3>
+
+
+
+<a id="#GridRadial__arcThickness" name="GridRadial__arcThickness" href="#GridRadial__arcThickness">#</a> *GridRadial*.**arcThickness**&lt;number&gt; 
+
+If specified, the arc of each radial grid line will have this thickness, useful for fills. 
+
+<a id="#GridRadial__className" name="GridRadial__className" href="#GridRadial__className">#</a> *GridRadial*.**className**&lt;string&gt; 
+
+The class name applied to the entire grid group. 
+
+<a id="#GridRadial__endAngle" name="GridRadial__endAngle" href="#GridRadial__endAngle">#</a> *GridRadial*.**endAngle**&lt;number&gt; 
+
+The end angle of the arc of radial grid lines. <table><tr><td><strong>Default</strong></td><td>2 * Math.PI</td></td></table>
+
+<a id="#GridRadial__fill" name="GridRadial__fill" href="#GridRadial__fill">#</a> *GridRadial*.**fill**&lt;string&gt; 
+
+The color applied to the fill of the radial lines. <table><tr><td><strong>Default</strong></td><td>'transparent'</td></td></table>
+
+<a id="#GridRadial__left" name="GridRadial__left" href="#GridRadial__left">#</a> *GridRadial*.**left**&lt;number&gt; 
+
+A left pixel offset applied to the entire grid group. <table><tr><td><strong>Default</strong></td><td>0</td></td></table>
+
+<a id="#GridRadial__lineClassName" name="GridRadial__lineClassName" href="#GridRadial__lineClassName">#</a> *GridRadial*.**lineClassName**&lt;string&gt; 
+
+The class name applied to all radial lines. 
+
+<a id="#GridRadial__lineStyle" name="GridRadial__lineStyle" href="#GridRadial__lineStyle">#</a> *GridRadial*.**lineStyle**&lt;object&gt; 
+
+Style object set as the radial line path style attribute. 
+
+<a id="#GridRadial__numTicks" name="GridRadial__numTicks" href="#GridRadial__numTicks">#</a> *GridRadial*.**numTicks**&lt;number&gt; 
+
+The number of ticks wanted for the grid (note this is approximate due to d3's algorithm) <table><tr><td><strong>Default</strong></td><td>10</td></td></table>
+
+<a id="#GridRadial__scale" name="GridRadial__scale" href="#GridRadial__scale">#</a> *GridRadial*.**scale**&lt;func&gt; `required`
+
+A [d3](https://github.com/d3/d3-scale) or [vx](https://github.com/hshoff/vx/tree/master/packages/vx-scale)
+scale function used to generate the radius of radial lines. 
+
+<a id="#GridRadial__startAngle" name="GridRadial__startAngle" href="#GridRadial__startAngle">#</a> *GridRadial*.**startAngle**&lt;number&gt; 
+
+The start angle of the arc of radial grid lines. <table><tr><td><strong>Default</strong></td><td>0</td></td></table>
+
+<a id="#GridRadial__stroke" name="GridRadial__stroke" href="#GridRadial__stroke">#</a> *GridRadial*.**stroke**&lt;string&gt; 
+
+The color applied to the stroke of the radial lines. <table><tr><td><strong>Default</strong></td><td>'#eaf0f6'</td></td></table>
+
+<a id="#GridRadial__strokeDasharray" name="GridRadial__strokeDasharray" href="#GridRadial__strokeDasharray">#</a> *GridRadial*.**strokeDasharray**&lt;string&gt; 
+
+The pattern of dashes in the stroke. 
+
+<a id="#GridRadial__strokeWidth" name="GridRadial__strokeWidth" href="#GridRadial__strokeWidth">#</a> *GridRadial*.**strokeWidth**&lt;union(string|number)&gt; 
+
+The pixel value for the width of the radial lines. <table><tr><td><strong>Default</strong></td><td>1</td></td></table>
+
+<a id="#GridRadial__tickValues" name="GridRadial__tickValues" href="#GridRadial__tickValues">#</a> *GridRadial*.**tickValues**&lt;array&gt; 
+
+An array of values that determine the number and values of the ticks. Falls
+back to `scale.ticks()` or `.domain()`. 
+
+<a id="#GridRadial__top" name="GridRadial__top" href="#GridRadial__top">#</a> *GridRadial*.**top**&lt;number&gt; 
+
+A top pixel offset applied to the entire grid group. <table><tr><td><strong>Default</strong></td><td>0</td></td></table>
+
 <h3 id="gridrows-">&lt;GridRows /&gt;</h3>
 
 
