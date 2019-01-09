@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 ResponsiveSVG.propTypes = {
-  children: PropTypes.func,
+  children: PropTypes.any,
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   xOrigin: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
