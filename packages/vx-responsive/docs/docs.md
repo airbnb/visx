@@ -138,7 +138,7 @@ npm install --save @vx/responsive
 
 
 
-<a id="#ScaleSVG__children" name="ScaleSVG__children" href="#ScaleSVG__children">#</a> *ScaleSVG*.**children**&lt;func&gt;  
+<a id="#ScaleSVG__children" name="ScaleSVG__children" href="#ScaleSVG__children">#</a> *ScaleSVG*.**children**&lt;any&gt;  
 
 <a id="#ScaleSVG__height" name="ScaleSVG__height" href="#ScaleSVG__height">#</a> *ScaleSVG*.**height**&lt;union(number|string)&gt;  
 
