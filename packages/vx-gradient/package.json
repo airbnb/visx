@@ -1,6 +1,6 @@
 {
   "name": "@vx/gradient",
-  "version": "0.0.182",
+  "version": "0.0.183",
   "description": "vx gradient",
   "sideEffects": false,
   "main": "dist/vx-gradient.umd.js",
@@ -18,7 +18,8 @@
     "build:dist": "rm -rf dist && mkdir dist && rollup -c",
     "build:babel": "rm -rf build && mkdir build && babel src --out-dir build --ignore node_modules/ --presets @babel/preset-react,@babel/preset-env",
     "prepublish": "npm run build",
-    "test": "jest"
+    "test": "jest",
+    "docs": "cd ./docs && ../../../node_modules/.bin/react-docgen ../src/gradients  | ../../../scripts/buildDocs.sh"
   },
   "keywords": [
     "vx",

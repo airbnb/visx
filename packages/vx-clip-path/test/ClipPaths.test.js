@@ -10,7 +10,7 @@ describe('<ClipPath />', () => {
   });
 
   test('it should render defs and clipPath elements', () => {
-    const wrapper = shallow(<ClipPath />);
+    const wrapper = shallow(<ClipPath id="test" />);
     expect(wrapper.type()).toBe('defs');
     expect(wrapper.find('clipPath').length).toBe(1);
   });
@@ -27,7 +27,7 @@ describe('<RectClipPath />', () => {
   });
 
   test('it should render a rect', () => {
-    const wrapper = shallow(<RectClipPath />);
+    const wrapper = shallow(<RectClipPath id="test" />);
     expect(wrapper.find('rect').length).toBe(1);
   });
 });
@@ -38,7 +38,7 @@ describe('<CircleClipPath />', () => {
   });
 
   test('it should render a circle', () => {
-    const wrapper = shallow(<CircleClipPath />);
+    const wrapper = shallow(<CircleClipPath id="test" />);
     expect(wrapper.find('circle').length).toBe(1);
   });
 });

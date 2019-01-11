@@ -34,31 +34,69 @@
       </div>
       <div class="content">
       <h1 id="-vx-network">@vx/network</h1>
-<pre><code>npm install --save @vx/network
-</code></pre><p>A simple package to represent a network graph.</p>
+<p><a title="@vx/network npm downloads" href="https://www.npmjs.com/package/@vx/network">
+  <img src="https://img.shields.io/npm/dm/@vx/network.svg?style=flat-square" />
+</a></p>
+<p>A simple package to represent a network graph.</p>
 <h2 id="example-usage">Example Usage</h2>
-<pre><code class="lang-js">
-import {Graph, DefaultLink, DefaultNode} from &#39;@vx/graph&#39;;
-const nodes =
-  [{x: 50, y: 20}, {x: 200, y: 300}, {x: 300, y: 40}];
+<pre><code class="lang-js">import { Graph, DefaultLink, DefaultNode } from &#39;@vx/network&#39;;
+const nodes = [{ x: 50, y: 20 }, { x: 200, y: 300 }, { x: 300, y: 40 }];
 
 const dataSample = {
   nodes,
   links: [
-    {source: nodes[0], target: nodes[1]},
-    {source: nodes[1], target: nodes[2]},
-    {source: nodes[2], target: nodes[0]}
+    { source: nodes[0], target: nodes[1] },
+    { source: nodes[1], target: nodes[2] },
+    { source: nodes[2], target: nodes[0] }
   ]
 };
 
-const MyGraph = () =&gt; &lt;Graph graph={dataSample}
-    linkComponent={DefaultLink} nodeComponent={DefaultNode} /&gt;;
+const MyGraph = () =&gt; (
+  &lt;Graph graph={dataSample} linkComponent={DefaultLink} nodeComponent={DefaultNode} /&gt;
+);
 </code></pre>
-<h2 id="methods">Methods</h2>
-<h3 id="-point-value-"><code>point.value()</code></h3>
-<p>Returns an <code>{x, y}</code> object with the x and y coordinates.</p>
-<h3 id="-point-toarray-"><code>point.toArray()</code></h3>
-<p>Returns the coordinates as an array <code>[x, y]</code>.</p>
+<h2 id="installation">Installation</h2>
+<pre><code>npm install --save @vx/network
+</code></pre><h2 id="components">Components</h2>
+<ul>
+<li><a href="#defaultlink-">DefaultLink</a></li>
+<li><a href="#defaultnode-">DefaultNode</a></li>
+<li><a href="#graph-">Graph</a></li>
+<li><a href="#links-">Links</a></li>
+<li><a href="#nodes-">Nodes</a></li>
+</ul>
+<h2 id="api">API</h2>
+<h3 id="defaultlink-">&lt;DefaultLink /&gt;</h3>
+
+
+
+<p><a id="#DefaultLink__link" name="DefaultLink__link" href="#DefaultLink__link">#</a> <em>DefaultLink</em>.<strong>link</strong>&lt;object&gt;  </p>
+<h3 id="defaultnode-">&lt;DefaultNode /&gt;</h3>
+
+
+
+
+<h3 id="graph-">&lt;Graph /&gt;</h3>
+
+
+
+<p><a id="#Graph__graph" name="Graph__graph" href="#Graph__graph">#</a> <em>Graph</em>.<strong>graph</strong>&lt;object&gt;  </p>
+<p><a id="#Graph__linkComponent" name="Graph__linkComponent" href="#Graph__linkComponent">#</a> <em>Graph</em>.<strong>linkComponent</strong>&lt;any&gt;  <table><tr><td><strong>Default</strong></td><td>DefaultLink</td></td></table></p>
+<p><a id="#Graph__nodeComponent" name="Graph__nodeComponent" href="#Graph__nodeComponent">#</a> <em>Graph</em>.<strong>nodeComponent</strong>&lt;any&gt;  <table><tr><td><strong>Default</strong></td><td>DefaultNode</td></td></table></p>
+<h3 id="links-">&lt;Links /&gt;</h3>
+
+
+
+<p><a id="#Links__className" name="Links__className" href="#Links__className">#</a> <em>Links</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#Links__linkComponent" name="Links__linkComponent" href="#Links__linkComponent">#</a> <em>Links</em>.<strong>linkComponent</strong>&lt;any&gt;  </p>
+<p><a id="#Links__links" name="Links__links" href="#Links__links">#</a> <em>Links</em>.<strong>links</strong>&lt;array&gt;  </p>
+<h3 id="nodes-">&lt;Nodes /&gt;</h3>
+
+
+
+<p><a id="#Nodes__className" name="Nodes__className" href="#Nodes__className">#</a> <em>Nodes</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#Nodes__nodeComponent" name="Nodes__nodeComponent" href="#Nodes__nodeComponent">#</a> <em>Nodes</em>.<strong>nodeComponent</strong>&lt;any&gt;  </p>
+<p><a id="#Nodes__nodes" name="Nodes__nodes" href="#Nodes__nodes">#</a> <em>Nodes</em>.<strong>nodes</strong>&lt;array&gt;  </p>
 
       </div>
     </div>

@@ -1,6 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
+import PropTypes from 'prop-types';
+
+Group.propTypes = {
+  top: PropTypes.number,
+  left: PropTypes.number,
+  transform: PropTypes.string,
+  className: PropTypes.string,
+  children: PropTypes.any
+};
 
 Group.propTypes = {
   children: PropTypes.any,

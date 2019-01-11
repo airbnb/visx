@@ -1,6 +1,6 @@
 {
   "name": "@vx/geo",
-  "version": "0.0.182",
+  "version": "0.0.183",
   "description": "vx geo",
   "sideEffects": false,
   "main": "dist/vx-geo.umd.js",
@@ -14,7 +14,8 @@
     "build:dist": "rm -rf dist && mkdir dist && rollup -c",
     "build:babel": "rm -rf build && mkdir build && babel src --out-dir build --ignore node_modules/ --presets @babel/preset-react,@babel/preset-env",
     "prepublish": "npm run build",
-    "test": "jest"
+    "test": "jest",
+    "docs": "cd ./docs && ../../../node_modules/.bin/react-docgen ../src/{graticule,projections}  | ../../../scripts/buildDocs.sh"
   },
   "repository": {
     "type": "git",
@@ -35,10 +36,10 @@
   },
   "homepage": "https://github.com/hshoff/vx#readme",
   "dependencies": {
-    "@vx/group": "0.0.182",
+    "@vx/group": "0.0.183",
     "classnames": "^2.2.5",
-    "d3-geo": "^1.6.4",
-    "prop-types": "^15.6.2"
+    "d3-geo": "^1.11.3",
+    "prop-types": "^15.5.10"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",

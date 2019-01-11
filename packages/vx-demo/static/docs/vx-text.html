@@ -34,8 +34,10 @@
       </div>
       <div class="content">
       <h1 id="-vx-text">@vx/text</h1>
-<pre><code>npm install --save @vx/text
-</code></pre><p>The <code>@vx/text</code> provides a better SVG <code>&lt;Text&gt;</code> component with the following features</p>
+<p><a title="@vx/text npm downloads" href="https://www.npmjs.com/package/@vx/text">
+  <img src="https://img.shields.io/npm/dm/@vx/text.svg?style=flat-square" />
+</a></p>
+<p>The <code>@vx/text</code> provides a better SVG <code>&lt;Text&gt;</code> component with the following features</p>
 <ul>
 <li>Word-wrapping (when <code>width</code> prop is defined)</li>
 <li>Vertical alignment (<code>verticalAnchor</code> prop)</li>
@@ -43,7 +45,7 @@
 <li>Scale-to-fit text (<code>scaleToFit</code> prop)</li>
 </ul>
 <h2 id="example">Example</h2>
-<p>Simple demo to show off a useful feature.  Since svg <code>&lt;text&gt;</code> itself does not support <code>verticalAnchor</code>, normally text rendered at <code>0,0</code> would be outside the viewport and thus not visible.  By using <code>&lt;Text&gt;</code> with the <code>verticalAnchor=&quot;start&quot;</code> prop, the text will now be visible as you&#39;d expect.</p>
+<p>Simple demo to show off a useful feature. Since svg <code>&lt;text&gt;</code> itself does not support <code>verticalAnchor</code>, normally text rendered at <code>0,0</code> would be outside the viewport and thus not visible. By using <code>&lt;Text&gt;</code> with the <code>verticalAnchor=&quot;start&quot;</code> prop, the text will now be visible as you&#39;d expect.</p>
 <pre><code class="lang-jsx">import React from &#39;react&#39;;
 import { render } from &#39;react-dom&#39;;
 import { Text } from &#39;@vx/text&#39;;
@@ -56,91 +58,29 @@ const App = () =&gt; (
 
 render(&lt;App /&gt;, document.getElementById(&#39;root&#39;));
 </code></pre>
-<h2 id="props">Props</h2>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>x</code></td>
-<td>number</td>
-<td></td>
-<td>x coordinate to use as a basis for positioning the text element</td>
-</tr>
-<tr>
-<td><code>y</code></td>
-<td>number</td>
-<td></td>
-<td>y coordinate to use as a basis for positioning the text element</td>
-</tr>
-<tr>
-<td><code>dx</code></td>
-<td>number</td>
-<td></td>
-<td>Horizontal shift from the x coordinate</td>
-</tr>
-<tr>
-<td><code>dy</code></td>
-<td>number</td>
-<td></td>
-<td>Vertical shift from the y coordinate</td>
-</tr>
-<tr>
-<td><code>width</code></td>
-<td>number</td>
-<td></td>
-<td>Width of text container.  Used to implement word wrapping and for context when <code>scaleToFit</code> is true</td>
-</tr>
-<tr>
-<td><code>scaleToFit</code></td>
-<td>bool</td>
-<td>false</td>
-<td>Resize text to fit container width</td>
-</tr>
-<tr>
-<td><code>angle</code></td>
-<td>number</td>
-<td></td>
-<td>Rotate text around origin (defined by <code>textAnchor</code> and <code>verticalAnchor</code>)</td>
-</tr>
-<tr>
-<td><code>textAnchor</code></td>
-<td>string</td>
-<td>start</td>
-<td>How the text is horizontally positioned relative to the given <code>x</code> and <code>y</code> coordinates. Options are <code>start</code>, <code>middle</code>, <code>end</code>, and <code>inherit</code>.</td>
-</tr>
-<tr>
-<td><code>verticalAnchor</code></td>
-<td>string</td>
-<td>end</td>
-<td>How text is vertically positioned relative to the given <code>x</code> and <code>y</code> coordinates. Options are <code>start</code>, <code>middle</code>, <code>end</code></td>
-</tr>
-<tr>
-<td><code>lineHeight</code></td>
-<td>string</td>
-<td>1em</td>
-<td>How much space a single line of text should take up</td>
-</tr>
-<tr>
-<td><code>capHeight</code></td>
-<td>string</td>
-<td>0.71em (Magic number from d3)</td>
-<td>Defines a text metric for the font being used: the expected height of capital letters. This is necessary because of SVG, which (a) positions the bottom of the text at y, and (b) has no notion of line height. This prop should be given as a number of ems</td>
-</tr>
-<tr>
-<td>additional props</td>
-<td></td>
-<td></td>
-<td>Additional props are passed down to underlying <code>&lt;text&gt;</code> component, including <code>style</code> and <code>className</code></td>
-</tr>
-</tbody>
-</table>
+<h2 id="installation">Installation</h2>
+<pre><code>npm install --save @vx/text
+</code></pre><h2 id="components">Components</h2>
+<ul>
+<li><a href="#text-">Text</a></li>
+</ul>
+<h2 id="api">API</h2>
+<h3 id="text-">&lt;Text /&gt;</h3>
+
+
+
+<p><a id="#Text__angle" name="Text__angle" href="#Text__angle">#</a> <em>Text</em>.<strong>angle</strong>&lt;number&gt;  </p>
+<p><a id="#Text__capHeight" name="Text__capHeight" href="#Text__capHeight">#</a> <em>Text</em>.<strong>capHeight</strong>&lt;union(number|string)&gt;  <table><tr><td><strong>Default</strong></td><td>&#39;0.71em&#39;</td></td></table></p>
+<p><a id="#Text__dx" name="Text__dx" href="#Text__dx">#</a> <em>Text</em>.<strong>dx</strong>&lt;union(number|string)&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table></p>
+<p><a id="#Text__dy" name="Text__dy" href="#Text__dy">#</a> <em>Text</em>.<strong>dy</strong>&lt;union(number|string)&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table></p>
+<p><a id="#Text__innerRef" name="Text__innerRef" href="#Text__innerRef">#</a> <em>Text</em>.<strong>innerRef</strong>&lt;func&gt;  </p>
+<p><a id="#Text__lineHeight" name="Text__lineHeight" href="#Text__lineHeight">#</a> <em>Text</em>.<strong>lineHeight</strong>&lt;union(number|string)&gt;  <table><tr><td><strong>Default</strong></td><td>&#39;1em&#39;</td></td></table></p>
+<p><a id="#Text__scaleToFit" name="Text__scaleToFit" href="#Text__scaleToFit">#</a> <em>Text</em>.<strong>scaleToFit</strong>&lt;bool&gt;  <table><tr><td><strong>Default</strong></td><td>false</td></td></table></p>
+<p><a id="#Text__style" name="Text__style" href="#Text__style">#</a> <em>Text</em>.<strong>style</strong>&lt;object&gt;  </p>
+<p><a id="#Text__textAnchor" name="Text__textAnchor" href="#Text__textAnchor">#</a> <em>Text</em>.<strong>textAnchor</strong>&lt;enum(&#39;start&#39;|&#39;middle&#39;|&#39;end&#39;|&#39;inherit&#39;)&gt;  <table><tr><td><strong>Default</strong></td><td>&#39;start&#39;</td></td></table></p>
+<p><a id="#Text__verticalAnchor" name="Text__verticalAnchor" href="#Text__verticalAnchor">#</a> <em>Text</em>.<strong>verticalAnchor</strong>&lt;enum(&#39;start&#39;|&#39;middle&#39;|&#39;end&#39;)&gt;  <table><tr><td><strong>Default</strong></td><td>&#39;end&#39;</td></td></table></p>
+<p><a id="#Text__x" name="Text__x" href="#Text__x">#</a> <em>Text</em>.<strong>x</strong>&lt;union(number|string)&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table></p>
+<p><a id="#Text__y" name="Text__y" href="#Text__y">#</a> <em>Text</em>.<strong>y</strong>&lt;union(number|string)&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table></p>
 
       </div>
     </div>

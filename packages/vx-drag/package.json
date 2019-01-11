@@ -1,6 +1,6 @@
 {
   "name": "@vx/drag",
-  "version": "0.0.182",
+  "version": "0.0.183",
   "description": "vx drag",
   "sideEffects": false,
   "main": "dist/vx-drag.umd.js",
@@ -10,7 +10,8 @@
     "build:dist": "rm -rf dist && mkdir dist && rollup -c",
     "build:babel": "rm -rf build && mkdir build && babel src --out-dir build --ignore node_modules/ --presets @babel/preset-react,@babel/preset-env",
     "prepublish": "npm run build",
-    "test": "jest"
+    "test": "jest",
+    "docs": "cd ./docs && ../../../node_modules/.bin/react-docgen --exclude index.js ../src | ../../../scripts/buildDocs.sh"
   },
   "files": [
     "dist",

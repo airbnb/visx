@@ -1,6 +1,6 @@
 {
   "name": "@vx/legend",
-  "version": "0.0.182",
+  "version": "0.0.183",
   "description": "vx legend",
   "sideEffects": false,
   "main": "dist/vx-legend.umd.js",
@@ -14,7 +14,8 @@
     "build:dist": "rm -rf dist && mkdir dist && rollup -c",
     "build:babel": "rm -rf build && mkdir build && babel src --out-dir build --ignore node_modules/ --presets @babel/preset-react,@babel/preset-env",
     "prepublish": "npm run build",
-    "test": "jest"
+    "test": "jest",
+    "docs": "cd ./docs && ../../../node_modules/.bin/react-docgen ../src/{legends,shapes}  | ../../../scripts/buildDocs.sh"
   },
   "repository": {
     "type": "git",
@@ -79,7 +80,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@vx/group": "0.0.182",
+    "@vx/group": "0.0.183",
     "classnames": "^2.2.5",
     "prop-types": "^15.5.10"
   },

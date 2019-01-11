@@ -34,8 +34,10 @@
       </div>
       <div class="content">
       <h1 id="-vx-marker">@vx/marker</h1>
-<pre><code>npm install --save @vx/marker
-</code></pre><p>A Marker is a line with a piece of text attached to it. It&#39;s great for highlighting locations in your graph.  </p>
+<p><a title="@vx/marker npm downloads" href="https://www.npmjs.com/package/@vx/marker">
+  <img src="https://img.shields.io/npm/dm/@vx/marker.svg?style=flat-square" />
+</a></p>
+<p>A Marker is a line with a piece of text attached to it. It&#39;s great for highlighting locations in your graph.</p>
 <h2 id="example">Example</h2>
 <p><img src="http://i.imgur.com/vbW3Ysa.png" alt="marker example"></p>
 <pre><code class="lang-js">&lt;Marker
@@ -48,137 +50,35 @@
   labelDy={15}
 /&gt;
 </code></pre>
-<h2 id="properties">Properties</h2>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Name</th>
-<th style="text-align:left">Default</th>
-<th style="text-align:left">Type</th>
-<th style="text-align:left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">top</td>
-<td style="text-align:left">0</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The margin on top.</td>
-</tr>
-<tr>
-<td style="text-align:left">left</td>
-<td style="text-align:left">0</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The margin on the left.</td>
-</tr>
-<tr>
-<td style="text-align:left">from</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">point</td>
-<td style="text-align:left">The start point for the line.</td>
-</tr>
-<tr>
-<td style="text-align:left">to</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">point</td>
-<td style="text-align:left">The end point for the line.</td>
-</tr>
-<tr>
-<td style="text-align:left">stroke</td>
-<td style="text-align:left">magenta</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The color of the stroke for the line.</td>
-</tr>
-<tr>
-<td style="text-align:left">strokeWidth</td>
-<td style="text-align:left">2</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The width of the stroke for the line.</td>
-</tr>
-<tr>
-<td style="text-align:left">strokeDasharray</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">array</td>
-<td style="text-align:left">The <a href="https://mzl.la/1l7EiTQ">pattern of dashes</a> in the stroke.</td>
-</tr>
-<tr>
-<td style="text-align:left">fill</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The color for the fill of the line.</td>
-</tr>
-<tr>
-<td style="text-align:left">transform</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">An <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/transform">SVG transform</a>.</td>
-</tr>
-<tr>
-<td style="text-align:left">label</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The text for the label.</td>
-</tr>
-<tr>
-<td style="text-align:left">labelAnchor</td>
-<td style="text-align:left">left</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The label&#39;s <code>textAnchor</code></td>
-</tr>
-<tr>
-<td style="text-align:left">labelDx</td>
-<td style="text-align:left">0</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The x-coordinate shift to the label.</td>
-</tr>
-<tr>
-<td style="text-align:left">labelDy</td>
-<td style="text-align:left">0</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The y-coordinate shift to the label.</td>
-</tr>
-<tr>
-<td style="text-align:left">labelFill</td>
-<td style="text-align:left"><stroke></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The fill color for the label.</td>
-</tr>
-<tr>
-<td style="text-align:left">labelFontSize</td>
-<td style="text-align:left">10</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The font size for the label text.</td>
-</tr>
-<tr>
-<td style="text-align:left">labelStroke</td>
-<td style="text-align:left">white</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The color for the label&#39;s stroke.</td>
-</tr>
-<tr>
-<td style="text-align:left">labelStrokeWidth</td>
-<td style="text-align:left">3</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The width of the label&#39;s stroke.</td>
-</tr>
-<tr>
-<td style="text-align:left">labelPaintOrder</td>
-<td style="text-align:left">stroke</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The label&#39;s SVG <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/paint-order">paint-order</a>.</td>
-</tr>
-<tr>
-<td style="text-align:left">className</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The class name for the line.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="source-for-components">Source For Components</h2>
+<h2 id="installation">Installation</h2>
+<pre><code>npm install --save @vx/marker
+</code></pre><h2 id="components">Components</h2>
 <ul>
-<li><a href="https://github.com/hshoff/vx/blob/master/packages/vx-marker/src/markers/Marker.js"><code>&lt;Marker /&gt;</code></a></li>
+<li><a href="#marker-">Marker</a></li>
 </ul>
+<h2 id="api">API</h2>
+<h3 id="marker-">&lt;Marker /&gt;</h3>
+
+
+
+<p><a id="#Marker__className" name="Marker__className" href="#Marker__className">#</a> <em>Marker</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#Marker__from" name="Marker__from" href="#Marker__from">#</a> <em>Marker</em>.<strong>from</strong>&lt;object&gt;  </p>
+<p><a id="#Marker__label" name="Marker__label" href="#Marker__label">#</a> <em>Marker</em>.<strong>label</strong>&lt;union(string|func)&gt;  </p>
+<p><a id="#Marker__labelAnchor" name="Marker__labelAnchor" href="#Marker__labelAnchor">#</a> <em>Marker</em>.<strong>labelAnchor</strong>&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>&#39;left&#39;</td></td></table></p>
+<p><a id="#Marker__labelDx" name="Marker__labelDx" href="#Marker__labelDx">#</a> <em>Marker</em>.<strong>labelDx</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table></p>
+<p><a id="#Marker__labelDy" name="Marker__labelDy" href="#Marker__labelDy">#</a> <em>Marker</em>.<strong>labelDy</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table></p>
+<p><a id="#Marker__labelFill" name="Marker__labelFill" href="#Marker__labelFill">#</a> <em>Marker</em>.<strong>labelFill</strong>&lt;string&gt;  </p>
+<p><a id="#Marker__labelFontSize" name="Marker__labelFontSize" href="#Marker__labelFontSize">#</a> <em>Marker</em>.<strong>labelFontSize</strong>&lt;union(string|number)&gt;  <table><tr><td><strong>Default</strong></td><td>10</td></td></table></p>
+<p><a id="#Marker__labelPaintOrder" name="Marker__labelPaintOrder" href="#Marker__labelPaintOrder">#</a> <em>Marker</em>.<strong>labelPaintOrder</strong>&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>&#39;stroke&#39;</td></td></table></p>
+<p><a id="#Marker__labelStroke" name="Marker__labelStroke" href="#Marker__labelStroke">#</a> <em>Marker</em>.<strong>labelStroke</strong>&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>&#39;white&#39;</td></td></table></p>
+<p><a id="#Marker__labelStrokeWidth" name="Marker__labelStrokeWidth" href="#Marker__labelStrokeWidth">#</a> <em>Marker</em>.<strong>labelStrokeWidth</strong>&lt;union(string|number)&gt;  <table><tr><td><strong>Default</strong></td><td>3</td></td></table></p>
+<p><a id="#Marker__left" name="Marker__left" href="#Marker__left">#</a> <em>Marker</em>.<strong>left</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table></p>
+<p><a id="#Marker__stroke" name="Marker__stroke" href="#Marker__stroke">#</a> <em>Marker</em>.<strong>stroke</strong>&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>&#39;magenta&#39;</td></td></table></p>
+<p><a id="#Marker__strokeDasharray" name="Marker__strokeDasharray" href="#Marker__strokeDasharray">#</a> <em>Marker</em>.<strong>strokeDasharray</strong>&lt;string&gt;  </p>
+<p><a id="#Marker__strokeWidth" name="Marker__strokeWidth" href="#Marker__strokeWidth">#</a> <em>Marker</em>.<strong>strokeWidth</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>2</td></td></table></p>
+<p><a id="#Marker__to" name="Marker__to" href="#Marker__to">#</a> <em>Marker</em>.<strong>to</strong>&lt;object&gt;  </p>
+<p><a id="#Marker__top" name="Marker__top" href="#Marker__top">#</a> <em>Marker</em>.<strong>top</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table></p>
+<p><a id="#Marker__transform" name="Marker__transform" href="#Marker__transform">#</a> <em>Marker</em>.<strong>transform</strong>&lt;string&gt;  </p>
 
       </div>
     </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
+import PropTypes from 'prop-types';
 import { Area } from '@vx/shape';
 import PropTypes from 'prop-types';
 import { ClipPath } from '@vx/clip-path';
@@ -7,15 +8,15 @@ import { ClipPath } from '@vx/clip-path';
 Threshold.propTypes = {
   className: PropTypes.string,
   curve: PropTypes.func,
-  clipAboveTo: PropTypes.number,
-  clipBelowTo: PropTypes.number,
-  data: PropTypes.any,
-  x: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
-  y0: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
-  y1: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+  clipAboveTo: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+  clipBelowTo: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+  id: PropTypes.string,
+  data: PropTypes.any.isRequired,
+  x: PropTypes.oneOfType([PropTypes.func, PropTypes.number]).isRequired,
+  y0: PropTypes.oneOfType([PropTypes.func, PropTypes.number]).isRequired,
+  y1: PropTypes.oneOfType([PropTypes.func, PropTypes.number]).isRequired,
   aboveAreaProps: PropTypes.object,
-  belowAreaProps: PropTypes.object,
-  id: PropTypes.string
+  belowAreaProps: PropTypes.object
 };
 
 export default function Threshold({

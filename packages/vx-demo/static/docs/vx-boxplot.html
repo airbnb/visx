@@ -34,149 +34,49 @@
       </div>
       <div class="content">
       <h1 id="-vx-boxplot">@vx/boxplot</h1>
-<pre><code>npm install --save @vx/boxplot
-</code></pre><p>A boxplot shows the minimum, maximum, and quartiles of a dataset.</p>
+<p><a title="@vx/boxplot npm downloads" href="https://www.npmjs.com/package/@vx/boxplot">
+  <img src="https://img.shields.io/npm/dm/@vx/boxplot.svg?style=flat-square" />
+</a></p>
+<p>A boxplot shows the minimum, maximum, and quartiles of a dataset.</p>
 <p>You can pass in props to target the <code>min</code>, <code>max</code>, <code>median</code>, and <code>box (interquartile range)</code> shapes using <code>minProps</code>, <code>maxProps</code>, <code>medianProps</code>, and <code>boxProps</code>.</p>
 <p>If you are looking to add events over the each boxplot group you can pass in <code>container={true}</code> and <code>containerProps={{ /** */ }}</code>.</p>
-<h2 id="-boxplot-properties"><BoxPlot /> Properties</h2>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Name</th>
-<th style="text-align:left">Default</th>
-<th style="text-align:left">Type</th>
-<th style="text-align:left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">className</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The className for the boxplot</td>
-</tr>
-<tr>
-<td style="text-align:left">left</td>
-<td style="text-align:left">0</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The left offset of the boxplot</td>
-</tr>
-<tr>
-<td style="text-align:left">data</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">array</td>
-<td style="text-align:left">An array of data</td>
-</tr>
-<tr>
-<td style="text-align:left">max</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The maximum value for boxplot</td>
-</tr>
-<tr>
-<td style="text-align:left">min</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The minimum value for boxplot</td>
-</tr>
-<tr>
-<td style="text-align:left">firstQuartile</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The value for the first quartile for the boxplot</td>
-</tr>
-<tr>
-<td style="text-align:left">thirdQuartile</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The value for the third quartile for the boxplot</td>
-</tr>
-<tr>
-<td style="text-align:left">median</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The median value for the boxplot</td>
-</tr>
-<tr>
-<td style="text-align:left">boxWidth</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The width of the box</td>
-</tr>
-<tr>
-<td style="text-align:left">fill</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The color of the box</td>
-</tr>
-<tr>
-<td style="text-align:left">fillOpacity</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The opacity of the box</td>
-</tr>
-<tr>
-<td style="text-align:left">stroke</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The color of the lines in boxplot</td>
-</tr>
-<tr>
-<td style="text-align:left">strokeWidth</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">Width of the lines in boxplot</td>
-</tr>
-<tr>
-<td style="text-align:left">rx</td>
-<td style="text-align:left">2</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/rx">x-axis radius</a> for the box</td>
-</tr>
-<tr>
-<td style="text-align:left">ry</td>
-<td style="text-align:left">2</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/ry">y-axis radius</a> for the box</td>
-</tr>
-<tr>
-<td style="text-align:left">container</td>
-<td style="text-align:left">false</td>
-<td style="text-align:left">boolean</td>
-<td style="text-align:left">Set to true and add <code>containerProps = {{ /** */}}</code> to add events to each boxplot group</td>
-</tr>
-<tr>
-<td style="text-align:left">maxProps</td>
-<td style="text-align:left">{}</td>
-<td style="text-align:left">object</td>
-<td style="text-align:left">Props passed to target the <code>line</code> shape for the maximum</td>
-</tr>
-<tr>
-<td style="text-align:left">minProps</td>
-<td style="text-align:left">{}</td>
-<td style="text-align:left">object</td>
-<td style="text-align:left">Props passed to target the <code>line</code> shape for the minimum</td>
-</tr>
-<tr>
-<td style="text-align:left">medianProps</td>
-<td style="text-align:left">{}</td>
-<td style="text-align:left">object</td>
-<td style="text-align:left">Props passed to target the <code>line</code> shape for the median</td>
-</tr>
-<tr>
-<td style="text-align:left">boxProps</td>
-<td style="text-align:left">{}</td>
-<td style="text-align:left">object</td>
-<td style="text-align:left">Props passed to target the <code>rect</code> shape for the box</td>
-</tr>
-<tr>
-<td style="text-align:left">containerProps</td>
-<td style="text-align:left">{}</td>
-<td style="text-align:left">object</td>
-<td style="text-align:left">Props passed to add events over each boxplot group (requires <code>container={true}</code>)</td>
-</tr>
-</tbody>
-</table>
+<h2 id="installation">Installation</h2>
+<pre><code>npm install --save @vx/boxplot
+</code></pre><h2 id="components">Components</h2>
+<ul>
+<li><a href="#boxplot-">BoxPlot</a></li>
+</ul>
+<h2 id="api">API</h2>
+<h3 id="boxplot-">&lt;BoxPlot /&gt;</h3>
+
+
+
+<p><a id="#BoxPlot__boxProps" name="BoxPlot__boxProps" href="#BoxPlot__boxProps">#</a> <em>BoxPlot</em>.<strong>boxProps</strong>&lt;object&gt;  <table><tr><td><strong>Default</strong></td><td>{}</td></td></table></p>
+<p><a id="#BoxPlot__boxWidth" name="BoxPlot__boxWidth" href="#BoxPlot__boxWidth">#</a> <em>BoxPlot</em>.<strong>boxWidth</strong>&lt;number&gt;  </p>
+<p><a id="#BoxPlot__children" name="BoxPlot__children" href="#BoxPlot__children">#</a> <em>BoxPlot</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#BoxPlot__className" name="BoxPlot__className" href="#BoxPlot__className">#</a> <em>BoxPlot</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#BoxPlot__container" name="BoxPlot__container" href="#BoxPlot__container">#</a> <em>BoxPlot</em>.<strong>container</strong>&lt;bool&gt;  <table><tr><td><strong>Default</strong></td><td>false</td></td></table></p>
+<p><a id="#BoxPlot__containerProps" name="BoxPlot__containerProps" href="#BoxPlot__containerProps">#</a> <em>BoxPlot</em>.<strong>containerProps</strong>&lt;object&gt;  <table><tr><td><strong>Default</strong></td><td>{}</td></td></table></p>
+<p><a id="#BoxPlot__fill" name="BoxPlot__fill" href="#BoxPlot__fill">#</a> <em>BoxPlot</em>.<strong>fill</strong>&lt;string&gt;  </p>
+<p><a id="#BoxPlot__fillOpacity" name="BoxPlot__fillOpacity" href="#BoxPlot__fillOpacity">#</a> <em>BoxPlot</em>.<strong>fillOpacity</strong>&lt;union(number|string)&gt;  </p>
+<p><a id="#BoxPlot__firstQuartile" name="BoxPlot__firstQuartile" href="#BoxPlot__firstQuartile">#</a> <em>BoxPlot</em>.<strong>firstQuartile</strong>&lt;number&gt;  </p>
+<p><a id="#BoxPlot__horizontal" name="BoxPlot__horizontal" href="#BoxPlot__horizontal">#</a> <em>BoxPlot</em>.<strong>horizontal</strong>&lt;bool&gt;  </p>
+<p><a id="#BoxPlot__left" name="BoxPlot__left" href="#BoxPlot__left">#</a> <em>BoxPlot</em>.<strong>left</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table></p>
+<p><a id="#BoxPlot__max" name="BoxPlot__max" href="#BoxPlot__max">#</a> <em>BoxPlot</em>.<strong>max</strong>&lt;number&gt;  </p>
+<p><a id="#BoxPlot__maxProps" name="BoxPlot__maxProps" href="#BoxPlot__maxProps">#</a> <em>BoxPlot</em>.<strong>maxProps</strong>&lt;object&gt;  <table><tr><td><strong>Default</strong></td><td>{}</td></td></table></p>
+<p><a id="#BoxPlot__median" name="BoxPlot__median" href="#BoxPlot__median">#</a> <em>BoxPlot</em>.<strong>median</strong>&lt;number&gt;  </p>
+<p><a id="#BoxPlot__medianProps" name="BoxPlot__medianProps" href="#BoxPlot__medianProps">#</a> <em>BoxPlot</em>.<strong>medianProps</strong>&lt;object&gt;  <table><tr><td><strong>Default</strong></td><td>{}</td></td></table></p>
+<p><a id="#BoxPlot__min" name="BoxPlot__min" href="#BoxPlot__min">#</a> <em>BoxPlot</em>.<strong>min</strong>&lt;number&gt;  </p>
+<p><a id="#BoxPlot__minProps" name="BoxPlot__minProps" href="#BoxPlot__minProps">#</a> <em>BoxPlot</em>.<strong>minProps</strong>&lt;object&gt;  <table><tr><td><strong>Default</strong></td><td>{}</td></td></table></p>
+<p><a id="#BoxPlot__outlierProps" name="BoxPlot__outlierProps" href="#BoxPlot__outlierProps">#</a> <em>BoxPlot</em>.<strong>outlierProps</strong>&lt;object&gt;  <table><tr><td><strong>Default</strong></td><td>{}</td></td></table></p>
+<p><a id="#BoxPlot__outliers" name="BoxPlot__outliers" href="#BoxPlot__outliers">#</a> <em>BoxPlot</em>.<strong>outliers</strong>&lt;array&gt;  <table><tr><td><strong>Default</strong></td><td>[]</td></td></table></p>
+<p><a id="#BoxPlot__rx" name="BoxPlot__rx" href="#BoxPlot__rx">#</a> <em>BoxPlot</em>.<strong>rx</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>2</td></td></table></p>
+<p><a id="#BoxPlot__ry" name="BoxPlot__ry" href="#BoxPlot__ry">#</a> <em>BoxPlot</em>.<strong>ry</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>2</td></td></table></p>
+<p><a id="#BoxPlot__stroke" name="BoxPlot__stroke" href="#BoxPlot__stroke">#</a> <em>BoxPlot</em>.<strong>stroke</strong>&lt;string&gt;  </p>
+<p><a id="#BoxPlot__strokeWidth" name="BoxPlot__strokeWidth" href="#BoxPlot__strokeWidth">#</a> <em>BoxPlot</em>.<strong>strokeWidth</strong>&lt;union(number|string)&gt;  </p>
+<p><a id="#BoxPlot__thirdQuartile" name="BoxPlot__thirdQuartile" href="#BoxPlot__thirdQuartile">#</a> <em>BoxPlot</em>.<strong>thirdQuartile</strong>&lt;number&gt;  </p>
+<p><a id="#BoxPlot__top" name="BoxPlot__top" href="#BoxPlot__top">#</a> <em>BoxPlot</em>.<strong>top</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table></p>
+<p><a id="#BoxPlot__valueScale" name="BoxPlot__valueScale" href="#BoxPlot__valueScale">#</a> <em>BoxPlot</em>.<strong>valueScale</strong>&lt;func&gt;  </p>
 
       </div>
     </div>

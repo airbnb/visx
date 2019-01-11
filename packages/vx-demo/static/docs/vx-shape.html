@@ -34,907 +34,488 @@
       </div>
       <div class="content">
       <h1 id="-vx-shape">@vx/shape</h1>
+<p><a title="@vx/shape npm downloads" href="https://www.npmjs.com/package/@vx/shape">
+  <img src="https://img.shields.io/npm/dm/@vx/shape.svg?style=flat-square" />
+</a></p>
+<p>Shapes are the core elements of vx. Most of what you see on the screen, like lines, bars, and areas are shapes.</p>
+<h2 id="installation">Installation</h2>
 <pre><code>npm install --save @vx/shape
-</code></pre><p>Shapes are the core elements of vx. Most of what you see on the screen, like lines, bars, and areas are shapes.</p>
-<h2 id="-areaclosed-"><code>&lt;AreaClosed /&gt;</code></h2>
-<p>AreaClosed is a closed area under a curve.</p>
-<h3 id="example">Example</h3>
-<p><img src="http://i.imgur.com/hT0q8qx.png" alt="AreaClosed Example"></p>
-<pre><code class="lang-js">&lt;AreaClosed
-  data={myData}
-  xScale={myXScale}
-  yScale={myYScale}
-  x={myX}
-  y={myY}
-  strokeWidth={2}
-  stroke={&#39;url(#linear)&#39;}
-  fill={&#39;url(#linear)&#39;}
-/&gt;
-</code></pre>
-<h3 id="properties">Properties</h3>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Name</th>
-<th style="text-align:left">Default</th>
-<th style="text-align:left">Type</th>
-<th style="text-align:left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">x</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">The d3 <a href="https://github.com/d3/d3-shape#area_x">x function</a>.</td>
-</tr>
-<tr>
-<td style="text-align:left">y</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">The d3 <a href="https://github.com/d3/d3-shape#area_y1">y1 function</a>.</td>
-</tr>
-<tr>
-<td style="text-align:left">xScale</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">A <a href="https://github.com/hshoff/vx/tree/master/packages/vx-scale">scale function</a> for the xs.</td>
-</tr>
-<tr>
-<td style="text-align:left">yScale</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">A <a href="https://github.com/hshoff/vx/tree/master/packages/vx-scale">scale function</a> for the ys.</td>
-</tr>
-<tr>
-<td style="text-align:left">data</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">array</td>
-<td style="text-align:left">An array of x and y data.</td>
-</tr>
-<tr>
-<td style="text-align:left">defined</td>
-<td style="text-align:left"><code>d =&gt; y(d) &amp;&amp; x(d)</code></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">A <a href="https://github.com/d3/d3-shape/blob/master/README.md#area_defined">function</a> called by <code>area.defined()</code>.</td>
-</tr>
-<tr>
-<td style="text-align:left">className</td>
-<td style="text-align:left"><code>vx-area-closed</code></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The class name for the <code>path</code> element.</td>
-</tr>
-<tr>
-<td style="text-align:left">strokeDasharray</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">array</td>
-<td style="text-align:left">The <a href="https://mzl.la/1l7EiTQ">pattern of dashes</a> in the stroke.</td>
-</tr>
-<tr>
-<td style="text-align:left">strokeWidth</td>
-<td style="text-align:left">2</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The size of the stroke.</td>
-</tr>
-<tr>
-<td style="text-align:left">stroke</td>
-<td style="text-align:left">black</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The color of the stroke.</td>
-</tr>
-<tr>
-<td style="text-align:left">fill</td>
-<td style="text-align:left">rgba(0,0,0,0.3)</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The color of the fill.</td>
-</tr>
-<tr>
-<td style="text-align:left">curve</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">The <a href="https://github.com/hshoff/vx/tree/master/packages/vx-curve">curve function</a></td>
-</tr>
-</tbody>
-</table>
-<h2 id="-areastack-"><code>&lt;AreaStack /&gt;</code></h2>
-<p>An <code>&lt;AreaStack /&gt;</code> is used to represent several area&#39;s stacked on top of each other.</p>
-<h3 id="example">Example</h3>
-<p><img src="http://i.imgur.com/Gh930t7.png" alt="AreaStack Example"></p>
-<pre><code class="lang-js">&lt;AreaStack
-  reverse
-  top={margin.top}
-  left={margin.left}
-  keys={keys}
-  data={data}
-  x={(d) =&gt; xScale(x(d.data))}
-  y0={(d) =&gt; yScale(d[0] / 100)}
-  y1={(d) =&gt; yScale(d[1] / 100)}
-  stroke={(d,i) =&gt; colorScale(i)}
-  strokeWidth={1}
-  fillOpacity={(d,i) =&gt; selected.includes(browserNames[i]) ? 0.8 : 0.2}
-  fill={(d,i) =&gt; colorScale(i)}
-  onMouseEnter={(d, i) =&gt; event =&gt; {
-    updateSelected((prevState) =&gt; ([browserNames[i]]))
-  }}
-  onMouseLeave={(d,i) =&gt; event =&gt; {
-    updateSelected(prevState =&gt; {
-      if (prevState.includes(browserNames[i])) return [];
-      return prevState;
-    })
-  }}
-/&gt;
-</code></pre>
-<h3 id="properties">Properties</h3>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Name</th>
-<th style="text-align:left">Default</th>
-<th style="text-align:left">Type</th>
-<th style="text-align:left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">className</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The class name for the <code>path</code> element.</td>
-</tr>
-<tr>
-<td style="text-align:left">top</td>
-<td style="text-align:left">0</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The margin on top.</td>
-</tr>
-<tr>
-<td style="text-align:left">left</td>
-<td style="text-align:left">0</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The margin on the left.</td>
-</tr>
-<tr>
-<td style="text-align:left">keys</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">array</td>
-<td style="text-align:left">Keys for the <a href="https://github.com/d3/d3-shape/blob/master/README.md#stack">d3.stack.</a></td>
-</tr>
-<tr>
-<td style="text-align:left">data</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">array</td>
-<td style="text-align:left">The data for each stack.</td>
-</tr>
-<tr>
-<td style="text-align:left">curve</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">The <a href="https://github.com/hshoff/vx/tree/master/packages/vx-curve">curve function</a></td>
-</tr>
-<tr>
-<td style="text-align:left">defined</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">A <a href="https://github.com/d3/d3-shape/blob/master/README.md#area_defined">function</a> called by <code>area.defined()</code>.</td>
-</tr>
-<tr>
-<td style="text-align:left">x</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">The d3 <a href="https://github.com/d3/d3-shape#area_x">x function.</a></td>
-</tr>
-<tr>
-<td style="text-align:left">x0</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">The d3 <a href="https://github.com/d3/d3-shape#area_x0">x0 function.</a></td>
-</tr>
-<tr>
-<td style="text-align:left">x1</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">The d3 <a href="https://github.com/d3/d3-shape#area_x1">x1 function.</a></td>
-</tr>
-<tr>
-<td style="text-align:left">y0</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">The d3 <a href="https://github.com/d3/d3-shape#area_y0">y0 function.</a></td>
-</tr>
-<tr>
-<td style="text-align:left">y1</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">The d3 <a href="https://github.com/d3/d3-shape#area_y1">y1 function.</a></td>
-</tr>
-<tr>
-<td style="text-align:left">glyph</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">glyph</td>
-<td style="text-align:left"><a href="https://github.com/hshoff/vx/tree/master/packages/vx-glyph">A glyph</a> to be added to the stack.</td>
-</tr>
-<tr>
-<td style="text-align:left">reverse</td>
-<td style="text-align:left">false</td>
-<td style="text-align:left">bool</td>
-<td style="text-align:left">If true, reverses the order of stacks.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="-bar-"><code>&lt;Bar /&gt;</code></h2>
-<p>A simple rectangle (a <code>&lt;rect&gt;</code> element) to use in your graphs.</p>
-<h3 id="example">Example</h3>
-<p><img src="http://i.imgur.com/pvV9BJU.png" alt="bar example"></p>
-<pre><code class="lang-js">&lt;Bar
-  width={xScale.bandwidth()}
-  height={barHeight}
-  x={xScale(x(d))}
-  y={yMax - barHeight}
-  fill=&quot;url(&#39;#lines&#39;)&quot;
-  stroke={&#39;black&#39;}
-  strokeWidth={1}
-/&gt;
-</code></pre>
-<h3 id="properties">Properties</h3>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Name</th>
-<th style="text-align:left">Default</th>
-<th style="text-align:left">Type</th>
-<th style="text-align:left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">className</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The class name for the <code>path</code> element.</td>
-</tr>
-<tr>
-<td style="text-align:left">x</td>
-<td style="text-align:left">0</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">A number or function for the x coordinate.</td>
-</tr>
-<tr>
-<td style="text-align:left">y</td>
-<td style="text-align:left">0</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">A number or function for the y coordinate.</td>
-</tr>
-<tr>
-<td style="text-align:left">width</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The pixel width of the bar.</td>
-</tr>
-<tr>
-<td style="text-align:left">height</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The pixel height of the bar.</td>
-</tr>
-<tr>
-<td style="text-align:left">rx</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The pixel value of the corner radius.</td>
-</tr>
-<tr>
-<td style="text-align:left">ry</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The pixel value of the corner radius.</td>
-</tr>
-<tr>
-<td style="text-align:left">fill</td>
-<td style="text-align:left">steelblue</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The color for the fill of the rect element.</td>
-</tr>
-<tr>
-<td style="text-align:left">fillOpacity</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The opacity for the fill of the rect element</td>
-</tr>
-<tr>
-<td style="text-align:left">stroke</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The color for the stroke of the rect element.</td>
-</tr>
-<tr>
-<td style="text-align:left">strokeWidth</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The pixel width of the stroke.</td>
-</tr>
-<tr>
-<td style="text-align:left">strokeDasharray</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">array</td>
-<td style="text-align:left">The <a href="https://mzl.la/1l7EiTQ">pattern of dashes</a> in the stroke.</td>
-</tr>
-<tr>
-<td style="text-align:left">strokeLinecap</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The svg <a href="https://mzl.la/2pM1786">linecap</a> of the stroke.</td>
-</tr>
-<tr>
-<td style="text-align:left">strokeLinejoin</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The svg <a href="https://mzl.la/2pzdxEB">linejoin</a> of the stroke.</td>
-</tr>
-<tr>
-<td style="text-align:left">strokeMiterlimit</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The svg <a href="https://mzl.la/2pLVE13">Miterlimit</a> of the stroke.</td>
-</tr>
-<tr>
-<td style="text-align:left">strokeOpacity</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The svg opacity.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="-bargroup-"><code>&lt;BarGroup /&gt;</code></h2>
-<p><img src="https://i.imgur.com/Ef9fVqe.png" alt="BarGroup Example"></p>
-<pre><code class="lang-js">&lt;BarGroup
-  data={data}
-  keys={keys}
-  height={yMax}
-  x0={x0}
-  x0Scale={x0Scale}
-  x1Scale={x1Scale}
-  yScale={yScale}
-  zScale={zScale}
-  rx={4}
-/&gt;
-</code></pre>
-<h3 id="properties">Properties</h3>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Name</th>
-<th style="text-align:left">Default</th>
-<th style="text-align:left">Type</th>
-<th style="text-align:left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">data</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">array</td>
-<td style="text-align:left">An array of data elements.</td>
-</tr>
-<tr>
-<td style="text-align:left">className</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The class name for the <code>path</code> element.</td>
-</tr>
-<tr>
-<td style="text-align:left">top</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The margin on top.</td>
-</tr>
-<tr>
-<td style="text-align:left">left</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The margin on the left.</td>
-</tr>
-<tr>
-<td style="text-align:left">x0</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">xs accessor function.</td>
-</tr>
-<tr>
-<td style="text-align:left">x0Scale</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">A <a href="https://github.com/hshoff/vx/tree/master/packages/vx-scale#band-scaling">scale band function</a> for the bar group.</td>
-</tr>
-<tr>
-<td style="text-align:left">x1Scale</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">A <a href="https://github.com/hshoff/vx/tree/master/packages/vx-scale#band-scaling">scale band function</a> for each bar within the group.</td>
-</tr>
-<tr>
-<td style="text-align:left">yScale</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">A <a href="https://github.com/hshoff/vx/tree/master/packages/vx-scale">scale function</a> for the ys.</td>
-</tr>
-<tr>
-<td style="text-align:left">zScale</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">A <a href="https://github.com/hshoff/vx/tree/master/packages/vx-scale">scale function</a> for the keys.</td>
-</tr>
-<tr>
-<td style="text-align:left">keys</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">array</td>
-<td style="text-align:left">A list of data keys</td>
-</tr>
-<tr>
-<td style="text-align:left">height</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The pixel height of the bar group.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="-bargrouphorizontal-"><code>&lt;BarGroupHorizontal /&gt;</code></h2>
-<p><img src="https://i.imgur.com/RDBJewO.png" alt="BarGroupHorizontal Example"></p>
-<pre><code class="lang-js">&lt;BarGroupHorizontal
-  data={data}
-  keys={keys}
-  width={xMax}
-  y0={y0}
-  y0Scale={y0Scale}
-  y1Scale={y1Scale}
-  xScale={xScale}
-  zScale={zScale}
-  rx={4}
-/&gt;
-</code></pre>
-<h3 id="properties">Properties</h3>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Name</th>
-<th style="text-align:left">Default</th>
-<th style="text-align:left">Type</th>
-<th style="text-align:left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">data</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">array</td>
-<td style="text-align:left">An array of data elements.</td>
-</tr>
-<tr>
-<td style="text-align:left">className</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The class name for the <code>path</code> element.</td>
-</tr>
-<tr>
-<td style="text-align:left">top</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The margin on top.</td>
-</tr>
-<tr>
-<td style="text-align:left">left</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The margin on the left.</td>
-</tr>
-<tr>
-<td style="text-align:left">y0</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">ys accessor function.</td>
-</tr>
-<tr>
-<td style="text-align:left">y0Scale</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">A <a href="https://github.com/hshoff/vx/tree/master/packages/vx-scale#band-scaling">scale band function</a> for the bar group.</td>
-</tr>
-<tr>
-<td style="text-align:left">y1Scale</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">A <a href="https://github.com/hshoff/vx/tree/master/packages/vx-scale#band-scaling">scale band function</a> for each bar within the group.</td>
-</tr>
-<tr>
-<td style="text-align:left">xScale</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">A <a href="https://github.com/hshoff/vx/tree/master/packages/vx-scale">scale function</a> for the xs.</td>
-</tr>
-<tr>
-<td style="text-align:left">zScale</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">A <a href="https://github.com/hshoff/vx/tree/master/packages/vx-scale">scale function</a> for the keys.</td>
-</tr>
-<tr>
-<td style="text-align:left">keys</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">array</td>
-<td style="text-align:left">A list of data keys</td>
-</tr>
-<tr>
-<td style="text-align:left">height</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The pixel height of the bar group.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="-line-"><code>&lt;Line /&gt;</code></h2>
-<p>A simple line. Good for drawing in the sand.</p>
-<h3 id="example">Example</h3>
-<pre><code class="lang-js">&lt;Line
-  from={new Point({x:0, y:3})}
-  to={new Point({x:0, y:10})}
-/&gt;
-</code></pre>
-<h3 id="properties">Properties</h3>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Name</th>
-<th style="text-align:left">Default</th>
-<th style="text-align:left">Type</th>
-<th style="text-align:left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">from</td>
-<td style="text-align:left">new Point({ x: 0 y: 0 })</td>
-<td style="text-align:left">Point</td>
-<td style="text-align:left">The beginning <a href="https://github.com/hshoff/vx/tree/master/packages/vx-point">point</a>.</td>
-</tr>
-<tr>
-<td style="text-align:left">to</td>
-<td style="text-align:left">new Point({ x: 1 y: 1 })</td>
-<td style="text-align:left">Point</td>
-<td style="text-align:left">The end <a href="https://github.com/hshoff/vx/tree/master/packages/vx-point">point</a>.</td>
-</tr>
-<tr>
-<td style="text-align:left">stroke</td>
-<td style="text-align:left">black</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The color of the stroke.</td>
-</tr>
-<tr>
-<td style="text-align:left">strokeWidth</td>
-<td style="text-align:left">1</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The pixel width of the stroke.</td>
-</tr>
-<tr>
-<td style="text-align:left">strokeDasharray</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">array</td>
-<td style="text-align:left">The <a href="https://mzl.la/1l7EiTQ">pattern of dashes</a> in the stroke.</td>
-</tr>
-<tr>
-<td style="text-align:left">transform</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">An <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/transform">SVG transform.</a></td>
-</tr>
-<tr>
-<td style="text-align:left">className</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The class name for the <code>line</code> element.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="-linepath-"><code>&lt;LinePath /&gt;</code></h2>
-<p>A more complicated line path. A <code>&lt;LinePath /&gt;</code> is useful for making line graphs and drawing.</p>
-<h3 id="example">Example</h3>
-<p><img src="http://i.imgur.com/YoDZrGi.png" alt="Linepath example"></p>
-<pre><code class="lang-js">&lt;LinePath
-  data={dataset[1].data}
-  xScale={xScale}
-  yScale={yScale}
-  x={x}
-  y={y}
-  stroke={&quot;black&quot;}
-  strokeWidth={2}
-/&gt;
-</code></pre>
-<h3 id="properties">Properties</h3>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Name</th>
-<th style="text-align:left">Default</th>
-<th style="text-align:left">Type</th>
-<th style="text-align:left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">data</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">array</td>
-<td style="text-align:left">The data in x, y.</td>
-</tr>
-<tr>
-<td style="text-align:left">xScale</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">A <a href="https://github.com/hshoff/vx/tree/master/packages/vx-scale">scale function</a> for the xs.</td>
-</tr>
-<tr>
-<td style="text-align:left">yScale</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">A <a href="https://github.com/hshoff/vx/tree/master/packages/vx-scale">scale function</a> for the ys.</td>
-</tr>
-<tr>
-<td style="text-align:left">x</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">The d3 <a href="https://github.com/d3/d3-shape#line_x">x function</a>.</td>
-</tr>
-<tr>
-<td style="text-align:left">y</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">The d3 <a href="https://github.com/d3/d3-shape#line_y">y function</a>.</td>
-</tr>
-<tr>
-<td style="text-align:left">defined</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">A <a href="https://github.com/d3/d3-shape/blob/master/README.md#line_defined">function</a> called by <code>line.defined()</code>.</td>
-</tr>
-<tr>
-<td style="text-align:left">className</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The class name for the <code>path</code> element.</td>
-</tr>
-<tr>
-<td style="text-align:left">stroke</td>
-<td style="text-align:left">steelblue</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The color of the stroke.</td>
-</tr>
-<tr>
-<td style="text-align:left">strokeWidth</td>
-<td style="text-align:left">2</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The pixel value for the stroke.</td>
-</tr>
-<tr>
-<td style="text-align:left">strokeDasharray</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">array</td>
-<td style="text-align:left">The <a href="https://mzl.la/1l7EiTQ">pattern of dashes</a> in the stroke.</td>
-</tr>
-<tr>
-<td style="text-align:left">fill</td>
-<td style="text-align:left">none</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The color of the fill for the <code>path</code> element.</td>
-</tr>
-<tr>
-<td style="text-align:left">curve</td>
-<td style="text-align:left">Curve.linear</td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">The <a href="https://github.com/hshoff/vx/tree/master/packages/vx-curve">curve function</a></td>
-</tr>
-<tr>
-<td style="text-align:left">glyph</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">glyph</td>
-<td style="text-align:left"><a href="https://github.com/hshoff/vx/tree/master/packages/vx-glyph">A glyph</a> to be added to the line.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="-lineradial-"><code>&lt;LineRadial /&gt;</code></h2>
-<p><img src="http://i.imgur.com/Zcud84N.png" alt="LineRadial Example"></p>
-<pre><code class="lang-js">&lt;LineRadial
-  data={appleStock}
-  angle={d =&gt; xScale(x(d))}
-  radius={d =&gt; yScale(y(d))}
-  fill=&quot;none&quot;
-  stroke={&quot;url(&#39;#line-gradient&#39;)&quot;}
-  strokeWidth={2}
-  strokeOpacity={.7}
-  curve={curveBasisOpen}
-  strokeLinecap=&quot;round&quot;
-/&gt;
-</code></pre>
-<h3 id="properties">Properties</h3>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Name</th>
-<th style="text-align:left">Default</th>
-<th style="text-align:left">Type</th>
-<th style="text-align:left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">className</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The class for the <path /> element.</td>
-</tr>
-<tr>
-<td style="text-align:left">angle</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">The angle at each point.</td>
-</tr>
-<tr>
-<td style="text-align:left">radius</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">The radius at each angle.</td>
-</tr>
-<tr>
-<td style="text-align:left">defined</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">A <a href="https://github.com/d3/d3-shape/blob/master/README.md#area_defined">function</a> called by <code>area.defined()</code>.</td>
-</tr>
-<tr>
-<td style="text-align:left">curve</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">The <a href="https://github.com/hshoff/vx/tree/master/packages/vx-curve">curve function</a></td>
-</tr>
-<tr>
-<td style="text-align:left">data</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">array</td>
-<td style="text-align:left">An array of x and y data.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="-pie-"><code>&lt;Pie /&gt;</code></h2>
-<p><img src="https://i.imgur.com/OLKpcX1.png" alt="Pie Example"></p>
-<pre><code class="lang-js">&lt;Pie
-  data={browsers}
-  pieValue={d =&gt; d.usage}
-  outerRadius={radius - 80}
-  innerRadius={radius - 120}
-  fill=&quot;white&quot;
-  fillOpacity={d =&gt; 1 / (d.index + 2) }
-  cornerRadius={3}
-  padAngle={0}
-  centroid={(centroid, arc) =&gt; {
-    const [x, y] = centroid;
-    const { startAngle, endAngle } = arc;
-    if (endAngle - startAngle &lt; .1) return null;
-    return &lt;Label x={x} y={y}&gt;{arc.data.label}&lt;/Label&gt;;
-  }}
-/&gt;
-</code></pre>
-<h3 id="properties">Properties</h3>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Name</th>
-<th style="text-align:left">Default</th>
-<th style="text-align:left">Type</th>
-<th style="text-align:left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">className</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">The class for the <path /> element.</td>
-</tr>
-<tr>
-<td style="text-align:left">top</td>
-<td style="text-align:left">0</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The distance in pixels from the top.</td>
-</tr>
-<tr>
-<td style="text-align:left">left</td>
-<td style="text-align:left">0</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The distance in pixels from the left.</td>
-</tr>
-<tr>
-<td style="text-align:left">data</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">array</td>
-<td style="text-align:left">An array of data elements.</td>
-</tr>
-<tr>
-<td style="text-align:left">pieValue</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">A function that takes a data element and returns the value for the corresponding pie’s slice.</td>
-</tr>
-<tr>
-<td style="text-align:left">innerRadius</td>
-<td style="text-align:left">0</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The distance of arcs’ inner side from the center of the pie. Make it non-zero to have a “donut” chart.</td>
-</tr>
-<tr>
-<td style="text-align:left">outerRadius</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The total radius of the pie.</td>
-</tr>
-<tr>
-<td style="text-align:left">cornerRadius</td>
-<td style="text-align:left">0</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The corner radius of pie arcs in pixels.</td>
-</tr>
-<tr>
-<td style="text-align:left">startAngle</td>
-<td style="text-align:left">0</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The angle in radians at which the pie should start.</td>
-</tr>
-<tr>
-<td style="text-align:left">endAngle</td>
-<td style="text-align:left">2π</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The angle in radians at which the pie should end.</td>
-</tr>
-<tr>
-<td style="text-align:left">padAngle</td>
-<td style="text-align:left">0</td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">The pad (or gutter) between arcs in radians.</td>
-</tr>
-<tr>
-<td style="text-align:left">padRadius</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">number</td>
-<td style="text-align:left">Set the arc <a href="https://github.com/d3/d3-shape#arc_padRadius">padRadius</a></td>
-</tr>
-<tr>
-<td style="text-align:left">pieSort</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">A comparator function which takes two data elements and returns <code>-1</code>, <code>0</code> or <code>+1</code> to sort arcs.</td>
-</tr>
-<tr>
-<td style="text-align:left">pieSortValues</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">A comparator function which takes two values (as returned from <code>pieValue</code>) and returns <code>-1</code>, <code>0</code> or <code>+1</code> to sort arcs.</td>
-</tr>
-<tr>
-<td style="text-align:left">centroid</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">function</td>
-<td style="text-align:left">A render function which takes a <a href="https://github.com/d3/d3-shape#arc_centroid">centroid</a> and an <code>arc</code> argument called for each arc.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="sources-for-components">Sources For Components</h2>
+</code></pre><h2 id="components">Components</h2>
 <ul>
-<li><a href="https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/AreaClosed.js"><code>&lt;AreaClosed /&gt;</code></a></li>
-<li><a href="https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/AreaStack.js"><code>&lt;AreaStack /&gt;</code></a></li>
-<li><a href="https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/Bar.js"><code>&lt;Bar /&gt;</code></a></li>
-<li><a href="https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/BarGroup.js"><code>&lt;BarGroup /&gt;</code></a></li>
-<li><a href="https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/BarGroupHorizontal.js"><code>&lt;BarGroupHorizontal /&gt;</code></a></li>
-<li><a href="https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/Line.js"><code>&lt;Line /&gt;</code></a></li>
-<li><a href="https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/LinePath.js"><code>&lt;LinePath /&gt;</code></a></li>
-<li><a href="https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/LineRadial.js"><code>&lt;LineRadial /&gt;</code></a></li>
-<li><a href="https://github.com/hshoff/vx/blob/master/packages/vx-shape/src/shapes/Pie.js"><code>&lt;Pie /&gt;</code></a></li>
+<li><a href="#arc-">Arc</a></li>
+<li><a href="#area-">Area</a></li>
+<li><a href="#areaclosed-">AreaClosed</a></li>
+<li><a href="#areastack-">AreaStack</a></li>
+<li><a href="#bar-">Bar</a></li>
+<li><a href="#bargroup-">BarGroup</a></li>
+<li><a href="#bargrouphorizontal-">BarGroupHorizontal</a></li>
+<li><a href="#barstack-">BarStack</a></li>
+<li><a href="#barstackhorizontal-">BarStackHorizontal</a></li>
+<li><a href="#circle-">Circle</a></li>
+<li><a href="#line-">Line</a></li>
+<li><a href="#linepath-">LinePath</a></li>
+<li><a href="#lineradial-">LineRadial</a></li>
+<li><a href="#pie-">Pie</a></li>
+<li><a href="#polygon-">Polygon</a></li>
+<li><a href="#stack-">Stack</a></li>
+<li><a href="#linkhorizontalcurve-">LinkHorizontalCurve</a></li>
+<li><a href="#linkradialcurve-">LinkRadialCurve</a></li>
+<li><a href="#linkverticalcurve-">LinkVerticalCurve</a></li>
+<li><a href="#linkhorizontal-">LinkHorizontal</a></li>
+<li><a href="#linkradial-">LinkRadial</a></li>
+<li><a href="#linkvertical-">LinkVertical</a></li>
+<li><a href="#linkhorizontalline-">LinkHorizontalLine</a></li>
+<li><a href="#linkradialline-">LinkRadialLine</a></li>
+<li><a href="#linkverticalline-">LinkVerticalLine</a></li>
+<li><a href="#linkhorizontalstep-">LinkHorizontalStep</a></li>
+<li><a href="#linkradialstep-">LinkRadialStep</a></li>
+<li><a href="#linkverticalstep-">LinkVerticalStep</a></li>
 </ul>
+<h2 id="api">API</h2>
+<h3 id="arc-">&lt;Arc /&gt;</h3>
+
+
+
+<p><a id="#Arc__centroid" name="Arc__centroid" href="#Arc__centroid">#</a> <em>Arc</em>.<strong>centroid</strong>&lt;union(func|number)&gt;  </p>
+<p><a id="#Arc__children" name="Arc__children" href="#Arc__children">#</a> <em>Arc</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#Arc__className" name="Arc__className" href="#Arc__className">#</a> <em>Arc</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#Arc__cornerRadius" name="Arc__cornerRadius" href="#Arc__cornerRadius">#</a> <em>Arc</em>.<strong>cornerRadius</strong>&lt;union(func|number)&gt;  </p>
+<p><a id="#Arc__data" name="Arc__data" href="#Arc__data">#</a> <em>Arc</em>.<strong>data</strong>&lt;any&gt;  </p>
+<p><a id="#Arc__endAngle" name="Arc__endAngle" href="#Arc__endAngle">#</a> <em>Arc</em>.<strong>endAngle</strong>&lt;union(func|number)&gt;  </p>
+<p><a id="#Arc__innerRadius" name="Arc__innerRadius" href="#Arc__innerRadius">#</a> <em>Arc</em>.<strong>innerRadius</strong>&lt;union(func|number)&gt;  </p>
+<p><a id="#Arc__innerRef" name="Arc__innerRef" href="#Arc__innerRef">#</a> <em>Arc</em>.<strong>innerRef</strong>&lt;func&gt;  </p>
+<p><a id="#Arc__outerRadius" name="Arc__outerRadius" href="#Arc__outerRadius">#</a> <em>Arc</em>.<strong>outerRadius</strong>&lt;union(func|number)&gt;  </p>
+<p><a id="#Arc__padAngle" name="Arc__padAngle" href="#Arc__padAngle">#</a> <em>Arc</em>.<strong>padAngle</strong>&lt;union(func|number)&gt;  </p>
+<p><a id="#Arc__padRadius" name="Arc__padRadius" href="#Arc__padRadius">#</a> <em>Arc</em>.<strong>padRadius</strong>&lt;union(func|number)&gt;  </p>
+<p><a id="#Arc__startAngle" name="Arc__startAngle" href="#Arc__startAngle">#</a> <em>Arc</em>.<strong>startAngle</strong>&lt;union(func|number)&gt;  </p>
+<h3 id="area-">&lt;Area /&gt;</h3>
+
+
+
+<p><a id="#Area__children" name="Area__children" href="#Area__children">#</a> <em>Area</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#Area__className" name="Area__className" href="#Area__className">#</a> <em>Area</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#Area__curve" name="Area__curve" href="#Area__curve">#</a> <em>Area</em>.<strong>curve</strong>&lt;func&gt;  </p>
+<p><a id="#Area__data" name="Area__data" href="#Area__data">#</a> <em>Area</em>.<strong>data</strong>&lt;any&gt;  </p>
+<p><a id="#Area__defined" name="Area__defined" href="#Area__defined">#</a> <em>Area</em>.<strong>defined</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>() =&gt; true</td></td></table></p>
+<p><a id="#Area__innerRef" name="Area__innerRef" href="#Area__innerRef">#</a> <em>Area</em>.<strong>innerRef</strong>&lt;func&gt;  </p>
+<p><a id="#Area__x" name="Area__x" href="#Area__x">#</a> <em>Area</em>.<strong>x</strong>&lt;union(func|number)&gt;  </p>
+<p><a id="#Area__x0" name="Area__x0" href="#Area__x0">#</a> <em>Area</em>.<strong>x0</strong>&lt;union(func|number)&gt;  </p>
+<p><a id="#Area__x1" name="Area__x1" href="#Area__x1">#</a> <em>Area</em>.<strong>x1</strong>&lt;union(func|number)&gt;  </p>
+<p><a id="#Area__y" name="Area__y" href="#Area__y">#</a> <em>Area</em>.<strong>y</strong>&lt;union(func|number)&gt;  </p>
+<p><a id="#Area__y0" name="Area__y0" href="#Area__y0">#</a> <em>Area</em>.<strong>y0</strong>&lt;union(func|number)&gt;  </p>
+<p><a id="#Area__y1" name="Area__y1" href="#Area__y1">#</a> <em>Area</em>.<strong>y1</strong>&lt;union(func|number)&gt;  </p>
+<h3 id="areaclosed-">&lt;AreaClosed /&gt;</h3>
+
+
+
+<p><a id="#AreaClosed__children" name="AreaClosed__children" href="#AreaClosed__children">#</a> <em>AreaClosed</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#AreaClosed__className" name="AreaClosed__className" href="#AreaClosed__className">#</a> <em>AreaClosed</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#AreaClosed__curve" name="AreaClosed__curve" href="#AreaClosed__curve">#</a> <em>AreaClosed</em>.<strong>curve</strong>&lt;func&gt;  </p>
+<p><a id="#AreaClosed__data" name="AreaClosed__data" href="#AreaClosed__data">#</a> <em>AreaClosed</em>.<strong>data</strong>&lt;any&gt;  </p>
+<p><a id="#AreaClosed__defined" name="AreaClosed__defined" href="#AreaClosed__defined">#</a> <em>AreaClosed</em>.<strong>defined</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>() =&gt; true</td></td></table></p>
+<p><a id="#AreaClosed__innerRef" name="AreaClosed__innerRef" href="#AreaClosed__innerRef">#</a> <em>AreaClosed</em>.<strong>innerRef</strong>&lt;func&gt;  </p>
+<p><a id="#AreaClosed__x" name="AreaClosed__x" href="#AreaClosed__x">#</a> <em>AreaClosed</em>.<strong>x</strong>&lt;union(func|number)&gt;  </p>
+<p><a id="#AreaClosed__x0" name="AreaClosed__x0" href="#AreaClosed__x0">#</a> <em>AreaClosed</em>.<strong>x0</strong>&lt;union(func|number)&gt;  </p>
+<p><a id="#AreaClosed__x1" name="AreaClosed__x1" href="#AreaClosed__x1">#</a> <em>AreaClosed</em>.<strong>x1</strong>&lt;union(func|number)&gt;  </p>
+<p><a id="#AreaClosed__y0" name="AreaClosed__y0" href="#AreaClosed__y0">#</a> <em>AreaClosed</em>.<strong>y0</strong>&lt;union(func|number)&gt;  </p>
+<p><a id="#AreaClosed__y1" name="AreaClosed__y1" href="#AreaClosed__y1">#</a> <em>AreaClosed</em>.<strong>y1</strong>&lt;union(func|number)&gt;  </p>
+<p><a id="#AreaClosed__yScale" name="AreaClosed__yScale" href="#AreaClosed__yScale">#</a> <em>AreaClosed</em>.<strong>yScale</strong>&lt;func&gt;  </p>
+<h3 id="areastack-">&lt;AreaStack /&gt;</h3>
+
+
+
+<p><a id="#AreaStack__children" name="AreaStack__children" href="#AreaStack__children">#</a> <em>AreaStack</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#AreaStack__className" name="AreaStack__className" href="#AreaStack__className">#</a> <em>AreaStack</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#AreaStack__color" name="AreaStack__color" href="#AreaStack__color">#</a> <em>AreaStack</em>.<strong>color</strong>&lt;func&gt;  </p>
+<p><a id="#AreaStack__curve" name="AreaStack__curve" href="#AreaStack__curve">#</a> <em>AreaStack</em>.<strong>curve</strong>&lt;func&gt;  </p>
+<p><a id="#AreaStack__data" name="AreaStack__data" href="#AreaStack__data">#</a> <em>AreaStack</em>.<strong>data</strong>&lt;array&gt;  </p>
+<p><a id="#AreaStack__defined" name="AreaStack__defined" href="#AreaStack__defined">#</a> <em>AreaStack</em>.<strong>defined</strong>&lt;union(func|bool)&gt;  </p>
+<p><a id="#AreaStack__keys" name="AreaStack__keys" href="#AreaStack__keys">#</a> <em>AreaStack</em>.<strong>keys</strong>&lt;array&gt;  </p>
+<p><a id="#AreaStack__left" name="AreaStack__left" href="#AreaStack__left">#</a> <em>AreaStack</em>.<strong>left</strong>&lt;number&gt;  </p>
+<p><a id="#AreaStack__offset" name="AreaStack__offset" href="#AreaStack__offset">#</a> <em>AreaStack</em>.<strong>offset</strong>&lt;union(func|array|string)&gt;  </p>
+<p><a id="#AreaStack__order" name="AreaStack__order" href="#AreaStack__order">#</a> <em>AreaStack</em>.<strong>order</strong>&lt;union(func|array|string)&gt;  </p>
+<p><a id="#AreaStack__top" name="AreaStack__top" href="#AreaStack__top">#</a> <em>AreaStack</em>.<strong>top</strong>&lt;number&gt;  </p>
+<p><a id="#AreaStack__value" name="AreaStack__value" href="#AreaStack__value">#</a> <em>AreaStack</em>.<strong>value</strong>&lt;union(func|number)&gt;  </p>
+<p><a id="#AreaStack__x" name="AreaStack__x" href="#AreaStack__x">#</a> <em>AreaStack</em>.<strong>x</strong>&lt;union(func|number)&gt;  </p>
+<p><a id="#AreaStack__x0" name="AreaStack__x0" href="#AreaStack__x0">#</a> <em>AreaStack</em>.<strong>x0</strong>&lt;union(func|number)&gt;  </p>
+<p><a id="#AreaStack__x1" name="AreaStack__x1" href="#AreaStack__x1">#</a> <em>AreaStack</em>.<strong>x1</strong>&lt;union(func|number)&gt;  </p>
+<p><a id="#AreaStack__y" name="AreaStack__y" href="#AreaStack__y">#</a> <em>AreaStack</em>.<strong>y</strong>&lt;union(func|number)&gt;  </p>
+<p><a id="#AreaStack__y0" name="AreaStack__y0" href="#AreaStack__y0">#</a> <em>AreaStack</em>.<strong>y0</strong>&lt;union(func|number)&gt;  </p>
+<p><a id="#AreaStack__y1" name="AreaStack__y1" href="#AreaStack__y1">#</a> <em>AreaStack</em>.<strong>y1</strong>&lt;union(func|number)&gt;  </p>
+<h3 id="bar-">&lt;Bar /&gt;</h3>
+
+
+
+<p><a id="#Bar__className" name="Bar__className" href="#Bar__className">#</a> <em>Bar</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#Bar__innerRef" name="Bar__innerRef" href="#Bar__innerRef">#</a> <em>Bar</em>.<strong>innerRef</strong>&lt;func&gt;  </p>
+<h3 id="bargroup-">&lt;BarGroup /&gt;</h3>
+
+<p>Generates bar groups as an array of objects and renders <code>&lt;rect /&gt;</code>s for each datum grouped by <code>key</code>. A general setup might look like this:</p>
+<pre><code class="lang-js">const data = [{
+ date: date1,
+ key1: value,
+ key2: value,
+ key3: value
+}, {
+ date: date2,
+ key1: value,
+ key2: value,
+ key3: value,
+}];
+
+const x0 = d =&gt; d.date;
+const keys = [key1, key2, key3];
+
+const x0Scale = scaleBand({
+ domain: data.map(x0),
+ padding: 0.2
+});
+const x1Scale = scaleBand({
+ domain: keys,
+ padding: 0.1
+});
+const yScale = scaleLinear({
+  domain: [0, Math.max(...data.map(d =&gt; Math.max(...keys.map(key =&gt; d[key]))))]
+});
+const color = scaleOrdinal({
+  domain: keys,
+  range: [blue, green, purple]
+});
+</code></pre>
+<p>Example: <a href="https://vx-demo.now.sh/bargroup">https://vx-demo.now.sh/bargroup</a></p>
+<p><a id="#BarGroup__children" name="BarGroup__children" href="#BarGroup__children">#</a> <em>BarGroup</em>.<strong>children</strong>&lt;func&gt; </p>
+<p>A function that returns a react component. Useful for generating the bar group data with full control over what is rendered. The functions first argument will be the bar groups data as an array of objects with the following properties:</p>
+<ul>
+<li><code>index&lt;number&gt;</code> - the index of the group based on <em>props</em>.<strong>data</strong> array.</li>
+<li><code>x0&lt;number&gt;</code> - the position of the group based on <em>props</em>.<strong>x0</strong> &amp; <em>props</em>.<strong>x0Scale</strong>.</li>
+<li><code>bars&lt;array&gt;</code> - array of objects, ordered by <em>props</em>.<strong>keys</strong>, with the following properties:<ul>
+<li><code>index&lt;number&gt;</code> - the index of the bar for the current group.</li>
+<li><code>key&lt;string&gt;</code> - the key of the bar.</li>
+<li><code>width&lt;number&gt;</code> - the width of the bar. This will be <code>x1Scale.bandwidth()</code>. If <code>x1Scale</code> does not have a bandwidth property, then it becomes:<pre><code class="lang-js">x1Range = x1Scale.range();
+x1Domain = x1Scale.domain();
+barWidth = Math.abs(x1Range[x1Range.length - 1] - x1Range[0]) / x1Domain.length
+</code></pre>
+</li>
+<li><code>height&lt;number&gt;</code> - the height of the bar.</li>
+<li><code>x&lt;number&gt;</code> - the x position of the bar.</li>
+<li><code>y&lt;number&gt;</code> - the y position of the bar.</li>
+<li><code>color&lt;string&gt;</code> - the color of the bar. </li>
+</ul>
+</li>
+</ul>
+<p><a id="#BarGroup__className" name="BarGroup__className" href="#BarGroup__className">#</a> <em>BarGroup</em>.<strong>className</strong>&lt;string&gt; </p>
+<p>Add a class name to the containing <code>&lt;g&gt;</code> element. </p>
+<p><a id="#BarGroup__color" name="BarGroup__color" href="#BarGroup__color">#</a> <em>BarGroup</em>.<strong>color</strong>&lt;func&gt; <code>required</code></p>
+<pre><code class="lang-js">color(key, barIndex)
+</code></pre>
+<p>A function that returns color for each bar within a bar group. </p>
+<p><a id="#BarGroup__data" name="BarGroup__data" href="#BarGroup__data">#</a> <em>BarGroup</em>.<strong>data</strong>&lt;array&gt; <code>required</code></p>
+<p>An array of bar group objects. </p>
+<p><a id="#BarGroup__height" name="BarGroup__height" href="#BarGroup__height">#</a> <em>BarGroup</em>.<strong>height</strong>&lt;number&gt; <code>required</code></p>
+<p>Height is used to align the bottom of the the bars. barHeight = height - yScale(bar.value), where bar.y = yScale(bar.value). </p>
+<p><a id="#BarGroup__keys" name="BarGroup__keys" href="#BarGroup__keys">#</a> <em>BarGroup</em>.<strong>keys</strong>&lt;array&gt; <code>required</code></p>
+<p>An array of strings containing the key for each bar group. Each bar within a bar group will follow the order of this array. </p>
+<p><a id="#BarGroup__left" name="BarGroup__left" href="#BarGroup__left">#</a> <em>BarGroup</em>.<strong>left</strong>&lt;number&gt; </p>
+<p>A left pixel offset applied to the entire bar group. </p>
+<p><a id="#BarGroup__top" name="BarGroup__top" href="#BarGroup__top">#</a> <em>BarGroup</em>.<strong>top</strong>&lt;number&gt; </p>
+<p>A top pixel offset applied to the entire bar group. </p>
+<p><a id="#BarGroup__x0" name="BarGroup__x0" href="#BarGroup__x0">#</a> <em>BarGroup</em>.<strong>x0</strong>&lt;func&gt; <code>required</code></p>
+<pre><code class="lang-js">x0(barGroup)
+</code></pre>
+<p>An accessor function that returns the <code>x0</code> value for each datum in <em>props</em>.<strong>data</strong>. </p>
+<p><a id="#BarGroup__x0Scale" name="BarGroup__x0Scale" href="#BarGroup__x0Scale">#</a> <em>BarGroup</em>.<strong>x0Scale</strong>&lt;func&gt; <code>required</code></p>
+<pre><code class="lang-js">x0Scale(x0(barGroup))
+</code></pre>
+<p>A scale function that returns the x position of the bar group. </p>
+<p><a id="#BarGroup__x1Scale" name="BarGroup__x1Scale" href="#BarGroup__x1Scale">#</a> <em>BarGroup</em>.<strong>x1Scale</strong>&lt;func&gt; <code>required</code></p>
+<pre><code class="lang-js">x1Scale(key)
+</code></pre>
+<p>A scale function that returns the x position of the bar within a bar group. </p>
+<p><a id="#BarGroup__yScale" name="BarGroup__yScale" href="#BarGroup__yScale">#</a> <em>BarGroup</em>.<strong>yScale</strong>&lt;func&gt; <code>required</code></p>
+<pre><code class="lang-js">yScale(value)
+</code></pre>
+<p>A scale function that retuns the y position of the bar within a bar group. <code>value</code> is the value of the <code>key</code> in the bar group. </p>
+<h3 id="bargrouphorizontal-">&lt;BarGroupHorizontal /&gt;</h3>
+
+
+
+<p><a id="#BarGroupHorizontal__children" name="BarGroupHorizontal__children" href="#BarGroupHorizontal__children">#</a> <em>BarGroupHorizontal</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#BarGroupHorizontal__className" name="BarGroupHorizontal__className" href="#BarGroupHorizontal__className">#</a> <em>BarGroupHorizontal</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#BarGroupHorizontal__color" name="BarGroupHorizontal__color" href="#BarGroupHorizontal__color">#</a> <em>BarGroupHorizontal</em>.<strong>color</strong>&lt;func&gt; <code>required</code> </p>
+<p><a id="#BarGroupHorizontal__data" name="BarGroupHorizontal__data" href="#BarGroupHorizontal__data">#</a> <em>BarGroupHorizontal</em>.<strong>data</strong>&lt;array&gt; <code>required</code> </p>
+<p><a id="#BarGroupHorizontal__keys" name="BarGroupHorizontal__keys" href="#BarGroupHorizontal__keys">#</a> <em>BarGroupHorizontal</em>.<strong>keys</strong>&lt;array&gt; <code>required</code> </p>
+<p><a id="#BarGroupHorizontal__left" name="BarGroupHorizontal__left" href="#BarGroupHorizontal__left">#</a> <em>BarGroupHorizontal</em>.<strong>left</strong>&lt;number&gt;  </p>
+<p><a id="#BarGroupHorizontal__top" name="BarGroupHorizontal__top" href="#BarGroupHorizontal__top">#</a> <em>BarGroupHorizontal</em>.<strong>top</strong>&lt;number&gt;  </p>
+<p><a id="#BarGroupHorizontal__width" name="BarGroupHorizontal__width" href="#BarGroupHorizontal__width">#</a> <em>BarGroupHorizontal</em>.<strong>width</strong>&lt;number&gt; <code>required</code> </p>
+<p><a id="#BarGroupHorizontal__x" name="BarGroupHorizontal__x" href="#BarGroupHorizontal__x">#</a> <em>BarGroupHorizontal</em>.<strong>x</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>val =&gt; 0</td></td></table></p>
+<p><a id="#BarGroupHorizontal__xScale" name="BarGroupHorizontal__xScale" href="#BarGroupHorizontal__xScale">#</a> <em>BarGroupHorizontal</em>.<strong>xScale</strong>&lt;func&gt; <code>required</code> </p>
+<p><a id="#BarGroupHorizontal__y0" name="BarGroupHorizontal__y0" href="#BarGroupHorizontal__y0">#</a> <em>BarGroupHorizontal</em>.<strong>y0</strong>&lt;func&gt; <code>required</code> </p>
+<p><a id="#BarGroupHorizontal__y0Scale" name="BarGroupHorizontal__y0Scale" href="#BarGroupHorizontal__y0Scale">#</a> <em>BarGroupHorizontal</em>.<strong>y0Scale</strong>&lt;func&gt; <code>required</code> </p>
+<p><a id="#BarGroupHorizontal__y1Scale" name="BarGroupHorizontal__y1Scale" href="#BarGroupHorizontal__y1Scale">#</a> <em>BarGroupHorizontal</em>.<strong>y1Scale</strong>&lt;func&gt; <code>required</code> </p>
+<h3 id="barstack-">&lt;BarStack /&gt;</h3>
+
+
+
+<p><a id="#BarStack__children" name="BarStack__children" href="#BarStack__children">#</a> <em>BarStack</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#BarStack__className" name="BarStack__className" href="#BarStack__className">#</a> <em>BarStack</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#BarStack__color" name="BarStack__color" href="#BarStack__color">#</a> <em>BarStack</em>.<strong>color</strong>&lt;func&gt; <code>required</code> </p>
+<p><a id="#BarStack__data" name="BarStack__data" href="#BarStack__data">#</a> <em>BarStack</em>.<strong>data</strong>&lt;array&gt; <code>required</code> </p>
+<p><a id="#BarStack__keys" name="BarStack__keys" href="#BarStack__keys">#</a> <em>BarStack</em>.<strong>keys</strong>&lt;array&gt; <code>required</code> </p>
+<p><a id="#BarStack__left" name="BarStack__left" href="#BarStack__left">#</a> <em>BarStack</em>.<strong>left</strong>&lt;number&gt;  </p>
+<p><a id="#BarStack__offset" name="BarStack__offset" href="#BarStack__offset">#</a> <em>BarStack</em>.<strong>offset</strong>&lt;union(func|array|string)&gt;  </p>
+<p><a id="#BarStack__order" name="BarStack__order" href="#BarStack__order">#</a> <em>BarStack</em>.<strong>order</strong>&lt;union(func|array|string)&gt;  </p>
+<p><a id="#BarStack__top" name="BarStack__top" href="#BarStack__top">#</a> <em>BarStack</em>.<strong>top</strong>&lt;number&gt;  </p>
+<p><a id="#BarStack__value" name="BarStack__value" href="#BarStack__value">#</a> <em>BarStack</em>.<strong>value</strong>&lt;union(func|number)&gt;  </p>
+<p><a id="#BarStack__x" name="BarStack__x" href="#BarStack__x">#</a> <em>BarStack</em>.<strong>x</strong>&lt;func&gt; <code>required</code> </p>
+<p><a id="#BarStack__xScale" name="BarStack__xScale" href="#BarStack__xScale">#</a> <em>BarStack</em>.<strong>xScale</strong>&lt;func&gt; <code>required</code> </p>
+<p><a id="#BarStack__y0" name="BarStack__y0" href="#BarStack__y0">#</a> <em>BarStack</em>.<strong>y0</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d[0]</td></td></table></p>
+<p><a id="#BarStack__y1" name="BarStack__y1" href="#BarStack__y1">#</a> <em>BarStack</em>.<strong>y1</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d[1]</td></td></table></p>
+<p><a id="#BarStack__yScale" name="BarStack__yScale" href="#BarStack__yScale">#</a> <em>BarStack</em>.<strong>yScale</strong>&lt;func&gt; <code>required</code> </p>
+<h3 id="barstackhorizontal-">&lt;BarStackHorizontal /&gt;</h3>
+
+
+
+<p><a id="#BarStackHorizontal__children" name="BarStackHorizontal__children" href="#BarStackHorizontal__children">#</a> <em>BarStackHorizontal</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#BarStackHorizontal__className" name="BarStackHorizontal__className" href="#BarStackHorizontal__className">#</a> <em>BarStackHorizontal</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#BarStackHorizontal__color" name="BarStackHorizontal__color" href="#BarStackHorizontal__color">#</a> <em>BarStackHorizontal</em>.<strong>color</strong>&lt;func&gt; <code>required</code> </p>
+<p><a id="#BarStackHorizontal__data" name="BarStackHorizontal__data" href="#BarStackHorizontal__data">#</a> <em>BarStackHorizontal</em>.<strong>data</strong>&lt;array&gt; <code>required</code> </p>
+<p><a id="#BarStackHorizontal__keys" name="BarStackHorizontal__keys" href="#BarStackHorizontal__keys">#</a> <em>BarStackHorizontal</em>.<strong>keys</strong>&lt;array&gt; <code>required</code> </p>
+<p><a id="#BarStackHorizontal__left" name="BarStackHorizontal__left" href="#BarStackHorizontal__left">#</a> <em>BarStackHorizontal</em>.<strong>left</strong>&lt;number&gt;  </p>
+<p><a id="#BarStackHorizontal__offset" name="BarStackHorizontal__offset" href="#BarStackHorizontal__offset">#</a> <em>BarStackHorizontal</em>.<strong>offset</strong>&lt;union(func|array|string)&gt;  </p>
+<p><a id="#BarStackHorizontal__order" name="BarStackHorizontal__order" href="#BarStackHorizontal__order">#</a> <em>BarStackHorizontal</em>.<strong>order</strong>&lt;union(func|array|string)&gt;  </p>
+<p><a id="#BarStackHorizontal__top" name="BarStackHorizontal__top" href="#BarStackHorizontal__top">#</a> <em>BarStackHorizontal</em>.<strong>top</strong>&lt;number&gt;  </p>
+<p><a id="#BarStackHorizontal__value" name="BarStackHorizontal__value" href="#BarStackHorizontal__value">#</a> <em>BarStackHorizontal</em>.<strong>value</strong>&lt;union(func|number)&gt;  </p>
+<p><a id="#BarStackHorizontal__x0" name="BarStackHorizontal__x0" href="#BarStackHorizontal__x0">#</a> <em>BarStackHorizontal</em>.<strong>x0</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d[0]</td></td></table></p>
+<p><a id="#BarStackHorizontal__x1" name="BarStackHorizontal__x1" href="#BarStackHorizontal__x1">#</a> <em>BarStackHorizontal</em>.<strong>x1</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d[1]</td></td></table></p>
+<p><a id="#BarStackHorizontal__xScale" name="BarStackHorizontal__xScale" href="#BarStackHorizontal__xScale">#</a> <em>BarStackHorizontal</em>.<strong>xScale</strong>&lt;func&gt; <code>required</code> </p>
+<p><a id="#BarStackHorizontal__y" name="BarStackHorizontal__y" href="#BarStackHorizontal__y">#</a> <em>BarStackHorizontal</em>.<strong>y</strong>&lt;func&gt; <code>required</code> </p>
+<p><a id="#BarStackHorizontal__yScale" name="BarStackHorizontal__yScale" href="#BarStackHorizontal__yScale">#</a> <em>BarStackHorizontal</em>.<strong>yScale</strong>&lt;func&gt; <code>required</code> </p>
+<h3 id="circle-">&lt;Circle /&gt;</h3>
+
+
+
+<p><a id="#Circle__className" name="Circle__className" href="#Circle__className">#</a> <em>Circle</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#Circle__innerRef" name="Circle__innerRef" href="#Circle__innerRef">#</a> <em>Circle</em>.<strong>innerRef</strong>&lt;func&gt;  </p>
+<h3 id="line-">&lt;Line /&gt;</h3>
+
+
+
+<p><a id="#Line__className" name="Line__className" href="#Line__className">#</a> <em>Line</em>.<strong>className</strong>&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>&#39;&#39;</td></td></table></p>
+<p><a id="#Line__fill" name="Line__fill" href="#Line__fill">#</a> <em>Line</em>.<strong>fill</strong>  <table><tr><td><strong>Default</strong></td><td>&#39;transparent&#39;</td></td></table></p>
+<p><a id="#Line__from" name="Line__from" href="#Line__from">#</a> <em>Line</em>.<strong>from</strong>&lt;shape[object Object]&gt;  <table><tr><td><strong>Default</strong></td><td>new Point({ x: 0, y: 0 })</td></td></table></p>
+<p><a id="#Line__innerRef" name="Line__innerRef" href="#Line__innerRef">#</a> <em>Line</em>.<strong>innerRef</strong>&lt;func&gt;  </p>
+<p><a id="#Line__to" name="Line__to" href="#Line__to">#</a> <em>Line</em>.<strong>to</strong>&lt;shape[object Object]&gt;  <table><tr><td><strong>Default</strong></td><td>new Point({ x: 1, y: 1 })</td></td></table></p>
+<h3 id="linepath-">&lt;LinePath /&gt;</h3>
+
+
+
+<p><a id="#LinePath__curve" name="LinePath__curve" href="#LinePath__curve">#</a> <em>LinePath</em>.<strong>curve</strong>&lt;func&gt;  </p>
+<p><a id="#LinePath__data" name="LinePath__data" href="#LinePath__data">#</a> <em>LinePath</em>.<strong>data</strong>&lt;array&gt;  </p>
+<p><a id="#LinePath__defined" name="LinePath__defined" href="#LinePath__defined">#</a> <em>LinePath</em>.<strong>defined</strong>&lt;enum(PropTypes.func|PropTypes.bool)&gt;  <table><tr><td><strong>Default</strong></td><td>() =&gt; true</td></td></table></p>
+<p><a id="#LinePath__fill" name="LinePath__fill" href="#LinePath__fill">#</a> <em>LinePath</em>.<strong>fill</strong>  <table><tr><td><strong>Default</strong></td><td>&#39;transparent&#39;</td></td></table></p>
+<p><a id="#LinePath__innerRef" name="LinePath__innerRef" href="#LinePath__innerRef">#</a> <em>LinePath</em>.<strong>innerRef</strong>&lt;func&gt;  </p>
+<p><a id="#LinePath__x" name="LinePath__x" href="#LinePath__x">#</a> <em>LinePath</em>.<strong>x</strong>&lt;union(func|number)&gt;  </p>
+<p><a id="#LinePath__y" name="LinePath__y" href="#LinePath__y">#</a> <em>LinePath</em>.<strong>y</strong>&lt;union(func|number)&gt;  </p>
+<h3 id="lineradial-">&lt;LineRadial /&gt;</h3>
+
+
+
+<p><a id="#LineRadial__angle" name="LineRadial__angle" href="#LineRadial__angle">#</a> <em>LineRadial</em>.<strong>angle</strong>&lt;union(func|number)&gt;  </p>
+<p><a id="#LineRadial__className" name="LineRadial__className" href="#LineRadial__className">#</a> <em>LineRadial</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#LineRadial__curve" name="LineRadial__curve" href="#LineRadial__curve">#</a> <em>LineRadial</em>.<strong>curve</strong>&lt;func&gt;  </p>
+<p><a id="#LineRadial__data" name="LineRadial__data" href="#LineRadial__data">#</a> <em>LineRadial</em>.<strong>data</strong>&lt;any&gt;  </p>
+<p><a id="#LineRadial__fill" name="LineRadial__fill" href="#LineRadial__fill">#</a> <em>LineRadial</em>.<strong>fill</strong>  <table><tr><td><strong>Default</strong></td><td>&#39;transparent&#39;</td></td></table></p>
+<p><a id="#LineRadial__innerRef" name="LineRadial__innerRef" href="#LineRadial__innerRef">#</a> <em>LineRadial</em>.<strong>innerRef</strong>&lt;func&gt;  </p>
+<p><a id="#LineRadial__radius" name="LineRadial__radius" href="#LineRadial__radius">#</a> <em>LineRadial</em>.<strong>radius</strong>&lt;union(func|number)&gt;  </p>
+<h3 id="pie-">&lt;Pie /&gt;</h3>
+
+
+
+<p><a id="#Pie__centroid" name="Pie__centroid" href="#Pie__centroid">#</a> <em>Pie</em>.<strong>centroid</strong>&lt;union(func|number)&gt;  </p>
+<p><a id="#Pie__children" name="Pie__children" href="#Pie__children">#</a> <em>Pie</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#Pie__className" name="Pie__className" href="#Pie__className">#</a> <em>Pie</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#Pie__cornerRadius" name="Pie__cornerRadius" href="#Pie__cornerRadius">#</a> <em>Pie</em>.<strong>cornerRadius</strong>&lt;union(func|number)&gt;  </p>
+<p><a id="#Pie__data" name="Pie__data" href="#Pie__data">#</a> <em>Pie</em>.<strong>data</strong>&lt;array&gt;  </p>
+<p><a id="#Pie__endAngle" name="Pie__endAngle" href="#Pie__endAngle">#</a> <em>Pie</em>.<strong>endAngle</strong>&lt;union(func|number)&gt;  </p>
+<p><a id="#Pie__innerRadius" name="Pie__innerRadius" href="#Pie__innerRadius">#</a> <em>Pie</em>.<strong>innerRadius</strong>&lt;union(func|number)&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table></p>
+<p><a id="#Pie__left" name="Pie__left" href="#Pie__left">#</a> <em>Pie</em>.<strong>left</strong>&lt;number&gt;  </p>
+<p><a id="#Pie__outerRadius" name="Pie__outerRadius" href="#Pie__outerRadius">#</a> <em>Pie</em>.<strong>outerRadius</strong>&lt;union(func|number)&gt;  </p>
+<p><a id="#Pie__padAngle" name="Pie__padAngle" href="#Pie__padAngle">#</a> <em>Pie</em>.<strong>padAngle</strong>&lt;union(func|number)&gt;  </p>
+<p><a id="#Pie__padRadius" name="Pie__padRadius" href="#Pie__padRadius">#</a> <em>Pie</em>.<strong>padRadius</strong>&lt;union(func|number)&gt;  </p>
+<p><a id="#Pie__pieSort" name="Pie__pieSort" href="#Pie__pieSort">#</a> <em>Pie</em>.<strong>pieSort</strong>&lt;func&gt;  </p>
+<p><a id="#Pie__pieSortValues" name="Pie__pieSortValues" href="#Pie__pieSortValues">#</a> <em>Pie</em>.<strong>pieSortValues</strong>&lt;func&gt;  </p>
+<p><a id="#Pie__pieValue" name="Pie__pieValue" href="#Pie__pieValue">#</a> <em>Pie</em>.<strong>pieValue</strong>&lt;union(func|number)&gt;  </p>
+<p><a id="#Pie__startAngle" name="Pie__startAngle" href="#Pie__startAngle">#</a> <em>Pie</em>.<strong>startAngle</strong>&lt;union(func|number)&gt;  </p>
+<p><a id="#Pie__top" name="Pie__top" href="#Pie__top">#</a> <em>Pie</em>.<strong>top</strong>&lt;number&gt;  </p>
+<h3 id="polygon-">&lt;Polygon /&gt;</h3>
+
+
+
+<p><a id="#Polygon__center" name="Polygon__center" href="#Polygon__center">#</a> <em>Polygon</em>.<strong>center</strong>&lt;shape[object Object]&gt;  <table><tr><td><strong>Default</strong></td><td>new Point({ x: 0, y: 0 })</td></td></table></p>
+<p><a id="#Polygon__children" name="Polygon__children" href="#Polygon__children">#</a> <em>Polygon</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#Polygon__className" name="Polygon__className" href="#Polygon__className">#</a> <em>Polygon</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#Polygon__innerRef" name="Polygon__innerRef" href="#Polygon__innerRef">#</a> <em>Polygon</em>.<strong>innerRef</strong>&lt;func&gt;  </p>
+<p><a id="#Polygon__rotate" name="Polygon__rotate" href="#Polygon__rotate">#</a> <em>Polygon</em>.<strong>rotate</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table></p>
+<p><a id="#Polygon__sides" name="Polygon__sides" href="#Polygon__sides">#</a> <em>Polygon</em>.<strong>sides</strong>&lt;number&gt; <code>required</code> </p>
+<p><a id="#Polygon__size" name="Polygon__size" href="#Polygon__size">#</a> <em>Polygon</em>.<strong>size</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>25</td></td></table></p>
+<h3 id="stack-">&lt;Stack /&gt;</h3>
+
+
+
+<p><a id="#Stack__children" name="Stack__children" href="#Stack__children">#</a> <em>Stack</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#Stack__className" name="Stack__className" href="#Stack__className">#</a> <em>Stack</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#Stack__color" name="Stack__color" href="#Stack__color">#</a> <em>Stack</em>.<strong>color</strong>&lt;func&gt;  </p>
+<p><a id="#Stack__curve" name="Stack__curve" href="#Stack__curve">#</a> <em>Stack</em>.<strong>curve</strong>&lt;func&gt;  </p>
+<p><a id="#Stack__data" name="Stack__data" href="#Stack__data">#</a> <em>Stack</em>.<strong>data</strong>&lt;array&gt; <code>required</code> </p>
+<p><a id="#Stack__defined" name="Stack__defined" href="#Stack__defined">#</a> <em>Stack</em>.<strong>defined</strong>&lt;union(func|bool)&gt;  </p>
+<p><a id="#Stack__keys" name="Stack__keys" href="#Stack__keys">#</a> <em>Stack</em>.<strong>keys</strong>&lt;array&gt;  </p>
+<p><a id="#Stack__left" name="Stack__left" href="#Stack__left">#</a> <em>Stack</em>.<strong>left</strong>&lt;number&gt;  </p>
+<p><a id="#Stack__offset" name="Stack__offset" href="#Stack__offset">#</a> <em>Stack</em>.<strong>offset</strong>&lt;union(func|array|string)&gt;  </p>
+<p><a id="#Stack__order" name="Stack__order" href="#Stack__order">#</a> <em>Stack</em>.<strong>order</strong>&lt;union(func|array|string)&gt;  </p>
+<p><a id="#Stack__top" name="Stack__top" href="#Stack__top">#</a> <em>Stack</em>.<strong>top</strong>&lt;number&gt;  </p>
+<p><a id="#Stack__value" name="Stack__value" href="#Stack__value">#</a> <em>Stack</em>.<strong>value</strong>&lt;union(func|number)&gt;  </p>
+<p><a id="#Stack__x" name="Stack__x" href="#Stack__x">#</a> <em>Stack</em>.<strong>x</strong>&lt;union(func|number)&gt;  </p>
+<p><a id="#Stack__x0" name="Stack__x0" href="#Stack__x0">#</a> <em>Stack</em>.<strong>x0</strong>&lt;union(func|number)&gt;  </p>
+<p><a id="#Stack__x1" name="Stack__x1" href="#Stack__x1">#</a> <em>Stack</em>.<strong>x1</strong>&lt;union(func|number)&gt;  </p>
+<p><a id="#Stack__y" name="Stack__y" href="#Stack__y">#</a> <em>Stack</em>.<strong>y</strong>&lt;union(func|number)&gt;  </p>
+<p><a id="#Stack__y0" name="Stack__y0" href="#Stack__y0">#</a> <em>Stack</em>.<strong>y0</strong>&lt;union(func|number)&gt;  </p>
+<p><a id="#Stack__y1" name="Stack__y1" href="#Stack__y1">#</a> <em>Stack</em>.<strong>y1</strong>&lt;union(func|number)&gt;  </p>
+<h3 id="linkhorizontalcurve-">&lt;LinkHorizontalCurve /&gt;</h3>
+
+
+
+<p><a id="#LinkHorizontalCurve__children" name="LinkHorizontalCurve__children" href="#LinkHorizontalCurve__children">#</a> <em>LinkHorizontalCurve</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#LinkHorizontalCurve__innerRef" name="LinkHorizontalCurve__innerRef" href="#LinkHorizontalCurve__innerRef">#</a> <em>LinkHorizontalCurve</em>.<strong>innerRef</strong>&lt;func&gt;  </p>
+<p><a id="#LinkHorizontalCurve__path" name="LinkHorizontalCurve__path" href="#LinkHorizontalCurve__path">#</a> <em>LinkHorizontalCurve</em>.<strong>path</strong>&lt;func&gt;  </p>
+<p><a id="#LinkHorizontalCurve__percent" name="LinkHorizontalCurve__percent" href="#LinkHorizontalCurve__percent">#</a> <em>LinkHorizontalCurve</em>.<strong>percent</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>0.2</td></td></table></p>
+<p><a id="#LinkHorizontalCurve__source" name="LinkHorizontalCurve__source" href="#LinkHorizontalCurve__source">#</a> <em>LinkHorizontalCurve</em>.<strong>source</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.source</td></td></table></p>
+<p><a id="#LinkHorizontalCurve__target" name="LinkHorizontalCurve__target" href="#LinkHorizontalCurve__target">#</a> <em>LinkHorizontalCurve</em>.<strong>target</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.target</td></td></table></p>
+<p><a id="#LinkHorizontalCurve__x" name="LinkHorizontalCurve__x" href="#LinkHorizontalCurve__x">#</a> <em>LinkHorizontalCurve</em>.<strong>x</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.y</td></td></table></p>
+<p><a id="#LinkHorizontalCurve__y" name="LinkHorizontalCurve__y" href="#LinkHorizontalCurve__y">#</a> <em>LinkHorizontalCurve</em>.<strong>y</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.x</td></td></table></p>
+<h3 id="linkradialcurve-">&lt;LinkRadialCurve /&gt;</h3>
+
+
+
+<p><a id="#LinkRadialCurve__children" name="LinkRadialCurve__children" href="#LinkRadialCurve__children">#</a> <em>LinkRadialCurve</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#LinkRadialCurve__innerRef" name="LinkRadialCurve__innerRef" href="#LinkRadialCurve__innerRef">#</a> <em>LinkRadialCurve</em>.<strong>innerRef</strong>&lt;func&gt;  </p>
+<p><a id="#LinkRadialCurve__path" name="LinkRadialCurve__path" href="#LinkRadialCurve__path">#</a> <em>LinkRadialCurve</em>.<strong>path</strong>&lt;func&gt;  </p>
+<p><a id="#LinkRadialCurve__percent" name="LinkRadialCurve__percent" href="#LinkRadialCurve__percent">#</a> <em>LinkRadialCurve</em>.<strong>percent</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>0.2</td></td></table></p>
+<p><a id="#LinkRadialCurve__source" name="LinkRadialCurve__source" href="#LinkRadialCurve__source">#</a> <em>LinkRadialCurve</em>.<strong>source</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.source</td></td></table></p>
+<p><a id="#LinkRadialCurve__target" name="LinkRadialCurve__target" href="#LinkRadialCurve__target">#</a> <em>LinkRadialCurve</em>.<strong>target</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.target</td></td></table></p>
+<p><a id="#LinkRadialCurve__x" name="LinkRadialCurve__x" href="#LinkRadialCurve__x">#</a> <em>LinkRadialCurve</em>.<strong>x</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.x</td></td></table></p>
+<p><a id="#LinkRadialCurve__y" name="LinkRadialCurve__y" href="#LinkRadialCurve__y">#</a> <em>LinkRadialCurve</em>.<strong>y</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.y</td></td></table></p>
+<h3 id="linkverticalcurve-">&lt;LinkVerticalCurve /&gt;</h3>
+
+
+
+<p><a id="#LinkVerticalCurve__children" name="LinkVerticalCurve__children" href="#LinkVerticalCurve__children">#</a> <em>LinkVerticalCurve</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#LinkVerticalCurve__innerRef" name="LinkVerticalCurve__innerRef" href="#LinkVerticalCurve__innerRef">#</a> <em>LinkVerticalCurve</em>.<strong>innerRef</strong>&lt;func&gt;  </p>
+<p><a id="#LinkVerticalCurve__path" name="LinkVerticalCurve__path" href="#LinkVerticalCurve__path">#</a> <em>LinkVerticalCurve</em>.<strong>path</strong>&lt;func&gt;  </p>
+<p><a id="#LinkVerticalCurve__percent" name="LinkVerticalCurve__percent" href="#LinkVerticalCurve__percent">#</a> <em>LinkVerticalCurve</em>.<strong>percent</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>0.2</td></td></table></p>
+<p><a id="#LinkVerticalCurve__source" name="LinkVerticalCurve__source" href="#LinkVerticalCurve__source">#</a> <em>LinkVerticalCurve</em>.<strong>source</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.source</td></td></table></p>
+<p><a id="#LinkVerticalCurve__target" name="LinkVerticalCurve__target" href="#LinkVerticalCurve__target">#</a> <em>LinkVerticalCurve</em>.<strong>target</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.target</td></td></table></p>
+<p><a id="#LinkVerticalCurve__x" name="LinkVerticalCurve__x" href="#LinkVerticalCurve__x">#</a> <em>LinkVerticalCurve</em>.<strong>x</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.x</td></td></table></p>
+<p><a id="#LinkVerticalCurve__y" name="LinkVerticalCurve__y" href="#LinkVerticalCurve__y">#</a> <em>LinkVerticalCurve</em>.<strong>y</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.y</td></td></table></p>
+<h3 id="linkhorizontal-">&lt;LinkHorizontal /&gt;</h3>
+
+
+
+<p><a id="#LinkHorizontal__children" name="LinkHorizontal__children" href="#LinkHorizontal__children">#</a> <em>LinkHorizontal</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#LinkHorizontal__innerRef" name="LinkHorizontal__innerRef" href="#LinkHorizontal__innerRef">#</a> <em>LinkHorizontal</em>.<strong>innerRef</strong>&lt;func&gt;  </p>
+<p><a id="#LinkHorizontal__path" name="LinkHorizontal__path" href="#LinkHorizontal__path">#</a> <em>LinkHorizontal</em>.<strong>path</strong>&lt;func&gt;  </p>
+<p><a id="#LinkHorizontal__source" name="LinkHorizontal__source" href="#LinkHorizontal__source">#</a> <em>LinkHorizontal</em>.<strong>source</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.source</td></td></table></p>
+<p><a id="#LinkHorizontal__target" name="LinkHorizontal__target" href="#LinkHorizontal__target">#</a> <em>LinkHorizontal</em>.<strong>target</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.target</td></td></table></p>
+<p><a id="#LinkHorizontal__x" name="LinkHorizontal__x" href="#LinkHorizontal__x">#</a> <em>LinkHorizontal</em>.<strong>x</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.y</td></td></table></p>
+<p><a id="#LinkHorizontal__y" name="LinkHorizontal__y" href="#LinkHorizontal__y">#</a> <em>LinkHorizontal</em>.<strong>y</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.x</td></td></table></p>
+<h3 id="linkradial-">&lt;LinkRadial /&gt;</h3>
+
+
+
+<p><a id="#LinkRadial__angle" name="LinkRadial__angle" href="#LinkRadial__angle">#</a> <em>LinkRadial</em>.<strong>angle</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.x</td></td></table></p>
+<p><a id="#LinkRadial__children" name="LinkRadial__children" href="#LinkRadial__children">#</a> <em>LinkRadial</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#LinkRadial__innerRef" name="LinkRadial__innerRef" href="#LinkRadial__innerRef">#</a> <em>LinkRadial</em>.<strong>innerRef</strong>&lt;func&gt;  </p>
+<p><a id="#LinkRadial__path" name="LinkRadial__path" href="#LinkRadial__path">#</a> <em>LinkRadial</em>.<strong>path</strong>&lt;func&gt;  </p>
+<p><a id="#LinkRadial__radius" name="LinkRadial__radius" href="#LinkRadial__radius">#</a> <em>LinkRadial</em>.<strong>radius</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.y</td></td></table></p>
+<p><a id="#LinkRadial__source" name="LinkRadial__source" href="#LinkRadial__source">#</a> <em>LinkRadial</em>.<strong>source</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.source</td></td></table></p>
+<p><a id="#LinkRadial__target" name="LinkRadial__target" href="#LinkRadial__target">#</a> <em>LinkRadial</em>.<strong>target</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.target</td></td></table></p>
+<h3 id="linkvertical-">&lt;LinkVertical /&gt;</h3>
+
+
+
+<p><a id="#LinkVertical__innerRef" name="LinkVertical__innerRef" href="#LinkVertical__innerRef">#</a> <em>LinkVertical</em>.<strong>innerRef</strong>&lt;func&gt;  </p>
+<p><a id="#LinkVertical__path" name="LinkVertical__path" href="#LinkVertical__path">#</a> <em>LinkVertical</em>.<strong>path</strong>&lt;func&gt;  </p>
+<p><a id="#LinkVertical__source" name="LinkVertical__source" href="#LinkVertical__source">#</a> <em>LinkVertical</em>.<strong>source</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.source</td></td></table></p>
+<p><a id="#LinkVertical__target" name="LinkVertical__target" href="#LinkVertical__target">#</a> <em>LinkVertical</em>.<strong>target</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.target</td></td></table></p>
+<p><a id="#LinkVertical__x" name="LinkVertical__x" href="#LinkVertical__x">#</a> <em>LinkVertical</em>.<strong>x</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.x</td></td></table></p>
+<p><a id="#LinkVertical__y" name="LinkVertical__y" href="#LinkVertical__y">#</a> <em>LinkVertical</em>.<strong>y</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.y</td></td></table></p>
+<h3 id="linkhorizontalline-">&lt;LinkHorizontalLine /&gt;</h3>
+
+
+
+<p><a id="#LinkHorizontalLine__children" name="LinkHorizontalLine__children" href="#LinkHorizontalLine__children">#</a> <em>LinkHorizontalLine</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#LinkHorizontalLine__innerRef" name="LinkHorizontalLine__innerRef" href="#LinkHorizontalLine__innerRef">#</a> <em>LinkHorizontalLine</em>.<strong>innerRef</strong>&lt;func&gt;  </p>
+<p><a id="#LinkHorizontalLine__path" name="LinkHorizontalLine__path" href="#LinkHorizontalLine__path">#</a> <em>LinkHorizontalLine</em>.<strong>path</strong>&lt;func&gt;  </p>
+<p><a id="#LinkHorizontalLine__source" name="LinkHorizontalLine__source" href="#LinkHorizontalLine__source">#</a> <em>LinkHorizontalLine</em>.<strong>source</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.source</td></td></table></p>
+<p><a id="#LinkHorizontalLine__target" name="LinkHorizontalLine__target" href="#LinkHorizontalLine__target">#</a> <em>LinkHorizontalLine</em>.<strong>target</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.target</td></td></table></p>
+<p><a id="#LinkHorizontalLine__x" name="LinkHorizontalLine__x" href="#LinkHorizontalLine__x">#</a> <em>LinkHorizontalLine</em>.<strong>x</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.y</td></td></table></p>
+<p><a id="#LinkHorizontalLine__y" name="LinkHorizontalLine__y" href="#LinkHorizontalLine__y">#</a> <em>LinkHorizontalLine</em>.<strong>y</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.x</td></td></table></p>
+<h3 id="linkradialline-">&lt;LinkRadialLine /&gt;</h3>
+
+
+
+<p><a id="#LinkRadialLine__children" name="LinkRadialLine__children" href="#LinkRadialLine__children">#</a> <em>LinkRadialLine</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#LinkRadialLine__innerRef" name="LinkRadialLine__innerRef" href="#LinkRadialLine__innerRef">#</a> <em>LinkRadialLine</em>.<strong>innerRef</strong>&lt;func&gt;  </p>
+<p><a id="#LinkRadialLine__path" name="LinkRadialLine__path" href="#LinkRadialLine__path">#</a> <em>LinkRadialLine</em>.<strong>path</strong>&lt;func&gt;  </p>
+<p><a id="#LinkRadialLine__source" name="LinkRadialLine__source" href="#LinkRadialLine__source">#</a> <em>LinkRadialLine</em>.<strong>source</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.source</td></td></table></p>
+<p><a id="#LinkRadialLine__target" name="LinkRadialLine__target" href="#LinkRadialLine__target">#</a> <em>LinkRadialLine</em>.<strong>target</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.target</td></td></table></p>
+<p><a id="#LinkRadialLine__x" name="LinkRadialLine__x" href="#LinkRadialLine__x">#</a> <em>LinkRadialLine</em>.<strong>x</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.x</td></td></table></p>
+<p><a id="#LinkRadialLine__y" name="LinkRadialLine__y" href="#LinkRadialLine__y">#</a> <em>LinkRadialLine</em>.<strong>y</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.y</td></td></table></p>
+<h3 id="linkverticalline-">&lt;LinkVerticalLine /&gt;</h3>
+
+
+
+<p><a id="#LinkVerticalLine__children" name="LinkVerticalLine__children" href="#LinkVerticalLine__children">#</a> <em>LinkVerticalLine</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#LinkVerticalLine__innerRef" name="LinkVerticalLine__innerRef" href="#LinkVerticalLine__innerRef">#</a> <em>LinkVerticalLine</em>.<strong>innerRef</strong>&lt;func&gt;  </p>
+<p><a id="#LinkVerticalLine__path" name="LinkVerticalLine__path" href="#LinkVerticalLine__path">#</a> <em>LinkVerticalLine</em>.<strong>path</strong>&lt;func&gt;  </p>
+<p><a id="#LinkVerticalLine__source" name="LinkVerticalLine__source" href="#LinkVerticalLine__source">#</a> <em>LinkVerticalLine</em>.<strong>source</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.source</td></td></table></p>
+<p><a id="#LinkVerticalLine__target" name="LinkVerticalLine__target" href="#LinkVerticalLine__target">#</a> <em>LinkVerticalLine</em>.<strong>target</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.target</td></td></table></p>
+<p><a id="#LinkVerticalLine__x" name="LinkVerticalLine__x" href="#LinkVerticalLine__x">#</a> <em>LinkVerticalLine</em>.<strong>x</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.x</td></td></table></p>
+<p><a id="#LinkVerticalLine__y" name="LinkVerticalLine__y" href="#LinkVerticalLine__y">#</a> <em>LinkVerticalLine</em>.<strong>y</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.y</td></td></table></p>
+<h3 id="linkhorizontalstep-">&lt;LinkHorizontalStep /&gt;</h3>
+
+
+
+<p><a id="#LinkHorizontalStep__children" name="LinkHorizontalStep__children" href="#LinkHorizontalStep__children">#</a> <em>LinkHorizontalStep</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#LinkHorizontalStep__innerRef" name="LinkHorizontalStep__innerRef" href="#LinkHorizontalStep__innerRef">#</a> <em>LinkHorizontalStep</em>.<strong>innerRef</strong>&lt;func&gt;  </p>
+<p><a id="#LinkHorizontalStep__path" name="LinkHorizontalStep__path" href="#LinkHorizontalStep__path">#</a> <em>LinkHorizontalStep</em>.<strong>path</strong>&lt;func&gt;  </p>
+<p><a id="#LinkHorizontalStep__percent" name="LinkHorizontalStep__percent" href="#LinkHorizontalStep__percent">#</a> <em>LinkHorizontalStep</em>.<strong>percent</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>0.5</td></td></table></p>
+<p><a id="#LinkHorizontalStep__source" name="LinkHorizontalStep__source" href="#LinkHorizontalStep__source">#</a> <em>LinkHorizontalStep</em>.<strong>source</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.source</td></td></table></p>
+<p><a id="#LinkHorizontalStep__target" name="LinkHorizontalStep__target" href="#LinkHorizontalStep__target">#</a> <em>LinkHorizontalStep</em>.<strong>target</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.target</td></td></table></p>
+<p><a id="#LinkHorizontalStep__x" name="LinkHorizontalStep__x" href="#LinkHorizontalStep__x">#</a> <em>LinkHorizontalStep</em>.<strong>x</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.y</td></td></table></p>
+<p><a id="#LinkHorizontalStep__y" name="LinkHorizontalStep__y" href="#LinkHorizontalStep__y">#</a> <em>LinkHorizontalStep</em>.<strong>y</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.x</td></td></table></p>
+<h3 id="linkradialstep-">&lt;LinkRadialStep /&gt;</h3>
+
+
+
+<p><a id="#LinkRadialStep__children" name="LinkRadialStep__children" href="#LinkRadialStep__children">#</a> <em>LinkRadialStep</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#LinkRadialStep__innerRef" name="LinkRadialStep__innerRef" href="#LinkRadialStep__innerRef">#</a> <em>LinkRadialStep</em>.<strong>innerRef</strong>&lt;func&gt;  </p>
+<p><a id="#LinkRadialStep__path" name="LinkRadialStep__path" href="#LinkRadialStep__path">#</a> <em>LinkRadialStep</em>.<strong>path</strong>&lt;func&gt;  </p>
+<p><a id="#LinkRadialStep__source" name="LinkRadialStep__source" href="#LinkRadialStep__source">#</a> <em>LinkRadialStep</em>.<strong>source</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.source</td></td></table></p>
+<p><a id="#LinkRadialStep__target" name="LinkRadialStep__target" href="#LinkRadialStep__target">#</a> <em>LinkRadialStep</em>.<strong>target</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.target</td></td></table></p>
+<p><a id="#LinkRadialStep__x" name="LinkRadialStep__x" href="#LinkRadialStep__x">#</a> <em>LinkRadialStep</em>.<strong>x</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.x</td></td></table></p>
+<p><a id="#LinkRadialStep__y" name="LinkRadialStep__y" href="#LinkRadialStep__y">#</a> <em>LinkRadialStep</em>.<strong>y</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.y</td></td></table></p>
+<h3 id="linkverticalstep-">&lt;LinkVerticalStep /&gt;</h3>
+
+
+
+<p><a id="#LinkVerticalStep__children" name="LinkVerticalStep__children" href="#LinkVerticalStep__children">#</a> <em>LinkVerticalStep</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#LinkVerticalStep__innerRef" name="LinkVerticalStep__innerRef" href="#LinkVerticalStep__innerRef">#</a> <em>LinkVerticalStep</em>.<strong>innerRef</strong>&lt;func&gt;  </p>
+<p><a id="#LinkVerticalStep__path" name="LinkVerticalStep__path" href="#LinkVerticalStep__path">#</a> <em>LinkVerticalStep</em>.<strong>path</strong>&lt;func&gt;  </p>
+<p><a id="#LinkVerticalStep__percent" name="LinkVerticalStep__percent" href="#LinkVerticalStep__percent">#</a> <em>LinkVerticalStep</em>.<strong>percent</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>0.5</td></td></table></p>
+<p><a id="#LinkVerticalStep__source" name="LinkVerticalStep__source" href="#LinkVerticalStep__source">#</a> <em>LinkVerticalStep</em>.<strong>source</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.source</td></td></table></p>
+<p><a id="#LinkVerticalStep__target" name="LinkVerticalStep__target" href="#LinkVerticalStep__target">#</a> <em>LinkVerticalStep</em>.<strong>target</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.target</td></td></table></p>
+<p><a id="#LinkVerticalStep__x" name="LinkVerticalStep__x" href="#LinkVerticalStep__x">#</a> <em>LinkVerticalStep</em>.<strong>x</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.x</td></td></table></p>
+<p><a id="#LinkVerticalStep__y" name="LinkVerticalStep__y" href="#LinkVerticalStep__y">#</a> <em>LinkVerticalStep</em>.<strong>y</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.y</td></td></table></p>
 
       </div>
     </div>

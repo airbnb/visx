@@ -2,8 +2,8 @@ import React from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import { Group } from '@vx/group';
-import Rows from './Rows';
-import Columns from './Columns';
+import Rows from './GridRows';
+import Columns from './GridColumns';
 
 Grid.propTypes = {
   top: PropTypes.number,

@@ -4,9 +4,9 @@ import ClipPath from './ClipPath';
 
 CircleClipPath.propTypes = {
   id: PropTypes.string.isRequired,
-  cx: PropTypes.number,
-  cy: PropTypes.number,
-  r: PropTypes.number
+  cx: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  cy: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  r: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 };
 
 export default function CircleClipPath({ id, cx, cy, r, ...restProps }) {
