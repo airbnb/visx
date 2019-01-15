@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 
-BoxPlot.propTypes = {
+BoxBrush.propTypes = {
   brush: PropTypes.object,
   className: PropTypes.string,
   fill: PropTypes.string,
@@ -10,7 +10,7 @@ BoxPlot.propTypes = {
   strokeWidth: PropTypes.number
 };
 
-export default function BoxPlot({
+export default function BoxBrush({
   brush,
   className,
   fill = 'rgba(102, 181, 245, 0.1)',

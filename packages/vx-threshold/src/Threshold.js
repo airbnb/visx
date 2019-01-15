@@ -2,7 +2,6 @@ import React from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import { Area } from '@vx/shape';
-import PropTypes from 'prop-types';
 import { ClipPath } from '@vx/clip-path';
 
 Threshold.propTypes = {
