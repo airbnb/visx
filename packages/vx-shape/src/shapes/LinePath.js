@@ -7,7 +7,7 @@ LinePath.propTypes = {
   innerRef: PropTypes.func,
   data: PropTypes.array,
   curve: PropTypes.func,
-  defined: PropTypes.oneOf([PropTypes.func, PropTypes.bool]),
+  defined: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
   x: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
   y: PropTypes.oneOfType([PropTypes.func, PropTypes.number])
 };
