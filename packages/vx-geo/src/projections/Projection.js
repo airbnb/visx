@@ -6,6 +6,7 @@ import Graticule from '../graticule/Graticule';
 import {
   geoOrthographic,
   geoAlbers,
+  geoAlbersUsa,
   geoMercator,
   geoNaturalEarth1,
   geoEqualEarth,
@@ -16,6 +17,7 @@ import {
 const projectionMapping = {
   orthographic: () => geoOrthographic(),
   albers: () => geoAlbers(),
+  albersUsa: () => geoAlbersUsa(),
   mercator: () => geoMercator(),
   naturalEarth: () => geoNaturalEarth1(),
   equalEarth: () => geoEqualEarth()

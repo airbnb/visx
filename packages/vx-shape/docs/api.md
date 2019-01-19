@@ -376,7 +376,7 @@ A scale function that retuns the y position of the bar within a bar group. `valu
 
 <a id="#LinePath__data" name="LinePath__data" href="#LinePath__data">#</a> *LinePath*.**data**&lt;array&gt;  
 
-<a id="#LinePath__defined" name="LinePath__defined" href="#LinePath__defined">#</a> *LinePath*.**defined**&lt;enum(PropTypes.func|PropTypes.bool)&gt;  <table><tr><td><strong>Default</strong></td><td>() => true</td></td></table>
+<a id="#LinePath__defined" name="LinePath__defined" href="#LinePath__defined">#</a> *LinePath*.**defined**&lt;union(func|bool)&gt;  <table><tr><td><strong>Default</strong></td><td>() => true</td></td></table>
 
 <a id="#LinePath__fill" name="LinePath__fill" href="#LinePath__fill">#</a> *LinePath*.**fill**  <table><tr><td><strong>Default</strong></td><td>'transparent'</td></td></table>
 

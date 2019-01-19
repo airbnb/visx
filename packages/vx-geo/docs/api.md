@@ -15,6 +15,11 @@
 All props pass through to `<Projection projection="albers" {...props} />`
 
 
+<h3 id="albersusa-">&lt;AlbersUsa /&gt;</h3>
+
+All props pass through to `<Projection projection="albersUsa" {...props} />`
+
+
 <h3 id="equalearth-">&lt;EqualEarth /&gt;</h3>
 
 All props pass through to `<Projection projection="equalEarth" {...props} />`
