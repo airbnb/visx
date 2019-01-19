@@ -18,6 +18,7 @@ npm install --save @vx/geo
 
   - [Graticule](#graticule-)
   - [Albers](#albers-)
+  - [AlbersUsa](#albersusa-)
   - [EqualEarth](#equalearth-)
   - [Mercator](#mercator-)
   - [NaturalEarth](#naturalearth-)
@@ -43,6 +44,11 @@ npm install --save @vx/geo
 <h3 id="albers-">&lt;Albers /&gt;</h3>
 
 All props pass through to `<Projection projection="albers" {...props} />`
+
+
+<h3 id="albersusa-">&lt;AlbersUsa /&gt;</h3>
+
+All props pass through to `<Projection projection="albersUsa" {...props} />`
 
 
 <h3 id="equalearth-">&lt;EqualEarth /&gt;</h3>
