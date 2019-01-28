@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.184](#v00184)
 - [v0.0.183](#v00183)
 - [v0.0.182](#v00182)
 - [v0.0.181](#v00181)
@@ -74,6 +75,46 @@
 </details>
 
 ------
+
+# v0.0.184
+
+#### :rocket: Enhancements
+
+- [geo] add `albersUsa` projection in d3-geo to @vx/geo. [#415](https://github.com/hshoff/vx/pull/415)
+- [geo] add `equalEarth` projection in d3-geo to @vx/geo. [#407](https://github.com/hshoff/vx/pull/407)
+
+#### :bug: Bug Fix
+
+- [shape] fix proptype for LinePath `defined` prop. Should use `oneOfType` rather than `oneOf`. [#414](https://github.com/hshoff/vx/pull/414)
+- [demo] remove unnecessary destructuring of props in demo code. [#409](https://github.com/hshoff/vx/pull/409)
+- [responsive] fix proptype for ScaleSVG `children` prop. [#408](https://github.com/hshoff/vx/pull/408)
+
+#### :memo: Documentation
+
+- [tooltip] fix tooltip docs. [#403](https://github.com/hshoff/vx/pull/403)
+
+#### :trophy: Contributors
+
+- [lorenries](https://github.com/lorenries)
+- [spiderbites](https://github.com/spiderbites)
+- [pajkicdj](https://github.com/pajkicdj)
+- [mmarkelov](https://github.com/mmarkelov)
+- [dennisja](https://github.com/dennisja)
+
+```
+Changes:
+ - @vx/annotation: 0.0.183 => 0.0.184
+ - @vx/axis: 0.0.183 => 0.0.184
+ - @vx/demo: 0.0.183 => 0.0.184
+ - @vx/geo: 0.0.183 => 0.0.184
+ - @vx/grid: 0.0.183 => 0.0.184
+ - @vx/marker: 0.0.183 => 0.0.184
+ - @vx/responsive: 0.0.183 => 0.0.184
+ - @vx/shape: 0.0.183 => 0.0.184
+ - @vx/threshold: 0.0.183 => 0.0.184
+ - @vx/tooltip: 0.0.182 => 0.0.184
+ - @vx/vx: 0.0.183 => 0.0.184
+```
 
 # v0.0.183
 
