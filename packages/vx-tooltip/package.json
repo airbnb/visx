@@ -1,6 +1,6 @@
 {
   "name": "@vx/tooltip",
-  "version": "0.0.182",
+  "version": "0.0.184",
   "description": "vx tooltip",
   "sideEffects": false,
   "main": "dist/vx-tooltip.umd.js",

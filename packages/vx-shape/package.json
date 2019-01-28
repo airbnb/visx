@@ -1,6 +1,6 @@
 {
   "name": "@vx/shape",
-  "version": "0.0.183",
+  "version": "0.0.184",
   "description": "vx shape",
   "sideEffects": false,
   "main": "dist/vx-shape.umd.js",
