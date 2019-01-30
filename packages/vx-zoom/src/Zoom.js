@@ -1,98 +1,15 @@
-/* eslint-disable no-trailing-spaces */
-/* eslint-disable no-case-declarations */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { localPoint } from '@vx/event';
-
-export function identityMatrix() {
-  return {
-    scaleX: 1,
-    scaleY: 1,
-    translateX: 0,
-    translateY: 0,
-    skewX: 0,
-    skewY: 0
-  };
-}
-
-export function createMatrix({
-  scaleX = 1,
-  scaleY = 1,
-  translateX = 0,
-  translateY = 0,
-  skewX = 0,
-  skewY = 0
-}) {
-  return {
-    scaleX,
-    scaleY,
-    translateX,
-    translateY,
-    skewX,
-    skewY
-  };
-}
-
-export function inverseMatrix({ scaleX, scaleY, translateX, translateY, skewX, skewY }) {
-  const denominator = scaleX * scaleY - skewY * skewX;
-  return {
-    scaleX: scaleY / denominator,
-    scaleY: scaleX / denominator,
-    translateX: (scaleY * translateX - skewX * translateY) / -denominator,
-    translateY: (skewY * translateX - scaleX * translateY) / denominator,
-    skewX: skewX / -denominator,
-    skewY: skewY / -denominator
-  };
-}
-
-export function applyMatrixToPoint(matrix, { x, y }) {
-  return {
-    x: matrix.scaleX * x + matrix.skewX * y + matrix.translateX,
-    y: matrix.skewY * x + matrix.scaleY * y + matrix.translateY
-  };
-}
-
-export function applyInverseMatrixToPoint(matrix, { x, y }) {
-  return applyMatrixToPoint(inverseMatrix(matrix), { x, y });
-}
-
-export function scaleMatrix(scaleX, scaleY = undefined) {
-  if (!scaleY) scaleY = scaleX;
-  return createMatrix({ scaleX, scaleY });
-}
-
-export function translateMatrix(translateX, translateY = undefined) {
-  if (!translateY) translateY = translateX;
-  return createMatrix({ translateX, translateY });
-}
-
-function multiplyMatrices(matrix1, matrix2) {
-  return {
-    scaleX: matrix1.scaleX * matrix2.scaleX + matrix1.skewX * matrix2.skewY,
-    scaleY: matrix1.skewY * matrix2.skewX + matrix1.scaleY * matrix2.scaleY,
-    translateX:
-      matrix1.scaleX * matrix2.translateX + matrix1.skewX * matrix2.translateY + matrix1.translateX,
-    translateY:
-      matrix1.skewY * matrix2.translateX + matrix1.scaleY * matrix2.translateY + matrix1.translateY,
-    skewX: matrix1.scaleX * matrix2.skewX + matrix1.skewX * matrix2.scaleY,
-    skewY: matrix1.skewY * matrix2.scaleX + matrix1.scaleY * matrix2.skewY
-  };
-}
-
-function composeMatrices(...matrices) {
-  switch (matrices.length) {
-    case 0:
-      throw new Error('composeMatrices() requires arguments: was called with no args');
-    case 1:
-      return matrices[0];
-    case 2:
-      return multiplyMatrices(matrices[0], matrices[1]);
-    default:
-      const [matrix1, matrix2, ...restMatrices] = matrices;
-      const matrix = multiplyMatrices(matrix1, matrix2);
-      return composeMatrices(matrix, ...restMatrices);
-  }
-}
+import {
+  composeMatrices,
+  inverseMatrix,
+  applyMatrixToPoint,
+  applyInverseMatrixToPoint,
+  translateMatrix,
+  identityMatrix,
+  scaleMatrix
+} from './util/matrix';
 
 class Zoom extends React.Component {
   constructor(props) {
@@ -105,17 +22,33 @@ class Zoom extends React.Component {
     };
 
     this.toString = this.toString.bind(this);
+    this.clear = this.clear.bind(this);
+    this.center = this.center.bind(this);
     this.handleWheel = this.handleWheel.bind(this);
     this.dragStart = this.dragStart.bind(this);
     this.dragMove = this.dragMove.bind(this);
     this.dragEnd = this.dragEnd.bind(this);
     this.reset = this.reset.bind(this);
-    this.constrain = props.constrain || this.constrain.bind(this);
+    this.constrain = props.constrain ? props.constrain.bind(this) : this.constrain.bind(this);
     this.scale = this.scale.bind(this);
     this.translate = this.translate.bind(this);
     this.translateTo = this.translateTo.bind(this);
     this.setTranslate = this.setTranslate.bind(this);
     this.setTransformMatrix = this.setTransformMatrix.bind(this);
+    this.invert = this.invert.bind(this);
+    this.applyToPoint = this.applyToPoint.bind(this);
+    this.applyInverseToPoint = this.applyInverseToPoint.bind(this);
+    this.toStringInvert = this.toStringInvert.bind(this);
+  }
+
+  applyToPoint({ x, y }) {
+    const { transformMatrix } = this.state;
+    return applyMatrixToPoint(transformMatrix, { x, y });
+  }
+
+  applyInverseToPoint({ x, y }) {
+    const { transformMatrix } = this.state;
+    return applyInverseMatrixToPoint(transformMatrix, { x, y });
   }
 
   reset() {
@@ -139,7 +72,6 @@ class Zoom extends React.Component {
   }
 
   translate({ translateX, translateY }) {
-    if (!translateY) translateY = translateX;
     const { transformMatrix } = this.state;
     const nextMatrix = composeMatrices(transformMatrix, translateMatrix(translateX, translateY));
     this.setTransformMatrix(nextMatrix);
@@ -167,36 +99,25 @@ class Zoom extends React.Component {
     });
   }
 
+  invert() {
+    return inverseMatrix(this.state.transformMatrix);
+  }
+
+  toStringInvert() {
+    const { translateX, translateY, scaleX, scaleY, skewX, skewY } = this.invert();
+    return `matrix(${scaleX}, ${skewY}, ${skewX}, ${scaleY}, ${translateX}, ${translateY})`;
+  }
+
   constrain(transformMatrix, prevTransformMatrix) {
-    const {
-      scaleXMin,
-      scaleXMax,
-      scaleYMin,
-      scaleYMax,
-      translateXMin,
-      translateXMax,
-      translateYMin,
-      translateYMax,
-      skewXMin,
-      skewXMax,
-      skewYMin,
-      skewYMax
-    } = this.props;
-    const { scaleX, scaleY, translateX, translateY, skewX, skewY } = transformMatrix;
-    const nextScaleX = Math.min(scaleXMax, Math.max(scaleXMin, scaleX));
-    const nextScaleY = Math.min(scaleYMax, Math.max(scaleYMin, scaleY));
-    const nextTranslateX = Math.min(translateXMax, Math.max(translateXMin, translateX));
-    const nextTranslateY = Math.min(translateYMax, Math.max(translateYMin, translateY));
-    const nextSkewX = Math.min(skewXMax, Math.max(skewXMin, skewX));
-    const nextSkewY = Math.min(skewYMax, Math.max(skewYMin, skewY));
-    return {
-      scaleX: nextScaleX,
-      scaleY: nextScaleY,
-      translateX: nextTranslateX,
-      translateY: nextTranslateY,
-      skewX: nextSkewX,
-      skewY: nextSkewY
-    };
+    const { scaleXMin, scaleXMax, scaleYMin, scaleYMax, constrain } = this.props;
+    const { scaleX, scaleY } = transformMatrix;
+    const shouldConstrainScaleX = scaleX > scaleXMax || scaleX < scaleXMin;
+    const shouldConstrainScaleY = scaleY > scaleYMax || scaleY < scaleYMin;
+
+    if (shouldConstrainScaleX || shouldConstrainScaleY) {
+      return prevTransformMatrix;
+    }
+    return transformMatrix;
   }
 
   dragStart(event) {
@@ -228,7 +149,7 @@ class Zoom extends React.Component {
     event.preventDefault();
     const { wheelDelta } = this.props;
     const point = localPoint(event);
-    const { scaleX, scaleY } = wheelDelta(event.deltaY);
+    const { scaleX, scaleY } = wheelDelta(event);
     this.scale({ scaleX, scaleY, point });
   }
 
@@ -238,12 +159,28 @@ class Zoom extends React.Component {
     return `matrix(${scaleX}, ${skewY}, ${skewX}, ${scaleY}, ${translateX}, ${translateY})`;
   }
 
+  center() {
+    const { width, height } = this.props;
+    const center = { x: width / 2, y: height / 2 };
+    const inverseCentroid = this.applyInverseToPoint(center);
+    this.translate({
+      translateX: inverseCentroid.x - center.x,
+      translateY: inverseCentroid.y - center.y
+    });
+  }
+
+  clear() {
+    this.setTransformMatrix(identityMatrix());
+  }
+
   render() {
     const { children } = this.props;
     const zoom = {
       ...this.state,
       center: this.center,
+      clear: this.clear,
       scale: this.scale,
+      scaleTo: this.scaleTo,
       translate: this.translate,
       translateTo: this.translateTo,
       setTranslate: this.setTranslate,
@@ -253,14 +190,18 @@ class Zoom extends React.Component {
       dragEnd: this.dragEnd,
       dragMove: this.dragMove,
       dragStart: this.dragStart,
-      toString: this.toString
+      toString: this.toString,
+      invert: this.invert,
+      toStringInvert: this.toStringInvert,
+      applyToPoint: this.applyToPoint,
+      applyInverseToPoint: this.applyInverseToPoint
     };
     return children(zoom);
   }
 }
 
 Zoom.propTypes = {
-  children: PropTypes.func,
+  children: PropTypes.func.isRequired,
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
   /**
@@ -268,21 +209,38 @@ Zoom.propTypes = {
    *  wheelDelta(event.deltaY)
    * ```
    *
-   * A function that returns {scaleX,scaleY} to scale the matrix by.
+   * A function that returns {scaleX,scaleY} factors to scale the matrix by.
+   * Scale factors greater than 1 will increase (zoom in), less than 1 will descrease (zoom out).
    */
   wheelDelta: PropTypes.func,
   scaleXMin: PropTypes.number,
   scaleXMax: PropTypes.number,
   scaleYMin: PropTypes.number,
   scaleYMax: PropTypes.number,
-  translateXMin: PropTypes.number,
-  translateXMax: PropTypes.number,
-  translateYMin: PropTypes.number,
-  translateYMax: PropTypes.number,
-  skewXMin: PropTypes.number,
-  skewXMax: PropTypes.number,
-  skewYMin: PropTypes.number,
-  skewYMax: PropTypes.number,
+  /**
+   * By default constrain() will only constrain scale values. To change
+   * constraints you can pass in your own constrain function as a prop.
+   *
+   * For example, if you wanted to constrain your view to within [[0, 0], [width, height]]:
+   *
+   * ```js
+   * function constrain(transformMatrix, prevTransformMatrix) {
+   *   const min = applyMatrixToPoint(transformMatrix, { x: 0, y: 0 });
+   *   const max = applyMatrixToPoint(transformMatrix, { x: width, y: height });
+   *   if (max.x < width || max.y < height) {
+   *     return prevTransformMatrix;
+   *   }
+   *   if (min.x > 0 || min.y > 0) {
+   *     return prevTransformMatrix;
+   *   }
+   *   return transformMatrix;
+   * }
+   * ```
+   *
+   * @param {matrix} transformMatrix
+   * @param {matrix} prevTransformMatrix
+   * @returns {martix}
+   */
   constrain: PropTypes.func,
   transformMatrix: PropTypes.shape({
     scaleX: PropTypes.number,
@@ -299,14 +257,6 @@ Zoom.defaultProps = {
   scaleXMax: Infinity,
   scaleYMin: 0,
   scaleYMax: Infinity,
-  translateXMin: -Infinity,
-  translateXMax: Infinity,
-  translateYMin: -Infinity,
-  translateYMax: Infinity,
-  skewXMin: -Infinity,
-  skewXMax: Infinity,
-  skewYMin: -Infinity,
-  skewYMax: Infinity,
   transformMatrix: {
     scaleX: 1,
     scaleY: 1,
@@ -315,8 +265,8 @@ Zoom.defaultProps = {
     skewX: 0,
     skewY: 0
   },
-  wheelDelta: deltaY => {
-    return deltaY > 0 ? { scaleX: 1.1, scaleY: 1.1 } : { scaleX: 0.9, scaleY: 0.9 };
+  wheelDelta: event => {
+    return -event.deltaY > 0 ? { scaleX: 1.1, scaleY: 1.1 } : { scaleX: 0.9, scaleY: 0.9 };
   }
 };
 
