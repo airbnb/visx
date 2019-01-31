@@ -56,11 +56,9 @@ export default withScreenSize(
             </div>
           )}
         </div>
-        {false && (
-          <div style={{ marginTop: '40px' }}>
-            <Gallery />
-          </div>
-        )}
+        <div style={{ marginTop: '40px' }}>
+          <Gallery />
+        </div>
         <style jsx>{`
           .container {
             display: flex;
