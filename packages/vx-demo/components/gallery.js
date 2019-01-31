@@ -42,6 +42,7 @@ import LinkTypes from './tiles/linkTypes';
 import Threshold from './tiles/threshold';
 import Chord from './tiles/chord';
 import Polygons from './tiles/polygons';
+import ZoomI from './tiles/zoom-i';
 
 const items = [
   '#242424',
@@ -903,7 +904,23 @@ export default class Gallery extends React.Component {
               </div>
             </Link>
           </Tilt>
-          <div className="gallery-item placeholder" />
+          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+            <Link prefetch href="/zoom-i">
+              <div className="gallery-item" style={{ background: '#0a0a0a' }}>
+                <div className="image">
+                  <ParentSize>
+                    {({ width, height }) => <ZoomI width={width} height={height} />}
+                  </ParentSize>
+                </div>
+                <div className="details" style={{ color: '#ccc' }}>
+                  <div className="title">Zoom I</div>
+                  <div className="description">
+                    <pre>{'<Zoom />'}</pre>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </Tilt>
           <div className="gallery-item placeholder" />
         </div>
 
