@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.185](#v00185)
 - [v0.0.184](#v00184)
 - [v0.0.183](#v00183)
 - [v0.0.182](#v00182)
@@ -75,6 +76,25 @@
 </details>
 
 ------
+
+# v0.0.185
+
+#### :rocket: Enhancements
+
+- [zoom] add `<Zoom />`. [#418](https://github.com/hshoff/vx/pull/418)
+- [mock data] add `genPhyllotaxis()`. [#418](https://github.com/hshoff/vx/pull/418)
+
+#### :trophy: Contributors
+
+- [hshoff](https://github.com/hshoff)
+
+```
+Changes:
+ - @vx/demo: 0.0.184 => 0.0.185
+ - @vx/mock-data: 0.0.182 => 0.0.185
+ - @vx/vx: 0.0.184 => 0.0.185
+ - @vx/zoom: 0.0.182 => 0.0.185
+ ```
 
 # v0.0.184
 
