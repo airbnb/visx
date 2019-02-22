@@ -94,7 +94,7 @@ export default withTooltip(
           />
           <Group top={margin.top}>
             <BarStack data={data} keys={keys} x={x} xScale={xScale} yScale={yScale} color={color}>
-              {({ barStacks }) => {
+              {barStacks => {
                 return barStacks.map(barStack => {
                   return barStack.bars.map(bar => {
                     return (
