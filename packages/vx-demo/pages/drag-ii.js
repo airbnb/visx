@@ -7,7 +7,6 @@ export default () => {
     <Show component={DragII} title="Drag II">
       {`import React from 'react';
 import { LinePath } from '@vx/shape';
-import { localPoint } from '@vx/event';
 import { Drag } from '@vx/drag';
 import { curveBasis } from '@vx/curve';
 import { LinearGradient } from '@vx/gradient';
@@ -43,8 +42,6 @@ export default class DragII extends React.Component {
                 curve={curveBasis}
                 x={d => d.x}
                 y={d => d.y}
-                xScale={d => d}
-                yScale={d => d}
               />
             );
           })}
