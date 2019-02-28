@@ -7,7 +7,10 @@ export default class ParentSize extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      width: 0, height: 0, top: 0, left: 0,
+      width: 0,
+      height: 0,
+      top: 0,
+      left: 0
     };
     this.resize = debounce(this.resize.bind(this), props.debounceTime);
     this.setTarget = this.setTarget.bind(this);
@@ -15,20 +18,13 @@ export default class ParentSize extends React.Component {
   }
 
   componentDidMount() {
-    this.ro = new ResizeObserver((entries, observer) => {
-      for (const entry of entries) {
-        const {
-          left, top, width, height,
-        } = entry.contentRect;
+    this.ro = new ResizeObserver((entries = [], observer) => {
+      entries.forEach(entry => {
+        const { left, top, width, height } = entry.contentRect;
         this.animationFrameID = window.requestAnimationFrame(() => {
-          this.resize({
-            width,
-            height,
-            top,
-            left,
-          });
+          this.resize({ width, height, top, left });
         });
-      }
+      });
     });
     this.ro.observe(this.target);
   }
@@ -38,15 +34,8 @@ export default class ParentSize extends React.Component {
     this.ro.disconnect();
   }
 
-  resize({
-    width, height, top, left,
-  }) {
-    this.setState(() => ({
-      width,
-      height,
-      top,
-      left,
-    }));
+  resize({ width, height, top, left }) {
+    this.setState(() => ({ width, height, top, left }));
   }
 
   setTarget(ref) {
@@ -54,9 +43,7 @@ export default class ParentSize extends React.Component {
   }
 
   render() {
-    const {
-      className, children, debounceTime, ...restProps
-    } = this.props;
+    const { className, children, ...restProps } = this.props;
     return (
       <div
         style={{ width: '100%', height: '100%' }}
@@ -67,7 +54,7 @@ export default class ParentSize extends React.Component {
         {children({
           ...this.state,
           ref: this.target,
-          resize: this.resize,
+          resize: this.resize
         })}
       </div>
     );
@@ -75,11 +62,11 @@ export default class ParentSize extends React.Component {
 }
 
 ParentSize.defaultProps = {
-  debounceTime: 300,
+  debounceTime: 300
 };
 
 ParentSize.propTypes = {
   className: PropTypes.string,
   children: PropTypes.func.isRequired,
-  debounceTime: PropTypes.number,
+  debounceTime: PropTypes.number
 };
