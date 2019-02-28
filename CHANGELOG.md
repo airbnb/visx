@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.186](#v00186)
 - [v0.0.185](#v00185)
 - [v0.0.184](#v00184)
 - [v0.0.183](#v00183)
@@ -76,6 +77,30 @@
 </details>
 
 ------
+
+# v0.0.186
+
+#### :memo: Documentation
+
+- [demo] cleanup DragII demo. [#424](https://github.com/hshoff/vx/pull/424)
+- [demo] fixed broken BarStacks example. Bar Stack Horizontal example works correct, but BarStack for some reason uses `({ barStacks })` instead of `barStacks`. [#423](https://github.com/hshoff/vx/pull/423)
+
+#### :bug: Bug Fix
+
+- [responsive] `<ParentSize />` replace `for..of` with `forEach()` to fix IE11 error without having to sham `Symbol`. More info: https://github.com/hshoff/vx/issues/258 [#428](https://github.com/hshoff/vx/pull/428)
+
+#### :trophy: Contributors
+
+- [EugeneDraitsev](https://github.com/EugeneDraitsev)
+- [dennisja](https://github.com/dennisja)
+- [hshoff](https://github.com/hshoff)
+
+```
+Changes:
+ - @vx/demo: 0.0.185 => 0.0.186
+ - @vx/responsive: 0.0.184 => 0.0.186
+ - @vx/vx: 0.0.185 => 0.0.186
+ ```
 
 # v0.0.185
 
