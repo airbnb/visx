@@ -9,13 +9,11 @@ class Text extends Component {
     this.state = {
       wordsByLines: []
     };
-  }
 
-  componentWillMount() {
     this.updateWordsByLines(this.props, true);
   }
 
-  componentWillReceiveProps(nextProps) {
+  static getDerivedStateFromProps(nextProps) {
     const needCalculate =
       this.props.children !== nextProps.children || this.props.style !== nextProps.style;
     this.updateWordsByLines(nextProps, needCalculate);
