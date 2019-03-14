@@ -20,7 +20,7 @@ export default ({ width, height, events = false }) => {
 
   const centerX = width / 2;
   const centerY = height / 2;
-  const scale = width / 630 * 100;
+  const scale = (width / 630) * 100;
 
   return (
     <svg width={width} height={height}>
