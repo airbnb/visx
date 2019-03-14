@@ -30,6 +30,7 @@ import Voronoi from './tiles/voronoi';
 import Legends from './tiles/legends';
 import BoxPlot from './tiles/boxplot';
 import GeoMercator from './tiles/geo-mercator';
+import GeoCustom from './tiles/geo-custom';
 import Network from './tiles/network';
 import Streamgraph from './tiles/streamgraph';
 import Pack from './tiles/pack';
@@ -559,6 +560,26 @@ export default class Gallery extends React.Component {
           </Tilt>
 
           <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+            <Link prefetch href="/geo-custom">
+              <div className="gallery-item" style={{ background: '#252b7e' }}>
+                <div className="image">
+                  <ParentSize>
+                    {({ width, height }) => (
+                      <GeoCustom width={width} height={height + detailsHeight} />
+                    )}
+                  </ParentSize>
+                </div>
+                <div className="details" style={{ color: '#019ece' }}>
+                  <div className="title">Geo</div>
+                  <div className="description">
+                    <pre>{'<Geo.CustomProjection />'}</pre>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </Tilt>
+
+          <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
             <Link prefetch href="/network">
               <div className="gallery-item" style={{ background: '#272b4d' }}>
                 <div className="image">
@@ -921,6 +942,7 @@ export default class Gallery extends React.Component {
               </div>
             </Link>
           </Tilt>
+          <div className="gallery-item placeholder" />
           <div className="gallery-item placeholder" />
         </div>
 

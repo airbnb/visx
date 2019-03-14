@@ -25,7 +25,7 @@ const projectionMapping = {
 
 Projection.propTypes = {
   data: PropTypes.array.isRequired,
-  projection: PropTypes.string,
+  projection: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   projectionFunc: PropTypes.func,
   clipAngle: PropTypes.number,
   clipExtent: PropTypes.array,
@@ -67,7 +67,8 @@ export default function Projection({
   children,
   ...restProps
 }) {
-  const currProjection = projectionMapping[projection]();
+  const maybeCustomProjection = projectionMapping[projection] || projection;
+  const currProjection = maybeCustomProjection();
 
   if (clipAngle) currProjection.clipAngle(clipAngle);
   if (clipExtent) currProjection.clipExtent(clipExtent);
