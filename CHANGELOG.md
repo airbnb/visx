@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.187](#v00187)
 - [v0.0.186](#v00186)
 - [v0.0.185](#v00185)
 - [v0.0.184](#v00184)
@@ -77,6 +78,32 @@
 </details>
 
 ------
+
+# v0.0.187
+
+#### :rocket: Enhancements
+
+- [geo] add `<CustomProjection projection={someProjectionFunction} />`. [#434](https://github.com/hshoff/vx/pull/434)
+
+#### :memo: Documentation
+
+- [demo] add `<CustomProjection />` tile. [#434](https://github.com/hshoff/vx/pull/434)
+
+#### :house: Internal
+
+- [geo] add `<CustomProjection />` test. [#435](https://github.com/hshoff/vx/pull/435)
+
+
+#### :trophy: Contributors
+
+- [hshoff](https://github.com/hshoff)
+
+```
+Changes:
+ - @vx/demo: 0.0.186 => 0.0.187
+ - @vx/geo: 0.0.184 => 0.0.187
+ - @vx/vx: 0.0.186 => 0.0.187
+ ```
 
 # v0.0.186
 
