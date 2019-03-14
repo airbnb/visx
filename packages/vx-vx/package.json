@@ -1,6 +1,6 @@
 {
   "name": "@vx/vx",
-  "version": "0.0.186",
+  "version": "0.0.187",
   "description": "One stop install for all vx packages",
   "sideEffects": false,
   "main": "dist/vx-vx.umd.js",
@@ -88,7 +88,7 @@
     "@vx/curve": "0.0.182",
     "@vx/drag": "0.0.183",
     "@vx/event": "0.0.182",
-    "@vx/geo": "0.0.184",
+    "@vx/geo": "0.0.187",
     "@vx/glyph": "0.0.183",
     "@vx/gradient": "0.0.183",
     "@vx/grid": "0.0.184",
