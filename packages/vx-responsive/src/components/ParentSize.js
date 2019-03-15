@@ -43,7 +43,7 @@ export default class ParentSize extends React.Component {
   }
 
   render() {
-    const { className, children, ...restProps } = this.props;
+    const { className, children, debounceTime, ...restProps } = this.props;
     return (
       <div
         style={{ width: '100%', height: '100%' }}
