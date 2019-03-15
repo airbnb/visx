@@ -1,6 +1,6 @@
 {
   "name": "@vx/vx",
-  "version": "0.0.187",
+  "version": "0.0.188",
   "description": "One stop install for all vx packages",
   "sideEffects": false,
   "main": "dist/vx-vx.umd.js",
@@ -101,7 +101,7 @@
     "@vx/network": "0.0.183",
     "@vx/pattern": "0.0.183",
     "@vx/point": "0.0.182",
-    "@vx/responsive": "0.0.186",
+    "@vx/responsive": "0.0.188",
     "@vx/scale": "0.0.182",
     "@vx/shape": "0.0.184",
     "@vx/text": "0.0.183",
