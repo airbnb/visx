@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.188](#v00188)
 - [v0.0.187](#v00187)
 - [v0.0.186](#v00186)
 - [v0.0.185](#v00185)
@@ -78,6 +79,23 @@
 </details>
 
 ------
+
+# v0.0.188
+
+#### :bug: Bug Fix
+
+- [responsive] add debounceTime back to prevent it spreading on children through restProps. [#437](https://github.com/hshoff/vx/pull/437)
+
+#### :trophy: Contributors
+
+- [hshoff](https://github.com/hshoff)
+
+```
+Changes:
+ - @vx/demo: 0.0.187 => 0.0.188
+ - @vx/responsive: 0.0.186 => 0.0.188
+ - @vx/vx: 0.0.187 => 0.0.188
+ ```
 
 # v0.0.187
 
