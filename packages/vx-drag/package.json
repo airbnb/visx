@@ -79,12 +79,6 @@
   "peerDependencies": {
     "react": "^15.0.0-0 || ^16.0.0-0"
   },
-  "jest": {
-    "setupFiles": [
-      "raf/polyfill",
-      "<rootDir>/test/enzyme-setup.js"
-    ]
-  },
   "dependencies": {
     "@vx/event": "0.0.182",
     "prop-types": "^15.5.10"

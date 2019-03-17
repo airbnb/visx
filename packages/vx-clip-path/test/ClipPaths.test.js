@@ -1,8 +1,4 @@
-import React from 'react';
-
 import { ClipPath, CircleClipPath, RectClipPath } from '../src';
-
-import { shallow } from 'enzyme';
 
 describe('<ClipPath />', () => {
   test('it should be defined', () => {

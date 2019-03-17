@@ -1,5 +1,3 @@
-import { mount, shallow } from 'enzyme';
-import React from 'react';
 import { Area } from '../src';
 
 const fakeData = [

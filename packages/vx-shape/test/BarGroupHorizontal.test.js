@@ -1,6 +1,4 @@
-import React from 'react';
 import { BarGroupHorizontal } from '../src';
-import { shallow, mount } from 'enzyme';
 
 const data = [
   {

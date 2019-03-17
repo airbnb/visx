@@ -1,6 +1,4 @@
-import React from 'react';
 import { BarStackHorizontal } from '../src';
-import { shallow } from 'enzyme';
 
 const yScale = jest.fn();
 yScale.domain = () => [0, 100];

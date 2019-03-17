@@ -1,5 +1,3 @@
-import React from 'react';
-import { shallow, mount } from 'enzyme';
 import { Legend } from '../src';
 import { scaleLinear } from '../../vx-scale';
 

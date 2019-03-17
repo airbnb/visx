@@ -1,6 +1,3 @@
-import React from 'react';
-import { mount } from 'enzyme';
-
 import { withBoundingRects, withBoundingRectsProps } from '../src/';
 
 const expectedRectShape = expect.objectContaining({

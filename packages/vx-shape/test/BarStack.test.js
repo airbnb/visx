@@ -1,6 +1,4 @@
-import React from 'react';
 import { BarStack } from '../src';
-import { shallow } from 'enzyme';
 
 const xScale = jest.fn();
 xScale.domain = () => [0, 100];
