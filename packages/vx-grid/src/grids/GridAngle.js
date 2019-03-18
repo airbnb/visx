@@ -84,7 +84,7 @@ export default function GridAngle({
   let ticks = scale.ticks ? scale.ticks(numTicks) : scale.domain();
   if (tickValues) ticks = tickValues;
   return (
-    <Group className={cx('vx-grid-polar', className)} top={top} left={left}>
+    <Group className={cx('vx-grid-angle', className)} top={top} left={left}>
       {ticks.map((tick, i) => {
         const angle = scale(tick) - Math.PI / 2;
         const fromPoint = new Point(polarToCartesian({ angle, radius: innerRadius }));

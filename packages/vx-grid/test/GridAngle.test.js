@@ -16,9 +16,9 @@ const gridProps = {
 };
 
 describe('<GridAngle />', () => {
-  it('should render with class .vx-grid-polar', () => {
+  it('should render with class .vx-grid-angle', () => {
     const wrapper = shallow(<GridAngle {...gridProps} />);
-    expect(wrapper.find('.vx-grid-polar').length).toBe(1);
+    expect(wrapper.find('.vx-grid-angle').length).toBe(1);
   });
 
   it('should set user-specified lineClassName', () => {
