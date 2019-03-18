@@ -2,8 +2,8 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import { Line } from '@vx/shape';
-import { GridPolar } from '../src';
-import { scaleLinear } from '../../vx-scale';
+import { GridAngle } from '../src';
+import { scaleLinear } from '../../vx-scale/dist/vx-scale.umd';
 import * as polarToCartesian from '../src/utils/polarToCartesian';
 
 const gridProps = {
@@ -15,31 +15,27 @@ const gridProps = {
   })
 };
 
-describe('<GridPolar />', () => {
-  it('should be defined', () => {
-    expect(GridPolar).toBeDefined();
-  });
-
+describe('<GridAngle />', () => {
   it('should render with class .vx-grid-polar', () => {
-    const wrapper = shallow(<GridPolar {...gridProps} />);
+    const wrapper = shallow(<GridAngle {...gridProps} />);
     expect(wrapper.find('.vx-grid-polar').length).toBe(1);
   });
 
   it('should set user-specified lineClassName', () => {
-    const wrapper = shallow(<GridPolar {...gridProps} lineClassName="test-class" />);
+    const wrapper = shallow(<GridAngle {...gridProps} lineClassName="test-class" />);
     expect(wrapper.find('.test-class').length).toBeGreaterThan(0);
   });
 
   it('should render `numTicks` grid lines', () => {
-    const fiveTickWrapper = shallow(<GridPolar {...gridProps} numTicks={5} />);
-    const tenTickWrapper = shallow(<GridPolar {...gridProps} numTicks={10} />);
+    const fiveTickWrapper = shallow(<GridAngle {...gridProps} numTicks={5} />);
+    const tenTickWrapper = shallow(<GridAngle {...gridProps} numTicks={10} />);
 
     expect(fiveTickWrapper.find(Line).length).toBe(5);
     expect(tenTickWrapper.find(Line).length).toBe(10);
   });
 
   it('should render grid lines according to tickValues', () => {
-    const wrapper = shallow(<GridPolar {...gridProps} tickValues={[1, 2, 3]} />);
+    const wrapper = shallow(<GridAngle {...gridProps} tickValues={[1, 2, 3]} />);
 
     expect(wrapper.find(Line).length).toBe(3);
   });
@@ -48,7 +44,7 @@ describe('<GridPolar />', () => {
     const polarToCartesianSpy = jest.spyOn(polarToCartesian, 'default');
     const innerRadius = 4;
     const outerRadius = 7;
-    shallow(<GridPolar {...gridProps} innerRadius={innerRadius} outerRadius={outerRadius} />);
+    shallow(<GridAngle {...gridProps} innerRadius={innerRadius} outerRadius={outerRadius} />);
 
     expect(polarToCartesianSpy.mock.calls.length).toBeGreaterThanOrEqual(2);
 

@@ -65,7 +65,7 @@ const propTypes = {
   top: PropTypes.number
 };
 
-export default function GridPolar({
+export default function GridAngle({
   className,
   innerRadius = 0,
   left = 0,
@@ -107,4 +107,4 @@ export default function GridPolar({
   );
 }
 
-GridPolar.propTypes = propTypes;
+GridAngle.propTypes = propTypes;
