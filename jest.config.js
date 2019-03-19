@@ -4,9 +4,7 @@ module.exports = {
   coverageDirectory: '<rootDir>coverage',
   collectCoverageFrom: ['<rootDir>packages/**/src/*.{js}', '!**/node_modules/**'],
   projects: ['<rootDir>packages/**/*.{js}'],
-  moduleNameMapper: {
-    '@vx/(.+)$': '<rootDir>packages/$1/src'
-  },
+  testMatch: ['**/test/*.+(js)', '**/*.test.+(js)'],
   transform: { '^.+\\.js?$': '<rootDir>babel-jest.setup.js' },
   setupFilesAfterEnv: ['raf/polyfill', 'jest-enzyme'],
   testEnvironment: 'enzyme'
