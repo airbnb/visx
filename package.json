@@ -7,8 +7,7 @@
     "test": "lerna bootstrap && jest",
     "docs": "npm run docs:gen && node ./scripts/docs/index.js",
     "docs:gen": "lerna run docs",
-    "prepare-release":
-      "git checkout master && git pull --rebase origin master && npm run docs && lerna updated",
+    "prepare-release": "git checkout master && git pull --rebase origin master && npm run docs && lerna updated",
     "release": "npm run prepare-release && lerna publish --exact",
     "lint": "eslint \"packages/**/*.js\" --config \"./.eslintrc\"",
     "lint:fix": "eslint \"packages/**/*.js\" --config \"./.eslintrc\" --fix",
@@ -23,9 +22,18 @@
     "singleQuote": true
   },
   "lint-staged": {
-    "*.js": ["prettier-eslint --write", "git add"]
+    "*.js": [
+      "prettier-eslint --write",
+      "git add"
+    ]
   },
-  "keywords": ["react", "d3", "visualization", "vx", "charts"],
+  "keywords": [
+    "react",
+    "d3",
+    "visualization",
+    "vx",
+    "charts"
+  ],
   "author": "@hshoff",
   "license": "MIT",
   "devDependencies": {
