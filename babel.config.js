@@ -13,7 +13,7 @@ const babelrc = {
           ie: 9,
           firefox: 52,
           safari: 8,
-          ucandroid: 1
+          and_uc: 1
         }
       }
     ]
