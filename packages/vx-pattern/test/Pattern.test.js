@@ -16,9 +16,7 @@ describe('<Pattern />', () => {
       </Pattern>
     );
     expect(console.error).toBeCalled();
-    expect(console.error.mock.calls[0][0]).toEqual(
-      'Warning: Failed prop type: The prop `id` is marked as required in `W`, but its value is `undefined`.\n    in W'
-    );
+    expect(console.error.mock.calls[0][0].startsWith('Warning: Failed prop type:')).toEqual(true);
   });
 
   test('it should require a width prop', () => {
@@ -28,9 +26,7 @@ describe('<Pattern />', () => {
       </Pattern>
     );
     expect(console.error).toBeCalled();
-    expect(console.error.mock.calls[0][0]).toEqual(
-      'Warning: Failed prop type: The prop `width` is marked as required in `W`, but its value is `undefined`.\n    in W'
-    );
+    expect(console.error.mock.calls[0][0].startsWith('Warning: Failed prop type:')).toEqual(true);
   });
 
   test('it should require a height prop', () => {
@@ -40,16 +36,12 @@ describe('<Pattern />', () => {
       </Pattern>
     );
     expect(console.error).toBeCalled();
-    expect(console.error.mock.calls[0][0]).toEqual(
-      'Warning: Failed prop type: The prop `height` is marked as required in `W`, but its value is `undefined`.\n    in W'
-    );
+    expect(console.error.mock.calls[0][0].startsWith('Warning: Failed prop type:')).toEqual(true);
   });
 
   test('it should require children', () => {
     const wrapper = mount(<Pattern id="test" width={4} />);
     expect(console.error).toBeCalled();
-    expect(console.error.mock.calls[0][0]).toEqual(
-      'Warning: Failed prop type: The prop `children` is marked as required in `W`, but its value is `undefined`.\n    in W'
-    );
+    expect(console.error.mock.calls[0][0].startsWith('Warning: Failed prop type:')).toEqual(true);
   });
 });
