@@ -12,8 +12,7 @@ const babelrc = {
           edge: 14,
           ie: 9,
           firefox: 52,
-          safari: 8,
-          and_uc: 1
+          safari: 8
         }
       }
     ]
