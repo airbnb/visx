@@ -1,5 +1,3 @@
-import React from 'react';
-import { shallow } from 'enzyme';
 import { scaleLinear } from '../../vx-scale';
 import { BoxPlot, computeStats } from '../src';
 

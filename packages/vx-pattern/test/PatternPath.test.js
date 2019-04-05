@@ -1,5 +1,3 @@
-import React from 'react';
-import { shallow, mount } from 'enzyme';
 import { PatternPath } from '../src';
 
 describe('<PatternPath />', () => {

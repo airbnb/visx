@@ -1,5 +1,3 @@
-import { mount } from 'enzyme';
-import React from 'react';
 import { Pattern } from '../';
 
 describe('<Pattern />', () => {

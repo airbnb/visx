@@ -1,7 +1,5 @@
 import { Line } from '@vx/shape';
 import { Text } from '@vx/text';
-import { shallow } from 'enzyme';
-import React from 'react';
 import { scaleBand, scaleLinear } from '../../vx-scale';
 import { Axis } from '../src';
 

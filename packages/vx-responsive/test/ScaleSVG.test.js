@@ -1,6 +1,4 @@
-import React from 'react';
 import { ScaleSVG } from '../src';
-import { shallow, mount } from 'enzyme';
 
 describe('<ScaleSVG />', () => {
   test('it should be defined', () => {

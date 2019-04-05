@@ -1,6 +1,4 @@
-import React from 'react';
 import { Point } from '@vx/point';
-import { shallow } from 'enzyme';
 import { LinePathAnnotation } from '../src';
 
 describe('<LinePathAnnotation />', () => {

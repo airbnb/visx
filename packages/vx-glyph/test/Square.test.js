@@ -1,5 +1,3 @@
-import React from 'react';
-import { shallow } from 'enzyme';
 import { GlyphSquare } from '../src';
 
 describe('<GlyphSquare />', () => {

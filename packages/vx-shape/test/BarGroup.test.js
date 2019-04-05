@@ -1,6 +1,4 @@
-import React from 'react';
 import { BarGroup } from '../src';
-import { shallow, mount } from 'enzyme';
 
 const data = [
   {

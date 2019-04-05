@@ -1,5 +1,3 @@
-import React from 'react';
-import { shallow, render } from 'enzyme';
 import { Glyph } from '../src';
 
 describe('<Glyph />', () => {

@@ -1,5 +1,3 @@
-import React from 'react';
-import { shallow } from 'enzyme';
 import { Axis, AxisLeft } from '../src';
 import { scaleLinear } from '../../vx-scale';
 

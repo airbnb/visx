@@ -1,5 +1,3 @@
-import React from 'react';
-import { shallow, mount } from 'enzyme';
 import { HeatmapCircle } from '../src';
 import { genBins } from '../../vx-mock-data';
 

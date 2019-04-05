@@ -1,5 +1,3 @@
-import React from 'react';
-import { shallow, mount } from 'enzyme';
 import { PatternCircles } from '../src';
 import { createCircles } from '../src/patterns/Circles';
 

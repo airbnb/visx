@@ -1,6 +1,4 @@
-import React from 'react';
 import { VoronoiPolygon } from '../src';
-import { shallow } from 'enzyme';
 
 describe('<VoronoiPolygon />', () => {
   const data = [1, 2];

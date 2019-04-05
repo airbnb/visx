@@ -1,5 +1,3 @@
-import React from 'react';
-import { shallow } from 'enzyme';
 import { hierarchy } from 'd3-hierarchy';
 import { Cluster } from '../src';
 

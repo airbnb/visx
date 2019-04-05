@@ -1,5 +1,3 @@
-import React from 'react';
-import { shallow } from 'enzyme';
 import { Polygon, getPoint, getPoints } from '../src';
 
 const PolygonWrapper = ({ ...restProps }) => shallow(<Polygon {...restProps} />);

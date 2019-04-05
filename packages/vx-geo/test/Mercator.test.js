@@ -1,4 +1,3 @@
-import React from 'react';
 import { Mercator } from '../src';
 
 describe('<Mercator />', () => {

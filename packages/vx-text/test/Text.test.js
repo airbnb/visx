@@ -1,4 +1,3 @@
-import React from 'react';
 import { Text, getStringWidth } from '../src';
 
 describe('getStringWidth()', () => {
