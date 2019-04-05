@@ -15,7 +15,7 @@ export function pathVerticalDiagonal({ source, target, x, y }) {
 }
 
 LinkVertical.propTypes = {
-  innerRef: PropTypes.func,
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   x: PropTypes.func,
   y: PropTypes.func,
   source: PropTypes.func,

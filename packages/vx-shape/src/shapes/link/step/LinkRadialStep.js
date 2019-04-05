@@ -32,7 +32,7 @@ export function pathRadialStep({ source, target, x, y }) {
 }
 
 LinkRadialStep.propTypes = {
-  innerRef: PropTypes.func,
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   x: PropTypes.func,
   y: PropTypes.func,
   source: PropTypes.func,

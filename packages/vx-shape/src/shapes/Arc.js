@@ -7,7 +7,7 @@ Arc.propTypes = {
   className: PropTypes.string,
   data: PropTypes.any,
   children: PropTypes.func,
-  innerRef: PropTypes.func,
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   centroid: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
   innerRadius: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
   outerRadius: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),

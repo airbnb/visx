@@ -10,12 +10,12 @@ Polygon.propTypes = {
   className: PropTypes.string,
   rotate: PropTypes.number,
   children: PropTypes.func,
-  innerRef: PropTypes.func,
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   center: PropTypes.shape({ x: PropTypes.number, y: PropTypes.number })
 };
 
 export const getPoint = ({ sides, size, center, rotate, side }) => {
-  const degrees = (360 / sides) * side - rotate;
+  const degrees = 360 / sides * side - rotate;
   const radians = degreesToRadians(degrees);
 
   return new Point({

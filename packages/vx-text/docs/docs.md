@@ -59,7 +59,7 @@ npm install --save @vx/text
 
 <a id="#Text__dy" name="Text__dy" href="#Text__dy">#</a> *Text*.**dy**&lt;union(number|string)&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table>
 
-<a id="#Text__innerRef" name="Text__innerRef" href="#Text__innerRef">#</a> *Text*.**innerRef**&lt;func&gt;  
+<a id="#Text__innerRef" name="Text__innerRef" href="#Text__innerRef">#</a> *Text*.**innerRef**&lt;union(func|object)&gt;  
 
 <a id="#Text__lineHeight" name="Text__lineHeight" href="#Text__lineHeight">#</a> *Text*.**lineHeight**&lt;union(number|string)&gt;  <table><tr><td><strong>Default</strong></td><td>'1em'</td></td></table>
 

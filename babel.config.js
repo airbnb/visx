@@ -10,10 +10,9 @@ const babelrc = {
           android: 30,
           chrome: 35,
           edge: 14,
-          explorer: 9,
+          ie: 9,
           firefox: 52,
-          safari: 8,
-          ucandroid: 1
+          safari: 8
         }
       }
     ]

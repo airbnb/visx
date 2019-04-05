@@ -38,7 +38,8 @@ Projection.propTypes = {
   fitSize: PropTypes.array,
   centroid: PropTypes.func,
   className: PropTypes.string,
-  children: PropTypes.func
+  children: PropTypes.func,
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
 };
 
 /**
@@ -100,12 +101,10 @@ export default function Projection({
   return (
     <Group className="vx-geo">
       {graticule && !graticule.foreground && <Graticule graticule={g => path(g)} {...graticule} />}
-      {graticuleLines && !graticuleLines.foreground && (
-        <Graticule lines={g => path(g)} {...graticuleLines} />
-      )}
-      {graticuleOutline && !graticuleOutline.foreground && (
-        <Graticule outline={g => path(g)} {...graticuleOutline} />
-      )}
+      {graticuleLines &&
+        !graticuleLines.foreground && <Graticule lines={g => path(g)} {...graticuleLines} />}
+      {graticuleOutline &&
+        !graticuleOutline.foreground && <Graticule outline={g => path(g)} {...graticuleOutline} />}
 
       {features.map((feature, i) => {
         return (
@@ -124,12 +123,10 @@ export default function Projection({
       {projectionFunc && projectionFunc(currProjection)}
 
       {graticule && graticule.foreground && <Graticule graticule={g => path(g)} {...graticule} />}
-      {graticuleLines && graticuleLines.foreground && (
-        <Graticule lines={g => path(g)} {...graticuleLines} />
-      )}
-      {graticuleOutline && graticuleOutline.foreground && (
-        <Graticule outline={g => path(g)} {...graticuleOutline} />
-      )}
+      {graticuleLines &&
+        graticuleLines.foreground && <Graticule lines={g => path(g)} {...graticuleLines} />}
+      {graticuleOutline &&
+        graticuleOutline.foreground && <Graticule outline={g => path(g)} {...graticuleOutline} />}
     </Group>
   );
 }

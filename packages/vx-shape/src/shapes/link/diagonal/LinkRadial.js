@@ -15,7 +15,7 @@ export function pathRadialDiagonal({ source, target, angle, radius }) {
 }
 
 LinkRadial.propTypes = {
-  innerRef: PropTypes.func,
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   angle: PropTypes.func,
   radius: PropTypes.func,
   source: PropTypes.func,

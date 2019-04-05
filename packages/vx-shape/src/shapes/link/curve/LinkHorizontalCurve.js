@@ -27,7 +27,7 @@ export function pathHorizontalCurve({ source, target, x, y, percent }) {
 }
 
 LinkHorizontalCurve.propTypes = {
-  innerRef: PropTypes.func,
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   percent: PropTypes.number,
   x: PropTypes.func,
   y: PropTypes.func,

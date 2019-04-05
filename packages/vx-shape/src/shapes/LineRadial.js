@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 import { radialLine } from 'd3-shape';
 
 LineRadial.propTypes = {
-  innerRef: PropTypes.func,
   className: PropTypes.string,
   data: PropTypes.any,
   curve: PropTypes.func,
   angle: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
-  radius: PropTypes.oneOfType([PropTypes.func, PropTypes.number])
+  radius: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
 };
 
 export default function LineRadial({

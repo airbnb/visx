@@ -44,6 +44,7 @@
 <li><a href="#graticule-">Graticule</a></li>
 <li><a href="#albers-">Albers</a></li>
 <li><a href="#albersusa-">AlbersUsa</a></li>
+<li><a href="#customprojection-">CustomProjection</a></li>
 <li><a href="#equalearth-">EqualEarth</a></li>
 <li><a href="#mercator-">Mercator</a></li>
 <li><a href="#naturalearth-">NaturalEarth</a></li>
@@ -65,6 +66,9 @@
 <h3 id="albersusa-">&lt;AlbersUsa /&gt;</h3>
 
 <p>All props pass through to <code>&lt;Projection projection=&quot;albersUsa&quot; {...props} /&gt;</code></p>
+<h3 id="customprojection-">&lt;CustomProjection /&gt;</h3>
+
+<p>All props pass through to <code>&lt;Projection projection={customProjection} {...props} /&gt;</code></p>
 <h3 id="equalearth-">&lt;EqualEarth /&gt;</h3>
 
 <p>All props pass through to <code>&lt;Projection projection=&quot;equalEarth&quot; {...props} /&gt;</code></p>
@@ -89,8 +93,9 @@
 <p><a id="#Projection__data" name="Projection__data" href="#Projection__data">#</a> <em>Projection</em>.<strong>data</strong>&lt;array&gt; <code>required</code> </p>
 <p><a id="#Projection__fitExtent" name="Projection__fitExtent" href="#Projection__fitExtent">#</a> <em>Projection</em>.<strong>fitExtent</strong>&lt;array&gt;  </p>
 <p><a id="#Projection__fitSize" name="Projection__fitSize" href="#Projection__fitSize">#</a> <em>Projection</em>.<strong>fitSize</strong>&lt;array&gt;  </p>
+<p><a id="#Projection__innerRef" name="Projection__innerRef" href="#Projection__innerRef">#</a> <em>Projection</em>.<strong>innerRef</strong>&lt;union(func|object)&gt;  </p>
 <p><a id="#Projection__precision" name="Projection__precision" href="#Projection__precision">#</a> <em>Projection</em>.<strong>precision</strong>&lt;number&gt;  </p>
-<p><a id="#Projection__projection" name="Projection__projection" href="#Projection__projection">#</a> <em>Projection</em>.<strong>projection</strong>&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>&#39;mercator&#39;</td></td></table></p>
+<p><a id="#Projection__projection" name="Projection__projection" href="#Projection__projection">#</a> <em>Projection</em>.<strong>projection</strong>&lt;union(string|func)&gt;  <table><tr><td><strong>Default</strong></td><td>&#39;mercator&#39;</td></td></table></p>
 <p><a id="#Projection__projectionFunc" name="Projection__projectionFunc" href="#Projection__projectionFunc">#</a> <em>Projection</em>.<strong>projectionFunc</strong>&lt;func&gt;  </p>
 <p><a id="#Projection__rotate" name="Projection__rotate" href="#Projection__rotate">#</a> <em>Projection</em>.<strong>rotate</strong>&lt;array&gt;  </p>
 <p><a id="#Projection__scale" name="Projection__scale" href="#Projection__scale">#</a> <em>Projection</em>.<strong>scale</strong>&lt;number&gt;  </p>

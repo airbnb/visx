@@ -24,7 +24,7 @@ export function pathVerticalStep({ source, target, x, y, percent }) {
 }
 
 LinkVerticalStep.propTypes = {
-  innerRef: PropTypes.func,
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   percent: PropTypes.number,
   x: PropTypes.func,
   y: PropTypes.func,

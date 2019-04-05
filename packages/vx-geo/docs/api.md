@@ -20,6 +20,11 @@ All props pass through to `<Projection projection="albers" {...props} />`
 All props pass through to `<Projection projection="albersUsa" {...props} />`
 
 
+<h3 id="customprojection-">&lt;CustomProjection /&gt;</h3>
+
+All props pass through to `<Projection projection={customProjection} {...props} />`
+
+
 <h3 id="equalearth-">&lt;EqualEarth /&gt;</h3>
 
 All props pass through to `<Projection projection="equalEarth" {...props} />`
@@ -62,9 +67,11 @@ Component for all projections.
 
 <a id="#Projection__fitSize" name="Projection__fitSize" href="#Projection__fitSize">#</a> *Projection*.**fitSize**&lt;array&gt;  
 
+<a id="#Projection__innerRef" name="Projection__innerRef" href="#Projection__innerRef">#</a> *Projection*.**innerRef**&lt;union(func|object)&gt;  
+
 <a id="#Projection__precision" name="Projection__precision" href="#Projection__precision">#</a> *Projection*.**precision**&lt;number&gt;  
 
-<a id="#Projection__projection" name="Projection__projection" href="#Projection__projection">#</a> *Projection*.**projection**&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>'mercator'</td></td></table>
+<a id="#Projection__projection" name="Projection__projection" href="#Projection__projection">#</a> *Projection*.**projection**&lt;union(string|func)&gt;  <table><tr><td><strong>Default</strong></td><td>'mercator'</td></td></table>
 
 <a id="#Projection__projectionFunc" name="Projection__projectionFunc" href="#Projection__projectionFunc">#</a> *Projection*.**projectionFunc**&lt;func&gt;  
 

@@ -22,7 +22,7 @@ export function pathHorizontalLine({ source, target, x, y }) {
 }
 
 LinkHorizontalLine.propTypes = {
-  innerRef: PropTypes.func,
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   path: PropTypes.func,
   x: PropTypes.func,
   y: PropTypes.func,

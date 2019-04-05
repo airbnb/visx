@@ -3,8 +3,8 @@ import cx from 'classnames';
 import PropTypes from 'prop-types';
 
 Circle.propTypes = {
-  innerRef: PropTypes.func,
-  className: PropTypes.string
+  className: PropTypes.string,
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
 };
 
 export default function Circle({ className, innerRef, ...restProps }) {
