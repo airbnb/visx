@@ -142,7 +142,7 @@ npm install --save @vx/responsive
 
 <a id="#ScaleSVG__height" name="ScaleSVG__height" href="#ScaleSVG__height">#</a> *ScaleSVG*.**height**&lt;union(number|string)&gt;  
 
-<a id="#ScaleSVG__innerRef" name="ScaleSVG__innerRef" href="#ScaleSVG__innerRef">#</a> *ScaleSVG*.**innerRef**&lt;func&gt;  
+<a id="#ScaleSVG__innerRef" name="ScaleSVG__innerRef" href="#ScaleSVG__innerRef">#</a> *ScaleSVG*.**innerRef**&lt;union(func|object)&gt;  
 
 <a id="#ScaleSVG__preserveAspectRatio" name="ScaleSVG__preserveAspectRatio" href="#ScaleSVG__preserveAspectRatio">#</a> *ScaleSVG*.**preserveAspectRatio**&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>'xMinYMin meet'</td></td></table>
 
