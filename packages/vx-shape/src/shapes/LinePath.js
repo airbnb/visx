@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import { line } from 'd3-shape';
 
 LinePath.propTypes = {
-  innerRef: PropTypes.func,
   data: PropTypes.array,
   curve: PropTypes.func,
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   defined: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
   x: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
   y: PropTypes.oneOfType([PropTypes.func, PropTypes.number])

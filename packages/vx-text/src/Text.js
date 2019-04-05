@@ -158,7 +158,7 @@ Text.propTypes = {
   textAnchor: PropTypes.oneOf(['start', 'middle', 'end', 'inherit']),
   verticalAnchor: PropTypes.oneOf(['start', 'middle', 'end']),
   style: PropTypes.object,
-  innerRef: PropTypes.func,
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   x: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   y: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   dx: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),

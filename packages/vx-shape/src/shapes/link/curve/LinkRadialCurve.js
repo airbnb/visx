@@ -37,7 +37,7 @@ export function pathRadialCurve({ source, target, x, y, percent }) {
 }
 
 LinkRadialCurve.propTypes = {
-  innerRef: PropTypes.func,
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   percent: PropTypes.number,
   x: PropTypes.func,
   y: PropTypes.func,
