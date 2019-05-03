@@ -41,6 +41,20 @@ class Zoom extends React.Component {
     this.toStringInvert = this.toStringInvert.bind(this);
   }
 
+  componentDidMount() {
+    const { passive } = this.props;
+    if (this.containerRef && !passive) {
+      this.containerRef.addEventListener('wheel', this.handleWheel, { passive: false });
+    }
+  }
+
+  componentWillUnmount() {
+    const { passive } = this.props;
+    if (this.containerRef && !passive) {
+      this.containerRef.removeEventListener('wheel', this.handleWheel, { passive: false });
+    }
+  }
+
   applyToPoint({ x, y }) {
     const { transformMatrix } = this.state;
     return applyMatrixToPoint(transformMatrix, { x, y });
@@ -146,7 +160,8 @@ class Zoom extends React.Component {
   }
 
   handleWheel(event) {
-    event.preventDefault();
+    const { passive } = this.props;
+    if (!passive) event.preventDefault();
     const { wheelDelta } = this.props;
     const point = localPoint(event);
     const { scaleX, scaleY } = wheelDelta(event);
@@ -174,7 +189,7 @@ class Zoom extends React.Component {
   }
 
   render() {
-    const { children } = this.props;
+    const { passive, children, style, className } = this.props;
     const zoom = {
       ...this.state,
       center: this.center,
@@ -196,6 +211,19 @@ class Zoom extends React.Component {
       applyToPoint: this.applyToPoint,
       applyInverseToPoint: this.applyInverseToPoint
     };
+    if (!passive) {
+      return (
+        <div
+          ref={c => {
+            this.containerRef = c;
+          }}
+          style={style}
+          className={className}
+        >
+          {children(zoom)}
+        </div>
+      );
+    }
     return children(zoom);
   }
 }
@@ -249,10 +277,23 @@ Zoom.propTypes = {
     translateY: PropTypes.number,
     skewX: PropTypes.number,
     skewY: PropTypes.number
-  })
+  }),
+  /**
+   * By default passive is `false`. This will wrap <Zoom> children in a <div> and add an active wheel
+   * event listener (handleWheel). `handleWheel()` will call `event.preventDefault()` before other
+   * execution. This prevents an outer parent from scrolling when the mouse wheel is used to zoom.
+   *
+   * When passive is `true` it is required to add `<MyComponent onWheel={zoom.handleWheel} />` to handle
+   * wheel events. **Note:** By default you do not need to add `<MyComponent onWheel={zoom.handleWheel} />`.
+   * This is only necessary when `<Zoom passive={true} />`.
+   */
+  passive: PropTypes.bool,
+  style: PropTypes.object,
+  className: PropTypes.string
 };
 
 Zoom.defaultProps = {
+  passive: false,
   scaleXMin: 0,
   scaleXMax: Infinity,
   scaleYMin: 0,
@@ -267,7 +308,9 @@ Zoom.defaultProps = {
   },
   wheelDelta: event => {
     return -event.deltaY > 0 ? { scaleX: 1.1, scaleY: 1.1 } : { scaleX: 0.9, scaleY: 0.9 };
-  }
+  },
+  style: undefined,
+  className: undefined
 };
 
 export default Zoom;
