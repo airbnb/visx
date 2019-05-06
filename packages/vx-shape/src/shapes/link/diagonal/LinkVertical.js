@@ -36,7 +36,7 @@ export default function LinkVertical({
   ...restProps
 }) {
   path = path || pathVerticalDiagonal({ source, target, x, y });
-  if (children) return children({ path });
+  if (typeof children === 'function') return children({ path });
   return (
     <path
       ref={innerRef}

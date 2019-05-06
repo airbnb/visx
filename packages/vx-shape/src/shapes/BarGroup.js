@@ -167,7 +167,7 @@ export default function BarGroup({
     };
   });
 
-  if (children) return children(barGroups);
+  if (typeof children === 'function') return children(barGroups);
 
   return (
     <Group className={cx('vx-bar-group', className)} top={top} left={left}>

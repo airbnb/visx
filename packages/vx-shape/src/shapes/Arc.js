@@ -42,6 +42,6 @@ export default function Arc({
   if (endAngle) arc.endAngle(endAngle);
   if (padAngle) arc.padAngle(padAngle);
   if (padRadius) arc.padRadius(padRadius);
-  if (children) return children({ path: arc });
+  if (typeof children === 'function') return children({ path: arc });
   return <path ref={innerRef} className={cx('vx-arc', className)} d={arc(data)} {...restProps} />;
 }

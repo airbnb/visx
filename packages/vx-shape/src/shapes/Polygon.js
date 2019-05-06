@@ -15,7 +15,7 @@ Polygon.propTypes = {
 };
 
 export const getPoint = ({ sides, size, center, rotate, side }) => {
-  const degrees = 360 / sides * side - rotate;
+  const degrees = (360 / sides) * side - rotate;
   const radians = degreesToRadians(degrees);
 
   return new Point({
@@ -53,7 +53,7 @@ export default function Polygon({
     rotate
   }).map(p => p.toArray());
 
-  if (children) return children({ points });
+  if (typeof children === 'function') return children({ points });
 
   return (
     <polygon

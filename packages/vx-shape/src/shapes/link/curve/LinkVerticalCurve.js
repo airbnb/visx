@@ -51,7 +51,7 @@ export default function LinkVerticalCurve({
   ...restProps
 }) {
   path = path || pathVerticalCurve({ source, target, x, y, percent });
-  if (children) return children({ path });
+  if (typeof children === 'function') return children({ path });
   return (
     <path
       ref={innerRef}

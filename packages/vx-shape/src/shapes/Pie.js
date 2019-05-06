@@ -58,7 +58,7 @@ export default function Pie({
 
   const arcs = pie(data);
 
-  if (children) return children({ arcs, path, pie });
+  if (typeof children === 'function') return children({ arcs, path, pie });
 
   return (
     <Group className="vx-pie-arcs-group" top={top} left={left}>

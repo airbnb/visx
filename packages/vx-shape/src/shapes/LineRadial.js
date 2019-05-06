@@ -29,7 +29,7 @@ export default function LineRadial({
   if (radius) path.radius(radius);
   if (defined) path.defined(defined);
   if (curve) path.curve(curve);
-  if (children) return children({ path });
+  if (typeof children === 'function') return children({ path });
   return (
     <path
       ref={innerRef}

@@ -61,7 +61,7 @@ export default function LinkRadialCurve({
   ...restProps
 }) {
   path = path || pathRadialCurve({ source, target, x, y, percent });
-  if (children) return children({ path });
+  if (typeof children === 'function') return children({ path });
   return (
     <path
       ref={innerRef}

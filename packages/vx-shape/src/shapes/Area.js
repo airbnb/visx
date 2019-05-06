@@ -42,7 +42,7 @@ export default function Area({
   if (y1) path.y1(y1);
   if (defined) path.defined(defined);
   if (curve) path.curve(curve);
-  if (children) return children({ path });
+  if (typeof children === 'function') return children({ path });
   return (
     <g>
       <path ref={innerRef} className={cx('vx-area', className)} d={path(data)} {...restProps} />

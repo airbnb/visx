@@ -49,7 +49,7 @@ export default function LinkRadialStep({
   ...restProps
 }) {
   path = path || pathRadialLine({ source, target, x, y });
-  if (children) return children({ path });
+  if (typeof children === 'function') return children({ path });
   return (
     <path
       ref={innerRef}

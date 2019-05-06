@@ -64,7 +64,7 @@ export default function Stack({
 
   const stacks = stack(data);
 
-  if (children) return children({ stacks, path, stack });
+  if (typeof children === 'function') return children({ stacks, path, stack });
 
   return (
     <Group top={top} left={left}>

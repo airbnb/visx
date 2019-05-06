@@ -37,7 +37,7 @@ export default function LinkRadial({
   ...restProps
 }) {
   path = path || pathRadialDiagonal({ source, target, angle, radius });
-  if (children) return children({ path });
+  if (typeof children === 'function') return children({ path });
   return (
     <path
       ref={innerRef}

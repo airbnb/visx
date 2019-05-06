@@ -44,7 +44,7 @@ export default function LinkVerticalLine({
   ...restProps
 }) {
   path = path || pathVerticalLine({ source, target, x, y });
-  if (children) return children({ path });
+  if (typeof children === 'function') return children({ path });
   return (
     <path
       ref={innerRef}

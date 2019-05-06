@@ -44,7 +44,7 @@ export default function LinkHorizontalLine({
   ...restProps
 }) {
   path = path || pathHorizontalLine({ source, target, x, y });
-  if (children) return children({ path });
+  if (typeof children === 'function') return children({ path });
   return (
     <path
       ref={innerRef}
