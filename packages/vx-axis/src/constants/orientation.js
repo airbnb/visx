@@ -2,5 +2,6 @@ export default {
   top: 'top',
   left: 'left',
   right: 'right',
-  bottom: 'bottom'
+  bottom: 'bottom',
+  center: 'center'
 };

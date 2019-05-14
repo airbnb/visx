@@ -1,4 +1,7 @@
 import React from 'react';
+import { timeFormat } from 'd3-time-format';
+
+import { AxisRadial } from '@vx/axis';
 import { Group } from '@vx/group';
 import { LineRadial } from '@vx/shape';
 import { scaleTime, scaleLog } from '@vx/scale';
@@ -10,12 +13,15 @@ const green = '#e5fd3d';
 const blue = '#aeeef8';
 const darkgreen = '#dff84d';
 const bg = '#744cca';
+const bgdark = '#5430a1';
 
 // utils
 const extent = (data, value = d => d) => [
   Math.min(...data.map(value)),
   Math.max(...data.map(value))
 ];
+
+const formatDate = timeFormat('%Y');
 
 // accessors
 const date = d => new Date(d.date);
@@ -39,16 +45,26 @@ const lastPoint = appleStock[appleStock.length - 1];
 export default ({ width, height }) => {
   if (width < 10) return null;
 
-  yScale.range([0, height / 2 - 20]);
+  const visRadius = height / 2 - 20;
+  yScale.range([0, visRadius]);
 
   return (
     <svg width={width} height={height}>
       <LinearGradient from={green} to={blue} id="line-gradient" />
       <rect width={width} height={height} fill={bg} rx={14} />
       <Group top={height / 2} left={width / 2}>
+        <AxisRadial
+          scale={xScale}
+          radius={visRadius}
+          numTicks={15}
+          stroke={bgdark}
+          tickStroke={bgdark}
+          tickFormat={val => (val.getUTCMonth() !== 0 ? '' : formatDate(val))}
+          tickLabelProps={() => ({ fill: blue, fontSize: 10 })}
+        />
         {yScale.ticks().map((tick, i) => {
           const y = yScale(tick);
-          const opacity = 1 / (i + 1) - 1 / i * 0.2;
+          const opacity = 1 / (i + 1) - (1 / i) * 0.2;
           return (
             <g key={`radial-grid-${i}`}>
               <circle
@@ -61,7 +77,7 @@ export default ({ width, height }) => {
               />
               <text
                 y={-y}
-                dy={'-.33em'}
+                dy="-.33em"
                 fontSize={8}
                 fill={blue}
                 fillOpacity={0.6}
@@ -84,7 +100,7 @@ export default ({ width, height }) => {
           curve={curveBasisOpen}
         />
         {[firstPoint, lastPoint].map((d, i) => {
-          const cx = xScale(date(d)) * Math.PI / 180;
+          const cx = (xScale(date(d)) * Math.PI) / 180;
           const cy = -yScale(close(d));
           return <circle key={`line-cap-${i}`} cx={cx} cy={cy} fill={darkgreen} r={3} />;
         })}
