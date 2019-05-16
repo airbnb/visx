@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.189](#v00189)
 - [v0.0.188](#v00188)
 - [v0.0.187](#v00187)
 - [v0.0.186](#v00186)
@@ -79,6 +80,99 @@
 </details>
 
 ------
+
+# v0.0.189
+
+#### :boom: Breaking Changes
+
+- [shape] `<Arc />` and `<Pie pieValue={} />` props now check for `!== undefined`. Before `0` wouldn't set the prop to `0` because `if (0)` is `false`. This is only a breaking change if you were passing `0` before and happy with `<Arc />` treating that as `undefined` and using d3.arc() defaults. [#464](https://github.com/hshoff/vx/pull/464)
+- [zoom] make wheel event active by default. fixes Chrome 73 scroll intervention warning. [#456](https://github.com/hshoff/vx/pull/456)
+  + To keep the default behavior before Chrome 73 and remove console warnings in Chrome 73, **remove**: 
+    ```diff
+    <MyComponent
+    - onWheel={zoom.handleWheel}
+    />
+    ```
+  + To make the onWheel events passive, **add**:
+    ```diff
+    <Zoom
+    + passive={true}
+    >
+      {zoom => {
+        return (
+          <MyComponent
+    +      onWheel={zoom.handleWheel}
+          /> 
+        );
+      }}
+    </Zoom>
+    ```
+
+#### :rocket: Enhancements
+
+- [responsive][shape][text][geo] update `innerRef` propType to include PropType.object. [#446](https://github.com/hshoff/vx/pull/446)
+
+#### :bug: Bug Fix
+
+- [text] move Babel dependencies to dev only. [#461](https://github.com/hshoff/vx/pull/461)
+- [shape] `<Arc />` now respects `0` as an allowed prop value. [#464](https://github.com/hshoff/vx/pull/464)
+- [shape] `<Pie />`  `pieValue` now respects `0` as an allowed prop value. [#464](https://github.com/hshoff/vx/pull/464)
+
+#### :memo: Documentation
+
+- [docs] update docs. [#446](https://github.com/hshoff/vx/pull/446)
+- [glyph] fixes outdated `@vx/glyph` examples in the readme docs. [#454](https://github.com/hshoff/vx/pull/454)
+
+#### :house: Internal
+
+- [internal] fix jest code coverage, update jest, move to `babel.config.js` + `jest.config.js`. [#439](https://github.com/hshoff/vx/pull/439)
+- [internal] babel preset env target `explorer` => `ie`. [#446](https://github.com/hshoff/vx/pull/446)
+- [internal] babel preset env target remove `ucandroid`. [#446](https://github.com/hshoff/vx/pull/446)
+- [shape] add more `<Arc />` tests. [#464](https://github.com/hshoff/vx/pull/464)
+- [shape] convert `Arc.test` from `CRLF` => `LF`. [#464](https://github.com/hshoff/vx/pull/464)
+
+#### :trophy: Contributors
+
+- [hshoff](https://github.com/hshoff)
+- [milesj](https://github.com/milesj)
+
+```
+Changes:
+ - @vx/annotation: 0.0.184 => 0.0.189
+ - @vx/axis: 0.0.184 => 0.0.189
+ - @vx/bounds: 0.0.182 => 0.0.189
+ - @vx/boxplot: 0.0.183 => 0.0.189
+ - @vx/brush: 0.0.182 => 0.0.189
+ - @vx/chord: 0.0.183 => 0.0.189
+ - @vx/clip-path: 0.0.183 => 0.0.189
+ - @vx/curve: 0.0.182 => 0.0.189
+ - @vx/demo: 0.0.188 => 0.0.189
+ - @vx/drag: 0.0.183 => 0.0.189
+ - @vx/event: 0.0.182 => 0.0.189
+ - @vx/geo: 0.0.187 => 0.0.189
+ - @vx/glyph: 0.0.183 => 0.0.189
+ - @vx/gradient: 0.0.183 => 0.0.189
+ - @vx/grid: 0.0.184 => 0.0.189
+ - @vx/group: 0.0.183 => 0.0.189
+ - @vx/heatmap: 0.0.183 => 0.0.189
+ - @vx/hierarchy: 0.0.183 => 0.0.189
+ - @vx/legend: 0.0.183 => 0.0.189
+ - @vx/marker: 0.0.184 => 0.0.189
+ - @vx/mock-data: 0.0.185 => 0.0.189
+ - @vx/network: 0.0.183 => 0.0.189
+ - @vx/pattern: 0.0.183 => 0.0.189
+ - @vx/point: 0.0.182 => 0.0.189
+ - @vx/responsive: 0.0.188 => 0.0.189
+ - @vx/scale: 0.0.182 => 0.0.189
+ - @vx/shape: 0.0.184 => 0.0.189
+ - @vx/stats: 0.0.183 => 0.0.189
+ - @vx/text: 0.0.183 => 0.0.189
+ - @vx/threshold: 0.0.184 => 0.0.189
+ - @vx/tooltip: 0.0.184 => 0.0.189
+ - @vx/voronoi: 0.0.183 => 0.0.189
+ - @vx/vx: 0.0.188 => 0.0.189
+ - @vx/zoom: 0.0.185 => 0.0.189
+```
 
 # v0.0.188
 
