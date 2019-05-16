@@ -87,18 +87,102 @@ describe('<Arc />', () => {
     expect(args.path.outerRadius()()).toBe(42);
   });
 
-  test('it should take an cornerRadius number prop', () => {
+  test('it should take a cornerRadius number prop', () => {
     const fn = jest.fn();
     const wrapper = ArcChildren({ children: fn, cornerRadius: 42 });
     const args = fn.mock.calls[0][0];
     expect(args.path.cornerRadius()()).toBe(42);
   });
 
-  test('it should take an cornerRadius fn prop', () => {
+  test('it should take a cornerRadius fn prop', () => {
     const fn = jest.fn();
     const wrapper = ArcChildren({ children: fn, cornerRadius: () => 42 });
     const args = fn.mock.calls[0][0];
     expect(args.path.cornerRadius()()).toBe(42);
+  });
+
+  test('it should take a startAngle number prop', () => {
+    const fn = jest.fn();
+    const wrapper = ArcChildren({ children: fn, startAngle: 42 });
+    const args = fn.mock.calls[0][0];
+    expect(args.path.startAngle()()).toBe(42);
+  });
+
+  test('it should take a startAngle 0 prop', () => {
+    const fn = jest.fn();
+    const wrapper = ArcChildren({ children: fn, startAngle: 0 });
+    const args = fn.mock.calls[0][0];
+    expect(args.path.startAngle()()).toBe(0);
+  });
+
+  test('it should take a startAngle fn prop', () => {
+    const fn = jest.fn();
+    const wrapper = ArcChildren({ children: fn, startAngle: () => 42 });
+    const args = fn.mock.calls[0][0];
+    expect(args.path.startAngle()()).toBe(42);
+  });
+
+  test('it should take a endAngle number prop', () => {
+    const fn = jest.fn();
+    const wrapper = ArcChildren({ children: fn, endAngle: 42 });
+    const args = fn.mock.calls[0][0];
+    expect(args.path.endAngle()()).toBe(42);
+  });
+
+  test('it should take a endAngle 0 prop', () => {
+    const fn = jest.fn();
+    const wrapper = ArcChildren({ children: fn, endAngle: 0 });
+    const args = fn.mock.calls[0][0];
+    expect(args.path.endAngle()()).toBe(0);
+  });
+
+  test('it should take a endAngle fn prop', () => {
+    const fn = jest.fn();
+    const wrapper = ArcChildren({ children: fn, endAngle: () => 42 });
+    const args = fn.mock.calls[0][0];
+    expect(args.path.endAngle()()).toBe(42);
+  });
+
+  test('it should take a padAngle number prop', () => {
+    const fn = jest.fn();
+    const wrapper = ArcChildren({ children: fn, padAngle: 42 });
+    const args = fn.mock.calls[0][0];
+    expect(args.path.padAngle()()).toBe(42);
+  });
+
+  test('it should take a padAngle 0 prop', () => {
+    const fn = jest.fn();
+    const wrapper = ArcChildren({ children: fn, padAngle: 0 });
+    const args = fn.mock.calls[0][0];
+    expect(args.path.padAngle()()).toBe(0);
+  });
+
+  test('it should take a padAngle fn prop', () => {
+    const fn = jest.fn();
+    const wrapper = ArcChildren({ children: fn, padAngle: () => 42 });
+    const args = fn.mock.calls[0][0];
+    expect(args.path.padAngle()()).toBe(42);
+  });
+
+  test('it should take a padRadius number prop', () => {
+    const fn = jest.fn();
+    const wrapper = ArcChildren({ children: fn, padRadius: 42 });
+    const args = fn.mock.calls[0][0];
+    expect(args.path.padRadius()()).toBe(42);
+  });
+
+  test('it should take a padRadius 0 prop', () => {
+    const fn = jest.fn();
+    const wrapper = ArcChildren({ children: fn, padRadius: 0 });
+    const args = fn.mock.calls[0][0];
+    expect(args.path.padRadius()()).toBe(0);
+  });
+
+  test('it should take a padRadius fn prop', () => {
+    const fn = jest.fn();
+    const wrapper = ArcChildren({ children: fn, padRadius: () => 42 });
+    const args = fn.mock.calls[0][0];
+    expect(args.path.padRadius()()).toBe(42);
   });
 
   test('calling path with data returns a string', () => {

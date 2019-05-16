@@ -51,7 +51,7 @@ export default function Pie({
   const pie = d3Pie();
   if (pieSort !== undefined) pie.sort(pieSort);
   if (pieSortValues !== undefined) pie.sortValues(pieSortValues);
-  if (pieValue) pie.value(pieValue);
+  if (pieValue !== undefined) pie.value(pieValue);
   if (padAngle != null) pie.padAngle(padAngle);
   if (startAngle != null) pie.startAngle(startAngle);
   if (endAngle != null) pie.endAngle(endAngle);
