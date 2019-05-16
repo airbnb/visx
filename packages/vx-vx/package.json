@@ -1,16 +1,18 @@
 {
   "name": "@vx/vx",
-  "version": "0.0.188",
+  "version": "0.0.189",
   "description": "One stop install for all vx packages",
   "sideEffects": false,
   "main": "dist/vx-vx.umd.js",
   "module": "dist/vx-vx.es.js",
-  "files": ["dist", "build"],
+  "files": [
+    "dist",
+    "build"
+  ],
   "scripts": {
     "build": "npm run build:babel && npm run build:dist",
     "build:dist": "rm -rf dist && mkdir dist && rollup -c",
-    "build:babel":
-      "rm -rf build && mkdir build && babel src --out-dir build --ignore node_modules/ --presets @babel/preset-react,@babel/preset-env",
+    "build:babel": "rm -rf build && mkdir build && babel src --out-dir build --ignore node_modules/ --presets @babel/preset-react,@babel/preset-env",
     "prepublish": "npm run build",
     "test": "jest"
   },
@@ -18,7 +20,13 @@
     "type": "git",
     "url": "git+https://github.com/hshoff/vx.git"
   },
-  "keywords": ["vx", "react", "d3", "visualizations", "charts"],
+  "keywords": [
+    "vx",
+    "react",
+    "d3",
+    "visualizations",
+    "charts"
+  ],
   "author": "@hshoff",
   "license": "MIT",
   "bugs": {
@@ -71,37 +79,40 @@
     "rollup-plugin-uglify": "^4.0.0"
   },
   "dependencies": {
-    "@vx/annotation": "0.0.184",
-    "@vx/axis": "0.0.184",
-    "@vx/bounds": "0.0.182",
-    "@vx/boxplot": "0.0.183",
-    "@vx/brush": "0.0.182",
-    "@vx/clip-path": "0.0.183",
-    "@vx/curve": "0.0.182",
-    "@vx/drag": "0.0.183",
-    "@vx/event": "0.0.182",
-    "@vx/geo": "0.0.187",
-    "@vx/glyph": "0.0.183",
-    "@vx/gradient": "0.0.183",
-    "@vx/grid": "0.0.184",
-    "@vx/group": "0.0.183",
-    "@vx/heatmap": "0.0.183",
-    "@vx/hierarchy": "0.0.183",
-    "@vx/legend": "0.0.183",
-    "@vx/marker": "0.0.184",
-    "@vx/mock-data": "0.0.185",
-    "@vx/network": "0.0.183",
-    "@vx/pattern": "0.0.183",
-    "@vx/point": "0.0.182",
-    "@vx/responsive": "0.0.188",
-    "@vx/scale": "0.0.182",
-    "@vx/shape": "0.0.184",
-    "@vx/text": "0.0.183",
-    "@vx/tooltip": "0.0.184",
-    "@vx/voronoi": "0.0.183",
-    "@vx/zoom": "0.0.185"
+    "@vx/annotation": "0.0.189",
+    "@vx/axis": "0.0.189",
+    "@vx/bounds": "0.0.189",
+    "@vx/boxplot": "0.0.189",
+    "@vx/brush": "0.0.189",
+    "@vx/clip-path": "0.0.189",
+    "@vx/curve": "0.0.189",
+    "@vx/drag": "0.0.189",
+    "@vx/event": "0.0.189",
+    "@vx/geo": "0.0.189",
+    "@vx/glyph": "0.0.189",
+    "@vx/gradient": "0.0.189",
+    "@vx/grid": "0.0.189",
+    "@vx/group": "0.0.189",
+    "@vx/heatmap": "0.0.189",
+    "@vx/hierarchy": "0.0.189",
+    "@vx/legend": "0.0.189",
+    "@vx/marker": "0.0.189",
+    "@vx/mock-data": "0.0.189",
+    "@vx/network": "0.0.189",
+    "@vx/pattern": "0.0.189",
+    "@vx/point": "0.0.189",
+    "@vx/responsive": "0.0.189",
+    "@vx/scale": "0.0.189",
+    "@vx/shape": "0.0.189",
+    "@vx/text": "0.0.189",
+    "@vx/tooltip": "0.0.189",
+    "@vx/voronoi": "0.0.189",
+    "@vx/zoom": "0.0.189"
   },
   "jest": {
-    "setupFiles": ["raf/polyfill", "<rootDir>/test/enzyme-setup.js"]
+    "setupFiles": [
+      "raf/polyfill",
+      "<rootDir>/test/enzyme-setup.js"
+    ]
   }
 }

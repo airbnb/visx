@@ -1,26 +1,34 @@
 {
   "name": "@vx/geo",
-  "version": "0.0.187",
+  "version": "0.0.189",
   "description": "vx geo",
   "sideEffects": false,
   "main": "dist/vx-geo.umd.js",
   "module": "dist/vx-geo.es.js",
-  "files": ["dist", "build"],
+  "files": [
+    "dist",
+    "build"
+  ],
   "scripts": {
     "build": "npm run build:babel && npm run build:dist",
     "build:dist": "rm -rf dist && mkdir dist && rollup -c",
-    "build:babel":
-      "rm -rf build && mkdir build && babel src --out-dir build --ignore node_modules/ --presets @babel/preset-react,@babel/preset-env",
+    "build:babel": "rm -rf build && mkdir build && babel src --out-dir build --ignore node_modules/ --presets @babel/preset-react,@babel/preset-env",
     "prepublish": "npm run build",
     "test": "jest",
-    "docs":
-      "cd ./docs && ../../../node_modules/.bin/react-docgen ../src/{graticule,projections}  | ../../../scripts/buildDocs.sh"
+    "docs": "cd ./docs && ../../../node_modules/.bin/react-docgen ../src/{graticule,projections}  | ../../../scripts/buildDocs.sh"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hshoff/vx.git"
   },
-  "keywords": ["vx", "react", "d3", "visualizations", "charts", "geo"],
+  "keywords": [
+    "vx",
+    "react",
+    "d3",
+    "visualizations",
+    "charts",
+    "geo"
+  ],
   "author": "@nschnierer",
   "license": "MIT",
   "bugs": {
@@ -28,7 +36,7 @@
   },
   "homepage": "https://github.com/hshoff/vx#readme",
   "dependencies": {
-    "@vx/group": "0.0.183",
+    "@vx/group": "0.0.189",
     "classnames": "^2.2.5",
     "d3-geo": "^1.11.3",
     "prop-types": "^15.5.10"

@@ -1,21 +1,29 @@
 {
   "name": "@vx/curve",
-  "version": "0.0.182",
+  "version": "0.0.189",
   "description": "vx curve",
   "sideEffects": false,
   "main": "dist/vx-curve.umd.js",
   "module": "dist/vx-curve.es.js",
   "repository": "https://github.com/hshoff/vx",
-  "files": ["dist", "build"],
+  "files": [
+    "dist",
+    "build"
+  ],
   "scripts": {
     "build": "npm run build:babel && npm run build:dist",
     "build:dist": "rm -rf dist && mkdir dist && rollup -c",
-    "build:babel":
-      "rm -rf build && mkdir build && babel src --out-dir build --ignore node_modules/ --presets @babel/preset-react,@babel/preset-env",
+    "build:babel": "rm -rf build && mkdir build && babel src --out-dir build --ignore node_modules/ --presets @babel/preset-react,@babel/preset-env",
     "prepublish": "npm run build",
     "test": "jest"
   },
-  "keywords": ["vx", "react", "d3", "visualization", "chart"],
+  "keywords": [
+    "vx",
+    "react",
+    "d3",
+    "visualization",
+    "chart"
+  ],
   "author": "@hshoff",
   "license": "MIT",
   "dependencies": {
