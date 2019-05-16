@@ -35,13 +35,13 @@ export default function Arc({
 }) {
   const arc = d3Arc();
   if (centroid) arc.centroid(centroid);
-  if (innerRadius) arc.innerRadius(innerRadius);
-  if (outerRadius) arc.outerRadius(outerRadius);
-  if (cornerRadius) arc.cornerRadius(cornerRadius);
-  if (startAngle) arc.startAngle(startAngle);
-  if (endAngle) arc.endAngle(endAngle);
-  if (padAngle) arc.padAngle(padAngle);
-  if (padRadius) arc.padRadius(padRadius);
+  if (innerRadius !== undefined) arc.innerRadius(innerRadius);
+  if (outerRadius !== undefined) arc.outerRadius(outerRadius);
+  if (cornerRadius !== undefined) arc.cornerRadius(cornerRadius);
+  if (startAngle !== undefined) arc.startAngle(startAngle);
+  if (endAngle !== undefined) arc.endAngle(endAngle);
+  if (padAngle !== undefined) arc.padAngle(padAngle);
+  if (padRadius !== undefined) arc.padRadius(padRadius);
   if (children) return children({ path: arc });
   return <path ref={innerRef} className={cx('vx-arc', className)} d={arc(data)} {...restProps} />;
 }
