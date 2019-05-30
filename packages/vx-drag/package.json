@@ -1,6 +1,6 @@
 {
   "name": "@vx/drag",
-  "version": "0.0.183",
+  "version": "0.0.189",
   "description": "vx drag",
   "sideEffects": false,
   "main": "dist/vx-drag.umd.js",
@@ -80,7 +80,7 @@
     "react": "^15.0.0-0 || ^16.0.0-0"
   },
   "dependencies": {
-    "@vx/event": "0.0.182",
+    "@vx/event": "0.0.189",
     "prop-types": "^15.5.10"
   }
 }

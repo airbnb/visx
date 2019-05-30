@@ -1,6 +1,6 @@
 {
   "name": "@vx/clip-path",
-  "version": "0.0.183",
+  "version": "0.0.189",
   "description": "vx clip-path",
   "sideEffects": false,
   "main": "dist/vx-clip-path.umd.js",
@@ -8,19 +8,27 @@
   "scripts": {
     "build": "npm run build:babel && npm run build:dist",
     "build:dist": "rm -rf dist && mkdir dist && rollup -c",
-    "build:babel":
-      "rm -rf build && mkdir build && babel src --out-dir build --ignore node_modules/ --presets @babel/preset-react,@babel/preset-env",
+    "build:babel": "rm -rf build && mkdir build && babel src --out-dir build --ignore node_modules/ --presets @babel/preset-react,@babel/preset-env",
     "prepublish": "npm run build",
     "test": "jest",
-    "docs":
-      "cd ./docs && ../../../node_modules/.bin/react-docgen ../src/clip-paths  | ../../../scripts/buildDocs.sh"
+    "docs": "cd ./docs && ../../../node_modules/.bin/react-docgen ../src/clip-paths  | ../../../scripts/buildDocs.sh"
   },
-  "files": ["dist", "build"],
+  "files": [
+    "dist",
+    "build"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hshoff/vx.git"
   },
-  "keywords": ["vx", "react", "d3", "visualizations", "charts", "svg"],
+  "keywords": [
+    "vx",
+    "react",
+    "d3",
+    "visualizations",
+    "charts",
+    "svg"
+  ],
   "author": "Chris Williams @williaster",
   "license": "MIT",
   "bugs": {

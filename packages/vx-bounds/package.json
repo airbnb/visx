@@ -1,6 +1,6 @@
 {
   "name": "@vx/bounds",
-  "version": "0.0.182",
+  "version": "0.0.189",
   "description": "Utilities to make your life with bounding boxes better",
   "sideEffects": false,
   "main": "dist/vx-bounds.umd.js",
@@ -8,17 +8,24 @@
   "scripts": {
     "build": "npm run build:babel && npm run build:dist",
     "build:dist": "rm -rf dist && mkdir dist && rollup -c",
-    "build:babel":
-      "rm -rf build && mkdir build && babel src --out-dir build --ignore node_modules/ --presets @babel/preset-react,@babel/preset-env",
+    "build:babel": "rm -rf build && mkdir build && babel src --out-dir build --ignore node_modules/ --presets @babel/preset-react,@babel/preset-env",
     "prepublish": "npm run build",
     "test": "jest"
   },
-  "files": ["dist", "build"],
+  "files": [
+    "dist",
+    "build"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hshoff/vx.git"
   },
-  "keywords": ["vx", "react", "visualizations", "charts"],
+  "keywords": [
+    "vx",
+    "react",
+    "visualizations",
+    "charts"
+  ],
   "author": "Chris Williams @williaster",
   "license": "MIT",
   "bugs": {

@@ -28,6 +28,8 @@ npm install --save @vx/zoom
 
 <a id="#Zoom__children" name="Zoom__children" href="#Zoom__children">#</a> *Zoom*.**children**&lt;func&gt; `required` 
 
+<a id="#Zoom__className" name="Zoom__className" href="#Zoom__className">#</a> *Zoom*.**className**&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>undefined</td></td></table>
+
 <a id="#Zoom__constrain" name="Zoom__constrain" href="#Zoom__constrain">#</a> *Zoom*.**constrain**&lt;func&gt; 
 
 By default constrain() will only constrain scale values. To change
@@ -55,6 +57,16 @@ function constrain(transformMatrix, prevTransformMatrix) {
 
 <a id="#Zoom__height" name="Zoom__height" href="#Zoom__height">#</a> *Zoom*.**height**&lt;number&gt; `required` 
 
+<a id="#Zoom__passive" name="Zoom__passive" href="#Zoom__passive">#</a> *Zoom*.**passive**&lt;bool&gt; 
+
+By default passive is `false`. This will wrap <Zoom> children in a <div> and add an active wheel
+event listener (handleWheel). `handleWheel()` will call `event.preventDefault()` before other
+execution. This prevents an outer parent from scrolling when the mouse wheel is used to zoom.
+
+When passive is `true` it is required to add `<MyComponent onWheel={zoom.handleWheel} />` to handle
+wheel events. **Note:** By default you do not need to add `<MyComponent onWheel={zoom.handleWheel} />`.
+This is only necessary when `<Zoom passive={true} />`. <table><tr><td><strong>Default</strong></td><td>false</td></td></table>
+
 <a id="#Zoom__scaleXMax" name="Zoom__scaleXMax" href="#Zoom__scaleXMax">#</a> *Zoom*.**scaleXMax**&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>Infinity</td></td></table>
 
 <a id="#Zoom__scaleXMin" name="Zoom__scaleXMin" href="#Zoom__scaleXMin">#</a> *Zoom*.**scaleXMin**&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table>
@@ -62,6 +74,8 @@ function constrain(transformMatrix, prevTransformMatrix) {
 <a id="#Zoom__scaleYMax" name="Zoom__scaleYMax" href="#Zoom__scaleYMax">#</a> *Zoom*.**scaleYMax**&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>Infinity</td></td></table>
 
 <a id="#Zoom__scaleYMin" name="Zoom__scaleYMin" href="#Zoom__scaleYMin">#</a> *Zoom*.**scaleYMin**&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table>
+
+<a id="#Zoom__style" name="Zoom__style" href="#Zoom__style">#</a> *Zoom*.**style**&lt;object&gt;  <table><tr><td><strong>Default</strong></td><td>undefined</td></td></table>
 
 <a id="#Zoom__transformMatrix" name="Zoom__transformMatrix" href="#Zoom__transformMatrix">#</a> *Zoom*.**transformMatrix**&lt;shape[object Object]&gt;  <table><tr><td><strong>Default</strong></td><td>{
   scaleX: 1,

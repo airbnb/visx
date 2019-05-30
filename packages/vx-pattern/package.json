@@ -1,26 +1,33 @@
 {
   "name": "@vx/pattern",
-  "version": "0.0.183",
+  "version": "0.0.189",
   "description": "vx pattern",
   "sideEffects": false,
   "main": "dist/vx-pattern.umd.js",
   "module": "dist/vx-pattern.es.js",
-  "files": ["dist", "build"],
+  "files": [
+    "dist",
+    "build"
+  ],
   "scripts": {
     "build": "npm run build:babel && npm run build:dist",
     "build:dist": "rm -rf dist && mkdir dist && rollup -c",
-    "build:babel":
-      "rm -rf build && mkdir build && babel src --out-dir build --ignore node_modules/ --presets @babel/preset-react,@babel/preset-env",
+    "build:babel": "rm -rf build && mkdir build && babel src --out-dir build --ignore node_modules/ --presets @babel/preset-react,@babel/preset-env",
     "prepublish": "npm run build",
     "test": "jest",
-    "docs":
-      "cd ./docs && ../../../node_modules/.bin/react-docgen ../src/patterns  | ../../../scripts/buildDocs.sh"
+    "docs": "cd ./docs && ../../../node_modules/.bin/react-docgen ../src/patterns  | ../../../scripts/buildDocs.sh"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hshoff/vx.git"
   },
-  "keywords": ["vx", "react", "d3", "visualization", "charts"],
+  "keywords": [
+    "vx",
+    "react",
+    "d3",
+    "visualization",
+    "charts"
+  ],
   "author": "@hshoff",
   "license": "MIT",
   "bugs": {

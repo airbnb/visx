@@ -83,7 +83,6 @@ export default class ZoomI extends React.Component {
                     height={height}
                     rx={14}
                     fill="transparent"
-                    onWheel={zoom.handleWheel}
                     onTouchStart={zoom.dragStart}
                     onTouchMove={zoom.dragMove}
                     onTouchEnd={zoom.dragEnd}
