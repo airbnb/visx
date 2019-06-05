@@ -12,17 +12,57 @@ import { Brush } from '../components/brush';
 
 const b = new Brush({ width: 1000, height: 90, clamp: true });
 b.selection = [[150, 0], [300, 90]];
-console.log(b.width, b.height);
 
 const bg = '#333';
 const gray = '#efefef';
 const x = d => new Date(d.time);
 const y = d => d.price;
 
+class FocusChart extends React.PureComponent {
+  render() {
+    const { margin, height, width, x, y, xScale, yScale, data } = this.props;
+    return (
+      <Group top={margin.top} left={margin.left}>
+        <AxisBottom
+          top={height - margin.bottom - margin.top}
+          data={data}
+          scale={xScale}
+          x={x}
+          numTicks={3}
+          stroke={gray}
+          tickStroke={gray}
+          tickLabelProps={() => ({
+            fill: '#ffffff',
+            textAnchor: 'middle',
+            fontSize: 10,
+            fontFamily: 'Arial',
+            dx: '-0.25em',
+            dy: '0.25em'
+          })}
+          tickComponent={({ formattedValue, ...tickProps }) => (
+            <text {...tickProps}>{formattedValue}</text>
+          )}
+        />
+        <AreaClosed
+          data={data}
+          yScale={yScale}
+          y={d => yScale(y(d))}
+          x={d => xScale(x(d))}
+          stroke="transparent"
+          fill="white"
+          fillOpacity={0.2}
+          curve={curveMonotoneX}
+        />
+      </Group>
+    );
+  }
+}
+
 class BrushDemo extends React.Component {
   constructor(props) {
     super(props);
     this.state = { data: undefined, chartXScale: undefined };
+    this.updateFocusDomain = this.updateFocusDomain.bind(this);
   }
 
   componentDidMount() {
@@ -30,10 +70,8 @@ class BrushDemo extends React.Component {
       .then(res => res.json())
       .then(data => {
         this.setState({
-          chartXScale: scaleTime({
-            domain: [],
-            clamp: true
-          }),
+          chartXScale: scaleTime({ domain: [], range: [0, 1] }),
+          focusDomain: [],
           data: Object.keys(data.bpi).map(k => ({
             time: k,
             price: data.bpi[k]
@@ -42,9 +80,13 @@ class BrushDemo extends React.Component {
       });
   }
 
+  updateFocusDomain(focusDomain) {
+    this.setState({ focusDomain });
+  }
+
   render() {
     const { width, height } = this.props;
-    const { data, chartXScale } = this.state;
+    const { data, chartXScale, focusDomain } = this.state;
 
     const context = { margin: { top: 5, left: 10, right: 10, bottom: 5 } };
     context.height = 100 - context.margin.top - context.margin.bottom;
@@ -94,38 +136,17 @@ class BrushDemo extends React.Component {
     return (
       <svg width={width} height={height}>
         <rect width={width} height={height} fill={bg} rx={14} />
-        <Group top={chart.margin.top} left={chart.margin.left}>
-          <AxisBottom
-            top={chart.height - chart.margin.bottom - chart.margin.top}
-            data={data}
-            scale={chartXScale}
-            x={x}
-            numTicks={3}
-            stroke={gray}
-            tickStroke={gray}
-            tickLabelProps={() => ({
-              fill: '#ffffff',
-              textAnchor: 'middle',
-              fontSize: 10,
-              fontFamily: 'Arial',
-              dx: '-0.25em',
-              dy: '0.25em'
-            })}
-            tickComponent={({ formattedValue, ...tickProps }) => (
-              <text {...tickProps}>{formattedValue}</text>
-            )}
-          />
-          <AreaClosed
-            data={data}
-            yScale={chartYScale}
-            y={d => chartYScale(y(d))}
-            x={d => chartXScale(x(d))}
-            stroke="transparent"
-            fill="white"
-            fillOpacity={0.2}
-            curve={curveMonotoneX}
-          />
-        </Group>
+        <FocusChart
+          data={data}
+          width={chart.width}
+          height={chart.height}
+          margin={chart.margin}
+          focusDomain={focusDomain}
+          xScale={chartXScale}
+          yScale={chartYScale}
+          x={x}
+          y={y}
+        />
         <Group top={chart.height + context.margin.top} left={context.margin.left}>
           <rect width={context.width} height={context.height} fill={'transparent'} stroke={gray} />
           <AreaClosed
@@ -138,44 +159,61 @@ class BrushDemo extends React.Component {
             fillOpacity={0.2}
             curve={curveMonotoneX}
           />
-          <Drag
+          <BBrush
+            brush={b}
             width={context.width}
             height={context.height}
-            onDragEnd={drag => {
-              const x = b.selection[0][0] + drag.dx;
-              const x0 = context.margin.left;
-              const x1 = context.width + context.margin.left + context.margin.right;
-              const d0 = Math.min(Math.max(x0, x), x1);
-              const d1 = Math.min(Math.max(x0, x + b.width), x1);
-              this.setState({
-                chartXScale: chartXScale
-                  .copy()
-                  .domain([contextXScale.invert(d0), contextXScale.invert(d1)])
-              });
-            }}
-          >
-            {drag => {
-              const x = b.selection[0][0] + drag.dx;
-              const x0 = 0;
-              const x1 = context.width;
-              const d0 = Math.min(Math.max(x0, x), x1);
-              return (
-                <Group left={d0}>
-                  <rect
-                    width={b.width}
-                    height={b.height}
-                    fill="blue"
-                    fillOpacity={0.3}
-                    onMouseDown={drag.dragStart}
-                    onMouseMove={drag.dragMove}
-                    onMouseUp={drag.dragEnd}
-                  />
-                </Group>
-              );
-            }}
-          </Drag>
+            margin={context.margin}
+            contextXScale={contextXScale}
+            updateFocusDomain={this.updateFocusDomain}
+          />
         </Group>
       </svg>
+    );
+  }
+}
+
+class BBrush extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.move = this.move.bind(this);
+  }
+
+  move(drag) {
+    const { brush, updateFocusDomain, contextXScale, width, margin } = this.props;
+    const x = brush.selection[0][0] + drag.dx;
+    const x0 = margin.left;
+    const x1 = width + margin.left;
+    const d0 = Math.min(Math.max(x0, x), x1);
+    const d1 = Math.min(Math.max(x0, x + brush.width), x1);
+    // updateFocusDomain([contextXScale.invert(d0), contextXScale.invert(d1)]);
+  }
+
+  render() {
+    const { brush, width, height } = this.props;
+    return (
+      <Drag width={width} height={height}>
+        {drag => {
+          const x = brush.selection[0][0] + drag.dx;
+          const x0 = 0;
+          const x1 = width;
+          const d0 = Math.min(Math.max(x0, x), x1 - brush.width);
+
+          return (
+            <Group left={d0}>
+              <rect
+                width={brush.width}
+                height={brush.height}
+                fill="white"
+                fillOpacity={0.3}
+                onMouseDown={drag.dragStart}
+                onMouseMove={drag.dragMove}
+                onMouseUp={drag.dragEnd}
+              />
+            </Group>
+          );
+        }}
+      </Drag>
     );
   }
 }
