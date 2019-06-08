@@ -61,7 +61,7 @@ class FocusChart extends React.PureComponent {
 class BrushDemo extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { data: undefined, chartXScale: undefined };
+    this.state = { data: undefined, focusDomain: [] };
     this.updateFocusDomain = this.updateFocusDomain.bind(this);
   }
 
@@ -70,7 +70,6 @@ class BrushDemo extends React.Component {
       .then(res => res.json())
       .then(data => {
         this.setState({
-          chartXScale: scaleTime({ domain: [], range: [0, 1] }),
           focusDomain: [],
           data: Object.keys(data.bpi).map(k => ({
             time: k,
@@ -86,7 +85,7 @@ class BrushDemo extends React.Component {
 
   render() {
     const { width, height } = this.props;
-    const { data, chartXScale, focusDomain } = this.state;
+    const { data, focusDomain } = this.state;
 
     const context = { margin: { top: 5, left: 10, right: 10, bottom: 5 } };
     context.height = 100 - context.margin.top - context.margin.bottom;
@@ -114,15 +113,16 @@ class BrushDemo extends React.Component {
     const minPrice = Math.min(...data.map(y));
     const maxPrice = Math.max(...data.map(y));
 
-    chartXScale.range([0, chart.width]);
-    if (!chartXScale.domain().length) {
-      chartXScale.domain([x(firstPoint), x(currentPoint)]);
-    }
+    const chartXScale = scaleTime({
+      domain: focusDomain.length ? focusDomain : [x(firstPoint), x(currentPoint)],
+      range: [0, chart.width]
+    });
 
     const chartYScale = scaleLinear({
       range: [chart.height - chart.margin.top - chart.margin.bottom, 0],
       domain: [minPrice, maxPrice + 100]
     });
+
     const contextXScale = scaleTime({
       range: [0, context.width],
       domain: [x(firstPoint), x(currentPoint)],
@@ -148,7 +148,13 @@ class BrushDemo extends React.Component {
           y={y}
         />
         <Group top={chart.height + context.margin.top} left={context.margin.left}>
-          <rect width={context.width} height={context.height} fill={'transparent'} stroke={gray} />
+          <rect
+            width={context.width}
+            height={context.height}
+            fill={'transparent'}
+            strokeWidth={2}
+            stroke={gray}
+          />
           <AreaClosed
             data={data}
             yScale={contextYScale}
@@ -186,7 +192,7 @@ class BBrush extends React.PureComponent {
     const x1 = width + margin.left;
     const d0 = Math.min(Math.max(x0, x), x1);
     const d1 = Math.min(Math.max(x0, x + brush.width), x1);
-    // updateFocusDomain([contextXScale.invert(d0), contextXScale.invert(d1)]);
+    updateFocusDomain([contextXScale.invert(d0), contextXScale.invert(d1)]);
   }
 
   render() {
@@ -200,10 +206,10 @@ class BBrush extends React.PureComponent {
           const d0 = Math.min(Math.max(x0, x), x1 - brush.width);
 
           return (
-            <Group left={d0}>
+            <Group top={1} left={d0}>
               <rect
                 width={brush.width}
-                height={brush.height}
+                height={brush.height - 1}
                 fill="white"
                 fillOpacity={0.3}
                 onMouseDown={drag.dragStart}
