@@ -7,8 +7,10 @@
   "module": "dist/vx-responsive.es.js",
   "files": [
     "dist",
-    "build"
+    "build",
+    "index.d.ts"
   ],
+  "types": "index.d.ts",
   "scripts": {
     "build": "npm run build:babel && npm run build:dist",
     "build:dist": "rm -rf dist && mkdir dist && rollup -c",
