@@ -8,5 +8,6 @@ export { default as scalePower } from './scales/power';
 export { default as scaleOrdinal } from './scales/ordinal';
 export { default as scaleQuantize } from './scales/quantize';
 export { default as scaleQuantile } from './scales/quantile';
+export { default as scaleSymlog } from './scales/symlog';
 export { default as scaleThreshold } from './scales/threshold';
 export { default as updateScale } from './util/updateScale';
