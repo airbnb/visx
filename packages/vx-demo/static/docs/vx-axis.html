@@ -138,7 +138,7 @@
 <p><a id="#AxisBottom__tickFormat" name="AxisBottom__tickFormat" href="#AxisBottom__tickFormat">#</a> <em>AxisBottom</em>.<strong>tickFormat</strong>&lt;func&gt; </p>
 <p>A <a href="https://github.com/d3/d3-scale/blob/master/README.md#continuous_tickFormat">d3 formatter</a> for the tick text. </p>
 <p><a id="#AxisBottom__tickLabelProps" name="AxisBottom__tickLabelProps" href="#AxisBottom__tickLabelProps">#</a> <em>AxisBottom</em>.<strong>tickLabelProps</strong>&lt;func&gt; </p>
-<p>A function that returns props for a given tick label. <table><tr><td><strong>Default</strong></td><td>({ tick, index }) =&gt; ({
+<p>A function that returns props for a given tick label. <table><tr><td><strong>Default</strong></td><td>(tickValue, index) =&gt; ({
   dy: &#39;0.25em&#39;,
   fill: &#39;black&#39;,
   fontFamily: &#39;Arial&#39;,
@@ -179,7 +179,7 @@
 <p><a id="#AxisLeft__tickClassName" name="AxisLeft__tickClassName" href="#AxisLeft__tickClassName">#</a> <em>AxisLeft</em>.<strong>tickClassName</strong>&lt;string&gt;  </p>
 <p><a id="#AxisLeft__tickComponent" name="AxisLeft__tickComponent" href="#AxisLeft__tickComponent">#</a> <em>AxisLeft</em>.<strong>tickComponent</strong>&lt;func&gt;  </p>
 <p><a id="#AxisLeft__tickFormat" name="AxisLeft__tickFormat" href="#AxisLeft__tickFormat">#</a> <em>AxisLeft</em>.<strong>tickFormat</strong>&lt;func&gt;  </p>
-<p><a id="#AxisLeft__tickLabelProps" name="AxisLeft__tickLabelProps" href="#AxisLeft__tickLabelProps">#</a> <em>AxisLeft</em>.<strong>tickLabelProps</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>({ tick, index }) =&gt; ({
+<p><a id="#AxisLeft__tickLabelProps" name="AxisLeft__tickLabelProps" href="#AxisLeft__tickLabelProps">#</a> <em>AxisLeft</em>.<strong>tickLabelProps</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>(tickValue, index) =&gt; ({
   dx: &#39;-0.25em&#39;,
   dy: &#39;0.25em&#39;,
   fill: &#39;black&#39;,
@@ -216,7 +216,7 @@
 <p><a id="#AxisRight__tickClassName" name="AxisRight__tickClassName" href="#AxisRight__tickClassName">#</a> <em>AxisRight</em>.<strong>tickClassName</strong>&lt;string&gt;  </p>
 <p><a id="#AxisRight__tickComponent" name="AxisRight__tickComponent" href="#AxisRight__tickComponent">#</a> <em>AxisRight</em>.<strong>tickComponent</strong>&lt;func&gt;  </p>
 <p><a id="#AxisRight__tickFormat" name="AxisRight__tickFormat" href="#AxisRight__tickFormat">#</a> <em>AxisRight</em>.<strong>tickFormat</strong>&lt;func&gt;  </p>
-<p><a id="#AxisRight__tickLabelProps" name="AxisRight__tickLabelProps" href="#AxisRight__tickLabelProps">#</a> <em>AxisRight</em>.<strong>tickLabelProps</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>({ tick, index }) =&gt; ({
+<p><a id="#AxisRight__tickLabelProps" name="AxisRight__tickLabelProps" href="#AxisRight__tickLabelProps">#</a> <em>AxisRight</em>.<strong>tickLabelProps</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>(tickValue, index) =&gt; ({
   dx: &#39;0.25em&#39;,
   dy: &#39;0.25em&#39;,
   fill: &#39;black&#39;,
@@ -253,7 +253,7 @@
 <p><a id="#AxisTop__tickClassName" name="AxisTop__tickClassName" href="#AxisTop__tickClassName">#</a> <em>AxisTop</em>.<strong>tickClassName</strong>&lt;string&gt;  </p>
 <p><a id="#AxisTop__tickComponent" name="AxisTop__tickComponent" href="#AxisTop__tickComponent">#</a> <em>AxisTop</em>.<strong>tickComponent</strong>&lt;func&gt;  </p>
 <p><a id="#AxisTop__tickFormat" name="AxisTop__tickFormat" href="#AxisTop__tickFormat">#</a> <em>AxisTop</em>.<strong>tickFormat</strong>&lt;func&gt;  </p>
-<p><a id="#AxisTop__tickLabelProps" name="AxisTop__tickLabelProps" href="#AxisTop__tickLabelProps">#</a> <em>AxisTop</em>.<strong>tickLabelProps</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>({ tick, index }) =&gt; ({
+<p><a id="#AxisTop__tickLabelProps" name="AxisTop__tickLabelProps" href="#AxisTop__tickLabelProps">#</a> <em>AxisTop</em>.<strong>tickLabelProps</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>(tickValue, index) =&gt; ({
   dy: &#39;-0.25em&#39;,
   fill: &#39;black&#39;,
   fontFamily: &#39;Arial&#39;,
