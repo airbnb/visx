@@ -72,7 +72,7 @@ export default function HeatmapRect({
               className={cx('vx-heatmap-rect', className)}
               width={bin.width}
               height={bin.height}
-              x={bin.x + bin.x0}
+              x={bin.x}
               y={bin.y}
               fill={bin.color}
               fillOpacity={bin.opacity}
