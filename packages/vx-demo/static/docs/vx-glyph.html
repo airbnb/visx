@@ -37,47 +37,7 @@
 <p><a title="@vx/glyph npm downloads" href="https://www.npmjs.com/package/@vx/glyph">
   <img src="https://img.shields.io/npm/dm/@vx/glyph.svg?style=flat-square" />
 </a></p>
-<p>Glyphs are small icons that you can use in your graphs. Some elements, like <code>LinePath</code>, can take a function that returns a glyph.</p>
-<p>For example:</p>
-<pre><code class="lang-js">import { LinePath } from &#39;@vx/shape&#39;;
-import { GlyphDot } from &#39;@vx/glyph&#39;;
-
-let line = (
-  &lt;LinePath
-    ...
-    glyph={(d, i) =&gt; {
-      return (
-        &lt;GlyphDot
-          className={&quot;glyph-dots&quot;}
-          key={&#39;line-dot-{i}&#39;}
-          cx={xScale(x(d))}
-          cy={yScale(y(d))}
-          r={6}
-          fill={&quot;white&quot;}
-          stroke={&quot;black&quot;}
-          strokeWidth={3} /&gt;
-      )
-    }}
-  /&gt;
-)
-</code></pre>
-<p>You also can incorporate child elements into your glyph to add labels and such.</p>
-<pre><code class="lang-js">import { Dot } from &#39;@vx/glyph&#39;;
-
-&lt;GlyphDot ... &gt;
-  &lt;text
-    x={xScale(x(d))}
-    y={yScale(y(d))}
-    dx={10}
-    fill={&quot;white&quot;}
-    stroke={&quot;black&quot;}
-    strokeWidth={6}
-    fontSize={11}
-  &gt;
-    {&quot;Hi there!&quot;}
-  &lt;/text&gt;
-&lt;/GlyphDot&gt;
-</code></pre>
+<p>Glyphs are small icons that you can use in your graphs. Example: <a href="https://vx-demo.now.sh/glyphs">https://vx-demo.now.sh/glyphs</a></p>
 <h2 id="installation">Installation</h2>
 <pre><code>npm install --save @vx/glyph
 </code></pre><h2 id="components">Components</h2>

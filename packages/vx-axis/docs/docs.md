@@ -184,7 +184,7 @@ A [d3 formatter](https://github.com/d3/d3-scale/blob/master/README.md#continuous
 
 <a id="#AxisBottom__tickLabelProps" name="AxisBottom__tickLabelProps" href="#AxisBottom__tickLabelProps">#</a> *AxisBottom*.**tickLabelProps**&lt;func&gt; 
 
-A function that returns props for a given tick label. <table><tr><td><strong>Default</strong></td><td>({ tick, index }) => ({
+A function that returns props for a given tick label. <table><tr><td><strong>Default</strong></td><td>(tickValue, index) => ({
   dy: '0.25em',
   fill: 'black',
   fontFamily: 'Arial',
@@ -256,7 +256,7 @@ A top pixel offset applied to the entire axis.
 
 <a id="#AxisLeft__tickFormat" name="AxisLeft__tickFormat" href="#AxisLeft__tickFormat">#</a> *AxisLeft*.**tickFormat**&lt;func&gt;  
 
-<a id="#AxisLeft__tickLabelProps" name="AxisLeft__tickLabelProps" href="#AxisLeft__tickLabelProps">#</a> *AxisLeft*.**tickLabelProps**&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>({ tick, index }) => ({
+<a id="#AxisLeft__tickLabelProps" name="AxisLeft__tickLabelProps" href="#AxisLeft__tickLabelProps">#</a> *AxisLeft*.**tickLabelProps**&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>(tickValue, index) => ({
   dx: '-0.25em',
   dy: '0.25em',
   fill: 'black',
@@ -319,7 +319,7 @@ A top pixel offset applied to the entire axis.
 
 <a id="#AxisRight__tickFormat" name="AxisRight__tickFormat" href="#AxisRight__tickFormat">#</a> *AxisRight*.**tickFormat**&lt;func&gt;  
 
-<a id="#AxisRight__tickLabelProps" name="AxisRight__tickLabelProps" href="#AxisRight__tickLabelProps">#</a> *AxisRight*.**tickLabelProps**&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>({ tick, index }) => ({
+<a id="#AxisRight__tickLabelProps" name="AxisRight__tickLabelProps" href="#AxisRight__tickLabelProps">#</a> *AxisRight*.**tickLabelProps**&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>(tickValue, index) => ({
   dx: '0.25em',
   dy: '0.25em',
   fill: 'black',
@@ -382,7 +382,7 @@ A top pixel offset applied to the entire axis.
 
 <a id="#AxisTop__tickFormat" name="AxisTop__tickFormat" href="#AxisTop__tickFormat">#</a> *AxisTop*.**tickFormat**&lt;func&gt;  
 
-<a id="#AxisTop__tickLabelProps" name="AxisTop__tickLabelProps" href="#AxisTop__tickLabelProps">#</a> *AxisTop*.**tickLabelProps**&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>({ tick, index }) => ({
+<a id="#AxisTop__tickLabelProps" name="AxisTop__tickLabelProps" href="#AxisTop__tickLabelProps">#</a> *AxisTop*.**tickLabelProps**&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>(tickValue, index) => ({
   dy: '-0.25em',
   fill: 'black',
   fontFamily: 'Arial',
