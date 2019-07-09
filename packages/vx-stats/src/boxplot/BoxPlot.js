@@ -125,8 +125,8 @@ export default function BoxPlot({
   if (horizontal) {
     boxplot.max = verticalToHorizontal(boxplot.max);
     boxplot.maxToThird = verticalToHorizontal(boxplot.maxToThird);
-    boxplot.box = verticalToHorizontal(boxplot.box);
     boxplot.box.y1 = valueScale(firstQuartile);
+    boxplot.box = verticalToHorizontal(boxplot.box);
     boxplot.median = verticalToHorizontal(boxplot.median);
     boxplot.minToFirst = verticalToHorizontal(boxplot.minToFirst);
     boxplot.min = verticalToHorizontal(boxplot.min);
