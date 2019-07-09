@@ -53,7 +53,7 @@ export default function AxisRight({
   strokeDasharray,
   tickClassName,
   tickFormat,
-  tickLabelProps = ({ tick, index }) => ({
+  tickLabelProps = (tickValue, index) => ({
     dx: '0.25em',
     dy: '0.25em',
     fill: 'black',

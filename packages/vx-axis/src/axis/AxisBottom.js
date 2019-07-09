@@ -128,7 +128,7 @@ export default function AxisBottom({
   strokeDasharray,
   tickClassName,
   tickFormat,
-  tickLabelProps = ({ tick, index }) => ({
+  tickLabelProps = (tickValue, index) => ({
     dy: '0.25em',
     fill: 'black',
     fontFamily: 'Arial',
