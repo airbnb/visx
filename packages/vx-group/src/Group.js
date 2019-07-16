@@ -7,12 +7,22 @@ Group.propTypes = {
   left: PropTypes.number,
   transform: PropTypes.string,
   className: PropTypes.string,
-  children: PropTypes.any
+  children: PropTypes.any,
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
 };
 
-export default function Group({ top = 0, left = 0, transform, className, children, ...restProps }) {
+export default function Group({
+  top = 0,
+  left = 0,
+  transform,
+  className,
+  children,
+  innerRef,
+  ...restProps
+}) {
   return (
     <g
+      ref={innerRef}
       className={cx('vx-group', className)}
       transform={transform || `translate(${left}, ${top})`}
       {...restProps}
