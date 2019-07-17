@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.190](#v00190)
 - [v0.0.189](#v00189)
 - [v0.0.188](#v00188)
 - [v0.0.187](#v00187)
@@ -80,6 +81,64 @@
 </details>
 
 ------
+
+# v0.0.190
+
+#### 💥 Breaking Changes
+
+- [scale] [d3-scale 2.2.2 changed](https://github.com/d3/d3-scale/issues/117) the behavior of a collapsed domain. See [this comment](https://github.com/hshoff/vx/issues/473#issuecomment-508203310) for how to handle the updated behavior. [#477](https://github.com/hshoff/vx/pull/477)
+- [text] Don't split strings rendered by `<Text />` when encountering a set of non-breaking space characters. [#460](https://github.com/hshoff/vx/pull/460)
+
+#### :rocket: Enhancements
+
+- [group] add innerRef prop. [#480](https://github.com/hshoff/vx/pull/480)
+- [scale] bump d3-scale dep to `^2.2.2` for scaleSymlog. [#477](https://github.com/hshoff/vx/pull/477)
+- [scale] add scaleSymlog. [#470](https://github.com/hshoff/vx/pull/470)
+
+#### :bug: Bug Fix
+
+- [stats] fix horizontal boxplot in @vx/stats. [#476](https://github.com/hshoff/vx/pull/476)
+- [boxplot] fix horizontal boxplot in @vx/boxplot. [#472](https://github.com/hshoff/vx/pull/472)
+- [heatmap] remove `bin.x0`. The x0 offset is accounted for in `bin.x`. [#475](https://github.com/hshoff/vx/pull/475)
+
+#### :memo: Documentation
+
+- [docs][group] add innerRef prop. [#480](https://github.com/hshoff/vx/pull/480)
+- [axis] fix `tickLabelProps()` prop default args for docs. [#478](https://github.com/hshoff/vx/pull/478)
+- [glyph] remove outdated readme description. [#478](https://github.com/hshoff/vx/pull/478)
+- [docs] run doc:gen script. [#478](https://github.com/hshoff/vx/pull/478)
+
+
+#### :trophy: Contributors
+
+- [hshoff](https://github.com/hshoff)
+- [robsco-git](https://github.com/robsco-git)
+- [LambStack](https://github.com/LambStack)
+- [mmarkelov](https://github.com/mmarkelov)
+
+```
+Changes:
+ - @vx/annotation: 0.0.189 => 0.0.190
+ - @vx/axis: 0.0.189 => 0.0.190
+ - @vx/boxplot: 0.0.189 => 0.0.190
+ - @vx/demo: 0.0.189 => 0.0.190
+ - @vx/geo: 0.0.189 => 0.0.190
+ - @vx/glyph: 0.0.189 => 0.0.190
+ - @vx/grid: 0.0.189 => 0.0.190
+ - @vx/group: 0.0.189 => 0.0.190
+ - @vx/heatmap: 0.0.189 => 0.0.190
+ - @vx/hierarchy: 0.0.189 => 0.0.190
+ - @vx/legend: 0.0.189 => 0.0.190
+ - @vx/marker: 0.0.189 => 0.0.190
+ - @vx/network: 0.0.189 => 0.0.190
+ - @vx/scale: 0.0.189 => 0.0.190
+ - @vx/shape: 0.0.189 => 0.0.190
+ - @vx/stats: 0.0.189 => 0.0.190
+ - @vx/text: 0.0.189 => 0.0.190
+ - @vx/threshold: 0.0.189 => 0.0.190
+ - @vx/voronoi: 0.0.189 => 0.0.190
+ - @vx/vx: 0.0.189 => 0.0.190
+ ```
 
 # v0.0.189
 
