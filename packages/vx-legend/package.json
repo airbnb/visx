@@ -1,6 +1,6 @@
 {
   "name": "@vx/legend",
-  "version": "0.0.189",
+  "version": "0.0.190",
   "description": "vx legend",
   "sideEffects": false,
   "main": "dist/vx-legend.umd.js",
@@ -80,7 +80,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@vx/group": "0.0.189",
+    "@vx/group": "0.0.190",
     "classnames": "^2.2.5",
     "prop-types": "^15.5.10"
   }

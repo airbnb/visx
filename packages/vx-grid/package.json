@@ -1,6 +1,6 @@
 {
   "name": "@vx/grid",
-  "version": "0.0.189",
+  "version": "0.0.190",
   "description": "vx grid",
   "sideEffects": false,
   "main": "dist/vx-grid.umd.js",
@@ -77,9 +77,9 @@
     "react": "^15.0.0-0 || ^16.0.0-0"
   },
   "dependencies": {
-    "@vx/group": "0.0.189",
+    "@vx/group": "0.0.190",
     "@vx/point": "0.0.189",
-    "@vx/shape": "0.0.189",
+    "@vx/shape": "0.0.190",
     "classnames": "^2.2.5",
     "prop-types": "^15.6.2"
   },
