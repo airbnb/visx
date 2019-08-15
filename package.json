@@ -58,6 +58,12 @@
     "@babel/plugin-syntax-import-meta": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
+    "@irbnb/config-babel": "^1.2.4",
+    "@irbnb/config-eslint": "^1.3.1",
+    "@irbnb/config-jest": "^1.2.4",
+    "@irbnb/config-prettier": "^1.1.4",
+    "@irbnb/config-typescript": "^1.2.1",
+    "@irbnb/nimbus": "^1.4.1",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^24.5.0",
     "babel-plugin-istanbul": "^5.1.1",
@@ -85,5 +91,18 @@
     "react-docgen": "^2.21.0",
     "react-dom": "^15.0.0-0 || ^16.0.0-0",
     "regenerator-runtime": "^0.10.5"
+  },
+  "nimbus": {
+    "drivers": [
+      "babel",
+      "eslint",
+      "jest",
+      "prettier",
+      "typescript"
+    ],
+    "settings": {
+      "library": true,
+      "react": true
+    }
   }
 }
