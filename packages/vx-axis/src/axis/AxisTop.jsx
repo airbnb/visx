@@ -30,7 +30,7 @@ const propTypes = {
   tickValues: PropTypes.array,
   tickComponent: PropTypes.func,
   top: PropTypes.number,
-  children: PropTypes.func
+  children: PropTypes.func,
 };
 
 export default function AxisTop({
@@ -53,19 +53,19 @@ export default function AxisTop({
   strokeDasharray,
   tickClassName,
   tickFormat,
-  tickLabelProps = (tickValue, index) => ({
+  tickLabelProps = (/** tickValue, index */) => ({
     dy: '-0.25em',
     fill: 'black',
     fontFamily: 'Arial',
     fontSize: 10,
-    textAnchor: 'middle'
+    textAnchor: 'middle',
   }),
   tickLength = 8,
   tickStroke,
   tickTransform,
   tickValues,
   tickComponent,
-  top
+  top,
 }) {
   return (
     <Axis

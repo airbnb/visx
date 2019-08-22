@@ -105,7 +105,7 @@ const propTypes = {
   /**
    * For more control over rendering or to add event handlers to datum, pass a function as children.
    */
-  children: PropTypes.func
+  children: PropTypes.func,
 };
 
 export default function AxisBottom({
@@ -128,19 +128,19 @@ export default function AxisBottom({
   strokeDasharray,
   tickClassName,
   tickFormat,
-  tickLabelProps = (tickValue, index) => ({
+  tickLabelProps = (/** tickValue, index */) => ({
     dy: '0.25em',
     fill: 'black',
     fontFamily: 'Arial',
     fontSize: 10,
-    textAnchor: 'middle'
+    textAnchor: 'middle',
   }),
   tickLength = 8,
   tickStroke,
   tickTransform,
   tickValues,
   tickComponent,
-  top
+  top,
 }) {
   return (
     <Axis

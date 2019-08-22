@@ -1,14 +1,14 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
+import { scaleLinear } from '@vx/scale';
 import { Axis, AxisBottom } from '../src';
-import { scaleLinear } from '../../vx-scale';
 
 const axisProps = {
   scale: scaleLinear({
     rangeRound: [10, 0],
-    domain: [0, 10]
-  })
+    domain: [0, 10],
+  }),
 };
 
 describe('<AxisBottom />', () => {
@@ -34,7 +34,7 @@ describe('<AxisBottom />', () => {
         axisLineClassName={axisLineClassName}
         labelClassName={labelClassName}
         tickClassName={tickClassName}
-      />
+      />,
     );
 
     const axis = wrapper.find(Axis);
