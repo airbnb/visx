@@ -1,4 +1,5 @@
 import React from 'react';
+import { shallow } from 'enzyme';
 
 import { Point } from '@vx/point';
 import { LinePathAnnotation } from '../src';
@@ -23,7 +24,7 @@ describe('<LinePathAnnotation />', () => {
 
   test('it should contain a <LinePath />', () => {
     const wrapper = shallow(<LinePathAnnotation />);
-    expect(wrapper.find('.vx-line-path-annotation').length).toBe(1);
+    expect(wrapper.find('.vx-line-path-annotation')).toHaveLength(1);
   });
 
   test('it should pass props to <LinePath />', () => {
@@ -38,13 +39,13 @@ describe('<LinePathAnnotation />', () => {
 
   test('it should not render a label if label prop is undefined', () => {
     const wrapper = shallow(<LinePathAnnotation />);
-    expect(wrapper.prop('children').filter(c => !!c).length).toBe(1);
+    expect(wrapper.prop('children').filter(c => !!c)).toHaveLength(1);
   });
 
   test('it should render a label if label prop is defined', () => {
     const points = [new Point({ x: 0, y: 0 })];
     const wrapper = shallow(<LinePathAnnotation label="test" points={points} />);
-    expect(wrapper.prop('children').filter(c => !!c).length).toBe(2);
+    expect(wrapper.prop('children').filter(c => !!c)).toHaveLength(2);
     expect(
       wrapper.contains(
         <text
