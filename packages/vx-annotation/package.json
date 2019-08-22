@@ -6,8 +6,8 @@
   "main": "lib/index.js",
   "module": "esm/index.js",
   "files": [
-    "dist",
-    "build"
+    "lib",
+    "esm"
   ],
   "scripts": {
     "docs": "cd ./docs && ../../../node_modules/.bin/react-docgen ../src/annotations/  | ../../../scripts/buildDocs.sh"
@@ -29,9 +29,6 @@
     "url": "https://github.com/hshoff/vx/issues"
   },
   "homepage": "https://github.com/hshoff/vx#readme",
-  "devDependencies": {
-    "react": "^16.0.0"
-  },
   "peerDependencies": {
     "react": "^15.0.0-0 || ^16.0.0-0"
   },
