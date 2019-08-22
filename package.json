@@ -12,7 +12,7 @@
   ],
   "engines": {
     "node": ">=10.15.0",
-    "yarn": ">=1.10.0"
+    "yarn": ">=1.17.0"
   },
   "author": "@hshoff",
   "contributors": [
@@ -26,8 +26,8 @@
     "bootstrap": "lerna bootstrap",
     "build": "yarn run babel",
     "babel": "yarn run babel:cjs && yarn run babel:esm",
-    "babel:cjs": "nimbus babel --workspaces=\"@vx/annotations\"",
-    "babel:esm": "nimbus babel --workspaces=\"@vx/annotations\" --esm",
+    "babel:cjs": "nimbus babel --clean --workspaces=*",
+    "babel:esm": "nimbus babel --clean --workspaces=* --esm",
     "clean": "rm -rf ./packages/*/*/{lib,esm}",
     "format": "yarn run prettier -- --write",
     "jest": "NODE_ENV=test nimbus jest --coverage --verbose --workspaces=\"@vx/annotations\"",
@@ -97,6 +97,33 @@
     "settings": {
       "library": true,
       "react": true
+    },
+    "eslint": {
+      "overrides": [
+        {
+          "files": "*",
+          "rules": {
+            "linebreak-style": "off",
+            "operator-linebreak": "off",
+            "no-use-before-define": "off",
+            "object-curly-newline": "off",
+            "arrow-parens": "off",
+            "consistent-return": "off",
+            "no-restricted-syntax": "off",
+            "no-nested-ternary": "off",
+            "no-param-reassign": "warn",
+            "lines-between-class-members": "off",
+            "import/prefer-default-export": "off",
+            "react/sort-comp": "off",
+            "react/jsx-filename-extension": "off",
+            "react/require-default-props": "off",
+            "react/forbid-prop-types": "off",
+            "react/destructuring-assignment": "off",
+            "react/no-array-index-key": "off",
+            "react/no-children-prop": "off"
+          }
+        }
+      ] 
     }
   }
 }
