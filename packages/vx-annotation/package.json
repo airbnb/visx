@@ -10,11 +10,6 @@
     "build"
   ],
   "scripts": {
-    "_build": "npm run build:babel && npm run build:dist",
-    "_build:dist": "rm -rf dist && mkdir dist && rollup -c",
-    "_build:babel": "rm -rf build && mkdir build && babel src --out-dir build --ignore node_modules/ --presets @babel/preset-react,@babel/preset-env",
-    "_prepublish": "npm run build",
-    "_test": "jest",
     "docs": "cd ./docs && ../../../node_modules/.bin/react-docgen ../src/annotations/  | ../../../scripts/buildDocs.sh"
   },
   "repository": {

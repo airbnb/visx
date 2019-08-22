@@ -1,7 +1,7 @@
 {
   "name": "@vx/root",
   "license": "MIT",
-  "version": "1.17.3",
+  "version": "0.0.0",
   "description": "Low-level visualization components",
   "keywords": [
     "react",
@@ -15,12 +15,6 @@
     "yarn": ">=1.17.0"
   },
   "author": "@hshoff",
-  "contributors": [
-    {
-      "name": "Chris Williams",
-      "url": "https://github.com/williaster"
-    }
-  ],
   "private": true,
   "scripts": {
     "bootstrap": "lerna bootstrap",
@@ -40,12 +34,7 @@
     "docs": "yarn run docs:gen && node ./scripts/docs/index.js",
     "docs:gen": "lerna run docs",
     "prepare-release": "git checkout master && git pull --rebase origin master && yarn run docs && lerna updated",
-    "release": "yarn run prepare-release && lerna publish --exact",
-
-    "_lint": "eslint \"packages/**/*.js\" --config \"./.eslintrc\"",
-    "_test": "lerna bootstrap && jest",
-    "_lint:fix": "eslint \"packages/**/*.js\" --config \"./.eslintrc\" --fix",
-    "_format": "prettier-eslint \"packages/**/*.js\" --config \"./.eslintrc\" --write"
+    "release": "yarn run prepare-release && lerna publish --exact"
   },
   "lint-staged": {
     "*.js": [
@@ -135,6 +124,7 @@
             "lines-between-class-members": "off",
             "import/prefer-default-export": "off",
             "react/sort-comp": "off",
+            "react/jsx-filename-extension": "off",
             "react/require-default-props": "off",
             "react/forbid-prop-types": "off",
             "react/destructuring-assignment": "off",
