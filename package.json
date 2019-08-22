@@ -135,7 +135,6 @@
             "lines-between-class-members": "off",
             "import/prefer-default-export": "off",
             "react/sort-comp": "off",
-            "react/jsx-filename-extension": "off",
             "react/require-default-props": "off",
             "react/forbid-prop-types": "off",
             "react/destructuring-assignment": "off",
