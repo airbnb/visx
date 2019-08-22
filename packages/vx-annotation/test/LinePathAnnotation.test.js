@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { Point } from '@vx/point';
 import { LinePathAnnotation } from '../src';
 
@@ -58,8 +60,8 @@ describe('<LinePathAnnotation />', () => {
           y={0}
         >
           test
-        </text>
-      )
+        </text>,
+      ),
     ).toBe(true);
   });
 });
