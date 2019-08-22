@@ -30,7 +30,7 @@
     "babel:esm": "nimbus babel --clean --workspaces=* --esm",
     "clean": "rm -rf ./packages/*/*/{lib,esm}",
     "format": "yarn run prettier -- --write",
-    "jest": "NODE_ENV=test nimbus jest --coverage --verbose --workspaces=\"@vx/annotations\"",
+    "jest": "NODE_ENV=test nimbus jest --coverage --verbose",
     "lint": "nimbus eslint",
     "lint:fix": "yarn run lint -- --fix",
     "prettier": "nimbus prettier",
@@ -41,6 +41,7 @@
     "docs:gen": "lerna run docs",
     "prepare-release": "git checkout master && git pull --rebase origin master && yarn run docs && lerna updated",
     "release": "yarn run prepare-release && lerna publish --exact",
+
     "_lint": "eslint \"packages/**/*.js\" --config \"./.eslintrc\"",
     "_test": "lerna bootstrap && jest",
     "_lint:fix": "eslint \"packages/**/*.js\" --config \"./.eslintrc\" --fix",
@@ -98,10 +99,29 @@
       "library": true,
       "react": true
     },
+    "jest": {
+      "coverageReporters": [
+        "json"
+      ],
+      "coverageThreshold": {
+        "global": {
+          "branches": 0,
+          "functions": 0,
+          "lines": 0,
+          "statements": 0
+        }
+      }
+    },
     "eslint": {
       "overrides": [
         {
-          "files": "*",
+          "files": "*.test.{js,jsx,ts,tsx}",
+          "rules": {
+            "import/no-extraneous-dependencies": "off"
+          }
+        },
+        {
+          "files": "*.{js,jsx,ts,tsx}",
           "rules": {
             "linebreak-style": "off",
             "operator-linebreak": "off",
