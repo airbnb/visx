@@ -1,32 +1,8 @@
 {
-  "name": "@vx/dev",
-  "version": "0.0.1",
+  "name": "@vx/root",
+  "license": "MIT",
+  "version": "1.17.3",
   "description": "Low-level visualization components",
-  "main": "index.js",
-  "scripts": {
-    "test": "lerna bootstrap && jest",
-    "docs": "npm run docs:gen && node ./scripts/docs/index.js",
-    "docs:gen": "lerna run docs",
-    "prepare-release": "git checkout master && git pull --rebase origin master && npm run docs && lerna updated",
-    "release": "npm run prepare-release && lerna publish --exact",
-    "lint": "eslint \"packages/**/*.js\" --config \"./.eslintrc\"",
-    "lint:fix": "eslint \"packages/**/*.js\" --config \"./.eslintrc\" --fix",
-    "format": "prettier-eslint \"packages/**/*.js\" --config \"./.eslintrc\" --write",
-    "precommit": "lint-staged"
-  },
-  "eslintConfig": {
-    "extends": "airbnb"
-  },
-  "prettier": {
-    "printWidth": 100,
-    "singleQuote": true
-  },
-  "lint-staged": {
-    "*.js": [
-      "prettier-eslint --write",
-      "git add"
-    ]
-  },
   "keywords": [
     "react",
     "d3",
@@ -34,6 +10,10 @@
     "vx",
     "charts"
   ],
+  "engines": {
+    "node": ">=10.15.0",
+    "yarn": ">=1.10.0"
+  },
   "author": "@hshoff",
   "contributors": [
     {
@@ -41,7 +21,37 @@
       "url": "https://github.com/williaster"
     }
   ],
-  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "build": "yarn run babel",
+    "babel": "yarn run babel:cjs && yarn run babel:esm",
+    "babel:cjs": "nimbus babel --workspaces=\"@vx/annotations\"",
+    "babel:esm": "nimbus babel --workspaces=\"@vx/annotations\" --esm",
+    "clean": "rm -rf ./packages/*/*/{lib,esm}",
+    "format": "yarn run prettier -- --write",
+    "jest": "NODE_ENV=test nimbus jest --coverage --verbose --workspaces=\"@vx/annotations\"",
+    "lint": "nimbus eslint",
+    "lint:fix": "yarn run lint -- --fix",
+    "prettier": "nimbus prettier",
+    "precommit": "lint-staged",
+    "setup": "yarn run build",
+    "test": "yarn run jest",
+    "docs": "yarn run docs:gen && node ./scripts/docs/index.js",
+    "docs:gen": "lerna run docs",
+    "prepare-release": "git checkout master && git pull --rebase origin master && yarn run docs && lerna updated",
+    "release": "yarn run prepare-release && lerna publish --exact",
+    "_lint": "eslint \"packages/**/*.js\" --config \"./.eslintrc\"",
+    "_test": "lerna bootstrap && jest",
+    "_lint:fix": "eslint \"packages/**/*.js\" --config \"./.eslintrc\" --fix",
+    "_format": "prettier-eslint \"packages/**/*.js\" --config \"./.eslintrc\" --write"
+  },
+  "lint-staged": {
+    "*.js": [
+      "yarn run format",
+      "git add"
+    ]
+  },
   "devDependencies": {
     "@babel/core": "^7.5.0",
     "@babel/plugin-transform-runtime": "^7.5.5",
@@ -73,11 +83,8 @@
     "regenerator-runtime": "^0.10.5",
     "typescript": "^3.5.3"
   },
-  "browserslist": [
-    "last 3 chrome versions",
-    "last 3 firefox versions",
-    "last 3 safari versions",
-    "last 3 edge versions"
+  "workspaces": [
+    "./packages/*"
   ],
   "nimbus": {
     "drivers": [
@@ -89,12 +96,7 @@
     ],
     "settings": {
       "library": true,
-      "react": true,
-      "env": {
-        "targets": false,
-        "corejs": 3,
-        "useBuiltIns": "usage"
-      }
+      "react": true
     }
   }
 }
