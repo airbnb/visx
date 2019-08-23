@@ -8,7 +8,7 @@ ResponsiveSVG.propTypes = {
   xOrigin: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   yOrigin: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   preserveAspectRatio: PropTypes.string,
-  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
 };
 
 export default function ResponsiveSVG({
@@ -18,7 +18,7 @@ export default function ResponsiveSVG({
   xOrigin = 0,
   yOrigin = 0,
   preserveAspectRatio = 'xMinYMin meet',
-  innerRef
+  innerRef,
 }) {
   return (
     <div
@@ -27,7 +27,7 @@ export default function ResponsiveSVG({
         position: 'relative',
         width: '100%',
         verticalAlign: 'top',
-        overflow: 'hidden'
+        overflow: 'hidden',
       }}
     >
       <svg

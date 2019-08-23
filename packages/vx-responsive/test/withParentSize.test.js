@@ -1,3 +1,6 @@
+import React from 'react';
+import { mount } from 'enzyme';
+
 import { withParentSize } from '../src';
 
 describe('withParentSize', () => {
@@ -9,7 +12,7 @@ describe('withParentSize', () => {
       top: 0,
       left: 0,
       bottom: 0,
-      right: 0
+      right: 0,
     }));
   });
 
@@ -18,7 +21,7 @@ describe('withParentSize', () => {
   });
 
   test('it chould pass parentWidth and parentHeight props to its child', () => {
-    const Component = props => <div />;
+    const Component = () => <div />;
     const HOC = withParentSize(Component);
     const wrapper = mount(<HOC />);
 
