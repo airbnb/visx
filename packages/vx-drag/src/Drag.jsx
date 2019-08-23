@@ -10,7 +10,7 @@ export default class Drag extends React.Component {
       y: undefined,
       dx: 0,
       dy: 0,
-      isDragging: false
+      isDragging: false,
     };
     this.dragEnd = this.dragEnd.bind(this);
     this.dragMove = this.dragMove.bind(this);
@@ -27,7 +27,7 @@ export default class Drag extends React.Component {
       dx: resetOnStart ? 0 : dx,
       dy: resetOnStart ? 0 : dy,
       x: resetOnStart ? point.x : -dx + point.x,
-      y: resetOnStart ? point.y : -dy + point.y
+      y: resetOnStart ? point.y : -dy + point.y,
     };
     if (onDragStart) onDragStart({ ...nextState, event });
     this.setState(() => nextState);
@@ -42,7 +42,7 @@ export default class Drag extends React.Component {
       ...this.state,
       isDragging: true,
       dx: -(x - point.x),
-      dy: -(y - point.y)
+      dy: -(y - point.y),
     };
     if (onDragMove) onDragMove({ ...nextState, event });
     this.setState(() => nextState);
@@ -50,10 +50,9 @@ export default class Drag extends React.Component {
 
   dragEnd(event) {
     const { onDragEnd } = this.props;
-    const point = localPoint(event);
     const nextState = {
       ...this.state,
-      isDragging: false
+      isDragging: false,
     };
     if (onDragEnd) onDragEnd({ ...nextState, event });
     this.setState(() => nextState);
@@ -64,15 +63,14 @@ export default class Drag extends React.Component {
     const { children, width, height, captureDragArea } = this.props;
     return (
       <g>
-        {isDragging &&
-          captureDragArea && (
-            <rect
-              width={width}
-              height={height}
-              onMouseMove={this.dragMove}
-              onMouseUp={this.dragEnd}
-              fill="transparent"
-            />
+        {isDragging && captureDragArea && (
+          <rect
+            width={width}
+            height={height}
+            onMouseMove={this.dragMove}
+            onMouseUp={this.dragEnd}
+            fill="transparent"
+          />
         )}
         {children({
           x,
@@ -82,7 +80,7 @@ export default class Drag extends React.Component {
           isDragging,
           dragEnd: this.dragEnd,
           dragMove: this.dragMove,
-          dragStart: this.dragStart
+          dragStart: this.dragStart,
         })}
       </g>
     );
@@ -97,10 +95,10 @@ Drag.propTypes = {
   resetOnStart: PropTypes.bool,
   onDragEnd: PropTypes.func,
   onDragMove: PropTypes.func,
-  onDragStart: PropTypes.func
+  onDragStart: PropTypes.func,
 };
 
 Drag.defaultProps = {
   captureDragArea: true,
-  resetOnStart: false
+  resetOnStart: false,
 };
