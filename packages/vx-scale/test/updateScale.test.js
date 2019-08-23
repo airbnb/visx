@@ -19,7 +19,7 @@ describe('updateScale', () => {
     const range = [0, 2];
     const scale = scaleLinear({ range, domain });
     const nextScale = updateScale(scale, {
-      domain: newDomain
+      domain: newDomain,
     });
     expect(scale).not.toBe(nextScale);
     expect(nextScale.domain()).toEqual(newDomain);
