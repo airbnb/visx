@@ -9,7 +9,7 @@ import DefaultNode from './DefaultNode';
 Graph.propTypes = {
   graph: PropTypes.object,
   linkComponent: PropTypes.any,
-  nodeComponent: PropTypes.any
+  nodeComponent: PropTypes.any,
 };
 
 export default function Graph({ graph, linkComponent = DefaultLink, nodeComponent = DefaultNode }) {

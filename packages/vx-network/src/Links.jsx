@@ -6,7 +6,7 @@ import { Group } from '@vx/group';
 Links.propTypes = {
   links: PropTypes.array,
   linkComponent: PropTypes.any,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default function Links({ links, linkComponent, className }) {

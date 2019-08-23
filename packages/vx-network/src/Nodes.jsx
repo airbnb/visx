@@ -6,7 +6,7 @@ import { Group } from '@vx/group';
 Nodes.propTypes = {
   nodes: PropTypes.array,
   nodeComponent: PropTypes.any,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default function Nodes({ nodes, nodeComponent, className }) {
