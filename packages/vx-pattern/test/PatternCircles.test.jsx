@@ -1,3 +1,6 @@
+import React from 'react';
+import { mount } from 'enzyme';
+
 import { PatternCircles } from '../src';
 import { createCircles } from '../src/patterns/Circles';
 
@@ -11,37 +14,37 @@ describe('<PatternCircles />', () => {
   });
 
   test('it should require an id prop', () => {
-    const wrapper = mount(<PatternCircles width={4} height={4} />);
+    mount(<PatternCircles width={4} height={4} />);
     expect(console.error).toBeCalled();
     expect(console.error.mock.calls[0][0]).toEqual(
-      'Warning: Failed prop type: The prop `id` is marked as required in `PatternCircles`, but its value is `undefined`.\n    in PatternCircles'
+      'Warning: Failed prop type: The prop `id` is marked as required in `PatternCircles`, but its value is `undefined`.\n    in PatternCircles',
     );
   });
 
   test('it should require a width prop', () => {
-    const wrapper = mount(<PatternCircles id="test" height={4} />);
+    mount(<PatternCircles id="test" height={4} />);
     expect(console.error).toBeCalled();
     expect(console.error.mock.calls[0][0]).toEqual(
-      'Warning: Failed prop type: The prop `width` is marked as required in `PatternCircles`, but its value is `undefined`.\n    in PatternCircles'
+      'Warning: Failed prop type: The prop `width` is marked as required in `PatternCircles`, but its value is `undefined`.\n    in PatternCircles',
     );
   });
 
   test('it should require a height prop', () => {
-    const wrapper = mount(<PatternCircles id="test" width={4} />);
+    mount(<PatternCircles id="test" width={4} />);
     expect(console.error).toBeCalled();
     expect(console.error.mock.calls[0][0]).toEqual(
-      'Warning: Failed prop type: The prop `height` is marked as required in `PatternCircles`, but its value is `undefined`.\n    in PatternCircles'
+      'Warning: Failed prop type: The prop `height` is marked as required in `PatternCircles`, but its value is `undefined`.\n    in PatternCircles',
     );
   });
 
   test('it should render a rect background if background prop defined', () => {
     const wrapper = mount(<PatternCircles id="test" height={4} width={4} background="blue" />);
-    expect(wrapper.find('rect').length).toEqual(1);
+    expect(wrapper.find('rect')).toHaveLength(1);
   });
 
   test('it should not render a rect background if no background prop', () => {
     const wrapper = mount(<PatternCircles id="test" height={4} width={4} />);
-    expect(wrapper.find('rect').length).toEqual(0);
+    expect(wrapper.find('rect')).toHaveLength(0);
   });
 });
 
@@ -55,7 +58,7 @@ describe('createCircles()', () => {
       stroke: 'black',
       strokeWidth: 3,
       strokeDasharray: 'none',
-      className: 'blah'
+      className: 'blah',
     })[0];
   }
 
@@ -69,6 +72,6 @@ describe('createCircles()', () => {
 
   test('it should render a <circle />', () => {
     const wrapper = mount(getDummyCircle());
-    expect(wrapper.find('circle').length).toEqual(1);
+    expect(wrapper.find('circle')).toHaveLength(1);
   });
 });

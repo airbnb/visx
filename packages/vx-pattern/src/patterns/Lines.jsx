@@ -37,9 +37,9 @@ export default function PatternLines({
   shapeRendering = 'auto',
   orientation = ['vertical'],
   background,
-  className
+  className,
 }) {
-  if (!Array.isArray(orientation)) orientation = [orientation];
+  const orientations = !Array.isArray(orientation) ? [orientation] : orientation;
 
   return (
     <Pattern id={id} width={width} height={height}>
@@ -51,7 +51,7 @@ export default function PatternLines({
           fill={background}
         />
       )}
-      {orientation.map((o, i) => {
+      {orientations.map((o, i) => {
         return (
           <path
             key={`vx-${id}-line-${o}-${i}`}
@@ -80,5 +80,5 @@ PatternLines.propTypes = {
   className: PropTypes.string,
   strokeLinecap: PropTypes.string,
   shapeRendering: PropTypes.string,
-  orientation: PropTypes.array
+  orientation: PropTypes.array,
 };

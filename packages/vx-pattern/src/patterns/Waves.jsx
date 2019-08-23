@@ -14,7 +14,7 @@ export default function PatternWaves({
   strokeLinecap,
   shapeRendering,
   background,
-  className
+  className,
 }) {
   return (
     <Path
@@ -51,5 +51,5 @@ PatternWaves.propTypes = {
   strokeWidth: PropTypes.number,
   strokeDasharray: PropTypes.string,
   strokeLinecap: PropTypes.string,
-  shapeRendering: PropTypes.string
+  shapeRendering: PropTypes.string,
 };

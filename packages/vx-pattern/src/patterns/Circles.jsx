@@ -15,7 +15,7 @@ export function createCircles({
   stroke,
   strokeWidth,
   strokeDasharray,
-  className
+  className,
 }) {
   return corners.map(([cornerX, cornerY]) => (
     <circle
@@ -43,7 +43,7 @@ PatternCircles.propTypes = {
   strokeWidth: PropTypes.number,
   strokeDasharray: PropTypes.string,
   complement: PropTypes.bool,
-  background: PropTypes.string
+  background: PropTypes.string,
 };
 
 export default function PatternCircles({
@@ -57,7 +57,7 @@ export default function PatternCircles({
   strokeDasharray,
   background,
   complement = false,
-  className
+  className,
 }) {
   let corners;
   if (complement) {
@@ -84,7 +84,7 @@ export default function PatternCircles({
           fill,
           stroke,
           strokeWidth,
-          strokeDasharray
+          strokeDasharray,
         })}
     </Pattern>
   );
