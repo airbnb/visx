@@ -7,7 +7,7 @@ class Text extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      wordsByLines: []
+      wordsByLines: [],
     };
   }
 
@@ -29,7 +29,7 @@ class Text extends Component {
 
         this.wordsWithComputedWidth = words.map(word => ({
           word,
-          width: getStringWidth(word, props.style)
+          width: getStringWidth(word, props.style),
         }));
         this.spaceWidth = getStringWidth('\u00A0', props.style);
       }
@@ -37,7 +37,7 @@ class Text extends Component {
       const wordsByLines = this.calculateWordsByLines(
         this.wordsWithComputedWidth,
         this.spaceWidth,
-        props.width
+        props.width,
       );
       this.setState({ wordsByLines });
     } else {
@@ -96,7 +96,7 @@ class Text extends Component {
         break;
       case 'middle':
         startDy = reduceCSSCalc(
-          `calc(${(wordsByLines.length - 1) / 2} * -${lineHeight} + (${capHeight} / 2))`
+          `calc(${(wordsByLines.length - 1) / 2} * -${lineHeight} + (${capHeight} / 2))`,
         );
         break;
       default:
@@ -149,7 +149,7 @@ Text.defaultProps = {
   capHeight: '0.71em', // Magic number from d3
   scaleToFit: false,
   textAnchor: 'start',
-  verticalAnchor: 'end' // default SVG behavior
+  verticalAnchor: 'end', // default SVG behavior
 };
 
 Text.propTypes = {
@@ -164,7 +164,9 @@ Text.propTypes = {
   dx: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   dy: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   lineHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  capHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+  capHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  children: PropTypes.string,
+  width: PropTypes.number,
 };
 
 export default Text;
