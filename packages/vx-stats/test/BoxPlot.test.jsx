@@ -1,4 +1,7 @@
-import { scaleLinear } from '../../vx-scale';
+import React from 'react';
+import { shallow } from 'enzyme';
+
+import { scaleLinear } from '@vx/scale';
 import { BoxPlot, computeStats } from '../src';
 
 const data = [1, 2, 3, 4, 5, 6, 6, 7, 8, 9, 1];
@@ -7,7 +10,7 @@ const { min, firstQuartile, median, thirdQuartile, max, outliers } = boxPlotData
 
 const valueScale = scaleLinear({
   rangeRound: [10, 0],
-  domain: [0, 10]
+  domain: [0, 10],
 });
 
 describe('<BoxPlot />', () => {
@@ -28,7 +31,7 @@ describe('<BoxPlot />', () => {
         boxWidth={100}
         valueScale={valueScale}
         outliers={outliers}
-      />
+      />,
     );
     expect(wrapper.prop('className')).toEqual('vx-boxplot');
   });
@@ -46,9 +49,9 @@ describe('<BoxPlot />', () => {
         boxWidth={100}
         valueScale={valueScale}
         outliers={outliers}
-      />
+      />,
     );
-    expect(wrapper.find('line').length).toEqual(5);
-    expect(wrapper.find('rect').length).toEqual(1);
+    expect(wrapper.find('line')).toHaveLength(5);
+    expect(wrapper.find('rect')).toHaveLength(1);
   });
 });

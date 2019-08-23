@@ -14,7 +14,7 @@ ViolinPlot.propTypes = {
   value: PropTypes.func,
   valueScale: PropTypes.func,
   horizontal: PropTypes.bool,
-  children: PropTypes.func
+  children: PropTypes.func,
 };
 
 export default function ViolinPlot({
@@ -34,7 +34,7 @@ export default function ViolinPlot({
   const binCounts = data.map(bin => bin.count);
   const widthScale = scaleLinear({
     rangeRound: [0, width / 2],
-    domain: [0, Math.max(...binCounts)]
+    domain: [0, Math.max(...binCounts)],
   });
 
   let path = '';
