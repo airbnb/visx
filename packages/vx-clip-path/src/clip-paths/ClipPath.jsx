@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 ClipPath.propTypes = {
   id: PropTypes.string.isRequired,
-  children: PropTypes.any
+  children: PropTypes.any,
 };
 
 export default function ClipPath({ id, children, ...restProps }) {

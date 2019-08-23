@@ -7,7 +7,7 @@ RectClipPath.propTypes = {
   x: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   y: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  height: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 export default function RectClipPath({ id, x = 0, y = 0, width = 1, height = 1, ...restProps }) {
