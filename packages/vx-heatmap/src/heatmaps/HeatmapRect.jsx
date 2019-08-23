@@ -18,7 +18,7 @@ HeatmapRect.propTypes = {
   bins: PropTypes.func,
   count: PropTypes.func,
   className: PropTypes.string,
-  children: PropTypes.func
+  children: PropTypes.func,
 };
 
 export default function HeatmapRect({
@@ -32,8 +32,8 @@ export default function HeatmapRect({
   gap = 1,
   xScale,
   yScale,
-  colorScale = d => undefined,
-  opacityScale = d => 1,
+  colorScale = (/** d */) => undefined,
+  opacityScale = (/** d */) => 1,
   bins = d => d.bins,
   count = d => d.count,
   children,
@@ -57,14 +57,14 @@ export default function HeatmapRect({
         x: x + x0,
         y: yScale(row) + gap,
         color: colorScale(countValue),
-        opacity: opacityScale(countValue)
+        opacity: opacityScale(countValue),
       };
     });
   });
   if (children) return children(heatmap);
   return (
     <Group className="vx-heatmap-rects" top={top} left={left}>
-      {heatmap.map((_bins, column) => {
+      {heatmap.map((_bins /** column */) => {
         return _bins.map(bin => {
           return (
             <rect

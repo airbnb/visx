@@ -16,7 +16,7 @@ HeatmapCircle.propTypes = {
   bins: PropTypes.func,
   count: PropTypes.func,
   className: PropTypes.string,
-  children: PropTypes.func
+  children: PropTypes.func,
 };
 
 export default function HeatmapCircle({
@@ -28,8 +28,8 @@ export default function HeatmapCircle({
   radius = 6,
   xScale,
   yScale,
-  colorScale = d => undefined,
-  opacityScale = d => 1,
+  colorScale = (/** d */) => undefined,
+  opacityScale = (/** d */) => 1,
   bins = d => d.bins,
   count = d => d.count,
   children,
@@ -52,7 +52,7 @@ export default function HeatmapCircle({
         cx: radius + x,
         cy: yScale(row) + gap + radius,
         opacity: opacityScale(countValue),
-        color: colorScale(countValue)
+        color: colorScale(countValue),
       };
     });
   });
