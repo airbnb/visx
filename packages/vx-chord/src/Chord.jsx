@@ -8,7 +8,7 @@ Chord.propTypes = {
   sortGroups: PropTypes.func,
   sortSubgroups: PropTypes.func,
   sortChords: PropTypes.func,
-  children: PropTypes.func.isRequired
+  children: PropTypes.func.isRequired,
 };
 
 export default function Chord({
@@ -18,7 +18,6 @@ export default function Chord({
   sortSubgroups,
   sortChords,
   children,
-  ...restProps
 }) {
   const chord = d3chord();
   if (padAngle) chord.padAngle(padAngle);
@@ -26,7 +25,7 @@ export default function Chord({
   if (sortSubgroups) chord.sortSubgroups(sortSubgroups);
   if (sortChords) chord.sortChords(sortChords);
   const chords = chord(matrix);
-  if (!!children) return children({ chords });
+  if (children) return children({ chords });
 
   // so react-docgen picks it up
   return <g />;

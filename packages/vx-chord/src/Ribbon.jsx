@@ -11,7 +11,7 @@ Ribbon.propTypes = {
   startAngle: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
   endAngle: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
   children: PropTypes.func,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default function Ribbon({
@@ -32,6 +32,7 @@ export default function Ribbon({
   if (startAngle) ribbon.startAngle(startAngle);
   if (endAngle) ribbon.endAngle(endAngle);
   const path = ribbon(chord);
-  if (!!children) return children({ path });
+  if (children) return children({ path });
+
   return <path className={cx('vx-ribbon', className)} d={path} {...restProps} />;
 }
