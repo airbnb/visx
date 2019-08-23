@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 HierarchyDefaultNode.propTypes = {
-  node: PropTypes.object
+  node: PropTypes.object,
 };
 
 export default function HierarchyDefaultNode({ node }) {

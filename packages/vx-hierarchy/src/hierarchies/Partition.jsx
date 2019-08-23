@@ -14,7 +14,7 @@ Partition.propTypes = {
   size: PropTypes.arrayOf(PropTypes.number),
   round: PropTypes.bool,
   padding: PropTypes.number,
-  nodeComponent: PropTypes.any
+  nodeComponent: PropTypes.any,
 };
 
 export default function Partition({
@@ -27,7 +27,6 @@ export default function Partition({
   padding,
   children,
   nodeComponent = DefaultNode,
-  ...restProps
 }) {
   const partition = d3partition();
   if (size) partition.size(size);

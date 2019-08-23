@@ -14,7 +14,7 @@ Pack.propTypes = {
   radius: PropTypes.func,
   size: PropTypes.arrayOf(PropTypes.number),
   padding: PropTypes.number,
-  nodeComponent: PropTypes.any
+  nodeComponent: PropTypes.any,
 };
 
 export default function Pack({
@@ -27,7 +27,6 @@ export default function Pack({
   padding,
   children,
   nodeComponent = DefaultNode,
-  ...restProps
 }) {
   const pack = d3pack();
 

@@ -21,7 +21,7 @@ Treemap.propTypes = {
   paddingRight: PropTypes.oneOfType([PropTypes.number, PropTypes.func]),
   paddingBottom: PropTypes.oneOfType([PropTypes.number, PropTypes.func]),
   paddingLeft: PropTypes.oneOfType([PropTypes.number, PropTypes.func]),
-  nodeComponent: PropTypes.any
+  nodeComponent: PropTypes.any,
 };
 
 export default function Treemap({
@@ -41,7 +41,6 @@ export default function Treemap({
   paddingLeft,
   children,
   nodeComponent = DefaultNode,
-  ...restProps
 }) {
   const treemap = d3treemap();
 
