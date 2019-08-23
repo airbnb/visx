@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { scaleLinear } from '@vx/scale';
+import { scaleLinear } from '../../vx-scale/src';
 import { BoxPlot, computeStats } from '../src';
 
 const data = [1, 2, 3, 4, 5, 6, 6, 7, 8, 9, 1];
