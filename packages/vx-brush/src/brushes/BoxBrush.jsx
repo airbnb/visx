@@ -1,15 +1,27 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import cx from 'classnames';
 
-export default props => {
-  const {
-    brush,
-    className,
-    fill = 'rgba(102, 181, 245, 0.1)',
-    stroke = 'rgba(102, 181, 245, 1)',
-    strokeWidth = 1,
-    ...otherProps
-  } = props;
+const propTypes = {
+  brush: PropTypes.shape({
+    start: PropTypes.shape({ x: PropTypes.number, y: PropTypes.number }),
+    end: PropTypes.shape({ x: PropTypes.number, y: PropTypes.number }),
+    isBrushing: PropTypes.bool,
+  }),
+  className: PropTypes.string,
+  fill: PropTypes.string,
+  stroke: PropTypes.string,
+  strokeWidth: PropTypes.oneOf([PropTypes.string, PropTypes.number]),
+};
+
+function BoxBrush({
+  brush,
+  className,
+  fill = 'rgba(102, 181, 245, 0.1)',
+  stroke = 'rgba(102, 181, 245, 1)',
+  strokeWidth = 1,
+  ...otherProps
+}) {
   const { start, end, isBrushing } = brush;
   if (!start) return null;
   if (!end) return null;
@@ -33,4 +45,8 @@ export default props => {
       )}
     </g>
   );
-};
+}
+
+BoxBrush.propTypes = propTypes;
+
+export default BoxBrush;

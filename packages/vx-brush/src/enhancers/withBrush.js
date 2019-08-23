@@ -1,4 +1,3 @@
-import React from 'react';
 import { compose, withState, withHandlers } from 'recompose';
 
 export default compose(
@@ -6,7 +5,7 @@ export default compose(
     start: undefined,
     end: undefined,
     domain: undefined,
-    isBrushing: false
+    isBrushing: false,
   }),
   withHandlers({
     onBrushStart: ({ updateBrush }) => ({ x, y }) => {
@@ -15,14 +14,14 @@ export default compose(
         start: { x, y },
         isBrushing: true,
         end: undefined,
-        domain: undefined
+        domain: undefined,
       }));
     },
     onBrushDrag: ({ updateBrush }) => ({ x, y }) => {
       updateBrush(prevState => ({
         ...prevState,
         end: { x, y },
-        domain: undefined
+        domain: undefined,
       }));
     },
     onBrushEnd: ({ updateBrush }) => ({ x, y }) => {
@@ -35,18 +34,18 @@ export default compose(
             x0: Math.min(start.x, x),
             x1: Math.max(start.x, x),
             y0: Math.min(start.y, y),
-            y1: Math.max(start.y, y)
-          }
+            y1: Math.max(start.y, y),
+          },
         };
       });
     },
-    onBrushReset: ({ updateBrush }) => event => {
-      updateBrush(prevState => ({
+    onBrushReset: ({ updateBrush }) => (/** event */) => {
+      updateBrush((/** prevState */) => ({
         start: undefined,
         end: undefined,
         domain: undefined,
-        isBrushing: false
+        isBrushing: false,
       }));
-    }
-  })
+    },
+  }),
 );
