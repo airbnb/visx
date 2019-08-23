@@ -17,7 +17,7 @@ Rows.propTypes = {
   offset: PropTypes.number,
   scale: PropTypes.func.isRequired,
   width: PropTypes.number.isRequired,
-  tickValues: PropTypes.array
+  tickValues: PropTypes.array,
 };
 
 export default function Rows({
@@ -43,11 +43,11 @@ export default function Rows({
         const y = offset ? scale(d) + offset : scale(d);
         const fromPoint = new Point({
           x: 0,
-          y
+          y,
         });
         const toPoint = new Point({
           x: width,
-          y
+          y,
         });
         return (
           <Line

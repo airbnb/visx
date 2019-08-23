@@ -17,7 +17,7 @@ Columns.propTypes = {
   offset: PropTypes.number,
   scale: PropTypes.func.isRequired,
   height: PropTypes.number.isRequired,
-  tickValues: PropTypes.array
+  tickValues: PropTypes.array,
 };
 
 export default function Columns({
@@ -43,11 +43,11 @@ export default function Columns({
         const x = offset ? scale(d) + offset : scale(d);
         const fromPoint = new Point({
           x,
-          y: 0
+          y: 0,
         });
         const toPoint = new Point({
           x,
-          y: height
+          y: height,
         });
         return (
           <Line

@@ -23,7 +23,7 @@ Grid.propTypes = {
   height: PropTypes.number.isRequired,
   width: PropTypes.number.isRequired,
   rowTickValues: PropTypes.array,
-  columnTickValues: PropTypes.array
+  columnTickValues: PropTypes.array,
 };
 
 export default function Grid({
