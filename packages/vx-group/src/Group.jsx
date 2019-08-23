@@ -8,7 +8,7 @@ Group.propTypes = {
   transform: PropTypes.string,
   className: PropTypes.string,
   children: PropTypes.any,
-  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
 };
 
 export default function Group({

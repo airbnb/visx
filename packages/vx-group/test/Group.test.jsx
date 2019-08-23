@@ -1,3 +1,6 @@
+import React from 'react';
+import { shallow } from 'enzyme';
+
 import { Group } from '../src';
 
 describe('<Group />', () => {
