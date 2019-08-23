@@ -7,7 +7,7 @@ Tooltip.propTypes = {
   top: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   className: PropTypes.string,
   style: PropTypes.object,
-  children: PropTypes.any
+  children: PropTypes.any,
 };
 
 export default function Tooltip({ className, top, left, style, children, ...restProps }) {
@@ -26,7 +26,7 @@ export default function Tooltip({ className, top, left, style, children, ...rest
         pointerEvents: 'none',
         top,
         left,
-        ...style
+        ...style,
       }}
       {...restProps}
     >

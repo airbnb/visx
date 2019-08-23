@@ -10,13 +10,13 @@ const rectShape = PropTypes.shape({
   bottom: PropTypes.number.isRequired,
   left: PropTypes.number.isRequired,
   width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired
+  height: PropTypes.number.isRequired,
 });
 
 const withBoundingRectsProps = {
   getRects: PropTypes.func,
   rect: rectShape,
-  parentRect: rectShape
+  parentRect: rectShape,
 };
 
 const tooltipProps = {
@@ -24,14 +24,14 @@ const tooltipProps = {
   top: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   className: PropTypes.string,
   style: PropTypes.object,
-  children: PropTypes.any
+  children: PropTypes.any,
 };
 
 const propTypes = {
   ...withBoundingRectsProps,
   ...tooltipProps,
   offsetLeft: PropTypes.number,
-  offsetTop: PropTypes.number
+  offsetTop: PropTypes.number,
 };
 
 const defaultProps = {};
