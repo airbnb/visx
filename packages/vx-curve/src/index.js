@@ -16,5 +16,5 @@ export {
   curveCatmullRomOpen,
   curveMonotoneX,
   curveMonotoneY,
-  curveNatural
+  curveNatural,
 } from 'd3-shape';

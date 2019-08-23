@@ -16,7 +16,7 @@ import {
   curveCatmullRomOpen,
   curveMonotoneX,
   curveMonotoneY,
-  curveNatural
+  curveNatural,
 } from '../src';
 
 test('curveBasis', () => {
