@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 VoronoiPolygon.propTypes = {
   polygon: PropTypes.arrayOf(PropTypes.array),
   className: PropTypes.string,
-  children: PropTypes.func
+  children: PropTypes.func,
 };
 
 export default function VoronoiPolygon({ polygon, className, children, ...restProps }) {

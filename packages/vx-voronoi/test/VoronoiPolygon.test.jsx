@@ -1,3 +1,6 @@
+import React from 'react';
+import { shallow } from 'enzyme';
+
 import { VoronoiPolygon } from '../src';
 
 describe('<VoronoiPolygon />', () => {
@@ -20,7 +23,7 @@ describe('<VoronoiPolygon />', () => {
 
   test('it should render a path', () => {
     const wrapper = shallow(<VoronoiPolygon {...props} />);
-    expect(wrapper.find('path').length).toBe(1);
+    expect(wrapper.find('path')).toHaveLength(1);
   });
 
   test('it should set a d attribute based on the polygon prop', () => {
