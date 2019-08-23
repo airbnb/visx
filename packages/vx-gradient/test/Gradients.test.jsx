@@ -1,4 +1,6 @@
-import ReactDOM from 'react-dom';
+import React from 'react';
+import { mount } from 'enzyme';
+
 import {
   GradientDarkgreenGreen,
   GradientLightgreenGreen,
@@ -9,7 +11,7 @@ import {
   GradientPurpleRed,
   GradientPurpleTeal,
   GradientSteelPurple,
-  GradientTealBlue
+  GradientTealBlue,
 } from '../src';
 
 describe('<GradientDarkgreenGreen />', () => {
@@ -18,13 +20,13 @@ describe('<GradientDarkgreenGreen />', () => {
   });
 
   test('it should render without crashing', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(
-      <svg>
-        <GradientDarkgreenGreen id="gradient" />
-      </svg>,
-      div
-    );
+    expect(() =>
+      mount(
+        <svg>
+          <GradientDarkgreenGreen id="gradient" />
+        </svg>,
+      ),
+    ).not.toThrow();
   });
 });
 
@@ -34,13 +36,13 @@ describe('<GradientLightgreenGreen />', () => {
   });
 
   test('it should render without crashing', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(
-      <svg>
-        <GradientLightgreenGreen id="gradient" />
-      </svg>,
-      div
-    );
+    expect(() =>
+      mount(
+        <svg>
+          <GradientLightgreenGreen id="gradient" />
+        </svg>,
+      ),
+    ).not.toThrow();
   });
 });
 
@@ -50,13 +52,13 @@ describe('<GradientOrangeRed />', () => {
   });
 
   test('it should render without crashing', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(
-      <svg>
-        <GradientOrangeRed id="gradient" />
-      </svg>,
-      div
-    );
+    expect(() =>
+      mount(
+        <svg>
+          <GradientOrangeRed id="gradient" />
+        </svg>,
+      ),
+    ).not.toThrow();
   });
 });
 
@@ -66,13 +68,13 @@ describe('<GradientPinkBlue />', () => {
   });
 
   test('it should render without crashing', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(
-      <svg>
-        <GradientPinkBlue id="gradient" />
-      </svg>,
-      div
-    );
+    expect(() =>
+      mount(
+        <svg>
+          <GradientPinkBlue id="gradient" />
+        </svg>,
+      ),
+    ).not.toThrow();
   });
 });
 
@@ -82,13 +84,13 @@ describe('<GradientPinkRed />', () => {
   });
 
   test('it should render without crashing', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(
-      <svg>
-        <GradientPinkRed id="gradient" />
-      </svg>,
-      div
-    );
+    expect(() =>
+      mount(
+        <svg>
+          <GradientPinkRed id="gradient" />
+        </svg>,
+      ),
+    ).not.toThrow();
   });
 });
 
@@ -98,13 +100,13 @@ describe('<GradientPurpleOrange />', () => {
   });
 
   test('it should render without crashing', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(
-      <svg>
-        <GradientPurpleOrange id="gradient" />
-      </svg>,
-      div
-    );
+    expect(() =>
+      mount(
+        <svg>
+          <GradientPurpleOrange id="gradient" />
+        </svg>,
+      ),
+    ).not.toThrow();
   });
 });
 
@@ -114,13 +116,13 @@ describe('<GradientPurpleRed />', () => {
   });
 
   test('it should render without crashing', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(
-      <svg>
-        <GradientPurpleRed id="gradient" />
-      </svg>,
-      div
-    );
+    expect(() =>
+      mount(
+        <svg>
+          <GradientPurpleRed id="gradient" />
+        </svg>,
+      ),
+    ).not.toThrow();
   });
 });
 
@@ -130,13 +132,13 @@ describe('<GradientPurpleTeal />', () => {
   });
 
   test('it should render without crashing', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(
-      <svg>
-        <GradientPurpleTeal id="gradient" />
-      </svg>,
-      div
-    );
+    expect(() =>
+      mount(
+        <svg>
+          <GradientPurpleTeal id="gradient" />
+        </svg>,
+      ),
+    ).not.toThrow();
   });
 });
 
@@ -146,13 +148,13 @@ describe('<GradientSteelPurple />', () => {
   });
 
   test('it should render without crashing', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(
-      <svg>
-        <GradientSteelPurple id="gradient" />
-      </svg>,
-      div
-    );
+    expect(() =>
+      mount(
+        <svg>
+          <GradientSteelPurple id="gradient" />
+        </svg>,
+      ),
+    ).not.toThrow();
   });
 });
 
@@ -162,12 +164,12 @@ describe('<GradientTealBlue />', () => {
   });
 
   test('it should render without crashing', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(
-      <svg>
-        <GradientTealBlue id="gradient" />
-      </svg>,
-      div
-    );
+    expect(() =>
+      mount(
+        <svg>
+          <GradientTealBlue id="gradient" />
+        </svg>,
+      ),
+    ).not.toThrow();
   });
 });

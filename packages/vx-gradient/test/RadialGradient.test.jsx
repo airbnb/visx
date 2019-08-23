@@ -1,4 +1,6 @@
-import ReactDOM from 'react-dom';
+import React from 'react';
+import { mount } from 'enzyme';
+
 import { RadialGradient } from '../src';
 
 describe('<RadialGradient />', () => {
@@ -7,12 +9,12 @@ describe('<RadialGradient />', () => {
   });
 
   test('it should render without crashing', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(
-      <svg>
-        <RadialGradient id="radial" />
-      </svg>,
-      div
-    );
+    expect(() =>
+      mount(
+        <svg>
+          <RadialGradient id="radial" />
+        </svg>,
+      ),
+    ).not.toThrow();
   });
 });

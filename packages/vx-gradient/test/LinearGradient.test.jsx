@@ -1,4 +1,6 @@
-import ReactDOM from 'react-dom';
+import React from 'react';
+import { mount } from 'enzyme';
+
 import { LinearGradient } from '../src';
 
 describe('<LinearGradient />', () => {
@@ -7,12 +9,12 @@ describe('<LinearGradient />', () => {
   });
 
   test('it should render without crashing', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(
-      <svg>
-        <LinearGradient id="linear" />
-      </svg>,
-      div
-    );
+    expect(() =>
+      mount(
+        <svg>
+          <LinearGradient id="linear" />
+        </svg>,
+      ),
+    ).not.toThrow();
   });
 });
