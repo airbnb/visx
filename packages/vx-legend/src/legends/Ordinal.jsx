@@ -7,7 +7,7 @@ LegendOrdinal.propTypes = {
   scale: PropTypes.func.isRequired,
   domain: PropTypes.array,
   labelTransform: PropTypes.func,
-  labelFormat: PropTypes.func
+  labelFormat: PropTypes.func,
 };
 
 export default function LegendOrdinal({
@@ -34,7 +34,7 @@ function defaultTransform({ scale, labelFormat }) {
       datum: d,
       index: i,
       text: `${labelFormat(d, i)}`,
-      value: scale(d)
+      value: scale(d),
     };
   };
 }

@@ -26,11 +26,11 @@ Legend.propTypes = {
   shapeStyle: PropTypes.any,
   labelFormat: PropTypes.func,
   labelTransform: PropTypes.func,
-  children: PropTypes.func
+  children: PropTypes.func,
 };
 
 const defaultStyle = {
-  display: 'flex'
+  display: 'flex',
 };
 
 export default function Legend({
@@ -39,7 +39,7 @@ export default function Legend({
   shapeStyle,
   scale,
   shape,
-  domain,
+  domain: inputDomain,
   fill = valueOrIdentity,
   size = valueOrIdentity,
   labelFormat = valueOrIdentity,
@@ -56,7 +56,7 @@ export default function Legend({
   children,
   ...restProps
 }) {
-  domain = domain || scale.domain();
+  const domain = inputDomain || scale.domain();
   const labels = domain.map(labelTransform({ scale, labelFormat }));
   if (children) return children(labels);
   return (
@@ -64,7 +64,7 @@ export default function Legend({
       className={cx('vx-legend', className)}
       style={{
         ...style,
-        flexDirection: direction
+        flexDirection: direction,
       }}
     >
       {labels.map((label, i) => {
@@ -101,7 +101,7 @@ function defaultTransform({ scale, labelFormat }) {
       datum: d,
       index: i,
       text: `${labelFormat(d, i)}`,
-      value: scale(d)
+      value: scale(d),
     };
   };
 }

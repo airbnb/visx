@@ -2,15 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Legend from './Legend';
 
-export default function LegendSize({
+LegendLinear.propTypes = {
+  scale: PropTypes.func.isRequired,
+  domain: PropTypes.array,
+  steps: PropTypes.number,
+  labelFormat: PropTypes.func,
+  labelTransform: PropTypes.func,
+};
+
+export default function LegendLinear({
   scale,
-  domain,
+  domain: inputDomain,
   steps = 5,
   labelFormat = x => x,
   labelTransform = defaultTransform,
   ...restProps
 }) {
-  domain = domain || defaultDomain({ steps, scale });
+  const domain = inputDomain || defaultDomain({ steps, scale });
   return (
     <Legend
       scale={scale}
@@ -38,8 +46,6 @@ function defaultTransform({ scale, labelFormat }) {
     return {
       text: `${labelFormat(d, i)}`,
       value: scale(d),
-      datum: d,
-      index: i
     };
   };
 }

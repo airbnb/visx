@@ -6,7 +6,7 @@ LegendLabel.propTypes = {
   label: PropTypes.any,
   flex: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   margin: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  children: PropTypes.any
+  children: PropTypes.any,
 };
 
 export default function LegendLabel({
@@ -14,7 +14,7 @@ export default function LegendLabel({
   label,
   margin = '5px 0',
   align = 'left',
-  children
+  children,
 }) {
   return (
     <div
@@ -23,7 +23,7 @@ export default function LegendLabel({
         justifyContent: align,
         display: 'flex',
         flex,
-        margin
+        margin,
       }}
     >
       {children || label}

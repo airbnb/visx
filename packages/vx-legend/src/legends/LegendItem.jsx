@@ -5,7 +5,8 @@ LegendItem.propTypes = {
   flexDirection: PropTypes.string,
   alignItems: PropTypes.string,
   margin: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  children: PropTypes.any
+  children: PropTypes.any,
+  display: PropTypes.string,
 };
 
 export default function LegendItem({
@@ -23,7 +24,7 @@ export default function LegendItem({
         display,
         alignItems,
         flexDirection,
-        margin
+        margin,
       }}
       {...restProps}
     >
