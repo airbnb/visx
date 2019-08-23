@@ -1,4 +1,7 @@
-import { Polygon, getPoint, getPoints } from '../src';
+import React from 'react';
+import { shallow } from 'enzyme';
+
+import { Polygon } from '../src';
 
 const PolygonWrapper = ({ ...restProps }) => shallow(<Polygon {...restProps} />);
 const PolygonChildren = ({ children, ...restProps }) =>
@@ -27,7 +30,7 @@ describe('<Polygon />', () => {
       sides: 6,
       size: 25,
       className: 'a-polygon',
-      onClick: fn
+      onClick: fn,
     });
     wrapper.simulate('click');
     expect(fn).toHaveBeenCalled();
@@ -35,16 +38,16 @@ describe('<Polygon />', () => {
 
   test('it should take a children as function prop', () => {
     const fn = jest.fn();
-    const wrapper = PolygonChildren({ children: fn, sides: 8, size: 25 });
+    PolygonChildren({ children: fn, sides: 8, size: 25 });
     expect(fn).toHaveBeenCalled();
   });
 
   test('it should call children function with { points }', () => {
     const fn = jest.fn();
-    const wrapper = PolygonChildren({ children: fn, sides: 8, size: 25 });
+    PolygonChildren({ children: fn, sides: 8, size: 25 });
     const args = fn.mock.calls[0][0];
     const keys = Object.keys(args);
     expect(keys.includes('points')).toEqual(true);
-    expect(args.points.length).toEqual(8);
+    expect(args.points).toHaveLength(8);
   });
 });

@@ -3,7 +3,7 @@ import {
   stackOrderDescending,
   stackOrderInsideOut,
   stackOrderNone,
-  stackOrderReverse
+  stackOrderReverse,
 } from 'd3-shape';
 
 export const STACK_ORDERS = {
@@ -11,7 +11,7 @@ export const STACK_ORDERS = {
   descending: stackOrderDescending,
   insideout: stackOrderInsideOut,
   none: stackOrderNone,
-  reverse: stackOrderReverse
+  reverse: stackOrderReverse,
 };
 
 export const STACK_ORDER_NAMES = Object.keys(STACK_ORDERS);

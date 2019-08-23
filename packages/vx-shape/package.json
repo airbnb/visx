@@ -36,5 +36,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "devDependencies": {
+    "d3-hierarchy": "^1.1.8"
   }
 }

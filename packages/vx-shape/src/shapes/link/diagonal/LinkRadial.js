@@ -21,7 +21,9 @@ LinkRadial.propTypes = {
   source: PropTypes.func,
   target: PropTypes.func,
   path: PropTypes.func,
-  children: PropTypes.func
+  children: PropTypes.func,
+  className: PropTypes.string,
+  data: PropTypes.any,
 };
 
 export default function LinkRadial({
@@ -36,13 +38,13 @@ export default function LinkRadial({
   children,
   ...restProps
 }) {
-  path = path || pathRadialDiagonal({ source, target, angle, radius });
+  const pathGen = path || pathRadialDiagonal({ source, target, angle, radius });
   if (children) return children({ path });
   return (
     <path
       ref={innerRef}
       className={cx('vx-link vx-link-radial-diagonal', className)}
-      d={path(data)}
+      d={pathGen(data)}
       {...restProps}
     />
   );

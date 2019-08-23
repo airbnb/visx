@@ -20,7 +20,7 @@ Pie.propTypes = {
   pieValue: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
   pieSort: PropTypes.func,
   pieSortValues: PropTypes.func,
-  children: PropTypes.func
+  children: PropTypes.func,
 };
 
 export default function Pie({

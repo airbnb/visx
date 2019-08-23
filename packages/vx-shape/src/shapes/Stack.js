@@ -24,7 +24,7 @@ Stack.propTypes = {
   value: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
   defined: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
   order: PropTypes.oneOfType([PropTypes.func, PropTypes.array, PropTypes.string]),
-  offset: PropTypes.oneOfType([PropTypes.func, PropTypes.array, PropTypes.string])
+  offset: PropTypes.oneOfType([PropTypes.func, PropTypes.array, PropTypes.string]),
 };
 
 export default function Stack({

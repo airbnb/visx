@@ -21,7 +21,9 @@ LinkHorizontal.propTypes = {
   source: PropTypes.func,
   target: PropTypes.func,
   path: PropTypes.func,
-  children: PropTypes.func
+  children: PropTypes.func,
+  className: PropTypes.string,
+  data: PropTypes.any,
 };
 
 export default function LinkHorizontal({
@@ -36,13 +38,13 @@ export default function LinkHorizontal({
   children,
   ...restProps
 }) {
-  path = path || pathHorizontalDiagonal({ source, target, x, y });
+  const pathGen = path || pathHorizontalDiagonal({ source, target, x, y });
   if (children) return children({ path });
   return (
     <path
       ref={innerRef}
       className={cx('vx-link vx-link-horizontal-diagonal', className)}
-      d={path(data)}
+      d={pathGen(data)}
       {...restProps}
     />
   );

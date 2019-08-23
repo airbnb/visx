@@ -20,7 +20,10 @@ LinkVertical.propTypes = {
   y: PropTypes.func,
   source: PropTypes.func,
   target: PropTypes.func,
-  path: PropTypes.func
+  path: PropTypes.func,
+  className: PropTypes.string,
+  children: PropTypes.func,
+  data: PropTypes.any,
 };
 
 export default function LinkVertical({
@@ -35,13 +38,13 @@ export default function LinkVertical({
   children,
   ...restProps
 }) {
-  path = path || pathVerticalDiagonal({ source, target, x, y });
+  const pathGen = path || pathVerticalDiagonal({ source, target, x, y });
   if (children) return children({ path });
   return (
     <path
       ref={innerRef}
       className={cx('vx-link vx-link-vertical-diagonal', className)}
-      d={path(data)}
+      d={pathGen(data)}
       {...restProps}
     />
   );

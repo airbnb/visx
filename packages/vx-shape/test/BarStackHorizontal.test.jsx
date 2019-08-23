@@ -1,3 +1,6 @@
+import React from 'react';
+import { shallow } from 'enzyme';
+
 import { BarStackHorizontal } from '../src';
 
 const yScale = jest.fn();
@@ -24,7 +27,7 @@ describe('<BarStackHorizontal />', () => {
         yScale={yScale}
         color={d => d}
         keys={[]}
-      />
+      />,
     );
     expect(wrapper.prop('className')).toEqual('vx-bar-stack-horizontal');
   });
@@ -41,7 +44,7 @@ describe('<BarStackHorizontal />', () => {
         yScale={yScale}
         color={d => d}
         keys={[]}
-      />
+      />,
     );
     expect(wrapper.prop('className')).toEqual('vx-bar-stack-horizontal test');
   });
@@ -58,7 +61,7 @@ describe('<BarStackHorizontal />', () => {
         yScale={yScale}
         color={d => d}
         keys={[]}
-      />
+      />,
     );
     expect(wrapper.prop('top')).toEqual(2);
     expect(wrapper.prop('left')).toEqual(3);

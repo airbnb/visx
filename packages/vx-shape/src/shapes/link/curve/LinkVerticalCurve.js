@@ -34,7 +34,9 @@ LinkVerticalCurve.propTypes = {
   source: PropTypes.func,
   target: PropTypes.func,
   path: PropTypes.func,
-  children: PropTypes.func
+  children: PropTypes.func,
+  data: PropTypes.any,
+  className: PropTypes.string,
 };
 
 export default function LinkVerticalCurve({
@@ -50,13 +52,13 @@ export default function LinkVerticalCurve({
   children,
   ...restProps
 }) {
-  path = path || pathVerticalCurve({ source, target, x, y, percent });
+  const pathGen = path || pathVerticalCurve({ source, target, x, y, percent });
   if (children) return children({ path });
   return (
     <path
       ref={innerRef}
       className={cx('vx-link vx-link-vertical-curve', className)}
-      d={path(data)}
+      d={pathGen(data)}
       {...restProps}
     />
   );

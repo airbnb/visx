@@ -31,7 +31,9 @@ LinkHorizontalStep.propTypes = {
   source: PropTypes.func,
   target: PropTypes.func,
   path: PropTypes.func,
-  children: PropTypes.func
+  children: PropTypes.func,
+  className: PropTypes.string,
+  data: PropTypes.any,
 };
 
 export default function LinkHorizontalStep({
@@ -47,13 +49,13 @@ export default function LinkHorizontalStep({
   children,
   ...restProps
 }) {
-  path = path || pathHorizontalStep({ source, target, x, y, percent });
+  const pathGen = path || pathHorizontalStep({ source, target, x, y, percent });
   if (children) return children({ path });
   return (
     <path
       ref={innerRef}
       className={cx('vx-link vx-link-horizontal-step', className)}
-      d={path(data)}
+      d={pathGen(data)}
       {...restProps}
     />
   );

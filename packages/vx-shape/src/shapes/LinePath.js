@@ -9,7 +9,10 @@ LinePath.propTypes = {
   innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   defined: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
   x: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
-  y: PropTypes.oneOfType([PropTypes.func, PropTypes.number])
+  y: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+  children: PropTypes.func,
+  fill: PropTypes.string,
+  className: PropTypes.string,
 };
 
 export default function LinePath({

@@ -84,7 +84,7 @@ BarGroup.propTypes = {
    *    + `y<number>` - the y position of the bar.
    *    + `color<string>` - the color of the bar.
    */
-  children: PropTypes.func
+  children: PropTypes.func,
 };
 
 /**
@@ -161,9 +161,9 @@ export default function BarGroup({
           x: x1Scale(key),
           y: yScale(value),
           color: color(key, j),
-          height: height - yScale(value)
+          height: height - yScale(value),
         };
-      })
+      }),
     };
   });
 

@@ -3,7 +3,7 @@ import {
   stackOffsetDiverging,
   stackOffsetNone,
   stackOffsetSilhouette,
-  stackOffsetWiggle
+  stackOffsetWiggle,
 } from 'd3-shape';
 
 export const STACK_OFFSETS = {
@@ -11,7 +11,7 @@ export const STACK_OFFSETS = {
   diverging: stackOffsetDiverging,
   none: stackOffsetNone,
   silhouette: stackOffsetSilhouette,
-  wiggle: stackOffsetWiggle
+  wiggle: stackOffsetWiggle,
 };
 
 export const STACK_OFFSET_NAMES = Object.keys(STACK_OFFSETS);

@@ -28,7 +28,9 @@ LinkVerticalLine.propTypes = {
   y: PropTypes.func,
   source: PropTypes.func,
   target: PropTypes.func,
-  children: PropTypes.func
+  children: PropTypes.func,
+  className: PropTypes.string,
+  data: PropTypes.any,
 };
 
 export default function LinkVerticalLine({
@@ -43,13 +45,13 @@ export default function LinkVerticalLine({
   children,
   ...restProps
 }) {
-  path = path || pathVerticalLine({ source, target, x, y });
+  const pathGen = path || pathVerticalLine({ source, target, x, y });
   if (children) return children({ path });
   return (
     <path
       ref={innerRef}
       className={cx('vx-link vx-link-vertical-line', className)}
-      d={path(data)}
+      d={pathGen(data)}
       {...restProps}
     />
   );

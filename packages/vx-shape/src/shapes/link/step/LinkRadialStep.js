@@ -38,7 +38,9 @@ LinkRadialStep.propTypes = {
   source: PropTypes.func,
   target: PropTypes.func,
   path: PropTypes.func,
-  children: PropTypes.func
+  children: PropTypes.func,
+  className: PropTypes.string,
+  data: PropTypes.any,
 };
 
 export default function LinkRadialStep({
@@ -53,13 +55,13 @@ export default function LinkRadialStep({
   children,
   ...restProps
 }) {
-  path = path || pathRadialStep({ source, target, x, y });
+  const pathGen = path || pathRadialStep({ source, target, x, y });
   if (children) return children({ path });
   return (
     <path
       ref={innerRef}
       className={cx('vx-link vx-link-radial-step', className)}
-      d={path(data)}
+      d={pathGen(data)}
       {...restProps}
     />
   );

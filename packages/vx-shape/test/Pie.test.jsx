@@ -1,4 +1,8 @@
+import React from 'react';
+import { shallow } from 'enzyme';
+
 import { Pie } from '../src';
+
 const browserUsage = [
   {
     date: '2015 Jun 15',
@@ -9,7 +13,7 @@ const browserUsage = [
     'Microsoft Edge': '0.03',
     Opera: '1.32',
     Mozilla: '0.12',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Jun 16',
@@ -20,8 +24,8 @@ const browserUsage = [
     'Microsoft Edge': '0.03',
     Opera: '1.32',
     Mozilla: '0.12',
-    'Other/Unknown': '0.01'
-  }
+    'Other/Unknown': '0.01',
+  },
 ];
 
 const PieWrapper = ({ ...restProps }) => shallow(<Pie data={browserUsage} {...restProps} />);
@@ -29,7 +33,7 @@ const PieChildren = ({ children, ...restProps }) =>
   shallow(
     <Pie data={browserUsage} {...restProps}>
       {children}
-    </Pie>
+    </Pie>,
   );
 
 describe('<Pie />', () => {
@@ -64,7 +68,7 @@ describe('<Pie />', () => {
           expect(arcs[0]).toMatchObject({ value: A, index: 0 });
           expect(arcs[1]).toMatchObject({ value: B, index: 1 });
         }}
-      </Pie>
+      </Pie>,
     );
   });
 
@@ -72,7 +76,7 @@ describe('<Pie />', () => {
     expect(() => PieWrapper({ pieSort: 12 })).toThrow();
     expect(() => PieWrapper({ pieSortValues: 12 })).toThrow();
     expect(console.error).toBeCalled();
-    expect(console.error.mock.calls.length).toEqual(2);
+    expect(console.error.mock.calls).toHaveLength(2);
   });
 
   test('it should have the .vx-pie-arcs-group class', () => {
@@ -85,13 +89,13 @@ describe('<Pie />', () => {
 
   test('it should take a children as function prop', () => {
     const fn = jest.fn();
-    const wrapper = PieChildren({ children: fn });
+    PieChildren({ children: fn });
     expect(fn).toHaveBeenCalled();
   });
 
   test('it should call children function with { arcs, path, pie }', () => {
     const fn = jest.fn();
-    const wrapper = PieChildren({ children: fn });
+    PieChildren({ children: fn });
     const args = fn.mock.calls[0][0];
     const keys = Object.keys(args);
     expect(keys.includes('path')).toEqual(true);

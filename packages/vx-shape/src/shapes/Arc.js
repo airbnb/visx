@@ -15,7 +15,7 @@ Arc.propTypes = {
   startAngle: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
   endAngle: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
   padAngle: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
-  padRadius: PropTypes.oneOfType([PropTypes.func, PropTypes.number])
+  padRadius: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
 };
 
 export default function Arc({

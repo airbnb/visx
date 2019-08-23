@@ -21,7 +21,7 @@ AreaStack.propTypes = {
   value: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
   defined: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
   order: PropTypes.oneOfType([PropTypes.func, PropTypes.array, PropTypes.string]),
-  offset: PropTypes.oneOfType([PropTypes.func, PropTypes.array, PropTypes.string])
+  offset: PropTypes.oneOfType([PropTypes.func, PropTypes.array, PropTypes.string]),
 };
 
 export default function AreaStack({
@@ -64,21 +64,20 @@ export default function AreaStack({
       color={color}
       {...restProps}
     >
-      {!!children
-        ? children
-        : ({ stacks, path, stack }) => {
-            return stacks.map((series, i) => {
-              return (
-                <path
-                  className={cx('vx-area-stack', className)}
-                  key={`area-stack-${i}-${series.key || ''}`}
-                  d={path(series)}
-                  fill={color(series.key, i)}
-                  {...restProps}
-                />
-              );
-            });
-          }}
+      {children ||
+        (({ stacks, path }) => {
+          return stacks.map((series, i) => {
+            return (
+              <path
+                className={cx('vx-area-stack', className)}
+                key={`area-stack-${i}-${series.key || ''}`}
+                d={path(series)}
+                fill={color(series.key, i)}
+                {...restProps}
+              />
+            );
+          });
+        })}
     </Stack>
   );
 }

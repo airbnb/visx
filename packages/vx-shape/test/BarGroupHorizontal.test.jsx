@@ -1,3 +1,6 @@
+import React from 'react';
+import { shallow } from 'enzyme';
+
 import { BarGroupHorizontal } from '../src';
 
 const data = [
@@ -5,17 +8,17 @@ const data = [
     date: new Date(),
     'New York': '63.4',
     'San Francisco': '62.7',
-    Austin: '72.2'
+    Austin: '72.2',
   },
   {
     date: new Date(),
     'New York': '58.0',
     'San Francisco': '59.9',
-    Austin: '67.7'
-  }
+    Austin: '67.7',
+  },
 ];
 const y0 = d => d.date;
-const y0Scale = d => 2;
+const y0Scale = () => 2;
 y0Scale.bandwidth = () => 10;
 const y1Scale = d => d;
 y1Scale.bandwidth = () => 2;
@@ -38,7 +41,7 @@ const BarGroupWrapper = ({ ...restProps }) =>
       keys={keys}
       width={width}
       {...restProps}
-    />
+    />,
   );
 
 const BarGroupChildren = ({ children, ...restProps }) =>
@@ -55,7 +58,7 @@ const BarGroupChildren = ({ children, ...restProps }) =>
       {...restProps}
     >
       {children}
-    </BarGroupHorizontal>
+    </BarGroupHorizontal>,
   );
 
 describe('<BarGroupHorizontal />', () => {
@@ -81,20 +84,20 @@ describe('<BarGroupHorizontal />', () => {
 
   test('it should take a children as function prop', () => {
     const fn = jest.fn();
-    const wrapper = BarGroupChildren({ children: fn });
+    BarGroupChildren({ children: fn });
     expect(fn).toHaveBeenCalled();
   });
 
   test('it should call children function with [barGroups]', () => {
     const fn = jest.fn();
-    const wrapper = BarGroupChildren({ children: fn });
+    BarGroupChildren({ children: fn });
     const args = fn.mock.calls[0][0];
     expect(!!args.length).toEqual(true);
   });
 
   test('it should create barGroup with shape { index, x0, bars }', () => {
     const fn = jest.fn();
-    const wrapper = BarGroupChildren({ children: fn });
+    BarGroupChildren({ children: fn });
     const args = fn.mock.calls[0][0];
     const barGroups = args;
     const group = barGroups[0];
@@ -102,7 +105,7 @@ describe('<BarGroupHorizontal />', () => {
     expect(group.index).toBe(0);
     expect(typeof group.index).toBe('number');
     expect(typeof group.y0).toBe('number');
-    expect(group.bars.length).toBe(keys.length);
+    expect(group.bars).toHaveLength(keys.length);
     expect(Object.keys(group.bars[0])).toEqual([
       'index',
       'key',
@@ -111,7 +114,7 @@ describe('<BarGroupHorizontal />', () => {
       'x',
       'y',
       'color',
-      'width'
+      'width',
     ]);
   });
 });

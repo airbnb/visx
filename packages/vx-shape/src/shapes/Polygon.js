@@ -11,16 +11,16 @@ Polygon.propTypes = {
   rotate: PropTypes.number,
   children: PropTypes.func,
   innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  center: PropTypes.shape({ x: PropTypes.number, y: PropTypes.number })
+  center: PropTypes.shape({ x: PropTypes.number, y: PropTypes.number }),
 };
 
 export const getPoint = ({ sides, size, center, rotate, side }) => {
-  const degrees = 360 / sides * side - rotate;
+  const degrees = (360 / sides) * side - rotate;
   const radians = degreesToRadians(degrees);
 
   return new Point({
     x: center.x + size * Math.cos(radians),
-    y: center.y + size * Math.sin(radians)
+    y: center.y + size * Math.sin(radians),
   });
 };
 
@@ -31,7 +31,7 @@ export const getPoints = ({ sides, size, center, rotate }) => {
       size,
       center,
       rotate,
-      side
+      side,
     });
   });
 };
@@ -50,7 +50,7 @@ export default function Polygon({
     sides,
     size,
     center,
-    rotate
+    rotate,
   }).map(p => p.toArray());
 
   if (children) return children({ points });

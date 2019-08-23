@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 Bar.propTypes = {
   className: PropTypes.string,
-  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
 };
 
 export default function Bar({ className, innerRef, ...restProps }) {

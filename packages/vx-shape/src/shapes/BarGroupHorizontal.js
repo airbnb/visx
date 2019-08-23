@@ -18,7 +18,7 @@ BarGroupHorizontal.propTypes = {
   x: PropTypes.func,
   top: PropTypes.number,
   left: PropTypes.number,
-  children: PropTypes.func
+  children: PropTypes.func,
 };
 
 export default function BarGroupHorizontal({
@@ -26,7 +26,7 @@ export default function BarGroupHorizontal({
   className,
   top,
   left,
-  x = val => 0,
+  x = (/** val */) => 0,
   y0,
   y0Scale,
   y1Scale,
@@ -57,9 +57,9 @@ export default function BarGroupHorizontal({
           x: x(value),
           y: y1Scale(key),
           color: color(key, j),
-          width: width - xScale(value)
+          width: width - xScale(value),
         };
-      })
+      }),
     };
   });
 

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 Circle.propTypes = {
   className: PropTypes.string,
-  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
 };
 
 export default function Circle({ className, innerRef, ...restProps }) {

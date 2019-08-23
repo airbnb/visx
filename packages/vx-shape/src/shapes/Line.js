@@ -6,8 +6,9 @@ import { Point } from '@vx/point';
 Line.propTypes = {
   className: PropTypes.string,
   innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  fill: PropTypes.string,
   from: PropTypes.shape({ x: PropTypes.number, y: PropTypes.number }),
-  to: PropTypes.shape({ x: PropTypes.number, y: PropTypes.number })
+  to: PropTypes.shape({ x: PropTypes.number, y: PropTypes.number }),
 };
 
 export default function Line({

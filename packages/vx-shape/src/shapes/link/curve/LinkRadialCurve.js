@@ -44,7 +44,9 @@ LinkRadialCurve.propTypes = {
   source: PropTypes.func,
   target: PropTypes.func,
   path: PropTypes.func,
-  children: PropTypes.func
+  children: PropTypes.func,
+  className: PropTypes.string,
+  data: PropTypes.any,
 };
 
 export default function LinkRadialCurve({
@@ -60,13 +62,13 @@ export default function LinkRadialCurve({
   children,
   ...restProps
 }) {
-  path = path || pathRadialCurve({ source, target, x, y, percent });
+  const pathGen = path || pathRadialCurve({ source, target, x, y, percent });
   if (children) return children({ path });
   return (
     <path
       ref={innerRef}
       className={cx('vx-link vx-link-radial-curve', className)}
-      d={path(data)}
+      d={pathGen(data)}
       {...restProps}
     />
   );

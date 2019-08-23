@@ -23,7 +23,7 @@ BarStack.propTypes = {
   y1: PropTypes.func,
   order: PropTypes.oneOfType([PropTypes.func, PropTypes.array, PropTypes.string]),
   offset: PropTypes.oneOfType([PropTypes.func, PropTypes.array, PropTypes.string]),
-  value: PropTypes.oneOfType([PropTypes.func, PropTypes.number])
+  value: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
 };
 
 export default function BarStack({
@@ -59,7 +59,7 @@ export default function BarStack({
     : Math.abs(xRange[xRange.length - 1] - xRange[0]) / xDomain.length;
 
   const barStacks = stacks.map((barStack, i) => {
-    const key = barStack.key;
+    const { key } = barStack;
     return {
       index: i,
       key,
@@ -77,9 +77,9 @@ export default function BarStack({
           width: barWidth,
           x: barX,
           y: barY,
-          color: color(barStack.key, j)
+          color: color(barStack.key, j),
         };
-      })
+      }),
     };
   });
 

@@ -5,11 +5,14 @@ import { radialLine } from 'd3-shape';
 
 LineRadial.propTypes = {
   className: PropTypes.string,
-  data: PropTypes.any,
+  children: PropTypes.func,
   curve: PropTypes.func,
+  data: PropTypes.any,
+  defined: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
+  fill: PropTypes.string,
   angle: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
   radius: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
-  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
 };
 
 export default function LineRadial({

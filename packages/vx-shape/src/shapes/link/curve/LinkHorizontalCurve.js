@@ -27,6 +27,7 @@ export function pathHorizontalCurve({ source, target, x, y, percent }) {
 }
 
 LinkHorizontalCurve.propTypes = {
+  className: PropTypes.string,
   innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   percent: PropTypes.number,
   x: PropTypes.func,
@@ -34,7 +35,8 @@ LinkHorizontalCurve.propTypes = {
   source: PropTypes.func,
   target: PropTypes.func,
   path: PropTypes.func,
-  children: PropTypes.func
+  children: PropTypes.func,
+  data: PropTypes.any,
 };
 
 export default function LinkHorizontalCurve({
@@ -50,13 +52,13 @@ export default function LinkHorizontalCurve({
   children,
   ...restProps
 }) {
-  path = path || pathHorizontalCurve({ source, target, x, y, percent });
+  const pathGen = path || pathHorizontalCurve({ source, target, x, y, percent });
   if (children) return children({ path });
   return (
     <path
       ref={innerRef}
       className={cx('vx-link vx-link-horizontal-curve', className)}
-      d={path(data)}
+      d={pathGen(data)}
       {...restProps}
     />
   );

@@ -15,7 +15,7 @@ Area.propTypes = {
   x1: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
   y: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
   y0: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
-  y1: PropTypes.oneOfType([PropTypes.func, PropTypes.number])
+  y1: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
 };
 
 export default function Area({
