@@ -8,7 +8,7 @@ function verticalToHorizontal({ x1, x2, y1, y2 }) {
     x1: y1,
     x2: y2,
     y1: x1,
-    y2: x2
+    y2: x2,
   };
 }
 
@@ -38,7 +38,7 @@ BoxPlot.propTypes = {
   outlierProps: PropTypes.object,
   container: PropTypes.bool,
   containerProps: PropTypes.object,
-  children: PropTypes.func
+  children: PropTypes.func,
 };
 
 export default function BoxPlot({
@@ -67,7 +67,7 @@ export default function BoxPlot({
   outlierProps = {},
   container = false,
   containerProps = {},
-  children
+  children,
 }) {
   const offset = horizontal ? top : left;
   const center = offset + boxWidth / 2;
@@ -82,44 +82,44 @@ export default function BoxPlot({
       x1: center - boxWidth / 4,
       x2: center + boxWidth / 4,
       y1: valueScale(max),
-      y2: valueScale(max)
+      y2: valueScale(max),
     },
     maxToThird: {
       x1: center,
       x2: center,
       y1: valueScale(max),
-      y2: valueScale(thirdQuartile)
+      y2: valueScale(thirdQuartile),
     },
     median: {
       x1: offset,
       x2: offset + boxWidth,
       y1: valueScale(median),
-      y2: valueScale(median)
+      y2: valueScale(median),
     },
     minToFirst: {
       x1: center,
       x2: center,
       y1: valueScale(firstQuartile),
-      y2: valueScale(min)
+      y2: valueScale(min),
     },
     min: {
       x1: center - boxWidth / 4,
       x2: center + boxWidth / 4,
       y1: valueScale(min),
-      y2: valueScale(min)
+      y2: valueScale(min),
     },
     box: {
       x1: offset,
       x2: boxWidth,
       y1: valueScale(thirdQuartile),
-      y2: Math.abs(valueScale(thirdQuartile) - valueScale(firstQuartile))
+      y2: Math.abs(valueScale(thirdQuartile) - valueScale(firstQuartile)),
     },
     container: {
       x1: offset,
       x2: boxWidth,
       y1: Math.min(...valueRange),
-      y2: Math.abs(valueRange[0] - valueRange[1])
-    }
+      y2: Math.abs(valueRange[0] - valueRange[1]),
+    },
   };
 
   if (horizontal) {

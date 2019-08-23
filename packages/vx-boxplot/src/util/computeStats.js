@@ -22,13 +22,15 @@ export default function computeStats(numericalArray) {
 
   values[values.length - 1] = max;
 
-  points.filter(p => p >= min && p <= max).forEach(p => {
-    bins[Math.floor((p - min) / actualBinWidth) + 1] += 1;
-  });
+  points
+    .filter(p => p >= min && p <= max)
+    .forEach(p => {
+      bins[Math.floor((p - min) / actualBinWidth) + 1] += 1;
+    });
 
   const binData = values.map((v, i) => ({
     value: v,
-    count: bins[i]
+    count: bins[i],
   }));
 
   const boxPlot = {
@@ -37,11 +39,11 @@ export default function computeStats(numericalArray) {
     median: points[Math.round(sampleSize / 2)],
     thirdQuartile,
     max,
-    outliers
+    outliers,
   };
 
   return {
     boxPlot,
-    binData
+    binData,
   };
 }
