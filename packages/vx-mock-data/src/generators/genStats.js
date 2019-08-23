@@ -38,13 +38,15 @@ export default function genStats(number) {
 
     values[values.length - 1] = max;
 
-    points.filter(p => p >= min && p <= max).forEach(p => {
-      bins[Math.floor((p - min) / actualBinWidth) + 1] += 1;
-    });
+    points
+      .filter(p => p >= min && p <= max)
+      .forEach(p => {
+        bins[Math.floor((p - min) / actualBinWidth) + 1] += 1;
+      });
 
     const binData = values.map((v, index) => ({
       value: v,
-      count: bins[index]
+      count: bins[index],
     }));
 
     const boxPlot = {
@@ -54,12 +56,12 @@ export default function genStats(number) {
       median: points[Math.round(sampleSize / 2)],
       thirdQuartile,
       max,
-      outliers
+      outliers,
     };
 
     data.push({
       boxPlot,
-      binData
+      binData,
     });
   }
   return data;

@@ -7,8 +7,8 @@ export default function genBins(x, y, bin, count) {
       return data.concat([
         {
           bin: i,
-          bins: genBin(y, bin, count)
-        }
+          bins: genBin(y, bin, count),
+        },
       ]);
     }, []);
 }

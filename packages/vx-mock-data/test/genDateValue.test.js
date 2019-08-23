@@ -12,7 +12,7 @@ describe('generators/genDateValue', () => {
   test('it should return a array of n', () => {
     const n = 3;
     const data = genDateValue(n);
-    expect(data.length).toEqual(3);
+    expect(data).toHaveLength(3);
   });
 
   test('it should return [{ date, value }]', () => {

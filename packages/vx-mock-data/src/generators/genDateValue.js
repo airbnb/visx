@@ -4,7 +4,8 @@ export default function genDateValue(n) {
     .map((d, i) => {
       return {
         date: new Date(Date.now() - i * 3600000),
-        value: Math.max(250, (Math.random() * 3000) | 0)
+        // eslint-disable-next-line no-bitwise
+        value: Math.max(250, (Math.random() * 3000) | 0),
       };
     });
 }

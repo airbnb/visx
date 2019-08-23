@@ -8,7 +8,7 @@ export default [
     'Microsoft Edge': '0.03',
     Opera: '1.32',
     Mozilla: '0.12',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Jun 16',
@@ -19,7 +19,7 @@ export default [
     'Microsoft Edge': '0.03',
     Opera: '1.32',
     Mozilla: '0.12',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Jun 17',
@@ -30,7 +30,7 @@ export default [
     'Microsoft Edge': '0.03',
     Opera: '1.36',
     Mozilla: '0.12',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Jun 18',
@@ -41,7 +41,7 @@ export default [
     'Microsoft Edge': '0.04',
     Opera: '1.39',
     Mozilla: '0.12',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Jun 19',
@@ -52,7 +52,7 @@ export default [
     'Microsoft Edge': '0.04',
     Opera: '1.41',
     Mozilla: '0.12',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Jun 20',
@@ -63,7 +63,7 @@ export default [
     'Microsoft Edge': '0.05',
     Opera: '1.83',
     Mozilla: '0.1',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Jun 21',
@@ -74,7 +74,7 @@ export default [
     'Microsoft Edge': '0.05',
     Opera: '1.75',
     Mozilla: '0.12',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Jun 22',
@@ -85,7 +85,7 @@ export default [
     'Microsoft Edge': '0.04',
     Opera: '1.28',
     Mozilla: '0.12',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Jun 23',
@@ -96,7 +96,7 @@ export default [
     'Microsoft Edge': '0.04',
     Opera: '1.27',
     Mozilla: '0.11',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Jun 24',
@@ -107,7 +107,7 @@ export default [
     'Microsoft Edge': '0.04',
     Opera: '1.32',
     Mozilla: '0.12',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Jun 25',
@@ -118,7 +118,7 @@ export default [
     'Microsoft Edge': '0.04',
     Opera: '1.34',
     Mozilla: '0.11',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Jun 26',
@@ -129,7 +129,7 @@ export default [
     'Microsoft Edge': '0.04',
     Opera: '1.37',
     Mozilla: '0.1',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Jun 27',
@@ -140,7 +140,7 @@ export default [
     'Microsoft Edge': '0.05',
     Opera: '1.71',
     Mozilla: '0.09',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Jun 28',
@@ -151,7 +151,7 @@ export default [
     'Microsoft Edge': '0.05',
     Opera: '1.69',
     Mozilla: '0.1',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Jun 29',
@@ -162,7 +162,7 @@ export default [
     'Microsoft Edge': '0.04',
     Opera: '1.27',
     Mozilla: '0.11',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Jun 30',
@@ -173,7 +173,7 @@ export default [
     'Microsoft Edge': '0.07',
     Opera: '1.32',
     Mozilla: '0.13',
-    'Other/Unknown': '0.02'
+    'Other/Unknown': '0.02',
   },
   {
     date: '2015 Jul 1',
@@ -184,7 +184,7 @@ export default [
     'Microsoft Edge': '0.07',
     Opera: '1.37',
     Mozilla: '0.12',
-    'Other/Unknown': '0.02'
+    'Other/Unknown': '0.02',
   },
   {
     date: '2015 Jul 2',
@@ -195,7 +195,7 @@ export default [
     'Microsoft Edge': '0.07',
     Opera: '1.45',
     Mozilla: '0.12',
-    'Other/Unknown': '0.02'
+    'Other/Unknown': '0.02',
   },
   {
     date: '2015 Jul 3',
@@ -206,7 +206,7 @@ export default [
     'Microsoft Edge': '0.08',
     Opera: '1.54',
     Mozilla: '0.11',
-    'Other/Unknown': '0.02'
+    'Other/Unknown': '0.02',
   },
   {
     date: '2015 Jul 4',
@@ -217,7 +217,7 @@ export default [
     'Microsoft Edge': '0.08',
     Opera: '1.82',
     Mozilla: '0.11',
-    'Other/Unknown': '0.02'
+    'Other/Unknown': '0.02',
   },
   {
     date: '2015 Jul 5',
@@ -228,7 +228,7 @@ export default [
     'Microsoft Edge': '0.07',
     Opera: '1.62',
     Mozilla: '0.1',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Jul 6',
@@ -239,7 +239,7 @@ export default [
     'Microsoft Edge': '0.07',
     Opera: '1.27',
     Mozilla: '0.11',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Jul 7',
@@ -250,7 +250,7 @@ export default [
     'Microsoft Edge': '0.07',
     Opera: '1.25',
     Mozilla: '0.06',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Jul 8',
@@ -261,7 +261,7 @@ export default [
     'Microsoft Edge': '0.07',
     Opera: '1.32',
     Mozilla: '0.05',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Jul 9',
@@ -272,7 +272,7 @@ export default [
     'Microsoft Edge': '0.08',
     Opera: '1.39',
     Mozilla: '0.05',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Jul 10',
@@ -283,7 +283,7 @@ export default [
     'Microsoft Edge': '0.09',
     Opera: '1.43',
     Mozilla: '0.05',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Jul 11',
@@ -294,7 +294,7 @@ export default [
     'Microsoft Edge': '0.1',
     Opera: '1.76',
     Mozilla: '0.06',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Jul 12',
@@ -305,7 +305,7 @@ export default [
     'Microsoft Edge': '0.09',
     Opera: '1.73',
     Mozilla: '0.07',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Jul 13',
@@ -316,7 +316,7 @@ export default [
     'Microsoft Edge': '0.07',
     Opera: '1.39',
     Mozilla: '0.05',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Jul 14',
@@ -327,7 +327,7 @@ export default [
     'Microsoft Edge': '0.08',
     Opera: '1.35',
     Mozilla: '0.05',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Jul 15',
@@ -338,7 +338,7 @@ export default [
     'Microsoft Edge': '0.09',
     Opera: '1.34',
     Mozilla: '0.05',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Jul 16',
@@ -349,7 +349,7 @@ export default [
     'Microsoft Edge': '0.09',
     Opera: '1.4',
     Mozilla: '0.05',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Jul 17',
@@ -360,7 +360,7 @@ export default [
     'Microsoft Edge': '0.09',
     Opera: '1.43',
     Mozilla: '0.06',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Jul 18',
@@ -371,7 +371,7 @@ export default [
     'Microsoft Edge': '0.11',
     Opera: '1.74',
     Mozilla: '0.07',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Jul 19',
@@ -382,7 +382,7 @@ export default [
     'Microsoft Edge': '0.11',
     Opera: '1.7',
     Mozilla: '0.07',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Jul 20',
@@ -393,7 +393,7 @@ export default [
     'Microsoft Edge': '0.09',
     Opera: '1.32',
     Mozilla: '0.06',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Jul 21',
@@ -404,7 +404,7 @@ export default [
     'Microsoft Edge': '0.08',
     Opera: '1.2',
     Mozilla: '0.06',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Jul 22',
@@ -415,7 +415,7 @@ export default [
     'Microsoft Edge': '0.08',
     Opera: '1.29',
     Mozilla: '0.06',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Jul 23',
@@ -426,7 +426,7 @@ export default [
     'Microsoft Edge': '0.08',
     Opera: '1.31',
     Mozilla: '0.07',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Jul 24',
@@ -437,7 +437,7 @@ export default [
     'Microsoft Edge': '0.1',
     Opera: '1.42',
     Mozilla: '0.06',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Jul 25',
@@ -448,7 +448,7 @@ export default [
     'Microsoft Edge': '0.1',
     Opera: '1.65',
     Mozilla: '0.08',
-    'Other/Unknown': '0.02'
+    'Other/Unknown': '0.02',
   },
   {
     date: '2015 Jul 26',
@@ -459,7 +459,7 @@ export default [
     'Microsoft Edge': '0.11',
     Opera: '1.59',
     Mozilla: '0.08',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Jul 27',
@@ -470,7 +470,7 @@ export default [
     'Microsoft Edge': '0.1',
     Opera: '1.27',
     Mozilla: '0.06',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Jul 28',
@@ -481,7 +481,7 @@ export default [
     'Microsoft Edge': '0.12',
     Opera: '1.31',
     Mozilla: '0.07',
-    'Other/Unknown': '0.02'
+    'Other/Unknown': '0.02',
   },
   {
     date: '2015 Jul 29',
@@ -492,7 +492,7 @@ export default [
     'Microsoft Edge': '0.42',
     Opera: '1.33',
     Mozilla: '0.06',
-    'Other/Unknown': '0.02'
+    'Other/Unknown': '0.02',
   },
   {
     date: '2015 Jul 30',
@@ -503,7 +503,7 @@ export default [
     'Microsoft Edge': '0.7',
     Opera: '1.3',
     Mozilla: '0.07',
-    'Other/Unknown': '0.02'
+    'Other/Unknown': '0.02',
   },
   {
     date: '2015 Jul 31',
@@ -514,7 +514,7 @@ export default [
     'Microsoft Edge': '0.84',
     Opera: '1.41',
     Mozilla: '0.07',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Aug 1',
@@ -525,7 +525,7 @@ export default [
     'Microsoft Edge': '1.16',
     Opera: '1.75',
     Mozilla: '0.07',
-    'Other/Unknown': '0.02'
+    'Other/Unknown': '0.02',
   },
   {
     date: '2015 Aug 2',
@@ -536,7 +536,7 @@ export default [
     'Microsoft Edge': '1.23',
     Opera: '1.65',
     Mozilla: '0.08',
-    'Other/Unknown': '0.02'
+    'Other/Unknown': '0.02',
   },
   {
     date: '2015 Aug 3',
@@ -547,7 +547,7 @@ export default [
     'Microsoft Edge': '0.93',
     Opera: '1.31',
     Mozilla: '0.07',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Aug 4',
@@ -558,7 +558,7 @@ export default [
     'Microsoft Edge': '0.95',
     Opera: '1.32',
     Mozilla: '0.07',
-    'Other/Unknown': '0.02'
+    'Other/Unknown': '0.02',
   },
   {
     date: '2015 Aug 5',
@@ -569,7 +569,7 @@ export default [
     'Microsoft Edge': '0.99',
     Opera: '1.34',
     Mozilla: '0.06',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Aug 6',
@@ -580,7 +580,7 @@ export default [
     'Microsoft Edge': '1.12',
     Opera: '1.28',
     Mozilla: '0.05',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Aug 7',
@@ -591,7 +591,7 @@ export default [
     'Microsoft Edge': '1.26',
     Opera: '1.39',
     Mozilla: '0.06',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Aug 8',
@@ -602,7 +602,7 @@ export default [
     'Microsoft Edge': '1.69',
     Opera: '1.74',
     Mozilla: '0.09',
-    'Other/Unknown': '0.02'
+    'Other/Unknown': '0.02',
   },
   {
     date: '2015 Aug 9',
@@ -613,7 +613,7 @@ export default [
     'Microsoft Edge': '1.72',
     Opera: '1.72',
     Mozilla: '0.08',
-    'Other/Unknown': '0.02'
+    'Other/Unknown': '0.02',
   },
   {
     date: '2015 Aug 10',
@@ -624,7 +624,7 @@ export default [
     'Microsoft Edge': '1.28',
     Opera: '1.39',
     Mozilla: '0.06',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Aug 11',
@@ -635,7 +635,7 @@ export default [
     'Microsoft Edge': '1.27',
     Opera: '1.35',
     Mozilla: '0.05',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Aug 12',
@@ -646,7 +646,7 @@ export default [
     'Microsoft Edge': '1.3',
     Opera: '1.35',
     Mozilla: '0.06',
-    'Other/Unknown': '0.02'
+    'Other/Unknown': '0.02',
   },
   {
     date: '2015 Aug 13',
@@ -657,7 +657,7 @@ export default [
     'Microsoft Edge': '1.31',
     Opera: '1.51',
     Mozilla: '0.06',
-    'Other/Unknown': '0.02'
+    'Other/Unknown': '0.02',
   },
   {
     date: '2015 Aug 14',
@@ -668,7 +668,7 @@ export default [
     'Microsoft Edge': '1.43',
     Opera: '1.56',
     Mozilla: '0.07',
-    'Other/Unknown': '0.02'
+    'Other/Unknown': '0.02',
   },
   {
     date: '2015 Aug 15',
@@ -679,7 +679,7 @@ export default [
     'Microsoft Edge': '1.87',
     Opera: '1.86',
     Mozilla: '0.08',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Aug 16',
@@ -690,7 +690,7 @@ export default [
     'Microsoft Edge': '1.83',
     Opera: '1.72',
     Mozilla: '0.08',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Aug 17',
@@ -701,7 +701,7 @@ export default [
     'Microsoft Edge': '1.36',
     Opera: '1.44',
     Mozilla: '0.08',
-    'Other/Unknown': '0.02'
+    'Other/Unknown': '0.02',
   },
   {
     date: '2015 Aug 18',
@@ -712,7 +712,7 @@ export default [
     'Microsoft Edge': '1.41',
     Opera: '1.41',
     Mozilla: '0.06',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Aug 19',
@@ -723,7 +723,7 @@ export default [
     'Microsoft Edge': '1.39',
     Opera: '1.42',
     Mozilla: '0.07',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Aug 20',
@@ -734,7 +734,7 @@ export default [
     'Microsoft Edge': '1.42',
     Opera: '1.47',
     Mozilla: '0.06',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Aug 21',
@@ -745,7 +745,7 @@ export default [
     'Microsoft Edge': '1.51',
     Opera: '1.47',
     Mozilla: '0.08',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Aug 22',
@@ -756,7 +756,7 @@ export default [
     'Microsoft Edge': '1.91',
     Opera: '1.74',
     Mozilla: '0.08',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Aug 23',
@@ -767,7 +767,7 @@ export default [
     'Microsoft Edge': '1.89',
     Opera: '1.8',
     Mozilla: '0.07',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Aug 24',
@@ -778,7 +778,7 @@ export default [
     'Microsoft Edge': '1.48',
     Opera: '1.29',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Aug 25',
@@ -789,7 +789,7 @@ export default [
     'Microsoft Edge': '1.47',
     Opera: '1.38',
     Mozilla: '0.05',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Aug 26',
@@ -800,7 +800,7 @@ export default [
     'Microsoft Edge': '1.47',
     Opera: '1.39',
     Mozilla: '0.04',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Aug 27',
@@ -811,7 +811,7 @@ export default [
     'Microsoft Edge': '1.51',
     Opera: '1.35',
     Mozilla: '0.06',
-    'Other/Unknown': '0.02'
+    'Other/Unknown': '0.02',
   },
   {
     date: '2015 Aug 28',
@@ -822,7 +822,7 @@ export default [
     'Microsoft Edge': '1.61',
     Opera: '1.43',
     Mozilla: '0.06',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Aug 29',
@@ -833,7 +833,7 @@ export default [
     'Microsoft Edge': '2.07',
     Opera: '1.74',
     Mozilla: '0.08',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Aug 30',
@@ -844,7 +844,7 @@ export default [
     'Microsoft Edge': '2.03',
     Opera: '1.69',
     Mozilla: '0.08',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Aug 31',
@@ -855,7 +855,7 @@ export default [
     'Microsoft Edge': '1.57',
     Opera: '1.31',
     Mozilla: '0.05',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Sep 1',
@@ -866,7 +866,7 @@ export default [
     'Microsoft Edge': '1.52',
     Opera: '1.39',
     Mozilla: '0.06',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Sep 2',
@@ -877,7 +877,7 @@ export default [
     'Microsoft Edge': '1.53',
     Opera: '1.3',
     Mozilla: '0.06',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Sep 3',
@@ -888,7 +888,7 @@ export default [
     'Microsoft Edge': '1.58',
     Opera: '1.31',
     Mozilla: '0.06',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Sep 4',
@@ -899,7 +899,7 @@ export default [
     'Microsoft Edge': '1.67',
     Opera: '1.41',
     Mozilla: '0.06',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Sep 5',
@@ -910,7 +910,7 @@ export default [
     'Microsoft Edge': '2.13',
     Opera: '1.69',
     Mozilla: '0.07',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Sep 6',
@@ -921,7 +921,7 @@ export default [
     'Microsoft Edge': '2.09',
     Opera: '1.67',
     Mozilla: '0.07',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Sep 7',
@@ -932,7 +932,7 @@ export default [
     'Microsoft Edge': '1.86',
     Opera: '1.43',
     Mozilla: '0.05',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Sep 8',
@@ -943,7 +943,7 @@ export default [
     'Microsoft Edge': '1.55',
     Opera: '1.31',
     Mozilla: '0.06',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Sep 9',
@@ -954,7 +954,7 @@ export default [
     'Microsoft Edge': '1.59',
     Opera: '1.25',
     Mozilla: '0.05',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Sep 10',
@@ -965,7 +965,7 @@ export default [
     'Microsoft Edge': '1.6',
     Opera: '1.19',
     Mozilla: '0.05',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Sep 11',
@@ -976,7 +976,7 @@ export default [
     'Microsoft Edge': '1.67',
     Opera: '1.29',
     Mozilla: '0.05',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Sep 12',
@@ -987,7 +987,7 @@ export default [
     'Microsoft Edge': '2.21',
     Opera: '1.56',
     Mozilla: '0.06',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Sep 13',
@@ -998,7 +998,7 @@ export default [
     'Microsoft Edge': '2.19',
     Opera: '1.49',
     Mozilla: '0.06',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Sep 14',
@@ -1009,7 +1009,7 @@ export default [
     'Microsoft Edge': '1.66',
     Opera: '1.21',
     Mozilla: '0.05',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Sep 15',
@@ -1020,7 +1020,7 @@ export default [
     'Microsoft Edge': '1.66',
     Opera: '1.25',
     Mozilla: '0.05',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Sep 16',
@@ -1031,7 +1031,7 @@ export default [
     'Microsoft Edge': '1.59',
     Opera: '1.23',
     Mozilla: '0.05',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Sep 17',
@@ -1042,7 +1042,7 @@ export default [
     'Microsoft Edge': '1.6',
     Opera: '1.24',
     Mozilla: '0.05',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Sep 18',
@@ -1053,7 +1053,7 @@ export default [
     'Microsoft Edge': '1.7',
     Opera: '1.32',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Sep 19',
@@ -1064,7 +1064,7 @@ export default [
     'Microsoft Edge': '2.17',
     Opera: '1.66',
     Mozilla: '0.05',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Sep 20',
@@ -1075,7 +1075,7 @@ export default [
     'Microsoft Edge': '2.17',
     Opera: '1.58',
     Mozilla: '0.05',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Sep 21',
@@ -1086,7 +1086,7 @@ export default [
     'Microsoft Edge': '1.67',
     Opera: '1.22',
     Mozilla: '0.04',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Sep 22',
@@ -1097,7 +1097,7 @@ export default [
     'Microsoft Edge': '1.7',
     Opera: '1.22',
     Mozilla: '0.04',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Sep 23',
@@ -1108,7 +1108,7 @@ export default [
     'Microsoft Edge': '1.71',
     Opera: '1.25',
     Mozilla: '0.04',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Sep 24',
@@ -1119,7 +1119,7 @@ export default [
     'Microsoft Edge': '1.7',
     Opera: '1.29',
     Mozilla: '0.04',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Sep 25',
@@ -1130,7 +1130,7 @@ export default [
     'Microsoft Edge': '1.78',
     Opera: '1.39',
     Mozilla: '0.04',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Sep 26',
@@ -1141,7 +1141,7 @@ export default [
     'Microsoft Edge': '2.28',
     Opera: '1.71',
     Mozilla: '0.05',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Sep 27',
@@ -1152,7 +1152,7 @@ export default [
     'Microsoft Edge': '2.25',
     Opera: '1.6',
     Mozilla: '0.04',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Sep 28',
@@ -1163,7 +1163,7 @@ export default [
     'Microsoft Edge': '1.73',
     Opera: '1.22',
     Mozilla: '0.03',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Sep 29',
@@ -1174,7 +1174,7 @@ export default [
     'Microsoft Edge': '1.74',
     Opera: '1.22',
     Mozilla: '0.04',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Sep 30',
@@ -1185,7 +1185,7 @@ export default [
     'Microsoft Edge': '1.74',
     Opera: '1.23',
     Mozilla: '0.03',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Oct 1',
@@ -1196,7 +1196,7 @@ export default [
     'Microsoft Edge': '1.78',
     Opera: '1.24',
     Mozilla: '0.03',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Oct 2',
@@ -1207,7 +1207,7 @@ export default [
     'Microsoft Edge': '1.86',
     Opera: '1.32',
     Mozilla: '0.03',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Oct 3',
@@ -1218,7 +1218,7 @@ export default [
     'Microsoft Edge': '2.34',
     Opera: '1.68',
     Mozilla: '0.03',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Oct 4',
@@ -1229,7 +1229,7 @@ export default [
     'Microsoft Edge': '2.32',
     Opera: '1.58',
     Mozilla: '0.03',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Oct 5',
@@ -1240,7 +1240,7 @@ export default [
     'Microsoft Edge': '1.81',
     Opera: '1.22',
     Mozilla: '0.03',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Oct 6',
@@ -1251,7 +1251,7 @@ export default [
     'Microsoft Edge': '1.79',
     Opera: '1.25',
     Mozilla: '0.03',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Oct 7',
@@ -1262,7 +1262,7 @@ export default [
     'Microsoft Edge': '1.76',
     Opera: '1.27',
     Mozilla: '0.03',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Oct 8',
@@ -1273,7 +1273,7 @@ export default [
     'Microsoft Edge': '1.79',
     Opera: '1.3',
     Mozilla: '0.03',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Oct 9',
@@ -1284,7 +1284,7 @@ export default [
     'Microsoft Edge': '1.88',
     Opera: '1.4',
     Mozilla: '0.03',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Oct 10',
@@ -1295,7 +1295,7 @@ export default [
     'Microsoft Edge': '2.38',
     Opera: '1.75',
     Mozilla: '0.03',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Oct 11',
@@ -1306,7 +1306,7 @@ export default [
     'Microsoft Edge': '2.32',
     Opera: '1.72',
     Mozilla: '0.04',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Oct 12',
@@ -1317,7 +1317,7 @@ export default [
     'Microsoft Edge': '1.94',
     Opera: '1.35',
     Mozilla: '0.04',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Oct 13',
@@ -1328,7 +1328,7 @@ export default [
     'Microsoft Edge': '1.78',
     Opera: '1.51',
     Mozilla: '0.04',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Oct 14',
@@ -1339,7 +1339,7 @@ export default [
     'Microsoft Edge': '1.82',
     Opera: '1.44',
     Mozilla: '0.04',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Oct 15',
@@ -1350,7 +1350,7 @@ export default [
     'Microsoft Edge': '1.87',
     Opera: '1.46',
     Mozilla: '0.03',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Oct 16',
@@ -1361,7 +1361,7 @@ export default [
     'Microsoft Edge': '1.91',
     Opera: '1.52',
     Mozilla: '0.03',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Oct 17',
@@ -1372,7 +1372,7 @@ export default [
     'Microsoft Edge': '2.46',
     Opera: '1.88',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Oct 18',
@@ -1383,7 +1383,7 @@ export default [
     'Microsoft Edge': '2.42',
     Opera: '1.79',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Oct 19',
@@ -1394,7 +1394,7 @@ export default [
     'Microsoft Edge': '1.83',
     Opera: '1.41',
     Mozilla: '0.03',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Oct 20',
@@ -1405,7 +1405,7 @@ export default [
     'Microsoft Edge': '1.8',
     Opera: '1.38',
     Mozilla: '0.03',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Oct 21',
@@ -1416,7 +1416,7 @@ export default [
     'Microsoft Edge': '1.81',
     Opera: '1.34',
     Mozilla: '0.03',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Oct 22',
@@ -1427,7 +1427,7 @@ export default [
     'Microsoft Edge': '1.86',
     Opera: '1.35',
     Mozilla: '0.04',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Oct 23',
@@ -1438,7 +1438,7 @@ export default [
     'Microsoft Edge': '1.94',
     Opera: '1.45',
     Mozilla: '0.04',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Oct 24',
@@ -1449,7 +1449,7 @@ export default [
     'Microsoft Edge': '2.5',
     Opera: '1.78',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Oct 25',
@@ -1460,7 +1460,7 @@ export default [
     'Microsoft Edge': '2.46',
     Opera: '1.67',
     Mozilla: '0.04',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Oct 26',
@@ -1471,7 +1471,7 @@ export default [
     'Microsoft Edge': '1.88',
     Opera: '1.26',
     Mozilla: '0.03',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Oct 27',
@@ -1482,7 +1482,7 @@ export default [
     'Microsoft Edge': '1.87',
     Opera: '1.3',
     Mozilla: '0.03',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Oct 28',
@@ -1493,7 +1493,7 @@ export default [
     'Microsoft Edge': '1.93',
     Opera: '1.28',
     Mozilla: '0.03',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Oct 29',
@@ -1504,7 +1504,7 @@ export default [
     'Microsoft Edge': '1.9',
     Opera: '1.31',
     Mozilla: '0.03',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Oct 30',
@@ -1515,7 +1515,7 @@ export default [
     'Microsoft Edge': '1.99',
     Opera: '1.38',
     Mozilla: '0.03',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Oct 31',
@@ -1526,7 +1526,7 @@ export default [
     'Microsoft Edge': '2.46',
     Opera: '1.76',
     Mozilla: '0.04',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Nov 1',
@@ -1537,7 +1537,7 @@ export default [
     'Microsoft Edge': '2.48',
     Opera: '1.62',
     Mozilla: '0.1',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Nov 2',
@@ -1548,7 +1548,7 @@ export default [
     'Microsoft Edge': '1.96',
     Opera: '1.32',
     Mozilla: '0.06',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Nov 3',
@@ -1559,7 +1559,7 @@ export default [
     'Microsoft Edge': '1.89',
     Opera: '1.33',
     Mozilla: '0.06',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Nov 4',
@@ -1570,7 +1570,7 @@ export default [
     'Microsoft Edge': '1.83',
     Opera: '1.44',
     Mozilla: '0.06',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Nov 5',
@@ -1581,7 +1581,7 @@ export default [
     'Microsoft Edge': '1.87',
     Opera: '1.35',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Nov 6',
@@ -1592,7 +1592,7 @@ export default [
     'Microsoft Edge': '1.97',
     Opera: '1.36',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Nov 7',
@@ -1603,7 +1603,7 @@ export default [
     'Microsoft Edge': '2.6',
     Opera: '1.7',
     Mozilla: '0.08',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Nov 8',
@@ -1614,7 +1614,7 @@ export default [
     'Microsoft Edge': '2.55',
     Opera: '1.69',
     Mozilla: '0.08',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Nov 9',
@@ -1625,7 +1625,7 @@ export default [
     'Microsoft Edge': '1.96',
     Opera: '1.28',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Nov 10',
@@ -1636,7 +1636,7 @@ export default [
     'Microsoft Edge': '1.95',
     Opera: '1.29',
     Mozilla: '0.07',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Nov 11',
@@ -1647,7 +1647,7 @@ export default [
     'Microsoft Edge': '2.04',
     Opera: '1.37',
     Mozilla: '0.06',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Nov 12',
@@ -1658,7 +1658,7 @@ export default [
     'Microsoft Edge': '1.99',
     Opera: '1.35',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Nov 13',
@@ -1669,7 +1669,7 @@ export default [
     'Microsoft Edge': '2.09',
     Opera: '1.35',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Nov 14',
@@ -1680,7 +1680,7 @@ export default [
     'Microsoft Edge': '2.71',
     Opera: '1.62',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Nov 15',
@@ -1691,7 +1691,7 @@ export default [
     'Microsoft Edge': '2.62',
     Opera: '1.56',
     Mozilla: '0.06',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Nov 16',
@@ -1702,7 +1702,7 @@ export default [
     'Microsoft Edge': '2',
     Opera: '1.24',
     Mozilla: '0.04',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Nov 17',
@@ -1713,7 +1713,7 @@ export default [
     'Microsoft Edge': '1.96',
     Opera: '1.28',
     Mozilla: '0.04',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Nov 18',
@@ -1724,7 +1724,7 @@ export default [
     'Microsoft Edge': '1.99',
     Opera: '1.33',
     Mozilla: '0.04',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Nov 19',
@@ -1735,7 +1735,7 @@ export default [
     'Microsoft Edge': '2',
     Opera: '1.31',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Nov 20',
@@ -1746,7 +1746,7 @@ export default [
     'Microsoft Edge': '2.11',
     Opera: '1.39',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Nov 21',
@@ -1757,7 +1757,7 @@ export default [
     'Microsoft Edge': '2.72',
     Opera: '1.62',
     Mozilla: '0.06',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Nov 22',
@@ -1768,7 +1768,7 @@ export default [
     'Microsoft Edge': '2.68',
     Opera: '1.54',
     Mozilla: '0.06',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Nov 23',
@@ -1779,7 +1779,7 @@ export default [
     'Microsoft Edge': '2.04',
     Opera: '1.28',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Nov 24',
@@ -1790,7 +1790,7 @@ export default [
     'Microsoft Edge': '2.03',
     Opera: '1.34',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Nov 25',
@@ -1801,7 +1801,7 @@ export default [
     'Microsoft Edge': '2.07',
     Opera: '1.64',
     Mozilla: '0.06',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Nov 26',
@@ -1812,7 +1812,7 @@ export default [
     'Microsoft Edge': '2.27',
     Opera: '1.7',
     Mozilla: '0.07',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Nov 27',
@@ -1823,7 +1823,7 @@ export default [
     'Microsoft Edge': '2.49',
     Opera: '1.46',
     Mozilla: '0.06',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Nov 28',
@@ -1834,7 +1834,7 @@ export default [
     'Microsoft Edge': '2.97',
     Opera: '1.67',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Nov 29',
@@ -1845,7 +1845,7 @@ export default [
     'Microsoft Edge': '2.91',
     Opera: '1.63',
     Mozilla: '0.06',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Nov 30',
@@ -1856,7 +1856,7 @@ export default [
     'Microsoft Edge': '2.22',
     Opera: '1.24',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Dec 1',
@@ -1867,7 +1867,7 @@ export default [
     'Microsoft Edge': '2.25',
     Opera: '1.29',
     Mozilla: '0.04',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Dec 2',
@@ -1878,7 +1878,7 @@ export default [
     'Microsoft Edge': '2.31',
     Opera: '1.31',
     Mozilla: '0.04',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Dec 3',
@@ -1889,7 +1889,7 @@ export default [
     'Microsoft Edge': '2.31',
     Opera: '1.35',
     Mozilla: '0.04',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Dec 4',
@@ -1900,7 +1900,7 @@ export default [
     'Microsoft Edge': '2.46',
     Opera: '1.44',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Dec 5',
@@ -1911,7 +1911,7 @@ export default [
     'Microsoft Edge': '3.18',
     Opera: '1.68',
     Mozilla: '0.07',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Dec 6',
@@ -1922,7 +1922,7 @@ export default [
     'Microsoft Edge': '3.06',
     Opera: '1.67',
     Mozilla: '0.06',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Dec 7',
@@ -1933,7 +1933,7 @@ export default [
     'Microsoft Edge': '2.34',
     Opera: '1.26',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Dec 8',
@@ -1944,7 +1944,7 @@ export default [
     'Microsoft Edge': '2.38',
     Opera: '1.28',
     Mozilla: '0.05',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Dec 9',
@@ -1955,7 +1955,7 @@ export default [
     'Microsoft Edge': '2.31',
     Opera: '1.3',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Dec 10',
@@ -1966,7 +1966,7 @@ export default [
     'Microsoft Edge': '2.35',
     Opera: '1.25',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Dec 11',
@@ -1977,7 +1977,7 @@ export default [
     'Microsoft Edge': '2.49',
     Opera: '1.34',
     Mozilla: '0.06',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Dec 12',
@@ -1988,7 +1988,7 @@ export default [
     'Microsoft Edge': '3.18',
     Opera: '1.68',
     Mozilla: '0.1',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Dec 13',
@@ -1999,7 +1999,7 @@ export default [
     'Microsoft Edge': '3.16',
     Opera: '1.57',
     Mozilla: '0.08',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Dec 14',
@@ -2010,7 +2010,7 @@ export default [
     'Microsoft Edge': '2.39',
     Opera: '1.21',
     Mozilla: '0.06',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Dec 15',
@@ -2021,7 +2021,7 @@ export default [
     'Microsoft Edge': '2.37',
     Opera: '1.23',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Dec 16',
@@ -2032,7 +2032,7 @@ export default [
     'Microsoft Edge': '2.45',
     Opera: '1.2',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Dec 17',
@@ -2043,7 +2043,7 @@ export default [
     'Microsoft Edge': '2.46',
     Opera: '1.25',
     Mozilla: '0.06',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Dec 18',
@@ -2054,7 +2054,7 @@ export default [
     'Microsoft Edge': '2.6',
     Opera: '1.38',
     Mozilla: '0.08',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Dec 19',
@@ -2065,7 +2065,7 @@ export default [
     'Microsoft Edge': '3.29',
     Opera: '1.75',
     Mozilla: '0.09',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Dec 20',
@@ -2076,7 +2076,7 @@ export default [
     'Microsoft Edge': '3.13',
     Opera: '1.58',
     Mozilla: '0.08',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Dec 21',
@@ -2087,7 +2087,7 @@ export default [
     'Microsoft Edge': '2.51',
     Opera: '1.28',
     Mozilla: '0.06',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Dec 22',
@@ -2098,7 +2098,7 @@ export default [
     'Microsoft Edge': '2.58',
     Opera: '1.33',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Dec 23',
@@ -2109,7 +2109,7 @@ export default [
     'Microsoft Edge': '2.7',
     Opera: '1.46',
     Mozilla: '0.06',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Dec 24',
@@ -2120,7 +2120,7 @@ export default [
     'Microsoft Edge': '3.1',
     Opera: '1.85',
     Mozilla: '0.08',
-    'Other/Unknown': '0.02'
+    'Other/Unknown': '0.02',
   },
   {
     date: '2015 Dec 25',
@@ -2131,7 +2131,7 @@ export default [
     'Microsoft Edge': '3.73',
     Opera: '2.1',
     Mozilla: '0.09',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Dec 26',
@@ -2142,7 +2142,7 @@ export default [
     'Microsoft Edge': '3.72',
     Opera: '1.9',
     Mozilla: '0.09',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Dec 27',
@@ -2153,7 +2153,7 @@ export default [
     'Microsoft Edge': '3.73',
     Opera: '1.81',
     Mozilla: '0.09',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2015 Dec 28',
@@ -2164,7 +2164,7 @@ export default [
     'Microsoft Edge': '3.21',
     Opera: '1.39',
     Mozilla: '0.07',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Dec 29',
@@ -2175,7 +2175,7 @@ export default [
     'Microsoft Edge': '3.22',
     Opera: '1.37',
     Mozilla: '0.08',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Dec 30',
@@ -2186,7 +2186,7 @@ export default [
     'Microsoft Edge': '3.29',
     Opera: '1.37',
     Mozilla: '0.08',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2015 Dec 31',
@@ -2197,7 +2197,7 @@ export default [
     'Microsoft Edge': '3.57',
     Opera: '1.59',
     Mozilla: '0.08',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2016 Jan 1',
@@ -2208,7 +2208,7 @@ export default [
     'Microsoft Edge': '4.01',
     Opera: '1.76',
     Mozilla: '0.09',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2016 Jan 2',
@@ -2219,7 +2219,7 @@ export default [
     'Microsoft Edge': '3.91',
     Opera: '1.74',
     Mozilla: '0.08',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Jan 3',
@@ -2230,7 +2230,7 @@ export default [
     'Microsoft Edge': '3.75',
     Opera: '1.67',
     Mozilla: '0.07',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Jan 4',
@@ -2241,7 +2241,7 @@ export default [
     'Microsoft Edge': '2.85',
     Opera: '1.29',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Jan 5',
@@ -2252,7 +2252,7 @@ export default [
     'Microsoft Edge': '2.79',
     Opera: '1.36',
     Mozilla: '0.06',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Jan 6',
@@ -2263,7 +2263,7 @@ export default [
     'Microsoft Edge': '2.76',
     Opera: '1.38',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Jan 7',
@@ -2274,7 +2274,7 @@ export default [
     'Microsoft Edge': '2.76',
     Opera: '1.4',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Jan 8',
@@ -2285,7 +2285,7 @@ export default [
     'Microsoft Edge': '2.9',
     Opera: '1.49',
     Mozilla: '0.06',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2016 Jan 9',
@@ -2296,7 +2296,7 @@ export default [
     'Microsoft Edge': '3.57',
     Opera: '1.86',
     Mozilla: '0.07',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2016 Jan 10',
@@ -2307,7 +2307,7 @@ export default [
     'Microsoft Edge': '3.52',
     Opera: '1.81',
     Mozilla: '0.07',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2016 Jan 11',
@@ -2318,7 +2318,7 @@ export default [
     'Microsoft Edge': '2.72',
     Opera: '1.37',
     Mozilla: '0.04',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Jan 12',
@@ -2329,7 +2329,7 @@ export default [
     'Microsoft Edge': '2.74',
     Opera: '1.39',
     Mozilla: '0.07',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2016 Jan 13',
@@ -2340,7 +2340,7 @@ export default [
     'Microsoft Edge': '2.85',
     Opera: '1.33',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Jan 14',
@@ -2351,7 +2351,7 @@ export default [
     'Microsoft Edge': '2.87',
     Opera: '1.32',
     Mozilla: '0.04',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Jan 15',
@@ -2362,7 +2362,7 @@ export default [
     'Microsoft Edge': '3.04',
     Opera: '1.46',
     Mozilla: '0.06',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2016 Jan 16',
@@ -2373,7 +2373,7 @@ export default [
     'Microsoft Edge': '3.66',
     Opera: '1.75',
     Mozilla: '0.06',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Jan 17',
@@ -2384,7 +2384,7 @@ export default [
     'Microsoft Edge': '3.66',
     Opera: '1.66',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Jan 18',
@@ -2395,7 +2395,7 @@ export default [
     'Microsoft Edge': '3',
     Opera: '1.3',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Jan 19',
@@ -2406,7 +2406,7 @@ export default [
     'Microsoft Edge': '2.72',
     Opera: '1.25',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Jan 20',
@@ -2417,7 +2417,7 @@ export default [
     'Microsoft Edge': '2.76',
     Opera: '1.25',
     Mozilla: '0.05',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2016 Jan 21',
@@ -2428,7 +2428,7 @@ export default [
     'Microsoft Edge': '2.74',
     Opera: '1.3',
     Mozilla: '0.04',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Jan 22',
@@ -2439,7 +2439,7 @@ export default [
     'Microsoft Edge': '2.95',
     Opera: '1.4',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Jan 23',
@@ -2450,7 +2450,7 @@ export default [
     'Microsoft Edge': '3.78',
     Opera: '1.72',
     Mozilla: '0.06',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Jan 24',
@@ -2461,7 +2461,7 @@ export default [
     'Microsoft Edge': '3.57',
     Opera: '1.65',
     Mozilla: '0.06',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Jan 25',
@@ -2472,7 +2472,7 @@ export default [
     'Microsoft Edge': '2.89',
     Opera: '1.32',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Jan 26',
@@ -2483,7 +2483,7 @@ export default [
     'Microsoft Edge': '2.87',
     Opera: '1.28',
     Mozilla: '0.04',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Jan 27',
@@ -2494,7 +2494,7 @@ export default [
     'Microsoft Edge': '2.84',
     Opera: '1.29',
     Mozilla: '0.04',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Jan 28',
@@ -2505,7 +2505,7 @@ export default [
     'Microsoft Edge': '2.92',
     Opera: '1.32',
     Mozilla: '0.04',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Jan 29',
@@ -2516,7 +2516,7 @@ export default [
     'Microsoft Edge': '3.07',
     Opera: '1.4',
     Mozilla: '0.04',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Jan 30',
@@ -2527,7 +2527,7 @@ export default [
     'Microsoft Edge': '3.71',
     Opera: '1.76',
     Mozilla: '0.06',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2016 Jan 31',
@@ -2538,7 +2538,7 @@ export default [
     'Microsoft Edge': '3.63',
     Opera: '1.63',
     Mozilla: '0.06',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2016 Feb 1',
@@ -2549,7 +2549,7 @@ export default [
     'Microsoft Edge': '2.88',
     Opera: '1.28',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Feb 2',
@@ -2560,7 +2560,7 @@ export default [
     'Microsoft Edge': '2.85',
     Opera: '1.29',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Feb 3',
@@ -2571,7 +2571,7 @@ export default [
     'Microsoft Edge': '2.91',
     Opera: '1.31',
     Mozilla: '0.04',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Feb 4',
@@ -2582,7 +2582,7 @@ export default [
     'Microsoft Edge': '3',
     Opera: '1.31',
     Mozilla: '0.05',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2016 Feb 5',
@@ -2593,7 +2593,7 @@ export default [
     'Microsoft Edge': '3.15',
     Opera: '1.44',
     Mozilla: '0.06',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2016 Feb 6',
@@ -2604,7 +2604,7 @@ export default [
     'Microsoft Edge': '3.96',
     Opera: '1.78',
     Mozilla: '0.06',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2016 Feb 7',
@@ -2615,7 +2615,7 @@ export default [
     'Microsoft Edge': '3.81',
     Opera: '1.77',
     Mozilla: '0.06',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2016 Feb 8',
@@ -2626,7 +2626,7 @@ export default [
     'Microsoft Edge': '3.13',
     Opera: '1.27',
     Mozilla: '0.04',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Feb 9',
@@ -2637,7 +2637,7 @@ export default [
     'Microsoft Edge': '3.09',
     Opera: '1.37',
     Mozilla: '0.06',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Feb 10',
@@ -2648,7 +2648,7 @@ export default [
     'Microsoft Edge': '2.93',
     Opera: '1.41',
     Mozilla: '0.05',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2016 Feb 11',
@@ -2659,7 +2659,7 @@ export default [
     'Microsoft Edge': '2.88',
     Opera: '1.35',
     Mozilla: '0.05',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2016 Feb 12',
@@ -2670,7 +2670,7 @@ export default [
     'Microsoft Edge': '3.01',
     Opera: '1.45',
     Mozilla: '0.05',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2016 Feb 13',
@@ -2681,7 +2681,7 @@ export default [
     'Microsoft Edge': '3.92',
     Opera: '1.87',
     Mozilla: '0.07',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2016 Feb 14',
@@ -2692,7 +2692,7 @@ export default [
     'Microsoft Edge': '3.85',
     Opera: '1.71',
     Mozilla: '0.06',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2016 Feb 15',
@@ -2703,7 +2703,7 @@ export default [
     'Microsoft Edge': '3.2',
     Opera: '1.31',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Feb 16',
@@ -2714,7 +2714,7 @@ export default [
     'Microsoft Edge': '2.93',
     Opera: '1.3',
     Mozilla: '0.05',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2016 Feb 17',
@@ -2725,7 +2725,7 @@ export default [
     'Microsoft Edge': '2.97',
     Opera: '1.3',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Feb 18',
@@ -2736,7 +2736,7 @@ export default [
     'Microsoft Edge': '2.93',
     Opera: '1.37',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Feb 19',
@@ -2747,7 +2747,7 @@ export default [
     'Microsoft Edge': '3.08',
     Opera: '1.43',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Feb 20',
@@ -2758,7 +2758,7 @@ export default [
     'Microsoft Edge': '3.89',
     Opera: '1.9',
     Mozilla: '0.07',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2016 Feb 21',
@@ -2769,7 +2769,7 @@ export default [
     'Microsoft Edge': '3.9',
     Opera: '1.66',
     Mozilla: '0.07',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Feb 22',
@@ -2780,7 +2780,7 @@ export default [
     'Microsoft Edge': '2.97',
     Opera: '1.25',
     Mozilla: '0.04',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Feb 23',
@@ -2791,7 +2791,7 @@ export default [
     'Microsoft Edge': '2.97',
     Opera: '1.25',
     Mozilla: '0.04',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Feb 24',
@@ -2802,7 +2802,7 @@ export default [
     'Microsoft Edge': '2.96',
     Opera: '1.28',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Feb 25',
@@ -2813,7 +2813,7 @@ export default [
     'Microsoft Edge': '2.98',
     Opera: '1.31',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Feb 26',
@@ -2824,7 +2824,7 @@ export default [
     'Microsoft Edge': '3.09',
     Opera: '1.39',
     Mozilla: '0.06',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Feb 27',
@@ -2835,7 +2835,7 @@ export default [
     'Microsoft Edge': '3.9',
     Opera: '1.77',
     Mozilla: '0.06',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Feb 28',
@@ -2846,7 +2846,7 @@ export default [
     'Microsoft Edge': '3.85',
     Opera: '1.64',
     Mozilla: '0.06',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2016 Feb 29',
@@ -2857,7 +2857,7 @@ export default [
     'Microsoft Edge': '3',
     Opera: '1.17',
     Mozilla: '0.04',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Mar 1',
@@ -2868,7 +2868,7 @@ export default [
     'Microsoft Edge': '2.92',
     Opera: '1.18',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Mar 2',
@@ -2879,7 +2879,7 @@ export default [
     'Microsoft Edge': '2.89',
     Opera: '1.19',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Mar 3',
@@ -2890,7 +2890,7 @@ export default [
     'Microsoft Edge': '2.97',
     Opera: '1.22',
     Mozilla: '0.04',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Mar 4',
@@ -2901,7 +2901,7 @@ export default [
     'Microsoft Edge': '3.13',
     Opera: '1.32',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Mar 5',
@@ -2912,7 +2912,7 @@ export default [
     'Microsoft Edge': '4.04',
     Opera: '1.72',
     Mozilla: '0.06',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2016 Mar 6',
@@ -2923,7 +2923,7 @@ export default [
     'Microsoft Edge': '3.95',
     Opera: '1.63',
     Mozilla: '0.06',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Mar 7',
@@ -2934,7 +2934,7 @@ export default [
     'Microsoft Edge': '3.01',
     Opera: '1.22',
     Mozilla: '0.04',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Mar 8',
@@ -2945,7 +2945,7 @@ export default [
     'Microsoft Edge': '3.01',
     Opera: '1.24',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Mar 9',
@@ -2956,7 +2956,7 @@ export default [
     'Microsoft Edge': '3.05',
     Opera: '1.26',
     Mozilla: '0.04',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Mar 10',
@@ -2967,7 +2967,7 @@ export default [
     'Microsoft Edge': '3.04',
     Opera: '1.28',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Mar 11',
@@ -2978,7 +2978,7 @@ export default [
     'Microsoft Edge': '3.22',
     Opera: '1.36',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Mar 12',
@@ -2989,7 +2989,7 @@ export default [
     'Microsoft Edge': '4.16',
     Opera: '1.78',
     Mozilla: '0.06',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2016 Mar 13',
@@ -3000,7 +3000,7 @@ export default [
     'Microsoft Edge': '4.17',
     Opera: '1.66',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Mar 14',
@@ -3011,7 +3011,7 @@ export default [
     'Microsoft Edge': '3.16',
     Opera: '1.21',
     Mozilla: '0.04',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Mar 15',
@@ -3022,7 +3022,7 @@ export default [
     'Microsoft Edge': '3.11',
     Opera: '1.23',
     Mozilla: '0.05',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2016 Mar 16',
@@ -3033,7 +3033,7 @@ export default [
     'Microsoft Edge': '3.17',
     Opera: '1.26',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Mar 17',
@@ -3044,7 +3044,7 @@ export default [
     'Microsoft Edge': '3.15',
     Opera: '1.29',
     Mozilla: '0.04',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2016 Mar 18',
@@ -3055,7 +3055,7 @@ export default [
     'Microsoft Edge': '3.3',
     Opera: '1.37',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Mar 19',
@@ -3066,7 +3066,7 @@ export default [
     'Microsoft Edge': '4.21',
     Opera: '1.79',
     Mozilla: '0.11',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2016 Mar 20',
@@ -3077,7 +3077,7 @@ export default [
     'Microsoft Edge': '4.27',
     Opera: '1.71',
     Mozilla: '0.08',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2016 Mar 21',
@@ -3088,7 +3088,7 @@ export default [
     'Microsoft Edge': '3.22',
     Opera: '1.35',
     Mozilla: '0.04',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Mar 22',
@@ -3099,7 +3099,7 @@ export default [
     'Microsoft Edge': '3.12',
     Opera: '1.45',
     Mozilla: '0.05',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2016 Mar 23',
@@ -3110,7 +3110,7 @@ export default [
     'Microsoft Edge': '3.22',
     Opera: '1.58',
     Mozilla: '0.03',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Mar 24',
@@ -3121,7 +3121,7 @@ export default [
     'Microsoft Edge': '3.36',
     Opera: '1.58',
     Mozilla: '0.04',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Mar 25',
@@ -3132,7 +3132,7 @@ export default [
     'Microsoft Edge': '3.76',
     Opera: '1.64',
     Mozilla: '0.04',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Mar 26',
@@ -3143,7 +3143,7 @@ export default [
     'Microsoft Edge': '4.23',
     Opera: '1.85',
     Mozilla: '0.04',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Mar 27',
@@ -3154,7 +3154,7 @@ export default [
     'Microsoft Edge': '4.26',
     Opera: '1.78',
     Mozilla: '0.04',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Mar 28',
@@ -3165,7 +3165,7 @@ export default [
     'Microsoft Edge': '3.48',
     Opera: '1.43',
     Mozilla: '0.03',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Mar 29',
@@ -3176,7 +3176,7 @@ export default [
     'Microsoft Edge': '3.23',
     Opera: '1.48',
     Mozilla: '0.03',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Mar 30',
@@ -3187,7 +3187,7 @@ export default [
     'Microsoft Edge': '3.27',
     Opera: '1.45',
     Mozilla: '0.04',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Mar 31',
@@ -3198,7 +3198,7 @@ export default [
     'Microsoft Edge': '3.3',
     Opera: '1.43',
     Mozilla: '0.04',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Apr 1',
@@ -3209,7 +3209,7 @@ export default [
     'Microsoft Edge': '3.4',
     Opera: '1.47',
     Mozilla: '0.04',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Apr 2',
@@ -3220,7 +3220,7 @@ export default [
     'Microsoft Edge': '4.35',
     Opera: '1.87',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Apr 3',
@@ -3231,7 +3231,7 @@ export default [
     'Microsoft Edge': '4.2',
     Opera: '1.82',
     Mozilla: '0.06',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Apr 4',
@@ -3242,7 +3242,7 @@ export default [
     'Microsoft Edge': '3.22',
     Opera: '1.5',
     Mozilla: '0.03',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Apr 5',
@@ -3253,7 +3253,7 @@ export default [
     'Microsoft Edge': '3.21',
     Opera: '1.54',
     Mozilla: '0.04',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Apr 6',
@@ -3264,7 +3264,7 @@ export default [
     'Microsoft Edge': '3.28',
     Opera: '1.6',
     Mozilla: '0.04',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Apr 7',
@@ -3275,7 +3275,7 @@ export default [
     'Microsoft Edge': '3.35',
     Opera: '1.69',
     Mozilla: '0.03',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Apr 8',
@@ -3286,7 +3286,7 @@ export default [
     'Microsoft Edge': '3.5',
     Opera: '1.42',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Apr 9',
@@ -3297,7 +3297,7 @@ export default [
     'Microsoft Edge': '4.48',
     Opera: '1.77',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Apr 10',
@@ -3308,7 +3308,7 @@ export default [
     'Microsoft Edge': '4.42',
     Opera: '1.66',
     Mozilla: '0.04',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Apr 11',
@@ -3319,7 +3319,7 @@ export default [
     'Microsoft Edge': '3.37',
     Opera: '1.34',
     Mozilla: '0.07',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Apr 12',
@@ -3330,7 +3330,7 @@ export default [
     'Microsoft Edge': '3.34',
     Opera: '1.65',
     Mozilla: '0.06',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Apr 13',
@@ -3341,7 +3341,7 @@ export default [
     'Microsoft Edge': '3.39',
     Opera: '1.72',
     Mozilla: '0.1',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Apr 14',
@@ -3352,7 +3352,7 @@ export default [
     'Microsoft Edge': '3.3',
     Opera: '1.68',
     Mozilla: '0.15',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Apr 15',
@@ -3363,7 +3363,7 @@ export default [
     'Microsoft Edge': '3.46',
     Opera: '1.81',
     Mozilla: '0.12',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Apr 16',
@@ -3374,7 +3374,7 @@ export default [
     'Microsoft Edge': '4.47',
     Opera: '1.81',
     Mozilla: '0.13',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Apr 17',
@@ -3385,7 +3385,7 @@ export default [
     'Microsoft Edge': '4.4',
     Opera: '1.7',
     Mozilla: '0.09',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Apr 18',
@@ -3396,7 +3396,7 @@ export default [
     'Microsoft Edge': '3.33',
     Opera: '1.66',
     Mozilla: '0.07',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Apr 19',
@@ -3407,7 +3407,7 @@ export default [
     'Microsoft Edge': '3.27',
     Opera: '1.43',
     Mozilla: '0.06',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Apr 20',
@@ -3418,7 +3418,7 @@ export default [
     'Microsoft Edge': '3.36',
     Opera: '1.57',
     Mozilla: '0.08',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Apr 21',
@@ -3429,7 +3429,7 @@ export default [
     'Microsoft Edge': '3.47',
     Opera: '1.6',
     Mozilla: '0.07',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Apr 22',
@@ -3440,7 +3440,7 @@ export default [
     'Microsoft Edge': '3.61',
     Opera: '1.46',
     Mozilla: '0.08',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Apr 23',
@@ -3451,7 +3451,7 @@ export default [
     'Microsoft Edge': '4.72',
     Opera: '1.75',
     Mozilla: '0.09',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Apr 24',
@@ -3462,7 +3462,7 @@ export default [
     'Microsoft Edge': '4.59',
     Opera: '1.66',
     Mozilla: '0.07',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2016 Apr 25',
@@ -3473,7 +3473,7 @@ export default [
     'Microsoft Edge': '3.46',
     Opera: '1.5',
     Mozilla: '0.06',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Apr 26',
@@ -3484,7 +3484,7 @@ export default [
     'Microsoft Edge': '3.4',
     Opera: '1.36',
     Mozilla: '0.07',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Apr 27',
@@ -3495,7 +3495,7 @@ export default [
     'Microsoft Edge': '3.45',
     Opera: '1.24',
     Mozilla: '0.07',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Apr 28',
@@ -3506,7 +3506,7 @@ export default [
     'Microsoft Edge': '3.49',
     Opera: '1.21',
     Mozilla: '0.08',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2016 Apr 29',
@@ -3517,7 +3517,7 @@ export default [
     'Microsoft Edge': '3.56',
     Opera: '1.28',
     Mozilla: '0.09',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Apr 30',
@@ -3528,7 +3528,7 @@ export default [
     'Microsoft Edge': '4.86',
     Opera: '1.65',
     Mozilla: '0.1',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 May 1',
@@ -3539,7 +3539,7 @@ export default [
     'Microsoft Edge': '4.88',
     Opera: '1.58',
     Mozilla: '0.08',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2016 May 2',
@@ -3550,7 +3550,7 @@ export default [
     'Microsoft Edge': '3.67',
     Opera: '1.21',
     Mozilla: '0.1',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 May 3',
@@ -3561,7 +3561,7 @@ export default [
     'Microsoft Edge': '3.52',
     Opera: '1.41',
     Mozilla: '0.07',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 May 4',
@@ -3572,7 +3572,7 @@ export default [
     'Microsoft Edge': '3.57',
     Opera: '1.54',
     Mozilla: '0.08',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 May 5',
@@ -3583,7 +3583,7 @@ export default [
     'Microsoft Edge': '3.63',
     Opera: '1.57',
     Mozilla: '0.08',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 May 6',
@@ -3594,7 +3594,7 @@ export default [
     'Microsoft Edge': '3.78',
     Opera: '1.55',
     Mozilla: '0.09',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 May 7',
@@ -3605,7 +3605,7 @@ export default [
     'Microsoft Edge': '4.86',
     Opera: '1.72',
     Mozilla: '0.1',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 May 8',
@@ -3616,7 +3616,7 @@ export default [
     'Microsoft Edge': '4.69',
     Opera: '1.71',
     Mozilla: '0.09',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 May 9',
@@ -3627,7 +3627,7 @@ export default [
     'Microsoft Edge': '3.58',
     Opera: '1.08',
     Mozilla: '0.06',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 May 10',
@@ -3638,7 +3638,7 @@ export default [
     'Microsoft Edge': '3.62',
     Opera: '1.24',
     Mozilla: '0.06',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 May 11',
@@ -3649,7 +3649,7 @@ export default [
     'Microsoft Edge': '3.6',
     Opera: '1.26',
     Mozilla: '0.07',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 May 12',
@@ -3660,7 +3660,7 @@ export default [
     'Microsoft Edge': '3.63',
     Opera: '1.4',
     Mozilla: '0.07',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 May 13',
@@ -3671,7 +3671,7 @@ export default [
     'Microsoft Edge': '3.77',
     Opera: '1.48',
     Mozilla: '0.09',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 May 14',
@@ -3682,7 +3682,7 @@ export default [
     'Microsoft Edge': '4.96',
     Opera: '1.91',
     Mozilla: '0.1',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 May 15',
@@ -3693,7 +3693,7 @@ export default [
     'Microsoft Edge': '4.91',
     Opera: '1.87',
     Mozilla: '0.08',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 May 16',
@@ -3704,7 +3704,7 @@ export default [
     'Microsoft Edge': '3.73',
     Opera: '1.49',
     Mozilla: '0.06',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 May 17',
@@ -3715,7 +3715,7 @@ export default [
     'Microsoft Edge': '3.57',
     Opera: '1.37',
     Mozilla: '0.06',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 May 18',
@@ -3726,7 +3726,7 @@ export default [
     'Microsoft Edge': '3.64',
     Opera: '1.24',
     Mozilla: '0.06',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 May 19',
@@ -3737,7 +3737,7 @@ export default [
     'Microsoft Edge': '3.77',
     Opera: '1.1',
     Mozilla: '0.07',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 May 20',
@@ -3748,7 +3748,7 @@ export default [
     'Microsoft Edge': '4.09',
     Opera: '1.19',
     Mozilla: '0.07',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 May 21',
@@ -3759,7 +3759,7 @@ export default [
     'Microsoft Edge': '5.19',
     Opera: '1.62',
     Mozilla: '0.07',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 May 22',
@@ -3770,7 +3770,7 @@ export default [
     'Microsoft Edge': '5.07',
     Opera: '1.61',
     Mozilla: '0.07',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 May 23',
@@ -3781,7 +3781,7 @@ export default [
     'Microsoft Edge': '3.95',
     Opera: '1.3',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 May 24',
@@ -3792,7 +3792,7 @@ export default [
     'Microsoft Edge': '3.91',
     Opera: '1.32',
     Mozilla: '0.06',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 May 25',
@@ -3803,7 +3803,7 @@ export default [
     'Microsoft Edge': '3.99',
     Opera: '1.39',
     Mozilla: '0.06',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 May 26',
@@ -3814,7 +3814,7 @@ export default [
     'Microsoft Edge': '3.95',
     Opera: '1.33',
     Mozilla: '0.06',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 May 27',
@@ -3825,7 +3825,7 @@ export default [
     'Microsoft Edge': '4.17',
     Opera: '1.35',
     Mozilla: '0.07',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 May 28',
@@ -3836,7 +3836,7 @@ export default [
     'Microsoft Edge': '5.33',
     Opera: '1.74',
     Mozilla: '0.09',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 May 29',
@@ -3847,7 +3847,7 @@ export default [
     'Microsoft Edge': '5.29',
     Opera: '1.72',
     Mozilla: '0.07',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 May 30',
@@ -3858,7 +3858,7 @@ export default [
     'Microsoft Edge': '4.86',
     Opera: '1.59',
     Mozilla: '0.07',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 May 31',
@@ -3869,7 +3869,7 @@ export default [
     'Microsoft Edge': '4.13',
     Opera: '1.37',
     Mozilla: '0.06',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Jun 1',
@@ -3880,7 +3880,7 @@ export default [
     'Microsoft Edge': '4.29',
     Opera: '1.42',
     Mozilla: '0.06',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Jun 2',
@@ -3891,7 +3891,7 @@ export default [
     'Microsoft Edge': '4.29',
     Opera: '1.33',
     Mozilla: '0.06',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Jun 3',
@@ -3902,7 +3902,7 @@ export default [
     'Microsoft Edge': '4.6',
     Opera: '1.69',
     Mozilla: '0.08',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Jun 4',
@@ -3913,7 +3913,7 @@ export default [
     'Microsoft Edge': '5.88',
     Opera: '1.96',
     Mozilla: '0.08',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Jun 5',
@@ -3924,7 +3924,7 @@ export default [
     'Microsoft Edge': '5.76',
     Opera: '2.14',
     Mozilla: '0.08',
-    'Other/Unknown': '0.01'
+    'Other/Unknown': '0.01',
   },
   {
     date: '2016 Jun 6',
@@ -3935,7 +3935,7 @@ export default [
     'Microsoft Edge': '4.18',
     Opera: '2.01',
     Mozilla: '0.06',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Jun 7',
@@ -3946,7 +3946,7 @@ export default [
     'Microsoft Edge': '4.05',
     Opera: '1.55',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Jun 8',
@@ -3957,7 +3957,7 @@ export default [
     'Microsoft Edge': '4.14',
     Opera: '1.56',
     Mozilla: '0.06',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Jun 9',
@@ -3968,7 +3968,7 @@ export default [
     'Microsoft Edge': '4.14',
     Opera: '1.38',
     Mozilla: '0.07',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Jun 10',
@@ -3979,7 +3979,7 @@ export default [
     'Microsoft Edge': '4.44',
     Opera: '1.49',
     Mozilla: '0.07',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Jun 11',
@@ -3990,7 +3990,7 @@ export default [
     'Microsoft Edge': '5.78',
     Opera: '1.69',
     Mozilla: '0.09',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Jun 12',
@@ -4001,7 +4001,7 @@ export default [
     'Microsoft Edge': '5.96',
     Opera: '1.6',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Jun 13',
@@ -4012,7 +4012,7 @@ export default [
     'Microsoft Edge': '4.39',
     Opera: '1.15',
     Mozilla: '0.05',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Jun 14',
@@ -4023,7 +4023,7 @@ export default [
     'Microsoft Edge': '4.31',
     Opera: '1.21',
     Mozilla: '0.04',
-    'Other/Unknown': '0'
+    'Other/Unknown': '0',
   },
   {
     date: '2016 Jun 15',
@@ -4034,6 +4034,6 @@ export default [
     'Microsoft Edge': '3.84',
     Opera: '1.4',
     Mozilla: '0.04',
-    'Other/Unknown': '0'
-  }
+    'Other/Unknown': '0',
+  },
 ];

@@ -76,7 +76,7 @@ export default {
     { id: 'Child1', group: 10 },
     { id: 'Child2', group: 10 },
     { id: 'Brujon', group: 4 },
-    { id: 'Mme.Hucheloup', group: 8 }
+    { id: 'Mme.Hucheloup', group: 8 },
   ],
   links: [
     { source: 'Napoleon', target: 'Myriel', value: 1 },
@@ -332,6 +332,6 @@ export default {
     { source: 'Mme.Hucheloup', target: 'Bahorel', value: 1 },
     { source: 'Mme.Hucheloup', target: 'Courfeyrac', value: 1 },
     { source: 'Mme.Hucheloup', target: 'Gavroche', value: 1 },
-    { source: 'Mme.Hucheloup', target: 'Enjolras', value: 1 }
-  ]
+    { source: 'Mme.Hucheloup', target: 'Enjolras', value: 1 },
+  ],
 };
