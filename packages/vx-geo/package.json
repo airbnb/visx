@@ -36,6 +36,9 @@
     "d3-geo": "^1.11.3",
     "prop-types": "^15.5.10"
   },
+  "devDependencies": {
+    "topojson-client": "^3.0.0"
+  },
   "peerDependencies": {
     "react": "^15.0.0-0 || ^16.0.0-0"
   },
