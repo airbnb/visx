@@ -1,4 +1,4 @@
 export {
   default as withBoundingRects,
-  withBoundingRectsProps
+  withBoundingRectsProps,
 } from './enhancers/withBoundingRects';
