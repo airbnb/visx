@@ -22,7 +22,7 @@ Marker.propTypes = {
   labelStrokeWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   labelFontSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   labelPaintOrder: PropTypes.string,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default function Marker({
@@ -43,7 +43,7 @@ export default function Marker({
   labelStroke = 'white',
   labelStrokeWidth = 3,
   labelPaintOrder = 'stroke',
-  className
+  className,
 }) {
   return (
     <Group top={top} left={left}>
