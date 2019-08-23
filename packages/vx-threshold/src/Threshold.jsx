@@ -15,7 +15,7 @@ Threshold.propTypes = {
   y0: PropTypes.oneOfType([PropTypes.func, PropTypes.number]).isRequired,
   y1: PropTypes.oneOfType([PropTypes.func, PropTypes.number]).isRequired,
   aboveAreaProps: PropTypes.object,
-  belowAreaProps: PropTypes.object
+  belowAreaProps: PropTypes.object,
 };
 
 export default function Threshold({
@@ -29,7 +29,7 @@ export default function Threshold({
   y1,
   aboveAreaProps,
   belowAreaProps,
-  id = ''
+  id = '',
 }) {
   return (
     <g className={cx('vx-threshold', className)}>
