@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { scaleLinear } from '@vx/scale';
+import { scaleLinear } from '../../vx-scale/src';
 import { Axis, AxisLeft } from '../src';
 
 const axisProps = {
