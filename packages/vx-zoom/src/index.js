@@ -8,5 +8,5 @@ export {
   scaleMatrix,
   translateMatrix,
   multiplyMatrices,
-  composeMatrices
+  composeMatrices,
 } from './util/matrix';

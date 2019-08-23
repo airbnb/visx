@@ -8,7 +8,7 @@ import {
   applyInverseMatrixToPoint,
   translateMatrix,
   identityMatrix,
-  scaleMatrix
+  scaleMatrix,
 } from './util/matrix';
 
 class Zoom extends React.Component {
@@ -18,7 +18,7 @@ class Zoom extends React.Component {
     this.state = {
       initialTransformMatrix: props.transformMatrix,
       transformMatrix: props.transformMatrix,
-      isDragging: false
+      isDragging: false,
     };
 
     this.toString = this.toString.bind(this);
@@ -70,17 +70,17 @@ class Zoom extends React.Component {
     this.setTransformMatrix(initialTransformMatrix);
   }
 
-  scale({ scaleX, scaleY, point }) {
-    if (!scaleY) scaleY = scaleX;
+  scale({ scaleX, scaleY: maybeScaleY, point }) {
+    const scaleY = maybeScaleY || scaleX;
     const { transformMatrix } = this.state;
     const { width, height } = this.props;
-    point = point || { x: width / 2, y: height / 2 };
-    const translate = applyInverseMatrixToPoint(transformMatrix, point);
+    const cleanPoint = point || { x: width / 2, y: height / 2 };
+    const translate = applyInverseMatrixToPoint(transformMatrix, cleanPoint);
     const nextMatrix = composeMatrices(
       transformMatrix,
       translateMatrix(translate.x, translate.y),
       scaleMatrix(scaleX, scaleY),
-      translateMatrix(-translate.x, -translate.y)
+      translateMatrix(-translate.x, -translate.y),
     );
     this.setTransformMatrix(nextMatrix);
   }
@@ -102,7 +102,7 @@ class Zoom extends React.Component {
     const nextMatrix = {
       ...transformMatrix,
       translateX,
-      translateY
+      translateY,
     };
     this.setTransformMatrix(nextMatrix);
   }
@@ -123,7 +123,7 @@ class Zoom extends React.Component {
   }
 
   constrain(transformMatrix, prevTransformMatrix) {
-    const { scaleXMin, scaleXMax, scaleYMin, scaleYMax, constrain } = this.props;
+    const { scaleXMin, scaleXMax, scaleYMin, scaleYMax } = this.props;
     const { scaleX, scaleY } = transformMatrix;
     const shouldConstrainScaleX = scaleX > scaleXMax || scaleX < scaleXMin;
     const shouldConstrainScaleY = scaleY > scaleYMax || scaleY < scaleYMin;
@@ -149,11 +149,11 @@ class Zoom extends React.Component {
     const dy = -(this.startPoint.y - currentPoint.y);
     this.setTranslate({
       translateX: this.startTranslate.translateX + dx,
-      translateY: this.startTranslate.translateY + dy
+      translateY: this.startTranslate.translateY + dy,
     });
   }
 
-  dragEnd(event) {
+  dragEnd(/** event */) {
     this.startPoint = undefined;
     this.startTranslate = undefined;
     this.setState({ isDragging: false });
@@ -180,7 +180,7 @@ class Zoom extends React.Component {
     const inverseCentroid = this.applyInverseToPoint(center);
     this.translate({
       translateX: inverseCentroid.x - center.x,
-      translateY: inverseCentroid.y - center.y
+      translateY: inverseCentroid.y - center.y,
     });
   }
 
@@ -209,7 +209,7 @@ class Zoom extends React.Component {
       invert: this.invert,
       toStringInvert: this.toStringInvert,
       applyToPoint: this.applyToPoint,
-      applyInverseToPoint: this.applyInverseToPoint
+      applyInverseToPoint: this.applyInverseToPoint,
     };
     if (!passive) {
       return (
@@ -276,7 +276,7 @@ Zoom.propTypes = {
     translateX: PropTypes.number,
     translateY: PropTypes.number,
     skewX: PropTypes.number,
-    skewY: PropTypes.number
+    skewY: PropTypes.number,
   }),
   /**
    * By default passive is `false`. This will wrap <Zoom> children in a <div> and add an active wheel
@@ -289,7 +289,7 @@ Zoom.propTypes = {
    */
   passive: PropTypes.bool,
   style: PropTypes.object,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 Zoom.defaultProps = {
@@ -304,13 +304,13 @@ Zoom.defaultProps = {
     translateX: 0,
     translateY: 0,
     skewX: 0,
-    skewY: 0
+    skewY: 0,
   },
   wheelDelta: event => {
     return -event.deltaY > 0 ? { scaleX: 1.1, scaleY: 1.1 } : { scaleX: 0.9, scaleY: 0.9 };
   },
   style: undefined,
-  className: undefined
+  className: undefined,
 };
 
 export default Zoom;

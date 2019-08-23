@@ -1,4 +1,3 @@
-/* eslint-disable no-trailing-spaces */
 /* eslint-disable no-case-declarations */
 export function identityMatrix() {
   return {
@@ -7,7 +6,7 @@ export function identityMatrix() {
     translateX: 0,
     translateY: 0,
     skewX: 0,
-    skewY: 0
+    skewY: 0,
   };
 }
 
@@ -17,7 +16,7 @@ export function createMatrix({
   translateX = 0,
   translateY = 0,
   skewX = 0,
-  skewY = 0
+  skewY = 0,
 }) {
   return {
     scaleX,
@@ -25,7 +24,7 @@ export function createMatrix({
     translateX,
     translateY,
     skewX,
-    skewY
+    skewY,
   };
 }
 
@@ -37,14 +36,14 @@ export function inverseMatrix({ scaleX, scaleY, translateX, translateY, skewX, s
     translateX: (scaleY * translateX - skewX * translateY) / -denominator,
     translateY: (skewY * translateX - scaleX * translateY) / denominator,
     skewX: skewX / -denominator,
-    skewY: skewY / -denominator
+    skewY: skewY / -denominator,
   };
 }
 
 export function applyMatrixToPoint(matrix, { x, y }) {
   return {
     x: matrix.scaleX * x + matrix.skewX * y + matrix.translateX,
-    y: matrix.skewY * x + matrix.scaleY * y + matrix.translateY
+    y: matrix.skewY * x + matrix.scaleY * y + matrix.translateY,
   };
 }
 
@@ -52,8 +51,8 @@ export function applyInverseMatrixToPoint(matrix, { x, y }) {
   return applyMatrixToPoint(inverseMatrix(matrix), { x, y });
 }
 
-export function scaleMatrix(scaleX, scaleY = undefined) {
-  if (!scaleY) scaleY = scaleX;
+export function scaleMatrix(scaleX, maybeScaleY = undefined) {
+  const scaleY = maybeScaleY || scaleX;
   return createMatrix({ scaleX, scaleY });
 }
 
@@ -70,7 +69,7 @@ export function multiplyMatrices(matrix1, matrix2) {
     translateY:
       matrix1.skewY * matrix2.translateX + matrix1.scaleY * matrix2.translateY + matrix1.translateY,
     skewX: matrix1.scaleX * matrix2.skewX + matrix1.skewX * matrix2.scaleY,
-    skewY: matrix1.skewY * matrix2.scaleX + matrix1.scaleY * matrix2.skewY
+    skewY: matrix1.skewY * matrix2.scaleX + matrix1.scaleY * matrix2.skewY,
   };
 }
 
