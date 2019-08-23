@@ -7,7 +7,7 @@ Glyph.propTypes = {
   top: PropTypes.number,
   left: PropTypes.number,
   className: PropTypes.string,
-  children: PropTypes.any
+  children: PropTypes.any,
 };
 
 export default function Glyph({ top = 0, left = 0, className, children }) {

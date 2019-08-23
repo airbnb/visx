@@ -1,3 +1,6 @@
+import React from 'react';
+import { shallow, render } from 'enzyme';
+
 import { Glyph } from '../src';
 
 describe('<Glyph />', () => {
@@ -12,11 +15,10 @@ describe('<Glyph />', () => {
 
   test('it should add className to <path />', () => {
     const wrapper = shallow(<Glyph className="test" />);
-    expect(wrapper.find('.test').length).toBe(1);
+    expect(wrapper.find('.test')).toHaveLength(1);
   });
 
   test('it should take top,left number props', () => {
-    const fn = jest.fn();
     const wrapper = render(<Glyph top={2} left={2} />);
     expect(wrapper['0'].attribs.transform).toBe('translate(2, 2)');
   });

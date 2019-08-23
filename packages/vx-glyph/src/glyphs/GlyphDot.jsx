@@ -7,7 +7,7 @@ GlyphDot.propTypes = {
   children: PropTypes.func,
   className: PropTypes.string,
   top: PropTypes.number,
-  left: PropTypes.number
+  left: PropTypes.number,
 };
 
 export default function GlyphDot({ top = 0, left = 0, className, children, ...restProps }) {

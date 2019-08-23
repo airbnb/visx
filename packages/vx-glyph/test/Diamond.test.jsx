@@ -1,29 +1,32 @@
-import { GlyphWye } from '../src';
+import React from 'react';
+import { shallow } from 'enzyme';
 
-describe('<GlyphWye />', () => {
+import { GlyphDiamond } from '../src';
+
+describe('<GlyphDiamond />', () => {
   test('it should be defined', () => {
-    expect(GlyphWye).toBeDefined();
+    expect(GlyphDiamond).toBeDefined();
   });
 
   test('it should be wrapped in a <Glyph />', () => {
-    const wrapper = shallow(<GlyphWye />);
+    const wrapper = shallow(<GlyphDiamond />);
     expect(wrapper.dive().prop('className')).toBe('vx-glyph');
   });
 
   test('it should add className to <path />', () => {
-    const wrapper = shallow(<GlyphWye className="test" />);
-    expect(wrapper.find('.test').length).toBe(1);
+    const wrapper = shallow(<GlyphDiamond className="test" />);
+    expect(wrapper.find('.test')).toHaveLength(1);
   });
 
   test('it should take a children as function prop', () => {
     const fn = jest.fn();
-    const wrapper = shallow(<GlyphWye>{fn}</GlyphWye>);
+    shallow(<GlyphDiamond>{fn}</GlyphDiamond>);
     expect(fn).toHaveBeenCalled();
   });
 
   test('it should call children function with { path }', () => {
     const fn = jest.fn();
-    const wrapper = shallow(<GlyphWye>{fn}</GlyphWye>);
+    shallow(<GlyphDiamond>{fn}</GlyphDiamond>);
     const args = fn.mock.calls[0][0];
     const keys = Object.keys(args);
     expect(keys.includes('path')).toEqual(true);
@@ -31,7 +34,7 @@ describe('<GlyphWye />', () => {
 
   test('it should take a size prop as a number', () => {
     const fn = jest.fn();
-    const wrapper = shallow(<GlyphWye size={42}>{fn}</GlyphWye>);
+    shallow(<GlyphDiamond size={42}>{fn}</GlyphDiamond>);
     const args = fn.mock.calls[0][0];
     expect(args.path.size()()).toBe(42);
   });
@@ -39,7 +42,7 @@ describe('<GlyphWye />', () => {
   test('it should take a size prop as a function', () => {
     const fn = jest.fn();
     const sizeFn = () => 42;
-    const wrapper = shallow(<GlyphWye size={sizeFn}>{fn}</GlyphWye>);
+    shallow(<GlyphDiamond size={sizeFn}>{fn}</GlyphDiamond>);
     const args = fn.mock.calls[0][0];
     expect(args.path.size()()).toBe(42);
   });

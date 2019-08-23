@@ -1,3 +1,6 @@
+import React from 'react';
+import { shallow } from 'enzyme';
+
 import { GlyphTriangle } from '../src';
 
 describe('<GlyphTriangle />', () => {
@@ -12,18 +15,18 @@ describe('<GlyphTriangle />', () => {
 
   test('it should add className to <path />', () => {
     const wrapper = shallow(<GlyphTriangle className="test" />);
-    expect(wrapper.find('.test').length).toBe(1);
+    expect(wrapper.find('.test')).toHaveLength(1);
   });
 
   test('it should take a children as function prop', () => {
     const fn = jest.fn();
-    const wrapper = shallow(<GlyphTriangle>{fn}</GlyphTriangle>);
+    shallow(<GlyphTriangle>{fn}</GlyphTriangle>);
     expect(fn).toHaveBeenCalled();
   });
 
   test('it should call children function with { path }', () => {
     const fn = jest.fn();
-    const wrapper = shallow(<GlyphTriangle>{fn}</GlyphTriangle>);
+    shallow(<GlyphTriangle>{fn}</GlyphTriangle>);
     const args = fn.mock.calls[0][0];
     const keys = Object.keys(args);
     expect(keys.includes('path')).toEqual(true);
@@ -31,7 +34,7 @@ describe('<GlyphTriangle />', () => {
 
   test('it should take a size prop as a number', () => {
     const fn = jest.fn();
-    const wrapper = shallow(<GlyphTriangle size={42}>{fn}</GlyphTriangle>);
+    shallow(<GlyphTriangle size={42}>{fn}</GlyphTriangle>);
     const args = fn.mock.calls[0][0];
     expect(args.path.size()()).toBe(42);
   });
@@ -39,7 +42,7 @@ describe('<GlyphTriangle />', () => {
   test('it should take a size prop as a function', () => {
     const fn = jest.fn();
     const sizeFn = () => 42;
-    const wrapper = shallow(<GlyphTriangle size={sizeFn}>{fn}</GlyphTriangle>);
+    shallow(<GlyphTriangle size={sizeFn}>{fn}</GlyphTriangle>);
     const args = fn.mock.calls[0][0];
     expect(args.path.size()()).toBe(42);
   });
