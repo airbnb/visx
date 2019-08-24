@@ -41,7 +41,11 @@ describe('<AreaClosed />', () => {
         expect(n.tagName).toMatch('path');
         done();
       };
-      mount(<svg><AreaClosed data={data} yScale={yScale} x={x} y1={y} innerRef={refCallback} /></svg>);
+      mount(
+        <svg>
+          <AreaClosed data={data} yScale={yScale} x={x} y1={y} innerRef={refCallback} />
+        </svg>,
+      );
     });
   });
 

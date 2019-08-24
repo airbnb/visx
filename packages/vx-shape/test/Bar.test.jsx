@@ -24,7 +24,11 @@ describe('<Bar />', () => {
         expect(n.tagName).toMatch('rect');
         done();
       };
-      mount(<svg><Bar innerRef={refCallback} /></svg>);
+      mount(
+        <svg>
+          <Bar innerRef={refCallback} />
+        </svg>,
+      );
     });
   });
 });

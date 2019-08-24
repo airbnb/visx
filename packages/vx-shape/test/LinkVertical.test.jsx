@@ -27,7 +27,11 @@ describe('<LinkVertical />', () => {
         expect(n.tagName).toMatch('path');
         done();
       };
-      mount(<svg><LinkVertical innerRef={refCallback} data={link} /></svg>);
+      mount(
+        <svg>
+          <LinkVertical innerRef={refCallback} data={link} />
+        </svg>,
+      );
     });
   });
 });

@@ -46,7 +46,11 @@ describe('<LinePath />', () => {
         expect(n.tagName).toMatch('path');
         done();
       };
-      mount(<svg><LinePath innerRef={refCallback} {...linePathProps} /></svg>);
+      mount(
+        <svg>
+          <LinePath innerRef={refCallback} {...linePathProps} />
+        </svg>,
+      );
     });
   });
 });

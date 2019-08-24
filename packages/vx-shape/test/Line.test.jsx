@@ -24,7 +24,11 @@ describe('<Line />', () => {
         expect(n.tagName).toMatch('line');
         done();
       };
-      mount(<svg><Line innerRef={refCallback} /></svg>);
+      mount(
+        <svg>
+          <Line innerRef={refCallback} />
+        </svg>,
+      );
     });
   });
 });

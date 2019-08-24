@@ -203,7 +203,11 @@ describe('<Arc />', () => {
         expect(n.tagName).toMatch('path');
         done();
       };
-      mount(<svg><Arc data={browserUsage} innerRef={refCallback} /></svg>);
+      mount(
+        <svg>
+          <Arc data={browserUsage} innerRef={refCallback} />
+        </svg>,
+      );
     });
   });
 });

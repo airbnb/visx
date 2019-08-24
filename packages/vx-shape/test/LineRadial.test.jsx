@@ -46,7 +46,11 @@ describe('<LineRadial />', () => {
         expect(n.tagName).toMatch('path');
         done();
       };
-      mount(<svg><LineRadial innerRef={refCallback} {...LineRadialProps} /></svg>);
+      mount(
+        <svg>
+          <LineRadial innerRef={refCallback} {...LineRadialProps} />
+        </svg>,
+      );
     });
   });
 });

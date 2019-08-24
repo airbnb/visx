@@ -24,7 +24,11 @@ describe('<Circle />', () => {
         expect(n.tagName).toMatch('circle');
         done();
       };
-      mount(<svg><Circle innerRef={refCallback} /></svg>);
+      mount(
+        <svg>
+          <Circle innerRef={refCallback} />
+        </svg>,
+      );
     });
   });
 });

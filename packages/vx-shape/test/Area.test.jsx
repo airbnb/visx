@@ -39,7 +39,11 @@ describe('<Area />', () => {
         expect(n.tagName).toMatch('path');
         done();
       };
-      mount(<svg><Area data={fakeData} x={x} y={y} innerRef={refCallback} /></svg>);
+      mount(
+        <svg>
+          <Area data={fakeData} x={x} y={y} innerRef={refCallback} />
+        </svg>,
+      );
     });
   });
 
