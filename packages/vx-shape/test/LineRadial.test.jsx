@@ -9,7 +9,7 @@ const LineRadialProps = {
   radius: d => d.y,
 };
 
-const LineRadialWrapper = ({ ...restProps }) => shallow(<LineRadial {...restProps} />);
+const LineRadialWrapper = restProps => shallow(<LineRadial {...restProps} />);
 const LineRadialChildren = ({ children, ...restProps }) =>
   shallow(<LineRadial {...restProps}>{children}</LineRadial>);
 
@@ -43,10 +43,10 @@ describe('<LineRadial />', () => {
   test('it should expose its ref via an innerRef prop', () => {
     return new Promise(done => {
       const refCallback = n => {
-        expect(n.tagName).toEqual('PATH');
+        expect(n.tagName).toMatch('path');
         done();
       };
-      mount(<LineRadial innerRef={refCallback} {...LineRadialProps} />);
+      mount(<svg><LineRadial innerRef={refCallback} {...LineRadialProps} /></svg>);
     });
   });
 });

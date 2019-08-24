@@ -28,7 +28,7 @@ const browserUsage = [
   },
 ];
 
-const PieWrapper = ({ ...restProps }) => shallow(<Pie data={browserUsage} {...restProps} />);
+const PieWrapper = restProps => shallow(<Pie data={browserUsage} {...restProps} />);
 const PieChildren = ({ children, ...restProps }) =>
   shallow(
     <Pie data={browserUsage} {...restProps}>

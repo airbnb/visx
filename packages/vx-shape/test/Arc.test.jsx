@@ -28,7 +28,8 @@ const browserUsage = [
   },
 ];
 
-const ArcWrapper = ({ ...restProps }) => shallow(<Arc data={browserUsage} {...restProps} />);
+const ArcWrapper = overrideProps => shallow(<Arc data={browserUsage} {...overrideProps} />);
+
 const ArcChildren = ({ children, ...restProps }) =>
   shallow(
     <Arc data={browserUsage} {...restProps}>
@@ -199,10 +200,10 @@ describe('<Arc />', () => {
   test('it should expose its ref via an innerRef prop', () => {
     return new Promise(done => {
       const refCallback = n => {
-        expect(n.tagName).toEqual('PATH');
+        expect(n.tagName).toMatch('path');
         done();
       };
-      mount(<Arc data={browserUsage} innerRef={refCallback} />);
+      mount(<svg><Arc data={browserUsage} innerRef={refCallback} /></svg>);
     });
   });
 });

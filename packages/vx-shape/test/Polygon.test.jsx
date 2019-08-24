@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 
 import { Polygon } from '../src';
 
-const PolygonWrapper = ({ ...restProps }) => shallow(<Polygon {...restProps} />);
+const PolygonWrapper = restProps => shallow(<Polygon {...restProps} />);
 const PolygonChildren = ({ children, ...restProps }) =>
   shallow(<Polygon {...restProps}>{children}</Polygon>);
 

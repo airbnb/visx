@@ -3,7 +3,7 @@ import { shallow, mount } from 'enzyme';
 
 import { Line } from '../src';
 
-const LineWrapper = ({ ...restProps }) => shallow(<Line {...restProps} />);
+const LineWrapper = restProps => shallow(<Line {...restProps} />);
 
 describe('<Line />', () => {
   test('it should be defined', () => {
@@ -21,10 +21,10 @@ describe('<Line />', () => {
   test('it should expose its ref via an innerRef prop', () => {
     return new Promise(done => {
       const refCallback = n => {
-        expect(n.tagName).toEqual('LINE');
+        expect(n.tagName).toMatch('line');
         done();
       };
-      mount(<Line innerRef={refCallback} />);
+      mount(<svg><Line innerRef={refCallback} /></svg>);
     });
   });
 });

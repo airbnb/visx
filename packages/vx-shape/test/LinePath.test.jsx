@@ -9,7 +9,7 @@ const linePathProps = {
   y: d => d.y,
 };
 
-const LinePathWrapper = ({ ...restProps }) => shallow(<LinePath {...restProps} />);
+const LinePathWrapper = restProps => shallow(<LinePath {...restProps} />);
 const LinePathChildren = ({ children, ...restProps }) =>
   shallow(<LinePath {...restProps}>{children}</LinePath>);
 
@@ -43,10 +43,10 @@ describe('<LinePath />', () => {
   test('it should expose its ref via an innerRef prop', () => {
     return new Promise(done => {
       const refCallback = n => {
-        expect(n.tagName).toEqual('PATH');
+        expect(n.tagName).toMatch('path');
         done();
       };
-      mount(<LinePath innerRef={refCallback} {...linePathProps} />);
+      mount(<svg><LinePath innerRef={refCallback} {...linePathProps} /></svg>);
     });
   });
 });

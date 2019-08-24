@@ -29,7 +29,7 @@ const color = d => d;
 const keys = ['New York', 'San Francisco', 'Austin'];
 const height = 1;
 
-const BarGroupWrapper = ({ ...restProps }) =>
+const BarGroupWrapper = restProps =>
   shallow(
     <BarGroup
       data={data}

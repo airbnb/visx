@@ -16,7 +16,7 @@ yScale.range = () => [100, 0];
 const x = d => xScale(d.x);
 const y = d => yScale(d.y);
 
-const AreaClosedWrapper = ({ ...restProps }) =>
+const AreaClosedWrapper = restProps =>
   shallow(<AreaClosed data={data} yScale={yScale} x={x} y1={y} {...restProps} />);
 
 const AreaClosedChildren = ({ children, ...restProps }) =>
@@ -38,10 +38,10 @@ describe('<AreaClosed />', () => {
   test('it should expose its ref via an innerRef prop', () => {
     return new Promise(done => {
       const refCallback = n => {
-        expect(n.tagName).toEqual('PATH');
+        expect(n.tagName).toMatch('path');
         done();
       };
-      mount(<AreaClosed data={data} yScale={yScale} x={x} y1={y} innerRef={refCallback} />);
+      mount(<svg><AreaClosed data={data} yScale={yScale} x={x} y1={y} innerRef={refCallback} /></svg>);
     });
   });
 

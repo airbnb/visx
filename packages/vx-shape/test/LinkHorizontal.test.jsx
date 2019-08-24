@@ -24,10 +24,10 @@ describe('<LinkHorizontal />', () => {
   test('it should expose its ref via an innerRef prop', () => {
     return new Promise(done => {
       const refCallback = n => {
-        expect(n.tagName).toEqual('PATH');
+        expect(n.tagName).toMatch('path');
         done();
       };
-      mount(<LinkHorizontal innerRef={refCallback} data={link} />);
+      mount(<svg><LinkHorizontal innerRef={refCallback} data={link} /></svg>);
     });
   });
 });
