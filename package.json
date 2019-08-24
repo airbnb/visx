@@ -118,6 +118,7 @@
             "object-curly-newline": "off",
             "arrow-parens": "off",
             "consistent-return": "off",
+            "no-console": "off",
             "no-restricted-syntax": "off",
             "no-nested-ternary": "off",
             "no-param-reassign": "warn",
