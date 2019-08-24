@@ -100,7 +100,7 @@ function MyChart() {
       datum: d,
       index: i,
       text: <code>${labelFormat(d, i)}</code>,
-      value: scale(d)
+      value: scale(d),
     };
   };
 }</td></td></table></p>
@@ -112,7 +112,7 @@ function MyChart() {
 <p><a id="#Legend__shapeWidth" name="Legend__shapeWidth" href="#Legend__shapeWidth">#</a> <em>Legend</em>.<strong>shapeWidth</strong>&lt;union(number|string)&gt;  <table><tr><td><strong>Default</strong></td><td>15</td></td></table></p>
 <p><a id="#Legend__size" name="Legend__size" href="#Legend__size">#</a> <em>Legend</em>.<strong>size</strong>&lt;any&gt;  <table><tr><td><strong>Default</strong></td><td>valueOrIdentity</td></td></table></p>
 <p><a id="#Legend__style" name="Legend__style" href="#Legend__style">#</a> <em>Legend</em>.<strong>style</strong>&lt;any&gt;  <table><tr><td><strong>Default</strong></td><td>{
-  display: &#39;flex&#39;
+  display: &#39;flex&#39;,
 }</td></td></table></p>
 <h3 id="legenditem-">&lt;LegendItem /&gt;</h3>
 
@@ -120,7 +120,7 @@ function MyChart() {
 
 <p><a id="#LegendItem__alignItems" name="LegendItem__alignItems" href="#LegendItem__alignItems">#</a> <em>LegendItem</em>.<strong>alignItems</strong>&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>&#39;center&#39;</td></td></table></p>
 <p><a id="#LegendItem__children" name="LegendItem__children" href="#LegendItem__children">#</a> <em>LegendItem</em>.<strong>children</strong>&lt;any&gt;  </p>
-<p><a id="#LegendItem__display" name="LegendItem__display" href="#LegendItem__display">#</a> <em>LegendItem</em>.<strong>display</strong>  <table><tr><td><strong>Default</strong></td><td>&#39;flex&#39;</td></td></table></p>
+<p><a id="#LegendItem__display" name="LegendItem__display" href="#LegendItem__display">#</a> <em>LegendItem</em>.<strong>display</strong>&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>&#39;flex&#39;</td></td></table></p>
 <p><a id="#LegendItem__flexDirection" name="LegendItem__flexDirection" href="#LegendItem__flexDirection">#</a> <em>LegendItem</em>.<strong>flexDirection</strong>&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>&#39;row&#39;</td></td></table></p>
 <p><a id="#LegendItem__margin" name="LegendItem__margin" href="#LegendItem__margin">#</a> <em>LegendItem</em>.<strong>margin</strong>&lt;union(string|number)&gt;  <table><tr><td><strong>Default</strong></td><td>&#39;0&#39;</td></td></table></p>
 <h3 id="legendlabel-">&lt;LegendLabel /&gt;</h3>
@@ -154,7 +154,7 @@ function MyChart() {
   return (d, i) =&gt; {
     return {
       text: <code>${labelFormat(d, i)}</code>,
-      value: scale(d)
+      value: scale(d),
     };
   };
 }</td></td></table></p>
@@ -172,7 +172,7 @@ function MyChart() {
       datum: d,
       index: i,
       text: <code>${labelFormat(d, i)}</code>,
-      value: scale(d)
+      value: scale(d),
     };
   };
 }</td></td></table></p>
@@ -190,18 +190,20 @@ function MyChart() {
 
 
 
-<p><a id="#Size__labelFormat" name="Size__labelFormat" href="#Size__labelFormat">#</a> <em>Size</em>.<strong>labelFormat</strong>  <table><tr><td><strong>Default</strong></td><td>x =&gt; x</td></td></table></p>
-<p><a id="#Size__labelTransform" name="Size__labelTransform" href="#Size__labelTransform">#</a> <em>Size</em>.<strong>labelTransform</strong>  <table><tr><td><strong>Default</strong></td><td>function defaultTransform({ scale, labelFormat }) {
+<p><a id="#Size__domain" name="Size__domain" href="#Size__domain">#</a> <em>Size</em>.<strong>domain</strong>&lt;array&gt;  </p>
+<p><a id="#Size__labelFormat" name="Size__labelFormat" href="#Size__labelFormat">#</a> <em>Size</em>.<strong>labelFormat</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>x =&gt; x</td></td></table></p>
+<p><a id="#Size__labelTransform" name="Size__labelTransform" href="#Size__labelTransform">#</a> <em>Size</em>.<strong>labelTransform</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>function defaultTransform({ scale, labelFormat }) {
   return (d, i) =&gt; {
     return {
       text: <code>${labelFormat(d, i)}</code>,
       value: scale(d),
       datum: d,
-      index: i
+      index: i,
     };
   };
 }</td></td></table></p>
-<p><a id="#Size__steps" name="Size__steps" href="#Size__steps">#</a> <em>Size</em>.<strong>steps</strong>  <table><tr><td><strong>Default</strong></td><td>5</td></td></table></p>
+<p><a id="#Size__scale" name="Size__scale" href="#Size__scale">#</a> <em>Size</em>.<strong>scale</strong>&lt;func&gt; <code>required</code> </p>
+<p><a id="#Size__steps" name="Size__steps" href="#Size__steps">#</a> <em>Size</em>.<strong>steps</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>5</td></td></table></p>
 <h3 id="threshold-">&lt;Threshold /&gt;</h3>
 
 

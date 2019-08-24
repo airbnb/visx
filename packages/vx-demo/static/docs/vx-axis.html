@@ -70,7 +70,7 @@
   textAnchor: &#39;middle&#39;,
   fontFamily: &#39;Arial&#39;,
   fontSize: 10,
-  fill: &#39;black&#39;
+  fill: &#39;black&#39;,
 }</td></td></table></p>
 <p><a id="#Axis__left" name="Axis__left" href="#Axis__left">#</a> <em>Axis</em>.<strong>left</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table></p>
 <p><a id="#Axis__numTicks" name="Axis__numTicks" href="#Axis__numTicks">#</a> <em>Axis</em>.<strong>numTicks</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>10</td></td></table></p>
@@ -83,11 +83,11 @@
 <p><a id="#Axis__tickClassName" name="Axis__tickClassName" href="#Axis__tickClassName">#</a> <em>Axis</em>.<strong>tickClassName</strong>&lt;string&gt;  </p>
 <p><a id="#Axis__tickComponent" name="Axis__tickComponent" href="#Axis__tickComponent">#</a> <em>Axis</em>.<strong>tickComponent</strong>&lt;func&gt;  </p>
 <p><a id="#Axis__tickFormat" name="Axis__tickFormat" href="#Axis__tickFormat">#</a> <em>Axis</em>.<strong>tickFormat</strong>&lt;func&gt;  </p>
-<p><a id="#Axis__tickLabelProps" name="Axis__tickLabelProps" href="#Axis__tickLabelProps">#</a> <em>Axis</em>.<strong>tickLabelProps</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>(tickValue, index) =&gt; ({
+<p><a id="#Axis__tickLabelProps" name="Axis__tickLabelProps" href="#Axis__tickLabelProps">#</a> <em>Axis</em>.<strong>tickLabelProps</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>(/*<em> tickValue, index </em>/) =&gt; ({
   textAnchor: &#39;middle&#39;,
   fontFamily: &#39;Arial&#39;,
   fontSize: 10,
-  fill: &#39;black&#39;
+  fill: &#39;black&#39;,
 })</td></td></table></p>
 <p><a id="#Axis__tickLength" name="Axis__tickLength" href="#Axis__tickLength">#</a> <em>Axis</em>.<strong>tickLength</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>8</td></td></table></p>
 <p><a id="#Axis__tickStroke" name="Axis__tickStroke" href="#Axis__tickStroke">#</a> <em>Axis</em>.<strong>tickStroke</strong>&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>&#39;black&#39;</td></td></table></p>
@@ -138,12 +138,12 @@
 <p><a id="#AxisBottom__tickFormat" name="AxisBottom__tickFormat" href="#AxisBottom__tickFormat">#</a> <em>AxisBottom</em>.<strong>tickFormat</strong>&lt;func&gt; </p>
 <p>A <a href="https://github.com/d3/d3-scale/blob/master/README.md#continuous_tickFormat">d3 formatter</a> for the tick text. </p>
 <p><a id="#AxisBottom__tickLabelProps" name="AxisBottom__tickLabelProps" href="#AxisBottom__tickLabelProps">#</a> <em>AxisBottom</em>.<strong>tickLabelProps</strong>&lt;func&gt; </p>
-<p>A function that returns props for a given tick label. <table><tr><td><strong>Default</strong></td><td>(tickValue, index) =&gt; ({
+<p>A function that returns props for a given tick label. <table><tr><td><strong>Default</strong></td><td>(/*<em> tickValue, index </em>/) =&gt; ({
   dy: &#39;0.25em&#39;,
   fill: &#39;black&#39;,
   fontFamily: &#39;Arial&#39;,
   fontSize: 10,
-  textAnchor: &#39;middle&#39;
+  textAnchor: &#39;middle&#39;,
 })</td></td></table></p>
 <p><a id="#AxisBottom__tickLength" name="AxisBottom__tickLength" href="#AxisBottom__tickLength">#</a> <em>AxisBottom</em>.<strong>tickLength</strong>&lt;number&gt; </p>
 <p>The length of the tick lines. <table><tr><td><strong>Default</strong></td><td>8</td></td></table></p>
@@ -179,13 +179,13 @@
 <p><a id="#AxisLeft__tickClassName" name="AxisLeft__tickClassName" href="#AxisLeft__tickClassName">#</a> <em>AxisLeft</em>.<strong>tickClassName</strong>&lt;string&gt;  </p>
 <p><a id="#AxisLeft__tickComponent" name="AxisLeft__tickComponent" href="#AxisLeft__tickComponent">#</a> <em>AxisLeft</em>.<strong>tickComponent</strong>&lt;func&gt;  </p>
 <p><a id="#AxisLeft__tickFormat" name="AxisLeft__tickFormat" href="#AxisLeft__tickFormat">#</a> <em>AxisLeft</em>.<strong>tickFormat</strong>&lt;func&gt;  </p>
-<p><a id="#AxisLeft__tickLabelProps" name="AxisLeft__tickLabelProps" href="#AxisLeft__tickLabelProps">#</a> <em>AxisLeft</em>.<strong>tickLabelProps</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>(tickValue, index) =&gt; ({
+<p><a id="#AxisLeft__tickLabelProps" name="AxisLeft__tickLabelProps" href="#AxisLeft__tickLabelProps">#</a> <em>AxisLeft</em>.<strong>tickLabelProps</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>(/*<em> tickValue, index </em>/) =&gt; ({
   dx: &#39;-0.25em&#39;,
   dy: &#39;0.25em&#39;,
   fill: &#39;black&#39;,
   fontFamily: &#39;Arial&#39;,
   fontSize: 10,
-  textAnchor: &#39;end&#39;
+  textAnchor: &#39;end&#39;,
 })</td></td></table></p>
 <p><a id="#AxisLeft__tickLength" name="AxisLeft__tickLength" href="#AxisLeft__tickLength">#</a> <em>AxisLeft</em>.<strong>tickLength</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>8</td></td></table></p>
 <p><a id="#AxisLeft__tickStroke" name="AxisLeft__tickStroke" href="#AxisLeft__tickStroke">#</a> <em>AxisLeft</em>.<strong>tickStroke</strong>&lt;string&gt;  </p>
@@ -216,13 +216,13 @@
 <p><a id="#AxisRight__tickClassName" name="AxisRight__tickClassName" href="#AxisRight__tickClassName">#</a> <em>AxisRight</em>.<strong>tickClassName</strong>&lt;string&gt;  </p>
 <p><a id="#AxisRight__tickComponent" name="AxisRight__tickComponent" href="#AxisRight__tickComponent">#</a> <em>AxisRight</em>.<strong>tickComponent</strong>&lt;func&gt;  </p>
 <p><a id="#AxisRight__tickFormat" name="AxisRight__tickFormat" href="#AxisRight__tickFormat">#</a> <em>AxisRight</em>.<strong>tickFormat</strong>&lt;func&gt;  </p>
-<p><a id="#AxisRight__tickLabelProps" name="AxisRight__tickLabelProps" href="#AxisRight__tickLabelProps">#</a> <em>AxisRight</em>.<strong>tickLabelProps</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>(tickValue, index) =&gt; ({
+<p><a id="#AxisRight__tickLabelProps" name="AxisRight__tickLabelProps" href="#AxisRight__tickLabelProps">#</a> <em>AxisRight</em>.<strong>tickLabelProps</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>(/*<em> tickValue, index </em>/) =&gt; ({
   dx: &#39;0.25em&#39;,
   dy: &#39;0.25em&#39;,
   fill: &#39;black&#39;,
   fontFamily: &#39;Arial&#39;,
   fontSize: 10,
-  textAnchor: &#39;start&#39;
+  textAnchor: &#39;start&#39;,
 })</td></td></table></p>
 <p><a id="#AxisRight__tickLength" name="AxisRight__tickLength" href="#AxisRight__tickLength">#</a> <em>AxisRight</em>.<strong>tickLength</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>8</td></td></table></p>
 <p><a id="#AxisRight__tickStroke" name="AxisRight__tickStroke" href="#AxisRight__tickStroke">#</a> <em>AxisRight</em>.<strong>tickStroke</strong>&lt;string&gt;  </p>
@@ -253,12 +253,12 @@
 <p><a id="#AxisTop__tickClassName" name="AxisTop__tickClassName" href="#AxisTop__tickClassName">#</a> <em>AxisTop</em>.<strong>tickClassName</strong>&lt;string&gt;  </p>
 <p><a id="#AxisTop__tickComponent" name="AxisTop__tickComponent" href="#AxisTop__tickComponent">#</a> <em>AxisTop</em>.<strong>tickComponent</strong>&lt;func&gt;  </p>
 <p><a id="#AxisTop__tickFormat" name="AxisTop__tickFormat" href="#AxisTop__tickFormat">#</a> <em>AxisTop</em>.<strong>tickFormat</strong>&lt;func&gt;  </p>
-<p><a id="#AxisTop__tickLabelProps" name="AxisTop__tickLabelProps" href="#AxisTop__tickLabelProps">#</a> <em>AxisTop</em>.<strong>tickLabelProps</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>(tickValue, index) =&gt; ({
+<p><a id="#AxisTop__tickLabelProps" name="AxisTop__tickLabelProps" href="#AxisTop__tickLabelProps">#</a> <em>AxisTop</em>.<strong>tickLabelProps</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>(/*<em> tickValue, index </em>/) =&gt; ({
   dy: &#39;-0.25em&#39;,
   fill: &#39;black&#39;,
   fontFamily: &#39;Arial&#39;,
   fontSize: 10,
-  textAnchor: &#39;middle&#39;
+  textAnchor: &#39;middle&#39;,
 })</td></td></table></p>
 <p><a id="#AxisTop__tickLength" name="AxisTop__tickLength" href="#AxisTop__tickLength">#</a> <em>AxisTop</em>.<strong>tickLength</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>8</td></td></table></p>
 <p><a id="#AxisTop__tickStroke" name="AxisTop__tickStroke" href="#AxisTop__tickStroke">#</a> <em>AxisTop</em>.<strong>tickStroke</strong>&lt;string&gt;  </p>

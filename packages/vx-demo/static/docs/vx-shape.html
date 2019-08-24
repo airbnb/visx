@@ -117,6 +117,7 @@
 <p><a id="#AreaClosed__x" name="AreaClosed__x" href="#AreaClosed__x">#</a> <em>AreaClosed</em>.<strong>x</strong>&lt;union(func|number)&gt;  </p>
 <p><a id="#AreaClosed__x0" name="AreaClosed__x0" href="#AreaClosed__x0">#</a> <em>AreaClosed</em>.<strong>x0</strong>&lt;union(func|number)&gt;  </p>
 <p><a id="#AreaClosed__x1" name="AreaClosed__x1" href="#AreaClosed__x1">#</a> <em>AreaClosed</em>.<strong>x1</strong>&lt;union(func|number)&gt;  </p>
+<p><a id="#AreaClosed__y" name="AreaClosed__y" href="#AreaClosed__y">#</a> <em>AreaClosed</em>.<strong>y</strong>&lt;union(func|number)&gt;  </p>
 <p><a id="#AreaClosed__y0" name="AreaClosed__y0" href="#AreaClosed__y0">#</a> <em>AreaClosed</em>.<strong>y0</strong>&lt;union(func|number)&gt;  </p>
 <p><a id="#AreaClosed__y1" name="AreaClosed__y1" href="#AreaClosed__y1">#</a> <em>AreaClosed</em>.<strong>y1</strong>&lt;union(func|number)&gt;  </p>
 <p><a id="#AreaClosed__yScale" name="AreaClosed__yScale" href="#AreaClosed__yScale">#</a> <em>AreaClosed</em>.<strong>yScale</strong>&lt;func&gt;  </p>
@@ -247,7 +248,7 @@ barWidth = Math.abs(x1Range[x1Range.length - 1] - x1Range[0]) / x1Domain.length
 <p><a id="#BarGroupHorizontal__left" name="BarGroupHorizontal__left" href="#BarGroupHorizontal__left">#</a> <em>BarGroupHorizontal</em>.<strong>left</strong>&lt;number&gt;  </p>
 <p><a id="#BarGroupHorizontal__top" name="BarGroupHorizontal__top" href="#BarGroupHorizontal__top">#</a> <em>BarGroupHorizontal</em>.<strong>top</strong>&lt;number&gt;  </p>
 <p><a id="#BarGroupHorizontal__width" name="BarGroupHorizontal__width" href="#BarGroupHorizontal__width">#</a> <em>BarGroupHorizontal</em>.<strong>width</strong>&lt;number&gt; <code>required</code> </p>
-<p><a id="#BarGroupHorizontal__x" name="BarGroupHorizontal__x" href="#BarGroupHorizontal__x">#</a> <em>BarGroupHorizontal</em>.<strong>x</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>val =&gt; 0</td></td></table></p>
+<p><a id="#BarGroupHorizontal__x" name="BarGroupHorizontal__x" href="#BarGroupHorizontal__x">#</a> <em>BarGroupHorizontal</em>.<strong>x</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>(/*<em> val </em>/) =&gt; 0</td></td></table></p>
 <p><a id="#BarGroupHorizontal__xScale" name="BarGroupHorizontal__xScale" href="#BarGroupHorizontal__xScale">#</a> <em>BarGroupHorizontal</em>.<strong>xScale</strong>&lt;func&gt; <code>required</code> </p>
 <p><a id="#BarGroupHorizontal__y0" name="BarGroupHorizontal__y0" href="#BarGroupHorizontal__y0">#</a> <em>BarGroupHorizontal</em>.<strong>y0</strong>&lt;func&gt; <code>required</code> </p>
 <p><a id="#BarGroupHorizontal__y0Scale" name="BarGroupHorizontal__y0Scale" href="#BarGroupHorizontal__y0Scale">#</a> <em>BarGroupHorizontal</em>.<strong>y0Scale</strong>&lt;func&gt; <code>required</code> </p>
@@ -301,7 +302,7 @@ barWidth = Math.abs(x1Range[x1Range.length - 1] - x1Range[0]) / x1Domain.length
 
 
 <p><a id="#Line__className" name="Line__className" href="#Line__className">#</a> <em>Line</em>.<strong>className</strong>&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>&#39;&#39;</td></td></table></p>
-<p><a id="#Line__fill" name="Line__fill" href="#Line__fill">#</a> <em>Line</em>.<strong>fill</strong>  <table><tr><td><strong>Default</strong></td><td>&#39;transparent&#39;</td></td></table></p>
+<p><a id="#Line__fill" name="Line__fill" href="#Line__fill">#</a> <em>Line</em>.<strong>fill</strong>&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>&#39;transparent&#39;</td></td></table></p>
 <p><a id="#Line__from" name="Line__from" href="#Line__from">#</a> <em>Line</em>.<strong>from</strong>&lt;shape[object Object]&gt;  <table><tr><td><strong>Default</strong></td><td>new Point({ x: 0, y: 0 })</td></td></table></p>
 <p><a id="#Line__innerRef" name="Line__innerRef" href="#Line__innerRef">#</a> <em>Line</em>.<strong>innerRef</strong>&lt;union(func|object)&gt;  </p>
 <p><a id="#Line__to" name="Line__to" href="#Line__to">#</a> <em>Line</em>.<strong>to</strong>&lt;shape[object Object]&gt;  <table><tr><td><strong>Default</strong></td><td>new Point({ x: 1, y: 1 })</td></td></table></p>
@@ -309,10 +310,12 @@ barWidth = Math.abs(x1Range[x1Range.length - 1] - x1Range[0]) / x1Domain.length
 
 
 
+<p><a id="#LinePath__children" name="LinePath__children" href="#LinePath__children">#</a> <em>LinePath</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#LinePath__className" name="LinePath__className" href="#LinePath__className">#</a> <em>LinePath</em>.<strong>className</strong>&lt;string&gt;  </p>
 <p><a id="#LinePath__curve" name="LinePath__curve" href="#LinePath__curve">#</a> <em>LinePath</em>.<strong>curve</strong>&lt;func&gt;  </p>
 <p><a id="#LinePath__data" name="LinePath__data" href="#LinePath__data">#</a> <em>LinePath</em>.<strong>data</strong>&lt;array&gt;  </p>
 <p><a id="#LinePath__defined" name="LinePath__defined" href="#LinePath__defined">#</a> <em>LinePath</em>.<strong>defined</strong>&lt;union(func|bool)&gt;  <table><tr><td><strong>Default</strong></td><td>() =&gt; true</td></td></table></p>
-<p><a id="#LinePath__fill" name="LinePath__fill" href="#LinePath__fill">#</a> <em>LinePath</em>.<strong>fill</strong>  <table><tr><td><strong>Default</strong></td><td>&#39;transparent&#39;</td></td></table></p>
+<p><a id="#LinePath__fill" name="LinePath__fill" href="#LinePath__fill">#</a> <em>LinePath</em>.<strong>fill</strong>&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>&#39;transparent&#39;</td></td></table></p>
 <p><a id="#LinePath__innerRef" name="LinePath__innerRef" href="#LinePath__innerRef">#</a> <em>LinePath</em>.<strong>innerRef</strong>&lt;union(func|object)&gt;  </p>
 <p><a id="#LinePath__x" name="LinePath__x" href="#LinePath__x">#</a> <em>LinePath</em>.<strong>x</strong>&lt;union(func|number)&gt;  </p>
 <p><a id="#LinePath__y" name="LinePath__y" href="#LinePath__y">#</a> <em>LinePath</em>.<strong>y</strong>&lt;union(func|number)&gt;  </p>
@@ -321,10 +324,12 @@ barWidth = Math.abs(x1Range[x1Range.length - 1] - x1Range[0]) / x1Domain.length
 
 
 <p><a id="#LineRadial__angle" name="LineRadial__angle" href="#LineRadial__angle">#</a> <em>LineRadial</em>.<strong>angle</strong>&lt;union(func|number)&gt;  </p>
+<p><a id="#LineRadial__children" name="LineRadial__children" href="#LineRadial__children">#</a> <em>LineRadial</em>.<strong>children</strong>&lt;func&gt;  </p>
 <p><a id="#LineRadial__className" name="LineRadial__className" href="#LineRadial__className">#</a> <em>LineRadial</em>.<strong>className</strong>&lt;string&gt;  </p>
 <p><a id="#LineRadial__curve" name="LineRadial__curve" href="#LineRadial__curve">#</a> <em>LineRadial</em>.<strong>curve</strong>&lt;func&gt;  </p>
 <p><a id="#LineRadial__data" name="LineRadial__data" href="#LineRadial__data">#</a> <em>LineRadial</em>.<strong>data</strong>&lt;any&gt;  </p>
-<p><a id="#LineRadial__fill" name="LineRadial__fill" href="#LineRadial__fill">#</a> <em>LineRadial</em>.<strong>fill</strong>  <table><tr><td><strong>Default</strong></td><td>&#39;transparent&#39;</td></td></table></p>
+<p><a id="#LineRadial__defined" name="LineRadial__defined" href="#LineRadial__defined">#</a> <em>LineRadial</em>.<strong>defined</strong>&lt;union(func|bool)&gt;  </p>
+<p><a id="#LineRadial__fill" name="LineRadial__fill" href="#LineRadial__fill">#</a> <em>LineRadial</em>.<strong>fill</strong>&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>&#39;transparent&#39;</td></td></table></p>
 <p><a id="#LineRadial__innerRef" name="LineRadial__innerRef" href="#LineRadial__innerRef">#</a> <em>LineRadial</em>.<strong>innerRef</strong>&lt;union(func|object)&gt;  </p>
 <p><a id="#LineRadial__radius" name="LineRadial__radius" href="#LineRadial__radius">#</a> <em>LineRadial</em>.<strong>radius</strong>&lt;union(func|number)&gt;  </p>
 <h3 id="pie-">&lt;Pie /&gt;</h3>
@@ -385,6 +390,8 @@ barWidth = Math.abs(x1Range[x1Range.length - 1] - x1Range[0]) / x1Domain.length
 
 
 <p><a id="#LinkHorizontalCurve__children" name="LinkHorizontalCurve__children" href="#LinkHorizontalCurve__children">#</a> <em>LinkHorizontalCurve</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#LinkHorizontalCurve__className" name="LinkHorizontalCurve__className" href="#LinkHorizontalCurve__className">#</a> <em>LinkHorizontalCurve</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#LinkHorizontalCurve__data" name="LinkHorizontalCurve__data" href="#LinkHorizontalCurve__data">#</a> <em>LinkHorizontalCurve</em>.<strong>data</strong>&lt;any&gt;  </p>
 <p><a id="#LinkHorizontalCurve__innerRef" name="LinkHorizontalCurve__innerRef" href="#LinkHorizontalCurve__innerRef">#</a> <em>LinkHorizontalCurve</em>.<strong>innerRef</strong>&lt;union(func|object)&gt;  </p>
 <p><a id="#LinkHorizontalCurve__path" name="LinkHorizontalCurve__path" href="#LinkHorizontalCurve__path">#</a> <em>LinkHorizontalCurve</em>.<strong>path</strong>&lt;func&gt;  </p>
 <p><a id="#LinkHorizontalCurve__percent" name="LinkHorizontalCurve__percent" href="#LinkHorizontalCurve__percent">#</a> <em>LinkHorizontalCurve</em>.<strong>percent</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>0.2</td></td></table></p>
@@ -397,6 +404,8 @@ barWidth = Math.abs(x1Range[x1Range.length - 1] - x1Range[0]) / x1Domain.length
 
 
 <p><a id="#LinkRadialCurve__children" name="LinkRadialCurve__children" href="#LinkRadialCurve__children">#</a> <em>LinkRadialCurve</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#LinkRadialCurve__className" name="LinkRadialCurve__className" href="#LinkRadialCurve__className">#</a> <em>LinkRadialCurve</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#LinkRadialCurve__data" name="LinkRadialCurve__data" href="#LinkRadialCurve__data">#</a> <em>LinkRadialCurve</em>.<strong>data</strong>&lt;any&gt;  </p>
 <p><a id="#LinkRadialCurve__innerRef" name="LinkRadialCurve__innerRef" href="#LinkRadialCurve__innerRef">#</a> <em>LinkRadialCurve</em>.<strong>innerRef</strong>&lt;union(func|object)&gt;  </p>
 <p><a id="#LinkRadialCurve__path" name="LinkRadialCurve__path" href="#LinkRadialCurve__path">#</a> <em>LinkRadialCurve</em>.<strong>path</strong>&lt;func&gt;  </p>
 <p><a id="#LinkRadialCurve__percent" name="LinkRadialCurve__percent" href="#LinkRadialCurve__percent">#</a> <em>LinkRadialCurve</em>.<strong>percent</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>0.2</td></td></table></p>
@@ -409,6 +418,8 @@ barWidth = Math.abs(x1Range[x1Range.length - 1] - x1Range[0]) / x1Domain.length
 
 
 <p><a id="#LinkVerticalCurve__children" name="LinkVerticalCurve__children" href="#LinkVerticalCurve__children">#</a> <em>LinkVerticalCurve</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#LinkVerticalCurve__className" name="LinkVerticalCurve__className" href="#LinkVerticalCurve__className">#</a> <em>LinkVerticalCurve</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#LinkVerticalCurve__data" name="LinkVerticalCurve__data" href="#LinkVerticalCurve__data">#</a> <em>LinkVerticalCurve</em>.<strong>data</strong>&lt;any&gt;  </p>
 <p><a id="#LinkVerticalCurve__innerRef" name="LinkVerticalCurve__innerRef" href="#LinkVerticalCurve__innerRef">#</a> <em>LinkVerticalCurve</em>.<strong>innerRef</strong>&lt;union(func|object)&gt;  </p>
 <p><a id="#LinkVerticalCurve__path" name="LinkVerticalCurve__path" href="#LinkVerticalCurve__path">#</a> <em>LinkVerticalCurve</em>.<strong>path</strong>&lt;func&gt;  </p>
 <p><a id="#LinkVerticalCurve__percent" name="LinkVerticalCurve__percent" href="#LinkVerticalCurve__percent">#</a> <em>LinkVerticalCurve</em>.<strong>percent</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>0.2</td></td></table></p>
@@ -421,6 +432,8 @@ barWidth = Math.abs(x1Range[x1Range.length - 1] - x1Range[0]) / x1Domain.length
 
 
 <p><a id="#LinkHorizontal__children" name="LinkHorizontal__children" href="#LinkHorizontal__children">#</a> <em>LinkHorizontal</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#LinkHorizontal__className" name="LinkHorizontal__className" href="#LinkHorizontal__className">#</a> <em>LinkHorizontal</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#LinkHorizontal__data" name="LinkHorizontal__data" href="#LinkHorizontal__data">#</a> <em>LinkHorizontal</em>.<strong>data</strong>&lt;any&gt;  </p>
 <p><a id="#LinkHorizontal__innerRef" name="LinkHorizontal__innerRef" href="#LinkHorizontal__innerRef">#</a> <em>LinkHorizontal</em>.<strong>innerRef</strong>&lt;union(func|object)&gt;  </p>
 <p><a id="#LinkHorizontal__path" name="LinkHorizontal__path" href="#LinkHorizontal__path">#</a> <em>LinkHorizontal</em>.<strong>path</strong>&lt;func&gt;  </p>
 <p><a id="#LinkHorizontal__source" name="LinkHorizontal__source" href="#LinkHorizontal__source">#</a> <em>LinkHorizontal</em>.<strong>source</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.source</td></td></table></p>
@@ -433,6 +446,8 @@ barWidth = Math.abs(x1Range[x1Range.length - 1] - x1Range[0]) / x1Domain.length
 
 <p><a id="#LinkRadial__angle" name="LinkRadial__angle" href="#LinkRadial__angle">#</a> <em>LinkRadial</em>.<strong>angle</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.x</td></td></table></p>
 <p><a id="#LinkRadial__children" name="LinkRadial__children" href="#LinkRadial__children">#</a> <em>LinkRadial</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#LinkRadial__className" name="LinkRadial__className" href="#LinkRadial__className">#</a> <em>LinkRadial</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#LinkRadial__data" name="LinkRadial__data" href="#LinkRadial__data">#</a> <em>LinkRadial</em>.<strong>data</strong>&lt;any&gt;  </p>
 <p><a id="#LinkRadial__innerRef" name="LinkRadial__innerRef" href="#LinkRadial__innerRef">#</a> <em>LinkRadial</em>.<strong>innerRef</strong>&lt;union(func|object)&gt;  </p>
 <p><a id="#LinkRadial__path" name="LinkRadial__path" href="#LinkRadial__path">#</a> <em>LinkRadial</em>.<strong>path</strong>&lt;func&gt;  </p>
 <p><a id="#LinkRadial__radius" name="LinkRadial__radius" href="#LinkRadial__radius">#</a> <em>LinkRadial</em>.<strong>radius</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.y</td></td></table></p>
@@ -442,6 +457,9 @@ barWidth = Math.abs(x1Range[x1Range.length - 1] - x1Range[0]) / x1Domain.length
 
 
 
+<p><a id="#LinkVertical__children" name="LinkVertical__children" href="#LinkVertical__children">#</a> <em>LinkVertical</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#LinkVertical__className" name="LinkVertical__className" href="#LinkVertical__className">#</a> <em>LinkVertical</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#LinkVertical__data" name="LinkVertical__data" href="#LinkVertical__data">#</a> <em>LinkVertical</em>.<strong>data</strong>&lt;any&gt;  </p>
 <p><a id="#LinkVertical__innerRef" name="LinkVertical__innerRef" href="#LinkVertical__innerRef">#</a> <em>LinkVertical</em>.<strong>innerRef</strong>&lt;union(func|object)&gt;  </p>
 <p><a id="#LinkVertical__path" name="LinkVertical__path" href="#LinkVertical__path">#</a> <em>LinkVertical</em>.<strong>path</strong>&lt;func&gt;  </p>
 <p><a id="#LinkVertical__source" name="LinkVertical__source" href="#LinkVertical__source">#</a> <em>LinkVertical</em>.<strong>source</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.source</td></td></table></p>
@@ -453,6 +471,8 @@ barWidth = Math.abs(x1Range[x1Range.length - 1] - x1Range[0]) / x1Domain.length
 
 
 <p><a id="#LinkHorizontalLine__children" name="LinkHorizontalLine__children" href="#LinkHorizontalLine__children">#</a> <em>LinkHorizontalLine</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#LinkHorizontalLine__className" name="LinkHorizontalLine__className" href="#LinkHorizontalLine__className">#</a> <em>LinkHorizontalLine</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#LinkHorizontalLine__data" name="LinkHorizontalLine__data" href="#LinkHorizontalLine__data">#</a> <em>LinkHorizontalLine</em>.<strong>data</strong>&lt;any&gt;  </p>
 <p><a id="#LinkHorizontalLine__innerRef" name="LinkHorizontalLine__innerRef" href="#LinkHorizontalLine__innerRef">#</a> <em>LinkHorizontalLine</em>.<strong>innerRef</strong>&lt;union(func|object)&gt;  </p>
 <p><a id="#LinkHorizontalLine__path" name="LinkHorizontalLine__path" href="#LinkHorizontalLine__path">#</a> <em>LinkHorizontalLine</em>.<strong>path</strong>&lt;func&gt;  </p>
 <p><a id="#LinkHorizontalLine__source" name="LinkHorizontalLine__source" href="#LinkHorizontalLine__source">#</a> <em>LinkHorizontalLine</em>.<strong>source</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.source</td></td></table></p>
@@ -464,6 +484,8 @@ barWidth = Math.abs(x1Range[x1Range.length - 1] - x1Range[0]) / x1Domain.length
 
 
 <p><a id="#LinkRadialLine__children" name="LinkRadialLine__children" href="#LinkRadialLine__children">#</a> <em>LinkRadialLine</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#LinkRadialLine__className" name="LinkRadialLine__className" href="#LinkRadialLine__className">#</a> <em>LinkRadialLine</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#LinkRadialLine__data" name="LinkRadialLine__data" href="#LinkRadialLine__data">#</a> <em>LinkRadialLine</em>.<strong>data</strong>&lt;any&gt;  </p>
 <p><a id="#LinkRadialLine__innerRef" name="LinkRadialLine__innerRef" href="#LinkRadialLine__innerRef">#</a> <em>LinkRadialLine</em>.<strong>innerRef</strong>&lt;union(func|object)&gt;  </p>
 <p><a id="#LinkRadialLine__path" name="LinkRadialLine__path" href="#LinkRadialLine__path">#</a> <em>LinkRadialLine</em>.<strong>path</strong>&lt;func&gt;  </p>
 <p><a id="#LinkRadialLine__source" name="LinkRadialLine__source" href="#LinkRadialLine__source">#</a> <em>LinkRadialLine</em>.<strong>source</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.source</td></td></table></p>
@@ -475,6 +497,8 @@ barWidth = Math.abs(x1Range[x1Range.length - 1] - x1Range[0]) / x1Domain.length
 
 
 <p><a id="#LinkVerticalLine__children" name="LinkVerticalLine__children" href="#LinkVerticalLine__children">#</a> <em>LinkVerticalLine</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#LinkVerticalLine__className" name="LinkVerticalLine__className" href="#LinkVerticalLine__className">#</a> <em>LinkVerticalLine</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#LinkVerticalLine__data" name="LinkVerticalLine__data" href="#LinkVerticalLine__data">#</a> <em>LinkVerticalLine</em>.<strong>data</strong>&lt;any&gt;  </p>
 <p><a id="#LinkVerticalLine__innerRef" name="LinkVerticalLine__innerRef" href="#LinkVerticalLine__innerRef">#</a> <em>LinkVerticalLine</em>.<strong>innerRef</strong>&lt;union(func|object)&gt;  </p>
 <p><a id="#LinkVerticalLine__path" name="LinkVerticalLine__path" href="#LinkVerticalLine__path">#</a> <em>LinkVerticalLine</em>.<strong>path</strong>&lt;func&gt;  </p>
 <p><a id="#LinkVerticalLine__source" name="LinkVerticalLine__source" href="#LinkVerticalLine__source">#</a> <em>LinkVerticalLine</em>.<strong>source</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.source</td></td></table></p>
@@ -486,6 +510,8 @@ barWidth = Math.abs(x1Range[x1Range.length - 1] - x1Range[0]) / x1Domain.length
 
 
 <p><a id="#LinkHorizontalStep__children" name="LinkHorizontalStep__children" href="#LinkHorizontalStep__children">#</a> <em>LinkHorizontalStep</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#LinkHorizontalStep__className" name="LinkHorizontalStep__className" href="#LinkHorizontalStep__className">#</a> <em>LinkHorizontalStep</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#LinkHorizontalStep__data" name="LinkHorizontalStep__data" href="#LinkHorizontalStep__data">#</a> <em>LinkHorizontalStep</em>.<strong>data</strong>&lt;any&gt;  </p>
 <p><a id="#LinkHorizontalStep__innerRef" name="LinkHorizontalStep__innerRef" href="#LinkHorizontalStep__innerRef">#</a> <em>LinkHorizontalStep</em>.<strong>innerRef</strong>&lt;union(func|object)&gt;  </p>
 <p><a id="#LinkHorizontalStep__path" name="LinkHorizontalStep__path" href="#LinkHorizontalStep__path">#</a> <em>LinkHorizontalStep</em>.<strong>path</strong>&lt;func&gt;  </p>
 <p><a id="#LinkHorizontalStep__percent" name="LinkHorizontalStep__percent" href="#LinkHorizontalStep__percent">#</a> <em>LinkHorizontalStep</em>.<strong>percent</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>0.5</td></td></table></p>
@@ -498,6 +524,8 @@ barWidth = Math.abs(x1Range[x1Range.length - 1] - x1Range[0]) / x1Domain.length
 
 
 <p><a id="#LinkRadialStep__children" name="LinkRadialStep__children" href="#LinkRadialStep__children">#</a> <em>LinkRadialStep</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#LinkRadialStep__className" name="LinkRadialStep__className" href="#LinkRadialStep__className">#</a> <em>LinkRadialStep</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#LinkRadialStep__data" name="LinkRadialStep__data" href="#LinkRadialStep__data">#</a> <em>LinkRadialStep</em>.<strong>data</strong>&lt;any&gt;  </p>
 <p><a id="#LinkRadialStep__innerRef" name="LinkRadialStep__innerRef" href="#LinkRadialStep__innerRef">#</a> <em>LinkRadialStep</em>.<strong>innerRef</strong>&lt;union(func|object)&gt;  </p>
 <p><a id="#LinkRadialStep__path" name="LinkRadialStep__path" href="#LinkRadialStep__path">#</a> <em>LinkRadialStep</em>.<strong>path</strong>&lt;func&gt;  </p>
 <p><a id="#LinkRadialStep__source" name="LinkRadialStep__source" href="#LinkRadialStep__source">#</a> <em>LinkRadialStep</em>.<strong>source</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.source</td></td></table></p>
@@ -509,6 +537,8 @@ barWidth = Math.abs(x1Range[x1Range.length - 1] - x1Range[0]) / x1Domain.length
 
 
 <p><a id="#LinkVerticalStep__children" name="LinkVerticalStep__children" href="#LinkVerticalStep__children">#</a> <em>LinkVerticalStep</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#LinkVerticalStep__className" name="LinkVerticalStep__className" href="#LinkVerticalStep__className">#</a> <em>LinkVerticalStep</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#LinkVerticalStep__data" name="LinkVerticalStep__data" href="#LinkVerticalStep__data">#</a> <em>LinkVerticalStep</em>.<strong>data</strong>&lt;any&gt;  </p>
 <p><a id="#LinkVerticalStep__innerRef" name="LinkVerticalStep__innerRef" href="#LinkVerticalStep__innerRef">#</a> <em>LinkVerticalStep</em>.<strong>innerRef</strong>&lt;union(func|object)&gt;  </p>
 <p><a id="#LinkVerticalStep__path" name="LinkVerticalStep__path" href="#LinkVerticalStep__path">#</a> <em>LinkVerticalStep</em>.<strong>path</strong>&lt;func&gt;  </p>
 <p><a id="#LinkVerticalStep__percent" name="LinkVerticalStep__percent" href="#LinkVerticalStep__percent">#</a> <em>LinkVerticalStep</em>.<strong>percent</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>0.5</td></td></table></p>

@@ -83,7 +83,7 @@ This is only necessary when `<Zoom passive={true} />`. <table><tr><td><strong>De
   translateX: 0,
   translateY: 0,
   skewX: 0,
-  skewY: 0
+  skewY: 0,
 }</td></td></table>
 
 <a id="#Zoom__wheelDelta" name="Zoom__wheelDelta" href="#Zoom__wheelDelta">#</a> *Zoom*.**wheelDelta**&lt;func&gt; 

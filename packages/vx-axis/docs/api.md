@@ -24,7 +24,7 @@
   textAnchor: 'middle',
   fontFamily: 'Arial',
   fontSize: 10,
-  fill: 'black'
+  fill: 'black',
 }</td></td></table>
 
 <a id="#Axis__left" name="Axis__left" href="#Axis__left">#</a> *Axis*.**left**&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table>
@@ -49,11 +49,11 @@
 
 <a id="#Axis__tickFormat" name="Axis__tickFormat" href="#Axis__tickFormat">#</a> *Axis*.**tickFormat**&lt;func&gt;  
 
-<a id="#Axis__tickLabelProps" name="Axis__tickLabelProps" href="#Axis__tickLabelProps">#</a> *Axis*.**tickLabelProps**&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>(tickValue, index) => ({
+<a id="#Axis__tickLabelProps" name="Axis__tickLabelProps" href="#Axis__tickLabelProps">#</a> *Axis*.**tickLabelProps**&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>(/** tickValue, index */) => ({
   textAnchor: 'middle',
   fontFamily: 'Arial',
   fontSize: 10,
-  fill: 'black'
+  fill: 'black',
 })</td></td></table>
 
 <a id="#Axis__tickLength" name="Axis__tickLength" href="#Axis__tickLength">#</a> *Axis*.**tickLength**&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>8</td></td></table>
@@ -150,12 +150,12 @@ A [d3 formatter](https://github.com/d3/d3-scale/blob/master/README.md#continuous
 
 <a id="#AxisBottom__tickLabelProps" name="AxisBottom__tickLabelProps" href="#AxisBottom__tickLabelProps">#</a> *AxisBottom*.**tickLabelProps**&lt;func&gt; 
 
-A function that returns props for a given tick label. <table><tr><td><strong>Default</strong></td><td>(tickValue, index) => ({
+A function that returns props for a given tick label. <table><tr><td><strong>Default</strong></td><td>(/** tickValue, index */) => ({
   dy: '0.25em',
   fill: 'black',
   fontFamily: 'Arial',
   fontSize: 10,
-  textAnchor: 'middle'
+  textAnchor: 'middle',
 })</td></td></table>
 
 <a id="#AxisBottom__tickLength" name="AxisBottom__tickLength" href="#AxisBottom__tickLength">#</a> *AxisBottom*.**tickLength**&lt;number&gt; 
@@ -222,13 +222,13 @@ A top pixel offset applied to the entire axis.
 
 <a id="#AxisLeft__tickFormat" name="AxisLeft__tickFormat" href="#AxisLeft__tickFormat">#</a> *AxisLeft*.**tickFormat**&lt;func&gt;  
 
-<a id="#AxisLeft__tickLabelProps" name="AxisLeft__tickLabelProps" href="#AxisLeft__tickLabelProps">#</a> *AxisLeft*.**tickLabelProps**&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>(tickValue, index) => ({
+<a id="#AxisLeft__tickLabelProps" name="AxisLeft__tickLabelProps" href="#AxisLeft__tickLabelProps">#</a> *AxisLeft*.**tickLabelProps**&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>(/** tickValue, index */) => ({
   dx: '-0.25em',
   dy: '0.25em',
   fill: 'black',
   fontFamily: 'Arial',
   fontSize: 10,
-  textAnchor: 'end'
+  textAnchor: 'end',
 })</td></td></table>
 
 <a id="#AxisLeft__tickLength" name="AxisLeft__tickLength" href="#AxisLeft__tickLength">#</a> *AxisLeft*.**tickLength**&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>8</td></td></table>
@@ -285,13 +285,13 @@ A top pixel offset applied to the entire axis.
 
 <a id="#AxisRight__tickFormat" name="AxisRight__tickFormat" href="#AxisRight__tickFormat">#</a> *AxisRight*.**tickFormat**&lt;func&gt;  
 
-<a id="#AxisRight__tickLabelProps" name="AxisRight__tickLabelProps" href="#AxisRight__tickLabelProps">#</a> *AxisRight*.**tickLabelProps**&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>(tickValue, index) => ({
+<a id="#AxisRight__tickLabelProps" name="AxisRight__tickLabelProps" href="#AxisRight__tickLabelProps">#</a> *AxisRight*.**tickLabelProps**&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>(/** tickValue, index */) => ({
   dx: '0.25em',
   dy: '0.25em',
   fill: 'black',
   fontFamily: 'Arial',
   fontSize: 10,
-  textAnchor: 'start'
+  textAnchor: 'start',
 })</td></td></table>
 
 <a id="#AxisRight__tickLength" name="AxisRight__tickLength" href="#AxisRight__tickLength">#</a> *AxisRight*.**tickLength**&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>8</td></td></table>
@@ -348,12 +348,12 @@ A top pixel offset applied to the entire axis.
 
 <a id="#AxisTop__tickFormat" name="AxisTop__tickFormat" href="#AxisTop__tickFormat">#</a> *AxisTop*.**tickFormat**&lt;func&gt;  
 
-<a id="#AxisTop__tickLabelProps" name="AxisTop__tickLabelProps" href="#AxisTop__tickLabelProps">#</a> *AxisTop*.**tickLabelProps**&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>(tickValue, index) => ({
+<a id="#AxisTop__tickLabelProps" name="AxisTop__tickLabelProps" href="#AxisTop__tickLabelProps">#</a> *AxisTop*.**tickLabelProps**&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>(/** tickValue, index */) => ({
   dy: '-0.25em',
   fill: 'black',
   fontFamily: 'Arial',
   fontSize: 10,
-  textAnchor: 'middle'
+  textAnchor: 'middle',
 })</td></td></table>
 
 <a id="#AxisTop__tickLength" name="AxisTop__tickLength" href="#AxisTop__tickLength">#</a> *AxisTop*.**tickLength**&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>8</td></td></table>
