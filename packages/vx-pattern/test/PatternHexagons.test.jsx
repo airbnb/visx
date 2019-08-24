@@ -20,14 +20,6 @@ describe('<PatternHexagons />', () => {
     );
   });
 
-  test('it should require a width prop', () => {
-    mount(<PatternHexagons id="test" height={4} />);
-    expect(console.error).toBeCalled();
-    expect(console.error.mock.calls[0][0]).toEqual(
-      'Warning: Failed prop type: The prop `width` is marked as required in `PatternHexagons`, but its value is `undefined`.\n    in PatternHexagons',
-    );
-  });
-
   test('it should require a height prop', () => {
     mount(<PatternHexagons id="test" width={4} />);
     expect(console.error).toBeCalled();
