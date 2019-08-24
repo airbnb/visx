@@ -3,6 +3,35 @@ import React, { Component } from 'react';
 import reduceCSSCalc from 'reduce-css-calc';
 import getStringWidth from './util/getStringWidth';
 
+const propTypes = {
+  scaleToFit: PropTypes.bool,
+  angle: PropTypes.number,
+  textAnchor: PropTypes.oneOf(['start', 'middle', 'end', 'inherit']),
+  verticalAnchor: PropTypes.oneOf(['start', 'middle', 'end']),
+  style: PropTypes.object,
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  x: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  y: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  dx: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  dy: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  lineHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  capHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  children: PropTypes.any,
+  width: PropTypes.number,
+};
+
+const defaultProps = {
+  x: 0,
+  y: 0,
+  dx: 0,
+  dy: 0,
+  lineHeight: '1em',
+  capHeight: '0.71em', // Magic number from d3
+  scaleToFit: false,
+  textAnchor: 'start',
+  verticalAnchor: 'end', // default SVG behavior
+};
+
 class Text extends Component {
   constructor(props) {
     super(props);
@@ -140,33 +169,7 @@ class Text extends Component {
   }
 }
 
-Text.defaultProps = {
-  x: 0,
-  y: 0,
-  dx: 0,
-  dy: 0,
-  lineHeight: '1em',
-  capHeight: '0.71em', // Magic number from d3
-  scaleToFit: false,
-  textAnchor: 'start',
-  verticalAnchor: 'end', // default SVG behavior
-};
-
-Text.propTypes = {
-  scaleToFit: PropTypes.bool,
-  angle: PropTypes.number,
-  textAnchor: PropTypes.oneOf(['start', 'middle', 'end', 'inherit']),
-  verticalAnchor: PropTypes.oneOf(['start', 'middle', 'end']),
-  style: PropTypes.object,
-  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  x: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  y: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  dx: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  dy: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  lineHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  capHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  children: PropTypes.string,
-  width: PropTypes.number,
-};
+Text.propTypes = propTypes;
+Text.defaultProps = defaultProps;
 
 export default Text;
