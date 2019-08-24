@@ -36,7 +36,8 @@ export default function PatternHexagons({
       className={cx('vx-pattern-hexagon', className)}
       path={`M ${height},0 l ${height},0 l ${height / 2},${(height * sqrtSize) / 2} l ${-height /
         2},${(height * sqrtSize) / 2} l ${-height},0 l ${-height / 2},${(-height * sqrtSize) /
-        2} Z M 0,${(height * sqrtSize) / 2} l ${height / 2},0 M ${3 * height},${(height * sqrtSize) /
+        2} Z M 0,${(height * sqrtSize) / 2} l ${height / 2},0 M ${3 * height},${(height *
+        sqrtSize) /
         2} l ${-height / 2},0`}
       id={id}
       width={size}
