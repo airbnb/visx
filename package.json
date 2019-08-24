@@ -37,7 +37,7 @@
     "release": "yarn run prepare-release && lerna publish --exact"
   },
   "lint-staged": {
-    "*.js": [
+    "*.{js,jsx,ts,tsx}": [
       "yarn run format",
       "git add"
     ]
@@ -54,7 +54,6 @@
     "@irbnb/nimbus": "^1.4.1",
     "babel-core": "^7.0.0-bridge.0",
     "babel-loader": "^8.0.6",
-    "core-js": "^3.2.1",
     "coveralls": "^2.13.1",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
