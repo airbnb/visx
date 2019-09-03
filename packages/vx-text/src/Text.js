@@ -7,61 +7,57 @@ class Text extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      wordsByLines: []
+      wordsByLines: [],
+      previousStyle: props.style,
+      previousChildren: props.children,
+      spaceWidth: undefined,
+      wordsWithComputedWidth: undefined
     };
   }
 
-  componentWillMount() {
-    this.updateWordsByLines(this.props, true);
-  }
+  static getDerivedStateFromProps(props, state) {
+    const words = props.children ? props.children.toString().split(/(?:(?!\u00A0+)\s+)/) : [];
 
-  componentWillReceiveProps(nextProps) {
-    const needCalculate =
-      this.props.children !== nextProps.children || this.props.style !== nextProps.style;
-    this.updateWordsByLines(nextProps, needCalculate);
-  }
-
-  updateWordsByLines(props, needCalculate) {
     // Only perform calculations if using features that require them (multiline, scaleToFit)
     if (props.width || props.scaleToFit) {
-      if (needCalculate) {
-        const words = props.children ? props.children.toString().split(/(?:(?!\u00A0+)\s+)/) : [];
+      const needCalculate =
+        !state.spaceWidth ||
+        !state.wordsWithComputedWidth ||
+        state.previousChildren !== props.children ||
+        state.previousStyle !== props.style;
 
-        this.wordsWithComputedWidth = words.map(word => ({
+      if (needCalculate) {
+        state.wordsWithComputedWidth = words.map(word => ({
           word,
           width: getStringWidth(word, props.style)
         }));
-        this.spaceWidth = getStringWidth('\u00A0', props.style);
+
+        state.spaceWidth = getStringWidth('\u00A0', props.style);
       }
-
-      const wordsByLines = this.calculateWordsByLines(
-        this.wordsWithComputedWidth,
-        this.spaceWidth,
-        props.width
-      );
-      this.setState({ wordsByLines });
+      state.wordsByLines = Text.calculateWordsByLines(props, state);
     } else {
-      this.updateWordsWithoutCalculate(props);
+      state.wordsByLines = [{ words }];
     }
+
+    state.previousChildren = props.children;
+    state.previousStyle = props.style;
+
+    return state;
   }
 
-  updateWordsWithoutCalculate(props) {
-    const words = props.children ? props.children.toString().split(/(?:(?!\u00A0+)\s+)/) : [];
-    this.setState({ wordsByLines: [{ words }] });
-  }
-
-  calculateWordsByLines(wordsWithComputedWidth, spaceWidth, lineWidth) {
-    const { scaleToFit } = this.props;
-    return wordsWithComputedWidth.reduce((result, { word, width }) => {
+  static calculateWordsByLines(props, state) {
+    return state.wordsWithComputedWidth.reduce((result, { word, width }) => {
       const currentLine = result[result.length - 1];
 
       if (
         currentLine &&
-        (lineWidth == null || scaleToFit || currentLine.width + width + spaceWidth < lineWidth)
+        (props.width == null ||
+          props.scaleToFit ||
+          currentLine.width + width + state.spaceWidth < props.width)
       ) {
         // Word can be added to an existing line
         currentLine.words.push(word);
-        currentLine.width += width + spaceWidth;
+        currentLine.width += width + state.spaceWidth;
       } else {
         // Add first word to line or word is too long to scaleToFit on existing line
         const newLine = { words: [word], width };
@@ -158,6 +154,8 @@ Text.propTypes = {
   textAnchor: PropTypes.oneOf(['start', 'middle', 'end', 'inherit']),
   verticalAnchor: PropTypes.oneOf(['start', 'middle', 'end']),
   style: PropTypes.object,
+  width: PropTypes.number,
+  children: PropTypes.node,
   innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   x: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   y: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
