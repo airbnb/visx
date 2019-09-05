@@ -19,6 +19,7 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "yarn run babel",
+    "build-one": "nimbus babel --clean",
     "babel": "yarn run babel:cjs && yarn run babel:esm",
     "babel:cjs": "nimbus babel --clean --workspaces=\"@vx/!(demo)\"",
     "babel:esm": "nimbus babel --clean --workspaces=\"@vx/!(demo)\" --esm",
