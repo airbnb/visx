@@ -24,17 +24,18 @@ export const getPoint = ({ sides, size, center, rotate, side }) => {
   });
 };
 
-export const getPoints = ({ sides, size, center, rotate }) => {
-  return [...Array(sides).keys()].map(side => {
-    return getPoint({
-      sides,
-      size,
-      center,
-      rotate,
-      side,
-    });
-  });
-};
+export const getPoints = ({ sides, size, center, rotate }) =>
+  Array(sides)
+    .fill(0)
+    .map((_, side) =>
+      getPoint({
+        sides,
+        size,
+        center,
+        rotate,
+        side,
+      }),
+    );
 
 export default function Polygon({
   sides,
