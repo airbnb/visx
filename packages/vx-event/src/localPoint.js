@@ -1,14 +1,15 @@
 import { Point } from '@vx/point';
 
-export default function localPoint(maybeNode, maybeEvent) {
+export default function localPoint(nodeOrEvent, maybeEvent) {
   // called with no args
-  if (!maybeNode) return;
+  if (!nodeOrEvent) return;
 
+  let node = nodeOrEvent;
   let event = maybeEvent;
-  let node;
+
   // called with localPoint(event)
-  if (maybeNode.target) {
-    event = maybeNode;
+  if (nodeOrEvent.target) {
+    event = nodeOrEvent;
 
     // set node to targets owner svg
     node = event.target.ownerSVGElement;
