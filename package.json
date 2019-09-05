@@ -43,20 +43,20 @@
     ]
   },
   "devDependencies": {
+    "@airbnb/config-babel": "^2.0.0-alpha.2",
+    "@airbnb/config-eslint": "^2.0.0-alpha.2",
+    "@airbnb/config-jest": "^2.0.0-alpha.2",
+    "@airbnb/config-prettier": "^2.0.0-alpha.2",
+    "@airbnb/nimbus": "^2.0.0-alpha.2",
     "@babel/core": "^7.5.0",
     "@babel/plugin-transform-runtime": "^7.5.5",
     "@babel/runtime-corejs3": "^7.5.5",
-    "@irbnb/config-babel": "^1.2.4",
-    "@irbnb/config-eslint": "^1.3.1",
-    "@irbnb/config-jest": "^1.2.4",
-    "@irbnb/config-prettier": "^1.1.4",
-    "@irbnb/config-typescript": "^1.2.1",
-    "@irbnb/nimbus": "^1.4.1",
     "babel-core": "^7.0.0-bridge.0",
     "babel-loader": "^8.0.6",
     "coveralls": "^2.13.1",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
+    "enzyme-to-json": "^3.4.0",
     "eslint": "^6.1.0",
     "fs-jetpack": "^1.3.0",
     "husky": "^3.0.0",
@@ -80,8 +80,7 @@
       "babel",
       "eslint",
       "jest",
-      "prettier",
-      "typescript"
+      "prettier"
     ],
     "settings": {
       "library": true,
@@ -98,7 +97,10 @@
           "lines": 0,
           "statements": 0
         }
-      }
+      },
+      "setupFilesAfterEnv": [
+        "@airbnb/config-jest/enzyme"
+      ]
     },
     "eslint": {
       "overrides": [
@@ -129,10 +131,11 @@
             "react/forbid-prop-types": "off",
             "react/destructuring-assignment": "off",
             "react/no-array-index-key": "off",
-            "react/no-children-prop": "off"
+            "react/no-children-prop": "off",
+            "react/jsx-props-no-spreading": "off"
           }
         }
-      ] 
+      ]
     }
   }
 }
