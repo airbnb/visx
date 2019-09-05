@@ -6,8 +6,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start",
-    "test": "jest"
+    "start": "next start"
   },
   "keywords": [
     "vx",
@@ -78,12 +77,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "devDependencies": {
-    "babel-jest": "^20.0.3",
-    "enzyme": "^2.8.2",
-    "jest": "^20.0.3",
-    "react-test-renderer": "^15.6.1",
-    "regenerator-runtime": "^0.10.5"
   }
 }
