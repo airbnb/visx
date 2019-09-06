@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-handler-names */
 import React from 'react';
 import { Zoom } from '@vx/zoom';
 import { localPoint } from '@vx/event';

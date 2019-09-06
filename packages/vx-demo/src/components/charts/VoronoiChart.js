@@ -13,15 +13,13 @@ const extent = (data, value = d => d) => [
   Math.max(...data.map(value)),
 ];
 
-const data = Array(200)
-  .fill(null)
-  .map(() => ({
-    x: Math.random(),
-    y: Math.random(),
-    id: Math.random()
-      .toString(36)
-      .slice(2),
-  }));
+const data = new Array(200).fill(null).map(() => ({
+  x: Math.random(),
+  y: Math.random(),
+  id: Math.random()
+    .toString(36)
+    .slice(2),
+}));
 
 class VoronoiChart extends React.PureComponent {
   static getUpdatedState(props) {

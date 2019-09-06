@@ -53,12 +53,12 @@ const ordinalColor2Scale = scaleOrdinal({
 const shapeScale = scaleOrdinal({
   domain: ['a', 'b', 'c', 'd', 'e'],
   range: [
-    <GlyphStar size={50} top={50 / 6} left={50 / 6} fill="#dd59b8" />,
-    <GlyphWye size={50} top={50 / 6} left={50 / 6} fill="#de6a9a" />,
-    <GlyphTriangle size={50} top={50 / 6} left={50 / 6} fill="#de7d7b" />,
-    <GlyphDiamond size={50} top={50 / 6} left={50 / 6} fill="#df905f" />,
+    <GlyphStar key="a" size={50} top={50 / 6} left={50 / 6} fill="#dd59b8" />,
+    <GlyphWye key="b" size={50} top={50 / 6} left={50 / 6} fill="#de6a9a" />,
+    <GlyphTriangle key="c" size={50} top={50 / 6} left={50 / 6} fill="#de7d7b" />,
+    <GlyphDiamond key="d" size={50} top={50 / 6} left={50 / 6} fill="#df905f" />,
     () => (
-      <text fontSize="12" dy="1em" dx=".33em" fill="#e0a346">
+      <text key="e" fontSize="12" dy="1em" dx=".33em" fill="#e0a346">
         $
       </text>
     ),

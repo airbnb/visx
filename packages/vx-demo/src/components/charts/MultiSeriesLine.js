@@ -61,7 +61,7 @@ export default withSelected(({ selected, updateSelected, width, height, margin }
 
   // accessors
   const x = d => parseDate(d.date);
-  const y = d => +d.temperature;
+  const y = d => Number(d.temperature);
 
   // scales
   const xScale = scaleTime({

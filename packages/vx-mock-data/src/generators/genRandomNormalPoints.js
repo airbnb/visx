@@ -4,7 +4,7 @@ const random = randomNormal(0, 0.2);
 const sqrt3 = Math.sqrt(3);
 
 function range(n) {
-  return Array(n).fill(1);
+  return new Array(n).fill(1);
 }
 
 export function genPointsRange(n, [offsetX, offsetY, index]) {

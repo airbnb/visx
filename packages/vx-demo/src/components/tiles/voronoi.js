@@ -19,15 +19,13 @@ export default ({
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
 
-  const data = Array(150)
-    .fill(null)
-    .map(() => ({
-      x: Math.random() * innerWidth,
-      y: Math.random() * innerHeight,
-      id: Math.random()
-        .toString(36)
-        .slice(2),
-    }));
+  const data = new Array(150).fill(null).map(() => ({
+    x: Math.random() * innerWidth,
+    y: Math.random() * innerHeight,
+    id: Math.random()
+      .toString(36)
+      .slice(2),
+  }));
 
   const voronoiLayout = voronoi({
     x: d => d.x,

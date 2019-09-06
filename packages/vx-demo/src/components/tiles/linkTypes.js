@@ -207,7 +207,7 @@ export default class extends React.Component {
                     return (
                       <LinkComponent
                         data={link}
-                        percent={+stepPercent}
+                        percent={Number(stepPercent)}
                         stroke="#374469"
                         strokeWidth="1"
                         fill="none"
@@ -259,9 +259,9 @@ export default class extends React.Component {
                             fill="#272b4d"
                             stroke={node.data.children ? '#03c0dc' : '#26deb0'}
                             strokeWidth={1}
-                            strokeDasharray={!node.data.children ? '2,2' : '0'}
-                            strokeOpacity={!node.data.children ? 0.6 : 1}
-                            rx={!node.data.children ? 10 : 0}
+                            strokeDasharray={node.data.children ? '0' : '2,2'}
+                            strokeOpacity={node.data.children ? 1 : 0.6}
+                            rx={node.data.children ? 0 : 10}
                             onClick={() => {
                               node.data.isExpanded = !node.data.isExpanded;
                               console.log(node);

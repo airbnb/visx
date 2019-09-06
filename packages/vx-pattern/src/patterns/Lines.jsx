@@ -39,7 +39,7 @@ export default function PatternLines({
   background,
   className,
 }) {
-  const orientations = !Array.isArray(orientation) ? [orientation] : orientation;
+  const orientations = Array.isArray(orientation) ? orientation : [orientation];
 
   return (
     <Pattern id={id} width={width} height={height}>

@@ -18,7 +18,7 @@ const keys = Object.keys(data[0]).filter(d => d !== 'date');
 
 const totals = data.reduce((ret, cur) => {
   const t = keys.reduce((dailyTotal, k) => {
-    dailyTotal += +cur[k];
+    dailyTotal += Number(cur[k]);
     return dailyTotal;
   }, 0);
   ret.push(t);

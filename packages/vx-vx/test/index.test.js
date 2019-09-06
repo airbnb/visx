@@ -1,3 +1,4 @@
+/* eslint-disable import/namespace */
 import * as vx from '../src';
 
 describe('vx', () => {

@@ -51,7 +51,7 @@ export default ({
     <svg width={width} height={height}>
       <rect fill={bg} width={width} height={height} rx={14} />
       <Group top={height / 2 - margin.top} left={width / 2}>
-        {[...Array(levels)].map((_, i) => {
+        {[...new Array(levels)].map((_, i) => {
           const r = ((i + 1) * radius) / levels;
           return (
             <LineRadial
@@ -67,7 +67,7 @@ export default ({
             />
           );
         })}
-        {[...Array(data.length)].map((_, i) => {
+        {[...new Array(data.length)].map((_, i) => {
           return <Line key={`radar-line-${i}`} from={zeroPoint} to={points[i]} stroke={silver} />;
         })}
         <polygon
@@ -86,7 +86,7 @@ export default ({
 };
 
 function genAngles(length) {
-  return [...Array(length + 1)].map((_, i) => {
+  return [...new Array(length + 1)].map((_, i) => {
     return {
       angle: i * (ANG / length),
     };
@@ -95,7 +95,7 @@ function genAngles(length) {
 
 function genPoints(length, radius) {
   const step = (Math.PI * 2) / length;
-  return [...Array(length)].map((_, i) => {
+  return [...new Array(length)].map((_, i) => {
     return {
       x: radius * Math.sin(i * step),
       y: radius * Math.cos(i * step),

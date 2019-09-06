@@ -9,7 +9,7 @@ const data = letterFrequency.slice(5);
 
 // accessors
 const x = d => d.letter;
-const y = d => +d.frequency * 100;
+const y = d => Number(d.frequency) * 100;
 
 export default ({ width, height, events = false }) => {
   if (width < 10) return null;

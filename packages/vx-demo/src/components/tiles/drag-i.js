@@ -21,17 +21,15 @@ const colors = [
 ];
 
 function genCircles({ num, width, height }) {
-  return Array(num)
-    .fill(1)
-    .map((d, i) => {
-      const radius = 25 - Math.random() * 20;
-      return {
-        id: i,
-        radius,
-        x: Math.round(Math.random() * (width - radius * 2) + radius),
-        y: Math.round(Math.random() * (height - radius * 2) + radius),
-      };
-    });
+  return new Array(num).fill(1).map((d, i) => {
+    const radius = 25 - Math.random() * 20;
+    return {
+      id: i,
+      radius,
+      x: Math.round(Math.random() * (width - radius * 2) + radius),
+      y: Math.round(Math.random() * (height - radius * 2) + radius),
+    };
+  });
 }
 
 const genItems = ({ width, height }) =>

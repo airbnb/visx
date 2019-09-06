@@ -12,12 +12,12 @@ export default class Drag extends React.Component {
       dy: 0,
       isDragging: false,
     };
-    this.dragEnd = this.dragEnd.bind(this);
-    this.dragMove = this.dragMove.bind(this);
-    this.dragStart = this.dragStart.bind(this);
+    this.handleDragEnd = this.handleDragEnd.bind(this);
+    this.handleDragMove = this.handleDragMove.bind(this);
+    this.handleDragStart = this.handleDragStart.bind(this);
   }
 
-  dragStart(event) {
+  handleDragStart(event) {
     const { onDragStart, resetOnStart } = this.props;
     const { dx, dy } = this.state;
     const point = localPoint(event);
@@ -33,7 +33,7 @@ export default class Drag extends React.Component {
     this.setState(() => nextState);
   }
 
-  dragMove(event) {
+  handleDragMove(event) {
     const { onDragMove } = this.props;
     const { x, y, isDragging } = this.state;
     if (!isDragging) return;
@@ -48,7 +48,7 @@ export default class Drag extends React.Component {
     this.setState(() => nextState);
   }
 
-  dragEnd(event) {
+  handleDragEnd(event) {
     const { onDragEnd } = this.props;
     const nextState = {
       ...this.state,
@@ -67,8 +67,8 @@ export default class Drag extends React.Component {
           <rect
             width={width}
             height={height}
-            onMouseMove={this.dragMove}
-            onMouseUp={this.dragEnd}
+            onMouseMove={this.handleDragMove}
+            onMouseUp={this.handleDragEnd}
             fill="transparent"
           />
         )}
@@ -78,9 +78,9 @@ export default class Drag extends React.Component {
           dx,
           dy,
           isDragging,
-          dragEnd: this.dragEnd,
-          dragMove: this.dragMove,
-          dragStart: this.dragStart,
+          dragEnd: this.handleDragEnd,
+          dragMove: this.handleDragMove,
+          dragStart: this.handleDragStart,
         })}
       </g>
     );

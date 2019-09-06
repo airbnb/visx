@@ -22,9 +22,9 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { showNav: true };
-    this.toggleNav = this.toggleNav.bind(this);
+    this.handleToggleNav = this.handleToggleNav.bind(this);
   }
-  toggleNav(event) {
+  handleToggleNav(event) {
     event.preventDefault();
     event.stopPropagation();
     this.setState(prevState => {
@@ -49,7 +49,7 @@ export default class App extends React.Component {
         </div>
         <div className="app-content">
           <div>
-            <button onClick={this.toggleNav}>toggle nav</button>
+            <button onClick={this.handleToggleNav}>toggle nav</button>
           </div>
           <div className="app-graph">
             <ParentSize className="graph-container">

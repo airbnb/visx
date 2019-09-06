@@ -11,7 +11,7 @@ import { scaleLinear, scaleOrdinal } from '@vx/scale';
 import { transpose } from 'd3-array';
 
 // utils
-const range = n => Array.from(Array(n), (d, i) => i);
+const range = n => Array.from(new Array(n), (d, i) => i);
 const bumps = (n, m) => {
   const arr = [];
   let i;

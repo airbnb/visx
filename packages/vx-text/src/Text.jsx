@@ -134,7 +134,7 @@ class Text extends Component {
     }
 
     const transforms = [];
-    if (scaleToFit && wordsByLines.length) {
+    if (scaleToFit && wordsByLines.length > 0) {
       const lineWidth = wordsByLines[0].width;
       const sx = this.props.width / lineWidth;
       const sy = sx;
@@ -145,7 +145,7 @@ class Text extends Component {
     if (angle) {
       transforms.push(`rotate(${angle}, ${x}, ${y})`);
     }
-    if (transforms.length) {
+    if (transforms.length > 0) {
       textProps.transform = transforms.join(' ');
     }
 

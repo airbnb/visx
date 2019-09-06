@@ -16,7 +16,7 @@ function round(value, precision) {
 export default ({ width, height, margin }) => {
   // accessors
   const x = d => d.letter;
-  const y = d => +d.frequency * 100;
+  const y = d => Number(d.frequency) * 100;
 
   // bounds
   const xMax = width - margin.left - margin.right;

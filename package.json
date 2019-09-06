@@ -118,14 +118,22 @@
             "no-param-reassign": "warn",
             "lines-between-class-members": "off",
             "import/prefer-default-export": "off",
+            "promise/param-names": "off",
             "react/sort-comp": "off",
             "react/jsx-filename-extension": "off",
+            "react/jsx-no-literals": "off",
+            "react/jsx-props-no-spreading": "off",
+            "react/jsx-sort-default-props": "off",
+            "react/jsx-sort-props": "off",
             "react/require-default-props": "off",
             "react/forbid-prop-types": "off",
             "react/destructuring-assignment": "off",
             "react/no-array-index-key": "off",
             "react/no-children-prop": "off",
-            "react/jsx-props-no-spreading": "off"
+            "react/sort-prop-types": "off",
+            "unicorn/catch-error-name": "off",
+            "unicorn/no-fn-reference-in-iterator": "off",
+            "unicorn/prefer-node-append": "off"
           }
         },
         {

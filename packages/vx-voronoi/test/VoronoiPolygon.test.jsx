@@ -5,9 +5,7 @@ import { VoronoiPolygon } from '../src';
 
 describe('<VoronoiPolygon />', () => {
   const data = [1, 2];
-  const polygon = Array(3)
-    .fill(null)
-    .map((_, i) => [i, i]);
+  const polygon = new Array(3).fill(null).map((_, i) => [i, i]);
   polygon.data = data;
 
   const props = { polygon };

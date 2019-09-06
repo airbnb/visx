@@ -7,14 +7,12 @@ const defaultBin = i => {
 };
 
 export default function genBin(n, bin = defaultBin, count = defaultCount) {
-  return Array(n)
-    .fill(1)
-    .reduce((data, d, i) => {
-      return data.concat([
-        {
-          bin: bin(i, n),
-          count: count(i, n),
-        },
-      ]);
-    }, []);
+  return new Array(n).fill(1).reduce((data, d, i) => {
+    return data.concat([
+      {
+        bin: bin(i, n),
+        count: count(i, n),
+      },
+    ]);
+  }, []);
 }

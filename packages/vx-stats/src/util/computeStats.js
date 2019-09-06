@@ -13,8 +13,8 @@ export default function computeStats(numericalArray) {
   const binNum = Math.round((max - min) / binWidth);
   const actualBinWidth = (max - min) / binNum;
 
-  const bins = Array(binNum + 2).fill(0);
-  const values = Array(binNum + 2).fill(min);
+  const bins = new Array(binNum + 2).fill(0);
+  const values = new Array(binNum + 2).fill(min);
 
   for (let i = 1; i <= binNum; i += 1) {
     values[i] += actualBinWidth * (i - 0.5);
