@@ -11,7 +11,9 @@ export default () => (
       <ul>
         <Item href="/">Home</Item>
         <Item href="/docs">Docs</Item>
-        <Item href="https://medium.com/vx-code">Guides</Item>
+        <Item href="https://medium.com/vx-code" external>
+          Guides
+        </Item>
         <Item href="/gallery">Gallery</Item>
       </ul>
 
@@ -74,11 +76,17 @@ export default () => (
   </div>
 );
 
-const Item = ({ href, children, className }) => (
+const Item = ({ href, children, className, external }) => (
   <li className="Item">
-    <Link prefetch href={href}>
-      <a className={className}>{children}</a>
-    </Link>
+    {external ? (
+      <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
+        {children}
+      </a>
+    ) : (
+      <Link href={href}>
+        <a className={className}>{children}</a>
+      </Link>
+    )}
 
     <style jsx>{`
       .Item a {

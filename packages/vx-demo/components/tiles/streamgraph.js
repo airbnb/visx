@@ -34,6 +34,8 @@ const NUM_LAYERS = 20;
 const SAMPLES_PER_LAYER = 200;
 const BUMPS_PER_LAYER = 10;
 
+const keys = range(NUM_LAYERS);
+
 // scales
 const yScale = scaleLinear({
   domain: [-30, 50],
@@ -49,8 +51,6 @@ const patternScale = scaleOrdinal({
   domain: keys,
   range: ['mustard', 'cherry', 'navy', 'circles', 'circles', 'circles', 'circles'],
 });
-
-const keys = range(NUM_LAYERS);
 
 export default class Streamgraph extends React.Component {
   render() {

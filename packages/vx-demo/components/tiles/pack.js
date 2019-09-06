@@ -36,7 +36,8 @@ export default ({
     .sort((a, b) => {
       return (
         !a.children - !b.children ||
-        Math.isNaN(a.data.distance) - Math.isNaN(b.data.distance) ||
+        // eslint-disable-next-line no-restricted-globals
+        isNaN(a.data.distance) - isNaN(b.data.distance) ||
         a.data.distance - b.data.distance
       );
     });

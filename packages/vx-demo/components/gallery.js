@@ -64,7 +64,7 @@ export default function() {
     <div>
       <div className="gallery">
         <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-          <Link prefetch href="/lines">
+          <Link href="/lines">
             <div className="gallery-item" style={{ background: items[0] }}>
               <div className="image">
                 <ParentSize>
@@ -81,7 +81,7 @@ export default function() {
           </Link>
         </Tilt>
         <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-          <Link prefetch href="/bars">
+          <Link href="/bars">
             <div className="gallery-item" style={{ background: '#5290e7' }}>
               <div className="image">
                 <ParentSize>
@@ -98,7 +98,7 @@ export default function() {
           </Link>
         </Tilt>
         <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-          <Link prefetch href="/dots">
+          <Link href="/dots">
             <div className="gallery-item" style={{ background: '#fd6e7f' }}>
               <div className="image">
                 <ParentSize>
@@ -126,7 +126,7 @@ export default function() {
           </Link>
         </Tilt>
         <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-          <Link prefetch href="/patterns">
+          <Link href="/patterns">
             <div className="gallery-item" style={{ background: items[3] }}>
               <div className="image">
                 <ParentSize>
@@ -145,7 +145,7 @@ export default function() {
           </Link>
         </Tilt>
         <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-          <Link prefetch href="/areas">
+          <Link href="/areas">
             <div className="gallery-item" style={{ background: items[5] }}>
               <div className="image">
                 <ParentSize>
@@ -173,7 +173,7 @@ export default function() {
           </Link>
         </Tilt>
         <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-          <Link prefetch href="/stacked-areas">
+          <Link href="/stacked-areas">
             <div className="gallery-item" style={{ background: items[6] }}>
               <div className="image">
                 <ParentSize>
@@ -201,7 +201,7 @@ export default function() {
           </Link>
         </Tilt>
         <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-          <Link prefetch href="/gradients">
+          <Link href="/gradients">
             <div
               className="gallery-item"
               style={{
@@ -235,7 +235,7 @@ export default function() {
           </Link>
         </Tilt>
         <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-          <Link prefetch href="/glyphs">
+          <Link href="/glyphs">
             <div className="gallery-item" style={{ background: items[7] }}>
               <div className="image">
                 <ParentSize>
@@ -263,7 +263,7 @@ export default function() {
           </Link>
         </Tilt>
         <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-          <Link prefetch href="/axis">
+          <Link href="/axis">
             <div className="gallery-item" style={{ background: items[8] }}>
               <div className="image">
                 <ParentSize>
@@ -291,7 +291,7 @@ export default function() {
           </Link>
         </Tilt>
         <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-          <Link prefetch href="/bargroup">
+          <Link href="/bargroup">
             <div className="gallery-item" style={{ background: '#612efb' }}>
               <div className="image">
                 <ParentSize>
@@ -310,7 +310,7 @@ export default function() {
           </Link>
         </Tilt>
         <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-          <Link prefetch href="/bargrouphorizontal">
+          <Link href="/bargrouphorizontal">
             <div className="gallery-item" style={{ background: '#612efb' }}>
               <div className="image">
                 <ParentSize>
@@ -329,7 +329,7 @@ export default function() {
           </Link>
         </Tilt>
         <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-          <Link prefetch href="/heatmaps">
+          <Link href="/heatmaps">
             <div className="gallery-item" style={{ background: '#28272c' }}>
               <div className="image">
                 <ParentSize>
@@ -346,7 +346,7 @@ export default function() {
           </Link>
         </Tilt>
         <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-          <Link prefetch href="/barstack">
+          <Link href="/barstack">
             <div className="gallery-item" style={{ background: '#eaedff' }}>
               <div className="image">
                 <ParentSize>
@@ -365,7 +365,7 @@ export default function() {
           </Link>
         </Tilt>
         <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-          <Link prefetch href="/barstackhorizontal">
+          <Link href="/barstackhorizontal">
             <div
               className="gallery-item"
               style={{
@@ -389,7 +389,7 @@ export default function() {
           </Link>
         </Tilt>
         <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-          <Link prefetch href="/lineradial">
+          <Link href="/lineradial">
             <div className="gallery-item" style={{ background: '#744cca' }}>
               <div className="image">
                 <ParentSize>
@@ -406,7 +406,7 @@ export default function() {
           </Link>
         </Tilt>
         <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-          <Link prefetch href="/trees">
+          <Link href="/trees">
             <div className="gallery-item" style={{ background: '#272b4d' }}>
               <div className="image">
                 <ParentSize>
@@ -423,7 +423,7 @@ export default function() {
           </Link>
         </Tilt>
         <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-          <Link prefetch href="/dendrograms">
+          <Link href="/dendrograms">
             <div className="gallery-item" style={{ background: '#306c90' }}>
               <div className="image">
                 <ParentSize>
@@ -440,7 +440,7 @@ export default function() {
           </Link>
         </Tilt>
         <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-          <Link prefetch href="/pies">
+          <Link href="/pies">
             <div className="gallery-item" style={{ background: '#7f82e3' }}>
               <div className="image">
                 <ParentSize>
@@ -463,7 +463,7 @@ export default function() {
           </Link>
         </Tilt>
         <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-          <Link prefetch href="/legends">
+          <Link href="/legends">
             <div className="gallery-item" style={{ backgroundColor: 'black' }}>
               <div className="image">
                 <Legends />
@@ -478,7 +478,7 @@ export default function() {
           </Link>
         </Tilt>
         <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-          <Link prefetch href="/voronoi">
+          <Link href="/voronoi">
             <div
               className="gallery-item"
               style={{
@@ -507,7 +507,7 @@ export default function() {
         </Tilt>
 
         <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-          <Link prefetch href="/boxplot">
+          <Link href="/boxplot">
             <div className="gallery-item" style={{ background: '#8a88e3' }}>
               <div className="image">
                 <ParentSize>
@@ -525,7 +525,7 @@ export default function() {
         </Tilt>
 
         <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-          <Link prefetch href="/geo-mercator">
+          <Link href="/geo-mercator">
             <div className="gallery-item" style={{ background: '#f9f7e8' }}>
               <div className="image">
                 <ParentSize>
@@ -545,7 +545,7 @@ export default function() {
         </Tilt>
 
         <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-          <Link prefetch href="/geo-custom">
+          <Link href="/geo-custom">
             <div className="gallery-item" style={{ background: '#252b7e' }}>
               <div className="image">
                 <ParentSize>
@@ -565,7 +565,7 @@ export default function() {
         </Tilt>
 
         <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-          <Link prefetch href="/network">
+          <Link href="/network">
             <div className="gallery-item" style={{ background: '#272b4d' }}>
               <div className="image">
                 <ParentSize>
@@ -588,7 +588,7 @@ export default function() {
         </Tilt>
 
         <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-          <Link prefetch href="/streamgraph">
+          <Link href="/streamgraph">
             <div className="gallery-item" style={{ background: '#ffdede' }}>
               <div className="image">
                 <ParentSize>
@@ -612,7 +612,7 @@ export default function() {
           </Link>
         </Tilt>
         <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-          <Link prefetch href="/pack">
+          <Link href="/pack">
             <div
               className="gallery-item"
               style={{
@@ -640,7 +640,7 @@ export default function() {
           </Link>
         </Tilt>
         <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-          <Link prefetch href="/treemap">
+          <Link href="/treemap">
             <div
               className="gallery-item"
               style={{
@@ -667,7 +667,7 @@ export default function() {
           </Link>
         </Tilt>
         <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-          <Link prefetch href="/radar">
+          <Link href="/radar">
             <div
               className="gallery-item"
               style={{
@@ -694,7 +694,7 @@ export default function() {
           </Link>
         </Tilt>
         <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-          <Link prefetch href="/responsive">
+          <Link href="/responsive">
             <div
               className="gallery-item"
               style={{
@@ -726,7 +726,7 @@ export default function() {
           </Link>
         </Tilt>
         <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-          <Link prefetch href="/text">
+          <Link href="/text">
             <div
               className="gallery-item"
               style={{
@@ -754,7 +754,7 @@ export default function() {
           </Link>
         </Tilt>
         <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-          <Link prefetch href="/drag-i">
+          <Link href="/drag-i">
             <div
               className="gallery-item"
               style={{
@@ -783,7 +783,7 @@ export default function() {
           </Link>
         </Tilt>
         <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-          <Link prefetch href="/drag-ii">
+          <Link href="/drag-ii">
             <div
               className="gallery-item"
               style={{
@@ -814,7 +814,7 @@ export default function() {
           </Link>
         </Tilt>
         <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-          <Link prefetch href="/linkTypes">
+          <Link href="/linkTypes">
             <div className="gallery-item" style={{ background: '#272b4d' }}>
               <div className="image">
                 <ParentSize>
@@ -833,7 +833,7 @@ export default function() {
           </Link>
         </Tilt>
         <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-          <Link prefetch href="/threshold">
+          <Link href="/threshold">
             <div className="gallery-item" style={{ background: '#f3f3f3' }}>
               <div className="image">
                 <ParentSize>
@@ -861,7 +861,7 @@ export default function() {
           </Link>
         </Tilt>
         <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-          <Link prefetch href="/chord">
+          <Link href="/chord">
             <div className="gallery-item" style={{ background: '#e4e3d8' }}>
               <div className="image">
                 <ParentSize>
@@ -890,7 +890,7 @@ export default function() {
           </Link>
         </Tilt>
         <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-          <Link prefetch href="/polygons">
+          <Link href="/polygons">
             <div className="gallery-item" style={{ background: '#7f82e3' }}>
               <div className="image">
                 <ParentSize>
@@ -907,7 +907,7 @@ export default function() {
           </Link>
         </Tilt>
         <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-          <Link prefetch href="/zoom-i">
+          <Link href="/zoom-i">
             <div className="gallery-item" style={{ background: '#0a0a0a' }}>
               <div className="image">
                 <ParentSize>
