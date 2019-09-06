@@ -22,7 +22,7 @@
     "babel": "yarn run babel:cjs && yarn run babel:esm",
     "babel:cjs": "nimbus babel --clean --workspaces=\"@vx/!(demo)\"",
     "babel:esm": "nimbus babel --clean --workspaces=\"@vx/!(demo)\" --esm",
-    "clean": "rm -rf ./packages/*/*/{lib,esm}",
+    "clean": "rm -rf ./packages/**/{lib,esm}",
     "format": "yarn run prettier --write",
     "jest": "NODE_ENV=test nimbus jest --coverage --verbose",
     "lint": "nimbus eslint",
