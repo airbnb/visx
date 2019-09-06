@@ -1,6 +1,6 @@
 {
   "name": "@vx/demo",
-  "version": "0.0.190",
+  "version": "0.0.191",
   "description": "vx demo",
   "repository": "https://github.com/hshoff/vx",
   "scripts": {
@@ -9,12 +9,16 @@
     "start": "next start",
     "test": "jest"
   },
-  "keywords": ["vx", "demo", "examples"],
+  "keywords": [
+    "vx",
+    "demo",
+    "examples"
+  ],
   "author": "@hshoff",
   "license": "MIT",
   "dependencies": {
     "@vx/annotation": "0.0.190",
-    "@vx/axis": "0.0.190",
+    "@vx/axis": "0.0.191",
     "@vx/boxplot": "0.0.190",
     "@vx/brush": "0.0.189",
     "@vx/chord": "0.0.189",
@@ -39,7 +43,7 @@
     "@vx/scale": "0.0.190",
     "@vx/shape": "0.0.190",
     "@vx/stats": "0.0.190",
-    "@vx/text": "0.0.190",
+    "@vx/text": "0.0.191",
     "@vx/threshold": "0.0.190",
     "@vx/tooltip": "0.0.189",
     "@vx/voronoi": "0.0.190",
@@ -68,7 +72,9 @@
     "topojson-client": "^3.0.0"
   },
   "browserify": {
-    "transform": ["babelify"]
+    "transform": [
+      "babelify"
+    ]
   },
   "publishConfig": {
     "access": "public"
