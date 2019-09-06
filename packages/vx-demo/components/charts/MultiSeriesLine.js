@@ -5,7 +5,7 @@ import { curveBasis } from '@vx/curve';
 import { cityTemperature } from '@vx/mock-data';
 import { AxisLeft, AxisBottom } from '@vx/axis';
 import { scaleTime, scaleLinear, scaleOrdinal } from '@vx/scale';
-import { extent, max, min } from 'd3-array';
+import { extent } from 'd3-array';
 import { timeParse } from 'd3-time-format';
 import { compose, withState, withHandlers } from 'recompose';
 
@@ -22,8 +22,8 @@ const data = cityNames.map(cityName => {
     id: cityName,
     values: rawData.map(d => ({
       date: d.date,
-      temperature: d[cityName]
-    }))
+      temperature: d[cityName],
+    })),
   };
 });
 
@@ -47,88 +47,86 @@ const withSelected = compose(
       if (selected.includes(cityId)) fn = removeCityOrResetSelected;
       setSelected(fn(selected, cityId));
     },
-    resetSelected: ({ setSelected }) => event => {
+    resetSelected: ({ setSelected }) => () => {
       setSelected(initialSelectedState);
-    }
-  })
+    },
+  }),
 );
 
 // the chart
-export default withSelected(
-  ({ selected, updateSelected, resetSelected, width, height, margin }) => {
-    // bounds
-    const xMax = width - margin.left - margin.right;
-    const yMax = height - margin.top - margin.bottom;
+export default withSelected(({ selected, updateSelected, width, height, margin }) => {
+  // bounds
+  const xMax = width - margin.left - margin.right;
+  const yMax = height - margin.top - margin.bottom;
 
-    // accessors
-    const x = d => parseDate(d.date);
-    const y = d => +d.temperature;
+  // accessors
+  const x = d => parseDate(d.date);
+  const y = d => +d.temperature;
 
-    // scales
-    const xScale = scaleTime({
-      range: [0, xMax],
-      domain: extent(rawData, x)
-    });
-    const yScale = scaleLinear({
-      range: [yMax, 0],
-      domain: extent(
-        selected.slice().reduce((ret, c) => {
-          return ret.concat(getCity(c).values);
-        }, []),
-        y
-      )
-    });
-    const color = scaleOrdinal({
-      range: ['#3b99d8', '#239f85', '#9a5cb4'],
-      domain: cityNames
-    });
+  // scales
+  const xScale = scaleTime({
+    range: [0, xMax],
+    domain: extent(rawData, x),
+  });
+  const yScale = scaleLinear({
+    range: [yMax, 0],
+    domain: extent(
+      selected.slice().reduce((ret, c) => {
+        return ret.concat(getCity(c).values);
+      }, []),
+      y,
+    ),
+  });
+  const color = scaleOrdinal({
+    range: ['#3b99d8', '#239f85', '#9a5cb4'],
+    domain: cityNames,
+  });
 
-    return (
-      <svg width={width} height={height}>
-        <Group top={margin.top} left={margin.left}>
-          <AxisBottom label="" top={yMax} scale={xScale} hideAxisLine />
-          <AxisLeft scale={yScale} label="Temperature (ºF)" />
-          {selected.map(getCity).map(({ id, values }) => {
-            const lastDatum = values[values.length - 1];
-            return (
-              <g key={`${id}`}>
-                <LinePath
-                  data={values}
-                  xScale={xScale}
-                  yScale={yScale}
-                  x={x}
-                  y={y}
-                  curve={curveBasis}
-                  stroke={color(id)}
-                  strokeWidth={1}
-                />
-                <text
-                  fontSize={9}
-                  dy={'0.35em'}
-                  dx={2}
-                  x={xScale(x(lastDatum))}
-                  y={yScale(y(lastDatum))}
-                >
-                  {id}
-                </text>
-              </g>
-            );
-          })}
-          <Legend
-            data={data}
-            selected={selected}
-            xMax={xMax}
-            yMax={yMax}
-            color={color}
-            updateSelected={updateSelected}
-          />
-        </Group>
-      </svg>
-    );
-  }
-);
+  return (
+    <svg width={width} height={height}>
+      <Group top={margin.top} left={margin.left}>
+        <AxisBottom label="" top={yMax} scale={xScale} hideAxisLine />
+        <AxisLeft scale={yScale} label="Temperature (ºF)" />
+        {selected.map(getCity).map(({ id, values }) => {
+          const lastDatum = values[values.length - 1];
+          return (
+            <g key={`${id}`}>
+              <LinePath
+                data={values}
+                xScale={xScale}
+                yScale={yScale}
+                x={x}
+                y={y}
+                curve={curveBasis}
+                stroke={color(id)}
+                strokeWidth={1}
+              />
+              <text
+                fontSize={9}
+                dy="0.35em"
+                dx={2}
+                x={xScale(x(lastDatum))}
+                y={yScale(y(lastDatum))}
+              >
+                {id}
+              </text>
+            </g>
+          );
+        })}
+        <Legend
+          data={data}
+          selected={selected}
+          xMax={xMax}
+          yMax={yMax}
+          color={color}
+          updateSelected={updateSelected}
+        />
+      </Group>
+    </svg>
+  );
+});
 
-const Legend = ({ data, selected, updateSelected, xMax, yMax, color }) => {
+const Legend = ({ data: legendData, selected, updateSelected, xMax, yMax, color }) => {
   const margin = 20;
   const xPadding = 60;
   const yPadding = 30;
@@ -138,7 +136,7 @@ const Legend = ({ data, selected, updateSelected, xMax, yMax, color }) => {
   const fontSize = 12;
   return (
     <g>
-      {data.map(({ id, values }, i) => {
+      {legendData.map(({ id }, i) => {
         return (
           <g
             key={`legend-${id}`}
@@ -148,7 +146,7 @@ const Legend = ({ data, selected, updateSelected, xMax, yMax, color }) => {
             fillOpacity={selected.includes(id) ? 1 : 0.5}
           >
             <rect width={size} height={size} fill={color(id)} />
-            <text fill={color(id)} dy={'.7em'} dx={fontSize} fontSize={fontSize}>
+            <text fill={color(id)} dy=".7em" dx={fontSize} fontSize={fontSize}>
               {id}
             </text>
           </g>

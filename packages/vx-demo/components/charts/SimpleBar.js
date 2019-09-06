@@ -4,12 +4,12 @@ import { Group } from '@vx/group';
 import { PatternLines } from '@vx/pattern';
 import { letterFrequency } from '@vx/mock-data';
 import { scaleBand, scaleLinear } from '@vx/scale';
-import { extent, max } from 'd3-array';
+import { max } from 'd3-array';
 
 const data = letterFrequency;
 
 function round(value, precision) {
-  var multiplier = Math.pow(10, precision || 0);
+  const multiplier = 10 ** (precision || 0);
   return Math.round(value * multiplier) / multiplier;
 }
 
@@ -26,11 +26,11 @@ export default ({ width, height, margin }) => {
   const xScale = scaleBand({
     rangeRound: [0, xMax],
     domain: data.map(x),
-    padding: 0.4
+    padding: 0.4,
   });
   const yScale = scaleLinear({
     rangeRound: [yMax, 0],
-    domain: [0, max(data, y)]
+    domain: [0, max(data, y)],
   });
 
   return (
@@ -39,11 +39,11 @@ export default ({ width, height, margin }) => {
         id="lines"
         height={5}
         width={5}
-        stroke={'black'}
+        stroke="black"
         strokeWidth={1}
         orientation={['diagonal']}
       />
-      {data.map((d, i) => {
+      {data.map(d => {
         const barHeight = yMax - yScale(y(d));
         return (
           <Group key={`bar-${x(d)}`} left={margin.left} top={margin.top}>
@@ -53,13 +53,13 @@ export default ({ width, height, margin }) => {
               x={xScale(x(d))}
               y={yMax - barHeight}
               fill="url('#lines')"
-              stroke={'black'}
+              stroke="black"
               strokeWidth={1}
             />
-            <text x={xScale(x(d))} y={yMax - barHeight} fill="black" fontSize={14} dy={'-.2em'}>
+            <text x={xScale(x(d))} y={yMax - barHeight} fill="black" fontSize={14} dy="-.2em">
               {`${round(y(d))}%`}
             </text>
-            <text x={xScale(x(d))} y={yMax} fill="black" fontSize={14} dx={'.32em'} dy={'1em'}>
+            <text x={xScale(x(d))} y={yMax} fill="black" fontSize={14} dx=".32em" dy="1em">
               {x(d)}
             </text>
           </Group>

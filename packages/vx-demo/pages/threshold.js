@@ -6,7 +6,7 @@ function Description({ width }) {
   return (
     <div style={{ width, fontSize: 14 }}>
       Based on Mike Bostock's{' '}
-      <a href="https://bl.ocks.org/mbostock/3894205" target="_blank">
+      <a href="https://bl.ocks.org/mbostock/3894205" target="_blank" rel="noopener noreferrer">
         Difference Chart
       </a>
     </div>
@@ -23,7 +23,7 @@ export default () => {
         top: 40,
         left: 40,
         right: 20,
-        bottom: 50
+        bottom: 50,
       }}
     >
       {`import React from 'react';

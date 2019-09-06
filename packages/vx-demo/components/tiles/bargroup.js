@@ -24,18 +24,18 @@ const x0 = d => d.date;
 // scales
 const x0Scale = scaleBand({
   domain: data.map(x0),
-  padding: 0.2
+  padding: 0.2,
 });
 const x1Scale = scaleBand({
   domain: keys,
-  padding: 0.1
+  padding: 0.1,
 });
 const yScale = scaleLinear({
-  domain: [0, Math.max(...data.map(d => Math.max(...keys.map(key => d[key]))))]
+  domain: [0, Math.max(...data.map(d => Math.max(...keys.map(key => d[key]))))],
 });
 const color = scaleOrdinal({
   domain: keys,
-  range: [blue, green, purple]
+  range: [blue, green, purple],
 });
 
 export default ({
@@ -43,8 +43,8 @@ export default ({
   height,
   events = false,
   margin = {
-    top: 40
-  }
+    top: 40,
+  },
 }) => {
   if (width < 10) return null;
 
@@ -84,7 +84,7 @@ export default ({
                         height={bar.height}
                         fill={bar.color}
                         rx={4}
-                        onClick={event => {
+                        onClick={() => {
                           if (!events) return;
                           const { key, value } = bar;
                           alert(JSON.stringify({ key, value }));
@@ -104,11 +104,11 @@ export default ({
         scale={x0Scale}
         stroke={green}
         tickStroke={green}
-        hideAxisLine={true}
-        tickLabelProps={(value, index) => ({
+        hideAxisLine
+        tickLabelProps={() => ({
           fill: green,
           fontSize: 11,
-          textAnchor: 'middle'
+          textAnchor: 'middle',
         })}
       />
     </svg>

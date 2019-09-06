@@ -18,7 +18,7 @@ const initialTransform = {
   translateX: -211.62,
   translateY: 162.59,
   skewX: 0,
-  skewY: 0
+  skewY: 0,
 };
 
 export default class ZoomI extends React.Component {
@@ -31,7 +31,7 @@ export default class ZoomI extends React.Component {
   toggleMiniMap() {
     this.setState(prevState => {
       return {
-        showMiniMap: !prevState.showMiniMap
+        showMiniMap: !prevState.showMiniMap,
       };
     });
   }
@@ -44,7 +44,7 @@ export default class ZoomI extends React.Component {
     const phyllotaxis = points.map((d, i) => gen(i));
 
     return (
-      <React.Fragment>
+      <>
         <Zoom
           width={width}
           height={height}
@@ -211,7 +211,7 @@ export default class ZoomI extends React.Component {
             align-items: flex-end;
           }
         `}</style>
-      </React.Fragment>
+      </>
     );
   }
 }

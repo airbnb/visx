@@ -18,13 +18,13 @@ const y = d => d.value;
 // responsive utils for axis ticks
 function numTicksForHeight(height) {
   if (height <= 300) return 3;
-  if (300 < height && height <= 600) return 5;
+  if (height > 300 && height <= 600) return 5;
   return 10;
 }
 
 function numTicksForWidth(width) {
   if (width <= 300) return 2;
-  if (300 < width && width <= 400) return 5;
+  if (width > 300 && width <= 400) return 5;
   return 10;
 }
 
@@ -38,12 +38,12 @@ export default ({ width, height, margin }) => {
   // scales
   const xScale = scaleTime({
     range: [0, xMax],
-    domain: extent(data, x)
+    domain: extent(data, x),
   });
   const yScale = scaleLinear({
     range: [yMax, 0],
     domain: [0, Math.max(...data.map(y))],
-    nice: true
+    nice: true,
   });
 
   return (
@@ -65,11 +65,11 @@ export default ({ width, height, margin }) => {
         <Area
           data={data}
           x={d => xScale(x(d))}
-          y0={d => yScale.range()[0]}
+          y0={() => yScale.range()[0]}
           y1={d => yScale(y(d))}
           strokeWidth={2}
-          stroke={'transparent'}
-          fill={'url(#linear)'}
+          stroke="transparent"
+          fill="url(#linear)"
           curve={curveBasis}
         />
         <LinePath
@@ -93,17 +93,17 @@ export default ({ width, height, margin }) => {
             fill: '#8e205f',
             textAnchor: 'middle',
             fontSize: 12,
-            fontFamily: 'Arial'
+            fontFamily: 'Arial',
           }}
           stroke="#1b1a1e"
           tickStroke="#8e205f"
-          tickLabelProps={(value, index) => ({
+          tickLabelProps={() => ({
             fill: '#8e205f',
             textAnchor: 'end',
             fontSize: 10,
             fontFamily: 'Arial',
             dx: '-0.25em',
-            dy: '0.25em'
+            dy: '0.25em',
           })}
           tickComponent={({ formattedValue, ...tickProps }) => (
             <text {...tickProps}>{formattedValue}</text>
@@ -120,17 +120,17 @@ export default ({ width, height, margin }) => {
             fill: '#8e205f',
             textAnchor: 'middle',
             fontSize: 12,
-            fontFamily: 'Arial'
+            fontFamily: 'Arial',
           }}
           stroke="#1b1a1e"
           tickStroke="#8e205f"
-          tickLabelProps={(value, index) => ({
+          tickLabelProps={() => ({
             fill: '#8e205f',
             textAnchor: 'start',
             fontSize: 10,
             fontFamily: 'Arial',
             dx: '0.25em',
-            dy: '0.25em'
+            dy: '0.25em',
           })}
         />
         <AxisBottom
@@ -151,7 +151,7 @@ export default ({ width, height, margin }) => {
                   const tickX = tick.to.x;
                   const tickY = tick.to.y + tickLabelSize + axis.tickLength;
                   return (
-                    <Group key={`vx-tick-${tick.value}-${i}`} className={'vx-axis-tick'}>
+                    <Group key={`vx-tick-${tick.value}-${i}`} className="vx-axis-tick">
                       <Line from={tick.from} to={tick.to} stroke={tickColor} />
                       <text
                         transform={`translate(${tickX}, ${tickY}) rotate(${tickRotate})`}

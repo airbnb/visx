@@ -8,28 +8,28 @@ const polygons = [
   {
     sides: 3,
     fill: 'rgb(174, 238, 248)',
-    rotate: 90
+    rotate: 90,
   },
   {
     sides: 4,
     fill: 'rgb(229, 253, 61)',
-    rotate: 45
+    rotate: 45,
   },
   {
     sides: 6,
     fill: 'rgb(229, 130, 255)',
-    rotate: 0
+    rotate: 0,
   },
   {
     sides: 8,
     fill: 'url(#polygon-pink)',
-    rotate: 0
-  }
+    rotate: 0,
+  },
 ];
 
 const yScale = scaleBand({
   domain: polygons.map((p, i) => i),
-  padding: 0.5
+  padding: 0.5,
 });
 
 export default ({ width, height }) => {

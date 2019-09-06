@@ -13,18 +13,18 @@ import { transpose } from 'd3-array';
 // utils
 const range = n => Array.from(Array(n), (d, i) => i);
 const bumps = (n, m) => {
-  let arr = [];
+  const arr = [];
   let i;
-  for (i = 0; i < n; ++i) arr[i] = 0;
-  for (i = 0; i < m; ++i) bump(arr, n);
+  for (i = 0; i < n; i += 1) arr[i] = 0;
+  for (i = 0; i < m; i += 1) bump(arr, n);
   return arr;
 };
 const bump = (arr, n) => {
-  let x = 1 / (0.1 + Math.random());
-  let y = 2 * Math.random() - 0.5;
-  let z = 10 / (0.1 + Math.random());
-  for (var i = 0; i < n; i++) {
-    var w = (i / n - y) * z;
+  const x = 1 / (0.1 + Math.random());
+  const y = 2 * Math.random() - 0.5;
+  const z = 10 / (0.1 + Math.random());
+  for (let i = 0; i < n; i += 1) {
+    const w = (i / n - y) * z;
     arr[i] += x * Math.exp(-w * w);
   }
 };
@@ -36,18 +36,18 @@ const BUMPS_PER_LAYER = 10;
 
 // scales
 const yScale = scaleLinear({
-  domain: [-30, 50]
+  domain: [-30, 50],
 });
 const xScale = scaleLinear({
-  domain: [0, SAMPLES_PER_LAYER - 1]
+  domain: [0, SAMPLES_PER_LAYER - 1],
 });
 const colorScale = scaleOrdinal({
   domain: keys,
-  range: ['#ffc409', '#f14702', '#262d97', 'white', '#036ecd', '#9ecadd', '#51666e']
+  range: ['#ffc409', '#f14702', '#262d97', 'white', '#036ecd', '#9ecadd', '#51666e'],
 });
 const patternScale = scaleOrdinal({
   domain: keys,
-  range: ['mustard', 'cherry', 'navy', 'circles', 'circles', 'circles', 'circles']
+  range: ['mustard', 'cherry', 'navy', 'circles', 'circles', 'circles', 'circles'],
 });
 
 const keys = range(NUM_LAYERS);
@@ -57,7 +57,7 @@ export default class Streamgraph extends React.Component {
     const { width, height } = this.props;
     if (width < 10) return null;
 
-    const layers = transpose(keys.map(d => bumps(SAMPLES_PER_LAYER, BUMPS_PER_LAYER)));
+    const layers = transpose(keys.map(() => bumps(SAMPLES_PER_LAYER, BUMPS_PER_LAYER)));
 
     xScale.range([0, width]);
     yScale.range([height, 0]);
@@ -83,8 +83,8 @@ export default class Streamgraph extends React.Component {
           fill="transparent"
           complement
         />
-        <g onClick={event => this.forceUpdate()} onTouchStart={event => this.forceUpdate()}>
-          <rect x={0} y={0} width={width} height={height} fill={`#ffdede`} rx={14} />
+        <g onClick={() => this.forceUpdate()} onTouchStart={() => this.forceUpdate()}>
+          <rect x={0} y={0} width={width} height={height} fill="#ffdede" rx={14} />
           <Stack
             data={layers}
             keys={keys}
@@ -95,7 +95,7 @@ export default class Streamgraph extends React.Component {
             y1={d => yScale(d[1])}
           >
             {({ stacks, path }) => {
-              return stacks.map((stack, i) => {
+              return stacks.map(stack => {
                 const d = path(stack);
                 const color = colorScale(stack.key);
                 const pattern = patternScale(stack.key);

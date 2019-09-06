@@ -2,7 +2,7 @@ import React from 'react';
 import Dendrogram from '../components/tiles/dendrogram';
 import Show from '../components/show';
 
-export default ({}) => {
+export default () => {
   return (
     <Show
       events
@@ -12,7 +12,7 @@ export default ({}) => {
         top: 80,
         left: 10,
         right: 10,
-        bottom: 80
+        bottom: 80,
       }}
     >
       {`import React from 'react';

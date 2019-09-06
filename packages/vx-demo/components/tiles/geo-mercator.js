@@ -10,9 +10,9 @@ const world = topojson.feature(topology, topology.objects.units);
 const color = scaleQuantize({
   domain: [
     Math.min(...world.features.map(f => f.geometry.coordinates.length)),
-    Math.max(...world.features.map(f => f.geometry.coordinates.length))
+    Math.max(...world.features.map(f => f.geometry.coordinates.length)),
   ],
-  range: ['#ffb01d', '#ffa020', '#ff9221', '#ff8424', '#ff7425', '#fc5e2f', '#f94b3a', '#f63a48']
+  range: ['#ffb01d', '#ffa020', '#ff9221', '#ff8424', '#ff7425', '#fc5e2f', '#f94b3a', '#f63a48'],
 });
 
 export default ({ width, height, events = false }) => {
@@ -29,7 +29,7 @@ export default ({ width, height, events = false }) => {
         {mercator => {
           return (
             <g>
-              <Graticule graticule={g => mercator.path(g)} stroke={'rgba(33,33,33,0.05)'} />
+              <Graticule graticule={g => mercator.path(g)} stroke="rgba(33,33,33,0.05)" />
               {mercator.features.map((feature, i) => {
                 const { feature: f } = feature;
                 return (
@@ -39,7 +39,7 @@ export default ({ width, height, events = false }) => {
                     fill={color(f.geometry.coordinates.length)}
                     stroke={bg}
                     strokeWidth={0.5}
-                    onClick={event => {
+                    onClick={() => {
                       if (!events) return;
                       alert(`Clicked: ${f.properties.name} (${f.id})`);
                     }}

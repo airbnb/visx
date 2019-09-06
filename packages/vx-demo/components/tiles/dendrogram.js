@@ -12,7 +12,7 @@ const aqua = '#37ac8c';
 const merlinsbeard = '#f7f7f3';
 const bg = '#306c90';
 
-const cluster = {
+const clusterData = {
   name: '$',
   children: [
     {
@@ -24,25 +24,25 @@ const cluster = {
           name: 'C',
           children: [
             {
-              name: 'C1'
-            }
-          ]
-        }
-      ]
+              name: 'C1',
+            },
+          ],
+        },
+      ],
     },
     {
       name: 'B',
-      children: [{ name: 'B1' }, { name: 'B2' }, { name: 'B3' }]
+      children: [{ name: 'B1' }, { name: 'B2' }, { name: 'B3' }],
     },
     {
       name: 'X',
       children: [
         {
-          name: 'Z'
-        }
-      ]
-    }
-  ]
+          name: 'Z',
+        },
+      ],
+    },
+  ],
 };
 
 function Node({ node }) {
@@ -64,10 +64,10 @@ function Node({ node }) {
         />
       )}
       <text
-        dy={'.33em'}
+        dy=".33em"
         fontSize={9}
         fontFamily="Arial"
-        textAnchor={'middle'}
+        textAnchor="middle"
         style={{ pointerEvents: 'none' }}
         fill={isParent ? white : citrus}
       >
@@ -87,10 +87,10 @@ function RootNode({ node }) {
     <Group top={node.y} left={node.x}>
       <rect width={width} height={height} y={centerY} x={centerX} fill="url('#top')" />
       <text
-        dy={'.33em'}
+        dy=".33em"
         fontSize={9}
         fontFamily="Arial"
-        textAnchor={'middle'}
+        textAnchor="middle"
         style={{ pointerEvents: 'none' }}
         fill={bg}
       >
@@ -107,12 +107,12 @@ export default ({
     top: 40,
     left: 0,
     right: 0,
-    bottom: 110
-  }
+    bottom: 110,
+  },
 }) => {
   if (width < 10) return null;
 
-  const data = hierarchy(cluster);
+  const data = hierarchy(clusterData);
   const xMax = width - margin.left - margin.right;
   const yMax = height - margin.top - margin.bottom;
 

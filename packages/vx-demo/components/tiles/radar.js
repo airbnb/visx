@@ -23,8 +23,8 @@ export default ({
     top: 40,
     left: 80,
     right: 80,
-    bottom: 80
-  }
+    bottom: 80,
+  },
 }) => {
   if (width < 10) return null;
 
@@ -34,12 +34,12 @@ export default ({
 
   const radiusScale = scaleLinear({
     range: [0, Math.PI * 2],
-    domain: [ANG, 0]
+    domain: [ANG, 0],
   });
 
   const yScale = scaleLinear({
     range: [0, radius],
-    domain: [0, Math.max(...data.map(y))]
+    domain: [0, Math.max(...data.map(y))],
   });
 
   const webs = genAngles(data.length);
@@ -52,7 +52,7 @@ export default ({
       <rect fill={bg} width={width} height={height} rx={14} />
       <Group top={height / 2 - margin.top} left={width / 2}>
         {[...Array(levels)].map((_, i) => {
-          const r = (i + 1) * radius / levels;
+          const r = ((i + 1) * radius) / levels;
           return (
             <LineRadial
               key={`web-${i}`}
@@ -88,30 +88,31 @@ export default ({
 function genAngles(length) {
   return [...Array(length + 1)].map((_, i) => {
     return {
-      angle: i * (ANG / length)
+      angle: i * (ANG / length),
     };
   });
 }
 
 function genPoints(length, radius) {
-  const step = Math.PI * 2 / length;
+  const step = (Math.PI * 2) / length;
   return [...Array(length)].map((_, i) => {
     return {
       x: radius * Math.sin(i * step),
-      y: radius * Math.cos(i * step)
+      y: radius * Math.cos(i * step),
     };
   });
 }
 
-function genPolygonPoints(data, scale, access) {
-  const step = Math.PI * 2 / data.length;
-  const points = new Array(data.length).fill({});
-  const pointString = new Array(data.length + 1).fill('').reduce((res, _, i) => {
-    if (i > data.length) return res;
-    const x = scale(access(data[i - 1])) * Math.sin(i * step);
-    const y = scale(access(data[i - 1])) * Math.cos(i * step);
-    points[i - 1] = { x, y };
-    return (res += `${x},${y} `);
+function genPolygonPoints(dataArray, scale, access) {
+  const step = (Math.PI * 2) / dataArray.length;
+  const points = new Array(dataArray.length).fill({});
+  const pointString = new Array(dataArray.length + 1).fill('').reduce((res, _, i) => {
+    if (i > dataArray.length) return res;
+    const xVal = scale(access(dataArray[i - 1])) * Math.sin(i * step);
+    const yVal = scale(access(dataArray[i - 1])) * Math.cos(i * step);
+    points[i - 1] = { x: xVal, y: yVal };
+    res += `${xVal},${yVal} `;
+    return res;
   });
   points.polygon = pointString;
   return points;

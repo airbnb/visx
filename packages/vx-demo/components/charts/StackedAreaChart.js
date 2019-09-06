@@ -3,15 +3,15 @@ import { Group } from '@vx/group';
 import { AreaStack } from '@vx/shape';
 import { TextOutline } from '@vx/text';
 import { browserUsage } from '@vx/mock-data';
-import { AxisTop, AxisBottom } from '@vx/axis';
+import { AxisLeft, AxisBottom } from '@vx/axis';
 import { scaleTime, scaleLinear } from '@vx/scale';
-import { extent, max } from 'd3-array';
+import { extent } from 'd3-array';
 import { timeParse } from 'd3-time-format';
 import { stack as d3stack } from 'd3-shape';
-import round from '../util/round';
-import colorScale from '../util/sillyColorScale';
 import withState from 'recompose/withState';
 import compose from 'recompose/compose';
+import round from '../util/round';
+import colorScale from '../util/sillyColorScale';
 
 const enhance = compose(withState('selected', 'updateSelected', []));
 
@@ -30,10 +30,10 @@ export default enhance(({ margin, width, height, selected, updateSelected }) => 
 
   const xScale = scaleTime({
     range: [0, xMax],
-    domain: extent(data, x)
+    domain: extent(data, x),
   });
   const yScale = scaleLinear({
-    range: [yMax, 0]
+    range: [yMax, 0],
   });
 
   return (
@@ -43,9 +43,9 @@ export default enhance(({ margin, width, height, selected, updateSelected }) => 
         left={margin.left}
         scale={yScale}
         tickFormat={v => `${round(v * 100)}%`}
-        label={'browser market share (%)'}
-        stroke={'#1b1a1e'}
-        tickTextFill={'#000'}
+        label="browser market share (%)"
+        stroke="#1b1a1e"
+        tickTextFill="#000"
       />
       <Group top={margin.top} left={margin.left}>
         <AreaStack
@@ -61,10 +61,10 @@ export default enhance(({ margin, width, height, selected, updateSelected }) => 
           strokeWidth={1}
           fillOpacity={(d, i) => (selected.includes(browserNames[i]) ? 0.8 : 0.2)}
           fill={(d, i) => colorScale(i)}
-          onMouseEnter={(d, i) => event => {
-            updateSelected(prevState => [browserNames[i]]);
+          onMouseEnter={(d, i) => () => {
+            updateSelected(() => [browserNames[i]]);
           }}
-          onMouseLeave={(d, i) => event => {
+          onMouseLeave={(d, i) => () => {
             updateSelected(prevState => {
               if (prevState.includes(browserNames[i])) return [];
               return prevState;
@@ -73,7 +73,7 @@ export default enhance(({ margin, width, height, selected, updateSelected }) => 
         />
         {stack(data)
           .reverse()
-          .map((series, i) => {
+          .map(series => {
             const lastPoint = series[series.length - 1];
             const lastPointY0 = lastPoint[0] / 100;
             const lastPointY1 = lastPoint[1] / 100;
@@ -85,12 +85,12 @@ export default enhance(({ margin, width, height, selected, updateSelected }) => 
                     fontSize={10}
                     x={xMax}
                     y={yScale(lastPointY1 - (lastPointY1 - lastPointY0) / 2)}
-                    dy={'.5em'}
-                    textAnchor={'end'}
+                    dy=".5em"
+                    textAnchor="end"
                     fill="black"
-                    outlineStroke={'white'}
+                    outlineStroke="white"
                     outlineStrokeWidth={3}
-                    fontFamily={'Roboto Mono'}
+                    fontFamily="Roboto Mono"
                   >
                     {series.key}
                   </TextOutline>
@@ -103,12 +103,12 @@ export default enhance(({ margin, width, height, selected, updateSelected }) => 
         top={height - margin.bottom}
         left={margin.left}
         scale={xScale}
-        label={''}
+        label=""
         tickTextFontSize={9}
         tickTextFontFamily="Roboto Mono"
-        stroke={'#1b1a1e'}
-        tickStroke={'#1b1a1e'}
-        tickTextFill={'black'}
+        stroke="#1b1a1e"
+        tickStroke="#1b1a1e"
+        tickTextFill="black"
       />
     </svg>
   );

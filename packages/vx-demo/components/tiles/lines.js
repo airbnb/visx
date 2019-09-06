@@ -29,27 +29,27 @@ export default ({ width, height }) => {
   // scales
   const xScale = scaleTime({
     range: [0, xMax],
-    domain: extent(data, x)
+    domain: extent(data, x),
   });
   const yScale = scaleLinear({
     range: [yMax, 0],
-    domain: [0, max(data, y)]
+    domain: [0, max(data, y)],
   });
 
   return (
     <svg width={width} height={height}>
       <rect x={0} y={0} width={width} height={height} fill="#242424" rx={14} />
       {xMax > 8 &&
-        series.map((d, i) => {
+        series.map((datum, i) => {
           return (
             <Group key={`lines-${i}`} top={(i * yMax) / 2}>
               <LinePath
-                data={d}
+                data={datum}
                 x={d => xScale(x(d))}
                 y={d => yScale(y(d))}
-                stroke={'#ffffff'}
+                stroke="#ffffff"
                 strokeWidth={1}
-                curve={i % 2 == 0 ? curveMonotoneX : undefined}
+                curve={i % 2 === 0 ? curveMonotoneX : undefined}
               />
             </Group>
           );

@@ -12,7 +12,6 @@ const points = genRandomNormalPoints(600).filter((d, i) => {
 
 const x = d => d[0];
 const y = d => d[1];
-const z = d => d[2];
 
 let tooltipTimeout;
 
@@ -25,21 +24,21 @@ export default withTooltip(props => {
   const xScale = scaleLinear({
     domain: [1.3, 2.2],
     range: [0, xMax],
-    clamp: true
+    clamp: true,
   });
   const yScale = scaleLinear({
     domain: [0.75, 1.6],
     range: [yMax, 0],
-    clamp: true
+    clamp: true,
   });
 
   return (
     <div>
       <svg width={width} height={height}>
         <GradientPinkRed id="pink" />
-        <rect width={width} height={height} rx={14} fill={`url(#pink)`} />
+        <rect width={width} height={height} rx={14} fill="url(#pink)" />
         <Group
-          onTouchStart={event => {
+          onTouchStart={() => {
             if (tooltipTimeout) clearTimeout(tooltipTimeout);
             props.hideTooltip();
           }}
@@ -56,25 +55,25 @@ export default withTooltip(props => {
                 cy={cy}
                 r={r}
                 fill="#f6c431"
-                onMouseEnter={event => {
+                onMouseEnter={() => {
                   if (tooltipTimeout) clearTimeout(tooltipTimeout);
                   props.showTooltip({
                     tooltipLeft: cx,
                     tooltipTop: cy + 20,
-                    tooltipData: point
+                    tooltipData: point,
                   });
                 }}
-                onMouseLeave={event => {
+                onMouseLeave={() => {
                   tooltipTimeout = setTimeout(() => {
                     props.hideTooltip();
                   }, 300);
                 }}
-                onTouchStart={event => {
+                onTouchStart={() => {
                   if (tooltipTimeout) clearTimeout(tooltipTimeout);
                   props.showTooltip({
                     tooltipLeft: cx,
                     tooltipTop: cy - 30,
-                    tooltipData: point
+                    tooltipData: point,
                   });
                 }}
               />

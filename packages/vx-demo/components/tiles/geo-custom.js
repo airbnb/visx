@@ -8,7 +8,7 @@ import {
   geoNaturalEarth1,
   geoConicEquidistant,
   geoOrthographic,
-  geoStereographic
+  geoStereographic,
 } from 'd3-geo';
 import topology from '../../static/vx-geo/world-topo.json';
 
@@ -19,7 +19,7 @@ const world = topojson.feature(topology, topology.objects.units);
 const color = scaleQuantize({
   domain: [
     Math.min(...world.features.map(f => f.geometry.coordinates.length)),
-    Math.max(...world.features.map(f => f.geometry.coordinates.length))
+    Math.max(...world.features.map(f => f.geometry.coordinates.length)),
   ],
   range: [
     '#019ece',
@@ -33,8 +33,8 @@ const color = scaleQuantize({
     '#dde1fe',
     '#8993f9',
     '#b6c8fb',
-    '#65fe8d'
-  ]
+    '#65fe8d',
+  ],
 });
 
 export default class GeoCustom extends React.Component {
@@ -101,7 +101,7 @@ export default class GeoCustom extends React.Component {
                         fill={color(f.geometry.coordinates.length)}
                         stroke={bg}
                         strokeWidth={0.5}
-                        onClick={event => {
+                        onClick={() => {
                           if (!events) return;
                           alert(`Clicked: ${f.properties.name} (${f.id})`);
                         }}

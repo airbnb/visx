@@ -14,7 +14,7 @@ const browsers = browserNames.map(k => ({ label: k, usage: browserUsage[0][k] })
 const usage = d => d.usage;
 const frequency = d => d.frequency;
 
-export default ({ width, height, margin, events = false }) => {
+export default ({ width, height, margin /** events = false */ }) => {
   if (width < 10) return null;
 
   const radius = Math.min(width, height) / 2;
@@ -63,7 +63,7 @@ export default ({ width, height, margin, events = false }) => {
         <Pie
           data={letters}
           pieValue={frequency}
-          pieSortValues={(a, b) => -1}
+          pieSortValues={() => -1}
           outerRadius={radius - 135}
         >
           {pie => {

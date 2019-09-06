@@ -1,6 +1,5 @@
 import React from 'react';
 import { LinePath } from '@vx/shape';
-import { localPoint } from '@vx/event';
 import { Drag } from '@vx/drag';
 import { curveBasis } from '@vx/curve';
 import { LinearGradient } from '@vx/gradient';
@@ -9,7 +8,7 @@ export default class DragII extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: props.data || []
+      data: props.data || [],
     };
   }
 
@@ -21,14 +20,14 @@ export default class DragII extends React.Component {
         <svg width={width} height={height}>
           <LinearGradient id="stroke" from="#ff614e" to="#ffdc64" />
           <rect fill="#04002b" width={width} height={height} rx={14} />
-          {this.state.data.map((d, i) => {
+          {this.state.data.map((datum, i) => {
             return (
               <LinePath
                 key={`line-${i}`}
-                fill={'transparent'}
+                fill="transparent"
                 stroke="url(#stroke)"
                 strokeWidth={3}
-                data={d}
+                data={datum}
                 curve={curveBasis}
                 x={d => d.x}
                 y={d => d.y}
@@ -38,19 +37,19 @@ export default class DragII extends React.Component {
           <Drag
             width={width}
             height={height}
-            resetOnStart={true}
+            resetOnStart
             onDragStart={({ x, y }) => {
               // add the new line with the starting point
-              this.setState((state, props) => {
+              this.setState(state => {
                 const newLine = [{ x, y }];
                 return {
-                  data: state.data.concat([newLine])
+                  data: state.data.concat([newLine]),
                 };
               });
             }}
             onDragMove={({ x, y, dx, dy }) => {
               // add the new point to the current line
-              this.setState((state, props) => {
+              this.setState(state => {
                 const nextData = [...state.data];
                 const point = [{ x: x + dx, y: y + dy }];
                 const i = nextData.length - 1;

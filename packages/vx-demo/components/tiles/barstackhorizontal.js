@@ -35,15 +35,15 @@ const y = d => d.date;
 // scales
 const xScale = scaleLinear({
   domain: [0, Math.max(...totals)],
-  nice: true
+  nice: true,
 });
 const yScale = scaleBand({
   domain: data.map(y),
-  padding: 0.2
+  padding: 0.2,
 });
 const color = scaleOrdinal({
   domain: keys,
-  range: [purple1, purple2, purple3]
+  range: [purple1, purple2, purple3],
 });
 
 let tooltipTimeout;
@@ -57,14 +57,14 @@ export default withTooltip(
       top: 40,
       left: 50,
       right: 40,
-      bottom: 100
+      bottom: 100,
     },
     tooltipOpen,
     tooltipLeft,
     tooltipTop,
     tooltipData,
     hideTooltip,
-    showTooltip
+    showTooltip,
   }) => {
     if (width < 10) return null;
 
@@ -100,23 +100,23 @@ export default withTooltip(
                         width={bar.width}
                         height={bar.height}
                         fill={bar.color}
-                        onClick={event => {
+                        onClick={() => {
                           if (!events) return;
                           alert(`clicked: ${JSON.stringify(bar)}`);
                         }}
-                        onMouseLeave={event => {
+                        onMouseLeave={() => {
                           tooltipTimeout = setTimeout(() => {
                             hideTooltip();
                           }, 300);
                         }}
-                        onMouseMove={event => {
+                        onMouseMove={() => {
                           if (tooltipTimeout) clearTimeout(tooltipTimeout);
                           const top = bar.y + margin.top;
                           const left = bar.x + bar.width + margin.left;
                           showTooltip({
                             tooltipData: bar,
                             tooltipTop: top,
-                            tooltipLeft: left
+                            tooltipLeft: left,
                           });
                         }}
                       />
@@ -126,17 +126,17 @@ export default withTooltip(
               }}
             </BarStackHorizontal>
             <AxisLeft
-              hideAxisLine={true}
-              hideTicks={true}
+              hideAxisLine
+              hideTicks
               scale={yScale}
               tickFormat={formatDate}
               stroke={purple3}
               tickStroke={purple3}
-              tickLabelProps={(value, index) => ({
+              tickLabelProps={() => ({
                 fill: purple3,
                 fontSize: 11,
                 textAnchor: 'end',
-                dy: '0.33em'
+                dy: '0.33em',
               })}
             />
             <AxisBottom
@@ -144,10 +144,10 @@ export default withTooltip(
               scale={xScale}
               stroke={purple3}
               tickStroke={purple3}
-              tickLabelProps={(value, index) => ({
+              tickLabelProps={() => ({
                 fill: purple3,
                 fontSize: 11,
-                textAnchor: 'middle'
+                textAnchor: 'middle',
               })}
             />
           </Group>
@@ -159,7 +159,7 @@ export default withTooltip(
             width: '100%',
             display: 'flex',
             justifyContent: 'center',
-            fontSize: '14px'
+            fontSize: '14px',
           }}
         >
           <LegendOrdinal scale={color} direction="row" labelMargin="0 15px 0 0" />
@@ -171,7 +171,7 @@ export default withTooltip(
             style={{
               minWidth: 60,
               backgroundColor: 'rgba(0,0,0,0.9)',
-              color: 'white'
+              color: 'white',
             }}
           >
             <div style={{ color: color(tooltipData.key) }}>
@@ -185,5 +185,5 @@ export default withTooltip(
         )}
       </div>
     );
-  }
+  },
 );

@@ -10,17 +10,17 @@ import { extent, max } from 'd3-array';
 
 function numTicksForHeight(height) {
   if (height <= 300) return 3;
-  if (300 < height && height <= 600) return 5;
+  if (height > 300 && height <= 600) return 5;
   return 10;
 }
 
 function numTicksForWidth(width) {
   if (width <= 300) return 2;
-  if (300 < width && width <= 400) return 5;
+  if (width > 300 && width <= 400) return 5;
   return 10;
 }
 
-export default ({ margin, data, width, height }) => {
+export default ({ margin, width, height }) => {
   const stock = appleStock;
 
   // bounds
@@ -34,12 +34,12 @@ export default ({ margin, data, width, height }) => {
   // scales
   const xStockScale = scaleTime({
     range: [0, xMax],
-    domain: extent(stock, xStock)
+    domain: extent(stock, xStock),
   });
   const yStockScale = scaleLinear({
     range: [yMax, 0],
     domain: [0, max(stock, yStock)],
-    nice: true
+    nice: true,
   });
 
   return (
@@ -59,8 +59,8 @@ export default ({ margin, data, width, height }) => {
           x={xStock}
           y={yStock}
           strokeWidth={2}
-          stroke={'url(#gradient)'}
-          fill={'url(#gradient)'}
+          stroke="url(#gradient)"
+          fill="url(#gradient)"
         />
       </Group>
       <AxisBottom
@@ -68,14 +68,14 @@ export default ({ margin, data, width, height }) => {
         left={margin.left}
         scale={xStockScale}
         numTicks={numTicksForWidth(width)}
-        label={'date'}
+        label="date"
       />
       <AxisLeft
         top={margin.top}
         left={margin.left}
         scale={yStockScale}
         numTicks={numTicksForHeight(height)}
-        label={'close price ($)'}
+        label="close price ($)"
         hideAxisLine
         hideTicks
         hideZero

@@ -10,8 +10,8 @@ export default ({
     top: 0,
     left: 0,
     right: 0,
-    bottom: 80
-  }
+    bottom: 80,
+  },
 }) => {
   const xMax = width - margin.left - margin.right;
   const yMax = height - margin.top - margin.bottom;
@@ -67,21 +67,14 @@ export default ({
         complement
       />
       <Group top={margin.top} left={margin.left}>
-        <Bar fill={`url(#vLines)`} height={pHeight} width={pWidth} x={0} y={0} rx={14} />
-        <Bar fill={`url(#hLines)`} height={pHeight} width={pWidth} x={pWidth} y={0} rx={14} />
-        <Bar fill={`url(#dLines)`} height={pHeight} width={pWidth} x={pWidth * 2} y={0} rx={14} />
-        <Bar fill={`url(#dhLines)`} height={pHeight} width={pWidth} x={pWidth * 3} y={0} rx={14} />
-        <Bar fill={`url(#Circles)`} height={pHeight} width={pWidth} x={0} y={pHeight} rx={14} />
+        <Bar fill="url(#vLines)" height={pHeight} width={pWidth} x={0} y={0} rx={14} />
+        <Bar fill="url(#hLines)" height={pHeight} width={pWidth} x={pWidth} y={0} rx={14} />
+        <Bar fill="url(#dLines)" height={pHeight} width={pWidth} x={pWidth * 2} y={0} rx={14} />
+        <Bar fill="url(#dhLines)" height={pHeight} width={pWidth} x={pWidth * 3} y={0} rx={14} />
+        <Bar fill="url(#Circles)" height={pHeight} width={pWidth} x={0} y={pHeight} rx={14} />
+        <Bar fill="url(#cCircles)" height={pHeight} width={pWidth} x={pWidth} y={pHeight} rx={14} />
         <Bar
-          fill={`url(#cCircles)`}
-          height={pHeight}
-          width={pWidth}
-          x={pWidth}
-          y={pHeight}
-          rx={14}
-        />
-        <Bar
-          fill={`url(#Waves)`}
+          fill="url(#Waves)"
           height={pHeight}
           width={pWidth}
           x={pWidth * 2}
@@ -89,7 +82,7 @@ export default ({
           rx={14}
         />
         <Bar
-          fill={`url(#bWaves)`}
+          fill="url(#bWaves)"
           height={pHeight}
           width={pWidth}
           x={pWidth * 3}

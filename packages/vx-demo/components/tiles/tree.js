@@ -14,7 +14,7 @@ const lightpurple = '#374469';
 const white = '#ffffff';
 const bg = '#272b4d';
 
-const tree = {
+const rawTree = {
   name: 'T',
   children: [
     {
@@ -27,32 +27,32 @@ const tree = {
           name: 'C',
           children: [
             {
-              name: 'C1'
+              name: 'C1',
             },
             {
               name: 'D',
               children: [
                 {
-                  name: 'D1'
+                  name: 'D1',
                 },
                 {
-                  name: 'D2'
+                  name: 'D2',
                 },
                 {
-                  name: 'D3'
-                }
-              ]
-            }
-          ]
-        }
-      ]
+                  name: 'D3',
+                },
+              ],
+            },
+          ],
+        },
+      ],
     },
     { name: 'Z' },
     {
       name: 'B',
-      children: [{ name: 'B1' }, { name: 'B2' }, { name: 'B3' }]
-    }
-  ]
+      children: [{ name: 'B1' }, { name: 'B2' }, { name: 'B3' }],
+    },
+  ],
 };
 
 function Node({ node }) {
@@ -76,7 +76,7 @@ function Node({ node }) {
         fill={bg}
         stroke={green}
         strokeWidth={1}
-        strokeDasharray={'2,2'}
+        strokeDasharray="2,2"
         strokeOpacity={0.6}
         rx={10}
         onClick={() => {
@@ -84,10 +84,10 @@ function Node({ node }) {
         }}
       />
       <text
-        dy={'.33em'}
+        dy=".33em"
         fontSize={9}
         fontFamily="Arial"
-        textAnchor={'middle'}
+        textAnchor="middle"
         fill={green}
         style={{ pointerEvents: 'none' }}
       >
@@ -102,10 +102,10 @@ function RootNode({ node }) {
     <Group top={node.x} left={node.y}>
       <circle r={12} fill="url('#lg')" />
       <text
-        dy={'.33em'}
+        dy=".33em"
         fontSize={9}
         fontFamily="Arial"
-        textAnchor={'middle'}
+        textAnchor="middle"
         style={{ pointerEvents: 'none' }}
         fill={plum}
       >
@@ -136,10 +136,10 @@ function ParentNode({ node }) {
         }}
       />
       <text
-        dy={'.33em'}
+        dy=".33em"
         fontSize={9}
         fontFamily="Arial"
-        textAnchor={'middle'}
+        textAnchor="middle"
         style={{ pointerEvents: 'none' }}
         fill={white}
       >
@@ -156,11 +156,11 @@ export default ({
     top: 10,
     left: 30,
     right: 40,
-    bottom: 80
-  }
+    bottom: 80,
+  },
 }) => {
   if (width < 10) return null;
-  const data = hierarchy(tree);
+  const data = hierarchy(rawTree);
   const yMax = height - margin.top - margin.bottom;
   const xMax = width - margin.left - margin.right;
 

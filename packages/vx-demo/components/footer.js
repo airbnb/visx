@@ -4,7 +4,7 @@ export default () => {
   return (
     <div className="footer">
       <div>
-        <img src="static/favicon.ico" />
+        <img src="static/favicon.ico" alt="vx" />
       </div>
       <div>
         made by <a href="https://twitter.com/hshoff">@hshoff</a>

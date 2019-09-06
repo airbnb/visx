@@ -17,10 +17,10 @@ const Lines = ({ lines }) => {
 export default ({ children }) => {
   const match = children.match(/\n(?!$)/g);
   const linesNum = match ? match.length + 1 : 1;
-  let lines = new Array(linesNum + 1).fill(1);
+  const lines = new Array(linesNum + 1).fill(1);
   const html = [
     ReactDOMServer.renderToString(<Lines lines={lines} />),
-    Prism.highlight(children, Prism.languages.jsx)
+    Prism.highlight(children, Prism.languages.jsx),
   ].join('');
 
   return (

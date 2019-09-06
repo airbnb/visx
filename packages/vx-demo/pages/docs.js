@@ -1,3 +1,4 @@
+/* eslint jsx-a11y/anchor-has-content: 'off' */
 import React from 'react';
 import Page from '../components/page';
 import Footer from '../components/footer';
@@ -7,7 +8,8 @@ export default () => (
     <div className="page-left">
       <div className="comingsoon">
         <h1>
-          <a name="packages" />Packages
+          <a name="packages" />
+          Packages
         </h1>
       </div>
       <ul>

@@ -2,7 +2,6 @@ import React from 'react';
 import cx from 'classnames';
 import { Grid } from '@vx/grid';
 import { Group } from '@vx/group';
-import { Point } from '@vx/point';
 import { GlyphDot } from '@vx/glyph';
 import { LinePath } from '@vx/shape';
 import { curveMonotoneX } from '@vx/curve';
@@ -16,13 +15,13 @@ function identity(x) {
 
 function numTicksForHeight(height) {
   if (height <= 300) return 3;
-  if (300 < height && height <= 600) return 5;
+  if (height > 300 && height <= 600) return 5;
   return 10;
 }
 
 function numTicksForWidth(width) {
   if (width <= 300) return 2;
-  if (300 < width && width <= 400) return 5;
+  if (width > 300 && width <= 400) return 5;
   return 10;
 }
 
@@ -44,13 +43,13 @@ export default ({ margin, dataset, width, height }) => {
   // scales
   const xScale = scaleTime({
     range: [0, xMax],
-    domain: extent(allData, x)
+    domain: extent(allData, x),
   });
   const yScale = scaleLinear({
     range: [yMax, 0],
     domain: [0, max(allData, y)],
     nice: true,
-    clamp: true
+    clamp: true,
   });
 
   const yFormat = yScale.tickFormat ? yScale.tickFormat() : identity;
@@ -62,7 +61,7 @@ export default ({ margin, dataset, width, height }) => {
         left={width - margin.right}
         scale={yScale}
         numTicks={numTicksForHeight(height)}
-        label={'value'}
+        label="value"
         hideZero
       />
       <Group top={margin.top} left={margin.left}>
@@ -87,10 +86,10 @@ export default ({ margin, dataset, width, height }) => {
               strokeWidth={series.chart.strokeWidth}
               strokeDasharray={series.chart.strokeDasharray}
               curve={curveMonotoneX}
-              glyph={(d, i) => {
+              glyph={(d, j) => {
                 return (
                   <GlyphDot
-                    key={`line-point-${i}`}
+                    key={`line-point-${j}`}
                     className={cx('vx-linepath-point')}
                     cx={xScale(x(d))}
                     cy={yScale(y(d))}
@@ -131,7 +130,7 @@ export default ({ margin, dataset, width, height }) => {
         left={margin.left}
         scale={xScale}
         numTicks={numTicksForWidth(width)}
-        label={'time'}
+        label="time"
         hideTicks
       />
     </svg>

@@ -17,7 +17,7 @@ const colors = [
   '#e582ff',
   '#ff00d4',
   '#270eff',
-  '#827ce2'
+  '#827ce2',
 ];
 
 function genCircles({ num, width, height }) {
@@ -29,7 +29,7 @@ function genCircles({ num, width, height }) {
         id: i,
         radius,
         x: Math.round(Math.random() * (width - radius * 2) + radius),
-        y: Math.round(Math.random() * (height - radius * 2) + radius)
+        y: Math.round(Math.random() * (height - radius * 2) + radius),
       };
     });
 }
@@ -38,27 +38,27 @@ const genItems = ({ width, height }) =>
   genCircles({
     num: width < 360 ? 40 : 185,
     width,
-    height
+    height,
   });
 
 export default class DragI extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: genItems({ ...props })
+      items: genItems({ ...props }),
     };
     this.colorScale = scaleOrdinal({
       range: colors,
-      domain: this.state.items.map(d => d.id)
+      domain: this.state.items.map(d => d.id),
     });
   }
 
   componentWillReceiveProps(nextProps) {
-    const { width, height } = nextProps;
+    const { width } = nextProps;
     if (width !== this.props.width) {
       this.setState(() => {
         return {
-          items: genItems({ ...nextProps })
+          items: genItems({ ...nextProps }),
         };
       });
     }
@@ -82,9 +82,9 @@ export default class DragI extends React.Component {
                 // so we need to move the data item
                 // to end of the array for it to be drawn
                 // "on top of" the other data items
-                this.setState((state, props) => {
+                this.setState(state => {
                   return {
-                    items: raise(state.items, i)
+                    items: raise(state.items, i),
                   };
                 });
               }}

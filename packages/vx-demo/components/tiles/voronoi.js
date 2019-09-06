@@ -12,8 +12,8 @@ export default ({
     top: 0,
     left: 0,
     right: 0,
-    bottom: 76
-  }
+    bottom: 76,
+  },
 }) => {
   if (width < 10) return <div />;
   const innerWidth = width - margin.left - margin.right;
@@ -26,14 +26,14 @@ export default ({
       y: Math.random() * innerHeight,
       id: Math.random()
         .toString(36)
-        .slice(2)
+        .slice(2),
     }));
 
   const voronoiLayout = voronoi({
     x: d => d.x,
     y: d => d.y,
     width: innerWidth,
-    height: innerHeight
+    height: innerHeight,
   });
 
   const polygons = voronoiLayout.polygons(data);

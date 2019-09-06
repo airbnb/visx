@@ -10,7 +10,7 @@ export default () => {
         top: 10,
         left: 40,
         right: 30,
-        bottom: 80
+        bottom: 80,
       }}
       component={Heatmap}
       title="Heatmaps"

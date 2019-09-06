@@ -18,17 +18,17 @@ const sf = d => d['San Francisco'];
 
 // scales
 const xScale = scaleTime({
-  domain: [Math.min(...data.map(date)), Math.max(...data.map(date))]
+  domain: [Math.min(...data.map(date)), Math.max(...data.map(date))],
 });
 const yScale = scaleLinear({
   domain: [
     Math.min(...data.map(d => Math.min(ny(d), sf(d)))),
-    Math.max(...data.map(d => Math.max(ny(d), sf(d))))
+    Math.max(...data.map(d => Math.max(ny(d), sf(d)))),
   ],
-  nice: true
+  nice: true,
 });
 
-export default function Theshold({ width, height, margin, events }) {
+export default function Theshold({ width, height, margin /** events */ }) {
   if (width < 10) return null;
 
   // bounds
@@ -62,11 +62,11 @@ export default function Theshold({ width, height, margin, events }) {
             curve={curveBasis}
             belowAreaProps={{
               fill: 'red',
-              fillOpacity: 0.4
+              fillOpacity: 0.4,
             }}
             aboveAreaProps={{
               fill: 'green',
-              fillOpacity: 0.4
+              fillOpacity: 0.4,
             }}
           />
           <LinePath

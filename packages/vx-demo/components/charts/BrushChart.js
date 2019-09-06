@@ -4,8 +4,8 @@ import { scaleLinear } from '@vx/scale';
 import { Group } from '@vx/group';
 import { AxisLeft, AxisBottom } from '@vx/axis';
 import { BoxBrush, withBrush, getCoordsFromEvent, constrainToRegion } from '@vx/brush';
-import colors from '../util/sillyColorScale';
 import { Motion, spring } from 'react-motion';
+import colors from '../util/sillyColorScale';
 
 const points = genRandomNormalPoints();
 
@@ -18,24 +18,24 @@ class BrushChart extends React.Component {
       x0: margin.left,
       x1: width - margin.left,
       y0: margin.top,
-      y1: height - margin.top
+      y1: height - margin.top,
     };
 
     this.initialDomain = {
       x: [-4.5, 4.5],
-      y: [-4.5 / 2, 4.5 / 2]
+      y: [-4.5 / 2, 4.5 / 2],
     };
 
     this.xScale = scaleLinear({
       domain: this.initialDomain.x,
       range: [0, width - margin.left - margin.right],
-      clamp: true
+      clamp: true,
     });
 
     this.yScale = scaleLinear({
       domain: this.initialDomain.y,
       range: [height - margin.top - margin.bottom, 0],
-      clamp: true
+      clamp: true,
     });
 
     this.handleMouseDown = this.handleMouseDown.bind(this);
@@ -57,7 +57,7 @@ class BrushChart extends React.Component {
   }
 
   handleMouseMove(event) {
-    const { brush, onBrushDrag, updateBrush } = this.props;
+    const { brush, onBrushDrag } = this.props;
     // only update the brush region if we're dragging
     if (!brush.isBrushing) return;
     const { extent: region } = this;
@@ -110,17 +110,17 @@ class BrushChart extends React.Component {
           scale={xScale}
           top={yMax + margin.top}
           left={margin.left}
-          label={''}
-          stroke={'#1b1a1e'}
-          tickTextFill={'#1b1a1e'}
+          label=""
+          stroke="#1b1a1e"
+          tickTextFill="#1b1a1e"
         />
         <AxisLeft
           scale={yScale}
           top={margin.top}
           left={margin.left}
-          label={''}
-          stroke={'#1b1a1e'}
-          tickTextFill={'#1b1a1e'}
+          label=""
+          stroke="#1b1a1e"
+          tickTextFill="#1b1a1e"
         />
         <Group top={margin.top} left={margin.left}>
           {points.map(point => {
@@ -130,7 +130,7 @@ class BrushChart extends React.Component {
                 defaultStyle={{ x: xMax / 2, y: yMax / 2 }}
                 style={{
                   x: spring(xScale(x(point))),
-                  y: spring(yScale(y(point)))
+                  y: spring(yScale(y(point))),
                 }}
               >
                 {interpolatingStyle => {

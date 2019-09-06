@@ -22,19 +22,19 @@ export default ({ width, height, events = false }) => {
   const xScale = scaleBand({
     rangeRound: [0, xMax],
     domain: data.map(x),
-    padding: 0.4
+    padding: 0.4,
   });
   const yScale = scaleLinear({
     rangeRound: [yMax, 0],
-    domain: [0, Math.max(...data.map(y))]
+    domain: [0, Math.max(...data.map(y))],
   });
 
   return (
     <svg width={width} height={height}>
       <GradientTealBlue id="teal" />
-      <rect width={width} height={height} fill={`url(#teal)`} rx={14} />
+      <rect width={width} height={height} fill="url(#teal)" rx={14} />
       <Group top={40}>
-        {data.map((d, i) => {
+        {data.map(d => {
           const letter = x(d);
           const barWidth = xScale.bandwidth();
           const barHeight = yMax - yScale(y(d));
@@ -48,7 +48,7 @@ export default ({ width, height, events = false }) => {
               width={barWidth}
               height={barHeight}
               fill="rgba(23, 233, 217, .5)"
-              onClick={event => {
+              onClick={() => {
                 if (!events) return;
                 alert(`clicked: ${JSON.stringify(Object.values(d))}`);
               }}

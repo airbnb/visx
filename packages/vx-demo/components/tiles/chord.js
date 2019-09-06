@@ -19,7 +19,7 @@ const matrix = [
   [11975, 5871, 8916, 2868],
   [1951, 10048, 2060, 6171],
   [8010, 16145, 8090, 8045],
-  [1013, 990, 940, 6907]
+  [1013, 990, 940, 6907],
 ];
 
 function descending(a, b) {
@@ -28,7 +28,7 @@ function descending(a, b) {
 
 const color = scaleOrdinal({
   domain: [1, 2, 3, 4],
-  range: ['url(#gpinkorange)', 'url(#gpurplered)', 'url(#gpurplegreen)', 'url(#gbluelime)']
+  range: ['url(#gpinkorange)', 'url(#gpurplered)', 'url(#gpurplegreen)', 'url(#gbluelime)'],
 });
 
 export default ({ width, height, centerSize = 20, events = false }) => {
@@ -58,7 +58,8 @@ export default ({ width, height, centerSize = 20, events = false }) => {
                         innerRadius={innerRadius}
                         outerRadius={outerRadius}
                         fill={color(i)}
-                        onClick={event => {
+                        onClick={() => {
+                          if (!events) return;
                           alert(`${JSON.stringify(group)}`);
                         }}
                       />
@@ -72,7 +73,7 @@ export default ({ width, height, centerSize = 20, events = false }) => {
                         radius={innerRadius}
                         fill={color(i)}
                         fillOpacity={0.75}
-                        onClick={event => {
+                        onClick={() => {
                           alert(`${JSON.stringify(chord)}`);
                         }}
                       />

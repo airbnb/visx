@@ -1,7 +1,7 @@
 import React from 'react';
 import Codeblock from './Codeblock';
 
-export default ({}) => {
+export default () => {
   return (
     <Codeblock>
       {`// SimpleBar.js

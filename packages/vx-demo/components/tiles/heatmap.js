@@ -11,8 +11,8 @@ const cool2 = '#b4fbde';
 const bg = '#28272c';
 
 const data = genBins(16, 16);
-const max = (data, value = d => d) => Math.max(...data.map(value));
-const min = (data, value = d => d) => Math.min(...data.map(value));
+const max = (allData, value = d => d) => Math.max(...allData.map(value));
+const min = (allData, value = d => d) => Math.min(...allData.map(value));
 
 // accessors
 const bins = d => d.bins;
@@ -23,22 +23,22 @@ const bucketSizeMax = max(data, d => bins(d).length);
 
 // scales
 const xScale = scaleLinear({
-  domain: [0, data.length]
+  domain: [0, data.length],
 });
 const yScale = scaleLinear({
-  domain: [0, bucketSizeMax]
+  domain: [0, bucketSizeMax],
 });
 const circleColorScale = scaleLinear({
   range: [hot1, hot2],
-  domain: [0, colorMax]
+  domain: [0, colorMax],
 });
 const rectColorScale = scaleLinear({
   range: [cool1, cool2],
-  domain: [0, colorMax]
+  domain: [0, colorMax],
 });
 const opacityScale = scaleLinear({
   range: [0.1, 1],
-  domain: [0, colorMax]
+  domain: [0, colorMax],
 });
 
 export default ({
@@ -49,9 +49,9 @@ export default ({
     top: 10,
     left: 20,
     right: 20,
-    bottom: 110
+    bottom: 110,
   },
-  separation = 20
+  separation = 20,
 }) => {
   if (width < 10) return null;
 
@@ -85,8 +85,8 @@ export default ({
           gap={2}
         >
           {heatmap => {
-            return heatmap.map(bins => {
-              return bins.map(bin => {
+            return heatmap.map(heatmapBins => {
+              return heatmapBins.map(bin => {
                 return (
                   <circle
                     key={`heatmap-circle-${bin.row}-${bin.column}`}
@@ -96,7 +96,7 @@ export default ({
                     r={bin.r}
                     fill={bin.color}
                     fillOpacity={bin.opacity}
-                    onClick={event => {
+                    onClick={() => {
                       if (!events) return;
                       const { row, column } = bin;
                       alert(JSON.stringify({ row, column, ...bin.bin }));
@@ -120,8 +120,8 @@ export default ({
           gap={2}
         >
           {heatmap => {
-            return heatmap.map(bins => {
-              return bins.map(bin => {
+            return heatmap.map(heatmapBins => {
+              return heatmapBins.map(bin => {
                 return (
                   <rect
                     key={`heatmap-rect-${bin.row}-${bin.column}`}
@@ -132,7 +132,7 @@ export default ({
                     y={bin.y}
                     fill={bin.color}
                     fillOpacity={bin.opacity}
-                    onClick={event => {
+                    onClick={() => {
                       if (!events) return;
                       const { row, column } = bin;
                       alert(JSON.stringify({ row, column, ...bin.bin }));

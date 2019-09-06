@@ -10,7 +10,7 @@ const neighborRadius = 75;
 
 const extent = (data, value = d => d) => [
   Math.min(...data.map(value)),
-  Math.max(...data.map(value))
+  Math.max(...data.map(value)),
 ];
 
 const data = Array(200)
@@ -20,7 +20,7 @@ const data = Array(200)
     y: Math.random(),
     id: Math.random()
       .toString(36)
-      .slice(2)
+      .slice(2),
   }));
 
 class VoronoiChart extends React.PureComponent {
@@ -31,19 +31,19 @@ class VoronoiChart extends React.PureComponent {
 
     const xScale = scaleLinear({
       domain: extent(data, d => d.x),
-      range: [0, innerWidth]
+      range: [0, innerWidth],
     });
 
     const yScale = scaleLinear({
       domain: extent(data, d => d.y),
-      range: [innerHeight, 0]
+      range: [innerHeight, 0],
     });
 
     const voronoiDiagram = voronoi({
       x: d => xScale(d.x),
       y: d => yScale(d.y),
       width: innerWidth,
-      height: innerHeight
+      height: innerHeight,
     })(data);
 
     return {
@@ -53,7 +53,7 @@ class VoronoiChart extends React.PureComponent {
       yScale,
       voronoiDiagram,
       innerWidth,
-      innerHeight
+      innerHeight,
     };
   }
 
@@ -96,7 +96,7 @@ class VoronoiChart extends React.PureComponent {
       xScale,
       yScale,
       selected,
-      neighbors
+      neighbors,
     } = this.state;
 
     const polygons = voronoiDiagram.polygons();

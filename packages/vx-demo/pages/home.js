@@ -45,9 +45,8 @@ export default () => (
             Mixing two mental models for updating the DOM is never a good time. Copy and pasting d3
             code into <code>componentDidMount()</code> is just that. This collection of components
             lets you easily build your own reusable visualization charts or library without having
-            to learn d3. No more selections or <code>enter()</code>/<code>exit()</code>/<code>
-              update()
-            </code>.
+            to learn d3. No more selections or <code>enter()</code>/<code>exit()</code>/
+            <code>update()</code>.
           </p>
         </div>
         <div className="content">

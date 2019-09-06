@@ -23,10 +23,10 @@ export default ({ width, height, margin }) => {
   // scales
   const xScale = scaleTime({
     range: [0, xMax],
-    domain: [Math.min(...data.map(x)), Math.max(...data.map(x))]
+    domain: [Math.min(...data.map(x)), Math.max(...data.map(x))],
   });
   const yScale = scaleLinear({
-    range: [yMax, 0]
+    range: [yMax, 0],
   });
 
   return (
@@ -51,7 +51,7 @@ export default ({ width, height, margin }) => {
                 d={path(stack)}
                 stroke="transparent"
                 fill="url(#OrangeRed)"
-                onClick={event => alert(`${stack.key}`)}
+                onClick={() => alert(`${stack.key}`)}
               />
             );
           });

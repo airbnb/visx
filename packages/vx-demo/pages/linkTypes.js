@@ -2,7 +2,7 @@ import React from 'react';
 import LinkTypes from '../components/tiles/linkTypes';
 import Show from '../components/show';
 
-export default ({}) => {
+export default () => {
   return (
     <Show
       events
@@ -12,7 +12,7 @@ export default ({}) => {
         top: 40,
         left: 40,
         right: 40,
-        bottom: 40
+        bottom: 40,
       }}
     >
       {`import React from 'react';

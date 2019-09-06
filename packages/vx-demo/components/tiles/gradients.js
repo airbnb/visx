@@ -8,10 +8,9 @@ import {
   GradientPinkRed,
   GradientPurpleOrange,
   GradientPurpleRed,
-  GradientPurpleTeal,
   GradientSteelPurple,
   GradientTealBlue,
-  RadialGradient
+  RadialGradient,
 } from '@vx/gradient';
 
 export default ({
@@ -21,8 +20,8 @@ export default ({
     top: 0,
     left: 0,
     right: 0,
-    bottom: 80
-  }
+    bottom: 80,
+  },
 }) => {
   let w = width / 4;
   let h = (height - margin.bottom) / 2;
@@ -37,7 +36,7 @@ export default ({
       <GradientPinkRed id="PinkRed" vertical={false} />
       <GradientPurpleOrange id="PurpleOrange" vertical={false} />
       <GradientPurpleRed id="PurpleRed" vertical={false} />
-      <RadialGradient from="#55bdd5" to="#4f3681" id="Radial" r={'80%'} />
+      <RadialGradient from="#55bdd5" to="#4f3681" id="Radial" r="80%" />
       <GradientSteelPurple id="SteelPurple" vertical={false} />
       <GradientTealBlue id="TealBlue" vertical={false} />
       <Bar
@@ -45,7 +44,7 @@ export default ({
         y={0}
         width={w}
         height={h}
-        fill={`url(#LightgreenGreen)`}
+        fill="url(#LightgreenGreen)"
         stroke="#ffffff"
         strokeWidth={8}
         rx={14}
@@ -55,7 +54,7 @@ export default ({
         y={0}
         width={w}
         height={h}
-        fill={`url(#OrangeRed)`}
+        fill="url(#OrangeRed)"
         rx={14}
         stroke="#ffffff"
         strokeWidth={8}
@@ -65,7 +64,7 @@ export default ({
         y={0}
         width={w}
         height={h}
-        fill={`url(#PinkBlue)`}
+        fill="url(#PinkBlue)"
         rx={14}
         stroke="#ffffff"
         strokeWidth={8}
@@ -75,7 +74,7 @@ export default ({
         y={0}
         width={w}
         height={h}
-        fill={`url(#DarkgreenGreen)`}
+        fill="url(#DarkgreenGreen)"
         rx={14}
         stroke="#ffffff"
         strokeWidth={8}
@@ -85,7 +84,7 @@ export default ({
         y={h}
         width={w}
         height={h}
-        fill={`url(#PinkRed)`}
+        fill="url(#PinkRed)"
         rx={14}
         stroke="#ffffff"
         strokeWidth={8}
@@ -95,7 +94,7 @@ export default ({
         y={h}
         width={w}
         height={h}
-        fill={`url(#TealBlue)`}
+        fill="url(#TealBlue)"
         rx={14}
         stroke="#ffffff"
         strokeWidth={8}
@@ -105,7 +104,7 @@ export default ({
         y={h}
         width={w}
         height={h}
-        fill={`url(#PurpleOrange)`}
+        fill="url(#PurpleOrange)"
         rx={14}
         stroke="#ffffff"
         strokeWidth={8}
@@ -115,7 +114,7 @@ export default ({
         y={h}
         width={w}
         height={h}
-        fill={`url(#Radial)`}
+        fill="url(#Radial)"
         rx={14}
         stroke="#ffffff"
         strokeWidth={8}

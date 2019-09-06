@@ -27,7 +27,7 @@ class Area extends React.Component {
     super(props);
     this.handleTooltip = this.handleTooltip.bind(this);
   }
-  handleTooltip({ event, data, xStock, xScale, yScale }) {
+  handleTooltip({ event, data, xStock: getXStock, xScale, yScale }) {
     const { showTooltip } = this.props;
     const { x } = localPoint(event);
     const x0 = xScale.invert(x);
@@ -36,25 +36,16 @@ class Area extends React.Component {
     const d1 = data[index];
     let d = d0;
     if (d1 && d1.date) {
-      d = x0 - xStock(d0.date) > xStock(d1.date) - x0 ? d1 : d0;
+      d = x0 - getXStock(d0.date) > getXStock(d1.date) - x0 ? d1 : d0;
     }
     showTooltip({
       tooltipData: d,
       tooltipLeft: x,
-      tooltipTop: yScale(d.close)
+      tooltipTop: yScale(d.close),
     });
   }
   render() {
-    const {
-      width,
-      height,
-      margin,
-      hideTooltip,
-      tooltipData,
-      tooltipTop,
-      tooltipLeft,
-      events
-    } = this.props;
+    const { width, height, margin, hideTooltip, tooltipData, tooltipTop, tooltipLeft } = this.props;
     if (width < 10) return null;
 
     // bounds
@@ -64,17 +55,23 @@ class Area extends React.Component {
     // scales
     const xScale = scaleTime({
       range: [0, xMax],
-      domain: extent(stock, xStock)
+      domain: extent(stock, xStock),
     });
     const yScale = scaleLinear({
       range: [yMax, 0],
       domain: [0, max(stock, yStock) + yMax / 3],
-      nice: true
+      nice: true,
     });
 
     return (
       <div>
-        <svg ref={s => (this.svg = s)} width={width} height={height}>
+        <svg
+          ref={s => {
+            this.svg = s;
+          }}
+          width={width}
+          height={height}
+        >
           <rect x={0} y={0} width={width} height={height} fill="#32deaa" rx={14} />
           <defs>
             <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -102,8 +99,8 @@ class Area extends React.Component {
             y={d => yScale(yStock(d))}
             yScale={yScale}
             strokeWidth={1}
-            stroke={'url(#gradient)'}
-            fill={'url(#gradient)'}
+            stroke="url(#gradient)"
+            fill="url(#gradient)"
             curve={curveMonotoneX}
           />
           <Bar
@@ -120,7 +117,7 @@ class Area extends React.Component {
                 xStock,
                 xScale,
                 yScale,
-                data: stock
+                data: stock,
               })
             }
             onTouchMove={event =>
@@ -129,7 +126,7 @@ class Area extends React.Component {
                 xStock,
                 xScale,
                 yScale,
-                data: stock
+                data: stock,
               })
             }
             onMouseMove={event =>
@@ -138,10 +135,10 @@ class Area extends React.Component {
                 xStock,
                 xScale,
                 yScale,
-                data: stock
+                data: stock,
               })
             }
-            onMouseLeave={event => hideTooltip()}
+            onMouseLeave={() => hideTooltip()}
           />
           {tooltipData && (
             <g>
@@ -183,7 +180,7 @@ class Area extends React.Component {
               left={tooltipLeft + 12}
               style={{
                 backgroundColor: 'rgba(92, 119, 235, 1.000)',
-                color: 'white'
+                color: 'white',
               }}
             >
               {`$${yStock(tooltipData)}`}
@@ -192,7 +189,7 @@ class Area extends React.Component {
               top={yMax - 14}
               left={tooltipLeft}
               style={{
-                transform: 'translateX(-50%)'
+                transform: 'translateX(-50%)',
               }}
             >
               {formatDate(xStock(tooltipData))}

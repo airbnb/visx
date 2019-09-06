@@ -1,5 +1,4 @@
 import React from 'react';
-import cx from 'classnames';
 import { Grid } from '@vx/grid';
 import { Group } from '@vx/group';
 import { Point } from '@vx/point';
@@ -11,19 +10,15 @@ import { scaleTime, scaleLinear } from '@vx/scale';
 import { LinePathAnnotation } from '@vx/annotation';
 import { extent, max } from 'd3-array';
 
-function identity(x) {
-  return x;
-}
-
 function numTicksForHeight(height) {
   if (height <= 300) return 3;
-  if (300 < height && height <= 600) return 5;
+  if (height > 300 && height <= 600) return 5;
   return 10;
 }
 
 function numTicksForWidth(width) {
   if (width <= 300) return 2;
-  if (300 < width && width <= 400) return 5;
+  if (width > 300 && width <= 400) return 5;
   return 10;
 }
 
@@ -46,31 +41,28 @@ export default ({ margin, dataset, width, height }) => {
   const xScale = scaleTime({
     range: [0, xMax],
     domain: extent(allData, x),
-    nice: true
+    nice: true,
   });
   const yScale = scaleLinear({
     range: [yMax, 0],
     domain: [0, max(allData, y)],
-    nice: true
+    nice: true,
   });
-
-  const yFormat = yScale.tickFormat ? yScale.tickFormat() : identity;
-  const xFormat = xScale.tickFormat ? xScale.tickFormat() : identity;
 
   const markerDatum = allData[3];
   const markerLabel = `Deploy`;
   const markerFrom = new Point({
     x: xScale(x(markerDatum)),
-    y: 0
+    y: 0,
   });
   const markerTo = new Point({
     x: xScale(x(markerDatum)),
-    y: yMax
+    y: yMax,
   });
 
   const annotationPoint = new Point({
     x: xScale(x(allData[3])),
-    y: yScale(y(allData[3]))
+    y: yScale(y(allData[3])),
   });
 
   return (
@@ -91,9 +83,9 @@ export default ({ margin, dataset, width, height }) => {
         scale={yScale}
         hideZero
         numTicks={numTicksForHeight(height)}
-        label={'value'}
-        stroke={'#1b1a1e'}
-        tickTextFill={'#fff'}
+        label="value"
+        stroke="#1b1a1e"
+        tickTextFill="#fff"
       />
       <Group top={margin.top} left={margin.left}>
         <Grid
@@ -103,8 +95,8 @@ export default ({ margin, dataset, width, height }) => {
           height={yMax}
           numTicksRows={numTicksForHeight(height)}
           numTicksColumns={numTicksForWidth(width)}
-          stroke={'#1b1a1e'}
-          tickStroke={'#1b1a1e'}
+          stroke="#1b1a1e"
+          tickStroke="#1b1a1e"
         />
 
         <AreaClosed
@@ -127,31 +119,31 @@ export default ({ margin, dataset, width, height }) => {
           y={y}
           stroke={"url('#linearFade')"}
           strokeWidth={2}
-          strokeDasharray={'5,5'}
+          strokeDasharray="5,5"
           curve={curveMonotoneX}
         />
 
         <Marker
           from={markerFrom}
           to={markerTo}
-          stroke={'white'}
+          stroke="white"
           label={markerLabel}
-          labelStroke={'none'}
+          labelStroke="none"
           labelDx={6}
           labelDy={15}
         />
         <LinePathAnnotation
-          label={'expected from deploy'}
-          stroke={'white'}
-          labelFill={'white'}
-          labelStroke={'#1b1a1e'}
+          label="expected from deploy"
+          stroke="white"
+          labelFill="white"
+          labelStroke="#1b1a1e"
           labelStrokeWidth={4}
           points={[
             annotationPoint,
             new Point({
               x: annotationPoint.x + width / allData.length,
-              y: annotationPoint.y - height / allData.length
-            })
+              y: annotationPoint.y - height / allData.length,
+            }),
           ]}
         />
       </Group>
@@ -160,10 +152,10 @@ export default ({ margin, dataset, width, height }) => {
         left={margin.left}
         scale={xScale}
         numTicks={numTicksForWidth(width)}
-        label={'time'}
-        stroke={'#1b1a1e'}
-        tickStroke={'#1b1a1e'}
-        tickTextFill={'#fff'}
+        label="time"
+        stroke="#1b1a1e"
+        tickStroke="#1b1a1e"
+        tickTextFill="#fff"
       />
     </svg>
   );

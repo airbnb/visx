@@ -9,7 +9,6 @@ class TextDemo extends Component {
     x: 0,
     y: 0,
     width: 225,
-    height: 200,
     angle: 0,
     scaleToFit: false,
     textAnchor: 'start',
@@ -19,24 +18,24 @@ class TextDemo extends Component {
     fontWeight: 400,
     lineHeight: '1em',
     showAnchor: true,
-    resizeSvg: true
+    resizeSvg: true,
   };
 
   render() {
     const styles = {
       exampleText: {
-        width: 200
+        width: 200,
       },
       range: {
         marginLeft: 20,
-        width: 225
+        width: 225,
       },
       svg: {
         height: 200,
         display: 'block',
         border: '1px solid #aaa',
-        marginBottom: 10
-      }
+        marginBottom: 10,
+      },
     };
 
     return (
@@ -57,7 +56,7 @@ class TextDemo extends Component {
                 style={{
                   fontSize: this.state.fontSize,
                   fontFamily: this.state.fontFamily,
-                  fontWeight: this.state.fontWeight
+                  fontWeight: this.state.fontWeight,
                 }}
               >
                 {this.state.exampleText}
@@ -239,10 +238,10 @@ class TextDemo extends Component {
                 scaleToFit:
                 <input
                   type="checkbox"
-                  onChange={e =>
-                    this.setState({
-                      scaleToFit: !this.state.scaleToFit
-                    })
+                  onChange={() =>
+                    this.setState(state => ({
+                      scaleToFit: !state.scaleToFit,
+                    }))
                   }
                   checked={this.state.scaleToFit}
                 />
@@ -254,10 +253,10 @@ class TextDemo extends Component {
                 show anchor:
                 <input
                   type="checkbox"
-                  onChange={e =>
-                    this.setState({
-                      showAnchor: !this.state.showAnchor
-                    })
+                  onChange={() =>
+                    this.setState(state => ({
+                      showAnchor: !state.showAnchor,
+                    }))
                   }
                   checked={this.state.showAnchor}
                 />
@@ -269,10 +268,10 @@ class TextDemo extends Component {
                 resize svg (container):
                 <input
                   type="checkbox"
-                  onChange={e =>
-                    this.setState({
-                      resizeSvg: !this.state.resizeSvg
-                    })
+                  onChange={() =>
+                    this.setState(state => ({
+                      resizeSvg: !state.resizeSvg,
+                    }))
                   }
                   checked={this.state.resizeSvg}
                 />
@@ -686,7 +685,7 @@ export default () => {
         top: 0,
         left: 0,
         right: 0,
-        bottom: 10
+        bottom: 10,
       }}
     />
   );

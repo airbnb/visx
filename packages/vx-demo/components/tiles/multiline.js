@@ -14,10 +14,10 @@ const value = d => d.value;
 
 // scales
 const xScale = scaleTime({
-  domain: [Math.min(...data.map(date)), Math.max(...data.map(date))]
+  domain: [Math.min(...data.map(date)), Math.max(...data.map(date))],
 });
 const yScale = scaleLinear({
-  domain: [0, Math.max(...data.map(value))]
+  domain: [0, Math.max(...data.map(value))],
 });
 
 // positions

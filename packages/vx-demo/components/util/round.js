@@ -1,4 +1,4 @@
 export default (value, precision) => {
-  var multiplier = Math.pow(10, precision || 0);
+  const multiplier = 10 ** (precision || 0);
   return Math.round(value * multiplier) / multiplier;
 };

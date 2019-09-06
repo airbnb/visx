@@ -2,7 +2,7 @@ import React from 'react';
 import Tree from '../components/tiles/tree';
 import Show from '../components/show';
 
-export default ({}) => {
+export default () => {
   return (
     <Show
       events
@@ -12,7 +12,7 @@ export default ({}) => {
         top: 0,
         left: 80,
         right: 80,
-        bottom: 10
+        bottom: 10,
       }}
     >
       {`import React from 'react';

@@ -5,7 +5,7 @@ import BarGroupHorizontal from '../components/tiles/bargrouphorizontal';
 export default () => {
   return (
     <Show
-      events={true}
+      events
       margin={{ top: 45, left: 60, right: 20, bottom: 0 }}
       component={BarGroupHorizontal}
       title="Bar Group Horizontal"

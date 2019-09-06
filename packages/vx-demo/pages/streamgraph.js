@@ -1,6 +1,7 @@
 import React from 'react';
 import Show from '../components/show';
 import Streamgraph from '../components/tiles/streamgraph';
+
 export default () => {
   return (
     <Show
@@ -10,7 +11,7 @@ export default () => {
         top: 0,
         left: 0,
         right: 0,
-        bottom: 10
+        bottom: 10,
       }}
     >
       {`// Based on Mike Bostock's Streamgraph & Lee Byron’s test data generator.

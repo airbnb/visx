@@ -1,6 +1,7 @@
+import React from 'react';
+import cx from 'classnames';
 import Meta from './meta';
 import Nav from './nav';
-import cx from 'classnames';
 
 export default ({ children, title, className }) => (
   <div className={cx('main', className)}>

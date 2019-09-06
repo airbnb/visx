@@ -16,23 +16,22 @@ const keys = Object.keys(data[0]).filter(d => d !== 'date');
 
 // accessors
 const y0 = d => d.date;
-const x = d => d.value;
 
 // scales
 const y0Scale = scaleBand({
   domain: data.map(y0),
-  padding: 0.2
+  padding: 0.2,
 });
 const y1Scale = scaleBand({
   domain: keys,
-  padding: 0.1
+  padding: 0.1,
 });
 const xScale = scaleLinear({
-  domain: [0, max(data, d => max(keys, key => d[key]))]
+  domain: [0, max(data, d => max(keys, key => d[key]))],
 });
 const color = scaleOrdinal({
   domain: keys,
-  range: ['#aeeef8', '#e5fd3d', '#9caff6']
+  range: ['#aeeef8', '#e5fd3d', '#9caff6'],
 });
 
 export default ({
@@ -42,8 +41,8 @@ export default ({
     top: 20,
     left: 50,
     right: 10,
-    bottom: 0
-  }
+    bottom: 0,
+  },
 }) => {
   if (width < 10) return null;
 
@@ -87,7 +86,7 @@ export default ({
                         height={bar.height}
                         fill={bar.color}
                         rx={4}
-                        onClick={event => {
+                        onClick={() => {
                           alert(`${bar.key} (${bar.value}) - ${JSON.stringify(bar)}`);
                         }}
                       />
@@ -104,11 +103,11 @@ export default ({
           tickStroke="#e5fd3d"
           tickFormat={formatDate}
           hideAxisLine
-          tickLabelProps={(value, index) => ({
+          tickLabelProps={() => ({
             fill: '#e5fd3d',
             fontSize: 11,
             textAnchor: 'end',
-            dy: '0.33em'
+            dy: '0.33em',
           })}
         />
       </Group>

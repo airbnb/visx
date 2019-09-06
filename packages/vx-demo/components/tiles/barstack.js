@@ -36,15 +36,15 @@ const x = d => d.date;
 // scales
 const xScale = scaleBand({
   domain: data.map(x),
-  padding: 0.2
+  padding: 0.2,
 });
 const yScale = scaleLinear({
   domain: [0, Math.max(...totals)],
-  nice: true
+  nice: true,
 });
 const color = scaleOrdinal({
   domain: keys,
-  range: [purple1, purple2, purple3]
+  range: [purple1, purple2, purple3],
 });
 
 let tooltipTimeout;
@@ -55,14 +55,14 @@ export default withTooltip(
     height,
     events = false,
     margin = {
-      top: 40
+      top: 40,
     },
     tooltipOpen,
     tooltipLeft,
     tooltipTop,
     tooltipData,
     hideTooltip,
-    showTooltip
+    showTooltip,
   }) => {
     if (width < 10) return null;
     // bounds
@@ -83,7 +83,7 @@ export default withTooltip(
             yScale={yScale}
             width={xMax}
             height={yMax}
-            stroke={'black'}
+            stroke="black"
             strokeOpacity={0.1}
             xOffset={xScale.bandwidth() / 2}
           />
@@ -100,11 +100,11 @@ export default withTooltip(
                         height={bar.height}
                         width={bar.width}
                         fill={bar.color}
-                        onClick={event => {
+                        onClick={() => {
                           if (!events) return;
                           alert(`clicked: ${JSON.stringify(bar)}`);
                         }}
-                        onMouseLeave={event => {
+                        onMouseLeave={() => {
                           tooltipTimeout = setTimeout(() => {
                             hideTooltip();
                           }, 300);
@@ -117,7 +117,7 @@ export default withTooltip(
                           showTooltip({
                             tooltipData: bar,
                             tooltipTop: top,
-                            tooltipLeft: left
+                            tooltipLeft: left,
                           });
                         }}
                       />
@@ -133,10 +133,10 @@ export default withTooltip(
             tickFormat={formatDate}
             stroke={purple3}
             tickStroke={purple3}
-            tickLabelProps={(value, index) => ({
+            tickLabelProps={() => ({
               fill: purple3,
               fontSize: 11,
-              textAnchor: 'middle'
+              textAnchor: 'middle',
             })}
           />
         </svg>
@@ -147,7 +147,7 @@ export default withTooltip(
             width: '100%',
             display: 'flex',
             justifyContent: 'center',
-            fontSize: '14px'
+            fontSize: '14px',
           }}
         >
           <LegendOrdinal scale={color} direction="row" labelMargin="0 15px 0 0" />
@@ -159,7 +159,7 @@ export default withTooltip(
             style={{
               minWidth: 60,
               backgroundColor: 'rgba(0,0,0,0.9)',
-              color: 'white'
+              color: 'white',
             }}
           >
             <div style={{ color: color(tooltipData.key) }}>
@@ -173,5 +173,5 @@ export default withTooltip(
         )}
       </div>
     );
-  }
+  },
 );

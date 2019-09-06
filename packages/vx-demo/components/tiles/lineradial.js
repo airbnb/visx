@@ -14,7 +14,7 @@ const bg = '#744cca';
 // utils
 const extent = (data, value = d => d) => [
   Math.min(...data.map(value)),
-  Math.max(...data.map(value))
+  Math.max(...data.map(value)),
 ];
 
 // accessors
@@ -24,10 +24,10 @@ const close = d => d.close;
 // scales
 const xScale = scaleTime({
   range: [0, Math.PI * 2],
-  domain: extent(appleStock, date)
+  domain: extent(appleStock, date),
 });
 const yScale = scaleLog({
-  domain: extent(appleStock, close)
+  domain: extent(appleStock, close),
 });
 
 const angle = d => xScale(date(d));
@@ -48,7 +48,7 @@ export default ({ width, height }) => {
       <Group top={height / 2} left={width / 2}>
         {yScale.ticks().map((tick, i) => {
           const y = yScale(tick);
-          const opacity = 1 / (i + 1) - 1 / i * 0.2;
+          const opacity = 1 / (i + 1) - (1 / i) * 0.2;
           return (
             <g key={`radial-grid-${i}`}>
               <circle
@@ -61,7 +61,7 @@ export default ({ width, height }) => {
               />
               <text
                 y={-y}
-                dy={'-.33em'}
+                dy="-.33em"
                 fontSize={8}
                 fill={blue}
                 fillOpacity={0.6}
@@ -84,7 +84,7 @@ export default ({ width, height }) => {
           curve={curveBasisOpen}
         />
         {[firstPoint, lastPoint].map((d, i) => {
-          const cx = xScale(date(d)) * Math.PI / 180;
+          const cx = (xScale(date(d)) * Math.PI) / 180;
           const cy = -yScale(close(d));
           return <circle key={`line-cap-${i}`} cx={cx} cy={cy} fill={darkgreen} r={3} />;
         })}
