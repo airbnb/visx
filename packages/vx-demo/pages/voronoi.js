@@ -80,7 +80,7 @@ class VoronoiChart extends React.PureComponent {
     this.state = VoronoiChart.getUpdatedState(props);
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.width !== this.props.width || nextProps.height !== this.props.height) {
       this.setState(VoronoiChart.getUpdatedState(nextProps));
     }
