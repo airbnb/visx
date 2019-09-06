@@ -82,7 +82,8 @@
     ],
     "settings": {
       "library": true,
-      "react": true
+      "react": true,
+      "srcFolder": "(src|pages|components)"
     },
     "jest": {
       "coverageReporters": [
@@ -131,6 +132,21 @@
             "react/no-array-index-key": "off",
             "react/no-children-prop": "off",
             "react/jsx-props-no-spreading": "off"
+          }
+        },
+        {
+          "files": "./packages/vx-demo/**",
+          "rules": {
+            "jsx-a11y/anchor-is-valid": "off",
+            "jsx-a11y/label-has-associated-control": "off",
+            "jsx-a11y/no-onchange": "off",
+            "no-alert": "off",
+            "no-param-reassign": "off",
+            "react/button-has-type": "off",
+            "react/no-danger": "off",
+            "react/no-unescaped-entities": "off",
+            "react/prop-types": "off",
+            "react/state-in-constructor": "off"
           }
         }
       ]
