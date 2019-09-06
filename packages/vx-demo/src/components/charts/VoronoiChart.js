@@ -61,6 +61,7 @@ class VoronoiChart extends React.PureComponent {
     this.state = VoronoiChart.getUpdatedState(props);
   }
 
+  // eslint-disable-next-line camelcase
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.width !== this.props.width || nextProps.height !== this.props.height) {
       this.setState(VoronoiChart.getUpdatedState(nextProps));

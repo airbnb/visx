@@ -51,6 +51,7 @@ export default class DragI extends React.Component {
     });
   }
 
+  // eslint-disable-next-line camelcase
   UNSAFE_componentWillReceiveProps(nextProps) {
     const { width } = nextProps;
     if (width !== this.props.width) {

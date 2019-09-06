@@ -40,10 +40,12 @@ class Text extends Component {
     };
   }
 
+  // eslint-disable-next-line camelcase
   UNSAFE_componentWillMount() {
     this.updateWordsByLines(this.props, true);
   }
 
+  // eslint-disable-next-line camelcase
   UNSAFE_componentWillReceiveProps(nextProps) {
     const needCalculate =
       this.props.children !== nextProps.children || this.props.style !== nextProps.style;
