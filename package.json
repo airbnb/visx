@@ -17,7 +17,6 @@
   "author": "@hshoff",
   "private": true,
   "scripts": {
-    "bootstrap": "lerna bootstrap",
     "build": "yarn run babel",
     "build-one": "nimbus babel --clean",
     "babel": "yarn run babel:cjs && yarn run babel:esm",
