@@ -60,7 +60,7 @@ export default class DragI extends React.Component {
     });
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const { width, height } = nextProps;
     if (width !== this.props.width) {
       this.setState(() => {
