@@ -1,6 +1,6 @@
 {
   "name": "@vx/axis",
-  "version": "0.0.190",
+  "version": "0.0.191",
   "description": "vx axis",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -33,12 +33,12 @@
     "@vx/group": "0.0.190",
     "@vx/point": "0.0.189",
     "@vx/shape": "0.0.190",
-    "@vx/text": "0.0.190",
+    "@vx/text": "0.0.191",
     "classnames": "^2.2.5",
     "prop-types": "^15.6.0"
   },
   "peerDependencies": {
-    "react": "^15.0.0-0 || ^16.0.0-0"
+    "react": "^16.3.0-0"
   },
   "publishConfig": {
     "access": "public"

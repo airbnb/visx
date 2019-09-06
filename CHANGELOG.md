@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.191](#v00191)
 - [v0.0.190](#v00190)
 - [v0.0.189](#v00189)
 - [v0.0.188](#v00188)
@@ -81,6 +82,34 @@
 </details>
 
 ------
+
+# v0.0.191
+
+See [#487](https://github.com/hshoff/vx/pull/487) for details.
+
+#### :boom: Breaking Changes
+
+- [text] peerDep `react@^16.3`, deprecate react 15
+- [text] prefix lifecycle methods with `UNSAFE_`
+- [axis] peerDep `react@^16.3`, deprecate react 15 due to @vx/text dep
+- [demo] use react 16.9
+- [demo] prefix lifecycle methods with `UNSAFE_`
+
+#### :house: Internal
+
+- [internal] update deps: coveralls, lint-staged, marked
+
+#### :trophy: Contributors
+
+- [hshoff](https://github.com/hshoff)
+
+```
+Changes:
+ - @vx/axis: 0.0.190 => 0.0.191
+ - @vx/demo: 0.0.190 => 0.0.191
+ - @vx/text: 0.0.190 => 0.0.191
+ - @vx/vx: 0.0.190 => 0.0.191
+ ```
 
 # v0.0.190
 

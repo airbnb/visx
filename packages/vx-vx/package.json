@@ -1,6 +1,6 @@
 {
   "name": "@vx/vx",
-  "version": "0.0.190",
+  "version": "0.0.191",
   "description": "One stop install for all vx packages",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -30,11 +30,11 @@
     "access": "public"
   },
   "peerDependencies": {
-    "react": "^15.0.0-0 || ^16.0.0-0"
+    "react": "^16.3.0-0"
   },
   "dependencies": {
     "@vx/annotation": "0.0.190",
-    "@vx/axis": "0.0.190",
+    "@vx/axis": "0.0.191",
     "@vx/bounds": "0.0.189",
     "@vx/boxplot": "0.0.190",
     "@vx/brush": "0.0.189",
@@ -58,7 +58,7 @@
     "@vx/responsive": "0.0.189",
     "@vx/scale": "0.0.190",
     "@vx/shape": "0.0.190",
-    "@vx/text": "0.0.190",
+    "@vx/text": "0.0.191",
     "@vx/tooltip": "0.0.189",
     "@vx/voronoi": "0.0.190",
     "@vx/zoom": "0.0.189"
