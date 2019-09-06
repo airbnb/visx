@@ -82,8 +82,7 @@
     ],
     "settings": {
       "library": true,
-      "react": true,
-      "srcFolder": "(src|pages|components)"
+      "react": true
     },
     "jest": {
       "coverageReporters": [
