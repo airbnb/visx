@@ -37,6 +37,7 @@ tmp/
 babel.config.js
 jest.config.js
 prettier.config.js
+tsconfig.eslint.json
 tsconfig.json
 webpack.config.js
 
