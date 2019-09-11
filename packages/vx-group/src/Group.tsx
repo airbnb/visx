@@ -1,14 +1,13 @@
 import React from 'react';
 import cx from 'classnames';
-import PropTypes from 'prop-types';
 
-Group.propTypes = {
-  top: PropTypes.number,
-  left: PropTypes.number,
-  transform: PropTypes.string,
-  className: PropTypes.string,
-  children: PropTypes.any,
-  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+type GroupProps = {
+  top?: number;
+  left?: number;
+  transform?: string;
+  className?: string;
+  children?: React.ReactNode;
+  innerRef?: React.Ref<SVGGElement>;
 };
 
 export default function Group({
@@ -19,7 +18,7 @@ export default function Group({
   children,
   innerRef,
   ...restProps
-}) {
+}: GroupProps) {
   return (
     <g
       ref={innerRef}
