@@ -13,5 +13,4 @@ package-lock.json
 tsconfig.json
 tsconfig.eslint.json
 tsconfig.options.json
-*.tsbuildinfo
 CHANGELOG.md
