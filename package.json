@@ -17,7 +17,7 @@
   "author": "@hshoff",
   "private": true,
   "scripts": {
-    "build": "yarn run babel",
+    "build": "yarn run babel && yarn run type",
     "build-one": "nimbus babel --clean",
     "babel": "yarn run babel:cjs && yarn run babel:esm",
     "babel:cjs": "nimbus babel --clean --workspaces=\"@vx/!(demo)\"",
