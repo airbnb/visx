@@ -20,7 +20,13 @@
 }
 .gh-btn {
   background-color: #eee;
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fcfcfc), color-stop(100%, #eee));
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0, #fcfcfc),
+    color-stop(100%, #eee)
+  );
   background-image: -webkit-linear-gradient(top, #fcfcfc 0, #eee 100%);
   background-image: -moz-linear-gradient(top, #fcfcfc 0, #eee 100%);
   background-image: -ms-linear-gradient(top, #fcfcfc 0, #eee 100%);
@@ -34,7 +40,13 @@
 .gh-btn:focus {
   text-decoration: none;
   background-color: #ddd;
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #eee), color-stop(100%, #ddd));
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0, #eee),
+    color-stop(100%, #ddd)
+  );
   background-image: -webkit-linear-gradient(top, #eee 0, #ddd 100%);
   background-image: -moz-linear-gradient(top, #eee 0, #ddd 100%);
   background-image: -ms-linear-gradient(top, #eee 0, #ddd 100%);
@@ -67,7 +79,7 @@
 }
 .gh-count:hover,
 .gh-count:focus {
-  color: #4183C4;
+  color: #4183c4;
 }
 .gh-count:before,
 .gh-count:after {
@@ -122,38 +134,37 @@
   border-width: 7px 7px 7px 0;
 }
 
-
 ::-webkit-scrollbar {
   background: transparent;
-	overflow: visible;
-	width: 10px;
+  overflow: visible;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-	background-color: transparent;
-	border: solid transparent;
+  background-color: transparent;
+  border: solid transparent;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-	background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.8);
 }
 
 ::-webkit-scrollbar-thumb:horizontal {
-	border-width: 4px 6px;
-	min-width: 40px;
+  border-width: 4px 6px;
+  min-width: 40px;
 }
 
 ::-webkit-scrollbar-thumb:vertical {
-	border-width: 6px 4px;
-	min-height: 40px;
+  border-width: 6px 4px;
+  min-height: 40px;
 }
 
 ::-webkit-scrollbar-track-piece {
-	background-color: white;
+  background-color: white;
 }
 
 ::-webkit-scrollbar-corner {
-	background: transparent;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -161,32 +172,32 @@
 }
 
 ::-webkit-scrollbar-thumb:hover {
-	background-color: #fc2e1c;
+  background-color: #fc2e1c;
 }
 
 pre.line-numbers {
-	position: relative;
-	padding-left: 3em;
-	counter-reset: linenumber;
+  position: relative;
+  padding-left: 3em;
+  counter-reset: linenumber;
 }
 
 pre.line-numbers > code {
-	position: relative;
+  position: relative;
 }
 
 .line-numbers .line-numbers-rows {
-	position: absolute;
-	pointer-events: none;
-	top: 0;
-	font-size: 100%;
-	left: -.8em;
-	width: 2em; /* works for line-numbers below 1000 lines */
-	letter-spacing: -1px;
+  position: absolute;
+  pointer-events: none;
+  top: 0;
+  font-size: 100%;
+  left: -0.8em;
+  width: 2em; /* works for line-numbers below 1000 lines */
+  letter-spacing: -1px;
 
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 @media (max-width: 600px) {
@@ -198,16 +209,16 @@ pre.line-numbers > code {
   }
 }
 
-	.line-numbers-rows > span {
-		pointer-events: none;
-		display: block;
-		counter-increment: linenumber;
-	}
+.line-numbers-rows > span {
+  pointer-events: none;
+  display: block;
+  counter-increment: linenumber;
+}
 
-		.line-numbers-rows > span:before {
-			content: counter(linenumber);
-			color: #ced3d7;
-			display: block;
-			padding-right: 0.8em;
-			text-align: right;
-		}
+.line-numbers-rows > span:before {
+  content: counter(linenumber);
+  color: #ced3d7;
+  display: block;
+  padding-right: 0.8em;
+  text-align: right;
+}

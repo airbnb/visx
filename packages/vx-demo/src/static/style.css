@@ -30,7 +30,13 @@ body:first-child {
 }
 .gh-btn {
   background-color: #eee;
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fcfcfc), color-stop(100%, #eee));
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0, #fcfcfc),
+    color-stop(100%, #eee)
+  );
   background-image: -webkit-linear-gradient(top, #fcfcfc 0, #eee 100%);
   background-image: -moz-linear-gradient(top, #fcfcfc 0, #eee 100%);
   background-image: -ms-linear-gradient(top, #fcfcfc 0, #eee 100%);
@@ -44,7 +50,13 @@ body:first-child {
 .gh-btn:focus {
   text-decoration: none;
   background-color: #ddd;
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #eee), color-stop(100%, #ddd));
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0, #eee),
+    color-stop(100%, #ddd)
+  );
   background-image: -webkit-linear-gradient(top, #eee 0, #ddd 100%);
   background-image: -moz-linear-gradient(top, #eee 0, #ddd 100%);
   background-image: -ms-linear-gradient(top, #eee 0, #ddd 100%);
@@ -77,7 +89,7 @@ body:first-child {
 }
 .gh-count:hover,
 .gh-count:focus {
-  color: #4183C4;
+  color: #4183c4;
 }
 .gh-count:before,
 .gh-count:after {
