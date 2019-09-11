@@ -43,11 +43,11 @@
     ]
   },
   "devDependencies": {
-    "@airbnb/config-babel": "^2.0.0-alpha.2",
-    "@airbnb/config-eslint": "^2.0.0-alpha.2",
-    "@airbnb/config-jest": "^2.0.0-alpha.2",
-    "@airbnb/config-prettier": "^2.0.0-alpha.2",
-    "@airbnb/nimbus": "^2.0.0-alpha.2",
+    "@airbnb/config-babel": "^2.0.0",
+    "@airbnb/config-eslint": "^2.0.0",
+    "@airbnb/config-jest": "^2.0.0",
+    "@airbnb/config-prettier": "^2.0.0",
+    "@airbnb/nimbus": "^2.0.0",
     "coveralls": "^3.0.6",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
