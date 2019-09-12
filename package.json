@@ -17,7 +17,7 @@
   "author": "@hshoff",
   "private": true,
   "scripts": {
-    "build": "yarn run babel && yarn run type",
+    "build": "yarn run babel && yarn run type:dts",
     "build-one": "nimbus babel --clean",
     "babel": "yarn run babel:cjs && yarn run babel:esm",
     "babel:cjs": "nimbus babel --clean --workspaces=\"@vx/!(demo)\"",
@@ -31,7 +31,7 @@
     "precommit": "lint-staged",
     "setup": "yarn run build",
     "test": "yarn run jest",
-    "type": "nimbus typescript --emitDeclarationOnly --workspaces=\"@vx/(group)\"",
+    "type:dts": "nimbus typescript --build --reference-workspaces",
     "docs": "yarn run docs:gen && node ./scripts/docs/index.js",
     "docs:gen": "lerna run docs",
     "prepare-release": "git checkout master && git pull --rebase origin master && yarn run docs && lerna updated",
@@ -84,6 +84,11 @@
       "library": true,
       "react": true,
       "next": true
+    },
+    "typescript": {
+      "compilerOptions": {
+        "emitDeclarationOnly": true
+      }
     },
     "jest": {
       "coverageReporters": [
