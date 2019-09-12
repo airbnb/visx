@@ -12,6 +12,7 @@
   "scripts": {
     "docs": "cd ./docs && ../../../node_modules/.bin/react-docgen --exclude index.js ../src  | ../../../scripts/buildDocs.sh"
   },
+  "types": "lib/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hshoff/vx.git"
