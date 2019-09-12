@@ -2,14 +2,14 @@ import memoize from 'lodash/memoize';
 
 const MEASUREMENT_ELEMENT_ID = '__react_svg_text_measurement_id';
 
-function getStringWidth(str, style) {
+function getStringWidth(str: string, style?: Object) {
   try {
     // Calculate length of each word to be used to determine number of words per line
-    let textEl = document.getElementById(MEASUREMENT_ELEMENT_ID);
+    let textEl = document.getElementById(MEASUREMENT_ELEMENT_ID) as SVGTextElement | null;
     if (!textEl) {
       const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-      svg.style.width = 0;
-      svg.style.height = 0;
+      svg.style.width = '0';
+      svg.style.height = '0';
       svg.style.position = 'absolute';
       svg.style.top = '-100%';
       svg.style.left = '-100%';

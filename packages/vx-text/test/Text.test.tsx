@@ -1,3 +1,5 @@
+import React from 'react';
+import { shallow } from 'enzyme';
 import { Text, getStringWidth } from '../src';
 
 describe('getStringWidth()', () => {
@@ -11,6 +13,11 @@ describe('getStringWidth()', () => {
 describe('<Text />', () => {
   it('should be defined', () => {
     expect(Text).toBeDefined();
+  });
+
+  it('should not throw', () => {
+    expect(() => shallow(<Text />)).not.toThrow();
+    expect(() => shallow(<Text>Hi</Text>)).not.toThrow();
   });
 
   // it('Does not wrap long text if enough width', () => {
