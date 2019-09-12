@@ -31,7 +31,7 @@
     "precommit": "lint-staged",
     "setup": "yarn run build",
     "test": "yarn run jest",
-    "type": "nimbus typescript --emitDeclarationOnly --reference-workspaces",
+    "type": "nimbus typescript --emitDeclarationOnly --workspaces=\"@vx/(group)\"",
     "docs": "yarn run docs:gen && node ./scripts/docs/index.js",
     "docs:gen": "lerna run docs",
     "prepare-release": "git checkout master && git pull --rebase origin master && yarn run docs && lerna updated",
