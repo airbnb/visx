@@ -31,6 +31,7 @@
   },
   "homepage": "https://github.com/hshoff/vx#readme",
   "dependencies": {
+    "@types/react": "^16.9.2",
     "classnames": "^2.2.5",
     "lodash": "^4.17.15",
     "prop-types": "^15.7.2",
