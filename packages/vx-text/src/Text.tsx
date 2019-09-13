@@ -2,7 +2,7 @@ import React from 'react';
 import reduceCSSCalc from 'reduce-css-calc';
 import getStringWidth from './util/getStringWidth';
 
-function isNumber(val: any): val is number {
+function isNumber(val: unknown): val is number {
   return typeof val === 'number';
 }
 
@@ -27,7 +27,7 @@ type TextProps = {
   textAnchor?: 'start' | 'middle' | 'end' | 'inherit';
   /** Vertical text anchor. */
   verticalAnchor?: 'start' | 'middle' | 'end';
-  /** Styles to be applie to the text (and used in computation of its size). */
+  /** Styles to be applied to the text (and used in computation of its size). */
   style?: React.CSSProperties;
   /** Ref passed to the Text SVG element. */
   innerRef?: React.Ref<SVGSVGElement>;
@@ -47,8 +47,8 @@ type TextProps = {
   fontSize?: SVGTSpanProps['fontSize'];
   /** Maximum width to occupy (approximate as words are not split). */
   width?: number;
-  /** String (or coercible to one) to be wrapped. */
-  children?: any;
+  /** String (or number coercible to one) to be styled and positioned. */
+  children?: string | number;
 };
 
 type TextState = {
