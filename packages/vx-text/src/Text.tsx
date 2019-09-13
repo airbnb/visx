@@ -18,7 +18,7 @@ interface WordsWithWidth {
 
 type SVGTSpanProps = React.SVGAttributes<SVGTSpanElement>;
 
-type TextProps = {
+export type TextProps = {
   /** Whether to scale the fontSize to accomodate the specified width.  */
   scaleToFit?: boolean;
   /** Rotational angle of the text. */
