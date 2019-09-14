@@ -1,5 +1,7 @@
 import { Point } from '@vx/point';
 
+import outermostSVGElement from './outermostSVGElement';
+
 export default function localPoint(node, event) {
   // called with no args
   if (!node) return;
@@ -9,12 +11,7 @@ export default function localPoint(node, event) {
     event = node;
 
     // set node to targets owner svg
-    node = event.target.ownerSVGElement;
-
-    // find the outermost svg
-    while (node.ownerSVGElement) {
-      node = node.ownerSVGElement;
-    }
+    node = outermostSVGElement(event.target);
   }
 
   // default to mouse event

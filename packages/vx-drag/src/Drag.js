@@ -1,4 +1,4 @@
-import { localPoint } from '@vx/event';
+import { localPoint, outermostSVGElement } from '@vx/event';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -15,12 +15,14 @@ export default class Drag extends React.Component {
     this.dragEnd = this.dragEnd.bind(this);
     this.dragMove = this.dragMove.bind(this);
     this.dragStart = this.dragStart.bind(this);
+    this.rootRef = React.createRef();
   }
 
   dragStart(event) {
     const { onDragStart, resetOnStart } = this.props;
     const { dx, dy } = this.state;
-    const point = localPoint(event);
+    const rootSvg = outermostSVGElement(this.rootRef.current);
+    const point = localPoint(rootSvg, event);
     const nextState = {
       ...this.state,
       isDragging: true,
@@ -37,7 +39,8 @@ export default class Drag extends React.Component {
     const { onDragMove } = this.props;
     const { x, y, isDragging } = this.state;
     if (!isDragging) return;
-    const point = localPoint(event);
+    const rootSvg = outermostSVGElement(this.rootRef.current);
+    const point = localPoint(rootSvg, event);
     const nextState = {
       ...this.state,
       isDragging: true,
@@ -50,7 +53,6 @@ export default class Drag extends React.Component {
 
   dragEnd(event) {
     const { onDragEnd } = this.props;
-    const point = localPoint(event);
     const nextState = {
       ...this.state,
       isDragging: false
@@ -63,16 +65,15 @@ export default class Drag extends React.Component {
     const { x, y, dx, dy, isDragging } = this.state;
     const { children, width, height, captureDragArea } = this.props;
     return (
-      <g>
-        {isDragging &&
-          captureDragArea && (
-            <rect
-              width={width}
-              height={height}
-              onMouseMove={this.dragMove}
-              onMouseUp={this.dragEnd}
-              fill="transparent"
-            />
+      <g ref={this.rootRef}>
+        {isDragging && captureDragArea && (
+          <rect
+            width={width}
+            height={height}
+            onMouseMove={this.dragMove}
+            onMouseUp={this.dragEnd}
+            fill="transparent"
+          />
         )}
         {children({
           x,
