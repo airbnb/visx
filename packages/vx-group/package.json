@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "@types/classnames": "^2.2.9",
-    "@types/react": "^16.9.2",
+    "@types/react": "*",
     "classnames": "^2.2.5",
     "prop-types": "^15.6.2"
   },
