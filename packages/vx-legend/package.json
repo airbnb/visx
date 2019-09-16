@@ -5,6 +5,7 @@
   "sideEffects": false,
   "main": "lib/index.js",
   "module": "esm/index.js",
+  "types": "lib/index.d.ts",
   "files": [
     "lib",
     "esm"
@@ -36,6 +37,9 @@
     "access": "public"
   },
   "dependencies": {
+    "@types/classnames": "^2.2.9",
+    "@types/d3-scale": "^2.1.1",
+    "@types/react": "*",
     "@vx/group": "0.0.192",
     "classnames": "^2.2.5",
     "prop-types": "^15.5.10"
