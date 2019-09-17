@@ -2,6 +2,8 @@ import React from 'react';
 import reduceCSSCalc from 'reduce-css-calc';
 import getStringWidth from './util/getStringWidth';
 
+const SVG_STYLE = { overflow: 'visible' };
+
 function isNumber(val: unknown): val is number {
   return typeof val === 'number';
 }
@@ -191,13 +193,7 @@ class Text extends React.Component<TextProps, TextState> {
     }
 
     return (
-      <svg
-        ref={innerRef}
-        x={dx}
-        y={dy}
-        fontSize={textProps.fontSize}
-        style={{ overflow: 'visible' }}
-      >
+      <svg ref={innerRef} x={dx} y={dy} fontSize={textProps.fontSize} style={SVG_STYLE}>
         <text transform={transform} {...textProps} textAnchor={textAnchor}>
           {wordsByLines.map((line, index) => (
             <tspan key={index} x={x} dy={index === 0 ? startDy : lineHeight}>
