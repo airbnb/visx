@@ -5,6 +5,7 @@
   "sideEffects": false,
   "main": "lib/index.js",
   "module": "esm/index.js",
+  "types": "lib/index.d.ts",
   "files": [
     "lib",
     "esm"
@@ -36,6 +37,7 @@
     "react": "^15.0.0-0 || ^16.0.0-0"
   },
   "dependencies": {
+    "@types/react": "*",
     "@vx/event": "0.0.192",
     "prop-types": "^15.5.10"
   }

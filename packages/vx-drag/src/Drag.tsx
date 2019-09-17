@@ -1,23 +1,56 @@
 import { localPoint } from '@vx/event';
-import PropTypes from 'prop-types';
 import React from 'react';
 
-export default class Drag extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      x: undefined,
-      y: undefined,
-      dx: 0,
-      dy: 0,
-      isDragging: false,
-    };
-    this.handleDragEnd = this.handleDragEnd.bind(this);
-    this.handleDragMove = this.handleDragMove.bind(this);
-    this.handleDragStart = this.handleDragStart.bind(this);
-  }
+export type DragProps = {
+  /** Children render function which is passed the state of dragging and callbacks for drag start/end/move. */
+  children: (args: ChildrenArgs) => React.ReactNode;
+  /** Width of the drag container. */
+  width: number;
+  /** Height of the drag container. */
+  height: number;
+  /** Whether to render an invisible rect over children to capture the drag event. */
+  captureDragArea?: boolean;
+  /** Whether to reset drag state upon the start of a new drag. */
+  resetOnStart?: boolean;
+  /** Optional callback invoked upon drag end. */
+  onDragEnd?: (args: HandlerArgs) => void;
+  /** Optional callback invoked upon drag movement. */
+  onDragMove?: (args: HandlerArgs) => void;
+  /** Optional callback invoked upon drag start. */
+  onDragStart?: (args: HandlerArgs) => void;
+};
 
-  handleDragStart(event) {
+type DragState = {
+  x: number | undefined;
+  y: number | undefined;
+  dx: number;
+  dy: number;
+  isDragging: boolean;
+};
+
+type HandlerArgs = DragState & { event: React.MouseEvent };
+
+type ChildrenArgs = DragState & {
+  dragEnd: (event: React.MouseEvent) => void;
+  dragMove: (event: React.MouseEvent) => void;
+  dragStart: (event: React.MouseEvent) => void;
+};
+
+export default class Drag extends React.Component<DragProps, DragState> {
+  static defaultProps = {
+    captureDragArea: true,
+    resetOnStart: false,
+  };
+
+  state = {
+    x: undefined,
+    y: undefined,
+    dx: 0,
+    dy: 0,
+    isDragging: false,
+  };
+
+  handleDragStart = (event: React.MouseEvent) => {
     const { onDragStart, resetOnStart } = this.props;
     const { dx, dy } = this.state;
     const point = localPoint(event);
@@ -31,9 +64,9 @@ export default class Drag extends React.Component {
     };
     if (onDragStart) onDragStart({ ...nextState, event });
     this.setState(() => nextState);
-  }
+  };
 
-  handleDragMove(event) {
+  handleDragMove = (event: React.MouseEvent) => {
     const { onDragMove } = this.props;
     const { x, y, isDragging } = this.state;
     if (!isDragging) return;
@@ -41,14 +74,14 @@ export default class Drag extends React.Component {
     const nextState = {
       ...this.state,
       isDragging: true,
-      dx: -(x - point.x),
-      dy: -(y - point.y),
+      dx: -((x || 0) - point.x),
+      dy: -((y || 0) - point.y),
     };
     if (onDragMove) onDragMove({ ...nextState, event });
     this.setState(() => nextState);
-  }
+  };
 
-  handleDragEnd(event) {
+  handleDragEnd = (event: React.MouseEvent) => {
     const { onDragEnd } = this.props;
     const nextState = {
       ...this.state,
@@ -56,13 +89,13 @@ export default class Drag extends React.Component {
     };
     if (onDragEnd) onDragEnd({ ...nextState, event });
     this.setState(() => nextState);
-  }
+  };
 
   render() {
     const { x, y, dx, dy, isDragging } = this.state;
     const { children, width, height, captureDragArea } = this.props;
     return (
-      <g>
+      <>
         {isDragging && captureDragArea && (
           <rect
             width={width}
@@ -82,23 +115,7 @@ export default class Drag extends React.Component {
           dragMove: this.handleDragMove,
           dragStart: this.handleDragStart,
         })}
-      </g>
+      </>
     );
   }
 }
-
-Drag.propTypes = {
-  children: PropTypes.func.isRequired,
-  width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired,
-  captureDragArea: PropTypes.bool,
-  resetOnStart: PropTypes.bool,
-  onDragEnd: PropTypes.func,
-  onDragMove: PropTypes.func,
-  onDragStart: PropTypes.func,
-};
-
-Drag.defaultProps = {
-  captureDragArea: true,
-  resetOnStart: false,
-};
