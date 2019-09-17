@@ -4,7 +4,7 @@ export type ClipPathProps = {
   /** Unique id for the clipPath. */
   id: string;
   /** clipPath children. */
-  children: React.ReactNode;
+  children?: React.ReactNode;
 } & React.SVGProps<SVGClipPathElement>;
 
 export default function ClipPath({ id, children, ...restProps }: ClipPathProps) {
