@@ -1,3 +1,4 @@
+import { Point } from '@vx/point';
 import localPointGeneric from './localPointGeneric';
 import { EventType } from './types';
 import { isElement, isEvent } from './typeGuards';
@@ -10,5 +11,5 @@ export default function localPoint(nodeOrEvent: Element | EventType, maybeEvent?
     const node = nodeOrEvent.target as Element;
     if (node) return localPointGeneric(node, nodeOrEvent);
   }
-  return undefined;
+  return new Point({ x: 0, y: 0 });
 }
