@@ -1,6 +1,7 @@
+import { EventType } from './types';
 import { isTouchEvent } from './typeGuards';
 
-export default function getXAndYFromEvent(event?: MouseEvent | TouchEvent) {
+export default function getXAndYFromEvent(event?: EventType) {
   if (!event) return { x: 0, y: 0 };
 
   if (isTouchEvent(event)) {
@@ -8,10 +9,10 @@ export default function getXAndYFromEvent(event?: MouseEvent | TouchEvent) {
       x: event.changedTouches[0].clientX,
       y: event.changedTouches[0].clientX,
     };
-  } else {
-    return {
-      x: event.clientX,
-      y: event.clientY,
-    };
   }
+
+  return {
+    x: event.clientX,
+    y: event.clientY,
+  };
 }

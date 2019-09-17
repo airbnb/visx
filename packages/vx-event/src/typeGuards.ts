@@ -1,4 +1,6 @@
-export function isElement(elem?: Element | Event): elem is Element {
+import { EventType } from './types';
+
+export function isElement(elem?: Element | EventType): elem is Element {
   return !!elem && elem instanceof Element;
 }
 
@@ -17,11 +19,14 @@ export function isSVGGraphicsElement(elem?: Element | null): elem is SVGGraphics
 }
 
 // functional definition of TouchEvent
-export function isTouchEvent(event?: Event): event is TouchEvent {
+export function isTouchEvent(event?: EventType): event is TouchEvent | React.TouchEvent {
   return !!event && 'changedTouches' in event;
 }
 
 // functional definition of event
-export function isEvent(event?: Event | Element): event is Event {
-  return !!event && 'target' in event;
+export function isEvent(event?: EventType | Element): event is EventType {
+  return (
+    !!event &&
+    (event instanceof Event || ('nativeEvent' in event && event.nativeEvent instanceof Event))
+  );
 }
