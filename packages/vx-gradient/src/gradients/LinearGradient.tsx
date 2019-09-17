@@ -1,40 +1,37 @@
 import React from 'react';
 
-type LinearGradientElementProps = React.SVGProps<SVGLinearGradientElement>;
-type StopElementProps = React.SVGProps<SVGStopElement>;
-
 export type LinearGradientProps = {
   /** Unique id for the gradient. Should be unique across all page elements. */
   id: string;
   /** Start color of gradient. */
-  from?: StopElementProps['stopColor'];
+  from?: string;
   /** End color of gradient. */
-  to?: StopElementProps['stopColor'];
+  to?: string;
   /** The x coordinate of the starting point along which the linear gradient is drawn. */
-  x1?: LinearGradientElementProps['x1'];
+  x1?: string | number;
   /** The x coordinate of the ending point along which the linear gradient is drawn. */
-  x2?: LinearGradientElementProps['x2'];
+  x2?: string | number;
   /** The y coordinate of the starting point along which the linear gradient is drawn. */
-  y1?: LinearGradientElementProps['y1'];
+  y1?: string | number;
   /** The y coordinate of the ending point along which the linear gradient is drawn. */
-  y2?: LinearGradientElementProps['y2'];
+  y2?: string | number;
   /** Number or percent defining the where the 'from' starting color is placed along the gradient. */
-  fromOffset?: StopElementProps['offset'];
+  fromOffset?: string | number;
   /** Opacity of the 'from' starting color. */
-  fromOpacity?: StopElementProps['stopOpacity'];
+  fromOpacity?: string | number;
   /** Number or percent defining the where the 'to' ending color is placed along the gradient. */
-  toOffset?: StopElementProps['offset'];
+  toOffset?: string | number;
   /** Opacity of the 'to' ending color. */
-  toOpacity?: StopElementProps['stopOpacity'];
+  toOpacity?: string | number;
   /** Rotation to apply to gradient. */
   rotate?: string | number;
   /** Transform to apply to linearGradient, overrides rotate. */
-  transform?: LinearGradientElementProps['gradientTransform'];
+  transform?: string;
   /** Override of linearGradient children. */
   children?: React.ReactNode;
   /** (When no x or y values are passed), will orient the gradient vertically instead of horizontally. */
   vertical?: boolean;
-} & LinearGradientElementProps; // passed as rest props to linearGradient
+} & React.SVGProps<SVGLinearGradientElement>; // passed as rest props to linearGradient
 
 export default function LinearGradient({
   children,
