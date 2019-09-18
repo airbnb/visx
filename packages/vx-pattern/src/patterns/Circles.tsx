@@ -21,7 +21,7 @@ export type PatternCirclesProps = {
   strokeWidth?: number | string;
   /** strokeDasharray applied to circles. */
   strokeDasharray?: number | string;
-  /** @TODO */
+  /** Whether to fill in circles within the pattern gaps to increase pattern density. */
   complement?: boolean;
   /** Background color applied behind cirlces. */
   background?: string;
