@@ -1,7 +1,17 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-export default function Pattern({ id, width, height, children }) {
+export type PatternProps = {
+  /** Unique id of the pattern element. */
+  id: string;
+  /** Width of the pattern. */
+  width: number;
+  /** Height of the pattern. */
+  height: number;
+  /** Children of pattern element to render. */
+  children: React.ReactNode;
+};
+
+export default function Pattern({ id, width, height, children }: PatternProps) {
   return (
     <defs>
       <pattern id={id} width={width} height={height} patternUnits="userSpaceOnUse">
@@ -10,10 +20,3 @@ export default function Pattern({ id, width, height, children }) {
     </defs>
   );
 }
-
-Pattern.propTypes = {
-  id: PropTypes.string.isRequired,
-  width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired,
-  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
-};

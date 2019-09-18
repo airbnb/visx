@@ -1,20 +1,30 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Path from './Path';
 
-PatternHexagons.propTypes = {
-  id: PropTypes.string.isRequired,
-  height: PropTypes.number.isRequired,
-  size: PropTypes.number,
-  fill: PropTypes.string,
-  className: PropTypes.string,
-  background: PropTypes.string,
-  stroke: PropTypes.string,
-  strokeWidth: PropTypes.number,
-  strokeDasharray: PropTypes.string,
-  strokeLinecap: PropTypes.string,
-  shapeRendering: PropTypes.string,
+export type PatternHexagonsProps = {
+  /** Unique id for the pattern. */
+  id: string;
+  /** Height of the pattern element. */
+  height: number;
+  /** Size of the hexagon shape. */
+  size?: number;
+  /** Fill applied to hexagons. */
+  fill?: string;
+  /** className applied to hexagon path element. */
+  className?: string;
+  /** Background color applied behind hexagons. */
+  background?: string;
+  /** Stroke color applied to hexagon paths. */
+  stroke?: string;
+  /** strokeWidth applied to hexagon paths. */
+  strokeWidth?: number | string;
+  /** strokeDasharray applied to hexagon paths. */
+  strokeDasharray?: string | number;
+  /** strokeLinecap applied to hexagon paths. */
+  strokeLinecap?: 'square' | 'butt' | 'round' | 'inherit';
+  /** shapeRendering applied to hexagon paths. */
+  shapeRendering?: string | number;
 };
 
 export default function PatternHexagons({
@@ -29,7 +39,7 @@ export default function PatternHexagons({
   background,
   className,
   size = 3,
-}) {
+}: PatternHexagonsProps) {
   const sqrtSize = Math.sqrt(size);
   return (
     <Path
