@@ -31,7 +31,8 @@
     "@types/react": "*",
     "@types/classnames": "^2.2.9",
     "@vx/bounds": "0.0.189",
-    "classnames": "^2.2.5"
+    "classnames": "^2.2.5",
+    "prop-types": "^15.5.10"
   },
   "peerDependencies": {
     "react": "^15.0.0-0 || ^16.0.0-0"

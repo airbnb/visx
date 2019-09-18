@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 
-type Props = {
+export type TooltipProps = {
   left?: number;
   top?: number;
   className?: string;
@@ -9,7 +9,14 @@ type Props = {
   children?: React.ReactNode;
 };
 
-export default function Tooltip({ className, top, left, style, children, ...restProps }: Props) {
+export default function Tooltip({
+  className,
+  top,
+  left,
+  style,
+  children,
+  ...restProps
+}: TooltipProps) {
   return (
     <div
       className={cx('vx-tooltip-portal', className)}

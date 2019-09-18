@@ -1,6 +1,6 @@
 import React from 'react';
 
-type Props = {
+export type WithTooltipProvidedProps = {
   tooltipOpen?: boolean;
   tooltipLeft?: number;
   tooltipTop?: number;
@@ -9,21 +9,17 @@ type Props = {
   showTooltip?: (args: ShowTooltipArgs) => void;
   hideTooltip?: () => void;
 };
+type WithTooltipState = Pick<
+  WithTooltipProvidedProps,
+  'tooltipOpen' | 'tooltipLeft' | 'tooltipTop' | 'tooltipData'
+>;
+type ShowTooltipArgs = Pick<WithTooltipProvidedProps, 'tooltipLeft' | 'tooltipTop' | 'tooltipData'>;
+type UpdateTooltipArgs = Pick<
+  WithTooltipProvidedProps,
+  'tooltipOpen' | 'tooltipLeft' | 'tooltipTop' | 'tooltipData'
+>;
 
-type ShowTooltipArgs = {
-  tooltipLeft?: Props['tooltipLeft'];
-  tooltipTop?: Props['tooltipTop'];
-  tooltipData?: Props['tooltipData'];
-};
-
-type UpdateTooltipArgs = {
-  tooltipOpen?: Props['tooltipOpen'];
-  tooltipLeft?: Props['tooltipLeft'];
-  tooltipTop?: Props['tooltipTop'];
-  tooltipData?: Props['tooltipData'];
-};
-
-export default function withTooltip(
+export default function withTooltip<Props extends object = {}>(
   BaseComponent: React.ComponentType<Props>,
   containerProps = {
     style: {
@@ -33,7 +29,7 @@ export default function withTooltip(
     },
   },
 ) {
-  class WrappedComponent extends React.PureComponent {
+  class WrappedComponent extends React.PureComponent<Props, WithTooltipState> {
     constructor(props: Props) {
       super(props);
       this.state = {
@@ -46,7 +42,6 @@ export default function withTooltip(
       this.showTooltip = this.showTooltip.bind(this);
       this.hideTooltip = this.hideTooltip.bind(this);
     }
-
     updateTooltip({ tooltipOpen, tooltipLeft, tooltipTop, tooltipData }: UpdateTooltipArgs) {
       this.setState(prevState => ({
         ...prevState,
