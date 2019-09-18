@@ -2,7 +2,7 @@ import memoize from 'lodash/memoize';
 
 const MEASUREMENT_ELEMENT_ID = '__react_svg_text_measurement_id';
 
-function getStringWidth(str: string, style?: Object) {
+function getStringWidth(str: string, style?: object) {
   try {
     // Calculate length of each word to be used to determine number of words per line
     let textEl = document.getElementById(MEASUREMENT_ELEMENT_ID) as SVGTextElement | null;
