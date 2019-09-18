@@ -4,7 +4,7 @@ export type WithTooltipProvidedProps = {
   tooltipOpen?: boolean;
   tooltipLeft?: number;
   tooltipTop?: number;
-  tooltipData?: Object;
+  tooltipData?: object;
   updateTooltip?: (args: UpdateTooltipArgs) => void;
   showTooltip?: (args: ShowTooltipArgs) => void;
   hideTooltip?: () => void;
@@ -13,15 +13,13 @@ type WithTooltipState = Pick<
   WithTooltipProvidedProps,
   'tooltipOpen' | 'tooltipLeft' | 'tooltipTop' | 'tooltipData'
 >;
-type ShowTooltipArgs = Pick<WithTooltipProvidedProps, 'tooltipLeft' | 'tooltipTop' | 'tooltipData'>;
-type UpdateTooltipArgs = Pick<
-  WithTooltipProvidedProps,
-  'tooltipOpen' | 'tooltipLeft' | 'tooltipTop' | 'tooltipData'
->;
+type ShowTooltipArgs = Omit<WithTooltipState, 'tooltipOpen'>;
+type UpdateTooltipArgs = WithTooltipState;
+type WithTooltipContainerProps = { style: React.CSSProperties };
 
 export default function withTooltip<Props extends object = {}>(
   BaseComponent: React.ComponentType<Props>,
-  containerProps = {
+  containerProps: WithTooltipContainerProps = {
     style: {
       position: 'relative' as const,
       width: 'inherit' as const,
@@ -29,7 +27,7 @@ export default function withTooltip<Props extends object = {}>(
     },
   },
 ) {
-  class WrappedComponent extends React.PureComponent<Props, WithTooltipState> {
+  return class WrappedComponent extends React.PureComponent<Props, WithTooltipState> {
     constructor(props: Props) {
       super(props);
       this.state = {
@@ -80,6 +78,5 @@ export default function withTooltip<Props extends object = {}>(
         </div>
       );
     }
-  }
-  return WrappedComponent;
+  };
 }
