@@ -99,9 +99,7 @@ export default class Drag extends React.Component<DragProps, DragState> {
     event.persist();
 
     this.setState(
-      () => ({
-        isDragging: false,
-      }),
+      { isDragging: false },
       onDragEnd &&
         (() => {
           onDragEnd({ ...this.state, event });
