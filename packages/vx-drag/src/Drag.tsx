@@ -8,7 +8,7 @@ export type DragProps = {
   width: number;
   /** Height of the drag container. */
   height: number;
-  /** Whether to render an invisible rect over children to capture the drag event. */
+  /** Whether to render an invisible rect below children to capture the drag area as defined by width and height. */
   captureDragArea?: boolean;
   /** Whether to reset drag state upon the start of a new drag. */
   resetOnStart?: boolean;
