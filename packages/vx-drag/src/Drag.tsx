@@ -52,43 +52,61 @@ export default class Drag extends React.Component<DragProps, DragState> {
 
   handleDragStart = (event: React.MouseEvent) => {
     const { onDragStart, resetOnStart } = this.props;
-    const { dx, dy } = this.state;
-    const point = localPoint(event);
-    const nextState = {
-      ...this.state,
-      isDragging: true,
-      dx: resetOnStart ? 0 : dx,
-      dy: resetOnStart ? 0 : dy,
-      x: resetOnStart ? point.x : -dx + point.x,
-      y: resetOnStart ? point.y : -dy + point.y,
-    };
-    if (onDragStart) onDragStart({ ...nextState, event });
-    this.setState(() => nextState);
+    event.persist();
+
+    this.setState(
+      ({ dx, dy }) => {
+        const point = localPoint(event);
+        return {
+          isDragging: true,
+          dx: resetOnStart ? 0 : dx,
+          dy: resetOnStart ? 0 : dy,
+          x: resetOnStart ? point.x : -dx + point.x,
+          y: resetOnStart ? point.y : -dy + point.y,
+        };
+      },
+      onDragStart &&
+        (() => {
+          onDragStart({ ...this.state, event });
+        }),
+    );
   };
 
   handleDragMove = (event: React.MouseEvent) => {
     const { onDragMove } = this.props;
-    const { x, y, isDragging } = this.state;
-    if (!isDragging) return;
-    const point = localPoint(event);
-    const nextState = {
-      ...this.state,
-      isDragging: true,
-      dx: -((x || 0) - point.x),
-      dy: -((y || 0) - point.y),
-    };
-    if (onDragMove) onDragMove({ ...nextState, event });
-    this.setState(() => nextState);
+    event.persist();
+
+    this.setState(
+      ({ x, y, isDragging }) => {
+        const point = localPoint(event);
+        return isDragging
+          ? {
+              isDragging: true,
+              dx: -((x || 0) - point.x),
+              dy: -((y || 0) - point.y),
+            }
+          : null;
+      },
+      onDragMove &&
+        (() => {
+          if (this.state.isDragging) onDragMove({ ...this.state, event });
+        }),
+    );
   };
 
   handleDragEnd = (event: React.MouseEvent) => {
     const { onDragEnd } = this.props;
-    const nextState = {
-      ...this.state,
-      isDragging: false,
-    };
-    if (onDragEnd) onDragEnd({ ...nextState, event });
-    this.setState(() => nextState);
+    event.persist();
+
+    this.setState(
+      () => ({
+        isDragging: false,
+      }),
+      onDragEnd &&
+        (() => {
+          onDragEnd({ ...this.state, event });
+        }),
+    );
   };
 
   render() {
