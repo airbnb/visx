@@ -1,44 +1,40 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withBoundingRects } from '@vx/bounds';
 
 import Tooltip from './Tooltip';
 
-const rectShape = PropTypes.shape({
-  top: PropTypes.number.isRequired,
-  right: PropTypes.number.isRequired,
-  bottom: PropTypes.number.isRequired,
-  left: PropTypes.number.isRequired,
-  width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired,
-});
-
-const withBoundingRectsProps = {
-  getRects: PropTypes.func,
-  rect: rectShape,
-  parentRect: rectShape,
+type RectShape = {
+  top: number;
+  right: number;
+  bottom: number;
+  left: number;
+  width: number;
+  height: number;
 };
 
-const tooltipProps = {
-  left: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  top: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  className: PropTypes.string,
-  style: PropTypes.object,
-  children: PropTypes.any,
+type WithBoundingRectsProps = {
+  getRects?: () => RectShape;
+  rect?: RectShape;
+  parentRect?: RectShape;
 };
 
-const propTypes = {
-  ...withBoundingRectsProps,
-  ...tooltipProps,
-  offsetLeft: PropTypes.number,
-  offsetTop: PropTypes.number,
+type TooltipProps = {
+  left?: number;
+  top?: number;
+  className?: string;
+  style?: React.CSSProperties;
+  children?: React.ReactNode;
 };
 
-const defaultProps = {};
+type Props = {
+  offsetLeft?: number;
+  offsetTop?: number;
+} & TooltipProps &
+  WithBoundingRectsProps;
 
 function TooltipWithBounds({
-  left: initialLeft,
-  top: initialTop,
+  left: initialLeft = 0,
+  top: initialTop = 0,
   offsetLeft = 10,
   offsetTop = 10,
   rect,
@@ -47,7 +43,7 @@ function TooltipWithBounds({
   children,
   style,
   ...otherProps
-}) {
+}: Props) {
   let left = initialLeft;
   let top = initialTop;
 
@@ -75,8 +71,5 @@ function TooltipWithBounds({
     </Tooltip>
   );
 }
-
-TooltipWithBounds.propTypes = propTypes;
-TooltipWithBounds.defaultProps = defaultProps;
 
 export default withBoundingRects(TooltipWithBounds);

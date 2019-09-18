@@ -1,28 +1,40 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-export const withTooltipPropTypes = {
-  tooltipOpen: PropTypes.bool,
-  tooltipLeft: PropTypes.number,
-  tooltipTop: PropTypes.number,
-  tooltipData: PropTypes.object,
-  updateTooltip: PropTypes.func,
-  showTooltip: PropTypes.func,
-  hideTooltip: PropTypes.func,
+type Props = {
+  tooltipOpen?: boolean;
+  tooltipLeft?: number;
+  tooltipTop?: number;
+  tooltipData?: Object;
+  updateTooltip?: (args: UpdateTooltipArgs) => void;
+  showTooltip?: (args: ShowTooltipArgs) => void;
+  hideTooltip?: () => void;
+};
+
+type ShowTooltipArgs = {
+  tooltipLeft?: Props['tooltipLeft'];
+  tooltipTop?: Props['tooltipTop'];
+  tooltipData?: Props['tooltipData'];
+};
+
+type UpdateTooltipArgs = {
+  tooltipOpen?: Props['tooltipOpen'];
+  tooltipLeft?: Props['tooltipLeft'];
+  tooltipTop?: Props['tooltipTop'];
+  tooltipData?: Props['tooltipData'];
 };
 
 export default function withTooltip(
-  BaseComponent,
+  BaseComponent: React.ComponentType<Props>,
   containerProps = {
     style: {
-      position: 'relative',
-      width: 'inherit',
-      height: 'inherit',
+      position: 'relative' as const,
+      width: 'inherit' as const,
+      height: 'inherit' as const,
     },
   },
 ) {
   class WrappedComponent extends React.PureComponent {
-    constructor(props) {
+    constructor(props: Props) {
       super(props);
       this.state = {
         tooltipOpen: false,
@@ -34,7 +46,8 @@ export default function withTooltip(
       this.showTooltip = this.showTooltip.bind(this);
       this.hideTooltip = this.hideTooltip.bind(this);
     }
-    updateTooltip({ tooltipOpen, tooltipLeft, tooltipTop, tooltipData }) {
+
+    updateTooltip({ tooltipOpen, tooltipLeft, tooltipTop, tooltipData }: UpdateTooltipArgs) {
       this.setState(prevState => ({
         ...prevState,
         tooltipOpen,
@@ -43,7 +56,7 @@ export default function withTooltip(
         tooltipData,
       }));
     }
-    showTooltip({ tooltipLeft, tooltipTop, tooltipData }) {
+    showTooltip({ tooltipLeft, tooltipTop, tooltipData }: ShowTooltipArgs) {
       this.updateTooltip({
         tooltipOpen: true,
         tooltipLeft,

@@ -1,16 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import cx from 'classnames';
 
-Tooltip.propTypes = {
-  left: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  top: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  className: PropTypes.string,
-  style: PropTypes.object,
-  children: PropTypes.any,
+type Props = {
+  left?: number;
+  top?: number;
+  className?: string;
+  style?: React.CSSProperties;
+  children?: React.ReactNode;
 };
 
-export default function Tooltip({ className, top, left, style, children, ...restProps }) {
+export default function Tooltip({ className, top, left, style, children, ...restProps }: Props) {
   return (
     <div
       className={cx('vx-tooltip-portal', className)}
