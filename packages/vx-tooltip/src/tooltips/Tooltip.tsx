@@ -16,7 +16,7 @@ export default function Tooltip({
   style,
   children,
   ...restProps
-}: TooltipProps) {
+}: TooltipProps & JSX.IntrinsicElements['div']) {
   return (
     <div
       className={cx('vx-tooltip-portal', className)}
