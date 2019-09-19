@@ -1,1 +1,1 @@
-export const degreesToRadians = degrees => (Math.PI / 180) * degrees;
+export const degreesToRadians = (degrees: number) => (Math.PI / 180) * degrees;

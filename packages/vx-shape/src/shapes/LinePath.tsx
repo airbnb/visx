@@ -1,23 +1,31 @@
 import React from 'react';
 import cx from 'classnames';
-import PropTypes from 'prop-types';
-import { line } from 'd3-shape';
+import { line, Line as LineType, CurveFactory } from 'd3-shape';
 
-LinePath.propTypes = {
-  data: PropTypes.array,
-  curve: PropTypes.func,
-  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  defined: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
-  x: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
-  y: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
-  children: PropTypes.func,
-  fill: PropTypes.string,
-  className: PropTypes.string,
+export type LinePathProps<Datum> = {
+  /** Array of data for which to generate a line shape. */
+  data?: Datum[];
+  /** Sets the curve factory (from @vx/curve or d3-curve) for the area generator. Defaults to curveLinear. */
+  curve?: CurveFactory;
+  /** React RefObject passed to the path element. */
+  innerRef?: React.Ref<SVGPathElement>;
+  /** The defined accessor for the shape. The final line shape includes all points for which this function returns true. By default all points are defined. */
+  defined?: (datum: Datum, index: number, data: Datum[]) => boolean;
+  /** Given a datum, returns the x value. Defaults to d[0]. */
+  x?: (datum: Datum, index: number, data: Datum[]) => number;
+  /** Given a datum, returns the y value. Defaults to d[1]. */
+  y?: (datum: Datum, index: number, data: Datum[]) => number;
+  /** Override render function override which is passed the configured path generator as input. */
+  children?: (args: { path: LineType<Datum> }) => React.ReactNode;
+  /** Fill color of the path element. */
+  fill?: string;
+  /** className applied to path element. */
+  className?: string;
 };
 
-export default function LinePath({
+export default function LinePath<Datum>({
   children,
-  data,
+  data = [],
   x,
   y,
   fill = 'transparent',
@@ -26,8 +34,8 @@ export default function LinePath({
   innerRef,
   defined = () => true,
   ...restProps
-}) {
-  const path = line();
+}: LinePathProps<Datum> & React.SVGProps<SVGPathElement>) {
+  const path = line<Datum>();
   if (x) path.x(x);
   if (y) path.y(y);
   if (defined) path.defined(defined);
@@ -37,7 +45,7 @@ export default function LinePath({
     <path
       ref={innerRef}
       className={cx('vx-linepath', className)}
-      d={path(data)}
+      d={path(data) || ''}
       fill={fill}
       {...restProps}
     />

@@ -1,33 +1,65 @@
 import React from 'react';
 import cx from 'classnames';
-import PropTypes from 'prop-types';
 import { Group } from '@vx/group';
-import { area, stack as d3stack } from 'd3-shape';
-import stackOrder from '../util/stackOrder';
-import stackOffset from '../util/stackOffset';
+import {
+  area,
+  Area as AreaType,
+  stack as d3stack,
+  Stack as StackType,
+  CurveFactory,
+  SeriesPoint,
+} from 'd3-shape';
 
-Stack.propTypes = {
-  data: PropTypes.array.isRequired,
-  className: PropTypes.string,
-  top: PropTypes.number,
-  left: PropTypes.number,
-  curve: PropTypes.func,
-  color: PropTypes.func,
-  keys: PropTypes.array,
-  children: PropTypes.func,
-  x: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
-  x0: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
-  x1: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
-  y: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
-  y0: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
-  y1: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
-  value: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
-  defined: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
-  order: PropTypes.oneOfType([PropTypes.func, PropTypes.array, PropTypes.string]),
-  offset: PropTypes.oneOfType([PropTypes.func, PropTypes.array, PropTypes.string]),
+import stackOrder, { STACK_ORDERS } from '../util/stackOrder';
+import stackOffset, { STACK_OFFSETS } from '../util/stackOffset';
+
+type Accessor<Datum> = (datum: Datum, index: number, data: Datum[]) => number;
+type Key = string;
+
+export type StackProps<Datum> = {
+  /** Array of data for which to generate a stack. */
+  data: Datum[];
+  /** className applied to path element. */
+  className?: string;
+  /** Top offset of rendered Stack. */
+  top?: number;
+  /** Left offset of rendered Stack. */
+  left?: number;
+  /** Sets the curve factory (from @vx/curve or d3-curve) for the area generator. Defaults to curveLinear. */
+  curve?: CurveFactory;
+  /** Returns a color for a given stack key and index. */
+  color?: (key: Key, index: number) => string;
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
+  keys?: Key[];
+  /** Override render function override which is passed the configured arc generator as input. */
+  children?: (args: {
+    stacks: any;
+    path: AreaType<SeriesPoint<Datum>>;
+    stack: StackType<any, Datum, string>;
+  }) => React.ReactNode;
+  /** Sets the x0 accessor function, and sets x1 to null. */
+  x?: Accessor<SeriesPoint<Datum>>;
+  /** Specifies the x0 accessor function which defaults to d => d[0]. */
+  x0?: Accessor<SeriesPoint<Datum>>;
+  /** Specifies the x1 accessor function which defaults to null. */
+  x1?: Accessor<SeriesPoint<Datum>>;
+  /** Sets the y0 accessor function, and sets y1 to null. */
+  y?: Accessor<SeriesPoint<Datum>>;
+  /** Specifies the y0 accessor function which defaults to d => 0. */
+  y0?: Accessor<SeriesPoint<Datum>>;
+  /** Specifies the y1 accessor function which defaults to d => d[1]. */
+  y1?: Accessor<SeriesPoint<Datum>>;
+  /** Sets the value accessor for a Datum, which defaults to d[key]. */
+  value?: (d: Datum, key: string) => number;
+  /** The defined accessor for the shape. The final area shape includes all points for which this function returns true. By default all points are defined. */
+  defined?: (datum: SeriesPoint<Datum>, index: number, data: SeriesPoint<Datum>[]) => boolean;
+  /** Sets the stack order to the pre-defined d3 function, see https://github.com/d3/d3-shape#stack_order. */
+  order?: keyof typeof STACK_ORDERS;
+  /** Sets the stack offset to the pre-defined d3 offset, see https://github.com/d3/d3-shape#stack_offset. */
+  offset?: keyof typeof STACK_OFFSETS;
 };
 
-export default function Stack({
+export default function Stack<Datum>({
   className,
   top,
   left,
@@ -46,14 +78,14 @@ export default function Stack({
   color,
   children,
   ...restProps
-}) {
-  const stack = d3stack();
+}: StackProps<Datum> & React.SVGProps<SVGPathElement>) {
+  const stack = d3stack<Datum>();
   if (keys) stack.keys(keys);
   if (value) stack.value(value);
   if (order) stack.order(stackOrder(order));
   if (offset) stack.offset(stackOffset(offset));
 
-  const path = area();
+  const path = area<SeriesPoint<Datum>>();
   if (x) path.x(x);
   if (x0) path.x0(x0);
   if (x1) path.x1(x1);
@@ -68,17 +100,15 @@ export default function Stack({
 
   return (
     <Group top={top} left={left}>
-      {stacks.map((series, i) => {
-        return (
-          <path
-            className={cx('vx-stack', className)}
-            key={`stack-${i}-${series.key || ''}`}
-            d={path(series)}
-            fill={color(series.key, i)}
-            {...restProps}
-          />
-        );
-      })}
+      {stacks.map((series, i) => (
+        <path
+          className={cx('vx-stack', className)}
+          key={`stack-${i}-${series.key || ''}`}
+          d={path(series) || ''}
+          fill={color && color(series.key, i)}
+          {...restProps}
+        />
+      ))}
     </Group>
   );
 }

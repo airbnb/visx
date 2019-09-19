@@ -1,24 +1,32 @@
 import React from 'react';
 import cx from 'classnames';
-import PropTypes from 'prop-types';
-import { Point } from '@vx/point';
 
-Line.propTypes = {
-  className: PropTypes.string,
-  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  fill: PropTypes.string,
-  from: PropTypes.shape({ x: PropTypes.number, y: PropTypes.number }),
-  to: PropTypes.shape({ x: PropTypes.number, y: PropTypes.number }),
+interface Point {
+  x?: number;
+  y?: number;
+}
+
+export type LineProps = {
+  /** className to apply to line element. */
+  className?: string;
+  /** reference to line element. */
+  innerRef?: React.Ref<SVGLineElement>;
+  /** fill color applied to line element. */
+  fill?: string;
+  /** Starting x,y point of the line. */
+  from?: Point;
+  /** Ending x,y point of the line. */
+  to?: Point;
 };
 
 export default function Line({
-  from = new Point({ x: 0, y: 0 }),
-  to = new Point({ x: 1, y: 1 }),
+  from = { x: 0, y: 0 },
+  to = { x: 1, y: 1 },
   fill = 'transparent',
-  className = '',
+  className,
   innerRef,
   ...restProps
-}) {
+}: LineProps & Omit<React.SVGProps<SVGLineElement>, 'from' | 'to'>) {
   return (
     <line
       ref={innerRef}

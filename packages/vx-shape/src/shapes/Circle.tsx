@@ -1,12 +1,17 @@
 import React from 'react';
 import cx from 'classnames';
-import PropTypes from 'prop-types';
 
-Circle.propTypes = {
-  className: PropTypes.string,
-  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+export type CircleProps = {
+  /** className to apply to circle element. */
+  className?: string;
+  /** reference to circle element. */
+  innerRef?: React.Ref<SVGCircleElement>;
 };
 
-export default function Circle({ className, innerRef, ...restProps }) {
+export default function Circle({
+  className,
+  innerRef,
+  ...restProps
+}: CircleProps & React.SVGProps<SVGCircleElement>) {
   return <circle ref={innerRef} className={cx('vx-circle', className)} {...restProps} />;
 }

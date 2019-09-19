@@ -1,20 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { Point } from '@vx/point';
 import { degreesToRadians } from '../util/trigonometry';
 
-Polygon.propTypes = {
-  sides: PropTypes.number.isRequired,
-  size: PropTypes.number.isRequired,
-  className: PropTypes.string,
-  rotate: PropTypes.number,
-  children: PropTypes.func,
-  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  center: PropTypes.shape({ x: PropTypes.number, y: PropTypes.number }),
-};
-
-export const getPoint = ({ sides, size, center, rotate, side }) => {
+export const getPoint = ({
+  sides,
+  size,
+  center,
+  rotate,
+  side,
+}: // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
+$TSFixMe) => {
   const degrees = (360 / sides) * side - rotate;
   const radians = degreesToRadians(degrees);
 
@@ -24,7 +20,13 @@ export const getPoint = ({ sides, size, center, rotate, side }) => {
   });
 };
 
-export const getPoints = ({ sides, size, center, rotate }) =>
+export const getPoints = ({
+  sides,
+  size,
+  center,
+  rotate,
+}: // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
+$TSFixMe) =>
   new Array(sides).fill(0).map((_, side) =>
     getPoint({
       sides,
@@ -35,6 +37,21 @@ export const getPoints = ({ sides, size, center, rotate }) =>
     }),
   );
 
+type Props = {
+  sides: number;
+  size: number;
+  className?: string;
+  rotate?: number;
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
+  children?: $TSFixMeFunction;
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
+  innerRef?: $TSFixMeFunction | $TSFixMe;
+  center?: {
+    x?: number;
+    y?: number;
+  };
+};
+
 export default function Polygon({
   sides,
   size = 25,
@@ -44,7 +61,7 @@ export default function Polygon({
   children,
   innerRef,
   ...restProps
-}) {
+}: Props) {
   const points = getPoints({
     sides,
     size,

@@ -1,9 +1,15 @@
 import React from 'react';
 import cx from 'classnames';
-import PropTypes from 'prop-types';
 
-export function pathRadialStep({ source, target, x, y }) {
-  return data => {
+export function pathRadialStep({
+  source,
+  target,
+  x,
+  y,
+}: // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
+$TSFixMe) {
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
+  return (data: $TSFixMe) => {
     const sourceData = source(data);
     const targetData = target(data);
 
@@ -31,30 +37,39 @@ export function pathRadialStep({ source, target, x, y }) {
   };
 }
 
-LinkRadialStep.propTypes = {
-  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  x: PropTypes.func,
-  y: PropTypes.func,
-  source: PropTypes.func,
-  target: PropTypes.func,
-  path: PropTypes.func,
-  children: PropTypes.func,
-  className: PropTypes.string,
-  data: PropTypes.any,
+type Props = {
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
+  innerRef?: $TSFixMeFunction | $TSFixMe;
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
+  x?: $TSFixMeFunction;
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
+  y?: $TSFixMeFunction;
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
+  source?: $TSFixMeFunction;
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
+  target?: $TSFixMeFunction;
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
+  path?: $TSFixMeFunction;
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
+  children?: $TSFixMeFunction;
+  className?: string;
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
+  data?: $TSFixMe;
 };
 
+// @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
 export default function LinkRadialStep({
   className,
   innerRef,
   data,
   path,
-  x = d => d.x,
-  y = d => d.y,
-  source = d => d.source,
-  target = d => d.target,
+  x = (d: $TSFixMe) => d.x,
+  y = (d: $TSFixMe) => d.y,
+  source = (d: $TSFixMe) => d.source,
+  target = (d: $TSFixMe) => d.target,
   children,
   ...restProps
-}) {
+}: Props) {
   const pathGen = path || pathRadialStep({ source, target, x, y });
   if (children) return children({ path });
   return (

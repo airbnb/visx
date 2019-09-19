@@ -1,10 +1,16 @@
 import React from 'react';
 import cx from 'classnames';
-import PropTypes from 'prop-types';
 import { linkRadial } from 'd3-shape';
 
-export function pathRadialDiagonal({ source, target, angle, radius }) {
-  return data => {
+export function pathRadialDiagonal({
+  source,
+  target,
+  angle,
+  radius,
+}: // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
+$TSFixMe) {
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
+  return (data: $TSFixMe) => {
     const link = linkRadial();
     link.angle(angle);
     link.radius(radius);
@@ -14,30 +20,39 @@ export function pathRadialDiagonal({ source, target, angle, radius }) {
   };
 }
 
-LinkRadial.propTypes = {
-  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  angle: PropTypes.func,
-  radius: PropTypes.func,
-  source: PropTypes.func,
-  target: PropTypes.func,
-  path: PropTypes.func,
-  children: PropTypes.func,
-  className: PropTypes.string,
-  data: PropTypes.any,
+type Props = {
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
+  innerRef?: $TSFixMeFunction | $TSFixMe;
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
+  angle?: $TSFixMeFunction;
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
+  radius?: $TSFixMeFunction;
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
+  source?: $TSFixMeFunction;
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
+  target?: $TSFixMeFunction;
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
+  path?: $TSFixMeFunction;
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
+  children?: $TSFixMeFunction;
+  className?: string;
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
+  data?: $TSFixMe;
 };
 
+// @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
 export default function LinkRadial({
   className,
   innerRef,
   data,
   path,
-  angle = d => d.x,
-  radius = d => d.y,
-  source = d => d.source,
-  target = d => d.target,
+  angle = (d: $TSFixMe) => d.x,
+  radius = (d: $TSFixMe) => d.y,
+  source = (d: $TSFixMe) => d.source,
+  target = (d: $TSFixMe) => d.target,
   children,
   ...restProps
-}) {
+}: Props) {
   const pathGen = path || pathRadialDiagonal({ source, target, angle, radius });
   if (children) return children({ path });
   return (

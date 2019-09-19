@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { Group } from '@vx/group';
 import { stack as d3stack } from 'd3-shape';
@@ -8,32 +7,45 @@ import stackOffset from '../util/stackOffset';
 import objHasMethod from '../util/objHasMethod';
 import Bar from './Bar';
 
-BarStack.propTypes = {
-  data: PropTypes.array.isRequired,
-  x: PropTypes.func.isRequired,
-  xScale: PropTypes.func.isRequired,
-  yScale: PropTypes.func.isRequired,
-  color: PropTypes.func.isRequired,
-  keys: PropTypes.array.isRequired,
-  className: PropTypes.string,
-  top: PropTypes.number,
-  left: PropTypes.number,
-  children: PropTypes.func,
-  y0: PropTypes.func,
-  y1: PropTypes.func,
-  order: PropTypes.oneOfType([PropTypes.func, PropTypes.array, PropTypes.string]),
-  offset: PropTypes.oneOfType([PropTypes.func, PropTypes.array, PropTypes.string]),
-  value: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+type Props = {
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
+  data: $TSFixMe[];
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
+  x: $TSFixMeFunction;
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
+  xScale: $TSFixMeFunction;
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
+  yScale: $TSFixMeFunction;
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
+  color: $TSFixMeFunction;
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
+  keys: $TSFixMe[];
+  className?: string;
+  top?: number;
+  left?: number;
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
+  children?: $TSFixMeFunction;
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
+  y0?: $TSFixMeFunction;
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
+  y1?: $TSFixMeFunction;
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
+  order?: $TSFixMeFunction | $TSFixMe[] | string;
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
+  offset?: $TSFixMeFunction | $TSFixMe[] | string;
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
+  value?: $TSFixMeFunction | number;
 };
 
+// @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
 export default function BarStack({
   data,
   className,
   top,
   left,
   x,
-  y0 = d => d[0],
-  y1 = d => d[1],
+  y0 = (d: $TSFixMe) => d[0],
+  y1 = (d: $TSFixMe) => d[1],
   xScale,
   yScale,
   color,
@@ -43,7 +55,7 @@ export default function BarStack({
   offset,
   children,
   ...restProps
-}) {
+}: Props) {
   const stack = d3stack();
   if (keys) stack.keys(keys);
   if (value) stack.value(value);
@@ -90,6 +102,7 @@ export default function BarStack({
       {barStacks.map(barStack => {
         return barStack.bars.map(bar => {
           return (
+            // @ts-ignore ts-migrate(2322) FIXME: Property 'x' does not exist on type 'IntrinsicAttr... Remove this comment to see the full error message
             <Bar
               key={`bar-stack-${barStack.index}-${bar.index}`}
               x={bar.x}

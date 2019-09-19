@@ -16,6 +16,6 @@ export const STACK_OFFSETS = {
 
 export const STACK_OFFSET_NAMES = Object.keys(STACK_OFFSETS);
 
-export default function stackOffset(offset) {
-  return STACK_OFFSETS[offset] || STACK_OFFSETS.none;
+export default function stackOffset(offset?: keyof typeof STACK_OFFSETS) {
+  return (offset && STACK_OFFSETS[offset]) || STACK_OFFSETS.none;
 }

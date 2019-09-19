@@ -1,30 +1,29 @@
 import React from 'react';
 import cx from 'classnames';
-import PropTypes from 'prop-types';
-import Stack from './Stack';
+import Stack, { StackProps } from './Stack';
 
-AreaStack.propTypes = {
-  className: PropTypes.string,
-  top: PropTypes.number,
-  left: PropTypes.number,
-  keys: PropTypes.array,
-  data: PropTypes.array,
-  curve: PropTypes.func,
-  color: PropTypes.func,
-  children: PropTypes.func,
-  x: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
-  x0: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
-  x1: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
-  y: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
-  y0: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
-  y1: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
-  value: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
-  defined: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
-  order: PropTypes.oneOfType([PropTypes.func, PropTypes.array, PropTypes.string]),
-  offset: PropTypes.oneOfType([PropTypes.func, PropTypes.array, PropTypes.string]),
-};
+export type AreaStackProps<Datum> = Pick<
+  StackProps<Datum>,
+  | 'className'
+  | 'top'
+  | 'left'
+  | 'keys'
+  | 'data'
+  | 'curve'
+  | 'defined'
+  | 'x'
+  | 'x0'
+  | 'x1'
+  | 'y0'
+  | 'y1'
+  | 'value'
+  | 'order'
+  | 'offset'
+  | 'color'
+  | 'children'
+>;
 
-export default function AreaStack({
+export default function AreaStack<Datum>({
   className,
   top,
   left,
@@ -43,7 +42,7 @@ export default function AreaStack({
   color,
   children,
   ...restProps
-}) {
+}: AreaStackProps<Datum> & React.SVGProps<SVGPathElement>) {
   return (
     <Stack
       className={className}
@@ -65,19 +64,16 @@ export default function AreaStack({
       {...restProps}
     >
       {children ||
-        (({ stacks, path }) => {
-          return stacks.map((series, i) => {
-            return (
-              <path
-                className={cx('vx-area-stack', className)}
-                key={`area-stack-${i}-${series.key || ''}`}
-                d={path(series)}
-                fill={color(series.key, i)}
-                {...restProps}
-              />
-            );
-          });
-        })}
+        (({ stacks, path }) =>
+          stacks.map((series: $TSFixMe, i: $TSFixMe) => (
+            <path
+              className={cx('vx-area-stack', className)}
+              key={`area-stack-${i}-${series.key || ''}`}
+              d={path(series)}
+              fill={color && color(series.key, i)}
+              {...restProps}
+            />
+          )))}
     </Stack>
   );
 }

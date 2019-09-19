@@ -1,33 +1,33 @@
 import React from 'react';
 import cx from 'classnames';
-import PropTypes from 'prop-types';
-import { radialLine } from 'd3-shape';
+import { radialLine, RadialLine } from 'd3-shape';
+import { LinePathProps } from './LinePath';
 
-LineRadial.propTypes = {
-  className: PropTypes.string,
-  children: PropTypes.func,
-  curve: PropTypes.func,
-  data: PropTypes.any,
-  defined: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
-  fill: PropTypes.string,
-  angle: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
-  radius: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
-  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+export type LineRadialProps<Datum> = Pick<
+  LinePathProps<Datum>,
+  'className' | 'curve' | 'data' | 'defined' | 'fill' | 'innerRef'
+> & {
+  /** Override render function override which is passed the configured path generator as input. */
+  children?: (args: { path: RadialLine<Datum> }) => React.ReactNode;
+  /** Returns the angle value in radians for a given Datum, with 0 at -y (12 o’clock). */
+  angle?: (datum: Datum, index: number, data: Datum[]) => number;
+  /** Returns the radius value in radians for a given Datum, with 0 at the center. */
+  radius?: (datum: Datum, index: number, data: Datum[]) => number;
 };
 
-export default function LineRadial({
+export default function LineRadial<Datum>({
   className,
   angle,
   radius,
   defined,
   curve,
-  data,
+  data = [],
   innerRef,
   children,
   fill = 'transparent',
   ...restProps
-}) {
-  const path = radialLine();
+}: LineRadialProps<Datum> & React.SVGProps<SVGPathElement>) {
+  const path = radialLine<Datum>();
   if (angle) path.angle(angle);
   if (radius) path.radius(radius);
   if (defined) path.defined(defined);
@@ -37,7 +37,7 @@ export default function LineRadial({
     <path
       ref={innerRef}
       className={cx('vx-line-radial', className)}
-      d={path(data)}
+      d={path(data) || ''}
       fill={fill}
       {...restProps}
     />

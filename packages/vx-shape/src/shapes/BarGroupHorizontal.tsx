@@ -1,24 +1,32 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { Group } from '@vx/group';
 import objHasMethod from '../util/objHasMethod';
 import Bar from './Bar';
 
-BarGroupHorizontal.propTypes = {
-  data: PropTypes.array.isRequired,
-  y0: PropTypes.func.isRequired,
-  y0Scale: PropTypes.func.isRequired,
-  y1Scale: PropTypes.func.isRequired,
-  xScale: PropTypes.func.isRequired,
-  color: PropTypes.func.isRequired,
-  keys: PropTypes.array.isRequired,
-  width: PropTypes.number.isRequired,
-  className: PropTypes.string,
-  x: PropTypes.func,
-  top: PropTypes.number,
-  left: PropTypes.number,
-  children: PropTypes.func,
+type Props = {
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
+  data: $TSFixMe[];
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
+  y0: $TSFixMeFunction;
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
+  y0Scale: $TSFixMeFunction;
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
+  y1Scale: $TSFixMeFunction;
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
+  xScale: $TSFixMeFunction;
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
+  color: $TSFixMeFunction;
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
+  keys: $TSFixMe[];
+  width: number;
+  className?: string;
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
+  x?: $TSFixMeFunction;
+  top?: number;
+  left?: number;
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
+  children?: $TSFixMeFunction;
 };
 
 export default function BarGroupHorizontal({
@@ -36,7 +44,7 @@ export default function BarGroupHorizontal({
   width,
   children,
   ...restProps
-}) {
+}: Props) {
   const y1Range = y1Scale.range();
   const y1Domain = y1Scale.domain();
   const barHeight = objHasMethod(y1Scale, 'bandwidth')
@@ -72,6 +80,7 @@ export default function BarGroupHorizontal({
           <Group key={`bar-group-${barGroup.index}-${barGroup.y0}`} top={barGroup.y0}>
             {barGroup.bars.map(bar => {
               return (
+                // @ts-ignore ts-migrate(2322) FIXME: Property 'x' does not exist on type 'IntrinsicAttr... Remove this comment to see the full error message
                 <Bar
                   key={`bar-group-bar-${barGroup.index}-${bar.index}-${bar.value}-${bar.key}`}
                   x={bar.x}

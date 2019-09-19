@@ -16,6 +16,6 @@ export const STACK_ORDERS = {
 
 export const STACK_ORDER_NAMES = Object.keys(STACK_ORDERS);
 
-export default function stackOrder(order) {
-  return STACK_ORDERS[order] || STACK_ORDERS.none;
+export default function stackOrder(order?: keyof typeof STACK_ORDERS) {
+  return (order && STACK_ORDERS[order]) || STACK_ORDERS.none;
 }

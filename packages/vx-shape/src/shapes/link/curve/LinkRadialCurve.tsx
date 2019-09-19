@@ -1,10 +1,17 @@
 import React from 'react';
 import cx from 'classnames';
-import PropTypes from 'prop-types';
 import { path as d3Path } from 'd3-path';
 
-export function pathRadialCurve({ source, target, x, y, percent }) {
-  return data => {
+export function pathRadialCurve({
+  source,
+  target,
+  x,
+  y,
+  percent,
+}: // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
+$TSFixMe) {
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
+  return (data: $TSFixMe) => {
     const sourceData = source(data);
     const targetData = target(data);
 
@@ -36,32 +43,41 @@ export function pathRadialCurve({ source, target, x, y, percent }) {
   };
 }
 
-LinkRadialCurve.propTypes = {
-  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  percent: PropTypes.number,
-  x: PropTypes.func,
-  y: PropTypes.func,
-  source: PropTypes.func,
-  target: PropTypes.func,
-  path: PropTypes.func,
-  children: PropTypes.func,
-  className: PropTypes.string,
-  data: PropTypes.any,
+type Props = {
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
+  innerRef?: $TSFixMeFunction | $TSFixMe;
+  percent?: number;
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
+  x?: $TSFixMeFunction;
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
+  y?: $TSFixMeFunction;
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
+  source?: $TSFixMeFunction;
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
+  target?: $TSFixMeFunction;
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
+  path?: $TSFixMeFunction;
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
+  children?: $TSFixMeFunction;
+  className?: string;
+  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
+  data?: $TSFixMe;
 };
 
+// @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
 export default function LinkRadialCurve({
   className,
   innerRef,
   data,
   path,
-  x = d => d.x,
-  y = d => d.y,
-  source = d => d.source,
-  target = d => d.target,
+  x = (d: $TSFixMe) => d.x,
+  y = (d: $TSFixMe) => d.y,
+  source = (d: $TSFixMe) => d.source,
+  target = (d: $TSFixMe) => d.target,
   percent = 0.2,
   children,
   ...restProps
-}) {
+}: Props) {
   const pathGen = path || pathRadialCurve({ source, target, x, y, percent });
   if (children) return children({ path });
   return (

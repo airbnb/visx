@@ -1,24 +1,37 @@
 import React from 'react';
 import cx from 'classnames';
-import PropTypes from 'prop-types';
-import { area } from 'd3-shape';
+import { area, Area as AreaType, CurveFactory } from 'd3-shape';
 
-Area.propTypes = {
-  children: PropTypes.func,
-  className: PropTypes.string,
-  data: PropTypes.any,
-  defined: PropTypes.func,
-  curve: PropTypes.func,
-  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  x: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
-  x0: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
-  x1: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
-  y: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
-  y0: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
-  y1: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
+type Accessor<Datum> = (datum: Datum, index: number, data: Datum[]) => number;
+
+export type AreaProps<Datum> = {
+  /** Override render function override which is passed the configured area generator as input. */
+  children?: (args: { path: AreaType<Datum> }) => React.ReactNode;
+  /** Classname applied to path element. */
+  className?: string;
+  /** Array of data for which to generate an area shape. */
+  data?: Datum[];
+  /** The defined accessor for the shape. The final area shape includes all points for which this function returns true. By default all points are defined. */
+  defined?: (datum: Datum, index: number, data: Datum[]) => boolean;
+  /** Sets the curve factory (from @vx/curve or d3-curve) for the area generator. Defaults to curveLinear. */
+  curve?: CurveFactory;
+  /** React RefObject passed to the path element. */
+  innerRef?: React.Ref<SVGPathElement>;
+  /** Sets the x0 accessor function, and sets x1 to null. */
+  x?: Accessor<Datum>;
+  /** Specifies the x0 accessor function which defaults to d => d[0]. */
+  x0?: Accessor<Datum>;
+  /** Specifies the x1 accessor function which defaults to null. */
+  x1?: Accessor<Datum>;
+  /** Sets the y0 accessor function, and sets y1 to null. */
+  y?: Accessor<Datum>;
+  /** Specifies the y0 accessor function which defaults to d => 0. */
+  y0?: Accessor<Datum>;
+  /** Specifies the y1 accessor function which defaults to d => d[1]. */
+  y1?: Accessor<Datum>;
 };
 
-export default function Area({
+export default function Area<Datum>({
   children,
   x,
   x0,
@@ -26,14 +39,14 @@ export default function Area({
   y,
   y0,
   y1,
-  data,
+  data = [],
   defined = () => true,
   className,
   curve,
   innerRef,
   ...restProps
-}) {
-  const path = area();
+}: AreaProps<Datum> & React.SVGProps<SVGPathElement>) {
+  const path = area<Datum>();
   if (x) path.x(x);
   if (x0) path.x0(x0);
   if (x1) path.x1(x1);
@@ -45,7 +58,12 @@ export default function Area({
   if (children) return children({ path });
   return (
     <g>
-      <path ref={innerRef} className={cx('vx-area', className)} d={path(data)} {...restProps} />
+      <path
+        ref={innerRef}
+        className={cx('vx-area', className)}
+        d={path(data) || ''}
+        {...restProps}
+      />
     </g>
   );
 }
