@@ -41,7 +41,7 @@ export default function LinkHorizontalLine<Link, Node>({
   ...restProps
 }: LinkHorizontalLineProps<Link, Node>) {
   const pathGen = path || pathHorizontalLine({ source, target, x, y });
-  if (children) return children({ path });
+  if (children) return <>{children({ path })}</>;
   return (
     <path
       ref={innerRef}

@@ -46,7 +46,7 @@ export default function LinkRadialLine<Link, Node>({
   ...restProps
 }: LinkRadialLineProps<Link, Node>) {
   const pathGen = path || pathRadialLine({ source, target, x, y });
-  if (children) return children({ path });
+  if (children) return <>{children({ path })}</>;
   return (
     <path
       ref={innerRef}

@@ -51,7 +51,7 @@ export default function Arc<Datum>({
   if (padAngle != null) setNumOrAccessor(arc.padAngle, padAngle);
   if (padRadius != null) setNumOrAccessor(arc.padRadius, padRadius);
 
-  if (children) return children({ path: arc });
+  if (children) return <>{children({ path: arc })}</>;
 
   return (
     data && (

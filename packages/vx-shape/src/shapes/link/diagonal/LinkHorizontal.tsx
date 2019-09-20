@@ -35,7 +35,7 @@ export default function LinkHorizontalDiagonal<Link, Node>({
   ...restProps
 }: LinkHorizontalDiagonalProps<Link, Node>) {
   const pathGen = path || pathHorizontalDiagonal({ source, target, x, y });
-  if (children) return children({ path });
+  if (children) return <>{children({ path })}</>;
   return (
     <path
       ref={innerRef}

@@ -48,7 +48,7 @@ export default function LinkHorizontalStep<Link, Node>({
   ...restProps
 }: LinkHorizontalStepProps<Link, Node>) {
   const pathGen = path || pathHorizontalStep({ source, target, x, y, percent });
-  if (children) return children({ path });
+  if (children) return <>{children({ path })}</>;
   return (
     <path
       ref={innerRef}

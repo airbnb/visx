@@ -51,7 +51,7 @@ export default function LinkHorizontalCurve<Link, Node>({
   ...restProps
 }: LinkHorizontalCurveProps<Link, Node>) {
   const pathGen = path || pathHorizontalCurve({ source, target, x, y, percent });
-  if (children) return children({ path });
+  if (children) return <>{children({ path })}</>;
   return (
     <path
       ref={innerRef}

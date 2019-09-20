@@ -97,7 +97,7 @@ export default function BarGroupHorizontal<Datum extends { [key: string]: number
     };
   });
 
-  if (children) return children(barGroups);
+  if (children) return <>{children(barGroups)}</>;
 
   return (
     <Group className={cx('vx-bar-group-horizontal', className)} top={top} left={left}>

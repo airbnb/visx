@@ -73,7 +73,7 @@ export default function Polygon({
     rotate,
   }).map(({ x, y }) => [x, y]);
 
-  if (children) return children({ points });
+  if (children) return <>{children({ points })}</>;
 
   return (
     <polygon

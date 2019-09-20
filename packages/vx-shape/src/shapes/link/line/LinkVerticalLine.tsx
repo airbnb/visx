@@ -41,7 +41,7 @@ export default function LinkVerticalLine<Link, Node>({
   ...restProps
 }: LinkVerticalLineProps<Link, Node>) {
   const pathGen = path || pathVerticalLine({ source, target, x, y });
-  if (children) return children({ path });
+  if (children) return <>{children({ path })}</>;
   return (
     <path
       ref={innerRef}

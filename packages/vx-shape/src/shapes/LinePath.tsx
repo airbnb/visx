@@ -40,7 +40,7 @@ export default function LinePath<Datum>({
   if (y) path.y(y);
   if (defined) path.defined(defined);
   if (curve) path.curve(curve);
-  if (children) return children({ path });
+  if (children) return <>{children({ path })}</>;
   return (
     <path
       ref={innerRef}

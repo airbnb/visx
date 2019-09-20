@@ -55,7 +55,7 @@ export default function AreaClosed<Datum>({
   if (y1 && !y) path.y1(y1);
   if (defined) path.defined(defined);
   if (curve) path.curve(curve);
-  if (children) return children({ path });
+  if (children) return <>{children({ path })}</>;
   return (
     <path
       ref={innerRef}

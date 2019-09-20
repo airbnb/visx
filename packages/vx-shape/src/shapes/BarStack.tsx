@@ -104,7 +104,7 @@ export default function BarStack<Datum>({
     };
   });
 
-  if (children) return children(barStacks);
+  if (children) return <>{children(barStacks)}</>;
 
   return (
     <Group className={cx('vx-bar-stack', className)} top={top} left={left}>

@@ -48,7 +48,7 @@ export default function LinkVerticalStep<Link, Node>({
   ...restProps
 }: LinkVerticalStepProps<Link, Node>) {
   const pathGen = path || pathVerticalStep({ source, target, x, y, percent });
-  if (children) return children({ path });
+  if (children) return <>{children({ path })}</>;
   return (
     <path
       ref={innerRef}

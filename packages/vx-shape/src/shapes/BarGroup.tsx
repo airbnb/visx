@@ -141,7 +141,7 @@ export default function BarGroup<Datum extends { [key: string]: number }>({
     };
   });
 
-  if (children) return children(barGroups);
+  if (children) return <>{children(barGroups)}</>;
 
   return (
     <Group className={cx('vx-bar-group', className)} top={top} left={left}>

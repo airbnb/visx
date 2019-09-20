@@ -34,7 +34,7 @@ export default function LinkVerticalDiagonal<Link, Node>({
   ...restProps
 }: LinkVerticalDiagonalProps<Link, Node>) {
   const pathGen = path || pathVerticalDiagonal({ source, target, x, y });
-  if (children) return children({ path });
+  if (children) return <>{children({ path })}</>;
   return (
     <path
       ref={innerRef}

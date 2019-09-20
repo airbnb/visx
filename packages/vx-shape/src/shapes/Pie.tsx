@@ -78,7 +78,7 @@ export default function Pie<Datum>({
   if (endAngle != null) setNumOrAccessor(pie.endAngle, endAngle);
 
   const arcs = pie(data);
-  if (children) return children({ arcs, path, pie });
+  if (children) return <>{children({ arcs, path, pie })}</>;
 
   return (
     <Group className="vx-pie-arcs-group" top={top} left={left}>
