@@ -5,9 +5,13 @@ export type ClipPathProps = {
   id: string;
   /** clipPath children. */
   children?: React.ReactNode;
-} & React.SVGProps<SVGClipPathElement>;
+};
 
-export default function ClipPath({ id, children, ...restProps }: ClipPathProps) {
+export default function ClipPath({
+  id,
+  children,
+  ...restProps
+}: ClipPathProps & Omit<React.SVGProps<SVGClipPathElement>, keyof ClipPathProps>) {
   return (
     <defs>
       <clipPath id={id} {...restProps}>

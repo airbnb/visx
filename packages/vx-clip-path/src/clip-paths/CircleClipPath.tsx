@@ -10,9 +10,15 @@ export type CircleClipPathProps = {
   cy?: string | number;
   /** radius of the ClipPath circle. */
   r?: string | number;
-} & React.SVGProps<SVGCircleElement>;
+};
 
-export default function CircleClipPath({ id, cx, cy, r, ...restProps }: CircleClipPathProps) {
+export default function CircleClipPath({
+  id,
+  cx,
+  cy,
+  r,
+  ...restProps
+}: CircleClipPathProps & Omit<React.SVGProps<SVGCircleElement>, keyof CircleClipPathProps>) {
   return (
     <ClipPath id={id}>
       <circle cx={cx} cy={cy} r={r} {...restProps} />

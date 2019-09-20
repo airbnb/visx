@@ -12,7 +12,7 @@ export type RectClipPathProps = {
   width?: string | number;
   /** height of the ClipPath rect. */
   height?: string | number;
-} & React.SVGProps<SVGRectElement>;
+};
 
 export default function RectClipPath({
   id,
@@ -21,7 +21,7 @@ export default function RectClipPath({
   width = 1,
   height = 1,
   ...restProps
-}: RectClipPathProps) {
+}: RectClipPathProps & Omit<React.SVGProps<SVGRectElement>, keyof RectClipPathProps>) {
   return (
     <ClipPath id={id}>
       <rect x={x} y={y} width={width} height={height} {...restProps} />
