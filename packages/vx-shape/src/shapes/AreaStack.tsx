@@ -44,7 +44,7 @@ export default function AreaStack<Datum>({
   ...restProps
 }: AreaStackProps<Datum> & React.SVGProps<SVGPathElement>) {
   return (
-    <Stack
+    <Stack<Datum>
       className={className}
       top={top}
       left={left}
@@ -65,7 +65,7 @@ export default function AreaStack<Datum>({
     >
       {children ||
         (({ stacks, path }) =>
-          stacks.map((series: $TSFixMe, i: $TSFixMe) => (
+          stacks.map((series, i) => (
             <path
               className={cx('vx-area-stack', className)}
               key={`area-stack-${i}-${series.key || ''}`}

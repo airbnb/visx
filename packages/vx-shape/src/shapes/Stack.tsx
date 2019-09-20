@@ -8,6 +8,7 @@ import {
   Stack as StackType,
   CurveFactory,
   SeriesPoint,
+  Series,
 } from 'd3-shape';
 
 import stackOrder, { STACK_ORDERS } from '../util/stackOrder';
@@ -33,7 +34,7 @@ export type StackProps<Datum> = {
   keys?: Key[];
   /** Override render function which is passed the configured arc generator as input. */
   children?: (args: {
-    stacks: any;
+    stacks: Series<Datum, string>[];
     path: AreaType<SeriesPoint<Datum>>;
     stack: StackType<any, Datum, Key>;
   }) => React.ReactNode;
@@ -43,8 +44,6 @@ export type StackProps<Datum> = {
   x0?: Accessor<SeriesPoint<Datum>>;
   /** Specifies the x1 accessor function which defaults to null. */
   x1?: Accessor<SeriesPoint<Datum>>;
-  /** Sets the y0 accessor function, and sets y1 to null. */
-  y?: Accessor<SeriesPoint<Datum>>;
   /** Specifies the y0 accessor function which defaults to d => 0. */
   y0?: Accessor<SeriesPoint<Datum>>;
   /** Specifies the y1 accessor function which defaults to d => d[1]. */
@@ -96,7 +95,7 @@ export default function Stack<Datum>({
 
   const stacks = stack(data);
 
-  if (children) return children({ stacks, path, stack });
+  if (children) return <>{children({ stacks, path, stack })}</>;
 
   return (
     <Group top={top} left={left}>
