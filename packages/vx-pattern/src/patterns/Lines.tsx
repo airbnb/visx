@@ -10,25 +10,18 @@ function pathForOrientation({
   height: number;
   orientation: PatternOrientationType;
 }) {
-  let path;
-
   switch (orientation) {
     case PatternOrientation.vertical:
-      path = `M ${height / 2}, 0 l 0, ${height}`;
-      break;
+      return `M ${height / 2}, 0 l 0, ${height}`;
     case PatternOrientation.horizontal:
-      path = `M 0,${height / 2} l ${height},0`;
-      break;
+      return `M 0,${height / 2} l ${height},0`;
     case PatternOrientation.diagonal:
-      path = `M 0,${height} l ${height},${-height} M ${-height / 4},${height / 4} l ${height /
+      return `M 0,${height} l ${height},${-height} M ${-height / 4},${height / 4} l ${height /
         2},${-height / 2}
              M ${(3 / 4) * height},${(5 / 4) * height} l ${height / 2},${-height / 2}`;
-      break;
     default:
-      path = `M ${height / 2}, 0 l 0, ${height}`;
+      return `M ${height / 2}, 0 l 0, ${height}`;
   }
-
-  return path;
 }
 
 export type PatternLinesProps = {
