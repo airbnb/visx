@@ -12,6 +12,6 @@ export default function Bar({
   className,
   innerRef,
   ...restProps
-}: BarProps & React.SVGProps<SVGRectElement>) {
+}: BarProps & Omit<React.SVGProps<SVGRectElement>, keyof BarProps>) {
   return <rect ref={innerRef} className={cx('vx-bar', className)} {...restProps} />;
 }

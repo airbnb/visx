@@ -77,7 +77,7 @@ export default function Stack<Datum>({
   color,
   children,
   ...restProps
-}: StackProps<Datum> & React.SVGProps<SVGPathElement>) {
+}: StackProps<Datum> & Omit<React.SVGProps<SVGPathElement>, keyof StackProps<Datum>>) {
   const stack = d3stack<Datum>();
   if (keys) stack.keys(keys);
   if (value) stack.value(value);

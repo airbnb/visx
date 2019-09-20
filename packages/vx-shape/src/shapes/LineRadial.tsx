@@ -26,7 +26,7 @@ export default function LineRadial<Datum>({
   children,
   fill = 'transparent',
   ...restProps
-}: LineRadialProps<Datum> & React.SVGProps<SVGPathElement>) {
+}: LineRadialProps<Datum> & Omit<React.SVGProps<SVGPathElement>, keyof LineRadialProps<Datum>>) {
   const path = radialLine<Datum>();
   if (angle) path.angle(angle);
   if (radius) path.radius(radius);

@@ -12,6 +12,6 @@ export default function Circle({
   className,
   innerRef,
   ...restProps
-}: CircleProps & React.SVGProps<SVGCircleElement>) {
+}: CircleProps & Omit<React.SVGProps<SVGCircleElement>, keyof CircleProps>) {
   return <circle ref={innerRef} className={cx('vx-circle', className)} {...restProps} />;
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { linkHorizontal } from 'd3-shape';
-import { SharedLinkProps, AccessorProps } from '../types';
+import { SharedLinkProps, AccessorProps } from '../../../types';
 
 export function pathHorizontalDiagonal<Link, Node>({
   source,
@@ -33,7 +33,8 @@ export default function LinkHorizontalDiagonal<Link, Node>({
   source = (l: any) => l && l.source,
   target = (l: any) => l && l.target,
   ...restProps
-}: LinkHorizontalDiagonalProps<Link, Node>) {
+}: LinkHorizontalDiagonalProps<Link, Node> &
+  Omit<React.SVGProps<SVGPathElement>, keyof LinkHorizontalDiagonalProps<Link, Node>>) {
   const pathGen = path || pathHorizontalDiagonal({ source, target, x, y });
   if (children) return <>{children({ path })}</>;
   return (

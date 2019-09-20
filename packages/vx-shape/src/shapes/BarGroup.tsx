@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import { Group } from '@vx/group';
 import Bar from './Bar';
-import { ScaleType } from './link/types';
+import { ScaleType } from '../types';
 
 type Key = string;
 
@@ -112,7 +112,7 @@ export default function BarGroup<Datum extends { [key: string]: number }>({
   height,
   children,
   ...restProps
-}: BarGroupProps<Datum>) {
+}: BarGroupProps<Datum> & Omit<React.SVGProps<SVGRectElement>, keyof BarGroupProps<Datum>>) {
   const x1Range = x1Scale.range();
   const x1Domain = x1Scale.domain();
 

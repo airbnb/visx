@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { SharedLinkProps, AccessorProps } from '../types';
+import { SharedLinkProps, AccessorProps } from '../../../types';
 
 export function pathRadialStep<Link, Node>({
   source,
@@ -52,7 +52,8 @@ export default function LinkRadialStep<Link, Node>({
   target = (d: any) => d.target,
   children,
   ...restProps
-}: LinkRadialStepProps<Link, Node>) {
+}: LinkRadialStepProps<Link, Node> &
+  Omit<React.SVGProps<SVGPathElement>, keyof LinkRadialStepProps<Link, Node>>) {
   const pathGen = path || pathRadialStep({ source, target, x, y });
   if (children) return <>{children({ path })}</>;
   return (

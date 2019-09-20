@@ -61,7 +61,7 @@ export default function Pie<Datum>({
   pieValue,
   children,
   ...restProps
-}: PieProps<Datum> & React.SVGProps<SVGPathElement>) {
+}: PieProps<Datum> & Omit<React.SVGProps<SVGPathElement>, keyof PieProps<Datum>>) {
   const path = d3Arc<PieArcDatum<Datum>>();
 
   if (innerRadius != null) setNumOrAccessor(path.innerRadius, innerRadius);

@@ -34,7 +34,7 @@ export default function LinePath<Datum>({
   innerRef,
   defined = () => true,
   ...restProps
-}: LinePathProps<Datum> & React.SVGProps<SVGPathElement>) {
+}: LinePathProps<Datum> & Omit<React.SVGProps<SVGPathElement>, keyof LinePathProps<Datum>>) {
   const path = line<Datum>();
   if (x) path.x(x);
   if (y) path.y(y);

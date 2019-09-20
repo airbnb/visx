@@ -7,7 +7,7 @@ import stackOrder from '../util/stackOrder';
 import stackOffset from '../util/stackOffset';
 import Bar from './Bar';
 import { StackProps, Key } from './Stack';
-import { ScaleType } from './link/types';
+import { ScaleType } from '../types';
 
 export type BarStackProps<Datum> = Pick<
   StackProps<Datum>,
@@ -61,7 +61,7 @@ export default function BarStack<Datum>({
   offset,
   children,
   ...restProps
-}: BarStackProps<Datum>) {
+}: BarStackProps<Datum> & Omit<React.SVGProps<SVGRectElement>, keyof BarStackProps<Datum>>) {
   const stack = d3stack<Datum>();
   if (keys) stack.keys(keys);
   if (value) stack.value(value);

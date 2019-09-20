@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { path as d3Path } from 'd3-path';
-import { SharedLinkProps, AccessorProps } from '../types';
+import { SharedLinkProps, AccessorProps } from '../../../types';
 
 export function pathVerticalStep<Link, Node>({
   source,
@@ -46,7 +46,8 @@ export default function LinkVerticalStep<Link, Node>({
   target = (d: any) => d.target,
   children,
   ...restProps
-}: LinkVerticalStepProps<Link, Node>) {
+}: LinkVerticalStepProps<Link, Node> &
+  Omit<React.SVGProps<SVGPathElement>, keyof LinkVerticalStepProps<Link, Node>>) {
   const pathGen = path || pathVerticalStep({ source, target, x, y, percent });
   if (children) return <>{children({ path })}</>;
   return (

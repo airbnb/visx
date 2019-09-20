@@ -42,7 +42,7 @@ export default function AreaStack<Datum>({
   color,
   children,
   ...restProps
-}: AreaStackProps<Datum> & React.SVGProps<SVGPathElement>) {
+}: AreaStackProps<Datum> & Omit<React.SVGProps<SVGPathElement>, keyof AreaStackProps<Datum>>) {
   return (
     <Stack<Datum>
       className={className}

@@ -48,7 +48,8 @@ export default function BarStackHorizontal<Datum>({
   offset,
   children,
   ...restProps
-}: BarStackHorizontalProps<Datum>) {
+}: BarStackHorizontalProps<Datum> &
+  Omit<React.SVGProps<SVGRectElement>, keyof BarStackHorizontalProps<Datum>>) {
   const stack = d3stack<Datum>();
   if (keys) stack.keys(keys);
   if (value) stack.value(value);

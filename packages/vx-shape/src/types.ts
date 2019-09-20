@@ -32,9 +32,9 @@ export type SharedLinkProps<Link> = {
   children?: (args: { path: PathType<Link> }) => NonNullable<React.ReactNode>;
   /** Datum for which to render a link. */
   data: Link;
-} & Omit<React.SVGProps<SVGPathElement>, 'x' | 'y' | 'source' | 'target' | 'angle' | 'radius'>;
+};
 
-/** @TODO may need to revisit this. */
+/** This is meant to be a generic interface for any scale based on usage in this package. */
 export interface ScaleType {
   (...args: any[]): number;
   range(): [number, number];

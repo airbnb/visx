@@ -41,7 +41,7 @@ export default function Arc<Datum>({
   children,
   innerRef,
   ...restProps
-}: ArcProps<Datum> & React.SVGProps<SVGPathElement>) {
+}: ArcProps<Datum> & Omit<React.SVGProps<SVGPathElement>, keyof ArcProps<Datum>>) {
   const arc = d3Arc<Datum>();
   if (innerRadius != null) setNumOrAccessor(arc.innerRadius, innerRadius);
   if (outerRadius != null) setNumOrAccessor(arc.outerRadius, outerRadius);

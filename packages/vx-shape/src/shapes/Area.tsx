@@ -45,7 +45,7 @@ export default function Area<Datum>({
   curve,
   innerRef,
   ...restProps
-}: AreaProps<Datum> & React.SVGProps<SVGPathElement>) {
+}: AreaProps<Datum> & Omit<React.SVGProps<SVGPathElement>, keyof AreaProps<Datum>>) {
   const path = area<Datum>();
   if (x) path.x(x);
   if (x0) path.x0(x0);
@@ -57,13 +57,6 @@ export default function Area<Datum>({
   if (curve) path.curve(curve);
   if (children) return <>{children({ path })}</>;
   return (
-    <g>
-      <path
-        ref={innerRef}
-        className={cx('vx-area', className)}
-        d={path(data) || ''}
-        {...restProps}
-      />
-    </g>
+    <path ref={innerRef} className={cx('vx-area', className)} d={path(data) || ''} {...restProps} />
   );
 }

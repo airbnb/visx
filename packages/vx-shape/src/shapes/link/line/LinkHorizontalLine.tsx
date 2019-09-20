@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { path as d3Path } from 'd3-path';
-import { SharedLinkProps, AccessorProps } from '../types';
+import { SharedLinkProps, AccessorProps } from '../../../types';
 
 export function pathHorizontalLine<Link, Node>({
   source,
@@ -39,7 +39,8 @@ export default function LinkHorizontalLine<Link, Node>({
   source = (d: any) => d.source,
   target = (d: any) => d.target,
   ...restProps
-}: LinkHorizontalLineProps<Link, Node>) {
+}: LinkHorizontalLineProps<Link, Node> &
+  Omit<React.SVGProps<SVGPathElement>, keyof LinkHorizontalLineProps<Link, Node>>) {
   const pathGen = path || pathHorizontalLine({ source, target, x, y });
   if (children) return <>{children({ path })}</>;
   return (

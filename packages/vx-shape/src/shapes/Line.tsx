@@ -26,7 +26,7 @@ export default function Line({
   className,
   innerRef,
   ...restProps
-}: LineProps & Omit<React.SVGProps<SVGLineElement>, 'from' | 'to'>) {
+}: LineProps & Omit<React.SVGProps<SVGLineElement>, keyof LineProps>) {
   return (
     <line
       ref={innerRef}

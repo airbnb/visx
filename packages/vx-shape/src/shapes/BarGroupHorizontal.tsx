@@ -3,7 +3,7 @@ import cx from 'classnames';
 import { Group } from '@vx/group';
 import Bar from './Bar';
 import { BarGroupProps } from './BarGroup';
-import { ScaleType } from './link/types';
+import { ScaleType } from '../types';
 
 type Key = string;
 
@@ -69,7 +69,8 @@ export default function BarGroupHorizontal<Datum extends { [key: string]: number
   width,
   children,
   ...restProps
-}: BarGroupHorizontalProps<Datum>) {
+}: BarGroupHorizontalProps<Datum> &
+  Omit<React.SVGProps<SVGRectElement>, keyof BarGroupHorizontalProps<Datum>>) {
   const y1Range = y1Scale.range();
   const y1Domain = y1Scale.domain();
   const barHeight =

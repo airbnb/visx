@@ -65,7 +65,7 @@ export default function Polygon({
   children,
   innerRef,
   ...restProps
-}: PolygonProps & React.SVGProps<SVGPolygonElement>) {
+}: PolygonProps & Omit<React.SVGProps<SVGPolygonElement>, keyof PolygonProps>) {
   const points: [number, number][] = getPoints({
     sides,
     size,
