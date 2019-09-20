@@ -1,19 +1,18 @@
 import React from 'react';
 import cx from 'classnames';
 import { path as d3Path } from 'd3-path';
+import { SharedLinkProps, AccessorProps } from '../types';
 
-export function pathHorizontalStep({
+export function pathHorizontalStep<Link, Node>({
   source,
   target,
   x,
   y,
   percent,
-}: // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
-$TSFixMe) {
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
-  return (data: $TSFixMe) => {
-    const sourceData = source(data);
-    const targetData = target(data);
+}: Required<AccessorProps<Link, Node>> & { percent: number }) {
+  return (link: Link) => {
+    const sourceData = source(link);
+    const targetData = target(link);
 
     const sx = x(sourceData);
     const sy = y(sourceData);
@@ -30,41 +29,24 @@ $TSFixMe) {
   };
 }
 
-type Props = {
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  innerRef?: $TSFixMeFunction | $TSFixMe;
+type LinkHorizontalStepProps<Link, Node> = {
   percent?: number;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  x?: $TSFixMeFunction;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  y?: $TSFixMeFunction;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  source?: $TSFixMeFunction;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  target?: $TSFixMeFunction;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  path?: $TSFixMeFunction;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  children?: $TSFixMeFunction;
-  className?: string;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
-  data?: $TSFixMe;
-};
+} & AccessorProps<Link, Node> &
+  SharedLinkProps<Link>;
 
-// @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
-export default function LinkHorizontalStep({
+export default function LinkHorizontalStep<Link, Node>({
   className,
   innerRef,
   data,
   path,
   percent = 0.5,
-  x = (d: $TSFixMe) => d.y,
-  y = (d: $TSFixMe) => d.x,
-  source = (d: $TSFixMe) => d.source,
-  target = (d: $TSFixMe) => d.target,
+  x = (d: any) => d.y,
+  y = (d: any) => d.x,
+  source = (d: any) => d.source,
+  target = (d: any) => d.target,
   children,
   ...restProps
-}: Props) {
+}: LinkHorizontalStepProps<Link, Node>) {
   const pathGen = path || pathHorizontalStep({ source, target, x, y, percent });
   if (children) return children({ path });
   return (

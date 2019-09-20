@@ -1,17 +1,16 @@
 import React from 'react';
 import cx from 'classnames';
 import { linkVertical } from 'd3-shape';
+import { SharedLinkProps, AccessorProps } from '../types';
 
-export function pathVerticalDiagonal({
+export function pathVerticalDiagonal<Link, Node>({
   source,
   target,
   x,
   y,
-}: // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
-$TSFixMe) {
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
-  return (data: $TSFixMe) => {
-    const link = linkVertical();
+}: Required<AccessorProps<Link, Node>>) {
+  return (data: Link) => {
+    const link = linkVertical<Link, Node>();
     link.x(x);
     link.y(y);
     link.source(source);
@@ -20,39 +19,20 @@ $TSFixMe) {
   };
 }
 
-type Props = {
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  innerRef?: $TSFixMeFunction | $TSFixMe;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  x?: $TSFixMeFunction;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  y?: $TSFixMeFunction;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  source?: $TSFixMeFunction;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  target?: $TSFixMeFunction;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  path?: $TSFixMeFunction;
-  className?: string;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  children?: $TSFixMeFunction;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
-  data?: $TSFixMe;
-};
+type LinkVerticalDiagonalProps<Link, Node> = AccessorProps<Link, Node> & SharedLinkProps<Link>;
 
-// @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
-export default function LinkVertical({
+export default function LinkVerticalDiagonal<Link, Node>({
   className,
-  innerRef,
-  data,
-  path,
-  x = (d: $TSFixMe) => d.x,
-  y = (d: $TSFixMe) => d.y,
-  source = (d: $TSFixMe) => d.source,
-  target = (d: $TSFixMe) => d.target,
   children,
+  data,
+  innerRef,
+  path,
+  x = (d: any) => d.x,
+  y = (d: any) => d.y,
+  source = (d: any) => d.source,
+  target = (d: any) => d.target,
   ...restProps
-}: Props) {
+}: LinkVerticalDiagonalProps<Link, Node>) {
   const pathGen = path || pathVerticalDiagonal({ source, target, x, y });
   if (children) return children({ path });
   return (

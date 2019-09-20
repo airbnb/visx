@@ -1,16 +1,15 @@
 import React from 'react';
 import cx from 'classnames';
 import { path as d3Path } from 'd3-path';
+import { SharedLinkProps, AccessorProps } from '../types';
 
-export function pathHorizontalLine({
+export function pathHorizontalLine<Link, Node>({
   source,
   target,
   x,
   y,
-}: // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
-$TSFixMe) {
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
-  return (data: $TSFixMe) => {
+}: Required<AccessorProps<Link, Node>>) {
+  return (data: Link) => {
     const sourceData = source(data);
     const targetData = target(data);
 
@@ -27,39 +26,20 @@ $TSFixMe) {
   };
 }
 
-type Props = {
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  innerRef?: $TSFixMeFunction | $TSFixMe;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  path?: $TSFixMeFunction;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  x?: $TSFixMeFunction;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  y?: $TSFixMeFunction;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  source?: $TSFixMeFunction;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  target?: $TSFixMeFunction;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  children?: $TSFixMeFunction;
-  className?: string;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
-  data?: $TSFixMe;
-};
+export type LinkHorizontalLineProps<Link, Node> = AccessorProps<Link, Node> & SharedLinkProps<Link>;
 
-// @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
-export default function LinkHorizontalLine({
+export default function LinkHorizontalLine<Link, Node>({
   className,
+  children,
   innerRef,
   data,
   path,
-  x = (d: $TSFixMe) => d.y,
-  y = (d: $TSFixMe) => d.x,
-  source = (d: $TSFixMe) => d.source,
-  target = (d: $TSFixMe) => d.target,
-  children,
+  x = (d: any) => d.y,
+  y = (d: any) => d.x,
+  source = (d: any) => d.source,
+  target = (d: any) => d.target,
   ...restProps
-}: Props) {
+}: LinkHorizontalLineProps<Link, Node>) {
   const pathGen = path || pathHorizontalLine({ source, target, x, y });
   if (children) return children({ path });
   return (

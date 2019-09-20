@@ -2,8 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import { Group } from '@vx/group';
 import { arc as d3Arc, Arc as ArcType, PieArcDatum, pie as d3Pie, Pie as PieType } from 'd3-shape';
-
-type NumberAccessor<Datum> = (d: Datum) => number;
+import setNumOrAccessor, { NumberAccessor } from '../util/setNumberOrNumberAccessor';
 
 export type PieProps<Datum> = {
   /** className applied to path element. */
@@ -36,29 +35,13 @@ export type PieProps<Datum> = {
   endAngle?: NumberAccessor<Datum> | number;
   /** Padding angle of the Pie shape, which sets a fixed linear distance separating adjacent arcs. */
   padAngle?: NumberAccessor<Datum> | number;
-  /** Override render function override which is passed the configured arc generator as input. */
+  /** Render function override which is passed the configured arc generator as input. */
   children?: (args: {
-    path: ArcType<any, Datum>;
+    path: ArcType<any, PieArcDatum<Datum>>;
     arcs: PieArcDatum<Datum>[];
     pie: PieType<any, Datum>;
   }) => React.ReactNode;
 };
-
-class PieChart<DataShape> {
-  public innerRadius(num: number): void {}
-  public innerRadius(func: (d: DataShape) => number): void {}
-}
-
-type Datum = { value: number };
-const pie = new PieChart<Datum>();
-
-pie.innerRadius(); // error
-pie.innerRadius(123); // okay
-pie.innerRadius((d: Datum) => d.value); // okay
-
-const asProp1 = (_: number) => pie.innerRadius(_); // okay
-const asProp2 = (_: Datum) => pie.innerRadius(_); // okay
-const asProp3 = (_: number | Datum) => pie.innerRadius(_); // okay
 
 export default function Pie<Datum>({
   className,
@@ -79,22 +62,22 @@ export default function Pie<Datum>({
   children,
   ...restProps
 }: PieProps<Datum> & React.SVGProps<SVGPathElement>) {
-  const path = d3Arc<Datum>();
-  if (innerRadius != null) path.innerRadius(innerRadius as number);
-  if (outerRadius != null) path.outerRadius(outerRadius as NumberAccessor<Datum>);
-  if (cornerRadius != null) path.cornerRadius(cornerRadius);
-  if (padRadius != null) path.padRadius(padRadius);
+  const path = d3Arc<PieArcDatum<Datum>>();
+
+  if (innerRadius != null) setNumOrAccessor(path.innerRadius, innerRadius);
+  if (outerRadius != null) setNumOrAccessor(path.outerRadius, outerRadius);
+  if (cornerRadius != null) setNumOrAccessor(path.cornerRadius, cornerRadius);
+  if (padRadius != null) setNumOrAccessor(path.padRadius, padRadius);
 
   const pie = d3Pie<Datum>();
   if (pieSort != null) pie.sort(pieSort);
   if (pieSortValues != null) pie.sortValues(pieSortValues);
   if (pieValue != null) pie.value(pieValue);
-  if (padAngle != null) pie.padAngle(padAngle);
-  if (startAngle != null) pie.startAngle(startAngle);
-  if (endAngle != null) pie.endAngle(endAngle);
+  if (padAngle != null) setNumOrAccessor(pie.padAngle, padAngle);
+  if (startAngle != null) setNumOrAccessor(pie.startAngle, startAngle);
+  if (endAngle != null) setNumOrAccessor(pie.endAngle, endAngle);
 
   const arcs = pie(data);
-
   if (children) return children({ arcs, path, pie });
 
   return (

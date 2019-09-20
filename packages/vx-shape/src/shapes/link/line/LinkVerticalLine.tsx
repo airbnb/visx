@@ -1,16 +1,15 @@
 import React from 'react';
 import cx from 'classnames';
 import { path as d3Path } from 'd3-path';
+import { SharedLinkProps, AccessorProps } from '../types';
 
-export function pathVerticalLine({
+export function pathVerticalLine<Link, Node>({
   source,
   target,
   x,
   y,
-}: // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
-$TSFixMe) {
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
-  return (data: $TSFixMe) => {
+}: Required<AccessorProps<Link, Node>>) {
+  return (data: Link) => {
     const sourceData = source(data);
     const targetData = target(data);
 
@@ -27,39 +26,20 @@ $TSFixMe) {
   };
 }
 
-type Props = {
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  innerRef?: $TSFixMeFunction | $TSFixMe;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  path?: $TSFixMeFunction;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  x?: $TSFixMeFunction;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  y?: $TSFixMeFunction;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  source?: $TSFixMeFunction;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  target?: $TSFixMeFunction;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  children?: $TSFixMeFunction;
-  className?: string;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
-  data?: $TSFixMe;
-};
+export type LinkVerticalLineProps<Link, Node> = AccessorProps<Link, Node> & SharedLinkProps<Link>;
 
-// @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
-export default function LinkVerticalLine({
+export default function LinkVerticalLine<Link, Node>({
   className,
   innerRef,
   data,
   path,
-  x = (d: $TSFixMe) => d.x,
-  y = (d: $TSFixMe) => d.y,
-  source = (d: $TSFixMe) => d.source,
-  target = (d: $TSFixMe) => d.target,
+  x = (d: any) => d.x,
+  y = (d: any) => d.y,
+  source = (d: any) => d.source,
+  target = (d: any) => d.target,
   children,
   ...restProps
-}: Props) {
+}: LinkVerticalLineProps<Link, Node>) {
   const pathGen = path || pathVerticalLine({ source, target, x, y });
   if (children) return children({ path });
   return (

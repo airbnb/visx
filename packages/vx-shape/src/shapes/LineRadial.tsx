@@ -7,7 +7,7 @@ export type LineRadialProps<Datum> = Pick<
   LinePathProps<Datum>,
   'className' | 'curve' | 'data' | 'defined' | 'fill' | 'innerRef'
 > & {
-  /** Override render function override which is passed the configured path generator as input. */
+  /** Override render function which is passed the configured path generator as input. */
   children?: (args: { path: RadialLine<Datum> }) => React.ReactNode;
   /** Returns the angle value in radians for a given Datum, with 0 at -y (12 o’clock). */
   angle?: (datum: Datum, index: number, data: Datum[]) => number;

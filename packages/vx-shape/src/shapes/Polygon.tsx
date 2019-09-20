@@ -1,23 +1,23 @@
 import React from 'react';
 import cx from 'classnames';
-import { Point } from '@vx/point';
 import { degreesToRadians } from '../util/trigonometry';
+
+const DEFAULT_CENTER = { x: 0, y: 0 };
 
 export const getPoint = ({
   sides,
   size,
-  center,
-  rotate,
+  center = DEFAULT_CENTER,
+  rotate = 0,
   side,
-}: // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
-$TSFixMe) => {
+}: { side: number } & Pick<PolygonProps, 'sides' | 'size' | 'center' | 'rotate'>) => {
   const degrees = (360 / sides) * side - rotate;
   const radians = degreesToRadians(degrees);
 
-  return new Point({
+  return {
     x: center.x + size * Math.cos(radians),
     y: center.y + size * Math.sin(radians),
-  });
+  };
 };
 
 export const getPoints = ({
@@ -25,8 +25,7 @@ export const getPoints = ({
   size,
   center,
   rotate,
-}: // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
-$TSFixMe) =>
+}: Pick<PolygonProps, 'sides' | 'size' | 'center' | 'rotate'>) =>
   new Array(sides).fill(0).map((_, side) =>
     getPoint({
       sides,
@@ -37,37 +36,42 @@ $TSFixMe) =>
     }),
   );
 
-type Props = {
+type PolygonProps = {
+  /** Number of polygon sides. */
   sides: number;
+  /** Size of the shape. */
   size: number;
+  /** className to apply to polygon element. */
   className?: string;
+  /** Rotation transform to apply to polygon. */
   rotate?: number;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  children?: $TSFixMeFunction;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  innerRef?: $TSFixMeFunction | $TSFixMe;
+  /** Render function override which is passed the generated polygon points. */
+  children?: (args: { points: [number, number][] }) => React.ReactNode;
+  /** Reference to polygon element. */
+  innerRef?: React.Ref<SVGPolygonElement>;
+  /** Polygon center position. */
   center?: {
-    x?: number;
-    y?: number;
+    x: number;
+    y: number;
   };
 };
 
 export default function Polygon({
   sides,
   size = 25,
-  center = new Point({ x: 0, y: 0 }),
+  center = DEFAULT_CENTER,
   rotate = 0,
   className,
   children,
   innerRef,
   ...restProps
-}: Props) {
-  const points = getPoints({
+}: PolygonProps & React.SVGProps<SVGPolygonElement>) {
+  const points: [number, number][] = getPoints({
     sides,
     size,
     center,
     rotate,
-  }).map(p => p.toArray());
+  }).map(({ x, y }) => [x, y]);
 
   if (children) return children({ points });
 

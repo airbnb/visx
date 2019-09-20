@@ -31,7 +31,7 @@ export type StackProps<Datum> = {
   color?: (key: Key, index: number) => string;
   // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
   keys?: Key[];
-  /** Override render function override which is passed the configured arc generator as input. */
+  /** Override render function which is passed the configured arc generator as input. */
   children?: (args: {
     stacks: any;
     path: AreaType<SeriesPoint<Datum>>;

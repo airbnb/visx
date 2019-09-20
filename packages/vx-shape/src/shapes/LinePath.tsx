@@ -15,7 +15,7 @@ export type LinePathProps<Datum> = {
   x?: (datum: Datum, index: number, data: Datum[]) => number;
   /** Given a datum, returns the y value. Defaults to d[1]. */
   y?: (datum: Datum, index: number, data: Datum[]) => number;
-  /** Override render function override which is passed the configured path generator as input. */
+  /** Override render function which is passed the configured path generator as input. */
   children?: (args: { path: LineType<Datum> }) => React.ReactNode;
   /** Fill color of the path element. */
   fill?: string;

@@ -5,7 +5,7 @@ import { area, Area as AreaType, CurveFactory } from 'd3-shape';
 type Accessor<Datum> = (datum: Datum, index: number, data: Datum[]) => number;
 
 export type AreaProps<Datum> = {
-  /** Override render function override which is passed the configured area generator as input. */
+  /** Override render function which is passed the configured area generator as input. */
   children?: (args: { path: AreaType<Datum> }) => React.ReactNode;
   /** Classname applied to path element. */
   className?: string;
