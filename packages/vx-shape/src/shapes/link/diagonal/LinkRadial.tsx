@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { linkRadial, LinkRadial } from 'd3-shape';
+import { linkRadial } from 'd3-shape';
 import { SharedLinkProps, RadialAccessorProps } from '../../../types';
 
 export function pathRadialDiagonal<Link, Node>({

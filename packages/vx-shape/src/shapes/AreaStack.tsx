@@ -69,7 +69,7 @@ export default function AreaStack<Datum>({
             <path
               className={cx('vx-area-stack', className)}
               key={`area-stack-${i}-${series.key || ''}`}
-              d={path(series)}
+              d={path(series) || ''}
               fill={color && color(series.key, i)}
               {...restProps}
             />
