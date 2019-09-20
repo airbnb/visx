@@ -1,6 +1,6 @@
 import React from 'react';
 
-export type LinearGradientProps = {
+type LinearGradientOwnProps = {
   /** Unique id for the gradient. Should be unique across all page elements. */
   id: string;
   /** Start color of gradient. */
@@ -31,7 +31,10 @@ export type LinearGradientProps = {
   children?: React.ReactNode;
   /** (When no x or y values are passed), will orient the gradient vertically instead of horizontally. */
   vertical?: boolean;
-} & React.SVGProps<SVGLinearGradientElement>; // passed as rest props to linearGradient
+};
+
+export type LinearGradientProps = LinearGradientOwnProps &
+  Omit<React.SVGProps<SVGLinearGradientElement>, keyof LinearGradientOwnProps>;
 
 export default function LinearGradient({
   children,
