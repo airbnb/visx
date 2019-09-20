@@ -2,12 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import { area } from 'd3-shape';
 import { AreaProps } from './Area';
-
-/** @TODO may need to revisit this. */
-interface ScaleType {
-  (): any;
-  range(): [number, number];
-}
+import { ScaleType } from './link/types';
 
 export type AreaClosedProps<Datum> = {
   yScale: ScaleType;

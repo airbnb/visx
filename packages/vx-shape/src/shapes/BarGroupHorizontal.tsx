@@ -1,35 +1,60 @@
 import React from 'react';
 import cx from 'classnames';
 import { Group } from '@vx/group';
-import objHasMethod from '../util/objHasMethod';
 import Bar from './Bar';
+import { BarGroupProps } from './BarGroup';
+import { ScaleType } from './link/types';
 
-type Props = {
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
-  data: $TSFixMe[];
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  y0: $TSFixMeFunction;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  y0Scale: $TSFixMeFunction;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  y1Scale: $TSFixMeFunction;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  xScale: $TSFixMeFunction;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  color: $TSFixMeFunction;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
-  keys: $TSFixMe[];
+type Key = string;
+
+type BarGroupHorizontalProps<Datum> = Pick<
+  BarGroupProps<Datum>,
+  'data' | 'className' | 'top' | 'left' | 'keys' | 'color'
+> & {
+  /** Returns the value (Datum[key]) mapped to the x of a bar */
+  x: (barValue: number) => number;
+  /** Returns the value mapped to the y0 (position of group) of a bar */
+  y0: (d: Datum) => any;
+  /** @vx/scale or d3-scale that takes a key value (Datum[key]) and maps it to an x axis position (width of bar). */
+  xScale: ScaleType;
+  /** @vx/scale or d3-scale that takes a y0 value (position of group) and maps it to a y axis position. */
+  y0Scale: ScaleType;
+  /** @vx/scale or d3-scale that takes a group key and maps it to an y axis position (within a group). */
+  y1Scale: ScaleType;
+  /** Total width of the x-axis. */
   width: number;
-  className?: string;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  x?: $TSFixMeFunction;
-  top?: number;
-  left?: number;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  children?: $TSFixMeFunction;
+  /** Override render function which is passed the computed Ba/rGroups. */
+  children?: (barGroups: BarGroup[]) => React.ReactNode;
 };
 
-export default function BarGroupHorizontal({
+/** One BarGroup is returned for each datum, which has multiple sub-bars (based on keys). */
+export interface BarGroup {
+  /** index of BarGroup (matches input Datum index). */
+  index: number;
+  /** y0 position of bar group */
+  y0: number;
+  /** bars within group, one for each key. */
+  bars: ({
+    /** group key */
+    key: Key;
+    /** index of BarGroup (matches input Datum index). */
+    index: number;
+    /** group value (Datum[key]) */
+    value: number;
+    /** height of bar. */
+    height: number;
+    /** width of bar. */
+    width: number;
+    /** x position of bar. */
+    x: number;
+    /** y position of bar. */
+    y: number;
+    /** color of bar. */
+    color: string;
+  })[];
+}
+
+export default function BarGroupHorizontal<Datum extends { [key: string]: number }>({
   data,
   className,
   top,
@@ -44,12 +69,13 @@ export default function BarGroupHorizontal({
   width,
   children,
   ...restProps
-}: Props) {
+}: BarGroupHorizontalProps<Datum>) {
   const y1Range = y1Scale.range();
   const y1Domain = y1Scale.domain();
-  const barHeight = objHasMethod(y1Scale, 'bandwidth')
-    ? y1Scale.bandwidth()
-    : Math.abs(y1Range[y1Range.length - 1] - y1Range[0]) / y1Domain.length;
+  const barHeight =
+    'bandwidth' in y1Scale && typeof y1Scale.bandwidth === 'function'
+      ? y1Scale.bandwidth()
+      : Math.abs(y1Range[y1Range.length - 1] - y1Range[0]) / y1Domain.length;
 
   const barGroups = data.map((group, i) => {
     return {

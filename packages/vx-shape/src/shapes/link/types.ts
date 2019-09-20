@@ -33,3 +33,11 @@ export type SharedLinkProps<Link> = {
   /** Datum for which to render a link. */
   data: Link;
 } & Omit<React.SVGProps<SVGPathElement>, 'x' | 'y' | 'source' | 'target' | 'angle' | 'radius'>;
+
+/** @TODO may need to revisit this. */
+export interface ScaleType {
+  (...args: any[]): number;
+  range(): [number, number];
+  domain(): [any, any];
+  bandwidth?: () => number;
+}

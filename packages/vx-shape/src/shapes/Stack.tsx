@@ -14,7 +14,7 @@ import stackOrder, { STACK_ORDERS } from '../util/stackOrder';
 import stackOffset, { STACK_OFFSETS } from '../util/stackOffset';
 
 type Accessor<Datum> = (datum: Datum, index: number, data: Datum[]) => number;
-type Key = string;
+export type Key = string;
 
 export type StackProps<Datum> = {
   /** Array of data for which to generate a stack. */
@@ -29,13 +29,13 @@ export type StackProps<Datum> = {
   curve?: CurveFactory;
   /** Returns a color for a given stack key and index. */
   color?: (key: Key, index: number) => string;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
+  /** Array of keys corresponding to stack layers. */
   keys?: Key[];
   /** Override render function which is passed the configured arc generator as input. */
   children?: (args: {
     stacks: any;
     path: AreaType<SeriesPoint<Datum>>;
-    stack: StackType<any, Datum, string>;
+    stack: StackType<any, Datum, Key>;
   }) => React.ReactNode;
   /** Sets the x0 accessor function, and sets x1 to null. */
   x?: Accessor<SeriesPoint<Datum>>;

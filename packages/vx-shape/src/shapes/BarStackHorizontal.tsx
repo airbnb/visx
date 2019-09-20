@@ -1,51 +1,44 @@
 import React from 'react';
 import cx from 'classnames';
 import { Group } from '@vx/group';
-import { stack as d3stack } from 'd3-shape';
+import { stack as d3stack, SeriesPoint } from 'd3-shape';
+
 import stackOrder from '../util/stackOrder';
 import stackOffset from '../util/stackOffset';
-import objHasMethod from '../util/objHasMethod';
 import Bar from './Bar';
+import { BarStackProps } from './BarStack';
 
-type Props = {
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
-  data: $TSFixMe[];
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  y: $TSFixMeFunction;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  x0?: $TSFixMeFunction;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  x1?: $TSFixMeFunction;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  xScale: $TSFixMeFunction;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  yScale: $TSFixMeFunction;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  color: $TSFixMeFunction;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
-  keys: $TSFixMe[];
-  className?: string;
-  top?: number;
-  left?: number;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  order?: $TSFixMeFunction | $TSFixMe[] | string;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  offset?: $TSFixMeFunction | $TSFixMe[] | string;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  value?: $TSFixMeFunction | number;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  children?: $TSFixMeFunction;
+export type BarStackHorizontalProps<Datum> = Pick<
+  BarStackProps<Datum>,
+  | 'data'
+  | 'className'
+  | 'top'
+  | 'left'
+  | 'keys'
+  | 'order'
+  | 'offset'
+  | 'value'
+  | 'xScale'
+  | 'yScale'
+  | 'color'
+  | 'children'
+> & {
+  /** Returns the value mapped to the x0 of a bar. */
+  x0: (d: SeriesPoint<Datum>) => number;
+  /** Returns the value mapped to the x1 of a bar. */
+  x1: (d: SeriesPoint<Datum>) => number;
+  /** Returns the value mapped to the y of a bar. */
+  y: (d: Datum) => number;
 };
 
-// @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
-export default function BarStackHorizontal({
+export default function BarStackHorizontal<Datum>({
   data,
   className,
   top,
   left,
   y,
-  x0 = (d: $TSFixMe) => d[0],
-  x1 = (d: $TSFixMe) => d[1],
+  x0 = (d: any) => d[0],
+  x1 = (d: any) => d[1],
   xScale,
   yScale,
   color,
@@ -55,8 +48,8 @@ export default function BarStackHorizontal({
   offset,
   children,
   ...restProps
-}: Props) {
-  const stack = d3stack();
+}: BarStackHorizontalProps<Datum>) {
+  const stack = d3stack<Datum>();
   if (keys) stack.keys(keys);
   if (value) stack.value(value);
   if (order) stack.order(stackOrder(order));
@@ -66,9 +59,10 @@ export default function BarStackHorizontal({
 
   const yRange = yScale.range();
   const yDomain = yScale.domain();
-  const barHeight = objHasMethod(yScale, 'bandwidth')
-    ? yScale.bandwidth()
-    : Math.abs(yRange[yRange.length - 1] - yRange[0]) / yDomain.length;
+  const barHeight =
+    'bandwidth' in yScale && typeof yScale.bandwidth === 'function'
+      ? yScale.bandwidth()
+      : Math.abs(yRange[yRange.length - 1] - yRange[0]) / yDomain.length;
 
   const barStacks = stacks.map((barStack, i) => {
     const { key } = barStack;
@@ -78,9 +72,10 @@ export default function BarStackHorizontal({
       bars: barStack.map((bar, j) => {
         const barWidth = xScale(x1(bar)) - xScale(x0(bar));
         const barX = xScale(x0(bar));
-        const barY = objHasMethod(yScale, 'bandwidth')
-          ? yScale(y(bar.data))
-          : Math.max(yScale(y(bar.data)) - barWidth / 2);
+        const barY =
+          'bandwidth' in yScale && typeof yScale.bandwidth === 'function'
+            ? yScale(y(bar.data))
+            : Math.max(yScale(y(bar.data)) - barWidth / 2);
         return {
           bar,
           key,
@@ -102,7 +97,6 @@ export default function BarStackHorizontal({
       {barStacks.map(barStack => {
         return barStack.bars.map(bar => {
           return (
-            // @ts-ignore ts-migrate(2322) FIXME: Property 'x' does not exist on type 'IntrinsicAttr... Remove this comment to see the full error message
             <Bar
               key={`bar-stack-${barStack.index}-${bar.index}`}
               x={bar.x}

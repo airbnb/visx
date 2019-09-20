@@ -1,31 +1,64 @@
 import React from 'react';
 import cx from 'classnames';
 import { Group } from '@vx/group';
-import objHasMethod from '../util/objHasMethod';
 import Bar from './Bar';
+import { ScaleType } from './link/types';
 
-type Props = {
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
-  data: $TSFixMe[];
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  x0: $TSFixMeFunction;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  x0Scale: $TSFixMeFunction;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  x1Scale: $TSFixMeFunction;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  yScale: $TSFixMeFunction;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  color: $TSFixMeFunction;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
-  keys: $TSFixMe[];
+type Key = string;
+
+export type BarGroupProps<Datum> = {
+  /** Array of data for which to generate grouped bars. */
+  data: Datum[];
+  /** Returns the value mapped to the x0 (group position) of a bar */
+  x0: (d: Datum) => any;
+  /** @vx/scale or d3-scale that takes an x0 value (position of group) and maps it to an x0 axis position of the group. */
+  x0Scale: ScaleType;
+  /** @vx/scale or d3-scale that takes a group key and maps it to an x axis position (within a group). */
+  x1Scale: ScaleType;
+  /** @vx/scale or d3-scale that takes an y value (Datum[key]) and maps it to a y axis position. */
+  yScale: ScaleType;
+  /** Returns the desired color for a bar with a given key and index. */
+  color: (key: Key, index: number) => string;
+  /** Array of keys corresponding to stack layers. */
+  keys: Key[];
+  /** Total height of the y-axis. */
   height: number;
+  /** className applied to Bars. */
   className?: string;
+  /** Top offset of rendered Bars. */
   top?: number;
+  /** Left offset of rendered Bars. */
   left?: number;
-  // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMeFunction'.
-  children?: $TSFixMeFunction;
+  /** Override render function which is passed the computed BarGroups. */
+  children?: (barGroups: BarGroup[]) => React.ReactNode;
 };
+
+/** One BarGroup is returned for each datum, which has multiple sub-bars (based on keys). */
+export interface BarGroup {
+  /** index of BarGroup (matches input Datum index). */
+  index: number;
+  /** x0 position of bar group */
+  x0: number;
+  /** bars within group, one for each key. */
+  bars: ({
+    /** group key */
+    key: Key;
+    /** index of BarGroup (matches input Datum index). */
+    index: number;
+    /** group value (Datum[key]) */
+    value: number;
+    /** height of bar. */
+    height: number;
+    /** width of bar. */
+    width: number;
+    /** x position of bar. */
+    x: number;
+    /** y position of bar. */
+    y: number;
+    /** color of bar. */
+    color: string;
+  })[];
+}
 
 /**
  * Generates bar groups as an array of objects and renders `<rect />`s for each datum grouped by `key`. A general setup might look like this:
@@ -65,7 +98,7 @@ type Props = {
  *
  * Example: [https://vx-demo.now.sh/bargroup](https://vx-demo.now.sh/bargroup)
  */
-export default function BarGroup({
+export default function BarGroup<Datum extends { [key: string]: number }>({
   data,
   className,
   top,
@@ -79,15 +112,16 @@ export default function BarGroup({
   height,
   children,
   ...restProps
-}: Props) {
+}: BarGroupProps<Datum>) {
   const x1Range = x1Scale.range();
   const x1Domain = x1Scale.domain();
 
-  const barWidth = objHasMethod(x1Scale, 'bandwidth')
-    ? x1Scale.bandwidth()
-    : Math.abs(x1Range[x1Range.length - 1] - x1Range[0]) / x1Domain.length;
+  const barWidth =
+    'bandwidth' in x1Scale && typeof x1Scale.bandwidth === 'function'
+      ? x1Scale.bandwidth()
+      : Math.abs(x1Range[x1Range.length - 1] - x1Range[0]) / x1Domain.length;
 
-  const barGroups = data.map((group, i) => {
+  const barGroups: BarGroup[] = data.map((group, i) => {
     return {
       index: i,
       x0: x0Scale(x0(group)),
@@ -114,20 +148,17 @@ export default function BarGroup({
       {barGroups.map(barGroup => {
         return (
           <Group key={`bar-group-${barGroup.index}-${barGroup.x0}`} left={barGroup.x0}>
-            {barGroup.bars.map(bar => {
-              return (
-                // @ts-ignore ts-migrate(2322) FIXME: Property 'x' does not exist on type 'IntrinsicAttr... Remove this comment to see the full error message
-                <Bar
-                  key={`bar-group-bar-${barGroup.index}-${bar.index}-${bar.value}-${bar.key}`}
-                  x={bar.x}
-                  y={bar.y}
-                  width={bar.width}
-                  height={bar.height}
-                  fill={bar.color}
-                  {...restProps}
-                />
-              );
-            })}
+            {barGroup.bars.map(bar => (
+              <Bar
+                key={`bar-group-bar-${barGroup.index}-${bar.index}-${bar.value}-${bar.key}`}
+                x={bar.x}
+                y={bar.y}
+                width={bar.width}
+                height={bar.height}
+                fill={bar.color}
+                {...restProps}
+              />
+            ))}
           </Group>
         );
       })}
