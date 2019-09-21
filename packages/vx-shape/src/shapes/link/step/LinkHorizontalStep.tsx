@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { path as d3Path } from 'd3-path';
-import { SharedLinkProps, AccessorProps } from '../../../types';
+import { SharedLinkProps, AccessorProps, $TSFIXME } from '../../../types';
 
 export function pathHorizontalStep<Link, Node>({
   source,
@@ -40,10 +40,10 @@ export default function LinkHorizontalStep<Link, Node>({
   data,
   path,
   percent = 0.5,
-  x = (d: any) => d.y,
-  y = (d: any) => d.x,
-  source = (d: any) => d.source,
-  target = (d: any) => d.target,
+  x = (d: $TSFIXME) => d.y,
+  y = (d: $TSFIXME) => d.x,
+  source = (d: $TSFIXME) => d.source,
+  target = (d: $TSFIXME) => d.target,
   children,
   ...restProps
 }: LinkHorizontalStepProps<Link, Node> &

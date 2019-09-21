@@ -3,7 +3,7 @@ import cx from 'classnames';
 import { Group } from '@vx/group';
 import Bar from './Bar';
 import { BarGroupProps } from './BarGroup';
-import { ScaleType, BarGroupHorizontal } from '../types';
+import { ScaleType, BarGroupHorizontal, $TSFIXME } from '../types';
 
 type BarGroupHorizontalProps<Datum> = Pick<
   BarGroupProps<Datum>,
@@ -12,7 +12,7 @@ type BarGroupHorizontalProps<Datum> = Pick<
   /** Returns the value (Datum[key]) mapped to the x of a bar */
   x: (barValue: number) => number;
   /** Returns the value mapped to the y0 (position of group) of a bar */
-  y0: (d: Datum) => any;
+  y0: (d: Datum) => $TSFIXME;
   /** @vx/scale or d3-scale that takes a key value (Datum[key]) and maps it to an x axis position (width of bar). */
   xScale: ScaleType;
   /** @vx/scale or d3-scale that takes a y0 value (position of group) and maps it to a y axis position. */

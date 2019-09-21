@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { path as d3Path } from 'd3-path';
-import { SharedLinkProps, AccessorProps } from '../../../types';
+import { SharedLinkProps, AccessorProps, $TSFIXME } from '../../../types';
 
 export function pathRadialLine<Link, Node>({
   source,
@@ -38,10 +38,10 @@ export default function LinkRadialLine<Link, Node>({
   innerRef,
   data,
   path,
-  x = (d: any) => d.x,
-  y = (d: any) => d.y,
-  source = (d: any) => d.source,
-  target = (d: any) => d.target,
+  x = (d: $TSFIXME) => d.x,
+  y = (d: $TSFIXME) => d.y,
+  source = (d: $TSFIXME) => d.source,
+  target = (d: $TSFIXME) => d.target,
   children,
   ...restProps
 }: LinkRadialLineProps<Link, Node> &

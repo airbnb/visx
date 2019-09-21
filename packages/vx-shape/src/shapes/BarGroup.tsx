@@ -2,13 +2,13 @@ import React from 'react';
 import cx from 'classnames';
 import { Group } from '@vx/group';
 import Bar from './Bar';
-import { BarGroup, ScaleType, GroupKey } from '../types';
+import { BarGroup, ScaleType, GroupKey, $TSFIXME } from '../types';
 
 export type BarGroupProps<Datum> = {
   /** Array of data for which to generate grouped bars. */
   data: Datum[];
   /** Returns the value mapped to the x0 (group position) of a bar */
-  x0: (d: Datum) => any;
+  x0: (d: Datum) => $TSFIXME;
   /** @vx/scale or d3-scale that takes an x0 value (position of group) and maps it to an x0 axis position of the group. */
   x0Scale: ScaleType;
   /** @vx/scale or d3-scale that takes a group key and maps it to an x axis position (within a group). */
@@ -69,7 +69,7 @@ export type BarGroupProps<Datum> = {
  *
  * Example: [https://vx-demo.now.sh/bargroup](https://vx-demo.now.sh/bargroup)
  */
-export default function BarGroup<Datum extends { [key: string]: number }>({
+export default function BarGroupComponent<Datum extends { [key: string]: number }>({
   data,
   className,
   top,

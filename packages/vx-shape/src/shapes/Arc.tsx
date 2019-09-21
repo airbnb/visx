@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/unbound-method */
 import React from 'react';
 import cx from 'classnames';
 import { arc as d3Arc, Arc as ArcType } from 'd3-shape';
 import setNumOrAccessor, { NumberAccessor } from '../util/setNumberOrNumberAccessor';
+import { $TSFIXME } from '../types';
 
 export type ArcProps<Datum> = {
   /** className applied to path element. */
@@ -9,7 +11,7 @@ export type ArcProps<Datum> = {
   /** A Datum for which to generate an arc. */
   data?: Datum;
   /** Override render function which is passed the configured arc generator as input. */
-  children?: (args: { path: ArcType<any, Datum> }) => React.ReactNode;
+  children?: (args: { path: ArcType<$TSFIXME, Datum> }) => React.ReactNode;
   /** React ref to the path element. */
   innerRef?: React.Ref<SVGPathElement>;
   /** Number or accessor function which returns a number, which defines the arc innerRadius. */

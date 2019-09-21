@@ -7,7 +7,7 @@ import stackOrder from '../util/stackOrder';
 import stackOffset from '../util/stackOffset';
 import Bar from './Bar';
 import { BarStackProps } from './BarStack';
-import { StackKey } from '../types';
+import { StackKey, $TSFIXME } from '../types';
 
 export type BarStackHorizontalProps<Datum> = Pick<
   BarStackProps<Datum>,
@@ -38,8 +38,8 @@ export default function BarStackHorizontal<Datum>({
   top,
   left,
   y,
-  x0 = (d: any) => d[0],
-  x1 = (d: any) => d[1],
+  x0 = (d: $TSFIXME) => d[0],
+  x1 = (d: $TSFIXME) => d[1],
   xScale,
   yScale,
   color,

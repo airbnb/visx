@@ -1,5 +1,8 @@
 import { SeriesPoint } from 'd3-shape';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type $TSFIXME = any;
+
 /** Unique key for item in a stack. */
 export type StackKey = string | number;
 
@@ -107,8 +110,8 @@ export type SharedLinkProps<Link> = {
 
 /** This is meant to be a generic interface for any scale based on usage in this package. */
 export interface ScaleType {
-  (...args: any[]): number;
+  (...args: $TSFIXME[]): number;
   range(): [number, number];
-  domain(): [any, any];
+  domain(): [$TSFIXME, $TSFIXME];
   bandwidth?: () => number;
 }

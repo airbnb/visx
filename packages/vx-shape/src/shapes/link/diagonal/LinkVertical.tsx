@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { linkVertical } from 'd3-shape';
-import { SharedLinkProps, AccessorProps } from '../../../types';
+import { SharedLinkProps, AccessorProps, $TSFIXME } from '../../../types';
 
 export function pathVerticalDiagonal<Link, Node>({
   source,
@@ -27,10 +27,10 @@ export default function LinkVerticalDiagonal<Link, Node>({
   data,
   innerRef,
   path,
-  x = (d: any) => d.x,
-  y = (d: any) => d.y,
-  source = (d: any) => d.source,
-  target = (d: any) => d.target,
+  x = (d: $TSFIXME) => d.x,
+  y = (d: $TSFIXME) => d.y,
+  source = (d: $TSFIXME) => d.source,
+  target = (d: $TSFIXME) => d.target,
   ...restProps
 }: LinkVerticalDiagonalProps<Link, Node> &
   Omit<React.SVGProps<SVGPathElement>, keyof LinkVerticalDiagonalProps<Link, Node>>) {

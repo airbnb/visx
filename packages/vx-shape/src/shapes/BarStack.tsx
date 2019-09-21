@@ -7,7 +7,7 @@ import stackOrder from '../util/stackOrder';
 import stackOffset from '../util/stackOffset';
 import Bar from './Bar';
 import { StackProps } from './Stack';
-import { ScaleType, StackKey, BarStack } from '../types';
+import { ScaleType, StackKey, BarStack, $TSFIXME } from '../types';
 
 export type BarStackProps<Datum> = Pick<
   StackProps<Datum>,
@@ -35,8 +35,8 @@ export default function BarStack<Datum>({
   top,
   left,
   x,
-  y0 = (d: any) => d[0],
-  y1 = (d: any) => d[1],
+  y0 = (d: $TSFIXME) => d[0],
+  y1 = (d: $TSFIXME) => d[1],
   xScale,
   yScale,
   color,

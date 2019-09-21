@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { linkHorizontal } from 'd3-shape';
-import { SharedLinkProps, AccessorProps } from '../../../types';
+import { SharedLinkProps, AccessorProps, $TSFIXME } from '../../../types';
 
 export function pathHorizontalDiagonal<Link, Node>({
   source,
@@ -28,10 +28,10 @@ export default function LinkHorizontalDiagonal<Link, Node>({
   data,
   innerRef,
   path,
-  x = (n: any) => n && n.y, // note this returns a y value
-  y = (n: any) => n && n.x, // note this returns an x value
-  source = (l: any) => l && l.source,
-  target = (l: any) => l && l.target,
+  x = (n: $TSFIXME) => n && n.y, // note this returns a y value
+  y = (n: $TSFIXME) => n && n.x, // note this returns an x value
+  source = (l: $TSFIXME) => l && l.source,
+  target = (l: $TSFIXME) => l && l.target,
   ...restProps
 }: LinkHorizontalDiagonalProps<Link, Node> &
   Omit<React.SVGProps<SVGPathElement>, keyof LinkHorizontalDiagonalProps<Link, Node>>) {

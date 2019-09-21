@@ -13,7 +13,7 @@ import {
 
 import stackOrder, { STACK_ORDERS } from '../util/stackOrder';
 import stackOffset, { STACK_OFFSETS } from '../util/stackOffset';
-import { StackKey } from '../types';
+import { StackKey, $TSFIXME } from '../types';
 
 type Accessor<Datum> = (datum: Datum, index: number, data: Datum[]) => number;
 
@@ -36,7 +36,7 @@ export type StackProps<Datum> = {
   children?: (args: {
     stacks: Series<Datum, StackKey>[];
     path: AreaType<SeriesPoint<Datum>>;
-    stack: StackType<any, Datum, StackKey>;
+    stack: StackType<$TSFIXME, Datum, StackKey>;
   }) => React.ReactNode;
   /** Sets the x0 accessor function, and sets x1 to null. */
   x?: Accessor<SeriesPoint<Datum>>;
