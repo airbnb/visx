@@ -62,7 +62,7 @@ export default function BarStack<Datum>({
   children,
   ...restProps
 }: BarStackProps<Datum> & Omit<React.SVGProps<SVGRectElement>, keyof BarStackProps<Datum>>) {
-  const stack = d3stack<Datum>();
+  const stack = d3stack<Datum, Key>();
   if (keys) stack.keys(keys);
   if (value) stack.value(value);
   if (order) stack.order(stackOrder(order));

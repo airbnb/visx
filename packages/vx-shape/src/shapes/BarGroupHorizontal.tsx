@@ -2,10 +2,8 @@ import React from 'react';
 import cx from 'classnames';
 import { Group } from '@vx/group';
 import Bar from './Bar';
-import { BarGroupProps } from './BarGroup';
+import { BarGroupProps, Key } from './BarGroup';
 import { ScaleType } from '../types';
-
-type Key = string;
 
 type BarGroupHorizontalProps<Datum> = Pick<
   BarGroupProps<Datum>,
@@ -102,26 +100,21 @@ export default function BarGroupHorizontal<Datum extends { [key: string]: number
 
   return (
     <Group className={cx('vx-bar-group-horizontal', className)} top={top} left={left}>
-      {barGroups.map(barGroup => {
-        return (
-          <Group key={`bar-group-${barGroup.index}-${barGroup.y0}`} top={barGroup.y0}>
-            {barGroup.bars.map(bar => {
-              return (
-                // @ts-ignore ts-migrate(2322) FIXME: Property 'x' does not exist on type 'IntrinsicAttr... Remove this comment to see the full error message
-                <Bar
-                  key={`bar-group-bar-${barGroup.index}-${bar.index}-${bar.value}-${bar.key}`}
-                  x={bar.x}
-                  y={bar.y}
-                  width={bar.width}
-                  height={bar.height}
-                  fill={bar.color}
-                  {...restProps}
-                />
-              );
-            })}
-          </Group>
-        );
-      })}
+      {barGroups.map(barGroup => (
+        <Group key={`bar-group-${barGroup.index}-${barGroup.y0}`} top={barGroup.y0}>
+          {barGroup.bars.map(bar => (
+            <Bar
+              key={`bar-group-bar-${barGroup.index}-${bar.index}-${bar.value}-${bar.key}`}
+              x={bar.x}
+              y={bar.y}
+              width={bar.width}
+              height={bar.height}
+              fill={bar.color}
+              {...restProps}
+            />
+          ))}
+        </Group>
+      ))}
     </Group>
   );
 }

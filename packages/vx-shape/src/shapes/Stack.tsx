@@ -15,7 +15,7 @@ import stackOrder, { STACK_ORDERS } from '../util/stackOrder';
 import stackOffset, { STACK_OFFSETS } from '../util/stackOffset';
 
 type Accessor<Datum> = (datum: Datum, index: number, data: Datum[]) => number;
-export type Key = string;
+export type Key = string | number;
 
 export type StackProps<Datum> = {
   /** Array of data for which to generate a stack. */
@@ -34,7 +34,7 @@ export type StackProps<Datum> = {
   keys?: Key[];
   /** Override render function which is passed the configured arc generator as input. */
   children?: (args: {
-    stacks: Series<Datum, string>[];
+    stacks: Series<Datum, Key>[];
     path: AreaType<SeriesPoint<Datum>>;
     stack: StackType<any, Datum, Key>;
   }) => React.ReactNode;
@@ -49,7 +49,7 @@ export type StackProps<Datum> = {
   /** Specifies the y1 accessor function which defaults to d => d[1]. */
   y1?: Accessor<SeriesPoint<Datum>>;
   /** Sets the value accessor for a Datum, which defaults to d[key]. */
-  value?: (d: Datum, key: string) => number;
+  value?: (d: Datum, key: Key) => number;
   /** The defined accessor for the shape. The final area shape includes all points for which this function returns true. By default all points are defined. */
   defined?: (datum: SeriesPoint<Datum>, index: number, data: SeriesPoint<Datum>[]) => boolean;
   /** Sets the stack order to the pre-defined d3 function, see https://github.com/d3/d3-shape#stack_order. */
@@ -78,7 +78,7 @@ export default function Stack<Datum>({
   children,
   ...restProps
 }: StackProps<Datum> & Omit<React.SVGProps<SVGPathElement>, keyof StackProps<Datum>>) {
-  const stack = d3stack<Datum>();
+  const stack = d3stack<Datum, Key>();
   if (keys) stack.keys(keys);
   if (value) stack.value(value);
   if (order) stack.order(stackOrder(order));

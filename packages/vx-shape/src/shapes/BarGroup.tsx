@@ -4,7 +4,7 @@ import { Group } from '@vx/group';
 import Bar from './Bar';
 import { ScaleType } from '../types';
 
-type Key = string;
+export type Key = string | number;
 
 export type BarGroupProps<Datum> = {
   /** Array of data for which to generate grouped bars. */
@@ -145,23 +145,21 @@ export default function BarGroup<Datum extends { [key: string]: number }>({
 
   return (
     <Group className={cx('vx-bar-group', className)} top={top} left={left}>
-      {barGroups.map(barGroup => {
-        return (
-          <Group key={`bar-group-${barGroup.index}-${barGroup.x0}`} left={barGroup.x0}>
-            {barGroup.bars.map(bar => (
-              <Bar
-                key={`bar-group-bar-${barGroup.index}-${bar.index}-${bar.value}-${bar.key}`}
-                x={bar.x}
-                y={bar.y}
-                width={bar.width}
-                height={bar.height}
-                fill={bar.color}
-                {...restProps}
-              />
-            ))}
-          </Group>
-        );
-      })}
+      {barGroups.map(barGroup => (
+        <Group key={`bar-group-${barGroup.index}-${barGroup.x0}`} left={barGroup.x0}>
+          {barGroup.bars.map(bar => (
+            <Bar
+              key={`bar-group-bar-${barGroup.index}-${bar.index}-${bar.value}-${bar.key}`}
+              x={bar.x}
+              y={bar.y}
+              width={bar.width}
+              height={bar.height}
+              fill={bar.color}
+              {...restProps}
+            />
+          ))}
+        </Group>
+      ))}
     </Group>
   );
 }
