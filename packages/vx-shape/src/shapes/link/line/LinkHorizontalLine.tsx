@@ -34,8 +34,8 @@ export default function LinkHorizontalLine<Link, Node>({
   innerRef,
   data,
   path,
-  x = (d: any) => d.y,
-  y = (d: any) => d.x,
+  x = (d: any) => d.y, // note this returns a y value
+  y = (d: any) => d.x, // note this returns a y value
   source = (d: any) => d.source,
   target = (d: any) => d.target,
   ...restProps

@@ -28,8 +28,8 @@ export default function LinkHorizontalDiagonal<Link, Node>({
   data,
   innerRef,
   path,
-  x = (n: any) => n && n.x,
-  y = (n: any) => n && n.y,
+  x = (n: any) => n && n.y, // note this returns a y value
+  y = (n: any) => n && n.x, // note this returns an x value
   source = (l: any) => l && l.source,
   target = (l: any) => l && l.target,
   ...restProps
