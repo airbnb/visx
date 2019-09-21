@@ -2,9 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import { Group } from '@vx/group';
 import Bar from './Bar';
-import { ScaleType } from '../types';
-
-export type Key = string | number;
+import { BarGroup, ScaleType, GroupKey } from '../types';
 
 export type BarGroupProps<Datum> = {
   /** Array of data for which to generate grouped bars. */
@@ -18,9 +16,9 @@ export type BarGroupProps<Datum> = {
   /** @vx/scale or d3-scale that takes an y value (Datum[key]) and maps it to a y axis position. */
   yScale: ScaleType;
   /** Returns the desired color for a bar with a given key and index. */
-  color: (key: Key, index: number) => string;
+  color: (key: GroupKey, index: number) => string;
   /** Array of keys corresponding to stack layers. */
-  keys: Key[];
+  keys: GroupKey[];
   /** Total height of the y-axis. */
   height: number;
   /** className applied to Bars. */
@@ -32,33 +30,6 @@ export type BarGroupProps<Datum> = {
   /** Override render function which is passed the computed BarGroups. */
   children?: (barGroups: BarGroup[]) => React.ReactNode;
 };
-
-/** One BarGroup is returned for each datum, which has multiple sub-bars (based on keys). */
-export interface BarGroup {
-  /** index of BarGroup (matches input Datum index). */
-  index: number;
-  /** x0 position of bar group */
-  x0: number;
-  /** bars within group, one for each key. */
-  bars: ({
-    /** group key */
-    key: Key;
-    /** index of BarGroup (matches input Datum index). */
-    index: number;
-    /** group value (Datum[key]) */
-    value: number;
-    /** height of bar. */
-    height: number;
-    /** width of bar. */
-    width: number;
-    /** x position of bar. */
-    x: number;
-    /** y position of bar. */
-    y: number;
-    /** color of bar. */
-    color: string;
-  })[];
-}
 
 /**
  * Generates bar groups as an array of objects and renders `<rect />`s for each datum grouped by `key`. A general setup might look like this:

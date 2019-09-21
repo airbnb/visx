@@ -2,8 +2,8 @@ import React from 'react';
 import cx from 'classnames';
 import { Group } from '@vx/group';
 import Bar from './Bar';
-import { BarGroupProps, Key } from './BarGroup';
-import { ScaleType } from '../types';
+import { BarGroupProps } from './BarGroup';
+import { ScaleType, BarGroupHorizontal } from '../types';
 
 type BarGroupHorizontalProps<Datum> = Pick<
   BarGroupProps<Datum>,
@@ -22,35 +22,8 @@ type BarGroupHorizontalProps<Datum> = Pick<
   /** Total width of the x-axis. */
   width: number;
   /** Override render function which is passed the computed Ba/rGroups. */
-  children?: (barGroups: BarGroup[]) => React.ReactNode;
+  children?: (barGroups: BarGroupHorizontal[]) => React.ReactNode;
 };
-
-/** One BarGroup is returned for each datum, which has multiple sub-bars (based on keys). */
-export interface BarGroup {
-  /** index of BarGroup (matches input Datum index). */
-  index: number;
-  /** y0 position of bar group */
-  y0: number;
-  /** bars within group, one for each key. */
-  bars: ({
-    /** group key */
-    key: Key;
-    /** index of BarGroup (matches input Datum index). */
-    index: number;
-    /** group value (Datum[key]) */
-    value: number;
-    /** height of bar. */
-    height: number;
-    /** width of bar. */
-    width: number;
-    /** x position of bar. */
-    x: number;
-    /** y position of bar. */
-    y: number;
-    /** color of bar. */
-    color: string;
-  })[];
-}
 
 export default function BarGroupHorizontal<Datum extends { [key: string]: number }>({
   data,

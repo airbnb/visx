@@ -7,6 +7,7 @@ import stackOrder from '../util/stackOrder';
 import stackOffset from '../util/stackOffset';
 import Bar from './Bar';
 import { BarStackProps } from './BarStack';
+import { StackKey } from '../types';
 
 export type BarStackHorizontalProps<Datum> = Pick<
   BarStackProps<Datum>,
@@ -50,7 +51,7 @@ export default function BarStackHorizontal<Datum>({
   ...restProps
 }: BarStackHorizontalProps<Datum> &
   Omit<React.SVGProps<SVGRectElement>, keyof BarStackHorizontalProps<Datum>>) {
-  const stack = d3stack<Datum>();
+  const stack = d3stack<Datum, StackKey>();
   if (keys) stack.keys(keys);
   if (value) stack.value(value);
   if (order) stack.order(stackOrder(order));

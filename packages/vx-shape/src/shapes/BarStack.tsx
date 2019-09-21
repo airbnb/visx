@@ -6,8 +6,8 @@ import { stack as d3stack, SeriesPoint } from 'd3-shape';
 import stackOrder from '../util/stackOrder';
 import stackOffset from '../util/stackOffset';
 import Bar from './Bar';
-import { StackProps, Key } from './Stack';
-import { ScaleType } from '../types';
+import { StackProps } from './Stack';
+import { ScaleType, StackKey, BarStack } from '../types';
 
 export type BarStackProps<Datum> = Pick<
   StackProps<Datum>,
@@ -24,25 +24,10 @@ export type BarStackProps<Datum> = Pick<
   /** @vx/scale or d3-scale that takes a y value and maps it to an y axis position. */
   yScale: ScaleType;
   /** Returns the desired color for a bar with a given key and index. */
-  color: (key: Key, index: number) => string;
+  color: (key: StackKey, index: number) => string;
   /** Override render function which is passed the configured arc generator as input. */
   children?: (stacks: BarStack<Datum>[]) => React.ReactNode;
 };
-
-export interface BarStack<Datum> {
-  index: number;
-  key: Key;
-  bars: ({
-    bar: SeriesPoint<Datum>;
-    key: Key;
-    index: number;
-    height: number;
-    width: number;
-    x: number;
-    y: number;
-    color: string;
-  })[];
-}
 
 export default function BarStack<Datum>({
   data,
@@ -62,7 +47,7 @@ export default function BarStack<Datum>({
   children,
   ...restProps
 }: BarStackProps<Datum> & Omit<React.SVGProps<SVGRectElement>, keyof BarStackProps<Datum>>) {
-  const stack = d3stack<Datum, Key>();
+  const stack = d3stack<Datum, StackKey>();
   if (keys) stack.keys(keys);
   if (value) stack.value(value);
   if (order) stack.order(stackOrder(order));
