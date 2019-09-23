@@ -34,14 +34,14 @@ const points = Array(n).fill(null).map(() => ({
 // width + height set an extent on the voronoi
 // x + y set relevant accessors depending on the shape of your data
 const voronoiLayout = voronoi({
-  x: d => d.x, // maybe pass a scale here?
+  x: d => d.x,
   y: d => d.y,
   width,
   height,
 });
 
 const voronoiDiagram = voronoiLayout(data);
-const polygons = voronoiLayout.polygons(points); // equivalent to voronoiDiagram.polygons()
+const polygons = voronoiDiagram.polygons(); // equivalent to voronoiLayout.polygons(points)
 
 return (
   <svg>
