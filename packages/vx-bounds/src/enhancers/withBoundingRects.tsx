@@ -50,13 +50,13 @@ export default function withBoundingRects<Props extends object = {}>(
       if (!this.node) return this.state;
 
       const { node } = this;
-      const { parentElement } = node;
+      const parentNode = node.parentNode as HTMLElement | null;
 
       const rect = node.getBoundingClientRect ? node.getBoundingClientRect() : emptyRect;
 
       const parentRect =
-        parentElement && parentElement.getBoundingClientRect
-          ? parentElement.getBoundingClientRect()
+        parentNode && parentNode.getBoundingClientRect
+          ? parentNode.getBoundingClientRect()
           : emptyRect;
 
       return { rect, parentRect };
