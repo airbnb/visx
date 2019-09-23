@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/unbound-method */
 import React from 'react';
 import cx from 'classnames';
 import { Group } from '@vx/group';
@@ -6,8 +7,9 @@ import { stack as d3stack, SeriesPoint } from 'd3-shape';
 import stackOrder from '../util/stackOrder';
 import stackOffset from '../util/stackOffset';
 import Bar from './Bar';
-import { BarStackProps } from './BarStack';
+import { BarStackProps, NumAccessor } from './BarStack';
 import { StackKey, $TSFIXME } from '../types';
+import setNumOrAccessor from '../util/setNumberOrNumberAccessor';
 
 export type BarStackHorizontalProps<Datum> = Pick<
   BarStackProps<Datum>,
@@ -25,9 +27,9 @@ export type BarStackHorizontalProps<Datum> = Pick<
   | 'children'
 > & {
   /** Returns the value mapped to the x0 of a bar. */
-  x0: (d: SeriesPoint<Datum>) => number;
+  x0?: (d: SeriesPoint<Datum>) => number;
   /** Returns the value mapped to the x1 of a bar. */
-  x1: (d: SeriesPoint<Datum>) => number;
+  x1?: (d: SeriesPoint<Datum>) => number;
   /** Returns the value mapped to the y of a bar. */
   y: (d: Datum) => number;
 };
@@ -38,8 +40,8 @@ export default function BarStackHorizontal<Datum>({
   top,
   left,
   y,
-  x0 = (d: $TSFIXME) => d[0],
-  x1 = (d: $TSFIXME) => d[1],
+  x0 = (d: $TSFIXME) => d && d[0],
+  x1 = (d: $TSFIXME) => d && d[1],
   xScale,
   yScale,
   color,
@@ -53,7 +55,7 @@ export default function BarStackHorizontal<Datum>({
   Omit<React.SVGProps<SVGRectElement>, keyof BarStackHorizontalProps<Datum>>) {
   const stack = d3stack<Datum, StackKey>();
   if (keys) stack.keys(keys);
-  if (value) stack.value(value);
+  if (value) setNumOrAccessor<NumAccessor<Datum>>(stack.value, value);
   if (order) stack.order(stackOrder(order));
   if (offset) stack.offset(stackOffset(offset));
 

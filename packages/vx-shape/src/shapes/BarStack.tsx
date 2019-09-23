@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/unbound-method */
 import React from 'react';
 import cx from 'classnames';
 import { Group } from '@vx/group';
@@ -6,8 +7,11 @@ import { stack as d3stack, SeriesPoint } from 'd3-shape';
 import stackOrder from '../util/stackOrder';
 import stackOffset from '../util/stackOffset';
 import Bar from './Bar';
-import { StackProps } from './Stack';
+import { StackProps, NumAccessor } from './Stack';
 import { ScaleType, StackKey, BarStack, $TSFIXME } from '../types';
+import setNumOrAccessor from '../util/setNumberOrNumberAccessor';
+
+export { NumAccessor };
 
 export type BarStackProps<Datum> = Pick<
   StackProps<Datum>,
@@ -16,9 +20,9 @@ export type BarStackProps<Datum> = Pick<
   /** Returns the value mapped to the x of a bar */
   x: (d: Datum) => number;
   /** Returns the value mapped to the y0 of a bar. */
-  y0: (d: SeriesPoint<Datum>) => number;
+  y0?: (d: SeriesPoint<Datum>) => number;
   /** Returns the value mapped to the y1 of a bar. */
-  y1: (d: SeriesPoint<Datum>) => number;
+  y1?: (d: SeriesPoint<Datum>) => number;
   /** @vx/scale or d3-scale that takes an x value and maps it to an x axis position. */
   xScale: ScaleType;
   /** @vx/scale or d3-scale that takes a y value and maps it to an y axis position. */
@@ -29,14 +33,14 @@ export type BarStackProps<Datum> = Pick<
   children?: (stacks: BarStack<Datum>[]) => React.ReactNode;
 };
 
-export default function BarStack<Datum>({
+export default function BarStackComponent<Datum>({
   data,
   className,
   top,
   left,
   x,
-  y0 = (d: $TSFIXME) => d[0],
-  y1 = (d: $TSFIXME) => d[1],
+  y0 = (d: $TSFIXME) => d && d[0],
+  y1 = (d: $TSFIXME) => d && d[1],
   xScale,
   yScale,
   color,
@@ -49,7 +53,7 @@ export default function BarStack<Datum>({
 }: BarStackProps<Datum> & Omit<React.SVGProps<SVGRectElement>, keyof BarStackProps<Datum>>) {
   const stack = d3stack<Datum, StackKey>();
   if (keys) stack.keys(keys);
-  if (value) stack.value(value);
+  if (value) setNumOrAccessor<NumAccessor<Datum>>(stack.value, value);
   if (order) stack.order(stackOrder(order));
   if (offset) stack.offset(stackOffset(offset));
 

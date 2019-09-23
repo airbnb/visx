@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/unbound-method */
 import React from 'react';
 import cx from 'classnames';
 import { area } from 'd3-shape';
 import { AreaProps } from './Area';
 import { ScaleType } from '../types';
+import setNumOrAccessor from '../util/setNumberOrNumberAccessor';
 
 export type AreaClosedProps<Datum> = {
   yScale: ScaleType;
@@ -39,11 +41,11 @@ export default function AreaClosed<Datum>({
   ...restProps
 }: AreaClosedProps<Datum> & Omit<React.SVGProps<SVGPathElement>, keyof AreaClosedProps<Datum>>) {
   const path = area<Datum>();
-  if (x) path.x(x);
-  if (x0) path.x0(x0);
-  if (x1) path.x1(x1);
+  if (x) setNumOrAccessor(path.x, x);
+  if (x0) setNumOrAccessor(path.x0, x0);
+  if (x1) setNumOrAccessor(path.x1, x1);
   if (y0) {
-    path.y0(y0);
+    setNumOrAccessor(path.y0, y0);
   } else {
     /**
      * by default set the baseline to the first element of the yRange
@@ -51,8 +53,8 @@ export default function AreaClosed<Datum>({
      */
     path.y0(yScale.range()[0]);
   }
-  if (y && !y1) path.y1(y);
-  if (y1 && !y) path.y1(y1);
+  if (y && !y1) setNumOrAccessor(path.y1, y);
+  if (y1 && !y) setNumOrAccessor(path.y1, y1);
   if (defined) path.defined(defined);
   if (curve) path.curve(curve);
   if (children) return <>{children({ path })}</>;

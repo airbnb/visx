@@ -10,7 +10,7 @@ type BarGroupHorizontalProps<Datum> = Pick<
   'data' | 'className' | 'top' | 'left' | 'keys' | 'color'
 > & {
   /** Returns the value (Datum[key]) mapped to the x of a bar */
-  x: (barValue: number) => number;
+  x?: (barValue: number) => number;
   /** Returns the value mapped to the y0 (position of group) of a bar */
   y0: (d: Datum) => $TSFIXME;
   /** @vx/scale or d3-scale that takes a key value (Datum[key]) and maps it to an x axis position (width of bar). */
@@ -25,7 +25,7 @@ type BarGroupHorizontalProps<Datum> = Pick<
   children?: (barGroups: BarGroupHorizontal[]) => React.ReactNode;
 };
 
-export default function BarGroupHorizontal<Datum extends { [key: string]: number }>({
+export default function BarGroupHorizontalComponent<Datum extends { [key: string]: number }>({
   data,
   className,
   top,

@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/unbound-method */
 import React from 'react';
 import cx from 'classnames';
 import { area, Area as AreaType, CurveFactory } from 'd3-shape';
+import setNumOrAccessor from '../util/setNumberOrNumberAccessor';
 
-type Accessor<Datum> = (datum: Datum, index: number, data: Datum[]) => number;
+type NumberAccessor<Datum> = (datum: Datum, index: number, data: Datum[]) => number;
 
 export type AreaProps<Datum> = {
   /** Override render function which is passed the configured area generator as input. */
@@ -18,17 +20,17 @@ export type AreaProps<Datum> = {
   /** React RefObject passed to the path element. */
   innerRef?: React.Ref<SVGPathElement>;
   /** Sets the x0 accessor function, and sets x1 to null. */
-  x?: Accessor<Datum>;
+  x?: NumberAccessor<Datum> | number | number;
   /** Specifies the x0 accessor function which defaults to d => d[0]. */
-  x0?: Accessor<Datum>;
+  x0?: NumberAccessor<Datum> | number;
   /** Specifies the x1 accessor function which defaults to null. */
-  x1?: Accessor<Datum>;
+  x1?: NumberAccessor<Datum> | number;
   /** Sets the y0 accessor function, and sets y1 to null. */
-  y?: Accessor<Datum>;
+  y?: NumberAccessor<Datum> | number;
   /** Specifies the y0 accessor function which defaults to d => 0. */
-  y0?: Accessor<Datum>;
+  y0?: NumberAccessor<Datum> | number;
   /** Specifies the y1 accessor function which defaults to d => d[1]. */
-  y1?: Accessor<Datum>;
+  y1?: NumberAccessor<Datum> | number;
 };
 
 export default function Area<Datum>({
@@ -47,12 +49,12 @@ export default function Area<Datum>({
   ...restProps
 }: AreaProps<Datum> & Omit<React.SVGProps<SVGPathElement>, keyof AreaProps<Datum>>) {
   const path = area<Datum>();
-  if (x) path.x(x);
-  if (x0) path.x0(x0);
-  if (x1) path.x1(x1);
-  if (y) path.y(y);
-  if (y0) path.y0(y0);
-  if (y1) path.y1(y1);
+  if (x) setNumOrAccessor(path.x, x);
+  if (x0) setNumOrAccessor(path.x0, x0);
+  if (x1) setNumOrAccessor(path.x1, x1);
+  if (y) setNumOrAccessor(path.y, y);
+  if (y0) setNumOrAccessor(path.y0, y0);
+  if (y1) setNumOrAccessor(path.y1, y1);
   if (defined) path.defined(defined);
   if (curve) path.curve(curve);
   if (children) return <>{children({ path })}</>;

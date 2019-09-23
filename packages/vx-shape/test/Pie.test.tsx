@@ -38,6 +38,7 @@ const PieChildren = ({ children, ...restProps }) =>
 
 describe('<Pie />', () => {
   beforeEach(() => {
+    // eslint-disable-next-line @typescript-eslint/unbound-method
     global.console.error = jest.fn();
   });
 
@@ -75,8 +76,9 @@ describe('<Pie />', () => {
   test('it should break on invalid sort callbacks', () => {
     expect(() => PieWrapper({ pieSort: 12 })).toThrow();
     expect(() => PieWrapper({ pieSortValues: 12 })).toThrow();
+    // eslint-disable-next-line @typescript-eslint/unbound-method
     expect(console.error).toBeCalled();
-    expect(console.error.mock.calls).toHaveLength(2);
+    expect((console.error as typeof jest.fn).mock.calls).toHaveLength(2);
   });
 
   test('it should have the .vx-pie-arcs-group class', () => {

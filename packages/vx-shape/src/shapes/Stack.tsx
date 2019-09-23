@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/unbound-method */
 import React from 'react';
 import cx from 'classnames';
 import { Group } from '@vx/group';
@@ -11,11 +12,12 @@ import {
   Series,
 } from 'd3-shape';
 
+import setNumOrAccessor from '../util/setNumberOrNumberAccessor';
 import stackOrder, { STACK_ORDERS } from '../util/stackOrder';
 import stackOffset, { STACK_OFFSETS } from '../util/stackOffset';
 import { StackKey, $TSFIXME } from '../types';
 
-type Accessor<Datum> = (datum: Datum, index: number, data: Datum[]) => number;
+export type NumAccessor<Datum> = (datum: Datum, index: number, data: Datum[]) => number;
 
 export type StackProps<Datum> = {
   /** Array of data for which to generate a stack. */
@@ -39,17 +41,17 @@ export type StackProps<Datum> = {
     stack: StackType<$TSFIXME, Datum, StackKey>;
   }) => React.ReactNode;
   /** Sets the x0 accessor function, and sets x1 to null. */
-  x?: Accessor<SeriesPoint<Datum>>;
+  x?: NumAccessor<SeriesPoint<Datum>>;
   /** Specifies the x0 accessor function which defaults to d => d[0]. */
-  x0?: Accessor<SeriesPoint<Datum>>;
+  x0?: NumAccessor<SeriesPoint<Datum>>;
   /** Specifies the x1 accessor function which defaults to null. */
-  x1?: Accessor<SeriesPoint<Datum>>;
+  x1?: NumAccessor<SeriesPoint<Datum>>;
   /** Specifies the y0 accessor function which defaults to d => 0. */
-  y0?: Accessor<SeriesPoint<Datum>>;
+  y0?: NumAccessor<SeriesPoint<Datum>>;
   /** Specifies the y1 accessor function which defaults to d => d[1]. */
-  y1?: Accessor<SeriesPoint<Datum>>;
+  y1?: NumAccessor<SeriesPoint<Datum>>;
   /** Sets the value accessor for a Datum, which defaults to d[key]. */
-  value?: (d: Datum, key: StackKey) => number;
+  value?: number | ((d: Datum, key: StackKey) => number);
   /** The defined accessor for the shape. The final area shape includes all points for which this function returns true. By default all points are defined. */
   defined?: (datum: SeriesPoint<Datum>, index: number, data: SeriesPoint<Datum>[]) => boolean;
   /** Sets the stack order to the pre-defined d3 function, see https://github.com/d3/d3-shape#stack_order. */
@@ -80,7 +82,7 @@ export default function Stack<Datum>({
 }: StackProps<Datum> & Omit<React.SVGProps<SVGPathElement>, keyof StackProps<Datum>>) {
   const stack = d3stack<Datum, StackKey>();
   if (keys) stack.keys(keys);
-  if (value) stack.value(value);
+  if (value) setNumOrAccessor(stack.value, value);
   if (order) stack.order(stackOrder(order));
   if (offset) stack.offset(stackOffset(offset));
 
