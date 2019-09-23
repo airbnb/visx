@@ -1,8 +1,6 @@
 /* eslint react/no-did-mount-set-state: 0, react/no-find-dom-node: 0 */
 import React from 'react';
-// @ts-ignore ts-migrate(7016) FIXME: Try `npm install @types/react-dom` if it exists or... Remove this comment to see the full error message
 import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
 
 const emptyRect = {
   top: 0,
@@ -22,28 +20,19 @@ type rectShape = {
   height: number;
 };
 
-const rectShape: PropTypes.Requireable<rectShape> = PropTypes.shape({
-  top: PropTypes.number.isRequired,
-  right: PropTypes.number.isRequired,
-  bottom: PropTypes.number.isRequired,
-  left: PropTypes.number.isRequired,
-  width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired,
-});
-
-export const withBoundingRectsProps = {
-  getRects: PropTypes.func,
-  rect: rectShape,
-  parentRect: rectShape,
+export type WithBoundingRectsProps = {
+  getRects: () => { rect: rectShape; parentRect: rectShape };
+  rect: rectShape;
+  parentRect: rectShape;
 };
 
-// @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
-export default function withBoundingRects(BaseComponent: $TSFixMe) {
-  class WrappedComponent extends React.PureComponent {
-    // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
-    node: $TSFixMe;
-    // @ts-ignore ts-migrate(2304) FIXME: Cannot find name '$TSFixMe'.
-    constructor(props: $TSFixMe) {
+export default function withBoundingRects<Props extends object = {}>(
+  BaseComponent: React.ComponentType<Props>,
+) {
+  return class WrappedComponent extends React.PureComponent<Props> {
+    static displayName = `withBoundingRects(${BaseComponent.displayName || ''})`;
+    node: HTMLElement | undefined | null;
+    constructor(props: Props) {
       super(props);
       this.state = {
         rect: undefined,
@@ -53,7 +42,7 @@ export default function withBoundingRects(BaseComponent: $TSFixMe) {
     }
 
     componentDidMount() {
-      this.node = ReactDOM.findDOMNode(this);
+      this.node = ReactDOM.findDOMNode(this) as HTMLElement;
       this.setState(() => this.getRects());
     }
 
@@ -61,13 +50,13 @@ export default function withBoundingRects(BaseComponent: $TSFixMe) {
       if (!this.node) return this.state;
 
       const { node } = this;
-      const { parentNode } = node;
+      const { parentElement } = node;
 
       const rect = node.getBoundingClientRect ? node.getBoundingClientRect() : emptyRect;
 
       const parentRect =
-        parentNode && parentNode.getBoundingClientRect
-          ? parentNode.getBoundingClientRect()
+        parentElement && parentElement.getBoundingClientRect
+          ? parentElement.getBoundingClientRect()
           : emptyRect;
 
       return { rect, parentRect };
@@ -76,14 +65,5 @@ export default function withBoundingRects(BaseComponent: $TSFixMe) {
     render() {
       return <BaseComponent getRects={this.getRects} {...this.state} {...this.props} />;
     }
-  }
-
-  // @ts-ignore ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'typeo... Remove this comment to see the full error message
-  WrappedComponent.propTypes = BaseComponent.propTypes;
-  // @ts-ignore ts-migrate(2339) FIXME: Property 'defaultProps' does not exist on type 'ty... Remove this comment to see the full error message
-  WrappedComponent.defaultProps = BaseComponent.defaultProps;
-  // @ts-ignore ts-migrate(2339) FIXME: Property 'displayName' does not exist on type 'typ... Remove this comment to see the full error message
-  WrappedComponent.displayName = `withBoundingRects(${BaseComponent.displayName || ''})`;
-
-  return WrappedComponent;
+  };
 }
