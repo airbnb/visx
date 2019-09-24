@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 
 export type VoronoiPolygonProps = {
-  /** Override render function which is provided polygon and generated path.*/
+  /** Override render function which is provided polygon and generated path. */
   children?: ({ path, polygon }: { path: string; polygon: number[][] }) => React.ReactNode;
   /** className to apply to path element. */
   className?: string;
