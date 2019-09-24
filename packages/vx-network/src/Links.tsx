@@ -1,22 +1,28 @@
 import React from 'react';
 import cx from 'classnames';
-import PropTypes from 'prop-types';
 import { Group } from '@vx/group';
+import { LinkProvidedProps } from './types';
 
-Links.propTypes = {
-  links: PropTypes.array,
-  linkComponent: PropTypes.any,
-  className: PropTypes.string,
+export type LinkProps<Link> = {
+  /** Array of links to render. */
+  links?: Link[];
+  /** Component for rendering a single link. */
+  linkComponent:
+    | string
+    | React.FunctionComponent<LinkProvidedProps<Link>>
+    | React.ComponentClass<LinkProvidedProps<Link>>;
+  /** Classname to add to each link parent g element. */
+  className?: string;
 };
 
-export default function Links({ links, linkComponent, className }) {
+export default function Links<Link>({ links = [], linkComponent, className }: LinkProps<Link>) {
   return (
-    <Group>
+    <>
       {links.map((link, i) => (
-        <Group className={cx('vx-network-links', className)} key={`network-link-${i}`}>
+        <Group key={`network-link-${i}`} className={cx('vx-network-link', className)}>
           {React.createElement(linkComponent, { link })}
         </Group>
       ))}
-    </Group>
+    </>
   );
 }

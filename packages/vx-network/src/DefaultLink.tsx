@@ -1,14 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { LinkProvidedProps, Link as DefaultLink, DefaultNode } from './types';
 
-DefaultLink.propTypes = {
-  link: PropTypes.object,
-};
-
-export default function DefaultLink({ link }) {
-  return (
+export default function DefaultLink({ link }: LinkProvidedProps<DefaultLink<DefaultNode>>) {
+  return link ? (
     <line
-      x1={link.source.x}
+      x1={link && link.source && link.source.x}
       y1={link.source.y}
       x2={link.target.x}
       y2={link.target.y}
@@ -16,5 +12,5 @@ export default function DefaultLink({ link }) {
       stroke="#999"
       strokeOpacity={0.6}
     />
-  );
+  ) : null;
 }
