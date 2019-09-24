@@ -1,31 +1,32 @@
-// @ts-ignore ts-migrate(2307) FIXME: Cannot find module ':ts-utils/types/WithDefaultPro... Remove this comment to see the full error message
-import { WithDefaultProps } from ':ts-utils/types/WithDefaultProps';
-// @ts-ignore ts-migrate(1259) FIXME: Module '"/Users/sergii_rudenko/Projects/vx/node_mo... Remove this comment to see the full error message
 import debounce from 'lodash/debounce';
-// @ts-ignore ts-migrate(1259) FIXME: Module '"/Users/sergii_rudenko/Projects/vx/node_mo... Remove this comment to see the full error message
 import React from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 
-type OwnProps = {
+type Props = {
   className?: string;
   debounceTime?: number;
+  innerRef?: React.Ref<HTMLDivElement>;
+  children: (args: {
+    ref: HTMLDivElement | null;
+    resize: (state: State) => void;
+  }) => React.ReactNode;
 };
 
-type State = any;
-
-type Props = WithDefaultProps<OwnProps, typeof ParentSize.defaultProps>;
+type State = {
+  width: number;
+  height: number;
+  top: number;
+  left: number;
+};
 
 export default class ParentSize extends React.Component<Props, State> {
   static defaultProps = {
     debounceTime: 300,
   };
 
-  animationFrameID: any;
-  props: any;
-  ro: any;
-  setState: any;
-  state: any;
-  target: any;
+  animationFrameID: number | null;
+  ro: ResizeObserver | undefined;
+  target: HTMLDivElement | null = null;
 
   constructor(props: Props) {
     super(props);
@@ -49,26 +50,25 @@ export default class ParentSize extends React.Component<Props, State> {
         });
       });
     });
-    this.ro.observe(this.target);
+    this.ro.observe(this.target as Element);
   }
 
   componentWillUnmount() {
-    window.cancelAnimationFrame(this.animationFrameID);
-    this.ro.disconnect();
+    this.animationFrameID && window.cancelAnimationFrame(this.animationFrameID);
+    this.ro && this.ro.disconnect();
   }
 
-  resize({ width, height, top, left }) {
+  resize({ width, height, top, left }: State) {
     this.setState(() => ({ width, height, top, left }));
   }
 
-  setTarget(ref) {
+  setTarget(ref: HTMLDivElement | null) {
     this.target = ref;
   }
 
   render() {
     const { className, children, debounceTime, ...restProps } = this.props;
     return (
-      // @ts-ignore ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
       <div
         style={{ width: '100%', height: '100%' }}
         ref={this.setTarget}

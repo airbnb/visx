@@ -1,4 +1,3 @@
-// @ts-ignore ts-migrate(1259) FIXME: Module '"/Users/sergii_rudenko/Projects/vx/node_mo... Remove this comment to see the full error message
 import React from 'react';
 
 type Props = {
@@ -8,7 +7,7 @@ type Props = {
   xOrigin?: number | string;
   yOrigin?: number | string;
   preserveAspectRatio?: string;
-  innerRef?: ((...args: any[]) => any) | any;
+  innerRef?: React.Ref<SVGSVGElement>;
 };
 
 export default function ResponsiveSVG({
@@ -21,7 +20,6 @@ export default function ResponsiveSVG({
   innerRef,
 }: Props) {
   return (
-    // @ts-ignore ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <div
       style={{
         display: 'inline-block',
@@ -31,8 +29,6 @@ export default function ResponsiveSVG({
         overflow: 'hidden',
       }}
     >
-      {/*
-// @ts-ignore ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <svg
         preserveAspectRatio={preserveAspectRatio}
         viewBox={`${xOrigin} ${yOrigin} ${width} ${height}`}
