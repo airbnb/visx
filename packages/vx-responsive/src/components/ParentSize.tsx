@@ -50,12 +50,12 @@ export default class ParentSize extends React.Component<Props, State> {
         });
       });
     });
-    this.ro.observe(this.target as Element);
+    if (this.target) this.ro.observe(this.target);
   }
 
   componentWillUnmount() {
-    this.animationFrameID && window.cancelAnimationFrame(this.animationFrameID);
-    this.ro && this.ro.disconnect();
+    if (this.animationFrameID) window.cancelAnimationFrame(this.animationFrameID);
+    if (this.ro) this.ro.disconnect();
   }
 
   resize({ width, height, top, left }: State) {

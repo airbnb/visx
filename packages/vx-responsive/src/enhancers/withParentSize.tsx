@@ -46,12 +46,12 @@ export default function withParentSize<Props extends WithParentSizeProps = {}>(
           });
         });
       });
-      this.container && this.ro.observe(this.container);
+      if (this.container) this.ro.observe(this.container);
     }
 
     componentWillUnmount() {
-      this.animationFrameID && window.cancelAnimationFrame(this.animationFrameID);
-      this.ro && this.ro.disconnect();
+      if (this.animationFrameID) window.cancelAnimationFrame(this.animationFrameID);
+      if (this.ro) this.ro.disconnect();
     }
 
     resize({ width, height }: { width: number; height: number }) {
