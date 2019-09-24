@@ -1,14 +1,14 @@
+// @ts-ignore ts-migrate(1259) FIXME: Module '"/Users/sergii_rudenko/Projects/vx/node_mo... Remove this comment to see the full error message
 import React from 'react';
-import PropTypes from 'prop-types';
 
-ResponsiveSVG.propTypes = {
-  children: PropTypes.any,
-  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  xOrigin: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  yOrigin: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  preserveAspectRatio: PropTypes.string,
-  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+type Props = {
+  children?: any;
+  width?: number | string;
+  height?: number | string;
+  xOrigin?: number | string;
+  yOrigin?: number | string;
+  preserveAspectRatio?: string;
+  innerRef?: ((...args: any[]) => any) | any;
 };
 
 export default function ResponsiveSVG({
@@ -19,8 +19,9 @@ export default function ResponsiveSVG({
   yOrigin = 0,
   preserveAspectRatio = 'xMinYMin meet',
   innerRef,
-}) {
+}: Props) {
   return (
+    // @ts-ignore ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <div
       style={{
         display: 'inline-block',
@@ -30,6 +31,8 @@ export default function ResponsiveSVG({
         overflow: 'hidden',
       }}
     >
+      {/*
+// @ts-ignore ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <svg
         preserveAspectRatio={preserveAspectRatio}
         viewBox={`${xOrigin} ${yOrigin} ${width} ${height}`}

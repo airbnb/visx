@@ -1,10 +1,33 @@
+// @ts-ignore ts-migrate(2307) FIXME: Cannot find module ':ts-utils/types/WithDefaultPro... Remove this comment to see the full error message
+import { WithDefaultProps } from ':ts-utils/types/WithDefaultProps';
+// @ts-ignore ts-migrate(1259) FIXME: Module '"/Users/sergii_rudenko/Projects/vx/node_mo... Remove this comment to see the full error message
 import debounce from 'lodash/debounce';
-import PropTypes from 'prop-types';
+// @ts-ignore ts-migrate(1259) FIXME: Module '"/Users/sergii_rudenko/Projects/vx/node_mo... Remove this comment to see the full error message
 import React from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 
-export default class ParentSize extends React.Component {
-  constructor(props) {
+type OwnProps = {
+  className?: string;
+  debounceTime?: number;
+};
+
+type State = any;
+
+type Props = WithDefaultProps<OwnProps, typeof ParentSize.defaultProps>;
+
+export default class ParentSize extends React.Component<Props, State> {
+  static defaultProps = {
+    debounceTime: 300,
+  };
+
+  animationFrameID: any;
+  props: any;
+  ro: any;
+  setState: any;
+  state: any;
+  target: any;
+
+  constructor(props: Props) {
     super(props);
     this.state = {
       width: 0,
@@ -45,6 +68,7 @@ export default class ParentSize extends React.Component {
   render() {
     const { className, children, debounceTime, ...restProps } = this.props;
     return (
+      // @ts-ignore ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
       <div
         style={{ width: '100%', height: '100%' }}
         ref={this.setTarget}
@@ -60,13 +84,3 @@ export default class ParentSize extends React.Component {
     );
   }
 }
-
-ParentSize.defaultProps = {
-  debounceTime: 300,
-};
-
-ParentSize.propTypes = {
-  className: PropTypes.string,
-  children: PropTypes.func.isRequired,
-  debounceTime: PropTypes.number,
-};
