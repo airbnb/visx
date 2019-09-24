@@ -29,7 +29,7 @@ export default function Nodes<Node>({
   y = (d: any) => (d && d.y) || 0,
 }: NodeProps<Node>) {
   return (
-    <>
+    <Group>
       {nodes.map((node, i) => (
         <Group
           key={`network-node-${i}`}
@@ -40,6 +40,6 @@ export default function Nodes<Node>({
           {React.createElement(nodeComponent, { node })}
         </Group>
       ))}
-    </>
+    </Group>
   );
 }

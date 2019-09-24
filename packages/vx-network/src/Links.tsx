@@ -17,12 +17,12 @@ export type LinkProps<Link> = {
 
 export default function Links<Link>({ links = [], linkComponent, className }: LinkProps<Link>) {
   return (
-    <>
+    <Group>
       {links.map((link, i) => (
         <Group key={`network-link-${i}`} className={cx('vx-network-link', className)}>
           {React.createElement(linkComponent, { link })}
         </Group>
       ))}
-    </>
+    </Group>
   );
 }
