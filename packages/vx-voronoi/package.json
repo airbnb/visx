@@ -37,7 +37,6 @@
     "@types/classnames": "^2.2.9",
     "@types/d3-voronoi": "^1.1.9",
     "@types/react": "*",
-    "@vx/group": "0.0.192",
     "classnames": "^2.2.5",
     "d3-voronoi": "^1.1.2",
     "prop-types": "^15.6.1"
