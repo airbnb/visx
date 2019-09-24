@@ -2,10 +2,10 @@ import React from 'react';
 import { Group } from '@vx/group';
 import Links from './Links';
 import Nodes from './Nodes';
-import DefaultLink from './DefaultLink';
 import DefaultNode from './DefaultNode';
+import DefaultLink from './DefaultLink';
 import {
-  Graph,
+  Graph as GraphType,
   DefaultNode as DefaultNodeType,
   Link as LinkType,
   LinkProvidedProps,
@@ -14,12 +14,13 @@ import {
 
 type Props<Link, Node> = {
   /** Graph to render nodes and links for. */
-  graph?: Graph<Link, Node>;
-  /** Component for rendering a link. */
+  graph?: GraphType<Link, Node>;
+  /** Component for rendering a single Link. */
   linkComponent:
     | string
     | React.FunctionComponent<LinkProvidedProps<Link>>
     | React.ComponentClass<LinkProvidedProps<Link>>;
+  /** Component for rendering a single Node. */
   nodeComponent:
     | string
     | React.FunctionComponent<NodeProvidedProps<Node>>
@@ -32,8 +33,8 @@ type Props<Link, Node> = {
 
 export default function Graph<Link = LinkType<DefaultNodeType>, Node = DefaultNodeType>({
   graph,
-  linkComponent,
-  nodeComponent,
+  linkComponent = DefaultLink,
+  nodeComponent = DefaultNode,
   top,
   left,
 }: Props<Link, Node>) {

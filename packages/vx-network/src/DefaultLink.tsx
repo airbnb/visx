@@ -1,10 +1,10 @@
 import React from 'react';
-import { LinkProvidedProps, Link as DefaultLink, DefaultNode } from './types';
+import { LinkProvidedProps } from './types';
 
-export default function DefaultLink({ link }: LinkProvidedProps<DefaultLink<DefaultNode>>) {
-  return link ? (
+export default function DefaultLink({ link }: LinkProvidedProps<any>) {
+  return link && link.source && link.target ? (
     <line
-      x1={link && link.source && link.source.x}
+      x1={link.source.x}
       y1={link.source.y}
       x2={link.target.x}
       y2={link.target.y}
