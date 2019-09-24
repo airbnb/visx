@@ -1,4 +1,3 @@
-// @ts-ignore ts-migrate(1259) FIXME: Module '"/Users/sergii_rudenko/Projects/vx/node_mo... Remove this comment to see the full error message
 import React from 'react';
 import { mount } from 'enzyme';
 
