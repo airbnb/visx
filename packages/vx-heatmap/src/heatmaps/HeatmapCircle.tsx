@@ -33,10 +33,10 @@ export type HeatmapCircleProps<ColumnDatum, BinDatum> = {
 };
 
 export type CircleCell<ColumnDatum, BinDatum> = GenericCell<ColumnDatum, BinDatum> & {
-  /** Radius specified for the circle. */
+  /** Computed radius for the circle (radius - gap). */
+  r: number;
+  /** Input radius for the circle including specified gap. */
   radius: number;
-  /** Radius less grid gap specified. */
-  innerRadius: number;
   /** x position of the cell circle center. */
   cx: number;
   /** y position of the cell circle center. */
@@ -74,12 +74,12 @@ export default function HeatmapCircle<ColumnDatum, BinDatum>({
         row,
         column,
         datum: columnDatum,
-        innerRadius /** @TODO breaking from r */,
         radius,
         gap,
         count: countValue,
         cx: radius + x,
         cy: yScale(row) + gap + radius,
+        r: innerRadius,
         opacity: opacityScale(countValue),
         color: colorScale(countValue),
       };
