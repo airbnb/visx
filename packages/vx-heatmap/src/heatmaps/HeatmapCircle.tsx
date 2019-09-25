@@ -65,7 +65,7 @@ export default function HeatmapCircle<ColumnDatum, BinDatum>({
   >) {
   const innerRadius = radius - gap;
 
-  const heatmap: HeatMapCell<ColumnDatum, BinDatum>[][] = data.map((columnDatum, column) => {
+  const heatmap: CircleCell<ColumnDatum, BinDatum>[][] = data.map((columnDatum, column) => {
     const x = xScale(column);
     return bins(columnDatum).map((bin, row) => {
       const countValue = count(bin);

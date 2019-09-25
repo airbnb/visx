@@ -78,7 +78,7 @@ export default function HeatmapRect<ColumnDatum, BinDatum>({
   const width = binWidth - gap;
   const height = binHeight - gap;
 
-  const heatmap: HeatMapCell<ColumnDatum, BinDatum>[][] = data.map((datum, column) => {
+  const heatmap: RectCell<ColumnDatum, BinDatum>[][] = data.map((datum, column) => {
     const x = xScale(column);
     return bins(datum).map((bin, row) => {
       const countValue = count(bin);
