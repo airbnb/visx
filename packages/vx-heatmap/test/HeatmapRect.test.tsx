@@ -7,7 +7,7 @@ import { genBins } from '../../vx-mock-data/src';
 const data = genBins(1, 1);
 const xScale = () => 50;
 const yScale = () => 50;
-const HeatmapWrapper = props =>
+const HeatmapWrapper = (props = {}) =>
   shallow(<HeatmapRect data={data} xScale={xScale} yScale={yScale} {...props} />);
 
 describe('<HeatmapRect />', () => {

@@ -1,51 +1,80 @@
 import React from 'react';
 import cx from 'classnames';
-import PropTypes from 'prop-types';
 import { Group } from '@vx/group';
+import { GenericCell } from '../types';
 
-HeatmapCircle.propTypes = {
-  data: PropTypes.array,
-  left: PropTypes.number,
-  top: PropTypes.number,
-  gap: PropTypes.number,
-  radius: PropTypes.number,
-  xScale: PropTypes.func.isRequired,
-  yScale: PropTypes.func.isRequired,
-  colorScale: PropTypes.func,
-  opacityScale: PropTypes.func,
-  bins: PropTypes.func,
-  count: PropTypes.func,
-  className: PropTypes.string,
-  children: PropTypes.func,
+export type HeatmapCircleProps<ColumnDatum, BinDatum> = {
+  /** Array of column data (one per column desired) for the heatmap. */
+  data?: ColumnDatum[];
+  /** Left offset applied to heatmap wrapper g element. */
+  left?: number;
+  /** Top offset applied to heatmap wrapper g element. */
+  top?: number;
+  /** Pixel gap between heatmap circles. */
+  gap?: number;
+  /** Pixel radius of heatmap circles. */
+  radius?: number;
+  /** Given a column index, returns the x position of a circle cell. */
+  xScale: (columnIndex: number) => number;
+  /** Given a row index, returns the y position of a circle cell. */
+  yScale: (rowIndex: number) => number;
+  /** Given a count value, returns the desired circle fill color. */
+  colorScale?: (count?: number | null) => string | undefined;
+  /** Given a count value, returns the desired circle fill opacity. */
+  opacityScale?: (count?: number | null) => number | undefined;
+  /** Accessor that returns an array of cell BinDatums (rows) for the provided ColumnData. */
+  bins?: (column: ColumnDatum) => BinDatum[];
+  /** Accessor that returns the count for the provided Bin. */
+  count?: (bin: BinDatum) => number | undefined | null;
+  /** className to apply to each heatmap circle element. */
+  className?: string;
+  /** Render function override, provided with heatmap. */
+  children?: (cells: HeatMapCell<ColumnDatum, BinDatum>[][]) => React.ReactNode;
 };
 
-export default function HeatmapCircle({
+export type CircleCell<ColumnDatum, BinDatum> = GenericCell<ColumnDatum, BinDatum> & {
+  /** Radius specified for the circle. */
+  radius: number;
+  /** Radius less grid gap specified. */
+  innerRadius: number;
+  /** x position of the cell circle center. */
+  cx: number;
+  /** y position of the cell circle center. */
+  cy: number;
+};
+
+export default function HeatmapCircle<ColumnDatum, BinDatum>({
   className,
   top,
   left,
-  data,
+  data = [],
   gap = 1,
   radius = 6,
   xScale,
   yScale,
-  colorScale = (/** d */) => undefined,
-  opacityScale = (/** d */) => 1,
-  bins = d => d.bins,
-  count = d => d.count,
+  colorScale = () => undefined,
+  opacityScale = () => 1,
+  bins = (column: any) => column && column.bins,
+  count = (cell: any) => cell && cell.count,
   children,
   ...restProps
-}) {
-  const r = radius - gap;
-  const heatmap = data.map((datum, column) => {
+}: HeatmapCircleProps<ColumnDatum, BinDatum> &
+  Omit<
+    React.SVGProps<SVGCircleElement>,
+    keyof HeatmapCircleProps<ColumnDatum, BinDatum> | 'r' | 'cx' | 'cy' | 'fill' | 'fillOpacity'
+  >) {
+  const innerRadius = radius - gap;
+
+  const heatmap: HeatMapCell<ColumnDatum, BinDatum>[][] = data.map((columnDatum, column) => {
     const x = xScale(column);
-    return bins(datum).map((bin, row) => {
+    return bins(columnDatum).map((bin, row) => {
       const countValue = count(bin);
       return {
         bin,
         row,
         column,
-        datum,
-        r,
+        datum: columnDatum,
+        innerRadius /** @TODO breaking from r */,
         radius,
         gap,
         count: countValue,
@@ -56,25 +85,25 @@ export default function HeatmapCircle({
       };
     });
   });
-  if (children) return children(heatmap);
+
+  if (children) return <>{children(heatmap)}</>;
+
   return (
     <Group className="vx-heatmap-circles" top={top} left={left}>
-      {heatmap.map(_bins => {
-        return _bins.map(bin => {
-          return (
-            <circle
-              key={`heatmap-tile-circle-${bin.row}-${bin.column}`}
-              className={cx('vx-heatmap-circle', className)}
-              r={bin.r}
-              cx={bin.cx}
-              cy={bin.cy}
-              fill={bin.color}
-              fillOpacity={bin.opacity}
-              {...restProps}
-            />
-          );
-        });
-      })}
+      {heatmap.map(columns =>
+        columns.map(bin => (
+          <circle
+            key={`heatmap-tile-circle-${bin.row}-${bin.column}`}
+            className={cx('vx-heatmap-circle', className)}
+            r={bin.r}
+            cx={bin.cx}
+            cy={bin.cy}
+            fill={bin.color}
+            fillOpacity={bin.opacity}
+            {...restProps}
+          />
+        )),
+      )}
     </Group>
   );
 }
