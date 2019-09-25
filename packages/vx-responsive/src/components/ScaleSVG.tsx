@@ -1,7 +1,7 @@
 import React from 'react';
 
-type Props = {
-  children?: any;
+export type ScaleSVGProps = {
+  children?: React.ReactNode;
   width?: number | string;
   height?: number | string;
   xOrigin?: number | string;
@@ -18,7 +18,7 @@ export default function ResponsiveSVG({
   yOrigin = 0,
   preserveAspectRatio = 'xMinYMin meet',
   innerRef,
-}: Props) {
+}: ScaleSVGProps) {
   return (
     <div
       style={{

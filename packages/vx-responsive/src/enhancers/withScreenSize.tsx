@@ -1,7 +1,7 @@
 import debounce from 'lodash/debounce';
 import React from 'react';
 
-type WithScreenSizeProps = {
+export type WithScreenSizeProps = {
   windowResizeDebounceTime?: number;
 };
 
@@ -59,3 +59,4 @@ export default function withScreenSize<Props extends WithScreenSizeProps = {}>(
     }
   };
 }
+export { WithScreenSizeState as WithScreenSizeProvidedProps };

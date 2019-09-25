@@ -2,7 +2,7 @@ import React from 'react';
 import debounce from 'lodash/debounce';
 import ResizeObserver from 'resize-observer-polyfill';
 
-type WithParentSizeProps = {
+export type WithParentSizeProps = {
   debounceTime?: number;
 };
 
@@ -78,3 +78,4 @@ export default function withParentSize<Props extends WithParentSizeProps = {}>(
     }
   };
 }
+export { WithParentSizeState as WithParentSizeProvidedProps };

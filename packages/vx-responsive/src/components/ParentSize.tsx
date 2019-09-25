@@ -2,24 +2,28 @@ import debounce from 'lodash/debounce';
 import React from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 
-type Props = {
+export type ParentSizeProps = {
   className?: string;
   debounceTime?: number;
-  innerRef?: React.Ref<HTMLDivElement>;
-  children: (args: {
-    ref: HTMLDivElement | null;
-    resize: (state: State) => void;
-  }) => React.ReactNode;
+  children: (
+    args: {
+      ref: HTMLDivElement | null;
+      resize: (state: ParentSizeState) => void;
+    } & ParentSizeState,
+  ) => React.ReactNode;
 };
 
-type State = {
+type ParentSizeState = {
   width: number;
   height: number;
   top: number;
   left: number;
 };
 
-export default class ParentSize extends React.Component<Props, State> {
+export default class ParentSize extends React.Component<
+  ParentSizeProps & JSX.IntrinsicElements['div'],
+  ParentSizeState
+> {
   static defaultProps = {
     debounceTime: 300,
   };
@@ -28,7 +32,7 @@ export default class ParentSize extends React.Component<Props, State> {
   ro: ResizeObserver | undefined;
   target: HTMLDivElement | null = null;
 
-  constructor(props: Props) {
+  constructor(props: ParentSizeProps) {
     super(props);
     this.state = {
       width: 0,
@@ -58,7 +62,7 @@ export default class ParentSize extends React.Component<Props, State> {
     if (this.ro) this.ro.disconnect();
   }
 
-  resize({ width, height, top, left }: State) {
+  resize({ width, height, top, left }: ParentSizeState) {
     this.setState(() => ({ width, height, top, left }));
   }
 
@@ -84,3 +88,4 @@ export default class ParentSize extends React.Component<Props, State> {
     );
   }
 }
+export { ParentSizeState as ParentSizeProvidedProps };
