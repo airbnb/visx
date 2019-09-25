@@ -29,7 +29,7 @@ export type HeatmapCircleProps<ColumnDatum, BinDatum> = {
   /** className to apply to each heatmap circle element. */
   className?: string;
   /** Render function override, provided with heatmap. */
-  children?: (cells: HeatMapCell<ColumnDatum, BinDatum>[][]) => React.ReactNode;
+  children?: (cells: CircleCell<ColumnDatum, BinDatum>[][]) => React.ReactNode;
 };
 
 export type CircleCell<ColumnDatum, BinDatum> = GenericCell<ColumnDatum, BinDatum> & {
