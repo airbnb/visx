@@ -1,30 +1,55 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { Group } from '@vx/group';
-import { treemap as d3treemap } from 'd3-hierarchy';
-import DefaultNode from '../HierarchyDefaultNode';
+import { treemap as d3treemap, HierarchyRectangularNode, HierarchyNode } from 'd3-hierarchy';
+import HierarchyDefaultRectNode from '../HierarchyDefaultRectNode';
+import setNumberOrNumberAccessor from '../utils/setNumOrNumAccessor';
 
-Treemap.propTypes = {
-  root: PropTypes.object.isRequired,
-  children: PropTypes.func,
-  top: PropTypes.number,
-  left: PropTypes.number,
-  className: PropTypes.string,
-  tile: PropTypes.func,
-  size: PropTypes.arrayOf(PropTypes.number),
-  round: PropTypes.bool,
-  padding: PropTypes.oneOfType([PropTypes.number, PropTypes.func]),
-  paddingInner: PropTypes.oneOfType([PropTypes.number, PropTypes.func]),
-  paddingOuter: PropTypes.oneOfType([PropTypes.number, PropTypes.func]),
-  paddingTop: PropTypes.oneOfType([PropTypes.number, PropTypes.func]),
-  paddingRight: PropTypes.oneOfType([PropTypes.number, PropTypes.func]),
-  paddingBottom: PropTypes.oneOfType([PropTypes.number, PropTypes.func]),
-  paddingLeft: PropTypes.oneOfType([PropTypes.number, PropTypes.func]),
-  nodeComponent: PropTypes.any,
+export type NodeComponentProps<Datum> = { node: HierarchyRectangularNode<Datum> };
+
+type NumerOrNumberAccessor<Datum> = number | ((node: HierarchyRectangularNode<Datum>) => number);
+
+export type TreemapProps<Datum> = {
+  /** The root hierarchy node from which to derive the treemap layout. */
+  root: HierarchyNode<Datum>;
+  /** Render override function which is passed the computed pack layout data. */
+  children?: (pack: HierarchyRectangularNode<Datum>) => React.ReactNode;
+  /** top offset applied to the g element container. */
+  top?: number;
+  /** left offset applied to the g element container. */
+  left?: number;
+  /** className applied to the g element container. */
+  className?: string;
+  /**
+   * Sets the treemap tiling method to the specified function (exported from this package).
+   * See https://github.com/d3/d3-hierarchy#treemap for more.
+   */
+  tile?: () => void;
+  /** Sets this treemap layout’s size to the specified two-element array of numbers [width, height]  */
+  size?: [number, number];
+  /** Whether to round treemap values. */
+  round?: boolean;
+  /** Sets both inner and outer padding to the specified number or accessor. */
+  padding?: NumerOrNumberAccessor<Datum>;
+  /** Sets padding used to separate a node’s adjacent children. */
+  paddingInner?: NumerOrNumberAccessor<Datum>;
+  /** Sets padding used to spearate a node from its children. */
+  paddingOuter?: NumerOrNumberAccessor<Datum>;
+  /** Sets padding used to spearate the top edge of a node from its children. */
+  paddingTop?: NumerOrNumberAccessor<Datum>;
+  /** Sets padding used to spearate the right edge of a node from its children. */
+  paddingRight?: NumerOrNumberAccessor<Datum>;
+  /** Sets padding used to spearate the bottom edge of a node from its children. */
+  paddingBottom?: NumerOrNumberAccessor<Datum>;
+  /** Sets padding used to spearate the left edge of a node from its children. */
+  paddingLeft?: NumerOrNumberAccessor<Datum>;
+  /** Component which renders a single pack node, passed the node object. */
+  nodeComponent?:
+    | React.FunctionComponent<NodeComponentProps<Datum>>
+    | React.ComponentClass<NodeComponentProps<Datum>>;
 };
 
-export default function Treemap({
+export default function Treemap<Datum>({
   top,
   left,
   className,
@@ -40,20 +65,19 @@ export default function Treemap({
   paddingBottom,
   paddingLeft,
   children,
-  nodeComponent = DefaultNode,
-}) {
-  const treemap = d3treemap();
-
+  nodeComponent = HierarchyDefaultRectNode,
+}: TreemapProps<Datum>) {
+  const treemap = d3treemap<Datum>();
   if (tile) treemap.tile(tile);
   if (size) treemap.size(size);
   if (round) treemap.round(round);
-  if (padding) treemap.padding(padding);
-  if (paddingInner) treemap.paddingInner(paddingInner);
-  if (paddingOuter) treemap.paddingOuter(paddingOuter);
-  if (paddingTop) treemap.paddingTop(paddingTop);
-  if (paddingRight) treemap.paddingRight(paddingRight);
-  if (paddingBottom) treemap.paddingBottom(paddingBottom);
-  if (paddingLeft) treemap.paddingLeft(paddingLeft);
+  if (padding) setNumberOrNumberAccessor(treemap.padding, padding);
+  if (paddingInner) setNumberOrNumberAccessor(treemap.paddingInner, paddingInner);
+  if (paddingOuter) setNumberOrNumberAccessor(treemap.paddingOuter, paddingOuter);
+  if (paddingTop) setNumberOrNumberAccessor(treemap.paddingTop, paddingTop);
+  if (paddingRight) setNumberOrNumberAccessor(treemap.paddingRight, paddingRight);
+  if (paddingBottom) setNumberOrNumberAccessor(treemap.paddingBottom, paddingBottom);
+  if (paddingLeft) setNumberOrNumberAccessor(treemap.paddingLeft, paddingLeft);
 
   const data = treemap(root);
 
