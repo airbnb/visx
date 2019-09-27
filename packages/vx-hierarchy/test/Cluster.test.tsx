@@ -3,7 +3,9 @@ import { shallow } from 'enzyme';
 
 import { hierarchy } from 'd3-hierarchy';
 import { Cluster } from '../src';
+import { ClusterProps } from '../src/hierarchies/Cluster';
 
+type Datum = { name: string; children: Datum[] };
 const childrenFunc = jest.fn();
 const mockHierarchy = hierarchy({
   name: 'Eve',
@@ -14,9 +16,9 @@ const mockHierarchy = hierarchy({
       children: [{ name: 'Enos' }, { name: 'Noam' }],
     },
   ],
-});
+} as Datum);
 
-const ClusterWrapper = ({ ...restProps }) => shallow(<Cluster {...restProps} />);
+const ClusterWrapper = (props: ClusterProps<Datum>) => shallow(<Cluster {...props} />);
 
 describe('<Cluster />', () => {
   test('it should be defined', () => {

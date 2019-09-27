@@ -67,7 +67,7 @@ export default function Cluster<Datum>({
 
   const data = cluster(root);
 
-  if (children) return children(data);
+  if (children) return <>{children(data)}</>;
 
   return (
     <Group top={top} left={left} className={cx('vx-cluster', className)}>

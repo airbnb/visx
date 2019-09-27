@@ -3,7 +3,9 @@ import { shallow } from 'enzyme';
 
 import { hierarchy } from 'd3-hierarchy';
 import { Tree } from '../src';
+import { TreeProps } from '../src/hierarchies/Tree';
 
+type Datum = { name: string; children: Datum[] };
 const childrenFunc = jest.fn();
 const mockHierarchy = hierarchy({
   name: 'Eve',
@@ -14,9 +16,9 @@ const mockHierarchy = hierarchy({
       children: [{ name: 'Enos' }, { name: 'Noam' }],
     },
   ],
-});
+} as Datum);
 
-const TreeWrapper = ({ ...restProps }) => shallow(<Tree {...restProps} />);
+const TreeWrapper = (props: TreeProps<Datum>) => shallow(<Tree {...props} />);
 
 describe('<Tree />', () => {
   test('it should be defined', () => {

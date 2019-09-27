@@ -13,33 +13,33 @@ import {
 } from '../src';
 
 describe('<DefaultLink />', () => {
-  it('should be defined', () => {
+  test('should be defined', () => {
     expect(HierarchyDefaultLink).toBeDefined();
   });
 });
 
 describe('<DefaultNode />', () => {
-  it('should be defined', () => {
+  test('should be defined', () => {
     expect(HierarchyDefaultNode).toBeDefined();
   });
 });
 
 describe('<DefaultRectNode />', () => {
-  it('should be defined', () => {
+  test('should be defined', () => {
     expect(HierarchyDefaultRectNode).toBeDefined();
   });
 });
 
 describe('d3 exports', () => {
-  it('should export hierarchy', () => {
+  test('should export hierarchy', () => {
     expect(hierarchy).toBeDefined();
   });
 
-  it('should export stratify', () => {
+  test('should export stratify', () => {
     expect(stratify).toBeDefined();
   });
 
-  it('should export treemap tiling functions', () => {
+  test('should export treemap tiling functions', () => {
     const tilers = [
       treemapBinary,
       treemapDice,

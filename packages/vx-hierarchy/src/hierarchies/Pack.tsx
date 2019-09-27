@@ -55,7 +55,7 @@ export default function Pack<Datum>({
 
   const data = pack(root);
 
-  if (children) return children(data);
+  if (children) return <>{children(data)}</>;
 
   return (
     <Group top={top} left={left} className={cx('vx-pack', className)}>

@@ -82,7 +82,7 @@ export default function Treemap<Datum>({
 
   const data = treemap(root);
 
-  if (children) return children(data);
+  if (children) return <>{children(data)}</>;
 
   return (
     <Group top={top} left={left} className={cx('vx-treemap', className)}>

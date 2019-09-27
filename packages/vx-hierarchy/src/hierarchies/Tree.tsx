@@ -70,7 +70,7 @@ export default function Tree<Datum>({
 
   const data = tree(root);
 
-  if (children) return children(data);
+  if (children) return <>{children(data)}</>;
 
   return (
     <Group top={top} left={left} className={cx('vx-tree', className)}>
