@@ -1,14 +1,14 @@
+// @ts-ignore ts-migrate(1259) FIXME: Module '"/Users/sergii_rudenko/Projects/vx/node_mo... Remove this comment to see the full error message
 import React from 'react';
-import PropTypes from 'prop-types';
 import { chord as d3chord } from 'd3-chord';
 
-Chord.propTypes = {
-  matrix: PropTypes.array.isRequired,
-  padAngle: PropTypes.number,
-  sortGroups: PropTypes.func,
-  sortSubgroups: PropTypes.func,
-  sortChords: PropTypes.func,
-  children: PropTypes.func.isRequired,
+type Props = {
+  matrix: any[];
+  padAngle?: number;
+  sortGroups?: (...args: any[]) => any;
+  sortSubgroups?: (...args: any[]) => any;
+  sortChords?: (...args: any[]) => any;
+  children: (...args: any[]) => any;
 };
 
 export default function Chord({
@@ -18,7 +18,7 @@ export default function Chord({
   sortSubgroups,
   sortChords,
   children,
-}) {
+}: Props) {
   const chord = d3chord();
   if (padAngle) chord.padAngle(padAngle);
   if (sortGroups) chord.sortGroups(sortGroups);
@@ -28,5 +28,6 @@ export default function Chord({
   if (children) return children({ chords });
 
   // so react-docgen picks it up
+  // @ts-ignore ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
   return <g />;
 }
