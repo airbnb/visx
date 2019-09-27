@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { localPoint } from '@vx/event';
 import {
   composeMatrices,
@@ -10,36 +9,113 @@ import {
   identityMatrix,
   scaleMatrix,
 } from './util/matrix';
+import { TransformMatrix, Point, Translate, Scale, ScaleSignature, ProvidedZoom } from './types';
 
-class Zoom extends React.Component {
-  constructor(props) {
-    super(props);
+type ZoomProps = {
+  /** Width of the zoom container. */
+  width: number;
+  /** Height of the zoom container. */
+  height: number;
+  /**
+   * ```js
+   *  wheelDelta(event)
+   * ```
+   *
+   * A function that returns { scaleX,scaleY } factors to scale the matrix by.
+   * Scale factors greater than 1 will increase (zoom in), less than 1 will descrease (zoom out).
+   */
+  wheelDelta?: (event: React.WheelEvent | WheelEvent) => Scale;
+  /** Minimum x scale value for transform. */
+  scaleXMin?: number;
+  /** Maximum x scale value for transform. */
+  scaleXMax?: number;
+  /** Minimum y scale value for transform. */
+  scaleYMin?: number;
+  /** Maximum y scale value for transform. */
+  scaleYMax?: number;
+  /**
+   * By default constrain() will only constrain scale values. To change
+   * constraints you can pass in your own constrain function as a prop.
+   *
+   * For example, if you wanted to constrain your view to within [[0, 0], [width, height]]:
+   *
+   * ```js
+   * function constrain(transformMatrix, prevTransformMatrix) {
+   *   const min = applyMatrixToPoint(transformMatrix, { x: 0, y: 0 });
+   *   const max = applyMatrixToPoint(transformMatrix, { x: width, y: height });
+   *   if (max.x < width || max.y < height) {
+   *     return prevTransformMatrix;
+   *   }
+   *   if (min.x > 0 || min.y > 0) {
+   *     return prevTransformMatrix;
+   *   }
+   *   return transformMatrix;
+   * }
+   * ```
+   *
+   * @param {matrix} transformMatrix
+   * @param {matrix} prevTransformMatrix
+   * @returns {martix}
+   */
+  constrain?: (transform: TransformMatrix, prevTransform: TransformMatrix) => TransformMatrix;
+  /** Initial transform matrix to apply. */
+  transformMatrix?: TransformMatrix;
+  /**
+   * By default passive is `false`. This will wrap <Zoom> children in a <div> and add an active wheel
+   * event listener (handleWheel). `handleWheel()` will call `event.preventDefault()` before other
+   * execution. This prevents an outer parent from scrolling when the mouse wheel is used to zoom.
+   *
+   * When passive is `true` it is required to add `<MyComponent onWheel={zoom.handleWheel} />` to handle
+   * wheel events. **Note:** By default you do not need to add `<MyComponent onWheel={zoom.handleWheel} />`.
+   * This is only necessary when `<Zoom passive={true} />`.
+   */
+  passive?: boolean;
+  /** style object to apply to zoom div container. */
+  style?: React.CSSProperties;
+  /** className to apply to zoom div container. */
+  className?: string;
+  children: (zoom: ProvidedZoom & ZoomState) => React.ReactNode;
+};
 
-    this.state = {
-      initialTransformMatrix: props.transformMatrix,
-      transformMatrix: props.transformMatrix,
-      isDragging: false,
-    };
+type ZoomState = {
+  initialTransformMatrix: TransformMatrix;
+  transformMatrix: TransformMatrix;
+  isDragging: boolean;
+};
 
-    this.toString = this.toString.bind(this);
-    this.clear = this.clear.bind(this);
-    this.center = this.center.bind(this);
-    this.handleWheel = this.handleWheel.bind(this);
-    this.dragStart = this.dragStart.bind(this);
-    this.dragMove = this.dragMove.bind(this);
-    this.dragEnd = this.dragEnd.bind(this);
-    this.reset = this.reset.bind(this);
-    this.constrain = props.constrain ? props.constrain.bind(this) : this.constrain.bind(this);
-    this.scale = this.scale.bind(this);
-    this.translate = this.translate.bind(this);
-    this.translateTo = this.translateTo.bind(this);
-    this.setTranslate = this.setTranslate.bind(this);
-    this.setTransformMatrix = this.setTransformMatrix.bind(this);
-    this.invert = this.invert.bind(this);
-    this.applyToPoint = this.applyToPoint.bind(this);
-    this.applyInverseToPoint = this.applyInverseToPoint.bind(this);
-    this.toStringInvert = this.toStringInvert.bind(this);
-  }
+class Zoom extends React.Component<ZoomProps, ZoomState> {
+  static defaultProps = {
+    passive: false,
+    scaleXMin: 0,
+    scaleXMax: Infinity,
+    scaleYMin: 0,
+    scaleYMax: Infinity,
+    transformMatrix: {
+      scaleX: 1,
+      scaleY: 1,
+      translateX: 0,
+      translateY: 0,
+      skewX: 0,
+      skewY: 0,
+    },
+    wheelDelta: (event: React.WheelEvent | WheelEvent) => {
+      return -event.deltaY > 0 ? { scaleX: 1.1, scaleY: 1.1 } : { scaleX: 0.9, scaleY: 0.9 };
+    },
+    style: undefined,
+    className: undefined,
+  };
+
+  containerRef: HTMLDivElement | null = null;
+
+  startPoint: Point | undefined = undefined;
+
+  startTranslate: Translate | undefined = undefined;
+
+  state = {
+    initialTransformMatrix: this.props.transformMatrix!,
+    transformMatrix: this.props.transformMatrix!,
+    isDragging: false,
+  };
 
   componentDidMount() {
     const { passive } = this.props;
@@ -51,26 +127,26 @@ class Zoom extends React.Component {
   componentWillUnmount() {
     const { passive } = this.props;
     if (this.containerRef && !passive) {
-      this.containerRef.removeEventListener('wheel', this.handleWheel, { passive: false });
+      this.containerRef.removeEventListener('wheel', this.handleWheel);
     }
   }
 
-  applyToPoint({ x, y }) {
+  applyToPoint = ({ x, y }: Point) => {
     const { transformMatrix } = this.state;
     return applyMatrixToPoint(transformMatrix, { x, y });
-  }
+  };
 
-  applyInverseToPoint({ x, y }) {
+  applyInverseToPoint = ({ x, y }: Point) => {
     const { transformMatrix } = this.state;
     return applyInverseMatrixToPoint(transformMatrix, { x, y });
-  }
+  };
 
-  reset() {
+  reset = () => {
     const { initialTransformMatrix } = this.state;
     this.setTransformMatrix(initialTransformMatrix);
-  }
+  };
 
-  scale({ scaleX, scaleY: maybeScaleY, point }) {
+  scale = ({ scaleX, scaleY: maybeScaleY, point }: ScaleSignature) => {
     const scaleY = maybeScaleY || scaleX;
     const { transformMatrix } = this.state;
     const { width, height } = this.props;
@@ -83,21 +159,21 @@ class Zoom extends React.Component {
       translateMatrix(-translate.x, -translate.y),
     );
     this.setTransformMatrix(nextMatrix);
-  }
+  };
 
-  translate({ translateX, translateY }) {
+  translate = ({ translateX, translateY }: Translate) => {
     const { transformMatrix } = this.state;
     const nextMatrix = composeMatrices(transformMatrix, translateMatrix(translateX, translateY));
     this.setTransformMatrix(nextMatrix);
-  }
+  };
 
-  translateTo({ x, y }) {
+  translateTo = ({ x, y }: Point) => {
     const { transformMatrix } = this.state;
     const point = applyInverseMatrixToPoint(transformMatrix, { x, y });
     this.setTranslate({ translateX: point.x, translateY: point.y });
-  }
+  };
 
-  setTranslate({ translateX, translateY }) {
+  setTranslate = ({ translateX, translateY }: Translate) => {
     const { transformMatrix } = this.state;
     const nextMatrix = {
       ...transformMatrix,
@@ -105,45 +181,47 @@ class Zoom extends React.Component {
       translateY,
     };
     this.setTransformMatrix(nextMatrix);
-  }
+  };
 
-  setTransformMatrix(transformMatrix) {
-    this.setState(prevState => {
-      return { transformMatrix: this.constrain(transformMatrix, prevState.transformMatrix) };
-    });
-  }
+  setTransformMatrix = (transformMatrix: TransformMatrix) => {
+    this.setState(prevState => ({
+      transformMatrix: this.constrain(transformMatrix, prevState.transformMatrix),
+    }));
+  };
 
-  invert() {
+  invert = () => {
     return inverseMatrix(this.state.transformMatrix);
-  }
+  };
 
-  toStringInvert() {
+  toStringInvert = () => {
     const { translateX, translateY, scaleX, scaleY, skewX, skewY } = this.invert();
     return `matrix(${scaleX}, ${skewY}, ${skewX}, ${scaleY}, ${translateX}, ${translateY})`;
-  }
+  };
 
-  constrain(transformMatrix, prevTransformMatrix) {
-    const { scaleXMin, scaleXMax, scaleYMin, scaleYMax } = this.props;
-    const { scaleX, scaleY } = transformMatrix;
-    const shouldConstrainScaleX = scaleX > scaleXMax || scaleX < scaleXMin;
-    const shouldConstrainScaleY = scaleY > scaleYMax || scaleY < scaleYMin;
+  constrain =
+    this.props.constrain ||
+    ((transformMatrix: TransformMatrix, prevTransformMatrix: TransformMatrix) => {
+      const { scaleXMin, scaleXMax, scaleYMin, scaleYMax } = this.props;
+      const { scaleX, scaleY } = transformMatrix;
+      const shouldConstrainScaleX = scaleX > scaleXMax! || scaleX < scaleXMin!;
+      const shouldConstrainScaleY = scaleY > scaleYMax! || scaleY < scaleYMin!;
 
-    if (shouldConstrainScaleX || shouldConstrainScaleY) {
-      return prevTransformMatrix;
-    }
-    return transformMatrix;
-  }
+      if (shouldConstrainScaleX || shouldConstrainScaleY) {
+        return prevTransformMatrix;
+      }
+      return transformMatrix;
+    });
 
-  dragStart(event) {
+  dragStart = (event: React.MouseEvent) => {
     const { transformMatrix } = this.state;
     const { translateX, translateY } = transformMatrix;
     this.startPoint = localPoint(event);
     this.startTranslate = { translateX, translateY };
     this.setState({ isDragging: true });
-  }
+  };
 
-  dragMove(event) {
-    if (!this.state.isDragging) return;
+  dragMove = (event: React.MouseEvent) => {
+    if (!this.state.isDragging || !this.startPoint || !this.startTranslate) return;
     const currentPoint = localPoint(event);
     const dx = -(this.startPoint.x - currentPoint.x);
     const dy = -(this.startPoint.y - currentPoint.y);
@@ -151,30 +229,29 @@ class Zoom extends React.Component {
       translateX: this.startTranslate.translateX + dx,
       translateY: this.startTranslate.translateY + dy,
     });
-  }
+  };
 
-  dragEnd(/** event */) {
+  dragEnd = () => {
     this.startPoint = undefined;
     this.startTranslate = undefined;
     this.setState({ isDragging: false });
-  }
+  };
 
-  handleWheel(event) {
-    const { passive } = this.props;
+  handleWheel = (event: React.WheelEvent | WheelEvent) => {
+    const { passive, wheelDelta } = this.props;
     if (!passive) event.preventDefault();
-    const { wheelDelta } = this.props;
     const point = localPoint(event);
-    const { scaleX, scaleY } = wheelDelta(event);
+    const { scaleX, scaleY } = wheelDelta!(event);
     this.scale({ scaleX, scaleY, point });
-  }
+  };
 
-  toString() {
+  toString = () => {
     const { transformMatrix } = this.state;
     const { translateX, translateY, scaleX, scaleY, skewX, skewY } = transformMatrix;
     return `matrix(${scaleX}, ${skewY}, ${skewX}, ${scaleY}, ${translateX}, ${translateY})`;
-  }
+  };
 
-  center() {
+  center = () => {
     const { width, height } = this.props;
     const center = { x: width / 2, y: height / 2 };
     const inverseCentroid = this.applyInverseToPoint(center);
@@ -182,20 +259,19 @@ class Zoom extends React.Component {
       translateX: inverseCentroid.x - center.x,
       translateY: inverseCentroid.y - center.y,
     });
-  }
+  };
 
-  clear() {
+  clear = () => {
     this.setTransformMatrix(identityMatrix());
-  }
+  };
 
   render() {
     const { passive, children, style, className } = this.props;
-    const zoom = {
+    const zoom: ProvidedZoom & ZoomState = {
       ...this.state,
       center: this.center,
       clear: this.clear,
       scale: this.scale,
-      scaleTo: this.scaleTo,
       translate: this.translate,
       translateTo: this.translateTo,
       setTranslate: this.setTranslate,
@@ -227,90 +303,5 @@ class Zoom extends React.Component {
     return children(zoom);
   }
 }
-
-Zoom.propTypes = {
-  children: PropTypes.func.isRequired,
-  width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired,
-  /**
-   * ```js
-   *  wheelDelta(event.deltaY)
-   * ```
-   *
-   * A function that returns {scaleX,scaleY} factors to scale the matrix by.
-   * Scale factors greater than 1 will increase (zoom in), less than 1 will descrease (zoom out).
-   */
-  wheelDelta: PropTypes.func,
-  scaleXMin: PropTypes.number,
-  scaleXMax: PropTypes.number,
-  scaleYMin: PropTypes.number,
-  scaleYMax: PropTypes.number,
-  /**
-   * By default constrain() will only constrain scale values. To change
-   * constraints you can pass in your own constrain function as a prop.
-   *
-   * For example, if you wanted to constrain your view to within [[0, 0], [width, height]]:
-   *
-   * ```js
-   * function constrain(transformMatrix, prevTransformMatrix) {
-   *   const min = applyMatrixToPoint(transformMatrix, { x: 0, y: 0 });
-   *   const max = applyMatrixToPoint(transformMatrix, { x: width, y: height });
-   *   if (max.x < width || max.y < height) {
-   *     return prevTransformMatrix;
-   *   }
-   *   if (min.x > 0 || min.y > 0) {
-   *     return prevTransformMatrix;
-   *   }
-   *   return transformMatrix;
-   * }
-   * ```
-   *
-   * @param {matrix} transformMatrix
-   * @param {matrix} prevTransformMatrix
-   * @returns {martix}
-   */
-  constrain: PropTypes.func,
-  transformMatrix: PropTypes.shape({
-    scaleX: PropTypes.number,
-    scaleY: PropTypes.number,
-    translateX: PropTypes.number,
-    translateY: PropTypes.number,
-    skewX: PropTypes.number,
-    skewY: PropTypes.number,
-  }),
-  /**
-   * By default passive is `false`. This will wrap <Zoom> children in a <div> and add an active wheel
-   * event listener (handleWheel). `handleWheel()` will call `event.preventDefault()` before other
-   * execution. This prevents an outer parent from scrolling when the mouse wheel is used to zoom.
-   *
-   * When passive is `true` it is required to add `<MyComponent onWheel={zoom.handleWheel} />` to handle
-   * wheel events. **Note:** By default you do not need to add `<MyComponent onWheel={zoom.handleWheel} />`.
-   * This is only necessary when `<Zoom passive={true} />`.
-   */
-  passive: PropTypes.bool,
-  style: PropTypes.object,
-  className: PropTypes.string,
-};
-
-Zoom.defaultProps = {
-  passive: false,
-  scaleXMin: 0,
-  scaleXMax: Infinity,
-  scaleYMin: 0,
-  scaleYMax: Infinity,
-  transformMatrix: {
-    scaleX: 1,
-    scaleY: 1,
-    translateX: 0,
-    translateY: 0,
-    skewX: 0,
-    skewY: 0,
-  },
-  wheelDelta: event => {
-    return -event.deltaY > 0 ? { scaleX: 1.1, scaleY: 1.1 } : { scaleX: 0.9, scaleY: 0.9 };
-  },
-  style: undefined,
-  className: undefined,
-};
 
 export default Zoom;

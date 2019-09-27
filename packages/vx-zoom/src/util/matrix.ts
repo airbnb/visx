@@ -1,5 +1,6 @@
-/* eslint-disable no-case-declarations */
-export function identityMatrix() {
+import { TransformMatrix, Point } from '../types';
+
+export function identityMatrix(): TransformMatrix {
   return {
     scaleX: 1,
     scaleY: 1,
@@ -17,7 +18,7 @@ export function createMatrix({
   translateY = 0,
   skewX = 0,
   skewY = 0,
-}) {
+}: Partial<TransformMatrix>): TransformMatrix {
   return {
     scaleX,
     scaleY,
@@ -28,7 +29,14 @@ export function createMatrix({
   };
 }
 
-export function inverseMatrix({ scaleX, scaleY, translateX, translateY, skewX, skewY }) {
+export function inverseMatrix({
+  scaleX,
+  scaleY,
+  translateX,
+  translateY,
+  skewX,
+  skewY,
+}: TransformMatrix) {
   const denominator = scaleX * scaleY - skewY * skewX;
   return {
     scaleX: scaleY / denominator,
@@ -40,27 +48,33 @@ export function inverseMatrix({ scaleX, scaleY, translateX, translateY, skewX, s
   };
 }
 
-export function applyMatrixToPoint(matrix, { x, y }) {
+export function applyMatrixToPoint(matrix: TransformMatrix, { x, y }: Point) {
   return {
     x: matrix.scaleX * x + matrix.skewX * y + matrix.translateX,
     y: matrix.skewY * x + matrix.scaleY * y + matrix.translateY,
   };
 }
 
-export function applyInverseMatrixToPoint(matrix, { x, y }) {
+export function applyInverseMatrixToPoint(matrix: TransformMatrix, { x, y }: Point) {
   return applyMatrixToPoint(inverseMatrix(matrix), { x, y });
 }
 
-export function scaleMatrix(scaleX, maybeScaleY = undefined) {
+export function scaleMatrix(
+  scaleX: TransformMatrix['scaleX'],
+  maybeScaleY: TransformMatrix['scaleY'] | undefined = undefined,
+) {
   const scaleY = maybeScaleY || scaleX;
   return createMatrix({ scaleX, scaleY });
 }
 
-export function translateMatrix(translateX, translateY) {
+export function translateMatrix(
+  translateX: TransformMatrix['translateX'],
+  translateY: TransformMatrix['translateY'],
+) {
   return createMatrix({ translateX, translateY });
 }
 
-export function multiplyMatrices(matrix1, matrix2) {
+export function multiplyMatrices(matrix1: TransformMatrix, matrix2: TransformMatrix) {
   return {
     scaleX: matrix1.scaleX * matrix2.scaleX + matrix1.skewX * matrix2.skewY,
     scaleY: matrix1.skewY * matrix2.skewX + matrix1.scaleY * matrix2.scaleY,
@@ -73,7 +87,7 @@ export function multiplyMatrices(matrix1, matrix2) {
   };
 }
 
-export function composeMatrices(...matrices) {
+export function composeMatrices(...matrices: TransformMatrix[]): TransformMatrix {
   switch (matrices.length) {
     case 0:
       throw new Error('composeMatrices() requires arguments: was called with no args');
