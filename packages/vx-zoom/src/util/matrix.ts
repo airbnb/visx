@@ -95,9 +95,10 @@ export function composeMatrices(...matrices: TransformMatrix[]): TransformMatrix
       return matrices[0];
     case 2:
       return multiplyMatrices(matrices[0], matrices[1]);
-    default:
+    default: {
       const [matrix1, matrix2, ...restMatrices] = matrices;
       const matrix = multiplyMatrices(matrix1, matrix2);
       return composeMatrices(matrix, ...restMatrices);
+    }
   }
 }
