@@ -11,7 +11,7 @@ import {
 } from './util/matrix';
 import { TransformMatrix, Point, Translate, Scale, ScaleSignature, ProvidedZoom } from './types';
 
-type ZoomProps = {
+export type ZoomProps = {
   /** Width of the zoom container. */
   width: number;
   /** Height of the zoom container. */
