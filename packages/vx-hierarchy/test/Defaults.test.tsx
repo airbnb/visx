@@ -11,7 +11,6 @@ import {
   treemapSliceDice,
   treemapSquarify,
 } from '../src';
-import { isTSAnyKeyword } from '@babel/types';
 
 describe('<DefaultLink />', () => {
   it('should be defined', () => {

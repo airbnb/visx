@@ -50,7 +50,7 @@ export default function Pack<Datum>({
 }: PackProps<Datum>) {
   const pack = d3pack<Datum>();
   if (size) pack.size(size);
-  if (radius != undefined) pack.radius(radius);
+  if (radius !== undefined) pack.radius(radius);
   if (padding) pack.padding(padding);
 
   const data = pack(root);
