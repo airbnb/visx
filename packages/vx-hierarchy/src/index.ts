@@ -8,6 +8,7 @@ export { default as HierarchyDefaultNode } from './HierarchyDefaultNode';
 export { default as HierarchyDefaultRectNode } from './HierarchyDefaultRectNode';
 export {
   hierarchy,
+  stratify,
   treemapSquarify,
   treemapBinary,
   treemapResquarify,

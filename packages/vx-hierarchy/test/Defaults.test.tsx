@@ -3,6 +3,7 @@ import {
   HierarchyDefaultNode,
   HierarchyDefaultRectNode,
   hierarchy,
+  stratify,
   treemapBinary,
   treemapDice,
   treemapResquarify,
@@ -33,6 +34,10 @@ describe('<DefaultRectNode />', () => {
 describe('d3 exports', () => {
   it('should export hierarchy', () => {
     expect(hierarchy).toBeDefined();
+  });
+
+  it('should export stratify', () => {
+    expect(stratify).toBeDefined();
   });
 
   it('should export treemap tiling functions', () => {
