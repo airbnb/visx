@@ -2,5286 +2,5286 @@ export default [
   {
     name: 'Jupiter',
     radius: '10.97',
-    distance: '0'
+    distance: '0',
   },
   {
     name: 'Saturn',
     radius: '9.14',
-    distance: '0'
+    distance: '0',
   },
   {
     name: 'Uranus',
     radius: '3.98',
-    distance: '0'
+    distance: '0',
   },
   {
     name: 'Neptune',
     radius: '3.86',
-    distance: '0'
+    distance: '0',
   },
   {
     name: 'Earth',
     radius: '1',
-    distance: '0'
+    distance: '0',
   },
   {
     name: 'Venus',
     radius: '0.950',
-    distance: '0'
+    distance: '0',
   },
   {
     name: 'Mars',
     radius: '0.532',
-    distance: '0'
+    distance: '0',
   },
   {
     name: 'Mercury',
     radius: '0.383',
-    distance: '0'
+    distance: '0',
   },
   {
     name: 'Pluto',
     radius: '0.181',
-    distance: '0'
+    distance: '0',
   },
   {
     name: '11 Com b',
     radius: '12.64',
-    distance: '110.60'
+    distance: '110.60',
   },
   {
     name: '11 UMi b',
     radius: '12.89',
-    distance: '119.50'
+    distance: '119.50',
   },
   {
     name: '14 And b',
     radius: '13.18',
-    distance: '76.40'
+    distance: '76.40',
   },
   {
     name: '14 Her b',
     radius: '13.24',
-    distance: '18.10'
+    distance: '18.10',
   },
   {
     name: '16 Cyg B b',
     radius: '13.69',
-    distance: '21.41'
+    distance: '21.41',
   },
   {
     name: '18 Del b',
     radius: '12.90',
-    distance: '73.10'
+    distance: '73.10',
   },
   {
     name: '1RXS1609 b',
     radius: '19.04',
-    distance: '145.00'
+    distance: '145.00',
   },
   {
     name: '24 Sex b',
     radius: '13.62',
-    distance: '74.80'
+    distance: '74.80',
   },
   {
     name: '24 Sex c',
     radius: '13.99',
-    distance: '74.80'
+    distance: '74.80',
   },
   {
     name: '2M 0103(AB) b',
     radius: '12.74',
-    distance: '47.20'
+    distance: '47.20',
   },
   {
     name: '2M 0122-2439 b',
     radius: '12.74',
-    distance: '36.00'
+    distance: '36.00',
   },
   {
     name: '2M 044144 b',
     radius: '13.04',
-    distance: '140.00'
+    distance: '140.00',
   },
   {
     name: '2M 0746+20 b',
     radius: '10.86',
-    distance: '12.21'
+    distance: '12.21',
   },
   {
     name: '2M 2140+16 b',
     radius: '10.30',
-    distance: '25.00'
+    distance: '25.00',
   },
   {
     name: '2M 2206-20 b',
     radius: '14.56',
-    distance: '26.67'
+    distance: '26.67',
   },
   {
     name: '2M1207 b',
     radius: '13.31',
-    distance: '52.40'
+    distance: '52.40',
   },
   {
     name: '30 Ari B b',
     radius: '12.92',
-    distance: '39.40'
+    distance: '39.40',
   },
   {
     name: '4 Uma b',
     radius: '13.06',
-    distance: '78.50'
+    distance: '78.50',
   },
   {
     name: '42 Dra b',
     radius: '13.32',
-    distance: '97.30'
+    distance: '97.30',
   },
   {
     name: '47 Uma b',
     radius: '13.51',
-    distance: '13.97'
+    distance: '13.97',
   },
   {
     name: '47 Uma c',
     radius: '14.21',
-    distance: '13.97'
+    distance: '13.97',
   },
   {
     name: '47 Uma d',
     radius: '13.70',
-    distance: '13.97'
+    distance: '13.97',
   },
   {
     name: '51 Peg b',
     radius: '14.28',
-    distance: '14.70'
+    distance: '14.70',
   },
   {
     name: '55 Cnc b',
     radius: '14.03',
-    distance: '12.34'
+    distance: '12.34',
   },
   {
     name: '55 Cnc c',
     radius: '8.48',
-    distance: '12.34'
+    distance: '12.34',
   },
   {
     name: '55 Cnc d',
     radius: '13.33',
-    distance: '12.34'
+    distance: '12.34',
   },
   {
     name: '55 Cnc e',
     radius: '1.99',
-    distance: '12.34'
+    distance: '12.34',
   },
   {
     name: '55 Cnc f',
     radius: '7.75',
-    distance: '12.34'
+    distance: '12.34',
   },
   {
     name: '6 Lyn b',
     radius: '13.53',
-    distance: '56.90'
+    distance: '56.90',
   },
   {
     name: '61 Vir b',
     radius: '1.89',
-    distance: '8.52'
+    distance: '8.52',
   },
   {
     name: '61 Vir c',
     radius: '4.63',
-    distance: '8.52'
+    distance: '8.52',
   },
   {
     name: '61 Vir d',
     radius: '5.26',
-    distance: '8.52'
+    distance: '8.52',
   },
   {
     name: '7 CMa b',
     radius: '13.50',
-    distance: '19.75'
+    distance: '19.75',
   },
   {
     name: '70 Vir b',
     radius: '13.09',
-    distance: '22.00'
+    distance: '22.00',
   },
   {
     name: '75 Cet b',
     radius: '13.37',
-    distance: '81.50'
+    distance: '81.50',
   },
   {
     name: '81 Cet b',
     radius: '13.19',
-    distance: '97.20'
+    distance: '97.20',
   },
   {
     name: '91 Aqr b',
     radius: '13.41',
-    distance: '45.90'
+    distance: '45.90',
   },
   {
     name: 'AB Pic b',
     radius: '12.79',
-    distance: '47.30'
+    distance: '47.30',
   },
   {
     name: 'alf Ari b',
     radius: '13.66',
-    distance: '20.20'
+    distance: '20.20',
   },
   {
     name: 'alf Cen B b',
     radius: '1.10',
-    distance: '1.30'
+    distance: '1.30',
   },
   {
     name: 'BD +48 738 b',
     radius: '13.90',
-    distance: ''
+    distance: '',
   },
   {
     name: 'BD+15 2940 b',
     radius: '13.81',
-    distance: '585.00'
+    distance: '585.00',
   },
   {
     name: 'BD+20 274 c',
     radius: '13.22',
-    distance: ''
+    distance: '',
   },
   {
     name: 'BD-061339 b',
     radius: '3.29',
-    distance: '20.00'
+    distance: '20.00',
   },
   {
     name: 'BD-061339 c',
     radius: '9.22',
-    distance: '20.00'
+    distance: '20.00',
   },
   {
     name: 'BD-082823 b',
     radius: '4.04',
-    distance: '42.20'
+    distance: '42.20',
   },
   {
     name: 'BD-082823 c',
     radius: '14.44',
-    distance: '42.20'
+    distance: '42.20',
   },
   {
     name: 'BD-10 3166 b',
     radius: '14.26',
-    distance: '66.00'
+    distance: '66.00',
   },
   {
     name: 'BD-17 63 b',
     radius: '13.20',
-    distance: '34.60'
+    distance: '34.60',
   },
   {
     name: 'BD14 4559 b',
     radius: '13.75',
-    distance: '50.00'
+    distance: '50.00',
   },
   {
     name: 'BD20 2457 b',
     radius: '12.60',
-    distance: '200.00'
+    distance: '200.00',
   },
   {
     name: 'BD20 2457 c',
     radius: '12.82',
-    distance: '200.00'
+    distance: '200.00',
   },
   {
     name: 'beta Pic b',
     radius: '13.07',
-    distance: '19.30'
+    distance: '19.30',
   },
   {
     name: 'CD-35 2722 b',
     radius: '12.44',
-    distance: '21.30'
+    distance: '21.30',
   },
   {
     name: 'CFBDS 1458 b',
     radius: '13.10',
-    distance: '23.10'
+    distance: '23.10',
   },
   {
     name: 'CHXR 73 b',
     radius: '12.78',
-    distance: ''
+    distance: '',
   },
   {
     name: 'CoRoT-1 b',
     radius: '16.69',
-    distance: '460.00'
+    distance: '460.00',
   },
   {
     name: 'CoRoT-10 b',
     radius: '10.86',
-    distance: '345.00'
+    distance: '345.00',
   },
   {
     name: 'CoRoT-11 b',
     radius: '16.02',
-    distance: '560.00'
+    distance: '560.00',
   },
   {
     name: 'CoRoT-12 b',
     radius: '16.13',
-    distance: '1150.00'
+    distance: '1150.00',
   },
   {
     name: 'CoRoT-13 b',
     radius: '9.91',
-    distance: '1310.00'
+    distance: '1310.00',
   },
   {
     name: 'CoRoT-14 b',
     radius: '12.21',
-    distance: '1340.00'
+    distance: '1340.00',
   },
   {
     name: 'CoRoT-16 b',
     radius: '13.10',
-    distance: '840.00'
+    distance: '840.00',
   },
   {
     name: 'CoRoT-17 b',
     radius: '11.42',
-    distance: '920.00'
+    distance: '920.00',
   },
   {
     name: 'CoRoT-18 b',
     radius: '14.67',
-    distance: '870.00'
+    distance: '870.00',
   },
   {
     name: 'CoRoT-19 b',
     radius: '14.45',
-    distance: '800.00'
+    distance: '800.00',
   },
   {
     name: 'CoRoT-2 b',
     radius: '16.41',
-    distance: '300.00'
+    distance: '300.00',
   },
   {
     name: 'CoRoT-20 b',
     radius: '9.41',
-    distance: '1230.00'
+    distance: '1230.00',
   },
   {
     name: 'CoRoT-21 b',
     radius: '14.56',
-    distance: ''
+    distance: '',
   },
   {
     name: 'CoRoT-23 b',
     radius: '12.10',
-    distance: '600.00'
+    distance: '600.00',
   },
   {
     name: 'CoRoT-25 b',
     radius: '12.10',
-    distance: '1000.00'
+    distance: '1000.00',
   },
   {
     name: 'CoRoT-26 b',
     radius: '14.11',
-    distance: '1670.00'
+    distance: '1670.00',
   },
   {
     name: 'CoRoT-3 b',
     radius: '11.31',
-    distance: '680.00'
+    distance: '680.00',
   },
   {
     name: 'CoRoT-4 b',
     radius: '13.33',
-    distance: ''
+    distance: '',
   },
   {
     name: 'CoRoT-5 b',
     radius: '14.90',
-    distance: '400.00'
+    distance: '400.00',
   },
   {
     name: 'CoRoT-6 b',
     radius: '13.06',
-    distance: ''
+    distance: '',
   },
   {
     name: 'CoRoT-7 b',
     radius: '1.67',
-    distance: '150.00'
+    distance: '150.00',
   },
   {
     name: 'CoRoT-7 c',
     radius: '2.43',
-    distance: '150.00'
+    distance: '150.00',
   },
   {
     name: 'CoRoT-8 b',
     radius: '6.37',
-    distance: '380.00'
+    distance: '380.00',
   },
   {
     name: 'CoRoT-9 b',
     radius: '10.53',
-    distance: '460.00'
+    distance: '460.00',
   },
   {
     name: 'CT Cha b',
     radius: '24.64',
-    distance: '165.00'
+    distance: '165.00',
   },
   {
     name: 'DH Tau b',
     radius: '12.81',
-    distance: ''
+    distance: '',
   },
   {
     name: 'DP Leo b',
     radius: '13.07',
-    distance: ''
+    distance: '',
   },
   {
     name: 'eps CrB b',
     radius: '13.02',
-    distance: '67.90'
+    distance: '67.90',
   },
   {
     name: 'eps Eridani b',
     radius: '13.73',
-    distance: '3.20'
+    distance: '3.20',
   },
   {
     name: 'eps Tau b',
     radius: '13.03',
-    distance: '45.00'
+    distance: '45.00',
   },
   {
     name: 'Fomalhaut b',
     radius: '13.61',
-    distance: '7.70'
+    distance: '7.70',
   },
   {
     name: 'FU Tau b',
     radius: '12.74',
-    distance: '140.00'
+    distance: '140.00',
   },
   {
     name: 'gamma 1 Leo b',
     radius: '12.97',
-    distance: '38.50'
+    distance: '38.50',
   },
   {
     name: 'gamma Cephei b',
     radius: '13.65',
-    distance: '13.79'
+    distance: '13.79',
   },
   {
     name: 'GJ 1214 b',
     radius: '2.67',
-    distance: '13.00'
+    distance: '13.00',
   },
   {
     name: 'GJ 163 b',
     radius: '3.71',
-    distance: '15.00'
+    distance: '15.00',
   },
   {
     name: 'GJ 163 c',
     radius: '2.43',
-    distance: '15.00'
+    distance: '15.00',
   },
   {
     name: 'Gj 163 d',
     radius: '5.58',
-    distance: '15.00'
+    distance: '15.00',
   },
   {
     name: 'GJ 176 b',
     radius: '2.43',
-    distance: '9.42'
+    distance: '9.42',
   },
   {
     name: 'GJ 3021 b',
     radius: '13.38',
-    distance: '17.62'
+    distance: '17.62',
   },
   {
     name: 'GJ 317 b',
     radius: '13.66',
-    distance: '15.10'
+    distance: '15.10',
   },
   {
     name: 'GJ 317 c',
     radius: '13.61',
-    distance: '15.10'
+    distance: '15.10',
   },
   {
     name: 'GJ 328 b',
     radius: '13.49',
-    distance: '19.80'
+    distance: '19.80',
   },
   {
     name: 'GJ 3470 b',
     radius: '4.19',
-    distance: '30.70'
+    distance: '30.70',
   },
   {
     name: 'GJ 3634 b',
     radius: '2.20',
-    distance: '19.80'
+    distance: '19.80',
   },
   {
     name: 'GJ 433 b',
     radius: '2.01',
-    distance: '9.04'
+    distance: '9.04',
   },
   {
     name: 'GJ 433 c',
     radius: '7.63',
-    distance: '9.04'
+    distance: '9.04',
   },
   {
     name: 'GJ 436 b',
     radius: '4.09',
-    distance: '10.20'
+    distance: '10.20',
   },
   {
     name: 'GJ 504 b',
     radius: '13.24',
-    distance: '17.56'
+    distance: '17.56',
   },
   {
     name: 'GJ 667C b',
     radius: '1.95',
-    distance: '7.23'
+    distance: '7.23',
   },
   {
     name: 'GJ 667C c',
     radius: '1.74',
-    distance: '7.23'
+    distance: '7.23',
   },
   {
     name: 'GJ 667C d',
     radius: '2.19',
-    distance: '7.23'
+    distance: '7.23',
   },
   {
     name: 'GJ 667C e',
     radius: '1.52',
-    distance: '7.23'
+    distance: '7.23',
   },
   {
     name: 'GJ 667C f',
     radius: '1.52',
-    distance: '7.23'
+    distance: '7.23',
   },
   {
     name: 'GJ 667C g',
     radius: '1.93',
-    distance: '7.23'
+    distance: '7.23',
   },
   {
     name: 'GJ 674 b',
     radius: '3.62',
-    distance: '4.54'
+    distance: '4.54',
   },
   {
     name: 'GJ 676A b',
     radius: '13.21',
-    distance: '16.45'
+    distance: '16.45',
   },
   {
     name: 'GJ 676A c',
     radius: '13.37',
-    distance: '16.45'
+    distance: '16.45',
   },
   {
     name: 'GJ 676A d',
     radius: '1.90',
-    distance: '16.45'
+    distance: '16.45',
   },
   {
     name: 'GJ 676A e',
     radius: '3.87',
-    distance: '16.45'
+    distance: '16.45',
   },
   {
     name: 'GJ 832 b',
     radius: '14.13',
-    distance: '4.94'
+    distance: '4.94',
   },
   {
     name: 'GJ 849 b',
     radius: '13.97',
-    distance: '9.10'
+    distance: '9.10',
   },
   {
     name: 'GJ 849 c',
     radius: '13.98',
-    distance: '9.10'
+    distance: '9.10',
   },
   {
     name: 'Gl 179 b',
     radius: '14.02',
-    distance: '12.30'
+    distance: '12.30',
   },
   {
     name: 'Gl 581 b',
     radius: '4.29',
-    distance: '6.21'
+    distance: '6.21',
   },
   {
     name: 'Gl 581 c',
     radius: '1.94',
-    distance: '6.21'
+    distance: '6.21',
   },
   {
     name: 'Gl 581 d',
     radius: '2.05',
-    distance: '6.21'
+    distance: '6.21',
   },
   {
     name: 'Gl 581 e',
     radius: '1.27',
-    distance: '6.21'
+    distance: '6.21',
   },
   {
     name: 'Gl 649 b',
     radius: '14.44',
-    distance: '10.34'
+    distance: '10.34',
   },
   {
     name: 'Gl 649 c',
     radius: '3.49',
-    distance: '10.34'
+    distance: '10.34',
   },
   {
     name: 'Gl 86 b',
     radius: '13.31',
-    distance: '10.90'
+    distance: '10.90',
   },
   {
     name: 'Gliese 876 b',
     radius: '13.56',
-    distance: '4.70'
+    distance: '4.70',
   },
   {
     name: 'Gliese 876 c',
     radius: '14.08',
-    distance: '4.70'
+    distance: '4.70',
   },
   {
     name: 'Gliese 876 d',
     radius: '2.15',
-    distance: '4.70'
+    distance: '4.70',
   },
   {
     name: 'Gliese 876 e',
     radius: '4.09',
-    distance: '4.70'
+    distance: '4.70',
   },
   {
     name: 'GQ Lup b',
     radius: '20.16',
-    distance: '140.00'
+    distance: '140.00',
   },
   {
     name: 'GSC 06214-00210 b',
     radius: '12.69',
-    distance: '145.00'
+    distance: '145.00',
   },
   {
     name: 'HAT-P-1 b',
     radius: '14.77',
-    distance: '139.00'
+    distance: '139.00',
   },
   {
     name: 'HAT-P-11 b',
     radius: '4.73',
-    distance: '38.00'
+    distance: '38.00',
   },
   {
     name: 'HAT-P-12 b',
     radius: '10.69',
-    distance: '142.50'
+    distance: '142.50',
   },
   {
     name: 'HAT-P-13 b',
     radius: '14.34',
-    distance: '214.00'
+    distance: '214.00',
   },
   {
     name: 'HAT-P-13 c',
     radius: '12.76',
-    distance: '214.00'
+    distance: '214.00',
   },
   {
     name: 'HAT-P-14 b',
     radius: '13.44',
-    distance: '205.00'
+    distance: '205.00',
   },
   {
     name: 'HAT-P-15 b',
     radius: '12.01',
-    distance: '190.00'
+    distance: '190.00',
   },
   {
     name: 'HAT-P-16 b',
     radius: '14.44',
-    distance: '235.00'
+    distance: '235.00',
   },
   {
     name: 'HAT-P-17 b',
     radius: '11.31',
-    distance: '90.00'
+    distance: '90.00',
   },
   {
     name: 'HAT-P-17 c',
     radius: '13.77',
-    distance: '90.00'
+    distance: '90.00',
   },
   {
     name: 'HAT-P-18 b',
     radius: '11.09',
-    distance: '166.00'
+    distance: '166.00',
   },
   {
     name: 'HAT-P-19 b',
     radius: '12.68',
-    distance: '215.00'
+    distance: '215.00',
   },
   {
     name: 'HAT-P-2 b',
     radius: '10.65',
-    distance: '118.00'
+    distance: '118.00',
   },
   {
     name: 'HAT-P-20 b',
     radius: '9.71',
-    distance: '70.00'
+    distance: '70.00',
   },
   {
     name: 'HAT-P-21 b',
     radius: '11.47',
-    distance: '254.00'
+    distance: '254.00',
   },
   {
     name: 'HAT-P-22 b',
     radius: '12.10',
-    distance: '82.00'
+    distance: '82.00',
   },
   {
     name: 'HAT-P-23 b',
     radius: '15.32',
-    distance: '393.00'
+    distance: '393.00',
   },
   {
     name: 'HAT-P-24 b',
     radius: '13.91',
-    distance: '306.00'
+    distance: '306.00',
   },
   {
     name: 'HAT-P-25 b',
     radius: '13.33',
-    distance: '297.00'
+    distance: '297.00',
   },
   {
     name: 'HAT-P-26 b',
     radius: '6.32',
-    distance: '134.00'
+    distance: '134.00',
   },
   {
     name: 'HAT-P-27-WASP-40 b',
     radius: '11.82',
-    distance: '204.00'
+    distance: '204.00',
   },
   {
     name: 'HAT-P-28 b',
     radius: '13.57',
-    distance: '395.00'
+    distance: '395.00',
   },
   {
     name: 'HAT-P-29 b',
     radius: '12.40',
-    distance: '322.00'
+    distance: '322.00',
   },
   {
     name: 'HAT-P-3 b',
     radius: '9.26',
-    distance: '130.00'
+    distance: '130.00',
   },
   {
     name: 'HAT-P-30-WASP-51 b',
     radius: '15.01',
-    distance: '193.00'
+    distance: '193.00',
   },
   {
     name: 'HAT-P-31 b',
     radius: '11.98',
-    distance: '354.00'
+    distance: '354.00',
   },
   {
     name: 'HAT-P-32 b',
     radius: '22.81',
-    distance: '320.00'
+    distance: '320.00',
   },
   {
     name: 'HAT-P-33 b',
     radius: '20.46',
-    distance: '419.00'
+    distance: '419.00',
   },
   {
     name: 'HAT-P-34 b',
     radius: '12.40',
-    distance: '257.00'
+    distance: '257.00',
   },
   {
     name: 'HAT-P-35 b',
     radius: '14.92',
-    distance: '535.00'
+    distance: '535.00',
   },
   {
     name: 'HAT-P-36 b',
     radius: '14.16',
-    distance: '317.00'
+    distance: '317.00',
   },
   {
     name: 'HAT-P-37 b',
     radius: '13.19',
-    distance: '411.00'
+    distance: '411.00',
   },
   {
     name: 'HAT-P-38 b',
     radius: '9.24',
-    distance: '249.00'
+    distance: '249.00',
   },
   {
     name: 'HAT-P-39 b',
     radius: '17.60',
-    distance: '642.00'
+    distance: '642.00',
   },
   {
     name: 'HAT-P-4 b',
     radius: '14.22',
-    distance: '310.00'
+    distance: '310.00',
   },
   {
     name: 'HAT-P-40 b',
     radius: '19.38',
-    distance: '501.00'
+    distance: '501.00',
   },
   {
     name: 'HAT-P-41 b',
     radius: '17.12',
-    distance: '311.00'
+    distance: '311.00',
   },
   {
     name: 'HAT-P-42 b',
     radius: '14.30',
-    distance: '447.00'
+    distance: '447.00',
   },
   {
     name: 'HAT-P-43 b',
     radius: '14.37',
-    distance: '543.00'
+    distance: '543.00',
   },
   {
     name: 'HAT-P-44 b',
     radius: '14.34',
-    distance: '374.00'
+    distance: '374.00',
   },
   {
     name: 'HAT-P-44 c',
     radius: '13.65',
-    distance: '374.00'
+    distance: '374.00',
   },
   {
     name: 'HAT-P-45 b',
     radius: '15.97',
-    distance: '305.00'
+    distance: '305.00',
   },
   {
     name: 'HAT-P-46 b',
     radius: '14.38',
-    distance: '296.00'
+    distance: '296.00',
   },
   {
     name: 'HAT-P-46 c',
     radius: '13.55',
-    distance: '296.00'
+    distance: '296.00',
   },
   {
     name: 'HAT-P-5 b',
     radius: '14.02',
-    distance: '340.00'
+    distance: '340.00',
   },
   {
     name: 'HAT-P-6 b',
     radius: '14.90',
-    distance: '200.00'
+    distance: '200.00',
   },
   {
     name: 'HAT-P-7 b',
     radius: '15.92',
-    distance: '320.00'
+    distance: '320.00',
   },
   {
     name: 'HAT-P-8 b',
     radius: '16.80',
-    distance: '230.00'
+    distance: '230.00',
   },
   {
     name: 'HAT-P-9 b',
     radius: '15.68',
-    distance: '480.00'
+    distance: '480.00',
   },
   {
     name: 'HATS-1 b',
     radius: '14.58',
-    distance: '303.00'
+    distance: '303.00',
   },
   {
     name: 'HATS-2 b',
     radius: '13.08',
-    distance: '360.00'
+    distance: '360.00',
   },
   {
     name: 'HATS-3 b',
     radius: '15.47',
-    distance: '453.00'
+    distance: '453.00',
   },
   {
     name: 'HD 100655 b',
     radius: '13.69',
-    distance: '122.00'
+    distance: '122.00',
   },
   {
     name: 'HD 100777 b',
     radius: '13.86',
-    distance: '52.80'
+    distance: '52.80',
   },
   {
     name: 'HD 10180 c',
     radius: '3.85',
-    distance: '39.40'
+    distance: '39.40',
   },
   {
     name: 'HD 10180 d',
     radius: '3.62',
-    distance: '39.40'
+    distance: '39.40',
   },
   {
     name: 'HD 10180 e',
     radius: '5.54',
-    distance: '39.40'
+    distance: '39.40',
   },
   {
     name: 'HD 10180 f',
     radius: '5.39',
-    distance: '39.40'
+    distance: '39.40',
   },
   {
     name: 'HD 10180 g',
     radius: '5.06',
-    distance: '39.40'
+    distance: '39.40',
   },
   {
     name: 'HD 10180 h',
     radius: '9.38',
-    distance: '39.40'
+    distance: '39.40',
   },
   {
     name: 'HD 101930 b',
     radius: '11.69',
-    distance: '30.49'
+    distance: '30.49',
   },
   {
     name: 'HD 102117 b',
     radius: '8.56',
-    distance: '42.00'
+    distance: '42.00',
   },
   {
     name: 'HD 102195 b',
     radius: '14.30',
-    distance: '28.98'
+    distance: '28.98',
   },
   {
     name: 'HD 102272 b',
     radius: '13.14',
-    distance: '360.00'
+    distance: '360.00',
   },
   {
     name: 'HD 102272 c',
     radius: '13.50',
-    distance: '360.00'
+    distance: '360.00',
   },
   {
     name: 'HD 102329 b',
     radius: '13.14',
-    distance: '158.00'
+    distance: '158.00',
   },
   {
     name: 'HD 102365 b',
     radius: '4.29',
-    distance: '9.24'
+    distance: '9.24',
   },
   {
     name: 'HD 102956 b',
     radius: '13.94',
-    distance: '126.00'
+    distance: '126.00',
   },
   {
     name: 'HD 103197 b',
     radius: '6.25',
-    distance: '49.30'
+    distance: '49.30',
   },
   {
     name: 'HD 103774 b',
     radius: '14.32',
-    distance: '55.00'
+    distance: '55.00',
   },
   {
     name: 'HD 104067 b',
     radius: '8.95',
-    distance: '20.80'
+    distance: '20.80',
   },
   {
     name: 'HD 104985 b',
     radius: '13.11',
-    distance: '102.00'
+    distance: '102.00',
   },
   {
     name: 'HD 106252 b',
     radius: '13.03',
-    distance: '37.44'
+    distance: '37.44',
   },
   {
     name: 'HD 106270 b',
     radius: '12.87',
-    distance: '84.90'
+    distance: '84.90',
   },
   {
     name: 'HD 10647 b',
     radius: '13.96',
-    distance: '17.30'
+    distance: '17.30',
   },
   {
     name: 'HD 106515A b',
     radius: '12.87',
-    distance: '35.20'
+    distance: '35.20',
   },
   {
     name: 'HD 10697 b',
     radius: '13.11',
-    distance: '32.56'
+    distance: '32.56',
   },
   {
     name: 'HD 107148 b',
     radius: '9.57',
-    distance: '51.30'
+    distance: '51.30',
   },
   {
     name: 'HD 108147 b',
     radius: '10.81',
-    distance: '38.57'
+    distance: '38.57',
   },
   {
     name: 'HD 108863 b',
     radius: '13.50',
-    distance: '139.00'
+    distance: '139.00',
   },
   {
     name: 'HD 108874 b',
     radius: '13.79',
-    distance: '68.50'
+    distance: '68.50',
   },
   {
     name: 'HD 108874 c',
     radius: '13.92',
-    distance: '68.50'
+    distance: '68.50',
   },
   {
     name: 'HD 109246 b',
     radius: '14.05',
-    distance: '65.60'
+    distance: '65.60',
   },
   {
     name: 'HD 109271 b',
     radius: '4.85',
-    distance: '62.00'
+    distance: '62.00',
   },
   {
     name: 'HD 109271 c',
     radius: '5.87',
-    distance: '62.00'
+    distance: '62.00',
   },
   {
     name: 'HD 109749 b',
     radius: '11.25',
-    distance: '59.00'
+    distance: '59.00',
   },
   {
     name: 'HD 110014 b',
     radius: '12.87',
-    distance: '90.00'
+    distance: '90.00',
   },
   {
     name: 'HD 111232 b',
     radius: '13.08',
-    distance: '29.00'
+    distance: '29.00',
   },
   {
     name: 'HD 113337 b',
     radius: '13.40',
-    distance: '36.90'
+    distance: '36.90',
   },
   {
     name: 'HD 113538 b',
     radius: '11.02',
-    distance: '15.80'
+    distance: '15.80',
   },
   {
     name: 'HD 113538 c',
     radius: '14.08',
-    distance: '15.80'
+    distance: '15.80',
   },
   {
     name: 'HD 114386 b',
     radius: '13.83',
-    distance: '28.00'
+    distance: '28.00',
   },
   {
     name: 'HD 114386 c',
     radius: '13.78',
-    distance: '28.00'
+    distance: '28.00',
   },
   {
     name: 'HD 114729 b',
     radius: '14.01',
-    distance: '35.00'
+    distance: '35.00',
   },
   {
     name: 'HD 114762 b',
     radius: '12.87',
-    distance: '39.46'
+    distance: '39.46',
   },
   {
     name: 'HD 114783 b',
     radius: '13.93',
-    distance: '20.40'
+    distance: '20.40',
   },
   {
     name: 'HD 11506 b',
     radius: '13.37',
-    distance: '53.82'
+    distance: '53.82',
   },
   {
     name: 'HD 11506 c',
     radius: '14.02',
-    distance: '53.82'
+    distance: '53.82',
   },
   {
     name: 'HD 116029 b',
     radius: '13.59',
-    distance: '123.20'
+    distance: '123.20',
   },
   {
     name: 'HD 117207 b',
     radius: '13.60',
-    distance: '33.00'
+    distance: '33.00',
   },
   {
     name: 'HD 117618 b',
     radius: '8.73',
-    distance: '38.00'
+    distance: '38.00',
   },
   {
     name: 'HD 117618 c',
     radius: '10.10',
-    distance: '38.00'
+    distance: '38.00',
   },
   {
     name: 'HD 118203 b',
     radius: '13.59',
-    distance: '88.60'
+    distance: '88.60',
   },
   {
     name: 'HD 11964 b',
     radius: '14.14',
-    distance: '33.98'
+    distance: '33.98',
   },
   {
     name: 'HD 11964 c',
     radius: '5.54',
-    distance: '33.98'
+    distance: '33.98',
   },
   {
     name: 'HD 11977 b',
     radius: '13.09',
-    distance: '66.50'
+    distance: '66.50',
   },
   {
     name: 'HD 120084 b',
     radius: '13.19',
-    distance: '97.70'
+    distance: '97.70',
   },
   {
     name: 'HD 121504 b',
     radius: '13.84',
-    distance: '44.37'
+    distance: '44.37',
   },
   {
     name: 'HD 122430 b',
     radius: '13.34',
-    distance: '135.00'
+    distance: '135.00',
   },
   {
     name: 'HD 125595 b',
     radius: '3.89',
-    distance: '27.40'
+    distance: '27.40',
   },
   {
     name: 'HD 125612 b',
     radius: '13.43',
-    distance: '52.82'
+    distance: '52.82',
   },
   {
     name: 'HD 125612 c',
     radius: '4.66',
-    distance: '52.82'
+    distance: '52.82',
   },
   {
     name: 'HD 125612 d',
     radius: '13.05',
-    distance: '52.82'
+    distance: '52.82',
   },
   {
     name: 'HD 126525 b',
     radius: '9.93',
-    distance: '38.10'
+    distance: '38.10',
   },
   {
     name: 'HD 12661 b',
     radius: '13.55',
-    distance: '37.16'
+    distance: '37.16',
   },
   {
     name: 'HD 12661 c',
     radius: '13.72',
-    distance: '37.16'
+    distance: '37.16',
   },
   {
     name: 'HD 126614 b',
     radius: '14.37',
-    distance: '72.40'
+    distance: '72.40',
   },
   {
     name: 'HD 128311 b',
     radius: '13.57',
-    distance: '16.60'
+    distance: '16.60',
   },
   {
     name: 'HD 128311 c',
     radius: '13.40',
-    distance: '16.60'
+    distance: '16.60',
   },
   {
     name: 'HD 129445 b',
     radius: '13.71',
-    distance: '67.61'
+    distance: '67.61',
   },
   {
     name: 'HD 130322 b',
     radius: '13.92',
-    distance: '30.00'
+    distance: '30.00',
   },
   {
     name: 'HD 131496 b',
     radius: '13.57',
-    distance: '110.00'
+    distance: '110.00',
   },
   {
     name: 'HD 13189 b',
     radius: '12.77',
-    distance: '185.00'
+    distance: '185.00',
   },
   {
     name: 'HD 132406 b',
     radius: '13.16',
-    distance: '71.00'
+    distance: '71.00',
   },
   {
     name: 'HD 132563B b',
     radius: '13.75',
-    distance: '96.00'
+    distance: '96.00',
   },
   {
     name: 'HD 134060 b',
     radius: '3.52',
-    distance: '24.20'
+    distance: '24.20',
   },
   {
     name: 'HD 134060 c',
     radius: '7.95',
-    distance: '24.20'
+    distance: '24.20',
   },
   {
     name: 'HD 134606 b',
     radius: '2.57',
-    distance: '26.50'
+    distance: '26.50',
   },
   {
     name: 'HD 134606 c',
     radius: '3.69',
-    distance: '26.50'
+    distance: '26.50',
   },
   {
     name: 'HD 134606 d',
     radius: '7.03',
-    distance: '26.50'
+    distance: '26.50',
   },
   {
     name: 'HD 134987 b',
     radius: '13.72',
-    distance: '22.20'
+    distance: '22.20',
   },
   {
     name: 'HD 134987 c',
     radius: '14.02',
-    distance: '22.20'
+    distance: '22.20',
   },
   {
     name: 'HD 136352 b',
     radius: '1.92',
-    distance: '14.80'
+    distance: '14.80',
   },
   {
     name: 'HD 136352 c',
     radius: '3.56',
-    distance: '14.80'
+    distance: '14.80',
   },
   {
     name: 'HD 136352 d',
     radius: '3.22',
-    distance: '14.80'
+    distance: '14.80',
   },
   {
     name: 'HD 136418 b',
     radius: '13.61',
-    distance: '98.20'
+    distance: '98.20',
   },
   {
     name: 'HD 137388 b',
     radius: '9.90',
-    distance: '38.00'
+    distance: '38.00',
   },
   {
     name: 'HD 13808 b',
     radius: '3.37',
-    distance: '28.60'
+    distance: '28.60',
   },
   {
     name: 'HD 13808 c',
     radius: '3.57',
-    distance: '28.60'
+    distance: '28.60',
   },
   {
     name: 'HD 13908 b',
     radius: '13.93',
-    distance: '71.20'
+    distance: '71.20',
   },
   {
     name: 'HD 13908 c',
     radius: '13.14',
-    distance: '71.20'
+    distance: '71.20',
   },
   {
     name: 'HD 13931 b',
     radius: '13.64',
-    distance: '44.20'
+    distance: '44.20',
   },
   {
     name: 'HD 139357 b',
     radius: '12.92',
-    distance: '121.40'
+    distance: '121.40',
   },
   {
     name: 'HD 141937 b',
     radius: '12.93',
-    distance: '33.46'
+    distance: '33.46',
   },
   {
     name: 'HD 142 b',
     radius: '13.82',
-    distance: '20.60'
+    distance: '20.60',
   },
   {
     name: 'HD 142 c',
     radius: '13.19',
-    distance: '20.60'
+    distance: '20.60',
   },
   {
     name: 'HD 142022 A b',
     radius: '13.20',
-    distance: '35.87'
+    distance: '35.87',
   },
   {
     name: 'HD 142245 b',
     radius: '13.64',
-    distance: '109.50'
+    distance: '109.50',
   },
   {
     name: 'HD 142415 b',
     radius: '13.71',
-    distance: '34.20'
+    distance: '34.20',
   },
   {
     name: 'HD 143361 b',
     radius: '13.42',
-    distance: '59.35'
+    distance: '59.35',
   },
   {
     name: 'HD 145377 b',
     radius: '13.15',
-    distance: '57.70'
+    distance: '57.70',
   },
   {
     name: 'HD 145457 b',
     radius: '13.45',
-    distance: '126.00'
+    distance: '126.00',
   },
   {
     name: 'HD 1461 b',
     radius: '2.30',
-    distance: '23.40'
+    distance: '23.40',
   },
   {
     name: 'HD 1461 c',
     radius: '2.03',
-    distance: '23.40'
+    distance: '23.40',
   },
   {
     name: 'HD 147018 b',
     radius: '13.59',
-    distance: '42.96'
+    distance: '42.96',
   },
   {
     name: 'HD 147018 c',
     radius: '13.09',
-    distance: '42.96'
+    distance: '42.96',
   },
   {
     name: 'HD 147513 b',
     radius: '13.84',
-    distance: '12.90'
+    distance: '12.90',
   },
   {
     name: 'HD 148156 b',
     radius: '14.00',
-    distance: '53.05'
+    distance: '53.05',
   },
   {
     name: 'HD 148427 b',
     radius: '13.94',
-    distance: '59.30'
+    distance: '59.30',
   },
   {
     name: 'HD 149026 b',
     radius: '8.04',
-    distance: '78.90'
+    distance: '78.90',
   },
   {
     name: 'HD 149143 b',
     radius: '13.79',
-    distance: '63.00'
+    distance: '63.00',
   },
   {
     name: 'HD 1502 b',
     radius: '13.42',
-    distance: '159.00'
+    distance: '159.00',
   },
   {
     name: 'HD 150433 b',
     radius: '8.45',
-    distance: '29.60'
+    distance: '29.60',
   },
   {
     name: 'HD 150706 b',
     radius: '13.48',
-    distance: '27.20'
+    distance: '27.20',
   },
   {
     name: 'HD 152079 b',
     radius: '13.43',
-    distance: '85.17'
+    distance: '85.17',
   },
   {
     name: 'HD 152581 b',
     radius: '13.74',
-    distance: '186.00'
+    distance: '186.00',
   },
   {
     name: 'HD 153950 b',
     radius: '13.48',
-    distance: '49.60'
+    distance: '49.60',
   },
   {
     name: 'HD 154088 b',
     radius: '2.06',
-    distance: '17.80'
+    distance: '17.80',
   },
   {
     name: 'HD 154345 b',
     radius: '13.93',
-    distance: '18.06'
+    distance: '18.06',
   },
   {
     name: 'HD 154672 b',
     radius: '13.21',
-    distance: '65.80'
+    distance: '65.80',
   },
   {
     name: 'HD 154857 b',
     radius: '13.66',
-    distance: '68.50'
+    distance: '68.50',
   },
   {
     name: 'HD 155358 b',
     radius: '14.00',
-    distance: '43.00'
+    distance: '43.00',
   },
   {
     name: 'HD 155358 c',
     radius: '14.02',
-    distance: '43.00'
+    distance: '43.00',
   },
   {
     name: 'HD 156279 b',
     radius: '12.93',
-    distance: '36.60'
+    distance: '36.60',
   },
   {
     name: 'HD 156411 b',
     radius: '14.06',
-    distance: '55.10'
+    distance: '55.10',
   },
   {
     name: 'HD 156668 b',
     radius: '1.72',
-    distance: '24.50'
+    distance: '24.50',
   },
   {
     name: 'HD 157172 b',
     radius: '7.00',
-    distance: '31.90'
+    distance: '31.90',
   },
   {
     name: 'HD 158038 b',
     radius: '13.66',
-    distance: '103.60'
+    distance: '103.60',
   },
   {
     name: 'HD 159243 b',
     radius: '13.81',
-    distance: '69.20'
+    distance: '69.20',
   },
   {
     name: 'HD 159243 c',
     radius: '13.57',
-    distance: '69.20'
+    distance: '69.20',
   },
   {
     name: 'HD 159868 b',
     radius: '13.59',
-    distance: '52.70'
+    distance: '52.70',
   },
   {
     name: 'HD 159868 c',
     radius: '14.07',
-    distance: '52.70'
+    distance: '52.70',
   },
   {
     name: 'HD 16141 b',
     radius: '9.70',
-    distance: '35.90'
+    distance: '35.90',
   },
   {
     name: 'HD 16175 b',
     radius: '13.27',
-    distance: '59.80'
+    distance: '59.80',
   },
   {
     name: 'HD 162020 b',
     radius: '12.76',
-    distance: '31.26'
+    distance: '31.26',
   },
   {
     name: 'HD 163607 b',
     radius: '14.05',
-    distance: '69.00'
+    distance: '69.00',
   },
   {
     name: 'HD 163607 c',
     radius: '13.55',
-    distance: '69.00'
+    distance: '69.00',
   },
   {
     name: 'HD 16417 b',
     radius: '5.13',
-    distance: '25.50'
+    distance: '25.50',
   },
   {
     name: 'HD 164509 b',
     radius: '14.26',
-    distance: '52.00'
+    distance: '52.00',
   },
   {
     name: 'HD 164604 b',
     radius: '13.48',
-    distance: '38.00'
+    distance: '38.00',
   },
   {
     name: 'HD 164922 b',
     radius: '14.40',
-    distance: '21.93'
+    distance: '21.93',
   },
   {
     name: 'HD 166724 b',
     radius: '13.30',
-    distance: '42.30'
+    distance: '42.30',
   },
   {
     name: 'HD 167042 b',
     radius: '13.71',
-    distance: '50.00'
+    distance: '50.00',
   },
   {
     name: 'HD 168443 b',
     radius: '13.03',
-    distance: '37.38'
+    distance: '37.38',
   },
   {
     name: 'HD 168443 c',
     radius: '12.69',
-    distance: '37.38'
+    distance: '37.38',
   },
   {
     name: 'HD 168746 b',
     radius: '10.07',
-    distance: '43.12'
+    distance: '43.12',
   },
   {
     name: 'HD 1690 b',
     radius: '13.12',
-    distance: '319.00'
+    distance: '319.00',
   },
   {
     name: 'HD 169830 b',
     radius: '13.45',
-    distance: '36.32'
+    distance: '36.32',
   },
   {
     name: 'HD 169830 c',
     radius: '13.30',
-    distance: '36.32'
+    distance: '36.32',
   },
   {
     name: 'HD 170469 b',
     radius: '14.11',
-    distance: '64.97'
+    distance: '64.97',
   },
   {
     name: 'HD 17092 b',
     radius: '13.25',
-    distance: '109.00'
+    distance: '109.00',
   },
   {
     name: 'HD 171028 b',
     radius: '13.62',
-    distance: '90.00'
+    distance: '90.00',
   },
   {
     name: 'HD 171238 b',
     radius: '13.50',
-    distance: '50.28'
+    distance: '50.28',
   },
   {
     name: 'HD 17156 b',
     radius: '12.26',
-    distance: '78.24'
+    distance: '78.24',
   },
   {
     name: 'HD 173416 b',
     radius: '13.48',
-    distance: '135.00'
+    distance: '135.00',
   },
   {
     name: 'HD 175167 b',
     radius: '13.02',
-    distance: '67.02'
+    distance: '67.02',
   },
   {
     name: 'HD 175541 b',
     radius: '14.15',
-    distance: '128.00'
+    distance: '128.00',
   },
   {
     name: 'HD 176051 b',
     radius: '13.74',
-    distance: '14.99'
+    distance: '14.99',
   },
   {
     name: 'HD 177830 b',
     radius: '13.75',
-    distance: '59.00'
+    distance: '59.00',
   },
   {
     name: 'HD 177830 c',
     radius: '7.93',
-    distance: '59.00'
+    distance: '59.00',
   },
   {
     name: 'HD 178911 B b',
     radius: '13.11',
-    distance: '46.73'
+    distance: '46.73',
   },
   {
     name: 'HD 179079 b',
     radius: '5.58',
-    distance: '63.69'
+    distance: '63.69',
   },
   {
     name: 'HD 179949 b',
     radius: '13.95',
-    distance: '27.00'
+    distance: '27.00',
   },
   {
     name: 'HD 180314 b',
     radius: '12.58',
-    distance: '132.00'
+    distance: '132.00',
   },
   {
     name: 'HD 180902 b',
     radius: '13.71',
-    distance: '110.00'
+    distance: '110.00',
   },
   {
     name: 'HD 181342 b',
     radius: '13.39',
-    distance: '110.60'
+    distance: '110.60',
   },
   {
     name: 'HD 181433 b',
     radius: '2.30',
-    distance: '26.15'
+    distance: '26.15',
   },
   {
     name: 'HD 181433 c',
     radius: '14.13',
-    distance: '26.15'
+    distance: '26.15',
   },
   {
     name: 'HD 181433 d',
     radius: '14.21',
-    distance: '26.15'
+    distance: '26.15',
   },
   {
     name: 'HD 181720 b',
     radius: '14.39',
-    distance: '56.00'
+    distance: '56.00',
   },
   {
     name: 'HD 183263 b',
     radius: '13.35',
-    distance: '53.00'
+    distance: '53.00',
   },
   {
     name: 'HD 183263 c',
     radius: '13.33',
-    distance: '53.00'
+    distance: '53.00',
   },
   {
     name: 'HD 185269 b',
     radius: '13.95',
-    distance: '47.00'
+    distance: '47.00',
   },
   {
     name: 'HD 187085 b',
     radius: '14.06',
-    distance: '44.98'
+    distance: '44.98',
   },
   {
     name: 'HD 187123 b',
     radius: '14.23',
-    distance: '50.00'
+    distance: '50.00',
   },
   {
     name: 'HD 187123 c',
     radius: '13.62',
-    distance: '50.00'
+    distance: '50.00',
   },
   {
     name: 'HD 18742 b',
     radius: '13.48',
-    distance: '135.00'
+    distance: '135.00',
   },
   {
     name: 'HD 188015 b',
     radius: '13.82',
-    distance: '52.60'
+    distance: '52.60',
   },
   {
     name: 'HD 189567 b',
     radius: '3.32',
-    distance: '17.70'
+    distance: '17.70',
   },
   {
     name: 'HD 189733 b',
     radius: '12.75',
-    distance: '19.30'
+    distance: '19.30',
   },
   {
     name: 'HD 190360 b',
     radius: '13.74',
-    distance: '15.89'
+    distance: '15.89',
   },
   {
     name: 'HD 190360 c',
     radius: '4.61',
-    distance: '15.89'
+    distance: '15.89',
   },
   {
     name: 'HD 190647 b',
     radius: '13.64',
-    distance: '54.20'
+    distance: '54.20',
   },
   {
     name: 'HD 190984 b',
     radius: '13.42',
-    distance: '103.00'
+    distance: '103.00',
   },
   {
     name: 'HD 192263 b',
     radius: '14.07',
-    distance: '19.90'
+    distance: '19.90',
   },
   {
     name: 'HD 192310 b',
     radius: '4.43',
-    distance: '8.82'
+    distance: '8.82',
   },
   {
     name: 'HD 192310 c',
     radius: '5.38',
-    distance: '8.82'
+    distance: '8.82',
   },
   {
     name: 'HD 192699 b',
     radius: '13.51',
-    distance: '67.00'
+    distance: '67.00',
   },
   {
     name: 'HD 195019 b',
     radius: '13.34',
-    distance: '37.36'
+    distance: '37.36',
   },
   {
     name: 'HD 196050 b',
     radius: '13.46',
-    distance: '46.90'
+    distance: '46.90',
   },
   {
     name: 'HD 196067 b',
     radius: '13.01',
-    distance: '44.30'
+    distance: '44.30',
   },
   {
     name: 'HD 196885 A b',
     radius: '13.44',
-    distance: '33.00'
+    distance: '33.00',
   },
   {
     name: 'HD 197037 b',
     radius: '14.03',
-    distance: '33.00'
+    distance: '33.00',
   },
   {
     name: 'HD 19994 b',
     radius: '13.69',
-    distance: '22.38'
+    distance: '22.38',
   },
   {
     name: 'HD 20003 b',
     radius: '3.67',
-    distance: '43.80'
+    distance: '43.80',
   },
   {
     name: 'HD 20003 c',
     radius: '3.90',
-    distance: '43.80'
+    distance: '43.80',
   },
   {
     name: 'HD 200964 b',
     radius: '13.65',
-    distance: '68.40'
+    distance: '68.40',
   },
   {
     name: 'HD 200964 c',
     radius: '13.97',
-    distance: '68.40'
+    distance: '68.40',
   },
   {
     name: 'HD 202206 b',
     radius: '12.68',
-    distance: '46.34'
+    distance: '46.34',
   },
   {
     name: 'HD 202206 c',
     radius: '13.52',
-    distance: '46.34'
+    distance: '46.34',
   },
   {
     name: 'HD 20367 b',
     radius: '13.90',
-    distance: '27.00'
+    distance: '27.00',
   },
   {
     name: 'HD 2039 b',
     radius: '13.22',
-    distance: '89.80'
+    distance: '89.80',
   },
   {
     name: 'HD 204313 b',
     radius: '13.36',
-    distance: '47.37'
+    distance: '47.37',
   },
   {
     name: 'HD 204313 c',
     radius: '4.48',
-    distance: '47.37'
+    distance: '47.37',
   },
   {
     name: 'HD 204313 d',
     radius: '13.69',
-    distance: '47.37'
+    distance: '47.37',
   },
   {
     name: 'HD 204941 b',
     radius: '10.93',
-    distance: '27.00'
+    distance: '27.00',
   },
   {
     name: 'HD 205739 b',
     radius: '13.78',
-    distance: '90.30'
+    distance: '90.30',
   },
   {
     name: 'HD 206610 b',
     radius: '13.57',
-    distance: '194.00'
+    distance: '194.00',
   },
   {
     name: 'HD 20781 b',
     radius: '3.67',
-    distance: '35.40'
+    distance: '35.40',
   },
   {
     name: 'HD 20781 c',
     radius: '4.27',
-    distance: '35.40'
+    distance: '35.40',
   },
   {
     name: 'HD 20782 b',
     radius: '13.64',
-    distance: '36.02'
+    distance: '36.02',
   },
   {
     name: 'HD 207832 b',
     radius: '14.13',
-    distance: '54.40'
+    distance: '54.40',
   },
   {
     name: 'HD 207832 c',
     radius: '14.00',
-    distance: '54.40'
+    distance: '54.40',
   },
   {
     name: 'HD 20794 b',
     radius: '1.44',
-    distance: '6.06'
+    distance: '6.06',
   },
   {
     name: 'HD 20794 c',
     radius: '1.38',
-    distance: '6.06'
+    distance: '6.06',
   },
   {
     name: 'HD 20794 d',
     radius: '1.83',
-    distance: '6.06'
+    distance: '6.06',
   },
   {
     name: 'HD 208487 b',
     radius: '14.34',
-    distance: '45.00'
+    distance: '45.00',
   },
   {
     name: 'HD 208527 b',
     radius: '12.86',
-    distance: '320.20'
+    distance: '320.20',
   },
   {
     name: 'HD 20868 b',
     radius: '13.62',
-    distance: '48.90'
+    distance: '48.90',
   },
   {
     name: 'HD 209458 b',
     radius: '15.46',
-    distance: '47.00'
+    distance: '47.00',
   },
   {
     name: 'HD 210277 b',
     radius: '13.83',
-    distance: '21.29'
+    distance: '21.29',
   },
   {
     name: 'HD 210702 b',
     radius: '13.64',
-    distance: '56.00'
+    distance: '56.00',
   },
   {
     name: 'HD 212301 b',
     radius: '14.30',
-    distance: '52.70'
+    distance: '52.70',
   },
   {
     name: 'HD 212771 b',
     radius: '13.55',
-    distance: '131.00'
+    distance: '131.00',
   },
   {
     name: 'HD 213240 b',
     radius: '13.26',
-    distance: '40.75'
+    distance: '40.75',
   },
   {
     name: 'HD 215152 b',
     radius: '1.45',
-    distance: '21.50'
+    distance: '21.50',
   },
   {
     name: 'HD 215152 c',
     radius: '1.52',
-    distance: '21.50'
+    distance: '21.50',
   },
   {
     name: 'HD 215456 b',
     radius: '6.35',
-    distance: '38.00'
+    distance: '38.00',
   },
   {
     name: 'HD 215456 c',
     radius: '10.46',
-    distance: '38.00'
+    distance: '38.00',
   },
   {
     name: 'HD 215497 b',
     radius: '2.10',
-    distance: '44.00'
+    distance: '44.00',
   },
   {
     name: 'HD 215497 c',
     radius: '14.44',
-    distance: '44.00'
+    distance: '44.00',
   },
   {
     name: 'HD 216435 b',
     radius: '13.82',
-    distance: '33.30'
+    distance: '33.30',
   },
   {
     name: 'HD 216437 b',
     radius: '13.66',
-    distance: '26.50'
+    distance: '26.50',
   },
   {
     name: 'HD 216770 b',
     radius: '14.12',
-    distance: '38.00'
+    distance: '38.00',
   },
   {
     name: 'HD 21693 b',
     radius: '3.35',
-    distance: '32.40'
+    distance: '32.40',
   },
   {
     name: 'HD 21693 c',
     radius: '4.95',
-    distance: '32.40'
+    distance: '32.40',
   },
   {
     name: 'HD 217107 b',
     radius: '13.80',
-    distance: '19.72'
+    distance: '19.72',
   },
   {
     name: 'HD 217107 c',
     radius: '13.52',
-    distance: '19.72'
+    distance: '19.72',
   },
   {
     name: 'HD 217786 b',
     radius: '12.80',
-    distance: '54.80'
+    distance: '54.80',
   },
   {
     name: 'HD 218566 b',
     radius: '9.57',
-    distance: '29.94'
+    distance: '29.94',
   },
   {
     name: 'HD 219077 b',
     radius: '12.84',
-    distance: '29.35'
+    distance: '29.35',
   },
   {
     name: 'HD 219415 b',
     radius: '13.86',
-    distance: ''
+    distance: '',
   },
   {
     name: 'HD 219828 b',
     radius: '5.01',
-    distance: '81.10'
+    distance: '81.10',
   },
   {
     name: 'HD 220074 b',
     radius: '12.81',
-    distance: '290.20'
+    distance: '290.20',
   },
   {
     name: 'HD 220689 b',
     radius: '13.83',
-    distance: '44.60'
+    distance: '44.60',
   },
   {
     name: 'HD 220773 b',
     radius: '13.76',
-    distance: '49.00'
+    distance: '49.00',
   },
   {
     name: 'HD 221287 b',
     radius: '13.42',
-    distance: '52.90'
+    distance: '52.90',
   },
   {
     name: 'HD 222155 b',
     radius: '13.64',
-    distance: '49.10'
+    distance: '49.10',
   },
   {
     name: 'HD 222582 b',
     radius: '13.02',
-    distance: '42.00'
+    distance: '42.00',
   },
   {
     name: 'HD 224693 b',
     radius: '14.08',
-    distance: '94.00'
+    distance: '94.00',
   },
   {
     name: 'HD 22781 b',
     radius: '12.78',
-    distance: '31.79'
+    distance: '31.79',
   },
   {
     name: 'HD 23079 b',
     radius: '13.51',
-    distance: '34.80'
+    distance: '34.80',
   },
   {
     name: 'HD 23127 b',
     radius: '13.74',
-    distance: '89.10'
+    distance: '89.10',
   },
   {
     name: 'HD 231701 b',
     radius: '13.89',
-    distance: '108.40'
+    distance: '108.40',
   },
   {
     name: 'HD 233604 b',
     radius: '13.03',
-    distance: ''
+    distance: '',
   },
   {
     name: 'HD 23596 b',
     radius: '13.00',
-    distance: '52.00'
+    distance: '52.00',
   },
   {
     name: 'HD 240210 b',
     radius: '13.07',
-    distance: '143.00'
+    distance: '143.00',
   },
   {
     name: 'HD 240237 b',
     radius: '13.19',
-    distance: '1500.00'
+    distance: '1500.00',
   },
   {
     name: 'HD 24040 b',
     radius: '13.31',
-    distance: '46.51'
+    distance: '46.51',
   },
   {
     name: 'HD 25171 b',
     radius: '13.95',
-    distance: '55.00'
+    distance: '55.00',
   },
   {
     name: 'HD 2638 b',
     radius: '14.26',
-    distance: '53.71'
+    distance: '53.71',
   },
   {
     name: 'HD 27442 b',
     radius: '13.79',
-    distance: '18.10'
+    distance: '18.10',
   },
   {
     name: 'HD 27631 b',
     radius: '13.69',
-    distance: '45.50'
+    distance: '45.50',
   },
   {
     name: 'HD 27894 b',
     radius: '14.15',
-    distance: '42.37'
+    distance: '42.37',
   },
   {
     name: 'HD 28185 b',
     radius: '13.15',
-    distance: '39.40'
+    distance: '39.40',
   },
   {
     name: 'HD 28254 b',
     radius: '13.86',
-    distance: '56.20'
+    distance: '56.20',
   },
   {
     name: 'HD 285507 b',
     radius: '13.90',
-    distance: '41.30'
+    distance: '41.30',
   },
   {
     name: 'HD 28678 b',
     radius: '13.69',
-    distance: '227.00'
+    distance: '227.00',
   },
   {
     name: 'HD 290327 b',
     radius: '13.51',
-    distance: '54.90'
+    distance: '54.90',
   },
   {
     name: 'HD 2952 b',
     radius: '13.65',
-    distance: '115.20'
+    distance: '115.20',
   },
   {
     name: 'HD 30177 b',
     radius: '13.02',
-    distance: '55.00'
+    distance: '55.00',
   },
   {
     name: 'HD 30562 b',
     radius: '13.81',
-    distance: '26.50'
+    distance: '26.50',
   },
   {
     name: 'HD 30856 b',
     radius: '13.66',
-    distance: '118.10'
+    distance: '118.10',
   },
   {
     name: 'HD 31253 b',
     radius: '14.25',
-    distance: '53.82'
+    distance: '53.82',
   },
   {
     name: 'HD 31527 b',
     radius: '3.58',
-    distance: '38.60'
+    distance: '38.60',
   },
   {
     name: 'HD 31527 c',
     radius: '4.28',
-    distance: '38.60'
+    distance: '38.60',
   },
   {
     name: 'HD 31527 d',
     radius: '4.38',
-    distance: '38.60'
+    distance: '38.60',
   },
   {
     name: 'HD 32518 b',
     radius: '13.43',
-    distance: '117.40'
+    distance: '117.40',
   },
   {
     name: 'HD 330075 b',
     radius: '14.15',
-    distance: '50.20'
+    distance: '50.20',
   },
   {
     name: 'HD 33142 b',
     radius: '13.81',
-    distance: '126.00'
+    distance: '126.00',
   },
   {
     name: 'HD 33283 b',
     radius: '14.44',
-    distance: '86.00'
+    distance: '86.00',
   },
   {
     name: 'HD 33564 b',
     radius: '12.95',
-    distance: '20.98'
+    distance: '20.98',
   },
   {
     name: 'HD 34445 b',
     radius: '14.03',
-    distance: '46.50'
+    distance: '46.50',
   },
   {
     name: 'HD 3651 b',
     radius: '9.32',
-    distance: '11.00'
+    distance: '11.00',
   },
   {
     name: 'HD 3651 c',
     radius: '6.46',
-    distance: '11.00'
+    distance: '11.00',
   },
   {
     name: 'HD 37124 b',
     radius: '14.11',
-    distance: '33.00'
+    distance: '33.00',
   },
   {
     name: 'HD 37124 c',
     radius: '14.12',
-    distance: '33.00'
+    distance: '33.00',
   },
   {
     name: 'HD 37124 d',
     radius: '14.09',
-    distance: '33.00'
+    distance: '33.00',
   },
   {
     name: 'HD 37605 b',
     radius: '13.46',
-    distance: '44.00'
+    distance: '44.00',
   },
   {
     name: 'HD 37605 c',
     radius: '13.32',
-    distance: '44.00'
+    distance: '44.00',
   },
   {
     name: 'HD 38283 b',
     radius: '14.43',
-    distance: '37.70'
+    distance: '37.70',
   },
   {
     name: 'HD 38529 b',
     radius: '14.04',
-    distance: '39.28'
+    distance: '39.28',
   },
   {
     name: 'HD 38529 c',
     radius: '12.67',
-    distance: '39.28'
+    distance: '39.28',
   },
   {
     name: 'HD 38801 b',
     radius: '12.89',
-    distance: '99.40'
+    distance: '99.40',
   },
   {
     name: 'HD 38858 b',
     radius: '6.18',
-    distance: '15.20'
+    distance: '15.20',
   },
   {
     name: 'HD 39091 b',
     radius: '12.90',
-    distance: '18.32'
+    distance: '18.32',
   },
   {
     name: 'HD 39194 b',
     radius: '1.64',
-    distance: '25.90'
+    distance: '25.90',
   },
   {
     name: 'HD 39194 c',
     radius: '2.03',
-    distance: '25.90'
+    distance: '25.90',
   },
   {
     name: 'HD 39194 d',
     radius: '1.90',
-    distance: '25.90'
+    distance: '25.90',
   },
   {
     name: 'HD 40307 b',
     radius: '1.69',
-    distance: '12.80'
+    distance: '12.80',
   },
   {
     name: 'HD 40307 c',
     radius: '2.14',
-    distance: '12.80'
+    distance: '12.80',
   },
   {
     name: 'HD 40307 d',
     radius: '3.21',
-    distance: '12.80'
+    distance: '12.80',
   },
   {
     name: 'HD 40307 e',
     radius: '1.70',
-    distance: '12.80'
+    distance: '12.80',
   },
   {
     name: 'HD 40307 f',
     radius: '2.04',
-    distance: '12.80'
+    distance: '12.80',
   },
   {
     name: 'HD 40307 g',
     radius: '2.39',
-    distance: '12.80'
+    distance: '12.80',
   },
   {
     name: 'HD 40979 b',
     radius: '13.39',
-    distance: '33.30'
+    distance: '33.30',
   },
   {
     name: 'HD 41004 A b',
     radius: '13.51',
-    distance: '42.50'
+    distance: '42.50',
   },
   {
     name: 'HD 41004 B b',
     radius: '12.66',
-    distance: '43.03'
+    distance: '43.03',
   },
   {
     name: 'HD 4113 b',
     radius: '13.72',
-    distance: '44.00'
+    distance: '44.00',
   },
   {
     name: 'HD 41248 b',
     radius: '4.03',
-    distance: '52.38'
+    distance: '52.38',
   },
   {
     name: 'HD 41248 c',
     radius: '3.30',
-    distance: '52.38'
+    distance: '52.38',
   },
   {
     name: 'HD 4203 b',
     radius: '13.60',
-    distance: '77.50'
+    distance: '77.50',
   },
   {
     name: 'HD 4208 b',
     radius: '14.03',
-    distance: '33.90'
+    distance: '33.90',
   },
   {
     name: 'HD 4308 b',
     radius: '3.81',
-    distance: '21.90'
+    distance: '21.90',
   },
   {
     name: 'HD 4313 b',
     radius: '13.55',
-    distance: '137.00'
+    distance: '137.00',
   },
   {
     name: 'HD 43197 b',
     radius: '14.16',
-    distance: '54.90'
+    distance: '54.90',
   },
   {
     name: 'HD 43691 b',
     radius: '13.52',
-    distance: '93.20'
+    distance: '93.20',
   },
   {
     name: 'HD 44219 b',
     radius: '14.18',
-    distance: '50.43'
+    distance: '50.43',
   },
   {
     name: 'HD 45184 b',
     radius: '3.78',
-    distance: '21.90'
+    distance: '21.90',
   },
   {
     name: 'HD 45350 b',
     radius: '13.66',
-    distance: '49.00'
+    distance: '49.00',
   },
   {
     name: 'HD 45364 b',
     radius: '8.98',
-    distance: '32.60'
+    distance: '32.60',
   },
   {
     name: 'HD 45364 c',
     radius: '14.12',
-    distance: '32.60'
+    distance: '32.60',
   },
   {
     name: 'HD 45652 b',
     radius: '14.27',
-    distance: '36.00'
+    distance: '36.00',
   },
   {
     name: 'HD 46375 b',
     radius: '10.53',
-    distance: '33.40'
+    distance: '33.40',
   },
   {
     name: 'HD 47186 b',
     radius: '5.24',
-    distance: '37.84'
+    distance: '37.84',
   },
   {
     name: 'HD 47186 c',
     radius: '14.41',
-    distance: '37.84'
+    distance: '37.84',
   },
   {
     name: 'HD 47536 b',
     radius: '13.21',
-    distance: '121.36'
+    distance: '121.36',
   },
   {
     name: 'HD 47536 c',
     radius: '13.00',
-    distance: '121.36'
+    distance: '121.36',
   },
   {
     name: 'HD 48265 b',
     radius: '13.86',
-    distance: '87.40'
+    distance: '87.40',
   },
   {
     name: 'HD 49674 b',
     radius: '6.83',
-    distance: '40.70'
+    distance: '40.70',
   },
   {
     name: 'HD 50499 b',
     radius: '13.68',
-    distance: '47.26'
+    distance: '47.26',
   },
   {
     name: 'HD 50554 b',
     radius: '13.20',
-    distance: '31.03'
+    distance: '31.03',
   },
   {
     name: 'HD 51608 b',
     radius: '3.85',
-    distance: '34.80'
+    distance: '34.80',
   },
   {
     name: 'HD 51608 c',
     radius: '4.59',
-    distance: '34.80'
+    distance: '34.80',
   },
   {
     name: 'HD 52265 b',
     radius: '13.90',
-    distance: '28.00'
+    distance: '28.00',
   },
   {
     name: 'HD 52265 c',
     radius: '14.35',
-    distance: '28.00'
+    distance: '28.00',
   },
   {
     name: 'HD 5319 b',
     radius: '13.63',
-    distance: '100.00'
+    distance: '100.00',
   },
   {
     name: 'HD 5608 b',
     radius: '13.71',
-    distance: '58.20'
+    distance: '58.20',
   },
   {
     name: 'HD 5891 b',
     radius: '13.03',
-    distance: '251.00'
+    distance: '251.00',
   },
   {
     name: 'HD 59686 b',
     radius: '13.19',
-    distance: '92.00'
+    distance: '92.00',
   },
   {
     name: 'HD 60532 b',
     radius: '13.41',
-    distance: '25.70'
+    distance: '25.70',
   },
   {
     name: 'HD 60532 c',
     radius: '13.04',
-    distance: '25.70'
+    distance: '25.70',
   },
   {
     name: 'HD 62509 b',
     radius: '13.45',
-    distance: '10.34'
+    distance: '10.34',
   },
   {
     name: 'HD 63454 b',
     radius: '14.37',
-    distance: '35.80'
+    distance: '35.80',
   },
   {
     name: 'HD 63765 b',
     radius: '14.13',
-    distance: '32.60'
+    distance: '32.60',
   },
   {
     name: 'HD 6434 b',
     radius: '14.36',
-    distance: '40.32'
+    distance: '40.32',
   },
   {
     name: 'HD 65216 b',
     radius: '13.84',
-    distance: '34.30'
+    distance: '34.30',
   },
   {
     name: 'HD 65216 c',
     radius: '9.22',
-    distance: '34.30'
+    distance: '34.30',
   },
   {
     name: 'HD 66141 b',
     radius: '13.07',
-    distance: '80.90'
+    distance: '80.90',
   },
   {
     name: 'HD 66428 b',
     radius: '13.46',
-    distance: '55.00'
+    distance: '55.00',
   },
   {
     name: 'HD 6718 b',
     radius: '13.72',
-    distance: '55.90'
+    distance: '55.90',
   },
   {
     name: 'HD 68988 b',
     radius: '13.64',
-    distance: '58.00'
+    distance: '58.00',
   },
   {
     name: 'HD 69830 b',
     radius: '3.40',
-    distance: '12.60'
+    distance: '12.60',
   },
   {
     name: 'HD 69830 c',
     radius: '3.68',
-    distance: '12.60'
+    distance: '12.60',
   },
   {
     name: 'HD 69830 d',
     radius: '4.66',
-    distance: '12.60'
+    distance: '12.60',
   },
   {
     name: 'HD 70573 b',
     radius: '13.12',
-    distance: '45.70'
+    distance: '45.70',
   },
   {
     name: 'HD 70642 b',
     radius: '13.61',
-    distance: '28.80'
+    distance: '28.80',
   },
   {
     name: 'HD 7199 b',
     radius: '11.47',
-    distance: '36.00'
+    distance: '36.00',
   },
   {
     name: 'HD 72659 b',
     radius: '13.41',
-    distance: '49.80'
+    distance: '49.80',
   },
   {
     name: 'HD 73256 b',
     radius: '13.64',
-    distance: '36.50'
+    distance: '36.50',
   },
   {
     name: 'HD 73267 b',
     radius: '13.42',
-    distance: '54.91'
+    distance: '54.91',
   },
   {
     name: 'HD 73526 b',
     radius: '13.45',
-    distance: '99.00'
+    distance: '99.00',
   },
   {
     name: 'HD 73526 c',
     radius: '13.51',
-    distance: '99.00'
+    distance: '99.00',
   },
   {
     name: 'HD 73534 b',
     radius: '13.86',
-    distance: '96.99'
+    distance: '96.99',
   },
   {
     name: 'HD 74156 b',
     radius: '13.64',
-    distance: '64.56'
+    distance: '64.56',
   },
   {
     name: 'HD 74156 c',
     radius: '13.01',
-    distance: '64.56'
+    distance: '64.56',
   },
   {
     name: 'HD 7449 b',
     radius: '13.88',
-    distance: '39.00'
+    distance: '39.00',
   },
   {
     name: 'HD 7449 c',
     radius: '13.61',
-    distance: '39.00'
+    distance: '39.00',
   },
   {
     name: 'HD 75289 b',
     radius: '14.33',
-    distance: '28.94'
+    distance: '28.94',
   },
   {
     name: 'HD 75898 b',
     radius: '13.51',
-    distance: '80.58'
+    distance: '80.58',
   },
   {
     name: 'HD 76700 b',
     radius: '9.24',
-    distance: '59.70'
+    distance: '59.70',
   },
   {
     name: 'HD 77338 b',
     radius: '14.18',
-    distance: '40.75'
+    distance: '40.75',
   },
   {
     name: 'HD 7924 b',
     radius: '2.56',
-    distance: '16.80'
+    distance: '16.80',
   },
   {
     name: 'HD 79498 b',
     radius: '13.79',
-    distance: '49.00'
+    distance: '49.00',
   },
   {
     name: 'HD 80606 b',
     radius: '10.32',
-    distance: '58.40'
+    distance: '58.40',
   },
   {
     name: 'HD 81040 b',
     radius: '13.07',
-    distance: '32.56'
+    distance: '32.56',
   },
   {
     name: 'HD 81688 b',
     radius: '13.48',
-    distance: '88.26'
+    distance: '88.26',
   },
   {
     name: 'HD 82886 b',
     radius: '13.81',
-    distance: '125.00'
+    distance: '125.00',
   },
   {
     name: 'HD 82943 b',
     radius: '13.23',
-    distance: '27.46'
+    distance: '27.46',
   },
   {
     name: 'HD 82943 c',
     radius: '13.23',
-    distance: '27.46'
+    distance: '27.46',
   },
   {
     name: 'HD 82943 d',
     radius: '14.43',
-    distance: '27.46'
+    distance: '27.46',
   },
   {
     name: 'HD 83443 b',
     radius: '14.35',
-    distance: '43.54'
+    distance: '43.54',
   },
   {
     name: 'HD 8535 b',
     radius: '14.10',
-    distance: '52.50'
+    distance: '52.50',
   },
   {
     name: 'HD 85390 b',
     radius: '7.38',
-    distance: '33.96'
+    distance: '33.96',
   },
   {
     name: 'HD 85390 c',
     radius: '10.10',
-    distance: '33.96'
+    distance: '33.96',
   },
   {
     name: 'HD 85512 b',
     radius: '1.60',
-    distance: '11.15'
+    distance: '11.15',
   },
   {
     name: 'HD 8574 b',
     radius: '13.59',
-    distance: '44.20'
+    distance: '44.20',
   },
   {
     name: 'HD 86081 b',
     radius: '13.74',
-    distance: '91.00'
+    distance: '91.00',
   },
   {
     name: 'HD 86226 b',
     radius: '13.74',
-    distance: '42.48'
+    distance: '42.48',
   },
   {
     name: 'HD 86264 b',
     radius: '13.07',
-    distance: '72.60'
+    distance: '72.60',
   },
   {
     name: 'HD 8673 b',
     radius: '12.77',
-    distance: '38.25'
+    distance: '38.25',
   },
   {
     name: 'HD 87883 b',
     radius: '12.83',
-    distance: '18.10'
+    distance: '18.10',
   },
   {
     name: 'HD 88133 b',
     radius: '9.83',
-    distance: '74.50'
+    distance: '74.50',
   },
   {
     name: 'HD 89307 b',
     radius: '13.61',
-    distance: '30.90'
+    distance: '30.90',
   },
   {
     name: 'HD 89744 b',
     radius: '13.05',
-    distance: '40.00'
+    distance: '40.00',
   },
   {
     name: 'HD 89744 c',
     radius: '13.34',
-    distance: '40.00'
+    distance: '40.00',
   },
   {
     name: 'HD 90156 b',
     radius: '4.61',
-    distance: '39.60'
+    distance: '39.60',
   },
   {
     name: 'HD 92788 b',
     radius: '13.32',
-    distance: '32.82'
+    distance: '32.82',
   },
   {
     name: 'HD 92788 c',
     radius: '13.91',
-    distance: '32.82'
+    distance: '32.82',
   },
   {
     name: 'HD 93083 b',
     radius: '14.39',
-    distance: '28.90'
+    distance: '28.90',
   },
   {
     name: 'HD 93385 b',
     radius: '2.42',
-    distance: '42.20'
+    distance: '42.20',
   },
   {
     name: 'HD 93385 c',
     radius: '3.33',
-    distance: '42.20'
+    distance: '42.20',
   },
   {
     name: 'HD 9446 b',
     radius: '14.09',
-    distance: '53.00'
+    distance: '53.00',
   },
   {
     name: 'HD 9446 c',
     radius: '13.66',
-    distance: '53.00'
+    distance: '53.00',
   },
   {
     name: 'HD 95086 b',
     radius: '13.19',
-    distance: '90.40'
+    distance: '90.40',
   },
   {
     name: 'HD 95089 b',
     radius: '13.84',
-    distance: '139.00'
+    distance: '139.00',
   },
   {
     name: 'HD 9578 b',
     radius: '14.08',
-    distance: '57.24'
+    distance: '57.24',
   },
   {
     name: 'HD 96063 b',
     radius: '13.97',
-    distance: '158.00'
+    distance: '158.00',
   },
   {
     name: 'HD 96127 b',
     radius: '13.31',
-    distance: '540.00'
+    distance: '540.00',
   },
   {
     name: 'HD 96167 b',
     radius: '14.10',
-    distance: '84.00'
+    distance: '84.00',
   },
   {
     name: 'HD 96700 b',
     radius: '2.53',
-    distance: '25.60'
+    distance: '25.60',
   },
   {
     name: 'HD 96700 c',
     radius: '3.78',
-    distance: '25.60'
+    distance: '25.60',
   },
   {
     name: 'HD 97658 b',
     radius: '2.34',
-    distance: '21.10'
+    distance: '21.10',
   },
   {
     name: 'HD 98219 b',
     radius: '13.66',
-    distance: '134.00'
+    distance: '134.00',
   },
   {
     name: 'HD 98649 b',
     radius: '13.02',
-    distance: '40.30'
+    distance: '40.30',
   },
   {
     name: 'HD 99109 b',
     radius: '14.24',
-    distance: '60.50'
+    distance: '60.50',
   },
   {
     name: 'HD 99492 b',
     radius: '6.63',
-    distance: '18.00'
+    distance: '18.00',
   },
   {
     name: 'HD 99492 c',
     radius: '14.40',
-    distance: '18.00'
+    distance: '18.00',
   },
   {
     name: 'HD 99706 b',
     radius: '13.77',
-    distance: '129.00'
+    distance: '129.00',
   },
   {
     name: 'HIP 12961 b',
     radius: '14.41',
-    distance: '23.00'
+    distance: '23.00',
   },
   {
     name: 'HIP 13044 b',
     radius: '13.82',
-    distance: '701.00'
+    distance: '701.00',
   },
   {
     name: 'HIP 14810 b',
     radius: '13.32',
-    distance: '52.90'
+    distance: '52.90',
   },
   {
     name: 'HIP 14810 c',
     radius: '13.81',
-    distance: '52.90'
+    distance: '52.90',
   },
   {
     name: 'HIP 14810 d',
     radius: '14.18',
-    distance: '52.90'
+    distance: '52.90',
   },
   {
     name: 'HIP 5158 b',
     radius: '13.76',
-    distance: '45.00'
+    distance: '45.00',
   },
   {
     name: 'HIP 5158 c',
     radius: '12.74',
-    distance: '45.00'
+    distance: '45.00',
   },
   {
     name: 'HIP 57050 b',
     radius: '11.65',
-    distance: '11.00'
+    distance: '11.00',
   },
   {
     name: 'HIP 57274 b',
     radius: '3.57',
-    distance: '25.92'
+    distance: '25.92',
   },
   {
     name: 'HIP 57274 c',
     radius: '14.34',
-    distance: '25.92'
+    distance: '25.92',
   },
   {
     name: 'HIP 57274 d',
     radius: '14.22',
-    distance: '25.92'
+    distance: '25.92',
   },
   {
     name: 'HIP 63242 b',
     radius: '12.89',
-    distance: '135.00'
+    distance: '135.00',
   },
   {
     name: 'HIP 70849 b',
     radius: '12.96',
-    distance: '24.00'
+    distance: '24.00',
   },
   {
     name: 'HIP 75458 b',
     radius: '12.97',
-    distance: '31.50'
+    distance: '31.50',
   },
   {
     name: 'HIP 77900 b',
     radius: '12.56',
-    distance: ''
+    distance: '',
   },
   {
     name: 'HIP 78530 b',
     radius: '12.57',
-    distance: '156.70'
+    distance: '156.70',
   },
   {
     name: 'HIP 79431 b',
     radius: '13.59',
-    distance: '14.40'
+    distance: '14.40',
   },
   {
     name: 'HIP 91258 b',
     radius: '13.83',
-    distance: '44.90'
+    distance: '44.90',
   },
   {
     name: 'HN Peg b',
     radius: '12.32',
-    distance: '18.40'
+    distance: '18.40',
   },
   {
     name: 'HR 228 b',
     radius: '13.47',
-    distance: ''
+    distance: '',
   },
   {
     name: 'HR 228 c',
     radius: '13.47',
-    distance: ''
+    distance: '',
   },
   {
     name: 'HR 810 b',
     radius: '13.56',
-    distance: '17.17'
+    distance: '17.17',
   },
   {
     name: 'HR 8799 b',
     radius: '12.32',
-    distance: '39.40'
+    distance: '39.40',
   },
   {
     name: 'HR 8799 c',
     radius: '14.56',
-    distance: '39.40'
+    distance: '39.40',
   },
   {
     name: 'HR 8799 d',
     radius: '13.44',
-    distance: '39.40'
+    distance: '39.40',
   },
   {
     name: 'HR 8799 e',
     radius: '12.96',
-    distance: '39.40'
+    distance: '39.40',
   },
   {
     name: 'HU Aqr(AB) c',
     radius: '13.08',
-    distance: ''
+    distance: '',
   },
   {
     name: 'HW Vir(AB) b',
     radius: '12.76',
-    distance: '181.00'
+    distance: '181.00',
   },
   {
     name: 'kappa And b',
     radius: '12.74',
-    distance: '51.60'
+    distance: '51.60',
   },
   {
     name: 'kappa CrB b',
     radius: '13.71',
-    distance: '31.10'
+    distance: '31.10',
   },
   {
     name: 'KELT-1 b',
     radius: '12.50',
-    distance: '263.00'
+    distance: '263.00',
   },
   {
     name: 'KELT-2A b',
     radius: '14.63',
-    distance: '128.90'
+    distance: '128.90',
   },
   {
     name: 'KELT-3 b',
     radius: '14.93',
-    distance: '178.00'
+    distance: '178.00',
   },
   {
     name: 'KELT-6 b',
     radius: '13.33',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-10 b',
     radius: '1.41',
-    distance: '173.00'
+    distance: '173.00',
   },
   {
     name: 'Kepler-10 c',
     radius: '2.23',
-    distance: '173.00'
+    distance: '173.00',
   },
   {
     name: 'Kepler-11 b',
     radius: '1.80',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-11 c',
     radius: '2.87',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-11 d',
     radius: '3.12',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-11 e',
     radius: '4.53',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-11 f',
     radius: '2.49',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-11 g',
     radius: '3.67',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-12 b',
     radius: '18.98',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-13 b',
     radius: '20.50',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-14 b',
     radius: '12.72',
-    distance: '980.00'
+    distance: '980.00',
   },
   {
     name: 'Kepler-15 b',
     radius: '10.75',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-16(AB) b',
     radius: '8.44',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-17 b',
     radius: '14.69',
-    distance: '800.00'
+    distance: '800.00',
   },
   {
     name: 'Kepler-18 b',
     radius: '2.00',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-18 c',
     radius: '5.48',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-18 d',
     radius: '6.96',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-19 b',
     radius: '2.22',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-20 b',
     radius: '1.90',
-    distance: '290.00'
+    distance: '290.00',
   },
   {
     name: 'Kepler-20 c',
     radius: '3.06',
-    distance: '290.00'
+    distance: '290.00',
   },
   {
     name: 'Kepler-20 d',
     radius: '2.80',
-    distance: '290.00'
+    distance: '290.00',
   },
   {
     name: 'Kepler-20 e',
     radius: '0.87',
-    distance: '290.00'
+    distance: '290.00',
   },
   {
     name: 'Kepler-20 f',
     radius: '1.01',
-    distance: '290.00'
+    distance: '290.00',
   },
   {
     name: 'Kepler-21 b',
     radius: '1.63',
-    distance: '108.00'
+    distance: '108.00',
   },
   {
     name: 'Kepler-22 b',
     radius: '2.35',
-    distance: '190.00'
+    distance: '190.00',
   },
   {
     name: 'Kepler-23 b',
     radius: '1.90',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-23 c',
     radius: '3.25',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-24 b',
     radius: '2.35',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-24 c',
     radius: '2.80',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-25 b',
     radius: '2.58',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-25 c',
     radius: '4.48',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-26 b',
     radius: '3.58',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-26 c',
     radius: '3.58',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-27 b',
     radius: '4.03',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-27 c',
     radius: '4.93',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-28 b',
     radius: '3.58',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-28 c',
     radius: '3.36',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-29 b',
     radius: '3.58',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-29 c',
     radius: '2.91',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-30 b',
     radius: '3.92',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-30 c',
     radius: '12.32',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-30 d',
     radius: '8.85',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-31 b',
     radius: '4.26',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-31 c',
     radius: '4.26',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-32 b',
     radius: '4.14',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-32 c',
     radius: '3.70',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-33 b',
     radius: '1.79',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-33 c',
     radius: '3.25',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-33 d',
     radius: '5.38',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-33 e',
     radius: '4.03',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-33 f',
     radius: '4.48',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-34(AB)  b',
     radius: '8.55',
-    distance: '1499.00'
+    distance: '1499.00',
   },
   {
     name: 'Kepler-35(AB) b',
     radius: '8.15',
-    distance: '1645.00'
+    distance: '1645.00',
   },
   {
     name: 'Kepler-36 b',
     radius: '1.48',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-36 c',
     radius: '3.68',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-37 b',
     radius: '0.30',
-    distance: '66.00'
+    distance: '66.00',
   },
   {
     name: 'Kepler-37 c',
     radius: '0.74',
-    distance: '66.00'
+    distance: '66.00',
   },
   {
     name: 'Kepler-37 d',
     radius: '1.98',
-    distance: '66.00'
+    distance: '66.00',
   },
   {
     name: 'Kepler-38(AB) b',
     radius: '4.37',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-39 b',
     radius: '13.66',
-    distance: '1200.00'
+    distance: '1200.00',
   },
   {
     name: 'Kepler-4 b',
     radius: '4.00',
-    distance: '550.00'
+    distance: '550.00',
   },
   {
     name: 'Kepler-40 b',
     radius: '13.10',
-    distance: '2700.00'
+    distance: '2700.00',
   },
   {
     name: 'Kepler-41  b',
     radius: '9.42',
-    distance: '730.00'
+    distance: '730.00',
   },
   {
     name: 'Kepler-42 b',
     radius: '0.78',
-    distance: '38.70'
+    distance: '38.70',
   },
   {
     name: 'Kepler-42 c',
     radius: '0.73',
-    distance: '38.70'
+    distance: '38.70',
   },
   {
     name: 'Kepler-42 d',
     radius: '0.57',
-    distance: '38.70'
+    distance: '38.70',
   },
   {
     name: 'Kepler-43 b',
     radius: '13.44',
-    distance: '1950.00'
+    distance: '1950.00',
   },
   {
     name: 'Kepler-44 b',
     radius: '13.89',
-    distance: '2250.00'
+    distance: '2250.00',
   },
   {
     name: 'Kepler-45 b',
     radius: '10.75',
-    distance: '333.00'
+    distance: '333.00',
   },
   {
     name: 'Kepler-46 b',
     radius: '9.09',
-    distance: '857.00'
+    distance: '857.00',
   },
   {
     name: 'Kepler-46 c',
     radius: '14.38',
-    distance: '857.00'
+    distance: '857.00',
   },
   {
     name: 'Kepler-47(AB) b',
     radius: '3.02',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-47(AB) c',
     radius: '4.59',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-48 b',
     radius: '2.02',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-48 c',
     radius: '3.36',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-49 b',
     radius: '2.69',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-49 c',
     radius: '2.58',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-5 b',
     radius: '16.03',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-50 b',
     radius: '2.24',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-50 c',
     radius: '2.80',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-51 b',
     radius: '7.06',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-51 c',
     radius: '5.71',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-52 b',
     radius: '2.13',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-52 c',
     radius: '1.79',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-53 b',
     radius: '2.91',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-53 c',
     radius: '3.14',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-54 b',
     radius: '2.13',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-54 c',
     radius: '1.23',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-55 b',
     radius: '2.46',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-55 c',
     radius: '2.24',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-56 b',
     radius: '6.50',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-56 c',
     radius: '9.86',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-56 d',
     radius: '13.33',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-57 b',
     radius: '2.24',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-57 c',
     radius: '1.57',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-58 b',
     radius: '2.80',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-58 c',
     radius: '2.91',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-59 b',
     radius: '1.10',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-59 c',
     radius: '2.02',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-6 b',
     radius: '14.82',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-60 b',
     radius: '2.24',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-60 c',
     radius: '2.46',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-60 d',
     radius: '2.58',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-61 b',
     radius: '2.15',
-    distance: '326.00'
+    distance: '326.00',
   },
   {
     name: 'Kepler-62 b',
     radius: '1.31',
-    distance: '368.00'
+    distance: '368.00',
   },
   {
     name: 'Kepler-62 c',
     radius: '0.54',
-    distance: '368.00'
+    distance: '368.00',
   },
   {
     name: 'Kepler-62 d',
     radius: '1.95',
-    distance: '368.00'
+    distance: '368.00',
   },
   {
     name: 'Kepler-62 e',
     radius: '1.61',
-    distance: '368.00'
+    distance: '368.00',
   },
   {
     name: 'Kepler-62 f',
     radius: '1.41',
-    distance: '368.00'
+    distance: '368.00',
   },
   {
     name: 'Kepler-63 b',
     radius: '6.10',
-    distance: '200.00'
+    distance: '200.00',
   },
   {
     name: 'Kepler-65 b',
     radius: '1.42',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-65 c',
     radius: '2.58',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-65 d',
     radius: '1.51',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-66 b',
     radius: '2.80',
-    distance: '1107.00'
+    distance: '1107.00',
   },
   {
     name: 'Kepler-67 b',
     radius: '2.91',
-    distance: '1107.00'
+    distance: '1107.00',
   },
   {
     name: 'Kepler-68 b',
     radius: '2.30',
-    distance: '135.00'
+    distance: '135.00',
   },
   {
     name: 'Kepler-68 c',
     radius: '0.91',
-    distance: '135.00'
+    distance: '135.00',
   },
   {
     name: 'Kepler-68 d',
     radius: '13.89',
-    distance: '135.00'
+    distance: '135.00',
   },
   {
     name: 'Kepler-69 b',
     radius: '2.24',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-69 c',
     radius: '1.71',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-7 b',
     radius: '18.08',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-70  b',
     radius: '0.76',
-    distance: '1180.00'
+    distance: '1180.00',
   },
   {
     name: 'Kepler-70 c',
     radius: '0.87',
-    distance: '1180.00'
+    distance: '1180.00',
   },
   {
     name: 'Kepler-71 b',
     radius: '11.71',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-74 b',
     radius: '14.78',
-    distance: '1330.00'
+    distance: '1330.00',
   },
   {
     name: 'Kepler-75 b',
     radius: '11.54',
-    distance: '1140.00'
+    distance: '1140.00',
   },
   {
     name: 'Kepler-76 b',
     radius: '14.00',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-77 b',
     radius: '10.75',
-    distance: '570.00'
+    distance: '570.00',
   },
   {
     name: 'Kepler-78 b',
     radius: '1.20',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-79 b',
     radius: '3.30',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-79 c',
     radius: '3.73',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-79 d',
     radius: '7.17',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-79 e',
     radius: '3.49',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-8 b',
     radius: '15.89',
-    distance: '1330.00'
+    distance: '1330.00',
   },
   {
     name: 'Kepler-80 b',
     radius: '2.35',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-80 c',
     radius: '2.58',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-80 d',
     radius: '1.40',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-80 e',
     radius: '1.50',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-80 f',
     radius: '1.30',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-81 b',
     radius: '2.54',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-81 c',
     radius: '2.45',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-82 b',
     radius: '4.00',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-82 c',
     radius: '5.30',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-83 b',
     radius: '2.34',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-83 c',
     radius: '1.94',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-84 b',
     radius: '2.20',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-84 c',
     radius: '2.40',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-85 b',
     radius: '1.99',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-85 c',
     radius: '2.21',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-86 b',
     radius: '10.14',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-87 b',
     radius: '13.55',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-87 c',
     radius: '6.15',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-88 b',
     radius: '4.22',
-    distance: '385.00'
+    distance: '385.00',
   },
   {
     name: 'Kepler-88 c',
     radius: '14.04',
-    distance: '385.00'
+    distance: '385.00',
   },
   {
     name: 'Kepler-89 b',
     radius: '1.71',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-89 c',
     radius: '4.32',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-89 d',
     radius: '11.20',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-89 e',
     radius: '6.16',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-9 b',
     radius: '9.42',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-9 c',
     radius: '9.21',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-9 d',
     radius: '1.65',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-90 b',
     radius: '1.31',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-90 c',
     radius: '1.19',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-90 d',
     radius: '2.88',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-90 e',
     radius: '2.67',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-90 f',
     radius: '2.89',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-90 g',
     radius: '8.12',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Kepler-90 h',
     radius: '11.31',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KIC-10255705 b',
     radius: '7.28',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KIC-10905746 b',
     radius: '2.65',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KIC-11152511 b',
     radius: '4.03',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KIC-12351927(AB) b',
     radius: '4.37',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KIC-12454613 b',
     radius: '2.69',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KIC-12557548 b',
     radius: '0.85',
-    distance: '470.00'
+    distance: '470.00',
   },
   {
     name: 'KIC-5010054 b',
     radius: '6.94',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KIC-5094412 b',
     radius: '5.71',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KIC-5522786 b',
     radius: '1.23',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KIC-5732155 b',
     radius: '12.77',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KIC-6185331 b',
     radius: '8.06',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KIC-6372194 b',
     radius: '8.29',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KIC-6436029 c',
     radius: '3.07',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KIC-8852719 b',
     radius: '3.53',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KIC-9662267 b',
     radius: '3.81',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KIC-9704149 b',
     radius: '4.48',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-111 b',
     radius: '2.14',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-111 c',
     radius: '2.05',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-115 b',
     radius: '4.82',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-115 c',
     radius: '1.91',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-117 b',
     radius: '1.58',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-117 c',
     radius: '1.71',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-1203 b',
     radius: '2.90',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-1203 c',
     radius: '2.80',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-1215 b',
     radius: '2.92',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-1215 c',
     radius: '3.36',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-1236 b',
     radius: '4.31',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-1236 c',
     radius: '3.10',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-1278 b',
     radius: '2.46',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-1278 c',
     radius: '3.10',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-156 b',
     radius: '1.18',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-156 c',
     radius: '1.60',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-156 d',
     radius: '2.53',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-1563 b',
     radius: '3.61',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-1563 c',
     radius: '3.30',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-1576 c',
     radius: '2.80',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-1676 b',
     radius: '3.20',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-1781 b',
     radius: '1.88',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-1843 b',
     radius: '0.58',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-1873 b',
     radius: '2.31',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-1873 c',
     radius: '5.41',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-202 b',
     radius: '11.42',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-2025 b',
     radius: '3.10',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-2025 c',
     radius: '2.80',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-206 b',
     radius: '7.84',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-2672 b',
     radius: '3.47',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-2672 c',
     radius: '5.26',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-274 b',
     radius: '1.13',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-274 c',
     radius: '1.13',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-282 b',
     radius: '2.90',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-285 b',
     radius: '3.52',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-285 c',
     radius: '2.61',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-370 b',
     radius: '2.65',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-370 c',
     radius: '4.42',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-523 b',
     radius: '2.90',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-523 c',
     radius: '7.11',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-680 b',
     radius: '7.28',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-730 b',
     radius: '3.47',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-730 c',
     radius: '2.58',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-730 d',
     radius: '2.80',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-730 e',
     radius: '2.02',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-82 b',
     radius: '2.20',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-82 c',
     radius: '1.34',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-82 d',
     radius: '0.69',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-834 b',
     radius: '5.61',
-    distance: ''
+    distance: '',
   },
   {
     name: 'KOI-834 c',
     radius: '2.00',
-    distance: ''
+    distance: '',
   },
   {
     name: 'ksi Aql b',
     radius: '13.46',
-    distance: '62.70'
+    distance: '62.70',
   },
   {
     name: 'LKCA 15 b',
     radius: '13.13',
-    distance: '145.00'
+    distance: '145.00',
   },
   {
     name: 'MOA-2007-BLG-192-L b',
     radius: '1.54',
-    distance: '700.00'
+    distance: '700.00',
   },
   {
     name: 'MOA-2007-BLG-400-L b',
     radius: '13.97',
-    distance: '6000.00'
+    distance: '6000.00',
   },
   {
     name: 'MOA-2008-BLG-310-L b',
     radius: '10.07',
-    distance: '6000.00'
+    distance: '6000.00',
   },
   {
     name: 'MOA-2008-BLG-379L b',
     radius: '13.17',
-    distance: '3600.00'
+    distance: '3600.00',
   },
   {
     name: 'MOA-2009-BLG-266L b',
     radius: '3.38',
-    distance: '3040.00'
+    distance: '3040.00',
   },
   {
     name: 'MOA-2009-BLG-319 b',
     radius: '8.14',
-    distance: '6100.00'
+    distance: '6100.00',
   },
   {
     name: 'MOA-2009-BLG-387L b',
     radius: '13.50',
-    distance: '5700.00'
+    distance: '5700.00',
   },
   {
     name: 'MOA-2010-BLG-328L b',
     radius: '3.42',
-    distance: '810.00'
+    distance: '810.00',
   },
   {
     name: 'MOA-2010-BLG-477L b',
     radius: '13.74',
-    distance: '2300.00'
+    distance: '2300.00',
   },
   {
     name: 'MOA-2011-BLG-293L b',
     radius: '13.23',
-    distance: '7700.00'
+    distance: '7700.00',
   },
   {
     name: 'MOA-2011-BLG-322 b',
     radius: '12.96',
-    distance: '7740.00'
+    distance: '7740.00',
   },
   {
     name: 'MOA-bin-1 b',
     radius: '13.34',
-    distance: '5100.00'
+    distance: '5100.00',
   },
   {
     name: 'mu Ara b',
     radius: '13.69',
-    distance: '15.30'
+    distance: '15.30',
   },
   {
     name: 'mu Ara c',
     radius: '3.41',
-    distance: '15.30'
+    distance: '15.30',
   },
   {
     name: 'mu Ara d',
     radius: '14.23',
-    distance: '15.30'
+    distance: '15.30',
   },
   {
     name: 'mu Ara e',
     radius: '13.66',
-    distance: '15.30'
+    distance: '15.30',
   },
   {
     name: 'NGC 2423 3 b',
     radius: '12.89',
-    distance: '766.00'
+    distance: '766.00',
   },
   {
     name: 'NGC 4349 No 127 b',
     radius: '12.63',
-    distance: '2176.00'
+    distance: '2176.00',
   },
   {
     name: 'NN Ser(AB) c',
     radius: '13.07',
-    distance: '500.00'
+    distance: '500.00',
   },
   {
     name: 'NN Ser(AB) d',
     radius: '13.55',
-    distance: '500.00'
+    distance: '500.00',
   },
   {
     name: 'nu Oph b',
     radius: '12.55',
-    distance: '46.80'
+    distance: '46.80',
   },
   {
     name: 'nu Oph c',
     radius: '12.50',
-    distance: '46.80'
+    distance: '46.80',
   },
   {
     name: 'NY Vir b',
     radius: '13.49',
-    distance: ''
+    distance: '',
   },
   {
     name: 'OGLE-05-071L b',
     radius: '13.37',
-    distance: '3300.00'
+    distance: '3300.00',
   },
   {
     name: 'OGLE-05-169L b',
     radius: '3.78',
-    distance: '2700.00'
+    distance: '2700.00',
   },
   {
     name: 'OGLE-05-390L b',
     radius: '1.94',
-    distance: '6500.00'
+    distance: '6500.00',
   },
   {
     name: 'OGLE-06-109L b',
     radius: '14.07',
-    distance: '1510.00'
+    distance: '1510.00',
   },
   {
     name: 'OGLE-06-109L c',
     radius: '11.04',
-    distance: '1510.00'
+    distance: '1510.00',
   },
   {
     name: 'OGLE-2007-BLG-368L b',
     radius: '5.15',
-    distance: '5900.00'
+    distance: '5900.00',
   },
   {
     name: 'OGLE-2009-BLG-151_MOA-2009-232 b',
     radius: '12.97',
-    distance: '390.00'
+    distance: '390.00',
   },
   {
     name: 'OGLE-2011-BLG-0251 b',
     radius: '13.88',
-    distance: '4090.00'
+    distance: '4090.00',
   },
   {
     name: 'OGLE-2011-BLG-0420 b',
     radius: '12.88',
-    distance: '1990.00'
+    distance: '1990.00',
   },
   {
     name: 'OGLE-2012-BLG-0026L b',
     radius: '7.22',
-    distance: '4080.00'
+    distance: '4080.00',
   },
   {
     name: 'OGLE-2012-BLG-0026L c',
     radius: '14.04',
-    distance: '4080.00'
+    distance: '4080.00',
   },
   {
     name: 'OGLE-2012-BLG-0358L b',
     radius: '13.58',
-    distance: '1760.00'
+    distance: '1760.00',
   },
   {
     name: 'OGLE-2012-BLG-0406L b',
     radius: '13.41',
-    distance: '4970.00'
+    distance: '4970.00',
   },
   {
     name: 'OGLE-TR-10 b',
     radius: '19.26',
-    distance: '1500.00'
+    distance: '1500.00',
   },
   {
     name: 'OGLE-TR-111 b',
     radius: '12.06',
-    distance: '1500.00'
+    distance: '1500.00',
   },
   {
     name: 'OGLE-TR-113 b',
     radius: '12.43',
-    distance: '1500.00'
+    distance: '1500.00',
   },
   {
     name: 'OGLE-TR-132 b',
     radius: '13.78',
-    distance: '1500.00'
+    distance: '1500.00',
   },
   {
     name: 'OGLE-TR-182 b',
     radius: '16.46',
-    distance: ''
+    distance: '',
   },
   {
     name: 'OGLE-TR-211 b',
     radius: '14.11',
-    distance: ''
+    distance: '',
   },
   {
     name: 'OGLE-TR-56 b',
     radius: '13.44',
-    distance: '1500.00'
+    distance: '1500.00',
   },
   {
     name: 'OGLE2-TR-L9 b',
     radius: '18.08',
-    distance: '900.00'
+    distance: '900.00',
   },
   {
     name: 'OGLE235-MOA53 b',
     radius: '13.50',
-    distance: '5200.00'
+    distance: '5200.00',
   },
   {
     name: 'ome Ser b',
     radius: '13.62',
-    distance: '80.60'
+    distance: '80.60',
   },
   {
     name: 'omi CrB b',
     radius: '13.68',
-    distance: '84.00'
+    distance: '84.00',
   },
   {
     name: 'omi UMa b',
     radius: '13.23',
-    distance: '56.30'
+    distance: '56.30',
   },
   {
     name: 'Oph 11 b',
     radius: '12.60',
-    distance: '145.00'
+    distance: '145.00',
   },
   {
     name: 'PH1-Kepler-64 b',
     radius: '6.19',
-    distance: ''
+    distance: '',
   },
   {
     name: 'POTS-1 b',
     radius: '10.54',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Pr0201 c',
     radius: '14.14',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Pr0211 b',
     radius: '13.59',
-    distance: ''
+    distance: '',
   },
   {
     name: 'PSR 1257 12 b',
     radius: '0.30',
-    distance: '710.00'
+    distance: '710.00',
   },
   {
     name: 'PSR 1257 12 c',
     radius: '1.72',
-    distance: '710.00'
+    distance: '710.00',
   },
   {
     name: 'PSR 1257 12 d',
     radius: '1.66',
-    distance: '710.00'
+    distance: '710.00',
   },
   {
     name: 'PSR 1719-14 b',
     radius: '4.48',
-    distance: '1200.00'
+    distance: '1200.00',
   },
   {
     name: 'PSR B1620-26 b',
     radius: '13.51',
-    distance: '3800.00'
+    distance: '3800.00',
   },
   {
     name: 'Qatar-1 b',
     radius: '13.04',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Qatar-2 b',
     radius: '12.81',
-    distance: ''
+    distance: '',
   },
   {
     name: 'Ross 458(AB) c',
     radius: '12.98',
-    distance: '114.00'
+    distance: '114.00',
   },
   {
     name: 'ROXs 42B b',
     radius: '12.83',
-    distance: '135.00'
+    distance: '135.00',
   },
   {
     name: 'RR Cae b',
     radius: '13.22',
-    distance: ''
+    distance: '',
   },
   {
     name: 'SR 12 AB c',
     radius: '12.80',
-    distance: '125.00'
+    distance: '125.00',
   },
   {
     name: 'SWEEPS-04b',
     radius: '9.07',
-    distance: '8500.00'
+    distance: '8500.00',
   },
   {
     name: 'SWEEPS-11b',
     radius: '12.66',
-    distance: '8500.00'
+    distance: '8500.00',
   },
   {
     name: 'tau Boo b',
     radius: '13.14',
-    distance: '15.60'
+    distance: '15.60',
   },
   {
     name: 'tau Gem b',
     radius: '12.55',
-    distance: '98.40'
+    distance: '98.40',
   },
   {
     name: 'TrES-1b',
     radius: '12.31',
-    distance: '157.00'
+    distance: '157.00',
   },
   {
     name: 'TrES-2b',
     radius: '13.09',
-    distance: '220.00'
+    distance: '220.00',
   },
   {
     name: 'TrES-3b',
     radius: '14.62',
-    distance: ''
+    distance: '',
   },
   {
     name: 'TrES-4b',
     radius: '19.11',
-    distance: '479.00'
+    distance: '479.00',
   },
   {
     name: 'TrES-5b',
     radius: '13.54',
-    distance: '360.00'
+    distance: '360.00',
   },
   {
     name: 'ups And b',
     radius: '14.15',
-    distance: '13.47'
+    distance: '13.47',
   },
   {
     name: 'ups And c',
     radius: '13.66',
-    distance: '13.47'
+    distance: '13.47',
   },
   {
     name: 'ups And d',
     radius: '12.91',
-    distance: '13.47'
+    distance: '13.47',
   },
   {
     name: 'ups And e',
     radius: '13.90',
-    distance: '13.47'
+    distance: '13.47',
   },
   {
     name: 'USco1602-2401 b',
     radius: '12.22',
-    distance: ''
+    distance: '',
   },
   {
     name: 'USco1610-1913 b',
     radius: '12.56',
-    distance: ''
+    distance: '',
   },
   {
     name: 'USco1612-1800 b',
     radius: '12.46',
-    distance: ''
+    distance: '',
   },
   {
     name: 'UScoCTIO 108 b',
     radius: '12.72',
-    distance: '145.00'
+    distance: '145.00',
   },
   {
     name: 'UZ For(ab) d',
     radius: '12.96',
-    distance: ''
+    distance: '',
   },
   {
     name: 'V391 Peg b',
     radius: '13.41',
-    distance: '1400.00'
+    distance: '1400.00',
   },
   {
     name: 'WASP-1 b',
     radius: '16.62',
-    distance: ''
+    distance: '',
   },
   {
     name: 'WASP-10 b',
     radius: '12.10',
-    distance: '90.00'
+    distance: '90.00',
   },
   {
     name: 'WASP-100 b',
     radius: '18.93',
-    distance: ''
+    distance: '',
   },
   {
     name: 'WASP-101 b',
     radius: '15.79',
-    distance: ''
+    distance: '',
   },
   {
     name: 'WASP-11-HAT-P-10 b',
     radius: '11.70',
-    distance: '125.00'
+    distance: '125.00',
   },
   {
     name: 'WASP-12 b',
     radius: '19.44',
-    distance: '427.00'
+    distance: '427.00',
   },
   {
     name: 'WASP-13 b',
     radius: '15.29',
-    distance: '156.00'
+    distance: '156.00',
   },
   {
     name: 'WASP-14 b',
     radius: '14.35',
-    distance: '160.00'
+    distance: '160.00',
   },
   {
     name: 'WASP-15 b',
     radius: '15.99',
-    distance: '308.00'
+    distance: '308.00',
   },
   {
     name: 'WASP-16 b',
     radius: '11.29',
-    distance: ''
+    distance: '',
   },
   {
     name: 'WASP-17 b',
     radius: '22.30',
-    distance: ''
+    distance: '',
   },
   {
     name: 'WASP-18 b',
     radius: '13.05',
-    distance: '100.00'
+    distance: '100.00',
   },
   {
     name: 'WASP-19 b',
     radius: '15.62',
-    distance: ''
+    distance: '',
   },
   {
     name: 'WASP-2 b',
     radius: '12.08',
-    distance: '144.00'
+    distance: '144.00',
   },
   {
     name: 'WASP-20 b',
     radius: '10.08',
-    distance: ''
+    distance: '',
   },
   {
     name: 'WASP-21 b',
     radius: '13.55',
-    distance: '230.00'
+    distance: '230.00',
   },
   {
     name: 'WASP-22 b',
     radius: '12.97',
-    distance: '300.00'
+    distance: '300.00',
   },
   {
     name: 'WASP-23 b',
     radius: '10.77',
-    distance: ''
+    distance: '',
   },
   {
     name: 'WASP-24 b',
     radius: '12.36',
-    distance: '330.00'
+    distance: '330.00',
   },
   {
     name: 'WASP-25 b',
     radius: '14.11',
-    distance: '169.00'
+    distance: '169.00',
   },
   {
     name: 'WASP-26 b',
     radius: '14.35',
-    distance: '250.00'
+    distance: '250.00',
   },
   {
     name: 'WASP-28 b',
     radius: '12.54',
-    distance: '334.00'
+    distance: '334.00',
   },
   {
     name: 'WASP-29 b',
     radius: '9.42',
-    distance: '80.00'
+    distance: '80.00',
   },
   {
     name: 'WASP-3 b',
     radius: '16.28',
-    distance: '223.00'
+    distance: '223.00',
   },
   {
     name: 'WASP-31 b',
     radius: '17.21',
-    distance: '400.00'
+    distance: '400.00',
   },
   {
     name: 'WASP-32 b',
     radius: '13.22',
-    distance: ''
+    distance: '',
   },
   {
     name: 'WASP-33 b',
     radius: '16.11',
-    distance: '116.00'
+    distance: '116.00',
   },
   {
     name: 'WASP-34 b',
     radius: '13.66',
-    distance: '120.00'
+    distance: '120.00',
   },
   {
     name: 'WASP-35 b',
     radius: '14.78',
-    distance: ''
+    distance: '',
   },
   {
     name: 'WASP-36 b',
     radius: '14.21',
-    distance: '450.00'
+    distance: '450.00',
   },
   {
     name: 'WASP-37 b',
     radius: '12.72',
-    distance: '338.00'
+    distance: '338.00',
   },
   {
     name: 'WASP-38 b',
     radius: '12.08',
-    distance: '110.00'
+    distance: '110.00',
   },
   {
     name: 'WASP-39 b',
     radius: '14.22',
-    distance: '230.00'
+    distance: '230.00',
   },
   {
     name: 'WASP-4 b',
     radius: '15.62',
-    distance: '300.00'
+    distance: '300.00',
   },
   {
     name: 'WASP-41 b',
     radius: '13.55',
-    distance: '180.00'
+    distance: '180.00',
   },
   {
     name: 'WASP-42 b',
     radius: '12.10',
-    distance: ''
+    distance: '',
   },
   {
     name: 'WASP-43 b',
     radius: '11.60',
-    distance: ''
+    distance: '',
   },
   {
     name: 'WASP-44 b',
     radius: '12.77',
-    distance: ''
+    distance: '',
   },
   {
     name: 'WASP-45 b',
     radius: '12.99',
-    distance: ''
+    distance: '',
   },
   {
     name: 'WASP-46 b',
     radius: '14.67',
-    distance: ''
+    distance: '',
   },
   {
     name: 'WASP-47 b',
     radius: '12.88',
-    distance: '200.00'
+    distance: '200.00',
   },
   {
     name: 'WASP-48 b',
     radius: '18.70',
-    distance: ''
+    distance: '',
   },
   {
     name: 'WASP-49 b',
     radius: '12.49',
-    distance: ''
+    distance: '',
   },
   {
     name: 'WASP-5 b',
     radius: '13.12',
-    distance: '297.00'
+    distance: '297.00',
   },
   {
     name: 'WASP-50 b',
     radius: '12.75',
-    distance: '230.00'
+    distance: '230.00',
   },
   {
     name: 'WASP-52 b',
     radius: '14.22',
-    distance: '140.00'
+    distance: '140.00',
   },
   {
     name: 'WASP-53 b',
     radius: '13.44',
-    distance: ''
+    distance: '',
   },
   {
     name: 'WASP-54 b',
     radius: '15.68',
-    distance: ''
+    distance: '',
   },
   {
     name: 'WASP-55 b',
     radius: '14.56',
-    distance: '330.00'
+    distance: '330.00',
   },
   {
     name: 'WASP-56 b',
     radius: '13.44',
-    distance: ''
+    distance: '',
   },
   {
     name: 'WASP-57 b',
     radius: '12.32',
-    distance: ''
+    distance: '',
   },
   {
     name: 'WASP-58 b',
     radius: '15.34',
-    distance: '300.00'
+    distance: '300.00',
   },
   {
     name: 'WASP-59 b',
     radius: '10.08',
-    distance: '125.00'
+    distance: '125.00',
   },
   {
     name: 'WASP-6 b',
     radius: '13.71',
-    distance: '307.00'
+    distance: '307.00',
   },
   {
     name: 'WASP-60 b',
     radius: '10.08',
-    distance: '400.00'
+    distance: '400.00',
   },
   {
     name: 'WASP-61 b',
     radius: '13.89',
-    distance: '480.00'
+    distance: '480.00',
   },
   {
     name: 'WASP-62 b',
     radius: '15.57',
-    distance: '160.00'
+    distance: '160.00',
   },
   {
     name: 'WASP-63 b',
     radius: '16.02',
-    distance: '330.00'
+    distance: '330.00',
   },
   {
     name: 'WASP-64 b',
     radius: '7.84',
-    distance: ''
+    distance: '',
   },
   {
     name: 'WASP-65 b',
     radius: '12.45',
-    distance: '310.00'
+    distance: '310.00',
   },
   {
     name: 'WASP-66 b',
     radius: '15.57',
-    distance: '380.00'
+    distance: '380.00',
   },
   {
     name: 'WASP-67 b',
     radius: '15.68',
-    distance: '225.00'
+    distance: '225.00',
   },
   {
     name: 'WASP-68 b',
     radius: '10.08',
-    distance: ''
+    distance: '',
   },
   {
     name: 'WASP-69 b',
     radius: '11.20',
-    distance: ''
+    distance: '',
   },
   {
     name: 'WASP-7 b',
     radius: '14.90',
-    distance: '140.00'
+    distance: '140.00',
   },
   {
     name: 'WASP-70 b',
     radius: '8.96',
-    distance: ''
+    distance: '',
   },
   {
     name: 'WASP-71 b',
     radius: '16.80',
-    distance: '200.00'
+    distance: '200.00',
   },
   {
     name: 'WASP-72 b',
     radius: '14.22',
-    distance: ''
+    distance: '',
   },
   {
     name: 'WASP-75 b',
     radius: '14.22',
-    distance: '260.00'
+    distance: '260.00',
   },
   {
     name: 'WASP-76 b',
     radius: '20.50',
-    distance: '120.00'
+    distance: '120.00',
   },
   {
     name: 'WASP-77A b',
     radius: '13.55',
-    distance: ''
+    distance: '',
   },
   {
     name: 'WASP-78 b',
     radius: '19.60',
-    distance: '550.00'
+    distance: '550.00',
   },
   {
     name: 'WASP-79 b',
     radius: '19.04',
-    distance: '240.00'
+    distance: '240.00',
   },
   {
     name: 'WASP-8 b',
     radius: '11.63',
-    distance: '87.00'
+    distance: '87.00',
   },
   {
     name: 'WASP-80 b',
     radius: '10.66',
-    distance: '60.00'
+    distance: '60.00',
   },
   {
     name: 'WASP-82 b',
     radius: '18.70',
-    distance: '200.00'
+    distance: '200.00',
   },
   {
     name: 'WASP-84 b',
     radius: '10.55',
-    distance: '120.00'
+    distance: '120.00',
   },
   {
     name: 'WASP-90 b',
     radius: '18.26',
-    distance: '340.00'
+    distance: '340.00',
   },
   {
     name: 'WASP-95 b',
     radius: '13.55',
-    distance: ''
+    distance: '',
   },
   {
     name: 'WASP-96 b',
     radius: '13.44',
-    distance: ''
+    distance: '',
   },
   {
     name: 'WASP-97 b',
     radius: '12.66',
-    distance: ''
+    distance: '',
   },
   {
     name: 'WASP-98 b',
     radius: '12.32',
-    distance: ''
+    distance: '',
   },
   {
     name: 'WASP-99 b',
     radius: '12.32',
-    distance: ''
+    distance: '',
   },
   {
     name: 'WD 0806-661B b',
     radius: '13.01',
-    distance: '19.20'
+    distance: '19.20',
   },
   {
     name: 'WISE 1217+16A b',
     radius: '11.20',
-    distance: '10.00'
+    distance: '10.00',
   },
   {
     name: 'WISE 1711+3500 b',
     radius: '12.74',
-    distance: '19.00'
+    distance: '19.00',
   },
   {
     name: 'WTS-1 b',
     radius: '16.69',
-    distance: '3200.00'
+    distance: '3200.00',
   },
   {
     name: 'WTS-2 b',
     radius: '14.56',
-    distance: '1000.00'
+    distance: '1000.00',
   },
   {
     name: 'XO-1 b',
     radius: '13.26',
-    distance: '200.00'
+    distance: '200.00',
   },
   {
     name: 'XO-2 b',
     radius: '10.90',
-    distance: '149.00'
+    distance: '149.00',
   },
   {
     name: 'XO-3 b',
     radius: '13.63',
-    distance: '260.00'
+    distance: '260.00',
   },
   {
     name: 'XO-4 b',
     radius: '15.01',
-    distance: '293.00'
+    distance: '293.00',
   },
   {
     name: 'XO-5 b',
     radius: '11.54',
-    distance: '255.00'
-  }
+    distance: '255.00',
+  },
 ];

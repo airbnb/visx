@@ -50,8 +50,6 @@
 
 <a id="#Hexagons__strokeWidth" name="Hexagons__strokeWidth" href="#Hexagons__strokeWidth">#</a> *Hexagons*.**strokeWidth**&lt;number&gt;  
 
-<a id="#Hexagons__width" name="Hexagons__width" href="#Hexagons__width">#</a> *Hexagons*.**width**&lt;number&gt; `required` 
-
 <h3 id="lines-">&lt;Lines /&gt;</h3>
 
 

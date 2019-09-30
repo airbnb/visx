@@ -1,26 +1,26 @@
-import { withBoundingRects, withBoundingRectsProps } from '../src/';
+import { withBoundingRects, withBoundingRectsProps } from '../src';
 
-const expectedRectShape = expect.objectContaining({
-  top: expect.any(Number),
-  right: expect.any(Number),
-  bottom: expect.any(Number),
-  left: expect.any(Number),
-  width: expect.any(Number),
-  height: expect.any(Number)
-});
+// const expectedRectShape = expect.objectContaining({
+//   top: expect.any(Number),
+//   right: expect.any(Number),
+//   bottom: expect.any(Number),
+//   left: expect.any(Number),
+//   width: expect.any(Number),
+//   height: expect.any(Number),
+// });
 
 describe('withBoundingRects()', () => {
-  beforeAll(() => {
-    // mock getBoundingClientRect
-    Element.prototype.getBoundingClientRect = jest.fn(() => ({
-      width: 100,
-      height: 100,
-      top: 0,
-      left: 0,
-      bottom: 0,
-      right: 0
-    }));
-  });
+  // beforeAll(() => {
+  //   // mock getBoundingClientRect
+  //   Element.prototype.getBoundingClientRect = jest.fn(() => ({
+  //     width: 100,
+  //     height: 100,
+  //     top: 0,
+  //     left: 0,
+  //     bottom: 0,
+  //     right: 0,
+  //   }));
+  // });
 
   test('it should be defined', () => {
     expect(withBoundingRects).toBeDefined();

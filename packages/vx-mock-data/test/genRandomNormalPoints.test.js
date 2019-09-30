@@ -11,19 +11,19 @@ describe('generators/genRandomNormalPoints', () => {
 
   test('it should default to 3x300 points', () => {
     const data = genRandomNormalPoints();
-    expect(data.length).toEqual(900);
+    expect(data).toHaveLength(900);
   });
 
   test('it should return 3 * n', () => {
     const n = 3;
     const data = genRandomNormalPoints(n);
-    expect(data.length).toEqual(9);
+    expect(data).toHaveLength(9);
   });
 
   test('it should return points with x, y, index', () => {
     const n = 3;
     const data = genRandomNormalPoints(n);
-    expect(data[0].length).toEqual(3);
+    expect(data[0]).toHaveLength(3);
     expect(data[0][0]).toBeDefined();
     expect(data[0][1]).toBeDefined();
     expect(data[0][2]).toBeDefined();

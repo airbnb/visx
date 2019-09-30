@@ -1,12 +1,15 @@
 import { Point } from '@vx/point';
 
-export default function localPoint(node, event) {
+export default function localPoint(nodeOrEvent, maybeEvent) {
   // called with no args
-  if (!node) return;
+  if (!nodeOrEvent) return;
+
+  let node = nodeOrEvent;
+  let event = maybeEvent;
 
   // called with localPoint(event)
-  if (node.target) {
-    event = node;
+  if (nodeOrEvent.target) {
+    event = nodeOrEvent;
 
     // set node to targets owner svg
     node = event.target.ownerSVGElement;
@@ -34,7 +37,7 @@ export default function localPoint(node, event) {
     point = point.matrixTransform(node.getScreenCTM().inverse());
     return new Point({
       x: point.x,
-      y: point.y
+      y: point.y,
     });
   }
 
@@ -42,6 +45,6 @@ export default function localPoint(node, event) {
   const rect = node.getBoundingClientRect();
   return new Point({
     x: clientX - rect.left - node.clientLeft,
-    y: clientY - rect.top - node.clientTop
+    y: clientY - rect.top - node.clientTop,
   });
 }

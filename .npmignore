@@ -1,0 +1,43 @@
+.DS_Store
+
+# Logs
+logs/
+*.log
+
+# Cache
+.eslintcache/
+.idea/
+.npm/
+.vscode/
+.yarnclean
+
+# Directories
+build/
+coverage/
+dist/
+public/
+node_modules/
+tmp/
+
+# Custom
+*.min.js
+*.map
+
+# Configs
+.babelrc
+.dockerignore
+.eslintignore
+.eslintrc.js
+.flowconfig
+.gitattributes
+.gitignore
+.npmrc
+.prettierignore
+.yarnc
+babel.config.js
+dangerfile.ts
+jest.config.js
+prettier.config.js
+tsconfig.eslint.json
+tsconfig.json
+webpack.config.js

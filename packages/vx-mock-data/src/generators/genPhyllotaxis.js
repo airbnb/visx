@@ -5,7 +5,7 @@ export default function genPhyllotaxis({ radius, width, height }) {
     const a = theta * i;
     return {
       x: width / 2 + r * Math.cos(a),
-      y: height / 2 + r * Math.sin(a)
+      y: height / 2 + r * Math.sin(a),
     };
   };
 }

@@ -4,11 +4,25 @@
 
 <a id="#Graticule__children" name="Graticule__children" href="#Graticule__children">#</a> *Graticule*.**children**&lt;func&gt;  
 
+<a id="#Graticule__extent" name="Graticule__extent" href="#Graticule__extent">#</a> *Graticule*.**extent**&lt;arrayOf[object Object]&gt;  
+
+<a id="#Graticule__extentMajor" name="Graticule__extentMajor" href="#Graticule__extentMajor">#</a> *Graticule*.**extentMajor**&lt;arrayOf[object Object]&gt;  
+
+<a id="#Graticule__extentMinor" name="Graticule__extentMinor" href="#Graticule__extentMinor">#</a> *Graticule*.**extentMinor**&lt;arrayOf[object Object]&gt;  
+
 <a id="#Graticule__graticule" name="Graticule__graticule" href="#Graticule__graticule">#</a> *Graticule*.**graticule**&lt;func&gt;  
 
 <a id="#Graticule__lines" name="Graticule__lines" href="#Graticule__lines">#</a> *Graticule*.**lines**&lt;func&gt;  
 
 <a id="#Graticule__outline" name="Graticule__outline" href="#Graticule__outline">#</a> *Graticule*.**outline**&lt;func&gt;  
+
+<a id="#Graticule__precision" name="Graticule__precision" href="#Graticule__precision">#</a> *Graticule*.**precision**&lt;number&gt;  
+
+<a id="#Graticule__step" name="Graticule__step" href="#Graticule__step">#</a> *Graticule*.**step**&lt;arrayOf[object Object]&gt;  
+
+<a id="#Graticule__stepMajor" name="Graticule__stepMajor" href="#Graticule__stepMajor">#</a> *Graticule*.**stepMajor**&lt;arrayOf[object Object]&gt;  
+
+<a id="#Graticule__stepMinor" name="Graticule__stepMinor" href="#Graticule__stepMinor">#</a> *Graticule*.**stepMinor**&lt;arrayOf[object Object]&gt;  
 
 <h3 id="albers-">&lt;Albers /&gt;</h3>
 
@@ -67,7 +81,15 @@ Component for all projections.
 
 <a id="#Projection__fitSize" name="Projection__fitSize" href="#Projection__fitSize">#</a> *Projection*.**fitSize**&lt;array&gt;  
 
+<a id="#Projection__graticule" name="Projection__graticule" href="#Projection__graticule">#</a> *Projection*.**graticule**&lt;object&gt;  
+
+<a id="#Projection__graticuleLines" name="Projection__graticuleLines" href="#Projection__graticuleLines">#</a> *Projection*.**graticuleLines**&lt;object&gt;  
+
+<a id="#Projection__graticuleOutline" name="Projection__graticuleOutline" href="#Projection__graticuleOutline">#</a> *Projection*.**graticuleOutline**&lt;object&gt;  
+
 <a id="#Projection__innerRef" name="Projection__innerRef" href="#Projection__innerRef">#</a> *Projection*.**innerRef**&lt;union(func|object)&gt;  
+
+<a id="#Projection__pointRadius" name="Projection__pointRadius" href="#Projection__pointRadius">#</a> *Projection*.**pointRadius**&lt;number&gt;  
 
 <a id="#Projection__precision" name="Projection__precision" href="#Projection__precision">#</a> *Projection*.**precision**&lt;number&gt;  
 

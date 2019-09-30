@@ -17,28 +17,28 @@ export { default as stackOrder, STACK_ORDERS, STACK_ORDER_NAMES } from './util/s
 export { degreesToRadians } from './util/trigonometry';
 export {
   default as LinkHorizontal,
-  pathHorizontalDiagonal
+  pathHorizontalDiagonal,
 } from './shapes/link/diagonal/LinkHorizontal';
 export { default as LinkVertical, pathVerticalDiagonal } from './shapes/link/diagonal/LinkVertical';
 export { default as LinkRadial, pathRadialDiagonal } from './shapes/link/diagonal/LinkRadial';
 export {
   default as LinkHorizontalCurve,
-  pathHorizontalCurve
+  pathHorizontalCurve,
 } from './shapes/link/curve/LinkHorizontalCurve';
 export {
   default as LinkVerticalCurve,
-  pathVerticalCurve
+  pathVerticalCurve,
 } from './shapes/link/curve/LinkVerticalCurve';
 export { default as LinkRadialCurve, pathRadialCurve } from './shapes/link/curve/LinkRadialCurve';
 export {
   default as LinkHorizontalLine,
-  pathHorizontalLine
+  pathHorizontalLine,
 } from './shapes/link/line/LinkHorizontalLine';
 export { default as LinkVerticalLine, pathVerticalLine } from './shapes/link/line/LinkVerticalLine';
 export { default as LinkRadialLine, pathRadialLine } from './shapes/link/line/LinkRadialLine';
 export {
   default as LinkHorizontalStep,
-  pathHorizontalStep
+  pathHorizontalStep,
 } from './shapes/link/step/LinkHorizontalStep';
 export { default as LinkVerticalStep, pathVerticalStep } from './shapes/link/step/LinkVerticalStep';
 export { default as LinkRadialStep, pathRadialStep } from './shapes/link/step/LinkRadialStep';

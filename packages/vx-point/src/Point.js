@@ -7,7 +7,7 @@ export default class Point {
   value() {
     return {
       x: this.x,
-      y: this.y
+      y: this.y,
     };
   }
 

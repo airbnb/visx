@@ -9,7 +9,7 @@ const emptyRect = {
   bottom: 0,
   left: 0,
   width: 0,
-  height: 0
+  height: 0,
 };
 
 const rectShape = PropTypes.shape({
@@ -18,13 +18,13 @@ const rectShape = PropTypes.shape({
   bottom: PropTypes.number.isRequired,
   left: PropTypes.number.isRequired,
   width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired
+  height: PropTypes.number.isRequired,
 });
 
 export const withBoundingRectsProps = {
   getRects: PropTypes.func,
   rect: rectShape,
-  parentRect: rectShape
+  parentRect: rectShape,
 };
 
 export default function withBoundingRects(BaseComponent) {
@@ -33,7 +33,7 @@ export default function withBoundingRects(BaseComponent) {
       super(props);
       this.state = {
         rect: undefined,
-        parentRect: undefined
+        parentRect: undefined,
       };
       this.getRects = this.getRects.bind(this);
     }
@@ -46,8 +46,8 @@ export default function withBoundingRects(BaseComponent) {
     getRects() {
       if (!this.node) return this.state;
 
-      const node = this.node;
-      const parentNode = this.node.parentNode;
+      const { node } = this;
+      const { parentNode } = node;
 
       const rect = node.getBoundingClientRect ? node.getBoundingClientRect() : emptyRect;
 

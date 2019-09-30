@@ -9,7 +9,7 @@ describe('generators/genPhyllotaxis', () => {
     const pointFn = genPhyllotaxis({
       radius: 10,
       width: 200,
-      height: 200
+      height: 200,
     });
     expect(typeof pointFn).toEqual('function');
   });
@@ -18,7 +18,7 @@ describe('generators/genPhyllotaxis', () => {
     const pointFn = genPhyllotaxis({
       radius: 10,
       width: 200,
-      height: 200
+      height: 200,
     });
     const point = pointFn(3);
     const expected = { x: 110, y: 113 };

@@ -1,6 +1,6 @@
 #### :boom: Breaking Changes
 
-- 
+-
 
 #### :rocket: Enhancements
 
@@ -12,7 +12,7 @@
 
 #### :bug: Bug Fix
 
-- 
+-
 
 #### :house: Internal
 

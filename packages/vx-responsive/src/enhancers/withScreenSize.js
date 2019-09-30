@@ -1,5 +1,6 @@
 import debounce from 'lodash/debounce';
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default function withScreenSize(BaseComponent) {
   class WrappedComponent extends React.Component {
@@ -8,11 +9,11 @@ export default function withScreenSize(BaseComponent) {
 
       this.state = {
         screenWidth: null,
-        screenHeight: null
+        screenHeight: null,
       };
 
       this.handleResize = debounce(this.resize.bind(this), props.windowResizeDebounceTime).bind(
-        this
+        this,
       );
     }
 
@@ -25,11 +26,11 @@ export default function withScreenSize(BaseComponent) {
       window.removeEventListener('resize', this.handleResize, false);
     }
 
-    resize(event) {
-      this.setState((prevState, props) => {
+    resize(/** event */) {
+      this.setState((/** prevState, props */) => {
         return {
           screenWidth: window.innerWidth,
-          screenHeight: window.innerHeight
+          screenHeight: window.innerHeight,
         };
       });
     }
@@ -43,8 +44,12 @@ export default function withScreenSize(BaseComponent) {
     }
   }
 
+  WrappedComponent.propTypes = {
+    windowResizeDebounceTime: PropTypes.number,
+  };
+
   WrappedComponent.defaultProps = {
-    windowResizeDebounceTime: 300
+    windowResizeDebounceTime: 300,
   };
 
   return WrappedComponent;

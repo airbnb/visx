@@ -2,13 +2,13 @@
 
 const jetpack = require('fs-jetpack'); // filesystem
 const marked = require('marked'); // markdown parser
-const { DOCS, PACKAGES, README, ASSETS, CSS_PATH } = require('./constants.js');
+const { DOCS, PACKAGES, README } = require('./constants.js');
 
 // Stop someone from running the script from it's directory
 const ROOT = process.cwd();
 if (ROOT === __dirname) {
-  throw `Oops! It looks like you might not be running this from the project's
-  root directory.`;
+  throw new Error(`Oops! It looks like you might not be running this from the project's
+  root directory.`);
 }
 
 /**
@@ -31,7 +31,7 @@ function getReadmeText(pkg) {
   if (generatedDoc) pkgDir.write('Readme.md', generatedDoc);
   const text = pkgDir.read(README);
   if (text) return text;
-  else return ''; // don't return "undefined"
+  return ''; // don't return "undefined"
 }
 
 /**
@@ -116,7 +116,7 @@ function readDocs() {
 function writeDocs(docs) {
   const filePointer = atDocsDirectory();
 
-  docs.forEach(({ pkg, html }, i) => {
+  docs.forEach(({ pkg, html }) => {
     const fileName = `${pkg}.html`;
     filePointer.write(fileName, html);
   });

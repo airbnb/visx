@@ -6,7 +6,7 @@ export default function labelTransform({
   orientation,
   range,
   tickLabelFontSize,
-  tickLength
+  tickLength,
 }) {
   const sign = orientation === ORIENT.left || orientation === ORIENT.top ? -1 : 1;
 

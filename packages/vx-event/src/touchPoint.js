@@ -10,12 +10,12 @@ export default function touchPoint(node, event) {
     point = point.matrixTransform(node.getScreenCTM().inverse());
     return new Point({
       x: point.x,
-      y: point.y
+      y: point.y,
     });
   }
   const rect = node.getBoundingClientRect();
   return new Point({
     x: event.changedTouches[0].clientX - rect.left - node.clientLeft,
-    y: event.changedTouches[0].clientY - rect.top - node.clientTop
+    y: event.changedTouches[0].clientY - rect.top - node.clientTop,
   });
 }

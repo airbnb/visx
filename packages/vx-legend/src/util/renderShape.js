@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import ShapeRect from '../shapes/Rect';
 import ShapeCircle from '../shapes/Circle';
@@ -10,7 +11,7 @@ export default function renderShape({
   width,
   height,
   label,
-  shapeStyle = x => undefined
+  shapeStyle = (/** x */) => undefined,
 }) {
   const props = {
     width,
@@ -18,7 +19,7 @@ export default function renderShape({
     label,
     fill: fill({ ...label }),
     size: size({ ...label }),
-    style: shapeStyle({ ...label })
+    style: shapeStyle({ ...label }),
   };
   if (typeof shape === 'string') {
     if (shape === 'rect') {

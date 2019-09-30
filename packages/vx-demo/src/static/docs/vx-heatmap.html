@@ -1,0 +1,128 @@
+
+  <html>
+    <head>
+      <link rel="stylesheet" type="text/css" href="../doc_styles.css">
+    </head>
+    <div class="nav-container">
+      <div class="nav">
+        <div class="nav-inner">
+          <div class="logo"></div>
+          <ul>
+          <li class="Item">
+            <a href="/">Home</a>
+          </li>
+          <li class="Item">
+            <a href="/docs">Docs</a>
+          </li>
+          <li class="Item">
+            <a href="https://medium.com/vx-code">Guides</a>
+          </li>
+          <li class="Item">
+            <a href="/gallery">Gallery</a>
+          </li>
+          </ul>
+          <a class="github-button" href="https://github.com/hshoff/vx" data-show-count="true" aria-label="Star hshoff/vx on GitHub">Star</a>
+          </div>
+        </div>
+    </div>
+    <div class="doc-container">
+      <div class="doc-nav">
+        <ul>
+        <li>Packages</li>
+        <li><a href="/static/docs/vx-annotation.html">@vx/annotation</a></li><li><a href="/static/docs/vx-axis.html">@vx/axis</a></li><li><a href="/static/docs/vx-bounds.html">@vx/bounds</a></li><li><a href="/static/docs/vx-boxplot.html">@vx/boxplot</a></li><li><a href="/static/docs/vx-brush.html">@vx/brush</a></li><li><a href="/static/docs/vx-chord.html">@vx/chord</a></li><li><a href="/static/docs/vx-clip-path.html">@vx/clip-path</a></li><li><a href="/static/docs/vx-curve.html">@vx/curve</a></li><li><a href="/static/docs/vx-demo.html">@vx/demo</a></li><li><a href="/static/docs/vx-drag.html">@vx/drag</a></li><li><a href="/static/docs/vx-event.html">@vx/event</a></li><li><a href="/static/docs/vx-geo.html">@vx/geo</a></li><li><a href="/static/docs/vx-glyph.html">@vx/glyph</a></li><li><a href="/static/docs/vx-gradient.html">@vx/gradient</a></li><li><a href="/static/docs/vx-grid.html">@vx/grid</a></li><li><a href="/static/docs/vx-group.html">@vx/group</a></li><li><a href="/static/docs/vx-heatmap.html">@vx/heatmap</a></li><li><a href="/static/docs/vx-hierarchy.html">@vx/hierarchy</a></li><li><a href="/static/docs/vx-legend.html">@vx/legend</a></li><li><a href="/static/docs/vx-marker.html">@vx/marker</a></li><li><a href="/static/docs/vx-mock-data.html">@vx/mock-data</a></li><li><a href="/static/docs/vx-network.html">@vx/network</a></li><li><a href="/static/docs/vx-pattern.html">@vx/pattern</a></li><li><a href="/static/docs/vx-point.html">@vx/point</a></li><li><a href="/static/docs/vx-responsive.html">@vx/responsive</a></li><li><a href="/static/docs/vx-scale.html">@vx/scale</a></li><li><a href="/static/docs/vx-shape.html">@vx/shape</a></li><li><a href="/static/docs/vx-stats.html">@vx/stats</a></li><li><a href="/static/docs/vx-text.html">@vx/text</a></li><li><a href="/static/docs/vx-threshold.html">@vx/threshold</a></li><li><a href="/static/docs/vx-tooltip.html">@vx/tooltip</a></li><li><a href="/static/docs/vx-voronoi.html">@vx/voronoi</a></li><li><a href="/static/docs/vx-vx.html">@vx/vx</a></li><li><a href="/static/docs/vx-zoom.html">@vx/zoom</a></li>
+        </ul>
+      </div>
+      <div class="content">
+      <h1 id="-vx-heatmap">@vx/heatmap</h1>
+<p><a title="@vx/heatmap npm downloads" href="https://www.npmjs.com/package/@vx/heatmap">
+  <img src="https://img.shields.io/npm/dm/@vx/heatmap.svg?style=flat-square" />
+</a></p>
+<p>A Heatmap is a series of shapes where the data values are represented as colors.</p>
+<h2 id="example">Example</h2>
+<p><img src="http://i.imgur.com/OzSD3X3.png" alt="Example heatmap"></p>
+<pre><code class="lang-js">&lt;HeatmapRect
+  data={data}
+  xScale={xScale}
+  yScale={yScale}
+  colorScale={colorScale}
+  opacityScale={opacityScale}
+  binWidth={bWidth}
+  binHeight={bWidth}
+  step={dStep}
+  gap={0}
+/&gt;
+</code></pre>
+<p>Heatmaps generally require structure that has this shape:</p>
+<pre><code class="lang-js">[
+  {
+    bin: 1,
+    bins: [
+      {
+        count: 20,
+        bin: 23
+      }
+    ]
+  }
+];
+</code></pre>
+<p>However, you&#39;re welcome to use your own structure by defining <code>x</code>, <code>y</code>, <code>z</code> accessors such as:</p>
+<pre><code class="lang-js">// Example accessors
+const x = d =&gt; d.myBin;
+const y = d =&gt; d.myBins;
+const z = d =&gt; d.myCount;
+
+// Example scale with an accessors
+const xScale = scaleLinear({
+  range: [0, xMax],
+  domain: extent(data, x)
+});
+</code></pre>
+<h2 id="installation">Installation</h2>
+<pre><code>npm install --save @vx/heatmap
+</code></pre><h2 id="components">Components</h2>
+<ul>
+<li><a href="#heatmapcircle-">HeatmapCircle</a></li>
+<li><a href="#heatmaprect-">HeatmapRect</a></li>
+</ul>
+<h2 id="api">API</h2>
+<h3 id="heatmapcircle-">&lt;HeatmapCircle /&gt;</h3>
+
+
+
+<p><a id="#HeatmapCircle__bins" name="HeatmapCircle__bins" href="#HeatmapCircle__bins">#</a> <em>HeatmapCircle</em>.<strong>bins</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.bins</td></td></table></p>
+<p><a id="#HeatmapCircle__children" name="HeatmapCircle__children" href="#HeatmapCircle__children">#</a> <em>HeatmapCircle</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#HeatmapCircle__className" name="HeatmapCircle__className" href="#HeatmapCircle__className">#</a> <em>HeatmapCircle</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#HeatmapCircle__colorScale" name="HeatmapCircle__colorScale" href="#HeatmapCircle__colorScale">#</a> <em>HeatmapCircle</em>.<strong>colorScale</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>(/*<em> d </em>/) =&gt; undefined</td></td></table></p>
+<p><a id="#HeatmapCircle__count" name="HeatmapCircle__count" href="#HeatmapCircle__count">#</a> <em>HeatmapCircle</em>.<strong>count</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.count</td></td></table></p>
+<p><a id="#HeatmapCircle__data" name="HeatmapCircle__data" href="#HeatmapCircle__data">#</a> <em>HeatmapCircle</em>.<strong>data</strong>&lt;array&gt;  </p>
+<p><a id="#HeatmapCircle__gap" name="HeatmapCircle__gap" href="#HeatmapCircle__gap">#</a> <em>HeatmapCircle</em>.<strong>gap</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>1</td></td></table></p>
+<p><a id="#HeatmapCircle__left" name="HeatmapCircle__left" href="#HeatmapCircle__left">#</a> <em>HeatmapCircle</em>.<strong>left</strong>&lt;number&gt;  </p>
+<p><a id="#HeatmapCircle__opacityScale" name="HeatmapCircle__opacityScale" href="#HeatmapCircle__opacityScale">#</a> <em>HeatmapCircle</em>.<strong>opacityScale</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>(/*<em> d </em>/) =&gt; 1</td></td></table></p>
+<p><a id="#HeatmapCircle__radius" name="HeatmapCircle__radius" href="#HeatmapCircle__radius">#</a> <em>HeatmapCircle</em>.<strong>radius</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>6</td></td></table></p>
+<p><a id="#HeatmapCircle__top" name="HeatmapCircle__top" href="#HeatmapCircle__top">#</a> <em>HeatmapCircle</em>.<strong>top</strong>&lt;number&gt;  </p>
+<p><a id="#HeatmapCircle__xScale" name="HeatmapCircle__xScale" href="#HeatmapCircle__xScale">#</a> <em>HeatmapCircle</em>.<strong>xScale</strong>&lt;func&gt; <code>required</code> </p>
+<p><a id="#HeatmapCircle__yScale" name="HeatmapCircle__yScale" href="#HeatmapCircle__yScale">#</a> <em>HeatmapCircle</em>.<strong>yScale</strong>&lt;func&gt; <code>required</code> </p>
+<h3 id="heatmaprect-">&lt;HeatmapRect /&gt;</h3>
+
+
+
+<p><a id="#HeatmapRect__binHeight" name="HeatmapRect__binHeight" href="#HeatmapRect__binHeight">#</a> <em>HeatmapRect</em>.<strong>binHeight</strong>&lt;number&gt;  </p>
+<p><a id="#HeatmapRect__binWidth" name="HeatmapRect__binWidth" href="#HeatmapRect__binWidth">#</a> <em>HeatmapRect</em>.<strong>binWidth</strong>&lt;number&gt;  </p>
+<p><a id="#HeatmapRect__bins" name="HeatmapRect__bins" href="#HeatmapRect__bins">#</a> <em>HeatmapRect</em>.<strong>bins</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.bins</td></td></table></p>
+<p><a id="#HeatmapRect__children" name="HeatmapRect__children" href="#HeatmapRect__children">#</a> <em>HeatmapRect</em>.<strong>children</strong>&lt;func&gt;  </p>
+<p><a id="#HeatmapRect__className" name="HeatmapRect__className" href="#HeatmapRect__className">#</a> <em>HeatmapRect</em>.<strong>className</strong>&lt;string&gt;  </p>
+<p><a id="#HeatmapRect__colorScale" name="HeatmapRect__colorScale" href="#HeatmapRect__colorScale">#</a> <em>HeatmapRect</em>.<strong>colorScale</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>(/*<em> d </em>/) =&gt; undefined</td></td></table></p>
+<p><a id="#HeatmapRect__count" name="HeatmapRect__count" href="#HeatmapRect__count">#</a> <em>HeatmapRect</em>.<strong>count</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d =&gt; d.count</td></td></table></p>
+<p><a id="#HeatmapRect__data" name="HeatmapRect__data" href="#HeatmapRect__data">#</a> <em>HeatmapRect</em>.<strong>data</strong>&lt;array&gt;  </p>
+<p><a id="#HeatmapRect__gap" name="HeatmapRect__gap" href="#HeatmapRect__gap">#</a> <em>HeatmapRect</em>.<strong>gap</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>1</td></td></table></p>
+<p><a id="#HeatmapRect__left" name="HeatmapRect__left" href="#HeatmapRect__left">#</a> <em>HeatmapRect</em>.<strong>left</strong>&lt;number&gt;  </p>
+<p><a id="#HeatmapRect__opacityScale" name="HeatmapRect__opacityScale" href="#HeatmapRect__opacityScale">#</a> <em>HeatmapRect</em>.<strong>opacityScale</strong>&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>(/*<em> d </em>/) =&gt; 1</td></td></table></p>
+<p><a id="#HeatmapRect__top" name="HeatmapRect__top" href="#HeatmapRect__top">#</a> <em>HeatmapRect</em>.<strong>top</strong>&lt;number&gt;  </p>
+<p><a id="#HeatmapRect__x0" name="HeatmapRect__x0" href="#HeatmapRect__x0">#</a> <em>HeatmapRect</em>.<strong>x0</strong>&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table></p>
+<p><a id="#HeatmapRect__xScale" name="HeatmapRect__xScale" href="#HeatmapRect__xScale">#</a> <em>HeatmapRect</em>.<strong>xScale</strong>&lt;func&gt;  </p>
+<p><a id="#HeatmapRect__yScale" name="HeatmapRect__yScale" href="#HeatmapRect__yScale">#</a> <em>HeatmapRect</em>.<strong>yScale</strong>&lt;func&gt;  </p>
+
+      </div>
+    </div>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+  </html>

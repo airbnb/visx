@@ -27,7 +27,7 @@ describe('scaleBand', () => {
     const padding = 0.75;
     const range = [0, 1];
     const domain = [0, 350];
-    const scale = scaleBand({ padding, range, padding });
+    const scale = scaleBand({ padding, range, domain });
     expect(scale.paddingInner()).toEqual(padding);
     expect(scale.paddingOuter()).toEqual(padding);
   });

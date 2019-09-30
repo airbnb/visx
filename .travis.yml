@@ -1,10 +1,22 @@
 git:
   depth: 10
 language: node_js
-node_js:
-  - "8"
+node_js: '12'
+before_install:
+  - curl -o- -L https://yarnpkg.com/install.sh | bash
+  - export PATH=$HOME/.yarn/bin:$PATH
+install:
+  - yarn install --ignore-engines
+before_script:
+  - yarn run build
+matrix:
+  fast_finish: true
+jobs:
+  include:
+    - name: Test
+      script: yarn run jest -w 4
+    - name: Lint
+      script: yarn run lint
 cache:
-  directories:
-    - node_modules
-script: travis_wait 30 npm test
-after_script: "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
+  yarn: true
+after_script: 'cat ./coverage/lcov.info | ./node_modules/.bin/coveralls'

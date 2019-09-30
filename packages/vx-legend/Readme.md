@@ -93,7 +93,7 @@ npm install --save @vx/legend
       datum: d,
       index: i,
       text: `${labelFormat(d, i)}`,
-      value: scale(d)
+      value: scale(d),
     };
   };
 }</td></td></table>
@@ -113,7 +113,7 @@ npm install --save @vx/legend
 <a id="#Legend__size" name="Legend__size" href="#Legend__size">#</a> *Legend*.**size**&lt;any&gt;  <table><tr><td><strong>Default</strong></td><td>valueOrIdentity</td></td></table>
 
 <a id="#Legend__style" name="Legend__style" href="#Legend__style">#</a> *Legend*.**style**&lt;any&gt;  <table><tr><td><strong>Default</strong></td><td>{
-  display: 'flex'
+  display: 'flex',
 }</td></td></table>
 
 <h3 id="legenditem-">&lt;LegendItem /&gt;</h3>
@@ -124,7 +124,7 @@ npm install --save @vx/legend
 
 <a id="#LegendItem__children" name="LegendItem__children" href="#LegendItem__children">#</a> *LegendItem*.**children**&lt;any&gt;  
 
-<a id="#LegendItem__display" name="LegendItem__display" href="#LegendItem__display">#</a> *LegendItem*.**display**  <table><tr><td><strong>Default</strong></td><td>'flex'</td></td></table>
+<a id="#LegendItem__display" name="LegendItem__display" href="#LegendItem__display">#</a> *LegendItem*.**display**&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>'flex'</td></td></table>
 
 <a id="#LegendItem__flexDirection" name="LegendItem__flexDirection" href="#LegendItem__flexDirection">#</a> *LegendItem*.**flexDirection**&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>'row'</td></td></table>
 
@@ -176,7 +176,7 @@ npm install --save @vx/legend
   return (d, i) => {
     return {
       text: `${labelFormat(d, i)}`,
-      value: scale(d)
+      value: scale(d),
     };
   };
 }</td></td></table>
@@ -199,7 +199,7 @@ npm install --save @vx/legend
       datum: d,
       index: i,
       text: `${labelFormat(d, i)}`,
-      value: scale(d)
+      value: scale(d),
     };
   };
 }</td></td></table>
@@ -224,20 +224,24 @@ npm install --save @vx/legend
 
 
 
-<a id="#Size__labelFormat" name="Size__labelFormat" href="#Size__labelFormat">#</a> *Size*.**labelFormat**  <table><tr><td><strong>Default</strong></td><td>x => x</td></td></table>
+<a id="#Size__domain" name="Size__domain" href="#Size__domain">#</a> *Size*.**domain**&lt;array&gt;  
 
-<a id="#Size__labelTransform" name="Size__labelTransform" href="#Size__labelTransform">#</a> *Size*.**labelTransform**  <table><tr><td><strong>Default</strong></td><td>function defaultTransform({ scale, labelFormat }) {
+<a id="#Size__labelFormat" name="Size__labelFormat" href="#Size__labelFormat">#</a> *Size*.**labelFormat**&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>x => x</td></td></table>
+
+<a id="#Size__labelTransform" name="Size__labelTransform" href="#Size__labelTransform">#</a> *Size*.**labelTransform**&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>function defaultTransform({ scale, labelFormat }) {
   return (d, i) => {
     return {
       text: `${labelFormat(d, i)}`,
       value: scale(d),
       datum: d,
-      index: i
+      index: i,
     };
   };
 }</td></td></table>
 
-<a id="#Size__steps" name="Size__steps" href="#Size__steps">#</a> *Size*.**steps**  <table><tr><td><strong>Default</strong></td><td>5</td></td></table>
+<a id="#Size__scale" name="Size__scale" href="#Size__scale">#</a> *Size*.**scale**&lt;func&gt; `required` 
+
+<a id="#Size__steps" name="Size__steps" href="#Size__steps">#</a> *Size*.**steps**&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>5</td></td></table>
 
 <h3 id="threshold-">&lt;Threshold /&gt;</h3>
 

@@ -129,6 +129,8 @@ npm install --save @vx/shape
 
 <a id="#AreaClosed__x1" name="AreaClosed__x1" href="#AreaClosed__x1">#</a> *AreaClosed*.**x1**&lt;union(func|number)&gt;  
 
+<a id="#AreaClosed__y" name="AreaClosed__y" href="#AreaClosed__y">#</a> *AreaClosed*.**y**&lt;union(func|number)&gt;  
+
 <a id="#AreaClosed__y0" name="AreaClosed__y0" href="#AreaClosed__y0">#</a> *AreaClosed*.**y0**&lt;union(func|number)&gt;  
 
 <a id="#AreaClosed__y1" name="AreaClosed__y1" href="#AreaClosed__y1">#</a> *AreaClosed*.**y1**&lt;union(func|number)&gt;  
@@ -321,7 +323,7 @@ A scale function that retuns the y position of the bar within a bar group. `valu
 
 <a id="#BarGroupHorizontal__width" name="BarGroupHorizontal__width" href="#BarGroupHorizontal__width">#</a> *BarGroupHorizontal*.**width**&lt;number&gt; `required` 
 
-<a id="#BarGroupHorizontal__x" name="BarGroupHorizontal__x" href="#BarGroupHorizontal__x">#</a> *BarGroupHorizontal*.**x**&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>val => 0</td></td></table>
+<a id="#BarGroupHorizontal__x" name="BarGroupHorizontal__x" href="#BarGroupHorizontal__x">#</a> *BarGroupHorizontal*.**x**&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>(/** val */) => 0</td></td></table>
 
 <a id="#BarGroupHorizontal__xScale" name="BarGroupHorizontal__xScale" href="#BarGroupHorizontal__xScale">#</a> *BarGroupHorizontal*.**xScale**&lt;func&gt; `required` 
 
@@ -413,7 +415,7 @@ A scale function that retuns the y position of the bar within a bar group. `valu
 
 <a id="#Line__className" name="Line__className" href="#Line__className">#</a> *Line*.**className**&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>''</td></td></table>
 
-<a id="#Line__fill" name="Line__fill" href="#Line__fill">#</a> *Line*.**fill**  <table><tr><td><strong>Default</strong></td><td>'transparent'</td></td></table>
+<a id="#Line__fill" name="Line__fill" href="#Line__fill">#</a> *Line*.**fill**&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>'transparent'</td></td></table>
 
 <a id="#Line__from" name="Line__from" href="#Line__from">#</a> *Line*.**from**&lt;shape[object Object]&gt;  <table><tr><td><strong>Default</strong></td><td>new Point({ x: 0, y: 0 })</td></td></table>
 
@@ -425,13 +427,17 @@ A scale function that retuns the y position of the bar within a bar group. `valu
 
 
 
+<a id="#LinePath__children" name="LinePath__children" href="#LinePath__children">#</a> *LinePath*.**children**&lt;func&gt;  
+
+<a id="#LinePath__className" name="LinePath__className" href="#LinePath__className">#</a> *LinePath*.**className**&lt;string&gt;  
+
 <a id="#LinePath__curve" name="LinePath__curve" href="#LinePath__curve">#</a> *LinePath*.**curve**&lt;func&gt;  
 
 <a id="#LinePath__data" name="LinePath__data" href="#LinePath__data">#</a> *LinePath*.**data**&lt;array&gt;  
 
 <a id="#LinePath__defined" name="LinePath__defined" href="#LinePath__defined">#</a> *LinePath*.**defined**&lt;union(func|bool)&gt;  <table><tr><td><strong>Default</strong></td><td>() => true</td></td></table>
 
-<a id="#LinePath__fill" name="LinePath__fill" href="#LinePath__fill">#</a> *LinePath*.**fill**  <table><tr><td><strong>Default</strong></td><td>'transparent'</td></td></table>
+<a id="#LinePath__fill" name="LinePath__fill" href="#LinePath__fill">#</a> *LinePath*.**fill**&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>'transparent'</td></td></table>
 
 <a id="#LinePath__innerRef" name="LinePath__innerRef" href="#LinePath__innerRef">#</a> *LinePath*.**innerRef**&lt;union(func|object)&gt;  
 
@@ -445,13 +451,17 @@ A scale function that retuns the y position of the bar within a bar group. `valu
 
 <a id="#LineRadial__angle" name="LineRadial__angle" href="#LineRadial__angle">#</a> *LineRadial*.**angle**&lt;union(func|number)&gt;  
 
+<a id="#LineRadial__children" name="LineRadial__children" href="#LineRadial__children">#</a> *LineRadial*.**children**&lt;func&gt;  
+
 <a id="#LineRadial__className" name="LineRadial__className" href="#LineRadial__className">#</a> *LineRadial*.**className**&lt;string&gt;  
 
 <a id="#LineRadial__curve" name="LineRadial__curve" href="#LineRadial__curve">#</a> *LineRadial*.**curve**&lt;func&gt;  
 
 <a id="#LineRadial__data" name="LineRadial__data" href="#LineRadial__data">#</a> *LineRadial*.**data**&lt;any&gt;  
 
-<a id="#LineRadial__fill" name="LineRadial__fill" href="#LineRadial__fill">#</a> *LineRadial*.**fill**  <table><tr><td><strong>Default</strong></td><td>'transparent'</td></td></table>
+<a id="#LineRadial__defined" name="LineRadial__defined" href="#LineRadial__defined">#</a> *LineRadial*.**defined**&lt;union(func|bool)&gt;  
+
+<a id="#LineRadial__fill" name="LineRadial__fill" href="#LineRadial__fill">#</a> *LineRadial*.**fill**&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>'transparent'</td></td></table>
 
 <a id="#LineRadial__innerRef" name="LineRadial__innerRef" href="#LineRadial__innerRef">#</a> *LineRadial*.**innerRef**&lt;union(func|object)&gt;  
 
@@ -557,6 +567,10 @@ A scale function that retuns the y position of the bar within a bar group. `valu
 
 <a id="#LinkHorizontalCurve__children" name="LinkHorizontalCurve__children" href="#LinkHorizontalCurve__children">#</a> *LinkHorizontalCurve*.**children**&lt;func&gt;  
 
+<a id="#LinkHorizontalCurve__className" name="LinkHorizontalCurve__className" href="#LinkHorizontalCurve__className">#</a> *LinkHorizontalCurve*.**className**&lt;string&gt;  
+
+<a id="#LinkHorizontalCurve__data" name="LinkHorizontalCurve__data" href="#LinkHorizontalCurve__data">#</a> *LinkHorizontalCurve*.**data**&lt;any&gt;  
+
 <a id="#LinkHorizontalCurve__innerRef" name="LinkHorizontalCurve__innerRef" href="#LinkHorizontalCurve__innerRef">#</a> *LinkHorizontalCurve*.**innerRef**&lt;union(func|object)&gt;  
 
 <a id="#LinkHorizontalCurve__path" name="LinkHorizontalCurve__path" href="#LinkHorizontalCurve__path">#</a> *LinkHorizontalCurve*.**path**&lt;func&gt;  
@@ -576,6 +590,10 @@ A scale function that retuns the y position of the bar within a bar group. `valu
 
 
 <a id="#LinkRadialCurve__children" name="LinkRadialCurve__children" href="#LinkRadialCurve__children">#</a> *LinkRadialCurve*.**children**&lt;func&gt;  
+
+<a id="#LinkRadialCurve__className" name="LinkRadialCurve__className" href="#LinkRadialCurve__className">#</a> *LinkRadialCurve*.**className**&lt;string&gt;  
+
+<a id="#LinkRadialCurve__data" name="LinkRadialCurve__data" href="#LinkRadialCurve__data">#</a> *LinkRadialCurve*.**data**&lt;any&gt;  
 
 <a id="#LinkRadialCurve__innerRef" name="LinkRadialCurve__innerRef" href="#LinkRadialCurve__innerRef">#</a> *LinkRadialCurve*.**innerRef**&lt;union(func|object)&gt;  
 
@@ -597,6 +615,10 @@ A scale function that retuns the y position of the bar within a bar group. `valu
 
 <a id="#LinkVerticalCurve__children" name="LinkVerticalCurve__children" href="#LinkVerticalCurve__children">#</a> *LinkVerticalCurve*.**children**&lt;func&gt;  
 
+<a id="#LinkVerticalCurve__className" name="LinkVerticalCurve__className" href="#LinkVerticalCurve__className">#</a> *LinkVerticalCurve*.**className**&lt;string&gt;  
+
+<a id="#LinkVerticalCurve__data" name="LinkVerticalCurve__data" href="#LinkVerticalCurve__data">#</a> *LinkVerticalCurve*.**data**&lt;any&gt;  
+
 <a id="#LinkVerticalCurve__innerRef" name="LinkVerticalCurve__innerRef" href="#LinkVerticalCurve__innerRef">#</a> *LinkVerticalCurve*.**innerRef**&lt;union(func|object)&gt;  
 
 <a id="#LinkVerticalCurve__path" name="LinkVerticalCurve__path" href="#LinkVerticalCurve__path">#</a> *LinkVerticalCurve*.**path**&lt;func&gt;  
@@ -616,6 +638,10 @@ A scale function that retuns the y position of the bar within a bar group. `valu
 
 
 <a id="#LinkHorizontal__children" name="LinkHorizontal__children" href="#LinkHorizontal__children">#</a> *LinkHorizontal*.**children**&lt;func&gt;  
+
+<a id="#LinkHorizontal__className" name="LinkHorizontal__className" href="#LinkHorizontal__className">#</a> *LinkHorizontal*.**className**&lt;string&gt;  
+
+<a id="#LinkHorizontal__data" name="LinkHorizontal__data" href="#LinkHorizontal__data">#</a> *LinkHorizontal*.**data**&lt;any&gt;  
 
 <a id="#LinkHorizontal__innerRef" name="LinkHorizontal__innerRef" href="#LinkHorizontal__innerRef">#</a> *LinkHorizontal*.**innerRef**&lt;union(func|object)&gt;  
 
@@ -637,6 +663,10 @@ A scale function that retuns the y position of the bar within a bar group. `valu
 
 <a id="#LinkRadial__children" name="LinkRadial__children" href="#LinkRadial__children">#</a> *LinkRadial*.**children**&lt;func&gt;  
 
+<a id="#LinkRadial__className" name="LinkRadial__className" href="#LinkRadial__className">#</a> *LinkRadial*.**className**&lt;string&gt;  
+
+<a id="#LinkRadial__data" name="LinkRadial__data" href="#LinkRadial__data">#</a> *LinkRadial*.**data**&lt;any&gt;  
+
 <a id="#LinkRadial__innerRef" name="LinkRadial__innerRef" href="#LinkRadial__innerRef">#</a> *LinkRadial*.**innerRef**&lt;union(func|object)&gt;  
 
 <a id="#LinkRadial__path" name="LinkRadial__path" href="#LinkRadial__path">#</a> *LinkRadial*.**path**&lt;func&gt;  
@@ -650,6 +680,12 @@ A scale function that retuns the y position of the bar within a bar group. `valu
 <h3 id="linkvertical-">&lt;LinkVertical /&gt;</h3>
 
 
+
+<a id="#LinkVertical__children" name="LinkVertical__children" href="#LinkVertical__children">#</a> *LinkVertical*.**children**&lt;func&gt;  
+
+<a id="#LinkVertical__className" name="LinkVertical__className" href="#LinkVertical__className">#</a> *LinkVertical*.**className**&lt;string&gt;  
+
+<a id="#LinkVertical__data" name="LinkVertical__data" href="#LinkVertical__data">#</a> *LinkVertical*.**data**&lt;any&gt;  
 
 <a id="#LinkVertical__innerRef" name="LinkVertical__innerRef" href="#LinkVertical__innerRef">#</a> *LinkVertical*.**innerRef**&lt;union(func|object)&gt;  
 
@@ -669,6 +705,10 @@ A scale function that retuns the y position of the bar within a bar group. `valu
 
 <a id="#LinkHorizontalLine__children" name="LinkHorizontalLine__children" href="#LinkHorizontalLine__children">#</a> *LinkHorizontalLine*.**children**&lt;func&gt;  
 
+<a id="#LinkHorizontalLine__className" name="LinkHorizontalLine__className" href="#LinkHorizontalLine__className">#</a> *LinkHorizontalLine*.**className**&lt;string&gt;  
+
+<a id="#LinkHorizontalLine__data" name="LinkHorizontalLine__data" href="#LinkHorizontalLine__data">#</a> *LinkHorizontalLine*.**data**&lt;any&gt;  
+
 <a id="#LinkHorizontalLine__innerRef" name="LinkHorizontalLine__innerRef" href="#LinkHorizontalLine__innerRef">#</a> *LinkHorizontalLine*.**innerRef**&lt;union(func|object)&gt;  
 
 <a id="#LinkHorizontalLine__path" name="LinkHorizontalLine__path" href="#LinkHorizontalLine__path">#</a> *LinkHorizontalLine*.**path**&lt;func&gt;  
@@ -686,6 +726,10 @@ A scale function that retuns the y position of the bar within a bar group. `valu
 
 
 <a id="#LinkRadialLine__children" name="LinkRadialLine__children" href="#LinkRadialLine__children">#</a> *LinkRadialLine*.**children**&lt;func&gt;  
+
+<a id="#LinkRadialLine__className" name="LinkRadialLine__className" href="#LinkRadialLine__className">#</a> *LinkRadialLine*.**className**&lt;string&gt;  
+
+<a id="#LinkRadialLine__data" name="LinkRadialLine__data" href="#LinkRadialLine__data">#</a> *LinkRadialLine*.**data**&lt;any&gt;  
 
 <a id="#LinkRadialLine__innerRef" name="LinkRadialLine__innerRef" href="#LinkRadialLine__innerRef">#</a> *LinkRadialLine*.**innerRef**&lt;union(func|object)&gt;  
 
@@ -705,6 +749,10 @@ A scale function that retuns the y position of the bar within a bar group. `valu
 
 <a id="#LinkVerticalLine__children" name="LinkVerticalLine__children" href="#LinkVerticalLine__children">#</a> *LinkVerticalLine*.**children**&lt;func&gt;  
 
+<a id="#LinkVerticalLine__className" name="LinkVerticalLine__className" href="#LinkVerticalLine__className">#</a> *LinkVerticalLine*.**className**&lt;string&gt;  
+
+<a id="#LinkVerticalLine__data" name="LinkVerticalLine__data" href="#LinkVerticalLine__data">#</a> *LinkVerticalLine*.**data**&lt;any&gt;  
+
 <a id="#LinkVerticalLine__innerRef" name="LinkVerticalLine__innerRef" href="#LinkVerticalLine__innerRef">#</a> *LinkVerticalLine*.**innerRef**&lt;union(func|object)&gt;  
 
 <a id="#LinkVerticalLine__path" name="LinkVerticalLine__path" href="#LinkVerticalLine__path">#</a> *LinkVerticalLine*.**path**&lt;func&gt;  
@@ -722,6 +770,10 @@ A scale function that retuns the y position of the bar within a bar group. `valu
 
 
 <a id="#LinkHorizontalStep__children" name="LinkHorizontalStep__children" href="#LinkHorizontalStep__children">#</a> *LinkHorizontalStep*.**children**&lt;func&gt;  
+
+<a id="#LinkHorizontalStep__className" name="LinkHorizontalStep__className" href="#LinkHorizontalStep__className">#</a> *LinkHorizontalStep*.**className**&lt;string&gt;  
+
+<a id="#LinkHorizontalStep__data" name="LinkHorizontalStep__data" href="#LinkHorizontalStep__data">#</a> *LinkHorizontalStep*.**data**&lt;any&gt;  
 
 <a id="#LinkHorizontalStep__innerRef" name="LinkHorizontalStep__innerRef" href="#LinkHorizontalStep__innerRef">#</a> *LinkHorizontalStep*.**innerRef**&lt;union(func|object)&gt;  
 
@@ -743,6 +795,10 @@ A scale function that retuns the y position of the bar within a bar group. `valu
 
 <a id="#LinkRadialStep__children" name="LinkRadialStep__children" href="#LinkRadialStep__children">#</a> *LinkRadialStep*.**children**&lt;func&gt;  
 
+<a id="#LinkRadialStep__className" name="LinkRadialStep__className" href="#LinkRadialStep__className">#</a> *LinkRadialStep*.**className**&lt;string&gt;  
+
+<a id="#LinkRadialStep__data" name="LinkRadialStep__data" href="#LinkRadialStep__data">#</a> *LinkRadialStep*.**data**&lt;any&gt;  
+
 <a id="#LinkRadialStep__innerRef" name="LinkRadialStep__innerRef" href="#LinkRadialStep__innerRef">#</a> *LinkRadialStep*.**innerRef**&lt;union(func|object)&gt;  
 
 <a id="#LinkRadialStep__path" name="LinkRadialStep__path" href="#LinkRadialStep__path">#</a> *LinkRadialStep*.**path**&lt;func&gt;  
@@ -760,6 +816,10 @@ A scale function that retuns the y position of the bar within a bar group. `valu
 
 
 <a id="#LinkVerticalStep__children" name="LinkVerticalStep__children" href="#LinkVerticalStep__children">#</a> *LinkVerticalStep*.**children**&lt;func&gt;  
+
+<a id="#LinkVerticalStep__className" name="LinkVerticalStep__className" href="#LinkVerticalStep__className">#</a> *LinkVerticalStep*.**className**&lt;string&gt;  
+
+<a id="#LinkVerticalStep__data" name="LinkVerticalStep__data" href="#LinkVerticalStep__data">#</a> *LinkVerticalStep*.**data**&lt;any&gt;  
 
 <a id="#LinkVerticalStep__innerRef" name="LinkVerticalStep__innerRef" href="#LinkVerticalStep__innerRef">#</a> *LinkVerticalStep*.**innerRef**&lt;union(func|object)&gt;  
 

@@ -6,6 +6,8 @@
 
 <a id="#Text__capHeight" name="Text__capHeight" href="#Text__capHeight">#</a> *Text*.**capHeight**&lt;union(number|string)&gt;  <table><tr><td><strong>Default</strong></td><td>'0.71em'</td></td></table>
 
+<a id="#Text__children" name="Text__children" href="#Text__children">#</a> *Text*.**children**&lt;any&gt;  
+
 <a id="#Text__dx" name="Text__dx" href="#Text__dx">#</a> *Text*.**dx**&lt;union(number|string)&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table>
 
 <a id="#Text__dy" name="Text__dy" href="#Text__dy">#</a> *Text*.**dy**&lt;union(number|string)&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table>
@@ -21,6 +23,8 @@
 <a id="#Text__textAnchor" name="Text__textAnchor" href="#Text__textAnchor">#</a> *Text*.**textAnchor**&lt;enum('start'|'middle'|'end'|'inherit')&gt;  <table><tr><td><strong>Default</strong></td><td>'start'</td></td></table>
 
 <a id="#Text__verticalAnchor" name="Text__verticalAnchor" href="#Text__verticalAnchor">#</a> *Text*.**verticalAnchor**&lt;enum('start'|'middle'|'end')&gt;  <table><tr><td><strong>Default</strong></td><td>'end'</td></td></table>
+
+<a id="#Text__width" name="Text__width" href="#Text__width">#</a> *Text*.**width**&lt;number&gt;  
 
 <a id="#Text__x" name="Text__x" href="#Text__x">#</a> *Text*.**x**&lt;union(number|string)&gt;  <table><tr><td><strong>Default</strong></td><td>0</td></td></table>
 

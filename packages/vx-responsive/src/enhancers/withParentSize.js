@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import debounce from 'lodash/debounce';
 import ResizeObserver from 'resize-observer-polyfill';
 
@@ -9,7 +10,7 @@ export default function withParentSize(BaseComponent) {
 
       this.state = {
         parentWidth: null,
-        parentHeight: null
+        parentHeight: null,
       };
 
       this.animationFrameID = null;
@@ -17,13 +18,13 @@ export default function withParentSize(BaseComponent) {
     }
 
     componentDidMount() {
-      this.ro = new ResizeObserver((entries, observer) => {
+      this.ro = new ResizeObserver((entries /** , observer */) => {
         entries.forEach(entry => {
           const { width, height } = entry.contentRect;
           this.animationFrameID = window.requestAnimationFrame(() => {
             this.debouncedResize({
               width,
-              height
+              height,
             });
           });
         });
@@ -39,7 +40,7 @@ export default function withParentSize(BaseComponent) {
     resize({ width, height }) {
       this.setState({
         parentWidth: width,
-        parentHeight: height
+        parentHeight: height,
       });
     }
 
@@ -52,21 +53,20 @@ export default function withParentSize(BaseComponent) {
             this.container = ref;
           }}
         >
-          {parentWidth !== null &&
-            parentHeight !== null && (
-              <BaseComponent
-                parentWidth={parentWidth}
-                parentHeight={parentHeight}
-                {...this.props}
-              />
-            )}
+          {parentWidth !== null && parentHeight !== null && (
+            <BaseComponent parentWidth={parentWidth} parentHeight={parentHeight} {...this.props} />
+          )}
         </div>
       );
     }
   }
 
+  WrappedComponent.propTypes = {
+    debounceTime: PropTypes.number,
+  };
+
   WrappedComponent.defaultProps = {
-    debounceTime: 300
+    debounceTime: 300,
   };
 
   return WrappedComponent;

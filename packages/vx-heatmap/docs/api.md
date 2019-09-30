@@ -8,7 +8,7 @@
 
 <a id="#HeatmapCircle__className" name="HeatmapCircle__className" href="#HeatmapCircle__className">#</a> *HeatmapCircle*.**className**&lt;string&gt;  
 
-<a id="#HeatmapCircle__colorScale" name="HeatmapCircle__colorScale" href="#HeatmapCircle__colorScale">#</a> *HeatmapCircle*.**colorScale**&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d => undefined</td></td></table>
+<a id="#HeatmapCircle__colorScale" name="HeatmapCircle__colorScale" href="#HeatmapCircle__colorScale">#</a> *HeatmapCircle*.**colorScale**&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>(/** d */) => undefined</td></td></table>
 
 <a id="#HeatmapCircle__count" name="HeatmapCircle__count" href="#HeatmapCircle__count">#</a> *HeatmapCircle*.**count**&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d => d.count</td></td></table>
 
@@ -18,7 +18,7 @@
 
 <a id="#HeatmapCircle__left" name="HeatmapCircle__left" href="#HeatmapCircle__left">#</a> *HeatmapCircle*.**left**&lt;number&gt;  
 
-<a id="#HeatmapCircle__opacityScale" name="HeatmapCircle__opacityScale" href="#HeatmapCircle__opacityScale">#</a> *HeatmapCircle*.**opacityScale**&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d => 1</td></td></table>
+<a id="#HeatmapCircle__opacityScale" name="HeatmapCircle__opacityScale" href="#HeatmapCircle__opacityScale">#</a> *HeatmapCircle*.**opacityScale**&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>(/** d */) => 1</td></td></table>
 
 <a id="#HeatmapCircle__radius" name="HeatmapCircle__radius" href="#HeatmapCircle__radius">#</a> *HeatmapCircle*.**radius**&lt;number&gt;  <table><tr><td><strong>Default</strong></td><td>6</td></td></table>
 
@@ -42,7 +42,7 @@
 
 <a id="#HeatmapRect__className" name="HeatmapRect__className" href="#HeatmapRect__className">#</a> *HeatmapRect*.**className**&lt;string&gt;  
 
-<a id="#HeatmapRect__colorScale" name="HeatmapRect__colorScale" href="#HeatmapRect__colorScale">#</a> *HeatmapRect*.**colorScale**&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d => undefined</td></td></table>
+<a id="#HeatmapRect__colorScale" name="HeatmapRect__colorScale" href="#HeatmapRect__colorScale">#</a> *HeatmapRect*.**colorScale**&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>(/** d */) => undefined</td></td></table>
 
 <a id="#HeatmapRect__count" name="HeatmapRect__count" href="#HeatmapRect__count">#</a> *HeatmapRect*.**count**&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d => d.count</td></td></table>
 
@@ -52,7 +52,7 @@
 
 <a id="#HeatmapRect__left" name="HeatmapRect__left" href="#HeatmapRect__left">#</a> *HeatmapRect*.**left**&lt;number&gt;  
 
-<a id="#HeatmapRect__opacityScale" name="HeatmapRect__opacityScale" href="#HeatmapRect__opacityScale">#</a> *HeatmapRect*.**opacityScale**&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>d => 1</td></td></table>
+<a id="#HeatmapRect__opacityScale" name="HeatmapRect__opacityScale" href="#HeatmapRect__opacityScale">#</a> *HeatmapRect*.**opacityScale**&lt;func&gt;  <table><tr><td><strong>Default</strong></td><td>(/** d */) => 1</td></td></table>
 
 <a id="#HeatmapRect__top" name="HeatmapRect__top" href="#HeatmapRect__top">#</a> *HeatmapRect*.**top**&lt;number&gt;  
 
