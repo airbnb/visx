@@ -1,16 +1,15 @@
-// @ts-ignore ts-migrate(1259) FIXME: Module '"/Users/sergii_rudenko/Projects/vx/node_mo... Remove this comment to see the full error message
 import React from 'react';
 import cx from 'classnames';
-import { ribbon as d3ribbon } from 'd3-chord';
+import { ribbon as d3ribbon, Chord, ChordSubgroup } from 'd3-chord';
 
-type Props = {
-  chord: any;
-  source?: (...args: any[]) => any;
-  target?: (...args: any[]) => any;
-  radius?: ((...args: any[]) => any) | number;
-  startAngle?: ((...args: any[]) => any) | number;
-  endAngle?: ((...args: any[]) => any) | number;
-  children?: (...args: any[]) => any;
+export type RibbonProps = {
+  chord: Chord;
+  source?: (d: Chord) => ChordSubgroup;
+  target?: (d: Chord) => ChordSubgroup;
+  radius?: (d: ChordSubgroup) => number;
+  startAngle?: (d: ChordSubgroup) => number;
+  endAngle?: (d: ChordSubgroup) => number;
+  children?: ({ path }: { path: string | null }) => string | undefined;
   className?: string;
 };
 
@@ -24,16 +23,15 @@ export default function Ribbon({
   children,
   className,
   ...restProps
-}: Props) {
-  const ribbon = d3ribbon();
+}: RibbonProps & Omit<React.SVGProps<SVGPathElement>, keyof RibbonProps>) {
+  const ribbon = d3ribbon<any, Chord, ChordSubgroup>();
   if (source) ribbon.source(source);
   if (target) ribbon.target(target);
   if (radius) ribbon.radius(radius);
   if (startAngle) ribbon.startAngle(startAngle);
   if (endAngle) ribbon.endAngle(endAngle);
-  const path = ribbon(chord);
+  const path = ribbon(chord) as any;
   if (children) return children({ path });
 
-  // @ts-ignore ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
   return <path className={cx('vx-ribbon', className)} d={path} {...restProps} />;
 }

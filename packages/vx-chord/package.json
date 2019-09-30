@@ -5,6 +5,7 @@
   "sideEffects": false,
   "main": "lib/index.js",
   "module": "esm/index.js",
+  "types": "lib/index.d.ts",
   "files": [
     "lib",
     "esm"
@@ -34,6 +35,9 @@
     "react": "^15.0.0-0 || ^16.0.0-0"
   },
   "dependencies": {
+    "@types/classnames": "^2.2.9",
+    "@types/d3-chord": "^1.0.9",
+    "@types/react": "*",
     "classnames": "^2.2.6",
     "d3-chord": "^1.0.4",
     "prop-types": "^15.6.1"
