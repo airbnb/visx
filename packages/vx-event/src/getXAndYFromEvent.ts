@@ -1,14 +1,18 @@
 import { EventType } from './types';
 import { isTouchEvent } from './typeGuards';
 
+const DEFAULT_POINT = { x: 0, y: 0 };
+
 export default function getXAndYFromEvent(event?: EventType) {
-  if (!event) return { x: 0, y: 0 };
+  if (!event) return { ...DEFAULT_POINT };
 
   if (isTouchEvent(event)) {
-    return {
-      x: event.changedTouches[0].clientX,
-      y: event.changedTouches[0].clientX,
-    };
+    return event.changedTouches.length > 0
+      ? {
+          x: event.changedTouches[0].clientX,
+          y: event.changedTouches[0].clientX,
+        }
+      : { ...DEFAULT_POINT };
   }
 
   return {
