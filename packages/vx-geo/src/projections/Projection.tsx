@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { Group } from '@vx/group';
 import {
@@ -10,11 +9,25 @@ import {
   geoNaturalEarth1,
   geoEqualEarth,
   geoPath,
+  GeoPath,
+  GeoProjection,
+  GeoPermissibleObjects,
 } from 'd3-geo';
-import Graticule from '../graticule/Graticule';
+import Graticule, { GraticuleProps } from '../graticule/Graticule';
+import { LineString, Polygon, MultiLineString } from 'geojson';
+
+export type GeoPermissibleObjects = GeoPermissibleObjects;
 
 // TODO: Implement all projections of d3-geo
-const projectionMapping = {
+type ProjectionPreset =
+  | 'orthographic'
+  | 'albers'
+  | 'albersUsa'
+  | 'mercator'
+  | 'naturalEarth'
+  | 'equalEarth';
+
+const projectionMapping: { [projection in ProjectionPreset]: () => GeoProjection } = {
   orthographic: () => geoOrthographic(),
   albers: () => geoAlbers(),
   albersUsa: () => geoAlbersUsa(),
@@ -23,33 +36,88 @@ const projectionMapping = {
   equalEarth: () => geoEqualEarth(),
 };
 
-Projection.propTypes = {
-  data: PropTypes.array.isRequired,
-  projection: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-  projectionFunc: PropTypes.func,
-  clipAngle: PropTypes.number,
-  clipExtent: PropTypes.array,
-  scale: PropTypes.number,
-  translate: PropTypes.array,
-  center: PropTypes.array,
-  rotate: PropTypes.array,
-  precision: PropTypes.number,
-  fitExtent: PropTypes.array,
-  fitSize: PropTypes.array,
-  centroid: PropTypes.func,
-  className: PropTypes.string,
-  children: PropTypes.func,
-  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  graticule: PropTypes.object,
-  graticuleLines: PropTypes.object,
-  graticuleOutline: PropTypes.object,
-  pointRadius: PropTypes.number,
+type Projection = ProjectionPreset | (() => GeoProjection);
+
+export type ProjectionProps<Datum extends GeoPermissibleObjects> = {
+  /** Array of features to project. */
+  data: Datum[];
+  /** Preset projection name, or custom projection function which returns a GeoProjection. */
+  projection?: Projection;
+  /** Hook to render above features, passed the configured projectionFunc. */
+  projectionFunc?: (projection: GeoProjection) => React.ReactNode;
+  /** Sets the projection’s clipping circle radius to the specified angle in degree. */
+  clipAngle?: number;
+  /**
+   * Sets the projection’s viewport clip extent to the specified bounds in pixels. extent bounds
+   * are specified as an array [[x₀, y₀], [x₁, y₁]], where x₀ is the left-side of the viewport,
+   * y₀ is the top, x₁ is the right and y₁ is the bottom.
+   */
+  clipExtent?: [[number, number], [number, number]];
+  /**
+   * Sets the projection’s scale factor to the specified value. The scale factor corresponds linearly
+   * to the distance between projected points; however, absolute scale factors are not equivalent
+   * across projections.
+   */
+  scale?: number;
+  /**
+   * Sets the projection’s translation offset, which determines the pixel coordinates of the
+   * projection’s center, to the specified two-element array [tx, ty].
+   */
+  translate?: [number, number];
+  /** Sets the projection’s center to the specified two-element array of longitude and latitude in degrees. */
+  center?: [number, number];
+  /** Sets the projection’s three-axis spherical rotation to the specified angles [lambda, phi [, gamma]], corresponding to yaw, pitch, and roll. */
+  rotate?: [number, number] | [number, number, number];
+  /** Sets the threshold for the projection’s adaptive resampling to the specified value in pixels. */
+  precision?: number;
+  /**
+   * Sets the projection’s scale and translate to fit the specified GeoJSON object in the center of the given extent.
+   * The extent is specified as an array [[x₀, y₀], [x₁, y₁]], where x₀ is the left side of the bounding box,
+   * y₀ is the top, x₁ is the right and y₁ is the bottom.
+   */
+  fitExtent?: [
+    [[number, number], [number, number]],
+    any, // ExtendedFeature | ExtendedFeatureCollection | GeoGeometryObjects,
+  ];
+  /** Convenience prop for props.fitExtent where the top-left corner of the extent is [0, 0]. */
+  fitSize?: [
+    [number, number],
+    any, // ExtendedFeature | ExtendedFeatureCollection | GeoGeometryObjects
+  ];
+  /** Hook to render anything at the centroid of a feature. */
+  centroid?: (centroid: [number, number], feature: ParsedFeature<Datum>) => React.ReactNode;
+  /** className to apply to feature path elements.  */
+  className?: string;
+  /** Override render function which is passed the  */
+  children?: (args: {
+    path: GeoPath<any, GeoPermissibleObjects>;
+    features: ParsedFeature<Datum>[];
+  }) => React.ReactNode;
+  /** Function invoked for each feature which returns a React.Ref to the projection path element for that feature. */
+  innerRef?: (feature: ParsedFeature<Datum>, index: number) => React.Ref<SVGPathElement>;
+  /** If specified, renders a Graticule with the specified props. Specify `graticule.foreground = true` to be rendered on top of features. */
+  graticule?: Omit<GraticuleProps, 'lines'> & { foreground: boolean };
+  /** If specified, renders a Graticule lines with the specified props. Specify `graticuleLines.foreground = true` to be rendered on top of features. */
+  graticuleLines?: Omit<GraticuleProps, 'lines'> & { foreground: boolean };
+  /** If specified, renders a Graticule outline with the specified props. Specify `graticuleOutline.foreground = true` to be rendered on top of features. */
+  graticuleOutline?: Omit<GraticuleProps, 'outline'> & { foreground: boolean };
+  /** Sets the radius used to display Point and MultiPoint geometries to the specified number. */
+  pointRadius?: number;
 };
+
+export interface ParsedFeature<Datum> {
+  feature: Datum;
+  type: Projection;
+  projection: GeoProjection;
+  index: number;
+  centroid: [number, number];
+  path: string | null;
+}
 
 /**
  * Component for all projections.
  */
-export default function Projection({
+export default function Projection<Datum extends GeoPermissibleObjects>({
   data,
   projection = 'mercator',
   projectionFunc,
@@ -71,8 +139,10 @@ export default function Projection({
   pointRadius,
   children,
   ...restProps
-}) {
-  const maybeCustomProjection = projectionMapping[projection] || projection;
+}: ProjectionProps<Datum> & Omit<React.SVGProps<SVGPathElement>, keyof ProjectionProps<Datum>>) {
+  const maybeCustomProjection =
+    typeof projection === 'string' ? projectionMapping[projection] : projection;
+
   const currProjection = maybeCustomProjection();
 
   if (clipAngle) currProjection.clipAngle(clipAngle);
@@ -81,7 +151,7 @@ export default function Projection({
   if (translate) currProjection.translate(translate);
   if (center) currProjection.center(center);
   if (rotate) currProjection.rotate(rotate);
-  if (precision) currProjection.rotate(precision);
+  if (precision) currProjection.precision(precision);
   if (fitExtent) currProjection.fitExtent(...fitExtent);
   if (fitSize) currProjection.fitSize(...fitSize);
 
@@ -89,7 +159,7 @@ export default function Projection({
 
   if (pointRadius) path.pointRadius(pointRadius);
 
-  const features = data.map((feature, i) => {
+  const features: ParsedFeature<Datum>[] = data.map((feature, i) => {
     return {
       feature,
       type: projection,
@@ -100,16 +170,18 @@ export default function Projection({
     };
   });
 
-  if (children) return children({ path, features });
+  if (children) return <>{children({ path, features })}</>;
 
   return (
     <Group className="vx-geo">
-      {graticule && !graticule.foreground && <Graticule graticule={g => path(g)} {...graticule} />}
+      {graticule && !graticule.foreground && (
+        <Graticule graticule={(ml: MultiLineString) => path(ml) || ''} {...graticule} />
+      )}
       {graticuleLines && !graticuleLines.foreground && (
-        <Graticule lines={g => path(g)} {...graticuleLines} />
+        <Graticule lines={(l: LineString) => path(l) || ''} {...graticuleLines} />
       )}
       {graticuleOutline && !graticuleOutline.foreground && (
-        <Graticule outline={g => path(g)} {...graticuleOutline} />
+        <Graticule outline={(p: Polygon) => path(p) || ''} {...graticuleOutline} />
       )}
 
       {features.map((feature, i) => {
@@ -125,15 +197,19 @@ export default function Projection({
           </g>
         );
       })}
+
       {/* TODO: Maybe find a different way to pass projection function to use for example invert */}
       {projectionFunc && projectionFunc(currProjection)}
 
-      {graticule && graticule.foreground && <Graticule graticule={g => path(g)} {...graticule} />}
+      {graticule && graticule.foreground && (
+        <Graticule graticule={(ml: MultiLineString) => path(ml) || ''} {...graticule} />
+      )}
+
       {graticuleLines && graticuleLines.foreground && (
-        <Graticule lines={g => path(g)} {...graticuleLines} />
+        <Graticule lines={(l: LineString) => path(l) || ''} {...graticuleLines} />
       )}
       {graticuleOutline && graticuleOutline.foreground && (
-        <Graticule outline={g => path(g)} {...graticuleOutline} />
+        <Graticule outline={(p: Polygon) => path(p) || ''} {...graticuleOutline} />
       )}
     </Group>
   );
