@@ -40,7 +40,7 @@ export default function PatternCircles({
   complement = false,
   className,
 }: PatternCirclesProps) {
-  let corners: number[][] | undefined;
+  let corners: [number, number][] | undefined;
   if (complement) {
     corners = [[0, 0], [0, height], [width, 0], [width, height]];
   }
