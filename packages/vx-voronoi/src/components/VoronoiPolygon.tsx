@@ -18,6 +18,7 @@ export default function VoronoiPolygon({
 }: VoronoiPolygonProps & Omit<React.SVGProps<SVGPathElement>, keyof VoronoiPolygonProps>) {
   if (!polygon) return null;
   const path = `M${polygon.join('L')}Z`;
-  if (children) return children({ path, polygon });
+  if (children) return <>{children({ path, polygon })}</>;
+
   return <path className={cx('vx-voronoi-polygon', className)} d={path} {...restProps} />;
 }
