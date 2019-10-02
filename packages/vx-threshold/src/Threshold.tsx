@@ -6,7 +6,7 @@ import { ClipPath } from '@vx/clip-path';
 
 type NumberAccessor<Datum> = (datum: Datum, index: number, data: Datum[]) => number;
 
-type ThresholdProps<Datum> = {
+export type ThresholdProps<Datum> = {
   /** className applied to container g element. */
   className?: string;
   /** Sets the curve factory (from @vx/curve or d3-curve) for the area generator. Defaults to curveLinear. */
