@@ -34,6 +34,7 @@
   "dependencies": {
     "@types/classnames": "^2.2.9",
     "@types/d3-geo": "^1.11.1",
+    "@types/geojson": "*",
     "@types/react": "*",
     "@vx/group": "0.0.192",
     "classnames": "^2.2.5",
@@ -44,7 +45,7 @@
     "topojson-client": "^3.0.0"
   },
   "peerDependencies": {
-    "react": "^15.0.0-0 || ^16.0.0-0"
+    "react": "^16.3.0-0"
   },
   "publishConfig": {
     "access": "public"
