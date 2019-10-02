@@ -61,7 +61,7 @@ export default function Theshold({ width, height, margin /** events */ }) {
             clipBelowTo={yMax}
             curve={curveBasis}
             belowAreaProps={{
-              fill: 'red',
+              fill: 'violet',
               fillOpacity: 0.4,
             }}
             aboveAreaProps={{
