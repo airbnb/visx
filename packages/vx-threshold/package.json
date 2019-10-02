@@ -5,6 +5,7 @@
   "sideEffects": false,
   "main": "lib/index.js",
   "module": "esm/index.js",
+  "types": "lib/index.d.ts",
   "files": [
     "lib",
     "esm"
@@ -23,6 +24,8 @@
   "author": "@hshoff",
   "license": "MIT",
   "dependencies": {
+    "@types/classnames": "^2.2.9",
+    "@types/react": "*",
     "@vx/clip-path": "0.0.189",
     "@vx/shape": "0.0.190",
     "classnames": "^2.2.5",
