@@ -189,7 +189,7 @@ export default function Projection<Datum extends GeoPermissibleObjects>({
           <g key={`${projection}-${i}`}>
             <path
               className={cx(`vx-geo-${projection}`, className)}
-              d={feature.path}
+              d={feature.path || ''}
               ref={innerRef && innerRef(feature, i)}
               {...restProps}
             />
