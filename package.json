@@ -51,6 +51,7 @@
     "@airbnb/config-typescript": "^2.0.0",
     "@airbnb/nimbus": "^2.0.0",
     "@types/enzyme": "^3.10.3",
+    "@types/jest": "^24.0.18",
     "@types/jsdom": "^12.2.4",
     "@types/react-test-renderer": "^16.9.0",
     "coveralls": "^3.0.6",
