@@ -1,13 +1,14 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { feature } from 'topojson-client';
+import { GeometryCollection } from 'geojson';
 
 import Projection from '../src/projections/Projection';
 import topology from './topo.json';
 
 describe('<Projection />', () => {
   // TopoJSON with two polygons
-  const data = feature(topology, topology.objects.collection).features;
+  const data: GeometryCollection[] = feature(topology, topology.objects.collection).features;
   const props = { data };
 
   test('it should be defined', () => {
