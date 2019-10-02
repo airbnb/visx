@@ -47,6 +47,18 @@ export type RectCell<ColumnDatum, BinDatum> = GenericCell<ColumnDatum, BinDatum>
   y: number;
 };
 
+export type ComponentProps<ColumnDatum, BinDatum> = HeatmapRectProps<ColumnDatum, BinDatum> &
+  Omit<
+    React.SVGProps<SVGRectElement>,
+    | keyof HeatmapRectProps<ColumnDatum, BinDatum>
+    | 'width'
+    | 'height'
+    | 'x'
+    | 'y'
+    | 'fill'
+    | 'fillOpacity'
+  >;
+
 export default function HeatmapRect<ColumnDatum, BinDatum>({
   className,
   top,
@@ -64,17 +76,7 @@ export default function HeatmapRect<ColumnDatum, BinDatum>({
   count = (d: any) => d && d.count,
   children,
   ...restProps
-}: HeatmapRectProps<ColumnDatum, BinDatum> &
-  Omit<
-    React.SVGProps<SVGRectElement>,
-    | keyof HeatmapRectProps<ColumnDatum, BinDatum>
-    | 'width'
-    | 'height'
-    | 'x'
-    | 'y'
-    | 'fill'
-    | 'fillOpacity'
-  >) {
+}: ComponentProps<ColumnDatum, BinDatum>) {
   const width = binWidth - gap;
   const height = binHeight - gap;
 
