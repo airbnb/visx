@@ -103,7 +103,7 @@ See [#484](https://github.com/hshoff/vx/pull/484) for details.
 
 #### :trophy: Contributors
 
-- [hshoff](https://github.com/hshoff)
+- [williaster](https://github.com/williaster)
 
 ```
 Changes:
