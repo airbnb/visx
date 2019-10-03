@@ -121,6 +121,7 @@
             "import/prefer-default-export": "off",
             "promise/param-names": "off",
             "react/sort-comp": "off",
+            "react/jsx-curly-brace-presence": "off",
             "react/jsx-filename-extension": "off",
             "react/jsx-no-literals": "off",
             "react/jsx-props-no-spreading": "off",
