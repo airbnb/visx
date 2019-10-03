@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.192](#v00192)
 - [v0.0.191](#v00191)
 - [v0.0.190](#v00190)
 - [v0.0.189](#v00189)
@@ -82,6 +83,65 @@
 </details>
 
 ------
+
+# v0.0.192
+
+See [#484](https://github.com/hshoff/vx/pull/484) for details.
+
+#### :boom: Breaking Changes
+
+- [breaking] Deprecate `build/` and `dist/`, use `lib/` and `esm/` instead
+- [breaking] Deprecate umd builds
+
+#### :house: Internal
+
+- use `babel` not `rollup`
+- use `yarn` not `npm`
+  - this will enable `workspaces` so that we can push all config to the root instead of duplicating across every package as is the case now
+- Stricter linting rules (e.g., `.jsx` required for `React` files)
+
+
+#### :trophy: Contributors
+
+- [hshoff](https://github.com/hshoff)
+
+```
+Changes:
+ - @vx/annotation: 0.0.190 => 0.0.192
+ - @vx/axis: 0.0.191 => 0.0.192
+ - @vx/bounds: 0.0.189 => 0.0.192
+ - @vx/boxplot: 0.0.190 => 0.0.192
+ - @vx/brush: 0.0.189 => 0.0.192
+ - @vx/chord: 0.0.189 => 0.0.192
+ - @vx/clip-path: 0.0.189 => 0.0.192
+ - @vx/curve: 0.0.189 => 0.0.192
+ - @vx/demo: 0.0.191 => 0.0.192
+ - @vx/drag: 0.0.189 => 0.0.192
+ - @vx/event: 0.0.189 => 0.0.192
+ - @vx/geo: 0.0.190 => 0.0.192
+ - @vx/glyph: 0.0.190 => 0.0.192
+ - @vx/gradient: 0.0.189 => 0.0.192
+ - @vx/grid: 0.0.190 => 0.0.192
+ - @vx/group: 0.0.190 => 0.0.192
+ - @vx/heatmap: 0.0.190 => 0.0.192
+ - @vx/hierarchy: 0.0.190 => 0.0.192
+ - @vx/legend: 0.0.190 => 0.0.192
+ - @vx/marker: 0.0.190 => 0.0.192
+ - @vx/mock-data: 0.0.189 => 0.0.192
+ - @vx/network: 0.0.190 => 0.0.192
+ - @vx/pattern: 0.0.189 => 0.0.192
+ - @vx/point: 0.0.189 => 0.0.192
+ - @vx/responsive: 0.0.189 => 0.0.192
+ - @vx/scale: 0.0.190 => 0.0.192
+ - @vx/shape: 0.0.190 => 0.0.192
+ - @vx/stats: 0.0.190 => 0.0.192
+ - @vx/text: 0.0.191 => 0.0.192
+ - @vx/threshold: 0.0.190 => 0.0.192
+ - @vx/tooltip: 0.0.189 => 0.0.192
+ - @vx/voronoi: 0.0.190 => 0.0.192
+ - @vx/vx: 0.0.191 => 0.0.192
+ - @vx/zoom: 0.0.189 => 0.0.192
+```
 
 # v0.0.191
 
