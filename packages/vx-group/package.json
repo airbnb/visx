@@ -1,6 +1,6 @@
 {
   "name": "@vx/group",
-  "version": "0.0.190",
+  "version": "0.0.192",
   "description": "vx group",
   "sideEffects": false,
   "main": "lib/index.js",
