@@ -21,10 +21,10 @@ export default function withTooltip<Props extends object = {}>(
   BaseComponent: React.ComponentType<Props>,
   containerProps: WithTooltipContainerProps = {
     style: {
-      position: 'relative' as const,
-      width: 'inherit' as const,
-      height: 'inherit' as const,
-    },
+      position: 'relative',
+      width: 'inherit',
+      height: 'inherit',
+    } as const,
   },
 ) {
   return class WrappedComponent extends React.PureComponent<Props, WithTooltipState> {
