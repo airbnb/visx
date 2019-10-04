@@ -1,6 +1,6 @@
 {
   "name": "@vx/curve",
-  "version": "0.0.189",
+  "version": "0.0.192",
   "description": "vx curve",
   "sideEffects": false,
   "main": "lib/index.js",

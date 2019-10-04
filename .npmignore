@@ -8,6 +8,7 @@ logs/
 .eslintcache/
 .idea/
 .npm/
+.next/
 .vscode/
 .yarnclean
 

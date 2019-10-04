@@ -1,6 +1,6 @@
 {
   "name": "@vx/event",
-  "version": "0.0.189",
+  "version": "0.0.192",
   "description": "vx event",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -30,6 +30,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@vx/point": "0.0.189"
+    "@vx/point": "0.0.192"
   }
 }
