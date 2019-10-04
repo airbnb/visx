@@ -18,7 +18,7 @@ export default function Group({
   children,
   innerRef,
   ...restProps
-}: GroupProps) {
+}: GroupProps & Omit<React.SVGProps<SVGGElement>, keyof GroupProps>) {
   return (
     <g
       ref={innerRef}
