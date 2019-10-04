@@ -51,6 +51,7 @@
     "@airbnb/config-typescript": "^2.0.0",
     "@airbnb/nimbus": "^2.0.0",
     "@types/enzyme": "^3.10.3",
+    "@types/jest": "^24.0.18",
     "@types/jsdom": "^12.2.4",
     "@types/react-test-renderer": "^16.9.0",
     "coveralls": "^3.0.6",
@@ -117,6 +118,7 @@
         {
           "files": "*.{js,jsx,ts,tsx}",
           "rules": {
+            "no-useless-rename": "off",
             "linebreak-style": "off",
             "operator-linebreak": "off",
             "no-use-before-define": "off",
@@ -131,6 +133,7 @@
             "import/prefer-default-export": "off",
             "promise/param-names": "off",
             "react/sort-comp": "off",
+            "react/jsx-curly-brace-presence": "off",
             "react/jsx-filename-extension": "off",
             "react/jsx-no-literals": "off",
             "react/jsx-props-no-spreading": "off",

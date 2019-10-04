@@ -1,6 +1,6 @@
 {
   "name": "@vx/marker",
-  "version": "0.0.190",
+  "version": "0.0.192",
   "description": "vx marker",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -30,8 +30,8 @@
   },
   "homepage": "https://github.com/hshoff/vx#readme",
   "dependencies": {
-    "@vx/group": "0.0.190",
-    "@vx/shape": "0.0.190",
+    "@vx/group": "0.0.192",
+    "@vx/shape": "0.0.192",
     "classnames": "^2.2.5",
     "prop-types": "^15.6.2"
   },
