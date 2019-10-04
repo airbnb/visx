@@ -2,7 +2,6 @@ import React from 'react';
 import { mount } from 'enzyme';
 
 import { PatternCircles } from '../src';
-import { createCircles } from '../src/patterns/Circles';
 
 describe('<PatternCircles />', () => {
   beforeEach(() => {
@@ -45,33 +44,5 @@ describe('<PatternCircles />', () => {
   test('it should not render a rect background if no background prop', () => {
     const wrapper = mount(<PatternCircles id="test" height={4} width={4} />);
     expect(wrapper.find('rect')).toHaveLength(0);
-  });
-});
-
-describe('createCircles()', () => {
-  function getDummyCircle() {
-    return createCircles({
-      corners: [[20, 20]],
-      id: 'hey',
-      radius: 5,
-      fill: 'none',
-      stroke: 'black',
-      strokeWidth: 3,
-      strokeDasharray: 'none',
-      className: 'blah',
-    })[0];
-  }
-
-  beforeEach(() => {
-    global.console.error = jest.fn();
-  });
-
-  test('it should be defined', () => {
-    expect(createCircles).toBeDefined();
-  });
-
-  test('it should render a <circle />', () => {
-    const wrapper = mount(getDummyCircle());
-    expect(wrapper.find('circle')).toHaveLength(1);
   });
 });
