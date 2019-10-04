@@ -19,7 +19,7 @@ export default function withParentSize<Props extends WithParentSizeProps = {}>(
       debounceTime: 300,
     };
     animationFrameID: number | null;
-    ro: ResizeObserver | undefined;
+    resizeObserver: ResizeObserver | undefined;
     container: HTMLDivElement | null = null;
     debouncedResize: ({ width, height }: { width: number; height: number }) => void;
 
@@ -29,13 +29,12 @@ export default function withParentSize<Props extends WithParentSizeProps = {}>(
         parentWidth: null,
         parentHeight: null,
       };
-
       this.animationFrameID = null;
-      this.debouncedResize = debounce(this.resize.bind(this), props.debounceTime).bind(this);
+      this.debouncedResize = debounce(this.resize, props.debounceTime);
     }
 
     componentDidMount() {
-      this.ro = new ResizeObserver((entries /** , observer */) => {
+      this.resizeObserver = new ResizeObserver((entries /** , observer */) => {
         entries.forEach(entry => {
           const { width, height } = entry.contentRect;
           this.animationFrameID = window.requestAnimationFrame(() => {
@@ -46,20 +45,20 @@ export default function withParentSize<Props extends WithParentSizeProps = {}>(
           });
         });
       });
-      if (this.container) this.ro.observe(this.container);
+      if (this.container) this.resizeObserver.observe(this.container);
     }
 
     componentWillUnmount() {
       if (this.animationFrameID) window.cancelAnimationFrame(this.animationFrameID);
-      if (this.ro) this.ro.disconnect();
+      if (this.resizeObserver) this.resizeObserver.disconnect();
     }
 
-    resize({ width, height }: { width: number; height: number }) {
+    resize = ({ width, height }: { width: number; height: number }) => {
       this.setState({
         parentWidth: width,
         parentHeight: height,
       });
-    }
+    };
 
     render() {
       const { parentWidth, parentHeight } = this.state;

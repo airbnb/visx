@@ -21,15 +21,11 @@ export default function withScreenSize<Props extends WithScreenSizeProps = {}>(
 
     constructor(props: Props) {
       super(props);
-
       this.state = {
         screenWidth: null,
         screenHeight: null,
       };
-
-      this.handleResize = debounce(this.resize.bind(this), props.windowResizeDebounceTime).bind(
-        this,
-      );
+      this.handleResize = debounce(this.resize, props.windowResizeDebounceTime);
     }
 
     componentDidMount() {
@@ -41,14 +37,14 @@ export default function withScreenSize<Props extends WithScreenSizeProps = {}>(
       window.removeEventListener('resize', this.handleResize, false);
     }
 
-    resize(/** event */) {
+    resize = (/** event */) => {
       this.setState((/** prevState, props */) => {
         return {
           screenWidth: window.innerWidth,
           screenHeight: window.innerHeight,
         };
       });
-    }
+    };
 
     render() {
       const { screenWidth, screenHeight } = this.state;

@@ -20,6 +20,8 @@ type ParentSizeState = {
   left: number;
 };
 
+const PARENT_SIZE_STYLES = { width: '100%', height: '100%' };
+
 export default class ParentSize extends React.Component<
   ParentSizeProps & JSX.IntrinsicElements['div'],
   ParentSizeState
@@ -27,9 +29,8 @@ export default class ParentSize extends React.Component<
   static defaultProps = {
     debounceTime: 300,
   };
-
   animationFrameID: number | null;
-  ro: ResizeObserver | undefined;
+  resizeObserver: ResizeObserver | undefined;
   target: HTMLDivElement | null = null;
 
   constructor(props: ParentSizeProps) {
@@ -40,13 +41,12 @@ export default class ParentSize extends React.Component<
       top: 0,
       left: 0,
     };
-    this.resize = debounce(this.resize.bind(this), props.debounceTime);
-    this.setTarget = this.setTarget.bind(this);
+    this.resize = debounce(this.resize, props.debounceTime);
     this.animationFrameID = null;
   }
 
   componentDidMount() {
-    this.ro = new ResizeObserver((entries = [] /** , observer */) => {
+    this.resizeObserver = new ResizeObserver((entries = [] /** , observer */) => {
       entries.forEach(entry => {
         const { left, top, width, height } = entry.contentRect;
         this.animationFrameID = window.requestAnimationFrame(() => {
@@ -54,31 +54,26 @@ export default class ParentSize extends React.Component<
         });
       });
     });
-    if (this.target) this.ro.observe(this.target);
+    if (this.target) this.resizeObserver.observe(this.target);
   }
 
   componentWillUnmount() {
     if (this.animationFrameID) window.cancelAnimationFrame(this.animationFrameID);
-    if (this.ro) this.ro.disconnect();
+    if (this.resizeObserver) this.resizeObserver.disconnect();
   }
 
-  resize({ width, height, top, left }: ParentSizeState) {
+  resize = ({ width, height, top, left }: ParentSizeState) => {
     this.setState(() => ({ width, height, top, left }));
-  }
+  };
 
-  setTarget(ref: HTMLDivElement | null) {
+  setTarget = (ref: HTMLDivElement | null) => {
     this.target = ref;
-  }
+  };
 
   render() {
     const { className, children, debounceTime, ...restProps } = this.props;
     return (
-      <div
-        style={{ width: '100%', height: '100%' }}
-        ref={this.setTarget}
-        className={className}
-        {...restProps}
-      >
+      <div style={PARENT_SIZE_STYLES} ref={this.setTarget} className={className} {...restProps}>
         {children({
           ...this.state,
           ref: this.target,
