@@ -118,6 +118,7 @@
         {
           "files": "*.{js,jsx,ts,tsx}",
           "rules": {
+            "no-useless-rename": "off",
             "linebreak-style": "off",
             "operator-linebreak": "off",
             "no-use-before-define": "off",

@@ -1,6 +1,6 @@
 {
   "name": "@vx/voronoi",
-  "version": "0.0.190",
+  "version": "0.0.192",
   "description": "vx voronoi",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -33,7 +33,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@vx/group": "0.0.190",
+    "@vx/group": "0.0.192",
     "classnames": "^2.2.5",
     "d3-voronoi": "^1.1.2",
     "prop-types": "^15.6.1"
