@@ -17,7 +17,7 @@
   "author": "@hshoff",
   "private": true,
   "scripts": {
-    "build": "yarn run babel",
+    "build": "yarn run babel && yarn run type:dts",
     "build-one": "nimbus babel --clean",
     "babel": "yarn run babel:cjs && yarn run babel:esm",
     "babel:cjs": "nimbus babel --clean --workspaces=\"@vx/!(demo)\"",
@@ -31,6 +31,7 @@
     "precommit": "lint-staged",
     "setup": "yarn run build",
     "test": "yarn run jest",
+    "type:dts": "nimbus typescript --build --reference-workspaces",
     "docs": "yarn run docs:gen && node ./scripts/docs/index.js",
     "docs:gen": "lerna run docs",
     "prepare-release": "git checkout master && git pull --rebase origin master && yarn run docs && lerna updated",
@@ -47,7 +48,12 @@
     "@airbnb/config-eslint": "^2.0.0",
     "@airbnb/config-jest": "^2.0.0",
     "@airbnb/config-prettier": "^2.0.0",
+    "@airbnb/config-typescript": "^2.0.0",
     "@airbnb/nimbus": "^2.0.0",
+    "@types/enzyme": "^3.10.3",
+    "@types/jest": "^24.0.18",
+    "@types/jsdom": "^12.2.4",
+    "@types/react-test-renderer": "^16.9.0",
     "coveralls": "^3.0.6",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
@@ -72,12 +78,18 @@
       "babel",
       "eslint",
       "jest",
-      "prettier"
+      "prettier",
+      "typescript"
     ],
     "settings": {
       "library": true,
       "react": true,
       "next": true
+    },
+    "typescript": {
+      "compilerOptions": {
+        "emitDeclarationOnly": true
+      }
     },
     "jest": {
       "coverageReporters": [
