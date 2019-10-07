@@ -20,6 +20,8 @@ type ParentSizeState = {
   left: number;
 };
 
+export type ParentSizeProvidedProps = ParentSizeState;
+
 const PARENT_SIZE_STYLES = { width: '100%', height: '100%' };
 
 export default class ParentSize extends React.Component<
@@ -83,4 +85,3 @@ export default class ParentSize extends React.Component<
     );
   }
 }
-export { ParentSizeState as ParentSizeProvidedProps };

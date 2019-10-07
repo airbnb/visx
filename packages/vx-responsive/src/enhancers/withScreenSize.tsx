@@ -10,6 +10,8 @@ type WithScreenSizeState = {
   screenHeight: number | null;
 };
 
+export type WithScreenSizeProvidedProps = WithScreenSizeState;
+
 export default function withScreenSize<Props extends WithScreenSizeProps = {}>(
   BaseComponent: React.ComponentType<Props>,
 ) {
@@ -55,4 +57,3 @@ export default function withScreenSize<Props extends WithScreenSizeProps = {}>(
     }
   };
 }
-export { WithScreenSizeState as WithScreenSizeProvidedProps };

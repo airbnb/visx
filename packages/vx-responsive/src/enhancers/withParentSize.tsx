@@ -11,6 +11,8 @@ type WithParentSizeState = {
   parentHeight: number | null;
 };
 
+export type WithParentSizeProvidedProps = WithParentSizeState;
+
 export default function withParentSize<Props extends WithParentSizeProps = {}>(
   BaseComponent: React.ComponentType<Props>,
 ) {
@@ -77,4 +79,3 @@ export default function withParentSize<Props extends WithParentSizeProps = {}>(
     }
   };
 }
-export { WithParentSizeState as WithParentSizeProvidedProps };
