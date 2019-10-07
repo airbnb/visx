@@ -26,7 +26,8 @@ export default function Chord({
   if (sortSubgroups) chord.sortSubgroups(sortSubgroups);
   if (sortChords) chord.sortChords(sortChords);
   const chords = chord(matrix);
-  if (children) return <>{children({ chords })}</>;
+  // using array here, to prevent uniq keys warning from the react
+  if (children) return <>{[children({ chords })]}</>;
 
   // so react-docgen picks it up
   return <g />;
