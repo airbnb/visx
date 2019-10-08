@@ -4,4 +4,4 @@ export { default as PatternCircles } from './patterns/Circles';
 export { default as PatternWaves } from './patterns/Waves';
 export { default as PatternHexagons } from './patterns/Hexagons';
 export { default as PatternPath } from './patterns/Path';
-export { default as PatternOrientation } from './constants';
+export { PatternOrientation } from './constants';
