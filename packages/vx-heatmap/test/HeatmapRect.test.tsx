@@ -2,12 +2,16 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import { HeatmapRect } from '../src';
+// @ts-ignore
 import { genBins } from '../../vx-mock-data/src';
 
-const data = genBins(1, 1);
+const data: {
+  bin: number;
+  bins: { bin: number; count: number }[];
+}[] = genBins(1, 1);
 const xScale = () => 50;
 const yScale = () => 50;
-const HeatmapWrapper = props =>
+const HeatmapWrapper = (props = {}) =>
   shallow(<HeatmapRect data={data} xScale={xScale} yScale={yScale} {...props} />);
 
 describe('<HeatmapRect />', () => {
