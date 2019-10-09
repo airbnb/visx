@@ -6,6 +6,7 @@
   "repository": "https://github.com/hshoff/vx",
   "main": "lib/index.js",
   "module": "esm/index.js",
+  "types": "lib/index.d.ts",
   "files": [
     "lib",
     "esm"
@@ -22,13 +23,14 @@
   "author": "@andyfang_dz",
   "license": "MIT",
   "dependencies": {
+    "@types/classnames": "^2.2.9",
+    "@types/react": "*",
     "@vx/group": "0.0.192",
     "classnames": "^2.2.5",
-    "d3-force": "^1.0.6",
     "prop-types": "^15.6.2"
   },
   "peerDependencies": {
-    "react": "^15.0.0-0 || ^16.0.0-0"
+    "react": "^16.3.0-0"
   },
   "publishConfig": {
     "access": "public"
