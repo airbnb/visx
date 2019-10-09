@@ -1,6 +1,7 @@
 import React from 'react';
 import { Group } from '@vx/group';
 import { geoGraticule, GeoGraticuleGenerator } from 'd3-geo';
+// eslint-disable-next-line import/no-unresolved
 import { LineString, MultiLineString, Polygon } from 'geojson';
 
 export type GraticuleProps = {
