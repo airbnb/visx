@@ -5,6 +5,7 @@
   "sideEffects": false,
   "main": "lib/index.js",
   "module": "esm/index.js",
+  "types": "lib/index.d.ts",
   "files": [
     "lib",
     "esm"
@@ -30,9 +31,10 @@
   },
   "homepage": "https://github.com/hshoff/vx#readme",
   "dependencies": {
+    "@types/react": "*",
     "lodash": "^4.17.10",
     "prop-types": "^15.6.1",
-    "resize-observer-polyfill": "1.5.0"
+    "resize-observer-polyfill": "1.5.1"
   },
   "peerDependencies": {
     "react": "^15.0.0-0 || ^16.0.0-0"
