@@ -54,10 +54,9 @@ export default function Arc<Datum>({
   if (padRadius != null) setNumOrAccessor(arc.padRadius, padRadius);
 
   if (children) return <>{children({ path: arc })}</>;
+  if (!data) return null;
 
   return (
-    data && (
-      <path ref={innerRef} className={cx('vx-arc', className)} d={arc(data) || ''} {...restProps} />
-    )
+    <path ref={innerRef} className={cx('vx-arc', className)} d={arc(data) || ''} {...restProps} />
   );
 }

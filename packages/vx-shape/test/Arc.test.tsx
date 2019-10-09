@@ -5,47 +5,28 @@ import { Arc } from '../src';
 import { ArcProps } from '../src/shapes/Arc';
 
 interface Datum {
-  date: string;
-  'Google Chrome': string;
-  'Internet Explorer': string;
-  Firefox: string;
-  Safari: string;
-  'Microsoft Edge': string;
-  Opera: string;
-  Mozilla: string;
-  'Other/Unknown': string;
+  data: number;
+  value: number;
+  index: number;
+  startAngle: number;
+  endAngle: number;
+  padAngle: number;
 }
 
-const browserUsage: Datum[] = [
-  {
-    date: '2015 Jun 15',
-    'Google Chrome': '48.09',
-    'Internet Explorer': '24.14',
-    Firefox: '18.82',
-    Safari: '7.46',
-    'Microsoft Edge': '0.03',
-    Opera: '1.32',
-    Mozilla: '0.12',
-    'Other/Unknown': '0.01',
-  },
-  {
-    date: '2015 Jun 16',
-    'Google Chrome': '48',
-    'Internet Explorer': '24.19',
-    Firefox: '18.96',
-    Safari: '7.36',
-    'Microsoft Edge': '0.03',
-    Opera: '1.32',
-    Mozilla: '0.12',
-    'Other/Unknown': '0.01',
-  },
-];
+const data: Datum = {
+  data: 1,
+  value: 1,
+  index: 6,
+  startAngle: 6.050474740247008,
+  endAngle: 6.166830023713296,
+  padAngle: 0,
+};
 
-const ArcWrapper = (overrideProps = {}) => shallow(<Arc data={browserUsage} {...overrideProps} />);
+const ArcWrapper = (overrideProps = {}) => shallow(<Arc data={data} {...overrideProps} />);
 
 const ArcChildren = ({ children, ...restProps }: Partial<ArcProps<Datum>>) =>
   shallow(
-    <Arc data={browserUsage} {...restProps}>
+    <Arc data={data} {...restProps}>
       {children}
     </Arc>,
   );
@@ -207,18 +188,18 @@ describe('<Arc />', () => {
     const fn = jest.fn();
     ArcChildren({ children: fn });
     const args = fn.mock.calls[0][0];
-    expect(typeof args.path(browserUsage)).toBe('string');
+    expect(typeof args.path(data)).toBe('string');
   });
 
   test('it should expose its ref via an innerRef prop', () => {
     return new Promise(done => {
-      const refCallback = n => {
-        expect(n.tagName).toMatch('path');
+      const refCallback = (ref: SVGPathElement) => {
+        expect(ref.tagName).toMatch('path');
         done();
       };
       mount(
         <svg>
-          <Arc data={browserUsage} innerRef={refCallback} />
+          <Arc data={data} innerRef={refCallback} />
         </svg>,
       );
     });
