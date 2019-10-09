@@ -1,10 +1,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { feature } from 'topojson-client';
+// eslint-disable-next-line import/no-unresolved
 import { GeometryCollection } from 'geojson';
 
 import Projection from '../src/projections/Projection';
-// @ts-ignore
+// @ts-ignore doesn't like .json
 import topology from './topo.json';
 
 describe('<Projection />', () => {

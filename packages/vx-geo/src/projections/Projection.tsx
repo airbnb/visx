@@ -13,8 +13,10 @@ import {
   GeoProjection,
   GeoPermissibleObjects,
 } from 'd3-geo';
-import Graticule, { GraticuleProps } from '../graticule/Graticule';
+// eslint-disable-next-line import/no-unresolved
 import { LineString, Polygon, MultiLineString } from 'geojson';
+
+import Graticule, { GraticuleProps } from '../graticule/Graticule';
 
 export type GeoPermissibleObjects = GeoPermissibleObjects;
 
