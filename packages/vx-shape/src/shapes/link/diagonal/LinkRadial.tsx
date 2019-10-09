@@ -19,10 +19,10 @@ export function pathRadialDiagonal<Link, Node>({
   };
 }
 
-type LinkRadialDiagonalProps<Node, Link> = {
+type LinkRadialDiagonalProps<Link, Node> = {
   angle: (node: Node) => number;
   radius: (node: Node) => number;
-} & RadialAccessorProps<Node, Link> &
+} & RadialAccessorProps<Link, Node> &
   SharedLinkProps<Link>;
 
 export default function LinkRadialDiagonal<Link, Node>({
@@ -36,7 +36,7 @@ export default function LinkRadialDiagonal<Link, Node>({
   source = (n: $TSFIXME) => n.source,
   target = (n: $TSFIXME) => n.target,
   ...restProps
-}: LinkRadialDiagonalProps<Node, Link> &
+}: LinkRadialDiagonalProps<Link, Node> &
   Omit<React.SVGProps<SVGPathElement>, keyof LinkRadialDiagonalProps<Link, Node>>) {
   const pathGen = path || pathRadialDiagonal({ source, target, angle, radius });
   if (children) return <>{children({ path: pathGen })}</>;
