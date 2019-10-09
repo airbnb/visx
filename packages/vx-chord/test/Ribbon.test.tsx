@@ -20,7 +20,8 @@ describe('<Ribbon />', () => {
   test('it should call children as a function with required args', () => {
     const children = jest.fn(() => 'test');
     shallow(<Ribbon chord={chords[0]} children={children} />);
-    const args = children.mock.calls[0][0];
+    // we don't know type of the arguments
+    const args = (children.mock.calls[0] as any)[0];
     expect(children.mock.calls).toHaveLength(1);
     expect(args.path).toBeDefined();
   });
