@@ -4,10 +4,12 @@ import { feature } from 'topojson-client';
 import { GeometryCollection } from 'geojson';
 
 import Projection from '../src/projections/Projection';
+// @ts-ignore
 import topology from './topo.json';
 
 describe('<Projection />', () => {
   // TopoJSON with two polygons
+  // @ts-ignore @TODO get this to method overload properly
   const data: GeometryCollection[] = feature(topology, topology.objects.collection).features;
   const props = { data };
 
