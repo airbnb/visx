@@ -1,4 +1,4 @@
-import { withBoundingRects, withBoundingRectsProps } from '../src';
+import { withBoundingRects } from '../src';
 
 // const expectedRectShape = expect.objectContaining({
 //   top: expect.any(Number),
@@ -51,10 +51,4 @@ describe('withBoundingRects()', () => {
   //   const RenderedComponent = wrapper.find(Component);
   //   expect(RenderedComponent.prop('bananas')).toBe('are yellow');
   // });
-});
-
-describe('withBoundingRectsProps', () => {
-  test('it should be defined', () => {
-    expect(withBoundingRectsProps).toBeDefined();
-  });
 });

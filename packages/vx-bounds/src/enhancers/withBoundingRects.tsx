@@ -1,7 +1,6 @@
 /* eslint react/no-did-mount-set-state: 0, react/no-find-dom-node: 0 */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
 
 const emptyRect = {
   top: 0,
@@ -12,24 +11,28 @@ const emptyRect = {
   height: 0,
 };
 
-const rectShape = PropTypes.shape({
-  top: PropTypes.number.isRequired,
-  right: PropTypes.number.isRequired,
-  bottom: PropTypes.number.isRequired,
-  left: PropTypes.number.isRequired,
-  width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired,
-});
-
-export const withBoundingRectsProps = {
-  getRects: PropTypes.func,
-  rect: rectShape,
-  parentRect: rectShape,
+type rectShape = {
+  top: number;
+  right: number;
+  bottom: number;
+  left: number;
+  width: number;
+  height: number;
 };
 
-export default function withBoundingRects(BaseComponent) {
-  class WrappedComponent extends React.PureComponent {
-    constructor(props) {
+export type WithBoundingRectsProps = {
+  getRects: () => { rect: rectShape; parentRect: rectShape };
+  rect: rectShape;
+  parentRect: rectShape;
+};
+
+export default function withBoundingRects<Props extends object = {}>(
+  BaseComponent: React.ComponentType<Props>,
+) {
+  return class WrappedComponent extends React.PureComponent<Props> {
+    static displayName = `withBoundingRects(${BaseComponent.displayName || ''})`;
+    node: HTMLElement | undefined | null;
+    constructor(props: Props) {
       super(props);
       this.state = {
         rect: undefined,
@@ -39,7 +42,7 @@ export default function withBoundingRects(BaseComponent) {
     }
 
     componentDidMount() {
-      this.node = ReactDOM.findDOMNode(this);
+      this.node = ReactDOM.findDOMNode(this) as HTMLElement;
       this.setState(() => this.getRects());
     }
 
@@ -47,7 +50,7 @@ export default function withBoundingRects(BaseComponent) {
       if (!this.node) return this.state;
 
       const { node } = this;
-      const { parentNode } = node;
+      const parentNode = node.parentNode as HTMLElement | null;
 
       const rect = node.getBoundingClientRect ? node.getBoundingClientRect() : emptyRect;
 
@@ -62,11 +65,5 @@ export default function withBoundingRects(BaseComponent) {
     render() {
       return <BaseComponent getRects={this.getRects} {...this.state} {...this.props} />;
     }
-  }
-
-  WrappedComponent.propTypes = BaseComponent.propTypes;
-  WrappedComponent.defaultProps = BaseComponent.defaultProps;
-  WrappedComponent.displayName = `withBoundingRects(${BaseComponent.displayName || ''})`;
-
-  return WrappedComponent;
+  };
 }
