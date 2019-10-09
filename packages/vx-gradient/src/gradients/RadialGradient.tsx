@@ -1,18 +1,20 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { LinearGradientProps } from './LinearGradient';
 
-RadialGradient.propTypes = {
-  id: PropTypes.string.isRequired,
-  from: PropTypes.string,
-  to: PropTypes.string,
-  fromOffset: PropTypes.string,
-  fromOpacity: PropTypes.number,
-  toOffset: PropTypes.string,
-  toOpacity: PropTypes.number,
-  rotate: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  transform: PropTypes.string,
-  children: PropTypes.any,
-};
+export type RadialGradientProps = Pick<
+  LinearGradientProps,
+  | 'id'
+  | 'from'
+  | 'to'
+  | 'fromOffset'
+  | 'fromOpacity'
+  | 'toOffset'
+  | 'toOpacity'
+  | 'rotate'
+  | 'transform'
+  | 'children'
+> &
+  React.SVGProps<SVGRadialGradientElement>; // passed as rest props to radialGradient
 
 export default function RadialGradient({
   children,
@@ -26,7 +28,7 @@ export default function RadialGradient({
   rotate,
   transform,
   ...restProps
-}) {
+}: RadialGradientProps) {
   return (
     <defs>
       <radialGradient
