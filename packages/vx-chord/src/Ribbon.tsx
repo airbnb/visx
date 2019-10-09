@@ -31,8 +31,7 @@ export default function Ribbon({
   if (startAngle) ribbon.startAngle(startAngle);
   if (endAngle) ribbon.endAngle(endAngle);
   const path = ribbon(chord) as any;
-  if (children)
-    return <React.Fragment key="ribbon-child-wrapper">{children({ path })}</React.Fragment>;
+  if (children) return <>{children({ path })}</>;
 
   return <path className={cx('vx-ribbon', className)} d={path} {...restProps} />;
 }

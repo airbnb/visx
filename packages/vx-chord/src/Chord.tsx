@@ -27,8 +27,7 @@ export default function Chord({
   if (sortChords) chord.sortChords(sortChords);
   const chords = chord(matrix);
   // using array here, to prevent uniq keys warning from the react
-  if (children)
-    return <React.Fragment key="chord-child-wrapper">{children({ chords })}</React.Fragment>;
+  if (children) return <>{children({ chords })}</>;
 
   // so react-docgen picks it up
   return <g />;
