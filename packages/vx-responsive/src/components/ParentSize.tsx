@@ -5,6 +5,7 @@ import ResizeObserver from 'resize-observer-polyfill';
 export type ParentSizeProps = {
   className?: string;
   debounceTime?: number;
+  parentSizeStyles?: React.CSSProperties;
   children: (
     args: {
       ref: HTMLDivElement | null;
@@ -22,14 +23,13 @@ type ParentSizeState = {
 
 export type ParentSizeProvidedProps = ParentSizeState;
 
-const PARENT_SIZE_STYLES = { width: '100%', height: '100%' };
-
 export default class ParentSize extends React.Component<
   ParentSizeProps & JSX.IntrinsicElements['div'],
   ParentSizeState
 > {
   static defaultProps = {
     debounceTime: 300,
+    parentSizeStyles: { width: '100%', height: '100%' },
   };
   animationFrameID: number | null;
   resizeObserver: ResizeObserver | undefined;
@@ -73,9 +73,9 @@ export default class ParentSize extends React.Component<
   };
 
   render() {
-    const { className, children, debounceTime, ...restProps } = this.props;
+    const { className, children, debounceTime, parentSizeStyles, ...restProps } = this.props;
     return (
-      <div style={PARENT_SIZE_STYLES} ref={this.setTarget} className={className} {...restProps}>
+      <div style={parentSizeStyles} ref={this.setTarget} className={className} {...restProps}>
         {children({
           ...this.state,
           ref: this.target,
