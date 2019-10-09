@@ -28,7 +28,7 @@ const browserUsage = [
   },
 ];
 
-const PieWrapper = restProps => shallow(<Pie data={browserUsage} {...restProps} />);
+const PieWrapper = (restProps = {}) => shallow(<Pie data={browserUsage} {...restProps} />);
 const PieChildren = ({ children, ...restProps }) =>
   shallow(
     <Pie data={browserUsage} {...restProps}>
@@ -68,6 +68,8 @@ describe('<Pie />', () => {
         {({ arcs }) => {
           expect(arcs[0]).toMatchObject({ value: A, index: 0 });
           expect(arcs[1]).toMatchObject({ value: B, index: 1 });
+
+          return null;
         }}
       </Pie>,
     );
@@ -78,7 +80,7 @@ describe('<Pie />', () => {
     expect(() => PieWrapper({ pieSortValues: 12 })).toThrow();
     // eslint-disable-next-line @typescript-eslint/unbound-method
     expect(console.error).toBeCalled();
-    expect((console.error as typeof jest.fn).mock.calls).toHaveLength(2);
+    expect((console.error as jest.Mock).mock.calls).toHaveLength(2);
   });
 
   test('it should have the .vx-pie-arcs-group class', () => {

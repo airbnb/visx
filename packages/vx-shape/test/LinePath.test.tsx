@@ -3,13 +3,15 @@ import { shallow, mount } from 'enzyme';
 
 import { LinePath } from '../src';
 
+type Datum = { x: number; y: number };
+
 const linePathProps = {
   data: [{ x: 0, y: 0 }, { x: 1, y: 1 }],
-  x: d => d.x,
-  y: d => d.y,
+  x: (d: Datum) => d.x,
+  y: (d: Datum) => d.y,
 };
 
-const LinePathWrapper = restProps => shallow(<LinePath {...restProps} />);
+const LinePathWrapper = (restProps = {}) => shallow(<LinePath {...restProps} />);
 const LinePathChildren = ({ children, ...restProps }) =>
   shallow(<LinePath {...restProps}>{children}</LinePath>);
 
@@ -42,8 +44,8 @@ describe('<LinePath />', () => {
 
   test('it should expose its ref via an innerRef prop', () => {
     return new Promise(done => {
-      const refCallback = n => {
-        expect(n.tagName).toMatch('path');
+      const refCallback = (ref: SVGPathElement) => {
+        expect(ref.tagName).toMatch('path');
         done();
       };
       mount(

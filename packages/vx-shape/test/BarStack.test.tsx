@@ -3,11 +3,11 @@ import { shallow } from 'enzyme';
 
 import { BarStack } from '../src';
 
-const xScale = jest.fn();
-xScale.domain = () => [0, 100];
-xScale.range = () => [0, 100];
-xScale.bandwidth = jest.fn();
-xScale.step = jest.fn();
+const xScale = () => 2;
+xScale.domain = () => [0, 100] as [number, number];
+xScale.range = () => [0, 100] as [number, number];
+xScale.bandwidth = () => 2;
+xScale.step = () => 2;
 xScale.paddingInner = jest.fn();
 xScale.paddingOuter = jest.fn();
 
@@ -24,8 +24,8 @@ describe('<BarStack />', () => {
         left={3}
         x={d => d}
         xScale={xScale}
-        yScale={d => d}
-        color={d => d}
+        yScale={xScale}
+        color={d => d.toString()}
         keys={[]}
       />,
     );
@@ -41,8 +41,8 @@ describe('<BarStack />', () => {
         left={3}
         x={d => d}
         xScale={xScale}
-        yScale={d => d}
-        color={d => d}
+        yScale={xScale}
+        color={d => d.toString()}
         keys={[]}
       />,
     );
@@ -58,8 +58,8 @@ describe('<BarStack />', () => {
         left={3}
         x={d => d}
         xScale={xScale}
-        yScale={d => d}
-        color={d => d}
+        yScale={xScale}
+        color={d => d.toString()}
         keys={[]}
       />,
     );

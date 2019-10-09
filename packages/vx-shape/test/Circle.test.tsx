@@ -20,8 +20,8 @@ describe('<Circle />', () => {
 
   test('it should expose its ref via an innerRef prop', () => {
     return new Promise(done => {
-      const refCallback = n => {
-        expect(n.tagName).toMatch('circle');
+      const refCallback = (ref: SVGCircleElement) => {
+        expect(ref.tagName).toMatch('circle');
         done();
       };
       mount(

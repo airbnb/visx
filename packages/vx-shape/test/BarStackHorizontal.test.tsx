@@ -3,13 +3,13 @@ import { shallow } from 'enzyme';
 
 import { BarStackHorizontal } from '../src';
 
-const yScale = jest.fn();
-yScale.domain = () => [0, 100];
-yScale.range = () => [0, 100];
-yScale.bandwidth = jest.fn();
-yScale.step = jest.fn();
-yScale.paddingInner = jest.fn();
-yScale.paddingOuter = jest.fn();
+const scale = () => 5;
+scale.domain = () => [0, 100] as [number, number];
+scale.range = () => [0, 100] as [number, number];
+scale.bandwidth = () => 5;
+scale.step = () => 5;
+scale.paddingInner = () => 5;
+scale.paddingOuter = () => 5;
 
 describe('<BarStackHorizontal />', () => {
   test('it should be defined', () => {
@@ -23,9 +23,9 @@ describe('<BarStackHorizontal />', () => {
         top={2}
         left={3}
         y={d => d}
-        xScale={d => d}
-        yScale={yScale}
-        color={d => d}
+        xScale={scale}
+        yScale={scale}
+        color={d => d.toString()}
         keys={[]}
       />,
     );
@@ -40,9 +40,9 @@ describe('<BarStackHorizontal />', () => {
         top={2}
         left={3}
         y={d => d}
-        xScale={d => d}
-        yScale={yScale}
-        color={d => d}
+        xScale={scale}
+        yScale={scale}
+        color={d => d.toString()}
         keys={[]}
       />,
     );
@@ -57,9 +57,9 @@ describe('<BarStackHorizontal />', () => {
         top={2}
         left={3}
         y={d => d}
-        xScale={d => d}
-        yScale={yScale}
-        color={d => d}
+        xScale={scale}
+        yScale={scale}
+        color={d => d.toString()}
         keys={[]}
       />,
     );

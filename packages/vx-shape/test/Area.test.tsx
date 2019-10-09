@@ -20,8 +20,8 @@ const xScale = () => 50;
 const yScale = () => 50;
 yScale.range = () => [100, 0];
 
-const x = d => xScale(d.x);
-const y = d => yScale(d.y);
+const x = () => xScale();
+const y = () => yScale();
 
 describe('<Area />', () => {
   test('it should be defined', () => {
@@ -35,8 +35,8 @@ describe('<Area />', () => {
 
   test('it should expose its ref via an innerRef prop', () => {
     return new Promise(done => {
-      const refCallback = n => {
-        expect(n.tagName).toMatch('path');
+      const refCallback = (ref: SVGPathElement) => {
+        expect(ref.tagName).toMatch('path');
         done();
       };
       mount(

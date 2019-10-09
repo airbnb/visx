@@ -20,16 +20,20 @@ const data = [
 const y0 = d => d.date;
 const y0Scale = () => 2;
 y0Scale.bandwidth = () => 10;
+y0Scale.domain = () => [0, 100] as [number, number];
+y0Scale.range = () => [0, 100] as [number, number];
 const y1Scale = d => d;
 y1Scale.bandwidth = () => 2;
-y1Scale.domain = () => [0, 100];
-y1Scale.range = () => [0, 100];
+y1Scale.domain = () => [0, 100] as [number, number];
+y1Scale.range = () => [0, 100] as [number, number];
 const xScale = d => d;
+xScale.domain = () => [0, 100] as [number, number];
+xScale.range = () => [0, 100] as [number, number];
 const color = d => d;
 const keys = ['New York', 'San Francisco', 'Austin'];
 const width = 1;
 
-const BarGroupWrapper = restProps =>
+const BarGroupWrapper = (restProps = {}) =>
   shallow(
     <BarGroupHorizontal
       data={data}

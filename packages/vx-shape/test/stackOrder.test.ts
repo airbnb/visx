@@ -12,6 +12,7 @@ describe('STACK_ORDERS', () => {
 
 describe('stackOrders()', () => {
   test('it should default to d3.stackOrderNone', () => {
+    // @ts-ignore allow invalid input
     const offset = stackOrder('x');
     expect(offset).toEqual(STACK_ORDERS.none);
   });

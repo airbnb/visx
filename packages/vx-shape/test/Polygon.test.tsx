@@ -3,9 +3,13 @@ import { shallow } from 'enzyme';
 
 import { Polygon } from '../src';
 
-const PolygonWrapper = restProps => shallow(<Polygon {...restProps} />);
+const PolygonWrapper = (restProps = {}) => shallow(<Polygon size={10} sides={6} {...restProps} />);
 const PolygonChildren = ({ children, ...restProps }) =>
-  shallow(<Polygon {...restProps}>{children}</Polygon>);
+  shallow(
+    <Polygon size={10} sides={6} {...restProps}>
+      {children}
+    </Polygon>,
+  );
 
 describe('<Polygon />', () => {
   it('should be defined', () => {

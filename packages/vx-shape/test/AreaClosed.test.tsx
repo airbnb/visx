@@ -10,13 +10,17 @@ const data = [
 ];
 
 const xScale = () => 50;
+xScale.range = () => [0, 100];
+xScale.domain = () => [0, 100];
+
 const yScale = () => 50;
-yScale.range = () => [100, 0];
+yScale.range = () => [100, 0] as [number, number];
+yScale.domain = () => [0, 100] as [number, number];
 
-const x = d => xScale(d.x);
-const y = d => yScale(d.y);
+const x = () => xScale();
+const y = () => yScale();
 
-const AreaClosedWrapper = restProps =>
+const AreaClosedWrapper = (restProps = {}) =>
   shallow(<AreaClosed data={data} yScale={yScale} x={x} y1={y} {...restProps} />);
 
 const AreaClosedChildren = ({ children, ...restProps }) =>

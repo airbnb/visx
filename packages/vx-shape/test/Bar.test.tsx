@@ -3,7 +3,7 @@ import { shallow, mount } from 'enzyme';
 
 import { Bar } from '../src';
 
-const BarWrapper = restProps => shallow(<Bar {...restProps} />);
+const BarWrapper = (restProps = {}) => shallow(<Bar {...restProps} />);
 
 describe('<Bar />', () => {
   test('it should be defined', () => {
@@ -20,8 +20,8 @@ describe('<Bar />', () => {
 
   test('it should expose its ref via an innerRef prop', () => {
     return new Promise(done => {
-      const refCallback = n => {
-        expect(n.tagName).toMatch('rect');
+      const refCallback = (ref: SVGRectElement) => {
+        expect(ref.tagName).toMatch('rect');
         done();
       };
       mount(

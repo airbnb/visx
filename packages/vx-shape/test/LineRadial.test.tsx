@@ -3,13 +3,15 @@ import { shallow, mount } from 'enzyme';
 
 import { LineRadial } from '../src';
 
+type Datum = { x: number; y: number };
+
 const LineRadialProps = {
   data: [{ x: 0, y: 0 }, { x: 1, y: 1 }],
-  angle: d => d.x,
-  radius: d => d.y,
+  angle: (d: Datum) => d.x,
+  radius: (d: Datum) => d.y,
 };
 
-const LineRadialWrapper = restProps => shallow(<LineRadial {...restProps} />);
+const LineRadialWrapper = (restProps = {}) => shallow(<LineRadial {...restProps} />);
 const LineRadialChildren = ({ children, ...restProps }) =>
   shallow(<LineRadial {...restProps}>{children}</LineRadial>);
 
@@ -42,8 +44,8 @@ describe('<LineRadial />', () => {
 
   test('it should expose its ref via an innerRef prop', () => {
     return new Promise(done => {
-      const refCallback = n => {
-        expect(n.tagName).toMatch('path');
+      const refCallback = (ref: SVGPathElement) => {
+        expect(ref.tagName).toMatch('path');
         done();
       };
       mount(

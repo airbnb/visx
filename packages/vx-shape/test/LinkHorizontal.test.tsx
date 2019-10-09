@@ -14,6 +14,7 @@ const mockHierarchy = hierarchy({
     },
   ],
 });
+
 const link = mockHierarchy.links()[0];
 
 describe('<LinkHorizontal />', () => {
@@ -23,8 +24,8 @@ describe('<LinkHorizontal />', () => {
 
   test('it should expose its ref via an innerRef prop', () => {
     return new Promise(done => {
-      const refCallback = n => {
-        expect(n.tagName).toMatch('path');
+      const refCallback = (ref: SVGPathElement) => {
+        expect(ref.tagName).toMatch('path');
         done();
       };
       mount(

@@ -17,19 +17,27 @@ const data = [
     Austin: '67.7',
   },
 ];
+
 const x0 = d => d.date;
 const x0Scale = () => 2;
 x0Scale.bandwidth = () => 10;
+x0Scale.domain = () => [0, 100] as [number, number];
+x0Scale.range = () => [0, 100] as [number, number];
+
 const x1Scale = d => d;
 x1Scale.bandwidth = () => 2;
-x1Scale.domain = () => [0, 100];
-x1Scale.range = () => [0, 100];
+x1Scale.domain = () => [0, 100] as [number, number];
+x1Scale.range = () => [0, 100] as [number, number];
+
 const yScale = d => d;
+yScale.domain = () => [0, 100] as [number, number];
+yScale.range = () => [0, 100] as [number, number];
+
 const color = d => d;
 const keys = ['New York', 'San Francisco', 'Austin'];
 const height = 1;
 
-const BarGroupWrapper = restProps =>
+const BarGroupWrapper = (restProps = {}) =>
   shallow(
     <BarGroup
       data={data}

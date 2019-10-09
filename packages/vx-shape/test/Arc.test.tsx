@@ -28,7 +28,7 @@ const browserUsage = [
   },
 ];
 
-const ArcWrapper = overrideProps => shallow(<Arc data={browserUsage} {...overrideProps} />);
+const ArcWrapper = (overrideProps = {}) => shallow(<Arc data={browserUsage} {...overrideProps} />);
 
 const ArcChildren = ({ children, ...restProps }) =>
   shallow(
