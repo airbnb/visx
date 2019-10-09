@@ -62,7 +62,7 @@ export default function LinkRadialCurve<Link, Node>({
 }: LinkRadialCurveProps<Link, Node> &
   Omit<React.SVGProps<SVGPathElement>, keyof LinkRadialCurveProps<Link, Node>>) {
   const pathGen = path || pathRadialCurve({ source, target, x, y, percent });
-  if (children) return <>{children({ path })}</>;
+  if (children) return <>{children({ path: pathGen })}</>;
   return (
     <path
       ref={innerRef}

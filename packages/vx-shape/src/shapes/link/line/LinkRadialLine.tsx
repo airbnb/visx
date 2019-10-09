@@ -47,7 +47,7 @@ export default function LinkRadialLine<Link, Node>({
 }: LinkRadialLineProps<Link, Node> &
   Omit<React.SVGProps<SVGPathElement>, keyof LinkRadialLineProps<Link, Node>>) {
   const pathGen = path || pathRadialLine({ source, target, x, y });
-  if (children) return <>{children({ path })}</>;
+  if (children) return <>{children({ path: pathGen })}</>;
   return (
     <path
       ref={innerRef}

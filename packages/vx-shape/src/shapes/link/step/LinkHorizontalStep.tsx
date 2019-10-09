@@ -49,7 +49,7 @@ export default function LinkHorizontalStep<Link, Node>({
 }: LinkHorizontalStepProps<Link, Node> &
   Omit<React.SVGProps<SVGPathElement>, keyof LinkHorizontalStepProps<Link, Node>>) {
   const pathGen = path || pathHorizontalStep({ source, target, x, y, percent });
-  if (children) return <>{children({ path })}</>;
+  if (children) return <>{children({ path: pathGen })}</>;
   return (
     <path
       ref={innerRef}

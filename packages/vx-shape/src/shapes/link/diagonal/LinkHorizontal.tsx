@@ -36,7 +36,7 @@ export default function LinkHorizontalDiagonal<Link, Node>({
 }: LinkHorizontalDiagonalProps<Link, Node> &
   Omit<React.SVGProps<SVGPathElement>, keyof LinkHorizontalDiagonalProps<Link, Node>>) {
   const pathGen = path || pathHorizontalDiagonal({ source, target, x, y });
-  if (children) return <>{children({ path })}</>;
+  if (children) return <>{children({ path: pathGen })}</>;
   return (
     <path
       ref={innerRef}

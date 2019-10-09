@@ -55,7 +55,7 @@ export default function LinkRadialStep<Link, Node>({
 }: LinkRadialStepProps<Link, Node> &
   Omit<React.SVGProps<SVGPathElement>, keyof LinkRadialStepProps<Link, Node>>) {
   const pathGen = path || pathRadialStep({ source, target, x, y });
-  if (children) return <>{children({ path })}</>;
+  if (children) return <>{children({ path: pathGen })}</>;
   return (
     <path
       ref={innerRef}

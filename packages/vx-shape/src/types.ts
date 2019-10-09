@@ -101,9 +101,9 @@ export type SharedLinkProps<Link> = {
   /** React ref to the path element. */
   innerRef?: React.Ref<SVGPathElement>;
   /** Path generator, given a link returns a path d attribute string */
-  path: PathType<Link>;
+  path?: PathType<Link>;
   /** Render function override which is passed the configured path generator as input. */
-  children?: (args: { path: PathType<Link> }) => NonNullable<React.ReactNode>;
+  children?: (args: { path: PathType<Link> }) => React.ReactNode;
   /** Datum for which to render a link. */
   data: Link;
 };

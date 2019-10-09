@@ -35,7 +35,7 @@ export default function LinkVerticalDiagonal<Link, Node>({
 }: LinkVerticalDiagonalProps<Link, Node> &
   Omit<React.SVGProps<SVGPathElement>, keyof LinkVerticalDiagonalProps<Link, Node>>) {
   const pathGen = path || pathVerticalDiagonal({ source, target, x, y });
-  if (children) return <>{children({ path })}</>;
+  if (children) return <>{children({ path: pathGen })}</>;
   return (
     <path
       ref={innerRef}

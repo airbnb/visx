@@ -52,7 +52,7 @@ export default function LinkVerticalCurve<Link, Node>({
 }: LinkVerticalCurveProps<Link, Node> &
   Omit<React.SVGProps<SVGPathElement>, keyof LinkVerticalCurveProps<Link, Node>>) {
   const pathGen = path || pathVerticalCurve({ source, target, x, y, percent });
-  if (children) return <>{children({ path })}</>;
+  if (children) return <>{children({ path: pathGen })}</>;
   return (
     <path
       ref={innerRef}

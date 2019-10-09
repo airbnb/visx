@@ -42,7 +42,7 @@ export default function LinkVerticalLine<Link, Node>({
 }: LinkVerticalLineProps<Link, Node> &
   Omit<React.SVGProps<SVGPathElement>, keyof LinkVerticalLineProps<Link, Node>>) {
   const pathGen = path || pathVerticalLine({ source, target, x, y });
-  if (children) return <>{children({ path })}</>;
+  if (children) return <>{children({ path: pathGen })}</>;
   return (
     <path
       ref={innerRef}

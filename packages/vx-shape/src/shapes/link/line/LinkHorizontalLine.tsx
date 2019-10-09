@@ -42,7 +42,7 @@ export default function LinkHorizontalLine<Link, Node>({
 }: LinkHorizontalLineProps<Link, Node> &
   Omit<React.SVGProps<SVGPathElement>, keyof LinkHorizontalLineProps<Link, Node>>) {
   const pathGen = path || pathHorizontalLine({ source, target, x, y });
-  if (children) return <>{children({ path })}</>;
+  if (children) return <>{children({ path: pathGen })}</>;
   return (
     <path
       ref={innerRef}

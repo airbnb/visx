@@ -49,7 +49,7 @@ export default function LinkVerticalStep<Link, Node>({
 }: LinkVerticalStepProps<Link, Node> &
   Omit<React.SVGProps<SVGPathElement>, keyof LinkVerticalStepProps<Link, Node>>) {
   const pathGen = path || pathVerticalStep({ source, target, x, y, percent });
-  if (children) return <>{children({ path })}</>;
+  if (children) return <>{children({ path: pathGen })}</>;
   return (
     <path
       ref={innerRef}

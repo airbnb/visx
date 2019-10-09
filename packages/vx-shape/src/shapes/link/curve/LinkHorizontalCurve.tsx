@@ -52,7 +52,7 @@ export default function LinkHorizontalCurve<Link, Node>({
 }: LinkHorizontalCurveProps<Link, Node> &
   Omit<React.SVGProps<SVGPathElement>, keyof LinkHorizontalCurveProps<Link, Node>>) {
   const pathGen = path || pathHorizontalCurve({ source, target, x, y, percent });
-  if (children) return <>{children({ path })}</>;
+  if (children) return <>{children({ path: pathGen })}</>;
   return (
     <path
       ref={innerRef}

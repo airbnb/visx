@@ -39,7 +39,7 @@ export default function LinkRadialDiagonal<Link, Node>({
 }: LinkRadialDiagonalProps<Node, Link> &
   Omit<React.SVGProps<SVGPathElement>, keyof LinkRadialDiagonalProps<Link, Node>>) {
   const pathGen = path || pathRadialDiagonal({ source, target, angle, radius });
-  if (children) return <>{children({ path })}</>;
+  if (children) return <>{children({ path: pathGen })}</>;
   return (
     <path
       ref={innerRef}

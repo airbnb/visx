@@ -20,7 +20,7 @@ export type AreaProps<Datum> = {
   /** React RefObject passed to the path element. */
   innerRef?: React.Ref<SVGPathElement>;
   /** Sets the x0 accessor function, and sets x1 to null. */
-  x?: NumberAccessor<Datum> | number | number;
+  x?: NumberAccessor<Datum> | number;
   /** Specifies the x0 accessor function which defaults to d => d[0]. */
   x0?: NumberAccessor<Datum> | number;
   /** Specifies the x1 accessor function which defaults to null. */
