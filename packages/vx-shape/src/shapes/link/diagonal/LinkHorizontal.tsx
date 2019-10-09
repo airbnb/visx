@@ -41,7 +41,7 @@ export default function LinkHorizontalDiagonal<Link, Node>({
     <path
       ref={innerRef}
       className={cx('vx-link vx-link-horizontal-diagonal', className)}
-      d={pathGen(data)}
+      d={pathGen(data) || ''}
       {...restProps}
     />
   );

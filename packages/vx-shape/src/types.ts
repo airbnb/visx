@@ -93,7 +93,7 @@ export type RadialAccessorProps<Link, Node> = Pick<
   radius?: (node: Node) => number;
 };
 
-type PathType<Link> = (link: Link) => string;
+type PathType<Link> = (link: Link) => string | null;
 
 export type SharedLinkProps<Link> = {
   /** className applied to path element. */

@@ -47,7 +47,7 @@ export default function LinkHorizontalLine<Link, Node>({
     <path
       ref={innerRef}
       className={cx('vx-link vx-link-horizontal-line', className)}
-      d={pathGen(data)}
+      d={pathGen(data) || ''}
       {...restProps}
     />
   );

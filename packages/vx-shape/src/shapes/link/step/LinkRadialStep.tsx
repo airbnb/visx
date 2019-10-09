@@ -60,7 +60,7 @@ export default function LinkRadialStep<Link, Node>({
     <path
       ref={innerRef}
       className={cx('vx-link vx-link-radial-step', className)}
-      d={pathGen(data)}
+      d={pathGen(data) || ''}
       {...restProps}
     />
   );
