@@ -2,8 +2,21 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 
 import { Arc } from '../src';
+import { ArcProps } from '../src/shapes/Arc';
 
-const browserUsage = [
+interface Datum {
+  date: string;
+  'Google Chrome': string;
+  'Internet Explorer': string;
+  Firefox: string;
+  Safari: string;
+  'Microsoft Edge': string;
+  Opera: string;
+  Mozilla: string;
+  'Other/Unknown': string;
+}
+
+const browserUsage: Datum[] = [
   {
     date: '2015 Jun 15',
     'Google Chrome': '48.09',
@@ -30,7 +43,7 @@ const browserUsage = [
 
 const ArcWrapper = (overrideProps = {}) => shallow(<Arc data={browserUsage} {...overrideProps} />);
 
-const ArcChildren = ({ children, ...restProps }) =>
+const ArcChildren = ({ children, ...restProps }: Partial<ArcProps<Datum>>) =>
   shallow(
     <Arc data={browserUsage} {...restProps}>
       {children}

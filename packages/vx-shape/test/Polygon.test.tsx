@@ -2,9 +2,10 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import { Polygon } from '../src';
+import { PolygonProps } from '../src/shapes/Polygon';
 
 const PolygonWrapper = (restProps = {}) => shallow(<Polygon size={10} sides={6} {...restProps} />);
-const PolygonChildren = ({ children, ...restProps }) =>
+const PolygonChildren = ({ children, ...restProps }: Partial<PolygonProps>) =>
   shallow(
     <Polygon size={10} sides={6} {...restProps}>
       {children}
@@ -19,7 +20,7 @@ describe('<Polygon />', () => {
   it('should render an octagon', () => {
     const wrapper = PolygonWrapper({ sides: 8, size: 25 });
     const polygon = wrapper.find('polygon');
-    const points = polygon.props().points.split(' ');
+    const points = polygon.props().points!.split(' ');
     expect(points).toHaveLength(8);
   });
 

@@ -2,14 +2,20 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 
 import { Area } from '../src';
+import { AreaProps } from '../src/shapes/Area';
 
-const fakeData = [
+interface Datum {
+  x: Date;
+  y: number;
+}
+
+const fakeData: Datum[] = [
   { x: new Date('2017-01-01'), y: 5 },
   { x: new Date('2017-01-02'), y: 5 },
   { x: new Date('2017-01-03'), y: 5 },
 ];
 
-const AreaChildren = ({ children, ...restProps }) =>
+const AreaChildren = ({ children, ...restProps }: Partial<AreaProps<Datum>>) =>
   shallow(
     <Area data={fakeData} {...restProps}>
       {children}

@@ -2,17 +2,21 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 
 import { LineRadial } from '../src';
+import { LineRadialProps } from '../src/shapes/LineRadial';
 
-type Datum = { x: number; y: number };
+interface Datum {
+  x: number;
+  y: number;
+}
 
-const LineRadialProps = {
+const mockProps = {
   data: [{ x: 0, y: 0 }, { x: 1, y: 1 }],
   angle: (d: Datum) => d.x,
   radius: (d: Datum) => d.y,
 };
 
 const LineRadialWrapper = (restProps = {}) => shallow(<LineRadial {...restProps} />);
-const LineRadialChildren = ({ children, ...restProps }) =>
+const LineRadialChildren = ({ children, ...restProps }: Partial<LineRadialProps<Datum>>) =>
   shallow(<LineRadial {...restProps}>{children}</LineRadial>);
 
 describe('<LineRadial />', () => {
@@ -21,22 +25,22 @@ describe('<LineRadial />', () => {
   });
 
   test('it should have the .vx-line-radial class', () => {
-    expect(LineRadialWrapper(LineRadialProps).prop('className')).toBe('vx-line-radial');
+    expect(LineRadialWrapper(mockProps).prop('className')).toBe('vx-line-radial');
   });
 
   test('it should contain paths', () => {
-    expect(LineRadialWrapper(LineRadialProps).find('path').length).toBeGreaterThan(0);
+    expect(LineRadialWrapper(mockProps).find('path').length).toBeGreaterThan(0);
   });
 
   test('it should take a children as function prop', () => {
     const fn = jest.fn();
-    LineRadialChildren({ children: fn, ...LineRadialProps });
+    LineRadialChildren({ children: fn, ...mockProps });
     expect(fn).toHaveBeenCalled();
   });
 
   test('it should call children function with { path }', () => {
     const fn = jest.fn();
-    LineRadialChildren({ children: fn, ...LineRadialProps });
+    LineRadialChildren({ children: fn, ...mockProps });
     const args = fn.mock.calls[0][0];
     const keys = Object.keys(args);
     expect(keys.includes('path')).toEqual(true);
@@ -50,7 +54,7 @@ describe('<LineRadial />', () => {
       };
       mount(
         <svg>
-          <LineRadial innerRef={refCallback} {...LineRadialProps} />
+          <LineRadial innerRef={refCallback} {...mockProps} />
         </svg>,
       );
     });

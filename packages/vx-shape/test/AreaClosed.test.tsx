@@ -2,8 +2,14 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 
 import { AreaClosed } from '../src';
+import { AreaClosedProps } from '../src/shapes/AreaClosed';
 
-const data = [
+interface Datum {
+  x: Date;
+  y: number;
+}
+
+const data: Datum[] = [
   { x: new Date('2017-01-01'), y: 5 },
   { x: new Date('2017-01-02'), y: 5 },
   { x: new Date('2017-01-03'), y: 5 },
@@ -23,7 +29,7 @@ const y = () => yScale();
 const AreaClosedWrapper = (restProps = {}) =>
   shallow(<AreaClosed data={data} yScale={yScale} x={x} y1={y} {...restProps} />);
 
-const AreaClosedChildren = ({ children, ...restProps }) =>
+const AreaClosedChildren = ({ children, ...restProps }: Partial<AreaClosedProps<Datum>>) =>
   shallow(
     <AreaClosed data={data} yScale={yScale} x={x} y1={y} {...restProps}>
       {children}
@@ -41,8 +47,8 @@ describe('<AreaClosed />', () => {
 
   test('it should expose its ref via an innerRef prop', () => {
     return new Promise(done => {
-      const refCallback = n => {
-        expect(n.tagName).toMatch('path');
+      const refCallback = (ref: SVGPathElement) => {
+        expect(ref.tagName).toMatch('path');
         done();
       };
       mount(

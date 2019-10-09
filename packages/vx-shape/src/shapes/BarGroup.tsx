@@ -69,7 +69,7 @@ export type BarGroupProps<Datum> = {
  *
  * Example: [https://vx-demo.now.sh/bargroup](https://vx-demo.now.sh/bargroup)
  */
-export default function BarGroupComponent<Datum extends { [key: string]: number }>({
+export default function BarGroupComponent<Datum extends { [key: string]: $TSFIXME }>({
   data,
   className,
   top,

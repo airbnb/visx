@@ -2,8 +2,16 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import { BarGroup } from '../src';
+import { BarGroupProps } from '../src/shapes/BarGroup';
 
-const data = [
+interface Datum {
+  date: Date;
+  'New York': string;
+  'San Francisco': string;
+  Austin: string;
+}
+
+const data: Datum[] = [
   {
     date: new Date(),
     'New York': '63.4',
@@ -18,22 +26,22 @@ const data = [
   },
 ];
 
-const x0 = d => d.date;
+const x0 = () => 5;
 const x0Scale = () => 2;
 x0Scale.bandwidth = () => 10;
 x0Scale.domain = () => [0, 100] as [number, number];
 x0Scale.range = () => [0, 100] as [number, number];
 
-const x1Scale = d => d;
+const x1Scale = () => 5;
 x1Scale.bandwidth = () => 2;
 x1Scale.domain = () => [0, 100] as [number, number];
 x1Scale.range = () => [0, 100] as [number, number];
 
-const yScale = d => d;
+const yScale = () => 5;
 yScale.domain = () => [0, 100] as [number, number];
 yScale.range = () => [0, 100] as [number, number];
 
-const color = d => d;
+const color = () => 'skyblue';
 const keys = ['New York', 'San Francisco', 'Austin'];
 const height = 1;
 
@@ -52,7 +60,7 @@ const BarGroupWrapper = (restProps = {}) =>
     />,
   );
 
-const BarGroupChildren = ({ children, ...restProps }) =>
+const BarGroupChildren = ({ children, ...restProps }: Partial<BarGroupProps<Datum>>) =>
   shallow(
     <BarGroup
       data={data}

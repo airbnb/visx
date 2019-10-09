@@ -2,8 +2,21 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import { Pie } from '../src';
+import { PieProps } from '../src/shapes/Pie';
 
-const browserUsage = [
+interface Datum {
+  date: string;
+  'Google Chrome': string;
+  'Internet Explorer': string;
+  Firefox: string;
+  Safari: string;
+  'Microsoft Edge': string;
+  Opera: string;
+  Mozilla: string;
+  'Other/Unknown': string;
+}
+
+const browserUsage: Datum[] = [
   {
     date: '2015 Jun 15',
     'Google Chrome': '48.09',
@@ -29,7 +42,7 @@ const browserUsage = [
 ];
 
 const PieWrapper = (restProps = {}) => shallow(<Pie data={browserUsage} {...restProps} />);
-const PieChildren = ({ children, ...restProps }) =>
+const PieChildren = ({ children, ...restProps }: Partial<PieProps<Datum>>) =>
   shallow(
     <Pie data={browserUsage} {...restProps}>
       {children}

@@ -5,7 +5,7 @@ import Bar from './Bar';
 import { BarGroupProps } from './BarGroup';
 import { ScaleType, BarGroupHorizontal, $TSFIXME } from '../types';
 
-type BarGroupHorizontalProps<Datum> = Pick<
+export type BarGroupHorizontalProps<Datum> = Pick<
   BarGroupProps<Datum>,
   'data' | 'className' | 'top' | 'left' | 'keys' | 'color'
 > & {
@@ -25,7 +25,7 @@ type BarGroupHorizontalProps<Datum> = Pick<
   children?: (barGroups: BarGroupHorizontal[]) => React.ReactNode;
 };
 
-export default function BarGroupHorizontalComponent<Datum extends { [key: string]: number }>({
+export default function BarGroupHorizontalComponent<Datum extends { [key: string]: $TSFIXME }>({
   data,
   className,
   top,

@@ -36,7 +36,7 @@ export const getPoints = ({
     }),
   );
 
-type PolygonProps = {
+export type PolygonProps = {
   /** Number of polygon sides. */
   sides: number;
   /** Size of the shape. */

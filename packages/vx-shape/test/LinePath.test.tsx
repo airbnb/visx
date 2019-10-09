@@ -2,8 +2,12 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 
 import { LinePath } from '../src';
+import { LinePathProps } from '../src/shapes/LinePath';
 
-type Datum = { x: number; y: number };
+interface Datum {
+  x: number;
+  y: number;
+}
 
 const linePathProps = {
   data: [{ x: 0, y: 0 }, { x: 1, y: 1 }],
@@ -12,7 +16,7 @@ const linePathProps = {
 };
 
 const LinePathWrapper = (restProps = {}) => shallow(<LinePath {...restProps} />);
-const LinePathChildren = ({ children, ...restProps }) =>
+const LinePathChildren = ({ children, ...restProps }: Partial<LinePathProps<Datum>>) =>
   shallow(<LinePath {...restProps}>{children}</LinePath>);
 
 describe('<LinePath />', () => {
