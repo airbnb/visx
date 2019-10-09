@@ -10,7 +10,11 @@ const matrix = [
   [1013, 990, 940, 6907],
 ];
 
-const ChordWrapper = ({ ...restProps }) => shallow(<Chord {...restProps} />);
+type WrapperProps = {
+  matrix: number[][];
+  children: () => React.ReactNode;
+};
+const ChordWrapper = ({ ...restProps }: WrapperProps) => shallow(<Chord {...restProps} />);
 
 describe('<Chord />', () => {
   test('it should be defined', () => {
