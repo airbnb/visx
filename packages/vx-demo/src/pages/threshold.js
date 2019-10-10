@@ -4,11 +4,13 @@ import Threshold from '../components/tiles/threshold';
 
 function Description({ width }) {
   return (
-    <div style={{ width, fontSize: 14 }}>
-      Based on Mike Bostock's{' '}
+    <div style={{ width, fontSize: 14, lineHeight: '1.5em' }}>
+      The temperature in New York compared to San Francisco; days when New York was warmer are
+      green, and colder days are violet. Based on Mike Bostock's{' '}
       <a href="https://bl.ocks.org/mbostock/3894205" target="_blank" rel="noopener noreferrer">
         Difference Chart
       </a>
+      .
     </div>
   );
 }
@@ -86,7 +88,7 @@ export default function Theshold({ width, height, margin }) {
             clipBelowTo={yMax}
             curve={curveBasis}
             belowAreaProps={{
-              fill: 'red',
+              fill: 'violet',
               fillOpacity: 0.4
             }}
             aboveAreaProps={{
