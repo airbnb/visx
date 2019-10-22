@@ -69,13 +69,7 @@ export default function() {
             <div className="gallery-item" style={{ background: items[5] }}>
               <div className="image">
                 <ParentSize>
-                  {({ width, height }) => (
-                    <BrushChart
-                      width={width}
-                      height={height}
-                      margin={{ top: 0, left: 0, bottom: 0, right: 0 }}
-                    />
-                  )}
+                  {({ width, height }) => <BrushChart width={width} height={height} />}
                 </ParentSize>
               </div>
               <div className="details">
