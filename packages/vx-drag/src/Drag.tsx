@@ -56,7 +56,7 @@ export default class Drag extends React.Component<DragProps, DragState> {
 
     this.setState(
       ({ dx, dy }) => {
-        const point = localPoint(event);
+        const point = localPoint(event) || { x: 0, y: 0 };
         return {
           isDragging: true,
           dx: resetOnStart ? 0 : dx,
@@ -78,7 +78,7 @@ export default class Drag extends React.Component<DragProps, DragState> {
 
     this.setState(
       ({ x, y, isDragging }) => {
-        const point = localPoint(event);
+        const point = localPoint(event) || { x: 0, y: 0 };
         return isDragging
           ? {
               isDragging: true,
