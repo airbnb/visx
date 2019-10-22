@@ -215,7 +215,7 @@ class Zoom extends React.Component<ZoomProps, ZoomState> {
   dragStart = (event: React.MouseEvent) => {
     const { transformMatrix } = this.state;
     const { translateX, translateY } = transformMatrix;
-    this.startPoint = localPoint(event);
+    this.startPoint = localPoint(event) || undefined;
     this.startTranslate = { translateX, translateY };
     this.setState({ isDragging: true });
   };
@@ -223,8 +223,8 @@ class Zoom extends React.Component<ZoomProps, ZoomState> {
   dragMove = (event: React.MouseEvent) => {
     if (!this.state.isDragging || !this.startPoint || !this.startTranslate) return;
     const currentPoint = localPoint(event);
-    const dx = -(this.startPoint.x - currentPoint.x);
-    const dy = -(this.startPoint.y - currentPoint.y);
+    const dx = currentPoint ? -(this.startPoint.x - currentPoint.x) : -this.startPoint.x;
+    const dy = currentPoint ? -(this.startPoint.y - currentPoint.y) : -this.startPoint.y;
     this.setTranslate({
       translateX: this.startTranslate.translateX + dx,
       translateY: this.startTranslate.translateY + dy,
@@ -240,7 +240,7 @@ class Zoom extends React.Component<ZoomProps, ZoomState> {
   handleWheel = (event: React.WheelEvent | WheelEvent) => {
     const { passive, wheelDelta } = this.props;
     if (!passive) event.preventDefault();
-    const point = localPoint(event);
+    const point = localPoint(event) || undefined;
     const { scaleX, scaleY } = wheelDelta!(event);
     this.scale({ scaleX, scaleY, point });
   };
