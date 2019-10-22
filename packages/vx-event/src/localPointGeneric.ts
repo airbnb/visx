@@ -4,7 +4,7 @@ import { isSVGElement, isSVGGraphicsElement, isSVGSVGElement } from './typeGuard
 import getXAndYFromEvent from './getXAndYFromEvent';
 
 export default function localPoint(node: Element, event: EventType) {
-  if (!node || !event) return new Point({ x: 0, y: 0 });
+  if (!node || !event) return null;
 
   const coords = getXAndYFromEvent(event);
 
