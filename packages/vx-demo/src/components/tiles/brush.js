@@ -16,8 +16,15 @@ const extent = (arr, fn) => [min(arr, fn), max(arr, fn)];
 const xStock = d => new Date(d.date);
 const yStock = d => d.close;
 
-function BrushChart({ width, height, margin = { top: 0, left: 50, bottom: 80, right: 20 } }) {
-  console.log(width, height, margin);
+function AreaChart({
+  width,
+  height,
+  margin = { top: 50, left: 50, bottom: 0, right: 20 },
+  axis = false,
+  grid = false,
+  top,
+  left,
+}) {
   // bounds
   const xMax = width - margin.left - margin.right;
   const yMax = height - margin.top - margin.bottom;
@@ -34,44 +41,60 @@ function BrushChart({ width, height, margin = { top: 0, left: 50, bottom: 80, ri
   });
 
   return (
+    <Group left={left || margin.left} top={top || margin.top}>
+      <defs>
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#FFFFFF" stopOpacity={1} />
+          <stop offset="100%" stopColor="#FFFFFF" stopOpacity={0.2} />
+        </linearGradient>
+      </defs>
+      {grid && (
+        <GridRows
+          lineStyle={{ pointerEvents: 'none' }}
+          scale={yScale}
+          width={xMax}
+          strokeDasharray="2,2"
+          stroke="rgba(255,255,255,0.3)"
+        />
+      )}
+      {grid && (
+        <GridColumns
+          lineStyle={{ pointerEvents: 'none' }}
+          scale={xScale}
+          height={yMax}
+          strokeDasharray="2,2"
+          stroke="rgba(255,255,255,0.3)"
+        />
+      )}
+      {axis && <AxisBottom top={yMax} scale={xScale} numTicks={width > 520 ? 10 : 5} />}
+      {axis && <AxisLeft scale={yScale} numTicks={5} />}
+      <AreaClosed
+        data={stock}
+        x={d => xScale(xStock(d))}
+        y={d => yScale(yStock(d))}
+        yScale={yScale}
+        strokeWidth={1}
+        stroke="url(#gradient)"
+        fill="url(#gradient)"
+        curve={curveMonotoneX}
+      />
+      <Bar x={0} y={0} width={width} height={height} fill="transparent" rx={14} data={stock} />
+    </Group>
+  );
+}
+
+function BrushChart({ width, height, margin }) {
+  return (
     <div>
       <svg width={width} height={height}>
         <rect x={0} y={0} width={width} height={height} fill="#32deaa" rx={14} />
-        <Group left={margin.left} top={margin.top}>
-          <defs>
-            <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#FFFFFF" stopOpacity={1} />
-              <stop offset="100%" stopColor="#FFFFFF" stopOpacity={0.2} />
-            </linearGradient>
-          </defs>
-          <GridRows
-            lineStyle={{ pointerEvents: 'none' }}
-            scale={yScale}
-            width={xMax}
-            strokeDasharray="2,2"
-            stroke="rgba(255,255,255,0.3)"
-          />
-          <GridColumns
-            lineStyle={{ pointerEvents: 'none' }}
-            scale={xScale}
-            height={yMax}
-            strokeDasharray="2,2"
-            stroke="rgba(255,255,255,0.3)"
-          />
-          <AxisBottom top={yMax} scale={xScale} numTicks={width > 520 ? 10 : 5} />
-          <AxisLeft scale={yScale} />
-          <AreaClosed
-            data={stock}
-            x={d => xScale(xStock(d))}
-            y={d => yScale(yStock(d))}
-            yScale={yScale}
-            strokeWidth={1}
-            stroke="url(#gradient)"
-            fill="url(#gradient)"
-            curve={curveMonotoneX}
-          />
-          <Bar x={0} y={0} width={width} height={height} fill="transparent" rx={14} data={stock} />
-        </Group>
+        <AreaChart width={width} height={height * 0.6} margin={margin} axis />
+        <AreaChart
+          width={width}
+          height={120}
+          margin={{ top: 0, bottom: 20, left: 50, right: 20 }}
+          top={height * 0.6 + 50}
+        />
       </svg>
     </div>
   );

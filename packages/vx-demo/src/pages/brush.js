@@ -8,7 +8,7 @@ export default () => {
       component={BrushChart}
       title="BrushChart"
       margin={{
-        top: 0,
+        top: 50,
         left: 50,
         right: 20,
         bottom: 50,
