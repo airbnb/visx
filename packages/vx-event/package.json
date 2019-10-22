@@ -5,6 +5,7 @@
   "sideEffects": false,
   "main": "lib/index.js",
   "module": "esm/index.js",
+  "types": "lib/index.d.ts",
   "files": [
     "lib",
     "esm"
@@ -30,6 +31,7 @@
     "access": "public"
   },
   "dependencies": {
+    "@types/react": "*",
     "@vx/point": "0.0.192"
   }
 }
