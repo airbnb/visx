@@ -1,15 +1,35 @@
 import React from 'react';
-import Legend, { LegendProps } from '../legend/Legend';
-import { QuantileScaleType } from '../types';
-import { LabelFormatterFactory } from '../util/labelTransformFactory';
-import { ScaleQuantile } from 'd3-scale';
 
-export type LegendQuantileProps<Output> = {
+import Legend, { LegendProps } from '../legend/Legend';
+import { LabelFormatterFactory, ScaleQuantile, BaseOutput } from '../types';
+
+export type LegendQuantileProps<Output extends BaseOutput> = {
   labelDelimiter?: string;
   scale: ScaleQuantile<Output>;
-} & Omit<LegendProps<number, Output>, 'scale'>;
+  labelTransform: LabelFormatterFactory<number, Output, ScaleQuantile<Output>>;
+} & Omit<LegendProps<number, Output>, 'scale' | 'labelTransform'>;
 
-export default function LegendQuantile<Output extends string | number>({
+function labelFormatterFactoryFactory<Output extends BaseOutput>({
+  labelDelimiter,
+}: Pick<LegendQuantileProps<Output>, 'labelDelimiter'>): LabelFormatterFactory<
+  number,
+  Output,
+  ScaleQuantile<Output>
+> {
+  return ({ scale, labelFormat }) => (datum: number, index: number) => {
+    const [x0, x1] = scale.invertExtent(scale(datum));
+    return {
+      extent: [x0, x1],
+      text: `${labelFormat(x0, index)} ${labelDelimiter} ${labelFormat(x1, index)}`,
+      value: scale(x0),
+      datum,
+      index,
+    };
+  };
+}
+
+/** A Quantile scale takes a number input and returns an Output. */
+export default function LegendQuantile<Output extends BaseOutput>({
   domain: inputDomain,
   scale,
   labelFormat = x => x,
@@ -22,7 +42,7 @@ export default function LegendQuantile<Output extends string | number>({
     inputLabelTransform || labelFormatterFactoryFactory<Output>({ labelDelimiter });
 
   return (
-    <Legend<number, Output>
+    <Legend<number, Output, ScaleQuantile<Output>>
       scale={scale}
       domain={domain}
       labelFormat={labelFormat}
@@ -30,25 +50,4 @@ export default function LegendQuantile<Output extends string | number>({
       {...restProps}
     />
   );
-}
-
-function labelFormatterFactoryFactory<Output>({
-  labelDelimiter,
-}: Pick<LegendQuantileProps<Output>, 'labelDelimiter'>): LabelFormatterFactory<
-  number,
-  Output,
-  QuantileScaleType<Output>
-> {
-  return ({ scale, labelFormat }) => {
-    return (d: Output, i) => {
-      const [x0, x1] = scale.invertExtent(d);
-      return {
-        extent: [x0, x1],
-        text: `${labelFormat(x0, i)} ${labelDelimiter} ${labelFormat(x1, i)}`,
-        value: scale(x0),
-        datum: d,
-        index: i,
-      };
-    };
-  };
 }

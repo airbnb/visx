@@ -1,10 +1,10 @@
 import React from 'react';
 
 export type LegendLabelProps = {
-  align?: React.CSSProperties['justifyContent'];
+  align?: string;
   label?: React.ReactNode;
-  flex?: React.CSSProperties['flex'];
-  margin?: React.CSSProperties['margin'];
+  flex?: string | number;
+  margin?: string | number;
   children?: React.ReactNode;
 };
 
@@ -14,7 +14,8 @@ export default function LegendLabel({
   margin = '5px 0',
   align = 'left',
   children,
-}: LegendLabelProps) {
+  ...restProps
+}: LegendLabelProps & Omit<React.HTMLProps<HTMLDivElement>, keyof LegendLabelProps>) {
   return (
     <div
       className="vx-legend-label"
@@ -24,6 +25,7 @@ export default function LegendLabel({
         flex,
         margin,
       }}
+      {...restProps}
     >
       {children || label}
     </div>

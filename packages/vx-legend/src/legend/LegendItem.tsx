@@ -1,11 +1,19 @@
 import React from 'react';
 
 export type LegendItemProps = {
-  flexDirection?: React.CSSProperties['flexDirection'];
-  alignItems?: React.CSSProperties['alignItems'];
-  margin?: React.CSSProperties['margin'];
+  flexDirection?:
+    | 'inherit'
+    | 'initial'
+    | 'revert'
+    | 'unset'
+    | 'column'
+    | 'column-reverse'
+    | 'row'
+    | 'row-reverse';
+  alignItems?: string;
+  margin?: string | number;
   children?: React.ReactNode;
-  display?: React.CSSProperties['display'];
+  display?: string;
 };
 
 export default function LegendItem({
@@ -15,7 +23,7 @@ export default function LegendItem({
   display = 'flex',
   children,
   ...restProps
-}: LegendItemProps) {
+}: LegendItemProps & Omit<React.HTMLProps<HTMLDivElement>, keyof LegendItemProps>) {
   return (
     <div
       className="vx-legend-item"

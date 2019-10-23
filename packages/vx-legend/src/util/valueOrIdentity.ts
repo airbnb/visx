@@ -1,6 +1,12 @@
 export type ValueOrIdentity<T> = T | { value?: T };
 
-export default function valueOrIdentity<T>(x: ValueOrIdentity<T>): T {
-  if (x && 'value' in x && typeof x.value !== 'undefined') return x.value;
-  return x as T;
+/** Returns an object's value if defined, or the object. */
+export default function valueOrIdentity<T>(_: ValueOrIdentity<T>): T {
+  if (_ && 'value' in _ && typeof _.value !== 'undefined') return _.value;
+  return _ as T;
+}
+
+/** Returns an object's value if defined, or the object, coerced to a string. */
+export function valueOrIdentityString<T>(_: ValueOrIdentity<T>): string {
+  return String(valueOrIdentity(_));
 }

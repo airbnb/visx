@@ -1,20 +1,20 @@
 import React from 'react';
 import ShapeRect from '../shapes/Rect';
 import renderShape from '../util/renderShape';
-import { FormattedLabel, LegendShape } from '../types';
+import { FormattedLabel, LegendShape, BaseInput, BaseOutput } from '../types';
 
 export type LegendShapeProps<Data, Output> = {
   label: FormattedLabel<Data, Output>;
-  margin?: React.CSSProperties['margin'];
-  shape?: LegendShape;
+  margin?: string | number;
+  shape?: LegendShape<Data, Output>;
   fill?: (label: FormattedLabel<Data, Output>) => any;
   size?: (label: FormattedLabel<Data, Output>) => any;
   shapeStyle?: (label: FormattedLabel<Data, Output>) => any;
-  width?: React.CSSProperties['width'];
-  height?: React.CSSProperties['height'];
+  width?: string | number;
+  height?: string | number;
 };
 
-export default function LegendShape<Data, Output>({
+export default function LegendShape<Data extends BaseInput, Output extends BaseOutput>({
   shape = ShapeRect,
   width,
   height,

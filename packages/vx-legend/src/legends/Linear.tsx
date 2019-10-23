@@ -1,22 +1,12 @@
 import React from 'react';
 import Legend, { LegendProps } from '../legend/Legend';
+import { BaseOutput } from '../types';
 
-export type LegendLinearProps<Output> = {
+export type LegendLinearProps<Output extends BaseOutput> = {
   steps?: number;
 } & LegendProps<number, Output>;
 
-/** Linear scales map from continuous inputs to continuous outputs. */
-export default function LegendLinear<Output extends string | number>({
-  scale,
-  domain: inputDomain,
-  steps = 5,
-  ...restProps
-}: LegendLinearProps<Output>) {
-  const domain = inputDomain || defaultDomain({ steps, scale });
-  return <Legend<number, number> scale={scale} domain={domain} {...restProps} />;
-}
-
-function defaultDomain<Output>({
+function defaultDomain<Output extends BaseOutput>({
   steps = 5,
   scale,
 }: Pick<LegendLinearProps<Output>, 'steps' | 'scale'>) {
@@ -29,4 +19,15 @@ function defaultDomain<Output>({
     acc.push(start + i * step);
     return acc;
   }, []);
+}
+
+/** Linear scales map from continuous inputs to continuous outputs. */
+export default function LegendLinear<Output extends BaseOutput>({
+  scale,
+  domain: inputDomain,
+  steps = 5,
+  ...restProps
+}: LegendLinearProps<Output>) {
+  const domain = inputDomain || defaultDomain({ steps, scale });
+  return <Legend<number, Output> scale={scale} domain={domain} {...restProps} />;
 }

@@ -1,10 +1,10 @@
 import React from 'react';
 
 export type ShapeRectProps = {
-  fill: React.CSSProperties['background'];
-  width: React.CSSProperties['width'];
-  height: React.CSSProperties['height'];
-  style: React.CSSProperties;
+  fill?: string | number;
+  width?: string | number;
+  height?: string | number;
+  style?: React.CSSProperties;
 };
 
 export default function ShapeRect({ fill, width, height, style }: ShapeRectProps) {

@@ -1,14 +1,11 @@
 import React from 'react';
 import { Group } from '@vx/group';
 
-type CircleProps = React.SVGProps<SVGCircleElement>;
-type SVGProps = React.SVGProps<SVGSVGElement>;
-
 export type ShapeCircleProps = {
-  fill: CircleProps['fill'];
-  width: SVGProps['width'];
-  height: SVGProps['height'];
-  style: CircleProps['style'];
+  fill?: string;
+  width?: string | number;
+  height?: string | number;
+  style?: React.CSSProperties;
 };
 
 export default function ShapeCircle({ fill, width, height, style }: ShapeCircleProps) {

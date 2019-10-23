@@ -2,20 +2,21 @@ import { ScaleLinear, ScaleOrdinal, ScaleBand, ScaleThreshold, ScaleQuantile } f
 
 export { ScaleLinear, ScaleOrdinal, ScaleBand, ScaleThreshold, ScaleQuantile };
 
-export type ScaleType<
-  Input extends string | number | Date,
-  Output extends string | number | Date
-> =
+export type BaseInput = string | number | Date;
+export type BaseOutput = string | number | Date;
+
+export type ScaleType<Input extends BaseInput, Output extends BaseOutput> =
   | ScaleLinear<Input, Output> // number input, number output
   | ScaleOrdinal<Input, Output> // string input, any output
   | ScaleBand<Input> // string input, number output
   | ScaleThreshold<Input, Output>
   | ScaleQuantile<Output>;
 
-export type LabelFormatterFactory<Datum, Output> = (args: {
-  scale: ScaleType<Datum, Output>;
-  labelFormat: LabelFormatter<Datum>;
-}) => ItemTransformer<Datum, Output>;
+export type LabelFormatterFactory<
+  Datum extends BaseInput,
+  Output extends BaseOutput,
+  Scale extends ScaleType<Datum, Output> = ScaleType<Datum, Output>
+> = (args: { scale: Scale; labelFormat: LabelFormatter<Datum> }) => ItemTransformer<Datum, Output>;
 
 export type LabelFormatter<Datum> = (
   item: Datum,
@@ -26,7 +27,7 @@ export type FormattedLabel<Datum, Output, ExtraAttributes = {}> = {
   datum: Datum;
   index: number;
   text: string;
-  value: Output;
+  value?: Output;
 } & ExtraAttributes;
 
 export type ItemTransformer<Datum, Output> = (
@@ -34,7 +35,20 @@ export type ItemTransformer<Datum, Output> = (
   itemIndex: number,
 ) => FormattedLabel<Datum, Output>;
 
-export type LegendShape = 'rect' | 'circle' | React.FunctionComponent | React.ComponentClass;
+export type RenderShapeProvidedProps<Data, Output> = {
+  width?: string | number;
+  height?: string | number;
+  label?: FormattedLabel<Data, Output>;
+  fill?: string | number;
+  size?: string | number;
+  style?: React.CSSProperties | React.SVGProps<any>;
+};
+
+export type LegendShape<Data, Output> =
+  | 'rect'
+  | 'circle'
+  | React.FC<RenderShapeProvidedProps<Data, Output>>
+  | React.ComponentClass<RenderShapeProvidedProps<Data, Output>>;
 
 export type FillAccessor<Datum, Output> = (
   label: FormattedLabel<Datum, Output>,
