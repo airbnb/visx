@@ -273,8 +273,7 @@ Lots coming soon, check out the [roadmap](./ROADMAP.md).
 
 ## Development
 
-[lerna](https://github.com/lerna/lerna/) is used to manage versions and dependencies between
-packages in the umbrella vx repo.
+[Yarn workspaces](https://yarnpkg.com/lang/en/docs/workspaces/) are used to manage dependencies and build config across packages in the umbrella `vx` monorepo, and [lerna](https://github.com/lerna/lerna/) is used to manage versioning.
 
 ```
 vx/
@@ -292,22 +291,32 @@ vx/
     ...
 ```
 
-For easiest development clone or fork vx, install the _root_ dependencies including lerna, then have
-lerna install package dependencies and manage the symlinking between packages for you by using the
-[`lerna bootstrap`](https://github.com/lerna/lerna#bootstrap) command:
+Run the following to setup your local dev environment:
 
 ```sh
+# Install `yarn`, alternatives at https://yarnpkg.com/en/docs/install
+curl -o- -L https://yarnpkg.com/install.sh | bash
+
+# Clone or fork `vx`
 git clone git@github.com:hshoff/vx.git # or your fork
 cd vx
-npm install # installs root vx deps
-./node_modules/.bin/lerna bootstrap # installs all package deps, sym-links within-vx deps
+
+# install dependencies, and have `yarn` symlink within-`vx` dependencies
+yarn
+
+# build packages and generate types for local development
+yarn build
 ```
 
-Upon modification of a given package you can run `npm run build` from that package's folder to
-re-build the package with your changes. You can use the local dev server within `packages/vx-demo`
-to view and iterate on your changes in the gallery. From the `packages/vx-demo` folder run
-`npm run dev` to start the next server which (if correctly sym-linked with lerna) will also watch
-for changes you make to other packages.
+Upon modification of a signle `package` you can run `yarn build-one --workspaces=@vx/package` from 
+the `vx` monorepo root to re-build the package with your changes. You can use the local 
+[`next.js`](https://nextjs.org) dev server within `packages/vx-demo` to view and iterate on your 
+changes in the gallery. From the `packages/vx-demo` folder run `yarn dev` to start the next server 
+which (if correctly sym-linked) will also watch for changes you make to other packages (upon 
+re-building them).
+
+`vx` uses [`@airbnb/nimbus`](https://github.com/airbnb/nimbus) to generate build configuration for 
+`eslint`, `prettier`, `jest`, `babel`, and `typescript`.
 
 :v:
 
