@@ -7,11 +7,11 @@ import { stack as d3stack, SeriesPoint } from 'd3-shape';
 import stackOrder from '../util/stackOrder';
 import stackOffset from '../util/stackOffset';
 import Bar from './Bar';
-import { StackProps, NumAccessor } from './Stack';
+import { StackProps, NumAccessor as StackNumAccessor } from './Stack';
 import { ScaleType, StackKey, BarStack, $TSFIXME } from '../types';
 import setNumOrAccessor from '../util/setNumberOrNumberAccessor';
 
-export { NumAccessor };
+export type NumAccessor<Datum> = StackNumAccessor<Datum>;
 
 export type BarStackProps<Datum> = Pick<
   StackProps<Datum>,
