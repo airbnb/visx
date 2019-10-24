@@ -1,12 +1,12 @@
 import React from 'react';
 import ShapeRect from '../shapes/Rect';
 import renderShape from '../util/renderShape';
-import { FormattedLabel, LegendShape, BaseInput, BaseOutput } from '../types';
+import { FormattedLabel, LegendShape as LegendShapeType, BaseInput, BaseOutput } from '../types';
 
 export type LegendShapeProps<Data, Output> = {
   label: FormattedLabel<Data, Output>;
   margin?: string | number;
-  shape?: LegendShape<Data, Output>;
+  shape?: LegendShapeType<Data, Output>;
   fill?: (label: FormattedLabel<Data, Output>) => any;
   size?: (label: FormattedLabel<Data, Output>) => any;
   shapeStyle?: (label: FormattedLabel<Data, Output>) => any;

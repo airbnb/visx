@@ -1,5 +1,4 @@
 import React from 'react';
-
 import RectShape from '../shapes/Rect';
 import CircleShape from '../shapes/Circle';
 
@@ -11,6 +10,7 @@ import {
   ShapeStyleAccessor,
   BaseInput,
   BaseOutput,
+  RenderShapeProvidedProps,
 } from '../types';
 
 type RenderShapeArgs<Data, Output> = {
@@ -21,15 +21,6 @@ type RenderShapeArgs<Data, Output> = {
   shapeStyle?: ShapeStyleAccessor<Data, Output>;
   width?: string | number;
   height?: string | number;
-};
-
-export type RenderShapeProvidedProps<Data, Output> = {
-  width?: string | number;
-  height?: string | number;
-  label?: FormattedLabel<Data, Output>;
-  fill?: string | number;
-  size?: string | number;
-  style?: React.CSSProperties | React.SVGProps<any>;
 };
 
 const NO_OP = () => undefined;
@@ -54,9 +45,9 @@ export default function renderShape<Data extends BaseInput, Output extends BaseO
 
   if (typeof shape === 'string') {
     if (shape === 'rect') {
-      return <RectShape {...props} />;
+      return React.createElement(RectShape, props);
     }
-    return <CircleShape {...props} />;
+    return React.createElement(CircleShape, props);
   }
   if (React.isValidElement(shape)) {
     return React.cloneElement(shape, props);

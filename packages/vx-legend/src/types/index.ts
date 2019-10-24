@@ -1,3 +1,5 @@
+// eslint doesn't know about @types/d3-scale
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { ScaleLinear, ScaleOrdinal, ScaleBand, ScaleThreshold, ScaleQuantile } from 'd3-scale';
 
 export { ScaleLinear, ScaleOrdinal, ScaleBand, ScaleThreshold, ScaleQuantile };
@@ -39,9 +41,10 @@ export type RenderShapeProvidedProps<Data, Output> = {
   width?: string | number;
   height?: string | number;
   label?: FormattedLabel<Data, Output>;
-  fill?: string | number;
+  fill?: string;
   size?: string | number;
-  style?: React.CSSProperties | React.SVGProps<any>;
+  // TODO: ideally this would support SVGProps, but this is invalid for Rect/Circle shapes
+  style?: React.CSSProperties;
 };
 
 export type LegendShape<Data, Output> =
@@ -60,4 +63,4 @@ export type SizeAccessor<Datum, Output> = (
 
 export type ShapeStyleAccessor<Datum, Output> = (
   label: FormattedLabel<Datum, Output>,
-) => React.CSSProperties | React.SVGProps<any> | undefined;
+) => React.CSSProperties | undefined; // TODO: ideally this would support SVGProps, but this is invalid for Rect/Circle shapes

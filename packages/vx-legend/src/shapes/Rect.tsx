@@ -1,7 +1,7 @@
 import React from 'react';
 
 export type ShapeRectProps = {
-  fill?: string | number;
+  fill?: string;
   width?: string | number;
   height?: string | number;
   style?: React.CSSProperties;
