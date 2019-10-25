@@ -45,7 +45,7 @@ describe('<LinePathAnnotation />', () => {
   test('it should render a label if label prop is defined', () => {
     const points = [new Point({ x: 0, y: 0 })];
     const wrapper = shallow(<LinePathAnnotation label="test" points={points} />);
-    expect(wrapper.prop('children').filter(c => !!c)).toHaveLength(2);
+    expect(wrapper.prop('children').filter((c?: React.ReactNode) => !!c)).toHaveLength(2);
     expect(
       wrapper.contains(
         <text
