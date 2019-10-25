@@ -39,7 +39,7 @@ describe('<LinePathAnnotation />', () => {
 
   test('it should not render a label if label prop is undefined', () => {
     const wrapper = shallow(<LinePathAnnotation />);
-    expect(wrapper.prop('children').filter(c => !!c)).toHaveLength(1);
+    expect(wrapper.prop('children').filter((c?: React.ReactNode) => !!c)).toHaveLength(1);
   });
 
   test('it should render a label if label prop is defined', () => {
