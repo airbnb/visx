@@ -14,9 +14,11 @@ export type BandConfig = {
   align?: number;
   /** 0-1, determines the ratio of the range that is reserved for blank space before the first point and after the last. */
   padding?: number;
+  /** 0-1, determines the ratio of the range that is reserved for blank space _between_ bands. */
   paddingInner?: number;
+  /** 0-1, determines the ratio of the range that is reserved for blank space before the first band and after the last band. */
   paddingOuter?: number;
-  tickFormat: unknown;
+  tickFormat?: unknown;
 };
 
 export default ({

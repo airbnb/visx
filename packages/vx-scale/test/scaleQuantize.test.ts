@@ -12,7 +12,7 @@ describe('scaleQuantize', () => {
   });
 
   test('domain param should set scale domain', () => {
-    const domain = [0, 350];
+    const domain = [0, 350] as [number, number];
     const scale = scaleQuantize({ domain });
     expect(scale.domain()).toEqual(domain);
   });
