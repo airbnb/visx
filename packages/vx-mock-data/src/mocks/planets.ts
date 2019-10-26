@@ -1,8 +1,8 @@
-export type Planets = {
+export interface Planets {
   name: string;
   radius: string;
   distance: string;
-};
+}
 
 const planets: Planets[] = [
   {

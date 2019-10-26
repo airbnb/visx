@@ -1,11 +1,13 @@
-export type BitcoinPrice = {
+export interface BitcoinPrice {
   price: string;
   time: string;
-};
-export type BitcoinPrices = {
+}
+
+export interface BitcoinPrices {
   currency: string;
   prices: BitcoinPrice[];
-};
+}
+
 const bitcoinPrice: BitcoinPrices = {
   currency: 'USD',
   prices: [

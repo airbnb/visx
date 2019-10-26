@@ -1,9 +1,9 @@
-export type CityTemperature = {
+export interface CityTemperature {
   date: string;
   'New York': string;
   'San Francisco': string;
   Austin: string;
-};
+}
 
 const cityTemperature: CityTemperature[] = [
   {

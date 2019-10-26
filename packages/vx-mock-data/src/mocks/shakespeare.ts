@@ -1,8 +1,8 @@
-export type Shakespeare = {
+export interface Shakespeare {
   id: string;
   parent: string | null;
   size: number | null;
-};
+}
 
 const shakespeare: Shakespeare[] = [
   {

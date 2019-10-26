@@ -1,7 +1,7 @@
-export type AppleStock = {
+export interface AppleStock {
   date: string;
   close: number;
-};
+}
 
 const appleStock: AppleStock[] = [
   { date: '2007-04-24T07:00:00.000Z', close: 93.24 },

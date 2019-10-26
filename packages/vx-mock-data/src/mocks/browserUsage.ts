@@ -1,4 +1,4 @@
-export type BrowserUsage = {
+export interface BrowserUsage {
   date: string;
   'Google Chrome': string;
   'Internet Explorer': string;
@@ -8,7 +8,7 @@ export type BrowserUsage = {
   Opera: string;
   Mozilla: string;
   'Other/Unknown': string;
-};
+}
 
 const browserUsage: BrowserUsage[] = [
   {

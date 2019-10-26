@@ -1,7 +1,7 @@
-export type LetterFrequency = {
+export interface LetterFrequency {
   letter: string;
   frequency: number;
-};
+}
 
 const letterFrequency: LetterFrequency[] = [
   { letter: 'A', frequency: 0.08167 },

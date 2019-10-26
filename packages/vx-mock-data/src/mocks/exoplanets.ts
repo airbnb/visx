@@ -1,8 +1,8 @@
-export type Exoplanets = {
+export interface Exoplanets {
   name: string;
   radius: string;
   distance: string;
-};
+}
 
 const exoplanets: Exoplanets[] = [
   {

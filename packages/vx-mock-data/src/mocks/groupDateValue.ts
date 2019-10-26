@@ -1,8 +1,8 @@
-export type GroupDateValue = {
+export interface GroupDateValue {
   key: string;
   value: string;
   date: string;
-};
+}
 
 const groupDateValue: GroupDateValue[] = [
   { key: 'Group1', value: '37', date: '04/23/12' },

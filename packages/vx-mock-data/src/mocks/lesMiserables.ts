@@ -1,18 +1,18 @@
-export type LesMiserablesNode = {
+export interface LesMiserablesNode {
   id: string;
   group: number;
-};
+}
 
-export type LesMiserablesLink = {
+export interface LesMiserablesLink {
   source: string;
   target: string;
   value: number;
-};
+}
 
-export type LesMiserables = {
+export interface LesMiserables {
   nodes: LesMiserablesNode[];
   links: LesMiserablesLink[];
-};
+}
 
 const lesMiserables: LesMiserables = {
   nodes: [

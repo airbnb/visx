@@ -1,9 +1,9 @@
 import genBin, { Bin, BinFunction, CountFunction } from './genBin';
 
-export type Bins = {
+export interface Bins {
   bin: number;
   bins: Bin[];
-};
+}
 
 export default function genBins(
   length: number,
