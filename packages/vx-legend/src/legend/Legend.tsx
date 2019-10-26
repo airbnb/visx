@@ -55,9 +55,9 @@ export type LegendProps<
   /** Margin of legend items. */
   itemMargin?: string | number;
   /** Flex direction of the legend itself. */
-  direction: FlexDirection;
+  direction?: FlexDirection;
   /** Flex direction of legend items. */
-  itemDirection: FlexDirection;
+  itemDirection?: FlexDirection;
   /** Legend item fill accessor function. */
   fill?: (label: FormattedLabel<Datum, Output>) => string | number | undefined;
   /** Legend item size accessor function. */

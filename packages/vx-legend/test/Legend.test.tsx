@@ -1,11 +1,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { scaleLinear } from '@vx/scale';
 
 import { Legend } from '../src';
-import { scaleLinear } from '../../vx-scale/src/index.ts';
 
 const defaultProps = {
-  scale: scaleLinear({
+  scale: scaleLinear<number>({
     rangeRound: [10, 0],
     domain: [0, 10],
   }),
