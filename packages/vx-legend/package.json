@@ -43,5 +43,8 @@
     "@vx/group": "0.0.192",
     "classnames": "^2.2.5",
     "prop-types": "^15.5.10"
+  },
+  "devDependencies": {
+    "@vx/scale": "^0.0.192"
   }
 }
