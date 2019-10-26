@@ -1,4 +1,9 @@
-export default [
+export type LetterFrequency = {
+  letter: string;
+  frequency: number;
+};
+
+const letterFrequency: LetterFrequency[] = [
   { letter: 'A', frequency: 0.08167 },
   { letter: 'B', frequency: 0.01492 },
   { letter: 'C', frequency: 0.02782 },
@@ -26,3 +31,5 @@ export default [
   { letter: 'Y', frequency: 0.01974 },
   { letter: 'Z', frequency: 0.00074 },
 ];
+
+export default letterFrequency;

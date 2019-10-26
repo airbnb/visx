@@ -1,4 +1,12 @@
-export default {
+export type BitcoinPrice = {
+  price: string;
+  time: string;
+};
+export type BitcoinPrices = {
+  currency: string;
+  prices: BitcoinPrice[];
+};
+const bitcoinPrice: BitcoinPrices = {
   currency: 'USD',
   prices: [
     { price: '2486.69', time: '2017-07-03T00:00:00Z' },
@@ -368,3 +376,5 @@ export default {
     { price: '676.18', time: '2016-07-04T00:00:00Z' },
   ],
 };
+
+export default bitcoinPrice;

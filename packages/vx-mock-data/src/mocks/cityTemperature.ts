@@ -1,4 +1,11 @@
-export default [
+export type CityTemperature = {
+  date: string;
+  'New York': string;
+  'San Francisco': string;
+  Austin: string;
+};
+
+const cityTemperature: CityTemperature[] = [
   {
     date: '20111001',
     'New York': '63.4',
@@ -2196,3 +2203,5 @@ export default [
     Austin: '71.9',
   },
 ];
+
+export default cityTemperature;

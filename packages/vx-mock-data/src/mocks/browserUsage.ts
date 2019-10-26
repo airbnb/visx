@@ -1,4 +1,16 @@
-export default [
+export type BrowserUsage = {
+  date: string;
+  'Google Chrome': string;
+  'Internet Explorer': string;
+  Firefox: string;
+  Safari: string;
+  'Microsoft Edge': string;
+  Opera: string;
+  Mozilla: string;
+  'Other/Unknown': string;
+};
+
+const browserUsage: BrowserUsage[] = [
   {
     date: '2015 Jun 15',
     'Google Chrome': '48.09',
@@ -4037,3 +4049,5 @@ export default [
     'Other/Unknown': '0',
   },
 ];
+
+export default browserUsage;

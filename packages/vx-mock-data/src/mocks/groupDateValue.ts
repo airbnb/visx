@@ -1,4 +1,10 @@
-export default [
+export type GroupDateValue = {
+  key: string;
+  value: string;
+  date: string;
+};
+
+const groupDateValue: GroupDateValue[] = [
   { key: 'Group1', value: '37', date: '04/23/12' },
   { key: 'Group2', value: '12', date: '04/23/12' },
   { key: 'Group3', value: '46', date: '04/23/12' },
@@ -12,3 +18,5 @@ export default [
   { key: 'Group2', value: '52', date: '04/26/12' },
   { key: 'Group3', value: '64', date: '04/26/12' },
 ];
+
+export default groupDateValue;
