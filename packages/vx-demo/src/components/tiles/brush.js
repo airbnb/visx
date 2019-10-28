@@ -7,10 +7,29 @@ import { curveMonotoneX } from '@vx/curve';
 import { scaleTime, scaleLinear } from '@vx/scale';
 import { appleStock } from '@vx/mock-data';
 
+/**
+ * Initialize some variables
+ */
 const stock = appleStock.slice(800);
 const min = (arr, fn) => Math.min(...arr.map(fn));
 const max = (arr, fn) => Math.max(...arr.map(fn));
 const extent = (arr, fn) => [min(arr, fn), max(arr, fn)];
+const axisColor = '#fff';
+const axisBottomTickLabelProps = {
+  textAnchor: 'middle',
+  fontFamily: 'Arial',
+  fontSize: 10,
+  fill: axisColor,
+};
+const axisLeftTickLabelProps = {
+  dx: '-0.25em',
+  dy: '0.25em',
+  fill: 'black',
+  fontFamily: 'Arial',
+  fontSize: 10,
+  textAnchor: 'end',
+  fill: axisColor,
+};
 
 // accessors
 const xStock = d => new Date(d.date);
@@ -66,8 +85,25 @@ function AreaChart({
           stroke="rgba(255,255,255,0.3)"
         />
       )}
-      {axis && <AxisBottom top={yMax} scale={xScale} numTicks={width > 520 ? 10 : 5} />}
-      {axis && <AxisLeft scale={yScale} numTicks={5} />}
+      {axis && (
+        <AxisBottom
+          top={yMax}
+          scale={xScale}
+          numTicks={width > 520 ? 10 : 5}
+          stroke={axisColor}
+          tickStroke={axisColor}
+          tickLabelProps={() => axisBottomTickLabelProps}
+        />
+      )}
+      {axis && (
+        <AxisLeft
+          scale={yScale}
+          numTicks={5}
+          stroke={axisColor}
+          tickStroke={axisColor}
+          tickLabelProps={() => axisLeftTickLabelProps}
+        />
+      )}
       <AreaClosed
         data={stock}
         x={d => xScale(xStock(d))}
