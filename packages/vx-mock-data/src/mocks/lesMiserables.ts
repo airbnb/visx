@@ -1,4 +1,20 @@
-export default {
+export interface LesMiserablesNode {
+  id: string;
+  group: number;
+}
+
+export interface LesMiserablesLink {
+  source: string;
+  target: string;
+  value: number;
+}
+
+export interface LesMiserables {
+  nodes: LesMiserablesNode[];
+  links: LesMiserablesLink[];
+}
+
+const lesMiserables: LesMiserables = {
   nodes: [
     { id: 'Myriel', group: 1 },
     { id: 'Napoleon', group: 1 },
@@ -335,3 +351,5 @@ export default {
     { source: 'Mme.Hucheloup', target: 'Enjolras', value: 1 },
   ],
 };
+
+export default lesMiserables;

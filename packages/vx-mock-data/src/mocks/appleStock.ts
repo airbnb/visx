@@ -1,4 +1,9 @@
-export default [
+export interface AppleStock {
+  date: string;
+  close: number;
+}
+
+const appleStock: AppleStock[] = [
   { date: '2007-04-24T07:00:00.000Z', close: 93.24 },
   { date: '2007-04-25T07:00:00.000Z', close: 95.35 },
   { date: '2007-04-26T07:00:00.000Z', close: 98.84 },
@@ -1280,3 +1285,5 @@ export default [
   { date: '2012-04-30T07:00:00.000Z', close: 583.98 },
   { date: '2012-05-01T07:00:00.000Z', close: 582.13 },
 ];
+
+export default appleStock;

@@ -1,4 +1,10 @@
-export default [
+export interface Planets {
+  name: string;
+  radius: string;
+  distance: string;
+}
+
+const planets: Planets[] = [
   {
     name: 'Jupiter',
     radius: '10.97',
@@ -45,3 +51,5 @@ export default [
     distance: '0',
   },
 ];
+
+export default planets;
