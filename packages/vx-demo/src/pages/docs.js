@@ -20,7 +20,25 @@ export default () => (
           <a href="/static/docs/vx-axis.html"> @vx/axis </a>
         </li>
         <li>
+          <a href="/static/docs/vx-bounds.html"> @vx/bounds </a>
+        </li>
+        <li>
+          <a href="/static/docs/vx-boxplot.html"> @vx/boxplot </a>
+        </li>
+        <li>
+          <a href="/static/docs/vx-brush.html"> @vx/brush </a>
+        </li>
+        <li>
+          <a href="/static/docs/vx-chord.html"> @vx/chord </a>
+        </li>
+        <li>
+          <a href="/static/docs/vx-clip-path.html"> @vx/clip-path </a>
+        </li>
+        <li>
           <a href="/static/docs/vx-curve.html"> @vx/curve </a>
+        </li>
+        <li>
+          <a href="/static/docs/vx-drag.html"> @vx/drag </a>
         </li>
         <li>
           <a href="/static/docs/vx-glyph.html"> @vx/glyph </a>
@@ -41,6 +59,9 @@ export default () => (
           <a href="/static/docs/vx-heatmap.html"> @vx/heatmap </a>
         </li>
         <li>
+          <a href="/static/docs/vx-hierarchy.html"> @vx/hierarchy </a>
+        </li>
+        <li>
           <a href="/static/docs/vx-legend.html"> @vx/legend </a>
         </li>
         <li>
@@ -48,6 +69,9 @@ export default () => (
         </li>
         <li>
           <a href="/static/docs/vx-mock-data.html"> @vx/mock-data </a>
+        </li>
+        <li>
+          <a href="/static/docs/vx-network.html"> @vx/network </a>
         </li>
         <li>
           <a href="/static/docs/vx-pattern.html"> @vx/pattern </a>
@@ -65,10 +89,22 @@ export default () => (
           <a href="/static/docs/vx-shape.html"> @vx/shape </a>
         </li>
         <li>
+          <a href="/static/docs/vx-stats.html"> @vx/stats </a>
+        </li>
+        <li>
           <a href="/static/docs/vx-text.html"> @vx/text </a>
         </li>
         <li>
+          <a href="/static/docs/vx-threshold.html"> @vx/threshold </a>
+        </li>
+        <li>
+          <a href="/static/docs/vx-tooltip.html"> @vx/tooltip </a>
+        </li>
+        <li>
           <a href="/static/docs/vx-voronoi.html"> @vx/voronoi </a>
+        </li>
+        <li>
+          <a href="/static/docs/vx-zoom.html"> @vx/zoom </a>
         </li>
       </ul>
 
