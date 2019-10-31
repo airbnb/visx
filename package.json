@@ -18,7 +18,7 @@
   "private": true,
   "scripts": {
     "build": "yarn run babel && yarn run type:dts",
-    "build-one": "nimbus babel --clean",
+    "build-one": "nimbus babel --clean --esm",
     "babel": "yarn run babel:cjs && yarn run babel:esm",
     "babel:cjs": "nimbus babel --clean --workspaces=\"@vx/!(demo)\"",
     "babel:esm": "nimbus babel --clean --workspaces=\"@vx/!(demo)\" --esm",
