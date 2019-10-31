@@ -2,7 +2,7 @@
 import React from 'react';
 //@ts-ignore
 import { Drag } from '@vx/drag';
-import { BrushState } from './Brush';
+import { BaseBrushState as BrushState } from './BaseBrush';
 
 export type BrushSelectionProps = {
   width: number;

@@ -3,7 +3,7 @@ import React, { SVGProps } from 'react';
 //@ts-ignore
 import { Drag } from '@vx/drag';
 import { GeneralStyleShape } from './types';
-import { BrushState } from './Brush';
+import { BaseBrushState as BrushState } from './BaseBrush';
 
 export type BrushCornerProps = SVGProps<any> & {
   stageWidth: number;

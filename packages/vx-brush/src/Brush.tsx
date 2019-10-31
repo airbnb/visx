@@ -1,24 +1,26 @@
 import React from 'react';
-import { Group } from '@vx/group';
-import { Bar } from '@vx/shape';
-//@ts-ignore
-import { Drag } from '@vx/drag';
+import BaseBrush, { BaseBrushState } from './BaseBrush';
+import { GeneralStyleShape, MarginShape, Point } from './types';
+import { scaleInvert, getDomainFromExtent } from './utils';
 
-import BrushHandle from './BrushHandle';
-import BrushCorner from './BrushCorner';
-import BrushSelection from './BrushSelection';
-import { GeneralStyleShape, MarginShape } from './types';
+const SAFE_PIXEL = 2;
+const DEFAULT_COLOR = 'steelblue';
 
 export type BrushProps = {
-  brushDirection?: 'horizontal' | 'vertical' | 'both';
-  width: number;
-  height: number;
-  left: number;
-  top: number;
-  inheritedMargin?: MarginShape;
-  onChange?: Function;
-  handleSize: number;
-  resizeTriggerAreas?:
+  selectedBoxStyle: GeneralStyleShape;
+  xScale: Function;
+  yScale: Function;
+  innerHeight: number;
+  innerWidth: number;
+  onChange: Function;
+  onBrushStart: Function;
+  onBrushEnd: Function;
+  onMouseMove: Function;
+  onMouseLeave: Function;
+  onClick: Function;
+  margin: MarginShape;
+  brushDirection: 'vertical' | 'horizontal' | 'both';
+  resizeTriggerAreas:
     | 'left'
     | 'right'
     | 'top'
@@ -27,466 +29,204 @@ export type BrushProps = {
     | 'topRight'
     | 'bottomLeft'
     | 'bottomRight';
-  onBrushStart?: Function;
-  onBrushEnd?: Function;
-  selectedBoxStyle: GeneralStyleShape;
-  onMouseLeave?: Function;
-  onMouseUp?: Function;
-  onMouseMove?: Function;
-  onClick?: Function;
-  clickSensitivity: number;
+  brushRegion: 'xAxis' | 'yAxis' | 'chart';
+  yAxisOrientation: 'left' | 'right';
+  xAxisOrientation: 'top' | 'bottom';
   disableDraggingSelection: boolean;
+  handleSize: number;
 };
 
-export type BrushState = {
-  start: {
-    x: number;
-    y: number;
-  };
-  end: {
-    x: number;
-    y: number;
-  };
-  extent: {
-    x0: number;
-    x1: number;
-    y0: number;
-    y1: number;
-  };
-  bounds: {
-    x0: number;
-    x1: number;
-    y0: number;
-    y1: number;
-  };
-  activeHandle: any;
-  isBrushing: boolean;
-};
-
-export default class Brush extends React.Component<BrushProps, BrushState> {
-  private mouseUpTime: any;
-  private mouseDownTime: any;
-
+class Brush extends React.Component<BrushProps> {
   static defaultProps = {
-    brushDirection: 'both',
-    inheritedMargin: {
-      left: 0,
+    xScale: null,
+    yScale: null,
+    onChange: null,
+    innerHeight: 0,
+    innerWidth: 0,
+    selectedBoxStyle: {
+      fill: DEFAULT_COLOR,
+      fillOpacity: 0.2,
+      stroke: DEFAULT_COLOR,
+      strokeWidth: 1,
+      strokeOpacity: 0.8,
+    },
+    margin: {
       top: 0,
+      left: 0,
       right: 0,
       bottom: 0,
     },
-    onChange: null,
     handleSize: 4,
+    brushDirection: 'horizontal',
     resizeTriggerAreas: ['left', 'right'],
+    brushRegion: 'chart',
+    yAxisOrientation: 'right',
+    xAxisOrientation: 'bottom',
     onBrushStart: null,
     onBrushEnd: null,
-    onMouseLeave: null,
-    onMouseUp: null,
-    onMouseMove: null,
-    onClick: null,
     disableDraggingSelection: false,
-    clickSensitivity: 200,
+    onMouseMove: null,
+    onMouseLeave: null,
+    onClick: null,
   };
+
+  private BaseBrush: BaseBrush | null;
 
   constructor(props: BrushProps) {
     super(props);
-    const { width, height } = props;
-    this.state = {
-      start: { x: 0, y: 0 },
-      end: { x: 0, y: 0 },
-      extent: {
-        x0: 0,
-        x1: 0,
-        y0: 0,
-        y1: 0,
-      },
-      bounds: {
-        x0: 0,
-        x1: width,
-        y0: 0,
-        y1: height,
-      },
-      isBrushing: false,
-      activeHandle: null,
-    };
-    this.width = this.width.bind(this);
-    this.height = this.height.bind(this);
-    this.handles = this.handles.bind(this);
-    this.corners = this.corners.bind(this);
-    this.update = this.update.bind(this);
+
+    this.BaseBrush = null;
+    this.handleChange = this.handleChange.bind(this);
+    this.handleBrushStart = this.handleBrushStart.bind(this);
+    this.handleBrushEnd = this.handleBrushEnd.bind(this);
     this.reset = this.reset.bind(this);
-    this.handleDragStart = this.handleDragStart.bind(this);
-    this.handleDragMove = this.handleDragMove.bind(this);
-    this.handleDragEnd = this.handleDragEnd.bind(this);
-    this.getExtent = this.getExtent.bind(this);
-    this.mouseUpTime = 0;
-    this.mouseDownTime = 0;
-  }
-
-  componentWillReceiveProps(nextProps: BrushProps) {
-    //@ts-ignore
-    if (['width', 'height'].some(prop => this.props[prop] !== nextProps[prop])) {
-      this.setState(() => ({
-        bounds: {
-          x0: 0,
-          x1: nextProps.width,
-          y0: 0,
-          y1: nextProps.height,
-        },
-      }));
-    }
-  }
-
-  getExtent(
-    start: {
-      x: number;
-      y: number;
-    },
-    end: {
-      x: number;
-      y: number;
-    },
-  ) {
-    const { brushDirection, width, height } = this.props;
-    const x0 = brushDirection === 'vertical' ? 0 : Math.min(start.x, end.x);
-    const x1 = brushDirection === 'vertical' ? width : Math.max(start.x, end.x);
-    const y0 = brushDirection === 'horizontal' ? 0 : Math.min(start.y, end.y);
-    const y1 = brushDirection === 'horizontal' ? height : Math.max(start.y, end.y);
-
-    return {
-      x0,
-      x1,
-      y0,
-      y1,
-    };
-  }
-
-  handleDragStart(draw: any) {
-    const { onBrushStart, left, top, inheritedMargin } = this.props;
-    const marginLeft = inheritedMargin && inheritedMargin.left ? inheritedMargin.left : 0;
-    const marginTop = inheritedMargin && inheritedMargin.top ? inheritedMargin.top : 0;
-    const start = {
-      x: draw.x + draw.dx - left - marginLeft,
-      y: draw.y + draw.dy - top - marginTop,
-    };
-    const end = { ...start };
-
-    if (onBrushStart) {
-      onBrushStart(start);
-    }
-
-    this.update((prevBrush: BrushState) => ({
-      ...prevBrush,
-      start,
-      end,
-      extent: {
-        x0: -1,
-        x1: -1,
-        y0: -1,
-        y1: -1,
-      },
-      isBrushing: true,
-    }));
-  }
-
-  handleDragMove(draw: any) {
-    const { left, top, inheritedMargin } = this.props;
-    if (!draw.isDragging) return;
-    const marginLeft = inheritedMargin && inheritedMargin.left ? inheritedMargin.left : 0;
-    const marginTop = inheritedMargin && inheritedMargin.top ? inheritedMargin.top : 0;
-    const end = {
-      x: draw.x + draw.dx - left - marginLeft,
-      y: draw.y + draw.dy - top - marginTop,
-    };
-    this.update((prevBrush: BrushState) => {
-      const { start } = prevBrush;
-      const extent = this.getExtent(start, end);
-
-      return {
-        ...prevBrush,
-        end,
-        extent,
-      };
-    });
-  }
-
-  handleDragEnd() {
-    const { onBrushEnd } = this.props;
-    this.update((prevBrush: BrushState) => {
-      const { extent } = prevBrush;
-      const newState = {
-        ...prevBrush,
-        start: {
-          x: extent.x0,
-          y: extent.y0,
-        },
-        end: {
-          x: extent.x1,
-          y: extent.y1,
-        },
-        isBrushing: false,
-      };
-      if (onBrushEnd) {
-        onBrushEnd(newState);
-      }
-
-      return newState;
-    });
-  }
-
-  width() {
-    const { extent } = this.state;
-    const { x0, x1 } = extent;
-
-    return Math.max(Math.max(x0, x1) - Math.min(x0, x1), 0);
-  }
-
-  height() {
-    const { extent } = this.state;
-    const { y1, y0 } = extent;
-
-    return Math.max(y1 - y0, 0);
-  }
-
-  handles(): {
-    [index: string]: {
-      x: number;
-      y: number;
-      height: number;
-      width: number;
-    };
-  } {
-    const { handleSize } = this.props;
-    const { extent } = this.state;
-    const { x0, x1, y0, y1 } = extent;
-    const offset = handleSize / 2;
-    const width = this.width();
-    const height = this.height();
-
-    return {
-      top: {
-        x: x0 - offset,
-        y: y0 - offset,
-        height: handleSize,
-        width: width + handleSize,
-      },
-      bottom: {
-        x: x0 - offset,
-        y: y1 - offset,
-        height: handleSize,
-        width: width + handleSize,
-      },
-      right: {
-        x: x1 - offset,
-        y: y0 - offset,
-        height: height + handleSize,
-        width: handleSize,
-      },
-      left: {
-        x: x0 - offset,
-        y: y0 - offset,
-        height: height + handleSize,
-        width: handleSize,
-      },
-    };
-  }
-
-  corners(): {
-    [index: string]: {
-      x: number;
-      y: number;
-    };
-  } {
-    const { handleSize } = this.props;
-    const { extent } = this.state;
-    const { x0, x1, y0, y1 } = extent;
-    const offset = handleSize / 2;
-
-    return {
-      topLeft: {
-        x: Math.min(x0, x1) - offset,
-        y: Math.min(y0, y1) - offset,
-      },
-      topRight: {
-        x: Math.max(x0, x1) - offset,
-        y: Math.min(y0, y1) - offset,
-      },
-      bottomLeft: {
-        x: Math.min(x0, x1) - offset,
-        y: Math.max(y0, y1) - offset,
-      },
-      bottomRight: {
-        x: Math.max(x0, x1) - offset,
-        y: Math.max(y0, y1) - offset,
-      },
-    };
-  }
-
-  update(updater: any) {
-    const { onChange } = this.props;
-    this.setState(updater, () => {
-      if (onChange) {
-        onChange(this.state);
-      }
-    });
   }
 
   reset() {
-    const { width, height } = this.props;
-    this.update(() => ({
-      start: undefined,
-      end: undefined,
-      extent: {
-        x0: undefined,
-        x1: undefined,
-        y0: undefined,
-        y1: undefined,
-      },
-      bounds: {
-        x0: 0,
-        x1: width,
-        y0: 0,
-        y1: height,
-      },
-      isBrushing: false,
-      activeHandle: undefined,
-    }));
+    this.BaseBrush && this.BaseBrush.reset();
+  }
+
+  handleChange(brush: BaseBrushState) {
+    const { onChange } = this.props;
+    if (!onChange) return;
+    const { x0 } = brush.extent;
+    if (x0 < 0 || typeof x0 === 'undefined') {
+      onChange(null);
+
+      return;
+    }
+    const domain = this.convertRangeToDomain(brush);
+    onChange(domain);
+  }
+
+  convertRangeToDomain(brush: BaseBrushState) {
+    const { xScale, yScale } = this.props;
+    const { x0, x1, y0, y1 } = brush.extent;
+
+    const xDomain = getDomainFromExtent(xScale, x0, x1, SAFE_PIXEL);
+    const yDomain = getDomainFromExtent(yScale, y0, y1, SAFE_PIXEL);
+
+    const domain = {
+      x0: xDomain.start,
+      x1: xDomain.end,
+      xValues: xDomain.values,
+      y0: yDomain.start,
+      y1: yDomain.end,
+      yValues: yDomain.values,
+    };
+
+    return domain;
+  }
+
+  handleBrushStart(point: Point) {
+    const { x, y } = point;
+    const { onBrushStart, xScale, yScale } = this.props;
+    const invertedX = scaleInvert(xScale, x);
+    const invertedY = scaleInvert(yScale, y);
+    if (onBrushStart) {
+      onBrushStart({
+        //@ts-ignore
+        x: xScale.invert ? invertedX : xScale.domain()[invertedX],
+        //@ts-ignore
+        y: yScale.invert ? invertedY : yScale.domain()[invertedY],
+      });
+    }
+  }
+
+  handleBrushEnd(brush: BaseBrushState) {
+    const { onBrushEnd } = this.props;
+    if (!onBrushEnd) return;
+    const { x0 } = brush.extent;
+    if (x0 < 0) {
+      onBrushEnd(null);
+
+      return;
+    }
+    const domain = this.convertRangeToDomain(brush);
+    onBrushEnd(domain);
   }
 
   render() {
-    const { start, end } = this.state;
     const {
-      top,
-      left,
-      width: stageWidth,
-      height: stageHeight,
-      handleSize,
-      onMouseLeave,
-      onMouseUp,
-      onMouseMove,
-      onBrushEnd,
-      onClick,
+      xScale,
+      yScale,
+      innerHeight,
+      innerWidth,
+      margin,
+      brushDirection,
       resizeTriggerAreas,
+      brushRegion,
+      yAxisOrientation,
+      xAxisOrientation,
       selectedBoxStyle,
       disableDraggingSelection,
-      clickSensitivity,
+      onMouseLeave,
+      onMouseMove,
+      onClick,
+      handleSize,
     } = this.props;
+    if (!xScale || !yScale) return null;
 
-    const handles = this.handles();
-    const corners = this.corners();
-    const width = this.width();
-    const height = this.height();
-    const resizeTriggerAreaSet = new Set(resizeTriggerAreas);
+    let brushRegionWidth;
+    let brushRegionHeight;
+    let left;
+    let top;
+    const marginLeft = margin && margin.left ? margin.left : 0;
+    const marginTop = margin && margin.top ? margin.top : 0;
+    const marginRight = margin && margin.right ? margin.right : 0;
+    const marginBottom = margin && margin.bottom ? margin.bottom : 0;
+
+    if (brushRegion === 'chart') {
+      left = 0;
+      top = 0;
+      brushRegionWidth = innerWidth;
+      brushRegionHeight = innerHeight;
+    } else if (brushRegion === 'yAxis') {
+      top = 0;
+      brushRegionHeight = innerHeight;
+      if (yAxisOrientation === 'right') {
+        left = innerWidth;
+        brushRegionWidth = marginRight;
+      } else {
+        left = -marginLeft;
+        brushRegionWidth = marginLeft;
+      }
+    } else {
+      left = 0;
+      brushRegionWidth = innerWidth;
+      if (xAxisOrientation === 'bottom') {
+        top = innerHeight;
+        brushRegionHeight = marginBottom;
+      } else {
+        top = -marginTop;
+        brushRegionHeight = marginTop;
+      }
+    }
 
     return (
-      <Group className="vx-brush" top={top} left={left}>
-        {/* overlay */}
-        <Drag
-          width={stageWidth}
-          height={stageHeight}
-          resetOnStart
-          onDragStart={this.handleDragStart}
-          onDragMove={this.handleDragMove}
-          onDragEnd={this.handleDragEnd}
-        >
-          {(draw: any) => (
-            <Bar
-              className="vx-brush-overlay"
-              fill="transparent"
-              x={0}
-              y={0}
-              width={stageWidth}
-              height={stageHeight}
-              onDoubleClick={() => this.reset()}
-              onClick={() => (event: MouseEvent) => {
-                const duration = this.mouseUpTime - this.mouseDownTime;
-                if (onClick && duration < clickSensitivity) onClick(event);
-              }}
-              onMouseDown={() => (event: MouseEvent) => {
-                this.mouseDownTime = new Date();
-                draw.dragStart(event);
-              }}
-              onMouseLeave={() => (event: MouseEvent) => {
-                if (onMouseLeave) onMouseLeave(event);
-              }}
-              onMouseMove={() => (event: MouseEvent) => {
-                if (!draw.isDragging && onMouseMove) onMouseMove(event);
-                if (draw.isDragging) draw.dragMove(event);
-              }}
-              onMouseUp={() => (event: MouseEvent) => {
-                this.mouseUpTime = new Date();
-                if (onMouseUp) onMouseUp(event);
-                draw.dragEnd(event);
-              }}
-              style={{ cursor: 'crosshair' }}
-            />
-          )}
-        </Drag>
-        {/* selection */}
-        {start && end && (
-          <BrushSelection
-            updateBrush={this.update}
-            width={width}
-            height={height}
-            stageWidth={stageWidth}
-            stageHeight={stageHeight}
-            brush={{ ...this.state }}
-            disableDraggingSelection={disableDraggingSelection}
-            onBrushEnd={onBrushEnd}
-            onMouseLeave={onMouseLeave}
-            onMouseMove={onMouseMove}
-            onMouseUp={onMouseUp}
-            onClick={onClick}
-            {...selectedBoxStyle}
-          />
-        )}
-        {/* handles */}
-        {start &&
-          end &&
-          Object.keys(handles)
-            .filter(handleKey => resizeTriggerAreaSet.has(handleKey))
-            .map(handleKey => {
-              const handle = handles[handleKey];
-
-              return (
-                <BrushHandle
-                  key={`handle-${handleKey}`}
-                  type={handleKey}
-                  handle={handle}
-                  stageWidth={stageWidth}
-                  stageHeight={stageHeight}
-                  updateBrush={this.update}
-                  brush={this.state}
-                  onBrushEnd={onBrushEnd}
-                />
-              );
-            })}
-        {/* corners */}
-        {start &&
-          end &&
-          Object.keys(corners)
-            .filter(cornerKey => resizeTriggerAreaSet.has(cornerKey))
-            .map(cornerKey => {
-              const corner = corners[cornerKey];
-
-              return (
-                <BrushCorner
-                  key={`corner-${cornerKey}`}
-                  type={cornerKey}
-                  brush={this.state}
-                  updateBrush={this.update}
-                  stageWidth={stageWidth}
-                  stageHeight={stageHeight}
-                  x={corner.x}
-                  y={corner.y}
-                  width={handleSize}
-                  height={handleSize}
-                  onBrushEnd={onBrushEnd}
-                  fill="transparent"
-                />
-              );
-            })}
-      </Group>
+      <BaseBrush
+        width={brushRegionWidth}
+        height={brushRegionHeight}
+        left={left}
+        top={top}
+        inheritedMargin={margin}
+        onChange={this.handleChange}
+        onBrushEnd={this.handleBrushEnd}
+        onBrushStart={this.handleBrushStart}
+        handleSize={handleSize}
+        resizeTriggerAreas={resizeTriggerAreas}
+        brushDirection={brushDirection}
+        selectedBoxStyle={selectedBoxStyle}
+        disableDraggingSelection={disableDraggingSelection}
+        onMouseLeave={onMouseLeave}
+        onMouseMove={onMouseMove}
+        onClick={onClick}
+        ref={el => {
+          this.BaseBrush = el;
+        }}
+      />
     );
   }
 }
+
+export default Brush;

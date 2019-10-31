@@ -1,3 +1,15 @@
+export type Point = {
+  x: number;
+  y: number;
+};
+
+export type Bound = {
+  x0: number;
+  x1: number;
+  y0: number;
+  y1: number;
+};
+
 export type GeneralStyleShape = {
   stroke: string;
   strokeWidth: number;
@@ -14,26 +26,10 @@ export type MarginShape = {
 };
 
 export type BrushShape = {
-  start: {
-    x: number;
-    y: number;
-  };
-  end: {
-    x: number;
-    y: number;
-  };
-  extent: {
-    x0: number;
-    y0: number;
-    x1: number;
-    y1: number;
-  };
-  bounds: {
-    x0: number;
-    y0: number;
-    x1: number;
-    y1: number;
-  };
+  start: Point;
+  end: Point;
+  extent: Bound;
+  bounds: Bound;
 };
 
 export type DragShape = {

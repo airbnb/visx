@@ -3,7 +3,7 @@ import React from 'react';
 //@ts-ignore
 import { Drag } from '@vx/drag';
 import { DragShape } from './types';
-import { BrushState } from './Brush';
+import { BaseBrushState as BrushState } from './BaseBrush';
 
 export type BrushHandleProps = {
   stageWidth: number;

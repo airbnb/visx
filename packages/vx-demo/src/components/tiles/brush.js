@@ -6,6 +6,8 @@ import { AxisLeft, AxisBottom } from '@vx/axis';
 import { curveMonotoneX } from '@vx/curve';
 import { scaleTime, scaleLinear } from '@vx/scale';
 import { appleStock } from '@vx/mock-data';
+import { Brush } from '@vx/brush';
+import { PatternLines } from '@vx/pattern';
 
 /**
  * Initialize some variables
@@ -43,6 +45,8 @@ function AreaChart({
   grid = false,
   top,
   left,
+  brush,
+  onBrushChange,
 }) {
   // bounds
   const xMax = width - margin.left - margin.right;
@@ -115,11 +119,37 @@ function AreaChart({
         curve={curveMonotoneX}
       />
       <Bar x={0} y={0} width={width} height={height} fill="transparent" rx={14} data={stock} />
+      {brush && (
+        <PatternLines
+          id="brush_pattern"
+          height={8}
+          width={8}
+          stroke={'#888'}
+          strokeWidth={1}
+          orientation={['diagonal']}
+        />
+      )}
+      {brush && (
+        <Brush
+          handleSize={4}
+          resizeTriggerAreas={['left', 'right']}
+          brushDirection="horizontal"
+          onChange={onBrushChange}
+          selectedBoxStyle={{
+            fill: 'url(#brush_pattern)',
+            stroke: '#000',
+          }}
+        />
+      )}
     </Group>
   );
 }
 
 function BrushChart({ width, height, margin }) {
+  function onBrushChange(domain) {
+    console.log(domain);
+  }
+
   return (
     <div>
       <svg width={width} height={height}>
@@ -130,6 +160,8 @@ function BrushChart({ width, height, margin }) {
           height={120}
           margin={{ top: 0, bottom: 20, left: 50, right: 20 }}
           top={height * 0.6 + 50}
+          brush
+          onBrushChange={onBrushChange}
         />
       </svg>
     </div>
