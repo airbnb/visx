@@ -20,6 +20,5 @@ describe('mocks/browserUsage', () => {
     expect(data[0].Mozilla).toBeDefined();
     expect(data[0].Firefox).toBeDefined();
     expect(data[0]['Other/Unknown']).toBeDefined();
-    expect(typeof data[0]['Google Chrome']).toEqual('string');
   });
 });

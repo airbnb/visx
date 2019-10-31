@@ -2,13 +2,11 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import { HeatmapCircle } from '../src';
-// @ts-ignore
-import { genBins } from '../../vx-mock-data/src';
 
 const data: {
   bin: number;
   bins: { bin: number; count: number }[];
-}[] = genBins(1, 1);
+}[] = [{ bin: 0, bins: [{ bin: 0, count: 1 }] }];
 
 const xScale = () => 50;
 const yScale = () => 50;

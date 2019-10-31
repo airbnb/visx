@@ -1,17 +1,37 @@
 import { randomNormal } from 'd3-random';
 
+export interface BoxPlot {
+  x: string;
+  min: number;
+  firstQuartile: number;
+  median: number;
+  thirdQuartile: number;
+  max: number;
+  outliers: number[];
+}
+
+export interface BinData {
+  value: number;
+  count: number;
+}
+
+export interface Stats {
+  boxPlot: BoxPlot;
+  binData: BinData[];
+}
+
 const random = randomNormal(4, 3);
 const randomOffset = () => Math.random() * 10;
 const sampleSize = 1000;
 
-export default function genStats(number) {
+export default function genStats(number: number): Stats[] {
   const data = [];
-  let i;
-  for (i = 0; i < number; i += 1) {
+
+  for (let i = 0; i < number; i += 1) {
     const points = [];
-    let j;
     const offset = randomOffset();
-    for (j = 0; j < sampleSize; j += 1) {
+
+    for (let j = 0; j < sampleSize; j += 1) {
       points.push(offset + random());
     }
 
@@ -29,8 +49,8 @@ export default function genStats(number) {
     const binNum = Math.round((max - min) / binWidth);
     const actualBinWidth = (max - min) / binNum;
 
-    const bins = new Array(binNum + 2).fill(0);
-    const values = new Array(binNum + 2).fill(min);
+    const bins: number[] = new Array(binNum + 2).fill(0);
+    const values: number[] = new Array(binNum + 2).fill(min);
 
     for (let ii = 1; ii <= binNum; ii += 1) {
       values[ii] += actualBinWidth * (ii - 0.5);
@@ -44,12 +64,12 @@ export default function genStats(number) {
         bins[Math.floor((p - min) / actualBinWidth) + 1] += 1;
       });
 
-    const binData = values.map((v, index) => ({
+    const binData: BinData[] = values.map((v: number, index) => ({
       value: v,
       count: bins[index],
     }));
 
-    const boxPlot = {
+    const boxPlot: BoxPlot = {
       x: `Statistics ${i}`,
       min,
       firstQuartile,
@@ -64,5 +84,6 @@ export default function genStats(number) {
       binData,
     });
   }
+
   return data;
 }

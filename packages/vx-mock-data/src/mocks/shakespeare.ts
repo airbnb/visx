@@ -1,4 +1,10 @@
-export default [
+export interface Shakespeare {
+  id: string;
+  parent: string | null;
+  size: number | null;
+}
+
+const shakespeare: Shakespeare[] = [
   {
     id: 'Shakespeare',
     parent: null,
@@ -1860,3 +1866,5 @@ export default [
     size: 17,
   },
 ];
+
+export default shakespeare;
