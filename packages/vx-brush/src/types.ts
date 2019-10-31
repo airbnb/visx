@@ -44,3 +44,7 @@ export type DragShape = {
   width: number;
   height: number;
 };
+
+export type ResizeTriggerAreas = [
+  'left' | 'right' | 'top' | 'bottom' | 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight',
+];

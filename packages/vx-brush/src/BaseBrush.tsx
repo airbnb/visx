@@ -7,7 +7,7 @@ import { Drag } from '@vx/drag';
 import BrushHandle from './BrushHandle';
 import BrushCorner from './BrushCorner';
 import BrushSelection from './BrushSelection';
-import { GeneralStyleShape, MarginShape, Point, BrushShape } from './types';
+import { GeneralStyleShape, MarginShape, Point, BrushShape, ResizeTriggerAreas } from './types';
 
 export type BaseBrushProps = {
   brushDirection?: 'horizontal' | 'vertical' | 'both';
@@ -18,15 +18,7 @@ export type BaseBrushProps = {
   inheritedMargin?: MarginShape;
   onChange?: Function;
   handleSize: number;
-  resizeTriggerAreas?:
-    | 'left'
-    | 'right'
-    | 'top'
-    | 'bottom'
-    | 'topLeft'
-    | 'topRight'
-    | 'bottomLeft'
-    | 'bottomRight';
+  resizeTriggerAreas?: ResizeTriggerAreas;
   onBrushStart?: Function;
   onBrushEnd?: Function;
   selectedBoxStyle: GeneralStyleShape;
@@ -415,6 +407,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
         {start &&
           end &&
           Object.keys(handles)
+            //@ts-ignore
             .filter(handleKey => resizeTriggerAreaSet.has(handleKey))
             .map(handleKey => {
               const handle = handles[handleKey];
@@ -436,6 +429,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
         {start &&
           end &&
           Object.keys(corners)
+            //@ts-ignore
             .filter(cornerKey => resizeTriggerAreaSet.has(cornerKey))
             .map(cornerKey => {
               const corner = corners[cornerKey];

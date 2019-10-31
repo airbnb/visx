@@ -1,6 +1,6 @@
 import React from 'react';
 import BaseBrush, { BaseBrushState } from './BaseBrush';
-import { GeneralStyleShape, MarginShape, Point } from './types';
+import { GeneralStyleShape, MarginShape, Point, ResizeTriggerAreas } from './types';
 import { scaleInvert, getDomainFromExtent } from './utils';
 
 const SAFE_PIXEL = 2;
@@ -10,8 +10,8 @@ export type BrushProps = {
   selectedBoxStyle: GeneralStyleShape;
   xScale: Function;
   yScale: Function;
-  innerHeight: number;
-  innerWidth: number;
+  height: number;
+  width: number;
   onChange: Function;
   onBrushStart: Function;
   onBrushEnd: Function;
@@ -20,15 +20,7 @@ export type BrushProps = {
   onClick: Function;
   margin: MarginShape;
   brushDirection: 'vertical' | 'horizontal' | 'both';
-  resizeTriggerAreas:
-    | 'left'
-    | 'right'
-    | 'top'
-    | 'bottom'
-    | 'topLeft'
-    | 'topRight'
-    | 'bottomLeft'
-    | 'bottomRight';
+  resizeTriggerAreas: ResizeTriggerAreas;
   brushRegion: 'xAxis' | 'yAxis' | 'chart';
   yAxisOrientation: 'left' | 'right';
   xAxisOrientation: 'top' | 'bottom';
@@ -41,8 +33,8 @@ class Brush extends React.Component<BrushProps> {
     xScale: null,
     yScale: null,
     onChange: null,
-    innerHeight: 0,
-    innerWidth: 0,
+    height: 0,
+    width: 0,
     selectedBoxStyle: {
       fill: DEFAULT_COLOR,
       fillOpacity: 0.2,
@@ -150,8 +142,8 @@ class Brush extends React.Component<BrushProps> {
     const {
       xScale,
       yScale,
-      innerHeight,
-      innerWidth,
+      height,
+      width,
       margin,
       brushDirection,
       resizeTriggerAreas,
@@ -179,13 +171,13 @@ class Brush extends React.Component<BrushProps> {
     if (brushRegion === 'chart') {
       left = 0;
       top = 0;
-      brushRegionWidth = innerWidth;
-      brushRegionHeight = innerHeight;
+      brushRegionWidth = width;
+      brushRegionHeight = height;
     } else if (brushRegion === 'yAxis') {
       top = 0;
-      brushRegionHeight = innerHeight;
+      brushRegionHeight = height;
       if (yAxisOrientation === 'right') {
-        left = innerWidth;
+        left = width;
         brushRegionWidth = marginRight;
       } else {
         left = -marginLeft;
@@ -193,9 +185,9 @@ class Brush extends React.Component<BrushProps> {
       }
     } else {
       left = 0;
-      brushRegionWidth = innerWidth;
+      brushRegionWidth = width;
       if (xAxisOrientation === 'bottom') {
-        top = innerHeight;
+        top = height;
         brushRegionHeight = marginBottom;
       } else {
         top = -marginTop;
