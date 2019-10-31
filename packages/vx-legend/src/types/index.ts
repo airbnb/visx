@@ -1,16 +1,21 @@
 // eslint doesn't know about @types/d3-scale
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { ScaleLinear, ScaleOrdinal, ScaleBand, ScaleThreshold, ScaleQuantile } from 'd3-scale';
-
-export { ScaleLinear, ScaleOrdinal, ScaleBand, ScaleThreshold, ScaleQuantile };
+import * as d3Scale from 'd3-scale';
 
 export type BaseInput = string | number | Date;
 export type BaseOutput = string | number | Date;
 
-export type ScaleType<Input extends BaseInput, Output extends BaseOutput> =
-  | ScaleLinear<Input, Output> // number input, number output
-  | ScaleOrdinal<Input, Output> // string input, any output
-  | ScaleBand<Input> // string input, number output
+export type ScaleLinear<Input, Output> = d3Scale.ScaleLinear<Input, Output>;
+export type ScaleOrdinal<Input, Output> = d3Scale.ScaleOrdinal<Input, Output>;
+export type ScaleBand<Input> = d3Scale.ScaleBand<Input>;
+export type ScaleThreshold<Input extends BaseInput, Output> = d3Scale.ScaleThreshold<Input, Output>;
+export type ScaleQuantile<Output> = d3Scale.ScaleQuantile<Output>;
+
+// @TODO BaseInput only needed for `ScaleThreshold`
+export type ScaleType<Input extends BaseInput, Output> =
+  | ScaleLinear<Input, Output>
+  | ScaleOrdinal<Input, Output>
+  | ScaleBand<Input>
   | ScaleThreshold<Input, Output>
   | ScaleQuantile<Output>;
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import Legend, { LegendProps } from '../legend/Legend';
+import Legend, { LegendProps } from './Legend';
 import { BaseOutput } from '../types';
 
 export type LegendLinearProps<Output extends BaseOutput> = {

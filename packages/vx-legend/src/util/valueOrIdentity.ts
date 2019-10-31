@@ -2,7 +2,7 @@ export type ValueOrIdentity<T> = T | { value?: T };
 
 /** Returns an object's value if defined, or the object. */
 export default function valueOrIdentity<T>(_: ValueOrIdentity<T>): T {
-  if (_ && 'value' in _ && typeof _.value !== 'undefined') return _.value;
+  if (_ && typeof _ === 'object' && 'value' in _ && typeof _.value !== 'undefined') return _.value;
   return _ as T;
 }
 

@@ -40,6 +40,8 @@ const thresholdScale = scaleThreshold({
   range: ['#f2f0f7', '#dadaeb', '#bcbddc', '#9e9ac8', '#756bb1', '#54278f'],
 });
 
+global.s = thresholdScale;
+
 const ordinalColorScale = scaleOrdinal({
   domain: ['a', 'b', 'c', 'd'],
   range: ['#66d981', '#71f5ef', '#4899f1', '#7d81f6'],

@@ -3,8 +3,8 @@ import cx from 'classnames';
 import LegendItem from './LegendItem';
 import LegendLabel from './LegendLabel';
 import LegendShape from './LegendShape';
-import valueOrIdentity, { valueOrIdentityString } from '../util/valueOrIdentity';
-import labelTransformFactory from '../util/labelTransformFactory';
+import valueOrIdentity, { valueOrIdentityString } from '../../util/valueOrIdentity';
+import labelTransformFactory from '../../util/labelTransformFactory';
 import {
   BaseInput,
   BaseOutput,
@@ -13,7 +13,7 @@ import {
   LabelFormatter,
   LabelFormatterFactory,
   LegendShape as LegendShapeType,
-} from '../types';
+} from '../../types';
 
 type FlexDirection =
   | 'inherit'

@@ -1,12 +1,12 @@
 import React from 'react';
 
-import Legend, { LegendProps } from '../legend/Legend';
+import Legend, { LegendProps } from './Legend';
 import { LabelFormatterFactory, ScaleQuantile, BaseOutput } from '../types';
 
 export type LegendQuantileProps<Output extends BaseOutput> = {
   labelDelimiter?: string;
+  labelTransform?: LabelFormatterFactory<number, Output, ScaleQuantile<Output>>;
   scale: ScaleQuantile<Output>;
-  labelTransform: LabelFormatterFactory<number, Output, ScaleQuantile<Output>>;
 } & Omit<LegendProps<number, Output>, 'scale' | 'labelTransform'>;
 
 function labelFormatterFactoryFactory<Output extends BaseOutput>({
@@ -37,7 +37,8 @@ export default function LegendQuantile<Output extends BaseOutput>({
   labelDelimiter = '-',
   ...restProps
 }: LegendQuantileProps<Output>) {
-  const domain = inputDomain || scale.domain();
+  // transform range into input values because it may contain more elements
+  const domain = inputDomain || scale.range().map(output => scale.invertExtent(output)[0]);
   const labelTransform =
     inputLabelTransform || labelFormatterFactoryFactory<Output>({ labelDelimiter });
 

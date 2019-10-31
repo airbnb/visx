@@ -1,5 +1,5 @@
 import React from 'react';
-import Legend, { LegendProps } from '../legend/Legend';
+import Legend, { LegendProps } from './Legend';
 import { BaseInput, BaseOutput, ScaleType } from '../types';
 import labelTransformFactory from '../util/labelTransformFactory';
 
