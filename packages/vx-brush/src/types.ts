@@ -36,11 +36,6 @@ export type BrushShape = {
   };
 };
 
-export type Brush = BrushShape & {
-  activeHandle: any;
-  isBrushing: boolean;
-};
-
 export type DragShape = {
   x?: number;
   y?: number;

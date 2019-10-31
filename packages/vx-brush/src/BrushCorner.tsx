@@ -1,12 +1,14 @@
 /* eslint react/jsx-handler-names: 0 */
-import React from 'react';
+import React, { SVGProps } from 'react';
+//@ts-ignore
 import { Drag } from '@vx/drag';
-import { GeneralStyleShape, Brush } from './types';
+import { GeneralStyleShape } from './types';
+import { BrushState } from './Brush';
 
-export type BrushCornerProps = {
+export type BrushCornerProps = SVGProps<any> & {
   stageWidth: number;
   stageHeight: number;
-  brush: Brush;
+  brush: BrushState;
   updateBrush: Function;
   onBrushEnd?: Function;
   type: string;
@@ -26,10 +28,10 @@ export default class BrushCorner extends React.Component<BrushCornerProps, Brush
     this.cornerDragEnd = this.cornerDragEnd.bind(this);
   }
 
-  cornerDragMove(drag) {
+  cornerDragMove(drag: any) {
     const { updateBrush, type } = this.props;
     if (!drag.isDragging) return;
-    updateBrush(prevBrush => {
+    updateBrush((prevBrush: BrushState) => {
       const { start, end } = prevBrush;
 
       const xMax = Math.max(start.x, end.x);
@@ -112,7 +114,7 @@ export default class BrushCorner extends React.Component<BrushCornerProps, Brush
 
   cornerDragEnd() {
     const { updateBrush, onBrushEnd } = this.props;
-    updateBrush(prevBrush => {
+    updateBrush((prevBrush: BrushState) => {
       const { start, end, extent } = prevBrush;
       start.x = Math.min(extent.x0, extent.x1);
       start.y = Math.min(extent.y0, extent.y0);
@@ -165,7 +167,7 @@ export default class BrushCorner extends React.Component<BrushCornerProps, Brush
         onDragEnd={this.cornerDragEnd}
         resetOnStart
       >
-        {handle => (
+        {(handle: any) => (
           <g>
             {handle.isDragging && (
               <rect
@@ -183,6 +185,7 @@ export default class BrushCorner extends React.Component<BrushCornerProps, Brush
               onMouseMove={handle.dragMove}
               onMouseUp={handle.dragEnd}
               className={`vx-brush-handle-${type}`}
+              //@ts-ignore
               style={style}
               {...restProps}
             />

@@ -1,14 +1,15 @@
 /* eslint react/jsx-handler-names: 0 */
 import React from 'react';
+//@ts-ignore
 import { Drag } from '@vx/drag';
-import { Brush } from './types';
+import { BrushState } from './Brush';
 
 export type BrushSelectionProps = {
   width: number;
   height: number;
   stageWidth: number;
   stageHeight: number;
-  brush: Brush;
+  brush: BrushState;
   updateBrush: Function;
   onBrushEnd?: Function;
   disableDraggingSelection: boolean;
@@ -32,9 +33,9 @@ export default class BrushSelection extends React.Component<BrushSelectionProps>
     this.selectionDragEnd = this.selectionDragEnd.bind(this);
   }
 
-  selectionDragMove(drag) {
+  selectionDragMove(drag: any) {
     const { updateBrush } = this.props;
-    updateBrush(prevBrush => {
+    updateBrush((prevBrush: BrushState) => {
       const { x: x0, y: y0 } = prevBrush.start;
       const { x: x1, y: y1 } = prevBrush.end;
       const validDx =
@@ -63,7 +64,7 @@ export default class BrushSelection extends React.Component<BrushSelectionProps>
 
   selectionDragEnd() {
     const { updateBrush, onBrushEnd } = this.props;
-    updateBrush(prevBrush => {
+    updateBrush((prevBrush: BrushState) => {
       const nextBrush = {
         ...prevBrush,
         isBrushing: false,
@@ -111,7 +112,7 @@ export default class BrushSelection extends React.Component<BrushSelectionProps>
         onDragMove={this.selectionDragMove}
         onDragEnd={this.selectionDragEnd}
       >
-        {selection => (
+        {(selection: any) => (
           <g>
             {selection.isDragging && (
               <rect
@@ -147,6 +148,7 @@ export default class BrushSelection extends React.Component<BrushSelectionProps>
               onClick={event => {
                 if (onClick) onClick(event);
               }}
+              //@ts-ignore
               style={{
                 pointerEvents: brush.isBrushing || brush.activeHandle ? 'none' : 'all',
                 cursor: disableDraggingSelection ? null : 'move',

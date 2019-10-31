@@ -1,12 +1,14 @@
 /* eslint react/jsx-handler-names: 0 */
 import React from 'react';
+//@ts-ignore
 import { Drag } from '@vx/drag';
-import { Brush, DragShape } from './types';
+import { DragShape } from './types';
+import { BrushState } from './Brush';
 
 export type BrushHandleProps = {
   stageWidth: number;
   stageHeight: number;
-  brush: Brush;
+  brush: BrushState;
   updateBrush: Function;
   onBrushEnd?: Function;
   handle: DragShape;
@@ -20,10 +22,10 @@ export default class BrushHandle extends React.Component<BrushHandleProps> {
     this.handleDragEnd = this.handleDragEnd.bind(this);
   }
 
-  handleDragMove(drag) {
+  handleDragMove(drag: any) {
     const { updateBrush, type } = this.props;
     if (!drag.isDragging) return;
-    updateBrush(prevBrush => {
+    updateBrush((prevBrush: BrushState) => {
       const { start, end } = prevBrush;
       let nextState = {};
       let move = 0;
@@ -90,7 +92,7 @@ export default class BrushHandle extends React.Component<BrushHandleProps> {
 
   handleDragEnd() {
     const { updateBrush, onBrushEnd } = this.props;
-    updateBrush(prevBrush => {
+    updateBrush((prevBrush: BrushState) => {
       const { start, end, extent } = prevBrush;
       start.x = Math.min(extent.x0, extent.x1);
       start.y = Math.min(extent.y0, extent.y0);
@@ -130,7 +132,7 @@ export default class BrushHandle extends React.Component<BrushHandleProps> {
         onDragEnd={this.handleDragEnd}
         resetOnStart
       >
-        {drag => (
+        {(drag: any) => (
           <g>
             {handle.isDragging && (
               <rect

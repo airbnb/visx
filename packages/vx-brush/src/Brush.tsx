@@ -1,6 +1,7 @@
 import React from 'react';
 import { Group } from '@vx/group';
 import { Bar } from '@vx/shape';
+//@ts-ignore
 import { Drag } from '@vx/drag';
 
 import BrushHandle from './BrushHandle';
@@ -16,10 +17,16 @@ export type BrushProps = {
   top: number;
   inheritedMargin?: MarginShape;
   onChange?: Function;
-  handleSize?: number;
-  resizeTriggerAreas?: [
-    'left' | 'right' | 'top' | 'bottom' | 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight',
-  ];
+  handleSize: number;
+  resizeTriggerAreas?:
+    | 'left'
+    | 'right'
+    | 'top'
+    | 'bottom'
+    | 'topLeft'
+    | 'topRight'
+    | 'bottomLeft'
+    | 'bottomRight';
   onBrushStart?: Function;
   onBrushEnd?: Function;
   selectedBoxStyle: GeneralStyleShape;
@@ -27,7 +34,7 @@ export type BrushProps = {
   onMouseUp?: Function;
   onMouseMove?: Function;
   onClick?: Function;
-  clickSensitivity?: number;
+  clickSensitivity: number;
   disableDraggingSelection: boolean;
 };
 
@@ -52,11 +59,13 @@ export type BrushState = {
     y0: number;
     y1: number;
   };
+  activeHandle: any;
+  isBrushing: boolean;
 };
 
-export default class Brush extends React.Component<BrushProps, State> {
-  private mouseUpTime: number;
-  private mouseDownTime: number;
+export default class Brush extends React.Component<BrushProps, BrushState> {
+  private mouseUpTime: any;
+  private mouseDownTime: any;
 
   static defaultProps = {
     brushDirection: 'both',
@@ -97,6 +106,8 @@ export default class Brush extends React.Component<BrushProps, State> {
         y0: 0,
         y1: height,
       },
+      isBrushing: false,
+      activeHandle: null,
     };
     this.width = this.width.bind(this);
     this.height = this.height.bind(this);
@@ -113,6 +124,7 @@ export default class Brush extends React.Component<BrushProps, State> {
   }
 
   componentWillReceiveProps(nextProps: BrushProps) {
+    //@ts-ignore
     if (['width', 'height'].some(prop => this.props[prop] !== nextProps[prop])) {
       this.setState(() => ({
         bounds: {
@@ -125,7 +137,16 @@ export default class Brush extends React.Component<BrushProps, State> {
     }
   }
 
-  getExtent(start, end) {
+  getExtent(
+    start: {
+      x: number;
+      y: number;
+    },
+    end: {
+      x: number;
+      y: number;
+    },
+  ) {
     const { brushDirection, width, height } = this.props;
     const x0 = brushDirection === 'vertical' ? 0 : Math.min(start.x, end.x);
     const x1 = brushDirection === 'vertical' ? width : Math.max(start.x, end.x);
@@ -140,11 +161,13 @@ export default class Brush extends React.Component<BrushProps, State> {
     };
   }
 
-  handleDragStart(draw) {
+  handleDragStart(draw: any) {
     const { onBrushStart, left, top, inheritedMargin } = this.props;
+    const marginLeft = inheritedMargin && inheritedMargin.left ? inheritedMargin.left : 0;
+    const marginTop = inheritedMargin && inheritedMargin.top ? inheritedMargin.top : 0;
     const start = {
-      x: draw.x + draw.dx - left - inheritedMargin.left,
-      y: draw.y + draw.dy - top - inheritedMargin.top,
+      x: draw.x + draw.dx - left - marginLeft,
+      y: draw.y + draw.dy - top - marginTop,
     };
     const end = { ...start };
 
@@ -152,7 +175,7 @@ export default class Brush extends React.Component<BrushProps, State> {
       onBrushStart(start);
     }
 
-    this.update(prevBrush => ({
+    this.update((prevBrush: BrushState) => ({
       ...prevBrush,
       start,
       end,
@@ -166,14 +189,16 @@ export default class Brush extends React.Component<BrushProps, State> {
     }));
   }
 
-  handleDragMove(draw) {
+  handleDragMove(draw: any) {
     const { left, top, inheritedMargin } = this.props;
     if (!draw.isDragging) return;
+    const marginLeft = inheritedMargin && inheritedMargin.left ? inheritedMargin.left : 0;
+    const marginTop = inheritedMargin && inheritedMargin.top ? inheritedMargin.top : 0;
     const end = {
-      x: draw.x + draw.dx - left - inheritedMargin.left,
-      y: draw.y + draw.dy - top - inheritedMargin.top,
+      x: draw.x + draw.dx - left - marginLeft,
+      y: draw.y + draw.dy - top - marginTop,
     };
-    this.update(prevBrush => {
+    this.update((prevBrush: BrushState) => {
       const { start } = prevBrush;
       const extent = this.getExtent(start, end);
 
@@ -187,7 +212,7 @@ export default class Brush extends React.Component<BrushProps, State> {
 
   handleDragEnd() {
     const { onBrushEnd } = this.props;
-    this.update(prevBrush => {
+    this.update((prevBrush: BrushState) => {
       const { extent } = prevBrush;
       const newState = {
         ...prevBrush,
@@ -223,7 +248,14 @@ export default class Brush extends React.Component<BrushProps, State> {
     return Math.max(y1 - y0, 0);
   }
 
-  handles() {
+  handles(): {
+    [index: string]: {
+      x: number;
+      y: number;
+      height: number;
+      width: number;
+    };
+  } {
     const { handleSize } = this.props;
     const { extent } = this.state;
     const { x0, x1, y0, y1 } = extent;
@@ -259,7 +291,12 @@ export default class Brush extends React.Component<BrushProps, State> {
     };
   }
 
-  corners() {
+  corners(): {
+    [index: string]: {
+      x: number;
+      y: number;
+    };
+  } {
     const { handleSize } = this.props;
     const { extent } = this.state;
     const { x0, x1, y0, y1 } = extent;
@@ -285,7 +322,7 @@ export default class Brush extends React.Component<BrushProps, State> {
     };
   }
 
-  update(updater) {
+  update(updater: any) {
     const { onChange } = this.props;
     this.setState(updater, () => {
       if (onChange) {
@@ -352,7 +389,7 @@ export default class Brush extends React.Component<BrushProps, State> {
           onDragMove={this.handleDragMove}
           onDragEnd={this.handleDragEnd}
         >
-          {draw => (
+          {(draw: any) => (
             <Bar
               className="vx-brush-overlay"
               fill="transparent"
@@ -360,23 +397,23 @@ export default class Brush extends React.Component<BrushProps, State> {
               y={0}
               width={stageWidth}
               height={stageHeight}
-              onDoubleClick={() => event => this.reset(event)}
-              onClick={() => event => {
+              onDoubleClick={() => this.reset()}
+              onClick={() => (event: MouseEvent) => {
                 const duration = this.mouseUpTime - this.mouseDownTime;
                 if (onClick && duration < clickSensitivity) onClick(event);
               }}
-              onMouseDown={() => event => {
+              onMouseDown={() => (event: MouseEvent) => {
                 this.mouseDownTime = new Date();
                 draw.dragStart(event);
               }}
-              onMouseLeave={() => event => {
+              onMouseLeave={() => (event: MouseEvent) => {
                 if (onMouseLeave) onMouseLeave(event);
               }}
-              onMouseMove={() => event => {
+              onMouseMove={() => (event: MouseEvent) => {
                 if (!draw.isDragging && onMouseMove) onMouseMove(event);
                 if (draw.isDragging) draw.dragMove(event);
               }}
-              onMouseUp={() => event => {
+              onMouseUp={() => (event: MouseEvent) => {
                 this.mouseUpTime = new Date();
                 if (onMouseUp) onMouseUp(event);
                 draw.dragEnd(event);
