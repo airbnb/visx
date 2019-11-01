@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Group } from '@vx/group';
 import { AreaClosed, Line, Bar } from '@vx/shape';
 import { AxisLeft, AxisBottom } from '@vx/axis';
@@ -11,7 +11,7 @@ import { PatternLines } from '@vx/pattern';
 /**
  * Initialize some variables
  */
-const stock = appleStock.slice(800);
+const stock = appleStock.slice(1200);
 const min = (arr, fn) => Math.min(...arr.map(fn));
 const max = (arr, fn) => Math.max(...arr.map(fn));
 const extent = (arr, fn) => [min(arr, fn), max(arr, fn)];
@@ -37,6 +37,7 @@ const xStock = d => new Date(d.date);
 const yStock = d => d.close;
 
 function AreaChart({
+  data,
   width,
   height,
   xMax,
@@ -77,7 +78,7 @@ function AreaChart({
         />
       )}
       <AreaClosed
-        data={stock}
+        data={data}
         x={d => xScale(xStock(d))}
         y={d => yScale(yStock(d))}
         yScale={yScale}
@@ -102,14 +103,17 @@ function BrushChart({
     right: 20,
   },
 }) {
+  const [filteredStock, setFilteredStock] = useState(stock);
+
   function onBrushChange(domain) {
-    console.log('change', domain);
-  }
-  function onBrushStart(domain) {
-    console.log('start', domain);
-  }
-  function onBrushEnd(domain) {
-    console.log('end', domain);
+    if (!domain) return;
+    const { x0, x1, y0, y1 } = domain;
+    const stockCopy = stock.filter(s => {
+      const x = xStock(s).getTime();
+      const y = yStock(s);
+      return x > x0 && x < x1 && y > y0 && y < y1;
+    });
+    setFilteredStock(stockCopy);
   }
 
   const brushMargin = { top: 0, bottom: 20, left: 50, right: 20 };
@@ -123,11 +127,11 @@ function BrushChart({
   // scales
   const xScale = scaleTime({
     range: [0, xMax],
-    domain: extent(stock, xStock),
+    domain: extent(filteredStock, xStock),
   });
   const yScale = scaleLinear({
     range: [yMax, 0],
-    domain: [0, max(stock, yStock) + yMax / 3],
+    domain: [0, max(filteredStock, yStock) + yMax / 3],
     nice: true,
   });
   const xBrushScale = scaleTime({
@@ -145,6 +149,7 @@ function BrushChart({
       <svg width={width} height={height}>
         <rect x={0} y={0} width={width} height={height} fill="#32deaa" rx={14} />
         <AreaChart
+          data={filteredStock}
           width={width}
           height={height * 0.6}
           margin={margin}
@@ -155,6 +160,7 @@ function BrushChart({
           yScale={yScale}
         />
         <AreaChart
+          data={stock}
           width={width}
           height={120}
           yMax={yBrushMax}
@@ -168,7 +174,7 @@ function BrushChart({
             id="brush_pattern"
             height={8}
             width={8}
-            stroke={'#888'}
+            stroke={'white'}
             strokeWidth={1}
             orientation={['diagonal']}
           />
@@ -180,12 +186,10 @@ function BrushChart({
             handleSize={4}
             resizeTriggerAreas={['left', 'right']}
             brushDirection="horizontal"
-            onBrushStart={onBrushStart}
-            onBrushEnd={onBrushEnd}
             onChange={onBrushChange}
             selectedBoxStyle={{
               fill: 'url(#brush_pattern)',
-              stroke: '#000',
+              stroke: 'white',
             }}
           />
         </AreaChart>
