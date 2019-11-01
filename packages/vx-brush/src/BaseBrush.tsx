@@ -361,22 +361,22 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
               width={stageWidth}
               height={stageHeight}
               onDoubleClick={() => this.reset()}
-              onClick={() => (event: MouseEvent) => {
+              onClick={(event: React.MouseEvent<SVGRectElement, MouseEvent>) => {
                 const duration = this.mouseUpTime - this.mouseDownTime;
                 if (onClick && duration < clickSensitivity) onClick(event);
               }}
-              onMouseDown={() => (event: MouseEvent) => {
+              onMouseDown={(event: React.MouseEvent<SVGRectElement, MouseEvent>) => {
                 this.mouseDownTime = new Date();
                 draw.dragStart(event);
               }}
-              onMouseLeave={() => (event: MouseEvent) => {
+              onMouseLeave={(event: React.MouseEvent<SVGRectElement, MouseEvent>) => {
                 if (onMouseLeave) onMouseLeave(event);
               }}
-              onMouseMove={() => (event: MouseEvent) => {
+              onMouseMove={(event: React.MouseEvent<SVGRectElement, MouseEvent>) => {
                 if (!draw.isDragging && onMouseMove) onMouseMove(event);
                 if (draw.isDragging) draw.dragMove(event);
               }}
-              onMouseUp={() => (event: MouseEvent) => {
+              onMouseUp={(event: React.MouseEvent<SVGRectElement, MouseEvent>) => {
                 this.mouseUpTime = new Date();
                 if (onMouseUp) onMouseUp(event);
                 draw.dragEnd(event);

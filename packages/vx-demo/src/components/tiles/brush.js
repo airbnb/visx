@@ -103,7 +103,7 @@ function BrushChart({
   },
 }) {
   function onBrushChange(domain) {
-    console.log(domain);
+    console.log('change', domain);
   }
   function onBrushStart(domain) {
     console.log('start', domain);
@@ -115,11 +115,10 @@ function BrushChart({
   const brushMargin = { top: 0, bottom: 20, left: 50, right: 20 };
 
   // bounds
-  const xMax = width - margin.left - margin.right;
-  const yMax = height * 0.6 - margin.top - margin.bottom;
-  const xBrushMax = width - brushMargin.left - brushMargin.right;
-  const yBrushMax = 120 - brushMargin.top - brushMargin.bottom;
-  console.log(xBrushMax, yBrushMax);
+  const xMax = Math.max(width - margin.left - margin.right, 0);
+  const yMax = Math.max(height * 0.6 - margin.top - margin.bottom, 0);
+  const xBrushMax = Math.max(width - brushMargin.left - brushMargin.right, 0);
+  const yBrushMax = Math.max(120 - brushMargin.top - brushMargin.bottom, 0);
 
   // scales
   const xScale = scaleTime({
