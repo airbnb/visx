@@ -10,7 +10,10 @@ interface Datum {
 }
 
 const linePathProps = {
-  data: [{ x: 0, y: 0 }, { x: 1, y: 1 }],
+  data: [
+    { x: 0, y: 0 },
+    { x: 1, y: 1 },
+  ],
   x: (d: Datum) => d.x,
   y: (d: Datum) => d.y,
 };
@@ -47,6 +50,7 @@ describe('<LinePath />', () => {
   });
 
   test('it should expose its ref via an innerRef prop', () => {
+    // eslint-disable-next-line jest/no-test-return-statement
     return new Promise(done => {
       const refCallback = (ref: SVGPathElement) => {
         expect(ref.tagName).toMatch('path');

@@ -42,7 +42,12 @@ export default function PatternCircles({
 }: PatternCirclesProps) {
   let corners: [number, number][] | undefined;
   if (complement) {
-    corners = [[0, 0], [0, height], [width, 0], [width, height]];
+    corners = [
+      [0, 0],
+      [0, height],
+      [width, 0],
+      [width, height],
+    ];
   }
   return (
     <Pattern id={id} width={width} height={height}>

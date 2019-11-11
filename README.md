@@ -114,14 +114,8 @@ const yScale = scaleLinear({
 
 // Compose together the scale and accessor functions to get point functions
 const compose = (scale, accessor) => data => scale(accessor(data));
-const xPoint = compose(
-  xScale,
-  x,
-);
-const yPoint = compose(
-  yScale,
-  y,
-);
+const xPoint = compose(xScale, x);
+const yPoint = compose(yScale, y);
 
 // Finally we'll embed it all in an SVG
 function BarGraph(props) {
@@ -273,7 +267,9 @@ Lots coming soon, check out the [roadmap](./ROADMAP.md).
 
 ## Development
 
-[Yarn workspaces](https://yarnpkg.com/lang/en/docs/workspaces/) are used to manage dependencies and build config across packages in the umbrella `vx` monorepo, and [lerna](https://github.com/lerna/lerna/) is used to manage versioning.
+[Yarn workspaces](https://yarnpkg.com/lang/en/docs/workspaces/) are used to manage dependencies and
+build config across packages in the umbrella `vx` monorepo, and
+[lerna](https://github.com/lerna/lerna/) is used to manage versioning.
 
 ```
 vx/
@@ -308,14 +304,14 @@ yarn
 yarn build
 ```
 
-Upon modification of a signle `package` you can run `yarn build-one --workspaces=@vx/package` from 
-the `vx` monorepo root to re-build the package with your changes. You can use the local 
-[`next.js`](https://nextjs.org) dev server within `packages/vx-demo` to view and iterate on your 
-changes in the gallery. From the `packages/vx-demo` folder run `yarn dev` to start the next server 
-which (if correctly sym-linked) will also watch for changes you make to other packages (upon 
+Upon modification of a signle `package` you can run `yarn build-one --workspaces=@vx/package` from
+the `vx` monorepo root to re-build the package with your changes. You can use the local
+[`next.js`](https://nextjs.org) dev server within `packages/vx-demo` to view and iterate on your
+changes in the gallery. From the `packages/vx-demo` folder run `yarn dev` to start the next server
+which (if correctly sym-linked) will also watch for changes you make to other packages (upon
 re-building them).
 
-`vx` uses [`@airbnb/nimbus`](https://github.com/airbnb/nimbus) to generate build configuration for 
+`vx` uses [`@airbnb/nimbus`](https://github.com/airbnb/nimbus) to generate build configuration for
 `eslint`, `prettier`, `jest`, `babel`, and `typescript`.
 
 :v:
