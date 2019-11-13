@@ -52,7 +52,7 @@ export interface BarGroupBar {
 export interface BarStack<Datum> {
   index: number;
   key: StackKey;
-  bars: ({
+  bars: {
     /** Processed bar Datum with bar bounds and original datum. */
     bar: SeriesPoint<Datum>;
     /** group key */
@@ -69,7 +69,7 @@ export interface BarStack<Datum> {
     y: number;
     /** color of bar. */
     color: string;
-  })[];
+  }[];
 }
 
 export type AccessorProps<Link, Node> = {

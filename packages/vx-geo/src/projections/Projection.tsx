@@ -11,14 +11,14 @@ import {
   geoPath,
   GeoPath,
   GeoProjection,
-  GeoPermissibleObjects,
+  GeoPermissibleObjects as GeoPermissibleObjectType,
 } from 'd3-geo';
 // eslint-disable-next-line import/no-unresolved
 import { LineString, Polygon, MultiLineString } from 'geojson';
 
 import Graticule, { GraticuleProps } from '../graticule/Graticule';
 
-export type GeoPermissibleObjects = GeoPermissibleObjects;
+export type GeoPermissibleObjects = GeoPermissibleObjectType;
 
 // TODO: Implement all projections of d3-geo
 type ProjectionPreset =
