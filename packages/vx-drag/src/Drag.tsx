@@ -1,6 +1,8 @@
 import { localPoint } from '@vx/event';
 import React from 'react';
 
+type MouseOrTouchEvent = React.MouseEvent | React.TouchEvent;
+
 export type DragProps = {
   /** Children render function which is passed the state of dragging and callbacks for drag start/end/move. */
   children: (args: ChildrenArgs) => React.ReactNode;
@@ -28,12 +30,12 @@ type DragState = {
   isDragging: boolean;
 };
 
-type HandlerArgs = DragState & { event: React.MouseEvent };
+type HandlerArgs = DragState & { event: MouseOrTouchEvent };
 
 type ChildrenArgs = DragState & {
-  dragEnd: (event: React.MouseEvent) => void;
-  dragMove: (event: React.MouseEvent) => void;
-  dragStart: (event: React.MouseEvent) => void;
+  dragEnd: (event: MouseOrTouchEvent) => void;
+  dragMove: (event: MouseOrTouchEvent) => void;
+  dragStart: (event: MouseOrTouchEvent) => void;
 };
 
 export default class Drag extends React.Component<DragProps, DragState> {
@@ -50,7 +52,7 @@ export default class Drag extends React.Component<DragProps, DragState> {
     isDragging: false,
   };
 
-  handleDragStart = (event: React.MouseEvent) => {
+  handleDragStart = (event: MouseOrTouchEvent) => {
     const { onDragStart, resetOnStart } = this.props;
     event.persist();
 
@@ -72,7 +74,7 @@ export default class Drag extends React.Component<DragProps, DragState> {
     );
   };
 
-  handleDragMove = (event: React.MouseEvent) => {
+  handleDragMove = (event: MouseOrTouchEvent) => {
     const { onDragMove } = this.props;
     event.persist();
 
@@ -94,7 +96,7 @@ export default class Drag extends React.Component<DragProps, DragState> {
     );
   };
 
-  handleDragEnd = (event: React.MouseEvent) => {
+  handleDragEnd = (event: MouseOrTouchEvent) => {
     const { onDragEnd } = this.props;
     event.persist();
 
