@@ -19,10 +19,10 @@ export default function getVoronoi<Datum>({ width = 0, height = 0, x, y }: Confi
   if (x) voronoi.x(x);
   if (y) voronoi.y(y);
 
-  // The types for .extent() https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/d3-voronoi/index.d.ts#L177
-  // yield this error https://github.com/Microsoft/TypeScript/issues/12707#issuecomment-384878950
-  // @ts-ignore
-  voronoi.extent([[-CLIP_PADDING, -CLIP_PADDING], [width + CLIP_PADDING, height + CLIP_PADDING]]);
+  voronoi.extent([
+    [-CLIP_PADDING, -CLIP_PADDING],
+    [width + CLIP_PADDING, height + CLIP_PADDING],
+  ]);
 
   return voronoi;
 }
