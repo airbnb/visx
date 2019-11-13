@@ -22,8 +22,7 @@ describe('voronoi', () => {
     const height = 99;
     const v = voronoi({ width, height });
     const extent = v.extent();
-    const endCoord = extent[1];
-
+    const endCoord = extent![1];
     expect(endCoord[0]).toEqual(width + 1);
     expect(endCoord[1]).toEqual(height + 1);
   });
