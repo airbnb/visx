@@ -6,13 +6,13 @@ describe('voronoi', () => {
   });
 
   test('x param should set voronoi x', () => {
-    const x = () => 'x!!!';
+    const x = () => 123;
     const v = voronoi({ x });
     expect(v.x()).toEqual(x);
   });
 
   test('y param should set voronoi y', () => {
-    const y = () => 'y!!!';
+    const y = () => 123;
     const v = voronoi({ y });
     expect(v.y()).toEqual(y);
   });
@@ -21,9 +21,9 @@ describe('voronoi', () => {
     const width = 17;
     const height = 99;
     const v = voronoi({ width, height });
-    const [, [x1, y1]] = v.extent();
-
-    expect(x1).toEqual(width + 1);
-    expect(y1).toEqual(height + 1);
+    const extent = v.extent();
+    const endCoord = extent![1];
+    expect(endCoord[0]).toEqual(width + 1);
+    expect(endCoord[1]).toEqual(height + 1);
   });
 });

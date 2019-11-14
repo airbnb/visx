@@ -4,9 +4,7 @@ import { shallow } from 'enzyme';
 import { VoronoiPolygon } from '../src';
 
 describe('<VoronoiPolygon />', () => {
-  const data = [1, 2];
-  const polygon = new Array(3).fill(null).map((_, i) => [i, i]);
-  polygon.data = data;
+  const polygon: [number, number][] = new Array(3).fill(null).map((_, i) => [i, i]);
 
   const props = { polygon };
 
