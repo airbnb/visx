@@ -1,7 +1,7 @@
 import React from 'react';
 import { Group } from '@vx/group';
 import { Bar } from '@vx/shape';
-//@ts-ignore
+// @ts-ignore
 import { Drag } from '@vx/drag';
 
 import BrushHandle from './BrushHandle';
@@ -96,7 +96,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
   }
 
   componentWillReceiveProps(nextProps: BaseBrushProps) {
-    //@ts-ignore
+    // @ts-ignore
     if (['width', 'height'].some(prop => this.props[prop] !== nextProps[prop])) {
       this.setState(() => ({
         bounds: {
@@ -407,7 +407,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
         {start &&
           end &&
           Object.keys(handles)
-            //@ts-ignore
+            // @ts-ignore
             .filter(handleKey => resizeTriggerAreaSet.has(handleKey))
             .map(handleKey => {
               const handle = handles[handleKey];
@@ -429,7 +429,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
         {start &&
           end &&
           Object.keys(corners)
-            //@ts-ignore
+            // @ts-ignore
             .filter(cornerKey => resizeTriggerAreaSet.has(cornerKey))
             .map(cornerKey => {
               const corner = corners[cornerKey];

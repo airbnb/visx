@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Group } from '@vx/group';
-import { AreaClosed, Line, Bar } from '@vx/shape';
+import { AreaClosed, Bar } from '@vx/shape';
 import { AxisLeft, AxisBottom } from '@vx/axis';
 import { curveMonotoneX } from '@vx/curve';
 import { scaleTime, scaleLinear } from '@vx/scale';
@@ -25,7 +25,6 @@ const axisBottomTickLabelProps = {
 const axisLeftTickLabelProps = {
   dx: '-0.25em',
   dy: '0.25em',
-  fill: 'black',
   fontFamily: 'Arial',
   fontSize: 10,
   textAnchor: 'end',
@@ -40,7 +39,6 @@ function AreaChart({
   data,
   width,
   height,
-  xMax,
   yMax,
   margin,
   xScale,

@@ -1,6 +1,6 @@
 /* eslint react/jsx-handler-names: 0 */
 import React from 'react';
-//@ts-ignore
+// @ts-ignore
 import { Drag } from '@vx/drag';
 import { BaseBrushState as BrushState } from './BaseBrush';
 
@@ -148,7 +148,7 @@ export default class BrushSelection extends React.Component<BrushSelectionProps>
               onClick={event => {
                 if (onClick) onClick(event);
               }}
-              //@ts-ignore
+              // @ts-ignore
               style={{
                 pointerEvents: brush.isBrushing || brush.activeHandle ? 'none' : 'all',
                 cursor: disableDraggingSelection ? null : 'move',

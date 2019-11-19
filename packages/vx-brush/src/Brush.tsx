@@ -75,7 +75,9 @@ class Brush extends React.Component<BrushProps> {
   }
 
   reset() {
-    this.BaseBrush && this.BaseBrush.reset();
+    if (this.BaseBrush) {
+      this.BaseBrush.reset();
+    }
   }
 
   handleChange(brush: BaseBrushState) {
@@ -117,9 +119,9 @@ class Brush extends React.Component<BrushProps> {
     const invertedY = scaleInvert(yScale, y);
     if (onBrushStart) {
       onBrushStart({
-        //@ts-ignore
+        // @ts-ignore
         x: xScale.invert ? invertedX : xScale.domain()[invertedX],
-        //@ts-ignore
+        // @ts-ignore
         y: yScale.invert ? invertedY : yScale.domain()[invertedY],
       });
     }

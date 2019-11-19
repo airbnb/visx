@@ -1,6 +1,6 @@
 /* eslint react/jsx-handler-names: 0 */
 import React, { SVGProps } from 'react';
-//@ts-ignore
+// @ts-ignore
 import { Drag } from '@vx/drag';
 import { GeneralStyleShape } from './types';
 import { BaseBrushState as BrushState } from './BaseBrush';
@@ -185,7 +185,7 @@ export default class BrushCorner extends React.Component<BrushCornerProps, Brush
               onMouseMove={handle.dragMove}
               onMouseUp={handle.dragEnd}
               className={`vx-brush-handle-${type}`}
-              //@ts-ignore
+              // @ts-ignore
               style={style}
               {...restProps}
             />
