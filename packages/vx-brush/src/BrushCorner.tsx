@@ -1,3 +1,4 @@
+/* eslint react/jsx-handler-names: 0 */
 import React, { SVGProps } from 'react';
 import { Drag } from '@vx/drag';
 import { GeneralStyleShape } from './types';

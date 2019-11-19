@@ -78,7 +78,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
     clickSensitivity: 200,
   };
 
-  componentWillReceiveProps(nextProps: BaseBrushProps) {
+  shouldComponentUpdate(nextProps: BaseBrushProps) {
     // @ts-ignore
     if (['width', 'height'].some(prop => this.props[prop] !== nextProps[prop])) {
       this.setState(() => ({
@@ -89,7 +89,10 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
           y1: nextProps.height,
         },
       }));
+      return true;
     }
+
+    return false;
   }
 
   getExtent(start: Point, end: Point) {
