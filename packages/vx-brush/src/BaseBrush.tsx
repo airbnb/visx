@@ -1,7 +1,6 @@
 import React from 'react';
 import { Group } from '@vx/group';
 import { Bar } from '@vx/shape';
-// @ts-ignore
 import { Drag } from '@vx/drag';
 
 import BrushHandle from './BrushHandle';

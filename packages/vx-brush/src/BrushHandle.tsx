@@ -1,6 +1,5 @@
 /* eslint react/jsx-handler-names: 0 */
 import React from 'react';
-// @ts-ignore
 import { Drag } from '@vx/drag';
 import { DragShape } from './types';
 import { BaseBrushState as BrushState } from './BaseBrush';

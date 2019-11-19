@@ -1,6 +1,4 @@
-/* eslint react/jsx-handler-names: 0 */
 import React, { SVGProps } from 'react';
-// @ts-ignore
 import { Drag } from '@vx/drag';
 import { GeneralStyleShape } from './types';
 import { BaseBrushState as BrushState } from './BaseBrush';
