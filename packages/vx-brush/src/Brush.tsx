@@ -29,6 +29,8 @@ export type BrushProps = {
 };
 
 class Brush extends React.Component<BrushProps> {
+  private BaseBrush: any = React.createRef();
+
   static defaultProps = {
     xScale: null,
     yScale: null,
@@ -62,25 +64,13 @@ class Brush extends React.Component<BrushProps> {
     onClick: null,
   };
 
-  private BaseBrush: BaseBrush | null;
-
-  constructor(props: BrushProps) {
-    super(props);
-
-    this.BaseBrush = null;
-    this.handleChange = this.handleChange.bind(this);
-    this.handleBrushStart = this.handleBrushStart.bind(this);
-    this.handleBrushEnd = this.handleBrushEnd.bind(this);
-    this.reset = this.reset.bind(this);
-  }
-
   reset() {
     if (this.BaseBrush) {
       this.BaseBrush.reset();
     }
   }
 
-  handleChange(brush: BaseBrushState) {
+  handleChange = (brush: BaseBrushState) => {
     const { onChange } = this.props;
     if (!onChange) return;
     const { x0 } = brush.extent;
@@ -91,7 +81,7 @@ class Brush extends React.Component<BrushProps> {
     }
     const domain = this.convertRangeToDomain(brush);
     onChange(domain);
-  }
+  };
 
   convertRangeToDomain(brush: BaseBrushState) {
     const { xScale, yScale } = this.props;
@@ -112,7 +102,7 @@ class Brush extends React.Component<BrushProps> {
     return domain;
   }
 
-  handleBrushStart(point: Point) {
+  handleBrushStart = (point: Point) => {
     const { x, y } = point;
     const { onBrushStart, xScale, yScale } = this.props;
     const invertedX = scaleInvert(xScale, x);
@@ -125,9 +115,9 @@ class Brush extends React.Component<BrushProps> {
         y: yScale.invert ? invertedY : yScale.domain()[invertedY],
       });
     }
-  }
+  };
 
-  handleBrushEnd(brush: BaseBrushState) {
+  handleBrushEnd = (brush: BaseBrushState) => {
     const { onBrushEnd } = this.props;
     if (!onBrushEnd) return;
     const { x0 } = brush.extent;
@@ -138,7 +128,7 @@ class Brush extends React.Component<BrushProps> {
     }
     const domain = this.convertRangeToDomain(brush);
     onBrushEnd(domain);
-  }
+  };
 
   render() {
     const {
@@ -215,9 +205,7 @@ class Brush extends React.Component<BrushProps> {
         onMouseLeave={onMouseLeave}
         onMouseMove={onMouseMove}
         onClick={onClick}
-        ref={el => {
-          this.BaseBrush = el;
-        }}
+        ref={this.BaseBrush}
       />
     );
   }

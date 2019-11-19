@@ -20,13 +20,7 @@ export default class BrushCorner extends React.Component<BrushCornerProps, Brush
     style: {},
   };
 
-  constructor(props: BrushCornerProps) {
-    super(props);
-    this.cornerDragMove = this.cornerDragMove.bind(this);
-    this.cornerDragEnd = this.cornerDragEnd.bind(this);
-  }
-
-  cornerDragMove(drag: any) {
+  cornerDragMove = (drag: any) => {
     const { updateBrush, type } = this.props;
     if (!drag.isDragging) return;
     updateBrush((prevBrush: BrushState) => {
@@ -108,9 +102,9 @@ export default class BrushCorner extends React.Component<BrushCornerProps, Brush
 
       return nextState;
     });
-  }
+  };
 
-  cornerDragEnd() {
+  cornerDragEnd = () => {
     const { updateBrush, onBrushEnd } = this.props;
     updateBrush((prevBrush: BrushState) => {
       const { start, end, extent } = prevBrush;
@@ -136,7 +130,7 @@ export default class BrushCorner extends React.Component<BrushCornerProps, Brush
 
       return nextBrush;
     });
-  }
+  };
 
   render() {
     const {
@@ -165,23 +159,23 @@ export default class BrushCorner extends React.Component<BrushCornerProps, Brush
         onDragEnd={this.cornerDragEnd}
         resetOnStart
       >
-        {(handle: any) => (
+        {({ dragMove, dragEnd, dragStart, isDragging }) => (
           <g>
-            {handle.isDragging && (
+            {isDragging && (
               <rect
                 fill="transparent"
                 width={stageWidth}
                 height={stageHeight}
                 style={{ cursor: style.cursor }}
-                onMouseMove={handle.dragMove}
-                onMouseUp={handle.dragEnd}
+                onMouseMove={dragMove}
+                onMouseUp={dragEnd}
               />
             )}
             <rect
               fill="transparent"
-              onMouseDown={handle.dragStart}
-              onMouseMove={handle.dragMove}
-              onMouseUp={handle.dragEnd}
+              onMouseDown={dragStart}
+              onMouseMove={dragMove}
+              onMouseUp={dragEnd}
               className={`vx-brush-handle-${type}`}
               // @ts-ignore
               style={style}

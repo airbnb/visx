@@ -15,13 +15,7 @@ export type BrushHandleProps = {
 };
 
 export default class BrushHandle extends React.Component<BrushHandleProps> {
-  constructor(props: BrushHandleProps) {
-    super(props);
-    this.handleDragMove = this.handleDragMove.bind(this);
-    this.handleDragEnd = this.handleDragEnd.bind(this);
-  }
-
-  handleDragMove(drag: any) {
+  handleDragMove = (drag: any) => {
     const { updateBrush, type } = this.props;
     if (!drag.isDragging) return;
     updateBrush((prevBrush: BrushState) => {
@@ -87,9 +81,9 @@ export default class BrushHandle extends React.Component<BrushHandleProps> {
 
       return nextState;
     });
-  }
+  };
 
-  handleDragEnd() {
+  handleDragEnd = () => {
     const { updateBrush, onBrushEnd } = this.props;
     updateBrush((prevBrush: BrushState) => {
       const { start, end, extent } = prevBrush;
@@ -116,7 +110,7 @@ export default class BrushHandle extends React.Component<BrushHandleProps> {
 
       return nextBrush;
     });
-  }
+  };
 
   render() {
     const { stageWidth, stageHeight, brush, type, handle } = this.props;
@@ -131,7 +125,7 @@ export default class BrushHandle extends React.Component<BrushHandleProps> {
         onDragEnd={this.handleDragEnd}
         resetOnStart
       >
-        {(drag: any) => (
+        {({ isDragging, dragStart, dragEnd, dragMove }) => (
           <g>
             {handle.isDragging && (
               <rect
@@ -139,9 +133,9 @@ export default class BrushHandle extends React.Component<BrushHandleProps> {
                 width={stageWidth}
                 height={stageHeight}
                 style={{ cursor }}
-                onMouseMove={drag.dragMove}
-                onMouseUp={drag.dragEnd}
-                onMouseLeave={drag.dragEnd}
+                onMouseMove={dragMove}
+                onMouseUp={dragEnd}
+                onMouseLeave={dragEnd}
               />
             )}
             <rect
@@ -151,9 +145,9 @@ export default class BrushHandle extends React.Component<BrushHandleProps> {
               height={height}
               fill="transparent"
               className={`vx-brush-handle-${type}`}
-              onMouseDown={drag.dragStart}
-              onMouseMove={drag.dragMove}
-              onMouseUp={drag.dragEnd}
+              onMouseDown={dragStart}
+              onMouseMove={dragMove}
+              onMouseUp={dragEnd}
               style={{
                 cursor,
                 pointerEvents: !!brush.activeHandle || !!brush.isBrushing ? 'none' : 'all',

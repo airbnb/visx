@@ -26,13 +26,7 @@ export default class BrushSelection extends React.Component<BrushSelectionProps>
     onClick: null,
   };
 
-  constructor(props: BrushSelectionProps) {
-    super(props);
-    this.selectionDragMove = this.selectionDragMove.bind(this);
-    this.selectionDragEnd = this.selectionDragEnd.bind(this);
-  }
-
-  selectionDragMove(drag: any) {
+  selectionDragMove = (drag: any) => {
     const { updateBrush } = this.props;
     updateBrush((prevBrush: BrushState) => {
       const { x: x0, y: y0 } = prevBrush.start;
@@ -59,9 +53,9 @@ export default class BrushSelection extends React.Component<BrushSelectionProps>
         },
       };
     });
-  }
+  };
 
-  selectionDragEnd() {
+  selectionDragEnd = () => {
     const { updateBrush, onBrushEnd } = this.props;
     updateBrush((prevBrush: BrushState) => {
       const nextBrush = {
@@ -84,7 +78,7 @@ export default class BrushSelection extends React.Component<BrushSelectionProps>
 
       return nextBrush;
     });
-  }
+  };
 
   render() {
     const {
@@ -111,16 +105,16 @@ export default class BrushSelection extends React.Component<BrushSelectionProps>
         onDragMove={this.selectionDragMove}
         onDragEnd={this.selectionDragEnd}
       >
-        {(selection: any) => (
+        {({ isDragging, dragStart, dragEnd, dragMove }) => (
           <g>
-            {selection.isDragging && (
+            {isDragging && (
               <rect
                 width={stageWidth}
                 height={stageHeight}
                 fill="transparent"
-                onMouseUp={selection.dragEnd}
-                onMouseMove={selection.dragMove}
-                onMouseLeave={selection.dragEnd}
+                onMouseUp={dragEnd}
+                onMouseMove={dragMove}
+                onMouseLeave={dragEnd}
                 style={{
                   cursor: 'move',
                 }}
@@ -132,16 +126,17 @@ export default class BrushSelection extends React.Component<BrushSelectionProps>
               width={width}
               height={height}
               className="vx-brush-selection"
-              onMouseDown={disableDraggingSelection ? null : selection.dragStart}
+              // @ts-ignore
+              onMouseDown={disableDraggingSelection ? null : dragStart}
               onMouseLeave={event => {
                 if (onMouseLeave) onMouseLeave(event);
               }}
               onMouseMove={event => {
-                selection.dragMove(event);
+                dragMove(event);
                 if (onMouseMove) onMouseMove(event);
               }}
               onMouseUp={event => {
-                selection.dragEnd(event);
+                dragEnd(event);
                 if (onMouseUp) onMouseUp(event);
               }}
               onClick={event => {

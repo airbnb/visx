@@ -35,8 +35,27 @@ export type BaseBrushState = BrushShape & {
 };
 
 export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrushState> {
-  private mouseUpTime: any;
-  private mouseDownTime: any;
+  private mouseUpTime: any = 0;
+  private mouseDownTime: any = 0;
+
+  state = {
+    start: { x: 0, y: 0 },
+    end: { x: 0, y: 0 },
+    extent: {
+      x0: 0,
+      x1: 0,
+      y0: 0,
+      y1: 0,
+    },
+    bounds: {
+      x0: 0,
+      x1: this.props.width,
+      y0: 0,
+      y1: this.props.height,
+    },
+    isBrushing: false,
+    activeHandle: null,
+  };
 
   static defaultProps = {
     brushDirection: 'both',
@@ -58,41 +77,6 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
     disableDraggingSelection: false,
     clickSensitivity: 200,
   };
-
-  constructor(props: BaseBrushProps) {
-    super(props);
-    const { width, height } = props;
-    this.state = {
-      start: { x: 0, y: 0 },
-      end: { x: 0, y: 0 },
-      extent: {
-        x0: 0,
-        x1: 0,
-        y0: 0,
-        y1: 0,
-      },
-      bounds: {
-        x0: 0,
-        x1: width,
-        y0: 0,
-        y1: height,
-      },
-      isBrushing: false,
-      activeHandle: null,
-    };
-    this.width = this.width.bind(this);
-    this.height = this.height.bind(this);
-    this.handles = this.handles.bind(this);
-    this.corners = this.corners.bind(this);
-    this.update = this.update.bind(this);
-    this.reset = this.reset.bind(this);
-    this.handleDragStart = this.handleDragStart.bind(this);
-    this.handleDragMove = this.handleDragMove.bind(this);
-    this.handleDragEnd = this.handleDragEnd.bind(this);
-    this.getExtent = this.getExtent.bind(this);
-    this.mouseUpTime = 0;
-    this.mouseDownTime = 0;
-  }
 
   componentWillReceiveProps(nextProps: BaseBrushProps) {
     // @ts-ignore
@@ -123,7 +107,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
     };
   }
 
-  handleDragStart(draw: any) {
+  handleDragStart = (draw: any) => {
     const { onBrushStart, left, top, inheritedMargin } = this.props;
     const marginLeft = inheritedMargin && inheritedMargin.left ? inheritedMargin.left : 0;
     const marginTop = inheritedMargin && inheritedMargin.top ? inheritedMargin.top : 0;
@@ -149,9 +133,9 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
       },
       isBrushing: true,
     }));
-  }
+  };
 
-  handleDragMove(draw: any) {
+  handleDragMove = (draw: any) => {
     const { left, top, inheritedMargin } = this.props;
     if (!draw.isDragging) return;
     const marginLeft = inheritedMargin && inheritedMargin.left ? inheritedMargin.left : 0;
@@ -170,9 +154,9 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
         extent,
       };
     });
-  }
+  };
 
-  handleDragEnd() {
+  handleDragEnd = () => {
     const { onBrushEnd } = this.props;
     this.update((prevBrush: BaseBrushState) => {
       const { extent } = prevBrush;
@@ -194,7 +178,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
 
       return newState;
     });
-  }
+  };
 
   width() {
     const { extent } = this.state;
@@ -284,14 +268,14 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
     };
   }
 
-  update(updater: any) {
+  update = (updater: any) => {
     const { onChange } = this.props;
     this.setState(updater, () => {
       if (onChange) {
         onChange(this.state);
       }
     });
-  }
+  };
 
   reset() {
     const { width, height } = this.props;
@@ -351,7 +335,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
           onDragMove={this.handleDragMove}
           onDragEnd={this.handleDragEnd}
         >
-          {(draw: any) => (
+          {({ dragStart, isDragging, dragMove, dragEnd }) => (
             <Bar
               className="vx-brush-overlay"
               fill="transparent"
@@ -366,19 +350,19 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
               }}
               onMouseDown={(event: React.MouseEvent<SVGRectElement, MouseEvent>) => {
                 this.mouseDownTime = new Date();
-                draw.dragStart(event);
+                dragStart(event);
               }}
               onMouseLeave={(event: React.MouseEvent<SVGRectElement, MouseEvent>) => {
                 if (onMouseLeave) onMouseLeave(event);
               }}
               onMouseMove={(event: React.MouseEvent<SVGRectElement, MouseEvent>) => {
-                if (!draw.isDragging && onMouseMove) onMouseMove(event);
-                if (draw.isDragging) draw.dragMove(event);
+                if (!isDragging && onMouseMove) onMouseMove(event);
+                if (isDragging) dragMove(event);
               }}
               onMouseUp={(event: React.MouseEvent<SVGRectElement, MouseEvent>) => {
                 this.mouseUpTime = new Date();
                 if (onMouseUp) onMouseUp(event);
-                draw.dragEnd(event);
+                dragEnd(event);
               }}
               style={{ cursor: 'crosshair' }}
             />
