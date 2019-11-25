@@ -1,6 +1,6 @@
 import { Brush } from '../src';
 
-describe('<BoxBrush />', () => {
+describe('<Brush />', () => {
   test('it should be defined', () => {
     expect(Brush).toBeDefined();
   });
