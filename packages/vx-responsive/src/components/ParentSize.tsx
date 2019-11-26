@@ -62,6 +62,7 @@ export default class ParentSize extends React.Component<
   componentWillUnmount() {
     if (this.animationFrameID) window.cancelAnimationFrame(this.animationFrameID);
     if (this.resizeObserver) this.resizeObserver.disconnect();
+    if (this.resize) this.resize.cancel();
   }
 
   resize = ({ width, height, top, left }: ParentSizeState) => {
