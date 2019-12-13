@@ -18,7 +18,6 @@
   "dependencies": {
     "@vx/annotation": "0.0.192",
     "@vx/axis": "0.0.192",
-    "@vx/boxplot": "0.0.192",
     "@vx/brush": "0.0.192",
     "@vx/chord": "0.0.192",
     "@vx/clip-path": "0.0.192",

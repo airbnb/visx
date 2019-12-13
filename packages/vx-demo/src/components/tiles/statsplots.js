@@ -57,8 +57,8 @@ export default withTooltip(
     return (
       <div style={{ position: 'relative' }}>
         <svg width={width} height={height}>
-          <LinearGradient id="boxplot" to="#8b6ce7" from="#87f2d4" />
-          <rect x={0} y={0} width={width} height={height} fill="url(#boxplot)" rx={14} />
+          <LinearGradient id="statsplots" to="#8b6ce7" from="#87f2d4" />
+          <rect x={0} y={0} width={width} height={height} fill="url(#statsplots)" rx={14} />
           <PatternLines
             id="hViolinLines"
             height={3}
