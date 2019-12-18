@@ -20,6 +20,6 @@ describe('<Glyph />', () => {
 
   test('it should take top,left number props', () => {
     const wrapper = render(<Glyph top={2} left={2} />);
-    expect(wrapper['0'].attribs.transform).toBe('translate(2, 2)');
+    expect(wrapper[0].attribs.transform as string).toBe('translate(2, 2)');
   });
 });
