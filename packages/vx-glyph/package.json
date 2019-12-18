@@ -5,6 +5,7 @@
   "sideEffects": false,
   "main": "lib/index.js",
   "module": "esm/index.js",
+  "types": "lib/index.d.ts",
   "files": [
     "lib",
     "esm"
@@ -33,9 +34,12 @@
     "access": "public"
   },
   "peerDependencies": {
-    "react": "^15.0.0-0 || ^16.0.0-0"
+    "react": "^16.3.0-0"
   },
   "dependencies": {
+    "@types/classnames": "^2.2.9",
+    "@types/d3-shape": "^1.3.1",
+    "@types/react": "*",
     "@vx/group": "0.0.192",
     "classnames": "^2.2.5",
     "d3-shape": "^1.2.0",

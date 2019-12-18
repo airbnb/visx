@@ -1,4 +1,10 @@
 import React from 'react';
+import Show from '../components/show';
+import StatsPlot from '../components/tiles/statsplot';
+
+export default () => (
+  <Show events margin={{ top: 80 }} component={StatsPlot} title="BoxPlot With ViolinPlot">
+    {`import React from 'react';
 import { Group } from '@vx/group';
 import { ViolinPlot, BoxPlot } from '@vx/stats';
 import { LinearGradient } from '@vx/gradient';
@@ -27,10 +33,8 @@ export default withTooltip(
     tooltipTop,
     tooltipData,
     showTooltip,
-    hideTooltip,
+    hideTooltip
   }) => {
-    if (width < 10) return null;
-
     // bounds
     const xMax = width;
     const yMax = height - 120;
@@ -39,16 +43,20 @@ export default withTooltip(
     const xScale = scaleBand({
       rangeRound: [0, xMax],
       domain: data.map(x),
-      padding: 0.4,
+      padding: 0.4
     });
 
     const values = data.reduce((r, { boxPlot: e }) => r.push(e.min, e.max) && r, []);
     const minYValue = Math.min(...values);
     const maxYValue = Math.max(...values);
+    const yDomain = [
+      minYValue - 0.1 * Math.abs(minYValue),
+      maxYValue + 0.1 * Math.abs(minYValue)
+    ];
 
     const yScale = scaleLinear({
       rangeRound: [yMax, 0],
-      domain: [minYValue, maxYValue],
+      domain: [minYValue, maxYValue]
     });
 
     const boxWidth = xScale.bandwidth();
@@ -57,8 +65,8 @@ export default withTooltip(
     return (
       <div style={{ position: 'relative' }}>
         <svg width={width} height={height}>
-          <LinearGradient id="boxplot" to="#8b6ce7" from="#87f2d4" />
-          <rect x={0} y={0} width={width} height={height} fill="url(#boxplot)" rx={14} />
+          <LinearGradient id="statsplot" to="#8b6ce7" from="#87f2d4" />
+          <rect x={0} y={0} width={width} height={height} fill={\`url(#statsplot)\`} rx={14} />
           <PatternLines
             id="hViolinLines"
             height={3}
@@ -95,67 +103,67 @@ export default withTooltip(
                   valueScale={yScale}
                   outliers={outliers(d)}
                   minProps={{
-                    onMouseOver: () => {
+                    onMouseOver: event => {
                       showTooltip({
                         tooltipTop: yScale(min(d)) + 40,
                         tooltipLeft: xScale(x(d)) + constrainedWidth + 5,
                         tooltipData: {
                           min: min(d),
-                          name: x(d),
-                        },
+                          name: x(d)
+                        }
                       });
                     },
-                    onMouseLeave: () => {
+                    onMouseLeave: event => {
                       hideTooltip();
-                    },
+                    }
                   }}
                   maxProps={{
-                    onMouseOver: () => {
+                    onMouseOver: event => {
                       showTooltip({
                         tooltipTop: yScale(max(d)) + 40,
                         tooltipLeft: xScale(x(d)) + constrainedWidth + 5,
                         tooltipData: {
                           max: max(d),
-                          name: x(d),
-                        },
+                          name: x(d)
+                        }
                       });
                     },
-                    onMouseLeave: () => {
+                    onMouseLeave: event => {
                       hideTooltip();
-                    },
+                    }
                   }}
                   boxProps={{
-                    onMouseOver: () => {
+                    onMouseOver: event => {
                       showTooltip({
                         tooltipTop: yScale(median(d)) + 40,
                         tooltipLeft: xScale(x(d)) + constrainedWidth + 5,
                         tooltipData: {
                           ...d.boxPlot,
-                          name: x(d),
-                        },
+                          name: x(d)
+                        }
                       });
                     },
-                    onMouseLeave: () => {
+                    onMouseLeave: event => {
                       hideTooltip();
-                    },
+                    }
                   }}
                   medianProps={{
                     style: {
-                      stroke: 'white',
+                      stroke: 'white'
                     },
-                    onMouseOver: () => {
+                    onMouseOver: event => {
                       showTooltip({
                         tooltipTop: yScale(median(d)) + 40,
                         tooltipLeft: xScale(x(d)) + constrainedWidth + 5,
                         tooltipData: {
                           median: median(d),
-                          name: x(d),
-                        },
+                          name: x(d)
+                        }
                       });
                     },
-                    onMouseLeave: () => {
+                    onMouseLeave: event => {
                       hideTooltip();
-                    },
+                    }
                   }}
                 />
               </g>
@@ -182,5 +190,8 @@ export default withTooltip(
         )}
       </div>
     );
-  },
+  }
+);
+`}
+  </Show>
 );

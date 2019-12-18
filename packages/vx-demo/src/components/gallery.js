@@ -26,7 +26,7 @@ import Trees from './tiles/tree';
 import Cluster from './tiles/dendrogram';
 import Voronoi from './tiles/voronoi';
 import Legends from './tiles/legends';
-import BoxPlot from './tiles/boxplot';
+import StatsPlot from './tiles/statsplot';
 import GeoMercator from './tiles/geo-mercator';
 import GeoCustom from './tiles/geo-custom';
 import Network from './tiles/network';
@@ -525,11 +525,13 @@ export default function() {
         </Tilt>
 
         <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-          <Link href="/boxplot">
+          <Link href="/statsplot">
             <div className="gallery-item" style={{ background: '#8a88e3' }}>
               <div className="image">
                 <ParentSize>
-                  {({ width, height }) => <BoxPlot width={width} height={height + detailsHeight} />}
+                  {({ width, height }) => (
+                    <StatsPlot width={width} height={height + detailsHeight} />
+                  )}
                 </ParentSize>
               </div>
               <div className="details" style={{ color: '#FFFFFF', zIndex: 1 }}>

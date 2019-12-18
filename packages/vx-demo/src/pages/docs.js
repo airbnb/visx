@@ -23,9 +23,6 @@ export default () => (
           <a href="/static/docs/vx-bounds.html"> @vx/bounds </a>
         </li>
         <li>
-          <a href="/static/docs/vx-boxplot.html"> @vx/boxplot </a>
-        </li>
-        <li>
           <a href="/static/docs/vx-brush.html"> @vx/brush </a>
         </li>
         <li>
