@@ -18,10 +18,6 @@ describe('vx', () => {
     expect(vx.withBoundingRects).toBeDefined();
   });
 
-  test('it should export @vx/brush', () => {
-    expect(vx.withBrush).toBeDefined();
-  });
-
   test('it should export @vx/clip-path', () => {
     expect(vx.ClipPath).toBeDefined();
   });

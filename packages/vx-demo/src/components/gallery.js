@@ -42,6 +42,7 @@ import Threshold from './tiles/threshold';
 import Chord from './tiles/chord';
 import Polygons from './tiles/polygons';
 import ZoomI from './tiles/zoom-i';
+import BrushChart from './tiles/brush';
 
 const items = [
   '#242424',
@@ -63,6 +64,23 @@ export default function() {
   return (
     <div>
       <div className="gallery">
+        <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+          <Link href="/brush">
+            <div className="gallery-item" style={{ background: items[5] }}>
+              <div className="image">
+                <ParentSize>
+                  {({ width, height }) => <BrushChart width={width} height={height} />}
+                </ParentSize>
+              </div>
+              <div className="details">
+                <div className="title">Brush</div>
+                <div className="description">
+                  <pre>{'<Brush />'}</pre>
+                </div>
+              </div>
+            </div>
+          </Link>
+        </Tilt>
         <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
           <Link href="/lines">
             <div className="gallery-item" style={{ background: items[0] }}>
