@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import { Legend } from '../src';
-import { scaleLinear } from '../../vx-scale/src';
+import { scaleLinear } from '../../vx-scale/src/index.ts';
 
 const defaultProps = {
   scale: scaleLinear({

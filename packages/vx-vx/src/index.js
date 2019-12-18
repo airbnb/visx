@@ -1,7 +1,6 @@
 export * from '@vx/annotation';
 export * from '@vx/axis';
 export * from '@vx/bounds';
-export * from '@vx/boxplot';
 export * from '@vx/brush';
 export * from '@vx/clip-path';
 export * from '@vx/curve';
