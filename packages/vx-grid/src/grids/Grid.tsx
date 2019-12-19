@@ -1,32 +1,27 @@
 import React from 'react';
 import cx from 'classnames';
-import PropTypes from 'prop-types';
 import { Group } from '@vx/group';
-import Rows from './GridRows';
-import Columns from './GridColumns';
+import GridRows, { GridRowsProps } from './GridRows';
+import GridColumns, { GridColumnProps } from './GridColumns';
+import { Scale, CommonGridProps } from '../types';
 
-Grid.propTypes = {
-  top: PropTypes.number,
-  left: PropTypes.number,
-  className: PropTypes.string,
-  stroke: PropTypes.string,
-  strokeWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  strokeDasharray: PropTypes.string,
-  numTicksRows: PropTypes.number,
-  numTicksColumns: PropTypes.number,
-  rowLineStyle: PropTypes.object,
-  columnLineStyle: PropTypes.object,
-  xOffset: PropTypes.number,
-  yOffset: PropTypes.number,
-  xScale: PropTypes.func.isRequired,
-  yScale: PropTypes.func.isRequired,
-  height: PropTypes.number.isRequired,
-  width: PropTypes.number.isRequired,
-  rowTickValues: PropTypes.array,
-  columnTickValues: PropTypes.array,
-};
+type CommonPropsToOmit = 'scale' | 'offset' | 'numTicks' | 'lineStyle' | 'tickValues';
 
-export default function Grid({
+export type GridProps<ScaleInput> = {
+  xScale: Scale<ScaleInput, number>;
+  yScale: Scale<ScaleInput, number>;
+  xOffset: CommonGridProps['offset'];
+  yOffset: CommonGridProps['offset'];
+  numTicksRows: CommonGridProps['numTicks'];
+  numTicksColumns: CommonGridProps['numTicks'];
+  rowLineStyle: CommonGridProps['lineStyle'];
+  columnLineStyle: CommonGridProps['lineStyle'];
+  rowTickValues: CommonGridProps['tickValues'];
+  columnTickValues: CommonGridProps['tickValues'];
+} & Omit<GridRowsProps<ScaleInput>, CommonPropsToOmit> &
+  Omit<GridColumnProps<ScaleInput>, CommonPropsToOmit>;
+
+export default function Grid<ScaleInput>({
   top,
   left,
   xScale,
@@ -46,10 +41,10 @@ export default function Grid({
   rowTickValues,
   columnTickValues,
   ...restProps
-}) {
+}: GridProps<ScaleInput>) {
   return (
     <Group className={cx('vx-grid', className)} top={top} left={left}>
-      <Rows
+      <GridRows
         className={className}
         scale={yScale}
         width={width}
@@ -57,12 +52,12 @@ export default function Grid({
         strokeWidth={strokeWidth}
         strokeDasharray={strokeDasharray}
         numTicks={numTicksRows}
-        style={rowLineStyle}
+        lineStyle={rowLineStyle}
         offset={yOffset}
         tickValues={rowTickValues}
         {...restProps}
       />
-      <Columns
+      <GridColumns
         className={className}
         scale={xScale}
         height={height}
@@ -70,7 +65,7 @@ export default function Grid({
         strokeWidth={strokeWidth}
         strokeDasharray={strokeDasharray}
         numTicks={numTicksColumns}
-        style={columnLineStyle}
+        lineStyle={columnLineStyle}
         offset={xOffset}
         tickValues={columnTickValues}
         {...restProps}

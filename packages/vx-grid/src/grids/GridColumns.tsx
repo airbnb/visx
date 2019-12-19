@@ -1,26 +1,21 @@
 import React from 'react';
 import cx from 'classnames';
-import PropTypes from 'prop-types';
-import { Line } from '@vx/shape';
+import Line, { LineProps } from '@vx/shape/lib/shapes/Line';
 import { Group } from '@vx/group';
 import { Point } from '@vx/point';
+import { Scale, CommonGridProps } from '../types';
 
-Columns.propTypes = {
-  top: PropTypes.number,
-  left: PropTypes.number,
-  className: PropTypes.string,
-  stroke: PropTypes.string,
-  strokeWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  strokeDasharray: PropTypes.string,
-  numTicks: PropTypes.number,
-  lineStyle: PropTypes.object,
-  offset: PropTypes.number,
-  scale: PropTypes.func.isRequired,
-  height: PropTypes.number.isRequired,
-  tickValues: PropTypes.array,
+export type GridColumnProps<ScaleInput> = CommonGridProps & {
+  /** @vx/scale or d3-scale object used to map from ScaleInput to x-coordinates. */
+  scale: Scale<ScaleInput, number>;
+  /** Total height of the each grid column line. */
+  height: number;
 };
 
-export default function Columns({
+type AllProps<ScaleInput> = GridColumnProps<ScaleInput> &
+  Omit<LineProps, keyof GridColumnProps<ScaleInput>>;
+
+export default function GridColumns<ScaleInput>({
   top = 0,
   left = 0,
   scale,
@@ -34,9 +29,8 @@ export default function Columns({
   offset,
   tickValues,
   ...restProps
-}) {
-  let ticks = scale.ticks ? scale.ticks(numTicks) : scale.domain();
-  if (tickValues) ticks = tickValues;
+}: AllProps<ScaleInput>) {
+  const ticks = tickValues || scale.ticks ? scale.ticks(numTicks) : scale.domain();
   return (
     <Group className={cx('vx-columns', className)} top={top} left={left}>
       {ticks.map((d, i) => {
