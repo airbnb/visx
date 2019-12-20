@@ -1,7 +1,13 @@
 /* eslint react/jsx-handler-names: 0 */
 import React from 'react';
-import { Drag } from '@vx/drag';
-import { BaseBrushState as BrushState } from './BaseBrush';
+import Drag, { HandlerArgs as DragArgs } from '@vx/drag/lib/Drag';
+import { BaseBrushState as BrushState, UpdateBrush } from './BaseBrush';
+
+const DRAGGING_OVERLAY_STYLES = { cursor: 'move' };
+
+type MouseHandler = (
+  event: React.MouseEvent<SVGRectElement, MouseEvent> | React.TouchEvent<SVGRectElement>,
+) => void;
 
 export type BrushSelectionProps = {
   width: number;
@@ -9,16 +15,19 @@ export type BrushSelectionProps = {
   stageWidth: number;
   stageHeight: number;
   brush: BrushState;
-  updateBrush: Function;
-  onBrushEnd?: Function;
+  updateBrush: (update: UpdateBrush) => void;
+  onBrushEnd?: (brush: BrushState) => void;
   disableDraggingSelection: boolean;
-  onMouseLeave: Function;
-  onMouseMove: Function;
-  onMouseUp: Function;
-  onClick: Function;
+  onMouseLeave: MouseHandler;
+  onMouseMove: MouseHandler;
+  onMouseUp: MouseHandler;
+  onClick: MouseHandler;
+  selectedBoxStyle: React.SVGProps<SVGRectElement>;
 };
 
-export default class BrushSelection extends React.Component<BrushSelectionProps> {
+export default class BrushSelection extends React.Component<
+  BrushSelectionProps & React.SVGProps<SVGRectElement>
+> {
   static defaultProps = {
     onMouseLeave: null,
     onMouseUp: null,
@@ -26,7 +35,7 @@ export default class BrushSelection extends React.Component<BrushSelectionProps>
     onClick: null,
   };
 
-  selectionDragMove = (drag: any) => {
+  selectionDragMove = (drag: DragArgs) => {
     const { updateBrush } = this.props;
     updateBrush((prevBrush: BrushState) => {
       const { x: x0, y: y0 } = prevBrush.start;
@@ -87,14 +96,12 @@ export default class BrushSelection extends React.Component<BrushSelectionProps>
       stageWidth,
       stageHeight,
       brush,
-      updateBrush,
       disableDraggingSelection,
-      onBrushEnd,
       onMouseLeave,
       onMouseMove,
       onMouseUp,
       onClick,
-      ...restProps
+      selectedBoxStyle,
     } = this.props;
 
     return (
@@ -115,9 +122,7 @@ export default class BrushSelection extends React.Component<BrushSelectionProps>
                 onMouseUp={dragEnd}
                 onMouseMove={dragMove}
                 onMouseLeave={dragEnd}
-                style={{
-                  cursor: 'move',
-                }}
+                style={DRAGGING_OVERLAY_STYLES}
               />
             )}
             <rect
@@ -126,8 +131,7 @@ export default class BrushSelection extends React.Component<BrushSelectionProps>
               width={width}
               height={height}
               className="vx-brush-selection"
-              // @ts-ignore
-              onMouseDown={disableDraggingSelection ? null : dragStart}
+              onMouseDown={disableDraggingSelection ? undefined : dragStart}
               onMouseLeave={event => {
                 if (onMouseLeave) onMouseLeave(event);
               }}
@@ -142,12 +146,11 @@ export default class BrushSelection extends React.Component<BrushSelectionProps>
               onClick={event => {
                 if (onClick) onClick(event);
               }}
-              // @ts-ignore
               style={{
                 pointerEvents: brush.isBrushing || brush.activeHandle ? 'none' : 'all',
-                cursor: disableDraggingSelection ? null : 'move',
+                cursor: disableDraggingSelection ? undefined : 'move',
               }}
-              {...restProps}
+              {...selectedBoxStyle}
             />
           </g>
         )}

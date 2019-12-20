@@ -1,10 +1,13 @@
-export function scaleInvert(scale: any, value: number) {
+import { Scale } from './types';
+
+export function scaleInvert(scale: Scale, value: number) {
   // Test if the scale is an ordinalScale or not,
   // Since an ordinalScale doesn't support invert function.
   if (!scale.invert) {
     const [start, end] = scale.range();
     let i = 0;
-    const width = (scale.step() * (end - start)) / Math.abs(end - start);
+    // ordinal should have step
+    const width = (scale.step!() * (end - start)) / Math.abs(end - start);
     if (width > 0) {
       while (value > start + width * (i + 1)) {
         i += 1;
@@ -21,7 +24,12 @@ export function scaleInvert(scale: any, value: number) {
   return scale.invert(value);
 }
 
-export function getDomainFromExtent(scale: any, start: number, end: number, tolerentDelta: number) {
+export function getDomainFromExtent(
+  scale: Scale,
+  start: number,
+  end: number,
+  tolerentDelta: number,
+) {
   let domain;
   const invertedStart = scaleInvert(scale, start + (start < end ? -tolerentDelta : tolerentDelta));
   const invertedEnd = scaleInvert(scale, end + (end < start ? -tolerentDelta : tolerentDelta));

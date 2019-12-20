@@ -54,8 +54,8 @@ export default function Rows({
             key={`row-line-${d}-${i}`}
             from={fromPoint}
             to={toPoint}
-            stroke={stroke}
-            strokeWidth={strokeWidth}
+            stroke="magenta"
+            strokeWidth={10}
             strokeDasharray={strokeDasharray}
             style={lineStyle}
             {...restProps}

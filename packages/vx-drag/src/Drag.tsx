@@ -22,7 +22,7 @@ export type DragProps = {
   onDragStart?: (args: HandlerArgs) => void;
 };
 
-type DragState = {
+export type DragState = {
   x: number | undefined;
   y: number | undefined;
   dx: number;
@@ -30,7 +30,7 @@ type DragState = {
   isDragging: boolean;
 };
 
-type HandlerArgs = DragState & { event: MouseOrTouchEvent };
+export type HandlerArgs = DragState & { event: MouseOrTouchEvent };
 
 type ChildrenArgs = DragState & {
   dragEnd: (event: MouseOrTouchEvent) => void;
