@@ -193,9 +193,10 @@ function BrushChart({
             width={xBrushMax}
             height={yBrushMax}
             handleSize={8}
-            resizeTriggerAreas={['left', 'right']}
+            resizeTriggerAreas={['left', 'right', 'bottomRight']}
             brushDirection="horizontal"
             onChange={onBrushChange}
+            onClick={() => setFilteredStock(stock)}
             selectedBoxStyle={{
               fill: 'url(#brush_pattern)',
               stroke: 'white',
