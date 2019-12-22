@@ -12,6 +12,7 @@ export type BrushCornerProps = {
   onBrushEnd?: (brush: BrushState) => void;
   type: ResizeTriggerAreas;
   style?: React.CSSProperties;
+  corner: { x: number; y: number; width: number; height: number };
 };
 
 export type BrushCornerState = {};
@@ -131,16 +132,7 @@ export default class BrushCorner extends React.Component<BrushCornerProps, Brush
   };
 
   render() {
-    const {
-      type,
-      brush,
-      updateBrush,
-      stageWidth,
-      stageHeight,
-      style: styleProp,
-      onBrushEnd,
-      ...restProps
-    } = this.props;
+    const { type, brush, stageWidth, stageHeight, style: styleProp, corner } = this.props;
     const cursor = type === 'topLeft' || type === 'bottomRight' ? 'nwse-resize' : 'nesw-resize';
     const pointerEvents = brush.activeHandle || brush.isBrushing ? 'none' : 'all';
 
@@ -165,13 +157,13 @@ export default class BrushCorner extends React.Component<BrushCornerProps, Brush
               />
             )}
             <rect
-              fill="transparent"
+              fill="violet"
               onMouseDown={dragStart}
               onMouseMove={dragMove}
               onMouseUp={dragEnd}
-              className={`vx-brush-handle-${type}`}
+              className={`vx-brush-corner-${type}`}
               style={{ cursor, pointerEvents, ...styleProp }}
-              {...restProps}
+              {...corner}
             />
           </g>
         )}

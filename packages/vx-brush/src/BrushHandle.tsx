@@ -11,9 +11,10 @@ export type BrushHandleProps = {
   updateBrush: (update: UpdateBrush) => void;
   onBrushEnd?: (brush: BrushState) => void;
   type: ResizeTriggerAreas;
-  handle: DragArgs;
+  handle: { x: number; y: number; width: number; height: number };
 };
 
+/** BrushHandle's are placed along the bounds of the brush and handle Drag events which update the passed brush. */
 export default class BrushHandle extends React.Component<BrushHandleProps> {
   handleDragMove = (drag: DragArgs) => {
     const { updateBrush, type } = this.props;
@@ -91,7 +92,6 @@ export default class BrushHandle extends React.Component<BrushHandleProps> {
         end,
         activeHandle: null,
         isBrushing: false,
-        // @TODO or bounds?
         extent: {
           x0: Math.min(start.x, end.x),
           x1: Math.max(start.x, end.x),
@@ -120,9 +120,10 @@ export default class BrushHandle extends React.Component<BrushHandleProps> {
         onDragEnd={this.handleDragEnd}
         resetOnStart
       >
-        {({ dragStart, dragEnd, dragMove }) => (
+        {({ dragStart, dragEnd, dragMove, isDragging }) => (
           <g>
-            {handle.isDragging && (
+            {/** capture mouse events while dragging */}
+            {isDragging && (
               <rect
                 fill="transparent"
                 width={stageWidth}
@@ -138,7 +139,7 @@ export default class BrushHandle extends React.Component<BrushHandleProps> {
               y={y}
               width={width}
               height={height}
-              fill="transparent"
+              fill="yellow"
               className={`vx-brush-handle-${type}`}
               onMouseDown={dragStart}
               onMouseMove={dragMove}

@@ -1,13 +1,13 @@
 import React from 'react';
 import BaseBrush, { BaseBrushProps, BaseBrushState } from './BaseBrush';
-import { Bounds, GeneralStyleShape, MarginShape, Point, ResizeTriggerAreas, Scale } from './types';
+import { Bounds, MarginShape, Point, ResizeTriggerAreas, Scale } from './types';
 import { scaleInvert, getDomainFromExtent } from './utils';
 
 const SAFE_PIXEL = 2;
 const DEFAULT_COLOR = 'steelblue';
 
 export type BrushProps = {
-  selectedBoxStyle: GeneralStyleShape;
+  selectedBoxStyle: React.SVGProps<SVGRectElement>;
   xScale: Scale;
   yScale: Scale;
   height: number;

@@ -122,8 +122,8 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
     const marginLeft = inheritedMargin && inheritedMargin.left ? inheritedMargin.left : 0;
     const marginTop = inheritedMargin && inheritedMargin.top ? inheritedMargin.top : 0;
     const start = {
-      x: draw.x + draw.dx - left - marginLeft,
-      y: draw.y + draw.dy - top - marginTop,
+      x: (draw.x || 0) + draw.dx - left - marginLeft,
+      y: (draw.y || 0) + draw.dy - top - marginTop,
     };
     const end = { ...start };
 
@@ -148,11 +148,11 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
   handleDragMove = (draw: DragArgs) => {
     const { left, top, inheritedMargin } = this.props;
     if (!draw.isDragging) return;
-    const marginLeft = inheritedMargin && inheritedMargin.left ? inheritedMargin.left : 0;
-    const marginTop = inheritedMargin && inheritedMargin.top ? inheritedMargin.top : 0;
+    const marginLeft = (inheritedMargin && inheritedMargin.left) || 0;
+    const marginTop = (inheritedMargin && inheritedMargin.top) || 0;
     const end = {
-      x: draw.x + draw.dx - left - marginLeft,
-      y: draw.y + draw.dy - top - marginTop,
+      x: (draw.x || 0) + draw.dx - left - marginLeft,
+      y: (draw.y || 0) + draw.dy - top - marginTop,
     };
     this.updateBrush((prevBrush: BaseBrushState) => {
       const { start } = prevBrush;
@@ -250,28 +250,40 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
     };
   };
 
-  corners = (): Partial<{ [key in ResizeTriggerAreas]: { x: number; y: number } }> => {
+  corners = (): Partial<
+    { [key in ResizeTriggerAreas]: { x: number; y: number; width: number; height: number } }
+  > => {
     const { handleSize } = this.props;
     const { extent } = this.state;
     const { x0, x1, y0, y1 } = extent;
     const offset = handleSize / 2;
+    const width = handleSize;
+    const height = handleSize;
 
     return {
       topLeft: {
         x: Math.min(x0, x1) - offset,
         y: Math.min(y0, y1) - offset,
+        width,
+        height,
       },
       topRight: {
         x: Math.max(x0, x1) - offset,
         y: Math.min(y0, y1) - offset,
+        width,
+        height,
       },
       bottomLeft: {
         x: Math.min(x0, x1) - offset,
         y: Math.max(y0, y1) - offset,
+        width,
+        height,
       },
       bottomRight: {
         x: Math.max(x0, x1) - offset,
         y: Math.max(y0, y1) - offset,
+        width,
+        height,
       },
     };
   };
@@ -314,7 +326,6 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
       left,
       width: stageWidth,
       height: stageHeight,
-      handleSize,
       onMouseLeave,
       onMouseUp,
       onMouseMove,
@@ -434,12 +445,8 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
                     updateBrush={this.updateBrush}
                     stageWidth={stageWidth}
                     stageHeight={stageHeight}
-                    x={corner.x}
-                    y={corner.y}
-                    width={handleSize}
-                    height={handleSize}
+                    corner={corner}
                     onBrushEnd={onBrushEnd}
-                    fill="transparent"
                   />
                 )
               );

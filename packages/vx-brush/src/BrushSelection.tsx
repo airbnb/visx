@@ -26,7 +26,7 @@ export type BrushSelectionProps = {
 };
 
 export default class BrushSelection extends React.Component<
-  BrushSelectionProps & React.SVGProps<SVGRectElement>
+  BrushSelectionProps & Omit<React.SVGProps<SVGRectElement>, keyof BrushSelectionProps>
 > {
   static defaultProps = {
     onMouseLeave: null,
