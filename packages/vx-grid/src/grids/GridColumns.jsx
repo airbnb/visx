@@ -54,8 +54,8 @@ export default function Columns({
             key={`column-line-${d}-${i}`}
             from={fromPoint}
             to={toPoint}
-            stroke="skyblue"
-            strokeWidth={5}
+            stroke={stroke}
+            strokeWidth={strokeWidth}
             strokeDasharray={strokeDasharray}
             style={lineStyle}
             {...restProps}
