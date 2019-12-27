@@ -5,6 +5,7 @@
   "sideEffects": false,
   "main": "lib/index.js",
   "module": "esm/index.js",
+  "types": "lib/index.d.ts",
   "files": [
     "lib",
     "esm"
@@ -33,6 +34,8 @@
     "react": "^15.0.0-0 || ^16.0.0-0"
   },
   "dependencies": {
+    "@types/classnames": "^2.2.9",
+    "@types/react": "*",
     "@vx/group": "0.0.192",
     "@vx/point": "0.0.192",
     "@vx/shape": "0.0.192",
