@@ -5,6 +5,7 @@
   "sideEffects": false,
   "main": "lib/index.js",
   "module": "esm/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
     "docs": "cd ./docs && ../../../node_modules/.bin/react-docgen ../src/axis/  | ../../../scripts/buildDocs.sh"
   },
@@ -30,6 +31,9 @@
   },
   "homepage": "https://github.com/hshoff/vx#readme",
   "dependencies": {
+    "@types/classnames": "^2.2.9",
+    "@types/d3-scale": "^2.1.1",
+    "@types/react": "*",
     "@vx/group": "0.0.192",
     "@vx/point": "0.0.192",
     "@vx/shape": "0.0.192",
