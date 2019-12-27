@@ -19,6 +19,7 @@ interface WordsWithWidth {
 }
 
 type SVGTSpanProps = React.SVGAttributes<SVGTSpanElement>;
+type SVGTextProps = React.SVGAttributes<SVGTextElement>;
 
 export type TextProps = {
   /** className to apply to the SVGText element. */
@@ -48,7 +49,11 @@ export type TextProps = {
   /** Cap height of the text. */
   capHeight?: SVGTSpanProps['capHeight'];
   /** Font size of text. */
-  fontSize?: SVGTSpanProps['fontSize'];
+  fontSize?: SVGTextProps['fontSize'];
+  /** Font family of text. */
+  fontFamily?: SVGTextProps['fontFamily'];
+  /** Fill color of text. */
+  fill?: SVGTextProps['fill'];
   /** Maximum width to occupy (approximate as words are not split). */
   width?: number;
   /** String (or number coercible to one) to be styled and positioned. */

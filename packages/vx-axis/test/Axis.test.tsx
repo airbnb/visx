@@ -3,15 +3,16 @@ import { shallow } from 'enzyme';
 
 import { Line } from '@vx/shape';
 import { Text } from '@vx/text';
-import { scaleBand, scaleLinear } from '../../vx-scale/src';
+import { scaleBand, scaleLinear } from '@vx/scale';
 import { Axis } from '../src';
+import { AxisOrientation, GenericScale } from '../src/types';
 
 const axisProps = {
-  orientation: 'left',
+  orientation: 'left' as AxisOrientation,
   scale: scaleLinear({
     rangeRound: [10, 0],
     domain: [0, 10],
-  }),
+  }) as GenericScale<number>,
   label: 'test axis',
 };
 
@@ -184,7 +185,9 @@ describe('<Axis />', () => {
   });
 
   test('tickFormat should have access to tick index', () => {
-    const wrapper = shallow(<Axis {...axisProps} tickValues={[9]} tickFormat={(val, i) => i} />);
+    const wrapper = shallow(
+      <Axis {...axisProps} tickValues={[9]} tickFormat={(val, i) => `${i}`} />,
+    );
     expect(
       wrapper
         .children()
@@ -198,7 +201,7 @@ describe('<Axis />', () => {
     const overrideAxisProps = {
       scale: scaleBand({
         rangeRound: [10, 0],
-        domain: [0, 10],
+        domain: ['a', 'b', 'c'],
       }),
     };
     const wrapper = shallow(<Axis {...overrideAxisProps} tickStroke="blue" />);
