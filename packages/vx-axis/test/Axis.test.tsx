@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 
 import { Line } from '@vx/shape';
 import { Text } from '@vx/text';
-import { scaleBand, scaleLinear } from '../../vx-scale/src/index.ts';
+import { scaleBand, scaleLinear } from '../../vx-scale/src';
 import { Axis } from '../src';
 
 const axisProps = {

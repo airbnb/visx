@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { Line } from '@vx/shape';
 import { Point } from '@vx/point';
@@ -9,38 +8,14 @@ import center from '../utils/center';
 import identity from '../utils/identity';
 import getLabelTransform from '../utils/labelTransform';
 import ORIENT from '../constants/orientation';
+import toString from '../utils/toString';
+import { SharedAxisProps, AxisOrientation, TickFormatter } from '../types';
 
-const propTypes = {
-  axisClassName: PropTypes.string,
-  axisLineClassName: PropTypes.string,
-  hideAxisLine: PropTypes.bool,
-  hideTicks: PropTypes.bool,
-  hideZero: PropTypes.bool,
-  label: PropTypes.string,
-  labelClassName: PropTypes.string,
-  labelOffset: PropTypes.number,
-  labelProps: PropTypes.object,
-  left: PropTypes.number,
-  numTicks: PropTypes.number,
-  orientation: PropTypes.oneOf([ORIENT.top, ORIENT.right, ORIENT.bottom, ORIENT.left]),
-  rangePadding: PropTypes.number,
-  scale: PropTypes.func.isRequired,
-  stroke: PropTypes.string,
-  strokeWidth: PropTypes.number,
-  strokeDasharray: PropTypes.string,
-  tickClassName: PropTypes.string,
-  tickFormat: PropTypes.func,
-  tickLabelProps: PropTypes.func,
-  tickLength: PropTypes.number,
-  tickStroke: PropTypes.string,
-  tickTransform: PropTypes.string,
-  tickValues: PropTypes.array,
-  tickComponent: PropTypes.func,
-  top: PropTypes.number,
-  children: PropTypes.func,
+export type AxisProps<Input> = SharedAxisProps<Input> & {
+  orientation: AxisOrientation;
 };
 
-export default function Axis({
+export default function Axis<Input>({
   children,
   axisClassName,
   axisLineClassName,
@@ -78,10 +53,10 @@ export default function Axis({
   tickValues,
   tickComponent,
   top = 0,
-}) {
+}: AxisProps<Input>) {
   let values = scale.ticks ? scale.ticks(numTicks) : scale.domain();
   if (tickValues) values = tickValues;
-  let format = scale.tickFormat ? scale.tickFormat() : identity;
+  let format: TickFormatter<Input> = scale.tickFormat ? scale.tickFormat() : toString;
   if (tickFormat) format = tickFormat;
 
   const range = scale.range();
@@ -145,8 +120,12 @@ export default function Axis({
   return (
     <Group className={cx('vx-axis', axisClassName)} top={top} left={left}>
       {values.map((val, index) => {
-        if (hideZero && val === 0) return null;
-
+        if (
+          hideZero &&
+          ((typeof val === 'number' && val === 0) || (typeof val === 'string' && val === '0'))
+        ) {
+          return null;
+        }
         const tickFromPoint = new Point({
           x: horizontal ? position(val) : 0,
           y: horizontal ? 0 : position(val),
@@ -157,8 +136,13 @@ export default function Axis({
         });
 
         const tickLabelPropsObj = tickLabelProps(val, index);
-        tickLabelFontSize = Math.max(tickLabelFontSize, tickLabelPropsObj.fontSize || 0);
+        tickLabelFontSize = Math.max(
+          tickLabelFontSize,
+          (typeof tickLabelPropsObj.fontSize === 'number' && tickLabelPropsObj.fontSize) || 0,
+        );
 
+        const tickYCoord = tickToPoint.y + (horizontal && !isTop ? tickLabelFontSize : 0);
+        const formattedValue = format(val, index);
         return (
           <Group
             key={`vx-tick-${val}-${index}`}
@@ -168,18 +152,14 @@ export default function Axis({
             {!hideTicks && <Line from={tickFromPoint} to={tickToPoint} stroke={tickStroke} />}
             {tickComponent ? (
               tickComponent({
-                x: tickToPoint.x,
-                y: tickToPoint.y + (horizontal && !isTop ? tickLabelFontSize : 0),
-                formattedValue: format(val, index),
                 ...tickLabelPropsObj,
+                x: tickToPoint.x,
+                y: tickYCoord,
+                formattedValue,
               })
             ) : (
-              <Text
-                x={tickToPoint.x}
-                y={tickToPoint.y + (horizontal && !isTop ? tickLabelFontSize : 0)}
-                {...tickLabelPropsObj}
-              >
-                {format(val, index)}
+              <Text x={tickToPoint.x} y={tickYCoord} {...tickLabelPropsObj}>
+                {formattedValue}
               </Text>
             )}
           </Group>
@@ -216,5 +196,3 @@ export default function Axis({
     </Group>
   );
 }
-
-Axis.propTypes = propTypes;

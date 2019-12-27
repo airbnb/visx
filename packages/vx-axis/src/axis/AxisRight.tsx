@@ -1,39 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Axis from './Axis';
 import ORIENT from '../constants/orientation';
+import { SharedAxisProps } from '../types';
 
-const propTypes = {
-  axisClassName: PropTypes.string,
-  axisLineClassName: PropTypes.string,
-  hideAxisLine: PropTypes.bool,
-  hideTicks: PropTypes.bool,
-  hideZero: PropTypes.bool,
-  label: PropTypes.string,
-  labelClassName: PropTypes.string,
-  labelOffset: PropTypes.number,
-  labelProps: PropTypes.object,
-  left: PropTypes.number,
-  numTicks: PropTypes.number,
-  rangePadding: PropTypes.number,
-  scale: PropTypes.func.isRequired,
-  stroke: PropTypes.string,
-  strokeWidth: PropTypes.number,
-  strokeDasharray: PropTypes.string,
-  tickClassName: PropTypes.string,
-  tickFormat: PropTypes.func,
-  tickLabelProps: PropTypes.func,
-  tickLength: PropTypes.number,
-  tickStroke: PropTypes.string,
-  tickTransform: PropTypes.string,
-  tickValues: PropTypes.array,
-  tickComponent: PropTypes.func,
-  top: PropTypes.number,
-  children: PropTypes.func,
-};
+export type AxisRightProps<Input> = SharedAxisProps<Input>;
 
-export default function AxisRight({
+export default function AxisRight<Input>({
   children,
   axisClassName,
   axisLineClassName,
@@ -67,7 +40,7 @@ export default function AxisRight({
   tickValues,
   tickComponent,
   top,
-}) {
+}: AxisRightProps<Input>) {
   return (
     <Axis
       axisClassName={cx('vx-axis-right', axisClassName)}
@@ -100,5 +73,3 @@ export default function AxisRight({
     />
   );
 }
-
-AxisRight.propTypes = propTypes;
