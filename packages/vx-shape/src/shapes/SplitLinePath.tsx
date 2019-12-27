@@ -31,7 +31,11 @@ type SplitLinePathProps<Datum> = {
   /** Given a datum, returns the y value. Defaults to d[1]. */
   y?: (datum: Datum, index: number, data: Datum[]) => number;
   //   /** Override render function which is passed the configured path generator as input. */
-  children?: (segment: Point[]) => React.ReactNode;
+  children?: (provided: {
+    index: number;
+    segment: Point[];
+    styles: React.SVGProps<SVGPathElement> | undefined;
+  }) => React.ReactNode;
   //   /** Fill color of the path element. */
   //   fill?: string;
   //   /** className applied to path element. */
@@ -61,7 +65,7 @@ export default function SplitLinePath<Datum>({
             {children ? (
               children({ index: i, segment, styles: styles[i] || styles[i % styles.length] })
             ) : (
-              <LinePath
+              <LinePath<Point>
                 key={i}
                 data={segment}
                 x={(d: Point) => d.x || 0}
