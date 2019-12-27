@@ -5,7 +5,8 @@ import Show from '../components/show';
 
 // import React from 'react';
 import { LinearGradient } from '@vx/gradient';
-import { Line, LinePath, SplitLinePath } from '@vx/shape';
+import { LinePath } from '@vx/shape';
+import SplitLinePath from '@vx/shape/lib/shapes/SplitLinePath';
 // import { ribbon } from '@vx/mock-data'; // @TODO move generator to mock-data
 import { curveCardinal } from '@vx/curve';
 import { scaleLinear } from '@vx/scale';
@@ -16,7 +17,7 @@ import { WithTooltipProvidedProps } from '@vx/tooltip/lib/enhancers/withTooltip'
 // import { bisector } from 'd3-array';
 // import { timeFormat } from 'd3-time-format';
 
-const getHypotenuse = (a: number, b: number) => Math.sqrt(a ** 2 + b ** 2);
+// const getHypotxenuse = (a: number, b: number) => Math.sqrt(a ** 2 + b ** 2);
 
 const getRibbonPoints = ({
   width,
@@ -64,6 +65,7 @@ type Props = {
   margin: { top: number; right: number; bottom: number; left: number };
   numberOfWaves?: number;
   pointsPerWave?: number;
+  numberOfSegments?: number;
 };
 
 const getXValue = (d: XYDatum) => d.x;
@@ -78,7 +80,7 @@ function SplitPath({
   tooltipData,
   tooltipTop,
   tooltipLeft,
-  numberOfWaves = 1,
+  numberOfWaves = 5,
   pointsPerWave = 100,
   numberOfSegments = 8,
 }: Props & WithTooltipProvidedProps) {
@@ -98,37 +100,24 @@ function SplitPath({
       <svg width={width} height={height}>
         <LinearGradient
           id="gradient"
-          from="#045275"
+          from="violet"
           to="#089099"
           fromOpacity={0.8}
           toOpacity={0.8}
         />
         <rect x={0} y={0} width={width} height={height} fill="url(#gradient)" rx={14} />
 
-        {/* <g transform={`rotate(${(height / width) * 45})translate(${-0}, ${-height * 0.9})`}> */}
-        <g transform={`rotate(${0})translate(${-0}, ${-height * 0.5})`}>
+        <g transform={`rotate(${(height / width) * 45})translate(${-0}, ${-height * 0.9})`}>
+          {/* <g transform={`rotate(${0})translate(${-0}, ${-height * 0.5})`}> */}
           <LinePath<XYDatum>
             data={data}
-            x={d => xScale(getXValue(d)) - 4}
-            y={d => yScale(getYValue(d)) - 8}
-            strokeWidth={8}
+            x={d => xScale(getXValue(d)) - 10}
+            y={d => yScale(getYValue(d)) - 12}
+            strokeWidth={12}
             stroke="#fff"
             strokeOpacity={0.15}
             curve={curveCardinal}
           />
-
-          {/* <SplitLinePath<XYDatum>
-            data={dividedData}
-            x={d => xScale(getXValue(d))}
-            y={d => yScale(getYValue(d))}
-            curve={curveCardinal}
-            styles={[
-              { stroke: '#b7e6a5', strokeWidth: 2 },
-              { stroke: '#fff', strokeWidth: 2, strokeDasharray: '7,5' },
-              { stroke: '#045275', strokeWidth: 2 },
-            ]}
-          /> */}
-
           <SplitLinePath<XYDatum>
             data={dividedData}
             x={d => xScale(getXValue(d))}
@@ -166,18 +155,44 @@ function SplitPath({
             }
           </SplitLinePath>
 
-          {/* {data.map((d, i) => (
-            <circle
-              key={i}
-              cx={xScale(getXValue(d))}
-              cy={yScale(getYValue(d))}
-              r={4}
-              stroke="#fff"
-              strokeWidth={1}
-              fill="violet"
-            />
-          ))}
-          */}
+          {/* <g transform={`translate(${-0}, ${height * 0.3})`}>
+            <SplitLinePath<XYDatum>
+              data={dividedData}
+              x={d => xScale(getXValue(d))}
+              y={d => yScale(getYValue(d))}
+              curve={curveCardinal}
+              styles={[
+                { stroke: '#b7e6a5', strokeWidth: 3 },
+                { stroke: '#fff', strokeWidth: 2, strokeDasharray: '9,5' },
+                { stroke: '#045275', strokeWidth: 2 },
+              ]}
+            >
+              {({ segment, styles, index }) =>
+                index === numberOfSegments - 1 || index === 2 ? (
+                  segment.map(({ x, y }, i) =>
+                    i % 8 === 0 ? (
+                      <circle
+                        key={i}
+                        cx={x}
+                        cy={y}
+                        r={10 * (i / segment.length)}
+                        stroke={styles.stroke}
+                        fill="transparent"
+                        strokeWidth={1}
+                      />
+                    ) : null,
+                  )
+                ) : (
+                  <LinePath
+                    data={segment}
+                    x={(d: XYDatum) => d.x || 0}
+                    y={(d: XYDatum) => d.y || 0}
+                    {...styles}
+                  />
+                )
+              }
+            </SplitLinePath>
+          </g> */}
         </g>
 
         {/* <g transform={`rotate(${(height / width) * 45})translate(${-30}, ${-height * 0.9 + 30})`}>
