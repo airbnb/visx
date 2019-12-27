@@ -11,6 +11,7 @@ logs/
 .happo/
 .idea/
 .next/
+next-env.d.ts
 .npm/
 .vscode/
 
