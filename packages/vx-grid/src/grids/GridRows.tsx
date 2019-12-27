@@ -30,7 +30,8 @@ export default function GridRows<ScaleInput>({
   tickValues,
   ...restProps
 }: AllProps<ScaleInput>) {
-  const ticks = tickValues || scale.ticks ? scale.ticks(numTicks) : scale.domain();
+  const ticks = (tickValues ||
+    (scale.ticks ? scale.ticks(numTicks) : scale.domain())) as ScaleInput[];
   return (
     <Group className={cx('vx-rows', className)} top={top} left={left}>
       {ticks.map((d, i) => {

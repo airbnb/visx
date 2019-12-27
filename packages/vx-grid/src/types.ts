@@ -1,10 +1,11 @@
-export interface Scale<Input = any, Output = any> {
+/** Generic d3 scale type. */
+export interface Scale<Input = unknown, Output = unknown> extends Object {
   (value: Input): Output;
-  ticks(count: number): Input[];
+  ticks?: (count?: number) => Input[];
   domain(input: Input[]): this;
   domain(): Input[];
-  range(): Output[];
   range(output: Output[]): this;
+  range(): Output[] | [Output];
 }
 
 export type CommonGridProps = {
