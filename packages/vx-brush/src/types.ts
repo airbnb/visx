@@ -3,48 +3,46 @@ export type Point = {
   y: number;
 };
 
-export type Bound = {
+export type Bounds = {
   x0: number;
   x1: number;
+  xValues?: any[];
   y0: number;
   y1: number;
+  yValues?: any[];
 };
 
-export type GeneralStyleShape = {
-  stroke: string;
-  strokeWidth: number;
-  strokeOpacity: number;
-  fill: string;
-  fillOpacity: number;
-};
-
-export type MarginShape = {
+export interface MarginShape {
   top?: number;
   left?: number;
   right?: number;
   bottom?: number;
-};
+}
 
-export type BrushShape = {
+export interface BrushShape {
   start: Point;
   end: Point;
-  extent: Bound;
-  bounds: Bound;
-};
+  extent: Bounds;
+  bounds: Bounds;
+}
 
-export type DragShape = {
-  x?: number;
-  y?: number;
-  dx?: number;
-  dy?: number;
-  isDragging?: boolean;
-  dragEnd?: Function;
-  dragMove?: Function;
-  dragStart?: Function;
-  width: number;
-  height: number;
-};
+export type ResizeTriggerAreas =
+  | 'left'
+  | 'right'
+  | 'top'
+  | 'bottom'
+  | 'topLeft'
+  | 'topRight'
+  | 'bottomLeft'
+  | 'bottomRight';
 
-export type ResizeTriggerAreas = [
-  'left' | 'right' | 'top' | 'bottom' | 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight',
-];
+export interface Scale<Input = any, Output = any> {
+  (value: Input): Output;
+  ticks?: (count: number) => Input[];
+  domain(input: Input[]): this;
+  domain(): Input[];
+  range(): Output[];
+  range(output: Output[]): this;
+  invert?: (output: Output) => Input;
+  step?: () => number;
+}

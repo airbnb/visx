@@ -1,26 +1,27 @@
 /* eslint react/jsx-handler-names: 0 */
 import React from 'react';
-import { Drag } from '@vx/drag';
-import { DragShape } from './types';
-import { BaseBrushState as BrushState } from './BaseBrush';
+import Drag, { HandlerArgs as DragArgs } from '@vx/drag/lib/Drag';
+import { BaseBrushState as BrushState, UpdateBrush } from './BaseBrush';
+import { ResizeTriggerAreas } from './types';
 
 export type BrushHandleProps = {
   stageWidth: number;
   stageHeight: number;
   brush: BrushState;
-  updateBrush: Function;
-  onBrushEnd?: Function;
-  handle: DragShape;
-  type: string;
+  updateBrush: (update: UpdateBrush) => void;
+  onBrushEnd?: (brush: BrushState) => void;
+  type: ResizeTriggerAreas;
+  handle: { x: number; y: number; width: number; height: number };
 };
 
+/** BrushHandle's are placed along the bounds of the brush and handle Drag events which update the passed brush. */
 export default class BrushHandle extends React.Component<BrushHandleProps> {
-  handleDragMove = (drag: any) => {
+  handleDragMove = (drag: DragArgs) => {
     const { updateBrush, type } = this.props;
     if (!drag.isDragging) return;
+
     updateBrush((prevBrush: BrushState) => {
       const { start, end } = prevBrush;
-      let nextState = {};
       let move = 0;
       const xMax = Math.max(start.x, end.x);
       const xMin = Math.min(start.x, end.x);
@@ -29,7 +30,7 @@ export default class BrushHandle extends React.Component<BrushHandleProps> {
       switch (type) {
         case 'right':
           move = xMax + drag.dx;
-          nextState = {
+          return {
             ...prevBrush,
             activeHandle: type,
             extent: {
@@ -38,10 +39,9 @@ export default class BrushHandle extends React.Component<BrushHandleProps> {
               x1: Math.min(Math.max(move, start.x), prevBrush.bounds.x1),
             },
           };
-          break;
         case 'left':
           move = xMin + drag.dx;
-          nextState = {
+          return {
             ...prevBrush,
             activeHandle: type,
             extent: {
@@ -50,10 +50,9 @@ export default class BrushHandle extends React.Component<BrushHandleProps> {
               x1: Math.max(move, end.x),
             },
           };
-          break;
         case 'bottom':
           move = yMax + drag.dy;
-          nextState = {
+          return {
             ...prevBrush,
             activeHandle: type,
             extent: {
@@ -62,10 +61,9 @@ export default class BrushHandle extends React.Component<BrushHandleProps> {
               y1: Math.max(move, start.y),
             },
           };
-          break;
         case 'top':
           move = yMin + drag.dy;
-          nextState = {
+          return {
             ...prevBrush,
             activeHandle: type,
             extent: {
@@ -74,12 +72,9 @@ export default class BrushHandle extends React.Component<BrushHandleProps> {
               y1: Math.max(move, end.y),
             },
           };
-          break;
         default:
-          break;
+          return prevBrush;
       }
-
-      return nextState;
     });
   };
 
@@ -91,13 +86,13 @@ export default class BrushHandle extends React.Component<BrushHandleProps> {
       start.y = Math.min(extent.y0, extent.y0);
       end.x = Math.max(extent.x0, extent.x1);
       end.y = Math.max(extent.y0, extent.y1);
-      const nextBrush = {
+      const nextBrush: BrushState = {
         ...prevBrush,
         start,
         end,
-        activeHandle: undefined,
+        activeHandle: null,
         isBrushing: false,
-        domain: {
+        extent: {
           x0: Math.min(start.x, end.x),
           x1: Math.max(start.x, end.x),
           y0: Math.min(start.y, end.y),
@@ -125,9 +120,10 @@ export default class BrushHandle extends React.Component<BrushHandleProps> {
         onDragEnd={this.handleDragEnd}
         resetOnStart
       >
-        {({ isDragging, dragStart, dragEnd, dragMove }) => (
+        {({ dragStart, dragEnd, dragMove, isDragging }) => (
           <g>
-            {handle.isDragging && (
+            {/** capture mouse events while dragging */}
+            {isDragging && (
               <rect
                 fill="transparent"
                 width={stageWidth}

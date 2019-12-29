@@ -65,23 +65,6 @@ export default function() {
     <div>
       <div className="gallery">
         <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
-          <Link href="/brush">
-            <div className="gallery-item" style={{ background: items[5] }}>
-              <div className="image">
-                <ParentSize>
-                  {({ width, height }) => <BrushChart width={width} height={height} />}
-                </ParentSize>
-              </div>
-              <div className="details">
-                <div className="title">Brush</div>
-                <div className="description">
-                  <pre>{'<Brush />'}</pre>
-                </div>
-              </div>
-            </div>
-          </Link>
-        </Tilt>
-        <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
           <Link href="/lines">
             <div className="gallery-item" style={{ background: items[0] }}>
               <div className="image">
@@ -938,6 +921,23 @@ export default function() {
                 <div className="title">Zoom I</div>
                 <div className="description">
                   <pre>{'<Zoom />'}</pre>
+                </div>
+              </div>
+            </div>
+          </Link>
+        </Tilt>
+        <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+          <Link href="/brush">
+            <div className="gallery-item" style={{ background: '#7c1d6f' }}>
+              <div className="image">
+                <ParentSize>
+                  {({ width, height }) => <BrushChart compact width={width} height={height} />}
+                </ParentSize>
+              </div>
+              <div className="details">
+                <div className="title">Brush</div>
+                <div className="description">
+                  <pre>{'<Brush />'}</pre>
                 </div>
               </div>
             </div>

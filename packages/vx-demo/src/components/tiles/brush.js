@@ -7,6 +7,7 @@ import { scaleTime, scaleLinear } from '@vx/scale';
 import { appleStock } from '@vx/mock-data';
 import { Brush } from '@vx/brush';
 import { PatternLines } from '@vx/pattern';
+import { LinearGradient } from '@vx/gradient';
 
 /**
  * Initialize some variables
@@ -43,20 +44,17 @@ function AreaChart({
   margin,
   xScale,
   yScale,
-  axis = false,
+  hideBottomAxis = false,
+  hideLeftAxis = false,
   top,
   left,
   children,
 }) {
   return (
     <Group left={left || margin.left} top={top || margin.top}>
-      <defs>
-        <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#FFFFFF" stopOpacity={1} />
-          <stop offset="100%" stopColor="#FFFFFF" stopOpacity={0.2} />
-        </linearGradient>
-      </defs>
-      {axis && (
+      <LinearGradient id="gradient" from="#fff" fromOpacity={1} to="#fff" toOpacity={0.2} />
+
+      {!hideBottomAxis && (
         <AxisBottom
           top={yMax}
           scale={xScale}
@@ -66,7 +64,7 @@ function AreaChart({
           tickLabelProps={() => axisBottomTickLabelProps}
         />
       )}
-      {axis && (
+      {!hideLeftAxis && (
         <AxisLeft
           scale={yScale}
           numTicks={5}
@@ -85,13 +83,14 @@ function AreaChart({
         fill="url(#gradient)"
         curve={curveMonotoneX}
       />
-      <Bar x={0} y={0} width={width} height={height} fill="transparent" rx={14} data={stock} />
+      <Bar x={0} y={0} width={width} height={height} fill="transparent" rx={14} />
       {children}
     </Group>
   );
 }
 
 function BrushChart({
+  compact = false,
   width,
   height,
   margin = {
@@ -115,12 +114,15 @@ function BrushChart({
   }
 
   const brushMargin = { top: 0, bottom: 20, left: 50, right: 20 };
+  const chartSeparation = 10;
+  const heightTopChart = 0.8 * height;
+  const heightBottomChart = height - heightTopChart - chartSeparation;
 
   // bounds
   const xMax = Math.max(width - margin.left - margin.right, 0);
-  const yMax = Math.max(height * 0.6 - margin.top - margin.bottom, 0);
+  const yMax = Math.max(heightTopChart - margin.top - margin.bottom, 0);
   const xBrushMax = Math.max(width - brushMargin.left - brushMargin.right, 0);
-  const yBrushMax = Math.max(120 - brushMargin.top - brushMargin.bottom, 0);
+  const yBrushMax = Math.max(heightBottomChart - brushMargin.top - brushMargin.bottom, 0);
 
   // scales
   const xScale = scaleTime({
@@ -145,28 +147,37 @@ function BrushChart({
   return (
     <div>
       <svg width={width} height={height}>
-        <rect x={0} y={0} width={width} height={height} fill="#32deaa" rx={14} />
+        <LinearGradient
+          id="brush_gradient"
+          from="#b9257a"
+          fromOpacity={0.8}
+          to="#7c1d6f"
+          toOpacity={0.8}
+        />
+        <rect x={0} y={0} width={width} height={height} fill="url(#brush_gradient)" rx={14} />
         <AreaChart
+          hideBottomAxis={compact}
           data={filteredStock}
           width={width}
-          height={height * 0.6}
+          height={heightTopChart}
           margin={margin}
-          axis
           yMax={yMax}
           xMax={xMax}
           xScale={xScale}
           yScale={yScale}
         />
         <AreaChart
+          hideBottomAxis
+          hideLeftAxis
           data={stock}
           width={width}
-          height={120}
+          height={heightBottomChart}
           yMax={yBrushMax}
           xMax={xBrushMax}
           xScale={xBrushScale}
           yScale={yBrushScale}
           margin={brushMargin}
-          top={height * 0.6 + 50}
+          top={heightTopChart + chartSeparation}
         >
           <PatternLines
             id="brush_pattern"
@@ -181,10 +192,11 @@ function BrushChart({
             yScale={yBrushScale}
             width={xBrushMax}
             height={yBrushMax}
-            handleSize={4}
-            resizeTriggerAreas={['left', 'right']}
+            handleSize={8}
+            resizeTriggerAreas={['left', 'right', 'bottomRight']}
             brushDirection="horizontal"
             onChange={onBrushChange}
+            onClick={() => setFilteredStock(stock)}
             selectedBoxStyle={{
               fill: 'url(#brush_pattern)',
               stroke: 'white',

@@ -1,17 +1,18 @@
 /* eslint react/jsx-handler-names: 0 */
-import React, { SVGProps } from 'react';
-import { Drag } from '@vx/drag';
-import { GeneralStyleShape } from './types';
-import { BaseBrushState as BrushState } from './BaseBrush';
+import React from 'react';
+import Drag, { HandlerArgs as DragArgs } from '@vx/drag/lib/Drag';
+import { BaseBrushState as BrushState, UpdateBrush } from './BaseBrush';
+import { ResizeTriggerAreas } from './types';
 
-export type BrushCornerProps = SVGProps<any> & {
+export type BrushCornerProps = {
   stageWidth: number;
   stageHeight: number;
   brush: BrushState;
-  updateBrush: Function;
-  onBrushEnd?: Function;
-  type: string;
-  style?: GeneralStyleShape;
+  updateBrush: (update: UpdateBrush) => void;
+  onBrushEnd?: (brush: BrushState) => void;
+  type: ResizeTriggerAreas;
+  style?: React.CSSProperties;
+  corner: { x: number; y: number; width: number; height: number };
 };
 
 export type BrushCornerState = {};
@@ -21,10 +22,11 @@ export default class BrushCorner extends React.Component<BrushCornerProps, Brush
     style: {},
   };
 
-  cornerDragMove = (drag: any) => {
+  cornerDragMove = (drag: DragArgs) => {
     const { updateBrush, type } = this.props;
     if (!drag.isDragging) return;
-    updateBrush((prevBrush: BrushState) => {
+
+    updateBrush((prevBrush: Readonly<BrushState>) => {
       const { start, end } = prevBrush;
 
       const xMax = Math.max(start.x, end.x);
@@ -34,13 +36,12 @@ export default class BrushCorner extends React.Component<BrushCornerProps, Brush
 
       let moveX = 0;
       let moveY = 0;
-      let nextState = {};
 
       switch (type) {
         case 'topRight':
           moveX = xMax + drag.dx;
           moveY = yMin + drag.dy;
-          nextState = {
+          return {
             ...prevBrush,
             activeHandle: type,
             extent: {
@@ -51,11 +52,11 @@ export default class BrushCorner extends React.Component<BrushCornerProps, Brush
               y1: Math.min(Math.max(moveY, end.y), prevBrush.bounds.y1),
             },
           };
-          break;
+
         case 'topLeft':
           moveX = xMin + drag.dx;
           moveY = yMin + drag.dy;
-          nextState = {
+          return {
             ...prevBrush,
             activeHandle: type,
             extent: {
@@ -66,11 +67,11 @@ export default class BrushCorner extends React.Component<BrushCornerProps, Brush
               y1: Math.min(Math.max(moveY, end.y), prevBrush.bounds.y1),
             },
           };
-          break;
+
         case 'bottomLeft':
           moveX = xMin + drag.dx;
           moveY = yMax + drag.dy;
-          nextState = {
+          return {
             ...prevBrush,
             activeHandle: type,
             extent: {
@@ -81,11 +82,10 @@ export default class BrushCorner extends React.Component<BrushCornerProps, Brush
               y1: Math.min(Math.max(moveY, start.y), prevBrush.bounds.y1),
             },
           };
-          break;
         case 'bottomRight':
           moveX = xMax + drag.dx;
           moveY = yMax + drag.dy;
-          nextState = {
+          return {
             ...prevBrush,
             activeHandle: type,
             extent: {
@@ -96,18 +96,16 @@ export default class BrushCorner extends React.Component<BrushCornerProps, Brush
               y1: Math.min(Math.max(moveY, start.y), prevBrush.bounds.y1),
             },
           };
-          break;
         default:
-          break;
+          return prevBrush;
       }
-
-      return nextState;
     });
   };
 
   cornerDragEnd = () => {
     const { updateBrush, onBrushEnd } = this.props;
-    updateBrush((prevBrush: BrushState) => {
+
+    updateBrush((prevBrush: Readonly<BrushState>) => {
       const { start, end, extent } = prevBrush;
       start.x = Math.min(extent.x0, extent.x1);
       start.y = Math.min(extent.y0, extent.y0);
@@ -117,7 +115,7 @@ export default class BrushCorner extends React.Component<BrushCornerProps, Brush
         ...prevBrush,
         start,
         end,
-        activeHandle: undefined,
+        activeHandle: null,
         domain: {
           x0: Math.min(start.x, end.x),
           x1: Math.max(start.x, end.x),
@@ -134,23 +132,11 @@ export default class BrushCorner extends React.Component<BrushCornerProps, Brush
   };
 
   render() {
-    const {
-      type,
-      brush,
-      updateBrush,
-      stageWidth,
-      stageHeight,
-      style: styleProp,
-      onBrushEnd,
-      ...restProps
-    } = this.props;
-    const cursor = type === 'topLeft' || type === 'bottomRight' ? 'nwse-resize' : 'nesw-resize';
+    const { type, brush, stageWidth, stageHeight, style: styleProp, corner } = this.props;
+    const cursor =
+      (styleProp && styleProp.cursor) ||
+      (type === 'topLeft' || type === 'bottomRight' ? 'nwse-resize' : 'nesw-resize');
     const pointerEvents = brush.activeHandle || brush.isBrushing ? 'none' : 'all';
-    const style = {
-      cursor,
-      pointerEvents,
-      ...styleProp,
-    };
 
     return (
       <Drag
@@ -167,7 +153,7 @@ export default class BrushCorner extends React.Component<BrushCornerProps, Brush
                 fill="transparent"
                 width={stageWidth}
                 height={stageHeight}
-                style={{ cursor: style.cursor }}
+                style={{ cursor }}
                 onMouseMove={dragMove}
                 onMouseUp={dragEnd}
               />
@@ -177,10 +163,9 @@ export default class BrushCorner extends React.Component<BrushCornerProps, Brush
               onMouseDown={dragStart}
               onMouseMove={dragMove}
               onMouseUp={dragEnd}
-              className={`vx-brush-handle-${type}`}
-              // @ts-ignore
-              style={style}
-              {...restProps}
+              className={`vx-brush-corner-${type}`}
+              style={{ cursor, pointerEvents, ...styleProp }}
+              {...corner}
             />
           </g>
         )}
