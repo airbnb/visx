@@ -28,6 +28,6 @@ describe('<VoilinPlot />', () => {
     const wrapper = shallow(
       <ViolinPlot data={binData} left={3} width={100} valueScale={valueScale} />,
     );
-    expect(wrapper).toHaveLength(1);
+    expect(wrapper.find('path')).toHaveLength(1);
   });
 });

@@ -1,9 +1,9 @@
 import React from 'react';
 import classnames from 'classnames';
-import PropTypes from 'prop-types';
 import { Group } from '@vx/group';
+import { SharedProps, ChildRenderProps, LineCoords, GenericScale } from './types';
 
-function verticalToHorizontal({ x1, x2, y1, y2 }) {
+function verticalToHorizontal({ x1, x2, y1, y2 }: LineCoords) {
   return {
     x1: y1,
     x2: y2,
@@ -12,33 +12,53 @@ function verticalToHorizontal({ x1, x2, y1, y2 }) {
   };
 }
 
-BoxPlot.propTypes = {
-  left: PropTypes.number,
-  top: PropTypes.number,
-  className: PropTypes.string,
-  max: PropTypes.number,
-  min: PropTypes.number,
-  firstQuartile: PropTypes.number,
-  thirdQuartile: PropTypes.number,
-  median: PropTypes.number,
-  boxWidth: PropTypes.number,
-  fill: PropTypes.string,
-  fillOpacity: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  stroke: PropTypes.string,
-  strokeWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  rx: PropTypes.number,
-  ry: PropTypes.number,
-  valueScale: PropTypes.func,
-  outliers: PropTypes.array,
-  horizontal: PropTypes.bool,
-  medianProps: PropTypes.object,
-  maxProps: PropTypes.object,
-  minProps: PropTypes.object,
-  boxProps: PropTypes.object,
-  outlierProps: PropTypes.object,
-  container: PropTypes.bool,
-  containerProps: PropTypes.object,
-  children: PropTypes.func,
+type ScaleInput = number;
+
+export type BoxPlotProps = SharedProps & {
+  /** Scale for converting ScaleInput values to pixel offsets. */
+  valueScale: GenericScale<ScaleInput>;
+  /** Maximum BoxPlot value. */
+  max?: number;
+  /** Minimum BoxPlot value. */
+  min?: number;
+  /** First quartile BoxPlot value. */
+  firstQuartile?: number;
+  /** Third quartile BoxPlot value. */
+  thirdQuartile?: number;
+  /** Median BoxPlot value. */
+  median?: number;
+  /** Width of the BoxPlot. */
+  boxWidth?: number;
+  /** Fill color to apply to outlier circles and BoxPlot rect. */
+  fill?: string;
+  /** Fill color opacity to apply to outlier circles and BoxPlot rect. */
+  fillOpacity?: number | string;
+  /** Stroke color to apply to outlier circles, BoxPlot rect, and min/median/max lines. */
+  stroke?: string;
+  /** Stroke width to apply to outlier circles, BoxPlot rect, and min/median/max lines. */
+  strokeWidth?: number | string;
+  /** Rx to apply to BoxPlot rect. */
+  rx?: number;
+  /** Ry to apply to BoxPlot rect. */
+  ry?: number;
+  /** Array of outlier values to be rendered. */
+  outliers?: ScaleInput[];
+  /** Props to pass to the median glyph line. */
+  medianProps?: React.SVGProps<SVGLineElement>;
+  /** Props to pass to the maximum glyph line. */
+  maxProps?: React.SVGProps<SVGLineElement>;
+  /** Props to pass to the minimum glyph line. */
+  minProps?: React.SVGProps<SVGLineElement>;
+  /** Props to pass to the box glyph rect. */
+  boxProps?: React.SVGProps<SVGRectElement>;
+  /** Props to pass to the outlier glyph circles. */
+  outlierProps?: React.SVGProps<SVGCircleElement>;
+  /** Whether to render a container rect element (e.g., to capture mouse events). */
+  container?: boolean;
+  /** Props to pass to the container glyph rect if rendered. */
+  containerProps?: React.SVGProps<SVGRectElement>;
+  /** Override render function to fully control the rendering of the BoxPlot glyph. */
+  children: (childRenderProps: ChildRenderProps) => React.ReactNode;
 };
 
 export default function BoxPlot({
@@ -50,7 +70,7 @@ export default function BoxPlot({
   firstQuartile,
   thirdQuartile,
   median,
-  boxWidth,
+  boxWidth = 10,
   fill,
   fillOpacity,
   stroke,
@@ -68,55 +88,61 @@ export default function BoxPlot({
   container = false,
   containerProps = {},
   children,
-}) {
+}: BoxPlotProps) {
   const offset = horizontal ? top : left;
-  const center = offset + boxWidth / 2;
+  const center = offset + (boxWidth || 0) / 2;
   const valueRange = valueScale.range();
 
-  const boxplot = {
+  const minValue = min ? valueScale(min) : 0;
+  const firstQuartileValue = firstQuartile ? valueScale(firstQuartile) : 0;
+  const medianValue = median ? valueScale(median) : 0;
+  const thirdQuartileValue = thirdQuartile ? valueScale(thirdQuartile) : 0;
+  const maxValue = max ? valueScale(max) : 0;
+
+  const boxplot: ChildRenderProps = {
     valueRange,
     center,
     offset,
     boxWidth,
     max: {
-      x1: center - boxWidth / 4,
-      x2: center + boxWidth / 4,
-      y1: valueScale(max),
-      y2: valueScale(max),
+      x1: center - (boxWidth || 0) / 4,
+      x2: center + (boxWidth || 0) / 4,
+      y1: maxValue,
+      y2: maxValue,
     },
     maxToThird: {
       x1: center,
       x2: center,
-      y1: valueScale(max),
-      y2: valueScale(thirdQuartile),
+      y1: maxValue,
+      y2: thirdQuartileValue,
     },
     median: {
       x1: offset,
-      x2: offset + boxWidth,
-      y1: valueScale(median),
-      y2: valueScale(median),
+      x2: offset + (boxWidth || 0),
+      y1: medianValue,
+      y2: medianValue,
     },
     minToFirst: {
       x1: center,
       x2: center,
-      y1: valueScale(firstQuartile),
-      y2: valueScale(min),
+      y1: firstQuartileValue,
+      y2: minValue,
     },
     min: {
-      x1: center - boxWidth / 4,
-      x2: center + boxWidth / 4,
-      y1: valueScale(min),
-      y2: valueScale(min),
+      x1: center - (boxWidth || 0) / 4,
+      x2: center + (boxWidth || 0) / 4,
+      y1: minValue,
+      y2: minValue,
     },
     box: {
       x1: offset,
-      x2: boxWidth,
-      y1: valueScale(thirdQuartile),
-      y2: Math.abs(valueScale(thirdQuartile) - valueScale(firstQuartile)),
+      x2: boxWidth || 0,
+      y1: thirdQuartileValue,
+      y2: Math.abs(thirdQuartileValue - firstQuartileValue),
     },
     container: {
       x1: offset,
-      x2: boxWidth,
+      x2: boxWidth || 0,
       y1: Math.min(...valueRange),
       y2: Math.abs(valueRange[0] - valueRange[1]),
     },
@@ -125,7 +151,7 @@ export default function BoxPlot({
   if (horizontal) {
     boxplot.max = verticalToHorizontal(boxplot.max);
     boxplot.maxToThird = verticalToHorizontal(boxplot.maxToThird);
-    boxplot.box.y1 = valueScale(firstQuartile);
+    boxplot.box.y1 = firstQuartileValue;
     boxplot.box = verticalToHorizontal(boxplot.box);
     boxplot.median = verticalToHorizontal(boxplot.median);
     boxplot.minToFirst = verticalToHorizontal(boxplot.minToFirst);
