@@ -19,53 +19,53 @@ export type SharedAxisProps<ScaleInput> = {
   axisClassName?: string;
   /** The class name applied to the axis line element. */
   axisLineClassName?: string;
-  /**  If true, will hide the axis line.  */
+  /**  If true, will hide the axis line. */
   hideAxisLine?: boolean;
-  /** If true, will hide the ticks (but not the tick labels).  */
+  /** If true, will hide the ticks (but not the tick labels). */
   hideTicks?: boolean;
-  /** If true, will hide the '0' value tick and tick label.  */
+  /** If true, will hide the '0' value tick and tick label. */
   hideZero?: boolean;
-  /** The text for the axis label.  */
+  /** The text for the axis label. */
   label?: string;
-  /** The class name applied to the axis label text element.  */
+  /** The class name applied to the axis label text element. */
   labelClassName?: string;
   /** Pixel offset of the axis label (does not include tick label font size, which is accounted for automatically)  */
   labelOffset?: number;
-  /** Props applied to the axis label component.  */
+  /** Props applied to the axis label component. */
   labelProps?: Partial<TextProps>;
-  /** A left pixel offset applied to the entire axis.  */
+  /** A left pixel offset applied to the entire axis. */
   left?: number;
   /** The number of ticks wanted for the axis (note this is approximate)  */
   numTicks?: number;
-  /** Pixel padding to apply to both sides of the axis.  */
+  /** Pixel padding to apply to both sides of the axis. */
   rangePadding?: number;
-  /** A [d3](https://github.com/d3/d3-scale) or [vx](https://github.com/hshoff/vx/tree/master/packages/vx-scale) scale function.  */
+  /** A [d3](https://github.com/d3/d3-scale) or [vx](https://github.com/hshoff/vx/tree/master/packages/vx-scale) scale function. */
   scale: GenericScale<ScaleInput>;
-  /** The color for the stroke of the lines.  */
+  /** The color for the stroke of the lines. */
   stroke?: string;
-  /** The pixel value for the width of the lines.  */
+  /** The pixel value for the width of the lines. */
   strokeWidth?: number;
-  /** The pattern of dashes in the stroke.  */
+  /** The pattern of dashes in the stroke. */
   strokeDasharray?: string;
-  /** The class name applied to each tick group.  */
+  /** The class name applied to each tick group. */
   tickClassName?: string;
-  /** A [d3 formatter](https://github.com/d3/d3-scale/blob/master/README.md#continuous_tickFormat) for the tick text.  */
+  /** A [d3 formatter](https://github.com/d3/d3-scale/blob/master/README.md#continuous_tickFormat) for the tick text. */
   tickFormat?: TickFormatter<ScaleInput>;
-  /** A function that returns props for a given tick label.  */
+  /** A function that returns props for a given tick label. */
   tickLabelProps?: TickLabelProps<ScaleInput>;
-  /** The length of the tick lines.  */
+  /** The length of the tick lines. */
   tickLength?: number;
-  /** The color for the tick's stroke value.  */
+  /** The color for the tick's stroke value. */
   tickStroke?: string;
-  /** A custom SVG transform value to be applied to each tick group.  */
+  /** A custom SVG transform value to be applied to each tick group. */
   tickTransform?: string;
-  /** An array of values that determine the number and values of the ticks. Falls back to `scale.ticks()` or `.domain()`.  */
+  /** An array of values that determine the number and values of the ticks. Falls back to `scale.ticks()` or `.domain()`. */
   tickValues?: ScaleInput[];
-  /**  */
+  /** Override the component used to render tick labels (instead of <Text /> from @vx/text) */
   tickComponent?: (tickRendererProps: TickRendererProps) => React.ReactNode;
-  /** A top pixel offset applied to the entire axis.  */
+  /** A top pixel offset applied to the entire axis. */
   top?: number;
-  /** For more control over rendering or to add event handlers to datum, pass a function as children.  */
+  /** For more control over rendering or to add event handlers to datum, pass a function as children. */
   children?: (renderProps: ChildRenderProps<ScaleInput>) => React.ReactNode;
 };
 
