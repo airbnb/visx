@@ -3,7 +3,7 @@ import cx from 'classnames';
 import { Line } from '@vx/shape';
 import { Point } from '@vx/point';
 import { Group } from '@vx/group';
-import Text from '@vx/text/lib/Text';
+import { Text } from '@vx/text';
 import center from '../utils/center';
 import getLabelTransform from '../utils/labelTransform';
 import ORIENT from '../constants/orientation';
