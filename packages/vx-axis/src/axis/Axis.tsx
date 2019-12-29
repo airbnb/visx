@@ -12,7 +12,7 @@ import toNumberOrUndefined from '../utils/toNumberOrUndefined';
 import { SharedAxisProps, AxisOrientation, TickFormatter } from '../types';
 
 export type AxisProps<ScaleInput> = SharedAxisProps<ScaleInput> & {
-  orientation: AxisOrientation;
+  orientation?: AxisOrientation;
 };
 
 export default function Axis<ScaleInput>({
@@ -63,20 +63,20 @@ export default function Axis<ScaleInput>({
   const range0 = Number(range[0]) + 0.5 - rangePadding;
   const range1 = Number(range[range.length - 1]) + 0.5 + rangePadding;
 
-  const horizontal = orientation !== ORIENT.left && orientation !== ORIENT.right;
   const isLeft = orientation === ORIENT.left;
   const isTop = orientation === ORIENT.top;
+  const axisIsHorizontal = isTop || orientation === ORIENT.bottom;
   const tickSign = isLeft || isTop ? -1 : 1;
 
   const position = center(scale.copy());
 
   const axisFromPoint = new Point({
-    x: horizontal ? range0 : 0,
-    y: horizontal ? 0 : range0,
+    x: axisIsHorizontal ? range0 : 0,
+    y: axisIsHorizontal ? 0 : range0,
   });
   const axisToPoint = new Point({
-    x: horizontal ? range1 : 0,
-    y: horizontal ? 0 : range1,
+    x: axisIsHorizontal ? range1 : 0,
+    y: axisIsHorizontal ? 0 : range1,
   });
 
   let tickLabelFontSize = 10; // track the max tick label size to compute label offset
@@ -87,7 +87,7 @@ export default function Axis<ScaleInput>({
         {children({
           axisFromPoint,
           axisToPoint,
-          horizontal,
+          horizontal: axisIsHorizontal,
           tickSign,
           numTicks,
           label,
@@ -98,12 +98,12 @@ export default function Axis<ScaleInput>({
           ticks: values.map((value, index) => {
             const scaledValue = toNumberOrUndefined(position(value));
             const from = new Point({
-              x: horizontal ? scaledValue : 0,
-              y: horizontal ? 0 : scaledValue,
+              x: axisIsHorizontal ? scaledValue : 0,
+              y: axisIsHorizontal ? 0 : scaledValue,
             });
             const to = new Point({
-              x: horizontal ? scaledValue : tickSign * tickLength,
-              y: horizontal ? tickLength * tickSign : scaledValue,
+              x: axisIsHorizontal ? scaledValue : tickSign * tickLength,
+              y: axisIsHorizontal ? tickLength * tickSign : scaledValue,
             });
             return {
               value,
@@ -129,12 +129,12 @@ export default function Axis<ScaleInput>({
         }
         const scaledValue = toNumberOrUndefined(position(val));
         const tickFromPoint = new Point({
-          x: horizontal ? scaledValue : 0,
-          y: horizontal ? 0 : scaledValue,
+          x: axisIsHorizontal ? scaledValue : 0,
+          y: axisIsHorizontal ? 0 : scaledValue,
         });
         const tickToPoint = new Point({
-          x: horizontal ? scaledValue : tickSign * tickLength,
-          y: horizontal ? tickLength * tickSign : scaledValue,
+          x: axisIsHorizontal ? scaledValue : tickSign * tickLength,
+          y: axisIsHorizontal ? tickLength * tickSign : scaledValue,
         });
 
         const tickLabelPropsObj = tickLabelProps(val, index);
@@ -143,7 +143,7 @@ export default function Axis<ScaleInput>({
           (typeof tickLabelPropsObj.fontSize === 'number' && tickLabelPropsObj.fontSize) || 0,
         );
 
-        const tickYCoord = tickToPoint.y + (horizontal && !isTop ? tickLabelFontSize : 0);
+        const tickYCoord = tickToPoint.y + (axisIsHorizontal && !isTop ? tickLabelFontSize : 0);
         const formattedValue = format(val, index);
         return (
           <Group

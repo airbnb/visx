@@ -185,9 +185,7 @@ describe('<Axis />', () => {
   });
 
   test('tickFormat should have access to tick index', () => {
-    const wrapper = shallow(
-      <Axis {...axisProps} tickValues={[9]} tickFormat={(val, i) => `${i}`} />,
-    );
+    const wrapper = shallow(<Axis {...axisProps} tickValues={[9]} tickFormat={(val, i) => i} />);
     expect(
       wrapper
         .children()
@@ -199,10 +197,10 @@ describe('<Axis />', () => {
 
   test('it should use center if scale is band', () => {
     const overrideAxisProps = {
-      orientation: 'left' as const,
+      orientation: 'bottom' as const,
       scale: scaleBand({
         rangeRound: [10, 0],
-        domain: ['a', 'b', 'c'],
+        domain: ['a', 'b'],
       }),
     };
     const wrapper = shallow(<Axis {...overrideAxisProps} tickStroke="blue" />);
