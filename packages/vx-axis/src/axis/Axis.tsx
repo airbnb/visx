@@ -54,10 +54,8 @@ export default function Axis<ScaleInput>({
   tickComponent,
   top = 0,
 }: AxisProps<ScaleInput>) {
-  let values = scale.ticks ? scale.ticks(numTicks) : scale.domain();
-  if (tickValues) values = tickValues;
-  let format: TickFormatter<ScaleInput> = scale.tickFormat ? scale.tickFormat() : toString;
-  if (tickFormat) format = tickFormat;
+  const values = tickValues || (scale.ticks ? scale.ticks(numTicks) : scale.domain());
+  const format = tickFormat || (scale.tickFormat ? scale.tickFormat() : toString);
 
   const range = scale.range();
   const range0 = Number(range[0]) + 0.5 - rangePadding;
