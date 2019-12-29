@@ -2,13 +2,11 @@ import { TextProps } from '@vx/text/lib/Text';
 
 export type AxisOrientation = 'top' | 'right' | 'bottom' | 'left';
 
-type Output = number;
-
 export type FormattedValue = string | number | undefined;
 
-export type TickFormatter<Input> = (value: Input, tickIndex: number) => FormattedValue;
+export type TickFormatter<ScaleInput> = (value: ScaleInput, tickIndex: number) => FormattedValue;
 
-export type TickLabelProps<Input> = (val: Input, index: number) => Partial<TextProps>;
+export type TickLabelProps<ScaleInput> = (val: ScaleInput, index: number) => Partial<TextProps>;
 
 export type TickRendererProps = Partial<TextProps> & {
   x: number;
@@ -16,7 +14,7 @@ export type TickRendererProps = Partial<TextProps> & {
   formattedValue: FormattedValue;
 };
 
-export type SharedAxisProps<Input> = {
+export type SharedAxisProps<ScaleInput> = {
   /** The class name applied to the outermost axis group element. */
   axisClassName?: string;
   /** The class name applied to the axis line element. */
@@ -42,7 +40,7 @@ export type SharedAxisProps<Input> = {
   /** Pixel padding to apply to both sides of the axis.  */
   rangePadding?: number;
   /** A [d3](https://github.com/d3/d3-scale) or [vx](https://github.com/hshoff/vx/tree/master/packages/vx-scale) scale function.  */
-  scale: GenericScale<Input>;
+  scale: GenericScale<ScaleInput>;
   /** The color for the stroke of the lines.  */
   stroke?: string;
   /** The pixel value for the width of the lines.  */
@@ -52,9 +50,9 @@ export type SharedAxisProps<Input> = {
   /** The class name applied to each tick group.  */
   tickClassName?: string;
   /** A [d3 formatter](https://github.com/d3/d3-scale/blob/master/README.md#continuous_tickFormat) for the tick text.  */
-  tickFormat?: TickFormatter<Input>;
+  tickFormat?: TickFormatter<ScaleInput>;
   /** A function that returns props for a given tick label.  */
-  tickLabelProps?: TickLabelProps<Input>;
+  tickLabelProps?: TickLabelProps<ScaleInput>;
   /** The length of the tick lines.  */
   tickLength?: number;
   /** The color for the tick's stroke value.  */
@@ -62,24 +60,38 @@ export type SharedAxisProps<Input> = {
   /** A custom SVG transform value to be applied to each tick group.  */
   tickTransform?: string;
   /** An array of values that determine the number and values of the ticks. Falls back to `scale.ticks()` or `.domain()`.  */
-  tickValues?: Input[];
+  tickValues?: ScaleInput[];
   /**  */
-  tickComponent?: (tickRendererProps: TickRendererProps<Input>) => React.ReactNode;
+  tickComponent?: (tickRendererProps: TickRendererProps) => React.ReactNode;
   /** A top pixel offset applied to the entire axis.  */
   top?: number;
   /** For more control over rendering or to add event handlers to datum, pass a function as children.  */
-  children?: (renderProps: ChildRenderProps<Input>) => React.ReactNode;
+  children?: (renderProps: ChildRenderProps<ScaleInput>) => React.ReactNode;
 };
 
-export interface GenericScale<Input> {
-  (value: Input): Output;
-  domain(): Input[] | [Input, Input];
-  range(): Output[] | [Output, Output];
-  ticks?: (count: number) => Input[] | [Input, Input];
+/** In order to plot values on an axis, Output must be numeric. */
+export type ScaleOutput = number | { valueOf(): number } | undefined;
+
+export type GenericScale<ScaleInput> =
+  | ScaleNoRangeRound<ScaleInput>
+  | ScaleWithRangeRound<ScaleInput>;
+
+interface ScaleNoRangeRound<ScaleInput> {
+  (value: ScaleInput): ScaleOutput;
+  domain(): ScaleInput[] | [ScaleInput, ScaleInput];
+  domain(scaleInput: ScaleInput[] | [ScaleInput, ScaleInput]): this;
+  range(): ScaleOutput[] | [ScaleOutput, ScaleOutput];
+  range(scaleOutput: ScaleOutput[] | [ScaleOutput, ScaleOutput]): this;
+  ticks?: (count: number) => ScaleInput[] | [ScaleInput, ScaleInput];
   bandwidth?: () => number;
   round?: () => boolean;
-  tickFormat?: () => (input: Input) => FormattedValue;
+  tickFormat?: () => (input: ScaleInput) => FormattedValue;
   copy(): this;
+}
+
+interface ScaleWithRangeRound<ScaleInput> extends ScaleNoRangeRound<ScaleInput> {
+  rangeRound(): ScaleOutput[] | [ScaleOutput, ScaleOutput];
+  rangeRound(scaleOutput: ScaleOutput[] | [ScaleOutput, ScaleOutput]): this;
 }
 
 export interface Point {
@@ -87,7 +99,7 @@ export interface Point {
   y: number;
 }
 
-export type ChildRenderProps<Input> = {
+export type ChildRenderProps<ScaleInput> = {
   axisFromPoint: Point;
   axisToPoint: Point;
   horizontal: boolean;
@@ -97,10 +109,10 @@ export type ChildRenderProps<Input> = {
   label?: string;
   rangePadding: number;
   tickLength: number;
-  tickFormat: TickFormatter<Input>;
-  tickPosition: (value: Input) => Output;
+  tickFormat: TickFormatter<ScaleInput>;
+  tickPosition: (value: ScaleInput) => ScaleOutput;
   ticks: {
-    value: Input;
+    value: ScaleInput;
     index: number;
     from: Point;
     to: Point;

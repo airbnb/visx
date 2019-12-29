@@ -4,9 +4,9 @@ import Axis from './Axis';
 import ORIENT from '../constants/orientation';
 import { SharedAxisProps } from '../types';
 
-export type AxisRightProps<Input> = SharedAxisProps<Input>;
+export type AxisRightProps<ScaleInput> = SharedAxisProps<ScaleInput>;
 
-export default function AxisRight<Input>({
+export default function AxisRight<ScaleInput>({
   children,
   axisClassName,
   axisLineClassName,
@@ -40,7 +40,7 @@ export default function AxisRight<Input>({
   tickValues,
   tickComponent,
   top,
-}: AxisRightProps<Input>) {
+}: AxisRightProps<ScaleInput>) {
   return (
     <Axis
       axisClassName={cx('vx-axis-right', axisClassName)}

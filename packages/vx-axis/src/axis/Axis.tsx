@@ -3,19 +3,20 @@ import cx from 'classnames';
 import { Line } from '@vx/shape';
 import { Point } from '@vx/point';
 import { Group } from '@vx/group';
-import { Text } from '@vx/text';
+import Text from '@vx/text/lib/Text';
 import center from '../utils/center';
 import identity from '../utils/identity';
 import getLabelTransform from '../utils/labelTransform';
 import ORIENT from '../constants/orientation';
 import toString from '../utils/toString';
+import toNumberOrUndefined from '../utils/toNumberOrUndefined';
 import { SharedAxisProps, AxisOrientation, TickFormatter } from '../types';
 
-export type AxisProps<Input> = SharedAxisProps<Input> & {
+export type AxisProps<ScaleInput> = SharedAxisProps<ScaleInput> & {
   orientation: AxisOrientation;
 };
 
-export default function Axis<Input>({
+export default function Axis<ScaleInput>({
   children,
   axisClassName,
   axisLineClassName,
@@ -53,15 +54,15 @@ export default function Axis<Input>({
   tickValues,
   tickComponent,
   top = 0,
-}: AxisProps<Input>) {
+}: AxisProps<ScaleInput>) {
   let values = scale.ticks ? scale.ticks(numTicks) : scale.domain();
   if (tickValues) values = tickValues;
-  let format: TickFormatter<Input> = scale.tickFormat ? scale.tickFormat() : toString;
+  let format: TickFormatter<ScaleInput> = scale.tickFormat ? scale.tickFormat() : toString;
   if (tickFormat) format = tickFormat;
 
   const range = scale.range();
-  const range0 = range[0] + 0.5 - rangePadding;
-  const range1 = range[range.length - 1] + 0.5 + rangePadding;
+  const range0 = Number(range[0]) + 0.5 - rangePadding;
+  const range1 = Number(range[range.length - 1]) + 0.5 + rangePadding;
 
   const horizontal = orientation !== ORIENT.left && orientation !== ORIENT.right;
   const isLeft = orientation === ORIENT.left;
@@ -96,13 +97,14 @@ export default function Axis<Input>({
           tickFormat: format,
           tickPosition: position,
           ticks: values.map((value, index) => {
+            const scaledValue = toNumberOrUndefined(position(value));
             const from = new Point({
-              x: horizontal ? position(value) : 0,
-              y: horizontal ? 0 : position(value),
+              x: horizontal ? scaledValue : 0,
+              y: horizontal ? 0 : scaledValue,
             });
             const to = new Point({
-              x: horizontal ? position(value) : tickSign * tickLength,
-              y: horizontal ? tickLength * tickSign : position(value),
+              x: horizontal ? scaledValue : tickSign * tickLength,
+              y: horizontal ? tickLength * tickSign : scaledValue,
             });
             return {
               value,
@@ -126,13 +128,14 @@ export default function Axis<Input>({
         ) {
           return null;
         }
+        const scaledValue = toNumberOrUndefined(position(val));
         const tickFromPoint = new Point({
-          x: horizontal ? position(val) : 0,
-          y: horizontal ? 0 : position(val),
+          x: horizontal ? scaledValue : 0,
+          y: horizontal ? 0 : scaledValue,
         });
         const tickToPoint = new Point({
-          x: horizontal ? position(val) : tickSign * tickLength,
-          y: horizontal ? tickLength * tickSign : position(val),
+          x: horizontal ? scaledValue : tickSign * tickLength,
+          y: horizontal ? tickLength * tickSign : scaledValue,
         });
 
         const tickLabelPropsObj = tickLabelProps(val, index);

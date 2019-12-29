@@ -4,9 +4,9 @@ import Axis from './Axis';
 import ORIENT from '../constants/orientation';
 import { SharedAxisProps } from '../types';
 
-export type AxisBottomProps<Input> = SharedAxisProps<Input>;
+export type AxisBottomProps<ScaleInput> = SharedAxisProps<ScaleInput>;
 
-export default function AxisBottom<Input>({
+export default function AxisBottom<ScaleInput>({
   children,
   axisClassName,
   axisLineClassName,
@@ -39,7 +39,7 @@ export default function AxisBottom<Input>({
   tickValues,
   tickComponent,
   top,
-}: AxisBottomProps<Input>) {
+}: AxisBottomProps<ScaleInput>) {
   return (
     <Axis
       axisClassName={cx('vx-axis-bottom', axisClassName)}

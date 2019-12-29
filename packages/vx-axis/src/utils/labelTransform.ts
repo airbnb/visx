@@ -1,12 +1,12 @@
 import { TextProps } from '@vx/text/lib/Text';
 import ORIENT from '../constants/orientation';
-import { AxisOrientation } from '../types';
+import { AxisOrientation, ScaleOutput } from '../types';
 
 export interface TransformArgs {
   labelOffset: number;
   labelProps: Partial<TextProps>;
   orientation: AxisOrientation;
-  range: number[];
+  range: ScaleOutput[];
   tickLabelFontSize: number;
   tickLength: number;
 }
@@ -31,10 +31,10 @@ export default function labelTransform({
         ? labelProps.fontSize
         : 0;
 
-    x = (range[0] + range[range.length - 1]) / 2;
+    x = (Number(range[0]) + Number(range[range.length - 1])) / 2;
     y = sign * (tickLength + labelOffset + tickLabelFontSize + yBottomOffset);
   } else {
-    x = sign * ((range[0] + range[range.length - 1]) / 2);
+    x = sign * ((Number(range[0]) + Number(range[range.length - 1])) / 2);
     y = -(tickLength + labelOffset);
     transform = `rotate(${sign * 90})`;
   }
