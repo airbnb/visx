@@ -29,7 +29,7 @@ export default function AxisRight<ScaleInput>({
   tickLabelProps = (/** tickValue, index */) => ({
     dx: '0.25em',
     dy: '0.25em',
-    fill: 'black',
+    fill: '#222',
     fontFamily: 'Arial',
     fontSize: 10,
     textAnchor: 'start',
