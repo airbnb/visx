@@ -52,10 +52,10 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
     start: { x: 0, y: 0 },
     end: { x: 0, y: 0 },
     extent: {
-      x0: 0,
-      x1: 0,
-      y0: 0,
-      y1: 0,
+      x0: -1,
+      x1: -1,
+      y0: -1,
+      y1: -1,
     },
     bounds: {
       x0: 0,
@@ -136,10 +136,10 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
       start,
       end,
       extent: {
-        x0: 0,
-        x1: 0,
-        y0: 0,
-        y1: 0,
+        x0: -1,
+        x1: -1,
+        y0: -1,
+        y1: -1,
       },
       isBrushing: true,
     }));
@@ -303,10 +303,10 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
       start: { x: 0, y: 0 },
       end: { x: 0, y: 0 },
       extent: {
-        x0: 0,
-        x1: 0,
-        y0: 0,
-        y1: 0,
+        x0: -1,
+        x1: -1,
+        y0: -1,
+        y1: -1,
       },
       bounds: {
         x0: 0,
