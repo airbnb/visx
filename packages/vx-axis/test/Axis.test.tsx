@@ -5,10 +5,10 @@ import { Line } from '@vx/shape';
 import { Text } from '@vx/text';
 import { scaleBand, scaleLinear } from '@vx/scale';
 import { Axis } from '../src';
-import { AxisOrientation, GenericScale } from '../src/types';
+import { GenericScale } from '../src/types';
 
 const axisProps = {
-  orientation: 'left' as AxisOrientation,
+  orientation: 'left' as const,
   scale: scaleLinear({
     rangeRound: [10, 0],
     domain: [0, 10],
@@ -199,6 +199,7 @@ describe('<Axis />', () => {
 
   test('it should use center if scale is band', () => {
     const overrideAxisProps = {
+      orientation: 'left' as const,
       scale: scaleBand({
         rangeRound: [10, 0],
         domain: ['a', 'b', 'c'],

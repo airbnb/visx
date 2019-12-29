@@ -15,10 +15,10 @@ import {
   scaleUtc,
 } from '@vx/scale';
 import { Axis } from '../src';
-import { GenericScale, AxisOrientation } from '../src/types';
+import { GenericScale } from '../src/types';
 
 const axisProps = {
-  orientation: 'left' as AxisOrientation,
+  orientation: 'left' as const,
   label: 'test axis',
 };
 
@@ -104,16 +104,16 @@ describe('Axis scales', () => {
     ).not.toThrow();
   });
 
-  // it('should render with scaleQuantize', () => {
-  //   expect(
-  //     setup(
-  //       scaleQuantize<Date>({
-  //         range: [new Date('2020-01-01'), new Date('2020-01-02')],
-  //         domain: [1, 10],
-  //       }) as GenericScale<Date>,
-  //     ),
-  //   ).not.toThrow();
-  // });
+  it('should render with scaleQuantize', () => {
+    expect(
+      setup(
+        scaleQuantize<number>({
+          range: [1, 10],
+          domain: [1, 10],
+        }) as GenericScale<number>,
+      ),
+    ).not.toThrow();
+  });
 
   it('should render with scaleSymlog', () => {
     expect(

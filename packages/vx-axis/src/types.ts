@@ -69,7 +69,8 @@ export type SharedAxisProps<ScaleInput> = {
   children?: (renderProps: ChildRenderProps<ScaleInput>) => React.ReactNode;
 };
 
-/** In order to plot values on an axis, Output must be numeric. */
+// In order to plot values on an axis, Output must be numeric or coercible to a number.
+// Some scales return undefined.
 export type ScaleOutput = number | { valueOf(): number } | undefined;
 
 export type GenericScale<ScaleInput> =
@@ -77,7 +78,7 @@ export type GenericScale<ScaleInput> =
   | ScaleWithRangeRound<ScaleInput>;
 
 interface ScaleNoRangeRound<ScaleInput> {
-  (value: ScaleInput): ScaleOutput;
+  (value: ScaleInput): ScaleOutput | [ScaleOutput, ScaleOutput]; // quantize scales return an array
   domain(): ScaleInput[] | [ScaleInput, ScaleInput];
   domain(scaleInput: ScaleInput[] | [ScaleInput, ScaleInput]): this;
   range(): ScaleOutput[] | [ScaleOutput, ScaleOutput];
@@ -89,6 +90,7 @@ interface ScaleNoRangeRound<ScaleInput> {
   copy(): this;
 }
 
+// We cannot have optional methods AND overloads, so define a separate type for rangeRound
 interface ScaleWithRangeRound<ScaleInput> extends ScaleNoRangeRound<ScaleInput> {
   rangeRound(): ScaleOutput[] | [ScaleOutput, ScaleOutput];
   rangeRound(scaleOutput: ScaleOutput[] | [ScaleOutput, ScaleOutput]): this;

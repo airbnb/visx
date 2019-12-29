@@ -6,11 +6,13 @@ import { GenericScale } from '../types';
  */
 export default function center<ScaleInput>(scale: GenericScale<ScaleInput>) {
   let offset = scale.bandwidth ? scale.bandwidth() / 2 : 0;
-
   if (scale.round && scale.round()) offset = Math.round(offset);
 
   return (d: ScaleInput) => {
     const scaledValue = scale(d);
-    return typeof scaledValue === 'number' ? scaledValue + offset : scaledValue;
+    if (typeof scaledValue === 'number') return scaledValue + offset;
+    // quantize scales return an array of values
+    if (Array.isArray(scaledValue)) return Number(scaledValue[0]) + offset;
+    return scaledValue;
   };
 }

@@ -5,7 +5,6 @@ import { Point } from '@vx/point';
 import { Group } from '@vx/group';
 import Text from '@vx/text/lib/Text';
 import center from '../utils/center';
-import identity from '../utils/identity';
 import getLabelTransform from '../utils/labelTransform';
 import ORIENT from '../constants/orientation';
 import toString from '../utils/toString';
@@ -69,7 +68,7 @@ export default function Axis<ScaleInput>({
   const isTop = orientation === ORIENT.top;
   const tickSign = isLeft || isTop ? -1 : 1;
 
-  const position = (scale.bandwidth ? center : identity)(scale.copy());
+  const position = center(scale.copy());
 
   const axisFromPoint = new Point({
     x: horizontal ? range0 : 0,
