@@ -1,14 +1,15 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { scaleLinear } from '../../vx-scale/src/index.ts';
+import { scaleLinear } from '../../vx-scale/src';
 import { Axis, AxisBottom } from '../src';
+import { GenericScale } from '../src/types';
 
 const axisProps = {
   scale: scaleLinear({
     rangeRound: [10, 0],
     domain: [0, 10],
-  }),
+  }) as GenericScale<number>,
 };
 
 describe('<AxisBottom />', () => {

@@ -3,15 +3,16 @@ import { shallow } from 'enzyme';
 
 import { Line } from '@vx/shape';
 import { Text } from '@vx/text';
-import { scaleBand, scaleLinear } from '../../vx-scale/src/index.ts';
+import { scaleBand, scaleLinear } from '@vx/scale';
 import { Axis } from '../src';
+import { GenericScale } from '../src/types';
 
 const axisProps = {
-  orientation: 'left',
+  orientation: 'left' as const,
   scale: scaleLinear({
     rangeRound: [10, 0],
     domain: [0, 10],
-  }),
+  }) as GenericScale<number>,
   label: 'test axis',
 };
 
@@ -196,9 +197,10 @@ describe('<Axis />', () => {
 
   test('it should use center if scale is band', () => {
     const overrideAxisProps = {
+      orientation: 'bottom' as const,
       scale: scaleBand({
         rangeRound: [10, 0],
-        domain: [0, 10],
+        domain: ['a', 'b'],
       }),
     };
     const wrapper = shallow(<Axis {...overrideAxisProps} tickStroke="blue" />);

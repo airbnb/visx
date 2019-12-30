@@ -1,46 +1,21 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { Line } from '@vx/shape';
 import { Point } from '@vx/point';
 import { Group } from '@vx/group';
 import { Text } from '@vx/text';
 import center from '../utils/center';
-import identity from '../utils/identity';
 import getLabelTransform from '../utils/labelTransform';
 import ORIENT from '../constants/orientation';
+import toString from '../utils/toString';
+import toNumberOrUndefined from '../utils/toNumberOrUndefined';
+import { SharedAxisProps, AxisOrientation } from '../types';
 
-const propTypes = {
-  axisClassName: PropTypes.string,
-  axisLineClassName: PropTypes.string,
-  hideAxisLine: PropTypes.bool,
-  hideTicks: PropTypes.bool,
-  hideZero: PropTypes.bool,
-  label: PropTypes.string,
-  labelClassName: PropTypes.string,
-  labelOffset: PropTypes.number,
-  labelProps: PropTypes.object,
-  left: PropTypes.number,
-  numTicks: PropTypes.number,
-  orientation: PropTypes.oneOf([ORIENT.top, ORIENT.right, ORIENT.bottom, ORIENT.left]),
-  rangePadding: PropTypes.number,
-  scale: PropTypes.func.isRequired,
-  stroke: PropTypes.string,
-  strokeWidth: PropTypes.number,
-  strokeDasharray: PropTypes.string,
-  tickClassName: PropTypes.string,
-  tickFormat: PropTypes.func,
-  tickLabelProps: PropTypes.func,
-  tickLength: PropTypes.number,
-  tickStroke: PropTypes.string,
-  tickTransform: PropTypes.string,
-  tickValues: PropTypes.array,
-  tickComponent: PropTypes.func,
-  top: PropTypes.number,
-  children: PropTypes.func,
+export type AxisProps<ScaleInput> = SharedAxisProps<ScaleInput> & {
+  orientation?: AxisOrientation;
 };
 
-export default function Axis({
+export default function Axis<ScaleInput>({
   children,
   axisClassName,
   axisLineClassName,
@@ -54,14 +29,14 @@ export default function Axis({
     textAnchor: 'middle',
     fontFamily: 'Arial',
     fontSize: 10,
-    fill: 'black',
+    fill: '#222',
   },
   left = 0,
   numTicks = 10,
   orientation = ORIENT.bottom,
   rangePadding = 0,
   scale,
-  stroke = 'black',
+  stroke = '#222',
   strokeWidth = 1,
   strokeDasharray,
   tickClassName,
@@ -70,38 +45,36 @@ export default function Axis({
     textAnchor: 'middle',
     fontFamily: 'Arial',
     fontSize: 10,
-    fill: 'black',
+    fill: '#222',
   }),
   tickLength = 8,
-  tickStroke = 'black',
+  tickStroke = '#222',
   tickTransform,
   tickValues,
   tickComponent,
   top = 0,
-}) {
-  let values = scale.ticks ? scale.ticks(numTicks) : scale.domain();
-  if (tickValues) values = tickValues;
-  let format = scale.tickFormat ? scale.tickFormat() : identity;
-  if (tickFormat) format = tickFormat;
+}: AxisProps<ScaleInput>) {
+  const values = tickValues || (scale.ticks ? scale.ticks(numTicks) : scale.domain());
+  const format = tickFormat || (scale.tickFormat ? scale.tickFormat() : toString);
 
   const range = scale.range();
-  const range0 = range[0] + 0.5 - rangePadding;
-  const range1 = range[range.length - 1] + 0.5 + rangePadding;
+  const range0 = Number(range[0]) + 0.5 - rangePadding;
+  const range1 = Number(range[range.length - 1]) + 0.5 + rangePadding;
 
-  const horizontal = orientation !== ORIENT.left && orientation !== ORIENT.right;
   const isLeft = orientation === ORIENT.left;
   const isTop = orientation === ORIENT.top;
+  const axisIsHorizontal = isTop || orientation === ORIENT.bottom;
   const tickSign = isLeft || isTop ? -1 : 1;
 
-  const position = (scale.bandwidth ? center : identity)(scale.copy());
+  const position = center(scale.copy());
 
   const axisFromPoint = new Point({
-    x: horizontal ? range0 : 0,
-    y: horizontal ? 0 : range0,
+    x: axisIsHorizontal ? range0 : 0,
+    y: axisIsHorizontal ? 0 : range0,
   });
   const axisToPoint = new Point({
-    x: horizontal ? range1 : 0,
-    y: horizontal ? 0 : range1,
+    x: axisIsHorizontal ? range1 : 0,
+    y: axisIsHorizontal ? 0 : range1,
   });
 
   let tickLabelFontSize = 10; // track the max tick label size to compute label offset
@@ -112,7 +85,7 @@ export default function Axis({
         {children({
           axisFromPoint,
           axisToPoint,
-          horizontal,
+          horizontal: axisIsHorizontal,
           tickSign,
           numTicks,
           label,
@@ -121,13 +94,14 @@ export default function Axis({
           tickFormat: format,
           tickPosition: position,
           ticks: values.map((value, index) => {
+            const scaledValue = toNumberOrUndefined(position(value));
             const from = new Point({
-              x: horizontal ? position(value) : 0,
-              y: horizontal ? 0 : position(value),
+              x: axisIsHorizontal ? scaledValue : 0,
+              y: axisIsHorizontal ? 0 : scaledValue,
             });
             const to = new Point({
-              x: horizontal ? position(value) : tickSign * tickLength,
-              y: horizontal ? tickLength * tickSign : position(value),
+              x: axisIsHorizontal ? scaledValue : tickSign * tickLength,
+              y: axisIsHorizontal ? tickLength * tickSign : scaledValue,
             });
             return {
               value,
@@ -145,20 +119,30 @@ export default function Axis({
   return (
     <Group className={cx('vx-axis', axisClassName)} top={top} left={left}>
       {values.map((val, index) => {
-        if (hideZero && val === 0) return null;
-
+        if (
+          hideZero &&
+          ((typeof val === 'number' && val === 0) || (typeof val === 'string' && val === '0'))
+        ) {
+          return null;
+        }
+        const scaledValue = toNumberOrUndefined(position(val));
         const tickFromPoint = new Point({
-          x: horizontal ? position(val) : 0,
-          y: horizontal ? 0 : position(val),
+          x: axisIsHorizontal ? scaledValue : 0,
+          y: axisIsHorizontal ? 0 : scaledValue,
         });
         const tickToPoint = new Point({
-          x: horizontal ? position(val) : tickSign * tickLength,
-          y: horizontal ? tickLength * tickSign : position(val),
+          x: axisIsHorizontal ? scaledValue : tickSign * tickLength,
+          y: axisIsHorizontal ? tickLength * tickSign : scaledValue,
         });
 
         const tickLabelPropsObj = tickLabelProps(val, index);
-        tickLabelFontSize = Math.max(tickLabelFontSize, tickLabelPropsObj.fontSize || 0);
+        tickLabelFontSize = Math.max(
+          tickLabelFontSize,
+          (typeof tickLabelPropsObj.fontSize === 'number' && tickLabelPropsObj.fontSize) || 0,
+        );
 
+        const tickYCoord = tickToPoint.y + (axisIsHorizontal && !isTop ? tickLabelFontSize : 0);
+        const formattedValue = format(val, index);
         return (
           <Group
             key={`vx-tick-${val}-${index}`}
@@ -168,18 +152,14 @@ export default function Axis({
             {!hideTicks && <Line from={tickFromPoint} to={tickToPoint} stroke={tickStroke} />}
             {tickComponent ? (
               tickComponent({
-                x: tickToPoint.x,
-                y: tickToPoint.y + (horizontal && !isTop ? tickLabelFontSize : 0),
-                formattedValue: format(val, index),
                 ...tickLabelPropsObj,
+                x: tickToPoint.x,
+                y: tickYCoord,
+                formattedValue,
               })
             ) : (
-              <Text
-                x={tickToPoint.x}
-                y={tickToPoint.y + (horizontal && !isTop ? tickLabelFontSize : 0)}
-                {...tickLabelPropsObj}
-              >
-                {format(val, index)}
+              <Text x={tickToPoint.x} y={tickYCoord} {...tickLabelPropsObj}>
+                {formattedValue}
               </Text>
             )}
           </Group>
@@ -216,5 +196,3 @@ export default function Axis({
     </Group>
   );
 }
-
-Axis.propTypes = propTypes;
