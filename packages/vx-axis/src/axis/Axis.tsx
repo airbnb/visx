@@ -9,7 +9,7 @@ import getLabelTransform from '../utils/labelTransform';
 import ORIENT from '../constants/orientation';
 import toString from '../utils/toString';
 import toNumberOrUndefined from '../utils/toNumberOrUndefined';
-import { SharedAxisProps, AxisOrientation, TickFormatter } from '../types';
+import { SharedAxisProps, AxisOrientation } from '../types';
 
 export type AxisProps<ScaleInput> = SharedAxisProps<ScaleInput> & {
   orientation?: AxisOrientation;
