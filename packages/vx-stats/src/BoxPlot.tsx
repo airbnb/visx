@@ -58,7 +58,7 @@ export type BoxPlotProps = SharedProps & {
   /** Props to pass to the container glyph rect if rendered. */
   containerProps?: React.SVGProps<SVGRectElement>;
   /** Override render function to fully control the rendering of the BoxPlot glyph. */
-  children: (childRenderProps: ChildRenderProps) => React.ReactNode;
+  children?: (childRenderProps: ChildRenderProps) => React.ReactNode;
 };
 
 export default function BoxPlot({
@@ -160,7 +160,7 @@ export default function BoxPlot({
     boxplot.container.y1 = Math.min(...valueRange);
   }
 
-  if (children) return children(boxplot);
+  if (children) return <>{children(boxplot)}</>;
 
   return (
     <Group className={classnames('vx-boxplot', className)}>

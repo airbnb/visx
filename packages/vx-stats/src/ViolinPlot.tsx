@@ -10,9 +10,9 @@ export type ViolinPlotProps<ScaleInput> = SharedProps & {
   /** Data used to draw the violin plot glyph. Violin plot values and counts should be able to be derived from data. */
   data: ScaleInput[];
   /** Given an ScaleInput datum, returns the count for it. */
-  count: (d: ScaleInput) => number;
+  count?: (d: ScaleInput) => number;
   /** Given an ScaleInput datum, returns the value for it. */
-  value: (d: ScaleInput) => number;
+  value?: (d: ScaleInput) => number;
   /** Width of the violin plot glyph. */
   width?: number;
   /** Override render function to fully control the rendering of the ViolinPlot glyph. */
@@ -71,6 +71,6 @@ export default function ViolinPlot<ScaleInput extends object = BinDatum>({
     const leftCurvePath = leftCurve([...data].reverse()) || '';
     path = `${rightCurvePath} ${leftCurvePath.replace('M', 'L')} Z`;
   }
-  if (children) return children({ path });
+  if (children) return <>{children({ path })}</>;
   return <path className={cx('vx-violin', className)} d={path} {...restProps} />;
 }

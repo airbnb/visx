@@ -3,12 +3,13 @@ import { shallow } from 'enzyme';
 
 import { scaleLinear } from '@vx/scale';
 import { BoxPlot, computeStats } from '../src';
+import { GenericScale } from '../src/types';
 
 const data = [1, 2, 3, 4, 5, 6, 6, 7, 8, 9, 1];
 const { boxPlot: boxPlotData } = computeStats(data);
 const { min, firstQuartile, median, thirdQuartile, max, outliers } = boxPlotData;
 
-const valueScale = scaleLinear({
+const valueScale = scaleLinear<number>({
   rangeRound: [10, 0],
   domain: [0, 10],
 });
@@ -21,7 +22,6 @@ describe('<BoxPlot />', () => {
   test('it should have className .vx-boxplot', () => {
     const wrapper = shallow(
       <BoxPlot
-        data={boxPlotData}
         min={min}
         max={max}
         left={0}
@@ -29,7 +29,7 @@ describe('<BoxPlot />', () => {
         thirdQuartile={thirdQuartile}
         median={median}
         boxWidth={100}
-        valueScale={valueScale}
+        valueScale={valueScale as GenericScale<number>}
         outliers={outliers}
       />,
     );
@@ -39,7 +39,6 @@ describe('<BoxPlot />', () => {
   test('it should render 5 lines and one rectangle', () => {
     const wrapper = shallow(
       <BoxPlot
-        data={boxPlotData}
         min={min}
         max={max}
         left={0}
@@ -47,7 +46,7 @@ describe('<BoxPlot />', () => {
         thirdQuartile={thirdQuartile}
         median={median}
         boxWidth={100}
-        valueScale={valueScale}
+        valueScale={valueScale as GenericScale<number>}
         outliers={outliers}
       />,
     );
