@@ -3,6 +3,7 @@ import { Arc } from '@vx/shape';
 import { Group } from '@vx/group';
 import { Chord, Ribbon } from '@vx/chord';
 import { scaleOrdinal } from '@vx/scale';
+import { schemeDark2 } from 'd3-scale-chromatic';
 
 const bg = '#e4e3d8';
 
@@ -19,7 +20,7 @@ function descending(a, b) {
 
 const color = scaleOrdinal({
   domain: [1, 2, 3, 4],
-  range: ['#1b9e77', '#d95f02', '#7570b3', '#e7298a', '#66a61e', '#e6ab02', '#a6761d', '#666666'],
+  range: schemeDark2,
 });
 
 export default ({ width, height, centerSize = 20, events = false }) => {
