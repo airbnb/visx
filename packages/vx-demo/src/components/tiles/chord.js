@@ -3,8 +3,16 @@ import { Arc } from '@vx/shape';
 import { Group } from '@vx/group';
 import { Chord, Ribbon } from '@vx/chord';
 import { scaleOrdinal } from '@vx/scale';
-import { schemeDark2 } from 'd3-scale-chromatic';
+import { LinearGradient } from '@vx/gradient';
 
+const pink = '#ff2fab';
+const orange = '#ffc62e';
+const purple = '#dc04ff';
+const purple2 = '#7324ff';
+const red = '#d04376';
+const green = '#52f091';
+const blue = '#04a6ff';
+const lime = '#00ddc6';
 const bg = '#e4e3d8';
 
 const matrix = [
@@ -19,8 +27,8 @@ function descending(a, b) {
 }
 
 const color = scaleOrdinal({
-  domain: [1, 2, 3, 4],
-  range: schemeDark2,
+  domain: [0, 1, 2, 3],
+  range: ['url(#gpinkorange)', 'url(#gpurplered)', 'url(#gpurplegreen)', 'url(#gbluelime)'],
 });
 
 export default ({ width, height, centerSize = 20, events = false }) => {
@@ -32,6 +40,10 @@ export default ({ width, height, centerSize = 20, events = false }) => {
   return (
     <div className="Chords">
       <svg width={width} height={height}>
+        <LinearGradient id="gpinkorange" from={pink} to={orange} vertical={false} />
+        <LinearGradient id="gpurplered" from={purple} to={red} vertical={false} />
+        <LinearGradient id="gpurplegreen" from={purple2} to={green} vertical={false} />
+        <LinearGradient id="gbluelime" from={blue} to={lime} vertical={false} />
         <rect width={width} height={height} fill={bg} rx={14} />
         <Group top={height / 2} left={width / 2}>
           <Chord matrix={matrix} padAngle={0.05} sortSubgroups={descending}>
