@@ -77,7 +77,7 @@ export default ({ width, height, centerSize = 20, events = false }) => {
                         fill={color(chord.target.index)}
                         fillOpacity={0.75}
                         onClick={() => {
-                          alert(\'\${JSON.stringify(chord)}\`);
+                          alert(\`\${JSON.stringify(chord)}\`);
                         }}
                       />
                     );
