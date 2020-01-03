@@ -19,9 +19,9 @@ describe('Legend scales', () => {
       range: [1, 5, 10, 15, 20],
     });
 
-    expect(shallow(<LegendLinear scale={linearScale} />)).not.toThrow();
-    expect(shallow(<LegendSize<number> scale={linearScale} />)).not.toThrow();
-    expect(shallow(<Legend scale={linearScale} />)).not.toThrow();
+    expect(() => shallow(<LegendLinear scale={linearScale} />)).not.toThrow();
+    expect(() => shallow(<LegendSize<number> scale={linearScale} />)).not.toThrow();
+    expect(() => shallow(<Legend scale={linearScale} />)).not.toThrow();
   });
 
   it('should render with scaleOrdinal', () => {
@@ -30,8 +30,8 @@ describe('Legend scales', () => {
       range: ['#66d981', '#71f5ef', '#4899f1', '#7d81f6'],
     });
 
-    expect(shallow(<LegendOrdinal scale={ordinalScale} />)).not.toThrow();
-    expect(
+    expect(() => shallow(<LegendOrdinal scale={ordinalScale} />)).not.toThrow();
+    expect(() =>
       shallow(<Legend<string, string, ScaleOrdinal<string, string>> scale={ordinalScale} />),
     ).not.toThrow();
   });
@@ -42,7 +42,7 @@ describe('Legend scales', () => {
       range: [1, 10],
     });
 
-    expect(
+    expect(() =>
       shallow(<Legend<string, number, ScaleBand<string, number>> scale={bandScale} />),
     ).not.toThrow();
   });
@@ -53,8 +53,8 @@ describe('Legend scales', () => {
       range: ['#f2f0f7', '#dadaeb', '#bcbddc', '#9e9ac8', '#756bb1', '#54278f'],
     });
 
-    expect(shallow(<LegendThreshold scale={thresholdScale} />)).not.toThrow();
-    expect(
+    expect(() => shallow(<LegendThreshold scale={thresholdScale} />)).not.toThrow();
+    expect(() =>
       shallow(<Legend<number, string, ScaleThreshold<number, string>> scale={thresholdScale} />),
     ).not.toThrow();
   });
@@ -65,8 +65,8 @@ describe('Legend scales', () => {
       range: ['#f2f0f7', '#dadaeb', '#bcbddc', '#9e9ac8', '#756bb1', '#54278f'],
     });
 
-    expect(shallow(<LegendQuantile scale={quantileScale} />)).not.toThrow();
-    expect(
+    expect(() => shallow(<LegendQuantile scale={quantileScale} />)).not.toThrow();
+    expect(() =>
       shallow(<Legend<number, string, ScaleQuantile<number, string>> scale={quantileScale} />),
     ).not.toThrow();
   });
