@@ -6,22 +6,13 @@ import LegendShape from './LegendShape';
 import valueOrIdentity, { valueOrIdentityString } from '../../util/valueOrIdentity';
 import labelTransformFactory from '../../util/labelTransformFactory';
 import {
+  FlexDirection,
   ScaleType,
   FormattedLabel,
   LabelFormatter,
   LabelFormatterFactory,
   LegendShape as LegendShapeType,
 } from '../../types';
-
-type FlexDirection =
-  | 'inherit'
-  | 'initial'
-  | 'revert'
-  | 'unset'
-  | 'column'
-  | 'column-reverse'
-  | 'row'
-  | 'row-reverse';
 
 export type LegendProps<Datum, Output, Scale extends ScaleType<Datum, Output>> = {
   /** Optional render function override. */

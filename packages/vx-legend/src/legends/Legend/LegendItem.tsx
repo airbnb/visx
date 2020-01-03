@@ -1,15 +1,8 @@
 import React from 'react';
+import { FlexDirection } from '../../types';
 
 export type LegendItemProps = {
-  flexDirection?:
-    | 'inherit'
-    | 'initial'
-    | 'revert'
-    | 'unset'
-    | 'column'
-    | 'column-reverse'
-    | 'row'
-    | 'row-reverse';
+  flexDirection?: FlexDirection;
   alignItems?: string;
   margin?: string | number;
   children?: React.ReactNode;

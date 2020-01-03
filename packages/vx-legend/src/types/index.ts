@@ -71,3 +71,13 @@ export type SizeAccessor<Datum, Output> = (
 export type ShapeStyleAccessor<Datum, Output> = (
   label: FormattedLabel<Datum, Output>,
 ) => React.CSSProperties | undefined; // TODO: ideally this would support SVGProps, but this is invalid for Rect/Circle shapes
+
+export type FlexDirection =
+  | 'inherit'
+  | 'initial'
+  | 'revert'
+  | 'unset'
+  | 'column'
+  | 'column-reverse'
+  | 'row'
+  | 'row-reverse';
