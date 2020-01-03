@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-LegendLabel.propTypes = {
-  align: PropTypes.string,
-  label: PropTypes.any,
-  flex: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  margin: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  children: PropTypes.any,
+export type LegendLabelProps = {
+  align?: string;
+  label?: React.ReactNode;
+  flex?: string | number;
+  margin?: string | number;
+  children?: React.ReactNode;
 };
 
 export default function LegendLabel({
@@ -15,7 +14,8 @@ export default function LegendLabel({
   margin = '5px 0',
   align = 'left',
   children,
-}) {
+  ...restProps
+}: LegendLabelProps & Omit<React.HTMLProps<HTMLDivElement>, keyof LegendLabelProps>) {
   return (
     <div
       className="vx-legend-label"
@@ -25,6 +25,7 @@ export default function LegendLabel({
         flex,
         margin,
       }}
+      {...restProps}
     >
       {children || label}
     </div>

@@ -1,11 +1,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { scaleLinear } from '@vx/scale';
 
 import { Legend } from '../src';
-import { scaleLinear } from '../../vx-scale/src/index.ts';
 
 const defaultProps = {
-  scale: scaleLinear({
+  scale: scaleLinear<number>({
     rangeRound: [10, 0],
     domain: [0, 10],
   }),
@@ -16,7 +16,7 @@ describe('<Legend />', () => {
     expect(Legend).toBeDefined();
   });
 
-  test('it should default style to display: flex, flex-direction: column ', () => {
+  test('it should default style to display: flex, flex-direction: column', () => {
     const wrapper = shallow(<Legend {...defaultProps} />);
     expect(wrapper.prop('style')).toEqual({
       display: 'flex',
