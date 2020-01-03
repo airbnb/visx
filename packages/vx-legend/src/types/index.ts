@@ -4,22 +4,28 @@ import * as d3Scale from 'd3-scale';
 
 export type StringNumberDate = string | number | Date;
 
+export type ScaleTime<_ImplicitDateOrNumber, Output> = d3Scale.ScaleTime<Output, Output>;
+export type ScaleBand<Input, _ImplicitStringOutput> = d3Scale.ScaleBand<Input>;
 export type ScaleLinear<_ImplicitNumberInput, Output> = d3Scale.ScaleLinear<Output, Output>;
 export type ScaleOrdinal<Input, Output> = d3Scale.ScaleOrdinal<Input, Output>;
-export type ScaleBand<Input, _ImplicitStringOutput> = d3Scale.ScaleBand<Input>;
+export type ScaleQuantile<_ImplicitNumberInput, Output> = d3Scale.ScaleQuantile<Output>;
 export type ScaleThreshold<Input extends StringNumberDate, Output> = d3Scale.ScaleThreshold<
   Input,
   Output
 >;
-export type ScaleQuantile<_ImplicitNumberInput, Output> = d3Scale.ScaleQuantile<Output>;
 
-export type ScaleType<Input, Output> =
-  | ScaleLinear<Input, Output>
-  | ScaleOrdinal<Input, Output>
-  | ScaleBand<Input, Output>
-  | ScaleQuantile<Input, Output>
-  // @ts-ignore @TODO Input needs to be restricted to `string | number | Date`
-  | ScaleThreshold<Input, Output>;
+export type ScaleType<Input, Output> = Input extends StringNumberDate
+  ?
+      | ScaleThreshold<Input, Output> // StringNumberDate needed for ScaleThreshold only
+      | ScaleLinear<Input, Output>
+      | ScaleOrdinal<Input, Output>
+      | ScaleBand<Input, Output>
+      | ScaleQuantile<Input, Output>
+  :
+      | ScaleLinear<Input, Output>
+      | ScaleOrdinal<Input, Output>
+      | ScaleBand<Input, Output>
+      | ScaleQuantile<Input, Output>;
 
 export type LabelFormatterFactory<
   Datum,
