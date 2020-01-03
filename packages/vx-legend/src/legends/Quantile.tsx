@@ -1,15 +1,15 @@
 import React from 'react';
 
 import Legend, { LegendProps } from './Legend';
-import { LabelFormatterFactory, ScaleQuantile, BaseOutput } from '../types';
+import { LabelFormatterFactory, ScaleQuantile } from '../types';
 
-export type LegendQuantileProps<Output extends BaseOutput> = {
+export type LegendQuantileProps<Output> = {
   labelDelimiter?: string;
   labelTransform?: LabelFormatterFactory<number, Output, ScaleQuantile<number, Output>>;
   scale: ScaleQuantile<number, Output>;
 } & Omit<LegendProps<number, Output, ScaleQuantile<number, Output>>, 'scale' | 'labelTransform'>;
 
-function labelFormatterFactoryFactory<Output extends BaseOutput>({
+function labelFormatterFactoryFactory<Output>({
   labelDelimiter,
 }: Pick<LegendQuantileProps<Output>, 'labelDelimiter'>): LabelFormatterFactory<
   number,
@@ -29,7 +29,7 @@ function labelFormatterFactoryFactory<Output extends BaseOutput>({
 }
 
 /** A Quantile scale takes a number input and returns an Output. */
-export default function LegendQuantile<Output extends BaseOutput>({
+export default function LegendQuantile<Output>({
   domain: inputDomain,
   scale,
   labelFormat = x => x,
