@@ -61,7 +61,7 @@ const defaultStyle = {
   display: 'flex',
 };
 
-export default function Legend<Datum, Output, Scale extends ScaleType<Datum, Output>>({
+export default function Legend<Datum, Output, Scale = ScaleType<Datum, Output>>({
   className,
   style = defaultStyle,
   scale,
