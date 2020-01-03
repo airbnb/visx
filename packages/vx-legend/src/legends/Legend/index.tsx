@@ -14,7 +14,7 @@ import {
   LegendShape as LegendShapeType,
 } from '../../types';
 
-export type LegendProps<Datum, Output, Scale extends ScaleType<Datum, Output>> = {
+export type LegendProps<Datum, Output, Scale = ScaleType<Datum, Output>> = {
   /** Optional render function override. */
   children?: (labels: FormattedLabel<Datum, Output>[]) => React.ReactNode;
   /** Classname to be applied to legend container. */

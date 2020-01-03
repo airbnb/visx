@@ -7,13 +7,11 @@ const formatZero = (label: unknown) => (label === 0 ? '0' : label || '');
 export type LegendThresholdProps<Datum extends StringNumberDate, Output> = LegendProps<
   Datum,
   Output,
-  // @ts-ignore @TODO fix `Type 'ScaleThreshold<Datum, Output>' does not satisfy the constraint 'ScaleType<Datum, Output>'.ts(2344)`
   ScaleThreshold<Datum, Output>
 > & {
   labelDelimiter?: string;
   labelLower?: string;
   labelUpper?: string;
-  // @ts-ignore @TODO fix `Type 'ScaleThreshold<Datum, Output>' does not satisfy the constraint 'ScaleType<Datum, Output>'.ts(2344)`
   labelTransform?: LabelFormatterFactory<Datum, Output, ScaleThreshold<Datum, Output>>;
 };
 
@@ -25,7 +23,6 @@ function defaultTransform<Datum extends StringNumberDate, Output>({
 }: Pick<
   LegendThresholdProps<Datum, Output>,
   'labelDelimiter' | 'labelLower' | 'labelUpper'
-  // @ts-ignore @TODO fix `Type 'ScaleThreshold<Datum, Output>' does not satisfy the constraint 'ScaleType<Datum, Output>'.ts(2344)`
 >): LabelFormatterFactory<Datum, Output, ScaleThreshold<Datum, Output>> {
   return ({ scale, labelFormat }) => {
     const scaleRange = scale.range();
@@ -87,7 +84,6 @@ export default function LegendThreshold<Datum extends StringNumberDate, Output>(
     });
 
   return (
-    // @ts-ignore @TODO fix `Type 'ScaleThreshold<Datum, Output>' does not satisfy the constraint 'ScaleType<Datum, Output>'.ts(2344)`
     <Legend<Datum, Output, ScaleThreshold<Datum, Output>>
       scale={scale}
       domain={domain}

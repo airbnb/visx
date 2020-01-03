@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { scaleLinear, scaleOrdinal, scaleThreshold, scaleQuantile } from '@vx/scale';
+import { scaleBand, scaleLinear, scaleOrdinal, scaleThreshold, scaleQuantile } from '@vx/scale';
 
 import {
   Legend,
@@ -10,7 +10,7 @@ import {
   LegendThreshold,
   LegendQuantile,
 } from '../src';
-import { ScaleOrdinal, ScaleThreshold, ScaleQuantile } from '../src/types';
+import { ScaleBand, ScaleOrdinal, ScaleThreshold, ScaleQuantile } from '../src/types';
 
 describe('Legend scales', () => {
   it('should render with scaleLinear', () => {
@@ -33,6 +33,17 @@ describe('Legend scales', () => {
     expect(shallow(<LegendOrdinal scale={ordinalScale} />)).not.toThrow();
     expect(
       shallow(<Legend<string, string, ScaleOrdinal<string, string>> scale={ordinalScale} />),
+    ).not.toThrow();
+  });
+
+  it('should render with scaleBand', () => {
+    const bandScale = scaleBand<string>({
+      domain: ['a', 'b', 'c', 'd'],
+      range: [1, 10],
+    });
+
+    expect(
+      shallow(<Legend<string, number, ScaleBand<string, number>> scale={bandScale} />),
     ).not.toThrow();
   });
 
