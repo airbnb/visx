@@ -63,7 +63,7 @@ export default function BarGroupHorizontalComponent<Datum extends { [key: string
           x: x(value),
           y: y1Scale(key),
           color: color(key, j),
-          width: width - xScale(value),
+          width: xScale(value),
         };
       }),
     };

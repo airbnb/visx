@@ -64,7 +64,7 @@ export default ({
   // scales
   y0Scale.rangeRound([0, yMax]);
   y1Scale.rangeRound([0, y0Scale.bandwidth()]);
-  xScale.rangeRound([xMax, 0]);
+  xScale.rangeRound([0, xMax]);
 
   return (
     <svg width={width} height={height}>
