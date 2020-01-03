@@ -6,8 +6,6 @@ import LegendShape from './LegendShape';
 import valueOrIdentity, { valueOrIdentityString } from '../../util/valueOrIdentity';
 import labelTransformFactory from '../../util/labelTransformFactory';
 import {
-  BaseInput,
-  BaseOutput,
   ScaleType,
   FormattedLabel,
   LabelFormatter,
@@ -25,11 +23,7 @@ type FlexDirection =
   | 'row'
   | 'row-reverse';
 
-export type LegendProps<
-  Datum extends BaseInput,
-  Output extends BaseOutput,
-  Scale extends ScaleType<Datum, Output> = ScaleType<Datum, Output>
-> = {
+export type LegendProps<Datum, Output, Scale extends ScaleType<Datum, Output>> = {
   /** Optional render function override. */
   children?: (labels: FormattedLabel<Datum, Output>[]) => React.ReactNode;
   /** Classname to be applied to legend container. */
@@ -46,7 +40,7 @@ export type LegendProps<
   shapeMargin?: string | number;
   /** Flex-box alignment of legend item labels. */
   labelAlign?: string;
-  /** @TODO handle object type? */
+  /** @vx/scale or d3-scale object used to generate the legend items. */
   scale: Scale;
   /** Flex-box flex of legend item labels. */
   labelFlex?: string | number;
@@ -76,11 +70,7 @@ const defaultStyle = {
   display: 'flex',
 };
 
-export default function Legend<
-  Datum extends BaseInput,
-  Output extends BaseOutput,
-  Scale extends ScaleType<Datum, Output> = ScaleType<Datum, Output>
->({
+export default function Legend<Datum, Output, Scale extends ScaleType<Datum, Output>>({
   className,
   style = defaultStyle,
   scale,

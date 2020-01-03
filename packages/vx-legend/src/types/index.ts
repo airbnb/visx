@@ -2,26 +2,28 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import * as d3Scale from 'd3-scale';
 
-export type BaseInput = string | number | Date;
-export type BaseOutput = string | number | Date;
+export type StringNumberDate = string | number | Date;
 
-export type ScaleLinear<Input, Output> = d3Scale.ScaleLinear<Input, Output>;
+export type ScaleLinear<_ImplicitNumberInput, Output> = d3Scale.ScaleLinear<Output, Output>;
 export type ScaleOrdinal<Input, Output> = d3Scale.ScaleOrdinal<Input, Output>;
-export type ScaleBand<Input> = d3Scale.ScaleBand<Input>;
-export type ScaleThreshold<Input extends BaseInput, Output> = d3Scale.ScaleThreshold<Input, Output>;
-export type ScaleQuantile<Output> = d3Scale.ScaleQuantile<Output>;
+export type ScaleBand<Input, _ImplicitStringOutput> = d3Scale.ScaleBand<Input>;
+export type ScaleThreshold<Input extends StringNumberDate, Output> = d3Scale.ScaleThreshold<
+  Input,
+  Output
+>;
+export type ScaleQuantile<_ImplicitNumberInput, Output> = d3Scale.ScaleQuantile<Output>;
 
-// @TODO BaseInput only needed for `ScaleThreshold`
-export type ScaleType<Input extends BaseInput, Output> =
+export type ScaleType<Input, Output> =
   | ScaleLinear<Input, Output>
   | ScaleOrdinal<Input, Output>
-  | ScaleBand<Input>
-  | ScaleThreshold<Input, Output>
-  | ScaleQuantile<Output>;
+  | ScaleBand<Input, Output>
+  | ScaleQuantile<Input, Output>
+  // @ts-ignore @TODO Input needs to be restricted to `string | number | Date`
+  | ScaleThreshold<Input, Output>;
 
 export type LabelFormatterFactory<
-  Datum extends BaseInput,
-  Output extends BaseOutput,
+  Datum,
+  Output,
   Scale extends ScaleType<Datum, Output> = ScaleType<Datum, Output>
 > = (args: { scale: Scale; labelFormat: LabelFormatter<Datum> }) => ItemTransformer<Datum, Output>;
 

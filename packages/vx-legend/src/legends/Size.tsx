@@ -1,18 +1,18 @@
 import React from 'react';
 import Legend, { LegendProps } from './Legend';
-import { BaseInput, BaseOutput, ScaleType } from '../types';
+import { ScaleType } from '../types';
 import labelTransformFactory from '../util/labelTransformFactory';
 
-export type LegendSizeProps<Data extends BaseInput, Output extends BaseOutput> = {
+export type LegendSizeProps<Datum> = {
   steps?: number;
-} & LegendProps<Data, Output>;
+} & LegendProps<Datum, number, ScaleType<Datum, number>>;
 
-function defaultDomain<Datum extends BaseInput, Output extends BaseOutput>({
+function defaultDomain<Datum>({
   steps,
   scale,
 }: {
   steps: number;
-  scale: ScaleType<Datum, Output>;
+  scale: ScaleType<Datum, number>;
 }) {
   const domain = scale.domain();
   const start = domain[0];
@@ -27,17 +27,17 @@ function defaultDomain<Datum extends BaseInput, Output extends BaseOutput>({
   return [];
 }
 
-export default function LegendSize<Data extends BaseInput, Output extends BaseOutput>({
+export default function LegendSize<Datum>({
   scale,
   domain: inputDomain,
   steps = 5,
   labelFormat = x => x,
   labelTransform = labelTransformFactory,
   ...restProps
-}: LegendSizeProps<Data, Output>) {
+}: LegendSizeProps<Datum>) {
   const domain = inputDomain || defaultDomain({ steps, scale });
   return (
-    <Legend
+    <Legend<Datum, number, ScaleType<Datum, number>>
       scale={scale}
       domain={domain}
       labelFormat={labelFormat}

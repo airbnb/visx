@@ -8,8 +8,6 @@ import {
   FillAccessor,
   SizeAccessor,
   ShapeStyleAccessor,
-  BaseInput,
-  BaseOutput,
   RenderShapeProvidedProps,
 } from '../types';
 
@@ -25,7 +23,7 @@ type RenderShapeArgs<Data, Output> = {
 
 const NO_OP = () => undefined;
 
-export default function renderShape<Data extends BaseInput, Output extends BaseOutput>({
+export default function renderShape<Data, Output>({
   shape = 'rect',
   fill = NO_OP,
   size = NO_OP,

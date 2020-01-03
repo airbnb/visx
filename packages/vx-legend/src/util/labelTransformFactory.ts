@@ -1,9 +1,9 @@
-import { LabelFormatter, ScaleType, ItemTransformer, BaseInput, BaseOutput } from '../types';
+import { LabelFormatter, ScaleType, ItemTransformer } from '../types';
 
 /** Returns a function which takes a Datum and index as input, and returns a formatted label object. */
 export default function labelTransformFactory<
-  Datum extends BaseInput,
-  Output extends BaseOutput,
+  Datum,
+  Output,
   Scale extends ScaleType<Datum, Output> = ScaleType<Datum, Output>
 >({
   scale,

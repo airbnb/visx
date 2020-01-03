@@ -1,7 +1,7 @@
 import React from 'react';
 import ShapeRect from '../../shapes/Rect';
 import renderShape from '../../util/renderShape';
-import { FormattedLabel, LegendShape as LegendShapeType, BaseInput, BaseOutput } from '../../types';
+import { FormattedLabel, LegendShape as LegendShapeType } from '../../types';
 
 export type LegendShapeProps<Data, Output> = {
   label: FormattedLabel<Data, Output>;
@@ -14,7 +14,7 @@ export type LegendShapeProps<Data, Output> = {
   height?: string | number;
 };
 
-export default function LegendShape<Data extends BaseInput, Output extends BaseOutput>({
+export default function LegendShape<Data, Output>({
   shape = ShapeRect,
   width,
   height,

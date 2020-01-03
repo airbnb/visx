@@ -5,16 +5,16 @@ import { LabelFormatterFactory, ScaleQuantile, BaseOutput } from '../types';
 
 export type LegendQuantileProps<Output extends BaseOutput> = {
   labelDelimiter?: string;
-  labelTransform?: LabelFormatterFactory<number, Output, ScaleQuantile<Output>>;
-  scale: ScaleQuantile<Output>;
-} & Omit<LegendProps<number, Output>, 'scale' | 'labelTransform'>;
+  labelTransform?: LabelFormatterFactory<number, Output, ScaleQuantile<number, Output>>;
+  scale: ScaleQuantile<number, Output>;
+} & Omit<LegendProps<number, Output, ScaleQuantile<number, Output>>, 'scale' | 'labelTransform'>;
 
 function labelFormatterFactoryFactory<Output extends BaseOutput>({
   labelDelimiter,
 }: Pick<LegendQuantileProps<Output>, 'labelDelimiter'>): LabelFormatterFactory<
   number,
   Output,
-  ScaleQuantile<Output>
+  ScaleQuantile<number, Output>
 > {
   return ({ scale, labelFormat }) => (datum: number, index: number) => {
     const [x0, x1] = scale.invertExtent(scale(datum));
@@ -43,7 +43,7 @@ export default function LegendQuantile<Output extends BaseOutput>({
     inputLabelTransform || labelFormatterFactoryFactory<Output>({ labelDelimiter });
 
   return (
-    <Legend<number, Output, ScaleQuantile<Output>>
+    <Legend<number, Output, ScaleQuantile<number, Output>>
       scale={scale}
       domain={domain}
       labelFormat={labelFormat}

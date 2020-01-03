@@ -16,7 +16,7 @@ describe('<Legend />', () => {
     expect(Legend).toBeDefined();
   });
 
-  test('it should default style to display: flex, flex-direction: column ', () => {
+  test('it should default style to display: flex, flex-direction: column', () => {
     const wrapper = shallow(<Legend {...defaultProps} />);
     expect(wrapper.prop('style')).toEqual({
       display: 'flex',
