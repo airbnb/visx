@@ -85,16 +85,19 @@ class Text extends React.Component<TextProps, TextState> {
 
   private spaceWidth: number = 0;
 
-  // eslint-disable-next-line camelcase
-  UNSAFE_componentWillMount() {
+  componentDidMount() {
     this.updateWordsByLines(this.props, true);
   }
 
-  // eslint-disable-next-line camelcase
-  UNSAFE_componentWillReceiveProps(nextProps: TextProps) {
+  componentDidUpdate(prevProps: TextProps, prevState: TextState) {
+    // We calculated a new state, break out of the loop.
+    if (prevState.wordsByLines !== this.state.wordsByLines) {
+      return;
+    }
+
     const needCalculate =
-      this.props.children !== nextProps.children || this.props.style !== nextProps.style;
-    this.updateWordsByLines(nextProps, needCalculate);
+      prevProps.children !== this.props.children || prevProps.style !== this.props.style;
+    this.updateWordsByLines(this.props, needCalculate);
   }
 
   updateWordsByLines(props: TextProps, needCalculate: boolean = false) {
