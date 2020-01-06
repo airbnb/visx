@@ -10,8 +10,8 @@ import { timeParse } from 'd3-time-format';
 import { stack as d3stack } from 'd3-shape';
 import withState from 'recompose/withState';
 import compose from 'recompose/compose';
-import round from '../util/round';
-import colorScale from '../util/sillyColorScale';
+import round from '../util/round.tsx';
+import colorScale from '../util/sillyColorScale.tsx';
 
 const enhance = compose(withState('selected', 'updateSelected', []));
 

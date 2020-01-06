@@ -2,7 +2,7 @@ import React from 'react';
 import Tilt from 'react-tilt';
 import Link from 'next/link';
 import { ParentSize } from '@vx/responsive';
-import drawData from './util/drawData';
+import drawData from './util/drawData.ts';
 
 import Footer from './Footer.tsx';
 
