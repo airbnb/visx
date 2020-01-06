@@ -6,14 +6,14 @@ import withScreenSize, {
 import Page from './Page';
 import Codeblock from './codeblocks/Codeblock';
 import Gallery from './gallery';
-import { MarginShape } from '../types';
+import { MarginShape, ShowProvidedProps } from '../types';
 
 type Component<P = {}> = React.FC<P> | React.ComponentClass<P>;
 
 type ShowProps = {
   children?: string;
   title: string;
-  component: Component<{ width: number; height: number; margin: MarginShape; events: boolean }>;
+  component: Component<ShowProvidedProps>;
   shadow?: boolean;
   events?: boolean;
   margin?: MarginShape;

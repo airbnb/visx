@@ -3,7 +3,7 @@ import { Group } from '@vx/group';
 import { Pack, hierarchy } from '@vx/hierarchy';
 import { scaleQuantize } from '@vx/scale';
 import rawData, { Exoplanets as Datum } from '@vx/mock-data/lib/mocks/exoplanets';
-import { MarginShape } from '../../types';
+import { ShowProvidedProps } from '../../types';
 
 function extent<D>(allData: D[], value: (d: D) => number): [number, number] {
   return [Math.min(...allData.map(value)), Math.max(...allData.map(value))];
@@ -36,11 +36,7 @@ export default ({
     right: 40,
     bottom: 80,
   },
-}: {
-  width: number;
-  height: number;
-  margin: MarginShape;
-}) => {
+}: ShowProvidedProps) => {
   if (width < 10) return null;
 
   return (

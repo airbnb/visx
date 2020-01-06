@@ -4,3 +4,10 @@ export interface MarginShape {
   bottom: number;
   left: number;
 }
+
+export type ShowProvidedProps = {
+  width: number;
+  height: number;
+  margin: MarginShape;
+  events: boolean;
+};

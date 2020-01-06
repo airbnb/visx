@@ -7,24 +7,32 @@ export default () => {
     <Show component={Pack} title="Pack">
       {`import React from 'react';
 import { Group } from '@vx/group';
-import { Pack } from '@vx/hierarchy';
-import { hierarchy } from 'd3-hierarchy';
+import { Pack, hierarchy } from '@vx/hierarchy';
 import { scaleQuantize } from '@vx/scale';
-import { exoplanets as data } from '@vx/mock-data';
+import rawData, { Exoplanets as Datum } from '@vx/mock-data/lib/mocks/exoplanets';
+import { ShowProvidedProps } from '../../types';
 
-const extent = (data, value = d => d) => [
-  Math.min(...data.map(value)),
-  Math.max(...data.map(value))
-];
+function extent<D>(allData: D[], value: (d: D) => number): [number, number] {
+  return [Math.min(...allData.map(value)), Math.max(...allData.map(value))];
+}
 
-const exoplanets = data.filter(d => d.distance === 0);
-const planets = data.filter(d => d.distance !== 0);
-const pack = { children: [{ children: planets }].concat(exoplanets) };
+const filteredPlanets = rawData.filter(d => d.distance !== 0 && d.distance != null);
+const pack = { children: filteredPlanets, name: 'root', radius: 0, distance: 0 };
 
 const colorScale = scaleQuantize({
-  domain: extent(data, d => d.radius),
-  range: ['#ffe108', '#ffc10e', '#fd6d6f', '#855af2', '#11d2f9', '#49f4e7']
+  domain: extent(rawData, d => d.radius),
+  range: ['#ffe108', '#ffc10e', '#fd6d6f', '#855af2', '#11d2f9', '#49f4e7'],
 });
+
+const root = hierarchy<Datum>(pack)
+  .sum(d => d.radius * d.radius)
+  .sort((a, b) => {
+    return (
+      (a.children ? 1 : -1) - (b.children ? 1 : -1) ||
+      (isNaN(a.data.distance) ? -1 : 1) - (isNaN(b.data.distance) ? -1 : 1) ||
+      a.data.distance - b.data.distance
+    );
+  });
 
 export default ({
   width,
@@ -33,31 +41,24 @@ export default ({
     top: 10,
     left: 30,
     right: 40,
-    bottom: 80
-  }
-}) => {
-  const data = hierarchy(pack)
-    .sum(d => d.radius * d.radius)
-    .sort((a, b) => {
-      return (
-        !a.children - !b.children ||
-        isNaN(a.data.distance) - isNaN(b.data.distance) ||
-        a.data.distance - b.data.distance
-      );
-    });
+    bottom: 80,
+  },
+}: ShowProvidedProps) => {
+  if (width < 10) return null;
 
   return (
     <svg width={width} height={height}>
       <rect width={width} height={height} rx={14} fill="#ffffff" />
-      <Pack root={data} size={[width * 2, height * 2]}>
-        {pack => {
-          const circles = pack.descendants().slice(2);
+
+      <Pack<Datum> root={root} size={[width * 2, height * 2]}>
+        {packData => {
+          const circles = packData.descendants().slice(2);
           return (
             <Group top={-height - margin.bottom} left={-width / 2}>
               {circles.map((circle, i) => {
                 return (
                   <circle
-                    key={\`cir-\${i}\`}
+                    key={\`cir-${i}\`}
                     r={circle.r}
                     cx={circle.x}
                     cy={circle.y}

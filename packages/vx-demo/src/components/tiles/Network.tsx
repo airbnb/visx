@@ -1,5 +1,6 @@
 import React from 'react';
 import { Graph } from '@vx/network';
+import { ShowProvidedProps } from '../../types';
 
 const nodes = [
   { x: 50, y: 20 },
@@ -17,7 +18,7 @@ const graph = {
   links,
 };
 
-export default ({ width, height }) => {
+export default ({ width, height }: ShowProvidedProps) => {
   if (width < 10) return <div />;
   return (
     <svg width={width} height={height}>
