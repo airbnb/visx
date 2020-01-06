@@ -1,9 +1,17 @@
 import React from 'react';
 import cx from 'classnames';
-import Meta from './meta';
-import Nav from './nav';
+import Meta from './Meta';
+import Nav from './Nav';
 
-export default ({ children, title, className }) => (
+export default ({
+  children,
+  title,
+  className,
+}: {
+  children: React.ReactNode;
+  title: string;
+  className?: string | boolean;
+}) => (
   <div className={cx('main', className)}>
     <Meta title={title} />
     <div className="nav-container">

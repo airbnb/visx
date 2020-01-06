@@ -1,11 +1,27 @@
 import React from 'react';
 import cx from 'classnames';
-import { withScreenSize } from '@vx/responsive';
-import Page from './page';
+import withScreenSize, {
+  WithScreenSizeProvidedProps,
+} from '@vx/responsive/lib/enhancers/withScreenSize';
+import Page from './Page';
 import Codeblock from './codeblocks/Codeblock';
 import Gallery from './gallery';
+import { MarginShape } from '../types';
 
-export default withScreenSize(
+type Component<P = {}> = React.FC<P> | React.ComponentClass<P>;
+
+type ShowProps = {
+  children?: string;
+  title: string;
+  component: Component<{ width: number; height: number; margin: MarginShape; events: boolean }>;
+  shadow?: boolean;
+  events?: boolean;
+  margin?: MarginShape;
+  description?: Component<{ width: number; height: number }>;
+  windowResizeDebounceTime?: number;
+};
+
+export default withScreenSize<ShowProps>(
   ({
     screenWidth,
     children,
@@ -15,7 +31,7 @@ export default withScreenSize(
     events = false,
     margin = { top: 0, left: 0, right: 0, bottom: 80 },
     description,
-  }) => {
+  }: ShowProps & WithScreenSizeProvidedProps) => {
     const padding = 40;
     let width = screenWidth - padding;
     if (width > 800) width = 800;
@@ -55,15 +71,14 @@ export default withScreenSize(
             </div>
           )}
         </div>
-        <div style={{ marginTop: '40px' }}>
-          <Gallery />
-        </div>
+        <Gallery />
         <style jsx>{`
           .container {
             display: flex;
             flex-direction: column;
             align-items: center;
             overflow: hidden;
+            margin-bottom: 40px;
           }
           .container h1 {
             margin-top: 15px;

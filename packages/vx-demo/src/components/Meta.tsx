@@ -10,15 +10,15 @@ if (typeof window !== 'undefined' && window.location.hostname !== 'localhost') {
   ReactGA.pageview(window.location.pathname);
 }
 
-Router.onRouteChangeStart = () => NProgress.start();
-Router.onRouteChangeComplete = () => {
+Router.events.on('routeChangeStart', () => NProgress.start());
+Router.events.on('routeChangeComplete', () => {
   NProgress.done();
   if (typeof window !== 'undefined' && window.location.hostname !== 'localhost') {
     ReactGA.set({ page: window.location.pathname });
     ReactGA.pageview(window.location.pathname);
   }
-};
-Router.onRouteChangeError = () => NProgress.done();
+});
+Router.events.on('routeChangeError', () => NProgress.done());
 
 export default ({ title = 'visualization components' }) => (
   <div>

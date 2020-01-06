@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { ParentSize } from '@vx/responsive';
 import drawData from './util/drawData';
 
-import Footer from './footer';
+import Footer from './Footer.tsx';
 
 import Lines from './tiles/lines';
 import Bars from './tiles/bars';
@@ -29,7 +29,7 @@ import Legends from './tiles/legends';
 import StatsPlot from './tiles/statsplot';
 import GeoMercator from './tiles/geo-mercator';
 import GeoCustom from './tiles/geo-custom';
-import Network from './tiles/network';
+import Network from './tiles/Network.tsx';
 import Streamgraph from './tiles/streamgraph';
 import Pack from './tiles/pack';
 import Treemap from './tiles/treemap';
