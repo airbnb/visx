@@ -27,7 +27,7 @@ function descending(a, b) {
 }
 
 const color = scaleOrdinal({
-  domain: [1, 2, 3, 4],
+  domain: [0, 1, 2, 3],
   range: ['url(#gpinkorange)', 'url(#gpurplered)', 'url(#gpurplegreen)', 'url(#gbluelime)'],
 });
 
@@ -71,7 +71,7 @@ export default ({ width, height, centerSize = 20, events = false }) => {
                         key={`ribbon-${i}`}
                         chord={chord}
                         radius={innerRadius}
-                        fill={color(i)}
+                        fill={color(chord.target.index)}
                         fillOpacity={0.75}
                         onClick={() => {
                           alert(`${JSON.stringify(chord)}`);

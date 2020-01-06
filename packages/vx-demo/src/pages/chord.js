@@ -35,7 +35,7 @@ const matrix = [
   [11975, 5871, 8916, 2868],
   [1951, 10048, 2060, 6171],
   [8010, 16145, 8090, 8045],
-  [1013, 990, 940, 6907]
+  [1013, 990, 940, 6907],
 ];
 
 function descending(a, b) {
@@ -43,11 +43,13 @@ function descending(a, b) {
 }
 
 const color = scaleOrdinal({
-  domain: [1, 2, 3, 4],
-  range: ['url(#gpinkorange)', 'url(#gpurplered)', 'url(#gpurplegreen)', 'url(#gbluelime)']
+  domain: [0, 1, 2, 3],
+  range: ['url(#gpinkorange)', 'url(#gpurplered)', 'url(#gpurplegreen)', 'url(#gbluelime)'],
 });
 
-export default ({ width, height, centerSize = 20 }) => {
+export default ({ width, height, centerSize = 20, events = false }) => {
+  if (width < 10) return null;
+
   const outerRadius = Math.min(width, height) * 0.5 - (centerSize + 10);
   const innerRadius = outerRadius - centerSize;
 
@@ -72,7 +74,8 @@ export default ({ width, height, centerSize = 20 }) => {
                         innerRadius={innerRadius}
                         outerRadius={outerRadius}
                         fill={color(i)}
-                        onClick={event => {
+                        onClick={() => {
+                          if (!events) return;
                           alert(\`\${JSON.stringify(group)}\`);
                         }}
                       />
@@ -84,9 +87,9 @@ export default ({ width, height, centerSize = 20 }) => {
                         key={\`ribbon-\${i}\`}
                         chord={chord}
                         radius={innerRadius}
-                        fill={color(i)}
+                        fill={color(chord.target.index)}
                         fillOpacity={0.75}
-                        onClick={event => {
+                        onClick={() => {
                           alert(\`\${JSON.stringify(chord)}\`);
                         }}
                       />
@@ -99,8 +102,6 @@ export default ({ width, height, centerSize = 20 }) => {
         </Group>
       </svg>
     </div>
-  );
-};
 `}
     </Show>
   );
