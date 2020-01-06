@@ -1,6 +1,6 @@
 import React from 'react';
-import Show from '../components/show';
-import Network from '../components/tiles/network';
+import Show from '../components/Show';
+import Network from '../components/tiles/Network';
 
 export default () => {
   return (
