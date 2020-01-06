@@ -1,7 +1,24 @@
 import React from 'react';
+import Show from '../components/show';
+import Patterns from '../components/tiles/patterns';
+
+export default () => {
+  return (
+    <Show
+      component={Patterns}
+      title="Patterns"
+      margin={{
+        top: 10,
+        left: 10,
+        right: 10,
+        bottom: 10,
+      }}
+    >
+      {`import React from 'react';
 import { Bar } from '@vx/shape';
 import { Group } from '@vx/group';
 import { PatternLines, PatternCircles, PatternWaves } from '@vx/pattern';
+import { ShowProvidedProps } from '../../types';
 
 export default ({
   width,
@@ -12,7 +29,7 @@ export default ({
     right: 0,
     bottom: 80,
   },
-}) => {
+}: ShowProvidedProps) => {
   const xMax = width - margin.left - margin.right;
   const yMax = height - margin.top - margin.bottom;
   const pWidth = xMax / 4;
@@ -55,7 +72,6 @@ export default ({
         fill="transparent"
         stroke="black"
         strokeWidth={1}
-        complement
       />
       <PatternWaves
         id="bWaves"
@@ -64,7 +80,6 @@ export default ({
         fill="transparent"
         stroke="black"
         strokeWidth={1}
-        complement
       />
       <Group top={margin.top} left={margin.left}>
         <Bar fill="url(#vLines)" height={pHeight} width={pWidth} x={0} y={0} rx={14} />
@@ -91,5 +106,8 @@ export default ({
         />
       </Group>
     </svg>
+  );
+};`}
+    </Show>
   );
 };

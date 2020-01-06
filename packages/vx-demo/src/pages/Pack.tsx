@@ -58,7 +58,7 @@ export default ({
               {circles.map((circle, i) => {
                 return (
                   <circle
-                    key={\`cir-${i}\`}
+                    key={\`cir-\${i}\`}
                     r={circle.r}
                     cx={circle.x}
                     cy={circle.y}
