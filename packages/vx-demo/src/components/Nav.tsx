@@ -2,6 +2,8 @@ import React from 'react';
 import Link from 'next/link';
 import GithubButton from 'react-github-button';
 
+import NavItem from './NavItem';
+
 export default () => (
   <div className="nav">
     <div className="nav-inner">
@@ -9,12 +11,12 @@ export default () => (
         <div className="logo" />
       </Link>
       <ul>
-        <Item href="/">Home</Item>
-        <Item href="/docs">Docs</Item>
-        <Item href="https://medium.com/vx-code" external>
+        <NavItem href="/">Home</NavItem>
+        <NavItem href="/docs">Docs</NavItem>
+        <NavItem href="https://medium.com/vx-code" external>
           Guides
-        </Item>
-        <Item href="/gallery">Gallery</Item>
+        </NavItem>
+        <NavItem href="/gallery">Gallery</NavItem>
       </ul>
 
       <GithubButton type="stargazers" namespace="hshoff" repo="vx" />
@@ -74,43 +76,4 @@ export default () => (
       }
     `}</style>
   </div>
-);
-
-const Item = ({ href, children, className, external }) => (
-  <li className="Item">
-    {external ? (
-      <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
-        {children}
-      </a>
-    ) : (
-      <Link href={href}>
-        <a className={className}>{children}</a>
-      </Link>
-    )}
-
-    <style jsx>{`
-      .Item a {
-        display: inline-block;
-        padding: 10px;
-        text-decoration: none;
-        color: #fc2e1c;
-        font-weight: 600;
-      }
-      .Item .github {
-        font-weight: 600;
-        color: #fc2e1c;
-      }
-
-      @media (max-width: 600px) {
-        .Item {
-          display: block;
-          float: left;
-        }
-
-        .Item .github {
-          margin-top: 0;
-        }
-      }
-    `}</style>
-  </li>
 );

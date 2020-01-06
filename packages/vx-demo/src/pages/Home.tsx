@@ -1,6 +1,6 @@
 import React from 'react';
-import Page from '../components/page';
-import Footer from '../components/footer';
+import Page from '../components/Page';
+import Footer from '../components/Footer';
 
 export default () => (
   <Page>
@@ -8,7 +8,12 @@ export default () => (
       <div className="hero">
         <h1>React + D3 = VX</h1>
         <div className="btn-container">
-          <a className="btn" href="https://github.com/hshoff/vx">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn"
+            href="https://github.com/hshoff/vx"
+          >
             View on Github
           </a>
         </div>

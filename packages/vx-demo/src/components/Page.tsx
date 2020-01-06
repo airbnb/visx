@@ -9,7 +9,7 @@ export default ({
   className,
 }: {
   children: React.ReactNode;
-  title: string;
+  title?: string;
   className?: string | boolean;
 }) => (
   <div className={cx('main', className)}>
