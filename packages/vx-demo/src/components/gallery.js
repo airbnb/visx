@@ -24,7 +24,7 @@ import LineRadial from './tiles/lineradial';
 import Pies from './tiles/pie';
 import Trees from './tiles/tree';
 import Cluster from './tiles/dendrogram';
-import Voronoi from './tiles/voronoi';
+import Voronoi from './tiles/Voronoi.tsx';
 import Legends from './tiles/legends';
 import StatsPlot from './tiles/statsplot';
 import GeoMercator from './tiles/geo-mercator';
