@@ -1,0 +1,139 @@
+import React from 'react';
+import Show from '../components/Show';
+import VoronoiChart from '../components/tiles/Voronoi';
+
+export default () => {
+  return (
+    <Show
+      events
+      margin={{
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+      }}
+      component={VoronoiChart}
+      title="Voronoi"
+    >
+      {`import React, { useState, useMemo, useRef } from 'react';
+import { Group } from '@vx/group';
+import { GradientOrangeRed, GradientPinkRed } from '@vx/gradient';
+import { RectClipPath } from '@vx/clip-path';
+import { voronoi, VoronoiPolygon } from '@vx/voronoi';
+import { localPoint } from '@vx/event';
+import { ShowProvidedProps } from '../../types';
+
+type Datum = {
+  x: number;
+  y: number;
+  id: string;
+};
+
+const data: Datum[] = new Array(150).fill(null).map(() => ({
+  x: Math.random(),
+  y: Math.random(),
+  id: Math.random()
+    .toString(36)
+    .slice(2),
+}));
+
+const neighborRadius = 75;
+
+export default ({
+  width,
+  height,
+  margin = {
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 76,
+  },
+}: ShowProvidedProps) => {
+  if (width < 10) return <div />;
+
+  const innerWidth = width - margin.left - margin.right;
+  const innerHeight = height - margin.top - margin.bottom;
+
+  const voronoiLayout = useMemo(
+    () =>
+      voronoi<Datum>({
+        x: d => d.x * innerWidth,
+        y: d => d.y * innerHeight,
+        width: innerWidth,
+        height: innerHeight,
+      })(data),
+    [innerWidth, innerHeight],
+  );
+
+  const polygons = voronoiLayout.polygons();
+  const svgRef = useRef<SVGSVGElement>(null);
+  const [hoveredId, setHoveredId] = useState<string>(null);
+  const [neighborIds, setNeighborIds] = useState<Set<string>>(new Set());
+
+  return (
+    <svg width={width} height={height} ref={svgRef}>
+      <GradientOrangeRed id="voronoi_orange_red" />
+      <GradientPinkRed id="voronoi_pink_red" />
+      <RectClipPath id="voronoi_clip" width={innerWidth} height={innerHeight} rx={14} />
+      <Group
+        top={margin.top}
+        left={margin.left}
+        clipPath="url(#voronoi_clip)"
+        onMouseMove={event => {
+          if (!svgRef.current) return;
+
+          // find the nearest polygon to the current mouse position
+          const { x, y } = localPoint(svgRef.current, event);
+          const closest = voronoiLayout.find(x, y, neighborRadius);
+
+          // find neighboring polygons to hightlight
+          if (closest && closest.data.id !== hoveredId) {
+            const neighbors = new Set<string>();
+            const cell = voronoiLayout.cells[closest.index];
+            cell.halfedges.forEach(index => {
+              const edge = voronoiLayout.edges[index];
+              const { left, right } = edge;
+              if (left && left !== closest) neighbors.add(left.data.id);
+              else if (right && right !== closest) neighbors.add(right.data.id);
+            });
+
+            setNeighborIds(neighbors);
+            setHoveredId(closest.data.id);
+          }
+        }}
+        onMouseLeave={() => {
+          setHoveredId(null);
+          setNeighborIds(null);
+        }}
+      >
+        {polygons.map(polygon => (
+          <VoronoiPolygon
+            key={\`polygon-\${polygon.data.id}\`}
+            polygon={polygon}
+            fill={
+              hoveredId && (polygon.data.id === hoveredId || neighborIds.has(polygon.data.id))
+                ? 'url(#voronoi_orange_red)'
+                : 'url(#voronoi_pink_red)'
+            }
+            stroke="#fff"
+            strokeWidth={1}
+          />
+        ))}
+        {data.map(d => (
+          <circle
+            key={\`circle-\${d.id}\`}
+            r={2}
+            cx={d.x * innerWidth}
+            cy={d.y * innerHeight}
+            fill="#ffffff"
+            fillOpacity={0.8}
+          />
+        ))}
+      </Group>
+    </svg>
+  );
+};
+`}
+    </Show>
+  );
+};
