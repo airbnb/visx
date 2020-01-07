@@ -50,7 +50,7 @@ export default ({
 
   const polygons = voronoiLayout.polygons();
   const svgRef = useRef<SVGSVGElement>(null);
-  const [hoveredId, setHoveredId] = useState<string>(null);
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [neighborIds, setNeighborIds] = useState<Set<string>>(new Set());
 
   return (
@@ -66,13 +66,16 @@ export default ({
           if (!svgRef.current) return;
 
           // find the nearest polygon to the current mouse position
-          const { x, y } = localPoint(svgRef.current, event);
-          const closest = voronoiLayout.find(x, y, neighborRadius);
+          const point = localPoint(svgRef.current, event);
+          if (!point) return;
 
+          const closest = voronoiLayout.find(point.x, point.y, neighborRadius);
           // find neighboring polygons to hightlight
           if (closest && closest.data.id !== hoveredId) {
             const neighbors = new Set<string>();
             const cell = voronoiLayout.cells[closest.index];
+            if (!cell) return;
+
             cell.halfedges.forEach(index => {
               const edge = voronoiLayout.edges[index];
               const { left, right } = edge;
@@ -86,7 +89,7 @@ export default ({
         }}
         onMouseLeave={() => {
           setHoveredId(null);
-          setNeighborIds(null);
+          setNeighborIds(new Set());
         }}
       >
         {polygons.map(polygon => (
