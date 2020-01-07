@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text } from '@vx/text';
 import Show from '../components/Show.tsx';
-import Codeblock from '../components/codeblocks/Codeblock';
+import Codeblock from '../components/codeblocks/Codeblock.tsx';
 
 class TextDemo extends Component {
   state = {

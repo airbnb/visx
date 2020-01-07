@@ -9,7 +9,7 @@ import Footer from './Footer.tsx';
 import Lines from './tiles/lines';
 import Bars from './tiles/bars';
 import Dots from './tiles/dots';
-import Patterns from './tiles/patterns';
+import Patterns from './tiles/Patterns.tsx';
 import Gradients from './tiles/gradients';
 import Area from './tiles/area';
 import Stacked from './tiles/stacked';
