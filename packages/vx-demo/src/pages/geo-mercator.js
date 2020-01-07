@@ -1,5 +1,5 @@
 import React from 'react';
-import Show from '../components/show';
+import Show from '../components/Show.tsx';
 import GeoMercator from '../components/tiles/geo-mercator';
 
 export default () => {

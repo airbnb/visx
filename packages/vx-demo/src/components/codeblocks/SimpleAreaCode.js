@@ -1,5 +1,5 @@
 import React from 'react';
-import Codeblock from './Codeblock';
+import Codeblock from './Codeblock.tsx';
 
 export default () => {
   return (

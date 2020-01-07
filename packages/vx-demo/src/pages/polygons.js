@@ -1,5 +1,5 @@
 import React from 'react';
-import Show from '../components/show';
+import Show from '../components/Show.tsx';
 import Polygons from '../components/tiles/polygons';
 
 export default () => (

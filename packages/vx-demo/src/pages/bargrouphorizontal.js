@@ -1,5 +1,5 @@
 import React from 'react';
-import Show from '../components/show';
+import Show from '../components/Show.tsx';
 import BarGroupHorizontal from '../components/tiles/bargrouphorizontal';
 
 export default () => {

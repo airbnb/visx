@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text } from '@vx/text';
-import Show from '../components/show';
+import Show from '../components/Show.tsx';
 import Codeblock from '../components/codeblocks/Codeblock';
 
 class TextDemo extends Component {

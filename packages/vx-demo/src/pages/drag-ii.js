@@ -1,5 +1,5 @@
 import React from 'react';
-import Show from '../components/show';
+import Show from '../components/Show.tsx';
 import DragII from '../components/tiles/drag-ii';
 
 export default () => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import Dendrogram from '../components/tiles/dendrogram';
-import Show from '../components/show';
+import Show from '../components/Show.tsx';
 
 export default () => {
   return (

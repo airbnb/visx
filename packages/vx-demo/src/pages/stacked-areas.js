@@ -1,5 +1,5 @@
 import React from 'react';
-import Show from '../components/show';
+import Show from '../components/Show.tsx';
 import StackedAreas from '../components/tiles/stacked';
 
 export default () => {
