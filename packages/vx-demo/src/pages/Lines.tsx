@@ -1,6 +1,6 @@
 import React from 'react';
-import Show from '../components/Show.tsx';
-import Lines from '../components/tiles/lines';
+import Show from '../components/Show';
+import Lines from '../components/tiles/Lines';
 
 export default () => {
   return (
