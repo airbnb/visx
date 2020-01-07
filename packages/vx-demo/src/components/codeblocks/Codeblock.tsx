@@ -1,26 +1,27 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import Prism from 'prismjs';
+// @ts-ignore
 import 'prismjs/components/prism-jsx.min';
 
-const Lines = ({ lines }) => {
+const Lines = ({ lines }: { lines: number[] }) => {
   const size = lines.length;
   return (
     <span aria-hidden="true" className="line-numbers-rows">
-      {lines.map((l, i) => {
+      {lines.map((_, i) => {
         return <span key={`line-number-${size}-${i}`} />;
       })}
     </span>
   );
 };
 
-export default ({ children }) => {
+export default ({ children }: { children: string }) => {
   const match = children.match(/\n(?!$)/g);
   const linesNum = match ? match.length + 1 : 1;
-  const lines = new Array(linesNum + 1).fill(1);
+  const lines: number[] = new Array(linesNum + 1).fill(1);
   const html = [
     ReactDOMServer.renderToString(<Lines lines={lines} />),
-    Prism.highlight(children, Prism.languages.jsx),
+    Prism.highlight(children, Prism.languages.jsx, 'jsx'),
   ].join('');
 
   return (

@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 
 type NavItemProps = {
-  href?: string;
+  href: string;
   className?: string;
   external?: boolean;
   children: React.ReactNode;

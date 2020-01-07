@@ -1,6 +1,6 @@
 import React from 'react';
-import Show from '../components/show';
-import Patterns from '../components/tiles/patterns';
+import Show from '../components/Show';
+import Patterns from '../components/tiles/Patterns';
 
 export default () => {
   return (

@@ -16,6 +16,8 @@
   "author": "@hshoff",
   "license": "MIT",
   "dependencies": {
+    "@types/nprogress": "^0.2.0",
+    "@types/prismjs": "^1.16.0",
     "@vx/annotation": "0.0.192",
     "@vx/axis": "0.0.192",
     "@vx/brush": "0.0.192",

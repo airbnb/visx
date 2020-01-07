@@ -5,6 +5,7 @@ import withScreenSize, {
 } from '@vx/responsive/lib/enhancers/withScreenSize';
 import Page from './Page';
 import Codeblock from './codeblocks/Codeblock';
+// @ts-ignore @TODO when all examples are converted
 import Gallery from './gallery';
 import { MarginShape, ShowProvidedProps } from '../types';
 
@@ -21,7 +22,9 @@ type ShowProps = {
   windowResizeDebounceTime?: number;
 };
 
-export default withScreenSize<ShowProps>(
+const padding = 40;
+
+export default withScreenSize<ShowProps & WithScreenSizeProvidedProps>(
   ({
     screenWidth,
     children,
@@ -32,8 +35,7 @@ export default withScreenSize<ShowProps>(
     margin = { top: 0, left: 0, right: 0, bottom: 80 },
     description,
   }: ShowProps & WithScreenSizeProvidedProps) => {
-    const padding = 40;
-    let width = screenWidth - padding;
+    let width = (screenWidth || 0) - padding;
     if (width > 800) width = 800;
     const height = width * 0.6;
 

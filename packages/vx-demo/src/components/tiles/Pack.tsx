@@ -19,13 +19,13 @@ const colorScale = scaleQuantize({
 
 const root = hierarchy<Datum>(pack)
   .sum(d => d.radius * d.radius)
-  .sort((a, b) => {
-    return (
+  .sort(
+    (a, b) =>
+      (a && a.data ? 1 : -1) - (b && b.data ? 1 : -1) ||
       (a.children ? 1 : -1) - (b.children ? 1 : -1) ||
-      (isNaN(a.data.distance) ? -1 : 1) - (isNaN(b.data.distance) ? -1 : 1) ||
-      a.data.distance - b.data.distance
-    );
-  });
+      (a.data.distance == null ? -1 : 1) - (b.data.distance == null ? -1 : 1) ||
+      a.data.distance! - b.data.distance!,
+  );
 
 export default ({
   width,
