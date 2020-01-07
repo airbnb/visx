@@ -12,6 +12,7 @@ import { curveMonotoneX } from '@vx/curve';
 import generateDateValue, { DateValue } from '@vx/mock-data/lib/generators/genDateValue';
 import { scaleTime, scaleLinear } from '@vx/scale';
 import { extent, max } from 'd3-array';
+import { ShowProvidedProps } from '../../types';
 
 const series = new Array(12).fill(null).map(_ => generateDateValue(25));
 const allData = series.reduce((rec, d) => rec.concat(d), []);
@@ -20,7 +21,7 @@ const allData = series.reduce((rec, d) => rec.concat(d), []);
 const getX = (d: DateValue) => d.date;
 const getY = (d: DateValue) => d.value;
 
-export default ({ width, height }) => {
+export default ({ width, height }: ShowProvidedProps) => {
   // bounds
   const xMax = width;
   const yMax = height / 8;
