@@ -20,6 +20,7 @@ import { Group } from '@vx/group';
 import { Chord, Ribbon } from '@vx/chord';
 import { scaleOrdinal } from '@vx/scale';
 import { LinearGradient } from '@vx/gradient';
+import { ShowProvidedProps } from '../../types';
 
 const pink = '#ff2fab';
 const orange = '#ffc62e';
@@ -38,7 +39,7 @@ const matrix = [
   [1013, 990, 940, 6907],
 ];
 
-function descending(a, b) {
+function descending(a: number, b: number): number {
   return b < a ? -1 : b > a ? 1 : b >= a ? 0 : NaN;
 }
 
@@ -47,7 +48,12 @@ const color = scaleOrdinal<number, string>({
   range: ['url(#gpinkorange)', 'url(#gpurplered)', 'url(#gpurplegreen)', 'url(#gbluelime)'],
 });
 
-export default ({ width, height, centerSize = 20, events = false }) => {
+export default ({
+  width,
+  height,
+  centerSize = 20,
+  events = false,
+}: ShowProvidedProps & { centerSize?: number }) => {
   if (width < 10) return null;
 
   const outerRadius = Math.min(width, height) * 0.5 - (centerSize + 10);
@@ -125,7 +131,8 @@ export default ({ width, height, centerSize = 20, events = false }) => {
       \`}</style>
     </div>
   );
-};`}
+};
+`}
     </Show>
   );
 };
