@@ -9,24 +9,16 @@ export default () => {
 import { Group } from '@vx/group';
 import { LinePath } from '@vx/shape';
 import { curveMonotoneX } from '@vx/curve';
-import { genDateValue } from '@vx/mock-data';
+import generateDateValue, { DateValue } from '@vx/mock-data/lib/generators/genDateValue';
 import { scaleTime, scaleLinear } from '@vx/scale';
 import { extent, max } from 'd3-array';
 
-function genLines(num) {
-  return new Array(num).fill(1).map(() => {
-    return genDateValue(25);
-  });
-}
-
-const series = genLines(12);
-const data = series.reduce((rec, d) => {
-  return rec.concat(d);
-}, []);
+const series = new Array(12).fill(null).map(_ => generateDateValue(25));
+const allData = series.reduce((rec, d) => rec.concat(d), []);
 
 // accessors
-const x = d => d.date;
-const y = d => d.value;
+const getX = (d: DateValue) => d.date;
+const getY = (d: DateValue) => d.value;
 
 export default ({ width, height }) => {
   // bounds
@@ -36,35 +28,32 @@ export default ({ width, height }) => {
   // scales
   const xScale = scaleTime({
     range: [0, xMax],
-    domain: extent(data, x)
+    domain: extent(allData, getX),
   });
   const yScale = scaleLinear({
     range: [yMax, 0],
-    domain: [0, max(data, y)]
+    domain: [0, max(allData, getY)],
   });
 
   return (
     <svg width={width} height={height}>
       <rect x={0} y={0} width={width} height={height} fill="#242424" rx={14} />
       {xMax > 8 &&
-        series.map((d, i) => {
-          return (
-            <Group key={\`lines-\${i}\`} top={i * yMax / 2}>
-              <LinePath
-                data={d}
-                x={d => xScale(x(d))}
-                y={d => yScale(y(d))}
-                stroke={'#ffffff'}
-                strokeWidth={1}
-                curve={i % 2 == 0 ? curveMonotoneX : undefined}
-              />
-            </Group>
-          );
-        })}
+        series.map((lineData, i) => (
+          <Group key={\`lines-\${i}\`} top={(i * yMax) / 2}>
+            <LinePath<DateValue>
+              data={lineData}
+              x={d => xScale(getX(d))}
+              y={d => yScale(getY(d))}
+              stroke="#ffffff"
+              strokeWidth={1}
+              curve={i % 2 === 0 ? curveMonotoneX : undefined}
+            />
+          </Group>
+        ))}
     </svg>
   );
-};
-`}
+};`}
     </Show>
   );
 };
