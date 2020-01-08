@@ -22,11 +22,11 @@ export default ({ width, height }: ShowProvidedProps) => {
   // scales
   const xScale = scaleTime({
     range: [0, xMax],
-    domain: extent(allData, getX),
+    domain: extent(allData, getX) as Date[],
   });
   const yScale = scaleLinear({
     range: [yMax, 0],
-    domain: [0, max(allData, getY)],
+    domain: [0, max(allData, getY) as number],
   });
 
   return (
