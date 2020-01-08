@@ -8,6 +8,6 @@ export interface MarginShape {
 export type ShowProvidedProps = {
   width: number;
   height: number;
-  margin: MarginShape;
-  events: boolean;
+  margin?: MarginShape;
+  events?: boolean;
 };
