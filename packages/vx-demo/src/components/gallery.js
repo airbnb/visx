@@ -19,7 +19,7 @@ import BarGroup from './tiles/bargroup';
 import BarGroupHorizontal from './tiles/bargrouphorizontal';
 import BarStack from './tiles/barstack';
 import BarStackHorizontal from './tiles/barstackhorizontal';
-import Heatmap from './tiles/heatmap';
+import Heatmap from './tiles/Heatmap.tsx';
 import LineRadial from './tiles/lineradial';
 import Pies from './tiles/pie';
 import Trees from './tiles/tree';
