@@ -56,7 +56,7 @@ export default ({
               const hasSpaceForLabel = endAngle - startAngle >= 0.1;
               return (
                 <g key={`browser-${arc.data.label}-${i}`}>
-                  <path d={pie.path(arc)} fill={white} fillOpacity={opacity} />
+                  <path d={pie.path(arc) || ''} fill={white} fillOpacity={opacity} />
                   {hasSpaceForLabel && (
                     <text
                       fill={white}
@@ -85,8 +85,8 @@ export default ({
               const opacity = 1 / (i + 2);
               const [centroidX, centroidY] = pie.path.centroid(arc);
               return (
-                <g key={`letters-${arc.data.label}-${i}`}>
-                  <path d={pie.path(arc)} fill={black} fillOpacity={opacity} />
+                <g key={`letters-${arc.data.letter}-${i}`}>
+                  <path d={pie.path(arc) || ''} fill={black} fillOpacity={opacity} />
                   <text
                     fill="white"
                     textAnchor="middle"
