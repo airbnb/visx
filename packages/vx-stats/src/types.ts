@@ -47,7 +47,6 @@ export type ChildRenderProps = {
 export interface GenericScale<ScaleInput> {
   (input: ScaleInput): number;
   range(): number[] | [number, number];
-  range(range?: number[] | [number, number]): this;
 }
 
 export type SharedProps = {
