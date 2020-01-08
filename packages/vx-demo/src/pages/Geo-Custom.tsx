@@ -24,7 +24,7 @@ import { ShowProvidedProps } from '../../types';
 
 interface FeatureShape {
   type: 'Feature';
-  geometry: { coordinates: [number, number][][][]; type: 'MultiPolygon' };
+  geometry: { coordinates: [number, number][][]; type: 'Polygon' };
   properties: { name: string };
   id: string;
 }
@@ -32,7 +32,11 @@ interface FeatureShape {
 const bg = '#252b7e';
 const purple = '#201c4e';
 
-const world: { features: FeatureShape[] } = topojson.feature(topology, topology.objects.units);
+const world: { type: 'FeatureCollection'; features: FeatureShape[] } = topojson.feature(
+  topology,
+  topology.objects.units,
+);
+
 const color = scaleQuantize({
   domain: [
     Math.min(...world.features.map(f => f.geometry.coordinates.length)),

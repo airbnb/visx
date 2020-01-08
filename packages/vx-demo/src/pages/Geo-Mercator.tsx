@@ -14,14 +14,18 @@ import { ShowProvidedProps } from '../../types';
 
 interface FeatureShape {
   type: 'Feature';
-  geometry: { coordinates: [number, number][][][]; type: 'MultiPolygon' };
+  geometry: { coordinates: [number, number][][]; type: 'Polygon' };
   properties: { name: string };
   id: string;
 }
 
 const bg = '#f9f7e8';
 
-const world: { features: FeatureShape[] } = topojson.feature(topology, topology.objects.units);
+const world: { type: 'FeatureCollection'; features: FeatureShape[] } = topojson.feature(
+  topology,
+  topology.objects.units,
+);
+
 const color = scaleQuantize({
   domain: [
     Math.min(...world.features.map(f => f.geometry.coordinates.length)),

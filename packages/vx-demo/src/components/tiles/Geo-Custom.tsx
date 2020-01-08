@@ -18,16 +18,20 @@ import { ShowProvidedProps } from '../../types';
 
 interface FeatureShape {
   type: 'Feature';
-  geometry: { coordinates: [number, number][][][]; type: 'MultiPolygon' };
-  properties: { name: string };
   id: string;
+  geometry: { coordinates: [number, number][][]; type: 'Polygon' };
+  properties: { name: string };
 }
 
 const bg = '#252b7e';
 const purple = '#201c4e';
 
-// @ts-ignore
-const world: { features: FeatureShape[] } = topojson.feature(topology, topology.objects.units);
+const world: { type: 'FeatureCollection'; features: FeatureShape[] } = topojson.feature(
+  // @ts-ignore
+  topology,
+  topology.objects.units,
+);
+
 const color = scaleQuantize({
   domain: [
     Math.min(...world.features.map(f => f.geometry.coordinates.length)),
@@ -50,7 +54,7 @@ const color = scaleQuantize({
 });
 
 export default function GeoCustom({ width, height, events = false }: ShowProvidedProps) {
-  const [projection, setProjection] = useState<Projection>(geoConicConformal);
+  const [projection, setProjection] = useState<Projection>(() => geoConicConformal);
   const [scaleFactor, setScaleFactor] = useState<number>(630);
 
   if (width < 10) return <div />;
@@ -94,20 +98,18 @@ export default function GeoCustom({ width, height, events = false }: ShowProvide
           <select
             onChange={event => {
               const { value } = event.target;
-              switch (value) {
-                case '1':
-                  return setProjection(geoConicConformal);
-                case '2':
-                  return setProjection(geoTransverseMercator);
-                case '3':
-                  return setProjection(geoNaturalEarth1);
-                case '4':
-                  return setProjection(geoOrthographic);
-                case '5':
-                  return setProjection(geoStereographic);
-                case '6':
-                default:
-                  return setProjection(geoConicEquidistant);
+              if (value === '1') {
+                setProjection(() => geoConicConformal);
+              } else if (value === '2') {
+                setProjection(() => geoTransverseMercator);
+              } else if (value === '3') {
+                setProjection(() => geoNaturalEarth1);
+              } else if (value === '4') {
+                setProjection(() => geoOrthographic);
+              } else if (value === '5') {
+                setProjection(() => geoStereographic);
+              } else if (value === '6') {
+                setProjection(() => geoConicEquidistant);
               }
             }}
           >

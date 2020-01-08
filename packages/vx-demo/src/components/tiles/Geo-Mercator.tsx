@@ -8,15 +8,18 @@ import { ShowProvidedProps } from '../../types';
 
 interface FeatureShape {
   type: 'Feature';
-  geometry: { coordinates: [number, number][][][]; type: 'MultiPolygon' };
-  properties: { name: string };
   id: string;
+  geometry: { coordinates: [number, number][][]; type: 'Polygon' };
+  properties: { name: string };
 }
 
 const bg = '#f9f7e8';
 
-// @ts-ignore
-const world: { features: FeatureShape[] } = topojson.feature(topology, topology.objects.units);
+const world: { type: 'FeatureCollection'; features: FeatureShape[] } = topojson.feature(
+  // @ts-ignore
+  topology,
+  topology.objects.units,
+);
 const color = scaleQuantize({
   domain: [
     Math.min(...world.features.map(f => f.geometry.coordinates.length)),
@@ -31,6 +34,7 @@ export default ({ width, height, events = false }: ShowProvidedProps) => {
   const centerX = width / 2;
   const centerY = height / 2;
   const scale = (width / 630) * 100;
+  console.warn({ width, height });
 
   return (
     <svg width={width} height={height}>
@@ -40,25 +44,23 @@ export default ({ width, height, events = false }: ShowProvidedProps) => {
         scale={scale}
         translate={[centerX, centerY + 50]}
       >
-        {mercator => {
-          return (
-            <g>
-              <Graticule graticule={g => mercator.path(g) || ''} stroke="rgba(33,33,33,0.05)" />
-              {mercator.features.map(({ feature, path }, i) => (
-                <path
-                  key={`map-feature-${i}`}
-                  d={path || ''}
-                  fill={color(feature.geometry.coordinates.length)}
-                  stroke={bg}
-                  strokeWidth={0.5}
-                  onClick={() => {
-                    if (events) alert(`Clicked: ${feature.properties.name} (${feature.id})`);
-                  }}
-                />
-              ))}
-            </g>
-          );
-        }}
+        {mercator => (
+          <g>
+            <Graticule graticule={g => mercator.path(g) || ''} stroke="rgba(33,33,33,0.05)" />
+            {mercator.features.map(({ feature, path }, i) => (
+              <path
+                key={`map-feature-${i}`}
+                d={path || ''}
+                fill={color(feature.geometry.coordinates.length)}
+                stroke={bg}
+                strokeWidth={0.5}
+                onClick={() => {
+                  if (events) alert(`Clicked: ${feature.properties.name} (${feature.id})`);
+                }}
+              />
+            ))}
+          </g>
+        )}
       </Mercator>
     </svg>
   );
