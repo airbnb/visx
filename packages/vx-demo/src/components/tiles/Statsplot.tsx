@@ -29,7 +29,7 @@ interface TooltipData {
   thirdQuartile?: number;
 }
 
-export default withTooltip<ShowProvidedProps & WithTooltipProvidedProps<TooltipData>, TooltipData>(
+export default withTooltip<ShowProvidedProps, TooltipData>(
   ({
     width,
     height,
@@ -53,7 +53,10 @@ export default withTooltip<ShowProvidedProps & WithTooltipProvidedProps<TooltipD
       padding: 0.4,
     });
 
-    const values = data.reduce((r, { boxPlot: e }) => r.push(e.min, e.max) && r, []);
+    const values = data.reduce((allValues, { boxPlot }) => {
+      allValues.push(boxPlot.min, boxPlot.max);
+      return allValues;
+    }, [] as number[]);
     const minYValue = Math.min(...values);
     const maxYValue = Math.max(...values);
 
@@ -76,7 +79,7 @@ export default withTooltip<ShowProvidedProps & WithTooltipProvidedProps<TooltipD
             width={3}
             stroke="#ced4da"
             strokeWidth={1}
-            fill="rgba(0,0,0,0.3)"
+            // fill="rgba(0,0,0,0.3)"
             orientation={['horizontal']}
           />
           <Group top={40}>
@@ -85,7 +88,7 @@ export default withTooltip<ShowProvidedProps & WithTooltipProvidedProps<TooltipD
                 <ViolinPlot
                   data={d.binData}
                   stroke="#dee2e6"
-                  left={xScale(x(d))}
+                  left={xScale(x(d))!}
                   width={constrainedWidth}
                   valueScale={yScale}
                   fill="url(#hViolinLines)"
@@ -93,7 +96,7 @@ export default withTooltip<ShowProvidedProps & WithTooltipProvidedProps<TooltipD
                 <BoxPlot
                   min={min(d)}
                   max={max(d)}
-                  left={xScale(x(d)) + 0.3 * constrainedWidth}
+                  left={xScale(x(d))! + 0.3 * constrainedWidth}
                   firstQuartile={firstQuartile(d)}
                   thirdQuartile={thirdQuartile(d)}
                   median={median(d)}
@@ -108,7 +111,7 @@ export default withTooltip<ShowProvidedProps & WithTooltipProvidedProps<TooltipD
                     onMouseOver: () => {
                       showTooltip({
                         tooltipTop: yScale(min(d)) + 40,
-                        tooltipLeft: xScale(x(d)) + constrainedWidth + 5,
+                        tooltipLeft: xScale(x(d))! + constrainedWidth + 5,
                         tooltipData: {
                           min: min(d),
                           name: x(d),
@@ -123,7 +126,7 @@ export default withTooltip<ShowProvidedProps & WithTooltipProvidedProps<TooltipD
                     onMouseOver: () => {
                       showTooltip({
                         tooltipTop: yScale(max(d)) + 40,
-                        tooltipLeft: xScale(x(d)) + constrainedWidth + 5,
+                        tooltipLeft: xScale(x(d))! + constrainedWidth + 5,
                         tooltipData: {
                           max: max(d),
                           name: x(d),
@@ -138,7 +141,7 @@ export default withTooltip<ShowProvidedProps & WithTooltipProvidedProps<TooltipD
                     onMouseOver: () => {
                       showTooltip({
                         tooltipTop: yScale(median(d)) + 40,
-                        tooltipLeft: xScale(x(d)) + constrainedWidth + 5,
+                        tooltipLeft: xScale(x(d))! + constrainedWidth + 5,
                         tooltipData: {
                           ...d.boxPlot,
                           name: x(d),
@@ -156,7 +159,7 @@ export default withTooltip<ShowProvidedProps & WithTooltipProvidedProps<TooltipD
                     onMouseOver: () => {
                       showTooltip({
                         tooltipTop: yScale(median(d)) + 40,
-                        tooltipLeft: xScale(x(d)) + constrainedWidth + 5,
+                        tooltipLeft: xScale(x(d))! + constrainedWidth + 5,
                         tooltipData: {
                           median: median(d),
                           name: x(d),
@@ -172,6 +175,7 @@ export default withTooltip<ShowProvidedProps & WithTooltipProvidedProps<TooltipD
             ))}
           </Group>
         </svg>
+
         {tooltipOpen && tooltipData && (
           <Tooltip
             top={tooltipTop}
