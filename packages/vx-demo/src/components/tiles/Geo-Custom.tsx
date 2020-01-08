@@ -12,14 +12,22 @@ import {
   geoStereographic,
 } from 'd3-geo';
 
+// @ts-ignore
 import topology from '../../static/vx-geo/world-topo.json';
 import { ShowProvidedProps } from '../../types';
+
+interface FeatureShape {
+  type: 'Feature';
+  geometry: { coordinates: [number, number][][][]; type: 'MultiPolygon' };
+  properties: { name: string };
+  id: string;
+}
 
 const bg = '#252b7e';
 const purple = '#201c4e';
 
 // @ts-ignore
-const world = topojson.feature(topology, topology.objects.units);
+const world: { features: FeatureShape[] } = topojson.feature(topology, topology.objects.units);
 const color = scaleQuantize({
   domain: [
     Math.min(...world.features.map(f => f.geometry.coordinates.length)),
@@ -55,12 +63,7 @@ export default function GeoCustom({ width, height, events = false }: ShowProvide
     <div>
       <svg width={width} height={height}>
         <rect x={0} y={0} width={width} height={height} fill={bg} rx={14} />
-        <CustomProjection<{
-          type: 'Feature';
-          geometry: { coordinates: [number, number][][][]; type: 'MultiPolygon' };
-          properties: { name: string };
-          id: string;
-        }>
+        <CustomProjection<FeatureShape>
           projection={projection}
           data={world.features}
           scale={scale}
@@ -68,11 +71,11 @@ export default function GeoCustom({ width, height, events = false }: ShowProvide
         >
           {customProjection => (
             <g>
-              <Graticule graticule={g => customProjection.path(g)} stroke={purple} />
+              <Graticule graticule={g => customProjection.path(g) || ''} stroke={purple} />
               {customProjection.features.map(({ feature, path }, i) => (
                 <path
                   key={`map-feature-${i}`}
-                  d={path}
+                  d={path || ''}
                   fill={color(feature.geometry.coordinates.length)}
                   stroke={bg}
                   strokeWidth={0.5}
