@@ -16,3 +16,7 @@ export interface GenericCell<ColumnDatum, BinDatum> {
   /** Color returned for this BinDatum's count. */
   color: string | undefined;
 }
+
+export type ColorScale = (count: number | { valueOf(): number }) => string | undefined;
+
+export type OpacityScale = (count: number | { valueOf(): number }) => number | undefined;
