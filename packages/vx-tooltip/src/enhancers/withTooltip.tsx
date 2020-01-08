@@ -1,6 +1,6 @@
 import React from 'react';
 
-export type WithTooltipProvidedProps<TooltipData> = {
+export type WithTooltipProvidedProps<TooltipData = {}> = {
   tooltipOpen: boolean;
   tooltipLeft?: number;
   tooltipTop?: number;
@@ -18,11 +18,8 @@ type ShowTooltipArgs<TooltipData> = Omit<WithTooltipState<TooltipData>, 'tooltip
 type UpdateTooltipArgs<TooltipData> = WithTooltipState<TooltipData>;
 type WithTooltipContainerProps = { style: React.CSSProperties };
 
-export default function withTooltip<
-  Props extends WithTooltipProvidedProps<TooltipData>,
-  TooltipData
->(
-  BaseComponent: React.ComponentType<Props>,
+export default function withTooltip<BaseComponentProps = {}, TooltipData = {}>(
+  BaseComponent: React.ComponentType<BaseComponentProps & WithTooltipProvidedProps<TooltipData>>,
   containerProps: WithTooltipContainerProps = {
     style: {
       position: 'relative',
@@ -31,25 +28,23 @@ export default function withTooltip<
     } as const,
   },
 ) {
-  return class WrappedComponent extends React.PureComponent<Props, WithTooltipState<TooltipData>> {
-    constructor(props: Props) {
-      super(props);
-      this.state = {
-        tooltipOpen: false,
-        tooltipLeft: undefined,
-        tooltipTop: undefined,
-        tooltipData: undefined,
-      };
-      this.updateTooltip = this.updateTooltip.bind(this);
-      this.showTooltip = this.showTooltip.bind(this);
-      this.hideTooltip = this.hideTooltip.bind(this);
-    }
-    updateTooltip({
+  return class WrappedComponent extends React.PureComponent<
+    BaseComponentProps,
+    WithTooltipState<TooltipData>
+  > {
+    state = {
+      tooltipOpen: false,
+      tooltipLeft: undefined,
+      tooltipTop: undefined,
+      tooltipData: undefined,
+    };
+
+    updateTooltip = ({
       tooltipOpen,
       tooltipLeft,
       tooltipTop,
       tooltipData,
-    }: UpdateTooltipArgs<TooltipData>) {
+    }: UpdateTooltipArgs<TooltipData>) => {
       this.setState(prevState => ({
         ...prevState,
         tooltipOpen,
@@ -57,23 +52,26 @@ export default function withTooltip<
         tooltipTop,
         tooltipData,
       }));
-    }
-    showTooltip({ tooltipLeft, tooltipTop, tooltipData }: ShowTooltipArgs<TooltipData>) {
+    };
+
+    showTooltip = ({ tooltipLeft, tooltipTop, tooltipData }: ShowTooltipArgs<TooltipData>) => {
       this.updateTooltip({
         tooltipOpen: true,
         tooltipLeft,
         tooltipTop,
         tooltipData,
       });
-    }
-    hideTooltip() {
+    };
+
+    hideTooltip = () => {
       this.updateTooltip({
         tooltipOpen: false,
         tooltipLeft: undefined,
         tooltipTop: undefined,
         tooltipData: undefined,
       });
-    }
+    };
+
     render() {
       return (
         <div {...containerProps}>
