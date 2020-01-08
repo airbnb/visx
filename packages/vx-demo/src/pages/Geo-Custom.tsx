@@ -1,4 +1,11 @@
 import React from 'react';
+import Show from '../components/Show';
+import GeoCustom from '../components/tiles/Geo-Custom';
+
+export default () => {
+  return (
+    <Show events component={GeoCustom} title="Geo Custom">
+      {`import React from 'react';
 import * as topojson from 'topojson-client';
 import { scaleQuantize } from '@vx/scale';
 import { CustomProjection, Graticule } from '@vx/geo';
@@ -8,8 +15,9 @@ import {
   geoNaturalEarth1,
   geoConicEquidistant,
   geoOrthographic,
-  geoStereographic,
+  geoStereographic
 } from 'd3-geo';
+
 import topology from '../../static/vx-geo/world-topo.json';
 
 const bg = '#252b7e';
@@ -19,7 +27,7 @@ const world = topojson.feature(topology, topology.objects.units);
 const color = scaleQuantize({
   domain: [
     Math.min(...world.features.map(f => f.geometry.coordinates.length)),
-    Math.max(...world.features.map(f => f.geometry.coordinates.length)),
+    Math.max(...world.features.map(f => f.geometry.coordinates.length))
   ],
   range: [
     '#019ece',
@@ -33,8 +41,8 @@ const color = scaleQuantize({
     '#dde1fe',
     '#8993f9',
     '#b6c8fb',
-    '#65fe8d',
-  ],
+    '#65fe8d'
+  ]
 });
 
 export default class GeoCustom extends React.Component {
@@ -72,7 +80,6 @@ export default class GeoCustom extends React.Component {
   render() {
     const { width, height, events = false } = this.props;
     const { projection, scaleFactor } = this.state;
-    if (width < 10) return <div />;
 
     const centerX = width / 2;
     const centerY = height / 2;
@@ -96,14 +103,13 @@ export default class GeoCustom extends React.Component {
                     const { feature: f } = feature;
                     return (
                       <path
-                        key={`map-feature-${i}`}
+                        key={\`map-feature-\${i}\`}
                         d={feature.path}
                         fill={color(f.geometry.coordinates.length)}
                         stroke={bg}
                         strokeWidth={0.5}
-                        onClick={() => {
-                          if (!events) return;
-                          alert(`Clicked: ${f.properties.name} (${f.id})`);
+                        onClick={event => {
+                          alert(\`Clicked: \${f.properties.name} (\${f.id})\`);
                         }}
                       />
                     );
@@ -142,3 +148,7 @@ export default class GeoCustom extends React.Component {
     );
   }
 }
+`}
+    </Show>
+  );
+};
