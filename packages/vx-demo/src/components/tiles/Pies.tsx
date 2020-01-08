@@ -3,7 +3,7 @@ import { Pie } from '@vx/shape';
 import { Group } from '@vx/group';
 import { GradientPinkBlue } from '@vx/gradient';
 import letterFrequency, { LetterFrequency } from '@vx/mock-data/lib/mocks/letterFrequency';
-import browserUsage from '@vx/mock-data/lib/mocks/browserUsage';
+import browserUsage, { BrowserUsage as Browsers } from '@vx/mock-data/lib/mocks/browserUsage';
 import { ShowProvidedProps } from '../../types';
 
 interface BrowserUsage {
@@ -11,11 +11,13 @@ interface BrowserUsage {
   usage: number;
 }
 
+type BrowserNames = keyof Browsers;
+
 const white = '#ffffff';
 const black = '#000000';
 
 const letters: LetterFrequency[] = letterFrequency.slice(0, 4);
-const browserNames: string[] = Object.keys(browserUsage[0]).filter(k => k !== 'date');
+const browserNames = Object.keys(browserUsage[0]).filter(k => k !== 'date') as BrowserNames[];
 const browsers: BrowserUsage[] = browserNames.map(k => ({
   label: k,
   usage: Number(browserUsage[0][k]),
