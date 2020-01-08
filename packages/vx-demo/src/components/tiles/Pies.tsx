@@ -2,19 +2,33 @@ import React from 'react';
 import { Pie } from '@vx/shape';
 import { Group } from '@vx/group';
 import { GradientPinkBlue } from '@vx/gradient';
-import { letterFrequency, browserUsage } from '@vx/mock-data';
+import letterFrequency, { LetterFrequency } from '@vx/mock-data/lib/mocks/letterFrequency';
+import browserUsage from '@vx/mock-data/lib/mocks/browserUsage';
+import { ShowProvidedProps } from '../../types';
+
+interface BrowserUsage {
+  label: string;
+  usage: number;
+}
 
 const white = '#ffffff';
 const black = '#000000';
 
-const letters = letterFrequency.slice(0, 4);
-const browserNames = Object.keys(browserUsage[0]).filter(k => k !== 'date');
-const browsers = browserNames.map(k => ({ label: k, usage: browserUsage[0][k] }));
+const letters: LetterFrequency[] = letterFrequency.slice(0, 4);
+const browserNames: string[] = Object.keys(browserUsage[0]).filter(k => k !== 'date');
+const browsers: BrowserUsage[] = browserNames.map(k => ({
+  label: k,
+  usage: Number(browserUsage[0][k]),
+}));
 
-const usage = d => d.usage;
-const frequency = d => d.frequency;
+const usage = (d: BrowserUsage) => d.usage;
+const frequency = (d: LetterFrequency) => d.frequency;
 
-export default ({ width, height, margin /** events = false */ }) => {
+export default ({
+  width,
+  height,
+  margin = { top: 0, right: 0, bottom: 0, left: 0 },
+}: ShowProvidedProps) => {
   if (width < 10) return null;
 
   const radius = Math.min(width, height) / 2;
@@ -34,8 +48,8 @@ export default ({ width, height, margin /** events = false */ }) => {
           cornerRadius={3}
           padAngle={0}
         >
-          {pie => {
-            return pie.arcs.map((arc, i) => {
+          {pie =>
+            pie.arcs.map((arc, i) => {
               const opacity = 1 / (i + 2);
               const [centroidX, centroidY] = pie.path.centroid(arc);
               const { startAngle, endAngle } = arc;
@@ -57,8 +71,8 @@ export default ({ width, height, margin /** events = false */ }) => {
                   )}
                 </g>
               );
-            });
-          }}
+            })
+          }
         </Pie>
         <Pie
           data={letters}
@@ -66,8 +80,8 @@ export default ({ width, height, margin /** events = false */ }) => {
           pieSortValues={() => -1}
           outerRadius={radius - 135}
         >
-          {pie => {
-            return pie.arcs.map((arc, i) => {
+          {pie =>
+            pie.arcs.map((arc, i) => {
               const opacity = 1 / (i + 2);
               const [centroidX, centroidY] = pie.path.centroid(arc);
               return (
@@ -85,8 +99,8 @@ export default ({ width, height, margin /** events = false */ }) => {
                   </text>
                 </g>
               );
-            });
-          }}
+            })
+          }
         </Pie>
       </Group>
     </svg>

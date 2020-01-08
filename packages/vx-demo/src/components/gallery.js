@@ -21,7 +21,7 @@ import BarStack from './tiles/barstack';
 import BarStackHorizontal from './tiles/barstackhorizontal';
 import Heatmap from './tiles/Heatmap.tsx';
 import LineRadial from './tiles/lineradial';
-import Pies from './tiles/pie';
+import Pies from './tiles/Pies.tsx';
 import Trees from './tiles/tree';
 import Cluster from './tiles/dendrogram';
 import Voronoi from './tiles/voronoi';
