@@ -11,23 +11,12 @@ import {
   geoPath,
   GeoPath,
   GeoProjection,
-  GeoPermissibleObjects as GeoPermissibleObjectType,
 } from 'd3-geo';
 // eslint-disable-next-line import/no-unresolved
 import { LineString, Polygon, MultiLineString } from 'geojson';
 
 import Graticule, { GraticuleProps } from '../graticule/Graticule';
-
-export type GeoPermissibleObjects = GeoPermissibleObjectType;
-
-// TODO: Implement all projections of d3-geo
-type ProjectionPreset =
-  | 'orthographic'
-  | 'albers'
-  | 'albersUsa'
-  | 'mercator'
-  | 'naturalEarth'
-  | 'equalEarth';
+import { GeoPermissibleObjects, ProjectionPreset, Projection } from '../types';
 
 const projectionMapping: { [projection in ProjectionPreset]: () => GeoProjection } = {
   orthographic: () => geoOrthographic(),
@@ -38,9 +27,7 @@ const projectionMapping: { [projection in ProjectionPreset]: () => GeoProjection
   equalEarth: () => geoEqualEarth(),
 };
 
-type Projection = ProjectionPreset | (() => GeoProjection);
-
-export type ProjectionProps<Datum extends GeoPermissibleObjects> = {
+export type ProjectionProps<Datum extends GeoPermissibleObjects = GeoPermissibleObjects> = {
   /** Array of features to project. */
   data: Datum[];
   /** Preset projection name, or custom projection function which returns a GeoProjection. */
