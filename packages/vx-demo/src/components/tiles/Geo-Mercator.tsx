@@ -6,6 +6,14 @@ import * as topojson from 'topojson-client';
 import topology from '../../static/vx-geo/world-topo.json';
 import { ShowProvidedProps } from '../../types';
 
+const bg = '#f9f7e8';
+
+// @ts-ignore
+const world = topojson.feature(topology, topology.objects.units) as {
+  type: 'FeatureCollection';
+  features: FeatureShape[];
+};
+
 interface FeatureShape {
   type: 'Feature';
   id: string;
@@ -13,13 +21,6 @@ interface FeatureShape {
   properties: { name: string };
 }
 
-const bg = '#f9f7e8';
-
-const world: { type: 'FeatureCollection'; features: FeatureShape[] } = topojson.feature(
-  // @ts-ignore
-  topology,
-  topology.objects.units,
-);
 const color = scaleQuantize({
   domain: [
     Math.min(...world.features.map(f => f.geometry.coordinates.length)),

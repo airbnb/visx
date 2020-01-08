@@ -26,11 +26,11 @@ interface FeatureShape {
 const bg = '#252b7e';
 const purple = '#201c4e';
 
-const world: { type: 'FeatureCollection'; features: FeatureShape[] } = topojson.feature(
-  // @ts-ignore
-  topology,
-  topology.objects.units,
-);
+// @ts-ignore
+const world = topojson.feature(topology, topology.objects.units) as {
+  type: 'FeatureCollection';
+  features: FeatureShape[];
+};
 
 const color = scaleQuantize({
   domain: [

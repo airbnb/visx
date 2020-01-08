@@ -22,20 +22,20 @@ import {
 import topology from '../../static/vx-geo/world-topo.json';
 import { ShowProvidedProps } from '../../types';
 
-interface FeatureShape {
-  type: 'Feature';
-  geometry: { coordinates: [number, number][][]; type: 'Polygon' };
-  properties: { name: string };
-  id: string;
-}
-
 const bg = '#252b7e';
 const purple = '#201c4e';
 
-const world: { type: 'FeatureCollection'; features: FeatureShape[] } = topojson.feature(
-  topology,
-  topology.objects.units,
-);
+const world = topojson.feature(topology, topology.objects.units) as {
+  type: 'FeatureCollection';
+  features: FeatureShape[];
+};
+
+interface FeatureShape {
+  type: 'Feature';
+  id: string;
+  geometry: { coordinates: [number, number][][]; type: 'Polygon' };
+  properties: { name: string };
+}
 
 const color = scaleQuantize({
   domain: [
