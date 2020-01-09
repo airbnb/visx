@@ -1,26 +1,11 @@
 import React from 'react';
-import Tree from '../components/tiles/tree';
-import Show from '../components/Show.tsx';
-
-export default () => {
-  return (
-    <Show
-      events
-      title="Trees"
-      component={Tree}
-      margin={{
-        top: 0,
-        left: 80,
-        right: 80,
-        bottom: 10,
-      }}
-    >
-      {`import React from 'react';
 import { Group } from '@vx/group';
 import { Tree } from '@vx/hierarchy';
+import { HierarchyPointNode } from '@vx/hierarchy/lib/types';
 import { LinkHorizontal } from '@vx/shape';
 import { hierarchy } from 'd3-hierarchy';
 import { LinearGradient } from '@vx/gradient';
+import { ShowProvidedProps } from '../../types';
 
 const peach = '#fd9b93';
 const pink = '#fe6e9e';
@@ -31,41 +16,56 @@ const lightpurple = '#374469';
 const white = '#ffffff';
 const bg = '#272b4d';
 
-const tree = {
-  "name": "T",
-  "children": [{ 
-    "name": "A",
-    "children": [
-      { "name": "A1" },
-      { "name": "A2" },
-      { "name": "A3" },
-      { "name": "C",
-        "children": [{
-          "name": "C1",
-        }, {
-          "name": "D",
-          "children": [{
-            "name": "D1"
-          },{
-            "name": "D2"
-          },{
-            "name": "D3"
-          }]
-        }]
-      },
-    ]},
-    { "name": "Z" },
+interface TreeNode {
+  name: string;
+  children?: this[];
+}
+
+type HierarchyNode = HierarchyPointNode<TreeNode>;
+
+const rawTree: TreeNode = {
+  name: 'T',
+  children: [
     {
-    "name": "B",
-    "children": [
-      { "name": "B1"},
-      { "name": "B2"},
-      { "name": "B3"},
-    ]},
+      name: 'A',
+      children: [
+        { name: 'A1' },
+        { name: 'A2' },
+        { name: 'A3' },
+        {
+          name: 'C',
+          children: [
+            {
+              name: 'C1',
+            },
+            {
+              name: 'D',
+              children: [
+                {
+                  name: 'D1',
+                },
+                {
+                  name: 'D2',
+                },
+                {
+                  name: 'D3',
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    { name: 'Z' },
+    {
+      name: 'B',
+      children: [{ name: 'B1' }, { name: 'B2' }, { name: 'B3' }],
+    },
   ],
 };
 
-function Node({ node }) {
+/** Handles rendering Root, Parent, and other Nodes. */
+function Node({ node }: { node: HierarchyNode }) {
   const width = 40;
   const height = 20;
   const centerX = -width / 2;
@@ -86,18 +86,18 @@ function Node({ node }) {
         fill={bg}
         stroke={green}
         strokeWidth={1}
-        strokeDasharray={'2,2'}
+        strokeDasharray="2,2"
         strokeOpacity={0.6}
         rx={10}
         onClick={() => {
-          alert(\`clicked: \${JSON.stringify(node.data.name)}\`);
+          alert(`clicked: ${JSON.stringify(node.data.name)}`);
         }}
       />
       <text
-        dy={'.33em'}
+        dy=".33em"
         fontSize={9}
         fontFamily="Arial"
-        textAnchor={'middle'}
+        textAnchor="middle"
         fill={green}
         style={{ pointerEvents: 'none' }}
       >
@@ -107,15 +107,15 @@ function Node({ node }) {
   );
 }
 
-function RootNode({ node }) {
+function RootNode({ node }: { node: HierarchyNode }) {
   return (
     <Group top={node.x} left={node.y}>
       <circle r={12} fill="url('#lg')" />
       <text
-        dy={'.33em'}
+        dy=".33em"
         fontSize={9}
         fontFamily="Arial"
-        textAnchor={'middle'}
+        textAnchor="middle"
         style={{ pointerEvents: 'none' }}
         fill={plum}
       >
@@ -125,7 +125,7 @@ function RootNode({ node }) {
   );
 }
 
-function ParentNode({ node }) {
+function ParentNode({ node }: { node: HierarchyNode }) {
   const width = 40;
   const height = 20;
   const centerX = -width / 2;
@@ -142,14 +142,14 @@ function ParentNode({ node }) {
         stroke={blue}
         strokeWidth={1}
         onClick={() => {
-          alert(\`clicked: \${JSON.stringify(node.data.name)}\`);
+          alert(`clicked: ${JSON.stringify(node.data.name)}`);
         }}
       />
       <text
-        dy={'.33em'}
+        dy=".33em"
         fontSize={9}
         fontFamily="Arial"
-        textAnchor={'middle'}
+        textAnchor="middle"
         style={{ pointerEvents: 'none' }}
         fill={white}
       >
@@ -166,10 +166,11 @@ export default ({
     top: 10,
     left: 30,
     right: 40,
-    bottom: 80
-  }
-}) => {
-  const data = hierarchy(tree);
+    bottom: 80,
+  },
+}: ShowProvidedProps) => {
+  if (width < 10) return null;
+  const data = hierarchy(rawTree);
   const yMax = height - margin.top - margin.bottom;
   const xMax = width - margin.left - margin.right;
 
@@ -177,31 +178,24 @@ export default ({
     <svg width={width} height={height}>
       <LinearGradient id="lg" from={peach} to={pink} />
       <rect width={width} height={height} rx={14} fill={bg} />
-      <Tree root={data} size={[yMax, xMax]}>
-        {tree => {
-          return (
-            <Group top={margin.top} left={margin.left}>
-              {tree.links().map((link, i) => {
-                return (
-                  <LinkHorizontal
-                    key={\`link-\${i}\`}
-                    data={link}
-                    stroke={lightpurple}
-                    strokeWidth="1"
-                    fill="none"
-                  />
-                );
-              })}
-              {tree.descendants().map((node, i) => {
-                return <Node key={\`node-\${i}\`} node={node} />;
-              })}
-            </Group>
-          );
-        }}
+      <Tree<TreeNode> root={data} size={[yMax, xMax]}>
+        {tree => (
+          <Group top={margin.top} left={margin.left}>
+            {tree.links().map((link, i) => (
+              <LinkHorizontal
+                key={`link-${i}`}
+                data={link}
+                stroke={lightpurple}
+                strokeWidth="1"
+                fill="none"
+              />
+            ))}
+            {tree.descendants().map((node, i) => (
+              <Node key={`node-${i}`} node={node} />
+            ))}
+          </Group>
+        )}
       </Tree>
     </svg>
-  );
-};`}
-    </Show>
   );
 };
