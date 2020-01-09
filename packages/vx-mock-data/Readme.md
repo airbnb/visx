@@ -80,11 +80,11 @@ const data = Mock.cityTemperature;
 
 ## Source For Components
 + generators/
-  - [genDateValue()](https://github.com/hshoff/vx/blob/master/packages/vx-mock-data/src/generators/genDateValue.js)
-  - [genRandomNormalPoints()](https://github.com/hshoff/vx/blob/master/packages/vx-mock-data/src/generators/genRandomNormalPoints.js)
+  - [genDateValue()](https://github.com/hshoff/vx/blob/master/packages/vx-mock-data/src/generators/genDateValue.ts)
+  - [genRandomNormalPoints()](https://github.com/hshoff/vx/blob/master/packages/vx-mock-data/src/generators/genRandomNormalPoints.ts)
 + mocks/
-  - [appleStock](https://github.com/hshoff/vx/blob/master/packages/vx-mock-data/src/mocks/appleStock.js)
-  - [browserUsage](https://github.com/hshoff/vx/blob/master/packages/vx-mock-data/src/mocks/browserUsage.js)
-  - [cityTemperature](https://github.com/hshoff/vx/blob/master/packages/vx-mock-data/src/mocks/cityTemperature.js)
-  - [groupDateValue](https://github.com/hshoff/vx/blob/master/packages/vx-mock-data/src/mocks/groupDateValue.js)
-  - [letterFrequency](https://github.com/hshoff/vx/blob/master/packages/vx-mock-data/src/mocks/letterFrequency.js)
+  - [appleStock](https://github.com/hshoff/vx/blob/master/packages/vx-mock-data/src/mocks/appleStock.ts)
+  - [browserUsage](https://github.com/hshoff/vx/blob/master/packages/vx-mock-data/src/mocks/browserUsage.ts)
+  - [cityTemperature](https://github.com/hshoff/vx/blob/master/packages/vx-mock-data/src/mocks/cityTemperature.ts)
+  - [groupDateValue](https://github.com/hshoff/vx/blob/master/packages/vx-mock-data/src/mocks/groupDateValue.ts)
+  - [letterFrequency](https://github.com/hshoff/vx/blob/master/packages/vx-mock-data/src/mocks/letterFrequency.ts)
