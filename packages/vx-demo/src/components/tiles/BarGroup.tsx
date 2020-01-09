@@ -29,14 +29,14 @@ const dateScale = scaleBand<string>({
   domain: data.map(getDate),
   padding: 0.2,
 });
-const x1Scale = scaleBand<CityName>({
+const x1Scale = scaleBand<string>({
   domain: keys,
   padding: 0.1,
 });
 const yScale = scaleLinear<number>({
   domain: [0, Math.max(...data.map(d => Math.max(...keys.map(key => Number(d[key])))))],
 });
-const color = scaleOrdinal<CityName, string>({
+const color = scaleOrdinal<string, string>({
   domain: keys,
   range: [blue, green, purple],
 });
@@ -66,7 +66,7 @@ export default ({
     <svg width={width} height={height}>
       <rect x={0} y={0} width={width} height={height} fill={bg} rx={14} />
       <Group top={margin.top}>
-        <BarGroup
+        <BarGroup<CityTemperature>
           data={data}
           keys={keys}
           height={yMax}
@@ -76,8 +76,8 @@ export default ({
           yScale={yScale}
           color={color}
         >
-          {barGroups => {
-            return barGroups.map(barGroup => (
+          {barGroups =>
+            barGroups.map(barGroup => (
               <Group key={`bar-group-${barGroup.index}-${barGroup.x0}`} left={barGroup.x0}>
                 {barGroup.bars.map(bar => (
                   <rect
@@ -96,8 +96,8 @@ export default ({
                   />
                 ))}
               </Group>
-            ));
-          }}
+            ))
+          }
         </BarGroup>
       </Group>
       <AxisBottom
