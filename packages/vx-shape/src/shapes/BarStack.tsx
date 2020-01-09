@@ -13,8 +13,8 @@ import setNumOrAccessor from '../util/setNumberOrNumberAccessor';
 
 export type NumAccessor<Datum> = StackNumAccessor<Datum>;
 
-export type BarStackProps<Datum> = Pick<
-  StackProps<Datum>,
+export type BarStackProps<Datum, Key> = Pick<
+  StackProps<Datum, Key>,
   'data' | 'className' | 'top' | 'left' | 'keys' | 'order' | 'offset' | 'value'
 > & {
   /** Returns the value mapped to the x of a bar */
@@ -28,12 +28,12 @@ export type BarStackProps<Datum> = Pick<
   /** @vx/scale or d3-scale that takes a y value and maps it to an y axis position. */
   yScale: ScaleType;
   /** Returns the desired color for a bar with a given key and index. */
-  color: (key: StackKey, index: number) => string;
+  color: (key: Key, index: number) => string;
   /** Override render function which is passed the configured arc generator as input. */
-  children?: (stacks: BarStack<Datum>[]) => React.ReactNode;
+  children?: (stacks: BarStack<Datum, Key>[]) => React.ReactNode;
 };
 
-export default function BarStackComponent<Datum>({
+export default function BarStackComponent<Datum, Key extends StackKey = StackKey>({
   data,
   className,
   top,
@@ -50,10 +50,11 @@ export default function BarStackComponent<Datum>({
   offset,
   children,
   ...restProps
-}: BarStackProps<Datum> & Omit<React.SVGProps<SVGRectElement>, keyof BarStackProps<Datum>>) {
-  const stack = d3stack<Datum, StackKey>();
+}: BarStackProps<Datum, Key> &
+  Omit<React.SVGProps<SVGRectElement>, keyof BarStackProps<Datum, Key>>) {
+  const stack = d3stack<Datum, Key>();
   if (keys) stack.keys(keys);
-  if (value) setNumOrAccessor<NumAccessor<Datum>>(stack.value, value);
+  if (value) setNumOrAccessor(stack.value, value);
   if (order) stack.order(stackOrder(order));
   if (offset) stack.offset(stackOffset(offset));
 
@@ -66,7 +67,7 @@ export default function BarStackComponent<Datum>({
       ? xScale.bandwidth()
       : Math.abs(xRange[xRange.length - 1] - xRange[0]) / xDomain.length;
 
-  const barStacks: BarStack<Datum>[] = stacks.map((barStack, i) => {
+  const barStacks: BarStack<Datum, Key>[] = stacks.map((barStack, i) => {
     const { key } = barStack;
     return {
       index: i,

@@ -11,8 +11,8 @@ import { BarStackProps, NumAccessor } from './BarStack';
 import { StackKey, $TSFIXME } from '../types';
 import setNumOrAccessor from '../util/setNumberOrNumberAccessor';
 
-export type BarStackHorizontalProps<Datum> = Pick<
-  BarStackProps<Datum>,
+export type BarStackHorizontalProps<Datum, Key> = Pick<
+  BarStackProps<Datum, Key>,
   | 'data'
   | 'className'
   | 'top'
@@ -34,7 +34,7 @@ export type BarStackHorizontalProps<Datum> = Pick<
   y: (d: Datum) => number;
 };
 
-export default function BarStackHorizontal<Datum>({
+export default function BarStackHorizontal<Datum, Key extends StackKey = StackKey>({
   data,
   className,
   top,
@@ -51,11 +51,11 @@ export default function BarStackHorizontal<Datum>({
   offset,
   children,
   ...restProps
-}: BarStackHorizontalProps<Datum> &
-  Omit<React.SVGProps<SVGRectElement>, keyof BarStackHorizontalProps<Datum>>) {
-  const stack = d3stack<Datum, StackKey>();
+}: BarStackHorizontalProps<Datum, Key> &
+  Omit<React.SVGProps<SVGRectElement>, keyof BarStackHorizontalProps<Datum, Key>>) {
+  const stack = d3stack<Datum, Key>();
   if (keys) stack.keys(keys);
-  if (value) setNumOrAccessor<NumAccessor<Datum>>(stack.value, value);
+  if (value) setNumOrAccessor(stack.value, value);
   if (order) stack.order(stackOrder(order));
   if (offset) stack.offset(stackOffset(offset));
 

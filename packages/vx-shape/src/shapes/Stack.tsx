@@ -19,7 +19,7 @@ import { StackKey, $TSFIXME } from '../types';
 
 export type NumAccessor<Datum> = (datum: Datum, index: number, data: Datum[]) => number;
 
-export type StackProps<Datum, Key = StackKey> = {
+export type StackProps<Datum, Key> = {
   /** Array of data for which to generate a stack. */
   data: Datum[];
   /** className applied to path element. */

@@ -3,10 +3,10 @@ import cx from 'classnames';
 import { Group } from '@vx/group';
 import Bar from './Bar';
 import { BarGroupProps } from './BarGroup';
-import { ScaleType, BarGroupHorizontal, $TSFIXME } from '../types';
+import { ScaleType, BarGroupHorizontal, $TSFIXME, GroupKey } from '../types';
 
-export type BarGroupHorizontalProps<Datum> = Pick<
-  BarGroupProps<Datum>,
+export type BarGroupHorizontalProps<Datum, Key> = Pick<
+  BarGroupProps<Datum, Key>,
   'data' | 'className' | 'top' | 'left' | 'keys' | 'color'
 > & {
   /** Returns the value (Datum[key]) mapped to the x of a bar */
@@ -22,10 +22,13 @@ export type BarGroupHorizontalProps<Datum> = Pick<
   /** Total width of the x-axis. */
   width: number;
   /** Override render function which is passed the computed Ba/rGroups. */
-  children?: (barGroups: BarGroupHorizontal[]) => React.ReactNode;
+  children?: (barGroups: BarGroupHorizontal<Key>[]) => React.ReactNode;
 };
 
-export default function BarGroupHorizontalComponent<Datum extends { [key: string]: $TSFIXME }>({
+export default function BarGroupHorizontalComponent<
+  Datum extends { [key: string]: $TSFIXME },
+  Key extends GroupKey = GroupKey
+>({
   data,
   className,
   top,
@@ -40,8 +43,8 @@ export default function BarGroupHorizontalComponent<Datum extends { [key: string
   width,
   children,
   ...restProps
-}: BarGroupHorizontalProps<Datum> &
-  Omit<React.SVGProps<SVGRectElement>, keyof BarGroupHorizontalProps<Datum>>) {
+}: BarGroupHorizontalProps<Datum, Key> &
+  Omit<React.SVGProps<SVGRectElement>, keyof BarGroupHorizontalProps<Datum, Key>>) {
   const y1Range = y1Scale.range();
   const y1Domain = y1Scale.domain();
   const barHeight =
