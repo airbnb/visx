@@ -39,7 +39,7 @@ import DragI from './tiles/drag-i';
 import DragII from './tiles/drag-ii';
 import LinkTypes from './tiles/linkTypes';
 import Threshold from './tiles/threshold';
-import Chord from './tiles/chord';
+import Chord from './tiles/Chord.tsx';
 import Polygons from './tiles/Polygons.tsx';
 import ZoomI from './tiles/zoom-i';
 import BrushChart from './tiles/brush';

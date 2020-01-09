@@ -1,9 +1,26 @@
 import React from 'react';
+import Show from '../components/Show';
+import Chords from '../components/tiles/Chord';
+
+export default () => {
+  return (
+    <Show
+      component={Chords}
+      title="Chords"
+      margin={{
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+      }}
+    >
+      {`import React from 'react';
 import { Arc } from '@vx/shape';
 import { Group } from '@vx/group';
 import { Chord, Ribbon } from '@vx/chord';
 import { scaleOrdinal } from '@vx/scale';
 import { LinearGradient } from '@vx/gradient';
+import { ShowProvidedProps } from '../../types';
 
 const pink = '#ff2fab';
 const orange = '#ffc62e';
@@ -22,16 +39,21 @@ const matrix = [
   [1013, 990, 940, 6907],
 ];
 
-function descending(a, b) {
+function descending(a: number, b: number): number {
   return b < a ? -1 : b > a ? 1 : b >= a ? 0 : NaN;
 }
 
-const color = scaleOrdinal({
+const color = scaleOrdinal<number, string>({
   domain: [0, 1, 2, 3],
   range: ['url(#gpinkorange)', 'url(#gpurplered)', 'url(#gpurplegreen)', 'url(#gbluelime)'],
 });
 
-export default ({ width, height, centerSize = 20, events = false }) => {
+export default ({
+  width,
+  height,
+  centerSize = 20,
+  events = false,
+}: ShowProvidedProps & { centerSize?: number }) => {
   if (width < 10) return null;
 
   const outerRadius = Math.min(width, height) * 0.5 - (centerSize + 10);
@@ -47,41 +69,36 @@ export default ({ width, height, centerSize = 20, events = false }) => {
         <rect width={width} height={height} fill={bg} rx={14} />
         <Group top={height / 2} left={width / 2}>
           <Chord matrix={matrix} padAngle={0.05} sortSubgroups={descending}>
-            {({ chords }) => {
-              return (
-                <g>
-                  {chords.groups.map((group, i) => {
-                    return (
-                      <Arc
-                        key={`key-${i}`}
-                        data={group}
-                        innerRadius={innerRadius}
-                        outerRadius={outerRadius}
-                        fill={color(i)}
-                        onClick={() => {
-                          if (!events) return;
-                          alert(`${JSON.stringify(group)}`);
-                        }}
-                      />
-                    );
-                  })}
-                  {chords.map((chord, i) => {
-                    return (
-                      <Ribbon
-                        key={`ribbon-${i}`}
-                        chord={chord}
-                        radius={innerRadius}
-                        fill={color(chord.target.index)}
-                        fillOpacity={0.75}
-                        onClick={() => {
-                          alert(`${JSON.stringify(chord)}`);
-                        }}
-                      />
-                    );
-                  })}
-                </g>
-              );
-            }}
+            {({ chords }) => (
+              <g>
+                {chords.groups.map((group, i) => (
+                  <Arc
+                    key={\`key-\${i}\`}
+                    data={group}
+                    innerRadius={innerRadius}
+                    outerRadius={outerRadius}
+                    fill={color(i)}
+                    onClick={() => {
+                      if (events) alert(\`\${JSON.stringify(group)}\`);
+                    }}
+                  />
+                ))}
+                {chords.map((chord, i) => {
+                  return (
+                    <Ribbon
+                      key={\`ribbon-\${i}\`}
+                      chord={chord}
+                      radius={innerRadius}
+                      fill={color(chord.target.index)}
+                      fillOpacity={0.75}
+                      onClick={() => {
+                        if (events) alert(\`\${JSON.stringify(chord)}\`);
+                      }}
+                    />
+                  );
+                })}
+              </g>
+            )}
           </Chord>
         </Group>
       </svg>
@@ -91,7 +108,7 @@ export default ({ width, height, centerSize = 20, events = false }) => {
         </div>
       </div>
 
-      <style jsx>{`
+      <style jsx>{\`
         .Chords {
           display: flex;
           flex-direction: column;
@@ -111,7 +128,11 @@ export default ({ width, height, centerSize = 20, events = false }) => {
         .deets > div {
           margin: 0.25rem;
         }
-      `}</style>
+      \`}</style>
     </div>
+  );
+};
+`}
+    </Show>
   );
 };
