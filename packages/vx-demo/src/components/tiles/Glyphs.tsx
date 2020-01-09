@@ -30,7 +30,11 @@ const primary = '#8921e0';
 const secondary = '#00f2ff';
 const contrast = '#ffffff';
 
-export default ({ width, height, margin }: ShowProvidedProps) => {
+export default ({
+  width,
+  height,
+  margin = { top: 0, right: 0, bottom: 0, left: 0 },
+}: ShowProvidedProps) => {
   if (width < 10) return null;
 
   // bounds

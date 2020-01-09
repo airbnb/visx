@@ -4,6 +4,7 @@ import letterFrequency, { LetterFrequency } from '@vx/mock-data/lib/mocks/letter
 import { scaleLinear } from '@vx/scale';
 import { Point } from '@vx/point';
 import { Line, LineRadial } from '@vx/shape';
+import { ShowProvidedProps } from '../../types';
 
 const orange = '#ff9933';
 const pumpkin = '#f5810c';
@@ -57,7 +58,7 @@ export default ({
     right: 80,
     bottom: 80,
   },
-}) => {
+}: ShowProvidedProps) => {
   if (width < 10) return null;
 
   const xMax = width - margin.left - margin.right;
