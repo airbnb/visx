@@ -1,8 +1,15 @@
 import React from 'react';
+import Show from '../components/Show';
+import Polygons from '../components/tiles/Polygons';
+
+export default () => (
+  <Show component={Polygons} title="Polygons">
+    {`import React from 'react';
 import { Polygon } from '@vx/shape';
 import { Group } from '@vx/group';
 import { scaleBand } from '@vx/scale';
 import { GradientPinkRed } from '@vx/gradient';
+import { ShowProvidedProps } from '../../types';
 
 const polygons = [
   {
@@ -27,22 +34,25 @@ const polygons = [
   },
 ];
 
-const yScale = scaleBand({
+const yScale = scaleBand<number>({
   domain: polygons.map((p, i) => i),
   padding: 0.5,
 });
 
-export default ({ width, height }) => {
+export default ({ width, height }: ShowProvidedProps) => {
   yScale.rangeRound([0, height]);
   return (
     <svg width={width} height={height}>
       <rect width={width} height={height} fill="#7f82e3" rx={14} />
       <GradientPinkRed id="polygon-pink" />
       {polygons.map((polygon, i) => (
-        <Group key={`polygon-${i}`} top={yScale(i)} left={width / 2}>
+        <Group key={\`polygon-\${i}\`} top={yScale(i)} left={width / 2}>
           <Polygon sides={polygon.sides} size={25} fill={polygon.fill} rotate={polygon.rotate} />
         </Group>
       ))}
     </svg>
   );
 };
+`}
+  </Show>
+);

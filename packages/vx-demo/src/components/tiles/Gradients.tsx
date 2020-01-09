@@ -12,6 +12,7 @@ import {
   GradientTealBlue,
   RadialGradient,
 } from '@vx/gradient';
+import { ShowProvidedProps } from '../../types';
 
 export default ({
   width,
@@ -22,11 +23,10 @@ export default ({
     right: 0,
     bottom: 80,
   },
-}) => {
-  let w = width / 4;
-  let h = (height - margin.bottom) / 2;
-  w = w < 0 ? 0 : w;
-  h = h < 0 ? 0 : h;
+}: ShowProvidedProps) => {
+  const barWidth = Math.max(width / 4, 0);
+  const barHeight = Math.max((height - margin.bottom) / 2, 0);
+
   return (
     <svg width={width} height={height}>
       <GradientDarkgreenGreen id="DarkgreenGreen" />
@@ -42,38 +42,38 @@ export default ({
       <Bar
         x={0}
         y={0}
-        width={w}
-        height={h}
+        width={barWidth}
+        height={barHeight}
         fill="url(#LightgreenGreen)"
         stroke="#ffffff"
         strokeWidth={8}
         rx={14}
       />
       <Bar
-        x={w}
+        x={barWidth}
         y={0}
-        width={w}
-        height={h}
+        width={barWidth}
+        height={barHeight}
         fill="url(#OrangeRed)"
         rx={14}
         stroke="#ffffff"
         strokeWidth={8}
       />
       <Bar
-        x={w * 2}
+        x={barWidth * 2}
         y={0}
-        width={w}
-        height={h}
+        width={barWidth}
+        height={barHeight}
         fill="url(#PinkBlue)"
         rx={14}
         stroke="#ffffff"
         strokeWidth={8}
       />
       <Bar
-        x={w * 3}
+        x={barWidth * 3}
         y={0}
-        width={w}
-        height={h}
+        width={barWidth}
+        height={barHeight}
         fill="url(#DarkgreenGreen)"
         rx={14}
         stroke="#ffffff"
@@ -81,39 +81,39 @@ export default ({
       />
       <Bar
         x={0}
-        y={h}
-        width={w}
-        height={h}
+        y={barHeight}
+        width={barWidth}
+        height={barHeight}
         fill="url(#PinkRed)"
         rx={14}
         stroke="#ffffff"
         strokeWidth={8}
       />
       <Bar
-        x={w}
-        y={h}
-        width={w}
-        height={h}
+        x={barWidth}
+        y={barHeight}
+        width={barWidth}
+        height={barHeight}
         fill="url(#TealBlue)"
         rx={14}
         stroke="#ffffff"
         strokeWidth={8}
       />
       <Bar
-        x={w * 2}
-        y={h}
-        width={w}
-        height={h}
+        x={barWidth * 2}
+        y={barHeight}
+        width={barWidth}
+        height={barHeight}
         fill="url(#PurpleOrange)"
         rx={14}
         stroke="#ffffff"
         strokeWidth={8}
       />
       <Bar
-        x={w * 3}
-        y={h}
-        width={w}
-        height={h}
+        x={barWidth * 3}
+        y={barHeight}
+        width={barWidth}
+        height={barHeight}
         fill="url(#Radial)"
         rx={14}
         stroke="#ffffff"
