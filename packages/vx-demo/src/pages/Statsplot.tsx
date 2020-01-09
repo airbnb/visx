@@ -1,24 +1,46 @@
 import React from 'react';
+import Show from '../components/Show';
+import StatsPlot from '../components/tiles/Statsplot';
+
+export default () => (
+  <Show
+    events
+    margin={{ top: 80, right: 0, bottom: 0, left: 0 }}
+    component={StatsPlot}
+    title="BoxPlot With ViolinPlot"
+  >
+    {`import React from 'react';
 import { Group } from '@vx/group';
 import { ViolinPlot, BoxPlot } from '@vx/stats';
 import { LinearGradient } from '@vx/gradient';
 import { scaleBand, scaleLinear } from '@vx/scale';
-import { genStats } from '@vx/mock-data';
+import genStats, { Stats } from '@vx/mock-data/lib/generators/genStats';
 import { withTooltip, Tooltip } from '@vx/tooltip';
+import { WithTooltipProvidedProps } from '@vx/tooltip/lib/enhancers/withTooltip';
 import { PatternLines } from '@vx/pattern';
+import { ShowProvidedProps } from '../../types';
 
-const data = genStats(5);
+const data: Stats[] = genStats(5);
 
 // accessors
-const x = d => d.boxPlot.x;
-const min = d => d.boxPlot.min;
-const max = d => d.boxPlot.max;
-const median = d => d.boxPlot.median;
-const firstQuartile = d => d.boxPlot.firstQuartile;
-const thirdQuartile = d => d.boxPlot.thirdQuartile;
-const outliers = d => d.boxPlot.outliers;
+const x = (d: Stats) => d.boxPlot.x;
+const min = (d: Stats) => d.boxPlot.min;
+const max = (d: Stats) => d.boxPlot.max;
+const median = (d: Stats) => d.boxPlot.median;
+const firstQuartile = (d: Stats) => d.boxPlot.firstQuartile;
+const thirdQuartile = (d: Stats) => d.boxPlot.thirdQuartile;
+const outliers = (d: Stats) => d.boxPlot.outliers;
 
-export default withTooltip(
+interface TooltipData {
+  name?: string;
+  min?: number;
+  median?: number;
+  max?: number;
+  firstQuartile?: number;
+  thirdQuartile?: number;
+}
+
+export default withTooltip<ShowProvidedProps, TooltipData>(
   ({
     width,
     height,
@@ -28,7 +50,7 @@ export default withTooltip(
     tooltipData,
     showTooltip,
     hideTooltip,
-  }) => {
+  }: ShowProvidedProps & WithTooltipProvidedProps<TooltipData>) => {
     if (width < 10) return null;
 
     // bounds
@@ -36,17 +58,20 @@ export default withTooltip(
     const yMax = height - 120;
 
     // scales
-    const xScale = scaleBand({
+    const xScale = scaleBand<string>({
       rangeRound: [0, xMax],
       domain: data.map(x),
       padding: 0.4,
     });
 
-    const values = data.reduce((r, { boxPlot: e }) => r.push(e.min, e.max) && r, []);
+    const values = data.reduce((allValues, { boxPlot }) => {
+      allValues.push(boxPlot.min, boxPlot.max);
+      return allValues;
+    }, [] as number[]);
     const minYValue = Math.min(...values);
     const maxYValue = Math.max(...values);
 
-    const yScale = scaleLinear({
+    const yScale = scaleLinear<number>({
       rangeRound: [yMax, 0],
       domain: [minYValue, maxYValue],
     });
@@ -65,25 +90,24 @@ export default withTooltip(
             width={3}
             stroke="#ced4da"
             strokeWidth={1}
-            fill="rgba(0,0,0,0.3)"
+            // fill="rgba(0,0,0,0.3)"
             orientation={['horizontal']}
           />
           <Group top={40}>
-            {data.map((d, i) => (
+            {data.map((d: Stats, i) => (
               <g key={i}>
                 <ViolinPlot
                   data={d.binData}
                   stroke="#dee2e6"
-                  left={xScale(x(d))}
+                  left={xScale(x(d))!}
                   width={constrainedWidth}
                   valueScale={yScale}
                   fill="url(#hViolinLines)"
                 />
                 <BoxPlot
-                  data={d.binData}
                   min={min(d)}
                   max={max(d)}
-                  left={xScale(x(d)) + 0.3 * constrainedWidth}
+                  left={xScale(x(d))! + 0.3 * constrainedWidth}
                   firstQuartile={firstQuartile(d)}
                   thirdQuartile={thirdQuartile(d)}
                   median={median(d)}
@@ -98,7 +122,7 @@ export default withTooltip(
                     onMouseOver: () => {
                       showTooltip({
                         tooltipTop: yScale(min(d)) + 40,
-                        tooltipLeft: xScale(x(d)) + constrainedWidth + 5,
+                        tooltipLeft: xScale(x(d))! + constrainedWidth + 5,
                         tooltipData: {
                           min: min(d),
                           name: x(d),
@@ -113,7 +137,7 @@ export default withTooltip(
                     onMouseOver: () => {
                       showTooltip({
                         tooltipTop: yScale(max(d)) + 40,
-                        tooltipLeft: xScale(x(d)) + constrainedWidth + 5,
+                        tooltipLeft: xScale(x(d))! + constrainedWidth + 5,
                         tooltipData: {
                           max: max(d),
                           name: x(d),
@@ -128,7 +152,7 @@ export default withTooltip(
                     onMouseOver: () => {
                       showTooltip({
                         tooltipTop: yScale(median(d)) + 40,
-                        tooltipLeft: xScale(x(d)) + constrainedWidth + 5,
+                        tooltipLeft: xScale(x(d))! + constrainedWidth + 5,
                         tooltipData: {
                           ...d.boxPlot,
                           name: x(d),
@@ -146,7 +170,7 @@ export default withTooltip(
                     onMouseOver: () => {
                       showTooltip({
                         tooltipTop: yScale(median(d)) + 40,
-                        tooltipLeft: xScale(x(d)) + constrainedWidth + 5,
+                        tooltipLeft: xScale(x(d))! + constrainedWidth + 5,
                         tooltipData: {
                           median: median(d),
                           name: x(d),
@@ -162,7 +186,8 @@ export default withTooltip(
             ))}
           </Group>
         </svg>
-        {tooltipOpen && (
+
+        {tooltipOpen && tooltipData && (
           <Tooltip
             top={tooltipTop}
             left={tooltipLeft}
@@ -183,4 +208,7 @@ export default withTooltip(
       </div>
     );
   },
+);
+`}
+  </Show>
 );
