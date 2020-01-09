@@ -33,7 +33,7 @@ import Network from './tiles/Network.tsx';
 import Streamgraph from './tiles/Streamgraph.tsx';
 import Pack from './tiles/Pack.tsx';
 import Treemap from './tiles/Treemap.tsx';
-import Radar from './tiles/radar';
+import Radar from './tiles/Radar.tsx';
 import Responsive from './tiles/Responsive.tsx';
 import DragI from './tiles/Drag-i.tsx';
 import DragII from './tiles/Drag-ii.tsx';
