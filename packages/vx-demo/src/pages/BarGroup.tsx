@@ -1,4 +1,16 @@
 import React from 'react';
+import Show from '../components/Show';
+import BarGroup from '../components/tiles/BarGroup';
+
+export default () => {
+  return (
+    <Show
+      events
+      margin={{ top: 80, right: 0, bottom: 0, left: 0 }}
+      component={BarGroup}
+      title="Bar Group"
+    >
+      {`import React from 'react';
 import { Group } from '@vx/group';
 import { BarGroup } from '@vx/shape';
 import { AxisBottom } from '@vx/axis';
@@ -24,30 +36,27 @@ const x0 = d => d.date;
 // scales
 const x0Scale = scaleBand({
   domain: data.map(x0),
-  padding: 0.2,
+  padding: 0.2
 });
 const x1Scale = scaleBand({
   domain: keys,
-  padding: 0.1,
+  padding: 0.1
 });
 const yScale = scaleLinear({
-  domain: [0, Math.max(...data.map(d => Math.max(...keys.map(key => d[key]))))],
+  domain: [0, Math.max(...data.map(d => Math.max(...keys.map(key => d[key]))))]
 });
 const color = scaleOrdinal({
   domain: keys,
-  range: [blue, green, purple],
+  range: [blue, green, purple]
 });
 
 export default ({
   width,
   height,
-  events = false,
   margin = {
-    top: 40,
-  },
+    top: 40
+  }
 }) => {
-  if (width < 10) return null;
-
   // bounds
   const xMax = width;
   const yMax = height - margin.top - 100;
@@ -70,22 +79,21 @@ export default ({
           yScale={yScale}
           color={color}
         >
-          {barGroups => {
+          {({ barGroups }) => {
             return barGroups.map(barGroup => {
               return (
-                <Group key={`bar-group-${barGroup.index}-${barGroup.x0}`} left={barGroup.x0}>
+                <Group key={\`bar-group-\${barGroup.index}-\${barGroup.x0}\`} left={barGroup.x0}>
                   {barGroup.bars.map(bar => {
                     return (
                       <rect
-                        key={`bar-group-bar-${barGroup.index}-${bar.index}-${bar.value}-${bar.key}`}
+                        key={\`bar-group-bar-\${barGroup.index}-\${bar.index}-\${bar.value}-\${bar.key}\`}
                         x={bar.x}
                         y={bar.y}
                         width={bar.width}
                         height={bar.height}
                         fill={bar.color}
                         rx={4}
-                        onClick={() => {
-                          if (!events) return;
+                        onClick={event => {
                           const { key, value } = bar;
                           alert(JSON.stringify({ key, value }));
                         }}
@@ -104,13 +112,17 @@ export default ({
         scale={x0Scale}
         stroke={green}
         tickStroke={green}
-        hideAxisLine
-        tickLabelProps={() => ({
+        hideAxisLine={true}
+        tickLabelProps={(value, index) => ({
           fill: green,
           fontSize: 11,
-          textAnchor: 'middle',
+          textAnchor: 'middle'
         })}
       />
     </svg>
+  );
+};
+`}
+    </Show>
   );
 };
