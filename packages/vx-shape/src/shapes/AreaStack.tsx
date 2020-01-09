@@ -1,9 +1,10 @@
 import React from 'react';
 import cx from 'classnames';
 import Stack, { StackProps } from './Stack';
+import { StackKey } from '../types';
 
-export type AreaStackProps<Datum> = Pick<
-  StackProps<Datum>,
+export type AreaStackProps<Datum, Key> = Pick<
+  StackProps<Datum, Key>,
   | 'className'
   | 'top'
   | 'left'
@@ -23,7 +24,7 @@ export type AreaStackProps<Datum> = Pick<
   | 'children'
 >;
 
-export default function AreaStack<Datum>({
+export default function AreaStack<Datum, Key extends StackKey = StackKey>({
   className,
   top,
   left,
@@ -42,9 +43,10 @@ export default function AreaStack<Datum>({
   color,
   children,
   ...restProps
-}: AreaStackProps<Datum> & Omit<React.SVGProps<SVGPathElement>, keyof AreaStackProps<Datum>>) {
+}: AreaStackProps<Datum, Key> &
+  Omit<React.SVGProps<SVGPathElement>, keyof AreaStackProps<Datum, Key>>) {
   return (
-    <Stack<Datum>
+    <Stack<Datum, Key>
       className={className}
       top={top}
       left={left}
