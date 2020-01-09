@@ -7,7 +7,7 @@ import { stack as d3stack, SeriesPoint } from 'd3-shape';
 import stackOrder from '../util/stackOrder';
 import stackOffset from '../util/stackOffset';
 import Bar from './Bar';
-import { BarStackProps, NumAccessor } from './BarStack';
+import { BarStackProps } from './BarStack';
 import { StackKey, $TSFIXME } from '../types';
 import setNumOrAccessor from '../util/setNumberOrNumberAccessor';
 

@@ -3,6 +3,7 @@ import { shallow } from 'enzyme';
 
 import { BarGroup } from '../src';
 import { BarGroupProps } from '../src/shapes/BarGroup';
+import { GroupKey } from '../src/types';
 
 interface Datum {
   date: Date;
@@ -60,7 +61,7 @@ const BarGroupWrapper = (restProps = {}) =>
     />,
   );
 
-const BarGroupChildren = ({ children, ...restProps }: Partial<BarGroupProps<Datum>>) =>
+const BarGroupChildren = ({ children, ...restProps }: Partial<BarGroupProps<Datum, GroupKey>>) =>
   shallow(
     <BarGroup
       data={data}
