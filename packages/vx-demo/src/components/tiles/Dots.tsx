@@ -16,9 +16,9 @@ const points: PointsRange[] = genRandomNormalPoints(600).filter((d, i) => i < 60
 const x = (d: PointsRange) => d[0];
 const y = (d: PointsRange) => d[1];
 
-let tooltipTimeout;
+let tooltipTimeout: number;
 
-export default withTooltip(
+export default withTooltip<ShowProvidedProps, PointsRange>(
   ({
     width,
     height,
@@ -28,7 +28,7 @@ export default withTooltip(
     tooltipData,
     tooltipLeft,
     tooltipTop,
-  }: ShowProvidedProps & WithTooltipProvidedProps) => {
+  }: ShowProvidedProps & WithTooltipProvidedProps<PointsRange>) => {
     const xMax = width;
     const yMax = height - 80;
     if (width < 10) return null;
@@ -58,7 +58,7 @@ export default withTooltip(
             {points.map((point, i) => {
               const cx = xScale(x(point));
               const cy = yScale(y(point));
-              const r = i % 3 === 0 ? 2 : 2.765;
+              const r = i % 3 === 0 ? 2 : 3;
               return (
                 <Circle
                   key={`point-${point[0]}-${i}`}
@@ -76,7 +76,7 @@ export default withTooltip(
                     });
                   }}
                   onMouseLeave={() => {
-                    tooltipTimeout = setTimeout(() => {
+                    tooltipTimeout = window.setTimeout(() => {
                       hideTooltip();
                     }, 300);
                   }}
@@ -93,17 +93,16 @@ export default withTooltip(
             })}
           </Group>
         </svg>
-        {tooltipOpen &&
-          tooltipData(
-            <Tooltip left={tooltipLeft} top={tooltipTop}>
-              <div>
-                <strong>x:</strong> {x(tooltipData)}
-              </div>
-              <div>
-                <strong>y:</strong> {y(tooltipData)}
-              </div>
-            </Tooltip>,
-          )}
+        {tooltipOpen && tooltipData && (
+          <Tooltip left={tooltipLeft} top={tooltipTop}>
+            <div>
+              <strong>x:</strong> {x(tooltipData)}
+            </div>
+            <div>
+              <strong>y:</strong> {y(tooltipData)}
+            </div>
+          </Tooltip>
+        )}
       </div>
     );
   },
