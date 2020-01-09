@@ -30,7 +30,7 @@ import StatsPlot from './tiles/Statsplot.tsx';
 import GeoMercator from './tiles/geo-mercator';
 import GeoCustom from './tiles/geo-custom';
 import Network from './tiles/Network.tsx';
-import Streamgraph from './tiles/streamgraph';
+import Streamgraph from './tiles/Streamgraph.tsx';
 import Pack from './tiles/Pack.tsx';
 import Treemap from './tiles/treemap';
 import Radar from './tiles/radar';
