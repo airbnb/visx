@@ -32,7 +32,7 @@ import GeoCustom from './tiles/geo-custom';
 import Network from './tiles/Network.tsx';
 import Streamgraph from './tiles/streamgraph';
 import Pack from './tiles/Pack.tsx';
-import Treemap from './tiles/treemap';
+import Treemap from './tiles/Treemap.tsx';
 import Radar from './tiles/radar';
 import Responsive from './tiles/responsive';
 import DragI from './tiles/drag-i';
