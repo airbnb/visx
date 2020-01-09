@@ -7,7 +7,7 @@ import drawData from './util/drawData.ts';
 import Footer from './Footer.tsx';
 
 import Lines from './tiles/lines';
-import Bars from './tiles/bars';
+import Bars from './tiles/Bars.tsx';
 import Dots from './tiles/Dots.tsx';
 import Patterns from './tiles/Patterns.tsx';
 import Gradients from './tiles/Gradients.tsx';

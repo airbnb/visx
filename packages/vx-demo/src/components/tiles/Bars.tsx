@@ -2,16 +2,17 @@ import React from 'react';
 import { Bar } from '@vx/shape';
 import { Group } from '@vx/group';
 import { GradientTealBlue } from '@vx/gradient';
-import { letterFrequency } from '@vx/mock-data';
+import letterFrequency, { LetterFrequency } from '@vx/mock-data/lib/mocks/letterFrequency';
 import { scaleBand, scaleLinear } from '@vx/scale';
+import { ShowProvidedProps } from '../../types';
 
 const data = letterFrequency.slice(5);
 
 // accessors
-const x = d => d.letter;
-const y = d => Number(d.frequency) * 100;
+const getLetter = (d: LetterFrequency) => d.letter;
+const getLetterFrequency = (d: LetterFrequency) => Number(d.frequency) * 100;
 
-export default ({ width, height, events = false }) => {
+export default ({ width, height, events = false }: ShowProvidedProps) => {
   if (width < 10) return null;
 
   // bounds
@@ -19,14 +20,14 @@ export default ({ width, height, events = false }) => {
   const yMax = height - 120;
 
   // scales
-  const xScale = scaleBand({
+  const xScale = scaleBand<string>({
     rangeRound: [0, xMax],
-    domain: data.map(x),
+    domain: data.map(getLetter),
     padding: 0.4,
   });
-  const yScale = scaleLinear({
+  const yScale = scaleLinear<number>({
     rangeRound: [yMax, 0],
-    domain: [0, Math.max(...data.map(y))],
+    domain: [0, Math.max(...data.map(getLetterFrequency))],
   });
 
   return (
@@ -35,9 +36,9 @@ export default ({ width, height, events = false }) => {
       <rect width={width} height={height} fill="url(#teal)" rx={14} />
       <Group top={40}>
         {data.map(d => {
-          const letter = x(d);
+          const letter = getLetter(d);
           const barWidth = xScale.bandwidth();
-          const barHeight = yMax - yScale(y(d));
+          const barHeight = yMax - yScale(getLetterFrequency(d));
           const barX = xScale(letter);
           const barY = yMax - barHeight;
           return (
@@ -49,8 +50,7 @@ export default ({ width, height, events = false }) => {
               height={barHeight}
               fill="rgba(23, 233, 217, .5)"
               onClick={() => {
-                if (!events) return;
-                alert(`clicked: ${JSON.stringify(Object.values(d))}`);
+                if (events) alert(`clicked: ${JSON.stringify(Object.values(d))}`);
               }}
             />
           );
