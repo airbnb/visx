@@ -252,7 +252,7 @@ export default ({ width, events = false }: ShowProvidedProps) => {
   );
 };
 
-function LegendDemo({ title, children }) {
+function LegendDemo({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className="legend">
       <div className="title">{title}</div>
