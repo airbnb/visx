@@ -13,7 +13,7 @@ import Patterns from './tiles/Patterns.tsx';
 import Gradients from './tiles/Gradients.tsx';
 import Areas from './tiles/Areas.tsx';
 import StackedAreas from './tiles/Stacked-Areas.tsx';
-import MultiLine from './tiles/multiline';
+import Glyphs from './tiles/Glyphs.tsx';
 import Axis from './tiles/Axis.tsx';
 import BarGroup from './tiles/BarGroup.tsx';
 import BarGroupHorizontal from './tiles/BarGroupHorizontal.tsx';
@@ -243,7 +243,7 @@ export default function() {
               <div className="image">
                 <ParentSize>
                   {({ width, height }) => (
-                    <MultiLine
+                    <Glyphs
                       width={width}
                       height={height + detailsHeight}
                       margin={{
