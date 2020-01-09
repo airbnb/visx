@@ -8,7 +8,7 @@ import Footer from './Footer.tsx';
 
 import Lines from './tiles/lines';
 import Bars from './tiles/bars';
-import Dots from './tiles/dots';
+import Dots from './tiles/Dots.tsx';
 import Patterns from './tiles/Patterns.tsx';
 import Gradients from './tiles/Gradients.tsx';
 import Area from './tiles/area';
@@ -30,7 +30,7 @@ import StatsPlot from './tiles/Statsplot.tsx';
 import GeoMercator from './tiles/geo-mercator';
 import GeoCustom from './tiles/geo-custom';
 import Network from './tiles/Network.tsx';
-import Streamgraph from './tiles/streamgraph';
+import Streamgraph from './tiles/Streamgraph.tsx';
 import Pack from './tiles/Pack.tsx';
 import Treemap from './tiles/treemap';
 import Radar from './tiles/radar';

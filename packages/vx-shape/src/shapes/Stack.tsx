@@ -19,7 +19,7 @@ import { StackKey, $TSFIXME } from '../types';
 
 export type NumAccessor<Datum> = (datum: Datum, index: number, data: Datum[]) => number;
 
-export type StackProps<Datum> = {
+export type StackProps<Datum, Key = StackKey> = {
   /** Array of data for which to generate a stack. */
   data: Datum[];
   /** className applied to path element. */
@@ -31,14 +31,14 @@ export type StackProps<Datum> = {
   /** Sets the curve factory (from @vx/curve or d3-curve) for the area generator. Defaults to curveLinear. */
   curve?: CurveFactory;
   /** Returns a color for a given stack key and index. */
-  color?: (key: StackKey, index: number) => string;
+  color?: (key: Key, index: number) => string;
   /** Array of keys corresponding to stack layers. */
-  keys?: StackKey[];
+  keys?: Key[];
   /** Override render function which is passed the configured arc generator as input. */
   children?: (args: {
-    stacks: Series<Datum, StackKey>[];
+    stacks: Series<Datum, Key>[];
     path: AreaType<SeriesPoint<Datum>>;
-    stack: StackType<$TSFIXME, Datum, StackKey>;
+    stack: StackType<$TSFIXME, Datum, Key>;
   }) => React.ReactNode;
   /** Sets the x0 accessor function, and sets x1 to null. */
   x?: NumAccessor<SeriesPoint<Datum>>;
@@ -51,7 +51,7 @@ export type StackProps<Datum> = {
   /** Specifies the y1 accessor function which defaults to d => d[1]. */
   y1?: NumAccessor<SeriesPoint<Datum>>;
   /** Sets the value accessor for a Datum, which defaults to d[key]. */
-  value?: number | ((d: Datum, key: StackKey) => number);
+  value?: number | ((d: Datum, key: Key) => number);
   /** The defined accessor for the shape. The final area shape includes all points for which this function returns true. By default all points are defined. */
   defined?: (datum: SeriesPoint<Datum>, index: number, data: SeriesPoint<Datum>[]) => boolean;
   /** Sets the stack order to the pre-defined d3 function, see https://github.com/d3/d3-shape#stack_order. */
@@ -60,7 +60,7 @@ export type StackProps<Datum> = {
   offset?: keyof typeof STACK_OFFSETS;
 };
 
-export default function Stack<Datum>({
+export default function Stack<Datum, Key = StackKey>({
   className,
   top,
   left,
@@ -79,8 +79,8 @@ export default function Stack<Datum>({
   color,
   children,
   ...restProps
-}: StackProps<Datum> & Omit<React.SVGProps<SVGPathElement>, keyof StackProps<Datum>>) {
-  const stack = d3stack<Datum, StackKey>();
+}: StackProps<Datum, Key> & Omit<React.SVGProps<SVGPathElement>, keyof StackProps<Datum, Key>>) {
+  const stack = d3stack<Datum, Key>();
   if (keys) stack.keys(keys);
   if (value) setNumOrAccessor(stack.value, value);
   if (order) stack.order(stackOrder(order));
