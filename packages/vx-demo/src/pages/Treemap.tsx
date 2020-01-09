@@ -18,6 +18,7 @@ import {
   treemapSlice,
   treemapSliceDice,
 } from '@vx/hierarchy';
+import { TileMethod } from '@vx/hierarchy/lib/types';
 import shakespeare, { Shakespeare } from '@vx/mock-data/lib/mocks/shakespeare';
 
 import { scaleLinear } from '@vx/scale';
@@ -37,7 +38,7 @@ const data = stratify<Shakespeare>()
   .parentId(d => d.parent)(shakespeare)
   .sum(d => d.size || 0);
 
-const tileMethods = {
+const tileMethods: { [tile: string]: TileMethod<typeof data> } = {
   treemapSquarify,
   treemapBinary,
   treemapDice,
@@ -61,7 +62,7 @@ export default function TreemapDemo({
   if (width < 10) return null;
 
   const yMax = height - margin.top - margin.bottom;
-  const root = hierarchy(data).sort((a, b) => b.value - a.value);
+  const root = hierarchy(data).sort((a, b) => b!.value - a!.value);
 
   return (
     <div>
@@ -111,7 +112,7 @@ export default function TreemapDemo({
                             width={nodeWidth}
                             height={nodeHeight}
                             stroke={bg}
-                            fill={colorScale(node.value)}
+                            fill={colorScale(node.value || 0)}
                           />
                         )}
                       </Group>
