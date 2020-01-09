@@ -55,7 +55,7 @@ export default function TreemapDemo({
   if (width < 10) return null;
 
   const yMax = height - margin.top - margin.bottom;
-  const root = hierarchy(data).sort((a, b) => b!.value - a!.value);
+  const root = hierarchy(data).sort((a, b) => (b.value || 0) - (a.value || 0));
 
   return (
     <div>
