@@ -1,6 +1,6 @@
 import React from 'react';
-import Show from '../components/Show.tsx';
-import Dots from '../components/tiles/dots';
+import Show from '../components/Show';
+import Dots from '../components/tiles/Dots';
 
 export default () => {
   return (
