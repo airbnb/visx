@@ -61,11 +61,11 @@ const yScale = scaleLinear<number>({
 const xScale = scaleLinear<number>({
   domain: [0, SAMPLES_PER_LAYER - 1],
 });
-const colorScale = scaleOrdinal<string>({
+const colorScale = scaleOrdinal<number, string>({
   domain: keys,
   range: ['#ffc409', '#f14702', '#262d97', 'white', '#036ecd', '#9ecadd', '#51666e'],
 });
-const patternScale = scaleOrdinal<string>({
+const patternScale = scaleOrdinal<number, string>({
   domain: keys,
   range: ['mustard', 'cherry', 'navy', 'circles', 'circles', 'circles', 'circles'],
 });
@@ -108,7 +108,7 @@ export default function Streamgraph({ width, height }: ShowProvidedProps) {
       />
       <g onClick={() => forceUpdate()} onTouchStart={() => forceUpdate()}>
         <rect x={0} y={0} width={width} height={height} fill="#ffdede" rx={14} />
-        <Stack
+        <Stack<Stack<number[], number>
           data={layers}
           keys={keys}
           offset="wiggle"
