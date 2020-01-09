@@ -16,7 +16,7 @@ import Stacked from './tiles/stacked';
 import MultiLine from './tiles/multiline';
 import Axis from './tiles/axis';
 import BarGroup from './tiles/BarGroup.tsx';
-import BarGroupHorizontal from './tiles/bargrouphorizontal';
+import BarGroupHorizontal from './tiles/BarGroupHorizontal.tsx';
 import BarStack from './tiles/barstack';
 import BarStackHorizontal from './tiles/barstackhorizontal';
 import Heatmap from './tiles/heatmap';
