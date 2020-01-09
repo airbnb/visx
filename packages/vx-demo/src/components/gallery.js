@@ -20,7 +20,7 @@ import BarGroupHorizontal from './tiles/BarGroupHorizontal.tsx';
 import BarStack from './tiles/BarStack.tsx';
 import BarStackHorizontal from './tiles/BarStackHorizontal.tsx';
 import Heatmap from './tiles/Heatmap.tsx';
-import LineRadial from './tiles/lineradial';
+import LineRadial from './tiles/LineRadial.tsx';
 import Pies from './tiles/Pies.tsx';
 import Trees from './tiles/Trees.tsx';
 import Dendrograms from './tiles/Dendrograms.tsx';
