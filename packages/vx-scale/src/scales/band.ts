@@ -1,6 +1,6 @@
 import { scaleBand } from 'd3-scale';
 
-type StringLike = string | { valueOf(): string };
+type StringLike = string | { toString(): string };
 type Numeric = number | { valueOf(): number };
 
 export type BandConfig<Datum extends StringLike> = {

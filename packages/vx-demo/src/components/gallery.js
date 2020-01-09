@@ -26,7 +26,7 @@ import Trees from './tiles/tree';
 import Cluster from './tiles/dendrogram';
 import Voronoi from './tiles/voronoi';
 import Legends from './tiles/legends';
-import StatsPlot from './tiles/statsplot';
+import StatsPlot from './tiles/Statsplot.tsx';
 import GeoMercator from './tiles/geo-mercator';
 import GeoCustom from './tiles/geo-custom';
 import Network from './tiles/Network.tsx';
