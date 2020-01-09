@@ -196,7 +196,7 @@ export default ({ width, events = false }: ShowProvidedProps) => {
                 const size = 15;
                 return (
                   <LegendItem
-                    key={\`\legend-quantile-\${i}\`}
+                    key={\`legend-quantile-\${i}\`}
                     margin="0 5px"
                     onClick={() => {
                       if (events) alert(\`clicked: \${JSON.stringify(label)}\`);

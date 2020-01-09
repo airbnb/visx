@@ -25,7 +25,7 @@ import Pies from './tiles/Pies.tsx';
 import Trees from './tiles/Trees.tsx';
 import Dendrograms from './tiles/Dendrograms.tsx';
 import Voronoi from './tiles/Voronoi.tsx';
-import Legends from './tiles/legends';
+import Legends from './tiles/Legends.tsx';
 import StatsPlot from './tiles/Statsplot.tsx';
 import GeoMercator from './tiles/Geo-Mercator.tsx';
 import GeoCustom from './tiles/Geo-Custom.tsx';
