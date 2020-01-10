@@ -189,9 +189,7 @@ class Zoom extends React.Component<ZoomProps, ZoomState> {
     }));
   };
 
-  invert = () => {
-    return inverseMatrix(this.state.transformMatrix);
-  };
+  invert = () => inverseMatrix(this.state.transformMatrix);
 
   toStringInvert = () => {
     const { translateX, translateY, scaleX, scaleY, skewX, skewY } = this.invert();
@@ -212,7 +210,7 @@ class Zoom extends React.Component<ZoomProps, ZoomState> {
       return transformMatrix;
     });
 
-  dragStart = (event: React.MouseEvent) => {
+  dragStart = (event: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent) => {
     const { transformMatrix } = this.state;
     const { translateX, translateY } = transformMatrix;
     this.startPoint = localPoint(event) || undefined;
@@ -220,7 +218,7 @@ class Zoom extends React.Component<ZoomProps, ZoomState> {
     this.setState({ isDragging: true });
   };
 
-  dragMove = (event: React.MouseEvent) => {
+  dragMove = (event: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent) => {
     if (!this.state.isDragging || !this.startPoint || !this.startTranslate) return;
     const currentPoint = localPoint(event);
     const dx = currentPoint ? -(this.startPoint.x - currentPoint.x) : -this.startPoint.x;
