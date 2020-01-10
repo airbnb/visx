@@ -2,7 +2,7 @@ import React from 'react';
 import Show from '../components/Show';
 import Threshold from '../components/tiles/Threshold';
 
-function Description({ width }) {
+function Description({ width }: { width: number }) {
   return (
     <div style={{ width, fontSize: 14, lineHeight: '1.5em' }}>
       The temperature in New York compared to San Francisco; days when New York was warmer are
