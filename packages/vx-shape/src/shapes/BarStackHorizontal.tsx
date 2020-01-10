@@ -11,8 +11,7 @@ import { BarStackProps } from './BarStack';
 import { StackKey, $TSFIXME } from '../types';
 import setNumOrAccessor from '../util/setNumberOrNumberAccessor';
 
-export type BarStackHorizontalProps<Datum, Key> = Pick<
-  BarStackProps<Datum, Key>,
+type PickProps =
   | 'data'
   | 'className'
   | 'top'
@@ -24,8 +23,9 @@ export type BarStackHorizontalProps<Datum, Key> = Pick<
   | 'xScale'
   | 'yScale'
   | 'color'
-  | 'children'
-> & {
+  | 'children';
+
+export type BarStackHorizontalProps<Datum, Key> = Pick<BarStackProps<Datum, Key>, PickProps> & {
   /** Returns the value mapped to the x0 of a bar. */
   x0?: (d: SeriesPoint<Datum>) => $TSFIXME;
   /** Returns the value mapped to the x1 of a bar. */
@@ -52,7 +52,7 @@ export default function BarStackHorizontal<Datum, Key extends StackKey = StackKe
   children,
   ...restProps
 }: BarStackHorizontalProps<Datum, Key> &
-  Omit<React.SVGProps<SVGRectElement>, keyof BarStackHorizontalProps<Datum, Key>>) {
+  Omit<React.SVGProps<SVGRectElement>, keyof BarStackHorizontalProps<Datum, Key> | PickProps>) {
   const stack = d3stack<Datum, Key>();
   if (keys) stack.keys(keys);
   if (value) setNumOrAccessor(stack.value, value);

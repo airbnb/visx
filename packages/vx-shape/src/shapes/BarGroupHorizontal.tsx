@@ -5,10 +5,9 @@ import Bar from './Bar';
 import { BarGroupProps } from './BarGroup';
 import { ScaleType, BarGroupHorizontal, $TSFIXME, GroupKey } from '../types';
 
-export type BarGroupHorizontalProps<Datum, Key> = Pick<
-  BarGroupProps<Datum, Key>,
-  'data' | 'className' | 'top' | 'left' | 'keys' | 'color'
-> & {
+type PickProps = 'data' | 'className' | 'top' | 'left' | 'keys' | 'color';
+
+export type BarGroupHorizontalProps<Datum, Key> = Pick<BarGroupProps<Datum, Key>, PickProps> & {
   /** Returns the value (Datum[key]) mapped to the x of a bar */
   x?: (barValue: number) => number;
   /** Returns the value mapped to the y0 (position of group) of a bar */
@@ -44,7 +43,7 @@ export default function BarGroupHorizontalComponent<
   children,
   ...restProps
 }: BarGroupHorizontalProps<Datum, Key> &
-  Omit<React.SVGProps<SVGRectElement>, keyof BarGroupHorizontalProps<Datum, Key>>) {
+  Omit<React.SVGProps<SVGRectElement>, keyof BarGroupHorizontalProps<Datum, Key> | PickProps>) {
   const y1Range = y1Scale.range();
   const y1Domain = y1Scale.domain();
   const barHeight =
