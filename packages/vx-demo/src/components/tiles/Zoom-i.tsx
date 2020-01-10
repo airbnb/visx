@@ -3,7 +3,10 @@ import React, { useState } from 'react';
 import { Zoom } from '@vx/zoom';
 import { localPoint } from '@vx/event';
 import { RectClipPath } from '@vx/clip-path';
-import { genPhyllotaxis } from '@vx/mock-data';
+import genPhyllotaxis, {
+  GenPhyllotaxisFunction,
+  PhyllotaxisPoint,
+} from '@vx/mock-data/lib/generators/genPhyllotaxis';
 import { scaleLinear } from '@vx/scale';
 import { interpolateRainbow } from 'd3-scale-chromatic';
 import { ShowProvidedProps } from '../../types';
@@ -26,8 +29,8 @@ const initialTransform = {
 export default function ZoomI({ width, height }: ShowProvidedProps) {
   const [showMiniMap, setShowMiniMap] = useState<boolean>(true);
 
-  const gen = genPhyllotaxis({ radius: 10, width, height });
-  const phyllotaxis = points.map((d, i) => gen(i));
+  const gen: GenPhyllotaxisFunction = genPhyllotaxis({ radius: 10, width, height });
+  const phyllotaxis: PhyllotaxisPoint[] = points.map((d, i) => gen(i));
 
   return (
     <>
@@ -50,11 +53,11 @@ export default function ZoomI({ width, height }: ShowProvidedProps) {
               <RectClipPath id="zoom-clip" width={width} height={height} />
               <rect width={width} height={height} rx={14} fill={bg} />
               <g transform={zoom.toString()}>
-                {phyllotaxis.map((point, i) => (
+                {phyllotaxis.map(({ x, y }, i) => (
                   <React.Fragment key={`dot-${i}`}>
                     <circle
-                      cx={point.x}
-                      cy={point.y}
+                      cx={x}
+                      cy={y}
                       r={i > 500 ? sizeScale(1000 - i) : sizeScale(i)}
                       fill={interpolateRainbow(colorScale(i))}
                     />
@@ -76,7 +79,7 @@ export default function ZoomI({ width, height }: ShowProvidedProps) {
                   if (zoom.isDragging) zoom.dragEnd();
                 }}
                 onDoubleClick={event => {
-                  const point = localPoint(event);
+                  const point = localPoint(event) || { x: 0, y: 0 };
                   zoom.scale({ scaleX: 1.1, scaleY: 1.1, point });
                 }}
               />
@@ -84,9 +87,9 @@ export default function ZoomI({ width, height }: ShowProvidedProps) {
                 <g
                   clipPath="url(#zoom-clip)"
                   transform={`
-                        scale(0.25)
-                        translate(${width * 4 - width - 60}, ${height * 4 - height - 60})
-                      `}
+                    scale(0.25)
+                    translate(${width * 4 - width - 60}, ${height * 4 - height - 60})
+                  `}
                 >
                   <rect width={width} height={height} fill="#1a1a1a" />
                   {phyllotaxis.map(({ x, y }, i) => (
