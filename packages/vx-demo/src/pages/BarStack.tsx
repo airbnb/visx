@@ -15,11 +15,29 @@ import { BarStack } from '@vx/shape';
 import { Group } from '@vx/group';
 import { Grid } from '@vx/grid';
 import { AxisBottom } from '@vx/axis';
-import { cityTemperature } from '@vx/mock-data';
+import cityTemperature, { CityTemperature } from '@vx/mock-data/lib/mocks/cityTemperature';
 import { scaleBand, scaleLinear, scaleOrdinal } from '@vx/scale';
 import { timeParse, timeFormat } from 'd3-time-format';
 import { withTooltip, Tooltip } from '@vx/tooltip';
+import { WithTooltipProvidedProps } from '@vx/tooltip/lib/enhancers/withTooltip';
 import { LegendOrdinal } from '@vx/legend';
+import { ShowProvidedProps } from '../../types';
+
+type CityName = 'New York' | 'San Francisco' | 'Austin';
+type TooltipData = {
+  bar: {
+    0: number;
+    1: number;
+    data: CityTemperature;
+  };
+  key: CityName;
+  index: number;
+  height: number;
+  width: number;
+  x: number;
+  y: number;
+  color: string;
+};
 
 const purple1 = '#6c5efb';
 const purple2 = '#c998ff';
@@ -27,125 +45,135 @@ const purple3 = '#a44afe';
 const bg = '#eaedff';
 
 const data = cityTemperature.slice(0, 12);
-const keys = Object.keys(data[0]).filter(d => d !== 'date');
+const keys = Object.keys(data[0]).filter(d => d !== 'date') as CityName[];
 
-const totals = data.reduce((ret, cur) => {
-  const t = keys.reduce((dailyTotal, k) => {
-    dailyTotal += +cur[k];
+const temperatureTotals = data.reduce((allTotals, currentDate) => {
+  const totalTemperature = keys.reduce((dailyTotal, k) => {
+    dailyTotal += Number(currentDate[k]);
     return dailyTotal;
   }, 0);
-  ret.push(t);
-  return ret;
-}, []);
+  allTotals.push(totalTemperature);
+  return allTotals;
+}, [] as number[]);
 
 const parseDate = timeParse('%Y%m%d');
 const format = timeFormat('%b %d');
-const formatDate = date => format(parseDate(date));
+const formatDate = (date: string) => format(parseDate(date) as Date);
 
 // accessors
-const x = d => d.date;
+const getDate = (d: CityTemperature) => d.date;
 
 // scales
-const xScale = scaleBand({
-  domain: data.map(x),
-  padding: 0.2
+const dateScale = scaleBand<string>({
+  domain: data.map(getDate),
+  padding: 0.2,
 });
-const yScale = scaleLinear({
-  domain: [0, Math.max(...totals)],
-  nice: true
+const temperatureScale = scaleLinear<number>({
+  domain: [0, Math.max(...temperatureTotals)],
+  nice: true,
 });
-const color = scaleOrdinal({
+const colorScale = scaleOrdinal<CityName, string>({
   domain: keys,
-  range: [purple1, purple2, purple3]
+  range: [purple1, purple2, purple3],
 });
 
-let tooltipTimeout;
+let tooltipTimeout: number;
 
-export default withTooltip(
+export default withTooltip<ShowProvidedProps, TooltipData>(
   ({
     width,
     height,
+    events = false,
     margin = {
-      top: 40
+      top: 40,
+      right: 0,
+      bottom: 0,
+      left: 0,
     },
     tooltipOpen,
     tooltipLeft,
     tooltipTop,
     tooltipData,
     hideTooltip,
-    showTooltip
-  }) => {
+    showTooltip,
+  }: ShowProvidedProps & WithTooltipProvidedProps<TooltipData>) => {
+    if (width < 10) return null;
     // bounds
     const xMax = width;
     const yMax = height - margin.top - 100;
 
-    xScale.rangeRound([0, xMax]);
-    yScale.range([yMax, 0]);
+    dateScale.rangeRound([0, xMax]);
+    temperatureScale.range([yMax, 0]);
 
     return (
       <div style={{ position: 'relative' }}>
         <svg width={width} height={height}>
           <rect x={0} y={0} width={width} height={height} fill={bg} rx={14} />
-          <Grid
+          <Grid<string, number>
             top={margin.top}
             left={margin.left}
-            xScale={xScale}
-            yScale={yScale}
+            xScale={dateScale}
+            yScale={temperatureScale}
             width={xMax}
             height={yMax}
-            stroke={'black'}
+            stroke="black"
             strokeOpacity={0.1}
-            xOffset={xScale.bandwidth() / 2}
+            xOffset={dateScale.bandwidth() / 2}
           />
           <Group top={margin.top}>
-            <BarStack data={data} keys={keys} x={x} xScale={xScale} yScale={yScale} color={color}>
-              {barStacks => {
-                return barStacks.map(barStack => {
-                  return barStack.bars.map(bar => {
-                    return (
-                      <rect
-                        key={\`bar-stack-\${barStack.index}-\${bar.index}\`}
-                        x={bar.x}
-                        y={bar.y}
-                        height={bar.height}
-                        width={bar.width}
-                        fill={bar.color}
-                        onClick={event => {
-                          alert(\`clicked: \${JSON.stringify(bar)}\`);
-                        }}
-                        onMouseLeave={event => {
-                          tooltipTimeout = setTimeout(() => {
-                            hideTooltip();
-                          }, 300);
-                        }}
-                        onMouseMove={event => {
-                          if (tooltipTimeout) clearTimeout(tooltipTimeout);
-                          const top = event.clientY - margin.top - bar.height;
-                          const offset = xScale.paddingInner() * xScale.step() / 2;
-                          const left = bar.x + bar.width + offset;
-                          showTooltip({
-                            tooltipData: bar,
-                            tooltipTop: top,
-                            tooltipLeft: left
-                          });
-                        }}
-                      />
-                    );
-                  });
-                });
-              }}
+            <BarStack<CityTemperature, CityName>
+              data={data}
+              keys={keys}
+              x={getDate}
+              xScale={dateScale}
+              yScale={temperatureScale}
+              color={colorScale}
+            >
+              {barStacks =>
+                barStacks.map(barStack =>
+                  barStack.bars.map(bar => (
+                    <rect
+                      key={\`bar-stack-\${barStack.index}-\${bar.index}\`}
+                      x={bar.x}
+                      y={bar.y}
+                      height={bar.height}
+                      width={bar.width}
+                      fill={bar.color}
+                      onClick={() => {
+                        if (events) alert(\`clicked: \${JSON.stringify(bar)}\`);
+                      }}
+                      onMouseLeave={() => {
+                        tooltipTimeout = window.setTimeout(() => {
+                          hideTooltip();
+                        }, 300);
+                      }}
+                      onMouseMove={event => {
+                        if (tooltipTimeout) clearTimeout(tooltipTimeout);
+                        const top = event.clientY - margin.top - bar.height;
+                        const offset = (dateScale.paddingInner() * dateScale.step()) / 2;
+                        const left = bar.x + bar.width + offset;
+                        showTooltip({
+                          tooltipData: bar,
+                          tooltipTop: top,
+                          tooltipLeft: left,
+                        });
+                      }}
+                    />
+                  )),
+                )
+              }
             </BarStack>
           </Group>
-          <AxisBottom
+          <AxisBottom<string>
             top={yMax + margin.top}
-            scale={xScale}
+            scale={dateScale}
             tickFormat={formatDate}
             stroke={purple3}
             tickStroke={purple3}
-            tickLabelProps={(value, index) => ({
+            tickLabelProps={() => ({
               fill: purple3,
               fontSize: 11,
-              textAnchor: 'middle'
+              textAnchor: 'middle',
             })}
           />
         </svg>
@@ -156,33 +184,34 @@ export default withTooltip(
             width: '100%',
             display: 'flex',
             justifyContent: 'center',
-            fontSize: '14px'
+            fontSize: '14px',
           }}
         >
-          <LegendOrdinal scale={color} direction="row" labelMargin="0 15px 0 0" />
+          <LegendOrdinal scale={colorScale} direction="row" labelMargin="0 15px 0 0" />
         </div>
-        {tooltipOpen && (
+
+        {tooltipOpen && tooltipData && (
           <Tooltip
             top={tooltipTop}
             left={tooltipLeft}
             style={{
               minWidth: 60,
               backgroundColor: 'rgba(0,0,0,0.9)',
-              color: 'white'
+              color: 'white',
             }}
           >
-            <div style={{ color: color(tooltipData.key) }}>
+            <div style={{ color: colorScale(tooltipData.key) }}>
               <strong>{tooltipData.key}</strong>
             </div>
             <div>{tooltipData.bar.data[tooltipData.key]}℉</div>
             <div>
-              <small>{formatDate(x(tooltipData.bar.data))}</small>
+              <small>{formatDate(getDate(tooltipData.bar.data))}</small>
             </div>
           </Tooltip>
         )}
       </div>
     );
-  }
+  },
 );
 `}
     </Show>

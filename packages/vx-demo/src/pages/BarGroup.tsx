@@ -31,7 +31,7 @@ const keys = Object.keys(data[0]).filter(d => d !== 'date') as CityName[];
 
 const parseDate = timeParse('%Y%m%d');
 const format = timeFormat('%b %d');
-const formatDate = (date: string) => format(parseDate(date));
+const formatDate = (date: string) => format(parseDate(date) as Date);
 
 // accessors
 const getDate = (d: CityTemperature) => d.date;
@@ -78,7 +78,7 @@ export default ({
     <svg width={width} height={height}>
       <rect x={0} y={0} width={width} height={height} fill={bg} rx={14} />
       <Group top={margin.top}>
-        <BarGroup<CityTemperature>
+        <BarGroup<CityTemperature, string>
           data={data}
           keys={keys}
           height={yMax}

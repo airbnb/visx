@@ -52,15 +52,15 @@ const formatDate = (date: string) => format(parseDate(date) as Date);
 const getDate = (d: CityTemperature) => d.date;
 
 // scales
-const xScale = scaleBand<string>({
+const dateScale = scaleBand<string>({
   domain: data.map(getDate),
   padding: 0.2,
 });
-const yScale = scaleLinear<number>({
+const temperatureScale = scaleLinear<number>({
   domain: [0, Math.max(...temperatureTotals)],
   nice: true,
 });
-const color = scaleOrdinal<CityName, string>({
+const colorScale = scaleOrdinal<CityName, string>({
   domain: keys,
   range: [purple1, purple2, purple3],
 });
@@ -90,8 +90,8 @@ export default withTooltip<ShowProvidedProps, TooltipData>(
     const xMax = width;
     const yMax = height - margin.top - 100;
 
-    xScale.rangeRound([0, xMax]);
-    yScale.range([yMax, 0]);
+    dateScale.rangeRound([0, xMax]);
+    temperatureScale.range([yMax, 0]);
 
     return (
       <div style={{ position: 'relative' }}>
@@ -100,22 +100,22 @@ export default withTooltip<ShowProvidedProps, TooltipData>(
           <Grid<string, number>
             top={margin.top}
             left={margin.left}
-            xScale={xScale}
-            yScale={yScale}
+            xScale={dateScale}
+            yScale={temperatureScale}
             width={xMax}
             height={yMax}
             stroke="black"
             strokeOpacity={0.1}
-            xOffset={xScale.bandwidth() / 2}
+            xOffset={dateScale.bandwidth() / 2}
           />
           <Group top={margin.top}>
             <BarStack<CityTemperature, CityName>
               data={data}
               keys={keys}
               x={getDate}
-              xScale={xScale}
-              yScale={yScale}
-              color={color}
+              xScale={dateScale}
+              yScale={temperatureScale}
+              color={colorScale}
             >
               {barStacks =>
                 barStacks.map(barStack =>
@@ -138,7 +138,7 @@ export default withTooltip<ShowProvidedProps, TooltipData>(
                       onMouseMove={event => {
                         if (tooltipTimeout) clearTimeout(tooltipTimeout);
                         const top = event.clientY - margin.top - bar.height;
-                        const offset = (xScale.paddingInner() * xScale.step()) / 2;
+                        const offset = (dateScale.paddingInner() * dateScale.step()) / 2;
                         const left = bar.x + bar.width + offset;
                         showTooltip({
                           tooltipData: bar,
@@ -154,7 +154,7 @@ export default withTooltip<ShowProvidedProps, TooltipData>(
           </Group>
           <AxisBottom<string>
             top={yMax + margin.top}
-            scale={xScale}
+            scale={dateScale}
             tickFormat={formatDate}
             stroke={purple3}
             tickStroke={purple3}
@@ -175,7 +175,7 @@ export default withTooltip<ShowProvidedProps, TooltipData>(
             fontSize: '14px',
           }}
         >
-          <LegendOrdinal scale={color} direction="row" labelMargin="0 15px 0 0" />
+          <LegendOrdinal scale={colorScale} direction="row" labelMargin="0 15px 0 0" />
         </div>
 
         {tooltipOpen && tooltipData && (
@@ -188,7 +188,7 @@ export default withTooltip<ShowProvidedProps, TooltipData>(
               color: 'white',
             }}
           >
-            <div style={{ color: color(tooltipData.key) }}>
+            <div style={{ color: colorScale(tooltipData.key) }}>
               <strong>{tooltipData.key}</strong>
             </div>
             <div>{tooltipData.bar.data[tooltipData.key]}℉</div>
