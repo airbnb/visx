@@ -17,12 +17,12 @@ export type BarStackProps<Datum, Key> = Pick<
   StackProps<Datum, Key>,
   'data' | 'className' | 'top' | 'left' | 'keys' | 'order' | 'offset' | 'value'
 > & {
-  /** Returns the value mapped to the x of a bar */
-  x: (d: Datum) => number;
+  /** Returns the value mapped to the x of a bar. */
+  x: (d: Datum) => $TSFIXME;
   /** Returns the value mapped to the y0 of a bar. */
-  y0?: (d: SeriesPoint<Datum>) => number;
+  y0?: (d: SeriesPoint<Datum>) => $TSFIXME;
   /** Returns the value mapped to the y1 of a bar. */
-  y1?: (d: SeriesPoint<Datum>) => number;
+  y1?: (d: SeriesPoint<Datum>) => $TSFIXME;
   /** @vx/scale or d3-scale that takes an x value and maps it to an x axis position. */
   xScale: ScaleType;
   /** @vx/scale or d3-scale that takes a y value and maps it to an y axis position. */
@@ -98,21 +98,19 @@ export default function BarStackComponent<Datum, Key extends StackKey = StackKey
 
   return (
     <Group className={cx('vx-bar-stack', className)} top={top} left={left}>
-      {barStacks.map(barStack => {
-        return barStack.bars.map(bar => {
-          return (
-            <Bar
-              key={`bar-stack-${barStack.index}-${bar.index}`}
-              x={bar.x}
-              y={bar.y}
-              height={bar.height}
-              width={bar.width}
-              fill={bar.color}
-              {...restProps}
-            />
-          );
-        });
-      })}
+      {barStacks.map(barStack =>
+        barStack.bars.map(bar => (
+          <Bar
+            key={`bar-stack-${barStack.index}-${bar.index}`}
+            x={bar.x}
+            y={bar.y}
+            height={bar.height}
+            width={bar.width}
+            fill={bar.color}
+            {...restProps}
+          />
+        )),
+      )}
     </Group>
   );
 }

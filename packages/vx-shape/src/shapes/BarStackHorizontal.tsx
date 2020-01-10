@@ -27,11 +27,11 @@ export type BarStackHorizontalProps<Datum, Key> = Pick<
   | 'children'
 > & {
   /** Returns the value mapped to the x0 of a bar. */
-  x0?: (d: SeriesPoint<Datum>) => number;
+  x0?: (d: SeriesPoint<Datum>) => $TSFIXME;
   /** Returns the value mapped to the x1 of a bar. */
-  x1?: (d: SeriesPoint<Datum>) => number;
+  x1?: (d: SeriesPoint<Datum>) => $TSFIXME;
   /** Returns the value mapped to the y of a bar. */
-  y: (d: Datum) => number;
+  y: (d: Datum) => $TSFIXME;
 };
 
 export default function BarStackHorizontal<Datum, Key extends StackKey = StackKey>({
@@ -98,21 +98,19 @@ export default function BarStackHorizontal<Datum, Key extends StackKey = StackKe
 
   return (
     <Group className={cx('vx-bar-stack-horizontal', className)} top={top} left={left}>
-      {barStacks.map(barStack => {
-        return barStack.bars.map(bar => {
-          return (
-            <Bar
-              key={`bar-stack-${barStack.index}-${bar.index}`}
-              x={bar.x}
-              y={bar.y}
-              height={bar.height}
-              width={bar.width}
-              fill={bar.color}
-              {...restProps}
-            />
-          );
-        });
-      })}
+      {barStacks.map(barStack =>
+        barStack.bars.map(bar => (
+          <Bar
+            key={`bar-stack-${barStack.index}-${bar.index}`}
+            x={bar.x}
+            y={bar.y}
+            height={bar.height}
+            width={bar.width}
+            fill={bar.color}
+            {...restProps}
+          />
+        )),
+      )}
     </Group>
   );
 }
