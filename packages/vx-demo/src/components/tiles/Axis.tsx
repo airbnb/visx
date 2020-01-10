@@ -103,7 +103,7 @@ export default ({
           scale={yScale}
           hideZero
           numTicks={numTicksForHeight(height)}
-          label="Custom position left Label"
+          label="Axis Left Label – Custom Position"
           labelProps={{
             fill: pinkDark,
             textAnchor: 'end',
@@ -187,8 +187,7 @@ export default ({
                 <text
                   textAnchor="start"
                   transform={`translate(${axisCenter}, 50)`}
-                  fontSize="10"
-                  fontWeight="bold"
+                  fontSize="11"
                   fill={tickColor}
                 >
                   {axis.label}
