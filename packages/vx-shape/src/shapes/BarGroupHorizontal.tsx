@@ -51,7 +51,7 @@ export default function BarGroupHorizontalComponent<
       ? y1Scale.bandwidth()
       : Math.abs(y1Range[y1Range.length - 1] - y1Range[0]) / y1Domain.length;
 
-  const barGroups = data.map((group, i) => ({
+  const barGroups: BarGroupHorizontal<Key>[] = data.map((group, i) => ({
     index: i,
     y0: y0Scale(y0(group)) || 0,
     bars: keys.map((key, j) => {
