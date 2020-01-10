@@ -1,6 +1,6 @@
 import React from 'react';
-import Show from '../components/Show.tsx';
-import Threshold from '../components/tiles/threshold';
+import Show from '../components/Show';
+import Threshold from '../components/tiles/Threshold';
 
 function Description({ width }) {
   return (
