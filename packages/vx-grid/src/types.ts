@@ -1,10 +1,8 @@
 /** Generic d3 scale type. */
-export interface Scale<Input = unknown, Output = unknown> extends Object {
+export interface Scale<Input = unknown, Output = unknown> {
   (value: Input): Output;
   ticks?: (count?: number) => Input[];
-  domain(input: Input[]): this;
   domain(): Input[];
-  range(output: Output[]): this;
   range(): Output[] | [Output];
 }
 
