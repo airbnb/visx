@@ -1,76 +1,39 @@
 import React from 'react';
-import Show from '../components/Show.tsx';
-import Areas from '../components/tiles/area';
-
-export default () => {
-  return (
-    <Show
-      component={Areas}
-      title="Areas"
-      margin={{
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-      }}
-    >
-      {`import React from 'react';
 import { AreaClosed, Line, Bar } from '@vx/shape';
-import { appleStock } from '@vx/mock-data';
+import appleStock, { AppleStock } from '@vx/mock-data/lib/mocks/appleStock';
 import { curveMonotoneX } from '@vx/curve';
 import { GridRows, GridColumns } from '@vx/grid';
 import { scaleTime, scaleLinear } from '@vx/scale';
 import { withTooltip, Tooltip } from '@vx/tooltip';
+import { WithTooltipProvidedProps } from '@vx/tooltip/lib/enhancers/withTooltip';
 import { localPoint } from '@vx/event';
-import { bisector } from 'd3-array';
+import { min, max, extent, bisector } from 'd3-array';
 import { timeFormat } from 'd3-time-format';
+import { ShowProvidedProps } from '../../types';
+
+type TooltipData = AppleStock;
 
 const stock = appleStock.slice(800);
 
 // util
 const formatDate = timeFormat("%b %d, '%y");
-const min = (arr, fn) => Math.min(...arr.map(fn));
-const max = (arr, fn) => Math.max(...arr.map(fn));
-const extent = (arr, fn) => [min(arr, fn), max(arr, fn)];
 
 // accessors
-const xStock = d => new Date(d.date);
-const yStock = d => d.close;
-const bisectDate = bisector(d => new Date(d.date)).left;
+const xStock = (d: AppleStock) => new Date(d.date);
+const yStock = (d: AppleStock) => d.close;
+const bisectDate = bisector<AppleStock, Date>(d => new Date(d.date)).left;
 
-class Area extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleTooltip = this.handleTooltip.bind(this);
-  }
-  handleTooltip({ event, data, xStock, xScale, yScale }) {
-    const { showTooltip } = this.props;
-    const { x } = localPoint(event);
-    const x0 = xScale.invert(x);
-    const index = bisectDate(data, x0, 1);
-    const d0 = data[index - 1];
-    const d1 = data[index];
-    let d = d0;
-    if (d1 && d1.date) {
-      d = x0 - xStock(d0.date) > xStock(d1.date) - x0 ? d1 : d0;
-    }
-    showTooltip({
-      tooltipData: d,
-      tooltipLeft: x,
-      tooltipTop: yScale(d.close)
-    });
-  }
-  render() {
-    const {
-      width,
-      height,
-      margin,
-      hideTooltip,
-      tooltipData,
-      tooltipTop,
-      tooltipLeft,
-      events
-    } = this.props;
+export default withTooltip<ShowProvidedProps, TooltipData>(
+  ({
+    width,
+    height,
+    margin,
+    showTooltip,
+    hideTooltip,
+    tooltipData,
+    tooltipTop,
+    tooltipLeft,
+  }: ShowProvidedProps & WithTooltipProvidedProps<TooltipData>) => {
     if (width < 10) return null;
 
     // bounds
@@ -80,17 +43,37 @@ class Area extends React.Component {
     // scales
     const xScale = scaleTime({
       range: [0, xMax],
-      domain: extent(stock, xStock)
+      domain: extent(stock, xStock),
     });
     const yScale = scaleLinear({
       range: [yMax, 0],
       domain: [0, max(stock, yStock) + yMax / 3],
-      nice: true
+      nice: true,
     });
+
+    // tooltip handler
+    const handleTooltip = (
+      event: React.TouchEvent<SVGRectElement> | React.MouseEvent<SVGRectElement>,
+    ) => {
+      const { x } = localPoint(event);
+      const x0 = xScale.invert(x);
+      const index = bisectDate(stock, x0, 1);
+      const d0 = stock[index - 1];
+      const d1 = stock[index];
+      let d = d0;
+      if (d1 && d1.date) {
+        d = x0.valueOf() - xStock(d0).valueOf() > xStock(d1).valueOf() - x0.valueOf() ? d1 : d0;
+      }
+      showTooltip({
+        tooltipData: d,
+        tooltipLeft: x,
+        tooltipTop: yScale(d.close),
+      });
+    };
 
     return (
       <div>
-        <svg ref={s => (this.svg = s)} width={width} height={height}>
+        <svg width={width} height={height}>
           <rect x={0} y={0} width={width} height={height} fill="#32deaa" rx={14} />
           <defs>
             <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -98,28 +81,28 @@ class Area extends React.Component {
               <stop offset="100%" stopColor="#FFFFFF" stopOpacity={0.2} />
             </linearGradient>
           </defs>
-          <GridRows
-            lineStyle={{ pointerEvents: 'none' }}
+          <GridRows<number>
             scale={yScale}
             width={xMax}
             strokeDasharray="2,2"
             stroke="rgba(255,255,255,0.3)"
+            pointerEvents="none"
           />
-          <GridColumns
-            lineStyle={{ pointerEvents: 'none' }}
+          <GridColumns<Date>
             scale={xScale}
             height={yMax}
             strokeDasharray="2,2"
             stroke="rgba(255,255,255,0.3)"
+            pointerEvents="none"
           />
-          <AreaClosed
+          <AreaClosed<AppleStock>
             data={stock}
             x={d => xScale(xStock(d))}
             y={d => yScale(yStock(d))}
             yScale={yScale}
             strokeWidth={1}
-            stroke={'url(#gradient)'}
-            fill={'url(#gradient)'}
+            stroke="url(#gradient)"
+            fill="url(#gradient)"
             curve={curveMonotoneX}
           />
           <Bar
@@ -129,35 +112,10 @@ class Area extends React.Component {
             height={height}
             fill="transparent"
             rx={14}
-            data={stock}
-            onTouchStart={event =>
-              this.handleTooltip({
-                event,
-                xStock,
-                xScale,
-                yScale,
-                data: stock
-              })
-            }
-            onTouchMove={event =>
-              this.handleTooltip({
-                event,
-                xStock,
-                xScale,
-                yScale,
-                data: stock
-              })
-            }
-            onMouseMove={event =>
-              this.handleTooltip({
-                event,
-                xStock,
-                xScale,
-                yScale,
-                data: stock
-              })
-            }
-            onMouseLeave={event => hideTooltip()}
+            onTouchStart={handleTooltip}
+            onTouchMove={handleTooltip}
+            onMouseMove={handleTooltip}
+            onMouseLeave={() => hideTooltip()}
           />
           {tooltipData && (
             <g>
@@ -199,16 +157,16 @@ class Area extends React.Component {
               left={tooltipLeft + 12}
               style={{
                 backgroundColor: 'rgba(92, 119, 235, 1.000)',
-                color: 'white'
+                color: 'white',
               }}
             >
-              {\`$\${yStock(tooltipData)}\`}
+              {`$${yStock(tooltipData)}`}
             </Tooltip>
             <Tooltip
               top={yMax - 14}
               left={tooltipLeft}
               style={{
-                transform: 'translateX(-50%)'
+                transform: 'translateX(-50%)',
               }}
             >
               {formatDate(xStock(tooltipData))}
@@ -217,11 +175,5 @@ class Area extends React.Component {
         )}
       </div>
     );
-  }
-}
-
-export default withTooltip(Area);
-`}
-    </Show>
-  );
-};
+  },
+);
