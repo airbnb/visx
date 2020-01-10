@@ -13,7 +13,10 @@ export type GridColumnProps<ScaleInput> = CommonGridProps & {
 };
 
 type AllProps<ScaleInput> = GridColumnProps<ScaleInput> &
-  Omit<LineProps, keyof GridColumnProps<ScaleInput>>;
+  Omit<
+    LineProps & Omit<React.SVGProps<SVGLineElement>, keyof LineProps>,
+    keyof GridColumnProps<ScaleInput> | keyof CommonGridProps
+  >;
 
 export default function GridColumns<ScaleInput>({
   top = 0,
