@@ -10,14 +10,14 @@ type CommonPropsToOmit = 'scale' | 'offset' | 'numTicks' | 'lineStyle' | 'tickVa
 export type GridProps<XScaleInput, YScaleInput> = {
   xScale: Scale<XScaleInput, number>;
   yScale: Scale<YScaleInput, number>;
-  xOffset: CommonGridProps['offset'];
-  yOffset: CommonGridProps['offset'];
-  numTicksRows: CommonGridProps['numTicks'];
-  numTicksColumns: CommonGridProps['numTicks'];
-  rowLineStyle: CommonGridProps['lineStyle'];
-  columnLineStyle: CommonGridProps['lineStyle'];
-  rowTickValues: CommonGridProps['tickValues'];
-  columnTickValues: CommonGridProps['tickValues'];
+  xOffset?: CommonGridProps['offset'];
+  yOffset?: CommonGridProps['offset'];
+  numTicksRows?: CommonGridProps['numTicks'];
+  numTicksColumns?: CommonGridProps['numTicks'];
+  rowLineStyle?: CommonGridProps['lineStyle'];
+  columnLineStyle?: CommonGridProps['lineStyle'];
+  rowTickValues?: CommonGridProps['tickValues'];
+  columnTickValues?: CommonGridProps['tickValues'];
 } & Omit<AllGridRowsProps<YScaleInput>, CommonPropsToOmit> &
   Omit<AllGridColumnProps<XScaleInput>, CommonPropsToOmit>;
 
