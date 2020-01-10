@@ -12,6 +12,7 @@ export default () => {
     >
       {`import React from 'react';
 import { BarStack } from '@vx/shape';
+import { SeriesPoint } from '@vx/shape/lib/types';
 import { Group } from '@vx/group';
 import { Grid } from '@vx/grid';
 import { AxisBottom } from '@vx/axis';
@@ -25,11 +26,7 @@ import { ShowProvidedProps } from '../../types';
 
 type CityName = 'New York' | 'San Francisco' | 'Austin';
 type TooltipData = {
-  bar: {
-    0: number;
-    1: number;
-    data: CityTemperature;
-  };
+  bar: SeriesPoint<CityTemperature>;
   key: CityName;
   index: number;
   height: number;
