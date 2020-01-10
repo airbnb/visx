@@ -80,9 +80,9 @@ export type GenericScale<ScaleInput> =
 interface ScaleNoRangeRound<ScaleInput> {
   (value: ScaleInput): ScaleOutput | [ScaleOutput, ScaleOutput]; // quantize scales return an array
   domain(): ScaleInput[] | [ScaleInput, ScaleInput];
-  domain(scaleInput: ScaleInput[] | [ScaleInput, ScaleInput]): this;
+  domain(scaleInput: ScaleInput[] | [ScaleInput, ScaleInput]): any; // we can't capture the copy of the type accurately
   range(): ScaleOutput[] | [ScaleOutput, ScaleOutput];
-  range(scaleOutput: ScaleOutput[] | [ScaleOutput, ScaleOutput]): this;
+  range(scaleOutput: ScaleOutput[] | [ScaleOutput, ScaleOutput]): any;
   ticks?: (count: number) => ScaleInput[] | [ScaleInput, ScaleInput];
   bandwidth?: () => number;
   round?: () => boolean;
@@ -93,7 +93,7 @@ interface ScaleNoRangeRound<ScaleInput> {
 // We cannot have optional methods AND overloads, so define a separate type for rangeRound
 interface ScaleWithRangeRound<ScaleInput> extends ScaleNoRangeRound<ScaleInput> {
   rangeRound(): ScaleOutput[] | [ScaleOutput, ScaleOutput];
-  rangeRound(scaleOutput: ScaleOutput[] | [ScaleOutput, ScaleOutput]): this;
+  rangeRound(scaleOutput: ScaleOutput[] | [ScaleOutput, ScaleOutput]): any;
 }
 
 export interface Point {

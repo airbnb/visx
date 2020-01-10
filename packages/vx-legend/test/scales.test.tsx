@@ -25,7 +25,7 @@ describe('Legend scales', () => {
   });
 
   it('should render with scaleOrdinal', () => {
-    const ordinalScale = scaleOrdinal<string>({
+    const ordinalScale = scaleOrdinal<string, string>({
       domain: ['a', 'b', 'c', 'd'],
       range: ['#66d981', '#71f5ef', '#4899f1', '#7d81f6'],
     });

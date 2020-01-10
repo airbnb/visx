@@ -3,12 +3,11 @@ import cx from 'classnames';
 import { Group } from '@vx/group';
 import Bar from './Bar';
 import { BarGroupProps } from './BarGroup';
-import { ScaleType, BarGroupHorizontal, $TSFIXME } from '../types';
+import { ScaleType, BarGroupHorizontal, $TSFIXME, GroupKey } from '../types';
 
-export type BarGroupHorizontalProps<Datum> = Pick<
-  BarGroupProps<Datum>,
-  'data' | 'className' | 'top' | 'left' | 'keys' | 'color'
-> & {
+type PickProps = 'data' | 'className' | 'top' | 'left' | 'keys' | 'color';
+
+export type BarGroupHorizontalProps<Datum, Key> = Pick<BarGroupProps<Datum, Key>, PickProps> & {
   /** Returns the value (Datum[key]) mapped to the x of a bar */
   x?: (barValue: number) => number;
   /** Returns the value mapped to the y0 (position of group) of a bar */
@@ -22,10 +21,13 @@ export type BarGroupHorizontalProps<Datum> = Pick<
   /** Total width of the x-axis. */
   width: number;
   /** Override render function which is passed the computed Ba/rGroups. */
-  children?: (barGroups: BarGroupHorizontal[]) => React.ReactNode;
+  children?: (barGroups: BarGroupHorizontal<Key>[]) => React.ReactNode;
 };
 
-export default function BarGroupHorizontalComponent<Datum extends { [key: string]: $TSFIXME }>({
+export default function BarGroupHorizontalComponent<
+  Datum extends { [key: string]: $TSFIXME },
+  Key extends GroupKey = GroupKey
+>({
   data,
   className,
   top,
@@ -40,8 +42,8 @@ export default function BarGroupHorizontalComponent<Datum extends { [key: string
   width,
   children,
   ...restProps
-}: BarGroupHorizontalProps<Datum> &
-  Omit<React.SVGProps<SVGRectElement>, keyof BarGroupHorizontalProps<Datum>>) {
+}: BarGroupHorizontalProps<Datum, Key> &
+  Omit<React.SVGProps<SVGRectElement>, keyof BarGroupHorizontalProps<Datum, Key> | PickProps>) {
   const y1Range = y1Scale.range();
   const y1Domain = y1Scale.domain();
   const barHeight =
@@ -49,25 +51,23 @@ export default function BarGroupHorizontalComponent<Datum extends { [key: string
       ? y1Scale.bandwidth()
       : Math.abs(y1Range[y1Range.length - 1] - y1Range[0]) / y1Domain.length;
 
-  const barGroups = data.map((group, i) => {
-    return {
-      index: i,
-      y0: y0Scale(y0(group)),
-      bars: keys.map((key, j) => {
-        const value = group[key];
-        return {
-          index: j,
-          key,
-          value,
-          height: barHeight,
-          x: x(value),
-          y: y1Scale(key),
-          color: color(key, j),
-          width: xScale(value),
-        };
-      }),
-    };
-  });
+  const barGroups: BarGroupHorizontal<Key>[] = data.map((group, i) => ({
+    index: i,
+    y0: y0Scale(y0(group)) || 0,
+    bars: keys.map((key, j) => {
+      const value = group[key];
+      return {
+        index: j,
+        key,
+        value,
+        height: barHeight,
+        x: x(value) || 0,
+        y: y1Scale(key) || 0,
+        color: color(key, j),
+        width: xScale(value) || 0,
+      };
+    }),
+  }));
 
   if (children) return <>{children(barGroups)}</>;
 
