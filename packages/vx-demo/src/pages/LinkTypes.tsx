@@ -15,11 +15,9 @@ export default () => {
         bottom: 40,
       }}
     >
-      {`/* eslint-disable @typescript-eslint/no-use-before-define */
-import React, { useState } from 'react';
+      {`import React, { useState } from 'react';
 import { Group } from '@vx/group';
 import { hierarchy, Tree } from '@vx/hierarchy';
-import { HierarchyPointLink } from '@vx/hierarchy/lib/types';
 import { LinearGradient } from '@vx/gradient';
 import { pointRadial } from 'd3-shape';
 
@@ -37,7 +35,6 @@ import {
   LinkVerticalLine,
   LinkRadialLine,
 } from '@vx/shape';
-import { SharedLinkProps } from '@vx/shape/lib/types';
 import { ShowProvidedProps } from '../../types';
 
 interface TreeNode {
@@ -86,8 +83,6 @@ const data: TreeNode = {
     },
   ],
 };
-
-type LinkComponentProps = SharedLinkProps<HierarchyPointLink<TreeNode>> & { percent: number };
 
 export default function LinkTypes({
   width: totalWidth,
@@ -193,7 +188,7 @@ export default function LinkTypes({
             {tree => (
               <Group top={origin.y} left={origin.x}>
                 {tree.links().map((link, i) => {
-                  let LinkComponent: React.ComponentType<LinkComponentProps>;
+                  let LinkComponent: React.ComponentType<any>;
 
                   if (layout === 'polar') {
                     if (linkType === 'step') {
@@ -227,15 +222,12 @@ export default function LinkTypes({
 
                   return (
                     <LinkComponent
+                      key={i}
                       data={link}
                       percent={Number(stepPercent)}
                       stroke="#374469"
                       strokeWidth="1"
                       fill="none"
-                      key={i}
-                      onClick={d => () => {
-                        console.log(d);
-                      }}
                     />
                   );
                 })}
