@@ -1,9 +1,28 @@
 import React from 'react';
+import Tree from '../components/tiles/Trees';
+import Show from '../components/Show';
+
+export default () => {
+  return (
+    <Show
+      events
+      title="Trees"
+      component={Tree}
+      margin={{
+        top: 0,
+        left: 80,
+        right: 80,
+        bottom: 10,
+      }}
+    >
+      {`import React from 'react';
 import { Group } from '@vx/group';
 import { Tree } from '@vx/hierarchy';
+import { HierarchyPointNode } from '@vx/hierarchy/lib/types';
 import { LinkHorizontal } from '@vx/shape';
 import { hierarchy } from 'd3-hierarchy';
 import { LinearGradient } from '@vx/gradient';
+import { ShowProvidedProps } from '../../types';
 
 const peach = '#fd9b93';
 const pink = '#fe6e9e';
@@ -14,7 +33,14 @@ const lightpurple = '#374469';
 const white = '#ffffff';
 const bg = '#272b4d';
 
-const rawTree = {
+interface TreeNode {
+  name: string;
+  children?: this[];
+}
+
+type HierarchyNode = HierarchyPointNode<TreeNode>;
+
+const rawTree: TreeNode = {
   name: 'T',
   children: [
     {
@@ -55,7 +81,8 @@ const rawTree = {
   ],
 };
 
-function Node({ node }) {
+/** Handles rendering Root, Parent, and other Nodes. */
+function Node({ node }: { node: HierarchyNode }) {
   const width = 40;
   const height = 20;
   const centerX = -width / 2;
@@ -80,7 +107,7 @@ function Node({ node }) {
         strokeOpacity={0.6}
         rx={10}
         onClick={() => {
-          alert(`clicked: ${JSON.stringify(node.data.name)}`);
+          alert(\`clicked: \${JSON.stringify(node.data.name)}\`);
         }}
       />
       <text
@@ -97,7 +124,7 @@ function Node({ node }) {
   );
 }
 
-function RootNode({ node }) {
+function RootNode({ node }: { node: HierarchyNode }) {
   return (
     <Group top={node.x} left={node.y}>
       <circle r={12} fill="url('#lg')" />
@@ -115,7 +142,7 @@ function RootNode({ node }) {
   );
 }
 
-function ParentNode({ node }) {
+function ParentNode({ node }: { node: HierarchyNode }) {
   const width = 40;
   const height = 20;
   const centerX = -width / 2;
@@ -132,7 +159,7 @@ function ParentNode({ node }) {
         stroke={blue}
         strokeWidth={1}
         onClick={() => {
-          alert(`clicked: ${JSON.stringify(node.data.name)}`);
+          alert(\`clicked: \${JSON.stringify(node.data.name)}\`);
         }}
       />
       <text
@@ -158,7 +185,7 @@ export default ({
     right: 40,
     bottom: 80,
   },
-}) => {
+}: ShowProvidedProps) => {
   if (width < 10) return null;
   const data = hierarchy(rawTree);
   const yMax = height - margin.top - margin.bottom;
@@ -168,28 +195,27 @@ export default ({
     <svg width={width} height={height}>
       <LinearGradient id="lg" from={peach} to={pink} />
       <rect width={width} height={height} rx={14} fill={bg} />
-      <Tree root={data} size={[yMax, xMax]}>
-        {tree => {
-          return (
-            <Group top={margin.top} left={margin.left}>
-              {tree.links().map((link, i) => {
-                return (
-                  <LinkHorizontal
-                    key={`link-${i}`}
-                    data={link}
-                    stroke={lightpurple}
-                    strokeWidth="1"
-                    fill="none"
-                  />
-                );
-              })}
-              {tree.descendants().map((node, i) => {
-                return <Node key={`node-${i}`} node={node} />;
-              })}
-            </Group>
-          );
-        }}
+      <Tree<TreeNode> root={data} size={[yMax, xMax]}>
+        {tree => (
+          <Group top={margin.top} left={margin.left}>
+            {tree.links().map((link, i) => (
+              <LinkHorizontal
+                key={\`link-\${i}\`}
+                data={link}
+                stroke={lightpurple}
+                strokeWidth="1"
+                fill="none"
+              />
+            ))}
+            {tree.descendants().map((node, i) => (
+              <Node key={\`node-\${i}\`} node={node} />
+            ))}
+          </Group>
+        )}
       </Tree>
     </svg>
+  );
+};`}
+    </Show>
   );
 };
