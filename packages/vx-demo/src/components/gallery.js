@@ -12,7 +12,7 @@ import Dots from './tiles/Dots.tsx';
 import Patterns from './tiles/Patterns.tsx';
 import Gradients from './tiles/Gradients.tsx';
 import Area from './tiles/area';
-import Stacked from './tiles/stacked';
+import StackedAreas from './tiles/Stacked-Areas.tsx';
 import MultiLine from './tiles/multiline';
 import Axis from './tiles/axis';
 import BarGroup from './tiles/BarGroup.tsx';
@@ -181,7 +181,7 @@ export default function() {
               <div className="image">
                 <ParentSize>
                   {({ width, height }) => (
-                    <Stacked
+                    <StackedAreas
                       width={width}
                       height={height + detailsHeight}
                       margin={{
