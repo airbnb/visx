@@ -3,11 +3,29 @@ import { BarStack } from '@vx/shape';
 import { Group } from '@vx/group';
 import { Grid } from '@vx/grid';
 import { AxisBottom } from '@vx/axis';
-import { cityTemperature } from '@vx/mock-data';
+import cityTemperature, { CityTemperature } from '@vx/mock-data/lib/mocks/cityTemperature';
 import { scaleBand, scaleLinear, scaleOrdinal } from '@vx/scale';
 import { timeParse, timeFormat } from 'd3-time-format';
 import { withTooltip, Tooltip } from '@vx/tooltip';
+import { WithTooltipProvidedProps } from '@vx/tooltip/lib/enhancers/withTooltip';
 import { LegendOrdinal } from '@vx/legend';
+import { ShowProvidedProps } from '../../types';
+
+type CityName = 'New York' | 'San Francisco' | 'Austin';
+type TooltipData = {
+  bar: {
+    0: number;
+    1: number;
+    data: CityTemperature;
+  };
+  key: CityName;
+  index: number;
+  height: number;
+  width: number;
+  x: number;
+  y: number;
+  color: string;
+};
 
 const purple1 = '#6c5efb';
 const purple2 = '#c998ff';
@@ -15,47 +33,50 @@ const purple3 = '#a44afe';
 const bg = '#eaedff';
 
 const data = cityTemperature.slice(0, 12);
-const keys = Object.keys(data[0]).filter(d => d !== 'date');
+const keys = Object.keys(data[0]).filter(d => d !== 'date') as CityName[];
 
-const totals = data.reduce((ret, cur) => {
-  const t = keys.reduce((dailyTotal, k) => {
-    dailyTotal += Number(cur[k]);
+const temperatureTotals: number[] = data.reduce((allTotals, currentDate) => {
+  const totalTemperature = keys.reduce((dailyTotal, k) => {
+    dailyTotal += Number(currentDate[k]);
     return dailyTotal;
   }, 0);
-  ret.push(t);
-  return ret;
+  allTotals.push(totalTemperature);
+  return allTotals;
 }, []);
 
 const parseDate = timeParse('%Y%m%d');
 const format = timeFormat('%b %d');
-const formatDate = date => format(parseDate(date));
+const formatDate = (date: string) => format(parseDate(date));
 
 // accessors
-const x = d => d.date;
+const getDate = (d: CityTemperature) => d.date;
 
 // scales
-const xScale = scaleBand({
-  domain: data.map(x),
+const xScale = scaleBand<string>({
+  domain: data.map(getDate),
   padding: 0.2,
 });
-const yScale = scaleLinear({
-  domain: [0, Math.max(...totals)],
+const yScale = scaleLinear<number>({
+  domain: [0, Math.max(...temperatureTotals)],
   nice: true,
 });
-const color = scaleOrdinal({
+const color = scaleOrdinal<CityName, string>({
   domain: keys,
   range: [purple1, purple2, purple3],
 });
 
-let tooltipTimeout;
+let tooltipTimeout: number;
 
-export default withTooltip(
+export default withTooltip<ShowProvidedProps, TooltipData>(
   ({
     width,
     height,
     events = false,
     margin = {
       top: 40,
+      right: 0,
+      bottom: 0,
+      left: 0,
     },
     tooltipOpen,
     tooltipLeft,
@@ -63,7 +84,7 @@ export default withTooltip(
     tooltipData,
     hideTooltip,
     showTooltip,
-  }) => {
+  }: ShowProvidedProps & WithTooltipProvidedProps<TooltipData>) => {
     if (width < 10) return null;
     // bounds
     const xMax = width;
@@ -76,7 +97,7 @@ export default withTooltip(
       <div style={{ position: 'relative' }}>
         <svg width={width} height={height}>
           <rect x={0} y={0} width={width} height={height} fill={bg} rx={14} />
-          <Grid
+          <Grid<number>
             top={margin.top}
             left={margin.left}
             xScale={xScale}
@@ -88,43 +109,48 @@ export default withTooltip(
             xOffset={xScale.bandwidth() / 2}
           />
           <Group top={margin.top}>
-            <BarStack data={data} keys={keys} x={x} xScale={xScale} yScale={yScale} color={color}>
-              {barStacks => {
-                return barStacks.map(barStack => {
-                  return barStack.bars.map(bar => {
-                    return (
-                      <rect
-                        key={`bar-stack-${barStack.index}-${bar.index}`}
-                        x={bar.x}
-                        y={bar.y}
-                        height={bar.height}
-                        width={bar.width}
-                        fill={bar.color}
-                        onClick={() => {
-                          if (!events) return;
-                          alert(`clicked: ${JSON.stringify(bar)}`);
-                        }}
-                        onMouseLeave={() => {
-                          tooltipTimeout = setTimeout(() => {
-                            hideTooltip();
-                          }, 300);
-                        }}
-                        onMouseMove={event => {
-                          if (tooltipTimeout) clearTimeout(tooltipTimeout);
-                          const top = event.clientY - margin.top - bar.height;
-                          const offset = (xScale.paddingInner() * xScale.step()) / 2;
-                          const left = bar.x + bar.width + offset;
-                          showTooltip({
-                            tooltipData: bar,
-                            tooltipTop: top,
-                            tooltipLeft: left,
-                          });
-                        }}
-                      />
-                    );
-                  });
-                });
-              }}
+            <BarStack<CityTemperature, CityName>
+              data={data}
+              keys={keys}
+              x={getDate}
+              xScale={xScale}
+              yScale={yScale}
+              color={color}
+            >
+              {barStacks =>
+                barStacks.map(barStack =>
+                  barStack.bars.map(bar => (
+                    <rect
+                      key={`bar-stack-${barStack.index}-${bar.index}`}
+                      x={bar.x}
+                      y={bar.y}
+                      height={bar.height}
+                      width={bar.width}
+                      fill={bar.color}
+                      onClick={() => {
+                        if (!events) return;
+                        alert(`clicked: ${JSON.stringify(bar)}`);
+                      }}
+                      onMouseLeave={() => {
+                        tooltipTimeout = window.setTimeout(() => {
+                          hideTooltip();
+                        }, 300);
+                      }}
+                      onMouseMove={event => {
+                        if (tooltipTimeout) clearTimeout(tooltipTimeout);
+                        const top = event.clientY - margin.top - bar.height;
+                        const offset = (xScale.paddingInner() * xScale.step()) / 2;
+                        const left = bar.x + bar.width + offset;
+                        showTooltip({
+                          tooltipData: bar,
+                          tooltipTop: top,
+                          tooltipLeft: left,
+                        });
+                      }}
+                    />
+                  )),
+                )
+              }
             </BarStack>
           </Group>
           <AxisBottom
