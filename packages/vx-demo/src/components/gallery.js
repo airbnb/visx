@@ -23,7 +23,7 @@ import Heatmap from './tiles/heatmap';
 import LineRadial from './tiles/lineradial';
 import Pies from './tiles/pie';
 import Trees from './tiles/Trees.tsx';
-import Cluster from './tiles/dendrogram';
+import Dendrograms from './tiles/Dendrograms.tsx';
 import Voronoi from './tiles/Voronoi.tsx';
 import Legends from './tiles/legends';
 import StatsPlot from './tiles/Statsplot.tsx';
@@ -430,7 +430,9 @@ export default function() {
             <div className="gallery-item" style={{ background: '#306c90' }}>
               <div className="image">
                 <ParentSize>
-                  {({ width, height }) => <Cluster width={width} height={height + detailsHeight} />}
+                  {({ width, height }) => (
+                    <Dendrograms width={width} height={height + detailsHeight} />
+                  )}
                 </ParentSize>
               </div>
               <div className="details" style={{ color: '#5dc26f' }}>
