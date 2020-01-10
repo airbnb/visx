@@ -55,7 +55,6 @@ export default function Grid<XScaleInput, YScaleInput>({
         lineStyle={rowLineStyle}
         offset={yOffset}
         tickValues={rowTickValues}
-        strokeOpacity="0.3"
         {...restProps}
       />
       <GridColumns<XScaleInput>
