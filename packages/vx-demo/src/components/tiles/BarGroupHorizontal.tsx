@@ -65,7 +65,7 @@ export default ({
     <svg width={width} height={height}>
       <rect x={0} y={0} width={width} height={height} fill="#612efb" rx={14} />
       <Group top={margin.top} left={margin.left}>
-        <BarGroupHorizontal<CityTemperature>
+        <BarGroupHorizontal<CityTemperature, CityName>
           data={data}
           keys={keys}
           width={xMax}

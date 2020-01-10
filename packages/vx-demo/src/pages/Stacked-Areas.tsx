@@ -29,7 +29,7 @@ const data = browserUsage;
 const keys = Object.keys(data[0]).filter(k => k !== 'date') as BrowserNames[];
 const parseDate = timeParse('%Y %b %d');
 
-const getDate = (d: BrowserUsage) => parseDate(d.date).valueOf();
+const getDate = (d: BrowserUsage) => (parseDate(d.date) as Date).valueOf();
 const getY0 = (d: SeriesPoint<BrowserUsage>) => d[0] / 100;
 const getY1 = (d: SeriesPoint<BrowserUsage>) => d[1] / 100;
 

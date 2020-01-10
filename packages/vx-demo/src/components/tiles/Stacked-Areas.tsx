@@ -13,11 +13,16 @@ const data = browserUsage;
 const keys = Object.keys(data[0]).filter(k => k !== 'date') as BrowserNames[];
 const parseDate = timeParse('%Y %b %d');
 
-const getDate = (d: BrowserUsage) => parseDate(d.date).valueOf();
+const getDate = (d: BrowserUsage) => (parseDate(d.date) as Date).valueOf();
 const getY0 = (d: SeriesPoint<BrowserUsage>) => d[0] / 100;
 const getY1 = (d: SeriesPoint<BrowserUsage>) => d[1] / 100;
 
-export default ({ width, height, margin, events = false }: ShowProvidedProps) => {
+export default ({
+  width,
+  height,
+  margin = { top: 0, right: 0, bottom: 0, left: 0 },
+  events = false,
+}: ShowProvidedProps) => {
   if (width < 10) return null;
 
   // bounds
@@ -50,7 +55,7 @@ export default ({ width, height, margin, events = false }: ShowProvidedProps) =>
           stacks.map(stack => (
             <path
               key={`stack-${stack.key}`}
-              d={path(stack)}
+              d={path(stack) || ''}
               stroke="transparent"
               fill="url(#OrangeRed)"
               onClick={() => {
