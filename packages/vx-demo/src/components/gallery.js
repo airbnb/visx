@@ -14,7 +14,7 @@ import Gradients from './tiles/Gradients.tsx';
 import Areas from './tiles/Areas.tsx';
 import StackedAreas from './tiles/Stacked-Areas.tsx';
 import MultiLine from './tiles/multiline';
-import Axis from './tiles/axis';
+import Axis from './tiles/Axis.tsx';
 import BarGroup from './tiles/BarGroup.tsx';
 import BarGroupHorizontal from './tiles/BarGroupHorizontal.tsx';
 import BarStack from './tiles/BarStack.tsx';

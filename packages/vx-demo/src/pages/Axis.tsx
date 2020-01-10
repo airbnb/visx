@@ -1,6 +1,6 @@
 import React from 'react';
-import Show from '../components/Show.tsx';
-import Axis from '../components/tiles/axis';
+import Show from '../components/Show';
+import Axis from '../components/tiles/Axis';
 
 export default () => {
   return (
