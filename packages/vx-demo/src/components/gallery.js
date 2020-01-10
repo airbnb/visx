@@ -6,7 +6,7 @@ import drawData from './util/drawData.ts';
 
 import Footer from './Footer.tsx';
 
-import Lines from './tiles/lines';
+import Lines from './tiles/Lines.tsx';
 import Bars from './tiles/Bars.tsx';
 import Dots from './tiles/Dots.tsx';
 import Patterns from './tiles/Patterns.tsx';
@@ -34,7 +34,7 @@ import Streamgraph from './tiles/Streamgraph.tsx';
 import Pack from './tiles/Pack.tsx';
 import Treemap from './tiles/Treemap.tsx';
 import Radar from './tiles/radar';
-import Responsive from './tiles/responsive';
+import Responsive from './tiles/Responsive.tsx';
 import DragI from './tiles/drag-i';
 import DragII from './tiles/drag-ii';
 import LinkTypes from './tiles/LinkTypes.tsx';
