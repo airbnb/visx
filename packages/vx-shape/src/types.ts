@@ -1,4 +1,6 @@
-import { SeriesPoint } from 'd3-shape';
+import { SeriesPoint as SeriesPointType } from 'd3-shape';
+
+export type SeriesPoint<Datum> = SeriesPointType<Datum>;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type $TSFIXME = any;
