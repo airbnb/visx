@@ -23,7 +23,7 @@ import { scaleTime, scaleLinear } from '@vx/scale';
 import { withTooltip, Tooltip } from '@vx/tooltip';
 import { WithTooltipProvidedProps } from '@vx/tooltip/lib/enhancers/withTooltip';
 import { localPoint } from '@vx/event';
-import { min, max, extent, bisector } from 'd3-array';
+import { max, extent, bisector } from 'd3-array';
 import { timeFormat } from 'd3-time-format';
 import { ShowProvidedProps } from '../../types';
 
@@ -35,20 +35,20 @@ const stock = appleStock.slice(800);
 const formatDate = timeFormat("%b %d, '%y");
 
 // accessors
-const xStock = (d: AppleStock) => new Date(d.date);
-const yStock = (d: AppleStock) => d.close;
+const getDate = (d: AppleStock) => new Date(d.date);
+const getStockValue = (d: AppleStock) => d.close;
 const bisectDate = bisector<AppleStock, Date>(d => new Date(d.date)).left;
 
 export default withTooltip<ShowProvidedProps, TooltipData>(
   ({
     width,
     height,
-    margin,
+    margin = { top: 0, right: 0, bottom: 0, left: 0 },
     showTooltip,
     hideTooltip,
     tooltipData,
-    tooltipTop,
-    tooltipLeft,
+    tooltipTop = 0,
+    tooltipLeft = 0,
   }: ShowProvidedProps & WithTooltipProvidedProps<TooltipData>) => {
     if (width < 10) return null;
 
@@ -57,13 +57,13 @@ export default withTooltip<ShowProvidedProps, TooltipData>(
     const yMax = height - margin.top - margin.bottom;
 
     // scales
-    const xScale = scaleTime({
+    const dateScale = scaleTime({
       range: [0, xMax],
-      domain: extent(stock, xStock),
+      domain: extent(stock, getDate) as [Date, Date],
     });
-    const yScale = scaleLinear({
+    const stockValueScale = scaleLinear({
       range: [yMax, 0],
-      domain: [0, max(stock, yStock) + yMax / 3],
+      domain: [0, (max(stock, getStockValue) || 0) + yMax / 3],
       nice: true,
     });
 
@@ -71,19 +71,19 @@ export default withTooltip<ShowProvidedProps, TooltipData>(
     const handleTooltip = (
       event: React.TouchEvent<SVGRectElement> | React.MouseEvent<SVGRectElement>,
     ) => {
-      const { x } = localPoint(event);
-      const x0 = xScale.invert(x);
+      const { x } = localPoint(event) || { x: 0 };
+      const x0 = dateScale.invert(x);
       const index = bisectDate(stock, x0, 1);
       const d0 = stock[index - 1];
       const d1 = stock[index];
       let d = d0;
-      if (d1 && d1.date) {
-        d = x0.valueOf() - xStock(d0).valueOf() > xStock(d1).valueOf() - x0.valueOf() ? d1 : d0;
+      if (d1 && getDate(d1)) {
+        d = x0.valueOf() - getDate(d0).valueOf() > getDate(d1).valueOf() - x0.valueOf() ? d1 : d0;
       }
       showTooltip({
         tooltipData: d,
         tooltipLeft: x,
-        tooltipTop: yScale(d.close),
+        tooltipTop: stockValueScale(getStockValue(d)),
       });
     };
 
@@ -98,14 +98,14 @@ export default withTooltip<ShowProvidedProps, TooltipData>(
             </linearGradient>
           </defs>
           <GridRows<number>
-            scale={yScale}
+            scale={stockValueScale}
             width={xMax}
             strokeDasharray="2,2"
             stroke="rgba(255,255,255,0.3)"
             pointerEvents="none"
           />
           <GridColumns<Date>
-            scale={xScale}
+            scale={dateScale}
             height={yMax}
             strokeDasharray="2,2"
             stroke="rgba(255,255,255,0.3)"
@@ -113,9 +113,9 @@ export default withTooltip<ShowProvidedProps, TooltipData>(
           />
           <AreaClosed<AppleStock>
             data={stock}
-            x={d => xScale(xStock(d))}
-            y={d => yScale(yStock(d))}
-            yScale={yScale}
+            x={d => dateScale(getDate(d))}
+            y={d => stockValueScale(getStockValue(d))}
+            yScale={stockValueScale}
             strokeWidth={1}
             stroke="url(#gradient)"
             fill="url(#gradient)"
@@ -138,7 +138,7 @@ export default withTooltip<ShowProvidedProps, TooltipData>(
               <Line
                 from={{ x: tooltipLeft, y: 0 }}
                 to={{ x: tooltipLeft, y: yMax }}
-                stroke="rgba(92, 119, 235, 1.000)"
+                stroke="rgba(92, 119, 235, 1)"
                 strokeWidth={2}
                 pointerEvents="none"
                 strokeDasharray="2,2"
@@ -158,7 +158,7 @@ export default withTooltip<ShowProvidedProps, TooltipData>(
                 cx={tooltipLeft}
                 cy={tooltipTop}
                 r={4}
-                fill="rgba(92, 119, 235, 1.000)"
+                fill="rgba(92, 119, 235, 1)"
                 stroke="white"
                 strokeWidth={2}
                 pointerEvents="none"
@@ -172,11 +172,11 @@ export default withTooltip<ShowProvidedProps, TooltipData>(
               top={tooltipTop - 12}
               left={tooltipLeft + 12}
               style={{
-                backgroundColor: 'rgba(92, 119, 235, 1.000)',
+                backgroundColor: 'rgba(92, 119, 235, 1)',
                 color: 'white',
               }}
             >
-              {\`$\${yStock(tooltipData)}\`}
+              {\`$\${getStockValue(tooltipData)}\`}
             </Tooltip>
             <Tooltip
               top={yMax - 14}
@@ -185,7 +185,7 @@ export default withTooltip<ShowProvidedProps, TooltipData>(
                 transform: 'translateX(-50%)',
               }}
             >
-              {formatDate(xStock(tooltipData))}
+              {formatDate(getDate(tooltipData))}
             </Tooltip>
           </div>
         )}
