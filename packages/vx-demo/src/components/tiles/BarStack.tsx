@@ -35,18 +35,18 @@ const bg = '#eaedff';
 const data = cityTemperature.slice(0, 12);
 const keys = Object.keys(data[0]).filter(d => d !== 'date') as CityName[];
 
-const temperatureTotals: number[] = data.reduce((allTotals, currentDate) => {
+const temperatureTotals = data.reduce((allTotals, currentDate) => {
   const totalTemperature = keys.reduce((dailyTotal, k) => {
     dailyTotal += Number(currentDate[k]);
     return dailyTotal;
   }, 0);
   allTotals.push(totalTemperature);
   return allTotals;
-}, []);
+}, [] as number[]);
 
 const parseDate = timeParse('%Y%m%d');
 const format = timeFormat('%b %d');
-const formatDate = (date: string) => format(parseDate(date));
+const formatDate = (date: string) => format(parseDate(date) as Date);
 
 // accessors
 const getDate = (d: CityTemperature) => d.date;
@@ -97,7 +97,7 @@ export default withTooltip<ShowProvidedProps, TooltipData>(
       <div style={{ position: 'relative' }}>
         <svg width={width} height={height}>
           <rect x={0} y={0} width={width} height={height} fill={bg} rx={14} />
-          <Grid<number>
+          <Grid<string, number>
             top={margin.top}
             left={margin.left}
             xScale={xScale}
@@ -128,8 +128,7 @@ export default withTooltip<ShowProvidedProps, TooltipData>(
                       width={bar.width}
                       fill={bar.color}
                       onClick={() => {
-                        if (!events) return;
-                        alert(`clicked: ${JSON.stringify(bar)}`);
+                        if (events) alert(`clicked: ${JSON.stringify(bar)}`);
                       }}
                       onMouseLeave={() => {
                         tooltipTimeout = window.setTimeout(() => {
@@ -153,7 +152,7 @@ export default withTooltip<ShowProvidedProps, TooltipData>(
               }
             </BarStack>
           </Group>
-          <AxisBottom
+          <AxisBottom<string>
             top={yMax + margin.top}
             scale={xScale}
             tickFormat={formatDate}
@@ -178,7 +177,8 @@ export default withTooltip<ShowProvidedProps, TooltipData>(
         >
           <LegendOrdinal scale={color} direction="row" labelMargin="0 15px 0 0" />
         </div>
-        {tooltipOpen && (
+
+        {tooltipOpen && tooltipData && (
           <Tooltip
             top={tooltipTop}
             left={tooltipLeft}
@@ -193,7 +193,7 @@ export default withTooltip<ShowProvidedProps, TooltipData>(
             </div>
             <div>{tooltipData.bar.data[tooltipData.key]}℉</div>
             <div>
-              <small>{formatDate(x(tooltipData.bar.data))}</small>
+              <small>{formatDate(getDate(tooltipData.bar.data))}</small>
             </div>
           </Tooltip>
         )}

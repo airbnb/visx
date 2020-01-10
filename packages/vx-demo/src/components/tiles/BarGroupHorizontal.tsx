@@ -11,7 +11,7 @@ type CityName = 'New York' | 'San Francisco' | 'Austin';
 
 const parseDate = timeParse('%Y%m%d');
 const format = timeFormat('%b %d');
-const formatDate = (date: string) => format(parseDate(date));
+const formatDate = (date: string) => format(parseDate(date) as Date);
 function max<D>(arr: D[], fn: (d: D) => number) {
   return Math.max(...arr.map(fn));
 }
@@ -100,7 +100,7 @@ export default ({
           }
         </BarGroupHorizontal>
         <AxisLeft
-          scale={y0Scale}
+          scale={dateScale}
           stroke="#e5fd3d"
           tickStroke="#e5fd3d"
           tickFormat={formatDate}

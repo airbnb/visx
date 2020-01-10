@@ -1,10 +1,15 @@
 import React from 'react';
-import Show from '../components/Show.tsx';
-import BarStack from '../components/tiles/barstack';
+import Show from '../components/Show';
+import BarStack from '../components/tiles/BarStack';
 
 export default () => {
   return (
-    <Show events margin={{ top: 80 }} component={BarStack} title="Bar Stack">
+    <Show
+      events
+      margin={{ top: 80, right: 0, bottom: 0, left: 0 }}
+      component={BarStack}
+      title="Bar Stack"
+    >
       {`import React from 'react';
 import { BarStack } from '@vx/shape';
 import { Group } from '@vx/group';

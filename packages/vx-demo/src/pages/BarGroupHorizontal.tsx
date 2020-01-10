@@ -112,7 +112,7 @@ export default ({
           }
         </BarGroupHorizontal>
         <AxisLeft
-          scale={y0Scale}
+          scale={dateScale}
           stroke="#e5fd3d"
           tickStroke="#e5fd3d"
           tickFormat={formatDate}
