@@ -35,7 +35,7 @@ export default function GridRows<ScaleInput>({
   return (
     <Group className={cx('vx-rows', className)} top={top} left={left}>
       {ticks.map((d, i) => {
-        const y = offset ? scale(d) + offset : scale(d);
+        const y = offset ? (scale(d) || 0) + offset : scale(d) || 0;
         const fromPoint = new Point({
           x: 0,
           y,

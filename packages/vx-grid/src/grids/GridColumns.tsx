@@ -35,7 +35,7 @@ export default function GridColumns<ScaleInput>({
   return (
     <Group className={cx('vx-columns', className)} top={top} left={left}>
       {ticks.map((d, i) => {
-        const x = offset ? scale(d) + offset : scale(d);
+        const x = offset ? (scale(d) || 0) + offset : scale(d) || 0;
         const fromPoint = new Point({
           x,
           y: 0,

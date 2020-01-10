@@ -1,6 +1,6 @@
 /** Generic d3 scale type. */
 export interface Scale<Input = unknown, Output = unknown> {
-  (value: Input): Output;
+  (value: Input): Output | undefined;
   ticks?: (count?: number) => Input[];
   domain(): Input[];
   range(): Output[] | [Output];
