@@ -37,7 +37,7 @@ import Radar from './tiles/radar';
 import Responsive from './tiles/responsive';
 import DragI from './tiles/drag-i';
 import DragII from './tiles/drag-ii';
-import LinkTypes from './tiles/linkTypes';
+import LinkTypes from './tiles/LinkTypes.tsx';
 import Threshold from './tiles/threshold';
 import Chord from './tiles/Chord.tsx';
 import Polygons from './tiles/Polygons.tsx';
