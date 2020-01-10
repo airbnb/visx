@@ -187,7 +187,7 @@ export default ({
                   const tickX = tick.to.x;
                   const tickY = tick.to.y + tickLabelSize + axis.tickLength;
                   return (
-                    <Group key={\`vx-tick-\${tick.value}-${i}\`} className="vx-axis-tick">
+                    <Group key={\`vx-tick-\${tick.value}-\${i}\`} className="vx-axis-tick">
                       <Line from={tick.from} to={tick.to} stroke={orange} />
                       <text
                         transform={\`translate(\${tickX}, \${tickY}) rotate(\${tickRotate})\`}
