@@ -96,25 +96,23 @@ export default function BarGroupComponent<
       ? x1Scale.bandwidth()
       : Math.abs(x1Range[x1Range.length - 1] - x1Range[0]) / x1Domain.length;
 
-  const barGroups: BarGroup<Key>[] = data.map((group, i) => {
-    return {
-      index: i,
-      x0: x0Scale(x0(group)),
-      bars: keys.map((key, j) => {
-        const value = group[key];
-        return {
-          index: j,
-          key,
-          value,
-          width: barWidth,
-          x: x1Scale(key),
-          y: yScale(value),
-          color: color(key, j),
-          height: height - yScale(value),
-        };
-      }),
-    };
-  });
+  const barGroups: BarGroup<Key>[] = data.map((group, i) => ({
+    index: i,
+    x0: x0Scale(x0(group))!,
+    bars: keys.map((key, j) => {
+      const value = group[key];
+      return {
+        index: j,
+        key,
+        value,
+        width: barWidth,
+        x: x1Scale(key) || 0,
+        y: yScale(value) || 0,
+        color: color(key, j),
+        height: height - (yScale(value) || 0),
+      };
+    }),
+  }));
 
   if (children) return <>{children(barGroups)}</>;
 

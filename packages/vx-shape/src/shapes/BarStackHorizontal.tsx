@@ -74,20 +74,20 @@ export default function BarStackHorizontal<Datum, Key extends StackKey = StackKe
       index: i,
       key,
       bars: barStack.map((bar, j) => {
-        const barWidth = xScale(x1(bar)) - xScale(x0(bar));
+        const barWidth = (xScale(x1(bar)) || 0) - (xScale(x0(bar)) || 0);
         const barX = xScale(x0(bar));
         const barY =
           'bandwidth' in yScale && typeof yScale.bandwidth === 'function'
             ? yScale(y(bar.data))
-            : Math.max(yScale(y(bar.data)) - barWidth / 2);
+            : Math.max((yScale(y(bar.data)) || 0) - barWidth / 2);
         return {
           bar,
           key,
           index: j,
           height: barHeight,
           width: barWidth,
-          x: barX,
-          y: barY,
+          x: barX || 0,
+          y: barY || 0,
           color: color(barStack.key, j),
         };
       }),

@@ -73,12 +73,12 @@ export default function BarStackComponent<Datum, Key extends StackKey = StackKey
       index: i,
       key,
       bars: barStack.map((bar, j) => {
-        const barHeight = yScale(y0(bar)) - yScale(y1(bar));
+        const barHeight = (yScale(y0(bar)) || 0) - (yScale(y1(bar)) || 0);
         const barY = yScale(y1(bar));
         const barX =
           'bandwidth' in xScale && typeof xScale.bandwidth === 'function'
             ? xScale(x(bar.data))
-            : Math.max(xScale(x(bar.data)) - barWidth / 2);
+            : Math.max((xScale(x(bar.data)) || 0) - barWidth / 2);
 
         return {
           bar,
@@ -86,8 +86,8 @@ export default function BarStackComponent<Datum, Key extends StackKey = StackKey
           index: j,
           height: barHeight,
           width: barWidth,
-          x: barX,
-          y: barY,
+          x: barX || 0,
+          y: barY || 0,
           color: color(barStack.key, j),
         };
       }),

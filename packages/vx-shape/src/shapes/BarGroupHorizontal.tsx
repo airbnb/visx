@@ -52,25 +52,23 @@ export default function BarGroupHorizontalComponent<
       ? y1Scale.bandwidth()
       : Math.abs(y1Range[y1Range.length - 1] - y1Range[0]) / y1Domain.length;
 
-  const barGroups = data.map((group, i) => {
-    return {
-      index: i,
-      y0: y0Scale(y0(group)),
-      bars: keys.map((key, j) => {
-        const value = group[key];
-        return {
-          index: j,
-          key,
-          value,
-          height: barHeight,
-          x: x(value),
-          y: y1Scale(key),
-          color: color(key, j),
-          width: xScale(value),
-        };
-      }),
-    };
-  });
+  const barGroups = data.map((group, i) => ({
+    index: i,
+    y0: y0Scale(y0(group)) || 0,
+    bars: keys.map((key, j) => {
+      const value = group[key];
+      return {
+        index: j,
+        key,
+        value,
+        height: barHeight,
+        x: x(value) || 0,
+        y: y1Scale(key) || 0,
+        color: color(key, j),
+        width: xScale(value) || 0,
+      };
+    }),
+  }));
 
   if (children) return <>{children(barGroups)}</>;
 

@@ -110,7 +110,7 @@ export type SharedLinkProps<Link> = {
 
 /** This is meant to be a generic interface for any scale based on usage in this package. */
 export interface ScaleType<Input = $TSFIXME, Output = number> {
-  (...args: Input[]): Output;
+  (...args: Input[]): Output | undefined;
   range(): Output[] | [Output, Output];
   domain(): Input[] | [Input, Input];
   bandwidth?: () => number;
