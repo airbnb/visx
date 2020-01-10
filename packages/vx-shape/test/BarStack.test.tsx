@@ -8,8 +8,6 @@ xScale.domain = () => [0, 100] as [number, number];
 xScale.range = () => [0, 100] as [number, number];
 xScale.bandwidth = () => 2;
 xScale.step = () => 2;
-xScale.paddingInner = jest.fn();
-xScale.paddingOuter = jest.fn();
 
 describe('<BarStack />', () => {
   test('it should be defined', () => {
@@ -25,7 +23,7 @@ describe('<BarStack />', () => {
         x={d => d}
         xScale={xScale}
         yScale={xScale}
-        color={d => d.toString()}
+        color={d => d}
         keys={[]}
       />,
     );
@@ -42,7 +40,7 @@ describe('<BarStack />', () => {
         x={d => d}
         xScale={xScale}
         yScale={xScale}
-        color={d => d.toString()}
+        color={d => d}
         keys={[]}
       />,
     );
@@ -59,7 +57,7 @@ describe('<BarStack />', () => {
         x={d => d}
         xScale={xScale}
         yScale={xScale}
-        color={d => d.toString()}
+        color={d => d}
         keys={[]}
       />,
     );

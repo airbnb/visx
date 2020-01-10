@@ -7,18 +7,18 @@ import drawData from './util/drawData.ts';
 import Footer from './Footer.tsx';
 
 import Lines from './tiles/lines';
-import Bars from './tiles/bars';
+import Bars from './tiles/Bars.tsx';
 import Dots from './tiles/Dots.tsx';
 import Patterns from './tiles/Patterns.tsx';
 import Gradients from './tiles/Gradients.tsx';
 import Area from './tiles/area';
-import Stacked from './tiles/stacked';
+import StackedAreas from './tiles/Stacked-Areas.tsx';
 import MultiLine from './tiles/multiline';
 import Axis from './tiles/axis';
-import BarGroup from './tiles/bargroup';
-import BarGroupHorizontal from './tiles/bargrouphorizontal';
-import BarStack from './tiles/barstack';
-import BarStackHorizontal from './tiles/barstackhorizontal';
+import BarGroup from './tiles/BarGroup.tsx';
+import BarGroupHorizontal from './tiles/BarGroupHorizontal.tsx';
+import BarStack from './tiles/BarStack.tsx';
+import BarStackHorizontal from './tiles/BarStackHorizontal.tsx';
 import Heatmap from './tiles/heatmap';
 import LineRadial from './tiles/lineradial';
 import Pies from './tiles/pie';
@@ -181,7 +181,7 @@ export default function() {
               <div className="image">
                 <ParentSize>
                   {({ width, height }) => (
-                    <Stacked
+                    <StackedAreas
                       width={width}
                       height={height + detailsHeight}
                       margin={{

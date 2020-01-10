@@ -25,7 +25,7 @@ describe('<BarStackHorizontal />', () => {
         y={d => d}
         xScale={scale}
         yScale={scale}
-        color={d => d.toString()}
+        color={d => d}
         keys={[]}
       />,
     );
@@ -42,7 +42,7 @@ describe('<BarStackHorizontal />', () => {
         y={d => d}
         xScale={scale}
         yScale={scale}
-        color={d => d.toString()}
+        color={d => d}
         keys={[]}
       />,
     );
@@ -59,7 +59,7 @@ describe('<BarStackHorizontal />', () => {
         y={d => d}
         xScale={scale}
         yScale={scale}
-        color={d => d.toString()}
+        color={d => d}
         keys={[]}
       />,
     );
