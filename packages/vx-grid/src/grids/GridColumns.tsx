@@ -12,7 +12,7 @@ export type GridColumnProps<ScaleInput> = CommonGridProps & {
   height: number;
 };
 
-type AllProps<ScaleInput> = GridColumnProps<ScaleInput> &
+export type AllGridColumnProps<ScaleInput> = GridColumnProps<ScaleInput> &
   Omit<
     LineProps & Omit<React.SVGProps<SVGLineElement>, keyof LineProps>,
     keyof GridColumnProps<ScaleInput> | keyof CommonGridProps
@@ -32,7 +32,7 @@ export default function GridColumns<ScaleInput>({
   offset,
   tickValues,
   ...restProps
-}: AllProps<ScaleInput>) {
+}: AllGridColumnProps<ScaleInput>) {
   const ticks = (tickValues ||
     (scale.ticks ? scale.ticks(numTicks) : scale.domain())) as ScaleInput[];
   return (

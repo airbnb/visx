@@ -1,8 +1,8 @@
 import React from 'react';
 import cx from 'classnames';
 import { Group } from '@vx/group';
-import GridRows, { GridRowsProps } from './GridRows';
-import GridColumns, { GridColumnProps } from './GridColumns';
+import GridRows, { AllGridRowsProps } from './GridRows';
+import GridColumns, { AllGridColumnProps } from './GridColumns';
 import { Scale, CommonGridProps } from '../types';
 
 type CommonPropsToOmit = 'scale' | 'offset' | 'numTicks' | 'lineStyle' | 'tickValues';
@@ -18,8 +18,8 @@ export type GridProps<XScaleInput, YScaleInput> = {
   columnLineStyle: CommonGridProps['lineStyle'];
   rowTickValues: CommonGridProps['tickValues'];
   columnTickValues: CommonGridProps['tickValues'];
-} & Omit<GridRowsProps<YScaleInput>, CommonPropsToOmit> &
-  Omit<GridColumnProps<XScaleInput>, CommonPropsToOmit>;
+} & Omit<AllGridRowsProps<YScaleInput>, CommonPropsToOmit> &
+  Omit<AllGridColumnProps<XScaleInput>, CommonPropsToOmit>;
 
 export default function Grid<XScaleInput, YScaleInput>({
   top,

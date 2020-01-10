@@ -12,7 +12,7 @@ export type GridRowsProps<ScaleInput> = CommonGridProps & {
   width: number;
 };
 
-type AllProps<ScaleInput> = GridRowsProps<ScaleInput> &
+export type AllGridRowsProps<ScaleInput> = GridRowsProps<ScaleInput> &
   Omit<
     LineProps & Omit<React.SVGProps<SVGLineElement>, keyof LineProps>,
     keyof GridRowsProps<ScaleInput> | keyof CommonGridProps
@@ -32,7 +32,7 @@ export default function GridRows<ScaleInput>({
   offset,
   tickValues,
   ...restProps
-}: AllProps<ScaleInput>) {
+}: AllGridRowsProps<ScaleInput>) {
   const ticks = (tickValues ||
     (scale.ticks ? scale.ticks(numTicks) : scale.domain())) as ScaleInput[];
   return (
