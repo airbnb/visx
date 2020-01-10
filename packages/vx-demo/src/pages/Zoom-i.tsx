@@ -1,6 +1,6 @@
 import React from 'react';
-import Show from '../components/Show.tsx';
-import ZoomI from '../components/tiles/zoom-i';
+import Show from '../components/Show';
+import ZoomI from '../components/tiles/Zoom-i';
 
 export default () => {
   return (

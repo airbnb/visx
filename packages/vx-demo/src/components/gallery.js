@@ -41,7 +41,7 @@ import LinkTypes from './tiles/LinkTypes.tsx';
 import Threshold from './tiles/threshold';
 import Chord from './tiles/Chord.tsx';
 import Polygons from './tiles/Polygons.tsx';
-import ZoomI from './tiles/zoom-i';
+import ZoomI from './tiles/Zoom-i.tsx';
 import BrushChart from './tiles/brush';
 
 const items = [
