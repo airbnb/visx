@@ -18,7 +18,7 @@ import Axis from './tiles/axis';
 import BarGroup from './tiles/BarGroup.tsx';
 import BarGroupHorizontal from './tiles/BarGroupHorizontal.tsx';
 import BarStack from './tiles/BarStack.tsx';
-import BarStackHorizontal from './tiles/barstackhorizontal';
+import BarStackHorizontal from './tiles/BarStackHorizontal.tsx';
 import Heatmap from './tiles/heatmap';
 import LineRadial from './tiles/lineradial';
 import Pies from './tiles/pie';
