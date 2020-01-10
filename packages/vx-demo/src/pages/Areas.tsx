@@ -140,7 +140,7 @@ export default withTooltip<ShowProvidedProps, TooltipData>(
                 to={{ x: tooltipLeft, y: yMax }}
                 stroke="rgba(92, 119, 235, 1.000)"
                 strokeWidth={2}
-                style={{ pointerEvents: 'none' }}
+                pointerEvents="none"
                 strokeDasharray="2,2"
               />
               <circle
@@ -152,7 +152,7 @@ export default withTooltip<ShowProvidedProps, TooltipData>(
                 stroke="black"
                 strokeOpacity={0.1}
                 strokeWidth={2}
-                style={{ pointerEvents: 'none' }}
+                pointerEvents="none"
               />
               <circle
                 cx={tooltipLeft}
@@ -161,7 +161,7 @@ export default withTooltip<ShowProvidedProps, TooltipData>(
                 fill="rgba(92, 119, 235, 1.000)"
                 stroke="white"
                 strokeWidth={2}
-                style={{ pointerEvents: 'none' }}
+                pointerEvents="none"
               />
             </g>
           )}
