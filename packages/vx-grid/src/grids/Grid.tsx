@@ -7,9 +7,9 @@ import { Scale, CommonGridProps } from '../types';
 
 type CommonPropsToOmit = 'scale' | 'offset' | 'numTicks' | 'lineStyle' | 'tickValues';
 
-export type GridProps<ScaleInput> = {
-  xScale: Scale<ScaleInput, number>;
-  yScale: Scale<ScaleInput, number>;
+export type GridProps<XScaleInput, YScaleInput> = {
+  xScale: Scale<XScaleInput, number>;
+  yScale: Scale<YScaleInput, number>;
   xOffset: CommonGridProps['offset'];
   yOffset: CommonGridProps['offset'];
   numTicksRows: CommonGridProps['numTicks'];
@@ -18,10 +18,10 @@ export type GridProps<ScaleInput> = {
   columnLineStyle: CommonGridProps['lineStyle'];
   rowTickValues: CommonGridProps['tickValues'];
   columnTickValues: CommonGridProps['tickValues'];
-} & Omit<GridRowsProps<ScaleInput>, CommonPropsToOmit> &
-  Omit<GridColumnProps<ScaleInput>, CommonPropsToOmit>;
+} & Omit<GridRowsProps<YScaleInput>, CommonPropsToOmit> &
+  Omit<GridColumnProps<XScaleInput>, CommonPropsToOmit>;
 
-export default function Grid<ScaleInput>({
+export default function Grid<XScaleInput, YScaleInput>({
   top,
   left,
   xScale,
@@ -41,10 +41,10 @@ export default function Grid<ScaleInput>({
   rowTickValues,
   columnTickValues,
   ...restProps
-}: GridProps<ScaleInput>) {
+}: GridProps<XScaleInput, YScaleInput>) {
   return (
     <Group className={cx('vx-grid', className)} top={top} left={left}>
-      <GridRows
+      <GridRows<YScaleInput>
         className={className}
         scale={yScale}
         width={width}
@@ -57,7 +57,7 @@ export default function Grid<ScaleInput>({
         tickValues={rowTickValues}
         {...restProps}
       />
-      <GridColumns
+      <GridColumns<XScaleInput>
         className={className}
         scale={xScale}
         height={height}
