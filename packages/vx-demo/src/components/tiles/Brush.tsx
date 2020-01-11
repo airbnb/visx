@@ -7,11 +7,11 @@ import { curveMonotoneX } from '@vx/curve';
 import { scaleTime, scaleLinear } from '@vx/scale';
 import appleStock, { AppleStock } from '@vx/mock-data/lib/mocks/appleStock';
 import { Brush } from '@vx/brush';
+import { Bounds } from '@vx/brush/lib/types';
 import { PatternLines } from '@vx/pattern';
 import { LinearGradient } from '@vx/gradient';
 import { max, extent } from 'd3-array';
 import { ShowProvidedProps, MarginShape } from '../../types';
-import { Bounds } from '@vx/brush/lib/types';
 
 /**
  * Initialize some variables
