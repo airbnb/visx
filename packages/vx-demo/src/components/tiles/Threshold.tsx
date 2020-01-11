@@ -6,57 +6,62 @@ import { Threshold } from '@vx/threshold';
 import { scaleTime, scaleLinear } from '@vx/scale';
 import { AxisLeft, AxisBottom } from '@vx/axis';
 import { GridRows, GridColumns } from '@vx/grid';
-import { cityTemperature as data } from '@vx/mock-data';
+import cityTemperature, { CityTemperature } from '@vx/mock-data/lib/mocks/cityTemperature';
 import { timeParse } from 'd3-time-format';
+import { ShowProvidedProps } from '../../types';
 
 const parseDate = timeParse('%Y%m%d');
 
 // accessors
-const date = d => parseDate(d.date);
-const ny = d => d['New York'];
-const sf = d => d['San Francisco'];
+const date = (d: CityTemperature) => (parseDate(d.date) as Date).valueOf();
+const ny = (d: CityTemperature) => Number(d['New York']);
+const sf = (d: CityTemperature) => Number(d['San Francisco']);
 
 // scales
-const xScale = scaleTime({
-  domain: [Math.min(...data.map(date)), Math.max(...data.map(date))],
+const timeScale = scaleTime<number>({
+  domain: [Math.min(...cityTemperature.map(date)), Math.max(...cityTemperature.map(date))],
 });
-const yScale = scaleLinear({
+const temperatureScale = scaleLinear<number>({
   domain: [
-    Math.min(...data.map(d => Math.min(ny(d), sf(d)))),
-    Math.max(...data.map(d => Math.max(ny(d), sf(d)))),
+    Math.min(...cityTemperature.map(d => Math.min(ny(d), sf(d)))),
+    Math.max(...cityTemperature.map(d => Math.max(ny(d), sf(d)))),
   ],
   nice: true,
 });
 
-export default function Theshold({ width, height, margin /** events */ }) {
+export default function Theshold({
+  width,
+  height,
+  margin = { top: 0, right: 0, bottom: 0, left: 0 },
+}: ShowProvidedProps) {
   if (width < 10) return null;
 
   // bounds
   const xMax = width - margin.left - margin.right;
   const yMax = height - margin.top - margin.bottom;
 
-  xScale.range([0, xMax]);
-  yScale.range([yMax, 0]);
+  timeScale.range([0, xMax]);
+  temperatureScale.range([yMax, 0]);
 
   return (
     <div>
       <svg width={width} height={height}>
         <rect x={0} y={0} width={width} height={height} fill="#f3f3f3" rx={14} />
         <Group left={margin.left} top={margin.top}>
-          <GridRows scale={yScale} width={xMax} height={yMax} stroke="#e0e0e0" />
-          <GridColumns scale={xScale} width={xMax} height={yMax} stroke="#e0e0e0" />
+          <GridRows scale={temperatureScale} width={xMax} height={yMax} stroke="#e0e0e0" />
+          <GridColumns scale={timeScale} width={xMax} height={yMax} stroke="#e0e0e0" />
           <line x1={xMax} x2={xMax} y1={0} y2={yMax} stroke="#e0e0e0" />
-          <AxisBottom top={yMax} scale={xScale} numTicks={width > 520 ? 10 : 5} />
-          <AxisLeft scale={yScale} />
+          <AxisBottom top={yMax} scale={timeScale} numTicks={width > 520 ? 10 : 5} />
+          <AxisLeft scale={temperatureScale} />
           <text x="-70" y="15" transform="rotate(-90)" fontSize={10}>
             Temperature (°F)
           </text>
-          <Threshold
+          <Threshold<CityTemperature>
             id={`${Math.random()}`}
-            data={data}
-            x={d => xScale(date(d))}
-            y0={d => yScale(ny(d))}
-            y1={d => yScale(sf(d))}
+            data={cityTemperature}
+            x={d => timeScale(date(d))}
+            y0={d => temperatureScale(ny(d))}
+            y1={d => temperatureScale(sf(d))}
             clipAboveTo={0}
             clipBelowTo={yMax}
             curve={curveBasis}
@@ -70,21 +75,21 @@ export default function Theshold({ width, height, margin /** events */ }) {
             }}
           />
           <LinePath
-            data={data}
+            data={cityTemperature}
             curve={curveBasis}
-            x={d => xScale(date(d))}
-            y={d => yScale(sf(d))}
-            stroke="#000"
+            x={d => timeScale(date(d))}
+            y={d => temperatureScale(sf(d))}
+            stroke="#222"
             strokeWidth={1.5}
             strokeOpacity={0.8}
             strokeDasharray="1,2"
           />
           <LinePath
-            data={data}
+            data={cityTemperature}
             curve={curveBasis}
-            x={d => xScale(date(d))}
-            y={d => yScale(ny(d))}
-            stroke="#000"
+            x={d => timeScale(date(d))}
+            y={d => temperatureScale(ny(d))}
+            stroke="#222"
             strokeWidth={1.5}
           />
         </Group>

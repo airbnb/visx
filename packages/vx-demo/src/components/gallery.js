@@ -38,7 +38,7 @@ import Responsive from './tiles/Responsive.tsx';
 import DragI from './tiles/drag-i';
 import DragII from './tiles/drag-ii';
 import LinkTypes from './tiles/LinkTypes.tsx';
-import Threshold from './tiles/threshold';
+import Threshold from './tiles/Threshold.tsx';
 import Chord from './tiles/Chord.tsx';
 import Polygons from './tiles/Polygons.tsx';
 import ZoomI from './tiles/Zoom-i.tsx';
