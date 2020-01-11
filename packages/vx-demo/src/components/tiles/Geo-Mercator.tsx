@@ -35,7 +35,6 @@ export default ({ width, height, events = false }: ShowProvidedProps) => {
   const centerX = width / 2;
   const centerY = height / 2;
   const scale = (width / 630) * 100;
-  console.warn({ width, height });
 
   return (
     <svg width={width} height={height}>
