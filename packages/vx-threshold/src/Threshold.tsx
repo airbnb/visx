@@ -1,8 +1,11 @@
 import React from 'react';
 import cx from 'classnames';
 import { Area } from '@vx/shape';
-import { AreaProps } from '@vx/shape/lib/shapes/Area';
+import { AreaProps as AreaOwnProps } from '@vx/shape/lib/shapes/Area';
 import { ClipPath } from '@vx/clip-path';
+
+type AreaProps<Datum> = AreaOwnProps<Datum> &
+  Omit<React.SVGProps<SVGPathElement>, keyof AreaOwnProps<Datum>>;
 
 type NumberAccessor<Datum> = (datum: Datum, index: number, data: Datum[]) => number;
 

@@ -149,7 +149,14 @@ export default function Axis<ScaleInput>({
             className={cx('vx-axis-tick', tickClassName)}
             transform={tickTransform}
           >
-            {!hideTicks && <Line from={tickFromPoint} to={tickToPoint} stroke={tickStroke} />}
+            {!hideTicks && (
+              <Line
+                from={tickFromPoint}
+                to={tickToPoint}
+                stroke={tickStroke}
+                strokeLinecap="square"
+              />
+            )}
             {tickComponent ? (
               tickComponent({
                 ...tickLabelPropsObj,

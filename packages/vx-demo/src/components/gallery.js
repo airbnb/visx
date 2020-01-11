@@ -6,42 +6,42 @@ import drawData from './util/drawData.ts';
 
 import Footer from './Footer.tsx';
 
-import Lines from './tiles/lines';
-import Bars from './tiles/bars';
-import Dots from './tiles/dots';
+import Lines from './tiles/Lines.tsx';
+import Bars from './tiles/Bars.tsx';
+import Dots from './tiles/Dots.tsx';
 import Patterns from './tiles/Patterns.tsx';
-import Gradients from './tiles/gradients';
-import Area from './tiles/area';
-import Stacked from './tiles/stacked';
+import Gradients from './tiles/Gradients.tsx';
+import Areas from './tiles/Areas.tsx';
+import StackedAreas from './tiles/Stacked-Areas.tsx';
 import MultiLine from './tiles/multiline';
-import Axis from './tiles/axis';
-import BarGroup from './tiles/bargroup';
-import BarGroupHorizontal from './tiles/bargrouphorizontal';
-import BarStack from './tiles/barstack';
-import BarStackHorizontal from './tiles/barstackhorizontal';
+import Axis from './tiles/Axis.tsx';
+import BarGroup from './tiles/BarGroup.tsx';
+import BarGroupHorizontal from './tiles/BarGroupHorizontal.tsx';
+import BarStack from './tiles/BarStack.tsx';
+import BarStackHorizontal from './tiles/BarStackHorizontal.tsx';
 import Heatmap from './tiles/Heatmap.tsx';
 import LineRadial from './tiles/lineradial';
 import Pies from './tiles/Pies.tsx';
-import Trees from './tiles/tree';
-import Cluster from './tiles/dendrogram';
-import Voronoi from './tiles/voronoi';
+import Trees from './tiles/Trees.tsx';
+import Dendrograms from './tiles/Dendrograms.tsx';
+import Voronoi from './tiles/Voronoi.tsx';
 import Legends from './tiles/legends';
-import StatsPlot from './tiles/statsplot';
-import GeoMercator from './tiles/geo-mercator';
-import GeoCustom from './tiles/geo-custom';
+import StatsPlot from './tiles/Statsplot.tsx';
+import GeoMercator from './tiles/Geo-Mercator.tsx';
+import GeoCustom from './tiles/Geo-Custom.tsx';
 import Network from './tiles/Network.tsx';
-import Streamgraph from './tiles/streamgraph';
+import Streamgraph from './tiles/Streamgraph.tsx';
 import Pack from './tiles/Pack.tsx';
-import Treemap from './tiles/treemap';
+import Treemap from './tiles/Treemap.tsx';
 import Radar from './tiles/radar';
-import Responsive from './tiles/responsive';
+import Responsive from './tiles/Responsive.tsx';
 import DragI from './tiles/drag-i';
 import DragII from './tiles/drag-ii';
-import LinkTypes from './tiles/linkTypes';
-import Threshold from './tiles/threshold';
-import Chord from './tiles/chord';
-import Polygons from './tiles/polygons';
-import ZoomI from './tiles/zoom-i';
+import LinkTypes from './tiles/LinkTypes.tsx';
+import Threshold from './tiles/Threshold.tsx';
+import Chord from './tiles/Chord.tsx';
+import Polygons from './tiles/Polygons.tsx';
+import ZoomI from './tiles/Zoom-i.tsx';
 import BrushChart from './tiles/brush';
 
 const items = [
@@ -153,7 +153,7 @@ export default function() {
               <div className="image">
                 <ParentSize>
                   {({ width, height }) => (
-                    <Area
+                    <Areas
                       width={width}
                       height={height + detailsHeight}
                       margin={{
@@ -181,7 +181,7 @@ export default function() {
               <div className="image">
                 <ParentSize>
                   {({ width, height }) => (
-                    <Stacked
+                    <StackedAreas
                       width={width}
                       height={height + detailsHeight}
                       margin={{
@@ -430,7 +430,9 @@ export default function() {
             <div className="gallery-item" style={{ background: '#306c90' }}>
               <div className="image">
                 <ParentSize>
-                  {({ width, height }) => <Cluster width={width} height={height + detailsHeight} />}
+                  {({ width, height }) => (
+                    <Dendrograms width={width} height={height + detailsHeight} />
+                  )}
                 </ParentSize>
               </div>
               <div className="details" style={{ color: '#5dc26f' }}>

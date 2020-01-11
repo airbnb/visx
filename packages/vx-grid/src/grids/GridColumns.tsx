@@ -12,8 +12,11 @@ export type GridColumnProps<ScaleInput> = CommonGridProps & {
   height: number;
 };
 
-type AllProps<ScaleInput> = GridColumnProps<ScaleInput> &
-  Omit<LineProps, keyof GridColumnProps<ScaleInput>>;
+export type AllGridColumnProps<ScaleInput> = GridColumnProps<ScaleInput> &
+  Omit<
+    LineProps & Omit<React.SVGProps<SVGLineElement>, keyof LineProps>,
+    keyof GridColumnProps<ScaleInput> | keyof CommonGridProps
+  >;
 
 export default function GridColumns<ScaleInput>({
   top = 0,
@@ -29,13 +32,13 @@ export default function GridColumns<ScaleInput>({
   offset,
   tickValues,
   ...restProps
-}: AllProps<ScaleInput>) {
+}: AllGridColumnProps<ScaleInput>) {
   const ticks = (tickValues ||
     (scale.ticks ? scale.ticks(numTicks) : scale.domain())) as ScaleInput[];
   return (
     <Group className={cx('vx-columns', className)} top={top} left={left}>
       {ticks.map((d, i) => {
-        const x = offset ? scale(d) + offset : scale(d);
+        const x = offset ? (scale(d) || 0) + offset : scale(d) || 0;
         const fromPoint = new Point({
           x,
           y: 0,
