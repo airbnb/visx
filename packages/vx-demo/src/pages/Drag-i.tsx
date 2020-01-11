@@ -1,4 +1,11 @@
 import React from 'react';
+import Show from '../components/Show';
+import DragI from '../components/tiles/Drag-i';
+
+export default () => {
+  return (
+    <Show component={DragI} title="Drag I">
+      {`import React from 'react';
 import { scaleOrdinal } from '@vx/scale';
 import { LinearGradient } from '@vx/gradient';
 import { Drag, raise } from '@vx/drag';
@@ -21,15 +28,17 @@ const colors = [
 ];
 
 function genCircles({ num, width, height }) {
-  return new Array(num).fill(1).map((d, i) => {
-    const radius = 25 - Math.random() * 20;
-    return {
-      id: i,
-      radius,
-      x: Math.round(Math.random() * (width - radius * 2) + radius),
-      y: Math.round(Math.random() * (height - radius * 2) + radius),
-    };
-  });
+  return Array(num)
+    .fill(1)
+    .map((d, i) => {
+      const radius = 25 - Math.random() * 20;
+      return {
+        id: i,
+        radius,
+        x: Math.round(Math.random() * (width - radius * 2) + radius),
+        y: Math.round(Math.random() * (height - radius * 2) + radius),
+      };
+    });
 }
 
 const genItems = ({ width, height }) =>
@@ -51,9 +60,8 @@ export default class DragI extends React.Component {
     });
   }
 
-  // eslint-disable-next-line camelcase
   UNSAFE_componentWillReceiveProps(nextProps) {
-    const { width } = nextProps;
+    const { width, height } = nextProps;
     if (width !== this.props.width) {
       this.setState(() => {
         return {
@@ -65,15 +73,19 @@ export default class DragI extends React.Component {
 
   render() {
     const { width, height } = this.props;
-    if (width < 10) return null;
     return (
       <div className="Drag" style={{ touchAction: 'none' }}>
         <svg width={width} height={height}>
           <LinearGradient id="stroke" from="#ff00a5" to="#ffc500" />
-          <rect fill="#c4c3cb" width={width} height={height} rx={14} />
+          <rect
+            fill="#c4c3cb"
+            width={width}
+            height={height}
+            rx={14}
+          />
           {this.state.items.map((d, i) => (
             <Drag
-              key={`${d.id}`}
+              key={\`\${d.id}\`}
               width={width}
               height={height}
               onDragStart={() => {
@@ -81,22 +93,33 @@ export default class DragI extends React.Component {
                 // so we need to move the data item
                 // to end of the array for it to be drawn
                 // "on top of" the other data items
-                this.setState(state => {
+                this.setState((state, props) => {
                   return {
                     items: raise(state.items, i),
                   };
                 });
               }}
             >
-              {({ dragStart, dragEnd, dragMove, isDragging, dx, dy }) => {
+              {({
+                dragStart,
+                dragEnd,
+                dragMove,
+                isDragging,
+                dx,
+                dy,
+              }) => {
                 return (
                   <circle
-                    key={`dot-${d.id}`}
+                    key={\`dot-\${d.id}\`}
                     cx={d.x}
                     cy={d.y}
                     r={isDragging ? d.radius + 4 : d.radius}
-                    fill={isDragging ? 'url(#stroke)' : this.colorScale(d.id)}
-                    transform={`translate(${dx}, ${dy})`}
+                    transform={\`translate(\${dx}, \${dy})\`}
+                    fill={
+                      isDragging
+                        ? 'url(#stroke)'
+                        : this.colorScale(d.id)
+                    }
                     fillOpacity={0.9}
                     stroke={isDragging ? 'white' : 'transparent'}
                     strokeWidth={2}
@@ -112,35 +135,11 @@ export default class DragI extends React.Component {
             </Drag>
           ))}
         </svg>
-        <div className="deets">
-          <div>
-            Based on Mike Bostock's{' '}
-            <a href="https://bl.ocks.org/mbostock/c206c20294258c18832ff80d8fd395c3">
-              Circle Dragging II
-            </a>
-          </div>
-        </div>
-
-        <style jsx>{`
-          .Drag {
-            display: flex;
-            flex-direction: column;
-            user-select: none;
-          }
-
-          svg {
-            margin: 1rem 0;
-          }
-          .deets {
-            display: flex;
-            flex-direction: row;
-            font-size: 12px;
-          }
-          .deets > div {
-            margin: 0.25rem;
-          }
-        `}</style>
       </div>
     );
   }
 }
+`}
+    </Show>
+  );
+};

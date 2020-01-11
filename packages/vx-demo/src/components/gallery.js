@@ -35,7 +35,7 @@ import Pack from './tiles/Pack.tsx';
 import Treemap from './tiles/Treemap.tsx';
 import Radar from './tiles/radar';
 import Responsive from './tiles/Responsive.tsx';
-import DragI from './tiles/drag-i';
+import DragI from './tiles/Drag-i.tsx';
 import DragII from './tiles/drag-ii';
 import LinkTypes from './tiles/LinkTypes.tsx';
 import Threshold from './tiles/Threshold.tsx';
