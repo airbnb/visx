@@ -1,6 +1,6 @@
 import React from 'react';
-import Show from '../components/Show.tsx';
-import DragII from '../components/tiles/drag-ii';
+import Show from '../components/Show';
+import DragII from '../components/tiles/Drag-ii';
 
 export default () => {
   return (

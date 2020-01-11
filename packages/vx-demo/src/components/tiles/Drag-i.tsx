@@ -41,9 +41,7 @@ const generateItems = ({ width, height }) =>
 
 export default function DragI({ width, height }: ShowProvidedProps) {
   const memoizedItems = useMemo(() => generateItems({ width, height }), [width, height]);
-  // const draggingItems = useRef(memoizedItems);
   const [draggingItems, setDraggingItems] = useState(memoizedItems);
-  // const currentDraggingItems = draggingItems.current;
 
   const colorScale = useMemo(
     () =>
@@ -68,36 +66,34 @@ export default function DragI({ width, height }: ShowProvidedProps) {
             width={width}
             height={height}
             resetOnStart
+            captureDragArea
             onDragStart={() => {
               // svg follows the painter model
               // so we need to move the data item
               // to end of the array for it to be drawn
               // "on top of" the other data items
-              console.log(d.id, 'update index', i);
               setDraggingItems(raise(draggingItems, i));
             }}
           >
-            {({ dragStart, dragEnd, dragMove, isDragging, dx, dy }) =>
-              isDragging && (
-                <circle
-                  key={`dot-${d.id}`}
-                  cx={d.x}
-                  cy={d.y}
-                  r={isDragging ? d.radius + 4 : d.radius}
-                  fill={isDragging ? 'url(#stroke)' : colorScale(d.id)}
-                  transform={`translate(${dx}, ${dy})`}
-                  fillOpacity={0.9}
-                  stroke={isDragging ? 'white' : 'transparent'}
-                  strokeWidth={2}
-                  onMouseMove={dragMove}
-                  onMouseUp={dragEnd}
-                  onMouseDown={dragStart}
-                  onTouchStart={dragStart}
-                  onTouchMove={dragMove}
-                  onTouchEnd={dragEnd}
-                />
-              )
-            }
+            {({ dragStart, dragEnd, dragMove, isDragging, dx, dy }) => (
+              <circle
+                key={`dot-${d.id}`}
+                cx={d.x}
+                cy={d.y}
+                r={isDragging ? d.radius + 4 : d.radius}
+                fill={isDragging ? 'url(#stroke)' : colorScale(d.id)}
+                transform={`translate(${dx}, ${dy})`}
+                fillOpacity={0.9}
+                stroke={isDragging ? 'white' : 'transparent'}
+                strokeWidth={2}
+                onMouseMove={dragMove}
+                onMouseUp={dragEnd}
+                onMouseDown={dragStart}
+                onTouchStart={dragStart}
+                onTouchMove={dragMove}
+                onTouchEnd={dragEnd}
+              />
+            )}
           </Drag>
         ))}
       </svg>
