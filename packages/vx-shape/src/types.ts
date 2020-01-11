@@ -116,4 +116,5 @@ export interface ScaleType<Input = $TSFIXME, Output = number> {
   range(): Output[] | [Output, Output];
   domain(): Input[] | [Input, Input];
   bandwidth?: () => number;
+  copy(): this;
 }
