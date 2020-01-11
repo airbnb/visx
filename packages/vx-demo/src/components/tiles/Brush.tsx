@@ -1,24 +1,25 @@
 import React, { useState } from 'react';
 import { Group } from '@vx/group';
 import { AreaClosed, Bar } from '@vx/shape';
+import { ScaleType } from '@vx/shape/lib/types';
 import { AxisLeft, AxisBottom } from '@vx/axis';
 import { curveMonotoneX } from '@vx/curve';
 import { scaleTime, scaleLinear } from '@vx/scale';
-import { appleStock } from '@vx/mock-data';
+import appleStock, { AppleStock } from '@vx/mock-data/lib/mocks/appleStock';
 import { Brush } from '@vx/brush';
+import { Bounds } from '@vx/brush/lib/types';
 import { PatternLines } from '@vx/pattern';
 import { LinearGradient } from '@vx/gradient';
+import { max, extent } from 'd3-array';
+import { ShowProvidedProps, MarginShape } from '../../types';
 
 /**
  * Initialize some variables
  */
 const stock = appleStock.slice(1200);
-const min = (arr, fn) => Math.min(...arr.map(fn));
-const max = (arr, fn) => Math.max(...arr.map(fn));
-const extent = (arr, fn) => [min(arr, fn), max(arr, fn)];
 const axisColor = '#fff';
 const axisBottomTickLabelProps = {
-  textAnchor: 'middle',
+  textAnchor: 'middle' as const,
   fontFamily: 'Arial',
   fontSize: 10,
   fill: axisColor,
@@ -28,13 +29,13 @@ const axisLeftTickLabelProps = {
   dy: '0.25em',
   fontFamily: 'Arial',
   fontSize: 10,
-  textAnchor: 'end',
+  textAnchor: 'end' as const,
   fill: axisColor,
 };
 
 // accessors
-const xStock = d => new Date(d.date);
-const yStock = d => d.close;
+const getDate = (d: AppleStock) => new Date(d.date);
+const getStockValue = (d: AppleStock) => d.close;
 
 function AreaChart({
   data,
@@ -49,13 +50,26 @@ function AreaChart({
   top,
   left,
   children,
+}: {
+  data: AppleStock[];
+  xScale: ScaleType;
+  yScale: ScaleType;
+  width: number;
+  height: number;
+  yMax: number;
+  margin: MarginShape;
+  hideBottomAxis?: boolean;
+  hideLeftAxis?: boolean;
+  top?: number;
+  left?: number;
+  children?: React.ReactNode;
 }) {
   return (
     <Group left={left || margin.left} top={top || margin.top}>
       <LinearGradient id="gradient" from="#fff" fromOpacity={1} to="#fff" toOpacity={0.2} />
 
       {!hideBottomAxis && (
-        <AxisBottom
+        <AxisBottom<Date>
           top={yMax}
           scale={xScale}
           numTicks={width > 520 ? 10 : 5}
@@ -65,7 +79,7 @@ function AreaChart({
         />
       )}
       {!hideLeftAxis && (
-        <AxisLeft
+        <AxisLeft<number>
           scale={yScale}
           numTicks={5}
           stroke={axisColor}
@@ -73,10 +87,10 @@ function AreaChart({
           tickLabelProps={() => axisLeftTickLabelProps}
         />
       )}
-      <AreaClosed
+      <AreaClosed<AppleStock>
         data={data}
-        x={d => xScale(xStock(d))}
-        y={d => yScale(yStock(d))}
+        x={d => xScale(getDate(d)) || 0}
+        y={d => yScale(getStockValue(d)) || 0}
         yScale={yScale}
         strokeWidth={1}
         stroke="url(#gradient)"
@@ -99,19 +113,19 @@ function BrushChart({
     bottom: 0,
     right: 20,
   },
-}) {
+}: ShowProvidedProps & { compact?: boolean }) {
   const [filteredStock, setFilteredStock] = useState(stock);
 
-  function onBrushChange(domain) {
+  const onBrushChange = (domain: Bounds | null) => {
     if (!domain) return;
     const { x0, x1, y0, y1 } = domain;
     const stockCopy = stock.filter(s => {
-      const x = xStock(s).getTime();
-      const y = yStock(s);
+      const x = getDate(s).getTime();
+      const y = getStockValue(s);
       return x > x0 && x < x1 && y > y0 && y < y1;
     });
     setFilteredStock(stockCopy);
-  }
+  };
 
   const brushMargin = { top: 0, bottom: 20, left: 50, right: 20 };
   const chartSeparation = 10;
@@ -125,22 +139,22 @@ function BrushChart({
   const yBrushMax = Math.max(heightBottomChart - brushMargin.top - brushMargin.bottom, 0);
 
   // scales
-  const xScale = scaleTime({
+  const dateScale = scaleTime<number>({
     range: [0, xMax],
-    domain: extent(filteredStock, xStock),
+    domain: extent(filteredStock, getDate) as [Date, Date],
   });
-  const yScale = scaleLinear({
+  const stockScale = scaleLinear<number>({
     range: [yMax, 0],
-    domain: [0, max(filteredStock, yStock) + yMax / 3],
+    domain: [0, (max(filteredStock, getStockValue) || 0) + yMax / 3],
     nice: true,
   });
-  const xBrushScale = scaleTime({
+  const brushDateScale = scaleTime<number>({
     range: [0, xBrushMax],
-    domain: extent(stock, xStock),
+    domain: extent(stock, getDate) as [Date, Date],
   });
-  const yBrushScale = scaleLinear({
+  const brushStockScale = scaleLinear({
     range: [yBrushMax, 0],
-    domain: [0, max(stock, yStock) + yBrushMax / 3],
+    domain: [0, (max(stock, getStockValue) || 0) + yBrushMax / 3],
     nice: true,
   });
 
@@ -162,9 +176,8 @@ function BrushChart({
           height={heightTopChart}
           margin={margin}
           yMax={yMax}
-          xMax={xMax}
-          xScale={xScale}
-          yScale={yScale}
+          xScale={dateScale}
+          yScale={stockScale}
         />
         <AreaChart
           hideBottomAxis
@@ -173,9 +186,8 @@ function BrushChart({
           width={width}
           height={heightBottomChart}
           yMax={yBrushMax}
-          xMax={xBrushMax}
-          xScale={xBrushScale}
-          yScale={yBrushScale}
+          xScale={brushDateScale}
+          yScale={brushStockScale}
           margin={brushMargin}
           top={heightTopChart + chartSeparation}
         >
@@ -188,8 +200,8 @@ function BrushChart({
             orientation={['diagonal']}
           />
           <Brush
-            xScale={xBrushScale}
-            yScale={yBrushScale}
+            xScale={brushDateScale}
+            yScale={brushStockScale}
             width={xBrushMax}
             height={yBrushMax}
             handleSize={8}

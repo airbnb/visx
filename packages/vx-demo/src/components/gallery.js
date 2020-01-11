@@ -42,7 +42,7 @@ import Threshold from './tiles/Threshold.tsx';
 import Chord from './tiles/Chord.tsx';
 import Polygons from './tiles/Polygons.tsx';
 import ZoomI from './tiles/Zoom-i.tsx';
-import BrushChart from './tiles/brush';
+import Brush from './tiles/Brush.tsx';
 
 const items = [
   '#242424',
@@ -935,7 +935,7 @@ export default function() {
             <div className="gallery-item" style={{ background: '#7c1d6f' }}>
               <div className="image">
                 <ParentSize>
-                  {({ width, height }) => <BrushChart compact width={width} height={height} />}
+                  {({ width, height }) => <Brush compact width={width} height={height} />}
                 </ParentSize>
               </div>
               <div className="details">
