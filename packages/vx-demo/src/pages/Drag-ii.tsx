@@ -81,7 +81,7 @@ export default function DragII({ width, height }: ShowProvidedProps) {
                     r={4}
                     fill="transparent"
                     stroke="white"
-                    style={{ pointerEvents: 'none' }}
+                    pointerEvents="none"
                   />
                 </g>
               )}
