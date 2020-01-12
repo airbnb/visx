@@ -39,18 +39,15 @@ export default function DragII({ width, height }: ShowProvidedProps) {
           resetOnStart
           onDragStart={({ x, y }) => {
             // add the new line with the starting point
-            setLines(currLines => {
-              const newLine = [{ x, y }];
-              return currLines.concat([newLine]);
-            });
+            setLines(currLines => [...currLines, [{ x, y }]]);
           }}
           onDragMove={({ x, y, dx, dy }) => {
             // add the new point to the current line
             setLines(currLines => {
               const nextLines = [...currLines];
-              const point = [{ x: x + dx, y: y + dy }];
-              const i = nextLines.length - 1;
-              nextLines[i] = nextLines[i].concat(point);
+              const lastLine = [...(nextLines[nextLines.length - 1] || [])];
+              const newPoint = { x: x + dx, y: y + dy };
+              lastLine.push(newPoint);
               return nextLines;
             });
           }}

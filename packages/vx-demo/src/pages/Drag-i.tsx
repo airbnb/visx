@@ -39,7 +39,7 @@ const generateCircles = ({ num, width, height }: { num: number } & WidthAndHeigh
     };
   });
 
-const generateItems = ({ width, height }) =>
+const generateItems = ({ width, height }: WidthAndHeight) =>
   generateCircles({
     num: width < 360 ? 40 : 185,
     width,
