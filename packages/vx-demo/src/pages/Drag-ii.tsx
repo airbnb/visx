@@ -52,9 +52,9 @@ export default function DragII({ width, height }: ShowProvidedProps) {
             // add the new point to the current line
             setLines(currLines => {
               const nextLines = [...currLines];
-              const lastLine = [...(nextLines[nextLines.length - 1] || [])];
               const newPoint = { x: x + dx, y: y + dy };
-              lastLine.push(newPoint);
+              const lastIndex = nextLines.length - 1;
+              nextLines[lastIndex] = [...(nextLines[lastIndex] || []), newPoint];
               return nextLines;
             });
           }}
