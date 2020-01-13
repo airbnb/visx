@@ -58,7 +58,7 @@ export default ({
     right: 80,
     bottom: 80,
   },
-}: ShowProvidedProps) => {
+}: ShowProvidedProps & { levels?: number }) => {
   if (width < 10) return null;
 
   const xMax = width - margin.left - margin.right;
