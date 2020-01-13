@@ -37,11 +37,11 @@ export default function DragII({ width, height }: ShowProvidedProps) {
           width={width}
           height={height}
           resetOnStart
-          onDragStart={({ x, y }) => {
+          onDragStart={({ x = 0, y = 0 }) => {
             // add the new line with the starting point
             setLines(currLines => [...currLines, [{ x, y }]]);
           }}
-          onDragMove={({ x, y, dx, dy }) => {
+          onDragMove={({ x = 0, y = 0, dx, dy }) => {
             // add the new point to the current line
             setLines(currLines => {
               const nextLines = [...currLines];
@@ -52,7 +52,7 @@ export default function DragII({ width, height }: ShowProvidedProps) {
             });
           }}
         >
-          {({ x, y, dx, dy, isDragging, dragStart, dragEnd, dragMove }) => (
+          {({ x = 0, y = 0, dx, dy, isDragging, dragStart, dragEnd, dragMove }) => (
             <g>
               {/* decorate the currently drawing line */}
               {isDragging && (
