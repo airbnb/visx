@@ -63,8 +63,8 @@ export default class Drag extends React.Component<DragProps, DragState> {
           isDragging: true,
           dx: resetOnStart ? 0 : dx,
           dy: resetOnStart ? 0 : dy,
-          x: resetOnStart ? point.x : -dx + point.x,
-          y: resetOnStart ? point.y : -dy + point.y,
+          x: resetOnStart ? point.x : point.x - dx,
+          y: resetOnStart ? point.y : point.y - dy,
         };
       },
       onDragStart &&
@@ -84,8 +84,8 @@ export default class Drag extends React.Component<DragProps, DragState> {
         return isDragging
           ? {
               isDragging: true,
-              dx: -((x || 0) - point.x),
-              dy: -((y || 0) - point.y),
+              dx: point.x - (x || 0),
+              dy: point.y - (y || 0),
             }
           : null;
       },

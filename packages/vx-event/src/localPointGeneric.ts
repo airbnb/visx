@@ -10,7 +10,7 @@ export default function localPoint(node: Element, event: EventType) {
 
   // find top-most SVG
   const svg = isSVGElement(node) ? node.ownerSVGElement : node;
-  const screenCTM = isSVGGraphicsElement(node) ? node.getScreenCTM() : null;
+  const screenCTM = isSVGGraphicsElement(svg) ? svg.getScreenCTM() : null;
 
   if (isSVGSVGElement(svg) && screenCTM) {
     let point = svg.createSVGPoint();

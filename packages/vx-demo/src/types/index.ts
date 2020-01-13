@@ -5,6 +5,11 @@ export interface MarginShape {
   left: number;
 }
 
+export interface WidthAndHeight {
+  width: number;
+  height: number;
+}
+
 export type ShowProvidedProps = {
   width: number;
   height: number;
