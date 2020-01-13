@@ -1,6 +1,6 @@
 import React from 'react';
 import { format } from 'd3-format';
-import { scaleQuantize, scaleLinear, scaleOrdinal, scaleThreshold } from '@vx/scale';
+import { scaleLinear, scaleOrdinal, scaleThreshold, scaleQuantile } from '@vx/scale';
 import { GlyphStar, GlyphWye, GlyphTriangle, GlyphDiamond } from '@vx/glyph';
 import {
   Legend,
@@ -12,45 +12,46 @@ import {
   LegendItem,
   LegendLabel,
 } from '@vx/legend';
+import { ShowProvidedProps } from '../../types';
 
 const oneDecimalFormat = format('.1f');
 
-const sizeScale = scaleLinear({
+const sizeScale = scaleLinear<number>({
   domain: [0, 10],
   range: [10, 30],
 });
 
-const sizeColorScale = scaleLinear({
+const sizeColorScale = scaleLinear<string>({
   domain: [0, 10],
   range: ['#75fcfc', '#3236b8'],
 });
 
-const quantileScale = scaleQuantize({
+const quantileScale = scaleQuantile<string>({
   domain: [0, 0.15],
   range: ['#eb4d70', '#f19938', '#6ce18b', '#78f6ef', '#9096f8'],
 });
 
-const linearScale = scaleLinear({
+const linearScale = scaleLinear<string>({
   domain: [0, 10],
   range: ['#ed4fbb', '#e9a039'],
 });
 
-const thresholdScale = scaleThreshold({
+const thresholdScale = scaleThreshold<number, string>({
   domain: [0.01, 0.02, 0.04, 0.06, 0.08, 0.1],
   range: ['#f2f0f7', '#dadaeb', '#bcbddc', '#9e9ac8', '#756bb1', '#54278f'],
 });
 
-const ordinalColorScale = scaleOrdinal({
+const ordinalColorScale = scaleOrdinal<string, string>({
   domain: ['a', 'b', 'c', 'd'],
   range: ['#66d981', '#71f5ef', '#4899f1', '#7d81f6'],
 });
 
-const ordinalColor2Scale = scaleOrdinal({
+const ordinalColor2Scale = scaleOrdinal<string, string>({
   domain: ['a', 'b', 'c', 'd'],
   range: ['#fae856', '#f29b38', '#e64357', '#8386f7'],
 });
 
-const shapeScale = scaleOrdinal({
+const shapeScale = scaleOrdinal<string, React.FC | React.ReactNode>({
   domain: ['a', 'b', 'c', 'd', 'e'],
   range: [
     <GlyphStar key="a" size={50} top={50 / 6} left={50 / 6} fill="#dd59b8" />,
@@ -65,21 +66,21 @@ const shapeScale = scaleOrdinal({
   ],
 });
 
-export default ({ width }) => {
+export default ({ width, events = false }: ShowProvidedProps) => {
   if (width < 10) return null;
   return (
     <div className="chart">
       <LegendDemo title="Size">
-        <LegendSize scale={sizeScale}>
-          {labels => {
-            return labels.map(label => {
+        <LegendSize<number> scale={sizeScale}>
+          {labels =>
+            labels.map(label => {
               const size = sizeScale(label.datum);
               const color = sizeColorScale(label.datum);
               return (
                 <LegendItem
                   key={`legend-${label.text}-${label.index}`}
                   onClick={() => {
-                    alert(`clicked: ${JSON.stringify(label)}`);
+                    if (events) alert(`clicked: ${JSON.stringify(label)}`);
                   }}
                 >
                   <svg width={size} height={size} style={{ margin: '5px 0' }}>
@@ -90,20 +91,20 @@ export default ({ width }) => {
                   </LegendLabel>
                 </LegendItem>
               );
-            });
-          }}
+            })
+          }
         </LegendSize>
       </LegendDemo>
       <LegendDemo title="Quantile">
-        <LegendQuantile scale={quantileScale}>
-          {labels => {
-            return labels.map((label, i) => {
+        <LegendQuantile<string> scale={quantileScale}>
+          {labels =>
+            labels.map((label, i) => {
               const size = 15;
               return (
                 <LegendItem
                   key={`legend-${i}`}
                   onClick={() => {
-                    alert(`clicked: ${JSON.stringify(label)}`);
+                    if (events) alert(`clicked: ${JSON.stringify(label)}`);
                   }}
                 >
                   <svg width={size} height={size} style={{ margin: '2px 0' }}>
@@ -114,26 +115,23 @@ export default ({ width }) => {
                   </LegendLabel>
                 </LegendItem>
               );
-            });
-          }}
+            })
+          }
         </LegendQuantile>
       </LegendDemo>
       <LegendDemo title="Linear">
         <LegendLinear
           scale={linearScale}
-          labelFormat={(d, i) => {
-            if (i % 2 === 0) return oneDecimalFormat(d);
-            return '';
-          }}
+          labelFormat={(d, i) => (i % 2 === 0 ? oneDecimalFormat(d) : '')}
         >
-          {labels => {
-            return labels.map((label, i) => {
+          {labels =>
+            labels.map((label, i) => {
               const size = 15;
               return (
                 <LegendItem
                   key={`legend-quantile-${i}`}
                   onClick={() => {
-                    alert(`clicked: ${JSON.stringify(label)}`);
+                    if (events) alert(`clicked: ${JSON.stringify(label)}`);
                   }}
                 >
                   <svg width={size} height={size} style={{ margin: '2px 0' }}>
@@ -144,21 +142,21 @@ export default ({ width }) => {
                   </LegendLabel>
                 </LegendItem>
               );
-            });
-          }}
+            })
+          }
         </LegendLinear>
       </LegendDemo>
       <LegendDemo title="Threshold">
         <LegendThreshold scale={thresholdScale}>
-          {labels => {
-            return labels.reverse().map((label, i) => {
+          {labels =>
+            labels.reverse().map((label, i) => {
               const size = 15;
               return (
                 <LegendItem
                   key={`legend-quantile-${i}`}
                   margin="1px 0"
                   onClick={() => {
-                    alert(`clicked: ${JSON.stringify(label)}`);
+                    if (events) alert(`clicked: ${JSON.stringify(label)}`);
                   }}
                 >
                   <svg width={size} height={size}>
@@ -169,73 +167,71 @@ export default ({ width }) => {
                   </LegendLabel>
                 </LegendItem>
               );
-            });
-          }}
+            })
+          }
         </LegendThreshold>
       </LegendDemo>
       <LegendDemo title="Ordinal">
         <LegendOrdinal scale={ordinalColorScale} labelFormat={label => `${label.toUpperCase()}`}>
-          {labels => {
-            return (
-              <div style={{ display: 'flex', flexDirection: 'row' }}>
-                {labels.map((label, i) => {
-                  const size = 15;
-                  return (
-                    <LegendItem
-                      key={`legend-quantile-${i}`}
-                      margin="0 5px"
-                      onClick={() => {
-                        alert(`clicked: ${JSON.stringify(label)}`);
-                      }}
-                    >
-                      <svg width={size} height={size}>
-                        <rect fill={label.value} width={size} height={size} />
-                      </svg>
-                      <LegendLabel align="left" margin="0 0 0 4px">
-                        {label.text}
-                      </LegendLabel>
-                    </LegendItem>
-                  );
-                })}
-              </div>
-            );
-          }}
+          {labels => (
+            <div style={{ display: 'flex', flexDirection: 'row' }}>
+              {labels.map((label, i) => {
+                const size = 15;
+                return (
+                  <LegendItem
+                    key={`legend-quantile-${i}`}
+                    margin="0 5px"
+                    onClick={() => {
+                      if (events) alert(`clicked: ${JSON.stringify(label)}`);
+                    }}
+                  >
+                    <svg width={size} height={size}>
+                      <rect fill={label.value} width={size} height={size} />
+                    </svg>
+                    <LegendLabel align="left" margin="0 0 0 4px">
+                      {label.text}
+                    </LegendLabel>
+                  </LegendItem>
+                );
+              })}
+            </div>
+          )}
         </LegendOrdinal>
       </LegendDemo>
       <LegendDemo title="Custom Legend">
-        <Legend scale={shapeScale}>
-          {labels => {
-            return (
-              <div style={{ display: 'flex', flexDirection: 'row' }}>
-                {labels.map((label, i) => {
-                  const size = 15;
-                  const color = ordinalColor2Scale(label.datum);
-                  const shape = shapeScale(label.datum);
-                  const shapeProps = { fill: color };
-                  const isValidElement = React.isValidElement(shape);
-                  return (
-                    <LegendItem
-                      key={`legend-quantile-${i}`}
-                      margin="0 4px 0 0"
-                      flexDirection="column"
-                      onClick={() => {
-                        const { datum, index } = label;
-                        alert(`clicked: ${JSON.stringify({ datum, color, index })}`);
-                      }}
-                    >
-                      <svg width={size} height={size} style={{ margin: '0 0 8px 0' }}>
-                        {!isValidElement && React.createElement(shape, shapeProps)}
-                        {isValidElement && React.cloneElement(shape)}
-                      </svg>
-                      <LegendLabel align="left" margin={0}>
-                        {label.text}
-                      </LegendLabel>
-                    </LegendItem>
-                  );
-                })}
-              </div>
-            );
-          }}
+        <Legend<string, React.FC | React.ReactNode, typeof shapeScale> scale={shapeScale}>
+          {labels => (
+            <div style={{ display: 'flex', flexDirection: 'row' }}>
+              {labels.map((label, i) => {
+                const size = 15;
+                const color = ordinalColor2Scale(label.datum);
+                const shape = shapeScale(label.datum);
+                const isValidElement = React.isValidElement(shape);
+                return (
+                  <LegendItem
+                    key={`legend-quantile-${i}`}
+                    margin="0 4px 0 0"
+                    flexDirection="column"
+                    onClick={() => {
+                      const { datum, index } = label;
+                      if (events) alert(`clicked: ${JSON.stringify({ datum, color, index })}`);
+                    }}
+                  >
+                    <svg width={size} height={size} style={{ margin: '0 0 8px 0' }}>
+                      {!isValidElement &&
+                        React.createElement(shape as React.ComponentType<{ fill: string }>, {
+                          fill: color,
+                        })}
+                      {isValidElement && React.cloneElement(shape as React.ReactElement)}
+                    </svg>
+                    <LegendLabel align="left" margin={0}>
+                      {label.text}
+                    </LegendLabel>
+                  </LegendItem>
+                );
+              })}
+            </div>
+          )}
         </Legend>
       </LegendDemo>
 
@@ -256,7 +252,7 @@ export default ({ width }) => {
   );
 };
 
-function LegendDemo({ title, children }) {
+function LegendDemo({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className="legend">
       <div className="title">{title}</div>
