@@ -13,14 +13,14 @@ import Patterns from './tiles/Patterns.tsx';
 import Gradients from './tiles/Gradients.tsx';
 import Areas from './tiles/Areas.tsx';
 import StackedAreas from './tiles/Stacked-Areas.tsx';
-import MultiLine from './tiles/multiline';
+import Glyphs from './tiles/Glyphs.tsx';
 import Axis from './tiles/Axis.tsx';
 import BarGroup from './tiles/BarGroup.tsx';
 import BarGroupHorizontal from './tiles/BarGroupHorizontal.tsx';
 import BarStack from './tiles/BarStack.tsx';
 import BarStackHorizontal from './tiles/BarStackHorizontal.tsx';
 import Heatmap from './tiles/Heatmap.tsx';
-import LineRadial from './tiles/lineradial';
+import LineRadial from './tiles/LineRadial.tsx';
 import Pies from './tiles/Pies.tsx';
 import Trees from './tiles/Trees.tsx';
 import Dendrograms from './tiles/Dendrograms.tsx';
@@ -33,7 +33,7 @@ import Network from './tiles/Network.tsx';
 import Streamgraph from './tiles/Streamgraph.tsx';
 import Pack from './tiles/Pack.tsx';
 import Treemap from './tiles/Treemap.tsx';
-import Radar from './tiles/radar';
+import Radar from './tiles/Radar.tsx';
 import Responsive from './tiles/Responsive.tsx';
 import DragI from './tiles/Drag-i.tsx';
 import DragII from './tiles/Drag-ii.tsx';
@@ -243,7 +243,7 @@ export default function() {
               <div className="image">
                 <ParentSize>
                   {({ width, height }) => (
-                    <MultiLine
+                    <Glyphs
                       width={width}
                       height={height + detailsHeight}
                       margin={{

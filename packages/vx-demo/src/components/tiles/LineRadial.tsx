@@ -1,17 +1,11 @@
 import React from 'react';
-import Show from '../components/Show.tsx';
-import LineRadial from '../components/tiles/lineradial';
-
-export default () => {
-  return (
-    <Show component={LineRadial} title="Line Radial">
-      {`import React from 'react';
 import { Group } from '@vx/group';
 import { LineRadial } from '@vx/shape';
 import { scaleTime, scaleLog } from '@vx/scale';
 import { curveBasisOpen } from '@vx/curve';
-import { appleStock } from '@vx/mock-data';
+import appleStock, { AppleStock } from '@vx/mock-data/lib/mocks/appleStock';
 import { LinearGradient } from '@vx/gradient';
+import { ShowProvidedProps } from '../../types';
 
 const green = '#e5fd3d';
 const blue = '#aeeef8';
@@ -19,32 +13,32 @@ const darkgreen = '#dff84d';
 const bg = '#744cca';
 
 // utils
-const extent = (data, value = d => d) => [
-  Math.min(...data.map(value)),
-  Math.max(...data.map(value))
-];
+function extent<Datum>(data: Datum[], value: (d: Datum) => number) {
+  return [Math.min(...data.map(value)), Math.max(...data.map(value))];
+}
 
 // accessors
-const date = d => new Date(d.date);
-const close = d => d.close;
+const date = (d: AppleStock) => new Date(d.date).valueOf();
+const close = (d: AppleStock) => d.close;
 
-// scale
-const xScale = scaleTime({
+// scales
+const xScale = scaleTime<number>({
   range: [0, Math.PI * 2],
-  domain: extent(appleStock, date)
+  domain: extent(appleStock, date),
 });
-const yScale = scaleLog({
-  domain: extent(appleStock, close)
+const yScale = scaleLog<number>({
+  domain: extent(appleStock, close),
 });
 
-const angle = d => xScale(date(d));
-const radius = d => yScale(close(d));
+const angle = (d: AppleStock) => xScale(date(d));
+const radius = (d: AppleStock) => yScale(close(d));
 
 const firstPoint = appleStock[0];
 const lastPoint = appleStock[appleStock.length - 1];
 
-export default ({ width, height }) => {
-  // update range based on height with some offset
+export default ({ width, height }: ShowProvidedProps) => {
+  if (width < 10) return null;
+
   yScale.range([0, height / 2 - 20]);
 
   return (
@@ -54,9 +48,9 @@ export default ({ width, height }) => {
       <Group top={height / 2} left={width / 2}>
         {yScale.ticks().map((tick, i) => {
           const y = yScale(tick);
-          const opacity = 1 / (i + 1) - 1 / i * 0.2;
+          const opacity = 1 / (i + 1) - (1 / i) * 0.2;
           return (
-            <g key={\`radial-grid-\${i}\`}>
+            <g key={`radial-grid-${i}`}>
               <circle
                 r={y}
                 stroke={blue}
@@ -67,7 +61,7 @@ export default ({ width, height }) => {
               />
               <text
                 y={-y}
-                dy={'-.33em'}
+                dy="-.33em"
                 fontSize={8}
                 fill={blue}
                 fillOpacity={0.6}
@@ -90,15 +84,11 @@ export default ({ width, height }) => {
           curve={curveBasisOpen}
         />
         {[firstPoint, lastPoint].map((d, i) => {
-          const cx = xScale(date(d)) * Math.PI / 180;
+          const cx = (xScale(date(d)) * Math.PI) / 180;
           const cy = -yScale(close(d));
-          return <circle key={\`line-cap-\${i}\`} cx={cx} cy={cy} fill={darkgreen} r={3} />;
+          return <circle key={`line-cap-${i}`} cx={cx} cy={cy} fill={darkgreen} r={3} />;
         })}
       </Group>
     </svg>
-  );
-};
-`}
-    </Show>
   );
 };
