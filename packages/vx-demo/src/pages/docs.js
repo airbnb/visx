@@ -1,7 +1,7 @@
 /* eslint jsx-a11y/anchor-has-content: 'off' */
 import React from 'react';
-import Page from '../components/page';
-import Footer from '../components/footer';
+import Page from '../components/Page.tsx';
+import Footer from '../components/Footer.tsx';
 
 export default () => (
   <Page title="documentation">

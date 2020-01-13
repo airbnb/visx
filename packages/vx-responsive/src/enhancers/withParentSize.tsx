@@ -7,16 +7,19 @@ export type WithParentSizeProps = {
 };
 
 type WithParentSizeState = {
-  parentWidth: number | null;
-  parentHeight: number | null;
+  parentWidth?: number;
+  parentHeight?: number;
 };
 
 export type WithParentSizeProvidedProps = WithParentSizeState;
 
-export default function withParentSize<Props extends WithParentSizeProps = {}>(
-  BaseComponent: React.ComponentType<Props>,
+export default function withParentSize<BaseComponentProps extends WithParentSizeProps = {}>(
+  BaseComponent: React.ComponentType<BaseComponentProps & WithParentSizeProvidedProps>,
 ) {
-  return class WrappedComponent extends React.Component<Props, WithParentSizeState> {
+  return class WrappedComponent extends React.Component<
+    BaseComponentProps & WithParentSizeProvidedProps,
+    WithParentSizeState
+  > {
     static defaultProps = {
       debounceTime: 300,
     };
@@ -25,11 +28,11 @@ export default function withParentSize<Props extends WithParentSizeProps = {}>(
     container: HTMLDivElement | null = null;
     debouncedResize: ({ width, height }: { width: number; height: number }) => void;
 
-    constructor(props: Props) {
+    constructor(props: BaseComponentProps & WithParentSizeProvidedProps) {
       super(props);
       this.state = {
-        parentWidth: null,
-        parentHeight: null,
+        parentWidth: undefined,
+        parentHeight: undefined,
       };
       this.animationFrameID = null;
       this.debouncedResize = debounce(this.resize, props.debounceTime);

@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { Group } from '@vx/group';
-import { GenericCell } from '../types';
+import { GenericCell, ColorScale, OpacityScale } from '../types';
 
 export type HeatmapCircleProps<ColumnDatum, BinDatum> = {
   /** Array of column data (one per column desired) for the heatmap. */
@@ -19,13 +19,13 @@ export type HeatmapCircleProps<ColumnDatum, BinDatum> = {
   /** Given a row index, returns the y position of a circle cell. */
   yScale: (rowIndex: number) => number;
   /** Given a count value, returns the desired circle fill color. */
-  colorScale?: (count?: number | null) => string | undefined;
+  colorScale?: ColorScale;
   /** Given a count value, returns the desired circle fill opacity. */
-  opacityScale?: (count?: number | null) => number | undefined;
+  opacityScale?: OpacityScale;
   /** Accessor that returns an array of cell BinDatums (rows) for the provided ColumnData. */
   bins?: (column: ColumnDatum) => BinDatum[];
   /** Accessor that returns the count for the provided Bin. */
-  count?: (bin: BinDatum) => number | undefined | null;
+  count?: (bin: BinDatum) => number;
   /** className to apply to each heatmap circle element. */
   className?: string;
   /** Render function override, provided with heatmap. */

@@ -10,6 +10,7 @@ scale.bandwidth = () => 5;
 scale.step = () => 5;
 scale.paddingInner = () => 5;
 scale.paddingOuter = () => 5;
+scale.copy = () => scale;
 
 describe('<BarStackHorizontal />', () => {
   test('it should be defined', () => {
@@ -25,7 +26,7 @@ describe('<BarStackHorizontal />', () => {
         y={d => d}
         xScale={scale}
         yScale={scale}
-        color={d => d.toString()}
+        color={d => d}
         keys={[]}
       />,
     );
@@ -42,7 +43,7 @@ describe('<BarStackHorizontal />', () => {
         y={d => d}
         xScale={scale}
         yScale={scale}
-        color={d => d.toString()}
+        color={d => d}
         keys={[]}
       />,
     );
@@ -59,7 +60,7 @@ describe('<BarStackHorizontal />', () => {
         y={d => d}
         xScale={scale}
         yScale={scale}
-        color={d => d.toString()}
+        color={d => d}
         keys={[]}
       />,
     );

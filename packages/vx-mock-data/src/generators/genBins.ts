@@ -1,4 +1,6 @@
-import genBin, { Bin, BinFunction, CountFunction } from './genBin';
+import genBin, { Bin as BinType, BinFunction, CountFunction } from './genBin';
+
+export type Bin = BinType;
 
 export interface Bins {
   bin: number;

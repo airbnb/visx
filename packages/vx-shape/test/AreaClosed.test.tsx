@@ -18,10 +18,12 @@ const data: Datum[] = [
 const xScale = () => 50;
 xScale.range = () => [0, 100];
 xScale.domain = () => [0, 100];
+xScale.copy = () => xScale;
 
 const yScale = () => 50;
 yScale.range = () => [100, 0] as [number, number];
 yScale.domain = () => [0, 100] as [number, number];
+yScale.copy = () => yScale;
 
 const x = () => xScale();
 const y = () => yScale();

@@ -4,7 +4,7 @@ import { Group } from '@vx/group';
 import Bar from './Bar';
 import { BarGroup, ScaleType, GroupKey, $TSFIXME } from '../types';
 
-export type BarGroupProps<Datum> = {
+export type BarGroupProps<Datum, Key> = {
   /** Array of data for which to generate grouped bars. */
   data: Datum[];
   /** Returns the value mapped to the x0 (group position) of a bar */
@@ -16,9 +16,9 @@ export type BarGroupProps<Datum> = {
   /** @vx/scale or d3-scale that takes an y value (Datum[key]) and maps it to a y axis position. */
   yScale: ScaleType;
   /** Returns the desired color for a bar with a given key and index. */
-  color: (key: GroupKey, index: number) => string;
+  color: (key: Key, index: number) => string;
   /** Array of keys corresponding to stack layers. */
-  keys: GroupKey[];
+  keys: Key[];
   /** Total height of the y-axis. */
   height: number;
   /** className applied to Bars. */
@@ -28,7 +28,7 @@ export type BarGroupProps<Datum> = {
   /** Left offset of rendered Bars. */
   left?: number;
   /** Override render function which is passed the computed BarGroups. */
-  children?: (barGroups: BarGroup[]) => React.ReactNode;
+  children?: (barGroups: BarGroup<Key>[]) => React.ReactNode;
 };
 
 /**
@@ -69,7 +69,10 @@ export type BarGroupProps<Datum> = {
  *
  * Example: [https://vx-demo.now.sh/bargroup](https://vx-demo.now.sh/bargroup)
  */
-export default function BarGroupComponent<Datum extends { [key: string]: $TSFIXME }>({
+export default function BarGroupComponent<
+  Datum extends { [key: string]: $TSFIXME },
+  Key extends GroupKey = GroupKey
+>({
   data,
   className,
   top,
@@ -83,7 +86,8 @@ export default function BarGroupComponent<Datum extends { [key: string]: $TSFIXM
   height,
   children,
   ...restProps
-}: BarGroupProps<Datum> & Omit<React.SVGProps<SVGRectElement>, keyof BarGroupProps<Datum>>) {
+}: BarGroupProps<Datum, Key> &
+  Omit<React.SVGProps<SVGRectElement>, keyof BarGroupProps<Datum, Key>>) {
   const x1Range = x1Scale.range();
   const x1Domain = x1Scale.domain();
 
@@ -92,25 +96,23 @@ export default function BarGroupComponent<Datum extends { [key: string]: $TSFIXM
       ? x1Scale.bandwidth()
       : Math.abs(x1Range[x1Range.length - 1] - x1Range[0]) / x1Domain.length;
 
-  const barGroups: BarGroup[] = data.map((group, i) => {
-    return {
-      index: i,
-      x0: x0Scale(x0(group)),
-      bars: keys.map((key, j) => {
-        const value = group[key];
-        return {
-          index: j,
-          key,
-          value,
-          width: barWidth,
-          x: x1Scale(key),
-          y: yScale(value),
-          color: color(key, j),
-          height: height - yScale(value),
-        };
-      }),
-    };
-  });
+  const barGroups: BarGroup<Key>[] = data.map((group, i) => ({
+    index: i,
+    x0: x0Scale(x0(group))!,
+    bars: keys.map((key, j) => {
+      const value = group[key];
+      return {
+        index: j,
+        key,
+        value,
+        width: barWidth,
+        x: x1Scale(key) || 0,
+        y: yScale(value) || 0,
+        color: color(key, j),
+        height: height - (yScale(value) || 0),
+      };
+    }),
+  }));
 
   if (children) return <>{children(barGroups)}</>;
 

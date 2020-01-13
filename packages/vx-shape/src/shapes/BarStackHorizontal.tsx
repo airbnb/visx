@@ -7,12 +7,11 @@ import { stack as d3stack, SeriesPoint } from 'd3-shape';
 import stackOrder from '../util/stackOrder';
 import stackOffset from '../util/stackOffset';
 import Bar from './Bar';
-import { BarStackProps, NumAccessor } from './BarStack';
+import { BarStackProps } from './BarStack';
 import { StackKey, $TSFIXME } from '../types';
 import setNumOrAccessor from '../util/setNumberOrNumberAccessor';
 
-export type BarStackHorizontalProps<Datum> = Pick<
-  BarStackProps<Datum>,
+type PickProps =
   | 'data'
   | 'className'
   | 'top'
@@ -24,17 +23,18 @@ export type BarStackHorizontalProps<Datum> = Pick<
   | 'xScale'
   | 'yScale'
   | 'color'
-  | 'children'
-> & {
+  | 'children';
+
+export type BarStackHorizontalProps<Datum, Key> = Pick<BarStackProps<Datum, Key>, PickProps> & {
   /** Returns the value mapped to the x0 of a bar. */
-  x0?: (d: SeriesPoint<Datum>) => number;
+  x0?: (d: SeriesPoint<Datum>) => $TSFIXME;
   /** Returns the value mapped to the x1 of a bar. */
-  x1?: (d: SeriesPoint<Datum>) => number;
+  x1?: (d: SeriesPoint<Datum>) => $TSFIXME;
   /** Returns the value mapped to the y of a bar. */
-  y: (d: Datum) => number;
+  y: (d: Datum) => $TSFIXME;
 };
 
-export default function BarStackHorizontal<Datum>({
+export default function BarStackHorizontal<Datum, Key extends StackKey = StackKey>({
   data,
   className,
   top,
@@ -51,11 +51,11 @@ export default function BarStackHorizontal<Datum>({
   offset,
   children,
   ...restProps
-}: BarStackHorizontalProps<Datum> &
-  Omit<React.SVGProps<SVGRectElement>, keyof BarStackHorizontalProps<Datum>>) {
-  const stack = d3stack<Datum, StackKey>();
+}: BarStackHorizontalProps<Datum, Key> &
+  Omit<React.SVGProps<SVGRectElement>, keyof BarStackHorizontalProps<Datum, Key> | PickProps>) {
+  const stack = d3stack<Datum, Key>();
   if (keys) stack.keys(keys);
-  if (value) setNumOrAccessor<NumAccessor<Datum>>(stack.value, value);
+  if (value) setNumOrAccessor(stack.value, value);
   if (order) stack.order(stackOrder(order));
   if (offset) stack.offset(stackOffset(offset));
 
@@ -74,20 +74,20 @@ export default function BarStackHorizontal<Datum>({
       index: i,
       key,
       bars: barStack.map((bar, j) => {
-        const barWidth = xScale(x1(bar)) - xScale(x0(bar));
+        const barWidth = (xScale(x1(bar)) || 0) - (xScale(x0(bar)) || 0);
         const barX = xScale(x0(bar));
         const barY =
           'bandwidth' in yScale && typeof yScale.bandwidth === 'function'
             ? yScale(y(bar.data))
-            : Math.max(yScale(y(bar.data)) - barWidth / 2);
+            : Math.max((yScale(y(bar.data)) || 0) - barWidth / 2);
         return {
           bar,
           key,
           index: j,
           height: barHeight,
           width: barWidth,
-          x: barX,
-          y: barY,
+          x: barX || 0,
+          y: barY || 0,
           color: color(barStack.key, j),
         };
       }),
@@ -98,21 +98,19 @@ export default function BarStackHorizontal<Datum>({
 
   return (
     <Group className={cx('vx-bar-stack-horizontal', className)} top={top} left={left}>
-      {barStacks.map(barStack => {
-        return barStack.bars.map(bar => {
-          return (
-            <Bar
-              key={`bar-stack-${barStack.index}-${bar.index}`}
-              x={bar.x}
-              y={bar.y}
-              height={bar.height}
-              width={bar.width}
-              fill={bar.color}
-              {...restProps}
-            />
-          );
-        });
-      })}
+      {barStacks.map(barStack =>
+        barStack.bars.map(bar => (
+          <Bar
+            key={`bar-stack-${barStack.index}-${bar.index}`}
+            x={bar.x}
+            y={bar.y}
+            height={bar.height}
+            width={bar.width}
+            fill={bar.color}
+            {...restProps}
+          />
+        )),
+      )}
     </Group>
   );
 }

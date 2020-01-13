@@ -11,23 +11,12 @@ import {
   geoPath,
   GeoPath,
   GeoProjection,
-  GeoPermissibleObjects as GeoPermissibleObjectType,
 } from 'd3-geo';
 // eslint-disable-next-line import/no-unresolved
 import { LineString, Polygon, MultiLineString } from 'geojson';
 
 import Graticule, { GraticuleProps } from '../graticule/Graticule';
-
-export type GeoPermissibleObjects = GeoPermissibleObjectType;
-
-// TODO: Implement all projections of d3-geo
-type ProjectionPreset =
-  | 'orthographic'
-  | 'albers'
-  | 'albersUsa'
-  | 'mercator'
-  | 'naturalEarth'
-  | 'equalEarth';
+import { GeoPermissibleObjects, ProjectionPreset, Projection as ProjectionShape } from '../types';
 
 const projectionMapping: { [projection in ProjectionPreset]: () => GeoProjection } = {
   orthographic: () => geoOrthographic(),
@@ -38,13 +27,11 @@ const projectionMapping: { [projection in ProjectionPreset]: () => GeoProjection
   equalEarth: () => geoEqualEarth(),
 };
 
-type Projection = ProjectionPreset | (() => GeoProjection);
-
-export type ProjectionProps<Datum extends GeoPermissibleObjects> = {
+export type ProjectionProps<Datum extends GeoPermissibleObjects = GeoPermissibleObjects> = {
   /** Array of features to project. */
   data: Datum[];
   /** Preset projection name, or custom projection function which returns a GeoProjection. */
-  projection?: Projection;
+  projection?: ProjectionShape;
   /** Hook to render above features, passed the configured projectionFunc. */
   projectionFunc?: (projection: GeoProjection) => React.ReactNode;
   /** Sets the projection’s clipping circle radius to the specified angle in degree. */
@@ -109,7 +96,7 @@ export type ProjectionProps<Datum extends GeoPermissibleObjects> = {
 
 export interface ParsedFeature<Datum> {
   feature: Datum;
-  type: Projection;
+  type: ProjectionShape;
   projection: GeoProjection;
   index: number;
   centroid: [number, number];
@@ -161,16 +148,14 @@ export default function Projection<Datum extends GeoPermissibleObjects>({
 
   if (pointRadius) path.pointRadius(pointRadius);
 
-  const features: ParsedFeature<Datum>[] = data.map((feature, i) => {
-    return {
-      feature,
-      type: projection,
-      projection: currProjection,
-      index: i,
-      centroid: path.centroid(feature),
-      path: path(feature),
-    };
-  });
+  const features: ParsedFeature<Datum>[] = data.map((feature, i) => ({
+    feature,
+    type: projection,
+    projection: currProjection,
+    index: i,
+    centroid: path.centroid(feature),
+    path: path(feature),
+  }));
 
   if (children) return <>{children({ path, features })}</>;
 
@@ -186,19 +171,17 @@ export default function Projection<Datum extends GeoPermissibleObjects>({
         <Graticule outline={(p: Polygon) => path(p) || ''} {...graticuleOutline} />
       )}
 
-      {features.map((feature, i) => {
-        return (
-          <g key={`${projection}-${i}`}>
-            <path
-              className={cx(`vx-geo-${projection}`, className)}
-              d={feature.path || ''}
-              ref={innerRef && innerRef(feature, i)}
-              {...restProps}
-            />
-            {centroid && centroid(feature.centroid, feature)}
-          </g>
-        );
-      })}
+      {features.map((feature, i) => (
+        <g key={`${projection}-${i}`}>
+          <path
+            className={cx(`vx-geo-${projection}`, className)}
+            d={feature.path || ''}
+            ref={innerRef && innerRef(feature, i)}
+            {...restProps}
+          />
+          {centroid && centroid(feature.centroid, feature)}
+        </g>
+      ))}
 
       {/* TODO: Maybe find a different way to pass projection function to use for example invert */}
       {projectionFunc && projectionFunc(currProjection)}

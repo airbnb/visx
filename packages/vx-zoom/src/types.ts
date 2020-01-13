@@ -47,9 +47,9 @@ export interface ProvidedZoom {
   /** Callback for dragEnd, sets isDragging to false. */
   dragEnd: () => void;
   /** Callback for dragMove, results in a scale transform. */
-  dragMove: (event: React.MouseEvent) => void;
+  dragMove: (event: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent) => void;
   /** Callback for dragStart, sets isDragging to true.  */
-  dragStart: (event: React.MouseEvent) => void;
+  dragStart: (event: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent) => void;
   /**
    * Returns a string representation of the matrix transform:
    * matrix(${scaleX}, ${skewY}, ${skewX}, ${scaleY}, ${translateX}, ${translateY})

@@ -3,13 +3,12 @@ import { shallow } from 'enzyme';
 
 import { BarStack } from '../src';
 
-const xScale = () => 2;
-xScale.domain = () => [0, 100] as [number, number];
-xScale.range = () => [0, 100] as [number, number];
-xScale.bandwidth = () => 2;
-xScale.step = () => 2;
-xScale.paddingInner = jest.fn();
-xScale.paddingOuter = jest.fn();
+const scale = () => 2;
+scale.domain = () => [0, 100] as [number, number];
+scale.range = () => [0, 100] as [number, number];
+scale.bandwidth = () => 2;
+scale.step = () => 2;
+scale.copy = () => scale;
 
 describe('<BarStack />', () => {
   test('it should be defined', () => {
@@ -23,9 +22,9 @@ describe('<BarStack />', () => {
         top={2}
         left={3}
         x={d => d}
-        xScale={xScale}
-        yScale={xScale}
-        color={d => d.toString()}
+        xScale={scale}
+        yScale={scale}
+        color={d => d}
         keys={[]}
       />,
     );
@@ -40,9 +39,9 @@ describe('<BarStack />', () => {
         top={2}
         left={3}
         x={d => d}
-        xScale={xScale}
-        yScale={xScale}
-        color={d => d.toString()}
+        xScale={scale}
+        yScale={scale}
+        color={d => d}
         keys={[]}
       />,
     );
@@ -57,9 +56,9 @@ describe('<BarStack />', () => {
         top={2}
         left={3}
         x={d => d}
-        xScale={xScale}
-        yScale={xScale}
-        color={d => d.toString()}
+        xScale={scale}
+        yScale={scale}
+        color={d => d}
         keys={[]}
       />,
     );

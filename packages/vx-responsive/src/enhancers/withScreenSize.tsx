@@ -6,26 +6,30 @@ export type WithScreenSizeProps = {
 };
 
 type WithScreenSizeState = {
-  screenWidth: number | null;
-  screenHeight: number | null;
+  screenWidth?: number;
+  screenHeight?: number;
 };
 
 export type WithScreenSizeProvidedProps = WithScreenSizeState;
 
-export default function withScreenSize<Props extends WithScreenSizeProps = {}>(
-  BaseComponent: React.ComponentType<Props>,
+export default function withScreenSize<BaseComponentProps extends WithScreenSizeProps = {}>(
+  BaseComponent: React.ComponentType<BaseComponentProps>,
 ) {
-  return class WrappedComponent extends React.Component<Props, WithScreenSizeState> {
+  return class WrappedComponent extends React.Component<
+    BaseComponentProps & WithScreenSizeProvidedProps,
+    WithScreenSizeState
+  > {
     static defaultProps = {
       windowResizeDebounceTime: 300,
     };
+
     handleResize: () => void;
 
-    constructor(props: Props) {
+    constructor(props: BaseComponentProps & WithScreenSizeProvidedProps) {
       super(props);
       this.state = {
-        screenWidth: null,
-        screenHeight: null,
+        screenWidth: undefined,
+        screenHeight: undefined,
       };
       this.handleResize = debounce(this.resize, props.windowResizeDebounceTime);
     }

@@ -5,6 +5,7 @@ import { Group } from '@vx/group';
 import { treemap as d3treemap, HierarchyRectangularNode, HierarchyNode } from 'd3-hierarchy';
 import HierarchyDefaultRectNode from '../HierarchyDefaultRectNode';
 import setNumberOrNumberAccessor from '../utils/setNumOrNumAccessor';
+import { TileMethod } from '../types';
 
 export type NodeComponentProps<Datum> = { node: HierarchyRectangularNode<Datum> };
 
@@ -25,7 +26,7 @@ export type TreemapProps<Datum> = {
    * Sets the treemap tiling method to the specified function (exported from this package).
    * See https://github.com/d3/d3-hierarchy#treemap for more.
    */
-  tile?: () => void;
+  tile?: TileMethod<Datum>;
   /** Sets this treemap layout’s size to the specified two-element array of numbers [width, height]  */
   size?: [number, number];
   /** Whether to round treemap values. */

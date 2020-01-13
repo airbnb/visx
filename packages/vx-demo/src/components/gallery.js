@@ -2,47 +2,47 @@ import React from 'react';
 import Tilt from 'react-tilt';
 import Link from 'next/link';
 import { ParentSize } from '@vx/responsive';
-import drawData from './util/drawData';
+import drawData from './util/drawData.ts';
 
-import Footer from './footer';
+import Footer from './Footer.tsx';
 
-import Lines from './tiles/lines';
-import Bars from './tiles/bars';
-import Dots from './tiles/dots';
-import Patterns from './tiles/patterns';
-import Gradients from './tiles/gradients';
-import Area from './tiles/area';
-import Stacked from './tiles/stacked';
-import MultiLine from './tiles/multiline';
-import Axis from './tiles/axis';
-import BarGroup from './tiles/bargroup';
-import BarGroupHorizontal from './tiles/bargrouphorizontal';
-import BarStack from './tiles/barstack';
-import BarStackHorizontal from './tiles/barstackhorizontal';
-import Heatmap from './tiles/heatmap';
-import LineRadial from './tiles/lineradial';
-import Pies from './tiles/pie';
-import Trees from './tiles/tree';
-import Cluster from './tiles/dendrogram';
-import Voronoi from './tiles/voronoi';
-import Legends from './tiles/legends';
-import StatsPlot from './tiles/statsplot';
-import GeoMercator from './tiles/geo-mercator';
-import GeoCustom from './tiles/geo-custom';
-import Network from './tiles/network';
-import Streamgraph from './tiles/streamgraph';
-import Pack from './tiles/pack';
-import Treemap from './tiles/treemap';
-import Radar from './tiles/radar';
-import Responsive from './tiles/responsive';
-import DragI from './tiles/drag-i';
-import DragII from './tiles/drag-ii';
-import LinkTypes from './tiles/linkTypes';
-import Threshold from './tiles/threshold';
-import Chord from './tiles/chord';
-import Polygons from './tiles/polygons';
-import ZoomI from './tiles/zoom-i';
-import BrushChart from './tiles/brush';
+import Lines from './tiles/Lines.tsx';
+import Bars from './tiles/Bars.tsx';
+import Dots from './tiles/Dots.tsx';
+import Patterns from './tiles/Patterns.tsx';
+import Gradients from './tiles/Gradients.tsx';
+import Areas from './tiles/Areas.tsx';
+import StackedAreas from './tiles/Stacked-Areas.tsx';
+import Glyphs from './tiles/Glyphs.tsx';
+import Axis from './tiles/Axis.tsx';
+import BarGroup from './tiles/BarGroup.tsx';
+import BarGroupHorizontal from './tiles/BarGroupHorizontal.tsx';
+import BarStack from './tiles/BarStack.tsx';
+import BarStackHorizontal from './tiles/BarStackHorizontal.tsx';
+import Heatmap from './tiles/Heatmap.tsx';
+import LineRadial from './tiles/LineRadial.tsx';
+import Pies from './tiles/Pies.tsx';
+import Trees from './tiles/Trees.tsx';
+import Dendrograms from './tiles/Dendrograms.tsx';
+import Voronoi from './tiles/Voronoi.tsx';
+import Legends from './tiles/Legends.tsx';
+import StatsPlot from './tiles/Statsplot.tsx';
+import GeoMercator from './tiles/Geo-Mercator.tsx';
+import GeoCustom from './tiles/Geo-Custom.tsx';
+import Network from './tiles/Network.tsx';
+import Streamgraph from './tiles/Streamgraph.tsx';
+import Pack from './tiles/Pack.tsx';
+import Treemap from './tiles/Treemap.tsx';
+import Radar from './tiles/Radar.tsx';
+import Responsive from './tiles/Responsive.tsx';
+import DragI from './tiles/Drag-i.tsx';
+import DragII from './tiles/Drag-ii.tsx';
+import LinkTypes from './tiles/LinkTypes.tsx';
+import Threshold from './tiles/Threshold.tsx';
+import Chord from './tiles/Chord.tsx';
+import Polygons from './tiles/Polygons.tsx';
+import ZoomI from './tiles/Zoom-i.tsx';
+import Brush from './tiles/Brush.tsx';
 
 const items = [
   '#242424',
@@ -59,12 +59,14 @@ const items = [
   '#ff657c',
 ];
 
+const tiltOptions = { max: 8, scale: 1 };
+
 export default function() {
   const detailsHeight = 76;
   return (
     <div>
       <div className="gallery">
-        <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+        <Tilt className="tilt" options={tiltOptions}>
           <Link href="/lines">
             <div className="gallery-item" style={{ background: items[0] }}>
               <div className="image">
@@ -81,7 +83,7 @@ export default function() {
             </div>
           </Link>
         </Tilt>
-        <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+        <Tilt className="tilt" options={tiltOptions}>
           <Link href="/bars">
             <div className="gallery-item" style={{ background: '#5290e7' }}>
               <div className="image">
@@ -98,7 +100,7 @@ export default function() {
             </div>
           </Link>
         </Tilt>
-        <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+        <Tilt className="tilt" options={tiltOptions}>
           <Link href="/dots">
             <div className="gallery-item" style={{ background: '#fd6e7f' }}>
               <div className="image">
@@ -126,7 +128,7 @@ export default function() {
             </div>
           </Link>
         </Tilt>
-        <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+        <Tilt className="tilt" options={tiltOptions}>
           <Link href="/patterns">
             <div className="gallery-item" style={{ background: items[3] }}>
               <div className="image">
@@ -145,13 +147,13 @@ export default function() {
             </div>
           </Link>
         </Tilt>
-        <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+        <Tilt className="tilt" options={tiltOptions}>
           <Link href="/areas">
             <div className="gallery-item" style={{ background: items[5] }}>
               <div className="image">
                 <ParentSize>
                   {({ width, height }) => (
-                    <Area
+                    <Areas
                       width={width}
                       height={height + detailsHeight}
                       margin={{
@@ -173,13 +175,13 @@ export default function() {
             </div>
           </Link>
         </Tilt>
-        <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+        <Tilt className="tilt" options={tiltOptions}>
           <Link href="/stacked-areas">
             <div className="gallery-item" style={{ background: items[6] }}>
               <div className="image">
                 <ParentSize>
                   {({ width, height }) => (
-                    <Stacked
+                    <StackedAreas
                       width={width}
                       height={height + detailsHeight}
                       margin={{
@@ -201,7 +203,7 @@ export default function() {
             </div>
           </Link>
         </Tilt>
-        <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+        <Tilt className="tilt" options={tiltOptions}>
           <Link href="/gradients">
             <div
               className="gallery-item"
@@ -235,13 +237,13 @@ export default function() {
             </div>
           </Link>
         </Tilt>
-        <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+        <Tilt className="tilt" options={tiltOptions}>
           <Link href="/glyphs">
             <div className="gallery-item" style={{ background: items[7] }}>
               <div className="image">
                 <ParentSize>
                   {({ width, height }) => (
-                    <MultiLine
+                    <Glyphs
                       width={width}
                       height={height + detailsHeight}
                       margin={{
@@ -263,7 +265,7 @@ export default function() {
             </div>
           </Link>
         </Tilt>
-        <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+        <Tilt className="tilt" options={tiltOptions}>
           <Link href="/axis">
             <div className="gallery-item" style={{ background: items[8] }}>
               <div className="image">
@@ -291,7 +293,7 @@ export default function() {
             </div>
           </Link>
         </Tilt>
-        <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+        <Tilt className="tilt" options={tiltOptions}>
           <Link href="/bargroup">
             <div className="gallery-item" style={{ background: '#612efb' }}>
               <div className="image">
@@ -310,7 +312,7 @@ export default function() {
             </div>
           </Link>
         </Tilt>
-        <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+        <Tilt className="tilt" options={tiltOptions}>
           <Link href="/bargrouphorizontal">
             <div className="gallery-item" style={{ background: '#612efb' }}>
               <div className="image">
@@ -329,7 +331,7 @@ export default function() {
             </div>
           </Link>
         </Tilt>
-        <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+        <Tilt className="tilt" options={tiltOptions}>
           <Link href="/heatmaps">
             <div className="gallery-item" style={{ background: '#28272c' }}>
               <div className="image">
@@ -346,7 +348,7 @@ export default function() {
             </div>
           </Link>
         </Tilt>
-        <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+        <Tilt className="tilt" options={tiltOptions}>
           <Link href="/barstack">
             <div className="gallery-item" style={{ background: '#eaedff' }}>
               <div className="image">
@@ -365,7 +367,7 @@ export default function() {
             </div>
           </Link>
         </Tilt>
-        <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+        <Tilt className="tilt" options={tiltOptions}>
           <Link href="/barstackhorizontal">
             <div
               className="gallery-item"
@@ -389,7 +391,7 @@ export default function() {
             </div>
           </Link>
         </Tilt>
-        <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+        <Tilt className="tilt" options={tiltOptions}>
           <Link href="/lineradial">
             <div className="gallery-item" style={{ background: '#744cca' }}>
               <div className="image">
@@ -406,7 +408,7 @@ export default function() {
             </div>
           </Link>
         </Tilt>
-        <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+        <Tilt className="tilt" options={tiltOptions}>
           <Link href="/trees">
             <div className="gallery-item" style={{ background: '#272b4d' }}>
               <div className="image">
@@ -423,12 +425,14 @@ export default function() {
             </div>
           </Link>
         </Tilt>
-        <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+        <Tilt className="tilt" options={tiltOptions}>
           <Link href="/dendrograms">
             <div className="gallery-item" style={{ background: '#306c90' }}>
               <div className="image">
                 <ParentSize>
-                  {({ width, height }) => <Cluster width={width} height={height + detailsHeight} />}
+                  {({ width, height }) => (
+                    <Dendrograms width={width} height={height + detailsHeight} />
+                  )}
                 </ParentSize>
               </div>
               <div className="details" style={{ color: '#5dc26f' }}>
@@ -440,7 +444,7 @@ export default function() {
             </div>
           </Link>
         </Tilt>
-        <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+        <Tilt className="tilt" options={tiltOptions}>
           <Link href="/pies">
             <div className="gallery-item" style={{ background: '#7f82e3' }}>
               <div className="image">
@@ -463,7 +467,7 @@ export default function() {
             </div>
           </Link>
         </Tilt>
-        <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+        <Tilt className="tilt" options={tiltOptions}>
           <Link href="/legends">
             <div className="gallery-item" style={{ backgroundColor: 'black' }}>
               <div className="image">
@@ -478,7 +482,7 @@ export default function() {
             </div>
           </Link>
         </Tilt>
-        <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+        <Tilt className="tilt" options={tiltOptions}>
           <Link href="/voronoi">
             <div
               className="gallery-item"
@@ -507,7 +511,7 @@ export default function() {
           </Link>
         </Tilt>
 
-        <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+        <Tilt className="tilt" options={tiltOptions}>
           <Link href="/statsplot">
             <div className="gallery-item" style={{ background: '#8a88e3' }}>
               <div className="image">
@@ -527,7 +531,7 @@ export default function() {
           </Link>
         </Tilt>
 
-        <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+        <Tilt className="tilt" options={tiltOptions}>
           <Link href="/geo-mercator">
             <div className="gallery-item" style={{ background: '#f9f7e8' }}>
               <div className="image">
@@ -547,7 +551,7 @@ export default function() {
           </Link>
         </Tilt>
 
-        <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+        <Tilt className="tilt" options={tiltOptions}>
           <Link href="/geo-custom">
             <div className="gallery-item" style={{ background: '#252b7e' }}>
               <div className="image">
@@ -567,7 +571,7 @@ export default function() {
           </Link>
         </Tilt>
 
-        <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+        <Tilt className="tilt" options={tiltOptions}>
           <Link href="/network">
             <div className="gallery-item" style={{ background: '#272b4d' }}>
               <div className="image">
@@ -590,7 +594,7 @@ export default function() {
           </Link>
         </Tilt>
 
-        <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+        <Tilt className="tilt" options={tiltOptions}>
           <Link href="/streamgraph">
             <div className="gallery-item" style={{ background: '#ffdede' }}>
               <div className="image">
@@ -614,7 +618,7 @@ export default function() {
             </div>
           </Link>
         </Tilt>
-        <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+        <Tilt className="tilt" options={tiltOptions}>
           <Link href="/pack">
             <div
               className="gallery-item"
@@ -642,7 +646,7 @@ export default function() {
             </div>
           </Link>
         </Tilt>
-        <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+        <Tilt className="tilt" options={tiltOptions}>
           <Link href="/treemap">
             <div
               className="gallery-item"
@@ -669,7 +673,7 @@ export default function() {
             </div>
           </Link>
         </Tilt>
-        <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+        <Tilt className="tilt" options={tiltOptions}>
           <Link href="/radar">
             <div
               className="gallery-item"
@@ -696,7 +700,7 @@ export default function() {
             </div>
           </Link>
         </Tilt>
-        <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+        <Tilt className="tilt" options={tiltOptions}>
           <Link href="/responsive">
             <div
               className="gallery-item"
@@ -728,7 +732,7 @@ export default function() {
             </div>
           </Link>
         </Tilt>
-        <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+        <Tilt className="tilt" options={tiltOptions}>
           <Link href="/text">
             <div
               className="gallery-item"
@@ -756,7 +760,7 @@ export default function() {
             </div>
           </Link>
         </Tilt>
-        <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+        <Tilt className="tilt" options={tiltOptions}>
           <Link href="/drag-i">
             <div
               className="gallery-item"
@@ -785,7 +789,7 @@ export default function() {
             </div>
           </Link>
         </Tilt>
-        <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+        <Tilt className="tilt" options={tiltOptions}>
           <Link href="/drag-ii">
             <div
               className="gallery-item"
@@ -816,7 +820,7 @@ export default function() {
             </div>
           </Link>
         </Tilt>
-        <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+        <Tilt className="tilt" options={tiltOptions}>
           <Link href="/linkTypes">
             <div className="gallery-item" style={{ background: '#272b4d' }}>
               <div className="image">
@@ -835,7 +839,7 @@ export default function() {
             </div>
           </Link>
         </Tilt>
-        <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+        <Tilt className="tilt" options={tiltOptions}>
           <Link href="/threshold">
             <div className="gallery-item" style={{ background: '#f3f3f3' }}>
               <div className="image">
@@ -863,7 +867,7 @@ export default function() {
             </div>
           </Link>
         </Tilt>
-        <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+        <Tilt className="tilt" options={tiltOptions}>
           <Link href="/chord">
             <div className="gallery-item" style={{ background: '#e4e3d8' }}>
               <div className="image">
@@ -892,7 +896,7 @@ export default function() {
             </div>
           </Link>
         </Tilt>
-        <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+        <Tilt className="tilt" options={tiltOptions}>
           <Link href="/polygons">
             <div className="gallery-item" style={{ background: '#7f82e3' }}>
               <div className="image">
@@ -909,7 +913,7 @@ export default function() {
             </div>
           </Link>
         </Tilt>
-        <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+        <Tilt className="tilt" options={tiltOptions}>
           <Link href="/zoom-i">
             <div className="gallery-item" style={{ background: '#0a0a0a' }}>
               <div className="image">
@@ -926,12 +930,12 @@ export default function() {
             </div>
           </Link>
         </Tilt>
-        <Tilt className="tilt" options={{ max: 8, scale: 1 }}>
+        <Tilt className="tilt" options={tiltOptions}>
           <Link href="/brush">
             <div className="gallery-item" style={{ background: '#7c1d6f' }}>
               <div className="image">
                 <ParentSize>
-                  {({ width, height }) => <BrushChart compact width={width} height={height} />}
+                  {({ width, height }) => <Brush compact width={width} height={height} />}
                 </ParentSize>
               </div>
               <div className="details">
