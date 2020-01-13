@@ -58,17 +58,17 @@ const thresholdScale = scaleThreshold<number, string>({
   range: ['#f2f0f7', '#dadaeb', '#bcbddc', '#9e9ac8', '#756bb1', '#54278f'],
 });
 
-const ordinalColorScale = scaleOrdinal<string>({
+const ordinalColorScale = scaleOrdinal<string, string>({
   domain: ['a', 'b', 'c', 'd'],
   range: ['#66d981', '#71f5ef', '#4899f1', '#7d81f6'],
 });
 
-const ordinalColor2Scale = scaleOrdinal<string>({
+const ordinalColor2Scale = scaleOrdinal<string, string>({
   domain: ['a', 'b', 'c', 'd'],
   range: ['#fae856', '#f29b38', '#e64357', '#8386f7'],
 });
 
-const shapeScale = scaleOrdinal<React.FC | React.ReactNode>({
+const shapeScale = scaleOrdinal<string, React.FC | React.ReactNode>({
   domain: ['a', 'b', 'c', 'd', 'e'],
   range: [
     <GlyphStar key="a" size={50} top={50 / 6} left={50 / 6} fill="#dd59b8" />,
