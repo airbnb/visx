@@ -4,7 +4,7 @@ import Codeblock from './Codeblock.tsx';
 export default () => {
   return (
     <Codeblock>
-      {`// SimpleBar.js
+      {`
 import React from 'react';
 import { Bar } from '@vx/shape';
 import { Group } from '@vx/group';

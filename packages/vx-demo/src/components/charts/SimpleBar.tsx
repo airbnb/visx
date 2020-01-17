@@ -1,19 +1,22 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Bar } from '@vx/shape';
 import { Group } from '@vx/group';
 import { PatternLines } from '@vx/pattern';
 import { letterFrequency } from '@vx/mock-data';
 import { scaleBand, scaleLinear } from '@vx/scale';
 import { max } from 'd3-array';
+import { MarginShape } from '../../types/index';
 
 const data = letterFrequency;
 
-function round(value, precision) {
+function round(value: number, precision?: number): number {
   const multiplier = 10 ** (precision || 0);
   return Math.round(value * multiplier) / multiplier;
 }
 
-export default ({ width, height, margin }) => {
+type SimpleBarProps = { width: number; height: number; margin: MarginShape };
+
+const SimpleBar: FC<SimpleBarProps> = ({ width, height, margin }) => {
   // accessors
   const x = d => d.letter;
   const y = d => Number(d.frequency) * 100;
@@ -68,3 +71,5 @@ export default ({ width, height, margin }) => {
     </svg>
   );
 };
+
+export default SimpleBar;
