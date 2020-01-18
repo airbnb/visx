@@ -47,7 +47,7 @@ const SimpleBar: React.FC<SimpleBarProps> = ({ width, height, margin }) => {
         orientation={['diagonal']}
       />
       {data.map((d: LetterFrequency) => {
-        const barHeight = yMax - yScale(y(d));
+        const barHeight = (yMax - yScale(y(d))) as number;
         return (
           <Group key={`bar-${x(d)}`} left={margin.left} top={margin.top}>
             <Bar
