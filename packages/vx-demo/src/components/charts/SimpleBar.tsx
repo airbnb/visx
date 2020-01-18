@@ -31,7 +31,7 @@ const SimpleBar: React.FC<SimpleBarProps> = ({ width, height, margin }) => {
     domain: data.map(x),
     padding: 0.4,
   });
-  const yScale = scaleLinear({
+  const yScale = scaleLinear<number>({
     rangeRound: [yMax, 0],
     domain: [0, max(data, y) as number],
   });
@@ -47,7 +47,7 @@ const SimpleBar: React.FC<SimpleBarProps> = ({ width, height, margin }) => {
         orientation={['diagonal']}
       />
       {data.map((d: LetterFrequency) => {
-        const barHeight = (yMax - yScale(y(d))) as number;
+        const barHeight = yMax - yScale(y(d));
         return (
           <Group key={`bar-${x(d)}`} left={margin.left} top={margin.top}>
             <Bar
