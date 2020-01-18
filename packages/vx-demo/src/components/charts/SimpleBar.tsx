@@ -33,7 +33,7 @@ const SimpleBar: React.FC<SimpleBarProps> = ({ width, height, margin }) => {
   });
   const yScale = scaleLinear({
     rangeRound: [yMax, 0],
-    domain: [0, max<LetterFrequency, number>(data, y)],
+    domain: [0, max(data, y) as number],
   });
 
   return (
