@@ -5,8 +5,8 @@ import { PatternLines } from '@vx/pattern';
 import { scaleBand, scaleLinear } from '@vx/scale';
 import { max } from 'd3-array';
 import letterFrequency, { LetterFrequency } from '@vx/mock-data/lib/mocks/letterFrequency';
-import { MarginShape } from '../../types';
 import round from '../util/round';
+import { MarginShape } from '../../types';
 
 const data = letterFrequency;
 
@@ -17,8 +17,8 @@ type SimpleBarProps = {
 };
 
 // accessors
-const x = (d: LetterFrequency) => d.letter;
-const y = (d: LetterFrequency) => Number(d.frequency) * 100;
+const x = (d: LetterFrequency): string => d.letter;
+const y = (d: LetterFrequency): number => Number(d.frequency) * 100;
 
 const SimpleBar: React.FC<SimpleBarProps> = ({ width, height, margin }) => {
   // bounds
@@ -33,7 +33,7 @@ const SimpleBar: React.FC<SimpleBarProps> = ({ width, height, margin }) => {
   });
   const yScale = scaleLinear({
     rangeRound: [yMax, 0],
-    domain: [0, max(data, y)],
+    domain: [0, max<LetterFrequency, number>(data, y)],
   });
 
   return (
