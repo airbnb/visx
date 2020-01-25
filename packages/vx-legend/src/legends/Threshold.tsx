@@ -29,34 +29,33 @@ function defaultTransform<Datum extends StringNumberDate, Output>({
     const scaleDomain = scale.domain();
 
     return (d, i) => {
-      // d3 docs specify that for n values in a domain, there should be n+1 values in the range
-      // https://github.com/d3/d3-scale#threshold_domain
-      // d comes from the domain, therefore there should always be a matching range value in a valid scale
-      const [x0, x1]: [Datum | undefined, Datum | undefined] =
-        scaleRange.length >= i ? scale.invertExtent(scale.range()[i]) : [undefined, undefined];
+      const [d0, d1]: [Datum | undefined, Datum | undefined] =
+        scaleRange.length >= i ? scale.invertExtent(scaleRange[i]) : [undefined, undefined];
 
       let delimiter = ` ${labelDelimiter} `;
+      let text = '';
       let value: number | Datum | undefined;
 
-      if (x0 == null && typeof x1 === 'number') {
+      if (d0 == null && typeof d1 === 'number') {
         // lower threshold e.g., [undefined, number]
-        value = x1 - 1;
         delimiter = labelLower || delimiter;
-      } else if (x0 != null && x1 != null) {
+        value = d1 - 1;
+        text = `${delimiter}${formatZero(labelFormat(d1, i))}`;
+      } else if (d0 != null && d1 != null) {
         // threshold step
-        value = x0;
-      } else if (typeof x0 === 'number' && x1 == null) {
+        value = d;
+        text = `${formatZero(labelFormat(d0, i))}${delimiter}${formatZero(labelFormat(d1, i))}`;
+      } else if (typeof d0 === 'number' && d1 == null) {
         // upper threshold e.g., [number, undefined]
-        value = x0 + (scaleDomain[1] as number); // x0,x1 are from the domain, so if the domain is numeric if x0 is
         delimiter = labelUpper || delimiter;
+        value = d0 + (scaleDomain[1] as number); // x0,x1 are from the domain, so the domain is numeric if d0 is
+        text = `${delimiter}${formatZero(labelFormat(d0, i))}`;
       }
 
       return {
-        extent: [x0, x1],
-        text: `${x0 == null ? '' : formatZero(labelFormat(x0 || d, i))}${delimiter}${
-          x1 == null ? '' : formatZero(labelFormat(x1 || d, i))
-        }`,
+        extent: [d0, d1],
         value: scale((value as Datum) || d),
+        text,
         datum: d,
         index: i,
       };
@@ -74,7 +73,13 @@ export default function LegendThreshold<Datum extends StringNumberDate, Output>(
   labelUpper = 'More than ',
   ...restProps
 }: LegendThresholdProps<Datum, Output>) {
-  const domain = inputDomain || (scale.domain() as Datum[]);
+  // d3 docs specify that for n values in a domain, there should be n+1 values in the range
+  // https://github.com/d3/d3-scale#threshold_domain
+  // therefore if a domain is not specified we transform the range into input values
+  // because it should contain more elements
+  const domain =
+    inputDomain || (scale.range().map(output => scale.invertExtent(output)[0]) as Datum[]);
+
   const labelTransform =
     inputLabelTransform ||
     defaultTransform<Datum, Output>({
