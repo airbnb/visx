@@ -54,7 +54,7 @@ const linearScale = scaleLinear<string>({
 });
 
 const thresholdScale = scaleThreshold<number, string>({
-  domain: [0.01, 0.02, 0.04, 0.06, 0.08, 0.1],
+  domain: [0.01, 0.02, 0.04, 0.06, 0.08],
   range: ['#f2f0f7', '#dadaeb', '#bcbddc', '#9e9ac8', '#756bb1', '#54278f'],
 });
 

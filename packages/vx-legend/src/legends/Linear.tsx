@@ -6,7 +6,7 @@ export type LegendLinearProps<Output> = {
   steps?: number;
 } & LegendProps<number, Output, ScaleLinear<number, Output>>;
 
-function defaultDomain<Output>({
+export function defaultDomain<Output>({
   steps = 5,
   scale,
 }: Pick<LegendLinearProps<Output>, 'steps' | 'scale'>) {
