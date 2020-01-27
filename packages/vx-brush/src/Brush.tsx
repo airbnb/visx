@@ -25,7 +25,7 @@ export type BrushProps = {
   yAxisOrientation: 'left' | 'right';
   xAxisOrientation: 'top' | 'bottom';
   disableDraggingSelection: boolean;
-  resetOnEnd: boolean;
+  resetOnEnd?: boolean;
   handleSize: number;
 };
 
