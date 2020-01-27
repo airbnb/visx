@@ -33,6 +33,7 @@ export type BaseBrushProps = {
   onClick?: (event: MouseHandlerEvent) => void;
   clickSensitivity: number;
   disableDraggingSelection: boolean;
+  resetOnEnd: boolean;
 };
 
 export type BaseBrushState = BrushShape & {
@@ -86,6 +87,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
     onClick: null,
     disableDraggingSelection: false,
     clickSensitivity: 200,
+    resetOnEnd: false,
   };
 
   componentDidUpdate(prevProps: BaseBrushProps) {
@@ -167,7 +169,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
   };
 
   handleDragEnd = () => {
-    const { onBrushEnd } = this.props;
+    const { onBrushEnd, resetOnEnd } = this.props;
     this.updateBrush((prevBrush: BaseBrushState) => {
       const { extent } = prevBrush;
       const newState = {
@@ -185,6 +187,10 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
       };
       if (onBrushEnd) {
         onBrushEnd(newState);
+      }
+
+      if (resetOnEnd) {
+        this.reset();
       }
 
       return newState;
