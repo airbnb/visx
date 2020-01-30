@@ -30,7 +30,7 @@ const bars = data.map((d, i) => {
 })
 ```
 
-**Note:** This example represents how to use a yScale, but skipped a lot of details about how to make a bar chart. If you're trying to do that, you should check out [this example](https://github.com/hshoff/vx/blob/master/packages/vx-demo/src/components/charts/SimpleBar.js).
+**Note:** This example represents how to use a yScale, but skipped a lot of details about how to make a bar chart. If you're trying to do that, you should check out [this example](https://github.com/hshoff/vx/blob/master/packages/vx-demo/src/components/charts/SimpleBar.ts).
 
 ## Current Scaling Options
 
