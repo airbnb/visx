@@ -11,3 +11,4 @@ export { default as scaleQuantile } from './scales/quantile';
 export { default as scaleSymlog } from './scales/symlog';
 export { default as scaleThreshold } from './scales/threshold';
 export { default as updateScale } from './util/updateScale';
+export { default as scaleSqrt } from './scales/squareRoot';

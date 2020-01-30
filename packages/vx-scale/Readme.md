@@ -1,6 +1,6 @@
 # @vx/scale
 
-```
+```sh
 npm install --save @vx/scale
 ```
 
@@ -134,6 +134,25 @@ const scale = Scale.scalePower({
 });
 ```
 
+### Square Root Scaling
+
+[Original d3 docs](https://github.com/d3/d3-scale#scaleSqrt)
+
+Example:
+
+```javascript
+// No need to set the exponent, It is always 0.5
+const scale = Scale.scaleSqrt({
+  /*
+    range,
+    rangeRound,
+    domain,
+    nice = false,
+    clamp = false,
+  */
+});
+```
+
 ### Time Scaling
 [Original d3 docs](https://github.com/d3/d3-scale/blob/master/README.md#scaleTime)
 
@@ -171,7 +190,7 @@ D3 scales offer the ability to map points to colors.  You can use [`d3-scale-chr
 
 You can install `d3-scale-chromatic` with npm:
 
-```
+```sh
 npm install --save d3-scale-chromatic
 ```
 
