@@ -96,6 +96,7 @@ See the [TypeScript project](https://github.com/hshoff/vx/projects/2) for a full
 - [Rudeg](https://github.com/Rudeg)
 - [diagramatics](https://github.com/diagramatics)
 - [geekplux](https://github.com/geekplux)
+- [dennisja](https://github.com/dennisja)
 
 #### :rocket: Enhancements
 - [@vx/*] 
