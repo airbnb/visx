@@ -1,5 +1,6 @@
 # Changelog
 
+- [v0.0.193](#v00193)
 - [v0.0.192](#v00192)
 - [v0.0.191](#v00191)
 - [v0.0.190](#v00190)
@@ -15,10 +16,10 @@
 - [v0.0.180](#v00180)
 - [v0.0.179](#v00179)
 - [v0.0.178](#v00178)
-- [v0.0.177](#v00177)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v00177">v0.0.177</a></li>
   <li><a href="#v00176">v0.0.176</a></li>
   <li><a href="#v00175">v0.0.175</a></li>
   <li><a href="#v00174">v0.0.174</a></li>
@@ -83,6 +84,104 @@
 </details>
 
 ------
+
+# v0.0.193
+
+See the [TypeScript project](https://github.com/hshoff/vx/projects/2) for a full list of issues + PRs.
+
+#### :trophy: Contributors
+
+- [williaster](https://github.com/williaster)
+- [hshoff](https://github.com/hshoff)
+- [Rudeg](https://github.com/Rudeg)
+- [diagramatics](https://github.com/diagramatics)
+- [geekplux](https://github.com/geekplux)
+
+#### :rocket: Enhancements
+- [@vx/*] 
+  - **all** packages re-written in TypeScript and export types under `lib/index.d.ts`
+  - Many misc bug fixes with improved type safety, most `propTypes` are likely stricter now
+- [brush] `@vx/brush` now exports a working `Brush` component :tada:
+- [demo] 
+  - all gallery demos re-written with `react` `hooks` + types
+  - new `@vx/brush` demo is added
+
+#### :memo: Documentation
+- [@vx/*] **all** components in all packages now have full doc strings. *note*: these is not yet reflected on the docs site.
+
+#### :boom: Breaking Changes
+- [boxplot] `@vx/boxplot` deprecated in favor of `@vx/stats` #561
+- [mock-data] `radius` and `distance` values in the `@vx/mock-data` `exoplanet` dataset were updated from strings to numbers to remove the need for consumers to coerce to numbers themselves #579
+- [drag] #499
+  - now has a peerDep `react@^16.3` for `React.Fragment`, dropping support for `react@^15` 
+  - Empty parent `<g>` wrapper around Drag `children` was replaced with a `React.Fragment` which removes a DOM element.
+- [pattern] `PatternOrientation` is no longer the default export of `@vx/patterns/lib/constants` and is instead a named export. PatternOrientation is still used as the export name if importing from the index: `import { PatternOrientation } from '@vx/pattern'` #503
+- [shape] #507
+  - now has a peerDep `react@^16.3` for `React.Fragment`, dropping support for `react@^15` 
+  - the `Arc` `centroid` prop was removed as it was not functional (it was called as if it was an `arc.centroid()` configuration parameter, but in reality the `.centroid` method is for returning the centroid of a datum.
+  - the `Area` component is no longer wrapped in an empty `<g>` element
+  - `order` and `offset` props for `Stack`, `BarStack`, `BarStackHorizontal`, and `AreaStack` previously supported `string`, `array`, or `function`s. Only the `string` prop was functional, and only the enumerated string presets are now allowed.
+- [voronoi] now has a peerDep `react@^16.3` for `React.Fragment`, dropping support for `react@^15` #512
+- [network] #535
+  -  now has a peerDep `react@^16.3` for `React.Fragment`, dropping support for `react@^15` 
+  - `<Nodes />` inner node wrapper `<g>` element className changed to singular (vx-network-nodes => vx-network-node) and outer wrapper `<g>` was replaced with a React.Fragment
+  - `<Links />` inner link wrapper `<g>` element className changed to singular (vx-network-links => vx-network-link) and outer wrapper `<g>` was replaced with a React.Fragment 
+- [glyph] #518
+  - now has a peerDep `react@^16.3` for `React.Fragment`, dropping support for `react@^15` 
+  - (non-functional) `children` prop removed from `GlyphDot` component 
+- [heatmap] now has a peerDep `react@^16.3` for `React.Fragment`, dropping support for `react@^15` #520
+- [hierarchy] now has a peerDep `react@^16.3` for `React.Fragment`, dropping support for `react@^15` #524
+- [threshold] makes the `Threshold` `id` prop required #533
+- [geo] now has a peerDep `react@^16.3` for `React.Fragment`, dropping support for `react@^15` #537
+- [legend] #551
+  - now has a peerDep `react@^16.3` for `React.Fragment`, dropping support for `react@^15`  
+  - the following directory structures were changed which will break deep imports: `src/legends/* => src/*`
+- [stats] #570
+  - now has a peerDep `react@^16.3` for `React.Fragment`, dropping support for `react@^15`  
+  - the following directory structures were changed which will break deep imports
+    - `src/violinplot/ViolinPlot.jsx => src/ViolinPlot.tsx`
+    - `src/boxplot/BoxPlot.jsx => src/BoxPlot.tsx`
+
+#### :house: Internal
+- add `TypeScript` build support to monorepo #488
+- [text] Remove deprecated lifecycles used in Text #576
+
+```
+Changes:
+ - @vx/annotation: 0.0.192 => 0.0.193
+ - @vx/axis: 0.0.192 => 0.0.193
+ - @vx/bounds: 0.0.192 => 0.0.193
+ - @vx/brush: 0.0.192 => 0.0.193
+ - @vx/chord: 0.0.192 => 0.0.193
+ - @vx/clip-path: 0.0.192 => 0.0.193
+ - @vx/curve: 0.0.192 => 0.0.193
+ - @vx/demo: 0.0.192 => 0.0.193
+ - @vx/drag: 0.0.192 => 0.0.193
+ - @vx/event: 0.0.192 => 0.0.193
+ - @vx/geo: 0.0.192 => 0.0.193
+ - @vx/glyph: 0.0.192 => 0.0.193
+ - @vx/gradient: 0.0.192 => 0.0.193
+ - @vx/grid: 0.0.192 => 0.0.193
+ - @vx/group: 0.0.192 => 0.0.193
+ - @vx/heatmap: 0.0.192 => 0.0.193
+ - @vx/hierarchy: 0.0.192 => 0.0.193
+ - @vx/legend: 0.0.192 => 0.0.193
+ - @vx/marker: 0.0.192 => 0.0.193
+ - @vx/mock-data: 0.0.192 => 0.0.193
+ - @vx/network: 0.0.192 => 0.0.193
+ - @vx/pattern: 0.0.192 => 0.0.193
+ - @vx/point: 0.0.192 => 0.0.193
+ - @vx/responsive: 0.0.192 => 0.0.193
+ - @vx/scale: 0.0.192 => 0.0.193
+ - @vx/shape: 0.0.192 => 0.0.193
+ - @vx/stats: 0.0.192 => 0.0.193
+ - @vx/text: 0.0.192 => 0.0.193
+ - @vx/threshold: 0.0.192 => 0.0.193
+ - @vx/tooltip: 0.0.192 => 0.0.193
+ - @vx/voronoi: 0.0.192 => 0.0.193
+ - @vx/vx: 0.0.192 => 0.0.193
+ - @vx/zoom: 0.0.192 => 0.0.193
+```
 
 # v0.0.192
 
