@@ -33,7 +33,7 @@ export type BaseBrushProps = {
   onClick?: (event: MouseHandlerEvent) => void;
   clickSensitivity: number;
   disableDraggingSelection: boolean;
-  resetOnEnd: boolean;
+  resetOnEnd?: boolean;
 };
 
 export type BaseBrushState = BrushShape & {
