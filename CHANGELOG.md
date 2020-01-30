@@ -110,41 +110,41 @@ See the [TypeScript project](https://github.com/hshoff/vx/projects/2) for a full
 - [@vx/*] **all** components in all packages now have full doc strings. *note*: these is not yet reflected on the docs site.
 
 #### :boom: Breaking Changes
-- [boxplot] `@vx/boxplot` deprecated in favor of `@vx/stats` #561
-- [mock-data] `radius` and `distance` values in the `@vx/mock-data` `exoplanet` dataset were updated from strings to numbers to remove the need for consumers to coerce to numbers themselves #579
-- [drag] #499
+- [boxplot] `@vx/boxplot` deprecated in favor of `@vx/stats` [#561](https://github.com/hshoff/vx/pull/561)
+- [mock-data] `radius` and `distance` values in the `@vx/mock-data` `exoplanet` dataset were updated from strings to numbers to remove the need for consumers to coerce to numbers themselves [#579](https://github.com/hshoff/vx/pull/579)
+- [drag] [#499](https://github.com/hshoff/vx/pull/499)
   - now has a peerDep `react@^16.3` for `React.Fragment`, dropping support for `react@^15` 
   - Empty parent `<g>` wrapper around Drag `children` was replaced with a `React.Fragment` which removes a DOM element.
-- [pattern] `PatternOrientation` is no longer the default export of `@vx/patterns/lib/constants` and is instead a named export. PatternOrientation is still used as the export name if importing from the index: `import { PatternOrientation } from '@vx/pattern'` #503
-- [shape] #507
+- [pattern] `PatternOrientation` is no longer the default export of `@vx/patterns/lib/constants` and is instead a named export. PatternOrientation is still used as the export name if importing from the index: `import { PatternOrientation } from '@vx/pattern'` [#503](https://github.com/hshoff/vx/pull/503)
+- [shape] [#507](https://github.com/hshoff/vx/pull/507)
   - now has a peerDep `react@^16.3` for `React.Fragment`, dropping support for `react@^15` 
   - the `Arc` `centroid` prop was removed as it was not functional (it was called as if it was an `arc.centroid()` configuration parameter, but in reality the `.centroid` method is for returning the centroid of a datum.
   - the `Area` component is no longer wrapped in an empty `<g>` element
   - `order` and `offset` props for `Stack`, `BarStack`, `BarStackHorizontal`, and `AreaStack` previously supported `string`, `array`, or `function`s. Only the `string` prop was functional, and only the enumerated string presets are now allowed.
-- [voronoi] now has a peerDep `react@^16.3` for `React.Fragment`, dropping support for `react@^15` #512
-- [network] #535
+- [voronoi] now has a peerDep `react@^16.3` for `React.Fragment`, dropping support for `react@^15` [#512](https://github.com/hshoff/vx/pull/512)
+- [network] [#535](https://github.com/hshoff/vx/pull/535)
   -  now has a peerDep `react@^16.3` for `React.Fragment`, dropping support for `react@^15` 
   - `<Nodes />` inner node wrapper `<g>` element className changed to singular (vx-network-nodes => vx-network-node) and outer wrapper `<g>` was replaced with a React.Fragment
   - `<Links />` inner link wrapper `<g>` element className changed to singular (vx-network-links => vx-network-link) and outer wrapper `<g>` was replaced with a React.Fragment 
-- [glyph] #518
+- [glyph] [#518](https://github.com/hshoff/vx/pull/518)
   - now has a peerDep `react@^16.3` for `React.Fragment`, dropping support for `react@^15` 
   - (non-functional) `children` prop removed from `GlyphDot` component 
-- [heatmap] now has a peerDep `react@^16.3` for `React.Fragment`, dropping support for `react@^15` #520
-- [hierarchy] now has a peerDep `react@^16.3` for `React.Fragment`, dropping support for `react@^15` #524
-- [threshold] makes the `Threshold` `id` prop required #533
-- [geo] now has a peerDep `react@^16.3` for `React.Fragment`, dropping support for `react@^15` #537
-- [legend] #551
+- [heatmap] now has a peerDep `react@^16.3` for `React.Fragment`, dropping support for `react@^15` [#520](https://github.com/hshoff/vx/pull/520)
+- [hierarchy] now has a peerDep `react@^16.3` for `React.Fragment`, dropping support for `react@^15` [#524](https://github.com/hshoff/vx/pull/524)
+- [threshold] makes the `Threshold` `id` prop required [#533](https://github.com/hshoff/vx/pull/533)
+- [geo] now has a peerDep `react@^16.3` for `React.Fragment`, dropping support for `react@^15` [#537](https://github.com/hshoff/vx/pull/537)
+- [legend] [#551](https://github.com/hshoff/vx/pull/551)
   - now has a peerDep `react@^16.3` for `React.Fragment`, dropping support for `react@^15`  
   - the following directory structures were changed which will break deep imports: `src/legends/* => src/*`
-- [stats] #570
+- [stats] [#570](https://github.com/hshoff/vx/pull/570)
   - now has a peerDep `react@^16.3` for `React.Fragment`, dropping support for `react@^15`  
   - the following directory structures were changed which will break deep imports
     - `src/violinplot/ViolinPlot.jsx => src/ViolinPlot.tsx`
     - `src/boxplot/BoxPlot.jsx => src/BoxPlot.tsx`
 
 #### :house: Internal
-- add `TypeScript` build support to monorepo #488
-- [text] Remove deprecated lifecycles used in Text #576
+- add `TypeScript` build support to monorepo [#488](https://github.com/hshoff/vx/pull/488)
+- [text] Remove deprecated lifecycles used in Text [#576](https://github.com/hshoff/vx/pull/576)
 
 ```
 Changes:
