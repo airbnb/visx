@@ -1,23 +1,26 @@
-import React from 'react';
+import * as React from 'react';
 import { Bar } from '@vx/shape';
 import { Group } from '@vx/group';
 import { PatternLines } from '@vx/pattern';
-import { letterFrequency } from '@vx/mock-data';
 import { scaleBand, scaleLinear } from '@vx/scale';
 import { max } from 'd3-array';
+import letterFrequency, { LetterFrequency } from '@vx/mock-data/lib/mocks/letterFrequency';
+import round from '../util/round';
+import { MarginShape } from '../../types';
 
 const data = letterFrequency;
 
-function round(value, precision) {
-  const multiplier = 10 ** (precision || 0);
-  return Math.round(value * multiplier) / multiplier;
-}
+type SimpleBarProps = {
+  width: number;
+  height: number;
+  margin: MarginShape;
+};
 
-export default ({ width, height, margin }) => {
-  // accessors
-  const x = d => d.letter;
-  const y = d => Number(d.frequency) * 100;
+// accessors
+const x = (d: LetterFrequency): string => d.letter;
+const y = (d: LetterFrequency): number => Number(d.frequency) * 100;
 
+const SimpleBar: React.FC<SimpleBarProps> = ({ width, height, margin }) => {
   // bounds
   const xMax = width - margin.left - margin.right;
   const yMax = height - margin.top - margin.bottom;
@@ -28,9 +31,9 @@ export default ({ width, height, margin }) => {
     domain: data.map(x),
     padding: 0.4,
   });
-  const yScale = scaleLinear({
+  const yScale = scaleLinear<number>({
     rangeRound: [yMax, 0],
-    domain: [0, max(data, y)],
+    domain: [0, max(data, y) as number],
   });
 
   return (
@@ -43,7 +46,7 @@ export default ({ width, height, margin }) => {
         strokeWidth={1}
         orientation={['diagonal']}
       />
-      {data.map(d => {
+      {data.map((d: LetterFrequency) => {
         const barHeight = yMax - yScale(y(d));
         return (
           <Group key={`bar-${x(d)}`} left={margin.left} top={margin.top}>
@@ -68,3 +71,5 @@ export default ({ width, height, margin }) => {
     </svg>
   );
 };
+
+export default SimpleBar;

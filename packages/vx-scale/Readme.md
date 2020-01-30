@@ -1,6 +1,6 @@
 # @vx/scale
 
-```
+```sh
 npm install --save @vx/scale
 ```
 
@@ -30,7 +30,7 @@ const bars = data.map((d, i) => {
 })
 ```
 
-**Note:** This example represents how to use a yScale, but skipped a lot of details about how to make a bar chart. If you're trying to do that, you should check out [this example](https://github.com/hshoff/vx/blob/master/packages/vx-demo/src/components/charts/SimpleBar.js).
+**Note:** This example represents how to use a yScale, but skipped a lot of details about how to make a bar chart. If you're trying to do that, you should check out [this example](https://github.com/hshoff/vx/blob/master/packages/vx-demo/src/components/charts/SimpleBar.ts).
 
 ## Current Scaling Options
 
@@ -134,6 +134,25 @@ const scale = Scale.scalePower({
 });
 ```
 
+### Square Root Scaling
+
+[Original d3 docs](https://github.com/d3/d3-scale#scaleSqrt)
+
+Example:
+
+```javascript
+// No need to set the exponent, It is always 0.5
+const scale = Scale.scaleSqrt({
+  /*
+    range,
+    rangeRound,
+    domain,
+    nice = false,
+    clamp = false,
+  */
+});
+```
+
 ### Time Scaling
 [Original d3 docs](https://github.com/d3/d3-scale/blob/master/README.md#scaleTime)
 
@@ -171,7 +190,7 @@ D3 scales offer the ability to map points to colors.  You can use [`d3-scale-chr
 
 You can install `d3-scale-chromatic` with npm:
 
-```
+```sh
 npm install --save d3-scale-chromatic
 ```
 

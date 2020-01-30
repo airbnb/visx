@@ -1,6 +1,6 @@
 {
   "name": "@vx/zoom",
-  "version": "0.0.192",
+  "version": "0.0.193",
   "description": "vx zoom",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@types/react": "*",
-    "@vx/event": "0.0.192",
+    "@vx/event": "0.0.193",
     "prop-types": "^15.6.2"
   }
 }
