@@ -25,6 +25,7 @@ export type BrushProps = {
   yAxisOrientation: 'left' | 'right';
   xAxisOrientation: 'top' | 'bottom';
   disableDraggingSelection: boolean;
+  resetOnEnd?: boolean;
   handleSize: number;
 };
 
@@ -57,6 +58,7 @@ class Brush extends React.Component<BrushProps> {
     onBrushStart: null,
     onBrushEnd: null,
     disableDraggingSelection: false,
+    resetOnEnd: false,
     onMouseMove: null,
     onMouseLeave: null,
     onClick: null,
@@ -133,6 +135,7 @@ class Brush extends React.Component<BrushProps> {
       xAxisOrientation,
       selectedBoxStyle,
       disableDraggingSelection,
+      resetOnEnd,
       onMouseLeave,
       onMouseMove,
       onClick,
@@ -191,6 +194,7 @@ class Brush extends React.Component<BrushProps> {
         brushDirection={brushDirection}
         selectedBoxStyle={selectedBoxStyle}
         disableDraggingSelection={disableDraggingSelection}
+        resetOnEnd={resetOnEnd}
         onMouseLeave={onMouseLeave}
         onMouseMove={onMouseMove}
         onClick={onClick}
