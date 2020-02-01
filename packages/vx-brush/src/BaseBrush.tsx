@@ -89,6 +89,14 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
     clickSensitivity: 200,
     resetOnEnd: false,
   };
+      
+  componentDidMount = () => {
+    window.addEventListener("mouseup", handleDragEnd);
+  }
+  
+  componentWillUnmount = () => {
+    window.removeEventListener("mouseup", handleDragEnd);
+  }
 
   componentDidUpdate(prevProps: BaseBrushProps) {
     if (this.props.width !== prevProps.width || this.props.height !== prevProps.height) {
