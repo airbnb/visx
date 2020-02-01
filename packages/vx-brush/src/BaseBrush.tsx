@@ -91,11 +91,11 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
   };
       
   componentDidMount = () => {
-    window.addEventListener("mouseup", handleDragEnd);
+    window.addEventListener("mouseup", this.handleDragEnd);
   }
   
   componentWillUnmount = () => {
-    window.removeEventListener("mouseup", handleDragEnd);
+    window.removeEventListener("mouseup", this.handleDragEnd);
   }
 
   componentDidUpdate(prevProps: BaseBrushProps) {
