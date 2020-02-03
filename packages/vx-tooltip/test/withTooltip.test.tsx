@@ -9,6 +9,11 @@ const DummyComponentWithDefaultTooltip = withTooltip(DummyComponent);
 const DummyComponentWithCustomContainerPropsTooltip = withTooltip(DummyComponent, {
   style: { position: 'static' },
 });
+const DummyComponentWithNoContainerTooltip = withTooltip(
+  DummyComponent,
+  undefined,
+  children => children,
+);
 
 describe('withTooltip()', () => {
   test('it should be defined', () => {
@@ -44,6 +49,13 @@ describe('withTooltip()', () => {
     ).toEqual({
       position: 'static',
     });
+    expect(wrapper.find(DummyComponent)).toHaveLength(1);
+  });
+
+  test('it should render with a custom container', () => {
+    const wrapper = shallow(<DummyComponentWithNoContainerTooltip />);
+
+    expect(wrapper.find('div')).toHaveLength(0);
     expect(wrapper.find(DummyComponent)).toHaveLength(1);
   });
 });
