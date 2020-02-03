@@ -61,12 +61,13 @@ render(<ChartWithTooltip />, document.getElementById("root"));
 Example codesandbox [here](https://codesandbox.io/s/kw02m019mr).
 
 ### Enhancers
-#### withTooltip(BaseComponent [, containerProps])
-If you would like to add tooltip state logic to your component, you may wrap it in `withTooltip(BaseComponent [, containerProps])`.
+#### withTooltip(BaseComponent [, containerProps [, renderContainer]])
+If you would like to add tooltip state logic to your component, you may wrap it in `withTooltip(BaseComponent [, containerProps [, renderContainer])`.
+
 The HOC will wrap your component in a `div` with `relative` positioning by default and handle state for tooltip positioning, visibility, and content by injecting the following props into your `BaseComponent`:
 
 
-You may override the container by specifying `containerProps` as the second argument to `withTooltip`.
+You may override the container by specifying `containerProps` as the second argument to `withTooltip`, or by specifying `renderContainer` as the third argument to `withTooltip`.
 
 | Name | Type | Description |
 |:---- |:---- |:----------- |
