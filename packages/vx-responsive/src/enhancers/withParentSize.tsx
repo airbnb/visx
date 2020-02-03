@@ -2,6 +2,8 @@ import React from 'react';
 import debounce from 'lodash/debounce';
 import ResizeObserver from 'resize-observer-polyfill';
 
+const CONTAINER_STYLES = { width: '100%', height: '100%' };
+
 export type WithParentSizeProps = {
   debounceTime?: number;
 };
@@ -58,6 +60,10 @@ export default function withParentSize<BaseComponentProps extends WithParentSize
       if (this.resizeObserver) this.resizeObserver.disconnect();
     }
 
+    setRef = (ref: HTMLDivElement) => {
+      this.container = ref;
+    };
+
     resize = ({ width, height }: { width: number; height: number }) => {
       this.setState({
         parentWidth: width,
@@ -68,13 +74,8 @@ export default function withParentSize<BaseComponentProps extends WithParentSize
     render() {
       const { parentWidth, parentHeight } = this.state;
       return (
-        <div
-          style={{ width: '100%', height: '100%' }}
-          ref={ref => {
-            this.container = ref;
-          }}
-        >
-          {parentWidth !== null && parentHeight !== null && (
+        <div style={CONTAINER_STYLES} ref={this.setRef}>
+          {parentWidth != null && parentHeight != null && (
             <BaseComponent parentWidth={parentWidth} parentHeight={parentHeight} {...this.props} />
           )}
         </div>
