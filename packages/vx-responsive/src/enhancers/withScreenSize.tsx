@@ -54,7 +54,7 @@ export default function withScreenSize<BaseComponentProps extends WithScreenSize
 
     render() {
       const { screenWidth, screenHeight } = this.state;
-      if (!screenWidth && !screenHeight) return null;
+      if (screenWidth == null || screenHeight == null) return null;
       return (
         <BaseComponent screenWidth={screenWidth} screenHeight={screenHeight} {...this.props} />
       );
