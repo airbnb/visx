@@ -16,7 +16,7 @@ type WithTooltipState<TooltipData> = Pick<
 >;
 type ShowTooltipArgs<TooltipData> = Omit<WithTooltipState<TooltipData>, 'tooltipOpen'>;
 type UpdateTooltipArgs<TooltipData> = WithTooltipState<TooltipData>;
-type WithTooltipContainerProps = { style: React.CSSProperties };
+type WithTooltipContainerProps = React.HTMLProps<HTMLDivElement>;
 type RenderTooltipContainer = (
   children: ReactElement,
   containerProps?: WithTooltipContainerProps,
