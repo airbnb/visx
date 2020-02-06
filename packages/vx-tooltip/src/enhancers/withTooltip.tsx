@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, ReactNode } from 'react';
 
 export type WithTooltipProvidedProps<TooltipData = {}> = {
   tooltipOpen: boolean;
@@ -20,7 +20,7 @@ type WithTooltipContainerProps = React.HTMLProps<HTMLDivElement>;
 type RenderTooltipContainer = (
   children: ReactElement,
   containerProps?: WithTooltipContainerProps,
-) => ReactElement;
+) => ReactNode;
 
 export default function withTooltip<BaseComponentProps = {}, TooltipData = {}>(
   BaseComponent: React.ComponentType<BaseComponentProps & WithTooltipProvidedProps<TooltipData>>,
