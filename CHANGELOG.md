@@ -1,5 +1,5 @@
 # Changelog
-
+- [v0.0.194](#v00194)
 - [v0.0.193](#v00193)
 - [v0.0.192](#v00192)
 - [v0.0.191](#v00191)
@@ -15,10 +15,10 @@
 - [v0.0.181](#v00181)
 - [v0.0.180](#v00180)
 - [v0.0.179](#v00179)
-- [v0.0.178](#v00178)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v00178">v0.0.178</a></li>
   <li><a href="#v00177">v0.0.177</a></li>
   <li><a href="#v00176">v0.0.176</a></li>
   <li><a href="#v00175">v0.0.175</a></li>
@@ -84,6 +84,64 @@
 </details>
 
 ------
+
+# v0.0.194
+
+#### :trophy: Contributors
+
+- [ptmx](https://github.com/ptmx)
+- [dennisja](https://github.com/dennisja)
+- [gillesdemey](https://github.com/gillesdemey)
+- [mitchellwarr](https://github.com/mitchellwarr)
+- [williaster](https://github.com/williaster)
+
+#### :rocket: Enhancements
+
+- [brush] Add resetOnEnd prop [#614](https://github.com/hshoff/vx/pull/614)
+- [tooltip] Add hook for custom Tooltip container to support SVG tooltips [#610](https://github.com/hshoff/vx/pull/610)
+- [scale] Add sqrtScale [#615](https://github.com/hshoff/vx/pull/615)
+
+#### :bug: Bug Fix
+
+- [zoom] Don't use stale zoom constraint prop [#578](https://github.com/hshoff/vx/pull/578)
+- [responsive] Don't render withParentSize base component until size is known [#621](https://github.com/hshoff/vx/pull/621)
+
+```
+Changes:
+ - @vx/annotation: 0.0.193 => 0.0.194
+ - @vx/axis: 0.0.193 => 0.0.194
+ - @vx/bounds: 0.0.193 => 0.0.194
+ - @vx/brush: 0.0.193 => 0.0.194
+ - @vx/chord: 0.0.193 => 0.0.194
+ - @vx/clip-path: 0.0.193 => 0.0.194
+ - @vx/curve: 0.0.193 => 0.0.194
+ - @vx/demo: 0.0.193 => 0.0.194
+ - @vx/drag: 0.0.193 => 0.0.194
+ - @vx/event: 0.0.193 => 0.0.194
+ - @vx/geo: 0.0.193 => 0.0.194
+ - @vx/glyph: 0.0.193 => 0.0.194
+ - @vx/gradient: 0.0.193 => 0.0.194
+ - @vx/grid: 0.0.193 => 0.0.194
+ - @vx/group: 0.0.193 => 0.0.194
+ - @vx/heatmap: 0.0.193 => 0.0.194
+ - @vx/hierarchy: 0.0.193 => 0.0.194
+ - @vx/legend: 0.0.193 => 0.0.194
+ - @vx/marker: 0.0.193 => 0.0.194
+ - @vx/mock-data: 0.0.193 => 0.0.194
+ - @vx/network: 0.0.193 => 0.0.194
+ - @vx/pattern: 0.0.193 => 0.0.194
+ - @vx/point: 0.0.193 => 0.0.194
+ - @vx/responsive: 0.0.193 => 0.0.194
+ - @vx/scale: 0.0.193 => 0.0.194
+ - @vx/shape: 0.0.193 => 0.0.194
+ - @vx/stats: 0.0.193 => 0.0.194
+ - @vx/text: 0.0.193 => 0.0.194
+ - @vx/threshold: 0.0.193 => 0.0.194
+ - @vx/tooltip: 0.0.193 => 0.0.194
+ - @vx/voronoi: 0.0.193 => 0.0.194
+ - @vx/vx: 0.0.193 => 0.0.194
+ - @vx/zoom: 0.0.193 => 0.0.194
+```
 
 # v0.0.193
 
@@ -199,7 +257,6 @@ See [#484](https://github.com/hshoff/vx/pull/484) for details.
 - use `yarn` not `npm`
   - this will enable `workspaces` so that we can push all config to the root instead of duplicating across every package as is the case now
 - Stricter linting rules (e.g., `.jsx` required for `React` files)
-
 
 #### :trophy: Contributors
 
