@@ -1,6 +1,6 @@
 {
   "name": "@vx/tooltip",
-  "version": "0.0.193",
+  "version": "0.0.194",
   "description": "vx tooltip",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -30,7 +30,7 @@
   "dependencies": {
     "@types/classnames": "^2.2.9",
     "@types/react": "*",
-    "@vx/bounds": "0.0.193",
+    "@vx/bounds": "0.0.194",
     "classnames": "^2.2.5",
     "prop-types": "^15.5.10"
   },
