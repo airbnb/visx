@@ -196,19 +196,18 @@ class Zoom extends React.Component<ZoomProps, ZoomState> {
     return `matrix(${scaleX}, ${skewY}, ${skewX}, ${scaleY}, ${translateX}, ${translateY})`;
   };
 
-  constrain =
-    this.props.constrain ||
-    ((transformMatrix: TransformMatrix, prevTransformMatrix: TransformMatrix) => {
-      const { scaleXMin, scaleXMax, scaleYMin, scaleYMax } = this.props;
-      const { scaleX, scaleY } = transformMatrix;
-      const shouldConstrainScaleX = scaleX > scaleXMax! || scaleX < scaleXMin!;
-      const shouldConstrainScaleY = scaleY > scaleYMax! || scaleY < scaleYMin!;
+  constrain = (transformMatrix: TransformMatrix, prevTransformMatrix: TransformMatrix) => {
+    if (this.props.constrain) return this.props.constrain(transformMatrix, prevTransformMatrix);
+    const { scaleXMin, scaleXMax, scaleYMin, scaleYMax } = this.props;
+    const { scaleX, scaleY } = transformMatrix;
+    const shouldConstrainScaleX = scaleX > scaleXMax! || scaleX < scaleXMin!;
+    const shouldConstrainScaleY = scaleY > scaleYMax! || scaleY < scaleYMin!;
 
-      if (shouldConstrainScaleX || shouldConstrainScaleY) {
-        return prevTransformMatrix;
-      }
-      return transformMatrix;
-    });
+    if (shouldConstrainScaleX || shouldConstrainScaleY) {
+      return prevTransformMatrix;
+    }
+    return transformMatrix;
+  };
 
   dragStart = (event: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent) => {
     const { transformMatrix } = this.state;
