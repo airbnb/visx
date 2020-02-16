@@ -150,8 +150,7 @@ For more examples using `vx`, check out the [gallery](https://vx-demo.now.sh/gal
 **Goal**
 
 The goal is to create a library of components you can use to make both your own reusable chart
-library or your slick custom one-off chart. vx is largely unopinionated and is meant to be build on
-top of. Keep your bundle sizes down and use only the packages you need.
+library or your slick custom one-off chart. vx is largely unopinionated and is meant to be built upon. Keep your bundle sizes down and use only the packages you need.
 
 **How?**
 
