@@ -17,6 +17,8 @@ jobs:
       script: yarn run jest -w 4
     - name: Lint
       script: yarn run lint
+    - name: Danger
+      script: yarn danger ci
 cache:
   yarn: true
 after_script: 'cat ./coverage/lcov.info | ./node_modules/.bin/coveralls'

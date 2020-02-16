@@ -171,5 +171,8 @@
         }
       ]
     }
+  },
+  "dependencies": {
+    "@airbnb/config-danger": "^2.3.2"
   }
 }

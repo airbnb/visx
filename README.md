@@ -168,8 +168,8 @@ reusable visualization charts or library without having to learn d3. No more sel
 
 ## Status
 
-`Beta` We're still in pre v1. Need to add interactions. No breaking changes planned right now
-[read more](https://github.com/hshoff/vx/issues/156#issuecomment-331318108). Check out
+`Beta` We're actively working toward improved documentation to release a v1 by mid-2020.
+[Read more here](https://github.com/hshoff/vx/issues/156#issuecomment-331318108). Check out
 [the road to v1](https://github.com/hshoff/vx/projects/1).
 
 If you're a curious coder, feel free to install and play around with the packages. I recommend using
@@ -218,6 +218,10 @@ Lots coming soon, check out the [roadmap](./ROADMAP.md).
   ([Demo](https://vk-ft.now.sh/))([Github](https://github.com/vkallore/d3-vx-family-tree))
 - Have a project that's using vx? Open a pull request and we'll add it to the list.
 
+## 👋 Contributing
+
+See the [contributing guide here](./CONTRIBUTING).
+
 ## FAQ
 
 1. What does `vx` stand for?
@@ -264,55 +268,6 @@ Lots coming soon, check out the [roadmap](./ROADMAP.md).
 1. I like using d3.
 
    > Me too.
-
-## Development
-
-[Yarn workspaces](https://yarnpkg.com/lang/en/docs/workspaces/) are used to manage dependencies and
-build config across packages in the umbrella `vx` monorepo, and
-[lerna](https://github.com/lerna/lerna/) is used to manage versioning.
-
-```
-vx/
-  lerna.json
-  package.json
-  packages/
-    vx-package-1/
-      src/
-      test/
-      build/
-      package.json
-      ...
-    vx-package-2/
-      ...
-    ...
-```
-
-Run the following to setup your local dev environment:
-
-```sh
-# Install `yarn`, alternatives at https://yarnpkg.com/en/docs/install
-curl -o- -L https://yarnpkg.com/install.sh | bash
-
-# Clone or fork `vx`
-git clone git@github.com:hshoff/vx.git # or your fork
-cd vx
-
-# install dependencies, and have `yarn` symlink within-`vx` dependencies
-yarn
-
-# build packages and generate types for local development
-yarn build
-```
-
-Upon modification of a signle `package` you can run `yarn build-one --workspaces=@vx/package` from
-the `vx` monorepo root to re-build the package with your changes. You can use the local
-[`next.js`](https://nextjs.org) dev server within `packages/vx-demo` to view and iterate on your
-changes in the gallery. From the `packages/vx-demo` folder run `yarn dev` to start the next server
-which (if correctly sym-linked) will also watch for changes you make to other packages (upon
-re-building them).
-
-`vx` uses [`@airbnb/nimbus`](https://github.com/airbnb/nimbus) to generate build configuration for
-`eslint`, `prettier`, `jest`, `babel`, and `typescript`.
 
 :v:
 
