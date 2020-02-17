@@ -4,6 +4,7 @@
   "main": "index.tsx",
   "dependencies": {
     "@babel/runtime": "^7.8.4",
+    "@types/d3-time-format": "2.1.1",
     "@types/react": "^16",
     "@types/react-dom": "^16",
     "@vx/axis": "latest",
@@ -16,10 +17,11 @@
     "@vx/shape": "latest",
     "@vx/scale": "latest",
     "d3-array": "^2.4.0",
+    "d3-time-format": "^2.2.3",
     "react": "^16",
     "react-dom": "^16",
     "react-scripts-ts": "3.1.0",
-    "typescript": "3.3.3"
+    "typescript": "^3"
   },
   "keywords": [
     "axis",
