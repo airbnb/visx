@@ -11,6 +11,8 @@ import { Area, LinePath, Line } from '@vx/shape';
 import { scaleTime, scaleLinear } from '@vx/scale';
 import { extent } from 'd3-array';
 
+import './styles.css';
+
 const data = genDateValue(20);
 const pinkDark = '#8e205f';
 const pinkLight = '#f4419f';

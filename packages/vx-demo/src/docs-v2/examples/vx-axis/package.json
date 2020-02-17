@@ -3,6 +3,7 @@
   "description": "Standalone axis demo.",
   "main": "index.tsx",
   "dependencies": {
+    "@babel/runtime": "^7.8.4",
     "@types/react": "^16",
     "@types/react-dom": "^16",
     "@vx/axis": "latest",
