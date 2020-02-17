@@ -1,32 +1,31 @@
 {
-    "name": "@vx/demo-axis",
-    "version": "0.0.0",
-    "description": "Standalone axis demo.",
-    "sideEffects": false,
-    "private": true,
-    "main": "lib/index.ts",
-    "dependencies": {
-      "@vx/axis": "latest",
-      "@vx/curve": "latest",
-      "@vx/gradient": "latest",
-      "@vx/grid": "latest",
-      "@vx/group": "latest",
-      "@vx/mock-data": "latest",
-      "@vx/responsive": "latest",
-      "@vx/shape": "latest",
-      "@vx/scale": "latest",
-      "d3-array": "^2.4.0",
-      "react": "^16",
-      "react-dom": "^16"
-    },
-    "repository": {
-      "type": "git",
-      "url": "git+https://github.com/hshoff/vx.git"
-    },
-    "keywords": ["axis", "scales", "visualization", "d3", "react", "vx"],
-    "license": "MIT",
-    "bugs": {
-      "url": "https://github.com/hshoff/vx/issues"
-    },
-    "homepage": "https://github.com/hshoff/vx#readme"
-  }
+  "name": "@vx/demo-axis",
+  "description": "Standalone axis demo.",
+  "main": "index.tsx",
+  "dependencies": {
+    "@types/react": "^16",
+    "@types/react-dom": "^16",
+    "@vx/axis": "latest",
+    "@vx/curve": "latest",
+    "@vx/gradient": "latest",
+    "@vx/grid": "latest",
+    "@vx/group": "latest",
+    "@vx/mock-data": "latest",
+    "@vx/responsive": "latest",
+    "@vx/shape": "latest",
+    "@vx/scale": "latest",
+    "d3-array": "^2.4.0",
+    "react": "^16",
+    "react-dom": "^16",
+    "react-scripts-ts": "3.1.0",
+    "typescript": "3.3.3"
+  },
+  "keywords": [
+    "axis",
+    "scales",
+    "visualization",
+    "d3",
+    "react",
+    "vx"
+  ]
+}
