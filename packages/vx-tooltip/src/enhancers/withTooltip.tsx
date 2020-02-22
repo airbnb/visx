@@ -1,26 +1,13 @@
-import React, { ReactElement, ReactNode } from 'react';
+import React, { ReactElement, FunctionComponent } from 'react';
 
-export type WithTooltipProvidedProps<TooltipData = {}> = {
-  tooltipOpen: boolean;
-  tooltipLeft?: number;
-  tooltipTop?: number;
-  tooltipData?: TooltipData;
-  updateTooltip: (args: UpdateTooltipArgs<TooltipData>) => void;
-  showTooltip: (args: ShowTooltipArgs<TooltipData>) => void;
-  hideTooltip: () => void;
-};
+import useTooltip, { UseTooltipParams } from '../hooks/useTooltip';
 
-type WithTooltipState<TooltipData> = Pick<
-  WithTooltipProvidedProps<TooltipData>,
-  'tooltipOpen' | 'tooltipLeft' | 'tooltipTop' | 'tooltipData'
->;
-type ShowTooltipArgs<TooltipData> = Omit<WithTooltipState<TooltipData>, 'tooltipOpen'>;
-type UpdateTooltipArgs<TooltipData> = WithTooltipState<TooltipData>;
+export type WithTooltipProvidedProps<TooltipData> = UseTooltipParams<TooltipData>;
 type WithTooltipContainerProps = React.HTMLProps<HTMLDivElement>;
 type RenderTooltipContainer = (
   children: ReactElement,
   containerProps?: WithTooltipContainerProps,
-) => ReactNode;
+) => ReactElement;
 
 export default function withTooltip<BaseComponentProps = {}, TooltipData = {}>(
   BaseComponent: React.ComponentType<BaseComponentProps & WithTooltipProvidedProps<TooltipData>>,
@@ -33,61 +20,11 @@ export default function withTooltip<BaseComponentProps = {}, TooltipData = {}>(
   },
   renderContainer: RenderTooltipContainer = (children, props) => <div {...props}>{children}</div>,
 ) {
-  return class WrappedComponent extends React.PureComponent<
-    BaseComponentProps,
-    WithTooltipState<TooltipData>
-  > {
-    state = {
-      tooltipOpen: false,
-      tooltipLeft: undefined,
-      tooltipTop: undefined,
-      tooltipData: undefined,
-    };
+  const WrappedComponent: FunctionComponent<BaseComponentProps> = props => {
+    const tooltipProps = useTooltip<TooltipData>();
 
-    updateTooltip = ({
-      tooltipOpen,
-      tooltipLeft,
-      tooltipTop,
-      tooltipData,
-    }: UpdateTooltipArgs<TooltipData>) => {
-      this.setState(prevState => ({
-        ...prevState,
-        tooltipOpen,
-        tooltipLeft,
-        tooltipTop,
-        tooltipData,
-      }));
-    };
-
-    showTooltip = ({ tooltipLeft, tooltipTop, tooltipData }: ShowTooltipArgs<TooltipData>) => {
-      this.updateTooltip({
-        tooltipOpen: true,
-        tooltipLeft,
-        tooltipTop,
-        tooltipData,
-      });
-    };
-
-    hideTooltip = () => {
-      this.updateTooltip({
-        tooltipOpen: false,
-        tooltipLeft: undefined,
-        tooltipTop: undefined,
-        tooltipData: undefined,
-      });
-    };
-
-    render() {
-      return renderContainer(
-        <BaseComponent
-          updateTooltip={this.updateTooltip}
-          showTooltip={this.showTooltip}
-          hideTooltip={this.hideTooltip}
-          {...this.state}
-          {...this.props}
-        />,
-        containerProps,
-      );
-    }
+    return renderContainer(<BaseComponent {...props} {...tooltipProps} />, containerProps);
   };
+
+  return WrappedComponent;
 }
