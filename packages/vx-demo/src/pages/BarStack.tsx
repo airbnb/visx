@@ -19,8 +19,7 @@ import { AxisBottom } from '@vx/axis';
 import cityTemperature, { CityTemperature } from '@vx/mock-data/lib/mocks/cityTemperature';
 import { scaleBand, scaleLinear, scaleOrdinal } from '@vx/scale';
 import { timeParse, timeFormat } from 'd3-time-format';
-import { withTooltip, Tooltip } from '@vx/tooltip';
-import { WithTooltipProvidedProps } from '@vx/tooltip/lib/enhancers/withTooltip';
+import { useTooltip, Tooltip } from '@vx/tooltip';
 import { LegendOrdinal } from '@vx/legend';
 import { ShowProvidedProps } from '../../types';
 
@@ -76,7 +75,7 @@ const colorScale = scaleOrdinal<CityName, string>({
 
 let tooltipTimeout: number;
 
-export default withTooltip<ShowProvidedProps, TooltipData>(
+export default 
   ({
     width,
     height,
@@ -87,13 +86,16 @@ export default withTooltip<ShowProvidedProps, TooltipData>(
       bottom: 0,
       left: 0,
     },
-    tooltipOpen,
-    tooltipLeft,
-    tooltipTop,
-    tooltipData,
-    hideTooltip,
-    showTooltip,
-  }: ShowProvidedProps & WithTooltipProvidedProps<TooltipData>) => {
+  }: ShowProvidedProps) => {
+    const {
+      tooltipOpen,
+      tooltipLeft,
+      tooltipTop,
+      tooltipData,
+      hideTooltip,
+      showTooltip
+    } = useTooltip<TooltipData>();
+
     if (width < 10) return null;
     // bounds
     const xMax = width;
@@ -208,8 +210,7 @@ export default withTooltip<ShowProvidedProps, TooltipData>(
         )}
       </div>
     );
-  },
-);
+  }
 `}
     </Show>
   );
