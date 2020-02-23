@@ -23,7 +23,7 @@ export default function withTooltip<BaseComponentProps = {}, TooltipData = {}>(
   const WrappedComponent: FunctionComponent<BaseComponentProps> = props => {
     const tooltipProps = useTooltip<TooltipData>();
 
-    return renderContainer(<BaseComponent {...props} {...tooltipProps} />, containerProps);
+    return renderContainer(<BaseComponent {...tooltipProps} {...props} />, containerProps);
   };
 
   return WrappedComponent;
