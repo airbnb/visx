@@ -1,24 +1,24 @@
 import React from 'react';
 import { render } from 'react-dom';
-// import { AreaPath } from "@vx/shape";
+import AreaClosed from '@vx/shape/lib/shapes/AreaClosed';
 import { Grid } from '@vx/grid';
-// import { curveMonotoneX } from "@vx/curve";
-// import { genDateValue } from "@vx/mock-data";
-import { scaleTime, scaleLinear, scaleLog, scaleBand } from '@vx/scale';
+import { curveMonotoneX } from '@vx/curve';
+import { scaleUtc, scaleLinear, scaleLog, scaleBand } from '@vx/scale';
 import { AxisBottom } from '@vx/axis';
-// import { LinearGradient } from "@vx/gradient";
+import { LinearGradient } from '@vx/gradient';
 import ParentSize from '@vx/responsive/lib/components/ParentSize';
 import { timeFormat } from 'd3-time-format';
 
-import './styles.css';
+// import './styles.css';
 
 const backgroundColor = '#da7cff';
 const axisColor = '#fff';
 const tickLabelColor = '#fff';
 const labelColor = '#340098';
 const gridColor = '#6e0fca';
+const numTickColumns = 5;
 
-function Example({
+export default function Example({
   width: outerWidth = 800,
   height: outerHeight = 800,
   margin = {
@@ -37,6 +37,7 @@ function Example({
         domain: [0, 10],
         range: [0, width],
       }),
+      values: [0, 2, 4, 6, 8, 10],
       tickFormat: v => (v === 10 ? 'last' : (v === 0 && 'first') || v),
       tickLabelProps: p => p,
       label: 'linear',
@@ -45,16 +46,19 @@ function Example({
       scale: scaleBand({
         domain: ['a', 'b', 'c', 'd'],
         range: [0, width],
+        padding: 0,
       }),
+      values: ['a', 'b', 'c', 'd'],
       tickFormat: v => v,
       label: 'categories',
     },
     {
-      scale: scaleTime({
-        domain: [new Date('2018-01-05 2:00'), new Date('2018-02-20 2:00')],
+      scale: scaleUtc({
+        domain: [new Date('2020-01-01'), new Date('2020-03-01')],
         range: [0, width],
       }),
-      tickFormat: (v, i) => (i > 1 && i < 6 ? '🎉' : timeFormat('%b %d')(v)),
+      values: [new Date('2018-01-01'), new Date('2018-02-01')],
+      tickFormat: v => (v.getDate() === 1 ? '🎉' : timeFormat('%b %d')(v)),
       label: 'time',
     },
     {
@@ -62,6 +66,7 @@ function Example({
         domain: [1, 10000],
         range: [0, width],
       }),
+      values: [1, 10, 100, 1000, 10000],
       tickFormat: v => (String(v)[0] === '1' ? v : ''),
       label: 'log',
       numTickRows: 1,
@@ -69,29 +74,59 @@ function Example({
   ];
 
   const scalePadding = 50;
-  const scaleHeight = (0.3 * height) / scales.length;
+  const scaleHeight = height / scales.length - scalePadding;
 
   const yScale = scaleLinear({
-    domain: [0, 100],
-    range: [-scaleHeight, 0],
+    domain: [100, 0],
+    range: [scaleHeight, 0],
   });
 
   return (
     <svg width={outerWidth} height={outerHeight}>
-      <rect x={0} y={0} width={outerWidth} height={outerHeight} fill={backgroundColor} rx={14} />
+      <LinearGradient
+        id="vx-axis-gradient"
+        from={backgroundColor}
+        to={backgroundColor}
+        toOpacity={0.5}
+      />
+      <rect
+        x={0}
+        y={0}
+        width={outerWidth}
+        height={outerHeight}
+        fill={'url(#vx-axis-gradient)'}
+        rx={14}
+      />
+
       <g transform={`translate(${margin.left},${margin.top})`}>
-        {scales.map(({ scale, label, tickFormat, numTickRows = 2, numTickColumns = 5 }, i) => (
+        {scales.map(({ scale, values, label, tickFormat, numTickRows = 2 }, i) => (
           <g key={`scale-${i}`} transform={`translate(0, ${i * (scaleHeight + scalePadding)})`}>
+            <AreaClosed
+              // @ts-ignore
+              data={values.map((x: any) => [
+                scale(x) +
+                  ('bandwidth' in scale && typeof scale.bandwidth !== 'undefined'
+                    ? scale.bandwidth() / 2
+                    : 0),
+                yScale(30 + Math.random() * 50),
+              ])}
+              yScale={yScale}
+              curve={curveMonotoneX}
+              fill={gridColor}
+              fillOpacity={0.2}
+            />
             <Grid
+              // @ts-ignore
               xScale={scale}
               yScale={yScale}
               stroke={gridColor}
               width={width}
-              height={-scaleHeight}
+              height={scaleHeight}
               numTicksRows={numTickRows}
               numTicksColumns={numTickColumns}
             />
             <AxisBottom
+              top={scaleHeight}
               scale={scale}
               tickFormat={tickFormat}
               stroke={axisColor}
@@ -108,6 +143,7 @@ function Example({
                 y: -10,
                 fill: labelColor,
                 fontSize: 18,
+                // @ts-ignore
                 strokeWidth: 0,
                 stroke: '#fff',
                 paintOrder: 'stroke',
@@ -122,7 +158,7 @@ function Example({
   );
 }
 
-render(
-  <ParentSize>{({ width, height }) => <Example width={width} height={height} />}</ParentSize>,
-  document.getElementById('root'),
-);
+// render(
+//   <ParentSize>{({ width, height }) => <Example width={width} height={height} />}</ParentSize>,
+//   document.getElementById('root'),
+// );

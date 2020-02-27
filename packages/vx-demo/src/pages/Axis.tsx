@@ -9,10 +9,10 @@ export default () => {
       component={Axis}
       title="Axis"
       margin={{
-        top: 20,
-        left: 70,
-        right: 70,
-        bottom: 60,
+        top: 50,
+        right: 150,
+        bottom: 50,
+        left: 50,
       }}
     >
       {AxisSource}
