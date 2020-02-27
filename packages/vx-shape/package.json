@@ -1,6 +1,6 @@
 {
   "name": "@vx/shape",
-  "version": "0.0.194",
+  "version": "0.0.195",
   "description": "vx shape",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -28,8 +28,8 @@
     "@types/d3-path": "^1.0.8",
     "@types/d3-shape": "^1.3.1",
     "@types/react": "*",
-    "@vx/curve": "0.0.194",
-    "@vx/group": "0.0.194",
+    "@vx/curve": "0.0.195",
+    "@vx/group": "0.0.195",
     "classnames": "^2.2.5",
     "d3-path": "^1.0.5",
     "d3-shape": "^1.2.0",
