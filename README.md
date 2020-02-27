@@ -304,12 +304,31 @@ yarn
 yarn build
 ```
 
-Upon modification of a signle `package` you can run `yarn build-one --workspaces=@vx/package` from
-the `vx` monorepo root to re-build the package with your changes. You can use the local
-[`next.js`](https://nextjs.org) dev server within `packages/vx-demo` to view and iterate on your
+#### Rebuild on package
+
+Upon modification of a signle `package` you can run 
+
+```sh
+# build the package as cjs version
+yarn build-one --workspaces=@vx/package
+
+# build the esm version
+yarn build-one --workspaces=@vx/package --esm
+
+# generate d.ts(definition files) for lib 
+yarn type-one --workspaces=@vx/package --esm
+```
+
+from the `vx` monorepo root to re-build the package with your changes. 
+
+#### Running demo pages
+
+You can use the local [`next.js`](https://nextjs.org) dev server within `packages/vx-demo` to view and iterate on your
 changes in the gallery. From the `packages/vx-demo` folder run `yarn dev` to start the next server
 which (if correctly sym-linked) will also watch for changes you make to other packages (upon
 re-building them).
+
+#### Config generation
 
 `vx` uses [`@airbnb/nimbus`](https://github.com/airbnb/nimbus) to generate build configuration for
 `eslint`, `prettier`, `jest`, `babel`, and `typescript`.
