@@ -16,18 +16,18 @@ export default () => {
     >
       {`import React, { useState } from 'react';
 import { Group } from '@vx/group';
-import { AreaClosed, Bar } from '@vx/shape';
+import { AreaClosed } from '@vx/shape';
 import { ScaleType } from '@vx/shape/lib/types';
 import { AxisLeft, AxisBottom } from '@vx/axis';
 import { curveMonotoneX } from '@vx/curve';
 import { scaleTime, scaleLinear } from '@vx/scale';
 import appleStock, { AppleStock } from '@vx/mock-data/lib/mocks/appleStock';
 import { Brush } from '@vx/brush';
+import { Bounds } from '@vx/brush/lib/types';
 import { PatternLines } from '@vx/pattern';
 import { LinearGradient } from '@vx/gradient';
 import { max, extent } from 'd3-array';
 import { ShowProvidedProps, MarginShape } from '../../types';
-import { Bounds } from '@vx/brush/lib/types';
 
 /**
  * Initialize some variables
@@ -56,7 +56,6 @@ const getStockValue = (d: AppleStock) => d.close;
 function AreaChart({
   data,
   width,
-  height,
   yMax,
   margin,
   xScale,
@@ -71,7 +70,6 @@ function AreaChart({
   xScale: ScaleType;
   yScale: ScaleType;
   width: number;
-  height: number;
   yMax: number;
   margin: MarginShape;
   hideBottomAxis?: boolean;
@@ -113,7 +111,6 @@ function AreaChart({
         fill="url(#gradient)"
         curve={curveMonotoneX}
       />
-      <Bar x={0} y={0} width={width} height={height} fill="transparent" rx={14} />
       {children}
     </Group>
   );
@@ -189,7 +186,6 @@ function BrushChart({
           hideBottomAxis={compact}
           data={filteredStock}
           width={width}
-          height={heightTopChart}
           margin={margin}
           yMax={yMax}
           xScale={dateScale}
@@ -200,7 +196,6 @@ function BrushChart({
           hideLeftAxis
           data={stock}
           width={width}
-          height={heightBottomChart}
           yMax={yBrushMax}
           xScale={brushDateScale}
           yScale={brushStockScale}
@@ -220,6 +215,7 @@ function BrushChart({
             yScale={brushStockScale}
             width={xBrushMax}
             height={yBrushMax}
+            margin={brushMargin}
             handleSize={8}
             resizeTriggerAreas={['left', 'right', 'bottomRight']}
             brushDirection="horizontal"

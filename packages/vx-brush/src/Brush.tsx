@@ -97,16 +97,16 @@ class Brush extends React.Component<BrushProps> {
   }
 
   handleBrushStart = (point: Point) => {
+    const { onBrushStart } = this.props;
+    if (!onBrushStart) return;
     const { x, y } = point;
-    const { onBrushStart, xScale, yScale } = this.props;
+    const { xScale, yScale } = this.props;
     const invertedX = scaleInvert(xScale, x);
     const invertedY = scaleInvert(yScale, y);
-    if (onBrushStart) {
-      onBrushStart({
-        x: xScale.invert ? invertedX : xScale.domain()[invertedX],
-        y: yScale.invert ? invertedY : yScale.domain()[invertedY],
-      });
-    }
+    onBrushStart({
+      x: xScale.invert ? invertedX : xScale.domain()[invertedX],
+      y: yScale.invert ? invertedY : yScale.domain()[invertedY],
+    });
   };
 
   handleBrushEnd = (brush: BaseBrushState) => {
