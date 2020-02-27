@@ -1,4 +1,5 @@
 # Changelog
+- [v0.0.195](#v00195)
 - [v0.0.194](#v00194)
 - [v0.0.193](#v00193)
 - [v0.0.192](#v00192)
@@ -14,10 +15,10 @@
 - [v0.0.182](#v00182)
 - [v0.0.181](#v00181)
 - [v0.0.180](#v00180)
-- [v0.0.179](#v00179)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v00179">v0.0.179</a></li>
   <li><a href="#v00178">v0.0.178</a></li>
   <li><a href="#v00177">v0.0.177</a></li>
   <li><a href="#v00176">v0.0.176</a></li>
@@ -84,6 +85,62 @@
 </details>
 
 ------
+
+# v0.0.195
+
+#### :trophy: Contributors
+
+- [ptmx](https://github.com/ptmx) PR [#631](https://github.com/hshoff/vx/pull/631)
+
+#### :rocket: Enhancements
+
+- [tooltip] `useTooltip` hook added
+
+#### :boom: Breaking Changes
+
+- [tooltip] internally introduces `useState`, requires bumping the `peerDep` for react to `^16.8.0-0`
+
+#### :memo: Documentation
+
+- [tooltip] add `useState` to readme, add advice on HOC vs hooks
+- [demo] Rewrite the `BarStack` demo to use `useTooltip` instead of `withTooltip`
+
+```
+Changes:
+ - @vx/annotation: 0.0.194 => 0.0.195
+ - @vx/axis: 0.0.194 => 0.0.195
+ - @vx/bounds: 0.0.194 => 0.0.195
+ - @vx/brush: 0.0.194 => 0.0.195
+ - @vx/chord: 0.0.194 => 0.0.195
+ - @vx/clip-path: 0.0.194 => 0.0.195
+ - @vx/curve: 0.0.194 => 0.0.195
+ - @vx/demo: 0.0.194 => 0.0.195
+ - @vx/drag: 0.0.194 => 0.0.195
+ - @vx/event: 0.0.194 => 0.0.195
+ - @vx/geo: 0.0.194 => 0.0.195
+ - @vx/glyph: 0.0.194 => 0.0.195
+ - @vx/gradient: 0.0.194 => 0.0.195
+ - @vx/grid: 0.0.194 => 0.0.195
+ - @vx/group: 0.0.194 => 0.0.195
+ - @vx/heatmap: 0.0.194 => 0.0.195
+ - @vx/hierarchy: 0.0.194 => 0.0.195
+ - @vx/legend: 0.0.194 => 0.0.195
+ - @vx/marker: 0.0.194 => 0.0.195
+ - @vx/mock-data: 0.0.194 => 0.0.195
+ - @vx/network: 0.0.194 => 0.0.195
+ - @vx/pattern: 0.0.194 => 0.0.195
+ - @vx/point: 0.0.194 => 0.0.195
+ - @vx/responsive: 0.0.194 => 0.0.195
+ - @vx/scale: 0.0.194 => 0.0.195
+ - @vx/shape: 0.0.194 => 0.0.195
+ - @vx/stats: 0.0.194 => 0.0.195
+ - @vx/text: 0.0.194 => 0.0.195
+ - @vx/threshold: 0.0.194 => 0.0.195
+ - @vx/tooltip: 0.0.194 => 0.0.195
+ - @vx/voronoi: 0.0.194 => 0.0.195
+ - @vx/vx: 0.0.194 => 0.0.195
+ - @vx/zoom: 0.0.194 => 0.0.195
+```
 
 # v0.0.194
 
