@@ -17,9 +17,7 @@ type ShowTooltipArgs<TooltipData> = Omit<UseTooltipState<TooltipData>, 'tooltipO
 type UpdateTooltipArgs<TooltipData> = UseTooltipState<TooltipData>;
 
 export default function useTooltip<TooltipData = {}>(): UseTooltipParams<TooltipData> {
-  const [{ tooltipOpen, tooltipLeft, tooltipTop, tooltipData }, setTooltipState] = useState<
-    UseTooltipState<TooltipData>
-  >({
+  const [tooltipState, setTooltipState] = useState<UseTooltipState<TooltipData>>({
     tooltipOpen: false,
     tooltipLeft: undefined,
     tooltipTop: undefined,
@@ -57,10 +55,10 @@ export default function useTooltip<TooltipData = {}>(): UseTooltipParams<Tooltip
     });
 
   return {
-    tooltipOpen,
-    tooltipLeft,
-    tooltipTop,
-    tooltipData,
+    tooltipOpen: tooltipState.tooltipOpen,
+    tooltipLeft: tooltipState.tooltipLeft,
+    tooltipTop: tooltipState.tooltipTop,
+    tooltipData: tooltipState.tooltipData,
     updateTooltip,
     showTooltip,
     hideTooltip,
