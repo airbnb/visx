@@ -13,9 +13,7 @@ jobs:
   fast_finish: true
   include:
     - name: Test
-      script: yarn run jest -w 4
-    - name: Lint
-      script: yarn run lint
+      script: yarn run jest -w 4 && yarn run lint
 cache:
   yarn: true
 after_script: 'cat ./coverage/lcov.info | ./node_modules/.bin/coveralls'
