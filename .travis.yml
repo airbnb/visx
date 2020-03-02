@@ -9,9 +9,8 @@ install:
   - yarn install --ignore-engines
 before_script:
   - yarn run build
-matrix:
-  fast_finish: true
 jobs:
+  fast_finish: true
   include:
     - name: Test
       script: yarn run jest -w 4
