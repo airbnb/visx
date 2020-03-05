@@ -3,6 +3,7 @@ import cx from 'classnames';
 import withScreenSize, {
   WithScreenSizeProvidedProps,
 } from '@vx/responsive/lib/enhancers/withScreenSize';
+import CodeSandboxLink from './CodeSandboxLink';
 import Page from './Page';
 import Codeblock from './codeblocks/Codeblock';
 import Gallery from './Gallery';
@@ -14,6 +15,7 @@ type ShowProps = {
   children?: string;
   title: string;
   component: Component<ShowProvidedProps>;
+  codeSandboxDirectoryName?: string;
   shadow?: boolean;
   events?: boolean;
   margin?: MarginShape;
@@ -33,6 +35,7 @@ export default withScreenSize<ShowProps & WithScreenSizeProvidedProps>(
     events = false,
     margin,
     description,
+    codeSandboxDirectoryName,
   }: ShowProps & WithScreenSizeProvidedProps) => {
     let width = (screenWidth || 0) - padding;
     if (width > 800) width = 800;
@@ -60,6 +63,11 @@ export default withScreenSize<ShowProps & WithScreenSizeProvidedProps>(
               events,
             })}
           </div>
+          {exampleDirectoryName && (
+            <div style={{ width, display: 'flex', justifyContent: 'flex-end' }}>
+              <CodeSandboxLink exampleDirectoryName={codeSandboxDirectoryName} />
+            </div>
+          )}
           {description && React.createElement(description, { width, height })}
           {children && (
             <div style={{ width }}>
