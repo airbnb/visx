@@ -773,9 +773,9 @@ export default function() {
                   zIndex: 1,
                 }}
               >
-                <div className="title">Drag</div>
+                <div className="title">Drag i</div>
                 <div className="description">
-                  <pre>{'<Drag.Drag /> i'}</pre>
+                  <pre>{'<Drag.Drag />'}</pre>
                 </div>
               </div>
             </div>
@@ -804,9 +804,9 @@ export default function() {
                   zIndex: 1,
                 }}
               >
-                <div className="title">Drag</div>
+                <div className="title">Drag ii</div>
                 <div className="description">
-                  <pre>{'<Drag.Drag /> ii'}</pre>
+                  <pre>{'<Drag.Drag />'}</pre>
                 </div>
               </div>
             </div>
