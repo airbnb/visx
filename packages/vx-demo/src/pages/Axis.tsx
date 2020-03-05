@@ -1,20 +1,11 @@
 import React from 'react';
 import Show from '../components/Show';
-import Axis from '../components/tiles/Axis';
-import AxisSource from '!!raw-loader!../components/tiles/Axis';
+import Axis from '../docs-v2/examples/vx-axis/Example';
+import AxisSource from '!!raw-loader!../docs-v2/examples/vx-axis/Example';
 
 export default () => {
   return (
-    <Show
-      component={Axis}
-      title="Axis"
-      margin={{
-        top: 50,
-        right: 150,
-        bottom: 50,
-        left: 50,
-      }}
-    >
+    <Show component={Axis} title="Axis">
       {AxisSource}
     </Show>
   );
