@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import Prism from 'prismjs';
+// @ts-ignore
+import 'prismjs/components/prism-jsx.min';
 import 'prismjs/components/prism-tsx.min';
+import 'prismjs/themes/prism.css';
 
 const Lines = ({ lines }: { lines: number[] }) => {
   const size = lines.length;
@@ -20,7 +23,7 @@ export default ({ children }: { children: string }) => {
   const lines: number[] = new Array(linesNum + 1).fill(1);
   const html = [
     ReactDOMServer.renderToString(<Lines lines={lines} />),
-    Prism.highlight(children, Prism.languages.jsx, 'jsx'),
+    Prism.highlight(children, Prism.languages.tsx, 'tsx'),
   ].join('');
 
   return (
