@@ -52,6 +52,7 @@
     "@vx/tooltip": "0.0.195",
     "@vx/voronoi": "0.0.195",
     "@vx/zoom": "0.0.195",
+    "@zeit/next-css": "^1.0.1",
     "classnames": "^2.2.5",
     "codemirror": "^5.52.0",
     "d3-array": "^1.1.1",
