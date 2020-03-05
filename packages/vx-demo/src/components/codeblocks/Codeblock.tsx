@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import Prism from 'prismjs';
-// @ts-ignore
-import 'prismjs/components/prism-jsx.min';
+import 'prismjs/components/prism-tsx.min';
 
 const Lines = ({ lines }: { lines: number[] }) => {
   const size = lines.length;
