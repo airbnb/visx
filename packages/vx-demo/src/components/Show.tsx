@@ -63,7 +63,7 @@ export default withScreenSize<ShowProps & WithScreenSizeProvidedProps>(
               events,
             })}
           </div>
-          {exampleDirectoryName && (
+          {codeSandboxDirectoryName && (
             <div style={{ width, display: 'flex', justifyContent: 'flex-end' }}>
               <CodeSandboxLink exampleDirectoryName={codeSandboxDirectoryName} />
             </div>
