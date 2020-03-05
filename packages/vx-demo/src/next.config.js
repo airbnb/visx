@@ -1,14 +1,10 @@
 /* eslint-disable no-undef */
-module.exports = {
+const withCss = require('@zeit/next-css');
+
+module.exports = withCss({
   typescript: {
+    // enable rendering when there are type errors
     ignoreDevErrors: true,
     ignoreBuildErrors: true,
   },
-  webpack: config => {
-    config.module.rules.push({
-      test: /\.scss$/,
-      loader: ['style-loader', 'css-loader'],
-    });
-    return config;
-  },
-};
+});
