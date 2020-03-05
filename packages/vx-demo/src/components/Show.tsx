@@ -5,8 +5,7 @@ import withScreenSize, {
 } from '@vx/responsive/lib/enhancers/withScreenSize';
 import Page from './Page';
 import Codeblock from './codeblocks/Codeblock';
-// @ts-ignore @TODO when all examples are converted
-import Gallery from './gallery';
+import Gallery from './Gallery';
 import { MarginShape, ShowProvidedProps } from '../types';
 
 type Component<P = {}> = React.FC<P> | React.ComponentClass<P>;
@@ -32,7 +31,7 @@ export default withScreenSize<ShowProps & WithScreenSizeProvidedProps>(
     component,
     shadow = false,
     events = false,
-    margin = { top: 0, left: 0, right: 0, bottom: 80 },
+    margin,
     description,
   }: ShowProps & WithScreenSizeProvidedProps) => {
     let width = (screenWidth || 0) - padding;
