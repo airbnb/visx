@@ -7,8 +7,6 @@ import { AxisBottom } from '@vx/axis';
 import { LinearGradient } from '@vx/gradient';
 import { timeFormat } from 'd3-time-format';
 
-import './styles.css';
-
 export const backgroundColor = '#da7cff';
 const axisColor = '#fff';
 const tickLabelColor = '#fff';
@@ -27,11 +25,21 @@ type Props = {
   height: number;
 };
 
+type Scale = any;
+
+type ScaleInput = any;
+
 export default function Example({ width: outerWidth = 800, height: outerHeight = 800 }: Props) {
   // in svg, margin is subtracted from total width/height
   const width = outerWidth - margin.left - margin.right;
   const height = outerHeight - margin.top - margin.bottom;
-  const scales = [
+
+  const scales: {
+    scale: Scale;
+    values: ScaleInput[];
+    label: string;
+    tickFormat: (value: ScaleInput) => string | number;
+  }[] = [
     {
       scale: scaleLinear({
         domain: [0, 10],
@@ -58,7 +66,7 @@ export default function Example({ width: outerWidth = 800, height: outerHeight =
         range: [0, width],
       }),
       values: [new Date('2020-01-01'), new Date('2020-02-01'), new Date('2020-03-01')],
-      tickFormat: v => (v.getDate() === 1 ? '🎉' : timeFormat('%b %d')(v)),
+      tickFormat: (v: Date) => (v.getDate() === 1 ? '🎉' : timeFormat('%b %d')(v)),
       label: 'time',
     },
     {
@@ -67,9 +75,8 @@ export default function Example({ width: outerWidth = 800, height: outerHeight =
         range: [0, width],
       }),
       values: [1, 10, 100, 1000, 10000],
-      tickFormat: v => (`${v}`[0] === '1' ? v : ''),
+      tickFormat: (v: number) => (`${v}`[0] === '1' ? v : ''),
       label: 'log',
-      numTickRows: 1,
     },
   ];
 
@@ -97,33 +104,32 @@ export default function Example({ width: outerWidth = 800, height: outerHeight =
         fill={'url(#vx-axis-gradient)'}
         rx={14}
       />
-
       <g transform={`translate(${margin.left},${margin.top})`}>
-        {scales.map(({ scale, values, label, tickFormat, numTickRows = 2 }, i) => (
+        {scales.map(({ scale, values, label, tickFormat }, i) => (
           <g key={`scale-${i}`} transform={`translate(0, ${i * (scaleHeight + scalePadding)})`}>
             <AreaClosed
-              data={(values as any[]).map(x => [
+              data={values.map(x => [
                 scale(x) +
-                  ('bandwidth' in scale && typeof scale.bandwidth !== 'undefined'
-                    ? scale.bandwidth() / 2
+                  ('bandwidth' in scale && typeof scale!.bandwidth !== 'undefined'
+                    ? scale.bandwidth!() / 2
                     : 0),
-                yScale(30 + Math.random() * 50),
+                yScale(10 + Math.random() * 90),
               ])}
               yScale={yScale}
               curve={curveMonotoneX}
               fill={gridColor}
               fillOpacity={0.2}
             />
-            <Grid<number | Date | string | { valueOf(): number }, number>
+            <Grid<ScaleInput, number>
               xScale={scale}
               yScale={yScale}
               stroke={gridColor}
               width={width}
               height={scaleHeight}
-              numTicksRows={numTickRows}
+              numTicksRows={2}
               numTicksColumns={numTickColumns}
             />
-            <AxisBottom
+            <AxisBottom<ScaleInput>
               top={scaleHeight}
               scale={scale}
               tickFormat={tickFormat}
