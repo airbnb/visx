@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import ParentSize from '@vx/responsive/lib/components/ParentSize';
 
 import Example from './Example';
-import './styles.css';
+import './sandbox-styles.css';
 
 render(
   <ParentSize>{({ width, height }) => <Example width={width} height={height} />}</ParentSize>,
