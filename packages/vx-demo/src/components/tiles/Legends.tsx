@@ -65,6 +65,8 @@ const shapeScale = scaleOrdinal<string, React.FC | React.ReactNode>({
   ],
 });
 
+const legendGlyphSize = 15;
+
 export default ({ events = false }) => (
   <div className="chart">
     <LegendDemo title="Size">
@@ -95,24 +97,26 @@ export default ({ events = false }) => (
     <LegendDemo title="Quantile">
       <LegendQuantile<string> scale={quantileScale}>
         {labels =>
-          labels.map((label, i) => {
-            const size = 15;
-            return (
-              <LegendItem
-                key={`legend-${i}`}
-                onClick={() => {
-                  if (events) alert(`clicked: ${JSON.stringify(label)}`);
-                }}
-              >
-                <svg width={size} height={size} style={{ margin: '2px 0' }}>
-                  <circle fill={label.value} r={size / 2} cx={size / 2} cy={size / 2} />
-                </svg>
-                <LegendLabel align="left" margin="0 4px">
-                  {label.text}
-                </LegendLabel>
-              </LegendItem>
-            );
-          })
+          labels.map((label, i) => (
+            <LegendItem
+              key={`legend-${i}`}
+              onClick={() => {
+                if (events) alert(`clicked: ${JSON.stringify(label)}`);
+              }}
+            >
+              <svg width={legendGlyphSize} height={legendGlyphSize} style={{ margin: '2px 0' }}>
+                <circle
+                  fill={label.value}
+                  r={legendGlyphSize / 2}
+                  cx={legendGlyphSize / 2}
+                  cy={legendGlyphSize / 2}
+                />
+              </svg>
+              <LegendLabel align="left" margin="0 4px">
+                {label.text}
+              </LegendLabel>
+            </LegendItem>
+          ))
         }
       </LegendQuantile>
     </LegendDemo>
@@ -122,49 +126,48 @@ export default ({ events = false }) => (
         labelFormat={(d, i) => (i % 2 === 0 ? oneDecimalFormat(d) : '')}
       >
         {labels =>
-          labels.map((label, i) => {
-            const size = 15;
-            return (
-              <LegendItem
-                key={`legend-quantile-${i}`}
-                onClick={() => {
-                  if (events) alert(`clicked: ${JSON.stringify(label)}`);
-                }}
-              >
-                <svg width={size} height={size} style={{ margin: '2px 0' }}>
-                  <circle fill={label.value} r={size / 2} cx={size / 2} cy={size / 2} />
-                </svg>
-                <LegendLabel align="left" margin="0 4px">
-                  {label.text}
-                </LegendLabel>
-              </LegendItem>
-            );
-          })
+          labels.map((label, i) => (
+            <LegendItem
+              key={`legend-quantile-${i}`}
+              onClick={() => {
+                if (events) alert(`clicked: ${JSON.stringify(label)}`);
+              }}
+            >
+              <svg width={legendGlyphSize} height={legendGlyphSize} style={{ margin: '2px 0' }}>
+                <circle
+                  fill={label.value}
+                  r={legendGlyphSize / 2}
+                  cx={legendGlyphSize / 2}
+                  cy={legendGlyphSize / 2}
+                />
+              </svg>
+              <LegendLabel align="left" margin="0 4px">
+                {label.text}
+              </LegendLabel>
+            </LegendItem>
+          ))
         }
       </LegendLinear>
     </LegendDemo>
     <LegendDemo title="Threshold">
       <LegendThreshold scale={thresholdScale}>
         {labels =>
-          labels.reverse().map((label, i) => {
-            const size = 15;
-            return (
-              <LegendItem
-                key={`legend-quantile-${i}`}
-                margin="1px 0"
-                onClick={() => {
-                  if (events) alert(`clicked: ${JSON.stringify(label)}`);
-                }}
-              >
-                <svg width={size} height={size}>
-                  <rect fill={label.value} width={size} height={size} />
-                </svg>
-                <LegendLabel align="left" margin="2px 0 0 10px">
-                  {label.text}
-                </LegendLabel>
-              </LegendItem>
-            );
-          })
+          labels.reverse().map((label, i) => (
+            <LegendItem
+              key={`legend-quantile-${i}`}
+              margin="1px 0"
+              onClick={() => {
+                if (events) alert(`clicked: ${JSON.stringify(label)}`);
+              }}
+            >
+              <svg width={legendGlyphSize} height={legendGlyphSize}>
+                <rect fill={label.value} width={legendGlyphSize} height={legendGlyphSize} />
+              </svg>
+              <LegendLabel align="left" margin="2px 0 0 10px">
+                {label.text}
+              </LegendLabel>
+            </LegendItem>
+          ))
         }
       </LegendThreshold>
     </LegendDemo>
@@ -172,25 +175,22 @@ export default ({ events = false }) => (
       <LegendOrdinal scale={ordinalColorScale} labelFormat={label => `${label.toUpperCase()}`}>
         {labels => (
           <div style={{ display: 'flex', flexDirection: 'row' }}>
-            {labels.map((label, i) => {
-              const size = 15;
-              return (
-                <LegendItem
-                  key={`legend-quantile-${i}`}
-                  margin="0 5px"
-                  onClick={() => {
-                    if (events) alert(`clicked: ${JSON.stringify(label)}`);
-                  }}
-                >
-                  <svg width={size} height={size}>
-                    <rect fill={label.value} width={size} height={size} />
-                  </svg>
-                  <LegendLabel align="left" margin="0 0 0 4px">
-                    {label.text}
-                  </LegendLabel>
-                </LegendItem>
-              );
-            })}
+            {labels.map((label, i) => (
+              <LegendItem
+                key={`legend-quantile-${i}`}
+                margin="0 5px"
+                onClick={() => {
+                  if (events) alert(`clicked: ${JSON.stringify(label)}`);
+                }}
+              >
+                <svg width={legendGlyphSize} height={legendGlyphSize}>
+                  <rect fill={label.value} width={legendGlyphSize} height={legendGlyphSize} />
+                </svg>
+                <LegendLabel align="left" margin="0 0 0 4px">
+                  {label.text}
+                </LegendLabel>
+              </LegendItem>
+            ))}
           </div>
         )}
       </LegendOrdinal>
@@ -200,7 +200,6 @@ export default ({ events = false }) => (
         {labels => (
           <div style={{ display: 'flex', flexDirection: 'row' }}>
             {labels.map((label, i) => {
-              const size = 15;
               const color = ordinalColor2Scale(label.datum);
               const shape = shapeScale(label.datum);
               const isValidElement = React.isValidElement(shape);
@@ -214,12 +213,16 @@ export default ({ events = false }) => (
                     if (events) alert(`clicked: ${JSON.stringify({ datum, color, index })}`);
                   }}
                 >
-                  <svg width={size} height={size} style={{ margin: '0 0 8px 0' }}>
-                    {!isValidElement &&
-                      React.createElement(shape as React.ComponentType<{ fill: string }>, {
-                        fill: color,
-                      })}
-                    {isValidElement && React.cloneElement(shape as React.ReactElement)}
+                  <svg
+                    width={legendGlyphSize}
+                    height={legendGlyphSize}
+                    style={{ margin: '0 0 8px 0' }}
+                  >
+                    {isValidElement
+                      ? React.cloneElement(shape as React.ReactElement)
+                      : React.createElement(shape as React.ComponentType<{ fill: string }>, {
+                          fill: color,
+                        })}
                   </svg>
                   <LegendLabel align="left" margin={0}>
                     {label.text}
