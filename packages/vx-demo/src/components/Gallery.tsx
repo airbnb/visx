@@ -2,47 +2,50 @@ import React from 'react';
 import Tilt from 'react-tilt';
 import Link from 'next/link';
 import { ParentSize } from '@vx/responsive';
-import drawData from './util/drawData.ts';
+import drawData from './util/drawData';
 
-import Footer from './Footer.tsx';
+import Footer from './Footer';
 
-import Lines from './tiles/Lines.tsx';
-import Bars from './tiles/Bars.tsx';
-import Dots from './tiles/Dots.tsx';
-import Patterns from './tiles/Patterns.tsx';
-import Gradients from './tiles/Gradients.tsx';
-import Areas from './tiles/Areas.tsx';
-import StackedAreas from './tiles/Stacked-Areas.tsx';
-import Glyphs from './tiles/Glyphs.tsx';
-import Axis from './tiles/Axis.tsx';
-import BarGroup from './tiles/BarGroup.tsx';
-import BarGroupHorizontal from './tiles/BarGroupHorizontal.tsx';
-import BarStack from './tiles/BarStack.tsx';
-import BarStackHorizontal from './tiles/BarStackHorizontal.tsx';
-import Heatmap from './tiles/Heatmap.tsx';
-import LineRadial from './tiles/LineRadial.tsx';
-import Pies from './tiles/Pies.tsx';
-import Trees from './tiles/Trees.tsx';
-import Dendrograms from './tiles/Dendrograms.tsx';
-import Voronoi from './tiles/Voronoi.tsx';
-import Legends from './tiles/Legends.tsx';
-import StatsPlot from './tiles/Statsplot.tsx';
-import GeoMercator from './tiles/Geo-Mercator.tsx';
-import GeoCustom from './tiles/Geo-Custom.tsx';
-import Network from './tiles/Network.tsx';
-import Streamgraph from './tiles/Streamgraph.tsx';
-import Pack from './tiles/Pack.tsx';
-import Treemap from './tiles/Treemap.tsx';
-import Radar from './tiles/Radar.tsx';
-import Responsive from './tiles/Responsive.tsx';
-import DragI from './tiles/Drag-i.tsx';
-import DragII from './tiles/Drag-ii.tsx';
-import LinkTypes from './tiles/LinkTypes.tsx';
-import Threshold from './tiles/Threshold.tsx';
-import Chord from './tiles/Chord.tsx';
-import Polygons from './tiles/Polygons.tsx';
-import ZoomI from './tiles/Zoom-i.tsx';
-import Brush from './tiles/Brush.tsx';
+import Lines from './tiles/Lines';
+import Bars from './tiles/Bars';
+import Dots from './tiles/Dots';
+import Patterns from './tiles/Patterns';
+import Gradients from './tiles/Gradients';
+import Areas from './tiles/Areas';
+import StackedAreas from './tiles/Stacked-Areas';
+import Glyphs from './tiles/Glyphs';
+import Axis, {
+  backgroundColor as axisBackgroundColor,
+  labelColor as axisTextColor,
+} from '../docs-v2/examples/vx-axis/Example';
+import BarGroup from './tiles/BarGroup';
+import BarGroupHorizontal from './tiles/BarGroupHorizontal';
+import BarStack from './tiles/BarStack';
+import BarStackHorizontal from './tiles/BarStackHorizontal';
+import Heatmap from './tiles/Heatmap';
+import LineRadial from './tiles/LineRadial';
+import Pies from './tiles/Pies';
+import Trees from './tiles/Trees';
+import Dendrograms from './tiles/Dendrograms';
+import Voronoi from './tiles/Voronoi';
+import Legends from './tiles/Legends';
+import StatsPlot from './tiles/Statsplot';
+import GeoMercator from './tiles/Geo-Mercator';
+import GeoCustom from './tiles/Geo-Custom';
+import Network from './tiles/Network';
+import Streamgraph from './tiles/Streamgraph';
+import Pack from './tiles/Pack';
+import Treemap from './tiles/Treemap';
+import Radar from './tiles/Radar';
+import Responsive from './tiles/Responsive';
+import DragI from './tiles/Drag-i';
+import DragII from './tiles/Drag-ii';
+import LinkTypes from './tiles/LinkTypes';
+import Threshold from './tiles/Threshold';
+import Chord from './tiles/Chord';
+import Polygons from './tiles/Polygons';
+import ZoomI from './tiles/Zoom-i';
+import Brush from './tiles/Brush';
 
 const items = [
   '#242424',
@@ -267,24 +270,13 @@ export default function() {
         </Tilt>
         <Tilt className="tilt" options={tiltOptions}>
           <Link href="/axis">
-            <div className="gallery-item" style={{ background: items[8] }}>
+            <div className="gallery-item" style={{ background: axisBackgroundColor }}>
               <div className="image">
                 <ParentSize>
-                  {({ width, height }) => (
-                    <Axis
-                      width={width}
-                      height={height + detailsHeight}
-                      margin={{
-                        top: 20,
-                        left: 60,
-                        right: 40,
-                        bottom: 120,
-                      }}
-                    />
-                  )}
+                  {({ width, height }) => <Axis width={width} height={height + detailsHeight} />}
                 </ParentSize>
               </div>
-              <div className="details" style={{ color: '#8e205f' }}>
+              <div className="details" style={{ color: axisTextColor }}>
                 <div className="title">Axis</div>
                 <div className="description">
                   <pre>{'<Axis.AxisLeft /> + <Axis.AxisBottom />'}</pre>
@@ -781,7 +773,7 @@ export default function() {
                   zIndex: 1,
                 }}
               >
-                <div className="title">Drag</div>
+                <div className="title">Drag i</div>
                 <div className="description">
                   <pre>{'<Drag.Drag />'}</pre>
                 </div>
@@ -812,7 +804,7 @@ export default function() {
                   zIndex: 1,
                 }}
               >
-                <div className="title">Drag</div>
+                <div className="title">Drag ii</div>
                 <div className="description">
                   <pre>{'<Drag.Drag />'}</pre>
                 </div>

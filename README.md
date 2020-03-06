@@ -150,7 +150,8 @@ For more examples using `vx`, check out the [gallery](https://vx-demo.now.sh/gal
 **Goal**
 
 The goal is to create a library of components you can use to make both your own reusable chart
-library or your slick custom one-off chart. vx is largely unopinionated and is meant to be built upon. Keep your bundle sizes down and use only the packages you need.
+library or your slick custom one-off chart. vx is largely unopinionated and is meant to be built
+upon. Keep your bundle sizes down and use only the packages you need.
 
 **How?**
 
@@ -305,7 +306,7 @@ yarn build
 
 #### Rebuild on package
 
-Upon modification of a signle `package` you can run 
+Upon modification of a signle `package` you can run
 
 ```sh
 # build the package as cjs version
@@ -314,18 +315,18 @@ yarn build-one --workspaces=@vx/package
 # build the esm version
 yarn build-one --workspaces=@vx/package --esm
 
-# generate d.ts(definition files) for lib 
+# generate d.ts(definition files) for lib
 yarn type-one --workspaces=@vx/package --esm
 ```
 
-from the `vx` monorepo root to re-build the package with your changes. 
+from the `vx` monorepo root to re-build the package with your changes.
 
 #### Running demo pages
 
-You can use the local [`next.js`](https://nextjs.org) dev server within `packages/vx-demo` to view and iterate on your
-changes in the gallery. From the `packages/vx-demo` folder run `yarn dev` to start the next server
-which (if correctly sym-linked) will also watch for changes you make to other packages (upon
-re-building them).
+You can use the local [`next.js`](https://nextjs.org) dev server within `packages/vx-demo` to view
+and iterate on your changes in the gallery. From the `packages/vx-demo` folder run `yarn dev` to
+start the next server which (if correctly sym-linked) will also watch for changes you make to other
+packages (upon re-building them).
 
 #### Config generation
 

@@ -21,7 +21,7 @@ interface WordsWithWidth {
 type SVGTSpanProps = React.SVGAttributes<SVGTSpanElement>;
 type SVGTextProps = React.SVGAttributes<SVGTextElement>;
 
-export type TextProps = {
+type OwnProps = {
   /** className to apply to the SVGText element. */
   className?: string;
   /** Whether to scale the fontSize to accomodate the specified width.  */
@@ -59,6 +59,8 @@ export type TextProps = {
   /** String (or number coercible to one) to be styled and positioned. */
   children?: string | number;
 };
+
+export type TextProps = OwnProps & Omit<SVGTextProps, keyof OwnProps>;
 
 type TextState = {
   wordsByLines: WordsWithWidth[];

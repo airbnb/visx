@@ -7,19 +7,14 @@ import { ShowProvidedProps } from '../../types';
 
 type Lines = { x: number; y: number }[][];
 
-export default function DragII({ width, height }: ShowProvidedProps) {
-  const [lines, setLines] = useState<Lines>([]);
+export default function DragII({ data = [], width, height }: ShowProvidedProps & { data?: Lines }) {
+  const [lines, setLines] = useState<Lines>(data);
 
   if (width < 10) return null;
   return (
     <div className="DragII" style={{ touchAction: 'none' }}>
       <svg width={width} height={height}>
-        <LinearGradient
-          id="stroke"
-          from="#ff614e"
-          to="#ffdc64"
-          gradientUnits="userSpaceOnUse" // need for gradients to render on straight lines
-        />
+        <LinearGradient id="stroke" from="#ff614e" to="#ffdc64" />
         <rect fill="#04002b" width={width} height={height} rx={14} />
         {lines.map((line, i) => (
           <LinePath

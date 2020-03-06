@@ -1,12 +1,9 @@
 import React from 'react';
 import Page from '../components/Page';
-// @ts-ignore @TODO update once fully converted
-import Gallery from '../components/gallery';
+import Gallery from '../components/Gallery';
 
-export default () => {
-  return (
-    <Page title="gallery">
-      <Gallery />
-    </Page>
-  );
-};
+export default () => (
+  <Page title="gallery">
+    <Gallery />
+  </Page>
+);

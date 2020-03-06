@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { scaleOrdinal } from '@vx/scale';
 import { LinearGradient } from '@vx/gradient';
 import { Drag, raise } from '@vx/drag';
@@ -21,6 +21,13 @@ const colors = [
   '#827ce2',
 ];
 
+interface Circle {
+  id: string;
+  radius: number;
+  x: number;
+  y: number;
+}
+
 const generateCircles = ({ num, width, height }: { num: number } & WidthAndHeight) =>
   new Array(num).fill(1).map((d, i) => {
     const radius = 25 - Math.random() * 20;
@@ -40,8 +47,11 @@ const generateItems = ({ width, height }: WidthAndHeight) =>
   });
 
 export default function DragI({ width, height }: ShowProvidedProps) {
-  const memoizedItems = useMemo(() => generateItems({ width, height }), [width, height]);
-  const [draggingItems, setDraggingItems] = useState(memoizedItems);
+  const [draggingItems, setDraggingItems] = useState<Circle[]>([]);
+
+  useEffect(() => {
+    if (width > 10 && height > 10) setDraggingItems(generateItems({ width, height }));
+  }, [width, height]);
 
   const colorScale = useMemo(
     () =>
@@ -53,7 +63,7 @@ export default function DragI({ width, height }: ShowProvidedProps) {
     [width, height],
   );
 
-  if (width < 10) return null;
+  if (draggingItems.length === 0 || width < 10) return null;
 
   return (
     <div className="Drag" style={{ touchAction: 'none' }}>
