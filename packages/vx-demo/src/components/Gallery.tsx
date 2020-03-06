@@ -37,7 +37,7 @@ import Streamgraph from './tiles/Streamgraph';
 import Pack from './tiles/Pack';
 import Treemap from './tiles/Treemap';
 import Radar from './tiles/Radar';
-import Responsive from './tiles/Responsive';
+import Responsive from '../docs-v2/examples/vx-responsive/Example';
 import DragI from './tiles/Drag-i';
 import DragII from './tiles/Drag-ii';
 import LinkTypes from './tiles/LinkTypes';
@@ -702,7 +702,7 @@ export default function() {
             >
               <div className="image">
                 <ParentSize>
-                  {({ width, height }) => <Responsive width={width} height={height} events />}
+                  {({ width, height }) => <Responsive width={width} height={height} />}
                 </ParentSize>
               </div>
               <div

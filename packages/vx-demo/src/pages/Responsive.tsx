@@ -1,7 +1,7 @@
 import React from 'react';
 import Show from '../components/Show';
-import Responsive from '../components/tiles/Responsive';
-import ResponsiveSource from '!!raw-loader!../components/tiles/Responsive';
+import Responsive from '../docs-v2/examples/vx-responsive/Example';
+import ResponsiveSource from '!!raw-loader!../docs-v2/examples/vx-responsive/Example';
 
 export default () => {
   return (
