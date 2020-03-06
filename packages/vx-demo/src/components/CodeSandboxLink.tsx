@@ -7,7 +7,7 @@ const STYLES = {
   color: '#222',
 };
 
-const svg = (
+const icon = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="20"
@@ -41,7 +41,7 @@ const CodeSandboxLink = ({ branch = 'master', exampleDirectoryName }: Props) => 
       rel="nofollow noopener noreferrer"
       target="_blank"
     >
-      {svg}&nbsp;Try it on CodeSandbox
+      {icon}&nbsp;Try it on CodeSandbox
     </a>
   ) : null;
 };
