@@ -35,7 +35,8 @@ type Props = {
 export default function Example({ width, height, showControls = true }: Props) {
   const [curveType, setCurveType] = useState<CurveType>('curveNatural');
   const [showPoints, setShowPoints] = useState<boolean>(true);
-  const lineHeight = height / lineCount;
+  const svgHeight = showControls ? height - 40 : height;
+  const lineHeight = svgHeight / lineCount;
 
   // update scale output ranges
   xScale.range([0, width]);
@@ -67,9 +68,9 @@ export default function Example({ width, height, showControls = true }: Props) {
           <br />
         </>
       )}
-      <svg width={width} height={height}>
+      <svg width={width} height={svgHeight}>
         <LinearGradient id="vx-curves-demo" from="#ec4b5f" to="#b2305b" rotate="-45" />
-        <rect width={width} height={height} fill="url(#vx-curves-demo)" rx={14} ry={14} />
+        <rect width={width} height={svgHeight} fill="url(#vx-curves-demo)" rx={14} ry={14} />
         {width > 8 &&
           series.map((lineData, i) => (
             <Group key={`lines-${i}`} top={i * lineHeight}>
