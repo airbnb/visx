@@ -1,12 +1,12 @@
 import React from 'react';
 import cx from 'classnames';
-import { line, Line as LineType, CurveFactory } from 'd3-shape';
+import { line, Line as LineType, CurveFactory, CurveFactoryLineOnly } from 'd3-shape';
 
 export type LinePathProps<Datum> = {
   /** Array of data for which to generate a line shape. */
   data?: Datum[];
   /** Sets the curve factory (from @vx/curve or d3-curve) for the area generator. Defaults to curveLinear. */
-  curve?: CurveFactory;
+  curve?: CurveFactory | CurveFactoryLineOnly;
   /** React RefObject passed to the path element. */
   innerRef?: React.Ref<SVGPathElement>;
   /** The defined accessor for the shape. The final line shape includes all points for which this function returns true. By default all points are defined. */
