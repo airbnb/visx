@@ -20,10 +20,10 @@ const getY = (d: DateValue) => d.value;
 
 // scales
 const xScale = scaleTime<number>({
-  domain: extent(allData, getX),
+  domain: extent(allData, getX) as [Date, Date],
 });
 const yScale = scaleLinear<number>({
-  domain: [0, max(allData, getY)],
+  domain: [0, max(allData, getY) as number],
 });
 
 type Props = {
