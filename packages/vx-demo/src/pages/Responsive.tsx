@@ -5,7 +5,7 @@ import ResponsiveSource from '!!raw-loader!../docs-v2/examples/vx-responsive/Exa
 
 export default () => {
   return (
-    <Show component={Responsive} title="Responsive">
+    <Show component={Responsive} title="Responsive" codeSandboxDirectoryName="vx-responsive">
       {ResponsiveSource}
     </Show>
   );

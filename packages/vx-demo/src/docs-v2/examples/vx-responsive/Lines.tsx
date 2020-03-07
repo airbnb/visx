@@ -28,23 +28,24 @@ type Props = {
 
 export default ({ width, height }: Props) => {
   // bounds
-  const xMax = width;
-  const yMax = height / lineCount;
+  const lineHeight = height / lineCount;
 
-  xScale.range([0, xMax]);
-  yScale.range([yMax, 0]);
+  // update scales
+  xScale.range([0, width]);
+  yScale.range([lineHeight, 0]);
 
   return (
     <svg width={width} height={height}>
-      {xMax > 8 &&
+      {width > 8 &&
         series.map((lineData, i) => (
-          <Group key={`lines-${i}`} top={i * yMax}>
+          <Group key={`lines-${i}`} top={i * lineHeight}>
             <LinePath<DateValue>
               data={lineData}
               x={d => xScale(getX(d))}
               y={d => yScale(getY(d))}
               stroke="#ffffff"
-              strokeWidth={2}
+              strokeWidth={1.5}
+              shapeRendering="geometricPrecision"
             />
           </Group>
         ))}
