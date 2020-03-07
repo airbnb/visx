@@ -82,7 +82,7 @@ export default function() {
               <div
                 className="details"
                 style={{
-                  color: '#232323',
+                  color: '#b2305b',
                 }}
               >
                 <div className="title">Curves</div>

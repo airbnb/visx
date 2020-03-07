@@ -82,7 +82,7 @@ export default function Example({ width, height }: Props) {
           display: flex;
           flex: 1;
           overflow: hidden;
-          background: linear-gradient(45deg, #ec4b5f, #b2305b);
+          background: #222;
         }
       `}</style>
     </div>
