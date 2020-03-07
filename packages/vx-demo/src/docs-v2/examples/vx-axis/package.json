@@ -16,6 +16,7 @@
     "@vx/responsive": "latest",
     "@vx/shape": "latest",
     "@vx/scale": "latest",
+    "d3-time-format": "^2.2.3",
     "react": "^16",
     "react-dom": "^16",
     "react-scripts-ts": "3.1.0",
