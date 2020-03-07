@@ -306,7 +306,7 @@ yarn build
 
 #### Rebuild on package
 
-Upon modification of a signle `package` you can run
+Upon modification of a single `package` you can run
 
 ```sh
 # build the package as cjs version
