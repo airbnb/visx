@@ -1,47 +1,51 @@
 import React from 'react';
 import { Group } from '@vx/group';
 import { LinePath } from '@vx/shape';
-import { curveMonotoneX } from '@vx/curve';
 import generateDateValue, { DateValue } from '@vx/mock-data/lib/generators/genDateValue';
 import { scaleTime, scaleLinear } from '@vx/scale';
 import { extent, max } from 'd3-array';
-import { ShowProvidedProps } from '../../types';
 
-const series = new Array(12).fill(null).map(_ => generateDateValue(25));
+const lineCount = 12;
+const series = new Array(lineCount).fill(null).map(_ => generateDateValue(25));
 const allData = series.reduce((rec, d) => rec.concat(d), []);
 
-// accessors
+// data accessors
 const getX = (d: DateValue) => d.date;
 const getY = (d: DateValue) => d.value;
 
-export default ({ width, height }: ShowProvidedProps) => {
-  // bounds
-  const xMax = width;
-  const yMax = height / 8;
+// scales
+const xScale = scaleTime<number>({
+  domain: extent(allData, getX) as [Date, Date],
+});
+const yScale = scaleLinear<number>({
+  domain: [0, max(allData, getY) as number],
+});
 
-  // scales
-  const xScale = scaleTime({
-    range: [0, xMax],
-    domain: extent(allData, getX) as Date[],
-  });
-  const yScale = scaleLinear({
-    range: [yMax, 0],
-    domain: [0, max(allData, getY) as number],
-  });
+type Props = {
+  width: number;
+  height: number;
+};
+
+export default ({ width, height }: Props) => {
+  // bounds
+  const lineHeight = height / lineCount;
+
+  // update scales
+  xScale.range([0, width]);
+  yScale.range([lineHeight, 0]);
 
   return (
     <svg width={width} height={height}>
-      <rect x={0} y={0} width={width} height={height} fill="#242424" rx={14} />
-      {xMax > 8 &&
+      {width > 8 &&
         series.map((lineData, i) => (
-          <Group key={`lines-${i}`} top={(i * yMax) / 2}>
+          <Group key={`lines-${i}`} top={i * lineHeight}>
             <LinePath<DateValue>
               data={lineData}
               x={d => xScale(getX(d))}
               y={d => yScale(getY(d))}
               stroke="#ffffff"
-              strokeWidth={1}
-              curve={i % 2 === 0 ? curveMonotoneX : undefined}
+              strokeWidth={1.5}
+              shapeRendering="geometricPrecision"
             />
           </Group>
         ))}

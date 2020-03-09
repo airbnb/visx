@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
-import { ParentSize } from '@vx/responsive';
+import ParentSize from '@vx/responsive/lib/components/ParentSize';
+
 import Lines from './Lines';
-import { ShowProvidedProps } from '../../types';
+
+type Props = {
+  width: number;
+  height: number;
+};
 
 const Nav = () => (
   <ul>
@@ -17,25 +22,23 @@ const Nav = () => (
   </ul>
 );
 
-export default function Responsive({ width, height }: ShowProvidedProps) {
+export default function Example({ width, height }: Props) {
   const [showSidebar, setShowSidebar] = useState<boolean>(true);
 
   if (width < 20 || height < 20) return null;
 
   return (
     <div className="app" style={{ width, height }}>
-      <div
-        className="app-nav"
-        style={{
-          display: showSidebar ? 'flex' : 'none',
-        }}
-      >
-        <Nav />
-      </div>
+      {showSidebar && (
+        <div className="app-nav">
+          <Nav />
+        </div>
+      )}
       <div className="app-content">
         <div>
           <button
             onClick={event => {
+              // on gallery page, don't go to example
               event.preventDefault();
               event.stopPropagation();
               setShowSidebar(!showSidebar);
@@ -79,6 +82,7 @@ export default function Responsive({ width, height }: ShowProvidedProps) {
           display: flex;
           flex: 1;
           overflow: hidden;
+          background: #222;
         }
       `}</style>
     </div>

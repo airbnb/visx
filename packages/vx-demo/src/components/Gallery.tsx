@@ -6,8 +6,8 @@ import drawData from './util/drawData';
 
 import Footer from './Footer';
 
-import Lines from './tiles/Lines';
 import Bars from './tiles/Bars';
+import Curves from '../docs-v2/examples/vx-curve/Example';
 import Dots from './tiles/Dots';
 import Patterns from './tiles/Patterns';
 import Gradients from './tiles/Gradients';
@@ -37,7 +37,7 @@ import Streamgraph from './tiles/Streamgraph';
 import Pack from './tiles/Pack';
 import Treemap from './tiles/Treemap';
 import Radar from './tiles/Radar';
-import Responsive from './tiles/Responsive';
+import Responsive from '../docs-v2/examples/vx-responsive/Example';
 import DragI from './tiles/Drag-i';
 import DragII from './tiles/Drag-ii';
 import LinkTypes from './tiles/LinkTypes';
@@ -63,24 +63,31 @@ const items = [
 ];
 
 const tiltOptions = { max: 8, scale: 1 };
+const detailsHeight = 76;
 
 export default function() {
-  const detailsHeight = 76;
   return (
     <div>
       <div className="gallery">
         <Tilt className="tilt" options={tiltOptions}>
-          <Link href="/lines">
-            <div className="gallery-item" style={{ background: items[0] }}>
+          <Link href="/curves">
+            <div className="gallery-item" style={{ border: '1px solid lightgray' }}>
               <div className="image">
                 <ParentSize>
-                  {({ width, height }) => <Lines width={width} height={height + detailsHeight} />}
+                  {({ width, height }) => (
+                    <Curves width={width} height={height + detailsHeight} showControls={false} />
+                  )}
                 </ParentSize>
               </div>
-              <div className="details">
-                <div className="title">Lines</div>
+              <div
+                className="details"
+                style={{
+                  color: '#b2305b',
+                }}
+              >
+                <div className="title">Curves</div>
                 <div className="description">
-                  <pre>{'<Shape.Line />'}</pre>
+                  <pre>{'<Curve.* /> <Shape.Line />'}</pre>
                 </div>
               </div>
             </div>
@@ -702,7 +709,7 @@ export default function() {
             >
               <div className="image">
                 <ParentSize>
-                  {({ width, height }) => <Responsive width={width} height={height} events />}
+                  {({ width, height }) => <Responsive width={width} height={height} />}
                 </ParentSize>
               </div>
               <div
