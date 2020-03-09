@@ -304,18 +304,18 @@ yarn
 yarn build
 ```
 
-#### Rebuild on package
+#### Rebuild one package
 
-Upon modification of a signle `package` you can run
+Upon modification of a single `package` you can run
 
 ```sh
 # build the package as cjs version
 yarn build-one --workspaces=@vx/package
 
-# build the esm version
+# build the esm version (the @vx/demo next server sources these files)
 yarn build-one --workspaces=@vx/package --esm
 
-# generate d.ts(definition files) for lib
+# generate d.ts(definition files) for a lib
 yarn type-one --workspaces=@vx/package --esm
 ```
 
