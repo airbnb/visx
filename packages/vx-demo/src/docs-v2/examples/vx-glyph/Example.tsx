@@ -14,7 +14,7 @@ import {
 import { LinePath } from '@vx/shape';
 import genDateValue, { DateValue } from '@vx/mock-data/lib/generators/genDateValue';
 import { scaleTime, scaleLinear } from '@vx/scale';
-import { curveMonotoneX, curveNatural } from '@vx/curve';
+import { curveMonotoneX, curveBasis } from '@vx/curve';
 
 const defaultMargin = { top: 10, right: 10, bottom: 10, left: 10 };
 
@@ -88,7 +88,7 @@ export default function Example({ width, height, margin = defaultMargin }: Props
           stroke={primary}
           strokeWidth={2}
           strokeDasharray="2,2"
-          curve={curveNatural}
+          curve={curveBasis}
         />
         <LinePath
           data={data}
@@ -104,11 +104,11 @@ export default function Example({ width, height, margin = defaultMargin }: Props
           const top = getY(d);
           return (
             <g key={`line-glyph-${i}`}>
-              <CurrGlyph left={left} top={top} size={120} stroke={secondary} strokeWidth={10} />
+              <CurrGlyph left={left} top={top} size={110} stroke={secondary} strokeWidth={10} />
               <CurrGlyph
                 left={left}
                 top={top}
-                size={120}
+                size={110}
                 fill={i % 2 === 0 ? primary : contrast}
                 stroke={i % 2 === 0 ? contrast : primary}
                 strokeWidth={2}
