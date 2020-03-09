@@ -19,7 +19,7 @@ import { curveMonotoneX, curveBasis } from '@vx/curve';
 const defaultMargin = { top: 10, right: 10, bottom: 10, left: 10 };
 
 // colors
-const primary = '#8921e0';
+export const primary = '#8921e0';
 const secondary = '#00f2ff';
 const contrast = '#ffffff';
 

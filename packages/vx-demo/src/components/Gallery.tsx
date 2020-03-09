@@ -13,7 +13,7 @@ import Patterns from './tiles/Patterns';
 import Gradients from '../docs-v2/examples/vx-gradient/Example';
 import Areas from './tiles/Areas';
 import StackedAreas from './tiles/Stacked-Areas';
-import Glyphs from '../docs-v2/examples/vx-glyph/Example';
+import Glyphs, { primary as glyphTextColor } from '../docs-v2/examples/vx-glyph/Example';
 import Axis, {
   backgroundColor as axisBackgroundColor,
   labelColor as axisTextColor,
@@ -252,16 +252,16 @@ export default function() {
                       width={width}
                       height={height + detailsHeight}
                       margin={{
-                        top: 0,
-                        left: 0,
-                        right: 0,
+                        top: 5,
+                        left: 5,
+                        right: 5,
                         bottom: 80,
                       }}
                     />
                   )}
                 </ParentSize>
               </div>
-              <div className="details" style={{ color: 'rgba(126, 31, 220, 1.000)' }}>
+              <div className="details" style={{ color: glyphTextColor }}>
                 <div className="title">Glyphs</div>
                 <div className="description">
                   <pre>{'<Glyph.GlyphDot />'}</pre>
@@ -281,7 +281,7 @@ export default function() {
               <div className="details" style={{ color: axisTextColor }}>
                 <div className="title">Axis</div>
                 <div className="description">
-                  <pre>{'<Axis.AxisLeft /> + <Axis.AxisBottom />'}</pre>
+                  <pre>{'<Axis.AxisBottom />'}</pre>
                 </div>
               </div>
             </div>

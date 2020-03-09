@@ -38,7 +38,7 @@ export default function Example({ width: outerWidth = 800, height: outerHeight =
     scale: Scale;
     values: ScaleInput[];
     label: string;
-    tickFormat: (value: ScaleInput) => string | number;
+    tickFormat: (value: ScaleInput, idx: number) => string | number;
   }[] = [
     {
       scale: scaleLinear({
