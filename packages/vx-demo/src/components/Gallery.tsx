@@ -10,7 +10,7 @@ import Bars from './tiles/Bars';
 import Curves from '../docs-v2/examples/vx-curve/Example';
 import Dots from './tiles/Dots';
 import Patterns from './tiles/Patterns';
-import Gradients from './tiles/Gradients';
+import Gradients from '../docs-v2/examples/vx-gradient/Example';
 import Areas from './tiles/Areas';
 import StackedAreas from './tiles/Stacked-Areas';
 import Glyphs from './tiles/Glyphs';
@@ -228,12 +228,7 @@ export default function() {
                     <Gradients
                       width={width}
                       height={height + detailsHeight}
-                      margin={{
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        bottom: 80,
-                      }}
+                      margin={{ top: 0, right: 0, bottom: 80, left: 0 }}
                     />
                   )}
                 </ParentSize>

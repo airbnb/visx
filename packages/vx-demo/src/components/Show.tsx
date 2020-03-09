@@ -37,8 +37,7 @@ export default withScreenSize<ShowProps & WithScreenSizeProvidedProps>(
     description,
     codeSandboxDirectoryName,
   }: ShowProps & WithScreenSizeProvidedProps) => {
-    let width = (screenWidth || 0) - padding;
-    if (width > 800) width = 800;
+    const width = Math.min(800, (screenWidth || 0) - padding);
     const height = width * 0.6;
 
     return (
