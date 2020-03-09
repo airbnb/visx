@@ -13,7 +13,7 @@ import Patterns from './tiles/Patterns';
 import Gradients from '../docs-v2/examples/vx-gradient/Example';
 import Areas from './tiles/Areas';
 import StackedAreas from './tiles/Stacked-Areas';
-import Glyphs from './tiles/Glyphs';
+import Glyphs from '../docs-v2/examples/vx-glyph/Example';
 import Axis, {
   backgroundColor as axisBackgroundColor,
   labelColor as axisTextColor,
