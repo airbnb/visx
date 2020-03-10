@@ -79,5 +79,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "devDependencies": {
+    "react-spring": "^8.0.27"
   }
 }
