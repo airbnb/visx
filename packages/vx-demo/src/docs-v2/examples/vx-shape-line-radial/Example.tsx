@@ -73,13 +73,17 @@ export default ({ width, height, animate = true }: Props) => {
 
   // Update scale output to match component dimensions
   yScale.range([0, height / 2 - 20]);
+
   const yScaleTicks = yScale.ticks();
+  const handlePress = () => setShouldAnimate(true);
 
   return (
     <>
       {animate && (
         <>
-          <button onClick={() => setShouldAnimate(true)}>Animate</button>
+          <button onClick={handlePress} onTouchStart={handlePress}>
+            Animate
+          </button>
           <br />
         </>
       )}
