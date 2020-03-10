@@ -23,7 +23,7 @@ import BarGroupHorizontal from './tiles/BarGroupHorizontal';
 import BarStack from './tiles/BarStack';
 import BarStackHorizontal from './tiles/BarStackHorizontal';
 import Heatmap from './tiles/Heatmap';
-import LineRadial from './tiles/LineRadial';
+import LineRadial from '../docs-v2/examples/vx-shape-line-radial/Example';
 import Pies from './tiles/Pies';
 import Trees from './tiles/Trees';
 import Dendrograms from './tiles/Dendrograms';
@@ -392,7 +392,9 @@ export default function() {
             <div className="gallery-item" style={{ background: '#744cca' }}>
               <div className="image">
                 <ParentSize>
-                  {({ width, height }) => <LineRadial width={width} height={height} />}
+                  {({ width, height }) => (
+                    <LineRadial animate={false} width={width} height={height} />
+                  )}
                 </ParentSize>
               </div>
               <div className="details" style={{ color: '#919fe5' }}>
