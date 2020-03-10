@@ -1,20 +1,11 @@
 import React from 'react';
 import Show from '../components/Show';
-import Streamgraph from '../components/tiles/Streamgraph';
-import StreamgraphSource from '!!raw-loader!../components/tiles/Streamgraph';
+import Streamgraph from '../docs-v2/examples/vx-streamgraph/Example';
+import StreamgraphSource from '!!raw-loader!../docs-v2/examples/vx-streamgraph/Example';
 
 export default () => {
   return (
-    <Show
-      component={Streamgraph}
-      title="Streamgraph"
-      margin={{
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 10,
-      }}
-    >
+    <Show component={Streamgraph} title="Streamgraph" codeSandboxDirectoryName="vx-streamgraph">
       {StreamgraphSource}
     </Show>
   );

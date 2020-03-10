@@ -33,7 +33,9 @@ import StatsPlot from './tiles/Statsplot';
 import GeoMercator from './tiles/Geo-Mercator';
 import GeoCustom from './tiles/Geo-Custom';
 import Network from './tiles/Network';
-import Streamgraph from './tiles/Streamgraph';
+import Streamgraph, {
+  BACKGROUND as streamgraphBackgroundColor,
+} from '../docs-v2/examples/vx-streamgraph/Example';
 import Pack from './tiles/Pack';
 import Treemap from './tiles/Treemap';
 import Radar from './tiles/Radar';
@@ -590,11 +592,11 @@ export default function() {
 
         <Tilt className="tilt" options={tiltOptions}>
           <Link href="/streamgraph">
-            <div className="gallery-item" style={{ background: '#ffdede' }}>
+            <div className="gallery-item" style={{ background: streamgraphBackgroundColor }}>
               <div className="image">
                 <ParentSize>
                   {({ width, height }) => (
-                    <Streamgraph width={width} height={height + detailsHeight} />
+                    <Streamgraph width={width} height={height + detailsHeight} animate={false} />
                   )}
                 </ParentSize>
               </div>
