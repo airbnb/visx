@@ -1,22 +1,10 @@
 import React from 'react';
 import Show from '../components/Show';
-import Gradients from '../components/tiles/Gradients';
-import GradientsSource from '!!raw-loader!../components/tiles/Gradients';
+import Gradients from '../docs-v2/examples/vx-gradient/Example';
+import GradientsSource from '!!raw-loader!../docs-v2/examples/vx-gradient/Example';
 
-export default () => {
-  return (
-    <Show
-      component={Gradients}
-      title="Gradients"
-      shadow
-      margin={{
-        bottom: 0,
-        top: 0,
-        left: 0,
-        right: 0,
-      }}
-    >
-      {GradientsSource}
-    </Show>
-  );
-};
+export default () => (
+  <Show shadow component={Gradients} title="Gradients" codeSandboxDirectoryName="vx-gradient">
+    {GradientsSource}
+  </Show>
+);

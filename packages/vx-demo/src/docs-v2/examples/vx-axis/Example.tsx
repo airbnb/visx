@@ -38,7 +38,7 @@ export default function Example({ width: outerWidth = 800, height: outerHeight =
     scale: Scale;
     values: ScaleInput[];
     label: string;
-    tickFormat: (value: ScaleInput) => string | number;
+    tickFormat: (value: ScaleInput, idx: number) => string | number;
   }[] = [
     {
       scale: scaleLinear({
@@ -66,7 +66,8 @@ export default function Example({ width: outerWidth = 800, height: outerHeight =
         range: [0, width],
       }),
       values: [new Date('2020-01-01'), new Date('2020-02-01'), new Date('2020-03-01')],
-      tickFormat: (v: Date) => (v.getDate() === 1 ? '🎉' : timeFormat('%b %d')(v)),
+      tickFormat: (v: Date, i: number) =>
+        v.getDate() === 1 ? '🎉' : width > 400 || i % 2 === 0 ? timeFormat('%b %d')(v) : '',
       label: 'time',
     },
     {

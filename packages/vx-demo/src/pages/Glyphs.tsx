@@ -1,20 +1,11 @@
 import React from 'react';
 import Show from '../components/Show';
-import Glyphs from '../components/tiles/Glyphs';
-import GlyphsSource from '!!raw-loader!../components/tiles/Glyphs';
+import Glyphs from '../docs-v2/examples/vx-glyph/Example';
+import GlyphsSource from '!!raw-loader!../docs-v2/examples/vx-glyph/Example';
 
 export default () => {
   return (
-    <Show
-      component={Glyphs}
-      title="Glyphs"
-      margin={{
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-      }}
-    >
+    <Show component={Glyphs} title="Glyphs" codeSandboxDirectoryName="vx-glyph">
       {GlyphsSource}
     </Show>
   );
