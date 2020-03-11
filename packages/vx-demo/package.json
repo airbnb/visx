@@ -72,7 +72,7 @@
     "react-dom": "^16.9.0",
     "react-ga": "^2.1.2",
     "react-github-button": "^0.1.10",
-    "react-motion": "^0.4.7",
+    "react-spring": "^8.0.27",
     "react-tilt": "^0.1.4",
     "recompose": "^0.26.0",
     "topojson-client": "^3.0.0"
