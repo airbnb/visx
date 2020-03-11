@@ -6,7 +6,6 @@ import withScreenSize, {
 import CodeSandboxLink from './CodeSandboxLink';
 import Page from './Page';
 import Codeblock from './codeblocks/Codeblock';
-import Gallery from './Gallery';
 import { MarginShape, ShowProvidedProps } from '../types';
 
 type Component<P = {}> = React.FC<P> | React.ComponentClass<P>;
@@ -79,7 +78,6 @@ export default withScreenSize<ShowProps & WithScreenSizeProvidedProps>(
             </div>
           )}
         </div>
-        <Gallery />
         <style jsx>{`
           .container {
             display: flex;
