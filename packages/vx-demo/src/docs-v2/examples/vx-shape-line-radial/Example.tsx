@@ -2,7 +2,7 @@
  * Animated radial line example using svg dash offset trick. See here for more
  * https://www.visualcinnamon.com/2016/01/animating-dashed-line-d3.html
  */
-import React, { useRef, useState, useLayoutEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Group } from '@vx/group';
 import { LineRadial } from '@vx/shape';
 import { scaleTime, scaleLog } from '@vx/scale';
@@ -17,8 +17,7 @@ const darkgreen = '#dff84d';
 const background = '#744cca';
 const darkbackground = '#603FA8';
 const springConfig = {
-  tension: 100,
-  friction: 150,
+  tension: 20,
 };
 
 // utils
@@ -56,18 +55,19 @@ export default ({ width, height, animate = true }: Props) => {
   const [lineLength, setLineLength] = useState<number>(0);
   const [shouldAnimate, setShouldAnimate] = useState<boolean>(false);
 
-  // set line length once it is known after initial render
-  useLayoutEffect(() => {
-    if (lineRef.current) {
-      setLineLength(lineRef.current.getTotalLength());
-    }
-  }, [lineRef]);
-
   const spring = useSpring({
     frame: shouldAnimate ? 0 : 1,
     config: springConfig,
     onRest: () => setShouldAnimate(false),
   });
+
+  // set line length once it is known after initial render
+  const effectDependency = lineRef.current;
+  useEffect(() => {
+    if (lineRef.current) {
+      setLineLength(lineRef.current.getTotalLength());
+    }
+  }, [effectDependency]);
 
   if (width < 10) return null;
 
