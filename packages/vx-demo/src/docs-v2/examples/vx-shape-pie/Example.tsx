@@ -30,22 +30,18 @@ const frequency = (d: LetterFrequency) => d.frequency;
 const getBrowserColor = scaleOrdinal({
   domain: browserNames,
   range: [
-    'rgba(93,30,91,0.8)',
-    'rgba(93,30,91,0.6)',
-    'rgba(93,30,91,0.4)',
-    'rgba(93,30,91,0.2)',
-    'rgba(93,30,91,0.1)',
+    'rgba(255,255,255,0.7)',
+    'rgba(255,255,255,0.6)',
+    'rgba(255,255,255,0.5)',
+    'rgba(255,255,255,0.4)',
+    'rgba(255,255,255,0.3)',
+    'rgba(255,255,255,0.2)',
+    'rgba(255,255,255,0.1)',
   ],
 });
 const getLetterFrequencyColor = scaleOrdinal({
   domain: letters.map(l => l.letter),
-  range: [
-    'rgba(146,30,78,0.8)',
-    'rgba(146,30,78,0.6)',
-    'rgba(146,30,78,0.4)',
-    'rgba(146,30,78,0.2)',
-    'rgba(146,30,78,0.1)',
-  ],
+  range: ['rgba(93,30,91,1)', 'rgba(93,30,91,0.8)', 'rgba(93,30,91,0.6)', 'rgba(93,30,91,0.4)'],
 });
 
 const defaultMargin = { top: 0, right: 0, bottom: 0, left: 0 };
@@ -74,8 +70,8 @@ export default function Example({
 
   return (
     <svg width={width} height={height}>
-      <GradientPinkBlue id="pie-gradients" />
-      <rect rx={14} width={width} height={height} fill="url('#pie-gradients')" />
+      <GradientPinkBlue id="vx-pie-gradient" />
+      <rect rx={14} width={width} height={height} fill="url('#vx-pie-gradient')" />
       <Group top={centerY - margin.top} left={centerX}>
         <Pie
           data={
@@ -85,7 +81,7 @@ export default function Example({
           outerRadius={radius - 80}
           innerRadius={radius - 120}
           cornerRadius={3}
-          padAngle={0.01}
+          padAngle={0.005}
         >
           {pie => (
             <AnimatedPie<BrowserUsage>
@@ -136,7 +132,7 @@ export default function Example({
           fontWeight={300}
           pointerEvents="none"
         >
-          Click pies to update
+          Click segments to update
         </text>
       )}
     </svg>
