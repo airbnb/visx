@@ -106,8 +106,8 @@ export default function Streamgraph({ width, height, animate = true }: Props) {
               const pattern = patternScale(stack.key);
               return (
                 <g key={`series-${stack.key}`}>
-                  <animated.path d={tweened.d} fill={color} />
-                  <animated.path d={tweened.d} fill={`url(#${pattern})`} />
+                  <animated.path d={tweened.d || ''} fill={color} />
+                  <animated.path d={tweened.d || ''} fill={`url(#${pattern})`} />
                 </g>
               );
             })

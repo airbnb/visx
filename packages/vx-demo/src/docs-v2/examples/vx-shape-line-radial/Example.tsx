@@ -51,7 +51,7 @@ type Props = {
 };
 
 export default ({ width, height, animate = true }: Props) => {
-  const lineRef = useRef<SVGPathElement>();
+  const lineRef = useRef<SVGPathElement>(null);
   const [lineLength, setLineLength] = useState<number>(0);
   const [shouldAnimate, setShouldAnimate] = useState<boolean>(false);
 
@@ -119,7 +119,7 @@ export default ({ width, height, animate = true }: Props) => {
 
           <LineRadial angle={angle} radius={radius} curve={curveBasisOpen}>
             {({ path }) => {
-              const d = path(appleStock);
+              const d = path(appleStock) || '';
               return (
                 <>
                   <animated.path
