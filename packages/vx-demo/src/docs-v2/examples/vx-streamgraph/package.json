@@ -12,8 +12,8 @@
     "@vx/scale": "latest",
     "@vx/shape": "latest",
     "d3-array": "^2.4.0",
-    "react": "^16",
-    "react-dom": "^16",
+    "react": "^16.8",
+    "react-dom": "^16.8",
     "react-scripts-ts": "3.1.0",
     "react-spring": "^8.0.27",
     "typescript": "^3"
