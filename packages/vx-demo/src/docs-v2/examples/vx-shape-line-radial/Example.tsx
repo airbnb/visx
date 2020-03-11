@@ -22,7 +22,8 @@ const springConfig = {
 
 // utils
 function extent<Datum>(data: Datum[], value: (d: Datum) => number) {
-  return [Math.min(...data.map(value)), Math.max(...data.map(value))];
+  const values = data.map(value);
+  return [Math.min(...values), Math.max(...values)];
 }
 
 // accessors
