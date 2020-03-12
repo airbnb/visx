@@ -24,7 +24,7 @@ import BarStack from './tiles/BarStack';
 import BarStackHorizontal from './tiles/BarStackHorizontal';
 import Heatmap from './tiles/Heatmap';
 import LineRadial from '../docs-v2/examples/vx-shape-line-radial/Example';
-import Pies from './tiles/Pies';
+import Pies from '../docs-v2/examples/vx-shape-pie/Example';
 import Trees from './tiles/Trees';
 import Dendrograms from './tiles/Dendrograms';
 import Voronoi from './tiles/Voronoi';
@@ -448,11 +448,7 @@ export default function() {
               <div className="image">
                 <ParentSize>
                   {({ width, height }) => (
-                    <Pies
-                      width={width}
-                      height={height + detailsHeight}
-                      margin={{ top: 0, left: 0, right: 0, bottom: 0 }}
-                    />
+                    <Pies animate={false} width={width} height={height + detailsHeight} />
                   )}
                 </ParentSize>
               </div>

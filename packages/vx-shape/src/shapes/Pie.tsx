@@ -2,9 +2,23 @@
 import React from 'react';
 import cx from 'classnames';
 import { Group } from '@vx/group';
-import { arc as d3Arc, Arc as ArcType, PieArcDatum, pie as d3Pie, Pie as PieType } from 'd3-shape';
+import {
+  arc as d3Arc,
+  Arc as ArcType,
+  PieArcDatum as PieArcDatumType,
+  pie as d3Pie,
+  Pie as PieType,
+} from 'd3-shape';
 import setNumOrAccessor, { NumberAccessor as NumAccessor } from '../util/setNumberOrNumberAccessor';
 import { $TSFIXME } from '../types';
+
+export type PieArcDatum<Datum> = PieArcDatumType<Datum>;
+
+export type ProvidedProps<Datum> = {
+  path: ArcType<$TSFIXME, PieArcDatum<Datum>>;
+  arcs: PieArcDatum<Datum>[];
+  pie: PieType<$TSFIXME, Datum>;
+};
 
 export type PieProps<Datum> = {
   /** className applied to path element. */
@@ -38,11 +52,7 @@ export type PieProps<Datum> = {
   /** Padding angle of the Pie shape, which sets a fixed linear distance separating adjacent arcs. */
   padAngle?: NumAccessor<Datum> | number;
   /** Render function override which is passed the configured arc generator as input. */
-  children?: (args: {
-    path: ArcType<$TSFIXME, PieArcDatum<Datum>>;
-    arcs: PieArcDatum<Datum>[];
-    pie: PieType<$TSFIXME, Datum>;
-  }) => React.ReactNode;
+  children?: (provided: ProvidedProps<Datum>) => React.ReactNode;
 };
 
 export default function Pie<Datum>({
