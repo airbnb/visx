@@ -19,6 +19,7 @@
     "visualization",
     "d3",
     "react",
-    "vx"
+    "vx",
+    "drag"
   ]
 }

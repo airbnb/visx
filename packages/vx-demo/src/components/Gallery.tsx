@@ -41,7 +41,7 @@ import Treemap from './tiles/Treemap';
 import Radar from './tiles/Radar';
 import Responsive from '../docs-v2/examples/vx-responsive/Example';
 import DragI from '../docs-v2/examples/vx-drag-i/Example';
-import DragII from './tiles/Drag-ii';
+import DragII from '../docs-v2/examples/vx-drag-ii/Example';
 import LinkTypes from './tiles/LinkTypes';
 import Threshold from './tiles/Threshold';
 import Chord from './tiles/Chord';
