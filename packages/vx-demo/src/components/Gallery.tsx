@@ -40,7 +40,7 @@ import Pack from './tiles/Pack';
 import Treemap from './tiles/Treemap';
 import Radar from './tiles/Radar';
 import Responsive from '../docs-v2/examples/vx-responsive/Example';
-import DragI from './tiles/Drag-i';
+import DragI from '../docs-v2/examples/vx-drag-i/Example';
 import DragII from './tiles/Drag-ii';
 import LinkTypes from './tiles/LinkTypes';
 import Threshold from './tiles/Threshold';
