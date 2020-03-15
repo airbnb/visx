@@ -10,6 +10,7 @@ The `@vx/text` provides a better SVG `<Text>` component with the following featu
 * Vertical alignment (`verticalAnchor` prop)
 * Rotation (`angle` prop)
 * Scale-to-fit text (`scaleToFit` prop)
+* Multiline text truncation (`lineClamp` prop)
 
 ## Example
 
@@ -63,6 +64,8 @@ npm install --save @vx/text
 
 <a id="#Text__innerRef" name="Text__innerRef" href="#Text__innerRef">#</a> *Text*.**innerRef**&lt;union(func|object)&gt;  
 
+<a id="#Text__lineClamp" name="Text__lineClamp" href="#Text__lineClamp">#</a> *Text*.**lineClamp**&lt;number&gt;
+
 <a id="#Text__lineHeight" name="Text__lineHeight" href="#Text__lineHeight">#</a> *Text*.**lineHeight**&lt;union(number|string)&gt;  <table><tr><td><strong>Default</strong></td><td>'1em'</td></td></table>
 
 <a id="#Text__scaleToFit" name="Text__scaleToFit" href="#Text__scaleToFit">#</a> *Text*.**scaleToFit**&lt;bool&gt;  <table><tr><td><strong>Default</strong></td><td>false</td></td></table>
@@ -70,6 +73,8 @@ npm install --save @vx/text
 <a id="#Text__style" name="Text__style" href="#Text__style">#</a> *Text*.**style**&lt;object&gt;  
 
 <a id="#Text__textAnchor" name="Text__textAnchor" href="#Text__textAnchor">#</a> *Text*.**textAnchor**&lt;enum('start'|'middle'|'end'|'inherit')&gt;  <table><tr><td><strong>Default</strong></td><td>'start'</td></td></table>
+
+<a id="#Text__truncateText" name="Text__truncateText" href="#Text__truncateText">#</a> *Text*.**truncateText**&lt;string&gt;  <table><tr><td><strong>Default</strong></td><td>&hellip;</td></td></table>
 
 <a id="#Text__verticalAnchor" name="Text__verticalAnchor" href="#Text__verticalAnchor">#</a> *Text*.**verticalAnchor**&lt;enum('start'|'middle'|'end')&gt;  <table><tr><td><strong>Default</strong></td><td>'end'</td></td></table>
 

@@ -10,6 +10,7 @@ The `@vx/text` provides a better SVG `<Text>` component with the following featu
 * Vertical alignment (`verticalAnchor` prop)
 * Rotation (`angle` prop)
 * Scale-to-fit text (`scaleToFit` prop)
+* Multiline text truncation (`lineClamp` prop)
 
 ## Example
 

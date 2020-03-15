@@ -1,6 +1,7 @@
 import React from 'react';
 import reduceCSSCalc from 'reduce-css-calc';
 import getStringWidth from './util/getStringWidth';
+import truncateWord from './util/truncateWord';
 
 const SVG_STYLE = { overflow: 'visible' };
 
@@ -54,6 +55,10 @@ type OwnProps = {
   fontFamily?: SVGTextProps['fontFamily'];
   /** Fill color of text. */
   fill?: SVGTextProps['fill'];
+  /** Maximum number of lines the text can occupy before applying trunctation. */
+  lineClamp?: number;
+  /**  Text appended when truncation has been applied */
+  truncateText?: string;
   /** Maximum width to occupy (approximate as words are not split). */
   width?: number;
   /** String (or number coercible to one) to be styled and positioned. */
@@ -77,6 +82,7 @@ class Text extends React.Component<TextProps, TextState> {
     scaleToFit: false,
     textAnchor: 'start',
     verticalAnchor: 'end', // default SVG behavior
+    truncateText: '&hellip;',
   };
 
   state: TextState = {
@@ -134,23 +140,43 @@ class Text extends React.Component<TextProps, TextState> {
   }
 
   calculateWordsByLines(wordsWithWidth: WordWithWidth[], spaceWidth: number, lineWidth?: number) {
-    const { scaleToFit } = this.props;
+    const { lineClamp, scaleToFit, style, truncateText } = this.props;
+    const truncateTextWidth = getStringWidth(truncateText, style);
     return wordsWithWidth.reduce((result: WordsWithWidth[], { word, width }) => {
       const currentLine = result[result.length - 1];
+      const spaceAfterWord =
+        lineClamp && result.length + 1 > lineClamp ? spaceWidth + truncateTextWidth : spaceWidth;
+
+      // Skip if the result exceeds the lineClamp limit
+      if (lineClamp && result.length > lineClamp) {
+        return result;
+      }
 
       if (
         currentLine &&
         (lineWidth == null ||
           scaleToFit ||
-          (currentLine.width || 0) + width + spaceWidth < lineWidth)
+          (currentLine.width || 0) + width + spaceAfterWord < lineWidth)
       ) {
         // Word can be added to an existing line
         currentLine.words.push(word);
         currentLine.width = currentLine.width || 0;
         currentLine.width += width + spaceWidth;
       } else {
-        // Add first word to line or word is too long to scaleToFit on existing line
-        const newLine = { words: [word], width };
+        // Add first word to a new line
+        let newLine = { words: [word], width };
+        // But if it would exceed the line clamp limit, truncate and add to existing line
+        if (lineClamp && result.length + 1 > lineClamp) {
+          const truncatedWord = truncateWord(
+            word,
+            lineWidth - currentLine.width,
+            truncateText,
+            style,
+          );
+          currentLine.words.push(truncatedWord.word);
+          currentLine.width += truncatedWord.width;
+          newLine = { words: [], width: 0 };
+        }
         result.push(newLine);
       }
 
