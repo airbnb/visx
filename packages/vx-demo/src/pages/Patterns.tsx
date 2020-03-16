@@ -1,7 +1,7 @@
 import React from 'react';
 import Show from '../components/Show';
-import Patterns from '../components/tiles/Patterns';
-import PatternsSource from '!!raw-loader!../components/tiles/Patterns';
+import Patterns from '../docs-v2/examples/vx-pattern/Example';
+import PatternsSource from '!!raw-loader!../docs-v2/examples/vx-pattern/Example';
 
 export default () => {
   return (
@@ -14,6 +14,7 @@ export default () => {
         right: 10,
         bottom: 10,
       }}
+      codeSandboxDirectoryName="vx-pattern"
     >
       {PatternsSource}
     </Show>

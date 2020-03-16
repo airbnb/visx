@@ -9,7 +9,7 @@ import Footer from './Footer';
 import Bars from './tiles/Bars';
 import Curves from '../docs-v2/examples/vx-curve/Example';
 import Dots from './tiles/Dots';
-import Patterns from './tiles/Patterns';
+import Patterns from '../docs-v2/examples/vx-pattern/Example';
 import Gradients from '../docs-v2/examples/vx-gradient/Example';
 import Areas from './tiles/Areas';
 import StackedAreas from './tiles/Stacked-Areas';
