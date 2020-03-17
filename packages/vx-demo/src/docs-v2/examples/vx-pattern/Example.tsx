@@ -1,8 +1,7 @@
 import React from 'react';
 import { Bar } from '@vx/shape';
 import { Group } from '@vx/group';
-import { Pattern, PatternLines, PatternCircles, PatternWaves } from '@vx/pattern';
-import { LinearGradient } from '@vx/gradient';
+import { Pattern as CustomPattern, PatternLines, PatternCircles, PatternWaves } from '@vx/pattern';
 
 const defaultMargin = {
   top: 0,
@@ -20,7 +19,7 @@ type Props = {
 const Patterns: React.FC<{ id: string }>[] = [
   ({ id }) => <PatternLines id={id} height={6} width={6} stroke="black" strokeWidth={1} />,
   ({ id }) => (
-    <Pattern id={id} width={10} height={10}>
+    <CustomPattern id={id} width={10} height={10}>
       <animateTransform
         attributeType="xml"
         attributeName="patternTransform"
@@ -31,7 +30,7 @@ const Patterns: React.FC<{ id: string }>[] = [
         repeatCount="indefinite"
       />
       <circle cx={5} cy={5} r="3" stroke="none" fill="black" transform-origin="center" />
-    </Pattern>
+    </CustomPattern>
   ),
   ({ id }) => (
     <PatternLines
@@ -69,7 +68,7 @@ const Patterns: React.FC<{ id: string }>[] = [
     const height = 10;
 
     return (
-      <Pattern id={id} width={width} height={height}>
+      <CustomPattern id={id} width={width} height={height}>
         <animateTransform
           attributeType="xml"
           attributeName="patternTransform"
@@ -92,7 +91,7 @@ const Patterns: React.FC<{ id: string }>[] = [
           stroke="black"
           strokeWidth={1}
         />
-      </Pattern>
+      </CustomPattern>
     );
   },
   ({ id }) => (
@@ -106,34 +105,35 @@ export default function Example({ width, height, margin = defaultMargin }: Props
   const columnWidth = Math.max((width - margin.left - margin.right) / numColumns, 0);
   const rowHeight = Math.max((height - margin.bottom - margin.top) / numRows, 0);
 
-  if (width < 10) return null;
   return (
-    <svg width={width} height={height}>
-      <rect x={0} y={0} width={width} height={height} fill="#f5f2e3" rx={14} />
-      <Group top={margin.top} left={margin.left}>
-        {Patterns.map((Pattern, index) => {
-          const columnIndex = index % numColumns;
-          const rowIndex = Math.floor(index / numColumns);
-          const id = `vx-pattern-demo-${index}-${rowIndex}-${columnIndex}`;
+    width >= 10 && (
+      <svg width={width} height={height}>
+        <rect x={0} y={0} width={width} height={height} fill="#f5f2e3" rx={14} />
+        <Group top={margin.top} left={margin.left}>
+          {Patterns.map((Pattern, index) => {
+            const columnIndex = index % numColumns;
+            const rowIndex = Math.floor(index / numColumns);
+            const id = `vx-pattern-demo-${index}-${rowIndex}-${columnIndex}`;
 
-          return (
-            <React.Fragment key={id}>
-              {/** Like SVG <defs />, Patterns are rendered with an id */}
-              <Pattern id={id} />
+            return (
+              <React.Fragment key={id}>
+                {/** Like SVG <defs />, Patterns are rendered with an id */}
+                <Pattern id={id} />
 
-              {/** And are then referenced for a style attribute. */}
-              <Bar
-                fill={`url(#${id})`}
-                x={columnIndex * columnWidth}
-                y={rowIndex * rowHeight}
-                width={columnWidth}
-                height={rowHeight}
-                rx={14}
-              />
-            </React.Fragment>
-          );
-        })}
-      </Group>
-    </svg>
+                {/** And are then referenced for a style attribute. */}
+                <Bar
+                  fill={`url(#${id})`}
+                  x={columnIndex * columnWidth}
+                  y={rowIndex * rowHeight}
+                  width={columnWidth}
+                  height={rowHeight}
+                  rx={14}
+                />
+              </React.Fragment>
+            );
+          })}
+        </Group>
+      </svg>
+    )
   );
 }
