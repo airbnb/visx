@@ -794,9 +794,7 @@ export default function() {
             >
               <div className="image">
                 <ParentSize>
-                  {({ width, height }) => (
-                    <DragII width={width} height={height} events={false} data={drawData} />
-                  )}
+                  {({ width, height }) => <DragII width={width} height={height} data={drawData} />}
                 </ParentSize>
               </div>
               <div
