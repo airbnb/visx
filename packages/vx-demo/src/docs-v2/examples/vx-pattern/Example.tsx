@@ -105,35 +105,33 @@ export default function Example({ width, height, margin = defaultMargin }: Props
   const columnWidth = Math.max((width - margin.left - margin.right) / numColumns, 0);
   const rowHeight = Math.max((height - margin.bottom - margin.top) / numRows, 0);
 
-  return (
-    width >= 10 && (
-      <svg width={width} height={height}>
-        <rect x={0} y={0} width={width} height={height} fill="#f5f2e3" rx={14} />
-        <Group top={margin.top} left={margin.left}>
-          {Patterns.map((Pattern, index) => {
-            const columnIndex = index % numColumns;
-            const rowIndex = Math.floor(index / numColumns);
-            const id = `vx-pattern-demo-${index}-${rowIndex}-${columnIndex}`;
+  return width >= 10 ? (
+    <svg width={width} height={height}>
+      <rect x={0} y={0} width={width} height={height} fill="#f5f2e3" rx={14} />
+      <Group top={margin.top} left={margin.left}>
+        {Patterns.map((Pattern, index) => {
+          const columnIndex = index % numColumns;
+          const rowIndex = Math.floor(index / numColumns);
+          const id = `vx-pattern-demo-${index}-${rowIndex}-${columnIndex}`;
 
-            return (
-              <React.Fragment key={id}>
-                {/** Like SVG <defs />, Patterns are rendered with an id */}
-                <Pattern id={id} />
+          return (
+            <React.Fragment key={id}>
+              {/** Like SVG <defs />, Patterns are rendered with an id */}
+              <Pattern id={id} />
 
-                {/** And are then referenced for a style attribute. */}
-                <Bar
-                  fill={`url(#${id})`}
-                  x={columnIndex * columnWidth}
-                  y={rowIndex * rowHeight}
-                  width={columnWidth}
-                  height={rowHeight}
-                  rx={14}
-                />
-              </React.Fragment>
-            );
-          })}
-        </Group>
-      </svg>
-    )
-  );
+              {/** And are then referenced for a style attribute. */}
+              <Bar
+                fill={`url(#${id})`}
+                x={columnIndex * columnWidth}
+                y={rowIndex * rowHeight}
+                width={columnWidth}
+                height={rowHeight}
+                rx={14}
+              />
+            </React.Fragment>
+          );
+        })}
+      </Group>
+    </svg>
+  ) : null;
 }

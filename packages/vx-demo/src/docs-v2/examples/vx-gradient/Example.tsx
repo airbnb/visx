@@ -8,7 +8,6 @@ import {
   GradientPinkRed,
   GradientPurpleOrange,
   GradientPurpleRed,
-  GradientSteelPurple,
   GradientTealBlue,
   RadialGradient,
   LinearGradient,
