@@ -9,7 +9,6 @@ import Footer from './Footer';
 import Bars from './tiles/Bars';
 import Curves from '../docs-v2/examples/vx-curve/Example';
 import Dots from './tiles/Dots';
-import Patterns from './tiles/Patterns';
 import Gradients from '../docs-v2/examples/vx-gradient/Example';
 import Areas from './tiles/Areas';
 import StackedAreas from './tiles/Stacked-Areas';
@@ -37,6 +36,7 @@ import Streamgraph, {
   BACKGROUND as streamgraphBackgroundColor,
 } from '../docs-v2/examples/vx-streamgraph/Example';
 import Pack from './tiles/Pack';
+import Patterns from '../docs-v2/examples/vx-pattern/Example';
 import Treemap from './tiles/Treemap';
 import Radar from './tiles/Radar';
 import Responsive from '../docs-v2/examples/vx-responsive/Example';

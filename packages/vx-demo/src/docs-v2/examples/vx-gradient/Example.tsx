@@ -8,9 +8,9 @@ import {
   GradientPinkRed,
   GradientPurpleOrange,
   GradientPurpleRed,
-  GradientSteelPurple,
   GradientTealBlue,
   RadialGradient,
+  LinearGradient,
 } from '@vx/gradient';
 
 const defaultMargin = {
@@ -20,11 +20,17 @@ const defaultMargin = {
   bottom: 0,
 };
 
-const numColumns = 5;
-
-const gradientIds = [
-  [...new Array(numColumns)].map((_, idx) => `vx-gradient-demo-row-0-column-${idx}`),
-  [...new Array(numColumns)].map((_, idx) => `vx-gradient-demo-row-1-column-${idx}`),
+const Gradients: React.FC<{ id: string }>[] = [
+  GradientPinkRed,
+  ({ id }) => <RadialGradient id={id} from="#55bdd5" to="#4f3681" r="80%" />,
+  GradientOrangeRed,
+  GradientPinkBlue,
+  ({ id }) => <LinearGradient id={id} from="#351CAB" to="#621A61" rotate="-45" />,
+  GradientLightgreenGreen,
+  GradientPurpleOrange,
+  GradientTealBlue,
+  GradientPurpleRed,
+  GradientDarkgreenGreen,
 ];
 
 type Props = {
@@ -34,36 +40,37 @@ type Props = {
 };
 
 export default function Example({ width, height, margin = defaultMargin }: Props) {
-  const columnWidth = Math.max(width / gradientIds[0].length, 0);
-  const rowHeight = Math.max((height - margin.bottom) / gradientIds.length, 0);
+  const numColumns = width > 600 ? 5 : 2;
+  const numRows = Gradients.length / numColumns;
+  const columnWidth = Math.max(width / numColumns, 0);
+  const rowHeight = Math.max((height - margin.bottom) / numRows, 0);
 
   return (
     <svg width={width} height={height}>
-      <GradientDarkgreenGreen id={gradientIds[0][0]} />
-      <GradientLightgreenGreen id={gradientIds[0][1]} />
-      <GradientOrangeRed id={gradientIds[0][2]} />
-      <GradientPinkBlue id={gradientIds[0][3]} />
-      <GradientPinkRed id={gradientIds[0][4]} vertical={false} />
-      <GradientPurpleOrange id={gradientIds[1][0]} vertical={false} />
-      <GradientPurpleRed id={gradientIds[1][1]} vertical={false} />
-      <RadialGradient id={gradientIds[1][2]} from="#55bdd5" to="#4f3681" r="80%" />
-      <GradientSteelPurple id={gradientIds[1][3]} vertical={false} />
-      <GradientTealBlue id={gradientIds[1][4]} vertical={false} />
-      {gradientIds.map((rowIds, rowIndex) =>
-        rowIds.map((id, columnIndex) => (
-          <Bar
-            key={id}
-            fill={`url(#${id})`}
-            x={columnIndex * columnWidth}
-            y={rowIndex * rowHeight}
-            width={columnWidth}
-            height={rowHeight}
-            stroke="#ffffff"
-            strokeWidth={8}
-            rx={14}
-          />
-        )),
-      )}
+      {Gradients.map((Gradient, index) => {
+        const columnIndex = index % numColumns;
+        const rowIndex = Math.floor(index / numColumns);
+        const id = `vx-gradient-demo-${index}-${rowIndex}${columnIndex}`;
+
+        return (
+          <React.Fragment key={id}>
+            {/** Like SVG <defs />, Gradients are rendered with an id */}
+            <Gradient id={id} />
+
+            {/** And are then referenced for a style attribute. */}
+            <Bar
+              fill={`url(#${id})`}
+              x={columnIndex * columnWidth}
+              y={rowIndex * rowHeight}
+              width={columnWidth}
+              height={rowHeight}
+              stroke="#ffffff"
+              strokeWidth={8}
+              rx={14}
+            />
+          </React.Fragment>
+        );
+      })}
     </svg>
   );
 }
