@@ -29,7 +29,7 @@ import Dendrograms from './tiles/Dendrograms';
 import Voronoi from './tiles/Voronoi';
 import Legends from './tiles/Legends';
 import StatsPlot from './tiles/Statsplot';
-import GeoMercator from './tiles/Geo-Mercator';
+import GeoMercator from '../docs-v2/examples/vx-geo-mercator/Example';
 import GeoCustom from './tiles/Geo-Custom';
 import Network from './tiles/Network';
 import Streamgraph, {
