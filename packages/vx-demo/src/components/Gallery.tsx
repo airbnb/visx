@@ -551,7 +551,7 @@ export default function() {
               <div className="image">
                 <ParentSize>
                   {({ width, height }) => (
-                    <GeoCustom width={width} height={height + detailsHeight} />
+                    <GeoCustom width={width} height={height + detailsHeight} events={false} />
                   )}
                 </ParentSize>
               </div>

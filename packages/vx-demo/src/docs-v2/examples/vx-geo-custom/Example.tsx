@@ -66,7 +66,7 @@ const color = scaleQuantize({
   ],
 });
 
-export default function GeoCustom({ width, height, events = false }: Props) {
+export default function GeoCustom({ width, height, events = true }: Props) {
   const [projection, setProjection] = useState<keyof typeof PROJECTIONS>('geoConicConformal');
 
   const centerX = width / 2;
