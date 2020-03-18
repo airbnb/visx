@@ -2,7 +2,7 @@ import React, { useMemo, useState, useEffect } from 'react';
 import { scaleOrdinal } from '@vx/scale';
 import { LinearGradient } from '@vx/gradient';
 import { Drag, raise } from '@vx/drag';
-import { WidthAndHeight, ShowProvidedProps } from '../../types';
+import generateCircles, { Circle } from './generateCircles';
 
 const colors = [
   '#025aac',
@@ -21,36 +21,16 @@ const colors = [
   '#827ce2',
 ];
 
-interface Circle {
-  id: string;
-  radius: number;
-  x: number;
-  y: number;
-}
+type Props = {
+  width: number;
+  height: number;
+};
 
-const generateCircles = ({ num, width, height }: { num: number } & WidthAndHeight) =>
-  new Array(num).fill(1).map((d, i) => {
-    const radius = 25 - Math.random() * 20;
-    return {
-      id: `${i}`,
-      radius,
-      x: Math.round(Math.random() * (width - radius * 2) + radius),
-      y: Math.round(Math.random() * (height - radius * 2) + radius),
-    };
-  });
-
-const generateItems = ({ width, height }: WidthAndHeight) =>
-  generateCircles({
-    num: width < 360 ? 40 : 185,
-    width,
-    height,
-  });
-
-export default function DragI({ width, height }: ShowProvidedProps) {
+export default function DragI({ width, height }: Props) {
   const [draggingItems, setDraggingItems] = useState<Circle[]>([]);
 
   useEffect(() => {
-    if (width > 10 && height > 10) setDraggingItems(generateItems({ width, height }));
+    if (width > 10 && height > 10) setDraggingItems(generateCircles({ width, height }));
   }, [width, height]);
 
   const colorScale = useMemo(

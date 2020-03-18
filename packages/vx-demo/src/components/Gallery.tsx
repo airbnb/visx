@@ -40,8 +40,8 @@ import Patterns from '../docs-v2/examples/vx-pattern/Example';
 import Treemap from './tiles/Treemap';
 import Radar from './tiles/Radar';
 import Responsive from '../docs-v2/examples/vx-responsive/Example';
-import DragI from './tiles/Drag-i';
-import DragII from './tiles/Drag-ii';
+import DragI from '../docs-v2/examples/vx-drag-i/Example';
+import DragII from '../docs-v2/examples/vx-drag-ii/Example';
 import LinkTypes from './tiles/LinkTypes';
 import Threshold from './tiles/Threshold';
 import Chord from './tiles/Chord';
@@ -765,7 +765,7 @@ export default function() {
             >
               <div className="image">
                 <ParentSize>
-                  {({ width, height }) => <DragI width={width} height={height} events={false} />}
+                  {({ width, height }) => <DragI width={width} height={height} />}
                 </ParentSize>
               </div>
               <div
@@ -794,9 +794,7 @@ export default function() {
             >
               <div className="image">
                 <ParentSize>
-                  {({ width, height }) => (
-                    <DragII width={width} height={height} events={false} data={drawData} />
-                  )}
+                  {({ width, height }) => <DragII width={width} height={height} data={drawData} />}
                 </ParentSize>
               </div>
               <div
