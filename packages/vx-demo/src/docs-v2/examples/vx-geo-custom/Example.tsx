@@ -93,7 +93,7 @@ export default function GeoCustom({ width, height, events = true }: Props) {
       >
         {zoom => (
           <div className="container">
-            <svg width={width} height={height} className={zoom.isDragging && 'dragging'}>
+            <svg width={width} height={height} className={zoom.isDragging ? 'dragging' : undefined}>
               <rect x={0} y={0} width={width} height={height} fill={background} rx={14} />
               <CustomProjection<FeatureShape>
                 projection={PROJECTIONS[projection]}
