@@ -39,7 +39,7 @@ export default ({ width, height, events = false }: Props) => {
 
   return width < 10 ? null : (
     <svg width={width} height={height}>
-      <rect x={0} y={0} width={width} height={height} fill={bg} rx={14} />
+      <rect x={0} y={0} width={width} height={height} fill={background} rx={14} />
       <Mercator<FeatureShape>
         data={world.features}
         scale={scale}
