@@ -16,8 +16,7 @@ type Props = {
 export default function DragII({ data = [], width, height }: Props) {
   const [lines, setLines] = useState<Lines>(data);
 
-  if (width < 10) return null;
-  return (
+  return width < 10 ? null : (
     <div className="DragII" style={{ touchAction: 'none' }}>
       <svg width={width} height={height}>
         <LinearGradient id="stroke" from="#ff614e" to="#ffdc64" />
