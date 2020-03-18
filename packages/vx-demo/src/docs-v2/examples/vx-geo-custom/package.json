@@ -9,6 +9,7 @@
     "@vx/geo": "latest",
     "@vx/responsive": "latest",
     "@vx/scale": "latest",
+    "@vx/zoom": "latest",
     "d3-geo": "^1.11.9",
     "react": "^16.8",
     "react-dom": "^16.8",

@@ -1,8 +1,10 @@
+/* eslint-disable react/jsx-handler-names */
 import React, { useState } from 'react';
 import * as topojson from 'topojson-client';
 import { scaleQuantize } from '@vx/scale';
 import { CustomProjection, Graticule } from '@vx/geo';
 import { Projection } from '@vx/geo/lib/types';
+import { Zoom } from '@vx/zoom';
 import {
   geoConicConformal,
   geoTransverseMercator,
@@ -66,41 +68,79 @@ const color = scaleQuantize({
 
 export default function GeoCustom({ width, height, events = false }: Props) {
   const [projection, setProjection] = useState<keyof typeof PROJECTIONS>('geoConicConformal');
-  const [scaleFactor, setScaleFactor] = useState<number>(630);
 
-  const centerX = width / 2;
-  const centerY = height / 2;
-  const scale = (width / scaleFactor) * 100;
+  const translateX = width / 2;
+  const translateY = height / 2;
+  const initialScale = (width / 630) * 100;
 
   return width < 10 ? null : (
-    <div>
-      <svg width={width} height={height}>
-        <rect x={0} y={0} width={width} height={height} fill={background} rx={14} />
-        <CustomProjection<FeatureShape>
-          projection={PROJECTIONS[projection]}
-          data={world.features}
-          scale={scale}
-          translate={[centerX, centerY]}
-        >
-          {customProjection => (
-            <g>
-              <Graticule graticule={g => customProjection.path(g) || ''} stroke={purple} />
-              {customProjection.features.map(({ feature, path }, i) => (
-                <path
-                  key={`map-feature-${i}`}
-                  d={path || ''}
-                  fill={color(feature.geometry.coordinates.length)}
-                  stroke={background}
-                  strokeWidth={0.5}
-                  onClick={() => {
-                    if (events) alert(`Clicked: ${feature.properties.name} (${feature.id})`);
-                  }}
-                />
-              ))}
-            </g>
-          )}
-        </CustomProjection>
-      </svg>
+    <>
+      <Zoom
+        width={width}
+        height={height}
+        scaleXMin={100}
+        scaleXMax={1000}
+        scaleYMin={100}
+        scaleYMax={1000}
+        transformMatrix={{
+          scaleX: initialScale,
+          scaleY: initialScale,
+          translateX,
+          translateY,
+          skewX: 0,
+          skewY: 0,
+        }}
+      >
+        {zoom => (
+          <svg width={width} height={height} className={zoom.isDragging && 'dragging'}>
+            <rect x={0} y={0} width={width} height={height} fill={background} rx={14} />
+            <CustomProjection<FeatureShape>
+              projection={PROJECTIONS[projection]}
+              data={world.features}
+              scale={zoom.transformMatrix.scaleX}
+              translate={[zoom.transformMatrix.translateX, zoom.transformMatrix.translateY]}
+              rotate={[zoom.transformMatrix.skewX, zoom.transformMatrix.skewy]}
+            >
+              {customProjection => (
+                <g>
+                  <Graticule graticule={g => customProjection.path(g) || ''} stroke={purple} />
+                  {customProjection.features.map(({ feature, path }, i) => (
+                    <path
+                      key={`map-feature-${i}`}
+                      d={path || ''}
+                      fill={color(feature.geometry.coordinates.length)}
+                      stroke={background}
+                      strokeWidth={0.5}
+                      onClick={() => {
+                        if (events) alert(`Clicked: ${feature.properties.name} (${feature.id})`);
+                      }}
+                    />
+                  ))}
+                </g>
+              )}
+            </CustomProjection>
+
+            {/** intercept all mouse events */}
+            <rect
+              x={0}
+              y={0}
+              width={width}
+              height={height}
+              rx={14}
+              fill="transparent"
+              onTouchStart={zoom.dragStart}
+              onTouchMove={zoom.dragMove}
+              onTouchEnd={zoom.dragEnd}
+              onMouseDown={zoom.dragStart}
+              onMouseMove={zoom.dragMove}
+              onMouseUp={zoom.dragEnd}
+              onMouseLeave={() => {
+                if (zoom.isDragging) zoom.dragEnd();
+              }}
+            />
+          </svg>
+        )}
+      </Zoom>
       <div>
         <label>
           projection:{' '}
@@ -112,24 +152,18 @@ export default function GeoCustom({ width, height, events = false }: Props) {
             ))}
           </select>
         </label>
-        <label>
-          {' '}
-          scale factor:{' '}
-          <input
-            onChange={event => setScaleFactor(Number(event.target.value))}
-            type="range"
-            defaultValue={scaleFactor}
-            max="1000"
-            min="100"
-            step={10}
-          />
-        </label>
       </div>
       <style jsx>{`
         label {
           font-size: 12px;
         }
+        svg {
+          cursor: grab;
+        }
+        svg.dragging {
+          cursor: grabbing;
+        }
       `}</style>
-    </div>
+    </>
   );
 }
