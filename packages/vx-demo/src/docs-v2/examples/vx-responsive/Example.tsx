@@ -25,9 +25,7 @@ const Nav = () => (
 export default function Example({ width, height }: Props) {
   const [showSidebar, setShowSidebar] = useState<boolean>(true);
 
-  if (width < 20 || height < 20) return null;
-
-  return (
+  return width < 20 || height < 20 ? null : (
     <div className="app" style={{ width, height }}>
       {showSidebar && (
         <div className="app-nav">
