@@ -35,7 +35,7 @@ const PROJECTIONS: { [projection: string]: Projection } = {
   geoConicEquidistant,
   geoOrthographic,
   geoStereographic,
-}
+};
 
 // @ts-ignore
 const world = topojson.feature(topology, topology.objects.units) as {
@@ -104,12 +104,12 @@ export default function GeoCustom({ width, height, events = false }: Props) {
       <div>
         <label>
           projection:{' '}
-          <select
-            onChange={event => setProjection(event.target.value)}
-          >
-            {Object.keys(PROJECTIONS).map((projectionName) => (
-              <option key={projectionName} value={projectionName}>{projectionName}</option>
-            )}
+          <select onChange={event => setProjection(event.target.value)}>
+            {Object.keys(PROJECTIONS).map(projectionName => (
+              <option key={projectionName} value={projectionName}>
+                {projectionName}
+              </option>
+            ))}
           </select>
         </label>
         <label>
@@ -125,6 +125,11 @@ export default function GeoCustom({ width, height, events = false }: Props) {
           />
         </label>
       </div>
+      <style jsx>{`
+        label {
+          font-size: 12px;
+        }
+      `}</style>
     </div>
   );
 }

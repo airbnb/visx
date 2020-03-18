@@ -1,5 +1,5 @@
 {
-  "name": "@vx/demo-example",
+  "name": "@vx/demo-geo-mercator",
   "description": "Standalone vx geo-mercator demo.",
   "main": "index.tsx",
   "dependencies": {
