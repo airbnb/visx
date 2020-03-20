@@ -1,11 +1,16 @@
 import React from 'react';
 import Show from '../components/Show';
-import GeoMercator from '../components/tiles/Geo-Mercator';
-import GeoMercatorSource from '!!raw-loader!../components/tiles/Geo-Mercator';
+import GeoMercator from '../docs-v2/examples/vx-geo-mercator/Example';
+import GeoMercatorSource from '!!raw-loader!../docs-v2/examples/vx-geo-mercator/Example';
 
 export default () => {
   return (
-    <Show events component={GeoMercator} title="Geo Mercator">
+    <Show
+      events
+      component={GeoMercator}
+      title="Geo Mercator"
+      codeSandboxDirectoryName="vx-geo-mercator"
+    >
       {GeoMercatorSource}
     </Show>
   );

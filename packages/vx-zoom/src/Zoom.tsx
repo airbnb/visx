@@ -98,9 +98,8 @@ class Zoom extends React.Component<ZoomProps, ZoomState> {
       skewX: 0,
       skewY: 0,
     },
-    wheelDelta: (event: React.WheelEvent | WheelEvent) => {
-      return -event.deltaY > 0 ? { scaleX: 1.1, scaleY: 1.1 } : { scaleX: 0.9, scaleY: 0.9 };
-    },
+    wheelDelta: (event: React.WheelEvent | WheelEvent) =>
+      -event.deltaY > 0 ? { scaleX: 1.1, scaleY: 1.1 } : { scaleX: 0.9, scaleY: 0.9 },
     style: undefined,
     className: undefined,
   };

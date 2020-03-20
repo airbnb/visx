@@ -29,8 +29,8 @@ import Dendrograms from './tiles/Dendrograms';
 import Voronoi from './tiles/Voronoi';
 import Legends from './tiles/Legends';
 import StatsPlot from './tiles/Statsplot';
-import GeoMercator from './tiles/Geo-Mercator';
-import GeoCustom from './tiles/Geo-Custom';
+import GeoCustom from '../docs-v2/examples/vx-geo-custom/Example';
+import GeoMercator from '../docs-v2/examples/vx-geo-mercator/Example';
 import Network from './tiles/Network';
 import Streamgraph, {
   BACKGROUND as streamgraphBackgroundColor,
@@ -551,7 +551,7 @@ export default function() {
               <div className="image">
                 <ParentSize>
                   {({ width, height }) => (
-                    <GeoCustom width={width} height={height + detailsHeight} />
+                    <GeoCustom width={width} height={height + detailsHeight} events={false} />
                   )}
                 </ParentSize>
               </div>

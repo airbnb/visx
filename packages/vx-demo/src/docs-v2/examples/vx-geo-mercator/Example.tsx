@@ -2,16 +2,14 @@ import React from 'react';
 import { scaleQuantize } from '@vx/scale';
 import { Mercator, Graticule } from '@vx/geo';
 import * as topojson from 'topojson-client';
-// @ts-ignore
-import topology from '../../static/vx-geo/world-topo.json';
-import { ShowProvidedProps } from '../../types';
+import topology from './world-topo.json';
 
-const bg = '#f9f7e8';
+const background = '#f9f7e8';
 
-// @ts-ignore
-const world = topojson.feature(topology, topology.objects.units) as {
-  type: 'FeatureCollection';
-  features: FeatureShape[];
+type Props = {
+  width: number;
+  height: number;
+  events?: boolean;
 };
 
 interface FeatureShape {
@@ -21,6 +19,12 @@ interface FeatureShape {
   properties: { name: string };
 }
 
+// @ts-ignore
+const world = topojson.feature(topology, topology.objects.units) as {
+  type: 'FeatureCollection';
+  features: FeatureShape[];
+};
+
 const color = scaleQuantize({
   domain: [
     Math.min(...world.features.map(f => f.geometry.coordinates.length)),
@@ -29,16 +33,14 @@ const color = scaleQuantize({
   range: ['#ffb01d', '#ffa020', '#ff9221', '#ff8424', '#ff7425', '#fc5e2f', '#f94b3a', '#f63a48'],
 });
 
-export default ({ width, height, events = false }: ShowProvidedProps) => {
-  if (width < 10) return <div />;
-
+export default ({ width, height, events = false }: Props) => {
   const centerX = width / 2;
   const centerY = height / 2;
   const scale = (width / 630) * 100;
 
-  return (
+  return width < 10 ? null : (
     <svg width={width} height={height}>
-      <rect x={0} y={0} width={width} height={height} fill={bg} rx={14} />
+      <rect x={0} y={0} width={width} height={height} fill={background} rx={14} />
       <Mercator<FeatureShape>
         data={world.features}
         scale={scale}
@@ -52,7 +54,7 @@ export default ({ width, height, events = false }: ShowProvidedProps) => {
                 key={`map-feature-${i}`}
                 d={path || ''}
                 fill={color(feature.geometry.coordinates.length)}
-                stroke={bg}
+                stroke={background}
                 strokeWidth={0.5}
                 onClick={() => {
                   if (events) alert(`Clicked: ${feature.properties.name} (${feature.id})`);
