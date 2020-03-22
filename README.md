@@ -216,6 +216,8 @@ Lots coming soon, check out the [roadmap](./ROADMAP.md).
   ([Demo](https://cryptocape.com/)) ([Github](https://github.com/JayWelsh/CryptoCape))
 - Family tree by [@vkallore](https://github.com/vkallore)
   ([Demo](https://vk-ft.now.sh/))([Github](https://github.com/vkallore/d3-vx-family-tree))
+- South African Coronavirus Data Visuals by [@JayWelsh](https://github.com/JayWelsh)
+  ([Demo](https://coronamap.co.za/)) ([Github](https://github.com/JayWelsh/coronamap))
 - Have a project that's using vx? Open a pull request and we'll add it to the list.
 
 ## FAQ
