@@ -14,6 +14,7 @@ import {
 } from 'd3-geo';
 // eslint-disable-next-line import/no-unresolved
 import { LineString, Polygon, MultiLineString } from 'geojson';
+import { Platform, G, Path } from '@vx/primitives';
 
 import Graticule, { GraticuleProps } from '../graticule/Graticule';
 import { GeoPermissibleObjects, ProjectionPreset, Projection as ProjectionShape } from '../types';
@@ -172,15 +173,15 @@ export default function Projection<Datum extends GeoPermissibleObjects>({
       )}
 
       {features.map((feature, i) => (
-        <g key={`${projection}-${i}`}>
-          <path
-            className={cx(`vx-geo-${projection}`, className)}
+        <G key={`${projection}-${i}`}>
+          <Path
+            className={Platform.OS === 'web' && cx(`vx-geo-${projection}`, className)}
             d={feature.path || ''}
-            ref={innerRef && innerRef(feature, i)}
-            {...restProps}
+            ref={innerRef && (innerRef(feature, i) as any)}
+            {...(restProps as any)}
           />
           {centroid && centroid(feature.centroid, feature)}
-        </g>
+        </G>
       ))}
 
       {/* TODO: Maybe find a different way to pass projection function to use for example invert */}

@@ -2,6 +2,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { Group } from '@vx/group';
+import { Platform, G, Path } from '@vx/primitives';
 import {
   arc as d3Arc,
   Arc as ArcType,
@@ -99,10 +100,14 @@ export default function Pie<Datum>({
   return (
     <Group className="vx-pie-arcs-group" top={top} left={left}>
       {arcs.map((arc, i) => (
-        <g key={`pie-arc-${i}`}>
-          <path className={cx('vx-pie-arc', className)} d={path(arc) || ''} {...restProps} />
+        <G key={`pie-arc-${i}`}>
+          <Path
+            className={Platform.OS && cx('vx-pie-arc', className)}
+            d={path(arc) || ''}
+            {...(restProps as any)}
+          />
           {centroid && centroid(path.centroid(arc), arc)}
-        </g>
+        </G>
       ))}
     </Group>
   );

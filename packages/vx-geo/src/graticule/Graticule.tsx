@@ -3,6 +3,7 @@ import { Group } from '@vx/group';
 import { geoGraticule, GeoGraticuleGenerator } from 'd3-geo';
 // eslint-disable-next-line import/no-unresolved
 import { LineString, MultiLineString, Polygon } from 'geojson';
+import { G, Path } from '@vx/primitives';
 
 export type GraticuleProps = {
   /**
@@ -67,16 +68,21 @@ export default function Graticule({
   return (
     <Group className="vx-geo-graticule">
       {graticule && (
-        <path d={graticule(currGraticule())} fill="none" stroke="black" {...restProps} />
+        <Path d={graticule(currGraticule())} fill="none" stroke="black" {...(restProps as any)} />
       )}
       {lines &&
         currGraticule.lines().map((line, i) => (
-          <g key={i}>
-            <path d={lines(line)} fill="none" stroke="black" {...restProps} />
-          </g>
+          <G key={i}>
+            <Path d={lines(line)} fill="none" stroke="black" {...(restProps as any)} />
+          </G>
         ))}
       {outline && (
-        <path d={outline(currGraticule.outline())} fill="none" stroke="black" {...restProps} />
+        <Path
+          d={outline(currGraticule.outline())}
+          fill="none"
+          stroke="black"
+          {...(restProps as any)}
+        />
       )}
     </Group>
   );

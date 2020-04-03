@@ -30,6 +30,7 @@
     "@types/react": "*",
     "@vx/curve": "0.0.195",
     "@vx/group": "0.0.195",
+    "@vx/primitives": "0.0.195",
     "classnames": "^2.2.5",
     "d3-path": "^1.0.5",
     "d3-shape": "^1.2.0",
