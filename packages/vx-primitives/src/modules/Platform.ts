@@ -5,7 +5,7 @@ type PlatformType = {
   Version: number;
 };
 
-const Platform: PlatformType & { select?: (Object) => void; inject?: (PlatformType) => void } = {
+const Platform: PlatformType & { select?: (_: any) => void; inject?: (_: PlatformType) => void } = {
   OS: 'unknown',
   Version: 0,
   select: obj => {

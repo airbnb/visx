@@ -3,32 +3,65 @@ import { ReactNode } from 'react';
 import Platform from './modules/Platform';
 
 type Primitives = {
-  Svg?: ReactNode | string;
-
-  Circle?: ReactNode | string;
-  ClipPath?: ReactNode | string;
-  Defs?: ReactNode | string;
-  Ellipse?: ReactNode | string;
-  G?: ReactNode | string;
-  Image?: ReactNode | string;
-  Line?: ReactNode | string;
-  LinearGradient?: ReactNode | string;
-  Path?: ReactNode | string;
-  Pattern?: ReactNode | string;
-  Polygon?: ReactNode | string;
-  Polyline?: ReactNode | string;
-  RadialGradient?: ReactNode | string;
-  Rect?: ReactNode | string;
-  Stop?: ReactNode | string;
-  Symbol?: ReactNode | string;
-  Text?: ReactNode | string;
-  TextPath?: ReactNode | string;
-  TSpan?: ReactNode | string;
-  Use?: ReactNode | string;
-  Platform: typeof Platform;
+  Svg: null | ReactNode | string;
+  Circle: null | ReactNode | string;
+  ClipPath: null | ReactNode | string;
+  Defs: null | ReactNode | string;
+  Ellipse: null | ReactNode | string;
+  G: null | ReactNode | string;
+  Image: null | ReactNode | string;
+  Line: null | ReactNode | string;
+  LinearGradient: null | ReactNode | string;
+  Path: null | ReactNode | string;
+  Pattern: null | ReactNode | string;
+  Polygon: null | ReactNode | string;
+  Polyline: null | ReactNode | string;
+  RadialGradient: null | ReactNode | string;
+  Rect: null | ReactNode | string;
+  Stop: null | ReactNode | string;
+  Symbol: null | ReactNode | string;
+  Text: null | ReactNode | string;
+  TextPath: null | ReactNode | string;
+  TSpan: null | ReactNode | string;
+  Use: null | ReactNode | string;
+  Platform: {
+    OS: string;
+    Version: number;
+  } & {
+    select?: ((_: any) => void) | undefined;
+    inject?: ((_: { OS: string; Version: number }) => void) | undefined;
+  };
+  inject: (
+    api: {
+      [key: string]: any;
+    } & {
+      Platform: {
+        OS: string;
+        Version: number;
+      };
+    },
+  ) => void;
 };
 
-const VxPrimitives: Primitives & { inject: (elements: Primitives) => void } = {
+type SvgElement =
+  | 'Svg'
+  | 'Circle'
+  | 'Ellipse'
+  | 'G'
+  | 'LinearGradient'
+  | 'RadialGradient'
+  | 'Line'
+  | 'Path'
+  | 'Polygon'
+  | 'Polyline'
+  | 'Rect'
+  | 'Symbol'
+  | 'Text'
+  | 'Use'
+  | 'Defs'
+  | 'Stop';
+
+const VxPrimitives: Primitives = {
   /* Svg primitives: */
   Svg: null,
 
@@ -59,7 +92,7 @@ const VxPrimitives: Primitives & { inject: (elements: Primitives) => void } = {
   // Dimensions: null,
   // PixelRatio: require('./modules/PixelRatio'),
   Platform,
-  inject: api => {
+  inject: (api: { [key: string]: any } & { Platform: { OS: string; Version: number } }) => {
     [
       'Svg',
       'Circle',
@@ -77,13 +110,14 @@ const VxPrimitives: Primitives & { inject: (elements: Primitives) => void } = {
       'Use',
       'Defs',
       'Stop',
-    ].forEach(k => {
+      // @ts-ignore
+    ].forEach((k: SvgElement) => {
       if (api[k]) {
         VxPrimitives[k] = api[k];
       }
     });
-
     if (api.Platform) {
+      // @ts-ignore
       VxPrimitives['Platform'].inject(api.Platform);
     }
   },

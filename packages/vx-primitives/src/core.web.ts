@@ -29,3 +29,5 @@ VxPrimitives.inject({
     Version: 1,
   },
 });
+
+module.exports = VxPrimitives;
