@@ -19,11 +19,14 @@ export interface MarginShape {
   bottom?: number;
 }
 
-export interface BrushShape {
-  start: Point;
-  end: Point;
+export interface BrushShape extends ScrubberShape {
   extent: Bounds;
   bounds: Bounds;
+}
+
+export interface ScrubberShape {
+  start: Point;
+  end: Point;
 }
 
 export type ResizeTriggerAreas =
