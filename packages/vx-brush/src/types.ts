@@ -19,12 +19,12 @@ export interface MarginShape {
   bottom?: number;
 }
 
-export interface BrushShape extends ScrubberShape {
+export interface BrushShape extends BrushStartEnd {
   extent: Bounds;
   bounds: Bounds;
 }
 
-export interface ScrubberShape {
+export interface BrushStartEnd {
   start: Point;
   end: Point;
 }

@@ -6,7 +6,7 @@ import Drag, { HandlerArgs as DragArgs } from '@vx/drag/lib/Drag';
 import BrushHandle from './BrushHandle';
 import BrushCorner from './BrushCorner';
 import BrushSelection from './BrushSelection';
-import { MarginShape, Point, BrushShape, ResizeTriggerAreas, ScrubberShape } from './types';
+import { MarginShape, Point, BrushShape, BrushStartEnd, ResizeTriggerAreas } from './types';
 
 const BRUSH_OVERLAY_STYLES = { cursor: 'crosshair' };
 
@@ -16,7 +16,7 @@ type MouseHandlerEvent =
 
 export type BaseBrushProps = {
   brushDirection?: 'horizontal' | 'vertical' | 'both';
-  scrubberInitialState?: ScrubberShape;
+  initialBrushPosition?: BrushStartEnd;
   width: number;
   height: number;
   left: number;
@@ -50,13 +50,13 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
   private constructor(props: BaseBrushProps) {
     super(props);
     let scrubberState;
-    if (this.props.scrubberInitialState) {
+    if (this.props.initialBrushPosition) {
       scrubberState = {
-        start: this.props.scrubberInitialState.start,
-        end: this.props.scrubberInitialState.end,
+        start: this.props.initialBrushPosition.start,
+        end: this.props.initialBrushPosition.end,
         extent: this.getExtent(
-          this.props.scrubberInitialState.start,
-          this.props.scrubberInitialState.end,
+          this.props.initialBrushPosition.start,
+          this.props.initialBrushPosition.end,
         ),
       };
     } else {
@@ -107,16 +107,16 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
     disableDraggingSelection: false,
     clickSensitivity: 200,
     resetOnEnd: false,
-    scrubberInitialState: null,
+    initialBrushPosition: null,
   };
 
-  componentDidMount = () => {
+  componentDidMount() {
     window.addEventListener('mouseup', this.handleDragEnd);
-  };
+  }
 
-  componentWillUnmount = () => {
+  componentWillUnmount() {
     window.removeEventListener('mouseup', this.handleDragEnd);
-  };
+  }
 
   componentDidUpdate(prevProps: BaseBrushProps) {
     if (this.props.width !== prevProps.width || this.props.height !== prevProps.height) {
