@@ -1,6 +1,6 @@
 import React from 'react';
 import BaseBrush, { BaseBrushProps, BaseBrushState } from './BaseBrush';
-import { Bounds, MarginShape, Point, ResizeTriggerAreas, Scale } from './types';
+import { Bounds, BrushStartEnd, MarginShape, Point, ResizeTriggerAreas, Scale } from './types';
 import { scaleInvert, getDomainFromExtent } from './utils';
 
 const SAFE_PIXEL = 2;
@@ -20,6 +20,7 @@ export type BrushProps = {
   onClick: BaseBrushProps['onClick'];
   margin: MarginShape;
   brushDirection: 'vertical' | 'horizontal' | 'both';
+  initialBrushPosition?: BrushStartEnd;
   resizeTriggerAreas: ResizeTriggerAreas[];
   brushRegion: 'xAxis' | 'yAxis' | 'chart';
   yAxisOrientation: 'left' | 'right';
@@ -51,6 +52,7 @@ class Brush extends React.Component<BrushProps> {
     },
     handleSize: 4,
     brushDirection: 'horizontal',
+    initialBrushPosition: null,
     resizeTriggerAreas: ['left', 'right'],
     brushRegion: 'chart',
     yAxisOrientation: 'right',
@@ -129,6 +131,7 @@ class Brush extends React.Component<BrushProps> {
       width,
       margin,
       brushDirection,
+      initialBrushPosition,
       resizeTriggerAreas,
       brushRegion,
       yAxisOrientation,
@@ -186,6 +189,7 @@ class Brush extends React.Component<BrushProps> {
         left={left}
         top={top}
         inheritedMargin={margin}
+        initialBrushPosition={initialBrushPosition}
         onChange={this.handleChange}
         onBrushEnd={this.handleBrushEnd}
         onBrushStart={this.handleBrushStart}

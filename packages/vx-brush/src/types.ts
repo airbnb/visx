@@ -19,11 +19,14 @@ export interface MarginShape {
   bottom?: number;
 }
 
-export interface BrushShape {
-  start: Point;
-  end: Point;
+export interface BrushShape extends BrushStartEnd {
   extent: Bounds;
   bounds: Bounds;
+}
+
+export interface BrushStartEnd {
+  start: Point;
+  end: Point;
 }
 
 export type ResizeTriggerAreas =
