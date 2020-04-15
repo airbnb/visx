@@ -49,30 +49,18 @@ export type UpdateBrush =
 export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrushState> {
   private constructor(props: BaseBrushProps) {
     super(props);
-    let scrubberState;
-    if (this.props.initialBrushPosition) {
-      scrubberState = {
-        start: this.props.initialBrushPosition.start,
-        end: this.props.initialBrushPosition.end,
-        extent: this.getExtent(
-          this.props.initialBrushPosition.start,
-          this.props.initialBrushPosition.end,
-        ),
-      };
-    } else {
-      scrubberState = {
-        start: { x: 0, y: 0 },
-        end: { x: 0, y: 0 },
-        extent: {
-          x0: -1,
-          x1: -1,
-          y0: -1,
-          y1: -1,
-        },
-      };
-    }
     this.state = {
-      ...scrubberState,
+      start: { x: 0, y: 0 },
+      end: { x: 0, y: 0 },
+      ...this.props.initialBrushPosition,
+      extent: this.props.initialBrushPosition
+        ? this.getExtent(this.props.initialBrushPosition.start, this.props.initialBrushPosition.end)
+        : {
+            x0: -1,
+            x1: -1,
+            y0: -1,
+            y1: -1,
+          },
       bounds: {
         x0: 0,
         x1: this.props.width,
