@@ -18,7 +18,7 @@ describe('<Tooltip />', () => {
   it('should render with no default styles', () => {
     const wrapper = shallow(<Tooltip withDefaultStyles={false}>Hello</Tooltip>);
     const styles = wrapper.props().style;
-    Object.entries(tooltipDefaultStyles).forEach(([key]) => {
+    Object.keys(tooltipDefaultStyles).forEach(key => {
       expect(styles[key]).toBe(undefined);
     });
   });
