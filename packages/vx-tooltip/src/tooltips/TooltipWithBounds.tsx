@@ -1,5 +1,4 @@
 import React from 'react';
-// @ts-ignore This line could be removed after bounds migration to the TS
 import { withBoundingRects } from '@vx/bounds';
 
 import Tooltip from './Tooltip';
