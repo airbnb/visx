@@ -7,7 +7,7 @@ export type TooltipProps = {
   className?: string;
   style?: React.CSSProperties;
   children?: React.ReactNode;
-  withDefaultStyles?: boolean;
+  unstyled?: boolean;
 };
 
 export const defaultStyles: React.CSSProperties = {
@@ -26,20 +26,15 @@ export default function Tooltip({
   className,
   top,
   left,
-  style,
+  style = defaultStyles,
   children,
-  withDefaultStyles = true,
+  unstyled = false,
   ...restProps
 }: TooltipProps & JSX.IntrinsicElements['div']) {
   return (
     <div
       className={cx('vx-tooltip-portal', className)}
-      style={{
-        ...(withDefaultStyles && defaultStyles),
-        top,
-        left,
-        ...style,
-      }}
+      style={{ top, left, ...(!unstyled && style) }}
       {...restProps}
     >
       {children}
