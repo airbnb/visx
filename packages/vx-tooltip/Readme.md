@@ -47,13 +47,13 @@ You may override the container by specifying `containerProps` as the second argu
 This is a simple Tooltip container component meant to be used to actually render a Tooltip. It accepts the following props, and will spread any additional props on the tooltip container div (i.e., ...restProps):
 
 | Name      | Type             | Default | Description                                                                   |
-| :---------| :--------------- | :------ | :---------------------------------------------------------------------------- |
+| :-------- | :--------------- | :------ | :---------------------------------------------------------------------------- |
 | left      | number or string | --      | Sets style.left of the tooltip container                                      |
 | top       | number or string | --      | Sets style.top of the tooltip container                                       |
 | className | string           | --      | Adds a class (in addition to `vx-tooltip-portal`) to the tooltip container    |
 | style     | object           | --      | Sets / overrides any styles on the tooltip container (including top and left) |
 | children  | node             | --      | Sets the children of the tooltip, i.e., the actual content                    |
-| unstyled  | bool             | true    | Whether the tooltip should have default styles or not                         |
+| unstyled  | bool             | true    | Whether the tooltip use styles from the style prop or not                     |
 
 #### TooltipWithBounds
 
