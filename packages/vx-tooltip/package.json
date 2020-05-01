@@ -30,7 +30,7 @@
   "dependencies": {
     "@types/classnames": "^2.2.9",
     "@types/react": "*",
-    "@vx/bounds": "^0.0.195",
+    "@vx/bounds": "0.0.195",
     "classnames": "^2.2.5",
     "prop-types": "^15.5.10"
   },
