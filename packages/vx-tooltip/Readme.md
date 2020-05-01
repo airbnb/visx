@@ -53,6 +53,7 @@ This is a simple Tooltip container component meant to be used to actually render
 | className | string           | --      | Adds a class (in addition to `vx-tooltip-portal`) to the tooltip container    |
 | style     | object           | --      | Sets / overrides any styles on the tooltip container (including top and left) |
 | children  | node             | --      | Sets the children of the tooltip, i.e., the actual content                    |
+| unstyled  | bool             | true    | Whether the tooltip use styles from the style prop or not                     |
 
 #### TooltipWithBounds
 
