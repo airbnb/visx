@@ -1,6 +1,6 @@
 {
   "name": "@vx/bounds",
-  "version": "0.0.195",
+  "version": "0.0.196",
   "description": "Utilities to make your life with bounding boxes better",
   "sideEffects": false,
   "main": "lib/index.js",

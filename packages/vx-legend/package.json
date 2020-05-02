@@ -1,6 +1,6 @@
 {
   "name": "@vx/legend",
-  "version": "0.0.195",
+  "version": "0.0.196",
   "description": "vx legend",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -40,11 +40,11 @@
     "@types/classnames": "^2.2.9",
     "@types/d3-scale": "^2.1.1",
     "@types/react": "*",
-    "@vx/group": "0.0.195",
+    "@vx/group": "0.0.196",
     "classnames": "^2.2.5",
     "prop-types": "^15.5.10"
   },
   "devDependencies": {
-    "@vx/scale": "0.0.195"
+    "@vx/scale": "0.0.196"
   }
 }

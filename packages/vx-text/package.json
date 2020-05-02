@@ -1,6 +1,6 @@
 {
   "name": "@vx/text",
-  "version": "0.0.195",
+  "version": "0.0.196",
   "description": "vx text",
   "sideEffects": false,
   "main": "lib/index.js",

@@ -1,6 +1,6 @@
 {
   "name": "@vx/threshold",
-  "version": "0.0.195",
+  "version": "0.0.196",
   "description": "vx threshold",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -26,8 +26,8 @@
   "dependencies": {
     "@types/classnames": "^2.2.9",
     "@types/react": "*",
-    "@vx/clip-path": "0.0.195",
-    "@vx/shape": "0.0.195",
+    "@vx/clip-path": "0.0.196",
+    "@vx/shape": "0.0.196",
     "classnames": "^2.2.5",
     "prop-types": "^15.5.10"
   },
