@@ -1,4 +1,5 @@
 # Changelog
+- [v0.0.196](#v00196)
 - [v0.0.195](#v00195)
 - [v0.0.194](#v00194)
 - [v0.0.193](#v00193)
@@ -14,10 +15,10 @@
 - [v0.0.183](#v00183)
 - [v0.0.182](#v00182)
 - [v0.0.181](#v00181)
-- [v0.0.180](#v00180)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v00180">v0.0.180</a></li>
   <li><a href="#v00179">v0.0.179</a></li>
   <li><a href="#v00178">v0.0.178</a></li>
   <li><a href="#v00177">v0.0.177</a></li>
@@ -85,6 +86,60 @@
 </details>
 
 ------
+
+# v0.0.196
+
+#### :trophy: Contributors
+
+- [dennisja](https://github.com/dennisja)
+- [maryschmidt](https://github.com/maryschmidt)
+- [williaster](https://github.com/williaster)
+
+#### :rocket: Enhancements
+
+- [tooltip] Remove tooltip default styles [#666](https://github.com/hshoff/vx/pull/666)
+- [brush] Add initialBrushPosition [#618](https://github.com/hshoff/vx/pull/618), fix in [#667](https://github.com/hshoff/vx/pull/667)
+
+#### :memo: Documentation
+
+- [demo] Several demos refactored to link out to codesandbox
+
+```
+Changes:
+ - @vx/annotation: 0.0.195 => 0.0.196
+ - @vx/axis: 0.0.195 => 0.0.196
+ - @vx/bounds: 0.0.195 => 0.0.196
+ - @vx/brush: 0.0.195 => 0.0.196
+ - @vx/chord: 0.0.195 => 0.0.196
+ - @vx/clip-path: 0.0.195 => 0.0.196
+ - @vx/curve: 0.0.195 => 0.0.196
+ - @vx/demo: 0.0.195 => 0.0.196
+ - @vx/drag: 0.0.195 => 0.0.196
+ - @vx/event: 0.0.195 => 0.0.196
+ - @vx/geo: 0.0.195 => 0.0.196
+ - @vx/glyph: 0.0.195 => 0.0.196
+ - @vx/gradient: 0.0.195 => 0.0.196
+ - @vx/grid: 0.0.195 => 0.0.196
+ - @vx/group: 0.0.195 => 0.0.196
+ - @vx/heatmap: 0.0.195 => 0.0.196
+ - @vx/hierarchy: 0.0.195 => 0.0.196
+ - @vx/legend: 0.0.195 => 0.0.196
+ - @vx/marker: 0.0.195 => 0.0.196
+ - @vx/mock-data: 0.0.195 => 0.0.196
+ - @vx/network: 0.0.195 => 0.0.196
+ - @vx/pattern: 0.0.195 => 0.0.196
+ - @vx/point: 0.0.195 => 0.0.196
+ - @vx/responsive: 0.0.195 => 0.0.196
+ - @vx/scale: 0.0.195 => 0.0.196
+ - @vx/shape: 0.0.195 => 0.0.196
+ - @vx/stats: 0.0.195 => 0.0.196
+ - @vx/text: 0.0.195 => 0.0.196
+ - @vx/threshold: 0.0.195 => 0.0.196
+ - @vx/tooltip: 0.0.195 => 0.0.196
+ - @vx/voronoi: 0.0.195 => 0.0.196
+ - @vx/vx: 0.0.195 => 0.0.196
+ - @vx/zoom: 0.0.195 => 0.0.196
+```
 
 # v0.0.195
 
