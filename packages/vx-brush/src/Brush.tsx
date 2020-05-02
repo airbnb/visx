@@ -1,6 +1,13 @@
 import React from 'react';
 import BaseBrush, { BaseBrushProps, BaseBrushState } from './BaseBrush';
-import { Bounds, BrushStartEnd, MarginShape, Point, ResizeTriggerAreas, Scale } from './types';
+import {
+  Bounds,
+  PartialBrushStartEnd,
+  MarginShape,
+  Point,
+  ResizeTriggerAreas,
+  Scale,
+} from './types';
 import { scaleInvert, getDomainFromExtent } from './utils';
 
 const SAFE_PIXEL = 2;
@@ -20,7 +27,7 @@ export type BrushProps = {
   onClick: BaseBrushProps['onClick'];
   margin: MarginShape;
   brushDirection: 'vertical' | 'horizontal' | 'both';
-  initialBrushPosition?: BrushStartEnd;
+  initialBrushPosition?: PartialBrushStartEnd;
   resizeTriggerAreas: ResizeTriggerAreas[];
   brushRegion: 'xAxis' | 'yAxis' | 'chart';
   yAxisOrientation: 'left' | 'right';
