@@ -29,6 +29,11 @@ export interface BrushStartEnd {
   end: Point;
 }
 
+export interface PartialBrushStartEnd {
+  start: Partial<Point>;
+  end: Partial<Point>;
+}
+
 export type ResizeTriggerAreas =
   | 'left'
   | 'right'

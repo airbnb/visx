@@ -6,7 +6,7 @@ import Drag, { HandlerArgs as DragArgs } from '@vx/drag/lib/Drag';
 import BrushHandle from './BrushHandle';
 import BrushCorner from './BrushCorner';
 import BrushSelection from './BrushSelection';
-import { MarginShape, Point, BrushShape, BrushStartEnd, ResizeTriggerAreas } from './types';
+import { MarginShape, Point, BrushShape, ResizeTriggerAreas, PartialBrushStartEnd } from './types';
 
 const BRUSH_OVERLAY_STYLES = { cursor: 'crosshair' };
 
@@ -16,7 +16,7 @@ type MouseHandlerEvent =
 
 export type BaseBrushProps = {
   brushDirection?: 'horizontal' | 'vertical' | 'both';
-  initialBrushPosition?: BrushStartEnd;
+  initialBrushPosition?: PartialBrushStartEnd;
   width: number;
   height: number;
   left: number;
@@ -49,18 +49,19 @@ export type UpdateBrush =
 export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrushState> {
   private constructor(props: BaseBrushProps) {
     super(props);
+    const { initialBrushPosition } = props;
+    const extent = initialBrushPosition
+      ? this.getExtent(initialBrushPosition.start, initialBrushPosition.end)
+      : {
+          x0: -1,
+          x1: -1,
+          y0: -1,
+          y1: -1,
+        };
     this.state = {
-      start: { x: 0, y: 0 },
-      end: { x: 0, y: 0 },
-      ...this.props.initialBrushPosition,
-      extent: this.props.initialBrushPosition
-        ? this.getExtent(this.props.initialBrushPosition.start, this.props.initialBrushPosition.end)
-        : {
-            x0: -1,
-            x1: -1,
-            y0: -1,
-            y1: -1,
-          },
+      start: { x: Math.max(0, extent.x0), y: Math.max(0, extent.y0) },
+      end: { x: Math.max(0, extent.x1), y: Math.max(0, extent.y1) },
+      extent,
       bounds: {
         x0: 0,
         x1: this.props.width,
@@ -98,14 +99,6 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
     initialBrushPosition: null,
   };
 
-  componentDidMount() {
-    window.addEventListener('mouseup', this.handleDragEnd);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('mouseup', this.handleDragEnd);
-  }
-
   componentDidUpdate(prevProps: BaseBrushProps) {
     if (this.props.width !== prevProps.width || this.props.height !== prevProps.height) {
       // eslint-disable-next-line react/no-did-update-set-state
@@ -120,12 +113,12 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
     }
   }
 
-  getExtent = (start: Point, end: Point) => {
+  getExtent = (start: Partial<Point>, end: Partial<Point>) => {
     const { brushDirection, width, height } = this.props;
-    const x0 = brushDirection === 'vertical' ? 0 : Math.min(start.x, end.x);
-    const x1 = brushDirection === 'vertical' ? width : Math.max(start.x, end.x);
-    const y0 = brushDirection === 'horizontal' ? 0 : Math.min(start.y, end.y);
-    const y1 = brushDirection === 'horizontal' ? height : Math.max(start.y, end.y);
+    const x0 = brushDirection === 'vertical' ? 0 : Math.min(start.x || 0, end.x || 0);
+    const x1 = brushDirection === 'vertical' ? width : Math.max(start.x || 0, end.x || 0);
+    const y0 = brushDirection === 'horizontal' ? 0 : Math.min(start.y || 0, end.y || 0);
+    const y1 = brushDirection === 'horizontal' ? height : Math.max(start.y || 0, end.y || 0);
 
     return {
       x0,
@@ -163,19 +156,18 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
     }));
   };
 
-  handleDragMove = (draw: DragArgs) => {
+  handleDragMove = (drag: DragArgs) => {
     const { left, top, inheritedMargin } = this.props;
-    if (!draw.isDragging) return;
+    if (!drag.isDragging) return;
     const marginLeft = (inheritedMargin && inheritedMargin.left) || 0;
     const marginTop = (inheritedMargin && inheritedMargin.top) || 0;
     const end = {
-      x: (draw.x || 0) + draw.dx - left - marginLeft,
-      y: (draw.y || 0) + draw.dy - top - marginTop,
+      x: (drag.x || 0) + drag.dx - left - marginLeft,
+      y: (drag.y || 0) + drag.dy - top - marginTop,
     };
     this.updateBrush((prevBrush: BaseBrushState) => {
       const { start } = prevBrush;
       const extent = this.getExtent(start, end);
-
       return {
         ...prevBrush,
         end,
@@ -185,36 +177,33 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
   };
 
   handleDragEnd = () => {
-    const { isBrushing } = this.state;
-    if (isBrushing) {
-      const { onBrushEnd, resetOnEnd } = this.props;
-      this.updateBrush((prevBrush: BaseBrushState) => {
-        const { extent } = prevBrush;
-        const newState = {
-          ...prevBrush,
-          start: {
-            x: extent.x0,
-            y: extent.y0,
-          },
-          end: {
-            x: extent.x1,
-            y: extent.y1,
-          },
-          isBrushing: false,
-          activeHandle: null,
-        };
+    const { onBrushEnd, resetOnEnd } = this.props;
+    this.updateBrush((prevBrush: BaseBrushState) => {
+      const { extent } = prevBrush;
+      const newState = {
+        ...prevBrush,
+        start: {
+          x: extent.x0,
+          y: extent.y0,
+        },
+        end: {
+          x: extent.x1,
+          y: extent.y1,
+        },
+        isBrushing: false,
+        activeHandle: null,
+      };
 
-        if (onBrushEnd) {
-          onBrushEnd(newState);
-        }
+      if (onBrushEnd) {
+        onBrushEnd(newState);
+      }
 
-        if (resetOnEnd) {
-          this.reset();
-        }
+      if (resetOnEnd) {
+        this.reset();
+      }
 
-        return newState;
-      });
-    }
+      return newState;
+    });
   };
 
   getBrushWidth = () => {

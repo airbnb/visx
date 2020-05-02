@@ -16,7 +16,7 @@ import { ShowProvidedProps, MarginShape } from '../../types';
 /**
  * Initialize some variables
  */
-const stock = appleStock.slice(1200);
+const stock = appleStock.slice(1000);
 const axisColor = '#fff';
 const axisBottomTickLabelProps = {
   textAnchor: 'middle' as const,
@@ -155,6 +155,11 @@ function BrushChart({
     nice: true,
   });
 
+  const initialBrushPosition = {
+    start: { x: brushDateScale(getDate(stock[50])) },
+    end: { x: brushDateScale(getDate(stock[100])) },
+  };
+
   return (
     <div>
       <svg width={width} height={height}>
@@ -203,6 +208,7 @@ function BrushChart({
             handleSize={8}
             resizeTriggerAreas={['left', 'right', 'bottomRight']}
             brushDirection="horizontal"
+            initialBrushPosition={initialBrushPosition}
             onChange={onBrushChange}
             onClick={() => setFilteredStock(stock)}
             selectedBoxStyle={{
