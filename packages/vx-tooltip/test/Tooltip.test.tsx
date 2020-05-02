@@ -19,7 +19,7 @@ describe('<Tooltip />', () => {
     const wrapper = shallow(<Tooltip unstyled>Hello</Tooltip>);
     const styles = wrapper.props().style;
     Object.keys(defaultStyles).forEach(key => {
-      expect(styles[key]).toBe(undefined);
+      expect(styles[key]).toBeUndefined();
     });
   });
 
@@ -34,7 +34,7 @@ describe('<Tooltip />', () => {
       boxShadow: '0 2px 3px rgba(133,133,133,0.5)',
       lineHeight: '2em',
     };
-    const wrapper = shallow(<Tooltip style={newStyles}></Tooltip>);
+    const wrapper = shallow(<Tooltip style={newStyles} />);
     const styles = wrapper.props().style;
     Object.entries(newStyles).forEach(([key, value]) => {
       expect(styles[key]).toBe(value);
