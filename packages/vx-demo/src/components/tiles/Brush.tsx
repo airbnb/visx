@@ -157,7 +157,7 @@ function BrushChart({
 
   const initialBrushPosition = {
     start: { x: brushDateScale(getDate(stock[50])) },
-    end: { x: brushDateScale(getDate(stock[150])) },
+    end: { x: brushDateScale(getDate(stock[100])) },
   };
 
   return (
