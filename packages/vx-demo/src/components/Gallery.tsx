@@ -67,7 +67,7 @@ const items = [
 const tiltOptions = { max: 8, scale: 1 };
 const detailsHeight = 76;
 
-export default function() {
+export default function Gallery() {
   return (
     <div>
       <div className="gallery">
