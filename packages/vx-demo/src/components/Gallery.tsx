@@ -35,7 +35,7 @@ import Network from './tiles/Network';
 import Streamgraph, {
   BACKGROUND as streamgraphBackgroundColor,
 } from '../docs-v2/examples/vx-streamgraph/Example';
-import Pack from './tiles/Pack';
+import Pack from '../docs-v2/examples/vx-pack/Example';
 import Patterns from '../docs-v2/examples/vx-pattern/Example';
 import Treemap from './tiles/Treemap';
 import Radar from './tiles/Radar';
