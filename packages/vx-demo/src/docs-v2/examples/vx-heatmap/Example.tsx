@@ -3,7 +3,6 @@ import { Group } from '@vx/group';
 import genBins, { Bin, Bins } from '@vx/mock-data/lib/generators/genBins';
 import { scaleLinear } from '@vx/scale';
 import { HeatmapCircle, HeatmapRect } from '@vx/heatmap';
-import { ShowProvidedProps } from '../../types';
 
 const hot1 = '#77312f';
 const hot2 = '#f33d15';
@@ -48,27 +47,27 @@ const opacityScale = scaleLinear<number>({
   domain: [0, colorMax],
 });
 
+type Props = {
+  width: number;
+  height: number;
+  margin?: { top: number; right: number; bottom: number; left: number };
+  separation?: number;
+  events?: boolean;
+};
+
+const defaultMargin = { top: 10, left: 20, right: 20, bottom: 110 };
+
 export default ({
   width,
   height,
   events = false,
-  margin = {
-    top: 10,
-    left: 20,
-    right: 20,
-    bottom: 110,
-  },
+  margin = defaultMargin,
   separation = 20,
-}: ShowProvidedProps & { separation?: number }) => {
+}: Props) => {
   if (width < 10) return null;
 
   // bounds
-  let size = width;
-  if (size > margin.left + margin.right) {
-    size = width - margin.left - margin.right - separation;
-  }
-
-  const xMax = size / 2;
+  const xMax = width / 2;
   const yMax = height - margin.bottom - margin.top;
 
   const binWidth = xMax / binData.length;
