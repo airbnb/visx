@@ -44,7 +44,7 @@ import DragI from '../docs-v2/examples/vx-drag-i/Example';
 import DragII from '../docs-v2/examples/vx-drag-ii/Example';
 import LinkTypes from './tiles/LinkTypes';
 import Threshold from './tiles/Threshold';
-import Chord from './tiles/Chord';
+import Chord from '../docs-v2/examples/vx-chord/Example';
 import Polygons from './tiles/Polygons';
 import ZoomI from './tiles/Zoom-i';
 import Brush from './tiles/Brush';
