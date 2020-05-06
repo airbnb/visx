@@ -49,7 +49,7 @@ import LinkTypes from './tiles/LinkTypes';
 import Threshold from './tiles/Threshold';
 import Chord from '../docs-v2/examples/vx-chord/Example';
 import Polygons from './tiles/Polygons';
-import ZoomI from './tiles/Zoom-i';
+import ZoomI from '../docs-v2/examples/vx-zoom-i/Example';
 import Brush from './tiles/Brush';
 
 const items = [

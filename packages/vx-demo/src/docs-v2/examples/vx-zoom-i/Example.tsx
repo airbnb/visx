@@ -1,5 +1,6 @@
-/* eslint-disable react/jsx-handler-names */
+/* eslint react/jsx-handler-names: "off" */
 import React, { useState } from 'react';
+import { interpolateRainbow } from 'd3-scale-chromatic';
 import { Zoom } from '@vx/zoom';
 import { localPoint } from '@vx/event';
 import { RectClipPath } from '@vx/clip-path';
@@ -8,8 +9,6 @@ import genPhyllotaxis, {
   PhyllotaxisPoint,
 } from '@vx/mock-data/lib/generators/genPhyllotaxis';
 import { scaleLinear } from '@vx/scale';
-import { interpolateRainbow } from 'd3-scale-chromatic';
-import { ShowProvidedProps } from '../../types';
 
 const bg = '#0a0a0a';
 const points = [...new Array(1000)];
@@ -26,11 +25,16 @@ const initialTransform = {
   skewY: 0,
 };
 
-export default function ZoomI({ width, height }: ShowProvidedProps) {
+type Props = {
+  width: number;
+  height: number;
+};
+
+export default function ZoomI({ width, height }: Props) {
   const [showMiniMap, setShowMiniMap] = useState<boolean>(true);
 
-  const gen: GenPhyllotaxisFunction = genPhyllotaxis({ radius: 10, width, height });
-  const phyllotaxis: PhyllotaxisPoint[] = points.map((d, i) => gen(i));
+  const genenerator: GenPhyllotaxisFunction = genPhyllotaxis({ radius: 10, width, height });
+  const phyllotaxis: PhyllotaxisPoint[] = points.map((d, i) => genenerator(i));
 
   return (
     <>
@@ -44,7 +48,7 @@ export default function ZoomI({ width, height }: ShowProvidedProps) {
         transformMatrix={initialTransform}
       >
         {zoom => (
-          <div style={{ position: 'relative' }}>
+          <div className="relative">
             <svg
               width={width}
               height={height}
@@ -190,6 +194,9 @@ export default function ZoomI({ width, height }: ShowProvidedProps) {
           display: flex;
           flex-direction: column;
           align-items: flex-end;
+        }
+        .relative {
+          position: relative;
         }
       `}</style>
     </>
