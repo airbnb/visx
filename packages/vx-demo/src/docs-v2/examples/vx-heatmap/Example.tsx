@@ -64,10 +64,10 @@ export default ({
   margin = defaultMargin,
   separation = 20,
 }: Props) => {
-  if (width < 10) return null;
-
   // bounds
-  const xMax = width / 2;
+  const size =
+    width > margin.left + margin.right ? width - margin.left - margin.right - separation : width;
+  const xMax = size / 2;
   const yMax = height - margin.bottom - margin.top;
 
   const binWidth = xMax / binData.length;
@@ -77,7 +77,7 @@ export default ({
   xScale.range([0, xMax]);
   yScale.range([yMax, 0]);
 
-  return (
+  return width < 10 ? null : (
     <svg width={width} height={height}>
       <rect x={0} y={0} width={width} height={height} rx={14} fill={bg} />
       <Group top={margin.top} left={margin.left}>
