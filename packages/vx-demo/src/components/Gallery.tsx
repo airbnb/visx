@@ -21,6 +21,7 @@ import BarGroup from './tiles/BarGroup';
 import BarGroupHorizontal from './tiles/BarGroupHorizontal';
 import BarStack from './tiles/BarStack';
 import BarStackHorizontal from './tiles/BarStackHorizontal';
+import Brush from '../docs-v2/examples/vx-brush/Example';
 import Heatmap from './tiles/Heatmap';
 import LineRadial from '../docs-v2/examples/vx-shape-line-radial/Example';
 import Pies from '../docs-v2/examples/vx-shape-pie/Example';
@@ -47,7 +48,6 @@ import Threshold from './tiles/Threshold';
 import Chord from './tiles/Chord';
 import Polygons from './tiles/Polygons';
 import ZoomI from './tiles/Zoom-i';
-import Brush from './tiles/Brush';
 
 const items = [
   '#242424',
