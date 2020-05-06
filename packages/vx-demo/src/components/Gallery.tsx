@@ -26,7 +26,7 @@ import LineRadial from '../docs-v2/examples/vx-shape-line-radial/Example';
 import Pies from '../docs-v2/examples/vx-shape-pie/Example';
 import Trees from './tiles/Trees';
 import Dendrograms from './tiles/Dendrograms';
-import Voronoi from './tiles/Voronoi';
+import Voronoi from '../docs-v2/examples/vx-voronoi/Example';
 import Legends from './tiles/Legends';
 import StatsPlot from './tiles/Statsplot';
 import GeoCustom from '../docs-v2/examples/vx-geo-custom/Example';
