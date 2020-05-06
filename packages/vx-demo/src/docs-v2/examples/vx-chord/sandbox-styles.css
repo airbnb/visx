@@ -6,23 +6,3 @@ body,
     'Open Sans', 'Helvetica Neue', sans-serif;
   line-height: 2em;
 }
-
-.chords {
-  display: flex;
-  flex-direction: column;
-  user-select: none;
-}
-
-svg {
-  margin: 1rem 0;
-  cursor: pointer;
-}
-
-.deets {
-  display: flex;
-  flex-direction: row;
-  font-size: 12px;
-}
-.deets > div {
-  margin: 0.25rem;
-}

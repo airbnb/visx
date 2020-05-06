@@ -90,6 +90,25 @@ export default function Example({ width, height, centerSize = 20, events = false
           Based on Mike Bostock's <a href="https://bl.ocks.org/mbostock/4062006">Chord Diagram</a>
         </div>
       </div>
+      <style jsx>{`
+        .chords {
+          display: flex;
+          flex-direction: column;
+          user-select: none;
+        }
+        svg {
+          margin: 1rem 0;
+          cursor: pointer;
+        }
+        .deets {
+          display: flex;
+          flex-direction: row;
+          font-size: 12px;
+        }
+        .deets > div {
+          margin: 0.25rem;
+        }
+      `}</style>
     </div>
   );
 }
