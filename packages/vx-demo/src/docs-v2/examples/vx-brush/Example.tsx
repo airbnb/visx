@@ -12,7 +12,7 @@ import AreaChart from './AreaChart';
 // Initialize some variables
 const stock = appleStock.slice(1000);
 const brushMargin = { top: 0, bottom: 20, left: 50, right: 20 };
-const chartSeparation = 10;
+const chartSeparation = 24;
 const PATTERN_ID = 'brush_pattern';
 const GRADIENT_ID = 'brush_gradient';
 const selectedBrushStyle = {
@@ -154,7 +154,7 @@ function BrushChart({
             height={yBrushMax}
             margin={brushMargin}
             handleSize={8}
-            resizeTriggerAreas={['left', 'right', 'bottomRight']}
+            resizeTriggerAreas={['left', 'right']}
             brushDirection="horizontal"
             initialBrushPosition={initialBrushPosition}
             onChange={onBrushChange}
