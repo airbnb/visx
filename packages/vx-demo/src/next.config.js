@@ -12,7 +12,7 @@ module.exports = withCss({
     const babelConfig = config.module.rules[0];
     const initialBabelUse = babelConfig.use;
     babelConfig.use = [
-      ...initialBabelUse,
+      initialBabelUse,
       {
         loader: 'react-docgen-typescript-loader',
       },
