@@ -1,7 +1,7 @@
 import React from 'react';
 import Show from '../components/Show';
-import Heatmap from '../docs-v2/examples/vx-heatmap/Example';
-import HeatmapSource from '!!raw-loader!../docs-v2/examples/vx-heatmap/Example';
+import Heatmaps from '../docs-v2/examples/vx-heatmap/Example';
+import HeatmapsSource from '!!raw-loader!../docs-v2/examples/vx-heatmap/Example';
 
 export default () => {
   return (
@@ -13,11 +13,11 @@ export default () => {
         right: 30,
         bottom: 80,
       }}
-      component={Heatmap}
+      component={Heatmaps}
       title="Heatmaps"
       codeSandboxDirectoryName="vx-heatmap"
     >
-      {HeatmapSource}
+      {HeatmapsSource}
     </Show>
   );
 };

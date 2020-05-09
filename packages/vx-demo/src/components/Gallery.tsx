@@ -21,7 +21,7 @@ import BarGroup from './tiles/BarGroup';
 import BarGroupHorizontal from './tiles/BarGroupHorizontal';
 import BarStack from './tiles/BarStack';
 import BarStackHorizontal from './tiles/BarStackHorizontal';
-import Heatmap from '../docs-v2/examples/vx-heatmap/Example';
+import Heatmaps from '../docs-v2/examples/vx-heatmap/Example';
 import LineRadial from '../docs-v2/examples/vx-shape-line-radial/Example';
 import Pies from '../docs-v2/examples/vx-shape-pie/Example';
 import Trees from './tiles/Trees';
@@ -328,11 +328,13 @@ export default function Gallery() {
           </Link>
         </Tilt>
         <Tilt className="tilt" options={tiltOptions}>
-          <Link href="/heatmap">
+          <Link href="/heatmaps">
             <div className="gallery-item" style={{ background: '#28272c' }}>
               <div className="image">
                 <ParentSize>
-                  {({ width, height }) => <Heatmap width={width} height={height + detailsHeight} />}
+                  {({ width, height }) => (
+                    <Heatmaps width={width} height={height + detailsHeight} />
+                  )}
                 </ParentSize>
               </div>
               <div className="details" style={{ color: 'rgba(255,255,255,0.3)' }}>
