@@ -1,6 +1,6 @@
 # Contributing
 
-Contributions welcome!
+Contributions welcome! Please follow the [code of conduct](./CODE_OF_CONDUCT.md).
 
 ## Overview
 
