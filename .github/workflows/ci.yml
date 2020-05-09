@@ -33,5 +33,10 @@ jobs:
       run: yarn run jest -w 4
       env:
         CI: true
+        COVERAGE: true
+    - name: Report code coverage
+      uses: coverallsapp/github-action@v1.1.1
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
     - name: Run lint
       run: yarn run lint
