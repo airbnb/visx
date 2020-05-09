@@ -864,19 +864,7 @@ export default function Gallery() {
             <div className="gallery-item" style={{ background: '#e4e3d8' }}>
               <div className="image">
                 <ParentSize>
-                  {({ width, height }) => (
-                    <Chord
-                      width={width}
-                      height={height}
-                      centerSize={10}
-                      margin={{
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        bottom: 30,
-                      }}
-                    />
-                  )}
+                  {({ width, height }) => <Chord width={width} height={height} centerSize={10} />}
                 </ParentSize>
               </div>
               <div className="details" style={{ color: '#111' }}>
