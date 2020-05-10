@@ -44,7 +44,7 @@ import DragI from '../docs-v2/examples/vx-drag-i/Example';
 import DragII from '../docs-v2/examples/vx-drag-ii/Example';
 import LinkTypes from './tiles/LinkTypes';
 import Threshold from './tiles/Threshold';
-import Chord from './tiles/Chord';
+import Chord from '../docs-v2/examples/vx-chord/Example';
 import Polygons from './tiles/Polygons';
 import ZoomI from './tiles/Zoom-i';
 import Brush from './tiles/Brush';
@@ -864,19 +864,7 @@ export default function Gallery() {
             <div className="gallery-item" style={{ background: '#e4e3d8' }}>
               <div className="image">
                 <ParentSize>
-                  {({ width, height }) => (
-                    <Chord
-                      width={width}
-                      height={height}
-                      centerSize={10}
-                      margin={{
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        bottom: 30,
-                      }}
-                    />
-                  )}
+                  {({ width, height }) => <Chord width={width} height={height} centerSize={10} />}
                 </ParentSize>
               </div>
               <div className="details" style={{ color: '#111' }}>
