@@ -38,7 +38,10 @@ import Streamgraph, {
 import Pack from '../docs-v2/examples/vx-pack/Example';
 import Patterns from '../docs-v2/examples/vx-pattern/Example';
 import Treemap from './tiles/Treemap';
-import Radar from './tiles/Radar';
+import Radar, {
+  bg as radarBackground,
+  pumpkin as radarColor,
+} from '../docs-v2/examples/vx-radar/Example';
 import Responsive from '../docs-v2/examples/vx-responsive/Example';
 import DragI from '../docs-v2/examples/vx-drag-i/Example';
 import DragII from '../docs-v2/examples/vx-drag-ii/Example';
@@ -672,7 +675,7 @@ export default function Gallery() {
             <div
               className="gallery-item"
               style={{
-                background: '#FAF7E9',
+                background: radarBackground,
               }}
             >
               <div className="image">
@@ -683,7 +686,7 @@ export default function Gallery() {
               <div
                 className="details"
                 style={{
-                  color: '#f5810c',
+                  color: radarColor,
                 }}
               >
                 <div className="title">Radar</div>
