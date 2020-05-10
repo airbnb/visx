@@ -1,21 +1,11 @@
 import React from 'react';
 import Show from '../components/Show';
-import Legends from '../components/tiles/Legends';
-import LegendsSource from '!!raw-loader!../components/tiles/Legends';
+import Legends from '../docs-v2/examples/vx-legend/Example';
+import LegendsSource from '!!raw-loader!../docs-v2/examples/vx-legend/Example';
 
 export default () => {
   return (
-    <Show
-      events
-      margin={{
-        top: 10,
-        left: 40,
-        right: 30,
-        bottom: 80,
-      }}
-      component={Legends}
-      title="Legends"
-    >
+    <Show events component={Legends} title="Legends" codeSandboxDirectoryName="vx-legend">
       {LegendsSource}
     </Show>
   );
