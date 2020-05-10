@@ -1,20 +1,11 @@
 import React from 'react';
 import Show from '../components/Show';
-import Chord from '../components/tiles/Chord';
-import ChordSource from '!!raw-loader!../components/tiles/Chord';
+import Chord from '../docs-v2/examples/vx-chord/Example';
+import ChordSource from '!!raw-loader!../docs-v2/examples/vx-chord/Example';
 
 export default () => {
   return (
-    <Show
-      component={Chord}
-      title="Chords"
-      margin={{
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-      }}
-    >
+    <Show component={Chord} title="Chords" codeSandboxDirectoryName="vx-chord">
       {ChordSource}
     </Show>
   );

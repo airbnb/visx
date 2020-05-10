@@ -4,7 +4,6 @@ import { Group } from '@vx/group';
 import { Chord, Ribbon } from '@vx/chord';
 import { scaleOrdinal } from '@vx/scale';
 import { LinearGradient } from '@vx/gradient';
-import { ShowProvidedProps } from '../../types';
 
 const pink = '#ff2fab';
 const orange = '#ffc62e';
@@ -16,7 +15,7 @@ const blue = '#04a6ff';
 const lime = '#00ddc6';
 const bg = '#e4e3d8';
 
-const matrix = [
+const dataMatrix = [
   [11975, 5871, 8916, 2868],
   [1951, 10048, 2060, 6171],
   [8010, 16145, 8090, 8045],
@@ -32,19 +31,19 @@ const color = scaleOrdinal<number, string>({
   range: ['url(#gpinkorange)', 'url(#gpurplered)', 'url(#gpurplegreen)', 'url(#gbluelime)'],
 });
 
-export default ({
-  width,
-  height,
-  centerSize = 20,
-  events = false,
-}: ShowProvidedProps & { centerSize?: number }) => {
-  if (width < 10) return null;
+type Props = {
+  width: number;
+  height: number;
+  centerSize?: number;
+  events?: boolean;
+};
 
+export default function Example({ width, height, centerSize = 20, events = false }: Props) {
   const outerRadius = Math.min(width, height) * 0.5 - (centerSize + 10);
   const innerRadius = outerRadius - centerSize;
 
-  return (
-    <div className="Chords">
+  return width < 10 ? null : (
+    <div className="chords">
       <svg width={width} height={height}>
         <LinearGradient id="gpinkorange" from={pink} to={orange} vertical={false} />
         <LinearGradient id="gpurplered" from={purple} to={red} vertical={false} />
@@ -52,7 +51,7 @@ export default ({
         <LinearGradient id="gbluelime" from={blue} to={lime} vertical={false} />
         <rect width={width} height={height} fill={bg} rx={14} />
         <Group top={height / 2} left={width / 2}>
-          <Chord matrix={matrix} padAngle={0.05} sortSubgroups={descending}>
+          <Chord matrix={dataMatrix} padAngle={0.05} sortSubgroups={descending}>
             {({ chords }) => (
               <g>
                 {chords.groups.map((group, i) => (
@@ -91,19 +90,16 @@ export default ({
           Based on Mike Bostock's <a href="https://bl.ocks.org/mbostock/4062006">Chord Diagram</a>
         </div>
       </div>
-
       <style jsx>{`
-        .Chords {
+        .chords {
           display: flex;
           flex-direction: column;
           user-select: none;
         }
-
         svg {
           margin: 1rem 0;
           cursor: pointer;
         }
-
         .deets {
           display: flex;
           flex-direction: row;
@@ -115,4 +111,4 @@ export default ({
       `}</style>
     </div>
   );
-};
+}
