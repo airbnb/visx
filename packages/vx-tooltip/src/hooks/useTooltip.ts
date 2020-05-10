@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 
 export type UseTooltipParams<TooltipData> = {
   tooltipOpen: boolean;
@@ -19,40 +19,41 @@ type UpdateTooltipArgs<TooltipData> = UseTooltipState<TooltipData>;
 export default function useTooltip<TooltipData = {}>(): UseTooltipParams<TooltipData> {
   const [tooltipState, setTooltipState] = useState<UseTooltipState<TooltipData>>({
     tooltipOpen: false,
-    tooltipLeft: undefined,
-    tooltipTop: undefined,
-    tooltipData: undefined,
   });
 
-  const updateTooltip = ({
-    tooltipOpen,
-    tooltipLeft,
-    tooltipTop,
-    tooltipData,
-  }: UpdateTooltipArgs<TooltipData>) =>
-    setTooltipState(prevState => ({
-      ...prevState,
-      tooltipOpen,
-      tooltipLeft,
-      tooltipTop,
-      tooltipData,
-    }));
+  const updateTooltip = useCallback(
+    ({ tooltipOpen, tooltipLeft, tooltipTop, tooltipData }: UpdateTooltipArgs<TooltipData>) =>
+      setTooltipState(prevState => ({
+        ...prevState,
+        tooltipOpen,
+        tooltipLeft,
+        tooltipTop,
+        tooltipData,
+      })),
+    [],
+  );
 
-  const showTooltip = ({ tooltipLeft, tooltipTop, tooltipData }: ShowTooltipArgs<TooltipData>) =>
-    updateTooltip({
-      tooltipOpen: true,
-      tooltipLeft,
-      tooltipTop,
-      tooltipData,
-    });
+  const showTooltip = useCallback(
+    ({ tooltipLeft, tooltipTop, tooltipData }: ShowTooltipArgs<TooltipData>) =>
+      updateTooltip({
+        tooltipOpen: true,
+        tooltipLeft,
+        tooltipTop,
+        tooltipData,
+      }),
+    [updateTooltip],
+  );
 
-  const hideTooltip = () =>
-    updateTooltip({
-      tooltipOpen: false,
-      tooltipLeft: undefined,
-      tooltipTop: undefined,
-      tooltipData: undefined,
-    });
+  const hideTooltip = useCallback(
+    () =>
+      updateTooltip({
+        tooltipOpen: false,
+        tooltipLeft: undefined,
+        tooltipTop: undefined,
+        tooltipData: undefined,
+      }),
+    [updateTooltip],
+  );
 
   return {
     tooltipOpen: tooltipState.tooltipOpen,
