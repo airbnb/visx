@@ -29,7 +29,6 @@ import Dendrograms from './tiles/Dendrograms';
 import Voronoi from './tiles/Voronoi';
 import Legends from '../docs-v2/examples/vx-legend/Example';
 import StatsPlot from '../docs-v2/examples/vx-stats/Example';
-import Legends from '../docs-v2/examples/vx-legend/Example';
 import GeoCustom from '../docs-v2/examples/vx-geo-custom/Example';
 import GeoMercator from '../docs-v2/examples/vx-geo-mercator/Example';
 import Network from './tiles/Network';
