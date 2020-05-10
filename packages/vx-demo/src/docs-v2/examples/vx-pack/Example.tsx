@@ -3,7 +3,6 @@ import { Group } from '@vx/group';
 import { Pack, hierarchy } from '@vx/hierarchy';
 import { scaleQuantize } from '@vx/scale';
 import rawData, { Exoplanets as Datum } from '@vx/mock-data/lib/mocks/exoplanets';
-import { ShowProvidedProps } from '../../types';
 
 function extent<D>(allData: D[], value: (d: D) => number): [number, number] {
   return [Math.min(...allData.map(value)), Math.max(...allData.map(value))];
@@ -21,48 +20,44 @@ const root = hierarchy<Datum>(pack)
   .sum(d => d.radius * d.radius)
   .sort(
     (a, b) =>
+      // sort by hierarchy, then distance
       (a && a.data ? 1 : -1) - (b && b.data ? 1 : -1) ||
       (a.children ? 1 : -1) - (b.children ? 1 : -1) ||
       (a.data.distance == null ? -1 : 1) - (b.data.distance == null ? -1 : 1) ||
       a.data.distance! - b.data.distance!,
   );
 
-export default ({
-  width,
-  height,
-  margin = {
-    top: 10,
-    left: 30,
-    right: 40,
-    bottom: 80,
-  },
-}: ShowProvidedProps) => {
-  if (width < 10) return null;
+const defaultMargin = { top: 10, left: 30, right: 40, bottom: 80 };
 
-  return (
+type Props = {
+  width: number;
+  height: number;
+  margin?: { top: number; right: number; bottom: number; left: number };
+};
+
+export default function Example({ width, height, margin = defaultMargin }: Props) {
+  return width < 10 ? null : (
     <svg width={width} height={height}>
       <rect width={width} height={height} rx={14} fill="#ffffff" />
 
       <Pack<Datum> root={root} size={[width * 2, height * 2]}>
         {packData => {
-          const circles = packData.descendants().slice(2);
+          const circles = packData.descendants().slice(2); // skip outer hierarchies
           return (
             <Group top={-height - margin.bottom} left={-width / 2}>
-              {circles.map((circle, i) => {
-                return (
-                  <circle
-                    key={`cir-${i}`}
-                    r={circle.r}
-                    cx={circle.x}
-                    cy={circle.y}
-                    fill={colorScale(circle.data.radius)}
-                  />
-                );
-              })}
+              {circles.map((circle, i) => (
+                <circle
+                  key={`circle-${i}`}
+                  r={circle.r}
+                  cx={circle.x}
+                  cy={circle.y}
+                  fill={colorScale(circle.data.radius)}
+                />
+              ))}
             </Group>
           );
         }}
       </Pack>
     </svg>
   );
-};
+}
