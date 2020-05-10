@@ -27,7 +27,7 @@ import Pies from '../docs-v2/examples/vx-shape-pie/Example';
 import Trees from './tiles/Trees';
 import Dendrograms from './tiles/Dendrograms';
 import Voronoi from '../docs-v2/examples/vx-voronoi/Example';
-import Legends from './tiles/Legends';
+import Legends from '../docs-v2/examples/vx-legend/Example';
 import StatsPlot from './tiles/Statsplot';
 import GeoCustom from '../docs-v2/examples/vx-geo-custom/Example';
 import GeoMercator from '../docs-v2/examples/vx-geo-mercator/Example';
@@ -35,16 +35,19 @@ import Network from './tiles/Network';
 import Streamgraph, {
   BACKGROUND as streamgraphBackgroundColor,
 } from '../docs-v2/examples/vx-streamgraph/Example';
-import Pack from './tiles/Pack';
+import Pack from '../docs-v2/examples/vx-pack/Example';
 import Patterns from '../docs-v2/examples/vx-pattern/Example';
 import Treemap from './tiles/Treemap';
-import Radar from './tiles/Radar';
+import Radar, {
+  bg as radarBackground,
+  pumpkin as radarColor,
+} from '../docs-v2/examples/vx-radar/Example';
 import Responsive from '../docs-v2/examples/vx-responsive/Example';
 import DragI from '../docs-v2/examples/vx-drag-i/Example';
 import DragII from '../docs-v2/examples/vx-drag-ii/Example';
 import LinkTypes from './tiles/LinkTypes';
 import Threshold from './tiles/Threshold';
-import Chord from './tiles/Chord';
+import Chord from '../docs-v2/examples/vx-chord/Example';
 import Polygons from './tiles/Polygons';
 import ZoomI from './tiles/Zoom-i';
 import Brush from './tiles/Brush';
@@ -672,7 +675,7 @@ export default function Gallery() {
             <div
               className="gallery-item"
               style={{
-                background: '#FAF7E9',
+                background: radarBackground,
               }}
             >
               <div className="image">
@@ -683,7 +686,7 @@ export default function Gallery() {
               <div
                 className="details"
                 style={{
-                  color: '#f5810c',
+                  color: radarColor,
                 }}
               >
                 <div className="title">Radar</div>
@@ -864,19 +867,7 @@ export default function Gallery() {
             <div className="gallery-item" style={{ background: '#e4e3d8' }}>
               <div className="image">
                 <ParentSize>
-                  {({ width, height }) => (
-                    <Chord
-                      width={width}
-                      height={height}
-                      centerSize={10}
-                      margin={{
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        bottom: 30,
-                      }}
-                    />
-                  )}
+                  {({ width, height }) => <Chord width={width} height={height} centerSize={10} />}
                 </ParentSize>
               </div>
               <div className="details" style={{ color: '#111' }}>
