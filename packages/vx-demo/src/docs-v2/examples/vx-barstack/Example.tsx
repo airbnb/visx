@@ -7,7 +7,7 @@ import { AxisBottom } from '@vx/axis';
 import cityTemperature, { CityTemperature } from '@vx/mock-data/lib/mocks/cityTemperature';
 import { scaleBand, scaleLinear, scaleOrdinal } from '@vx/scale';
 import { timeParse, timeFormat } from 'd3-time-format';
-import { useTooltip, Tooltip } from '@vx/tooltip';
+import { useTooltip, Tooltip, defaultStyles } from '@vx/tooltip';
 import { LegendOrdinal } from '@vx/legend';
 
 type CityName = 'New York' | 'San Francisco' | 'Austin';
@@ -35,6 +35,12 @@ const purple2 = '#c998ff';
 export const purple3 = '#a44afe';
 export const background = '#eaedff';
 const defaultMargin = { top: 40, right: 0, bottom: 0, left: 0 };
+const tooltipStyles = {
+  ...defaultStyles,
+  minWidth: 60,
+  backgroundColor: 'rgba(0,0,0,0.9)',
+  color: 'white',
+};
 
 const data = cityTemperature.slice(0, 12);
 const keys = Object.keys(data[0]).filter(d => d !== 'date') as CityName[];
@@ -176,15 +182,7 @@ export default function Example({ width, height, events = false, margin = defaul
       </div>
 
       {tooltipOpen && tooltipData && (
-        <Tooltip
-          top={tooltipTop}
-          left={tooltipLeft}
-          style={{
-            minWidth: 60,
-            backgroundColor: 'rgba(0,0,0,0.9)',
-            color: 'white',
-          }}
-        >
+        <Tooltip top={tooltipTop} left={tooltipLeft} style={tooltipStyles}>
           <div style={{ color: colorScale(tooltipData.key) }}>
             <strong>{tooltipData.key}</strong>
           </div>

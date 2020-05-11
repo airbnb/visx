@@ -1,7 +1,7 @@
 import React from 'react';
 import Show from '../components/Show';
-import BarStackHorizontal from '../components/tiles/BarStackHorizontal';
-import BarStackHorizontalSource from '!!raw-loader!../components/tiles/BarStackHorizontal';
+import BarStackHorizontal from '../docs-v2/examples/vx-barstack-horizontal/Example';
+import BarStackHorizontalSource from '!!raw-loader!../docs-v2/examples/vx-barstack-horizontal/Example';
 
 export default () => {
   return (
@@ -15,6 +15,7 @@ export default () => {
       }}
       component={BarStackHorizontal}
       title="Bar Stack Horizontal"
+      codeSandboxDirectoryName="vx-barstack-horizontal"
     >
       {BarStackHorizontalSource}
     </Show>
