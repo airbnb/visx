@@ -15,7 +15,6 @@ import { TileMethod } from '@vx/hierarchy/lib/types';
 import shakespeare, { Shakespeare } from '@vx/mock-data/lib/mocks/shakespeare';
 
 import { scaleLinear } from '@vx/scale';
-import { ShowProvidedProps } from '../../types';
 
 const blue = '#0373d9';
 const green = '#00ff70';
@@ -40,24 +39,20 @@ const tileMethods: { [tile: string]: TileMethod<typeof data> } = {
   treemapSliceDice,
 };
 
-export default function TreemapDemo({
-  width,
-  height,
-  margin = {
-    top: 0,
-    left: 30,
-    right: 40,
-    bottom: 80,
-  },
-}: ShowProvidedProps) {
+const defaultMargin = { top: 0, left: 30, right: 40, bottom: 80 };
+
+type Props = {
+  width: number;
+  height: number;
+  margin?: { top: number; right: number; bottom: number; left: number };
+};
+
+export default function TreemapDemo({ width, height, margin = defaultMargin }: Props) {
   const [tileMethod, setTileMethod] = useState<string>('treemapSquarify');
-
-  if (width < 10) return null;
-
   const yMax = height - margin.top - margin.bottom;
   const root = hierarchy(data).sort((a, b) => (b.value || 0) - (a.value || 0));
 
-  return (
+  return width < 10 ? null : (
     <div>
       <label>tile method</label>{' '}
       <select
