@@ -29,7 +29,7 @@ const temperatureScale = scaleLinear<number>({
   nice: true,
 });
 
-const defaultMargin = { top: 0, right: 0, bottom: 0, left: 0 };
+const defaultMargin = { top: 40, right: 30, bottom: 50, left: 40 };
 
 type Props = {
   width: number;

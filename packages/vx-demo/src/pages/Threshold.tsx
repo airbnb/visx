@@ -23,12 +23,6 @@ export default () => {
       title="Threshold"
       description={Description}
       codeSandboxDirectoryName="vx-threshold"
-      margin={{
-        top: 40,
-        left: 40,
-        right: 20,
-        bottom: 50,
-      }}
     >
       {ThresholdSource}
     </Show>
