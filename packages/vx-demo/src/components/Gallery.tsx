@@ -37,7 +37,10 @@ import Streamgraph, {
 } from '../docs-v2/examples/vx-streamgraph/Example';
 import Pack from '../docs-v2/examples/vx-pack/Example';
 import Patterns from '../docs-v2/examples/vx-pattern/Example';
-import Treemap from '../docs-v2/examples/vx-treemap/Example';
+import Treemap, {
+  bg as treemapBackground,
+  color1 as treemapTextColor,
+} from '../docs-v2/examples/vx-treemap/Example';
 import Radar, {
   bg as radarBackground,
   pumpkin as radarColor,
@@ -648,18 +651,24 @@ export default function Gallery() {
             <div
               className="gallery-item"
               style={{
-                background: '#3436b8',
+                background: treemapBackground,
               }}
             >
               <div className="image">
                 <ParentSize>
-                  {({ width, height }) => <Treemap width={width} height={height + detailsHeight} />}
+                  {({ width, height }) => (
+                    <Treemap
+                      width={width}
+                      height={height + detailsHeight}
+                      margin={{ top: 0, left: 10, right: 10, bottom: detailsHeight }}
+                    />
+                  )}
                 </ParentSize>
               </div>
               <div
                 className="details"
                 style={{
-                  color: '#00ff70',
+                  color: treemapTextColor,
                 }}
               >
                 <div className="title">Treemap</div>
