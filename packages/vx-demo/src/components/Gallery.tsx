@@ -46,7 +46,9 @@ import Responsive from '../docs-v2/examples/vx-responsive/Example';
 import DragI from '../docs-v2/examples/vx-drag-i/Example';
 import DragII from '../docs-v2/examples/vx-drag-ii/Example';
 import LinkTypes from './tiles/LinkTypes';
-import Threshold from './tiles/Threshold';
+import Threshold, {
+  background as thresholdBackground,
+} from '../docs-v2/examples/vx-threshold/Example';
 import Chord from '../docs-v2/examples/vx-chord/Example';
 import Polygons from './tiles/Polygons';
 import ZoomI from '../docs-v2/examples/vx-zoom-i/Example';
@@ -836,7 +838,7 @@ export default function Gallery() {
         </Tilt>
         <Tilt className="tilt" options={tiltOptions}>
           <Link href="/threshold">
-            <div className="gallery-item" style={{ background: '#f3f3f3' }}>
+            <div className="gallery-item" style={{ background: thresholdBackground }}>
               <div className="image">
                 <ParentSize>
                   {({ width, height }) => (
