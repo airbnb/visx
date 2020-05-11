@@ -1,12 +1,10 @@
 import React from 'react';
 import Show from '../components/Show';
-import Bars from '../components/tiles/Bars';
-import BarsSource from '!!raw-loader!../components/tiles/Bars';
+import Bars from '../docs-v2/examples/vx-bars/Example';
+import BarsSource from '!!raw-loader!../docs-v2/examples/vx-bars/Example';
 
-export default () => {
-  return (
-    <Show events component={Bars} title="Bars">
-      {BarsSource}
-    </Show>
-  );
-};
+export default () => (
+  <Show events component={Bars} title="Bars" codeSandboxDirectoryName="vx-bars">
+    {BarsSource}
+  </Show>
+);
