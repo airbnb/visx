@@ -4,10 +4,9 @@ import { ViolinPlot, BoxPlot } from '@vx/stats';
 import { LinearGradient } from '@vx/gradient';
 import { scaleBand, scaleLinear } from '@vx/scale';
 import genStats, { Stats } from '@vx/mock-data/lib/generators/genStats';
-import { withTooltip, Tooltip } from '@vx/tooltip';
+import { withTooltip, Tooltip, defaultStyles as defaultTooltipStyles } from '@vx/tooltip';
 import { WithTooltipProvidedProps } from '@vx/tooltip/lib/enhancers/withTooltip';
 import { PatternLines } from '@vx/pattern';
-import { ShowProvidedProps } from '../../types';
 
 const data: Stats[] = genStats(5);
 
@@ -29,7 +28,12 @@ interface TooltipData {
   thirdQuartile?: number;
 }
 
-export default withTooltip<ShowProvidedProps, TooltipData>(
+type Props = {
+  width: number;
+  height: number;
+};
+
+export default withTooltip<Props, TooltipData>(
   ({
     width,
     height,
@@ -39,9 +43,7 @@ export default withTooltip<ShowProvidedProps, TooltipData>(
     tooltipData,
     showTooltip,
     hideTooltip,
-  }: ShowProvidedProps & WithTooltipProvidedProps<TooltipData>) => {
-    if (width < 10) return null;
-
+  }: Props & WithTooltipProvidedProps<TooltipData>) => {
     // bounds
     const xMax = width;
     const yMax = height - 120;
@@ -68,7 +70,7 @@ export default withTooltip<ShowProvidedProps, TooltipData>(
     const boxWidth = xScale.bandwidth();
     const constrainedWidth = Math.min(40, boxWidth);
 
-    return (
+    return width < 10 ? null : (
       <div style={{ position: 'relative' }}>
         <svg width={width} height={height}>
           <LinearGradient id="statsplot" to="#8b6ce7" from="#87f2d4" />
@@ -180,7 +182,7 @@ export default withTooltip<ShowProvidedProps, TooltipData>(
           <Tooltip
             top={tooltipTop}
             left={tooltipLeft}
-            style={{ backgroundColor: '#283238', color: 'white' }}
+            style={{ ...defaultTooltipStyles, backgroundColor: '#283238', color: 'white' }}
           >
             <div>
               <strong>{tooltipData.name}</strong>

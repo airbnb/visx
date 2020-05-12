@@ -8,9 +8,9 @@ import { AxisLeft, AxisBottom } from '@vx/axis';
 import { GridRows, GridColumns } from '@vx/grid';
 import cityTemperature, { CityTemperature } from '@vx/mock-data/lib/mocks/cityTemperature';
 import { timeParse } from 'd3-time-format';
-import { ShowProvidedProps } from '../../types';
 
 const parseDate = timeParse('%Y%m%d');
+export const background = '#f3f3f3';
 
 // accessors
 const date = (d: CityTemperature) => (parseDate(d.date) as Date).valueOf();
@@ -29,11 +29,15 @@ const temperatureScale = scaleLinear<number>({
   nice: true,
 });
 
-export default function Theshold({
-  width,
-  height,
-  margin = { top: 0, right: 0, bottom: 0, left: 0 },
-}: ShowProvidedProps) {
+const defaultMargin = { top: 40, right: 30, bottom: 50, left: 40 };
+
+type Props = {
+  width: number;
+  height: number;
+  margin?: { top: number; right: number; bottom: number; left: number };
+};
+
+export default function Theshold({ width, height, margin = defaultMargin }: Props) {
   if (width < 10) return null;
 
   // bounds
@@ -46,7 +50,7 @@ export default function Theshold({
   return (
     <div>
       <svg width={width} height={height}>
-        <rect x={0} y={0} width={width} height={height} fill="#f3f3f3" rx={14} />
+        <rect x={0} y={0} width={width} height={height} fill={background} rx={14} />
         <Group left={margin.left} top={margin.top}>
           <GridRows scale={temperatureScale} width={xMax} height={yMax} stroke="#e0e0e0" />
           <GridColumns scale={timeScale} width={xMax} height={yMax} stroke="#e0e0e0" />

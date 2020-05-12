@@ -4,7 +4,6 @@ import { GradientOrangeRed, GradientPinkRed } from '@vx/gradient';
 import { RectClipPath } from '@vx/clip-path';
 import { voronoi, VoronoiPolygon } from '@vx/voronoi';
 import { localPoint } from '@vx/event';
-import { ShowProvidedProps } from '../../types';
 
 type Datum = {
   x: number;
@@ -22,18 +21,20 @@ const data: Datum[] = new Array(150).fill(null).map(() => ({
 
 const neighborRadius = 75;
 
-export default ({
-  width,
-  height,
-  margin = {
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 76,
-  },
-}: ShowProvidedProps) => {
-  if (width < 10) return <div />;
+const defaultMargin = {
+  top: 0,
+  left: 0,
+  right: 0,
+  bottom: 76,
+};
 
+type Props = {
+  width: number;
+  height: number;
+  margin?: { top: number; right: number; bottom: number; left: number };
+};
+
+export default ({ width, height, margin = defaultMargin }: Props) => {
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
 
@@ -53,7 +54,7 @@ export default ({
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [neighborIds, setNeighborIds] = useState<Set<string>>(new Set());
 
-  return (
+  return width < 10 ? null : (
     <svg width={width} height={height} ref={svgRef}>
       <GradientOrangeRed id="voronoi_orange_red" />
       <GradientPinkRed id="voronoi_pink_red" />

@@ -6,12 +6,12 @@ import { AxisBottom, AxisLeft } from '@vx/axis';
 import cityTemperature, { CityTemperature } from '@vx/mock-data/lib/mocks/cityTemperature';
 import { scaleBand, scaleLinear, scaleOrdinal } from '@vx/scale';
 import { timeParse, timeFormat } from 'd3-time-format';
-import { withTooltip, Tooltip } from '@vx/tooltip';
+import { withTooltip, Tooltip, defaultStyles } from '@vx/tooltip';
 import { WithTooltipProvidedProps } from '@vx/tooltip/lib/enhancers/withTooltip';
 import { LegendOrdinal } from '@vx/legend';
-import { ShowProvidedProps } from '../../types';
 
 type CityName = 'New York' | 'San Francisco' | 'Austin';
+
 type TooltipData = {
   bar: SeriesPoint<CityTemperature>;
   key: CityName;
@@ -23,10 +23,24 @@ type TooltipData = {
   color: string;
 };
 
+type Props = {
+  width: number;
+  height: number;
+  margin?: { top: number; right: number; bottom: number; left: number };
+  events?: boolean;
+};
+
 const purple1 = '#6c5efb';
 const purple2 = '#c998ff';
-const purple3 = '#a44afe';
-const bg = '#eaedff';
+export const purple3 = '#a44afe';
+export const background = '#eaedff';
+const defaultMargin = { top: 40, left: 50, right: 40, bottom: 100 };
+const tooltipStyles = {
+  ...defaultStyles,
+  minWidth: 60,
+  backgroundColor: 'rgba(0,0,0,0.9)',
+  color: 'white',
+};
 
 const data = cityTemperature.slice(0, 12);
 const keys = Object.keys(data[0]).filter(d => d !== 'date') as CityName[];
@@ -63,26 +77,19 @@ const colorScale = scaleOrdinal<CityName, string>({
 
 let tooltipTimeout: number;
 
-export default withTooltip<ShowProvidedProps, TooltipData>(
+export default withTooltip<Props, TooltipData>(
   ({
     width,
     height,
     events = false,
-    margin = {
-      top: 40,
-      left: 50,
-      right: 40,
-      bottom: 100,
-    },
+    margin = defaultMargin,
     tooltipOpen,
     tooltipLeft,
     tooltipTop,
     tooltipData,
     hideTooltip,
     showTooltip,
-  }: ShowProvidedProps & WithTooltipProvidedProps<TooltipData>) => {
-    if (width < 10) return null;
-
+  }: Props & WithTooltipProvidedProps<TooltipData>) => {
     // bounds
     const xMax = width - margin.left - margin.right;
     const yMax = height - margin.top - margin.bottom;
@@ -90,10 +97,10 @@ export default withTooltip<ShowProvidedProps, TooltipData>(
     temperatureScale.rangeRound([0, xMax]);
     dateScale.rangeRound([yMax, 0]);
 
-    return (
-      <div style={{ position: 'relative' }}>
+    return width < 10 ? null : (
+      <div>
         <svg width={width} height={height}>
-          <rect width={width} height={height} fill={bg} rx={14} />
+          <rect width={width} height={height} fill={background} rx={14} />
           <Group top={margin.top} left={margin.left}>
             <BarStackHorizontal<CityTemperature, CityName>
               data={data}
@@ -177,15 +184,7 @@ export default withTooltip<ShowProvidedProps, TooltipData>(
           <LegendOrdinal scale={colorScale} direction="row" labelMargin="0 15px 0 0" />
         </div>
         {tooltipOpen && tooltipData && (
-          <Tooltip
-            top={tooltipTop}
-            left={tooltipLeft}
-            style={{
-              minWidth: 60,
-              backgroundColor: 'rgba(0,0,0,0.9)',
-              color: 'white',
-            }}
-          >
+          <Tooltip top={tooltipTop} left={tooltipLeft} style={tooltipStyles}>
             <div style={{ color: colorScale(tooltipData.key) }}>
               <strong>{tooltipData.key}</strong>
             </div>
