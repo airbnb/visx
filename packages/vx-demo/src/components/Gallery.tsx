@@ -425,7 +425,13 @@ export default function Gallery() {
             <div className="gallery-item" style={{ background: treeBackground }}>
               <div className="image">
                 <ParentSize>
-                  {({ width, height }) => <Tree width={width} height={height + detailsHeight} />}
+                  {({ width, height }) => (
+                    <Tree
+                      width={width}
+                      height={height + detailsHeight}
+                      margin={{ top: 10, left: 30, right: 40, bottom: detailsHeight }}
+                    />
+                  )}
                 </ParentSize>
               </div>
               <div className="details" style={{ color: '#269688' }}>
@@ -524,9 +530,7 @@ export default function Gallery() {
             <div className="gallery-item" style={{ background: '#8a88e3' }}>
               <div className="image">
                 <ParentSize>
-                  {({ width, height }) => (
-                    <StatsPlot width={width} height={height + detailsHeight} />
-                  )}
+                  {({ width, height }) => <StatsPlot width={width} height={height} />}
                 </ParentSize>
               </div>
               <div className="details" style={{ color: '#FFFFFF', zIndex: 1 }}>

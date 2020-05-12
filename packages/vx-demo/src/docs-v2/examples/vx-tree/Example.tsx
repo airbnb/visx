@@ -157,7 +157,7 @@ function ParentNode({ node }: { node: HierarchyNode }) {
   );
 }
 
-const defaultMargin = { top: 10, left: 30, right: 40, bottom: 80 };
+const defaultMargin = { top: 10, left: 80, right: 80, bottom: 10 };
 
 type Props = {
   width: number;
