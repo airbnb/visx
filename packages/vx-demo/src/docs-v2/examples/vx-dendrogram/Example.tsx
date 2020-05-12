@@ -1,17 +1,16 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Group } from '@vx/group';
 import { Cluster, hierarchy } from '@vx/hierarchy';
 import { HierarchyPointNode, HierarchyPointLink } from '@vx/hierarchy/lib/types';
 import { LinkVertical } from '@vx/shape';
 import { LinearGradient } from '@vx/gradient';
-import { ShowProvidedProps } from '../../types';
 
 const citrus = '#ddf163';
 const white = '#ffffff';
-const green = '#79d259';
+export const green = '#79d259';
 const aqua = '#37ac8c';
 const merlinsbeard = '#f7f7f3';
-const bg = '#306c90';
+export const background = '#306c90';
 
 interface NodeShape {
   name: string;
@@ -62,7 +61,7 @@ function Node({ node }: { node: HierarchyPointNode<NodeShape> }) {
       {node.depth !== 0 && (
         <circle
           r={12}
-          fill={bg}
+          fill={background}
           stroke={isParent ? white : citrus}
           onClick={() => {
             alert(`clicked: ${JSON.stringify(node.data.name)}`);
@@ -98,7 +97,7 @@ function RootNode({ node }: { node: HierarchyPointNode<NodeShape> }) {
         fontFamily="Arial"
         textAnchor="middle"
         style={{ pointerEvents: 'none' }}
-        fill={bg}
+        fill={background}
       >
         {node.data.name}
       </text>
@@ -106,26 +105,17 @@ function RootNode({ node }: { node: HierarchyPointNode<NodeShape> }) {
   );
 }
 
-export default ({
-  width,
-  height,
-  margin = {
-    top: 40,
-    left: 0,
-    right: 0,
-    bottom: 110,
-  },
-}: ShowProvidedProps) => {
-  if (width < 10) return null;
+const defaultMargin = { top: 40, left: 0, right: 0, bottom: 110 };
 
-  const data = hierarchy<NodeShape>(clusterData);
+export default function Example({ width, height, margin = defaultMargin }: Props) {
+  const data = useMemo(() => hierarchy<NodeShape>(clusterData), []);
   const xMax = width - margin.left - margin.right;
   const yMax = height - margin.top - margin.bottom;
 
-  return (
+  return width < 10 ? null : (
     <svg width={width} height={height}>
       <LinearGradient id="top" from={green} to={aqua} />
-      <rect width={width} height={height} rx={14} fill={bg} />
+      <rect width={width} height={height} rx={14} fill={background} />
       <Cluster<NodeShape> root={data} size={[xMax, yMax]}>
         {cluster => (
           <Group top={margin.top} left={margin.left}>
@@ -147,4 +137,4 @@ export default ({
       </Cluster>
     </svg>
   );
-};
+}
