@@ -15,15 +15,14 @@ import { TileMethod } from '@vx/hierarchy/lib/types';
 import shakespeare, { Shakespeare } from '@vx/mock-data/lib/mocks/shakespeare';
 
 import { scaleLinear } from '@vx/scale';
-import { ShowProvidedProps } from '../../types';
 
-const blue = '#0373d9';
-const green = '#00ff70';
-const bg = '#3436b8';
+export const color1 = '#f3e9d2';
+const color2 = '#4281a4';
+export const bg = '#114b5f';
 
 const colorScale = scaleLinear<string>({
   domain: [0, Math.max(...shakespeare.map(d => d.size || 0))],
-  range: [blue, green],
+  range: [color2, color1],
 });
 
 const data = stratify<Shakespeare>()
@@ -40,24 +39,21 @@ const tileMethods: { [tile: string]: TileMethod<typeof data> } = {
   treemapSliceDice,
 };
 
-export default function TreemapDemo({
-  width,
-  height,
-  margin = {
-    top: 0,
-    left: 30,
-    right: 40,
-    bottom: 80,
-  },
-}: ShowProvidedProps) {
+const defaultMargin = { top: 10, left: 10, right: 10, bottom: 10 };
+
+type Props = {
+  width: number;
+  height: number;
+  margin?: { top: number; right: number; bottom: number; left: number };
+};
+
+export default function TreemapDemo({ width, height, margin = defaultMargin }: Props) {
   const [tileMethod, setTileMethod] = useState<string>('treemapSquarify');
-
-  if (width < 10) return null;
-
+  const xMax = width - margin.left - margin.right;
   const yMax = height - margin.top - margin.bottom;
   const root = hierarchy(data).sort((a, b) => (b.value || 0) - (a.value || 0));
 
-  return (
+  return width < 10 ? null : (
     <div>
       <label>tile method</label>{' '}
       <select
@@ -77,7 +73,7 @@ export default function TreemapDemo({
           <Treemap<typeof data>
             top={margin.top}
             root={root}
-            size={[width, yMax]}
+            size={[xMax, yMax]}
             tile={tileMethods[tileMethod]}
             round
           >
@@ -90,7 +86,11 @@ export default function TreemapDemo({
                     const nodeWidth = node.x1 - node.x0;
                     const nodeHeight = node.y1 - node.y0;
                     return (
-                      <Group key={`node-${i}`} top={node.y0} left={node.x0}>
+                      <Group
+                        key={`node-${i}`}
+                        top={node.y0 + margin.top}
+                        left={node.x0 + margin.left}
+                      >
                         {node.depth === 1 && (
                           <rect
                             width={nodeWidth}
