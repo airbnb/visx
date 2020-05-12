@@ -3,7 +3,9 @@ import { Polygon } from '@vx/shape';
 import { Group } from '@vx/group';
 import { scaleBand } from '@vx/scale';
 import { GradientPinkRed } from '@vx/gradient';
-import { ShowProvidedProps } from '../../types';
+
+export const backgroundColor = '#7f82e3';
+const polygonSize = 25;
 
 const polygons = [
   {
@@ -30,18 +32,28 @@ const polygons = [
 
 const yScale = scaleBand<number>({
   domain: polygons.map((p, i) => i),
-  padding: 0.5,
+  padding: 0.8,
 });
 
-export default ({ width, height }: ShowProvidedProps) => {
+type Props = {
+  width: number;
+  height: number;
+};
+
+export default ({ width, height }: Props) => {
   yScale.rangeRound([0, height]);
   return (
     <svg width={width} height={height}>
-      <rect width={width} height={height} fill="#7f82e3" rx={14} />
+      <rect width={width} height={height} fill={backgroundColor} rx={14} />
       <GradientPinkRed id="polygon-pink" />
       {polygons.map((polygon, i) => (
-        <Group key={`polygon-${i}`} top={yScale(i)} left={width / 2}>
-          <Polygon sides={polygon.sides} size={25} fill={polygon.fill} rotate={polygon.rotate} />
+        <Group key={`polygon-${i}`} top={yScale(i) + polygonSize / 2} left={width / 2}>
+          <Polygon
+            sides={polygon.sides}
+            size={polygonSize}
+            fill={polygon.fill}
+            rotate={polygon.rotate}
+          />
         </Group>
       ))}
     </svg>

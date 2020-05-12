@@ -1,10 +1,10 @@
 import React from 'react';
 import Show from '../components/Show';
-import Polygons from '../components/tiles/Polygons';
-import PolygonsSource from '!!raw-loader!../components/tiles/Polygons';
+import Polygons from '../docs-v2/examples/vx-polygons/Example';
+import PolygonsSource from '!!raw-loader!../docs-v2/examples/vx-polygons/Example';
 
 export default () => (
-  <Show component={Polygons} title="Polygons">
+  <Show component={Polygons} title="Polygons" codeSandboxDirectoryName="vx-polygons">
     {PolygonsSource}
   </Show>
 );
