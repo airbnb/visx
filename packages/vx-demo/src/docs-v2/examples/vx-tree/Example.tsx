@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { Group } from '@vx/group';
-import { Tree } from '@vx/hierarchy';
+import { Tree, hierarchy } from '@vx/hierarchy';
 import { HierarchyPointNode } from '@vx/hierarchy/lib/types';
 import { LinkHorizontal } from '@vx/shape';
 import { LinearGradient } from '@vx/gradient';
