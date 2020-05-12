@@ -19,7 +19,7 @@ const blue = '#aeeef8';
 export const green = '#e5fd3d';
 const purple = '#9caff6';
 export const background = '#612efb';
-const defaultMargin = { top: 20, right: 10, bottom: 0, left: 50 };
+const defaultMargin = { top: 20, right: 20, bottom: 20, left: 50 };
 
 const parseDate = timeParse('%Y%m%d');
 const format = timeFormat('%b %d');
@@ -54,7 +54,7 @@ const colorScale = scaleOrdinal<string, string>({
 export default function Example({ width, height, margin = defaultMargin, events = false }: Props) {
   // bounds
   const xMax = width - margin.left - margin.right;
-  const yMax = height - 100;
+  const yMax = height - margin.top - margin.bottom;
 
   // update scale output dimensions
   dateScale.rangeRound([0, yMax]);

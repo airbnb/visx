@@ -323,7 +323,11 @@ export default function Gallery() {
               <div className="image">
                 <ParentSize>
                   {({ width, height }) => (
-                    <BarGroupHorizontal width={width} height={height + detailsHeight} />
+                    <BarGroupHorizontal
+                      width={width}
+                      height={height + detailsHeight}
+                      margin={{ top: 20, bottom: detailsHeight, left: 50, right: 20 }}
+                    />
                   )}
                 </ParentSize>
               </div>
