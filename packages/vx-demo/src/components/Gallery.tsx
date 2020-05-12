@@ -54,7 +54,7 @@ import Radar, {
 import Responsive from '../docs-v2/examples/vx-responsive/Example';
 import DragI from '../docs-v2/examples/vx-drag-i/Example';
 import DragII from '../docs-v2/examples/vx-drag-ii/Example';
-import LinkTypes from './tiles/LinkTypes';
+import LinkTypes from '../docs-v2/examples/vx-linktypes/Example';
 import Threshold, {
   background as thresholdBackground,
 } from '../docs-v2/examples/vx-threshold/Example';
