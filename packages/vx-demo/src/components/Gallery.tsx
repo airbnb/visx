@@ -6,7 +6,7 @@ import drawData from './util/drawData';
 
 import Footer from './Footer';
 
-import Bars from './tiles/Bars';
+import Bars from '../docs-v2/examples/vx-bars/Example';
 import Curves from '../docs-v2/examples/vx-curve/Example';
 import Dots from './tiles/Dots';
 import Gradients from '../docs-v2/examples/vx-gradient/Example';
