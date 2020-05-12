@@ -137,7 +137,7 @@ export default withTooltip<Props, PointsRange>(
                 ))}
           </Group>
         </svg>
-        {tooltipOpen && tooltipData && (
+        {tooltipOpen && tooltipData && tooltipLeft != null && tooltipTop != null && (
           <Tooltip left={tooltipLeft + 10} top={tooltipTop + 10}>
             <div>
               <strong>x:</strong> {x(tooltipData)}
