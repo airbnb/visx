@@ -5,26 +5,31 @@ import { GradientOrangeRed } from '@vx/gradient';
 import browserUsage, { BrowserUsage } from '@vx/mock-data/lib/mocks/browserUsage';
 import { scaleTime, scaleLinear } from '@vx/scale';
 import { timeParse } from 'd3-time-format';
-import { ShowProvidedProps } from '../../types';
 
 type BrowserNames = keyof BrowserUsage;
 
 const data = browserUsage;
 const keys = Object.keys(data[0]).filter(k => k !== 'date') as BrowserNames[];
 const parseDate = timeParse('%Y %b %d');
+export const background = '#f38181';
 
 const getDate = (d: BrowserUsage) => (parseDate(d.date) as Date).valueOf();
 const getY0 = (d: SeriesPoint<BrowserUsage>) => d[0] / 100;
 const getY1 = (d: SeriesPoint<BrowserUsage>) => d[1] / 100;
 
-export default ({
+type Props = {
+  width: number;
+  height: number;
+  events?: boolean;
+  margin?: { top: number; right: number; bottom: number; left: number };
+};
+
+export default function Example({
   width,
   height,
   margin = { top: 0, right: 0, bottom: 0, left: 0 },
   events = false,
-}: ShowProvidedProps) => {
-  if (width < 10) return null;
-
+}: Props) {
   // bounds
   const yMax = height - margin.top - margin.bottom;
   const xMax = width - margin.left - margin.right;
@@ -38,10 +43,10 @@ export default ({
     range: [yMax, 0],
   });
 
-  return (
+  return width < 10 ? null : (
     <svg width={width} height={height}>
-      <GradientOrangeRed id="OrangeRed" />
-      <rect x={0} y={0} width={width} height={height} fill="#f38181" rx={14} />
+      <GradientOrangeRed id="stacked-area-orangered" />
+      <rect x={0} y={0} width={width} height={height} fill={background} rx={14} />
       <AreaStack
         top={margin.top}
         left={margin.left}
@@ -57,7 +62,7 @@ export default ({
               key={`stack-${stack.key}`}
               d={path(stack) || ''}
               stroke="transparent"
-              fill="url(#OrangeRed)"
+              fill="url(#stacked-area-orangered)"
               onClick={() => {
                 if (events) alert(`${stack.key}`);
               }}
@@ -67,4 +72,4 @@ export default ({
       </AreaStack>
     </svg>
   );
-};
+}

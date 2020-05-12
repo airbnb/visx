@@ -11,7 +11,9 @@ import Curves from '../docs-v2/examples/vx-curve/Example';
 import Dots from './tiles/Dots';
 import Gradients from '../docs-v2/examples/vx-gradient/Example';
 import Areas from './tiles/Areas';
-import StackedAreas from './tiles/Stacked-Areas';
+import StackedAreas, {
+  background as stackedAreaBackground,
+} from '../docs-v2/examples/vx-stacked-areas/Example';
 import Glyphs, { primary as glyphTextColor } from '../docs-v2/examples/vx-glyph/Example';
 import Axis, {
   backgroundColor as axisBackgroundColor,
@@ -203,21 +205,10 @@ export default function Gallery() {
         </Tilt>
         <Tilt className="tilt" options={tiltOptions}>
           <Link href="/stacked-areas">
-            <div className="gallery-item" style={{ background: items[6] }}>
+            <div className="gallery-item" style={{ background: stackedAreaBackground }}>
               <div className="image">
                 <ParentSize>
-                  {({ width, height }) => (
-                    <StackedAreas
-                      width={width}
-                      height={height + detailsHeight}
-                      margin={{
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        bottom: 80,
-                      }}
-                    />
-                  )}
+                  {({ width, height }) => <StackedAreas width={width} height={height} />}
                 </ParentSize>
               </div>
               <div className="details" style={{ color: 'rgba(251, 224, 137, 1.000)' }}>
