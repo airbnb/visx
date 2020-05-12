@@ -128,8 +128,7 @@ export default function Example({
                     key={i}
                     data={link}
                     percent={stepPercent}
-                    stroke="white"
-                    strokeOpacity={0.3}
+                    stroke="url('#links-gradient')"
                     strokeWidth="1"
                     fill="none"
                   />
