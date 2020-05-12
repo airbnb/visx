@@ -1,4 +1,5 @@
 import React from 'react';
+import cx from 'classnames';
 import { VxPackage } from '../types';
 
 export default function PackageList({
@@ -20,14 +21,14 @@ export default function PackageList({
             <li>
               <a
                 href="/docs/annotation"
-                className={emphasizePackage === 'annotation' && 'emphasize'}
+                className={cx(emphasizePackage === 'annotation' && 'emphasize')}
               >
                 @vx/annotation
               </a>
               {!compact && <p>Annotate elements of a chart</p>}
             </li>
             <li>
-              <a href="/docs/axis" className={emphasizePackage === 'axis' && 'emphasize'}>
+              <a href="/docs/axis" className={cx(cx(emphasizePackage === 'axis' && 'emphasize'))}>
                 @vx/axis
               </a>
               {!compact && <p>Annotate your coordinate system</p>}
@@ -35,7 +36,7 @@ export default function PackageList({
             <li>
               <a
                 href="/static/docs/vx-curve.html"
-                className={emphasizePackage === 'curve' && 'emphasize'}
+                className={cx(cx(emphasizePackage === 'curve' && 'emphasize'))}
               >
                 @vx/curve
               </a>
@@ -44,7 +45,7 @@ export default function PackageList({
             <li>
               <a
                 href="/static/docs/vx-glyph.html"
-                className={emphasizePackage === 'glyph' && 'emphasize'}
+                className={cx(emphasizePackage === 'glyph' && 'emphasize')}
               >
                 @vx/glyph
               </a>
@@ -53,7 +54,7 @@ export default function PackageList({
             <li>
               <a
                 href="/static/docs/vx-grid.html"
-                className={emphasizePackage === 'grid' && 'emphasize'}
+                className={cx(emphasizePackage === 'grid' && 'emphasize')}
               >
                 @vx/grid
               </a>
@@ -62,7 +63,7 @@ export default function PackageList({
             <li>
               <a
                 href="/static/docs/vx-legend.html"
-                className={emphasizePackage === 'legend' && 'emphasize'}
+                className={cx(emphasizePackage === 'legend' && 'emphasize')}
               >
                 @vx/legend
               </a>
@@ -71,7 +72,7 @@ export default function PackageList({
             <li>
               <a
                 href="/static/docs/vx-marker.html"
-                className={emphasizePackage === 'marker' && 'emphasize'}
+                className={cx(emphasizePackage === 'marker' && 'emphasize')}
               >
                 @vx/marker
               </a>
@@ -80,7 +81,7 @@ export default function PackageList({
             <li>
               <a
                 href="/static/docs/vx-scale.html"
-                className={emphasizePackage === 'scale' && 'emphasize'}
+                className={cx(emphasizePackage === 'scale' && 'emphasize')}
               >
                 @vx/scale
               </a>
@@ -89,7 +90,7 @@ export default function PackageList({
             <li>
               <a
                 href="/static/docs/vx-shape.html"
-                className={emphasizePackage === 'shape' && 'emphasize'}
+                className={cx(emphasizePackage === 'shape' && 'emphasize')}
               >
                 @vx/shape
               </a>
@@ -98,7 +99,7 @@ export default function PackageList({
             <li>
               <a
                 href="/static/docs/vx-threshold.html"
-                className={emphasizePackage === 'threshold' && 'emphasize'}
+                className={cx(emphasizePackage === 'threshold' && 'emphasize')}
               >
                 @vx/threshold
               </a>
@@ -107,7 +108,7 @@ export default function PackageList({
             <li>
               <a
                 href="/static/docs/vx-tooltip.html"
-                className={emphasizePackage === 'tooltip' && 'emphasize'}
+                className={cx(emphasizePackage === 'tooltip' && 'emphasize')}
               >
                 @vx/tooltip
               </a>
@@ -121,7 +122,7 @@ export default function PackageList({
             <li>
               <a
                 href="/static/docs/vx-chord.html"
-                className={emphasizePackage === 'chord' && 'emphasize'}
+                className={cx(emphasizePackage === 'chord' && 'emphasize')}
               >
                 @vx/chord
               </a>
@@ -130,7 +131,7 @@ export default function PackageList({
             <li>
               <a
                 href="/static/docs/vx-geo.html"
-                className={emphasizePackage === 'geo' && 'emphasize'}
+                className={cx(emphasizePackage === 'geo' && 'emphasize')}
               >
                 @vx/geo
               </a>
@@ -139,7 +140,7 @@ export default function PackageList({
             <li>
               <a
                 href="/static/docs/vx-heatmap.html"
-                className={emphasizePackage === 'heatmap' && 'emphasize'}
+                className={cx(emphasizePackage === 'heatmap' && 'emphasize')}
               >
                 @vx/heatmap
               </a>
@@ -148,7 +149,7 @@ export default function PackageList({
             <li>
               <a
                 href="/static/docs/vx-hierarchy.html"
-                className={emphasizePackage === 'hierarchy' && 'emphasize'}
+                className={cx(emphasizePackage === 'hierarchy' && 'emphasize')}
               >
                 @vx/hierarchy
               </a>
@@ -157,7 +158,7 @@ export default function PackageList({
             <li>
               <a
                 href="/static/docs/vx-network.html"
-                className={emphasizePackage === 'network' && 'emphasize'}
+                className={cx(emphasizePackage === 'network' && 'emphasize')}
               >
                 @vx/network
               </a>
@@ -166,7 +167,7 @@ export default function PackageList({
             <li>
               <a
                 href="/static/docs/vx-stats.html"
-                className={emphasizePackage === 'stats' && 'emphasize'}
+                className={cx(emphasizePackage === 'stats' && 'emphasize')}
               >
                 @vx/stats
               </a>
@@ -180,7 +181,7 @@ export default function PackageList({
             <li>
               <a
                 href="/static/docs/vx-brush.html"
-                className={emphasizePackage === 'brush' && 'emphasize'}
+                className={cx(emphasizePackage === 'brush' && 'emphasize')}
               >
                 @vx/brush
               </a>
@@ -189,7 +190,7 @@ export default function PackageList({
             <li>
               <a
                 href="/static/docs/vx-drag.html"
-                className={emphasizePackage === 'drag' && 'emphasize'}
+                className={cx(emphasizePackage === 'drag' && 'emphasize')}
               >
                 @vx/drag
               </a>
@@ -198,7 +199,7 @@ export default function PackageList({
             <li>
               <a
                 href="/static/docs/vx-voronoi.html"
-                className={emphasizePackage === 'voronoi' && 'emphasize'}
+                className={cx(emphasizePackage === 'voronoi' && 'emphasize')}
               >
                 @vx/voronoi
               </a>
@@ -207,7 +208,7 @@ export default function PackageList({
             <li>
               <a
                 href="/static/docs/vx-zoom.html"
-                className={emphasizePackage === 'zoom' && 'emphasize'}
+                className={cx(emphasizePackage === 'zoom' && 'emphasize')}
               >
                 @vx/zoom
               </a>
@@ -221,7 +222,7 @@ export default function PackageList({
             <li>
               <a
                 href="/static/docs/vx-clip-path.html"
-                className={emphasizePackage === 'clip-path' && 'emphasize'}
+                className={cx(emphasizePackage === 'clip-path' && 'emphasize')}
               >
                 @vx/clip-path
               </a>
@@ -230,7 +231,7 @@ export default function PackageList({
             <li>
               <a
                 href="/static/docs/vx-group.html"
-                className={emphasizePackage === 'group' && 'emphasize'}
+                className={cx(emphasizePackage === 'group' && 'emphasize')}
               >
                 @vx/group
               </a>
@@ -239,7 +240,7 @@ export default function PackageList({
             <li>
               <a
                 href="/static/docs/vx-gradient.html"
-                className={emphasizePackage === 'gradient' && 'emphasize'}
+                className={cx(emphasizePackage === 'gradient' && 'emphasize')}
               >
                 @vx/gradient
               </a>
@@ -248,7 +249,7 @@ export default function PackageList({
             <li>
               <a
                 href="/static/docs/vx-pattern.html"
-                className={emphasizePackage === 'pattern' && 'emphasize'}
+                className={cx(emphasizePackage === 'pattern' && 'emphasize')}
               >
                 @vx/pattern
               </a>
@@ -257,7 +258,7 @@ export default function PackageList({
             <li>
               <a
                 href="/static/docs/vx-text.html"
-                className={emphasizePackage === 'text' && 'emphasize'}
+                className={cx(emphasizePackage === 'text' && 'emphasize')}
               >
                 @vx/text
               </a>
@@ -271,7 +272,7 @@ export default function PackageList({
             <li>
               <a
                 href="/static/docs/vx-bounds.html"
-                className={emphasizePackage === 'bounds' && 'emphasize'}
+                className={cx(emphasizePackage === 'bounds' && 'emphasize')}
               >
                 @vx/bounds
               </a>
@@ -280,7 +281,7 @@ export default function PackageList({
             <li>
               <a
                 href="/static/docs/vx-mock-data.html"
-                className={emphasizePackage === 'mock-data' && 'emphasize'}
+                className={cx(emphasizePackage === 'mock-data' && 'emphasize')}
               >
                 @vx/mock-data
               </a>
@@ -289,7 +290,7 @@ export default function PackageList({
             <li>
               <a
                 href="/static/docs/vx-responsive.html"
-                className={emphasizePackage === 'responsive' && 'emphasize'}
+                className={cx(emphasizePackage === 'responsive' && 'emphasize')}
               >
                 @vx/responsive
               </a>
@@ -298,7 +299,7 @@ export default function PackageList({
             <li>
               <a
                 href="/static/docs/vx-point.html"
-                className={emphasizePackage === 'point' && 'emphasize'}
+                className={cx(emphasizePackage === 'point' && 'emphasize')}
               >
                 @vx/point
               </a>
