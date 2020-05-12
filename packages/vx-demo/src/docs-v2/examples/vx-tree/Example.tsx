@@ -1,11 +1,9 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Group } from '@vx/group';
 import { Tree } from '@vx/hierarchy';
 import { HierarchyPointNode } from '@vx/hierarchy/lib/types';
 import { LinkHorizontal } from '@vx/shape';
-import { hierarchy } from 'd3-hierarchy';
 import { LinearGradient } from '@vx/gradient';
-import { ShowProvidedProps } from '../../types';
 
 const peach = '#fd9b93';
 const pink = '#fe6e9e';
@@ -14,7 +12,7 @@ const green = '#26deb0';
 const plum = '#71248e';
 const lightpurple = '#374469';
 const white = '#ffffff';
-const bg = '#272b4d';
+export const background = '#272b4d';
 
 interface TreeNode {
   name: string;
@@ -83,7 +81,7 @@ function Node({ node }: { node: HierarchyNode }) {
         width={width}
         y={centerY}
         x={centerX}
-        fill={bg}
+        fill={background}
         stroke={green}
         strokeWidth={1}
         strokeDasharray="2,2"
@@ -138,7 +136,7 @@ function ParentNode({ node }: { node: HierarchyNode }) {
         width={width}
         y={centerY}
         x={centerX}
-        fill={bg}
+        fill={background}
         stroke={blue}
         strokeWidth={1}
         onClick={() => {
@@ -159,25 +157,23 @@ function ParentNode({ node }: { node: HierarchyNode }) {
   );
 }
 
-export default ({
-  width,
-  height,
-  margin = {
-    top: 10,
-    left: 30,
-    right: 40,
-    bottom: 80,
-  },
-}: ShowProvidedProps) => {
-  if (width < 10) return null;
-  const data = hierarchy(rawTree);
+const defaultMargin = { top: 10, left: 30, right: 40, bottom: 80 };
+
+type Props = {
+  width: number;
+  height: number;
+  margin?: { top: number; right: number; bottom: number; left: number };
+};
+
+export default function Example({ width, height, margin = defaultMargin }: Props) {
+  const data = useMemo(() => hierarchy(rawTree), []);
   const yMax = height - margin.top - margin.bottom;
   const xMax = width - margin.left - margin.right;
 
-  return (
+  return width < 10 ? null : (
     <svg width={width} height={height}>
       <LinearGradient id="lg" from={peach} to={pink} />
-      <rect width={width} height={height} rx={14} fill={bg} />
+      <rect width={width} height={height} rx={14} fill={background} />
       <Tree<TreeNode> root={data} size={[yMax, xMax]}>
         {tree => (
           <Group top={margin.top} left={margin.left}>
@@ -198,4 +194,4 @@ export default ({
       </Tree>
     </svg>
   );
-};
+}

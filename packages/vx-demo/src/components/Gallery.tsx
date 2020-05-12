@@ -30,7 +30,7 @@ import BarStackHorizontal, {
 import Heatmap from './tiles/Heatmap';
 import LineRadial from '../docs-v2/examples/vx-shape-line-radial/Example';
 import Pies from '../docs-v2/examples/vx-shape-pie/Example';
-import Trees from './tiles/Trees';
+import Tree, { background as treeBackground } from '../docs-v2/examples/vx-tree/Example';
 import Dendrograms from './tiles/Dendrograms';
 import Voronoi from '../docs-v2/examples/vx-voronoi/Example';
 import Legends from '../docs-v2/examples/vx-legend/Example';
@@ -422,10 +422,10 @@ export default function Gallery() {
         </Tilt>
         <Tilt className="tilt" options={tiltOptions}>
           <Link href="/trees">
-            <div className="gallery-item" style={{ background: '#272b4d' }}>
+            <div className="gallery-item" style={{ background: treeBackground }}>
               <div className="image">
                 <ParentSize>
-                  {({ width, height }) => <Trees width={width} height={height + detailsHeight} />}
+                  {({ width, height }) => <Tree width={width} height={height + detailsHeight} />}
                 </ParentSize>
               </div>
               <div className="details" style={{ color: '#269688' }}>
