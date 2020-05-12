@@ -37,7 +37,9 @@ import Legends from '../docs-v2/examples/vx-legend/Example';
 import StatsPlot from '../docs-v2/examples/vx-stats/Example';
 import GeoCustom from '../docs-v2/examples/vx-geo-custom/Example';
 import GeoMercator from '../docs-v2/examples/vx-geo-mercator/Example';
-import Network from './tiles/Network';
+import Network, {
+  backgroundColor as networkBackground,
+} from '../docs-v2/examples/vx-network/Example';
 import Streamgraph, {
   BACKGROUND as streamgraphBackgroundColor,
 } from '../docs-v2/examples/vx-streamgraph/Example';
@@ -581,7 +583,7 @@ export default function Gallery() {
 
         <Tilt className="tilt" options={tiltOptions}>
           <Link href="/network">
-            <div className="gallery-item" style={{ background: '#272b4d' }}>
+            <div className="gallery-item" style={{ background: networkBackground }}>
               <div className="image">
                 <ParentSize>
                   {({ width, height }) => <Network width={width} height={height + detailsHeight} />}
