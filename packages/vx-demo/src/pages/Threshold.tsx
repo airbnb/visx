@@ -1,7 +1,7 @@
 import React from 'react';
 import Show from '../components/Show';
-import Threshold from '../components/tiles/Threshold';
-import ThresholdSource from '!!raw-loader!../components/tiles/Threshold';
+import Threshold from '../docs-v2/examples/vx-threshold/Example';
+import ThresholdSource from '!!raw-loader!../docs-v2/examples/vx-threshold/Example';
 
 function Description({ width }: { width: number }) {
   return (
@@ -22,12 +22,7 @@ export default () => {
       component={Threshold}
       title="Threshold"
       description={Description}
-      margin={{
-        top: 40,
-        left: 40,
-        right: 20,
-        bottom: 50,
-      }}
+      codeSandboxDirectoryName="vx-threshold"
     >
       {ThresholdSource}
     </Show>

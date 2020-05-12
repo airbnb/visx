@@ -6,7 +6,7 @@ import drawData from './util/drawData';
 
 import Footer from './Footer';
 
-import Bars from './tiles/Bars';
+import Bars from '../docs-v2/examples/vx-bars/Example';
 import Curves from '../docs-v2/examples/vx-curve/Example';
 import Dots from './tiles/Dots';
 import Gradients from '../docs-v2/examples/vx-gradient/Example';
@@ -25,8 +25,14 @@ import BarGroupHorizontal, {
   background as horizontalBargroupBackground,
   green as horizontalBargroupText,
 } from '../docs-v2/examples/vx-bargroup-horizontal/Example';
-import BarStack from './tiles/BarStack';
-import BarStackHorizontal from './tiles/BarStackHorizontal';
+import BarStack, {
+  background as barstackBackground,
+  purple3 as barstackTextColor,
+} from '../docs-v2/examples/vx-barstack/Example';
+import BarStackHorizontal, {
+  background as horizontalBarstackBackground,
+  purple3 as horiztonalBarstackTextColor,
+} from '../docs-v2/examples/vx-barstack-horizontal/Example';
 import Heatmap from './tiles/Heatmap';
 import LineRadial from '../docs-v2/examples/vx-shape-line-radial/Example';
 import Pies from '../docs-v2/examples/vx-shape-pie/Example';
@@ -43,7 +49,10 @@ import Streamgraph, {
 } from '../docs-v2/examples/vx-streamgraph/Example';
 import Pack from '../docs-v2/examples/vx-pack/Example';
 import Patterns from '../docs-v2/examples/vx-pattern/Example';
-import Treemap from './tiles/Treemap';
+import Treemap, {
+  bg as treemapBackground,
+  color1 as treemapTextColor,
+} from '../docs-v2/examples/vx-treemap/Example';
 import Radar, {
   bg as radarBackground,
   pumpkin as radarColor,
@@ -52,7 +61,9 @@ import Responsive from '../docs-v2/examples/vx-responsive/Example';
 import DragI from '../docs-v2/examples/vx-drag-i/Example';
 import DragII from '../docs-v2/examples/vx-drag-ii/Example';
 import LinkTypes from './tiles/LinkTypes';
-import Threshold from './tiles/Threshold';
+import Threshold, {
+  background as thresholdBackground,
+} from '../docs-v2/examples/vx-threshold/Example';
 import Chord from '../docs-v2/examples/vx-chord/Example';
 import Polygons from './tiles/Polygons';
 import ZoomI from '../docs-v2/examples/vx-zoom-i/Example';
@@ -359,7 +370,7 @@ export default function Gallery() {
         </Tilt>
         <Tilt className="tilt" options={tiltOptions}>
           <Link href="/barstack">
-            <div className="gallery-item" style={{ background: '#eaedff' }}>
+            <div className="gallery-item" style={{ background: barstackBackground }}>
               <div className="image">
                 <ParentSize>
                   {({ width, height }) => (
@@ -367,7 +378,7 @@ export default function Gallery() {
                   )}
                 </ParentSize>
               </div>
-              <div className="details" style={{ color: '#a44afe', zIndex: 1 }}>
+              <div className="details" style={{ color: barstackTextColor, zIndex: 1 }}>
                 <div className="title">Bar Stack</div>
                 <div className="description">
                   <pre>{'<Shape.BarStack />'}</pre>
@@ -381,7 +392,7 @@ export default function Gallery() {
             <div
               className="gallery-item"
               style={{
-                background: '#eaedff',
+                background: horizontalBarstackBackground,
               }}
             >
               <div className="image">
@@ -391,7 +402,7 @@ export default function Gallery() {
                   )}
                 </ParentSize>
               </div>
-              <div className="details" style={{ color: '#a44afe', zIndex: 1 }}>
+              <div className="details" style={{ color: horiztonalBarstackTextColor, zIndex: 1 }}>
                 <div className="title">Bar Stack Horizontal</div>
                 <div className="description">
                   <pre>{'<Shape.BarStackHorizontal />'}</pre>
@@ -658,18 +669,24 @@ export default function Gallery() {
             <div
               className="gallery-item"
               style={{
-                background: '#3436b8',
+                background: treemapBackground,
               }}
             >
               <div className="image">
                 <ParentSize>
-                  {({ width, height }) => <Treemap width={width} height={height + detailsHeight} />}
+                  {({ width, height }) => (
+                    <Treemap
+                      width={width}
+                      height={height + detailsHeight}
+                      margin={{ top: 0, left: 10, right: 10, bottom: detailsHeight }}
+                    />
+                  )}
                 </ParentSize>
               </div>
               <div
                 className="details"
                 style={{
-                  color: '#00ff70',
+                  color: treemapTextColor,
                 }}
               >
                 <div className="title">Treemap</div>
@@ -846,7 +863,7 @@ export default function Gallery() {
         </Tilt>
         <Tilt className="tilt" options={tiltOptions}>
           <Link href="/threshold">
-            <div className="gallery-item" style={{ background: '#f3f3f3' }}>
+            <div className="gallery-item" style={{ background: thresholdBackground }}>
               <div className="image">
                 <ParentSize>
                   {({ width, height }) => (
