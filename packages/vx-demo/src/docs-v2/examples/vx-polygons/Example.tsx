@@ -47,7 +47,7 @@ export default ({ width, height }: Props) => {
       <rect width={width} height={height} fill={backgroundColor} rx={14} />
       <GradientPinkRed id="polygon-pink" />
       {polygons.map((polygon, i) => (
-        <Group key={`polygon-${i}`} top={yScale(i) + polygonSize / 2} left={width / 2}>
+        <Group key={`polygon-${i}`} top={(yScale(i) || 0) + polygonSize / 2} left={width / 2}>
           <Polygon
             sides={polygon.sides}
             size={polygonSize}
