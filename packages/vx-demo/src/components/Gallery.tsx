@@ -10,7 +10,7 @@ import Bars from '../docs-v2/examples/vx-bars/Example';
 import Curves from '../docs-v2/examples/vx-curve/Example';
 import Dots from './tiles/Dots';
 import Gradients from '../docs-v2/examples/vx-gradient/Example';
-import Areas from './tiles/Areas';
+import Area, { background as areaBackground } from '../docs-v2/examples/vx-area/Example';
 import StackedAreas, {
   background as stackedAreaBackground,
 } from '../docs-v2/examples/vx-stacked-areas/Example';
@@ -177,25 +177,14 @@ export default function Gallery() {
         </Tilt>
         <Tilt className="tilt" options={tiltOptions}>
           <Link href="/areas">
-            <div className="gallery-item" style={{ background: items[5] }}>
+            <div className="gallery-item" style={{ background: areaBackground }}>
               <div className="image">
                 <ParentSize>
-                  {({ width, height }) => (
-                    <Areas
-                      width={width}
-                      height={height + detailsHeight}
-                      margin={{
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        bottom: 80,
-                      }}
-                    />
-                  )}
+                  {({ width, height }) => <Area width={width} height={height} />}
                 </ParentSize>
               </div>
               <div className="details" style={{ zIndex: 1 }}>
-                <div className="title">Areas</div>
+                <div className="title">AreaClosed</div>
                 <div className="description">
                   <pre>{'<Shape.AreaClosed />'}</pre>
                 </div>

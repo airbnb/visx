@@ -1,19 +1,20 @@
-import React from 'react';
+import React, { useMemo, useCallback } from 'react';
 import { AreaClosed, Line, Bar } from '@vx/shape';
 import appleStock, { AppleStock } from '@vx/mock-data/lib/mocks/appleStock';
 import { curveMonotoneX } from '@vx/curve';
 import { GridRows, GridColumns } from '@vx/grid';
 import { scaleTime, scaleLinear } from '@vx/scale';
-import { withTooltip, Tooltip } from '@vx/tooltip';
+import { withTooltip, Tooltip, defaultStyles } from '@vx/tooltip';
 import { WithTooltipProvidedProps } from '@vx/tooltip/lib/enhancers/withTooltip';
 import { localPoint } from '@vx/event';
+import { LinearGradient } from '@vx/gradient';
 import { max, extent, bisector } from 'd3-array';
 import { timeFormat } from 'd3-time-format';
-import { ShowProvidedProps } from '../../types';
 
 type TooltipData = AppleStock;
 
 const stock = appleStock.slice(800);
+export const background = '#32deaa';
 
 // util
 const formatDate = timeFormat("%b %d, '%y");
@@ -23,7 +24,13 @@ const getDate = (d: AppleStock) => new Date(d.date);
 const getStockValue = (d: AppleStock) => d.close;
 const bisectDate = bisector<AppleStock, Date>(d => new Date(d.date)).left;
 
-export default withTooltip<ShowProvidedProps, TooltipData>(
+type Props = {
+  width: number;
+  height: number;
+  margin?: { top: number; right: number; bottom: number; left: number };
+};
+
+export default withTooltip<Props, TooltipData>(
   ({
     width,
     height,
@@ -33,54 +40,56 @@ export default withTooltip<ShowProvidedProps, TooltipData>(
     tooltipData,
     tooltipTop = 0,
     tooltipLeft = 0,
-  }: ShowProvidedProps & WithTooltipProvidedProps<TooltipData>) => {
-    if (width < 10) return null;
-
+  }: Props & WithTooltipProvidedProps<TooltipData>) => {
     // bounds
     const xMax = width - margin.left - margin.right;
     const yMax = height - margin.top - margin.bottom;
 
     // scales
-    const dateScale = scaleTime({
-      range: [0, xMax],
-      domain: extent(stock, getDate) as [Date, Date],
-    });
-    const stockValueScale = scaleLinear({
-      range: [yMax, 0],
-      domain: [0, (max(stock, getStockValue) || 0) + yMax / 3],
-      nice: true,
-    });
+    const dateScale = useMemo(
+      () =>
+        scaleTime({
+          range: [0, xMax],
+          domain: extent(stock, getDate) as [Date, Date],
+        }),
+      [xMax],
+    );
+    const stockValueScale = useMemo(
+      () =>
+        scaleLinear({
+          range: [yMax, 0],
+          domain: [0, (max(stock, getStockValue) || 0) + yMax / 3],
+          nice: true,
+        }),
+      [yMax],
+    );
 
     // tooltip handler
-    const handleTooltip = (
-      event: React.TouchEvent<SVGRectElement> | React.MouseEvent<SVGRectElement>,
-    ) => {
-      const { x } = localPoint(event) || { x: 0 };
-      const x0 = dateScale.invert(x);
-      const index = bisectDate(stock, x0, 1);
-      const d0 = stock[index - 1];
-      const d1 = stock[index];
-      let d = d0;
-      if (d1 && getDate(d1)) {
-        d = x0.valueOf() - getDate(d0).valueOf() > getDate(d1).valueOf() - x0.valueOf() ? d1 : d0;
-      }
-      showTooltip({
-        tooltipData: d,
-        tooltipLeft: x,
-        tooltipTop: stockValueScale(getStockValue(d)),
-      });
-    };
+    const handleTooltip = useCallback(
+      (event: React.TouchEvent<SVGRectElement> | React.MouseEvent<SVGRectElement>) => {
+        const { x } = localPoint(event) || { x: 0 };
+        const x0 = dateScale.invert(x);
+        const index = bisectDate(stock, x0, 1);
+        const d0 = stock[index - 1];
+        const d1 = stock[index];
+        let d = d0;
+        if (d1 && getDate(d1)) {
+          d = x0.valueOf() - getDate(d0).valueOf() > getDate(d1).valueOf() - x0.valueOf() ? d1 : d0;
+        }
+        showTooltip({
+          tooltipData: d,
+          tooltipLeft: x,
+          tooltipTop: stockValueScale(getStockValue(d)),
+        });
+      },
+      [showTooltip, stockValueScale, dateScale],
+    );
 
     return (
       <div>
         <svg width={width} height={height}>
-          <rect x={0} y={0} width={width} height={height} fill="#32deaa" rx={14} />
-          <defs>
-            <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#FFFFFF" stopOpacity={1} />
-              <stop offset="100%" stopColor="#FFFFFF" stopOpacity={0.2} />
-            </linearGradient>
-          </defs>
+          <rect x={0} y={0} width={width} height={height} fill={background} rx={14} />
+          <LinearGradient id="area-gradient" from="white" to="white" toOpacity={0.2} />
           <GridRows<number>
             scale={stockValueScale}
             width={xMax}
@@ -101,8 +110,8 @@ export default withTooltip<ShowProvidedProps, TooltipData>(
             y={d => stockValueScale(getStockValue(d))}
             yScale={stockValueScale}
             strokeWidth={1}
-            stroke="url(#gradient)"
-            fill="url(#gradient)"
+            stroke="url(#area-gradient)"
+            fill="url(#area-gradient)"
             curve={curveMonotoneX}
           />
           <Bar
@@ -156,6 +165,7 @@ export default withTooltip<ShowProvidedProps, TooltipData>(
               top={tooltipTop - 12}
               left={tooltipLeft + 12}
               style={{
+                ...defaultStyles,
                 backgroundColor: 'rgba(92, 119, 235, 1)',
                 color: 'white',
               }}
@@ -166,6 +176,9 @@ export default withTooltip<ShowProvidedProps, TooltipData>(
               top={yMax - 14}
               left={tooltipLeft}
               style={{
+                ...defaultStyles,
+                minWidth: 72,
+                textAlign: 'center',
                 transform: 'translateX(-50%)',
               }}
             >
