@@ -97,18 +97,6 @@ export default withTooltip<Props, PointsRange>(
 
     return (
       <div>
-        {showControls && (
-          <div>
-            <label>
-              Show voronoi point map&nbsp;
-              <input
-                type="checkbox"
-                checked={showVoronoi}
-                onChange={() => setShowVoronoi(!showVoronoi)}
-              />
-            </label>
-          </div>
-        )}
         <svg width={width} height={height} ref={svgRef}>
           <GradientPinkRed id="dots-pink" />
           {/** capture all mouse events with a rect */}
@@ -150,7 +138,7 @@ export default withTooltip<Props, PointsRange>(
           </Group>
         </svg>
         {tooltipOpen && tooltipData && (
-          <Tooltip left={tooltipLeft + 10} top={tooltipTop + 40}>
+          <Tooltip left={tooltipLeft + 10} top={tooltipTop + 10}>
             <div>
               <strong>x:</strong> {x(tooltipData)}
             </div>
@@ -158,6 +146,18 @@ export default withTooltip<Props, PointsRange>(
               <strong>y:</strong> {y(tooltipData)}
             </div>
           </Tooltip>
+        )}
+        {showControls && (
+          <div>
+            <label style={{ fontSize: 12 }}>
+              <input
+                type="checkbox"
+                checked={showVoronoi}
+                onChange={() => setShowVoronoi(!showVoronoi)}
+              />
+              &nbsp;Show voronoi point map
+            </label>
+          </div>
         )}
       </div>
     );
