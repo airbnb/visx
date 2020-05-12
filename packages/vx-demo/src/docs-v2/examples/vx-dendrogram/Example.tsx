@@ -105,7 +105,13 @@ function RootNode({ node }: { node: HierarchyPointNode<NodeShape> }) {
   );
 }
 
-const defaultMargin = { top: 40, left: 0, right: 0, bottom: 110 };
+const defaultMargin = { top: 40, left: 0, right: 0, bottom: 40 };
+
+type Props = {
+  width: number;
+  height: number;
+  margin?: { top: number; right: number; bottom: number; left: number };
+};
 
 export default function Example({ width, height, margin = defaultMargin }: Props) {
   const data = useMemo(() => hierarchy<NodeShape>(clusterData), []);
