@@ -61,12 +61,12 @@ export default withScreenSize<ShowProps & WithScreenSizeProvidedProps>(
               events,
             })}
           </div>
+          {description && React.createElement(description, { width, height })}
           {codeSandboxDirectoryName && (
             <div style={{ width, display: 'flex', justifyContent: 'flex-end' }}>
               <CodeSandboxLink exampleDirectoryName={codeSandboxDirectoryName} />
             </div>
           )}
-          {description && React.createElement(description, { width, height })}
           {children && (
             <div style={{ width }}>
               <h2>Code</h2>
