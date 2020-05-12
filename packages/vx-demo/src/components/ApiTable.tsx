@@ -9,21 +9,21 @@ type PropInfo = {
   type?: { name: string };
 };
 
-type DocGenInfo = {
+export type DocGenInfo = {
   description?: string;
   displayName?: string;
   props: { [propName: string]: PropInfo };
 };
 
 type Props = {
-  anchorId?: string;
   docgenInfo: DocGenInfo;
 };
 
 const alphaSort = (a: PropInfo, b: PropInfo) => a.name.localeCompare(b.name);
 
-export default function ApiTable({ anchorId, docgenInfo }: Props) {
+export default function ApiTable({ docgenInfo }: Props) {
   const componentName = docgenInfo.displayName;
+  const anchorId = componentName;
 
   // required first, then abc order
   const props = useMemo(() => {
@@ -76,9 +76,14 @@ export default function ApiTable({ anchorId, docgenInfo }: Props) {
         );
       })}
       <style jsx>{`
-        .prop {
+        h3 + .prop {
           border-top: 1px solid #eaeaea;
-          padding: 1em 0.5em;
+        }
+        .prop:last-child {
+          border-bottom: 1px solid #eaeaea;
+        }
+        .prop {
+          padding: 1em 0.5em 1em 0;
           line-height: 1.2em;
           vertical-align: middle;
         }

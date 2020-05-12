@@ -19,7 +19,7 @@ export default function PackageList({
           <ul>
             <li>
               <a
-                href="/static/docs/vx-annotation.html"
+                href="/docs/annotation"
                 className={emphasizePackage === 'annotation' && 'emphasize'}
               >
                 @vx/annotation
