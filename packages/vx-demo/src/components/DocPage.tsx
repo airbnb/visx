@@ -1,22 +1,49 @@
 import React from 'react';
-import { VxPackage } from '../types';
-import PackageList from './PackageList';
+import Markdown from 'react-markdown/with-html';
 
-export default function DocPage({
-  currentPackage,
-  children,
-}: {
-  currentPackage: VxPackage;
-  children: React.ReactNode;
-}) {
+import ApiTable from './ApiTable';
+import Footer from './Footer';
+import PackageList from './PackageList';
+import Page from './Page';
+import { DocGenInfo, VxPackage } from '../types';
+
+type Props = {
+  components: DocGenInfo[];
+  vxPackage: VxPackage;
+  readme: string;
+};
+
+export default function DocPage({ components, vxPackage, readme }: Props) {
   return (
-    <>
+    <Page title={`@vx/${vxPackage} documentation`}>
       <div className="doc-container">
         <div className="doc-nav">
-          <PackageList compact grid={false} emphasizePackage={currentPackage} />
+          <PackageList compact grid={false} emphasizePackage={vxPackage} />
         </div>
-        <div className="doc-content">{children}</div>
+        <div className="doc-content">
+          <Markdown escapeHtml={false} source={readme} />
+          {components && components.length > 0 && (
+            <>
+              <h2>Components</h2>
+              <ul>
+                {components.map(component => (
+                  <li key={component.displayName}>
+                    <a href={`#${component.displayName}`}>
+                      <code>&lt;{component.displayName} /&gt;</code>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+
+              <h2>APIs</h2>
+              {components.map(component => (
+                <ApiTable key={component.displayName} docgenInfo={component} />
+              ))}
+            </>
+          )}
+        </div>
       </div>
+      <Footer />
       <style jsx>{`
         .doc-container {
           margin-top: 24px;
@@ -70,6 +97,6 @@ export default function DocPage({
           margin-top: 0.25rem;
         }
       `}</style>
-    </>
+    </Page>
   );
 }

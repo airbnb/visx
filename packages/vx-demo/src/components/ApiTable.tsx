@@ -1,19 +1,6 @@
 import React, { useMemo } from 'react';
 import Markdown from 'react-markdown/with-html';
-
-type PropInfo = {
-  defaultValue?: { value?: unknown };
-  description?: string;
-  name: string;
-  required: boolean;
-  type?: { name: string };
-};
-
-export type DocGenInfo = {
-  description?: string;
-  displayName?: string;
-  props: { [propName: string]: PropInfo };
-};
+import { DocGenInfo, PropInfo } from '../types';
 
 type Props = {
   docgenInfo: DocGenInfo;
@@ -21,6 +8,7 @@ type Props = {
 
 const alphaSort = (a: PropInfo, b: PropInfo) => a.name.localeCompare(b.name);
 
+/** Renders a list of props for the passed docgenInfo */
 export default function ApiTable({ docgenInfo }: Props) {
   const componentName = docgenInfo.displayName;
   const anchorId = componentName;

@@ -48,3 +48,19 @@ export type VxPackage =
   | 'mock-data'
   | 'responsive'
   | 'point';
+
+/** DocGenInfo for a single prop */
+export type PropInfo = {
+  defaultValue?: { value?: unknown };
+  description?: string;
+  name: string;
+  required: boolean;
+  type?: { name: string };
+};
+
+/** DocGenInfo, added to components by react-docgen-typescript-loader */
+export type DocGenInfo = {
+  description?: string;
+  displayName?: string;
+  props: { [propName: string]: PropInfo };
+};
