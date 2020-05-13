@@ -68,7 +68,7 @@ export default function PackageList({
           <HeaderElement>Layouts & specialized</HeaderElement>
           <ul>
             <li className={cx(emphasizePackage === 'chord' && 'emphasize')}>
-              <a href="/static/docs/vx-chord.html">@vx/chord</a>
+              <a href="/docs/chord">@vx/chord</a>
               {!compact && <p>Radial layout for matrix relationships</p>}
             </li>
             <li className={cx(emphasizePackage === 'geo' && 'emphasize')}>
