@@ -101,8 +101,8 @@ export default function PackageList({
               {!compact && <p>Enable selection of a part of an interface</p>}
             </li>
             <li className={cx(emphasizePackage === 'drag' && 'emphasize')}>
-              <a href="/static/docs/vx-drag.html">@vx/drag</a>
-              {!compact && <p>Make elements of an inteface draggable</p>}
+              <a href="/docs/drag">@vx/drag</a>
+              {!compact && <p>Make elements of an interface draggable</p>}
             </li>
             <li className={cx(emphasizePackage === 'voronoi' && 'emphasize')}>
               <a href="/static/docs/vx-voronoi.html">@vx/voronoi</a>
