@@ -8,7 +8,7 @@ import Page from './Page';
 import { DocGenInfo, VxPackage } from '../types';
 
 type Props = {
-  components: DocGenInfo[];
+  components?: DocGenInfo[];
   vxPackage: VxPackage;
   readme: string;
 };
