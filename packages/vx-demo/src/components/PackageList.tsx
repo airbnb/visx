@@ -118,7 +118,7 @@ export default function PackageList({
           <HeaderElement>SVG utilities</HeaderElement>
           <ul>
             <li className={cx(emphasizePackage === 'clip-path' && 'emphasize')}>
-              <a href="/static/docs/vx-clip-path.html">@vx/clip-path</a>
+              <a href="/docs/clip-path">@vx/clip-path</a>
               {!compact && <p>Utilities for clip-path elements</p>}
             </li>
             <li className={cx(emphasizePackage === 'group' && 'emphasize')}>
