@@ -313,7 +313,6 @@ export default function PackageList({
         }
         h6 {
           margin: 0;
-          font-weight: bold;
         }
         ul {
           padding: 0;
