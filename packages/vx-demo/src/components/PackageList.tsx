@@ -121,6 +121,12 @@ export default function PackageList({
               <a href="/static/docs/vx-clip-path.html">@vx/clip-path</a>
               {!compact && <p>Utilities for clip-path elements</p>}
             </li>
+            <li className={cx(emphasizePackage === 'event' && 'emphasize')}>
+              <a href="/static/docs/vx-event.html">@vx/event</a>
+              {!compact && (
+                <p>Utilities for computing svg coordinates from mouse or touch events</p>
+              )}
+            </li>
             <li className={cx(emphasizePackage === 'group' && 'emphasize')}>
               <a href="/static/docs/vx-group.html">@vx/group</a>
               {!compact && <p>Utility for g elements</p>}
@@ -187,6 +193,7 @@ export default function PackageList({
         li p {
           margin: 0;
           font-size: 11px;
+          line-height: 1.5em;
         }
         .emphasize {
           font-weight: bold;
