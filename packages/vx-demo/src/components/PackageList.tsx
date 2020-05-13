@@ -14,7 +14,7 @@ export default function PackageList({
   const HeaderElement = compact ? 'h6' : 'h3';
   return (
     <>
-      <div className="categories">
+      <div className="container">
         <div>
           <HeaderElement>Chart primitives</HeaderElement>
           <ul>
@@ -270,10 +270,7 @@ export default function PackageList({
           <HeaderElement>Data utilities</HeaderElement>
           <ul>
             <li>
-              <a
-                href="/static/docs/vx-bounds.html"
-                className={cx(emphasizePackage === 'bounds' && 'emphasize')}
-              >
+              <a href="/docs/bounds" className={cx(emphasizePackage === 'bounds' && 'emphasize')}>
                 @vx/bounds
               </a>
               {!compact && <p>Detect the bounding box of an element & its parent</p>}
@@ -309,14 +306,14 @@ export default function PackageList({
         </div>
       </div>
       <style jsx>{`
-        .categories {
+        .container {
           display: ${grid ? 'grid' : 'unset'};
           grid-gap: 2em;
           grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
         }
         h6 {
           margin: 0;
-          font-weight: initial;
+          font-weight: bold;
         }
         ul {
           padding: 0;
