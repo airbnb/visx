@@ -45,7 +45,7 @@ export default function DocPage({
           font-family: 'Menlo', monospace;
           font-weight: bold;
           padding: 0.2rem 0.3rem;
-          background-color: #ebebeb;
+          background-color: #efefef;
           line-height: 1.8em;
           font-size: 0.8em;
         }
@@ -56,7 +56,7 @@ export default function DocPage({
           box-shadow: none;
         }
         .doc-container :global(pre) {
-          background-color: #f7f9fa;
+          background-color: #efefef;
           display: inline-block;
           padding: 0.5em;
           min-width: 33vw;
