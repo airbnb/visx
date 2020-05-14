@@ -161,7 +161,7 @@ export default function PackageList({
               {!compact && <p>Utilities to make responsive visualizations easily</p>}
             </li>
             <li className={cx(emphasizePackage === 'point' && 'emphasize')}>
-              <a href="/static/docs/vx-point.html">@vx/point</a>
+              <a href="/docs/point">@vx/point</a>
               {!compact && <p>A simple class to represent an x,y coordinate</p>}
             </li>
           </ul>
