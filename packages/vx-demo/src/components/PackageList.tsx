@@ -43,7 +43,7 @@ export default function PackageList({
               {!compact && <p>Keys for reading your visual encodings</p>}
             </li>
             <li className={cx(emphasizePackage === 'marker' && 'emphasize')}>
-              <a href="/static/docs/vx-marker.html">@vx/marker</a>
+              <a href="/docs/marker">@vx/marker</a>
               {!compact && <p>Annotation lines with text</p>}
             </li>
             <li className={cx(emphasizePackage === 'scale' && 'emphasize')}>
