@@ -132,7 +132,7 @@ export default function PackageList({
               {!compact && <p>Utility for g elements</p>}
             </li>
             <li className={cx(emphasizePackage === 'gradient' && 'emphasize')}>
-              <a href="/static/docs/vx-gradient.html">@vx/gradient</a>
+              <a href="/docs/gradient">@vx/gradient</a>
               {!compact && <p>Utilities for making making color gradient definitions</p>}
             </li>
             <li className={cx(emphasizePackage === 'pattern' && 'emphasize')}>
