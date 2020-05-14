@@ -80,8 +80,8 @@ export default function PackageList({
               {!compact && <p>Represent data values using color</p>}
             </li>
             <li className={cx(emphasizePackage === 'hierarchy' && 'emphasize')}>
-              <a href="/static/docs/vx-hierarchy.html">@vx/hierarchy</a>
-              {!compact && <p>Multiple layouts for hierarchical or nested data</p>}
+              <a href="/docs/hierarchy">@vx/hierarchy</a>
+              {!compact && <p>Components to visualize hierarchical or nested data</p>}
             </li>
             <li className={cx(emphasizePackage === 'network' && 'emphasize')}>
               <a href="/static/docs/vx-network.html">@vx/network</a>
