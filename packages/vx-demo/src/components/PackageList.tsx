@@ -84,7 +84,7 @@ export default function PackageList({
               {!compact && <p>Multiple layouts for hierarchical or nested data</p>}
             </li>
             <li className={cx(emphasizePackage === 'network' && 'emphasize')}>
-              <a href="/static/docs/vx-network.html">@vx/network</a>
+              <a href="/docs/network">@vx/network</a>
               {!compact && <p>Visualize nodes and links between them</p>}
             </li>
             <li className={cx(emphasizePackage === 'stats' && 'emphasize')}>
