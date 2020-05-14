@@ -128,8 +128,8 @@ export default function PackageList({
               )}
             </li>
             <li className={cx(emphasizePackage === 'group' && 'emphasize')}>
-              <a href="/static/docs/vx-group.html">@vx/group</a>
-              {!compact && <p>Utility for g elements</p>}
+              <a href="/docs/group">@vx/group</a>
+              {!compact && <p>Simplified API for &lt;g /&gt; elements</p>}
             </li>
             <li className={cx(emphasizePackage === 'gradient' && 'emphasize')}>
               <a href="/static/docs/vx-gradient.html">@vx/gradient</a>
