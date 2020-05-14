@@ -55,6 +55,10 @@ export default function DocPage({ components, vxPackage, readme }: Props) {
           line-height: 0;
           font-size: 2em;
         }
+        .doc-content :global(img) {
+          max-width: 50vw;
+          max-height: 50vh;
+        }
         .doc-nav {
           margin-right: 5em;
           width: 140px;
