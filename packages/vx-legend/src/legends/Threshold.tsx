@@ -63,7 +63,7 @@ function defaultTransform<Datum extends StringNumberDate, Output>({
   };
 }
 
-export default function LegendThreshold<Datum extends StringNumberDate, Output>({
+export default function Threshold<Datum extends StringNumberDate, Output>({
   scale,
   domain: inputDomain,
   labelFormat = (d: Datum) => d,

@@ -31,7 +31,7 @@ export type LegendProps<Datum, Output, Scale = ScaleType<Datum, Output>> = {
   shapeMargin?: string | number;
   /** Flex-box alignment of legend item labels. */
   labelAlign?: string;
-  /** @vx/scale or d3-scale object used to generate the legend items. */
+  /** `@vx/scale` or `d3-scale` object used to generate the legend items. */
   scale: Scale;
   /** Flex-box flex of legend item labels. */
   labelFlex?: string | number;
