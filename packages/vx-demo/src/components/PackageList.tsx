@@ -47,8 +47,8 @@ export default function PackageList({
               {!compact && <p>Annotation lines with text</p>}
             </li>
             <li className={cx(emphasizePackage === 'scale' && 'emphasize')}>
-              <a href="/static/docs/vx-scale.html">@vx/scale</a>
-              {!compact && <p>d3 scales to map data to visual attributes</p>}
+              <a href="/docs/scale">@vx/scale</a>
+              {!compact && <p>Map data to visual dimensions</p>}
             </li>
             <li className={cx(emphasizePackage === 'shape' && 'emphasize')}>
               <a href="/static/docs/vx-shape.html">@vx/shape</a>
