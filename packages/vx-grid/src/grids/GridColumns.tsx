@@ -6,7 +6,7 @@ import { Point } from '@vx/point';
 import { Scale, CommonGridProps } from '../types';
 
 export type GridColumnProps<ScaleInput> = CommonGridProps & {
-  /** @vx/scale or d3-scale object used to map from ScaleInput to x-coordinates. */
+  /** `@vx/scale` or `d3-scale` object used to map from ScaleInput to x-coordinates. */
   scale: Scale<ScaleInput, number>;
   /** Total height of the each grid column line. */
   height: number;

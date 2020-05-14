@@ -35,7 +35,7 @@ export default function PackageList({
               {!compact && <p>Complex marks & symbols</p>}
             </li>
             <li className={cx(emphasizePackage === 'grid' && 'emphasize')}>
-              <a href="/static/docs/vx-grid.html">@vx/grid</a>
+              <a href="/docs/grid">@vx/grid</a>
               {!compact && <p>Grid lines for a chart</p>}
             </li>
             <li className={cx(emphasizePackage === 'legend' && 'emphasize')}>
