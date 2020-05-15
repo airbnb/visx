@@ -153,7 +153,7 @@ export default function PackageList({
               {!compact && <p>Detect the bounding box of an element & its parent</p>}
             </li>
             <li className={cx(emphasizePackage === 'mock-data' && 'emphasize')}>
-              <a href="/static/docs/vx-mock-data.html">@vx/mock-data</a>
+              <a href="/docs/mock-data">@vx/mock-data</a>
               {!compact && <p>Lots of mock data sets to play with</p>}
             </li>
             <li className={cx(emphasizePackage === 'responsive' && 'emphasize')}>
