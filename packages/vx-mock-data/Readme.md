@@ -35,53 +35,178 @@ Mock are essentially a bunch of data dumps that you can use like this:
 
 ```js
 import Mock from '@vx/mock-data';
+// or import { cityTemperature } from '@vx/mock-data';
 const data = Mock.cityTemperature;
 ```
 
 ### `Mock.appleStock`
 
-| Property | type     |
-| -------- | -------- |
-| date     | `string` |
-| close    | `number` |
+```js
+interface AppleStock {
+  date: string;
+  close: number;
+}
+
+const appleStock: AppleStock[] = [
+  { date: '2007-04-24T07:00:00.000Z', close: 93.24 },
+  ...
+];
+```
+
+### `Mock.bitcoinPrice`
+
+```js
+interface BitcoinPrices {
+  currency: string;
+  prices: BitcoinPrice[];
+}
+
+const bitcoinPrice: BitcoinPrices = {
+  currency: 'USD',
+  prices: [
+    { price: '2486.69', time: '2017-07-03T00:00:00Z' },
+    ...
+  ]
+};
+```
 
 ### `Mock.browserUsage`
 
-| Property          | type     |
-| ----------------- | -------- |
-| date              | `string` |
-| Google Chrome     | `string` |
-| Internet Explorer | `string` |
-| Firefox           | `string` |
-| Safari            | `string` |
-| Microsoft Edge    | `string` |
-| Opera             | `string` |
-| Mozilla           | `string` |
-| Other/Unknown     | `string` |
+```js
+const browserUsage: BrowserUsage[] = [
+  {
+    date: '2015 Jun 15',
+    'Google Chrome': '48.09',
+    'Internet Explorer': '24.14',
+    Firefox: '18.82',
+    Safari: '7.46',
+    'Microsoft Edge': '0.03',
+    Opera: '1.32',
+    Mozilla: '0.12',
+    'Other/Unknown': '0.01',
+  },
+  ...
+];
+```
 
 ### `Mock.cityTemperature`
 
-| Property      | type     |
-| ------------- | -------- |
-| date          | `string` |
-| New York      | `string` |
-| San Francisco | `string` |
-| Austin        | `string` |
+```ts
+interface CityTemperature {
+  date: string;
+  'New York': string;
+  'San Francisco': string;
+  Austin: string;
+}
+
+const cityTemperature: CityTemperature[] = [
+  {
+    date: '20111001',
+    'New York': '63.4',
+    'San Francisco': '62.7',
+    Austin: '72.2',
+  },
+  ...
+];
+```
+
+### `Mock.exoplanets`
+
+```ts
+interface Exoplanets {
+  name: string;
+  radius: number;
+  distance: number | null;
+}
+
+const exoplanets: Exoplanets[] = [
+  {
+    name: 'Jupiter',
+    radius: 10.97,
+    distance: 0,
+  },
+  ...
+];
+```
 
 ### `Mock.groupDateValue`
 
-| Property | type     |
-| -------- | -------- |
-| date     | `string` |
-| key      | `string` |
-| value    | `string` |
+```ts
+interface GroupDateValue {
+  key: string;
+  value: string;
+  date: string;
+}
+
+const groupDateValue: GroupDateValue[] = [
+  { key: 'Group1', value: '37', date: '04/23/12' },
+  ...
+];
+```
+
+### `Mock.lesMiserables`
+
+```ts
+interface LesMiserablesNode {
+  id: string;
+  group: number;
+}
+
+interface LesMiserablesLink {
+  source: string;
+  target: string;
+  value: number;
+}
+
+interface LesMiserables {
+  nodes: LesMiserablesNode[];
+  links: LesMiserablesLink[];
+}
+
+const lesMiserables: LesMiserables = {
+  nodes: [
+    { id: 'Myriel', group: 1 },
+    ...
+  ],
+  links: [
+    { source: 'Napoleon', target: 'Myriel', value: 1 },
+    ...
+  ],
+};
+```
 
 ### `Mock.letterFrequency`
 
-| Property  | type     |
-| --------- | -------- |
-| letter    | `string` |
-| frequency | `number` |
+```ts
+interface LetterFrequency {
+  letter: string;
+  frequency: number;
+}
+
+const letterFrequency: LetterFrequency[] = [
+  { letter: 'A', frequency: 0.08167 },
+  ...
+];
+```
+
+### `Mock.shakespeare`
+
+```ts
+interface Shakespeare {
+  id: string;
+  parent: string | null;
+  size: number | null;
+}
+
+const shakespeare: Shakespeare[] = [
+  {
+    id: 'Shakespeare',
+    parent: null,
+    size: 0,
+  },
+  ...
+];
+```
 
 ## Source For Components
 
