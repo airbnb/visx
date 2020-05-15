@@ -166,6 +166,16 @@ export default function PackageList({
             </li>
           </ul>
         </div>
+        {compact && (
+          <div>
+            <HeaderElement>Umbrella package</HeaderElement>
+            <ul>
+              <li className={cx(emphasizePackage === 'vx' && 'emphasize')}>
+                <a href="/docs/vx">@vx/vx</a>
+              </li>
+            </ul>
+          </div>
+        )}
       </div>
       <style jsx>{`
         .container {
