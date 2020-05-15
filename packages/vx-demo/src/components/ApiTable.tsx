@@ -49,7 +49,9 @@ export default function ApiTable({ docgenInfo }: Props) {
                 <em>{componentName}</em>.<strong>{prop.name}</strong>
               </span>
               {prop.type && <code>{prop.type.name}</code>}
-              <span className="required">{prop.required ? 'required' : 'optional'}</span>{' '}
+              <span className={prop.required ? 'required' : 'optional'}>
+                {prop.required ? 'required' : 'optional'}
+              </span>{' '}
             </div>
             <div className="description">
               <Markdown
@@ -81,6 +83,9 @@ export default function ApiTable({ docgenInfo }: Props) {
         .description > :global(p) {
           font-size: 15px;
           margin: 0;
+        }
+        .required {
+          color: #fc2e1c;
         }
       `}</style>
     </div>
