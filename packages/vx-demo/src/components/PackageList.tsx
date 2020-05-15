@@ -140,8 +140,8 @@ export default function PackageList({
               {!compact && <p>Utilities for making pattern definitions</p>}
             </li>
             <li className={cx(emphasizePackage === 'text' && 'emphasize')}>
-              <a href="/static/docs/vx-text.html">@vx/text</a>
-              {!compact && <p>Utilities for styling & wrapping svg text</p>}
+              <a href="/docs/text">@vx/text</a>
+              {!compact && <p>An improved SVG Text component</p>}
             </li>
           </ul>
         </div>
