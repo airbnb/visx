@@ -29,7 +29,7 @@ type PathProps = {
   shapeRendering?: string | number;
 };
 
-export default function PatternPath({
+export default function Path({
   id,
   width,
   height,

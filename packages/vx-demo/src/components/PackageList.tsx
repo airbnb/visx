@@ -136,8 +136,8 @@ export default function PackageList({
               {!compact && <p>Utilities for making making color gradient definitions</p>}
             </li>
             <li className={cx(emphasizePackage === 'pattern' && 'emphasize')}>
-              <a href="/static/docs/vx-pattern.html">@vx/pattern</a>
-              {!compact && <p>Utilities for making pattern definitions</p>}
+              <a href="/docs/pattern">@vx/pattern</a>
+              {!compact && <p>Utilities for creating pattern definitions</p>}
             </li>
             <li className={cx(emphasizePackage === 'text' && 'emphasize')}>
               <a href="/static/docs/vx-text.html">@vx/text</a>

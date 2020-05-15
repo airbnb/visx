@@ -49,7 +49,7 @@ export type PatternLinesProps = {
   orientation?: PatternOrientationType[];
 };
 
-export default function PatternLines({
+export default function Lines({
   id,
   width,
   height,
