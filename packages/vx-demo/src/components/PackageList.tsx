@@ -109,7 +109,7 @@ export default function PackageList({
               {!compact && <p>Partition points in a chart to improve user interaction</p>}
             </li>
             <li className={cx(emphasizePackage === 'zoom' && 'emphasize')}>
-              <a href="/static/docs/vx-zoom.html">@vx/zoom</a>
+              <a href="/docs/zoom">@vx/zoom</a>
               {!compact && <p>Apply transforms to a viewport</p>}
             </li>
           </ul>
