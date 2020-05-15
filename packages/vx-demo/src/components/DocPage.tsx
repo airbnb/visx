@@ -59,6 +59,11 @@ export default function DocPage({ components, vxPackage, readme }: Props) {
           max-width: 50vw;
           max-height: 50vh;
         }
+        .doc-content :global(th),
+        .doc-content :global(td) {
+          border: 1px solid;
+          padding: 5px 10px 5px 5px;
+        }
         .doc-nav {
           margin-right: 5em;
           width: 140px;
@@ -72,7 +77,7 @@ export default function DocPage({ components, vxPackage, readme }: Props) {
             margin: 0;
           }
         }
-        .doc-container :global(code) {
+        .doc-content :global(code) {
           font-family: 'Menlo', monospace;
           font-weight: bold;
           padding: 0.2rem 0.3rem;
@@ -80,23 +85,24 @@ export default function DocPage({ components, vxPackage, readme }: Props) {
           line-height: 1.8em;
           font-size: 0.8em;
         }
-        .doc-container :global(code[class*='language-']) {
+        .doc-content :global(code[class*='language-']) {
           background-color: transparent;
           font-weight: 300;
           color: #222;
           box-shadow: none;
         }
-        .doc-container :global(pre) {
+        .doc-content :global(pre) {
           background-color: #efefef;
           display: inline-block;
           padding: 0.5em;
           min-width: 33vw;
           border-radius: 3px;
         }
-        .doc-container :global(table) {
+        .doc-content :global(table) {
           border-collapse: collapse;
           font-size: 12px;
           font-family: monospace;
+          line-height: 1em;
           border-color: #efefef;
           margin-top: 0.25rem;
         }
