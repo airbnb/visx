@@ -4,8 +4,8 @@
   <img src="https://img.shields.io/npm/dm/@vx/threshold.svg?style=flat-square" />
 </a>
 
-`@vx/threshold` allows creation of Difference Charts, which highlight the delta between two line
-series.
+`@vx/threshold` allows for creation of Difference Charts in `react`, which highlight the delta
+between two line series.
 
 ## Installation
 
