@@ -11,7 +11,7 @@ const alphaSort = (a: PropInfo, b: PropInfo) => a.name.localeCompare(b.name);
 /** Renders a list of props for the passed docgenInfo */
 export default function ApiTable({ docgenInfo }: Props) {
   const { displayName } = docgenInfo;
-  const isComponent = (displayName[0] || '').toLowerCase() !== displayName[0];
+  const isComponent = (displayName[0] || '').toLowerCase() !== displayName[0] || '';
   const anchorId = displayName;
 
   // required first, then abc order
