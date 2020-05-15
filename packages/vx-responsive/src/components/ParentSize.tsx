@@ -3,9 +3,13 @@ import React from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 
 export type ParentSizeProps = {
+  /** Optional `className` to add to the parent `div` wrapper used for size measurement. */
   className?: string;
+  /** Child render updates upon resize are delayed until `debounceTime` milliseconds _after_ the last resize event is observed. */
   debounceTime?: number;
+  /** Optional `style` object to apply to the parent `div` wrapper used for size measurement. */
   parentSizeStyles?: React.CSSProperties;
+  /** Child render function `({ width, height, top, left, ref, resize }) => ReactNode`. */
   children: (
     args: {
       ref: HTMLDivElement | null;
@@ -24,7 +28,7 @@ type ParentSizeState = {
 export type ParentSizeProvidedProps = ParentSizeState;
 
 export default class ParentSize extends React.Component<
-  ParentSizeProps & JSX.IntrinsicElements['div'],
+  ParentSizeProps & Omit<JSX.IntrinsicElements['div'], keyof ParentSizeProps>,
   ParentSizeState
 > {
   static defaultProps = {

@@ -157,8 +157,8 @@ export default function PackageList({
               {!compact && <p>Lots of mock data sets to play with</p>}
             </li>
             <li className={cx(emphasizePackage === 'responsive' && 'emphasize')}>
-              <a href="/static/docs/vx-responsive.html">@vx/responsive</a>
-              {!compact && <p>Utilities to make responsive visualizations easily</p>}
+              <a href="/docs/responsive">@vx/responsive</a>
+              {!compact && <p>Utilities to make responsive visualizations easy</p>}
             </li>
             <li className={cx(emphasizePackage === 'point' && 'emphasize')}>
               <a href="/static/docs/vx-point.html">@vx/point</a>
