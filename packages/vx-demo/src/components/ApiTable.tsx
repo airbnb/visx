@@ -10,8 +10,9 @@ const alphaSort = (a: PropInfo, b: PropInfo) => a.name.localeCompare(b.name);
 
 /** Renders a list of props for the passed docgenInfo */
 export default function ApiTable({ docgenInfo }: Props) {
-  const componentName = docgenInfo.displayName;
-  const anchorId = componentName;
+  const { displayName } = docgenInfo;
+  const isComponent = (displayName[0] || '').toLowerCase() !== displayName[0];
+  const anchorId = displayName;
 
   // required first, then abc order
   const props = useMemo(() => {
@@ -35,10 +36,12 @@ export default function ApiTable({ docgenInfo }: Props) {
         <a id={anchorId} href={`#${anchorId}`}>
           #
         </a>
-        &lt;{componentName} /&gt;
+        {isComponent && <>&lt;</>}
+        {displayName}
+        {isComponent && <>&nbsp;/&gt;</>}
       </h3>
       {props.map(prop => {
-        const id = `${componentName}_${prop.name}`;
+        const id = `${displayName}_${prop.name}`;
         return (
           <div key={prop.name} className="prop">
             <div className="title">
@@ -46,7 +49,7 @@ export default function ApiTable({ docgenInfo }: Props) {
                 <a id={id} href={`#${id}`}>
                   #
                 </a>{' '}
-                <em>{componentName}</em>.<strong>{prop.name}</strong>
+                <em>{displayName}</em>.<strong>{prop.name}</strong>
               </span>
               {prop.type && <code>{prop.type.name}</code>}
               <span className={prop.required ? 'required' : 'optional'}>
