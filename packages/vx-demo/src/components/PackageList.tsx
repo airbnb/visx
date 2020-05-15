@@ -105,7 +105,7 @@ export default function PackageList({
               {!compact && <p>Make elements of an inteface draggable</p>}
             </li>
             <li className={cx(emphasizePackage === 'voronoi' && 'emphasize')}>
-              <a href="/static/docs/vx-voronoi.html">@vx/voronoi</a>
+              <a href="/docs/voronoi">@vx/voronoi</a>
               {!compact && <p>Partition points in a chart to improve user interaction</p>}
             </li>
             <li className={cx(emphasizePackage === 'zoom' && 'emphasize')}>
