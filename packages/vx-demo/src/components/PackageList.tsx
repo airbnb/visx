@@ -54,10 +54,6 @@ export default function PackageList({
               <a href="/static/docs/vx-shape.html">@vx/shape</a>
               {!compact && <p>Fundamental visualization shape primatives</p>}
             </li>
-            <li className={cx(emphasizePackage === 'threshold' && 'emphasize')}>
-              <a href="/static/docs/vx-threshold.html">@vx/threshold</a>
-              {!compact && <p>Fundamental visualization shape primatives</p>}
-            </li>
             <li className={cx(emphasizePackage === 'tooltip' && 'emphasize')}>
               <a href="/static/docs/vx-tooltip.html">@vx/tooltip</a>
               {!compact && <p>Show details on demand</p>}
@@ -90,6 +86,10 @@ export default function PackageList({
             <li className={cx(emphasizePackage === 'stats' && 'emphasize')}>
               <a href="/static/docs/vx-stats.html">@vx/stats</a>
               {!compact && <p>Visualize distributions</p>}
+            </li>
+            <li className={cx(emphasizePackage === 'threshold' && 'emphasize')}>
+              <a href="/docs/threshold">@vx/threshold</a>
+              {!compact && <p>Difference charts to compare the delta between two time series</p>}
             </li>
           </ul>
         </div>
