@@ -59,7 +59,7 @@ export default function PackageList({
               {!compact && <p>Fundamental visualization shape primatives</p>}
             </li>
             <li className={cx(emphasizePackage === 'tooltip' && 'emphasize')}>
-              <a href="/static/docs/vx-tooltip.html">@vx/tooltip</a>
+              <a href="/docs/tooltip">@vx/tooltip</a>
               {!compact && <p>Show details on demand</p>}
             </li>
           </ul>
