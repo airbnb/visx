@@ -33,7 +33,7 @@ function TooltipWithBounds({
   parentRect,
   getRects,
   children,
-  style,
+  style = defaultStyles,
   unstyled,
   ...otherProps
 }: Props) {
@@ -60,8 +60,7 @@ function TooltipWithBounds({
       style={{
         top: 0,
         transform: `translate(${left}px, ${top}px)`,
-        ...style,
-        ...(!unstyled && defaultStyles),
+        ...(!unstyled && style),
       }}
       {...otherProps}
     >
