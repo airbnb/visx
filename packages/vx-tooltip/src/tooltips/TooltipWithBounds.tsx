@@ -34,7 +34,7 @@ function TooltipWithBounds({
   getRects,
   children,
   style = defaultStyles,
-  unstyled,
+  unstyled = false,
   ...otherProps
 }: Props) {
   let left = initialLeft;
@@ -62,6 +62,7 @@ function TooltipWithBounds({
         transform: `translate(${left}px, ${top}px)`,
         ...(!unstyled && style),
       }}
+      unstyled={unstyled}
       {...otherProps}
     >
       {children}
