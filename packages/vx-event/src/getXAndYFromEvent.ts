@@ -10,7 +10,7 @@ export default function getXAndYFromEvent(event?: EventType) {
     return event.changedTouches.length > 0
       ? {
           x: event.changedTouches[0].clientX,
-          y: event.changedTouches[0].clientX,
+          y: event.changedTouches[0].clientY,
         }
       : { ...DEFAULT_POINT };
   }
