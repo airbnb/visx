@@ -5,9 +5,21 @@ import { AxisLeft } from '@vx/axis';
 import cityTemperature, { CityTemperature } from '@vx/mock-data/lib/mocks/cityTemperature';
 import { scaleBand, scaleLinear, scaleOrdinal } from '@vx/scale';
 import { timeParse, timeFormat } from 'd3-time-format';
-import { ShowProvidedProps } from '../../types';
+
+type Props = {
+  width: number;
+  height: number;
+  margin?: { top: number; right: number; bottom: number; left: number };
+  events?: boolean;
+};
 
 type CityName = 'New York' | 'San Francisco' | 'Austin';
+
+const blue = '#aeeef8';
+export const green = '#e5fd3d';
+const purple = '#9caff6';
+export const background = '#612efb';
+const defaultMargin = { top: 20, right: 20, bottom: 20, left: 50 };
 
 const parseDate = timeParse('%Y%m%d');
 const format = timeFormat('%b %d');
@@ -36,34 +48,22 @@ const tempScale = scaleLinear<number>({
 });
 const colorScale = scaleOrdinal<string, string>({
   domain: keys,
-  range: ['#aeeef8', '#e5fd3d', '#9caff6'],
+  range: [blue, green, purple],
 });
 
-export default ({
-  width,
-  height,
-  margin = {
-    top: 20,
-    left: 50,
-    right: 10,
-    bottom: 0,
-  },
-  events = false,
-}: ShowProvidedProps) => {
-  if (width < 10) return null;
-
+export default function Example({ width, height, margin = defaultMargin, events = false }: Props) {
   // bounds
   const xMax = width - margin.left - margin.right;
-  const yMax = height - 100;
+  const yMax = height - margin.top - margin.bottom;
 
-  // scales
+  // update scale output dimensions
   dateScale.rangeRound([0, yMax]);
   cityScale.rangeRound([0, dateScale.bandwidth()]);
   tempScale.rangeRound([0, xMax]);
 
-  return (
+  return width < 10 ? null : (
     <svg width={width} height={height}>
-      <rect x={0} y={0} width={width} height={height} fill="#612efb" rx={14} />
+      <rect x={0} y={0} width={width} height={height} fill={background} rx={14} />
       <Group top={margin.top} left={margin.left}>
         <BarGroupHorizontal<CityTemperature, CityName>
           data={data}
@@ -101,12 +101,12 @@ export default ({
         </BarGroupHorizontal>
         <AxisLeft
           scale={dateScale}
-          stroke="#e5fd3d"
-          tickStroke="#e5fd3d"
+          stroke={green}
+          tickStroke={green}
           tickFormat={formatDate}
           hideAxisLine
           tickLabelProps={() => ({
-            fill: '#e5fd3d',
+            fill: green,
             fontSize: 11,
             textAnchor: 'end',
             dy: '0.33em',
@@ -115,4 +115,4 @@ export default ({
       </Group>
     </svg>
   );
-};
+}

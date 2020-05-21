@@ -5,17 +5,24 @@ import { AxisBottom } from '@vx/axis';
 import cityTemperature, { CityTemperature } from '@vx/mock-data/lib/mocks/cityTemperature';
 import { scaleBand, scaleLinear, scaleOrdinal } from '@vx/scale';
 import { timeParse, timeFormat } from 'd3-time-format';
-import { ShowProvidedProps } from '../../types';
+
+type Props = {
+  width: number;
+  height: number;
+  margin?: { top: number; right: number; bottom: number; left: number };
+  events?: boolean;
+};
 
 type CityName = 'New York' | 'San Francisco' | 'Austin';
 
 const blue = '#aeeef8';
-const green = '#e5fd3d';
+export const green = '#e5fd3d';
 const purple = '#9caff6';
-const bg = '#612efb';
+export const background = '#612efb';
 
 const data = cityTemperature.slice(0, 8);
 const keys = Object.keys(data[0]).filter(d => d !== 'date') as CityName[];
+const defaultMargin = { top: 40, right: 0, bottom: 40, left: 0 };
 
 const parseDate = timeParse('%Y%m%d');
 const format = timeFormat('%b %d');
@@ -41,31 +48,20 @@ const colorScale = scaleOrdinal<string, string>({
   range: [blue, green, purple],
 });
 
-export default ({
-  width,
-  height,
-  events = false,
-  margin = {
-    top: 40,
-    right: 0,
-    bottom: 0,
-    left: 0,
-  },
-}: ShowProvidedProps) => {
-  if (width < 10) return null;
-
+export default function Example({ width, height, events = false, margin = defaultMargin }: Props) {
   // bounds
-  const xMax = width;
-  const yMax = height - margin.top - 100;
+  const xMax = width - margin.left - margin.right;
+  const yMax = height - margin.top - margin.bottom;
 
+  // update scale output dimensions
   dateScale.rangeRound([0, xMax]);
   cityScale.rangeRound([0, dateScale.bandwidth()]);
   tempScale.range([yMax, 0]);
 
-  return (
+  return width < 10 ? null : (
     <svg width={width} height={height}>
-      <rect x={0} y={0} width={width} height={height} fill={bg} rx={14} />
-      <Group top={margin.top}>
+      <rect x={0} y={0} width={width} height={height} fill={background} rx={14} />
+      <Group top={margin.top} left={margin.left}>
         <BarGroup<CityTemperature, string>
           data={data}
           keys={keys}
@@ -115,4 +111,4 @@ export default ({
       />
     </svg>
   );
-};
+}

@@ -19,8 +19,14 @@ import Axis, {
   backgroundColor as axisBackgroundColor,
   labelColor as axisTextColor,
 } from '../docs-v2/examples/vx-axis/Example';
-import BarGroup from './tiles/BarGroup';
-import BarGroupHorizontal from './tiles/BarGroupHorizontal';
+import BarGroup, {
+  background as bargroupBackground,
+  green as bargroupText,
+} from '../docs-v2/examples/vx-bargroup/Example';
+import BarGroupHorizontal, {
+  background as horizontalBargroupBackground,
+  green as horizontalBargroupText,
+} from '../docs-v2/examples/vx-bargroup-horizontal/Example';
 import BarStack, {
   background as barstackBackground,
   purple3 as barstackTextColor,
@@ -285,7 +291,7 @@ export default function Gallery() {
         </Tilt>
         <Tilt className="tilt" options={tiltOptions}>
           <Link href="/bargroup">
-            <div className="gallery-item" style={{ background: '#612efb' }}>
+            <div className="gallery-item" style={{ background: bargroupBackground }}>
               <div className="image">
                 <ParentSize>
                   {({ width, height }) => (
@@ -293,7 +299,7 @@ export default function Gallery() {
                   )}
                 </ParentSize>
               </div>
-              <div className="details" style={{ color: '#e5fd3d' }}>
+              <div className="details" style={{ color: bargroupText }}>
                 <div className="title">Bar Group</div>
                 <div className="description">
                   <pre>{'<Shape.BarGroup />'}</pre>
@@ -304,15 +310,19 @@ export default function Gallery() {
         </Tilt>
         <Tilt className="tilt" options={tiltOptions}>
           <Link href="/bargrouphorizontal">
-            <div className="gallery-item" style={{ background: '#612efb' }}>
+            <div className="gallery-item" style={{ background: horizontalBargroupBackground }}>
               <div className="image">
                 <ParentSize>
                   {({ width, height }) => (
-                    <BarGroupHorizontal width={width} height={height + detailsHeight} />
+                    <BarGroupHorizontal
+                      width={width}
+                      height={height + detailsHeight}
+                      margin={{ top: 20, bottom: detailsHeight, left: 50, right: 20 }}
+                    />
                   )}
                 </ParentSize>
               </div>
-              <div className="details" style={{ color: '#e5fd3d' }}>
+              <div className="details" style={{ color: horizontalBargroupText }}>
                 <div className="title">Bar Group Horizontal</div>
                 <div className="description">
                   <pre>{'<Shape.BarGroupHorizontal />'}</pre>
