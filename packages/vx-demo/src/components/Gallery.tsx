@@ -8,7 +8,7 @@ import Footer from './Footer';
 
 import Bars from '../docs-v2/examples/vx-bars/Example';
 import Curves from '../docs-v2/examples/vx-curve/Example';
-import Dots from './tiles/Dots';
+import Dots from '../docs-v2/examples/vx-dots/Example';
 import Gradients from '../docs-v2/examples/vx-gradient/Example';
 import Area, { background as areaBackground } from '../docs-v2/examples/vx-area/Example';
 import StackedAreas, {
@@ -143,16 +143,7 @@ export default function Gallery() {
               <div className="image">
                 <ParentSize>
                   {({ width, height }) => (
-                    <Dots
-                      width={width}
-                      height={height + detailsHeight}
-                      margin={{
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        bottom: 80,
-                      }}
-                    />
+                    <Dots showControls={false} width={width} height={height} />
                   )}
                 </ParentSize>
               </div>
