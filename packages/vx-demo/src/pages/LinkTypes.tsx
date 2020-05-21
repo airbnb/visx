@@ -1,13 +1,14 @@
 import React from 'react';
 import Show from '../components/Show';
-import LinkTypes from '../components/tiles/LinkTypes';
-import LinkTypesSource from '!!raw-loader!../components/tiles/LinkTypes';
+import LinkTypes from '../docs-v2/examples/vx-linktypes/Example';
+import LinkTypesSource from '!!raw-loader!../docs-v2/examples/vx-linktypes/Example';
 
 export default () => {
   return (
     <Show
       events
       title="Link Types"
+      codeSandboxDirectoryName="vx-linktypes"
       component={LinkTypes}
       margin={{
         top: 40,
