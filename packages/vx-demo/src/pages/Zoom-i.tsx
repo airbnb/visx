@@ -1,12 +1,10 @@
 import React from 'react';
 import Show from '../components/Show';
-import ZoomI from '../components/tiles/Zoom-i';
-import ZoomISource from '!!raw-loader!../components/tiles/Zoom-i';
+import ZoomI from '../docs-v2/examples/vx-zoom-i/Example';
+import ZoomISource from '!!raw-loader!../docs-v2/examples/vx-zoom-i/Example';
 
-export default () => {
-  return (
-    <Show component={ZoomI} title="Zoom I">
-      {ZoomISource}
-    </Show>
-  );
-};
+export default () => (
+  <Show component={ZoomI} title="Zoom I" codeSandboxDirectoryName="vx-zoom-i">
+    {ZoomISource}
+  </Show>
+);

@@ -3,51 +3,79 @@ import Tilt from 'react-tilt';
 import Link from 'next/link';
 import { ParentSize } from '@vx/responsive';
 import drawData from './util/drawData';
-
 import Footer from './Footer';
 
-import Bars from './tiles/Bars';
-import Curves from '../docs-v2/examples/vx-curve/Example';
-import Dots from './tiles/Dots';
-import Gradients from '../docs-v2/examples/vx-gradient/Example';
-import Areas from './tiles/Areas';
-import StackedAreas from './tiles/Stacked-Areas';
-import Glyphs, { primary as glyphTextColor } from '../docs-v2/examples/vx-glyph/Example';
+import Area, { background as areaBackground } from '../docs-v2/examples/vx-area/Example';
 import Axis, {
   backgroundColor as axisBackgroundColor,
   labelColor as axisTextColor,
 } from '../docs-v2/examples/vx-axis/Example';
-import BarGroup from './tiles/BarGroup';
-import BarGroupHorizontal from './tiles/BarGroupHorizontal';
-import BarStack from './tiles/BarStack';
-import BarStackHorizontal from './tiles/BarStackHorizontal';
+import BarGroup, {
+  background as bargroupBackground,
+  green as bargroupText,
+} from '../docs-v2/examples/vx-bargroup/Example';
+import BarGroupHorizontal, {
+  background as horizontalBargroupBackground,
+  green as horizontalBargroupText,
+} from '../docs-v2/examples/vx-bargroup-horizontal/Example';
+import BarStack, {
+  background as barstackBackground,
+  purple3 as barstackTextColor,
+} from '../docs-v2/examples/vx-barstack/Example';
+import BarStackHorizontal, {
+  background as horizontalBarstackBackground,
+  purple3 as horiztonalBarstackTextColor,
+} from '../docs-v2/examples/vx-barstack-horizontal/Example';
+import Bars from '../docs-v2/examples/vx-bars/Example';
 import Brush from '../docs-v2/examples/vx-brush/Example';
-import Heatmap from './tiles/Heatmap';
-import LineRadial from '../docs-v2/examples/vx-shape-line-radial/Example';
-import Pies from '../docs-v2/examples/vx-shape-pie/Example';
-import Trees from './tiles/Trees';
-import Dendrograms from './tiles/Dendrograms';
-import Voronoi from './tiles/Voronoi';
-import Legends from './tiles/Legends';
-import StatsPlot from './tiles/Statsplot';
+import Chord from '../docs-v2/examples/vx-chord/Example';
+import Curves from '../docs-v2/examples/vx-curve/Example';
+import Dendrogram, {
+  background as dendrogramBackground,
+  green as dendrogramText,
+} from '../docs-v2/examples/vx-dendrogram/Example';
+import Dots from '../docs-v2/examples/vx-dots/Example';
+import DragI from '../docs-v2/examples/vx-drag-i/Example';
+import DragII from '../docs-v2/examples/vx-drag-ii/Example';
 import GeoCustom from '../docs-v2/examples/vx-geo-custom/Example';
 import GeoMercator from '../docs-v2/examples/vx-geo-mercator/Example';
-import Network from './tiles/Network';
+import Glyphs, { primary as glyphTextColor } from '../docs-v2/examples/vx-glyph/Example';
+import Gradients from '../docs-v2/examples/vx-gradient/Example';
+import Heatmaps from '../docs-v2/examples/vx-heatmap/Example';
+import Legends from '../docs-v2/examples/vx-legend/Example';
+import LineRadial from '../docs-v2/examples/vx-shape-line-radial/Example';
+import LinkTypes from '../docs-v2/examples/vx-linktypes/Example';
+import Network, {
+  backgroundColor as networkBackground,
+} from '../docs-v2/examples/vx-network/Example';
+import Pies from '../docs-v2/examples/vx-shape-pie/Example';
+import StackedAreas, {
+  background as stackedAreaBackground,
+} from '../docs-v2/examples/vx-stacked-areas/Example';
+import StatsPlot from '../docs-v2/examples/vx-stats/Example';
 import Streamgraph, {
   BACKGROUND as streamgraphBackgroundColor,
 } from '../docs-v2/examples/vx-streamgraph/Example';
-import Pack from './tiles/Pack';
+import Pack from '../docs-v2/examples/vx-pack/Example';
 import Patterns from '../docs-v2/examples/vx-pattern/Example';
-import Treemap from './tiles/Treemap';
-import Radar from './tiles/Radar';
+import Polygons, {
+  backgroundColor as polygonBackground,
+} from '../docs-v2/examples/vx-polygons/Example';
+import Radar, {
+  bg as radarBackground,
+  pumpkin as radarColor,
+} from '../docs-v2/examples/vx-radar/Example';
 import Responsive from '../docs-v2/examples/vx-responsive/Example';
-import DragI from '../docs-v2/examples/vx-drag-i/Example';
-import DragII from '../docs-v2/examples/vx-drag-ii/Example';
-import LinkTypes from './tiles/LinkTypes';
-import Threshold from './tiles/Threshold';
-import Chord from './tiles/Chord';
-import Polygons from './tiles/Polygons';
-import ZoomI from './tiles/Zoom-i';
+import Threshold, {
+  background as thresholdBackground,
+} from '../docs-v2/examples/vx-threshold/Example';
+import Tree, { background as treeBackground } from '../docs-v2/examples/vx-tree/Example';
+import Treemap, {
+  bg as treemapBackground,
+  color1 as treemapTextColor,
+} from '../docs-v2/examples/vx-treemap/Example';
+import Voronoi from '../docs-v2/examples/vx-voronoi/Example';
+import ZoomI from '../docs-v2/examples/vx-zoom-i/Example';
 
 const items = [
   '#242424',
@@ -118,16 +146,7 @@ export default function Gallery() {
               <div className="image">
                 <ParentSize>
                   {({ width, height }) => (
-                    <Dots
-                      width={width}
-                      height={height + detailsHeight}
-                      margin={{
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        bottom: 80,
-                      }}
-                    />
+                    <Dots showControls={false} width={width} height={height} />
                   )}
                 </ParentSize>
               </div>
@@ -161,25 +180,14 @@ export default function Gallery() {
         </Tilt>
         <Tilt className="tilt" options={tiltOptions}>
           <Link href="/areas">
-            <div className="gallery-item" style={{ background: items[5] }}>
+            <div className="gallery-item" style={{ background: areaBackground }}>
               <div className="image">
                 <ParentSize>
-                  {({ width, height }) => (
-                    <Areas
-                      width={width}
-                      height={height + detailsHeight}
-                      margin={{
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        bottom: 80,
-                      }}
-                    />
-                  )}
+                  {({ width, height }) => <Area width={width} height={height} />}
                 </ParentSize>
               </div>
               <div className="details" style={{ zIndex: 1 }}>
-                <div className="title">Areas</div>
+                <div className="title">AreaClosed</div>
                 <div className="description">
                   <pre>{'<Shape.AreaClosed />'}</pre>
                 </div>
@@ -189,21 +197,10 @@ export default function Gallery() {
         </Tilt>
         <Tilt className="tilt" options={tiltOptions}>
           <Link href="/stacked-areas">
-            <div className="gallery-item" style={{ background: items[6] }}>
+            <div className="gallery-item" style={{ background: stackedAreaBackground }}>
               <div className="image">
                 <ParentSize>
-                  {({ width, height }) => (
-                    <StackedAreas
-                      width={width}
-                      height={height + detailsHeight}
-                      margin={{
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        bottom: 80,
-                      }}
-                    />
-                  )}
+                  {({ width, height }) => <StackedAreas width={width} height={height} />}
                 </ParentSize>
               </div>
               <div className="details" style={{ color: 'rgba(251, 224, 137, 1.000)' }}>
@@ -291,7 +288,7 @@ export default function Gallery() {
         </Tilt>
         <Tilt className="tilt" options={tiltOptions}>
           <Link href="/bargroup">
-            <div className="gallery-item" style={{ background: '#612efb' }}>
+            <div className="gallery-item" style={{ background: bargroupBackground }}>
               <div className="image">
                 <ParentSize>
                   {({ width, height }) => (
@@ -299,7 +296,7 @@ export default function Gallery() {
                   )}
                 </ParentSize>
               </div>
-              <div className="details" style={{ color: '#e5fd3d' }}>
+              <div className="details" style={{ color: bargroupText }}>
                 <div className="title">Bar Group</div>
                 <div className="description">
                   <pre>{'<Shape.BarGroup />'}</pre>
@@ -310,15 +307,19 @@ export default function Gallery() {
         </Tilt>
         <Tilt className="tilt" options={tiltOptions}>
           <Link href="/bargrouphorizontal">
-            <div className="gallery-item" style={{ background: '#612efb' }}>
+            <div className="gallery-item" style={{ background: horizontalBargroupBackground }}>
               <div className="image">
                 <ParentSize>
                   {({ width, height }) => (
-                    <BarGroupHorizontal width={width} height={height + detailsHeight} />
+                    <BarGroupHorizontal
+                      width={width}
+                      height={height + detailsHeight}
+                      margin={{ top: 20, bottom: detailsHeight, left: 50, right: 20 }}
+                    />
                   )}
                 </ParentSize>
               </div>
-              <div className="details" style={{ color: '#e5fd3d' }}>
+              <div className="details" style={{ color: horizontalBargroupText }}>
                 <div className="title">Bar Group Horizontal</div>
                 <div className="description">
                   <pre>{'<Shape.BarGroupHorizontal />'}</pre>
@@ -332,7 +333,9 @@ export default function Gallery() {
             <div className="gallery-item" style={{ background: '#28272c' }}>
               <div className="image">
                 <ParentSize>
-                  {({ width, height }) => <Heatmap width={width} height={height + detailsHeight} />}
+                  {({ width, height }) => (
+                    <Heatmaps width={width} height={height + detailsHeight} />
+                  )}
                 </ParentSize>
               </div>
               <div className="details" style={{ color: 'rgba(255,255,255,0.3)' }}>
@@ -346,7 +349,7 @@ export default function Gallery() {
         </Tilt>
         <Tilt className="tilt" options={tiltOptions}>
           <Link href="/barstack">
-            <div className="gallery-item" style={{ background: '#eaedff' }}>
+            <div className="gallery-item" style={{ background: barstackBackground }}>
               <div className="image">
                 <ParentSize>
                   {({ width, height }) => (
@@ -354,7 +357,7 @@ export default function Gallery() {
                   )}
                 </ParentSize>
               </div>
-              <div className="details" style={{ color: '#a44afe', zIndex: 1 }}>
+              <div className="details" style={{ color: barstackTextColor, zIndex: 1 }}>
                 <div className="title">Bar Stack</div>
                 <div className="description">
                   <pre>{'<Shape.BarStack />'}</pre>
@@ -368,7 +371,7 @@ export default function Gallery() {
             <div
               className="gallery-item"
               style={{
-                background: '#eaedff',
+                background: horizontalBarstackBackground,
               }}
             >
               <div className="image">
@@ -378,7 +381,7 @@ export default function Gallery() {
                   )}
                 </ParentSize>
               </div>
-              <div className="details" style={{ color: '#a44afe', zIndex: 1 }}>
+              <div className="details" style={{ color: horiztonalBarstackTextColor, zIndex: 1 }}>
                 <div className="title">Bar Stack Horizontal</div>
                 <div className="description">
                   <pre>{'<Shape.BarStackHorizontal />'}</pre>
@@ -408,10 +411,16 @@ export default function Gallery() {
         </Tilt>
         <Tilt className="tilt" options={tiltOptions}>
           <Link href="/trees">
-            <div className="gallery-item" style={{ background: '#272b4d' }}>
+            <div className="gallery-item" style={{ background: treeBackground }}>
               <div className="image">
                 <ParentSize>
-                  {({ width, height }) => <Trees width={width} height={height + detailsHeight} />}
+                  {({ width, height }) => (
+                    <Tree
+                      width={width}
+                      height={height + detailsHeight}
+                      margin={{ top: 10, left: 30, right: 40, bottom: detailsHeight }}
+                    />
+                  )}
                 </ParentSize>
               </div>
               <div className="details" style={{ color: '#269688' }}>
@@ -425,15 +434,13 @@ export default function Gallery() {
         </Tilt>
         <Tilt className="tilt" options={tiltOptions}>
           <Link href="/dendrograms">
-            <div className="gallery-item" style={{ background: '#306c90' }}>
+            <div className="gallery-item" style={{ background: dendrogramBackground }}>
               <div className="image">
                 <ParentSize>
-                  {({ width, height }) => (
-                    <Dendrograms width={width} height={height + detailsHeight} />
-                  )}
+                  {({ width, height }) => <Dendrogram width={width} height={height} />}
                 </ParentSize>
               </div>
-              <div className="details" style={{ color: '#5dc26f' }}>
+              <div className="details" style={{ color: dendrogramText }}>
                 <div className="title">Dendrograms</div>
                 <div className="description">
                   <pre>{'<Hierarchy.Cluster /> + <Shape.LinkVertical />'}</pre>
@@ -510,9 +517,7 @@ export default function Gallery() {
             <div className="gallery-item" style={{ background: '#8a88e3' }}>
               <div className="image">
                 <ParentSize>
-                  {({ width, height }) => (
-                    <StatsPlot width={width} height={height + detailsHeight} />
-                  )}
+                  {({ width, height }) => <StatsPlot width={width} height={height} />}
                 </ParentSize>
               </div>
               <div className="details" style={{ color: '#FFFFFF', zIndex: 1 }}>
@@ -567,7 +572,7 @@ export default function Gallery() {
 
         <Tilt className="tilt" options={tiltOptions}>
           <Link href="/network">
-            <div className="gallery-item" style={{ background: '#272b4d' }}>
+            <div className="gallery-item" style={{ background: networkBackground }}>
               <div className="image">
                 <ParentSize>
                   {({ width, height }) => <Network width={width} height={height + detailsHeight} />}
@@ -645,18 +650,24 @@ export default function Gallery() {
             <div
               className="gallery-item"
               style={{
-                background: '#3436b8',
+                background: treemapBackground,
               }}
             >
               <div className="image">
                 <ParentSize>
-                  {({ width, height }) => <Treemap width={width} height={height + detailsHeight} />}
+                  {({ width, height }) => (
+                    <Treemap
+                      width={width}
+                      height={height + detailsHeight}
+                      margin={{ top: 0, left: 10, right: 10, bottom: detailsHeight }}
+                    />
+                  )}
                 </ParentSize>
               </div>
               <div
                 className="details"
                 style={{
-                  color: '#00ff70',
+                  color: treemapTextColor,
                 }}
               >
                 <div className="title">Treemap</div>
@@ -672,7 +683,7 @@ export default function Gallery() {
             <div
               className="gallery-item"
               style={{
-                background: '#FAF7E9',
+                background: radarBackground,
               }}
             >
               <div className="image">
@@ -683,7 +694,7 @@ export default function Gallery() {
               <div
                 className="details"
                 style={{
-                  color: '#f5810c',
+                  color: radarColor,
                 }}
               >
                 <div className="title">Radar</div>
@@ -833,7 +844,7 @@ export default function Gallery() {
         </Tilt>
         <Tilt className="tilt" options={tiltOptions}>
           <Link href="/threshold">
-            <div className="gallery-item" style={{ background: '#f3f3f3' }}>
+            <div className="gallery-item" style={{ background: thresholdBackground }}>
               <div className="image">
                 <ParentSize>
                   {({ width, height }) => (
@@ -864,19 +875,7 @@ export default function Gallery() {
             <div className="gallery-item" style={{ background: '#e4e3d8' }}>
               <div className="image">
                 <ParentSize>
-                  {({ width, height }) => (
-                    <Chord
-                      width={width}
-                      height={height}
-                      centerSize={10}
-                      margin={{
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        bottom: 30,
-                      }}
-                    />
-                  )}
+                  {({ width, height }) => <Chord width={width} height={height} centerSize={10} />}
                 </ParentSize>
               </div>
               <div className="details" style={{ color: '#111' }}>
@@ -890,7 +889,7 @@ export default function Gallery() {
         </Tilt>
         <Tilt className="tilt" options={tiltOptions}>
           <Link href="/polygons">
-            <div className="gallery-item" style={{ background: '#7f82e3' }}>
+            <div className="gallery-item" style={{ background: polygonBackground }}>
               <div className="image">
                 <ParentSize>
                   {({ width, height }) => <Polygons width={width} height={height} />}

@@ -1,7 +1,7 @@
 import React from 'react';
 import Show from '../components/Show';
-import VoronoiChart from '../components/tiles/Voronoi';
-import VoronoiChartSource from '!!raw-loader!../components/tiles/Voronoi';
+import VoronoiChart from '../docs-v2/examples/vx-voronoi/Example';
+import VoronoiChartSource from '!!raw-loader!../docs-v2/examples/vx-voronoi/Example';
 
 export default () => {
   return (
@@ -15,6 +15,7 @@ export default () => {
       }}
       component={VoronoiChart}
       title="Voronoi"
+      codeSandboxDirectoryName="vx-voronoi"
     >
       {VoronoiChartSource}
     </Show>
