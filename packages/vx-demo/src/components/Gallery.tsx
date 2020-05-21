@@ -39,7 +39,10 @@ import Heatmaps from '../docs-v2/examples/vx-heatmap/Example';
 import LineRadial from '../docs-v2/examples/vx-shape-line-radial/Example';
 import Pies from '../docs-v2/examples/vx-shape-pie/Example';
 import Trees from './tiles/Trees';
-import Dendrograms from './tiles/Dendrograms';
+import Dendrogram, {
+  background as dendrogramBackground,
+  green as dendrogramText,
+} from '../docs-v2/examples/vx-dendrogram/Example';
 import Voronoi from '../docs-v2/examples/vx-voronoi/Example';
 import Legends from '../docs-v2/examples/vx-legend/Example';
 import StatsPlot from '../docs-v2/examples/vx-stats/Example';
@@ -431,15 +434,13 @@ export default function Gallery() {
         </Tilt>
         <Tilt className="tilt" options={tiltOptions}>
           <Link href="/dendrograms">
-            <div className="gallery-item" style={{ background: '#306c90' }}>
+            <div className="gallery-item" style={{ background: dendrogramBackground }}>
               <div className="image">
                 <ParentSize>
-                  {({ width, height }) => (
-                    <Dendrograms width={width} height={height + detailsHeight} />
-                  )}
+                  {({ width, height }) => <Dendrogram width={width} height={height} />}
                 </ParentSize>
               </div>
-              <div className="details" style={{ color: '#5dc26f' }}>
+              <div className="details" style={{ color: dendrogramText }}>
                 <div className="title">Dendrograms</div>
                 <div className="description">
                   <pre>{'<Hierarchy.Cluster /> + <Shape.LinkVertical />'}</pre>
