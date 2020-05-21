@@ -27,7 +27,7 @@ import BarStackHorizontal, {
   background as horizontalBarstackBackground,
   purple3 as horiztonalBarstackTextColor,
 } from '../docs-v2/examples/vx-barstack-horizontal/Example';
-import Heatmap from './tiles/Heatmap';
+import Heatmaps from '../docs-v2/examples/vx-heatmap/Example';
 import LineRadial from '../docs-v2/examples/vx-shape-line-radial/Example';
 import Pies from '../docs-v2/examples/vx-shape-pie/Example';
 import Trees from './tiles/Trees';
@@ -346,7 +346,9 @@ export default function Gallery() {
             <div className="gallery-item" style={{ background: '#28272c' }}>
               <div className="image">
                 <ParentSize>
-                  {({ width, height }) => <Heatmap width={width} height={height + detailsHeight} />}
+                  {({ width, height }) => (
+                    <Heatmaps width={width} height={height + detailsHeight} />
+                  )}
                 </ParentSize>
               </div>
               <div className="details" style={{ color: 'rgba(255,255,255,0.3)' }}>

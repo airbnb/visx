@@ -3,7 +3,6 @@ import { Group } from '@vx/group';
 import genBins, { Bin, Bins } from '@vx/mock-data/lib/generators/genBins';
 import { scaleLinear } from '@vx/scale';
 import { HeatmapCircle, HeatmapRect } from '@vx/heatmap';
-import { ShowProvidedProps } from '../../types';
 
 const hot1 = '#77312f';
 const hot2 = '#f33d15';
@@ -48,26 +47,26 @@ const opacityScale = scaleLinear<number>({
   domain: [0, colorMax],
 });
 
+type Props = {
+  width: number;
+  height: number;
+  margin?: { top: number; right: number; bottom: number; left: number };
+  separation?: number;
+  events?: boolean;
+};
+
+const defaultMargin = { top: 10, left: 20, right: 20, bottom: 110 };
+
 export default ({
   width,
   height,
   events = false,
-  margin = {
-    top: 10,
-    left: 20,
-    right: 20,
-    bottom: 110,
-  },
+  margin = defaultMargin,
   separation = 20,
-}: ShowProvidedProps & { separation?: number }) => {
-  if (width < 10) return null;
-
+}: Props) => {
   // bounds
-  let size = width;
-  if (size > margin.left + margin.right) {
-    size = width - margin.left - margin.right - separation;
-  }
-
+  const size =
+    width > margin.left + margin.right ? width - margin.left - margin.right - separation : width;
   const xMax = size / 2;
   const yMax = height - margin.bottom - margin.top;
 
@@ -78,7 +77,7 @@ export default ({
   xScale.range([0, xMax]);
   yScale.range([yMax, 0]);
 
-  return (
+  return width < 10 ? null : (
     <svg width={width} height={height}>
       <rect x={0} y={0} width={width} height={height} rx={14} fill={bg} />
       <Group top={margin.top} left={margin.left}>
