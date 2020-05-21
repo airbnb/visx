@@ -38,7 +38,7 @@ import BarStackHorizontal, {
 import Heatmaps from '../docs-v2/examples/vx-heatmap/Example';
 import LineRadial from '../docs-v2/examples/vx-shape-line-radial/Example';
 import Pies from '../docs-v2/examples/vx-shape-pie/Example';
-import Trees from './tiles/Trees';
+import Tree, { background as treeBackground } from '../docs-v2/examples/vx-tree/Example';
 import Dendrogram, {
   background as dendrogramBackground,
   green as dendrogramText,
@@ -412,10 +412,16 @@ export default function Gallery() {
         </Tilt>
         <Tilt className="tilt" options={tiltOptions}>
           <Link href="/trees">
-            <div className="gallery-item" style={{ background: '#272b4d' }}>
+            <div className="gallery-item" style={{ background: treeBackground }}>
               <div className="image">
                 <ParentSize>
-                  {({ width, height }) => <Trees width={width} height={height + detailsHeight} />}
+                  {({ width, height }) => (
+                    <Tree
+                      width={width}
+                      height={height + detailsHeight}
+                      margin={{ top: 10, left: 30, right: 40, bottom: detailsHeight }}
+                    />
+                  )}
                 </ParentSize>
               </div>
               <div className="details" style={{ color: '#269688' }}>
@@ -512,9 +518,7 @@ export default function Gallery() {
             <div className="gallery-item" style={{ background: '#8a88e3' }}>
               <div className="image">
                 <ParentSize>
-                  {({ width, height }) => (
-                    <StatsPlot width={width} height={height + detailsHeight} />
-                  )}
+                  {({ width, height }) => <StatsPlot width={width} height={height} />}
                 </ParentSize>
               </div>
               <div className="details" style={{ color: '#FFFFFF', zIndex: 1 }}>
