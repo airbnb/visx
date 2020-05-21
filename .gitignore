@@ -43,7 +43,6 @@ tsconfig.options.json
 *.tsbuildinfo
 webpack.config.js
 
-# Lock files, libs should not have lock files
+# Lock files
 npm-shrinkwrap.json
 package-lock.json 
-yarn.lock

@@ -97,8 +97,22 @@
 
 #### :rocket: Enhancements
 
-- [tooltip] Remove tooltip default styles [#666](https://github.com/hshoff/vx/pull/666)
 - [brush] Add initialBrushPosition [#618](https://github.com/hshoff/vx/pull/618), fix in [#667](https://github.com/hshoff/vx/pull/667)
+
+#### 💥 Breaking Changes
+- [tooltip] Add ability to remove tooltip default styles [#666](https://github.com/hshoff/vx/pull/666). If styles were applied previously, you will also need to spread `defaultStyles`:
+
+```jsx
+// before
+import { Tooltip } from '@vx/tooltip';
+...
+<Tooltip style={{ color: myCustomColor }} />
+
+// after
+import { Tooltip, defaultStyles } from '@vx/tooltip';
+...
+<Tooltip style={{ ...defaultStyles, color: myCustomColor }} />
+```
 
 #### :memo: Documentation
 

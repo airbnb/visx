@@ -1,12 +1,10 @@
 import React from 'react';
 import Show from '../components/Show';
-import Network from '../components/tiles/Network';
-import NetworkSource from '!!raw-loader!../components/tiles/Network';
+import Network from '../docs-v2/examples/vx-network/Example';
+import NetworkSource from '!!raw-loader!../docs-v2/examples/vx-network/Example';
 
-export default () => {
-  return (
-    <Show component={Network} title="Network">
-      {NetworkSource}
-    </Show>
-  );
-};
+export default () => (
+  <Show component={Network} title="Network" codeSandboxDirectoryName="vx-network">
+    {NetworkSource}
+  </Show>
+);
