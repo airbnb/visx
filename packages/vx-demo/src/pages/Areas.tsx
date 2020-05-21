@@ -1,21 +1,10 @@
 import React from 'react';
 import Show from '../components/Show';
-import Areas from '../components/tiles/Areas';
-import AreasSource from '!!raw-loader!../components/tiles/Areas';
+import Area from '../docs-v2/examples/vx-area/Example';
+import AreaSource from '!!raw-loader!../docs-v2/examples/vx-area/Example';
 
-export default () => {
-  return (
-    <Show
-      component={Areas}
-      title="Areas"
-      margin={{
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-      }}
-    >
-      {AreasSource}
-    </Show>
-  );
-};
+export default () => (
+  <Show component={Area} title="Areas" codeSandboxDirectoryName="vx-area">
+    {AreaSource}
+  </Show>
+);
