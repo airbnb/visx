@@ -72,7 +72,9 @@ import Threshold, {
   background as thresholdBackground,
 } from '../docs-v2/examples/vx-threshold/Example';
 import Chord from '../docs-v2/examples/vx-chord/Example';
-import Polygons from './tiles/Polygons';
+import Polygons, {
+  backgroundColor as polygonBackground,
+} from '../docs-v2/examples/vx-polygons/Example';
 import ZoomI from '../docs-v2/examples/vx-zoom-i/Example';
 import Brush from './tiles/Brush';
 
@@ -884,7 +886,7 @@ export default function Gallery() {
         </Tilt>
         <Tilt className="tilt" options={tiltOptions}>
           <Link href="/polygons">
-            <div className="gallery-item" style={{ background: '#7f82e3' }}>
+            <div className="gallery-item" style={{ background: polygonBackground }}>
               <div className="image">
                 <ParentSize>
                   {({ width, height }) => <Polygons width={width} height={height} />}
