@@ -5,7 +5,7 @@ import withScreenSize, {
 } from '@vx/responsive/lib/enhancers/withScreenSize';
 import CodeSandboxLink from './CodeSandboxLink';
 import Page from './Page';
-import Codeblock from './codeblocks/Codeblock';
+import Codeblock from './Codeblock';
 import { MarginShape, ShowProvidedProps } from '../types';
 
 type Component<P = {}> = React.FC<P> | React.ComponentClass<P>;
