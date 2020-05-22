@@ -76,7 +76,7 @@ export default function PackageList({
               {!compact && <p>Geographic projections</p>}
             </li>
             <li className={cx(emphasizePackage === 'heatmap' && 'emphasize')}>
-              <a href="/static/docs/vx-heatmap.html">@vx/heatmap</a>
+              <a href="/docs/heatmap">@vx/heatmap</a>
               {!compact && <p>Represent data values using color</p>}
             </li>
             <li className={cx(emphasizePackage === 'hierarchy' && 'emphasize')}>
