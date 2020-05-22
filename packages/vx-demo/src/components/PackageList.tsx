@@ -43,7 +43,7 @@ export default function PackageList({
               {!compact && <p>Make your visual encodings readable</p>}
             </li>
             <li className={cx(emphasizePackage === 'marker' && 'emphasize')}>
-              <a href="/static/docs/vx-marker.html">@vx/marker</a>
+              <a href="/docs/marker">@vx/marker</a>
               {!compact && <p>Annotation lines with text</p>}
             </li>
             <li className={cx(emphasizePackage === 'scale' && 'emphasize')}>
@@ -84,7 +84,7 @@ export default function PackageList({
               {!compact && <p>Components to visualize hierarchical or nested data</p>}
             </li>
             <li className={cx(emphasizePackage === 'network' && 'emphasize')}>
-              <a href="/static/docs/vx-network.html">@vx/network</a>
+              <a href="/docs/network">@vx/network</a>
               {!compact && <p>Visualize nodes and links between them</p>}
             </li>
             <li className={cx(emphasizePackage === 'stats' && 'emphasize')}>
