@@ -15,7 +15,7 @@ const components = (Object.values(Gradients).map(
     (b.displayName === 'LinearGradient' && 2) ||
     (a.displayName === 'RadialGradient' && -1) ||
     (b.displayName === 'RadialGradient' && 1) ||
-    a.displayName.localeCompare(b.displayName),
+    (a.displayName ?? '').localeCompare(b.displayName ?? ''),
 );
 
 export default () => (
