@@ -59,7 +59,7 @@ export default function PackageList({
               {!compact && <p>Fundamental visualization shape primatives</p>}
             </li>
             <li className={cx(emphasizePackage === 'tooltip' && 'emphasize')}>
-              <a href="/static/docs/vx-tooltip.html">@vx/tooltip</a>
+              <a href="/docs/tooltip">@vx/tooltip</a>
               {!compact && <p>Show details on demand</p>}
             </li>
           </ul>
@@ -140,8 +140,8 @@ export default function PackageList({
               {!compact && <p>Utilities for creating pattern definitions</p>}
             </li>
             <li className={cx(emphasizePackage === 'text' && 'emphasize')}>
-              <a href="/static/docs/vx-text.html">@vx/text</a>
-              {!compact && <p>Utilities for styling & wrapping svg text</p>}
+              <a href="/docs/text">@vx/text</a>
+              {!compact && <p>An improved SVG Text component</p>}
             </li>
           </ul>
         </div>

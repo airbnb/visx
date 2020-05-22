@@ -1,11 +1,17 @@
 # @vx/tooltip
 
-```
-npm install --save @vx/tooltip
-```
+<a title="@vx/tooltip npm downloads" href="https://www.npmjs.com/package/@vx/tooltip">
+  <img src="https://img.shields.io/npm/dm/@vx/tooltip.svg?style=flat-square" />
+</a>
 
 The `@vx/tooltip` package provides utilities for making it easy to add `Tooltip`s to a visualization
 and includes hooks, higher-order component (HOC) enhancers and Tooltip components.
+
+### Installation
+
+```
+npm install --save @vx/tooltip
+```
 
 ### Hooks and Enhancers
 
