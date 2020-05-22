@@ -27,7 +27,7 @@ export default function PackageList({
               {!compact && <p>Annotate your coordinate system</p>}
             </li>
             <li className={cx(cx(emphasizePackage === 'curve' && 'emphasize'))}>
-              <a href="/static/docs/vx-curve.html">@vx/curve</a>
+              <a href="/docs/curve">@vx/curve</a>
               {!compact && <p>d3 line interpolators for @vx/shape</p>}
             </li>
             <li className={cx(emphasizePackage === 'glyph' && 'emphasize')}>
