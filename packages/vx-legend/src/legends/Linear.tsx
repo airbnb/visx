@@ -22,7 +22,7 @@ export function defaultDomain<Output>({
 }
 
 /** Linear scales map from continuous inputs to continuous outputs. */
-export default function LegendLinear<Output>({
+export default function Linear<Output>({
   scale,
   domain: inputDomain,
   steps = 5,

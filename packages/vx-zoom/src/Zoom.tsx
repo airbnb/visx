@@ -52,10 +52,6 @@ export type ZoomProps = {
    *   return transformMatrix;
    * }
    * ```
-   *
-   * @param {matrix} transformMatrix
-   * @param {matrix} prevTransformMatrix
-   * @returns {martix}
    */
   constrain?: (transform: TransformMatrix, prevTransform: TransformMatrix) => TransformMatrix;
   /** Initial transform matrix to apply. */

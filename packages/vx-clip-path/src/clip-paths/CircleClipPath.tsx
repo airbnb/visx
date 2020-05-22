@@ -12,6 +12,7 @@ export type CircleClipPathProps = {
   r?: string | number;
 };
 
+/** ClipPath for clipping to the shape of a `<circle />`, pass any `<circle />` props you want. */
 export default function CircleClipPath({
   id,
   cx,

@@ -9,7 +9,7 @@ export type LegendOrdinalProps<Input extends { toString(): string }, Output> = L
 >;
 
 /** Ordinal scales map from strings to an Output type. */
-export default function LegendOrdinal<Input extends { toString(): string }, Output>(
+export default function Ordinal<Input extends { toString(): string }, Output>(
   props: LegendOrdinalProps<Input, Output>,
 ) {
   return <Legend<string, Output, ScaleOrdinal<Input, Output>> {...props} />;

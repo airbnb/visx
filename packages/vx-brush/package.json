@@ -37,7 +37,6 @@
     "@vx/group": "0.0.196",
     "@vx/shape": "0.0.196",
     "classnames": "^2.2.5",
-    "prop-types": "^15.6.1",
-    "recompose": "^0.23.1"
+    "prop-types": "^15.6.1"
   }
 }

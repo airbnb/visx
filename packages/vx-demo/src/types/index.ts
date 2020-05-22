@@ -48,6 +48,7 @@ export type VxPackage =
   | 'threshold'
   | 'tooltip'
   | 'voronoi'
+  | 'vx'
   | 'zoom';
 
 /** DocGenInfo for a single prop */

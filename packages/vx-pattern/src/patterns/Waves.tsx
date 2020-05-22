@@ -27,7 +27,7 @@ export type PatternWavesProps = {
   shapeRendering?: string | number;
 };
 
-export default function PatternWaves({
+export default function Waves({
   id,
   width,
   height,
