@@ -3,18 +3,9 @@ import Tilt from 'react-tilt';
 import Link from 'next/link';
 import { ParentSize } from '@vx/responsive';
 import drawData from './util/drawData';
-
 import Footer from './Footer';
 
-import Bars from '../docs-v2/examples/vx-bars/Example';
-import Curves from '../docs-v2/examples/vx-curve/Example';
-import Dots from '../docs-v2/examples/vx-dots/Example';
-import Gradients from '../docs-v2/examples/vx-gradient/Example';
 import Area, { background as areaBackground } from '../docs-v2/examples/vx-area/Example';
-import StackedAreas, {
-  background as stackedAreaBackground,
-} from '../docs-v2/examples/vx-stacked-areas/Example';
-import Glyphs, { primary as glyphTextColor } from '../docs-v2/examples/vx-glyph/Example';
 import Axis, {
   backgroundColor as axisBackgroundColor,
   labelColor as axisTextColor,
@@ -35,48 +26,56 @@ import BarStackHorizontal, {
   background as horizontalBarstackBackground,
   purple3 as horiztonalBarstackTextColor,
 } from '../docs-v2/examples/vx-barstack-horizontal/Example';
-import Heatmaps from '../docs-v2/examples/vx-heatmap/Example';
-import LineRadial from '../docs-v2/examples/vx-shape-line-radial/Example';
-import Pies from '../docs-v2/examples/vx-shape-pie/Example';
-import Tree, { background as treeBackground } from '../docs-v2/examples/vx-tree/Example';
+import Bars from '../docs-v2/examples/vx-bars/Example';
+import Brush from '../docs-v2/examples/vx-brush/Example';
+import Chord from '../docs-v2/examples/vx-chord/Example';
+import Curves from '../docs-v2/examples/vx-curve/Example';
 import Dendrogram, {
   background as dendrogramBackground,
   green as dendrogramText,
 } from '../docs-v2/examples/vx-dendrogram/Example';
-import Voronoi from '../docs-v2/examples/vx-voronoi/Example';
-import Legends from '../docs-v2/examples/vx-legend/Example';
-import StatsPlot from '../docs-v2/examples/vx-stats/Example';
+import Dots from '../docs-v2/examples/vx-dots/Example';
+import DragI from '../docs-v2/examples/vx-drag-i/Example';
+import DragII from '../docs-v2/examples/vx-drag-ii/Example';
 import GeoCustom from '../docs-v2/examples/vx-geo-custom/Example';
 import GeoMercator from '../docs-v2/examples/vx-geo-mercator/Example';
+import Glyphs, { primary as glyphTextColor } from '../docs-v2/examples/vx-glyph/Example';
+import Gradients from '../docs-v2/examples/vx-gradient/Example';
+import Heatmaps from '../docs-v2/examples/vx-heatmap/Example';
+import Legends from '../docs-v2/examples/vx-legend/Example';
+import LineRadial from '../docs-v2/examples/vx-shape-line-radial/Example';
+import LinkTypes from '../docs-v2/examples/vx-linktypes/Example';
 import Network, {
   backgroundColor as networkBackground,
 } from '../docs-v2/examples/vx-network/Example';
+import Pies from '../docs-v2/examples/vx-shape-pie/Example';
+import StackedAreas, {
+  background as stackedAreaBackground,
+} from '../docs-v2/examples/vx-stacked-areas/Example';
+import StatsPlot from '../docs-v2/examples/vx-stats/Example';
 import Streamgraph, {
   BACKGROUND as streamgraphBackgroundColor,
 } from '../docs-v2/examples/vx-streamgraph/Example';
 import Pack from '../docs-v2/examples/vx-pack/Example';
 import Patterns from '../docs-v2/examples/vx-pattern/Example';
-import Treemap, {
-  bg as treemapBackground,
-  color1 as treemapTextColor,
-} from '../docs-v2/examples/vx-treemap/Example';
+import Polygons, {
+  backgroundColor as polygonBackground,
+} from '../docs-v2/examples/vx-polygons/Example';
 import Radar, {
   bg as radarBackground,
   pumpkin as radarColor,
 } from '../docs-v2/examples/vx-radar/Example';
 import Responsive from '../docs-v2/examples/vx-responsive/Example';
-import DragI from '../docs-v2/examples/vx-drag-i/Example';
-import DragII from '../docs-v2/examples/vx-drag-ii/Example';
-import LinkTypes from '../docs-v2/examples/vx-linktypes/Example';
 import Threshold, {
   background as thresholdBackground,
 } from '../docs-v2/examples/vx-threshold/Example';
-import Chord from '../docs-v2/examples/vx-chord/Example';
-import Polygons, {
-  backgroundColor as polygonBackground,
-} from '../docs-v2/examples/vx-polygons/Example';
+import Tree, { background as treeBackground } from '../docs-v2/examples/vx-tree/Example';
+import Treemap, {
+  bg as treemapBackground,
+  color1 as treemapTextColor,
+} from '../docs-v2/examples/vx-treemap/Example';
+import Voronoi from '../docs-v2/examples/vx-voronoi/Example';
 import ZoomI from '../docs-v2/examples/vx-zoom-i/Example';
-import Brush from './tiles/Brush';
 
 const items = [
   '#242424',
