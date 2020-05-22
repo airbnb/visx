@@ -1,0 +1,32 @@
+{
+  "name": "@vx/demo-shape-line-radial",
+  "description": "Standalone vx line radial demo.",
+  "main": "index.tsx",
+  "private": true,
+  "dependencies": {
+    "@babel/runtime": "^7.8.4",
+    "@types/react": "^16",
+    "@types/react-dom": "^16",
+    "@vx/curve": "latest",
+    "@vx/gradient": "latest",
+    "@vx/group": "latest",
+    "@vx/mock-data": "latest",
+    "@vx/responsive": "latest",
+    "@vx/scale": "latest",
+    "@vx/shape": "latest",
+    "react": "^16.8",
+    "react-dom": "^16.8",
+    "react-scripts-ts": "3.1.0",
+    "react-spring": "^8.0.27",
+    "typescript": "^3"
+  },
+  "keywords": [
+    "visualization",
+    "d3",
+    "react",
+    "vx",
+    "shape",
+    "radial",
+    "line"
+  ]
+}

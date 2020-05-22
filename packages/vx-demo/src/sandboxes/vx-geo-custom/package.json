@@ -1,0 +1,30 @@
+{
+  "name": "@vx/demo-geo-custom",
+  "description": "Standalone vx geo-custom demo.",
+  "main": "index.tsx",
+  "private": true,
+  "dependencies": {
+    "@babel/runtime": "^7.8.4",
+    "@types/react": "^16",
+    "@types/react-dom": "^16",
+    "@vx/geo": "latest",
+    "@vx/responsive": "latest",
+    "@vx/scale": "latest",
+    "@vx/zoom": "latest",
+    "d3-geo": "^1.11.9",
+    "react": "^16.8",
+    "react-dom": "^16.8",
+    "react-scripts-ts": "3.1.0",
+    "topojson-client": "3.1.0",
+    "typescript": "^3"
+  },
+  "keywords": [
+    "visualization",
+    "d3",
+    "react",
+    "vx",
+    "geo", 
+    "maps",
+    "projection"
+  ]
+}

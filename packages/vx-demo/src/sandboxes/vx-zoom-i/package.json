@@ -1,0 +1,29 @@
+{
+  "name": "@vx/demo-zoom-i",
+  "description": "Standalone vx zoom demo.",
+  "main": "index.tsx",
+  "private": true,
+  "dependencies": {
+    "@babel/runtime": "^7.8.4",
+    "@types/react": "^16",
+    "@types/react-dom": "^16",
+    "@vx/clip-path": "latest",
+    "@vx/event": "latest",
+    "@vx/mock-data": "latest",
+    "@vx/responsive": "latest",
+    "@vx/scale": "latest",
+    "@vx/zoom": "latest",
+    "d3-scale-chromatic": "^1.5.0",
+    "react": "^16.8",
+    "react-dom": "^16.8",
+    "react-scripts-ts": "3.1.0",
+    "typescript": "^3"
+  },
+  "keywords": [
+    "visualization",
+    "d3",
+    "react",
+    "vx",
+    "zoom"
+  ]
+}

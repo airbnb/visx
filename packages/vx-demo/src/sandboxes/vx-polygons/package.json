@@ -1,0 +1,28 @@
+{
+  "name": "@vx/demo-polygons",
+  "description": "Standalone vx polygons demo.",
+  "main": "index.tsx",
+  "private": true,
+  "dependencies": {
+    "@babel/runtime": "^7.8.4",
+    "@types/react": "^16",
+    "@types/react-dom": "^16",
+    "@vx/gradient": "latest",
+    "@vx/group": "latest",
+    "@vx/responsive": "latest",
+    "@vx/scale": "latest",
+    "@vx/shape": "latest",
+    "react": "^16",
+    "react-dom": "^16",
+    "react-scripts-ts": "3.1.0",
+    "typescript": "^3"
+  },
+  "keywords": [
+    "visualization",
+    "d3",
+    "react",
+    "vx",
+    "polygon",
+    "shape"
+  ]
+}
