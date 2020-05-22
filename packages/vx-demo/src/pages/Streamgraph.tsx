@@ -1,7 +1,7 @@
 import React from 'react';
 import Show from '../components/Show';
-import Streamgraph from '../docs-v2/examples/vx-streamgraph/Example';
-import StreamgraphSource from '!!raw-loader!../docs-v2/examples/vx-streamgraph/Example';
+import Streamgraph from '../sandboxes/vx-streamgraph/Example';
+import StreamgraphSource from '!!raw-loader!../sandboxes/vx-streamgraph/Example';
 
 export default () => {
   return (

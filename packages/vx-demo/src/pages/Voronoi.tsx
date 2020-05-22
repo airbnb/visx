@@ -1,7 +1,7 @@
 import React from 'react';
 import Show from '../components/Show';
-import VoronoiChart from '../docs-v2/examples/vx-voronoi/Example';
-import VoronoiChartSource from '!!raw-loader!../docs-v2/examples/vx-voronoi/Example';
+import VoronoiChart from '../sandboxes/vx-voronoi/Example';
+import VoronoiChartSource from '!!raw-loader!../sandboxes/vx-voronoi/Example';
 
 export default () => {
   return (

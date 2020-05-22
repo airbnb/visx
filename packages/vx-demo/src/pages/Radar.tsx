@@ -1,7 +1,7 @@
 import React from 'react';
 import Show from '../components/Show';
-import Radar from '../docs-v2/examples/vx-radar/Example';
-import RadarSource from '!!raw-loader!../docs-v2/examples/vx-radar/Example';
+import Radar from '../sandboxes/vx-radar/Example';
+import RadarSource from '!!raw-loader!../sandboxes/vx-radar/Example';
 
 export default () => {
   return (

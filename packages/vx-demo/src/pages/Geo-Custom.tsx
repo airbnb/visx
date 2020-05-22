@@ -1,7 +1,7 @@
 import React from 'react';
 import Show from '../components/Show';
-import GeoCustom from '../docs-v2/examples/vx-geo-custom/Example';
-import GeoCustomSource from '!!raw-loader!../docs-v2/examples/vx-geo-custom/Example';
+import GeoCustom from '../sandboxes/vx-geo-custom/Example';
+import GeoCustomSource from '!!raw-loader!../sandboxes/vx-geo-custom/Example';
 
 export default () => {
   return (

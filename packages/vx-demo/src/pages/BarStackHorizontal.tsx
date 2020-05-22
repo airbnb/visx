@@ -1,7 +1,7 @@
 import React from 'react';
 import Show from '../components/Show';
-import BarStackHorizontal from '../docs-v2/examples/vx-barstack-horizontal/Example';
-import BarStackHorizontalSource from '!!raw-loader!../docs-v2/examples/vx-barstack-horizontal/Example';
+import BarStackHorizontal from '../sandboxes/vx-barstack-horizontal/Example';
+import BarStackHorizontalSource from '!!raw-loader!../sandboxes/vx-barstack-horizontal/Example';
 
 export default () => {
   return (

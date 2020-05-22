@@ -5,77 +5,68 @@ import { ParentSize } from '@vx/responsive';
 import drawData from './util/drawData';
 import Footer from './Footer';
 
-import Area, { background as areaBackground } from '../docs-v2/examples/vx-area/Example';
+import Area, { background as areaBackground } from '../sandboxes/vx-area/Example';
 import Axis, {
   backgroundColor as axisBackgroundColor,
   labelColor as axisTextColor,
-} from '../docs-v2/examples/vx-axis/Example';
+} from '../sandboxes/vx-axis/Example';
 import BarGroup, {
   background as bargroupBackground,
   green as bargroupText,
-} from '../docs-v2/examples/vx-bargroup/Example';
+} from '../sandboxes/vx-bargroup/Example';
 import BarGroupHorizontal, {
   background as horizontalBargroupBackground,
   green as horizontalBargroupText,
-} from '../docs-v2/examples/vx-bargroup-horizontal/Example';
+} from '../sandboxes/vx-bargroup-horizontal/Example';
 import BarStack, {
   background as barstackBackground,
   purple3 as barstackTextColor,
-} from '../docs-v2/examples/vx-barstack/Example';
+} from '../sandboxes/vx-barstack/Example';
 import BarStackHorizontal, {
   background as horizontalBarstackBackground,
   purple3 as horiztonalBarstackTextColor,
-} from '../docs-v2/examples/vx-barstack-horizontal/Example';
-import Bars from '../docs-v2/examples/vx-bars/Example';
-import Brush from '../docs-v2/examples/vx-brush/Example';
-import Chord from '../docs-v2/examples/vx-chord/Example';
-import Curves from '../docs-v2/examples/vx-curve/Example';
+} from '../sandboxes/vx-barstack-horizontal/Example';
+import Bars from '../sandboxes/vx-bars/Example';
+import Brush from '../sandboxes/vx-brush/Example';
+import Chord from '../sandboxes/vx-chord/Example';
+import Curves from '../sandboxes/vx-curve/Example';
 import Dendrogram, {
   background as dendrogramBackground,
   green as dendrogramText,
-} from '../docs-v2/examples/vx-dendrogram/Example';
-import Dots from '../docs-v2/examples/vx-dots/Example';
-import DragI from '../docs-v2/examples/vx-drag-i/Example';
-import DragII from '../docs-v2/examples/vx-drag-ii/Example';
-import GeoCustom from '../docs-v2/examples/vx-geo-custom/Example';
-import GeoMercator from '../docs-v2/examples/vx-geo-mercator/Example';
-import Glyphs, { primary as glyphTextColor } from '../docs-v2/examples/vx-glyph/Example';
-import Gradients from '../docs-v2/examples/vx-gradient/Example';
-import Heatmaps from '../docs-v2/examples/vx-heatmap/Example';
-import Legends from '../docs-v2/examples/vx-legend/Example';
-import LineRadial from '../docs-v2/examples/vx-shape-line-radial/Example';
-import LinkTypes from '../docs-v2/examples/vx-linktypes/Example';
-import Network, {
-  backgroundColor as networkBackground,
-} from '../docs-v2/examples/vx-network/Example';
-import Pies from '../docs-v2/examples/vx-shape-pie/Example';
+} from '../sandboxes/vx-dendrogram/Example';
+import Dots from '../sandboxes/vx-dots/Example';
+import DragI from '../sandboxes/vx-drag-i/Example';
+import DragII from '../sandboxes/vx-drag-ii/Example';
+import GeoCustom from '../sandboxes/vx-geo-custom/Example';
+import GeoMercator from '../sandboxes/vx-geo-mercator/Example';
+import Glyphs, { primary as glyphTextColor } from '../sandboxes/vx-glyph/Example';
+import Gradients from '../sandboxes/vx-gradient/Example';
+import Heatmaps from '../sandboxes/vx-heatmap/Example';
+import Legends from '../sandboxes/vx-legend/Example';
+import LineRadial from '../sandboxes/vx-shape-line-radial/Example';
+import LinkTypes from '../sandboxes/vx-linktypes/Example';
+import Network, { backgroundColor as networkBackground } from '../sandboxes/vx-network/Example';
+import Pies from '../sandboxes/vx-shape-pie/Example';
 import StackedAreas, {
   background as stackedAreaBackground,
-} from '../docs-v2/examples/vx-stacked-areas/Example';
-import StatsPlot from '../docs-v2/examples/vx-stats/Example';
+} from '../sandboxes/vx-stacked-areas/Example';
+import StatsPlot from '../sandboxes/vx-stats/Example';
 import Streamgraph, {
   BACKGROUND as streamgraphBackgroundColor,
-} from '../docs-v2/examples/vx-streamgraph/Example';
-import Pack from '../docs-v2/examples/vx-pack/Example';
-import Patterns from '../docs-v2/examples/vx-pattern/Example';
-import Polygons, {
-  backgroundColor as polygonBackground,
-} from '../docs-v2/examples/vx-polygons/Example';
-import Radar, {
-  bg as radarBackground,
-  pumpkin as radarColor,
-} from '../docs-v2/examples/vx-radar/Example';
-import Responsive from '../docs-v2/examples/vx-responsive/Example';
-import Threshold, {
-  background as thresholdBackground,
-} from '../docs-v2/examples/vx-threshold/Example';
-import Tree, { background as treeBackground } from '../docs-v2/examples/vx-tree/Example';
+} from '../sandboxes/vx-streamgraph/Example';
+import Pack from '../sandboxes/vx-pack/Example';
+import Patterns from '../sandboxes/vx-pattern/Example';
+import Polygons, { backgroundColor as polygonBackground } from '../sandboxes/vx-polygons/Example';
+import Radar, { bg as radarBackground, pumpkin as radarColor } from '../sandboxes/vx-radar/Example';
+import Responsive from '../sandboxes/vx-responsive/Example';
+import Threshold, { background as thresholdBackground } from '../sandboxes/vx-threshold/Example';
+import Tree, { background as treeBackground } from '../sandboxes/vx-tree/Example';
 import Treemap, {
   bg as treemapBackground,
   color1 as treemapTextColor,
-} from '../docs-v2/examples/vx-treemap/Example';
-import Voronoi from '../docs-v2/examples/vx-voronoi/Example';
-import ZoomI from '../docs-v2/examples/vx-zoom-i/Example';
+} from '../sandboxes/vx-treemap/Example';
+import Voronoi from '../sandboxes/vx-voronoi/Example';
+import ZoomI from '../sandboxes/vx-zoom-i/Example';
 
 const items = [
   '#242424',

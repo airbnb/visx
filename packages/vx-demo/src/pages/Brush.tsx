@@ -1,7 +1,7 @@
 import React from 'react';
 import Show from '../components/Show';
-import Brush from '../docs-v2/examples/vx-brush/Example';
-import BrushSource from '!!raw-loader!../docs-v2/examples/vx-brush/Example';
+import Brush from '../sandboxes/vx-brush/Example';
+import BrushSource from '!!raw-loader!../sandboxes/vx-brush/Example';
 
 export default () => (
   <Show

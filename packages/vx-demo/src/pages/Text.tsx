@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Text } from '@vx/text';
 import Show from '../components/Show';
-import Codeblock from '../components/codeblocks/Codeblock';
+import Codeblock from '../components/Codeblock';
 
 const styles = {
   exampleText: {

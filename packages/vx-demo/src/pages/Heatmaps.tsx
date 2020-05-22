@@ -1,7 +1,7 @@
 import React from 'react';
 import Show from '../components/Show';
-import Heatmaps from '../docs-v2/examples/vx-heatmap/Example';
-import HeatmapsSource from '!!raw-loader!../docs-v2/examples/vx-heatmap/Example';
+import Heatmaps from '../sandboxes/vx-heatmap/Example';
+import HeatmapsSource from '!!raw-loader!../sandboxes/vx-heatmap/Example';
 
 export default () => {
   return (

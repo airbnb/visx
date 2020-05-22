@@ -1,7 +1,7 @@
 import React from 'react';
 import Show from '../components/Show';
-import Lines from '../docs-v2/examples/vx-curve/Example';
-import LinesSource from '!!raw-loader!../docs-v2/examples/vx-curve/Example';
+import Lines from '../sandboxes/vx-curve/Example';
+import LinesSource from '!!raw-loader!../sandboxes/vx-curve/Example';
 
 export default () => {
   return (

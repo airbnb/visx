@@ -1,7 +1,7 @@
 import React from 'react';
 import Show from '../components/Show';
-import BarGroupHorizontal from '../docs-v2/examples/vx-bargroup-horizontal/Example';
-import BarGroupHorizontalSource from '!!raw-loader!../docs-v2/examples/vx-bargroup-horizontal/Example';
+import BarGroupHorizontal from '../sandboxes/vx-bargroup-horizontal/Example';
+import BarGroupHorizontalSource from '!!raw-loader!../sandboxes/vx-bargroup-horizontal/Example';
 
 export default () => (
   <Show

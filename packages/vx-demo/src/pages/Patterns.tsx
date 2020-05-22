@@ -1,7 +1,7 @@
 import React from 'react';
 import Show from '../components/Show';
-import Patterns from '../docs-v2/examples/vx-pattern/Example';
-import PatternsSource from '!!raw-loader!../docs-v2/examples/vx-pattern/Example';
+import Patterns from '../sandboxes/vx-pattern/Example';
+import PatternsSource from '!!raw-loader!../sandboxes/vx-pattern/Example';
 
 export default () => {
   return (

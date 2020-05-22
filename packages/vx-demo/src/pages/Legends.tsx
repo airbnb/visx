@@ -1,7 +1,7 @@
 import React from 'react';
 import Show from '../components/Show';
-import Legends from '../docs-v2/examples/vx-legend/Example';
-import LegendsSource from '!!raw-loader!../docs-v2/examples/vx-legend/Example';
+import Legends from '../sandboxes/vx-legend/Example';
+import LegendsSource from '!!raw-loader!../sandboxes/vx-legend/Example';
 
 export default () => {
   return (

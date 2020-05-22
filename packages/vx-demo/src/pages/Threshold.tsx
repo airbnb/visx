@@ -1,7 +1,7 @@
 import React from 'react';
 import Show from '../components/Show';
-import Threshold from '../docs-v2/examples/vx-threshold/Example';
-import ThresholdSource from '!!raw-loader!../docs-v2/examples/vx-threshold/Example';
+import Threshold from '../sandboxes/vx-threshold/Example';
+import ThresholdSource from '!!raw-loader!../sandboxes/vx-threshold/Example';
 
 function Description({ width }: { width: number }) {
   return (
