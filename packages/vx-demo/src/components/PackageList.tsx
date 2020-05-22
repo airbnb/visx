@@ -72,7 +72,7 @@ export default function PackageList({
               {!compact && <p>Radial layout for matrix relationships</p>}
             </li>
             <li className={cx(emphasizePackage === 'geo' && 'emphasize')}>
-              <a href="/static/docs/vx-geo.html">@vx/geo</a>
+              <a href="/docs/geo">@vx/geo</a>
               {!compact && <p>Geographic projections</p>}
             </li>
             <li className={cx(emphasizePackage === 'heatmap' && 'emphasize')}>
