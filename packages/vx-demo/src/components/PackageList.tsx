@@ -31,8 +31,8 @@ export default function PackageList({
               {!compact && <p>d3 line interpolators for @vx/shape</p>}
             </li>
             <li className={cx(emphasizePackage === 'glyph' && 'emphasize')}>
-              <a href="/static/docs/vx-glyph.html">@vx/glyph</a>
-              {!compact && <p>Complex marks & symbols</p>}
+              <a href="/docs/glyph">@vx/glyph</a>
+              {!compact && <p>Complex marks & symbols to be used in visuals</p>}
             </li>
             <li className={cx(emphasizePackage === 'grid' && 'emphasize')}>
               <a href="/static/docs/vx-grid.html">@vx/grid</a>
