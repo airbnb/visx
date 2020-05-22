@@ -136,8 +136,8 @@ export default function PackageList({
               {!compact && <p>Utilities for making making color gradient definitions</p>}
             </li>
             <li className={cx(emphasizePackage === 'pattern' && 'emphasize')}>
-              <a href="/static/docs/vx-pattern.html">@vx/pattern</a>
-              {!compact && <p>Utilities for making pattern definitions</p>}
+              <a href="/docs/pattern">@vx/pattern</a>
+              {!compact && <p>Utilities for creating pattern definitions</p>}
             </li>
             <li className={cx(emphasizePackage === 'text' && 'emphasize')}>
               <a href="/static/docs/vx-text.html">@vx/text</a>
@@ -157,8 +157,8 @@ export default function PackageList({
               {!compact && <p>Lots of mock data sets to play with</p>}
             </li>
             <li className={cx(emphasizePackage === 'responsive' && 'emphasize')}>
-              <a href="/static/docs/vx-responsive.html">@vx/responsive</a>
-              {!compact && <p>Utilities to make responsive visualizations easily</p>}
+              <a href="/docs/responsive">@vx/responsive</a>
+              {!compact && <p>Utilities to make responsive visualizations easy</p>}
             </li>
             <li className={cx(emphasizePackage === 'point' && 'emphasize')}>
               <a href="/docs/point">@vx/point</a>

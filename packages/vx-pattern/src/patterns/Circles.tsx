@@ -27,7 +27,7 @@ export type PatternCirclesProps = {
   background?: string;
 };
 
-export default function PatternCircles({
+export default function Circles({
   id,
   width,
   height,
