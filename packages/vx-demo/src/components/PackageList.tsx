@@ -51,8 +51,8 @@ export default function PackageList({
               {!compact && <p>Map data to visual dimensions</p>}
             </li>
             <li className={cx(emphasizePackage === 'shape' && 'emphasize')}>
-              <a href="/static/docs/vx-shape.html">@vx/shape</a>
-              {!compact && <p>Fundamental visualization shape primatives</p>}
+              <a href="/docs/shape">@vx/shape</a>
+              {!compact && <p>Fundamental visualization shape primatives, the core of vx</p>}
             </li>
             <li className={cx(emphasizePackage === 'threshold' && 'emphasize')}>
               <a href="/static/docs/vx-threshold.html">@vx/threshold</a>
