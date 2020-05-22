@@ -128,8 +128,8 @@ export default function PackageList({
               )}
             </li>
             <li className={cx(emphasizePackage === 'group' && 'emphasize')}>
-              <a href="/static/docs/vx-group.html">@vx/group</a>
-              {!compact && <p>Utility for g elements</p>}
+              <a href="/docs/group">@vx/group</a>
+              {!compact && <p>Simplified API for &lt;g /&gt; elements</p>}
             </li>
             <li className={cx(emphasizePackage === 'gradient' && 'emphasize')}>
               <a href="/docs/gradient">@vx/gradient</a>
@@ -161,7 +161,7 @@ export default function PackageList({
               {!compact && <p>Utilities to make responsive visualizations easily</p>}
             </li>
             <li className={cx(emphasizePackage === 'point' && 'emphasize')}>
-              <a href="/static/docs/vx-point.html">@vx/point</a>
+              <a href="/docs/point">@vx/point</a>
               {!compact && <p>A simple class to represent an x,y coordinate</p>}
             </li>
           </ul>
