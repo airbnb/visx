@@ -84,8 +84,8 @@ export default function PackageList({
               {!compact && <p>Visualize nodes and links between them</p>}
             </li>
             <li className={cx(emphasizePackage === 'stats' && 'emphasize')}>
-              <a href="/static/docs/vx-stats.html">@vx/stats</a>
-              {!compact && <p>Visualize distributions</p>}
+              <a href="/docs/stats">@vx/stats</a>
+              {!compact && <p>Common ways to visualize distributions</p>}
             </li>
             <li className={cx(emphasizePackage === 'threshold' && 'emphasize')}>
               <a href="/docs/threshold">@vx/threshold</a>
