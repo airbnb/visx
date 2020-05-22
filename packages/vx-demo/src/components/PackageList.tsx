@@ -109,7 +109,7 @@ export default function PackageList({
               {!compact && <p>Partition points in a chart to improve user interaction</p>}
             </li>
             <li className={cx(emphasizePackage === 'zoom' && 'emphasize')}>
-              <a href="/static/docs/vx-zoom.html">@vx/zoom</a>
+              <a href="/docs/zoom">@vx/zoom</a>
               {!compact && <p>Apply transforms to a viewport</p>}
             </li>
           </ul>
@@ -166,6 +166,16 @@ export default function PackageList({
             </li>
           </ul>
         </div>
+        {compact && (
+          <div>
+            <HeaderElement>Umbrella package</HeaderElement>
+            <ul>
+              <li className={cx(emphasizePackage === 'vx' && 'emphasize')}>
+                <a href="/docs/vx">@vx/vx</a>
+              </li>
+            </ul>
+          </div>
+        )}
       </div>
       <style jsx>{`
         .container {
