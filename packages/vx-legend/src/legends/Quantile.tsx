@@ -29,7 +29,7 @@ function labelFormatterFactoryFactory<Output>({
 }
 
 /** A Quantile scale takes a number input and returns an Output. */
-export default function LegendQuantile<Output>({
+export default function Quantile<Output>({
   domain: inputDomain,
   scale,
   labelFormat = x => x,

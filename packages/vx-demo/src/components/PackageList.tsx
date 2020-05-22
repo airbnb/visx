@@ -39,8 +39,8 @@ export default function PackageList({
               {!compact && <p>Grid lines for a chart</p>}
             </li>
             <li className={cx(emphasizePackage === 'legend' && 'emphasize')}>
-              <a href="/static/docs/vx-legend.html">@vx/legend</a>
-              {!compact && <p>Keys for reading your visual encodings</p>}
+              <a href="/docs/legend">@vx/legend</a>
+              {!compact && <p>Make your visual encodings readable</p>}
             </li>
             <li className={cx(emphasizePackage === 'marker' && 'emphasize')}>
               <a href="/static/docs/vx-marker.html">@vx/marker</a>
