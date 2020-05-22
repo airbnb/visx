@@ -1,45 +1,65 @@
 # @vx/scale
 
+<a title="@vx/scale npm downloads" href="https://www.npmjs.com/package/@vx/scale">
+  <img src="https://img.shields.io/npm/dm/@vx/scale.svg?style=flat-square" />
+</a>
+
+## Installation
+
 ```sh
 npm install --save @vx/scale
 ```
 
-## Overview of Scaling
-The `@vx/scale` package aims to provide a wrapper around existing d3 scaling originally defined in the [d3-scale](https://github.com/d3/d3-scale) package.
+## Overview of scales
 
-Scales are functions that help you map your data to the physical pixel size that your graph requires. For example, let's say you wanted to create a bar chart to show populations per country. If you were to use a 1-to-1 scale (IE: 1 pixel per y value) your bar for the USA would be about 321.4 million pixels high!
+The `@vx/scale` package aims to provide a wrapper around existing `d3` scaling originally defined in
+the [d3-scale](https://github.com/d3/d3-scale) package.
 
-Instead, you can tell vx a function to use that takes a value (like your population per country) and spits out another value.
+Scales are functions that help you map your data values to the physical pixel size that your graph
+requires. For example, let's say you wanted to create a bar chart to show populations per country.
+If you were to use a 1-to-1 scale (IE: 1 pixel per y value) your bar for the USA would be about
+321.4 million pixels high!
+
+Instead, you can tell `vx` a function to use that takes a data value (like your population per
+country) and quantitatively maps to another dimensional space, like pixels.
 
 For example, we could create a linear scale like this:
 
-``` javascript
-const graphHeight = 500; // We'll have a 500 pixel high graph
-const maxPopulation = getMostPopulatedCountryInTheWorld();
+```js
+const graphWidth = 500;
+const graphHeight = 200;
+const [minX, maxX] = getXMinAndMax();
+const [minY, maxY] = getYMinAndMax();
+
+const xScale = Scale.scaleLinear({
+  domain: [minX, maxX], // x-coordinate data values
+  rangeRound: [0, graphWidth], // svg x-coordinates, svg x-coordinates increase left to right
+});
 
 const yScale = Scale.scaleLinear({
+  domain: [minY, maxY], // y-coordinate data values
+  // svg y-coordinates, these increase from top to bottom so we reverse the order
+  // so that minY in data space maps to graphHeight in svg y-coordinate space
   rangeRound: [graphHeight, 0],
-  domain: [0, maxPopulation],
 });
 
 // ...
 
-const bars = data.map((d, i) => {
+const points = data.map((d, i) => {
   const barHeight = graphHeight - yScale(d.y);
-  return <Shape.Bar height={barHeight} y={graphHeight - barHeight} />
-})
+  return <Shape.Bar height={barHeight} y={graphHeight - barHeight} />;
+});
 ```
 
-**Note:** This example represents how to use a yScale, but skipped a lot of details about how to make a bar chart. If you're trying to do that, you should check out [this example](https://github.com/hshoff/vx/blob/master/packages/vx-demo/src/components/charts/SimpleBar.ts).
+## Different types of scales
 
-## Current Scaling Options
-
-### Band Scaling
+### Band scale
 
 [Original d3 docs](https://github.com/d3/d3-scale/blob/master/README.md#_band)
 
 Example:
-``` javascript
+
+```js
 const scale = Scale.scaleBand({
   /*
     range,
@@ -51,12 +71,13 @@ const scale = Scale.scaleBand({
 });
 ```
 
-### Linear Scaling
+### Linear scale
 
 [Original d3 docs](https://github.com/d3/d3-scale/blob/master/README.md#scaleLinear)
 
 Example:
-``` javascript
+
+```js
 const scale = Scale.scaleLinear({
   /*
     range,
@@ -68,12 +89,13 @@ const scale = Scale.scaleLinear({
 });
 ```
 
-### Log Scaling
+### Log scale
 
 [Original d3 docs](https://github.com/d3/d3-scale/blob/master/README.md#scaleLog)
 
 Example:
-``` javascript
+
+```js
 const scale = Scale.scaleLog({
   /*
     range,
@@ -86,11 +108,13 @@ const scale = Scale.scaleLog({
 });
 ```
 
-### Ordinal Scaling
+### Ordinal scale
+
 [Original d3 docs](https://github.com/d3/d3-scale/blob/master/README.md#scaleOrdinal)
 
 Example:
-``` javascript
+
+```js
 const scale = Scale.scaleOrdinal({
   /*
     range,
@@ -100,11 +124,13 @@ const scale = Scale.scaleOrdinal({
 });
 ```
 
-### Point Scaling
+### Point scale
+
 [Original d3 docs](https://github.com/d3/d3-scale/blob/master/README.md#scalePoint)
 
 Example:
-``` javascript
+
+```js
 const scale = Scale.scalePoint({
   /*
     range,
@@ -117,11 +143,13 @@ const scale = Scale.scalePoint({
 });
 ```
 
-### Power Scaling
+### Power scale
+
 [Original d3 docs](https://github.com/d3/d3-scale/blob/master/README.md#scalePow)
 
 Example:
-``` javascript
+
+```js
 const scale = Scale.scalePower({
   /*
     range,
@@ -134,13 +162,13 @@ const scale = Scale.scalePower({
 });
 ```
 
-### Square Root Scaling
+### Square Root scale
 
 [Original d3 docs](https://github.com/d3/d3-scale#scaleSqrt)
 
 Example:
 
-```javascript
+```js
 // No need to set the exponent, It is always 0.5
 const scale = Scale.scaleSqrt({
   /*
@@ -153,11 +181,13 @@ const scale = Scale.scaleSqrt({
 });
 ```
 
-### Time Scaling
+### Time scale
+
 [Original d3 docs](https://github.com/d3/d3-scale/blob/master/README.md#scaleTime)
 
 Example:
-``` javascript
+
+```js
 const scale = Scale.scaleTime({
   /*
     range,
@@ -172,7 +202,8 @@ const scale = Scale.scaleTime({
 You also can scale time with Coordinated Universal Time via `scaleUtc`.
 
 Example:
-``` javascript
+
+```js
 const scale = Scale.scaleUtc({
   /*
     range,
@@ -186,7 +217,9 @@ const scale = Scale.scaleUtc({
 
 ### Color Scales
 
-D3 scales offer the ability to map points to colors.  You can use [`d3-scale-chromatic`](https://github.com/d3/d3-scale-chromatic) in conjunction with vx's `scaleOrdinal` to make color scales.
+D3 scales offer the ability to map points to colors. You can use
+[`d3-scale-chromatic`](https://github.com/d3/d3-scale-chromatic) in conjunction with vx's
+`scaleOrdinal` to make color scales.
 
 You can install `d3-scale-chromatic` with npm:
 
@@ -196,13 +229,13 @@ npm install --save d3-scale-chromatic
 
 You create a color scale like so:
 
-```javascript
+```js
 import { scaleOrdinal } from '@vx/scale';
 import { schemeSet1 } from 'd3-scale-chromatic';
 
 const colorScale = scaleOrdinal({
   domain: arrayOfThings,
-  range: schemeSet1
+  range: schemeSet1,
 });
 ```
 
@@ -210,4 +243,6 @@ This generates a color scale with the following colors:
 
 ![d3-scale-chromatic schemeSet1](https://raw.githubusercontent.com/d3/d3-scale-chromatic/master/img/Set1.png)
 
-There are a number of other [categorical color schemes](https://github.com/d3/d3-scale-chromatic/blob/master/README.md#categorical) available, along with other continuous color schemes.
+There are a number of other
+[categorical color schemes](https://github.com/d3/d3-scale-chromatic/blob/master/README.md#categorical)
+available, along with other continuous color schemes.

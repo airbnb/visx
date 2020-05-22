@@ -47,8 +47,8 @@ export default function PackageList({
               {!compact && <p>Annotation lines with text</p>}
             </li>
             <li className={cx(emphasizePackage === 'scale' && 'emphasize')}>
-              <a href="/static/docs/vx-scale.html">@vx/scale</a>
-              {!compact && <p>d3 scales to map data to visual attributes</p>}
+              <a href="/docs/scale">@vx/scale</a>
+              {!compact && <p>Map data to visual dimensions</p>}
             </li>
             <li className={cx(emphasizePackage === 'shape' && 'emphasize')}>
               <a href="/static/docs/vx-shape.html">@vx/shape</a>
@@ -80,8 +80,8 @@ export default function PackageList({
               {!compact && <p>Represent data values using color</p>}
             </li>
             <li className={cx(emphasizePackage === 'hierarchy' && 'emphasize')}>
-              <a href="/static/docs/vx-hierarchy.html">@vx/hierarchy</a>
-              {!compact && <p>Multiple layouts for hierarchical or nested data</p>}
+              <a href="/docs/hierarchy">@vx/hierarchy</a>
+              {!compact && <p>Components to visualize hierarchical or nested data</p>}
             </li>
             <li className={cx(emphasizePackage === 'network' && 'emphasize')}>
               <a href="/static/docs/vx-network.html">@vx/network</a>
