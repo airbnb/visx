@@ -10,9 +10,6 @@
     "lib",
     "esm"
   ],
-  "scripts": {
-    "docs": "cd ./docs && ../../../node_modules/.bin/react-docgen ../src/annotations/  | ../../../scripts/buildDocs.sh"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hshoff/vx.git"
