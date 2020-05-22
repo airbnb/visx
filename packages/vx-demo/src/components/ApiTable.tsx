@@ -10,14 +10,14 @@ const alphaSort = (a: PropInfo, b: PropInfo) => a.name.localeCompare(b.name);
 
 /** Renders a list of props for the passed docgenInfo */
 export default function ApiTable({ docgenInfo }: Props) {
-  const { displayName } = docgenInfo;
-  const isComponent = (displayName[0] || '').toLowerCase() !== displayName[0];
+  const { displayName = '' } = docgenInfo;
+  const isComponent = displayName && displayName[0].toLowerCase() !== displayName[0];
   const anchorId = displayName;
 
   // required first, then abc order
   const props = useMemo(() => {
-    const requiredProps = [];
-    const optionalProps = [];
+    const requiredProps: PropInfo[] = [];
+    const optionalProps: PropInfo[] = [];
 
     Object.values(docgenInfo.props).forEach(prop => {
       if (prop.required) {

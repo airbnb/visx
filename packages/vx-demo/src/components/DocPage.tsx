@@ -27,8 +27,9 @@ export default function DocPage({ components, vxPackage, readme }: Props) {
               <h2>Components</h2>
               <ul>
                 {components.map(component => {
-                  const { displayName } = component;
-                  const isComponent = (displayName[0] || '').toLowerCase() !== displayName[0] || '';
+                  const { displayName = '' } = component;
+                  const isComponent =
+                    displayName && displayName[0].toLowerCase() !== displayName[0];
                   return (
                     <li key={displayName}>
                       <a href={`#${displayName}`}>
