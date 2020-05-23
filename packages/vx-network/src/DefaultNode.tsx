@@ -1,5 +1,14 @@
 import React from 'react';
 
-export default function DefaultNode() {
-  return <circle r={15} fill="#21D4FD" />;
+export type NodeProps = {
+  cx?: number;
+  cy?: number;
+};
+
+export default function DefaultNode({
+  r = 15,
+  fill = '#21DfFD',
+  ...rest
+}: NodeProps & Omit<React.SVGProps<SVGCircleElement>, keyof NodeProps>) {
+  return <circle r={15} fill="#21D4FD" {...rest} />;
 }

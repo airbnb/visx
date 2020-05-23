@@ -27,7 +27,7 @@ export type PatternHexagonsProps = {
   shapeRendering?: string | number;
 };
 
-export default function PatternHexagons({
+export default function Hexagons({
   id,
   height,
   fill,

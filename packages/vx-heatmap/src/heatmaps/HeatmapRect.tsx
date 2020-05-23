@@ -18,19 +18,19 @@ export type HeatmapRectProps<ColumnDatum, BinDatum> = {
   x0?: number;
   /** Pixel gap between heatmap rects. */
   gap?: number;
-  /** Given a column index, returns the x position of a circle cell. */
+  /** Given a column index, returns the x position of a rect cell. */
   xScale: (columnIndex: number) => number;
-  /** Given a row index, returns the y position of a circle cell. */
+  /** Given a row index, returns the y position of a rect cell. */
   yScale: (rowIndex: number) => number;
-  /** Given a count value, returns the desired circle fill color. */
+  /** Given a count value, returns the desired rect fill color. */
   colorScale?: ColorScale;
-  /** Given a count value, returns the desired circle fill opacity. */
+  /** Given a count value, returns the desired rect fill opacity. */
   opacityScale?: OpacityScale;
   /** Accessor that returns an array of cell BinDatums (rows) for the provided ColumnData. */
   bins?: (column: ColumnDatum) => BinDatum[];
   /** Accessor that returns the count for the provided Bin. */
   count?: (bin: BinDatum) => number;
-  /** className to apply to each heatmap circle element. */
+  /** className to apply to each heatmap rect element. */
   className?: string;
   /** Render function override, provided with heatmap. */
   children?: (cells: RectCell<ColumnDatum, BinDatum>[][]) => React.ReactNode;

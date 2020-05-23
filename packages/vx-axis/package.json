@@ -6,9 +6,6 @@
   "main": "lib/index.js",
   "module": "esm/index.js",
   "types": "lib/index.d.ts",
-  "scripts": {
-    "docs": "cd ./docs && ../../../node_modules/.bin/react-docgen ../src/axis/  | ../../../scripts/buildDocs.sh"
-  },
   "files": [
     "lib",
     "esm"

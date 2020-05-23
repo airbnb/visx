@@ -35,9 +35,9 @@ export default ({ title = 'visualization components' }) => (
       />
       <meta name="twitter:image:alt" content="vx logo is a tiger leaper over the letters v and x" />
       <title>{`vx | ${title}`}</title>
-      <link rel="shortcut icon" type="image/png" href="static/favicon.ico" />
-      <link rel="stylesheet" href="static/prism/prism-funky.css" />
-      <link rel="stylesheet" href="static/prism/prism-line-numbers.css" />
+      <link rel="shortcut icon" type="image/png" href="/static/favicon.ico" />
+      <link rel="stylesheet" href="/static/prism/prism-funky.css" />
+      <link rel="stylesheet" href="/static/prism/prism-line-numbers.css" />
       <link href="https://fonts.googleapis.com/css?family=Montserrat:800" rel="stylesheet" />
     </Head>
     <style jsx global>{`
@@ -141,7 +141,7 @@ export default ({ title = 'visualization components' }) => (
       }
 
       .logo {
-        background-image: url('static/favicon.ico');
+        background-image: url('/static/favicon.ico');
         background-position: center;
         background-size: cover;
         height: 24px;

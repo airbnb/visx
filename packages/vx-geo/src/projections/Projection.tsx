@@ -12,6 +12,7 @@ import {
   GeoPath,
   GeoProjection,
 } from 'd3-geo';
+// this is just for types
 // eslint-disable-next-line import/no-unresolved
 import { LineString, Polygon, MultiLineString } from 'geojson';
 

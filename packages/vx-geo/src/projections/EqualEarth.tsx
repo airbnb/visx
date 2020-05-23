@@ -6,7 +6,7 @@ import { GeoPermissibleObjects } from '../types';
  * All props pass through to `<Projection projection="equalEarth" {...props} />`
  */
 export default function EqualEarth<Datum extends GeoPermissibleObjects>(
-  props: ProjectionProps<Datum>,
+  props: Omit<ProjectionProps<Datum>, 'projection'>,
 ) {
   return <Projection<Datum> projection="equalEarth" {...props} />;
 }

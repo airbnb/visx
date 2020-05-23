@@ -27,7 +27,7 @@ function defaultDomain<Datum>({
   return [];
 }
 
-export default function LegendSize<Datum>({
+export default function Size<Datum>({
   scale,
   domain: inputDomain,
   steps = 5,

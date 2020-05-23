@@ -3,7 +3,7 @@ import React from 'react';
 export default () => (
   <div className="footer">
     <div>
-      <img src="static/favicon.ico" alt="vx" />
+      <img src="/static/favicon.ico" alt="vx" />
     </div>
     <div>
       made by <a href="https://twitter.com/hshoff">@hshoff</a>

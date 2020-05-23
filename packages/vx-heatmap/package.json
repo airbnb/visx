@@ -14,9 +14,6 @@
     "type": "git",
     "url": "git+https://github.com/hshoff/vx.git"
   },
-  "scripts": {
-    "docs": "cd ./docs && ../../../node_modules/.bin/react-docgen ../src/heatmaps  | ../../../scripts/buildDocs.sh"
-  },
   "keywords": [
     "vx",
     "react",

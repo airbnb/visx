@@ -28,7 +28,6 @@
     "lint": "nimbus eslint",
     "lint:fix": "yarn run lint --fix",
     "prettier": "nimbus prettier",
-    "precommit": "lint-staged",
     "setup": "yarn run build",
     "test": "yarn run jest",
     "type:dts": "nimbus typescript --build --reference-workspaces",
@@ -37,12 +36,6 @@
     "docs:gen": "lerna run docs",
     "prepare-release": "git checkout master && git pull --rebase origin master && yarn run docs && lerna updated",
     "release": "yarn run prepare-release && lerna publish --exact"
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "yarn run format",
-      "git add"
-    ]
   },
   "devDependencies": {
     "@airbnb/config-babel": "^2.1.3",
@@ -62,11 +55,10 @@
     "fs-jetpack": "^1.3.0",
     "husky": "^3.0.0",
     "lerna": "^3.15.0",
-    "lint-staged": "^9.2.5",
     "marked": "^0.7.0",
     "raf": "^3.4.0",
     "react": "^15.0.0-0 || ^16.0.0-0",
-    "react-docgen": "^2.21.0",
+    "react-docgen": "^5.3.0",
     "react-dom": "^15.0.0-0 || ^16.0.0-0",
     "react-test-renderer": "^16.8.6",
     "regenerator-runtime": "^0.10.5"

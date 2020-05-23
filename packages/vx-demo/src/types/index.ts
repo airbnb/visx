@@ -16,3 +16,53 @@ export type ShowProvidedProps = {
   margin?: MarginShape;
   events?: boolean;
 };
+
+export type VxPackage =
+  | 'annotation'
+  | 'axis'
+  | 'bounds'
+  | 'brush'
+  | 'chord'
+  | 'clip-path'
+  | 'curve'
+  | 'drag'
+  | 'event'
+  | 'geo'
+  | 'glyph'
+  | 'gradient'
+  | 'grid'
+  | 'group'
+  | 'heatmap'
+  | 'hierarchy'
+  | 'legend'
+  | 'marker'
+  | 'mock-data'
+  | 'network'
+  | 'pattern'
+  | 'point'
+  | 'responsive'
+  | 'scale'
+  | 'shape'
+  | 'stats'
+  | 'text'
+  | 'threshold'
+  | 'tooltip'
+  | 'voronoi'
+  | 'vx'
+  | 'zoom';
+
+/** DocGenInfo for a single prop */
+export type PropInfo = {
+  defaultValue?: { value?: unknown };
+  description?: string;
+  name: string;
+  required: boolean;
+  type?: { name: string };
+};
+
+/** DocGenInfo, added to components by react-docgen-typescript-loader */
+export type DocGenInfo = {
+  description?: string;
+  displayName?: string;
+  props: { [propName: string]: PropInfo };
+};

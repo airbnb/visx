@@ -7,6 +7,7 @@ export type ClipPathProps = {
   children?: React.ReactNode;
 };
 
+/** Handles rendering of <defs> and <clipPath> elements for you, with any children you want. */
 export default function ClipPath({
   id,
   children,

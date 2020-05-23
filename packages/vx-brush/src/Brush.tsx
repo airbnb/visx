@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import BaseBrush, { BaseBrushProps, BaseBrushState } from './BaseBrush';
 import {
   Bounds,
@@ -14,30 +14,51 @@ const SAFE_PIXEL = 2;
 const DEFAULT_COLOR = 'steelblue';
 
 export type BrushProps = {
+  /** Style object for the Brush selection rect. */
   selectedBoxStyle: React.SVGProps<SVGRectElement>;
+  /** x-coordinate scale. */
   xScale: Scale;
+  /** y-coordinate scale. */
   yScale: Scale;
+  /** Brush stage height. */
   height: number;
+  /** Brush stage width. */
   width: number;
-  onChange: (bounds: Bounds | null) => void;
-  onBrushStart: BaseBrushProps['onBrushStart'];
-  onBrushEnd: (bounds: Bounds | null) => void;
-  onMouseMove: BaseBrushProps['onMouseMove'];
-  onMouseLeave: BaseBrushProps['onMouseLeave'];
-  onClick: BaseBrushProps['onClick'];
-  margin: MarginShape;
-  brushDirection: 'vertical' | 'horizontal' | 'both';
+  /** Callback invoked on a change in Brush bounds. */
+  onChange?: (bounds: Bounds | null) => void;
+  /** Callback invoked on initialization of a Brush (not Brush move). */
+  onBrushStart?: BaseBrushProps['onBrushStart'];
+  /** Callback invoked on mouse up when a Brush size is being updated. */
+  onBrushEnd?: (bounds: Bounds | null) => void;
+  /** Callback invoked on mouse move in Brush stage when *not* dragging. */
+  onMouseMove?: BaseBrushProps['onMouseMove'];
+  /** Callback invoked on mouse leave from Brush stage when *not* dragging. */
+  onMouseLeave?: BaseBrushProps['onMouseLeave'];
+  /** Callback invoked on Brush stage click. */
+  onClick?: BaseBrushProps['onClick'];
+  /** Margin subtracted from Brush stage dimensions. */
+  margin?: MarginShape;
+  /** Allowed directions for Brush dimensional change. */
+  brushDirection?: 'vertical' | 'horizontal' | 'both';
+  /** Initial start and end position of the Brush. */
   initialBrushPosition?: PartialBrushStartEnd;
-  resizeTriggerAreas: ResizeTriggerAreas[];
-  brushRegion: 'xAxis' | 'yAxis' | 'chart';
-  yAxisOrientation: 'left' | 'right';
-  xAxisOrientation: 'top' | 'bottom';
+  /** Array of rect sides and corners which should be resizeable / can trigger a Brush size change. */
+  resizeTriggerAreas?: ResizeTriggerAreas[];
+  /** What is being brushed, used for margin subtraction. */
+  brushRegion?: 'xAxis' | 'yAxis' | 'chart';
+  /** Orientation of yAxis if `brushRegion=yAxis`. */
+  yAxisOrientation?: 'left' | 'right';
+  /** Orientation of xAxis if `brushRegion=xAxis`. */
+  xAxisOrientation?: 'top' | 'bottom';
+  /** Whether movement of Brush should be disabled. */
   disableDraggingSelection: boolean;
+  /** Whether to reset the Brush on drag end. */
   resetOnEnd?: boolean;
+  /** Size of Brush handles, applies to all `resizeTriggerAreas`. */
   handleSize: number;
 };
 
-class Brush extends React.Component<BrushProps> {
+class Brush extends Component<BrushProps> {
   static defaultProps = {
     xScale: null,
     yScale: null,

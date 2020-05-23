@@ -4,7 +4,7 @@ import LinearGradient, { LinearGradientProps } from './LinearGradient';
 /**
  * All props pass through to `<LinearGradient {...props} />`
  */
-export default function GradientDarkGreen({
+export default function GradientDarkgreenGreen({
   from = '#184E86',
   to = '#57CA85',
   ...restProps

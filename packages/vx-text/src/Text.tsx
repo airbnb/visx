@@ -37,23 +37,23 @@ type OwnProps = {
   /** Ref passed to the Text SVG element. */
   innerRef?: React.Ref<SVGSVGElement>;
   /** x position of the text. */
-  x?: SVGTSpanProps['x'];
+  x?: string | number;
   /** y position of the text. */
-  y?: SVGTSpanProps['y'];
+  y?: string | number;
   /** dx offset of the text. */
-  dx?: SVGTSpanProps['dx'];
+  dx?: string | number;
   /** dy offset of the text. */
-  dy?: SVGTSpanProps['dy'];
+  dy?: string | number;
   /** Desired "line height" of the text, implemented as y offsets. */
   lineHeight?: SVGTSpanProps['dy'];
   /** Cap height of the text. */
   capHeight?: SVGTSpanProps['capHeight'];
   /** Font size of text. */
-  fontSize?: SVGTextProps['fontSize'];
+  fontSize?: string | number;
   /** Font family of text. */
-  fontFamily?: SVGTextProps['fontFamily'];
+  fontFamily?: string;
   /** Fill color of text. */
-  fill?: SVGTextProps['fill'];
+  fill?: string;
   /** Maximum width to occupy (approximate as words are not split). */
   width?: number;
   /** String (or number coercible to one) to be styled and positioned. */

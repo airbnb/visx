@@ -11,9 +11,6 @@
     "lib",
     "esm"
   ],
-  "scripts": {
-    "docs": "cd ./docs && ../../../node_modules/.bin/react-docgen ../src/shapes/  | ../../../scripts/buildDocs.sh"
-  },
   "keywords": [
     "vx",
     "react",
