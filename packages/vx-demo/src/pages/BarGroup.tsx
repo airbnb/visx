@@ -1,7 +1,7 @@
 import React from 'react';
 import Show from '../components/Show';
-import BarGroup from '../docs-v2/examples/vx-bargroup/Example';
-import BarGroupSource from '!!raw-loader!../docs-v2/examples/vx-bargroup/Example';
+import BarGroup from '../sandboxes/vx-bargroup/Example';
+import BarGroupSource from '!!raw-loader!../sandboxes/vx-bargroup/Example';
 
 export default () => (
   <Show

@@ -1,7 +1,7 @@
 import React from 'react';
 import Show from '../components/Show';
-import Dendrograms from '../docs-v2/examples/vx-dendrogram/Example';
-import DendrogramsSource from '!!raw-loader!../docs-v2/examples/vx-dendrogram/Example';
+import Dendrograms from '../sandboxes/vx-dendrogram/Example';
+import DendrogramsSource from '!!raw-loader!../sandboxes/vx-dendrogram/Example';
 
 export default () => {
   return (

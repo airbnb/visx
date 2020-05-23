@@ -1,7 +1,7 @@
 import React from 'react';
 import Show from '../components/Show';
-import Chord from '../docs-v2/examples/vx-chord/Example';
-import ChordSource from '!!raw-loader!../docs-v2/examples/vx-chord/Example';
+import Chord from '../sandboxes/vx-chord/Example';
+import ChordSource from '!!raw-loader!../sandboxes/vx-chord/Example';
 
 export default () => {
   return (

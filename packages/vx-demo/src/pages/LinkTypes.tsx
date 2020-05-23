@@ -1,7 +1,7 @@
 import React from 'react';
 import Show from '../components/Show';
-import LinkTypes from '../docs-v2/examples/vx-linktypes/Example';
-import LinkTypesSource from '!!raw-loader!../docs-v2/examples/vx-linktypes/Example';
+import LinkTypes from '../sandboxes/vx-linktypes/Example';
+import LinkTypesSource from '!!raw-loader!../sandboxes/vx-linktypes/Example';
 
 export default () => {
   return (

@@ -1,7 +1,7 @@
 import React from 'react';
 import Show from '../components/Show';
-import Glyphs from '../docs-v2/examples/vx-glyph/Example';
-import GlyphsSource from '!!raw-loader!../docs-v2/examples/vx-glyph/Example';
+import Glyphs from '../sandboxes/vx-glyph/Example';
+import GlyphsSource from '!!raw-loader!../sandboxes/vx-glyph/Example';
 
 export default () => {
   return (

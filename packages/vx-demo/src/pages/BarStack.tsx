@@ -1,7 +1,7 @@
 import React from 'react';
 import Show from '../components/Show';
-import BarStack from '../docs-v2/examples/vx-barstack/Example';
-import BarStackSource from '!!raw-loader!../docs-v2/examples/vx-barstack/Example';
+import BarStack from '../sandboxes/vx-barstack/Example';
+import BarStackSource from '!!raw-loader!../sandboxes/vx-barstack/Example';
 
 export default () => (
   <Show

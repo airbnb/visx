@@ -1,7 +1,7 @@
 import React from 'react';
 import Show from '../components/Show';
-import StatsPlot from '../docs-v2/examples/vx-stats/Example';
-import StatsPlotSource from '!!raw-loader!../docs-v2/examples/vx-stats/Example';
+import StatsPlot from '../sandboxes/vx-stats/Example';
+import StatsPlotSource from '!!raw-loader!../sandboxes/vx-stats/Example';
 
 export default () => (
   <Show
