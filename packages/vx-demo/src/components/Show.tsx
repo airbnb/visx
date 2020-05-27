@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import cx from 'classnames';
 import withScreenSize, {
   WithScreenSizeProvidedProps,
@@ -7,6 +7,18 @@ import CodeSandboxLink from './CodeSandboxLink';
 import Page from './Page';
 import Codeblock from './Codeblock';
 import { MarginShape, ShowProvidedProps } from '../types';
+import VxDocLink from './VxDocLink';
+
+function extractVxDepsFromPackage(packageJson: {
+  dependencies?: { [packageName: string]: string };
+}) {
+  const vxDeps = [];
+  Object.keys(packageJson?.dependencies ?? {}).forEach(dep => {
+    if (dep.startsWith('@vx/')) vxDeps.push(dep);
+  });
+
+  return vxDeps;
+}
 
 type Component<P = {}> = React.FC<P> | React.ComponentClass<P>;
 
@@ -20,6 +32,7 @@ type ShowProps = {
   margin?: MarginShape;
   description?: Component<{ width: number; height: number }>;
   windowResizeDebounceTime?: number;
+  packageJson?: { dependencies: { [packageName: string]: string } };
 };
 
 const padding = 40;
@@ -35,48 +48,57 @@ export default withScreenSize<ShowProps & WithScreenSizeProvidedProps>(
     margin,
     description,
     codeSandboxDirectoryName,
+    packageJson,
   }: ShowProps & WithScreenSizeProvidedProps) => {
     const width = Math.min(800, (screenWidth || 0) - padding);
     const height = width * 0.6;
+    const vxDeps = useMemo(() => extractVxDepsFromPackage(packageJson || {}), [packageJson]);
 
     return (
       <Page title={title}>
         <div className="container">
           <div style={{ width }}>
             <h1>{title}</h1>
-          </div>
-          <div
-            className={cx(
-              {
-                shadow: !!shadow,
-              },
-              title.split(' ').join('-'),
-              'chart',
+
+            <div
+              className={cx(
+                {
+                  shadow: !!shadow,
+                },
+                title.split(' ').join('-'),
+                'chart',
+              )}
+            >
+              {React.createElement(component, {
+                width,
+                height,
+                margin,
+                events,
+              })}
+            </div>
+            {description && React.createElement(description, { width, height })}
+            {codeSandboxDirectoryName && (
+              <div className="sandbox-link">
+                <CodeSandboxLink exampleDirectoryName={codeSandboxDirectoryName} />
+              </div>
             )}
-          >
-            {React.createElement(component, {
-              width,
-              height,
-              margin,
-              events,
-            })}
+            {vxDeps.length > 0 && (
+              <div className="doc-links">
+                Documenation
+                {vxDeps.map(packageName => (
+                  <VxDocLink key={packageName} packageName={packageName} />
+                ))}
+              </div>
+            )}
+            {children && (
+              <>
+                <h2>Code</h2>
+                <div className="code">
+                  <Codeblock>{children}</Codeblock>
+                </div>
+              </>
+            )}
           </div>
-          {description && React.createElement(description, { width, height })}
-          {codeSandboxDirectoryName && (
-            <div style={{ width, display: 'flex', justifyContent: 'flex-end' }}>
-              <CodeSandboxLink exampleDirectoryName={codeSandboxDirectoryName} />
-            </div>
-          )}
-          {children && (
-            <div style={{ width }}>
-              <h2>Code</h2>
-            </div>
-          )}
-          {children && (
-            <div className="code" style={{ width }}>
-              <Codeblock>{children}</Codeblock>
-            </div>
-          )}
         </div>
         <style jsx>{`
           .container {
@@ -101,6 +123,21 @@ export default withScreenSize<ShowProps & WithScreenSizeProvidedProps>(
           .shadow {
             border-radius: 14px;
             box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+          }
+          .sandbox-link {
+            display: flex;
+            justify-content: flex-end;
+          }
+          .doc-links {
+            width: 100%;
+            flex-grow: 0;
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+          }
+          .doc-links :global(a) {
+            margin-left: 6px;
           }
         `}</style>
       </Page>
