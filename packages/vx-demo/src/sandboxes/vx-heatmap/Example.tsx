@@ -47,7 +47,7 @@ const opacityScale = scaleLinear<number>({
   domain: [0, colorMax],
 });
 
-type HeatmapProps = {
+export type HeatmapProps = {
   width: number;
   height: number;
   margin?: { top: number; right: number; bottom: number; left: number };
