@@ -122,7 +122,7 @@ export default function PackageList({
               {!compact && <p>Utilities for clip-path elements</p>}
             </li>
             <li className={cx(emphasizePackage === 'event' && 'emphasize')}>
-              <a href="/static/docs/vx-event.html">@vx/event</a>
+              <a href="/docs/event">@vx/event</a>
               {!compact && (
                 <p>Utilities for computing svg coordinates from mouse or touch events</p>
               )}
