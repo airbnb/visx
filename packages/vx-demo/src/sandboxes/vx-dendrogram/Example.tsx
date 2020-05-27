@@ -107,13 +107,13 @@ function RootNode({ node }: { node: HierarchyPointNode<NodeShape> }) {
 
 const defaultMargin = { top: 40, left: 0, right: 0, bottom: 40 };
 
-type Props = {
+export type DendrogramProps = {
   width: number;
   height: number;
   margin?: { top: number; right: number; bottom: number; left: number };
 };
 
-export default function Example({ width, height, margin = defaultMargin }: Props) {
+export default function Example({ width, height, margin = defaultMargin }: DendrogramProps) {
   const data = useMemo(() => hierarchy<NodeShape>(clusterData), []);
   const xMax = width - margin.left - margin.right;
   const yMax = height - margin.top - margin.bottom;

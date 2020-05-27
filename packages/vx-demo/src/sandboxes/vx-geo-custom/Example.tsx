@@ -15,7 +15,7 @@ import {
 } from 'd3-geo';
 import topology from './world-topo.json';
 
-type Props = {
+export type GeoCustomProps = {
   width: number;
   height: number;
   events?: boolean;
@@ -28,7 +28,7 @@ interface FeatureShape {
   properties: { name: string };
 }
 
-const background = '#252b7e';
+export const background = '#252b7e';
 const purple = '#201c4e';
 const PROJECTIONS: { [projection: string]: Projection } = {
   geoConicConformal,
@@ -66,7 +66,7 @@ const color = scaleQuantize({
   ],
 });
 
-export default function GeoCustom({ width, height, events = true }: Props) {
+export default function GeoCustom({ width, height, events = true }: GeoCustomProps) {
   const [projection, setProjection] = useState<keyof typeof PROJECTIONS>('geoConicConformal');
 
   const centerX = width / 2;

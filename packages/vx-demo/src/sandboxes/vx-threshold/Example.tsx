@@ -31,13 +31,13 @@ const temperatureScale = scaleLinear<number>({
 
 const defaultMargin = { top: 40, right: 30, bottom: 50, left: 40 };
 
-type Props = {
+export type ThresholdProps = {
   width: number;
   height: number;
   margin?: { top: number; right: number; bottom: number; left: number };
 };
 
-export default function Theshold({ width, height, margin = defaultMargin }: Props) {
+export default function Theshold({ width, height, margin = defaultMargin }: ThresholdProps) {
   if (width < 10) return null;
 
   // bounds

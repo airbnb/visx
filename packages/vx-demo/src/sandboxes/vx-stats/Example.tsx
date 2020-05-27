@@ -28,12 +28,12 @@ interface TooltipData {
   thirdQuartile?: number;
 }
 
-type Props = {
+export type StatsPlotProps = {
   width: number;
   height: number;
 };
 
-export default withTooltip<Props, TooltipData>(
+export default withTooltip<StatsPlotProps, TooltipData>(
   ({
     width,
     height,
@@ -43,7 +43,7 @@ export default withTooltip<Props, TooltipData>(
     tooltipData,
     showTooltip,
     hideTooltip,
-  }: Props & WithTooltipProvidedProps<TooltipData>) => {
+  }: StatsPlotProps & WithTooltipProvidedProps<TooltipData>) => {
     // bounds
     const xMax = width;
     const yMax = height - 120;

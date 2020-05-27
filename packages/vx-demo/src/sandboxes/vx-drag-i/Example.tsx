@@ -21,12 +21,12 @@ const colors = [
   '#827ce2',
 ];
 
-type Props = {
+export type DragIProps = {
   width: number;
   height: number;
 };
 
-export default function DragI({ width, height }: Props) {
+export default function DragI({ width, height }: DragIProps) {
   const [draggingItems, setDraggingItems] = useState<Circle[]>([]);
 
   useEffect(() => {

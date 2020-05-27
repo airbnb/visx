@@ -14,7 +14,16 @@ import { timeFormat } from 'd3-time-format';
 type TooltipData = AppleStock;
 
 const stock = appleStock.slice(800);
-export const background = '#32deaa';
+export const background = '#3b6978';
+export const background2 = '#204051';
+export const accentColor = '#edffea';
+export const accentColorDark = '#75daad';
+const tooltipStyles = {
+  ...defaultStyles,
+  background,
+  border: '1px solid white',
+  color: 'white',
+};
 
 // util
 const formatDate = timeFormat("%b %d, '%y");
@@ -24,13 +33,13 @@ const getDate = (d: AppleStock) => new Date(d.date);
 const getStockValue = (d: AppleStock) => d.close;
 const bisectDate = bisector<AppleStock, Date>(d => new Date(d.date)).left;
 
-type Props = {
+export type AreaProps = {
   width: number;
   height: number;
   margin?: { top: number; right: number; bottom: number; left: number };
 };
 
-export default withTooltip<Props, TooltipData>(
+export default withTooltip<AreaProps, TooltipData>(
   ({
     width,
     height,
@@ -40,7 +49,7 @@ export default withTooltip<Props, TooltipData>(
     tooltipData,
     tooltipTop = 0,
     tooltipLeft = 0,
-  }: Props & WithTooltipProvidedProps<TooltipData>) => {
+  }: AreaProps & WithTooltipProvidedProps<TooltipData>) => {
     // bounds
     const xMax = width - margin.left - margin.right;
     const yMax = height - margin.top - margin.bottom;
@@ -88,20 +97,30 @@ export default withTooltip<Props, TooltipData>(
     return (
       <div>
         <svg width={width} height={height}>
-          <rect x={0} y={0} width={width} height={height} fill={background} rx={14} />
-          <LinearGradient id="area-gradient" from="white" to="white" toOpacity={0.2} />
+          <rect
+            x={0}
+            y={0}
+            width={width}
+            height={height}
+            fill="url(#area-background-gradient)"
+            rx={14}
+          />
+          <LinearGradient id="area-background-gradient" from={background} to={background2} />
+          <LinearGradient id="area-gradient" from={accentColor} to={accentColor} toOpacity={0.1} />
           <GridRows<number>
             scale={stockValueScale}
             width={xMax}
-            strokeDasharray="2,2"
-            stroke="rgba(255,255,255,0.3)"
+            strokeDasharray="3,3"
+            stroke={accentColor}
+            strokeOpacity={0.3}
             pointerEvents="none"
           />
           <GridColumns<Date>
             scale={dateScale}
             height={yMax}
-            strokeDasharray="2,2"
-            stroke="rgba(255,255,255,0.3)"
+            strokeDasharray="3,3"
+            stroke={accentColor}
+            strokeOpacity={0.3}
             pointerEvents="none"
           />
           <AreaClosed<AppleStock>
@@ -131,10 +150,10 @@ export default withTooltip<Props, TooltipData>(
               <Line
                 from={{ x: tooltipLeft, y: 0 }}
                 to={{ x: tooltipLeft, y: yMax }}
-                stroke="rgba(92, 119, 235, 1)"
+                stroke={accentColorDark}
                 strokeWidth={2}
                 pointerEvents="none"
-                strokeDasharray="2,2"
+                strokeDasharray="5,2"
               />
               <circle
                 cx={tooltipLeft}
@@ -151,7 +170,7 @@ export default withTooltip<Props, TooltipData>(
                 cx={tooltipLeft}
                 cy={tooltipTop}
                 r={4}
-                fill="rgba(92, 119, 235, 1)"
+                fill={accentColorDark}
                 stroke="white"
                 strokeWidth={2}
                 pointerEvents="none"
@@ -161,15 +180,7 @@ export default withTooltip<Props, TooltipData>(
         </svg>
         {tooltipData && (
           <div>
-            <Tooltip
-              top={tooltipTop - 12}
-              left={tooltipLeft + 12}
-              style={{
-                ...defaultStyles,
-                backgroundColor: 'rgba(92, 119, 235, 1)',
-                color: 'white',
-              }}
-            >
+            <Tooltip top={tooltipTop - 12} left={tooltipLeft + 12} style={tooltipStyles}>
               {`$${getStockValue(tooltipData)}`}
             </Tooltip>
             <Tooltip

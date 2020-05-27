@@ -28,13 +28,13 @@ const defaultMargin = {
   bottom: 76,
 };
 
-type Props = {
+export type VoronoiProps = {
   width: number;
   height: number;
   margin?: { top: number; right: number; bottom: number; left: number };
 };
 
-export default ({ width, height, margin = defaultMargin }: Props) => {
+export default ({ width, height, margin = defaultMargin }: VoronoiProps) => {
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
 

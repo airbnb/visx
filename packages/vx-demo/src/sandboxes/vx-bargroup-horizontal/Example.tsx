@@ -6,7 +6,7 @@ import cityTemperature, { CityTemperature } from '@vx/mock-data/lib/mocks/cityTe
 import { scaleBand, scaleLinear, scaleOrdinal } from '@vx/scale';
 import { timeParse, timeFormat } from 'd3-time-format';
 
-type Props = {
+export type BarGroupHorizontalProps = {
   width: number;
   height: number;
   margin?: { top: number; right: number; bottom: number; left: number };
@@ -51,7 +51,12 @@ const colorScale = scaleOrdinal<string, string>({
   range: [blue, green, purple],
 });
 
-export default function Example({ width, height, margin = defaultMargin, events = false }: Props) {
+export default function Example({
+  width,
+  height,
+  margin = defaultMargin,
+  events = false,
+}: BarGroupHorizontalProps) {
   // bounds
   const xMax = width - margin.left - margin.right;
   const yMax = height - margin.top - margin.bottom;

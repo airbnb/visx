@@ -46,13 +46,13 @@ type Datum = number[];
 const getY0 = (d: Datum) => yScale(d[0]);
 const getY1 = (d: Datum) => yScale(d[1]);
 
-type Props = {
+export type StreamGraphProps = {
   width: number;
   height: number;
   animate?: boolean;
 };
 
-export default function Streamgraph({ width, height, animate = true }: Props) {
+export default function Streamgraph({ width, height, animate = true }: StreamGraphProps) {
   const forceUpdate = useForceUpdate();
   const handlePress = () => forceUpdate();
 
