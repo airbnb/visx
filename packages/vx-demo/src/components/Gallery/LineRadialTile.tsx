@@ -1,0 +1,25 @@
+import React from 'react';
+import LineRadial, {
+  LineRadialProps,
+  background,
+  blue,
+} from '../../sandboxes/vx-shape-line-radial/Example';
+import GalleryTile from '../GalleryTile';
+
+const tileStyles = { background };
+const detailsStyles = { color: blue };
+const exampleProps = { animate: false };
+
+export default function LineRadialTile() {
+  return (
+    <GalleryTile<LineRadialProps>
+      title="Radial Lines"
+      description="<Shape.LineRadial />"
+      exampleProps={exampleProps}
+      exampleRenderer={LineRadial}
+      exampleUrl="/lineradial"
+      tileStyles={tileStyles}
+      detailsStyles={detailsStyles}
+    />
+  );
+}

@@ -1,0 +1,23 @@
+import React from 'react';
+import BarStackHorizontal, {
+  BarStackHorizontalProps,
+  background,
+  purple3,
+} from '../../sandboxes/vx-barstack-horizontal/Example';
+import GalleryTile from '../GalleryTile';
+
+const tileStyles = { background };
+const detailsStyles = { color: purple3, zIndex: 1 };
+
+export default function BarStackHorizontalTile() {
+  return (
+    <GalleryTile<BarStackHorizontalProps>
+      title="Bar Stack Horizontal"
+      description="<Shape.BarStackHorizontal />"
+      detailsStyles={detailsStyles}
+      exampleRenderer={BarStackHorizontal}
+      exampleUrl="/barstackhorizontal"
+      tileStyles={tileStyles}
+    />
+  );
+}
