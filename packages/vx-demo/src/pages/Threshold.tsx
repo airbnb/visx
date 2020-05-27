@@ -2,6 +2,7 @@ import React from 'react';
 import Show from '../components/Show';
 import Threshold from '../sandboxes/vx-threshold/Example';
 import ThresholdSource from '!!raw-loader!../sandboxes/vx-threshold/Example';
+import packageJson from '../sandboxes/vx-threshold/package.json';
 
 function Description({ width }: { width: number }) {
   return (
@@ -16,15 +17,14 @@ function Description({ width }: { width: number }) {
   );
 }
 
-export default () => {
-  return (
-    <Show
-      component={Threshold}
-      title="Threshold"
-      description={Description}
-      codeSandboxDirectoryName="vx-threshold"
-    >
-      {ThresholdSource}
-    </Show>
-  );
-};
+export default () => (
+  <Show
+    component={Threshold}
+    title="Threshold"
+    description={Description}
+    codeSandboxDirectoryName="vx-threshold"
+    packageJson={packageJson}
+  >
+    {ThresholdSource}
+  </Show>
+);
