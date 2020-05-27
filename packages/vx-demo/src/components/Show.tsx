@@ -59,16 +59,7 @@ export default withScreenSize<ShowProps & WithScreenSizeProvidedProps>(
         <div className="container">
           <div style={{ width }}>
             <h1>{title}</h1>
-
-            <div
-              className={cx(
-                {
-                  shadow: !!shadow,
-                },
-                title.split(' ').join('-'),
-                'chart',
-              )}
-            >
+            <div className={cx(!!shadow && 'shadow', title.split(' ').join('-'), 'chart')}>
               {React.createElement(component, {
                 width,
                 height,
