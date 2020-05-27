@@ -32,9 +32,7 @@
     "test": "yarn run jest",
     "type:dts": "nimbus typescript --build --reference-workspaces",
     "type-one": "nimbus typescript --build",
-    "docs": "yarn run docs:gen && node ./scripts/docs/index.js",
-    "docs:gen": "lerna run docs",
-    "prepare-release": "git checkout master && git pull --rebase origin master && yarn run docs && lerna updated",
+    "prepare-release": "git checkout master && git pull --rebase origin master && lerna updated",
     "release": "yarn run prepare-release && lerna publish --exact"
   },
   "devDependencies": {
