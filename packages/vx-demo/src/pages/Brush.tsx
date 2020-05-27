@@ -8,10 +8,10 @@ export default () => (
     component={Brush}
     title="Brush"
     margin={{
-      top: 50,
+      top: 40,
       left: 50,
       right: 20,
-      bottom: 50,
+      bottom: 10,
     }}
     codeSandboxDirectoryName="vx-brush"
   >

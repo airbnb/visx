@@ -1,7 +1,7 @@
 import React from 'react';
 import { Graph } from '@vx/network';
 
-type Props = {
+export type NetworkProps = {
   width: number;
   height: number;
 };
@@ -23,12 +23,12 @@ const graph = {
   links,
 };
 
-export const backgroundColor = '#272b4d';
+export const background = '#272b4d';
 
-export default function Example({ width, height }: Props) {
+export default function Example({ width, height }: NetworkProps) {
   return width < 10 ? null : (
     <svg width={width} height={height}>
-      <rect width={width} height={height} rx={14} fill={backgroundColor} />
+      <rect width={width} height={height} rx={14} fill={background} />
       <Graph graph={graph} />
     </svg>
   );

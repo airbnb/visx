@@ -23,7 +23,7 @@ type TooltipData = {
   color: string;
 };
 
-type Props = {
+export type BarStackProps = {
   width: number;
   height: number;
   margin?: { top: number; right: number; bottom: number; left: number };
@@ -77,7 +77,12 @@ const colorScale = scaleOrdinal<CityName, string>({
 
 let tooltipTimeout: number;
 
-export default function Example({ width, height, events = false, margin = defaultMargin }: Props) {
+export default function Example({
+  width,
+  height,
+  events = false,
+  margin = defaultMargin,
+}: BarStackProps) {
   const {
     tooltipOpen,
     tooltipLeft,

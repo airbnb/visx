@@ -19,9 +19,9 @@ import { curveMonotoneX, curveBasis } from '@vx/curve';
 const defaultMargin = { top: 10, right: 10, bottom: 10, left: 10 };
 
 // colors
-export const primary = '#8921e0';
-const secondary = '#00f2ff';
-const contrast = '#ffffff';
+export const primaryColor = '#8921e0';
+export const secondaryColor = '#00f2ff';
+const contrastColor = '#ffffff';
 
 // Glyphs to render
 const Glyphs = [
@@ -34,7 +34,7 @@ const Glyphs = [
   GlyphWye,
   ({ left, top }: { left: number; top: number }) => (
     <CustomGlyph left={left} top={top}>
-      <circle r={12} fill={secondary} />
+      <circle r={12} fill={secondaryColor} />
       <text fontSize={16} textAnchor="middle" dy="0.5em">
         {'💜'}
       </text>
@@ -60,13 +60,13 @@ const yScale = scaleLinear<number>({
 const getX = (d: DateValue) => xScale(date(d));
 const getY = (d: DateValue) => yScale(value(d));
 
-type Props = {
+export type GlyphProps = {
   width: number;
   height: number;
   margin?: typeof defaultMargin;
 };
 
-export default function Example({ width, height, margin = defaultMargin }: Props) {
+export default function Example({ width, height, margin = defaultMargin }: GlyphProps) {
   if (width < 10) return null;
 
   // bounds
@@ -79,13 +79,13 @@ export default function Example({ width, height, margin = defaultMargin }: Props
 
   return (
     <svg width={width} height={height}>
-      <rect x={0} y={0} width={width} height={height} fill={secondary} rx={14} />
+      <rect x={0} y={0} width={width} height={height} fill={secondaryColor} rx={14} />
       <Group left={margin.left} top={margin.top}>
         <LinePath
           data={data}
           x={getX}
           y={getY}
-          stroke={primary}
+          stroke={primaryColor}
           strokeWidth={2}
           strokeDasharray="2,2"
           curve={curveBasis}
@@ -94,7 +94,7 @@ export default function Example({ width, height, margin = defaultMargin }: Props
           data={data}
           x={getX}
           y={getY}
-          stroke={primary}
+          stroke={primaryColor}
           strokeWidth={2}
           curve={curveMonotoneX}
         />
@@ -104,13 +104,19 @@ export default function Example({ width, height, margin = defaultMargin }: Props
           const top = getY(d);
           return (
             <g key={`line-glyph-${i}`}>
-              <CurrGlyph left={left} top={top} size={110} stroke={secondary} strokeWidth={10} />
               <CurrGlyph
                 left={left}
                 top={top}
                 size={110}
-                fill={i % 2 === 0 ? primary : contrast}
-                stroke={i % 2 === 0 ? contrast : primary}
+                stroke={secondaryColor}
+                strokeWidth={10}
+              />
+              <CurrGlyph
+                left={left}
+                top={top}
+                size={110}
+                fill={i % 2 === 0 ? primaryColor : contrastColor}
+                stroke={i % 2 === 0 ? contrastColor : primaryColor}
                 strokeWidth={2}
               />
             </g>

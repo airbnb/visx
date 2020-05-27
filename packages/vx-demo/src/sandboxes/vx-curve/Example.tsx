@@ -13,6 +13,8 @@ const curveTypes = Object.keys(allCurves);
 const lineCount = 10;
 const series = new Array(lineCount).fill(null).map(_ => generateDateValue(25));
 const allData = series.reduce((rec, d) => rec.concat(d), []);
+export const gradientColor1 = '#ec4b5f';
+export const gradientColor2 = '#4f0000'; // '#b2305b';
 
 // data accessors
 const getX = (d: DateValue) => d.date;
@@ -26,13 +28,13 @@ const yScale = scaleLinear<number>({
   domain: [0, max(allData, getY) as number],
 });
 
-type Props = {
+export type CurveProps = {
   width: number;
   height: number;
   showControls?: boolean;
 };
 
-export default function Example({ width, height, showControls = true }: Props) {
+export default function Example({ width, height, showControls = true }: CurveProps) {
   const [curveType, setCurveType] = useState<CurveType>('curveNatural');
   const [showPoints, setShowPoints] = useState<boolean>(true);
   const svgHeight = showControls ? height - 40 : height;
@@ -69,7 +71,12 @@ export default function Example({ width, height, showControls = true }: Props) {
         </>
       )}
       <svg width={width} height={svgHeight}>
-        <LinearGradient id="vx-curves-demo" from="#ec4b5f" to="#b2305b" rotate="-45" />
+        <LinearGradient
+          id="vx-curves-demo"
+          from={gradientColor1}
+          to={gradientColor2}
+          rotate="-45"
+        />
         <rect width={width} height={svgHeight} fill="url(#vx-curves-demo)" rx={14} ry={14} />
         {width > 8 &&
           series.map((lineData, i) => (

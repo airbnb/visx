@@ -44,9 +44,9 @@ const getLetterFrequencyColor = scaleOrdinal({
   range: ['rgba(93,30,91,1)', 'rgba(93,30,91,0.8)', 'rgba(93,30,91,0.6)', 'rgba(93,30,91,0.4)'],
 });
 
-const defaultMargin = { top: 0, right: 0, bottom: 0, left: 0 };
+const defaultMargin = { top: 20, right: 20, bottom: 20, left: 20 };
 
-type ExampleProps = {
+export type PieProps = {
   width: number;
   height: number;
   margin?: typeof defaultMargin;
@@ -58,28 +58,31 @@ export default function Example({
   height,
   margin = defaultMargin,
   animate = true,
-}: ExampleProps) {
+}: PieProps) {
   const [selectedBrowser, setSelectedBrowser] = useState<string | null>(null);
   const [selectedAlphabetLetter, setSelectedAlphabetLetter] = useState<string | null>(null);
 
   if (width < 10) return null;
 
-  const radius = Math.min(width, height) / 2;
-  const centerY = height / 2;
-  const centerX = width / 2;
+  const innerWidth = width - margin.left - margin.right;
+  const innerHeight = height - margin.top - margin.bottom;
+  const radius = Math.min(innerWidth, innerHeight) / 2;
+  const centerY = innerHeight / 2;
+  const centerX = innerWidth / 2;
+  const donutThickness = 50;
 
   return (
     <svg width={width} height={height}>
       <GradientPinkBlue id="vx-pie-gradient" />
       <rect rx={14} width={width} height={height} fill="url('#vx-pie-gradient')" />
-      <Group top={centerY - margin.top} left={centerX}>
+      <Group top={centerY + margin.top} left={centerX + margin.left}>
         <Pie
           data={
             selectedBrowser ? browsers.filter(({ label }) => label === selectedBrowser) : browsers
           }
           pieValue={usage}
-          outerRadius={radius - 80}
-          innerRadius={radius - 120}
+          outerRadius={radius}
+          innerRadius={radius - donutThickness}
           cornerRadius={3}
           padAngle={0.005}
         >
@@ -104,7 +107,7 @@ export default function Example({
           }
           pieValue={frequency}
           pieSortValues={() => -1}
-          outerRadius={radius - 135}
+          outerRadius={radius - donutThickness * 1.3}
         >
           {pie => (
             <AnimatedPie<LetterFrequency>

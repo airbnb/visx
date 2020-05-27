@@ -54,9 +54,9 @@ const data: TreeNode = {
   ],
 };
 
-const defaultMargin = { top: 30, left: 30, right: 30, bottom: 30 };
+const defaultMargin = { top: 30, left: 30, right: 30, bottom: 70 };
 
-type Props = {
+export type LinkTypesProps = {
   width: number;
   height: number;
   margin?: { top: number; right: number; bottom: number; left: number };
@@ -66,7 +66,7 @@ export default function Example({
   width: totalWidth,
   height: totalHeight,
   margin = defaultMargin,
-}: Props) {
+}: LinkTypesProps) {
   const [layout, setLayout] = useState<string>('cartesian');
   const [orientation, setOrientation] = useState<string>('horizontal');
   const [linkType, setLinkType] = useState<string>('diagonal');

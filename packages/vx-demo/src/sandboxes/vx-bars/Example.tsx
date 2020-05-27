@@ -12,13 +12,13 @@ const verticalMargin = 120;
 const getLetter = (d: LetterFrequency) => d.letter;
 const getLetterFrequency = (d: LetterFrequency) => Number(d.frequency) * 100;
 
-type Props = {
+export type BarsProps = {
   width: number;
   height: number;
   events?: boolean;
 };
 
-export default function Example({ width, height, events = false }: Props) {
+export default function Example({ width, height, events = false }: BarsProps) {
   // bounds
   const xMax = width;
   const yMax = height - verticalMargin;

@@ -23,7 +23,7 @@ type TooltipData = {
   color: string;
 };
 
-type Props = {
+export type BarStackHorizontalProps = {
   width: number;
   height: number;
   margin?: { top: number; right: number; bottom: number; left: number };
@@ -77,7 +77,7 @@ const colorScale = scaleOrdinal<CityName, string>({
 
 let tooltipTimeout: number;
 
-export default withTooltip<Props, TooltipData>(
+export default withTooltip<BarStackHorizontalProps, TooltipData>(
   ({
     width,
     height,
@@ -89,7 +89,7 @@ export default withTooltip<Props, TooltipData>(
     tooltipData,
     hideTooltip,
     showTooltip,
-  }: Props & WithTooltipProvidedProps<TooltipData>) => {
+  }: BarStackHorizontalProps & WithTooltipProvidedProps<TooltipData>) => {
     // bounds
     const xMax = width - margin.left - margin.right;
     const yMax = height - margin.top - margin.bottom;

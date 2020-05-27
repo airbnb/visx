@@ -25,12 +25,12 @@ const initialTransform = {
   skewY: 0,
 };
 
-type Props = {
+export type ZoomIProps = {
   width: number;
   height: number;
 };
 
-export default function ZoomI({ width, height }: Props) {
+export default function ZoomI({ width, height }: ZoomIProps) {
   const [showMiniMap, setShowMiniMap] = useState<boolean>(true);
 
   const genenerator: GenPhyllotaxisFunction = genPhyllotaxis({ radius: 10, width, height });

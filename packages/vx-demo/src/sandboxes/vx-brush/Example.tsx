@@ -11,10 +11,13 @@ import AreaChart from './AreaChart';
 
 // Initialize some variables
 const stock = appleStock.slice(1000);
-const brushMargin = { top: 0, bottom: 20, left: 50, right: 20 };
-const chartSeparation = 24;
+const brushMargin = { top: 10, bottom: 15, left: 50, right: 20 };
+const chartSeparation = 30;
 const PATTERN_ID = 'brush_pattern';
 const GRADIENT_ID = 'brush_gradient';
+export const accentColor = '#f6acc8';
+export const background = '#584153';
+export const background2 = '#af8baf';
 const selectedBrushStyle = {
   fill: `url(#${PATTERN_ID})`,
   stroke: 'white',
@@ -24,7 +27,7 @@ const selectedBrushStyle = {
 const getDate = (d: AppleStock) => new Date(d.date);
 const getStockValue = (d: AppleStock) => d.close;
 
-type Props = {
+export type BrushProps = {
   width: number;
   height: number;
   margin?: { top: number; right: number; bottom: number; left: number };
@@ -36,12 +39,12 @@ function BrushChart({
   width,
   height,
   margin = {
-    top: 50,
+    top: 20,
     left: 50,
-    bottom: 0,
+    bottom: 20,
     right: 20,
   },
-}: Props) {
+}: BrushProps) {
   const [filteredStock, setFilteredStock] = useState(stock);
 
   const onBrushChange = (domain: Bounds | null) => {
@@ -55,14 +58,16 @@ function BrushChart({
     setFilteredStock(stockCopy);
   };
 
-  const heightTopChart = 0.8 * height;
-  const heightBottomChart = height - heightTopChart - chartSeparation;
+  const innerHeight = height - margin.top - margin.bottom;
+  const topChartBottomMargin = compact ? chartSeparation / 2 : chartSeparation + 10;
+  const topChartHeight = 0.8 * innerHeight - topChartBottomMargin;
+  const bottomChartHeight = innerHeight - topChartHeight - chartSeparation;
 
   // bounds
   const xMax = Math.max(width - margin.left - margin.right, 0);
-  const yMax = Math.max(heightTopChart - margin.top - margin.bottom, 0);
+  const yMax = Math.max(topChartHeight, 0);
   const xBrushMax = Math.max(width - brushMargin.left - brushMargin.right, 0);
-  const yBrushMax = Math.max(heightBottomChart - brushMargin.top - brushMargin.bottom, 0);
+  const yBrushMax = Math.max(bottomChartHeight - brushMargin.top - brushMargin.bottom, 0);
 
   // scales
   const dateScale = useMemo(
@@ -77,7 +82,7 @@ function BrushChart({
     () =>
       scaleLinear<number>({
         range: [yMax, 0],
-        domain: [0, (max(filteredStock, getStockValue) || 0) + yMax / 3],
+        domain: [0, max(filteredStock, getStockValue) || 0],
         nice: true,
       }),
     [yMax, filteredStock],
@@ -94,7 +99,7 @@ function BrushChart({
     () =>
       scaleLinear({
         range: [yBrushMax, 0],
-        domain: [0, (max(stock, getStockValue) || 0) + yBrushMax / 3],
+        domain: [0, max(stock, getStockValue) || 0],
         nice: true,
       }),
     [yBrushMax],
@@ -111,22 +116,17 @@ function BrushChart({
   return (
     <div>
       <svg width={width} height={height}>
-        <LinearGradient
-          id={GRADIENT_ID}
-          from="#b9257a"
-          fromOpacity={0.8}
-          to="#7c1d6f"
-          toOpacity={0.8}
-        />
+        <LinearGradient id={GRADIENT_ID} from={background} to={background2} rotate={45} />
         <rect x={0} y={0} width={width} height={height} fill={`url(#${GRADIENT_ID})`} rx={14} />
         <AreaChart
           hideBottomAxis={compact}
           data={filteredStock}
           width={width}
-          margin={margin}
+          margin={{ ...margin, bottom: topChartBottomMargin }}
           yMax={yMax}
           xScale={dateScale}
           yScale={stockScale}
+          gradientColor={background2}
         />
         <AreaChart
           hideBottomAxis
@@ -137,13 +137,14 @@ function BrushChart({
           xScale={brushDateScale}
           yScale={brushStockScale}
           margin={brushMargin}
-          top={heightTopChart + chartSeparation}
+          top={topChartHeight + topChartBottomMargin + margin.top}
+          gradientColor={background2}
         >
           <PatternLines
             id={PATTERN_ID}
             height={8}
             width={8}
-            stroke={'white'}
+            stroke={accentColor}
             strokeWidth={1}
             orientation={['diagonal']}
           />

@@ -18,7 +18,7 @@ import { scaleLinear } from '@vx/scale';
 
 export const color1 = '#f3e9d2';
 const color2 = '#4281a4';
-export const bg = '#114b5f';
+export const background = '#114b5f';
 
 const colorScale = scaleLinear<string>({
   domain: [0, Math.max(...shakespeare.map(d => d.size || 0))],
@@ -41,13 +41,13 @@ const tileMethods: { [tile: string]: TileMethod<typeof data> } = {
 
 const defaultMargin = { top: 10, left: 10, right: 10, bottom: 10 };
 
-type Props = {
+export type TreemapProps = {
   width: number;
   height: number;
   margin?: { top: number; right: number; bottom: number; left: number };
 };
 
-export default function TreemapDemo({ width, height, margin = defaultMargin }: Props) {
+export default function TreemapDemo({ width, height, margin = defaultMargin }: TreemapProps) {
   const [tileMethod, setTileMethod] = useState<string>('treemapSquarify');
   const xMax = width - margin.left - margin.right;
   const yMax = height - margin.top - margin.bottom;
@@ -69,7 +69,7 @@ export default function TreemapDemo({ width, height, margin = defaultMargin }: P
       </select>
       <div>
         <svg width={width} height={height}>
-          <rect width={width} height={height} rx={14} fill={bg} />
+          <rect width={width} height={height} rx={14} fill={background} />
           <Treemap<typeof data>
             top={margin.top}
             root={root}
@@ -95,7 +95,7 @@ export default function TreemapDemo({ width, height, margin = defaultMargin }: P
                           <rect
                             width={nodeWidth}
                             height={nodeHeight}
-                            stroke={bg}
+                            stroke={background}
                             strokeWidth={4}
                             fill="transparent"
                           />
@@ -104,7 +104,7 @@ export default function TreemapDemo({ width, height, margin = defaultMargin }: P
                           <rect
                             width={nodeWidth}
                             height={nodeHeight}
-                            stroke={bg}
+                            stroke={background}
                             fill={colorScale(node.value || 0)}
                           />
                         )}

@@ -29,13 +29,13 @@ const root = hierarchy<Datum>(pack)
 
 const defaultMargin = { top: 10, left: 30, right: 40, bottom: 80 };
 
-type Props = {
+export type PackProps = {
   width: number;
   height: number;
   margin?: { top: number; right: number; bottom: number; left: number };
 };
 
-export default function Example({ width, height, margin = defaultMargin }: Props) {
+export default function Example({ width, height, margin = defaultMargin }: PackProps) {
   return width < 10 ? null : (
     <svg width={width} height={height}>
       <rect width={width} height={height} rx={14} fill="#ffffff" />

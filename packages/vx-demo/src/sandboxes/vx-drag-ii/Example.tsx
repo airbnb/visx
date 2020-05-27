@@ -7,13 +7,13 @@ import { LinearGradient } from '@vx/gradient';
 type Line = { x: number; y: number }[];
 type Lines = Line[];
 
-type Props = {
+export type DragIIProps = {
   width: number;
   height: number;
   data?: Lines;
 };
 
-export default function DragII({ data = [], width, height }: Props) {
+export default function DragII({ data = [], width, height }: DragIIProps) {
   const [lines, setLines] = useState<Lines>(data);
 
   return width < 10 ? null : (

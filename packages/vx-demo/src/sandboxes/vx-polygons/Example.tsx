@@ -4,8 +4,9 @@ import { Group } from '@vx/group';
 import { scaleBand } from '@vx/scale';
 import { GradientPinkRed } from '@vx/gradient';
 
-export const backgroundColor = '#7f82e3';
+export const background = '#7f82e3';
 const polygonSize = 25;
+const defaultMargin = { top: 10, right: 10, bottom: 10, left: 10 };
 
 const polygons = [
   {
@@ -35,19 +36,25 @@ const yScale = scaleBand<number>({
   padding: 0.8,
 });
 
-type Props = {
+export type PolygonProps = {
   width: number;
   height: number;
+  margin?: typeof defaultMargin;
 };
 
-export default ({ width, height }: Props) => {
-  yScale.rangeRound([0, height]);
+export default ({ width, height, margin = defaultMargin }: PolygonProps) => {
+  yScale.rangeRound([0, height - margin.top - margin.bottom]);
+  const centerX = (width - margin.left - margin.right) / 2;
   return (
     <svg width={width} height={height}>
-      <rect width={width} height={height} fill={backgroundColor} rx={14} />
+      <rect width={width} height={height} fill={background} rx={14} />
       <GradientPinkRed id="polygon-pink" />
       {polygons.map((polygon, i) => (
-        <Group key={`polygon-${i}`} top={(yScale(i) || 0) + polygonSize / 2} left={width / 2}>
+        <Group
+          key={`polygon-${i}`}
+          top={(yScale(i) || 0) + polygonSize / 2}
+          left={margin.left + centerX}
+        >
           <Polygon
             sides={polygon.sides}
             size={polygonSize}
