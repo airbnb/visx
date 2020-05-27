@@ -9,7 +9,7 @@ const exampleProps = { margin: { top: 40, left: 40, right: 20, bottom: 30 } };
 export default function ThresholdTile() {
   return (
     <GalleryTile<ThresholdProps>
-      title="Dots"
+      title="Area difference chart"
       description="<Threshold />"
       exampleProps={exampleProps}
       exampleRenderer={Threshold}
