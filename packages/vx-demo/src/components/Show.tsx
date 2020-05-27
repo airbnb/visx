@@ -9,18 +9,9 @@ import Codeblock from './Codeblock';
 import { MarginShape, ShowProvidedProps } from '../types';
 import VxDocLink from './VxDocLink';
 
-function extractVxDepsFromPackage(packageJson: {
-  dependencies?: { [packageName: string]: string };
-}) {
-  const vxDeps = [];
-  Object.keys(packageJson?.dependencies ?? {}).forEach(dep => {
-    if (dep.startsWith('@vx/')) vxDeps.push(dep);
-  });
-
-  return vxDeps;
-}
-
 type Component<P = {}> = React.FC<P> | React.ComponentClass<P>;
+
+type PackageJson = { dependencies?: { [packageName: string]: string } };
 
 type ShowProps = {
   children?: string;
@@ -32,8 +23,17 @@ type ShowProps = {
   margin?: MarginShape;
   description?: Component<{ width: number; height: number }>;
   windowResizeDebounceTime?: number;
-  packageJson?: { dependencies: { [packageName: string]: string } };
+  packageJson?: PackageJson;
 };
+
+function extractVxDepsFromPackage(packageJson?: PackageJson) {
+  const vxDeps: string[] = [];
+  Object.keys(packageJson?.dependencies ?? {}).forEach(dep => {
+    if (dep.startsWith('@vx/')) vxDeps.push(dep);
+  });
+
+  return vxDeps;
+}
 
 const padding = 40;
 
@@ -52,7 +52,7 @@ export default withScreenSize<ShowProps & WithScreenSizeProvidedProps>(
   }: ShowProps & WithScreenSizeProvidedProps) => {
     const width = Math.min(800, (screenWidth || 0) - padding);
     const height = width * 0.6;
-    const vxDeps = useMemo(() => extractVxDepsFromPackage(packageJson || {}), [packageJson]);
+    const vxDeps = useMemo(() => extractVxDepsFromPackage(packageJson), [packageJson]);
 
     return (
       <Page title={title}>
