@@ -599,17 +599,18 @@ return (
   );
 }
 
-export default () => {
-  return (
-    <Show
-      component={TextDemo}
-      title="Text"
-      margin={{
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 10,
-      }}
-    />
-  );
-};
+const packageJson = { dependencies: { '@vx/text': 'lateset' } };
+
+export default () => (
+  <Show
+    component={TextDemo}
+    title="Text"
+    margin={{
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 10,
+    }}
+    packageJson={packageJson}
+  />
+);

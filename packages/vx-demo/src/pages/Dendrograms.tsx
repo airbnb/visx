@@ -2,6 +2,7 @@ import React from 'react';
 import Show from '../components/Show';
 import Dendrograms from '../sandboxes/vx-dendrogram/Example';
 import DendrogramsSource from '!!raw-loader!../sandboxes/vx-dendrogram/Example';
+import packageJson from '../sandboxes/vx-dendrogram/package.json';
 
 export default () => {
   return (
@@ -16,6 +17,7 @@ export default () => {
         right: 10,
         bottom: 80,
       }}
+      packageJson={packageJson}
     >
       {DendrogramsSource}
     </Show>
