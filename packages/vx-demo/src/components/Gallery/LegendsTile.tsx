@@ -2,6 +2,8 @@ import React from 'react';
 import Legends from '../../sandboxes/vx-legend/Example';
 import GalleryTile from '../GalleryTile';
 
+export { default as packageJson } from '../../sandboxes/vx-legend/package.json';
+
 const tileStyles = { background: 'black' };
 const detailsStyles = { color: '#aaa' };
 

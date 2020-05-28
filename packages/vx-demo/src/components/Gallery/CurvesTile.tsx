@@ -2,6 +2,8 @@ import React from 'react';
 import Curve, { CurveProps, gradientColor1 } from '../../sandboxes/vx-curve/Example';
 import GalleryTile from '../GalleryTile';
 
+export { default as packageJson } from '../../sandboxes/vx-curve/package.json';
+
 const tileStyles = { border: '1px solid lightgray' };
 const detailsStyles = { color: gradientColor1 };
 const exampleProps = { showControls: false };

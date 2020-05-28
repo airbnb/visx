@@ -5,6 +5,8 @@ import StreamGraph, {
 } from '../../sandboxes/vx-streamgraph/Example';
 import GalleryTile from '../GalleryTile';
 
+export { default as packageJson } from '../../sandboxes/vx-streamgraph/package.json';
+
 const tileStyles = { background };
 const detailsStyles = { color: 'rgb(93,30,91)' };
 const exampleProps = { animate: false };

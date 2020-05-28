@@ -2,6 +2,8 @@ import React from 'react';
 import Dots, { DotsProps } from '../../sandboxes/vx-dots/Example';
 import GalleryTile from '../GalleryTile';
 
+export { default as packageJson } from '../../sandboxes/vx-dots/package.json';
+
 const tileStyles = { background: '#fd6e7f' };
 const detailsStyles = { color: '#f6c431' };
 const exampleProps = { showControls: false };

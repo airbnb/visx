@@ -5,6 +5,8 @@ import StackedAreas, {
 } from '../../sandboxes/vx-stacked-areas/Example';
 import GalleryTile from '../GalleryTile';
 
+export { default as packageJson } from '../../sandboxes/vx-stacked-areas/package.json';
+
 const tileStyles = { background };
 const detailsStyles = { color: 'rgba(251, 224, 137, 1.000)' };
 

@@ -2,6 +2,8 @@ import React from 'react';
 import Threshold, { ThresholdProps, background } from '../../sandboxes/vx-threshold/Example';
 import GalleryTile from '../GalleryTile';
 
+export { default as packageJson } from '../../sandboxes/vx-threshold/package.json';
+
 const tileStyles = { background };
 const detailsStyles = { color: '#111' };
 const exampleProps = { margin: { top: 40, left: 40, right: 20, bottom: 30 } };

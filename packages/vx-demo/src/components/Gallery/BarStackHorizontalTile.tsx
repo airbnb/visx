@@ -6,6 +6,8 @@ import BarStackHorizontal, {
 } from '../../sandboxes/vx-barstack-horizontal/Example';
 import GalleryTile from '../GalleryTile';
 
+export { default as packageJson } from '../../sandboxes/vx-barstack-horizontal/package.json';
+
 const tileStyles = { background };
 const detailsStyles = { color: purple3, zIndex: 1 };
 

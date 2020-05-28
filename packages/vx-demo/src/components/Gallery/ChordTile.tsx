@@ -2,6 +2,8 @@ import React from 'react';
 import Chord, { ChordProps } from '../../sandboxes/vx-chord/Example';
 import GalleryTile from '../GalleryTile';
 
+export { default as packageJson } from '../../sandboxes/vx-chord/package.json';
+
 const tileStyles = { background: '#e4e3d8' };
 const detailsStyles = { color: '#111' };
 

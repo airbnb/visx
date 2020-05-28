@@ -2,6 +2,8 @@ import React from 'react';
 import Voronoi, { VoronoiProps } from '../../sandboxes/vx-voronoi/Example';
 import GalleryTile from '../GalleryTile';
 
+export { default as packageJson } from '../../sandboxes/vx-voronoi/package.json';
+
 const tileStyles = {
   background: '#eb6d88',
   borderRadius: 14,

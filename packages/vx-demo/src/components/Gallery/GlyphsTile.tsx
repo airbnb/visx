@@ -2,6 +2,8 @@ import React from 'react';
 import Glyph, { GlyphProps, primaryColor, secondaryColor } from '../../sandboxes/vx-glyph/Example';
 import GalleryTile from '../GalleryTile';
 
+export { default as packageJson } from '../../sandboxes/vx-glyph/package.json';
+
 const tileStyles = { background: secondaryColor };
 const detailsStyles = { color: primaryColor };
 const exampleProps = { margin: { top: 30, left: 10, right: 10, bottom: 80 } };

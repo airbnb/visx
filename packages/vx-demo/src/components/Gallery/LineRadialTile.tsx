@@ -6,6 +6,8 @@ import LineRadial, {
 } from '../../sandboxes/vx-shape-line-radial/Example';
 import GalleryTile from '../GalleryTile';
 
+export { default as packageJson } from '../../sandboxes/vx-shape-line-radial/package.json';
+
 const tileStyles = { background };
 const detailsStyles = { color: blue };
 const exampleProps = { animate: false };

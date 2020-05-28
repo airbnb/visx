@@ -6,6 +6,8 @@ import Dendrogram, {
 } from '../../sandboxes/vx-dendrogram/Example';
 import GalleryTile from '../GalleryTile';
 
+export { default as packageJson } from '../../sandboxes/vx-dendrogram/package.json';
+
 const tileStyles = { background };
 const detailsStyles = { color: green };
 const exampleProps = { margin: { top: 40, left: 0, right: 0, bottom: 90 } };
