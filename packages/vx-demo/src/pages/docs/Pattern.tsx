@@ -9,6 +9,8 @@ import Waves from '../../../../vx-pattern/src/patterns/Waves';
 import DocPage from '../../components/DocPage';
 import { DocGenInfo } from '../../types';
 import PatternsTile from '../../components/Gallery/PatternsTile';
+import StreamGraphTile from '../../components/Gallery/StreamGraphTile';
+import StatsPlotTile from '../../components/Gallery/StatsPlotTile';
 
 const components = [Pattern, Circles, Hexagons, Lines, Path, Waves].map(
   component =>
@@ -16,7 +18,7 @@ const components = [Pattern, Circles, Hexagons, Lines, Path, Waves].map(
     component.__docgenInfo,
 ) as DocGenInfo[];
 
-const examples = [PatternsTile];
+const examples = [PatternsTile, StreamGraphTile, StatsPlotTile];
 
 export default () => (
   <DocPage components={components} examples={examples} readme={PatternReadme} vxPackage="pattern" />
