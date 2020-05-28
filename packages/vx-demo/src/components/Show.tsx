@@ -74,12 +74,14 @@ export default withScreenSize<ShowProps & WithScreenSizeProvidedProps>(
               </div>
             )}
             {vxDeps.length > 0 && (
-              <div className="doc-links">
-                Documenation
-                {vxDeps.map(packageName => (
-                  <VxDocLink key={packageName} packageName={packageName} />
-                ))}
-              </div>
+              <>
+                <h2>Documentation</h2>
+                <div className="doc-links">
+                  {vxDeps.map(packageName => (
+                    <VxDocLink key={packageName} packageName={packageName} />
+                  ))}
+                </div>
+              </>
             )}
             {children && (
               <>
@@ -120,15 +122,10 @@ export default withScreenSize<ShowProps & WithScreenSizeProvidedProps>(
             justify-content: flex-end;
           }
           .doc-links {
-            width: 100%;
-            flex-grow: 0;
-            font-size: 12px;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
+            font-size: 13px;
           }
           .doc-links :global(a) {
-            margin-left: 6px;
+            margin-right: 6px;
           }
         `}</style>
       </Page>
