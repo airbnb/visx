@@ -16,7 +16,13 @@ type Props<ExampleProps extends WidthAndHeight> = {
 };
 
 const renderLinkWrapper = (url: string | undefined, node: React.ReactNode) =>
-  url ? <Link href={url}>{node}</Link> : node;
+  url ? (
+    <Link href={url}>
+      <a>{node}</a>
+    </Link>
+  ) : (
+    node
+  );
 
 export default function GalleryTile<ExampleProps extends WidthAndHeight>({
   description,
