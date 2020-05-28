@@ -68,7 +68,7 @@ export default function GalleryTile<ExampleProps extends WidthAndHeight>({
           display: flex;
           height: 390px;
           flex: 1;
-          min-width: 25%;
+          min-width: 300px;
           flex-direction: column;
           border-radius: 14px;
         }

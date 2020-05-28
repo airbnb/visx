@@ -82,9 +82,6 @@ const tiles = [
   ZoomITile,
 ];
 const tiltOptions = { max: 8, scale: 1 };
-const columnCount = 3;
-const emptyTileCount =
-  tiles.length % columnCount > 0 ? columnCount - (tiles.length % columnCount) : 0;
 
 export default function Gallery() {
   return (
@@ -95,16 +92,11 @@ export default function Gallery() {
             <Tile />
           </Tilt>
         ))}
-        {[...new Array(emptyTileCount)].map((_, i) => (
-          <GalleryTile key={`placeholder-${i}`} exampleRenderer={() => null} />
-        ))}
       </div>
       <style jsx>{`
         .gallery {
-          display: flex;
-          flex-direction: row;
-          flex-wrap: wrap;
-          justify-content: space-around;
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
           overflow-x: hidden;
           padding-bottom: 20px;
         }
