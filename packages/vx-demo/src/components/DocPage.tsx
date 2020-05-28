@@ -103,14 +103,6 @@ export default function DocPage({ components, examples, vxPackage, readme }: Pro
           width: 140px;
           flex-shrink: 0;
         }
-        @media (max-width: 600px) {
-          .doc-container {
-            flex-direction: column-reverse;
-            min-width: 90vw;
-            max-width: 90vw;
-            margin: 0;
-          }
-        }
         .doc-content :global(code) {
           font-family: 'Menlo', monospace;
           font-weight: bold;
@@ -141,8 +133,24 @@ export default function DocPage({ components, examples, vxPackage, readme }: Pro
           margin-top: 0.25rem;
         }
         .examples {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          display: flex;
+          flex-wrap: wrap;
+        }
+        .example {
+          min-width: 400px;
+          max-width: 33%;
+          flex-grow: 1;
+        }
+        @media (max-width: 800px) {
+          .doc-container {
+            flex-direction: column-reverse;
+            min-width: 90vw;
+            max-width: 90vw;
+            margin: 0;
+          }
+          .example {
+            max-width: 100%;
+          }
         }
       `}</style>
     </Page>
