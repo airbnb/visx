@@ -9,7 +9,7 @@ export default function HeatmapsTile() {
   return (
     <GalleryTile<HeatmapProps>
       title="Heatmaps"
-      description="'<HeatmapCircle /> & <HeatmapRect />"
+      description="<HeatmapCircle /> & <HeatmapRect />"
       exampleRenderer={Heatmap}
       exampleUrl="/heatmaps"
       tileStyles={tileStyles}
