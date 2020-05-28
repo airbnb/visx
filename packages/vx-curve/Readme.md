@@ -1,26 +1,25 @@
 # @vx/curve
 
+<a title="@vx/curve npm downloads" href="https://www.npmjs.com/package/@vx/curve">
+  <img src="https://img.shields.io/npm/dm/@vx/curve.svg?style=flat-square" />
+</a>
+
+## Installation
+
 ```
 npm install --save @vx/curve
 ```
 
 ## Overview
 
-A curve is a function that can be passed into other vx objects, mainly a LinePath to change the way the line is structured.
+The `@vx/curve` package is a wrapper of the [d3-shape](https://github.com/d3/d3-shape) curve
+functions. A `curve` is a function that can be passed into other `vx` objects that draw lines or
+paths, such as a `LinePath`, to change the way the line between points is drawn. Click on the
+example below for an interactive way to explore curve aesthetics.
 
-For example, checkout the difference between a `Curve.natural`:
+Any function with the prefix `curve` in `d3` can be used through `vx` like so:
 
-![natural curve](https://raw.githubusercontent.com/d3/d3-shape/master/img/natural.png)
-
-and a `Curve.step`:
-
-![step curve](https://raw.githubusercontent.com/d3/d3-shape/master/img/step.png)
-
-The `@vx/curve` package is a wrapper over [d3-shape](https://github.com/d3/d3-shape) curve functions.
-
-Any function with the prefix `curve` in d3 can be used through `vx` like so:
-
-``` javascript
+```javascript
 import { curveCatmullRomOpen } from '@vx/curve';
 let line = (<Shape.LinePath curve={curveCatmullRomOpen} />)
 
@@ -31,7 +30,7 @@ let line = (<Shape.LinePath curve={Curve.curveCatmullRomOpen} />)
 
 ## Functions
 
-|           vx          |                                      d3                                       |
+| vx                    | d3                                                                            |
 | --------------------- | ----------------------------------------------------------------------------- |
 | curveBasis            | [curveBasis](https://github.com/d3/d3-shape#curveBasis)                       |
 | curveBasisClose       | [curveBasisClosed](https://github.com/d3/d3-shape#curveBasisClosed)           |
