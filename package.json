@@ -32,9 +32,7 @@
     "test": "yarn run jest",
     "type:dts": "nimbus typescript --build --reference-workspaces",
     "type-one": "nimbus typescript --build",
-    "docs": "yarn run docs:gen && node ./scripts/docs/index.js",
-    "docs:gen": "lerna run docs",
-    "prepare-release": "git checkout master && git pull --rebase origin master && yarn run docs && lerna updated",
+    "prepare-release": "git checkout master && git pull --rebase origin master && lerna updated",
     "release": "yarn run prepare-release && lerna publish --exact"
   },
   "devDependencies": {
@@ -58,7 +56,6 @@
     "marked": "^0.7.0",
     "raf": "^3.4.0",
     "react": "^15.0.0-0 || ^16.0.0-0",
-    "react-docgen": "^5.3.0",
     "react-dom": "^15.0.0-0 || ^16.0.0-0",
     "react-test-renderer": "^16.8.6",
     "regenerator-runtime": "^0.10.5"

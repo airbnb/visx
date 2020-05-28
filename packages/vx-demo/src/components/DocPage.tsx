@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import Markdown from 'react-markdown/with-html';
 
@@ -8,7 +9,7 @@ import Page from './Page';
 import { DocGenInfo, VxPackage } from '../types';
 
 type Props = {
-  components?: DocGenInfo[];
+  components?: unknown[];
   vxPackage: VxPackage;
   readme: string;
 };
@@ -27,10 +28,12 @@ export default function DocPage({ components, vxPackage, readme }: Props) {
               <h2>Components</h2>
               <ul>
                 {components.map(component => {
-                  const { displayName = '' } = component;
+                  // @ts-ignore TS doesn't know about docgenInfo
+                  const docgenInfo = component?.__docgenInfo as DocGenInfo | undefined;
+                  const { displayName = '' } = docgenInfo || {};
                   const isComponent =
                     displayName && displayName[0].toLowerCase() !== displayName[0];
-                  return (
+                  return docgenInfo ? (
                     <li key={displayName}>
                       <a href={`#${displayName}`}>
                         <code>
@@ -40,14 +43,18 @@ export default function DocPage({ components, vxPackage, readme }: Props) {
                         </code>
                       </a>
                     </li>
-                  );
+                  ) : null;
                 })}
               </ul>
 
               <h2>APIs</h2>
-              {components.map(component => (
-                <ApiTable key={component.displayName} docgenInfo={component} />
-              ))}
+              {components.map(component => {
+                // @ts-ignore TS doesn't know about docgenInfo
+                const docgenInfo = component.__docgenInfo as DocGenInfo | undefined;
+                return docgenInfo ? (
+                  <ApiTable key={docgenInfo.displayName} docgenInfo={docgenInfo} />
+                ) : null;
+              })}
             </>
           )}
         </div>

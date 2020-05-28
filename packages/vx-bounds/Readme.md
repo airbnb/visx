@@ -1,5 +1,11 @@
 # @vx/bounds
 
+<p>
+  <a title="@vx/bounds npm downloads" href="https://www.npmjs.com/package/@vx/bounds">
+    <img src="https://img.shields.io/npm/dm/@vx/bounds.svg?style=flat-square" />
+  </a>
+</p>
+
 ```
 npm install --save @vx/bounds
 ```

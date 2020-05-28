@@ -10,27 +10,17 @@ import NaturalEarth from '../../../../vx-geo/src/projections/NaturalEarth';
 import Orthographic from '../../../../vx-geo/src/projections/Orthographic';
 import Projection from '../../../../vx-geo/src/projections/Projection';
 import DocPage from '../../components/DocPage';
-import { DocGenInfo } from '../../types';
 
 const components = [
-  // @ts-ignore
-  Projection.__docgenInfo,
-  // @ts-ignore
-  Graticule.__docgenInfo,
-  // @ts-ignore
-  Albers.__docgenInfo,
-  // @ts-ignore
-  AlbersUsa.__docgenInfo,
-  // @ts-ignore
-  CustomProjection.__docgenInfo,
-  // @ts-ignore
-  EqualEarth.__docgenInfo,
-  // @ts-ignore
-  Mercator.__docgenInfo,
-  // @ts-ignore
-  NaturalEarth.__docgenInfo,
-  // @ts-ignore
-  Orthographic.__docgenInfo,
-] as DocGenInfo[];
+  Projection,
+  Graticule,
+  Albers,
+  AlbersUsa,
+  CustomProjection,
+  EqualEarth,
+  Mercator,
+  NaturalEarth,
+  Orthographic,
+];
 
 export default () => <DocPage components={components} readme={GeoReadme} vxPackage="geo" />;
