@@ -5,7 +5,7 @@ import GalleryTile from '../GalleryTile';
 const tileStyles = { background: '#e4e3d8' };
 const detailsStyles = { color: '#111' };
 
-export default function ThresholdTile() {
+export default function ChordTile() {
   return (
     <GalleryTile<ChordProps>
       title="Chord"
