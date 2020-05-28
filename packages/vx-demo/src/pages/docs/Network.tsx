@@ -6,7 +6,12 @@ import Links from '../../../../vx-network/src/Links';
 import DefaultNode from '../../../../vx-network/src/DefaultNode';
 import DefaultLink from '../../../../vx-network/src/DefaultLink';
 import DocPage from '../../components/DocPage';
+import NetworkTile from '../../components/Gallery/NetworkTile';
 
 const components = [Graph, Nodes, Links, DefaultNode, DefaultLink];
 
-export default () => <DocPage components={components} readme={NetworkReadme} vxPackage="network" />;
+const examples = [NetworkTile];
+
+export default () => (
+  <DocPage components={components} examples={examples} readme={NetworkReadme} vxPackage="network" />
+);

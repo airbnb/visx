@@ -7,7 +7,12 @@ import Quantile from '../../../../vx-legend/src/legends/Quantile';
 import Size from '../../../../vx-legend/src/legends/Size';
 import Threshold from '../../../../vx-legend/src/legends/Threshold';
 import DocPage from '../../components/DocPage';
+import LegendsTile from '../../components/Gallery/LegendsTile';
 
 const components = [Linear, Ordinal, Quantile, Size, Threshold, Legend];
 
-export default () => <DocPage components={components} readme={LegendReadme} vxPackage="legend" />;
+const examples = [LegendsTile];
+
+export default () => (
+  <DocPage components={components} examples={examples} readme={LegendReadme} vxPackage="legend" />
+);

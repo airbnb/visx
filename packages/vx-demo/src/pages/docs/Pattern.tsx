@@ -7,7 +7,12 @@ import Path from '../../../../vx-pattern/src/patterns/Path';
 import Pattern from '../../../../vx-pattern/src/patterns/Pattern';
 import Waves from '../../../../vx-pattern/src/patterns/Waves';
 import DocPage from '../../components/DocPage';
+import PatternsTile from '../../components/Gallery/PatternsTile';
 
 const components = [Pattern, Circles, Hexagons, Lines, Path, Waves];
 
-export default () => <DocPage components={components} readme={PatternReadme} vxPackage="pattern" />;
+const examples = [PatternsTile];
+
+export default () => (
+  <DocPage components={components} examples={examples} readme={PatternReadme} vxPackage="pattern" />
+);
