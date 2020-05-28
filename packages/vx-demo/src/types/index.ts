@@ -51,6 +51,8 @@ export type VxPackage =
   | 'vx'
   | 'zoom';
 
+export type PackageJson = { dependencies?: { [packageName: string]: string } };
+
 /** DocGenInfo for a single prop */
 export type PropInfo = {
   defaultValue?: { value?: unknown };
