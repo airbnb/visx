@@ -16,13 +16,7 @@ type Props<ExampleProps extends WidthAndHeight> = {
 };
 
 const renderLinkWrapper = (url: string | undefined, node: React.ReactNode) =>
-  url ? (
-    <Link href={url}>
-      <a>{node}</a>
-    </Link>
-  ) : (
-    node
-  );
+  url ? <Link href={url}>{node}</Link> : node;
 
 export default function GalleryTile<ExampleProps extends WidthAndHeight>({
   description,
@@ -77,6 +71,7 @@ export default function GalleryTile<ExampleProps extends WidthAndHeight>({
           min-width: 300px;
           flex-direction: column;
           border-radius: 14px;
+          cursor: pointer;
         }
         .image {
           flex: 1;
@@ -102,12 +97,12 @@ export default function GalleryTile<ExampleProps extends WidthAndHeight>({
           min-width: unset;
         }
         @media (max-width: 960px) {
-          .gallery-item {
+          .gallery-tile {
             min-width: 45%;
           }
         }
         @media (max-width: 600px) {
-          .gallery-item {
+          .gallery-tile {
             min-width: 100%;
           }
         }

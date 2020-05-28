@@ -127,7 +127,7 @@ export default function Gallery() {
           flex-direction: row;
         }
         .grid {
-          flex-grow: 1;
+          width: 100%;
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
           overflow-x: hidden;
