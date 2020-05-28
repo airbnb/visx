@@ -15,7 +15,6 @@ import DendrogramsTile from './DendrogramsTile';
 import DotsTile from './DotsTile';
 import DragIITile from './DragIITile';
 import DragITile from './DragITile';
-import GalleryTile from '../GalleryTile';
 import GeoCustomTile from './GeoCustomTile';
 import GeoMercatorTile from './GeoMercatorTile';
 import GlyphsTile from './GlyphsTile';
