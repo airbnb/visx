@@ -57,11 +57,11 @@ export type ZoomProps = {
   /** Initial transform matrix to apply. */
   transformMatrix?: TransformMatrix;
   /**
-   * By default passive is `false`. This will wrap <Zoom> children in a <div> and add an active wheel
-   * event listener (handleWheel). `handleWheel()` will call `event.preventDefault()` before other
-   * execution. This prevents an outer parent from scrolling when the mouse wheel is used to zoom.
+   * When `false` (default), `<Zoom>` `children` are wrapped in a `<div>` with an active wheel
+   * event listener (`handleWheel`). `handleWheel()` will call `event.preventDefault()` before other
+   * execution to prevent an outer parent from scrolling when the mouse wheel is used to zoom.
    *
-   * When passive is `true` it is required to add `<MyComponent onWheel={zoom.handleWheel} />` to handle
+   * When passive is `true` it is **required** to add `<MyComponent onWheel={zoom.handleWheel} />` to handle
    * wheel events. **Note:** By default you do not need to add `<MyComponent onWheel={zoom.handleWheel} />`.
    * This is only necessary when `<Zoom passive={true} />`.
    */
