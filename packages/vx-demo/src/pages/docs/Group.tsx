@@ -3,10 +3,20 @@ import GroupReadme from '!!raw-loader!../../../../vx-group/Readme.md';
 import Group from '../../../../vx-group/src/Group';
 import DocPage from '../../components/DocPage';
 import { DocGenInfo } from '../../types';
+import PatternsTile from '../../components/Gallery/PatternsTile';
+import RadarTile from '../../components/Gallery/RadarTile';
+import PiesTile from '../../components/Gallery/PiesTile';
+import TreemapTile from '../../components/Gallery/TreemapTile';
+import StatsPlotTile from '../../components/Gallery/StatsPlotTile';
+import LineRadialTile from '../../components/Gallery/LineRadialTile';
 
 const components = [
   // @ts-ignore
   Group.__docgenInfo,
 ] as DocGenInfo[];
 
-export default () => <DocPage components={components} readme={GroupReadme} vxPackage="group" />;
+const examples = [PatternsTile, RadarTile, PiesTile, TreemapTile, StatsPlotTile, LineRadialTile];
+
+export default () => (
+  <DocPage components={components} examples={examples} readme={GroupReadme} vxPackage="group" />
+);

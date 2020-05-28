@@ -4,6 +4,7 @@ import ParentSize from '../../../../vx-responsive/src/components/ParentSize';
 import ScaleSVG from '../../../../vx-responsive/src/components/ScaleSVG';
 import DocPage from '../../components/DocPage';
 import { DocGenInfo } from '../../types';
+import ResponsiveTile from '../../components/Gallery/ResponsiveTile';
 
 const components = [ParentSize, ScaleSVG].map(
   component =>
@@ -11,6 +12,13 @@ const components = [ParentSize, ScaleSVG].map(
     component.__docgenInfo,
 ) as DocGenInfo[];
 
+const examples = [ResponsiveTile];
+
 export default () => (
-  <DocPage components={components} readme={ResponsiveReadme} vxPackage="responsive" />
+  <DocPage
+    components={components}
+    examples={examples}
+    readme={ResponsiveReadme}
+    vxPackage="responsive"
+  />
 );

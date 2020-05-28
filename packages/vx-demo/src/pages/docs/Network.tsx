@@ -7,6 +7,7 @@ import DefaultNode from '../../../../vx-network/src/DefaultNode';
 import DefaultLink from '../../../../vx-network/src/DefaultLink';
 import DocPage from '../../components/DocPage';
 import { DocGenInfo } from '../../types';
+import NetworkTile from '../../components/Gallery/NetworkTile';
 
 const components = [Graph, Nodes, Links, DefaultNode, DefaultLink].map(
   c =>
@@ -14,4 +15,8 @@ const components = [Graph, Nodes, Links, DefaultNode, DefaultLink].map(
     c.__docgenInfo,
 ) as DocGenInfo[];
 
-export default () => <DocPage components={components} readme={NetworkReadme} vxPackage="network" />;
+const examples = [NetworkTile];
+
+export default () => (
+  <DocPage components={components} examples={examples} readme={NetworkReadme} vxPackage="network" />
+);

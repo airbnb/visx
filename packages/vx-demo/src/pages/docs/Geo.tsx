@@ -11,6 +11,8 @@ import Orthographic from '../../../../vx-geo/src/projections/Orthographic';
 import Projection from '../../../../vx-geo/src/projections/Projection';
 import DocPage from '../../components/DocPage';
 import { DocGenInfo } from '../../types';
+import GeoMercatorTile from '../../components/Gallery/GeoMercatorTile';
+import GeoCustomTile from '../../components/Gallery/GeoCustomTile';
 
 const components = [
   // @ts-ignore
@@ -33,4 +35,8 @@ const components = [
   Orthographic.__docgenInfo,
 ] as DocGenInfo[];
 
-export default () => <DocPage components={components} readme={GeoReadme} vxPackage="geo" />;
+const examples = [GeoMercatorTile, GeoCustomTile];
+
+export default () => (
+  <DocPage components={components} examples={examples} readme={GeoReadme} vxPackage="geo" />
+);

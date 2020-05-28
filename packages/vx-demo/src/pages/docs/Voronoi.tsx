@@ -4,6 +4,7 @@ import VoronoiPolygon from '../../../../vx-voronoi/src/components/VoronoiPolygon
 import voronoi from '../../../../vx-voronoi/src/voronoi';
 import DocPage from '../../components/DocPage';
 import { DocGenInfo } from '../../types';
+import VoronoiTile from '../../components/Gallery/VoronoiTile';
 
 const components = [
   // @ts-ignore
@@ -12,4 +13,8 @@ const components = [
   VoronoiPolygon.__docgenInfo,
 ] as DocGenInfo[];
 
-export default () => <DocPage components={components} readme={VoronoiReadme} vxPackage="voronoi" />;
+const examples = [VoronoiTile];
+
+export default () => (
+  <DocPage components={components} examples={examples} readme={VoronoiReadme} vxPackage="voronoi" />
+);

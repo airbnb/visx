@@ -5,6 +5,9 @@ import GridRows from '../../../../vx-grid/src/grids/GridRows';
 import GridColumns from '../../../../vx-grid/src/grids/GridColumns';
 import DocPage from '../../components/DocPage';
 import { DocGenInfo } from '../../types';
+import AxisTile from '../../components/Gallery/AxisTile';
+import BarStackTile from '../../components/Gallery/BarStackTile';
+import ThresholdTile from '../../components/Gallery/ThresholdTile';
 
 const components = [GridRows, GridColumns, Grid].map(
   c =>
@@ -12,4 +15,8 @@ const components = [GridRows, GridColumns, Grid].map(
     c.__docgenInfo,
 ) as DocGenInfo[];
 
-export default () => <DocPage components={components} readme={GridReadme} vxPackage="grid" />;
+const examples = [AxisTile, BarStackTile, ThresholdTile];
+
+export default () => (
+  <DocPage components={components} examples={examples} readme={GridReadme} vxPackage="grid" />
+);

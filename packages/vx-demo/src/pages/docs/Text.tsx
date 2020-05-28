@@ -3,10 +3,15 @@ import TextReadme from '!!raw-loader!../../../../vx-text/Readme.md';
 import Text from '../../../../vx-text/src/Text';
 import DocPage from '../../components/DocPage';
 import { DocGenInfo } from '../../types';
+import TextTile from '../../components/Gallery/TextTile';
 
 const components = [
   // @ts-ignore
   Text.__docgenInfo,
 ] as DocGenInfo[];
 
-export default () => <DocPage components={components} readme={TextReadme} vxPackage="text" />;
+const examples = [TextTile];
+
+export default () => (
+  <DocPage components={components} examples={examples} readme={TextReadme} vxPackage="text" />
+);

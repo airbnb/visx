@@ -4,6 +4,7 @@ import BoxPlot from '../../../../vx-stats/src/BoxPlot';
 import ViolinPlot from '../../../../vx-stats/src/ViolinPlot';
 import DocPage from '../../components/DocPage';
 import { DocGenInfo } from '../../types';
+import StatsPlotTile from '../../components/Gallery/StatsPlotTile';
 
 const components = [BoxPlot, ViolinPlot].map(
   component =>
@@ -11,4 +12,8 @@ const components = [BoxPlot, ViolinPlot].map(
     component.__docgenInfo,
 ) as DocGenInfo[];
 
-export default () => <DocPage components={components} readme={StatsReadme} vxPackage="stats" />;
+const examples = [StatsPlotTile];
+
+export default () => (
+  <DocPage components={components} examples={examples} readme={StatsReadme} vxPackage="stats" />
+);
