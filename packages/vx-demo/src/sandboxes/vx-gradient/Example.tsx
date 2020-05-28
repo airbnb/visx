@@ -33,13 +33,13 @@ const Gradients: React.FC<{ id: string }>[] = [
   GradientDarkgreenGreen,
 ];
 
-type Props = {
+export type GradientProps = {
   width: number;
   height: number;
   margin?: typeof defaultMargin;
 };
 
-export default function Example({ width, height, margin = defaultMargin }: Props) {
+export default function Example({ width, height, margin = defaultMargin }: GradientProps) {
   const numColumns = width > 600 ? 5 : 2;
   const numRows = Gradients.length / numColumns;
   const columnWidth = Math.max(width / numColumns, 0);

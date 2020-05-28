@@ -31,14 +31,14 @@ const color = scaleOrdinal<number, string>({
   range: ['url(#gpinkorange)', 'url(#gpurplered)', 'url(#gpurplegreen)', 'url(#gbluelime)'],
 });
 
-type Props = {
+export type ChordProps = {
   width: number;
   height: number;
   centerSize?: number;
   events?: boolean;
 };
 
-export default function Example({ width, height, centerSize = 20, events = false }: Props) {
+export default function Example({ width, height, centerSize = 20, events = false }: ChordProps) {
   const outerRadius = Math.min(width, height) * 0.5 - (centerSize + 10);
   const innerRadius = outerRadius - centerSize;
 

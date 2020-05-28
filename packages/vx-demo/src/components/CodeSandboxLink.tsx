@@ -1,12 +1,5 @@
 import React from 'react';
 
-const STYLES = {
-  display: 'flex',
-  alignItems: 'center',
-  fontSize: 12,
-  color: '#222',
-};
-
 const icon = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -35,14 +28,24 @@ type Props = {
 
 const CodeSandboxLink = ({ branch = 'master', exampleDirectoryName }: Props) => {
   return exampleDirectoryName ? (
-    <a
-      style={STYLES}
-      href={`https://codesandbox.io/s/github/hshoff/vx/tree/${branch}/packages/vx-demo/src/sandboxes/${exampleDirectoryName}`}
-      rel="nofollow noopener noreferrer"
-      target="_blank"
-    >
-      {icon}&nbsp;Try it on CodeSandbox
-    </a>
+    <>
+      <a
+        className="sandbox-link"
+        href={`https://codesandbox.io/s/github/hshoff/vx/tree/${branch}/packages/vx-demo/src/sandboxes/${exampleDirectoryName}`}
+        rel="nofollow noopener noreferrer"
+        target="_blank"
+      >
+        {icon}&nbsp;Try it on CodeSandbox
+      </a>
+      <style jsx>{`
+        .sandbox-link {
+          display: flex;
+          align-items: center;
+          font-size: 12px;
+          color: #222;
+        }
+      `}</style>
+    </>
   ) : null;
 };
 

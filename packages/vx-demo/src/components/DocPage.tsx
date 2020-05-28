@@ -10,11 +10,12 @@ import { DocGenInfo, VxPackage } from '../types';
 
 type Props = {
   components?: unknown[];
+  examples?: (React.ComponentClass | React.FC)[];
   vxPackage: VxPackage;
   readme: string;
 };
 
-export default function DocPage({ components, vxPackage, readme }: Props) {
+export default function DocPage({ components, examples, vxPackage, readme }: Props) {
   return (
     <Page title={`@vx/${vxPackage} documentation`}>
       <div className="doc-container">
@@ -22,7 +23,21 @@ export default function DocPage({ components, vxPackage, readme }: Props) {
           <PackageList compact grid={false} emphasizePackage={vxPackage} />
         </div>
         <div className="doc-content">
-          <Markdown escapeHtml={false} source={readme} />
+          <div className="doc-readme">
+            <Markdown escapeHtml={false} source={readme} />
+          </div>
+          {examples && examples.length > 0 && (
+            <>
+              <h2>Examples</h2>
+              <div className="examples">
+                {examples.map((example, i) => (
+                  <div key={i} className="example">
+                    {React.createElement(example)}
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
           {components && components.length > 0 && (
             <>
               <h2>Components</h2>
@@ -66,6 +81,9 @@ export default function DocPage({ components, vxPackage, readme }: Props) {
           display: flex;
           flex-direction: row;
         }
+        .doc-content {
+          width: 100%;
+        }
         .doc-content :global(h1) {
           margin-bottom: 1.2em;
           line-height: 0;
@@ -85,14 +103,6 @@ export default function DocPage({ components, vxPackage, readme }: Props) {
           width: 140px;
           flex-shrink: 0;
         }
-        @media (max-width: 600px) {
-          .doc-container {
-            flex-direction: column-reverse;
-            min-width: 90vw;
-            max-width: 90vw;
-            margin: 0;
-          }
-        }
         .doc-content :global(code) {
           font-family: 'Menlo', monospace;
           font-weight: bold;
@@ -107,7 +117,7 @@ export default function DocPage({ components, vxPackage, readme }: Props) {
           color: #222;
           box-shadow: none;
         }
-        .doc-content :global(pre) {
+        .doc-readme :global(pre) {
           background-color: #efefef;
           display: inline-block;
           padding: 0.5em;
@@ -121,6 +131,26 @@ export default function DocPage({ components, vxPackage, readme }: Props) {
           line-height: 1em;
           border-color: #efefef;
           margin-top: 0.25rem;
+        }
+        .examples {
+          display: flex;
+          flex-wrap: wrap;
+        }
+        .example {
+          min-width: 400px;
+          max-width: 33%;
+          flex-grow: 1;
+        }
+        @media (max-width: 800px) {
+          .doc-container {
+            flex-direction: column-reverse;
+            min-width: 90vw;
+            max-width: 90vw;
+            margin: 0;
+          }
+          .example {
+            max-width: 100%;
+          }
         }
       `}</style>
     </Page>

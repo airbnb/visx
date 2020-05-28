@@ -4,9 +4,9 @@ import { Mercator, Graticule } from '@vx/geo';
 import * as topojson from 'topojson-client';
 import topology from './world-topo.json';
 
-const background = '#f9f7e8';
+export const background = '#f9f7e8';
 
-type Props = {
+export type GeoMercatorProps = {
   width: number;
   height: number;
   events?: boolean;
@@ -33,7 +33,7 @@ const color = scaleQuantize({
   range: ['#ffb01d', '#ffa020', '#ff9221', '#ff8424', '#ff7425', '#fc5e2f', '#f94b3a', '#f63a48'],
 });
 
-export default ({ width, height, events = false }: Props) => {
+export default ({ width, height, events = false }: GeoMercatorProps) => {
   const centerX = width / 2;
   const centerY = height / 2;
   const scale = (width / 630) * 100;

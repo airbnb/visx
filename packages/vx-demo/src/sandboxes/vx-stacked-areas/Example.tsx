@@ -17,7 +17,7 @@ const getDate = (d: BrowserUsage) => (parseDate(d.date) as Date).valueOf();
 const getY0 = (d: SeriesPoint<BrowserUsage>) => d[0] / 100;
 const getY1 = (d: SeriesPoint<BrowserUsage>) => d[1] / 100;
 
-type Props = {
+export type StackedAreasProps = {
   width: number;
   height: number;
   events?: boolean;
@@ -29,7 +29,7 @@ export default function Example({
   height,
   margin = { top: 0, right: 0, bottom: 0, left: 0 },
   events = false,
-}: Props) {
+}: StackedAreasProps) {
   // bounds
   const yMax = height - margin.top - margin.bottom;
   const xMax = width - margin.left - margin.right;

@@ -30,6 +30,7 @@ const getStockValue = (d: AppleStock) => d.close;
 
 export default function AreaChart({
   data,
+  gradientColor,
   width,
   yMax,
   margin,
@@ -42,6 +43,7 @@ export default function AreaChart({
   children,
 }: {
   data: AppleStock[];
+  gradientColor: string;
   xScale: ScaleType;
   yScale: ScaleType;
   width: number;
@@ -55,8 +57,23 @@ export default function AreaChart({
 }) {
   return (
     <Group left={left || margin.left} top={top || margin.top}>
-      <LinearGradient id="gradient" from="#fff" fromOpacity={1} to="#fff" toOpacity={0.2} />
-
+      <LinearGradient
+        id="gradient"
+        from={gradientColor}
+        fromOpacity={1}
+        to={gradientColor}
+        toOpacity={0.2}
+      />
+      <AreaClosed<AppleStock>
+        data={data}
+        x={d => xScale(getDate(d)) || 0}
+        y={d => yScale(getStockValue(d)) || 0}
+        yScale={yScale}
+        strokeWidth={1}
+        stroke="url(#gradient)"
+        fill="url(#gradient)"
+        curve={curveMonotoneX}
+      />
       {!hideBottomAxis && (
         <AxisBottom<Date>
           top={yMax}
@@ -76,16 +93,6 @@ export default function AreaChart({
           tickLabelProps={() => axisLeftTickLabelProps}
         />
       )}
-      <AreaClosed<AppleStock>
-        data={data}
-        x={d => xScale(getDate(d)) || 0}
-        y={d => yScale(getStockValue(d)) || 0}
-        yScale={yScale}
-        strokeWidth={1}
-        stroke="url(#gradient)"
-        fill="url(#gradient)"
-        curve={curveMonotoneX}
-      />
       {children}
     </Group>
   );

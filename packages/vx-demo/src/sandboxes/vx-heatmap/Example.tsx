@@ -8,7 +8,7 @@ const hot1 = '#77312f';
 const hot2 = '#f33d15';
 const cool1 = '#122549';
 const cool2 = '#b4fbde';
-const bg = '#28272c';
+export const background = '#28272c';
 
 const binData = genBins(/* length = */ 16, /* height = */ 16);
 
@@ -47,7 +47,7 @@ const opacityScale = scaleLinear<number>({
   domain: [0, colorMax],
 });
 
-type Props = {
+export type HeatmapProps = {
   width: number;
   height: number;
   margin?: { top: number; right: number; bottom: number; left: number };
@@ -63,7 +63,7 @@ export default ({
   events = false,
   margin = defaultMargin,
   separation = 20,
-}: Props) => {
+}: HeatmapProps) => {
   // bounds
   const size =
     width > margin.left + margin.right ? width - margin.left - margin.right - separation : width;
@@ -79,7 +79,7 @@ export default ({
 
   return width < 10 ? null : (
     <svg width={width} height={height}>
-      <rect x={0} y={0} width={width} height={height} rx={14} fill={bg} />
+      <rect x={0} y={0} width={width} height={height} rx={14} fill={background} />
       <Group top={margin.top} left={margin.left}>
         <HeatmapCircle
           data={binData}

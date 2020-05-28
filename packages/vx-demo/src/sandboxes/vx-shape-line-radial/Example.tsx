@@ -12,9 +12,9 @@ import { LinearGradient } from '@vx/gradient';
 import { animated, useSpring } from 'react-spring';
 
 const green = '#e5fd3d';
-const blue = '#aeeef8';
+export const blue = '#aeeef8';
 const darkgreen = '#dff84d';
-const background = '#744cca';
+export const background = '#744cca';
 const darkbackground = '#603FA8';
 const springConfig = {
   tension: 20,
@@ -45,13 +45,13 @@ const radius = (d: AppleStock) => yScale(close(d));
 const firstPoint = appleStock[0];
 const lastPoint = appleStock[appleStock.length - 1];
 
-type Props = {
+export type LineRadialProps = {
   width: number;
   height: number;
   animate?: boolean;
 };
 
-export default ({ width, height, animate = true }: Props) => {
+export default ({ width, height, animate = true }: LineRadialProps) => {
   const lineRef = useRef<SVGPathElement>(null);
   const [lineLength, setLineLength] = useState<number>(0);
   const [shouldAnimate, setShouldAnimate] = useState<boolean>(false);

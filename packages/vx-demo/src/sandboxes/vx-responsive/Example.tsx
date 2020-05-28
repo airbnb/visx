@@ -3,7 +3,7 @@ import ParentSize from '@vx/responsive/lib/components/ParentSize';
 
 import Lines from './Lines';
 
-type Props = {
+export type ResponsiveProps = {
   width: number;
   height: number;
 };
@@ -22,7 +22,7 @@ const Nav = () => (
   </ul>
 );
 
-export default function Example({ width, height }: Props) {
+export default function Example({ width, height }: ResponsiveProps) {
   const [showSidebar, setShowSidebar] = useState<boolean>(true);
 
   return width < 20 || height < 20 ? null : (

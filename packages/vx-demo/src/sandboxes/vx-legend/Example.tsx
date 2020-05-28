@@ -17,7 +17,7 @@ const oneDecimalFormat = format('.1f');
 
 const sizeScale = scaleLinear<number>({
   domain: [0, 10],
-  range: [10, 30],
+  range: [5, 13],
 });
 
 const sizeColorScale = scaleLinear<string>({

@@ -7,9 +7,7 @@
 The `@vx/grid` package lets you create gridlines for charts. `<GridRows />` render horizontally,
 `<GridColumns />` render vertically, or you can use a `<Grid />` to get them both at once!
 
-<img style="display:block;" src="https://i.imgur.com/g3rYfSAr.png" width="50%" />
-
-## Example
+## Usage
 
 ```js
 import { Grid } from '@vx/grid';

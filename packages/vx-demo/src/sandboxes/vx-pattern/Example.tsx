@@ -10,7 +10,7 @@ const defaultMargin = {
   bottom: 80,
 };
 
-type Props = {
+export type PatternProps = {
   width: number;
   height: number;
   margin?: typeof defaultMargin;
@@ -99,7 +99,7 @@ const Patterns: React.FC<{ id: string }>[] = [
   ),
 ];
 
-export default function Example({ width, height, margin = defaultMargin }: Props) {
+export default function Example({ width, height, margin = defaultMargin }: PatternProps) {
   const numColumns = width > 600 ? 4 : 2;
   const numRows = Patterns.length / numColumns;
   const columnWidth = Math.max((width - margin.left - margin.right) / numColumns, 0);

@@ -8,7 +8,7 @@ import { Line, LineRadial } from '@vx/shape';
 const orange = '#ff9933';
 export const pumpkin = '#f5810c';
 const silver = '#d9d9d9';
-export const bg = '#FAF7E9';
+export const background = '#FAF7E9';
 
 const degrees = 360;
 const data = letterFrequency.slice(2, 12);
@@ -49,14 +49,14 @@ function genPolygonPoints<Datum>(
 
 const defaultMargin = { top: 40, left: 80, right: 80, bottom: 80 };
 
-type Props = {
+export type RadarProps = {
   width: number;
   height: number;
   margin?: { top: number; right: number; bottom: number; left: number };
   levels?: number;
 };
 
-export default function Example({ width, height, levels = 5, margin = defaultMargin }: Props) {
+export default function Example({ width, height, levels = 5, margin = defaultMargin }: RadarProps) {
   const xMax = width - margin.left - margin.right;
   const yMax = height - margin.top - margin.bottom;
   const radius = Math.min(xMax, yMax) / 2;
@@ -78,7 +78,7 @@ export default function Example({ width, height, levels = 5, margin = defaultMar
 
   return width < 10 ? null : (
     <svg width={width} height={height}>
-      <rect fill={bg} width={width} height={height} rx={14} />
+      <rect fill={background} width={width} height={height} rx={14} />
       <Group top={height / 2 - margin.top} left={width / 2}>
         {[...new Array(levels)].map((_, i) => (
           <LineRadial

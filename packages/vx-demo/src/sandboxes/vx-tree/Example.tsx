@@ -159,13 +159,13 @@ function ParentNode({ node }: { node: HierarchyNode }) {
 
 const defaultMargin = { top: 10, left: 80, right: 80, bottom: 10 };
 
-type Props = {
+export type TreeProps = {
   width: number;
   height: number;
   margin?: { top: number; right: number; bottom: number; left: number };
 };
 
-export default function Example({ width, height, margin = defaultMargin }: Props) {
+export default function Example({ width, height, margin = defaultMargin }: TreeProps) {
   const data = useMemo(() => hierarchy(rawTree), []);
   const yMax = height - margin.top - margin.bottom;
   const xMax = width - margin.left - margin.right;

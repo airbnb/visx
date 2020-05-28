@@ -20,7 +20,7 @@ const margin = {
   left: 50,
 };
 
-type Props = {
+export type AxisProps = {
   width: number;
   height: number;
 };
@@ -29,7 +29,7 @@ type Scale = any;
 
 type ScaleInput = any;
 
-export default function Example({ width: outerWidth = 800, height: outerHeight = 800 }: Props) {
+export default function Example({ width: outerWidth = 800, height: outerHeight = 800 }: AxisProps) {
   // in svg, margin is subtracted from total width/height
   const width = outerWidth - margin.left - margin.right;
   const height = outerHeight - margin.top - margin.bottom;

@@ -16,7 +16,7 @@ const points: PointsRange[] = genRandomNormalPoints(600).filter((d, i) => i < 60
 const x = (d: PointsRange) => d[0];
 const y = (d: PointsRange) => d[1];
 
-type Props = {
+export type DotsProps = {
   width: number;
   height: number;
   showControls?: boolean;
@@ -24,7 +24,7 @@ type Props = {
 
 let tooltipTimeout: number;
 
-export default withTooltip<Props, PointsRange>(
+export default withTooltip<DotsProps, PointsRange>(
   ({
     width,
     height,
@@ -35,7 +35,7 @@ export default withTooltip<Props, PointsRange>(
     tooltipData,
     tooltipLeft,
     tooltipTop,
-  }: Props & WithTooltipProvidedProps<PointsRange>) => {
+  }: DotsProps & WithTooltipProvidedProps<PointsRange>) => {
     const [showVoronoi, setShowVoronoi] = useState(showControls);
     const svgRef = useRef<SVGSVGElement>(null);
     const xScale = useMemo(
