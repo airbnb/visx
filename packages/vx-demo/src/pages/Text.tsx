@@ -599,7 +599,7 @@ return (
   );
 }
 
-const packageJson = { dependencies: { '@vx/text': 'lateset' } };
+const packageJson = { dependencies: { '@vx/text': 'latest' } };
 
 export default () => (
   <Show
