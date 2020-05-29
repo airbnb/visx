@@ -75,7 +75,7 @@ accepts the following props, and will spread any additional props on the tooltip
 | className | string           | --      | Adds a class (in addition to `vx-tooltip-portal`) to the tooltip container    |
 | style     | object           | --      | Sets / overrides any styles on the tooltip container (including top and left) |
 | children  | node             | --      | Sets the children of the tooltip, i.e., the actual content                    |
-| unstyled  | bool             | true    | Whether the tooltip use styles from the style prop or not                     |
+| unstyled  | bool             | true    | Whether the tooltip should use styles from the style prop or not              |
 
 #### TooltipWithBounds
 
@@ -92,6 +92,7 @@ component (i.e., ...restProps):
 | offsetRight | number | 10      | Vertical offset of the tooltip from the passed `top` value, functions as a vertical padding.                                                                                     |
 | style       | object | --      | Sets / overrides any styles on the tooltip container (including top and left)                                                                                                    |
 | children    | node   | --      | Sets the children of the tooltip, i.e., the actual content                                                                                                                       |
+| unstyled  | bool             | true    | Whether the tooltip should use styles from the style prop or not              |
 
 Note that this component is positioned using a `transform`, so overriding `left` and `top` via
 styles may have no effect.

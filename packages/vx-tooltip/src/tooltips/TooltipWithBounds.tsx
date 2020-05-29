@@ -1,7 +1,7 @@
 import React from 'react';
 import { withBoundingRects } from '@vx/bounds';
 
-import Tooltip from './Tooltip';
+import Tooltip, { TooltipProps, defaultStyles } from './Tooltip';
 
 type RectShape = {
   top: number;
@@ -16,14 +16,6 @@ type WithBoundingRectsProps = {
   getRects?: () => RectShape;
   rect?: RectShape;
   parentRect?: RectShape;
-};
-
-type TooltipProps = {
-  left?: number;
-  top?: number;
-  className?: string;
-  style?: React.CSSProperties;
-  children?: React.ReactNode;
 };
 
 type Props = {
@@ -41,7 +33,8 @@ function TooltipWithBounds({
   parentRect,
   getRects,
   children,
-  style,
+  style = defaultStyles,
+  unstyled = false,
   ...otherProps
 }: Props) {
   let left = initialLeft;
@@ -64,7 +57,12 @@ function TooltipWithBounds({
 
   return (
     <Tooltip
-      style={{ top: 0, transform: `translate(${left}px, ${top}px)`, ...style }}
+      style={{
+        top: 0,
+        transform: `translate(${left}px, ${top}px)`,
+        ...(!unstyled && style),
+      }}
+      unstyled={unstyled}
       {...otherProps}
     >
       {children}
