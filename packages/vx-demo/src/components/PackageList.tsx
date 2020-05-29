@@ -21,9 +21,7 @@ export default function PackageList({
           <ul>
             <li className={cx(emphasizePackage === 'annotation' && 'emphasize')}>
               <Link href="/docs/annotation">
-                <a>
-                  <a>@vx/annotation</a>
-                </a>
+                <a>@vx/annotation</a>
               </Link>
               {!compact && <p>Annotate elements of a chart</p>}
             </li>
