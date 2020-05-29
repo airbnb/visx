@@ -6,6 +6,8 @@ import BarGroupHorizontal, {
 } from '../../sandboxes/vx-bargroup-horizontal/Example';
 import GalleryTile from '../GalleryTile';
 
+export { default as packageJson } from '../../sandboxes/vx-bargroup-horizontal/package.json';
+
 const tileStyles = { background };
 const detailsStyles = { color: green };
 const exampleProps = { margin: { top: 20, bottom: 70, left: 50, right: 20 } };

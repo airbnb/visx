@@ -2,6 +2,8 @@ import React from 'react';
 import Heatmap, { HeatmapProps, background } from '../../sandboxes/vx-heatmap/Example';
 import GalleryTile from '../GalleryTile';
 
+export { default as packageJson } from '../../sandboxes/vx-heatmap/package.json';
+
 const tileStyles = { background };
 const detailsStyles = { color: 'rgba(255,255,255,0.3)' };
 

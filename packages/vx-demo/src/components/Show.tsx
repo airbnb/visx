@@ -6,12 +6,11 @@ import withScreenSize, {
 import CodeSandboxLink from './CodeSandboxLink';
 import Page from './Page';
 import Codeblock from './Codeblock';
-import { MarginShape, ShowProvidedProps } from '../types';
+import { MarginShape, ShowProvidedProps, PackageJson } from '../types';
 import VxDocLink from './VxDocLink';
+import extractVxDepsFromPackageJson from './util/extractVxDepsFromPackageJson';
 
 type Component<P = {}> = React.FC<P> | React.ComponentClass<P>;
-
-type PackageJson = { dependencies?: { [packageName: string]: string } };
 
 type ShowProps = {
   children?: string;
@@ -25,15 +24,6 @@ type ShowProps = {
   windowResizeDebounceTime?: number;
   packageJson?: PackageJson;
 };
-
-function extractVxDepsFromPackage(packageJson?: PackageJson) {
-  const vxDeps: string[] = [];
-  Object.keys(packageJson?.dependencies ?? {}).forEach(dep => {
-    if (dep.startsWith('@vx/')) vxDeps.push(dep);
-  });
-
-  return vxDeps;
-}
 
 const padding = 40;
 
@@ -52,7 +42,7 @@ export default withScreenSize<ShowProps & WithScreenSizeProvidedProps>(
   }: ShowProps & WithScreenSizeProvidedProps) => {
     const width = Math.min(800, (screenWidth || 0) - padding);
     const height = width * 0.6;
-    const vxDeps = useMemo(() => extractVxDepsFromPackage(packageJson), [packageJson]);
+    const vxDeps = useMemo(() => extractVxDepsFromPackageJson(packageJson), [packageJson]);
 
     return (
       <Page title={title}>

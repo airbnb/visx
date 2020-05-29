@@ -2,6 +2,8 @@ import React from 'react';
 import BarStack, { BarStackProps, background, purple3 } from '../../sandboxes/vx-barstack/Example';
 import GalleryTile from '../GalleryTile';
 
+export { default as packageJson } from '../../sandboxes/vx-barstack/package.json';
+
 const tileStyles = { background };
 const detailsStyles = { color: purple3, zIndex: 1 };
 

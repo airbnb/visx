@@ -2,6 +2,8 @@ import React from 'react';
 import Responsive, { ResponsiveProps } from '../../sandboxes/vx-responsive/Example';
 import GalleryTile from '../GalleryTile';
 
+export { default as packageJson } from '../../sandboxes/vx-responsive/package.json';
+
 const tileStyles = { background: 'white' };
 const detailsStyles = {
   color: '#232323',
