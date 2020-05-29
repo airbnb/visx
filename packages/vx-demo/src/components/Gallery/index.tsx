@@ -45,7 +45,6 @@ import exampleToVxDependencyLookup, {
 } from '../../sandboxes/exampleToVxDependencyLookup';
 
 const tiltOptions = { max: 8, scale: 1 };
-const columnCount = 3;
 
 const tiles = [
   AreaTile,
