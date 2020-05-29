@@ -1,0 +1,43 @@
+{
+  "name": "@vx/xy-chart",
+  "version": "0.0.196",
+  "description": "React components for composing cartesian coordinate charts",
+  "sideEffects": false,
+  "main": "lib/index.js",
+  "module": "esm/index.js",
+  "files": [
+    "lib",
+    "esm"
+  ],
+  "types": "lib/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hshoff/vx.git"
+  },
+  "keywords": [
+    "vx",
+    "react",
+    "d3",
+    "visualizations",
+    "charts",
+    "svg"
+  ],
+  "author": "@williaster",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hshoff/vx/issues"
+  },
+  "homepage": "https://github.com/hshoff/vx#readme",
+  "peerDependencies": {
+    "react": "^15.0.0-0 || ^16.0.0-0"
+  },
+  "dependencies": {
+    "@types/classnames": "^2.2.9",
+    "@types/react": "*",
+    "classnames": "^2.2.5",
+    "prop-types": "^15.6.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
