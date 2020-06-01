@@ -16,6 +16,7 @@ import geoCustomPackageJson from './vx-geo-custom/package.json';
 import geoMercatorPackageJson from './vx-geo-mercator/package.json';
 import glyphPackageJson from './vx-glyph/package.json';
 import gradientPackageJson from './vx-gradient/package.json';
+import gridLinePackageJson from './vx-grid/package.json';
 import heatmapPackageJson from './vx-heatmap/package.json';
 import legendPackageJson from './vx-legend/package.json';
 import linktypesPackageJson from './vx-linktypes/package.json';
@@ -59,6 +60,7 @@ const examples = [
   geoMercatorPackageJson,
   glyphPackageJson,
   gradientPackageJson,
+  gridLinePackageJson,
   heatmapPackageJson,
   legendPackageJson,
   linktypesPackageJson,

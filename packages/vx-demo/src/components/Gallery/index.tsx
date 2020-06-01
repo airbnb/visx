@@ -19,6 +19,7 @@ import * as GeoCustomTile from './GeoCustomTile';
 import * as GeoMercatorTile from './GeoMercatorTile';
 import * as GlyphsTile from './GlyphsTile';
 import * as GradientsTile from './GradientsTile';
+import * as GridTile from './GridTile';
 import * as HeatmapsTile from './HeatmapsTile';
 import * as LegendsTile from './LegendsTile';
 import * as LineRadialTile from './LineRadialTile';
@@ -65,6 +66,7 @@ const tiles = [
   GeoMercatorTile,
   GlyphsTile,
   GradientsTile,
+  GridTile,
   HeatmapsTile,
   LegendsTile,
   LineRadialTile,

@@ -1,8 +1,11 @@
 import React from 'react';
 import cx from 'classnames';
 import { Group } from '@vx/group';
-import GridRows, { AllGridRowsProps } from './GridRows';
-import GridColumns, { AllGridColumnProps } from './GridColumns';
+import GridRows, { AllGridRowsProps, GridRowLineProps } from './GridRows';
+import GridColumns, {
+  AllGridColumnProps,
+  GridColumnLineProps,
+} from './GridColumns';
 import { Scale, CommonGridProps } from '../types';
 
 type CommonPropsToOmit =
@@ -39,6 +42,10 @@ export type GridProps<XScaleInput, YScaleInput> = Omit<
     rowTickValues?: CommonGridProps['tickValues'];
     /** Exact values to be used for GridColumns lines, passed to xScale. Use this if you need precise control over GridColumns values.  */
     columnTickValues?: CommonGridProps['tickValues'];
+    /** A function that returns props for grid row line */
+    gridRowLineProps?: GridRowLineProps<YScaleInput>;
+    /** A function that returns props for grid column line */
+    gridColumnLineProps?: GridColumnLineProps<XScaleInput>;
   };
 
 export default function Grid<XScaleInput, YScaleInput>({
@@ -60,6 +67,8 @@ export default function Grid<XScaleInput, YScaleInput>({
   yOffset,
   rowTickValues,
   columnTickValues,
+  gridRowLineProps,
+  gridColumnLineProps,
   ...restProps
 }: GridProps<XScaleInput, YScaleInput>) {
   return (
@@ -75,6 +84,7 @@ export default function Grid<XScaleInput, YScaleInput>({
         lineStyle={rowLineStyle}
         offset={yOffset}
         tickValues={rowTickValues}
+        gridRowLineProps={gridRowLineProps}
         {...restProps}
       />
       <GridColumns<XScaleInput>
@@ -88,6 +98,7 @@ export default function Grid<XScaleInput, YScaleInput>({
         lineStyle={columnLineStyle}
         offset={xOffset}
         tickValues={columnTickValues}
+        gridColumnLineProps={gridColumnLineProps}
         {...restProps}
       />
     </Group>

@@ -5,11 +5,18 @@ import { Group } from '@vx/group';
 import { Point } from '@vx/point';
 import { Scale, CommonGridProps } from '../types';
 
+export type GridColumnLineProps<ScaleInput> = (
+  tick: ScaleInput,
+  index: number
+) => React.CSSProperties;
+
 export type GridColumnProps<ScaleInput> = CommonGridProps & {
   /** `@vx/scale` or `d3-scale` object used to map from ScaleInput to x-coordinates. */
   scale: Scale<ScaleInput, number>;
   /** Total height of the each grid column line. */
   height: number;
+  /**A function that returns props for grid column line */
+  gridColumnLineProps?: GridColumnLineProps<ScaleInput>;
 };
 
 export type AllGridColumnProps<ScaleInput> = GridColumnProps<ScaleInput> &
@@ -31,6 +38,10 @@ export default function GridColumns<ScaleInput>({
   lineStyle,
   offset,
   tickValues,
+  gridColumnLineProps = (/** tickValue, index */) => ({
+    stroke: '#eaf0f6',
+    strokeWidth: 1,
+  }),
   ...restProps
 }: AllGridColumnProps<ScaleInput>) {
   const ticks = (tickValues ||
@@ -47,13 +58,18 @@ export default function GridColumns<ScaleInput>({
           x,
           y: height,
         });
+
+        const columnLineProps = gridColumnLineProps(d, i);
+        const lineStroke = columnLineProps.stroke || stroke;
+        const lineWidth = columnLineProps.strokeWidth || strokeWidth;
+
         return (
           <Line
             key={`column-line-${d}-${i}`}
             from={fromPoint}
             to={toPoint}
-            stroke={stroke}
-            strokeWidth={strokeWidth}
+            stroke={lineStroke}
+            strokeWidth={lineWidth}
             strokeDasharray={strokeDasharray}
             style={lineStyle}
             {...restProps}
