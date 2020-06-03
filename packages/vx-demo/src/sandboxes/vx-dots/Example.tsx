@@ -1,17 +1,19 @@
-import React, { useMemo, useState, useCallback, useRef } from 'react';
-import { Group } from '@vx/group';
-import { Circle } from '@vx/shape';
-import { GradientPinkRed } from '@vx/gradient';
-import { scaleLinear } from '@vx/scale';
+import React, { useMemo, useState, useCallback, useRef } from "react";
+import { Group } from "@vx/group";
+import { Circle } from "@vx/shape";
+import { GradientPinkRed } from "@vx/gradient";
+import { scaleLinear } from "@vx/scale";
 import genRandomNormalPoints, {
   PointsRange,
-} from '@vx/mock-data/lib/generators/genRandomNormalPoints';
-import { withTooltip, Tooltip } from '@vx/tooltip';
-import { WithTooltipProvidedProps } from '@vx/tooltip/lib/enhancers/withTooltip';
-import { voronoi, VoronoiPolygon } from '@vx/voronoi';
-import { localPoint } from '@vx/event';
+} from "@vx/mock-data/lib/generators/genRandomNormalPoints";
+import { withTooltip, Tooltip } from "@vx/tooltip";
+import { WithTooltipProvidedProps } from "@vx/tooltip/lib/enhancers/withTooltip";
+import { voronoi, VoronoiPolygon } from "@vx/voronoi";
+import { localPoint } from "@vx/event";
 
-const points: PointsRange[] = genRandomNormalPoints(600).filter((d, i) => i < 600);
+const points: PointsRange[] = genRandomNormalPoints(600).filter(
+  (d, i) => i < 600
+);
 
 const x = (d: PointsRange) => d[0];
 const y = (d: PointsRange) => d[1];
@@ -36,6 +38,7 @@ export default withTooltip<DotsProps, PointsRange>(
     tooltipLeft,
     tooltipTop,
   }: DotsProps & WithTooltipProvidedProps<PointsRange>) => {
+    if (width < 10) return null;
     const [showVoronoi, setShowVoronoi] = useState(showControls);
     const svgRef = useRef<SVGSVGElement>(null);
     const xScale = useMemo(
@@ -45,7 +48,7 @@ export default withTooltip<DotsProps, PointsRange>(
           range: [0, width],
           clamp: true,
         }),
-      [width],
+      [width]
     );
     const yScale = useMemo(
       () =>
@@ -54,17 +57,17 @@ export default withTooltip<DotsProps, PointsRange>(
           range: [height, 0],
           clamp: true,
         }),
-      [height],
+      [height]
     );
     const voronoiLayout = useMemo(
       () =>
         voronoi<PointsRange>({
-          x: d => xScale(x(d)),
-          y: d => yScale(y(d)),
+          x: (d) => xScale(x(d)),
+          y: (d) => yScale(y(d)),
           width,
           height,
         })(points),
-      [width, height, xScale, yScale],
+      [width, height, xScale, yScale]
     );
 
     // event handlers
@@ -86,7 +89,7 @@ export default withTooltip<DotsProps, PointsRange>(
           });
         }
       },
-      [xScale, yScale, showTooltip, voronoiLayout],
+      [xScale, yScale, showTooltip, voronoiLayout]
     );
 
     const handleMouseLeave = useCallback(() => {
@@ -118,7 +121,7 @@ export default withTooltip<DotsProps, PointsRange>(
                 cx={xScale(x(point))}
                 cy={yScale(y(point))}
                 r={i % 3 === 0 ? 2 : 3}
-                fill={tooltipData === point ? 'white' : '#f6c431'}
+                fill={tooltipData === point ? "white" : "#f6c431"}
               />
             ))}
             {showVoronoi &&
@@ -137,16 +140,19 @@ export default withTooltip<DotsProps, PointsRange>(
                 ))}
           </Group>
         </svg>
-        {tooltipOpen && tooltipData && tooltipLeft != null && tooltipTop != null && (
-          <Tooltip left={tooltipLeft + 10} top={tooltipTop + 10}>
-            <div>
-              <strong>x:</strong> {x(tooltipData)}
-            </div>
-            <div>
-              <strong>y:</strong> {y(tooltipData)}
-            </div>
-          </Tooltip>
-        )}
+        {tooltipOpen &&
+          tooltipData &&
+          tooltipLeft != null &&
+          tooltipTop != null && (
+            <Tooltip left={tooltipLeft + 10} top={tooltipTop + 10}>
+              <div>
+                <strong>x:</strong> {x(tooltipData)}
+              </div>
+              <div>
+                <strong>y:</strong> {y(tooltipData)}
+              </div>
+            </Tooltip>
+          )}
         {showControls && (
           <div>
             <label style={{ fontSize: 12 }}>
@@ -161,5 +167,5 @@ export default withTooltip<DotsProps, PointsRange>(
         )}
       </div>
     );
-  },
+  }
 );

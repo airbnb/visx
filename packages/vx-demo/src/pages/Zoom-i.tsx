@@ -1,8 +1,8 @@
-import React from 'react';
-import Show from '../components/Show';
-import ZoomI from '../sandboxes/vx-zoom-i/Example';
-import ZoomISource from '!!raw-loader!../sandboxes/vx-zoom-i/Example';
-import packageJson from '../sandboxes/vx-zoom-i/package.json';
+import React from "react";
+import Show from "../components/Show";
+import ZoomI from "../sandboxes/vx-zoom-i/Example";
+import ZoomISource from "!!raw-loader!../sandboxes/vx-zoom-i/Example";
+import packageJson from "../sandboxes/vx-zoom-i/package.json";
 
 export default () => (
   <Show

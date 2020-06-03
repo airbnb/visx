@@ -1,26 +1,26 @@
-import React from 'react';
-import { Group } from '@vx/group';
-import { AreaClosed } from '@vx/shape';
-import { ScaleType } from '@vx/shape/lib/types';
-import { AxisLeft, AxisBottom } from '@vx/axis';
-import { LinearGradient } from '@vx/gradient';
-import { curveMonotoneX } from '@vx/curve';
-import { AppleStock } from '@vx/mock-data/lib/mocks/appleStock';
+import React from "react";
+import { Group } from "@vx/group";
+import { AreaClosed } from "@vx/shape";
+import { ScaleType } from "@vx/shape/lib/types";
+import { AxisLeft, AxisBottom } from "@vx/axis";
+import { LinearGradient } from "@vx/gradient";
+import { curveMonotoneX } from "@vx/curve";
+import { AppleStock } from "@vx/mock-data/lib/mocks/appleStock";
 
 // Initialize some variables
-const axisColor = '#fff';
+const axisColor = "#fff";
 const axisBottomTickLabelProps = {
-  textAnchor: 'middle' as const,
-  fontFamily: 'Arial',
+  textAnchor: "middle" as const,
+  fontFamily: "Arial",
   fontSize: 10,
   fill: axisColor,
 };
 const axisLeftTickLabelProps = {
-  dx: '-0.25em',
-  dy: '0.25em',
-  fontFamily: 'Arial',
+  dx: "-0.25em",
+  dy: "0.25em",
+  fontFamily: "Arial",
   fontSize: 10,
-  textAnchor: 'end' as const,
+  textAnchor: "end" as const,
   fill: axisColor,
 };
 
@@ -55,6 +55,7 @@ export default function AreaChart({
   left?: number;
   children?: React.ReactNode;
 }) {
+  if (width < 10) return null;
   return (
     <Group left={left || margin.left} top={top || margin.top}>
       <LinearGradient
@@ -66,8 +67,8 @@ export default function AreaChart({
       />
       <AreaClosed<AppleStock>
         data={data}
-        x={d => xScale(getDate(d)) || 0}
-        y={d => yScale(getStockValue(d)) || 0}
+        x={(d) => xScale(getDate(d)) || 0}
+        y={(d) => yScale(getStockValue(d)) || 0}
         yScale={yScale}
         strokeWidth={1}
         stroke="url(#gradient)"

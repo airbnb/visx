@@ -1,8 +1,8 @@
-import React from 'react';
-import Show from '../components/Show';
-import Patterns from '../sandboxes/vx-pattern/Example';
-import PatternsSource from '!!raw-loader!../sandboxes/vx-pattern/Example';
-import packageJson from '../sandboxes/vx-pattern/package.json';
+import React from "react";
+import Show from "../components/Show";
+import Patterns from "../sandboxes/vx-pattern/Example";
+import PatternsSource from "!!raw-loader!../sandboxes/vx-pattern/Example";
+import packageJson from "../sandboxes/vx-pattern/package.json";
 
 export default () => {
   return (

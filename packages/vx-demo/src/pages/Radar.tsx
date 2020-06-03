@@ -1,8 +1,8 @@
-import React from 'react';
-import Show from '../components/Show';
-import Radar from '../sandboxes/vx-radar/Example';
-import RadarSource from '!!raw-loader!../sandboxes/vx-radar/Example';
-import packageJson from '../sandboxes/vx-radar/package.json';
+import React from "react";
+import Show from "../components/Show";
+import Radar from "../sandboxes/vx-radar/Example";
+import RadarSource from "!!raw-loader!../sandboxes/vx-radar/Example";
+import packageJson from "../sandboxes/vx-radar/package.json";
 
 export default () => (
   <Show

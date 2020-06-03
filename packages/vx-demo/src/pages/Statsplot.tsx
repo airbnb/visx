@@ -1,8 +1,8 @@
-import React from 'react';
-import Show from '../components/Show';
-import StatsPlot from '../sandboxes/vx-stats/Example';
-import StatsPlotSource from '!!raw-loader!../sandboxes/vx-stats/Example';
-import packageJson from '../sandboxes/vx-stats/package.json';
+import React from "react";
+import Show from "../components/Show";
+import StatsPlot from "../sandboxes/vx-stats/Example";
+import StatsPlotSource from "!!raw-loader!../sandboxes/vx-stats/Example";
+import packageJson from "../sandboxes/vx-stats/package.json";
 
 export default () => (
   <Show

@@ -1,8 +1,8 @@
-import React from 'react';
-import Show from '../components/Show';
-import BarGroup from '../sandboxes/vx-bargroup/Example';
-import BarGroupSource from '!!raw-loader!../sandboxes/vx-bargroup/Example';
-import packageJson from '../sandboxes/vx-bargroup/package.json';
+import React from "react";
+import Show from "../components/Show";
+import BarGroup from "../sandboxes/vx-bargroup/Example";
+import BarGroupSource from "!!raw-loader!../sandboxes/vx-bargroup/Example";
+import packageJson from "../sandboxes/vx-bargroup/package.json";
 
 export default () => (
   <Show

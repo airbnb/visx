@@ -1,8 +1,8 @@
-import React from 'react';
-import Show from '../components/Show';
-import BarStack from '../sandboxes/vx-barstack/Example';
-import BarStackSource from '!!raw-loader!../sandboxes/vx-barstack/Example';
-import packageJson from '../sandboxes/vx-barstack/package.json';
+import React from "react";
+import Show from "../components/Show";
+import BarStack from "../sandboxes/vx-barstack/Example";
+import BarStackSource from "!!raw-loader!../sandboxes/vx-barstack/Example";
+import packageJson from "../sandboxes/vx-barstack/package.json";
 
 export default () => (
   <Show

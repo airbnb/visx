@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { Text } from '@vx/text';
-import Show from '../components/Show';
-import Codeblock from '../components/Codeblock';
+import React, { useState } from "react";
+import { Text } from "@vx/text";
+import Show from "../components/Show";
+import Codeblock from "../components/Codeblock";
 
 const styles = {
   exampleText: {
@@ -13,25 +13,27 @@ const styles = {
   },
   svg: {
     height: 200,
-    display: 'block',
-    border: '1px solid #aaa',
+    display: "block",
+    border: "1px solid #aaa",
     marginBottom: 10,
   },
 };
 
 function TextDemo() {
-  const [exampleText, setExampleText] = useState<string>('This is really long text');
+  const [exampleText, setExampleText] = useState<string>(
+    "This is really long text"
+  );
   const [x, setX] = useState<number>(0);
   const [y, setY] = useState<number>(0);
   const [width, setWidth] = useState<number>(225);
   const [angle, setAngle] = useState<number>(0);
   const [scaleToFit, setScaleToFit] = useState<boolean>(false);
-  const [textAnchor, setTextAnchor] = useState<string>('start');
-  const [verticalAnchor, setVerticalAnchor] = useState<string>('start');
-  const [fontSize, setFontSize] = useState<string>('1em');
-  const [fontFamily, setFontFamily] = useState<string>('Arial');
-  const [fontWeight, setFontWeight] = useState<string>('400');
-  const [lineHeight, setLineHeight] = useState<string>('1em');
+  const [textAnchor, setTextAnchor] = useState<string>("start");
+  const [verticalAnchor, setVerticalAnchor] = useState<string>("start");
+  const [fontSize, setFontSize] = useState<string>("1em");
+  const [fontFamily, setFontFamily] = useState<string>("Arial");
+  const [fontWeight, setFontWeight] = useState<string>("400");
+  const [lineHeight, setLineHeight] = useState<string>("1em");
   const [showAnchor, setShowAnchor] = useState<boolean>(true);
   const [resizeSvg, setResizeSvg] = useState<boolean>(true);
 
@@ -45,15 +47,17 @@ function TextDemo() {
               x={x}
               y={y}
               width={width}
-              textAnchor={textAnchor as 'start' | 'inherit' | 'middle' | 'end'}
-              verticalAnchor={verticalAnchor as 'start' | 'middle' | 'end'}
+              textAnchor={textAnchor as "start" | "inherit" | "middle" | "end"}
+              verticalAnchor={verticalAnchor as "start" | "middle" | "end"}
               lineHeight={lineHeight}
               scaleToFit={scaleToFit}
               angle={angle}
               style={{
                 fontSize,
                 fontFamily,
-                fontWeight: isNaN(Number(fontWeight)) ? 200 : Number(fontWeight),
+                fontWeight: isNaN(Number(fontWeight))
+                  ? 200
+                  : Number(fontWeight),
               }}
             >
               {exampleText}
@@ -68,7 +72,7 @@ function TextDemo() {
               type="text"
               style={styles.exampleText}
               value={exampleText}
-              onChange={e => setExampleText(e.target.value)}
+              onChange={(e) => setExampleText(e.target.value)}
             />
           </div>
 
@@ -80,9 +84,13 @@ function TextDemo() {
               min="0"
               max="225"
               value={x}
-              onChange={e => setX(Number(e.target.value))}
+              onChange={(e) => setX(Number(e.target.value))}
             />
-            <input type="text" value={x} onChange={e => setX(Number(e.target.value))} />
+            <input
+              type="text"
+              value={x}
+              onChange={(e) => setX(Number(e.target.value))}
+            />
           </div>
 
           <div>
@@ -93,9 +101,13 @@ function TextDemo() {
               min="0"
               max="200"
               value={y}
-              onChange={e => setY(Number(e.target.value))}
+              onChange={(e) => setY(Number(e.target.value))}
             />
-            <input type="text" value={y} onChange={e => setY(Number(e.target.value))} />
+            <input
+              type="text"
+              value={y}
+              onChange={(e) => setY(Number(e.target.value))}
+            />
           </div>
 
           <div>
@@ -106,8 +118,8 @@ function TextDemo() {
               min="25"
               max="225"
               value={width}
-              onChange={e => setWidth(Number(e.target.value))}
-            />{' '}
+              onChange={(e) => setWidth(Number(e.target.value))}
+            />{" "}
             {width}
           </div>
 
@@ -117,27 +129,27 @@ function TextDemo() {
               <input
                 type="radio"
                 value="start"
-                onChange={e => setTextAnchor(e.target.value)}
-                checked={textAnchor === 'start'}
-              />{' '}
+                onChange={(e) => setTextAnchor(e.target.value)}
+                checked={textAnchor === "start"}
+              />{" "}
               start
             </label>
             <label>
               <input
                 type="radio"
                 value="middle"
-                onChange={e => setTextAnchor(e.target.value)}
-                checked={textAnchor === 'middle'}
-              />{' '}
+                onChange={(e) => setTextAnchor(e.target.value)}
+                checked={textAnchor === "middle"}
+              />{" "}
               middle
             </label>
             <label>
               <input
                 type="radio"
                 value="end"
-                onChange={e => setTextAnchor(e.target.value)}
-                checked={textAnchor === 'end'}
-              />{' '}
+                onChange={(e) => setTextAnchor(e.target.value)}
+                checked={textAnchor === "end"}
+              />{" "}
               end
             </label>
           </div>
@@ -148,49 +160,65 @@ function TextDemo() {
               <input
                 type="radio"
                 value="start"
-                onChange={e => setVerticalAnchor(e.target.value)}
-                checked={verticalAnchor === 'start'}
-              />{' '}
+                onChange={(e) => setVerticalAnchor(e.target.value)}
+                checked={verticalAnchor === "start"}
+              />{" "}
               start
             </label>
             <label>
               <input
                 type="radio"
                 value="middle"
-                onChange={e => setVerticalAnchor(e.target.value)}
-                checked={verticalAnchor === 'middle'}
-              />{' '}
+                onChange={(e) => setVerticalAnchor(e.target.value)}
+                checked={verticalAnchor === "middle"}
+              />{" "}
               middle
             </label>
             <label>
               <input
                 type="radio"
                 value="end"
-                onChange={e => setVerticalAnchor(e.target.value)}
-                checked={verticalAnchor === 'end'}
-              />{' '}
+                onChange={(e) => setVerticalAnchor(e.target.value)}
+                checked={verticalAnchor === "end"}
+              />{" "}
               end
             </label>
           </div>
 
           <div>
             fontSize:
-            <input type="text" value={fontSize} onChange={e => setFontSize(e.target.value)} />
+            <input
+              type="text"
+              value={fontSize}
+              onChange={(e) => setFontSize(e.target.value)}
+            />
           </div>
 
           <div>
             fontFamily:
-            <input type="text" value={fontFamily} onChange={e => setFontFamily(e.target.value)} />
+            <input
+              type="text"
+              value={fontFamily}
+              onChange={(e) => setFontFamily(e.target.value)}
+            />
           </div>
 
           <div>
             fontWeight:
-            <input type="text" value={fontWeight} onChange={e => setFontWeight(e.target.value)} />
+            <input
+              type="text"
+              value={fontWeight}
+              onChange={(e) => setFontWeight(e.target.value)}
+            />
           </div>
 
           <div>
             lineHeight:
-            <input type="text" value={lineHeight} onChange={e => setLineHeight(e.target.value)} />
+            <input
+              type="text"
+              value={lineHeight}
+              onChange={(e) => setLineHeight(e.target.value)}
+            />
           </div>
 
           <div>
@@ -200,7 +228,7 @@ function TextDemo() {
               min="0"
               max="360"
               value={angle}
-              onChange={e => setAngle(Number(e.target.value))}
+              onChange={(e) => setAngle(Number(e.target.value))}
             />
           </div>
 
@@ -246,7 +274,7 @@ function TextDemo() {
               {exampleText}
             </Text>
           </svg>
-          <div style={{ marginBottom: '1rem' }}>
+          <div style={{ marginBottom: "1rem" }}>
             <div>
               <div className="code">
                 <Codeblock>{`import { Text } from '@vx/text';
@@ -270,11 +298,16 @@ return (
         <div>
           <h6>Centered</h6>
           <svg width={resizeSvg ? width : 225} style={styles.svg}>
-            <Text x={width / 2} width={width} verticalAnchor="start" textAnchor="middle">
+            <Text
+              x={width / 2}
+              width={width}
+              verticalAnchor="start"
+              textAnchor="middle"
+            >
               {exampleText}
             </Text>
           </svg>
-          <div style={{ marginBottom: '1rem' }}>
+          <div style={{ marginBottom: "1rem" }}>
             <div>
               <div className="code">
                 <Codeblock>{`import { Text } from '@vx/text';
@@ -299,11 +332,16 @@ return (
         <div>
           <h6>Right-aligned</h6>
           <svg width={resizeSvg ? width : 225} style={styles.svg}>
-            <Text x={width} width={width} verticalAnchor="start" textAnchor="end">
+            <Text
+              x={width}
+              width={width}
+              verticalAnchor="start"
+              textAnchor="end"
+            >
               {exampleText}
             </Text>
           </svg>
-          <div style={{ marginBottom: '1rem' }}>
+          <div style={{ marginBottom: "1rem" }}>
             <div>
               <div className="code">
                 <Codeblock>{`import { Text } from '@vx/text';
@@ -332,7 +370,7 @@ return (
               {exampleText}
             </Text>
           </svg>
-          <div style={{ marginBottom: '1rem' }}>
+          <div style={{ marginBottom: "1rem" }}>
             <div>
               <div className="code">
                 <Codeblock>{`import { Text } from '@vx/text';
@@ -357,11 +395,16 @@ return (
         <div>
           <h6>Styled text (fontWeight)</h6>
           <svg width={resizeSvg ? width : 225} style={styles.svg}>
-            <Text x={0} width={width} verticalAnchor="start" style={{ fontWeight: 900 }}>
+            <Text
+              x={0}
+              width={width}
+              verticalAnchor="start"
+              style={{ fontWeight: 900 }}
+            >
               {exampleText}
             </Text>
           </svg>
-          <div style={{ marginBottom: '1rem' }}>
+          <div style={{ marginBottom: "1rem" }}>
             <div>
               <div className="code">
                 <Codeblock>{`import { Text } from '@vx/text';
@@ -386,11 +429,16 @@ return (
         <div>
           <h6>Styled (fontSize px)</h6>
           <svg width={resizeSvg ? width : 225} style={styles.svg}>
-            <Text x={0} width={width} verticalAnchor="start" style={{ fontSize: '24px' }}>
+            <Text
+              x={0}
+              width={width}
+              verticalAnchor="start"
+              style={{ fontSize: "24px" }}
+            >
               {exampleText}
             </Text>
           </svg>
-          <div style={{ marginBottom: '1rem' }}>
+          <div style={{ marginBottom: "1rem" }}>
             <div>
               <div className="code">
                 <Codeblock>{`import { Text } from '@vx/text';
@@ -415,11 +463,16 @@ return (
         <div>
           <h6>Styled (fontSize em)</h6>
           <svg width={resizeSvg ? width : 225} style={styles.svg}>
-            <Text x={0} width={width} verticalAnchor="start" style={{ fontSize: '1.5em' }}>
+            <Text
+              x={0}
+              width={width}
+              verticalAnchor="start"
+              style={{ fontSize: "1.5em" }}
+            >
               {exampleText}
             </Text>
           </svg>
-          <div style={{ marginBottom: '1rem' }}>
+          <div style={{ marginBottom: "1rem" }}>
             <div>
               <div className="code">
                 <Codeblock>{`import { Text } from '@vx/text';
@@ -444,11 +497,16 @@ return (
         <div>
           <h6>Styled (fontSize rem)</h6>
           <svg width={resizeSvg ? width : 225} style={styles.svg}>
-            <Text x={0} width={width} verticalAnchor="start" style={{ fontSize: '1.5rem' }}>
+            <Text
+              x={0}
+              width={width}
+              verticalAnchor="start"
+              style={{ fontSize: "1.5rem" }}
+            >
               {exampleText}
             </Text>
           </svg>
-          <div style={{ marginBottom: '1rem' }}>
+          <div style={{ marginBottom: "1rem" }}>
             <div>
               <div className="code">
                 <Codeblock>{`import { Text } from '@vx/text';
@@ -473,11 +531,16 @@ return (
         <div>
           <h6>Styled (fontSize %)</h6>
           <svg width={resizeSvg ? width : 225} style={styles.svg}>
-            <Text x={0} width={width} verticalAnchor="start" style={{ fontSize: '150%' }}>
+            <Text
+              x={0}
+              width={width}
+              verticalAnchor="start"
+              style={{ fontSize: "150%" }}
+            >
               {exampleText}
             </Text>
           </svg>
-          <div style={{ marginBottom: '1rem' }}>
+          <div style={{ marginBottom: "1rem" }}>
             <div>
               <div className="code">
                 <Codeblock>{`import { Text } from '@vx/text';
@@ -506,7 +569,7 @@ return (
               {exampleText}
             </Text>
           </svg>
-          <div style={{ marginBottom: '1rem' }}>
+          <div style={{ marginBottom: "1rem" }}>
             <div>
               <div className="code">
                 <Codeblock>{`import { Text } from '@vx/text';
@@ -530,11 +593,18 @@ return (
         <div>
           <h6>dx & dy</h6>
           <svg width={resizeSvg ? width : 225} style={styles.svg}>
-            <Text x={50} y={50} dx={10} dy={-10} width={width} verticalAnchor="start">
+            <Text
+              x={50}
+              y={50}
+              dx={10}
+              dy={-10}
+              width={width}
+              verticalAnchor="start"
+            >
               {exampleText}
             </Text>
           </svg>
-          <div style={{ marginBottom: '1rem' }}>
+          <div style={{ marginBottom: "1rem" }}>
             <div>
               <div className="code">
                 <Codeblock>{`import { Text } from '@vx/text';
@@ -599,7 +669,7 @@ return (
   );
 }
 
-const packageJson = { dependencies: { '@vx/text': 'latest' } };
+const packageJson = { dependencies: { "@vx/text": "latest" } };
 
 export default () => (
   <Show
