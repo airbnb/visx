@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import AxisLeft from '@vx/axis/src/axis/AxisLeft';
-import AxisRight from '@vx/axis/src/axis/AxisRight';
-import AxisBottom from '@vx/axis/src/axis/AxisBottom';
+import AxisLeft from '@vx/axis/lib/axis/AxisLeft';
+import AxisRight from '@vx/axis/lib/axis/AxisRight';
+import AxisBottom from '@vx/axis/lib/axis/AxisBottom';
 
 import ChartContext from '../context/ChartContext';
 
