@@ -1,8 +1,8 @@
-import React from "react";
-import Show from "../components/Show";
-import DragI from "../sandboxes/vx-drag-i/Example";
-import DragISource from "!!raw-loader!../sandboxes/vx-drag-i/Example";
-import packageJson from "../sandboxes/vx-drag-i/package.json";
+import React from 'react';
+import Show from '../components/Show';
+import DragI from '../sandboxes/vx-drag-i/Example';
+import DragISource from '!!raw-loader!../sandboxes/vx-drag-i/Example';
+import packageJson from '../sandboxes/vx-drag-i/package.json';
 
 export default () => {
   return (

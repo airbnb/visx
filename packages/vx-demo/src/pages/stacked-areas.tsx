@@ -1,8 +1,8 @@
-import React from "react";
-import Show from "../components/Show";
-import StackedAreas from "../sandboxes/vx-stacked-areas/Example";
-import StackedAreasSource from "!!raw-loader!../sandboxes/vx-stacked-areas/Example";
-import packageJson from "../sandboxes/vx-stacked-areas/package.json";
+import React from 'react';
+import Show from '../components/Show';
+import StackedAreas from '../sandboxes/vx-stacked-areas/Example';
+import StackedAreasSource from '!!raw-loader!../sandboxes/vx-stacked-areas/Example';
+import packageJson from '../sandboxes/vx-stacked-areas/package.json';
 
 export default () => (
   <Show

@@ -1,7 +1,7 @@
-import React from "react";
-import Page from "../components/Page";
-import Footer from "../components/Footer";
-import PackageList from "../components/PackageList";
+import React from 'react';
+import Page from '../components/Page';
+import Footer from '../components/Footer';
+import PackageList from '../components/PackageList';
 
 export default function Docs() {
   return (
@@ -9,11 +9,10 @@ export default function Docs() {
       <div className="container">
         <h1>Documentation</h1>
         <p>
-          <code>vx</code> is a suite of several low-level standalone packages
-          for building visual interfaces with <code>react</code>. Packages can
-          be mixed and used together depending on your use case, or you can
-          simply add the umbrella <a href="/docs/vx">@vx/vx</a> package to use
-          them all.
+          <code>vx</code> is a suite of several low-level standalone packages for building visual
+          interfaces with <code>react</code>. Packages can be mixed and used together depending on
+          your use case, or you can simply add the umbrella <a href="/docs/vx">@vx/vx</a> package to
+          use them all.
           <br /> <br />
           Individual packages can be roughly categorized as follows:
         </p>

@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-const path = require("path");
+const path = require('path');
 
 module.exports = {
   typescript: {
@@ -12,16 +12,16 @@ module.exports = {
       test: /\.tsx?$/,
       use: [
         {
-          loader: "react-docgen-typescript-loader",
+          loader: 'react-docgen-typescript-loader',
           options: {
             // display types from outside a component's source even tho
             // we hide these with the propFilter below, if we don't do
             // this the component's own props become any
-            tsconfigPath: path.resolve(__dirname, "./tsconfig.json"),
+            tsconfigPath: path.resolve(__dirname, './tsconfig.json'),
             // filter props like React.HTMLProps/React.SVGProps
             propFilter(prop) {
               if (prop.parent) {
-                return !prop.parent.fileName.includes("node_modules");
+                return !prop.parent.fileName.includes('node_modules');
               }
               return true;
             },

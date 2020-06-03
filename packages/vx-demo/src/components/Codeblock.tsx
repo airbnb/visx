@@ -1,10 +1,10 @@
-import React from "react";
-import ReactDOMServer from "react-dom/server";
-import Prism from "prismjs";
+import React from 'react';
+import ReactDOMServer from 'react-dom/server';
+import Prism from 'prismjs';
 // these have sequential dependencies
-import "prismjs/components/prism-jsx.min";
-import "prismjs/components/prism-typescript.min";
-import "prismjs/components/prism-tsx.min";
+import 'prismjs/components/prism-jsx.min';
+import 'prismjs/components/prism-typescript.min';
+import 'prismjs/components/prism-tsx.min';
 
 const Lines = ({ lines }: { lines: number[] }) => (
   <span aria-hidden="true" className="line-numbers-rows">
@@ -20,8 +20,8 @@ export default ({ children }: { children: string }) => {
   const lines: number[] = new Array(linesNum + 1).fill(1);
   const html = [
     ReactDOMServer.renderToString(<Lines lines={lines} />),
-    Prism.highlight(children, Prism.languages.ts, "tsx"),
-  ].join("");
+    Prism.highlight(children, Prism.languages.ts, 'tsx'),
+  ].join('');
 
   return (
     <pre className="codeblock line-numbers">

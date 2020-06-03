@@ -1,8 +1,8 @@
-import React from "react";
-import Show from "../components/Show";
-import Brush from "../sandboxes/vx-brush/Example";
-import BrushSource from "!!raw-loader!../sandboxes/vx-brush/Example";
-import packageJson from "../sandboxes/vx-brush/package.json";
+import React from 'react';
+import Show from '../components/Show';
+import Brush from '../sandboxes/vx-brush/Example';
+import BrushSource from '!!raw-loader!../sandboxes/vx-brush/Example';
+import packageJson from '../sandboxes/vx-brush/package.json';
 
 export default () => (
   <Show

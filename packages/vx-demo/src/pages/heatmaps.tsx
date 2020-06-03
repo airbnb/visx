@@ -1,8 +1,8 @@
-import React from "react";
-import Show from "../components/Show";
-import Heatmaps from "../sandboxes/vx-heatmap/Example";
-import HeatmapsSource from "!!raw-loader!../sandboxes/vx-heatmap/Example";
-import packageJson from "../sandboxes/vx-heatmap/package.json";
+import React from 'react';
+import Show from '../components/Show';
+import Heatmaps from '../sandboxes/vx-heatmap/Example';
+import HeatmapsSource from '!!raw-loader!../sandboxes/vx-heatmap/Example';
+import packageJson from '../sandboxes/vx-heatmap/package.json';
 
 export default () => {
   return (

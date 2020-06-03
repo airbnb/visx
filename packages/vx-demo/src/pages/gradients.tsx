@@ -1,8 +1,8 @@
-import React from "react";
-import Show from "../components/Show";
-import Gradients from "../sandboxes/vx-gradient/Example";
-import GradientsSource from "!!raw-loader!../sandboxes/vx-gradient/Example";
-import packageJson from "../sandboxes/vx-gradient/package.json";
+import React from 'react';
+import Show from '../components/Show';
+import Gradients from '../sandboxes/vx-gradient/Example';
+import GradientsSource from '!!raw-loader!../sandboxes/vx-gradient/Example';
+import packageJson from '../sandboxes/vx-gradient/package.json';
 
 export default () => (
   <Show
