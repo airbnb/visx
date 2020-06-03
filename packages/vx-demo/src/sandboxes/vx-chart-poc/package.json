@@ -15,7 +15,7 @@
     "@vx/scale": "latest",
     "@vx/shape": "latest",
     "d3-array": "2.4.0",
-    "lodash/debounce": "latest",
+    "lodash/debounce": "^0.0.3",
     "react": "^16",
     "react-dom": "^16",
     "react-scripts-ts": "3.1.0",
