@@ -1,5 +1,4 @@
 import React from 'react';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import debounce from 'lodash/debounce';
 
 import {
