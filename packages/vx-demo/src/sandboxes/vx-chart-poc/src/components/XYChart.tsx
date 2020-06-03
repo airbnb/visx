@@ -4,6 +4,7 @@ import ChartContext from '../context/ChartContext';
 import { Margin } from '../types';
 
 type Props = {
+  events?: boolean;
   width?: number;
   height?: number;
   margin?: Margin;

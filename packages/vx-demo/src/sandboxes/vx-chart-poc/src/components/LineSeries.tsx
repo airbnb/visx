@@ -16,7 +16,7 @@ export default function LineSeries<Datum = unknown>({
   yAccessor,
   ...lineProps
 }: LineSeriesProps<Datum>) {
-  const { xScale, yScale, registerData, unregisterData } = useContext(ChartContext);
+  const { theme, xScale, yScale, registerData, unregisterData } = useContext(ChartContext);
 
   // register data on mount
   useEffect(() => {
@@ -41,5 +41,13 @@ export default function LineSeries<Datum = unknown>({
   // early return if scale is not available in context
   if (!xScale || !yScale) return null;
 
-  return <LinePath<Datum> data={data} x={getScaledX} y={getScaledY} {...lineProps} />;
+  return (
+    <LinePath<Datum>
+      data={data}
+      x={getScaledX}
+      y={getScaledY}
+      stroke={theme.colors[0]}
+      {...lineProps}
+    />
+  );
 }

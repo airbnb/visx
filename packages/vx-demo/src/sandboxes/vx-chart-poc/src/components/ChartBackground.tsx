@@ -10,8 +10,8 @@ export default function CustomChartBackground() {
   // early return if scale is not available in context
   if (!xScale || !yScale) return null;
 
-  const xRange = xScale.range();
-  const yRange = yScale.range();
+  const xRange = xScale.range() as number[];
+  const yRange = yScale.range() as number[];
 
   const x = Math.min(...xRange);
   const y = Math.min(...yRange);
@@ -25,7 +25,7 @@ export default function CustomChartBackground() {
         width={10}
         height={10}
         orientation={['diagonal']}
-        stroke="#ddd"
+        stroke="#dedede"
       />
       <rect x={x} y={y} width={width} height={height} fill={`url(#${patternId})`} />
     </>

@@ -1,5 +1,6 @@
 import React from 'react';
 import debounce from 'lodash/debounce';
+import defaultTheme from '../theme/default';
 
 import {
   ChartContext as ChartContextType,
@@ -29,7 +30,7 @@ const defaultMargin = { top: 30, right: 30, bottom: 30, left: 30 };
 
 export default class ChartProvider extends React.Component<ChartProviderProps, ChartProviderState> {
   state: ChartProviderState = {
-    theme: this.props?.theme ?? {},
+    theme: this.props?.theme ?? defaultTheme,
     dataRegistry: {},
     margin: defaultMargin,
     xScale: null,
@@ -41,7 +42,10 @@ export default class ChartProvider extends React.Component<ChartProviderProps, C
   registerData: RegisterData = dataToRegister => {
     this.setState(
       ({ dataRegistry }) => ({
-        dataRegistry: { ...dataRegistry, [dataToRegister.key]: dataToRegister },
+        dataRegistry: {
+          ...dataRegistry,
+          [dataToRegister.key]: { mouseEvents: true, ...dataToRegister },
+        },
       }),
       this.updateScales,
     );

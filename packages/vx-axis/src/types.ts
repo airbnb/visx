@@ -44,7 +44,7 @@ export type SharedAxisProps<ScaleInput> = {
   /** The color for the stroke of the lines. */
   stroke?: string;
   /** The pixel value for the width of the lines. */
-  strokeWidth?: number;
+  strokeWidth?: string | number;
   /** The pattern of dashes in the stroke. */
   strokeDasharray?: string;
   /** The class name applied to each tick group. */
