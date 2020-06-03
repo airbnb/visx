@@ -1,60 +1,59 @@
 import { scaleLinear, scaleTime, scaleUtc, scaleBand, scaleOrdinal } from '@vx/scale';
 import { extent } from 'd3-array';
-import { DataRegistry, ScaleConfig } from './types';
+import { ScaleConfig, StringLike, NumberLike, ScaleOutput } from './types';
 
-export const scaleTypeToScale = {
-  time: scaleTime,
-  timeUtc: scaleUtc,
-  linear: scaleLinear,
-  band: scaleBand,
-  ordinal: scaleOrdinal,
-};
-
-interface CreateScaleConfig {
-  config: ScaleConfig;
+interface CreateScaleConfig<ScaleInput> {
+  data: ScaleInput[];
   range: [number, number];
-  dataRegistry: DataRegistry;
-  accessorKey: 'xAccessor' | 'yAccessor';
+  scaleConfig: ScaleConfig<ScaleInput>;
 }
 
-export default function createScale({
-  config,
-  range,
-  accessorKey,
-  dataRegistry,
-}: CreateScaleConfig) {
-  const { includeZero, type: scaleType, ...scaleConfig } = config;
+export default function createScale<ScaleInput>({
+  data,
+  range: defaultRange,
+  scaleConfig,
+}: CreateScaleConfig<ScaleInput>) {
+  const { includeZero, type: scaleType, ...restConfig } = scaleConfig;
 
-  const scaleGenerator = scaleTypeToScale?.[config.type] ?? scaleLinear;
-
-  if (scaleTypeToScale[config.type] == null) {
-    console.warn(`Unknown scale type ${config.type}, defaulting to Linear scale`);
+  // use blocks so types are happy
+  if (scaleType === 'band') {
+    const range = (restConfig.range as [ScaleOutput, ScaleOutput]) || defaultRange;
+    return scaleBand<StringLike>({
+      domain: data,
+      ...restConfig,
+      range,
+    });
+  }
+  if (scaleType === 'ordinal') {
+    const range = (restConfig.range as [ScaleOutput, ScaleOutput]) || defaultRange;
+    return scaleOrdinal<StringLike, ScaleOutput>({
+      domain: data,
+      ...restConfig,
+      range,
+    });
+  }
+  if (scaleType === 'linear') {
+    const [min, max] = extent((data as unknown[]) as number[], d => d);
+    const domain: number[] = ((restConfig.domain as unknown[]) as number[]) || [
+      scaleType === 'linear' && includeZero ? Math.min(0, min) : min,
+      scaleType === 'linear' && includeZero ? Math.max(0, max) : max,
+    ];
+    const range = (restConfig.range as ScaleOutput[]) || defaultRange;
+    return scaleLinear<ScaleOutput>({
+      ...restConfig,
+      domain,
+      range,
+    });
   }
 
-  const allDataValues = Object.values(dataRegistry).reduce(
-    (combined, curr) => [...combined, ...curr.data.map(d => curr[accessorKey](d))],
-    [],
-  );
+  const range = (restConfig.range as ScaleOutput[]) || defaultRange;
+  const domain =
+    ((restConfig.domain as unknown[]) as NumberLike[]) ||
+    extent((data as unknown[]) as NumberLike[], d => d);
 
-  let domain;
-  let min: number | null;
-  let max: number | null;
-
-  switch (scaleType) {
-    case 'band':
-    case 'ordinal':
-      domain = allDataValues;
-      break;
-    case 'linear':
-    case 'time':
-    case 'timeUtc':
-    default:
-      [min, max] = extent(allDataValues, d => d);
-      domain = [
-        config.type === 'linear' && config.includeZero ? Math.min(0, min) : min,
-        config.type === 'linear' && config.includeZero ? Math.max(0, max) : max,
-      ];
-  }
-
-  return scaleGenerator({ domain, range, ...scaleConfig });
+  return (scaleType === 'time' ? scaleTime : scaleUtc)<ScaleOutput>({
+    ...restConfig,
+    domain,
+    range,
+  });
 }

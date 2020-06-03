@@ -3,7 +3,7 @@ import BaseAxis, { AxisProps as BaseAxisProps } from '@vx/axis/lib/axis/Axis';
 
 import ChartContext from '../context/ChartContext';
 
-type AxisProps<ScaleInpu> = BaseAxisProps<ScaleInpu>;
+type AxisProps<ScaleInpu> = Omit<BaseAxisProps<ScaleInpu>, 'scale'>;
 
 export default function Axis<ScaleInput = unknown>(props: AxisProps<ScaleInput>) {
   const { theme, xScale, yScale } = useContext(ChartContext);
@@ -31,7 +31,12 @@ export default function Axis<ScaleInput = unknown>(props: AxisProps<ScaleInput>)
   // early return if scale is not available in context
   if (!xScale || !yScale) return null;
 
-  const topOffset = orientation === 'bottom' ? Math.max(...(yScale.range() as number[])) || 0 : 0;
+  const topOffset =
+    orientation === 'bottom'
+      ? Math.max(...(yScale.range() as number[])) || 0
+      : orientation === 'top'
+      ? Math.min(...(yScale.range() as number[])) || 0
+      : 0;
   const leftOffset =
     orientation === 'left'
       ? Math.min(...(xScale.range() as number[])) ?? 0
@@ -45,7 +50,7 @@ export default function Axis<ScaleInput = unknown>(props: AxisProps<ScaleInput>)
       left={leftOffset}
       labelProps={(axisStyles.label || {})[orientation]}
       stroke={axisStyles.stroke}
-      strokeWidth={axisStyles.strokeWidth}
+      strokeWidth={axisStyles.strokeWidth as string | number}
       tickLength={tickStyles.tickLength}
       tickStroke={tickStyles.stroke}
       {...props}

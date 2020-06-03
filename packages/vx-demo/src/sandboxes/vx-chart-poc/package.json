@@ -15,6 +15,7 @@
     "@vx/scale": "latest",
     "@vx/shape": "latest",
     "d3-array": "2.4.0",
+    "d3-quadtree": "^1.0.7",
     "lodash": "^4.17.10",
     "react": "^16",
     "react-dom": "^16",
