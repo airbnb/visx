@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
-import Pie, { ProvidedProps, PieArcDatum } from '@vx/shape/lib/shapes/Pie';
-import { scaleOrdinal } from '@vx/scale';
-import { Group } from '@vx/group';
-import { GradientPinkBlue } from '@vx/gradient';
-import letterFrequency, { LetterFrequency } from '@vx/mock-data/lib/mocks/letterFrequency';
-import browserUsage, { BrowserUsage as Browsers } from '@vx/mock-data/lib/mocks/browserUsage';
-import { animated, useTransition, interpolate } from 'react-spring';
+import React, { useState } from "react";
+import Pie, { ProvidedProps, PieArcDatum } from "@vx/shape/lib/shapes/Pie";
+import { scaleOrdinal } from "@vx/scale";
+import { Group } from "@vx/group";
+import { GradientPinkBlue } from "@vx/gradient";
+import letterFrequency, {
+  LetterFrequency,
+} from "@vx/mock-data/lib/mocks/letterFrequency";
+import browserUsage, {
+  BrowserUsage as Browsers,
+} from "@vx/mock-data/lib/mocks/browserUsage";
+import { animated, useTransition, interpolate } from "react-spring";
 
 // data and types
 type BrowserNames = keyof Browsers;
@@ -16,8 +20,10 @@ interface BrowserUsage {
 }
 
 const letters: LetterFrequency[] = letterFrequency.slice(0, 4);
-const browserNames = Object.keys(browserUsage[0]).filter(k => k !== 'date') as BrowserNames[];
-const browsers: BrowserUsage[] = browserNames.map(name => ({
+const browserNames = Object.keys(browserUsage[0]).filter(
+  (k) => k !== "date"
+) as BrowserNames[];
+const browsers: BrowserUsage[] = browserNames.map((name) => ({
   label: name,
   usage: Number(browserUsage[0][name]),
 }));
@@ -30,18 +36,23 @@ const frequency = (d: LetterFrequency) => d.frequency;
 const getBrowserColor = scaleOrdinal({
   domain: browserNames,
   range: [
-    'rgba(255,255,255,0.7)',
-    'rgba(255,255,255,0.6)',
-    'rgba(255,255,255,0.5)',
-    'rgba(255,255,255,0.4)',
-    'rgba(255,255,255,0.3)',
-    'rgba(255,255,255,0.2)',
-    'rgba(255,255,255,0.1)',
+    "rgba(255,255,255,0.7)",
+    "rgba(255,255,255,0.6)",
+    "rgba(255,255,255,0.5)",
+    "rgba(255,255,255,0.4)",
+    "rgba(255,255,255,0.3)",
+    "rgba(255,255,255,0.2)",
+    "rgba(255,255,255,0.1)",
   ],
 });
 const getLetterFrequencyColor = scaleOrdinal({
-  domain: letters.map(l => l.letter),
-  range: ['rgba(93,30,91,1)', 'rgba(93,30,91,0.8)', 'rgba(93,30,91,0.6)', 'rgba(93,30,91,0.4)'],
+  domain: letters.map((l) => l.letter),
+  range: [
+    "rgba(93,30,91,1)",
+    "rgba(93,30,91,0.8)",
+    "rgba(93,30,91,0.6)",
+    "rgba(93,30,91,0.4)",
+  ],
 });
 
 const defaultMargin = { top: 20, right: 20, bottom: 20, left: 20 };
@@ -60,7 +71,9 @@ export default function Example({
   animate = true,
 }: PieProps) {
   const [selectedBrowser, setSelectedBrowser] = useState<string | null>(null);
-  const [selectedAlphabetLetter, setSelectedAlphabetLetter] = useState<string | null>(null);
+  const [selectedAlphabetLetter, setSelectedAlphabetLetter] = useState<
+    string | null
+  >(null);
 
   if (width < 10) return null;
 
@@ -74,11 +87,18 @@ export default function Example({
   return (
     <svg width={width} height={height}>
       <GradientPinkBlue id="vx-pie-gradient" />
-      <rect rx={14} width={width} height={height} fill="url('#vx-pie-gradient')" />
+      <rect
+        rx={14}
+        width={width}
+        height={height}
+        fill="url('#vx-pie-gradient')"
+      />
       <Group top={centerY + margin.top} left={centerX + margin.left}>
         <Pie
           data={
-            selectedBrowser ? browsers.filter(({ label }) => label === selectedBrowser) : browsers
+            selectedBrowser
+              ? browsers.filter(({ label }) => label === selectedBrowser)
+              : browsers
           }
           pieValue={usage}
           outerRadius={radius}
@@ -86,30 +106,34 @@ export default function Example({
           cornerRadius={3}
           padAngle={0.005}
         >
-          {pie => (
+          {(pie) => (
             <AnimatedPie<BrowserUsage>
               {...pie}
               animate={animate}
-              getKey={arc => arc.data.label}
+              getKey={(arc) => arc.data.label}
               onClickDatum={({ data: { label } }) =>
                 animate &&
-                setSelectedBrowser(selectedBrowser && selectedBrowser === label ? null : label)
+                setSelectedBrowser(
+                  selectedBrowser && selectedBrowser === label ? null : label
+                )
               }
-              getColor={arc => getBrowserColor(arc.data.label)}
+              getColor={(arc) => getBrowserColor(arc.data.label)}
             />
           )}
         </Pie>
         <Pie
           data={
             selectedAlphabetLetter
-              ? letters.filter(({ letter }) => letter === selectedAlphabetLetter)
+              ? letters.filter(
+                  ({ letter }) => letter === selectedAlphabetLetter
+                )
               : letters
           }
           pieValue={frequency}
           pieSortValues={() => -1}
           outerRadius={radius - donutThickness * 1.3}
         >
-          {pie => (
+          {(pie) => (
             <AnimatedPie<LetterFrequency>
               {...pie}
               animate={animate}
@@ -117,10 +141,14 @@ export default function Example({
               onClickDatum={({ data: { letter } }) =>
                 animate &&
                 setSelectedAlphabetLetter(
-                  selectedAlphabetLetter && selectedAlphabetLetter === letter ? null : letter,
+                  selectedAlphabetLetter && selectedAlphabetLetter === letter
+                    ? null
+                    : letter
                 )
               }
-              getColor={({ data: { letter } }) => getLetterFrequencyColor(letter)}
+              getColor={({ data: { letter } }) =>
+                getLetterFrequencyColor(letter)
+              }
             />
           )}
         </Pie>
@@ -173,57 +201,68 @@ function AnimatedPie<Datum>({
   getColor,
   onClickDatum,
 }: AnimatedPieProps<Datum>) {
-  // @ts-ignore react-spring doesn't like this overload
-  return useTransition<PieArcDatum<Datum>, AnimatedStyles>(arcs, getKey, {
-    from: animate ? fromLeaveTransition : enterUpdateTransition,
-    enter: enterUpdateTransition,
-    update: enterUpdateTransition,
-    leave: animate ? fromLeaveTransition : enterUpdateTransition,
-  }).map(
-    ({
-      item: arc,
-      props,
-      key,
-    }: {
-      item: PieArcDatum<Datum>;
-      props: AnimatedStyles;
-      key: string;
-    }) => {
-      const [centroidX, centroidY] = path.centroid(arc);
-      const hasSpaceForLabel = arc.endAngle - arc.startAngle >= 0.1;
+  const transitions = useTransition<PieArcDatum<Datum>, AnimatedStyles>(
+    arcs,
+    getKey,
+    // @ts-ignore react-spring doesn't like this overload
+    {
+      from: animate ? fromLeaveTransition : enterUpdateTransition,
+      enter: enterUpdateTransition,
+      update: enterUpdateTransition,
+      leave: animate ? fromLeaveTransition : enterUpdateTransition,
+    }
+  );
+  return (
+    <>
+      {transitions.map(
+        ({
+          item: arc,
+          props,
+          key,
+        }: {
+          item: PieArcDatum<Datum>;
+          props: AnimatedStyles;
+          key: string;
+        }) => {
+          const [centroidX, centroidY] = path.centroid(arc);
+          const hasSpaceForLabel = arc.endAngle - arc.startAngle >= 0.1;
 
-      return (
-        <g key={key}>
-          <animated.path
-            // compute interpolated path d attribute from intermediate angle values
-            d={interpolate([props.startAngle, props.endAngle], (startAngle, endAngle) =>
-              path({
-                ...arc,
-                startAngle,
-                endAngle,
-              }),
-            )}
-            fill={getColor(arc)}
-            onClick={() => onClickDatum(arc)}
-            onTouchStart={() => onClickDatum(arc)}
-          />
-          {hasSpaceForLabel && (
-            <animated.g style={{ opacity: props.opacity }}>
-              <text
-                fill="white"
-                x={centroidX}
-                y={centroidY}
-                dy=".33em"
-                fontSize={9}
-                textAnchor="middle"
-                pointerEvents="none"
-              >
-                {getKey(arc)}
-              </text>
-            </animated.g>
-          )}
-        </g>
-      );
-    },
+          return (
+            <g key={key}>
+              <animated.path
+                // compute interpolated path d attribute from intermediate angle values
+                d={interpolate(
+                  [props.startAngle, props.endAngle],
+                  (startAngle, endAngle) =>
+                    path({
+                      ...arc,
+                      startAngle,
+                      endAngle,
+                    })
+                )}
+                fill={getColor(arc)}
+                onClick={() => onClickDatum(arc)}
+                onTouchStart={() => onClickDatum(arc)}
+              />
+              {hasSpaceForLabel && (
+                <animated.g style={{ opacity: props.opacity }}>
+                  <text
+                    fill="white"
+                    x={centroidX}
+                    y={centroidY}
+                    dy=".33em"
+                    fontSize={9}
+                    textAnchor="middle"
+                    pointerEvents="none"
+                  >
+                    {getKey(arc)}
+                  </text>
+                </animated.g>
+              )}
+            </g>
+          );
+        }
+      )}
+    </>
   );
 }
