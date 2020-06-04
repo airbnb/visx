@@ -118,6 +118,7 @@ export default function Gallery() {
         <div className="grid">
           {filteredTiles.map((Tile, i) => (
             <Tilt key={`tile-${i}`} className="tilt" options={tiltOptions}>
+              {/* eslint-disable react/jsx-pascal-case */}
               <Tile.default />
             </Tilt>
           ))}

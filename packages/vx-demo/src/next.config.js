@@ -7,7 +7,7 @@ module.exports = {
     ignoreDevErrors: true,
     ignoreBuildErrors: true,
   },
-  webpack: (config, options) => {
+  webpack: config => {
     config.module.rules.push({
       test: /\.tsx?$/,
       use: [
