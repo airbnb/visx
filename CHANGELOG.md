@@ -1,4 +1,5 @@
 # Changelog
+- [v0.0.197](#v00197)
 - [v0.0.196](#v00196)
 - [v0.0.195](#v00195)
 - [v0.0.194](#v00194)
@@ -6,18 +7,18 @@
 - [v0.0.192](#v00192)
 - [v0.0.191](#v00191)
 - [v0.0.190](#v00190)
-- [v0.0.189](#v00189)
-- [v0.0.188](#v00188)
-- [v0.0.187](#v00187)
-- [v0.0.186](#v00186)
-- [v0.0.185](#v00185)
-- [v0.0.184](#v00184)
-- [v0.0.183](#v00183)
-- [v0.0.182](#v00182)
-- [v0.0.181](#v00181)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v00189">v0.0.189</a></li>
+  <li><a href="#v00188">v0.0.188</a></li>
+  <li><a href="#v00187">v0.0.187</a></li>
+  <li><a href="#v00186">v0.0.186</a></li>
+  <li><a href="#v00185">v0.0.185</a></li>
+  <li><a href="#v00184">v0.0.184</a></li>
+  <li><a href="#v00183">v0.0.183</a></li>
+  <li><a href="#v00182">v0.0.182</a></li>
+  <li><a href="#v00181">v0.0.181</a></li>
   <li><a href="#v00180">v0.0.180</a></li>
   <li><a href="#v00179">v0.0.179</a></li>
   <li><a href="#v00178">v0.0.178</a></li>
@@ -86,6 +87,74 @@
 </details>
 
 ------
+
+# v0.0.197
+
+#### :rocket: Enhancements
+
+- feat(tooltip): add unstyled prop to TooltipWithBounds [#721](https://github.com/hshoff/vx/pull/721)
+- perf(tooltip): use useCallback in useTooltip [#668](https://github.com/hshoff/vx/pull/668)
+
+#### :bug: Bug Fix
+
+- fix(zoom): fix zoom.dragMove on touchmove event y-coord [#725](https://github.com/hshoff/vx/pull/725)
+
+#### :memo: Documentation
+
+- feat(demo): new documentation, codesandbox examples [#732](https://github.com/hshoff/vx/pull/732) [#731](https://github.com/hshoff/vx/pull/731) [#730](https://github.com/hshoff/vx/pull/730) [#729](https://github.com/hshoff/vx/pull/729) [#727](https://github.com/hshoff/vx/pull/727) [#720](https://github.com/hshoff/vx/pull/720)[#720](https://github.com/hshoff/vx/pull/720) [#719](https://github.com/hshoff/vx/pull/719) [#718](https://github.com/hshoff/vx/pull/718) [#717](https://github.com/hshoff/vx/pull/717) [#716](https://github.com/hshoff/vx/pull/716) [#715](https://github.com/hshoff/vx/pull/715) [#714](https://github.com/hshoff/vx/pull/714) [#713](https://github.com/hshoff/vx/pull/713) [#712](https://github.com/hshoff/vx/pull/712) [#711](https://github.com/hshoff/vx/pull/711) [#710](https://github.com/hshoff/vx/pull/710) [#709](https://github.com/hshoff/vx/pull/709) [#708](https://github.com/hshoff/vx/pull/708) [#707](https://github.com/hshoff/vx/pull/707) [#706](https://github.com/hshoff/vx/pull/706) [#705](https://github.com/hshoff/vx/pull/705) [#704](https://github.com/hshoff/vx/pull/704) [#703](https://github.com/hshoff/vx/pull/703) [#702](https://github.com/hshoff/vx/pull/702) [#701](https://github.com/hshoff/vx/pull/701) [#700](https://github.com/hshoff/vx/pull/700) [#699](https://github.com/hshoff/vx/pull/699) [#698](https://github.com/hshoff/vx/pull/698) [#697](https://github.com/hshoff/vx/pull/697) [#696](https://github.com/hshoff/vx/pull/696) [#695](https://github.com/hshoff/vx/pull/695) [#694](https://github.com/hshoff/vx/pull/694) [#693](https://github.com/hshoff/vx/pull/693) [#692](https://github.com/hshoff/vx/pull/692) [#691](https://github.com/hshoff/vx/pull/691) [#690](https://github.com/hshoff/vx/pull/690) [#689](https://github.com/hshoff/vx/pull/689) [#688](https://github.com/hshoff/vx/pull/688) [#687](https://github.com/hshoff/vx/pull/687) [#686](https://github.com/hshoff/vx/pull/686) [#685](https://github.com/hshoff/vx/pull/685) [#684](https://github.com/hshoff/vx/pull/684) [#683](https://github.com/hshoff/vx/pull/683) [#682](https://github.com/hshoff/vx/pull/682) [#681](https://github.com/hshoff/vx/pull/681) [#680](https://github.com/hshoff/vx/pull/680) [#679](https://github.com/hshoff/vx/pull/679) [#678](https://github.com/hshoff/vx/pull/678) [#677](https://github.com/hshoff/vx/pull/677) [#676](https://github.com/hshoff/vx/pull/676) [#675](https://github.com/hshoff/vx/pull/675) [#674](https://github.com/hshoff/vx/pull/674) [#673](https://github.com/hshoff/vx/pull/673) [#672](https://github.com/hshoff/vx/pull/672) [#671](https://github.com/hshoff/vx/pull/671) [#670](https://github.com/hshoff/vx/pull/670) [#679](https://github.com/hshoff/vx/pull/669)
+
+#### :house: Internal
+
+- deps(root): bump yarn.lock, add @types/webpack [#740](https://github.com/hshoff/vx/pull/740)
+- fix(demo/package.json): lock next.js version [#740](https://github.com/hshoff/vx/pull/740)
+- fix(demo): prettier config updated so lots of minor style updates [#740](https://github.com/hshoff/vx/pull/740)
+- fix(demo/next.config.js): fix invalid webpack config error [#740](https://github.com/hshoff/vx/pull/740)
+- fix(demo/pages): routes are case sensitive (`/Docs` => `/docs`) [#740](https://github.com/hshoff/vx/pull/740)
+- feat(demo/gallery): gallery filter persists on query param `?pkg` instead of local state [#740](https://github.com/hshoff/vx/pull/740)
+
+#### :trophy: Contributors
+
+- [dennisja](https://github.com/dennisja)
+- [vodoleev-vladislav](https://github.com/vodoleev-vladislav)
+- [williaster](https://github.com/williaster)
+- [hshoff](https://github.com/hshoff)
+
+```
+Changes: 
+ - @vx/annotation: 0.0.196 => 0.0.197
+ - @vx/axis: 0.0.196 => 0.0.197
+ - @vx/bounds: 0.0.196 => 0.0.197
+ - @vx/brush: 0.0.196 => 0.0.197
+ - @vx/chord: 0.0.196 => 0.0.197
+ - @vx/clip-path: 0.0.196 => 0.0.197
+ - @vx/curve: 0.0.196 => 0.0.197
+ - @vx/demo: 0.0.196 => 0.0.197
+ - @vx/drag: 0.0.196 => 0.0.197
+ - @vx/event: 0.0.196 => 0.0.197
+ - @vx/geo: 0.0.196 => 0.0.197
+ - @vx/glyph: 0.0.196 => 0.0.197
+ - @vx/gradient: 0.0.196 => 0.0.197
+ - @vx/grid: 0.0.196 => 0.0.197
+ - @vx/group: 0.0.196 => 0.0.197
+ - @vx/heatmap: 0.0.196 => 0.0.197
+ - @vx/hierarchy: 0.0.196 => 0.0.197
+ - @vx/legend: 0.0.196 => 0.0.197
+ - @vx/marker: 0.0.196 => 0.0.197
+ - @vx/mock-data: 0.0.196 => 0.0.197
+ - @vx/network: 0.0.196 => 0.0.197
+ - @vx/pattern: 0.0.196 => 0.0.197
+ - @vx/point: 0.0.196 => 0.0.197
+ - @vx/responsive: 0.0.196 => 0.0.197
+ - @vx/scale: 0.0.196 => 0.0.197
+ - @vx/shape: 0.0.196 => 0.0.197
+ - @vx/stats: 0.0.196 => 0.0.197
+ - @vx/text: 0.0.196 => 0.0.197
+ - @vx/threshold: 0.0.196 => 0.0.197
+ - @vx/tooltip: 0.0.196 => 0.0.197
+ - @vx/voronoi: 0.0.196 => 0.0.197
+ - @vx/vx: 0.0.196 => 0.0.197
+ - @vx/zoom: 0.0.16 =>  0.0.19
+```
 
 # v0.0.196
 
