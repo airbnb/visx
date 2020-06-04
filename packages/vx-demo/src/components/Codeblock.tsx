@@ -5,7 +5,6 @@ import Prism from 'prismjs';
 import 'prismjs/components/prism-jsx.min';
 import 'prismjs/components/prism-typescript.min';
 import 'prismjs/components/prism-tsx.min';
-import 'prismjs/themes/prism.css';
 
 const Lines = ({ lines }: { lines: number[] }) => (
   <span aria-hidden="true" className="line-numbers-rows">

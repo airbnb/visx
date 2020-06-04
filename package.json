@@ -46,6 +46,7 @@
     "@types/jest": "^24.0.18",
     "@types/jsdom": "^12.2.4",
     "@types/react-test-renderer": "^16.9.0",
+    "@types/webpack": "^4.41.17",
     "coveralls": "^3.0.6",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
@@ -146,10 +147,20 @@
         {
           "files": "./packages/vx-demo/**",
           "rules": {
-            "@typescript-eslint/no-explicit-any": ["warn", { "fixToUnknown": false }],
-            "import/no-unresolved": ["error", {
-              "ignore": ["^!!raw-loader!.*"]
-            }],
+            "@typescript-eslint/no-explicit-any": [
+              "warn",
+              {
+                "fixToUnknown": false
+              }
+            ],
+            "import/no-unresolved": [
+              "error",
+              {
+                "ignore": [
+                  "^!!raw-loader!.*"
+                ]
+              }
+            ],
             "import/no-webpack-loader-syntax": "off",
             "jsx-a11y/anchor-is-valid": "off",
             "jsx-a11y/label-has-associated-control": "off",

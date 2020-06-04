@@ -27,9 +27,7 @@ export default function PackageList({
             </li>
             <li className={cx(cx(emphasizePackage === 'axis' && 'emphasize'))}>
               <Link href="/docs/axis">
-                <a>
-                  <a>@vx/axis</a>
-                </a>
+                <a>@vx/axis</a>
               </Link>
               {!compact && <p>Annotate your coordinate system</p>}
             </li>

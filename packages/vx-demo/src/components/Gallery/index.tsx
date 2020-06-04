@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
+import cx from 'classnames';
 import Tilt from 'react-tilt';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import * as AreaTile from './AreaTile';
 import * as AxisTile from './AxisTile';
@@ -88,10 +91,12 @@ const tiles = [
 ];
 
 export default function Gallery() {
-  const [activePackageFilter, setActivePackageFilter] = useState<VxPackage | null>(null);
-  const filteredTiles = activePackageFilter
+  const router = useRouter();
+  const { pkg } = router.query;
+
+  const filteredTiles = pkg
     ? tiles.filter(Tile =>
-        exampleToVxDependencyLookup[Tile.packageJson.name]?.has(activePackageFilter),
+        exampleToVxDependencyLookup[Tile.packageJson.name]?.has(pkg as VxPackage),
       )
     : tiles;
 
@@ -101,20 +106,19 @@ export default function Gallery() {
         <div className="filters">
           <h6>Examples by package</h6>
           {vxPackages.map(vxPackage => (
-            <button
-              key={vxPackage}
-              className={activePackageFilter === vxPackage ? 'emphasize' : undefined}
-              onClick={() =>
-                setActivePackageFilter(activePackageFilter === vxPackage ? null : vxPackage)
-              }
-            >
-              @vx/{vxPackage}
-            </button>
+            <Link key={vxPackage} href={{ pathname: '/gallery', query: { pkg: vxPackage } }}>
+              <a
+                className={cx('filter-button', {
+                  emphasize: pkg === vxPackage,
+                })}
+              >{`@vx/${vxPackage}`}</a>
+            </Link>
           ))}
         </div>
         <div className="grid">
           {filteredTiles.map((Tile, i) => (
             <Tilt key={`tile-${i}`} className="tilt" options={tiltOptions}>
+              {/* eslint-disable react/jsx-pascal-case */}
               <Tile.default />
             </Tilt>
           ))}
@@ -140,7 +144,7 @@ export default function Gallery() {
         h6 {
           margin: 0 4px 0 0;
         }
-        button {
+        .filter-button {
           display: block;
           cursor: pointer;
           border: none;
@@ -149,6 +153,8 @@ export default function Gallery() {
           color: #fc2e1c;
           padding: 0;
           margin: 4px 4px 12px 0;
+          font-size: 14px;
+          line-height: 1rem;
         }
         .emphasize {
           font-weight: bold;

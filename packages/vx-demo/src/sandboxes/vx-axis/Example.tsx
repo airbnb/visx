@@ -34,6 +34,8 @@ export default function Example({ width: outerWidth = 800, height: outerHeight =
   const width = outerWidth - margin.left - margin.right;
   const height = outerHeight - margin.top - margin.bottom;
 
+  if (width < 10) return null;
+
   const scales: {
     scale: Scale;
     values: ScaleInput[];

@@ -36,6 +36,7 @@ export default withTooltip<DotsProps, PointsRange>(
     tooltipLeft,
     tooltipTop,
   }: DotsProps & WithTooltipProvidedProps<PointsRange>) => {
+    if (width < 10) return null;
     const [showVoronoi, setShowVoronoi] = useState(showControls);
     const svgRef = useRef<SVGSVGElement>(null);
     const xScale = useMemo(

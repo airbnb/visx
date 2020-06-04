@@ -12,7 +12,11 @@ type Props = {
 
 const VxDocLink = ({ packageName }: Props) => {
   const url = getDocUrlFromVXPackageName(packageName);
-  return url ? <Link href={url}>{packageName}</Link> : null;
+  return url ? (
+    <Link href={url}>
+      <a>{packageName}</a>
+    </Link>
+  ) : null;
 };
 
 export default VxDocLink;
