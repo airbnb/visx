@@ -1,6 +1,6 @@
 {
   "name": "@vx/point",
-  "version": "0.0.196",
+  "version": "0.0.197",
   "description": "vx point",
   "sideEffects": false,
   "main": "lib/index.js",

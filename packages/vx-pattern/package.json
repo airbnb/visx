@@ -1,6 +1,6 @@
 {
   "name": "@vx/pattern",
-  "version": "0.0.196",
+  "version": "0.0.197",
   "description": "vx pattern",
   "sideEffects": false,
   "main": "lib/index.js",

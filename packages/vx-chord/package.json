@@ -1,6 +1,6 @@
 {
   "name": "@vx/chord",
-  "version": "0.0.196",
+  "version": "0.0.197",
   "description": "vx group",
   "sideEffects": false,
   "main": "lib/index.js",
