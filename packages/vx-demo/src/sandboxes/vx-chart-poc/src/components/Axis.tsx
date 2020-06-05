@@ -2,6 +2,7 @@ import React, { useContext, useMemo } from 'react';
 import BaseAxis, { AxisProps as BaseAxisProps } from '@vx/axis/lib/axis/Axis';
 
 import ChartContext from '../context/ChartContext';
+import { ScaleOutput } from '../types';
 
 type AxisProps<ScaleInpu> = Omit<BaseAxisProps<ScaleInpu>, 'scale'>;
 
@@ -33,15 +34,15 @@ export default function Axis<ScaleInput = unknown>(props: AxisProps<ScaleInput>)
 
   const topOffset =
     orientation === 'bottom'
-      ? Math.max(...(yScale.range() as number[])) || 0
+      ? Math.max(...(yScale.range() as ScaleOutput[])) || 0
       : orientation === 'top'
-      ? Math.min(...(yScale.range() as number[])) || 0
+      ? Math.min(...(yScale.range() as ScaleOutput[])) || 0
       : 0;
   const leftOffset =
     orientation === 'left'
-      ? Math.min(...(xScale.range() as number[])) ?? 0
+      ? Math.min(...(xScale.range() as ScaleOutput[])) ?? 0
       : orientation === 'right'
-      ? Math.max(...(xScale.range() as number[])) ?? 0
+      ? Math.max(...(xScale.range() as ScaleOutput[])) ?? 0
       : 0;
 
   return (
@@ -50,7 +51,7 @@ export default function Axis<ScaleInput = unknown>(props: AxisProps<ScaleInput>)
       left={leftOffset}
       labelProps={(axisStyles.label || {})[orientation]}
       stroke={axisStyles.stroke}
-      strokeWidth={axisStyles.strokeWidth as string | number}
+      strokeWidth={axisStyles.strokeWidth}
       tickLength={tickStyles.tickLength}
       tickStroke={tickStyles.stroke}
       {...props}

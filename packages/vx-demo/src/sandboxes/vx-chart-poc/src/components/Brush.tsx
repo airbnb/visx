@@ -1,6 +1,20 @@
 import React, { useContext } from 'react';
 import BaseBrush, { BrushProps as BaseBrushProps } from '@vx/brush/src/Brush';
+import { ResizeTriggerAreas } from '@vx/brush/lib/types';
 import ChartContext from '../context/ChartContext';
+
+const leftRightResizeTriggers: ResizeTriggerAreas[] = ['left', 'right'];
+const topBottomResizeTriggers: ResizeTriggerAreas[] = ['top', 'bottom'];
+const allResizeTriggers: ResizeTriggerAreas[] = [
+  'left',
+  'right',
+  'top',
+  'bottom',
+  'topLeft',
+  'topRight',
+  'bottomLeft',
+  'bottomRight',
+];
 
 type BrushProps = Partial<
   Pick<
@@ -17,8 +31,6 @@ type BrushProps = Partial<
   >
 > & { initialBrushPosition?: (scales) => BaseBrushProps['initialBrushPosition'] };
 
-const defaultResizeTriggerAreas: ('left' | 'right')[] = ['left', 'right'];
-
 export default function Brush({
   brushDirection = 'horizontal',
   brushRegion = 'chart',
@@ -26,7 +38,7 @@ export default function Brush({
   initialBrushPosition,
   onChange,
   onClick,
-  resizeTriggerAreas = defaultResizeTriggerAreas,
+  resizeTriggerAreas,
   selectedBoxStyle,
   xAxisOrientation,
   yAxisOrientation,
@@ -52,7 +64,14 @@ export default function Brush({
       height={height}
       margin={margin}
       handleSize={handleSize}
-      resizeTriggerAreas={resizeTriggerAreas}
+      resizeTriggerAreas={
+        resizeTriggerAreas ||
+        (brushDirection === 'horizontal'
+          ? leftRightResizeTriggers
+          : brushDirection === 'vertical'
+          ? topBottomResizeTriggers
+          : allResizeTriggers)
+      }
       brushDirection={brushDirection}
       initialBrushPosition={
         initialBrushPosition ? initialBrushPosition({ xScale, yScale }) : undefined

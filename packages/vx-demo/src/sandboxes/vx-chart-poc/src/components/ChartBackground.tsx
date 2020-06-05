@@ -5,18 +5,10 @@ import ChartContext from '../context/ChartContext';
 const patternId = 'xy-chart-pattern';
 
 export default function CustomChartBackground() {
-  const { xScale, yScale } = useContext(ChartContext);
+  const { margin, width, height } = useContext(ChartContext);
 
   // early return if scale is not available in context
-  if (!xScale || !yScale) return null;
-
-  const xRange = xScale.range() as number[];
-  const yRange = yScale.range() as number[];
-
-  const x = Math.min(...xRange);
-  const y = Math.min(...yRange);
-  const width = Math.abs(xRange[1] - xRange[0]);
-  const height = Math.abs(yRange[1] - yRange[0]);
+  if (width == null || height == null || margin == null) return null;
 
   return (
     <>
@@ -27,7 +19,13 @@ export default function CustomChartBackground() {
         orientation={['diagonal']}
         stroke="#dedede"
       />
-      <rect x={x} y={y} width={width} height={height} fill={`url(#${patternId})`} />
+      <rect
+        x={margin.left}
+        y={margin.top}
+        width={width - margin.left - margin.right}
+        height={height - margin.top - margin.bottom}
+        fill={`url(#${patternId})`}
+      />
     </>
   );
 }
