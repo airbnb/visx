@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "@babel/runtime": "^7.8.4",
+    "@types/d3-array": "^2.0.0",
     "@types/lodash": "^4.14.146",
     "@types/react": "^16",
     "@types/react-dom": "^16",
@@ -17,12 +18,13 @@
     "@vx/scale": "latest",
     "@vx/shape": "latest",
     "@vx/tooltip": "latest",
+    "@vx/voronoi": "latest",
     "d3-array": "2.4.0",
-    "d3-quadtree": "^1.0.7",
     "lodash": "^4.17.10",
     "react": "^16",
     "react-dom": "^16",
     "react-scripts-ts": "3.1.0",
+    "react-spring": "^8.0.27",
     "resize-observer-polyfill": "1.5.1",
     "typescript": "^3"
   },
