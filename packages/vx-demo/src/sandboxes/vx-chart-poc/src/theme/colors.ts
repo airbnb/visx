@@ -1,5 +1,7 @@
 // source https://yeun.github.io/open-color/
-export const allColors = {
+export const allColors: {
+  [hue: string]: [string, string, string, string, string, string, string, string, string, string];
+} = {
   red: [
     '#fff5f5',
     '#ffe3e3',

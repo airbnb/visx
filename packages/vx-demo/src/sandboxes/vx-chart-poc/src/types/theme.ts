@@ -12,6 +12,7 @@ export type GridStyles = LineStyles;
 
 /** A complete chart theme includes style definitions for all axis orientations. */
 export interface XYChartTheme {
+  baseColor: string;
   colors: string[];
   labelStyles: TextStyles;
   gridStyles: GridStyles;

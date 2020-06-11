@@ -3,39 +3,41 @@ import { XYChartTheme } from './theme';
 import { ScaleType, Margin } from '.';
 
 // ChartContext ---------------------------------------------------------------
-export type DataRegistry = {
+export interface DataRegistry<Datum = unknown, XScaleInput = unknown, yScaleInput = unknown> {
   [key: string]: {
     /** unique data key */
     key: string;
     /** array of data */
-    data: unknown[];
+    data: Datum[];
     /** function that returns the x value of a datum. */
-    xAccessor: (d: unknown) => unknown;
+    xAccessor: (d: unknown) => XScaleInput;
     /** function that returns the y value of a datum. */
-    yAccessor: (d: unknown) => unknown;
+    yAccessor: (d: unknown) => yScaleInput;
     /** whether the entry supports mouse events. */
     mouseEvents: boolean;
   };
-};
+}
 
-export type RegisterData = (data: {
+export interface RegisterDataArgs {
   key: DataRegistry[string]['key'];
   data: DataRegistry[string]['data'];
   xAccessor: DataRegistry[string]['xAccessor'];
   yAccessor: DataRegistry[string]['yAccessor'];
   mouseEvents?: boolean;
-}) => void;
+}
 
-export type DatumWithKey = { datum: unknown; key: string; index: number };
+export type RegisterData = (data: RegisterDataArgs) => void;
 
-export type ChartContext<XScaleInput = unknown, YScaleInput = unknown> = {
+export type DatumWithKey<Datum = unknown> = { datum: Datum; key: string; index: number };
+
+export interface ChartContext<Datum = unknown, XScaleInput = unknown, YScaleInput = unknown> {
   theme: XYChartTheme;
   xScale: ScaleType<XScaleInput> | null;
   yScale: ScaleType<YScaleInput> | null;
   width: number | null;
   height: number | null;
   margin: Margin;
-  dataRegistry: DataRegistry;
+  dataRegistry: DataRegistry<Datum, XScaleInput, YScaleInput>;
   registerData: RegisterData;
   unregisterData: (key: string) => void;
   setChartDimensions: (dims: { width: number; height: number; margin: Margin }) => void;
@@ -45,19 +47,19 @@ export type ChartContext<XScaleInput = unknown, YScaleInput = unknown> = {
     svgMouseX: number | null;
     svgMouseY: number | null;
     closestDatum: DatumWithKey;
-    closestData;
-  };
-};
-
-// EventContext ---------------------------------------------------------------
-
-export interface TooltipData {
-  svgMouseX: number | null;
-  svgMouseY: number | null;
-  closestDatum: DatumWithKey;
-  closestData: {
-    [key: string]: DatumWithKey;
+    closestData: { [dataKey: string]: DatumWithKey };
   };
 }
 
-export type EventContext = UseTooltipParams<TooltipData>;
+// TooltipContext ---------------------------------------------------------------
+
+export interface TooltipData<Datum = unknown, DataKeys extends string = string> {
+  svgMouseX: number | null;
+  svgMouseY: number | null;
+  closestDatum: DatumWithKey<Datum>;
+  closestData: {
+    [key in DataKeys]: DatumWithKey<Datum>;
+  };
+}
+
+export type TooltipContext = UseTooltipParams<TooltipData>;

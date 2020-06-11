@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useCallback, useRef } from 'react';
-import { localPoint } from '@vx/event';
 import ParentSize from '@vx/responsive/lib/components/ParentSize';
 import ChartContext from '../context/ChartContext';
 import { Margin } from '../types';
-import EventContext from '../context/EventContext';
+import TooltipContext from '../context/TooltipContext';
 
 const defaultMargin = { top: 30, right: 30, bottom: 30, left: 30 };
 
@@ -19,7 +18,7 @@ type Props = {
 export default function XYChart(props: Props) {
   const { children, width, height, margin = defaultMargin, captureEvents = true } = props;
   const { findNearestData, setChartDimensions } = useContext(ChartContext);
-  const { showTooltip, hideTooltip } = useContext(EventContext) || {};
+  const { showTooltip, hideTooltip } = useContext(TooltipContext) || {};
 
   // update dimensions in context
   useEffect(() => {

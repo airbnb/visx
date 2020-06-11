@@ -1,6 +1,7 @@
 import { TextStyles, XYChartTheme, LineStyles } from '../types/theme';
 
 export type ThemeConfig = {
+  baseColor: string;
   colors: string[];
 
   // labels
@@ -71,6 +72,7 @@ export default function buildChartTheme(theme: ThemeConfig): XYChartTheme {
   };
 
   return {
+    baseColor: theme.baseColor,
     colors: [...theme.colors],
     labelStyles: {
       ...baseLabel,
@@ -87,9 +89,11 @@ export default function buildChartTheme(theme: ThemeConfig): XYChartTheme {
       label: {
         bottom: {
           ...baseLabel,
+          dy: '0.75em',
         },
         top: {
           ...baseLabel,
+          dy: '-0.75em',
         },
       },
     },
@@ -100,9 +104,11 @@ export default function buildChartTheme(theme: ThemeConfig): XYChartTheme {
       label: {
         left: {
           ...baseLabel,
+          dx: '-0.75em',
         },
         right: {
           ...baseLabel,
+          dx: '0.75em',
         },
       },
     },

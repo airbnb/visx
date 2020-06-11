@@ -3,6 +3,7 @@ import svgFont from './svgFont';
 import buildChartTheme from '../buildChartTheme';
 
 export default buildChartTheme({
+  baseColor: '#fff',
   colors: defaultColors,
   font: svgFont,
   tickLength: 4,

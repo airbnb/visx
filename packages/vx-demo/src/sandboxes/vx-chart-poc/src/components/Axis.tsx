@@ -7,7 +7,7 @@ import { ScaleOutput } from '../types';
 type AxisProps<ScaleInpu> = Omit<BaseAxisProps<ScaleInpu>, 'scale'>;
 
 export default function Axis<ScaleInput = unknown>(props: AxisProps<ScaleInput>) {
-  const { theme, xScale, yScale } = useContext(ChartContext);
+  const { theme, xScale, yScale, margin } = useContext(ChartContext);
   const { orientation } = props;
 
   // The biggest difference between Axes is their label + tick label styles
@@ -20,8 +20,11 @@ export default function Axis<ScaleInput = unknown>(props: AxisProps<ScaleInput>)
   const tickLabelProps = useMemo(() => {
     if (props.tickLabelProps) return props.tickLabelProps;
     const themeTickLabelProps = theme?.[themeTickStylesKey]?.label?.[orientation];
-    return themeTickLabelProps ? () => themeTickLabelProps : undefined;
-  }, [theme, props.tickLabelProps, themeTickStylesKey, orientation]);
+    return themeTickLabelProps
+      ? // by default, wrap tick labels within the allotted margin space
+        () => ({ ...themeTickLabelProps, width: margin[orientation] })
+      : undefined;
+  }, [theme, props.tickLabelProps, themeTickStylesKey, orientation, margin]);
 
   // extract axis styles from theme
   const themeAxisStylesKey =
@@ -49,11 +52,11 @@ export default function Axis<ScaleInput = unknown>(props: AxisProps<ScaleInput>)
     <BaseAxis<ScaleInput>
       top={topOffset}
       left={leftOffset}
-      labelProps={(axisStyles.label || {})[orientation]}
-      stroke={axisStyles.stroke}
-      strokeWidth={axisStyles.strokeWidth}
-      tickLength={tickStyles.tickLength}
-      tickStroke={tickStyles.stroke}
+      labelProps={axisStyles?.label?.[orientation]}
+      stroke={axisStyles?.stroke}
+      strokeWidth={axisStyles?.strokeWidth}
+      tickLength={tickStyles?.tickLength}
+      tickStroke={tickStyles?.stroke}
       {...props}
       tickLabelProps={tickLabelProps}
       scale={orientation === 'left' || orientation === 'right' ? yScale : xScale}

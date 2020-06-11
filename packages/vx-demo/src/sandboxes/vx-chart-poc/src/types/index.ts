@@ -14,7 +14,7 @@ export type ScaleConfigType = 'linear' | 'band' | 'ordinal' | 'time' | 'timeUtc'
 export type ScaleConfig<Datum> = {
   type: ScaleConfigType;
   domain?: Datum[];
-  range?: ScaleOutput[];
+  range?: number[];
   includeZero?: boolean;
   nice?: boolean;
   clamp?: boolean;
@@ -27,4 +27,12 @@ export type Margin = {
   right: number;
   bottom: number;
   left: number;
+};
+
+export type SeriesProps<Datum, XScaleInput, YScaleInput> = {
+  dataKey: string;
+  data: Datum[];
+  xAccessor: (d: Datum) => XScaleInput;
+  yAccessor: (d: Datum) => YScaleInput;
+  mouseEvents?: boolean;
 };
