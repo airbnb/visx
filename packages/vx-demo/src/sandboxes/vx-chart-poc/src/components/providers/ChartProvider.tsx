@@ -1,7 +1,6 @@
 import React from 'react';
-import debounce from 'lodash/debounce';
-import { bisector, bisectLeft } from 'd3-array';
 import { localPoint } from '@vx/event';
+import { voronoi } from '@vx/voronoi';
 
 import defaultTheme from '../../theme/default';
 import {
@@ -22,7 +21,7 @@ export type ChartProviderProps<XDatum, YDatum> = {
   children: React.ReactNode;
 };
 
-type ChartProviderState = Pick<ChartContextType, 'xScale' | 'yScale' | 'theme' | 'dataRegistry'> & {
+type ChartProviderState = Pick<ChartContextType, 'xScale' | 'yScale' | 'dataRegistry'> & {
   width: number | null;
   height: number | null;
   margin: Margin;
@@ -34,7 +33,6 @@ export default class ChartProvider<XDatum = unknown, YDatum = unknown> extends R
   ChartProviderState
 > {
   state: ChartProviderState = {
-    theme: this.props?.theme ?? defaultTheme,
     dataRegistry: {},
     margin: null,
     xScale: null,
@@ -46,124 +44,132 @@ export default class ChartProvider<XDatum = unknown, YDatum = unknown> extends R
 
   /** Adds data to the registry and to combined data if it supports events. */
   registerData: RegisterData = dataToRegister => {
-    this.setState(
-      ({ dataRegistry, combinedData }) => ({
+    this.setState(state => {
+      const nextState = {
+        ...state,
         dataRegistry: {
-          ...dataRegistry,
+          ...state.dataRegistry,
           [dataToRegister.key]: {
             ...dataToRegister,
             mouseEvents: dataToRegister.mouseEvents !== false,
           },
         },
         combinedData: [
-          ...combinedData,
+          ...state.combinedData,
           ...dataToRegister.data.map((datum, index) => ({
             key: dataToRegister.key,
             datum,
             index,
           })),
         ],
-      }),
-      this.updateScales,
-    );
+      };
+
+      // it's important that the registry and scales are kept in sync so that
+      // consumers don't used mismatched data + scales
+      return {
+        ...nextState,
+        ...this.getScales(nextState),
+      };
+    });
   };
 
   /** Removes data from the registry and combined data. */
   unregisterData = (key: string) => {
-    this.setState(({ dataRegistry, combinedData }) => {
-      const { [key]: omit, ...rest } = dataRegistry;
-      return { dataRegistry: { ...rest }, combinedData: combinedData.filter(d => d.key !== key) };
-    }, this.updateScales);
+    this.setState(state => {
+      const { [key]: omit, ...restRegistry } = state.dataRegistry;
+
+      const nextState = {
+        ...state,
+        dataRegistry: { ...restRegistry },
+        combinedData: state.combinedData.filter(d => d.key !== key),
+      };
+
+      return {
+        ...nextState,
+        ...this.getScales(nextState),
+      };
+    });
   };
 
   /** Sets chart dimensions. */
-  setChartDimensions: ChartContextType['setChartDimensions'] = debounce(
-    ({ width, height, margin }) => {
-      if (width > 0 && height > 0) {
-        this.setState({ width, height, margin }, this.updateScales);
-      }
-    },
-    50,
-  );
-
-  updateScales = () => {
-    const { xScale: xScaleConfig, yScale: yScaleConfig } = this.props;
-    const { margin, width, height, dataRegistry, combinedData } = this.state;
-
-    if (width != null && height != null) {
-      const xScale = createScale<XDatum>({
-        data: combinedData.map(({ key, datum }) => dataRegistry[key]?.xAccessor(datum)) as XDatum[],
-        scaleConfig: xScaleConfig,
-        range: [margin.left, width - margin.right],
-      });
-
-      const yScale = createScale<YDatum>({
-        data: combinedData.map(({ key, datum }) => dataRegistry[key]?.yAccessor(datum)) as YDatum[],
-        scaleConfig: yScaleConfig,
-        range: [height - margin.bottom, margin.top],
-      });
-
-      this.setState({ xScale, yScale });
+  setChartDimensions: ChartContextType['setChartDimensions'] = ({ width, height, margin }) => {
+    if (width > 0 && height > 0) {
+      this.setState({ width, height, margin }, this.updateScales);
     }
   };
 
-  findNearestData = (event: React.MouseEvent | React.TouchEvent, searchRadius = 200) => {
-    const { xScale, yScale, dataRegistry } = this.state;
+  getScales = ({ combinedData, dataRegistry, margin, width, height }: ChartProviderState) => {
+    const { xScale: xScaleConfig, yScale: yScaleConfig } = this.props;
+
+    if (width == null || height == null) return;
+
+    const xScale = createScale<XDatum>({
+      data: combinedData.map(({ key, datum }) => dataRegistry[key]?.xAccessor(datum)) as XDatum[],
+      scaleConfig: xScaleConfig,
+      range: [margin.left, width - margin.right],
+    });
+
+    const yScale = createScale<YDatum>({
+      data: combinedData.map(({ key, datum }) => dataRegistry[key]?.yAccessor(datum)) as YDatum[],
+      scaleConfig: yScaleConfig,
+      range: [height - margin.bottom, margin.top],
+    });
+
+    return { xScale, yScale };
+  };
+
+  updateScales = () => {
+    const { width, height } = this.state;
+
+    if (width != null && height != null) {
+      this.setState(state => this.getScales(state));
+    }
+  };
+
+  findNearestData = (event: React.MouseEvent | React.TouchEvent) => {
+    const { width, height, xScale, yScale, dataRegistry } = this.state;
     const { x: svgMouseX, y: svgMouseY } = localPoint(event);
-    const mouseX = svgMouseX;
-    const mouseY = svgMouseY;
 
     // for each series find the datums with closest x and y
     const closestData = {};
     let closestDatum: DatumWithKey | null = null;
-    let minDeltaX: number = Infinity;
-    let minDeltaY: number = Infinity;
+    let minDeltaX: number = Number.POSITIVE_INFINITY;
+    let minDeltaY: number = Number.POSITIVE_INFINITY;
+    let minTotalDelta: number = Number.POSITIVE_INFINITY;
 
     if (xScale && yScale) {
       Object.values(dataRegistry).forEach(({ key, data, xAccessor, yAccessor, mouseEvents }) => {
         if (!mouseEvents) return;
+        const scaledX = (d: unknown) => xScale(xAccessor(d)) as number;
+        const scaledY = (d: unknown) => yScale(yAccessor(d)) as number;
 
-        // find closest datum
-        const bisect = bisector(xAccessor).left;
+        // Create a voronoi with each node center points
+        const voronoiInstance = voronoi({
+          x: scaledX,
+          y: scaledY,
+          width,
+          height,
+        });
 
-        const isOrdinalScale = !('invert' in xScale && typeof xScale.invert === 'function');
-        let closestDatumForKey;
-        let closestIndex;
-        if (isOrdinalScale) {
-          // Ordinal scales don't have an invert function so we do it maually
-          const xDomain = xScale.domain();
-          const scaledXValues = xDomain.map(val => xScale(val));
-          const index = bisectLeft(scaledXValues, mouseX);
-          const d0 = data[index - 1];
-          const d1 = data[index];
-          closestDatumForKey =
-            !d0 || Math.abs(dataX - xAccessor(d0)) > Math.abs(dataX - xAccessor(d1)) ? d1 : d0;
-          closestIndex = closestDatumForKey === d0 ? index - 1 : index;
-        } else {
-          const dataX = xScale.invert(mouseX);
-          const index = bisect(data, dataX, 0);
-          const d0 = data[index - 1];
-          const d1 = data[index];
-          closestDatumForKey =
-            !d0 || Math.abs(dataX - xAccessor(d0)) > Math.abs(dataX - xAccessor(d1)) ? d1 : d0;
-          closestIndex = closestDatumForKey === d0 ? index - 1 : index;
-        }
+        const foundPoint = voronoiInstance(data).find(svgMouseX, svgMouseY);
 
-        const deltaX = closestDatumForKey
-          ? Math.abs(xScale(xAccessor(closestDatumForKey)) - mouseX)
-          : Infinity;
+        const deltaX = foundPoint
+          ? Math.abs(scaledX(foundPoint.data) - svgMouseX)
+          : Number.POSITIVE_INFINITY;
 
-        const deltaY = closestDatumForKey
-          ? Math.abs(yScale(yAccessor(closestDatumForKey)) - mouseY)
-          : Infinity;
+        const deltaY = foundPoint
+          ? Math.abs(scaledY(foundPoint.data) - svgMouseY)
+          : Number.POSITIVE_INFINITY;
 
-        if (closestDatumForKey && (deltaX <= searchRadius || deltaY <= searchRadius)) {
-          const datumWithKey = { key, datum: closestDatumForKey, index: closestIndex };
-          closestData[key] = datumWithKey;
-          closestDatum = deltaY < minDeltaY && deltaX <= minDeltaX ? datumWithKey : closestDatum;
-          minDeltaX = Math.min(deltaX, minDeltaX);
-          minDeltaY = Math.min(deltaY, minDeltaY);
-        }
+        const datumWithKey = { key, datum: foundPoint.data, index: foundPoint.index };
+        closestData[key] = datumWithKey;
+
+        // now update the overall closest datum
+        const totalDelta = deltaX + deltaY;
+        closestDatum = totalDelta < minTotalDelta ? datumWithKey : closestDatum;
+        minDeltaX = Math.min(deltaX, minDeltaX);
+        minDeltaY = Math.min(deltaY, minDeltaY);
+        minTotalDelta = Math.min(totalDelta, minTotalDelta);
       });
     }
 
@@ -171,7 +177,8 @@ export default class ChartProvider<XDatum = unknown, YDatum = unknown> extends R
   };
 
   render() {
-    const { width, height, margin, xScale, yScale, theme, dataRegistry } = this.state;
+    const { theme } = this.props;
+    const { width, height, margin, xScale, yScale, dataRegistry } = this.state;
     return (
       <ChartContext.Provider
         value={{
@@ -180,7 +187,7 @@ export default class ChartProvider<XDatum = unknown, YDatum = unknown> extends R
           width,
           height,
           margin,
-          theme,
+          theme: theme ?? defaultTheme,
           dataRegistry,
           registerData: this.registerData,
           unregisterData: this.unregisterData,
