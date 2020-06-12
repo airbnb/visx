@@ -11,8 +11,7 @@ import LineSeries from './src/components/series/LineSeries';
 import ChartBackground from './src/components/ChartBackground';
 import EventProvider from './src/components/providers/TooltipProvider';
 import Tooltip from './src/components/Tooltip';
-import Brush from './src/components/Brush';
-import { TooltipData } from './src/types';
+import { TooltipData, ScaleConfig } from './src/types';
 
 const data = cityTemperature.slice(200, 200 + 72);
 const getDate = (d: CityTemperature) => new Date(d.date);
@@ -65,14 +64,13 @@ export default function Example() {
   const [renderHorizontally, setRenderHorizontally] = useState(false);
   const [negativeValues, setNegativeValues] = useState(false);
   const [includeZero, setIncludeZero] = useState(false);
-  const [brush, setBrush] = useState<null | 'chart' | 'yAxis' | 'xAxis'>(null);
   const [xAxisOrientation, setXAxisOrientation] = useState<'top' | 'bottom'>('bottom');
   const [yAxisOrientation, setYAxisOrientation] = useState<'left' | 'right'>('left');
   const [snapTooltipToDataX, setSnapTooltipToDataX] = useState(true);
   const [snapTooltipToDataY, setSnapTooltipToDataY] = useState(true);
   const [dataMultiplier, setDataMultiplier] = useState(1);
-  const dateScaleConfig = useMemo(() => ({ type: 'band' }), []);
-  const temperatureScaleConfig = useMemo(
+  const dateScaleConfig: ScaleConfig<string> = useMemo(() => ({ type: 'band' }), []);
+  const temperatureScaleConfig: ScaleConfig<number> = useMemo(
     () => ({
       type: 'linear',
       clamp: true,
@@ -102,14 +100,13 @@ export default function Example() {
   return (
     <div className="container">
       <ChartProvider
+        // @ts-ignore {} is not a valid theme
         theme={theme === 'light' ? defaultTheme : theme === 'dark' ? darkTheme : {}}
-        // @ts-ignore
         xScale={renderHorizontally ? temperatureScaleConfig : dateScaleConfig}
-        // @ts-ignore
         yScale={renderHorizontally ? dateScaleConfig : temperatureScaleConfig}
       >
         <EventProvider>
-          <XYChart captureEvents={brush == null} height={400} width={800} margin={margin}>
+          <XYChart height={400} width={800} margin={margin}>
             <ChartBackground />
             <BarSeries
               dataKey="austin"
@@ -146,45 +143,6 @@ export default function Example() {
               numTicks={5}
               tickFormat={(d: Date) => d.toISOString?.().split?.('T')[0] ?? d.toString()}
             />
-            {brush && (
-              <Brush
-                initialBrushPosition={({ xScale, yScale }) => ({
-                  start:
-                    brush === 'yAxis'
-                      ? {
-                          y: yScale(
-                            renderHorizontally ? getDate(data[40]) : getSfTemperature(data[40]),
-                          ),
-                        }
-                      : {
-                          x: xScale(
-                            renderHorizontally ? getSfTemperature(data[40]) : getDate(data[40]),
-                          ),
-                        },
-                  end:
-                    brush === 'yAxis'
-                      ? {
-                          y: yScale(
-                            renderHorizontally ? getDate(data[60]) : getSfTemperature(data[60]),
-                          ),
-                        }
-                      : {
-                          x: xScale(
-                            renderHorizontally ? getSfTemperature(data[60]) : getDate(data[60]),
-                          ),
-                        },
-                })}
-                selectedBoxStyle={{
-                  fill: 'purple',
-                  stroke: 'purple',
-                  fillOpacity: 0.2,
-                }}
-                brushRegion={brush}
-                brushDirection={brush === 'yAxis' ? 'vertical' : 'horizontal'}
-                xAxisOrientation={renderHorizontally ? yAxisOrientation : xAxisOrientation}
-                yAxisOrientation={renderHorizontally ? xAxisOrientation : yAxisOrientation}
-              />
-            )}
           </XYChart>
           <Tooltip
             snapToDataX={snapTooltipToDataX}
@@ -297,24 +255,6 @@ export default function Example() {
             checked={yAxisOrientation === 'right'}
           />{' '}
           right
-        </label>
-      </div>
-      <div className="radio">
-        brush:
-        <label>
-          <input type="radio" onChange={() => setBrush(null)} checked={brush === null} /> none
-        </label>
-        <label>
-          <input type="radio" onChange={() => setBrush('chart')} checked={brush === 'chart'} />{' '}
-          chart
-        </label>
-        <label>
-          <input type="radio" onChange={() => setBrush('xAxis')} checked={brush === 'xAxis'} />{' '}
-          xAxis
-        </label>
-        <label>
-          <input type="radio" onChange={() => setBrush('yAxis')} checked={brush === 'yAxis'} />{' '}
-          yAxis
         </label>
       </div>
       <style jsx>{`
