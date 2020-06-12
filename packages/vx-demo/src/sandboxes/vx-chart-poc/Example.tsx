@@ -13,7 +13,12 @@ import EventProvider from './src/components/providers/TooltipProvider';
 import Tooltip from './src/components/Tooltip';
 import { TooltipData, ScaleConfig } from './src/types';
 
-const data = cityTemperature.slice(200, 200 + 72);
+const data = cityTemperature.slice(200, 200 + 72).map(({ date, ...d }) => ({
+  ...d,
+  // current format is like `20200105` which you can't form a valid date from
+  // @TODO PR soon!
+  date: `${date.slice(0, 4)}-${date.slice(4, 6)}-${date.slice(6, 8)}`,
+})) as CityTemperature[];
 const getDate = (d: CityTemperature) => new Date(d.date);
 const getSfTemperature = (d: CityTemperature) => Number(d['San Francisco']);
 const getNyTemperature = (d: CityTemperature) => Number(d['New York']);

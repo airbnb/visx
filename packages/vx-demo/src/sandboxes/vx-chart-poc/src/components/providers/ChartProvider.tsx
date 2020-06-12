@@ -14,25 +14,32 @@ import {
 import ChartContext from '../../context/ChartContext';
 import createScale from '../../createScale';
 
-export type ChartProviderProps<XDatum, YDatum> = {
+export type ChartProviderProps<XScaleInput, YScaleInput> = {
   theme?: ChartTheme;
-  xScale: ScaleConfig<XDatum>;
-  yScale: ScaleConfig<YDatum>;
+  xScale: ScaleConfig<XScaleInput>;
+  yScale: ScaleConfig<YScaleInput>;
   children: React.ReactNode;
 };
 
-type ChartProviderState = Pick<ChartContextType, 'xScale' | 'yScale' | 'dataRegistry'> & {
+type ChartProviderState<Datum, XScaleInput, YScaleInput> = Pick<
+  ChartContextType<Datum, XScaleInput, YScaleInput>,
+  'xScale' | 'yScale' | 'dataRegistry'
+> & {
   width: number | null;
   height: number | null;
   margin: Margin;
-  combinedData: DatumWithKey[];
+  combinedData: DatumWithKey<Datum>[];
 };
 
-export default class ChartProvider<XDatum = unknown, YDatum = unknown> extends React.Component<
-  ChartProviderProps<XDatum, YDatum>,
-  ChartProviderState
+export default class ChartProvider<
+  Datum = unknown,
+  XScaleInput = unknown,
+  YScaleInput = unknown
+> extends React.Component<
+  ChartProviderProps<XScaleInput, YScaleInput>,
+  ChartProviderState<Datum, XScaleInput, YScaleInput>
 > {
-  state: ChartProviderState = {
+  state: ChartProviderState<Datum, XScaleInput, YScaleInput> = {
     dataRegistry: {},
     margin: null,
     xScale: null,
@@ -103,14 +110,18 @@ export default class ChartProvider<XDatum = unknown, YDatum = unknown> extends R
 
     if (width == null || height == null) return;
 
-    const xScale = createScale<XDatum>({
-      data: combinedData.map(({ key, datum }) => dataRegistry[key]?.xAccessor(datum)) as XDatum[],
+    const xScale = createScale<XScaleInput>({
+      data: combinedData.map(({ key, datum }) =>
+        dataRegistry[key]?.xAccessor(datum),
+      ) as XScaleInput[],
       scaleConfig: xScaleConfig,
       range: [margin.left, width - margin.right],
     });
 
-    const yScale = createScale<YDatum>({
-      data: combinedData.map(({ key, datum }) => dataRegistry[key]?.yAccessor(datum)) as YDatum[],
+    const yScale = createScale<YScaleInput>({
+      data: combinedData.map(({ key, datum }) =>
+        dataRegistry[key]?.yAccessor(datum),
+      ) as YScaleInput[],
       scaleConfig: yScaleConfig,
       range: [height - margin.bottom, margin.top],
     });
