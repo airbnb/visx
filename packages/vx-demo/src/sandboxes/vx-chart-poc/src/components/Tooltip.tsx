@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import TooltipWithBounds from '@vx/tooltip/src/tooltips/TooltipWithBounds';
+import TooltipWithBounds from '@vx/tooltip/lib/tooltips/TooltipWithBounds';
 import TooltipContext from '../context/TooltipContext';
 import ChartContext from '../context/ChartContext';
 import { ScaleType, TooltipData } from '../types';

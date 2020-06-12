@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import BaseBrush, { BrushProps as BaseBrushProps } from '@vx/brush/src/Brush';
+import BaseBrush, { BrushProps as BaseBrushProps } from '@vx/brush/lib/Brush';
 import { ResizeTriggerAreas } from '@vx/brush/lib/types';
 import ChartContext from '../context/ChartContext';
 
