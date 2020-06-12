@@ -19,6 +19,13 @@ const data = cityTemperature.slice(200, 200 + 72).map(({ date, ...d }) => ({
   // @TODO PR soon!
   date: `${date.slice(0, 4)}-${date.slice(4, 6)}-${date.slice(6, 8)}`,
 })) as CityTemperature[];
+
+// @TODO fix this limitation in Axis
+const numDateTicks = 5;
+const dateTickValues = data
+  .filter((d, i, arr) => i % Math.round((arr.length - 1) / numDateTicks) === 0)
+  .map(d => new Date(d.date));
+
 const getDate = (d: CityTemperature) => new Date(d.date);
 const getSfTemperature = (d: CityTemperature) => Number(d['San Francisco']);
 const getNyTemperature = (d: CityTemperature) => Number(d['New York']);
@@ -145,7 +152,7 @@ export default function Example() {
             {/** Date axis */}
             <Axis
               orientation={renderHorizontally ? yAxisOrientation : xAxisOrientation}
-              numTicks={5}
+              tickValues={dateTickValues}
               tickFormat={(d: Date) => d.toISOString?.().split?.('T')[0] ?? d.toString()}
             />
           </XYChart>
