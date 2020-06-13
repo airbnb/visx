@@ -4,6 +4,7 @@ import cityTemperature, { CityTemperature } from '@vx/mock-data/lib/mocks/cityTe
 import defaultTheme from './src/theme/default';
 import darkTheme from './src/theme/darkTheme';
 import Axis from './src/components/Axis';
+import AnimatedAxis from './src/components/AnimatedAxis';
 import ChartProvider from './src/components/providers/ChartProvider';
 import XYChart from './src/components/XYChart';
 import BarSeries from './src/components/series/BarSeries';
@@ -73,6 +74,7 @@ const renderTooltip = ({
 export default function Example() {
   const [theme, setTheme] = useState<'light' | 'dark' | 'none'>('light');
   const [useCustomDomain, setUseCustomDomain] = useState(false);
+  const [autoWidth, setAutoWidth] = useState(false);
   const [renderHorizontally, setRenderHorizontally] = useState(false);
   const [negativeValues, setNegativeValues] = useState(false);
   const [includeZero, setIncludeZero] = useState(false);
@@ -118,7 +120,7 @@ export default function Example() {
         yScale={renderHorizontally ? dateScaleConfig : temperatureScaleConfig}
       >
         <EventProvider>
-          <XYChart height={400} width={800} margin={margin}>
+          <XYChart height={400} width={autoWidth ? undefined : 800} margin={margin}>
             <ChartBackground />
             <BarSeries
               dataKey="austin"
@@ -144,7 +146,7 @@ export default function Example() {
               strokeDasharray="5,3"
             />
             {/** Temperature axis */}
-            <Axis
+            <AnimatedAxis
               label="Temperature (°F)"
               orientation={renderHorizontally ? xAxisOrientation : yAxisOrientation}
               numTicks={4}
@@ -268,10 +270,17 @@ export default function Example() {
           />{' '}
           right
         </label>
+        {/* <br />
+        <label>
+          <input type="checkbox" onChange={() => setAutoWidth(!autoWidth)} checked={autoWidth} />{' '}
+          responsive width
+        </label> */}
       </div>
       <style jsx>{`
         .container {
           position: relative;
+          width: 100%;
+          height: 100%;
         }
         .radio,
         label {
