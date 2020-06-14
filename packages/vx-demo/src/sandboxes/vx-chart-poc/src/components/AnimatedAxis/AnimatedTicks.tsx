@@ -93,7 +93,7 @@ export default function AnimatedTicks<ScaleInput>({
   hideTicks,
 }: AnimatedTicksProps<ScaleInput>) {
   const transitionConfig = useTickTransitionConfig({ margin, width, height, horizontal, scale });
-  const animatedTicks = useTransition(ticks, tick => `${tick.value}`, {
+  const animatedTicks = useTransition(ticks, tick => `${tick.value}-${horizontal}`, {
     unique: true,
     ...transitionConfig,
   });
