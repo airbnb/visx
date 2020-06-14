@@ -54,8 +54,18 @@ export interface ChartContext<Datum = unknown, XScaleInput = unknown, YScaleInpu
 // TooltipContext ---------------------------------------------------------------
 
 export interface TooltipData<Datum = unknown, DataKeys extends string = string> {
+  /** x coord of event in svg space. */
   svgMouseX: number | null;
+  /** y coord of event in svg space. */
   svgMouseY: number | null;
+  /** x coord of event in page space. */
+  pageX: number | null;
+  /** y coord of event in page space. */
+  pageY: number | null;
+  /** x coord of the chart contaainer svg from its boundingClientRect. */
+  svgOriginX: number | null;
+  /** y coord of the chart contaainer svg from its boundingClientRect. */
+  svgOriginY: number | null;
   closestDatum: DatumWithKey<Datum>;
   closestData: {
     [key in DataKeys]: DatumWithKey<Datum>;

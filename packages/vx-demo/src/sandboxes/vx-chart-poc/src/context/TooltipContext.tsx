@@ -1,6 +1,6 @@
 import React from 'react';
-import { EventContext as EventContextType } from '../types';
+import { TooltipContext as TooltipContextType } from '../types';
 
-const EventContext = React.createContext<EventContextType>(null);
+const TooltipContext = React.createContext<TooltipContextType>(null);
 
-export default EventContext;
+export default TooltipContext;

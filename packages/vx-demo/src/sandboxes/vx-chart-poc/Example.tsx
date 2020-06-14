@@ -83,11 +83,13 @@ export default function Example() {
   const [snapTooltipToDataX, setSnapTooltipToDataX] = useState(true);
   const [snapTooltipToDataY, setSnapTooltipToDataY] = useState(true);
   const [dataMultiplier, setDataMultiplier] = useState(1);
+  const [renderTooltipInPortal, setRenderTooltipInPortal] = useState(true);
   const dateScaleConfig: ScaleConfig<string> = useMemo(() => ({ type: 'band' }), []);
   const temperatureScaleConfig: ScaleConfig<number> = useMemo(
     () => ({
       type: 'linear',
       clamp: true,
+      nice: true,
       domain: useCustomDomain ? (negativeValues ? [-100, 50] : [-50, 100]) : undefined,
       includeZero,
     }),
@@ -149,7 +151,7 @@ export default function Example() {
             <AnimatedAxis
               label="Temperature (°F)"
               orientation={renderHorizontally ? xAxisOrientation : yAxisOrientation}
-              numTicks={4}
+              numTicks={5}
             />
             {/** Date axis */}
             <Axis
@@ -162,11 +164,12 @@ export default function Example() {
             snapToDataX={snapTooltipToDataX}
             snapToDataY={snapTooltipToDataY}
             renderTooltip={renderTooltip}
+            renderInPortal={renderTooltipInPortal}
           />
         </EventProvider>
       </ChartProvider>
       <br />
-      <button onClick={() => setDataMultiplier(2 * Math.random())}>Update data</button>
+      <button onClick={() => setDataMultiplier(4 * Math.random())}>Update data</button>
       <br />
       <label>
         <input
@@ -217,22 +220,33 @@ export default function Example() {
           <input type="radio" onChange={() => setTheme('none')} checked={theme === 'none'} /> none
         </label>
       </div>
-      <label>
-        <input
-          type="checkbox"
-          checked={snapTooltipToDataX}
-          onChange={() => setSnapTooltipToDataX(!snapTooltipToDataX)}
-        />
-        Snap tooltip to data <code>x</code>&nbsp;&nbsp;&nbsp;
-      </label>
-      <label>
-        <input
-          type="checkbox"
-          checked={snapTooltipToDataY}
-          onChange={() => setSnapTooltipToDataY(!snapTooltipToDataY)}
-        />
-        Snap tooltip to data <code>y</code>&nbsp;
-      </label>
+      <div>
+        tooltip&nbsp;&nbsp;&nbsp;
+        <label>
+          <input
+            type="checkbox"
+            checked={renderTooltipInPortal}
+            onChange={() => setRenderTooltipInPortal(!renderTooltipInPortal)}
+          />
+          Render tooltip in portal&nbsp;&nbsp;&nbsp;
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            checked={snapTooltipToDataX}
+            onChange={() => setSnapTooltipToDataX(!snapTooltipToDataX)}
+          />
+          Snap tooltip to data <code>x</code>&nbsp;&nbsp;&nbsp;
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            checked={snapTooltipToDataY}
+            onChange={() => setSnapTooltipToDataY(!snapTooltipToDataY)}
+          />
+          Snap tooltip to data <code>y</code>&nbsp;
+        </label>
+      </div>
       <div className="radio">
         x-axis orientation:
         <label>

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useCallback, useRef } from 'react';
+import React, { useContext, useEffect, useCallback, useRef, useState } from 'react';
 import ParentSize from '@vx/responsive/lib/components/ParentSize';
 import ChartContext from '../context/ChartContext';
 import { Margin } from '../types';
@@ -19,6 +19,7 @@ export default function XYChart(props: Props) {
   const { children, width, height, margin = defaultMargin, captureEvents = true } = props;
   const { findNearestData, setChartDimensions } = useContext(ChartContext);
   const { showTooltip, hideTooltip } = useContext(TooltipContext) || {};
+  const [ownBoundingRect, setOwnBoundingClientRect] = useState<null | DOMRect>(null);
 
   // update dimensions in context
   useEffect(() => {
@@ -27,16 +28,35 @@ export default function XYChart(props: Props) {
     }
   }, [setChartDimensions, width, height, margin]);
 
-  const svgRef = useRef<SVGSVGElement>(null);
+  // use state for the ref so that it updates
+  const [svgRef, setSvgRef] = useState<SVGSVGElement | null>(null);
+
+  useEffect(() => {
+    const rafHandle = window.requestAnimationFrame(() => {
+      if (svgRef) {
+        setOwnBoundingClientRect(svgRef.getBoundingClientRect());
+      }
+    });
+    return () => window.cancelAnimationFrame(rafHandle);
+  }, [svgRef, width, height, margin, setOwnBoundingClientRect]);
 
   const onMouseMove = useCallback(
     (event: React.MouseEvent<SVGRectElement, MouseEvent>) => {
       const nearestData = findNearestData(event);
       if (nearestData.closestDatum && showTooltip) {
-        showTooltip({ tooltipData: nearestData });
+        debugger;
+        showTooltip({
+          tooltipData: {
+            ...nearestData,
+            pageX: event.pageX,
+            pageY: event.pageY,
+            svgOriginX: ownBoundingRect?.x,
+            svgOriginY: ownBoundingRect?.y,
+          },
+        });
       }
     },
-    [findNearestData, showTooltip],
+    [findNearestData, showTooltip, ownBoundingRect],
   );
 
   // if width and height aren't both provided, wrap in auto-sizer
@@ -45,7 +65,7 @@ export default function XYChart(props: Props) {
   }
 
   return width > 0 && height > 0 ? (
-    <svg ref={svgRef} width={width} height={height}>
+    <svg ref={setSvgRef} width={width} height={height}>
       {children}
       {captureEvents && (
         <rect
