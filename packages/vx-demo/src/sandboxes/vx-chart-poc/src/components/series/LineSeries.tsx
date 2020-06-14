@@ -23,7 +23,7 @@ function LineSeries<Datum = unknown, XScaleInput = unknown, YScaleInput = unknow
   mouseEvents,
   ...lineProps
 }: LineSeriesProps<Datum, XScaleInput, YScaleInput>) {
-  const { theme, xScale, yScale } = useContext(ChartContext);
+  const { xScale, yScale, colorScale } = useContext(ChartContext);
   const { data, xAccessor, yAccessor } = useRegisteredData<Datum, XScaleInput, YScaleInput>(
     dataKey,
   );
@@ -44,16 +44,12 @@ function LineSeries<Datum = unknown, XScaleInput = unknown, YScaleInput = unknow
     [yScale, yAccessor],
   );
 
+  const color = colorScale(dataKey) ?? '#222';
+
   return (
     <g>
-      <LinePath<Datum>
-        data={data}
-        x={getScaledX}
-        y={getScaledY}
-        stroke={theme?.colors?.[0]}
-        {...lineProps}
-      >
-        {({ path }) => <AnimatedPath {...lineProps} d={path(data) || ''} />}
+      <LinePath<Datum> data={data} x={getScaledX} y={getScaledY} {...lineProps}>
+        {({ path }) => <AnimatedPath stroke={color} {...lineProps} d={path(data) || ''} />}
       </LinePath>
     </g>
   );

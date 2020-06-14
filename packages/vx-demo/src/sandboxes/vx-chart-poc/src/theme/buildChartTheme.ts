@@ -89,11 +89,11 @@ export default function buildChartTheme(theme: ThemeConfig): XYChartTheme {
       label: {
         bottom: {
           ...baseLabel,
-          dy: '1em',
+          dy: '0.75em',
         },
         top: {
           ...baseLabel,
-          dy: '-1em',
+          dy: '-0.75em',
         },
       },
     },
@@ -104,11 +104,11 @@ export default function buildChartTheme(theme: ThemeConfig): XYChartTheme {
       label: {
         left: {
           ...baseLabel,
-          dx: '-1em',
+          dx: '-1.5em',
         },
         right: {
           ...baseLabel,
-          dx: '1em',
+          dx: '1.5em',
         },
       },
     },

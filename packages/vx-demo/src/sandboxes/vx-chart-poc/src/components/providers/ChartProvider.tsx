@@ -1,5 +1,6 @@
 import React from 'react';
 import { localPoint } from '@vx/event';
+import { scaleOrdinal } from '@vx/scale';
 import { voronoi } from '@vx/voronoi';
 
 import defaultTheme from '../../theme/default';
@@ -13,17 +14,20 @@ import {
 } from '../../types';
 import ChartContext from '../../context/ChartContext';
 import createScale from '../../createScale';
+import { defaultStyles } from '@vx/tooltip';
+import { valueOf } from '!!raw-loader!*';
 
 export type ChartProviderProps<XScaleInput, YScaleInput> = {
   theme?: ChartTheme;
   xScale: ScaleConfig<XScaleInput>;
   yScale: ScaleConfig<YScaleInput>;
+  colorScale?: { domain?: string[] };
   children: React.ReactNode;
 };
 
 type ChartProviderState<Datum, XScaleInput, YScaleInput> = Pick<
   ChartContextType<Datum, XScaleInput, YScaleInput>,
-  'xScale' | 'yScale' | 'dataRegistry'
+  'xScale' | 'yScale' | 'colorScale' | 'dataRegistry'
 > & {
   width: number | null;
   height: number | null;
@@ -39,11 +43,16 @@ export default class ChartProvider<
   ChartProviderProps<XScaleInput, YScaleInput>,
   ChartProviderState<Datum, XScaleInput, YScaleInput>
 > {
+  static defaultProps = {
+    theme: defaultTheme,
+  };
+
   state: ChartProviderState<Datum, XScaleInput, YScaleInput> = {
     dataRegistry: {},
     margin: null,
     xScale: null,
     yScale: null,
+    colorScale: null,
     width: null,
     height: null,
     combinedData: [],
@@ -106,7 +115,12 @@ export default class ChartProvider<
   };
 
   getScales = ({ combinedData, dataRegistry, margin, width, height }: ChartProviderState) => {
-    const { xScale: xScaleConfig, yScale: yScaleConfig } = this.props;
+    const {
+      theme,
+      xScale: xScaleConfig,
+      yScale: yScaleConfig,
+      colorScale: colorScaleConfig,
+    } = this.props;
 
     if (width == null || height == null) return;
 
@@ -126,7 +140,13 @@ export default class ChartProvider<
       range: [height - margin.bottom, margin.top],
     });
 
-    return { xScale, yScale };
+    const colorScale = scaleOrdinal({
+      domain: Object.keys(dataRegistry),
+      range: theme.colors,
+      ...colorScaleConfig,
+    });
+
+    return { xScale, yScale, colorScale };
   };
 
   updateScales = () => {
@@ -137,6 +157,7 @@ export default class ChartProvider<
     }
   };
 
+  // @TODO move to util function, support registry overrides
   findNearestData = (event: React.MouseEvent | React.TouchEvent) => {
     const { width, height, xScale, yScale, dataRegistry } = this.state;
     const { x: svgMouseX, y: svgMouseY } = localPoint(event);
@@ -189,16 +210,17 @@ export default class ChartProvider<
 
   render() {
     const { theme } = this.props;
-    const { width, height, margin, xScale, yScale, dataRegistry } = this.state;
+    const { width, height, margin, xScale, yScale, colorScale, dataRegistry } = this.state;
     return (
       <ChartContext.Provider
         value={{
           xScale,
           yScale,
+          colorScale,
           width,
           height,
           margin,
-          theme: theme ?? defaultTheme,
+          theme,
           dataRegistry,
           registerData: this.registerData,
           unregisterData: this.unregisterData,

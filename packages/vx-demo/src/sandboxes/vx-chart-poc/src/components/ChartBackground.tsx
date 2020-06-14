@@ -18,6 +18,7 @@ export default function CustomChartBackground() {
         height={10}
         orientation={['diagonal']}
         stroke={theme?.gridStyles?.stroke}
+        strokeWidth={0.5}
       />
       <rect x={0} y={0} width={width} height={height} fill={theme?.baseColor ?? '#fff'} />
       <rect

@@ -27,7 +27,7 @@ function BarSeries<Datum = unknown, XScaleInput = unknown, YScaleInput = unknown
   barThickness: barThicknessProp,
   ...barProps
 }: BarSeriesProps<Datum, XScaleInput, YScaleInput>) {
-  const { theme, xScale, yScale } = useContext(ChartContext) as ChartContextType<
+  const { theme, colorScale, xScale, yScale } = useContext(ChartContext) as ChartContextType<
     Datum,
     XScaleInput,
     YScaleInput
@@ -38,8 +38,8 @@ function BarSeries<Datum = unknown, XScaleInput = unknown, YScaleInput = unknown
   const getScaledX = useCallback((d: Datum) => xScale(xAccessor(d)), [xScale, xAccessor]);
   const getScaledY = useCallback((d: Datum) => yScale(yAccessor(d)), [yScale, yAccessor]);
 
-  const [xMin, xMax] = xScale.range();
-  const [yMax, yMin] = yScale.range();
+  const [xMin, xMax] = xScale.range() as number[];
+  const [yMax, yMin] = yScale.range() as number[];
   const innerWidth = Math.abs(xMax - xMin);
   const innerHeight = Math.abs(yMax - yMin);
   const barThickness: number =
@@ -90,7 +90,8 @@ function BarSeries<Datum = unknown, XScaleInput = unknown, YScaleInput = unknown
           y={y}
           width={width}
           height={height}
-          fill={theme?.colors?.[1]}
+          fill={colorScale(dataKey)}
+          stroke={theme.baseColor ?? 'white'}
           {...barProps}
         />
       ))}

@@ -2,12 +2,12 @@ import React, { useContext, useMemo } from 'react';
 import BaseAxis, { AxisProps as BaseAxisProps } from '@vx/axis/lib/axis/Axis';
 
 import ChartContext from '../context/ChartContext';
-import { ScaleOutput } from '../types';
+import withDefinedContextScales from '../enhancers/withDefinedContextScales';
 
 type AxisProps<ScaleInpu> = Omit<BaseAxisProps<ScaleInpu>, 'scale'>;
 
-export default function Axis<ScaleInput = unknown>(props: AxisProps<ScaleInput>) {
-  const { theme, xScale, yScale, margin } = useContext(ChartContext);
+function Axis<ScaleInput = unknown>(props: AxisProps<ScaleInput>) {
+  const { theme, xScale, yScale, margin, width, height } = useContext(ChartContext);
   const { orientation } = props;
 
   // The biggest difference between Axes is their label + tick label styles
@@ -20,6 +20,7 @@ export default function Axis<ScaleInput = unknown>(props: AxisProps<ScaleInput>)
   const tickLabelProps = useMemo(() => {
     if (props.tickLabelProps) return props.tickLabelProps;
     const themeTickLabelProps = theme?.[themeTickStylesKey]?.label?.[orientation];
+
     return themeTickLabelProps
       ? // by default, wrap tick labels within the allotted margin space
         () => ({ ...themeTickLabelProps, width: margin[orientation] })
@@ -32,21 +33,10 @@ export default function Axis<ScaleInput = unknown>(props: AxisProps<ScaleInput>)
 
   const axisStyles = useMemo(() => theme[themeAxisStylesKey], [theme, themeAxisStylesKey]);
 
-  // early return if scale is not available in context
-  if (!xScale || !yScale) return null;
-
   const topOffset =
-    orientation === 'bottom'
-      ? Math.max(...(yScale.range() as ScaleOutput[])) || 0
-      : orientation === 'top'
-      ? Math.min(...(yScale.range() as ScaleOutput[])) || 0
-      : 0;
+    orientation === 'bottom' ? height - margin.bottom : orientation === 'top' ? margin.top : 0;
   const leftOffset =
-    orientation === 'left'
-      ? Math.min(...(xScale.range() as ScaleOutput[])) ?? 0
-      : orientation === 'right'
-      ? Math.max(...(xScale.range() as ScaleOutput[])) ?? 0
-      : 0;
+    orientation === 'left' ? margin.left : orientation === 'right' ? width - margin.right : 0;
 
   return (
     <BaseAxis<ScaleInput>
@@ -63,3 +53,5 @@ export default function Axis<ScaleInput = unknown>(props: AxisProps<ScaleInput>)
     />
   );
 }
+
+export default withDefinedContextScales(Axis);

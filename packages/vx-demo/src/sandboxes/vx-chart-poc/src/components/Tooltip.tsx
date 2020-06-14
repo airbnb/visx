@@ -1,14 +1,19 @@
 import React, { useContext } from 'react';
 import TooltipWithBounds from '@vx/tooltip/lib/tooltips/TooltipWithBounds';
+import { defaultStyles } from '@vx/tooltip';
+import { scaleOrdinal } from '@vx/scale';
+
 import TooltipContext from '../context/TooltipContext';
 import ChartContext from '../context/ChartContext';
 import Portal from './Portal';
 import { TooltipData } from '../types';
-import { render } from 'enzyme';
-import { defaultStyles } from '@vx/tooltip';
 
-type TooltipProps = {
-  renderTooltip: (d: TooltipData) => React.ReactNode;
+export type RenderTooltipArgs<Datum, DataKeys extends string> = TooltipData<Datum, DataKeys> & {
+  colorScale: typeof scaleOrdinal;
+};
+
+export type TooltipProps<Datum, DataKeys extends string> = {
+  renderTooltip: (d: RenderTooltipArgs<Datum, DataKeys>) => React.ReactNode;
   snapToDataX?: boolean;
   snapToDataY?: boolean;
   showVerticalCrosshair?: boolean;
@@ -16,31 +21,16 @@ type TooltipProps = {
   renderInPortal?: boolean;
 };
 
-// function getTooltipCoords({
-//   tooltipData,
-//   snapToDataX,
-//   snapToDataY,
-//   renderInPortal,
-// }: { tooltipData: TooltipData } & Pick<
-//   TooltipProps,
-//   'snapToDataX' | 'snapToDataY' | 'renderInPortal'
-// >) {
-//   const { closestDatum, svgMouseX, svgMouseY, pageX, pageY, svgOriginX, svgOriginY } =
-//     tooltipData || {};
-
-//   let coords: { x: number | null; y: number | null } = { x: null, y: null };
-
-// }
-
-export default function Tooltip({
+export default function Tooltip<Datum, DataKeys extends string>({
   renderTooltip,
   snapToDataX,
   snapToDataY,
   showVerticalCrosshair = true,
   renderInPortal = true,
-}: TooltipProps) {
+}: TooltipProps<Datum, DataKeys>) {
   const { tooltipData } = useContext(TooltipContext) || {};
-  const { margin, xScale, yScale, dataRegistry, height, theme } = useContext(ChartContext) || {};
+  const { margin, xScale, yScale, colorScale, dataRegistry, height, theme } =
+    useContext(ChartContext) || {};
 
   // early return if there's no tooltip
   const { closestDatum, svgMouseX, svgMouseY, pageX, pageY, svgOriginX, svgOriginY } =
@@ -82,7 +72,7 @@ export default function Tooltip({
             transform: `translate(${xCoord}px,${
               renderInPortal ? svgOriginY + margin.top : margin.top
             }px)`,
-            borderLeft: `1px solid ${theme.xAxisStyles.stroke}`,
+            borderLeft: `1px solid ${theme?.xAxisStyles?.stroke ?? '#222'}`,
             pointerEvents: 'none',
           }}
         />
@@ -90,9 +80,13 @@ export default function Tooltip({
       <TooltipWithBounds
         left={xCoord}
         top={yCoord}
-        style={{ ...defaultStyles, background: theme.baseColor, color: theme.xAxisStyles.stroke }}
+        style={{
+          ...defaultStyles,
+          background: theme?.baseColor ?? 'white',
+          color: theme?.xAxisStyles?.stroke ?? '#222',
+        }}
       >
-        {renderTooltip(tooltipData)}
+        {renderTooltip({ ...tooltipData, colorScale })}
       </TooltipWithBounds>
     </Container>
   );

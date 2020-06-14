@@ -11,8 +11,8 @@ import BarSeries from './src/components/series/BarSeries';
 import LineSeries from './src/components/series/LineSeries';
 import ChartBackground from './src/components/ChartBackground';
 import EventProvider from './src/components/providers/TooltipProvider';
-import Tooltip from './src/components/Tooltip';
-import { TooltipData, ScaleConfig } from './src/types';
+import Tooltip, { RenderTooltipArgs } from './src/components/Tooltip';
+import { ScaleConfig } from './src/types';
 
 const data = cityTemperature.slice(200, 200 + 72).map(({ date, ...d }) => ({
   ...d,
@@ -32,21 +32,19 @@ const getSfTemperature = (d: CityTemperature) => Number(d['San Francisco']);
 const getNyTemperature = (d: CityTemperature) => Number(d['New York']);
 const getAustinTemperature = (d: CityTemperature) => Number(d.Austin);
 
-const nyColor = '#654062';
-const austinColor = '#fbd46d';
-const sfColor = '#ff9c71';
 const margin = { top: 50, right: 50, bottom: 50, left: 50 };
 
 const renderTooltip = ({
   closestData,
   closestDatum,
-}: TooltipData<CityTemperature, 'austin' | 'sf' | 'ny'>) => (
+  colorScale,
+}: RenderTooltipArgs<CityTemperature, 'austin' | 'sf' | 'ny'>) => (
   <>
     <div>{closestDatum.datum.date}</div>
     <br />
     <div
       style={{
-        color: sfColor,
+        color: colorScale('sf'),
         textDecoration: closestDatum.key === 'sf' ? 'underline solid currentColor' : 'none',
       }}
     >
@@ -54,7 +52,7 @@ const renderTooltip = ({
     </div>
     <div
       style={{
-        color: nyColor,
+        color: colorScale('ny'),
         textDecoration: closestDatum.key === 'ny' ? 'underline solid currentColor' : 'none',
       }}
     >
@@ -62,7 +60,7 @@ const renderTooltip = ({
     </div>
     <div
       style={{
-        color: austinColor,
+        color: colorScale('austin'),
         textDecoration: closestDatum.key === 'austin' ? 'underline solid currentColor' : 'none',
       }}
     >
@@ -115,9 +113,16 @@ export default function Example() {
 
   return (
     <div className="container">
+      {/** @ts-ignore */}
       <ChartProvider
-        // @ts-ignore {} is not a valid theme
-        theme={theme === 'light' ? defaultTheme : theme === 'dark' ? darkTheme : {}}
+        theme={
+          theme === 'light'
+            ? { ...defaultTheme, colors: ['#fbd46d', '#ff9c71', '#654062'] }
+            : theme === 'dark'
+            ? { ...darkTheme, colors: ['#916dd5', '#fbcffc', '#ffeb99'] }
+            : // @ts-ignore {} is not a valid theme
+              {}
+        }
         xScale={renderHorizontally ? temperatureScaleConfig : dateScaleConfig}
         yScale={renderHorizontally ? dateScaleConfig : temperatureScaleConfig}
       >
@@ -127,8 +132,6 @@ export default function Example() {
             <BarSeries
               dataKey="austin"
               data={data}
-              fill={austinColor}
-              stroke="white"
               {...getAccessors(getAustinTemperature)}
               horizontal={renderHorizontally}
             />
@@ -136,14 +139,12 @@ export default function Example() {
               dataKey="sf"
               data={data}
               {...getAccessors(getSfTemperature, false)}
-              stroke={sfColor}
               strokeWidth={1.5}
             />
             <LineSeries
               dataKey="ny"
               data={data}
               {...getAccessors(getNyTemperature)}
-              stroke={nyColor}
               strokeWidth={1.5}
               strokeDasharray="5,3"
             />

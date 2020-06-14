@@ -12,6 +12,13 @@ import withDefinedContextScales from '../../enhancers/withDefinedContextScales';
 
 type AnimatedAxisProps<ScaleInpu> = Omit<BaseAxisProps<ScaleInpu>, 'scale' | 'children'>;
 
+const defaultLabelProps = {
+  textAnchor: 'middle',
+  fontFamily: 'Arial',
+  fontSize: 10,
+  fill: '#222',
+} as const;
+
 function AnimatedAxis<ScaleInput = unknown>(props: AnimatedAxisProps<ScaleInput>) {
   const { theme, xScale, yScale, margin, width, height } = useContext(ChartContext);
   const { orientation } = props;
@@ -50,7 +57,8 @@ function AnimatedAxis<ScaleInput = unknown>(props: AnimatedAxisProps<ScaleInput>
   const axisStroke = props.stroke ?? axisStyles?.stroke;
   const axisStrokeWidth = props.strokeWidth ?? axisStyles?.strokeWidth;
   const axisLabelOffset = props.labelOffset ?? 14;
-  const axisLabelProps = props.labelProps ?? axisStyles?.label?.[orientation];
+  const axisLabelProps =
+    (props.labelProps || axisStyles?.label?.[orientation]) ?? defaultLabelProps;
 
   return (
     <BaseAxis<ScaleInput>
@@ -99,7 +107,7 @@ function AnimatedAxis<ScaleInput = unknown>(props: AnimatedAxisProps<ScaleInput>
                 tickLabelFontSize: 0, // @TODO this doesn't seem to matter?
                 tickLength,
               })}
-              {...axisStyles?.label?.[orientation]}
+              {...axisLabelProps}
             >
               {props.label}
             </Text>

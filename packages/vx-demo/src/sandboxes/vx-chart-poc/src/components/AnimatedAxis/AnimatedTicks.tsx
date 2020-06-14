@@ -22,6 +22,14 @@ type AnimatedTicksProps<ScaleInput> = {
   'orientation' | 'tickLabelProps' | 'tickClassName' | 'hideTicks'
 >;
 
+const defaultTickLabelProps = (/** tickValue, index */) =>
+  ({
+    textAnchor: 'middle',
+    fontFamily: 'Arial',
+    fontSize: 10,
+    fill: '#222',
+  } as const);
+
 /** Hook that returns memoized config for react-spring's transition from/enter/update/leave */
 function useTickTransitionConfig<ScaleInput>({
   horizontal,
@@ -104,7 +112,7 @@ export default function AnimatedTicks<ScaleInput>({
       {animatedTicks.map(({ item, key, props }, index) => {
         // @ts-ignore react-spring types don't handle fromX, etc.
         const { fromX, toX, fromY, toY, opacity } = props;
-        const tickLabelPropsObj = tickLabelProps(item.value, index);
+        const tickLabelPropsObj = (tickLabelProps ?? defaultTickLabelProps)(item.value, index);
         return (
           <animated.g key={key} className={cx('vx-axis-tick', tickClassName)}>
             {!hideTicks && (

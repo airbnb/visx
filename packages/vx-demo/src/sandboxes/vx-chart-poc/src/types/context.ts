@@ -1,4 +1,5 @@
 import { UseTooltipParams } from '@vx/tooltip/lib/hooks/useTooltip';
+import { scaleOrdinal } from '@vx/scale';
 import { XYChartTheme } from './theme';
 import { ScaleType, Margin } from '.';
 
@@ -34,6 +35,7 @@ export interface ChartContext<Datum = unknown, XScaleInput = unknown, YScaleInpu
   theme: XYChartTheme;
   xScale: ScaleType<XScaleInput> | null;
   yScale: ScaleType<YScaleInput> | null;
+  colorScale: typeof scaleOrdinal;
   width: number | null;
   height: number | null;
   margin: Margin;
