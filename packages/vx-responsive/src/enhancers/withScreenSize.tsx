@@ -41,6 +41,7 @@ export default function withScreenSize<BaseComponentProps extends WithScreenSize
 
     componentWillUnmount() {
       window.removeEventListener('resize', this.handleResize, false);
+      this.handleResize.cancel();
     }
 
     resize = (/** event */) => {

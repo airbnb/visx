@@ -58,6 +58,7 @@ export default function withParentSize<BaseComponentProps extends WithParentSize
     componentWillUnmount() {
       if (this.animationFrameID) window.cancelAnimationFrame(this.animationFrameID);
       if (this.resizeObserver) this.resizeObserver.disconnect();
+      this.debouncedResize.cancel();
     }
 
     setRef = (ref: HTMLDivElement) => {
