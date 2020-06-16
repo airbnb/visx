@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useContext } from 'react';
 import ChartContext from '../context/ChartContext';
-import { SeriesProps } from '../types';
+import { SeriesProps, LegendShape } from '../types';
 import useDataRegistry from '../hooks/useDataRegistry';
 
 /**
@@ -13,12 +13,22 @@ export default function withRegisteredData<
   XScaleInput,
   YScaleInput,
   BaseComponentProps extends SeriesProps<Datum, XScaleInput, YScaleInput>
->(BaseSeriesComponent: React.ComponentType<BaseComponentProps>) {
+>(
+  BaseSeriesComponent: React.ComponentType<BaseComponentProps>,
+  legendShape?: LegendShape | ((props: BaseComponentProps) => LegendShape),
+) {
   const WrappedSeriesComponent: FunctionComponent<BaseComponentProps> = props => {
     const { dataKey, data, xAccessor, yAccessor, mouseEvents } = props;
     const { xScale, yScale } = useContext(ChartContext);
 
-    useDataRegistry({ key: dataKey, data, xAccessor, yAccessor, mouseEvents });
+    useDataRegistry({
+      key: dataKey,
+      data,
+      xAccessor,
+      yAccessor,
+      mouseEvents,
+      legendShape: typeof legendShape === 'function' ? legendShape(props) : legendShape,
+    });
 
     return xScale && yScale ? <BaseSeriesComponent {...props} /> : null;
   };

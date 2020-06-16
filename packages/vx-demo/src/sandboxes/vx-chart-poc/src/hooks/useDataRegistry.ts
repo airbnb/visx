@@ -8,12 +8,13 @@ export default function useDataRegistry({
   xAccessor,
   yAccessor,
   mouseEvents,
+  legendShape,
 }: RegisterDataArgs) {
   const { registerData, unregisterData } = useContext(ChartContext);
 
   // register data on mount
   useEffect(() => {
-    registerData({ key, data, xAccessor, yAccessor, mouseEvents });
+    registerData({ key, data, xAccessor, yAccessor, mouseEvents, legendShape });
     return () => unregisterData(key);
-  }, [registerData, unregisterData, key, data, xAccessor, yAccessor, mouseEvents]);
+  }, [registerData, unregisterData, key, data, xAccessor, yAccessor, mouseEvents, legendShape]);
 }

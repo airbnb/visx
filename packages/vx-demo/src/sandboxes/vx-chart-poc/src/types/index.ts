@@ -1,10 +1,10 @@
-import { GenericScale } from '@vx/axis/lib/types';
+import { ScaleType as BaseScaleType } from '@vx/legend/lib/types';
 import { XYChartTheme } from './theme';
 
 export * from './context';
 
 export type ChartTheme = XYChartTheme;
-
+export type LegendShape = 'rect' | 'line' | 'dashed-line' | 'circle';
 export type StringLike = string | { toString(): string };
 export type NumberLike = number | { valueOf(): number };
 export type ScaleOutput = number;
@@ -20,7 +20,7 @@ export type ScaleConfig<ScaleInput> = {
   clamp?: boolean;
 };
 
-export type ScaleType<ScaleInput> = GenericScale<ScaleInput>;
+export type ScaleType<ScaleInput, ScaleOutput> = BaseScaleType<ScaleInput, ScaleOutput>;
 
 export type Margin = {
   top: number;

@@ -12,6 +12,7 @@
     "@vx/axis": "latest",
     "@vx/brush": "latest",
     "@vx/event": "latest",
+    "@vx/legend": "latest",
     "@vx/mock-data": "latest",
     "@vx/pattern": "latest",
     "@vx/responsive": "latest",

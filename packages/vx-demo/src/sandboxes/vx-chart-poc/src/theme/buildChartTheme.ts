@@ -51,7 +51,7 @@ export default function buildChartTheme(theme: ThemeConfig): XYChartTheme {
   const tickLabels: { top: TextStyles; right: TextStyles; bottom: TextStyles; left: TextStyles } = {
     top: {
       ...baseTickLabel,
-      dy: '-0.25em',
+      dy: '-0.25em', // needs to include font-size
     },
     bottom: {
       ...baseTickLabel,
@@ -89,11 +89,11 @@ export default function buildChartTheme(theme: ThemeConfig): XYChartTheme {
       label: {
         bottom: {
           ...baseLabel,
-          dy: '0.75em',
+          dy: '0.125em',
         },
         top: {
           ...baseLabel,
-          dy: '-0.75em',
+          dy: '-0.25em',
         },
       },
     },

@@ -14,9 +14,8 @@ import {
 } from '../../types';
 import ChartContext from '../../context/ChartContext';
 import createScale from '../../createScale';
-import { defaultStyles } from '@vx/tooltip';
-import { valueOf } from '!!raw-loader!*';
 
+/** Props that can be passed to initialize/update the provider config. */
 export type ChartProviderProps<XScaleInput, YScaleInput> = {
   theme?: ChartTheme;
   xScale: ScaleConfig<XScaleInput>;
@@ -49,7 +48,7 @@ export default class ChartProvider<
 
   state: ChartProviderState<Datum, XScaleInput, YScaleInput> = {
     dataRegistry: {},
-    margin: null,
+    margin: { top: 30, right: 30, bottom: 30, left: 30 },
     xScale: null,
     yScale: null,
     colorScale: null,
@@ -57,6 +56,16 @@ export default class ChartProvider<
     height: null,
     combinedData: [],
   };
+
+  componentDidUpdate(prevProps: ChartProviderProps<XScaleInput, YScaleInput>) {
+    if (
+      JSON.stringify(this.props.xScale) !== JSON.stringify(prevProps.xScale) ||
+      JSON.stringify(this.props.yScale) !== JSON.stringify(prevProps.yScale) ||
+      JSON.stringify(this.props?.theme?.colors) !== JSON.stringify(prevProps?.theme?.colors)
+    ) {
+      this.updateScales();
+    }
+  }
 
   /** Adds data to the registry and to combined data if it supports events. */
   registerData: RegisterData = dataToRegister => {
@@ -114,7 +123,13 @@ export default class ChartProvider<
     }
   };
 
-  getScales = ({ combinedData, dataRegistry, margin, width, height }: ChartProviderState) => {
+  getScales = ({
+    combinedData,
+    dataRegistry,
+    margin,
+    width,
+    height,
+  }: ChartProviderState<Datum, XScaleInput, YScaleInput>) => {
     const {
       theme,
       xScale: xScaleConfig,

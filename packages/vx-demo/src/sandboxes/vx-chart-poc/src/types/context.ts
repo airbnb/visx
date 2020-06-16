@@ -1,7 +1,6 @@
 import { UseTooltipParams } from '@vx/tooltip/lib/hooks/useTooltip';
-import { scaleOrdinal } from '@vx/scale';
 import { XYChartTheme } from './theme';
-import { ScaleType, Margin } from '.';
+import { ScaleType, Margin, ScaleOutput, LegendShape } from '.';
 
 // ChartContext ---------------------------------------------------------------
 export interface DataRegistry<Datum = unknown, XScaleInput = unknown, yScaleInput = unknown> {
@@ -16,6 +15,8 @@ export interface DataRegistry<Datum = unknown, XScaleInput = unknown, yScaleInpu
     yAccessor: (d: unknown) => yScaleInput;
     /** whether the entry supports mouse events. */
     mouseEvents: boolean;
+    /** Legend shape */
+    legendShape?: LegendShape;
   };
 }
 
@@ -25,17 +26,23 @@ export interface RegisterDataArgs {
   xAccessor: DataRegistry[string]['xAccessor'];
   yAccessor: DataRegistry[string]['yAccessor'];
   mouseEvents?: boolean;
+  legendShape?: LegendShape;
 }
 
 export type RegisterData = (data: RegisterDataArgs) => void;
 
 export type DatumWithKey<Datum = unknown> = { datum: Datum; key: string; index: number };
 
-export interface ChartContext<Datum = unknown, XScaleInput = unknown, YScaleInput = unknown> {
+export interface ChartContext<
+  Datum = unknown,
+  XScaleInput = unknown,
+  YScaleInput = unknown,
+  DataKeys extends string = string
+> {
   theme: XYChartTheme;
-  xScale: ScaleType<XScaleInput> | null;
-  yScale: ScaleType<YScaleInput> | null;
-  colorScale: typeof scaleOrdinal;
+  xScale: ScaleType<XScaleInput, ScaleOutput> | null;
+  yScale: ScaleType<YScaleInput, ScaleOutput> | null;
+  colorScale: ScaleType<DataKeys, string>;
   width: number | null;
   height: number | null;
   margin: Margin;
@@ -68,7 +75,9 @@ export interface TooltipData<Datum = unknown, DataKeys extends string = string> 
   svgOriginX: number | null;
   /** y coord of the chart contaainer svg from its boundingClientRect. */
   svgOriginY: number | null;
+  /** The closest datum across all `dataKeys`. */
   closestDatum: DatumWithKey<Datum>;
+  /** The closest datum for each `dataKey`. */
   closestData: {
     [key in DataKeys]: DatumWithKey<Datum>;
   };
