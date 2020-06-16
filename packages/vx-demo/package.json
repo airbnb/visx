@@ -4,9 +4,10 @@
   "description": "vx demo",
   "repository": "https://github.com/hshoff/vx",
   "scripts": {
-    "dev": "next ./src",
-    "build": "next build ./src",
-    "start": "next start ./src"
+    "dev": "next",
+    "build": "next build && next export",
+    "start": "next start",
+    "preview": "yarn build && cd ./out && npx serve"
   },
   "keywords": [
     "vx",
