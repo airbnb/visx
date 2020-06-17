@@ -1,12 +1,15 @@
 import React from 'react';
 
-export type LegendLabelProps = {
+export type LegendLabelOwnProps = {
   align?: string;
   label?: React.ReactNode;
   flex?: string | number;
   margin?: string | number;
   children?: React.ReactNode;
 };
+
+export type LegendLabelProps = LegendLabelOwnProps &
+  Omit<React.HTMLProps<HTMLDivElement>, keyof LegendLabelOwnProps>;
 
 export default function LegendLabel({
   flex = '1',
@@ -15,7 +18,7 @@ export default function LegendLabel({
   align = 'left',
   children,
   ...restProps
-}: LegendLabelProps & Omit<React.HTMLProps<HTMLDivElement>, keyof LegendLabelProps>) {
+}: LegendLabelProps) {
   return (
     <div
       className="vx-legend-label"
