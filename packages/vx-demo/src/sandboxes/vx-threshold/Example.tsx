@@ -7,13 +7,11 @@ import { scaleTime, scaleLinear } from '@vx/scale';
 import { AxisLeft, AxisBottom } from '@vx/axis';
 import { GridRows, GridColumns } from '@vx/grid';
 import cityTemperature, { CityTemperature } from '@vx/mock-data/lib/mocks/cityTemperature';
-import { timeParse } from 'd3-time-format';
 
-const parseDate = timeParse('%Y%m%d');
 export const background = '#f3f3f3';
 
 // accessors
-const date = (d: CityTemperature) => (parseDate(d.date) as Date).valueOf();
+const date = (d: CityTemperature) => new Date(d.date).valueOf();
 const ny = (d: CityTemperature) => Number(d['New York']);
 const sf = (d: CityTemperature) => Number(d['San Francisco']);
 

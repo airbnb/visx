@@ -21,9 +21,9 @@ const purple = '#9caff6';
 export const background = '#612efb';
 const defaultMargin = { top: 20, right: 20, bottom: 20, left: 50 };
 
-const parseDate = timeParse('%Y%m%d');
+const parseDate = timeParse('%Y-%m-%d');
 const format = timeFormat('%b %d');
-const formatDate = (date: string) => format(parseDate(date) as Date);
+const formatDate = (date: string) => format(parseDate(date));
 function max<D>(arr: D[], fn: (d: D) => number) {
   return Math.max(...arr.map(fn));
 }

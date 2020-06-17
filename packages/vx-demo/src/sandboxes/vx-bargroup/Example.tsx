@@ -24,9 +24,9 @@ const data = cityTemperature.slice(0, 8);
 const keys = Object.keys(data[0]).filter(d => d !== 'date') as CityName[];
 const defaultMargin = { top: 40, right: 0, bottom: 40, left: 0 };
 
-const parseDate = timeParse('%Y%m%d');
+const parseDate = timeParse('%Y-%m-%d');
 const format = timeFormat('%b %d');
-const formatDate = (date: string) => format(parseDate(date) as Date);
+const formatDate = (date: string) => format(parseDate(date));
 
 // accessors
 const getDate = (d: CityTemperature) => d.date;
