@@ -51,16 +51,18 @@ export type ItemTransformer<Datum, Output> = (
 export type RenderShapeProvidedProps<Data, Output> = {
   width?: string | number;
   height?: string | number;
-  label?: FormattedLabel<Data, Output>;
+  label: FormattedLabel<Data, Output>;
+  item: Data;
+  itemIndex: number;
   fill?: string;
   size?: string | number;
-  // TODO: ideally this would support SVGProps, but this is invalid for Rect/Circle shapes
   style?: React.CSSProperties;
 };
 
 export type LegendShape<Data, Output> =
   | 'rect'
   | 'circle'
+  | 'line'
   | React.FC<RenderShapeProvidedProps<Data, Output>>
   | React.ComponentClass<RenderShapeProvidedProps<Data, Output>>;
 

@@ -16,7 +16,7 @@ export default function ShapeCircle({ fill, width, height, style }: ShapeCircleP
   return (
     <svg width={size} height={size}>
       <Group top={radius} left={radius}>
-        <circle r={radius} fill={String(fill)} style={style} />
+        <circle r={radius} fill={fill} style={style} />
       </Group>
     </svg>
   );

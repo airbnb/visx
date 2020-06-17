@@ -5,6 +5,8 @@ import { FormattedLabel, LegendShape as LegendShapeType } from '../../types';
 
 export type LegendShapeProps<Data, Output> = {
   label: FormattedLabel<Data, Output>;
+  item: Data;
+  itemIndex: number;
   margin?: string | number;
   shape?: LegendShapeType<Data, Output>;
   fill?: (label: FormattedLabel<Data, Output>) => any;
@@ -20,6 +22,8 @@ export default function LegendShape<Data, Output>({
   height,
   margin,
   label,
+  item,
+  itemIndex,
   fill,
   size,
   shapeStyle,
@@ -36,6 +40,8 @@ export default function LegendShape<Data, Output>({
     >
       {renderShape<Data, Output>({
         shape,
+        item,
+        itemIndex,
         label,
         width,
         height,
