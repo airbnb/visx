@@ -59,6 +59,16 @@ const Patterns: React.FC<{ id: string }>[] = [
       width={6}
       stroke="black"
       strokeWidth={1}
+      orientation={['diagonalRightToLeft']}
+    />
+  ),
+  ({ id }) => (
+    <PatternLines
+      id={id}
+      height={6}
+      width={6}
+      stroke="black"
+      strokeWidth={1}
       orientation={['vertical', 'horizontal']}
     />
   ),
@@ -100,7 +110,7 @@ const Patterns: React.FC<{ id: string }>[] = [
 ];
 
 export default function Example({ width, height, margin = defaultMargin }: PatternProps) {
-  const numColumns = width > 600 ? 4 : 2;
+  const numColumns = 3;
   const numRows = Patterns.length / numColumns;
   const columnWidth = Math.max((width - margin.left - margin.right) / numColumns, 0);
   const rowHeight = Math.max((height - margin.bottom - margin.top) / numRows, 0);
