@@ -28,6 +28,7 @@
     "react-dom": "^16",
     "react-scripts-ts": "3.1.0",
     "react-spring": "^8.0.27",
+    "react-use-measure": "^2.0.1",
     "resize-observer-polyfill": "1.5.1",
     "typescript": "^3"
   },
