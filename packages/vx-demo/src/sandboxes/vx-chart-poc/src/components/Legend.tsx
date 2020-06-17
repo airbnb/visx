@@ -1,10 +1,10 @@
 import React, { useContext, useCallback, useMemo } from 'react';
 import BaseLegend, { LegendProps as BaseLegendProps } from '@vx/legend/lib/legends/Legend';
 import Rect from '@vx/legend/lib/shapes/Rect';
-import Line from '@vx/legend/lib/shapes/Line';
 import Circle from '@vx/legend/lib/shapes/Circle';
 
 import ChartContext from '../context/ChartContext';
+import Line from './LegendLineShape';
 
 // convenience exports to suppor easy renderShape overrides
 export const RectShape = Rect;
