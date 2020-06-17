@@ -54,7 +54,16 @@ export default function Axis<ScaleInput>({
   tickComponent,
   top = 0,
 }: AxisProps<ScaleInput>) {
-  const values = tickValues || (scale.ticks ? scale.ticks(numTicks) : scale.domain());
+  const values =
+    tickValues ||
+    (scale.ticks
+      ? scale.ticks(numTicks)
+      : scale
+          .domain()
+          .filter(
+            (_, index, arr) =>
+              numTicks == null || index % Math.round((arr.length - 1) / numTicks) === 0,
+          ));
   const format = tickFormat || (scale.tickFormat ? scale.tickFormat() : toString);
 
   const range = scale.range();
