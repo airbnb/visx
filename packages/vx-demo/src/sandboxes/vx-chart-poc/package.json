@@ -11,6 +11,7 @@
     "@types/react-dom": "^16",
     "@vx/axis": "latest",
     "@vx/brush": "latest",
+    "@vx/group": "latest",
     "@vx/event": "latest",
     "@vx/legend": "latest",
     "@vx/mock-data": "latest",

@@ -1,5 +1,5 @@
 /* eslint-disable unicorn/consistent-function-scoping */
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useState, useMemo } from 'react';
 import cityTemperature, { CityTemperature } from '@vx/mock-data/lib/mocks/cityTemperature';
 import defaultTheme from './src/theme/default';
 import darkTheme from './src/theme/darkTheme';
@@ -18,7 +18,7 @@ import CustomLegendShape from './src/components/CustomLegendShape';
 
 type DataKeys = 'austin' | 'sf' | 'ny';
 
-const data = cityTemperature.slice(200, 200 + 72).map(({ date, ...d }) => ({
+const data = cityTemperature.slice(100, 100 + 72).map(({ date, ...d }) => ({
   ...d,
   // current format is like `20200105` which you can't form a valid date from
   // @TODO PR soon!
@@ -26,7 +26,8 @@ const data = cityTemperature.slice(200, 200 + 72).map(({ date, ...d }) => ({
   key: date,
 })) as CityTemperature[];
 
-const halfData = data.slice(0, Math.floor(data.length / 2));
+// @TODO wip updating data, not currently used
+// const halfData = data.slice(0, Math.floor(data.length / 2));
 
 const numDateTicks = 5;
 
@@ -35,8 +36,8 @@ const getSfTemperature = (d: CityTemperature) => Number(d['San Francisco']);
 const getNyTemperature = (d: CityTemperature) => Number(d['New York']);
 const getAustinTemperature = (d: CityTemperature) => Number(d.Austin);
 
-const axisTopMargin = { top: 40, right: 50, bottom: 5, left: 50 };
-const axisBottomMargin = { top: 5, right: 50, bottom: 40, left: 50 };
+const axisTopMargin = { top: 40, right: 50, bottom: 30, left: 50 };
+const axisBottomMargin = { top: 30, right: 50, bottom: 40, left: 50 };
 
 const colorScaleConfig: { domain: DataKeys[] } = { domain: ['austin', 'sf', 'ny'] };
 const legendLabelFormat = (d: DataKeys) =>
@@ -161,6 +162,7 @@ export default function Example() {
   );
 
   const AxisComponent = useAnimatedAxes ? AnimatedAxis : Axis;
+
   const legend = (
     <Legend
       labelFormat={legendLabelFormat}
@@ -194,12 +196,7 @@ export default function Example() {
               margin={xAxisOrientation === 'top' ? axisTopMargin : axisBottomMargin}
             >
               <ChartBackground />
-              <BarSeries
-                dataKey="austin"
-                data={currData}
-                {...austinAccessors}
-                horizontal={renderHorizontally}
-              />
+              <BarSeries dataKey="austin" data={currData} {...austinAccessors} />
               <LineSeries dataKey="sf" data={currData} {...sfAccessors} strokeWidth={1.5} />
               <LineSeries
                 dataKey="ny"
@@ -230,11 +227,10 @@ export default function Example() {
               renderTooltip={renderTooltip}
               renderInPortal={renderTooltipInPortal}
             />
+            {legendTopBottom === 'bottom' && legend}
           </div>
-          {legendTopBottom === 'bottom' && legend}
         </EventProvider>
       </ChartProvider>
-      <br />
       <br />
       <div className="controls">
         <div>
@@ -480,7 +476,8 @@ export default function Example() {
         .container {
           position: relative;
           width: 100%;
-          height: 100%;
+          display: flex;
+          flex-direction: column;
         }
         .controls {
           font-size: 14px;
