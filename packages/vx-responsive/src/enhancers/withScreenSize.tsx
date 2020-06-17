@@ -23,40 +23,33 @@ export default function withScreenSize<BaseComponentProps extends WithScreenSize
       windowResizeDebounceTime: 300,
     };
 
-    handleResize: () => void;
-
-    constructor(props: BaseComponentProps & WithScreenSizeProvidedProps) {
-      super(props);
-      this.state = {
-        screenWidth: undefined,
-        screenHeight: undefined,
-      };
-      this.handleResize = debounce(this.resize, props.windowResizeDebounceTime);
-    }
+    state = {
+      screenWidth: undefined,
+      screenHeight: undefined,
+    };
 
     componentDidMount() {
-      window.addEventListener('resize', this.handleResize, false);
+      window.addEventListener('resize', this.resize, false);
       this.resize();
     }
 
     componentWillUnmount() {
-      window.removeEventListener('resize', this.handleResize, false);
-      this.handleResize.cancel();
+      window.removeEventListener('resize', this.resize, false);
+      this.resize.cancel();
     }
 
-    resize = (/** event */) => {
+    resize = debounce(() => {
       this.setState((/** prevState, props */) => {
         return {
           screenWidth: window.innerWidth,
           screenHeight: window.innerHeight,
         };
       });
-    };
+    }, this.props.windowResizeDebounceTime);
 
     render() {
       const { screenWidth, screenHeight } = this.state;
-      if (screenWidth == null || screenHeight == null) return null;
-      return (
+      return screenWidth == null || screenHeight == null ? null : (
         <BaseComponent screenWidth={screenWidth} screenHeight={screenHeight} {...this.props} />
       );
     }

@@ -35,21 +35,16 @@ export default class ParentSize extends React.Component<
     debounceTime: 300,
     parentSizeStyles: { width: '100%', height: '100%' },
   };
-  animationFrameID: number | null;
+  animationFrameID: number = 0;
   resizeObserver: ResizeObserver | undefined;
   target: HTMLDivElement | null = null;
 
-  constructor(props: ParentSizeProps) {
-    super(props);
-    this.state = {
-      width: 0,
-      height: 0,
-      top: 0,
-      left: 0,
-    };
-    this.resize = debounce(this.resize, props.debounceTime);
-    this.animationFrameID = null;
-  }
+  state = {
+    width: 0,
+    height: 0,
+    top: 0,
+    left: 0,
+  };
 
   componentDidMount() {
     this.resizeObserver = new ResizeObserver((entries = [] /** , observer */) => {
@@ -64,14 +59,14 @@ export default class ParentSize extends React.Component<
   }
 
   componentWillUnmount() {
-    if (this.animationFrameID) window.cancelAnimationFrame(this.animationFrameID);
+    window.cancelAnimationFrame(this.animationFrameID);
     if (this.resizeObserver) this.resizeObserver.disconnect();
     this.resize.cancel();
   }
 
-  resize = ({ width, height, top, left }: ParentSizeState) => {
+  resize = debounce(({ width, height, top, left }: ParentSizeState) => {
     this.setState(() => ({ width, height, top, left }));
-  };
+  }, this.props.debounceTime);
 
   setTarget = (ref: HTMLDivElement | null) => {
     this.target = ref;
