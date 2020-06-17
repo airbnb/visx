@@ -25,27 +25,20 @@ export default function withParentSize<BaseComponentProps extends WithParentSize
     static defaultProps = {
       debounceTime: 300,
     };
-    animationFrameID: number | null;
+    state = {
+      parentWidth: undefined,
+      parentHeight: undefined,
+    };
+    animationFrameID: number = 0;
     resizeObserver: ResizeObserver | undefined;
     container: HTMLDivElement | null = null;
-    debouncedResize: ({ width, height }: { width: number; height: number }) => void;
-
-    constructor(props: BaseComponentProps & WithParentSizeProvidedProps) {
-      super(props);
-      this.state = {
-        parentWidth: undefined,
-        parentHeight: undefined,
-      };
-      this.animationFrameID = null;
-      this.debouncedResize = debounce(this.resize, props.debounceTime);
-    }
 
     componentDidMount() {
       this.resizeObserver = new ResizeObserver((entries /** , observer */) => {
         entries.forEach(entry => {
           const { width, height } = entry.contentRect;
           this.animationFrameID = window.requestAnimationFrame(() => {
-            this.debouncedResize({
+            this.resize({
               width,
               height,
             });
@@ -56,21 +49,21 @@ export default function withParentSize<BaseComponentProps extends WithParentSize
     }
 
     componentWillUnmount() {
-      if (this.animationFrameID) window.cancelAnimationFrame(this.animationFrameID);
+      window.cancelAnimationFrame(this.animationFrameID);
       if (this.resizeObserver) this.resizeObserver.disconnect();
-      this.debouncedResize.cancel();
+      this.resize.cancel();
     }
 
     setRef = (ref: HTMLDivElement) => {
       this.container = ref;
     };
 
-    resize = ({ width, height }: { width: number; height: number }) => {
+    resize = debounce(({ width, height }: { width: number; height: number }) => {
       this.setState({
         parentWidth: width,
         parentHeight: height,
       });
-    };
+    }, this.props.debounceTime);
 
     render() {
       const { parentWidth, parentHeight } = this.state;
