@@ -1,5 +1,7 @@
-import React, { useContext, useEffect, useCallback, useState } from 'react';
+import React, { useContext, useEffect, useCallback } from 'react';
 import ParentSize from '@vx/responsive/lib/components/ParentSize';
+import useMeasure from 'react-use-measure';
+
 import ChartContext from '../context/ChartContext';
 import { Margin } from '../types';
 import TooltipContext from '../context/TooltipContext';
@@ -16,8 +18,8 @@ type Props = {
 export default function XYChart(props: Props) {
   const { children, width, height, margin, captureEvents = true } = props;
   const { findNearestData, setChartDimensions } = useContext(ChartContext);
-  const { showTooltip, hideTooltip, tooltipOpen } = useContext(TooltipContext) || {};
-  const [ownBoundingRect, setOwnBoundingClientRect] = useState<null | DOMRect>(null);
+  const { showTooltip, hideTooltip } = useContext(TooltipContext) || {};
+  const [svgRef, svgBounds] = useMeasure();
 
   // update dimensions in context
   useEffect(() => {
@@ -25,19 +27,6 @@ export default function XYChart(props: Props) {
       setChartDimensions({ width, height, margin });
     }
   }, [setChartDimensions, width, height, margin]);
-
-  // when Tooltip is rendered in a Portal, we need non-stale svg coordinates
-  // use state for the ref so that it triggers a useEffect update below
-  const [svgRef, setSvgRef] = useState<SVGSVGElement | null>(null);
-  useEffect(() => {
-    if (!svgRef || (ownBoundingRect && !tooltipOpen)) return;
-    const rafHandle = window.requestAnimationFrame(() => {
-      if (svgRef) {
-        setOwnBoundingClientRect(svgRef.getBoundingClientRect());
-      }
-    });
-    return () => window.cancelAnimationFrame(rafHandle);
-  }, [svgRef, tooltipOpen, ownBoundingRect]);
 
   const onMouseMove = useCallback(
     (event: React.MouseEvent<SVGRectElement, MouseEvent>) => {
@@ -48,13 +37,13 @@ export default function XYChart(props: Props) {
             ...nearestData,
             pageX: event.pageX,
             pageY: event.pageY,
-            svgOriginX: ownBoundingRect?.x,
-            svgOriginY: ownBoundingRect?.y,
+            svgOriginX: svgBounds?.x,
+            svgOriginY: svgBounds?.y,
           },
         });
       }
     },
-    [findNearestData, showTooltip, ownBoundingRect],
+    [findNearestData, showTooltip, svgBounds],
   );
 
   // if width and height aren't both provided, wrap in auto-sizer
@@ -63,7 +52,7 @@ export default function XYChart(props: Props) {
   }
 
   return width > 0 && height > 0 ? (
-    <svg ref={setSvgRef} width={width} height={height}>
+    <svg ref={svgRef} width={width} height={height}>
       {children}
       {captureEvents && (
         <rect
