@@ -1,22 +1,7 @@
 import React from 'react';
-import { withBoundingRects } from '@vx/bounds';
+import { withBoundingRects, WithBoundingRectsProps } from '@vx/bounds';
 
 import Tooltip, { TooltipProps, defaultStyles } from './Tooltip';
-
-type RectShape = {
-  top: number;
-  right: number;
-  bottom: number;
-  left: number;
-  width: number;
-  height: number;
-};
-
-type WithBoundingRectsProps = {
-  getRects?: () => RectShape;
-  rect?: RectShape;
-  parentRect?: RectShape;
-};
 
 type Props = {
   offsetLeft?: number;
@@ -29,10 +14,10 @@ function TooltipWithBounds({
   top: initialTop = 0,
   offsetLeft = 10,
   offsetTop = 10,
-  rect,
-  parentRect,
-  getRects,
   children,
+  rect: ownBounds,
+  parentRect: parentBounds,
+  getRects,
   style = defaultStyles,
   unstyled = false,
   ...otherProps
@@ -40,16 +25,17 @@ function TooltipWithBounds({
   let left = initialLeft;
   let top = initialTop;
 
-  if (rect && parentRect) {
-    left =
-      offsetLeft + rect.right > parentRect.right || offsetLeft + rect.right > window.innerWidth
-        ? left - rect.width - offsetLeft
-        : left + offsetLeft;
+  if (ownBounds && parentBounds) {
+    const placeTooltipLeft =
+      offsetLeft + ownBounds.right > parentBounds.right ||
+      offsetLeft + ownBounds.right > window.innerWidth;
 
-    top =
-      offsetTop + rect.bottom > parentRect.bottom || offsetTop + rect.bottom > window.innerHeight
-        ? top - rect.height - offsetTop
-        : top + offsetTop;
+    const placeTooltipUp =
+      offsetTop + ownBounds.bottom > parentBounds.bottom ||
+      offsetTop + ownBounds.bottom > window.innerHeight;
+
+    left = placeTooltipLeft ? left - ownBounds.width - offsetLeft : left + offsetLeft;
+    top = placeTooltipUp ? top - ownBounds.height - offsetTop : top + offsetTop;
   }
 
   left = Math.round(left);
@@ -59,6 +45,7 @@ function TooltipWithBounds({
     <Tooltip
       style={{
         top: 0,
+        left: 0,
         transform: `translate(${left}px, ${top}px)`,
         ...(!unstyled && style),
       }}
