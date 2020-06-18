@@ -16,8 +16,6 @@ interface TooltipData {
   pageY: number;
 }
 
-let tooltipTimeout: number;
-
 const positionIndicatorSize = 8;
 
 const tooltipStyles = {
@@ -59,8 +57,6 @@ export default function Example({ width, height, showControls = true }: TooltipP
   // event handlers
   const handleMouseMove = useCallback(
     (event: React.MouseEvent | React.TouchEvent) => {
-      if (tooltipTimeout) clearTimeout(tooltipTimeout);
-
       const pageX = 'pageX' in event ? event.pageX : 0;
       const pageY = 'pageY' in event ? event.pageY : 0;
       const containerX = ('clientX' in event ? event.clientX : 0) - ownBounds.left;
@@ -84,7 +80,7 @@ export default function Example({ width, height, showControls = true }: TooltipP
   );
 
   const TooltipComponent = detectBounds ? TooltipWithBounds : Tooltip;
-  const PortalWrapper = renderInPortal ? Portal : React.Fragment;
+  const TooltipWrapper = renderInPortal ? Portal : React.Fragment;
 
   return (
     <>
@@ -115,7 +111,7 @@ export default function Example({ width, height, showControls = true }: TooltipP
               className="crosshair vertical"
               style={{ transform: `translateX(${tooltipData.containerX}px)` }}
             />
-            <PortalWrapper>
+            <TooltipWrapper>
               <TooltipComponent
                 key={Math.random()} // needed for bounds to update correctly
                 left={tooltipLeft + (detectBounds ? 0 : 10)}
@@ -129,7 +125,7 @@ export default function Example({ width, height, showControls = true }: TooltipP
                 <br />
                 <strong>top</strong> {tooltipTop?.toFixed(0)}px
               </TooltipComponent>
-            </PortalWrapper>
+            </TooltipWrapper>
           </>
         ) : (
           <div className="no-tooltip">Move or touch the canvas to see the tooltip</div>
