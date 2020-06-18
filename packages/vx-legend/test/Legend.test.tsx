@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { scaleLinear } from '@vx/scale';
 
-import { Legend } from '../src';
+import { Legend, LegendLabel } from '../src';
 
 const defaultProps = {
   scale: scaleLinear<number>({
@@ -38,5 +38,12 @@ describe('<Legend />', () => {
       display: 'flex',
       flexDirection: 'row',
     });
+  });
+
+  test('it should pass through legendLabelProps to legend labels', () => {
+    const style = { fontFamily: 'Comic Sans' };
+    const wrapper = shallow(<Legend {...defaultProps} legendLabelProps={{ style }} />);
+    const label = wrapper.find(LegendLabel).first();
+    expect(label.prop('style')).toEqual(style);
   });
 });

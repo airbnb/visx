@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import LegendItem from './LegendItem';
-import LegendLabel from './LegendLabel';
+import LegendLabel, { LegendLabelProps } from './LegendLabel';
 import LegendShape from './LegendShape';
 import valueOrIdentity, { valueOrIdentityString } from '../../util/valueOrIdentity';
 import labelTransformFactory from '../../util/labelTransformFactory';
@@ -55,6 +55,8 @@ export type LegendProps<Datum, Output, Scale = ScaleType<Datum, Output>> = {
   labelFormat?: LabelFormatter<Datum>;
   /** Given the legend scale and labelFormatter, returns a label with datum, index, value, and label. */
   labelTransform?: LabelFormatterFactory<Datum, Output, Scale>;
+  /** Additional props to be set on LegendLabel. */
+  legendLabelProps?: Partial<LegendLabelProps>;
 };
 
 const defaultStyle = {
@@ -81,6 +83,7 @@ export default function Legend<Datum, Output, Scale = ScaleType<Datum, Output>>(
   itemMargin = '0',
   direction = 'column',
   itemDirection = 'row',
+  legendLabelProps,
   children,
   ...legendItemProps
 }: LegendProps<Datum, Output, Scale>) {
@@ -112,6 +115,8 @@ export default function Legend<Datum, Output, Scale = ScaleType<Datum, Output>>(
             height={shapeHeight}
             width={shapeWidth}
             margin={shapeMargin}
+            item={domain[i]}
+            itemIndex={i}
             label={label}
             fill={fill}
             size={size}
@@ -122,6 +127,7 @@ export default function Legend<Datum, Output, Scale = ScaleType<Datum, Output>>(
             flex={labelFlex}
             margin={labelMargin}
             align={labelAlign}
+            {...legendLabelProps}
           />
         </LegendItem>
       ))}

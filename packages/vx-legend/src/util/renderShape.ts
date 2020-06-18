@@ -1,6 +1,7 @@
 import React from 'react';
 import RectShape from '../shapes/Rect';
 import CircleShape from '../shapes/Circle';
+import LineShape from '../shapes/Line';
 
 import {
   LegendShape,
@@ -14,6 +15,8 @@ import {
 type RenderShapeArgs<Data, Output> = {
   shape?: LegendShape<Data, Output>;
   label: FormattedLabel<Data, Output>;
+  item: Data;
+  itemIndex: number;
   fill?: FillAccessor<Data, Output>;
   size?: SizeAccessor<Data, Output>;
   shapeStyle?: ShapeStyleAccessor<Data, Output>;
@@ -30,11 +33,15 @@ export default function renderShape<Data, Output>({
   width,
   height,
   label,
+  item,
+  itemIndex,
   shapeStyle = NO_OP,
 }: RenderShapeArgs<Data, Output>) {
   const props: RenderShapeProvidedProps<Data, Output> = {
     width,
     height,
+    item,
+    itemIndex,
     label,
     fill: fill({ ...label }),
     size: size({ ...label }),
@@ -42,10 +49,13 @@ export default function renderShape<Data, Output>({
   };
 
   if (typeof shape === 'string') {
-    if (shape === 'rect') {
-      return React.createElement(RectShape, props);
+    if (shape === 'circle') {
+      return React.createElement(CircleShape, props);
     }
-    return React.createElement(CircleShape, props);
+    if (shape === 'line') {
+      return React.createElement(LineShape, props);
+    }
+    return React.createElement(RectShape, props);
   }
   if (React.isValidElement(shape)) {
     return React.cloneElement(shape, props);
