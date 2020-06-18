@@ -98,18 +98,18 @@ export default function Example({ width, height, showControls = true }: TooltipP
               style={{
                 width: positionIndicatorSize,
                 height: positionIndicatorSize,
-                transform: `translate(${tooltipData.containerX -
-                  positionIndicatorSize / 2}px, ${tooltipData.containerY -
+                transform: `translate(${(tooltipData?.containerX ?? 0) -
+                  positionIndicatorSize / 2}px, ${(tooltipData?.containerY ?? 0) -
                   positionIndicatorSize / 2}px)`,
               }}
             />
             <div
               className="crosshair horizontal"
-              style={{ transform: `translateY(${tooltipData.containerY}px)` }}
+              style={{ transform: `translateY(${tooltipData?.containerY ?? 0}px)` }}
             />
             <div
               className="crosshair vertical"
-              style={{ transform: `translateX(${tooltipData.containerX}px)` }}
+              style={{ transform: `translateX(${tooltipData?.containerX ?? 0}px)` }}
             />
             <TooltipWrapper>
               <TooltipComponent
@@ -118,7 +118,7 @@ export default function Example({ width, height, showControls = true }: TooltipP
                 top={tooltipTop + (detectBounds ? 0 : 10)}
                 style={tooltipStyles}
               >
-                {tooltipData.text}
+                {tooltipData?.text}
                 <br />
                 <br />
                 <strong>left</strong> {tooltipLeft?.toFixed(0)}px
@@ -146,9 +146,9 @@ export default function Example({ width, height, showControls = true }: TooltipP
                   showTooltip({
                     tooltipData,
                     tooltipLeft:
-                      tooltipData[nextRenderInPortal ? 'pageX' : 'containerX'] || tooltipLeft,
+                      tooltipData?.[nextRenderInPortal ? 'pageX' : 'containerX'] ?? tooltipLeft,
                     tooltipTop:
-                      tooltipData[nextRenderInPortal ? 'pageY' : 'containerY'] || tooltipTop,
+                      tooltipData?.[nextRenderInPortal ? 'pageY' : 'containerY'] ?? tooltipTop,
                   });
                 }
               }}
