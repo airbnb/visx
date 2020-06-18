@@ -38,14 +38,18 @@ export default function withScreenSize<BaseComponentProps extends WithScreenSize
       this.resize.cancel();
     }
 
-    resize = debounce(() => {
-      this.setState((/** prevState, props */) => {
-        return {
-          screenWidth: window.innerWidth,
-          screenHeight: window.innerHeight,
-        };
-      });
-    }, this.props.windowResizeDebounceTime, { leading: true });
+    resize = debounce(
+      () => {
+        this.setState((/** prevState, props */) => {
+          return {
+            screenWidth: window.innerWidth,
+            screenHeight: window.innerHeight,
+          };
+        });
+      },
+      this.props.windowResizeDebounceTime,
+      { leading: true },
+    );
 
     render() {
       const { screenWidth, screenHeight } = this.state;

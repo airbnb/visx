@@ -58,12 +58,16 @@ export default function withParentSize<BaseComponentProps extends WithParentSize
       this.container = ref;
     };
 
-    resize = debounce(({ width, height }: { width: number; height: number }) => {
-      this.setState({
-        parentWidth: width,
-        parentHeight: height,
-      });
-    }, this.props.debounceTime, { leading: true });
+    resize = debounce(
+      ({ width, height }: { width: number; height: number }) => {
+        this.setState({
+          parentWidth: width,
+          parentHeight: height,
+        });
+      },
+      this.props.debounceTime,
+      { leading: true },
+    );
 
     render() {
       const { parentWidth, parentHeight } = this.state;
