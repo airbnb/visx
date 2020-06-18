@@ -62,7 +62,9 @@ export default function Axis<ScaleInput>({
           .domain()
           .filter(
             (_, index, arr) =>
-              numTicks == null || index % Math.round((arr.length - 1) / numTicks) === 0,
+              numTicks == null ||
+              arr.length <= numTicks ||
+              index % Math.round((arr.length - 1) / numTicks) === 0,
           ));
   const format = tickFormat || (scale.tickFormat ? scale.tickFormat() : toString);
 
