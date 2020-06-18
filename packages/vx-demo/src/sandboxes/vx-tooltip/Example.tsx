@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import useMeasure from 'react-use-measure';
 import { Tooltip, TooltipWithBounds, useTooltip, defaultStyles, Portal } from '@vx/tooltip/src';
 
-type Props = {
+export type TooltipProps = {
   width: number;
   height: number;
   showControls?: boolean;
@@ -29,8 +29,9 @@ const tooltipStyles = {
   padding: 12,
 };
 
-export default function Example({ width, height, showControls = true }: Props) {
-  const [ref, ownBounds] = useMeasure();
+export default function Example({ width, height, showControls = true }: TooltipProps) {
+  // bounds of the container are needed to convert page coordinates to container coordinates
+  const [ref, ownBounds] = useMeasure({ scroll: true });
   const [detectBounds, setDetectBounds] = useState(true);
   const [renderInPortal, setRenderInPortal] = useState(false);
 
@@ -42,6 +43,7 @@ export default function Example({ width, height, showControls = true }: Props) {
     tooltipLeft,
     tooltipTop,
   } = useTooltip<TooltipData>({
+    // initial tooltip state
     tooltipOpen: true,
     tooltipLeft: width / 3,
     tooltipTop: height / 3,
@@ -61,8 +63,8 @@ export default function Example({ width, height, showControls = true }: Props) {
 
       const pageX = 'pageX' in event ? event.pageX : 0;
       const pageY = 'pageY' in event ? event.pageY : 0;
-      const containerX = pageX - ownBounds.left;
-      const containerY = pageY - ownBounds.top;
+      const containerX = ('clientX' in event ? event.clientX : 0) - ownBounds.left;
+      const containerY = ('clientY' in event ? event.clientY : 0) - ownBounds.top;
 
       showTooltip({
         tooltipLeft: renderInPortal ? pageX : containerX,
@@ -133,7 +135,31 @@ export default function Example({ width, height, showControls = true }: Props) {
           <div className="no-tooltip">Move or touch the canvas to see the tooltip</div>
         )}
         <div className="z-index-bummer">
-          I have an annoying z-index. Try the portal{' '}
+          I have an annoying z-index. Try&nbsp;
+          <label>
+            <input
+              type="checkbox"
+              checked={renderInPortal}
+              onClick={e => {
+                // if rendered in clickable container, don't trigger that event
+                e.stopPropagation();
+                const nextRenderInPortal = !renderInPortal;
+                setRenderInPortal(nextRenderInPortal);
+                if (tooltipOpen && tooltipData) {
+                  // update the tooltip coordinates to account for the Portal change
+                  showTooltip({
+                    tooltipData,
+                    tooltipLeft:
+                      tooltipData[nextRenderInPortal ? 'pageX' : 'containerX'] || tooltipLeft,
+                    tooltipTop:
+                      tooltipData[nextRenderInPortal ? 'pageY' : 'containerY'] || tooltipTop,
+                  });
+                }
+              }}
+            />
+            &nbsp;rendering in Portal
+          </label>
+          &nbsp;
           <span role="img" aria-label="yay">
             🥳
           </span>
@@ -149,26 +175,7 @@ export default function Example({ width, height, showControls = true }: Props) {
             />
             &nbsp;Tooltip with boundary detection
           </label>
-          <label>
-            <input
-              type="checkbox"
-              checked={renderInPortal}
-              onChange={() => {
-                const nextRenderInPortal = !renderInPortal;
-                setRenderInPortal(nextRenderInPortal);
-                if (tooltipOpen && tooltipData) {
-                  showTooltip({
-                    tooltipData,
-                    tooltipLeft:
-                      tooltipData[nextRenderInPortal ? 'pageX' : 'containerX'] || tooltipLeft,
-                    tooltipTop:
-                      tooltipData[nextRenderInPortal ? 'pageY' : 'containerY'] || tooltipTop,
-                  });
-                }
-              }}
-            />
-            &nbsp;Render in Portal
-          </label>
+
           <button onClick={() => hideTooltip()}>Hide tooltip</button>
         </div>
       )}
@@ -225,9 +232,9 @@ export default function Example({ width, height, showControls = true }: Props) {
         }
         .z-index-bummer {
           position: absolute;
-          right: 10%;
+          right: 12%;
           bottom: 20%;
-          max-width: 180px;
+          max-width: 190px;
           z-index: 2000;
           background: rgba(255, 255, 255, 0.8);
           color: #35477d;
