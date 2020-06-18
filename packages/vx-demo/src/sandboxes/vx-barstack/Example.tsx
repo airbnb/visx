@@ -56,7 +56,7 @@ const temperatureTotals = data.reduce((allTotals, currentDate) => {
 
 const parseDate = timeParse('%Y-%m-%d');
 const format = timeFormat('%b %d');
-const formatDate = (date: string) => format(parseDate(date));
+const formatDate = (date: string) => format(parseDate(date) as Date);
 
 // accessors
 const getDate = (d: CityTemperature) => d.date;

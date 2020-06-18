@@ -23,7 +23,7 @@ const defaultMargin = { top: 20, right: 20, bottom: 20, left: 50 };
 
 const parseDate = timeParse('%Y-%m-%d');
 const format = timeFormat('%b %d');
-const formatDate = (date: string) => format(parseDate(date));
+const formatDate = (date: string) => format(parseDate(date) as Date);
 function max<D>(arr: D[], fn: (d: D) => number) {
   return Math.max(...arr.map(fn));
 }

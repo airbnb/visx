@@ -26,7 +26,7 @@ const defaultMargin = { top: 40, right: 0, bottom: 40, left: 0 };
 
 const parseDate = timeParse('%Y-%m-%d');
 const format = timeFormat('%b %d');
-const formatDate = (date: string) => format(parseDate(date));
+const formatDate = (date: string) => format(parseDate(date) as Date);
 
 // accessors
 const getDate = (d: CityTemperature) => d.date;
