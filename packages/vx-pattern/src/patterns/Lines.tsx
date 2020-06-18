@@ -3,7 +3,7 @@ import cx from 'classnames';
 import Pattern from './Pattern';
 import { PatternOrientation, PatternOrientationType } from '../constants';
 
-function pathForOrientation({
+export function pathForOrientation({
   height,
   orientation,
 }: {
@@ -19,6 +19,10 @@ function pathForOrientation({
       return `M 0,${height} l ${height},${-height} M ${-height / 4},${height / 4} l ${height /
         2},${-height / 2}
              M ${(3 / 4) * height},${(5 / 4) * height} l ${height / 2},${-height / 2}`;
+    case PatternOrientation.diagonalRightToLeft:
+      return `M 0,0 l ${height},${height}
+        M ${-height / 4},${(3 / 4) * height} l ${height / 2},${height / 2}
+        M ${(3 / 4) * height},${-height / 4} l ${height / 2},${height / 2}`;
     default:
       return `M ${height / 2}, 0 l 0, ${height}`;
   }
