@@ -114,8 +114,8 @@ export default function Example({ width, height, showControls = true }: TooltipP
             <TooltipWrapper>
               <TooltipComponent
                 key={Math.random()} // needed for bounds to update correctly
-                left={tooltipLeft + (detectBounds ? 0 : 10)}
-                top={tooltipTop + (detectBounds ? 0 : 10)}
+                left={(tooltipLeft ?? 0) + (detectBounds ? 0 : 10)}
+                top={(tooltipTop ?? 0) + (detectBounds ? 0 : 10)}
                 style={tooltipStyles}
               >
                 {tooltipData?.text}
