@@ -63,7 +63,7 @@ export default function withParentSize<BaseComponentProps extends WithParentSize
         parentWidth: width,
         parentHeight: height,
       });
-    }, this.props.debounceTime);
+    }, this.props.debounceTime, { leading: true });
 
     render() {
       const { parentWidth, parentHeight } = this.state;

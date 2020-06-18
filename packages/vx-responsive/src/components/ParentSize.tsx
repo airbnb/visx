@@ -66,7 +66,7 @@ export default class ParentSize extends React.Component<
 
   resize = debounce(({ width, height, top, left }: ParentSizeState) => {
     this.setState(() => ({ width, height, top, left }));
-  }, this.props.debounceTime);
+  }, this.props.debounceTime, { leading: true });
 
   setTarget = (ref: HTMLDivElement | null) => {
     this.target = ref;

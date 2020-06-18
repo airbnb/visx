@@ -45,7 +45,7 @@ export default function withScreenSize<BaseComponentProps extends WithScreenSize
           screenHeight: window.innerHeight,
         };
       });
-    }, this.props.windowResizeDebounceTime);
+    }, this.props.windowResizeDebounceTime, { leading: true });
 
     render() {
       const { screenWidth, screenHeight } = this.state;
