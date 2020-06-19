@@ -3,10 +3,11 @@ import { withBoundingRects, WithBoundingRectsProps } from '@vx/bounds';
 
 import Tooltip, { TooltipProps, defaultStyles } from './Tooltip';
 
-type Props = {
+export type TooltipWithBoundsProps = {
   offsetLeft?: number;
   offsetTop?: number;
 } & TooltipProps &
+  React.HTMLProps<HTMLDivElement> &
   WithBoundingRectsProps;
 
 function TooltipWithBounds({
@@ -21,7 +22,7 @@ function TooltipWithBounds({
   style = defaultStyles,
   unstyled = false,
   ...otherProps
-}: Props) {
+}: TooltipWithBoundsProps) {
   let left = initialLeft;
   let top = initialTop;
 
