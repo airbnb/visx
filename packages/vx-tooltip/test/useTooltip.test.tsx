@@ -1,4 +1,4 @@
-import useTooltip from '../src/hooks/useTooltip';
+import { useTooltip } from '../src';
 
 describe('useTooltip()', () => {
   test('it should be defined', () => {

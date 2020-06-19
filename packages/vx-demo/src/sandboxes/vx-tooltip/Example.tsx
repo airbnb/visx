@@ -1,6 +1,11 @@
 import React, { useState, useCallback } from 'react';
-import useMeasure from 'react-use-measure';
-import { Tooltip, TooltipWithBounds, useTooltip, defaultStyles, Portal } from '@vx/tooltip/src';
+import {
+  Tooltip,
+  TooltipWithBounds,
+  useTooltip,
+  useTooltipInPortal,
+  defaultStyles,
+} from '@vx/tooltip';
 
 export type TooltipProps = {
   width: number;
@@ -8,13 +13,7 @@ export type TooltipProps = {
   showControls?: boolean;
 };
 
-interface TooltipData {
-  text: string;
-  containerX: number;
-  containerY: number;
-  pageX: number;
-  pageY: number;
-}
+type TooltipData = string;
 
 const positionIndicatorSize = 8;
 
@@ -28,64 +27,57 @@ const tooltipStyles = {
 };
 
 export default function Example({ width, height, showControls = true }: TooltipProps) {
-  // bounds of the container are needed to convert page coordinates to container coordinates
-  const [ref, ownBounds] = useMeasure({ scroll: true });
-  const [detectBounds, setDetectBounds] = useState(true);
-  const [renderInPortal, setRenderInPortal] = useState(false);
+  const [tooltipShouldDetectBounds, setTooltipShouldDetectBounds] = useState(true);
+  const [renderTooltipInPortal, setRenderTooltipInPortal] = useState(false);
+
+  const { containerRef, containerBounds, TooltipInPortal } = useTooltipInPortal({
+    scroll: true,
+    detectBounds: tooltipShouldDetectBounds,
+  });
 
   const {
     showTooltip,
     hideTooltip,
     tooltipOpen,
     tooltipData,
-    tooltipLeft,
-    tooltipTop,
+    tooltipLeft = 0,
+    tooltipTop = 0,
   } = useTooltip<TooltipData>({
     // initial tooltip state
     tooltipOpen: true,
     tooltipLeft: width / 3,
     tooltipTop: height / 3,
-    tooltipData: {
-      text: 'Move me with your mouse or finger',
-      containerX: width / 3,
-      containerY: height / 3,
-      pageX: 0,
-      pageY: 0,
-    },
+    tooltipData: 'Move me with your mouse or finger',
   });
 
   // event handlers
   const handleMouseMove = useCallback(
     (event: React.MouseEvent | React.TouchEvent) => {
-      const pageX = 'pageX' in event ? event.pageX : 0;
-      const pageY = 'pageY' in event ? event.pageY : 0;
-      const containerX = ('clientX' in event ? event.clientX : 0) - ownBounds.left;
-      const containerY = ('clientY' in event ? event.clientY : 0) - ownBounds.top;
+      // coordinates should be relative to the container in which Tooltip is rendered
+      const containerX = ('clientX' in event ? event.clientX : 0) - containerBounds.left;
+      const containerY = ('clientY' in event ? event.clientY : 0) - containerBounds.top;
 
       showTooltip({
-        tooltipLeft: renderInPortal ? pageX : containerX,
-        tooltipTop: renderInPortal ? pageY : containerY,
-        tooltipData: {
-          containerX,
-          containerY,
-          pageX,
-          pageY,
-          text: detectBounds
-            ? 'I detect my container boundary'
-            : 'I will get clipped by my container',
-        },
+        tooltipLeft: containerX,
+        tooltipTop: containerY,
+        tooltipData: tooltipShouldDetectBounds
+          ? 'I detect my container boundary'
+          : 'I will get clipped by my container',
       });
     },
-    [showTooltip, ownBounds, detectBounds, renderInPortal],
+    [showTooltip, tooltipShouldDetectBounds, containerBounds],
   );
 
-  const TooltipComponent = detectBounds ? TooltipWithBounds : Tooltip;
-  const TooltipWrapper = renderInPortal ? Portal : React.Fragment;
+  const TooltipComponent = renderTooltipInPortal
+    ? TooltipInPortal
+    : tooltipShouldDetectBounds
+    ? TooltipWithBounds
+    : Tooltip;
 
   return (
     <>
       <div
-        ref={ref}
+        ref={containerRef}
         className="tooltip-example"
         style={{ width, height }}
         onMouseMove={handleMouseMove}
@@ -96,36 +88,30 @@ export default function Example({ width, height, showControls = true }: TooltipP
             <div
               className="position-indicator"
               style={{
-                width: positionIndicatorSize,
-                height: positionIndicatorSize,
-                transform: `translate(${(tooltipData?.containerX ?? 0) -
-                  positionIndicatorSize / 2}px, ${(tooltipData?.containerY ?? 0) -
+                transform: `translate(${tooltipLeft - positionIndicatorSize / 2}px, ${tooltipTop -
                   positionIndicatorSize / 2}px)`,
               }}
             />
             <div
               className="crosshair horizontal"
-              style={{ transform: `translateY(${tooltipData?.containerY ?? 0}px)` }}
+              style={{ transform: `translateY(${tooltipTop}px)` }}
             />
             <div
               className="crosshair vertical"
-              style={{ transform: `translateX(${tooltipData?.containerX ?? 0}px)` }}
+              style={{ transform: `translateX(${tooltipLeft}px)` }}
             />
-            <TooltipWrapper>
-              <TooltipComponent
-                key={Math.random()} // needed for bounds to update correctly
-                left={(tooltipLeft ?? 0) + (detectBounds ? 0 : 10)}
-                top={(tooltipTop ?? 0) + (detectBounds ? 0 : 10)}
-                style={tooltipStyles}
-              >
-                {tooltipData?.text}
-                <br />
-                <br />
-                <strong>left</strong> {tooltipLeft?.toFixed(0)}px
-                <br />
-                <strong>top</strong> {tooltipTop?.toFixed(0)}px
-              </TooltipComponent>
-            </TooltipWrapper>
+            <TooltipComponent
+              key={Math.random()} // needed for bounds to update correctly
+              left={tooltipLeft}
+              top={tooltipTop}
+              style={tooltipStyles}
+            >
+              {tooltipData}
+              <br />
+              <br />
+              <strong>left</strong> {tooltipLeft?.toFixed(0)}px&nbsp;&nbsp;
+              <strong>top</strong> {tooltipTop?.toFixed(0)}px
+            </TooltipComponent>
           </>
         ) : (
           <div className="no-tooltip">Move or touch the canvas to see the tooltip</div>
@@ -135,22 +121,11 @@ export default function Example({ width, height, showControls = true }: TooltipP
           <label>
             <input
               type="checkbox"
-              checked={renderInPortal}
+              defaultChecked={renderTooltipInPortal}
               onClick={e => {
                 // if rendered in clickable container, don't trigger that event
                 e.stopPropagation();
-                const nextRenderInPortal = !renderInPortal;
-                setRenderInPortal(nextRenderInPortal);
-                if (tooltipOpen && tooltipData) {
-                  // update the tooltip coordinates to account for the Portal change
-                  showTooltip({
-                    tooltipData,
-                    tooltipLeft:
-                      tooltipData?.[nextRenderInPortal ? 'pageX' : 'containerX'] ?? tooltipLeft,
-                    tooltipTop:
-                      tooltipData?.[nextRenderInPortal ? 'pageY' : 'containerY'] ?? tooltipTop,
-                  });
-                }
+                setRenderTooltipInPortal(!renderTooltipInPortal);
               }}
             />
             &nbsp;rendering in Portal
@@ -166,8 +141,8 @@ export default function Example({ width, height, showControls = true }: TooltipP
           <label>
             <input
               type="checkbox"
-              checked={detectBounds}
-              onChange={() => setDetectBounds(!detectBounds)}
+              checked={tooltipShouldDetectBounds}
+              onChange={() => setTooltipShouldDetectBounds(!tooltipShouldDetectBounds)}
             />
             &nbsp;Tooltip with boundary detection
           </label>
@@ -175,7 +150,7 @@ export default function Example({ width, height, showControls = true }: TooltipP
           <button onClick={() => hideTooltip()}>Hide tooltip</button>
         </div>
       )}
-      <style jsx>{`
+      <style>{`
         .tooltip-example {
           z-index: 0;
           position: relative;
@@ -201,6 +176,8 @@ export default function Example({ width, height, showControls = true }: TooltipP
           margin-right: 8px;
         }
         .position-indicator {
+          width: ${positionIndicatorSize}px;
+          height: ${positionIndicatorSize}px;
           border-radius: 50%;
           background: #35477d;
           position: absolute;
