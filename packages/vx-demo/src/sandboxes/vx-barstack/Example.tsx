@@ -7,7 +7,7 @@ import { AxisBottom } from '@vx/axis';
 import cityTemperature, { CityTemperature } from '@vx/mock-data/lib/mocks/cityTemperature';
 import { scaleBand, scaleLinear, scaleOrdinal } from '@vx/scale';
 import { timeParse, timeFormat } from 'd3-time-format';
-import { useTooltip, Tooltip, defaultStyles } from '@vx/tooltip';
+import { useTooltip, useTooltipInPortal, defaultStyles } from '@vx/tooltip';
 import { LegendOrdinal } from '@vx/legend';
 
 type CityName = 'New York' | 'San Francisco' | 'Austin';
@@ -92,6 +92,8 @@ export default function Example({
     showTooltip,
   } = useTooltip<TooltipData>();
 
+  const { containerRef, TooltipInPortal } = useTooltipInPortal();
+
   if (width < 10) return null;
   // bounds
   const xMax = width;
@@ -103,7 +105,7 @@ export default function Example({
   return width < 10 ? null : (
     // relative position is needed for correct tooltip positioning
     <div style={{ position: 'relative' }}>
-      <svg width={width} height={height}>
+      <svg ref={containerRef} width={width} height={height}>
         <rect x={0} y={0} width={width} height={height} fill={background} rx={14} />
         <Grid<string, number>
           top={margin.top}
@@ -146,8 +148,7 @@ export default function Example({
                     onMouseMove={event => {
                       if (tooltipTimeout) clearTimeout(tooltipTimeout);
                       const top = event.clientY - margin.top - bar.height;
-                      const offset = (dateScale.paddingInner() * dateScale.step()) / 2;
-                      const left = bar.x + bar.width + offset;
+                      const left = bar.x + bar.width / 2;
                       showTooltip({
                         tooltipData: bar,
                         tooltipTop: top,
@@ -187,7 +188,12 @@ export default function Example({
       </div>
 
       {tooltipOpen && tooltipData && (
-        <Tooltip top={tooltipTop} left={tooltipLeft} style={tooltipStyles}>
+        <TooltipInPortal
+          key={Math.random()} // update tooltip bounds each render
+          top={tooltipTop}
+          left={tooltipLeft}
+          style={tooltipStyles}
+        >
           <div style={{ color: colorScale(tooltipData.key) }}>
             <strong>{tooltipData.key}</strong>
           </div>
@@ -195,7 +201,7 @@ export default function Example({
           <div>
             <small>{formatDate(getDate(tooltipData.bar.data))}</small>
           </div>
-        </Tooltip>
+        </TooltipInPortal>
       )}
     </div>
   );
