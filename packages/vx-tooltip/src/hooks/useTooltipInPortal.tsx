@@ -1,9 +1,15 @@
 import React, { useMemo } from 'react';
-import useMeasure from 'react-use-measure';
+import useMeasure, { RectReadOnly, Options as BaseUseMeasureOptions } from 'react-use-measure';
 
+import Portal from '../Portal';
 import Tooltip, { TooltipProps } from '../tooltips/Tooltip';
 import TooltipWithBounds from '../tooltips/TooltipWithBounds';
-import Portal from '../Portal';
+
+export type UseTooltipInPortal = {
+  containerRef: (element: HTMLElement | SVGElement | null) => void;
+  containerBounds: RectReadOnly;
+  TooltipInPortal: React.FC<TooltipProps>;
+};
 
 export type UseTooltipPortalParams = {
   /** Whether TooltipWithBounds should be used to auto-detect its container boundaries and update its position accordingly. */
@@ -18,7 +24,7 @@ export type UseMeasureOptions = {
   /** React to nested scroll changes, don't use this if you know your view is static */
   scroll?: boolean;
   /** You can optionally inject a ResizeObserver polyfill. */
-  polyfill?: any;
+  polyfill?: BaseUseMeasureOptions['polyfill'];
 };
 
 /**
@@ -28,7 +34,7 @@ export type UseMeasureOptions = {
 export default function useTooltipInPortal({
   scroll,
   detectBounds = true,
-}: UseTooltipPortalParams | undefined = {}) {
+}: UseTooltipPortalParams | undefined = {}): UseTooltipInPortal {
   const [containerRef, containerBounds] = useMeasure({ scroll });
 
   const TooltipInPortal = useMemo(
