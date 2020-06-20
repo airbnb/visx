@@ -12,7 +12,6 @@
     "react": "^16",
     "react-dom": "^16",
     "react-scripts-ts": "3.1.0",
-    "react-use-measure": "^2.0.1",
     "typescript": "^3"
   },
   "keywords": [
