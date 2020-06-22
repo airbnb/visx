@@ -7,6 +7,8 @@ export type ParentSizeProps = {
   className?: string;
   /** Child render updates upon resize are delayed until `debounceTime` milliseconds _after_ the last resize event is observed. */
   debounceTime?: number;
+  /** Optional flag to toggle leading debounce calls. When set to true this will ensure that the component always renders immediately. (defaults to true) */
+  enableDebounceLeadingCall?: boolean;
   /** Optional `style` object to apply to the parent `div` wrapper used for size measurement. */
   parentSizeStyles?: React.CSSProperties;
   /** Child render function `({ width, height, top, left, ref, resize }) => ReactNode`. */
@@ -33,6 +35,7 @@ export default class ParentSize extends React.Component<
 > {
   static defaultProps = {
     debounceTime: 300,
+    enableDebounceLeadingCall: true,
     parentSizeStyles: { width: '100%', height: '100%' },
   };
   animationFrameID: number = 0;
@@ -64,9 +67,13 @@ export default class ParentSize extends React.Component<
     this.resize.cancel();
   }
 
-  resize = debounce(({ width, height, top, left }: ParentSizeState) => {
-    this.setState(() => ({ width, height, top, left }));
-  }, this.props.debounceTime);
+  resize = debounce(
+    ({ width, height, top, left }: ParentSizeState) => {
+      this.setState(() => ({ width, height, top, left }));
+    },
+    this.props.debounceTime,
+    { leading: this.props.enableDebounceLeadingCall },
+  );
 
   setTarget = (ref: HTMLDivElement | null) => {
     this.target = ref;

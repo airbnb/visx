@@ -6,6 +6,7 @@ const CONTAINER_STYLES = { width: '100%', height: '100%' };
 
 export type WithParentSizeProps = {
   debounceTime?: number;
+  enableDebounceLeadingCall?: boolean;
 };
 
 type WithParentSizeState = {
@@ -24,6 +25,7 @@ export default function withParentSize<BaseComponentProps extends WithParentSize
   > {
     static defaultProps = {
       debounceTime: 300,
+      enableDebounceLeadingCall: true,
     };
     state = {
       parentWidth: undefined,
@@ -58,12 +60,16 @@ export default function withParentSize<BaseComponentProps extends WithParentSize
       this.container = ref;
     };
 
-    resize = debounce(({ width, height }: { width: number; height: number }) => {
-      this.setState({
-        parentWidth: width,
-        parentHeight: height,
-      });
-    }, this.props.debounceTime);
+    resize = debounce(
+      ({ width, height }: { width: number; height: number }) => {
+        this.setState({
+          parentWidth: width,
+          parentHeight: height,
+        });
+      },
+      this.props.debounceTime,
+      { leading: this.props.enableDebounceLeadingCall },
+    );
 
     render() {
       const { parentWidth, parentHeight } = this.state;

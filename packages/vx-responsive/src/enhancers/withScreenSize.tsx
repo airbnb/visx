@@ -3,6 +3,7 @@ import React from 'react';
 
 export type WithScreenSizeProps = {
   windowResizeDebounceTime?: number;
+  enableDebounceLeadingCall?: boolean;
 };
 
 type WithScreenSizeState = {
@@ -21,6 +22,7 @@ export default function withScreenSize<BaseComponentProps extends WithScreenSize
   > {
     static defaultProps = {
       windowResizeDebounceTime: 300,
+      enableDebounceLeadingCall: true,
     };
 
     state = {
@@ -38,14 +40,18 @@ export default function withScreenSize<BaseComponentProps extends WithScreenSize
       this.resize.cancel();
     }
 
-    resize = debounce(() => {
-      this.setState((/** prevState, props */) => {
-        return {
-          screenWidth: window.innerWidth,
-          screenHeight: window.innerHeight,
-        };
-      });
-    }, this.props.windowResizeDebounceTime);
+    resize = debounce(
+      () => {
+        this.setState((/** prevState, props */) => {
+          return {
+            screenWidth: window.innerWidth,
+            screenHeight: window.innerHeight,
+          };
+        });
+      },
+      this.props.windowResizeDebounceTime,
+      { leading: this.props.enableDebounceLeadingCall },
+    );
 
     render() {
       const { screenWidth, screenHeight } = this.state;
