@@ -89,7 +89,7 @@ export default function buildChartTheme(theme: ThemeConfig): XYChartTheme {
       label: {
         bottom: {
           ...baseLabel,
-          dy: '0.125em',
+          dy: '-0.25em',
         },
         top: {
           ...baseLabel,

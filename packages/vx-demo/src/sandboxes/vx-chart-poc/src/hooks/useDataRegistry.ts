@@ -1,6 +1,6 @@
 import { useEffect, useContext } from 'react';
 import ChartContext from '../context/ChartContext';
-import { RegisterDataArgs } from '../types';
+import { DataRegistry } from '../types';
 
 export default function useDataRegistry({
   data,
@@ -9,12 +9,12 @@ export default function useDataRegistry({
   yAccessor,
   mouseEvents,
   legendShape,
-}: RegisterDataArgs) {
+}: DataRegistry[string]) {
   const { registerData, unregisterData } = useContext(ChartContext);
 
   // register data on mount
   useEffect(() => {
-    registerData({ key, data, xAccessor, yAccessor, mouseEvents, legendShape });
+    registerData({ [key]: { key, data, xAccessor, yAccessor, mouseEvents, legendShape } });
     return () => unregisterData(key);
   }, [registerData, unregisterData, key, data, xAccessor, yAccessor, mouseEvents, legendShape]);
 }

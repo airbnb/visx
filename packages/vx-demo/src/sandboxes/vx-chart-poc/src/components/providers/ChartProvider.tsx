@@ -74,18 +74,30 @@ export default class ChartProvider<
         ...state,
         dataRegistry: {
           ...state.dataRegistry,
-          [dataToRegister.key]: {
-            ...dataToRegister,
-            mouseEvents: dataToRegister.mouseEvents !== false,
-          },
+          ...Object.values(dataToRegister).reduce(
+            (combined, curr) => ({
+              ...combined,
+              [curr.key]: {
+                ...curr,
+                mouseEvents: curr.mouseEvents !== false,
+              },
+            }),
+            {},
+          ),
         },
         combinedData: [
           ...state.combinedData,
-          ...dataToRegister.data.map((datum, index) => ({
-            key: dataToRegister.key,
-            datum,
-            index,
-          })),
+          ...Object.values(dataToRegister).reduce(
+            (combined, curr) => [
+              ...combined,
+              ...curr.data.map((datum, index) => ({
+                key: curr.key,
+                datum,
+                index,
+              })),
+            ],
+            [],
+          ),
         ],
       };
 

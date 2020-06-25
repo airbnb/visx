@@ -20,16 +20,7 @@ export interface DataRegistry<Datum = unknown, XScaleInput = unknown, yScaleInpu
   };
 }
 
-export interface RegisterDataArgs {
-  key: DataRegistry[string]['key'];
-  data: DataRegistry[string]['data'];
-  xAccessor: DataRegistry[string]['xAccessor'];
-  yAccessor: DataRegistry[string]['yAccessor'];
-  mouseEvents?: boolean;
-  legendShape?: LegendShape;
-}
-
-export type RegisterData = (data: RegisterDataArgs) => void;
+export type RegisterData = (data: DataRegistry) => void;
 
 export type DatumWithKey<Datum = unknown> = { datum: Datum; key: string; index: number };
 
