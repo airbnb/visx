@@ -15,10 +15,11 @@ import Tooltip, { RenderTooltipArgs } from './src/components/Tooltip';
 import { ScaleConfig } from './src/types';
 import Legend from './src/components/Legend';
 import CustomLegendShape from './src/components/CustomLegendShape';
+import Group from './src/components/series/Group';
 
 type DataKeys = 'austin' | 'sf' | 'ny';
 
-const data = cityTemperature.slice(100, 100 + 72).map(({ date, ...d }) => ({
+const data = cityTemperature.slice(100, 100 + 32).map(({ date, ...d }) => ({
   ...d,
   // current format is like `20200105` which you can't form a valid date from
   // @TODO PR soon!
@@ -84,6 +85,7 @@ const renderTooltip = ({
   </>
 );
 
+/** memoize the accessor functions to prevent re-registering data. */
 function useAccessors(
   temperatureAccessor: (d: CityTemperature) => number,
   dataMultiplier: number,
@@ -124,9 +126,13 @@ export default function Example() {
   );
   const [snapTooltipToDataX, setSnapTooltipToDataX] = useState(true);
   const [snapTooltipToDataY, setSnapTooltipToDataY] = useState(true);
-  const [dataMultiplier, setDataMultiplier] = useState(2);
+  const [dataMultiplier, setDataMultiplier] = useState(1);
   const [renderTooltipInPortal, setRenderTooltipInPortal] = useState(true);
-  const dateScaleConfig: ScaleConfig<string> = useMemo(() => ({ type: 'band' }), []);
+  const [visibleSeries, setVisibleSeries] = useState<('line' | 'bar' | 'groupedbar')[]>([
+    'line',
+    'bar',
+  ]);
+  const dateScaleConfig: ScaleConfig<string> = useMemo(() => ({ type: 'band', padding: 0.2 }), []);
   const temperatureScaleConfig: ScaleConfig<number> = useMemo(
     () => ({
       type: 'linear',
@@ -196,15 +202,35 @@ export default function Example() {
               margin={xAxisOrientation === 'top' ? axisTopMargin : axisBottomMargin}
             >
               <ChartBackground />
-              <BarSeries dataKey="austin" data={currData} {...austinAccessors} />
-              <LineSeries dataKey="sf" data={currData} {...sfAccessors} strokeWidth={1.5} />
-              <LineSeries
-                dataKey="ny"
-                data={currData}
-                {...nyAccessors}
-                strokeWidth={1.5}
-                strokeDasharray="5,3"
-              />
+
+              {visibleSeries.includes('bar') && (
+                <BarSeries
+                  horizontal={renderHorizontally}
+                  dataKey="austin"
+                  data={currData}
+                  {...austinAccessors}
+                />
+              )}
+
+              {visibleSeries.includes('groupedbar') && (
+                <Group horizontal={renderHorizontally}>
+                  <BarSeries dataKey="austin" data={currData} {...austinAccessors} />
+                  <BarSeries dataKey="sf" data={currData} {...sfAccessors} />
+                  <BarSeries dataKey="ny" data={currData} {...nyAccessors} />
+                </Group>
+              )}
+              {visibleSeries.includes('line') && (
+                <>
+                  <LineSeries dataKey="sf" data={currData} {...sfAccessors} strokeWidth={1.5} />
+                  <LineSeries
+                    dataKey="ny"
+                    data={currData}
+                    {...nyAccessors}
+                    strokeWidth={1.5}
+                    strokeDasharray="5,3"
+                  />
+                </>
+              )}
 
               {/** Temperature axis */}
               <AxisComponent
@@ -470,6 +496,54 @@ export default function Example() {
           <input type="checkbox" onChange={() => setAutoWidth(!autoWidth)} checked={autoWidth} />{' '}
           responsive width
         </label> */}
+        </div>
+        <div>
+          <strong>series</strong>
+          &nbsp;&nbsp;&nbsp;
+          <label>
+            <input
+              type="checkbox"
+              checked={visibleSeries.includes('line')}
+              onChange={() =>
+                setVisibleSeries(
+                  visibleSeries.includes('line')
+                    ? visibleSeries.filter(s => s !== 'line')
+                    : [...visibleSeries, 'line'],
+                )
+              }
+            />
+            line
+          </label>
+          &nbsp;&nbsp;
+          <label>
+            <input
+              type="checkbox"
+              checked={visibleSeries.includes('bar')}
+              onChange={() =>
+                setVisibleSeries(
+                  visibleSeries.includes('bar')
+                    ? visibleSeries.filter(s => s !== 'bar')
+                    : [...visibleSeries, 'bar'],
+                )
+              }
+            />
+            bar
+          </label>
+          &nbsp;&nbsp;
+          <label>
+            <input
+              type="checkbox"
+              checked={visibleSeries.includes('groupedbar')}
+              onChange={() =>
+                setVisibleSeries(
+                  visibleSeries.includes('groupedbar')
+                    ? visibleSeries.filter(s => s !== 'groupedbar')
+                    : [...visibleSeries, 'groupedbar'],
+                )
+              }
+            />
+            grouped bar
+          </label>
         </div>
       </div>
       <style jsx>{`
