@@ -11,12 +11,7 @@ export type UseTooltipInPortal = {
   TooltipInPortal: React.FC<TooltipProps>;
 };
 
-export type UseTooltipPortalParams = {
-  /** Whether TooltipWithBounds should be used to auto-detect its container boundaries and update its position accordingly. */
-  detectBounds?: boolean;
-} & UseMeasureOptions;
-
-export type UseMeasureOptions = {
+export type UseTooltipPortalOptions = {
   /** whether TooltipWithBounds should be used to auto-detect (page) boundaries and reposition itself. */
   detectBounds?: boolean;
   /** Debounce resize or scroll events in milliseconds (needed for positioning) */
@@ -32,10 +27,10 @@ export type UseMeasureOptions = {
  * Handles conversion of container coordinates to page coordinates using the container bounds.
  */
 export default function useTooltipInPortal({
-  scroll,
   detectBounds = true,
-}: UseTooltipPortalParams | undefined = {}): UseTooltipInPortal {
-  const [containerRef, containerBounds] = useMeasure({ scroll });
+  ...useMeasureOptions
+}: UseTooltipPortalOptions | undefined = {}): UseTooltipInPortal {
+  const [containerRef, containerBounds] = useMeasure(useMeasureOptions);
 
   const TooltipInPortal = useMemo(
     () => ({ left: containerLeft = 0, top: containerTop = 0, ...tooltipProps }: TooltipProps) => {
@@ -53,5 +48,11 @@ export default function useTooltipInPortal({
     [detectBounds, containerBounds.left, containerBounds.top],
   );
 
-  return { containerRef, containerBounds, TooltipInPortal };
+  return {
+    // react-use-measure doesn't currently accept SVGElement refs
+    // @ts-ignore fixed here https://github.com/react-spring/react-use-measure/pull/17
+    containerRef,
+    containerBounds,
+    TooltipInPortal,
+  };
 }
