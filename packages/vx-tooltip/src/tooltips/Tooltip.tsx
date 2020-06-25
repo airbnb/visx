@@ -4,6 +4,8 @@ import cx from 'classnames';
 export type TooltipProps = {
   left?: number;
   top?: number;
+  offsetLeft?: number;
+  offsetTop?: number;
   className?: string;
   style?: React.CSSProperties;
   children?: React.ReactNode;
@@ -26,15 +28,21 @@ export default function Tooltip({
   className,
   top,
   left,
+  offsetLeft = 10,
+  offsetTop = 10,
   style = defaultStyles,
   children,
   unstyled = false,
   ...restProps
-}: TooltipProps & JSX.IntrinsicElements['div']) {
+}: TooltipProps & React.HTMLProps<HTMLDivElement>) {
   return (
     <div
       className={cx('vx-tooltip-portal', className)}
-      style={{ top, left, ...(!unstyled && style) }}
+      style={{
+        top: top == null || offsetTop == null ? top : top + offsetTop,
+        left: left == null || offsetLeft == null ? left : left + offsetLeft,
+        ...(!unstyled && style),
+      }}
       {...restProps}
     >
       {children}
