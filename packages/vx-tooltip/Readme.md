@@ -5,7 +5,7 @@
 </a>
 
 The `@vx/tooltip` package provides utilities for making it easy to add `Tooltip`s to a visualization
-and includes hooks, higher-order component (HOC) enhancers and Tooltip components.
+and includes hooks, higher-order component (HOC) enhancers, and Tooltip components.
 
 ### Installation
 
@@ -15,7 +15,7 @@ npm install --save @vx/tooltip
 
 ### Hooks and Enhancers
 
-This package provides two ways to add tooltip state logic to your chart components:
+This package provides two ways to add tooltip **state** logic to your chart components:
 
 - a hook: `useTooltip()`
 - a higher order component (HOC): `withTooltip()`
@@ -62,6 +62,9 @@ You may override the container by specifying `containerProps` as the second argu
 
 ### Components
 
+Tooltip **components** render tooltip **state** and can be used in conjunction with `useTooltip` and
+`withTooltip` above.
+
 #### Tooltip
 
 This is a simple Tooltip container component meant to be used to actually render a Tooltip. It
@@ -92,17 +95,92 @@ component (i.e., ...restProps):
 | offsetRight | number | 10      | Vertical offset of the tooltip from the passed `top` value, functions as a vertical padding.                                                                                     |
 | style       | object | --      | Sets / overrides any styles on the tooltip container (including top and left)                                                                                                    |
 | children    | node   | --      | Sets the children of the tooltip, i.e., the actual content                                                                                                                       |
-| unstyled  | bool             | true    | Whether the tooltip should use styles from the style prop or not              |
+| unstyled    | bool   | true    | Whether the tooltip should use styles from the style prop or not                                                                                                                 |
 
 Note that this component is positioned using a `transform`, so overriding `left` and `top` via
 styles may have no effect.
 
-### Examples
+#### useTooltipInPortal
 
-#### useTooltip For Functional Components
+##### ⚠️ `ResizeObserver` dependency
+
+This hook relies on `ResizeObserver`s. If you need a polyfill, you can either polute the `window`
+object or inject it cleanly using the `polyfill` config option below.
+
+`useTooltipInPortal` is a hook which gives you a `TooltipInPortal` component for rendering `Tooltip`
+or `TooltipWithBounds` in a `Portal`, outside of your component DOM tree which can be useful in many
+circumstances (see below for more on `Portal`s).
+
+##### API
+
+```ts
+
+type Options = {
+  /** whether TooltipWithBounds should be used to auto-detect (page) boundaries and reposition itself. */
+  detectBounds?: boolean;
+  /** Debounce resize or scroll events in milliseconds (needed for positioning) **/
+  debounce?: number | { scroll: number; resize: number }
+  /** React to nested scroll changes, don't use this if you know your view is static */
+  scroll?: boolean
+  /** You can optionally inject a resize-observer polyfill */
+  polyfill?: { new (cb: ResizeObserverCallback): ResizeObserver }
+}
+
+useTooltipInPortal(
+  options: Options = { debounce: 0, scroll: true, detectBounds: true }
+): {
+  /** Set `ref={containerRef}` on the element corresponding to the coordinate system that `left/top` (passed to `TooltipInPortal`) are relative to. */
+  containerRef: React.MutableRefObject<HTMLElement | SVGElement>;
+  /** Access to the container's bounding box if useful to you. This will be empty on first render. */
+  containterBounds: RectReadOnly;
+  /** React.FunctionComponent<TooltipProps> with the same API as Tooltip, which will be rendered in a Portal. */
+  TooltipInPortal ({ top: containerTop, left: containerLeft, ...tooltipProps }: TooltipProps) => ReactNode;
+
+
+interface RectReadOnly {
+  readonly x: number
+  readonly y: number
+  readonly width: number
+  readonly height: number
+  readonly top: number
+  readonly right: number
+  readonly bottom: number
+  readonly left: number
+}
+
+```
+
+#### Portal
+
+`Portal` is a component which simply renders its children inside a `div` element appended to
+`document.body` created by `ReactDOM`. A `Portal` can be an effective strategy for solving the
+(`z-index` stacking context
+problem)[rg/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context] for
+`Tooltip`s.
+
+For example, if your chart is rendered inside a stacking context with a lower `z-index` than a
+surrounding container, it may get clipped by that container even if you specify a higher `z-index`.
+This is solvable with a `Portal` because the separate container will not be subject to the stacking
+context of your chart.
+
+To use a `Portal`, simply pass your `Tooltip` as a child: `<Portal><Tooltip {...} /></Portal>`. You
+will also need to correct the `left` and `top` positions to be in _page coordinates_, not the
+coordinates of your container which you would use when _not_ using a `Portal`. If reacting to a
+mouse event, you can use `event.pageX/Y`. Alternatively, if you have container coordinates, you can
+convert them to page coordinates using the following (note: `useTooltipInPortal` does handles this
+for you):
 
 ```js
-import { useTooltip, TooltipWithBounds } from '@vx/tooltip';
+const pageX = containerX + containerBoundingBox.left + window.scrollLeft;
+const pageY = containerY + containerBoundingBox.top + window.scrollTop;
+```
+
+### Examples
+
+#### useTooltip and useTooltipInPortal For Functional Components
+
+```jsx
+import { useTooltip, useTooltipInPortal, TooltipWithBounds } from '@vx/tooltip';
 import { localPoint } from '@vx/event';
 
 const ChartWithTooltip = () => {
@@ -115,6 +193,15 @@ const ChartWithTooltip = () => {
     hideTooltip,
   } = useTooltip();
 
+  // If you don't want to use a Portal, simply replace `TooltipInPortal` below with
+  // `Tooltip` or `TooltipWithBounds` and remove `containerRef`
+  const { containerRef, TooltipInPortal } = useTooltipInPortal({
+    // use TooltipWithBounds
+    detectBounds: true,
+    // when tooltip containers are scrolled, this will correctly update the Tooltip position
+    scroll: true,
+  })
+
   const handleMouseOver = (event, datum) => {
     const coords = localPoint(event.target.ownerSVGElement, event);
     showTooltip({
@@ -125,8 +212,10 @@ const ChartWithTooltip = () => {
   };
 
   return (
+    // Set `ref={containerRef}` on the element corresponding to the coordinate system that
+    // `left/top` (passed to `TooltipInPortal`) are relative to.
     <>
-      <svg width={...} height={...}>
+      <svg ref={containerRef} width={...} height={...}>
         // Chart here...
         <SomeChartElement
           onMouseOver={this.handleMouseOver}
@@ -135,14 +224,14 @@ const ChartWithTooltip = () => {
       </svg>
 
       {tooltipOpen && (
-        <TooltipWithBounds
+        <TooltipInPortal
           // set this to random so it correctly updates with parent bounds
           key={Math.random()}
           top={tooltipTop}
           left={tooltipLeft}
         >
           Data value <strong>{tooltipData}</strong>
-        </TooltipWithBounds>
+        </TooltipInPortal>
       )}
     </>
   )

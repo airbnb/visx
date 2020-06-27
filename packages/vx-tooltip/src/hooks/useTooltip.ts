@@ -16,9 +16,12 @@ type UseTooltipState<TooltipData> = Pick<
 type ShowTooltipArgs<TooltipData> = Omit<UseTooltipState<TooltipData>, 'tooltipOpen'>;
 type UpdateTooltipArgs<TooltipData> = UseTooltipState<TooltipData>;
 
-export default function useTooltip<TooltipData = {}>(): UseTooltipParams<TooltipData> {
+export default function useTooltip<TooltipData = {}>(
+  initialTooltipState?: Partial<UseTooltipParams<TooltipData>>,
+): UseTooltipParams<TooltipData> {
   const [tooltipState, setTooltipState] = useState<UseTooltipState<TooltipData>>({
     tooltipOpen: false,
+    ...initialTooltipState,
   });
 
   const updateTooltip = useCallback(

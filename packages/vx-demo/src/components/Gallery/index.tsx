@@ -38,6 +38,7 @@ import * as StatsPlotTile from './StatsPlotTile';
 import * as StreamGraphTile from './StreamGraphTile';
 import * as TextTile from './TextTile';
 import * as ThresholdTile from './ThresholdTile';
+import * as TooltipTile from './TooltipTile';
 import * as TreemapTile from './TreemapTile';
 import * as TreesTile from './TreesTile';
 import * as VoronoiTile from './VoronoiTile';
@@ -84,6 +85,7 @@ const tiles = [
   StreamGraphTile,
   TextTile,
   ThresholdTile,
+  TooltipTile,
   TreemapTile,
   TreesTile,
   VoronoiTile,

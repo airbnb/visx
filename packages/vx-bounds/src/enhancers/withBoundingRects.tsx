@@ -21,9 +21,9 @@ type rectShape = {
 };
 
 export type WithBoundingRectsProps = {
-  getRects: () => { rect: rectShape; parentRect: rectShape };
-  rect: rectShape;
-  parentRect: rectShape;
+  getRects?: () => { rect: rectShape; parentRect: rectShape };
+  rect?: rectShape;
+  parentRect?: rectShape;
 };
 
 export default function withBoundingRects<Props extends object = {}>(
