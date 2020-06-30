@@ -10,41 +10,6 @@ import BarSeries from './BarSeries';
 
 const GROUP_ACCESSOR = d => d.group;
 
-// import { animated, useTransition } from 'react-spring';
-// import ChartContext from '../../context/ChartContext';
-// import { ChartContext as ChartContextType, SeriesProps } from '../../types';
-// import withRegisteredData from '../../enhancers/withRegisteredData';
-// import isValidNumber from '../../typeguards/isValidNumber';
-// import useRegisteredData from '../../hooks/useRegisteredData';
-
-// props for tuning the group
-// export type BarGroupProps<Datum, Key> = {
-//   /** Array of data for which to generate grouped bars. */
-//   data: Datum[];
-//   /** Returns the value mapped to the x0 (group position) of a bar */
-//   x0: (d: Datum) => $TSFIXME;
-//   /** @vx/scale or d3-scale that takes an x0 value (position of group) and maps it to an x0 axis position of the group. */
-//   x0Scale: ScaleType;
-//   /** @vx/scale or d3-scale that takes a group key and maps it to an x axis position (within a group). */
-//   x1Scale: ScaleType;
-//   /** @vx/scale or d3-scale that takes an y value (Datum[key]) and maps it to a y axis position. */
-//   yScale: ScaleType;
-//   /** Returns the desired color for a bar with a given key and index. */
-//   color: (key: Key, index: number) => string;
-//   /** Array of keys corresponding to stack layers. */
-//   keys: Key[];
-//   /** Total height of the y-axis. */
-//   height: number;
-//   /** className applied to Bars. */
-//   className?: string;
-//   /** Top offset of rendered Bars. */
-//   top?: number;
-//   /** Left offset of rendered Bars. */
-//   left?: number;
-//   /** Override render function which is passed the computed BarGroups. */
-//   children?: (barGroups: BarGroup<Key>[]) => React.ReactNode;
-// };
-
 export type GroupProps = {
   horizontal?: boolean;
   children: typeof BarSeries;
@@ -122,6 +87,8 @@ export default function Group<Datum, XScaleInput, YScaleInput>({
   // @TODO handle NaNs from non-number inputs, prob fallback to 0
   const scaledZeroPosition = (horizontal ? xScale : yScale)(0);
 
+  // @TODO refactor this to re-use the bar.
+  // @TODO should consider refactoring base shapes to handle negative values better
   return horizontal ? (
     <BarGroupHorizontal<unknown, string>
       data={combinedData}

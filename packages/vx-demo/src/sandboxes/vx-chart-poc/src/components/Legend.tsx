@@ -2,11 +2,11 @@ import React, { useContext, useCallback, useMemo } from 'react';
 import BaseLegend, { LegendProps as BaseLegendProps } from '@vx/legend/lib/legends/Legend';
 import Rect from '@vx/legend/lib/shapes/Rect';
 import Circle from '@vx/legend/lib/shapes/Circle';
+import Line from '@vx/legend/lib/shapes/Line';
 
 import ChartContext from '../context/ChartContext';
-import Line from './LegendLineShape';
 
-// convenience exports to suppor easy renderShape overrides
+// convenience exports to support easy renderShape overrides
 export const RectShape = Rect;
 export const LineShape = Line;
 export const CircleShape = Circle;
@@ -47,7 +47,7 @@ export default function Legend({
             return <LineShape {...shapeProps} />;
           case 'dashed-line':
             return (
-              <LineShape {...shapeProps} style={{ ...shapeProps.style, strokeDasharray: '5,3' }} />
+              <LineShape {...shapeProps} style={{ strokeDasharray: '5,3', ...shapeProps.style }} />
             );
           case 'rect':
           default:

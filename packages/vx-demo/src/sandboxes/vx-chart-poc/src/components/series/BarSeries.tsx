@@ -99,4 +99,4 @@ function BarSeries<Datum = unknown, XScaleInput = unknown, YScaleInput = unknown
   );
 }
 
-export default withRegisteredData(BarSeries);
+export default withRegisteredData(BarSeries, 'rect');

@@ -64,4 +64,8 @@ function AnimatedPath({
   return <animated.path d={tweenedPath.d} fill="transparent" {...lineProps} />;
 }
 
-export default React.memo(withRegisteredData(LineSeries));
+export default React.memo(
+  withRegisteredData(LineSeries, ({ strokeDasharray }) =>
+    strokeDasharray ? 'dashed-line' : 'line',
+  ),
+);
