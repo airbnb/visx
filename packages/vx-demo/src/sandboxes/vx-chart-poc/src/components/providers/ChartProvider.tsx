@@ -1,7 +1,6 @@
 import React from 'react';
 import { localPoint } from '@vx/event';
 import { scaleOrdinal } from '@vx/scale';
-import { voronoi } from '@vx/voronoi';
 
 import defaultTheme from '../../theme/default';
 import {
@@ -14,6 +13,7 @@ import {
 } from '../../types';
 import ChartContext from '../../context/ChartContext';
 import createScale from '../../createScale';
+import defaultFindNearestDatum from '../../util/defaultFindNearestDatum';
 
 /** Props that can be passed to initialize/update the provider config. */
 export type ChartProviderProps<XScaleInput, YScaleInput> = {
@@ -59,6 +59,7 @@ export default class ChartProvider<
 
   componentDidUpdate(prevProps: ChartProviderProps<XScaleInput, YScaleInput>) {
     if (
+      // @TODO better solution
       JSON.stringify(this.props.xScale) !== JSON.stringify(prevProps.xScale) ||
       JSON.stringify(this.props.yScale) !== JSON.stringify(prevProps.yScale) ||
       JSON.stringify(this.props?.theme?.colors) !== JSON.stringify(prevProps?.theme?.colors)
@@ -186,50 +187,51 @@ export default class ChartProvider<
 
   // @TODO move to util function, support registry overrides
   findNearestData = (event: React.MouseEvent | React.TouchEvent) => {
-    const { width, height, xScale, yScale, dataRegistry } = this.state;
-    const { x: svgMouseX, y: svgMouseY } = localPoint(event);
+    const { width, height, margin, xScale, yScale, dataRegistry } = this.state;
+    const { x: svgMouseX, y: svgMouseY } = localPoint(event) || {};
 
     // for each series find the datums with closest x and y
     const closestData = {};
     let closestDatum: DatumWithKey | null = null;
-    let minDeltaX: number = Number.POSITIVE_INFINITY;
-    let minDeltaY: number = Number.POSITIVE_INFINITY;
-    let minTotalDelta: number = Number.POSITIVE_INFINITY;
+    let minDistance: number = Number.POSITIVE_INFINITY;
 
-    if (xScale && yScale) {
-      Object.values(dataRegistry).forEach(({ key, data, xAccessor, yAccessor, mouseEvents }) => {
-        if (!mouseEvents) return;
-        const scaledX = (d: unknown) => xScale(xAccessor(d)) as number;
-        const scaledY = (d: unknown) => yScale(yAccessor(d)) as number;
+    if (xScale && yScale && svgMouseX != null && svgMouseY != null) {
+      Object.values(dataRegistry).forEach(
+        ({
+          key,
+          data,
+          xAccessor,
+          yAccessor,
+          mouseEvents,
+          findNearestDatum = defaultFindNearestDatum,
+        }) => {
+          if (!mouseEvents) {
+            return;
+          }
 
-        // Create a voronoi with each node center points
-        const voronoiInstance = voronoi({
-          x: scaledX,
-          y: scaledY,
-          width,
-          height,
-        });
+          const nearestDatum = findNearestDatum({
+            event,
+            svgMouseX,
+            svgMouseY,
+            xScale,
+            yScale,
+            xAccessor,
+            yAccessor,
+            data,
+            width,
+            height,
+            margin,
+          });
 
-        const foundPoint = voronoiInstance(data).find(svgMouseX, svgMouseY);
+          if (nearestDatum) {
+            const { datum, index, distance } = nearestDatum;
 
-        const deltaX = foundPoint
-          ? Math.abs(scaledX(foundPoint.data) - svgMouseX)
-          : Number.POSITIVE_INFINITY;
-
-        const deltaY = foundPoint
-          ? Math.abs(scaledY(foundPoint.data) - svgMouseY)
-          : Number.POSITIVE_INFINITY;
-
-        const datumWithKey = { key, datum: foundPoint.data, index: foundPoint.index };
-        closestData[key] = datumWithKey;
-
-        // now update the overall closest datum
-        const totalDelta = deltaX + deltaY;
-        closestDatum = totalDelta < minTotalDelta ? datumWithKey : closestDatum;
-        minDeltaX = Math.min(deltaX, minDeltaX);
-        minDeltaY = Math.min(deltaY, minDeltaY);
-        minTotalDelta = Math.min(totalDelta, minTotalDelta);
-      });
+            closestData[key] = { key, datum, index };
+            closestDatum = distance < minDistance ? closestData[key] : closestDatum;
+            minDistance = Math.min(distance, minDistance);
+          }
+        },
+      );
     }
 
     return { closestData, closestDatum, svgMouseX, svgMouseY };

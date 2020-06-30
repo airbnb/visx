@@ -10,11 +10,22 @@ export interface DataRegistry<Datum = unknown, XScaleInput = unknown, yScaleInpu
     /** array of data */
     data: Datum[];
     /** function that returns the x value of a datum. */
-    xAccessor: (d: unknown) => XScaleInput;
+    xAccessor: (d: Datum) => XScaleInput;
     /** function that returns the y value of a datum. */
-    yAccessor: (d: unknown) => yScaleInput;
+    yAccessor: (d: Datum) => yScaleInput;
     /** whether the entry supports mouse events. */
-    mouseEvents: boolean;
+    mouseEvents?: boolean;
+    /** Optionally override logic for finding the nearest data point to a mouse event. */
+    findNearestDatum?: (
+      args: NearestDatumArgs<Datum, XScaleInput, yScaleInput>,
+    ) => null | {
+      /** Closest datum. */
+      datum: Datum;
+      /** Index of the closest datum. */
+      index: number;
+      /** Distance in px from even to datum. Used to rank overall cloest datum. */
+      distance: number;
+    };
     /** Legend shape */
     legendShape?: LegendShape;
   };
@@ -50,6 +61,18 @@ export interface ChartContext<
     closestData: { [dataKey: string]: DatumWithKey };
   };
 }
+
+export type NearestDatumArgs<Datum = unknown, XScaleInput = unknown, YScaleInput = unknown> = {
+  event: React.MouseEvent | React.TouchEvent;
+  svgMouseX: number;
+  svgMouseY: number;
+  xAccessor: (d: Datum) => XScaleInput;
+  yAccessor: (d: Datum) => YScaleInput;
+  data: Datum[];
+} & Pick<
+  ChartContext<Datum, XScaleInput, YScaleInput>,
+  'xScale' | 'yScale' | 'width' | 'height' | 'margin'
+>;
 
 // TooltipContext ---------------------------------------------------------------
 
