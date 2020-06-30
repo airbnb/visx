@@ -35,6 +35,7 @@ export default function XYChart(props: Props) {
         showTooltip({
           tooltipData: {
             ...nearestData,
+            // @TODO remove this and rely on useTooltipInPortal() instead
             pageX: event.pageX,
             pageY: event.pageY,
             svgOriginX: svgBounds?.x,

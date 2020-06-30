@@ -19,7 +19,7 @@ import Group from './src/components/series/Group';
 
 type DataKeys = 'austin' | 'sf' | 'ny';
 
-const data = cityTemperature.slice(100, 100 + 32).map(({ date, ...d }) => ({
+const data = cityTemperature.slice(100, 100 + 8).map(({ date, ...d }) => ({
   ...d,
   // current format is like `20200105` which you can't form a valid date from
   // @TODO PR soon!
@@ -129,8 +129,7 @@ export default function Example() {
   const [dataMultiplier, setDataMultiplier] = useState(1);
   const [renderTooltipInPortal, setRenderTooltipInPortal] = useState(true);
   const [visibleSeries, setVisibleSeries] = useState<('line' | 'bar' | 'groupedbar')[]>([
-    'line',
-    'bar',
+    'groupedbar',
   ]);
   const dateScaleConfig: ScaleConfig<string> = useMemo(() => ({ type: 'band', padding: 0.2 }), []);
   const temperatureScaleConfig: ScaleConfig<number> = useMemo(

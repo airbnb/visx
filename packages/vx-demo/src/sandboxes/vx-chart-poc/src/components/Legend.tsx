@@ -16,7 +16,7 @@ export type LegendProps = { horizontalAlign?: boolean } & Partial<BaseLegendProp
 export default function Legend({
   alignLeft = true,
   direction = 'row',
-  shape,
+  shape: Shape,
   style,
   ...props
 }: LegendProps) {
@@ -37,24 +37,25 @@ export default function Legend({
     [theme, margin, alignLeft, direction, style],
   );
   const renderShape = useCallback(
-    shape ||
-      (shapeProps => {
-        const legendShape = dataRegistry?.[shapeProps.item]?.legendShape;
-        switch (legendShape) {
-          case 'circle':
-            return <CircleShape {...shapeProps} />;
-          case 'line':
-            return <LineShape {...shapeProps} />;
-          case 'dashed-line':
-            return (
-              <LineShape {...shapeProps} style={{ strokeDasharray: '5,3', ...shapeProps.style }} />
-            );
-          case 'rect':
-          default:
-            return <RectShape {...shapeProps} />;
-        }
-      }),
-    [dataRegistry, shape],
+    shapeProps => {
+      if (Shape && typeof Shape !== 'string') return <Shape {...shapeProps} />;
+
+      const legendShape = Shape || dataRegistry?.[shapeProps.item]?.legendShape;
+      switch (legendShape) {
+        case 'circle':
+          return <CircleShape {...shapeProps} />;
+        case 'line':
+          return <LineShape {...shapeProps} />;
+        case 'dashed-line':
+          return (
+            <LineShape {...shapeProps} style={{ strokeDasharray: '5,3', ...shapeProps.style }} />
+          );
+        case 'rect':
+        default:
+          return <RectShape {...shapeProps} />;
+      }
+    },
+    [dataRegistry, Shape],
   );
 
   return props.scale || colorScale ? (

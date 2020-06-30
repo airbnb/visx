@@ -1,11 +1,9 @@
 import React, { useContext } from 'react';
-import TooltipWithBounds from '@vx/tooltip/lib/tooltips/TooltipWithBounds';
-import { defaultStyles } from '@vx/tooltip';
+import { TooltipWithBounds, Portal, defaultStyles } from '@vx/tooltip';
 import { scaleOrdinal } from '@vx/scale';
 
 import TooltipContext from '../context/TooltipContext';
 import ChartContext from '../context/ChartContext';
-import Portal from './Portal';
 import { TooltipData } from '../types';
 
 export type RenderTooltipArgs<Datum, DataKeys extends string> = TooltipData<Datum, DataKeys> & {

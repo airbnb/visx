@@ -188,12 +188,12 @@ export default class ChartProvider<
   // @TODO move to util function, support registry overrides
   findNearestData = (event: React.MouseEvent | React.TouchEvent) => {
     const { width, height, margin, xScale, yScale, dataRegistry } = this.state;
-    const { x: svgMouseX, y: svgMouseY } = localPoint(event) || {};
 
     // for each series find the datums with closest x and y
     const closestData = {};
     let closestDatum: DatumWithKey | null = null;
     let minDistance: number = Number.POSITIVE_INFINITY;
+    const { x: svgMouseX, y: svgMouseY } = localPoint(event) || {};
 
     if (xScale && yScale && svgMouseX != null && svgMouseY != null) {
       Object.values(dataRegistry).forEach(
@@ -205,9 +205,8 @@ export default class ChartProvider<
           mouseEvents,
           findNearestDatum = defaultFindNearestDatum,
         }) => {
-          if (!mouseEvents) {
-            return;
-          }
+          // series has mouse events disabled
+          if (!mouseEvents) return;
 
           const nearestDatum = findNearestDatum({
             event,
@@ -225,7 +224,6 @@ export default class ChartProvider<
 
           if (nearestDatum) {
             const { datum, index, distance } = nearestDatum;
-
             closestData[key] = { key, datum, index };
             closestDatum = distance < minDistance ? closestData[key] : closestDatum;
             minDistance = Math.min(distance, minDistance);
