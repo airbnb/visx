@@ -220,10 +220,12 @@ export default class ChartProvider<
             width,
             height,
             margin,
+            key,
           });
 
           if (nearestDatum) {
-            const { datum, index, distance } = nearestDatum;
+            const { datum, index, distanceX, distanceY } = nearestDatum;
+            const distance = Math.sqrt(distanceX ** 2 + distanceY ** 2);
             closestData[key] = { key, datum, index };
             closestDatum = distance < minDistance ? closestData[key] : closestDatum;
             minDistance = Math.min(distance, minDistance);

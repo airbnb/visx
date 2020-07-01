@@ -1,12 +1,14 @@
-import React, { useContext, useCallback, useMemo, useEffect } from 'react';
+import React, { useContext, useMemo, useEffect, useCallback } from 'react';
 import BarGroup from '@vx/shape/lib/shapes/BarGroup';
 import BarGroupHorizontal from '@vx/shape/lib/shapes/BarGroupHorizontal';
 import { Group as VxGroup } from '@vx/group';
 import { scaleBand } from '@vx/scale';
 import ChartContext from '../../context/ChartContext';
-import { DataRegistry, ChartContext as ChartContextType } from '../../types';
+import { DataRegistry, ChartContext as ChartContextType, NearestDatumArgs } from '../../types';
 
 import BarSeries from './BarSeries';
+import findNearestDatumX from '../../util/findNearestDatumX';
+import findNearestDatumY from '../../util/findNearestDatumY';
 
 const GROUP_ACCESSOR = d => d.group;
 
@@ -19,6 +21,8 @@ export default function Group<Datum, XScaleInput, YScaleInput>({
   horizontal,
   children,
 }: GroupProps) {
+  console.log('render Group');
+
   const {
     width,
     height,
@@ -36,13 +40,53 @@ export default function Group<Datum, XScaleInput, YScaleInput>({
     [children],
   );
 
+  const withinGroupScale = useMemo(
+    () =>
+      scaleBand<string>({
+        domain: [...dataKeys],
+        range: [0, (horizontal ? yScale : xScale)?.bandwidth?.()],
+        padding: 0.1,
+      }),
+    [dataKeys, xScale, yScale, horizontal],
+  );
+
+  const findNearestDatum = (args: NearestDatumArgs<Datum, XScaleInput, YScaleInput>) => {
+    const nearestDatum = (horizontal ? findNearestDatumY : findNearestDatumX)({ ...args, yScale });
+
+    if (!nearestDatum) return null;
+
+    const distanceX = horizontal
+      ? nearestDatum.distanceX
+      : Math.abs(
+          args.svgMouseX -
+            (args.xScale(args.xAccessor(nearestDatum.datum)) +
+              withinGroupScale(args.key) +
+              withinGroupScale.bandwidth() / 2),
+        );
+
+    const distanceY = horizontal
+      ? Math.abs(
+          args.svgMouseY -
+            (args.yScale(args.yAccessor(nearestDatum.datum)) +
+              withinGroupScale(args.key) +
+              withinGroupScale.bandwidth() / 2),
+        )
+      : nearestDatum.distanceY;
+
+    return {
+      ...nearestDatum,
+      distanceX,
+      distanceY,
+    };
+  };
+
   // register all child data
   useEffect(() => {
     const dataToRegister: DataRegistry<Datum> = {};
 
     React.Children.map(children, child => {
       const { dataKey: key, data, xAccessor, yAccessor, mouseEvents } = child.props;
-      dataToRegister[key] = { key, data, xAccessor, yAccessor, mouseEvents };
+      dataToRegister[key] = { key, data, xAccessor, yAccessor, mouseEvents, findNearestDatum };
     });
 
     registerData(dataToRegister);
@@ -68,16 +112,6 @@ export default function Group<Datum, XScaleInput, YScaleInput>({
     });
     return Object.values(dataByGroupValue);
   }, [horizontal, dataKeys, dataRegistry]);
-
-  const withinGroupScale = useMemo(
-    () =>
-      scaleBand<string>({
-        domain: [...dataKeys],
-        range: [0, (horizontal ? yScale : xScale)?.bandwidth?.()],
-        padding: 0.1,
-      }),
-    [dataKeys, xScale, yScale, horizontal],
-  );
 
   // if scales and data are not available in the registry, bail
   if (dataKeys.some(key => dataRegistry[key] == null) || !xScale || !yScale || !colorScale) {

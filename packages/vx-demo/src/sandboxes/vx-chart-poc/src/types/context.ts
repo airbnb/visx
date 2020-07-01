@@ -23,8 +23,10 @@ export interface DataRegistry<Datum = unknown, XScaleInput = unknown, yScaleInpu
       datum: Datum;
       /** Index of the closest datum. */
       index: number;
-      /** Distance in px from even to datum. Used to rank overall cloest datum. */
-      distance: number;
+      /** X coord distance in px from event to datum. Used to rank overall cloest datum. */
+      distanceX: number;
+      /** Y coord distance in px from event to datum. Used to rank overall cloest datum. */
+      distanceY: number;
     };
     /** Legend shape */
     legendShape?: LegendShape;
@@ -69,6 +71,7 @@ export type NearestDatumArgs<Datum = unknown, XScaleInput = unknown, YScaleInput
   xAccessor: (d: Datum) => XScaleInput;
   yAccessor: (d: Datum) => YScaleInput;
   data: Datum[];
+  key: string;
 } & Pick<
   ChartContext<Datum, XScaleInput, YScaleInput>,
   'xScale' | 'yScale' | 'width' | 'height' | 'margin'

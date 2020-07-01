@@ -2,7 +2,11 @@ import { voronoi } from '@vx/voronoi';
 import { NearestDatumArgs } from '../types';
 
 // default function for finding the datum nearest to svgMouseX/Y, uses voronoi
-export default function defaultFindNearestDatum({
+export default function defaultFindNearestDatum<
+  Datum = unknown,
+  XScaleInput = unknown,
+  YScaleInput = unknown
+>({
   width,
   height,
   xScale,
@@ -12,7 +16,7 @@ export default function defaultFindNearestDatum({
   svgMouseX,
   svgMouseY,
   data,
-}: NearestDatumArgs) {
+}: NearestDatumArgs<Datum, XScaleInput, YScaleInput>) {
   const scaledX = (d: unknown) => xScale(xAccessor(d)) as number;
   const scaledY = (d: unknown) => yScale(yAccessor(d)) as number;
 
@@ -29,10 +33,8 @@ export default function defaultFindNearestDatum({
   if (!nearestDatum) return null;
 
   const { data: datum, index } = nearestDatum;
+  const distanceX = Math.abs(scaledX(datum) - svgMouseX);
+  const distanceY = Math.abs(scaledY(datum) - svgMouseY);
 
-  const distanceX = nearestDatum ? Math.abs(scaledX(datum) - svgMouseX) : Number.POSITIVE_INFINITY;
-  const distanceY = nearestDatum ? Math.abs(scaledY(datum) - svgMouseY) : Number.POSITIVE_INFINITY;
-  const distance = Math.sqrt(distanceX ** 2 + distanceY ** 2);
-
-  return { datum, index, distance };
+  return { datum, index, distanceX, distanceY };
 }
