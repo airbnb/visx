@@ -16,10 +16,11 @@ import { ScaleConfig } from './src/types';
 import Legend from './src/components/Legend';
 import CustomLegendShape from './src/components/CustomLegendShape';
 import Group from './src/components/series/Group';
+import Stack from './src/components/series/Stack';
 
 type DataKeys = 'austin' | 'sf' | 'ny';
 
-const data = cityTemperature.slice(100, 100 + 8).map(({ date, ...d }) => ({
+const data = cityTemperature.slice(100, 100 + 12).map(({ date, ...d }) => ({
   ...d,
   // current format is like `20200105` which you can't form a valid date from
   // @TODO PR soon!
@@ -39,8 +40,6 @@ const getAustinTemperature = (d: CityTemperature) => Number(d.Austin);
 
 const axisTopMargin = { top: 40, right: 50, bottom: 30, left: 50 };
 const axisBottomMargin = { top: 30, right: 50, bottom: 40, left: 50 };
-
-const colorScaleConfig: { domain: DataKeys[] } = { domain: ['austin', 'sf', 'ny'] };
 const legendLabelFormat = (d: DataKeys) =>
   d === 'sf' ? 'San Francisco' : d === 'ny' ? 'New York' : d === 'austin' ? 'Austin' : d;
 
@@ -52,7 +51,7 @@ const renderTooltip = ({
   <>
     <div>{closestDatum.datum.date}</div>
     <br />
-    {closestData?.sf && (
+    {closestData?.sf && closestDatum.datum.date === closestData.sf.datum.date && (
       <div
         style={{
           color: colorScale('sf'),
@@ -62,7 +61,7 @@ const renderTooltip = ({
         San Francisco {closestData.sf.datum['San Francisco']}°F
       </div>
     )}
-    {closestData?.ny && (
+    {closestData?.ny && closestDatum.datum.date === closestData.ny.datum.date && (
       <div
         style={{
           color: colorScale('ny'),
@@ -72,7 +71,7 @@ const renderTooltip = ({
         New York {closestData.ny.datum['New York']}°F
       </div>
     )}
-    {closestData?.austin && (
+    {closestData?.austin && closestDatum.datum.date === closestData.austin.datum.date && (
       <div
         style={{
           color: colorScale('austin'),
@@ -128,9 +127,9 @@ export default function Example() {
   const [snapTooltipToDataY, setSnapTooltipToDataY] = useState(true);
   const [dataMultiplier, setDataMultiplier] = useState(1);
   const [renderTooltipInPortal, setRenderTooltipInPortal] = useState(true);
-  const [visibleSeries, setVisibleSeries] = useState<('line' | 'bar' | 'groupedbar')[]>([
-    'groupedbar',
-  ]);
+  const [visibleSeries, setVisibleSeries] = useState<
+    ('line' | 'bar' | 'groupedbar' | 'stackedbar')[]
+  >(['stackedbar']);
   const dateScaleConfig: ScaleConfig<string> = useMemo(() => ({ type: 'band', padding: 0.2 }), []);
   const temperatureScaleConfig: ScaleConfig<number> = useMemo(
     () => ({
@@ -142,13 +141,22 @@ export default function Example() {
     }),
     [useCustomDomain, includeZero, negativeValues],
   );
+  const colorScaleConfig: { domain: DataKeys[] } = useMemo(
+    () => ({
+      domain:
+        visibleSeries.includes('bar') && !visibleSeries.includes('line')
+          ? ['austin']
+          : ['austin', 'sf', 'ny'],
+    }),
+    [visibleSeries],
+  );
   const austinAccessors = useAccessors(
     getAustinTemperature,
     dataMultiplier,
     renderHorizontally,
     negativeValues,
   );
-  const sfAccessors = useAccessors(getSfTemperature, 1, renderHorizontally, negativeValues);
+  const sfAccessors = useAccessors(getSfTemperature, 1, renderHorizontally, false);
   const nyAccessors = useAccessors(
     getNyTemperature,
     dataMultiplier,
@@ -210,7 +218,13 @@ export default function Example() {
                   {...austinAccessors}
                 />
               )}
-
+              {visibleSeries.includes('stackedbar') && (
+                <Stack horizontal={renderHorizontally}>
+                  <BarSeries dataKey="austin" data={currData} {...austinAccessors} />
+                  <BarSeries dataKey="sf" data={currData} {...sfAccessors} />
+                  <BarSeries dataKey="ny" data={currData} {...nyAccessors} />
+                </Stack>
+              )}
               {visibleSeries.includes('groupedbar') && (
                 <Group horizontal={renderHorizontally}>
                   <BarSeries dataKey="austin" data={currData} {...austinAccessors} />
@@ -218,6 +232,7 @@ export default function Example() {
                   <BarSeries dataKey="ny" data={currData} {...nyAccessors} />
                 </Group>
               )}
+
               {visibleSeries.includes('line') && (
                 <>
                   <LineSeries dataKey="sf" data={currData} {...sfAccessors} strokeWidth={1.5} />
@@ -514,16 +529,13 @@ export default function Example() {
             line
           </label>
           &nbsp;&nbsp;
+          {/** bar types are mutually exclusive */}
           <label>
             <input
-              type="checkbox"
+              type="radio"
               checked={visibleSeries.includes('bar')}
               onChange={() =>
-                setVisibleSeries(
-                  visibleSeries.includes('bar')
-                    ? visibleSeries.filter(s => s !== 'bar')
-                    : [...visibleSeries, 'bar'],
-                )
+                setVisibleSeries([...visibleSeries.filter(s => !s.includes('bar')), 'bar'])
               }
             />
             bar
@@ -531,17 +543,24 @@ export default function Example() {
           &nbsp;&nbsp;
           <label>
             <input
-              type="checkbox"
+              type="radio"
               checked={visibleSeries.includes('groupedbar')}
               onChange={() =>
-                setVisibleSeries(
-                  visibleSeries.includes('groupedbar')
-                    ? visibleSeries.filter(s => s !== 'groupedbar')
-                    : [...visibleSeries, 'groupedbar'],
-                )
+                setVisibleSeries([...visibleSeries.filter(s => !s.includes('bar')), 'groupedbar'])
               }
             />
             grouped bar
+          </label>
+          &nbsp;&nbsp;
+          <label>
+            <input
+              type="radio"
+              checked={visibleSeries.includes('stackedbar')}
+              onChange={() =>
+                setVisibleSeries([...visibleSeries.filter(s => !s.includes('bar')), 'stackedbar'])
+              }
+            />
+            stacked bar
           </label>
         </div>
       </div>

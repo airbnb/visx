@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useContext } from 'react';
 import ChartContext from '../context/ChartContext';
-import { SeriesProps, LegendShape } from '../types';
+import { SeriesProps, LegendShape, FindNearestDatum } from '../types';
 import useDataRegistry from '../hooks/useDataRegistry';
 
 /**
@@ -15,7 +15,15 @@ export default function withRegisteredData<
   BaseComponentProps extends SeriesProps<Datum, XScaleInput, YScaleInput>
 >(
   BaseSeriesComponent: React.ComponentType<BaseComponentProps>,
-  legendShape?: LegendShape | ((props: BaseComponentProps) => LegendShape),
+  {
+    findNearestDatum,
+    legendShape,
+  }: {
+    findNearestDatum?: (
+      props: BaseComponentProps,
+    ) => FindNearestDatum<Datum, XScaleInput, YScaleInput>;
+    legendShape?: (props: BaseComponentProps) => LegendShape;
+  },
 ) {
   const WrappedSeriesComponent: FunctionComponent<BaseComponentProps> = props => {
     const { dataKey, data, xAccessor, yAccessor, mouseEvents } = props;
@@ -27,7 +35,8 @@ export default function withRegisteredData<
       xAccessor,
       yAccessor,
       mouseEvents,
-      legendShape: typeof legendShape === 'function' ? legendShape(props) : legendShape,
+      legendShape: legendShape?.(props),
+      findNearestDatum: findNearestDatum?.(props),
     });
 
     return xScale && yScale ? <BaseSeriesComponent {...props} /> : null;

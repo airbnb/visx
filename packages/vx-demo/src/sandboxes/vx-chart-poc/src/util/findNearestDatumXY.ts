@@ -1,8 +1,8 @@
 import { voronoi } from '@vx/voronoi';
 import { NearestDatumArgs } from '../types';
 
-// default function for finding the datum nearest to svgMouseX/Y, uses voronoi
-export default function defaultFindNearestDatum<
+// finds the datum nearest to svgMouseX/Y using voronoi
+export default function findNearestDatumXY<
   Datum = unknown,
   XScaleInput = unknown,
   YScaleInput = unknown

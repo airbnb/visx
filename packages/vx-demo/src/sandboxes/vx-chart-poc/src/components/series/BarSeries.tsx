@@ -5,6 +5,8 @@ import { ChartContext as ChartContextType, SeriesProps } from '../../types';
 import withRegisteredData from '../../enhancers/withRegisteredData';
 import isValidNumber from '../../typeguards/isValidNumber';
 import useRegisteredData from '../../hooks/useRegisteredData';
+import findNearestDatumX from '../../util/findNearestDatumX';
+import findNearestDatumY from '../../util/findNearestDatumY';
 
 type BarSeriesProps<Datum, XScaleInput, YScaleInput> = SeriesProps<
   Datum,
@@ -99,4 +101,7 @@ function BarSeries<Datum = unknown, XScaleInput = unknown, YScaleInput = unknown
   );
 }
 
-export default withRegisteredData(BarSeries, 'rect');
+export default withRegisteredData(BarSeries, {
+  legendShape: () => 'rect',
+  findNearestDatum: ({ horizontal }) => (horizontal ? findNearestDatumY : findNearestDatumX),
+});

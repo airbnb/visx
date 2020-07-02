@@ -21,10 +21,12 @@ export default function findNearestDatumSingleDimension<Datum, ScaleInput>({
     // so we manually invert
     const domain = scale.domain();
     const range = scale.range();
-    const sortedRange = [...range].sort();
+    const sortedRange = [...range].sort(); // bisectLeft assumes sort
     const rangePoints = d3Range(sortedRange[0], sortedRange[1], scale.step());
     const domainIndex = bisectLeft(rangePoints, mouseCoord);
-    const domainValue = (range[0] < range[1] ? domain : domain.reverse())[domainIndex - 1];
+    // y-axis scales may have reverse ranges, correct for this
+    const sortedDomain = range[0] < range[1] ? domain : domain.reverse();
+    const domainValue = sortedDomain[domainIndex - 1];
     const index = data.findIndex(d => String(accessor(d)) === String(domainValue));
     nearestDatum = data[index];
     nearestDatumIndex = index;

@@ -1,4 +1,4 @@
-import React, { useContext, useMemo, useEffect, useCallback } from 'react';
+import React, { useContext, useMemo, useEffect } from 'react';
 import BarGroup from '@vx/shape/lib/shapes/BarGroup';
 import BarGroupHorizontal from '@vx/shape/lib/shapes/BarGroupHorizontal';
 import { Group as VxGroup } from '@vx/group';
@@ -17,6 +17,7 @@ export type GroupProps = {
   children: typeof BarSeries;
 };
 
+// @TODO add GroupKeys type
 export default function Group<Datum, XScaleInput, YScaleInput>({
   horizontal,
   children,
@@ -32,6 +33,7 @@ export default function Group<Datum, XScaleInput, YScaleInput>({
     colorScale,
     dataRegistry,
     registerData,
+    unregisterData,
   } = useContext(ChartContext) as ChartContextType<Datum, XScaleInput, YScaleInput>;
 
   // extract data keys from child series
@@ -50,8 +52,13 @@ export default function Group<Datum, XScaleInput, YScaleInput>({
     [dataKeys, xScale, yScale, horizontal],
   );
 
+  // @todo, this should be refactored such that it can be memoized.
+  // currently it references withinGroupScale which depends on xScale, yScale,
+  // and thus causes an infinite loop for updating the data registry.
   const findNearestDatum = (args: NearestDatumArgs<Datum, XScaleInput, YScaleInput>) => {
-    const nearestDatum = (horizontal ? findNearestDatumY : findNearestDatumX)({ ...args, yScale });
+    const nearestDatum = horizontal
+      ? findNearestDatumY<Datum, XScaleInput, YScaleInput>(args)
+      : findNearestDatumX<Datum, XScaleInput, YScaleInput>(args);
 
     if (!nearestDatum) return null;
 
@@ -80,17 +87,24 @@ export default function Group<Datum, XScaleInput, YScaleInput>({
     };
   };
 
-  // register all child data
-  useEffect(() => {
-    const dataToRegister: DataRegistry<Datum> = {};
+  useEffect(
+    // register all child data
+    () => {
+      const dataToRegister: DataRegistry<Datum> = {};
 
-    React.Children.map(children, child => {
-      const { dataKey: key, data, xAccessor, yAccessor, mouseEvents } = child.props;
-      dataToRegister[key] = { key, data, xAccessor, yAccessor, mouseEvents, findNearestDatum };
-    });
+      React.Children.map(children, child => {
+        const { dataKey: key, data, xAccessor, yAccessor, mouseEvents } = child.props;
+        dataToRegister[key] = { key, data, xAccessor, yAccessor, mouseEvents, findNearestDatum };
+      });
 
-    registerData(dataToRegister);
-  }, [registerData, children]);
+      registerData(dataToRegister);
+      return () => unregisterData(Object.keys(dataToRegister));
+    },
+    // @TODO fix findNearestDatum
+    // can't include findNearestDatum as it depends on withinGroupScale which depends
+    // on the registry so will cause an infinite loop.
+    [registerData, unregisterData, children],
+  );
 
   // merge all child data by x value
   const combinedData: {

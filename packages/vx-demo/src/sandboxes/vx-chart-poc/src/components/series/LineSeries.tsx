@@ -24,13 +24,12 @@ function LineSeries<Datum = unknown, XScaleInput = unknown, YScaleInput = unknow
   ...lineProps
 }: LineSeriesProps<Datum, XScaleInput, YScaleInput>) {
   const { xScale, yScale, colorScale } = useContext(ChartContext);
-  const { data, xAccessor, yAccessor } = useRegisteredData<Datum, XScaleInput, YScaleInput>(
-    dataKey,
-  );
+  const { data, xAccessor, yAccessor } =
+    useRegisteredData<Datum, XScaleInput, YScaleInput>(dataKey) || {};
 
   const getScaledX = useCallback(
     (d: Datum) => {
-      const x = xScale(xAccessor(d));
+      const x = xScale(xAccessor?.(d));
       return isValidNumber(x) ? x + (xScale.bandwidth?.() ?? 0) / 2 : null;
     },
     [xScale, xAccessor],
@@ -38,11 +37,13 @@ function LineSeries<Datum = unknown, XScaleInput = unknown, YScaleInput = unknow
 
   const getScaledY = useCallback(
     (d: Datum) => {
-      const y = yScale(yAccessor(d));
+      const y = yScale(yAccessor?.(d));
       return isValidNumber(y) ? y + (yScale.bandwidth?.() ?? 0) / 2 : null;
     },
     [yScale, yAccessor],
   );
+
+  if (!data || !xAccessor || !yAccessor) return null;
 
   const color = colorScale(dataKey) ?? '#222';
 
@@ -65,7 +66,7 @@ function AnimatedPath({
 }
 
 export default React.memo(
-  withRegisteredData(LineSeries, ({ strokeDasharray }) =>
-    strokeDasharray ? 'dashed-line' : 'line',
-  ),
+  withRegisteredData(LineSeries, {
+    legendShape: ({ strokeDasharray }) => (strokeDasharray ? 'dashed-line' : 'line'),
+  }),
 );

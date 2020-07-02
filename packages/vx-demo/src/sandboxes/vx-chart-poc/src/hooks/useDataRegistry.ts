@@ -9,12 +9,25 @@ export default function useDataRegistry({
   yAccessor,
   mouseEvents,
   legendShape,
+  findNearestDatum,
 }: DataRegistry[string]) {
   const { registerData, unregisterData } = useContext(ChartContext);
 
   // register data on mount
   useEffect(() => {
-    registerData({ [key]: { key, data, xAccessor, yAccessor, mouseEvents, legendShape } });
+    registerData({
+      [key]: { key, data, xAccessor, yAccessor, mouseEvents, legendShape, findNearestDatum },
+    });
     return () => unregisterData(key);
-  }, [registerData, unregisterData, key, data, xAccessor, yAccessor, mouseEvents, legendShape]);
+  }, [
+    registerData,
+    unregisterData,
+    key,
+    data,
+    xAccessor,
+    yAccessor,
+    mouseEvents,
+    legendShape,
+    findNearestDatum,
+  ]);
 }

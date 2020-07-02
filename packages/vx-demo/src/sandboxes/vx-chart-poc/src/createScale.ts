@@ -45,15 +45,18 @@ export default function createScale<ScaleInput>({
       range,
     });
   }
+  if (scaleType === 'time' || scaleType === 'timeUtc') {
+    const range = (restConfig.range as ScaleOutput[]) || defaultRange;
+    const domain =
+      ((restConfig.domain as unknown[]) as NumberLike[]) ||
+      extent((data as unknown[]) as NumberLike[], d => d);
 
-  const range = (restConfig.range as ScaleOutput[]) || defaultRange;
-  const domain =
-    ((restConfig.domain as unknown[]) as NumberLike[]) ||
-    extent((data as unknown[]) as NumberLike[], d => d);
+    return (scaleType === 'time' ? scaleTime : scaleUtc)<ScaleOutput>({
+      ...restConfig,
+      domain,
+      range,
+    });
+  }
 
-  return (scaleType === 'time' ? scaleTime : scaleUtc)<ScaleOutput>({
-    ...restConfig,
-    domain,
-    range,
-  });
+  return scaleLinear({});
 }

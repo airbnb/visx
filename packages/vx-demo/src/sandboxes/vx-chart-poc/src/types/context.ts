@@ -3,7 +3,7 @@ import { XYChartTheme } from './theme';
 import { ScaleType, Margin, ScaleOutput, LegendShape } from '.';
 
 // ChartContext ---------------------------------------------------------------
-export interface DataRegistry<Datum = unknown, XScaleInput = unknown, yScaleInput = unknown> {
+export interface DataRegistry<Datum = unknown, XScaleInput = unknown, YScaleInput = unknown> {
   [key: string]: {
     /** unique data key */
     key: string;
@@ -12,22 +12,15 @@ export interface DataRegistry<Datum = unknown, XScaleInput = unknown, yScaleInpu
     /** function that returns the x value of a datum. */
     xAccessor: (d: Datum) => XScaleInput;
     /** function that returns the y value of a datum. */
-    yAccessor: (d: Datum) => yScaleInput;
+    yAccessor: (d: Datum) => YScaleInput;
     /** whether the entry supports mouse events. */
     mouseEvents?: boolean;
+    /** Optionally update the domain of the xScale. */
+    xDomain?: (domain: XScaleInput[]) => XScaleInput[];
+    /** Optionally update the domain of the yScale. */
+    yDomain?: (domain: YScaleInput[]) => YScaleInput[];
     /** Optionally override logic for finding the nearest data point to a mouse event. */
-    findNearestDatum?: (
-      args: NearestDatumArgs<Datum, XScaleInput, yScaleInput>,
-    ) => null | {
-      /** Closest datum. */
-      datum: Datum;
-      /** Index of the closest datum. */
-      index: number;
-      /** X coord distance in px from event to datum. Used to rank overall cloest datum. */
-      distanceX: number;
-      /** Y coord distance in px from event to datum. Used to rank overall cloest datum. */
-      distanceY: number;
-    };
+    findNearestDatum?: FindNearestDatum<Datum, XScaleInput, YScaleInput>;
     /** Legend shape */
     legendShape?: LegendShape;
   };
@@ -36,6 +29,19 @@ export interface DataRegistry<Datum = unknown, XScaleInput = unknown, yScaleInpu
 export type RegisterData = (data: DataRegistry) => void;
 
 export type DatumWithKey<Datum = unknown> = { datum: Datum; key: string; index: number };
+
+export type FindNearestDatum<Datum, XScaleInput, YScaleInput> = (
+  args: NearestDatumArgs<Datum, XScaleInput, YScaleInput>,
+) => null | {
+  /** Closest datum. */
+  datum: Datum;
+  /** Index of the closest datum. */
+  index: number;
+  /** X coord distance in px from event to datum. Used to rank overall closest datum. */
+  distanceX: number;
+  /** Y coord distance in px from event to datum. Used to rank overall closest datum. */
+  distanceY: number;
+};
 
 export interface ChartContext<
   Datum = unknown,
@@ -52,7 +58,7 @@ export interface ChartContext<
   margin: Margin;
   dataRegistry: DataRegistry<Datum, XScaleInput, YScaleInput>;
   registerData: RegisterData;
-  unregisterData: (key: string) => void;
+  unregisterData: (keyOrKeys: string | string[]) => void;
   setChartDimensions: (dims: { width: number; height: number; margin: Margin }) => void;
   findNearestData: (
     event: React.MouseEvent | React.TouchEvent,

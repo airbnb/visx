@@ -1,12 +1,16 @@
 import findNearestDatumSingleDimension from './findNearestDatumSingleDimension';
 import { NearestDatumArgs } from '../types';
 
-export default function findNearestDatumX<Datum = unknown, XScaleInput = unknown>({
+export default function findNearestDatumX<
+  Datum = unknown,
+  XScaleInput = unknown,
+  YScaleInput = unknown
+>({
   xScale: scale,
   xAccessor: accessor,
   svgMouseX: mouseCoord,
   data,
-}: NearestDatumArgs<Datum, XScaleInput>): {
+}: NearestDatumArgs<Datum, XScaleInput, YScaleInput>): {
   datum: Datum;
   index: number;
   distanceX: number;

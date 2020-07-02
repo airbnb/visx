@@ -13,7 +13,7 @@ import {
 } from '../../types';
 import ChartContext from '../../context/ChartContext';
 import createScale from '../../createScale';
-import defaultFindNearestDatum from '../../util/defaultFindNearestDatum';
+import findNearestDatumXY from '../../util/findNearestDatumXY';
 
 /** Props that can be passed to initialize/update the provider config. */
 export type ChartProviderProps<XScaleInput, YScaleInput> = {
@@ -112,14 +112,18 @@ export default class ChartProvider<
   };
 
   /** Removes data from the registry and combined data. */
-  unregisterData = (key: string) => {
+  unregisterData = (keyOrKeys: string | string[]) => {
+    const keys = new Set(typeof keyOrKeys === 'string' ? [keyOrKeys] : keyOrKeys);
     this.setState(state => {
-      const { [key]: omit, ...restRegistry } = state.dataRegistry;
+      const dataRegistry = Object.entries(state.dataRegistry).reduce((accum, [key, value]) => {
+        if (!keys.has(key)) accum[key] = value;
+        return accum;
+      }, {});
 
       const nextState = {
         ...state,
-        dataRegistry: { ...restRegistry },
-        combinedData: state.combinedData.filter(d => d.key !== key),
+        dataRegistry,
+        combinedData: state.combinedData.filter(d => !keys.has(d.key)),
       };
 
       return {
@@ -152,18 +156,28 @@ export default class ChartProvider<
 
     if (width == null || height == null) return;
 
+    let xDomain = combinedData.map(({ key, datum }) =>
+      dataRegistry[key]?.xAccessor(datum),
+    ) as XScaleInput[];
+
+    let yDomain = combinedData.map(({ key, datum }) =>
+      dataRegistry[key]?.yAccessor(datum),
+    ) as YScaleInput[];
+
+    // apply any updates to the domain from the registry
+    Object.values(dataRegistry).forEach(registry => {
+      if (registry.xDomain) xDomain = registry.xDomain(xDomain);
+      if (registry.yDomain) yDomain = registry.yDomain(yDomain);
+    });
+
     const xScale = createScale<XScaleInput>({
-      data: combinedData.map(({ key, datum }) =>
-        dataRegistry[key]?.xAccessor(datum),
-      ) as XScaleInput[],
+      data: xDomain,
       scaleConfig: xScaleConfig,
       range: [margin.left, width - margin.right],
     });
 
     const yScale = createScale<YScaleInput>({
-      data: combinedData.map(({ key, datum }) =>
-        dataRegistry[key]?.yAccessor(datum),
-      ) as YScaleInput[],
+      data: yDomain,
       scaleConfig: yScaleConfig,
       range: [height - margin.bottom, margin.top],
     });
@@ -185,7 +199,6 @@ export default class ChartProvider<
     }
   };
 
-  // @TODO move to util function, support registry overrides
   findNearestData = (event: React.MouseEvent | React.TouchEvent) => {
     const { width, height, margin, xScale, yScale, dataRegistry } = this.state;
 
@@ -203,7 +216,7 @@ export default class ChartProvider<
           xAccessor,
           yAccessor,
           mouseEvents,
-          findNearestDatum = defaultFindNearestDatum,
+          findNearestDatum = findNearestDatumXY,
         }) => {
           // series has mouse events disabled
           if (!mouseEvents) return;
