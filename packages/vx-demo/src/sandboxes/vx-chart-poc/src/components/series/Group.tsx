@@ -1,4 +1,9 @@
 import React, { useContext, useMemo, useEffect } from 'react';
+import { animated, useSprings } from 'react-spring';
+import {
+  BarGroup as BarGroupType,
+  BarGroupHorizontal as BarGroupHorizontalType,
+} from '@vx/shape/lib/types';
 import BarGroup from '@vx/shape/lib/shapes/BarGroup';
 import BarGroupHorizontal from '@vx/shape/lib/shapes/BarGroupHorizontal';
 import { Group as VxGroup } from '@vx/group';
@@ -135,7 +140,6 @@ export default function Group<Datum, XScaleInput, YScaleInput>({
   // @TODO handle NaNs from non-number inputs, prob fallback to 0
   const scaledZeroPosition = (horizontal ? xScale : yScale)(0);
 
-  // @TODO refactor this to re-use the bar.
   // @TODO should consider refactoring base shapes to handle negative values better
   return horizontal ? (
     <BarGroupHorizontal<unknown, string>
@@ -152,17 +156,13 @@ export default function Group<Datum, XScaleInput, YScaleInput>({
       {barGroups =>
         barGroups.map(barGroup => (
           <VxGroup key={`bar-group-${barGroup.index}-${barGroup.y0}`} top={barGroup.y0}>
-            {barGroup.bars.map(bar => (
-              <rect
-                key={`bar-group-bar-${barGroup.index}-${bar.index}-${bar.value}-${bar.key}`}
-                x={Math.min(scaledZeroPosition, bar.x)}
-                y={bar.y}
-                width={Math.abs(bar.width - scaledZeroPosition)}
-                height={bar.height}
-                fill={bar.color}
-                rx={2}
-              />
-            ))}
+            <AnimatedBarGroup
+              barGroup={barGroup}
+              x={bar => Math.min(scaledZeroPosition, bar.x)}
+              y={bar => bar.y}
+              width={bar => Math.abs(bar.width - scaledZeroPosition)}
+              height={bar => bar.height}
+            />
           </VxGroup>
         ))
       }
@@ -181,20 +181,63 @@ export default function Group<Datum, XScaleInput, YScaleInput>({
       {barGroups =>
         barGroups.map(barGroup => (
           <VxGroup key={`bar-group-${barGroup.index}-${barGroup.x0}`} left={barGroup.x0}>
-            {barGroup.bars.map(bar => (
-              <rect
-                key={`bar-group-bar-${barGroup.index}-${bar.index}-${bar.value}-${bar.key}`}
-                x={bar.x}
-                y={Math.min(scaledZeroPosition, bar.y)}
-                width={bar.width}
-                height={Math.abs(scaledZeroPosition - bar.y)}
-                fill={bar.color}
-                rx={2}
-              />
-            ))}
+            <AnimatedBarGroup
+              barGroup={barGroup}
+              x={bar => bar.x}
+              y={bar => Math.min(scaledZeroPosition, bar.y)}
+              width={bar => bar.width}
+              height={bar => Math.abs(scaledZeroPosition - bar.y)}
+            />
           </VxGroup>
         ))
       }
     </BarGroup>
+  );
+}
+
+type Bar = (BarGroupType<string> | BarGroupHorizontalType<string>)['bars'][number];
+type DimensionAccessor = (bar: Bar) => number;
+
+function AnimatedBarGroup({
+  barGroup,
+  x,
+  y,
+  width,
+  height,
+}: {
+  barGroup: BarGroupType<string> | BarGroupHorizontalType<string>;
+  x: DimensionAccessor;
+  y: DimensionAccessor;
+  width: DimensionAccessor;
+  height: DimensionAccessor;
+}) {
+  const animatedBarGroup = useSprings(
+    barGroup.bars.length,
+    barGroup.bars.map(bar => {
+      return {
+        x: x(bar),
+        y: y(bar),
+        width: width(bar),
+        height: height(bar),
+        color: bar.color,
+      };
+    }),
+  ) as { x: number; y: number; width: number; height: number; color: string }[];
+
+  return (
+    // eslint-disable-next-line react/jsx-no-useless-fragment
+    <>
+      {animatedBarGroup.map((bar, index) => (
+        <animated.rect
+          key={`${index}`}
+          x={bar.x}
+          y={bar.y}
+          width={bar.width}
+          height={bar.height}
+          fill={bar.color}
+          rx={2}
+        />
+      ))}
+    </>
   );
 }
