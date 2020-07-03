@@ -9,6 +9,7 @@ import { DataRegistry, ChartContext as ChartContextType, NearestDatumArgs } from
 import BarSeries from './BarSeries';
 import findNearestDatumY from '../../util/findNearestDatumY';
 import findNearestDatumX from '../../util/findNearestDatumX';
+import AnimatedBars from './AnimatedBars';
 
 const STACK_ACCESSOR = d => d.stack;
 
@@ -164,18 +165,9 @@ export default function Stack<Datum, XScaleInput, YScaleInput>({
       {barStacks => {
         // use this reference to find nearest mouse values
         stacks.current = barStacks;
-        return barStacks.map(barStack =>
-          barStack.bars.map(bar => (
-            <rect
-              key={`barstack-horizontal-${barStack.index}-${bar.index}`}
-              x={bar.x}
-              y={bar.y}
-              width={bar.width}
-              height={bar.height}
-              fill={bar.color}
-            />
-          )),
-        );
+        return barStacks.map((barStack, index) => (
+          <AnimatedBars key={`${index}-${barStack.bars.length}`} bars={barStack.bars} />
+        ));
       }}
     </BarStackHorizontal>
   ) : (
@@ -193,18 +185,9 @@ export default function Stack<Datum, XScaleInput, YScaleInput>({
       {barStacks => {
         // use this reference to find nearest mouse values
         stacks.current = barStacks;
-        return barStacks.map(barStack =>
-          barStack.bars.map(bar => (
-            <rect
-              key={`bar-stack-${barStack.index}-${bar.index}`}
-              x={bar.x}
-              y={bar.y}
-              height={bar.height}
-              width={bar.width}
-              fill={bar.color}
-            />
-          )),
-        );
+        return barStacks.map((barStack, index) => (
+          <AnimatedBars key={`${index}-${barStack.bars.length}`} bars={barStack.bars} />
+        ));
       }}
     </BarStack>
   );
