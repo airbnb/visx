@@ -27,7 +27,7 @@ export default function withRegisteredData<
 ) {
   const WrappedSeriesComponent: FunctionComponent<BaseComponentProps> = props => {
     const { dataKey, data, xAccessor, yAccessor, mouseEvents } = props;
-    const { xScale, yScale } = useContext(ChartContext);
+    const { xScale, yScale, dataRegistry } = useContext(ChartContext);
 
     useDataRegistry({
       key: dataKey,
@@ -39,7 +39,9 @@ export default function withRegisteredData<
       findNearestDatum: findNearestDatum?.(props),
     });
 
-    return xScale && yScale ? <BaseSeriesComponent {...props} /> : null;
+    return xScale && yScale && dataRegistry?.[dataKey]?.data === data ? (
+      <BaseSeriesComponent {...props} />
+    ) : null;
   };
 
   return WrappedSeriesComponent;

@@ -10,10 +10,16 @@ export type AnimatedBarsProps = {
   y?: DimensionAccessor;
   width?: DimensionAccessor;
   height?: DimensionAccessor;
-  rx?: number;
-};
+} & Omit<React.SVGProps<SVGRectElement>, 'x' | 'y' | 'width' | 'height' | 'ref'>;
 
-export default function AnimatedBars({ bars, x, y, width, height, rx }: AnimatedBarsProps) {
+export default function AnimatedBars({
+  bars,
+  x,
+  y,
+  width,
+  height,
+  ...rectProps
+}: AnimatedBarsProps) {
   const animatedBars = useSprings(
     bars.length,
     bars.map(bar => ({
@@ -37,7 +43,7 @@ export default function AnimatedBars({ bars, x, y, width, height, rx }: Animated
           width={bar.width}
           height={bar.height}
           fill={bar.color}
-          rx={rx}
+          {...rectProps}
         />
       ))}
     </>

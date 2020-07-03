@@ -16,14 +16,13 @@ const STACK_ACCESSOR = d => d.stack;
 export type GroupProps = {
   horizontal?: boolean;
   children: typeof BarSeries;
-};
+} & Omit<React.SVGProps<SVGRectElement>, 'x' | 'y' | 'width' | 'height' | 'ref'>;
 
 export default function Stack<Datum, XScaleInput, YScaleInput>({
   horizontal,
   children,
+  ...rectProps
 }: GroupProps) {
-  console.log('render Stack');
-
   const { xScale, yScale, colorScale, dataRegistry, registerData, unregisterData, height, margin } =
     (useContext(ChartContext) as ChartContextType<Datum, XScaleInput, YScaleInput>) || {};
 
@@ -36,6 +35,7 @@ export default function Stack<Datum, XScaleInput, YScaleInput>({
   // use a ref to the stacks for mouse movements
   const stacks = useRef<BarStackType<unknown, string>[] | null>(null);
 
+  // override the findNearestDatum logic
   const findNearestDatum = useCallback(
     (args: NearestDatumArgs<Datum, XScaleInput, YScaleInput>) => {
       if (!stacks.current) return;
@@ -107,6 +107,7 @@ export default function Stack<Datum, XScaleInput, YScaleInput>({
     return Object.values(dataByStackValue);
   }, [horizontal, children]);
 
+  // update the domain to account for the (directional) stacked value
   const comprehensiveDomain: number[] = useMemo(
     () =>
       extent(
@@ -132,6 +133,8 @@ export default function Stack<Datum, XScaleInput, YScaleInput>({
     });
 
     registerData(dataToRegister);
+
+    // unregister data on unmount
     return () => unregisterData(Object.keys(dataToRegister));
   }, [
     horizontal,
@@ -166,7 +169,11 @@ export default function Stack<Datum, XScaleInput, YScaleInput>({
         // use this reference to find nearest mouse values
         stacks.current = barStacks;
         return barStacks.map((barStack, index) => (
-          <AnimatedBars key={`${index}-${barStack.bars.length}`} bars={barStack.bars} />
+          <AnimatedBars
+            key={`${index}-${barStack.bars.length}`}
+            bars={barStack.bars}
+            {...rectProps}
+          />
         ));
       }}
     </BarStackHorizontal>
@@ -186,7 +193,11 @@ export default function Stack<Datum, XScaleInput, YScaleInput>({
         // use this reference to find nearest mouse values
         stacks.current = barStacks;
         return barStacks.map((barStack, index) => (
-          <AnimatedBars key={`${index}-${barStack.bars.length}`} bars={barStack.bars} />
+          <AnimatedBars
+            key={`${index}-${barStack.bars.length}`}
+            bars={barStack.bars}
+            {...rectProps}
+          />
         ));
       }}
     </BarStack>

@@ -1,5 +1,4 @@
-import React, { useContext, useCallback } from 'react';
-import { animated, useSprings } from 'react-spring';
+import React, { useContext, useCallback, useMemo } from 'react';
 import ChartContext from '../../context/ChartContext';
 import { ChartContext as ChartContextType, SeriesProps } from '../../types';
 import withRegisteredData from '../../enhancers/withRegisteredData';
@@ -7,6 +6,7 @@ import isValidNumber from '../../typeguards/isValidNumber';
 import useRegisteredData from '../../hooks/useRegisteredData';
 import findNearestDatumX from '../../util/findNearestDatumX';
 import findNearestDatumY from '../../util/findNearestDatumY';
+import AnimatedBars from './AnimatedBars';
 
 type BarSeriesProps<Datum, XScaleInput, YScaleInput> = SeriesProps<
   Datum,
@@ -67,36 +67,38 @@ function BarSeries<Datum = unknown, XScaleInput = unknown, YScaleInput = unknown
     ? (Math.min(maybeYZero, Math.max(yMin, yMax)) as number)
     : Math.max(yMin, yMax);
 
-  const animatedBars = useSprings(
-    data.length,
-    data.map(datum => {
-      const x = getScaledX(datum);
-      const y = getScaledY(datum);
-      const barLength = horizontal ? x - xZeroPosition : y - yZeroPosition;
+  const barColor = colorScale(dataKey) as string;
 
-      return {
-        x: horizontal ? xZeroPosition + Math.min(0, barLength) : x,
-        y: horizontal ? y : yZeroPosition + Math.min(0, barLength),
-        width: horizontal ? Math.abs(barLength) : barThickness,
-        height: horizontal ? barThickness : Math.abs(barLength),
-      };
-    }),
-  ) as { x: number; y: number; width: number; height: number }[];
+  const bars = useMemo(
+    () =>
+      data.map(datum => {
+        const x = getScaledX(datum);
+        const y = getScaledY(datum);
+        const barLength = horizontal ? x - xZeroPosition : y - yZeroPosition;
+
+        return {
+          x: horizontal ? xZeroPosition + Math.min(0, barLength) : x,
+          y: horizontal ? y : yZeroPosition + Math.min(0, barLength),
+          width: horizontal ? Math.abs(barLength) : barThickness,
+          height: horizontal ? barThickness : Math.abs(barLength),
+          color: barColor,
+        };
+      }),
+    [
+      horizontal,
+      barColor,
+      barThickness,
+      data,
+      xZeroPosition,
+      yZeroPosition,
+      getScaledX,
+      getScaledY,
+    ],
+  );
 
   return (
     <g className="vx-chart bar-series">
-      {animatedBars.map(({ x, y, width, height }, i) => (
-        <animated.rect
-          key={i}
-          x={x}
-          y={y}
-          width={width}
-          height={height}
-          fill={colorScale(dataKey)}
-          stroke={theme.baseColor ?? 'white'}
-          {...barProps}
-        />
-      ))}
+      <AnimatedBars bars={bars} stroke={theme.baseColor ?? 'white'} {...barProps} />
     </g>
   );
 }
