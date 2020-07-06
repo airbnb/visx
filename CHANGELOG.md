@@ -1,4 +1,5 @@
 # Changelog
+- [v0.0.198](#v00198)
 - [v0.0.197](#v00197)
 - [v0.0.196](#v00196)
 - [v0.0.195](#v00195)
@@ -6,10 +7,10 @@
 - [v0.0.193](#v00193)
 - [v0.0.192](#v00192)
 - [v0.0.191](#v00191)
-- [v0.0.190](#v00190)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v00190">v0.0.190</a></li>
   <li><a href="#v00189">v0.0.189</a></li>
   <li><a href="#v00188">v0.0.188</a></li>
   <li><a href="#v00187">v0.0.187</a></li>
@@ -87,6 +88,69 @@
 </details>
 
 ------
+
+# v0.0.198
+
+#### :rocket: Enhancements
+- feat(tooltip): add Portal and useTooltipInPortal [#756](https://github.com/hshoff/vx/pull/756) 
+- feat(responsive): add leading option to resize debounce [#754](https://github.com/hshoff/vx/pull/754)
+- feat(axis): use numTicks when falling back on scale.domain [#752](https://github.com/hshoff/vx/pull/752)
+- feat(pattern): add diagonal right to left pattern [#744](https://github.com/hshoff/vx/pull/744)
+- feat(legend): add Line shape, legendLabelProps, and more props in renderShape [#749](https://github.com/hshoff/vx/pull/749)
+
+#### 💥 Breaking Changes
+- feat(responsive): resize debounce now defaults to true which will result in an additional render  [#754](https://github.com/hshoff/vx/pull/754)
+- feat(tooltip): add `offsetLeft/Top` to `TooltipProps`, making `TooltipProps === TooltipWithBoundsProps`, adds additional `10px` of padding to `Tooltip` `left/top` [#756](https://github.com/hshoff/vx/pull/756)
+
+#### :bug: Bug Fix
+- fix(responsive): remove debounced calls after unmounnt [#558](https://github.com/hshoff/vx/pull/558)
+
+#### :house: Internal
+- (demo): add static export deploys
+
+#### :trophy: Contributors
+- [claisne](https://github.com/claisne)
+- [dennisja](https://github.com/dennisja)
+- [hshoff](https://github.com/hshoff)
+- [Pringels](https://github.com/Pringels)
+- [williaster](https://github.com/williaster)
+
+```
+Changes: 
+ - @vx/annotation: 0.0.197 => 0.0.198
+ - @vx/axis: 0.0.197 => 0.0.198
+ - @vx/bounds: 0.0.197 => 0.0.198
+ - @vx/brush: 0.0.197 => 0.0.198
+ - @vx/chord: 0.0.197 => 0.0.198
+ - @vx/clip-path: 0.0.197 => 0.0.198
+ - @vx/curve: 0.0.197 => 0.0.198
+ - @vx/demo: 0.0.197 => 0.0.198
+ - @vx/drag: 0.0.197 => 0.0.198
+ - @vx/event: 0.0.197 => 0.0.198
+ - @vx/geo: 0.0.197 => 0.0.198
+ - @vx/glyph: 0.0.197 => 0.0.198
+ - @vx/gradient: 0.0.197 => 0.0.198
+ - @vx/grid: 0.0.197 => 0.0.198
+ - @vx/group: 0.0.197 => 0.0.198
+ - @vx/heatmap: 0.0.197 => 0.0.198
+ - @vx/hierarchy: 0.0.197 => 0.0.198
+ - @vx/legend: 0.0.197 => 0.0.198
+ - @vx/marker: 0.0.197 => 0.0.198
+ - @vx/mock-data: 0.0.197 => 0.0.198
+ - @vx/network: 0.0.197 => 0.0.198
+ - @vx/pattern: 0.0.197 => 0.0.198
+ - @vx/point: 0.0.197 => 0.0.198
+ - @vx/responsive: 0.0.197 => 0.0.198
+ - @vx/scale: 0.0.197 => 0.0.198
+ - @vx/shape: 0.0.197 => 0.0.198
+ - @vx/stats: 0.0.197 => 0.0.198
+ - @vx/text: 0.0.197 => 0.0.198
+ - @vx/threshold: 0.0.197 => 0.0.198
+ - @vx/tooltip: 0.0.197 => 0.0.198
+ - @vx/voronoi: 0.0.197 => 0.0.198
+ - @vx/vx: 0.0.197 => 0.0.198
+ - @vx/zoom: 0.0.197 => 0.0.198
+```
 
 # v0.0.197
 
