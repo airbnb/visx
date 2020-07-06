@@ -1,6 +1,6 @@
 {
   "name": "@vx/drag",
-  "version": "0.0.197",
+  "version": "0.0.198",
   "description": "vx drag",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "@types/react": "*",
-    "@vx/event": "0.0.197",
+    "@vx/event": "0.0.198",
     "prop-types": "^15.5.10"
   }
 }

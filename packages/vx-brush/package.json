@@ -1,6 +1,6 @@
 {
   "name": "@vx/brush",
-  "version": "0.0.197",
+  "version": "0.0.198",
   "description": "vx brush",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -33,9 +33,9 @@
     "react": "^15.0.0-0 || ^16.0.0-0"
   },
   "dependencies": {
-    "@vx/drag": "0.0.197",
-    "@vx/group": "0.0.197",
-    "@vx/shape": "0.0.197",
+    "@vx/drag": "0.0.198",
+    "@vx/group": "0.0.198",
+    "@vx/shape": "0.0.198",
     "classnames": "^2.2.5",
     "prop-types": "^15.6.1"
   }
