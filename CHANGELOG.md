@@ -106,7 +106,7 @@
 - fix(responsive): remove debounced calls after unmounnt [#558](https://github.com/hshoff/vx/pull/558)
 
 #### :house: Internal
-- (demo): add static export deploys
+- (demo): add static export deploys [#741](https://github.com/hshoff/vx/pull/741)
 
 #### :trophy: Contributors
 - [claisne](https://github.com/claisne)
