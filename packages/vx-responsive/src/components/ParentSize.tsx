@@ -80,7 +80,15 @@ export default class ParentSize extends React.Component<
   };
 
   render() {
-    const { className, children, debounceTime, parentSizeStyles, enableDebounceLeadingCall, ...restProps } = this.props;
+    const {
+      className,
+      children,
+      debounceTime,
+      parentSizeStyles,
+      enableDebounceLeadingCall,
+      ...restProps
+    } = this.props;
+
     return (
       <div style={parentSizeStyles} ref={this.setTarget} className={className} {...restProps}>
         {children({
