@@ -1,39 +1,33 @@
 import { scaleLog } from 'd3-scale';
+import { Value } from '../types/Base';
+import { PickD3Scale } from '../types/Scale';
+import { PickScaleConfigWithoutType } from '../types/ScaleConfig';
+import applyInterpolate from '../mixins/applyInterpolate';
+import applyRound from '../mixins/applyRound';
 
-export type LogConfig<Output> = {
-  /** Sets the input values of the scale, which are numbers for a log scale. */
-  domain?: number[];
-  /** Sets the output values of the scale. */
-  range?: Output[];
-  /** Sets the output values of the scale while setting its interpolator to round. If the elements are not numbers, they will be coerced to numbers. */
-  rangeRound?: number[];
-  /** Sets the base for this logarithmic scale (defaults to 10). */
-  base?: number;
-  /** Extends the domain so that it starts and ends on nice round values. */
-  nice?: boolean;
-  /** Whether the scale should clamp values to within the range. */
-  clamp?: boolean;
-};
+export function updateLogScale<Output extends Value = Value>(
+  scale: PickD3Scale<'log', Output>,
+  config: PickScaleConfigWithoutType<'log', Output>,
+) {
+  const { domain, range, base, clamp = true, nice = true } = config;
 
-export default function logScale<Output>({
-  range,
-  rangeRound,
-  domain,
-  base,
-  nice = false,
-  clamp = false,
-}: LogConfig<Output>) {
-  const scale = scaleLog<Output>();
-
-  if (range) scale.range(range);
-  if (rangeRound) scale.rangeRound(rangeRound);
+  if (base) scale.base(base);
   if (domain) scale.domain(domain);
   if (nice) scale.nice();
-  if (clamp) scale.clamp(true);
-  if (base) scale.base(base);
+  if (range) scale.range(range);
+
+  scale.clamp(clamp);
+  applyInterpolate(scale, config);
+  applyRound(scale, config);
 
   // @ts-ignore
   scale.type = 'log';
 
   return scale;
+}
+
+export default function createLogScale<Output extends Value = Value>(
+  config: PickScaleConfigWithoutType<'log', Output>,
+) {
+  return updateLogScale(scaleLog<Output>(), config);
 }

@@ -1,35 +1,35 @@
 import { scaleLinear } from 'd3-scale';
+import { Value } from '../types/Base';
+import { PickScaleConfigWithoutType } from '../types/ScaleConfig';
+import { PickD3Scale } from '../types/Scale';
+import applyInterpolate from '../mixins/applyInterpolate';
+import applyRound from '../mixins/applyRound';
+import applyZero from '../mixins/applyZero';
 
-export type LinearConfig<Output> = {
-  /** Sets the input values of the scale, which are numbers for a linear scale. */
-  domain?: number[];
-  /** Sets the output values of the scale. */
-  range?: Output[];
-  /** Sets the output values of the scale while setting its interpolator to round. If the elements are not numbers, they will be coerced to numbers. */
-  rangeRound?: number[];
-  /** Extends the domain so that it starts and ends on nice round values. */
-  nice?: boolean;
-  /** Whether the scale should clamp values to within the range. */
-  clamp?: boolean;
-};
+export function updateLinearScale<Output extends Value = Value>(
+  scale: PickD3Scale<'linear', Output>,
+  config: PickScaleConfigWithoutType<'linear', Output>,
+) {
+  const { domain, range, clamp = true, nice = true } = config;
 
-export default function linearScale<Output>({
-  range,
-  rangeRound,
-  domain,
-  nice = false,
-  clamp = false,
-}: LinearConfig<Output>) {
-  const scale = scaleLinear<Output>();
-
-  if (range) scale.range(range);
-  if (rangeRound) scale.rangeRound(rangeRound);
   if (domain) scale.domain(domain);
   if (nice) scale.nice();
-  if (clamp) scale.clamp(true);
+  if (range) scale.range(range);
 
+  scale.clamp(clamp);
+  applyInterpolate(scale, config);
+  applyRound(scale, config);
+  applyZero(scale, config);
+
+  // TODO: Remove?
   // @ts-ignore
   scale.type = 'linear';
 
   return scale;
+}
+
+export default function createLinearScale<Output extends Value = Value>(
+  config: PickScaleConfigWithoutType<'linear', Output>,
+) {
+  return updateLinearScale(scaleLinear<Output>(), config);
 }
