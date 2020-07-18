@@ -1,8 +1,8 @@
 import { Value } from '../types/Base';
-import { SomeD3Scale } from '../types/Scale';
+import { PickD3Scale } from '../types/Scale';
 
 export default function applyZero<Output extends Value>(
-  scale: SomeD3Scale<'linear' | 'pow' | 'sqrt' | 'symlog', Output>,
+  scale: PickD3Scale<'linear' | 'pow' | 'sqrt' | 'symlog' | 'quantize', Output>,
   config: { zero?: boolean },
 ) {
   if (config.zero === true) {

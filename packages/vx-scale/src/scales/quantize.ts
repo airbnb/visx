@@ -1,35 +1,30 @@
 import { scaleQuantize } from 'd3-scale';
+import { Value } from '../types/Base';
+import { PickScaleConfigWithoutType } from '../types/ScaleConfig';
+import { PickD3Scale } from '../types/Scale';
+import applyZero from '../mixins/applyZero';
 
-export type QuantizeConfig<Output> = {
-  /** Sets the output values of the scale, which are numbers for point scales. */
-  range?: Output[];
-  /** Sets the input values of the scale. */
-  domain?: [number, number];
-  /** Extends the domain so that it starts and ends on nice round values. */
-  nice?: boolean;
-  /** Optional approximate number of ticks to be returned. */
-  ticks?: number;
-  /** Specifies an approximate tick count and valid format specifier string. */
-  tickFormat?: [number, string];
-};
+export function updateQuantizeScale<Output extends Value = Value>(
+  scale: PickD3Scale<'quantize', Output>,
+  config: PickScaleConfigWithoutType<'quantize', Output>,
+) {
+  const { domain, range, nice = true } = config;
 
-export default function quantizeScale<Output>({
-  range,
-  domain,
-  ticks,
-  tickFormat,
-  nice = false,
-}: QuantizeConfig<Output>) {
-  const scale = scaleQuantize<Output>();
-
-  if (range) scale.range(range);
   if (domain) scale.domain(domain);
   if (nice) scale.nice();
-  if (ticks) scale.ticks(ticks);
-  if (tickFormat) scale.tickFormat(...tickFormat);
+  if (range) scale.range(range);
 
+  applyZero(scale, config);
+
+  // TODO: Remove?
   // @ts-ignore
   scale.type = 'quantize';
 
   return scale;
+}
+
+export default function createQuantizeScale<Output extends Value = Value>(
+  config: PickScaleConfigWithoutType<'quantize', Output>,
+) {
+  return updateQuantizeScale(scaleQuantize<Output>(), config);
 }

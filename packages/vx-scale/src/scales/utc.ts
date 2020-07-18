@@ -1,35 +1,33 @@
 import { scaleUtc } from 'd3-scale';
+import { Value } from '../types/Base';
+import { PickScaleConfigWithoutType } from '../types/ScaleConfig';
+import { PickD3Scale } from '../types/Scale';
+import applyInterpolate from '../mixins/applyInterpolate';
+import applyRound from '../mixins/applyRound';
 
-export type UtcConfig<Output> = {
-  /** Sets the input values of the scale, which are Dates or coercible to numbers for UTC time scales. */
-  domain?: (Date | number | { valueOf(): number })[];
-  /** Sets the output values of the scale. */
-  range?: Output[];
-  /** Sets the output values of the scale while setting its interpolator to round. If the elements are not numbers, they will be coerced to numbers. */
-  rangeRound?: number[];
-  /** Extends the domain so that it starts and ends on nice round values. */
-  nice?: boolean;
-  /** Whether the scale should clamp values to within the range. */
-  clamp?: boolean;
-};
+export function updateUtcScale<Output extends Value = Value>(
+  scale: PickD3Scale<'utc', Output>,
+  config: PickScaleConfigWithoutType<'utc', Output>,
+) {
+  const { domain, range, clamp = true, nice = true } = config;
 
-export default function timeScale<Output>({
-  range,
-  rangeRound,
-  domain,
-  nice = false,
-  clamp = false,
-}: UtcConfig<Output>) {
-  const scale = scaleUtc<Output>();
-
-  if (range) scale.range(range);
-  if (rangeRound) scale.rangeRound(rangeRound);
   if (domain) scale.domain(domain);
   if (nice) scale.nice();
-  if (clamp) scale.clamp(true);
+  if (range) scale.range(range);
 
+  scale.clamp(clamp);
+  applyInterpolate(scale, config);
+  applyRound(scale, config);
+
+  // TODO: Remove?
   // @ts-ignore
   scale.type = 'utc';
 
   return scale;
+}
+
+export default function createUtcScale<Output extends Value = Value>(
+  config: PickScaleConfigWithoutType<'utc', Output>,
+) {
+  return updateUtcScale(scaleUtc<Output>(), config);
 }

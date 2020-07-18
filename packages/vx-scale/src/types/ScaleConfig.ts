@@ -2,7 +2,9 @@ import { BaseScaleConfig } from './BaseScaleConfig';
 import { HasToString, Value, ValueOf } from './Base';
 import { NiceTime } from './Nice';
 
-export type TimeInput = string | number | Date;
+type Numeric = number | { valueOf(): number };
+
+export type TimeInput = number | Date;
 export type ContinuousInput = number | Date;
 export type DiscreteInput = HasToString;
 
@@ -13,7 +15,7 @@ export type ContinuousDomain = ContinuousInput[];
 // from same base type to share property documentation
 // (which is useful for auto-complete/intellisense)
 // and add `type` property as discriminant of union type.
-type CreateScaleConfig<T, R, D, Fields extends keyof BaseScaleConfig<T, R, D>> = Pick<
+type CreateScaleConfig<T, R, D, Fields extends keyof BaseScaleConfig<T, R, D> = 'type'> = Pick<
   BaseScaleConfig<T, R, D>,
   'type' | 'domain' | 'range' | 'reverse' | Fields
 >;
@@ -63,34 +65,33 @@ export type QuantileScaleConfig<Output extends Value = Value> = CreateScaleConfi
 export type QuantizeScaleConfig<Output extends Value = Value> = CreateScaleConfig<
   'quantize',
   Output[],
-  ContinuousDomain,
+  [ContinuousInput, ContinuousInput],
   'interpolate' | 'nice' | 'zero'
 >;
 
 export type ThresholdScaleConfig<Output extends Value = Value> = CreateScaleConfig<
   'threshold',
   Output[],
-  ContinuousDomain,
-  'interpolate' | 'nice'
+  ContinuousDomain
 >;
 
 export type OrdinalScaleConfig<Output extends Value = Value> = CreateScaleConfig<
   'ordinal',
   Output[],
   DiscreteInput[],
-  'interpolate'
+  'unknown'
 >;
 
-export type PointScaleConfig<Output extends Value = Value> = CreateScaleConfig<
+export type PointScaleConfig = CreateScaleConfig<
   'point',
-  Output[],
+  [Numeric, Numeric],
   DiscreteInput[],
   'align' | 'padding' | 'round'
 >;
 
-export type BandScaleConfig<Output extends Value = Value> = CreateScaleConfig<
+export type BandScaleConfig = CreateScaleConfig<
   'band',
-  Output[],
+  [Numeric, Numeric],
   DiscreteInput[],
   'align' | 'padding' | 'paddingInner' | 'paddingOuter' | 'round'
 >;
@@ -126,8 +127,8 @@ export interface ScaleTypeToScaleConfig<Output extends Value = Value> {
   quantize: QuantizeScaleConfig<Output>;
   threshold: ThresholdScaleConfig<Output>;
   ordinal: OrdinalScaleConfig<Output>;
-  point: PointScaleConfig<Output>;
-  band: BandScaleConfig<Output>;
+  point: PointScaleConfig;
+  band: BandScaleConfig;
 }
 
 export type PickScaleConfig<

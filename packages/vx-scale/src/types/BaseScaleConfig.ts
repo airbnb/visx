@@ -1,3 +1,4 @@
+import { Unarray } from './Base';
 import { ScaleInterpolate, ScaleInterpolateParams } from './ScaleInterpolate';
 
 export interface BaseScaleConfig<T, R, D> {
@@ -120,6 +121,11 @@ export interface BaseScaleConfig<T, R, D> {
   round?: boolean;
 
   /**
+   * Sets the output value of the scale for unknown input values.
+   */
+  unknown?: Unarray<R> | { name: 'implicit' };
+
+  /**
    * If `true`, ensures that a zero baseline value is included in the scale domain.
    *
    * __Default value:__ `true` for x and y channels if the quantitative field is not binned and no custom `domain` is provided; `false` otherwise.
@@ -127,4 +133,4 @@ export interface BaseScaleConfig<T, R, D> {
    * __Note:__ Log, time, and utc scales do not support `zero`.
    */
   zero?: boolean;
-};
+}

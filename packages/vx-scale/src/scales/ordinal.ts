@@ -1,27 +1,27 @@
 import { scaleOrdinal } from 'd3-scale';
+import { Value, HasToString } from '../types/Base';
+import { PickScaleConfigWithoutType } from '../types/ScaleConfig';
+import { PickD3Scale } from '../types/Scale';
 
-export type OrdinalConfig<Input, Output> = {
-  /** Sets the input values of the scale, which are strings for an ordinal scale. */
-  domain?: Input[];
-  /** Sets the output values of the scale. */
-  range?: Output[];
-  /** Sets the output value of the scale for unknown input values. */
-  unknown?: Output | { name: 'implicit' };
-};
+export function updateOrdinalScale<Output extends Value = Value>(
+  scale: PickD3Scale<'ordinal', Output>,
+  config: PickScaleConfigWithoutType<'ordinal', Output>,
+) {
+  const { domain, range, unknown } = config;
 
-export default function ordinalScale<Input extends { toString(): string }, Output>({
-  range,
-  domain,
-  unknown,
-}: OrdinalConfig<Input, Output>) {
-  const scale = scaleOrdinal<Input, Output>();
-
-  if (range) scale.range(range);
   if (domain) scale.domain(domain);
+  if (range) scale.range(range);
   if (unknown) scale.unknown(unknown);
 
+  // TODO: Remove?
   // @ts-ignore
   scale.type = 'ordinal';
 
   return scale;
+}
+
+export default function createOrdinalScale<Output extends Value = Value>(
+  config: PickScaleConfigWithoutType<'ordinal', Output>,
+) {
+  return updateOrdinalScale(scaleOrdinal<HasToString, Output>(), config);
 }

@@ -1,24 +1,32 @@
-// @ts-ignore no type defs for symlog
 import { scaleSymlog } from 'd3-scale';
+import { Value } from '../types/Base';
+import { PickD3Scale } from '../types/Scale';
+import { PickScaleConfigWithoutType } from '../types/ScaleConfig';
+import applyRound from '../mixins/applyRound';
+import applyZero from '../mixins/applyZero';
 
-export type SymlogConfig = {
-  /** Sets the output values of the scale. */
-  range?: any[];
-  /** Sets the input values of the scale. */
-  domain?: any[];
-  /** Sets the symlog constant to the specified number, defaults to 1. */
-  constant?: number;
-};
+export function updateSymlogScale<Output extends Value = Value>(
+  scale: PickD3Scale<'symlog', Output>,
+  config: PickScaleConfigWithoutType<'symlog', Output>,
+) {
+  const { domain, range, clamp = true, nice = true } = config;
 
-export default function symLogScale({ range, domain, constant }: SymlogConfig) {
-  const scale = scaleSymlog();
-
-  if (range) scale.range(range);
   if (domain) scale.domain(domain);
-  if (constant) scale.constant(constant);
+  if (nice) scale.nice();
+  if (range) scale.range(range);
+
+  scale.clamp(clamp);
+  applyRound(scale, config);
+  applyZero(scale, config);
 
   // @ts-ignore
   scale.type = 'symlog';
 
   return scale;
+}
+
+export default function createSymlogScale<Output extends Value = Value>(
+  config: PickScaleConfigWithoutType<'symlog', Output>,
+) {
+  return updateSymlogScale(scaleSymlog<Output>(), config);
 }
