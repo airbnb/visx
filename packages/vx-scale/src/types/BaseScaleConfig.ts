@@ -31,7 +31,7 @@ export interface BaseScaleConfig<T, D, R> {
   /**
    * If `true`, values that exceed the data domain are clamped to either the minimum or maximum range value
    *
-   * __Default value:__ `true`.
+   * __Default value:__ `false`.
    */
   clamp?: boolean;
 
@@ -52,7 +52,6 @@ export interface BaseScaleConfig<T, D, R> {
    * By default, a general interpolator for numbers, dates, strings and colors (in HCL space) is used.
    * For color ranges, this property allows interpolation in alternative color spaces. Legal values include `rgb`, `hsl`, `hsl-long`, `lab`, `hcl`, `hcl-long`, `cubehelix` and `cubehelix-long` ('-long' variants use longer paths in polar coordinate spaces). If object-valued, this property accepts an object with a string-valued _type_ property and an optional numeric _gamma_ property applicable to rgb and cubehelix interpolators. For more, see the [d3-interpolate documentation](https://github.com/d3/d3-interpolate).
    *
-   * * __Default value:__ `hcl`
    */
   interpolate?: ScaleInterpolate | ScaleInterpolateParams;
 
@@ -114,7 +113,7 @@ export interface BaseScaleConfig<T, D, R> {
   /**
    * If `true`, ensures that a zero baseline value is included in the scale domain.
    *
-   * __Default value:__ `true` for x and y channels if the quantitative field is not binned and no custom `domain` is provided; `false` otherwise.
+   * __Default value:__ `false`
    *
    * __Note:__ Log, time, and utc scales do not support `zero`.
    */
