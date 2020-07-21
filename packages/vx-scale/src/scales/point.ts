@@ -1,15 +1,12 @@
 import { scalePoint } from 'd3-scale';
 import { Value, StringLike } from '../types/Base';
-import { PickScaleConfigWithoutType } from '../types/ScaleConfig';
-import { PickD3Scale } from '../types/Scale';
+import { ScaleTypeToScaleConfig } from '../types/ScaleConfig';
+import { ScaleTypeToD3Scale } from '../types/Scale';
 import applyRound from '../mixins/applyRound';
 
-export function updatePointScale<
-  DiscreteInput extends StringLike = StringLike,
-  Output extends Value = Value
->(
-  scale: PickD3Scale<'point', Output, DiscreteInput>,
-  config: PickScaleConfigWithoutType<'point', Output, DiscreteInput>,
+export function updatePointScale<DiscreteInput extends StringLike = StringLike>(
+  scale: ScaleTypeToD3Scale<Value, DiscreteInput>['point'],
+  config: ScaleTypeToScaleConfig<Value, DiscreteInput>['point'],
 ) {
   const { align, domain, padding, range } = config;
 
@@ -26,9 +23,8 @@ export function updatePointScale<
   return scale;
 }
 
-export default function createPointScale<
-  DiscreteInput extends StringLike = StringLike,
-  Output extends Value = Value
->(config: PickScaleConfigWithoutType<'point', Output, DiscreteInput>) {
+export default function createPointScale<DiscreteInput extends StringLike = StringLike>(
+  config: ScaleTypeToScaleConfig<Value, DiscreteInput>['point'],
+) {
   return updatePointScale(scalePoint<DiscreteInput>(), config);
 }

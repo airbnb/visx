@@ -111,6 +111,12 @@ export type TimeScaleConfig<Output extends Value = Value> = TemporalScaleConfig<
 
 export type UtcScaleConfig<Output extends Value = Value> = TemporalScaleConfig<'utc', Output>;
 
+/**
+ * Map scale type to D3Scale type
+ * @type `Output`: Output type of all scales except point and band
+ * @type `ThresholdInput`: Input type for threshold scale
+ * @type `DiscreteInput`: Input type for ordinal, point and band scales
+ */
 export interface ScaleTypeToScaleConfig<
   Output extends Value = Value,
   DiscreteInput extends StringLike = StringLike,
@@ -131,15 +137,17 @@ export interface ScaleTypeToScaleConfig<
   band: BandScaleConfig<DiscreteInput>;
 }
 
+export type ScaleType = keyof ScaleTypeToScaleConfig;
+
 export type PickScaleConfig<
-  T extends keyof ScaleTypeToScaleConfig<Output, DiscreteInput, ThresholdInput>,
+  T extends ScaleType,
   Output extends Value = Value,
   DiscreteInput extends StringLike = StringLike,
   ThresholdInput extends number | string | Date = number | string | Date
 > = ValueOf<Pick<ScaleTypeToScaleConfig<Output, DiscreteInput, ThresholdInput>, T>>;
 
 export type PickScaleConfigWithoutType<
-  T extends keyof ScaleTypeToScaleConfig<Output, DiscreteInput, ThresholdInput>,
+  T extends ScaleType,
   Output extends Value = Value,
   DiscreteInput extends StringLike = StringLike,
   ThresholdInput extends number | string | Date = number | string | Date
@@ -150,5 +158,3 @@ export type ScaleConfig<
   DiscreteInput extends StringLike = StringLike,
   ThresholdInput extends number | string | Date = number | string | Date
 > = ValueOf<ScaleTypeToScaleConfig<Output, DiscreteInput, ThresholdInput>>;
-
-export type ScaleType = keyof ScaleTypeToScaleConfig;

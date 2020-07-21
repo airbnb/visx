@@ -1,15 +1,15 @@
 import { scaleUtc } from 'd3-scale';
 import { Value } from '../types/Base';
-import { PickScaleConfigWithoutType } from '../types/ScaleConfig';
-import { PickD3Scale } from '../types/Scale';
+import { ScaleTypeToScaleConfig } from '../types/ScaleConfig';
+import { ScaleTypeToD3Scale } from '../types/Scale';
 import applyInterpolate from '../mixins/applyInterpolate';
 import applyRound from '../mixins/applyRound';
 
 export function updateUtcScale<Output extends Value = Value>(
-  scale: PickD3Scale<'utc', Output>,
-  config: PickScaleConfigWithoutType<'utc', Output>,
+  scale: ScaleTypeToD3Scale<Output>['utc'],
+  config: ScaleTypeToScaleConfig<Output>['utc'],
 ) {
-  const { domain, range, clamp = true, nice = true } = config;
+  const { domain, range, clamp = false, nice = false } = config;
 
   if (domain) scale.domain(domain);
   if (nice) scale.nice();
@@ -27,7 +27,7 @@ export function updateUtcScale<Output extends Value = Value>(
 }
 
 export default function createUtcScale<Output extends Value = Value>(
-  config: PickScaleConfigWithoutType<'utc', Output>,
+  config: ScaleTypeToScaleConfig<Output>['utc'],
 ) {
   return updateUtcScale(scaleUtc<Output>(), config);
 }

@@ -1,16 +1,16 @@
 import { scaleLinear } from 'd3-scale';
 import { Value } from '../types/Base';
-import { PickScaleConfigWithoutType } from '../types/ScaleConfig';
-import { PickD3Scale } from '../types/Scale';
+import { ScaleTypeToScaleConfig } from '../types/ScaleConfig';
+import { ScaleTypeToD3Scale } from '../types/Scale';
 import applyInterpolate from '../mixins/applyInterpolate';
 import applyRound from '../mixins/applyRound';
 import applyZero from '../mixins/applyZero';
 
 export function updateLinearScale<Output extends Value = Value>(
-  scale: PickD3Scale<'linear', Output>,
-  config: PickScaleConfigWithoutType<'linear', Output>,
+  scale: ScaleTypeToD3Scale<Output>['linear'],
+  config: ScaleTypeToScaleConfig<Output>['linear'],
 ) {
-  const { domain, range, clamp = true, nice = true } = config;
+  const { domain, range, clamp = false, nice = false } = config;
 
   if (domain) scale.domain(domain);
   if (nice) scale.nice();
@@ -29,7 +29,7 @@ export function updateLinearScale<Output extends Value = Value>(
 }
 
 export default function createLinearScale<Output extends Value = Value>(
-  config: PickScaleConfigWithoutType<'linear', Output>,
+  config: ScaleTypeToScaleConfig<Output>['linear'],
 ) {
   return updateLinearScale(scaleLinear<Output>(), config);
 }

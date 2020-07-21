@@ -1,15 +1,15 @@
 import { scaleSymlog } from 'd3-scale';
 import { Value } from '../types/Base';
-import { PickD3Scale } from '../types/Scale';
-import { PickScaleConfigWithoutType } from '../types/ScaleConfig';
+import { ScaleTypeToD3Scale } from '../types/Scale';
+import { ScaleTypeToScaleConfig } from '../types/ScaleConfig';
 import applyRound from '../mixins/applyRound';
 import applyZero from '../mixins/applyZero';
 
 export function updateSymlogScale<Output extends Value = Value>(
-  scale: PickD3Scale<'symlog', Output>,
-  config: PickScaleConfigWithoutType<'symlog', Output>,
+  scale: ScaleTypeToD3Scale<Output>['symlog'],
+  config: ScaleTypeToScaleConfig<Output>['symlog'],
 ) {
-  const { domain, range, clamp = true, nice = true } = config;
+  const { domain, range, clamp = false, nice = false } = config;
 
   if (domain) scale.domain(domain);
   if (nice) scale.nice();
@@ -26,7 +26,7 @@ export function updateSymlogScale<Output extends Value = Value>(
 }
 
 export default function createSymlogScale<Output extends Value = Value>(
-  config: PickScaleConfigWithoutType<'symlog', Output>,
+  config: ScaleTypeToScaleConfig<Output>['symlog'],
 ) {
   return updateSymlogScale(scaleSymlog<Output>(), config);
 }

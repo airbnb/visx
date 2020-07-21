@@ -1,16 +1,16 @@
 import { scalePow } from 'd3-scale';
 import { Value } from '../types/Base';
-import { PickD3Scale } from '../types/Scale';
-import { PickScaleConfigWithoutType } from '../types/ScaleConfig';
+import { ScaleTypeToD3Scale } from '../types/Scale';
+import { ScaleTypeToScaleConfig } from '../types/ScaleConfig';
 import applyInterpolate from '../mixins/applyInterpolate';
 import applyRound from '../mixins/applyRound';
 import applyZero from '../mixins/applyZero';
 
 export function updatePowScale<Output extends Value = Value>(
-  scale: PickD3Scale<'pow', Output>,
-  config: PickScaleConfigWithoutType<'pow', Output>,
+  scale: ScaleTypeToD3Scale<Output>['pow'],
+  config: ScaleTypeToScaleConfig<Output>['pow'],
 ) {
-  const { domain, range, clamp = true, exponent, nice = true } = config;
+  const { domain, range, clamp = false, exponent, nice = false } = config;
 
   if (domain) scale.domain(domain);
   if (nice) scale.nice();
@@ -29,7 +29,7 @@ export function updatePowScale<Output extends Value = Value>(
 }
 
 export default function createPowScale<Output extends Value = Value>(
-  config: PickScaleConfigWithoutType<'pow', Output>,
+  config: ScaleTypeToScaleConfig<Output>['pow'],
 ) {
   return updatePowScale(scalePow<Output>(), config);
 }

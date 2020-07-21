@@ -1,14 +1,14 @@
 import { scaleThreshold } from 'd3-scale';
 import { Value, StringLike } from '../types/Base';
-import { PickScaleConfigWithoutType } from '../types/ScaleConfig';
-import { PickD3Scale } from '../types/Scale';
+import { ScaleTypeToScaleConfig } from '../types/ScaleConfig';
+import { ScaleTypeToD3Scale } from '../types/Scale';
 
 export function updateThresholdScale<
   ThresholdInput extends number | string | Date = number | string | Date,
   Output extends Value = Value
 >(
-  scale: PickD3Scale<'threshold', Output, StringLike, ThresholdInput>,
-  config: PickScaleConfigWithoutType<'threshold', Output, StringLike, ThresholdInput>,
+  scale: ScaleTypeToD3Scale<Output, StringLike, ThresholdInput>['threshold'],
+  config: ScaleTypeToScaleConfig<Output, StringLike, ThresholdInput>['threshold'],
 ) {
   const { domain, range } = config;
 
@@ -25,6 +25,6 @@ export function updateThresholdScale<
 export default function createThresholdScale<
   ThresholdInput extends number | string | Date = number | string | Date,
   Output extends Value = Value
->(config: PickScaleConfigWithoutType<'threshold', Output, StringLike, ThresholdInput>) {
+>(config: ScaleTypeToScaleConfig<Output, StringLike, ThresholdInput>['threshold']) {
   return updateThresholdScale(scaleThreshold<ThresholdInput, Output>(), config);
 }

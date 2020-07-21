@@ -67,15 +67,6 @@ export interface BaseScaleConfig<T, D, R> {
   nice?: boolean | number;
 
   /**
-   * For _[continuous](https://vega.github.io/vega-lite/docs/scale.html#continuous)_ scales, expands the scale domain to accommodate the specified number of pixels on each of the scale range. The scale range must represent pixels for this parameter to function as intended.
-   * Padding adjustment is performed prior to all other adjustments, including the effects of the `zero`, `nice` properties.
-   *
-   * For _[band](https://vega.github.io/vega-lite/docs/scale.html#band)_ scales, shortcut for setting `paddingInner` and `paddingOuter` to the same value.
-   *
-   * For _[point](https://vega.github.io/vega-lite/docs/scale.html#point)_ scales, alias for `paddingOuter`.
-   *
-   * __Default value:__ For _continuous_ scales, derived from the [scale config](https://vega.github.io/vega-lite/docs/scale.html#config)'s `continuousPadding`.
-   * For _band and point_ scales, see `paddingInner` and `paddingOuter`. By default, Vega-Lite sets padding such that _width/height = number of unique values * step_.
    *
    * @minimum 0
    */
@@ -86,8 +77,6 @@ export interface BaseScaleConfig<T, D, R> {
    *
    * For point scale, this property is invalid as point scales do not have internal band widths (only step sizes between bands).
    *
-   * __Default value:__ derived from the [scale config](https://vega.github.io/vega-lite/docs/scale.html#config)'s `bandPaddingInner`.
-   *
    * @minimum 0
    * @maximum 1
    */
@@ -96,9 +85,6 @@ export interface BaseScaleConfig<T, D, R> {
   /**
    * The outer padding (spacing) at the ends of the range of band and point scales,
    * as a fraction of the step size. This value must lie in the range [0,1].
-   *
-   * __Default value:__ derived from the [scale config](https://vega.github.io/vega-lite/docs/scale.html#config)'s `bandPaddingOuter` for band scales and `pointPadding` for point scales.
-   * By default, Vega-Lite sets outer padding such that _width/height = number of unique values * step_.
    *
    * @minimum 0
    * @maximum 1

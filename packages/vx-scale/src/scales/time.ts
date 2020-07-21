@@ -1,15 +1,15 @@
 import { scaleTime } from 'd3-scale';
 import { Value } from '../types/Base';
-import { PickScaleConfigWithoutType } from '../types/ScaleConfig';
-import { PickD3Scale } from '../types/Scale';
+import { ScaleTypeToScaleConfig } from '../types/ScaleConfig';
+import { ScaleTypeToD3Scale } from '../types/Scale';
 import applyInterpolate from '../mixins/applyInterpolate';
 import applyRound from '../mixins/applyRound';
 
 export function updateTimeScale<Output extends Value = Value>(
-  scale: PickD3Scale<'time', Output>,
-  config: PickScaleConfigWithoutType<'time', Output>,
+  scale: ScaleTypeToD3Scale<Output>['time'],
+  config: ScaleTypeToScaleConfig<Output>['time'],
 ) {
-  const { domain, range, clamp = true, nice = false } = config;
+  const { domain, range, clamp = false, nice = false } = config;
 
   if (domain) scale.domain(domain);
   if (nice) scale.nice();
@@ -27,7 +27,7 @@ export function updateTimeScale<Output extends Value = Value>(
 }
 
 export default function createTimeScale<Output extends Value = Value>(
-  config: PickScaleConfigWithoutType<'time', Output>,
+  config: ScaleTypeToScaleConfig<Output>['time'],
 ) {
   return updateTimeScale(scaleTime<Output>(), config);
 }

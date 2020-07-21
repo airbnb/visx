@@ -1,14 +1,14 @@
 import { scaleOrdinal } from 'd3-scale';
 import { Value, StringLike } from '../types/Base';
-import { PickScaleConfigWithoutType } from '../types/ScaleConfig';
-import { PickD3Scale } from '../types/Scale';
+import { ScaleTypeToScaleConfig } from '../types/ScaleConfig';
+import { ScaleTypeToD3Scale } from '../types/Scale';
 
 export function updateOrdinalScale<
   DiscreteInput extends StringLike = StringLike,
   Output extends Value = Value
 >(
-  scale: PickD3Scale<'ordinal', Output, DiscreteInput>,
-  config: PickScaleConfigWithoutType<'ordinal', Output, DiscreteInput>,
+  scale: ScaleTypeToD3Scale<Output, DiscreteInput>['ordinal'],
+  config: ScaleTypeToScaleConfig<Output, DiscreteInput>['ordinal'],
 ) {
   const { domain, range, unknown } = config;
 
@@ -26,6 +26,6 @@ export function updateOrdinalScale<
 export default function createOrdinalScale<
   DiscreteInput extends StringLike = StringLike,
   Output extends Value = Value
->(config: PickScaleConfigWithoutType<'ordinal', Output, DiscreteInput>) {
+>(config: ScaleTypeToScaleConfig<Output, DiscreteInput>['ordinal']) {
   return updateOrdinalScale(scaleOrdinal<DiscreteInput, Output>(), config);
 }
