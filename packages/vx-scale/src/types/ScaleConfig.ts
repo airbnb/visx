@@ -1,6 +1,7 @@
 import { BaseScaleConfig } from './BaseScaleConfig';
 import { StringLike, Value, ValueOf, NumberLike } from './Base';
 import { NiceTime } from './Nice';
+import { DefaultThresholdInput } from './Scale';
 
 type Numeric = number | NumberLike;
 
@@ -69,7 +70,7 @@ export type QuantizeScaleConfig<Output extends Value = Value> = CreateScaleConfi
 >;
 
 export type ThresholdScaleConfig<
-  ThresholdInput extends number | string | Date = number | string | Date,
+  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput,
   Output extends Value = Value
 > = CreateScaleConfig<'threshold', ThresholdInput[], Output[]>;
 
@@ -120,7 +121,7 @@ export type UtcScaleConfig<Output extends Value = Value> = TemporalScaleConfig<'
 export interface ScaleTypeToScaleConfig<
   Output extends Value = Value,
   DiscreteInput extends StringLike = StringLike,
-  ThresholdInput extends number | string | Date = number | string | Date
+  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
 > {
   linear: LinearScaleConfig<Output>;
   log: LogScaleConfig<Output>;
@@ -143,18 +144,18 @@ export type PickScaleConfig<
   T extends ScaleType,
   Output extends Value = Value,
   DiscreteInput extends StringLike = StringLike,
-  ThresholdInput extends number | string | Date = number | string | Date
+  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
 > = ValueOf<Pick<ScaleTypeToScaleConfig<Output, DiscreteInput, ThresholdInput>, T>>;
 
 export type PickScaleConfigWithoutType<
   T extends ScaleType,
   Output extends Value = Value,
   DiscreteInput extends StringLike = StringLike,
-  ThresholdInput extends number | string | Date = number | string | Date
+  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
 > = Omit<PickScaleConfig<T, Output, DiscreteInput, ThresholdInput>, 'type'>;
 
 export type ScaleConfig<
   Output extends Value = Value,
   DiscreteInput extends StringLike = StringLike,
-  ThresholdInput extends number | string | Date = number | string | Date
+  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
 > = ValueOf<ScaleTypeToScaleConfig<Output, DiscreteInput, ThresholdInput>>;

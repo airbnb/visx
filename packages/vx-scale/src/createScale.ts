@@ -13,7 +13,7 @@ import createThresholdScale from './scales/threshold';
 import createOrdinalScale from './scales/ordinal';
 import createPointScale from './scales/point';
 import createBandScale from './scales/band';
-import { ScaleTypeToD3Scale } from './types/Scale';
+import { ScaleTypeToD3Scale, DefaultThresholdInput } from './types/Scale';
 
 // Overload function for more strict typing, e.g.,
 // If the config is a linear config then a ScaleLinear will be returned
@@ -22,7 +22,7 @@ import { ScaleTypeToD3Scale } from './types/Scale';
 function createScale<
   Output extends Value,
   DiscreteInput extends StringLike,
-  ThresholdInput extends number | string | Date
+  ThresholdInput extends DefaultThresholdInput
 >(
   config:
     | ScaleTypeToScaleConfig<Output, DiscreteInput, ThresholdInput>['linear']
@@ -32,7 +32,7 @@ function createScale<
 function createScale<
   Output extends Value,
   DiscreteInput extends StringLike,
-  ThresholdInput extends number | string | Date
+  ThresholdInput extends DefaultThresholdInput
 >(
   config: ScaleTypeToScaleConfig<Output, DiscreteInput, ThresholdInput>['log'],
 ): ScaleTypeToD3Scale<Output, DiscreteInput, ThresholdInput>['log'];
@@ -40,7 +40,7 @@ function createScale<
 function createScale<
   Output extends Value,
   DiscreteInput extends StringLike,
-  ThresholdInput extends number | string | Date
+  ThresholdInput extends DefaultThresholdInput
 >(
   config: ScaleTypeToScaleConfig<Output, DiscreteInput, ThresholdInput>['pow'],
 ): ScaleTypeToD3Scale<Output, DiscreteInput, ThresholdInput>['pow'];
@@ -48,7 +48,7 @@ function createScale<
 function createScale<
   Output extends Value,
   DiscreteInput extends StringLike,
-  ThresholdInput extends number | string | Date
+  ThresholdInput extends DefaultThresholdInput
 >(
   config: ScaleTypeToScaleConfig<Output, DiscreteInput, ThresholdInput>['sqrt'],
 ): ScaleTypeToD3Scale<Output, DiscreteInput, ThresholdInput>['sqrt'];
@@ -56,7 +56,7 @@ function createScale<
 function createScale<
   Output extends Value,
   DiscreteInput extends StringLike,
-  ThresholdInput extends number | string | Date
+  ThresholdInput extends DefaultThresholdInput
 >(
   config: ScaleTypeToScaleConfig<Output, DiscreteInput, ThresholdInput>['sqrt'],
 ): ScaleTypeToD3Scale<Output, DiscreteInput, ThresholdInput>['symlog'];
@@ -64,7 +64,7 @@ function createScale<
 function createScale<
   Output extends Value,
   DiscreteInput extends StringLike,
-  ThresholdInput extends number | string | Date
+  ThresholdInput extends DefaultThresholdInput
 >(
   config: ScaleTypeToScaleConfig<Output, DiscreteInput, ThresholdInput>['time'],
 ): ScaleTypeToD3Scale<Output, DiscreteInput, ThresholdInput>['time'];
@@ -72,7 +72,7 @@ function createScale<
 function createScale<
   Output extends Value,
   DiscreteInput extends StringLike,
-  ThresholdInput extends number | string | Date
+  ThresholdInput extends DefaultThresholdInput
 >(
   config: ScaleTypeToScaleConfig<Output, DiscreteInput, ThresholdInput>['utc'],
 ): ScaleTypeToD3Scale<Output, DiscreteInput, ThresholdInput>['utc'];
@@ -80,7 +80,7 @@ function createScale<
 function createScale<
   Output extends Value,
   DiscreteInput extends StringLike,
-  ThresholdInput extends number | string | Date
+  ThresholdInput extends DefaultThresholdInput
 >(
   config: ScaleTypeToScaleConfig<Output, DiscreteInput, ThresholdInput>['quantile'],
 ): ScaleTypeToD3Scale<Output, DiscreteInput, ThresholdInput>['quantile'];
@@ -88,7 +88,7 @@ function createScale<
 function createScale<
   Output extends Value,
   DiscreteInput extends StringLike,
-  ThresholdInput extends number | string | Date
+  ThresholdInput extends DefaultThresholdInput
 >(
   config: ScaleTypeToScaleConfig<Output, DiscreteInput, ThresholdInput>['quantize'],
 ): ScaleTypeToD3Scale<Output, DiscreteInput, ThresholdInput>['quantize'];
@@ -96,7 +96,7 @@ function createScale<
 function createScale<
   Output extends Value,
   DiscreteInput extends StringLike,
-  ThresholdInput extends number | string | Date
+  ThresholdInput extends DefaultThresholdInput
 >(
   config: ScaleTypeToScaleConfig<Output, DiscreteInput, ThresholdInput>['threshold'],
 ): ScaleTypeToD3Scale<Output, DiscreteInput, ThresholdInput>['threshold'];
@@ -104,7 +104,7 @@ function createScale<
 function createScale<
   Output extends Value,
   DiscreteInput extends StringLike,
-  ThresholdInput extends number | string | Date
+  ThresholdInput extends DefaultThresholdInput
 >(
   config: ScaleTypeToScaleConfig<Output, DiscreteInput, ThresholdInput>['ordinal'],
 ): ScaleTypeToD3Scale<Output, DiscreteInput, ThresholdInput>['ordinal'];
@@ -112,7 +112,7 @@ function createScale<
 function createScale<
   Output extends Value,
   DiscreteInput extends StringLike,
-  ThresholdInput extends number | string | Date
+  ThresholdInput extends DefaultThresholdInput
 >(
   config: ScaleTypeToScaleConfig<Output, DiscreteInput, ThresholdInput>['point'],
 ): ScaleTypeToD3Scale<Output, DiscreteInput, ThresholdInput>['point'];
@@ -120,7 +120,7 @@ function createScale<
 function createScale<
   Output extends Value,
   DiscreteInput extends StringLike,
-  ThresholdInput extends number | string | Date
+  ThresholdInput extends DefaultThresholdInput
 >(
   config: ScaleTypeToScaleConfig<Output, DiscreteInput, ThresholdInput>['band'],
 ): ScaleTypeToD3Scale<Output, DiscreteInput, ThresholdInput>['band'];
@@ -130,7 +130,7 @@ function createScale<
 function createScale<
   Output extends Value,
   DiscreteInput extends StringLike,
-  ThresholdInput extends number | string | Date
+  ThresholdInput extends DefaultThresholdInput
 >(
   config:
     | ScaleConfig<Output, DiscreteInput, ThresholdInput>

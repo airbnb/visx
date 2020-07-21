@@ -13,6 +13,8 @@ import {
 } from 'd3-scale';
 import { StringLike, Value, ValueOf } from './Base';
 
+export type DefaultThresholdInput = number | string | Date;
+
 /**
  * Map scale type to D3Scale type
  * @type `Output`: Output type of all scales except point and band
@@ -22,7 +24,7 @@ import { StringLike, Value, ValueOf } from './Base';
 export interface ScaleTypeToD3Scale<
   Output extends Value = Value,
   DiscreteInput extends StringLike = StringLike,
-  ThresholdInput extends number | string | Date = number | string | Date
+  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
 > {
   // Input of these continuous scales are `number | { valueOf(): number }`
   // and cannot be customized via generic type.
@@ -52,11 +54,11 @@ export type PickD3Scale<
   T extends keyof ScaleTypeToD3Scale<Output>,
   Output extends Value = Value,
   DiscreteInput extends StringLike = StringLike,
-  ThresholdInput extends number | string | Date = number | string | Date
+  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
 > = ValueOf<Pick<ScaleTypeToD3Scale<Output, DiscreteInput, ThresholdInput>, T>>;
 
 export type D3Scale<
   Output extends Value = Value,
   DiscreteInput extends StringLike = StringLike,
-  ThresholdInput extends number | string | Date = number | string | Date
+  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
 > = ValueOf<ScaleTypeToD3Scale<Output, DiscreteInput, ThresholdInput>>;
