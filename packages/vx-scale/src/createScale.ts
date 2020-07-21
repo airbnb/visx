@@ -24,15 +24,9 @@ function createScale<
   DiscreteInput extends StringLike,
   ThresholdInput extends number | string | Date
 >(
-  config: ScaleTypeToScaleConfig<Output, DiscreteInput, ThresholdInput>['linear'],
-): ScaleTypeToD3Scale<Output, DiscreteInput, ThresholdInput>['linear'];
-
-function createScale<
-  Output extends Value,
-  DiscreteInput extends StringLike,
-  ThresholdInput extends number | string | Date
->(
-  config: Omit<ScaleTypeToScaleConfig<Output, DiscreteInput, ThresholdInput>['linear'], 'type'>,
+  config:
+    | ScaleTypeToScaleConfig<Output, DiscreteInput, ThresholdInput>['linear']
+    | Omit<ScaleTypeToScaleConfig<Output, DiscreteInput, ThresholdInput>['linear'], 'type'>,
 ): ScaleTypeToD3Scale<Output, DiscreteInput, ThresholdInput>['linear'];
 
 function createScale<
