@@ -1,5 +1,8 @@
+/** A value that has .valueOf() function */
+export type NumberLike = { valueOf(): number };
+
 /** A value that has .toString() function */
-export type HasToString = { toString(): string };
+export type StringLike = { toString(): string };
 
 /** Possible values */
 export type Value = number | string | boolean | null;

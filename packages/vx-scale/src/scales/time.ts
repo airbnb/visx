@@ -9,7 +9,7 @@ export function updateTimeScale<Output extends Value = Value>(
   scale: PickD3Scale<'time', Output>,
   config: PickScaleConfigWithoutType<'time', Output>,
 ) {
-  const { domain, range, clamp = true, nice = true } = config;
+  const { domain, range, clamp = true, nice = false } = config;
 
   if (domain) scale.domain(domain);
   if (nice) scale.nice();

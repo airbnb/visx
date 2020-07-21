@@ -1,7 +1,7 @@
 import { Unarray } from './Base';
 import { ScaleInterpolate, ScaleInterpolateParams } from './ScaleInterpolate';
 
-export interface BaseScaleConfig<T, R, D> {
+export interface BaseScaleConfig<T, D, R> {
   type: T;
 
   /**

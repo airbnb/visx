@@ -1,12 +1,13 @@
 import { interpolateRound } from 'd3-interpolate';
 import { InterpolatorFactory } from 'd3-scale';
-import { Value } from '../types/Base';
+import { Value, StringLike } from '../types/Base';
 import { D3Scale } from '../types/Scale';
 
-export default function applyRound<Output extends Value>(
-  scale: D3Scale<Output>,
-  config: { round?: boolean },
-) {
+export default function applyRound<
+  Output extends Value,
+  DiscreteInput extends StringLike = StringLike,
+  ThresholdInput extends number | string | Date = number | string | Date
+>(scale: D3Scale<Output, DiscreteInput, ThresholdInput>, config: { round?: boolean }) {
   if (typeof config.round !== 'undefined') {
     if ('round' in scale) {
       scale.round(config.round);
