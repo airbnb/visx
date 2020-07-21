@@ -32,6 +32,14 @@ function createScale<
   DiscreteInput extends StringLike,
   ThresholdInput extends number | string | Date
 >(
+  config: Omit<ScaleTypeToScaleConfig<Output, DiscreteInput, ThresholdInput>['linear'], 'type'>,
+): ScaleTypeToD3Scale<Output, DiscreteInput, ThresholdInput>['linear'];
+
+function createScale<
+  Output extends Value,
+  DiscreteInput extends StringLike,
+  ThresholdInput extends number | string | Date
+>(
   config: ScaleTypeToScaleConfig<Output, DiscreteInput, ThresholdInput>['log'],
 ): ScaleTypeToD3Scale<Output, DiscreteInput, ThresholdInput>['log'];
 
@@ -129,38 +137,47 @@ function createScale<
   Output extends Value,
   DiscreteInput extends StringLike,
   ThresholdInput extends number | string | Date
->(config: ScaleConfig<Output, DiscreteInput, ThresholdInput>) {
-  switch (config.type) {
-    case 'linear':
-      return createLinearScale(config);
-    case 'log':
-      return createLogScale(config);
-    case 'pow':
-      return createPowScale(config);
-    case 'sqrt':
-      return createSqrtScale(config);
-    case 'symlog':
-      return createSymlogScale(config);
-    case 'time':
-      return createTimeScale(config);
-    case 'utc':
-      return createUtcScale(config);
-    case 'quantile':
-      return createQuantileScale(config);
-    case 'quantize':
-      return createQuantizeScale(config);
-    case 'threshold':
-      return createThresholdScale(config);
-    case 'ordinal':
-      return createOrdinalScale(config);
-    case 'point':
-      return createPointScale(config);
-    case 'band':
-      return createBandScale(config);
-    default:
-      // @ts-ignore
-      throw new Error(`Unknown scale type: ${config.type}`);
+>(
+  config:
+    | ScaleConfig<Output, DiscreteInput, ThresholdInput>
+    | Omit<ScaleTypeToScaleConfig<Output, DiscreteInput, ThresholdInput>['linear'], 'type'>,
+) {
+  if ('type' in config) {
+    switch (config.type) {
+      case 'linear':
+        return createLinearScale(config);
+      case 'log':
+        return createLogScale(config);
+      case 'pow':
+        return createPowScale(config);
+      case 'sqrt':
+        return createSqrtScale(config);
+      case 'symlog':
+        return createSymlogScale(config);
+      case 'time':
+        return createTimeScale(config);
+      case 'utc':
+        return createUtcScale(config);
+      case 'quantile':
+        return createQuantileScale(config);
+      case 'quantize':
+        return createQuantizeScale(config);
+      case 'threshold':
+        return createThresholdScale(config);
+      case 'ordinal':
+        return createOrdinalScale(config);
+      case 'point':
+        return createPointScale(config);
+      case 'band':
+        return createBandScale(config);
+      default:
+        // @ts-ignore
+        throw new Error(`Invalid scale type: ${config.type}`);
+    }
   }
+
+  // If type is not specified, fallback to linear scale
+  return createLinearScale({ ...config, type: 'linear' });
 }
 
 export default createScale;
