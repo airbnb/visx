@@ -1,7 +1,7 @@
 import { BaseScaleConfig } from './BaseScaleConfig';
 import { StringLike, Value, ValueOf, NumberLike } from './Base';
 import { NiceTime } from './Nice';
-import { DefaultThresholdInput } from './Scale';
+import { DefaultThresholdInput, ScaleTypeToD3Scale } from './Scale';
 
 type Numeric = number | NumberLike;
 
@@ -159,3 +159,10 @@ export type ScaleConfig<
   DiscreteInput extends StringLike = StringLike,
   ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
 > = ValueOf<ScaleTypeToScaleConfig<Output, DiscreteInput, ThresholdInput>>;
+
+export type ScaleConfigToD3Scale<
+  Config extends ScaleConfig<Output, DiscreteInput, ThresholdInput>,
+  Output = Value,
+  DiscreteInput extends StringLike = StringLike,
+  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
+> = ScaleTypeToD3Scale<Output, DiscreteInput, ThresholdInput>[Config['type']];
