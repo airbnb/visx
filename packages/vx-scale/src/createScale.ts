@@ -1,4 +1,5 @@
 import { ScaleConfig, ScaleTypeToScaleConfig, ScaleConfigToD3Scale } from './types/ScaleConfig';
+import { ScaleTypeToD3Scale, DefaultThresholdInput } from './types/Scale';
 import { StringLike, Value } from './types/Base';
 import createLinearScale from './scales/linear';
 import createLogScale from './scales/log';
@@ -13,7 +14,6 @@ import createThresholdScale from './scales/threshold';
 import createOrdinalScale from './scales/ordinal';
 import createPointScale from './scales/point';
 import createBandScale from './scales/band';
-import { ScaleTypeToD3Scale, DefaultThresholdInput } from './types/Scale';
 
 // Overload function for more strict typing, e.g.,
 // If the config is a linear config then a ScaleLinear will be returned
@@ -80,7 +80,7 @@ function createScale<
   }
 
   // If type is not specified, fallback to linear scale
-  return createLinearScale({ ...config, type: 'linear' });
+  return createLinearScale(config);
 }
 
 export default createScale;

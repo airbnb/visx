@@ -1,13 +1,13 @@
 import { scaleLog } from 'd3-scale';
 import { Value } from '../types/Base';
 import { ScaleTypeToD3Scale } from '../types/Scale';
-import { ScaleTypeToScaleConfig } from '../types/ScaleConfig';
+import { PickScaleConfigWithoutType } from '../types/ScaleConfig';
 import applyInterpolate from '../mixins/applyInterpolate';
 import applyRound from '../mixins/applyRound';
 
 export function updateLogScale<Output = Value>(
   scale: ScaleTypeToD3Scale<Output>['log'],
-  config: ScaleTypeToScaleConfig<Output>['log'],
+  config: PickScaleConfigWithoutType<'log', Output>,
 ) {
   const { domain, range, base, clamp = false, nice = false } = config;
 
@@ -20,14 +20,11 @@ export function updateLogScale<Output = Value>(
   applyInterpolate(scale, config);
   applyRound(scale, config);
 
-  // @ts-ignore
-  scale.type = 'log';
-
   return scale;
 }
 
 export default function createLogScale<Output = Value>(
-  config: ScaleTypeToScaleConfig<Output>['log'],
+  config: PickScaleConfigWithoutType<'log', Output>,
 ) {
   return updateLogScale(scaleLog<Output>(), config);
 }

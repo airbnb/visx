@@ -1,12 +1,12 @@
 import { scaleQuantile } from 'd3-scale';
 import { Value } from '../types/Base';
 import { ScaleTypeToD3Scale } from '../types/Scale';
-import { ScaleTypeToScaleConfig } from '../types/ScaleConfig';
+import { PickScaleConfigWithoutType } from '../types/ScaleConfig';
 import applyInterpolate from '../mixins/applyInterpolate';
 
 export function updateQuantileScale<Output = Value>(
   scale: ScaleTypeToD3Scale<Output>['quantile'],
-  config: ScaleTypeToScaleConfig<Output>['quantile'],
+  config: PickScaleConfigWithoutType<'quantile', Output>,
 ) {
   const { domain, range } = config;
 
@@ -15,14 +15,11 @@ export function updateQuantileScale<Output = Value>(
 
   applyInterpolate(scale, config);
 
-  // @ts-ignore
-  scale.type = 'quantile';
-
   return scale;
 }
 
 export default function createQuantileScale<Output = Value>(
-  config: ScaleTypeToScaleConfig<Output>['quantile'],
+  config: PickScaleConfigWithoutType<'quantile', Output>,
 ) {
   return updateQuantileScale(scaleQuantile<Output>(), config);
 }

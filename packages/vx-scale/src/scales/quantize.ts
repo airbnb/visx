@@ -1,12 +1,12 @@
 import { scaleQuantize } from 'd3-scale';
 import { Value } from '../types/Base';
-import { ScaleTypeToScaleConfig } from '../types/ScaleConfig';
+import { PickScaleConfigWithoutType } from '../types/ScaleConfig';
 import { ScaleTypeToD3Scale } from '../types/Scale';
 import applyZero from '../mixins/applyZero';
 
 export function updateQuantizeScale<Output = Value>(
   scale: ScaleTypeToD3Scale<Output>['quantize'],
-  config: ScaleTypeToScaleConfig<Output>['quantize'],
+  config: PickScaleConfigWithoutType<'quantize', Output>,
 ) {
   const { domain, range, nice = false } = config;
 
@@ -16,15 +16,11 @@ export function updateQuantizeScale<Output = Value>(
 
   applyZero(scale, config);
 
-  // TODO: Remove?
-  // @ts-ignore
-  scale.type = 'quantize';
-
   return scale;
 }
 
 export default function createQuantizeScale<Output = Value>(
-  config: ScaleTypeToScaleConfig<Output>['quantize'],
+  config: PickScaleConfigWithoutType<'quantize', Output>,
 ) {
   return updateQuantizeScale(scaleQuantize<Output>(), config);
 }

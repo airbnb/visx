@@ -1,14 +1,14 @@
 import { scaleSqrt } from 'd3-scale';
 import { Value } from '../types/Base';
 import { ScaleTypeToD3Scale } from '../types/Scale';
-import { ScaleTypeToScaleConfig } from '../types/ScaleConfig';
+import { PickScaleConfigWithoutType } from '../types/ScaleConfig';
 import applyInterpolate from '../mixins/applyInterpolate';
 import applyRound from '../mixins/applyRound';
 import applyZero from '../mixins/applyZero';
 
 export function updateSqrtScale<Output = Value>(
   scale: ScaleTypeToD3Scale<Output>['sqrt'],
-  config: ScaleTypeToScaleConfig<Output>['sqrt'],
+  config: PickScaleConfigWithoutType<'sqrt', Output>,
 ) {
   const { domain, range, clamp = false, nice = false } = config;
 
@@ -21,14 +21,11 @@ export function updateSqrtScale<Output = Value>(
   applyRound(scale, config);
   applyZero(scale, config);
 
-  // @ts-ignore
-  scale.type = 'squareRoot';
-
   return scale;
 }
 
 export default function createSqrtScale<Output = Value>(
-  config: ScaleTypeToScaleConfig<Output>['sqrt'],
+  config: PickScaleConfigWithoutType<'sqrt', Output>,
 ) {
   return updateSqrtScale(scaleSqrt<Output>(), config);
 }

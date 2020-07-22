@@ -1,14 +1,14 @@
 import { scalePow } from 'd3-scale';
 import { Value } from '../types/Base';
 import { ScaleTypeToD3Scale } from '../types/Scale';
-import { ScaleTypeToScaleConfig } from '../types/ScaleConfig';
+import { PickScaleConfigWithoutType } from '../types/ScaleConfig';
 import applyInterpolate from '../mixins/applyInterpolate';
 import applyRound from '../mixins/applyRound';
 import applyZero from '../mixins/applyZero';
 
 export function updatePowScale<Output = Value>(
   scale: ScaleTypeToD3Scale<Output>['pow'],
-  config: ScaleTypeToScaleConfig<Output>['pow'],
+  config: PickScaleConfigWithoutType<'pow', Output>,
 ) {
   const { domain, range, clamp = false, exponent, nice = false } = config;
 
@@ -22,14 +22,11 @@ export function updatePowScale<Output = Value>(
   applyRound(scale, config);
   applyZero(scale, config);
 
-  // @ts-ignore
-  scale.type = 'power';
-
   return scale;
 }
 
 export default function createPowScale<Output = Value>(
-  config: ScaleTypeToScaleConfig<Output>['pow'],
+  config: PickScaleConfigWithoutType<'pow', Output>,
 ) {
   return updatePowScale(scalePow<Output>(), config);
 }

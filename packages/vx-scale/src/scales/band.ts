@@ -1,12 +1,12 @@
 import { scaleBand } from 'd3-scale';
 import { Value, StringLike } from '../types/Base';
-import { ScaleTypeToScaleConfig } from '../types/ScaleConfig';
+import { PickScaleConfigWithoutType } from '../types/ScaleConfig';
 import { ScaleTypeToD3Scale } from '../types/Scale';
 import applyRound from '../mixins/applyRound';
 
 export function updateBandScale<DiscreteInput extends StringLike = StringLike>(
   scale: ScaleTypeToD3Scale<Value, DiscreteInput>['band'],
-  config: ScaleTypeToScaleConfig<Value, DiscreteInput>['band'],
+  config: PickScaleConfigWithoutType<'band', Value, DiscreteInput>,
 ) {
   const { align, domain, padding, paddingInner, paddingOuter, range } = config;
 
@@ -18,15 +18,11 @@ export function updateBandScale<DiscreteInput extends StringLike = StringLike>(
   if (typeof align !== 'undefined') scale.align(align);
   applyRound(scale, config);
 
-  // TODO: Remove?
-  // @ts-ignore
-  scale.type = 'band';
-
   return scale;
 }
 
 export default function createBandScale<DiscreteInput extends StringLike = StringLike>(
-  config: ScaleTypeToScaleConfig<Value, DiscreteInput>['band'],
+  config: PickScaleConfigWithoutType<'band', Value, DiscreteInput>,
 ) {
   return updateBandScale(scaleBand<DiscreteInput>(), config);
 }
