@@ -2,21 +2,17 @@ import { scaleBand } from 'd3-scale';
 import { Value, StringLike } from '../types/Base';
 import { PickScaleConfigWithoutType } from '../types/ScaleConfig';
 import { ScaleTypeToD3Scale } from '../types/Scale';
-import applyRound from '../mixins/applyRound';
+import { updatePointScale } from './point';
 
 export function updateBandScale<DiscreteInput extends StringLike = StringLike>(
   scale: ScaleTypeToD3Scale<Value, DiscreteInput>['band'],
   config: PickScaleConfigWithoutType<'band', Value, DiscreteInput>,
 ) {
-  const { align, domain, padding, paddingInner, paddingOuter, range } = config;
+  const { paddingInner, paddingOuter } = config;
 
-  if (domain) scale.domain(domain);
-  if (range) scale.range(range);
-  if (typeof padding !== 'undefined') scale.padding(padding);
+  updatePointScale(scale, config);
   if (typeof paddingInner !== 'undefined') scale.paddingInner(paddingInner);
   if (typeof paddingOuter !== 'undefined') scale.paddingOuter(paddingOuter);
-  if (typeof align !== 'undefined') scale.align(align);
-  applyRound(scale, config);
 
   return scale;
 }

@@ -2,7 +2,6 @@ import { scaleQuantile } from 'd3-scale';
 import { Value } from '../types/Base';
 import { ScaleTypeToD3Scale } from '../types/Scale';
 import { PickScaleConfigWithoutType } from '../types/ScaleConfig';
-import applyInterpolate from '../mixins/applyInterpolate';
 
 export function updateQuantileScale<Output = Value>(
   scale: ScaleTypeToD3Scale<Output>['quantile'],
@@ -12,8 +11,6 @@ export function updateQuantileScale<Output = Value>(
 
   if (domain) scale.domain(domain);
   if (range) scale.range(range);
-
-  applyInterpolate(scale, config);
 
   return scale;
 }

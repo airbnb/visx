@@ -17,7 +17,7 @@ export type ContinuousDomain = ContinuousInput[];
 // and add `type` property as discriminant of union type.
 type CreateScaleConfig<T, D, R, Fields extends keyof BaseScaleConfig<T, D, R> = 'type'> = Pick<
   BaseScaleConfig<T, D, R>,
-  'type' | 'domain' | 'range' | 'reverse' | Fields
+  'type' | 'domain' | 'range' | Fields
 >;
 
 export type LinearScaleConfig<Output = Value> = CreateScaleConfig<
@@ -58,15 +58,14 @@ export type SymlogScaleConfig<Output = Value> = CreateScaleConfig<
 export type QuantileScaleConfig<Output = Value> = CreateScaleConfig<
   'quantile',
   ContinuousDomain,
-  Output[],
-  'interpolate'
+  Output[]
 >;
 
 export type QuantizeScaleConfig<Output = Value> = CreateScaleConfig<
   'quantize',
   [ContinuousInput, ContinuousInput],
   Output[],
-  'interpolate' | 'nice' | 'zero'
+  'nice' | 'zero'
 >;
 
 export type ThresholdScaleConfig<
@@ -139,6 +138,10 @@ export interface ScaleTypeToScaleConfig<
 }
 
 export type ScaleType = keyof ScaleTypeToScaleConfig;
+
+export type TimeScaleType = 'time' | 'utc';
+
+export type DiscreteScaleType = 'ordinal' | 'point' | 'band';
 
 export type PickScaleConfig<
   T extends ScaleType,

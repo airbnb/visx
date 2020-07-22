@@ -1,46 +1,86 @@
-import {
-  ScaleLinear,
-  ScaleLogarithmic,
-  ScalePower,
-  ScaleSymLog,
-  ScaleTime,
-  ScaleQuantile,
-  ScaleQuantize,
-  ScaleThreshold,
-  ScaleOrdinal,
-  ScalePoint,
-  ScaleBand,
-} from 'd3-scale';
-import { ScaleConfig, ScaleConfigToD3Scale } from './types/ScaleConfig';
-import { DefaultThresholdInput, D3Scale } from './types/Scale';
+import { ScaleTime, ScaleLinear } from 'd3-scale';
+import { ScaleConfig, PickScaleConfigWithoutType } from './types/ScaleConfig';
+import { DefaultThresholdInput, D3Scale, PickD3Scale } from './types/Scale';
 import { StringLike, Value } from './types/Base';
-import { updateLinearScale } from './scales/linear';
-import { updateLogScale } from './scales/log';
-import { updatePowScale } from './scales/power';
-import { updateSqrtScale } from './scales/squareRoot';
-import { updateSymlogScale } from './scales/symlog';
-import { updateTimeScale } from './scales/time';
-import { updateUtcScale } from './scales/utc';
-import { updateQuantileScale } from './scales/quantile';
-import { updateQuantizeScale } from './scales/quantize';
 import { updateThresholdScale } from './scales/threshold';
-import { updateOrdinalScale } from './scales/ordinal';
-import { updatePointScale } from './scales/point';
+import { updateQuantileScale } from './scales/quantile';
 import { updateBandScale } from './scales/band';
+import { updatePointScale } from './scales/point';
+import { updateOrdinalScale } from './scales/ordinal';
+import { updateLogScale } from './scales/log';
+import { updateSymlogScale } from './scales/symlog';
+import { updatePowScale } from './scales/power';
+import { updateQuantizeScale } from './scales/quantize';
+import { updateTimeScale } from './scales/time';
+import { updateLinearScale } from './scales/linear';
 
-// Overload function for more strict typing, e.g.,
-// If the config is a linear config then a ScaleLinear will be returned
-// instead of a union type of all scales.
+// Overload function signature for more strict typing, e.g.,
+// If the scale is a ScaleLinear, the config is a linear config.
 
-function updateScale<
-  Output extends Value,
-  DiscreteInput extends StringLike,
-  ThresholdInput extends DefaultThresholdInput,
-  Config extends ScaleConfig<Output, DiscreteInput, ThresholdInput>
->(
-  scale: ScaleConfigToD3Scale<Config, Output, DiscreteInput, ThresholdInput>,
-  config: Config,
-): ScaleConfigToD3Scale<Config, Output, DiscreteInput, ThresholdInput>;
+function updateScale<Output extends Value>(
+  scale: PickD3Scale<'linear', Output>,
+  config: PickScaleConfigWithoutType<'linear', Output>,
+): PickD3Scale<'linear', Output>;
+
+function updateScale<Output extends Value>(
+  scale: PickD3Scale<'log', Output>,
+  config: PickScaleConfigWithoutType<'log', Output>,
+): PickD3Scale<'log', Output>;
+
+function updateScale<Output extends Value>(
+  scale: PickD3Scale<'pow', Output>,
+  config: PickScaleConfigWithoutType<'pow', Output>,
+): PickD3Scale<'pow', Output>;
+
+function updateScale<Output extends Value>(
+  scale: PickD3Scale<'sqrt', Output>,
+  config: PickScaleConfigWithoutType<'sqrt', Output>,
+): PickD3Scale<'sqrt', Output>;
+
+function updateScale<Output extends Value>(
+  scale: PickD3Scale<'symlog', Output>,
+  config: PickScaleConfigWithoutType<'symlog', Output>,
+): PickD3Scale<'symlog', Output>;
+
+function updateScale<Output extends Value>(
+  scale: PickD3Scale<'time', Output>,
+  config: PickScaleConfigWithoutType<'time', Output>,
+): PickD3Scale<'time', Output>;
+
+function updateScale<Output extends Value>(
+  scale: PickD3Scale<'utc', Output>,
+  config: PickScaleConfigWithoutType<'utc', Output>,
+): PickD3Scale<'utc', Output>;
+
+function updateScale<Output extends Value>(
+  scale: PickD3Scale<'quantile', Output>,
+  config: PickScaleConfigWithoutType<'quantile', Output>,
+): PickD3Scale<'quantile', Output>;
+
+function updateScale<Output extends Value>(
+  scale: PickD3Scale<'quantize', Output>,
+  config: PickScaleConfigWithoutType<'quantize', Output>,
+): PickD3Scale<'quantize', Output>;
+
+function updateScale<Output extends Value, ThresholdInput extends DefaultThresholdInput>(
+  scale: PickD3Scale<'threshold', Output, StringLike, ThresholdInput>,
+  config: PickScaleConfigWithoutType<'threshold', Output, StringLike, ThresholdInput>,
+): PickD3Scale<'threshold', Output, StringLike, ThresholdInput>;
+
+function updateScale<Output extends Value, DiscreteInput extends StringLike>(
+  scale: PickD3Scale<'ordinal', Output, DiscreteInput>,
+  config: PickScaleConfigWithoutType<'ordinal', Output, DiscreteInput>,
+): PickD3Scale<'ordinal', Output, DiscreteInput>;
+
+function updateScale<Output extends Value, DiscreteInput extends StringLike>(
+  scale: PickD3Scale<'point', Output, DiscreteInput>,
+  config: PickScaleConfigWithoutType<'point', Output, DiscreteInput>,
+): PickD3Scale<'point', Output, DiscreteInput>;
+
+function updateScale<Output extends Value, DiscreteInput extends StringLike>(
+  scale: PickD3Scale<'band', Output, DiscreteInput>,
+  config: PickScaleConfigWithoutType<'band', Output, DiscreteInput>,
+): PickD3Scale<'band', Output, DiscreteInput>;
 
 function updateScale<
   Output extends Value,
@@ -54,47 +94,93 @@ function updateScale<
 function updateScale<
   Output extends Value,
   DiscreteInput extends StringLike,
-  ThresholdInput extends DefaultThresholdInput,
-  Config extends ScaleConfig<Output, DiscreteInput, ThresholdInput>
+  ThresholdInput extends DefaultThresholdInput
 >(
-  scale: ScaleConfigToD3Scale<Config, Output, DiscreteInput, ThresholdInput>,
-  config?: ScaleConfig<Output, DiscreteInput, ThresholdInput>,
+  scale: D3Scale<Output, DiscreteInput, ThresholdInput>,
+  config?: Omit<ScaleConfig<Output, DiscreteInput, ThresholdInput>, 'type'>,
 ) {
+  const scaleOut = scale.copy() as D3Scale<Output, DiscreteInput, ThresholdInput>;
+
+  // If a config is not specified, just return a copy
   if (typeof config === 'undefined') {
-    return scale.copy();
+    return scaleOut;
   }
 
-  switch (config.type) {
-    case 'linear':
-      return updateLinearScale(scale.copy() as ScaleLinear<Output, Output>, config);
-    case 'log':
-      return updateLogScale(scale as ScaleLogarithmic<Output, Output>, config);
-    case 'pow':
-      return updatePowScale(scale as ScalePower<Output, Output>, config);
-    case 'sqrt':
-      return updateSqrtScale(scale as ScalePower<Output, Output>, config);
-    case 'symlog':
-      return updateSymlogScale(scale as ScaleSymLog<Output, Output>, config);
-    case 'time':
-      return updateTimeScale(scale as ScaleTime<Output, Output>, config);
-    case 'utc':
-      return updateUtcScale(scale as ScaleTime<Output, Output>, config);
-    case 'quantile':
-      return updateQuantileScale(scale as ScaleQuantile<Output>, config);
-    case 'quantize':
-      return updateQuantizeScale(scale as ScaleQuantize<Output>, config);
-    case 'threshold':
-      return updateThresholdScale(scale as ScaleThreshold<ThresholdInput, Output>, config);
-    case 'ordinal':
-      return updateOrdinalScale(scale as ScaleOrdinal<DiscreteInput, Output>, config);
-    case 'point':
-      return updatePointScale(scale as ScalePoint<DiscreteInput>, config);
-    case 'band':
-      return updateBandScale(scale as ScaleBand<DiscreteInput>, config);
-    default:
-      // @ts-ignore
-      throw new Error(`Invalid scale type: ${config.type}`);
+  // Try a sequence of typeguards to figure out the scale type
+  // and cast the config to correct type.
+  // Function overloading above should ensure the scale and config
+  // are compatible matches.
+
+  if ('paddingInner' in scaleOut) {
+    // Band scale
+    return updateBandScale(
+      scaleOut,
+      config as PickScaleConfigWithoutType<'band', Output, DiscreteInput, ThresholdInput>,
+    );
   }
+
+  if ('padding' in scaleOut) {
+    // Point scale
+    return updatePointScale(
+      scaleOut,
+      config as PickScaleConfigWithoutType<'point', Output, DiscreteInput, ThresholdInput>,
+    );
+  }
+
+  if ('unknown' in scaleOut) {
+    // Ordinal scale
+    return updateOrdinalScale(
+      scaleOut,
+      config as PickScaleConfigWithoutType<'ordinal', Output, DiscreteInput, ThresholdInput>,
+    );
+  }
+
+  if ('quantiles' in scaleOut) {
+    // Quantile scale
+    return updateQuantileScale(scaleOut, config as PickScaleConfigWithoutType<'quantile', Output>);
+  }
+
+  if ('base' in scaleOut) {
+    // Log scale
+    return updateLogScale(scaleOut, config as PickScaleConfigWithoutType<'log', Output>);
+  }
+
+  if ('exponent' in scaleOut) {
+    // Pow or Sqrt scale
+    return updatePowScale(scaleOut, config as PickScaleConfigWithoutType<'pow', Output>);
+  }
+
+  if ('constant' in scaleOut) {
+    // Symlog scale
+    return updateSymlogScale(scaleOut, config as PickScaleConfigWithoutType<'symlog', Output>);
+  }
+
+  if ('clamp' in scaleOut) {
+    // Linear, Time or Utc scales
+    if (scaleOut.ticks()[0] instanceof Date) {
+      // Time scale
+      return updateTimeScale(
+        scaleOut as ScaleTime<Output, Output>,
+        config as PickScaleConfigWithoutType<'time', Output>,
+      );
+    }
+    // Linear scale
+    return updateLinearScale(
+      scaleOut as ScaleLinear<Output, Output>,
+      config as PickScaleConfigWithoutType<'linear', Output>,
+    );
+  }
+
+  if ('nice' in scaleOut) {
+    // Symlog scale
+    return updateQuantizeScale(scaleOut, config as PickScaleConfigWithoutType<'quantize', Output>);
+  }
+
+  // The last type remaining is Threshold scale
+  return updateThresholdScale(
+    scaleOut,
+    config as PickScaleConfigWithoutType<'threshold', Output, DiscreteInput, ThresholdInput>,
+  );
 }
 
 export default updateScale;
