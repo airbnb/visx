@@ -5,7 +5,7 @@ import { ScaleTypeToD3Scale, DefaultThresholdInput } from '../types/Scale';
 
 export function updateThresholdScale<
   ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput,
-  Output extends Value = Value
+  Output = Value
 >(
   scale: ScaleTypeToD3Scale<Output, StringLike, ThresholdInput>['threshold'],
   config: ScaleTypeToScaleConfig<Output, StringLike, ThresholdInput>['threshold'],
@@ -24,7 +24,7 @@ export function updateThresholdScale<
 
 export default function createThresholdScale<
   ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput,
-  Output extends Value = Value
+  Output = Value
 >(config: ScaleTypeToScaleConfig<Output, StringLike, ThresholdInput>['threshold']) {
   return updateThresholdScale(scaleThreshold<ThresholdInput, Output>(), config);
 }

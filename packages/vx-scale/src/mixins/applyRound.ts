@@ -4,7 +4,7 @@ import { Value, StringLike } from '../types/Base';
 import { D3Scale, DefaultThresholdInput } from '../types/Scale';
 
 export default function applyRound<
-  Output extends Value,
+  Output = Value,
   DiscreteInput extends StringLike = StringLike,
   ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
 >(scale: D3Scale<Output, DiscreteInput, ThresholdInput>, config: { round?: boolean }) {

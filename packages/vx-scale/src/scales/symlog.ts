@@ -5,7 +5,7 @@ import { ScaleTypeToScaleConfig } from '../types/ScaleConfig';
 import applyRound from '../mixins/applyRound';
 import applyZero from '../mixins/applyZero';
 
-export function updateSymlogScale<Output extends Value = Value>(
+export function updateSymlogScale<Output = Value>(
   scale: ScaleTypeToD3Scale<Output>['symlog'],
   config: ScaleTypeToScaleConfig<Output>['symlog'],
 ) {
@@ -25,7 +25,7 @@ export function updateSymlogScale<Output extends Value = Value>(
   return scale;
 }
 
-export default function createSymlogScale<Output extends Value = Value>(
+export default function createSymlogScale<Output = Value>(
   config: ScaleTypeToScaleConfig<Output>['symlog'],
 ) {
   return updateSymlogScale(scaleSymlog<Output>(), config);

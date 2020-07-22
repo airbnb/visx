@@ -4,7 +4,7 @@ import { ScaleTypeToScaleConfig } from '../types/ScaleConfig';
 import { ScaleTypeToD3Scale } from '../types/Scale';
 import applyZero from '../mixins/applyZero';
 
-export function updateQuantizeScale<Output extends Value = Value>(
+export function updateQuantizeScale<Output = Value>(
   scale: ScaleTypeToD3Scale<Output>['quantize'],
   config: ScaleTypeToScaleConfig<Output>['quantize'],
 ) {
@@ -23,7 +23,7 @@ export function updateQuantizeScale<Output extends Value = Value>(
   return scale;
 }
 
-export default function createQuantizeScale<Output extends Value = Value>(
+export default function createQuantizeScale<Output = Value>(
   config: ScaleTypeToScaleConfig<Output>['quantize'],
 ) {
   return updateQuantizeScale(scaleQuantize<Output>(), config);

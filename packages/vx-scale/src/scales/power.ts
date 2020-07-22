@@ -6,7 +6,7 @@ import applyInterpolate from '../mixins/applyInterpolate';
 import applyRound from '../mixins/applyRound';
 import applyZero from '../mixins/applyZero';
 
-export function updatePowScale<Output extends Value = Value>(
+export function updatePowScale<Output = Value>(
   scale: ScaleTypeToD3Scale<Output>['pow'],
   config: ScaleTypeToScaleConfig<Output>['pow'],
 ) {
@@ -28,7 +28,7 @@ export function updatePowScale<Output extends Value = Value>(
   return scale;
 }
 
-export default function createPowScale<Output extends Value = Value>(
+export default function createPowScale<Output = Value>(
   config: ScaleTypeToScaleConfig<Output>['pow'],
 ) {
   return updatePowScale(scalePow<Output>(), config);

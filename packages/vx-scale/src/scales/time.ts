@@ -5,7 +5,7 @@ import { ScaleTypeToD3Scale } from '../types/Scale';
 import applyInterpolate from '../mixins/applyInterpolate';
 import applyRound from '../mixins/applyRound';
 
-export function updateTimeScale<Output extends Value = Value>(
+export function updateTimeScale<Output = Value>(
   scale: ScaleTypeToD3Scale<Output>['time'],
   config: ScaleTypeToScaleConfig<Output>['time'],
 ) {
@@ -26,7 +26,7 @@ export function updateTimeScale<Output extends Value = Value>(
   return scale;
 }
 
-export default function createTimeScale<Output extends Value = Value>(
+export default function createTimeScale<Output = Value>(
   config: ScaleTypeToScaleConfig<Output>['time'],
 ) {
   return updateTimeScale(scaleTime<Output>(), config);

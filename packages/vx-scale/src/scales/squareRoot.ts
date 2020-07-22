@@ -6,7 +6,7 @@ import applyInterpolate from '../mixins/applyInterpolate';
 import applyRound from '../mixins/applyRound';
 import applyZero from '../mixins/applyZero';
 
-export function updateSqrtScale<Output extends Value = Value>(
+export function updateSqrtScale<Output = Value>(
   scale: ScaleTypeToD3Scale<Output>['sqrt'],
   config: ScaleTypeToScaleConfig<Output>['sqrt'],
 ) {
@@ -27,7 +27,7 @@ export function updateSqrtScale<Output extends Value = Value>(
   return scale;
 }
 
-export default function createSqrtScale<Output extends Value = Value>(
+export default function createSqrtScale<Output = Value>(
   config: ScaleTypeToScaleConfig<Output>['sqrt'],
 ) {
   return updateSqrtScale(scaleSqrt<Output>(), config);

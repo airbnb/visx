@@ -5,7 +5,7 @@ import { ScaleTypeToScaleConfig } from '../types/ScaleConfig';
 import applyInterpolate from '../mixins/applyInterpolate';
 import applyRound from '../mixins/applyRound';
 
-export function updateLogScale<Output extends Value = Value>(
+export function updateLogScale<Output = Value>(
   scale: ScaleTypeToD3Scale<Output>['log'],
   config: ScaleTypeToScaleConfig<Output>['log'],
 ) {
@@ -26,7 +26,7 @@ export function updateLogScale<Output extends Value = Value>(
   return scale;
 }
 
-export default function createLogScale<Output extends Value = Value>(
+export default function createLogScale<Output = Value>(
   config: ScaleTypeToScaleConfig<Output>['log'],
 ) {
   return updateLogScale(scaleLog<Output>(), config);

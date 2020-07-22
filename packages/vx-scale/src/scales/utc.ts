@@ -5,7 +5,7 @@ import { ScaleTypeToD3Scale } from '../types/Scale';
 import applyInterpolate from '../mixins/applyInterpolate';
 import applyRound from '../mixins/applyRound';
 
-export function updateUtcScale<Output extends Value = Value>(
+export function updateUtcScale<Output = Value>(
   scale: ScaleTypeToD3Scale<Output>['utc'],
   config: ScaleTypeToScaleConfig<Output>['utc'],
 ) {
@@ -26,7 +26,7 @@ export function updateUtcScale<Output extends Value = Value>(
   return scale;
 }
 
-export default function createUtcScale<Output extends Value = Value>(
+export default function createUtcScale<Output = Value>(
   config: ScaleTypeToScaleConfig<Output>['utc'],
 ) {
   return updateUtcScale(scaleUtc<Output>(), config);

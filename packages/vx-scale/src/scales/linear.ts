@@ -6,7 +6,7 @@ import applyInterpolate from '../mixins/applyInterpolate';
 import applyRound from '../mixins/applyRound';
 import applyZero from '../mixins/applyZero';
 
-export function updateLinearScale<Output extends Value = Value>(
+export function updateLinearScale<Output = Value>(
   scale: ScaleTypeToD3Scale<Output>['linear'],
   config: ScaleTypeToScaleConfig<Output>['linear'],
 ) {
@@ -28,7 +28,7 @@ export function updateLinearScale<Output extends Value = Value>(
   return scale;
 }
 
-export default function createLinearScale<Output extends Value = Value>(
+export default function createLinearScale<Output = Value>(
   config: ScaleTypeToScaleConfig<Output>['linear'],
 ) {
   return updateLinearScale(scaleLinear<Output>(), config);

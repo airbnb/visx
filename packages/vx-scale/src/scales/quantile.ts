@@ -4,7 +4,7 @@ import { ScaleTypeToD3Scale } from '../types/Scale';
 import { ScaleTypeToScaleConfig } from '../types/ScaleConfig';
 import applyInterpolate from '../mixins/applyInterpolate';
 
-export function updateQuantileScale<Output extends Value = Value>(
+export function updateQuantileScale<Output = Value>(
   scale: ScaleTypeToD3Scale<Output>['quantile'],
   config: ScaleTypeToScaleConfig<Output>['quantile'],
 ) {
@@ -21,7 +21,7 @@ export function updateQuantileScale<Output extends Value = Value>(
   return scale;
 }
 
-export default function createQuantileScale<Output extends Value = Value>(
+export default function createQuantileScale<Output = Value>(
   config: ScaleTypeToScaleConfig<Output>['quantile'],
 ) {
   return updateQuantileScale(scaleQuantile<Output>(), config);

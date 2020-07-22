@@ -4,7 +4,7 @@ import { D3Scale } from '../types/Scale';
 import { ScaleInterpolate, ScaleInterpolateParams } from '../types/ScaleInterpolate';
 import createColorInterpolator from '../util/createColorInterpolator';
 
-export default function applyInterpolate<Output extends Value>(
+export default function applyInterpolate<Output = Value>(
   scale: D3Scale<Output>,
   config: { interpolate?: ScaleInterpolate | ScaleInterpolateParams },
 ) {

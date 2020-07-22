@@ -3,10 +3,7 @@ import { Value, StringLike } from '../types/Base';
 import { ScaleTypeToScaleConfig } from '../types/ScaleConfig';
 import { ScaleTypeToD3Scale } from '../types/Scale';
 
-export function updateOrdinalScale<
-  DiscreteInput extends StringLike = StringLike,
-  Output extends Value = Value
->(
+export function updateOrdinalScale<DiscreteInput extends StringLike = StringLike, Output = Value>(
   scale: ScaleTypeToD3Scale<Output, DiscreteInput>['ordinal'],
   config: ScaleTypeToScaleConfig<Output, DiscreteInput>['ordinal'],
 ) {
@@ -25,7 +22,7 @@ export function updateOrdinalScale<
 
 export default function createOrdinalScale<
   DiscreteInput extends StringLike = StringLike,
-  Output extends Value = Value
+  Output = Value
 >(config: ScaleTypeToScaleConfig<Output, DiscreteInput>['ordinal']) {
   return updateOrdinalScale(scaleOrdinal<DiscreteInput, Output>(), config);
 }

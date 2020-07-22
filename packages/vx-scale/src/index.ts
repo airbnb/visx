@@ -12,5 +12,6 @@ export { default as scaleSymlog } from './scales/symlog';
 export { default as scaleThreshold } from './scales/threshold';
 export { default as scaleSqrt } from './scales/squareRoot';
 
+export { default as scale } from './createScale';
 // Will change
 export { default as updateScale } from './util/updateScale';
