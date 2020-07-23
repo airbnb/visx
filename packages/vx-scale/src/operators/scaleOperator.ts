@@ -15,17 +15,39 @@ import round from './round';
 import unknown from './unknown';
 import zero from './zero';
 
-const operators = {
+/**
+ * List of all operators, in order of execution
+ */
+export const ALL_OPERATORS = [
   // domain => nice => zero
+  'domain',
+  'nice',
+  'zero',
+
+  // interpolate before round
+  'interpolate',
+  'round',
+
+  // Order does not matter for these operators
+  'align',
+  'base',
+  'clamp',
+  'constant',
+  'exponent',
+  'padding',
+  'range',
+  'unknown',
+] as const;
+
+type OperatorType = typeof ALL_OPERATORS[number];
+
+// Use Record to enforce that all keys in OperatorType must exist.
+const operators: Record<OperatorType, typeof domain> = {
   domain,
   nice,
   zero,
-
-  // interpolate before round
   interpolate,
   round,
-
-  // Order does not matter for these operators
   align,
   base,
   clamp,
@@ -36,13 +58,9 @@ const operators = {
   unknown,
 };
 
-type OperatorType = keyof typeof operators;
-
-const orderedOps = Object.keys(operators) as OperatorType[];
-
 export default function scaleOperator<T extends ScaleType>(...ops: OperatorType[]) {
   const selection = new Set(ops);
-  const selectedOps = orderedOps.filter(o => selection.has(o));
+  const selectedOps = ALL_OPERATORS.filter(o => selection.has(o));
 
   return function applyOperators<
     Output = DefaultOutput,
