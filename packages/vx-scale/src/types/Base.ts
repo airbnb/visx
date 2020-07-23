@@ -4,7 +4,7 @@ export type NumberLike = { valueOf(): number };
 /** A value that has .toString() function */
 export type StringLike = { toString(): string };
 
-/** Possible values */
+/** Default output type */
 export type DefaultOutput = number | string | boolean | null;
 
 /** Union types of all values from a map type */

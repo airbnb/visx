@@ -66,6 +66,10 @@ export interface BaseScaleConfig<T, D, R> {
   nice?: boolean | number;
 
   /**
+   * For band scale, shortcut for setting `paddingInner` and `paddingOuter` to the same value.
+   *
+   * For point scale, the outer padding (spacing) at the ends of the range.
+   * This is similar to band scale's `paddingOuter`.
    *
    * @minimum 0
    */
@@ -73,8 +77,6 @@ export interface BaseScaleConfig<T, D, R> {
 
   /**
    * The inner padding (spacing) within each band step of band scales, as a fraction of the step size. This value must lie in the range [0,1].
-   *
-   * For point scale, this property is invalid as point scales do not have internal band widths (only step sizes between bands).
    *
    * @minimum 0
    * @maximum 1
