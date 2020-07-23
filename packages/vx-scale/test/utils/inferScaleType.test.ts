@@ -13,8 +13,8 @@ import {
   scalePoint,
   scaleBand,
 } from 'd3-scale';
+import TimezoneMock from 'timezone-mock';
 import inferScaleType from '../../src/utils/inferScaleType';
-import { isLocalTimeInUtc } from '../../src/utils/isUtcScale';
 
 describe('inferScaleType(scale)', () => {
   it('linear scale', () => {
@@ -32,8 +32,17 @@ describe('inferScaleType(scale)', () => {
   it('symlog scale', () => {
     expect(inferScaleType(scaleSymlog())).toEqual('symlog');
   });
-  it('time scale', () => {
-    expect(inferScaleType(scaleTime())).toEqual(isLocalTimeInUtc() ? 'utc' : 'time');
+  describe('time scale', () => {
+    it('returns time when local time is not UTC', () => {
+      TimezoneMock.register('US/Pacific');
+      expect(inferScaleType(scaleTime())).toEqual('time');
+      TimezoneMock.unregister();
+    });
+    it('returns utc when local time is UTC', () => {
+      TimezoneMock.register('UTC');
+      expect(inferScaleType(scaleTime())).toEqual('utc');
+      TimezoneMock.unregister();
+    });
   });
   it('utc scale', () => {
     expect(inferScaleType(scaleUtc())).toEqual('utc');

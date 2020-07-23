@@ -3,10 +3,6 @@ import { ScaleTime } from 'd3-scale';
 const TEST_TIME = new Date(Date.UTC(2020, 1, 2, 3, 4, 5));
 const TEST_FORMAT = '%Y-%m-%d %H:%M';
 
-export function isLocalTimeInUtc() {
-  return TEST_TIME.getTimezoneOffset() === 0;
-}
-
 /**
  * Check if the scale is UTC or Time scale
  * When local time is equal to UTC, always return true
