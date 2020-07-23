@@ -78,8 +78,6 @@ function createScale<
       case 'band':
         return createBandScale(config);
       default:
-        // @ts-ignore
-        throw new Error(`Invalid scale type: ${config.type}`);
     }
   }
 

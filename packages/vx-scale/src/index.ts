@@ -14,3 +14,11 @@ export { default as scaleSqrt } from './scales/squareRoot';
 
 export { default as scale } from './createScale';
 export { default as updateScale } from './updateScale';
+export { default as inferScaleType } from './utils/inferScaleType';
+
+// export types
+export * from './types/Base';
+export * from './types/Nice';
+export * from './types/Scale';
+export * from './types/ScaleConfig';
+export * from './types/ScaleInterpolate';
