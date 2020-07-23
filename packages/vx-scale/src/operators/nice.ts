@@ -73,7 +73,7 @@ export default function applyNice<
           ? utcIntervals[interval]
           : localTimeIntervals[interval]
         ).every(step);
-        if (parsedInterval !== null) {
+        if (parsedInterval != null) {
           timeScale.nice(parsedInterval as CountableTimeInterval);
         }
       }

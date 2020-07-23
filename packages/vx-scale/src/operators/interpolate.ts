@@ -12,7 +12,11 @@ export default function applyInterpolate<
   scale: D3Scale<Output, DiscreteInput, ThresholdInput>,
   config: ScaleConfigWithoutType<Output, DiscreteInput, ThresholdInput>,
 ) {
-  if ('interpolate' in config && config.interpolate && 'interpolate' in scale) {
+  if (
+    'interpolate' in config &&
+    'interpolate' in scale &&
+    typeof config.interpolate !== 'undefined'
+  ) {
     const interpolator = createColorInterpolator(config.interpolate);
     scale.interpolate((interpolator as unknown) as InterpolatorFactory<Output, Output>);
   }
