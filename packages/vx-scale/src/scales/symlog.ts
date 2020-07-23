@@ -9,7 +9,6 @@ export const updateSymlogScale = scaleOperator<'symlog'>(
   'clamp',
   'constant',
   'nice',
-  'round',
   'zero',
 );
 

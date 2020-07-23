@@ -52,7 +52,7 @@ export type SymlogScaleConfig<Output = Value> = CreateScaleConfig<
   'symlog',
   ContinuousDomain,
   Output[],
-  'clamp' | 'constant' | 'nice' | 'round' | 'zero'
+  'clamp' | 'constant' | 'nice' | 'zero'
 >;
 
 export type QuantileScaleConfig<Output = Value> = CreateScaleConfig<
