@@ -103,12 +103,14 @@ const y = d => +d.frequency * 100;
 
 // And then scale the graph by our data
 const xScale = scaleBand({
-  rangeRound: [0, xMax],
+  range: [0, xMax],
+  round: true,
   domain: data.map(x),
   padding: 0.4,
 });
 const yScale = scaleLinear({
-  rangeRound: [yMax, 0],
+  range: [yMax, 0],
+  round: true,
   domain: [0, Math.max(...data.map(y))],
 });
 

@@ -33,14 +33,16 @@ const [minY, maxY] = getYMinAndMax();
 
 const xScale = Scale.scaleLinear({
   domain: [minX, maxX], // x-coordinate data values
-  rangeRound: [0, graphWidth], // svg x-coordinates, svg x-coordinates increase left to right
+  range: [0, graphWidth], // svg x-coordinates, svg x-coordinates increase left to right
+  round: true,
 });
 
 const yScale = Scale.scaleLinear({
   domain: [minY, maxY], // y-coordinate data values
   // svg y-coordinates, these increase from top to bottom so we reverse the order
   // so that minY in data space maps to graphHeight in svg y-coordinate space
-  rangeRound: [graphHeight, 0],
+  range: [graphHeight, 0],
+  round: true,
 });
 
 // ...

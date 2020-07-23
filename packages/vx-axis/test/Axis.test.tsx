@@ -10,7 +10,8 @@ import { GenericScale } from '../src/types';
 const axisProps = {
   orientation: 'left' as const,
   scale: scaleLinear({
-    rangeRound: [10, 0],
+    range: [10, 0],
+    round: true,
     domain: [0, 10],
   }) as GenericScale<number>,
   label: 'test axis',
@@ -199,7 +200,8 @@ describe('<Axis />', () => {
     const overrideAxisProps = {
       orientation: 'bottom' as const,
       scale: scaleBand({
-        rangeRound: [10, 0],
+        range: [10, 0],
+        round: true,
         domain: ['a', 'b'],
       }),
     };
