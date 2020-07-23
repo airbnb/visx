@@ -11,7 +11,12 @@ export default function applyRange<
   config: ScaleConfigWithoutType<Output, DiscreteInput, ThresholdInput>,
 ) {
   if (config.range) {
-    // @ts-ignore
-    scale.range(config.range);
+    if ('padding' in scale) {
+      // point and band scales
+      scale.range(config.range as [number, number]);
+    } else {
+      // the rest
+      scale.range(config.range as Output[]);
+    }
   }
 }
