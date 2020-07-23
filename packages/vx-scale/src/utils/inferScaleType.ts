@@ -19,10 +19,6 @@ export default function inferScaleType<
     return 'point';
   }
 
-  if ('unknown' in scale) {
-    return 'ordinal';
-  }
-
   if ('quantiles' in scale) {
     return 'quantile';
   }
@@ -51,6 +47,9 @@ export default function inferScaleType<
     return 'quantize';
   }
 
-  // The last type remaining is Threshold scale
-  return 'threshold';
+  if ('invertExtent' in scale) {
+    return 'threshold';
+  }
+
+  return 'ordinal';
 }
