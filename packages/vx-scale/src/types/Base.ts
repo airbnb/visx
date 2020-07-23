@@ -5,7 +5,7 @@ export type NumberLike = { valueOf(): number };
 export type StringLike = { toString(): string };
 
 /** Possible values */
-export type Value = number | string | boolean | null;
+export type DefaultOutput = number | string | boolean | null;
 
 /** Union types of all values from a map type */
 export type ValueOf<T> = T[keyof T];

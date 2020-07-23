@@ -1,6 +1,6 @@
 import { DefaultThresholdInput, PickD3Scale } from '../types/Scale';
 import { ScaleType, PickScaleConfigWithoutType } from '../types/ScaleConfig';
-import { Value, StringLike } from '../types/Base';
+import { DefaultOutput, StringLike } from '../types/Base';
 import domain from './domain';
 import range from './range';
 import align from './align';
@@ -45,7 +45,7 @@ export default function scaleOperator<T extends ScaleType>(...ops: OperatorType[
   const selectedOps = orderedOps.filter(o => selection.has(o));
 
   return function applyOperators<
-    Output = Value,
+    Output = DefaultOutput,
     DiscreteInput extends StringLike = StringLike,
     ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
   >(

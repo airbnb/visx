@@ -1,5 +1,5 @@
 import { scaleBand } from 'd3-scale';
-import { Value, StringLike } from '../types/Base';
+import { DefaultOutput, StringLike } from '../types/Base';
 import { PickScaleConfigWithoutType } from '../types/ScaleConfig';
 import scaleOperator from '../operators/scaleOperator';
 
@@ -12,7 +12,7 @@ export const updateBandScale = scaleOperator<'band'>(
 );
 
 export default function createBandScale<DiscreteInput extends StringLike = StringLike>(
-  config: PickScaleConfigWithoutType<'band', Value, DiscreteInput>,
+  config: PickScaleConfigWithoutType<'band', DefaultOutput, DiscreteInput>,
 ) {
   return updateBandScale(scaleBand<DiscreteInput>(), config);
 }

@@ -1,5 +1,5 @@
 import { scaleLinear } from 'd3-scale';
-import { Value } from '../types/Base';
+import { DefaultOutput } from '../types/Base';
 import { PickScaleConfigWithoutType } from '../types/ScaleConfig';
 import scaleOperator from '../operators/scaleOperator';
 
@@ -13,7 +13,7 @@ export const updateLinearScale = scaleOperator<'linear'>(
   'zero',
 );
 
-export default function createLinearScale<Output = Value>(
+export default function createLinearScale<Output = DefaultOutput>(
   config: PickScaleConfigWithoutType<'linear', Output>,
 ) {
   return updateLinearScale(scaleLinear<Output>(), config);

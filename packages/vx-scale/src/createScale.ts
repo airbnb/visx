@@ -1,6 +1,6 @@
 import { ScaleConfig, ScaleConfigToD3Scale, PickScaleConfigWithoutType } from './types/ScaleConfig';
 import { DefaultThresholdInput, PickD3Scale } from './types/Scale';
-import { StringLike, Value } from './types/Base';
+import { StringLike, DefaultOutput } from './types/Base';
 import createLinearScale from './scales/linear';
 import createLogScale from './scales/log';
 import createPowScale from './scales/power';
@@ -20,7 +20,7 @@ import createBandScale from './scales/band';
 // instead of a union type of all scales.
 
 function createScale<
-  Output = Value,
+  Output = DefaultOutput,
   DiscreteInput extends StringLike = StringLike,
   ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput,
   Config extends ScaleConfig<Output, DiscreteInput, ThresholdInput> = ScaleConfig<
@@ -31,7 +31,7 @@ function createScale<
 >(config: Config): ScaleConfigToD3Scale<Config, Output, DiscreteInput, ThresholdInput>;
 
 function createScale<
-  Output = Value,
+  Output = DefaultOutput,
   DiscreteInput extends StringLike = StringLike,
   ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
 >(

@@ -1,5 +1,5 @@
 import { scaleUtc } from 'd3-scale';
-import { Value } from '../types/Base';
+import { DefaultOutput } from '../types/Base';
 import { PickScaleConfigWithoutType } from '../types/ScaleConfig';
 import scaleOperator from '../operators/scaleOperator';
 
@@ -12,7 +12,7 @@ export const updateUtcScale = scaleOperator<'utc'>(
   'round',
 );
 
-export default function createUtcScale<Output = Value>(
+export default function createUtcScale<Output = DefaultOutput>(
   config: PickScaleConfigWithoutType<'utc', Output>,
 ) {
   return updateUtcScale(scaleUtc<Output>(), config);

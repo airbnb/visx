@@ -1,5 +1,5 @@
 import { scalePow } from 'd3-scale';
-import { Value } from '../types/Base';
+import { DefaultOutput } from '../types/Base';
 import { PickScaleConfigWithoutType } from '../types/ScaleConfig';
 import scaleOperator from '../operators/scaleOperator';
 
@@ -14,7 +14,7 @@ export const updatePowScale = scaleOperator<'pow'>(
   'zero',
 );
 
-export default function createPowScale<Output = Value>(
+export default function createPowScale<Output = DefaultOutput>(
   config: PickScaleConfigWithoutType<'pow', Output>,
 ) {
   return updatePowScale(scalePow<Output>(), config);

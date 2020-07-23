@@ -1,5 +1,5 @@
 import { scaleLog } from 'd3-scale';
-import { Value } from '../types/Base';
+import { DefaultOutput } from '../types/Base';
 import { PickScaleConfigWithoutType } from '../types/ScaleConfig';
 import scaleOperator from '../operators/scaleOperator';
 
@@ -13,7 +13,7 @@ export const updateLogScale = scaleOperator<'log'>(
   'round',
 );
 
-export default function createLogScale<Output = Value>(
+export default function createLogScale<Output = DefaultOutput>(
   config: PickScaleConfigWithoutType<'log', Output>,
 ) {
   return updateLogScale(scaleLog<Output>(), config);

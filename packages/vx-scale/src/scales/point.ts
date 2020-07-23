@@ -1,5 +1,5 @@
 import { scalePoint } from 'd3-scale';
-import { Value, StringLike } from '../types/Base';
+import { DefaultOutput, StringLike } from '../types/Base';
 import { PickScaleConfigWithoutType } from '../types/ScaleConfig';
 import scaleOperator from '../operators/scaleOperator';
 
@@ -12,7 +12,7 @@ export const updatePointScale = scaleOperator<'point'>(
 );
 
 export default function createPointScale<DiscreteInput extends StringLike = StringLike>(
-  config: PickScaleConfigWithoutType<'point', Value, DiscreteInput>,
+  config: PickScaleConfigWithoutType<'point', DefaultOutput, DiscreteInput>,
 ) {
   return updatePointScale(scalePoint<DiscreteInput>(), config);
 }

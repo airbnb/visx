@@ -11,7 +11,7 @@ import {
   ScaleBand,
   ScaleSymLog,
 } from 'd3-scale';
-import { StringLike, Value, ValueOf } from './Base';
+import { StringLike, DefaultOutput, ValueOf } from './Base';
 
 export type DefaultThresholdInput = number | string | Date;
 
@@ -22,7 +22,7 @@ export type DefaultThresholdInput = number | string | Date;
  * @type `DiscreteInput`: Input type for ordinal, point and band scales
  */
 export interface ScaleTypeToD3Scale<
-  Output = Value,
+  Output = DefaultOutput,
   DiscreteInput extends StringLike = StringLike,
   ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
 > {
@@ -52,13 +52,13 @@ export interface ScaleTypeToD3Scale<
 
 export type PickD3Scale<
   T extends keyof ScaleTypeToD3Scale<Output, DiscreteInput, DefaultThresholdInput>,
-  Output = Value,
+  Output = DefaultOutput,
   DiscreteInput extends StringLike = StringLike,
   ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
 > = ValueOf<Pick<ScaleTypeToD3Scale<Output, DiscreteInput, ThresholdInput>, T>>;
 
 export type D3Scale<
-  Output = Value,
+  Output = DefaultOutput,
   DiscreteInput extends StringLike = StringLike,
   ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
 > = ValueOf<ScaleTypeToD3Scale<Output, DiscreteInput, ThresholdInput>>;
