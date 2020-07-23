@@ -3,10 +3,16 @@ import { ScaleType, PickScaleConfigWithoutType } from '../types/ScaleConfig';
 import { Value, StringLike } from '../types/Base';
 import domain from './domain';
 import range from './range';
+import align from './align';
+import base from './base';
 import clamp from './clamp';
+import constant from './constant';
+import exponent from './exponent';
 import interpolate from './interpolate';
 import nice from './nice';
+import padding from './padding';
 import round from './round';
+import unknown from './unknown';
 import zero from './zero';
 
 const operators = {
@@ -20,8 +26,14 @@ const operators = {
   round,
 
   // Order does not matter for these operators
-  range,
+  align,
+  base,
   clamp,
+  constant,
+  exponent,
+  padding,
+  range,
+  unknown,
 };
 
 type OperatorType = keyof typeof operators;

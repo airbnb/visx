@@ -1,21 +1,15 @@
 import { scaleBand } from 'd3-scale';
 import { Value, StringLike } from '../types/Base';
 import { PickScaleConfigWithoutType } from '../types/ScaleConfig';
-import { ScaleTypeToD3Scale } from '../types/Scale';
-import { updatePointScale } from './point';
+import scaleOperator from '../operators/scaleOperator';
 
-export function updateBandScale<DiscreteInput extends StringLike = StringLike>(
-  scale: ScaleTypeToD3Scale<Value, DiscreteInput>['band'],
-  config: PickScaleConfigWithoutType<'band', Value, DiscreteInput>,
-) {
-  const { paddingInner, paddingOuter } = config;
-
-  updatePointScale(scale, config);
-  if (typeof paddingInner !== 'undefined') scale.paddingInner(paddingInner);
-  if (typeof paddingOuter !== 'undefined') scale.paddingOuter(paddingOuter);
-
-  return scale;
-}
+export const updateBandScale = scaleOperator<'band'>(
+  'domain',
+  'range',
+  'align',
+  'padding',
+  'round',
+);
 
 export default function createBandScale<DiscreteInput extends StringLike = StringLike>(
   config: PickScaleConfigWithoutType<'band', Value, DiscreteInput>,
