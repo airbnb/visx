@@ -1,11 +1,11 @@
 import { updateScale, scaleLinear } from '../src';
 
 describe('updateScale', () => {
-  test('it should be defined', () => {
+  it('should be defined', () => {
     expect(updateScale).toBeDefined();
   });
 
-  test('it should return a new copy of the scale', () => {
+  it('should return a new copy of the scale', () => {
     const domain = [0, 350];
     const range = [0, 2];
     const scale = scaleLinear({ range, domain });
@@ -13,7 +13,7 @@ describe('updateScale', () => {
     expect(scale).not.toBe(nextScale);
   });
 
-  test('it should update the new copy of the scale', () => {
+  it('should update the new copy of the scale', () => {
     const domain = [0, 350];
     const newDomain = [200, 300];
     const range = [0, 2];
