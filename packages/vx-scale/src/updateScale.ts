@@ -158,7 +158,7 @@ function updateScale<
   if ('clamp' in scaleOut) {
     // Linear, Time or Utc scales
     if (scaleOut.ticks()[0] instanceof Date) {
-      // Time scale
+      // Time or Utc scales
       return updateTimeScale(
         scaleOut as ScaleTime<Output, Output>,
         config as PickScaleConfigWithoutType<'time', Output>,
