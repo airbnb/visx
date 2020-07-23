@@ -139,10 +139,6 @@ export interface ScaleTypeToScaleConfig<
 
 export type ScaleType = keyof ScaleTypeToScaleConfig;
 
-export type TimeScaleType = 'time' | 'utc';
-
-export type DiscreteScaleType = 'ordinal' | 'point' | 'band';
-
 export type PickScaleConfig<
   T extends ScaleType,
   Output = Value,

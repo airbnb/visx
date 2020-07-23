@@ -11,10 +11,19 @@ describe('scaleBand', () => {
     expect(scale.range()).toEqual(range);
   });
 
-  test('rangeRound param should set scale range', () => {
-    const rangeRound = [2, 3] as [number, number];
-    const scale = scaleBand({ rangeRound });
-    expect(scale.range()).toEqual(rangeRound);
+  describe('round param should set rounding', () => {
+    test('round = true', () => {
+      const scale = scaleBand({ domain: ['a', 'b', 'c'], range: [1.1, 3.5], round: true });
+      expect(scale('a')).toEqual(2);
+      expect(scale('b')).toEqual(2);
+      expect(scale('c')).toEqual(2);
+    });
+    test('round = false', () => {
+      const scale = scaleBand({ domain: ['a', 'b', 'c'], range: [1.1, 3.5], round: false });
+      expect(scale('a')).toEqual(1.1);
+      expect(scale('b')).toEqual(1.9);
+      expect(scale('c')).toEqual(2.7);
+    });
   });
 
   test('domain param should set scale domain', () => {

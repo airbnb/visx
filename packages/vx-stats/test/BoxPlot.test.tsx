@@ -10,7 +10,8 @@ const { boxPlot: boxPlotData } = computeStats(data);
 const { min, firstQuartile, median, thirdQuartile, max, outliers } = boxPlotData;
 
 const valueScale = scaleLinear<number>({
-  rangeRound: [10, 0],
+  range: [10, 0],
+  round: true,
   domain: [0, 10],
 });
 

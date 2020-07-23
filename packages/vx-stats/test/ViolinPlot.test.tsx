@@ -9,7 +9,8 @@ const data = [1, 2, 3, 4, 5, 6, 6, 7, 8, 9, 1];
 const { binData } = computeStats(data);
 
 const valueScale = scaleLinear<number>({
-  rangeRound: [10, 0],
+  range: [10, 0],
+  round: true,
   domain: [0, 10],
 });
 

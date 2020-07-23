@@ -31,7 +31,8 @@ describe('Axis scales', () => {
     expect(
       setup(
         scaleBand({
-          rangeRound: [10, 0],
+          range: [10, 0],
+          round: true,
           domain: ['a', 'b', 'c'],
         }) as GenericScale<string>,
       ),
@@ -42,7 +43,8 @@ describe('Axis scales', () => {
     expect(
       setup(
         scaleLinear<number>({
-          rangeRound: [10, 0],
+          range: [10, 0],
+          round: true,
           domain: [0, 10],
         }) as GenericScale<number>,
       ),
@@ -53,7 +55,8 @@ describe('Axis scales', () => {
     expect(
       setup(
         scaleLog<number>({
-          rangeRound: [10, 0],
+          range: [10, 0],
+          round: true,
           domain: [1, 10, 100, 1000],
         }) as GenericScale<number>,
       ),
@@ -75,7 +78,8 @@ describe('Axis scales', () => {
     expect(
       setup(
         scalePoint<string>({
-          rangeRound: [0, 10],
+          range: [0, 10],
+          round: true,
           domain: ['a', 'b', 'c'],
         }) as GenericScale<string>,
       ),

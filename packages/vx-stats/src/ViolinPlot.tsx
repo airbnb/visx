@@ -25,8 +25,8 @@ export default function ViolinPlot<ScaleInput extends object = BinDatum>({
   className,
   data,
   width = 10,
-  count = (d: any) => (d && d.count) || 0,
-  value = (d: any) => (d && d.value) || 0,
+  count = (d: unknown) => d?.count || 0,
+  value = (d: unknown) => d?.value || 0,
   valueScale,
   horizontal,
   children,
@@ -36,7 +36,8 @@ export default function ViolinPlot<ScaleInput extends object = BinDatum>({
   const center = (horizontal ? top : left) + width / 2;
   const binCounts = data.map(bin => count(bin));
   const widthScale = scaleLinear<number>({
-    rangeRound: [0, width / 2],
+    range: [0, width / 2],
+    round: true,
     domain: [0, Math.max(...binCounts)],
   });
 
