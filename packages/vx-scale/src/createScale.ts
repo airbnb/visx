@@ -1,5 +1,5 @@
-import { ScaleConfig, ScaleTypeToScaleConfig, ScaleConfigToD3Scale } from './types/ScaleConfig';
-import { ScaleTypeToD3Scale, DefaultThresholdInput } from './types/Scale';
+import { ScaleConfig, ScaleConfigToD3Scale, PickScaleConfigWithoutType } from './types/ScaleConfig';
+import { DefaultThresholdInput, PickD3Scale } from './types/Scale';
 import { StringLike, Value } from './types/Base';
 import createLinearScale from './scales/linear';
 import createLogScale from './scales/log';
@@ -31,8 +31,8 @@ function createScale<
   DiscreteInput extends StringLike,
   ThresholdInput extends DefaultThresholdInput
 >(
-  config: Omit<ScaleTypeToScaleConfig<Output>['linear'], 'type'>,
-): ScaleTypeToD3Scale<Output, DiscreteInput, ThresholdInput>['linear'];
+  config: PickScaleConfigWithoutType<'linear', Output>,
+): PickD3Scale<'linear', Output, DiscreteInput, ThresholdInput>;
 
 // Actual implementation
 
@@ -43,7 +43,7 @@ function createScale<
 >(
   config:
     | ScaleConfig<Output, DiscreteInput, ThresholdInput>
-    | Omit<ScaleTypeToScaleConfig<Output>['linear'], 'type'>,
+    | PickScaleConfigWithoutType<'linear', Output>,
 ) {
   if ('type' in config) {
     switch (config.type) {

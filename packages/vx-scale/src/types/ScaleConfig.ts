@@ -150,18 +150,28 @@ export type PickScaleConfig<
   ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
 > = ValueOf<Pick<ScaleTypeToScaleConfig<Output, DiscreteInput, ThresholdInput>, T>>;
 
+type OmitType<T> = {
+  [key in keyof T]: Omit<T[key], 'type'>;
+};
+
 export type PickScaleConfigWithoutType<
   T extends ScaleType,
   Output = Value,
   DiscreteInput extends StringLike = StringLike,
   ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
-> = Omit<PickScaleConfig<T, Output, DiscreteInput, ThresholdInput>, 'type'>;
+> = ValueOf<Pick<OmitType<ScaleTypeToScaleConfig<Output, DiscreteInput, ThresholdInput>>, T>>;
 
 export type ScaleConfig<
   Output = Value,
   DiscreteInput extends StringLike = StringLike,
   ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
 > = ValueOf<ScaleTypeToScaleConfig<Output, DiscreteInput, ThresholdInput>>;
+
+export type ScaleConfigWithoutType<
+  Output = Value,
+  DiscreteInput extends StringLike = StringLike,
+  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
+> = PickScaleConfigWithoutType<ScaleType, Output, DiscreteInput, ThresholdInput>;
 
 export type ScaleConfigToD3Scale<
   Config extends ScaleConfig<Output, DiscreteInput, ThresholdInput>,

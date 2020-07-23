@@ -2,8 +2,8 @@ import { scaleLog } from 'd3-scale';
 import { Value } from '../types/Base';
 import { ScaleTypeToD3Scale } from '../types/Scale';
 import { PickScaleConfigWithoutType } from '../types/ScaleConfig';
-import applyInterpolate from '../mixins/applyInterpolate';
-import applyRound from '../mixins/applyRound';
+import applyInterpolate from '../operators/interpolate';
+import applyRound from '../operators/round';
 
 export function updateLogScale<Output = Value>(
   scale: ScaleTypeToD3Scale<Output>['log'],

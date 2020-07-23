@@ -51,7 +51,7 @@ export interface ScaleTypeToD3Scale<
 }
 
 export type PickD3Scale<
-  T extends keyof ScaleTypeToD3Scale<Output>,
+  T extends keyof ScaleTypeToD3Scale<Output, DiscreteInput, DefaultThresholdInput>,
   Output = Value,
   DiscreteInput extends StringLike = StringLike,
   ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
