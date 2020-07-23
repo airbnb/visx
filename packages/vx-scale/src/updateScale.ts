@@ -1,4 +1,4 @@
-import { ScaleConfig, PickScaleConfigWithoutType } from './types/ScaleConfig';
+import { PickScaleConfigWithoutType, ScaleConfigWithoutType } from './types/ScaleConfig';
 import { DefaultThresholdInput, D3Scale, PickD3Scale } from './types/Scale';
 import { StringLike, DefaultOutput } from './types/Base';
 import { updateThresholdScale } from './scales/threshold';
@@ -155,7 +155,7 @@ function updateScale<
   ThresholdInput extends DefaultThresholdInput
 >(
   scale: D3Scale<Output, DiscreteInput, ThresholdInput>,
-  config?: Omit<ScaleConfig<Output, DiscreteInput, ThresholdInput>, 'type'>,
+  config?: ScaleConfigWithoutType<Output, DiscreteInput, ThresholdInput>,
 ) {
   const scaleOut = scale.copy() as D3Scale<Output, DiscreteInput, ThresholdInput>;
 
