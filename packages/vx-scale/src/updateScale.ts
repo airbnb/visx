@@ -20,7 +20,7 @@ import inferScaleType from './utils/inferScaleType';
 // If the scale is a ScaleLinear, the config is a linear config.
 
 function updateScale<
-  Output extends Value = Value,
+  Output = Value,
   DiscreteInput extends StringLike = StringLike,
   ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
 >(
@@ -29,7 +29,7 @@ function updateScale<
 ): PickD3Scale<'linear', Output>;
 
 function updateScale<
-  Output extends Value = Value,
+  Output = Value,
   DiscreteInput extends StringLike = StringLike,
   ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
 >(
@@ -38,7 +38,7 @@ function updateScale<
 ): PickD3Scale<'log', Output>;
 
 function updateScale<
-  Output extends Value = Value,
+  Output = Value,
   DiscreteInput extends StringLike = StringLike,
   ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
 >(
@@ -47,7 +47,7 @@ function updateScale<
 ): PickD3Scale<'pow', Output>;
 
 function updateScale<
-  Output extends Value = Value,
+  Output = Value,
   DiscreteInput extends StringLike = StringLike,
   ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
 >(
@@ -56,7 +56,7 @@ function updateScale<
 ): PickD3Scale<'sqrt', Output>;
 
 function updateScale<
-  Output extends Value = Value,
+  Output = Value,
   DiscreteInput extends StringLike = StringLike,
   ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
 >(
@@ -65,7 +65,7 @@ function updateScale<
 ): PickD3Scale<'symlog', Output>;
 
 function updateScale<
-  Output extends Value = Value,
+  Output = Value,
   DiscreteInput extends StringLike = StringLike,
   ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
 >(
@@ -74,7 +74,7 @@ function updateScale<
 ): PickD3Scale<'time', Output>;
 
 function updateScale<
-  Output extends Value = Value,
+  Output = Value,
   DiscreteInput extends StringLike = StringLike,
   ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
 >(
@@ -83,7 +83,7 @@ function updateScale<
 ): PickD3Scale<'utc', Output>;
 
 function updateScale<
-  Output extends Value = Value,
+  Output = Value,
   DiscreteInput extends StringLike = StringLike,
   ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
 >(
@@ -92,7 +92,7 @@ function updateScale<
 ): PickD3Scale<'quantile', Output>;
 
 function updateScale<
-  Output extends Value = Value,
+  Output = Value,
   DiscreteInput extends StringLike = StringLike,
   ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
 >(
@@ -101,7 +101,7 @@ function updateScale<
 ): PickD3Scale<'quantize', Output>;
 
 function updateScale<
-  Output extends Value = Value,
+  Output = Value,
   DiscreteInput extends StringLike = StringLike,
   ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
 >(
@@ -110,7 +110,7 @@ function updateScale<
 ): PickD3Scale<'threshold', Output, StringLike, ThresholdInput>;
 
 function updateScale<
-  Output extends Value = Value,
+  Output = Value,
   DiscreteInput extends StringLike = StringLike,
   ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
 >(
@@ -119,7 +119,7 @@ function updateScale<
 ): PickD3Scale<'ordinal', Output, DiscreteInput>;
 
 function updateScale<
-  Output extends Value = Value,
+  Output = Value,
   DiscreteInput extends StringLike = StringLike,
   ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
 >(
@@ -128,7 +128,7 @@ function updateScale<
 ): PickD3Scale<'point', Output, DiscreteInput>;
 
 function updateScale<
-  Output extends Value = Value,
+  Output = Value,
   DiscreteInput extends StringLike = StringLike,
   ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
 >(
@@ -137,7 +137,7 @@ function updateScale<
 ): PickD3Scale<'band', Output, DiscreteInput>;
 
 function updateScale<
-  Output extends Value = Value,
+  Output = Value,
   DiscreteInput extends StringLike = StringLike,
   ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput,
   Scale extends D3Scale<Output, DiscreteInput, ThresholdInput> = D3Scale<
@@ -150,7 +150,7 @@ function updateScale<
 // Actual implementation
 
 function updateScale<
-  Output extends Value,
+  Output,
   DiscreteInput extends StringLike,
   ThresholdInput extends DefaultThresholdInput
 >(

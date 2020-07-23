@@ -1,11 +1,11 @@
 import { ScaleTime } from 'd3-scale';
-import { Value, StringLike } from '../types/Base';
+import { StringLike } from '../types/Base';
 import { DefaultThresholdInput, D3Scale } from '../types/Scale';
 import { ScaleType } from '../types/ScaleConfig';
 import isUtcScale from './isUtcScale';
 
 export default function inferScaleType<
-  Output extends Value,
+  Output,
   DiscreteInput extends StringLike,
   ThresholdInput extends DefaultThresholdInput
 >(scale: D3Scale<Output, DiscreteInput, ThresholdInput>): ScaleType {
