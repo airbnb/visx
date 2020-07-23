@@ -20,16 +20,20 @@ import createBandScale from './scales/band';
 // instead of a union type of all scales.
 
 function createScale<
-  Output extends Value,
-  DiscreteInput extends StringLike,
-  ThresholdInput extends DefaultThresholdInput,
-  Config extends ScaleConfig<Output, DiscreteInput, ThresholdInput>
+  Output extends Value = Value,
+  DiscreteInput extends StringLike = StringLike,
+  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput,
+  Config extends ScaleConfig<Output, DiscreteInput, ThresholdInput> = ScaleConfig<
+    Output,
+    DiscreteInput,
+    ThresholdInput
+  >
 >(config: Config): ScaleConfigToD3Scale<Config, Output, DiscreteInput, ThresholdInput>;
 
 function createScale<
-  Output extends Value,
-  DiscreteInput extends StringLike,
-  ThresholdInput extends DefaultThresholdInput
+  Output extends Value = Value,
+  DiscreteInput extends StringLike = StringLike,
+  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
 >(
   config: PickScaleConfigWithoutType<'linear', Output>,
 ): PickD3Scale<'linear', Output, DiscreteInput, ThresholdInput>;
