@@ -40,7 +40,7 @@ describe('createScale()', () => {
   });
   it('utc', () => {
     const scale = createScale({
-      type: 'time',
+      type: 'utc',
       domain: [new Date(Date.UTC(2020, 0, 1)), new Date(Date.UTC(2020, 0, 10))],
       range: [1, 10],
     });
@@ -57,12 +57,12 @@ describe('createScale()', () => {
   });
   it('threshold', () => {
     const scale = createScale({
-      type: 'quantize',
-      domain: [0, 1],
+      type: 'threshold',
+      domain: [0, 1] as number[],
       range: ['red', 'white', 'green'],
     });
     expect(scale(-1)).toEqual('red');
-    expect(scale(0)).toEqual('red');
+    expect(scale(0)).toEqual('white');
     expect(scale(0.5)).toEqual('white');
     expect(scale(1)).toEqual('green');
     expect(scale(1000)).toEqual('green');

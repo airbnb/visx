@@ -11,14 +11,14 @@ export default function applyDomain<
   config: ScaleConfigWithoutType<Output, DiscreteInput, ThresholdInput>,
 ) {
   if (config.domain) {
-    if ('padding' in scale || 'unknown' in scale) {
-      // ordinal, point, band scales
-      scale.domain(config.domain as DiscreteInput[]);
-    } else if ('nice' in scale) {
+    if ('nice' in scale || 'quantiles' in scale) {
       // continuous input scales
       scale.domain(config.domain as number[] | Date[]);
+    } else if ('padding' in scale) {
+      // point and band scales
+      scale.domain(config.domain as DiscreteInput[]);
     } else {
-      // threshold scale
+      // ordinal and threshold scale
       scale.domain(config.domain as ThresholdInput[]);
     }
   }

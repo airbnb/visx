@@ -22,13 +22,36 @@ describe('scaleLinear()', () => {
       expect(scale(10)).toEqual(10);
     });
   });
-  it('set (color) interpolate', () => {
-    const scale = scaleLinear({
-      domain: [0, 10],
-      range: ['#ff0000', '#000000'],
-      interpolate: 'lab',
+  describe('set (color) interpolate', () => {
+    it('string', () => {
+      const scale = scaleLinear({
+        domain: [0, 10],
+        range: ['#ff0000', '#000000'],
+        interpolate: 'lab',
+      });
+      expect(scale(5)).toEqual('rgb(122, 27, 11)');
     });
-    expect(scale(5)).toEqual('rgb(122, 27, 11)');
+    it('config object', () => {
+      const scale = scaleLinear({
+        domain: [0, 10],
+        range: ['#ff0000', '#000000'],
+        interpolate: {
+          type: 'rgb',
+        },
+      });
+      expect(scale(5)).toEqual('rgb(128, 0, 0)');
+    });
+    it('config object with gamma', () => {
+      const scale = scaleLinear({
+        domain: [0, 10],
+        range: ['#ff0000', '#000000'],
+        interpolate: {
+          type: 'rgb',
+          gamma: 0.9,
+        },
+      });
+      expect(scale(5)).toEqual('rgb(118, 0, 0)');
+    });
   });
   describe('set nice', () => {
     it('true', () => {

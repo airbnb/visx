@@ -1,7 +1,19 @@
+import TimezoneMock from 'timezone-mock';
 import { scaleTime } from '../src';
 
 describe('scaleTime()', () => {
-  const domain = [new Date(2020, 0, 1), new Date(2020, 0, 10)];
+  let domain: [Date, Date];
+  let unniceDomain: [Date, Date];
+
+  beforeAll(() => {
+    TimezoneMock.register('US/Pacific');
+    domain = [new Date(2020, 0, 1), new Date(2020, 0, 10)];
+    unniceDomain = [new Date(2020, 0, 1), new Date(2020, 0, 9, 20)];
+  });
+
+  afterAll(() => {
+    TimezoneMock.unregister();
+  });
 
   it('should be defined', () => {
     expect(scaleTime).toBeDefined();
@@ -32,7 +44,6 @@ describe('scaleTime()', () => {
     expect(scale(new Date(2020, 0, 5))).toEqual('rgb(136, 28, 11)');
   });
   describe('set nice', () => {
-    const unniceDomain = [new Date(2020, 0, 1), new Date(2020, 0, 9, 20)];
     it('true', () => {
       const scale = scaleTime({
         domain: unniceDomain,
@@ -44,7 +55,11 @@ describe('scaleTime()', () => {
       const scale = scaleTime({ domain: unniceDomain, nice: false });
       expect(scale.domain()).toEqual(unniceDomain);
     });
-    it('nice string', () => {
+    it('number', () => {
+      const scale = scaleTime({ domain: unniceDomain, nice: 5 });
+      expect(scale.domain()).toEqual([new Date(2020, 0, 1), new Date(2020, 0, 11)]);
+    });
+    it('time unit string', () => {
       const scale = scaleTime({ domain: unniceDomain, nice: 'hour' });
       expect(scale.domain()).toEqual(unniceDomain);
     });
