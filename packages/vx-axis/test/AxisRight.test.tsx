@@ -7,7 +7,8 @@ import { GenericScale } from '../src/types';
 
 const axisProps = {
   scale: scaleLinear({
-    rangeRound: [10, 0],
+    range: [10, 0],
+    round: true,
     domain: [0, 10],
   }) as GenericScale<number>,
 };

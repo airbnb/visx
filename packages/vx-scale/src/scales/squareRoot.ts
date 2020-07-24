@@ -1,12 +1,20 @@
-import powerScale, { PowerConfig } from './power';
+import { scaleSqrt } from 'd3-scale';
+import { DefaultOutput } from '../types/Base';
+import { PickScaleConfigWithoutType } from '../types/ScaleConfig';
+import scaleOperator from '../operators/scaleOperator';
 
-export type SquareRootConfig<Output> = Omit<PowerConfig<Output>, 'exponent'>;
+export const updateSqrtScale = scaleOperator<'sqrt'>(
+  'domain',
+  'range',
+  'clamp',
+  'interpolate',
+  'nice',
+  'round',
+  'zero',
+);
 
-export default function squareRootScale<Output>(scaleConfig: SquareRootConfig<Output>) {
-  const scale = powerScale<Output>({ ...scaleConfig, exponent: 0.5 });
-
-  // @ts-ignore
-  scale.type = 'squareRoot';
-
-  return scale;
+export default function createSqrtScale<Output = DefaultOutput>(
+  config?: PickScaleConfigWithoutType<'sqrt', Output>,
+) {
+  return updateSqrtScale(scaleSqrt<Output>(), config);
 }

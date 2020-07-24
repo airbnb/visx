@@ -50,7 +50,8 @@ export default withTooltip<StatsPlotProps, TooltipData>(
 
     // scales
     const xScale = scaleBand<string>({
-      rangeRound: [0, xMax],
+      range: [0, xMax],
+      round: true,
       domain: data.map(x),
       padding: 0.4,
     });
@@ -63,7 +64,8 @@ export default withTooltip<StatsPlotProps, TooltipData>(
     const maxYValue = Math.max(...values);
 
     const yScale = scaleLinear<number>({
-      rangeRound: [yMax, 0],
+      range: [yMax, 0],
+      round: true,
       domain: [minYValue, maxYValue],
     });
 

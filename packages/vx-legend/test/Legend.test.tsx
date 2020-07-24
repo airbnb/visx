@@ -6,7 +6,8 @@ import { Legend, LegendLabel } from '../src';
 
 const defaultProps = {
   scale: scaleLinear<number>({
-    rangeRound: [10, 0],
+    range: [10, 0],
+    round: true,
     domain: [0, 10],
   }),
 };

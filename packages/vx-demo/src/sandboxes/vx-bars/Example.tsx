@@ -27,7 +27,8 @@ export default function Example({ width, height, events = false }: BarsProps) {
   const xScale = useMemo(
     () =>
       scaleBand<string>({
-        rangeRound: [0, xMax],
+        range: [0, xMax],
+        round: true,
         domain: data.map(getLetter),
         padding: 0.4,
       }),
@@ -36,7 +37,8 @@ export default function Example({ width, height, events = false }: BarsProps) {
   const yScale = useMemo(
     () =>
       scaleLinear<number>({
-        rangeRound: [yMax, 0],
+        range: [yMax, 0],
+        round: true,
         domain: [0, Math.max(...data.map(getLetterFrequency))],
       }),
     [yMax],

@@ -1,20 +1,12 @@
 import { scaleQuantile } from 'd3-scale';
+import { DefaultOutput } from '../types/Base';
+import { PickScaleConfigWithoutType } from '../types/ScaleConfig';
+import scaleOperator from '../operators/scaleOperator';
 
-export type QuantileConfig<Output> = {
-  /** Sets the output values of the scale. */
-  range?: Output[];
-  /** Sets the input values of the scale. */
-  domain?: (number | null | undefined)[];
-};
+export const updateQuantileScale = scaleOperator<'quantile'>('domain', 'range');
 
-export default function quantileScale<Output>({ range, domain }: QuantileConfig<Output>) {
-  const scale = scaleQuantile<Output>();
-
-  if (range) scale.range(range);
-  if (domain) scale.domain(domain);
-
-  // @ts-ignore
-  scale.type = 'quantile';
-
-  return scale;
+export default function createQuantileScale<Output = DefaultOutput>(
+  config?: PickScaleConfigWithoutType<'quantile', Output>,
+) {
+  return updateQuantileScale(scaleQuantile<Output>(), config);
 }

@@ -10,5 +10,15 @@ export { default as scaleQuantize } from './scales/quantize';
 export { default as scaleQuantile } from './scales/quantile';
 export { default as scaleSymlog } from './scales/symlog';
 export { default as scaleThreshold } from './scales/threshold';
-export { default as updateScale } from './util/updateScale';
 export { default as scaleSqrt } from './scales/squareRoot';
+
+export { default as createScale } from './createScale';
+export { default as updateScale } from './updateScale';
+export { default as inferScaleType } from './utils/inferScaleType';
+
+// export types
+export * from './types/Base';
+export * from './types/Nice';
+export * from './types/Scale';
+export * from './types/ScaleConfig';
+export * from './types/ScaleInterpolate';
