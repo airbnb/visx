@@ -91,6 +91,7 @@ describe('scaleLinear()', () => {
     it('true', () => {
       expect(scaleLinear({ domain: [1, 2], zero: true }).domain()).toEqual([0, 2]);
       expect(scaleLinear({ domain: [-2, -1], zero: true }).domain()).toEqual([-2, 0]);
+      expect(scaleLinear({ domain: [1, -2], zero: true }).domain()).toEqual([1, -2]);
       expect(scaleLinear({ domain: [-2, 3], zero: true }).domain()).toEqual([-2, 3]);
     });
     it('false', () => {
