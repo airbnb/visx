@@ -67,6 +67,10 @@ describe('scaleTime()', () => {
       const scale = scaleTime({ domain: unniceDomain, nice: { interval: 'hour', step: 3 } });
       expect(scale.domain()).toEqual([new Date(2020, 0, 1), new Date(2020, 0, 9, 21)]);
     });
+    it('invalid nice object', () => {
+      const scale = scaleTime({ domain: unniceDomain, nice: { interval: 'hour', step: NaN } });
+      expect(scale.domain()).toEqual(unniceDomain);
+    });
   });
   describe('set round', () => {
     it('true', () => {
