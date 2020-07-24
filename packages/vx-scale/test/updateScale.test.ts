@@ -1,3 +1,4 @@
+import TimezoneMock from 'timezone-mock';
 import {
   updateScale,
   scaleLinear,
@@ -49,11 +50,13 @@ describe('updateScale', () => {
     expect(scale(4).toFixed(2)).toEqual('2.07');
   });
   it('time', () => {
+    TimezoneMock.register('US/Pacific');
     const scale = updateScale(scaleTime(), {
       domain: [new Date(2020, 0, 1), new Date(2020, 0, 10)],
       range: [1, 10],
     });
     expect(scale(new Date(2020, 0, 4))).toEqual(4);
+    TimezoneMock.unregister();
   });
   it('utc', () => {
     const scale = updateScale(scaleUtc(), {
@@ -106,5 +109,9 @@ describe('updateScale', () => {
     expect(scale('a')).toEqual(1.1);
     expect(scale('b')).toEqual(1.9);
     expect(scale('c')).toEqual(2.7);
+  });
+  it('invalid type', () => {
+    // @ts-ignore
+    expect(updateScale(scaleLinear(), { type: 'invalid' })).toBeDefined();
   });
 });

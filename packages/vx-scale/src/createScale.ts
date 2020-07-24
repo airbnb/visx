@@ -114,11 +114,11 @@ function createScale<
   DiscreteInput extends StringLike,
   ThresholdInput extends DefaultThresholdInput
 >(
-  config:
+  config?:
     | ScaleConfig<Output, DiscreteInput, ThresholdInput>
-    | PickScaleConfigWithoutType<'linear', Output> = {},
+    | PickScaleConfigWithoutType<'linear', Output>,
 ) {
-  if ('type' in config) {
+  if (typeof config !== 'undefined' && 'type' in config) {
     switch (config.type) {
       case 'linear':
         return createLinearScale(config);

@@ -94,4 +94,8 @@ describe('createScale()', () => {
     expect(scale('b')).toEqual(1.9);
     expect(scale('c')).toEqual(2.7);
   });
+  it('invalid type', () => {
+    // @ts-ignore
+    expect(createScale({ type: 'invalid' })).toBeDefined();
+  });
 });

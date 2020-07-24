@@ -171,6 +171,7 @@ function updateScale<
   // Just cast the scale and config to the correct types.
 
   switch (type) {
+    default:
     case 'linear':
       return updateLinearScale(
         scaleOut as PickD3Scale<'linear', Output, DiscreteInput, ThresholdInput>,
@@ -236,8 +237,6 @@ function updateScale<
         scaleOut as PickD3Scale<'band', Output, DiscreteInput, ThresholdInput>,
         config as PickScaleConfigWithoutType<'band', Output, DiscreteInput, ThresholdInput>,
       );
-    default:
-      return scaleOut;
   }
 }
 
