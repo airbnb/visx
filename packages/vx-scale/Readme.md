@@ -65,7 +65,7 @@ Example:
 const scale = Scale.scaleBand({
   /*
     range,
-    rangeRound,
+    round,
     domain,
     padding,
     nice = false
@@ -83,7 +83,7 @@ Example:
 const scale = Scale.scaleLinear({
   /*
     range,
-    rangeRound,
+    round,
     domain,
     nice = false,
     clamp = false,
@@ -101,7 +101,7 @@ Example:
 const scale = Scale.scaleLog({
   /*
     range,
-    rangeRound,
+    round,
     domain,
     base,
     nice = false,
@@ -136,7 +136,7 @@ Example:
 const scale = Scale.scalePoint({
   /*
     range,
-    rangeRound,
+    round,
     domain,
     padding,
     align,
@@ -155,7 +155,7 @@ Example:
 const scale = Scale.scalePower({
   /*
     range,
-    rangeRound,
+    round,
     domain,
     exponent,
     nice = false,
@@ -175,7 +175,7 @@ Example:
 const scale = Scale.scaleSqrt({
   /*
     range,
-    rangeRound,
+    round,
     domain,
     nice = false,
     clamp = false,
@@ -193,7 +193,7 @@ Example:
 const scale = Scale.scaleTime({
   /*
     range,
-    rangeRound,
+    round,
     domain,
     nice = false,
     clamp = false,
@@ -209,7 +209,7 @@ Example:
 const scale = Scale.scaleUtc({
   /*
     range,
-    rangeRound,
+    round,
     domain,
     nice = false,
     clamp = false,

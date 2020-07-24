@@ -14,7 +14,10 @@ export default function applyRound<
 ) {
   if ('round' in config && typeof config.round !== 'undefined') {
     if (config.round && 'interpolate' in config && typeof config.interpolate !== 'undefined') {
-      console.warn(`can't round and interpolate`);
+      console.warn(
+        `[vx/scale/applyRound] ignoring round: scale config contains round and interpolate. only applying interpolate. config:`,
+        config,
+      );
     } else if ('round' in scale) {
       scale.round(config.round);
     } else if ('interpolate' in scale && config.round) {
