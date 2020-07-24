@@ -13,7 +13,7 @@ export const updateTimeScale = scaleOperator<'time'>(
 );
 
 export default function createTimeScale<Output = DefaultOutput>(
-  config: PickScaleConfigWithoutType<'time', Output>,
+  config?: PickScaleConfigWithoutType<'time', Output>,
 ) {
   return updateTimeScale(scaleTime<Output>(), config);
 }

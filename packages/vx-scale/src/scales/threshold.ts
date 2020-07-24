@@ -9,6 +9,6 @@ export const updateThresholdScale = scaleOperator<'threshold'>('domain', 'range'
 export default function createThresholdScale<
   ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput,
   Output = DefaultOutput
->(config: PickScaleConfigWithoutType<'threshold', Output, StringLike, ThresholdInput>) {
+>(config?: PickScaleConfigWithoutType<'threshold', Output, StringLike, ThresholdInput>) {
   return updateThresholdScale(scaleThreshold<ThresholdInput, Output>(), config);
 }

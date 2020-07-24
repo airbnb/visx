@@ -14,7 +14,7 @@ export const updateSqrtScale = scaleOperator<'sqrt'>(
 );
 
 export default function createSqrtScale<Output = DefaultOutput>(
-  config: PickScaleConfigWithoutType<'sqrt', Output>,
+  config?: PickScaleConfigWithoutType<'sqrt', Output>,
 ) {
   return updateSqrtScale(scaleSqrt<Output>(), config);
 }

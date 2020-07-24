@@ -13,7 +13,7 @@ export const updateUtcScale = scaleOperator<'utc'>(
 );
 
 export default function createUtcScale<Output = DefaultOutput>(
-  config: PickScaleConfigWithoutType<'utc', Output>,
+  config?: PickScaleConfigWithoutType<'utc', Output>,
 ) {
   return updateUtcScale(scaleUtc<Output>(), config);
 }

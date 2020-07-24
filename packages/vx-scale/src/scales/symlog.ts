@@ -13,7 +13,7 @@ export const updateSymlogScale = scaleOperator<'symlog'>(
 );
 
 export default function createSymlogScale<Output = DefaultOutput>(
-  config: PickScaleConfigWithoutType<'symlog', Output>,
+  config?: PickScaleConfigWithoutType<'symlog', Output>,
 ) {
   return updateSymlogScale(scaleSymlog<Output>(), config);
 }

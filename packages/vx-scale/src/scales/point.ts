@@ -12,7 +12,7 @@ export const updatePointScale = scaleOperator<'point'>(
 );
 
 export default function createPointScale<DiscreteInput extends StringLike = StringLike>(
-  config: PickScaleConfigWithoutType<'point', DefaultOutput, DiscreteInput>,
+  config?: PickScaleConfigWithoutType<'point', DefaultOutput, DiscreteInput>,
 ) {
   return updatePointScale(scalePoint<DiscreteInput>(), config);
 }

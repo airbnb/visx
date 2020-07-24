@@ -8,6 +8,6 @@ export const updateOrdinalScale = scaleOperator<'ordinal'>('domain', 'range', 'u
 export default function createOrdinalScale<
   DiscreteInput extends StringLike = StringLike,
   Output = DefaultOutput
->(config: PickScaleConfigWithoutType<'ordinal', Output, DiscreteInput>) {
+>(config?: PickScaleConfigWithoutType<'ordinal', Output, DiscreteInput>) {
   return updateOrdinalScale(scaleOrdinal<DiscreteInput, Output>(), config);
 }

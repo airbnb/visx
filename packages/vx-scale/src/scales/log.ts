@@ -14,7 +14,7 @@ export const updateLogScale = scaleOperator<'log'>(
 );
 
 export default function createLogScale<Output = DefaultOutput>(
-  config: PickScaleConfigWithoutType<'log', Output>,
+  config?: PickScaleConfigWithoutType<'log', Output>,
 ) {
   return updateLogScale(scaleLog<Output>(), config);
 }

@@ -12,7 +12,7 @@ export const updateBandScale = scaleOperator<'band'>(
 );
 
 export default function createBandScale<DiscreteInput extends StringLike = StringLike>(
-  config: PickScaleConfigWithoutType<'band', DefaultOutput, DiscreteInput>,
+  config?: PickScaleConfigWithoutType<'band', DefaultOutput, DiscreteInput>,
 ) {
   return updateBandScale(scaleBand<DiscreteInput>(), config);
 }

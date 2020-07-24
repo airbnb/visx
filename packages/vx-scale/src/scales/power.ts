@@ -15,7 +15,7 @@ export const updatePowScale = scaleOperator<'pow'>(
 );
 
 export default function createPowScale<Output = DefaultOutput>(
-  config: PickScaleConfigWithoutType<'pow', Output>,
+  config?: PickScaleConfigWithoutType<'pow', Output>,
 ) {
   return updatePowScale(scalePow<Output>(), config);
 }

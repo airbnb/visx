@@ -14,7 +14,7 @@ export const updateLinearScale = scaleOperator<'linear'>(
 );
 
 export default function createLinearScale<Output = DefaultOutput>(
-  config: PickScaleConfigWithoutType<'linear', Output>,
+  config?: PickScaleConfigWithoutType<'linear', Output>,
 ) {
   return updateLinearScale(scaleLinear<Output>(), config);
 }

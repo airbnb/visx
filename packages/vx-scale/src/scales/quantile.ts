@@ -6,7 +6,7 @@ import scaleOperator from '../operators/scaleOperator';
 export const updateQuantileScale = scaleOperator<'quantile'>('domain', 'range');
 
 export default function createQuantileScale<Output = DefaultOutput>(
-  config: PickScaleConfigWithoutType<'quantile', Output>,
+  config?: PickScaleConfigWithoutType<'quantile', Output>,
 ) {
   return updateQuantileScale(scaleQuantile<Output>(), config);
 }

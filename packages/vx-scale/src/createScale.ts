@@ -24,7 +24,7 @@ function createScale<
   DiscreteInput extends StringLike = StringLike,
   ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
 >(
-  config: PickScaleConfig<'linear', Output> | PickScaleConfigWithoutType<'linear', Output>,
+  config?: PickScaleConfig<'linear', Output> | PickScaleConfigWithoutType<'linear', Output>,
 ): PickD3Scale<'linear', Output>;
 
 function createScale<
@@ -116,7 +116,7 @@ function createScale<
 >(
   config:
     | ScaleConfig<Output, DiscreteInput, ThresholdInput>
-    | PickScaleConfigWithoutType<'linear', Output>,
+    | PickScaleConfigWithoutType<'linear', Output> = {},
 ) {
   if ('type' in config) {
     switch (config.type) {

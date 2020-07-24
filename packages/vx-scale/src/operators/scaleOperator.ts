@@ -68,11 +68,13 @@ export default function scaleOperator<T extends ScaleType>(...ops: OperatorType[
     ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
   >(
     scale: PickD3Scale<T, Output, DiscreteInput, ThresholdInput>,
-    config: PickScaleConfigWithoutType<T, Output, DiscreteInput, ThresholdInput>,
+    config?: PickScaleConfigWithoutType<T, Output, DiscreteInput, ThresholdInput>,
   ) {
-    selectedOps.forEach(op => {
-      operators[op]<Output, DiscreteInput, ThresholdInput>(scale, config);
-    });
+    if (typeof config !== 'undefined') {
+      selectedOps.forEach(op => {
+        operators[op]<Output, DiscreteInput, ThresholdInput>(scale, config);
+      });
+    }
 
     return scale;
   };
