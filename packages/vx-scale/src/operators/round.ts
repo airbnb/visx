@@ -19,8 +19,13 @@ export default function applyRound<
         config,
       );
     } else if ('round' in scale) {
+      // for point and band scales
       scale.round(config.round);
     } else if ('interpolate' in scale && config.round) {
+      // for continuous output scales
+      // setting config.round = true
+      // is actually setting interpolator to interpolateRound
+      // as these scales do not have scale.round() function
       scale.interpolate((interpolateRound as unknown) as InterpolatorFactory<Output, Output>);
     }
   }
