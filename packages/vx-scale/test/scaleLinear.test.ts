@@ -1,3 +1,4 @@
+import mockConsole from 'jest-mock-console';
 import { scaleLinear } from '../src';
 
 describe('scaleLinear()', () => {
@@ -73,6 +74,17 @@ describe('scaleLinear()', () => {
       const scale = scaleLinear({ domain: [0, 10], range: [0, 10], round: false });
       expect(scale(2.2)).toEqual(2.2);
       expect(scale(2.6)).toEqual(2.6);
+    });
+    it('warns if do both interpolate and round', () => {
+      const restoreConsole = mockConsole();
+      scaleLinear({
+        domain: [0, 10],
+        range: [0, 10],
+        interpolate: 'hsl',
+        round: true,
+      });
+      expect(console.warn).toHaveBeenCalledTimes(1);
+      restoreConsole();
     });
   });
   describe('set zero', () => {
