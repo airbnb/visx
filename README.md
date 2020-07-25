@@ -220,6 +220,7 @@ Lots coming soon, check out the [roadmap](./ROADMAP.md).
   ([Demo](https://vk-ft.now.sh/))([Github](https://github.com/vkallore/d3-vx-family-tree))
 - South African Coronavirus Data Visuals by [@JayWelsh](https://github.com/JayWelsh)
   ([Demo](https://coronamap.co.za/)) ([Github](https://github.com/JayWelsh/coronamap))
+- [CNN: Tracking America's Recovery](https://www.cnn.com/business/us-economic-recovery-coronavirus)
 - Have a project that's using vx? Open a pull request and we'll add it to the list.
 
 ## FAQ
