@@ -137,7 +137,21 @@ export interface ScaleTypeToScaleConfig<
   band: BandScaleConfig<DiscreteInput>;
 }
 
+/** All scale types */
 export type ScaleType = keyof ScaleTypeToScaleConfig;
+
+/** Scales that take time as domains */
+export type TimeScaleType = 'time' | 'utc';
+
+/** Scales that take continuous domains and return continuous ranges */
+export type ContinuousScaleType = 'linear' | 'log' | 'pow' | 'sqrt' | 'symlog' | TimeScaleType;
+/** Scales that convert continuous domains to discrete ranges */
+export type DiscretizingScaleType = 'quantile' | 'quantize' | 'threshold';
+/** Scales that take discrete domains and return discrete ranges */
+export type DiscreteScaleType = 'ordinal' | 'point' | 'band';
+
+/** Scales that take continuous domains */
+export type ContinuousDomainScaleType = ContinuousScaleType | DiscretizingScaleType;
 
 export type PickScaleConfig<
   T extends ScaleType,

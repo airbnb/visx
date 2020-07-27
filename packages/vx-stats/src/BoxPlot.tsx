@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import { Group } from '@vx/group';
-import { PickD3Scale } from '@vx/scale';
+import { PickD3Scale, ContinuousDomainScaleType } from '@vx/scale';
 import { SharedProps, ChildRenderProps, LineCoords } from './types';
 
 function verticalToHorizontal({ x1, x2, y1, y2 }: LineCoords) {
@@ -17,19 +17,7 @@ type ScaleInput = number;
 
 export type BoxPlotProps = SharedProps & {
   /** Scale for converting ScaleInput values to pixel offsets. */
-  valueScale: PickD3Scale<
-    | 'linear'
-    | 'log'
-    | 'pow'
-    | 'symlog'
-    | 'sqrt'
-    | 'time'
-    | 'utc'
-    | 'quantize'
-    | 'quantile'
-    | 'threshold',
-    number
-  >;
+  valueScale: PickD3Scale<ContinuousDomainScaleType, number>;
   /** Maximum BoxPlot value. */
   max?: number;
   /** Minimum BoxPlot value. */
