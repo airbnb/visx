@@ -44,11 +44,6 @@ export type ChildRenderProps = {
   container: LineCoords;
 };
 
-export interface GenericScale<ScaleInput> {
-  (input: ScaleInput): number;
-  range(): number[] | [number, number];
-}
-
 export type SharedProps = {
   /** Left pixel offset of the glyph. */
   left?: number;
