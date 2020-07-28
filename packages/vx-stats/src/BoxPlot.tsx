@@ -13,10 +13,8 @@ function verticalToHorizontal({ x1, x2, y1, y2 }: LineCoords) {
   };
 }
 
-type ScaleInput = number;
-
 export type BoxPlotProps = SharedProps & {
-  /** Scale for converting ScaleInput values to pixel offsets. */
+  /** Scale for converting input values to pixel offsets. */
   valueScale: PickD3Scale<ContinuousDomainScaleType, number>;
   /** Maximum BoxPlot value. */
   max?: number;
@@ -43,7 +41,7 @@ export type BoxPlotProps = SharedProps & {
   /** Ry to apply to BoxPlot rect. */
   ry?: number;
   /** Array of outlier values to be rendered. */
-  outliers?: ScaleInput[];
+  outliers?: number[];
   /** Props to pass to the median glyph line. */
   medianProps?: React.SVGProps<SVGLineElement>;
   /** Props to pass to the maximum glyph line. */
@@ -161,6 +159,7 @@ export default function BoxPlot({
     boxplot.container.y1 = Math.min(...valueRange);
   }
 
+  // eslint-disable-next-line react/jsx-no-useless-fragment
   if (children) return <>{children(boxplot)}</>;
 
   return (
