@@ -4,28 +4,11 @@ import Axis from './Axis';
 import ORIENT from '../constants/orientation';
 import { SharedAxisProps } from '../types';
 
-export type AxisTopProps<ScaleInput> = SharedAxisProps<ScaleInput>;
+export type AxisTopProps<Datum> = SharedAxisProps<Datum>;
 
-export default function AxisTop<ScaleInput>({
-  children,
+export default function AxisTop<Datum>({
   axisClassName,
-  axisLineClassName,
-  hideAxisLine,
-  hideTicks,
-  hideZero,
-  label,
-  labelClassName,
   labelOffset = 8,
-  labelProps,
-  left,
-  numTicks,
-  rangePadding,
-  scale,
-  stroke,
-  strokeWidth,
-  strokeDasharray,
-  tickClassName,
-  tickFormat,
   tickLabelProps = (/** tickValue, index */) => ({
     dy: '-0.25em',
     fill: '#222',
@@ -34,41 +17,16 @@ export default function AxisTop<ScaleInput>({
     textAnchor: 'middle',
   }),
   tickLength = 8,
-  tickStroke,
-  tickTransform,
-  tickValues,
-  tickComponent,
-  top,
-}: AxisTopProps<ScaleInput>) {
+  ...restProps
+}: AxisTopProps<Datum>) {
   return (
     <Axis
       axisClassName={cx('vx-axis-top', axisClassName)}
-      axisLineClassName={axisLineClassName}
-      hideAxisLine={hideAxisLine}
-      hideTicks={hideTicks}
-      hideZero={hideZero}
-      label={label}
-      labelClassName={labelClassName}
       labelOffset={labelOffset}
-      labelProps={labelProps}
-      left={left}
-      numTicks={numTicks}
       orientation={ORIENT.top}
-      rangePadding={rangePadding}
-      scale={scale}
-      stroke={stroke}
-      strokeWidth={strokeWidth}
-      strokeDasharray={strokeDasharray}
-      tickClassName={tickClassName}
-      tickFormat={tickFormat}
       tickLabelProps={tickLabelProps}
       tickLength={tickLength}
-      tickStroke={tickStroke}
-      tickTransform={tickTransform}
-      tickValues={tickValues}
-      tickComponent={tickComponent}
-      top={top}
-      children={children}
+      {...restProps}
     />
   );
 }

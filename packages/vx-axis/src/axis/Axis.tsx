@@ -11,11 +11,11 @@ import toString from '../utils/toString';
 import toNumberOrUndefined from '../utils/toNumberOrUndefined';
 import { SharedAxisProps, AxisOrientation } from '../types';
 
-export type AxisProps<ScaleInput> = SharedAxisProps<ScaleInput> & {
+export type AxisProps<Datum> = SharedAxisProps<Datum> & {
   orientation?: AxisOrientation;
 };
 
-export default function Axis<ScaleInput>({
+export default function Axis<Datum>({
   children,
   axisClassName,
   axisLineClassName,
@@ -53,7 +53,7 @@ export default function Axis<ScaleInput>({
   tickValues,
   tickComponent,
   top = 0,
-}: AxisProps<ScaleInput>) {
+}: AxisProps<Datum>) {
   const values =
     tickValues ||
     ('ticks' in scale
