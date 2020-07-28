@@ -1,12 +1,14 @@
-import { GenericScale } from '../types';
+import { D3Scale, DefaultThresholdInput } from '@vx/scale';
 
 /**
  * Returns a function that applies a centering transform to a scaled value,
  * if `Output` is of type `number` and `scale.bandwidth()` is defined
  */
-export default function center<ScaleInput>(scale: GenericScale<ScaleInput>) {
-  let offset = scale.bandwidth ? scale.bandwidth() / 2 : 0;
-  if (scale.round && scale.round()) offset = Math.round(offset);
+export default function center<ScaleInput extends DefaultThresholdInput>(
+  scale: D3Scale<number, ScaleInput, ScaleInput>,
+) {
+  let offset = 'bandwidth' in scale ? scale.bandwidth() / 2 : 0;
+  if ('round' in scale && scale.round()) offset = Math.round(offset);
 
   return (d: ScaleInput) => {
     const scaledValue = scale(d);

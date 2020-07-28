@@ -33,6 +33,7 @@
     "@vx/group": "0.0.198",
     "@vx/point": "0.0.198",
     "@vx/shape": "0.0.198",
+    "@vx/scale": "0.0.198",
     "@vx/text": "0.0.198",
     "classnames": "^2.2.5",
     "prop-types": "^15.6.0"

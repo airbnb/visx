@@ -5,7 +5,6 @@ import { Line } from '@vx/shape';
 import { Text } from '@vx/text';
 import { scaleBand, scaleLinear } from '@vx/scale';
 import { Axis } from '../src';
-import { GenericScale } from '../src/types';
 
 const axisProps = {
   orientation: 'left' as const,
@@ -13,7 +12,7 @@ const axisProps = {
     range: [10, 0],
     round: true,
     domain: [0, 10],
-  }) as GenericScale<number>,
+  }),
   label: 'test axis',
 };
 

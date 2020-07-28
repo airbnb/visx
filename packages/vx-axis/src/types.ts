@@ -1,3 +1,4 @@
+import { PickD3Scale, ScaleType } from '@vx/scale';
 import { TextProps } from '@vx/text/lib/Text';
 
 export type AxisOrientation = 'top' | 'right' | 'bottom' | 'left';
@@ -14,7 +15,11 @@ export type TickRendererProps = Partial<TextProps> & {
   formattedValue: FormattedValue;
 };
 
-export type SharedAxisProps<ScaleInput> = {
+// In order to plot values on an axis, Output must be numeric or coercible to a number.
+// Some scales return undefined.
+export type ScaleOutput = number | { valueOf(): number } | undefined;
+
+export type SharedAxisProps<Datum> = {
   /** The class name applied to the outermost axis group element. */
   axisClassName?: string;
   /** The class name applied to the axis line element. */
@@ -40,7 +45,7 @@ export type SharedAxisProps<ScaleInput> = {
   /** Pixel padding to apply to both sides of the axis. */
   rangePadding?: number;
   /** A [d3](https://github.com/d3/d3-scale) or [vx](https://github.com/hshoff/vx/tree/master/packages/vx-scale) scale function. */
-  scale: GenericScale<ScaleInput>;
+  scale: PickD3Scale<ScaleType, ScaleOutput>;
   /** The color for the stroke of the lines. */
   stroke?: string;
   /** The pixel value for the width of the lines. */
@@ -50,9 +55,9 @@ export type SharedAxisProps<ScaleInput> = {
   /** The class name applied to each tick group. */
   tickClassName?: string;
   /** A [d3 formatter](https://github.com/d3/d3-scale/blob/master/README.md#continuous_tickFormat) for the tick text. */
-  tickFormat?: TickFormatter<ScaleInput>;
+  tickFormat?: TickFormatter<Datum>;
   /** A function that returns props for a given tick label. */
-  tickLabelProps?: TickLabelProps<ScaleInput>;
+  tickLabelProps?: TickLabelProps<Datum>;
   /** The length of the tick lines. */
   tickLength?: number;
   /** The color for the tick's stroke value. */
@@ -60,41 +65,37 @@ export type SharedAxisProps<ScaleInput> = {
   /** A custom SVG transform value to be applied to each tick group. */
   tickTransform?: string;
   /** An array of values that determine the number and values of the ticks. Falls back to `scale.ticks()` or `.domain()`. */
-  tickValues?: ScaleInput[];
+  tickValues?: Datum[];
   /** Override the component used to render tick labels (instead of <Text /> from @vx/text) */
   tickComponent?: (tickRendererProps: TickRendererProps) => React.ReactNode;
   /** A top pixel offset applied to the entire axis. */
   top?: number;
   /** For more control over rendering or to add event handlers to datum, pass a function as children. */
-  children?: (renderProps: ChildRenderProps<ScaleInput>) => React.ReactNode;
+  children?: (renderProps: ChildRenderProps<Datum>) => React.ReactNode;
 };
 
-// In order to plot values on an axis, Output must be numeric or coercible to a number.
-// Some scales return undefined.
-export type ScaleOutput = number | { valueOf(): number } | undefined;
+// export type GenericScale<ScaleInput> =
+//   | ScaleNoRangeRound<ScaleInput>
+//   | ScaleWithRangeRound<ScaleInput>;
 
-export type GenericScale<ScaleInput> =
-  | ScaleNoRangeRound<ScaleInput>
-  | ScaleWithRangeRound<ScaleInput>;
+// interface ScaleNoRangeRound<ScaleInput> {
+//   (value: ScaleInput): ScaleOutput | [ScaleOutput, ScaleOutput]; // quantize scales return an array
+//   domain(): ScaleInput[] | [ScaleInput, ScaleInput];
+//   domain(scaleInput: ScaleInput[] | [ScaleInput, ScaleInput]): unknown; // we can't capture the copy of the type accurately
+//   range(): ScaleOutput[] | [ScaleOutput, ScaleOutput];
+//   range(scaleOutput: ScaleOutput[] | [ScaleOutput, ScaleOutput]): unknown;
+//   ticks?: (count: number) => ScaleInput[] | [ScaleInput, ScaleInput];
+//   bandwidth?: () => number;
+//   round?: () => boolean;
+//   tickFormat?: () => (input: ScaleInput) => FormattedValue;
+//   copy(): this;
+// }
 
-interface ScaleNoRangeRound<ScaleInput> {
-  (value: ScaleInput): ScaleOutput | [ScaleOutput, ScaleOutput]; // quantize scales return an array
-  domain(): ScaleInput[] | [ScaleInput, ScaleInput];
-  domain(scaleInput: ScaleInput[] | [ScaleInput, ScaleInput]): any; // we can't capture the copy of the type accurately
-  range(): ScaleOutput[] | [ScaleOutput, ScaleOutput];
-  range(scaleOutput: ScaleOutput[] | [ScaleOutput, ScaleOutput]): any;
-  ticks?: (count: number) => ScaleInput[] | [ScaleInput, ScaleInput];
-  bandwidth?: () => number;
-  round?: () => boolean;
-  tickFormat?: () => (input: ScaleInput) => FormattedValue;
-  copy(): this;
-}
-
-// We cannot have optional methods AND overloads, so define a separate type for rangeRound
-interface ScaleWithRangeRound<ScaleInput> extends ScaleNoRangeRound<ScaleInput> {
-  rangeRound(): ScaleOutput[] | [ScaleOutput, ScaleOutput];
-  rangeRound(scaleOutput: ScaleOutput[] | [ScaleOutput, ScaleOutput]): any;
-}
+// // We cannot have optional methods AND overloads, so define a separate type for rangeRound
+// interface ScaleWithRangeRound<ScaleInput> extends ScaleNoRangeRound<ScaleInput> {
+//   rangeRound(): ScaleOutput[] | [ScaleOutput, ScaleOutput];
+//   rangeRound(scaleOutput: ScaleOutput[] | [ScaleOutput, ScaleOutput]): unknown;
+// }
 
 export interface Point {
   x: number;

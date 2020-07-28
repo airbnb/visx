@@ -13,16 +13,21 @@ import {
   scaleThreshold,
   scaleTime,
   scaleUtc,
+  D3Scale,
+  StringLike,
+  DefaultThresholdInput,
 } from '@vx/scale';
 import { Axis } from '../src';
-import { GenericScale } from '../src/types';
+import { ScaleOutput } from '../src/types';
 
 const axisProps = {
   orientation: 'left' as const,
   label: 'test axis',
 };
 
-function setup<ScaleInput>(scale: GenericScale<ScaleInput>) {
+function setup<DiscreteInput extends StringLike, ThresholdInput extends DefaultThresholdInput>(
+  scale: D3Scale<ScaleOutput, DiscreteInput, ThresholdInput>,
+) {
   return () => shallow(<Axis {...axisProps} scale={scale} />);
 }
 
@@ -34,7 +39,7 @@ describe('Axis scales', () => {
           range: [10, 0],
           round: true,
           domain: ['a', 'b', 'c'],
-        }) as GenericScale<string>,
+        }),
       ),
     ).not.toThrow();
   });
@@ -42,11 +47,11 @@ describe('Axis scales', () => {
   it('should render with scaleLinear', () => {
     expect(
       setup(
-        scaleLinear<number>({
+        scaleLinear({
           range: [10, 0],
           round: true,
           domain: [0, 10],
-        }) as GenericScale<number>,
+        }),
       ),
     ).not.toThrow();
   });
@@ -54,11 +59,11 @@ describe('Axis scales', () => {
   it('should render with scaleLog', () => {
     expect(
       setup(
-        scaleLog<number>({
+        scaleLog({
           range: [10, 0],
           round: true,
           domain: [1, 10, 100, 1000],
-        }) as GenericScale<number>,
+        }),
       ),
     ).not.toThrow();
   });
@@ -69,7 +74,7 @@ describe('Axis scales', () => {
         scaleOrdinal({
           range: [0, 10],
           domain: ['a', 'b', 'c'],
-        }) as GenericScale<string>,
+        }),
       ),
     ).not.toThrow();
   });
@@ -77,11 +82,11 @@ describe('Axis scales', () => {
   it('should render with scalePoint', () => {
     expect(
       setup(
-        scalePoint<string>({
+        scalePoint({
           range: [0, 10],
           round: true,
           domain: ['a', 'b', 'c'],
-        }) as GenericScale<string>,
+        }),
       ),
     ).not.toThrow();
   });
@@ -89,10 +94,10 @@ describe('Axis scales', () => {
   it('should render with scalePower', () => {
     expect(
       setup(
-        scalePower<number>({
+        scalePower({
           range: [1, 2, 3, 4, 5],
           domain: [1, 10, 100, 1000, 10000],
-        }) as GenericScale<number>,
+        }),
       ),
     ).not.toThrow();
   });
@@ -100,10 +105,10 @@ describe('Axis scales', () => {
   it('should render with scaleQuantile', () => {
     expect(
       setup(
-        scaleQuantile<number>({
+        scaleQuantile({
           range: [0, 2, 4, 6, 8, 10],
           domain: [1, 10, 100, 1000, 10000],
-        }) as GenericScale<number>,
+        }),
       ),
     ).not.toThrow();
   });
@@ -111,10 +116,10 @@ describe('Axis scales', () => {
   it('should render with scaleQuantize', () => {
     expect(
       setup(
-        scaleQuantize<number>({
+        scaleQuantize({
           range: [1, 10],
           domain: [1, 10],
-        }) as GenericScale<number>,
+        }),
       ),
     ).not.toThrow();
   });
@@ -125,7 +130,7 @@ describe('Axis scales', () => {
         scaleSymlog({
           range: [1, 10],
           domain: [1, 10],
-        }) as GenericScale<number>,
+        }),
       ),
     ).not.toThrow();
   });
@@ -136,7 +141,7 @@ describe('Axis scales', () => {
         scaleThreshold({
           range: [1, 10],
           domain: [1, 10],
-        }) as GenericScale<number>,
+        }),
       ),
     ).not.toThrow();
   });
@@ -144,10 +149,10 @@ describe('Axis scales', () => {
   it('should render with scaleTime', () => {
     expect(
       setup(
-        scaleTime<number>({
+        scaleTime({
           range: [1, 10],
           domain: [new Date('2020-01-01'), new Date('2020-01-05')],
-        }) as GenericScale<Date>,
+        }),
       ),
     ).not.toThrow();
   });
@@ -155,10 +160,10 @@ describe('Axis scales', () => {
   it('should render with scaleUtc', () => {
     expect(
       setup(
-        scaleUtc<number>({
+        scaleUtc({
           range: [1, 10],
           domain: [new Date('2020-01-01'), new Date('2020-01-05')],
-        }) as GenericScale<Date>,
+        }),
       ),
     ).not.toThrow();
   });
