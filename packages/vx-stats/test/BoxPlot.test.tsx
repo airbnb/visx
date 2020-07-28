@@ -3,7 +3,6 @@ import { shallow } from 'enzyme';
 
 import { scaleLinear } from '@vx/scale';
 import { BoxPlot, computeStats } from '../src';
-import { GenericScale } from '../src/types';
 
 const data = [1, 2, 3, 4, 5, 6, 6, 7, 8, 9, 1];
 const { boxPlot: boxPlotData } = computeStats(data);
@@ -30,7 +29,7 @@ describe('<BoxPlot />', () => {
         thirdQuartile={thirdQuartile}
         median={median}
         boxWidth={100}
-        valueScale={valueScale as GenericScale<number>}
+        valueScale={valueScale}
         outliers={outliers}
       />,
     );
@@ -47,7 +46,7 @@ describe('<BoxPlot />', () => {
         thirdQuartile={thirdQuartile}
         median={median}
         boxWidth={100}
-        valueScale={valueScale as GenericScale<number>}
+        valueScale={valueScale}
         outliers={outliers}
       />,
     );
