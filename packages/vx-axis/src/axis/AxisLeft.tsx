@@ -2,11 +2,11 @@ import React from 'react';
 import cx from 'classnames';
 import Axis from './Axis';
 import ORIENT from '../constants/orientation';
-import { SharedAxisProps } from '../types';
+import { SharedAxisProps, AxisScale } from '../types';
 
-export type AxisLeftProps<Datum> = SharedAxisProps<Datum>;
+export type AxisLeftProps<Scale extends AxisScale> = SharedAxisProps<Scale>;
 
-export default function AxisLeft<Datum>({
+export default function AxisLeft<Scale extends AxisScale>({
   axisClassName,
   labelOffset = 36,
   tickLabelProps = (/** tickValue, index */) => ({
@@ -19,7 +19,7 @@ export default function AxisLeft<Datum>({
   }),
   tickLength = 8,
   ...restProps
-}: AxisLeftProps<Datum>) {
+}: AxisLeftProps<Scale>) {
   return (
     <Axis
       axisClassName={cx('vx-axis-left', axisClassName)}

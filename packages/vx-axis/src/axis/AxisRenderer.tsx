@@ -7,7 +7,7 @@ import { Text } from '@vx/text';
 import { TextProps } from '@vx/text/lib/Text';
 import ORIENT from '../constants/orientation';
 import getLabelTransform from '../utils/labelTransform';
-import { ChildRenderProps } from '../types';
+import { ChildRenderProps, AxisScale } from '../types';
 
 const defaultTextProps: Partial<TextProps> = {
   textAnchor: 'middle',
@@ -16,7 +16,7 @@ const defaultTextProps: Partial<TextProps> = {
   fill: '#222',
 };
 
-export default function AxisRenderer<Datum>({
+export default function AxisRenderer<Scale extends AxisScale>({
   axisFromPoint,
   axisLineClassName,
   axisToPoint,
@@ -39,7 +39,7 @@ export default function AxisRenderer<Datum>({
   tickStroke = '#222',
   tickTransform,
   ticks,
-}: ChildRenderProps<Datum>) {
+}: ChildRenderProps<Scale>) {
   let tickLabelFontSize = 10; // track the max tick label size to compute label offset
 
   return (

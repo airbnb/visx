@@ -2,11 +2,11 @@ import React from 'react';
 import cx from 'classnames';
 import Axis from './Axis';
 import ORIENT from '../constants/orientation';
-import { SharedAxisProps } from '../types';
+import { SharedAxisProps, AxisScale } from '../types';
 
-export type AxisBottomProps<Datum> = SharedAxisProps<Datum>;
+export type AxisBottomProps<Scale extends AxisScale> = SharedAxisProps<Scale>;
 
-export default function AxisBottom<Datum>({
+export default function AxisBottom<Scale extends AxisScale>({
   axisClassName,
   labelOffset = 8,
   tickLabelProps = (/** tickValue, index */) => ({
@@ -18,7 +18,7 @@ export default function AxisBottom<Datum>({
   }),
   tickLength = 8,
   ...restProps
-}: AxisBottomProps<Datum>) {
+}: AxisBottomProps<Scale>) {
   return (
     <Axis
       axisClassName={cx('vx-axis-bottom', axisClassName)}

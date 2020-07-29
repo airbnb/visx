@@ -1,13 +1,19 @@
-import { PickD3Scale, ScaleType } from '@vx/scale';
+import { D3Scale } from '@vx/scale';
 import { TextProps } from '@vx/text/lib/Text';
+
+// In order to plot values on an axis, output of the scale must be number.
+// Some scales return undefined.
+export type AxisScaleOutput = number | undefined;
+
+export type AxisScale = D3Scale<AxisScaleOutput>;
 
 export type AxisOrientation = 'top' | 'right' | 'bottom' | 'left';
 
-export type FormattedValue = string | number | undefined;
+export type FormattedValue = string | undefined;
 
-export type TickFormatter<Datum> = (value: Datum, tickIndex: number) => FormattedValue;
+export type TickFormatter<T> = (value: T, tickIndex: number) => FormattedValue;
 
-export type TickLabelProps<Datum> = (val: Datum, index: number) => Partial<TextProps>;
+export type TickLabelProps<T> = (value: T, index: number) => Partial<TextProps>;
 
 export type TickRendererProps = Partial<TextProps> & {
   x: number;
@@ -15,16 +21,12 @@ export type TickRendererProps = Partial<TextProps> & {
   formattedValue: FormattedValue;
 };
 
-// In order to plot values on an axis, Output must be numeric or coercible to a number.
-// Some scales return undefined.
-export type ScaleOutput = number | { valueOf(): number } | undefined;
-
 export interface Point {
   x: number;
   y: number;
 }
 
-interface CommonProps<Datum> {
+interface CommonProps<ScaleInput> {
   /** The class name applied to the axis line element. */
   axisLineClassName?: string;
   /**  If true, will hide the axis line. */
@@ -58,9 +60,9 @@ interface CommonProps<Datum> {
   /** Override the component used to render tick labels (instead of <Text /> from @vx/text) */
   tickComponent?: (tickRendererProps: TickRendererProps) => React.ReactNode;
   /** A [d3 formatter](https://github.com/d3/d3-scale/blob/master/README.md#continuous_tickFormat) for the tick text. */
-  tickFormat: TickFormatter<Datum>;
+  tickFormat: TickFormatter<ScaleInput>;
   /** A function that returns props for a given tick label. */
-  tickLabelProps?: TickLabelProps<Datum>;
+  tickLabelProps?: TickLabelProps<ScaleInput>;
   /** The length of the tick lines. */
   tickLength: number;
   /** The color for the tick's stroke value. */
@@ -69,17 +71,17 @@ interface CommonProps<Datum> {
   tickTransform?: string;
 }
 
-export type ChildRenderProps<Datum> = CommonProps<Datum> & {
+export type ChildRenderProps<Scale extends AxisScale> = CommonProps<Parameters<Scale>[0]> & {
   axisFromPoint: Point;
   axisToPoint: Point;
   horizontal: boolean;
   /** A [d3](https://github.com/d3/d3-scale) or [vx](https://github.com/hshoff/vx/tree/master/packages/vx-scale) scale function. */
-  scale: PickD3Scale<ScaleType, ScaleOutput>;
-  tickPosition: (value: Datum) => ScaleOutput;
+  scale: Scale;
+  tickPosition: (value: Parameters<Scale>[0]) => AxisScaleOutput;
   /** Axis coordinate sign, -1 for left or top orientation. */
   tickSign: 1 | -1;
   ticks: {
-    value: Datum;
+    value: Parameters<Scale>[0];
     index: number;
     from: Point;
     to: Point;
@@ -87,40 +89,19 @@ export type ChildRenderProps<Datum> = CommonProps<Datum> & {
   }[];
 };
 
-export type SharedAxisProps<Datum> = Partial<CommonProps<Datum>> & {
+export type SharedAxisProps<Scale extends AxisScale> = Partial<
+  CommonProps<Parameters<Scale>[0]>
+> & {
   /** The class name applied to the outermost axis group element. */
   axisClassName?: string;
   /** A left pixel offset applied to the entire axis. */
   left?: number;
   /** A [d3](https://github.com/d3/d3-scale) or [vx](https://github.com/hshoff/vx/tree/master/packages/vx-scale) scale function. */
-  scale: PickD3Scale<ScaleType, ScaleOutput>;
+  scale: Scale;
   /** An array of values that determine the number and values of the ticks. Falls back to `scale.ticks()` or `.domain()`. */
-  tickValues?: Datum[];
+  tickValues?: Parameters<Scale>[0][];
   /** A top pixel offset applied to the entire axis. */
   top?: number;
   /** For more control over rendering or to add event handlers to datum, pass a function as children. */
-  children?: (renderProps: ChildRenderProps<Datum>) => React.ReactNode;
+  children?: (renderProps: ChildRenderProps<Scale>) => React.ReactNode;
 };
-
-// export type GenericScale<ScaleInput> =
-//   | ScaleNoRangeRound<ScaleInput>
-//   | ScaleWithRangeRound<ScaleInput>;
-
-// interface ScaleNoRangeRound<ScaleInput> {
-//   (value: ScaleInput): ScaleOutput | [ScaleOutput, ScaleOutput]; // quantize scales return an array
-//   domain(): ScaleInput[] | [ScaleInput, ScaleInput];
-//   domain(scaleInput: ScaleInput[] | [ScaleInput, ScaleInput]): unknown; // we can't capture the copy of the type accurately
-//   range(): ScaleOutput[] | [ScaleOutput, ScaleOutput];
-//   range(scaleOutput: ScaleOutput[] | [ScaleOutput, ScaleOutput]): unknown;
-//   ticks?: (count: number) => ScaleInput[] | [ScaleInput, ScaleInput];
-//   bandwidth?: () => number;
-//   round?: () => boolean;
-//   tickFormat?: () => (input: ScaleInput) => FormattedValue;
-//   copy(): this;
-// }
-
-// // We cannot have optional methods AND overloads, so define a separate type for rangeRound
-// interface ScaleWithRangeRound<ScaleInput> extends ScaleNoRangeRound<ScaleInput> {
-//   rangeRound(): ScaleOutput[] | [ScaleOutput, ScaleOutput];
-//   rangeRound(scaleOutput: ScaleOutput[] | [ScaleOutput, ScaleOutput]): unknown;
-// }
