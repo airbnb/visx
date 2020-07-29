@@ -7,3 +7,6 @@ export { default as LegendSize } from './legends/Size';
 export { default as LegendItem } from './legends/Legend/LegendItem';
 export { default as LegendLabel } from './legends/Legend/LegendLabel';
 export { default as LegendShape } from './legends/Legend/LegendShape';
+export { default as CircleShape } from './shapes/Circle';
+export { default as LineShape } from './shapes/Line';
+export { default as RectShape } from './shapes/Rect';
