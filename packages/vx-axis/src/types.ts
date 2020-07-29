@@ -1,11 +1,15 @@
-import { D3Scale } from '@vx/scale';
+import { D3Scale, StringLike, DefaultThresholdInput } from '@vx/scale';
 import { TextProps } from '@vx/text/lib/Text';
 
 // In order to plot values on an axis, output of the scale must be number.
 // Some scales return undefined.
 export type AxisScaleOutput = number | undefined;
 
-export type AxisScale = D3Scale<AxisScaleOutput>;
+export type AxisScale<
+  Output extends AxisScaleOutput = AxisScaleOutput,
+  DiscreteInput extends StringLike = StringLike,
+  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
+> = D3Scale<Output, DiscreteInput, ThresholdInput>;
 
 export type AxisOrientation = 'top' | 'right' | 'bottom' | 'left';
 
@@ -89,7 +93,7 @@ export type ChildRenderProps<Scale extends AxisScale> = CommonProps<Parameters<S
   }[];
 };
 
-export type SharedAxisProps<Scale extends AxisScale> = Partial<
+export type SharedAxisProps<Scale extends AxisScale<AxisScaleOutput>> = Partial<
   CommonProps<Parameters<Scale>[0]>
 > & {
   /** The class name applied to the outermost axis group element. */

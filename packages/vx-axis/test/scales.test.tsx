@@ -18,16 +18,14 @@ import {
   DefaultThresholdInput,
 } from '@vx/scale';
 import { Axis } from '../src';
-import { ScaleOutput } from '../src/types';
+import { AxisScaleOutput, AxisScale } from '../src/types';
 
 const axisProps = {
   orientation: 'left' as const,
   label: 'test axis',
 };
 
-function setup<DiscreteInput extends StringLike, ThresholdInput extends DefaultThresholdInput>(
-  scale: D3Scale<ScaleOutput, DiscreteInput, ThresholdInput>,
-) {
+function setup<Scale extends AxisScale>(scale: Scale) {
   return () => shallow(<Axis {...axisProps} scale={scale} />);
 }
 

@@ -95,7 +95,7 @@ export default function Axis<Scale extends AxisScale>({
 
   return (
     <Group className={cx('vx-axis', axisClassName)} top={top} left={left}>
-      {children ? children(childProps) : <AxisRenderer {...childProps} />}
+      {children ? children(childProps) : <AxisRenderer<Scale> {...childProps} />}
     </Group>
   );
 }

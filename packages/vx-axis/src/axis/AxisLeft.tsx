@@ -4,8 +4,6 @@ import Axis from './Axis';
 import ORIENT from '../constants/orientation';
 import { SharedAxisProps, AxisScale } from '../types';
 
-export type AxisLeftProps<Scale extends AxisScale> = SharedAxisProps<Scale>;
-
 export default function AxisLeft<Scale extends AxisScale>({
   axisClassName,
   labelOffset = 36,
@@ -19,7 +17,7 @@ export default function AxisLeft<Scale extends AxisScale>({
   }),
   tickLength = 8,
   ...restProps
-}: AxisLeftProps<Scale>) {
+}: SharedAxisProps<Scale>) {
   return (
     <Axis
       axisClassName={cx('vx-axis-left', axisClassName)}

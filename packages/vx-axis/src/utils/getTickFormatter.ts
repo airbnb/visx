@@ -1,9 +1,15 @@
-import { AxisScale, TickFormatter } from '../types';
+import { StringLike, DefaultThresholdInput } from '@vx/scale';
+import { AxisScale, TickFormatter, AxisScaleOutput } from '../types';
 
 /**
  * Returns a tick position for the given tick value
  */
-export default function getTickFormatter<Scale extends AxisScale>(scale: Scale) {
+export default function getTickFormatter<
+  Output extends AxisScaleOutput,
+  DiscreteInput extends StringLike,
+  ThresholdInput extends DefaultThresholdInput,
+  Scale extends AxisScale<Output, DiscreteInput, ThresholdInput>
+>(scale: Scale) {
   // Broaden type before using 'xxx' in s as typeguard.
   const s = scale as AxisScale;
 
