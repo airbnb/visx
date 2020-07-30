@@ -3,7 +3,7 @@ import cx from 'classnames';
 import { Point } from '@vx/point';
 import { Group } from '@vx/group';
 import ORIENT from '../constants/orientation';
-import { SharedAxisProps, AxisOrientation, ChildRenderProps, AxisScale } from '../types';
+import { SharedAxisProps, AxisOrientation, AxisScale } from '../types';
 import AxisRenderer from './AxisRenderer';
 import getTickPosition from '../utils/getTickPosition';
 import toNumberOrUndefined from '../utils/toNumberOrUndefined';
@@ -15,7 +15,7 @@ export type AxisProps<Scale extends AxisScale> = SharedAxisProps<Scale> & {
 };
 
 export default function Axis<Scale extends AxisScale>({
-  children,
+  children = AxisRenderer,
   axisClassName,
   hideAxisLine = false,
   hideTicks = false,
@@ -54,8 +54,9 @@ export default function Axis<Scale extends AxisScale>({
   });
 
   const ticks = (tickValues ?? getTicks(scale, numTicks))
-    .filter(value => !hideZero || value !== 0 || value !== '0')
-    .map((value, index) => {
+    .map((value, index) => ({ value, index }))
+    .filter(({ value }) => !hideZero || (value !== 0 && value !== '0'))
+    .map(({ value, index }) => {
       const scaledValue = toNumberOrUndefined(tickPosition(value));
       const from = new Point({
         x: horizontal ? scaledValue : 0,
@@ -74,28 +75,26 @@ export default function Axis<Scale extends AxisScale>({
       };
     });
 
-  const childProps: ChildRenderProps<Scale> = {
-    ...restProps,
-    axisFromPoint,
-    axisToPoint,
-    hideAxisLine,
-    hideTicks,
-    hideZero,
-    horizontal,
-    numTicks,
-    orientation,
-    rangePadding,
-    scale,
-    tickFormat: format,
-    tickLength,
-    tickPosition,
-    tickSign,
-    ticks,
-  };
-
   return (
     <Group className={cx('vx-axis', axisClassName)} top={top} left={left}>
-      {children ? children(childProps) : <AxisRenderer {...childProps} />}
+      {children({
+        ...restProps,
+        axisFromPoint,
+        axisToPoint,
+        hideAxisLine,
+        hideTicks,
+        hideZero,
+        horizontal,
+        numTicks,
+        orientation,
+        rangePadding,
+        scale,
+        tickFormat: format,
+        tickLength,
+        tickPosition,
+        tickSign,
+        ticks,
+      })}
     </Group>
   );
 }

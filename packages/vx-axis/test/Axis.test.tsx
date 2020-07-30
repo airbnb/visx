@@ -194,7 +194,7 @@ describe('<Axis />', () => {
         .find('.vx-axis-tick')
         .find(Text)
         .prop('children'),
-    ).toBe(0);
+    ).toBe('0');
   });
 
   test('it should use center if scale is band', () => {

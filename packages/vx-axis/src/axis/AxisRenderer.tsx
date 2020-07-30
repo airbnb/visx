@@ -44,7 +44,7 @@ export default function AxisRenderer<Scale extends AxisScale>({
 
   return (
     <>
-      {ticks.map(({ value, from, to, formattedValue }, index) => {
+      {ticks.map(({ value, index, from, to, formattedValue }) => {
         const tickLabelPropsObj = tickLabelProps(value, index);
         tickLabelFontSize = Math.max(
           tickLabelFontSize,

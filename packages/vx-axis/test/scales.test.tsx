@@ -23,7 +23,7 @@ const axisProps = {
 
 describe('Axis scales', () => {
   it('should render with scaleBand', () => {
-    expect(
+    expect(() =>
       shallow(
         <Axis
           {...axisProps}
@@ -38,7 +38,7 @@ describe('Axis scales', () => {
   });
 
   it('should render with scaleLinear', () => {
-    expect(
+    expect(() =>
       shallow(
         <Axis
           {...axisProps}
@@ -53,7 +53,7 @@ describe('Axis scales', () => {
   });
 
   it('should render with scaleLog', () => {
-    expect(
+    expect(() =>
       shallow(
         <Axis
           {...axisProps}
@@ -68,7 +68,7 @@ describe('Axis scales', () => {
   });
 
   it('should render with scaleOrdinal', () => {
-    expect(
+    expect(() =>
       shallow(
         <Axis
           {...axisProps}
@@ -82,7 +82,7 @@ describe('Axis scales', () => {
   });
 
   it('should render with scalePoint', () => {
-    expect(
+    expect(() =>
       shallow(
         <Axis
           {...axisProps}
@@ -97,7 +97,7 @@ describe('Axis scales', () => {
   });
 
   it('should render with scalePower', () => {
-    expect(
+    expect(() =>
       shallow(
         <Axis
           {...axisProps}
@@ -111,7 +111,7 @@ describe('Axis scales', () => {
   });
 
   it('should render with scaleQuantile', () => {
-    expect(
+    expect(() =>
       shallow(
         <Axis
           {...axisProps}
@@ -125,7 +125,7 @@ describe('Axis scales', () => {
   });
 
   it('should render with scaleQuantize', () => {
-    expect(
+    expect(() =>
       shallow(
         <Axis
           {...axisProps}
@@ -139,7 +139,7 @@ describe('Axis scales', () => {
   });
 
   it('should render with scaleSymlog', () => {
-    expect(
+    expect(() =>
       shallow(
         <Axis
           {...axisProps}
@@ -153,7 +153,7 @@ describe('Axis scales', () => {
   });
 
   it('should render with scaleThreshold', () => {
-    expect(
+    expect(() =>
       shallow(
         <Axis
           {...axisProps}
@@ -167,7 +167,7 @@ describe('Axis scales', () => {
   });
 
   it('should render with scaleTime', () => {
-    expect(
+    expect(() =>
       shallow(
         <Axis
           {...axisProps}
@@ -181,7 +181,7 @@ describe('Axis scales', () => {
   });
 
   it('should render with scaleUtc', () => {
-    expect(
+    expect(() =>
       shallow(
         <Axis
           {...axisProps}
