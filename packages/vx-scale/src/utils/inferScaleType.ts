@@ -1,53 +1,51 @@
 import { ScaleTime } from 'd3-scale';
-import { StringLike } from '../types/Base';
-import { DefaultThresholdInput, D3Scale } from '../types/Scale';
+import { D3Scale, AnyD3Scale, InferD3ScaleOutput } from '../types/Scale';
 import { ScaleType } from '../types/ScaleConfig';
 import isUtcScale from './isUtcScale';
 
-export default function inferScaleType<
-  Output,
-  DiscreteInput extends StringLike,
-  ThresholdInput extends DefaultThresholdInput
->(scale: D3Scale<Output, DiscreteInput, ThresholdInput>): ScaleType {
+export default function inferScaleType<Scale extends AnyD3Scale>(scale: Scale): ScaleType {
+  const s = scale as D3Scale;
+
   // Try a sequence of typeguards to figure out the scale type
 
-  if ('paddingInner' in scale) {
+  if ('paddingInner' in s) {
     return 'band';
   }
 
-  if ('padding' in scale) {
+  if ('padding' in s) {
     return 'point';
   }
 
-  if ('quantiles' in scale) {
+  if ('quantiles' in s) {
     return 'quantile';
   }
 
-  if ('base' in scale) {
+  if ('base' in s) {
     return 'log';
   }
 
-  if ('exponent' in scale) {
-    return scale.exponent() === 0.5 ? 'sqrt' : 'pow';
+  if ('exponent' in s) {
+    return s.exponent() === 0.5 ? 'sqrt' : 'pow';
   }
 
-  if ('constant' in scale) {
+  if ('constant' in s) {
     return 'symlog';
   }
 
-  if ('clamp' in scale) {
+  if ('clamp' in s) {
     // Linear, Time or Utc scales
-    if (scale.ticks()[0] instanceof Date) {
+    if (s.ticks()[0] instanceof Date) {
+      type Output = InferD3ScaleOutput<Scale>;
       return isUtcScale(scale as ScaleTime<Output, Output>) ? 'utc' : 'time';
     }
     return 'linear';
   }
 
-  if ('nice' in scale) {
+  if ('nice' in s) {
     return 'quantize';
   }
 
-  if ('invertExtent' in scale) {
+  if ('invertExtent' in s) {
     return 'threshold';
   }
 

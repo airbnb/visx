@@ -62,3 +62,24 @@ export type D3Scale<
   DiscreteInput extends StringLike = StringLike,
   ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
 > = ValueOf<ScaleTypeToD3Scale<Output, DiscreteInput, ThresholdInput>>;
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type AnyD3Scale = D3Scale<any, any, any>;
+
+export type InferD3ScaleOutput<Scale extends AnyD3Scale> =
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  Scale extends D3Scale<infer X, any, any> ? X : DefaultOutput;
+
+export type InferD3ScaleDiscreteInput<Scale extends AnyD3Scale> =
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  Scale extends D3Scale<any, infer X, any> ? X : StringLike;
+
+export type InferD3ScaleThresholdInput<Scale extends AnyD3Scale> =
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  Scale extends D3Scale<any, any, infer X> ? X : DefaultThresholdInput;
+
+export type UnpackD3Scale<Scale extends AnyD3Scale> = D3Scale<
+  InferD3ScaleOutput<Scale>,
+  InferD3ScaleDiscreteInput<Scale>,
+  InferD3ScaleThresholdInput<Scale>
+>;
