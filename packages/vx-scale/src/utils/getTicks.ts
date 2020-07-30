@@ -1,4 +1,4 @@
-import { AnyD3Scale, ScaleInput } from '@vx/scale';
+import { AnyD3Scale, ScaleInput } from '../types/Scale';
 
 export default function getTicks<Scale extends AnyD3Scale>(
   scale: Scale,

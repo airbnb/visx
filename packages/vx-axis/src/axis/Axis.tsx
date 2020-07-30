@@ -1,11 +1,10 @@
 import React from 'react';
 import cx from 'classnames';
 import { Group } from '@vx/group';
+import { getTicks, coerceNumber } from '@vx/scale';
 import { SharedAxisProps, AxisScale } from '../types';
 import AxisRenderer from './AxisRenderer';
 import getTickPosition from '../utils/getTickPosition';
-import toNumberOrUndefined from '../utils/toNumberOrUndefined';
-import getTicks from '../utils/getTicks';
 import getTickFormatter from '../utils/getTickFormatter';
 import createPoint from '../utils/createPoint';
 import Orientation from '../constants/orientation';
@@ -51,7 +50,7 @@ export default function Axis<Scale extends AxisScale>({
     .map((value, index) => ({ value, index }))
     .filter(({ value }) => !hideZero || (value !== 0 && value !== '0'))
     .map(({ value, index }) => {
-      const scaledValue = toNumberOrUndefined(tickPosition(value));
+      const scaledValue = coerceNumber(tickPosition(value));
 
       return {
         value,
