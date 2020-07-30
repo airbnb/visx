@@ -1,8 +1,19 @@
 import getTicks from '../../src/utils/getTicks';
-import { scaleLinear } from '../../lib';
+import { scaleLinear, scaleBand } from '../../lib';
 
 describe('getTicks(scale)', () => {
   it('linear', () => {
-    expect(getTicks(scaleLinear(), 3)).toEqual([0, 0.5, 1]);
+    const scale = scaleLinear();
+    expect(getTicks(scale, 3)).toEqual([0, 0.5, 1]);
+    expect(getTicks(scale, 2)).toEqual([0, 0.5, 1]);
+    expect(getTicks(scale, 1)).toEqual([0, 1]);
+  });
+  it('band', () => {
+    const scale = scaleBand({
+      domain: ['a', 'b', 'c', 'd'],
+    });
+    expect(getTicks(scale, 4)).toEqual(['a', 'b', 'c', 'd']);
+    expect(getTicks(scale, 3)).toEqual(['a', 'b', 'c', 'd']);
+    expect(getTicks(scale, 2)).toEqual(['a', 'c']);
   });
 });
