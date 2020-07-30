@@ -1,8 +1,7 @@
 import React from 'react';
 import { Group } from '@vx/group';
 import { AreaClosed } from '@vx/shape';
-import { ScaleType } from '@vx/shape/lib/types';
-import { AxisLeft, AxisBottom } from '@vx/axis';
+import { AxisLeft, AxisBottom, AxisScale } from '@vx/axis';
 import { LinearGradient } from '@vx/gradient';
 import { curveMonotoneX } from '@vx/curve';
 import { AppleStock } from '@vx/mock-data/lib/mocks/appleStock';
@@ -44,8 +43,8 @@ export default function AreaChart({
 }: {
   data: AppleStock[];
   gradientColor: string;
-  xScale: ScaleType;
-  yScale: ScaleType;
+  xScale: AxisScale<number>;
+  yScale: AxisScale<number>;
   width: number;
   yMax: number;
   margin: { top: number; right: number; bottom: number; left: number };
