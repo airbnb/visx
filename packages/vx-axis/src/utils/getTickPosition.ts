@@ -5,10 +5,14 @@ import { AxisScale, AxisScaleOutput } from '../types';
  * Create a function that returns a tick position for the given tick value
  */
 export default function getTickPosition<
-  Output extends AxisScaleOutput,
-  DiscreteInput extends StringLike,
-  ThresholdInput extends DefaultThresholdInput,
-  Scale extends AxisScale<Output, DiscreteInput, ThresholdInput>
+  Output extends AxisScaleOutput = AxisScaleOutput,
+  DiscreteInput extends StringLike = StringLike,
+  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput,
+  Scale extends AxisScale<Output, DiscreteInput, ThresholdInput> = AxisScale<
+    Output,
+    DiscreteInput,
+    ThresholdInput
+  >
 >(scale: Scale) {
   // Broaden type before using 'xxx' in s as typeguard.
   const s = scale as AxisScale;

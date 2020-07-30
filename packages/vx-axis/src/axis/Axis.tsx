@@ -4,13 +4,7 @@ import { Point } from '@vx/point';
 import { Group } from '@vx/group';
 import { StringLike, DefaultThresholdInput } from '@vx/scale';
 import ORIENT from '../constants/orientation';
-import {
-  SharedAxisProps,
-  AxisOrientation,
-  ChildRenderProps,
-  AxisScaleOutput,
-  AxisScale,
-} from '../types';
+import { SharedAxisProps, AxisOrientation, ChildRenderProps, AxisScaleOutput } from '../types';
 import AxisRenderer from './AxisRenderer';
 import getTickPosition from '../utils/getTickPosition';
 import toNumberOrUndefined from '../utils/toNumberOrUndefined';
@@ -46,7 +40,7 @@ export default function Axis<
   top = 0,
   ...restProps
 }: AxisProps<Output, DiscreteInput, ThresholdInput>) {
-  const format = tickFormat ?? getTickFormatter(scale);
+  const format = tickFormat ?? getTickFormatter<Output, DiscreteInput, ThresholdInput>(scale);
 
   const range = scale.range();
   const range0 = Number(range[0]) + 0.5 - rangePadding;
@@ -56,7 +50,7 @@ export default function Axis<
   const isTop = orientation === ORIENT.top;
   const horizontal = isTop || orientation === ORIENT.bottom;
 
-  const tickPosition = getTickPosition(scale);
+  const tickPosition = getTickPosition<Output, DiscreteInput, ThresholdInput>(scale);
   const tickSign = isLeft || isTop ? -1 : 1;
 
   const axisFromPoint = new Point({
