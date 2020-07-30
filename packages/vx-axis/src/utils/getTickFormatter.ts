@@ -1,4 +1,5 @@
-import { TickFormatter, AxisScale, TickValue } from '../types';
+import { ScaleInput } from '@vx/scale';
+import { TickFormatter, AxisScale } from '../types';
 
 /**
  * Returns a tick position for the given tick value
@@ -10,8 +11,8 @@ export default function getTickFormatter<Scale extends AxisScale>(scale: Scale) 
   // For point or band scales,
   // have to add offset to make the tick centered.
   if ('tickFormat' in s) {
-    return s.tickFormat() as TickFormatter<TickValue<Scale>>;
+    return s.tickFormat() as TickFormatter<ScaleInput<Scale>>;
   }
 
-  return toString as TickFormatter<TickValue<Scale>>;
+  return toString as TickFormatter<ScaleInput<Scale>>;
 }

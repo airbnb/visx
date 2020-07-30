@@ -1,4 +1,5 @@
-import { AxisScale, AxisScaleOutput, TickValue } from '../types';
+import { ScaleInput } from '@vx/scale';
+import { AxisScale, AxisScaleOutput } from '../types';
 
 /**
  * Create a function that returns a tick position for the given tick value
@@ -12,12 +13,12 @@ export default function getTickPosition<Scale extends AxisScale>(scale: Scale) {
   if ('bandwidth' in s) {
     let offset = s.bandwidth() / 2;
     if (s.round()) offset = Math.round(offset);
-    return (d: TickValue<Scale>) => {
+    return (d: ScaleInput<Scale>) => {
       const scaledValue = s(d);
 
       return typeof scaledValue === 'number' ? scaledValue + offset : scaledValue;
     };
   }
 
-  return scale as (d: TickValue<Scale>) => AxisScaleOutput;
+  return scale as (d: ScaleInput<Scale>) => AxisScaleOutput;
 }

@@ -1,4 +1,4 @@
-import { D3Scale, NumberLike, AnyD3Scale } from '@vx/scale';
+import { D3Scale, NumberLike, ScaleInput } from '@vx/scale';
 import { TextProps } from '@vx/text/lib/Text';
 
 // In order to plot values on an axis, output of the scale must be number.
@@ -12,12 +12,9 @@ export type AxisScale<Output extends AxisScaleOutput = AxisScaleOutput> =
 
 export type AxisOrientation = 'top' | 'right' | 'bottom' | 'left';
 
-export type FormattedValue = string | undefined;
+type FormattedValue = string | undefined;
 
-/** Get type of tick value (scale input) from D3 scale */
-export type TickValue<Scale extends AnyD3Scale> = Parameters<Scale>[0];
-
-export type TickFormatter<T> = (value: T, tickIndex: number) => FormattedValue;
+export type TickFormatter<T> = (value: T, index: number) => FormattedValue;
 
 export type TickLabelProps<T> = (value: T, index: number) => Partial<TextProps>;
 
@@ -27,12 +24,7 @@ export type TickRendererProps = Partial<TextProps> & {
   formattedValue: FormattedValue;
 };
 
-export interface Point {
-  x: number;
-  y: number;
-}
-
-interface CommonProps<ScaleInput> {
+interface CommonProps<Scale extends AxisScale> {
   /** The class name applied to the axis line element. */
   axisLineClassName?: string;
   /**  If true, will hide the axis line. */
@@ -66,9 +58,9 @@ interface CommonProps<ScaleInput> {
   /** Override the component used to render tick labels (instead of <Text /> from @vx/text) */
   tickComponent?: (tickRendererProps: TickRendererProps) => React.ReactNode;
   /** A [d3 formatter](https://github.com/d3/d3-scale/blob/master/README.md#continuous_tickFormat) for the tick text. */
-  tickFormat: TickFormatter<ScaleInput>;
+  tickFormat: TickFormatter<ScaleInput<Scale>>;
   /** A function that returns props for a given tick label. */
-  tickLabelProps?: TickLabelProps<ScaleInput>;
+  tickLabelProps?: TickLabelProps<ScaleInput<Scale>>;
   /** The length of the tick lines. */
   tickLength: number;
   /** The color for the tick's stroke value. */
@@ -77,7 +69,12 @@ interface CommonProps<ScaleInput> {
   tickTransform?: string;
 }
 
-export type ChildRenderProps<Scale extends AxisScale> = CommonProps<TickValue<Scale>> & {
+interface Point {
+  x: number;
+  y: number;
+}
+
+export type AxisRendererProps<Scale extends AxisScale> = CommonProps<Scale> & {
   /** Start point of the axis line */
   axisFromPoint: Point;
   /** End point of the axis line */
@@ -87,12 +84,12 @@ export type ChildRenderProps<Scale extends AxisScale> = CommonProps<TickValue<Sc
   /** A [d3](https://github.com/d3/d3-scale) or [vx](https://github.com/hshoff/vx/tree/master/packages/vx-scale) scale function. */
   scale: Scale;
   /** Function to compute tick position along the axis from tick value */
-  tickPosition: (value: TickValue<Scale>) => AxisScaleOutput;
+  tickPosition: (value: ScaleInput<Scale>) => AxisScaleOutput;
   /** Axis coordinate sign, -1 for left or top orientation. */
   tickSign: 1 | -1;
   /** Computed ticks with positions and formatted value */
   ticks: {
-    value: TickValue<Scale>;
+    value: ScaleInput<Scale>;
     index: number;
     from: Point;
     to: Point;
@@ -100,7 +97,7 @@ export type ChildRenderProps<Scale extends AxisScale> = CommonProps<TickValue<Sc
   }[];
 };
 
-export type SharedAxisProps<Scale extends AxisScale> = Partial<CommonProps<TickValue<Scale>>> & {
+export type SharedAxisProps<Scale extends AxisScale> = Partial<CommonProps<Scale>> & {
   /** The class name applied to the outermost axis group element. */
   axisClassName?: string;
   /** A left pixel offset applied to the entire axis. */
@@ -108,9 +105,9 @@ export type SharedAxisProps<Scale extends AxisScale> = Partial<CommonProps<TickV
   /** A [d3](https://github.com/d3/d3-scale) or [vx](https://github.com/hshoff/vx/tree/master/packages/vx-scale) scale function. */
   scale: Scale;
   /** An array of values that determine the number and values of the ticks. Falls back to `scale.ticks()` or `.domain()`. */
-  tickValues?: TickValue<Scale>[];
+  tickValues?: ScaleInput<Scale>[];
   /** A top pixel offset applied to the entire axis. */
   top?: number;
   /** For more control over rendering or to add event handlers to datum, pass a function as children. */
-  children?: (renderProps: ChildRenderProps<Scale>) => React.ReactNode;
+  children?: (renderProps: AxisRendererProps<Scale>) => React.ReactNode;
 };

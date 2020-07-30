@@ -89,3 +89,6 @@ export type InferD3ScaleDiscreteInput<Scale extends AnyD3Scale> =
 export type InferD3ScaleThresholdInput<Scale extends AnyD3Scale> =
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   Scale extends D3Scale<any, any, infer X> ? X : DefaultThresholdInput;
+
+/** Get type of scale input from D3 scale */
+export type ScaleInput<Scale extends AnyD3Scale> = Parameters<Scale>[0];

@@ -1,10 +1,9 @@
-import { AnyD3Scale } from '@vx/scale';
-import { TickValue } from '../types';
+import { AnyD3Scale, ScaleInput } from '@vx/scale';
 
 export default function getTicks<Scale extends AnyD3Scale>(
   scale: Scale,
   numTicks?: number,
-): TickValue<Scale>[] {
+): ScaleInput<Scale>[] {
   // Because `Scale` is generic type which maybe a subset of AnyD3Scale
   // that may not have `ticks` field,
   // TypeScript will not let us do the `'ticks' in scale` check directly.
