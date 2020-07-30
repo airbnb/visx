@@ -6,9 +6,10 @@ import { TextProps } from '@vx/text/lib/Text';
 export type AxisScaleOutput = number | undefined;
 
 export type AxisScale<
+  Output extends AxisScaleOutput = AxisScaleOutput,
   DiscreteInput extends StringLike = StringLike,
   ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
-> = D3Scale<AxisScaleOutput, DiscreteInput, ThresholdInput>;
+> = D3Scale<Output, DiscreteInput, ThresholdInput>;
 
 export type AxisOrientation = 'top' | 'right' | 'bottom' | 'left';
 
@@ -75,15 +76,20 @@ interface CommonProps<ScaleInput> {
 }
 
 export type ChildRenderProps<
-  Scale extends AxisScale<DiscreteInput, ThresholdInput>,
+  Output extends AxisScaleOutput = AxisScaleOutput,
   DiscreteInput extends StringLike = StringLike,
-  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
+  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput,
+  Scale extends AxisScale<Output, DiscreteInput, ThresholdInput> = AxisScale<
+    Output,
+    DiscreteInput,
+    ThresholdInput
+  >
 > = CommonProps<Parameters<Scale>[0]> & {
   axisFromPoint: Point;
   axisToPoint: Point;
   horizontal: boolean;
   /** A [d3](https://github.com/d3/d3-scale) or [vx](https://github.com/hshoff/vx/tree/master/packages/vx-scale) scale function. */
-  scale: AxisScale<DiscreteInput, ThresholdInput>;
+  scale: AxisScale<Output, DiscreteInput, ThresholdInput>;
   tickPosition: (value: Parameters<Scale>[0]) => AxisScaleOutput;
   /** Axis coordinate sign, -1 for left or top orientation. */
   tickSign: 1 | -1;
@@ -97,22 +103,27 @@ export type ChildRenderProps<
 };
 
 export type SharedAxisProps<
-  Scale extends AxisScale<DiscreteInput, ThresholdInput>,
+  Output extends AxisScaleOutput = AxisScaleOutput,
   DiscreteInput extends StringLike = StringLike,
-  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
+  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput,
+  Scale extends AxisScale<Output, DiscreteInput, ThresholdInput> = AxisScale<
+    Output,
+    DiscreteInput,
+    ThresholdInput
+  >
 > = Partial<CommonProps<Parameters<Scale>[0]>> & {
   /** The class name applied to the outermost axis group element. */
   axisClassName?: string;
   /** A left pixel offset applied to the entire axis. */
   left?: number;
   /** A [d3](https://github.com/d3/d3-scale) or [vx](https://github.com/hshoff/vx/tree/master/packages/vx-scale) scale function. */
-  scale: AxisScale<DiscreteInput, ThresholdInput>;
+  scale: Scale;
   /** An array of values that determine the number and values of the ticks. Falls back to `scale.ticks()` or `.domain()`. */
   tickValues?: Parameters<Scale>[0][];
   /** A top pixel offset applied to the entire axis. */
   top?: number;
   /** For more control over rendering or to add event handlers to datum, pass a function as children. */
   children?: (
-    renderProps: ChildRenderProps<Scale, DiscreteInput, ThresholdInput>,
+    renderProps: ChildRenderProps<Output, DiscreteInput, ThresholdInput, Scale>,
   ) => React.ReactNode;
 };
