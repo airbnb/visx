@@ -11,7 +11,7 @@ export interface TransformArgs {
   tickLength: number;
 }
 
-export default function labelTransform({
+export default function getLabelTransform({
   labelOffset,
   labelProps,
   orientation,

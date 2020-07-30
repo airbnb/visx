@@ -6,7 +6,7 @@ import { Text } from '@vx/text';
 
 import { TextProps } from '@vx/text/lib/Text';
 import Orientation from '../constants/orientation';
-import getLabelTransform from '../utils/labelTransform';
+import getLabelTransform from '../utils/getLabelTransform';
 import { AxisRendererProps, AxisScale } from '../types';
 
 const defaultTextProps: Partial<TextProps> = {
