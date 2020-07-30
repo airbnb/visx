@@ -2,6 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import { Point } from '@vx/point';
 import { Group } from '@vx/group';
+import { StringLike, DefaultThresholdInput } from '@vx/scale';
 import ORIENT from '../constants/orientation';
 import { SharedAxisProps, AxisOrientation, ChildRenderProps, AxisScale } from '../types';
 import AxisRenderer from './AxisRenderer';
@@ -10,11 +11,19 @@ import toNumberOrUndefined from '../utils/toNumberOrUndefined';
 import getTicks from '../utils/getTicks';
 import getTickFormatter from '../utils/getTickFormatter';
 
-export type AxisProps<Scale extends AxisScale> = SharedAxisProps<Scale> & {
+export type AxisProps<
+  Scale extends AxisScale<DiscreteInput, ThresholdInput>,
+  DiscreteInput extends StringLike = StringLike,
+  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
+> = SharedAxisProps<Scale, DiscreteInput, ThresholdInput> & {
   orientation?: AxisOrientation;
 };
 
-export default function Axis<Scale extends AxisScale>({
+export default function Axis<
+  Scale extends AxisScale<DiscreteInput, ThresholdInput>,
+  DiscreteInput extends StringLike = StringLike,
+  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
+>({
   children,
   axisClassName,
   hideAxisLine = false,
@@ -30,7 +39,7 @@ export default function Axis<Scale extends AxisScale>({
   tickValues,
   top = 0,
   ...restProps
-}: AxisProps<Scale>) {
+}: AxisProps<Scale, DiscreteInput, ThresholdInput>) {
   const format = tickFormat ?? getTickFormatter(scale);
 
   const range = scale.range();
@@ -74,7 +83,7 @@ export default function Axis<Scale extends AxisScale>({
       };
     });
 
-  const childProps: ChildRenderProps<Scale> = {
+  const childProps: ChildRenderProps<Scale, DiscreteInput, ThresholdInput> = {
     ...restProps,
     axisFromPoint,
     axisToPoint,
@@ -95,7 +104,11 @@ export default function Axis<Scale extends AxisScale>({
 
   return (
     <Group className={cx('vx-axis', axisClassName)} top={top} left={left}>
-      {children ? children(childProps) : <AxisRenderer<Scale> {...childProps} />}
+      {children ? (
+        children(childProps)
+      ) : (
+        <AxisRenderer<Scale, DiscreteInput, ThresholdInput> {...childProps} />
+      )}
     </Group>
   );
 }

@@ -13,19 +13,20 @@ import {
   scaleThreshold,
   scaleTime,
   scaleUtc,
-  D3Scale,
   StringLike,
   DefaultThresholdInput,
 } from '@vx/scale';
 import { Axis } from '../src';
-import { AxisScaleOutput, AxisScale } from '../src/types';
+import { AxisScale } from '../src/types';
 
 const axisProps = {
   orientation: 'left' as const,
   label: 'test axis',
 };
 
-function setup<Scale extends AxisScale>(scale: Scale) {
+function setup<DiscreteInput extends StringLike, ThresholdInput extends DefaultThresholdInput>(
+  scale: AxisScale<DiscreteInput, ThresholdInput>,
+) {
   return () => shallow(<Axis {...axisProps} scale={scale} />);
 }
 
