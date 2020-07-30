@@ -1,12 +1,12 @@
 import { TextProps } from '@vx/text/lib/Text';
 import ORIENT from '../constants/orientation';
-import { AxisOrientation, ScaleOutput } from '../types';
+import { AxisOrientation, AxisScaleOutput } from '../types';
 
 export interface TransformArgs {
   labelOffset: number;
   labelProps: Partial<TextProps>;
   orientation: AxisOrientation;
-  range: ScaleOutput[];
+  range: AxisScaleOutput[];
   tickLabelFontSize: number;
   tickLength: number;
 }

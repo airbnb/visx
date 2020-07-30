@@ -5,10 +5,9 @@ import { Group } from '@vx/group';
 import { Text } from '@vx/text';
 
 import { TextProps } from '@vx/text/lib/Text';
-import { StringLike, DefaultThresholdInput } from '@vx/scale';
 import ORIENT from '../constants/orientation';
 import getLabelTransform from '../utils/labelTransform';
-import { ChildRenderProps, AxisScaleOutput } from '../types';
+import { ChildRenderProps, AxisScale } from '../types';
 
 const defaultTextProps: Partial<TextProps> = {
   textAnchor: 'middle',
@@ -17,11 +16,7 @@ const defaultTextProps: Partial<TextProps> = {
   fill: '#222',
 };
 
-export default function AxisRenderer<
-  Output extends AxisScaleOutput = AxisScaleOutput,
-  DiscreteInput extends StringLike = StringLike,
-  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
->({
+export default function AxisRenderer<Scale extends AxisScale>({
   axisFromPoint,
   axisLineClassName,
   axisToPoint,
@@ -44,7 +39,7 @@ export default function AxisRenderer<
   tickStroke = '#222',
   tickTransform,
   ticks,
-}: ChildRenderProps<Output, DiscreteInput, ThresholdInput>) {
+}: ChildRenderProps<Scale>) {
   let tickLabelFontSize = 10; // track the max tick label size to compute label offset
 
   return (

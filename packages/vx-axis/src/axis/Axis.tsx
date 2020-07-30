@@ -2,28 +2,19 @@ import React from 'react';
 import cx from 'classnames';
 import { Point } from '@vx/point';
 import { Group } from '@vx/group';
-import { StringLike, DefaultThresholdInput } from '@vx/scale';
 import ORIENT from '../constants/orientation';
-import { SharedAxisProps, AxisOrientation, ChildRenderProps, AxisScaleOutput } from '../types';
+import { SharedAxisProps, AxisOrientation, ChildRenderProps, AxisScale } from '../types';
 import AxisRenderer from './AxisRenderer';
 import getTickPosition from '../utils/getTickPosition';
 import toNumberOrUndefined from '../utils/toNumberOrUndefined';
 import getTicks from '../utils/getTicks';
 import getTickFormatter from '../utils/getTickFormatter';
 
-export type AxisProps<
-  Output extends AxisScaleOutput = AxisScaleOutput,
-  DiscreteInput extends StringLike = StringLike,
-  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
-> = SharedAxisProps<Output, DiscreteInput, ThresholdInput> & {
+export type AxisProps<Scale extends AxisScale> = SharedAxisProps<Scale> & {
   orientation?: AxisOrientation;
 };
 
-export default function Axis<
-  Output extends AxisScaleOutput = AxisScaleOutput,
-  DiscreteInput extends StringLike = StringLike,
-  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
->({
+export default function Axis<Scale extends AxisScale>({
   children,
   axisClassName,
   hideAxisLine = false,
@@ -39,8 +30,8 @@ export default function Axis<
   tickValues,
   top = 0,
   ...restProps
-}: AxisProps<Output, DiscreteInput, ThresholdInput>) {
-  const format = tickFormat ?? getTickFormatter<Output, DiscreteInput, ThresholdInput>(scale);
+}: AxisProps<Scale>) {
+  const format = tickFormat ?? getTickFormatter(scale);
 
   const range = scale.range();
   const range0 = Number(range[0]) + 0.5 - rangePadding;
@@ -50,7 +41,7 @@ export default function Axis<
   const isTop = orientation === ORIENT.top;
   const horizontal = isTop || orientation === ORIENT.bottom;
 
-  const tickPosition = getTickPosition<Output, DiscreteInput, ThresholdInput>(scale);
+  const tickPosition = getTickPosition(scale);
   const tickSign = isLeft || isTop ? -1 : 1;
 
   const axisFromPoint = new Point({
@@ -83,7 +74,7 @@ export default function Axis<
       };
     });
 
-  const childProps: ChildRenderProps<Output, DiscreteInput, ThresholdInput> = {
+  const childProps: ChildRenderProps<Scale> = {
     ...restProps,
     axisFromPoint,
     axisToPoint,
@@ -104,11 +95,7 @@ export default function Axis<
 
   return (
     <Group className={cx('vx-axis', axisClassName)} top={top} left={left}>
-      {children ? (
-        children(childProps)
-      ) : (
-        <AxisRenderer<Output, DiscreteInput, ThresholdInput> {...childProps} />
-      )}
+      {children ? children(childProps) : <AxisRenderer {...childProps} />}
     </Group>
   );
 }

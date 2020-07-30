@@ -1,19 +1,9 @@
-import { StringLike, DefaultThresholdInput } from '@vx/scale';
-import { AxisScale, AxisScaleOutput } from '../types';
+import { AxisScale, AxisScaleOutput, TickValue } from '../types';
 
 /**
  * Create a function that returns a tick position for the given tick value
  */
-export default function getTickPosition<
-  Output extends AxisScaleOutput = AxisScaleOutput,
-  DiscreteInput extends StringLike = StringLike,
-  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput,
-  Scale extends AxisScale<Output, DiscreteInput, ThresholdInput> = AxisScale<
-    Output,
-    DiscreteInput,
-    ThresholdInput
-  >
->(scale: Scale) {
+export default function getTickPosition<Scale extends AxisScale>(scale: Scale) {
   // Broaden type before using 'xxx' in s as typeguard.
   const s = scale as AxisScale;
 
@@ -22,12 +12,12 @@ export default function getTickPosition<
   if ('bandwidth' in s) {
     let offset = s.bandwidth() / 2;
     if (s.round()) offset = Math.round(offset);
-    return (d: Parameters<Scale>[0]) => {
+    return (d: TickValue<Scale>) => {
       const scaledValue = s(d);
 
       return typeof scaledValue === 'number' ? scaledValue + offset : scaledValue;
     };
   }
 
-  return scale as (d: Parameters<Scale>[0]) => AxisScaleOutput;
+  return scale as (d: TickValue<Scale>) => AxisScaleOutput;
 }
