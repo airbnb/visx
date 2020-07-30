@@ -161,7 +161,7 @@ export default function Example({
             }
           </BarStack>
         </Group>
-        <AxisBottom<string>
+        <AxisBottom
           top={yMax + margin.top}
           scale={dateScale}
           tickFormat={formatDate}

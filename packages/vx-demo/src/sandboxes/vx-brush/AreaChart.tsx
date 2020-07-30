@@ -76,7 +76,7 @@ export default function AreaChart({
         curve={curveMonotoneX}
       />
       {!hideBottomAxis && (
-        <AxisBottom<Date>
+        <AxisBottom
           top={yMax}
           scale={xScale}
           numTicks={width > 520 ? 10 : 5}
@@ -86,7 +86,7 @@ export default function AreaChart({
         />
       )}
       {!hideLeftAxis && (
-        <AxisLeft<number>
+        <AxisLeft
           scale={yScale}
           numTicks={5}
           stroke={axisColor}
