@@ -1,5 +1,6 @@
 import { D3Scale, NumberLike, ScaleInput } from '@vx/scale';
 import { TextProps } from '@vx/text/lib/Text';
+import Orientation from './constants/orientation';
 
 // In order to plot values on an axis, output of the scale must be number.
 // Some scales return undefined.
@@ -9,8 +10,6 @@ export type AxisScaleOutput = number | NumberLike | undefined;
 export type AxisScale<Output extends AxisScaleOutput = AxisScaleOutput> =
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   D3Scale<Output, any, any>;
-
-export type AxisOrientation = 'top' | 'right' | 'bottom' | 'left';
 
 type FormattedValue = string | undefined;
 
@@ -44,7 +43,7 @@ interface CommonProps<Scale extends AxisScale> {
   /** The number of ticks wanted for the axis (note this is approximate)  */
   numTicks: number;
   /** Placement of the axis */
-  orientation: AxisOrientation;
+  orientation: Orientation;
   /** Pixel padding to apply to both sides of the axis. */
   rangePadding: number;
   /** The color for the stroke of the lines. */

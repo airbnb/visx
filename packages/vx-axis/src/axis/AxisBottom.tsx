@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import Axis from './Axis';
-import ORIENT from '../constants/orientation';
+import Orientation from '../constants/orientation';
 import { SharedAxisProps, AxisScale } from '../types';
 
 export default function AxisBottom<Scale extends AxisScale>({
@@ -21,7 +21,7 @@ export default function AxisBottom<Scale extends AxisScale>({
     <Axis
       axisClassName={cx('vx-axis-bottom', axisClassName)}
       labelOffset={labelOffset}
-      orientation={ORIENT.bottom}
+      orientation={Orientation.bottom}
       tickLabelProps={tickLabelProps}
       tickLength={tickLength}
       {...restProps}

@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import Axis from './Axis';
-import ORIENT from '../constants/orientation';
+import Orientation from '../constants/orientation';
 import { SharedAxisProps, AxisScale } from '../types';
 
 export type AxisRightProps<Scale extends AxisScale> = SharedAxisProps<Scale>;
@@ -24,7 +24,7 @@ export default function AxisRight<Scale extends AxisScale>({
     <Axis
       axisClassName={cx('vx-axis-right', axisClassName)}
       labelOffset={labelOffset}
-      orientation={ORIENT.right}
+      orientation={Orientation.right}
       tickLabelProps={tickLabelProps}
       tickLength={tickLength}
       {...restProps}

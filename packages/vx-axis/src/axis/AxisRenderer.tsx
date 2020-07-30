@@ -5,9 +5,9 @@ import { Group } from '@vx/group';
 import { Text } from '@vx/text';
 
 import { TextProps } from '@vx/text/lib/Text';
-import ORIENT from '../constants/orientation';
+import Orientation from '../constants/orientation';
 import getLabelTransform from '../utils/labelTransform';
-import { ChildRenderProps, AxisScale } from '../types';
+import { AxisRendererProps, AxisScale } from '../types';
 
 const defaultTextProps: Partial<TextProps> = {
   textAnchor: 'middle',
@@ -39,7 +39,7 @@ export default function AxisRenderer<Scale extends AxisScale>({
   tickStroke = '#222',
   tickTransform,
   ticks,
-}: ChildRenderProps<Scale>) {
+}: AxisRendererProps<Scale>) {
   let tickLabelFontSize = 10; // track the max tick label size to compute label offset
 
   return (
@@ -52,7 +52,7 @@ export default function AxisRenderer<Scale extends AxisScale>({
         );
 
         const tickYCoord =
-          to.y + (horizontal && orientation !== ORIENT.top ? tickLabelFontSize : 0);
+          to.y + (horizontal && orientation !== Orientation.top ? tickLabelFontSize : 0);
 
         return (
           <Group

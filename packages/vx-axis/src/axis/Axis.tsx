@@ -1,17 +1,17 @@
 import React from 'react';
 import cx from 'classnames';
 import { Group } from '@vx/group';
-import ORIENT from '../constants/orientation';
-import { SharedAxisProps, AxisOrientation, AxisScale } from '../types';
+import { SharedAxisProps, AxisScale } from '../types';
 import AxisRenderer from './AxisRenderer';
 import getTickPosition from '../utils/getTickPosition';
 import toNumberOrUndefined from '../utils/toNumberOrUndefined';
 import getTicks from '../utils/getTicks';
 import getTickFormatter from '../utils/getTickFormatter';
 import createPoint from '../utils/createPoint';
+import Orientation from '../constants/orientation';
 
 export type AxisProps<Scale extends AxisScale> = SharedAxisProps<Scale> & {
-  orientation?: AxisOrientation;
+  orientation?: Orientation;
 };
 
 export default function Axis<Scale extends AxisScale>({
@@ -22,7 +22,7 @@ export default function Axis<Scale extends AxisScale>({
   hideZero = false,
   left = 0,
   numTicks = 10,
-  orientation = ORIENT.bottom,
+  orientation = Orientation.bottom,
   rangePadding = 0,
   scale,
   tickFormat,
@@ -33,9 +33,9 @@ export default function Axis<Scale extends AxisScale>({
 }: AxisProps<Scale>) {
   const format = tickFormat ?? getTickFormatter(scale);
 
-  const isLeft = orientation === ORIENT.left;
-  const isTop = orientation === ORIENT.top;
-  const horizontal = isTop || orientation === ORIENT.bottom;
+  const isLeft = orientation === Orientation.left;
+  const isTop = orientation === Orientation.top;
+  const horizontal = isTop || orientation === Orientation.bottom;
 
   const tickPosition = getTickPosition(scale);
   const tickSign = isLeft || isTop ? -1 : 1;

@@ -1,11 +1,11 @@
 import { TextProps } from '@vx/text/lib/Text';
-import ORIENT from '../constants/orientation';
-import { AxisOrientation, AxisScaleOutput } from '../types';
+import Orientation from '../constants/orientation';
+import { AxisScaleOutput } from '../types';
 
 export interface TransformArgs {
   labelOffset: number;
   labelProps: Partial<TextProps>;
-  orientation: AxisOrientation;
+  orientation: Orientation;
   range: AxisScaleOutput[];
   tickLabelFontSize: number;
   tickLength: number;
@@ -19,15 +19,15 @@ export default function labelTransform({
   tickLabelFontSize,
   tickLength,
 }: TransformArgs) {
-  const sign = orientation === ORIENT.left || orientation === ORIENT.top ? -1 : 1;
+  const sign = orientation === Orientation.left || orientation === Orientation.top ? -1 : 1;
 
   let x;
   let y;
   let transform;
 
-  if (orientation === ORIENT.top || orientation === ORIENT.bottom) {
+  if (orientation === Orientation.top || orientation === Orientation.bottom) {
     const yBottomOffset =
-      orientation === ORIENT.bottom && typeof labelProps.fontSize === 'number'
+      orientation === Orientation.bottom && typeof labelProps.fontSize === 'number'
         ? labelProps.fontSize
         : 0;
 

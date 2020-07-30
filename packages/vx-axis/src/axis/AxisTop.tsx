@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import Axis from './Axis';
-import ORIENT from '../constants/orientation';
+import Orientation from '../constants/orientation';
 import { SharedAxisProps, AxisScale } from '../types';
 
 export type AxisTopProps<Scale extends AxisScale> = SharedAxisProps<Scale>;
@@ -23,7 +23,7 @@ export default function AxisTop<Scale extends AxisScale>({
     <Axis
       axisClassName={cx('vx-axis-top', axisClassName)}
       labelOffset={labelOffset}
-      orientation={ORIENT.top}
+      orientation={Orientation.top}
       tickLabelProps={tickLabelProps}
       tickLength={tickLength}
       {...restProps}
