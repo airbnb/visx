@@ -2,9 +2,9 @@ import React from 'react';
 import cx from 'classnames';
 
 export type BarRoundedProps = {
-  /** className to apply to rect element. */
+  /** className to apply to path element. */
   className?: string;
-  /** reference to rect element. */
+  /** reference to path element. */
   innerRef?: React.Ref<SVGPathElement>;
   /** left position of the bar */
   x: number;
