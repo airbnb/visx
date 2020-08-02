@@ -2,8 +2,8 @@ import React from 'react';
 import AreaClosed from '@vx/shape/lib/shapes/AreaClosed';
 import { Grid } from '@vx/grid';
 import { curveMonotoneX } from '@vx/curve';
-import { scaleUtc, scaleLinear, scaleLog, scaleBand } from '@vx/scale';
-import { AxisBottom } from '@vx/axis';
+import { scaleUtc, scaleLinear, scaleLog, scaleBand, ScaleInput } from '@vx/scale';
+import { AxisBottom, SharedAxisProps, AxisScale } from '@vx/axis';
 import { LinearGradient } from '@vx/gradient';
 import { timeFormat } from 'd3-time-format';
 
@@ -25,10 +25,6 @@ export type AxisProps = {
   height: number;
 };
 
-type Scale = any;
-
-type ScaleInput = any;
-
 export default function Example({ width: outerWidth = 800, height: outerHeight = 800 }: AxisProps) {
   // in svg, margin is subtracted from total width/height
   const width = outerWidth - margin.left - margin.right;
@@ -36,19 +32,18 @@ export default function Example({ width: outerWidth = 800, height: outerHeight =
 
   if (width < 10) return null;
 
-  const scales: {
-    scale: Scale;
-    values: ScaleInput[];
-    label: string;
-    tickFormat: (value: ScaleInput, idx: number) => string | number;
-  }[] = [
+  interface AxisDemoProps<Scale extends AxisScale> extends SharedAxisProps<Scale> {
+    values: ScaleInput<Scale>[];
+  }
+
+  const axes: AxisDemoProps<AxisScale<number>>[] = [
     {
       scale: scaleLinear({
         domain: [0, 10],
         range: [0, width],
       }),
       values: [0, 2, 4, 6, 8, 10],
-      tickFormat: (v: number) => (v === 10 ? 'last' : (v === 0 && 'first') || v),
+      tickFormat: (v: number) => (v === 10 ? 'last' : (v === 0 && 'first') || `${v}`),
       label: 'linear',
     },
     {
@@ -59,7 +54,7 @@ export default function Example({ width: outerWidth = 800, height: outerHeight =
         paddingInner: 1,
       }),
       values: ['a', 'b', 'c', 'd'],
-      tickFormat: (v: number) => v,
+      tickFormat: (v: string) => v,
       label: 'categories',
     },
     {
@@ -78,13 +73,13 @@ export default function Example({ width: outerWidth = 800, height: outerHeight =
         range: [0, width],
       }),
       values: [1, 10, 100, 1000, 10000],
-      tickFormat: (v: number) => (`${v}`[0] === '1' ? v : ''),
+      tickFormat: (v: number) => (`${v}`[0] === '1' ? `${v}` : ''),
       label: 'log',
     },
   ];
 
   const scalePadding = 50;
-  const scaleHeight = height / scales.length - scalePadding;
+  const scaleHeight = height / axes.length - scalePadding;
 
   const yScale = scaleLinear({
     domain: [100, 0],
@@ -108,11 +103,11 @@ export default function Example({ width: outerWidth = 800, height: outerHeight =
         rx={14}
       />
       <g transform={`translate(${margin.left},${margin.top})`}>
-        {scales.map(({ scale, values, label, tickFormat }, i) => (
+        {axes.map(({ scale, values, label, tickFormat }, i) => (
           <g key={`scale-${i}`} transform={`translate(0, ${i * (scaleHeight + scalePadding)})`}>
             <AreaClosed
               data={values.map(x => [
-                scale(x) +
+                (scale(x) ?? 0) +
                   ('bandwidth' in scale && typeof scale!.bandwidth !== 'undefined'
                     ? scale.bandwidth!() / 2
                     : 0),
@@ -123,7 +118,7 @@ export default function Example({ width: outerWidth = 800, height: outerHeight =
               fill={gridColor}
               fillOpacity={0.2}
             />
-            <Grid<ScaleInput, number>
+            <Grid<typeof values[0], number>
               xScale={scale}
               yScale={yScale}
               stroke={gridColor}
@@ -132,7 +127,7 @@ export default function Example({ width: outerWidth = 800, height: outerHeight =
               numTicksRows={2}
               numTicksColumns={numTickColumns}
             />
-            <AxisBottom<ScaleInput>
+            <AxisBottom
               top={scaleHeight}
               scale={scale}
               tickFormat={tickFormat}

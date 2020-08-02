@@ -3,14 +3,13 @@ import { shallow } from 'enzyme';
 
 import { scaleLinear } from '../../vx-scale/src';
 import { Axis, AxisTop } from '../src';
-import { GenericScale } from '../src/types';
 
 const axisProps = {
   scale: scaleLinear({
     range: [10, 0],
     round: true,
     domain: [0, 10],
-  }) as GenericScale<number>,
+  }),
 };
 
 describe('<AxisTop />', () => {

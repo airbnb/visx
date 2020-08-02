@@ -144,7 +144,7 @@ export default withTooltip<BarStackHorizontalProps, TooltipData>(
                 )
               }
             </BarStackHorizontal>
-            <AxisLeft<string>
+            <AxisLeft
               hideAxisLine
               hideTicks
               scale={dateScale}
@@ -158,7 +158,7 @@ export default withTooltip<BarStackHorizontalProps, TooltipData>(
                 dy: '0.33em',
               })}
             />
-            <AxisBottom<number>
+            <AxisBottom
               top={yMax}
               scale={temperatureScale}
               stroke={purple3}

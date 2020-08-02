@@ -16,6 +16,10 @@ export { default as createScale } from './createScale';
 export { default as updateScale } from './updateScale';
 export { default as inferScaleType } from './utils/inferScaleType';
 
+export { default as coerceNumber } from './utils/coerceNumber';
+export { default as getTicks } from './utils/getTicks';
+export { default as toString } from './utils/toString';
+
 // export types
 export * from './types/Base';
 export * from './types/Nice';

@@ -1,10 +1,12 @@
-import { AxisOrientation } from '../types';
+import { ValueOf } from '@vx/scale';
 
-const orientation: Record<AxisOrientation, AxisOrientation> = {
+const Orientation = {
   top: 'top',
   left: 'left',
   right: 'right',
   bottom: 'bottom',
-};
+} as const;
 
-export default orientation;
+type Orientation = ValueOf<typeof Orientation>;
+
+export default Orientation;

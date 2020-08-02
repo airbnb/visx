@@ -62,3 +62,33 @@ export type D3Scale<
   DiscreteInput extends StringLike = StringLike,
   ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
 > = ValueOf<ScaleTypeToD3Scale<Output, DiscreteInput, ThresholdInput>>;
+
+/**
+ * A catch-all type for all D3 scales.
+ *
+ * Use this instead of `D3Scale`
+ * unless other generic types (`Output`, `DiscreteInput` and `ThresholdInput`)
+ * are also included and passed to `D3Scale`.
+ * Otherwise it may not match some scales (band, point, threshold) correctly and cause TS errors.
+ *
+ * Example error messages:
+ * * "Type 'StringLike' is not assignable to type 'string'"
+ * * "Type 'number' is not assignable to type 'DefaultThresholdInput'"
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type AnyD3Scale = D3Scale<any, any, any>;
+
+export type InferD3ScaleOutput<Scale extends AnyD3Scale> =
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  Scale extends D3Scale<infer X, any, any> ? X : DefaultOutput;
+
+export type InferD3ScaleDiscreteInput<Scale extends AnyD3Scale> =
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  Scale extends D3Scale<any, infer X, any> ? X : StringLike;
+
+export type InferD3ScaleThresholdInput<Scale extends AnyD3Scale> =
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  Scale extends D3Scale<any, any, infer X> ? X : DefaultThresholdInput;
+
+/** Get type of scale input from D3 scale */
+export type ScaleInput<Scale extends AnyD3Scale> = Parameters<Scale>[0];

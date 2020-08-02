@@ -5,7 +5,6 @@ import { Line } from '@vx/shape';
 import { Text } from '@vx/text';
 import { scaleBand, scaleLinear } from '@vx/scale';
 import { Axis } from '../src';
-import { GenericScale } from '../src/types';
 
 const axisProps = {
   orientation: 'left' as const,
@@ -13,7 +12,7 @@ const axisProps = {
     range: [10, 0],
     round: true,
     domain: [0, 10],
-  }) as GenericScale<number>,
+  }),
   label: 'test axis',
 };
 
@@ -186,26 +185,30 @@ describe('<Axis />', () => {
   });
 
   test('tickFormat should have access to tick index', () => {
-    const wrapper = shallow(<Axis {...axisProps} tickValues={[9]} tickFormat={(val, i) => i} />);
+    const wrapper = shallow(
+      <Axis {...axisProps} tickValues={[9]} tickFormat={(val, i) => `${i}`} />,
+    );
     expect(
       wrapper
         .children()
         .find('.vx-axis-tick')
         .find(Text)
         .prop('children'),
-    ).toBe(0);
+    ).toBe('0');
   });
 
   test('it should use center if scale is band', () => {
-    const overrideAxisProps = {
-      orientation: 'bottom' as const,
-      scale: scaleBand({
-        range: [10, 0],
-        round: true,
-        domain: ['a', 'b'],
-      }),
-    };
-    const wrapper = shallow(<Axis {...overrideAxisProps} tickStroke="blue" />);
+    const wrapper = shallow(
+      <Axis
+        orientation="bottom"
+        scale={scaleBand({
+          range: [10, 0],
+          round: true,
+          domain: ['a', 'b'],
+        })}
+        tickStroke="blue"
+      />,
+    );
     const points = wrapper.children().find(Line);
     // First point
     expect(points.at(0).prop('from')).toEqual({ x: 8, y: 0 });

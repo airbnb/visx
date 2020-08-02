@@ -1,31 +1,12 @@
 import React from 'react';
 import cx from 'classnames';
 import Axis from './Axis';
-import ORIENT from '../constants/orientation';
-import { SharedAxisProps } from '../types';
+import Orientation from '../constants/orientation';
+import { SharedAxisProps, AxisScale } from '../types';
 
-export type AxisBottomProps<ScaleInput> = SharedAxisProps<ScaleInput>;
-
-export default function AxisBottom<ScaleInput>({
-  children,
+export default function AxisBottom<Scale extends AxisScale>({
   axisClassName,
-  axisLineClassName,
-  hideAxisLine,
-  hideTicks,
-  hideZero,
-  label,
-  labelClassName,
   labelOffset = 8,
-  labelProps,
-  left,
-  numTicks,
-  rangePadding,
-  scale,
-  stroke,
-  strokeWidth,
-  strokeDasharray,
-  tickClassName,
-  tickFormat,
   tickLabelProps = (/** tickValue, index */) => ({
     dy: '0.25em',
     fill: '#222',
@@ -34,41 +15,16 @@ export default function AxisBottom<ScaleInput>({
     textAnchor: 'middle',
   }),
   tickLength = 8,
-  tickStroke,
-  tickTransform,
-  tickValues,
-  tickComponent,
-  top,
-}: AxisBottomProps<ScaleInput>) {
+  ...restProps
+}: SharedAxisProps<Scale>) {
   return (
     <Axis
       axisClassName={cx('vx-axis-bottom', axisClassName)}
-      axisLineClassName={axisLineClassName}
-      hideAxisLine={hideAxisLine}
-      hideTicks={hideTicks}
-      hideZero={hideZero}
-      label={label}
-      labelClassName={labelClassName}
       labelOffset={labelOffset}
-      labelProps={labelProps}
-      left={left}
-      numTicks={numTicks}
-      orientation={ORIENT.bottom}
-      rangePadding={rangePadding}
-      scale={scale}
-      stroke={stroke}
-      strokeWidth={strokeWidth}
-      strokeDasharray={strokeDasharray}
-      tickClassName={tickClassName}
-      tickFormat={tickFormat}
+      orientation={Orientation.bottom}
       tickLabelProps={tickLabelProps}
       tickLength={tickLength}
-      tickStroke={tickStroke}
-      tickTransform={tickTransform}
-      tickValues={tickValues}
-      tickComponent={tickComponent}
-      top={top}
-      children={children}
+      {...restProps}
     />
   );
 }
