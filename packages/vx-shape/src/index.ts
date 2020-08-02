@@ -7,6 +7,7 @@ export { default as Area } from './shapes/Area';
 export { default as AreaClosed } from './shapes/AreaClosed';
 export { default as AreaStack } from './shapes/AreaStack';
 export { default as Bar } from './shapes/Bar';
+export { default as BarRounded } from './shapes/BarRounded';
 export { default as BarGroup } from './shapes/BarGroup';
 export { default as BarGroupHorizontal } from './shapes/BarGroupHorizontal';
 export { default as BarStack } from './shapes/BarStack';
