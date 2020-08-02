@@ -67,6 +67,20 @@ describe('<BarRounded />', () => {
     );
   });
 
+  test('it should set top left & bottom left corner radius', () => {
+    const wrapper = BarRoundedWrapper({ left: true });
+    expect(wrapper.prop('d')).toBe(
+      'M2,0 h6 h2v2 v16 v2h-2 h-6 a2,2 0 0 1 -2,-2 v-16 a2,2 0 0 1 2,-2z',
+    );
+  });
+
+  test('it should set top right & bottom right corner radius', () => {
+    const wrapper = BarRoundedWrapper({ right: true });
+    expect(wrapper.prop('d')).toBe(
+      'M2,0 h6 a2,2 0 0 1 2,2 v16 a2,2 0 0 1 -2,2 h-6 h-2v-2 v-16 v-2h2z',
+    );
+  });
+
   test('it should set all corner radius', () => {
     const wrapper = BarRoundedWrapper({ all: true });
     expect(wrapper.prop('d')).toBe(

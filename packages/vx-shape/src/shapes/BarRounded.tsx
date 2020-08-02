@@ -55,10 +55,10 @@ export default function BarRounded({
   bottomRight = false,
   ...restProps
 }: BarRoundedProps & Omit<React.SVGProps<SVGPathElement>, keyof BarRoundedProps>) {
-  topRight = all || top || topRight;
-  bottomRight = all || bottom || bottomRight;
-  bottomLeft = all || bottom || bottomLeft;
-  topLeft = all || top || topLeft;
+  topRight = all || top || right || topRight;
+  bottomRight = all || bottom || right || bottomRight;
+  bottomLeft = all || bottom || left || bottomLeft;
+  topLeft = all || top || left || topLeft;
 
   // clamp radius to center of shortest side of the rect
   radius = Math.min(radius, Math.min(width, height) / 2);
