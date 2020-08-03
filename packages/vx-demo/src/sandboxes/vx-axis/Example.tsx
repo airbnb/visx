@@ -118,7 +118,7 @@ export default function Example({ width: outerWidth = 800, height: outerHeight =
               fill={gridColor}
               fillOpacity={0.2}
             />
-            <Grid<typeof values[0], number>
+            <Grid
               xScale={scale}
               yScale={yScale}
               stroke={gridColor}
