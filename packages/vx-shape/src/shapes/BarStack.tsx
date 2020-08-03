@@ -8,7 +8,7 @@ import stackOrder from '../util/stackOrder';
 import stackOffset from '../util/stackOffset';
 import Bar from './Bar';
 import { StackProps, NumAccessor as StackNumAccessor } from './Stack';
-import { ScaleType, StackKey, BarStack, $TSFIXME } from '../types';
+import { StackKey, BarStack, $TSFIXME, ShapeScale } from '../types';
 import setNumOrAccessor from '../util/setNumberOrNumberAccessor';
 
 type PickProps = 'data' | 'className' | 'top' | 'left' | 'keys' | 'order' | 'offset' | 'value';
@@ -23,9 +23,9 @@ export type BarStackProps<Datum, Key> = Pick<StackProps<Datum, Key>, PickProps> 
   /** Returns the value mapped to the y1 of a bar. */
   y1?: (d: SeriesPoint<Datum>) => $TSFIXME;
   /** @vx/scale or d3-scale that takes an x value and maps it to an x axis position. */
-  xScale: ScaleType;
+  xScale: ShapeScale;
   /** @vx/scale or d3-scale that takes a y value and maps it to an y axis position. */
-  yScale: ScaleType;
+  yScale: ShapeScale;
   /** Returns the desired color for a bar with a given key and index. */
   color: (key: Key, index: number) => string;
   /** Override render function which is passed the configured arc generator as input. */
@@ -38,8 +38,8 @@ export default function BarStackComponent<Datum, Key extends StackKey = StackKey
   top,
   left,
   x,
-  y0 = (d: $TSFIXME) => d && d[0],
-  y1 = (d: $TSFIXME) => d && d[1],
+  y0 = (d: $TSFIXME) => d?.[0],
+  y1 = (d: $TSFIXME) => d?.[1],
   xScale,
   yScale,
   color,

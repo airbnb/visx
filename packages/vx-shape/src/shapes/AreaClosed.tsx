@@ -3,11 +3,11 @@ import React from 'react';
 import cx from 'classnames';
 import { area } from 'd3-shape';
 import { AreaProps } from './Area';
-import { ScaleType } from '../types';
 import setNumOrAccessor from '../util/setNumberOrNumberAccessor';
+import { ShapeScale } from '../types';
 
 export type AreaClosedProps<Datum> = {
-  yScale: ScaleType;
+  yScale: ShapeScale;
 } & Pick<
   AreaProps<Datum>,
   | 'className'

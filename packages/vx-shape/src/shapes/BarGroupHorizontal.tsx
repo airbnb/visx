@@ -1,9 +1,10 @@
 import React from 'react';
 import cx from 'classnames';
 import { Group } from '@vx/group';
+import { PickD3Scale } from '@vx/scale';
 import Bar from './Bar';
 import { BarGroupProps } from './BarGroup';
-import { ScaleType, BarGroupHorizontal, $TSFIXME, GroupKey } from '../types';
+import { BarGroupHorizontal, $TSFIXME, GroupKey, ShapeScale } from '../types';
 
 type PickProps = 'data' | 'className' | 'top' | 'left' | 'keys' | 'color';
 
@@ -13,11 +14,11 @@ export type BarGroupHorizontalProps<Datum, Key> = Pick<BarGroupProps<Datum, Key>
   /** Returns the value mapped to the y0 (position of group) of a bar */
   y0: (d: Datum) => $TSFIXME;
   /** @vx/scale or d3-scale that takes a key value (Datum[key]) and maps it to an x axis position (width of bar). */
-  xScale: ScaleType;
+  xScale: ShapeScale;
   /** @vx/scale or d3-scale that takes a y0 value (position of group) and maps it to a y axis position. */
-  y0Scale: ScaleType;
+  y0Scale: PickD3Scale<'band'>;
   /** @vx/scale or d3-scale that takes a group key and maps it to an y axis position (within a group). */
-  y1Scale: ScaleType;
+  y1Scale: PickD3Scale<'band'>;
   /** Total width of the x-axis. */
   width: number;
   /** Override render function which is passed the computed Ba/rGroups. */
@@ -54,7 +55,7 @@ export default function BarGroupHorizontalComponent<
   const barGroups: BarGroupHorizontal<Key>[] = data.map((group, i) => ({
     index: i,
     y0: y0Scale(y0(group)) || 0,
-    bars: keys.map((key, j) => {
+    bars: keys.map((key: Key, j) => {
       const value = group[key];
       return {
         index: j,

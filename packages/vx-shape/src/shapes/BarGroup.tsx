@@ -1,8 +1,9 @@
 import React from 'react';
 import cx from 'classnames';
 import { Group } from '@vx/group';
+import { PickD3Scale } from '@vx/scale';
 import Bar from './Bar';
-import { BarGroup, ScaleType, GroupKey, $TSFIXME } from '../types';
+import { BarGroup, GroupKey, $TSFIXME, ShapeScale } from '../types';
 
 export type BarGroupProps<Datum, Key> = {
   /** Array of data for which to generate grouped bars. */
@@ -10,11 +11,11 @@ export type BarGroupProps<Datum, Key> = {
   /** Returns the value mapped to the x0 (group position) of a bar */
   x0: (d: Datum) => $TSFIXME;
   /** @vx/scale or d3-scale that takes an x0 value (position of group) and maps it to an x0 axis position of the group. */
-  x0Scale: ScaleType;
+  x0Scale: PickD3Scale<'band'>;
   /** @vx/scale or d3-scale that takes a group key and maps it to an x axis position (within a group). */
-  x1Scale: ScaleType;
+  x1Scale: PickD3Scale<'band'>;
   /** @vx/scale or d3-scale that takes an y value (Datum[key]) and maps it to a y axis position. */
-  yScale: ScaleType;
+  yScale: ShapeScale;
   /** Returns the desired color for a bar with a given key and index. */
   color: (key: Key, index: number) => string;
   /** Array of keys corresponding to stack layers. */

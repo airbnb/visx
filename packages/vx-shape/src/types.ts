@@ -1,4 +1,5 @@
 import { SeriesPoint as SeriesPointType } from 'd3-shape';
+import { D3Scale } from '@vx/scale';
 
 export type SeriesPoint<Datum> = SeriesPointType<Datum>;
 
@@ -110,11 +111,7 @@ export type SharedLinkProps<Link> = {
   data: Link;
 };
 
-/** This is meant to be a generic interface for any scale based on usage in this package. */
-export interface ScaleType<Input = $TSFIXME, Output = number> {
-  (...args: Input[]): Output | undefined;
-  range(): Output[] | [Output, Output];
-  domain(): Input[] | [Input, Input];
-  bandwidth?: () => number;
-  copy(): this;
-}
+/** A catch-all type for scales that returns number */
+export type ShapeScale =
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  D3Scale<number, any, any>;
