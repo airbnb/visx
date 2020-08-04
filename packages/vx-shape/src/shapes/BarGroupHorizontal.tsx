@@ -3,7 +3,7 @@ import cx from 'classnames';
 import { Group } from '@vx/group';
 import { ScaleInput } from '@vx/scale';
 import Bar from './Bar';
-import { ShapeScale, AnyScaleBand, DatumObject, AddSVGProps } from '../types';
+import { PositionScale, AnyScaleBand, DatumObject, AddSVGProps } from '../types';
 import { BarGroupHorizontal, BaseBarGroupProps } from '../types/bar';
 import { Accessor } from '../types/accessor';
 
@@ -18,7 +18,7 @@ export type BarGroupHorizontalProps<
   /** Returns the value mapped to the y0 (position of group) of a bar */
   y0: Accessor<Datum, ScaleInput<Y0Scale>>;
   /** @vx/scale or d3-scale that takes a key value (Datum[key]) and maps it to an x axis position (width of bar). */
-  xScale: ShapeScale;
+  xScale: PositionScale;
   /** @vx/scale or d3-scale that takes a y0 value (position of group) and maps it to a y axis position. */
   y0Scale: Y0Scale;
   /** @vx/scale or d3-scale that takes a group key and maps it to an y axis position (within a group). */

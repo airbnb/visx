@@ -10,7 +10,7 @@ export type AnyScaleBand = PickD3Scale<'band', any, any>;
 
 /** A catch-all type for scales that returns number */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type ShapeScale = D3Scale<number, any, any>;
+export type PositionScale = D3Scale<number, any, any>;
 
 /**
  * Add fields from `SVGProps` for the specified SVG `Element`

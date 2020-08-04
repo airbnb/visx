@@ -3,7 +3,7 @@ import cx from 'classnames';
 import { Group } from '@vx/group';
 import { ScaleInput } from '@vx/scale';
 import Bar from './Bar';
-import { ShapeScale, DatumObject, AnyScaleBand, AddSVGProps } from '../types';
+import { PositionScale, DatumObject, AnyScaleBand, AddSVGProps } from '../types';
 import { BaseBarGroupProps, BarGroup } from '../types/bar';
 import { Accessor } from '../types/accessor';
 
@@ -20,7 +20,7 @@ export type BarGroupProps<
   /** @vx/scale or d3-scale that takes a group key and maps it to an x axis position (within a group). */
   x1Scale: X1Scale;
   /** @vx/scale or d3-scale that takes an y value (Datum[key]) and maps it to a y axis position. */
-  yScale: ShapeScale;
+  yScale: PositionScale;
   /** Total height of the y-axis. */
   height: number;
   /** Override render function which is passed the computed BarGroups. */

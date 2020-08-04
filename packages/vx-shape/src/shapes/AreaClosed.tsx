@@ -3,10 +3,10 @@ import cx from 'classnames';
 import { area } from 'd3-shape';
 import { AreaProps } from './Area';
 import setNumOrAccessor from '../util/setNumberOrNumberAccessor';
-import { ShapeScale, AddSVGProps } from '../types';
+import { PositionScale, AddSVGProps } from '../types';
 
 export type AreaClosedProps<Datum> = {
-  yScale: ShapeScale;
+  yScale: PositionScale;
 } & Pick<
   AreaProps<Datum>,
   | 'className'
