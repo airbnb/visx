@@ -106,7 +106,7 @@ export default function Stack<Datum, Key = StackKey>({
           className={cx('vx-stack', className)}
           key={`stack-${i}-${series.key || ''}`}
           d={path(series) || ''}
-          fill={color && color(series.key, i)}
+          fill={color?.(series.key, i)}
           {...restProps}
         />
       ))}

@@ -54,10 +54,10 @@ export default function LinkRadialCurve<Link, Node>({
   innerRef,
   path,
   percent = 0.2,
-  x = (n: $TSFIXME) => n && n.x,
-  y = (n: $TSFIXME) => n && n.y,
-  source = (l: $TSFIXME) => l && l.source,
-  target = (l: $TSFIXME) => l && l.target,
+  x = (n: $TSFIXME) => n?.x,
+  y = (n: $TSFIXME) => n?.y,
+  source = (l: $TSFIXME) => l?.source,
+  target = (l: $TSFIXME) => l?.target,
   ...restProps
 }: LinkRadialCurveProps<Link, Node> &
   Omit<React.SVGProps<SVGPathElement>, keyof LinkRadialCurveProps<Link, Node>>) {

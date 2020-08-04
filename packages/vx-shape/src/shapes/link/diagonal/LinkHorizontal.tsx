@@ -28,10 +28,10 @@ export default function LinkHorizontalDiagonal<Link, Node>({
   data,
   innerRef,
   path,
-  x = (n: $TSFIXME) => n && n.y, // note this returns a y value
-  y = (n: $TSFIXME) => n && n.x, // note this returns an x value
-  source = (l: $TSFIXME) => l && l.source,
-  target = (l: $TSFIXME) => l && l.target,
+  x = (n: $TSFIXME) => n?.y, // note this returns a y value
+  y = (n: $TSFIXME) => n?.x, // note this returns an x value
+  source = (l: $TSFIXME) => l?.source,
+  target = (l: $TSFIXME) => l?.target,
   ...restProps
 }: LinkHorizontalDiagonalProps<Link, Node> &
   Omit<React.SVGProps<SVGPathElement>, keyof LinkHorizontalDiagonalProps<Link, Node>>) {

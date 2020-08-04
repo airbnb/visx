@@ -67,7 +67,7 @@ export default function Example({
     <svg width={width} height={height}>
       <rect x={0} y={0} width={width} height={height} fill={background} rx={14} />
       <Group top={margin.top} left={margin.left}>
-        <BarGroup<CityTemperature, string>
+        <BarGroup
           data={data}
           keys={keys}
           height={yMax}

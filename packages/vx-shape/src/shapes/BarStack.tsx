@@ -8,8 +8,9 @@ import stackOrder from '../util/stackOrder';
 import stackOffset from '../util/stackOffset';
 import Bar from './Bar';
 import { StackProps, NumAccessor as StackNumAccessor } from './Stack';
-import { StackKey, BarStack, $TSFIXME, ShapeScale } from '../types';
+import { StackKey, $TSFIXME, ShapeScale } from '../types';
 import setNumOrAccessor from '../util/setNumberOrNumberAccessor';
+import { BarStack } from '../types/bar';
 
 type PickProps = 'data' | 'className' | 'top' | 'left' | 'keys' | 'order' | 'offset' | 'value';
 

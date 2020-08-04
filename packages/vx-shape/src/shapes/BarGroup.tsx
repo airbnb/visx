@@ -1,33 +1,27 @@
 import React from 'react';
 import cx from 'classnames';
 import { Group } from '@vx/group';
-import { PickD3Scale } from '@vx/scale';
+import { ScaleInput } from '@vx/scale';
 import Bar from './Bar';
-import { BarGroup, GroupKey, $TSFIXME, ShapeScale } from '../types';
+import { ShapeScale, DatumObject, AnyScaleBand } from '../types';
+import { BaseBarGroupProps, BarGroup } from '../types/bar';
 
-export type BarGroupProps<Datum, Key> = {
-  /** Array of data for which to generate grouped bars. */
-  data: Datum[];
+export type BarGroupProps<
+  Datum extends DatumObject,
+  Key extends keyof Datum = keyof Datum,
+  X0Scale extends AnyScaleBand = AnyScaleBand,
+  X1Scale extends AnyScaleBand = AnyScaleBand
+> = BaseBarGroupProps<Datum, Key> & {
   /** Returns the value mapped to the x0 (group position) of a bar */
-  x0: (d: Datum) => $TSFIXME;
+  x0: (d: Datum) => ScaleInput<X0Scale>;
   /** @vx/scale or d3-scale that takes an x0 value (position of group) and maps it to an x0 axis position of the group. */
-  x0Scale: PickD3Scale<'band'>;
+  x0Scale: X0Scale;
   /** @vx/scale or d3-scale that takes a group key and maps it to an x axis position (within a group). */
-  x1Scale: PickD3Scale<'band'>;
+  x1Scale: X1Scale;
   /** @vx/scale or d3-scale that takes an y value (Datum[key]) and maps it to a y axis position. */
   yScale: ShapeScale;
-  /** Returns the desired color for a bar with a given key and index. */
-  color: (key: Key, index: number) => string;
-  /** Array of keys corresponding to stack layers. */
-  keys: Key[];
   /** Total height of the y-axis. */
   height: number;
-  /** className applied to Bars. */
-  className?: string;
-  /** Top offset of rendered Bars. */
-  top?: number;
-  /** Left offset of rendered Bars. */
-  left?: number;
   /** Override render function which is passed the computed BarGroups. */
   children?: (barGroups: BarGroup<Key>[]) => React.ReactNode;
 };
@@ -71,8 +65,10 @@ export type BarGroupProps<Datum, Key> = {
  * Example: [https://vx-demo.now.sh/bargroup](https://vx-demo.now.sh/bargroup)
  */
 export default function BarGroupComponent<
-  Datum extends { [key: string]: $TSFIXME },
-  Key extends GroupKey = GroupKey
+  Datum extends DatumObject,
+  Key extends keyof Datum = keyof Datum,
+  X0Scale extends AnyScaleBand = AnyScaleBand,
+  X1Scale extends AnyScaleBand = AnyScaleBand
 >({
   data,
   className,
@@ -87,7 +83,7 @@ export default function BarGroupComponent<
   height,
   children,
   ...restProps
-}: BarGroupProps<Datum, Key> &
+}: BarGroupProps<Datum, Key, X0Scale, X1Scale> &
   Omit<React.SVGProps<SVGRectElement>, keyof BarGroupProps<Datum, Key>>) {
   const x1Range = x1Scale.range();
   const x1Domain = x1Scale.domain();

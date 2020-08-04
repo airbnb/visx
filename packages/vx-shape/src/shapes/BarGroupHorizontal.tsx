@@ -1,24 +1,27 @@
 import React from 'react';
 import cx from 'classnames';
 import { Group } from '@vx/group';
-import { PickD3Scale } from '@vx/scale';
+import { ScaleInput } from '@vx/scale';
 import Bar from './Bar';
-import { BarGroupProps } from './BarGroup';
-import { BarGroupHorizontal, $TSFIXME, GroupKey, ShapeScale } from '../types';
+import { ShapeScale, AnyScaleBand, DatumObject } from '../types';
+import { BarGroupHorizontal, BaseBarGroupProps } from '../types/bar';
 
-type PickProps = 'data' | 'className' | 'top' | 'left' | 'keys' | 'color';
-
-export type BarGroupHorizontalProps<Datum, Key> = Pick<BarGroupProps<Datum, Key>, PickProps> & {
+export type BarGroupHorizontalProps<
+  Datum extends DatumObject,
+  Key extends keyof Datum = keyof Datum,
+  Y0Scale extends AnyScaleBand = AnyScaleBand,
+  Y1Scale extends AnyScaleBand = AnyScaleBand
+> = BaseBarGroupProps<Datum, Key> & {
   /** Returns the value (Datum[key]) mapped to the x of a bar */
   x?: (barValue: number) => number;
   /** Returns the value mapped to the y0 (position of group) of a bar */
-  y0: (d: Datum) => $TSFIXME;
+  y0: (d: Datum) => ScaleInput<Y0Scale>;
   /** @vx/scale or d3-scale that takes a key value (Datum[key]) and maps it to an x axis position (width of bar). */
   xScale: ShapeScale;
   /** @vx/scale or d3-scale that takes a y0 value (position of group) and maps it to a y axis position. */
-  y0Scale: PickD3Scale<'band'>;
+  y0Scale: Y0Scale;
   /** @vx/scale or d3-scale that takes a group key and maps it to an y axis position (within a group). */
-  y1Scale: PickD3Scale<'band'>;
+  y1Scale: Y1Scale;
   /** Total width of the x-axis. */
   width: number;
   /** Override render function which is passed the computed Ba/rGroups. */
@@ -26,8 +29,10 @@ export type BarGroupHorizontalProps<Datum, Key> = Pick<BarGroupProps<Datum, Key>
 };
 
 export default function BarGroupHorizontalComponent<
-  Datum extends { [key: string]: $TSFIXME },
-  Key extends GroupKey = GroupKey
+  Datum extends DatumObject,
+  Key extends keyof Datum = keyof Datum,
+  Y0Scale extends AnyScaleBand = AnyScaleBand,
+  Y1Scale extends AnyScaleBand = AnyScaleBand
 >({
   data,
   className,
@@ -43,8 +48,8 @@ export default function BarGroupHorizontalComponent<
   width,
   children,
   ...restProps
-}: BarGroupHorizontalProps<Datum, Key> &
-  Omit<React.SVGProps<SVGRectElement>, keyof BarGroupHorizontalProps<Datum, Key> | PickProps>) {
+}: BarGroupHorizontalProps<Datum, Key, Y0Scale, Y1Scale> &
+  Omit<React.SVGProps<SVGRectElement>, keyof BarGroupHorizontalProps<Datum, Key>>) {
   const y1Range = y1Scale.range();
   const y1Domain = y1Scale.domain();
   const barHeight =

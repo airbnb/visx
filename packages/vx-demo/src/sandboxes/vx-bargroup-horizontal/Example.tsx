@@ -35,11 +35,11 @@ const keys = Object.keys(data[0]).filter(d => d !== 'date') as CityName[];
 const getDate = (d: CityTemperature) => d.date;
 
 // scales
-const dateScale = scaleBand<string>({
+const dateScale = scaleBand({
   domain: data.map(getDate),
   padding: 0.2,
 });
-const cityScale = scaleBand<string>({
+const cityScale = scaleBand({
   domain: keys,
   padding: 0.1,
 });
@@ -70,7 +70,7 @@ export default function Example({
     <svg width={width} height={height}>
       <rect x={0} y={0} width={width} height={height} fill={background} rx={14} />
       <Group top={margin.top} left={margin.left}>
-        <BarGroupHorizontal<CityTemperature, CityName>
+        <BarGroupHorizontal
           data={data}
           keys={keys}
           width={xMax}

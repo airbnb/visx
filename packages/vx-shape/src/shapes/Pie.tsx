@@ -101,7 +101,7 @@ export default function Pie<Datum>({
       {arcs.map((arc, i) => (
         <g key={`pie-arc-${i}`}>
           <path className={cx('vx-pie-arc', className)} d={path(arc) || ''} {...restProps} />
-          {centroid && centroid(path.centroid(arc), arc)}
+          {centroid?.(path.centroid(arc), arc)}
         </g>
       ))}
     </Group>
