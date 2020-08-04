@@ -109,7 +109,7 @@ export default withTooltip<AreaProps, TooltipData>(
           />
           <LinearGradient id="area-background-gradient" from={background} to={background2} />
           <LinearGradient id="area-gradient" from={accentColor} to={accentColor} toOpacity={0.1} />
-          <GridRows<number>
+          <GridRows
             scale={stockValueScale}
             width={xMax}
             strokeDasharray="3,3"
@@ -117,7 +117,7 @@ export default withTooltip<AreaProps, TooltipData>(
             strokeOpacity={0.3}
             pointerEvents="none"
           />
-          <GridColumns<Date>
+          <GridColumns
             scale={dateScale}
             height={yMax}
             strokeDasharray="3,3"

@@ -3,22 +3,28 @@ import cx from 'classnames';
 import Line, { LineProps } from '@vx/shape/lib/shapes/Line';
 import { Group } from '@vx/group';
 import { Point } from '@vx/point';
-import { Scale, CommonGridProps } from '../types';
+import { getTicks, ScaleInput } from '@vx/scale';
+import { CommonGridProps, GridScale } from '../types';
 
-export type GridRowsProps<ScaleInput> = CommonGridProps & {
-  /** `@vx/scale` or `d3-scale` object used to map from ScaleInput to y-coordinates. */
-  scale: Scale<ScaleInput, number>;
+export type GridRowsProps<Scale extends GridScale> = CommonGridProps & {
+  /** `@vx/scale` or `d3-scale` object used to convert value to position. */
+  scale: Scale;
+  /**
+   * Exact values used to generate grid lines using `scale`.
+   * Overrides `numTicks` if specified.
+   */
+  tickValues?: ScaleInput<Scale>[];
   /** Total width of the each grid row line. */
   width: number;
 };
 
-export type AllGridRowsProps<ScaleInput> = GridRowsProps<ScaleInput> &
+export type AllGridRowsProps<Scale extends GridScale> = GridRowsProps<Scale> &
   Omit<
     LineProps & Omit<React.SVGProps<SVGLineElement>, keyof LineProps>,
-    keyof GridRowsProps<ScaleInput> | keyof CommonGridProps
+    keyof GridRowsProps<Scale>
   >;
 
-export default function GridRows<ScaleInput>({
+export default function GridRows<Scale extends GridScale>({
   top = 0,
   left = 0,
   scale,
@@ -32,9 +38,8 @@ export default function GridRows<ScaleInput>({
   offset,
   tickValues,
   ...restProps
-}: AllGridRowsProps<ScaleInput>) {
-  const ticks = (tickValues ||
-    (scale.ticks ? scale.ticks(numTicks) : scale.domain())) as ScaleInput[];
+}: AllGridRowsProps<Scale>) {
+  const ticks = tickValues ?? getTicks(scale, numTicks);
   return (
     <Group className={cx('vx-rows', className)} top={top} left={left}>
       {ticks.map((d, i) => {

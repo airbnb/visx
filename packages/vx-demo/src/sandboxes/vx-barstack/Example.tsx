@@ -107,7 +107,7 @@ export default function Example({
     <div style={{ position: 'relative' }}>
       <svg ref={containerRef} width={width} height={height}>
         <rect x={0} y={0} width={width} height={height} fill={background} rx={14} />
-        <Grid<string, number>
+        <Grid
           top={margin.top}
           left={margin.left}
           xScale={dateScale}

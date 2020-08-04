@@ -1,9 +1,10 @@
 import React from 'react';
 import cx from 'classnames';
 import { Group } from '@vx/group';
+import { ScaleInput } from '@vx/scale';
 import GridRows, { AllGridRowsProps } from './GridRows';
 import GridColumns, { AllGridColumnProps } from './GridColumns';
-import { Scale, CommonGridProps } from '../types';
+import { CommonGridProps, GridScale } from '../types';
 
 type CommonPropsToOmit =
   | 'scale'
@@ -14,34 +15,33 @@ type CommonPropsToOmit =
   | 'from'
   | 'to';
 
-export type GridProps<XScaleInput, YScaleInput> = Omit<
-  AllGridRowsProps<YScaleInput>,
+export type GridProps<XScale extends GridScale, YScale extends GridScale> = Omit<
+  AllGridRowsProps<YScale> & AllGridColumnProps<XScale>,
   CommonPropsToOmit
-> &
-  Omit<AllGridColumnProps<XScaleInput>, CommonPropsToOmit> & {
-    /** `@vx/scale` or `d3-scale` object used to map from ScaleInput to x-coordinates (GridColumns). */
-    xScale: Scale<XScaleInput, number>;
-    /** `@vx/scale` or `d3-scale` object used to map from ScaleInput to y-coordinates (GridRows). */
-    yScale: Scale<YScaleInput, number>;
-    /** Pixel offset to apply as an x-translation to each GridColumns line. */
-    xOffset?: CommonGridProps['offset'];
-    /** Pixel offset to apply as an y-translation to each GridRows line. */
-    yOffset?: CommonGridProps['offset'];
-    /** Approximate number of row gridlines. */
-    numTicksRows?: CommonGridProps['numTicks'];
-    /** Approximate number of column gridlines. */
-    numTicksColumns?: CommonGridProps['numTicks'];
-    /** Style object to apply to GridRows. */
-    rowLineStyle?: CommonGridProps['lineStyle'];
-    /** Style object to apply to GridColumns. */
-    columnLineStyle?: CommonGridProps['lineStyle'];
-    /** Exact values to be used for GridRows lines, passed to yScale. Use this if you need precise control over GridRows values.  */
-    rowTickValues?: CommonGridProps['tickValues'];
-    /** Exact values to be used for GridColumns lines, passed to xScale. Use this if you need precise control over GridColumns values.  */
-    columnTickValues?: CommonGridProps['tickValues'];
-  };
+> & {
+  /** `@vx/scale` or `d3-scale` object used to map from ScaleInput to x-coordinates (GridColumns). */
+  xScale: XScale;
+  /** `@vx/scale` or `d3-scale` object used to map from ScaleInput to y-coordinates (GridRows). */
+  yScale: YScale;
+  /** Pixel offset to apply as an x-translation to each GridColumns line. */
+  xOffset?: CommonGridProps['offset'];
+  /** Pixel offset to apply as an y-translation to each GridRows line. */
+  yOffset?: CommonGridProps['offset'];
+  /** Approximate number of row gridlines. */
+  numTicksRows?: CommonGridProps['numTicks'];
+  /** Approximate number of column gridlines. */
+  numTicksColumns?: CommonGridProps['numTicks'];
+  /** Style object to apply to GridRows. */
+  rowLineStyle?: CommonGridProps['lineStyle'];
+  /** Style object to apply to GridColumns. */
+  columnLineStyle?: CommonGridProps['lineStyle'];
+  /** Exact values to be used for GridRows lines, passed to yScale. Use this if you need precise control over GridRows values.  */
+  rowTickValues?: ScaleInput<YScale>[];
+  /** Exact values to be used for GridColumns lines, passed to xScale. Use this if you need precise control over GridColumns values.  */
+  columnTickValues?: ScaleInput<XScale>[];
+};
 
-export default function Grid<XScaleInput, YScaleInput>({
+export default function Grid<XScale extends GridScale, YScale extends GridScale>({
   top,
   left,
   xScale,
@@ -61,10 +61,10 @@ export default function Grid<XScaleInput, YScaleInput>({
   rowTickValues,
   columnTickValues,
   ...restProps
-}: GridProps<XScaleInput, YScaleInput>) {
+}: GridProps<XScale, YScale>) {
   return (
     <Group className={cx('vx-grid', className)} top={top} left={left}>
-      <GridRows<YScaleInput>
+      <GridRows
         className={className}
         scale={yScale}
         width={width}
@@ -77,7 +77,7 @@ export default function Grid<XScaleInput, YScaleInput>({
         tickValues={rowTickValues}
         {...restProps}
       />
-      <GridColumns<XScaleInput>
+      <GridColumns
         className={className}
         scale={xScale}
         height={height}
