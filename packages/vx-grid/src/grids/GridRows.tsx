@@ -7,9 +7,12 @@ import { getTicks, ScaleInput } from '@vx/scale';
 import { CommonGridProps, GridScale } from '../types';
 
 export type GridRowsProps<Scale extends GridScale> = CommonGridProps & {
-  /** `@vx/scale` or `d3-scale` object used to map from ScaleInput to y-coordinates. */
+  /** `@vx/scale` or `d3-scale` object used to convert value to position. */
   scale: Scale;
-  /** Exact values used to generate grid coordinates (y- for Rows, x- for Columns) lines using `scale`. Overrides `numTicks` if specified. */
+  /**
+   * Exact values used to generate grid lines using `scale`.
+   * Overrides `numTicks` if specified.
+   */
   tickValues?: ScaleInput<Scale>[];
   /** Total width of the each grid row line. */
   width: number;
