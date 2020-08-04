@@ -1,7 +1,8 @@
 import React from 'react';
 import cx from 'classnames';
 import { path as d3Path } from 'd3-path';
-import { SharedLinkProps, AccessorProps, $TSFIXME, AddSVGProps } from '../../../types';
+import { SharedLinkProps, AccessorProps, AddSVGProps } from '../../../types';
+import { getY, getX, getSource, getTarget } from '../../../util/accessors';
 
 export function pathHorizontalCurve<Link, Node>({
   source,
@@ -44,10 +45,10 @@ export default function LinkHorizontalCurve<Link, Node>({
   innerRef,
   path,
   percent = 0.2,
-  x = (n: $TSFIXME) => n?.y, // note this returns a y value
-  y = (n: $TSFIXME) => n?.x, // note this returns an x value
-  source = (l: $TSFIXME) => l?.source,
-  target = (l: $TSFIXME) => l?.target,
+  x = getY, // note this returns a y value
+  y = getX, // note this returns an x value
+  source = getSource,
+  target = getTarget,
   ...restProps
 }: AddSVGProps<LinkHorizontalCurveProps<Link, Node>, SVGPathElement>) {
   const pathGen = path || pathHorizontalCurve({ source, target, x, y, percent });

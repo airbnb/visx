@@ -1,7 +1,8 @@
 import React from 'react';
 import cx from 'classnames';
 import { path as d3Path } from 'd3-path';
-import { SharedLinkProps, AccessorProps, $TSFIXME, AddSVGProps } from '../../../types';
+import { SharedLinkProps, AccessorProps, AddSVGProps } from '../../../types';
+import { getY, getX, getSource, getTarget } from '../../../util/accessors';
 
 export function pathHorizontalLine<Link, Node>({
   source,
@@ -34,10 +35,10 @@ export default function LinkHorizontalLine<Link, Node>({
   innerRef,
   data,
   path,
-  x = (d: $TSFIXME) => d.y, // note this returns a y value
-  y = (d: $TSFIXME) => d.x, // note this returns a y value
-  source = (d: $TSFIXME) => d.source,
-  target = (d: $TSFIXME) => d.target,
+  x = getY, // note this returns a y value
+  y = getX, // note this returns a x value
+  source = getSource,
+  target = getTarget,
   ...restProps
 }: AddSVGProps<LinkHorizontalLineProps<Link, Node>, SVGPathElement>) {
   const pathGen = path || pathHorizontalLine({ source, target, x, y });
