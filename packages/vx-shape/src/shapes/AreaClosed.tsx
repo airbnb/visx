@@ -1,27 +1,13 @@
 import React from 'react';
 import cx from 'classnames';
 import { area } from 'd3-shape';
-import { AreaProps } from './Area';
 import setNumOrAccessor from '../util/setNumberOrNumberAccessor';
 import { PositionScale, AddSVGProps } from '../types';
+import { BaseAreaProps } from '../types/area';
 
-export type AreaClosedProps<Datum> = {
+export type AreaClosedProps<Datum> = BaseAreaProps<Datum> & {
   yScale: PositionScale;
-} & Pick<
-  AreaProps<Datum>,
-  | 'className'
-  | 'innerRef'
-  | 'children'
-  | 'curve'
-  | 'defined'
-  | 'data'
-  | 'x'
-  | 'x0'
-  | 'x1'
-  | 'y'
-  | 'y0'
-  | 'y1'
->;
+};
 
 export default function AreaClosed<Datum>({
   x,

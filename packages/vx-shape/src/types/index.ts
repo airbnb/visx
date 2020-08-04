@@ -19,6 +19,8 @@ export type PositionScale = D3Scale<number, any, any>;
 export type AddSVGProps<Props, Element extends SVGElement> = Props &
   Omit<React.SVGProps<Element>, keyof Props>;
 
+export type ChildrenProp<Input> = (args: Input) => React.ReactNode;
+
 /** Unique key for item in a stack. */
 export type StackKey = string | number;
 
