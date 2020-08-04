@@ -9,8 +9,9 @@ import {
   pie as d3Pie,
   Pie as PieType,
 } from 'd3-shape';
-import setNumOrAccessor, { NumberAccessor as NumAccessor } from '../util/setNumberOrNumberAccessor';
+import setNumOrAccessor from '../util/setNumberOrNumberAccessor';
 import { $TSFIXME, AddSVGProps } from '../types';
+import { Accessor } from '../types/accessor';
 
 export type PieArcDatum<Datum> = PieArcDatumType<Datum>;
 
@@ -30,7 +31,7 @@ export type PieProps<Datum> = {
   /** Array of data to generate a Pie for. */
   data?: Datum[];
   /** Invoked for each datum, returns the value for a given Pie segment/arc datum. */
-  pieValue?: NumAccessor<Datum>;
+  pieValue?: Accessor<Datum, number>;
   /** Comparator function to sort *arcs*, overridden by pieSortValues if defined. If pieSort and pieSortValues are null, arcs match input data order. */
   pieSort?: null | ((a: Datum, b: Datum) => number);
   /** Comparator function to sort arc *values*, overrides pieSort if defined. If pieSort and pieSortValues are null, arcs match input data order. */
@@ -38,19 +39,19 @@ export type PieProps<Datum> = {
   /** Optional render function invoked for each Datum to render something (e.g., a Label) at each pie centroid. */
   centroid?: (xyCoords: [number, number], arc: PieArcDatum<Datum>) => React.ReactNode;
   /** Inner radius of the Arc shape. */
-  innerRadius?: NumAccessor<Datum> | number;
+  innerRadius?: number | Accessor<Datum, number>;
   /** Inner radius of the Arc shape. */
-  outerRadius?: NumAccessor<Datum> | number;
+  outerRadius?: number | Accessor<Datum, number>;
   /** Inner radius of the Arc shape. */
-  cornerRadius?: NumAccessor<Datum> | number;
+  cornerRadius?: number | Accessor<Datum, number>;
   /** Padding radius of the Arc shape, which determines the fixed linear distance separating adjacent arcs. */
-  padRadius?: NumAccessor<Datum> | number;
+  padRadius?: number | Accessor<Datum, number>;
   /** Returns the start angle of the overall Pie shape (the first value starts at startAngle), with 0 at -y (12 o’clock) and positive angles proceeding clockwise. */
-  startAngle?: NumAccessor<Datum> | number;
+  startAngle?: number | Accessor<Datum, number>;
   /** Returns the end angle of the overall Pie shape (the last value ends at endAngle), with 0 at -y (12 o’clock) and positive angles proceeding clockwise. */
-  endAngle?: NumAccessor<Datum> | number;
+  endAngle?: number | Accessor<Datum, number>;
   /** Padding angle of the Pie shape, which sets a fixed linear distance separating adjacent arcs. */
-  padAngle?: NumAccessor<Datum> | number;
+  padAngle?: number | Accessor<Datum, number>;
   /** Render function override which is passed the configured arc generator as input. */
   children?: (provided: ProvidedProps<Datum>) => React.ReactNode;
 };
@@ -76,10 +77,11 @@ export default function Pie<Datum>({
 }: AddSVGProps<PieProps<Datum>, SVGPathElement>) {
   const path = d3Arc<PieArcDatum<Datum>>();
 
-  if (innerRadius != null) setNumOrAccessor<NumAccessor<Datum>>(path.innerRadius, innerRadius);
-  if (outerRadius != null) setNumOrAccessor<NumAccessor<Datum>>(path.outerRadius, outerRadius);
-  if (cornerRadius != null) setNumOrAccessor<NumAccessor<Datum>>(path.cornerRadius, cornerRadius);
-  if (padRadius != null) setNumOrAccessor<NumAccessor<Datum>>(path.padRadius, padRadius);
+  if (innerRadius != null) setNumOrAccessor<Accessor<Datum, number>>(path.innerRadius, innerRadius);
+  if (outerRadius != null) setNumOrAccessor<Accessor<Datum, number>>(path.outerRadius, outerRadius);
+  if (cornerRadius != null)
+    setNumOrAccessor<Accessor<Datum, number>>(path.cornerRadius, cornerRadius);
+  if (padRadius != null) setNumOrAccessor<Accessor<Datum, number>>(path.padRadius, padRadius);
 
   const pie = d3Pie<Datum>();
   // ts can't distinguish between these method overloads
@@ -89,9 +91,9 @@ export default function Pie<Datum>({
   else if (pieSortValues != null) pie.sortValues(pieSortValues);
 
   if (pieValue != null) pie.value(pieValue);
-  if (padAngle != null) setNumOrAccessor<NumAccessor<Datum>>(pie.padAngle, padAngle);
-  if (startAngle != null) setNumOrAccessor<NumAccessor<Datum>>(pie.startAngle, startAngle);
-  if (endAngle != null) setNumOrAccessor<NumAccessor<Datum>>(pie.endAngle, endAngle);
+  if (padAngle != null) setNumOrAccessor<Accessor<Datum, number>>(pie.padAngle, padAngle);
+  if (startAngle != null) setNumOrAccessor<Accessor<Datum, number>>(pie.startAngle, startAngle);
+  if (endAngle != null) setNumOrAccessor<Accessor<Datum, number>>(pie.endAngle, endAngle);
 
   const arcs = pie(data);
   if (children) return <>{children({ arcs, path, pie })}</>;

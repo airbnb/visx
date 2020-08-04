@@ -16,8 +16,7 @@ import setNumOrAccessor from '../util/setNumberOrNumberAccessor';
 import stackOrder, { STACK_ORDERS } from '../util/stackOrder';
 import stackOffset, { STACK_OFFSETS } from '../util/stackOffset';
 import { StackKey, $TSFIXME, AddSVGProps } from '../types';
-
-export type NumAccessor<Datum> = (datum: Datum, index: number, data: Datum[]) => number;
+import { AccessorForArrayItem } from '../types/accessor';
 
 export type StackProps<Datum, Key> = {
   /** Array of data for which to generate a stack. */
@@ -41,19 +40,19 @@ export type StackProps<Datum, Key> = {
     stack: StackType<$TSFIXME, Datum, Key>;
   }) => React.ReactNode;
   /** Sets the x0 accessor function, and sets x1 to null. */
-  x?: NumAccessor<SeriesPoint<Datum>>;
+  x?: AccessorForArrayItem<SeriesPoint<Datum>, number>;
   /** Specifies the x0 accessor function which defaults to d => d[0]. */
-  x0?: NumAccessor<SeriesPoint<Datum>>;
+  x0?: AccessorForArrayItem<SeriesPoint<Datum>, number>;
   /** Specifies the x1 accessor function which defaults to null. */
-  x1?: NumAccessor<SeriesPoint<Datum>>;
+  x1?: AccessorForArrayItem<SeriesPoint<Datum>, number>;
   /** Specifies the y0 accessor function which defaults to d => 0. */
-  y0?: NumAccessor<SeriesPoint<Datum>>;
+  y0?: AccessorForArrayItem<SeriesPoint<Datum>, number>;
   /** Specifies the y1 accessor function which defaults to d => d[1]. */
-  y1?: NumAccessor<SeriesPoint<Datum>>;
+  y1?: AccessorForArrayItem<SeriesPoint<Datum>, number>;
   /** Sets the value accessor for a Datum, which defaults to d[key]. */
   value?: number | ((d: Datum, key: Key) => number);
   /** The defined accessor for the shape. The final area shape includes all points for which this function returns true. By default all points are defined. */
-  defined?: (datum: SeriesPoint<Datum>, index: number, data: SeriesPoint<Datum>[]) => boolean;
+  defined?: AccessorForArrayItem<SeriesPoint<Datum>, boolean>;
   /** Sets the stack order to the pre-defined d3 function, see https://github.com/d3/d3-shape#stack_order. */
   order?: keyof typeof STACK_ORDERS;
   /** Sets the stack offset to the pre-defined d3 offset, see https://github.com/d3/d3-shape#stack_offset. */

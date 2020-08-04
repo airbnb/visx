@@ -5,6 +5,7 @@ import { ScaleInput } from '@vx/scale';
 import Bar from './Bar';
 import { ShapeScale, AnyScaleBand, DatumObject, AddSVGProps } from '../types';
 import { BarGroupHorizontal, BaseBarGroupProps } from '../types/bar';
+import { Accessor } from '../types/accessor';
 
 export type BarGroupHorizontalProps<
   Datum extends DatumObject,
@@ -15,7 +16,7 @@ export type BarGroupHorizontalProps<
   /** Returns the value (Datum[key]) mapped to the x of a bar */
   x?: (barValue: number) => number;
   /** Returns the value mapped to the y0 (position of group) of a bar */
-  y0: (d: Datum) => ScaleInput<Y0Scale>;
+  y0: Accessor<Datum, ScaleInput<Y0Scale>>;
   /** @vx/scale or d3-scale that takes a key value (Datum[key]) and maps it to an x axis position (width of bar). */
   xScale: ShapeScale;
   /** @vx/scale or d3-scale that takes a y0 value (position of group) and maps it to a y axis position. */

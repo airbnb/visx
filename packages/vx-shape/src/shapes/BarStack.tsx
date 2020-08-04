@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/unbound-method */
 import React from 'react';
 import cx from 'classnames';
 import { Group } from '@vx/group';
@@ -7,14 +6,12 @@ import { stack as d3stack, SeriesPoint } from 'd3-shape';
 import stackOrder from '../util/stackOrder';
 import stackOffset from '../util/stackOffset';
 import Bar from './Bar';
-import { StackProps, NumAccessor as StackNumAccessor } from './Stack';
+import { StackProps } from './Stack';
 import { StackKey, $TSFIXME, ShapeScale, AddSVGProps } from '../types';
 import setNumOrAccessor from '../util/setNumberOrNumberAccessor';
 import { BarStack } from '../types/bar';
 
 type PickProps = 'data' | 'className' | 'top' | 'left' | 'keys' | 'order' | 'offset' | 'value';
-
-export type NumAccessor<Datum> = StackNumAccessor<Datum>;
 
 export type BarStackProps<Datum, Key> = Pick<StackProps<Datum, Key>, PickProps> & {
   /** Returns the value mapped to the x of a bar. */

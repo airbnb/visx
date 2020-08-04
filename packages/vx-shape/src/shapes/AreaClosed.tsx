@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/unbound-method */
 import React from 'react';
 import cx from 'classnames';
 import { area } from 'd3-shape';

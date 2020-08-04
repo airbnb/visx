@@ -4,8 +4,7 @@ import { radialLine, RadialLine } from 'd3-shape';
 import { LinePathProps } from './LinePath';
 import setNumberOrNumberAccessor from '../util/setNumberOrNumberAccessor';
 import { AddSVGProps } from '../types';
-
-export type NumAccessor<Datum> = (datum: Datum, index: number, data: Datum[]) => number;
+import { AccessorForArrayItem } from '../types/accessor';
 
 export type LineRadialProps<Datum> = Pick<
   LinePathProps<Datum>,
@@ -14,9 +13,9 @@ export type LineRadialProps<Datum> = Pick<
   /** Override render function which is passed the configured path generator as input. */
   children?: (args: { path: RadialLine<Datum> }) => React.ReactNode;
   /** Returns the angle value in radians for a given Datum, with 0 at -y (12 o’clock). */
-  angle?: number | NumAccessor<Datum>;
+  angle?: number | AccessorForArrayItem<Datum, number>;
   /** Returns the radius value in radians for a given Datum, with 0 at the center. */
-  radius?: number | NumAccessor<Datum>;
+  radius?: number | AccessorForArrayItem<Datum, number>;
 };
 
 export default function LineRadial<Datum>({

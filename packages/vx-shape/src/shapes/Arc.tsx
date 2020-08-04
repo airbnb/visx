@@ -1,9 +1,9 @@
-/* eslint-disable @typescript-eslint/unbound-method */
 import React from 'react';
 import cx from 'classnames';
 import { arc as d3Arc, Arc as ArcType } from 'd3-shape';
-import setNumOrAccessor, { NumberAccessor } from '../util/setNumberOrNumberAccessor';
+import setNumOrAccessor from '../util/setNumberOrNumberAccessor';
 import { $TSFIXME, AddSVGProps } from '../types';
+import { Accessor } from '../types/accessor';
 
 export type ArcProps<Datum> = {
   /** className applied to path element. */
@@ -15,19 +15,19 @@ export type ArcProps<Datum> = {
   /** React ref to the path element. */
   innerRef?: React.Ref<SVGPathElement>;
   /** Number or accessor function which returns a number, which defines the arc innerRadius. */
-  innerRadius?: NumberAccessor<Datum> | number;
+  innerRadius?: number | Accessor<Datum, number>;
   /** Number or accessor function which returns a number, which defines the arc outerRadius. */
-  outerRadius?: NumberAccessor<Datum> | number;
+  outerRadius?: number | Accessor<Datum, number>;
   /** Number or accessor function which returns a number, which defines the arc cornerRadius. */
-  cornerRadius?: NumberAccessor<Datum> | number;
+  cornerRadius?: number | Accessor<Datum, number>;
   /** Number or accessor function which returns a number, which defines the arc startAngle. */
-  startAngle?: NumberAccessor<Datum> | number;
+  startAngle?: number | Accessor<Datum, number>;
   /** Number or accessor function which returns a number, which defines the arc endAngle. */
-  endAngle?: NumberAccessor<Datum> | number;
+  endAngle?: number | Accessor<Datum, number>;
   /** Number or accessor function which returns a number, which defines the arc padAngle. */
-  padAngle?: NumberAccessor<Datum> | number;
+  padAngle?: number | Accessor<Datum, number>;
   /** Number or accessor function which returns a number, which defines the arc padRadius. */
-  padRadius?: NumberAccessor<Datum> | number;
+  padRadius?: number | Accessor<Datum, number>;
 };
 
 export default function Arc<Datum>({

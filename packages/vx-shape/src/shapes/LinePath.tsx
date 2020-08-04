@@ -2,6 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import { line, Line as LineType, CurveFactory, CurveFactoryLineOnly } from 'd3-shape';
 import { AddSVGProps } from '../types';
+import { AccessorForArrayItem } from '../types/accessor';
 
 export type LinePathProps<Datum> = {
   /** Array of data for which to generate a line shape. */
@@ -11,11 +12,11 @@ export type LinePathProps<Datum> = {
   /** React RefObject passed to the path element. */
   innerRef?: React.Ref<SVGPathElement>;
   /** The defined accessor for the shape. The final line shape includes all points for which this function returns true. By default all points are defined. */
-  defined?: (datum: Datum, index: number, data: Datum[]) => boolean;
+  defined?: AccessorForArrayItem<Datum, boolean>;
   /** Given a datum, returns the x value. Defaults to d[0]. */
-  x?: (datum: Datum, index: number, data: Datum[]) => number;
+  x?: AccessorForArrayItem<Datum, number>;
   /** Given a datum, returns the y value. Defaults to d[1]. */
-  y?: (datum: Datum, index: number, data: Datum[]) => number;
+  y?: AccessorForArrayItem<Datum, number>;
   /** Override render function which is passed the configured path generator as input. */
   children?: (args: { path: LineType<Datum> }) => React.ReactNode;
   /** Fill color of the path element. */
