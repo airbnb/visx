@@ -1,40 +1,41 @@
-/* eslint-disable @typescript-eslint/unbound-method */
 import React from 'react';
 import cx from 'classnames';
 import { Group } from '@vx/group';
 import { stack as d3stack, SeriesPoint } from 'd3-shape';
 
+import { ScaleInput } from '@vx/scale';
 import stackOrder from '../util/stackOrder';
 import stackOffset from '../util/stackOffset';
 import Bar from './Bar';
-import { BarStackProps } from './BarStack';
-import { StackKey, $TSFIXME, AddSVGProps } from '../types';
+import { StackKey, $TSFIXME, AddSVGProps, PositionScale } from '../types';
 import setNumOrAccessor from '../util/setNumberOrNumberAccessor';
+import { BaseBarStackProps } from '../types/stack';
+import getBandwidth from '../util/getBandwidth';
 
-type PickProps =
-  | 'data'
-  | 'className'
-  | 'top'
-  | 'left'
-  | 'keys'
-  | 'order'
-  | 'offset'
-  | 'value'
-  | 'xScale'
-  | 'yScale'
-  | 'color'
-  | 'children';
-
-export type BarStackHorizontalProps<Datum, Key> = Pick<BarStackProps<Datum, Key>, PickProps> & {
+export type BarStackHorizontalProps<
+  Datum,
+  Key,
+  XScale extends PositionScale = PositionScale,
+  YScale extends PositionScale = PositionScale
+> = BaseBarStackProps<Datum, Key> & {
   /** Returns the value mapped to the x0 of a bar. */
-  x0?: (d: SeriesPoint<Datum>) => $TSFIXME;
+  x0?: (d: SeriesPoint<Datum>) => ScaleInput<XScale>;
   /** Returns the value mapped to the x1 of a bar. */
-  x1?: (d: SeriesPoint<Datum>) => $TSFIXME;
+  x1?: (d: SeriesPoint<Datum>) => ScaleInput<XScale>;
   /** Returns the value mapped to the y of a bar. */
-  y: (d: Datum) => $TSFIXME;
+  y: (d: Datum) => ScaleInput<YScale>;
+  /** @vx/scale or d3-scale that takes an x value and maps it to an x axis position. */
+  xScale: XScale;
+  /** @vx/scale or d3-scale that takes a y value and maps it to an y axis position. */
+  yScale: YScale;
 };
 
-export default function BarStackHorizontal<Datum, Key extends StackKey = StackKey>({
+export default function BarStackHorizontal<
+  Datum,
+  Key extends StackKey = StackKey,
+  XScale extends PositionScale = PositionScale,
+  YScale extends PositionScale = PositionScale
+>({
   data,
   className,
   top,
@@ -51,7 +52,7 @@ export default function BarStackHorizontal<Datum, Key extends StackKey = StackKe
   offset,
   children,
   ...restProps
-}: AddSVGProps<BarStackHorizontalProps<Datum, Key>, SVGRectElement>) {
+}: AddSVGProps<BarStackHorizontalProps<Datum, Key, XScale, YScale>, SVGRectElement>) {
   const stack = d3stack<Datum, Key>();
   if (keys) stack.keys(keys);
   if (value) setNumOrAccessor(stack.value, value);
@@ -59,13 +60,7 @@ export default function BarStackHorizontal<Datum, Key extends StackKey = StackKe
   if (offset) stack.offset(stackOffset(offset));
 
   const stacks = stack(data);
-
-  const yRange = yScale.range();
-  const yDomain = yScale.domain();
-  const barHeight =
-    'bandwidth' in yScale && typeof yScale.bandwidth === 'function'
-      ? yScale.bandwidth()
-      : Math.abs(yRange[yRange.length - 1] - yRange[0]) / yDomain.length;
+  const barHeight = getBandwidth(yScale);
 
   const barStacks = stacks.map((barStack, i) => {
     const { key } = barStack;
@@ -76,7 +71,7 @@ export default function BarStackHorizontal<Datum, Key extends StackKey = StackKe
         const barWidth = (xScale(x1(bar)) || 0) - (xScale(x0(bar)) || 0);
         const barX = xScale(x0(bar));
         const barY =
-          'bandwidth' in yScale && typeof yScale.bandwidth === 'function'
+          'bandwidth' in yScale
             ? yScale(y(bar.data))
             : Math.max((yScale(y(bar.data)) || 0) - barWidth / 2);
         return {
@@ -93,6 +88,7 @@ export default function BarStackHorizontal<Datum, Key extends StackKey = StackKe
     };
   });
 
+  // eslint-disable-next-line react/jsx-no-useless-fragment
   if (children) return <>{children(barStacks)}</>;
 
   return (

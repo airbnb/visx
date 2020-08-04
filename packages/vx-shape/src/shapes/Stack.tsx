@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/unbound-method */
 import React from 'react';
 import cx from 'classnames';
 import { Group } from '@vx/group';
@@ -13,26 +12,17 @@ import {
 } from 'd3-shape';
 
 import setNumOrAccessor from '../util/setNumberOrNumberAccessor';
-import stackOrder, { STACK_ORDERS } from '../util/stackOrder';
-import stackOffset, { STACK_OFFSETS } from '../util/stackOffset';
+import stackOrder from '../util/stackOrder';
+import stackOffset from '../util/stackOffset';
 import { StackKey, $TSFIXME, AddSVGProps } from '../types';
 import { AccessorForArrayItem } from '../types/accessor';
+import { BaseStackProps } from '../types/stack';
 
-export type StackProps<Datum, Key> = {
-  /** Array of data for which to generate a stack. */
-  data: Datum[];
-  /** className applied to path element. */
-  className?: string;
-  /** Top offset of rendered Stack. */
-  top?: number;
-  /** Left offset of rendered Stack. */
-  left?: number;
+export type StackProps<Datum, Key> = BaseStackProps<Datum, Key> & {
   /** Sets the curve factory (from @vx/curve or d3-curve) for the area generator. Defaults to curveLinear. */
   curve?: CurveFactory;
   /** Returns a color for a given stack key and index. */
   color?: (key: Key, index: number) => string;
-  /** Array of keys corresponding to stack layers. */
-  keys?: Key[];
   /** Override render function which is passed the configured arc generator as input. */
   children?: (args: {
     stacks: Series<Datum, Key>[];
@@ -49,14 +39,8 @@ export type StackProps<Datum, Key> = {
   y0?: AccessorForArrayItem<SeriesPoint<Datum>, number>;
   /** Specifies the y1 accessor function which defaults to d => d[1]. */
   y1?: AccessorForArrayItem<SeriesPoint<Datum>, number>;
-  /** Sets the value accessor for a Datum, which defaults to d[key]. */
-  value?: number | ((d: Datum, key: Key) => number);
   /** The defined accessor for the shape. The final area shape includes all points for which this function returns true. By default all points are defined. */
   defined?: AccessorForArrayItem<SeriesPoint<Datum>, boolean>;
-  /** Sets the stack order to the pre-defined d3 function, see https://github.com/d3/d3-shape#stack_order. */
-  order?: keyof typeof STACK_ORDERS;
-  /** Sets the stack offset to the pre-defined d3 offset, see https://github.com/d3/d3-shape#stack_offset. */
-  offset?: keyof typeof STACK_OFFSETS;
 };
 
 export default function Stack<Datum, Key = StackKey>({
@@ -96,6 +80,7 @@ export default function Stack<Datum, Key = StackKey>({
 
   const stacks = stack(data);
 
+  // eslint-disable-next-line react/jsx-no-useless-fragment
   if (children) return <>{children({ stacks, path, stack })}</>;
 
   return (

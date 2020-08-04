@@ -53,6 +53,7 @@ export default function Arc<Datum>({
   if (padAngle != null) setNumOrAccessor(arc.padAngle, padAngle);
   if (padRadius != null) setNumOrAccessor(arc.padRadius, padRadius);
 
+  // eslint-disable-next-line react/jsx-no-useless-fragment
   if (children) return <>{children({ path: arc })}</>;
   if (!data) return null;
 

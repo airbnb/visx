@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/unbound-method */
 import React from 'react';
 import cx from 'classnames';
 import { Group } from '@vx/group';
@@ -96,6 +95,7 @@ export default function Pie<Datum>({
   if (endAngle != null) setNumOrAccessor<Accessor<Datum, number>>(pie.endAngle, endAngle);
 
   const arcs = pie(data);
+  // eslint-disable-next-line react/jsx-no-useless-fragment
   if (children) return <>{children({ arcs, path, pie })}</>;
 
   return (

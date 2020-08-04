@@ -74,6 +74,7 @@ export default function Polygon({
     rotate,
   }).map(({ x, y }) => [x, y]);
 
+  // eslint-disable-next-line react/jsx-no-useless-fragment
   if (children) return <>{children({ points })}</>;
 
   return (

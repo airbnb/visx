@@ -35,6 +35,7 @@ export default function LineRadial<Datum>({
   if (radius) setNumberOrNumberAccessor(path.radius, radius);
   if (defined) path.defined(defined);
   if (curve) path.curve(curve);
+  // eslint-disable-next-line react/jsx-no-useless-fragment
   if (children) return <>{children({ path })}</>;
   return (
     <path

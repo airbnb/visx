@@ -1,7 +1,4 @@
-import { SeriesPoint as SeriesPointType } from 'd3-shape';
 import { DatumObject } from '.';
-
-export type SeriesPoint<Datum> = SeriesPointType<Datum>;
 
 export interface BarGroupBar<Key> {
   /** group key */
@@ -22,7 +19,7 @@ export interface BarGroupBar<Key> {
   color: string;
 }
 
-export interface BaseBarGroup<Key> {
+interface BaseBarGroup<Key> {
   /** index of BarGroup (matches input Datum index). */
   index: number;
   /** bars within group, one for each key. */
@@ -39,18 +36,6 @@ export interface BarGroup<Key> extends BaseBarGroup<Key> {
 export interface BarGroupHorizontal<Key> extends BaseBarGroup<Key> {
   /** y0 position of bar group */
   y0: number;
-}
-
-/** One BarStack is returned for each datum, which has multiple sub-bars (based on keys). */
-export interface BarStack<Datum, Key> {
-  index: number;
-  key: Key;
-  bars: (Omit<BarGroupBar<Key>, 'key' | 'value'> & {
-    /** Processed bar Datum with bar bounds and original datum. */
-    bar: SeriesPoint<Datum>;
-    /** stack key */
-    key: Key;
-  })[];
 }
 
 export interface BaseBarGroupProps<

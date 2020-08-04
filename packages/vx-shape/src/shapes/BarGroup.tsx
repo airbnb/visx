@@ -6,6 +6,7 @@ import Bar from './Bar';
 import { PositionScale, DatumObject, AnyScaleBand, AddSVGProps } from '../types';
 import { BaseBarGroupProps, BarGroup } from '../types/bar';
 import { Accessor } from '../types/accessor';
+import getBandwidth from '../util/getBandwidth';
 
 export type BarGroupProps<
   Datum extends DatumObject,
@@ -85,13 +86,7 @@ export default function BarGroupComponent<
   children,
   ...restProps
 }: AddSVGProps<BarGroupProps<Datum, Key, X0Scale, X1Scale>, SVGRectElement>) {
-  const x1Range = x1Scale.range();
-  const x1Domain = x1Scale.domain();
-
-  const barWidth =
-    'bandwidth' in x1Scale && typeof x1Scale.bandwidth === 'function'
-      ? x1Scale.bandwidth()
-      : Math.abs(x1Range[x1Range.length - 1] - x1Range[0]) / x1Domain.length;
+  const barWidth = getBandwidth(x1Scale);
 
   const barGroups: BarGroup<Key>[] = data.map((group, i) => ({
     index: i,
@@ -111,6 +106,7 @@ export default function BarGroupComponent<
     }),
   }));
 
+  // eslint-disable-next-line react/jsx-no-useless-fragment
   if (children) return <>{children(barGroups)}</>;
 
   return (

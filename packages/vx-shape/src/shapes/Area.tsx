@@ -31,6 +31,7 @@ export default function Area<Datum>({
   if (y1) setNumOrAccessor(path.y1, y1);
   if (defined) path.defined(defined);
   if (curve) path.curve(curve);
+  // eslint-disable-next-line react/jsx-no-useless-fragment
   if (children) return <>{children({ path })}</>;
   return (
     <path ref={innerRef} className={cx('vx-area', className)} d={path(data) || ''} {...restProps} />

@@ -42,6 +42,7 @@ export default function LinePath<Datum>({
   if (y) path.y(y);
   if (defined) path.defined(defined);
   if (curve) path.curve(curve);
+  // eslint-disable-next-line react/jsx-no-useless-fragment
   if (children) return <>{children({ path })}</>;
   return (
     <path
