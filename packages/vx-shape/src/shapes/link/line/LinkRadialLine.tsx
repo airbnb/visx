@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { path as d3Path } from 'd3-path';
-import { SharedLinkProps, AccessorProps, $TSFIXME } from '../../../types';
+import { SharedLinkProps, AccessorProps, $TSFIXME, AddSVGProps } from '../../../types';
 
 export function pathRadialLine<Link, Node>({
   source,
@@ -44,8 +44,7 @@ export default function LinkRadialLine<Link, Node>({
   target = (d: $TSFIXME) => d.target,
   children,
   ...restProps
-}: LinkRadialLineProps<Link, Node> &
-  Omit<React.SVGProps<SVGPathElement>, keyof LinkRadialLineProps<Link, Node>>) {
+}: AddSVGProps<LinkRadialLineProps<Link, Node>, SVGPathElement>) {
   const pathGen = path || pathRadialLine({ source, target, x, y });
   if (children) return <>{children({ path: pathGen })}</>;
   return (

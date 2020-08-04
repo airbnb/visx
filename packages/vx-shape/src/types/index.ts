@@ -12,6 +12,13 @@ export type AnyScaleBand = PickD3Scale<'band', any, any>;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type ShapeScale = D3Scale<number, any, any>;
 
+/**
+ * Add fields from `SVGProps` for the specified SVG `Element`
+ * to `Props` except fields that already exist in `Props`
+ */
+export type AddSVGProps<Props, Element extends SVGElement> = Props &
+  Omit<React.SVGProps<Element>, keyof Props>;
+
 /** Unique key for item in a stack. */
 export type StackKey = string | number;
 

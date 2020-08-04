@@ -3,7 +3,7 @@ import cx from 'classnames';
 import { Group } from '@vx/group';
 import { ScaleInput } from '@vx/scale';
 import Bar from './Bar';
-import { ShapeScale, DatumObject, AnyScaleBand } from '../types';
+import { ShapeScale, DatumObject, AnyScaleBand, AddSVGProps } from '../types';
 import { BaseBarGroupProps, BarGroup } from '../types/bar';
 
 export type BarGroupProps<
@@ -83,8 +83,7 @@ export default function BarGroupComponent<
   height,
   children,
   ...restProps
-}: BarGroupProps<Datum, Key, X0Scale, X1Scale> &
-  Omit<React.SVGProps<SVGRectElement>, keyof BarGroupProps<Datum, Key>>) {
+}: AddSVGProps<BarGroupProps<Datum, Key, X0Scale, X1Scale>, SVGRectElement>) {
   const x1Range = x1Scale.range();
   const x1Domain = x1Scale.domain();
 

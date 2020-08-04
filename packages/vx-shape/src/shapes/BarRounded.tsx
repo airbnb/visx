@@ -1,5 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
+import { AddSVGProps } from '../types';
 
 export type BarRoundedProps = {
   /** className to apply to path element. */
@@ -54,7 +55,7 @@ export default function BarRounded({
   bottomLeft = false,
   bottomRight = false,
   ...restProps
-}: BarRoundedProps & Omit<React.SVGProps<SVGPathElement>, keyof BarRoundedProps>) {
+}: AddSVGProps<BarRoundedProps, SVGPathElement>) {
   topRight = all || top || right || topRight;
   bottomRight = all || bottom || right || bottomRight;
   bottomLeft = all || bottom || left || bottomLeft;

@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { linkRadial } from 'd3-shape';
-import { SharedLinkProps, RadialAccessorProps, $TSFIXME } from '../../../types';
+import { SharedLinkProps, RadialAccessorProps, $TSFIXME, AddSVGProps } from '../../../types';
 
 export function pathRadialDiagonal<Link, Node>({
   source,
@@ -36,8 +36,7 @@ export default function LinkRadialDiagonal<Link, Node>({
   source = (n: $TSFIXME) => n.source,
   target = (n: $TSFIXME) => n.target,
   ...restProps
-}: LinkRadialDiagonalProps<Link, Node> &
-  Omit<React.SVGProps<SVGPathElement>, keyof LinkRadialDiagonalProps<Link, Node>>) {
+}: AddSVGProps<LinkRadialDiagonalProps<Link, Node>, SVGPathElement>) {
   const pathGen = path || pathRadialDiagonal({ source, target, angle, radius });
   if (children) return <>{children({ path: pathGen })}</>;
   return (

@@ -1,5 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
+import { AddSVGProps } from '../types';
 
 export type CircleProps = {
   /** className to apply to circle element. */
@@ -12,6 +13,6 @@ export default function Circle({
   className,
   innerRef,
   ...restProps
-}: CircleProps & Omit<React.SVGProps<SVGCircleElement>, keyof CircleProps>) {
+}: AddSVGProps<CircleProps, SVGCircleElement>) {
   return <circle ref={innerRef} className={cx('vx-circle', className)} {...restProps} />;
 }

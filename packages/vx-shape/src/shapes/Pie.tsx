@@ -10,7 +10,7 @@ import {
   Pie as PieType,
 } from 'd3-shape';
 import setNumOrAccessor, { NumberAccessor as NumAccessor } from '../util/setNumberOrNumberAccessor';
-import { $TSFIXME } from '../types';
+import { $TSFIXME, AddSVGProps } from '../types';
 
 export type PieArcDatum<Datum> = PieArcDatumType<Datum>;
 
@@ -73,7 +73,7 @@ export default function Pie<Datum>({
   pieValue,
   children,
   ...restProps
-}: PieProps<Datum> & Omit<React.SVGProps<SVGPathElement>, keyof PieProps<Datum>>) {
+}: AddSVGProps<PieProps<Datum>, SVGPathElement>) {
   const path = d3Arc<PieArcDatum<Datum>>();
 
   if (innerRadius != null) setNumOrAccessor<NumAccessor<Datum>>(path.innerRadius, innerRadius);

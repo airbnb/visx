@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { SharedLinkProps, AccessorProps, $TSFIXME } from '../../../types';
+import { SharedLinkProps, AccessorProps, $TSFIXME, AddSVGProps } from '../../../types';
 
 export function pathRadialStep<Link, Node>({
   source,
@@ -52,8 +52,7 @@ export default function LinkRadialStep<Link, Node>({
   target = (d: $TSFIXME) => d.target,
   children,
   ...restProps
-}: LinkRadialStepProps<Link, Node> &
-  Omit<React.SVGProps<SVGPathElement>, keyof LinkRadialStepProps<Link, Node>>) {
+}: AddSVGProps<LinkRadialStepProps<Link, Node>, SVGPathElement>) {
   const pathGen = path || pathRadialStep({ source, target, x, y });
   if (children) return <>{children({ path: pathGen })}</>;
   return (

@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { path as d3Path } from 'd3-path';
-import { SharedLinkProps, AccessorProps, $TSFIXME } from '../../../types';
+import { SharedLinkProps, AccessorProps, $TSFIXME, AddSVGProps } from '../../../types';
 
 export function pathVerticalCurve<Link, Node>({
   source,
@@ -49,8 +49,7 @@ export default function LinkVerticalCurve<Link, Node>({
   source = (l: $TSFIXME) => l?.source,
   target = (l: $TSFIXME) => l?.target,
   ...restProps
-}: LinkVerticalCurveProps<Link, Node> &
-  Omit<React.SVGProps<SVGPathElement>, keyof LinkVerticalCurveProps<Link, Node>>) {
+}: AddSVGProps<LinkVerticalCurveProps<Link, Node>, SVGPathElement>) {
   const pathGen = path || pathVerticalCurve({ source, target, x, y, percent });
   if (children) return <>{children({ path: pathGen })}</>;
   return (

@@ -2,6 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import { area, Area as AreaType, CurveFactory } from 'd3-shape';
 import setNumOrAccessor from '../util/setNumberOrNumberAccessor';
+import { AddSVGProps } from '../types';
 
 type NumberAccessor<Datum> = (datum: Datum, index: number, data: Datum[]) => number;
 
@@ -46,7 +47,7 @@ export default function Area<Datum>({
   curve,
   innerRef,
   ...restProps
-}: AreaProps<Datum> & Omit<React.SVGProps<SVGPathElement>, keyof AreaProps<Datum>>) {
+}: AddSVGProps<AreaProps<Datum>, SVGPathElement>) {
   const path = area<Datum>();
   if (x) setNumOrAccessor(path.x, x);
   if (x0) setNumOrAccessor(path.x0, x0);

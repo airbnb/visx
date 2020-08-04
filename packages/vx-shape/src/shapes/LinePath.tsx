@@ -1,6 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { line, Line as LineType, CurveFactory, CurveFactoryLineOnly } from 'd3-shape';
+import { AddSVGProps } from '../types';
 
 export type LinePathProps<Datum> = {
   /** Array of data for which to generate a line shape. */
@@ -34,7 +35,7 @@ export default function LinePath<Datum>({
   innerRef,
   defined = () => true,
   ...restProps
-}: LinePathProps<Datum> & Omit<React.SVGProps<SVGPathElement>, keyof LinePathProps<Datum>>) {
+}: AddSVGProps<LinePathProps<Datum>, SVGPathElement>) {
   const path = line<Datum>();
   if (x) path.x(x);
   if (y) path.y(y);

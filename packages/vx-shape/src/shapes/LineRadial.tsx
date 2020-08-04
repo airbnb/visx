@@ -3,6 +3,7 @@ import cx from 'classnames';
 import { radialLine, RadialLine } from 'd3-shape';
 import { LinePathProps } from './LinePath';
 import setNumberOrNumberAccessor from '../util/setNumberOrNumberAccessor';
+import { AddSVGProps } from '../types';
 
 export type NumAccessor<Datum> = (datum: Datum, index: number, data: Datum[]) => number;
 
@@ -29,7 +30,7 @@ export default function LineRadial<Datum>({
   children,
   fill = 'transparent',
   ...restProps
-}: LineRadialProps<Datum> & Omit<React.SVGProps<SVGPathElement>, keyof LineRadialProps<Datum>>) {
+}: AddSVGProps<LineRadialProps<Datum>, SVGPathElement>) {
   const path = radialLine<Datum>();
   if (angle) setNumberOrNumberAccessor(path.angle, angle);
   if (radius) setNumberOrNumberAccessor(path.radius, radius);

@@ -15,7 +15,7 @@ import {
 import setNumOrAccessor from '../util/setNumberOrNumberAccessor';
 import stackOrder, { STACK_ORDERS } from '../util/stackOrder';
 import stackOffset, { STACK_OFFSETS } from '../util/stackOffset';
-import { StackKey, $TSFIXME } from '../types';
+import { StackKey, $TSFIXME, AddSVGProps } from '../types';
 
 export type NumAccessor<Datum> = (datum: Datum, index: number, data: Datum[]) => number;
 
@@ -79,7 +79,7 @@ export default function Stack<Datum, Key = StackKey>({
   color,
   children,
   ...restProps
-}: StackProps<Datum, Key> & Omit<React.SVGProps<SVGPathElement>, keyof StackProps<Datum, Key>>) {
+}: AddSVGProps<StackProps<Datum, Key>, SVGPathElement>) {
   const stack = d3stack<Datum, Key>();
   if (keys) stack.keys(keys);
   if (value) setNumOrAccessor(stack.value, value);

@@ -8,7 +8,7 @@ import stackOrder from '../util/stackOrder';
 import stackOffset from '../util/stackOffset';
 import Bar from './Bar';
 import { BarStackProps } from './BarStack';
-import { StackKey, $TSFIXME } from '../types';
+import { StackKey, $TSFIXME, AddSVGProps } from '../types';
 import setNumOrAccessor from '../util/setNumberOrNumberAccessor';
 
 type PickProps =
@@ -51,8 +51,7 @@ export default function BarStackHorizontal<Datum, Key extends StackKey = StackKe
   offset,
   children,
   ...restProps
-}: BarStackHorizontalProps<Datum, Key> &
-  Omit<React.SVGProps<SVGRectElement>, keyof BarStackHorizontalProps<Datum, Key> | PickProps>) {
+}: AddSVGProps<BarStackHorizontalProps<Datum, Key>, SVGRectElement>) {
   const stack = d3stack<Datum, Key>();
   if (keys) stack.keys(keys);
   if (value) setNumOrAccessor(stack.value, value);

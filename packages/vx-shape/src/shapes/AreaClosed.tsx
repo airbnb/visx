@@ -4,7 +4,7 @@ import cx from 'classnames';
 import { area } from 'd3-shape';
 import { AreaProps } from './Area';
 import setNumOrAccessor from '../util/setNumberOrNumberAccessor';
-import { ShapeScale } from '../types';
+import { ShapeScale, AddSVGProps } from '../types';
 
 export type AreaClosedProps<Datum> = {
   yScale: ShapeScale;
@@ -39,7 +39,7 @@ export default function AreaClosed<Datum>({
   innerRef,
   children,
   ...restProps
-}: AreaClosedProps<Datum> & Omit<React.SVGProps<SVGPathElement>, keyof AreaClosedProps<Datum>>) {
+}: AddSVGProps<AreaClosedProps<Datum>, SVGPathElement>) {
   const path = area<Datum>();
   if (x) setNumOrAccessor(path.x, x);
   if (x0) setNumOrAccessor(path.x0, x0);

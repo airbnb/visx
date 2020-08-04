@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { path as d3Path } from 'd3-path';
-import { SharedLinkProps, AccessorProps, $TSFIXME } from '../../../types';
+import { SharedLinkProps, AccessorProps, $TSFIXME, AddSVGProps } from '../../../types';
 
 export function pathVerticalLine<Link, Node>({
   source,
@@ -39,8 +39,7 @@ export default function LinkVerticalLine<Link, Node>({
   target = (d: $TSFIXME) => d.target,
   children,
   ...restProps
-}: LinkVerticalLineProps<Link, Node> &
-  Omit<React.SVGProps<SVGPathElement>, keyof LinkVerticalLineProps<Link, Node>>) {
+}: AddSVGProps<LinkVerticalLineProps<Link, Node>, SVGPathElement>) {
   const pathGen = path || pathVerticalLine({ source, target, x, y });
   if (children) return <>{children({ path: pathGen })}</>;
   return (

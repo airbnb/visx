@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { path as d3Path } from 'd3-path';
-import { SharedLinkProps, AccessorProps, $TSFIXME } from '../../../types';
+import { SharedLinkProps, AccessorProps, $TSFIXME, AddSVGProps } from '../../../types';
 
 export function pathRadialCurve<Link, Node>({
   source,
@@ -59,8 +59,7 @@ export default function LinkRadialCurve<Link, Node>({
   source = (l: $TSFIXME) => l?.source,
   target = (l: $TSFIXME) => l?.target,
   ...restProps
-}: LinkRadialCurveProps<Link, Node> &
-  Omit<React.SVGProps<SVGPathElement>, keyof LinkRadialCurveProps<Link, Node>>) {
+}: AddSVGProps<LinkRadialCurveProps<Link, Node>, SVGPathElement>) {
   const pathGen = path || pathRadialCurve({ source, target, x, y, percent });
   if (children) return <>{children({ path: pathGen })}</>;
   return (

@@ -3,7 +3,7 @@ import React from 'react';
 import cx from 'classnames';
 import { arc as d3Arc, Arc as ArcType } from 'd3-shape';
 import setNumOrAccessor, { NumberAccessor } from '../util/setNumberOrNumberAccessor';
-import { $TSFIXME } from '../types';
+import { $TSFIXME, AddSVGProps } from '../types';
 
 export type ArcProps<Datum> = {
   /** className applied to path element. */
@@ -43,7 +43,7 @@ export default function Arc<Datum>({
   children,
   innerRef,
   ...restProps
-}: ArcProps<Datum> & Omit<React.SVGProps<SVGPathElement>, keyof ArcProps<Datum>>) {
+}: AddSVGProps<ArcProps<Datum>, SVGPathElement>) {
   const arc = d3Arc<Datum>();
   if (innerRadius != null) setNumOrAccessor(arc.innerRadius, innerRadius);
   if (outerRadius != null) setNumOrAccessor(arc.outerRadius, outerRadius);
