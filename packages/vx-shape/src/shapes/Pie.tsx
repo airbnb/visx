@@ -2,9 +2,8 @@ import React from 'react';
 import cx from 'classnames';
 import { Group } from '@vx/group';
 import { Arc as ArcType, PieArcDatum as PieArcDatumType, Pie as PieType } from 'd3-shape';
-import { $TSFIXME, AddSVGProps } from '../types';
-import piePath, { PiePathConfig } from '../factories/piePath';
-import arcPath, { ArcPathConfig } from '../factories/arcPath';
+import { $TSFIXME, AddSVGProps, ArcPathConfig, PiePathConfig } from '../types';
+import { arc as arcPath, pie as piePath } from '../util/D3ShapeFactories';
 
 export type PieArcDatum<Datum> = PieArcDatumType<Datum>;
 

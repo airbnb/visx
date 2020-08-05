@@ -1,8 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
-import { AddSVGProps } from '../types';
-import { BaseAreaProps } from '../types/area';
-import areaPath from '../factories/areaPath';
+import { AddSVGProps, BaseAreaProps } from '../types';
+import { area } from '../util/D3ShapeFactories';
 
 export type AreaProps<Datum> = BaseAreaProps<Datum>;
 
@@ -21,7 +20,7 @@ export default function Area<Datum>({
   innerRef,
   ...restProps
 }: AddSVGProps<AreaProps<Datum>, SVGPathElement>) {
-  const path = areaPath<Datum>({ x, x0, x1, y, y0, y1, defined, curve });
+  const path = area<Datum>({ x, x0, x1, y, y0, y1, defined, curve });
   // eslint-disable-next-line react/jsx-no-useless-fragment
   if (children) return <>{children({ path })}</>;
   return (

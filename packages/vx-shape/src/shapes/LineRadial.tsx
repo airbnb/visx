@@ -2,8 +2,8 @@ import React from 'react';
 import cx from 'classnames';
 import { RadialLine } from 'd3-shape';
 import { LinePathProps } from './LinePath';
-import { AddSVGProps } from '../types';
-import radialLinePath, { RadialLinePathConfig } from '../factories/radialLinePath';
+import { AddSVGProps, RadialLinePathConfig } from '../types';
+import { radialLine } from '../util/D3ShapeFactories';
 
 export type LineRadialProps<Datum> = Pick<
   LinePathProps<Datum>,
@@ -25,7 +25,7 @@ export default function LineRadial<Datum>({
   fill = 'transparent',
   ...restProps
 }: AddSVGProps<LineRadialProps<Datum>, SVGPathElement>) {
-  const path = radialLinePath<Datum>({
+  const path = radialLine<Datum>({
     angle,
     radius,
     defined,

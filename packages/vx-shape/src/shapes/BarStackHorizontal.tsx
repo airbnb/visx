@@ -1,33 +1,28 @@
 import React from 'react';
 import cx from 'classnames';
-import { Group } from '@vx/group';
 import { stack as d3stack, SeriesPoint } from 'd3-shape';
-
+import { Group } from '@vx/group';
 import { ScaleInput } from '@vx/scale';
+import { AddSVGProps, PositionScale, BaseBarStackProps, StackKey } from '../types';
+import { getFirstItem, getSecondItem } from '../util/accessors';
+import getBandwidth from '../util/getBandwidth';
+import setNumOrAccessor from '../util/setNumberOrNumberAccessor';
 import stackOrder from '../util/stackOrder';
 import stackOffset from '../util/stackOffset';
 import Bar from './Bar';
-import { StackKey, $TSFIXME, AddSVGProps, PositionScale } from '../types';
-import setNumOrAccessor from '../util/setNumberOrNumberAccessor';
-import { BaseBarStackProps } from '../types/stack';
-import getBandwidth from '../util/getBandwidth';
 
 export type BarStackHorizontalProps<
   Datum,
-  Key,
+  Key extends StackKey = StackKey,
   XScale extends PositionScale = PositionScale,
   YScale extends PositionScale = PositionScale
-> = BaseBarStackProps<Datum, Key> & {
+> = BaseBarStackProps<Datum, Key, XScale, YScale> & {
   /** Returns the value mapped to the x0 of a bar. */
   x0?: (d: SeriesPoint<Datum>) => ScaleInput<XScale>;
   /** Returns the value mapped to the x1 of a bar. */
   x1?: (d: SeriesPoint<Datum>) => ScaleInput<XScale>;
   /** Returns the value mapped to the y of a bar. */
   y: (d: Datum) => ScaleInput<YScale>;
-  /** @vx/scale or d3-scale that takes an x value and maps it to an x axis position. */
-  xScale: XScale;
-  /** @vx/scale or d3-scale that takes a y value and maps it to an y axis position. */
-  yScale: YScale;
 };
 
 export default function BarStackHorizontal<
@@ -41,8 +36,8 @@ export default function BarStackHorizontal<
   top,
   left,
   y,
-  x0 = (d: $TSFIXME) => d?.[0],
-  x1 = (d: $TSFIXME) => d?.[1],
+  x0 = getFirstItem,
+  x1 = getSecondItem,
   xScale,
   yScale,
   color,

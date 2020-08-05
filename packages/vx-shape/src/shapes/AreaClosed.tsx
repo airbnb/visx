@@ -1,9 +1,8 @@
 import React from 'react';
 import cx from 'classnames';
+import { PositionScale, AddSVGProps, BaseAreaProps } from '../types';
 import setNumOrAccessor from '../util/setNumberOrNumberAccessor';
-import { PositionScale, AddSVGProps } from '../types';
-import { BaseAreaProps } from '../types/area';
-import area from '../factories/areaPath';
+import { area } from '../util/D3ShapeFactories';
 
 export type AreaClosedProps<Datum> = BaseAreaProps<Datum> & {
   yScale: PositionScale;

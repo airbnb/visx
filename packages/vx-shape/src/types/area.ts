@@ -1,5 +1,5 @@
 import { Area } from 'd3-shape';
-import { AreaPathConfig } from '../factories/areaPath';
+import { AreaPathConfig } from './D3ShapeConfig';
 
 export type BaseAreaProps<Datum> = {
   /** Override render function which is passed the configured area generator as input. */

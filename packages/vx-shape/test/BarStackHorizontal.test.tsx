@@ -11,15 +11,6 @@ const scale = scaleBand({
   paddingOuter: 5,
 });
 
-// const scale = () => 5;
-// scale.domain = () => [0, 100] as [number, number];
-// scale.range = () => [0, 100] as [number, number];
-// scale.bandwidth = () => 5;
-// scale.step = () => 5;
-// scale.paddingInner = () => 5;
-// scale.paddingOuter = () => 5;
-// scale.copy = () => scale;
-
 describe('<BarStackHorizontal />', () => {
   test('it should be defined', () => {
     expect(BarStackHorizontal).toBeDefined();

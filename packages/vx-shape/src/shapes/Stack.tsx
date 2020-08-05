@@ -12,10 +12,15 @@ import {
 import setNumOrAccessor from '../util/setNumberOrNumberAccessor';
 import stackOrder from '../util/stackOrder';
 import stackOffset from '../util/stackOffset';
-import { StackKey, $TSFIXME, AddSVGProps } from '../types';
-import { AccessorForArrayItem } from '../types/accessor';
-import { BaseStackProps } from '../types/stack';
-import area, { AreaPathConfig } from '../factories/areaPath';
+import {
+  $TSFIXME,
+  AddSVGProps,
+  AccessorForArrayItem,
+  StackKey,
+  BaseStackProps,
+  AreaPathConfig,
+} from '../types';
+import { area } from '../util/D3ShapeFactories';
 
 export type StackProps<Datum, Key> = BaseStackProps<Datum, Key> & {
   /** Returns a color for a given stack key and index. */
@@ -38,7 +43,7 @@ export type StackProps<Datum, Key> = BaseStackProps<Datum, Key> & {
   y1?: AccessorForArrayItem<SeriesPoint<Datum>, number>;
 } & Pick<AreaPathConfig<SeriesPoint<Datum>>, 'defined' | 'curve'>;
 
-export default function Stack<Datum, Key = StackKey>({
+export default function Stack<Datum, Key extends StackKey = StackKey>({
   className,
   top,
   left,

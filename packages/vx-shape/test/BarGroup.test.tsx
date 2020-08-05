@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import { scaleBand, scaleLinear } from '@vx/scale';
 import { BarGroup } from '../src';
 import { BarGroupProps } from '../src/shapes/BarGroup';
-import { GroupKey } from '../src/types';
+import { GroupKey } from '../src/types/barGroup';
 
 interface Datum {
   date: Date;
@@ -32,23 +32,6 @@ const x0 = () => 5;
 const x0Scale = scaleBand({ domain: [0, 100], range: [0, 100] });
 const x1Scale = scaleBand({ domain: [0, 100], range: [0, 100] });
 const yScale = scaleLinear({ domain: [0, 100], range: [0, 100] });
-
-// const x0Scale = () => 2;
-// x0Scale.bandwidth = () => 10;
-// x0Scale.domain = () => [0, 100] as [number, number];
-// x0Scale.range = () => [0, 100] as [number, number];
-// x0Scale.copy = () => x0Scale;
-
-// const x1Scale = () => 5;
-// x1Scale.bandwidth = () => 2;
-// x1Scale.domain = () => [0, 100] as [number, number];
-// x1Scale.range = () => [0, 100] as [number, number];
-// x1Scale.copy = () => x1Scale;
-
-// const yScale = () => 5;
-// yScale.domain = () => [0, 100] as [number, number];
-// yScale.range = () => [0, 100] as [number, number];
-// yScale.copy = () => yScale;
 
 const color = () => 'skyblue';
 const keys = ['New York', 'San Francisco', 'Austin'];

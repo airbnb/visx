@@ -8,13 +8,6 @@ const scale = scaleBand({
   range: [0, 100],
 });
 
-// const scale = () => 2;
-// scale.domain = () => [0, 100] as [number, number];
-// scale.range = () => [0, 100] as [number, number];
-// scale.bandwidth = () => 2;
-// scale.step = () => 2;
-// scale.copy = () => scale;
-
 describe('<BarStack />', () => {
   test('it should be defined', () => {
     expect(BarStack).toBeDefined();

@@ -1,5 +1,6 @@
 import React from 'react';
 import { BarStack } from '@vx/shape';
+import { SeriesPoint } from '@vx/shape/lib/types';
 import { Group } from '@vx/group';
 import { Grid } from '@vx/grid';
 import { AxisBottom } from '@vx/axis';
@@ -8,7 +9,6 @@ import { scaleBand, scaleLinear, scaleOrdinal } from '@vx/scale';
 import { timeParse, timeFormat } from 'd3-time-format';
 import { useTooltip, useTooltipInPortal, defaultStyles } from '@vx/tooltip';
 import { LegendOrdinal } from '@vx/legend';
-import { SeriesPoint } from '../../../../vx-shape/lib/types';
 
 type CityName = 'New York' | 'San Francisco' | 'Austin';
 

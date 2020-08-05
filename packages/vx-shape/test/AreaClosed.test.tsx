@@ -18,16 +18,6 @@ const data: Datum[] = [
 
 const yScale = scaleLinear({ domain: [0, 100], range: [100, 0] });
 
-// const xScale = () => 50;
-// xScale.range = () => [0, 100];
-// xScale.domain = () => [0, 100];
-// xScale.copy = () => xScale;
-
-// const yScale = () => 50;
-// yScale.range = () => [100, 0] as [number, number];
-// yScale.domain = () => [0, 100] as [number, number];
-// yScale.copy = () => yScale;
-
 const x = () => 50;
 const y = () => 50;
 

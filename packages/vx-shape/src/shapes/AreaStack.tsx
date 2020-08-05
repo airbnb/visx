@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import Stack, { StackProps } from './Stack';
-import { StackKey, AddSVGProps } from '../types';
+import { AddSVGProps, StackKey } from '../types';
 
 type PickProps =
   | 'className'

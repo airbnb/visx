@@ -3,14 +3,21 @@ import cx from 'classnames';
 import { Group } from '@vx/group';
 import { ScaleInput } from '@vx/scale';
 import Bar from './Bar';
-import { PositionScale, DatumObject, AnyScaleBand, AddSVGProps } from '../types';
-import { BaseBarGroupProps, BarGroup } from '../types/bar';
-import { Accessor } from '../types/accessor';
+import {
+  PositionScale,
+  DatumObject,
+  AnyScaleBand,
+  AddSVGProps,
+  BaseBarGroupProps,
+  BarGroup,
+  GroupKey,
+  Accessor,
+} from '../types';
 import getBandwidth from '../util/getBandwidth';
 
 export type BarGroupProps<
   Datum extends DatumObject,
-  Key extends keyof Datum = keyof Datum,
+  Key extends GroupKey = GroupKey,
   X0Scale extends AnyScaleBand = AnyScaleBand,
   X1Scale extends AnyScaleBand = AnyScaleBand
 > = BaseBarGroupProps<Datum, Key> & {
@@ -68,7 +75,7 @@ export type BarGroupProps<
  */
 export default function BarGroupComponent<
   Datum extends DatumObject,
-  Key extends keyof Datum = keyof Datum,
+  Key extends GroupKey = GroupKey,
   X0Scale extends AnyScaleBand = AnyScaleBand,
   X1Scale extends AnyScaleBand = AnyScaleBand
 >({

@@ -1,8 +1,8 @@
 import React from 'react';
 import cx from 'classnames';
 import { Line as LineType } from 'd3-shape';
-import { AddSVGProps } from '../types';
-import linePath, { LinePathConfig } from '../factories/linePath';
+import { AddSVGProps, LinePathConfig } from '../types';
+import { line } from '../util/D3ShapeFactories';
 
 export type LinePathProps<Datum> = {
   /** Array of data for which to generate a line shape. */
@@ -29,7 +29,7 @@ export default function LinePath<Datum>({
   defined = () => true,
   ...restProps
 }: AddSVGProps<LinePathProps<Datum>, SVGPathElement>) {
-  const path = linePath<Datum>({ x, y, defined, curve });
+  const path = line<Datum>({ x, y, defined, curve });
   // eslint-disable-next-line react/jsx-no-useless-fragment
   if (children) return <>{children({ path })}</>;
   return (

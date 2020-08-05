@@ -15,3 +15,11 @@ export function getSource(l: $TSFIXME) {
 export function getTarget(l: $TSFIXME) {
   return l?.target;
 }
+
+export function getFirstItem(d: $TSFIXME[]) {
+  return d?.[0];
+}
+
+export function getSecondItem(d: $TSFIXME[]) {
+  return d?.[1];
+}

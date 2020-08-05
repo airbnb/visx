@@ -1,8 +1,8 @@
 import React from 'react';
 import cx from 'classnames';
 import { Arc as ArcType } from 'd3-shape';
-import { $TSFIXME, AddSVGProps } from '../types';
-import arc, { ArcPathConfig } from '../factories/arcPath';
+import { $TSFIXME, AddSVGProps, ArcPathConfig } from '../types';
+import { arc } from '../util/D3ShapeFactories';
 
 export type ArcProps<Datum> = {
   /** className applied to path element. */

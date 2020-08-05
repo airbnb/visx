@@ -1,10 +1,10 @@
 import React from 'react';
 import { AreaStack } from '@vx/shape';
+import { SeriesPoint } from '@vx/shape/lib/types';
 import { GradientOrangeRed } from '@vx/gradient';
 import browserUsage, { BrowserUsage } from '@vx/mock-data/lib/mocks/browserUsage';
 import { scaleTime, scaleLinear } from '@vx/scale';
 import { timeParse } from 'd3-time-format';
-import { SeriesPoint } from '../../../../vx-shape/lib/types';
 
 type BrowserNames = keyof BrowserUsage;
 

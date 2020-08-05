@@ -45,3 +45,7 @@ export { default as LinkVerticalStep, pathVerticalStep } from './shapes/link/ste
 export { default as LinkRadialStep, pathRadialStep } from './shapes/link/step/LinkRadialStep';
 export { default as Polygon, getPoints, getPoint } from './shapes/Polygon';
 export { default as Circle } from './shapes/Circle';
+
+// Export factory functions
+export * from './types/D3ShapeConfig';
+export * from './util/D3ShapeFactories';

@@ -1,11 +1,11 @@
-import { SeriesPoint } from 'd3-shape';
-
 import { STACK_ORDERS } from '../util/stackOrder';
 import { STACK_OFFSETS } from '../util/stackOffset';
-import { BarGroupBar } from './bar';
+
+/** Unique key for item in a stack. */
+export type StackKey = string | number;
 
 export type BaseStackProps<Datum, Key> = {
-  /** Array of data for which to generate a stack. */
+  /** Array of data for which generates a stack. */
   data: Datum[];
   /** className applied to path element. */
   className?: string;
@@ -21,23 +21,4 @@ export type BaseStackProps<Datum, Key> = {
   order?: keyof typeof STACK_ORDERS;
   /** Sets the value accessor for a Datum, which defaults to d[key]. */
   value?: number | ((d: Datum, key: Key) => number);
-};
-
-/** One BarStack is returned for each datum, which has multiple sub-bars (based on keys). */
-export interface BarStack<Datum, Key> {
-  index: number;
-  key: Key;
-  bars: (Omit<BarGroupBar<Key>, 'key' | 'value'> & {
-    /** Processed bar Datum with bar bounds and original datum. */
-    bar: SeriesPoint<Datum>;
-    /** stack key */
-    key: Key;
-  })[];
-}
-
-export type BaseBarStackProps<Datum, Key> = BaseStackProps<Datum, Key> & {
-  /** Returns the desired color for a bar with a given key and index. */
-  color: (key: Key, index: number) => string;
-  /** Override render function which is passed the configured arc generator as input. */
-  children?: (stacks: BarStack<Datum, Key>[]) => React.ReactNode;
 };
