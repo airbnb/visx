@@ -63,7 +63,7 @@ export default function BarGroupHorizontalComponent<
   const barGroups: BarGroupHorizontal<Key>[] = data.map((group, i) => ({
     index: i,
     y0: y0Scale(y0(group)) || 0,
-    bars: keys.map((key: Key, j) => {
+    bars: keys.map((key, j) => {
       const value = group[key];
       return {
         index: j,
