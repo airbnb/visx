@@ -50,11 +50,6 @@ const PieChildren = ({ children, ...restProps }: Partial<PieProps<Datum>>) =>
   );
 
 describe('<Pie />', () => {
-  beforeEach(() => {
-    // eslint-disable-next-line @typescript-eslint/unbound-method
-    global.console.error = jest.fn();
-  });
-
   test('it should be defined', () => {
     expect(Pie).toBeDefined();
   });
@@ -91,9 +86,6 @@ describe('<Pie />', () => {
   test('it should break on invalid sort callbacks', () => {
     expect(() => PieWrapper({ pieSort: 12 })).toThrow();
     expect(() => PieWrapper({ pieSortValues: 12 })).toThrow();
-    // eslint-disable-next-line @typescript-eslint/unbound-method
-    expect(console.error).toBeCalled();
-    expect((console.error as jest.Mock).mock.calls).toHaveLength(2);
   });
 
   test('it should have the .vx-pie-arcs-group class', () => {
@@ -115,8 +107,8 @@ describe('<Pie />', () => {
     PieChildren({ children: fn });
     const args = fn.mock.calls[0][0];
     const keys = Object.keys(args);
-    expect(keys.includes('path')).toEqual(true);
-    expect(keys.includes('arcs')).toEqual(true);
-    expect(keys.includes('pie')).toEqual(true);
+    expect(keys).toContain('path');
+    expect(keys).toContain('arcs');
+    expect(keys).toContain('pie');
   });
 });

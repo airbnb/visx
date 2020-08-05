@@ -29,7 +29,7 @@ const data: Datum[] = [
 ];
 
 const x0 = () => 5;
-const x0Scale = scaleBand({ domain: [0, 100], range: [0, 100] });
+const x0Scale = scaleBand({ domain: [5, 15], range: [0, 100] });
 const x1Scale = scaleBand({ domain: [0, 100], range: [0, 100] });
 const yScale = scaleLinear({ domain: [0, 100], range: [0, 100] });
 
