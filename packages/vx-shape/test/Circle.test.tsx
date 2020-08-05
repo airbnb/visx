@@ -19,6 +19,7 @@ describe('<Circle />', () => {
   });
 
   test('it should expose its ref via an innerRef prop', () => {
+    // eslint-disable-next-line jest/no-test-return-statement
     return new Promise(done => {
       const refCallback = (ref: SVGCircleElement) => {
         expect(ref.tagName).toMatch('circle');

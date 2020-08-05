@@ -1,14 +1,19 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-
+import { scaleBand } from '@vx/scale';
 import { BarStack } from '../src';
 
-const scale = () => 2;
-scale.domain = () => [0, 100] as [number, number];
-scale.range = () => [0, 100] as [number, number];
-scale.bandwidth = () => 2;
-scale.step = () => 2;
-scale.copy = () => scale;
+const scale = scaleBand({
+  domain: [0, 100],
+  range: [0, 100],
+});
+
+// const scale = () => 2;
+// scale.domain = () => [0, 100] as [number, number];
+// scale.range = () => [0, 100] as [number, number];
+// scale.bandwidth = () => 2;
+// scale.step = () => 2;
+// scale.copy = () => scale;
 
 describe('<BarStack />', () => {
   test('it should be defined', () => {

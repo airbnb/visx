@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 
+import { scaleLinear } from '@vx/scale';
 import { AreaClosed } from '../src';
 import { AreaClosedProps } from '../src/shapes/AreaClosed';
 
@@ -15,18 +16,20 @@ const data: Datum[] = [
   { x: new Date('2017-01-03'), y: 5 },
 ];
 
-const xScale = () => 50;
-xScale.range = () => [0, 100];
-xScale.domain = () => [0, 100];
-xScale.copy = () => xScale;
+const yScale = scaleLinear({ domain: [0, 100], range: [100, 0] });
 
-const yScale = () => 50;
-yScale.range = () => [100, 0] as [number, number];
-yScale.domain = () => [0, 100] as [number, number];
-yScale.copy = () => yScale;
+// const xScale = () => 50;
+// xScale.range = () => [0, 100];
+// xScale.domain = () => [0, 100];
+// xScale.copy = () => xScale;
 
-const x = () => xScale();
-const y = () => yScale();
+// const yScale = () => 50;
+// yScale.range = () => [100, 0] as [number, number];
+// yScale.domain = () => [0, 100] as [number, number];
+// yScale.copy = () => yScale;
+
+const x = () => 50;
+const y = () => 50;
 
 const AreaClosedWrapper = (restProps = {}) =>
   shallow(<AreaClosed data={data} yScale={yScale} x={x} y1={y} {...restProps} />);
@@ -72,7 +75,7 @@ describe('<AreaClosed />', () => {
     AreaClosedChildren({ children: fn });
     const args = fn.mock.calls[0][0];
     const keys = Object.keys(args);
-    expect(keys.includes('path')).toEqual(true);
+    expect(keys).toContain('path');
   });
 
   test('it should take an x number prop', () => {
