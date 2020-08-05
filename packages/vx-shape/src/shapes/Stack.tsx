@@ -2,11 +2,9 @@ import React from 'react';
 import cx from 'classnames';
 import { Group } from '@vx/group';
 import {
-  area,
   Area as AreaType,
   stack as d3stack,
   Stack as StackType,
-  CurveFactory,
   SeriesPoint,
   Series,
 } from 'd3-shape';
@@ -17,10 +15,9 @@ import stackOffset from '../util/stackOffset';
 import { StackKey, $TSFIXME, AddSVGProps } from '../types';
 import { AccessorForArrayItem } from '../types/accessor';
 import { BaseStackProps } from '../types/stack';
+import area, { AreaPathConfig } from '../factories/areaPath';
 
 export type StackProps<Datum, Key> = BaseStackProps<Datum, Key> & {
-  /** Sets the curve factory (from @vx/curve or d3-curve) for the area generator. Defaults to curveLinear. */
-  curve?: CurveFactory;
   /** Returns a color for a given stack key and index. */
   color?: (key: Key, index: number) => string;
   /** Override render function which is passed the configured arc generator as input. */
@@ -39,9 +36,7 @@ export type StackProps<Datum, Key> = BaseStackProps<Datum, Key> & {
   y0?: AccessorForArrayItem<SeriesPoint<Datum>, number>;
   /** Specifies the y1 accessor function which defaults to d => d[1]. */
   y1?: AccessorForArrayItem<SeriesPoint<Datum>, number>;
-  /** The defined accessor for the shape. The final area shape includes all points for which this function returns true. By default all points are defined. */
-  defined?: AccessorForArrayItem<SeriesPoint<Datum>, boolean>;
-};
+} & Pick<AreaPathConfig<SeriesPoint<Datum>>, 'defined' | 'curve'>;
 
 export default function Stack<Datum, Key = StackKey>({
   className,
@@ -69,14 +64,15 @@ export default function Stack<Datum, Key = StackKey>({
   if (order) stack.order(stackOrder(order));
   if (offset) stack.offset(stackOffset(offset));
 
-  const path = area<SeriesPoint<Datum>>();
-  if (x) path.x(x);
-  if (x0) path.x0(x0);
-  if (x1) path.x1(x1);
-  if (y0) path.y0(y0);
-  if (y1) path.y1(y1);
-  if (curve) path.curve(curve);
-  if (defined) path.defined(defined);
+  const path = area<SeriesPoint<Datum>>({
+    x,
+    x0,
+    x1,
+    y0,
+    y1,
+    curve,
+    defined,
+  });
 
   const stacks = stack(data);
 

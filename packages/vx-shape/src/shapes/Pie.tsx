@@ -1,16 +1,10 @@
 import React from 'react';
 import cx from 'classnames';
 import { Group } from '@vx/group';
-import {
-  arc as d3Arc,
-  Arc as ArcType,
-  PieArcDatum as PieArcDatumType,
-  pie as d3Pie,
-  Pie as PieType,
-} from 'd3-shape';
-import setNumOrAccessor from '../util/setNumberOrNumberAccessor';
+import { Arc as ArcType, PieArcDatum as PieArcDatumType, Pie as PieType } from 'd3-shape';
 import { $TSFIXME, AddSVGProps } from '../types';
-import { Accessor } from '../types/accessor';
+import piePath, { PiePathConfig } from '../factories/piePath';
+import arcPath, { ArcPathConfig } from '../factories/arcPath';
 
 export type PieArcDatum<Datum> = PieArcDatumType<Datum>;
 
@@ -29,28 +23,28 @@ export type PieProps<Datum> = {
   left?: number;
   /** Array of data to generate a Pie for. */
   data?: Datum[];
-  /** Invoked for each datum, returns the value for a given Pie segment/arc datum. */
-  pieValue?: Accessor<Datum, number>;
-  /** Comparator function to sort *arcs*, overridden by pieSortValues if defined. If pieSort and pieSortValues are null, arcs match input data order. */
-  pieSort?: null | ((a: Datum, b: Datum) => number);
-  /** Comparator function to sort arc *values*, overrides pieSort if defined. If pieSort and pieSortValues are null, arcs match input data order. */
-  pieSortValues?: null | ((a: number, b: number) => number);
   /** Optional render function invoked for each Datum to render something (e.g., a Label) at each pie centroid. */
   centroid?: (xyCoords: [number, number], arc: PieArcDatum<Datum>) => React.ReactNode;
   /** Inner radius of the Arc shape. */
-  innerRadius?: number | Accessor<Datum, number>;
-  /** Inner radius of the Arc shape. */
-  outerRadius?: number | Accessor<Datum, number>;
-  /** Inner radius of the Arc shape. */
-  cornerRadius?: number | Accessor<Datum, number>;
+  innerRadius?: ArcPathConfig<PieArcDatum<Datum>>['innerRadius'];
+  /** Outer radius of the Arc shape. */
+  outerRadius?: ArcPathConfig<PieArcDatum<Datum>>['outerRadius'];
+  /** Corner radius of the Arc shape. */
+  cornerRadius?: ArcPathConfig<PieArcDatum<Datum>>['cornerRadius'];
   /** Padding radius of the Arc shape, which determines the fixed linear distance separating adjacent arcs. */
-  padRadius?: number | Accessor<Datum, number>;
+  padRadius?: ArcPathConfig<PieArcDatum<Datum>>['padRadius'];
   /** Returns the start angle of the overall Pie shape (the first value starts at startAngle), with 0 at -y (12 o’clock) and positive angles proceeding clockwise. */
-  startAngle?: number | Accessor<Datum, number>;
+  startAngle?: PiePathConfig<Datum>['startAngle'];
   /** Returns the end angle of the overall Pie shape (the last value ends at endAngle), with 0 at -y (12 o’clock) and positive angles proceeding clockwise. */
-  endAngle?: number | Accessor<Datum, number>;
+  endAngle?: PiePathConfig<Datum>['endAngle'];
   /** Padding angle of the Pie shape, which sets a fixed linear distance separating adjacent arcs. */
-  padAngle?: number | Accessor<Datum, number>;
+  padAngle?: PiePathConfig<Datum>['padAngle'];
+  /** Invoked for each datum, returns the value for a given Pie segment/arc datum. */
+  pieValue?: PiePathConfig<Datum>['value'];
+  /** Comparator function to sort *arcs*, overridden by pieSortValues if defined. If pieSort and pieSortValues are null, arcs match input data order. */
+  pieSort?: PiePathConfig<Datum>['sort'];
+  /** Comparator function to sort arc *values*, overrides pieSort if defined. If pieSort and pieSortValues are null, arcs match input data order. */
+  pieSortValues?: PiePathConfig<Datum>['sortValues'];
   /** Render function override which is passed the configured arc generator as input. */
   children?: (provided: ProvidedProps<Datum>) => React.ReactNode;
 };
@@ -74,25 +68,21 @@ export default function Pie<Datum>({
   children,
   ...restProps
 }: AddSVGProps<PieProps<Datum>, SVGPathElement>) {
-  const path = d3Arc<PieArcDatum<Datum>>();
+  const path = arcPath<PieArcDatum<Datum>>({
+    innerRadius,
+    outerRadius,
+    cornerRadius,
+    padRadius,
+  });
 
-  if (innerRadius != null) setNumOrAccessor<Accessor<Datum, number>>(path.innerRadius, innerRadius);
-  if (outerRadius != null) setNumOrAccessor<Accessor<Datum, number>>(path.outerRadius, outerRadius);
-  if (cornerRadius != null)
-    setNumOrAccessor<Accessor<Datum, number>>(path.cornerRadius, cornerRadius);
-  if (padRadius != null) setNumOrAccessor<Accessor<Datum, number>>(path.padRadius, padRadius);
-
-  const pie = d3Pie<Datum>();
-  // ts can't distinguish between these method overloads
-  if (pieSort === null) pie.sort(pieSort);
-  else if (pieSort != null) pie.sort(pieSort);
-  if (pieSortValues === null) pie.sortValues(pieSortValues);
-  else if (pieSortValues != null) pie.sortValues(pieSortValues);
-
-  if (pieValue != null) pie.value(pieValue);
-  if (padAngle != null) setNumOrAccessor<Accessor<Datum, number>>(pie.padAngle, padAngle);
-  if (startAngle != null) setNumOrAccessor<Accessor<Datum, number>>(pie.startAngle, startAngle);
-  if (endAngle != null) setNumOrAccessor<Accessor<Datum, number>>(pie.endAngle, endAngle);
+  const pie = piePath<Datum>({
+    startAngle,
+    endAngle,
+    padAngle,
+    value: pieValue,
+    sort: pieSort,
+    sortValues: pieSortValues,
+  });
 
   const arcs = pie(data);
   // eslint-disable-next-line react/jsx-no-useless-fragment
