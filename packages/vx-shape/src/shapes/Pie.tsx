@@ -24,20 +24,7 @@ export type PieProps<Datum> = {
   data?: Datum[];
   /** Optional render function invoked for each Datum to render something (e.g., a Label) at each pie centroid. */
   centroid?: (xyCoords: [number, number], arc: PieArcDatum<Datum>) => React.ReactNode;
-  /** Inner radius of the Arc shape. */
-  innerRadius?: ArcPathConfig<PieArcDatum<Datum>>['innerRadius'];
-  /** Outer radius of the Arc shape. */
-  outerRadius?: ArcPathConfig<PieArcDatum<Datum>>['outerRadius'];
-  /** Corner radius of the Arc shape. */
-  cornerRadius?: ArcPathConfig<PieArcDatum<Datum>>['cornerRadius'];
-  /** Padding radius of the Arc shape, which determines the fixed linear distance separating adjacent arcs. */
-  padRadius?: ArcPathConfig<PieArcDatum<Datum>>['padRadius'];
-  /** Returns the start angle of the overall Pie shape (the first value starts at startAngle), with 0 at -y (12 o’clock) and positive angles proceeding clockwise. */
-  startAngle?: PiePathConfig<Datum>['startAngle'];
-  /** Returns the end angle of the overall Pie shape (the last value ends at endAngle), with 0 at -y (12 o’clock) and positive angles proceeding clockwise. */
-  endAngle?: PiePathConfig<Datum>['endAngle'];
-  /** Padding angle of the Pie shape, which sets a fixed linear distance separating adjacent arcs. */
-  padAngle?: PiePathConfig<Datum>['padAngle'];
+  // These three fields are renamed
   /** Invoked for each datum, returns the value for a given Pie segment/arc datum. */
   pieValue?: PiePathConfig<Datum>['value'];
   /** Comparator function to sort *arcs*, overridden by pieSortValues if defined. If pieSort and pieSortValues are null, arcs match input data order. */
@@ -46,7 +33,11 @@ export type PieProps<Datum> = {
   pieSortValues?: PiePathConfig<Datum>['sortValues'];
   /** Render function override which is passed the configured arc generator as input. */
   children?: (provided: ProvidedProps<Datum>) => React.ReactNode;
-};
+} & Pick<PiePathConfig<Datum>, 'startAngle' | 'endAngle' | 'padAngle'> &
+  Pick<
+    ArcPathConfig<PieArcDatum<Datum>>,
+    'innerRadius' | 'outerRadius' | 'cornerRadius' | 'padRadius'
+  >;
 
 export default function Pie<Datum>({
   className,

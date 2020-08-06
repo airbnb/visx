@@ -3,7 +3,14 @@ import cx from 'classnames';
 import { stack as d3stack, SeriesPoint } from 'd3-shape';
 import { Group } from '@vx/group';
 import { ScaleInput } from '@vx/scale';
-import { PositionScale, AddSVGProps, BarStack, BaseBarStackProps, StackKey } from '../types';
+import {
+  PositionScale,
+  AddSVGProps,
+  BarStack,
+  BaseBarStackProps,
+  StackKey,
+  Accessor,
+} from '../types';
 import { getFirstItem, getSecondItem } from '../util/accessors';
 import getBandwidth from '../util/getBandwidth';
 import setNumOrAccessor from '../util/setNumberOrNumberAccessor';
@@ -18,11 +25,11 @@ export type BarStackProps<
   YScale extends PositionScale = PositionScale
 > = BaseBarStackProps<Datum, Key, XScale, YScale> & {
   /** Returns the value mapped to the x of a bar. */
-  x: (d: Datum) => ScaleInput<XScale>;
+  x: Accessor<Datum, ScaleInput<XScale>>;
   /** Returns the value mapped to the y0 of a bar. */
-  y0?: (d: SeriesPoint<Datum>) => ScaleInput<YScale>;
+  y0?: Accessor<SeriesPoint<Datum>, ScaleInput<YScale>>;
   /** Returns the value mapped to the y1 of a bar. */
-  y1?: (d: SeriesPoint<Datum>) => ScaleInput<YScale>;
+  y1?: Accessor<SeriesPoint<Datum>, ScaleInput<YScale>>;
 };
 
 export default function BarStackComponent<

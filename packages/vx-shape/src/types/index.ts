@@ -1,5 +1,4 @@
 export * from './base';
-
 export * from './accessor';
 export * from './area';
 export * from './barGroup';

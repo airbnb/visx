@@ -49,6 +49,6 @@ export type BaseBarStackProps<
   yScale: YScale;
   /** Returns the desired color for a bar with a given key and index. */
   color: (key: Key, index: number) => string;
-  /** Override render function which is passed the configured arc generator as input. */
+  /** Override render function which is passed the configured stack generator as input. */
   children?: (stacks: BarStack<Datum, Key>[]) => React.ReactNode;
 };

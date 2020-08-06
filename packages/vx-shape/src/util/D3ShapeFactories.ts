@@ -4,6 +4,7 @@ import {
   line as d3Line,
   pie as d3Pie,
   radialLine as d3RadialLine,
+  stack as d3Stack,
 } from 'd3-shape';
 import setNumberOrNumberAccessor from './setNumberOrNumberAccessor';
 import {
@@ -12,7 +13,10 @@ import {
   LinePathConfig,
   PiePathConfig,
   RadialLinePathConfig,
+  StackPathConfig,
 } from '../types';
+import stackOrder from './stackOrder';
+import stackOffset from './stackOffset';
 
 export function arc<Datum>({
   innerRadius,
@@ -95,6 +99,16 @@ export function radialLine<Datum>({
   if (radius) setNumberOrNumberAccessor(path.radius, radius);
   if (defined) path.defined(defined);
   if (curve) path.curve(curve);
+
+  return path;
+}
+
+export function stack<Datum, Key>({ keys, value, order, offset }: StackPathConfig<Datum, Key>) {
+  const path = d3Stack<Datum, Key>();
+  if (keys) path.keys(keys);
+  if (value) setNumberOrNumberAccessor(path.value, value);
+  if (order) path.order(stackOrder(order));
+  if (offset) path.offset(stackOffset(offset));
 
   return path;
 }

@@ -1,17 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { Group } from '@vx/group';
-import {
-  Area as AreaType,
-  stack as d3stack,
-  Stack as StackType,
-  SeriesPoint,
-  Series,
-} from 'd3-shape';
-
-import setNumOrAccessor from '../util/setNumberOrNumberAccessor';
-import stackOrder from '../util/stackOrder';
-import stackOffset from '../util/stackOffset';
+import { Area as AreaType, Stack as StackType, SeriesPoint, Series } from 'd3-shape';
 import {
   $TSFIXME,
   AddSVGProps,
@@ -20,7 +10,7 @@ import {
   BaseStackProps,
   AreaPathConfig,
 } from '../types';
-import { area } from '../util/D3ShapeFactories';
+import { area, stack as stackPath } from '../util/D3ShapeFactories';
 
 export type StackProps<Datum, Key> = BaseStackProps<Datum, Key> & {
   /** Returns a color for a given stack key and index. */
@@ -63,12 +53,7 @@ export default function Stack<Datum, Key extends StackKey = StackKey>({
   children,
   ...restProps
 }: AddSVGProps<StackProps<Datum, Key>, SVGPathElement>) {
-  const stack = d3stack<Datum, Key>();
-  if (keys) stack.keys(keys);
-  if (value) setNumOrAccessor(stack.value, value);
-  if (order) stack.order(stackOrder(order));
-  if (offset) stack.offset(stackOffset(offset));
-
+  const stack = stackPath<Datum, Key>({ keys, value, order, offset });
   const path = area<SeriesPoint<Datum>>({
     x,
     x0,
