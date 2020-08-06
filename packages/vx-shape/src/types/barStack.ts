@@ -1,9 +1,29 @@
-import { SeriesPoint } from 'd3-shape';
 import { BarGroupBar } from './barGroup';
 import { BaseStackProps, StackKey } from './stack';
 import { PositionScale } from './base';
 
-export { SeriesPoint };
+/**
+ * Each series point j in a stack chart corresponds to the jth element in the input data.
+ * Each point is represented as an array [y0, y1] where y0 is the lower value (baseline) and y1 is the upper value (topline);
+ * the difference between y0 and y1 corresponds to the computed value for this point.
+ *
+ * SeriesPoint is a [number, number] two-element Array with added data and index properties
+ * related to the data element which formed the basis for theSeriesPoint.
+ */
+export interface SeriesPoint<Datum> extends Array<number> {
+  /**
+   * Corresponds to y0, the lower value (baseline).
+   */
+  0: number;
+  /**
+   * Corresponds to y1, the upper value (topline).
+   */
+  1: number;
+  /**
+   * The data element underlying the series point.
+   */
+  data: Datum;
+}
 
 /** One BarStack is returned for each datum, which has multiple sub-bars (based on keys). */
 export interface BarStack<Datum, Key> {
