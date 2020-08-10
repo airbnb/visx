@@ -1,5 +1,3 @@
-export type NumberAccessor<Datum> = (d: Datum) => number;
-
 /**
  * This is a workaround for TypeScript not inferring the correct
  * method overload/signature for some d3 shape methods.

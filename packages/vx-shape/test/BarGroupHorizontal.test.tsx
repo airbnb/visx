@@ -1,9 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
+import { scaleBand, scaleLinear } from '@vx/scale';
 import { BarGroupHorizontal } from '../src';
-import { BarGroupHorizontalProps } from '../src/shapes/BarGroupHorizontal';
-import { GroupKey } from '../src/types';
+import { BarGroupHorizontalProps } from '../lib/shapes/BarGroupHorizontal';
 
 interface Datum {
   date: Date;
@@ -27,21 +27,10 @@ const data: Datum[] = [
   },
 ];
 
-const y0 = () => 1;
-const y0Scale = () => 2;
-y0Scale.bandwidth = () => 10;
-y0Scale.domain = () => [0, 100] as [number, number];
-y0Scale.range = () => [0, 100] as [number, number];
-y0Scale.copy = () => y0Scale;
-const y1Scale = () => 1;
-y1Scale.bandwidth = () => 2;
-y1Scale.domain = () => [0, 100] as [number, number];
-y1Scale.range = () => [0, 100] as [number, number];
-y1Scale.copy = () => y1Scale;
-const xScale = (d: Datum) => 5;
-xScale.domain = () => [0, 100] as [number, number];
-xScale.range = () => [0, 100] as [number, number];
-xScale.copy = () => xScale;
+const y0 = () => 5;
+const y0Scale = scaleBand({ domain: [0, 100], range: [0, 100] });
+const y1Scale = scaleBand({ domain: [0, 100], range: [0, 100] });
+const xScale = scaleLinear({ domain: [0, 100], range: [0, 100] });
 const color = () => 'violet';
 const keys = ['New York', 'San Francisco', 'Austin'];
 const width = 1;
@@ -61,10 +50,7 @@ const BarGroupWrapper = (restProps = {}) =>
     />,
   );
 
-const BarGroupChildren = ({
-  children,
-  ...restProps
-}: Partial<BarGroupHorizontalProps<Datum, GroupKey>>) =>
+const BarGroupChildren = ({ children, ...restProps }: Partial<BarGroupHorizontalProps<Datum>>) =>
   shallow(
     <BarGroupHorizontal
       data={data}

@@ -40,6 +40,7 @@ describe('<Area />', () => {
   });
 
   test('it should expose its ref via an innerRef prop', () => {
+    // eslint-disable-next-line jest/no-test-return-statement
     return new Promise(done => {
       const refCallback = (ref: SVGPathElement) => {
         expect(ref.tagName).toMatch('path');
@@ -64,7 +65,7 @@ describe('<Area />', () => {
     AreaChildren({ children: fn });
     const args = fn.mock.calls[0][0];
     const keys = Object.keys(args);
-    expect(keys.includes('path')).toEqual(true);
+    expect(keys).toContain('path');
   });
 
   test('it should take an x number prop', () => {

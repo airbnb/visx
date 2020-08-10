@@ -1,7 +1,8 @@
 import React from 'react';
 import cx from 'classnames';
 import { linkVertical } from 'd3-shape';
-import { SharedLinkProps, AccessorProps, $TSFIXME } from '../../../types';
+import { SharedLinkProps, AccessorProps, AddSVGProps } from '../../../types';
+import { getX, getY, getSource, getTarget } from '../../../util/accessors';
 
 export function pathVerticalDiagonal<Link, Node>({
   source,
@@ -27,13 +28,12 @@ export default function LinkVerticalDiagonal<Link, Node>({
   data,
   innerRef,
   path,
-  x = (d: $TSFIXME) => d.x,
-  y = (d: $TSFIXME) => d.y,
-  source = (d: $TSFIXME) => d.source,
-  target = (d: $TSFIXME) => d.target,
+  x = getX,
+  y = getY,
+  source = getSource,
+  target = getTarget,
   ...restProps
-}: LinkVerticalDiagonalProps<Link, Node> &
-  Omit<React.SVGProps<SVGPathElement>, keyof LinkVerticalDiagonalProps<Link, Node>>) {
+}: AddSVGProps<LinkVerticalDiagonalProps<Link, Node>, SVGPathElement>) {
   const pathGen = path || pathVerticalDiagonal({ source, target, x, y });
   if (children) return <>{children({ path: pathGen })}</>;
   return (

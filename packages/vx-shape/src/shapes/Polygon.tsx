@@ -1,6 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { degreesToRadians } from '../util/trigonometry';
+import { AddSVGProps } from '../types';
 
 const DEFAULT_CENTER = { x: 0, y: 0 };
 
@@ -65,7 +66,7 @@ export default function Polygon({
   children,
   innerRef,
   ...restProps
-}: PolygonProps & Omit<React.SVGProps<SVGPolygonElement>, keyof PolygonProps>) {
+}: AddSVGProps<PolygonProps, SVGPolygonElement>) {
   const points: [number, number][] = getPoints({
     sides,
     size,
@@ -73,6 +74,7 @@ export default function Polygon({
     rotate,
   }).map(({ x, y }) => [x, y]);
 
+  // eslint-disable-next-line react/jsx-no-useless-fragment
   if (children) return <>{children({ points })}</>;
 
   return (

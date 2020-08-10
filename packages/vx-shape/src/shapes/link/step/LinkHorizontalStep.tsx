@@ -1,7 +1,8 @@
 import React from 'react';
 import cx from 'classnames';
 import { path as d3Path } from 'd3-path';
-import { SharedLinkProps, AccessorProps, $TSFIXME } from '../../../types';
+import { SharedLinkProps, AccessorProps, AddSVGProps } from '../../../types';
+import { getX, getY, getSource, getTarget } from '../../../util/accessors';
 
 export function pathHorizontalStep<Link, Node>({
   source,
@@ -40,14 +41,13 @@ export default function LinkHorizontalStep<Link, Node>({
   data,
   path,
   percent = 0.5,
-  x = (d: $TSFIXME) => d.y,
-  y = (d: $TSFIXME) => d.x,
-  source = (d: $TSFIXME) => d.source,
-  target = (d: $TSFIXME) => d.target,
+  x = getX,
+  y = getY,
+  source = getSource,
+  target = getTarget,
   children,
   ...restProps
-}: LinkHorizontalStepProps<Link, Node> &
-  Omit<React.SVGProps<SVGPathElement>, keyof LinkHorizontalStepProps<Link, Node>>) {
+}: AddSVGProps<LinkHorizontalStepProps<Link, Node>, SVGPathElement>) {
   const pathGen = path || pathHorizontalStep({ source, target, x, y, percent });
   if (children) return <>{children({ path: pathGen })}</>;
   return (

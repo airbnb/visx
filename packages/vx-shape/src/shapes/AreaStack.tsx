@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import Stack, { StackProps } from './Stack';
-import { StackKey } from '../types';
+import { AddSVGProps, StackKey } from '../types';
 
 type PickProps =
   | 'className'
@@ -43,8 +43,7 @@ export default function AreaStack<Datum, Key extends StackKey = StackKey>({
   color,
   children,
   ...restProps
-}: AreaStackProps<Datum, Key> &
-  Omit<React.SVGProps<SVGPathElement>, keyof AreaStackProps<Datum, Key> | PickProps>) {
+}: AddSVGProps<AreaStackProps<Datum, Key>, SVGPathElement>) {
   return (
     <Stack<Datum, Key>
       className={className}
@@ -72,7 +71,7 @@ export default function AreaStack<Datum, Key extends StackKey = StackKey>({
               className={cx('vx-area-stack', className)}
               key={`area-stack-${i}-${series.key || ''}`}
               d={path(series) || ''}
-              fill={color && color(series.key, i)}
+              fill={color?.(series.key, i)}
               {...restProps}
             />
           )))}

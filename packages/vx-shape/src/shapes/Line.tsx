@@ -1,5 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
+import { AddSVGProps } from '../types';
 
 interface Point {
   x?: number;
@@ -26,7 +27,7 @@ export default function Line({
   className,
   innerRef,
   ...restProps
-}: LineProps & Omit<React.SVGProps<SVGLineElement>, keyof LineProps>) {
+}: AddSVGProps<LineProps, SVGLineElement>) {
   return (
     <line
       ref={innerRef}
