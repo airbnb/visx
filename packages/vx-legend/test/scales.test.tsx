@@ -10,7 +10,6 @@ import {
   LegendThreshold,
   LegendQuantile,
 } from '../src';
-import { ScaleBand, ScaleOrdinal, ScaleThreshold, ScaleQuantile } from '../src/types';
 
 describe('Legend scales', () => {
   it('should render with scaleLinear', () => {
@@ -20,7 +19,7 @@ describe('Legend scales', () => {
     });
 
     expect(() => shallow(<LegendLinear scale={linearScale} />)).not.toThrow();
-    expect(() => shallow(<LegendSize<number> scale={linearScale} />)).not.toThrow();
+    expect(() => shallow(<LegendSize scale={linearScale} />)).not.toThrow();
     expect(() => shallow(<Legend scale={linearScale} />)).not.toThrow();
   });
 
@@ -31,9 +30,7 @@ describe('Legend scales', () => {
     });
 
     expect(() => shallow(<LegendOrdinal scale={ordinalScale} />)).not.toThrow();
-    expect(() =>
-      shallow(<Legend<string, string, ScaleOrdinal<string, string>> scale={ordinalScale} />),
-    ).not.toThrow();
+    expect(() => shallow(<Legend scale={ordinalScale} />)).not.toThrow();
   });
 
   it('should render with scaleBand', () => {
@@ -42,9 +39,7 @@ describe('Legend scales', () => {
       range: [1, 10],
     });
 
-    expect(() =>
-      shallow(<Legend<string, number, ScaleBand<string, number>> scale={bandScale} />),
-    ).not.toThrow();
+    expect(() => shallow(<Legend scale={bandScale} />)).not.toThrow();
   });
 
   it('should render with scaleThreshold', () => {
@@ -54,9 +49,7 @@ describe('Legend scales', () => {
     });
 
     expect(() => shallow(<LegendThreshold scale={thresholdScale} />)).not.toThrow();
-    expect(() =>
-      shallow(<Legend<number, string, ScaleThreshold<number, string>> scale={thresholdScale} />),
-    ).not.toThrow();
+    expect(() => shallow(<Legend scale={thresholdScale} />)).not.toThrow();
   });
 
   it('should render with scaleQuantile', () => {
@@ -66,8 +59,6 @@ describe('Legend scales', () => {
     });
 
     expect(() => shallow(<LegendQuantile scale={quantileScale} />)).not.toThrow();
-    expect(() =>
-      shallow(<Legend<number, string, ScaleQuantile<number, string>> scale={quantileScale} />),
-    ).not.toThrow();
+    expect(() => shallow(<Legend scale={quantileScale} />)).not.toThrow();
   });
 });
