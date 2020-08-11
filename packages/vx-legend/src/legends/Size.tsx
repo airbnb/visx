@@ -1,43 +1,29 @@
 import React from 'react';
+import { D3Scale } from '@vx/scale';
 import Legend, { LegendProps } from './Legend';
-import { ScaleType } from '../types';
 import labelTransformFactory from '../util/labelTransformFactory';
+import defaultDomain from '../util/defaultDomain';
+import identity from '../util/identity';
 
-export type LegendSizeProps<Datum> = {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type AnySizeScale = D3Scale<number, any, any>;
+
+export type LegendSizeProps<Scale extends AnySizeScale> = {
   steps?: number;
-} & LegendProps<Datum, number, ScaleType<Datum, number>>;
+} & LegendProps<Scale>;
 
-function defaultDomain<Datum>({
-  steps,
-  scale,
-}: {
-  steps: number;
-  scale: ScaleType<Datum, number>;
-}) {
-  const domain = scale.domain();
-  const start = domain[0];
-  const end = domain[domain.length - 1];
-  if (typeof start === 'number' && typeof end === 'number') {
-    const step = (end - start) / (steps - 1);
-    return new Array(steps).fill(1).reduce((acc, cur, i) => {
-      acc.push(start + i * step);
-      return acc;
-    }, []);
-  }
-  return [];
-}
-
-export default function Size<Datum>({
+export default function Size<Scale extends AnySizeScale>({
   scale,
   domain: inputDomain,
   steps = 5,
-  labelFormat = x => x,
+  labelFormat = identity,
   labelTransform = labelTransformFactory,
   ...restProps
-}: LegendSizeProps<Datum>) {
+}: LegendSizeProps<Scale>) {
   const domain = inputDomain || defaultDomain({ steps, scale });
+
   return (
-    <Legend<Datum, number, ScaleType<Datum, number>>
+    <Legend<Scale>
       scale={scale}
       domain={domain}
       labelFormat={labelFormat}

@@ -1,5 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
+import { AnyD3Scale, ScaleInput } from '@vx/scale';
 import LegendItem from './LegendItem';
 import LegendLabel, { LegendLabelProps } from './LegendLabel';
 import LegendShape from './LegendShape';
@@ -7,22 +8,21 @@ import valueOrIdentity, { valueOrIdentityString } from '../../util/valueOrIdenti
 import labelTransformFactory from '../../util/labelTransformFactory';
 import {
   FlexDirection,
-  ScaleType,
   FormattedLabel,
   LabelFormatter,
   LabelFormatterFactory,
   LegendShape as LegendShapeType,
 } from '../../types';
 
-export type LegendProps<Datum, Output, Scale = ScaleType<Datum, Output>> = {
+export type LegendProps<Scale extends AnyD3Scale> = {
   /** Optional render function override. */
-  children?: (labels: FormattedLabel<Datum, Output>[]) => React.ReactNode;
+  children?: (labels: FormattedLabel<ScaleInput<Scale>, ReturnType<Scale>>[]) => React.ReactNode;
   /** Classname to be applied to legend container. */
   className?: string;
   /** Styles to be applied to the legend container. */
   style?: React.CSSProperties;
   /** Legend domain. */
-  domain?: Datum[];
+  domain?: ScaleInput<Scale>[];
   /** Width of the legend shape. */
   shapeWidth?: string | number;
   /** Height of the legend shape. */
@@ -44,17 +44,21 @@ export type LegendProps<Datum, Output, Scale = ScaleType<Datum, Output>> = {
   /** Flex direction of legend items. */
   itemDirection?: FlexDirection;
   /** Legend item fill accessor function. */
-  fill?: (label: FormattedLabel<Datum, Output>) => string | number | undefined;
+  fill?: (
+    label: FormattedLabel<ScaleInput<Scale>, ReturnType<Scale>>,
+  ) => string | number | undefined;
   /** Legend item size accessor function. */
-  size?: (label: FormattedLabel<Datum, Output>) => string | number | undefined;
+  size?: (
+    label: FormattedLabel<ScaleInput<Scale>, ReturnType<Scale>>,
+  ) => string | number | undefined;
   /** Legend shape string preset or Element or Component. */
-  shape?: LegendShapeType<Datum, Output>;
+  shape?: LegendShapeType<ScaleInput<Scale>, ReturnType<Scale>>;
   /** Styles applied to legend shapes. */
-  shapeStyle?: (label: FormattedLabel<Datum, Output>) => React.CSSProperties;
+  shapeStyle?: (label: FormattedLabel<ScaleInput<Scale>, ReturnType<Scale>>) => React.CSSProperties;
   /** Given a legend item and its index, returns an item label. */
-  labelFormat?: LabelFormatter<Datum>;
+  labelFormat?: LabelFormatter<ScaleInput<Scale>>;
   /** Given the legend scale and labelFormatter, returns a label with datum, index, value, and label. */
-  labelTransform?: LabelFormatterFactory<Datum, Output, Scale>;
+  labelTransform?: LabelFormatterFactory<Scale>;
   /** Additional props to be set on LegendLabel. */
   legendLabelProps?: Partial<LegendLabelProps>;
 };
@@ -63,7 +67,7 @@ const defaultStyle = {
   display: 'flex',
 };
 
-export default function Legend<Datum, Output, Scale = ScaleType<Datum, Output>>({
+export default function Legend<Scale extends AnyD3Scale>({
   className,
   style = defaultStyle,
   scale,
@@ -86,13 +90,14 @@ export default function Legend<Datum, Output, Scale = ScaleType<Datum, Output>>(
   legendLabelProps,
   children,
   ...legendItemProps
-}: LegendProps<Datum, Output, Scale>) {
+}: LegendProps<Scale>) {
   // `Scale extends ScaleType` constraint is tricky
   //  could consider removing `scale` altogether in the future and making `domain: Datum[]` required
   // @ts-ignore doesn't like `.domain()`
   const domain = inputDomain || (('domain' in scale ? scale.domain() : []) as Datum[]);
   const labelFormatter = labelTransform({ scale, labelFormat });
   const labels = domain.map(labelFormatter);
+  // eslint-disable-next-line react/jsx-no-useless-fragment
   if (children) return <>{children(labels)}</>;
 
   return (

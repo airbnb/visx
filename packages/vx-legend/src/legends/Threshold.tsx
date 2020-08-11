@@ -1,35 +1,39 @@
 import React from 'react';
+import { PickD3Scale, ScaleInput } from '@vx/scale';
 import Legend, { LegendProps } from './Legend';
-import { StringNumberDate, ScaleThreshold, LabelFormatterFactory } from '../types';
+import { LabelFormatterFactory } from '../types';
+import identity from '../util/identity';
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type AnyThresholdScale = PickD3Scale<'threshold', any, any, any>;
 
 const formatZero = (label: unknown) => (label === 0 ? '0' : label || '');
 
-export type LegendThresholdProps<Datum extends StringNumberDate, Output> = LegendProps<
-  Datum,
-  Output,
-  ScaleThreshold<Datum, Output>
-> & {
+type TransformProps = {
   labelDelimiter?: string;
   labelLower?: string;
   labelUpper?: string;
-  labelTransform?: LabelFormatterFactory<Datum, Output, ScaleThreshold<Datum, Output>>;
 };
 
+export type LegendThresholdProps<Scale extends AnyThresholdScale> = LegendProps<Scale> &
+  TransformProps & {
+    labelTransform?: LabelFormatterFactory<Scale>;
+  };
+
 /** Default transform implicitly assumes that Datum is of type number. */
-function defaultTransform<Datum extends StringNumberDate, Output>({
+function defaultTransform<Scale extends AnyThresholdScale>({
   labelDelimiter,
   labelLower,
   labelUpper,
-}: Pick<
-  LegendThresholdProps<Datum, Output>,
-  'labelDelimiter' | 'labelLower' | 'labelUpper'
->): LabelFormatterFactory<Datum, Output, ScaleThreshold<Datum, Output>> {
+}: TransformProps): LabelFormatterFactory<Scale> {
   return ({ scale, labelFormat }) => {
     const scaleRange = scale.range();
     const scaleDomain = scale.domain();
 
+    type Datum = ScaleInput<Scale>;
+
     return (d, i) => {
-      const [d0, d1]: [Datum | undefined, Datum | undefined] =
+      const [d0, d1] =
         scaleRange.length >= i ? scale.invertExtent(scaleRange[i]) : [undefined, undefined];
 
       let delimiter = ` ${labelDelimiter} `;
@@ -48,13 +52,13 @@ function defaultTransform<Datum extends StringNumberDate, Output>({
       } else if (typeof d0 === 'number' && d1 == null) {
         // upper threshold e.g., [number, undefined]
         delimiter = labelUpper || delimiter;
-        value = d0 + (scaleDomain[1] as number); // x0,x1 are from the domain, so the domain is numeric if d0 is
+        value = d0 + scaleDomain[1]; // x0,x1 are from the domain, so the domain is numeric if d0 is
         text = `${delimiter}${formatZero(labelFormat(d0, i))}`;
       }
 
       return {
         extent: [d0, d1],
-        value: scale((value as Datum) || d),
+        value: scale(value || d),
         text,
         datum: d,
         index: i,
@@ -63,33 +67,32 @@ function defaultTransform<Datum extends StringNumberDate, Output>({
   };
 }
 
-export default function Threshold<Datum extends StringNumberDate, Output>({
+export default function Threshold<Scale extends AnyThresholdScale>({
   scale,
   domain: inputDomain,
-  labelFormat = (d: Datum) => d,
+  labelFormat = identity,
   labelTransform: inputLabelTransform,
   labelDelimiter = 'to',
   labelLower = 'Less than ',
   labelUpper = 'More than ',
   ...restProps
-}: LegendThresholdProps<Datum, Output>) {
+}: LegendThresholdProps<Scale>) {
   // d3 docs specify that for n values in a domain, there should be n+1 values in the range
   // https://github.com/d3/d3-scale#threshold_domain
   // therefore if a domain is not specified we transform the range into input values
   // because it should contain more elements
-  const domain =
-    inputDomain || (scale.range().map(output => scale.invertExtent(output)[0]) as Datum[]);
+  const domain = inputDomain || scale.range().map(output => scale.invertExtent(output)[0]);
 
   const labelTransform =
     inputLabelTransform ||
-    defaultTransform<Datum, Output>({
+    defaultTransform<Scale>({
       labelDelimiter,
       labelLower,
       labelUpper,
     });
 
   return (
-    <Legend<Datum, Output, ScaleThreshold<Datum, Output>>
+    <Legend<Scale>
       scale={scale}
       domain={domain}
       labelFormat={labelFormat}

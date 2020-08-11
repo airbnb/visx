@@ -1,39 +1,22 @@
 import React from 'react';
+import { PickD3Scale } from '@vx/scale';
 import Legend, { LegendProps } from './Legend';
-import { ScaleLinear } from '../types';
+import defaultDomain from '../util/defaultDomain';
 
-export type LegendLinearProps<Output> = {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type AnyLinearScale = PickD3Scale<'linear', any>;
+
+export type LegendLinearProps<Scale extends AnyLinearScale> = {
   steps?: number;
-} & LegendProps<number, Output, ScaleLinear<number, Output>>;
-
-export function defaultDomain<Output>({
-  steps = 5,
-  scale,
-}: Pick<LegendLinearProps<Output>, 'steps' | 'scale'>) {
-  const domain = scale.domain();
-  const start = domain[0];
-  const end = domain[domain.length - 1];
-  const step = (end - start) / (steps - 1);
-
-  return new Array(steps).fill(1).reduce((acc, cur, i) => {
-    acc.push(start + i * step);
-    return acc;
-  }, []);
-}
+} & LegendProps<Scale>;
 
 /** Linear scales map from continuous inputs to continuous outputs. */
-export default function Linear<Output>({
+export default function Linear<Scale extends AnyLinearScale>({
   scale,
   domain: inputDomain,
   steps = 5,
   ...restProps
-}: LegendLinearProps<Output>) {
+}: LegendLinearProps<Scale>) {
   const domain = inputDomain || defaultDomain({ steps, scale });
-  return (
-    <Legend<number, Output, ScaleLinear<number, Output>>
-      scale={scale}
-      domain={domain}
-      {...restProps}
-    />
-  );
+  return <Legend<Scale> scale={scale} domain={domain} {...restProps} />;
 }

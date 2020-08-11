@@ -1,35 +1,9 @@
-// eslint doesn't know about @types/d3-scale
-// eslint-disable-next-line import/no-extraneous-dependencies
-import * as d3Scale from 'd3-scale';
+import { AnyD3Scale, ScaleInput } from '@vx/scale';
 
-export type StringNumberDate = string | number | Date;
-
-export type ScaleBand<Input, _ImplicitStringOutput> = d3Scale.ScaleBand<Input>;
-export type ScaleLinear<_ImplicitNumberInput, Output> = d3Scale.ScaleLinear<Output, Output>;
-export type ScaleOrdinal<Input, Output> = d3Scale.ScaleOrdinal<Input, Output>;
-export type ScaleQuantile<_ImplicitNumberInput, Output> = d3Scale.ScaleQuantile<Output>;
-export type ScaleThreshold<Input extends StringNumberDate, Output> = d3Scale.ScaleThreshold<
-  Input,
-  Output
->;
-
-export type ScaleType<Input, Output> = Input extends StringNumberDate
-  ?
-      | ScaleThreshold<Input, Output> // StringNumberDate needed for ScaleThreshold only
-      | ScaleLinear<Input, Output>
-      | ScaleOrdinal<Input, Output>
-      | ScaleBand<Input, Output>
-      | ScaleQuantile<Input, Output>
-  :
-      | ScaleLinear<Input, Output>
-      | ScaleOrdinal<Input, Output>
-      | ScaleBand<Input, Output>
-      | ScaleQuantile<Input, Output>;
-
-export type LabelFormatterFactory<Datum, Output, Scale = ScaleType<Datum, Output>> = (args: {
+export type LabelFormatterFactory<Scale extends AnyD3Scale> = (args: {
   scale: Scale;
-  labelFormat: LabelFormatter<Datum>;
-}) => ItemTransformer<Datum, Output>;
+  labelFormat: LabelFormatter<ScaleInput<Scale>>;
+}) => ItemTransformer<ScaleInput<Scale>, ReturnType<Scale>>;
 
 export type LabelFormatter<Datum> = (
   item: Datum,

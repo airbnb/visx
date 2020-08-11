@@ -35,13 +35,10 @@
   },
   "dependencies": {
     "@types/classnames": "^2.2.9",
-    "@types/d3-scale": "^2.1.1",
     "@types/react": "*",
     "@vx/group": "0.0.198",
+    "@vx/scale": "0.0.198",
     "classnames": "^2.2.5",
     "prop-types": "^15.5.10"
-  },
-  "devDependencies": {
-    "@vx/scale": "0.0.198"
   }
 }

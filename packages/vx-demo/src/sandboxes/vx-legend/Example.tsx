@@ -71,7 +71,7 @@ export default function Example({ events = false }: { events?: boolean }) {
   return (
     <div className="legends">
       <LegendDemo title="Size">
-        <LegendSize<number> scale={sizeScale}>
+        <LegendSize scale={sizeScale}>
           {labels =>
             labels.map(label => {
               const size = sizeScale(label.datum);
@@ -96,7 +96,7 @@ export default function Example({ events = false }: { events?: boolean }) {
         </LegendSize>
       </LegendDemo>
       <LegendDemo title="Quantile">
-        <LegendQuantile<string> scale={quantileScale}>
+        <LegendQuantile scale={quantileScale}>
           {labels =>
             labels.map((label, i) => (
               <LegendItem
@@ -197,7 +197,7 @@ export default function Example({ events = false }: { events?: boolean }) {
         </LegendOrdinal>
       </LegendDemo>
       <LegendDemo title="Custom Legend">
-        <Legend<string, React.FC | React.ReactNode, typeof shapeScale> scale={shapeScale}>
+        <Legend scale={shapeScale}>
           {labels => (
             <div style={{ display: 'flex', flexDirection: 'row' }}>
               {labels.map((label, i) => {
