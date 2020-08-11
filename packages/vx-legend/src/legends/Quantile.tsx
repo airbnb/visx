@@ -1,22 +1,22 @@
 import React from 'react';
-
+import { PickD3Scale } from '@vx/scale';
 import Legend, { LegendProps } from './Legend';
-import { LabelFormatterFactory, ScaleQuantile } from '../types';
+import { LabelFormatterFactory } from '../types';
+import identity from '../util/identity';
 
-export type LegendQuantileProps<Output> = {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type AnyQuantileScale = PickD3Scale<'quantile', any>;
+
+type FactoryProps = {
   labelDelimiter?: string;
-  labelTransform?: LabelFormatterFactory<number, Output, ScaleQuantile<number, Output>>;
-  scale: ScaleQuantile<number, Output>;
-} & Omit<LegendProps<number, Output, ScaleQuantile<number, Output>>, 'scale' | 'labelTransform'>;
+};
 
-function labelFormatterFactoryFactory<Output>({
+export type LegendQuantileProps<Scale extends AnyQuantileScale> = LegendProps<Scale> & FactoryProps;
+
+function labelFormatterFactoryFactory<Scale extends AnyQuantileScale>({
   labelDelimiter,
-}: Pick<LegendQuantileProps<Output>, 'labelDelimiter'>): LabelFormatterFactory<
-  number,
-  Output,
-  ScaleQuantile<number, Output>
-> {
-  return ({ scale, labelFormat }) => (datum: number, index: number) => {
+}: FactoryProps): LabelFormatterFactory<Scale> {
+  return ({ scale, labelFormat }) => (datum, index) => {
     const [x0, x1] = scale.invertExtent(scale(datum));
     return {
       extent: [x0, x1],
@@ -29,21 +29,21 @@ function labelFormatterFactoryFactory<Output>({
 }
 
 /** A Quantile scale takes a number input and returns an Output. */
-export default function Quantile<Output>({
+export default function Quantile<Scale extends AnyQuantileScale>({
   domain: inputDomain,
   scale,
-  labelFormat = x => x,
+  labelFormat = identity,
   labelTransform: inputLabelTransform,
   labelDelimiter = '-',
   ...restProps
-}: LegendQuantileProps<Output>) {
+}: LegendQuantileProps<Scale>) {
   // transform range into input values because it may contain more elements
   const domain = inputDomain || scale.range().map(output => scale.invertExtent(output)[0]);
   const labelTransform =
-    inputLabelTransform || labelFormatterFactoryFactory<Output>({ labelDelimiter });
+    inputLabelTransform || labelFormatterFactoryFactory<Scale>({ labelDelimiter });
 
   return (
-    <Legend<number, Output, ScaleQuantile<number, Output>>
+    <Legend<Scale>
       scale={scale}
       domain={domain}
       labelFormat={labelFormat}
