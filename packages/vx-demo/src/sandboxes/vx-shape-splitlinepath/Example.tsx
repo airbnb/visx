@@ -4,11 +4,14 @@ import { curveCardinal } from '@vx/curve';
 import { LinePath, SplitLinePath } from '@vx/shape';
 import { LinearGradient } from '@vx/gradient';
 
-import getRibbonPoints from './getRibbonPoints';
+import generateSinPoints from './generateSinPoints';
 
 type Point = { x: number; y: number };
 const getX = (d: Point) => d.x;
 const getY = (d: Point) => d.y;
+export const background = '#045275';
+export const backgroundLight = '#089099';
+export const foreground = '#b7e6a5';
 
 export type SplitLinePathProps = {
   width: number;
@@ -26,7 +29,7 @@ export default function SplitPath({
   pointsPerWave = 100,
   numberOfSegments = 8,
 }: SplitLinePathProps) {
-  const data = useMemo(() => getRibbonPoints({ width, height, numberOfWaves, pointsPerWave }), [
+  const data = useMemo(() => generateSinPoints({ width, height, numberOfWaves, pointsPerWave }), [
     width,
     height,
     numberOfWaves,
@@ -54,13 +57,20 @@ export default function SplitPath({
     <div>
       <svg width={width} height={height}>
         <LinearGradient
-          id="gradient"
-          from="#045275"
-          to="#089099"
+          id="vx-shape-splitlinepath-gradient"
+          from={background}
+          to={backgroundLight}
           fromOpacity={0.8}
           toOpacity={0.8}
         />
-        <rect x={0} y={0} width={width} height={height} fill="url(#gradient)" rx={14} />
+        <rect
+          x={0}
+          y={0}
+          width={width}
+          height={height}
+          fill="url(#vx-shape-splitlinepath-gradient)"
+          rx={14}
+        />
 
         <g transform={`rotate(${0})translate(${-0}, ${-height * 0.5})`}>
           <LinePath
@@ -73,27 +83,15 @@ export default function SplitPath({
             curve={curveCardinal}
           />
 
-          {/* <SplitLinePath<XYDatum>
-            data={dividedData}
-            x={d => xScale(getXValue(d))}
-            y={d => yScale(getYValue(d))}
-            curve={curveCardinal}
-            styles={[
-              { stroke: '#b7e6a5', strokeWidth: 2 },
-              { stroke: '#fff', strokeWidth: 2, strokeDasharray: '7,5' },
-              { stroke: '#045275', strokeWidth: 2 },
-            ]}
-          /> */}
-
           <SplitLinePath
             segments={dividedData}
             x={getScaledX}
             y={getScaledY}
             curve={curveCardinal}
             styles={[
-              { stroke: '#b7e6a5', strokeWidth: 3 },
+              { stroke: foreground, strokeWidth: 3 },
               { stroke: '#fff', strokeWidth: 2, strokeDasharray: '9,5' },
-              { stroke: '#045275', strokeWidth: 2 },
+              { stroke: background, strokeWidth: 2 },
             ]}
           >
             {({ segment, styles, index }) =>
@@ -113,7 +111,12 @@ export default function SplitPath({
                   ) : null,
                 )
               ) : (
-                <LinePath data={segment} x={d => d.x || 0} y={d => d.y || 0} {...styles} />
+                <LinePath
+                  data={segment}
+                  x={(d: Point) => d.x || 0}
+                  y={(d: Point) => d.y || 0}
+                  {...styles}
+                />
               )
             }
           </SplitLinePath>

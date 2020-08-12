@@ -1,5 +1,5 @@
-/** generates points along a sin wave, with  */
-export default function getSinPoints({
+/** generates points along a sin wave, with increasing height toward the center.  */
+export default function generateSinPoints({
   width,
   height,
   numberOfWaves = 10,
@@ -12,7 +12,7 @@ export default function getSinPoints({
 }) {
   const waveLength = width / numberOfWaves;
   const distanceBetweenPoints = waveLength / pointsPerWave;
-  const ribbonPoints: { x: number; y: number }[] = [];
+  const sinPoints: { x: number; y: number }[] = [];
 
   for (let waveIndex = 0; waveIndex <= numberOfWaves; waveIndex += 1) {
     const waveDistFromStart = waveIndex * waveLength;
@@ -25,9 +25,9 @@ export default function getSinPoints({
       const globalXFraction = (width - globalX) / width;
       const waveHeight = Math.min(globalXFraction, 1 - globalXFraction) * height;
 
-      ribbonPoints.push({ x: globalX, y: waveHeight * Math.sin(waveXFraction * (2 * Math.PI)) });
+      sinPoints.push({ x: globalX, y: waveHeight * Math.sin(waveXFraction * (2 * Math.PI)) });
     }
   }
 
-  return ribbonPoints;
+  return sinPoints;
 }

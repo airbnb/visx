@@ -27,6 +27,7 @@ import radarPackageJson from './vx-radar/package.json';
 import responsivePackageJson from './vx-responsive/package.json';
 import lineRadialPackageJson from './vx-shape-line-radial/package.json';
 import piePackageJson from './vx-shape-pie/package.json';
+import splitLinePathPackageJson from './vx-shape-splitlinepath/package.json';
 import stackedAreasPackageJson from './vx-stacked-areas/package.json';
 import statsPackageJson from './vx-stats/package.json';
 import streamgraphPackageJson from './vx-streamgraph/package.json';
@@ -43,33 +44,34 @@ import { VxPackage } from '../types';
 const examples = [
   areaPackageJson,
   axisPackageJson,
-  bargroupPackageJson,
   bargroupHorizontalPackageJson,
+  bargroupPackageJson,
   barsPackageJson,
-  barstackPackageJson,
   barstackHorizontalPackageJson,
+  barstackPackageJson,
   brushPackageJson,
   chordPackageJson,
   curvePackageJson,
   dendrogramPackageJson,
   dotsPackageJson,
-  dragIPackageJson,
   dragIIPackageJson,
+  dragIPackageJson,
   geoCustomPackageJson,
   geoMercatorPackageJson,
   glyphPackageJson,
   gradientPackageJson,
   heatmapPackageJson,
   legendPackageJson,
+  lineRadialPackageJson,
   linktypesPackageJson,
   networkPackageJson,
   packPackageJson,
   patternPackageJson,
+  piePackageJson,
   polygonsPackageJson,
   radarPackageJson,
   responsivePackageJson,
-  lineRadialPackageJson,
-  piePackageJson,
+  splitLinePathPackageJson,
   stackedAreasPackageJson,
   statsPackageJson,
   streamgraphPackageJson,
