@@ -20,13 +20,7 @@ import Stack from './src/components/series/Stack';
 
 type DataKeys = 'austin' | 'sf' | 'ny';
 
-const data = cityTemperature.slice(100, 100 + 12).map(({ date, ...d }) => ({
-  ...d,
-  // current format is like `20200105` which you can't form a valid date from
-  // @TODO PR soon!
-  date: `${date.slice(0, 4)}-${date.slice(4, 6)}-${date.slice(6, 8)}`,
-  key: date,
-})) as CityTemperature[];
+const data = cityTemperature.slice(100, 100 + 16);
 
 // @TODO wip updating data, not currently used
 // const halfData = data.slice(0, Math.floor(data.length / 2));
@@ -129,7 +123,17 @@ export default function Example() {
   const [renderTooltipInPortal, setRenderTooltipInPortal] = useState(true);
   const [visibleSeries, setVisibleSeries] = useState<
     ('line' | 'bar' | 'groupedbar' | 'stackedbar')[]
-  >(['stackedbar']);
+  >(['bar']);
+  const canSnapTooltipToDataX =
+    (visibleSeries.includes('groupedbar') && renderHorizontally) ||
+    (visibleSeries.includes('stackedbar') && !renderHorizontally) ||
+    visibleSeries.includes('bar');
+
+  const canSnapTooltipToDataY =
+    (visibleSeries.includes('groupedbar') && !renderHorizontally) ||
+    (visibleSeries.includes('stackedbar') && renderHorizontally) ||
+    visibleSeries.includes('bar');
+
   const dateScaleConfig: ScaleConfig<string> = useMemo(() => ({ type: 'band', padding: 0.2 }), []);
   const temperatureScaleConfig: ScaleConfig<number> = useMemo(
     () => ({
@@ -262,8 +266,8 @@ export default function Example() {
               />
             </XYChart>
             <Tooltip
-              snapToDataX={snapTooltipToDataX}
-              snapToDataY={snapTooltipToDataY}
+              snapToDataX={snapTooltipToDataX && canSnapTooltipToDataX}
+              snapToDataY={snapTooltipToDataY && canSnapTooltipToDataY}
               renderTooltip={renderTooltip}
               renderInPortal={renderTooltipInPortal}
             />
@@ -279,7 +283,6 @@ export default function Example() {
           <button
             onClick={() => {
               setDataMultiplier(5 * Math.random());
-              // setCurrData(currData === data ? halfData : data);
             }}
           >
             Update data
@@ -349,6 +352,7 @@ export default function Example() {
           <label>
             <input
               type="checkbox"
+              disabled={!canSnapTooltipToDataX}
               checked={snapTooltipToDataX}
               onChange={() => setSnapTooltipToDataX(!snapTooltipToDataX)}
             />
@@ -357,6 +361,7 @@ export default function Example() {
           <label>
             <input
               type="checkbox"
+              disabled={!canSnapTooltipToDataY}
               checked={snapTooltipToDataY}
               onChange={() => setSnapTooltipToDataY(!snapTooltipToDataY)}
             />
@@ -505,11 +510,11 @@ export default function Example() {
             />{' '}
             right
           </label>
-          {/* <br />
-        <label>
-          <input type="checkbox" onChange={() => setAutoWidth(!autoWidth)} checked={autoWidth} />{' '}
-          responsive width
-        </label> */}
+          <br />
+          <label>
+            <input type="checkbox" onChange={() => setAutoWidth(!autoWidth)} checked={autoWidth} />{' '}
+            responsive width
+          </label>
         </div>
         <div>
           <strong>series</strong>

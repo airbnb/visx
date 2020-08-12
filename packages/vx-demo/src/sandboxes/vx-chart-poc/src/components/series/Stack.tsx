@@ -4,7 +4,12 @@ import BarStack from '@vx/shape/lib/shapes/BarStack';
 import BarStackHorizontal from '@vx/shape/lib/shapes/BarStackHorizontal';
 import { BarStack as BarStackType } from '@vx/shape/lib/types';
 import ChartContext from '../../context/ChartContext';
-import { DataRegistry, ChartContext as ChartContextType, NearestDatumArgs } from '../../types';
+import {
+  DataRegistry,
+  ChartContext as ChartContextType,
+  NearestDatumArgs,
+  ScaleType,
+} from '../../types';
 
 import BarSeries from './BarSeries';
 import findNearestDatumY from '../../util/findNearestDatumY';
@@ -12,6 +17,10 @@ import findNearestDatumX from '../../util/findNearestDatumX';
 import AnimatedBars from './AnimatedBars';
 
 const STACK_ACCESSOR = d => d.stack;
+
+type CombinedData<XScaleInput, YScaleInput> = {
+  [dataKey: string]: XScaleInput | YScaleInput | number;
+} & { stack: XScaleInput | YScaleInput; positiveSum: number; negativeSum: number };
 
 export type GroupProps = {
   horizontal?: boolean;
@@ -38,7 +47,7 @@ export default function Stack<Datum, XScaleInput, YScaleInput>({
   // override the findNearestDatum logic
   const findNearestDatum = useCallback(
     (args: NearestDatumArgs<Datum, XScaleInput, YScaleInput>) => {
-      if (!stacks.current) return;
+      if (!stacks.current) return null;
 
       const nearestDatum = horizontal
         ? findNearestDatumY<Datum, XScaleInput, YScaleInput>(args)
@@ -84,8 +93,10 @@ export default function Stack<Datum, XScaleInput, YScaleInput>({
   );
 
   // group all child data by stack value, this format is needed by BarStack
-  const combinedData: { [key: string]: number }[] = useMemo(() => {
-    const dataByStackValue = {};
+  const combinedData: CombinedData<XScaleInput, YScaleInput>[] = useMemo(() => {
+    const dataByStackValue: {
+      [stackValue: string]: CombinedData<XScaleInput, YScaleInput>;
+    } = {};
     React.Children.forEach(children, child => {
       const { dataKey, data = [], xAccessor, yAccessor } = child.props;
 
@@ -127,8 +138,17 @@ export default function Stack<Datum, XScaleInput, YScaleInput>({
 
       // only need to update the domain for one of the keys
       if (comprehensiveDomain.length > 0 && dataKeys.indexOf(key) === 0) {
-        dataToRegister[key][horizontal ? 'xDomain' : 'yDomain'] = domain =>
-          extent([...domain, ...comprehensiveDomain], d => d);
+        if (horizontal) {
+          dataToRegister[key].xScale = (scale: ScaleType<XScaleInput, number>) =>
+            scale.domain(
+              extent<number | XScaleInput>([...scale.domain(), ...comprehensiveDomain], d => d),
+            );
+        } else {
+          dataToRegister[key].yScale = (scale: ScaleType<YScaleInput, number>) =>
+            scale.domain(
+              extent<number | YScaleInput>([...scale.domain(), ...comprehensiveDomain], d => d),
+            );
+        }
       }
     });
 

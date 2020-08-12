@@ -10,6 +10,7 @@ import {
   RegisterData,
   Margin,
   DatumWithKey,
+  ScaleType,
 } from '../../types';
 import ChartContext from '../../context/ChartContext';
 import createScale from '../../createScale';
@@ -69,7 +70,7 @@ export default class ChartProvider<
   }
 
   /** Adds data to the registry and to combined data if it supports events. */
-  registerData: RegisterData = dataToRegister => {
+  registerData: RegisterData<XScaleInput, YScaleInput, Datum> = dataToRegister => {
     this.setState(state => {
       const nextState = {
         ...state,
@@ -156,36 +157,33 @@ export default class ChartProvider<
 
     if (width == null || height == null) return;
 
-    let xDomain = combinedData.map(({ key, datum }) =>
-      dataRegistry[key]?.xAccessor(datum),
-    ) as XScaleInput[];
-
-    let yDomain = combinedData.map(({ key, datum }) =>
-      dataRegistry[key]?.yAccessor(datum),
-    ) as YScaleInput[];
-
-    // apply any updates to the domain from the registry
-    Object.values(dataRegistry).forEach(registry => {
-      if (registry.xDomain) xDomain = registry.xDomain(xDomain);
-      if (registry.yDomain) yDomain = registry.yDomain(yDomain);
-    });
-
-    const xScale = createScale<XScaleInput>({
-      data: xDomain,
+    let xScale = createScale<XScaleInput>({
+      data: combinedData.map(({ key, datum }) =>
+        dataRegistry[key]?.xAccessor(datum),
+      ) as XScaleInput[],
       scaleConfig: xScaleConfig,
       range: [margin.left, width - margin.right],
-    });
+    }) as ScaleType<XScaleInput, number>;
 
-    const yScale = createScale<YScaleInput>({
-      data: yDomain,
+    let yScale = createScale<YScaleInput>({
+      data: combinedData.map(({ key, datum }) =>
+        dataRegistry[key]?.yAccessor(datum),
+      ) as YScaleInput[],
       scaleConfig: yScaleConfig,
       range: [height - margin.bottom, margin.top],
-    });
+    }) as ScaleType<YScaleInput, number>;
 
     const colorScale = scaleOrdinal({
       domain: Object.keys(dataRegistry),
       range: theme.colors,
       ...colorScaleConfig,
+    });
+
+    // apply any updates to the scales from the registry
+    // @TODO this order currently overrides any changes from x/yScaleConfig
+    Object.values(dataRegistry).forEach(registry => {
+      if (registry.xScale) xScale = registry.xScale(xScale);
+      if (registry.yScale) yScale = registry.yScale(yScale);
     });
 
     return { xScale, yScale, colorScale };
@@ -199,6 +197,7 @@ export default class ChartProvider<
     }
   };
 
+  /**  */
   findNearestData = (event: React.MouseEvent | React.TouchEvent) => {
     const { width, height, margin, xScale, yScale, dataRegistry } = this.state;
 

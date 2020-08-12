@@ -15,10 +15,10 @@ export interface DataRegistry<Datum = unknown, XScaleInput = unknown, YScaleInpu
     yAccessor: (d: Datum) => YScaleInput;
     /** whether the entry supports mouse events. */
     mouseEvents?: boolean;
-    /** Optionally update the domain of the xScale. */
-    xDomain?: (domain: XScaleInput[]) => XScaleInput[];
-    /** Optionally update the domain of the yScale. */
-    yDomain?: (domain: YScaleInput[]) => YScaleInput[];
+    /** Optionally update the xScale. */
+    xScale?: (xScale: ScaleType<XScaleInput, number>) => ScaleType<XScaleInput, number>;
+    /** Optionally update the yScale. */
+    yScale?: (yScale: ScaleType<YScaleInput, number>) => ScaleType<YScaleInput, number>;
     /** Optionally override logic for finding the nearest data point to a mouse event. */
     findNearestDatum?: FindNearestDatum<Datum, XScaleInput, YScaleInput>;
     /** Legend shape */
@@ -26,7 +26,9 @@ export interface DataRegistry<Datum = unknown, XScaleInput = unknown, YScaleInpu
   };
 }
 
-export type RegisterData = (data: DataRegistry) => void;
+export type RegisterData<Datum, XScaleInput, YScaleInput> = (
+  data: DataRegistry<Datum, XScaleInput, YScaleInput>,
+) => void;
 
 export type DatumWithKey<Datum = unknown> = { datum: Datum; key: string; index: number };
 
@@ -57,7 +59,7 @@ export interface ChartContext<
   height: number | null;
   margin: Margin;
   dataRegistry: DataRegistry<Datum, XScaleInput, YScaleInput>;
-  registerData: RegisterData;
+  registerData: RegisterData<Datum, XScaleInput, YScaleInput>;
   unregisterData: (keyOrKeys: string | string[]) => void;
   setChartDimensions: (dims: { width: number; height: number; margin: Margin }) => void;
   findNearestData: (
