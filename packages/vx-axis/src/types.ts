@@ -13,7 +13,11 @@ export type AxisScale<Output extends AxisScaleOutput = AxisScaleOutput> =
 
 type FormattedValue = string | undefined;
 
-export type TickFormatter<T> = (value: T, index: number) => FormattedValue;
+export type TickFormatter<T> = (
+  value: T,
+  index: number,
+  values: { value: T; index: number }[],
+) => FormattedValue;
 
 export type TickLabelProps<T> = (value: T, index: number) => Partial<TextProps>;
 
@@ -22,6 +26,21 @@ export type TickRendererProps = Partial<TextProps> & {
   y: number;
   formattedValue: FormattedValue;
 };
+
+export type TicksRendererProps<Scale extends AxisScale> = {
+  tickLabelProps: Partial<TextProps>[];
+} & Pick<
+  AxisRendererProps<Scale>,
+  | 'hideTicks'
+  | 'horizontal'
+  | 'orientation'
+  | 'scale'
+  | 'tickClassName'
+  | 'tickComponent'
+  | 'tickStroke'
+  | 'tickTransform'
+  | 'ticks'
+>;
 
 interface CommonProps<Scale extends AxisScale> {
   /** The class name applied to the axis line element. */
@@ -54,8 +73,10 @@ interface CommonProps<Scale extends AxisScale> {
   strokeDasharray?: string;
   /** The class name applied to each tick group. */
   tickClassName?: string;
-  /** Override the component used to render tick labels (instead of <Text /> from @vx/text) */
+  /** Override the component used to render tick labels (instead of <Text /> from @vx/text). */
   tickComponent?: (tickRendererProps: TickRendererProps) => React.ReactNode;
+  /** Override the component used to render all tick lines and labels. */
+  ticksComponent?: (tickRendererProps: TicksRendererProps<Scale>) => React.ReactNode;
   /** A [d3 formatter](https://github.com/d3/d3-scale/blob/master/README.md#continuous_tickFormat) for the tick text. */
   tickFormat: TickFormatter<ScaleInput<Scale>>;
   /** A function that returns props for a given tick label. */
@@ -73,6 +94,14 @@ interface Point {
   y: number;
 }
 
+export type ComputedTick<Scale extends AxisScale> = {
+  value: ScaleInput<Scale>;
+  index: number;
+  from: Point;
+  to: Point;
+  formattedValue: FormattedValue;
+};
+
 export type AxisRendererProps<Scale extends AxisScale> = CommonProps<Scale> & {
   /** Start point of the axis line */
   axisFromPoint: Point;
@@ -87,13 +116,7 @@ export type AxisRendererProps<Scale extends AxisScale> = CommonProps<Scale> & {
   /** Axis coordinate sign, -1 for left or top orientation. */
   tickSign: 1 | -1;
   /** Computed ticks with positions and formatted value */
-  ticks: {
-    value: ScaleInput<Scale>;
-    index: number;
-    from: Point;
-    to: Point;
-    formattedValue: FormattedValue;
-  }[];
+  ticks: ComputedTick<Scale>[];
 };
 
 export type SharedAxisProps<Scale extends AxisScale> = Partial<CommonProps<Scale>> & {
