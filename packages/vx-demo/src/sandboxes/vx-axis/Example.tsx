@@ -95,7 +95,8 @@ export default function Example({
       values: logValues,
       tickFormat: (v: number) => {
         const asString = `${v}`;
-        return asString.match(/^[10\]\.?[01]*$/) ? asString : '';
+        // label only major ticks
+        return asString.match(/^[.01?[\]]*$/) ? asString : '';
       },
       label: 'log',
     },
