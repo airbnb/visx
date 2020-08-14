@@ -1,17 +1,23 @@
 import memoize from 'lodash/memoize';
 
 const MEASUREMENT_ELEMENT_ID = '__vx_splitpath_svg_path_measurement_id';
+const SVG_NAMESPACE_URL = 'http://www.w3.org/2000/svg';
 
 export interface GetLineSegmentsConfig<Datum> {
-  /** Full path `d` attribute to be broken up. */
+  /** Full path `d` attribute to be broken up into `n` segments. */
   path: string;
+  /**
+   * Array of length `n`, where `n` is the number of resulting line segments.
+   * For each segment of length `m`, `m / sampleRate` evenly spaced points will be returned.
+   */
   segments: Datum[][];
+  /** For each segment of length `m`, `m / sampleRate` evenly spaced points will be returned. */
   sampleRate?: number;
 }
 
 type LineSegments = { x: number; y: number }[][];
 
-export function getLineSegments<Datum>({
+export function getSplitLineSegments<Datum>({
   path,
   segments,
   sampleRate = 0.25,
@@ -21,13 +27,18 @@ export function getLineSegments<Datum>({
 
     // create a single path element if not done already
     if (!pathElement) {
-      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      const svg = document.createElementNS(SVG_NAMESPACE_URL, 'svg');
+      // not visible
+      svg.style.opacity = '0';
       svg.style.width = '0';
       svg.style.height = '0';
+      // off screen
       svg.style.position = 'absolute';
       svg.style.top = '-100%';
       svg.style.left = '-100%';
-      pathElement = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      // no mouse events
+      svg.style.pointerEvents = 'none';
+      pathElement = document.createElementNS(SVG_NAMESPACE_URL, 'path');
       pathElement.setAttribute('id', MEASUREMENT_ELEMENT_ID);
       svg.appendChild(pathElement);
       document.body.appendChild(svg);
@@ -46,7 +57,7 @@ export function getLineSegments<Datum>({
       const coords: { x: number; y: number }[] = [];
 
       for (let i = 0; i < segmentPointCount + sampleRate; i += sampleRate) {
-        const distance = cumulativeSize * pieceSize + i * pieceSize;
+        const distance = (cumulativeSize + i) * pieceSize;
         const point = pathElement!.getPointAtLength(distance);
         coords.push(point);
       }
@@ -63,7 +74,7 @@ export function getLineSegments<Datum>({
 }
 
 export default memoize(
-  getLineSegments,
+  getSplitLineSegments,
   ({ path, segments, sampleRate }: GetLineSegmentsConfig<any>) =>
     `${path}_${segments.length}_${segments.map(segment => segment.length).join('-')}_${sampleRate}`,
 );
