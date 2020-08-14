@@ -33,6 +33,7 @@ import * as PiesTile from './PiesTile';
 import * as PolygonsTile from './PolygonsTile';
 import * as RadarTile from './RadarTile';
 import * as ResponsiveTile from './ResponsiveTile';
+import * as SplitLinePathTile from './SplitLinePathTile';
 import * as StackedAreasTile from './StackedAreasTile';
 import * as StatsPlotTile from './StatsPlotTile';
 import * as StreamGraphTile from './StreamGraphTile';
@@ -80,6 +81,7 @@ const tiles = [
   PolygonsTile,
   RadarTile,
   ResponsiveTile,
+  SplitLinePathTile,
   StackedAreasTile,
   StatsPlotTile,
   StreamGraphTile,
