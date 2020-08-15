@@ -11,6 +11,7 @@ import exponent from './exponent';
 import interpolate from './interpolate';
 import nice from './nice';
 import padding from './padding';
+import reverse from './reverse';
 import round from './round';
 import unknown from './unknown';
 import zero from './zero';
@@ -28,6 +29,10 @@ export const ALL_OPERATORS = [
   'interpolate',
   'round',
 
+  // set range then reverse
+  'range',
+  'reverse',
+
   // Order does not matter for these operators
   'align',
   'base',
@@ -35,7 +40,6 @@ export const ALL_OPERATORS = [
   'constant',
   'exponent',
   'padding',
-  'range',
   'unknown',
 ] as const;
 
@@ -55,6 +59,7 @@ const operators: Record<OperatorType, typeof domain> = {
   exponent,
   padding,
   range,
+  reverse,
   unknown,
 };
 

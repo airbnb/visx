@@ -6,6 +6,7 @@ import scaleOperator from '../operators/scaleOperator';
 export const updateLogScale = scaleOperator<'log'>(
   'domain',
   'range',
+  'reverse',
   'base',
   'clamp',
   'interpolate',

@@ -6,6 +6,7 @@ import scaleOperator from '../operators/scaleOperator';
 export const updateTimeScale = scaleOperator<'time'>(
   'domain',
   'range',
+  'reverse',
   'clamp',
   'interpolate',
   'nice',

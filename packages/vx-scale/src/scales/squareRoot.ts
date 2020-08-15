@@ -6,6 +6,7 @@ import scaleOperator from '../operators/scaleOperator';
 export const updateSqrtScale = scaleOperator<'sqrt'>(
   'domain',
   'range',
+  'reverse',
   'clamp',
   'interpolate',
   'nice',

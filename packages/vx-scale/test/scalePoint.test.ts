@@ -13,6 +13,10 @@ describe('scalePoint', () => {
     const scale = scalePoint({ range: [2, 3] });
     expect(scale.range()).toEqual([2, 3]);
   });
+  it('set reverse', () => {
+    expect(scalePoint({ reverse: true }).range()).toEqual([1, 0]);
+    expect(scalePoint({ range: [1, 2], reverse: true }).range()).toEqual([2, 1]);
+  });
   it('set align', () => {
     expect(scalePoint({ align: 0.5 }).align()).toEqual(0.5);
   });

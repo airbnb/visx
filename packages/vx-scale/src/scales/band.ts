@@ -6,6 +6,7 @@ import scaleOperator from '../operators/scaleOperator';
 export const updateBandScale = scaleOperator<'band'>(
   'domain',
   'range',
+  'reverse',
   'align',
   'padding',
   'round',

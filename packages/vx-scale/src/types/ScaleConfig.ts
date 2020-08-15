@@ -17,7 +17,7 @@ export type ContinuousDomain = ContinuousInput[];
 // and add `type` property as discriminant of union type.
 type CreateScaleConfig<T, D, R, Fields extends keyof BaseScaleConfig<T, D, R> = 'type'> = Pick<
   BaseScaleConfig<T, D, R>,
-  'type' | 'domain' | 'range' | Fields
+  'type' | 'domain' | 'range' | 'reverse' | Fields
 >;
 
 export type LinearScaleConfig<Output = DefaultOutput> = CreateScaleConfig<
