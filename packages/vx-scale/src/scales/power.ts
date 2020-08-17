@@ -6,6 +6,7 @@ import scaleOperator from '../operators/scaleOperator';
 export const updatePowScale = scaleOperator<'pow'>(
   'domain',
   'range',
+  'reverse',
   'clamp',
   'exponent',
   'interpolate',

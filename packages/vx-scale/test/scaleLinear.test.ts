@@ -13,6 +13,10 @@ describe('scaleLinear()', () => {
     const range = [1, 2];
     expect(scaleLinear({ range: [1, 2] }).range()).toEqual(range);
   });
+  it('set reverse', () => {
+    expect(scaleLinear({ reverse: true }).range()).toEqual([1, 0]);
+    expect(scaleLinear({ range: [1, 2], reverse: true }).range()).toEqual([2, 1]);
+  });
   describe('set clamp', () => {
     it('true', () => {
       const scale = scaleLinear({ clamp: true });

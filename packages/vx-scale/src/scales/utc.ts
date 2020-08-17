@@ -6,6 +6,7 @@ import scaleOperator from '../operators/scaleOperator';
 export const updateUtcScale = scaleOperator<'utc'>(
   'domain',
   'range',
+  'reverse',
   'clamp',
   'interpolate',
   'nice',

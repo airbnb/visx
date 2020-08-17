@@ -6,6 +6,7 @@ import scaleOperator from '../operators/scaleOperator';
 export const updatePointScale = scaleOperator<'point'>(
   'domain',
   'range',
+  'reverse',
   'align',
   'padding',
   'round',

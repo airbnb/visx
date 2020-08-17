@@ -6,6 +6,7 @@ import scaleOperator from '../operators/scaleOperator';
 export const updateSymlogScale = scaleOperator<'symlog'>(
   'domain',
   'range',
+  'reverse',
   'clamp',
   'constant',
   'nice',

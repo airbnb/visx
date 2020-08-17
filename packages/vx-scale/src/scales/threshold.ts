@@ -4,7 +4,7 @@ import { PickScaleConfigWithoutType } from '../types/ScaleConfig';
 import { DefaultThresholdInput } from '../types/Scale';
 import scaleOperator from '../operators/scaleOperator';
 
-export const updateThresholdScale = scaleOperator<'threshold'>('domain', 'range');
+export const updateThresholdScale = scaleOperator<'threshold'>('domain', 'range', 'reverse');
 
 export default function createThresholdScale<
   ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput,
