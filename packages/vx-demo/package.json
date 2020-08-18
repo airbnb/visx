@@ -52,6 +52,7 @@
     "@vx/threshold": "0.0.198",
     "@vx/tooltip": "0.0.198",
     "@vx/voronoi": "0.0.198",
+    "@vx/xychart": "0.0.0",
     "@vx/zoom": "0.0.198",
     "@zeit/next-css": "^1.0.1",
     "classnames": "^2.2.5",
