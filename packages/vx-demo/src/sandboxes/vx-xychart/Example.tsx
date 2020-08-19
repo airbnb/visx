@@ -12,7 +12,7 @@ export default function Example(_: Props) {
 
   return (
     <>
-      <ThemeProvider theme={theme || {}}>
+      <ThemeProvider theme={theme}>
         <XYChart />
       </ThemeProvider>
       <Controls theme={theme} setTheme={setTheme} />
