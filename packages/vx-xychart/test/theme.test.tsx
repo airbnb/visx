@@ -42,6 +42,9 @@ describe('colors', () => {
   it('should export defaultColors', () => {
     expect(defaultColors).toMatchObject(expect.arrayContaining([expect.any(String)]));
   });
+  it('should export grayColors', () => {
+    expect(grayColors).toMatchObject(expect.arrayContaining([expect.any(String)]));
+  });
 });
 
 describe('theme', () => {
