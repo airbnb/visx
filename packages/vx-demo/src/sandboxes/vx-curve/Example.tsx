@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import * as allCurves from '@vx/curve';
 import { Group } from '@vx/group';
 import { LinePath } from '@vx/shape';
-import { MarkerArrow, MarkerCross, MarkerCircle } from '@vx/marker';
+import { MarkerArrow, MarkerCross, MarkerX, MarkerCircle, MarkerLine } from '@vx/marker';
 import generateDateValue, { DateValue } from '@vx/mock-data/lib/generators/genDateValue';
 import { scaleTime, scaleLinear } from '@vx/scale';
 import { extent, max } from 'd3-array';
@@ -82,13 +82,12 @@ export default function Example({ width, height, showControls = true }: CurvePro
           to={gradientColor2}
           rotate="-45"
         />
-        <MarkerCross
-          id="marker-cross-odd"
+        <MarkerX
+          id="marker-x"
           stroke="#333"
           size={22}
           strokeWidth={4}
           markerUnits="userSpaceOnUse"
-          orient={45}
         />
         <MarkerCross
           id="marker-cross"
@@ -99,7 +98,8 @@ export default function Example({ width, height, showControls = true }: CurvePro
           markerUnits="userSpaceOnUse"
         />
         <MarkerCircle id="marker-circle" fill="#333" radius={2} refX={2} />
-        <MarkerArrow id="marker-arrow-odd" stroke="#333" />
+        <MarkerArrow id="marker-arrow-odd" stroke="#333" size={8} strokeWidth={1} />
+        <MarkerLine id="marker-line" fill="#333" size={16} strokeWidth={1} />
         <MarkerArrow id="marker-arrow" fill="#333" refX={2} />
         <rect width={width} height={svgHeight} fill="#efefef" rx={14} ry={14} />
         {width > 8 &&
@@ -126,7 +126,13 @@ export default function Example({ width, height, showControls = true }: CurvePro
                 strokeOpacity={i % 2 === 0 ? 0.6 : 1}
                 shapeRendering="geometricPrecision"
                 markerMid="url(#marker-circle)"
-                markerStart={i % 2 === 0 ? 'url(#marker-cross)' : 'url(#marker-cross-odd)'}
+                markerStart={
+                  i % 2 === 0
+                    ? 'url(#marker-cross)'
+                    : i === 1
+                    ? 'url(#marker-line)'
+                    : 'url(#marker-x)'
+                }
                 markerEnd={i % 2 === 0 ? 'url(#marker-arrow)' : 'url(#marker-arrow-odd)'}
               />
             </Group>

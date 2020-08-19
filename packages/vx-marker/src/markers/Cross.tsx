@@ -13,6 +13,7 @@ export default function MarkerCross({
   strokeWidth = 0,
   ...restProps
 }: MarkerCrossProps & Omit<MarkerProps, 'children'>) {
+  console.log(restProps);
   const bounds = size + strokeWidth;
   const mid = size / 2;
   const points = `0 ${mid}, ${mid} ${mid}, ${mid} 0, ${mid} ${size}, ${mid} ${mid}, ${size} ${mid}`;
