@@ -1,10 +1,10 @@
 import React from 'react';
 import { animated, useTransition, interpolate } from 'react-spring';
 import cx from 'classnames';
+import Orientation from '@vx/axis/lib/constants/orientation';
+import { TicksRendererProps, AxisScale } from '@vx/axis/lib/types';
 import { Text } from '@vx/text';
 
-import Orientation from '../../constants/orientation';
-import { TicksRendererProps, AxisScale } from '../../types';
 import useTickTransitionConfig from './useTickTransitionConfig';
 
 export default function TicksRenderer<Scale extends AxisScale>({
@@ -25,7 +25,7 @@ export default function TicksRenderer<Scale extends AxisScale>({
   });
 
   return animatedTicks.map(({ item, key, props }, index) => {
-    // @ts-ignore react-spring types don't handle fromX, etc.
+    // @ts-ignore react-spring types only include CSSProperties
     const { fromX, toX, fromY, toY, opacity } = props;
     const tickLabelProps = allTickLabelProps[index] ?? allTickLabelProps[0] ?? {};
     return (

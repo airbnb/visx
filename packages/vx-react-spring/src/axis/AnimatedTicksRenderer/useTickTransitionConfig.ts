@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { coerceNumber } from '@vx/scale';
-import { AxisScale, ComputedTick, TicksRendererProps } from '../../types';
+import { AxisScale, ComputedTick, TicksRendererProps } from '@vx/axis/lib/types';
 
 function enterUpdate<Scale extends AxisScale>({ from, to }: ComputedTick<Scale>) {
   return {
