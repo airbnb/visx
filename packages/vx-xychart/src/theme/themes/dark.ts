@@ -1,5 +1,4 @@
 import { defaultColors, grayColors } from '../colors';
-import svgFont from '../svgFont';
 import buildChartTheme from '../buildChartTheme';
 
 export default buildChartTheme({

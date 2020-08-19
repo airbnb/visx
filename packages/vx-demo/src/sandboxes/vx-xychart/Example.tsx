@@ -1,5 +1,6 @@
-import React from 'react';
-import { XYChart } from '@vx/xychart';
+import React, { useState } from 'react';
+import { XYChart, ThemeProvider, lightTheme, darkTheme } from '@vx/xychart';
+import Controls from './Controls';
 
 type Props = {
   width: number;
@@ -7,5 +8,14 @@ type Props = {
 };
 
 export default function Example(_: Props) {
-  return <XYChart />;
+  const [theme, setTheme] = useState<typeof lightTheme | typeof darkTheme | null>(lightTheme);
+
+  return (
+    <>
+      <ThemeProvider theme={theme || {}}>
+        <XYChart />
+      </ThemeProvider>
+      <Controls theme={theme} setTheme={setTheme} />
+    </>
+  );
 }
