@@ -9,7 +9,7 @@ export default function MarkerCircle({
 }: MarkerComponentProps) {
   const diameter = size * 2;
   const bounds = diameter + strokeWidth;
-  const mid = size / 2;
+  const mid = bounds / 2;
   return (
     <Marker
       id={id}

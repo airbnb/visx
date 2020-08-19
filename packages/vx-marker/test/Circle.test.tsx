@@ -18,18 +18,18 @@ describe('<MarkerCircle />', () => {
   });
 
   test('it should size correctly', () => {
-    const radius = 8;
+    const size = 8;
     const strokeWidth = 1;
-    const marker = Wrapper({ size: radius, strokeWidth }).find(Marker);
+    const marker = Wrapper({ size, strokeWidth }).find(Marker);
     const circle = marker.dive().find('circle');
-    const diameter = radius * 2;
-    const size = diameter + strokeWidth;
-    const mid = size / 2;
-    expect(marker.prop('markerWidth')).toEqual(size);
-    expect(marker.prop('markerHeight')).toEqual(size);
+    const diameter = size * 2;
+    const bounds = diameter + strokeWidth;
+    const mid = bounds / 2;
+    expect(marker.prop('markerWidth')).toEqual(bounds);
+    expect(marker.prop('markerHeight')).toEqual(bounds);
     expect(marker.prop('refX')).toEqual(0);
     expect(marker.prop('refY')).toEqual(mid);
-    expect(circle.prop('r')).toEqual(radius);
+    expect(circle.prop('r')).toEqual(size);
     expect(circle.prop('cx')).toEqual(mid);
     expect(circle.prop('cy')).toEqual(mid);
   });
