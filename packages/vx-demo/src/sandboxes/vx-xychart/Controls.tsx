@@ -1,9 +1,10 @@
 import React from 'react';
 import { lightTheme, darkTheme, XYChartTheme } from '@vx/xychart';
+import customTheme from './customTheme';
 
 type ControlsProps = {
-  theme: XYChartTheme | null;
-  setTheme: (theme: XYChartTheme | null) => void;
+  theme: XYChartTheme;
+  setTheme: (theme: XYChartTheme) => void;
 };
 
 export default function Controls({ theme, setTheme }: ControlsProps) {
@@ -29,7 +30,12 @@ export default function Controls({ theme, setTheme }: ControlsProps) {
             dark
           </label>
           <label>
-            <input type="radio" onChange={() => setTheme(null)} checked={theme == null} /> none
+            <input
+              type="radio"
+              onChange={() => setTheme(customTheme)}
+              checked={theme === customTheme}
+            />{' '}
+            custom
           </label>
         </div>
       </div>

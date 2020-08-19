@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { XYChart, ThemeProvider, lightTheme, darkTheme } from '@vx/xychart';
+import { XYChart, ThemeProvider, lightTheme, XYChartTheme } from '@vx/xychart';
 import Controls from './Controls';
 
 type Props = {
@@ -8,7 +8,7 @@ type Props = {
 };
 
 export default function Example(_: Props) {
-  const [theme, setTheme] = useState<typeof lightTheme | typeof darkTheme | null>(lightTheme);
+  const [theme, setTheme] = useState<XYChartTheme>(lightTheme);
 
   return (
     <>
