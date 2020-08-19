@@ -66,12 +66,12 @@ describe('withBoundingRects()', () => {
     const HOC = withBoundingRects(Component);
     const wrapper = mount(<HOC />);
     const RenderedComponent = wrapper.find(Component);
-    expect(RenderedComponent.prop('rect')).toEqual(undefined);
-    expect(RenderedComponent.prop('parentRect')).toEqual(undefined);
+    expect(RenderedComponent.prop('rect')).toBeUndefined();
+    expect(RenderedComponent.prop('parentRect')).toBeUndefined();
   });
 
   test('it should set rect and parentRect to empty state if no getBoundingClient()', () => {
-    const Component = () => <>''</>;
+    const Component = () => <>{''}</>;
     const HOC = withBoundingRects(Component);
     const wrapper = mount(<HOC />);
     const RenderedComponent = wrapper.find(Component);
