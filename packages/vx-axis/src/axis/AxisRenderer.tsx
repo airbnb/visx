@@ -6,7 +6,7 @@ import { Text } from '@vx/text';
 import { TextProps } from '@vx/text/lib/Text';
 import getLabelTransform from '../utils/getLabelTransform';
 import { AxisRendererProps, AxisScale } from '../types';
-import TicksRenderer from './TicksRenderer';
+import Ticks from './Ticks';
 
 const defaultTextProps: Partial<TextProps> = {
   textAnchor: 'middle',
@@ -38,7 +38,7 @@ export default function AxisRenderer<Scale extends AxisScale>({
   tickStroke = '#222',
   tickTransform,
   ticks,
-  ticksComponent = TicksRenderer,
+  ticksComponent = Ticks,
 }: AxisRendererProps<Scale>) {
   // compute the max tick label size to compute label offset
   const allTickLabelProps = ticks.map(({ value, index }) => tickLabelProps(value, index));

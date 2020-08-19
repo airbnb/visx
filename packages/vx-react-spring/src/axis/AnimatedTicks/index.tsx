@@ -7,7 +7,7 @@ import { Text } from '@vx/text';
 
 import useTickTransitionConfig from './useTickTransitionConfig';
 
-export default function TicksRenderer<Scale extends AxisScale>({
+export default function AnimatedTicks<Scale extends AxisScale>({
   hideTicks,
   horizontal,
   orientation,

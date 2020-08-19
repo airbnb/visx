@@ -7,7 +7,7 @@ import { Text } from '@vx/text';
 import Orientation from '../constants/orientation';
 import { TicksRendererProps, AxisScale } from '../types';
 
-export default function TicksRenderer<Scale extends AxisScale>({
+export default function Ticks<Scale extends AxisScale>({
   hideTicks,
   horizontal,
   orientation,
