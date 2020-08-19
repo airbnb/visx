@@ -92,7 +92,7 @@
         "json"
       ],
       "collectCoverageFrom": [
-        "packages/src/**/*{.ts,tsx}",
+        "packages/src/**/*.{ts,tsx}",
         "!node_modules/**",
         "!packages/**/esm/**",
         "!packages/**/lib/**",
