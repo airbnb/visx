@@ -1,21 +1,14 @@
 import React from 'react';
-import Marker, { MarkerProps } from './Marker';
-
-export interface MarkerLineProps {
-  id: string;
-  size?: number;
-  stroke?: string;
-  fill?: string;
-}
+import Marker, { MarkerComponentProps } from './Marker';
 
 export default function MarkerLine({
   id,
-  size = 8,
+  size = 9,
+  fill,
   stroke,
   strokeWidth = 1,
-  fill,
   ...restProps
-}: MarkerLineProps & Omit<MarkerProps, 'children'>) {
+}: MarkerComponentProps) {
   const max = Math.max(size, strokeWidth * 2);
   const midX = max / 2;
   const midY = size / 2;

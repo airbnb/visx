@@ -1,18 +1,12 @@
 import React from 'react';
-import Marker, { MarkerProps } from './Marker';
-
-interface MarkerCrossProps {
-  id: string;
-  size?: number;
-  strokeWidth?: number;
-}
+import Marker, { MarkerComponentProps } from './Marker';
 
 export default function MarkerCross({
   id,
-  size = 12,
-  strokeWidth = 0,
+  size = 9,
+  strokeWidth = 1,
   ...restProps
-}: MarkerCrossProps & Omit<MarkerProps, 'children'>) {
+}: MarkerComponentProps) {
   const bounds = size + strokeWidth;
   const mid = size / 2;
   const points = `0 ${mid}, ${mid} ${mid}, ${mid} 0, ${mid} ${size}, ${mid} ${mid}, ${size} ${mid}`;

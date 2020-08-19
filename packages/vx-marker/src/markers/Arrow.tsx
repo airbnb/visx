@@ -1,18 +1,12 @@
 import React from 'react';
-import Marker, { MarkerProps } from './Marker';
-
-interface MarkerArrowProps {
-  id: string;
-  size?: number;
-  strokeWidth?: number;
-}
+import Marker, { MarkerComponentProps } from './Marker';
 
 export default function MarkerArrow({
   id,
   size = 9,
   strokeWidth = 1,
   ...restProps
-}: MarkerArrowProps & Omit<MarkerProps, 'children'>) {
+}: MarkerComponentProps) {
   const max = size + strokeWidth * 2;
   const midX = size;
   const midY = max / 2;

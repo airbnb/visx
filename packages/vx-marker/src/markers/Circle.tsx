@@ -1,35 +1,28 @@
 import React from 'react';
-import Marker, { MarkerProps } from './Marker';
-
-interface MarkerCircleProps {
-  id: string;
-  radius?: number; // todo: support string value and browser units (px, ch, em, etc.)
-  strokeWidth?: number; // todo: support string value and browser units (px, ch, em, etc.)
-}
+import Marker, { MarkerComponentProps } from './Marker';
 
 export default function MarkerCircle({
   id,
-  radius = 4,
-  strokeWidth = 0,
+  size = 9,
+  strokeWidth = 1,
   ...restProps
-}: MarkerCircleProps & Omit<MarkerProps, 'children'>) {
-  const diameter = radius * 2;
-  const size = diameter + strokeWidth;
+}: MarkerComponentProps) {
+  const diameter = size * 2;
+  const bounds = diameter + strokeWidth;
   const mid = size / 2;
   return (
     <Marker
       id={id}
-      markerWidth={size}
-      markerHeight={size}
+      markerWidth={bounds}
+      markerHeight={bounds}
       refX={0}
       refY={mid}
       orient="auto-start-reverse"
       markerUnits="strokeWidth"
-      fill="steelblue"
       strokeWidth={strokeWidth}
       {...restProps}
     >
-      <circle r={radius} cx={mid} cy={mid} />
+      <circle r={size} cx={mid} cy={mid} />
     </Marker>
   );
 }

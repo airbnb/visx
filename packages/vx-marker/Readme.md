@@ -4,7 +4,7 @@
   <img src="https://img.shields.io/npm/dm/@vx/marker.svg?style=flat-square" />
 </a>
 
-Markers are elements attached to shapes.
+Markers are graphical objects attached to a <path>, <line>, <polyline>, or <polygon> element.
 [MDN `<marker>`](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/marker)
 
 ## Installation

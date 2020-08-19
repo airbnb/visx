@@ -1,15 +1,7 @@
 import React from 'react';
 import Cross from './Cross';
-import { MarkerProps } from './Marker';
+import { MarkerComponentProps } from './Marker';
 
-export interface MarkerXProps {
-  id: string;
-  size?: number;
-  strokeWidth?: number;
-}
-
-export type Props = MarkerXProps & Omit<MarkerProps, 'children'>;
-
-export default function MarkerX(props: Props) {
+export default function MarkerX(props: MarkerComponentProps) {
   return <Cross orient={45} {...props} />;
 }
