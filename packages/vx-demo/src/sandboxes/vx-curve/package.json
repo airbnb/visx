@@ -10,6 +10,7 @@
     "@vx/curve": "latest",
     "@vx/gradient": "latest",
     "@vx/group": "latest",
+    "@vx/marker": "latest",
     "@vx/mock-data": "latest",
     "@vx/responsive": "latest",
     "@vx/scale": "latest",
