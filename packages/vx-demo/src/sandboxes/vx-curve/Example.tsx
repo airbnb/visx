@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
+import { extent, max } from 'd3-array';
 import * as allCurves from '@vx/curve';
 import { Group } from '@vx/group';
 import { LinePath } from '@vx/shape';
+import { scaleTime, scaleLinear } from '@vx/scale';
 import { MarkerArrow, MarkerCross, MarkerX, MarkerCircle, MarkerLine } from '@vx/marker';
 import generateDateValue, { DateValue } from '@vx/mock-data/lib/generators/genDateValue';
-import { scaleTime, scaleLinear } from '@vx/scale';
-import { extent, max } from 'd3-array';
-import { LinearGradient } from '@vx/gradient';
 
 type CurveType = keyof typeof allCurves;
 
@@ -40,7 +39,7 @@ export type CurveProps = {
 };
 
 export default function Example({ width, height, showControls = true }: CurveProps) {
-  const [curveType, setCurveType] = useState<CurveType>('curveStep');
+  const [curveType, setCurveType] = useState<CurveType>('curveNatural');
   const [showPoints, setShowPoints] = useState<boolean>(true);
   const svgHeight = showControls ? height - 40 : height;
   const lineHeight = svgHeight / lineCount;
@@ -76,12 +75,6 @@ export default function Example({ width, height, showControls = true }: CurvePro
         </>
       )}
       <svg width={width} height={svgHeight}>
-        <LinearGradient
-          id="vx-curves-demo"
-          from={gradientColor1}
-          to={gradientColor2}
-          rotate="-45"
-        />
         <MarkerX
           id="marker-x"
           stroke="#333"
@@ -100,43 +93,43 @@ export default function Example({ width, height, showControls = true }: CurvePro
         <MarkerCircle id="marker-circle" fill="#333" radius={2} refX={2} />
         <MarkerArrow id="marker-arrow-odd" stroke="#333" size={8} strokeWidth={1} />
         <MarkerLine id="marker-line" fill="#333" size={16} strokeWidth={1} />
-        <MarkerArrow id="marker-arrow" fill="#333" refX={2} />
+        <MarkerArrow id="marker-arrow" fill="#333" refX={2} size={6} />
         <rect width={width} height={svgHeight} fill="#efefef" rx={14} ry={14} />
         {width > 8 &&
-          series.map((lineData, i) => (
-            <Group key={`lines-${i}`} top={i * lineHeight} left={13}>
-              {showPoints &&
-                lineData.map((d, j) => (
-                  <circle
-                    key={i + j}
-                    r={3}
-                    cx={xScale(getX(d))}
-                    cy={yScale(getY(d))}
-                    stroke="rgba(33,33,33,0.5)"
-                    fill="transparent"
-                  />
-                ))}
-              <LinePath<DateValue>
-                curve={allCurves[curveType]}
-                data={lineData}
-                x={d => xScale(getX(d))}
-                y={d => yScale(getY(d))}
-                stroke="#333"
-                strokeWidth={i % 2 === 0 ? 2 : 1}
-                strokeOpacity={i % 2 === 0 ? 0.6 : 1}
-                shapeRendering="geometricPrecision"
-                markerMid="url(#marker-circle)"
-                markerStart={
-                  i % 2 === 0
-                    ? 'url(#marker-cross)'
-                    : i === 1
-                    ? 'url(#marker-line)'
-                    : 'url(#marker-x)'
-                }
-                markerEnd={i % 2 === 0 ? 'url(#marker-arrow)' : 'url(#marker-arrow-odd)'}
-              />
-            </Group>
-          ))}
+          series.map((lineData, i) => {
+            const even = i % 2 === 0;
+            let markerStart = even ? 'url(#marker-cross)' : 'url(#marker-x)';
+            if (i === 1) markerStart = 'url(#marker-line)';
+            const markerEnd = even ? 'url(#marker-arrow)' : 'url(#marker-arrow-odd)';
+            return (
+              <Group key={`lines-${i}`} top={i * lineHeight} left={13}>
+                {showPoints &&
+                  lineData.map((d, j) => (
+                    <circle
+                      key={i + j}
+                      r={3}
+                      cx={xScale(getX(d))}
+                      cy={yScale(getY(d))}
+                      stroke="rgba(33,33,33,0.5)"
+                      fill="transparent"
+                    />
+                  ))}
+                <LinePath<DateValue>
+                  curve={allCurves[curveType]}
+                  data={lineData}
+                  x={d => xScale(getX(d))}
+                  y={d => yScale(getY(d))}
+                  stroke="#333"
+                  strokeWidth={even ? 2 : 1}
+                  strokeOpacity={even ? 0.6 : 1}
+                  shapeRendering="geometricPrecision"
+                  markerMid="url(#marker-circle)"
+                  markerStart={markerStart}
+                  markerEnd={markerEnd}
+                />
+              </Group>
+            );
+          })}
       </svg>
       <style jsx>{`
         .vx-curves-demo label {
