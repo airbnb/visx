@@ -65,4 +65,15 @@ describe('<LinePathAnnotation />', () => {
       ),
     ).toBe(true);
   });
+
+  test('it should have default x and y accessors', () => {
+    const point = new Point({ x: 0, y: 0 });
+    const points = [point];
+    const wrapper = shallow(<LinePathAnnotation label="test" points={points} />);
+    const linepath = wrapper.childAt(0).props();
+    const x = linepath.x(point);
+    const y = linepath.y(point);
+    expect(x).toEqual(point.x);
+    expect(y).toEqual(point.y);
+  });
 });
