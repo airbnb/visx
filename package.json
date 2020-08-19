@@ -91,6 +91,19 @@
       "coverageReporters": [
         "json"
       ],
+      "collectCoverageFrom": [
+        "packages/src/**/*{.ts,tsx}",
+        "!node_modules/**",
+        "!packages/**/esm/**",
+        "!packages/**/lib/**",
+        "!packages/**/node_modules/**",
+        "!packages/vx-demo/**",
+        "!packages/vx-vx/**"
+      ],
+      "testPathIgnorePatterns" : [
+        "<rootDir>/packages/vx-demo",
+        "<rootDir>/packages/vx-vx" 
+      ],
       "coverageThreshold": {
         "global": {
           "branches": 0,
