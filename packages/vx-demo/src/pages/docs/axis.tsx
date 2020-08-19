@@ -1,7 +1,6 @@
 import React from 'react';
 import AxisReadme from '!!raw-loader!../../../../vx-axis/Readme.md';
 import Axis from '../../../../vx-axis/src/axis/Axis';
-import AnimatedAxis from '../../../../vx-react-spring/src/axis/AnimatedAxis';
 import AxisBottom from '../../../../vx-axis/src/axis/AxisBottom';
 import AxisLeft from '../../../../vx-axis/src/axis/AxisLeft';
 import AxisRight from '../../../../vx-axis/src/axis/AxisRight';
@@ -11,7 +10,7 @@ import AxisTile from '../../components/Gallery/AxisTile';
 import BarStackTile from '../../components/Gallery/BarStackTile';
 import ThresholdTile from '../../components/Gallery/ThresholdTile';
 
-const components = [Axis, AnimatedAxis, AxisBottom, AxisLeft, AxisRight, AxisTop];
+const components = [Axis, AxisBottom, AxisLeft, AxisRight, AxisTop];
 
 const examples = [AxisTile, BarStackTile, ThresholdTile];
 
