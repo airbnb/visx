@@ -1,6 +1,6 @@
 {
   "name": "@vx/react-spring",
-  "version": "0.0.0",
+  "version": "0.0.198",
   "description": "Vx primitives that rely on react-spring for animation",
   "sideEffects": false,
   "main": "lib/index.js",

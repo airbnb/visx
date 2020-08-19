@@ -3,7 +3,8 @@ import AreaClosed from '@vx/shape/lib/shapes/AreaClosed';
 import { Grid } from '@vx/grid';
 import { curveMonotoneX } from '@vx/curve';
 import { scaleUtc, scaleLinear, scaleLog, scaleBand, ScaleInput, coerceNumber } from '@vx/scale';
-import { AnimatedAxis, Orientation, SharedAxisProps, AxisScale } from '@vx/axis';
+import { Orientation, SharedAxisProps, AxisScale } from '@vx/axis';
+import { AnimatedAxis } from '@vx/react-spring';
 import { LinearGradient } from '@vx/gradient';
 import { timeFormat } from 'd3-time-format';
 
