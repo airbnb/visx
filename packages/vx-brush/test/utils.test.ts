@@ -49,7 +49,7 @@ describe('scaleInvert()', () => {
     expect(result).toEqual(scale.invert(value));
   });
 
-  test('it should return the index of domain itmem for scales without invert (like band)', () => {
+  test('it should return the index of domain item for scales without invert (like band)', () => {
     const scale = createScale({
       type: 'band',
       domain: ['a', 'b', 'c'],
