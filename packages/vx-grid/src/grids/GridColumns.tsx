@@ -6,7 +6,7 @@ import { Point } from '@vx/point';
 import { getTicks, ScaleInput, coerceNumber } from '@vx/scale';
 import { CommonGridProps, GridScale } from '../types';
 
-export type GridColumnProps<Scale extends GridScale> = CommonGridProps & {
+export type GridColumnsProps<Scale extends GridScale> = CommonGridProps & {
   /** `@vx/scale` or `d3-scale` object used to convert value to position. */
   scale: Scale;
   /**
@@ -18,10 +18,10 @@ export type GridColumnProps<Scale extends GridScale> = CommonGridProps & {
   height: number;
 };
 
-export type AllGridColumnProps<Scale extends GridScale> = GridColumnProps<Scale> &
+export type AllGridColumnsProps<Scale extends GridScale> = GridColumnsProps<Scale> &
   Omit<
     LineProps & Omit<React.SVGProps<SVGLineElement>, keyof LineProps>,
-    keyof GridColumnProps<Scale>
+    keyof GridColumnsProps<Scale>
   >;
 
 export default function GridColumns<Scale extends GridScale>({
@@ -39,7 +39,7 @@ export default function GridColumns<Scale extends GridScale>({
   tickValues,
   children,
   ...restProps
-}: AllGridColumnProps<Scale>) {
+}: AllGridColumnsProps<Scale>) {
   const ticks = tickValues ?? getTicks(scale, numTicks);
   const tickLines = ticks.map(d => {
     const x = offset ? (coerceNumber(scale(d)) || 0) + offset : coerceNumber(scale(d)) || 0;

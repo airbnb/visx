@@ -3,7 +3,7 @@ import cx from 'classnames';
 import { Group } from '@vx/group';
 import { ScaleInput } from '@vx/scale';
 import GridRows, { AllGridRowsProps } from './GridRows';
-import GridColumns, { AllGridColumnProps } from './GridColumns';
+import GridColumns, { AllGridColumnsProps } from './GridColumns';
 import { CommonGridProps, GridScale } from '../types';
 
 type CommonPropsToOmit =
@@ -17,7 +17,7 @@ type CommonPropsToOmit =
   | 'children';
 
 export type GridProps<XScale extends GridScale, YScale extends GridScale> = Omit<
-  AllGridRowsProps<YScale> & AllGridColumnProps<XScale>,
+  AllGridRowsProps<YScale> & AllGridColumnsProps<XScale>,
   CommonPropsToOmit
 > & {
   /** `@vx/scale` or `d3-scale` object used to map from ScaleInput to x-coordinates (GridColumns). */
