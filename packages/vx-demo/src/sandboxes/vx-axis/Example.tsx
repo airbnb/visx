@@ -4,7 +4,7 @@ import { Grid } from '@vx/grid';
 import { curveMonotoneX } from '@vx/curve';
 import { scaleUtc, scaleLinear, scaleLog, scaleBand, ScaleInput, coerceNumber } from '@vx/scale';
 import { Orientation, SharedAxisProps, AxisScale } from '@vx/axis';
-import { AnimatedAxis } from '@vx/react-spring';
+import { AnimatedAxis, AnimatedGridRows } from '@vx/react-spring';
 import { LinearGradient } from '@vx/gradient';
 import { timeFormat } from 'd3-time-format';
 
@@ -41,6 +41,9 @@ export default function Example({
   const width = outerWidth - margin.left - margin.right;
   const height = outerHeight - margin.top - margin.bottom;
   const [dataToggle, setDataToggle] = useState(true);
+  const [animationTrajectory, setAnimationTrajectory] = useState<
+    'outside' | 'inside' | 'min' | 'max'
+  >('min');
 
   if (width < 10) return null;
 
@@ -131,6 +134,23 @@ export default function Example({
         <g transform={`translate(${margin.left},${margin.top})`}>
           {axes.map(({ scale, values, label, tickFormat }, i) => (
             <g key={`scale-${i}`} transform={`translate(0, ${i * (scaleHeight + scalePadding)})`}>
+              {/* <Grid
+                xScale={scale}
+                yScale={yScale}
+                stroke={gridColor}
+                width={width}
+                height={scaleHeight}
+                numTicksRows={2}
+                numTicksColumns={numTickColumns}
+              /> */}
+              <AnimatedGridRows
+                scale={yScale}
+                stroke={gridColor}
+                width={width}
+                height={scaleHeight}
+                numTicks={dataToggle ? 2 : 4}
+                animationTrajectory={animationTrajectory}
+              />
               <AreaClosed
                 data={values.map(x => [
                   (scale(x) ?? 0) +
@@ -143,15 +163,6 @@ export default function Example({
                 curve={curveMonotoneX}
                 fill={gridColor}
                 fillOpacity={0.2}
-              />
-              <Grid
-                xScale={scale}
-                yScale={yScale}
-                stroke={gridColor}
-                width={width}
-                height={scaleHeight}
-                numTicksRows={2}
-                numTicksColumns={numTickColumns}
               />
               <AnimatedAxis
                 orientation={Orientation.bottom}
@@ -180,12 +191,52 @@ export default function Example({
                   fontFamily: 'sans-serif',
                   textAnchor: 'start',
                 }}
+                animationTrajectory={animationTrajectory}
               />
             </g>
           ))}
         </g>
       </svg>
-      {showControls && <button onClick={() => setDataToggle(!dataToggle)}>Update scales</button>}
+      {showControls && (
+        <>
+          <button onClick={() => setDataToggle(!dataToggle)}>Update scales</button>
+          <div>
+            <strong>animation trajectory</strong>
+            <label>
+              <input
+                type="radio"
+                onChange={() => setAnimationTrajectory('outside')}
+                checked={animationTrajectory === 'outside'}
+              />{' '}
+              outside
+            </label>
+            <label>
+              <input
+                type="radio"
+                onChange={() => setAnimationTrajectory('inside')}
+                checked={animationTrajectory === 'inside'}
+              />{' '}
+              inside
+            </label>
+            <label>
+              <input
+                type="radio"
+                onChange={() => setAnimationTrajectory('min')}
+                checked={animationTrajectory === 'min'}
+              />{' '}
+              min
+            </label>
+            <label>
+              <input
+                type="radio"
+                onChange={() => setAnimationTrajectory('max')}
+                checked={animationTrajectory === 'max'}
+              />{' '}
+              max
+            </label>
+          </div>
+        </>
+      )}
     </>
   );
 }

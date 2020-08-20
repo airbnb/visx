@@ -1,13 +1,21 @@
-import { D3Scale } from '@vx/scale';
+import { D3Scale, NumberLike } from '@vx/scale';
+
+// In order to plot values on an axis, output of the scale must be number.
+// Some scales return undefined.
+export type GridScaleOutput = number | NumberLike | undefined;
 
 /** A catch-all type for scales that are compatible with grid */
-export type GridScale =
+export type GridScale<Output extends GridScaleOutput = GridScaleOutput> =
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  D3Scale<number, any, any>;
+  D3Scale<Output, any, any>;
+
+export type GridLines = { from: { x?: number; y?: number }; to: { x?: number; y?: number } }[];
 
 export type CommonGridProps = {
   /** classname to apply to line group element. */
   className?: string;
+  /** Optionally override rendering of grid lines. */
+  children?: (props: { lines: GridLines }) => React.ReactNode;
   /** Top offset to apply to glyph g element container. */
   top?: number;
   /** Left offset to apply to glyph g element container. */

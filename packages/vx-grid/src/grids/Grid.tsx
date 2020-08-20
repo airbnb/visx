@@ -13,7 +13,8 @@ type CommonPropsToOmit =
   | 'lineStyle'
   | 'tickValues'
   | 'from'
-  | 'to';
+  | 'to'
+  | 'children';
 
 export type GridProps<XScale extends GridScale, YScale extends GridScale> = Omit<
   AllGridRowsProps<YScale> & AllGridColumnProps<XScale>,
