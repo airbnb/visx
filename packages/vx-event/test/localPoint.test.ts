@@ -1,3 +1,4 @@
+import { Point } from '@vx/point';
 import { localPoint } from '../src';
 import localPointGeneric from '../src/localPointGeneric';
 
@@ -21,14 +22,14 @@ describe('localPoint', () => {
     Object.defineProperty(e, 'target', {
       writable: false,
       value: {
-        clientLeft: 10,
-        clientTop: 10,
+        clientLeft: 0,
+        clientTop: 0,
         getBoundingClientRect: () => ({ left: 0, top: 0 }),
       },
     });
     // @ts-ignore
     const result = localPoint(e);
-    expect(result).toEqual({ x: 10, y: 10 });
+    expect(result).toEqual(new Point({ x: 10, y: 10 }));
   });
 
   test('it should handle localPoint(node, event)', () => {
@@ -39,11 +40,11 @@ describe('localPoint', () => {
     const node = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     // @ts-ignore
-    svg.createSVGPoint = () => ({ matrixTransform: () => ({ x: 0, y: 0 }) });
+    svg.createSVGPoint = () => ({ matrixTransform: () => ({ x: 10, y: 10 }) });
     // @ts-ignore
     svg.getScreenCTM = () => ({ inverse: () => [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] });
     svg.appendChild(node);
     const result = localPoint(node, e);
-    expect(result).toEqual({ x: 10, y: 10 });
+    expect(result).toEqual(new Point({ x: 10, y: 10 }));
   });
 });
