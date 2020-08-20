@@ -8,9 +8,9 @@ describe('localPoint', () => {
 
   test('it should return null if called with no arguments', () => {
     // @ts-ignore
-    expect(localPoint()).toBe(null);
+    expect(localPoint()).toBeNull();
     // @ts-ignore
-    expect(localPointGeneric(document.createElement('div'))).toBe(null);
+    expect(localPointGeneric(document.createElement('div'))).toBeNull();
   });
 
   test('it should handle localPoint(event) and get node from event.target', () => {
