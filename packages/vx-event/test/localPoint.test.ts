@@ -15,26 +15,26 @@ describe('localPoint', () => {
 
   test('it should handle localPoint(event) and get node from event.target', () => {
     const e = new MouseEvent('test', {
-      clientX: 0,
-      clientY: 0,
+      clientX: 10,
+      clientY: 10,
     });
     Object.defineProperty(e, 'target', {
       writable: false,
       value: {
-        clientLeft: 0,
-        clientTop: 0,
+        clientLeft: 10,
+        clientTop: 10,
         getBoundingClientRect: () => ({ left: 0, top: 0 }),
       },
     });
     // @ts-ignore
     const result = localPoint(e);
-    expect(result).toEqual({ x: 0, y: 0 });
+    expect(result).toEqual({ x: 10, y: 10 });
   });
 
   test('it should handle localPoint(node, event)', () => {
     const e = new MouseEvent('test', {
-      clientX: 0,
-      clientY: 0,
+      clientX: 10,
+      clientY: 10,
     });
     const node = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -44,6 +44,6 @@ describe('localPoint', () => {
     svg.getScreenCTM = () => ({ inverse: () => [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] });
     svg.appendChild(node);
     const result = localPoint(node, e);
-    expect(result).toEqual({ x: 0, y: 0 });
+    expect(result).toEqual({ x: 10, y: 10 });
   });
 });
