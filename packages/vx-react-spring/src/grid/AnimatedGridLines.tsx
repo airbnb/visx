@@ -9,7 +9,7 @@ export type AnimatedGridLinesProps<Scale extends GridScale> = {
   lines: GridLines;
   lineKey: (line: GridLines[number]) => string;
   scale: Scale;
-} & Omit<SVGProps<SVGLineElement>, 'ref'> &
+} & Omit<SVGProps<SVGLineElement>, 'ref' | 'scale'> &
   Pick<TransitionConfig<Scale>, 'animationTrajectory' | 'animateXOrY'>;
 
 export default function AnimatedGridLines<Scale extends GridScale>({
