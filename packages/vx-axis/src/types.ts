@@ -42,15 +42,15 @@ export type TicksRendererProps<Scale extends AxisScale> = {
   | 'ticks'
 >;
 
-interface CommonProps<Scale extends AxisScale> {
+export type CommonProps<Scale extends AxisScale> = {
   /** The class name applied to the axis line element. */
   axisLineClassName?: string;
   /**  If true, will hide the axis line. */
-  hideAxisLine: boolean;
+  hideAxisLine?: boolean;
   /** If true, will hide the ticks (but not the tick labels). */
-  hideTicks: boolean;
+  hideTicks?: boolean;
   /** If true, will hide the '0' value tick and tick label. */
-  hideZero: boolean;
+  hideZero?: boolean;
   /** The text for the axis label. */
   label?: string;
   /** The class name applied to the axis label text element. */
@@ -60,11 +60,11 @@ interface CommonProps<Scale extends AxisScale> {
   /** Props applied to the axis label component. */
   labelProps?: Partial<TextProps>;
   /** The number of ticks wanted for the axis (note this is approximate)  */
-  numTicks: number;
+  numTicks?: number;
   /** Placement of the axis */
-  orientation: Orientation;
+  orientation?: Orientation;
   /** Pixel padding to apply to both sides of the axis. */
-  rangePadding: number;
+  rangePadding?: number;
   /** The color for the stroke of the lines. */
   stroke?: string;
   /** The pixel value for the width of the lines. */
@@ -78,16 +78,16 @@ interface CommonProps<Scale extends AxisScale> {
   /** Override the component used to render all tick lines and labels. */
   ticksComponent?: (tickRendererProps: TicksRendererProps<Scale>) => React.ReactNode;
   /** A [d3 formatter](https://github.com/d3/d3-scale/blob/master/README.md#continuous_tickFormat) for the tick text. */
-  tickFormat: TickFormatter<ScaleInput<Scale>>;
+  tickFormat?: TickFormatter<ScaleInput<Scale>>;
   /** A function that returns props for a given tick label. */
   tickLabelProps?: TickLabelProps<ScaleInput<Scale>>;
   /** The length of the tick lines. */
-  tickLength: number;
+  tickLength?: number;
   /** The color for the tick's stroke value. */
   tickStroke?: string;
   /** A custom SVG transform value to be applied to each tick group. */
   tickTransform?: string;
-}
+};
 
 interface Point {
   x: number;
@@ -119,7 +119,7 @@ export type AxisRendererProps<Scale extends AxisScale> = CommonProps<Scale> & {
   ticks: ComputedTick<Scale>[];
 };
 
-export type SharedAxisProps<Scale extends AxisScale> = Partial<CommonProps<Scale>> & {
+export type SharedAxisProps<Scale extends AxisScale> = CommonProps<Scale> & {
   /** The class name applied to the outermost axis group element. */
   axisClassName?: string;
   /** A left pixel offset applied to the entire axis. */
