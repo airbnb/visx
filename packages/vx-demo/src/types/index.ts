@@ -40,6 +40,7 @@ export type VxPackage =
   | 'network'
   | 'pattern'
   | 'point'
+  | 'react-spring'
   | 'responsive'
   | 'scale'
   | 'shape'

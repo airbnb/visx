@@ -96,11 +96,11 @@ const tiles = [
 
 export default function Gallery() {
   const router = useRouter();
-  const { pkg } = router.query;
+  const { pkg: routePackage } = router.query;
 
-  const filteredTiles = pkg
+  const filteredTiles = routePackage
     ? tiles.filter(Tile =>
-        exampleToVxDependencyLookup[Tile.packageJson.name]?.has(pkg as VxPackage),
+        exampleToVxDependencyLookup[Tile.packageJson.name]?.has(routePackage as VxPackage),
       )
     : tiles;
 
@@ -110,10 +110,16 @@ export default function Gallery() {
         <div className="filters">
           <h6>Examples by package</h6>
           {vxPackages.map(vxPackage => (
-            <Link key={vxPackage} href={{ pathname: '/gallery', query: { pkg: vxPackage } }}>
+            <Link
+              key={vxPackage}
+              href={{
+                pathname: '/gallery',
+                query: routePackage === vxPackage ? undefined : { pkg: vxPackage },
+              }}
+            >
               <a
                 className={cx('filter-button', {
-                  emphasize: pkg === vxPackage,
+                  emphasize: routePackage === vxPackage,
                 })}
               >{`@vx/${vxPackage}`}</a>
             </Link>

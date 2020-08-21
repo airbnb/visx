@@ -1,7 +1,7 @@
 {
-  "name": "@vx/axis",
+  "name": "@vx/react-spring",
   "version": "0.0.198",
-  "description": "vx axis",
+  "description": "Vx primitives that rely on react-spring for animation",
   "sideEffects": false,
   "main": "lib/index.js",
   "module": "esm/index.js",
@@ -19,29 +19,35 @@
     "react",
     "d3",
     "visualizations",
-    "charts"
+    "charts",
+    "animation",
+    "react-spring"
   ],
-  "author": "@hshoff",
+  "contributors": [
+    {
+      "name": "Chris Williams",
+      "url": "https://github.com/williaster"
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/hshoff/vx/issues"
   },
   "homepage": "https://github.com/hshoff/vx#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "react": "^16.3.0-0",
+    "react-spring": "^8.0.27"
+  },
   "dependencies": {
     "@types/classnames": "^2.2.9",
     "@types/react": "*",
-    "@vx/group": "0.0.198",
-    "@vx/point": "0.0.198",
-    "@vx/shape": "0.0.198",
+    "@vx/axis": "0.0.198",
     "@vx/scale": "0.0.198",
     "@vx/text": "0.0.198",
     "classnames": "^2.2.5",
-    "prop-types": "^15.6.0"
-  },
-  "peerDependencies": {
-    "react": "^16.3.0-0"
-  },
-  "publishConfig": {
-    "access": "public"
+    "prop-types": "^15.6.2"
   }
 }

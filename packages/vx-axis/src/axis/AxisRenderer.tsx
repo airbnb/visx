@@ -1,13 +1,12 @@
 import React from 'react';
 import cx from 'classnames';
 import { Line } from '@vx/shape';
-import { Group } from '@vx/group';
 import { Text } from '@vx/text';
 
 import { TextProps } from '@vx/text/lib/Text';
-import Orientation from '../constants/orientation';
 import getLabelTransform from '../utils/getLabelTransform';
 import { AxisRendererProps, AxisScale } from '../types';
+import Ticks from './Ticks';
 
 const defaultTextProps: Partial<TextProps> = {
   textAnchor: 'middle',
@@ -30,8 +29,8 @@ export default function AxisRenderer<Scale extends AxisScale>({
   orientation,
   scale,
   stroke = '#222',
-  strokeWidth = 1,
   strokeDasharray,
+  strokeWidth = 1,
   tickClassName,
   tickComponent,
   tickLabelProps = (/** tickValue, index */) => defaultTextProps,
@@ -39,42 +38,27 @@ export default function AxisRenderer<Scale extends AxisScale>({
   tickStroke = '#222',
   tickTransform,
   ticks,
+  ticksComponent = Ticks,
 }: AxisRendererProps<Scale>) {
-  let tickLabelFontSize = 10; // track the max tick label size to compute label offset
-
+  // compute the max tick label size to compute label offset
+  const allTickLabelProps = ticks.map(({ value, index }) => tickLabelProps(value, index));
+  const maxTickLabelFontSize = Math.max(
+    10,
+    ...allTickLabelProps.map(props => (typeof props.fontSize === 'number' ? props.fontSize : 0)),
+  );
   return (
     <>
-      {ticks.map(({ value, index, from, to, formattedValue }) => {
-        const tickLabelPropsObj = tickLabelProps(value, index);
-        tickLabelFontSize = Math.max(
-          tickLabelFontSize,
-          (typeof tickLabelPropsObj.fontSize === 'number' && tickLabelPropsObj.fontSize) || 0,
-        );
-
-        const tickYCoord =
-          to.y + (horizontal && orientation !== Orientation.top ? tickLabelFontSize : 0);
-
-        return (
-          <Group
-            key={`vx-tick-${value}-${index}`}
-            className={cx('vx-axis-tick', tickClassName)}
-            transform={tickTransform}
-          >
-            {!hideTicks && <Line from={from} to={to} stroke={tickStroke} strokeLinecap="square" />}
-            {tickComponent ? (
-              tickComponent({
-                ...tickLabelPropsObj,
-                x: to.x,
-                y: tickYCoord,
-                formattedValue,
-              })
-            ) : (
-              <Text x={to.x} y={tickYCoord} {...tickLabelPropsObj}>
-                {formattedValue}
-              </Text>
-            )}
-          </Group>
-        );
+      {ticksComponent({
+        hideTicks,
+        horizontal,
+        orientation,
+        scale,
+        tickClassName,
+        tickComponent,
+        tickLabelProps: allTickLabelProps,
+        tickStroke,
+        tickTransform,
+        ticks,
       })}
 
       {!hideAxisLine && (
@@ -96,7 +80,7 @@ export default function AxisRenderer<Scale extends AxisScale>({
             labelProps,
             orientation,
             range: scale.range(),
-            tickLabelFontSize,
+            tickLabelFontSize: maxTickLabelFontSize,
             tickLength,
           })}
           {...labelProps}

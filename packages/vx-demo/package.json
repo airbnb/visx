@@ -44,6 +44,7 @@
     "@vx/network": "0.0.198",
     "@vx/pattern": "0.0.198",
     "@vx/point": "0.0.198",
+    "@vx/react-spring": "0.0.198",
     "@vx/responsive": "0.0.198",
     "@vx/scale": "0.0.198",
     "@vx/shape": "0.0.198",

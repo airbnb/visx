@@ -10,6 +10,7 @@ An axis component consists of a line with ticks, tick labels, and an axis label 
 interpret your graph.
 
 You can use one of the 4 pre-made axes, or you can create your own based on the `<Axis />` element.
+Note that the `@vx/react-spring` package exports an `AnimatedAxis` variant with animated ticks.
 
 ## Installation
 

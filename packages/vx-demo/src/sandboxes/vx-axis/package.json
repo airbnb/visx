@@ -14,6 +14,7 @@
     "@vx/grid": "latest",
     "@vx/group": "latest",
     "@vx/mock-data": "latest",
+    "@vx/react-spring": "latest",
     "@vx/responsive": "latest",
     "@vx/shape": "latest",
     "@vx/scale": "latest",

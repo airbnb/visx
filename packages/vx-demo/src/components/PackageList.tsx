@@ -114,6 +114,12 @@ export default function PackageList({
               </Link>
               {!compact && <p>Visualize nodes and links between them</p>}
             </li>
+            <li className={cx(emphasizePackage === 'react-spring' && 'emphasize')}>
+              <Link href="/docs/react-spring">
+                <a>@vx/react-spring</a>
+              </Link>
+              {!compact && <p>Animated vx primitives</p>}
+            </li>
             <li className={cx(emphasizePackage === 'stats' && 'emphasize')}>
               <Link href="/docs/stats">
                 <a>@vx/stats</a>

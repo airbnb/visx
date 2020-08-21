@@ -6,6 +6,7 @@ export { default as packageJson } from '../../sandboxes/vx-axis/package.json';
 
 const tileStyles = { backgroundColor };
 const detailsStyles = { color: labelColor };
+const exampleProps = { showControls: false };
 
 export default function AxisTile() {
   return (
@@ -13,6 +14,7 @@ export default function AxisTile() {
       title="Axes & scales"
       description="<Axis.AxisBottom />"
       detailsStyles={detailsStyles}
+      exampleProps={exampleProps}
       exampleRenderer={Axis}
       exampleUrl="/axis"
       tileStyles={tileStyles}

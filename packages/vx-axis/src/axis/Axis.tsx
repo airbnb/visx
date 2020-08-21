@@ -46,20 +46,21 @@ export default function Axis<Scale extends AxisScale>({
     horizontal,
   );
 
-  const ticks = (tickValues ?? getTicks(scale, numTicks))
+  const filteredTickValues = (tickValues ?? getTicks(scale, numTicks))
     .map((value, index) => ({ value, index }))
-    .filter(({ value }) => !hideZero || (value !== 0 && value !== '0'))
-    .map(({ value, index }) => {
-      const scaledValue = coerceNumber(tickPosition(value));
+    .filter(({ value }) => !hideZero || (value !== 0 && value !== '0'));
 
-      return {
-        value,
-        index,
-        from: createPoint({ x: scaledValue, y: 0 }, horizontal),
-        to: createPoint({ x: scaledValue, y: tickLength * tickSign }, horizontal),
-        formattedValue: format(value, index),
-      };
-    });
+  const ticks = filteredTickValues.map(({ value, index }) => {
+    const scaledValue = coerceNumber(tickPosition(value));
+
+    return {
+      value,
+      index,
+      from: createPoint({ x: scaledValue, y: 0 }, horizontal),
+      to: createPoint({ x: scaledValue, y: tickLength * tickSign }, horizontal),
+      formattedValue: format(value, index, filteredTickValues),
+    };
+  });
 
   return (
     <Group className={cx('vx-axis', axisClassName)} top={top} left={left}>
