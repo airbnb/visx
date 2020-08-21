@@ -42,6 +42,8 @@
   "dependencies": {
     "@types/classnames": "^2.2.9",
     "@types/react": "*",
+    "@vx/axis": "0.0.198",
+    "@vx/scale": "0.0.198",
     "classnames": "^2.2.5",
     "prop-types": "^15.6.2"
   }
