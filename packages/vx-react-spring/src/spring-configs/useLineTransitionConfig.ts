@@ -14,14 +14,14 @@ interface Line {
 }
 
 function animatedValue(
-  animationTrajectory: 'outside' | 'inside' | 'min' | 'max',
+  animationTrajectory: 'outside' | 'center' | 'min' | 'max',
   positionOnScale: number | undefined,
   scaleMin: number | undefined,
   scaleMax: number | undefined,
   scaleHalfwayPoint: number,
 ): number {
   switch (animationTrajectory) {
-    case 'inside':
+    case 'center':
       return scaleHalfwayPoint;
     case 'min':
       return scaleMin ?? 0;
@@ -49,7 +49,7 @@ export type TransitionConfig<Scale extends AxisScale | GridScale> = {
   /** Whether to animate the `x` or `y` values of a Line. */
   animateXOrY: 'x' | 'y';
   /** The scale position entering lines come from, and exiting lines leave to. */
-  animationTrajectory?: 'outside' | 'inside' | 'min' | 'max';
+  animationTrajectory?: 'outside' | 'center' | 'min' | 'max';
 };
 
 /**
