@@ -19,12 +19,13 @@ const margin = {
   left: 50,
 };
 
-const tickLabelProps = () => ({
-  fill: tickLabelColor,
-  fontSize: 12,
-  fontFamily: 'sans-serif',
-  textAnchor: 'middle',
-});
+const tickLabelProps = () =>
+  ({
+    fill: tickLabelColor,
+    fontSize: 12,
+    fontFamily: 'sans-serif',
+    textAnchor: 'middle',
+  } as const);
 
 const getMinMax = (vals: (number | { valueOf(): number })[]) => {
   const numericVals = vals.map(coerceNumber);
