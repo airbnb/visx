@@ -47,8 +47,8 @@ export default function Example({
   const height = outerHeight - margin.top - margin.bottom;
   const [dataToggle, setDataToggle] = useState(true);
   const [animationTrajectory, setAnimationTrajectory] = useState<
-    'outside' | 'inside' | 'min' | 'max'
-  >('min');
+    'outside' | 'center' | 'min' | 'max'
+  >('center');
 
   interface AxisDemoProps<Scale extends AxisScale> extends SharedAxisProps<Scale> {
     values: ScaleInput<Scale>[];
@@ -218,10 +218,10 @@ export default function Example({
             <label>
               <input
                 type="radio"
-                onChange={() => setAnimationTrajectory('inside')}
-                checked={animationTrajectory === 'inside'}
+                onChange={() => setAnimationTrajectory('center')}
+                checked={animationTrajectory === 'center'}
               />{' '}
-              inside
+              center
             </label>
             <label>
               <input

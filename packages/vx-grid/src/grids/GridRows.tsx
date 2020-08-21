@@ -14,7 +14,7 @@ export type GridRowsProps<Scale extends GridScale> = CommonGridProps & {
    * Overrides `numTicks` if specified.
    */
   tickValues?: ScaleInput<Scale>[];
-  /** Total width of the each grid row line. */
+  /** Total width of each grid row line. */
   width: number;
 };
 

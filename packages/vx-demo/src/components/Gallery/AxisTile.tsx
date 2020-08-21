@@ -14,6 +14,7 @@ export default function AxisTile() {
       title="Axes & scales"
       description="<Axis.AxisBottom />"
       detailsStyles={detailsStyles}
+      detailsHeight={20}
       exampleProps={exampleProps}
       exampleRenderer={Axis}
       exampleUrl="/axis"
