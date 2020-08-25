@@ -97,8 +97,8 @@ function BrushChart({
   );
 
   const [initialBrushPosition, setInitialBrushPosition] = useState({
-    start: { x: fullDateRangeScale(getDate(filteredStock[0])) },
-    end: { x: fullDateRangeScale(getDate(filteredStock[filteredStock.length - 1])) },
+    start: { x: fullDateRangeScale(getDate(filteredStock[0] ?? {})) },
+    end: { x: fullDateRangeScale(getDate(filteredStock[filteredStock.length - 1] ?? {})) },
   });
 
   const onBrushChange = useCallback((bounds: Bounds | null) => {
