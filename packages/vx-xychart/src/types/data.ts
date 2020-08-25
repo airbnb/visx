@@ -1,5 +1,7 @@
 import { AxisScale } from '@vx/axis';
-import { D3Scale, InferD3ScaleOutput } from '@vx/scale';
+import { D3Scale, InferD3ScaleOutput, ScaleTypeToD3Scale } from '@vx/scale';
+import { DataRegistry } from '../hooks/useDataRegistry';
+import { XYChartTheme } from './theme';
 
 export type Margin = {
   top: number;
@@ -10,48 +12,51 @@ export type Margin = {
 
 export type LegendShape = 'rect' | 'line' | 'dashed-line' | 'circle';
 
-/** Register one or more keys in the data registry. */
-export type RegisterData<Datum, XScale extends AxisScale, YScale extends AxisScale> = (
-  data: DataRegistry<Datum, XScale, YScale>,
-) => void;
-
-export interface DataRegistry<Datum, XScale extends AxisScale, YScale extends AxisScale> {
-  [key: string]: {
-    /** unique data key */
-    key: string;
-    /** array of data for the key. */
-    data: Datum[];
-    /** function that returns the x value of a datum. */
-    xAccessor: (d: Datum) => InferD3ScaleOutput<XScale>;
-    /** function that returns the y value of a datum. */
-    yAccessor: (d: Datum) => InferD3ScaleOutput<YScale>;
-    /** whether the entry supports mouse events. */
-    mouseEvents?: boolean;
-    /** Optionally update the xScale. */
-    xScale?: (xScale: XScale) => XScale;
-    /** Optionally update the yScale. */
-    yScale?: (yScale: YScale) => YScale;
-    /** Legend shape for the data key. */
-    legendShape?: LegendShape;
-  };
+export interface DataRegistryEntry<
+  XScale extends AxisScale,
+  YScale extends AxisScale,
+  Datum,
+  DataKey extends string = string
+> {
+  /** unique data key */
+  key: DataKey;
+  /** array of data for the key. */
+  data: Datum[];
+  /** function that returns the x value of a datum. */
+  xAccessor: (d: Datum) => InferD3ScaleOutput<XScale>;
+  /** function that returns the y value of a datum. */
+  yAccessor: (d: Datum) => InferD3ScaleOutput<YScale>;
+  /** whether the entry supports mouse events. */
+  mouseEvents?: boolean;
+  /** Optionally update the xScale. */
+  xScale?: (xScale: XScale) => XScale;
+  /** Optionally update the yScale. */
+  yScale?: (yScale: YScale) => YScale;
+  /** Legend shape for the data key. */
+  legendShape?: LegendShape;
 }
 
 export interface DataContext<
-  Datum = unknown,
-  XScale extends AxisScale = AxisScale,
-  YScale extends AxisScale = AxisScale,
-  DataKeys extends string = string
+  XScale extends AxisScale,
+  YScale extends AxisScale,
+  Datum,
+  DataKey extends string
 > {
-  xScale: XScale | null;
-  yScale: YScale | null;
-  colorScale: D3Scale<DataKeys, string> | null;
-  width: number | null;
-  height: number | null;
-  innerWidth: number | null;
-  innerHeight: number | null;
+  xScale: XScale;
+  yScale: YScale;
+  colorScale: ScaleTypeToD3Scale<string, DataKey>['ordinal'];
+  width: number;
+  height: number;
+  innerWidth: number;
+  innerHeight: number;
   margin: Margin;
-  dataRegistry: DataRegistry<Datum, XScale, YScale>;
-  registerData: RegisterData<Datum, XScale, YScale>;
+  dataRegistry: DataRegistry<XScale, YScale, Datum, DataKey>;
+  registerData: (
+    data:
+      | DataRegistryEntry<XScale, YScale, Datum, DataKey>
+      | DataRegistryEntry<XScale, YScale, Datum, DataKey>[],
+  ) => void;
   unregisterData: (keyOrKeys: string | string[]) => void;
   setDimensions: (dims: { width: number; height: number; margin: Margin }) => void;
+  theme: XYChartTheme;
 }
