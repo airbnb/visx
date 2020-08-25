@@ -18,6 +18,7 @@
     "@vx/scale": "latest",
     "@vx/shape": "latest",
     "d3-array": "^2.4.0",
+    "moment": "2.27.0",
     "react": "^16.8",
     "react-dom": "^16.8",
     "react-scripts-ts": "3.1.0",

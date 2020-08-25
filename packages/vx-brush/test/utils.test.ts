@@ -1,5 +1,5 @@
 import { createScale } from '@vx/scale';
-import { getDomainFromExtent, scaleInvert } from '../src/utils';
+import { getDomainFromExtent, scaleInvert, shouldUpdateInitialBrushPosition } from '../src/utils';
 
 describe('getDomainFromExtent()', () => {
   test('it should return { start, end } if scale.invert', () => {
@@ -71,5 +71,26 @@ describe('scaleInvert()', () => {
     const value = 3;
     const result = scaleInvert(scale, value);
     expect(result).toEqual(2);
+  });
+});
+
+describe('shouldUpdateInitialBrushPosition', () => {
+  const point1 = { x: 0, y: 0 };
+  const point2 = { x: 100, y: 10 };
+  const point3 = { x: 50, y: 7 };
+
+  it('should return false if position did not change', () => {
+    const position = { start: point1, end: point2 };
+    expect(shouldUpdateInitialBrushPosition(position, position, point1, point3)).toBe(false);
+  });
+  it('should return false if not different from brush position', () => {
+    const position1 = { start: point1, end: point2 };
+    const position2 = { start: point3, end: point3 };
+    expect(shouldUpdateInitialBrushPosition(position1, position2, point1, point2)).toBe(false);
+  });
+  it('should return true if position changed and it is different from brush position', () => {
+    const position1 = { start: point1, end: point2 };
+    const position2 = { start: point1, end: point3 };
+    expect(shouldUpdateInitialBrushPosition(position1, position2, point1, point3)).toBe(true);
   });
 });

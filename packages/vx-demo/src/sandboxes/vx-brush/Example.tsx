@@ -1,4 +1,5 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
+import moment from 'moment';
 import { scaleTime, scaleLinear } from '@vx/scale';
 import appleStock, { AppleStock } from '@vx/mock-data/lib/mocks/appleStock';
 import { Brush } from '@vx/brush';
@@ -45,18 +46,8 @@ function BrushChart({
     right: 20,
   },
 }: BrushProps) {
-  const [filteredStock, setFilteredStock] = useState(stock);
-
-  const onBrushChange = (domain: Bounds | null) => {
-    if (!domain) return;
-    const { x0, x1, y0, y1 } = domain;
-    const stockCopy = stock.filter(s => {
-      const x = getDate(s).getTime();
-      const y = getStockValue(s);
-      return x > x0 && x < x1 && y > y0 && y < y1;
-    });
-    setFilteredStock(stockCopy);
-  };
+  const [snapBrushToNearestMonth, setSnapBrushToNearestMonth] = useState(false);
+  const [filteredStock, setFilteredStock] = useState(stock.slice(50, 100));
 
   const innerHeight = height - margin.top - margin.bottom;
   const topChartBottomMargin = compact ? chartSeparation / 2 : chartSeparation + 10;
@@ -72,7 +63,7 @@ function BrushChart({
   // scales
   const dateScale = useMemo(
     () =>
-      scaleTime<number>({
+      scaleTime({
         range: [0, xMax],
         domain: extent(filteredStock, getDate) as [Date, Date],
       }),
@@ -80,22 +71,22 @@ function BrushChart({
   );
   const stockScale = useMemo(
     () =>
-      scaleLinear<number>({
+      scaleLinear({
         range: [yMax, 0],
         domain: [0, max(filteredStock, getStockValue) || 0],
         nice: true,
       }),
     [yMax, filteredStock],
   );
-  const brushDateScale = useMemo(
+  const fullDateRangeScale = useMemo(
     () =>
-      scaleTime<number>({
+      scaleTime({
         range: [0, xBrushMax],
         domain: extent(stock, getDate) as [Date, Date],
       }),
     [xBrushMax],
   );
-  const brushStockScale = useMemo(
+  const fullStockScale = useMemo(
     () =>
       scaleLinear({
         range: [yBrushMax, 0],
@@ -105,12 +96,54 @@ function BrushChart({
     [yBrushMax],
   );
 
-  const initialBrushPosition = useMemo(
-    () => ({
-      start: { x: brushDateScale(getDate(stock[50])) },
-      end: { x: brushDateScale(getDate(stock[100])) },
-    }),
-    [brushDateScale],
+  const [initialBrushPosition, setInitialBrushPosition] = useState({
+    start: { x: fullDateRangeScale(getDate(filteredStock[0])) },
+    end: { x: fullDateRangeScale(getDate(filteredStock[filteredStock.length - 1])) },
+  });
+
+  const onBrushChange = useCallback((bounds: Bounds | null) => {
+    if (!bounds) return;
+
+    const { x0, x1 } = bounds;
+    const nextFilteredStock = stock.filter(s => {
+      const x = getDate(s).getTime();
+      // for a vertical brush you would use y0 and y1 from `bounds`
+      return x > x0 && x < x1;
+    });
+
+    setFilteredStock(nextFilteredStock);
+  }, []);
+
+  // snap to nearest month on brush end, if relevant
+  const onBrushEnd = useCallback(
+    (bounds: Bounds | null, forceUpdate?: boolean) => {
+      console.log('onBrushEnd', bounds);
+      if (!bounds || (!snapBrushToNearestMonth && !forceUpdate)) return;
+
+      const [minDate, maxDate] = fullDateRangeScale.domain().map(d => d.getTime());
+      const start = moment(bounds.x0);
+      const end = moment(bounds.x1);
+
+      // round to start or end of month depending on which is closer
+      start[start.date() <= 15 ? 'startOf' : 'endOf']('month');
+      end[end.date() <= 15 ? 'startOf' : 'endOf']('month');
+
+      const x0 = Math.max(start.valueOf(), minDate);
+      const x1 = Math.min(end.valueOf(), maxDate);
+
+      const nextFilteredStock = stock.filter(s => {
+        const x = getDate(s).getTime();
+        return x >= x0 && x <= x1;
+      });
+
+      setFilteredStock(nextFilteredStock);
+
+      setInitialBrushPosition({
+        start: { x: fullDateRangeScale(getDate(nextFilteredStock[0])) },
+        end: { x: fullDateRangeScale(getDate(nextFilteredStock[nextFilteredStock.length - 1])) },
+      });
+    },
+    [snapBrushToNearestMonth, fullDateRangeScale],
   );
 
   return (
@@ -129,13 +162,13 @@ function BrushChart({
           gradientColor={background2}
         />
         <AreaChart
-          hideBottomAxis
+          hideBottomAxis={!snapBrushToNearestMonth}
           hideLeftAxis
           data={stock}
           width={width}
           yMax={yBrushMax}
-          xScale={brushDateScale}
-          yScale={brushStockScale}
+          xScale={fullDateRangeScale}
+          yScale={fullStockScale}
           margin={brushMargin}
           top={topChartHeight + topChartBottomMargin + margin.top}
           gradientColor={background2}
@@ -149,8 +182,8 @@ function BrushChart({
             orientation={['diagonal']}
           />
           <Brush
-            xScale={brushDateScale}
-            yScale={brushStockScale}
+            xScale={fullDateRangeScale}
+            yScale={fullStockScale}
             width={xBrushMax}
             height={yBrushMax}
             margin={brushMargin}
@@ -159,11 +192,38 @@ function BrushChart({
             brushDirection="horizontal"
             initialBrushPosition={initialBrushPosition}
             onChange={onBrushChange}
+            onBrushEnd={onBrushEnd}
             onClick={() => setFilteredStock(stock)}
             selectedBoxStyle={selectedBrushStyle}
           />
         </AreaChart>
       </svg>
+      {!compact && (
+        <div>
+          <label style={{ fontSize: 12 }}>
+            <input
+              type="checkbox"
+              checked={snapBrushToNearestMonth}
+              onChange={() => {
+                const nextSnapBrush = !snapBrushToNearestMonth;
+                setSnapBrushToNearestMonth(nextSnapBrush);
+                if (nextSnapBrush) {
+                  onBrushEnd(
+                    {
+                      y0: 0,
+                      y1: 0,
+                      x0: getDate(filteredStock[0]).getTime(),
+                      x1: getDate(filteredStock[filteredStock.length - 1]).getTime(),
+                    },
+                    true,
+                  );
+                }
+              }}
+            />
+            &nbsp;Snap brush to nearest month
+          </label>
+        </div>
+      )}
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { Scale } from './types';
+import { Scale, PartialBrushStartEnd, Point } from './types';
 
 export function scaleInvert(scale: Scale, value: number) {
   // Test if the scale is an ordinalScale or not,
@@ -52,4 +52,25 @@ export function getDomainFromExtent(
   }
 
   return domain;
+}
+
+export function shouldUpdateInitialBrushPosition(
+  initialBrushPosition: PartialBrushStartEnd | undefined,
+  prevInitialBrushPosition: PartialBrushStartEnd | undefined,
+  currStart: Point,
+  currEnd: Point,
+) {
+  const initialBrushPositionDidChange =
+    initialBrushPosition?.start?.x !== prevInitialBrushPosition?.start?.x ||
+    initialBrushPosition?.start?.y !== prevInitialBrushPosition?.start?.y ||
+    initialBrushPosition?.end?.x !== prevInitialBrushPosition?.end?.x ||
+    initialBrushPosition?.end?.y !== prevInitialBrushPosition?.end?.y;
+
+  const brushPositionIsDifferentFromCurrentPosition =
+    initialBrushPosition?.start?.x !== currStart.x ||
+    initialBrushPosition?.start?.y !== currStart.y ||
+    initialBrushPosition?.end?.x !== currEnd.x ||
+    initialBrushPosition?.end?.y !== currEnd.y;
+
+  return initialBrushPositionDidChange && brushPositionIsDifferentFromCurrentPosition;
 }
