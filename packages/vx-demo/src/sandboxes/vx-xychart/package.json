@@ -8,6 +8,7 @@
     "@types/react": "^16",
     "@types/react-dom": "^16",
     "@vx/responsive": "latest",
+    "@vx/pattern": "latest",
     "@vx/xychart": "latest",
     "react": "^16",
     "react-dom": "^16",

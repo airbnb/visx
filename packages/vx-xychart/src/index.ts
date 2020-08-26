@@ -3,9 +3,11 @@ export { default as XYChart } from './components/XYChart';
 
 // context
 export { default as ThemeContext } from './context/ThemeContext';
+export { default as DataContext } from './context/DataContext';
 
 // providers
 export { default as ThemeProvider } from './providers/ThemeProvider';
+export { default as DataProvider } from './providers/DataProvider';
 
 // themes
 export { default as lightTheme } from './theme/themes/light';
