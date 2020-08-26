@@ -1,5 +1,6 @@
 // components
 export { default as XYChart } from './components/XYChart';
+export { default as LineSeries } from './components/series/LineSeries';
 
 // context
 export { default as ThemeContext } from './context/ThemeContext';

@@ -45,6 +45,7 @@
     "@vx/axis": "0.0.198",
     "@vx/responsive": "0.0.198",
     "@vx/scale": "0.0.198",
+    "@vx/shape": "0.0.198",
     "d3-array": "2.6.0",
     "classnames": "^2.2.5",
     "prop-types": "^15.6.2"
