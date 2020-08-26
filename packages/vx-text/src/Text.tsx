@@ -8,6 +8,15 @@ function isNumber(val: unknown): val is number {
   return typeof val === 'number';
 }
 
+function isValidXOrY(xOrY: string | number | undefined) {
+  return (
+    // number that is not NaN or Infinity
+    (typeof xOrY === 'number' && Number.isFinite(xOrY)) ||
+    // for percentage
+    typeof xOrY === 'string'
+  );
+}
+
 interface WordWithWidth {
   word: string;
   width: number;
@@ -24,7 +33,7 @@ type SVGTextProps = React.SVGAttributes<SVGTextElement>;
 type OwnProps = {
   /** className to apply to the SVGText element. */
   className?: string;
-  /** Whether to scale the fontSize to accomodate the specified width.  */
+  /** Whether to scale the fontSize to accommodate the specified width.  */
   scaleToFit?: boolean;
   /** Rotational angle of the text. */
   angle?: number;
@@ -176,6 +185,11 @@ class Text extends React.Component<TextProps, TextState> {
     const { wordsByLines } = this.state;
     const { x, y } = textProps;
 
+    // Cannot render <text> if x or y is invalid
+    if (!isValidXOrY(x) || !isValidXOrY(y)) {
+      return <svg ref={innerRef} x={dx} y={dy} fontSize={textProps.fontSize} style={SVG_STYLE} />;
+    }
+
     let startDy: string | undefined;
     if (verticalAnchor === 'start') {
       startDy = reduceCSSCalc(`calc(${capHeight})`);
@@ -187,7 +201,6 @@ class Text extends React.Component<TextProps, TextState> {
       startDy = reduceCSSCalc(`calc(${wordsByLines.length - 1} * -${lineHeight})`);
     }
 
-    let transform: string | undefined;
     const transforms = [];
     if (isNumber(x) && isNumber(y) && isNumber(width) && scaleToFit && wordsByLines.length > 0) {
       const lineWidth = wordsByLines[0].width || 1;
@@ -200,9 +213,8 @@ class Text extends React.Component<TextProps, TextState> {
     if (angle) {
       transforms.push(`rotate(${angle}, ${x}, ${y})`);
     }
-    if (transforms.length > 0) {
-      transform = transforms.join(' ');
-    }
+
+    const transform = transforms.length > 0 ? transforms.join(' ') : undefined;
 
     return (
       <svg ref={innerRef} x={dx} y={dy} fontSize={textProps.fontSize} style={SVG_STYLE}>
