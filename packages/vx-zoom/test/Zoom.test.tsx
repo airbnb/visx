@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'enzyme';
 import { Zoom, inverseMatrix } from '../src';
 
-describe('Zoom', () => {
+describe('<Zoom />', () => {
   it('should be defined', () => {
     expect(Zoom).toBeDefined();
   });
