@@ -34,7 +34,7 @@ export interface DataRegistryEntry<
   /** whether the entry supports mouse events. */
   mouseEvents?: boolean;
   /** Optionally update the xScale. */
-  xScale: <XScale extends D3Scale<AxisScaleOutput>>(xScale: XScale) => XScale;
+  xScale?: <XScale extends D3Scale<AxisScaleOutput>>(xScale: XScale) => XScale;
   /** Optionally update the yScale. */
   yScale?: <YScale extends D3Scale<AxisScaleOutput>>(yScale: YScale) => YScale;
   /** Legend shape for the data key. */

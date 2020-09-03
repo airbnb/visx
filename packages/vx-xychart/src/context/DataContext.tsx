@@ -31,12 +31,12 @@ export type InferDatum<X extends AnyDataContext> = X extends DataContextType<any
   ? T
   : unknown;
 
-export type InferDataContext<C extends AnyDataContext> = DataContextType<
+export type InferDataContext<C extends AnyDataContext = AnyDataContext> = DataContextType<
   InferXScaleConfig<C>,
   InferYScaleConfig<C>,
   InferDatum<C>
 >;
 
-const DataContext = React.createContext<Partial<AnyDataContext>>({});
+const DataContext = React.createContext<Partial<InferDataContext>>({});
 
 export default DataContext;
