@@ -115,14 +115,6 @@ function createScale<
   config: PickScaleConfig<'band', Output, DiscreteInput>,
 ): PickD3Scale<'band', Output, DiscreteInput>;
 
-function createScale<
-  Output = DefaultOutput,
-  DiscreteInput extends StringLike = StringLike,
-  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
->(
-  config: ScaleConfig<Output, DiscreteInput, ThresholdInput>,
-): D3Scale<Output, DiscreteInput, ThresholdInput>;
-
 // Actual implementation
 
 function createScale<
