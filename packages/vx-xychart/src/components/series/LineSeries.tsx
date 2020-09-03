@@ -28,9 +28,7 @@ export default function LineSeries<
   dataKey,
   ...lineProps
 }: LineSeriesProps<XScaleConfig, YScaleConfig, Datum>) {
-  const { xScale, yScale, colorScale, dataRegistry } = useContext<
-    Partial<DataContextType<XScaleConfig, YScaleConfig, Datum>>
-  >(DataContext);
+  const { xScale, yScale, colorScale, dataRegistry } = useContext(DataContext);
 
   // register data on mount
   // @TODO(chris) make this easier with HOC
