@@ -1,6 +1,7 @@
 import React, { useContext, useCallback, useEffect } from 'react';
 import LinePath from '@vx/shape/lib/shapes/LinePath';
 import DataContext from '../../context/DataContext';
+import isValidNumber from '../../typeguards/isValidNumber';
 
 type LineSeriesProps<Datum> = {
   dataKey: string;
@@ -8,10 +9,6 @@ type LineSeriesProps<Datum> = {
   xAccessor: (d: Datum) => unknown;
   yAccessor: (d: Datum) => unknown;
 };
-
-function isValidNumber(_: unknown): _ is number {
-  return _ != null && typeof _ === 'number' && !isNaN(_) && isFinite(_);
-}
 
 export default function LineSeries<Datum>({
   data,
