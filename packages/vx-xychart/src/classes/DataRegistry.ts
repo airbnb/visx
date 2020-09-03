@@ -6,30 +6,26 @@ import { DataRegistryEntry } from '../types/data';
 export default class DataRegistry<
   XScaleConfig extends ScaleConfig<AxisScaleOutput>,
   YScaleConfig extends ScaleConfig<AxisScaleOutput>,
-  Datum = unknown,
-  DataKey extends string = string
+  Datum = unknown
 > {
-  private registry = new Map<
-    string,
-    DataRegistryEntry<XScaleConfig, YScaleConfig, Datum, DataKey>
-  >();
+  private registry: { [key: string]: DataRegistryEntry<XScaleConfig, YScaleConfig, Datum> } = {};
 
-  public keys: DataKey[] = [];
+  private registryKeys: string[] = [];
 
   /** Add one or more entries to the registry. */
   public registerData(
     entryOrEntries:
-      | DataRegistryEntry<XScaleConfig, YScaleConfig, Datum, DataKey>
-      | DataRegistryEntry<XScaleConfig, YScaleConfig, Datum, DataKey>[],
+      | DataRegistryEntry<XScaleConfig, YScaleConfig, Datum>
+      | DataRegistryEntry<XScaleConfig, YScaleConfig, Datum>[],
   ) {
     const entries = Array.isArray(entryOrEntries) ? entryOrEntries : [entryOrEntries];
     entries.forEach(currEntry => {
-      if (this.registry.has(currEntry.key)) {
+      if (currEntry.key in this.registry && this.registry[currEntry.key] != null) {
         console.debug('Overriding data registry key', currEntry.key);
+        this.registryKeys = this.registryKeys.filter(key => key !== currEntry.key);
       }
-      this.registry.set(currEntry.key, currEntry);
-      this.keys = this.keys.filter(key => key !== currEntry.key);
-      this.keys.push(currEntry.key);
+      this.registry[currEntry.key] = currEntry;
+      this.registryKeys.push(currEntry.key);
     });
   }
 
@@ -37,18 +33,23 @@ export default class DataRegistry<
   public unregisterData(keyOrKeys: string | string[]) {
     const keys = Array.isArray(keyOrKeys) ? keyOrKeys : [keyOrKeys];
     keys.forEach(currKey => {
-      this.registry.delete(currKey);
-      this.keys = this.keys.filter(key => key !== currKey);
+      delete this.registry[currKey];
+      this.registryKeys = this.registryKeys.filter(key => key !== currKey);
     });
   }
 
-  /** Returns the data registry entry for the specified key, or all entries if no key is specified. */
+  /** Returns all data registry entries. This value is not constant between calls. */
   public entries() {
-    return [...this.registry.values()];
+    return Object.values(this.registry);
   }
 
   /** Returns a specific entity from the registry, if it exists. */
   public get(key: string) {
-    return this.registry.get(key);
+    return this.registry[key];
+  }
+
+  /** Returns the current registry keys. This value is constant between calls if the keys themselves have not changed. */
+  public keys() {
+    return this.registryKeys;
   }
 }

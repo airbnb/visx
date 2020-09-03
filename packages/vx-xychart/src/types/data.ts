@@ -1,6 +1,12 @@
 import { AxisScaleOutput } from '@vx/axis';
-import { ScaleTypeToD3Scale, ScaleConfig, ScaleConfigToD3Scale, ScaleInput } from '@vx/scale';
-import { DataRegistry } from '../hooks/useDataRegistry';
+import {
+  ScaleTypeToD3Scale,
+  ScaleConfig,
+  ScaleConfigToD3Scale,
+  ScaleInput,
+  D3Scale,
+} from '@vx/scale';
+import DataRegistry from '../classes/DataRegistry';
 import { XYChartTheme } from './theme';
 
 export type Margin = {
@@ -15,11 +21,10 @@ export type LegendShape = 'rect' | 'line' | 'dashed-line' | 'circle';
 export interface DataRegistryEntry<
   XScaleConfig extends ScaleConfig<AxisScaleOutput>,
   YScaleConfig extends ScaleConfig<AxisScaleOutput>,
-  Datum,
-  DataKey extends string = string
+  Datum
 > {
   /** unique data key */
-  key: DataKey;
+  key: string;
   /** array of data for the key. */
   data: Datum[];
   /** function that returns the x value of a datum. */
@@ -29,13 +34,9 @@ export interface DataRegistryEntry<
   /** whether the entry supports mouse events. */
   mouseEvents?: boolean;
   /** Optionally update the xScale. */
-  xScale?: (
-    xScale: ScaleConfigToD3Scale<XScaleConfig, AxisScaleOutput>,
-  ) => ScaleConfigToD3Scale<XScaleConfig, AxisScaleOutput>;
+  xScale: <XScale extends D3Scale<AxisScaleOutput>>(xScale: XScale) => XScale;
   /** Optionally update the yScale. */
-  yScale?: (
-    yScale: ScaleConfigToD3Scale<YScaleConfig, AxisScaleOutput>,
-  ) => ScaleConfigToD3Scale<YScaleConfig, AxisScaleOutput>;
+  yScale?: <YScale extends D3Scale<AxisScaleOutput>>(yScale: YScale) => YScale;
   /** Legend shape for the data key. */
   legendShape?: LegendShape;
 }
@@ -43,22 +44,21 @@ export interface DataRegistryEntry<
 export interface DataContext<
   XScaleConfig extends ScaleConfig<AxisScaleOutput>,
   YScaleConfig extends ScaleConfig<AxisScaleOutput>,
-  Datum,
-  DataKey extends string
+  Datum
 > {
   xScale: ScaleConfigToD3Scale<XScaleConfig, AxisScaleOutput>;
   yScale: ScaleConfigToD3Scale<YScaleConfig, AxisScaleOutput>;
-  colorScale: ScaleTypeToD3Scale<string, DataKey>['ordinal'];
+  colorScale: ScaleTypeToD3Scale<string, string>['ordinal'];
   width: number;
   height: number;
   innerWidth: number;
   innerHeight: number;
   margin: Margin;
-  dataRegistry: DataRegistry<XScaleConfig, YScaleConfig, Datum, DataKey>;
+  dataRegistry: DataRegistry<XScaleConfig, YScaleConfig, Datum>;
   registerData: (
     data:
-      | DataRegistryEntry<XScaleConfig, YScaleConfig, Datum, DataKey>
-      | DataRegistryEntry<XScaleConfig, YScaleConfig, Datum, DataKey>[],
+      | DataRegistryEntry<XScaleConfig, YScaleConfig, Datum>
+      | DataRegistryEntry<XScaleConfig, YScaleConfig, Datum>[],
   ) => void;
   unregisterData: (keyOrKeys: string | string[]) => void;
   setDimensions: (dims: { width: number; height: number; margin: Margin }) => void;

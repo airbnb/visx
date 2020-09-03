@@ -8,10 +8,12 @@ const INITIAL_DIMENSIONS = {
 
 type Dimensions = typeof INITIAL_DIMENSIONS;
 
+/** A hook for accessing and setting memoized width, height, and margin chart dimensions. */
 export default function useDimensions(): [Dimensions, (dims: Dimensions) => void] {
   const [dimensions, privateSetDimensions] = useState<Dimensions>(INITIAL_DIMENSIONS);
 
-  const setDimensions = useCallback(
+  // expose a setter with better memoization logic
+  const publicSetDimensions = useCallback(
     (dims: Dimensions) => {
       if (
         dims.width !== dimensions.width ||
@@ -34,5 +36,5 @@ export default function useDimensions(): [Dimensions, (dims: Dimensions) => void
     ],
   );
 
-  return [dimensions, setDimensions];
+  return [dimensions, publicSetDimensions];
 }
