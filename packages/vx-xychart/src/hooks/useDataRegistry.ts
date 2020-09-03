@@ -7,8 +7,7 @@ import DataRegistry from '../classes/DataRegistry';
 export default function useDataRegistry<
   XScaleConfig extends ScaleConfig<AxisScaleOutput>,
   YScaleConfig extends ScaleConfig<AxisScaleOutput>,
-  Datum = unknown,
-  DataKey extends string = string
+  Datum = unknown
 >() {
-  return useMemo(() => new DataRegistry<XScaleConfig, YScaleConfig, Datum, DataKey>(), []);
+  return useMemo(() => new DataRegistry<XScaleConfig, YScaleConfig, Datum>(), []);
 }
