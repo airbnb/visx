@@ -29,7 +29,7 @@ export type InferYScaleConfig<X extends AnyDataContext> = X extends DataContextT
 
 export type InferDatum<X extends AnyDataContext> = X extends DataContextType<any, any, infer T>
   ? T
-  : unknown;
+  : any;
 
 export type InferDataContext<C extends AnyDataContext = AnyDataContext> = DataContextType<
   InferXScaleConfig<C>,
