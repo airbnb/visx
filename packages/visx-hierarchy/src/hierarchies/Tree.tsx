@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { Group } from '@vx/group';
+import { Group } from '@visx/group';
 import {
   tree as d3tree,
   HierarchyNode,
@@ -73,7 +73,7 @@ export default function Tree<Datum>({
   if (children) return <>{children(data)}</>;
 
   return (
-    <Group top={top} left={left} className={cx('vx-tree', className)}>
+    <Group top={top} left={left} className={cx('visx-tree', className)}>
       {linkComponent &&
         data.links().map((link, i) => {
           return (

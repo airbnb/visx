@@ -1,7 +1,7 @@
-# @vx/hierarchy
+# @visx/hierarchy
 
-<a title="@vx/hierarchy npm downloads" href="https://www.npmjs.com/package/@vx/hierarchy">
-  <img src="https://img.shields.io/npm/dm/@vx/hierarchy.svg?style=flat-square" />
+<a title="@visx/hierarchy npm downloads" href="https://www.npmjs.com/package/@visx/hierarchy">
+  <img src="https://img.shields.io/npm/dm/@visx/hierarchy.svg?style=flat-square" />
 </a>
 
 Many datasets are intrinsically hierarchical. This package contains several `react` components for
@@ -14,7 +14,7 @@ exports the [`d3-hierarchy`](https://github.com/d3/d3-hierarchy)utility to gener
 
 ```js
 // equivalent to `import { hierarchy } from 'd3-hierarchy';`
-import { hierarchy } from '@vx/hierarchy';
+import { hierarchy } from '@visx/hierarchy';
 
 const root = hierarchy({
   name: 'root',
@@ -31,5 +31,5 @@ const root = hierarchy({
 ## Installation
 
 ```
-npm install --save @vx/hierarchy
+npm install --save @visx/hierarchy
 ```

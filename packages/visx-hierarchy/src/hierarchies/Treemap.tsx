@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/unbound-method */
 import React from 'react';
 import cx from 'classnames';
-import { Group } from '@vx/group';
+import { Group } from '@visx/group';
 import { treemap as d3treemap, HierarchyRectangularNode, HierarchyNode } from 'd3-hierarchy';
 import HierarchyDefaultRectNode from '../HierarchyDefaultRectNode';
 import setNumberOrNumberAccessor from '../utils/setNumOrNumAccessor';
@@ -86,7 +86,7 @@ export default function Treemap<Datum>({
   if (children) return <>{children(data)}</>;
 
   return (
-    <Group top={top} left={left} className={cx('vx-treemap', className)}>
+    <Group top={top} left={left} className={cx('visx-treemap', className)}>
       {nodeComponent &&
         data.descendants().map((node, i) => {
           return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { Group } from '@vx/group';
+import { Group } from '@visx/group';
 import { partition as d3partition, HierarchyNode, HierarchyRectangularNode } from 'd3-hierarchy';
 import DefaultNode from '../HierarchyDefaultRectNode';
 
@@ -50,7 +50,7 @@ export default function Partition<Datum>({
   if (children) return <>{children(data)}</>;
 
   return (
-    <Group top={top} left={left} className={cx('vx-partition', className)}>
+    <Group top={top} left={left} className={cx('visx-partition', className)}>
       {nodeComponent &&
         data.descendants().map((node, i) => {
           return (

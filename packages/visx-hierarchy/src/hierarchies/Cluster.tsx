@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { Group } from '@vx/group';
+import { Group } from '@visx/group';
 import {
   cluster as d3cluster,
   HierarchyNode,
@@ -70,7 +70,7 @@ export default function Cluster<Datum>({
   if (children) return <>{children(data)}</>;
 
   return (
-    <Group top={top} left={left} className={cx('vx-cluster', className)}>
+    <Group top={top} left={left} className={cx('visx-cluster', className)}>
       {linkComponent &&
         data.links().map((link, i) => {
           return (

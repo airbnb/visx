@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { Group } from '@vx/group';
+import { Group } from '@visx/group';
 import { pack as d3pack, HierarchyNode, HierarchyCircularNode } from 'd3-hierarchy';
 import DefaultNode from '../HierarchyDefaultNode';
 
@@ -58,7 +58,7 @@ export default function Pack<Datum>({
   if (children) return <>{children(data)}</>;
 
   return (
-    <Group top={top} left={left} className={cx('vx-pack', className)}>
+    <Group top={top} left={left} className={cx('visx-pack', className)}>
       {nodeComponent &&
         data.descendants().map((node, i) => {
           return (
