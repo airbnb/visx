@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
-import { Group } from '@vx/group';
-import { getTicks, coerceNumber } from '@vx/scale';
+import { Group } from '@visx/group';
+import { getTicks, coerceNumber } from '@visx/scale';
 import { SharedAxisProps, AxisScale } from '../types';
 import AxisRenderer from './AxisRenderer';
 import getTickPosition from '../utils/getTickPosition';
@@ -63,7 +63,7 @@ export default function Axis<Scale extends AxisScale>({
   });
 
   return (
-    <Group className={cx('vx-axis', axisClassName)} top={top} left={left}>
+    <Group className={cx('visx-axis', axisClassName)} top={top} left={left}>
       {children({
         ...restProps,
         axisFromPoint,

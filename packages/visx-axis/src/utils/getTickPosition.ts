@@ -1,4 +1,4 @@
-import { ScaleInput } from '@vx/scale';
+import { ScaleInput } from '@visx/scale';
 import { AxisScale, AxisScaleOutput } from '../types';
 
 /**

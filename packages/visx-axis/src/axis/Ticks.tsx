@@ -1,8 +1,8 @@
 import React from 'react';
 import cx from 'classnames';
-import { Line } from '@vx/shape';
-import { Group } from '@vx/group';
-import { Text } from '@vx/text';
+import { Line } from '@visx/shape';
+import { Group } from '@visx/group';
+import { Text } from '@visx/text';
 
 import Orientation from '../constants/orientation';
 import { TicksRendererProps, AxisScale } from '../types';
@@ -30,8 +30,8 @@ export default function Ticks<Scale extends AxisScale>({
 
     return (
       <Group
-        key={`vx-tick-${value}-${index}`}
-        className={cx('vx-axis-tick', tickClassName)}
+        key={`visx-tick-${value}-${index}`}
+        className={cx('visx-axis-tick', tickClassName)}
         transform={tickTransform}
       >
         {!hideTicks && <Line from={from} to={to} stroke={tickStroke} strokeLinecap="square" />}

@@ -1,4 +1,4 @@
-import { ScaleInput, toString } from '@vx/scale';
+import { ScaleInput, toString } from '@visx/scale';
 import { TickFormatter, AxisScale } from '../types';
 
 /**

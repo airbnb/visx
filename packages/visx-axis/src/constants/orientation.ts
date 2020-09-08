@@ -1,4 +1,4 @@
-import { ValueOf } from '@vx/scale';
+import { ValueOf } from '@visx/scale';
 
 const Orientation = {
   top: 'top',

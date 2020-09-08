@@ -4,27 +4,29 @@ import Axis from './Axis';
 import Orientation from '../constants/orientation';
 import { SharedAxisProps, AxisScale } from '../types';
 
-export const bottomTickLabelProps = (/** tickValue, index */) =>
+export type AxisTopProps<Scale extends AxisScale> = SharedAxisProps<Scale>;
+
+export const topTickLabelProps = (/** tickValue, index */) =>
   ({
-    dy: '0.25em',
+    dy: '-0.75em',
     fill: '#222',
     fontFamily: 'Arial',
     fontSize: 10,
     textAnchor: 'middle',
   } as const);
 
-export default function AxisBottom<Scale extends AxisScale>({
+export default function AxisTop<Scale extends AxisScale>({
   axisClassName,
   labelOffset = 8,
-  tickLabelProps = bottomTickLabelProps,
+  tickLabelProps = topTickLabelProps,
   tickLength = 8,
   ...restProps
-}: SharedAxisProps<Scale>) {
+}: AxisTopProps<Scale>) {
   return (
     <Axis
-      axisClassName={cx('vx-axis-bottom', axisClassName)}
+      axisClassName={cx('visx-axis-top', axisClassName)}
       labelOffset={labelOffset}
-      orientation={Orientation.bottom}
+      orientation={Orientation.top}
       tickLabelProps={tickLabelProps}
       tickLength={tickLength}
       {...restProps}

@@ -13,7 +13,7 @@ import {
   scaleThreshold,
   scaleTime,
   scaleUtc,
-} from '@vx/scale';
+} from '@visx/scale';
 import { Axis } from '../src';
 
 const axisProps = {

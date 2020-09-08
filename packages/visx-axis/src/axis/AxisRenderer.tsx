@@ -1,9 +1,9 @@
 import React from 'react';
 import cx from 'classnames';
-import { Line } from '@vx/shape';
-import { Text } from '@vx/text';
+import { Line } from '@visx/shape';
+import { Text } from '@visx/text';
 
-import { TextProps } from '@vx/text/lib/Text';
+import { TextProps } from '@visx/text/lib/Text';
 import getLabelTransform from '../utils/getLabelTransform';
 import { AxisRendererProps, AxisScale } from '../types';
 import Ticks from './Ticks';
@@ -64,7 +64,7 @@ export default function AxisRenderer<Scale extends AxisScale>({
 
       {!hideAxisLine && (
         <Line
-          className={cx('vx-axis-line', axisLineClassName)}
+          className={cx('visx-axis-line', axisLineClassName)}
           from={axisFromPoint}
           to={axisToPoint}
           stroke={stroke}
@@ -75,7 +75,7 @@ export default function AxisRenderer<Scale extends AxisScale>({
 
       {label && (
         <Text
-          className={cx('vx-axis-label', labelClassName)}
+          className={cx('visx-axis-label', labelClassName)}
           {...getLabelTransform({
             labelOffset,
             labelProps,

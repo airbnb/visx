@@ -4,28 +4,30 @@ import Axis from './Axis';
 import Orientation from '../constants/orientation';
 import { SharedAxisProps, AxisScale } from '../types';
 
-export const leftTickLabelProps = (/** tickValue, index */) =>
+export type AxisRightProps<Scale extends AxisScale> = SharedAxisProps<Scale>;
+
+export const rightTickLabelProps = (/** tickValue, index */) =>
   ({
-    dx: '-0.25em',
+    dx: '0.25em',
     dy: '0.25em',
     fill: '#222',
     fontFamily: 'Arial',
     fontSize: 10,
-    textAnchor: 'end',
+    textAnchor: 'start',
   } as const);
 
-export default function AxisLeft<Scale extends AxisScale>({
+export default function AxisRight<Scale extends AxisScale>({
   axisClassName,
   labelOffset = 36,
-  tickLabelProps = leftTickLabelProps,
+  tickLabelProps = rightTickLabelProps,
   tickLength = 8,
   ...restProps
-}: SharedAxisProps<Scale>) {
+}: AxisRightProps<Scale>) {
   return (
     <Axis
-      axisClassName={cx('vx-axis-left', axisClassName)}
+      axisClassName={cx('visx-axis-right', axisClassName)}
       labelOffset={labelOffset}
-      orientation={Orientation.left}
+      orientation={Orientation.right}
       tickLabelProps={tickLabelProps}
       tickLength={tickLength}
       {...restProps}

@@ -1,9 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { Line } from '@vx/shape';
-import { Text } from '@vx/text';
-import { scaleBand, scaleLinear } from '@vx/scale';
+import { Line } from '@visx/shape';
+import { Text } from '@visx/text';
+import { scaleBand, scaleLinear } from '@visx/scale';
 import { Axis } from '../src';
 
 const axisProps = {
@@ -21,9 +21,9 @@ describe('<Axis />', () => {
     expect(Axis).toBeDefined();
   });
 
-  test('it should render with class .vx-axis', () => {
+  test('it should render with class .visx-axis', () => {
     const wrapper = shallow(<Axis {...axisProps} />);
-    expect(wrapper.prop('className')).toEqual('vx-axis');
+    expect(wrapper.prop('className')).toEqual('visx-axis');
   });
 
   test('it should call children function with required args', () => {
@@ -70,7 +70,7 @@ describe('<Axis />', () => {
     const tickProps = { fontSize: 50, fill: 'magenta' };
     const wrapper = shallow(<Axis {...axisProps} tickLabelProps={() => tickProps} />);
 
-    const ticks = wrapper.find('.vx-axis-tick');
+    const ticks = wrapper.find('.visx-axis-tick');
     ticks.forEach(tick => {
       expect(tick.find(Text).props()).toEqual(expect.objectContaining(tickProps));
     });
@@ -97,7 +97,7 @@ describe('<Axis />', () => {
     const labelProps = { fontSize: 50, fill: 'magenta' };
     const wrapper = shallow(<Axis {...axisProps} labelProps={labelProps} />);
 
-    const label = wrapper.find('.vx-axis-label');
+    const label = wrapper.find('.visx-axis-label');
     expect(label.find(Text).props()).toEqual(expect.objectContaining(labelProps));
   });
 
@@ -105,20 +105,20 @@ describe('<Axis />', () => {
     const wrapper = shallow(<Axis {...axisProps} hideZero={false} />);
     expect(
       wrapper
-        .find('.vx-axis-tick')
+        .find('.visx-axis-tick')
         .at(0)
         .key(),
-    ).toBe('vx-tick-0-0');
+    ).toBe('visx-tick-0-0');
   });
 
   test('it should not show 0th tick if hideZero is true', () => {
     const wrapper = shallow(<Axis {...axisProps} hideZero />);
     expect(
       wrapper
-        .find('.vx-axis-tick')
+        .find('.visx-axis-tick')
         .at(0)
         .key(),
-    ).toBe('vx-tick-1-1');
+    ).toBe('visx-tick-1-1');
   });
 
   test('it should SHOW an axis line if hideAxisLine is false', () => {
@@ -126,8 +126,8 @@ describe('<Axis />', () => {
     expect(
       wrapper
         .children()
-        .not('.vx-axis-tick')
-        .find('.vx-axis-line'),
+        .not('.visx-axis-tick')
+        .find('.visx-axis-line'),
     ).toHaveLength(1);
   });
 
@@ -136,14 +136,14 @@ describe('<Axis />', () => {
     expect(
       wrapper
         .children()
-        .not('.vx-axis-tick')
+        .not('.visx-axis-tick')
         .find('Line'),
     ).toHaveLength(0);
   });
 
   test('it should SHOW ticks if hideTicks is false', () => {
     const wrapper = shallow(<Axis {...axisProps} hideTicks={false} />);
-    expect(wrapper.children().find('.vx-axis-tick').length).toBeGreaterThan(0);
+    expect(wrapper.children().find('.visx-axis-tick').length).toBeGreaterThan(0);
   });
 
   test('it should HIDE ticks if hideTicks is true', () => {
@@ -151,7 +151,7 @@ describe('<Axis />', () => {
     expect(
       wrapper
         .children()
-        .find('.vx-axis-tick')
+        .find('.visx-axis-tick')
         .find('Line'),
     ).toHaveLength(0);
   });
@@ -161,16 +161,16 @@ describe('<Axis />', () => {
     expect(
       wrapper
         .children()
-        .find('.vx-axis-tick')
-        .not('.vx-axis-line')
+        .find('.visx-axis-tick')
+        .not('.visx-axis-line')
         .find('Line'),
     ).toHaveLength(0);
 
     wrapper = shallow(<Axis {...axisProps} tickValues={[2]} />);
-    expect(wrapper.children().find('.vx-axis-tick')).toHaveLength(1);
+    expect(wrapper.children().find('.visx-axis-tick')).toHaveLength(1);
 
     wrapper = shallow(<Axis {...axisProps} tickValues={[0, 1, 2, 3, 4, 5, 6]} />);
-    expect(wrapper.children().find('.vx-axis-tick')).toHaveLength(7);
+    expect(wrapper.children().find('.visx-axis-tick')).toHaveLength(7);
   });
 
   test('it should use tickFormat to format ticks if passed', () => {
@@ -178,7 +178,7 @@ describe('<Axis />', () => {
     expect(
       wrapper
         .children()
-        .find('.vx-axis-tick')
+        .find('.visx-axis-tick')
         .find(Text)
         .prop('children'),
     ).toBe('test!!!');
@@ -191,7 +191,7 @@ describe('<Axis />', () => {
     expect(
       wrapper
         .children()
-        .find('.vx-axis-tick')
+        .find('.visx-axis-tick')
         .find(Text)
         .prop('children'),
     ).toBe('0');

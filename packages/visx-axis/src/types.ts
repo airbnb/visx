@@ -1,5 +1,5 @@
-import { D3Scale, NumberLike, ScaleInput } from '@vx/scale';
-import { TextProps } from '@vx/text/lib/Text';
+import { D3Scale, NumberLike, ScaleInput } from '@visx/scale';
+import { TextProps } from '@visx/text/lib/Text';
 import Orientation from './constants/orientation';
 
 // In order to plot values on an axis, output of the scale must be number.
@@ -73,7 +73,7 @@ export type CommonProps<Scale extends AxisScale> = {
   strokeDasharray?: string;
   /** The class name applied to each tick group. */
   tickClassName?: string;
-  /** Override the component used to render tick labels (instead of <Text /> from @vx/text). */
+  /** Override the component used to render tick labels (instead of <Text /> from @visx/text). */
   tickComponent?: (tickRendererProps: TickRendererProps) => React.ReactNode;
   /** Override the component used to render all tick lines and labels. */
   ticksComponent?: (tickRendererProps: TicksRendererProps<Scale>) => React.ReactNode;
@@ -109,7 +109,7 @@ export type AxisRendererProps<Scale extends AxisScale> = CommonProps<Scale> & {
   axisToPoint: Point;
   /** Whether this axis is horizontal */
   horizontal: boolean;
-  /** A [d3](https://github.com/d3/d3-scale) or [vx](https://github.com/hshoff/vx/tree/master/packages/vx-scale) scale function. */
+  /** A [d3](https://github.com/d3/d3-scale) or [visx](https://github.com/airbnb/visx/tree/master/packages/visx-scale) scale function. */
   scale: Scale;
   /** Function to compute tick position along the axis from tick value */
   tickPosition: (value: ScaleInput<Scale>) => AxisScaleOutput;
@@ -124,7 +124,7 @@ export type SharedAxisProps<Scale extends AxisScale> = CommonProps<Scale> & {
   axisClassName?: string;
   /** A left pixel offset applied to the entire axis. */
   left?: number;
-  /** A [d3](https://github.com/d3/d3-scale) or [vx](https://github.com/hshoff/vx/tree/master/packages/vx-scale) scale function. */
+  /** A [d3](https://github.com/d3/d3-scale) or [visx](https://github.com/airbnb/visx/tree/master/packages/visx-scale) scale function. */
   scale: Scale;
   /** An array of values that determine the number and values of the ticks. Falls back to `scale.ticks()` or `.domain()`. */
   tickValues?: ScaleInput<Scale>[];

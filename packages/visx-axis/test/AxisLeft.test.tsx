@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { scaleLinear } from '../../vx-scale/src';
+import { scaleLinear } from '../../visx-scale/src';
 import { Axis, AxisLeft } from '../src';
 
 const axisProps = {
@@ -17,9 +17,9 @@ describe('<AxisLeft />', () => {
     expect(AxisLeft).toBeDefined();
   });
 
-  test('it should render with class .vx-axis-left', () => {
+  test('it should render with class .visx-axis-left', () => {
     const wrapper = shallow(<AxisLeft {...axisProps} />);
-    expect(wrapper.prop('axisClassName')).toEqual('vx-axis-left');
+    expect(wrapper.prop('axisClassName')).toEqual('visx-axis-left');
   });
 
   test('it should set user-specified axisClassName, axisLineClassName, labelClassName, and tickClassName', () => {
@@ -70,7 +70,7 @@ describe('<AxisLeft />', () => {
   test('it should set label prop', () => {
     const label = 'test';
     const wrapper = shallow(<AxisLeft {...axisProps} label={label} />).dive();
-    const text = wrapper.find('.vx-axis-label');
+    const text = wrapper.find('.visx-axis-label');
     expect(text.prop('children')).toEqual(label);
   });
 });

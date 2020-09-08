@@ -1,4 +1,4 @@
-import { scaleLinear, scaleBand } from '@vx/scale';
+import { scaleLinear, scaleBand } from '@visx/scale';
 import getTickPosition from '../../src/utils/getTickPosition';
 
 describe('getTickPosition(scale, align)', () => {
