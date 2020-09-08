@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { Point } from '@vx/point';
+import { Point } from '@visx/point';
 import { LinePathAnnotation } from '../src';
 
 describe('<LinePathAnnotation />', () => {
@@ -13,7 +13,7 @@ describe('<LinePathAnnotation />', () => {
     const wrapper = shallow(<LinePathAnnotation />);
     expect(wrapper.prop('top')).toEqual(0);
     expect(wrapper.prop('left')).toEqual(0);
-    expect(wrapper.is('.vx-line-path-annotation-group')).toBe(true);
+    expect(wrapper.is('.visx-line-path-annotation-group')).toBe(true);
   });
 
   test('it should set <Group top= left= /> wrapper props', () => {
@@ -24,17 +24,17 @@ describe('<LinePathAnnotation />', () => {
 
   test('it should contain a <LinePath />', () => {
     const wrapper = shallow(<LinePathAnnotation />);
-    expect(wrapper.find('.vx-line-path-annotation')).toHaveLength(1);
+    expect(wrapper.find('.visx-line-path-annotation')).toHaveLength(1);
   });
 
   test('it should pass props to <LinePath />', () => {
     const points = [new Point({ x: 0, y: 0 })];
     const wrapper = shallow(<LinePathAnnotation className="test" points={points} />);
-    const linePath = wrapper.find('.vx-line-path-annotation');
+    const linePath = wrapper.find('.visx-line-path-annotation');
     expect(linePath.prop('data')).toBe(points);
     expect(linePath.prop('stroke')).toEqual('black');
     expect(linePath.prop('strokeWidth')).toEqual(1);
-    expect(linePath.prop('className')).toEqual('vx-line-path-annotation test');
+    expect(linePath.prop('className')).toEqual('visx-line-path-annotation test');
   });
 
   test('it should not render a label if label prop is undefined', () => {

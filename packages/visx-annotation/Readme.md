@@ -1,8 +1,8 @@
-# @vx/annotation
+# @visx/annotation
 
 <p>
-  <a title="@vx/annotation npm downloads" href="https://www.npmjs.com/package/@vx/annotation">
-    <img src="https://img.shields.io/npm/dm/@vx/annotation.svg?style=flat-square" />
+  <a title="@visx/annotation npm downloads" href="https://www.npmjs.com/package/@visx/annotation">
+    <img src="https://img.shields.io/npm/dm/@visx/annotation.svg?style=flat-square" />
   </a>
 </p>
 
@@ -15,5 +15,5 @@ react-annotation.
 ## Installation
 
 ```
-npm install --save @vx/annotation
+npm install --save @visx/annotation
 ```

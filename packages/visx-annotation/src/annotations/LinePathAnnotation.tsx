@@ -1,8 +1,8 @@
 import React from 'react';
 import cx from 'classnames';
-import { Point } from '@vx/point';
-import { Group } from '@vx/group';
-import { LinePath } from '@vx/shape';
+import { Point } from '@visx/point';
+import { Group } from '@visx/group';
+import { LinePath } from '@visx/shape';
 
 interface SimplePoint {
   x: number;
@@ -91,9 +91,9 @@ export default function LinePathAnnotation({
 }: LinePathAnnotationProps) {
   const endPoint = points[points.length - 1];
   return (
-    <Group className="vx-line-path-annotation-group" top={top} left={left}>
+    <Group className="visx-line-path-annotation-group" top={top} left={left}>
       <LinePath<Point | SimplePoint>
-        className={cx('vx-line-path-annotation', className)}
+        className={cx('visx-line-path-annotation', className)}
         data={points}
         x={p => p.x}
         y={p => p.y}
