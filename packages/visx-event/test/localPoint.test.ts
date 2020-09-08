@@ -1,4 +1,4 @@
-import { Point } from '@vx/point';
+import { Point } from '@visx/point';
 import { localPoint } from '../src';
 import localPointGeneric from '../src/localPointGeneric';
 

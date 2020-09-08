@@ -1,26 +1,26 @@
-# @vx/event
+# @visx/event
 
-<a title="@vx/event npm downloads" href="https://www.npmjs.com/package/@vx/event">
-  <img src="https://img.shields.io/npm/dm/@vx/event.svg?style=flat-square" />
+<a title="@visx/event npm downloads" href="https://www.npmjs.com/package/@visx/event">
+  <img src="https://img.shields.io/npm/dm/@visx/event.svg?style=flat-square" />
 </a>
 
 ## Installation
 
 ```
-npm install --save @vx/event
+npm install --save @visx/event
 ```
 
 ## Usage
 
-`@vx/event` exports a utility `localPoint` that takes an `SVG` `MouseEvent` or `TouchEvent` as input
-and returns a `{ x: number; y: number; }` point coordinate (or `null` in the case the event has no
-`ownerSVGElement`) within the coordinate system of the `SVG`. This makes placement of tooltips,
-finding nearby datum, etc. easier.
+`@visx/event` exports a utility `localPoint` that takes an `SVG` `MouseEvent` or `TouchEvent` as
+input and returns a `{ x: number; y: number; }` point coordinate (or `null` in the case the event
+has no `ownerSVGElement`) within the coordinate system of the `SVG`. This makes placement of
+tooltips, finding nearby datum, etc. easier.
 
 Example:
 
 ```tsx
-import { localPoint } from '@vx/event';
+import { localPoint } from '@visx/event';
 
 <svg>
   <SomeElement
@@ -38,7 +38,7 @@ You may optionally pass a reference to the SVG node
 
 ```tsx
 import { useRef } from 'react';
-import { localPoint } from '@vx/event';
+import { localPoint } from '@visx/event';
 
 const svgRef = useRef<SVGSVGElement>(null);
 

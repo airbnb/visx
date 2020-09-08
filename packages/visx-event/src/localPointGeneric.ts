@@ -1,4 +1,4 @@
-import { Point } from '@vx/point';
+import { Point } from '@visx/point';
 import { EventType } from './types';
 import { isSVGElement, isSVGGraphicsElement, isSVGSVGElement } from './typeGuards';
 import getXAndYFromEvent from './getXAndYFromEvent';
