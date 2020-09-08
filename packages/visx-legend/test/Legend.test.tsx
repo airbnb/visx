@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { scaleLinear } from '@vx/scale';
+import { scaleLinear } from '@visx/scale';
 
 import { Legend, LegendLabel } from '../src';
 

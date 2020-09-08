@@ -1,5 +1,5 @@
 import React from 'react';
-import { PickD3Scale, ScaleInput } from '@vx/scale';
+import { PickD3Scale, ScaleInput } from '@visx/scale';
 import Legend, { LegendProps } from './Legend';
 import { LabelFormatterFactory } from '../types';
 import identity from '../util/identity';

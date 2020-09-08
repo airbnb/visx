@@ -30,7 +30,7 @@ export default function LegendShape<Data, Output>({
 }: LegendShapeProps<Data, Output>) {
   return (
     <div
-      className="vx-legend-shape"
+      className="visx-legend-shape"
       style={{
         display: 'flex',
         width: size ? size({ ...label }) : width,

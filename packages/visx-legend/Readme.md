@@ -1,7 +1,7 @@
-# @vx/legend
+# @visx/legend
 
-<a title="@vx/legend npm downloads" href="https://www.npmjs.com/package/@vx/legend">
-  <img src="https://img.shields.io/npm/dm/@vx/legend.svg?style=flat-square" />
+<a title="@visx/legend npm downloads" href="https://www.npmjs.com/package/@visx/legend">
+  <img src="https://img.shields.io/npm/dm/@visx/legend.svg?style=flat-square" />
 </a>
 
 Legends associate shapes and colors to data, and are associated with scales.
@@ -9,8 +9,8 @@ Legends associate shapes and colors to data, and are associated with scales.
 ## Example
 
 ```js
-import { LegendThreshold } from '@vx/legend';
-import { scaleThreshold } from '@vx/scale';
+import { LegendThreshold } from '@visx/legend';
+import { scaleThreshold } from '@visx/scale';
 
 const threshold = scaleThreshold({
   domain: [0.02, 0.04, 0.06, 0.08, 0.1],
@@ -36,5 +36,5 @@ function MyChart() {
 ## Installation
 
 ```
-npm install --save @vx/legend
+npm install --save @visx/legend
 ```

@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { AnyD3Scale, ScaleInput } from '@vx/scale';
+import { AnyD3Scale, ScaleInput } from '@visx/scale';
 import LegendItem from './LegendItem';
 import LegendLabel, { LegendLabelProps } from './LegendLabel';
 import LegendShape from './LegendShape';
@@ -31,7 +31,7 @@ export type LegendProps<Scale extends AnyD3Scale> = {
   shapeMargin?: string | number;
   /** Flex-box alignment of legend item labels. */
   labelAlign?: string;
-  /** `@vx/scale` or `d3-scale` object used to generate the legend items. */
+  /** `@visx/scale` or `d3-scale` object used to generate the legend items. */
   scale: Scale;
   /** Flex-box flex of legend item labels. */
   labelFlex?: string | number;
@@ -102,7 +102,7 @@ export default function Legend<Scale extends AnyD3Scale>({
 
   return (
     <div
-      className={cx('vx-legend', className)}
+      className={cx('visx-legend', className)}
       style={{
         ...style,
         flexDirection: direction,

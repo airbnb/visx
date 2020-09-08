@@ -1,5 +1,5 @@
 import React from 'react';
-import { Group } from '@vx/group';
+import { Group } from '@visx/group';
 
 export type ShapeCircleProps = {
   fill?: string;

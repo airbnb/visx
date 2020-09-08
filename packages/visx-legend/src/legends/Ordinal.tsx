@@ -1,5 +1,5 @@
 import React from 'react';
-import { PickD3Scale } from '@vx/scale';
+import { PickD3Scale } from '@visx/scale';
 import Legend, { LegendProps } from './Legend';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

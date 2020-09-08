@@ -19,7 +19,7 @@ export default function LegendItem({
 }: LegendItemProps & Omit<React.HTMLProps<HTMLDivElement>, keyof LegendItemProps>) {
   return (
     <div
-      className="vx-legend-item"
+      className="visx-legend-item"
       style={{
         display,
         alignItems,

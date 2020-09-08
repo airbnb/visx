@@ -1,5 +1,5 @@
 import React from 'react';
-import { D3Scale } from '@vx/scale';
+import { D3Scale } from '@visx/scale';
 import Legend, { LegendProps } from './Legend';
 import labelTransformFactory from '../util/labelTransformFactory';
 import defaultDomain from '../util/defaultDomain';

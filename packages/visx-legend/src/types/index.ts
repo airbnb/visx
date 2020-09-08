@@ -1,4 +1,4 @@
-import { AnyD3Scale, ScaleInput } from '@vx/scale';
+import { AnyD3Scale, ScaleInput } from '@visx/scale';
 
 export type LabelFormatterFactory<Scale extends AnyD3Scale> = (args: {
   scale: Scale;

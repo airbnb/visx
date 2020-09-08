@@ -21,7 +21,7 @@ export default function LegendLabel({
 }: LegendLabelProps) {
   return (
     <div
-      className="vx-legend-label"
+      className="visx-legend-label"
       style={{
         justifyContent: align,
         display: 'flex',

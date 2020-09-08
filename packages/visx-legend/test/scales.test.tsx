@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { scaleBand, scaleLinear, scaleOrdinal, scaleThreshold, scaleQuantile } from '@vx/scale';
+import { scaleBand, scaleLinear, scaleOrdinal, scaleThreshold, scaleQuantile } from '@visx/scale';
 
 import {
   Legend,
