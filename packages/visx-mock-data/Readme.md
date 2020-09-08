@@ -1,15 +1,15 @@
-# @vx/mock-data
+# @visx/mock-data
 
-<a title="@vx/mock-data npm downloads" href="https://www.npmjs.com/package/@vx/mock-data">
-  <img src="https://img.shields.io/npm/dm/@vx/mock-data.svg?style=flat-square" />
+<a title="@visx/mock-data npm downloads" href="https://www.npmjs.com/package/@visx/mock-data">
+  <img src="https://img.shields.io/npm/dm/@visx/mock-data.svg?style=flat-square" />
 </a>
 
-The `@vx/mock-data` package is here to help you test out your graphs.
+The `@visx/mock-data` package is here to help you test out your graphs.
 
 ## Installation
 
 ```
-npm install --save @vx/mock-data
+npm install --save @visx/mock-data
 ```
 
 ## Generators
@@ -17,7 +17,7 @@ npm install --save @vx/mock-data
 Generators can create simple generic data for you like this:
 
 ```js
-import Mock from '@vx/mock-data';
+import Mock from '@visx/mock-data';
 const points = Mock.genRandomNormalPoints();
 ```
 
@@ -34,8 +34,8 @@ Generates `n` date values an hour apart from each other starting with the curren
 Mock are essentially a bunch of data dumps that you can use like this:
 
 ```js
-import Mock from '@vx/mock-data';
-// or import { cityTemperature } from '@vx/mock-data';
+import Mock from '@visx/mock-data';
+// or import { cityTemperature } from '@visx/mock-data';
 const data = Mock.cityTemperature;
 ```
 
@@ -212,13 +212,13 @@ const shakespeare: Shakespeare[] = [
 
 ### `generators/`
 
-- [genDateValue()](https://github.com/hshoff/vx/blob/master/packages/vx-mock-data/src/generators/genDateValue.ts)
-- [genRandomNormalPoints()](https://github.com/hshoff/vx/blob/master/packages/vx-mock-data/src/generators/genRandomNormalPoints.ts)
+- [genDateValue()](https://github.com/airbnb/visx/blob/master/packages/visx-mock-data/src/generators/genDateValue.ts)
+- [genRandomNormalPoints()](https://github.com/airbnb/visx/blob/master/packages/visx-mock-data/src/generators/genRandomNormalPoints.ts)
 
 ### `mocks/`
 
-- [appleStock](https://github.com/hshoff/vx/blob/master/packages/vx-mock-data/src/mocks/appleStock.ts)
-- [browserUsage](https://github.com/hshoff/vx/blob/master/packages/vx-mock-data/src/mocks/browserUsage.ts)
-- [cityTemperature](https://github.com/hshoff/vx/blob/master/packages/vx-mock-data/src/mocks/cityTemperature.ts)
-- [groupDateValue](https://github.com/hshoff/vx/blob/master/packages/vx-mock-data/src/mocks/groupDateValue.ts)
-- [letterFrequency](https://github.com/hshoff/vx/blob/master/packages/vx-mock-data/src/mocks/letterFrequency.ts)
+- [appleStock](https://github.com/airbnb/visx/blob/master/packages/visx-mock-data/src/mocks/appleStock.ts)
+- [browserUsage](https://github.com/airbnb/visx/blob/master/packages/visx-mock-data/src/mocks/browserUsage.ts)
+- [cityTemperature](https://github.com/airbnb/visx/blob/master/packages/visx-mock-data/src/mocks/cityTemperature.ts)
+- [groupDateValue](https://github.com/airbnb/visx/blob/master/packages/visx-mock-data/src/mocks/groupDateValue.ts)
+- [letterFrequency](https://github.com/airbnb/visx/blob/master/packages/visx-mock-data/src/mocks/letterFrequency.ts)
