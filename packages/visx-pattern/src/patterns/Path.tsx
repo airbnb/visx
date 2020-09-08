@@ -47,7 +47,7 @@ export default function Path({
     <Pattern id={id} width={width} height={height}>
       {!!background && <rect width={width} height={height} fill={background} />}
       <path
-        className={cx('vx-pattern-path', className)}
+        className={cx('visx-pattern-path', className)}
         d={path}
         fill={fill}
         stroke={stroke}

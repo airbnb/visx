@@ -42,7 +42,7 @@ export default function Waves({
 }: PatternWavesProps) {
   return (
     <Path
-      className={cx('vx-pattern-wave', className)}
+      className={cx('visx-pattern-wave', className)}
       path={`M 0 ${height / 2} c ${height / 8} ${-height / 4} , ${(height * 3) / 8} ${-height /
         4} , ${height / 2} 0
              c ${height / 8} ${height / 4} , ${(height * 3) / 8} ${height / 4} , ${height /

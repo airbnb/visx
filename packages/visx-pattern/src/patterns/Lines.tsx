@@ -72,7 +72,7 @@ export default function Lines({
     <Pattern id={id} width={width} height={height}>
       {!!background && (
         <rect
-          className={cx('vx-pattern-line-background')}
+          className={cx('visx-pattern-line-background')}
           width={width}
           height={height}
           fill={background}
@@ -81,8 +81,8 @@ export default function Lines({
       {orientations.map((o, i) => {
         return (
           <path
-            key={`vx-${id}-line-${o}-${i}`}
-            className={cx('vx-pattern-line', className)}
+            key={`visx-${id}-line-${o}-${i}`}
+            className={cx('visx-pattern-line', className)}
             d={pathForOrientation({ orientation: o, height })}
             stroke={stroke}
             strokeWidth={strokeWidth}

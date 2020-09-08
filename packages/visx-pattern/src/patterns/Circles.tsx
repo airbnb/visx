@@ -53,7 +53,7 @@ export default function Circles({
     <Pattern id={id} width={width} height={height}>
       {!!background && <rect width={width} height={height} fill={background} />}
       <circle
-        className={cx('vx-pattern-circle', className)}
+        className={cx('visx-pattern-circle', className)}
         cx={width / 2}
         cy={height / 2}
         r={radius}
@@ -66,7 +66,7 @@ export default function Circles({
         corners.map(([cornerX, cornerY]) => (
           <circle
             key={`${id}-complement-${cornerX}-${cornerY}`}
-            className={cx('vx-pattern-circle vx-pattern-circle-complement', className)}
+            className={cx('visx-pattern-circle visx-pattern-circle-complement', className)}
             cx={cornerX}
             cy={cornerY}
             r={radius}

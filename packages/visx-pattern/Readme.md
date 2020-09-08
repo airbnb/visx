@@ -1,7 +1,7 @@
-# @vx/pattern
+# @visx/pattern
 
-<a title="@vx/pattern npm downloads" href="https://www.npmjs.com/package/@vx/pattern">
-  <img src="https://img.shields.io/npm/dm/@vx/pattern.svg?style=flat-square" />
+<a title="@visx/pattern npm downloads" href="https://www.npmjs.com/package/@visx/pattern">
+  <img src="https://img.shields.io/npm/dm/@visx/pattern.svg?style=flat-square" />
 </a>
 
 Inspired by: http://riccardoscalco.github.io/textures/
@@ -9,8 +9,8 @@ Inspired by: http://riccardoscalco.github.io/textures/
 ## Example
 
 ```js
-import { AreaClosed } from '@vx/shape';
-import { PatternLines } from '@vx/pattern';
+import { AreaClosed } from '@visx/shape';
+import { PatternLines } from '@visx/pattern';
 
 const PatternArea = () => {
   return (
@@ -82,5 +82,5 @@ use `fill="url('#pattern')"` you're referencing the pattern's id: `pattern`.
 ## Installation
 
 ```
-npm install --save @vx/pattern
+npm install --save @visx/pattern
 ```
