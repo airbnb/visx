@@ -1,18 +1,18 @@
 {
-  "name": "@vx/point",
+  "name": "@visx/point",
   "version": "0.0.199",
-  "description": "vx point",
+  "description": "visx point",
   "sideEffects": false,
   "main": "lib/index.js",
   "module": "esm/index.js",
   "types": "lib/index.d.ts",
-  "repository": "https://github.com/hshoff/vx",
+  "repository": "https://github.com/airbnb/visx",
   "files": [
     "lib",
     "esm"
   ],
   "keywords": [
-    "vx",
+    "visx",
     "data",
     "visualizations",
     "charts"
