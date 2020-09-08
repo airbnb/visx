@@ -27,7 +27,7 @@ export default function Group({
   return (
     <g
       ref={innerRef}
-      className={cx('vx-group', className)}
+      className={cx('visx-group', className)}
       transform={transform || `translate(${left}, ${top})`}
       {...restProps}
     >
