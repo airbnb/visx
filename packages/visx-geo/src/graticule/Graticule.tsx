@@ -1,5 +1,5 @@
 import React from 'react';
-import { Group } from '@vx/group';
+import { Group } from '@visx/group';
 import { geoGraticule, GeoGraticuleGenerator } from 'd3-geo';
 // eslint-disable-next-line import/no-unresolved
 import { LineString, MultiLineString, Polygon } from 'geojson';
@@ -65,7 +65,7 @@ export default function Graticule({
   if (children) return <>{children({ graticule: currGraticule })}</>;
 
   return (
-    <Group className="vx-geo-graticule">
+    <Group className="visx-geo-graticule">
       {graticule && (
         <path d={graticule(currGraticule())} fill="none" stroke="black" {...restProps} />
       )}

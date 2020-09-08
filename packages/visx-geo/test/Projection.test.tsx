@@ -19,8 +19,8 @@ describe('<Projection />', () => {
   });
 
   test('it should pass className', () => {
-    const wrapper = shallow(<Projection className="vx-new" {...props} />);
-    expect(wrapper.find('path').get(0).props.className).toBe('vx-geo-mercator vx-new');
+    const wrapper = shallow(<Projection className="visx-new" {...props} />);
+    expect(wrapper.find('path').get(0).props.className).toBe('visx-geo-mercator visx-new');
   });
 
   test('it should create two paths', () => {

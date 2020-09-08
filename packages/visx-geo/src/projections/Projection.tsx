@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { Group } from '@vx/group';
+import { Group } from '@visx/group';
 import {
   geoOrthographic,
   geoAlbers,
@@ -161,7 +161,7 @@ export default function Projection<Datum extends GeoPermissibleObjects>({
   if (children) return <>{children({ path, features })}</>;
 
   return (
-    <Group className="vx-geo">
+    <Group className="visx-geo">
       {graticule && !graticule.foreground && (
         <Graticule graticule={(ml: MultiLineString) => path(ml) || ''} {...graticule} />
       )}
@@ -175,7 +175,7 @@ export default function Projection<Datum extends GeoPermissibleObjects>({
       {features.map((feature, i) => (
         <g key={`${projection}-${i}`}>
           <path
-            className={cx(`vx-geo-${projection}`, className)}
+            className={cx(`visx-geo-${projection}`, className)}
             d={feature.path || ''}
             ref={innerRef && innerRef(feature, i)}
             {...restProps}

@@ -1,7 +1,7 @@
 {
-  "name": "@vx/geo",
+  "name": "@visx/geo",
   "version": "0.0.199",
-  "description": "vx geo",
+  "description": "visx geo",
   "sideEffects": false,
   "main": "lib/index.js",
   "module": "esm/index.js",
@@ -12,10 +12,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hshoff/vx.git"
+    "url": "git+https://github.com/airbnb/visx.git"
   },
   "keywords": [
-    "vx",
+    "visx",
     "react",
     "d3",
     "visualizations",
@@ -25,15 +25,15 @@
   "author": "@nschnierer",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/hshoff/vx/issues"
+    "url": "https://github.com/airbnb/visx/issues"
   },
-  "homepage": "https://github.com/hshoff/vx#readme",
+  "homepage": "https://github.com/airbnb/visx#readme",
   "dependencies": {
     "@types/classnames": "^2.2.9",
     "@types/d3-geo": "^1.11.1",
     "@types/geojson": "*",
     "@types/react": "*",
-    "@vx/group": "0.0.199",
+    "@visx/group": "0.0.199",
     "classnames": "^2.2.5",
     "d3-geo": "^1.11.3",
     "prop-types": "^15.5.10"
