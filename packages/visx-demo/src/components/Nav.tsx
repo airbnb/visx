@@ -14,7 +14,7 @@ export default () => (
       <ul>
         <NavItem href="/">Home</NavItem>
         <NavItem href="/docs">Docs</NavItem>
-        <NavItem href="https://medium.com/visx-code" external>
+        <NavItem href="https://medium.com/vx-code" external>
           Guides
         </NavItem>
         <NavItem href="/gallery">Gallery</NavItem>
