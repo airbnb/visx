@@ -15,7 +15,7 @@ export default function applyRound<
   if ('round' in config && typeof config.round !== 'undefined') {
     if (config.round && 'interpolate' in config && typeof config.interpolate !== 'undefined') {
       console.warn(
-        `[vx/scale/applyRound] ignoring round: scale config contains round and interpolate. only applying interpolate. config:`,
+        `[visx/scale/applyRound] ignoring round: scale config contains round and interpolate. only applying interpolate. config:`,
         config,
       );
     } else if ('round' in scale) {

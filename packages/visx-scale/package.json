@@ -1,7 +1,7 @@
 {
-  "name": "@vx/scale",
+  "name": "@visx/scale",
   "version": "0.0.199",
-  "description": "vx scale",
+  "description": "visx scale",
   "sideEffects": false,
   "main": "lib/index.js",
   "module": "esm/index.js",
@@ -12,10 +12,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hshoff/vx.git"
+    "url": "git+https://github.com/airbnb/visx.git"
   },
   "keywords": [
-    "vx",
+    "visx",
     "react",
     "d3",
     "visualizations",
@@ -27,9 +27,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/hshoff/vx/issues"
+    "url": "https://github.com/airbnb/visx/issues"
   },
-  "homepage": "https://github.com/hshoff/vx#readme",
+  "homepage": "https://github.com/airbnb/visx#readme",
   "dependencies": {
     "@types/d3-interpolate": "^1.3.1",
     "@types/d3-scale": "^2.1.1",

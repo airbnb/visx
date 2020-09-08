@@ -1,26 +1,26 @@
-# @vx/scale
+# @visx/scale
 
-<a title="@vx/scale npm downloads" href="https://www.npmjs.com/package/@vx/scale">
-  <img src="https://img.shields.io/npm/dm/@vx/scale.svg?style=flat-square" />
+<a title="@visx/scale npm downloads" href="https://www.npmjs.com/package/@visx/scale">
+  <img src="https://img.shields.io/npm/dm/@visx/scale.svg?style=flat-square" />
 </a>
 
 ## Installation
 
 ```sh
-npm install --save @vx/scale
+npm install --save @visx/scale
 ```
 
 ## Overview of scales
 
-The `@vx/scale` package aims to provide a wrapper around existing `d3` scaling originally defined in
-the [d3-scale](https://github.com/d3/d3-scale) package.
+The `@visx/scale` package aims to provide a wrapper around existing `d3` scaling originally defined
+in the [d3-scale](https://github.com/d3/d3-scale) package.
 
 Scales are functions that help you map your data values to the physical pixel size that your graph
 requires. For example, let's say you wanted to create a bar chart to show populations per country.
 If you were to use a 1-to-1 scale (IE: 1 pixel per y value) your bar for the USA would be about
 321.4 million pixels high!
 
-Instead, you can tell `vx` a function to use that takes a data value (like your population per
+Instead, you can tell `visx` a function to use that takes a data value (like your population per
 country) and quantitatively maps to another dimensional space, like pixels.
 
 For example, we could create a linear scale like this:
@@ -220,7 +220,7 @@ const scale = Scale.scaleUtc({
 ### Color Scales
 
 D3 scales offer the ability to map points to colors. You can use
-[`d3-scale-chromatic`](https://github.com/d3/d3-scale-chromatic) in conjunction with vx's
+[`d3-scale-chromatic`](https://github.com/d3/d3-scale-chromatic) in conjunction with visx's
 `scaleOrdinal` to make color scales.
 
 You can install `d3-scale-chromatic` with npm:
@@ -232,7 +232,7 @@ npm install --save d3-scale-chromatic
 You create a color scale like so:
 
 ```js
-import { scaleOrdinal } from '@vx/scale';
+import { scaleOrdinal } from '@visx/scale';
 import { schemeSet1 } from 'd3-scale-chromatic';
 
 const colorScale = scaleOrdinal({
