@@ -52,5 +52,5 @@ export default function Ribbon({
   const path = (ribbon(chord) as unknown) as string | null;
   if (children) return <>{children({ path })}</>;
 
-  return <path className={cx('vx-ribbon', className)} d={path || ''} {...restProps} />;
+  return <path className={cx('visx-ribbon', className)} d={path || ''} {...restProps} />;
 }
