@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
-import { Group } from '@vx/group';
-import { ScaleInput } from '@vx/scale';
+import { Group } from '@visx/group';
+import { ScaleInput } from '@visx/scale';
 import GridRows, { AllGridRowsProps } from './GridRows';
 import GridColumns, { AllGridColumnsProps } from './GridColumns';
 import { CommonGridProps, GridScale } from '../types';
@@ -20,9 +20,9 @@ export type GridProps<XScale extends GridScale, YScale extends GridScale> = Omit
   AllGridRowsProps<YScale> & AllGridColumnsProps<XScale>,
   CommonPropsToOmit
 > & {
-  /** `@vx/scale` or `d3-scale` object used to map from ScaleInput to x-coordinates (GridColumns). */
+  /** `@visx/scale` or `d3-scale` object used to map from ScaleInput to x-coordinates (GridColumns). */
   xScale: XScale;
-  /** `@vx/scale` or `d3-scale` object used to map from ScaleInput to y-coordinates (GridRows). */
+  /** `@visx/scale` or `d3-scale` object used to map from ScaleInput to y-coordinates (GridRows). */
   yScale: YScale;
   /** Pixel offset to apply as an x-translation to each GridColumns line. */
   xOffset?: CommonGridProps['offset'];
@@ -64,7 +64,7 @@ export default function Grid<XScale extends GridScale, YScale extends GridScale>
   ...restProps
 }: GridProps<XScale, YScale>) {
   return (
-    <Group className={cx('vx-grid', className)} top={top} left={left}>
+    <Group className={cx('visx-grid', className)} top={top} left={left}>
       <GridRows
         className={className}
         scale={yScale}

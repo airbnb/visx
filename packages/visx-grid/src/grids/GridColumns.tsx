@@ -1,13 +1,13 @@
 import React from 'react';
 import cx from 'classnames';
-import Line, { LineProps } from '@vx/shape/lib/shapes/Line';
-import { Group } from '@vx/group';
-import { Point } from '@vx/point';
-import { getTicks, ScaleInput, coerceNumber } from '@vx/scale';
+import Line, { LineProps } from '@visx/shape/lib/shapes/Line';
+import { Group } from '@visx/group';
+import { Point } from '@visx/point';
+import { getTicks, ScaleInput, coerceNumber } from '@visx/scale';
 import { CommonGridProps, GridScale } from '../types';
 
 export type GridColumnsProps<Scale extends GridScale> = CommonGridProps & {
-  /** `@vx/scale` or `d3-scale` object used to convert value to position. */
+  /** `@visx/scale` or `d3-scale` object used to convert value to position. */
   scale: Scale;
   /**
    * Exact values used to generate grid lines using `scale`.
@@ -55,7 +55,7 @@ export default function GridColumns<Scale extends GridScale>({
     };
   });
   return (
-    <Group className={cx('vx-columns', className)} top={top} left={left}>
+    <Group className={cx('visx-columns', className)} top={top} left={left}>
       {children
         ? children({ lines: tickLines })
         : tickLines.map(({ from, to }, i) => (

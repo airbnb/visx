@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'enzyme';
-import { scaleLinear } from '@vx/scale';
+import { scaleLinear } from '@visx/scale';
 import { Grid } from '../src';
 
 describe('<Grid />', () => {
@@ -19,8 +19,8 @@ describe('<Grid />', () => {
         pointerEvents="none"
       />,
     );
-    expect(wrapper.find('.vx-rows')).toHaveLength(1);
-    expect(wrapper.find('.vx-columns')).toHaveLength(1);
-    expect(wrapper.find('.vx-line')).toHaveLength(22);
+    expect(wrapper.find('.visx-rows')).toHaveLength(1);
+    expect(wrapper.find('.visx-columns')).toHaveLength(1);
+    expect(wrapper.find('.visx-line')).toHaveLength(22);
   });
 });
