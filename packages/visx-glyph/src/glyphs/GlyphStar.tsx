@@ -34,7 +34,7 @@ export default function GlyphStar<Datum = any>({
   if (children) return <>{children({ path })}</>;
   return (
     <Glyph top={top} left={left}>
-      <path className={cx('vx-glyph-star', className)} d={path() || ''} {...restProps} />
+      <path className={cx('visx-glyph-star', className)} d={path() || ''} {...restProps} />
     </Glyph>
   );
 }

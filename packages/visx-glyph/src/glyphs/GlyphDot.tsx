@@ -25,7 +25,7 @@ export default function GlyphDot({
 }: GlyphDotProps & Omit<React.SVGProps<SVGCircleElement>, keyof GlyphDotProps>) {
   return (
     <Glyph top={top} left={left}>
-      <circle className={cx('vx-glyph-dot', className)} {...restProps} />
+      <circle className={cx('visx-glyph-dot', className)} {...restProps} />
     </Glyph>
   );
 }

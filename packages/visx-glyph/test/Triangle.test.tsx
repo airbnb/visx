@@ -10,7 +10,7 @@ describe('<GlyphTriangle />', () => {
 
   test('it should be wrapped in a <Glyph />', () => {
     const wrapper = shallow(<GlyphTriangle />);
-    expect(wrapper.dive().prop('className')).toBe('vx-glyph');
+    expect(wrapper.dive().prop('className')).toBe('visx-glyph');
   });
 
   test('it should add className to <path />', () => {

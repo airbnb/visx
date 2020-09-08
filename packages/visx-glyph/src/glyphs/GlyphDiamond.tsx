@@ -36,7 +36,7 @@ export default function GlyphDiamond<Datum = any>({
 
   return (
     <Glyph top={top} left={left}>
-      <path className={cx('vx-glyph-diamond', className)} d={path() || ''} {...restProps} />
+      <path className={cx('visx-glyph-diamond', className)} d={path() || ''} {...restProps} />
     </Glyph>
   );
 }

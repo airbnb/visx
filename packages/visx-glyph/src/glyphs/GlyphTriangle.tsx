@@ -36,7 +36,7 @@ export default function GlyphTriangle<Datum = any>({
 
   return (
     <Glyph top={top} left={left}>
-      <path className={cx('vx-glyph-triangle', className)} d={path() || ''} {...restProps} />
+      <path className={cx('visx-glyph-triangle', className)} d={path() || ''} {...restProps} />
     </Glyph>
   );
 }

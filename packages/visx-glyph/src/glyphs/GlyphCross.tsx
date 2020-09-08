@@ -35,7 +35,7 @@ export default function GlyphCross<Datum = any>({
 
   return (
     <Glyph top={top} left={left}>
-      <path className={cx('vx-glyph-cross', className)} d={path() || ''} {...restProps} />
+      <path className={cx('visx-glyph-cross', className)} d={path() || ''} {...restProps} />
     </Glyph>
   );
 }

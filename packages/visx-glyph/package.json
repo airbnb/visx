@@ -1,7 +1,7 @@
 {
-  "name": "@vx/glyph",
+  "name": "@visx/glyph",
   "version": "0.0.199",
-  "description": "vx glyph",
+  "description": "visx glyph",
   "sideEffects": false,
   "main": "lib/index.js",
   "module": "esm/index.js",
@@ -12,10 +12,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hshoff/vx.git"
+    "url": "git+https://github.com/airbnb/visx.git"
   },
   "keywords": [
-    "vx",
+    "visx",
     "react",
     "d3",
     "visualizations",
@@ -24,9 +24,9 @@
   "author": "@hshoff",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/hshoff/vx/issues"
+    "url": "https://github.com/airbnb/visx/issues"
   },
-  "homepage": "https://github.com/hshoff/vx#readme",
+  "homepage": "https://github.com/airbnb/visx#readme",
   "publishConfig": {
     "access": "public"
   },
@@ -37,7 +37,7 @@
     "@types/classnames": "^2.2.9",
     "@types/d3-shape": "^1.3.1",
     "@types/react": "*",
-    "@vx/group": "0.0.199",
+    "@visx/group": "0.0.199",
     "classnames": "^2.2.5",
     "d3-shape": "^1.2.0",
     "prop-types": "^15.6.2"

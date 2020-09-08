@@ -35,7 +35,7 @@ export default function GlyphCircle<Datum = any>({
 
   return (
     <Glyph top={top} left={left}>
-      <path className={cx('vx-glyph-circle', className)} d={path() || ''} {...restProps} />
+      <path className={cx('visx-glyph-circle', className)} d={path() || ''} {...restProps} />
     </Glyph>
   );
 }
