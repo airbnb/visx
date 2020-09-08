@@ -1,7 +1,7 @@
-# @vx/marker
+# @visx/marker
 
-<a title="@vx/marker npm downloads" href="https://www.npmjs.com/package/@vx/marker">
-  <img src="https://img.shields.io/npm/dm/@vx/marker.svg?style=flat-square" />
+<a title="@visx/marker npm downloads" href="https://www.npmjs.com/package/@visx/marker">
+  <img src="https://img.shields.io/npm/dm/@visx/marker.svg?style=flat-square" />
 </a>
 
 Markers are graphical objects attached to a <path>, <line>, <polyline>, or <polygon> element.
@@ -10,5 +10,5 @@ Markers are graphical objects attached to a <path>, <line>, <polyline>, or <poly
 ## Installation
 
 ```
-npm install --save @vx/marker
+npm install --save @visx/marker
 ```
