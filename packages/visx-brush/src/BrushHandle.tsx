@@ -1,6 +1,6 @@
 /* eslint react/jsx-handler-names: 0 */
 import React from 'react';
-import Drag, { HandlerArgs as DragArgs } from '@vx/drag/lib/Drag';
+import Drag, { HandlerArgs as DragArgs } from '@visx/drag/lib/Drag';
 import { BaseBrushState as BrushState, UpdateBrush } from './BaseBrush';
 import { ResizeTriggerAreas } from './types';
 
@@ -140,7 +140,7 @@ export default class BrushHandle extends React.Component<BrushHandleProps> {
               width={width}
               height={height}
               fill="transparent"
-              className={`vx-brush-handle-${type}`}
+              className={`visx-brush-handle-${type}`}
               onMouseDown={dragStart}
               onMouseMove={dragMove}
               onMouseUp={dragEnd}

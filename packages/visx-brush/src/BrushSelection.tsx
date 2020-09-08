@@ -1,6 +1,6 @@
 /* eslint react/jsx-handler-names: 0 */
 import React from 'react';
-import Drag, { HandlerArgs as DragArgs } from '@vx/drag/lib/Drag';
+import Drag, { HandlerArgs as DragArgs } from '@visx/drag/lib/Drag';
 import { BaseBrushState as BrushState, UpdateBrush } from './BaseBrush';
 
 const DRAGGING_OVERLAY_STYLES = { cursor: 'move' };
@@ -130,7 +130,7 @@ export default class BrushSelection extends React.Component<
               y={Math.min(brush.extent.y0, brush.extent.y1)}
               width={width}
               height={height}
-              className="vx-brush-selection"
+              className="visx-brush-selection"
               onMouseDown={disableDraggingSelection ? undefined : dragStart}
               onMouseLeave={event => {
                 if (onMouseLeave) onMouseLeave(event);

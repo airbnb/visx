@@ -1,6 +1,6 @@
 /* eslint react/jsx-handler-names: 0 */
 import React from 'react';
-import Drag, { HandlerArgs as DragArgs } from '@vx/drag/lib/Drag';
+import Drag, { HandlerArgs as DragArgs } from '@visx/drag/lib/Drag';
 import { BaseBrushState as BrushState, UpdateBrush } from './BaseBrush';
 import { ResizeTriggerAreas } from './types';
 
@@ -163,7 +163,7 @@ export default class BrushCorner extends React.Component<BrushCornerProps, Brush
               onMouseDown={dragStart}
               onMouseMove={dragMove}
               onMouseUp={dragEnd}
-              className={`vx-brush-corner-${type}`}
+              className={`visx-brush-corner-${type}`}
               style={{ cursor, pointerEvents, ...styleProp }}
               {...corner}
             />

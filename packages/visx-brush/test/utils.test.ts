@@ -1,4 +1,4 @@
-import { createScale } from '@vx/scale';
+import { createScale } from '@visx/scale';
 import { getDomainFromExtent, scaleInvert } from '../src/utils';
 
 describe('getDomainFromExtent()', () => {

@@ -1,7 +1,7 @@
 import React from 'react';
-import { Group } from '@vx/group';
-import { Bar } from '@vx/shape';
-import Drag, { HandlerArgs as DragArgs } from '@vx/drag/lib/Drag';
+import { Group } from '@visx/group';
+import { Bar } from '@visx/shape';
+import Drag, { HandlerArgs as DragArgs } from '@visx/drag/lib/Drag';
 
 import BrushHandle from './BrushHandle';
 import BrushCorner from './BrushCorner';
@@ -366,7 +366,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
     const resizeTriggerAreaSet = new Set(resizeTriggerAreas);
 
     return (
-      <Group className="vx-brush" top={top} left={left}>
+      <Group className="visx-brush" top={top} left={left}>
         {/* overlay */}
         <Drag
           width={stageWidth}
@@ -378,7 +378,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
         >
           {({ dragStart, isDragging, dragMove, dragEnd }) => (
             <Bar
-              className="vx-brush-overlay"
+              className="visx-brush-overlay"
               fill="transparent"
               x={0}
               y={0}
