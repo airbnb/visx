@@ -4,9 +4,9 @@
  * https://bl.ocks.org/mbostock/4060954
  */
 import React from 'react';
-import { Stack } from '@vx/shape';
-import { PatternCircles, PatternWaves } from '@vx/pattern';
-import { scaleLinear, scaleOrdinal } from '@vx/scale';
+import { Stack } from '@visx/shape';
+import { PatternCircles, PatternWaves } from '@visx/pattern';
+import { scaleLinear, scaleOrdinal } from '@visx/scale';
 import { transpose } from 'd3-array';
 import { animated, useSpring } from 'react-spring';
 

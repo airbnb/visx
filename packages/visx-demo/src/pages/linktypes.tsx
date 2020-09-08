@@ -1,15 +1,15 @@
 import React from 'react';
 import Show from '../components/Show';
-import LinkTypes from '../sandboxes/vx-linktypes/Example';
-import LinkTypesSource from '!!raw-loader!../sandboxes/vx-linktypes/Example';
-import packageJson from '../sandboxes/vx-linktypes/package.json';
+import LinkTypes from '../sandboxes/visx-linktypes/Example';
+import LinkTypesSource from '!!raw-loader!../sandboxes/visx-linktypes/Example';
+import packageJson from '../sandboxes/visx-linktypes/package.json';
 
 export default () => {
   return (
     <Show
       events
       title="Link Types"
-      codeSandboxDirectoryName="vx-linktypes"
+      codeSandboxDirectoryName="visx-linktypes"
       component={LinkTypes}
       margin={{
         top: 40,

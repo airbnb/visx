@@ -1,7 +1,7 @@
 import React from 'react';
 import { format } from 'd3-format';
-import { scaleLinear, scaleOrdinal, scaleThreshold, scaleQuantile } from '@vx/scale';
-import { GlyphStar, GlyphWye, GlyphTriangle, GlyphDiamond } from '@vx/glyph';
+import { scaleLinear, scaleOrdinal, scaleThreshold, scaleQuantile } from '@visx/scale';
+import { GlyphStar, GlyphWye, GlyphTriangle, GlyphDiamond } from '@visx/glyph';
 import {
   Legend,
   LegendLinear,
@@ -11,7 +11,7 @@ import {
   LegendThreshold,
   LegendItem,
   LegendLabel,
-} from '@vx/legend';
+} from '@visx/legend';
 
 const oneDecimalFormat = format('.1f');
 

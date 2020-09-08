@@ -1,7 +1,7 @@
 import React from 'react';
 import GalleryTile from '../GalleryTile';
 
-export const packageJson = { name: 'vx-text', dependencies: { '@vx/text': 'current' } };
+export const packageJson = { name: 'visx-text', dependencies: { '@visx/text': 'current' } };
 
 const tileStyles = { background: 'white', border: '1px solid lightgray', borderRadius: '14px' };
 const detailsStyles = { color: '#232323', zIndex: 1 };

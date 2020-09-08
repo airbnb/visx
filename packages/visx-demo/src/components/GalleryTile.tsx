@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import ParentSize from '@vx/responsive/lib/components/ParentSize';
+import ParentSize from '@visx/responsive/lib/components/ParentSize';
 import { WidthAndHeight } from '../types';
 
 type Props<ExampleProps extends WidthAndHeight> = {

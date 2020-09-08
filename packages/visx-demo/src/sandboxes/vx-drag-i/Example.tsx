@@ -1,7 +1,7 @@
 import React, { useMemo, useState, useEffect } from 'react';
-import { scaleOrdinal } from '@vx/scale';
-import { LinearGradient } from '@vx/gradient';
-import { Drag, raise } from '@vx/drag';
+import { scaleOrdinal } from '@visx/scale';
+import { LinearGradient } from '@visx/gradient';
+import { Drag, raise } from '@visx/drag';
 import generateCircles, { Circle } from './generateCircles';
 
 const colors = [

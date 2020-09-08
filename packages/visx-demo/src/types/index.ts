@@ -17,7 +17,7 @@ export type ShowProvidedProps = {
   events?: boolean;
 };
 
-export type VxPackage =
+export type VisxPackage =
   | 'annotation'
   | 'axis'
   | 'bounds'
@@ -49,7 +49,7 @@ export type VxPackage =
   | 'threshold'
   | 'tooltip'
   | 'voronoi'
-  | 'vx'
+  | 'visx'
   | 'zoom';
 
 export type PackageJson = { dependencies?: { [packageName: string]: string } };

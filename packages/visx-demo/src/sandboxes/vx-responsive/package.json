@@ -1,6 +1,6 @@
 {
-  "name": "@vx/demo-responsive",
-  "description": "Standalone @vx/responsive demo.",
+  "name": "@visx/demo-responsive",
+  "description": "Standalone @visx/responsive demo.",
   "main": "index.tsx",
   "private": true,
   "dependencies": {
@@ -8,11 +8,11 @@
     "@types/d3-array": "^2.0.0",
     "@types/react": "^16",
     "@types/react-dom": "^16",
-    "@vx/group": "latest",
-    "@vx/mock-data": "latest",
-    "@vx/responsive": "latest",
-    "@vx/scale": "latest",
-    "@vx/shape": "latest",
+    "@visx/group": "latest",
+    "@visx/mock-data": "latest",
+    "@visx/responsive": "latest",
+    "@visx/scale": "latest",
+    "@visx/shape": "latest",
     "d3-array": "^2.4.0",
     "react": "^16",
     "react-dom": "^16",
@@ -23,6 +23,6 @@
     "visualization",
     "d3",
     "react",
-    "vx"
+    "visx"
   ]
 }

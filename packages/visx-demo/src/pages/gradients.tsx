@@ -1,15 +1,15 @@
 import React from 'react';
 import Show from '../components/Show';
-import Gradients from '../sandboxes/vx-gradient/Example';
-import GradientsSource from '!!raw-loader!../sandboxes/vx-gradient/Example';
-import packageJson from '../sandboxes/vx-gradient/package.json';
+import Gradients from '../sandboxes/visx-gradient/Example';
+import GradientsSource from '!!raw-loader!../sandboxes/visx-gradient/Example';
+import packageJson from '../sandboxes/visx-gradient/package.json';
 
 export default () => (
   <Show
     shadow
     component={Gradients}
     title="Gradients"
-    codeSandboxDirectoryName="vx-gradient"
+    codeSandboxDirectoryName="visx-gradient"
     packageJson={packageJson}
   >
     {GradientsSource}

@@ -1,18 +1,18 @@
 {
-  "name": "@vx/demo-bargroup",
-  "description": "Standalone vx grouped bar demo.",
+  "name": "@visx/demo-bargroup",
+  "description": "Standalone visx grouped bar demo.",
   "main": "index.tsx",
   "private": true,
   "dependencies": {
     "@babel/runtime": "^7.8.4",
     "@types/react": "^16",
     "@types/react-dom": "^16",
-    "@vx/axis": "latest",
-    "@vx/group": "latest",
-    "@vx/mock-data": "latest",
-    "@vx/responsive": "latest",
-    "@vx/scale": "latest",
-    "@vx/shape": "latest",
+    "@visx/axis": "latest",
+    "@visx/group": "latest",
+    "@visx/mock-data": "latest",
+    "@visx/responsive": "latest",
+    "@visx/scale": "latest",
+    "@visx/shape": "latest",
     "d3-time-format": "^2.2.3",
     "react": "^16",
     "react-dom": "^16",
@@ -23,7 +23,7 @@
     "visualization",
     "d3",
     "react",
-    "vx",
+    "visx",
     "bargroup"
   ]
 }

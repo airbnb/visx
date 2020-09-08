@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { LinePath } from '@vx/shape';
-import { Drag } from '@vx/drag';
-import { curveBasis } from '@vx/curve';
-import { LinearGradient } from '@vx/gradient';
+import { LinePath } from '@visx/shape';
+import { Drag } from '@visx/drag';
+import { curveBasis } from '@visx/curve';
+import { LinearGradient } from '@visx/gradient';
 
 type Line = { x: number; y: number }[];
 type Lines = Line[];

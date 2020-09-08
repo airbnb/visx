@@ -1,8 +1,8 @@
 import React from 'react';
-import Brush, { BrushProps, background, accentColor } from '../../sandboxes/vx-brush/Example';
+import Brush, { BrushProps, background, accentColor } from '../../sandboxes/visx-brush/Example';
 import GalleryTile from '../GalleryTile';
 
-export { default as packageJson } from '../../sandboxes/vx-brush/package.json';
+export { default as packageJson } from '../../sandboxes/visx-brush/package.json';
 
 const tileStyles = { border: `1px solid ${accentColor}` };
 const detailsStyles = { color: background };

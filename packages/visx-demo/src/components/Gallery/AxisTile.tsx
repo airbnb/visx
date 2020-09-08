@@ -1,8 +1,8 @@
 import React from 'react';
-import Axis, { AxisProps, backgroundColor, labelColor } from '../../sandboxes/vx-axis/Example';
+import Axis, { AxisProps, backgroundColor, labelColor } from '../../sandboxes/visx-axis/Example';
 import GalleryTile from '../GalleryTile';
 
-export { default as packageJson } from '../../sandboxes/vx-axis/package.json';
+export { default as packageJson } from '../../sandboxes/visx-axis/package.json';
 
 const tileStyles = { backgroundColor };
 const detailsStyles = { color: labelColor };

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Group } from '@vx/group';
+import { Group } from '@visx/group';
 import {
   Treemap,
   hierarchy,
@@ -10,11 +10,11 @@ import {
   treemapResquarify,
   treemapSlice,
   treemapSliceDice,
-} from '@vx/hierarchy';
-import { TileMethod } from '@vx/hierarchy/lib/types';
-import shakespeare, { Shakespeare } from '@vx/mock-data/lib/mocks/shakespeare';
+} from '@visx/hierarchy';
+import { TileMethod } from '@visx/hierarchy/lib/types';
+import shakespeare, { Shakespeare } from '@visx/mock-data/lib/mocks/shakespeare';
 
-import { scaleLinear } from '@vx/scale';
+import { scaleLinear } from '@visx/scale';
 
 export const color1 = '#f3e9d2';
 const color2 = '#4281a4';

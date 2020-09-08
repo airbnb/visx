@@ -1,17 +1,17 @@
 {
-  "name": "@vx/demo-xychart",
-  "description": "Standalone vx xychart demo.",
+  "name": "@visx/demo-xychart",
+  "description": "Standalone visx xychart demo.",
   "main": "index.tsx",
   "private": true,
   "dependencies": {
     "@babel/runtime": "^7.8.4",
     "@types/react": "^16",
     "@types/react-dom": "^16",
-    "@vx/mock-data": "latest",
-    "@vx/pattern": "latest",
-    "@vx/react-spring": "latest",
-    "@vx/responsive": "latest",
-    "@vx/xychart": "latest",
+    "@visx/mock-data": "latest",
+    "@visx/pattern": "latest",
+    "@visx/react-spring": "latest",
+    "@visx/responsive": "latest",
+    "@visx/xychart": "latest",
     "react": "^16",
     "react-dom": "^16",
     "react-scripts-ts": "3.1.0",
@@ -21,6 +21,6 @@
     "visualization",
     "d3",
     "react",
-    "vx"
+    "visx"
   ]
 }

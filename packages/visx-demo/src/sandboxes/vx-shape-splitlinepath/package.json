@@ -1,17 +1,17 @@
 {
-  "name": "@vx/demo-shape-splitlinepath",
-  "description": "Standalone vx splitlinepath demo.",
+  "name": "@visx/demo-shape-splitlinepath",
+  "description": "Standalone visx splitlinepath demo.",
   "main": "index.tsx",
   "private": true,
   "dependencies": {
     "@babel/runtime": "^7.8.4",
     "@types/react": "^16",
     "@types/react-dom": "^16",
-    "@vx/curve": "latest",
-    "@vx/gradient": "latest",
-    "@vx/responsive": "latest",
-    "@vx/scale": "latest",
-    "@vx/shape": "latest",
+    "@visx/curve": "latest",
+    "@visx/gradient": "latest",
+    "@visx/responsive": "latest",
+    "@visx/scale": "latest",
+    "@visx/shape": "latest",
     "react": "^16",
     "react-dom": "^16",
     "react-scripts-ts": "3.1.0",
@@ -21,7 +21,7 @@
     "visualization",
     "d3",
     "react",
-    "vx",
+    "visx",
     "splitline"
   ]
 }

@@ -3,10 +3,10 @@ import Dendrogram, {
   DendrogramProps,
   background,
   green,
-} from '../../sandboxes/vx-dendrogram/Example';
+} from '../../sandboxes/visx-dendrogram/Example';
 import GalleryTile from '../GalleryTile';
 
-export { default as packageJson } from '../../sandboxes/vx-dendrogram/package.json';
+export { default as packageJson } from '../../sandboxes/visx-dendrogram/package.json';
 
 const tileStyles = { background };
 const detailsStyles = { color: green };

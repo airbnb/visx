@@ -1,11 +1,11 @@
 import { PackageJson } from '../../types';
 
-export default function extractVxDepsFromPackageJson(packageJson?: PackageJson) {
-  const vxDeps: string[] = [];
+export default function extractVisxDepsFromPackageJson(packageJson?: PackageJson) {
+  const visxDeps: string[] = [];
 
   Object.keys(packageJson?.dependencies ?? {}).forEach(dep => {
-    if (dep.startsWith('@vx/')) vxDeps.push(dep);
+    if (dep.startsWith('@visx/')) visxDeps.push(dep);
   });
 
-  return vxDeps;
+  return visxDeps;
 }

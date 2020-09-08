@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { extent, max } from 'd3-array';
-import * as allCurves from '@vx/curve';
-import { Group } from '@vx/group';
-import { LinePath } from '@vx/shape';
-import { scaleTime, scaleLinear } from '@vx/scale';
-import { MarkerArrow, MarkerCross, MarkerX, MarkerCircle, MarkerLine } from '@vx/marker';
-import generateDateValue, { DateValue } from '@vx/mock-data/lib/generators/genDateValue';
+import * as allCurves from '@visx/curve';
+import { Group } from '@visx/group';
+import { LinePath } from '@visx/shape';
+import { scaleTime, scaleLinear } from '@visx/scale';
+import { MarkerArrow, MarkerCross, MarkerX, MarkerCircle, MarkerLine } from '@visx/marker';
+import generateDateValue, { DateValue } from '@visx/mock-data/lib/generators/genDateValue';
 
 type CurveType = keyof typeof allCurves;
 
@@ -49,7 +49,7 @@ export default function Example({ width, height, showControls = true }: CurvePro
   yScale.range([lineHeight - 2, 0]);
 
   return (
-    <div className="vx-curves-demo">
+    <div className="visx-curves-demo">
       {showControls && (
         <>
           <label>
@@ -132,7 +132,7 @@ export default function Example({ width, height, showControls = true }: CurvePro
           })}
       </svg>
       <style jsx>{`
-        .vx-curves-demo label {
+        .visx-curves-demo label {
           font-size: 12px;
         }
       `}</style>

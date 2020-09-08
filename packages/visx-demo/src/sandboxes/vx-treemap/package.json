@@ -1,17 +1,17 @@
 {
-  "name": "@vx/demo-treemap",
-  "description": "Standalone vx treemap demo.",
+  "name": "@visx/demo-treemap",
+  "description": "Standalone visx treemap demo.",
   "main": "index.tsx",
   "private": true,
   "dependencies": {
     "@babel/runtime": "^7.8.4",
     "@types/react": "^16",
     "@types/react-dom": "^16",
-    "@vx/group": "latest",
-    "@vx/hierarchy": "latest",
-    "@vx/mock-data": "latest",
-    "@vx/responsive": "latest",
-    "@vx/scale": "latest",
+    "@visx/group": "latest",
+    "@visx/hierarchy": "latest",
+    "@visx/mock-data": "latest",
+    "@visx/responsive": "latest",
+    "@visx/scale": "latest",
     "react": "^16.8",
     "react-dom": "^16.8",
     "react-scripts-ts": "3.1.0",
@@ -21,7 +21,7 @@
     "visualization",
     "d3",
     "react",
-    "vx",
+    "visx",
     "treemap",
     "hierarchy"
   ]

@@ -1,14 +1,14 @@
 import React from 'react';
 import Show from '../components/Show';
-import Treemap from '../sandboxes/vx-treemap/Example';
-import TreemapSource from '!!raw-loader!../sandboxes/vx-treemap/Example';
-import packageJson from '../sandboxes/vx-treemap/package.json';
+import Treemap from '../sandboxes/visx-treemap/Example';
+import TreemapSource from '!!raw-loader!../sandboxes/visx-treemap/Example';
+import packageJson from '../sandboxes/visx-treemap/package.json';
 
 export default () => (
   <Show
     component={Treemap}
     title="Treemap"
-    codeSandboxDirectoryName="vx-treemap"
+    codeSandboxDirectoryName="visx-treemap"
     packageJson={packageJson}
   >
     {TreemapSource}

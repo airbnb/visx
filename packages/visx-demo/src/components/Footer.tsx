@@ -3,10 +3,10 @@ import React from 'react';
 export default () => (
   <div className="footer">
     <div>
-      <img src="/static/favicon.ico" alt="vx" />
+      <img src="/static/favicon.ico" alt="visx" />
     </div>
     <div>
-      made by <a href="https://twitter.com/hshoff">@hshoff</a>
+      made by <a href="https://github.com/airbnb">airbnb</a>
     </div>
     <style jsx>{`
       .footer {

@@ -31,7 +31,7 @@ const CodeSandboxLink = ({ branch = 'master', exampleDirectoryName }: Props) => 
     <>
       <a
         className="sandbox-link"
-        href={`https://codesandbox.io/s/github/hshoff/vx/tree/${branch}/packages/vx-demo/src/sandboxes/${exampleDirectoryName}`}
+        href={`https://codesandbox.io/s/github/airbnb/visx/tree/${branch}/packages/visx-demo/src/sandboxes/${exampleDirectoryName}`}
         rel="nofollow noopener noreferrer"
         target="_blank"
       >

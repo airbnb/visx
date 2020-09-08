@@ -1,7 +1,12 @@
 import React from 'react';
-import { Bar } from '@vx/shape';
-import { Group } from '@vx/group';
-import { Pattern as CustomPattern, PatternLines, PatternCircles, PatternWaves } from '@vx/pattern';
+import { Bar } from '@visx/shape';
+import { Group } from '@visx/group';
+import {
+  Pattern as CustomPattern,
+  PatternLines,
+  PatternCircles,
+  PatternWaves,
+} from '@visx/pattern';
 
 const defaultMargin = {
   top: 0,
@@ -122,7 +127,7 @@ export default function Example({ width, height, margin = defaultMargin }: Patte
         {Patterns.map((Pattern, index) => {
           const columnIndex = index % numColumns;
           const rowIndex = Math.floor(index / numColumns);
-          const id = `vx-pattern-demo-${index}-${rowIndex}-${columnIndex}`;
+          const id = `visx-pattern-demo-${index}-${rowIndex}-${columnIndex}`;
 
           return (
             <React.Fragment key={id}>

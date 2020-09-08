@@ -1,8 +1,8 @@
 import React from 'react';
 import Show from '../components/Show';
-import Brush from '../sandboxes/vx-brush/Example';
-import BrushSource from '!!raw-loader!../sandboxes/vx-brush/Example';
-import packageJson from '../sandboxes/vx-brush/package.json';
+import Brush from '../sandboxes/visx-brush/Example';
+import BrushSource from '!!raw-loader!../sandboxes/visx-brush/Example';
+import packageJson from '../sandboxes/visx-brush/package.json';
 
 export default () => (
   <Show
@@ -14,7 +14,7 @@ export default () => (
       right: 20,
       bottom: 10,
     }}
-    codeSandboxDirectoryName="vx-brush"
+    codeSandboxDirectoryName="visx-brush"
     packageJson={packageJson}
   >
     {BrushSource}

@@ -1,8 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
 
-function getDocUrlFromVXPackageName(vxPackage: string) {
-  const packageName = vxPackage.split('@vx/')[1]; // e.g., @vx/shape
+function getDocUrlFromVXPackageName(visxPackage: string) {
+  const packageName = visxPackage.split('@visx/')[1]; // e.g., @visx/shape
   return packageName ? `docs/${packageName}` : null;
 }
 
@@ -10,7 +10,7 @@ type Props = {
   packageName: string;
 };
 
-const VxDocLink = ({ packageName }: Props) => {
+const VisxDocLink = ({ packageName }: Props) => {
   const url = getDocUrlFromVXPackageName(packageName);
   return url ? (
     <Link href={url}>
@@ -19,4 +19,4 @@ const VxDocLink = ({ packageName }: Props) => {
   ) : null;
 };
 
-export default VxDocLink;
+export default VisxDocLink;

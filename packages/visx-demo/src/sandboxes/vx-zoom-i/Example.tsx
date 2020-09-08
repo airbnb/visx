@@ -1,14 +1,14 @@
 /* eslint react/jsx-handler-names: "off" */
 import React, { useState } from 'react';
 import { interpolateRainbow } from 'd3-scale-chromatic';
-import { Zoom } from '@vx/zoom';
-import { localPoint } from '@vx/event';
-import { RectClipPath } from '@vx/clip-path';
+import { Zoom } from '@visx/zoom';
+import { localPoint } from '@visx/event';
+import { RectClipPath } from '@visx/clip-path';
 import genPhyllotaxis, {
   GenPhyllotaxisFunction,
   PhyllotaxisPoint,
-} from '@vx/mock-data/lib/generators/genPhyllotaxis';
-import { scaleLinear } from '@vx/scale';
+} from '@visx/mock-data/lib/generators/genPhyllotaxis';
+import { scaleLinear } from '@visx/scale';
 
 const bg = '#0a0a0a';
 const points = [...new Array(1000)];

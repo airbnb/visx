@@ -1,15 +1,15 @@
 import React from 'react';
 import Show from '../components/Show';
-import Dendrograms from '../sandboxes/vx-dendrogram/Example';
-import DendrogramsSource from '!!raw-loader!../sandboxes/vx-dendrogram/Example';
-import packageJson from '../sandboxes/vx-dendrogram/package.json';
+import Dendrograms from '../sandboxes/visx-dendrogram/Example';
+import DendrogramsSource from '!!raw-loader!../sandboxes/visx-dendrogram/Example';
+import packageJson from '../sandboxes/visx-dendrogram/package.json';
 
 export default () => {
   return (
     <Show
       events
       title="Dendrograms"
-      codeSandboxDirectoryName="vx-dendrogram"
+      codeSandboxDirectoryName="visx-dendrogram"
       component={Dendrograms}
       margin={{
         top: 80,

@@ -6,21 +6,21 @@ import ApiTable from './ApiTable';
 import Footer from './Footer';
 import PackageList from './PackageList';
 import Page from './Page';
-import { DocGenInfo, VxPackage } from '../types';
+import { DocGenInfo, VisxPackage } from '../types';
 
 type Props = {
   components?: unknown[];
   examples?: (React.ComponentClass | React.FC)[];
-  vxPackage: VxPackage;
+  visxPackage: VisxPackage;
   readme: string;
 };
 
-export default function DocPage({ components, examples, vxPackage, readme }: Props) {
+export default function DocPage({ components, examples, visxPackage, readme }: Props) {
   return (
-    <Page title={`@vx/${vxPackage} documentation`}>
+    <Page title={`@visx/${visxPackage} documentation`}>
       <div className="doc-container">
         <div className="doc-nav">
-          <PackageList compact grid={false} emphasizePackage={vxPackage} />
+          <PackageList compact grid={false} emphasizePackage={visxPackage} />
         </div>
         <div className="doc-content">
           <div className="doc-readme">

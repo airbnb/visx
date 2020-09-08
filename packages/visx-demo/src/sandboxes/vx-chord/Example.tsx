@@ -1,9 +1,9 @@
 import React from 'react';
-import { Arc } from '@vx/shape';
-import { Group } from '@vx/group';
-import { Chord, Ribbon } from '@vx/chord';
-import { scaleOrdinal } from '@vx/scale';
-import { LinearGradient } from '@vx/gradient';
+import { Arc } from '@visx/shape';
+import { Group } from '@visx/group';
+import { Chord, Ribbon } from '@visx/chord';
+import { scaleOrdinal } from '@visx/scale';
+import { LinearGradient } from '@visx/gradient';
 
 const pink = '#ff2fab';
 const orange = '#ffc62e';

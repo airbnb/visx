@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import ParentSize from '@vx/responsive/lib/components/ParentSize';
+import ParentSize from '@visx/responsive/lib/components/ParentSize';
 
 import Example from './Example';
 import './sandbox-styles.css';

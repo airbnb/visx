@@ -1,6 +1,6 @@
 {
-  "name": "@vx/demo-example",
-  "description": "Standalone vx streamgraph demo.",
+  "name": "@visx/demo-example",
+  "description": "Standalone visx streamgraph demo.",
   "main": "index.tsx",
   "private": true,
   "dependencies": {
@@ -8,10 +8,10 @@
     "@types/d3-array": "^2.0.0",
     "@types/react": "^16",
     "@types/react-dom": "^16",
-    "@vx/responsive": "latest",
-    "@vx/pattern": "latest",
-    "@vx/scale": "latest",
-    "@vx/shape": "latest",
+    "@visx/responsive": "latest",
+    "@visx/pattern": "latest",
+    "@visx/scale": "latest",
+    "@visx/shape": "latest",
     "d3-array": "^2.4.0",
     "react": "^16.8",
     "react-dom": "^16.8",
@@ -23,7 +23,7 @@
     "visualization",
     "d3",
     "react",
-    "vx",
+    "visx",
     "streamgraph",
     "react-spring"
   ]

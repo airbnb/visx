@@ -1,8 +1,8 @@
 import React from 'react';
 import Show from '../components/Show';
-import VoronoiChart from '../sandboxes/vx-voronoi/Example';
-import VoronoiChartSource from '!!raw-loader!../sandboxes/vx-voronoi/Example';
-import packageJson from '../sandboxes/vx-voronoi/package.json';
+import VoronoiChart from '../sandboxes/visx-voronoi/Example';
+import VoronoiChartSource from '!!raw-loader!../sandboxes/visx-voronoi/Example';
+import packageJson from '../sandboxes/visx-voronoi/package.json';
 
 export default () => (
   <Show
@@ -15,7 +15,7 @@ export default () => (
     }}
     component={VoronoiChart}
     title="Voronoi"
-    codeSandboxDirectoryName="vx-voronoi"
+    codeSandboxDirectoryName="visx-voronoi"
     packageJson={packageJson}
   >
     {VoronoiChartSource}

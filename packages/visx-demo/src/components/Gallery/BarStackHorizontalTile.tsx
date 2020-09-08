@@ -3,10 +3,10 @@ import BarStackHorizontal, {
   BarStackHorizontalProps,
   background,
   purple3,
-} from '../../sandboxes/vx-barstack-horizontal/Example';
+} from '../../sandboxes/visx-barstack-horizontal/Example';
 import GalleryTile from '../GalleryTile';
 
-export { default as packageJson } from '../../sandboxes/vx-barstack-horizontal/package.json';
+export { default as packageJson } from '../../sandboxes/visx-barstack-horizontal/package.json';
 
 const tileStyles = { background };
 const detailsStyles = { color: purple3, zIndex: 1 };

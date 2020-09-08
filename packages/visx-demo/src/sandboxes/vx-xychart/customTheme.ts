@@ -1,4 +1,4 @@
-import { buildChartTheme } from '@vx/xychart';
+import { buildChartTheme } from '@visx/xychart';
 
 export default buildChartTheme({
   backgroundColor: '#f09ae9',

@@ -27,14 +27,17 @@ export default ({ title = 'visualization components' }) => (
       <meta charSet="utf-8" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:site" content="@hshoff" />
-      <meta name="twitter:title" content="vx | visualization components" />
-      <meta name="twitter:description" content="react + d3 = vx" />
+      <meta name="twitter:title" content="visx | visualization components" />
+      <meta name="twitter:description" content="react + d3 = visx" />
       <meta
         name="twitter:image"
-        content="https://raw.githubusercontent.com/hshoff/vx/master/packages/vx-demo/static/tiger-twitter-card.jpg"
+        content="https://raw.githubusercontent.com/airbnb/visx/master/packages/visx-demo/static/tiger-twitter-card.jpg"
       />
-      <meta name="twitter:image:alt" content="vx logo is a tiger leaper over the letters v and x" />
-      <title>{`vx | ${title}`}</title>
+      <meta
+        name="twitter:image:alt"
+        content="visx logo is a tiger leaper over the letters v and x"
+      />
+      <title>{`visx | ${title}`}</title>
       <link rel="shortcut icon" type="image/png" href="/static/favicon.ico" />
       <link rel="stylesheet" href="/static/prism/prism-funky.css" />
       <link rel="stylesheet" href="/static/prism/prism-line-numbers.css" />
@@ -153,7 +156,7 @@ export default ({ title = 'visualization components' }) => (
         margin: 1em 0px 0;
       }
 
-      .vx-brush:hover {
+      .visx-brush:hover {
         cursor: move;
       }
 
@@ -188,8 +191,8 @@ export default ({ title = 'visualization components' }) => (
         cursor: pointer;
       }
 
-      .vx-heatmap-circle:hover,
-      .vx-heatmap-rect:hover {
+      .visx-heatmap-circle:hover,
+      .visx-heatmap-rect:hover {
         stroke: white;
         stroke-width: 1;
       }

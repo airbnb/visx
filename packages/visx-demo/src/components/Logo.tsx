@@ -2,7 +2,7 @@ import React from 'react';
 
 export default () => (
   <span>
-    vx
+    visx
     <style jsx>{`
       span {
         border: 1px solid #fff;

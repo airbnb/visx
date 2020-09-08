@@ -1,9 +1,9 @@
 import React from 'react';
-import { Group } from '@vx/group';
-import letterFrequency, { LetterFrequency } from '@vx/mock-data/lib/mocks/letterFrequency';
-import { scaleLinear } from '@vx/scale';
-import { Point } from '@vx/point';
-import { Line, LineRadial } from '@vx/shape';
+import { Group } from '@visx/group';
+import letterFrequency, { LetterFrequency } from '@visx/mock-data/lib/mocks/letterFrequency';
+import { scaleLinear } from '@visx/scale';
+import { Point } from '@visx/point';
+import { Line, LineRadial } from '@visx/shape';
 
 const orange = '#ff9933';
 export const pumpkin = '#f5810c';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bar } from '@vx/shape';
+import { Bar } from '@visx/shape';
 import {
   GradientDarkgreenGreen,
   GradientLightgreenGreen,
@@ -11,7 +11,7 @@ import {
   GradientTealBlue,
   RadialGradient,
   LinearGradient,
-} from '@vx/gradient';
+} from '@visx/gradient';
 
 const defaultMargin = {
   top: 0,
@@ -50,7 +50,7 @@ export default function Example({ width, height, margin = defaultMargin }: Gradi
       {Gradients.map((Gradient, index) => {
         const columnIndex = index % numColumns;
         const rowIndex = Math.floor(index / numColumns);
-        const id = `vx-gradient-demo-${index}-${rowIndex}${columnIndex}`;
+        const id = `visx-gradient-demo-${index}-${rowIndex}${columnIndex}`;
 
         return (
           <React.Fragment key={id}>

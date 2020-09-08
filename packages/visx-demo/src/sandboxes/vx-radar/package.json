@@ -1,18 +1,18 @@
 {
-  "name": "@vx/demo-radar",
-  "description": "Standalone vx radar chart demo.",
+  "name": "@visx/demo-radar",
+  "description": "Standalone visx radar chart demo.",
   "main": "index.tsx",
   "private": true,
   "dependencies": {
     "@babel/runtime": "^7.8.4",
     "@types/react": "^16",
     "@types/react-dom": "^16",
-    "@vx/group": "latest",
-    "@vx/mock-data": "latest",
-    "@vx/responsive": "latest",
-    "@vx/point": "latest",
-    "@vx/scale": "latest",
-    "@vx/shape": "latest",
+    "@visx/group": "latest",
+    "@visx/mock-data": "latest",
+    "@visx/responsive": "latest",
+    "@visx/point": "latest",
+    "@visx/scale": "latest",
+    "@visx/shape": "latest",
     "react": "^16",
     "react-dom": "^16",
     "react-scripts-ts": "3.1.0",
@@ -22,7 +22,7 @@
     "visualization",
     "d3",
     "react",
-    "vx",
+    "visx",
     "radar"
   ]
 }

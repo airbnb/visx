@@ -1,13 +1,13 @@
 import React, { useMemo, useCallback } from 'react';
-import { AreaClosed, Line, Bar } from '@vx/shape';
-import appleStock, { AppleStock } from '@vx/mock-data/lib/mocks/appleStock';
-import { curveMonotoneX } from '@vx/curve';
-import { GridRows, GridColumns } from '@vx/grid';
-import { scaleTime, scaleLinear } from '@vx/scale';
-import { withTooltip, Tooltip, defaultStyles } from '@vx/tooltip';
-import { WithTooltipProvidedProps } from '@vx/tooltip/lib/enhancers/withTooltip';
-import { localPoint } from '@vx/event';
-import { LinearGradient } from '@vx/gradient';
+import { AreaClosed, Line, Bar } from '@visx/shape';
+import appleStock, { AppleStock } from '@visx/mock-data/lib/mocks/appleStock';
+import { curveMonotoneX } from '@visx/curve';
+import { GridRows, GridColumns } from '@visx/grid';
+import { scaleTime, scaleLinear } from '@visx/scale';
+import { withTooltip, Tooltip, defaultStyles } from '@visx/tooltip';
+import { WithTooltipProvidedProps } from '@visx/tooltip/lib/enhancers/withTooltip';
+import { localPoint } from '@visx/event';
+import { LinearGradient } from '@visx/gradient';
 import { max, extent, bisector } from 'd3-array';
 import { timeFormat } from 'd3-time-format';
 

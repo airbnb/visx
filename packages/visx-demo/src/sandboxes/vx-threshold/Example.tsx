@@ -1,12 +1,12 @@
 import React from 'react';
-import { Group } from '@vx/group';
-import { curveBasis } from '@vx/curve';
-import { LinePath } from '@vx/shape';
-import { Threshold } from '@vx/threshold';
-import { scaleTime, scaleLinear } from '@vx/scale';
-import { AxisLeft, AxisBottom } from '@vx/axis';
-import { GridRows, GridColumns } from '@vx/grid';
-import cityTemperature, { CityTemperature } from '@vx/mock-data/lib/mocks/cityTemperature';
+import { Group } from '@visx/group';
+import { curveBasis } from '@visx/curve';
+import { LinePath } from '@visx/shape';
+import { Threshold } from '@visx/threshold';
+import { scaleTime, scaleLinear } from '@visx/scale';
+import { AxisLeft, AxisBottom } from '@visx/axis';
+import { GridRows, GridColumns } from '@visx/grid';
+import cityTemperature, { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
 
 export const background = '#f3f3f3';
 

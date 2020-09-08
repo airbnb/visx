@@ -2,13 +2,13 @@ import React, { useMemo } from 'react';
 import cx from 'classnames';
 import withScreenSize, {
   WithScreenSizeProvidedProps,
-} from '@vx/responsive/lib/enhancers/withScreenSize';
+} from '@visx/responsive/lib/enhancers/withScreenSize';
 import CodeSandboxLink from './CodeSandboxLink';
 import Page from './Page';
 import Codeblock from './Codeblock';
 import { MarginShape, ShowProvidedProps, PackageJson } from '../types';
-import VxDocLink from './VxDocLink';
-import extractVxDepsFromPackageJson from './util/extractVxDepsFromPackageJson';
+import VisxDocLink from './VisxDocLink';
+import extractVisxDepsFromPackageJson from './util/extractVisxDepsFromPackageJson';
 
 type Component<P = {}> = React.FC<P> | React.ComponentClass<P>;
 
@@ -42,7 +42,7 @@ export default withScreenSize<ShowProps & WithScreenSizeProvidedProps>(
   }: ShowProps & WithScreenSizeProvidedProps) => {
     const width = Math.min(800, (screenWidth || 0) - padding);
     const height = width * 0.6;
-    const vxDeps = useMemo(() => extractVxDepsFromPackageJson(packageJson), [packageJson]);
+    const visxDeps = useMemo(() => extractVisxDepsFromPackageJson(packageJson), [packageJson]);
 
     return (
       <Page title={title}>
@@ -63,12 +63,12 @@ export default withScreenSize<ShowProps & WithScreenSizeProvidedProps>(
                 <CodeSandboxLink exampleDirectoryName={codeSandboxDirectoryName} />
               </div>
             )}
-            {vxDeps.length > 0 && (
+            {visxDeps.length > 0 && (
               <>
                 <h2>Documentation</h2>
                 <div className="doc-links">
-                  {vxDeps.map(packageName => (
-                    <VxDocLink key={packageName} packageName={packageName} />
+                  {visxDeps.map(packageName => (
+                    <VisxDocLink key={packageName} packageName={packageName} />
                   ))}
                 </div>
               </>

@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react';
-import { scaleLinear } from '@vx/scale';
-import { curveCardinal } from '@vx/curve';
-import { LinePath, SplitLinePath } from '@vx/shape';
-import { LinearGradient } from '@vx/gradient';
+import { scaleLinear } from '@visx/scale';
+import { curveCardinal } from '@visx/curve';
+import { LinePath, SplitLinePath } from '@visx/shape';
+import { LinearGradient } from '@visx/gradient';
 
 import generateSinPoints from './generateSinPoints';
 
@@ -57,7 +57,7 @@ export default function SplitPath({
     <div>
       <svg width={width} height={height}>
         <LinearGradient
-          id="vx-shape-splitlinepath-gradient"
+          id="visx-shape-splitlinepath-gradient"
           from={background}
           to={backgroundLight}
           fromOpacity={0.8}
@@ -68,7 +68,7 @@ export default function SplitPath({
           y={0}
           width={width}
           height={height}
-          fill="url(#vx-shape-splitlinepath-gradient)"
+          fill="url(#visx-shape-splitlinepath-gradient)"
           rx={14}
         />
 

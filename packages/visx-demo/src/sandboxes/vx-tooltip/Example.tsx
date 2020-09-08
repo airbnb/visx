@@ -5,7 +5,7 @@ import {
   useTooltip,
   useTooltipInPortal,
   defaultStyles,
-} from '@vx/tooltip';
+} from '@visx/tooltip';
 
 export type TooltipProps = {
   width: number;
@@ -162,7 +162,7 @@ export default function Example({ width, height, showControls = true }: TooltipP
           width: 100%;
           height: 100%;
         }
-        .vx-tooltip {
+        .visx-tooltip {
           background-color: #f67280;
           display: flex;
           flex-direction: column;

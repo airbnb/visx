@@ -2,10 +2,10 @@ import React from 'react';
 import SplitLinePath, {
   SplitLinePathProps,
   backgroundLight,
-} from '../../sandboxes/vx-shape-splitlinepath/Example';
+} from '../../sandboxes/visx-shape-splitlinepath/Example';
 import GalleryTile from '../GalleryTile';
 
-export { default as packageJson } from '../../sandboxes/vx-area/package.json';
+export { default as packageJson } from '../../sandboxes/visx-area/package.json';
 
 const tileStyles = { background: backgroundLight };
 const detailsStyles = { color: 'white' };

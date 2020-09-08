@@ -1,6 +1,6 @@
 import React from 'react';
-import GradientReadme from '!!raw-loader!../../../../vx-gradient/Readme.md';
-import * as Gradients from '../../../../vx-gradient/src';
+import GradientReadme from '!!raw-loader!../../../../visx-gradient/Readme.md';
+import * as Gradients from '../../../../visx-gradient/src';
 import DocPage from '../../components/DocPage';
 import GradientsTile from '../../components/Gallery/GradientsTile';
 import AreaTile from '../../components/Gallery/AreaTile';
@@ -30,6 +30,6 @@ export default () => (
     components={components}
     examples={examples}
     readme={GradientReadme}
-    vxPackage="gradient"
+    visxPackage="gradient"
   />
 );

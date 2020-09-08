@@ -1,14 +1,14 @@
 import React from 'react';
 import Show from '../components/Show';
-import Streamgraph from '../sandboxes/vx-streamgraph/Example';
-import StreamgraphSource from '!!raw-loader!../sandboxes/vx-streamgraph/Example';
-import packageJson from '../sandboxes/vx-streamgraph/package.json';
+import Streamgraph from '../sandboxes/visx-streamgraph/Example';
+import StreamgraphSource from '!!raw-loader!../sandboxes/visx-streamgraph/Example';
+import packageJson from '../sandboxes/visx-streamgraph/package.json';
 
 export default () => (
   <Show
     component={Streamgraph}
     title="Streamgraph"
-    codeSandboxDirectoryName="vx-streamgraph"
+    codeSandboxDirectoryName="visx-streamgraph"
     packageJson={packageJson}
   >
     {StreamgraphSource}

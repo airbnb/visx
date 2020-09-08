@@ -1,8 +1,8 @@
 import React from 'react';
-import GeoCustom, { GeoCustomProps, background } from '../../sandboxes/vx-geo-custom/Example';
+import GeoCustom, { GeoCustomProps, background } from '../../sandboxes/visx-geo-custom/Example';
 import GalleryTile from '../GalleryTile';
 
-export { default as packageJson } from '../../sandboxes/vx-geo-custom/package.json';
+export { default as packageJson } from '../../sandboxes/visx-geo-custom/package.json';
 
 const tileStyles = { background };
 const detailsStyles = { color: '#019ece' };

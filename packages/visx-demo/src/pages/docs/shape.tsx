@@ -1,6 +1,6 @@
 import React from 'react';
-import ShapeReadme from '!!raw-loader!../../../../vx-shape/Readme.md';
-import * as Shapes from '../../../../vx-shape/src';
+import ShapeReadme from '!!raw-loader!../../../../visx-shape/Readme.md';
+import * as Shapes from '../../../../visx-shape/src';
 import DocPage from '../../components/DocPage';
 import LineRadialTile from '../../components/Gallery/LineRadialTile';
 import PiesTile from '../../components/Gallery/PiesTile';
@@ -33,5 +33,5 @@ const examples = [
 ];
 
 export default () => (
-  <DocPage components={components} examples={examples} readme={ShapeReadme} vxPackage="shape" />
+  <DocPage components={components} examples={examples} readme={ShapeReadme} visxPackage="shape" />
 );

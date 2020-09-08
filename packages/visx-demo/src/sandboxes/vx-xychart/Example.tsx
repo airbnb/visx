@@ -1,6 +1,6 @@
 import React from 'react';
-import cityTemperature, { CityTemperature } from '@vx/mock-data/lib/mocks/cityTemperature';
-import { AnimatedAxis, AnimatedGrid, DataProvider, LineSeries, XYChart } from '@vx/xychart';
+import cityTemperature, { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
+import { AnimatedAxis, AnimatedGrid, DataProvider, LineSeries, XYChart } from '@visx/xychart';
 import ExampleControls from './ExampleControls';
 import CustomChartBackground from './CustomChartBackground';
 

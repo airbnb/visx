@@ -1,8 +1,8 @@
 import React from 'react';
-import Area, { AreaProps, accentColor, background } from '../../sandboxes/vx-area/Example';
+import Area, { AreaProps, accentColor, background } from '../../sandboxes/visx-area/Example';
 import GalleryTile from '../GalleryTile';
 
-export { default as packageJson } from '../../sandboxes/vx-area/package.json';
+export { default as packageJson } from '../../sandboxes/visx-area/package.json';
 
 const tileStyles = { background };
 const detailsStyles = { color: accentColor };

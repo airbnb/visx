@@ -1,10 +1,10 @@
 import React from 'react';
-import HierarchyReadme from '!!raw-loader!../../../../vx-hierarchy/Readme.md';
-import Cluster from '../../../../vx-hierarchy/src/hierarchies/Cluster';
-import Pack from '../../../../vx-hierarchy/src/hierarchies/Pack';
-import Partition from '../../../../vx-hierarchy/src/hierarchies/Partition';
-import Tree from '../../../../vx-hierarchy/src/hierarchies/Tree';
-import Treemap from '../../../../vx-hierarchy/src/hierarchies/Treemap';
+import HierarchyReadme from '!!raw-loader!../../../../visx-hierarchy/Readme.md';
+import Cluster from '../../../../visx-hierarchy/src/hierarchies/Cluster';
+import Pack from '../../../../visx-hierarchy/src/hierarchies/Pack';
+import Partition from '../../../../visx-hierarchy/src/hierarchies/Partition';
+import Tree from '../../../../visx-hierarchy/src/hierarchies/Tree';
+import Treemap from '../../../../visx-hierarchy/src/hierarchies/Treemap';
 import DocPage from '../../components/DocPage';
 import PackTile from '../../components/Gallery/PackTile';
 import TreemapTile from '../../components/Gallery/TreemapTile';
@@ -21,6 +21,6 @@ export default () => (
     components={components}
     examples={examples}
     readme={HierarchyReadme}
-    vxPackage="hierarchy"
+    visxPackage="hierarchy"
   />
 );

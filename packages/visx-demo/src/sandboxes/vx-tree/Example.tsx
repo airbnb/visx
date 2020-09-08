@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react';
-import { Group } from '@vx/group';
-import { Tree, hierarchy } from '@vx/hierarchy';
-import { HierarchyPointNode } from '@vx/hierarchy/lib/types';
-import { LinkHorizontal } from '@vx/shape';
-import { LinearGradient } from '@vx/gradient';
+import { Group } from '@visx/group';
+import { Tree, hierarchy } from '@visx/hierarchy';
+import { HierarchyPointNode } from '@visx/hierarchy/lib/types';
+import { LinkHorizontal } from '@visx/shape';
+import { LinearGradient } from '@visx/gradient';
 
 const peach = '#fd9b93';
 const pink = '#fe6e9e';

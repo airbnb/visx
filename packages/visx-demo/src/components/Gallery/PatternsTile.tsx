@@ -1,8 +1,8 @@
 import React from 'react';
-import Patterns, { PatternProps } from '../../sandboxes/vx-pattern/Example';
+import Patterns, { PatternProps } from '../../sandboxes/visx-pattern/Example';
 import GalleryTile from '../GalleryTile';
 
-export { default as packageJson } from '../../sandboxes/vx-pattern/package.json';
+export { default as packageJson } from '../../sandboxes/visx-pattern/package.json';
 
 const tileStyles = { background: '#f5f2e3' };
 const detailsStyles = { color: '#333' };

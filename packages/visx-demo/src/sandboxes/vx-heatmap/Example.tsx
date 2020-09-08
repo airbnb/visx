@@ -1,8 +1,8 @@
 import React from 'react';
-import { Group } from '@vx/group';
-import genBins, { Bin, Bins } from '@vx/mock-data/lib/generators/genBins';
-import { scaleLinear } from '@vx/scale';
-import { HeatmapCircle, HeatmapRect } from '@vx/heatmap';
+import { Group } from '@visx/group';
+import genBins, { Bin, Bins } from '@visx/mock-data/lib/generators/genBins';
+import { scaleLinear } from '@visx/scale';
+import { HeatmapCircle, HeatmapRect } from '@visx/heatmap';
 
 const hot1 = '#77312f';
 const hot2 = '#f33d15';
@@ -95,7 +95,7 @@ export default ({
               heatmapBins.map(bin => (
                 <circle
                   key={`heatmap-circle-${bin.row}-${bin.column}`}
-                  className="vx-heatmap-circle"
+                  className="visx-heatmap-circle"
                   cx={bin.cx}
                   cy={bin.cy}
                   r={bin.r}
@@ -128,7 +128,7 @@ export default ({
               heatmapBins.map(bin => (
                 <rect
                   key={`heatmap-rect-${bin.row}-${bin.column}`}
-                  className="vx-heatmap-rect"
+                  className="visx-heatmap-rect"
                   width={bin.width}
                   height={bin.height}
                   x={bin.x}

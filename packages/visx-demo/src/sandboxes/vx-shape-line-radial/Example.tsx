@@ -3,12 +3,12 @@
  * https://www.visualcinnamon.com/2016/01/animating-dashed-line-d3.html
  */
 import React, { useRef, useState, useEffect } from 'react';
-import { Group } from '@vx/group';
-import { LineRadial } from '@vx/shape';
-import { scaleTime, scaleLog } from '@vx/scale';
-import { curveBasisOpen } from '@vx/curve';
-import appleStock, { AppleStock } from '@vx/mock-data/lib/mocks/appleStock';
-import { LinearGradient } from '@vx/gradient';
+import { Group } from '@visx/group';
+import { LineRadial } from '@visx/shape';
+import { scaleTime, scaleLog } from '@visx/scale';
+import { curveBasisOpen } from '@visx/curve';
+import appleStock, { AppleStock } from '@visx/mock-data/lib/mocks/appleStock';
+import { LinearGradient } from '@visx/gradient';
 import { animated, useSpring } from 'react-spring';
 
 const green = '#e5fd3d';

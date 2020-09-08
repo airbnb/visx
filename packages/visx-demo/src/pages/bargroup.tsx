@@ -1,8 +1,8 @@
 import React from 'react';
 import Show from '../components/Show';
-import BarGroup from '../sandboxes/vx-bargroup/Example';
-import BarGroupSource from '!!raw-loader!../sandboxes/vx-bargroup/Example';
-import packageJson from '../sandboxes/vx-bargroup/package.json';
+import BarGroup from '../sandboxes/visx-bargroup/Example';
+import BarGroupSource from '!!raw-loader!../sandboxes/visx-bargroup/Example';
+import packageJson from '../sandboxes/visx-bargroup/package.json';
 
 export default () => (
   <Show
@@ -10,7 +10,7 @@ export default () => (
     margin={{ top: 80, right: 0, bottom: 80, left: 0 }}
     component={BarGroup}
     title="Bar Group"
-    codeSandboxDirectoryName="vx-bargroup"
+    codeSandboxDirectoryName="visx-bargroup"
     packageJson={packageJson}
   >
     {BarGroupSource}

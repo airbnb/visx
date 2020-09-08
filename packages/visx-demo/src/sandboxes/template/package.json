@@ -1,13 +1,13 @@
 {
-  "name": "@vx/demo-example",
-  "description": "Standalone vx demo.",
+  "name": "@visx/demo-example",
+  "description": "Standalone visx demo.",
   "main": "index.tsx",
   "private": true,
   "dependencies": {
     "@babel/runtime": "^7.8.4",
     "@types/react": "^16",
     "@types/react-dom": "^16",
-    "@vx/responsive": "latest",
+    "@visx/responsive": "latest",
     "react": "^16",
     "react-dom": "^16",
     "react-scripts-ts": "3.1.0",
@@ -17,6 +17,6 @@
     "visualization",
     "d3",
     "react",
-    "vx"
+    "visx"
   ]
 }

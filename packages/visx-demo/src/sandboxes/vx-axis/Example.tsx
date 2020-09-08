@@ -1,10 +1,10 @@
 import React, { useState, useMemo } from 'react';
-import AreaClosed from '@vx/shape/lib/shapes/AreaClosed';
-import { curveMonotoneX } from '@vx/curve';
-import { scaleUtc, scaleLinear, scaleLog, scaleBand, ScaleInput, coerceNumber } from '@vx/scale';
-import { Orientation, SharedAxisProps, AxisScale } from '@vx/axis';
-import { AnimatedAxis, AnimatedGridRows, AnimatedGridColumns } from '@vx/react-spring';
-import { LinearGradient } from '@vx/gradient';
+import AreaClosed from '@visx/shape/lib/shapes/AreaClosed';
+import { curveMonotoneX } from '@visx/curve';
+import { scaleUtc, scaleLinear, scaleLog, scaleBand, ScaleInput, coerceNumber } from '@visx/scale';
+import { Orientation, SharedAxisProps, AxisScale } from '@visx/axis';
+import { AnimatedAxis, AnimatedGridRows, AnimatedGridColumns } from '@visx/react-spring';
+import { LinearGradient } from '@visx/gradient';
 import { timeFormat } from 'd3-time-format';
 
 export const backgroundColor = '#da7cff';
@@ -126,7 +126,7 @@ export default function Example({
     <>
       <svg width={outerWidth} height={outerHeight}>
         <LinearGradient
-          id="vx-axis-gradient"
+          id="visx-axis-gradient"
           from={backgroundColor}
           to={backgroundColor}
           toOpacity={0.5}
@@ -136,7 +136,7 @@ export default function Example({
           y={0}
           width={outerWidth}
           height={outerHeight}
-          fill={'url(#vx-axis-gradient)'}
+          fill={'url(#visx-axis-gradient)'}
           rx={14}
         />
         <g transform={`translate(${margin.left},${margin.top})`}>

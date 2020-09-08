@@ -1,10 +1,10 @@
 /* eslint-disable react/jsx-handler-names */
 import React, { useState } from 'react';
 import * as topojson from 'topojson-client';
-import { scaleQuantize } from '@vx/scale';
-import { CustomProjection, Graticule } from '@vx/geo';
-import { Projection } from '@vx/geo/lib/types';
-import { Zoom } from '@vx/zoom';
+import { scaleQuantize } from '@visx/scale';
+import { CustomProjection, Graticule } from '@visx/geo';
+import { Projection } from '@visx/geo/lib/types';
+import { Zoom } from '@visx/zoom';
 import {
   geoConicConformal,
   geoTransverseMercator,

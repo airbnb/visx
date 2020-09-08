@@ -1,14 +1,14 @@
 import React from 'react';
-import { BarStack } from '@vx/shape';
-import { SeriesPoint } from '@vx/shape/lib/types';
-import { Group } from '@vx/group';
-import { Grid } from '@vx/grid';
-import { AxisBottom } from '@vx/axis';
-import cityTemperature, { CityTemperature } from '@vx/mock-data/lib/mocks/cityTemperature';
-import { scaleBand, scaleLinear, scaleOrdinal } from '@vx/scale';
+import { BarStack } from '@visx/shape';
+import { SeriesPoint } from '@visx/shape/lib/types';
+import { Group } from '@visx/group';
+import { Grid } from '@visx/grid';
+import { AxisBottom } from '@visx/axis';
+import cityTemperature, { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
+import { scaleBand, scaleLinear, scaleOrdinal } from '@visx/scale';
 import { timeParse, timeFormat } from 'd3-time-format';
-import { useTooltip, useTooltipInPortal, defaultStyles } from '@vx/tooltip';
-import { LegendOrdinal } from '@vx/legend';
+import { useTooltip, useTooltipInPortal, defaultStyles } from '@visx/tooltip';
+import { LegendOrdinal } from '@visx/legend';
 
 type CityName = 'New York' | 'San Francisco' | 'Austin';
 

@@ -1,9 +1,9 @@
 import React, { useState, useMemo, useRef } from 'react';
-import { Group } from '@vx/group';
-import { GradientOrangeRed, GradientPinkRed } from '@vx/gradient';
-import { RectClipPath } from '@vx/clip-path';
-import { voronoi, VoronoiPolygon } from '@vx/voronoi';
-import { localPoint } from '@vx/event';
+import { Group } from '@visx/group';
+import { GradientOrangeRed, GradientPinkRed } from '@visx/gradient';
+import { RectClipPath } from '@visx/clip-path';
+import { voronoi, VoronoiPolygon } from '@visx/voronoi';
+import { localPoint } from '@visx/event';
 
 type Datum = {
   x: number;

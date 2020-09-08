@@ -11,7 +11,7 @@ import {
   LinkHorizontalLine,
   LinkVerticalLine,
   LinkRadialLine,
-} from '@vx/shape';
+} from '@visx/shape';
 
 export default function getLinkComponent({
   layout,

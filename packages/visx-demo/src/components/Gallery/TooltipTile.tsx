@@ -1,8 +1,8 @@
 import React from 'react';
-import Tooltip, { TooltipProps } from '../../sandboxes/vx-tooltip/Example';
+import Tooltip, { TooltipProps } from '../../sandboxes/visx-tooltip/Example';
 import GalleryTile from '../GalleryTile';
 
-export { default as packageJson } from '../../sandboxes/vx-tooltip/package.json';
+export { default as packageJson } from '../../sandboxes/visx-tooltip/package.json';
 
 const exampleProps = { showControls: false };
 const detailsStyles = {

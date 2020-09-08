@@ -1,11 +1,16 @@
 import React from 'react';
 import Show from '../components/Show';
-import Dots from '../sandboxes/vx-dots/Example';
-import DotsSource from '!!raw-loader!../sandboxes/vx-dots/Example';
-import packageJson from '../sandboxes/vx-dots/package.json';
+import Dots from '../sandboxes/visx-dots/Example';
+import DotsSource from '!!raw-loader!../sandboxes/visx-dots/Example';
+import packageJson from '../sandboxes/visx-dots/package.json';
 
 export default () => (
-  <Show component={Dots} title="Dots" codeSandboxDirectoryName="vx-dots" packageJson={packageJson}>
+  <Show
+    component={Dots}
+    title="Dots"
+    codeSandboxDirectoryName="visx-dots"
+    packageJson={packageJson}
+  >
     {DotsSource}
   </Show>
 );

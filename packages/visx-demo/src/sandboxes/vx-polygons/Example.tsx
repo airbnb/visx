@@ -1,8 +1,8 @@
 import React from 'react';
-import { Polygon } from '@vx/shape';
-import { Group } from '@vx/group';
-import { scaleBand } from '@vx/scale';
-import { GradientPinkRed } from '@vx/gradient';
+import { Polygon } from '@visx/shape';
+import { Group } from '@visx/group';
+import { scaleBand } from '@visx/scale';
+import { GradientPinkRed } from '@visx/gradient';
 
 export const background = '#7f82e3';
 const polygonSize = 25;

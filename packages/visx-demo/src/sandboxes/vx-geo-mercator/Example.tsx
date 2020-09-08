@@ -1,6 +1,6 @@
 import React from 'react';
-import { scaleQuantize } from '@vx/scale';
-import { Mercator, Graticule } from '@vx/geo';
+import { scaleQuantize } from '@visx/scale';
+import { Mercator, Graticule } from '@visx/geo';
 import * as topojson from 'topojson-client';
 import topology from './world-topo.json';
 

@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react';
-import { Bar } from '@vx/shape';
-import { Group } from '@vx/group';
-import { GradientTealBlue } from '@vx/gradient';
-import letterFrequency, { LetterFrequency } from '@vx/mock-data/lib/mocks/letterFrequency';
-import { scaleBand, scaleLinear } from '@vx/scale';
+import { Bar } from '@visx/shape';
+import { Group } from '@visx/group';
+import { GradientTealBlue } from '@visx/gradient';
+import letterFrequency, { LetterFrequency } from '@visx/mock-data/lib/mocks/letterFrequency';
+import { scaleBand, scaleLinear } from '@visx/scale';
 
 const data = letterFrequency.slice(5);
 const verticalMargin = 120;

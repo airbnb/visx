@@ -44,10 +44,10 @@ import * as TreemapTile from './TreemapTile';
 import * as TreesTile from './TreesTile';
 import * as VoronoiTile from './VoronoiTile';
 import * as ZoomITile from './ZoomITile';
-import { VxPackage } from '../../types';
-import exampleToVxDependencyLookup, {
-  vxPackages,
-} from '../../sandboxes/exampleToVxDependencyLookup';
+import { VisxPackage } from '../../types';
+import exampleToVisxDependencyLookup, {
+  visxPackages,
+} from '../../sandboxes/exampleToVisxDependencyLookup';
 
 const tiltOptions = { max: 8, scale: 1 };
 
@@ -100,7 +100,7 @@ export default function Gallery() {
 
   const filteredTiles = routePackage
     ? tiles.filter(Tile =>
-        exampleToVxDependencyLookup[Tile.packageJson.name]?.has(routePackage as VxPackage),
+        exampleToVisxDependencyLookup[Tile.packageJson.name]?.has(routePackage as VisxPackage),
       )
     : tiles;
 
@@ -109,19 +109,19 @@ export default function Gallery() {
       <div className="gallery">
         <div className="filters">
           <h6>Examples by package</h6>
-          {vxPackages.map(vxPackage => (
+          {visxPackages.map(visxPackage => (
             <Link
-              key={vxPackage}
+              key={visxPackage}
               href={{
                 pathname: '/gallery',
-                query: routePackage === vxPackage ? undefined : { pkg: vxPackage },
+                query: routePackage === visxPackage ? undefined : { pkg: visxPackage },
               }}
             >
               <a
                 className={cx('filter-button', {
-                  emphasize: routePackage === vxPackage,
+                  emphasize: routePackage === visxPackage,
                 })}
-              >{`@vx/${vxPackage}`}</a>
+              >{`@visx/${visxPackage}`}</a>
             </Link>
           ))}
         </div>

@@ -1,9 +1,9 @@
 import React from 'react';
-import { BarGroupHorizontal, Bar } from '@vx/shape';
-import { Group } from '@vx/group';
-import { AxisLeft } from '@vx/axis';
-import cityTemperature, { CityTemperature } from '@vx/mock-data/lib/mocks/cityTemperature';
-import { scaleBand, scaleLinear, scaleOrdinal } from '@vx/scale';
+import { BarGroupHorizontal, Bar } from '@visx/shape';
+import { Group } from '@visx/group';
+import { AxisLeft } from '@visx/axis';
+import cityTemperature, { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
+import { scaleBand, scaleLinear, scaleOrdinal } from '@visx/scale';
 import { timeParse, timeFormat } from 'd3-time-format';
 
 export type BarGroupHorizontalProps = {

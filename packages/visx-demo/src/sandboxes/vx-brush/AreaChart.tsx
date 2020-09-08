@@ -1,10 +1,10 @@
 import React from 'react';
-import { Group } from '@vx/group';
-import { AreaClosed } from '@vx/shape';
-import { AxisLeft, AxisBottom, AxisScale } from '@vx/axis';
-import { LinearGradient } from '@vx/gradient';
-import { curveMonotoneX } from '@vx/curve';
-import { AppleStock } from '@vx/mock-data/lib/mocks/appleStock';
+import { Group } from '@visx/group';
+import { AreaClosed } from '@visx/shape';
+import { AxisLeft, AxisBottom, AxisScale } from '@visx/axis';
+import { LinearGradient } from '@visx/gradient';
+import { curveMonotoneX } from '@visx/curve';
+import { AppleStock } from '@visx/mock-data/lib/mocks/appleStock';
 
 // Initialize some variables
 const axisColor = '#fff';

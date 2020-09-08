@@ -1,10 +1,10 @@
 import React, { useState, useMemo } from 'react';
-import { scaleTime, scaleLinear } from '@vx/scale';
-import appleStock, { AppleStock } from '@vx/mock-data/lib/mocks/appleStock';
-import { Brush } from '@vx/brush';
-import { Bounds } from '@vx/brush/lib/types';
-import { PatternLines } from '@vx/pattern';
-import { LinearGradient } from '@vx/gradient';
+import { scaleTime, scaleLinear } from '@visx/scale';
+import appleStock, { AppleStock } from '@visx/mock-data/lib/mocks/appleStock';
+import { Brush } from '@visx/brush';
+import { Bounds } from '@visx/brush/lib/types';
+import { PatternLines } from '@visx/pattern';
+import { LinearGradient } from '@visx/gradient';
 import { max, extent } from 'd3-array';
 
 import AreaChart from './AreaChart';

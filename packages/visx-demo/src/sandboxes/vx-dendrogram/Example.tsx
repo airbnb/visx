@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react';
-import { Group } from '@vx/group';
-import { Cluster, hierarchy } from '@vx/hierarchy';
-import { HierarchyPointNode, HierarchyPointLink } from '@vx/hierarchy/lib/types';
-import { LinkVertical } from '@vx/shape';
-import { LinearGradient } from '@vx/gradient';
+import { Group } from '@visx/group';
+import { Cluster, hierarchy } from '@visx/hierarchy';
+import { HierarchyPointNode, HierarchyPointLink } from '@visx/hierarchy/lib/types';
+import { LinkVertical } from '@visx/shape';
+import { LinearGradient } from '@visx/gradient';
 
 const citrus = '#ddf163';
 const white = '#ffffff';

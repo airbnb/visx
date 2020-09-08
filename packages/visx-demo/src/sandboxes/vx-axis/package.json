@@ -1,5 +1,5 @@
 {
-  "name": "@vx/demo-axis",
+  "name": "@visx/demo-axis",
   "description": "Standalone axis demo.",
   "main": "index.tsx",
   "private": true,
@@ -8,16 +8,16 @@
     "@types/d3-time-format": "2.1.1",
     "@types/react": "^16",
     "@types/react-dom": "^16",
-    "@vx/axis": "latest",
-    "@vx/curve": "latest",
-    "@vx/gradient": "latest",
-    "@vx/grid": "latest",
-    "@vx/group": "latest",
-    "@vx/mock-data": "latest",
-    "@vx/react-spring": "latest",
-    "@vx/responsive": "latest",
-    "@vx/shape": "latest",
-    "@vx/scale": "latest",
+    "@visx/axis": "latest",
+    "@visx/curve": "latest",
+    "@visx/gradient": "latest",
+    "@visx/grid": "latest",
+    "@visx/group": "latest",
+    "@visx/mock-data": "latest",
+    "@visx/react-spring": "latest",
+    "@visx/responsive": "latest",
+    "@visx/shape": "latest",
+    "@visx/scale": "latest",
     "d3-time-format": "^2.2.3",
     "react": "^16",
     "react-dom": "^16",
@@ -30,6 +30,6 @@
     "visualization",
     "d3",
     "react",
-    "vx"
+    "visx"
   ]
 }

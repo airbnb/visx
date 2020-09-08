@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text } from '@vx/text';
+import { Text } from '@visx/text';
 import Show from '../components/Show';
 import Codeblock from '../components/Codeblock';
 
@@ -249,7 +249,7 @@ function TextDemo() {
           <div style={{ marginBottom: '1rem' }}>
             <div>
               <div className="code">
-                <Codeblock>{`import { Text } from '@vx/text';
+                <Codeblock>{`import { Text } from '@visx/text';
 
 ({ text }) => {
 return (
@@ -277,7 +277,7 @@ return (
           <div style={{ marginBottom: '1rem' }}>
             <div>
               <div className="code">
-                <Codeblock>{`import { Text } from '@vx/text';
+                <Codeblock>{`import { Text } from '@visx/text';
 
 ({ text, width }) => {
 return (
@@ -306,7 +306,7 @@ return (
           <div style={{ marginBottom: '1rem' }}>
             <div>
               <div className="code">
-                <Codeblock>{`import { Text } from '@vx/text';
+                <Codeblock>{`import { Text } from '@visx/text';
 
 ({ text, width }) => {
 return (
@@ -335,7 +335,7 @@ return (
           <div style={{ marginBottom: '1rem' }}>
             <div>
               <div className="code">
-                <Codeblock>{`import { Text } from '@vx/text';
+                <Codeblock>{`import { Text } from '@visx/text';
 
 ({ text, width }) => {
 return (
@@ -364,7 +364,7 @@ return (
           <div style={{ marginBottom: '1rem' }}>
             <div>
               <div className="code">
-                <Codeblock>{`import { Text } from '@vx/text';
+                <Codeblock>{`import { Text } from '@visx/text';
 
 ({ text, width }) => {
 return (
@@ -393,7 +393,7 @@ return (
           <div style={{ marginBottom: '1rem' }}>
             <div>
               <div className="code">
-                <Codeblock>{`import { Text } from '@vx/text';
+                <Codeblock>{`import { Text } from '@visx/text';
 
 ({ text, width }) => {
 return (
@@ -422,7 +422,7 @@ return (
           <div style={{ marginBottom: '1rem' }}>
             <div>
               <div className="code">
-                <Codeblock>{`import { Text } from '@vx/text';
+                <Codeblock>{`import { Text } from '@visx/text';
 
 ({ text, width }) => {
 return (
@@ -451,7 +451,7 @@ return (
           <div style={{ marginBottom: '1rem' }}>
             <div>
               <div className="code">
-                <Codeblock>{`import { Text } from '@vx/text';
+                <Codeblock>{`import { Text } from '@visx/text';
 
 ({ text, width }) => {
 return (
@@ -480,7 +480,7 @@ return (
           <div style={{ marginBottom: '1rem' }}>
             <div>
               <div className="code">
-                <Codeblock>{`import { Text } from '@vx/text';
+                <Codeblock>{`import { Text } from '@visx/text';
 
 ({ text, width }) => {
 return (
@@ -509,7 +509,7 @@ return (
           <div style={{ marginBottom: '1rem' }}>
             <div>
               <div className="code">
-                <Codeblock>{`import { Text } from '@vx/text';
+                <Codeblock>{`import { Text } from '@visx/text';
 
 ({ text, width }) => {
 return (
@@ -537,7 +537,7 @@ return (
           <div style={{ marginBottom: '1rem' }}>
             <div>
               <div className="code">
-                <Codeblock>{`import { Text } from '@vx/text';
+                <Codeblock>{`import { Text } from '@visx/text';
 
 ({ text, width }) => {
 return (
@@ -599,7 +599,7 @@ return (
   );
 }
 
-const packageJson = { dependencies: { '@vx/text': 'latest' } };
+const packageJson = { dependencies: { '@visx/text': 'latest' } };
 
 export default () => (
   <Show

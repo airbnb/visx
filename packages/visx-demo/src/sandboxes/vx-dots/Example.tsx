@@ -1,15 +1,15 @@
 import React, { useMemo, useState, useCallback, useRef } from 'react';
-import { Group } from '@vx/group';
-import { Circle } from '@vx/shape';
-import { GradientPinkRed } from '@vx/gradient';
-import { scaleLinear } from '@vx/scale';
+import { Group } from '@visx/group';
+import { Circle } from '@visx/shape';
+import { GradientPinkRed } from '@visx/gradient';
+import { scaleLinear } from '@visx/scale';
 import genRandomNormalPoints, {
   PointsRange,
-} from '@vx/mock-data/lib/generators/genRandomNormalPoints';
-import { withTooltip, Tooltip } from '@vx/tooltip';
-import { WithTooltipProvidedProps } from '@vx/tooltip/lib/enhancers/withTooltip';
-import { voronoi, VoronoiPolygon } from '@vx/voronoi';
-import { localPoint } from '@vx/event';
+} from '@visx/mock-data/lib/generators/genRandomNormalPoints';
+import { withTooltip, Tooltip } from '@visx/tooltip';
+import { WithTooltipProvidedProps } from '@visx/tooltip/lib/enhancers/withTooltip';
+import { voronoi, VoronoiPolygon } from '@visx/voronoi';
+import { localPoint } from '@visx/event';
 
 const points: PointsRange[] = genRandomNormalPoints(600).filter((d, i) => i < 600);
 

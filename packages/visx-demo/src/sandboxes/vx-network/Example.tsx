@@ -1,5 +1,5 @@
 import React from 'react';
-import { Graph } from '@vx/network';
+import { Graph } from '@visx/network';
 
 export type NetworkProps = {
   width: number;

@@ -1,9 +1,9 @@
 import React from 'react';
-import { AreaStack } from '@vx/shape';
-import { SeriesPoint } from '@vx/shape/lib/types';
-import { GradientOrangeRed } from '@vx/gradient';
-import browserUsage, { BrowserUsage } from '@vx/mock-data/lib/mocks/browserUsage';
-import { scaleTime, scaleLinear } from '@vx/scale';
+import { AreaStack } from '@visx/shape';
+import { SeriesPoint } from '@visx/shape/lib/types';
+import { GradientOrangeRed } from '@visx/gradient';
+import browserUsage, { BrowserUsage } from '@visx/mock-data/lib/mocks/browserUsage';
+import { scaleTime, scaleLinear } from '@visx/scale';
 import { timeParse } from 'd3-time-format';
 
 type BrowserNames = keyof BrowserUsage;

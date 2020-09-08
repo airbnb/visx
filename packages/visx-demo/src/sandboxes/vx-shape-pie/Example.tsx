@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import Pie, { ProvidedProps, PieArcDatum } from '@vx/shape/lib/shapes/Pie';
-import { scaleOrdinal } from '@vx/scale';
-import { Group } from '@vx/group';
-import { GradientPinkBlue } from '@vx/gradient';
-import letterFrequency, { LetterFrequency } from '@vx/mock-data/lib/mocks/letterFrequency';
-import browserUsage, { BrowserUsage as Browsers } from '@vx/mock-data/lib/mocks/browserUsage';
+import Pie, { ProvidedProps, PieArcDatum } from '@visx/shape/lib/shapes/Pie';
+import { scaleOrdinal } from '@visx/scale';
+import { Group } from '@visx/group';
+import { GradientPinkBlue } from '@visx/gradient';
+import letterFrequency, { LetterFrequency } from '@visx/mock-data/lib/mocks/letterFrequency';
+import browserUsage, { BrowserUsage as Browsers } from '@visx/mock-data/lib/mocks/browserUsage';
 import { animated, useTransition, interpolate } from 'react-spring';
 
 // data and types
@@ -73,8 +73,8 @@ export default function Example({
 
   return (
     <svg width={width} height={height}>
-      <GradientPinkBlue id="vx-pie-gradient" />
-      <rect rx={14} width={width} height={height} fill="url('#vx-pie-gradient')" />
+      <GradientPinkBlue id="visx-pie-gradient" />
+      <rect rx={14} width={width} height={height} fill="url('#visx-pie-gradient')" />
       <Group top={centerY + margin.top} left={centerX + margin.left}>
         <Pie
           data={

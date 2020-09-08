@@ -1,8 +1,8 @@
 import React from 'react';
-import { Group } from '@vx/group';
-import { LinePath } from '@vx/shape';
-import generateDateValue, { DateValue } from '@vx/mock-data/lib/generators/genDateValue';
-import { scaleTime, scaleLinear } from '@vx/scale';
+import { Group } from '@visx/group';
+import { LinePath } from '@visx/shape';
+import generateDateValue, { DateValue } from '@visx/mock-data/lib/generators/genDateValue';
+import { scaleTime, scaleLinear } from '@visx/scale';
 import { extent, max } from 'd3-array';
 
 const lineCount = 12;

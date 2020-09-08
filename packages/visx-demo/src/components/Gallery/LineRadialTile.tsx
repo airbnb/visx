@@ -3,10 +3,10 @@ import LineRadial, {
   LineRadialProps,
   background,
   blue,
-} from '../../sandboxes/vx-shape-line-radial/Example';
+} from '../../sandboxes/visx-shape-line-radial/Example';
 import GalleryTile from '../GalleryTile';
 
-export { default as packageJson } from '../../sandboxes/vx-shape-line-radial/package.json';
+export { default as packageJson } from '../../sandboxes/visx-shape-line-radial/package.json';
 
 const tileStyles = { background };
 const detailsStyles = { color: blue };

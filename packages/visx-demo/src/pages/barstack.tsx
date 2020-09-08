@@ -1,8 +1,8 @@
 import React from 'react';
 import Show from '../components/Show';
-import BarStack from '../sandboxes/vx-barstack/Example';
-import BarStackSource from '!!raw-loader!../sandboxes/vx-barstack/Example';
-import packageJson from '../sandboxes/vx-barstack/package.json';
+import BarStack from '../sandboxes/visx-barstack/Example';
+import BarStackSource from '!!raw-loader!../sandboxes/visx-barstack/Example';
+import packageJson from '../sandboxes/visx-barstack/package.json';
 
 export default () => (
   <Show
@@ -10,7 +10,7 @@ export default () => (
     margin={{ top: 80, right: 0, bottom: 0, left: 0 }}
     component={BarStack}
     title="Bar Stack"
-    codeSandboxDirectoryName="vx-barstack"
+    codeSandboxDirectoryName="visx-barstack"
     packageJson={packageJson}
   >
     {BarStackSource}

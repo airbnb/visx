@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
 import React from 'react';
-import { Group } from '@vx/group';
+import { Group } from '@visx/group';
 import {
   Glyph as CustomGlyph,
   GlyphCircle,
@@ -10,11 +10,11 @@ import {
   GlyphStar,
   GlyphTriangle,
   GlyphWye,
-} from '@vx/glyph';
-import { LinePath } from '@vx/shape';
-import genDateValue, { DateValue } from '@vx/mock-data/lib/generators/genDateValue';
-import { scaleTime, scaleLinear } from '@vx/scale';
-import { curveMonotoneX, curveBasis } from '@vx/curve';
+} from '@visx/glyph';
+import { LinePath } from '@visx/shape';
+import genDateValue, { DateValue } from '@visx/mock-data/lib/generators/genDateValue';
+import { scaleTime, scaleLinear } from '@visx/scale';
+import { curveMonotoneX, curveBasis } from '@visx/curve';
 
 const defaultMargin = { top: 10, right: 10, bottom: 10, left: 10 };
 

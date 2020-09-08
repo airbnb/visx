@@ -1,8 +1,8 @@
 import React from 'react';
-import Polygon, { PolygonProps, background } from '../../sandboxes/vx-polygons/Example';
+import Polygon, { PolygonProps, background } from '../../sandboxes/visx-polygons/Example';
 import GalleryTile from '../GalleryTile';
 
-export { default as packageJson } from '../../sandboxes/vx-polygons/package.json';
+export { default as packageJson } from '../../sandboxes/visx-polygons/package.json';
 
 const tileStyles = { background };
 const detailsStyles = { color: 'white' };

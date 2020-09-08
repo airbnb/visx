@@ -1,12 +1,12 @@
 import React from 'react';
-import { Group } from '@vx/group';
-import { ViolinPlot, BoxPlot } from '@vx/stats';
-import { LinearGradient } from '@vx/gradient';
-import { scaleBand, scaleLinear } from '@vx/scale';
-import genStats, { Stats } from '@vx/mock-data/lib/generators/genStats';
-import { withTooltip, Tooltip, defaultStyles as defaultTooltipStyles } from '@vx/tooltip';
-import { WithTooltipProvidedProps } from '@vx/tooltip/lib/enhancers/withTooltip';
-import { PatternLines } from '@vx/pattern';
+import { Group } from '@visx/group';
+import { ViolinPlot, BoxPlot } from '@visx/stats';
+import { LinearGradient } from '@visx/gradient';
+import { scaleBand, scaleLinear } from '@visx/scale';
+import genStats, { Stats } from '@visx/mock-data/lib/generators/genStats';
+import { withTooltip, Tooltip, defaultStyles as defaultTooltipStyles } from '@visx/tooltip';
+import { WithTooltipProvidedProps } from '@visx/tooltip/lib/enhancers/withTooltip';
+import { PatternLines } from '@visx/pattern';
 
 const data: Stats[] = genStats(5);
 

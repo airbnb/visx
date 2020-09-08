@@ -1,8 +1,8 @@
 import React from 'react';
 import Show from '../components/Show';
-import BarGroupHorizontal from '../sandboxes/vx-bargroup-horizontal/Example';
-import BarGroupHorizontalSource from '!!raw-loader!../sandboxes/vx-bargroup-horizontal/Example';
-import packageJson from '../sandboxes/vx-bargroup-horizontal/package.json';
+import BarGroupHorizontal from '../sandboxes/visx-bargroup-horizontal/Example';
+import BarGroupHorizontalSource from '!!raw-loader!../sandboxes/visx-bargroup-horizontal/Example';
+import packageJson from '../sandboxes/visx-bargroup-horizontal/package.json';
 
 export default () => (
   <Show
@@ -10,7 +10,7 @@ export default () => (
     margin={{ top: 45, left: 60, right: 20, bottom: 45 }}
     component={BarGroupHorizontal}
     title="Bar Group Horizontal"
-    codeSandboxDirectoryName="vx-bargroup-horizontal"
+    codeSandboxDirectoryName="visx-bargroup-horizontal"
     packageJson={packageJson}
   >
     {BarGroupHorizontalSource}
