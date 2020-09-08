@@ -1,7 +1,7 @@
-# @vx/gradient
+# @visx/gradient
 
-<a title="@vx/gradient npm downloads" href="https://www.npmjs.com/package/@vx/gradient">
-  <img src="https://img.shields.io/npm/dm/@vx/gradient.svg?style=flat-square" />
+<a title="@visx/gradient npm downloads" href="https://www.npmjs.com/package/@visx/gradient">
+  <img src="https://img.shields.io/npm/dm/@visx/gradient.svg?style=flat-square" />
 </a>
 
 Inspired by: https://dribbble.com/shots/3380672-Sketch-Gradients-Freebie
@@ -9,8 +9,8 @@ Inspired by: https://dribbble.com/shots/3380672-Sketch-Gradients-Freebie
 ## Example
 
 ```js
-import { AreaClosed } from '@vx/shape';
-import { GradientPinkBlue } from '@vx/gradient';
+import { AreaClosed } from '@visx/shape';
+import { GradientPinkBlue } from '@visx/gradient';
 
 const GradientArea = () => {
   return (
@@ -36,7 +36,7 @@ use `fill="url('#gradient')"` you're referencing the gradient's id: `gradient`.
 In addition to the preset linear gradients, you can make any linear or radial gradient like so:
 
 ```js
-import { LinearGradient, RadialGradient } from '@vx/gradient';
+import { LinearGradient, RadialGradient } from '@visx/gradient';
 
 <LinearGradient from="#a18cd1" to="#fbc2eb" />;
 <RadialGradient from="#a18cd1" to="#fbc2eb" />;
@@ -45,5 +45,5 @@ import { LinearGradient, RadialGradient } from '@vx/gradient';
 ## Installation
 
 ```
-npm install --save @vx/gradient
+npm install --save @visx/gradient
 ```
