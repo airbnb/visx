@@ -1,36 +1,36 @@
-# @vx/curve
+# @visx/curve
 
-<a title="@vx/curve npm downloads" href="https://www.npmjs.com/package/@vx/curve">
-  <img src="https://img.shields.io/npm/dm/@vx/curve.svg?style=flat-square" />
+<a title="@visx/curve npm downloads" href="https://www.npmjs.com/package/@visx/curve">
+  <img src="https://img.shields.io/npm/dm/@visx/curve.svg?style=flat-square" />
 </a>
 
 ## Installation
 
 ```
-npm install --save @vx/curve
+npm install --save @visx/curve
 ```
 
 ## Overview
 
-The `@vx/curve` package is a wrapper of the [d3-shape](https://github.com/d3/d3-shape) curve
-functions. A `curve` is a function that can be passed into other `vx` objects that draw lines or
+The `@visx/curve` package is a wrapper of the [d3-shape](https://github.com/d3/d3-shape) curve
+functions. A `curve` is a function that can be passed into other `visx` objects that draw lines or
 paths, such as a `LinePath`, to change the way the line between points is drawn. Click on the
 example below for an interactive way to explore curve aesthetics.
 
-Any function with the prefix `curve` in `d3` can be used through `vx` like so:
+Any function with the prefix `curve` in `d3` can be used through `visx` like so:
 
 ```javascript
-import { curveCatmullRomOpen } from '@vx/curve';
+import { curveCatmullRomOpen } from '@visx/curve';
 let line = (<Shape.LinePath curve={curveCatmullRomOpen} />)
 
 // or if you want namespace all Curves under the `Curve`
-import * as Curve from `@vx/curve`;
+import * as Curve from `@visx/curve`;
 let line = (<Shape.LinePath curve={Curve.curveCatmullRomOpen} />)
 ```
 
 ## Functions
 
-| vx                    | d3                                                                            |
+| visx                  | d3                                                                            |
 | --------------------- | ----------------------------------------------------------------------------- |
 | curveBasis            | [curveBasis](https://github.com/d3/d3-shape#curveBasis)                       |
 | curveBasisClose       | [curveBasisClosed](https://github.com/d3/d3-shape#curveBasisClosed)           |

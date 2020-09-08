@@ -1,18 +1,18 @@
 {
-  "name": "@vx/curve",
+  "name": "@visx/curve",
   "version": "0.0.199",
-  "description": "vx curve",
+  "description": "visx curve",
   "sideEffects": false,
   "main": "lib/index.js",
   "module": "esm/index.js",
   "types": "lib/index.d.ts",
-  "repository": "https://github.com/hshoff/vx",
+  "repository": "https://github.com/airbnb/visx",
   "files": [
     "lib",
     "esm"
   ],
   "keywords": [
-    "vx",
+    "visx",
     "react",
     "d3",
     "visualization",
