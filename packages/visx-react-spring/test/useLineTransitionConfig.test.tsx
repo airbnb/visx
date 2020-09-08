@@ -1,5 +1,5 @@
 import React from 'react';
-import { scaleLinear } from '@vx/scale';
+import { scaleLinear } from '@visx/scale';
 import { shallow } from 'enzyme';
 import useLineTransitionConfig from '../src/spring-configs/useLineTransitionConfig';
 

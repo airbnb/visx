@@ -1,6 +1,6 @@
 import React from 'react';
-import GridColumns, { GridColumnsProps } from '@vx/grid/lib/grids/GridColumns';
-import { GridScale } from '@vx/grid/lib/types';
+import GridColumns, { GridColumnsProps } from '@visx/grid/lib/grids/GridColumns';
+import { GridScale } from '@visx/grid/lib/types';
 import AnimatedGridLines from './AnimatedGridLines';
 import { AnimationTrajectory } from '../types';
 

@@ -1,7 +1,7 @@
 {
-  "name": "@vx/react-spring",
+  "name": "@visx/react-spring",
   "version": "0.0.199",
-  "description": "Vx primitives that rely on react-spring for animation",
+  "description": "visx primitives that rely on react-spring for animation",
   "sideEffects": false,
   "main": "lib/index.js",
   "module": "esm/index.js",
@@ -12,10 +12,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hshoff/vx.git"
+    "url": "git+https://github.com/airbnb/visx.git"
   },
   "keywords": [
-    "vx",
+    "visx",
     "react",
     "d3",
     "visualizations",
@@ -31,9 +31,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/hshoff/vx/issues"
+    "url": "https://github.com/airbnb/visx/issues"
   },
-  "homepage": "https://github.com/hshoff/vx#readme",
+  "homepage": "https://github.com/airbnb/visx#readme",
   "publishConfig": {
     "access": "public"
   },
@@ -44,10 +44,10 @@
   "dependencies": {
     "@types/classnames": "^2.2.9",
     "@types/react": "*",
-    "@vx/axis": "0.0.199",
-    "@vx/grid": "0.0.199",
-    "@vx/scale": "0.0.199",
-    "@vx/text": "0.0.199",
+    "@visx/axis": "0.0.199",
+    "@visx/grid": "0.0.199",
+    "@visx/scale": "0.0.199",
+    "@visx/text": "0.0.199",
     "classnames": "^2.2.5",
     "prop-types": "^15.6.2"
   }

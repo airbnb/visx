@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
-import Axis, { AxisProps } from '@vx/axis/lib/axis/Axis';
-import { AxisScale, TicksRendererProps } from '@vx/axis/lib/types';
+import Axis, { AxisProps } from '@visx/axis/lib/axis/Axis';
+import { AxisScale, TicksRendererProps } from '@visx/axis/lib/types';
 import AnimatedTicks from './AnimatedTicks';
 import { AnimationTrajectory } from '../types';
 
