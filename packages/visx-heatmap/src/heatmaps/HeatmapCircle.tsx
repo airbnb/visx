@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { Group } from '@vx/group';
+import { Group } from '@visx/group';
 import { GenericCell, ColorScale, OpacityScale } from '../types';
 
 export type HeatmapCircleProps<ColumnDatum, BinDatum> = {
@@ -89,12 +89,12 @@ export default function HeatmapCircle<ColumnDatum, BinDatum>({
   if (children) return <>{children(heatmap)}</>;
 
   return (
-    <Group className="vx-heatmap-circles" top={top} left={left}>
+    <Group className="visx-heatmap-circles" top={top} left={left}>
       {heatmap.map(columns =>
         columns.map(bin => (
           <circle
             key={`heatmap-tile-circle-${bin.row}-${bin.column}`}
-            className={cx('vx-heatmap-circle', className)}
+            className={cx('visx-heatmap-circle', className)}
             r={bin.r}
             cx={bin.cx}
             cy={bin.cy}

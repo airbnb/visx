@@ -18,14 +18,14 @@ describe('<HeatmapCircle />', () => {
     expect(HeatmapCircle).toBeDefined();
   });
 
-  test('it should have the .vx-heatmap-circles class', () => {
+  test('it should have the .visx-heatmap-circles class', () => {
     const wrapper = HeatmapWrapper();
-    expect(wrapper.prop('className')).toBe('vx-heatmap-circles');
+    expect(wrapper.prop('className')).toBe('visx-heatmap-circles');
   });
 
-  test('it should have the .vx-heatmap-circle class', () => {
+  test('it should have the .visx-heatmap-circle class', () => {
     const wrapper = HeatmapWrapper({ className: 'test' });
-    expect(wrapper.find('circle').prop('className')).toBe('vx-heatmap-circle test');
+    expect(wrapper.find('circle').prop('className')).toBe('visx-heatmap-circle test');
   });
 
   test('it should set <circle /> r to radius - gap', () => {

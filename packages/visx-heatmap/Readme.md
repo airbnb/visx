@@ -1,7 +1,7 @@
-# @vx/heatmap
+# @visx/heatmap
 
-<a title="@vx/heatmap npm downloads" href="https://www.npmjs.com/package/@vx/heatmap">
-  <img src="https://img.shields.io/npm/dm/@vx/heatmap.svg?style=flat-square" />
+<a title="@visx/heatmap npm downloads" href="https://www.npmjs.com/package/@visx/heatmap">
+  <img src="https://img.shields.io/npm/dm/@visx/heatmap.svg?style=flat-square" />
 </a>
 
 A Heatmap is an arrangement of shapes where the data values are represented as colors.
@@ -58,5 +58,5 @@ const xScale = scaleLinear({
 ## Installation
 
 ```
-npm install --save @vx/heatmap
+npm install --save @visx/heatmap
 ```

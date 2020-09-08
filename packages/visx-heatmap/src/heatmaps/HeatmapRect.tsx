@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { Group } from '@vx/group';
+import { Group } from '@visx/group';
 import { GenericCell, ColorScale, OpacityScale } from '../types';
 
 export type HeatmapRectProps<ColumnDatum, BinDatum> = {
@@ -104,12 +104,12 @@ export default function HeatmapRect<ColumnDatum, BinDatum>({
   if (children) return <>{children(heatmap)}</>;
 
   return (
-    <Group className="vx-heatmap-rects" top={top} left={left}>
+    <Group className="visx-heatmap-rects" top={top} left={left}>
       {heatmap.map(_bins =>
         _bins.map(bin => (
           <rect
             key={`heatmap-tile-rect-${bin.row}-${bin.column}`}
-            className={cx('vx-heatmap-rect', className)}
+            className={cx('visx-heatmap-rect', className)}
             width={bin.width}
             height={bin.height}
             x={bin.x}

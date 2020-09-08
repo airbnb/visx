@@ -19,14 +19,14 @@ describe('<HeatmapRect />', () => {
     expect(HeatmapRect).toBeDefined();
   });
 
-  test('it should have the .vx-heatmap-rects class', () => {
+  test('it should have the .visx-heatmap-rects class', () => {
     const wrapper = HeatmapWrapper();
-    expect(wrapper.prop('className')).toBe('vx-heatmap-rects');
+    expect(wrapper.prop('className')).toBe('visx-heatmap-rects');
   });
 
-  test('it should have the .vx-heatmap-rect class', () => {
+  test('it should have the .visx-heatmap-rect class', () => {
     const wrapper = HeatmapWrapper({ className: 'test' });
-    expect(wrapper.find('rect').prop('className')).toBe('vx-heatmap-rect test');
+    expect(wrapper.find('rect').prop('className')).toBe('visx-heatmap-rect test');
   });
 
   test('it should set <rect /> width & height to bin{Width,Height} - gap', () => {
