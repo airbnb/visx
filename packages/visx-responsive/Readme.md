@@ -1,10 +1,10 @@
-# @vx/responsive
+# @visx/responsive
 
-<a title="@vx/responsive npm downloads" href="https://www.npmjs.com/package/@vx/responsive">
-  <img src="https://img.shields.io/npm/dm/@vx/responsive.svg?style=flat-square" />
+<a title="@visx/responsive npm downloads" href="https://www.npmjs.com/package/@visx/responsive">
+  <img src="https://img.shields.io/npm/dm/@visx/responsive.svg?style=flat-square" />
 </a>
 
-The `@vx/responsive` package is here to help you make responsive graphs.
+The `@visx/responsive` package is here to help you make responsive graphs.
 
 **With Enhancers**
 
@@ -27,12 +27,12 @@ containing the respective screen dimensions.
 ### Example:
 
 ```js
-import { withScreenSize } from '@vx/responsive';
+import { withScreenSize } from '@visx/responsive';
 // or
-// import * as Responsive from '@vx/responsive';
+// import * as Responsive from '@visx/responsive';
 // Responsive.withScreenSize(...);
 
-let chartToRender = withScreenSize(MySuperCoolVxChart);
+let chartToRender = withScreenSize(MySuperCoolVisxChart);
 
 // ... Render the chartToRender somewhere
 ```
@@ -46,12 +46,12 @@ wrapped component containing the respective parent's dimensions.
 ### Example:
 
 ```js
-import { withParentSize } from '@vx/responsive';
+import { withParentSize } from '@visx/responsive';
 // or
-// import * as Responsive from '@vx/responsive';
+// import * as Responsive from '@visx/responsive';
 // Responsive.withParentSize(...);
 
-let chartToRender = withParentSize(MySuperCoolVxChart);
+let chartToRender = withParentSize(MySuperCoolVisxChart);
 
 // ... Render the chartToRender somewhere
 ```
@@ -63,22 +63,22 @@ You might do the same thing using the `ParentSize` component.
 ### Example:
 
 ```js
-import { ParentSize } from '@vx/responsive';
+import { ParentSize } from '@visx/responsive';
 // or
-// import * as Responsive from '@vx/responsive';
+// import * as Responsive from '@visx/responsive';
 // <Responsive.ParentSize />;
 
 let chartToRender = (
   <ParentSize>
     {parent => (
-      <MySuperCoolVxChart
+      <MySuperCoolVisxChart
         parentWidth={parent.width}
         parentHeight={parent.height}
         parentTop={parent.top}
         parentLeft={parent.left}
         // this is the referer to the wrapper component
         parentRef={parent.ref}
-        // this function can be called inside MySuperCoolVxChart to cause a resize of the wrapper component
+        // this function can be called inside MySuperCoolVisxChart to cause a resize of the wrapper component
         resizeParent={parent.resize}
       />
     )}
@@ -95,9 +95,9 @@ You can also create a responsive chart with a specific viewBox with the `ScaleSV
 ### Example:
 
 ```js
-import { ScaleSVG } from '@vx/responsive';
+import { ScaleSVG } from '@visx/responsive';
 // or
-// import * as Responsive from '@vx/responsive';
+// import * as Responsive from '@visx/responsive';
 // <Responsive.ScaleSVG />
 
 let chartToRender = (
@@ -112,5 +112,5 @@ let chartToRender = (
 ## Installation
 
 ```
-npm install --save @vx/responsive
+npm install --save @visx/responsive
 ```
