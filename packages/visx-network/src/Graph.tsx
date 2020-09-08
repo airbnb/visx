@@ -1,5 +1,5 @@
 import React from 'react';
-import { Group } from '@vx/group';
+import { Group } from '@visx/group';
 import Links from './Links';
 import Nodes from './Nodes';
 import DefaultNode from './DefaultNode';

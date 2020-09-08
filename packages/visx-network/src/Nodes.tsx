@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { Group } from '@vx/group';
+import { Group } from '@visx/group';
 
 import DefaultNode from './DefaultNode';
 import { NodeProvidedProps } from './types';
@@ -33,7 +33,7 @@ export default function Nodes<Node>({
       {nodes.map((node, i) => (
         <Group
           key={`network-node-${i}`}
-          className={cx('vx-network-node', className)}
+          className={cx('visx-network-node', className)}
           left={x(node)}
           top={y(node)}
         >

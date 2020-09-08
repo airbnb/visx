@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { Group } from '@vx/group';
+import { Group } from '@visx/group';
 import { LinkProvidedProps } from './types';
 
 export type LinkProps<Link> = {
@@ -19,7 +19,7 @@ export default function Links<Link>({ links = [], linkComponent, className }: Li
   return (
     <>
       {links.map((link, i) => (
-        <Group key={`network-link-${i}`} className={cx('vx-network-link', className)}>
+        <Group key={`network-link-${i}`} className={cx('visx-network-link', className)}>
           {React.createElement(linkComponent, { link })}
         </Group>
       ))}

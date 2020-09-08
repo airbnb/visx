@@ -1,9 +1,9 @@
 {
-  "name": "@vx/network",
+  "name": "@visx/network",
   "version": "0.0.199",
-  "description": "vx network",
+  "description": "visx network",
   "sideEffects": false,
-  "repository": "https://github.com/hshoff/vx",
+  "repository": "https://github.com/airbnb/visx",
   "main": "lib/index.js",
   "module": "esm/index.js",
   "types": "lib/index.d.ts",
@@ -12,7 +12,7 @@
     "esm"
   ],
   "keywords": [
-    "vx",
+    "visx",
     "data",
     "visualizations",
     "charts"
@@ -22,7 +22,7 @@
   "dependencies": {
     "@types/classnames": "^2.2.9",
     "@types/react": "*",
-    "@vx/group": "0.0.199",
+    "@visx/group": "0.0.199",
     "classnames": "^2.2.5",
     "prop-types": "^15.6.2"
   },

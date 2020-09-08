@@ -1,7 +1,7 @@
-# @vx/network
+# @visx/network
 
-<a title="@vx/network npm downloads" href="https://www.npmjs.com/package/@vx/network">
-  <img src="https://img.shields.io/npm/dm/@vx/network.svg?style=flat-square" />
+<a title="@visx/network npm downloads" href="https://www.npmjs.com/package/@visx/network">
+  <img src="https://img.shields.io/npm/dm/@visx/network.svg?style=flat-square" />
 </a>
 
 A simple package to visualize a network or graph layout. Does not currently handle network layout.
@@ -9,7 +9,7 @@ A simple package to visualize a network or graph layout. Does not currently hand
 ## Example Usage
 
 ```js
-import { Graph, DefaultLink, DefaultNode } from '@vx/network';
+import { Graph, DefaultLink, DefaultNode } from '@visx/network';
 const nodes = [
   { x: 50, y: 20 },
   { x: 200, y: 300 },
@@ -33,5 +33,5 @@ const MyGraph = () => (
 ## Installation
 
 ```
-npm install --save @vx/network
+npm install --save @visx/network
 ```
