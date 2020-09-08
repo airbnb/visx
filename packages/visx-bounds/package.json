@@ -1,5 +1,5 @@
 {
-  "name": "@vx/bounds",
+  "name": "@visx/bounds",
   "version": "0.0.199",
   "description": "Utilities to make your life with bounding boxes better",
   "sideEffects": false,
@@ -12,10 +12,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hshoff/vx.git"
+    "url": "git+https://github.com/airbnb/visx.git"
   },
   "keywords": [
-    "vx",
+    "visx",
     "react",
     "visualizations",
     "charts"
@@ -23,9 +23,9 @@
   "author": "Chris Williams @williaster",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/hshoff/vx/issues"
+    "url": "https://github.com/airbnb/visx/issues"
   },
-  "homepage": "https://github.com/hshoff/vx#readme",
+  "homepage": "https://github.com/airbnb/visx#readme",
   "publishConfig": {
     "access": "public"
   },
