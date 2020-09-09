@@ -20,5 +20,5 @@ export default function VoronoiPolygon({
   const path = `M${polygon.join('L')}Z`;
   if (children) return <>{children({ path, polygon })}</>;
 
-  return <path className={cx('vx-voronoi-polygon', className)} d={path} {...restProps} />;
+  return <path className={cx('visx-voronoi-polygon', className)} d={path} {...restProps} />;
 }

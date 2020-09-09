@@ -1,7 +1,7 @@
-# @vx/voronoi
+# @visx/voronoi
 
-<a title="@vx/voronoi npm downloads" href="https://www.npmjs.com/package/@vx/voronoi">
-  <img src="https://img.shields.io/npm/dm/@vx/voronoi.svg?style=flat-square" />
+<a title="@visx/voronoi npm downloads" href="https://www.npmjs.com/package/@visx/voronoi">
+  <img src="https://img.shields.io/npm/dm/@visx/voronoi.svg?style=flat-square" />
 </a>
 
 ## Overview
@@ -15,22 +15,22 @@ Not only are Voronoi diagrams 😍, but they can be used to
 This is most often accomplished by overlaying an invisible voronoi grid on top of the visualization
 to increase the target area of interaction sites such as points on a scatter plot.
 
-The `@vx/voronoi` package provides a wrapper around the existing
+The `@visx/voronoi` package provides a wrapper around the existing
 [d3-voronoi](https://github.com/d3/d3-voronoi) package with some `react`-specific utilities.
 
 ## Installation
 
 ```
-npm install --save @vx/voronoi
+npm install --save @visx/voronoi
 ```
 
 ## Usage
 
-The `@vx/voronoi` package exports a wrapped version of the d3 `voronoi` layout for flexible usage,
+The `@visx/voronoi` package exports a wrapped version of the d3 `voronoi` layout for flexible usage,
 as well as a `<VoronoiPolygon />` component for rendering Voronoi regions.
 
 ```js
-import { voronoi, VoronoiPolygon } from '@vx/voronoi';
+import { voronoi, VoronoiPolygon } from '@visx/voronoi';
 
 const points = Array(n).fill(null).map(() => ({
   x: Math.random() * innerWidth,
@@ -63,6 +63,6 @@ return (
 )
 ```
 
-For more advanced usage with events, see [this example](https://vx-demo.now.sh/voronoi). Additional
-information about the voronoi layout + diagram can be found in the
+For more advanced usage with events, see [this example](https://visx-demo.now.sh/voronoi).
+Additional information about the voronoi layout + diagram can be found in the
 [d3-voronoi documentation](https://github.com/d3/d3-voronoi).
