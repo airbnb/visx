@@ -1,7 +1,7 @@
 {
-  "name": "@vx/xychart",
-  "version": "0.0.199",
-  "description": "Composable cartesian coordinate chart built with vx primitives",
+  "name": "@visx/xychart",
+  "version": "0.0.0",
+  "description": "Composable cartesian coordinate chart built with visx primitives",
   "sideEffects": false,
   "private": true,
   "main": "lib/index.js",
@@ -13,10 +13,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hshoff/vx.git"
+    "url": "git+https://github.com/airbnb/visx.git"
   },
   "keywords": [
-    "vx",
+    "visx",
     "react",
     "d3",
     "visualizations",
@@ -30,9 +30,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/hshoff/vx/issues"
+    "url": "https://github.com/airbnb/visx/issues"
   },
-  "homepage": "https://github.com/hshoff/vx#readme",
+  "homepage": "https://github.com/airbnb/visx#readme",
   "publishConfig": {
     "access": "public"
   },
@@ -42,13 +42,13 @@
   "dependencies": {
     "@types/classnames": "^2.2.9",
     "@types/react": "*",
-    "@vx/axis": "0.0.199",
-    "@vx/grid": "0.0.199",
-    "@vx/react-spring": "0.0.199",
-    "@vx/responsive": "0.0.199",
-    "@vx/scale": "0.0.199",
-    "@vx/shape": "0.0.199",
-    "@vx/text": "0.0.199",
+    "@visx/axis": "0.0.199",
+    "@visx/grid": "0.0.199",
+    "@visx/react-spring": "0.0.199",
+    "@visx/responsive": "0.0.199",
+    "@visx/scale": "0.0.199",
+    "@visx/shape": "0.0.199",
+    "@visx/text": "0.0.199",
     "d3-array": "2.6.0",
     "classnames": "^2.2.5",
     "prop-types": "^15.6.2"
