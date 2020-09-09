@@ -71,7 +71,7 @@ export type BarGroupProps<
  * });
  * ```
  *
- * Example: [https://visx-demo.now.sh/bargroup](https://visx-demo.now.sh/bargroup)
+ * Example: [https://airbnb.io/visx/bargroup](https://airbnb.io/visx/bargroup)
  */
 export default function BarGroupComponent<
   Datum extends DatumObject,

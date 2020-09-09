@@ -5,7 +5,7 @@
 </a>
 
 Glyphs are small marks or symbols that you can use in your charts. Example:
-[https://visx-demo.now.sh/glyphs](https://visx-demo.now.sh/glyphs)
+[https://airbnb.io/visx/glyphs](https://airbnb.io/visx/glyphs)
 
 ## Installation
 

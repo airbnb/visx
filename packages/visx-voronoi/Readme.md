@@ -63,6 +63,6 @@ return (
 )
 ```
 
-For more advanced usage with events, see [this example](https://visx-demo.now.sh/voronoi).
-Additional information about the voronoi layout + diagram can be found in the
+For more advanced usage with events, see [this example](https://airbnb.io/visx/voronoi). Additional
+information about the voronoi layout + diagram can be found in the
 [d3-voronoi documentation](https://github.com/d3/d3-voronoi).
