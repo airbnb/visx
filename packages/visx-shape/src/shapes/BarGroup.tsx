@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
-import { Group } from '@vx/group';
-import { ScaleInput } from '@vx/scale';
+import { Group } from '@visx/group';
+import { ScaleInput } from '@visx/scale';
 import Bar from './Bar';
 import {
   PositionScale,
@@ -23,11 +23,11 @@ export type BarGroupProps<
 > = BaseBarGroupProps<Datum, Key> & {
   /** Returns the value mapped to the x0 (group position) of a bar */
   x0: Accessor<Datum, ScaleInput<X0Scale>>;
-  /** @vx/scale or d3-scale that takes an x0 value (position of group) and maps it to an x0 axis position of the group. */
+  /** @visx/scale or d3-scale that takes an x0 value (position of group) and maps it to an x0 axis position of the group. */
   x0Scale: X0Scale;
-  /** @vx/scale or d3-scale that takes a group key and maps it to an x axis position (within a group). */
+  /** @visx/scale or d3-scale that takes a group key and maps it to an x axis position (within a group). */
   x1Scale: X1Scale;
-  /** @vx/scale or d3-scale that takes an y value (Datum[key]) and maps it to a y axis position. */
+  /** @visx/scale or d3-scale that takes an y value (Datum[key]) and maps it to a y axis position. */
   yScale: PositionScale;
   /** Total height of the y-axis. */
   height: number;
@@ -71,7 +71,7 @@ export type BarGroupProps<
  * });
  * ```
  *
- * Example: [https://vx-demo.now.sh/bargroup](https://vx-demo.now.sh/bargroup)
+ * Example: [https://visx-demo.now.sh/bargroup](https://visx-demo.now.sh/bargroup)
  */
 export default function BarGroupComponent<
   Datum extends DatumObject,
@@ -117,7 +117,7 @@ export default function BarGroupComponent<
   if (children) return <>{children(barGroups)}</>;
 
   return (
-    <Group className={cx('vx-bar-group', className)} top={top} left={left}>
+    <Group className={cx('visx-bar-group', className)} top={top} left={left}>
       {barGroups.map(barGroup => (
         <Group key={`bar-group-${barGroup.index}-${barGroup.x0}`} left={barGroup.x0}>
           {barGroup.bars.map(bar => (

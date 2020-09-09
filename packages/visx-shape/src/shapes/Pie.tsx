@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { Group } from '@vx/group';
+import { Group } from '@visx/group';
 import { Arc as ArcType, PieArcDatum as PieArcDatumType, Pie as PieType } from 'd3-shape';
 import { $TSFIXME, AddSVGProps, ArcPathConfig, PiePathConfig } from '../types';
 import { arc as arcPath, pie as piePath } from '../util/D3ShapeFactories';
@@ -79,10 +79,10 @@ export default function Pie<Datum>({
   if (children) return <>{children({ arcs, path, pie })}</>;
 
   return (
-    <Group className="vx-pie-arcs-group" top={top} left={left}>
+    <Group className="visx-pie-arcs-group" top={top} left={left}>
       {arcs.map((arc, i) => (
         <g key={`pie-arc-${i}`}>
-          <path className={cx('vx-pie-arc', className)} d={path(arc) || ''} {...restProps} />
+          <path className={cx('visx-pie-arc', className)} d={path(arc) || ''} {...restProps} />
           {centroid?.(path.centroid(arc), arc)}
         </g>
       ))}

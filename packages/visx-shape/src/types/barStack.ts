@@ -43,9 +43,9 @@ export type BaseBarStackProps<
   XScale extends PositionScale = PositionScale,
   YScale extends PositionScale = PositionScale
 > = BaseStackProps<Datum, Key> & {
-  /** @vx/scale or d3-scale that takes an x value and maps it to an x axis position. */
+  /** @visx/scale or d3-scale that takes an x value and maps it to an x axis position. */
   xScale: XScale;
-  /** @vx/scale or d3-scale that takes a y value and maps it to an y axis position. */
+  /** @visx/scale or d3-scale that takes a y value and maps it to an y axis position. */
   yScale: YScale;
   /** Returns the desired color for a bar with a given key and index. */
   color: (key: Key, index: number) => string;

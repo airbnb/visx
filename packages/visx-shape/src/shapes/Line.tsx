@@ -31,7 +31,7 @@ export default function Line({
   return (
     <line
       ref={innerRef}
-      className={cx('vx-line', className)}
+      className={cx('visx-line', className)}
       x1={from.x}
       y1={from.y}
       x2={to.x}

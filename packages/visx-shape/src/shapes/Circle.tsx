@@ -14,5 +14,5 @@ export default function Circle({
   innerRef,
   ...restProps
 }: AddSVGProps<CircleProps, SVGCircleElement>) {
-  return <circle ref={innerRef} className={cx('vx-circle', className)} {...restProps} />;
+  return <circle ref={innerRef} className={cx('visx-circle', className)} {...restProps} />;
 }

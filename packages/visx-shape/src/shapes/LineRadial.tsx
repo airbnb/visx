@@ -36,7 +36,7 @@ export default function LineRadial<Datum>({
   return (
     <path
       ref={innerRef}
-      className={cx('vx-line-radial', className)}
+      className={cx('visx-line-radial', className)}
       d={path(data) || ''}
       fill={fill}
       {...restProps}

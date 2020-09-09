@@ -41,7 +41,7 @@ export default function AreaClosed<Datum>({
   return (
     <path
       ref={innerRef}
-      className={cx('vx-area-closed', className)}
+      className={cx('visx-area-closed', className)}
       d={path(data) || ''}
       {...restProps}
     />

@@ -88,8 +88,8 @@ describe('<Pie />', () => {
     expect(() => PieWrapper({ pieSortValues: 12 })).toThrow();
   });
 
-  test('it should have the .vx-pie-arcs-group class', () => {
-    expect(PieWrapper().prop('className')).toBe('vx-pie-arcs-group');
+  test('it should have the .visx-pie-arcs-group class', () => {
+    expect(PieWrapper().prop('className')).toBe('visx-pie-arcs-group');
   });
 
   test('it should contain paths', () => {

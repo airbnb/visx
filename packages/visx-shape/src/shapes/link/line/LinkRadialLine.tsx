@@ -51,7 +51,7 @@ export default function LinkRadialLine<Link, Node>({
   return (
     <path
       ref={innerRef}
-      className={cx('vx-link vx-link-radial-line', className)}
+      className={cx('visx-link visx-link-radial-line', className)}
       d={pathGen(data) || ''}
       {...restProps}
     />

@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
-import { Group } from '@vx/group';
-import { ScaleInput } from '@vx/scale';
+import { Group } from '@visx/group';
+import { ScaleInput } from '@visx/scale';
 import Bar from './Bar';
 import {
   PositionScale,
@@ -25,11 +25,11 @@ export type BarGroupHorizontalProps<
   x?: (barValue: number) => number;
   /** Returns the value mapped to the y0 (position of group) of a bar */
   y0: Accessor<Datum, ScaleInput<Y0Scale>>;
-  /** @vx/scale or d3-scale that takes a key value (Datum[key]) and maps it to an x axis position (width of bar). */
+  /** @visx/scale or d3-scale that takes a key value (Datum[key]) and maps it to an x axis position (width of bar). */
   xScale: PositionScale;
-  /** @vx/scale or d3-scale that takes a y0 value (position of group) and maps it to a y axis position. */
+  /** @visx/scale or d3-scale that takes a y0 value (position of group) and maps it to a y axis position. */
   y0Scale: Y0Scale;
-  /** @vx/scale or d3-scale that takes a group key and maps it to an y axis position (within a group). */
+  /** @visx/scale or d3-scale that takes a group key and maps it to an y axis position (within a group). */
   y1Scale: Y1Scale;
   /** Total width of the x-axis. */
   width: number;
@@ -82,7 +82,7 @@ export default function BarGroupHorizontalComponent<
   if (children) return <>{children(barGroups)}</>;
 
   return (
-    <Group className={cx('vx-bar-group-horizontal', className)} top={top} left={left}>
+    <Group className={cx('visx-bar-group-horizontal', className)} top={top} left={left}>
       {barGroups.map(barGroup => (
         <Group key={`bar-group-${barGroup.index}-${barGroup.y0}`} top={barGroup.y0}>
           {barGroup.bars.map(bar => (

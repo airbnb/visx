@@ -10,12 +10,12 @@ describe('<Circle />', () => {
     expect(Circle).toBeDefined();
   });
 
-  test('it should have the .vx-circle class', () => {
+  test('it should have the .visx-circle class', () => {
     expect(
       CircleWrapper({
         className: 'test',
       }).prop('className'),
-    ).toBe('vx-circle test');
+    ).toBe('visx-circle test');
   });
 
   test('it should expose its ref via an innerRef prop', () => {

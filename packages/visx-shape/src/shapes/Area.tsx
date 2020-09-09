@@ -24,6 +24,11 @@ export default function Area<Datum>({
   // eslint-disable-next-line react/jsx-no-useless-fragment
   if (children) return <>{children({ path })}</>;
   return (
-    <path ref={innerRef} className={cx('vx-area', className)} d={path(data) || ''} {...restProps} />
+    <path
+      ref={innerRef}
+      className={cx('visx-area', className)}
+      d={path(data) || ''}
+      {...restProps}
+    />
   );
 }

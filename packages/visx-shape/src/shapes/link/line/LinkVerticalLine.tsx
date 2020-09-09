@@ -46,7 +46,7 @@ export default function LinkVerticalLine<Link, Node>({
   return (
     <path
       ref={innerRef}
-      className={cx('vx-link vx-link-vertical-line', className)}
+      className={cx('visx-link visx-link-vertical-line', className)}
       d={pathGen(data) || ''}
       {...restProps}
     />

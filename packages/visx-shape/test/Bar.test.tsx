@@ -10,12 +10,12 @@ describe('<Bar />', () => {
     expect(Bar).toBeDefined();
   });
 
-  test('it should have the .vx-bar class', () => {
+  test('it should have the .visx-bar class', () => {
     expect(
       BarWrapper({
         className: 'test',
       }).prop('className'),
-    ).toBe('vx-bar test');
+    ).toBe('visx-bar test');
   });
 
   test('it should expose its ref via an innerRef prop', () => {

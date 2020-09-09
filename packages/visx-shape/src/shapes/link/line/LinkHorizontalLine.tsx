@@ -46,7 +46,7 @@ export default function LinkHorizontalLine<Link, Node>({
   return (
     <path
       ref={innerRef}
-      className={cx('vx-link vx-link-horizontal-line', className)}
+      className={cx('visx-link visx-link-horizontal-line', className)}
       d={pathGen(data) || ''}
       {...restProps}
     />

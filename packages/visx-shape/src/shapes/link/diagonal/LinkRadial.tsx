@@ -43,7 +43,7 @@ export default function LinkRadialDiagonal<Link, Node>({
   return (
     <path
       ref={innerRef}
-      className={cx('vx-link vx-link-radial-diagonal', className)}
+      className={cx('visx-link visx-link-radial-diagonal', className)}
       d={pathGen(data) || ''}
       {...restProps}
     />

@@ -11,12 +11,12 @@ describe('<BarRounded />', () => {
     expect(BarRounded).toBeDefined();
   });
 
-  test('it should have the .vx-bar class', () => {
+  test('it should have the .visx-bar class', () => {
     expect(
       BarRoundedWrapper({
         className: 'test',
       }).prop('className'),
-    ).toBe('vx-bar-rounded test');
+    ).toBe('visx-bar-rounded test');
   });
 
   test('it should expose its ref via an innerRef prop', () => {

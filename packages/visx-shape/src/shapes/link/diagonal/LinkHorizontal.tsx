@@ -40,7 +40,7 @@ export default function LinkHorizontalDiagonal<Link, Node>({
   return (
     <path
       ref={innerRef}
-      className={cx('vx-link vx-link-horizontal-diagonal', className)}
+      className={cx('visx-link visx-link-horizontal-diagonal', className)}
       d={pathGen(data) || ''}
       {...restProps}
     />

@@ -1,8 +1,8 @@
 import React from 'react';
 import cx from 'classnames';
 import { stack as d3stack, SeriesPoint } from 'd3-shape';
-import { Group } from '@vx/group';
-import { ScaleInput } from '@vx/scale';
+import { Group } from '@visx/group';
+import { ScaleInput } from '@visx/scale';
 import { AddSVGProps, PositionScale, BaseBarStackProps, StackKey, Accessor } from '../types';
 import { getFirstItem, getSecondItem } from '../util/accessors';
 import getBandwidth from '../util/getBandwidth';
@@ -87,7 +87,7 @@ export default function BarStackHorizontal<
   if (children) return <>{children(barStacks)}</>;
 
   return (
-    <Group className={cx('vx-bar-stack-horizontal', className)} top={top} left={left}>
+    <Group className={cx('visx-bar-stack-horizontal', className)} top={top} left={left}>
       {barStacks.map(barStack =>
         barStack.bars.map(bar => (
           <Bar

@@ -1,4 +1,4 @@
-import { scaleBand, scalePoint, scaleOrdinal } from '@vx/scale';
+import { scaleBand, scalePoint, scaleOrdinal } from '@visx/scale';
 import getBandwidth from '../../src/util/getBandwidth';
 
 describe('getBandwidth()', () => {

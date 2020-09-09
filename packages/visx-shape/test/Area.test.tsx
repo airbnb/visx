@@ -34,9 +34,9 @@ describe('<Area />', () => {
     expect(Area).toBeDefined();
   });
 
-  test('it should have the .vx-area class', () => {
+  test('it should have the .visx-area class', () => {
     const wrapper = shallow(<Area data={fakeData} x={x} y={y} />);
-    expect(wrapper.find('path').prop('className')).toBe('vx-area');
+    expect(wrapper.find('path').prop('className')).toBe('visx-area');
   });
 
   test('it should expose its ref via an innerRef prop', () => {

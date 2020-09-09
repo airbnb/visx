@@ -1,6 +1,6 @@
 import memoize from 'lodash/memoize';
 
-const MEASUREMENT_ELEMENT_ID = '__vx_splitpath_svg_path_measurement_id';
+const MEASUREMENT_ELEMENT_ID = '__visx_splitpath_svg_path_measurement_id';
 const SVG_NAMESPACE_URL = 'http://www.w3.org/2000/svg';
 
 export interface GetLineSegmentsConfig<Datum> {

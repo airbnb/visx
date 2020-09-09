@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { scaleBand, scaleLinear } from '@vx/scale';
+import { scaleBand, scaleLinear } from '@visx/scale';
 import { BarGroupHorizontal } from '../src';
 import { BarGroupHorizontalProps } from '../lib/shapes/BarGroupHorizontal';
 
@@ -72,14 +72,14 @@ describe('<BarGroupHorizontal />', () => {
     expect(BarGroupHorizontal).toBeDefined();
   });
 
-  test('it should have className .vx-bar-group', () => {
+  test('it should have className .visx-bar-group', () => {
     const wrapper = BarGroupWrapper();
-    expect(wrapper.prop('className')).toEqual('vx-bar-group-horizontal');
+    expect(wrapper.prop('className')).toEqual('visx-bar-group-horizontal');
   });
 
   test('it should set className prop', () => {
     const wrapper = BarGroupWrapper({ className: 'test' });
-    expect(wrapper.prop('className')).toEqual('vx-bar-group-horizontal test');
+    expect(wrapper.prop('className')).toEqual('visx-bar-group-horizontal test');
   });
 
   test('it should set top & left props', () => {

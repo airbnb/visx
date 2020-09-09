@@ -14,8 +14,8 @@ describe('<Line />', () => {
     expect(LineWrapper().find('line')).toHaveLength(1);
   });
 
-  test('it should have the .vx-line class', () => {
-    expect(LineWrapper().prop('className')).toBe('vx-line');
+  test('it should have the .visx-line class', () => {
+    expect(LineWrapper().prop('className')).toBe('visx-line');
   });
 
   test('it should expose its ref via an innerRef prop', () => {

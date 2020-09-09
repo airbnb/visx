@@ -78,6 +78,6 @@ z`
     .join('');
 
   return (
-    <path ref={innerRef} className={cx('vx-bar-rounded', className)} d={path} {...restProps} />
+    <path ref={innerRef} className={cx('visx-bar-rounded', className)} d={path} {...restProps} />
   );
 }

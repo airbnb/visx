@@ -44,6 +44,11 @@ export default function Arc<Datum>({
   if (!data) return null;
 
   return (
-    <path ref={innerRef} className={cx('vx-arc', className)} d={path(data) || ''} {...restProps} />
+    <path
+      ref={innerRef}
+      className={cx('visx-arc', className)}
+      d={path(data) || ''}
+      {...restProps}
+    />
   );
 }

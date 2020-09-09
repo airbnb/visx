@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 
-import { scaleLinear } from '@vx/scale';
+import { scaleLinear } from '@visx/scale';
 import { AreaClosed } from '../src';
 import { AreaClosedProps } from '../src/shapes/AreaClosed';
 
@@ -36,8 +36,8 @@ describe('<AreaClosed />', () => {
     expect(AreaClosed).toBeDefined();
   });
 
-  test('it should have the .vx-area-closed class', () => {
-    expect(AreaClosedWrapper().prop('className')).toBe('vx-area-closed');
+  test('it should have the .visx-area-closed class', () => {
+    expect(AreaClosedWrapper().prop('className')).toBe('visx-area-closed');
   });
 
   test('it should expose its ref via an innerRef prop', () => {

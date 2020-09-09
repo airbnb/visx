@@ -80,7 +80,7 @@ export default function Polygon({
   return (
     <polygon
       ref={innerRef}
-      className={cx('vx-polygon', className)}
+      className={cx('visx-polygon', className)}
       points={points.join(' ')}
       {...restProps}
     />

@@ -53,7 +53,7 @@ export default function LinkVerticalStep<Link, Node>({
   return (
     <path
       ref={innerRef}
-      className={cx('vx-link vx-link-vertical-step', className)}
+      className={cx('visx-link visx-link-vertical-step', className)}
       d={pathGen(data) || ''}
       {...restProps}
     />

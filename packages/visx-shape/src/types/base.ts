@@ -1,4 +1,4 @@
-import { D3Scale, PickD3Scale } from '@vx/scale';
+import { D3Scale, PickD3Scale } from '@visx/scale';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type $TSFIXME = any;

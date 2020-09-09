@@ -27,8 +27,8 @@ describe('<LinePath />', () => {
     expect(LinePath).toBeDefined();
   });
 
-  test('it should have the .vx-linepath class', () => {
-    expect(LinePathWrapper(linePathProps).prop('className')).toBe('vx-linepath');
+  test('it should have the .visx-linepath class', () => {
+    expect(LinePathWrapper(linePathProps).prop('className')).toBe('visx-linepath');
   });
 
   test('it should contain paths', () => {

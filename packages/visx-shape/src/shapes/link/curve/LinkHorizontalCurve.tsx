@@ -56,7 +56,7 @@ export default function LinkHorizontalCurve<Link, Node>({
   return (
     <path
       ref={innerRef}
-      className={cx('vx-link vx-link-horizontal-curve', className)}
+      className={cx('visx-link visx-link-horizontal-curve', className)}
       d={pathGen(data) || ''}
       {...restProps}
     />

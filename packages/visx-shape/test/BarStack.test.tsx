@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { scaleBand } from '@vx/scale';
+import { scaleBand } from '@visx/scale';
 import { BarStack } from '../src';
 
 const scale = scaleBand({
@@ -13,7 +13,7 @@ describe('<BarStack />', () => {
     expect(BarStack).toBeDefined();
   });
 
-  test('it should have className .vx-bar-stack', () => {
+  test('it should have className .visx-bar-stack', () => {
     const wrapper = shallow(
       <BarStack
         data={[]}
@@ -26,7 +26,7 @@ describe('<BarStack />', () => {
         keys={[]}
       />,
     );
-    expect(wrapper.prop('className')).toEqual('vx-bar-stack');
+    expect(wrapper.prop('className')).toEqual('visx-bar-stack');
   });
 
   test('it should set className prop', () => {
@@ -43,7 +43,7 @@ describe('<BarStack />', () => {
         keys={[]}
       />,
     );
-    expect(wrapper.prop('className')).toEqual('vx-bar-stack test');
+    expect(wrapper.prop('className')).toEqual('visx-bar-stack test');
   });
 
   test('it should set top & left props', () => {

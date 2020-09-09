@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { Group } from '@vx/group';
+import { Group } from '@visx/group';
 import { Area as AreaType, Stack as StackType, SeriesPoint, Series } from 'd3-shape';
 import {
   $TSFIXME,
@@ -73,7 +73,7 @@ export default function Stack<Datum, Key extends StackKey = StackKey>({
     <Group top={top} left={left}>
       {stacks.map((series, i) => (
         <path
-          className={cx('vx-stack', className)}
+          className={cx('visx-stack', className)}
           key={`stack-${i}-${series.key || ''}`}
           d={path(series) || ''}
           fill={color?.(series.key, i)}

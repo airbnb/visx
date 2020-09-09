@@ -35,7 +35,7 @@ export default function LinePath<Datum>({
   return (
     <path
       ref={innerRef}
-      className={cx('vx-linepath', className)}
+      className={cx('visx-linepath', className)}
       d={path(data) || ''}
       fill={fill}
       {...restProps}

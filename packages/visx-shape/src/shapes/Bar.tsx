@@ -14,5 +14,5 @@ export default function Bar({
   innerRef,
   ...restProps
 }: AddSVGProps<BarProps, SVGRectElement>) {
-  return <rect ref={innerRef} className={cx('vx-bar', className)} {...restProps} />;
+  return <rect ref={innerRef} className={cx('visx-bar', className)} {...restProps} />;
 }

@@ -59,7 +59,7 @@ export default function LinkRadialStep<Link, Node>({
   return (
     <path
       ref={innerRef}
-      className={cx('vx-link vx-link-radial-step', className)}
+      className={cx('visx-link visx-link-radial-step', className)}
       d={pathGen(data) || ''}
       {...restProps}
     />

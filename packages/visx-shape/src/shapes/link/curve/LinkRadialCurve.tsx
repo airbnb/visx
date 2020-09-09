@@ -66,7 +66,7 @@ export default function LinkRadialCurve<Link, Node>({
   return (
     <path
       ref={innerRef}
-      className={cx('vx-link vx-link-radial-curve', className)}
+      className={cx('visx-link visx-link-radial-curve', className)}
       d={pathGen(data) || ''}
       {...restProps}
     />

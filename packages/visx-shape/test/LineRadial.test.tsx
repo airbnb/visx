@@ -27,8 +27,8 @@ describe('<LineRadial />', () => {
     expect(LineRadial).toBeDefined();
   });
 
-  test('it should have the .vx-line-radial class', () => {
-    expect(LineRadialWrapper(mockProps).prop('className')).toBe('vx-line-radial');
+  test('it should have the .visx-line-radial class', () => {
+    expect(LineRadialWrapper(mockProps).prop('className')).toBe('visx-line-radial');
   });
 
   test('it should contain paths', () => {

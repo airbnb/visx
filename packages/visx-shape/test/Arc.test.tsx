@@ -36,8 +36,8 @@ describe('<Arc />', () => {
     expect(Arc).toBeDefined();
   });
 
-  test('it should have the .vx-arcs-group class', () => {
-    expect(ArcWrapper().prop('className')).toBe('vx-arc');
+  test('it should have the .visx-arcs-group class', () => {
+    expect(ArcWrapper().prop('className')).toBe('visx-arc');
   });
 
   test('it should contain paths', () => {

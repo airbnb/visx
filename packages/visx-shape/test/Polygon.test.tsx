@@ -26,7 +26,7 @@ describe('<Polygon />', () => {
 
   it('should add classname', () => {
     const wrapper = PolygonWrapper({ sides: 6, size: 25, className: 'a-polygon' });
-    expect(wrapper.prop('className')).toBe('vx-polygon a-polygon');
+    expect(wrapper.prop('className')).toBe('visx-polygon a-polygon');
   });
 
   it('should add onClick handler', () => {
