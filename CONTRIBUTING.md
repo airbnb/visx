@@ -5,23 +5,23 @@ Contributions welcome! Please follow the [code of conduct](./CODE_OF_CONDUCT.md)
 ## Overview
 
 [Yarn workspaces](https://yarnpkg.com/lang/en/docs/workspaces/) are used to manage dependencies and
-build config across packages in the umbrella `vx` monorepo, and
+build config across packages in the umbrella `visx` monorepo, and
 [lerna](https://github.com/lerna/lerna/) is used to manage versioning.
 
 ## Project structure
 
 ```
-vx/
+visx/
   lerna.json
   package.json
   packages/
-    vx-package-1/
+    visx-package-1/
       src/
       test/
       build/
       package.json
       ...
-    vx-package-2/
+    visx-package-2/
       ...
     ...
 ```
@@ -34,11 +34,11 @@ Run the following to setup your local dev environment:
 # Install `yarn`, alternatives at https://yarnpkg.com/en/docs/install
 curl -o- -L https://yarnpkg.com/install.sh | bash
 
-# Clone or fork `vx`
-git clone git@github.com:hshoff/vx.git # or your fork
-cd vx
+# Clone or fork `visx`
+git clone git@github.com:airbnb/visx.git # or your fork
+cd visx
 
-# install dependencies, and have `yarn` symlink within-`vx` dependencies
+# install dependencies, and have `yarn` symlink within-`visx` dependencies
 yarn
 
 # build packages and generate types for local development
@@ -51,25 +51,25 @@ Upon modification of a single `package` you can run
 
 ```sh
 # build the package as cjs version
-yarn build-one --workspaces=@vx/package
+yarn build-one --workspaces=@visx/package
 
-# build the esm version (the @vx/demo next server sources these files)
-yarn build-one --workspaces=@vx/package --esm
+# build the esm version (the @visx/demo next server sources these files)
+yarn build-one --workspaces=@visx/package --esm
 
 # generate d.ts(definition files) for a lib
-yarn type-one --workspaces=@vx/package --esm
+yarn type-one --workspaces=@visx/package --esm
 ```
 
-from the `vx` monorepo root to re-build the package with your changes.
+from the `visx` monorepo root to re-build the package with your changes.
 
 #### Running demo pages
 
-You can use the local [`next.js`](https://nextjs.org) dev server within `packages/vx-demo` to view
-and iterate on your changes in the gallery. From the `packages/vx-demo` folder run `yarn dev` to
+You can use the local [`next.js`](https://nextjs.org) dev server within `packages/visx-demo` to view
+and iterate on your changes in the gallery. From the `packages/visx-demo` folder run `yarn dev` to
 start the next server which (if correctly sym-linked) will also watch for changes you make to other
 packages (upon re-building them).
 
 #### Config generation
 
-`vx` uses [`@airbnb/nimbus`](https://github.com/airbnb/nimbus) to generate build configuration for
+`visx` uses [`@airbnb/nimbus`](https://github.com/airbnb/nimbus) to generate build configuration for
 `eslint`, `prettier`, `jest`, `babel`, and `typescript`.
