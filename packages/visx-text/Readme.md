@@ -1,10 +1,10 @@
-# @vx/text
+# @visx/text
 
-<a title="@vx/text npm downloads" href="https://www.npmjs.com/package/@vx/text">
-  <img src="https://img.shields.io/npm/dm/@vx/text.svg?style=flat-square" />
+<a title="@visx/text npm downloads" href="https://www.npmjs.com/package/@visx/text">
+  <img src="https://img.shields.io/npm/dm/@visx/text.svg?style=flat-square" />
 </a>
 
-The `@vx/text` provides a better SVG `<Text>` component with the following features
+The `@visx/text` provides a better SVG `<Text>` component with the following features
 
 - Word-wrapping (when `width` prop is defined)
 - Vertical alignment (`verticalAnchor` prop)
@@ -21,7 +21,7 @@ you'd expect.
 ```jsx
 import React from 'react';
 import { render } from 'react-dom';
-import { Text } from '@vx/text';
+import { Text } from '@visx/text';
 
 const App = () => (
   <svg>
@@ -35,5 +35,5 @@ render(<App />, document.getElementById('root'));
 ## Installation
 
 ```
-npm install --save @vx/text
+npm install --save @visx/text
 ```
