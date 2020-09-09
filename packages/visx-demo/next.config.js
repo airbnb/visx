@@ -31,7 +31,7 @@ module.exports = {
     });
 
     const babelConfig = config.module.rules[0];
-    babelConfig.include.push(/vx-.*\/src/);
+    babelConfig.include.push(/visx-.*\/src/);
 
     return config;
   },

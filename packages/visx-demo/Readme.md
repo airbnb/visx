@@ -1,10 +1,9 @@
-# @vx/demo
+# @visx/demo
 
-<a href="https://vx-demo.now.sh/gallery">https://vx-demo.now.sh/gallery</a>
+<a href="https://airbnb.io/visx/gallery">https://airbnb.io/visx/gallery</a>
 
 <p align="center">
-  <a href="https://vx-demo.now.sh/gallery">
-    <img width="578" height="770" src="/static/vx-gallery.png" />
+  <a href="https://airbnb.io/visx/gallery">
+    <img width="578" height="770" src="/public/static/visx-gallery.png" />
   </a>
 </p>
-
