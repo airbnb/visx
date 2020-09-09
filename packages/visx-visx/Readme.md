@@ -1,13 +1,13 @@
-# @vx/vx
+# @visx/visx
 
-<a title="@vx/vx npm downloads" href="https://www.npmjs.com/package/@vx/vx">
-  <img src="https://img.shields.io/npm/dm/@vx/vx.svg?style=flat-square" />
+<a title="@visx/visx npm downloads" href="https://www.npmjs.com/package/@visx/visx">
+  <img src="https://img.shields.io/npm/dm/@visx/visx.svg?style=flat-square" />
 </a>
 
-The one stop install for all `vx` packages.
+The one stop install for all `visx` packages.
 
 ## Installation
 
 ```
-npm install --save @vx/vx
+npm install --save @visx/visx
 ```
