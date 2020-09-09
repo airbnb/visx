@@ -1,16 +1,16 @@
-# @vx/tooltip
+# @visx/tooltip
 
-<a title="@vx/tooltip npm downloads" href="https://www.npmjs.com/package/@vx/tooltip">
-  <img src="https://img.shields.io/npm/dm/@vx/tooltip.svg?style=flat-square" />
+<a title="@visx/tooltip npm downloads" href="https://www.npmjs.com/package/@visx/tooltip">
+  <img src="https://img.shields.io/npm/dm/@visx/tooltip.svg?style=flat-square" />
 </a>
 
-The `@vx/tooltip` package provides utilities for making it easy to add `Tooltip`s to a visualization
-and includes hooks, higher-order component (HOC) enhancers, and Tooltip components.
+The `@visx/tooltip` package provides utilities for making it easy to add `Tooltip`s to a
+visualization and includes hooks, higher-order component (HOC) enhancers, and Tooltip components.
 
 ### Installation
 
 ```
-npm install --save @vx/tooltip
+npm install --save @visx/tooltip
 ```
 
 ### Hooks and Enhancers
@@ -75,7 +75,7 @@ accepts the following props, and will spread any additional props on the tooltip
 | :-------- | :--------------- | :------ | :---------------------------------------------------------------------------- |
 | left      | number or string | --      | Sets style.left of the tooltip container                                      |
 | top       | number or string | --      | Sets style.top of the tooltip container                                       |
-| className | string           | --      | Adds a class (in addition to `vx-tooltip-portal`) to the tooltip container    |
+| className | string           | --      | Adds a class (in addition to `visx-tooltip-portal`) to the tooltip container  |
 | style     | object           | --      | Sets / overrides any styles on the tooltip container (including top and left) |
 | children  | node             | --      | Sets the children of the tooltip, i.e., the actual content                    |
 | unstyled  | bool             | true    | Whether the tooltip should use styles from the style prop or not              |
@@ -180,8 +180,8 @@ const pageY = containerY + containerBoundingBox.top + window.scrollTop;
 #### useTooltip and useTooltipInPortal For Functional Components
 
 ```jsx
-import { useTooltip, useTooltipInPortal, TooltipWithBounds } from '@vx/tooltip';
-import { localPoint } from '@vx/event';
+import { useTooltip, useTooltipInPortal, TooltipWithBounds } from '@visx/tooltip';
+import { localPoint } from '@visx/event';
 
 const ChartWithTooltip = () => {
   const {
@@ -243,8 +243,8 @@ render(<ChartWithTooltip />, document.getElementById("root"));
 #### withTooltip For Class Components
 
 ```js
-import { withTooltip, TooltipWithBounds } from '@vx/tooltip';
-import { localPoint } from '@vx/event';
+import { withTooltip, TooltipWithBounds } from '@visx/tooltip';
+import { localPoint } from '@visx/event';
 
 class Chart extends React.Component {
   handleMouseOver = (event, datum) => {

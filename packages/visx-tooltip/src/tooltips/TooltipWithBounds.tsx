@@ -1,5 +1,5 @@
 import React from 'react';
-import { withBoundingRects, WithBoundingRectsProps } from '@vx/bounds';
+import { withBoundingRects, WithBoundingRectsProps } from '@visx/bounds';
 
 import Tooltip, { TooltipProps, defaultStyles } from './Tooltip';
 

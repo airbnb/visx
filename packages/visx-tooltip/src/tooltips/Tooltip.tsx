@@ -37,7 +37,7 @@ export default function Tooltip({
 }: TooltipProps & React.HTMLProps<HTMLDivElement>) {
   return (
     <div
-      className={cx('vx-tooltip-portal', className)}
+      className={cx('visx-tooltip', className)}
       style={{
         top: top == null || offsetTop == null ? top : top + offsetTop,
         left: left == null || offsetLeft == null ? left : left + offsetLeft,
