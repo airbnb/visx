@@ -34,7 +34,7 @@ describe('<Threshold />', () => {
         />
       </svg>,
     );
-    expect(wrapper.find('g.vx-threshold')).toHaveLength(1);
+    expect(wrapper.find('g.visx-threshold')).toHaveLength(1);
     expect(wrapper.find('path')).toHaveLength(4);
   });
 
@@ -60,7 +60,7 @@ describe('<Threshold />', () => {
         />
       </svg>,
     );
-    expect(wrapper.find('g.vx-threshold')).toHaveLength(1);
+    expect(wrapper.find('g.visx-threshold')).toHaveLength(1);
     expect(wrapper.find('path')).toHaveLength(4);
   });
 });

@@ -1,8 +1,8 @@
 import React from 'react';
 import cx from 'classnames';
-import { Area } from '@vx/shape';
-import { AreaProps as AreaOwnProps } from '@vx/shape/lib/shapes/Area';
-import { ClipPath } from '@vx/clip-path';
+import { Area } from '@visx/shape';
+import { AreaProps as AreaOwnProps } from '@visx/shape/lib/shapes/Area';
+import { ClipPath } from '@visx/clip-path';
 
 type AreaProps<Datum> = AreaOwnProps<Datum> &
   Omit<React.SVGProps<SVGPathElement>, keyof AreaOwnProps<Datum>>;
@@ -12,7 +12,7 @@ type NumberAccessor<Datum> = (datum: Datum, index: number, data: Datum[]) => num
 export type ThresholdProps<Datum> = {
   /** className applied to container g element. */
   className?: string;
-  /** Sets the curve factory (from @vx/curve or d3-curve) for the area generator. Defaults to curveLinear. */
+  /** Sets the curve factory (from @visx/curve or d3-curve) for the area generator. Defaults to curveLinear. */
   curve?: AreaProps<Datum>['curve'];
   /** Specifies a constant value, or an accessor called per datum, above which the *upper area* is clipped. */
   clipAboveTo: NumberAccessor<Datum> | number;
@@ -63,7 +63,7 @@ export default function Threshold<Datum>({
   id = '',
 }: ThresholdProps<Datum>) {
   return (
-    <g className={cx('vx-threshold', className)}>
+    <g className={cx('visx-threshold', className)}>
       <Area<Datum> curve={curve} data={data} x={x} y1={y1} defined={defined}>
         {({ path }) => {
           // TS cannot infer the correct method overload
