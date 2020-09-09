@@ -94,22 +94,17 @@
 
 ### :boom:  Breaking Changes
 
-- [scale] Deprecate `rangeRound` field in the input of `scaleLinear()`, `scaleLog()`, `scalePoint()`, `scalePower()`, `scaleSqrt()`, `scaleTime()` and `scaleUtc()`.
-
-Instead of
-
-```ts
-scaleLinear({ rangeRound: xxx })
-```
-
-Do this instead
-
-```ts
-scaleLinear({ range: xxx, round: true });
-```
-
-- [scale] Deprecate `ticks` and `tickFormat` in the input of `scaleQuantize()`. It was not really doing anything anyway as both `scale.ticks()` and `scale.tickFormat()` do not mutate the scale.
-- [scale] Remove `scale.type` field that was attached to the d3 scales.
+- [scale] Deprecate `rangeRound` field in the input of `scaleLinear()`, `scaleLog()`, `scalePoint()`, `scalePower()`, `scaleSqrt()`, `scaleTime()` and `scaleUtc()`. [#766](https://github.com/hshoff/vx/pull/766)
+    Instead of
+    ```ts
+    scaleLinear({ rangeRound: xxx })
+    ```
+    Do this instead
+    ```ts
+    scaleLinear({ range: xxx, round: true });
+    ```
+- [scale] Deprecate `ticks` and `tickFormat` in the input of `scaleQuantize()`. It was not really doing anything anyway as both `scale.ticks()` and `scale.tickFormat()` do not mutate the scale. [#766](https://github.com/hshoff/vx/pull/766)
+- [scale] Remove `scale.type` field that was attached to the d3 scales. [#766](https://github.com/hshoff/vx/pull/766)
 - [grid] `@vx/grid` components now accept D3 Scale as generic type instead of `ScaleInput`. Developers should not expect to specify this generic type as it can be inferred from the passed scale. [#775](https://github.com/hshoff/vx/pull/775)
 - [grid] Renames `GridColumnProps` => `GridColumnsProps` (+`s`) to match `GridRowsProps`. [#787](https://github.com/hshoff/vx/pull/787)
 - [legend] Update generic types for legend components. [#777](https://github.com/hshoff/vx/pull/777)
@@ -118,18 +113,6 @@ scaleLinear({ range: xxx, round: true });
 ### :rocket:  Enhancements
 
 - [scale] new functions & New fields for the scale configs. [#766](https://github.com/hshoff/vx/pull/766)
-  * `createScale()`: A factory function for all scales
-  * `inferScaleType()`: Given a D3 scale, return a string that tells its type.
-
-  | scale type | new fields |
-  |---|---|
-  | `scaleLinear` | `interpolate`, `zero` |
-  | `scaleLog` | `interpolate` |
-  | `scalePower` | `interpolate`, `zero` |
-  | `scaleSqrt` | `interpolate`, `zero` |
-  | `scaleSymlog` | `clamp`, `nice`, `zero` |
-  | `scaleTime` | `clamp`, `interpolate`, `nice*` |
-  | `scaleUtc` | `clamp`, `interpolate`, `nice*` |
 - [scale] add meta scale types. [#770](https://github.com/hshoff/vx/pull/770)
 - [scale] Add fallback overload for createScale. [#791](https://github.com/hshoff/vx/pull/791)
 - [scale]  add new types: `AnyD3Scale`, `InferD3ScaleOutput`, `InferD3ScaleDiscreteInput`, `InferD3ScaleThresholdInput` and `ScaleInput`. Add new utilities functions: `getTicks`, `coerceNumber` and `toString`. [#773](https://github.com/hshoff/vx/pull/773)
