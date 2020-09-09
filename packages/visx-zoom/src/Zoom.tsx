@@ -1,5 +1,5 @@
 import React from 'react';
-import { localPoint } from '@vx/event';
+import { localPoint } from '@visx/event';
 import {
   composeMatrices,
   inverseMatrix,

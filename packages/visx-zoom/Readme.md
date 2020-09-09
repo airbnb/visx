@@ -1,13 +1,14 @@
-# @vx/Zoom
+# @visx/Zoom
 
-<a title="@vx/zoom npm downloads" href="https://www.npmjs.com/package/@vx/zoom">
-  <img src="https://img.shields.io/npm/dm/@vx/zoom.svg?style=flat-square" />
+<a title="@visx/zoom npm downloads" href="https://www.npmjs.com/package/@visx/zoom">
+  <img src="https://img.shields.io/npm/dm/@visx/zoom.svg?style=flat-square" />
 </a>
 
-`@vx/zoom` provides `react` components that make it easy to apply transforms to a viewport or chart.
+`@visx/zoom` provides `react` components that make it easy to apply transforms to a viewport or
+chart.
 
 ## Installation
 
 ```
-npm install --save @vx/zoom
+npm install --save @visx/zoom
 ```

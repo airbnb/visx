@@ -1,7 +1,7 @@
 {
-  "name": "@vx/zoom",
+  "name": "@visx/zoom",
   "version": "0.0.199",
-  "description": "vx zoom",
+  "description": "visx zoom",
   "sideEffects": false,
   "main": "lib/index.js",
   "module": "esm/index.js",
@@ -12,10 +12,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hshoff/vx.git"
+    "url": "git+https://github.com/airbnb/visx.git"
   },
   "keywords": [
-    "vx",
+    "visx",
     "react",
     "d3",
     "visualizations",
@@ -24,9 +24,9 @@
   "author": "@hshoff",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/hshoff/vx/issues"
+    "url": "https://github.com/airbnb/visx/issues"
   },
-  "homepage": "https://github.com/hshoff/vx#readme",
+  "homepage": "https://github.com/airbnb/visx#readme",
   "publishConfig": {
     "access": "public"
   },
@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "@types/react": "*",
-    "@vx/event": "0.0.199",
+    "@visx/event": "0.0.199",
     "prop-types": "^15.6.2"
   }
 }
