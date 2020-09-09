@@ -17,8 +17,6 @@ const series = new Array(lineCount)
     generateDateValue(25).sort((a: DateValue, b: DateValue) => a.date.getTime() - b.date.getTime()),
   );
 const allData = series.reduce((rec, d) => rec.concat(d), []);
-export const gradientColor1 = '#ec4b5f';
-export const gradientColor2 = '#4f0000'; // '#b2305b';
 
 // data accessors
 const getX = (d: DateValue) => d.date;
@@ -90,7 +88,7 @@ export default function Example({ width, height, showControls = true }: CurvePro
           strokeOpacity={0.6}
           markerUnits="userSpaceOnUse"
         />
-        <MarkerCircle id="marker-circle" fill="#333" radius={2} refX={2} />
+        <MarkerCircle id="marker-circle" fill="#333" size={2} refX={2} />
         <MarkerArrow id="marker-arrow-odd" stroke="#333" size={8} strokeWidth={1} />
         <MarkerLine id="marker-line" fill="#333" size={16} strokeWidth={1} />
         <MarkerArrow id="marker-arrow" fill="#333" refX={2} size={6} />

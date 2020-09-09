@@ -6,7 +6,7 @@ export default () => (
   <Page>
     <div className="home">
       <div className="hero">
-        <h1>React + D3 = VX</h1>
+        <h1>React + D3 = VISX</h1>
         <div className="btn-container">
           <a
             target="_blank"

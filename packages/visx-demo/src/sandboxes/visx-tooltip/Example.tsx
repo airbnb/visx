@@ -162,15 +162,6 @@ export default function Example({ width, height, showControls = true }: TooltipP
           width: 100%;
           height: 100%;
         }
-        .visx-tooltip {
-          background-color: #f67280;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: space-around;
-          width: 200px;
-          height: 100px;
-        }
         .tooltip-controls label {
           font-size: 14px;
           margin-right: 8px;

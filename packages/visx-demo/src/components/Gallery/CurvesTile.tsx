@@ -1,11 +1,11 @@
 import React from 'react';
-import Curve, { CurveProps, gradientColor1 } from '../../sandboxes/visx-curve/Example';
+import Curve, { CurveProps } from '../../sandboxes/visx-curve/Example';
 import GalleryTile from '../GalleryTile';
 
 export { default as packageJson } from '../../sandboxes/visx-curve/package.json';
 
 const tileStyles = { border: '1px solid lightgray' };
-const detailsStyles = { color: gradientColor1 };
+const detailsStyles = { color: '#222' };
 const exampleProps = { showControls: false };
 
 export default function CurvesTile() {
