@@ -1,6 +1,6 @@
 {
   "name": "@vx/geo",
-  "version": "0.0.198",
+  "version": "0.0.199",
   "description": "vx geo",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -33,7 +33,7 @@
     "@types/d3-geo": "^1.11.1",
     "@types/geojson": "*",
     "@types/react": "*",
-    "@vx/group": "0.0.198",
+    "@vx/group": "0.0.199",
     "classnames": "^2.2.5",
     "d3-geo": "^1.11.3",
     "prop-types": "^15.5.10"

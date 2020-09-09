@@ -1,6 +1,6 @@
 {
   "name": "@vx/xychart",
-  "version": "0.0.0",
+  "version": "0.0.199",
   "description": "Composable cartesian coordinate chart built with vx primitives",
   "sideEffects": false,
   "private": true,

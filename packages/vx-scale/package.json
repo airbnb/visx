@@ -1,6 +1,6 @@
 {
   "name": "@vx/scale",
-  "version": "0.0.198",
+  "version": "0.0.199",
   "description": "vx scale",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -21,7 +21,10 @@
     "visualizations",
     "charts"
   ],
-  "authors": ["@hshoff", "@kristw"],
+  "authors": [
+    "@hshoff",
+    "@kristw"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/hshoff/vx/issues"

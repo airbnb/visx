@@ -1,6 +1,6 @@
 {
   "name": "@vx/react-spring",
-  "version": "0.0.198",
+  "version": "0.0.199",
   "description": "Vx primitives that rely on react-spring for animation",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -44,10 +44,10 @@
   "dependencies": {
     "@types/classnames": "^2.2.9",
     "@types/react": "*",
-    "@vx/axis": "0.0.198",
-    "@vx/grid": "0.0.198",
-    "@vx/scale": "0.0.198",
-    "@vx/text": "0.0.198",
+    "@vx/axis": "0.0.199",
+    "@vx/grid": "0.0.199",
+    "@vx/scale": "0.0.199",
+    "@vx/text": "0.0.199",
     "classnames": "^2.2.5",
     "prop-types": "^15.6.2"
   }

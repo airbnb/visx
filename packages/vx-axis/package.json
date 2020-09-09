@@ -1,6 +1,6 @@
 {
   "name": "@vx/axis",
-  "version": "0.0.198",
+  "version": "0.0.199",
   "description": "vx axis",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -30,11 +30,11 @@
   "dependencies": {
     "@types/classnames": "^2.2.9",
     "@types/react": "*",
-    "@vx/group": "0.0.198",
-    "@vx/point": "0.0.198",
-    "@vx/shape": "0.0.198",
-    "@vx/scale": "0.0.198",
-    "@vx/text": "0.0.198",
+    "@vx/group": "0.0.199",
+    "@vx/point": "0.0.199",
+    "@vx/scale": "0.0.199",
+    "@vx/shape": "0.0.199",
+    "@vx/text": "0.0.199",
     "classnames": "^2.2.5",
     "prop-types": "^15.6.0"
   },
