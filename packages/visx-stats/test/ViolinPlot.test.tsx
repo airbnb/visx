@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { scaleLinear } from '@vx/scale';
+import { scaleLinear } from '@visx/scale';
 import { ViolinPlot, computeStats } from '../src';
 
 const data = [1, 2, 3, 4, 5, 6, 6, 7, 8, 9, 1];
@@ -17,11 +17,11 @@ describe('<VoilinPlot />', () => {
     expect(ViolinPlot).toBeDefined();
   });
 
-  test('it should have className .vx-violin', () => {
+  test('it should have className .visx-violin', () => {
     const wrapper = shallow(
       <ViolinPlot data={binData} left={3} width={100} valueScale={valueScale} />,
     );
-    expect(wrapper.prop('className')).toEqual('vx-violin');
+    expect(wrapper.prop('className')).toEqual('visx-violin');
   });
 
   test('it should render one path element', () => {

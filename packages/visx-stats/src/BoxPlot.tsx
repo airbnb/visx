@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
-import { Group } from '@vx/group';
-import { PickD3Scale, ContinuousDomainScaleType } from '@vx/scale';
+import { Group } from '@visx/group';
+import { PickD3Scale, ContinuousDomainScaleType } from '@visx/scale';
 import { SharedProps, ChildRenderProps, LineCoords } from './types';
 
 function verticalToHorizontal({ x1, x2, y1, y2 }: LineCoords) {
@@ -163,14 +163,14 @@ export default function BoxPlot({
   if (children) return <>{children(boxplot)}</>;
 
   return (
-    <Group className={classnames('vx-boxplot', className)}>
+    <Group className={classnames('visx-boxplot', className)}>
       {outliers.map((d, i) => {
         const cx = horizontal ? valueScale(d) : center;
         const cy = horizontal ? center : valueScale(d);
         return (
           <circle
-            key={`vx-boxplot-outlier-${i}`}
-            className="vx-boxplot-outlier"
+            key={`visx-boxplot-outlier-${i}`}
+            className="visx-boxplot-outlier"
             cx={cx}
             cy={cy}
             r={4}
@@ -183,7 +183,7 @@ export default function BoxPlot({
         );
       })}
       <line
-        className="vx-boxplot-max"
+        className="visx-boxplot-max"
         x1={boxplot.max.x1}
         y1={boxplot.max.y1}
         x2={boxplot.max.x2}
@@ -193,7 +193,7 @@ export default function BoxPlot({
         {...maxProps}
       />
       <line
-        className="vx-boxplot-max-to-third"
+        className="visx-boxplot-max-to-third"
         x1={boxplot.maxToThird.x1}
         y1={boxplot.maxToThird.y1}
         x2={boxplot.maxToThird.x2}
@@ -202,7 +202,7 @@ export default function BoxPlot({
         strokeWidth={strokeWidth}
       />
       <rect
-        className="vx-boxplot-box"
+        className="visx-boxplot-box"
         x={boxplot.box.x1}
         y={boxplot.box.y1}
         width={boxplot.box.x2}
@@ -216,7 +216,7 @@ export default function BoxPlot({
         {...boxProps}
       />
       <line
-        className="vx-boxplot-median"
+        className="visx-boxplot-median"
         x1={boxplot.median.x1}
         y1={boxplot.median.y1}
         x2={boxplot.median.x2}
@@ -226,7 +226,7 @@ export default function BoxPlot({
         {...medianProps}
       />
       <line
-        className="vx-boxplot-min-to-first"
+        className="visx-boxplot-min-to-first"
         x1={boxplot.minToFirst.x1}
         y1={boxplot.minToFirst.y1}
         x2={boxplot.minToFirst.x2}
@@ -235,7 +235,7 @@ export default function BoxPlot({
         strokeWidth={strokeWidth}
       />
       <line
-        className="vx-boxplot-min"
+        className="visx-boxplot-min"
         x1={boxplot.min.x1}
         y1={boxplot.min.y1}
         x2={boxplot.min.x2}

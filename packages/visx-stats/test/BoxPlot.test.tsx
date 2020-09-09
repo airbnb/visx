@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { scaleLinear } from '@vx/scale';
+import { scaleLinear } from '@visx/scale';
 import { BoxPlot, computeStats } from '../src';
 
 const data = [1, 2, 3, 4, 5, 6, 6, 7, 8, 9, 1];
@@ -19,7 +19,7 @@ describe('<BoxPlot />', () => {
     expect(BoxPlot).toBeDefined();
   });
 
-  test('it should have className .vx-boxplot', () => {
+  test('it should have className .visx-boxplot', () => {
     const wrapper = shallow(
       <BoxPlot
         min={min}
@@ -33,7 +33,7 @@ describe('<BoxPlot />', () => {
         outliers={outliers}
       />,
     );
-    expect(wrapper.prop('className')).toEqual('vx-boxplot');
+    expect(wrapper.prop('className')).toEqual('visx-boxplot');
   });
 
   test('it should render 5 lines and one rectangle', () => {

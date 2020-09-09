@@ -1,7 +1,7 @@
-# @vx/stats
+# @visx/stats
 
-<a title="@vx/stats npm downloads" href="https://www.npmjs.com/package/@vx/stats">
-  <img src="https://img.shields.io/npm/dm/@vx/stats.svg?style=flat-square" />
+<a title="@visx/stats npm downloads" href="https://www.npmjs.com/package/@visx/stats">
+  <img src="https://img.shields.io/npm/dm/@visx/stats.svg?style=flat-square" />
 </a>
 
 The package provides `react` components for visualizing distributions, such as Box Plots and Violin
@@ -10,5 +10,5 @@ Plots
 ## Installation
 
 ```
-npm install --save @vx/stats
+npm install --save @visx/stats
 ```

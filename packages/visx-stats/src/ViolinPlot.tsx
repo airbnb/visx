@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { scaleLinear, PickD3Scale, ContinuousDomainScaleType } from '@vx/scale';
+import { scaleLinear, PickD3Scale, ContinuousDomainScaleType } from '@visx/scale';
 import { line, curveCardinal } from 'd3-shape';
 import { SharedProps } from './types';
 
@@ -78,5 +78,5 @@ export default function ViolinPlot<Datum extends object>({
   }
   // eslint-disable-next-line react/jsx-no-useless-fragment
   if (children) return <>{children({ path })}</>;
-  return <path className={cx('vx-violin', className)} d={path} {...restProps} />;
+  return <path className={cx('visx-violin', className)} d={path} {...restProps} />;
 }
