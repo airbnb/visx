@@ -1,4 +1,5 @@
 # Changelog
+- [v0.0.199](#v00199)
 - [v0.0.198](#v00198)
 - [v0.0.197](#v00197)
 - [v0.0.196](#v00196)
@@ -89,6 +90,138 @@
 
 ------
 
+# v0.0.199
+
+### :boom:  Breaking Changes
+
+- [scale] Deprecate `rangeRound` field in the input of `scaleLinear()`, `scaleLog()`, `scalePoint()`, `scalePower()`, `scaleSqrt()`, `scaleTime()` and `scaleUtc()`.
+
+Instead of
+
+```ts
+scaleLinear({ rangeRound: xxx })
+```
+
+Do this instead
+
+```ts
+scaleLinear({ range: xxx, round: true });
+```
+
+- [scale] Deprecate `ticks` and `tickFormat` in the input of `scaleQuantize()`. It was not really doing anything anyway as both `scale.ticks()` and `scale.tickFormat()` do not mutate the scale.
+- [scale] Remove `scale.type` field that was attached to the d3 scales.
+- [grid] `@vx/grid` components now accept D3 Scale as generic type instead of `ScaleInput`. Developers should not expect to specify this generic type as it can be inferred from the passed scale. [#775](https://github.com/hshoff/vx/pull/775)
+- [grid] Renames `GridColumnProps` => `GridColumnsProps` (+`s`) to match `GridRowsProps`. [#787](https://github.com/hshoff/vx/pull/787)
+- [legend] Update generic types for legend components. [#777](https://github.com/hshoff/vx/pull/777)
+- [marker] remove old [`<Marker />`](https://github.com/hshoff/vx/blob/v0.0.198/packages/vx-marker/src/markers/Marker.tsx#L72-L98) implementation of a Line and some Text. [#783](https://github.com/hshoff/vx/pull/783)
+
+### :rocket:  Enhancements
+
+- [scale] new functions & New fields for the scale configs. [#766](https://github.com/hshoff/vx/pull/766)
+  * `createScale()`: A factory function for all scales
+  * `inferScaleType()`: Given a D3 scale, return a string that tells its type.
+
+  | scale type | new fields |
+  |---|---|
+  | `scaleLinear` | `interpolate`, `zero` |
+  | `scaleLog` | `interpolate` |
+  | `scalePower` | `interpolate`, `zero` |
+  | `scaleSqrt` | `interpolate`, `zero` |
+  | `scaleSymlog` | `clamp`, `nice`, `zero` |
+  | `scaleTime` | `clamp`, `interpolate`, `nice*` |
+  | `scaleUtc` | `clamp`, `interpolate`, `nice*` |
+- [scale] add meta scale types. [#770](https://github.com/hshoff/vx/pull/770)
+- [scale] Add fallback overload for createScale. [#791](https://github.com/hshoff/vx/pull/791)
+- [scale]  add new types: `AnyD3Scale`, `InferD3ScaleOutput`, `InferD3ScaleDiscreteInput`, `InferD3ScaleThresholdInput` and `ScaleInput`. Add new utilities functions: `getTicks`, `coerceNumber` and `toString`. [#773](https://github.com/hshoff/vx/pull/773)
+- [scale] add reverse field to scale config. This will reverse the range. Useful when the ranges are programmatically supplied to the scale factories such as in XYChart and developers want easy way to reverse the dynamic range. [#780](https://github.com/hshoff/vx/pull/780)
+- [legend] exports `@vx/legend` shapes from the `index` for convenience / non-deep imports. [#772](https://github.com/hshoff/vx/pull/772)
+- [grid] adds `children` prop to `GridRows` + `GridColumns` to support animated rendering. [#787](https://github.com/hshoff/vx/pull/787)
+- [shape] add `<BarRounded />` shape. [#774](https://github.com/hshoff/vx/pull/774)
+- [shape] Create new factory functions for `d3-shape` and export as part of `vx/shape` (`arc`, `area`, `line`, `pie`, `radialLine`),
+similar to `vx/scale` has factories for `d3-scale`. [#776](https://github.com/hshoff/vx/pull/776)
+- [shape] add `SplitLinePath` component to `@vx/shape` that allows you to create a line path split into multiple smaller line paths that can be styled independently. [#778](https://github.com/hshoff/vx/pull/778)
+- [axis] consistent and compatible typings across `vx/scale` and `vx/axis`. More fields passed to child render props of `Axis`. [#773](https://github.com/hshoff/vx/pull/773)
+- [axis] `Axis` is refactored to accept a `ticksComponent` which allows us to animate them. [#779](https://github.com/hshoff/vx/pull/779)
+- [axis] adds a third argument `values` to `tickFormat(value, index, values)` so that format logic can more easily leverage all ticks (because `numTicks` is approximate, lib consumers do not know how many tick values exist _a priori_). [#779](https://github.com/hshoff/vx/pull/779)
+- [marker] add new [`<Marker />`](https://github.com/hshoff/vx/compare/harry-svg-marker?expand=1#diff-7a829322360dc21940b608c760087e29R32-R42) that matches actual SVG [`<marker>`](https://github.com/hshoff/vx/blob/v0.0.198/packages/vx-marker/src/markers/Marker.tsx#L72-L98). [#783](https://github.com/hshoff/vx/pull/783)
+- [marker] add `<MarkerArrow />`, `<MarkerCross />`, `<MarkerX />`, `<MarkerCircle />`, `<MarkerLine />`. [#783](https://github.com/hshoff/vx/pull/783)
+- [react-spring] adds a new package `@vx/react-spring` that includes `react-spring` as a `peerDep` and can be a home for things that depend on `react-spring`. [#779](https://github.com/hshoff/vx/pull/779)
+- [react-spring] Adds an `<AnimatedAxis />` and `<AnimatedTicksRender />` in `@vx/react-spring`. [#779](https://github.com/hshoff/vx/pull/779)
+- [react-spring] updates the `vx-demo/axis` demo to use `<AnimatedAxis />`. [#779](https://github.com/hshoff/vx/pull/779)
+- [react-spring] adds `AnimatedGridRows` + `AnimatedGridColumns`. [#787](https://github.com/hshoff/vx/pull/787)
+- [react-spring] modularizes `AnimatedTicks/useAnimatedTicksConfig` to `spring-configs/useAnimatedLineTransitionConfig` so it can power both animated tick + grid lines. [#787](https://github.com/hshoff/vx/pull/787)
+- [react-spring] adds `animationTrajectory=outside | inside | min | max` to `AnimatedAxis` and `AnimatedGridRows/Columns`. [#787](https://github.com/hshoff/vx/pull/787)
+
+#### :bug: Bug Fix
+
+- [responsive] exclude `enableDebounceLeadingCall` prop being passed into `div`. [#763](https://github.com/hshoff/vx/pull/763)
+- [responsive] fix prettier format. [#764](https://github.com/hshoff/vx/pull/764)
+- [text] fix warning for NaN or invalid values are passed as x or y. [#790](https://github.com/hshoff/vx/pull/790)
+
+### :memo: Documentation
+
+- [scale] Improve documentation of the fields in scale configs. [#766](https://github.com/hshoff/vx/pull/766)
+
+### :house:  Internal
+
+- [scale] rewrite individual scale factory with composition of shared operators. This ensure order of operators and simplified code. [#766](https://github.com/hshoff/vx/pull/766)
+- [scale] add 100+ unit tests to make this `vx/scale` package has 100% test coverage. [#766](https://github.com/hshoff/vx/pull/766)
+- [stats] use updated @vx/scale types. [#770](https://github.com/hshoff/vx/pull/770)
+- [legend] extract defaultDomain helper. [#777](https://github.com/hshoff/vx/pull/777)
+- [demo] updated curves demo to use new `<Marker>`. [#783](https://github.com/hshoff/vx/pull/783)
+- [demo] updates the `/axis` demo to include `AnimatedGrid*` and a `animationTrajectory` config. [#787](https://github.com/hshoff/vx/pull/787)
+- [jest] ignore vx-demo, vx-vx code coverage. [#784](https://github.com/hshoff/vx/pull/784)
+- [annotation] 100% coverage. [#784](https://github.com/hshoff/vx/pull/784)
+- [bounds] 100% coverage. [#784](https://github.com/hshoff/vx/pull/784)
+- [brush] add utils test. [#786](https://github.com/hshoff/vx/pull/786)
+- [event] add tests. [#786](https://github.com/hshoff/vx/pull/786)
+- [test] add tests for vx/grid, vx/zoom, vx/threshold, vx/shape. [#793](https://github.com/hshoff/vx/pull/793)
+
+#### :trophy: Contributors
+
+- [robinsoncol](https://github.com/robinsoncol)
+- [kristw](https://github.com/kristw)
+- [williaster](https://github.com/williaster)
+- [hshoff](https://github.com/hshoff)
+
+```Changes:
+ - @vx/annotation: 0.0.198 => 0.0.199
+ - @vx/axis: 0.0.198 => 0.0.199
+ - @vx/bounds: 0.0.198 => 0.0.199
+ - @vx/brush: 0.0.198 => 0.0.199
+ - @vx/chord: 0.0.198 => 0.0.199
+ - @vx/clip-path: 0.0.198 => 0.0.199
+ - @vx/curve: 0.0.198 => 0.0.199
+ - @vx/demo: 0.0.198 => 0.0.199
+ - @vx/drag: 0.0.198 => 0.0.199
+ - @vx/event: 0.0.198 => 0.0.199
+ - @vx/geo: 0.0.198 => 0.0.199
+ - @vx/glyph: 0.0.198 => 0.0.199
+ - @vx/gradient: 0.0.198 => 0.0.199
+ - @vx/grid: 0.0.198 => 0.0.199
+ - @vx/group: 0.0.198 => 0.0.199
+ - @vx/heatmap: 0.0.198 => 0.0.199
+ - @vx/hierarchy: 0.0.198 => 0.0.199
+ - @vx/legend: 0.0.198 => 0.0.199
+ - @vx/marker: 0.0.198 => 0.0.199
+ - @vx/mock-data: 0.0.198 => 0.0.199
+ - @vx/network: 0.0.198 => 0.0.199
+ - @vx/pattern: 0.0.198 => 0.0.199
+ - @vx/point: 0.0.198 => 0.0.199
+ - @vx/react-spring: 0.0.198 => 0.0.199
+ - @vx/responsive: 0.0.198 => 0.0.199
+ - @vx/scale: 0.0.198 => 0.0.199
+ - @vx/shape: 0.0.198 => 0.0.199
+ - @vx/stats: 0.0.198 => 0.0.199
+ - @vx/text: 0.0.198 => 0.0.199
+ - @vx/threshold: 0.0.198 => 0.0.199
+ - @vx/tooltip: 0.0.198 => 0.0.199
+ - @vx/voronoi: 0.0.198 => 0.0.199
+ - @vx/vx: 0.0.198 => 0.0.199
+ - @vx/xychart: 0.0.0 => 0.0.199 (private)
+ - @vx/zoom: 0.0.198 => 0.0.199
+ ```
+ 
 # v0.0.198
 
 #### :rocket: Enhancements
