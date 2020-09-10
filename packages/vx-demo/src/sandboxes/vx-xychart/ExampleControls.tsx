@@ -1,32 +1,40 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React from 'react';
+import React, { useState } from 'react';
 import { lightTheme, darkTheme, XYChartTheme } from '@vx/xychart';
+import { AnimationTrajectory } from '@vx/react-spring/lib/types';
 import customTheme from './customTheme';
 
-type ControlsProps = {
+type ProvidedProps = {
+  animationTrajectory: AnimationTrajectory;
+  showGridColumns: boolean;
+  showGridRows: boolean;
   theme: XYChartTheme;
-  setTheme: (theme: XYChartTheme) => void;
   xAxisOrientation: 'top' | 'bottom';
-  setXAxisOrientation: (orient: 'top' | 'bottom') => void;
   yAxisOrientation: 'left' | 'right';
-  setYAxisOrientation: (orient: 'left' | 'right') => void;
-  gridProps: [boolean, boolean];
-  setGridProps: (gridProps: [boolean, boolean]) => void;
 };
 
-export default function Controls({
-  gridProps,
-  setGridProps,
-  theme,
-  setTheme,
-  xAxisOrientation,
-  setXAxisOrientation,
-  yAxisOrientation,
-  setYAxisOrientation,
-}: ControlsProps) {
+type ControlsProps = {
+  children: (props: ProvidedProps) => React.ReactNode;
+};
+
+export default function ExampleControls({ children }: ControlsProps) {
+  const [theme, setTheme] = useState<XYChartTheme>(darkTheme);
+  const [animationTrajectory, setAnimationTrajectory] = useState<AnimationTrajectory>('center');
+  const [gridProps, setGridProps] = useState<[boolean, boolean]>([true, true]);
   const [showGridRows, showGridColumns] = gridProps;
+  const [xAxisOrientation, setXAxisOrientation] = useState<'top' | 'bottom'>('bottom');
+  const [yAxisOrientation, setYAxisOrientation] = useState<'left' | 'right'>('right');
+
   return (
     <>
+      {children({
+        animationTrajectory,
+        showGridColumns,
+        showGridRows,
+        theme,
+        xAxisOrientation,
+        yAxisOrientation,
+      })}
       <div className="controls">
         {/** theme */}
         <div>
@@ -114,7 +122,6 @@ export default function Controls({
             />{' '}
             columns
           </label>
-
           <label>
             <input
               type="radio"
@@ -130,6 +137,42 @@ export default function Controls({
               checked={!showGridRows && !showGridColumns}
             />{' '}
             none
+          </label>
+        </div>
+        {/** animation trajectory */}
+        <div>
+          <strong>axis + grid animation</strong>
+          <label>
+            <input
+              type="radio"
+              onChange={() => setAnimationTrajectory('center')}
+              checked={animationTrajectory === 'center'}
+            />{' '}
+            from center
+          </label>
+          <label>
+            <input
+              type="radio"
+              onChange={() => setAnimationTrajectory('outside')}
+              checked={animationTrajectory === 'outside'}
+            />{' '}
+            from outside
+          </label>
+          <label>
+            <input
+              type="radio"
+              onChange={() => setAnimationTrajectory('min')}
+              checked={animationTrajectory === 'min'}
+            />{' '}
+            from min
+          </label>
+          <label>
+            <input
+              type="radio"
+              onChange={() => setAnimationTrajectory('max')}
+              checked={animationTrajectory === 'max'}
+            />{' '}
+            from max
           </label>
         </div>
       </div>

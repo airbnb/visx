@@ -1,16 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import cityTemperature, { CityTemperature } from '@vx/mock-data/lib/mocks/cityTemperature';
-import {
-  AnimatedAxis,
-  AnimatedGrid,
-  DataProvider,
-  LineSeries,
-  XYChart,
-  XYChartTheme,
-  darkTheme,
-} from '@vx/xychart';
-
-import Controls from './Controls';
+import { AnimatedAxis, AnimatedGrid, DataProvider, LineSeries, XYChart } from '@vx/xychart';
+import ExampleControls from './ExampleControls';
 import CustomChartBackground from './CustomChartBackground';
 
 type Props = {
@@ -20,52 +11,54 @@ type Props = {
 
 const xScaleConfig = { type: 'time' } as const;
 const yScaleConfig = { type: 'linear' } as const;
-const data = cityTemperature.slice(50, 80);
+const numTicks = 4;
+const data = cityTemperature.slice(0, 100);
 const getDate = (d: CityTemperature) => new Date(d.date);
 const getSfTemperature = (d: CityTemperature) => Number(d['San Francisco']);
-const animationTrajectory = 'center';
 
 export default function Example({ height }: Props) {
-  const [theme, setTheme] = useState<XYChartTheme>(darkTheme);
-  const [gridProps, setGridProps] = useState<[boolean, boolean]>([true, true]);
-  const [showGridRows, showGridColumns] = gridProps;
-  const [xAxisOrientation, setXAxisOrientation] = useState<'top' | 'bottom'>('bottom');
-  const [yAxisOrientation, setYAxisOrientation] = useState<'left' | 'right'>('right');
-
   return (
-    <>
-      <DataProvider theme={theme} xScale={xScaleConfig} yScale={yScaleConfig}>
-        <XYChart height={Math.min(400, height)}>
-          <CustomChartBackground />
-          <AnimatedAxis
-            orientation={xAxisOrientation}
-            numTicks={4}
-            animationTrajectory={animationTrajectory}
-          />
-          <AnimatedAxis
-            label="Temperature (°F)"
-            orientation={yAxisOrientation}
-            numTicks={5}
-            animationTrajectory={animationTrajectory}
-          />
-          <AnimatedGrid
-            rows={showGridRows}
-            columns={showGridColumns}
-            animationTrajectory={animationTrajectory}
-          />
-          <LineSeries dataKey="line" data={data} xAccessor={getDate} yAccessor={getSfTemperature} />
-        </XYChart>
-      </DataProvider>
-      <Controls
-        theme={theme}
-        setTheme={setTheme}
-        xAxisOrientation={xAxisOrientation}
-        setXAxisOrientation={setXAxisOrientation}
-        yAxisOrientation={yAxisOrientation}
-        setYAxisOrientation={setYAxisOrientation}
-        gridProps={gridProps}
-        setGridProps={setGridProps}
-      />
-    </>
+    <ExampleControls>
+      {({
+        theme,
+        xAxisOrientation,
+        yAxisOrientation,
+        showGridRows,
+        showGridColumns,
+        animationTrajectory,
+      }) => (
+        <DataProvider theme={theme} xScale={xScaleConfig} yScale={yScaleConfig}>
+          <XYChart height={Math.min(400, height)}>
+            <CustomChartBackground />
+            <AnimatedAxis
+              key={`xaxis-${animationTrajectory}`} // force animate on update
+              orientation={xAxisOrientation}
+              numTicks={numTicks}
+              animationTrajectory={animationTrajectory}
+            />
+            <AnimatedAxis
+              key={`yaxis-${animationTrajectory}`}
+              label="Temperature (°F)"
+              orientation={yAxisOrientation}
+              numTicks={numTicks}
+              animationTrajectory={animationTrajectory}
+            />
+            <AnimatedGrid
+              key={`grid-${animationTrajectory}`}
+              rows={showGridRows}
+              columns={showGridColumns}
+              animationTrajectory={animationTrajectory}
+              numTicks={numTicks}
+            />
+            <LineSeries
+              dataKey="line"
+              data={data}
+              xAccessor={getDate}
+              yAccessor={getSfTemperature}
+            />
+          </XYChart>
+        </DataProvider>
+      )}
+    </ExampleControls>
   );
 }

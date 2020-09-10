@@ -70,9 +70,10 @@ export default function useLineTransitionConfig<Scale extends AxisScale | GridSc
     const scaleLength = b != null && a != null ? Math.abs(b - a) : 0;
     const scaleHalfwayPoint = (scaleMin ?? 0) + scaleLength / 2;
     let animationTrajectory = initAnimationTrajectory;
-    // correct direction for descending scales (like y-axis)
-    if (isDescending && initAnimationTrajectory === 'min') animationTrajectory = 'max';
-    if (isDescending && initAnimationTrajectory === 'max') animationTrajectory = 'min';
+
+    // correct direction for y-axis which is inverted due to svg coords
+    if (!shouldAnimateX && initAnimationTrajectory === 'min') animationTrajectory = 'max';
+    if (!shouldAnimateX && initAnimationTrajectory === 'max') animationTrajectory = 'min';
 
     const fromLeave = ({ from, to }: Line) => ({
       fromX: shouldAnimateX
