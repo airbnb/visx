@@ -43,6 +43,7 @@
     "@types/classnames": "^2.2.9",
     "@types/react": "*",
     "@vx/axis": "0.0.199",
+    "@vx/grid": "0.0.199",
     "@vx/react-spring": "0.0.199",
     "@vx/responsive": "0.0.199",
     "@vx/scale": "0.0.199",

@@ -29,7 +29,7 @@ export type CommonGridProps = {
   /** Approximate number of grid lines. Approximate due to d3 alogrithm, specify `tickValues` for precise control. */
   numTicks?: number;
   /** Styles to apply as grid line style. */
-  lineStyle?: React.CSSProperties;
+  lineStyle?: React.SVGAttributes<SVGLineElement>;
   /** Pixel offset to apply as a translation (y- for Rows, x- for Columns) to each grid lines. */
   offset?: number;
 };

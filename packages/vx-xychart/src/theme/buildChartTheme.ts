@@ -118,7 +118,7 @@ export default function buildChartTheme(config: ThemeConfig): XYChartTheme {
         left: {
           axisLabel: {
             ...baseSvgLabel,
-            dx: '-1.5em',
+            dx: '-1.25em',
           },
           axisLine: {
             stroke: config.gridColor,
@@ -141,7 +141,7 @@ export default function buildChartTheme(config: ThemeConfig): XYChartTheme {
         right: {
           axisLabel: {
             ...baseSvgLabel,
-            dx: '1.5em',
+            dx: '1.25em',
           },
           axisLine: {
             stroke: config.gridColor,

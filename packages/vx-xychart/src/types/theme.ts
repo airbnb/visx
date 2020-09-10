@@ -7,6 +7,8 @@ export type LineStyles = Omit<React.SVGAttributes<SVGLineElement>, 'Key'>;
 
 export type GridStyles = LineStyles;
 
+export type SVGTextProps = TextProps;
+
 /** A complete chart theme includes style definitions for all axis orientations. */
 export interface XYChartTheme {
   /** Base background color. */

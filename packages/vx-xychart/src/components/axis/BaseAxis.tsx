@@ -39,6 +39,7 @@ export default function BaseAxis<Scale extends AxisScale>({
         ? () =>
             orientation === 'left' || orientation === 'right'
               ? // by default, wrap vertical-axis tick labels within the allotted margin space
+                // this does not currently account for axis label
                 { ...axisStyles.tickLabel, width: margin?.[orientation] }
               : axisStyles.tickLabel
         : undefined),
