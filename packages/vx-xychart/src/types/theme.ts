@@ -1,10 +1,5 @@
 import React from 'react';
-
-type TextPropsToOmit = 'onCopy' | 'event';
-
-export type SVGTextStyles = Omit<React.SVGAttributes<SVGTextElement>, TextPropsToOmit> & {
-  textAnchor?: 'start' | 'middle' | 'end' | 'inherit';
-};
+import { TextProps } from '@vx/text/lib/Text';
 
 export type HTMLTextStyles = React.HTMLAttributes<HTMLDivElement>['style'];
 
@@ -37,11 +32,11 @@ export interface XYChartTheme {
 
 interface AxisStyle {
   /** Axis label styles. */
-  axisLabel: SVGTextStyles;
+  axisLabel: TextProps;
   /** Axis line styles. */
   axisLine: LineStyles;
   /** Tick label styles. */
-  tickLabel: SVGTextStyles;
+  tickLabel: TextProps;
   /** Tick line styles. */
   tickLine: LineStyles;
   /** Length of axis tick lines. */
