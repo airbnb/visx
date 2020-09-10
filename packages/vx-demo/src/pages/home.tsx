@@ -1,212 +1,269 @@
-import React from 'react';
+import React, { useState } from 'react';
+import cx from 'classnames';
+import pkg from '../../package.json';
 import Page from '../components/Page';
-import Footer from '../components/Footer';
+import {
+  IconBookmark,
+  ExpandChevron,
+  ExpandFolder,
+  Label,
+  IconGallery,
+  IconClipboardList,
+  IconJustice,
+} from '../components/Icons';
 
-export default () => (
-  <Page>
-    <div className="home">
-      <div className="hero">
-        <h1>React + D3 = VX</h1>
-        <div className="btn-container">
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn"
-            href="https://github.com/hshoff/vx"
-          >
-            View on Github
-          </a>
-        </div>
-      </div>
-      <div className="container">
-        <div className="content">
-          <p>
-            <code>vx</code> is collection of reusable low-level visualization components.{' '}
-            <code>vx</code> combines the power of <code>d3</code> to generate your visualization
-            with the benefits of <code>react</code> for updating the DOM.
-          </p>
-        </div>
-        <div className="content">
-          <h3>Goal</h3>
-          <p>
-            The goal is to create a library of components you can use to make both your own reusable
-            chart library or your slick custom one-off chart. <code>vx</code> is largely
-            unopinionated and is meant to be build on top of. Keep your bundle sizes down and use
-            only the packages you need.
-          </p>
-        </div>
-        <div className="content">
-          <h3>How?</h3>
-          <p>
-            Under the hood, <code>vx</code> is using <code>d3</code> for the calculations and math.
-            If you're creating your own awesome chart library ontop of vx, it's easy to create a
-            component api that hides <code>d3</code> entirely. Meaning your team could create charts
-            as easily as using reusable react components.
-          </p>
-        </div>
-        <div className="content">
-          <h3>But why?</h3>
-          <p>
-            Mixing two mental models for updating the DOM is never a good time. Copy and pasting d3
-            code into <code>componentDidMount()</code> is just that. This collection of components
-            lets you easily build your own reusable visualization charts or library without having
-            to learn d3. No more selections or <code>enter()</code>/<code>exit()</code>/
-            <code>update()</code>.
-          </p>
-        </div>
-        <div className="content">
-          <h3>FAQ</h3>
-          <ol className="faq">
-            <li>
-              <p>
-                What does <code>vx</code> stand for?
-              </p>
-              <blockquote>
-                <p>vx stands for visualization components.</p>
-              </blockquote>
-            </li>
-            <li>
-              <p>Do you plan on supporting animation/transitions?</p>
-              <blockquote>
-                <p>yup!</p>
-              </blockquote>
-            </li>
-            <li>
-              <p>Do I have to use every package to make a chart?</p>
-              <blockquote>
-                <p>nope! pick and choose the packages you need.</p>
-              </blockquote>
-            </li>
-            <li>
-              <p>Can I use this to create my own library of charts for my team?</p>
-              <blockquote>
-                <p>Please do.</p>
-              </blockquote>
-            </li>
-            <li>
-              <p>
-                I like using <code>d3</code>.
-              </p>
-              <blockquote>
-                <p>Me too.</p>
-              </blockquote>
-            </li>
-          </ol>
-        </div>
-      </div>
-      <Footer />
+import * as AreaTile from '../components/Gallery/AreaTile';
+import * as AxisTile from '../components/Gallery/AxisTile';
+import * as BarGroupHorizontalTile from '../components/Gallery/BarGroupHorizontalTile';
+import * as BarGroupTile from '../components/Gallery/BarGroupTile';
+import * as BarStackHorizontalTile from '../components/Gallery/BarStackHorizontalTile';
+import * as BarStackTile from '../components/Gallery/BarStackTile';
+import * as BarsTile from '../components/Gallery/BarsTile';
+import * as BrushTile from '../components/Gallery/BrushTile';
+import * as ChordTile from '../components/Gallery/ChordTile';
+import * as CurvesTile from '../components/Gallery/CurvesTile';
+import * as DendrogramsTile from '../components/Gallery/DendrogramsTile';
+import * as DotsTile from '../components/Gallery/DotsTile';
+import * as DragIITile from '../components/Gallery/DragIITile';
+import * as DragITile from '../components/Gallery/DragITile';
+import * as GeoCustomTile from '../components/Gallery/GeoCustomTile';
+import * as GeoMercatorTile from '../components/Gallery/GeoMercatorTile';
+import * as GlyphsTile from '../components/Gallery/GlyphsTile';
+import * as GradientsTile from '../components/Gallery/GradientsTile';
+import * as HeatmapsTile from '../components/Gallery/HeatmapsTile';
+import * as LegendsTile from '../components/Gallery/LegendsTile';
+import * as LineRadialTile from '../components/Gallery/LineRadialTile';
+import * as LinkTypesTile from '../components/Gallery/LinkTypesTile';
+import * as NetworkTile from '../components/Gallery/NetworkTile';
+import * as PackTile from '../components/Gallery/PackTile';
+import * as PatternsTile from '../components/Gallery/PatternsTile';
+import * as PiesTile from '../components/Gallery/PiesTile';
+import * as PolygonsTile from '../components/Gallery/PolygonsTile';
+import * as RadarTile from '../components/Gallery/RadarTile';
+import * as ResponsiveTile from '../components/Gallery/ResponsiveTile';
+import * as SplitLinePathTile from '../components/Gallery/SplitLinePathTile';
+import * as StackedAreasTile from '../components/Gallery/StackedAreasTile';
+import * as StatsPlotTile from '../components/Gallery/StatsPlotTile';
+import * as StreamGraphTile from '../components/Gallery/StreamGraphTile';
+import * as TextTile from '../components/Gallery/TextTile';
+import * as ThresholdTile from '../components/Gallery/ThresholdTile';
+import * as TooltipTile from '../components/Gallery/TooltipTile';
+import * as TreemapTile from '../components/Gallery/TreemapTile';
+import * as TreesTile from '../components/Gallery/TreesTile';
+import * as VoronoiTile from '../components/Gallery/VoronoiTile';
+import * as ZoomITile from '../components/Gallery/ZoomITile';
+
+const tiles = [
+  AreaTile,
+  AxisTile,
+  BarGroupTile,
+  BarGroupHorizontalTile,
+  BarStackTile,
+  BarStackHorizontalTile,
+  BarsTile,
+  BrushTile,
+  ChordTile,
+  CurvesTile,
+  DendrogramsTile,
+  DotsTile,
+  DragIITile,
+  DragITile,
+  GeoCustomTile,
+  GeoMercatorTile,
+  GlyphsTile,
+  GradientsTile,
+  HeatmapsTile,
+  LegendsTile,
+  LineRadialTile,
+  LinkTypesTile,
+  NetworkTile,
+  PackTile,
+  PatternsTile,
+  PiesTile,
+  PolygonsTile,
+  RadarTile,
+  ResponsiveTile,
+  SplitLinePathTile,
+  StackedAreasTile,
+  StatsPlotTile,
+  StreamGraphTile,
+  TextTile,
+  ThresholdTile,
+  TooltipTile,
+  TreemapTile,
+  TreesTile,
+  VoronoiTile,
+  ZoomITile,
+];
+
+import { VxPackage } from '../types';
+import exampleToVxDependencyLookup, { vxPackages } from '../sandboxes/exampleToVxDependencyLookup';
+
+const lowercase = (str: string = '') => str.split(' ').map(s => s.toLocaleLowerCase());
+const dasherize = (str: string = '') => `#${lowercase(str).join('-')}`;
+
+interface TreeItemProps {
+  expandable?: boolean;
+  initialExpanded?: boolean;
+  href?: string;
+  label?: string;
+  items?: React.ReactNode;
+  children?: React.ReactNode;
+}
+const TreeItem = ({
+  expandable,
+  href,
+  label,
+  initialExpanded = true,
+  items,
+  children,
+}: TreeItemProps) => {
+  const [expanded, setExpanded] = useState(initialExpanded);
+  const handleClick = () => setExpanded(!expanded);
+  const classes = cx('tree-item', {
+    'tree-item--expandable': expandable,
+    'tree-item--expanded': expandable && expanded,
+    '-mx-6': expandable,
+    '-mx-1': !expandable,
+  });
+  const link = href || dasherize(label);
+  return (
+    <>
+      <a href={link} className={classes} onClick={handleClick}>
+        <ExpandChevron expand={expanded} />
+        {!!expandable && <ExpandFolder expand={expanded} />}
+        {label ? <Label label={label} /> : children}
+      </a>
+      {expandable &&
+        expanded &&
+        items &&
+        React.Children.map(items, (item, i) => {
+          return <div key={`${i}-${item}`}>{item}</div>;
+        })}
+      <style jsx>{`
+        .tree-item {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          padding: 0.25rem 0.5rem;
+          cursor: pointer;
+          font-size: 500;
+        }
+        .-mx-6 {
+          margin-left: -1.5rem;
+        }
+        .-mx-1 {
+          margin: 0 -0.25rem;
+        }
+      `}</style>
+    </>
+  );
+};
+
+const Sidebar = () => {
+  return (
+    <div className="sidebar">
+      <TreeItem href="#introduction" expandable={false}>
+        <IconBookmark />
+        <Label label="Introduction" />
+      </TreeItem>
+      <TreeItem href="#gallery" expandable={false}>
+        <IconGallery />
+        <Label label="Gallery" />
+      </TreeItem>
+      <TreeItem href="#tutorial" expandable={false}>
+        <IconClipboardList />
+        <Label label="Tutorial" />
+      </TreeItem>
+      <TreeItem href="#license" expandable={false}>
+        <IconJustice />
+        <Label label="MIT License" />
+      </TreeItem>
+      <br />
+      <TreeItem
+        label={'Examples'}
+        expandable={true}
+        initialExpanded={true}
+        items={tiles.map(vxPackage => (
+          <div className="item">{`${vxPackage.packageJson.name.replace('@vx/demo-', '')}`}</div>
+        ))}
+      />
+      <TreeItem
+        label={'Packages'}
+        expandable={true}
+        initialExpanded={true}
+        items={vxPackages.map(vxPackage => (
+          <div className="item">{`@vx/${vxPackage}`}</div>
+        ))}
+      />
+      <style jsx>{`
+        .sidebar {
+          width: 300px;
+          padding-left: 1.5rem;
+          margin-right: 1.5rem;
+          overflow-y: auto;
+          overflow-x: hidden;
+        }
+        .item {
+          margin-left: 1.25rem;
+          font-size: 16px;
+          line-height: 1.5em;
+        }
+      `}</style>
     </div>
+  );
+};
 
-    <style jsx>{`
-      .btn {
-        padding: 8px 20px;
-        background-color: #fc2e1c;
-        border-radius: 30px;
-        border-top-right-radius: 0;
-        color: #ffffff;
-        font-family: 'Montserrat';
-        text-transform: uppercase;
-        margin-right: 1rem;
-      }
-
-      .btn-container {
-        margin-top: 8rem;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .home {
-        display: flex;
-        flex-direction: column;
-        background: white;
-        padding: 1rem;
-      }
-
-      .home h1 {
-        font-family: 'Montserrat';
-        color: #fc2e1c;
-        font-size: 95pt;
-        line-height: 1em;
-        margin: 0;
-        padding: 0;
-        opacity: 0.9;
-        margin-top: 130px;
-        letter-spacing: 20px;
-        text-transform: uppercase;
-        text-align: center;
-      }
-
-      .hero {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        min-height: 60vh;
-        background-size: 50%;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-image: url('static/tiger-gray.png');
-        margin-bottom: 1rem;
-      }
-
-      .container {
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-      }
-
-      .content {
-        max-width: 640px;
-        min-width: 640px;
-        margin: 1rem auto 0;
-        display: flex;
-        flex-direction: column;
-      }
-
-      .content h3 {
-        margin-bottom: 0;
-      }
-
-      blockquote {
-        border-left: 2px solid #efefef;
-        padding: 0.5rem 1rem;
-        color: #777;
-      }
-
-      blockquote p {
-        margin: 0;
-      }
-
-      .faq {
-        min-width: 640px;
-      }
-
-      @media (max-width: 600px) {
-        .hero h1 {
-          font-size: 35pt;
-          margin-top: 40px;
-          padding: 0;
+const Content = () => {
+  return (
+    <div className="content">
+      <section style={{ width: 720, fontSize: 22, fontWeight: 300 }}>
+        <p>
+          We made it a goal to unify our visualization stack across the company and in the process
+          we created a new project that brings together the power of D3 with the joy of React.
+        </p>
+        <p className="font-medium">{`Advantages of ${pkg.brand}`}</p>
+        <ul className="mx-12 mt-6">
+          <li className="mb-3">
+            <strong className="font-medium">Keep bundle sizes down.</strong>
+            {` ${pkg.brand} is split into multiple packages.
+            Start small and use only what you need.`}
+          </li>
+          <li className="mb-3">
+            <strong className="font-medium">Un-opinionated on purpose.</strong>
+            {` Bring your own state management,
+            animation library, or css-in-js solution. Odds are good your React app already has an opinion on how
+            animation or theming or styling is done. ${pkg.brand} is careful not to add another one and integrates with all of
+            them.`}
+          </li>
+          <li className="mb-3">
+            <strong className="font-medium">Not a charting library.</strong> As you start using
+            visualization primitives, you’ll end up building your own charting library that’s
+            optimized for your use case. You’re in control.
+          </li>
+        </ul>
+        <p>
+          And most importantly &mdash;{' '}
+          {` it’s just React. If you know React, you can make visualizations. It’s all the same
+          standard APIs and familiar patterns. ${pkg.brand} should feel at home in any React codebase.`}
+        </p>
+      </section>
+      <style jsx>{`
+        .content {
+          display: flex;
+          flex: 1;
+          flex-direction: row;
         }
+      `}</style>
+    </div>
+  );
+};
 
-        .btn {
-          font-size: 12px;
-          padding: 4px 20px;
-          margin-top: 2rem;
-        }
-
-        .hero {
-          height: 50vh;
-          background-size: 90%;
-          margin-bottom: 1rem;
-        }
-
-        .content,
-        .faq {
-          min-width: 300px;
-        }
-      }
-    `}</style>
+const Home = () => (
+  <Page>
+    <Sidebar />
+    <Content />
+    <style jsx>{``}</style>
   </Page>
 );
+export default Home;

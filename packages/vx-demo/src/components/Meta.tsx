@@ -20,7 +20,7 @@ Router.events.on('routeChangeComplete', () => {
 });
 Router.events.on('routeChangeError', () => NProgress.done());
 
-export default ({ title = 'visualization components' }) => (
+const Meta = ({ title = 'visualization components' }) => (
   <div>
     <Head>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -38,10 +38,12 @@ export default ({ title = 'visualization components' }) => (
       <link rel="shortcut icon" type="image/png" href="/static/favicon.ico" />
       <link rel="stylesheet" href="/static/prism/prism-funky.css" />
       <link rel="stylesheet" href="/static/prism/prism-line-numbers.css" />
-      <link href="https://fonts.googleapis.com/css?family=Montserrat:800" rel="stylesheet" />
     </Head>
     <style jsx global>{`
       body {
+        --nav-height: 52px;
+        --blue: #78b8ff;
+        --blue-darker: #00a6fc;
         width: 100vw;
         overflow-x: hidden;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell',
@@ -136,7 +138,7 @@ export default ({ title = 'visualization components' }) => (
       }
 
       a {
-        color: #fc2e1c;
+        color: #111111;
         text-decoration: none;
       }
 
@@ -194,6 +196,24 @@ export default ({ title = 'visualization components' }) => (
         stroke-width: 1;
       }
 
+      .tree-item__chevron {
+        visibility: hidden;
+        display: none;
+        color: #111111;
+      }
+
+      .tree-item--expandable .tree-item__chevron {
+        display: block;
+      }
+
+      .tree-item--expandable:hover .tree-item__chevron {
+        visibility: visible;
+      }
+
+      .tree-item--expanded .tree-item__chevron {
+        visibility: visible;
+      }
+
       @media (max-width: 960px) {
         .tilt {
           min-width: 45%;
@@ -208,3 +228,5 @@ export default ({ title = 'visualization components' }) => (
     `}</style>
   </div>
 );
+
+export default Meta;

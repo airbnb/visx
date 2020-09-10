@@ -1,0 +1,13 @@
+.tree-item__chevron {
+  visibility: hidden;
+  display: none;
+  color: #111111;
+}
+
+.tree-item--expandable .tree-item__chevron {
+  display: block;
+}
+
+.tree-item--expandable:hover .tree-item__chevron {
+  visibility: visible;
+}

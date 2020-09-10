@@ -5,32 +5,27 @@ import GithubButton from 'react-github-button';
 
 import NavItem from './NavItem';
 
-export default () => (
+const Nav = () => (
   <div className="nav">
     <div className="nav-inner">
       <Link href="/">
         <div className="logo" />
       </Link>
-      <ul>
-        <NavItem href="/">Home</NavItem>
-        <NavItem href="/docs">Docs</NavItem>
-        <NavItem href="https://medium.com/vx-code" external>
-          Guides
-        </NavItem>
-        <NavItem href="/gallery">Gallery</NavItem>
-      </ul>
-
-      <GithubButton type="stargazers" namespace="hshoff" repo="vx" />
     </div>
+    {false && <GithubButton type="stargazers" namespace="hshoff" repo="vx" />}
 
     <style jsx>{`
+      .stars {
+        margin-left: 0.5rem;
+        display: flex;
+      }
       .nav-inner {
-        width: 95vw;
-        margin: 0 auto;
+        flex: 1;
+        margin: 0 1.75rem;
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: center;
+        height: var(--nav-height);
       }
       .nav {
         display: flex;
@@ -38,7 +33,7 @@ export default () => (
         flex: 1;
         align-items: center;
         justify-content: center;
-        padding: 0 10px;
+        padding: 0;
         font-size: 14px;
         z-index: 3;
         position: fixed;
@@ -46,7 +41,6 @@ export default () => (
         left: 0;
         right: 0;
         margin: 0;
-        background: #ffffff;
       }
       ul {
         list-style-type: none;
@@ -78,3 +72,4 @@ export default () => (
     `}</style>
   </div>
 );
+export default Nav;

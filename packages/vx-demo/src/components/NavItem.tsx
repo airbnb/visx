@@ -8,7 +8,7 @@ type NavItemProps = {
   children: React.ReactNode;
 };
 
-export default ({ href, children, className, external }: NavItemProps) => (
+const NavItem = ({ href, children, className, external }: NavItemProps) => (
   <li className="Item">
     {external ? (
       <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
@@ -46,3 +46,4 @@ export default ({ href, children, className, external }: NavItemProps) => (
     `}</style>
   </li>
 );
+export default NavItem;

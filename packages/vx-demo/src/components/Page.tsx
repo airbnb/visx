@@ -3,7 +3,7 @@ import cx from 'classnames';
 import Meta from './Meta';
 import Nav from './Nav';
 
-export default ({
+const Page = ({
   children,
   title,
   className,
@@ -25,17 +25,18 @@ export default ({
         overflow-x: hidden;
       }
       .page-content {
-        width: 95vw;
-        margin: 55px auto 40px;
+        padding-top: var(--nav-height);
+        height: 100vh;
+        display: flex;
+        flex-direction: row;
+        box-sizing: border-box;
         color: #161616;
         overflow-y: auto;
         overflow-x: hidden;
         -webkit-overflow-scrolling: touch;
       }
-
-      .nav-container {
-        background: #ffffff;
-      }
     `}</style>
   </div>
 );
+
+export default Page;
