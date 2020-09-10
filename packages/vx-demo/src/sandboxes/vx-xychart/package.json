@@ -9,7 +9,6 @@
     "@types/react-dom": "^16",
     "@vx/mock-data": "latest",
     "@vx/pattern": "latest",
-    "@vx/react-spring": "latest",
     "@vx/responsive": "latest",
     "@vx/xychart": "latest",
     "react": "^16",
