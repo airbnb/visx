@@ -11,9 +11,11 @@ export type ShapeShapeLineProps = {
 export default function ShapeLine({ fill, width, height, style }: ShapeShapeLineProps) {
   const cleanHeight = typeof height === 'string' || typeof height === 'undefined' ? 0 : height;
   const lineThickness = typeof style?.strokeWidth === 'number' ? style?.strokeWidth : 2;
+  // @ts-ignore
+  const top = cleanHeight / 2 - lineThickness / 2;
   return (
     <svg width={width} height={height}>
-      <Group top={cleanHeight / 2 - lineThickness / 2}>
+      <Group top={top}>
         <line
           x1={0}
           x2={width}
