@@ -7,8 +7,10 @@ export type BaseAxisProps<Scale extends AxisScale> = Omit<
   VxAxisProps<Scale>,
   'scale' | 'orientation'
 > & {
+  /** Required axis orientation. */
   orientation: NonNullable<VxAxisProps<Scale>['orientation']>;
 } & {
+  /** Rendered component which is passed VxAxisProps by BaseAxis after processing. */
   AxisComponent: React.FC<VxAxisProps<Scale>>;
 };
 
@@ -23,7 +25,6 @@ export default function BaseAxis<Scale extends AxisScale>({
   const { theme, xScale, yScale, margin, width, height } = useContext(DataContext);
   const { orientation } = props;
 
-  // The biggest difference between Axes is their label + tick label styles
   const axisStyles = useMemo(
     () =>
       orientation === 'left' || orientation === 'right'
@@ -34,8 +35,8 @@ export default function BaseAxis<Scale extends AxisScale>({
 
   const tickLabelProps = useMemo(
     () =>
-      props.tickLabelProps ||
-      (axisStyles
+      props.tickLabelProps || // use props if passed
+      (axisStyles // else construct from theme if possible
         ? () =>
             orientation === 'left' || orientation === 'right'
               ? // by default, wrap vertical-axis tick labels within the allotted margin space
@@ -60,6 +61,7 @@ export default function BaseAxis<Scale extends AxisScale>({
       ? (width ?? 0) - (margin?.right ?? 0)
       : 0;
 
+  console.log('baseaxis', { xScale, yScale });
   return (
     <AxisComponent
       top={topOffset}
