@@ -46,7 +46,7 @@ export default function buildChartTheme(config: ThemeConfig): XYChartTheme {
   const baseTickLabel: SVGTextStyles = {
     ...defaultLabelStyles,
     fontWeight: 200,
-    fontSize: 10,
+    fontSize: 11,
     fill: textColor,
     stroke: 'none',
     ...config.tickLabelStyles,
