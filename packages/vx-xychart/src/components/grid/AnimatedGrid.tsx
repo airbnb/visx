@@ -1,15 +1,17 @@
 import React, { useContext } from 'react';
 import AnimatedGridRows from '@vx/react-spring/lib/grid/AnimatedGridRows';
 import AnimatedGridColumns from '@vx/react-spring/lib/grid/AnimatedGridColumns';
+import { AnimationTrajectory } from '@vx/react-spring/lib/types';
 import { CommonGridProps } from '@vx/grid/lib/types';
 import DataContext from '../../context/DataContext';
 
-export type GridProps = {
+export type AnimatedGridProps = {
   rows?: boolean;
   columns?: boolean;
+  animationTrajectory?: AnimationTrajectory;
 } & CommonGridProps;
 
-export default function Grid({ rows = true, columns = true, ...props }: GridProps) {
+export default function AnimatedGrid({ rows = true, columns = true, ...props }: AnimatedGridProps) {
   const {
     theme,
     xScale: columnsScale,

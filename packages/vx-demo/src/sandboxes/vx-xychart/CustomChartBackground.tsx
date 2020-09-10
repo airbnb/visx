@@ -14,8 +14,8 @@ export default function CustomChartBackground() {
     <>
       <PatternLines
         id={patternId}
-        width={10}
-        height={10}
+        width={16}
+        height={16}
         orientation={['diagonal']}
         stroke={theme?.gridStyles?.stroke}
         strokeWidth={1}
@@ -27,6 +27,7 @@ export default function CustomChartBackground() {
         width={width - margin.left - margin.right}
         height={height - margin.top - margin.bottom}
         fill={`url(#${patternId})`}
+        fillOpacity={0.3}
       />
     </>
   );

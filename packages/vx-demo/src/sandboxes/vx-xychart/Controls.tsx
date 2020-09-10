@@ -10,9 +10,13 @@ type ControlsProps = {
   setXAxisOrientation: (orient: 'top' | 'bottom') => void;
   yAxisOrientation: 'left' | 'right';
   setYAxisOrientation: (orient: 'left' | 'right') => void;
+  gridProps: [boolean, boolean];
+  setGridProps: (gridProps: [boolean, boolean]) => void;
 };
 
 export default function Controls({
+  gridProps,
+  setGridProps,
   theme,
   setTheme,
   xAxisOrientation,
@@ -20,6 +24,7 @@ export default function Controls({
   yAxisOrientation,
   setYAxisOrientation,
 }: ControlsProps) {
+  const [showGridRows, showGridColumns] = gridProps;
   return (
     <>
       <div className="controls">
@@ -89,10 +94,49 @@ export default function Controls({
             right
           </label>
         </div>
+
+        {/** grid */}
+        <div>
+          <strong>grid</strong>
+          <label>
+            <input
+              type="radio"
+              onChange={() => setGridProps([true, false])}
+              checked={showGridRows && !showGridColumns}
+            />{' '}
+            rows
+          </label>
+          <label>
+            <input
+              type="radio"
+              onChange={() => setGridProps([false, true])}
+              checked={!showGridRows && showGridColumns}
+            />{' '}
+            columns
+          </label>
+
+          <label>
+            <input
+              type="radio"
+              onChange={() => setGridProps([true, true])}
+              checked={showGridRows && showGridColumns}
+            />{' '}
+            both
+          </label>
+          <label>
+            <input
+              type="radio"
+              onChange={() => setGridProps([false, false])}
+              checked={!showGridRows && !showGridColumns}
+            />{' '}
+            none
+          </label>
+        </div>
       </div>
       <style jsx>{`
         .controls {
           font-size: 13px;
+          line-height: 1.5em;
         }
         label {
           font-size: 11px;

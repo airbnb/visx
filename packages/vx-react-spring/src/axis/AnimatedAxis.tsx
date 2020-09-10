@@ -2,10 +2,12 @@ import React, { useMemo } from 'react';
 import Axis, { AxisProps } from '@vx/axis/lib/axis/Axis';
 import { AxisScale, TicksRendererProps } from '@vx/axis/lib/types';
 import AnimatedTicks from './AnimatedTicks';
-import { TransitionConfig } from '../spring-configs/useLineTransitionConfig';
+import { AnimationTrajectory } from '../types';
 
-export type AnimatedAxisProps<Scale extends AxisScale> = Omit<AxisProps<Scale>, 'ticksComponent'> &
-  Pick<TransitionConfig<Scale>, 'animationTrajectory'>;
+export type AnimatedAxisProps<Scale extends AxisScale> = Omit<
+  AxisProps<Scale>,
+  'ticksComponent'
+> & { animationTrajectory?: AnimationTrajectory };
 
 export default function AnimatedAxis<Scale extends AxisScale>({
   animationTrajectory,
