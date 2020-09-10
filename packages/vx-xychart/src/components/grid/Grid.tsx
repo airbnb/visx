@@ -23,7 +23,7 @@ export default function Grid({ rows = true, columns = true, ...props }: GridProp
 
   return (
     <>
-      {rows && rowsScale && innerWidth && (
+      {rows && rowsScale && innerWidth != null && (
         <GridRows
           left={margin?.left}
           lineStyle={gridLineStyles}
@@ -32,7 +32,7 @@ export default function Grid({ rows = true, columns = true, ...props }: GridProp
           {...props}
         />
       )}
-      {columns && columnsScale && innerHeight && (
+      {columns && columnsScale && innerHeight != null && (
         <GridColumns
           top={margin?.top}
           lineStyle={gridLineStyles}
