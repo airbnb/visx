@@ -1,46 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import GridRows from '@vx/grid/lib/grids/GridRows';
 import GridColumns from '@vx/grid/lib/grids/GridColumns';
-import { CommonGridProps } from '@vx/grid/lib/types';
-import DataContext from '../../context/DataContext';
+import BaseGrid, { BaseGridProps } from './BaseGrid';
 
-export type GridProps = {
-  rows?: boolean;
-  columns?: boolean;
-} & CommonGridProps;
+export type GridProps = Omit<BaseGridProps, 'GridRowsComponent' | 'GridColumnsComponent'>;
 
-export default function Grid({ rows = true, columns = true, ...props }: GridProps) {
-  const {
-    theme,
-    xScale: columnsScale,
-    yScale: rowsScale,
-    margin,
-    innerWidth,
-    innerHeight,
-  } = useContext(DataContext);
-
-  const gridLineStyles = theme?.gridStyles;
-
-  return (
-    <>
-      {rows && rowsScale && innerWidth != null && (
-        <GridRows
-          left={margin?.left}
-          lineStyle={gridLineStyles}
-          width={innerWidth}
-          scale={rowsScale}
-          {...props}
-        />
-      )}
-      {columns && columnsScale && innerHeight != null && (
-        <GridColumns
-          top={margin?.top}
-          lineStyle={gridLineStyles}
-          height={innerHeight}
-          scale={columnsScale}
-          {...props}
-        />
-      )}
-    </>
-  );
+export default function Grid(props: GridProps) {
+  return <BaseGrid GridRowsComponent={GridRows} GridColumnsComponent={GridColumns} {...props} />;
 }

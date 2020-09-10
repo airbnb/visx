@@ -1,48 +1,37 @@
-import React, { useContext } from 'react';
+import React, { useMemo } from 'react';
 import AnimatedGridRows from '@vx/react-spring/lib/grid/AnimatedGridRows';
 import AnimatedGridColumns from '@vx/react-spring/lib/grid/AnimatedGridColumns';
 import { AnimationTrajectory } from '@vx/react-spring/lib/types';
-import { CommonGridProps } from '@vx/grid/lib/types';
-import DataContext from '../../context/DataContext';
+import { GridRowsProps } from '@vx/grid/lib/grids/GridRows';
+import { AxisScale } from '@vx/axis';
+import { GridColumnsProps } from '@vx/grid/lib/grids/GridColumns';
+import BaseGrid, { BaseGridProps } from './BaseGrid';
 
-export type AnimatedGridProps = {
-  rows?: boolean;
-  columns?: boolean;
+export type AnimatedGridProps = Omit<
+  BaseGridProps,
+  'GridRowsComponent' | 'GridColumnsComponent'
+> & {
   animationTrajectory?: AnimationTrajectory;
-} & CommonGridProps;
+};
 
-export default function AnimatedGrid({ rows = true, columns = true, ...props }: AnimatedGridProps) {
-  const {
-    theme,
-    xScale: columnsScale,
-    yScale: rowsScale,
-    margin,
-    innerWidth,
-    innerHeight,
-  } = useContext(DataContext);
-
-  const gridLineStyles = theme?.gridStyles;
-
+export default function AnimatedGrid({ animationTrajectory, ...props }: AnimatedGridProps) {
+  const RowsComponent = useMemo(
+    () => (rowProps: GridRowsProps<AxisScale>) => (
+      <AnimatedGridRows {...rowProps} animationTrajectory={animationTrajectory} />
+    ),
+    [animationTrajectory],
+  );
+  const ColumnsComponent = useMemo(
+    () => (rowProps: GridColumnsProps<AxisScale>) => (
+      <AnimatedGridColumns {...rowProps} animationTrajectory={animationTrajectory} />
+    ),
+    [animationTrajectory],
+  );
   return (
-    <>
-      {rows && rowsScale && innerWidth && (
-        <AnimatedGridRows
-          left={margin?.left}
-          lineStyle={gridLineStyles}
-          width={innerWidth}
-          scale={rowsScale}
-          {...props}
-        />
-      )}
-      {columns && columnsScale && innerHeight && (
-        <AnimatedGridColumns
-          top={margin?.top}
-          lineStyle={gridLineStyles}
-          height={innerHeight}
-          scale={columnsScale}
-          {...props}
-        />
-      )}
-    </>
+    <BaseGrid
+      GridRowsComponent={RowsComponent}
+      GridColumnsComponent={ColumnsComponent}
+      {...props}
+    />
   );
 }
