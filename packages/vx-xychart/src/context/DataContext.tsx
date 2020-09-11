@@ -1,14 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
-import { AxisScaleOutput } from '@vx/axis';
-import { ScaleConfig } from '@vx/scale';
+import { AxisScale } from '@vx/axis';
 import { DataContext as DataContextType } from '../types/data';
 
-type AnyDataContext = DataContextType<
-  ScaleConfig<AxisScaleOutput>,
-  ScaleConfig<AxisScaleOutput>,
-  any
->;
+type AnyDataContext = DataContextType<AxisScale, AxisScale, any>;
 
 /** Utilities for infering context generics */
 export type InferXScaleConfig<X extends AnyDataContext> = X extends DataContextType<
@@ -17,7 +12,7 @@ export type InferXScaleConfig<X extends AnyDataContext> = X extends DataContextT
   any
 >
   ? T
-  : ScaleConfig<AxisScaleOutput>;
+  : AxisScale;
 
 export type InferYScaleConfig<X extends AnyDataContext> = X extends DataContextType<
   any,
@@ -25,7 +20,7 @@ export type InferYScaleConfig<X extends AnyDataContext> = X extends DataContextT
   any
 >
   ? T
-  : ScaleConfig<AxisScaleOutput>;
+  : AxisScale;
 
 export type InferDatum<X extends AnyDataContext> = X extends DataContextType<any, any, infer T>
   ? T
