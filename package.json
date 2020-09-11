@@ -82,6 +82,11 @@
       "react": true,
       "next": true
     },
+    "babel": {
+      "plugins": [
+        ["@babel/plugin-proposal-private-methods", { "loose": false }]
+      ]
+    },
     "typescript": {
       "compilerOptions": {
         "emitDeclarationOnly": true
