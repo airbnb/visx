@@ -27,7 +27,7 @@ export default function useScales<
   const [xMin, xMax] = xRange;
   const [yMin, yMax] = yRange;
 
-  return useMemo(() => {
+  const memoizedXScale = useMemo(() => {
     const registryEntries = registryKeys.map(key => dataRegistry.get(key));
 
     // create scale, and then infer its type
@@ -50,7 +50,18 @@ export default function useScales<
     xScale.range(xScaleConfig.range || [xMin, xMax]);
     xScale.domain(xScaleConfig.domain || xDomain);
 
-    // same for yScale. this logic is hard to apply generically because of the scale types / accessors
+    // apply any scale updates from the registy
+    registryEntries.forEach(entry => {
+      if (entry?.xScale) xScale = entry.xScale(xScale);
+    });
+
+    return xScale;
+  }, [dataRegistry, xScaleConfig, registryKeys, xMin, xMax]);
+
+  // same for yScale. this logic is hard to apply generically because of the scale types / accessors
+  const memoizedYScale = useMemo(() => {
+    const registryEntries = registryKeys.map(key => dataRegistry.get(key));
+
     let yScale = createScale(yScaleConfig);
     type YScale = typeof yScale;
     type YScaleInput = ScaleInput<YScale>;
@@ -65,17 +76,18 @@ export default function useScales<
     const yDomain =
       yType === 'band' || yType === 'ordinal'
         ? yValues
-        : (d3Extent(yValues as NumberLike[]) as XScaleInput[]);
+        : (d3Extent(yValues as NumberLike[]) as YScaleInput[]);
 
     yScale.range(yScaleConfig.range || [yMin, yMax]);
     yScale.domain(yScaleConfig.domain || yDomain);
 
     // apply any scale updates from the registy
     registryEntries.forEach(entry => {
-      if (entry?.xScale) xScale = entry.xScale(xScale);
       if (entry?.yScale) yScale = entry.yScale(yScale);
     });
 
-    return { xScale, yScale };
-  }, [dataRegistry, xScaleConfig, yScaleConfig, registryKeys, xMin, xMax, yMin, yMax]);
+    return yScale;
+  }, [dataRegistry, yScaleConfig, registryKeys, yMin, yMax]);
+
+  return { xScale: memoizedXScale, yScale: memoizedYScale };
 }
