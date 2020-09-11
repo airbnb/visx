@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { AxisScale } from '@vx/axis';
-import { DataContext as DataContextType } from '../types/data';
+import { DataContextType } from '../types';
 
 type AnyDataContext = DataContextType<AxisScale, AxisScale, any>;
 
