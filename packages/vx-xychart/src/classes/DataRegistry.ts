@@ -1,22 +1,21 @@
-import { AxisScaleOutput } from '@vx/axis';
-import { ScaleConfig } from '@vx/scale';
+import { AxisScale } from '@vx/axis';
 import { DataRegistryEntry } from '../types/data';
 
 /** A class for holding data entries */
 export default class DataRegistry<
-  XScaleConfig extends ScaleConfig<AxisScaleOutput>,
-  YScaleConfig extends ScaleConfig<AxisScaleOutput>,
+  XScale extends AxisScale,
+  YScale extends AxisScale,
   Datum = unknown
 > {
-  private registry: { [key: string]: DataRegistryEntry<XScaleConfig, YScaleConfig, Datum> } = {};
+  private registry: { [key: string]: DataRegistryEntry<XScale, YScale, Datum> } = {};
 
   private registryKeys: string[] = [];
 
   /** Add one or more entries to the registry. */
   public registerData(
     entryOrEntries:
-      | DataRegistryEntry<XScaleConfig, YScaleConfig, Datum>
-      | DataRegistryEntry<XScaleConfig, YScaleConfig, Datum>[],
+      | DataRegistryEntry<XScale, YScale, Datum>
+      | DataRegistryEntry<XScale, YScale, Datum>[],
   ) {
     const entries = Array.isArray(entryOrEntries) ? entryOrEntries : [entryOrEntries];
     entries.forEach(currEntry => {
@@ -48,7 +47,10 @@ export default class DataRegistry<
     return this.registry[key];
   }
 
-  /** Returns the current registry keys. This value is constant between calls if the keys themselves have not changed. */
+  /**
+   * Returns the current registry keys.
+   * This value is constant between calls if the keys themselves have not changed.
+   */
   public keys() {
     return this.registryKeys;
   }

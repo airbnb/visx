@@ -1,7 +1,7 @@
 import { BaseScaleConfig } from './BaseScaleConfig';
 import { StringLike, DefaultOutput, ValueOf, NumberLike } from './Base';
 import { NiceTime } from './Nice';
-import { DefaultThresholdInput, ScaleTypeToD3Scale } from './Scale';
+import { DefaultThresholdInput, ScaleTypeToD3Scale, D3Scale } from './Scale';
 
 type Numeric = number | NumberLike;
 

@@ -1,13 +1,13 @@
-import { AxisScaleOutput } from '@vx/axis';
-import { ScaleConfig, NumberLike, createScale, ScaleInput } from '@vx/scale';
+import { AxisScaleOutput, AxisScale } from '@vx/axis';
+import { ScaleConfig, NumberLike, createScale, ScaleInput, ScaleConfigToD3Scale } from '@vx/scale';
 import { extent as d3Extent } from 'd3-array';
 import { useMemo } from 'react';
 import DataRegistry from '../classes/DataRegistry';
 
 /** A hook for creating memoized x- and y-scales. */
 export default function useScales<
-  XScaleConfig extends ScaleConfig<AxisScaleOutput>,
-  YScaleConfig extends ScaleConfig<AxisScaleOutput>,
+  XScale extends AxisScale,
+  YScale extends AxisScale,
   Datum = unknown
 >({
   xScaleConfig,
@@ -16,9 +16,9 @@ export default function useScales<
   xRange,
   yRange,
 }: {
-  xScaleConfig: XScaleConfig;
-  yScaleConfig: YScaleConfig;
-  dataRegistry: DataRegistry<XScaleConfig, YScaleConfig, Datum>;
+  xScaleConfig: ScaleConfig<AxisScaleOutput>;
+  yScaleConfig: ScaleConfig<AxisScaleOutput>;
+  dataRegistry: DataRegistry<XScale, YScale, Datum>;
   xRange: [number, number];
   yRange: [number, number];
 }) {
@@ -30,9 +30,7 @@ export default function useScales<
   const memoizedXScale = useMemo(() => {
     const registryEntries = registryKeys.map(key => dataRegistry.get(key));
 
-    // create scale, and then infer its type
-    let xScale = createScale(xScaleConfig);
-    type XScale = typeof xScale;
+    let xScale = createScale(xScaleConfig) as XScale;
     type XScaleInput = ScaleInput<XScale>;
 
     const xValues = registryEntries.reduce<XScaleInput[]>(
@@ -62,8 +60,7 @@ export default function useScales<
   const memoizedYScale = useMemo(() => {
     const registryEntries = registryKeys.map(key => dataRegistry.get(key));
 
-    let yScale = createScale(yScaleConfig);
-    type YScale = typeof yScale;
+    let yScale = createScale(yScaleConfig) as YScale;
     type YScaleInput = ScaleInput<YScale>;
 
     const yValues = registryEntries.reduce<YScaleInput[]>(

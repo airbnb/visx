@@ -1,4 +1,4 @@
-import { ScaleConfig } from '@vx/scale';
+import { ScaleConfig, ScaleConfigToD3Scale } from '@vx/scale';
 import React, { useContext, useMemo } from 'react';
 import createOrdinalScale from '@vx/scale/lib/scales/ordinal';
 import { AxisScaleOutput } from '@vx/axis';
@@ -40,9 +40,12 @@ export default function DataProvider<
   const innerWidth = width - (margin?.left ?? 0) - (margin?.right ?? 0);
   const innerHeight = height - margin?.top ?? 0 - margin?.bottom ?? 0;
 
-  const dataRegistry = useDataRegistry<XScaleConfig, YScaleConfig, Datum>();
+  type XScale = ScaleConfigToD3Scale<XScaleConfig, AxisScaleOutput>;
+  type YScale = ScaleConfigToD3Scale<YScaleConfig, AxisScaleOutput>;
 
-  const scales = useScales({
+  const dataRegistry = useDataRegistry<XScale, YScale, Datum>();
+
+  const scales: { xScale: XScale; yScale: YScale } = useScales({
     dataRegistry,
     xScaleConfig,
     yScaleConfig,
