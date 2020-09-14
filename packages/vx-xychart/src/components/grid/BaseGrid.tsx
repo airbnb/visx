@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { CommonGridProps } from '@vx/grid/lib/types';
-import { GridRowsProps } from '@vx/grid/lib/grids/GridRows';
+import { AllGridRowsProps } from '@vx/grid/lib/grids/GridRows';
 import { GridColumnsProps } from '@vx/grid/lib/grids/GridColumns';
 import { AxisScale } from '@vx/axis';
 import DataContext from '../../context/DataContext';
@@ -11,7 +11,7 @@ export type BaseGridProps = {
   /** Whether to render GridColumns. */
   columns?: boolean;
   /** Rendered GridRows component which is passed GridRowProps by BaseGrid. */
-  GridRowsComponent: React.FC<GridRowsProps<AxisScale>>;
+  GridRowsComponent: React.FC<AllGridRowsProps<AxisScale>>;
   /** Rendered GridColumns component which is passed GridColumnsProps by BaseGrid. */
   GridColumnsComponent: React.FC<GridColumnsProps<AxisScale>>;
 } & CommonGridProps;
