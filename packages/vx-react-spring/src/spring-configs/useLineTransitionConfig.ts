@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import { coerceNumber } from '@vx/scale';
 import { AxisScale } from '@vx/axis/lib/types';
 import { GridScale } from '@vx/grid/lib/types';
+import { AnimationTrajectory } from '../types';
 
 interface Point {
   x?: number;
@@ -14,7 +15,7 @@ interface Line {
 }
 
 function animatedValue(
-  animationTrajectory: 'outside' | 'center' | 'min' | 'max',
+  animationTrajectory: AnimationTrajectory,
   positionOnScale: number | undefined,
   scaleMin: number | undefined,
   scaleMax: number | undefined,
@@ -49,7 +50,7 @@ export type TransitionConfig<Scale extends AxisScale | GridScale> = {
   /** Whether to animate the `x` or `y` values of a Line. */
   animateXOrY: 'x' | 'y';
   /** The scale position entering lines come from, and exiting lines leave to. */
-  animationTrajectory?: 'outside' | 'center' | 'min' | 'max';
+  animationTrajectory?: AnimationTrajectory;
 };
 
 /**
@@ -67,11 +68,12 @@ export default function useLineTransitionConfig<Scale extends AxisScale | GridSc
     const isDescending = b != null && a != null && b < a;
     const [scaleMin, scaleMax] = isDescending ? [b, a] : [a, b];
     const scaleLength = b != null && a != null ? Math.abs(b - a) : 0;
-    const scaleHalfwayPoint = scaleLength / 2;
+    const scaleHalfwayPoint = (scaleMin ?? 0) + scaleLength / 2;
     let animationTrajectory = initAnimationTrajectory;
-    // correct direction for descending scales (like y-axis)
-    if (isDescending && initAnimationTrajectory === 'min') animationTrajectory = 'max';
-    if (isDescending && initAnimationTrajectory === 'max') animationTrajectory = 'min';
+
+    // correct direction for y-axis which is inverted due to svg coords
+    if (!shouldAnimateX && initAnimationTrajectory === 'min') animationTrajectory = 'max';
+    if (!shouldAnimateX && initAnimationTrajectory === 'max') animationTrajectory = 'min';
 
     const fromLeave = ({ from, to }: Line) => ({
       fromX: shouldAnimateX

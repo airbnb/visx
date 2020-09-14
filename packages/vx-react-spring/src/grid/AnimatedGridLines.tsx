@@ -1,6 +1,6 @@
 import React, { SVGProps } from 'react';
 import { animated, useTransition } from 'react-spring';
-import { GridScale, GridLines } from '@vx/grid/lib/types';
+import { GridScale, GridLines, CommonGridProps } from '@vx/grid/lib/types';
 import useLineTransitionConfig, {
   TransitionConfig,
 } from '../spring-configs/useLineTransitionConfig';
@@ -10,7 +10,8 @@ export type AnimatedGridLinesProps<Scale extends GridScale> = {
   lineKey: (line: GridLines[number]) => string;
   scale: Scale;
 } & Omit<SVGProps<SVGLineElement>, 'ref' | 'scale'> &
-  Pick<TransitionConfig<Scale>, 'animationTrajectory' | 'animateXOrY'>;
+  Pick<TransitionConfig<Scale>, 'animationTrajectory' | 'animateXOrY'> &
+  Pick<CommonGridProps, 'stroke' | 'strokeWidth' | 'lineStyle' | 'strokeDasharray'>;
 
 export default function AnimatedGridLines<Scale extends GridScale>({
   scale,
@@ -18,6 +19,7 @@ export default function AnimatedGridLines<Scale extends GridScale>({
   animationTrajectory,
   animateXOrY,
   lineKey,
+  lineStyle,
   ...lineProps
 }: AnimatedGridLinesProps<Scale>) {
   const animatedLines = useTransition(lines, lineKey, {
@@ -43,6 +45,7 @@ export default function AnimatedGridLines<Scale extends GridScale>({
           y1={fromY}
           y2={toY}
           strokeOpacity={opacity}
+          style={lineStyle}
           {...lineProps}
         />
       ))}

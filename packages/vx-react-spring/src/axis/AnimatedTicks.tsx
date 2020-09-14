@@ -5,9 +5,8 @@ import Orientation from '@vx/axis/lib/constants/orientation';
 import { TicksRendererProps, AxisScale } from '@vx/axis/lib/types';
 import { Text } from '@vx/text';
 
-import useLineTransitionConfig, {
-  TransitionConfig,
-} from '../spring-configs/useLineTransitionConfig';
+import useLineTransitionConfig from '../spring-configs/useLineTransitionConfig';
+import { AnimationTrajectory } from '../types';
 
 export default function AnimatedTicks<Scale extends AxisScale>({
   hideTicks,
@@ -20,7 +19,7 @@ export default function AnimatedTicks<Scale extends AxisScale>({
   tickTransform,
   ticks,
   animationTrajectory,
-}: TicksRendererProps<Scale> & Pick<TransitionConfig<Scale>, 'animationTrajectory'>) {
+}: TicksRendererProps<Scale> & { animationTrajectory?: AnimationTrajectory }) {
   const animatedTicks = useTransition(ticks, tick => `${tick.value}-${horizontal}`, {
     unique: true,
     ...useLineTransitionConfig({ scale, animateXOrY: horizontal ? 'x' : 'y', animationTrajectory }),

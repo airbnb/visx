@@ -1,8 +1,8 @@
 import React from 'react';
 import GridColumns, { GridColumnsProps } from '@vx/grid/lib/grids/GridColumns';
 import { GridScale } from '@vx/grid/lib/types';
-import { TransitionConfig } from '../spring-configs/useLineTransitionConfig';
 import AnimatedGridLines from './AnimatedGridLines';
+import { AnimationTrajectory } from '../types';
 
 export default function AnimatedGridColumns<Scale extends GridScale>({
   scale,
@@ -12,9 +12,10 @@ export default function AnimatedGridColumns<Scale extends GridScale>({
   offset,
   className,
   animationTrajectory,
+  top,
+  left,
   ...lineProps
-}: Omit<GridColumnsProps<Scale>, 'children'> &
-  Pick<TransitionConfig<Scale>, 'animationTrajectory'>) {
+}: Omit<GridColumnsProps<Scale>, 'children'> & { animationTrajectory?: AnimationTrajectory }) {
   return (
     <GridColumns
       scale={scale}
@@ -22,6 +23,8 @@ export default function AnimatedGridColumns<Scale extends GridScale>({
       numTicks={numTicks}
       tickValues={tickValues}
       className={className}
+      top={top}
+      left={left}
     >
       {({ lines }) => (
         <AnimatedGridLines

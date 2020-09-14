@@ -1,16 +1,26 @@
-import React from 'react';
-
-type TextPropsToOmit = 'onCopy' | 'event';
-
-export type SVGTextStyles = Omit<React.SVGAttributes<SVGTextElement>, TextPropsToOmit> & {
-  textAnchor?: 'start' | 'middle' | 'end' | 'inherit';
-};
+import React, { CSSProperties } from 'react';
+import { TextProps } from '@vx/text/lib/Text';
 
 export type HTMLTextStyles = React.HTMLAttributes<HTMLDivElement>['style'];
 
 export type LineStyles = Omit<React.SVGAttributes<SVGLineElement>, 'Key'>;
 
-export type GridStyles = LineStyles;
+export type GridStyles = CSSProperties;
+
+export type SVGTextProps = TextProps;
+
+interface AxisStyle {
+  /** Axis label styles. */
+  axisLabel: SVGTextProps;
+  /** Axis line styles. */
+  axisLine: LineStyles;
+  /** Tick label styles. */
+  tickLabel: SVGTextProps;
+  /** Tick line styles. */
+  tickLine: LineStyles;
+  /** Length of axis tick lines. */
+  tickLength: number;
+}
 
 /** A complete chart theme includes style definitions for all axis orientations. */
 export interface XYChartTheme {
@@ -33,17 +43,4 @@ export interface XYChartTheme {
       right: AxisStyle;
     };
   };
-}
-
-interface AxisStyle {
-  /** Axis label styles. */
-  axisLabel: SVGTextStyles;
-  /** Axis line styles. */
-  axisLine: LineStyles;
-  /** Tick label styles. */
-  tickLabel: SVGTextStyles;
-  /** Tick line styles. */
-  tickLine: LineStyles;
-  /** Length of axis tick lines. */
-  tickLength: number;
 }

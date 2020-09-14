@@ -1,4 +1,5 @@
 import { D3Scale, NumberLike } from '@vx/scale';
+import { CSSProperties } from 'react';
 
 // In order to plot values on an axis, output of the scale must be number.
 // Some scales return undefined.
@@ -29,7 +30,7 @@ export type CommonGridProps = {
   /** Approximate number of grid lines. Approximate due to d3 alogrithm, specify `tickValues` for precise control. */
   numTicks?: number;
   /** Styles to apply as grid line style. */
-  lineStyle?: React.CSSProperties;
+  lineStyle?: CSSProperties;
   /** Pixel offset to apply as a translation (y- for Rows, x- for Columns) to each grid lines. */
   offset?: number;
 };

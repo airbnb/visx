@@ -38,7 +38,7 @@ export default function DataProvider<
 
   const [{ width, height, margin }, setDimensions] = useDimensions();
   const innerWidth = width - (margin?.left ?? 0) - (margin?.right ?? 0);
-  const innerHeight = height - margin?.top ?? 0 - margin?.bottom ?? 0;
+  const innerHeight = height - (margin?.top ?? 0) - (margin?.bottom ?? 0);
 
   type XScale = ScaleConfigToD3Scale<XScaleConfig, AxisScaleOutput>;
   type YScale = ScaleConfigToD3Scale<YScaleConfig, AxisScaleOutput>;
