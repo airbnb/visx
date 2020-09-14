@@ -33,7 +33,7 @@ export default function LineSeries<
   dataKey,
   ...lineProps
 }: LineSeriesProps<XScaleConfig, YScaleConfig, Datum>) {
-  const { xScale, yScale, colorScale, dataRegistry } = useContext(DataContext);
+  const { xScale, yScale, colorScale, dataRegistry, theme } = useContext(DataContext);
 
   // register data on mount
   // @TODO(chris) make this easier with HOC
@@ -64,7 +64,7 @@ export default function LineSeries<
 
   if (!data || !xAccessor || !yAccessor) return null;
 
-  const color = colorScale?.(dataKey) ?? '#222';
+  const color = colorScale?.(dataKey) ?? theme?.colors?.[0] ?? '#222';
 
   return (
     <LinePath
