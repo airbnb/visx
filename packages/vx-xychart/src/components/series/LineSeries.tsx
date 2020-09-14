@@ -1,38 +1,25 @@
 import React, { useContext, useCallback, useEffect } from 'react';
 import LinePath from '@vx/shape/lib/shapes/LinePath';
-import { ScaleConfig, ScaleConfigToD3Scale, ScaleInput } from '@vx/scale';
-import { AxisScaleOutput } from '@vx/axis';
+import { ScaleInput } from '@vx/scale';
+import { AxisScale } from '@vx/axis';
 import DataContext from '../../context/DataContext';
 import isValidNumber from '../../typeguards/isValidNumber';
+import { DataContextType } from '../../types';
 
-type LineSeriesProps<
-  XScaleConfig extends ScaleConfig<AxisScaleOutput>,
-  YScaleConfig extends ScaleConfig<AxisScaleOutput>,
-  Datum
-> = {
+type LineSeriesProps<XScale extends AxisScale, YScale extends AxisScale, Datum> = {
   dataKey: string;
   data: Datum[];
-  xAccessor: (
-    d: Datum,
-  ) => // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  ScaleInput<ScaleConfigToD3Scale<XScaleConfig, AxisScaleOutput, any, any>>;
-  yAccessor: (
-    d: Datum,
-  ) => // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  ScaleInput<ScaleConfigToD3Scale<YScaleConfig, AxisScaleOutput, any, any>>;
+  xAccessor: (d: Datum) => ScaleInput<XScale>;
+  yAccessor: (d: Datum) => ScaleInput<YScale>;
 };
 
-export default function LineSeries<
-  XScaleConfig extends ScaleConfig<AxisScaleOutput>,
-  YScaleConfig extends ScaleConfig<AxisScaleOutput>,
-  Datum
->({
+export default function LineSeries<XScale extends AxisScale, YScale extends AxisScale, Datum>({
   data,
   xAccessor,
   yAccessor,
   dataKey,
   ...lineProps
-}: LineSeriesProps<XScaleConfig, YScaleConfig, Datum>) {
+}: LineSeriesProps<XScale, YScale, Datum>) {
   const { xScale, yScale, colorScale, dataRegistry, theme } = useContext(DataContext);
 
   // register data on mount
