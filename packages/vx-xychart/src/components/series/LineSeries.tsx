@@ -4,7 +4,6 @@ import { ScaleInput } from '@vx/scale';
 import { AxisScale } from '@vx/axis';
 import DataContext from '../../context/DataContext';
 import isValidNumber from '../../typeguards/isValidNumber';
-import { DataContextType } from '../../types';
 
 type LineSeriesProps<XScale extends AxisScale, YScale extends AxisScale, Datum> = {
   dataKey: string;
