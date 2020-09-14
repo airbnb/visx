@@ -34,11 +34,11 @@ export interface XYChartTheme {
 
 interface AxisStyle {
   /** Axis label styles. */
-  axisLabel: TextProps;
+  axisLabel: SVGTextProps;
   /** Axis line styles. */
   axisLine: LineStyles;
   /** Tick label styles. */
-  tickLabel: TextProps;
+  tickLabel: SVGTextProps;
   /** Tick line styles. */
   tickLine: LineStyles;
   /** Length of axis tick lines. */

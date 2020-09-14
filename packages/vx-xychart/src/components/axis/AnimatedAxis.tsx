@@ -7,7 +7,10 @@ import BaseAxis, { BaseAxisProps } from './BaseAxis';
 export type AnimatedAxisProps<Scale extends AxisScale> = Omit<
   BaseAxisProps<Scale>,
   'AxisComponent'
-> & { animationTrajectory?: AnimationTrajectory };
+> & {
+  /** Animation trjectory of axis ticks. */
+  animationTrajectory?: AnimationTrajectory;
+};
 
 export default function AnimatedAxis<Scale extends AxisScale>(props: AnimatedAxisProps<Scale>) {
   return <BaseAxis<Scale> AxisComponent={VxAnimatedAxis} {...props} />;

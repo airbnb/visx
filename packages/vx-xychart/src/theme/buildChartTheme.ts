@@ -1,4 +1,4 @@
-import { SVGTextStyles, HTMLTextStyles, LineStyles, XYChartTheme } from '../types/theme';
+import { SVGTextProps, HTMLTextStyles, LineStyles, XYChartTheme } from '../types/theme';
 import { textColor } from './colors';
 
 export type ThemeConfig = {
@@ -8,8 +8,8 @@ export type ThemeConfig = {
   colors: string[];
 
   // labels
-  labelStyles?: SVGTextStyles;
-  tickLabelStyles?: SVGTextStyles;
+  labelStyles?: SVGTextProps;
+  tickLabelStyles?: SVGTextProps;
   htmlLabelStyles?: HTMLTextStyles;
 
   // lines
@@ -36,14 +36,14 @@ const defaultLabelStyles = {
 
 /** Provides a simplified API to build a full XYChartTheme. */
 export default function buildChartTheme(config: ThemeConfig): XYChartTheme {
-  const baseSvgLabel: SVGTextStyles = {
+  const baseSvgLabel: SVGTextProps = {
     ...defaultLabelStyles,
     fill: textColor,
     stroke: 'none',
     ...config.labelStyles,
   } as const;
 
-  const baseTickLabel: SVGTextStyles = {
+  const baseTickLabel: SVGTextProps = {
     ...defaultLabelStyles,
     fontWeight: 200,
     fontSize: 11,

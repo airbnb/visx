@@ -61,7 +61,6 @@ export default function BaseAxis<Scale extends AxisScale>({
       ? (width ?? 0) - (margin?.right ?? 0)
       : 0;
 
-  console.log('baseaxis', { xScale, yScale });
   return (
     <AxisComponent
       top={topOffset}
