@@ -7,6 +7,8 @@
     "@babel/runtime": "^7.8.4",
     "@types/react": "^16",
     "@types/react-dom": "^16",
+    "@vx/mock-data": "latest",
+    "@vx/pattern": "latest",
     "@vx/responsive": "latest",
     "@vx/xychart": "latest",
     "react": "^16",
