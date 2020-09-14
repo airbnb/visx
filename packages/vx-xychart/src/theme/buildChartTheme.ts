@@ -1,3 +1,4 @@
+import { CSSProperties } from 'react';
 import { SVGTextProps, HTMLTextStyles, LineStyles, XYChartTheme } from '../types/theme';
 import { textColor } from './colors';
 
@@ -22,7 +23,7 @@ export type ThemeConfig = {
   // grid
   gridColor: string;
   gridColorDark: string;
-  gridStyles?: LineStyles;
+  gridStyles?: CSSProperties;
 };
 
 const defaultLabelStyles = {
