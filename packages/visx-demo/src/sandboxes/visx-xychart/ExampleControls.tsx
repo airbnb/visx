@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
-import { lightTheme, darkTheme, XYChartTheme } from '@vx/xychart';
-import { AnimationTrajectory } from '@vx/react-spring/lib/types';
+import { lightTheme, darkTheme, XYChartTheme } from '@visx/xychart';
+import { AnimationTrajectory } from '@visx/react-spring/lib/types';
 import customTheme from './customTheme';
 
 type ProvidedProps = {
