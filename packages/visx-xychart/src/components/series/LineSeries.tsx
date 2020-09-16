@@ -1,7 +1,7 @@
 import React, { useContext, useCallback, useEffect } from 'react';
-import LinePath from '@vx/shape/lib/shapes/LinePath';
-import { ScaleInput } from '@vx/scale';
-import { AxisScale } from '@vx/axis';
+import LinePath from '@visx/shape/lib/shapes/LinePath';
+import { ScaleInput } from '@visx/scale';
+import { AxisScale } from '@visx/axis';
 import DataContext from '../../context/DataContext';
 import isValidNumber from '../../typeguards/isValidNumber';
 

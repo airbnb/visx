@@ -1,5 +1,5 @@
-import { AxisScaleOutput, AxisScale } from '@vx/axis';
-import { ScaleConfig, NumberLike, createScale, ScaleInput } from '@vx/scale';
+import { AxisScaleOutput, AxisScale } from '@visx/axis';
+import { ScaleConfig, NumberLike, createScale, ScaleInput } from '@visx/scale';
 import { extent as d3Extent } from 'd3-array';
 import { useMemo } from 'react';
 import DataRegistry from '../classes/DataRegistry';

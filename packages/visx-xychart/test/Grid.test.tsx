@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { mount } from 'enzyme';
-import VxAnimatedGridRows from '@vx/react-spring/lib/grid/AnimatedGridRows';
-import VxAnimatedGridColumns from '@vx/react-spring/lib/grid/AnimatedGridColumns';
-import VxGridRows from '@vx/grid/lib/grids/GridRows';
-import VxGridColumns from '@vx/grid/lib/grids/GridColumns';
-import { scaleLinear } from '@vx/scale';
+import VxAnimatedGridRows from '@visx/react-spring/lib/grid/AnimatedGridRows';
+import VxAnimatedGridColumns from '@visx/react-spring/lib/grid/AnimatedGridColumns';
+import VxGridRows from '@visx/grid/lib/grids/GridRows';
+import VxGridColumns from '@visx/grid/lib/grids/GridColumns';
+import { scaleLinear } from '@visx/scale';
 import { Grid, AnimatedGrid, DataContext } from '../src';
 
 const mockContext = {

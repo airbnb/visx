@@ -1,5 +1,5 @@
 import React, { CSSProperties } from 'react';
-import { TextProps } from '@vx/text/lib/Text';
+import { TextProps } from '@visx/text/lib/Text';
 
 export type HTMLTextStyles = React.HTMLAttributes<HTMLDivElement>['style'];
 

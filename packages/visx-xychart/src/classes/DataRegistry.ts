@@ -1,4 +1,4 @@
-import { AxisScale } from '@vx/axis';
+import { AxisScale } from '@visx/axis';
 import { DataRegistryEntry } from '../types/data';
 
 /** A class for holding data entries */

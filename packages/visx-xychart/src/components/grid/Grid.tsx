@@ -1,6 +1,6 @@
 import React from 'react';
-import GridRows from '@vx/grid/lib/grids/GridRows';
-import GridColumns from '@vx/grid/lib/grids/GridColumns';
+import GridRows from '@visx/grid/lib/grids/GridRows';
+import GridColumns from '@visx/grid/lib/grids/GridColumns';
 import BaseGrid, { BaseGridProps } from './BaseGrid';
 
 export type GridProps = Omit<BaseGridProps, 'GridRowsComponent' | 'GridColumnsComponent'>;

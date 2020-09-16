@@ -1,4 +1,4 @@
-import { AxisScale } from '@vx/axis';
+import { AxisScale } from '@visx/axis';
 import { useMemo } from 'react';
 import DataRegistry from '../classes/DataRegistry';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
-import { LinePath } from '@vx/shape';
+import { LinePath } from '@visx/shape';
 import { LineSeries } from '../src';
 
 describe('<LineSeries />', () => {

@@ -1,6 +1,6 @@
 import React, { useMemo, useContext } from 'react';
-import { AxisScale } from '@vx/axis';
-import { AxisProps as VxAxisProps } from '@vx/axis/lib/axis/Axis';
+import { AxisScale } from '@visx/axis';
+import { AxisProps as VxAxisProps } from '@visx/axis/lib/axis/Axis';
 import DataContext from '../../context/DataContext';
 
 export type BaseAxisProps<Scale extends AxisScale> = Omit<

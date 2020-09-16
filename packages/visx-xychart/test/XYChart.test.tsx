@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { mount, shallow } from 'enzyme';
-import ParentSize from '@vx/responsive/lib/components/ParentSize';
+import ParentSize from '@visx/responsive/lib/components/ParentSize';
 import { XYChart, DataContext, DataProvider } from '../src';
 
 describe('<XYChart />', () => {

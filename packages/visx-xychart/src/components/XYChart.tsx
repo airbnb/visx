@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import ParentSize from '@vx/responsive/lib/components/ParentSize';
+import ParentSize from '@visx/responsive/lib/components/ParentSize';
 
 import DataContext from '../context/DataContext';
 import { Margin } from '../types';

@@ -1,5 +1,5 @@
-import { AxisScale, AxisScaleOutput } from '@vx/axis';
-import { ScaleTypeToD3Scale, ScaleInput, D3Scale } from '@vx/scale';
+import { AxisScale, AxisScaleOutput } from '@visx/axis';
+import { ScaleTypeToD3Scale, ScaleInput, D3Scale } from '@visx/scale';
 import DataRegistry from '../classes/DataRegistry';
 import { XYChartTheme } from './theme';
 

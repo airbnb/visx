@@ -1,7 +1,7 @@
-import { ScaleConfig, ScaleConfigToD3Scale } from '@vx/scale';
+import { ScaleConfig, ScaleConfigToD3Scale } from '@visx/scale';
 import React, { useContext, useMemo } from 'react';
-import createOrdinalScale from '@vx/scale/lib/scales/ordinal';
-import { AxisScaleOutput } from '@vx/axis';
+import createOrdinalScale from '@visx/scale/lib/scales/ordinal';
+import { AxisScaleOutput } from '@visx/axis';
 import { XYChartTheme } from '../types';
 import ThemeContext from '../context/ThemeContext';
 import DataContext from '../context/DataContext';
