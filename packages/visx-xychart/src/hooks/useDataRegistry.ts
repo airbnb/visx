@@ -6,7 +6,7 @@ import DataRegistry from '../classes/DataRegistry';
 export default function useDataRegistry<
   XScale extends AxisScale,
   YScale extends AxisScale,
-  Datum = unknown
+  Datum extends object
 >() {
   return useMemo(() => new DataRegistry<XScale, YScale, Datum>(), []);
 }

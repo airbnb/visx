@@ -5,7 +5,7 @@ import { DataRegistryEntry } from '../types/data';
 export default class DataRegistry<
   XScale extends AxisScale,
   YScale extends AxisScale,
-  Datum = unknown
+  Datum extends object
 > {
   private registry: { [key: string]: DataRegistryEntry<XScale, YScale, Datum> } = {};
 

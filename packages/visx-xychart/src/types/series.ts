@@ -1,7 +1,11 @@
 import { AxisScale } from '@visx/axis';
 import { ScaleInput } from '@visx/scale';
 
-export type SeriesProps<XScale extends AxisScale, YScale extends AxisScale, Datum> = {
+export type SeriesProps<
+  XScale extends AxisScale,
+  YScale extends AxisScale,
+  Datum extends object
+> = {
   /** Required data key for the Series, should be unique across all series. */
   dataKey: string;
   /** Data for the Series. */

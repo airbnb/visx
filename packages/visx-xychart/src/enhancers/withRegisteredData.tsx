@@ -1,7 +1,13 @@
 import React, { useContext, useEffect } from 'react';
 import { AxisScale } from '@visx/axis';
 import DataContext from '../context/DataContext';
-import { SeriesProps } from '../types';
+import { DataContextType, SeriesProps } from '../types';
+
+export type WithRegisteredDataProps<
+  XScale extends AxisScale,
+  YScale extends AxisScale,
+  Datum
+> = Pick<DataContextType<XScale, YScale, Datum>, 'xScale' | 'yScale'>;
 
 /**
  * An HOC that handles registering the Series's data and renders the
@@ -12,11 +18,19 @@ export default function withRegisteredData<
   BaseComponentProps extends SeriesProps<XScale, YScale, Datum>,
   XScale extends AxisScale,
   YScale extends AxisScale,
-  Datum
->(BaseSeriesComponent: React.ComponentType<BaseComponentProps>) {
+  Datum extends object
+>(
+  BaseSeriesComponent: React.ComponentType<
+    BaseComponentProps & WithRegisteredDataProps<XScale, YScale, Datum>
+  >,
+) {
   function WrappedSeriesComponent(props: BaseComponentProps) {
     const { dataKey, data, xAccessor, yAccessor } = props;
-    const { xScale, yScale, dataRegistry } = useContext(DataContext);
+    const { xScale, yScale, dataRegistry } = useContext(DataContext) as DataContextType<
+      XScale,
+      YScale,
+      Datum
+    >;
 
     useEffect(() => {
       if (dataRegistry) dataRegistry.registerData({ key: dataKey, data, xAccessor, yAccessor });

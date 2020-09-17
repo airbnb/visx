@@ -8,7 +8,7 @@ import DataRegistry from '../classes/DataRegistry';
 export default function useScales<
   XScale extends AxisScale,
   YScale extends AxisScale,
-  Datum = unknown
+  Datum extends object
 >({
   xScaleConfig,
   yScaleConfig,

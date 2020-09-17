@@ -31,7 +31,11 @@ export interface DataRegistryEntry<XScale extends AxisScale, YScale extends Axis
   legendShape?: LegendShape;
 }
 
-export interface DataContextType<XScale extends AxisScale, YScale extends AxisScale, Datum> {
+export interface DataContextType<
+  XScale extends AxisScale,
+  YScale extends AxisScale,
+  Datum extends object
+> {
   xScale: XScale;
   yScale: YScale;
   colorScale: ScaleTypeToD3Scale<string, string>['ordinal'];

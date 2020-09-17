@@ -1,54 +1,30 @@
-import React, { useContext, useCallback, useEffect } from 'react';
+import React, { useContext, useCallback } from 'react';
 import LinePath from '@visx/shape/lib/shapes/LinePath';
 import { AxisScale } from '@visx/axis';
 import DataContext from '../../context/DataContext';
-import isValidNumber from '../../typeguards/isValidNumber';
 import { SeriesProps } from '../../types';
+import withRegisteredData, { WithRegisteredDataProps } from '../../enhancers/withRegisteredData';
+import getScaledValueFactory from '../../utils/getScaledValueFactory';
 
-type LineSeriesProps<XScale extends AxisScale, YScale extends AxisScale, Datum> = SeriesProps<
-  XScale,
-  YScale,
-  Datum
->;
+type LineSeriesProps<
+  XScale extends AxisScale,
+  YScale extends AxisScale,
+  Datum extends object
+> = SeriesProps<XScale, YScale, Datum>;
 
-export default function LineSeries<XScale extends AxisScale, YScale extends AxisScale, Datum>({
+function LineSeries<XScale extends AxisScale, YScale extends AxisScale, Datum extends object>({
   data,
+  xScale,
+  yScale,
   xAccessor,
   yAccessor,
   dataKey,
   ...lineProps
-}: LineSeriesProps<XScale, YScale, Datum>) {
-  const { xScale, yScale, colorScale, dataRegistry, theme } = useContext(DataContext);
+}: LineSeriesProps<XScale, YScale, Datum> & WithRegisteredDataProps<XScale, YScale, Datum>) {
+  const { colorScale, theme } = useContext(DataContext);
 
-  // register data on mount
-  // @TODO(chris) make this easier with HOC
-  useEffect(() => {
-    if (dataRegistry) dataRegistry.registerData({ key: dataKey, data, xAccessor, yAccessor });
-    return () => dataRegistry?.unregisterData(dataKey);
-  }, [dataRegistry, dataKey, data, xAccessor, yAccessor]);
-
-  const getScaledX = useCallback(
-    (d: Datum) => {
-      const x = xScale?.(xAccessor(d));
-      return isValidNumber(x)
-        ? x + (xScale && 'bandwidth' in xScale ? xScale?.bandwidth?.() ?? 0 : 0) / 2
-        : NaN;
-    },
-    [xScale, xAccessor],
-  );
-
-  const getScaledY = useCallback(
-    (d: Datum) => {
-      const y = yScale?.(yAccessor(d));
-      return isValidNumber(y)
-        ? y + (yScale && 'bandwidth' in yScale ? yScale?.bandwidth?.() ?? 0 : 0) / 2
-        : NaN;
-    },
-    [yScale, yAccessor],
-  );
-
-  if (!data || !xAccessor || !yAccessor) return null;
-
+  const getScaledX = useCallback(getScaledValueFactory(xScale, xAccessor), [xScale, xAccessor]);
+  const getScaledY = useCallback(getScaledValueFactory(yScale, yAccessor), [yScale, yAccessor]);
   const color = colorScale?.(dataKey) ?? theme?.colors?.[0] ?? '#222';
 
   return (
@@ -62,3 +38,5 @@ export default function LineSeries<XScale extends AxisScale, YScale extends Axis
     />
   );
 }
+
+export default withRegisteredData(LineSeries);
