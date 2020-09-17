@@ -1,16 +1,15 @@
 import React, { useContext, useCallback, useEffect } from 'react';
 import LinePath from '@visx/shape/lib/shapes/LinePath';
-import { ScaleInput } from '@visx/scale';
 import { AxisScale } from '@visx/axis';
 import DataContext from '../../context/DataContext';
 import isValidNumber from '../../typeguards/isValidNumber';
+import { SeriesProps } from '../../types';
 
-type LineSeriesProps<XScale extends AxisScale, YScale extends AxisScale, Datum> = {
-  dataKey: string;
-  data: Datum[];
-  xAccessor: (d: Datum) => ScaleInput<XScale>;
-  yAccessor: (d: Datum) => ScaleInput<YScale>;
-};
+type LineSeriesProps<XScale extends AxisScale, YScale extends AxisScale, Datum> = SeriesProps<
+  XScale,
+  YScale,
+  Datum
+>;
 
 export default function LineSeries<XScale extends AxisScale, YScale extends AxisScale, Datum>({
   data,
