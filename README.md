@@ -34,11 +34,11 @@ to generate your visualization with the benefits of react for updating the DOM.
 
 <p align="center">
   <strong>
-    <a href="https://visx-demo.now.sh">Docs</a>
+    <a href="https://airbnb.io/visx">Docs</a>
   </strong>
   &bull;
   <strong>
-    <a href="https://visx-demo.now.sh/gallery">Gallery</a>
+    <a href="https://airbnb.io/visx/gallery">Gallery</a>
   </strong>
   &bull;
   <strong>
@@ -59,7 +59,7 @@ to generate your visualization with the benefits of react for updating the DOM.
 </p>
 
 <p align="center">
-  <a href="https://visx-demo.now.sh/gallery">
+  <a href="https://airbnb.io/visx/gallery">
     <img src="./assets/visx-gallery.png" />
   </a>
 </p>
@@ -145,7 +145,7 @@ function BarGraph(props) {
 // <BarGraph />
 ```
 
-For more examples using `visx`, check out the [gallery](https://visx-demo.now.sh/gallery).
+For more examples using `visx`, check out the [gallery](https://airbnb.io/visx/gallery).
 
 ## Motivation
 
