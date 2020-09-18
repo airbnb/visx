@@ -1,10 +1,13 @@
 // components
 export { default as XYChart } from './components/XYChart';
-export { default as LineSeries } from './components/series/LineSeries';
 export { default as Axis } from './components/axis/Axis';
 export { default as AnimatedAxis } from './components/axis/AnimatedAxis';
 export { default as Grid } from './components/grid/Grid';
 export { default as AnimatedGrid } from './components/grid/AnimatedGrid';
+
+// series components
+export { default as BarSeries } from './components/series/BarSeries';
+export { default as LineSeries } from './components/series/LineSeries';
 
 // context
 export { default as ThemeContext } from './context/ThemeContext';

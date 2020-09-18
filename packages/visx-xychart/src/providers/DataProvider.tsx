@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ScaleConfig, ScaleConfigToD3Scale } from '@visx/scale';
 import React, { useContext, useMemo } from 'react';
 import createOrdinalScale from '@visx/scale/lib/scales/ordinal';
@@ -49,7 +50,7 @@ export default function DataProvider<
     xScaleConfig,
     yScaleConfig,
     xRange: [margin.left, width - margin.right],
-    yRange: [margin.top, height - margin.bottom],
+    yRange: [height - margin.bottom, margin.top],
   });
 
   const registryKeys = dataRegistry.keys();

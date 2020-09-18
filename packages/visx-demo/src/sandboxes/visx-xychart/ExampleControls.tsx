@@ -6,6 +6,7 @@ import customTheme from './customTheme';
 
 type ProvidedProps = {
   animationTrajectory: AnimationTrajectory;
+  renderHorizontally: boolean;
   showGridColumns: boolean;
   showGridRows: boolean;
   theme: XYChartTheme;
@@ -24,11 +25,13 @@ export default function ExampleControls({ children }: ControlsProps) {
   const [showGridRows, showGridColumns] = gridProps;
   const [xAxisOrientation, setXAxisOrientation] = useState<'top' | 'bottom'>('bottom');
   const [yAxisOrientation, setYAxisOrientation] = useState<'left' | 'right'>('right');
+  const [renderHorizontally, setRenderHorizontally] = useState(false);
 
   return (
     <>
       {children({
         animationTrajectory,
+        renderHorizontally,
         showGridColumns,
         showGridRows,
         theme,
@@ -62,6 +65,27 @@ export default function ExampleControls({ children }: ControlsProps) {
               checked={theme === customTheme}
             />{' '}
             custom
+          </label>
+        </div>
+
+        {/** series orientation */}
+        <div>
+          <strong>series orientation</strong>
+          <label>
+            <input
+              type="radio"
+              onChange={() => setRenderHorizontally(false)}
+              checked={!renderHorizontally}
+            />{' '}
+            vertical
+          </label>
+          <label>
+            <input
+              type="radio"
+              onChange={() => setRenderHorizontally(true)}
+              checked={renderHorizontally}
+            />{' '}
+            horizontal
           </label>
         </div>
 

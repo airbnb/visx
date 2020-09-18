@@ -6,7 +6,7 @@ import { DataContextType, SeriesProps } from '../types';
 export type WithRegisteredDataProps<
   XScale extends AxisScale,
   YScale extends AxisScale,
-  Datum
+  Datum extends object
 > = Pick<DataContextType<XScale, YScale, Datum>, 'xScale' | 'yScale'>;
 
 /**
@@ -35,7 +35,7 @@ export default function withRegisteredData<
     useEffect(() => {
       if (dataRegistry) dataRegistry.registerData({ key: dataKey, data, xAccessor, yAccessor });
       return () => dataRegistry?.unregisterData(dataKey);
-      // @TODO: make accessors defined inline *not* trigger effect
+      // @TODO: make accessors defined inline for a component *not* trigger effect
     }, [dataRegistry, dataKey, data, xAccessor, yAccessor]);
 
     const registryEntry = dataRegistry?.get(dataKey);
