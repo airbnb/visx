@@ -253,9 +253,7 @@ Lots coming soon, check out the [roadmap](./ROADMAP.md).
 
 1. Does visx work with [preact](https://preactjs.com/)?
 
-   > yup! need to alias `react` + `react-dom` and use `preact-compat`. Here's a quick demo:
-   > https://vx-preact.now.sh/.
-   > [more info](https://preactjs.com/guide/switching-to-preact#how-to-alias-preact-compat)
+   > yup! need to alias `react` + `react-dom` and use `preact-compat`.
 
 1. I like using d3.
 
