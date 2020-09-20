@@ -1,0 +1,26 @@
+{
+  "name": "@visx/demo-xychart",
+  "description": "Standalone visx xychart demo.",
+  "main": "index.tsx",
+  "private": true,
+  "dependencies": {
+    "@babel/runtime": "^7.8.4",
+    "@types/react": "^16",
+    "@types/react-dom": "^16",
+    "@visx/mock-data": "latest",
+    "@visx/pattern": "latest",
+    "@visx/react-spring": "latest",
+    "@visx/responsive": "latest",
+    "@visx/xychart": "latest",
+    "react": "^16",
+    "react-dom": "^16",
+    "react-scripts-ts": "3.1.0",
+    "typescript": "^3"
+  },
+  "keywords": [
+    "visualization",
+    "d3",
+    "react",
+    "visx"
+  ]
+}

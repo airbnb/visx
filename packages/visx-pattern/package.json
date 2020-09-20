@@ -1,0 +1,42 @@
+{
+  "name": "@visx/pattern",
+  "version": "0.0.199",
+  "description": "visx pattern",
+  "sideEffects": false,
+  "main": "lib/index.js",
+  "module": "esm/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib",
+    "esm"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/airbnb/visx.git"
+  },
+  "keywords": [
+    "visx",
+    "react",
+    "d3",
+    "visualization",
+    "charts"
+  ],
+  "author": "@hshoff",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/airbnb/visx/issues"
+  },
+  "homepage": "https://github.com/airbnb/visx#readme",
+  "dependencies": {
+    "@types/classnames": "^2.2.9",
+    "@types/react": "*",
+    "classnames": "^2.2.5",
+    "prop-types": "^15.5.10"
+  },
+  "peerDependencies": {
+    "react": "^15.0.0-0 || ^16.0.0-0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

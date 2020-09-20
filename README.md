@@ -3,17 +3,17 @@
 </p>
 
 <p align="center">
-  <a title="npm version" href="https://www.npmjs.com/~vx">
-    <img src="https://img.shields.io/npm/v/@vx/demo.svg?style=flat-square" />
+  <a title="npm version" href="https://www.npmjs.com/~visx">
+    <img src="https://img.shields.io/npm/v/@visx/demo.svg?style=flat-square" />
   </a>
-  <a title="build status" href="https://travis-ci.org/hshoff/vx">
-    <img src="https://travis-ci.org/hshoff/vx.svg?branch=master" />
+  <a title="build status" href="https://travis-ci.org/airbnb/visx">
+    <img src="https://travis-ci.org/airbnb/visx.svg?branch=master" />
   </a>
-  <a href='https://coveralls.io/github/hshoff/vx?branch=master'>
-    <img src='https://coveralls.io/repos/github/hshoff/vx/badge.svg?branch=master' alt='Coverage Status' />
+  <a href='https://coveralls.io/github/airbnb/visx?branch=master'>
+    <img src='https://coveralls.io/repos/github/airbnb/visx/badge.svg?branch=master' alt='Coverage Status' />
   </a>
-  <a title="@vx/shape npm downloads" href="https://www.npmjs.com/package/@vx/shape">
-    <img src="https://img.shields.io/npm/dm/@vx/shape.svg?style=flat-square" />
+  <a title="@visx/shape npm downloads" href="https://www.npmjs.com/package/@visx/shape">
+    <img src="https://img.shields.io/npm/dm/@visx/shape.svg?style=flat-square" />
   </a>
   <a title="Join the community on Spectrum" href="https://spectrum.chat/vx">
     <img src="https://withspectrum.github.io/badge/badge.svg" />
@@ -25,20 +25,20 @@
   </a>
 </p>
 
-### vx
+### visx
 
-vx is a collection of reusable low-level visualization components. vx combines the power of d3 to
-generate your visualization with the benefits of react for updating the DOM.
+visx is a collection of reusable low-level visualization components. visx combines the power of d3
+to generate your visualization with the benefits of react for updating the DOM.
 
 <br />
 
 <p align="center">
   <strong>
-    <a href="https://vx-demo.now.sh">Docs</a>
+    <a href="https://airbnb.io/visx">Docs</a>
   </strong>
   &bull;
   <strong>
-    <a href="https://vx-demo.now.sh/gallery">Gallery</a>
+    <a href="https://airbnb.io/visx/gallery">Gallery</a>
   </strong>
   &bull;
   <strong>
@@ -46,7 +46,7 @@ generate your visualization with the benefits of react for updating the DOM.
   </strong>
   &bull;
   <strong>
-    <a href="https://d3-slackin.herokuapp.com/" title="Join https://d3js.slack.com">Slack #vx</a>
+    <a href="https://d3-slackin.herokuapp.com/" title="Join https://d3js.slack.com">Slack #visx</a>
   </strong>
   &bull;
   <strong>
@@ -59,8 +59,8 @@ generate your visualization with the benefits of react for updating the DOM.
 </p>
 
 <p align="center">
-  <a href="https://vx-demo.now.sh/gallery">
-    <img src="./assets/vx-gallery.png" />
+  <a href="https://airbnb.io/visx/gallery">
+    <img src="./assets/visx-gallery.png" />
   </a>
 </p>
 
@@ -73,19 +73,19 @@ Let's make a simple bar graph.
 First we'll install the relevant packages:
 
 ```
-$ npm install --save @vx/mock-data @vx/group @vx/shape @vx/scale
+$ npm install --save @visx/mock-data @visx/group @visx/shape @visx/scale
 ```
 
 <img src="./assets/simplebar.png" height="150" />
 
 ```javascript
 import React from 'react';
-import { letterFrequency } from '@vx/mock-data';
-import { Group } from '@vx/group';
-import { Bar } from '@vx/shape';
-import { scaleLinear, scaleBand } from '@vx/scale';
+import { letterFrequency } from '@visx/mock-data';
+import { Group } from '@visx/group';
+import { Bar } from '@visx/shape';
+import { scaleLinear, scaleBand } from '@visx/scale';
 
-// We'll use some mock data from `@vx/mock-data` for this.
+// We'll use some mock data from `@visx/mock-data` for this.
 const data = letterFrequency;
 
 // Define the graph dimensions and margins
@@ -145,21 +145,21 @@ function BarGraph(props) {
 // <BarGraph />
 ```
 
-For more examples using `vx`, check out the [gallery](https://vx-demo.now.sh/gallery).
+For more examples using `visx`, check out the [gallery](https://airbnb.io/visx/gallery).
 
 ## Motivation
 
 **Goal**
 
 The goal is to create a library of components you can use to make both your own reusable chart
-library or your slick custom one-off chart. vx is largely unopinionated and is meant to be built
+library or your slick custom one-off chart. visx is largely unopinionated and is meant to be built
 upon. Keep your bundle sizes down and use only the packages you need.
 
 **How?**
 
-Under the hood, vx is using d3 for the calculations and math. If you're creating your own awesome
-chart library on top of vx, it's easy to create a component api that hides d3 entirely. Meaning your
-team could create charts as easily as using reusable react components.
+Under the hood, visx is using d3 for the calculations and math. If you're creating your own awesome
+chart library on top of visx, it's easy to create a component api that hides d3 entirely. Meaning
+your team could create charts as easily as using reusable react components.
 
 **But why?**
 
@@ -167,15 +167,6 @@ Mixing two mental models for updating the DOM is never a good time. Copy and pas
 `componentDidMount()` is just that. This collection of components lets you easily build your own
 reusable visualization charts or library without having to learn d3. No more selections or
 `enter()`/`exit()`/`update()`.
-
-## Status
-
-`Beta` We're still in pre v1. Need to add interactions. No breaking changes planned right now
-[read more](https://github.com/hshoff/vx/issues/156#issuecomment-331318108). Check out
-[the road to v1](https://github.com/hshoff/vx/projects/1).
-
-If you're a curious coder, feel free to install and play around with the packages. I recommend using
-`--save-exact` when you `npm install`.
 
 ## Roadmap
 
@@ -196,7 +187,7 @@ Lots coming soon, check out the [roadmap](./ROADMAP.md).
 - Collapsible tree with [`react-move`](https://github.com/react-tools/react-move) by
   [@techniq](https://github.com/techniq) ([Demo](https://codesandbox.io/s/n3w687vmqj))
   ([Radial demo](https://codesandbox.io/s/vmqwrkl395))
-  ([More info](https://github.com/hshoff/vx/issues/162#issuecomment-335029517))
+  ([More info](https://github.com/airbnb/visx/issues/162#issuecomment-335029517))
 - Bitcoin 30-day price by [@hshoff](https://github.com/hshoff)
   ([Demo](https://viewsource.now.sh/bitcoin))
   ([Github](https://github.com/hshoff/viewsource#1-bitcoin-price-chart))
@@ -225,24 +216,24 @@ Lots coming soon, check out the [roadmap](./ROADMAP.md).
 
 ## FAQ
 
-1. What does `vx` stand for?
+1. What does `visx` stand for?
 
-   > vx stands for visualization components.
+   > visx stands for visualization components.
 
 1. Do you plan on supporting animation/transitions?
 
-   > A common criticism of vx is it doesn't have animation baked in, but this was a concious choice.
-   > It's a powerful feature to not bake it in.
+   > A common criticism of visx is it doesn't have animation baked in, but this was a concious
+   > choice. It's a powerful feature to not bake it in.
    >
-   > Imagine your app already bundles `react-motion`, adding a hypothetical `@vx/animation` is
-   > bloat. Since vx is react, it already supports all react animation libs.
+   > Imagine your app already bundles `react-motion`, adding a hypothetical `@visx/animation` is
+   > bloat. Since visx is react, it already supports all react animation libs.
    >
    > Charting libraries are like style guides. Each org or app will eventually want full control
    > over their own implementation.
    >
-   > vx makes this easier for everyone. No need to reinvent the wheel each time.
+   > visx makes this easier for everyone. No need to reinvent the wheel each time.
    >
-   > more info: https://github.com/hshoff/vx/issues/6
+   > more info: https://github.com/airbnb/visx/issues/6
    >
    > examples:
    >
@@ -260,11 +251,9 @@ Lots coming soon, check out the [roadmap](./ROADMAP.md).
 
    > Please do.
 
-1. Does vx work with [preact](https://preactjs.com/)?
+1. Does visx work with [preact](https://preactjs.com/)?
 
-   > yup! need to alias `react` + `react-dom` and use `preact-compat`. Here's a quick demo:
-   > https://vx-preact.now.sh/.
-   > [more info](https://preactjs.com/guide/switching-to-preact#how-to-alias-preact-compat)
+   > yup! need to alias `react` + `react-dom` and use `preact-compat`.
 
 1. I like using d3.
 
@@ -276,6 +265,6 @@ Please see [CONTRIBUTING.md](./CONTRIBUTING.md)
 
 :v:
 
-[MIT](./LICENSE) &bull; [@hshoff](https://twitter.com/hshoff)
+[MIT](./LICENSE)
 
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fhshoff%2Fvx.svg?type=large)](https://app.fossa.io/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fhshoff%2Fvx?ref=badge_large)

@@ -1,0 +1,45 @@
+{
+  "name": "@visx/brush",
+  "version": "0.0.199",
+  "description": "visx brush",
+  "sideEffects": false,
+  "main": "lib/index.js",
+  "module": "esm/index.js",
+  "files": [
+    "lib",
+    "esm"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/airbnb/visx.git"
+  },
+  "keywords": [
+    "visx",
+    "d3",
+    "react",
+    "visualizations",
+    "charts"
+  ],
+  "author": "@hshoff",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/airbnb/visx/issues"
+  },
+  "homepage": "https://github.com/airbnb/visx#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "react": "^15.0.0-0 || ^16.0.0-0"
+  },
+  "dependencies": {
+    "@visx/drag": "0.0.199",
+    "@visx/group": "0.0.199",
+    "@visx/shape": "0.0.199",
+    "classnames": "^2.2.5",
+    "prop-types": "^15.6.1"
+  },
+  "devDependencies": {
+    "@visx/scale": "0.0.199"
+  }
+}

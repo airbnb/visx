@@ -1,0 +1,43 @@
+{
+  "name": "@visx/group",
+  "version": "0.0.199",
+  "description": "visx group",
+  "sideEffects": false,
+  "main": "lib/index.js",
+  "module": "esm/index.js",
+  "files": [
+    "lib",
+    "esm"
+  ],
+  "types": "lib/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/airbnb/visx.git"
+  },
+  "keywords": [
+    "visx",
+    "react",
+    "d3",
+    "visualizations",
+    "charts",
+    "svg"
+  ],
+  "author": "@hshoff",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/airbnb/visx/issues"
+  },
+  "homepage": "https://github.com/airbnb/visx#readme",
+  "peerDependencies": {
+    "react": "^15.0.0-0 || ^16.0.0-0"
+  },
+  "dependencies": {
+    "@types/classnames": "^2.2.9",
+    "@types/react": "*",
+    "classnames": "^2.2.5",
+    "prop-types": "^15.6.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

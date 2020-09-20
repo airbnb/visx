@@ -1,0 +1,34 @@
+{
+  "name": "@visx/demo-brush",
+  "description": "Standalone visx brush demo.",
+  "main": "index.tsx",
+  "private": true,
+  "dependencies": {
+    "@babel/runtime": "^7.8.4",
+    "@types/react": "^16",
+    "@types/react-dom": "^16",
+    "@visx/axis": "latest",
+    "@visx/brush": "latest",
+    "@visx/curve": "latest",
+    "@visx/gradient": "latest",
+    "@visx/group": "latest",
+    "@visx/mock-data": "latest",
+    "@visx/pattern": "latest",
+    "@visx/responsive": "latest",
+    "@visx/scale": "latest",
+    "@visx/shape": "latest",
+    "d3-array": "^2.4.0",
+    "react": "^16.8",
+    "react-dom": "^16.8",
+    "react-scripts-ts": "3.1.0",
+    "typescript": "^3"
+  },
+  "keywords": [
+    "visualization",
+    "d3",
+    "react",
+    "visx",
+    "brush",
+    "interaction"
+  ]
+}

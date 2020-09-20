@@ -1,0 +1,44 @@
+{
+  "name": "@visx/voronoi",
+  "version": "0.0.199",
+  "description": "visx voronoi",
+  "sideEffects": false,
+  "main": "lib/index.js",
+  "module": "esm/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib",
+    "esm"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/airbnb/visx.git"
+  },
+  "keywords": [
+    "visx",
+    "react",
+    "d3",
+    "visualizations",
+    "charts"
+  ],
+  "author": "Chris Williams @williaster",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/airbnb/visx/issues"
+  },
+  "homepage": "https://github.com/airbnb/visx#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@types/classnames": "^2.2.9",
+    "@types/d3-voronoi": "^1.1.9",
+    "@types/react": "*",
+    "classnames": "^2.2.5",
+    "d3-voronoi": "^1.1.2",
+    "prop-types": "^15.6.1"
+  },
+  "peerDependencies": {
+    "react": "^16.3.0-0"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "name": "@visx/xychart",
+  "version": "0.0.0",
+  "description": "Composable cartesian coordinate chart built with visx primitives",
+  "sideEffects": false,
+  "private": true,
+  "main": "lib/index.js",
+  "module": "esm/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib",
+    "esm"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/airbnb/visx.git"
+  },
+  "keywords": [
+    "visx",
+    "react",
+    "d3",
+    "visualizations",
+    "charts"
+  ],
+  "contributors": [
+    {
+      "name": "Chris Williams",
+      "url": "https://github.com/williaster"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/airbnb/visx/issues"
+  },
+  "homepage": "https://github.com/airbnb/visx#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "react": "^16.3.0-0"
+  },
+  "dependencies": {
+    "@types/classnames": "^2.2.9",
+    "@types/react": "*",
+    "@visx/axis": "0.0.199",
+    "@visx/grid": "0.0.199",
+    "@visx/react-spring": "0.0.199",
+    "@visx/responsive": "0.0.199",
+    "@visx/scale": "0.0.199",
+    "@visx/shape": "0.0.199",
+    "@visx/text": "0.0.199",
+    "d3-array": "2.6.0",
+    "classnames": "^2.2.5",
+    "prop-types": "^15.6.2"
+  }
+}

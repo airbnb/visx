@@ -1,0 +1,35 @@
+{
+  "name": "@visx/network",
+  "version": "0.0.199",
+  "description": "visx network",
+  "sideEffects": false,
+  "repository": "https://github.com/airbnb/visx",
+  "main": "lib/index.js",
+  "module": "esm/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib",
+    "esm"
+  ],
+  "keywords": [
+    "visx",
+    "data",
+    "visualizations",
+    "charts"
+  ],
+  "author": "@andyfang_dz",
+  "license": "MIT",
+  "dependencies": {
+    "@types/classnames": "^2.2.9",
+    "@types/react": "*",
+    "@visx/group": "0.0.199",
+    "classnames": "^2.2.5",
+    "prop-types": "^15.6.2"
+  },
+  "peerDependencies": {
+    "react": "^16.3.0-0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

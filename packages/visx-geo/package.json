@@ -1,0 +1,51 @@
+{
+  "name": "@visx/geo",
+  "version": "0.0.199",
+  "description": "visx geo",
+  "sideEffects": false,
+  "main": "lib/index.js",
+  "module": "esm/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib",
+    "esm"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/airbnb/visx.git"
+  },
+  "keywords": [
+    "visx",
+    "react",
+    "d3",
+    "visualizations",
+    "charts",
+    "geo"
+  ],
+  "author": "@nschnierer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/airbnb/visx/issues"
+  },
+  "homepage": "https://github.com/airbnb/visx#readme",
+  "dependencies": {
+    "@types/classnames": "^2.2.9",
+    "@types/d3-geo": "^1.11.1",
+    "@types/geojson": "*",
+    "@types/react": "*",
+    "@visx/group": "0.0.199",
+    "classnames": "^2.2.5",
+    "d3-geo": "^1.11.3",
+    "prop-types": "^15.5.10"
+  },
+  "devDependencies": {
+    "@types/topojson-client": "^3.0.0",
+    "topojson-client": "^3.0.0"
+  },
+  "peerDependencies": {
+    "react": "^16.3.0-0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

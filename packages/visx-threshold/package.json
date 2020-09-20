@@ -1,0 +1,40 @@
+{
+  "name": "@visx/threshold",
+  "version": "0.0.199",
+  "description": "visx threshold",
+  "sideEffects": false,
+  "main": "lib/index.js",
+  "module": "esm/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib",
+    "esm"
+  ],
+  "repository": "https://github.com/airbnb/visx",
+  "scripts": {
+    "docs": "cd ./docs && ../../../node_modules/.bin/react-docgen --exclude index.js ../src/  | ../../../scripts/buildDocs.sh"
+  },
+  "keywords": [
+    "visx",
+    "react",
+    "d3",
+    "visualizations",
+    "charts"
+  ],
+  "author": "@hshoff",
+  "license": "MIT",
+  "dependencies": {
+    "@types/classnames": "^2.2.9",
+    "@types/react": "*",
+    "@visx/clip-path": "0.0.199",
+    "@visx/shape": "0.0.199",
+    "classnames": "^2.2.5",
+    "prop-types": "^15.5.10"
+  },
+  "peerDependencies": {
+    "react": "^15.0.0-0 || ^16.0.0-0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

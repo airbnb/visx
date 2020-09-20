@@ -1,3 +1,0 @@
-# @vx/xychart
-
-Coming 🔜

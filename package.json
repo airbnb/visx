@@ -1,5 +1,5 @@
 {
-  "name": "@vx/root",
+  "name": "@visx/root",
   "license": "MIT",
   "version": "0.0.0",
   "description": "Low-level visualization components",
@@ -7,21 +7,34 @@
     "react",
     "d3",
     "visualization",
-    "vx",
+    "visx",
     "charts"
   ],
   "engines": {
     "node": ">=10.15.0",
     "yarn": ">=1.17.0"
   },
-  "author": "@hshoff",
+  "contributors": [
+    {
+      "name": "Harrison Shoff",
+      "url": "https://github.com/hshoff"
+    },
+    {
+      "name": "Chris Williams",
+      "url": "https://github.com/williaster"
+    },
+    {
+      "name": "Krist Wongsuphasawat",
+      "url": "https://github.com/kristw"
+    }
+  ],
   "private": true,
   "scripts": {
     "build": "yarn run babel && yarn run type:dts",
     "build-one": "nimbus babel --clean",
     "babel": "yarn run babel:cjs && yarn run babel:esm",
-    "babel:cjs": "nimbus babel --clean --workspaces=\"@vx/!(demo)\"",
-    "babel:esm": "nimbus babel --clean --workspaces=\"@vx/!(demo)\" --esm",
+    "babel:cjs": "nimbus babel --clean --workspaces=\"@visx/!(demo)\"",
+    "babel:esm": "nimbus babel --clean --workspaces=\"@visx/!(demo)\" --esm",
     "clean": "rm -rf ./packages/**/{lib,esm}",
     "format": "yarn run prettier --write",
     "jest": "NODE_ENV=test nimbus jest --coverage --verbose",
@@ -102,12 +115,12 @@
         "!packages/**/esm/**",
         "!packages/**/lib/**",
         "!packages/**/node_modules/**",
-        "!packages/vx-demo/**",
-        "!packages/vx-vx/**"
+        "!packages/visx-demo/**",
+        "!packages/visx-visx/**"
       ],
       "testPathIgnorePatterns" : [
-        "<rootDir>/packages/vx-demo",
-        "<rootDir>/packages/vx-vx" 
+        "<rootDir>/packages/visx-demo",
+        "<rootDir>/packages/visx-visx" 
       ],
       "coverageThreshold": {
         "global": {
@@ -165,7 +178,7 @@
           }
         },
         {
-          "files": "./packages/vx-demo/**",
+          "files": "./packages/visx-demo/**",
           "rules": {
             "@typescript-eslint/no-explicit-any": [
               "warn",

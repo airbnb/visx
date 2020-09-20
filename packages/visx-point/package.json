@@ -1,0 +1,25 @@
+{
+  "name": "@visx/point",
+  "version": "0.0.199",
+  "description": "visx point",
+  "sideEffects": false,
+  "main": "lib/index.js",
+  "module": "esm/index.js",
+  "types": "lib/index.d.ts",
+  "repository": "https://github.com/airbnb/visx",
+  "files": [
+    "lib",
+    "esm"
+  ],
+  "keywords": [
+    "visx",
+    "data",
+    "visualizations",
+    "charts"
+  ],
+  "author": "@hshoff",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
+}
