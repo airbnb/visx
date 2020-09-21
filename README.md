@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/Screen Shot 2017-05-05 at 6.55.56 AM.png" />
+  <img src="./assets/visx-header.png" />
 </p>
 
 <p align="center">
