@@ -1,4 +1,5 @@
 # Changelog
+- [v1.0.0](#v100)
 - [v0.0.199](#v00199)
 - [v0.0.198](#v00198)
 - [v0.0.197](#v00197)
@@ -6,11 +7,11 @@
 - [v0.0.195](#v00195)
 - [v0.0.194](#v00194)
 - [v0.0.193](#v00193)
-- [v0.0.192](#v00192)
-- [v0.0.191](#v00191)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v00192">v0.0.192</a></li>
+  <li><a href="#v00191">v0.0.191</a></li>
   <li><a href="#v00190">v0.0.190</a></li>
   <li><a href="#v00189">v0.0.189</a></li>
   <li><a href="#v00188">v0.0.188</a></li>
@@ -89,6 +90,35 @@
 </details>
 
 ------
+# v1.0.0
+
+### :house:  Internal
+
+- project renamed from `vx` => `visx`, migrated from `hshoff/vx` => `airbnb/visx` [#802](https://github.com/airbnb/visx/issues/802), [#803](https://github.com/airbnb/visx/issues/803)
+
+### :memo: Documentation
+
+- Demo site migrated from https://vx-demo.now.sh/ => https://airbnb.io/visx [#804](https://github.com/airbnb/visx/issues/804)
+- Demo site re-brand
+
+### :boom:  Breaking Changes
+
+- [all packages] `vx-...` `className`s are renamed to `visx-...` [#803](https://github.com/airbnb/visx/issues/803)
+- [demo] existing codesandbox links which reference `vx-demo` directory structure will break [#803](https://github.com/airbnb/visx/issues/803)
+- [tooltip] `className="vx-tooltip-portal"` => `visx-tooltip` (so as not to be confused with the new `TooltipInPortal`) [#803](https://github.com/airbnb/visx/issues/803)
+
+#### :bug: Bug Fix
+
+- [demo] fix `/axis` codesandbox dependency [#799](https://github.com/airbnb/visx/pull/799)
+
+#### :trophy: Contributors
+
+- [hshoff](https://github.com/hshoff)
+- [williaster](https://github.com/williaster)
+
+```Changes:
+@vx/*@0.0.199 => @visx/*@1.0.0
+```
 
 # v0.0.199
 
