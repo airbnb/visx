@@ -1,6 +1,6 @@
 {
   "name": "@visx/pattern",
-  "version": "0.0.199",
+  "version": "1.0.0",
   "description": "visx pattern",
   "sideEffects": false,
   "main": "lib/index.js",

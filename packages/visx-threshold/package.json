@@ -1,6 +1,6 @@
 {
   "name": "@visx/threshold",
-  "version": "0.0.199",
+  "version": "1.0.0",
   "description": "visx threshold",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -26,8 +26,8 @@
   "dependencies": {
     "@types/classnames": "^2.2.9",
     "@types/react": "*",
-    "@visx/clip-path": "0.0.199",
-    "@visx/shape": "0.0.199",
+    "@visx/clip-path": "1.0.0",
+    "@visx/shape": "1.0.0",
     "classnames": "^2.2.5",
     "prop-types": "^15.5.10"
   },

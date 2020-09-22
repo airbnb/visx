@@ -1,6 +1,6 @@
 {
   "name": "@visx/xychart",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Composable cartesian coordinate chart built with visx primitives",
   "sideEffects": false,
   "private": true,
@@ -42,15 +42,15 @@
   "dependencies": {
     "@types/classnames": "^2.2.9",
     "@types/react": "*",
-    "@visx/axis": "0.0.199",
-    "@visx/grid": "0.0.199",
-    "@visx/react-spring": "0.0.199",
-    "@visx/responsive": "0.0.199",
-    "@visx/scale": "0.0.199",
-    "@visx/shape": "0.0.199",
-    "@visx/text": "0.0.199",
-    "d3-array": "2.6.0",
+    "@visx/axis": "1.0.0",
+    "@visx/grid": "1.0.0",
+    "@visx/react-spring": "1.0.0",
+    "@visx/responsive": "1.0.0",
+    "@visx/scale": "1.0.0",
+    "@visx/shape": "1.0.0",
+    "@visx/text": "1.0.0",
     "classnames": "^2.2.5",
+    "d3-array": "2.6.0",
     "prop-types": "^15.6.2"
   }
 }
