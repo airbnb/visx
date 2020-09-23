@@ -51,7 +51,6 @@
     "@visx/text": "1.0.0",
     "classnames": "^2.2.5",
     "d3-array": "2.6.0",
-    "prop-types": "^15.6.2",
-    "uuid": "8.3.0"
+    "prop-types": "^15.6.2"
   }
 }
