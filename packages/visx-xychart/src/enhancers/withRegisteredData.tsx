@@ -19,12 +19,11 @@ export default function withRegisteredData<
   XScale extends AxisScale,
   YScale extends AxisScale,
   Datum extends object
->(
-  BaseSeriesComponent: React.ComponentType<
-    BaseComponentProps & WithRegisteredDataProps<XScale, YScale, Datum>
-  >,
-) {
-  function WrappedSeriesComponent(props: BaseComponentProps) {
+>(BaseSeriesComponent: React.ComponentType<BaseComponentProps>) {
+  function WrappedSeriesComponent(
+    // expects all props except those provided by this HOC
+    props: Omit<BaseComponentProps, keyof WithRegisteredDataProps<XScale, YScale, Datum>>,
+  ) {
     const { dataKey, data, xAccessor, yAccessor } = props;
     const { xScale, yScale, dataRegistry } = useContext(DataContext) as DataContextType<
       XScale,
@@ -35,7 +34,6 @@ export default function withRegisteredData<
     useEffect(() => {
       if (dataRegistry) dataRegistry.registerData({ key: dataKey, data, xAccessor, yAccessor });
       return () => dataRegistry.unregisterData(dataKey);
-      // @TODO: make accessors defined inline for a component *not* trigger effect
     }, [dataRegistry, dataKey, data, xAccessor, yAccessor]);
 
     const registryEntry = dataRegistry?.get(dataKey);
