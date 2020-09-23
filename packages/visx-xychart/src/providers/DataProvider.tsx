@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ScaleConfig, ScaleConfigToD3Scale } from '@visx/scale';
-import React, { useContext, useMemo } from 'react';
+import React, { useContext, useMemo, useState } from 'react';
 import createOrdinalScale from '@visx/scale/lib/scales/ordinal';
 import { AxisScaleOutput } from '@visx/axis';
 import { XYChartTheme } from '../types';
@@ -9,6 +9,7 @@ import DataContext from '../context/DataContext';
 import useDataRegistry from '../hooks/useDataRegistry';
 import useDimensions from '../hooks/useDimensions';
 import useScales from '../hooks/useScales';
+import useLifecycleLogging from '../hooks/useLifecycleLogging';
 
 /** Props that can be passed to initialize/update the provider config. */
 export type DataProviderProps<
@@ -31,6 +32,7 @@ export default function DataProvider<
   yScale: yScaleConfig,
   children,
 }: DataProviderProps<XScaleConfig, YScaleConfig>) {
+  useLifecycleLogging('DataProvider');
   // `DataProvider` provides a theme so that `ThemeProvider` is not strictly needed.
   // `props.theme` takes precedent over `context.theme`, which has a default even if
   // a ThemeProvider is not present.
@@ -45,7 +47,7 @@ export default function DataProvider<
 
   const dataRegistry = useDataRegistry<XScale, YScale, Datum>();
 
-  const scales: { xScale: XScale; yScale: YScale } = useScales({
+  const { xScale, yScale }: { xScale: XScale; yScale: YScale } = useScales({
     dataRegistry,
     xScaleConfig,
     yScaleConfig,
@@ -71,8 +73,8 @@ export default function DataProvider<
         dataRegistry,
         registerData: dataRegistry.registerData,
         unregisterData: dataRegistry.unregisterData,
-        xScale: scales.xScale,
-        yScale: scales.yScale,
+        xScale,
+        yScale,
         colorScale,
         theme,
         width,

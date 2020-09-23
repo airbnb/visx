@@ -18,7 +18,7 @@ export default function useScales<
 }: {
   xScaleConfig: ScaleConfig<AxisScaleOutput>;
   yScaleConfig: ScaleConfig<AxisScaleOutput>;
-  dataRegistry: DataRegistry<XScale, YScale, Datum>;
+  dataRegistry: Omit<DataRegistry<XScale, YScale, Datum>, 'registry' | 'registryKeys'>;
   xRange: [number, number];
   yRange: [number, number];
 }) {

@@ -39,7 +39,7 @@ export default function AnimatedTicks<Scale extends AxisScale>({
           index,
         ) => {
           const tickLabelProps = allTickLabelProps[index] ?? allTickLabelProps[0] ?? {};
-          return (
+          return item == null || key == null ? null : (
             <animated.g
               key={key}
               className={cx('visx-axis-tick', tickClassName)}
@@ -70,7 +70,7 @@ export default function AnimatedTicks<Scale extends AxisScale>({
                 )}
                 opacity={opacity}
               >
-                <Text {...tickLabelProps}>{item.formattedValue}</Text>
+                <Text {...tickLabelProps}>{item?.formattedValue}</Text>
               </animated.g>
             </animated.g>
           );

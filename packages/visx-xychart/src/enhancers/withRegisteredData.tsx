@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { AxisScale } from '@visx/axis';
 import DataContext from '../context/DataContext';
 import { DataContextType, SeriesProps } from '../types';
+import useLifecycleLogging from '../hooks/useLifecycleLogging';
 
 export type WithRegisteredDataProps<
   XScale extends AxisScale,
@@ -25,6 +26,7 @@ export default function withRegisteredData<
   >,
 ) {
   function WrappedSeriesComponent(props: BaseComponentProps) {
+    useLifecycleLogging(BaseSeriesComponent.name);
     const { dataKey, data, xAccessor, yAccessor } = props;
     const { xScale, yScale, dataRegistry } = useContext(DataContext) as DataContextType<
       XScale,
@@ -34,7 +36,7 @@ export default function withRegisteredData<
 
     useEffect(() => {
       if (dataRegistry) dataRegistry.registerData({ key: dataKey, data, xAccessor, yAccessor });
-      return () => dataRegistry?.unregisterData(dataKey);
+      return () => dataRegistry.unregisterData(dataKey);
       // @TODO: make accessors defined inline for a component *not* trigger effect
     }, [dataRegistry, dataKey, data, xAccessor, yAccessor]);
 

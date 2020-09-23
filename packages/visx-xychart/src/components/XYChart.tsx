@@ -3,6 +3,7 @@ import ParentSize from '@visx/responsive/lib/components/ParentSize';
 
 import DataContext from '../context/DataContext';
 import { Margin } from '../types';
+import useLifecycleLogging from '../hooks/useLifecycleLogging';
 
 const DEFAULT_MARGIN = { top: 50, right: 50, bottom: 50, left: 50 };
 
@@ -17,6 +18,7 @@ type Props = {
 export default function XYChart(props: Props) {
   const { children, width, height, margin = DEFAULT_MARGIN } = props;
   const { setDimensions } = useContext(DataContext);
+  useLifecycleLogging('XYChart', width != null && height != null);
 
   // update dimensions in context
   useEffect(() => {

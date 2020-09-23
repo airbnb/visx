@@ -44,7 +44,7 @@ export interface DataContextType<
   innerWidth: number;
   innerHeight: number;
   margin: Margin;
-  dataRegistry: DataRegistry<XScale, YScale, Datum>;
+  dataRegistry: Omit<DataRegistry<XScale, YScale, Datum>, 'registry' | 'registryKeys'>;
   registerData: (
     data: DataRegistryEntry<XScale, YScale, Datum> | DataRegistryEntry<XScale, YScale, Datum>[],
   ) => void;
