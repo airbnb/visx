@@ -20,7 +20,7 @@ export default function AnimatedTicks<Scale extends AxisScale>({
   ticks,
   animationTrajectory,
 }: TicksRendererProps<Scale> & { animationTrajectory?: AnimationTrajectory }) {
-  const animatedTicks = useTransition(ticks, tick => `${tick.value}-${horizontal}`, {
+  const animatedTicks = useTransition(ticks, tick => `${tick.value}`, {
     unique: true,
     ...useLineTransitionConfig({ scale, animateXOrY: horizontal ? 'x' : 'y', animationTrajectory }),
   });

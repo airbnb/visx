@@ -24,7 +24,7 @@ export default class DataRegistry<
         this.registryKeys = this.registryKeys.filter(key => key !== currEntry.key);
       }
       this.registry[currEntry.key] = currEntry;
-      this.registryKeys.push(currEntry.key);
+      this.registryKeys = this.registryKeys.concat(currEntry.key);
     });
   }
 

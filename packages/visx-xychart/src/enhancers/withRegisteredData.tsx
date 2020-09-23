@@ -2,7 +2,6 @@ import React, { useContext, useEffect } from 'react';
 import { AxisScale } from '@visx/axis';
 import DataContext from '../context/DataContext';
 import { DataContextType, SeriesProps } from '../types';
-import useLifecycleLogging from '../hooks/useLifecycleLogging';
 
 export type WithRegisteredDataProps<
   XScale extends AxisScale,
@@ -26,7 +25,6 @@ export default function withRegisteredData<
   >,
 ) {
   function WrappedSeriesComponent(props: BaseComponentProps) {
-    useLifecycleLogging(BaseSeriesComponent.name);
     const { dataKey, data, xAccessor, yAccessor } = props;
     const { xScale, yScale, dataRegistry } = useContext(DataContext) as DataContextType<
       XScale,

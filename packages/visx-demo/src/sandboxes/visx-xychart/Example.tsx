@@ -29,7 +29,9 @@ export default function Example({ height }: Props) {
     <ExampleControls>
       {({
         animationTrajectory,
+        renderBarSeries,
         renderHorizontally,
+        renderLineSeries,
         showGridColumns,
         showGridRows,
         theme,
@@ -50,20 +52,24 @@ export default function Example({ height }: Props) {
               animationTrajectory={animationTrajectory}
               numTicks={numTicks}
             />
-            <BarSeries
-              dataKey="ny"
-              data={data}
-              xAccessor={renderHorizontally ? getNyTemperature : getDate}
-              yAccessor={renderHorizontally ? getDate : getNyTemperature}
-              barPadding={0.2}
-              horizontal={renderHorizontally}
-            />
-            <LineSeries
-              dataKey="sf"
-              data={data}
-              xAccessor={renderHorizontally ? getSfTemperature : getDate}
-              yAccessor={renderHorizontally ? getDate : getSfTemperature}
-            />
+            {renderBarSeries && (
+              <BarSeries
+                dataKey="ny"
+                data={data}
+                xAccessor={renderHorizontally ? getNyTemperature : getDate}
+                yAccessor={renderHorizontally ? getDate : getNyTemperature}
+                barPadding={0.2}
+                horizontal={renderHorizontally}
+              />
+            )}
+            {renderLineSeries && (
+              <LineSeries
+                dataKey="sf"
+                data={data}
+                xAccessor={renderHorizontally ? getSfTemperature : getDate}
+                yAccessor={renderHorizontally ? getDate : getSfTemperature}
+              />
+            )}
             <AnimatedAxis
               key={`time-axis-${animationTrajectory}-${renderHorizontally}`} // force animate on update
               orientation={renderHorizontally ? yAxisOrientation : xAxisOrientation}

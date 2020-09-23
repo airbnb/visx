@@ -40,10 +40,7 @@ export default function useScales<
     );
 
     const xType = xScaleConfig.type;
-    const xDomain =
-      xType === 'band' || xType === 'ordinal'
-        ? xValues
-        : (d3Extent(xValues as NumberLike[]) as XScaleInput[]);
+    const xDomain = xType === 'band' || xType === 'ordinal' ? xValues : d3Extent(xValues);
 
     xScale.range(xScaleConfig.range || [xMin, xMax]);
     xScale.domain(xScaleConfig.domain || xDomain);
@@ -70,10 +67,7 @@ export default function useScales<
     );
 
     const yType = yScaleConfig.type;
-    const yDomain =
-      yType === 'band' || yType === 'ordinal'
-        ? yValues
-        : (d3Extent(yValues as NumberLike[]) as YScaleInput[]);
+    const yDomain = yType === 'band' || yType === 'ordinal' ? yValues : d3Extent(yValues);
 
     yScale.range(yScaleConfig.range || [yMin, yMax]);
     yScale.domain(yScaleConfig.domain || yDomain);
