@@ -101,4 +101,14 @@ describe('<Text />', () => {
 
     expect(wrapperNan.text()).not.toContain('anything');
   });
+
+  it("Render text when children 0 is a number", () => {
+    const wrapper = mount(
+      <Text x={0} y={0}>
+        {0}
+      </Text>,
+    );
+
+    expect(wrapper.text()).toContain('0');
+  });
 });
