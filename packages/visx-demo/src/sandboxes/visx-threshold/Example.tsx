@@ -21,7 +21,7 @@ const timeScale = scaleTime<number>({
 });
 const temperatureScale = scaleLinear<number>({
   domain: [
-    0, // Math.min(...cityTemperature.map(d => Math.min(ny(d), sf(d)))),
+    Math.min(...cityTemperature.map(d => Math.min(ny(d), sf(d)))),
     Math.max(...cityTemperature.map(d => Math.max(ny(d), sf(d)))),
   ],
   nice: true,
@@ -54,7 +54,7 @@ export default function Theshold({ width, height, margin = defaultMargin }: Thre
           <GridColumns scale={timeScale} width={xMax} height={yMax} stroke="#e0e0e0" />
           <line x1={xMax} x2={xMax} y1={0} y2={yMax} stroke="#e0e0e0" />
           <AxisBottom top={yMax} scale={timeScale} numTicks={width > 520 ? 10 : 5} />
-          <AxisLeft scale={temperatureScale} hideZero tickLabelProps={() => ({ fill: 'red' })} />
+          <AxisLeft scale={temperatureScale} />
           <text x="-70" y="15" transform="rotate(-90)" fontSize={10}>
             Temperature (°F)
           </text>
