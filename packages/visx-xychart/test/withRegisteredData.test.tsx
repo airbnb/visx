@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import withRegisteredData from '../src/enhancers/withRegisteredData';
 import getDataContext from './mocks/getDataContext';
 import { DataContext } from '../src';
