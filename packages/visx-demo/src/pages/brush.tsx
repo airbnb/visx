@@ -1,10 +1,10 @@
-import React from 'react';
-import Show from '../components/Show';
-import Brush from '../sandboxes/visx-brush/Example';
-import BrushSource from '!!raw-loader!../sandboxes/visx-brush/Example';
-import packageJson from '../sandboxes/visx-brush/package.json';
+import React from "react";
+import Show from "../components/Show";
+import Brush from "../sandboxes/visx-brush/Example";
+import BrushSource from "!!raw-loader!../sandboxes/visx-brush/Example";
+import packageJson from "../sandboxes/visx-brush/package.json";
 
-export default () => (
+const BrushPage = () => (
   <Show
     component={Brush}
     title="Brush"
@@ -20,3 +20,4 @@ export default () => (
     {BrushSource}
   </Show>
 );
+export default BrushPage;

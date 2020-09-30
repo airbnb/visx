@@ -1,18 +1,20 @@
-import React from 'react';
-import cx from 'classnames';
-import Meta from './Meta';
-import Nav from './Nav';
+import React from "react";
+import cx from "classnames";
+import Meta from "./Meta";
+import Nav from "./Nav";
 
 export default ({
   children,
   title,
   className,
+  wrapper = true,
 }: {
   children: React.ReactNode;
   title?: string;
   className?: string | boolean;
+  wrapper?: boolean;
 }) => (
-  <div className={cx('main', className)}>
+  <div className={cx("main", { wrapper }, className)}>
     <Meta title={title} />
     <div className="nav-container">
       <Nav />
@@ -20,13 +22,12 @@ export default ({
     <div className="page-content">{children}</div>
     <style jsx>{`
       .main {
-        width: 100vw;
+        width: 95vw;
         margin: 0 auto;
         overflow-x: hidden;
       }
       .page-content {
-        width: 95vw;
-        margin: 55px auto 40px;
+        margin: 69px 0 40px;
         color: #161616;
         overflow-y: auto;
         overflow-x: hidden;

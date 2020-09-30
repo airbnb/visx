@@ -1,16 +1,12 @@
-import React from 'react';
-import Show from '../components/Show';
-import Responsive from '../sandboxes/visx-responsive/Example';
-import ResponsiveSource from '!!raw-loader!../sandboxes/visx-responsive/Example';
-import packageJson from '../sandboxes/visx-responsive/package.json';
+import React from "react";
+import Show from "../components/Show";
+import Responsive from "../sandboxes/visx-responsive/Example";
+import ResponsiveSource from "!!raw-loader!../sandboxes/visx-responsive/Example";
+import packageJson from "../sandboxes/visx-responsive/package.json";
 
-export default () => (
-  <Show
-    component={Responsive}
-    title="Responsive"
-    codeSandboxDirectoryName="visx-responsive"
-    packageJson={packageJson}
-  >
+const ResponsivePage = () => (
+  <Show component={Responsive} title="Responsive" codeSandboxDirectoryName="visx-responsive" packageJson={packageJson}>
     {ResponsiveSource}
   </Show>
 );
+export default ResponsivePage;

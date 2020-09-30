@@ -1,61 +1,86 @@
-import React from 'react';
-import Head from 'next/head';
-import Router from 'next/router';
-import NProgress from 'nprogress';
-import ReactGA from 'react-ga';
+import React from "react";
+import Head from "next/head";
+import Router from "next/router";
+import NProgress from "nprogress";
+import ReactGA from "react-ga";
 
-if (typeof window !== 'undefined' && window.location.hostname !== 'localhost') {
-  ReactGA.initialize('UA-96843800-1');
+if (typeof window !== "undefined" && window.location.hostname !== "localhost") {
+  ReactGA.initialize("UA-96843800-1");
   ReactGA.set({ page: window.location.pathname });
   ReactGA.pageview(window.location.pathname);
 }
 
-Router.events.on('routeChangeStart', () => NProgress.start());
-Router.events.on('routeChangeComplete', () => {
+Router.events.on("routeChangeStart", () => NProgress.start());
+Router.events.on("routeChangeComplete", () => {
   NProgress.done();
-  if (typeof window !== 'undefined' && window.location.hostname !== 'localhost') {
+  if (typeof window !== "undefined" && window.location.hostname !== "localhost") {
     ReactGA.set({ page: window.location.pathname });
     ReactGA.pageview(window.location.pathname);
   }
 });
-Router.events.on('routeChangeError', () => NProgress.done());
+Router.events.on("routeChangeError", () => NProgress.done());
 
-export default ({ title = 'visualization components' }) => (
+export default ({ title = "visualization components" }) => (
   <div>
     <Head>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta charSet="utf-8" />
-      <meta name="twitter:card" content="summary" />
-      <meta name="twitter:site" content="@hshoff" />
-      <meta name="twitter:title" content="visx | visualization components" />
-      <meta name="twitter:description" content="react + d3 = visx" />
+      <meta property="og:image" content="https://raw.githubusercontent.com/airbnb/visx/master/assets/x-hero.png" />
+      <meta property="og:image:type" content="image/png" />
       <meta
-        name="twitter:image"
-        content="https://raw.githubusercontent.com/airbnb/visx/master/packages/visx-demo/static/tiger-twitter-card.jpg"
+        property="og:image:secure_url"
+        content="https://raw.githubusercontent.com/airbnb/visx/master/assets/x-hero.png"
       />
       <meta
-        name="twitter:image:alt"
-        content="visx logo is a tiger leaper over the letters v and x"
+        property="og:image:alt"
+        content="a collection of expressive, low-level visualization primitives for React"
       />
+      <meta property="og:url" content="https://airbnb.io/visx/" />
+      <meta property="og:title" content={`visx | ${title}`} />
+      <meta
+        property="og:description"
+        content="a collection of expressive, low-level visualization primitives for React"
+      />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:site" content="@AirbnbEng" />
+      <meta name="twitter:creator" content="@hshoff" />
+      <meta name="twitter:title" content="visx" />
+      <meta
+        name="twitter:description"
+        content="a collection of expressive, low-level visualization primitives for React"
+      />
+      <meta name="twitter:image" content="https://raw.githubusercontent.com/airbnb/visx/master/assets/x-hero.png" />
+      <meta name="twitter:image:alt" content="visx logo is an oversized X" />
       <title>{`visx | ${title}`}</title>
-      <link rel="shortcut icon" type="image/png" href="/static/favicon.ico" />
-      <link rel="stylesheet" href="/static/prism/prism-funky.css" />
-      <link rel="stylesheet" href="/static/prism/prism-line-numbers.css" />
-      <link href="https://fonts.googleapis.com/css?family=Montserrat:800" rel="stylesheet" />
+      <link rel="shortcut icon" type="image/png" href="static/favicon.png" />
+      <link rel="stylesheet" href="static/prism/prism-funky.css" />
+      <link rel="stylesheet" href="static/prism/prism-line-numbers.css" />
     </Head>
     <style jsx global>{`
       body {
         width: 100vw;
         overflow-x: hidden;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell',
-          'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+          "Droid Sans", "Helvetica Neue", sans-serif;
         background: #ffffff;
         display: flex;
         color: white;
         padding: 0;
         margin: 0;
-        font-size: 18px;
-        line-height: 1.8em;
+        font-size: 22px;
+        line-height: 1.5em;
+      }
+      #__next,
+      .wrapper {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        justify-content: center;
+        max-width: 105rem;
+        margin: 0 auto;
       }
 
       .tilt {
@@ -91,7 +116,7 @@ export default ({ title = 'visualization components' }) => (
         display: flex;
         flex-direction: column;
         flex: 1;
-        font-family: 'Karla';
+        font-family: "Karla";
         color: #000;
       }
 
@@ -117,7 +142,7 @@ export default ({ title = 'visualization components' }) => (
       }
 
       code {
-        font-family: 'Menlo', monospace;
+        font-family: "Menlo", monospace;
         font-weight: bold;
         padding: 0.2rem 0.3rem;
         background-color: #ebebeb;
@@ -139,12 +164,17 @@ export default ({ title = 'visualization components' }) => (
       }
 
       a {
-        color: #fc2e1c;
+        color: #272727;
+        font-weight: 400;
         text-decoration: none;
       }
 
+      a:hover {
+        text-decoration: underline;
+      }
+
       .logo {
-        background-image: url('/static/favicon.ico');
+        background-image: url("/visx/static/favicon.png");
         background-position: center;
         background-size: cover;
         height: 24px;
@@ -206,6 +236,10 @@ export default ({ title = 'visualization components' }) => (
       @media (max-width: 600px) {
         .tilt {
           min-width: 100%;
+        }
+        #home {
+          background-color: blue;
+          display: none;
         }
       }
     `}</style>

@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-export default () => (
+const Logo = () => (
   <span>
     visx
     <style jsx>{`
@@ -15,3 +15,4 @@ export default () => (
     `}</style>
   </span>
 );
+export default Logo;

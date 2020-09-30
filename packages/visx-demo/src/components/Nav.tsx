@@ -1,22 +1,24 @@
-import React from 'react';
-import Link from 'next/link';
+import React from "react";
+import Link from "next/link";
 // @ts-ignore
-import GithubButton from 'react-github-button';
+import GithubButton from "react-github-button";
 
-import NavItem from './NavItem';
+import NavItem from "./NavItem";
+import Belo from "./icons/Belo";
 
-export default () => (
+const Nav = () => (
   <div className="nav">
-    <div className="nav-inner">
+    <div className="nav-inner wrapper">
       <Link href="/">
-        <div className="logo" />
+        <div className="belo">
+          <Belo />
+        </div>
       </Link>
       <ul>
-        <NavItem href="/">Home</NavItem>
-        <NavItem href="/docs">Docs</NavItem>
-        <NavItem href="https://medium.com/vx-code" external>
-          Guides
+        <NavItem id="home" href="/">
+          Home
         </NavItem>
+        <NavItem href="/docs">Docs</NavItem>
         <NavItem href="/gallery">Gallery</NavItem>
       </ul>
 
@@ -24,6 +26,11 @@ export default () => (
     </div>
 
     <style jsx>{`
+      .belo {
+        width: 32px;
+        height: 32px;
+        margin: 0 0.5rem;
+      }
       .nav-inner {
         width: 95vw;
         margin: 0 auto;
@@ -38,8 +45,8 @@ export default () => (
         flex: 1;
         align-items: center;
         justify-content: center;
-        padding: 0 10px;
-        font-size: 14px;
+        padding: 0.5rem 1rem;
+        font-size: 16px;
         z-index: 3;
         position: fixed;
         top: 0;
@@ -59,6 +66,12 @@ export default () => (
         justify-content: flex-start;
         align-items: center;
       }
+      .x-logo {
+        width: 36px;
+        height: 36px;
+        margin-right: 1rem;
+        background-image: url("static/x-24.svg");
+      }
       @media (max-width: 600px) {
         .github-buttons {
           display: none;
@@ -69,6 +82,7 @@ export default () => (
 
         .nav {
           padding: 0;
+          padding-right: 1rem;
         }
 
         .nav-inner {
@@ -78,3 +92,4 @@ export default () => (
     `}</style>
   </div>
 );
+export default Nav;
