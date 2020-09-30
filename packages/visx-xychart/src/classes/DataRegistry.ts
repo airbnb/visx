@@ -21,10 +21,9 @@ export default class DataRegistry<
     entries.forEach(currEntry => {
       if (currEntry.key in this.registry && this.registry[currEntry.key] != null) {
         console.debug('Overriding data registry key', currEntry.key);
-        this.registryKeys = this.registryKeys.filter(key => key !== currEntry.key);
       }
       this.registry[currEntry.key] = currEntry;
-      this.registryKeys = this.registryKeys.concat(currEntry.key);
+      this.registryKeys = Object.keys(this.registry);
     });
   }
 
@@ -33,7 +32,7 @@ export default class DataRegistry<
     const keys = Array.isArray(keyOrKeys) ? keyOrKeys : [keyOrKeys];
     keys.forEach(currKey => {
       delete this.registry[currKey];
-      this.registryKeys = this.registryKeys.filter(key => key !== currKey);
+      this.registryKeys = Object.keys(this.registry);
     });
   }
 

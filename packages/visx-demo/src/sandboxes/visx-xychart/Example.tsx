@@ -16,11 +16,11 @@ type Props = {
   height: number;
 };
 
-const xScaleConfig = { type: 'time' } as const;
+const xScaleConfig = { type: 'band', paddingInner: 0.3 } as const;
 const yScaleConfig = { type: 'linear' } as const;
 const numTicks = 4;
 const data = cityTemperature.slice(150, 225);
-const getDate = (d: CityTemperature) => new Date(d.date);
+const getDate = (d: CityTemperature) => d.date; // new Date(d.date);
 const getSfTemperature = (d: CityTemperature) => Number(d['San Francisco']);
 const getNyTemperature = (d: CityTemperature) => Number(d['New York']);
 
@@ -46,7 +46,7 @@ export default function Example({ height }: Props) {
           <XYChart height={Math.min(400, height)}>
             <CustomChartBackground />
             <AnimatedGrid
-              key={`grid-${animationTrajectory}`}
+              key={`grid-${animationTrajectory}`} // force animate on update
               rows={showGridRows}
               columns={showGridColumns}
               animationTrajectory={animationTrajectory}
@@ -58,7 +58,6 @@ export default function Example({ height }: Props) {
                 data={data}
                 xAccessor={renderHorizontally ? getNyTemperature : getDate}
                 yAccessor={renderHorizontally ? getDate : getNyTemperature}
-                barPadding={0.2}
                 horizontal={renderHorizontally}
               />
             )}
@@ -71,7 +70,7 @@ export default function Example({ height }: Props) {
               />
             )}
             <AnimatedAxis
-              key={`time-axis-${animationTrajectory}-${renderHorizontally}`} // force animate on update
+              key={`time-axis-${animationTrajectory}-${renderHorizontally}`}
               orientation={renderHorizontally ? yAxisOrientation : xAxisOrientation}
               numTicks={numTicks}
               animationTrajectory={animationTrajectory}

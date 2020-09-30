@@ -21,8 +21,13 @@ type BarSeriesProps<
   barPadding?: number;
 };
 
+// Fallback bandwidth estimate assumes no missing data values (divides chart space by # datum)
+const getFallbackBandwidth = (fullBarWidth: number, barPadding: number) =>
+  // clamp padding to [0, 1], bar thickness = (1-padding) * availableSpace
+  fullBarWidth * (1 - Math.min(1, Math.max(0, barPadding)));
+
 function BarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum extends object>({
-  barPadding = 0.9,
+  barPadding = 0.1,
   data,
   dataKey,
   horizontal,
@@ -38,18 +43,12 @@ function BarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum ext
   const [yMax, yMin] = yScale.range().map(Number);
 
   const scaleBandwidth = getScaleBandwidth(horizontal ? yScale : xScale);
-  const barThicknessFraction = scaleBandwidth
-    ? 1 // if scale has bandwidth, padding comes from scale config
-    : // clamp padding to [0, 1], bar width = (1-padding) * availableSpace
-      1 - Math.min(1, Math.max(0, barPadding));
   const barThickness =
-    barThicknessFraction *
-    (scaleBandwidth ||
-      // non-bandwidth estimate assumes no missing data values
-      (horizontal ? innerHeight : innerWidth) / data.length);
+    scaleBandwidth ||
+    getFallbackBandwidth((horizontal ? innerHeight : innerWidth) / data.length, barPadding);
 
   // try to figure out the 0 baseline for correct rendering of negative values
-  // we aren't sure if these are numeric scales or not a priori
+  // we aren't sure if these are numeric scales or not ahead of time
   const maybeXZero = xScale(0);
   const maybeYZero = yScale(0);
   const xZeroPosition = isValidNumber(maybeXZero)
@@ -63,33 +62,23 @@ function BarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum ext
 
   const color = colorScale?.(dataKey) ?? theme?.colors?.[0] ?? '#222';
 
-  const bars = useMemo(
-    () =>
-      data.map(datum => {
-        const x = getScaledX(datum) - (scaleBandwidth || horizontal ? 0 : barThickness / 2);
-        const y = getScaledY(datum) - (scaleBandwidth || !horizontal ? 0 : barThickness / 2);
-        const barLength = horizontal ? x - xZeroPosition : y - yZeroPosition;
+  const bars = useMemo(() => {
+    const xOffset = horizontal ? 0 : -barThickness / 2;
+    const yOffset = horizontal ? -barThickness / 2 : 0;
+    return data.map(datum => {
+      const x = getScaledX(datum) + xOffset;
+      const y = getScaledY(datum) + yOffset;
+      const barLength = horizontal ? x - xZeroPosition : y - yZeroPosition;
 
-        return {
-          x: horizontal ? xZeroPosition + Math.min(0, barLength) : x,
-          y: horizontal ? y : yZeroPosition + Math.min(0, barLength),
-          width: horizontal ? Math.abs(barLength) : barThickness,
-          height: horizontal ? barThickness : Math.abs(barLength),
-          fill: color, // @TODO allow prop overriding
-        };
-      }),
-    [
-      barThickness,
-      scaleBandwidth,
-      color,
-      data,
-      getScaledX,
-      getScaledY,
-      horizontal,
-      xZeroPosition,
-      yZeroPosition,
-    ],
-  );
+      return {
+        x: horizontal ? xZeroPosition + Math.min(0, barLength) : x,
+        y: horizontal ? y : yZeroPosition + Math.min(0, barLength),
+        width: horizontal ? Math.abs(barLength) : barThickness,
+        height: horizontal ? barThickness : Math.abs(barLength),
+        fill: color, // @TODO allow prop overriding
+      };
+    });
+  }, [barThickness, color, data, getScaledX, getScaledY, horizontal, xZeroPosition, yZeroPosition]);
 
   return (
     <g className="vx-bar-series">
