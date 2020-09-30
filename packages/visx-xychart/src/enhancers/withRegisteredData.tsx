@@ -21,11 +21,17 @@ export type WithRegisteredDataProps<
 export default function withRegisteredData<
   BaseComponentProps extends SeriesProps<AxisScale, AxisScale, object>
 >(BaseSeriesComponent: React.ComponentType<BaseComponentProps>) {
-  function WrappedSeriesComponent<X extends AxisScale, Y extends AxisScale, D extends object>(
-    props: BP,
+  function WrappedComponent<XAxis extends AxisScale, YAxis extends AxisScale, Datum extends object>(
+    // WrappedComponent props include SeriesProps with appropriate generics
+    // and any props in BaseComponentProps that are not in WithRegisteredDataProps
+    props: SeriesProps<XAxis, YAxis, Datum> &
+      Omit<
+        BaseComponentProps,
+        keyof SeriesProps<XAxis, YAxis, Datum> | keyof WithRegisteredDataProps<XAxis, YAxis, Datum>
+      >,
   ) {
     const { dataKey, data, xAccessor, yAccessor } = props;
-    const { xScale, yScale, dataRegistry } = useContext(DataContext) as DataContextType<X, Y, D>;
+    const { xScale, yScale, dataRegistry } = useContext(DataContext);
 
     useEffect(() => {
       if (dataRegistry) dataRegistry.registerData({ key: dataKey, data, xAccessor, yAccessor });
@@ -37,8 +43,9 @@ export default function withRegisteredData<
     // if scales or data are not available in context, render nothing
     if (!xScale || !yScale || !registryEntry) return null;
 
+    // TODO coercion might be avoidable with variadic tuples in TS 4
     const BaseComponent = (BaseSeriesComponent as unknown) as React.ComponentType<
-      SeriesProps<X, Y, D> & WithRegisteredDataProps<X, Y, D>
+      SeriesProps<XAxis, YAxis, Datum> & WithRegisteredDataProps<XAxis, YAxis, Datum>
     >;
 
     // otherwise pass props + over-write data/accessors
@@ -54,5 +61,5 @@ export default function withRegisteredData<
     );
   }
 
-  return WrappedSeriesComponent;
+  return WrappedComponent;
 }
