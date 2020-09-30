@@ -31,7 +31,11 @@ export default function withRegisteredData<
       >,
   ) {
     const { dataKey, data, xAccessor, yAccessor } = props;
-    const { xScale, yScale, dataRegistry } = useContext(DataContext);
+    const { xScale, yScale, dataRegistry } = useContext(DataContext) as DataContextType<
+      XAxis,
+      YAxis,
+      Datum
+    >;
 
     useEffect(() => {
       if (dataRegistry) dataRegistry.registerData({ key: dataKey, data, xAccessor, yAccessor });
