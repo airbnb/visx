@@ -50,6 +50,7 @@
     "@visx/scale": "1.0.0",
     "@visx/shape": "1.0.0",
     "@visx/text": "1.0.0",
+    "@visx/tooltip": "1.0.0",
     "@visx/voronoi": "1.0.0",
     "classnames": "^2.2.5",
     "d3-array": "2.6.0",

@@ -2,7 +2,7 @@ import { AxisScale } from '@visx/axis';
 import { ScaleInput } from '@visx/scale';
 import { Emitter } from 'mitt';
 
-export type EventEmitterContext = Emitter;
+export type EventEmitterContextType = Emitter;
 
 export type NearestDatumArgs<
   XScale extends AxisScale,

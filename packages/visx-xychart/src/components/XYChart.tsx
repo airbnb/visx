@@ -5,6 +5,8 @@ import DataContext from '../context/DataContext';
 import { Margin } from '../types';
 import useEventEmitter from '../hooks/useEventEmitter';
 import EventEmitterProvider from '../providers/EventEmitterProvider';
+import TooltipContext from '../context/TooltipContext';
+import TooltipProvider from '../providers/TooltipProvider';
 
 const DEFAULT_MARGIN = { top: 50, right: 50, bottom: 50, left: 50 };
 
@@ -26,6 +28,7 @@ export default function XYChart(props: Props) {
     margin = DEFAULT_MARGIN,
   } = props;
   const { setDimensions } = useContext(DataContext);
+  const tooltipContext = useContext(TooltipContext);
   const emit = useEventEmitter();
 
   // update dimensions in context
@@ -44,16 +47,22 @@ export default function XYChart(props: Props) {
     [emit],
   );
 
-  // if width and height aren't both provided, wrap in auto-sizer + preserve passed dims
+  // if context is not available, wrap self in the needed providers
   if (width == null || height == null) {
     return <ParentSize>{dims => <XYChart {...dims} {...props} />}</ParentSize>;
   }
-  // if event emitter context is not available, wrap self in it
   if (emit == null) {
     return (
       <EventEmitterProvider>
         <XYChart {...props} />
       </EventEmitterProvider>
+    );
+  }
+  if (tooltipContext == null) {
+    return (
+      <TooltipProvider>
+        <XYChart {...props} />
+      </TooltipProvider>
     );
   }
 
@@ -67,7 +76,8 @@ export default function XYChart(props: Props) {
         y={margin.top}
         width={width - margin.left - margin.right}
         height={height - margin.top - margin.bottom}
-        fill="rgba(250,0,0,0.2)"
+        fill="yellow"
+        fillOpacity={0.2}
         onMouseMove={handleMouseTouchMove}
         onTouchMove={handleMouseTouchMove}
         onMouseOut={handleMouseOutTouchEnd}

@@ -29,7 +29,6 @@ function LineSeries<XScale extends AxisScale, YScale extends AxisScale, Datum ex
   const color = colorScale?.(dataKey) ?? theme?.colors?.[0] ?? '#222';
   const handleMouseMove = useCallback(
     (params?: HandlerParams) => {
-      console.log('LineSeries handleMouseMove', params);
       if (params && width && height) {
         const datum = findNearestDatumXY({
           ...params,
