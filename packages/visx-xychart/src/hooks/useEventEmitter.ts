@@ -1,21 +1,35 @@
-import { useContext, useEffect } from 'react';
+import { useCallback, useContext, useEffect } from 'react';
+import { localPoint } from '@visx/event';
 import EventEmitterContext from '../context/EventEmitterContext';
 
+export type EventType = 'mousemove' | 'mouseout' | 'touchmove' | 'touchend' | 'click';
+export type HandlerParams = {
+  event: React.MouseEvent | React.TouchEvent;
+  svgCoords: ReturnType<typeof localPoint>;
+};
+export type Handler = (params?: HandlerParams) => void;
+
 /**
- * Hook for subscribing to the specified event, handles unsubscribing on unmount.
- * Returns emitter for emitting events.
+ * Hook for optionally subscribing to a specified EventType,
+ * and returns emitter for emitting events.
  */
-export default function useEventEmitter(
-  event?: 'mousemove' | 'mouseout' | 'touchmove' | 'touchend' | 'click',
-  handler?: () => void,
-) {
+export default function useEventEmitter(eventType?: EventType, handler?: Handler) {
   const emitter = useContext(EventEmitterContext);
+
+  /** wrap emitter.emit so we can enforce stricter type signature */
+  const emit = useCallback(
+    (type: EventType, event: HandlerParams['event']) =>
+      emitter?.emit<HandlerParams>(type, { event, svgCoords: localPoint(event) }),
+    [emitter],
+  );
+
   useEffect(() => {
-    if (emitter && event && handler) {
-      emitter.on(event, handler);
-      return () => emitter?.off(event, handler);
+    if (emitter && eventType && handler) {
+      emitter.on<HandlerParams>(eventType, handler);
+      return () => emitter?.off<HandlerParams>(eventType, handler);
     }
     return undefined;
-  }, [emitter, event, handler]);
-  return emitter;
+  }, [emitter, eventType, handler]);
+
+  return emitter ? emit : null;
 }
