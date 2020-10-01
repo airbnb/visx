@@ -4,8 +4,8 @@ import VxAnimatedGridRows from '@visx/react-spring/lib/grid/AnimatedGridRows';
 import VxAnimatedGridColumns from '@visx/react-spring/lib/grid/AnimatedGridColumns';
 import VxGridRows from '@visx/grid/lib/grids/GridRows';
 import VxGridColumns from '@visx/grid/lib/grids/GridColumns';
-import { Grid, AnimatedGrid, DataContext } from '../src';
-import getDataContext from './mocks/getDataContext';
+import { Grid, AnimatedGrid, DataContext } from '../../src';
+import getDataContext from '../mocks/getDataContext';
 
 const mockContext = getDataContext();
 

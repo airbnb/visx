@@ -1,4 +1,4 @@
-import DataRegistry from '../src/classes/DataRegistry';
+import DataRegistry from '../../src/classes/DataRegistry';
 
 const data = { key: 'visx', data: [], xAccessor: () => 'x', yAccessor: () => 'y' };
 
