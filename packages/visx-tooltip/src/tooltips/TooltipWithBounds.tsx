@@ -50,7 +50,6 @@ function TooltipWithBounds({
         transform: `translate(${left}px, ${top}px)`,
         ...(!unstyled && style),
       }}
-      unstyled={unstyled}
       {...otherProps}
     >
       {children}
