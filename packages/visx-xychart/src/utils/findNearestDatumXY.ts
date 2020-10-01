@@ -14,10 +14,10 @@ export default function findNearestDatumXY<
   yScale,
   xAccessor,
   yAccessor,
-  svgCoords,
+  point,
   data,
 }: NearestDatumArgs<XScale, YScale, Datum>) {
-  if (!svgCoords) return null;
+  if (!point) return null;
 
   const scaledX = (d: Datum) => Number(xScale(xAccessor(d)));
   const scaledY = (d: Datum) => Number(yScale(yAccessor(d)));
@@ -30,13 +30,13 @@ export default function findNearestDatumXY<
     height,
   });
 
-  const nearestDatum = voronoiInstance(data).find(svgCoords.x, svgCoords.y);
+  const nearestDatum = voronoiInstance(data).find(point.x, point.y);
 
   if (!nearestDatum) return null;
 
   const { data: datum, index } = nearestDatum;
-  const distanceX = Math.abs(scaledX(datum) - svgCoords.x);
-  const distanceY = Math.abs(scaledY(datum) - svgCoords.y);
+  const distanceX = Math.abs(scaledX(datum) - point.x);
+  const distanceY = Math.abs(scaledY(datum) - point.y);
 
   return { datum, index, distanceX, distanceY };
 }

@@ -9,7 +9,7 @@ export default function findNearestDatumX<
 >({
   xScale: scale,
   xAccessor: accessor,
-  svgCoords,
+  point,
   data,
 }: NearestDatumArgs<XScale, YScale, Datum>): {
   datum: Datum;
@@ -17,12 +17,12 @@ export default function findNearestDatumX<
   distanceX: number;
   distanceY: number;
 } | null {
-  if (!svgCoords) return null;
+  if (!point) return null;
 
   const nearestDatum = findNearestDatumSingleDimension<XScale, Datum>({
     scale,
     accessor,
-    svgCoord: svgCoords.x,
+    scaledValue: point.x,
     data,
   });
 

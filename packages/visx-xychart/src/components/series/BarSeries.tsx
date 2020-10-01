@@ -89,11 +89,11 @@ function BarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum ext
   const { showTooltip, hideTooltip } = useContext(TooltipContext) ?? {};
   const handleMouseMove = useCallback(
     (params: HandlerParams | undefined) => {
-      const { event, svgCoords } = params || {};
-      if (event && svgCoords && width && height && showTooltip) {
+      const { event, svgPoint } = params || {};
+      if (event && svgPoint && width && height && showTooltip) {
         const datum = (horizontal ? findNearestDatumY : findNearestDatumX)({
           event,
-          svgCoords,
+          point: svgPoint,
           key: dataKey,
           data,
           xScale,
@@ -106,8 +106,8 @@ function BarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum ext
         if (datum) {
           showTooltip({
             tooltipData: datum.datum,
-            tooltipLeft: svgCoords.x,
-            tooltipTop: svgCoords.y,
+            tooltipLeft: svgPoint.x,
+            tooltipTop: svgPoint.y,
           });
         }
       }

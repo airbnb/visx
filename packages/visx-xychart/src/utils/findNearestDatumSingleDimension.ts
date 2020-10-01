@@ -3,19 +3,19 @@ import { ScaleInput } from '@visx/scale';
 import { bisector, range as d3Range, bisectLeft } from 'd3-array';
 
 // @TODO make more robust to null/undefined scaled values
-/** Finds the nearest datum in a single direction (x or y). */
+/** Finds the nearest datum in a single direction (x or y) closest to the specified `scaledValue`. */
 export default function findNearestDatumSingleDimension<
   Scale extends AxisScale,
   Datum extends object
 >({
   scale,
   accessor,
-  svgCoord,
+  scaledValue,
   data,
 }: {
   scale: Scale;
   accessor: (d: Datum) => ScaleInput<Scale>;
-  svgCoord: number;
+  scaledValue: number;
   data: Datum[];
 }) {
   const coercedScale = scale as AxisScale; // broaden type before type guards below
@@ -26,7 +26,7 @@ export default function findNearestDatumSingleDimension<
   if ('invert' in coercedScale && typeof coercedScale.invert === 'function') {
     const bisect = bisector(accessor).left;
     // find closest data value, then map that to closest datum
-    const dataValue = Number(coercedScale.invert(svgCoord));
+    const dataValue = Number(coercedScale.invert(scaledValue));
     const index = bisect(data, dataValue);
     // take the two datum nearest this index, and compute which is closer
     const nearestDatum0 = data[index - 1];
@@ -44,7 +44,7 @@ export default function findNearestDatumSingleDimension<
     const range = scale.range().map(Number);
     const sortedRange = [...range].sort((a, b) => a - b); // bisectLeft assumes sort
     const rangePoints = d3Range(sortedRange[0], sortedRange[1], coercedScale.step());
-    const domainIndex = bisectLeft(rangePoints, svgCoord);
+    const domainIndex = bisectLeft(rangePoints, scaledValue);
     // y-axis scales may have reverse ranges, correct for this
     const sortedDomain = range[0] < range[1] ? domain : domain.reverse();
     const domainValue = sortedDomain[domainIndex - 1];
@@ -58,7 +58,7 @@ export default function findNearestDatumSingleDimension<
 
   if (nearestDatum == null || nearestDatumIndex == null) return null;
 
-  const distance = Math.abs(Number(coercedScale(accessor(nearestDatum))) - svgCoord);
+  const distance = Math.abs(Number(coercedScale(accessor(nearestDatum))) - scaledValue);
 
   return { datum: nearestDatum, index: nearestDatumIndex, distance };
 }

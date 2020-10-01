@@ -11,7 +11,7 @@ export type NearestDatumArgs<
   Datum extends object
 > = {
   event: React.MouseEvent | React.TouchEvent;
-  svgCoords: { x: number; y: number } | null;
+  point: { x: number; y: number } | null;
   xAccessor: (d: Datum) => ScaleInput<XScale>;
   yAccessor: (d: Datum) => ScaleInput<YScale>;
   data: Datum[];

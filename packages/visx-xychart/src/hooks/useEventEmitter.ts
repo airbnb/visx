@@ -5,7 +5,7 @@ import EventEmitterContext from '../context/EventEmitterContext';
 export type EventType = 'mousemove' | 'mouseout' | 'touchmove' | 'touchend' | 'click';
 export type HandlerParams = {
   event: React.MouseEvent | React.TouchEvent;
-  svgCoords: ReturnType<typeof localPoint>;
+  svgPoint: ReturnType<typeof localPoint>;
 };
 export type Handler = (params?: HandlerParams) => void;
 
@@ -19,7 +19,7 @@ export default function useEventEmitter(eventType?: EventType, handler?: Handler
   /** wrap emitter.emit so we can enforce stricter type signature */
   const emit = useCallback(
     (type: EventType, event: HandlerParams['event']) =>
-      emitter?.emit<HandlerParams>(type, { event, svgCoords: localPoint(event) }),
+      emitter?.emit<HandlerParams>(type, { event, svgPoint: localPoint(event) }),
     [emitter],
   );
 
