@@ -4,15 +4,10 @@ import VxAnimatedGridRows from '@visx/react-spring/lib/grid/AnimatedGridRows';
 import VxAnimatedGridColumns from '@visx/react-spring/lib/grid/AnimatedGridColumns';
 import VxGridRows from '@visx/grid/lib/grids/GridRows';
 import VxGridColumns from '@visx/grid/lib/grids/GridColumns';
-import { scaleLinear } from '@visx/scale';
 import { Grid, AnimatedGrid, DataContext } from '../src';
+import getDataContext from './mocks/getDataContext';
 
-const mockContext = {
-  xScale: scaleLinear({ domain: [0, 10], range: [0, 10] }),
-  yScale: scaleLinear({ domain: [0, 10], range: [0, 10] }),
-  innerWidth: 10,
-  innerHeight: 10,
-};
+const mockContext = getDataContext();
 
 describe('<Grid />', () => {
   it('should be defined', () => {
@@ -20,7 +15,6 @@ describe('<Grid />', () => {
   });
   it('should render VxGridRows if rows=true', () => {
     const wrapper = mount(
-      // @ts-ignore partial context value
       <DataContext.Provider value={mockContext}>
         <svg>
           <Grid rows columns={false} />
@@ -32,7 +26,6 @@ describe('<Grid />', () => {
   });
   it('should render VxGridColumns if columns=true', () => {
     const wrapper = mount(
-      // @ts-ignore partial context value
       <DataContext.Provider value={mockContext}>
         <svg>
           <Grid rows={false} columns />
@@ -50,7 +43,6 @@ describe('<AnimatedGrid />', () => {
   });
   it('should render VxAnimatedGridRows if rows=true', () => {
     const wrapper = mount(
-      // @ts-ignore partial context value
       <DataContext.Provider value={mockContext}>
         <svg>
           <AnimatedGrid rows columns={false} />
@@ -62,7 +54,6 @@ describe('<AnimatedGrid />', () => {
   });
   it('should render VxAnimatedGridColumns if columns=true', () => {
     const wrapper = mount(
-      // @ts-ignore partial context value
       <DataContext.Provider value={mockContext}>
         <svg>
           <AnimatedGrid rows={false} columns />

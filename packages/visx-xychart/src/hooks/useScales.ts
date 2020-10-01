@@ -1,5 +1,5 @@
 import { AxisScaleOutput, AxisScale } from '@visx/axis';
-import { ScaleConfig, NumberLike, createScale, ScaleInput } from '@visx/scale';
+import { ScaleConfig, createScale, ScaleInput } from '@visx/scale';
 import { extent as d3Extent } from 'd3-array';
 import { useMemo } from 'react';
 import DataRegistry from '../classes/DataRegistry';
@@ -8,7 +8,7 @@ import DataRegistry from '../classes/DataRegistry';
 export default function useScales<
   XScale extends AxisScale,
   YScale extends AxisScale,
-  Datum = unknown
+  Datum extends object
 >({
   xScaleConfig,
   yScaleConfig,
@@ -18,7 +18,7 @@ export default function useScales<
 }: {
   xScaleConfig: ScaleConfig<AxisScaleOutput>;
   yScaleConfig: ScaleConfig<AxisScaleOutput>;
-  dataRegistry: DataRegistry<XScale, YScale, Datum>;
+  dataRegistry: Omit<DataRegistry<XScale, YScale, Datum>, 'registry' | 'registryKeys'>;
   xRange: [number, number];
   yRange: [number, number];
 }) {
@@ -40,10 +40,7 @@ export default function useScales<
     );
 
     const xType = xScaleConfig.type;
-    const xDomain =
-      xType === 'band' || xType === 'ordinal'
-        ? xValues
-        : (d3Extent(xValues as NumberLike[]) as XScaleInput[]);
+    const xDomain = xType === 'band' || xType === 'ordinal' ? xValues : d3Extent(xValues);
 
     xScale.range(xScaleConfig.range || [xMin, xMax]);
     xScale.domain(xScaleConfig.domain || xDomain);
@@ -70,10 +67,7 @@ export default function useScales<
     );
 
     const yType = yScaleConfig.type;
-    const yDomain =
-      yType === 'band' || yType === 'ordinal'
-        ? yValues
-        : (d3Extent(yValues as NumberLike[]) as YScaleInput[]);
+    const yDomain = yType === 'band' || yType === 'ordinal' ? yValues : d3Extent(yValues);
 
     yScale.range(yScaleConfig.range || [yMin, yMax]);
     yScale.domain(yScaleConfig.domain || yDomain);

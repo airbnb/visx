@@ -6,6 +6,9 @@ import customTheme from './customTheme';
 
 type ProvidedProps = {
   animationTrajectory: AnimationTrajectory;
+  renderHorizontally: boolean;
+  renderBarSeries: boolean;
+  renderLineSeries: boolean;
   showGridColumns: boolean;
   showGridRows: boolean;
   theme: XYChartTheme;
@@ -24,11 +27,17 @@ export default function ExampleControls({ children }: ControlsProps) {
   const [showGridRows, showGridColumns] = gridProps;
   const [xAxisOrientation, setXAxisOrientation] = useState<'top' | 'bottom'>('bottom');
   const [yAxisOrientation, setYAxisOrientation] = useState<'left' | 'right'>('right');
+  const [renderHorizontally, setRenderHorizontally] = useState(false);
+  const [renderBarSeries, setRenderBarSeries] = useState(true);
+  const [renderLineSeries, setRenderLineSeries] = useState(true);
 
   return (
     <>
       {children({
         animationTrajectory,
+        renderBarSeries,
+        renderHorizontally,
+        renderLineSeries,
         showGridColumns,
         showGridRows,
         theme,
@@ -62,6 +71,27 @@ export default function ExampleControls({ children }: ControlsProps) {
               checked={theme === customTheme}
             />{' '}
             custom
+          </label>
+        </div>
+
+        {/** series orientation */}
+        <div>
+          <strong>series orientation</strong>
+          <label>
+            <input
+              type="radio"
+              onChange={() => setRenderHorizontally(false)}
+              checked={!renderHorizontally}
+            />{' '}
+            vertical
+          </label>
+          <label>
+            <input
+              type="radio"
+              onChange={() => setRenderHorizontally(true)}
+              checked={renderHorizontally}
+            />{' '}
+            horizontal
           </label>
         </div>
 
@@ -173,6 +203,26 @@ export default function ExampleControls({ children }: ControlsProps) {
               checked={animationTrajectory === 'max'}
             />{' '}
             from max
+          </label>
+        </div>
+        {/** series */}
+        <div>
+          <strong>series</strong>
+          <label>
+            <input
+              type="checkbox"
+              onChange={() => setRenderLineSeries(!renderLineSeries)}
+              checked={renderLineSeries}
+            />{' '}
+            line
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              onChange={() => setRenderBarSeries(!renderBarSeries)}
+              checked={renderBarSeries}
+            />{' '}
+            bar
           </label>
         </div>
       </div>

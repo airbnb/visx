@@ -165,9 +165,10 @@ export const textColor = grayColors[7];
 
 export const defaultColors = [
   allColors.cyan[9],
-  allColors.cyan[6],
+  allColors.cyan[3],
   allColors.yellow[5],
   allColors.red[4],
-  allColors.violet[8],
-  allColors.grape[3],
+  allColors.grape[8],
+  allColors.grape[5],
+  allColors.pink[9],
 ];
