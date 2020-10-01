@@ -13,7 +13,6 @@ export type TooltipProps = {
 };
 
 export const defaultStyles: React.CSSProperties = {
-  position: 'absolute',
   backgroundColor: 'white',
   color: '#666666',
   padding: '.3rem .5rem',
@@ -39,8 +38,13 @@ export default function Tooltip({
     <div
       className={cx('visx-tooltip', className)}
       style={{
-        top: top == null || offsetTop == null ? top : top + offsetTop,
-        left: left == null || offsetLeft == null ? left : left + offsetLeft,
+        // these styles are needed for correct positioning, regardless of styles
+        position: 'absolute',
+        left: 0,
+        top: 0,
+        transform: `translate(${left == null || offsetLeft == null ? left : left + offsetLeft}px, ${
+          top == null || offsetTop == null ? top : top + offsetTop
+        }px)`,
         ...(!unstyled && style),
       }}
       {...restProps}
