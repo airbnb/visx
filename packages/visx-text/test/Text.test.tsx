@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow, mount, ShallowWrapper } from 'enzyme';
 import { Text, getStringWidth } from '../src';
 import { addMock, removeMock } from './svgMock';
 
@@ -134,5 +134,35 @@ describe('<Text />', () => {
 
     const text = wrapper.find('text').first();
     expect(text.prop('transform')).toBe('rotate(45, 0, 0)');
+  });
+
+  it('Offsets vertically if verticalAnchor is given', () => {
+    const wrapper = shallow<Text>(
+      <Text width={200} style={{ fontFamily: 'Courier' }}>
+        This is really long text
+      </Text>,
+    );
+    expect(
+      wrapper
+        .find('tspan')
+        .first()
+        .prop('dy'),
+    ).toBe('-1em');
+
+    wrapper.setProps({ verticalAnchor: 'middle' });
+    expect(
+      wrapper
+        .find('tspan')
+        .first()
+        .prop('dy'),
+    ).toBe('-0.145em');
+
+    wrapper.setProps({ verticalAnchor: 'start' });
+    expect(
+      wrapper
+        .find('tspan')
+        .first()
+        .prop('dy'),
+    ).toBe('0.71em');
   });
 });
