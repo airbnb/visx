@@ -1,5 +1,5 @@
 import { AxisScale } from '@visx/axis';
-import { useCallback, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import DataRegistry from '../classes/DataRegistry';
 
 /** Hook that returns an API equivalent to DataRegistry but which updates as needed for use as a hook. */
