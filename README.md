@@ -219,7 +219,7 @@ Lots coming soon, check out the [roadmap](./ROADMAP.md).
 
 1. Do you plan on supporting animation/transitions?
 
-   > A common criticism of visx is it doesn't have animation baked in, but this was a concious
+   > A common criticism of visx is it doesn't have animation baked in, but this was a conscious
    > choice. It's a powerful feature to not bake it in.
    >
    > Imagine your app already bundles `react-motion`, adding a hypothetical `@visx/animation` is
