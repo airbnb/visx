@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/mouse-events-have-key-events */
 import React, { useCallback, useContext, useEffect } from 'react';
 import ParentSize from '@visx/responsive/lib/components/ParentSize';
 
@@ -47,7 +48,7 @@ export default function XYChart(props: Props) {
     [emit],
   );
 
-  // if context is not available, wrap self in the needed providers
+  // if Context or dimensions are not available, wrap self in the needed providers
   if (width == null || height == null) {
     return <ParentSize>{dims => <XYChart {...dims} {...props} />}</ParentSize>;
   }
@@ -69,15 +70,13 @@ export default function XYChart(props: Props) {
   return width > 0 && height > 0 ? (
     <svg width={width} height={height} aria-label={accessibilityLabel}>
       {children}
-      {/** capture all events */}
-      {/* eslint-disable-next-line jsx-a11y/mouse-events-have-key-events */}
+      {/** capture all mouse/touch events and emit them. */}
       <rect
         x={margin.left}
         y={margin.top}
         width={width - margin.left - margin.right}
         height={height - margin.top - margin.bottom}
-        fill="yellow"
-        fillOpacity={0.2}
+        fill="transparent"
         onMouseMove={handleMouseTouchMove}
         onTouchMove={handleMouseTouchMove}
         onMouseOut={handleMouseOutTouchEnd}

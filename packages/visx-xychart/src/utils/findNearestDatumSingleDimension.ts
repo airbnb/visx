@@ -3,6 +3,7 @@ import { ScaleInput } from '@visx/scale';
 import { bisector, range as d3Range, bisectLeft } from 'd3-array';
 
 // @TODO make more robust to null/undefined scaled values
+/** Finds the nearest datum in a single direction (x or y). */
 export default function findNearestDatumSingleDimension<
   Scale extends AxisScale,
   Datum extends object
@@ -17,7 +18,7 @@ export default function findNearestDatumSingleDimension<
   svgCoord: number;
   data: Datum[];
 }) {
-  const coercedScale = scale as AxisScale;
+  const coercedScale = scale as AxisScale; // broaden type before type guards below
 
   let nearestDatum: Datum;
   let nearestDatumIndex: number;
