@@ -47,13 +47,14 @@ export default function Tooltip({ renderTooltip, svgContainer }: TooltipProps) {
       <ParentSpyTag style={INVISIBLE_STYLES} ref={setContainerRef} />
       {tooltipContext?.tooltipOpen && (
         <TooltipInPortal
-          key={Math.random()}
           left={tooltipContext?.tooltipLeft}
           top={tooltipContext?.tooltipTop}
           style={{
             ...defaultStyles,
             background: theme?.backgroundColor ?? 'white',
-            boxShadow: `0 1px 2px ${theme?.htmlLabelStyles?.color ?? '#222'}`,
+            boxShadow: `0 1px 2px ${
+              theme?.htmlLabelStyles?.color ? `${theme?.htmlLabelStyles?.color}55` : '#22222255'
+            }`,
 
             ...theme?.htmlLabelStyles,
           }}

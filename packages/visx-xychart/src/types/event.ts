@@ -4,6 +4,7 @@ import { Emitter } from 'mitt';
 
 export type EventEmitterContextType = Emitter;
 
+/** Arguments for findNearestDatum* functions. */
 export type NearestDatumArgs<
   XScale extends AxisScale,
   YScale extends AxisScale,

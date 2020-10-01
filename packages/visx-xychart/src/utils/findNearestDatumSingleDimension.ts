@@ -41,7 +41,7 @@ export default function findNearestDatumSingleDimension<
     // so we manually invert
     const domain = scale.domain();
     const range = scale.range().map(Number);
-    const sortedRange = [...range].sort(); // bisectLeft assumes sort
+    const sortedRange = [...range].sort((a, b) => a - b); // bisectLeft assumes sort
     const rangePoints = d3Range(sortedRange[0], sortedRange[1], coercedScale.step());
     const domainIndex = bisectLeft(rangePoints, svgCoord);
     // y-axis scales may have reverse ranges, correct for this
@@ -51,6 +51,7 @@ export default function findNearestDatumSingleDimension<
     nearestDatum = data[index];
     nearestDatumIndex = index;
   } else {
+    console.warn('[visx/xychart/findNearestDatum] encountered incompatible scale type, bailing');
     return null;
   }
 

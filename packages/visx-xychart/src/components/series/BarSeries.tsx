@@ -6,6 +6,10 @@ import withRegisteredData, { WithRegisteredDataProps } from '../../enhancers/wit
 import getScaledValueFactory from '../../utils/getScaledValueFactory';
 import isValidNumber from '../../typeguards/isValidNumber';
 import getScaleBandwidth from '../../utils/getScaleBandwidth';
+import findNearestDatumX from '../../utils/findNearestDatumX';
+import findNearestDatumY from '../../utils/findNearestDatumY';
+import useEventEmitter, { HandlerParams } from '../../hooks/useEventEmitter';
+import TooltipContext from '../../context/TooltipContext';
 
 type BarSeriesProps<
   XScale extends AxisScale,
@@ -36,7 +40,9 @@ function BarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum ext
   yAccessor,
   yScale,
 }: BarSeriesProps<XScale, YScale, Datum> & WithRegisteredDataProps<XScale, YScale, Datum>) {
-  const { colorScale, theme, innerWidth = 0, innerHeight = 0 } = useContext(DataContext);
+  const { colorScale, theme, width, height, innerWidth = 0, innerHeight = 0 } = useContext(
+    DataContext,
+  );
   const getScaledX = useCallback(getScaledValueFactory(xScale, xAccessor), [xScale, xAccessor]);
   const getScaledY = useCallback(getScaledValueFactory(yScale, yAccessor), [yScale, yAccessor]);
   const [xMin, xMax] = xScale.range().map(Number);
@@ -80,10 +86,41 @@ function BarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum ext
     });
   }, [barThickness, color, data, getScaledX, getScaledY, horizontal, xZeroPosition, yZeroPosition]);
 
+  const { showTooltip, hideTooltip } = useContext(TooltipContext) ?? {};
+  const handleMouseMove = useCallback(
+    (params: HandlerParams | undefined) => {
+      const { event, svgCoords } = params || {};
+      if (event && svgCoords && width && height && showTooltip) {
+        const datum = (horizontal ? findNearestDatumY : findNearestDatumX)({
+          event,
+          svgCoords,
+          key: dataKey,
+          data,
+          xScale,
+          yScale,
+          xAccessor,
+          yAccessor,
+          width,
+          height,
+        });
+        if (datum) {
+          showTooltip({
+            tooltipData: datum.datum,
+            tooltipLeft: svgCoords.x,
+            tooltipTop: svgCoords.y,
+          });
+        }
+      }
+    },
+    [dataKey, data, horizontal, xScale, yScale, xAccessor, yAccessor, width, height, showTooltip],
+  );
+  useEventEmitter('mousemove', handleMouseMove);
+  useEventEmitter('mouseout', hideTooltip);
+
   return (
     <g className="vx-bar-series">
-      {bars.map(({ x, y, width, height, fill }, i) => (
-        <rect key={i} x={x} y={y} width={width} height={height} fill={fill} />
+      {bars.map(({ x, y, width: barWidth, height: barHeight, fill }, i) => (
+        <rect key={i} x={x} y={y} width={barWidth} height={barHeight} fill={fill} />
       ))}
     </g>
   );

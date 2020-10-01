@@ -29,6 +29,7 @@ function LineSeries<XScale extends AxisScale, YScale extends AxisScale, Datum ex
   const getScaledX = useCallback(getScaledValueFactory(xScale, xAccessor), [xScale, xAccessor]);
   const getScaledY = useCallback(getScaledValueFactory(yScale, yAccessor), [yScale, yAccessor]);
   const color = colorScale?.(dataKey) ?? theme?.colors?.[0] ?? '#222';
+
   const handleMouseMove = useCallback(
     (params: HandlerParams | undefined) => {
       const { event, svgCoords } = params || {};
