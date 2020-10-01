@@ -84,7 +84,6 @@ export default function Example({ height }: Props) {
               animationTrajectory={animationTrajectory}
             />
             <Tooltip
-              svgContainer
               renderTooltip={({ tooltipData }) => <pre>{JSON.stringify(tooltipData, null, 2)}</pre>}
             />
           </XYChart>

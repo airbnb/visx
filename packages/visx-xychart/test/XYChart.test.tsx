@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { mount, shallow } from 'enzyme';
 import ParentSize from '@visx/responsive/lib/components/ParentSize';
-import { XYChart, DataContext, DataProvider } from '../src';
+import { XYChart, DataContext, DataProvider, EventEmitterProvider, TooltipProvider } from '../src';
 
 describe('<XYChart />', () => {
   it('should be defined', () => {
@@ -9,10 +9,14 @@ describe('<XYChart />', () => {
   });
 
   it('should render an svg', () => {
-    const wrapper = shallow(
-      <XYChart width={300} height={300}>
-        <rect />
-      </XYChart>,
+    const wrapper = mount(
+      <EventEmitterProvider>
+        <TooltipProvider>
+          <XYChart width={300} height={300}>
+            <rect />
+          </XYChart>
+        </TooltipProvider>
+      </EventEmitterProvider>,
     );
     expect(wrapper.find('svg')).toHaveLength(1);
   });

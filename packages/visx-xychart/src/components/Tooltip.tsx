@@ -1,5 +1,6 @@
 import React, { useCallback, useContext } from 'react';
 import { useTooltipInPortal, defaultStyles } from '@visx/tooltip';
+import { TooltipProps as BaseTooltipProps } from '@visx/tooltip/lib/tooltips/Tooltip';
 import { PickD3Scale } from '@visx/scale';
 
 import TooltipContext from '../context/TooltipContext';
@@ -11,10 +12,13 @@ export type RenderTooltipParams = TooltipContextType & {
 };
 
 export type TooltipProps = {
-  /** Required */
+  /**
+   * When TooltipContext.tooltipOpen=true, this function is invoked and if the
+   * return value is non-null, its content is rendered inside the tooltip container.
+   * Content will be rendered in an HTML parent.
+   */
   renderTooltip: (params: RenderTooltipParams) => React.ReactNode;
-  svgContainer?: boolean;
-};
+} & Omit<BaseTooltipProps, 'left' | 'top' | 'children'>;
 
 const INVISIBLE_STYLES: React.CSSProperties = {
   position: 'absolute',
@@ -26,7 +30,7 @@ const INVISIBLE_STYLES: React.CSSProperties = {
   pointerEvents: 'none',
 };
 
-export default function Tooltip({ renderTooltip, svgContainer }: TooltipProps) {
+export default function Tooltip({ renderTooltip, ...tooltipProps }: TooltipProps) {
   const { colorScale, theme } = useContext(DataContext) || {};
   const tooltipContext = useContext(TooltipContext);
   const { containerRef, TooltipInPortal } = useTooltipInPortal();
@@ -40,12 +44,16 @@ export default function Tooltip({ renderTooltip, svgContainer }: TooltipProps) {
     [containerRef],
   );
 
-  const ParentSpyTag = svgContainer ? 'g' : 'div';
+  const tooltipContent = tooltipContext?.tooltipOpen
+    ? renderTooltip({ ...tooltipContext, colorScale })
+    : null;
 
   return (
+    // Tooltip can be rendered as a child of SVG or HTML since its output is rendered in a Portal.
+    // So use svg element to find container ref because it's a valid child of SVG and HTML parents.
     <>
-      <ParentSpyTag style={INVISIBLE_STYLES} ref={setContainerRef} />
-      {tooltipContext?.tooltipOpen && (
+      <svg ref={setContainerRef} style={INVISIBLE_STYLES} />
+      {tooltipContext?.tooltipOpen && tooltipContent != null && (
         <TooltipInPortal
           left={tooltipContext?.tooltipLeft}
           top={tooltipContext?.tooltipTop}
@@ -58,8 +66,9 @@ export default function Tooltip({ renderTooltip, svgContainer }: TooltipProps) {
 
             ...theme?.htmlLabelStyles,
           }}
+          {...tooltipProps}
         >
-          {renderTooltip({ ...tooltipContext, colorScale })}
+          {tooltipContent}
         </TooltipInPortal>
       )}
     </>
