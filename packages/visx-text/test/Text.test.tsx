@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, mount, ShallowWrapper } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { Text, getStringWidth } from '../src';
 import { addMock, removeMock } from './svgMock';
 
@@ -142,27 +142,16 @@ describe('<Text />', () => {
         This is really long text
       </Text>,
     );
-    expect(
-      wrapper
+    const getVerticalOffset = (w: typeof wrapper) =>
+      w
         .find('tspan')
         .first()
-        .prop('dy'),
-    ).toBe('-1em');
+        .prop('dy');
 
+    expect(getVerticalOffset(wrapper)).toBe('-1em');
     wrapper.setProps({ verticalAnchor: 'middle' });
-    expect(
-      wrapper
-        .find('tspan')
-        .first()
-        .prop('dy'),
-    ).toBe('-0.145em');
-
+    expect(getVerticalOffset(wrapper)).toBe('-0.145em');
     wrapper.setProps({ verticalAnchor: 'start' });
-    expect(
-      wrapper
-        .find('tspan')
-        .first()
-        .prop('dy'),
-    ).toBe('0.71em');
+    expect(getVerticalOffset(wrapper)).toBe('0.71em');
   });
 });
