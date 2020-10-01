@@ -11,7 +11,7 @@ describe('<TooltipWithBounds />', () => {
     const wrapper = shallow(<TooltipWithBounds>Hello</TooltipWithBounds>, {
       disableLifecycleMethods: true,
     }).dive();
-    const styles = wrapper.find('Tooltip').props().style as unknown;
+    const styles = wrapper.find('Tooltip').props().style as any;
     Object.entries(defaultStyles).forEach(([key, value]) => {
       expect(styles[key]).toBe(value);
     });
@@ -25,7 +25,7 @@ describe('<TooltipWithBounds />', () => {
       .find('Tooltip')
       .dive()
       .find('.visx-tooltip')
-      .props().style as unknown;
+      .props().style as any;
     Object.keys(defaultStyles).forEach(key => {
       expect(styles[key]).toBeUndefined();
     });
