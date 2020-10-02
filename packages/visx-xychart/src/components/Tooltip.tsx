@@ -19,7 +19,11 @@ export type TooltipProps = {
    * Content will be rendered in an HTML parent.
    */
   renderTooltip: (params: RenderTooltipParams) => React.ReactNode;
-  resizeObserverPolyfill: UseTooltipPortalOptions['polyfill'];
+  /**
+   * Tooltip depends on ResizeObserver, which may be pollyfilled globally
+   * or injected into this component.
+   */
+  resizeObserverPolyfill?: UseTooltipPortalOptions['polyfill'];
 } & Omit<BaseTooltipProps, 'left' | 'top' | 'children'> &
   Pick<UseTooltipPortalOptions, 'debounce' | 'detectBounds' | 'scroll'>;
 

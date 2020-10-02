@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useLayoutEffect } from 'react';
+import React, { useEffect } from 'react';
 import { mount } from 'enzyme';
 import useEventEmitter from '../../src/hooks/useEventEmitter';
-import { EventEmitterContext, EventEmitterProvider } from '../../src';
+import { EventEmitterProvider } from '../../src';
 
 describe('useEventEmitter', () => {
   it('should be defined', () => {
