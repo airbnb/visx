@@ -2,6 +2,7 @@ import React, { useCallback, useContext } from 'react';
 import { useTooltipInPortal, defaultStyles } from '@visx/tooltip';
 import { TooltipProps as BaseTooltipProps } from '@visx/tooltip/lib/tooltips/Tooltip';
 import { PickD3Scale } from '@visx/scale';
+import { UseTooltipPortalOptions } from '@visx/tooltip/lib/hooks/useTooltipInPortal';
 
 import TooltipContext from '../context/TooltipContext';
 import DataContext from '../context/DataContext';
@@ -18,7 +19,9 @@ export type TooltipProps = {
    * Content will be rendered in an HTML parent.
    */
   renderTooltip: (params: RenderTooltipParams) => React.ReactNode;
-} & Omit<BaseTooltipProps, 'left' | 'top' | 'children'>;
+  resizeObserverPolyfill: UseTooltipPortalOptions['polyfill'];
+} & Omit<BaseTooltipProps, 'left' | 'top' | 'children'> &
+  Pick<UseTooltipPortalOptions, 'debounce' | 'detectBounds' | 'scroll'>;
 
 const INVISIBLE_STYLES: React.CSSProperties = {
   position: 'absolute',
@@ -30,10 +33,22 @@ const INVISIBLE_STYLES: React.CSSProperties = {
   pointerEvents: 'none',
 };
 
-export default function Tooltip({ renderTooltip, ...tooltipProps }: TooltipProps) {
+export default function Tooltip({
+  renderTooltip,
+  debounce,
+  detectBounds,
+  resizeObserverPolyfill,
+  scroll,
+  ...tooltipProps
+}: TooltipProps) {
   const { colorScale, theme } = useContext(DataContext) || {};
   const tooltipContext = useContext(TooltipContext);
-  const { containerRef, TooltipInPortal } = useTooltipInPortal();
+  const { containerRef, TooltipInPortal } = useTooltipInPortal({
+    debounce,
+    detectBounds,
+    polyfill: resizeObserverPolyfill,
+    scroll,
+  });
 
   // To correctly position itself in a Portal, the tooltip must know its container bounds
   // this is done by rendering an invisible node which can be used to find its parents element
