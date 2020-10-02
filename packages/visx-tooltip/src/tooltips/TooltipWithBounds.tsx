@@ -4,58 +4,68 @@ import { withBoundingRects, WithBoundingRectsProps } from '@visx/bounds';
 import Tooltip, { TooltipProps, defaultStyles } from './Tooltip';
 
 export type TooltipWithBoundsProps = {
-  offsetLeft?: number;
-  offsetTop?: number;
+	offsetLeft?: number;
+	offsetTop?: number;
 } & TooltipProps &
-  React.HTMLProps<HTMLDivElement> &
-  WithBoundingRectsProps;
+	React.HTMLProps<HTMLDivElement> &
+	WithBoundingRectsProps;
 
 function TooltipWithBounds({
-  left: initialLeft = 0,
-  top: initialTop = 0,
-  offsetLeft = 10,
-  offsetTop = 10,
-  children,
-  rect: ownBounds,
-  parentRect: parentBounds,
-  getRects,
-  style = defaultStyles,
-  unstyled = false,
-  ...otherProps
+	left: initialLeft = 0,
+	top: initialTop = 0,
+	offsetLeft = 10,
+	offsetTop = 10,
+	children,
+	rect: ownBounds,
+	parentRect: parentBounds,
+	getRects,
+	style = defaultStyles,
+	unstyled = false,
+	...otherProps
 }: TooltipWithBoundsProps) {
-  let left = initialLeft;
-  let top = initialTop;
+	let left = initialLeft;
+	let top = initialTop;
 
-  if (ownBounds && parentBounds) {
-    const placeTooltipLeft =
-      offsetLeft + ownBounds.right > parentBounds.right ||
-      offsetLeft + ownBounds.right > window.innerWidth;
+	if (ownBounds && parentBounds) {
+		if (left > parentBounds.width / 2) {
+			left = left - offsetLeft - ownBounds.width;
 
-    const placeTooltipUp =
-      offsetTop + ownBounds.bottom > parentBounds.bottom ||
-      offsetTop + ownBounds.bottom > window.innerHeight;
+			if (left < 0) {
+				left = 0;
+			}
+		} else {
+			if (left + offsetLeft + ownBounds.width > parentBounds.width) {
+				left = parentBounds.width - ownBounds.width;
+			}
+		}
+		if (top > parentBounds.height / 2) {
+			top = top - offsetTop - ownBounds.height;
+			if (top < 0) {
+				top = 0;
+			}
+		} else {
+			if (top + offsetTop + ownBounds.height > parentBounds.height) {
+				top = parentBounds.height - ownBounds.height;
+			}
+		}
+	}
 
-    left = placeTooltipLeft ? left - ownBounds.width - offsetLeft : left + offsetLeft;
-    top = placeTooltipUp ? top - ownBounds.height - offsetTop : top + offsetTop;
-  }
+	left = Math.round(left);
+	top = Math.round(top);
 
-  left = Math.round(left);
-  top = Math.round(top);
-
-  return (
-    <Tooltip
-      style={{
-        top: 0,
-        left: 0,
-        transform: `translate(${left}px, ${top}px)`,
-        ...(!unstyled && style),
-      }}
-      unstyled={unstyled}
-      {...otherProps}
-    >
-      {children}
-    </Tooltip>
-  );
+	return (
+		<Tooltip
+			style={{
+				top: 0,
+				left: 0,
+				transform: `translate(${left}px, ${top}px)`,
+				...(!unstyled && style),
+			}}
+			unstyled={unstyled}
+			{...otherProps}>
+			{children}
+		</Tooltip>
+	);
 }
 
 export default withBoundingRects(TooltipWithBounds);
