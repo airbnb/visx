@@ -12,6 +12,8 @@ export type WithParentSizeProps = {
 type WithParentSizeState = {
   parentWidth?: number;
   parentHeight?: number;
+  initialWidth?: number;
+  initialHeight?: number;
 };
 
 export type WithParentSizeProvidedProps = WithParentSizeState;
@@ -28,8 +30,8 @@ export default function withParentSize<BaseComponentProps extends WithParentSize
       enableDebounceLeadingCall: true,
     };
     state = {
-      parentWidth: undefined,
-      parentHeight: undefined,
+      parentWidth: this.props.initialWidth,
+      parentHeight: this.props.initialHeight,
     };
     animationFrameID: number = 0;
     resizeObserver: ResizeObserver | undefined;
