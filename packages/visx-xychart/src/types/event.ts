@@ -10,7 +10,6 @@ export type NearestDatumArgs<
   YScale extends AxisScale,
   Datum extends object
 > = {
-  event: React.MouseEvent | React.TouchEvent;
   point: { x: number; y: number } | null;
   xAccessor: (d: Datum) => ScaleInput<XScale>;
   yAccessor: (d: Datum) => ScaleInput<YScale>;
