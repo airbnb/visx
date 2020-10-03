@@ -15,17 +15,17 @@ const CROSSHAIR_STYLE: React.CSSProperties = {
   lineHeight: 0,
 };
 
-export type RenderTooltipParams = TooltipContextType & {
+export type RenderTooltipParams<Datum extends object> = TooltipContextType<Datum> & {
   colorScale?: PickD3Scale<'ordinal', string, string>;
 };
 
-export type TooltipProps = {
+export type TooltipProps<Datum extends object> = {
   /**
    * When TooltipContext.tooltipOpen=true, this function is invoked and if the
    * return value is non-null, its content is rendered inside the tooltip container.
    * Content will be rendered in an HTML parent.
    */
-  renderTooltip: (params: RenderTooltipParams) => React.ReactNode;
+  renderTooltip: (params: RenderTooltipParams<Datum>) => React.ReactNode;
   /** Whether to show a vertical line at tooltip position. */
   showVerticalCrosshair?: boolean;
   /** Whether to show a horizontal line at tooltip position. */
@@ -56,7 +56,7 @@ const INVISIBLE_STYLES: React.CSSProperties = {
   pointerEvents: 'none',
 };
 
-export default function Tooltip({
+export default function Tooltip<Datum extends object>({
   debounce,
   detectBounds,
   renderTooltip,
@@ -69,7 +69,7 @@ export default function Tooltip({
   horizontalCrosshairStyle,
   pointStyle,
   ...tooltipProps
-}: TooltipProps) {
+}: TooltipProps<Datum>) {
   const { colorScale, theme, innerHeight, innerWidth, margin } = useContext(DataContext) || {};
   const tooltipContext = useContext(TooltipContext);
   const { containerRef, TooltipInPortal } = useTooltipInPortal({

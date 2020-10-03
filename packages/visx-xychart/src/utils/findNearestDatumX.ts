@@ -9,6 +9,8 @@ export default function findNearestDatumX<
 >({
   xScale: scale,
   xAccessor: accessor,
+  yScale,
+  yAccessor,
   point,
   data,
 }: NearestDatumArgs<XScale, YScale, Datum>): {
@@ -30,8 +32,8 @@ export default function findNearestDatumX<
     ? {
         datum: nearestDatum.datum,
         index: nearestDatum.index,
-        distanceY: nearestDatum.distance,
-        distanceX: 0,
+        distanceX: nearestDatum.distance,
+        distanceY: Math.abs(Number(yScale(yAccessor(nearestDatum.datum))) - point.y),
       }
     : null;
 }

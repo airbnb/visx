@@ -104,9 +104,9 @@ function BarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum ext
         });
         if (datum) {
           showTooltip({
-            tooltipData: datum.datum,
-            tooltipLeft: svgPoint.x,
-            tooltipTop: svgPoint.y,
+            key: dataKey,
+            ...datum,
+            svgPoint,
           });
         }
       }

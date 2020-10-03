@@ -55,7 +55,7 @@ export default function Example({ height }: Props) {
             />
             {renderBarSeries && (
               <BarSeries
-                dataKey="ny"
+                dataKey="New York"
                 data={data}
                 xAccessor={renderHorizontally ? getNyTemperature : getDate}
                 yAccessor={renderHorizontally ? getDate : getNyTemperature}
@@ -64,7 +64,7 @@ export default function Example({ height }: Props) {
             )}
             {renderLineSeries && (
               <LineSeries
-                dataKey="sf"
+                dataKey="San Francisco"
                 data={data}
                 xAccessor={renderHorizontally ? getSfTemperature : getDate}
                 yAccessor={renderHorizontally ? getDate : getSfTemperature}
@@ -83,8 +83,29 @@ export default function Example({ height }: Props) {
               numTicks={numTicks}
               animationTrajectory={animationTrajectory}
             />
-            <Tooltip
-              renderTooltip={({ tooltipData }) => <pre>{JSON.stringify(tooltipData, null, 2)}</pre>}
+            <Tooltip<CityTemperature>
+              renderTooltip={({ tooltipData, colorScale }) => (
+                <>
+                  {tooltipData?.nearestDatum?.datum
+                    ? getDate(tooltipData?.nearestDatum?.datum)
+                    : 'No date'}
+                  <br />
+                  {Object.keys(tooltipData?.datumByKey ?? {}).map(key => (
+                    <div key={key}>
+                      <em
+                        style={{
+                          color: colorScale?.(key),
+                          textDecoration:
+                            tooltipData?.nearestDatum?.key === key ? 'underline' : undefined,
+                        }}
+                      >
+                        {key}
+                      </em>{' '}
+                      {tooltipData?.datumByKey[key].datum[key as keyof CityTemperature]}° F
+                    </div>
+                  ))}
+                </>
+              )}
             />
           </XYChart>
         </DataProvider>
