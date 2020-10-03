@@ -21,6 +21,7 @@ export function pathForOrientation({
       return `M 0,0 l ${height},${height}
         M ${-height / 4},${(3 / 4) * height} l ${height / 2},${height / 2}
         M ${(3 / 4) * height},${-height / 4} l ${height / 2},${height / 2}`;
+    case PatternOrientation.vertical:
     default:
       return `M ${height / 2}, 0 l 0, ${height}`;
   }
