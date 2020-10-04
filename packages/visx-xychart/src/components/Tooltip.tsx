@@ -7,6 +7,7 @@ import { UseTooltipPortalOptions } from '@visx/tooltip/lib/hooks/useTooltipInPor
 import TooltipContext from '../context/TooltipContext';
 import DataContext from '../context/DataContext';
 import { TooltipContextType } from '../types';
+import getScaleBandwidth from '../utils/getScaleBandwidth';
 
 const CROSSHAIR_STYLE: React.CSSProperties = {
   position: 'absolute',
@@ -26,6 +27,9 @@ export type TooltipProps<Datum extends object> = {
    * Content will be rendered in an HTML parent.
    */
   renderTooltip: (params: RenderTooltipParams<Datum>) => React.ReactNode;
+  /** */
+  snapTooltipToDatumX?: boolean;
+  snapTooltipToDatumY?: boolean;
   /** Whether to show a vertical line at tooltip position. */
   showVerticalCrosshair?: boolean;
   /** Whether to show a horizontal line at tooltip position. */
@@ -59,18 +63,21 @@ const INVISIBLE_STYLES: React.CSSProperties = {
 export default function Tooltip<Datum extends object>({
   debounce,
   detectBounds,
+  horizontalCrosshairStyle,
+  pointStyle,
   renderTooltip,
   resizeObserverPolyfill,
   scroll = true,
   showHorizontalCrosshair = true,
   showPoint = true,
   showVerticalCrosshair = true,
+  snapTooltipToDatumX = false,
+  snapTooltipToDatumY = true,
   verticalCrosshairStyle,
-  horizontalCrosshairStyle,
-  pointStyle,
   ...tooltipProps
 }: TooltipProps<Datum>) {
-  const { colorScale, theme, innerHeight, innerWidth, margin } = useContext(DataContext) || {};
+  const { colorScale, theme, innerHeight, innerWidth, margin, xScale, yScale, dataRegistry } =
+    useContext(DataContext) || {};
   const tooltipContext = useContext(TooltipContext);
   const { containerRef, TooltipInPortal } = useTooltipInPortal({
     debounce,
@@ -92,7 +99,28 @@ export default function Tooltip<Datum extends object>({
     ? renderTooltip({ ...tooltipContext, colorScale })
     : null;
 
+  const showTooltip = tooltipContext?.tooltipOpen && tooltipContent != null;
+
   const pointRadius = Number(pointStyle?.radius ?? 4);
+
+  let tooltipLeft = tooltipContext?.tooltipLeft;
+  let tooltipTop = tooltipContext?.tooltipTop;
+
+  if (showTooltip && (snapTooltipToDatumX || snapTooltipToDatumY)) {
+    const snapTooltipToKey = tooltipContext?.tooltipData?.nearestDatum?.key ?? '';
+    const snapTooltipToEntry = dataRegistry?.get(snapTooltipToKey);
+    const snapTooltipToDatum = tooltipContext?.tooltipData?.nearestDatum?.datum;
+    const xAccessor = snapTooltipToEntry?.xAccessor;
+    const yAccessor = snapTooltipToEntry?.yAccessor;
+    tooltipLeft =
+      snapTooltipToDatumX && xAccessor && xScale
+        ? Number(xScale(xAccessor(snapTooltipToDatum))) + getScaleBandwidth(xScale) / 2
+        : tooltipLeft;
+    tooltipTop =
+      snapTooltipToDatumY && yAccessor && yScale
+        ? Number(yScale(yAccessor(snapTooltipToDatum))) + getScaleBandwidth(yScale) / 2
+        : tooltipTop;
+  }
 
   return (
     // Tooltip can be rendered as a child of SVG or HTML since its output is rendered in a Portal.
@@ -104,7 +132,7 @@ export default function Tooltip<Datum extends object>({
           {showVerticalCrosshair && (
             <TooltipInPortal
               className="visx-crosshair visx-crosshair--horizontal"
-              left={tooltipContext?.tooltipLeft}
+              left={tooltipLeft}
               top={margin?.top}
               offsetLeft={0}
               offsetTop={0}
@@ -128,7 +156,7 @@ export default function Tooltip<Datum extends object>({
             <TooltipInPortal
               className="visx-crosshair visx-crosshair--horizontal"
               left={margin?.left}
-              top={tooltipContext?.tooltipTop}
+              top={tooltipTop}
               offsetLeft={0}
               offsetTop={0}
               detectBounds={false}
@@ -150,8 +178,8 @@ export default function Tooltip<Datum extends object>({
           {showPoint && (
             <TooltipInPortal
               className="visx-crosshair visx-crosshair--horizontal"
-              left={(tooltipContext?.tooltipLeft ?? 0) - pointRadius}
-              top={(tooltipContext?.tooltipTop ?? 0) - pointRadius}
+              left={(tooltipLeft ?? 0) - pointRadius}
+              top={(tooltipTop ?? 0) - pointRadius}
               offsetLeft={0}
               offsetTop={0}
               detectBounds={false}
@@ -169,8 +197,8 @@ export default function Tooltip<Datum extends object>({
             </TooltipInPortal>
           )}
           <TooltipInPortal
-            left={tooltipContext?.tooltipLeft}
-            top={tooltipContext?.tooltipTop}
+            left={tooltipLeft}
+            top={tooltipTop}
             style={{
               ...defaultStyles,
               background: theme?.backgroundColor ?? 'white',

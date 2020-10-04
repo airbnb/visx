@@ -9,6 +9,7 @@ export type TooltipDatum<Datum extends object> = {
   datum: Datum;
 };
 
+/** Call signature of `TooltipContext.showTooltip` */
 export type ShowTooltipParams<Datum> = {
   /** Series key that datum belongs to. */
   key: string;
@@ -27,7 +28,9 @@ export type ShowTooltipParams<Datum> = {
 export type TooltipData<Datum extends object = object> = {
   /** Coordinates of the event in svg space. */
   svgPoint?: { x: number; y: number };
+  /** Nearest Datum to event across all Series. */
   nearestDatum?: TooltipDatum<Datum> & { distance: number };
+  /** Nearest Datum to event across for each Series. */
   datumByKey: {
     [key: string]: TooltipDatum<Datum>;
   };
