@@ -24,7 +24,7 @@ export default function withParentSize<BaseComponentProps extends WithParentSize
   return class WrappedComponent extends React.Component<
     BaseComponentProps & WithParentSizeProvidedProps,
     WithParentSizeState
-    > {
+  > {
     static defaultProps = {
       debounceTime: 300,
       enableDebounceLeadingCall: true,
