@@ -27,23 +27,12 @@ function TooltipWithBounds({
   let top = initialTop;
 
   if (ownBounds && parentBounds) {
-    if (left > parentBounds.width / 2) {
-      left = left - offsetLeft - ownBounds.width;
+    const placeTooltipLeft = parentBounds.right - ownBounds.right < parentBounds.width * 0.01;
 
-      if (left < 0) {
-        left = 0;
-      }
-    } else if (left + offsetLeft + ownBounds.width > parentBounds.width) {
-      left = parentBounds.width - ownBounds.width;
-    }
-    if (top > parentBounds.height / 2) {
-      top = top - offsetTop - ownBounds.height;
-      if (top < 0) {
-        top = 0;
-      }
-    } else if (top + offsetTop + ownBounds.height > parentBounds.height) {
-      top = parentBounds.height - ownBounds.height;
-    }
+    const placeTooltipUp = parentBounds.bottom - ownBounds.bottom < parentBounds.height * 0.01;
+
+    left = placeTooltipLeft ? left - ownBounds.width - offsetLeft : left + offsetLeft;
+    top = placeTooltipUp ? top - ownBounds.height - offsetTop : top + offsetTop;
   }
 
   left = Math.round(left);
