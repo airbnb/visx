@@ -32,4 +32,35 @@ describe('<Line />', () => {
       );
     });
   });
+
+  test('it should set shapeRendering to auto if not rectilinear', () => {
+    expect(
+      LineWrapper({
+        to: {
+          x: 50,
+          y: 100,
+        },
+      }).prop('shapeRendering'),
+    ).toBe('auto');
+  });
+
+  test('it should set shapeRendering to crispEdges if rectilinear', () => {
+    expect(
+      LineWrapper({
+        to: {
+          x: 0,
+          y: 100,
+        },
+      }).prop('shapeRendering'),
+    ).toBe('crispEdges');
+
+    expect(
+      LineWrapper({
+        to: {
+          x: 100,
+          y: 0,
+        },
+      }).prop('shapeRendering'),
+    ).toBe('crispEdges');
+  });
 });
