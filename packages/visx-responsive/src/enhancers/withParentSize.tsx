@@ -24,14 +24,14 @@ export default function withParentSize<BaseComponentProps extends WithParentSize
   return class WrappedComponent extends React.Component<
     BaseComponentProps & WithParentSizeProvidedProps,
     WithParentSizeState
-  > {
+    > {
     static defaultProps = {
       debounceTime: 300,
       enableDebounceLeadingCall: true,
     };
     state = {
-      parentWidth: this.props.initialWidth,
-      parentHeight: this.props.initialHeight,
+      parentWidth: undefined,
+      parentHeight: undefined,
     };
     animationFrameID: number = 0;
     resizeObserver: ResizeObserver | undefined;
@@ -74,7 +74,8 @@ export default function withParentSize<BaseComponentProps extends WithParentSize
     );
 
     render() {
-      const { parentWidth, parentHeight } = this.state;
+      const { initialWidth, initialHeight } = this.props;
+      const { parentWidth = initialWidth, parentHeight = initialHeight } = this.state;
       return (
         <div style={CONTAINER_STYLES} ref={this.setRef}>
           {parentWidth != null && parentHeight != null && (
