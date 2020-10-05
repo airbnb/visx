@@ -209,7 +209,9 @@ Lots coming soon, check out the [roadmap](./ROADMAP.md).
 - South African Coronavirus Data Visuals by [@JayWelsh](https://github.com/JayWelsh)
   ([Demo](https://coronamap.co.za/)) ([Github](https://github.com/JayWelsh/coronamap))
 - [CNN: Tracking America's Recovery](https://www.cnn.com/business/us-economic-recovery-coronavirus)
-- Have a project that's using vx? Open a pull request and we'll add it to the list.
+- [Wall Street Journal: Americans Familiarize Themselves with the Word ‘Forbearance’](https://blogs.wsj.com/dailyshot/2020/04/13/the-daily-shot-americans-familiarize-themselves-with-the-word-forbearance/) by [@rayshan](https://github.com/rayshan) ([Demo](https://finance.shan.io/recessions-bear-markets-compared))
+
+Have a project that's using `visx`? Open a pull request and we'll add it to the list.
 
 ## FAQ
 
