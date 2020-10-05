@@ -45,6 +45,17 @@ yarn
 yarn build
 ```
 
+## Online one-click setup
+
+You can playaround with the code, work on issues and make PRs online using Gitpod
+[Gitpod](https://www.gitpod.io/) (an Online Open Source VS Code-like IDE which is free for Open Source). With a single it will launch a workspace and automatically: 
+
+- clone the `visx` repo.
+- install the dependencies.
+- run `yarn build`.
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/from-referrer/)
+
 #### Rebuild one package
 
 Upon modification of a single `package` you can run
