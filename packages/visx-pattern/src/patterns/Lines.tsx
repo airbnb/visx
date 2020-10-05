@@ -11,8 +11,6 @@ export function pathForOrientation({
   orientation: PatternOrientationType;
 }) {
   switch (orientation) {
-    case PatternOrientation.vertical:
-      return `M ${height / 2}, 0 l 0, ${height}`;
     case PatternOrientation.horizontal:
       return `M 0,${height / 2} l ${height},0`;
     case PatternOrientation.diagonal:
@@ -23,6 +21,7 @@ export function pathForOrientation({
       return `M 0,0 l ${height},${height}
         M ${-height / 4},${(3 / 4) * height} l ${height / 2},${height / 2}
         M ${(3 / 4) * height},${-height / 4} l ${height / 2},${height / 2}`;
+    case PatternOrientation.vertical:
     default:
       return `M ${height / 2}, 0 l 0, ${height}`;
   }
