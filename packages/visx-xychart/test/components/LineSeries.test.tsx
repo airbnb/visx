@@ -1,8 +1,8 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { LinePath } from '@visx/shape';
-import { DataContext, LineSeries } from '../src';
-import getDataContext from './mocks/getDataContext';
+import { DataContext, LineSeries } from '../../src';
+import getDataContext from '../mocks/getDataContext';
 
 describe('<LineSeries />', () => {
   it('should be defined', () => {

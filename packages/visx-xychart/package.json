@@ -56,5 +56,8 @@
     "d3-array": "2.6.0",
     "mitt": "^2.1.0",
     "prop-types": "^15.6.2"
+  },
+  "devDependencies": {
+    "resize-observer-polyfill": "1.5.1"
   }
 }

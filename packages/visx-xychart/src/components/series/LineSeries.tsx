@@ -32,10 +32,9 @@ function LineSeries<XScale extends AxisScale, YScale extends AxisScale, Datum ex
 
   const handleMouseMove = useCallback(
     (params: HandlerParams | undefined) => {
-      const { event, svgPoint } = params || {};
-      if (event && svgPoint && width && height && showTooltip) {
+      const { svgPoint } = params || {};
+      if (svgPoint && width && height && showTooltip) {
         const datum = findNearestDatumXY({
-          event,
           point: svgPoint,
           key: dataKey,
           data,

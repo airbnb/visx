@@ -38,7 +38,7 @@ export default function findNearestDatumSingleDimension<
         : nearestDatum0;
     nearestDatumIndex = nearestDatum === nearestDatum0 ? index - 1 : index;
   } else if ('step' in coercedScale && typeof coercedScale.step !== 'undefined') {
-    // Ordinal scales don't have an invert function but they do have discrete domains
+    // band scales don't have an invert function but they do have discrete domains
     // so we manually invert
     const domain = scale.domain();
     const range = scale.range().map(Number);

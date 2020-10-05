@@ -1,7 +1,13 @@
 import React, { useContext } from 'react';
 import { mount, shallow } from 'enzyme';
 import ParentSize from '@visx/responsive/lib/components/ParentSize';
-import { XYChart, DataContext, DataProvider, EventEmitterProvider, TooltipProvider } from '../src';
+import {
+  XYChart,
+  DataContext,
+  DataProvider,
+  EventEmitterProvider,
+  TooltipProvider,
+} from '../../src';
 
 describe('<XYChart />', () => {
   it('should be defined', () => {
