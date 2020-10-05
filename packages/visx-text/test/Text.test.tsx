@@ -101,4 +101,57 @@ describe('<Text />', () => {
 
     expect(wrapperNan.text()).not.toContain('anything');
   });
+
+  it('Recalculates text when children are updated', () => {
+    const wrapper = shallow<Text>(
+      <Text width={200} style={{ fontFamily: 'Courier' }}>
+        This is short text
+      </Text>,
+    );
+    expect(wrapper.instance().state.wordsByLines).toHaveLength(1);
+
+    wrapper.setProps({ children: 'This is really long text' });
+    expect(wrapper.instance().state.wordsByLines).toHaveLength(2);
+  });
+
+  it('Applies transform if scaleToFit is set', () => {
+    const wrapper = shallow<Text>(
+      <Text width={300} scaleToFit style={{ fontFamily: 'Courier' }}>
+        This is really long text
+      </Text>,
+    );
+
+    const text = wrapper.find('text').first();
+    expect(text.prop('transform')).toBe('matrix(1.25, 0, 0, 1.25, 0, 0)');
+  });
+
+  it('Applies transform if angle is given', () => {
+    const wrapper = shallow<Text>(
+      <Text width={300} angle={45} style={{ fontFamily: 'Courier' }}>
+        This is really long text
+      </Text>,
+    );
+
+    const text = wrapper.find('text').first();
+    expect(text.prop('transform')).toBe('rotate(45, 0, 0)');
+  });
+
+  it('Offsets vertically if verticalAnchor is given', () => {
+    const wrapper = shallow<Text>(
+      <Text width={200} style={{ fontFamily: 'Courier' }}>
+        This is really long text
+      </Text>,
+    );
+    const getVerticalOffset = (w: typeof wrapper) =>
+      w
+        .find('tspan')
+        .first()
+        .prop('dy');
+
+    expect(getVerticalOffset(wrapper)).toBe('-1em');
+    wrapper.setProps({ verticalAnchor: 'middle' });
+    expect(getVerticalOffset(wrapper)).toBe('-0.145em');
+    wrapper.setProps({ verticalAnchor: 'start' });
+    expect(getVerticalOffset(wrapper)).toBe('0.71em');
+  });
 });
