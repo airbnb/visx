@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { DataContext, BarSeries } from '../src';
-import getDataContext from './mocks/getDataContext';
+import { DataContext, BarSeries } from '../../src';
+import getDataContext from '../mocks/getDataContext';
 
 describe('<BarSeries />', () => {
   it('should be defined', () => {

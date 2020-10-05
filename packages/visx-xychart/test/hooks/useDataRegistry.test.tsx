@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import useDataRegistry from '../src/hooks/useDataRegistry';
+import useDataRegistry from '../../src/hooks/useDataRegistry';
 
 describe('useDataRegistry', () => {
   it('should be defined', () => {

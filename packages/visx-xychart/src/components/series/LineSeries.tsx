@@ -5,6 +5,9 @@ import DataContext from '../../context/DataContext';
 import { SeriesProps } from '../../types';
 import withRegisteredData, { WithRegisteredDataProps } from '../../enhancers/withRegisteredData';
 import getScaledValueFactory from '../../utils/getScaledValueFactory';
+import useEventEmitter, { HandlerParams } from '../../hooks/useEventEmitter';
+import findNearestDatumXY from '../../utils/findNearestDatumXY';
+import TooltipContext from '../../context/TooltipContext';
 
 type LineSeriesProps<
   XScale extends AxisScale,
@@ -21,10 +24,40 @@ function LineSeries<XScale extends AxisScale, YScale extends AxisScale, Datum ex
   yScale,
   ...lineProps
 }: LineSeriesProps<XScale, YScale, Datum> & WithRegisteredDataProps<XScale, YScale, Datum>) {
-  const { colorScale, theme } = useContext(DataContext);
+  const { colorScale, theme, width, height } = useContext(DataContext);
+  const { showTooltip, hideTooltip } = useContext(TooltipContext) ?? {};
   const getScaledX = useCallback(getScaledValueFactory(xScale, xAccessor), [xScale, xAccessor]);
   const getScaledY = useCallback(getScaledValueFactory(yScale, yAccessor), [yScale, yAccessor]);
   const color = colorScale?.(dataKey) ?? theme?.colors?.[0] ?? '#222';
+
+  const handleMouseMove = useCallback(
+    (params: HandlerParams | undefined) => {
+      const { svgPoint } = params || {};
+      if (svgPoint && width && height && showTooltip) {
+        const datum = findNearestDatumXY({
+          point: svgPoint,
+          key: dataKey,
+          data,
+          xScale,
+          yScale,
+          xAccessor,
+          yAccessor,
+          width,
+          height,
+        });
+        if (datum) {
+          showTooltip({
+            tooltipData: datum.datum,
+            tooltipLeft: svgPoint.x,
+            tooltipTop: svgPoint.y,
+          });
+        }
+      }
+    },
+    [dataKey, data, xScale, yScale, xAccessor, yAccessor, width, height, showTooltip],
+  );
+  useEventEmitter('mousemove', handleMouseMove);
+  useEventEmitter('mouseout', hideTooltip);
 
   return (
     <LinePath

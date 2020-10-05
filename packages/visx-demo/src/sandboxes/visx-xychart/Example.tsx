@@ -6,6 +6,7 @@ import {
   DataProvider,
   BarSeries,
   LineSeries,
+  Tooltip,
   XYChart,
 } from '@visx/xychart';
 import ExampleControls from './ExampleControls';
@@ -81,6 +82,9 @@ export default function Example({ height }: Props) {
               orientation={renderHorizontally ? xAxisOrientation : yAxisOrientation}
               numTicks={numTicks}
               animationTrajectory={animationTrajectory}
+            />
+            <Tooltip
+              renderTooltip={({ tooltipData }) => <pre>{JSON.stringify(tooltipData, null, 2)}</pre>}
             />
           </XYChart>
         </DataProvider>
