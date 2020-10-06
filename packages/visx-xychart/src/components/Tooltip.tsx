@@ -147,7 +147,7 @@ export default function Tooltip<Datum extends object>({
 
   if (showTooltip && (showDatumCircle || showSeriesCircles)) {
     const radius = Number(circleStyle?.radius ?? 4);
-    const strokeWidth = Number(circleStyle?.strokeWidth ?? 4);
+    const strokeWidth = Number(circleStyle?.strokeWidth ?? 1.5);
 
     if (showSeriesCircles) {
       Object.values(tooltipContext?.tooltipData?.datumByKey ?? {}).forEach(({ key, datum }) => {

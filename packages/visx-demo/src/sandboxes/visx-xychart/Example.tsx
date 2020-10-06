@@ -96,8 +96,8 @@ export default function Example({ height }: Props) {
                 showVerticalCrosshair={showVerticalCrosshair}
                 snapTooltipToDatumX={snapTooltipToDatumX}
                 snapTooltipToDatumY={snapTooltipToDatumY}
-                showCircle={snapTooltipToDatumX || snapTooltipToDatumY}
-                showMultipleCircles={sharedTooltip}
+                showDatumCircle={snapTooltipToDatumX || snapTooltipToDatumY}
+                showSeriesCircles={sharedTooltip}
                 renderTooltip={({ tooltipData, colorScale }) => (
                   <>
                     {/** date */}
