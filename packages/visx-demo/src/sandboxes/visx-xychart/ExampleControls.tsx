@@ -9,8 +9,14 @@ type ProvidedProps = {
   renderHorizontally: boolean;
   renderBarSeries: boolean;
   renderLineSeries: boolean;
+  sharedTooltip: boolean;
   showGridColumns: boolean;
   showGridRows: boolean;
+  showHorizontalCrosshair: boolean;
+  showTooltip: boolean;
+  showVerticalCrosshair: boolean;
+  snapTooltipToDatumX: boolean;
+  snapTooltipToDatumY: boolean;
   theme: XYChartTheme;
   xAxisOrientation: 'top' | 'bottom';
   yAxisOrientation: 'left' | 'right';
@@ -28,6 +34,12 @@ export default function ExampleControls({ children }: ControlsProps) {
   const [xAxisOrientation, setXAxisOrientation] = useState<'top' | 'bottom'>('bottom');
   const [yAxisOrientation, setYAxisOrientation] = useState<'left' | 'right'>('right');
   const [renderHorizontally, setRenderHorizontally] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(true);
+  const [showVerticalCrosshair, setShowVerticalCrosshair] = useState(true);
+  const [showHorizontalCrosshair, setShowHorizontalCrosshair] = useState(false);
+  const [snapTooltipToDatumX, setSnapTooltipToDatumX] = useState(true);
+  const [snapTooltipToDatumY, setSnapTooltipToDatumY] = useState(true);
+  const [sharedTooltip, setSharedTooltip] = useState(true);
   const [renderBarSeries, setRenderBarSeries] = useState(true);
   const [renderLineSeries, setRenderLineSeries] = useState(true);
 
@@ -38,8 +50,14 @@ export default function ExampleControls({ children }: ControlsProps) {
         renderBarSeries,
         renderHorizontally,
         renderLineSeries,
+        sharedTooltip,
         showGridColumns,
         showGridRows,
+        showHorizontalCrosshair,
+        showTooltip,
+        showVerticalCrosshair,
+        snapTooltipToDatumX,
+        snapTooltipToDatumY,
         theme,
         xAxisOrientation,
         yAxisOrientation,
@@ -203,6 +221,63 @@ export default function ExampleControls({ children }: ControlsProps) {
               checked={animationTrajectory === 'max'}
             />{' '}
             from max
+          </label>
+        </div>
+        {/** tooltip */}
+        <div>
+          <strong>tooltip</strong>
+          <label>
+            <input
+              type="checkbox"
+              onChange={() => setShowTooltip(!showTooltip)}
+              checked={showTooltip}
+            />{' '}
+            show tooltip
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              disabled={!showTooltip}
+              onChange={() => setSnapTooltipToDatumX(!snapTooltipToDatumX)}
+              checked={showTooltip && snapTooltipToDatumX}
+            />{' '}
+            snap tooltip to datum x
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              disabled={!showTooltip}
+              onChange={() => setSnapTooltipToDatumY(!snapTooltipToDatumY)}
+              checked={showTooltip && snapTooltipToDatumY}
+            />{' '}
+            snap tooltip to datum y
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              disabled={!showTooltip}
+              onChange={() => setShowVerticalCrosshair(!showVerticalCrosshair)}
+              checked={showTooltip && showVerticalCrosshair}
+            />{' '}
+            vertical crosshair
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              disabled={!showTooltip}
+              onChange={() => setShowHorizontalCrosshair(!showHorizontalCrosshair)}
+              checked={showTooltip && showHorizontalCrosshair}
+            />{' '}
+            horizontal crosshair
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              disabled={!showTooltip}
+              onChange={() => setSharedTooltip(!sharedTooltip)}
+              checked={showTooltip && sharedTooltip}
+            />{' '}
+            shared tooltip
           </label>
         </div>
         {/** series */}
