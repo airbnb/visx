@@ -1,10 +1,26 @@
 import { BoxPlot, BinDatum } from '../types';
 
+function calcMedian(dataSet: number[]) {
+  const half = Math.floor(dataSet.length / 2);
+  if (dataSet.length % 2) return dataSet[half];
+  return (dataSet[half - 1] + dataSet[half]) / 2;
+}
+
 export default function computeStats(numericalArray: number[]) {
   const points = [...numericalArray].sort((a, b) => a - b);
   const sampleSize = points.length;
-  const firstQuartile = points[Math.round(sampleSize / 4)];
-  const thirdQuartile = points[Math.round((3 * sampleSize) / 4)];
+
+  const median = calcMedian(points);
+
+  // calculate median of first half i.e. firstQuartile
+  const lowerHalfLength = Math.floor(sampleSize / 2);
+  const lowerHalf = points.slice(0, lowerHalfLength);
+  const firstQuartile = calcMedian(lowerHalf);
+
+  // calculate median of first half i.e. secondQuartile
+  const upperHalfLength = Math.ceil(sampleSize / 2);
+  const upperHalf = points.slice(upperHalfLength);
+  const thirdQuartile = calcMedian(upperHalf);
   const IQR = thirdQuartile - firstQuartile;
 
   const min = firstQuartile - 1.5 * IQR;
@@ -38,7 +54,7 @@ export default function computeStats(numericalArray: number[]) {
   const boxPlot: BoxPlot = {
     min,
     firstQuartile,
-    median: points[Math.round(sampleSize / 2)],
+    median,
     thirdQuartile,
     max,
     outliers,
