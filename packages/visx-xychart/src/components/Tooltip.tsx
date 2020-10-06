@@ -16,6 +16,15 @@ const CROSSHAIR_STYLE: React.CSSProperties = {
   lineHeight: 0,
 };
 
+type CircleProps = {
+  left?: number;
+  top?: number;
+  fill?: string;
+  stroke?: string;
+  strokeWidth: number;
+  radius: number;
+};
+
 export type RenderTooltipParams<Datum extends object> = TooltipContextType<Datum> & {
   colorScale?: PickD3Scale<'ordinal', string, string>;
 };
@@ -34,14 +43,16 @@ export type TooltipProps<Datum extends object> = {
   showVerticalCrosshair?: boolean;
   /** Whether to show a horizontal line at tooltip position. */
   showHorizontalCrosshair?: boolean;
-  /** Whether to show a circle at the tooltip position. */
-  showPoint?: boolean;
+  /** Whether to show a circle at the tooltip position for the nearest Datum. */
+  showCircle?: boolean;
+  /** Whether to show a circle for the nearest Datum in each series. */
+  showMultipleCircles?: boolean;
   /** Optional styles for the vertical crosshair, if visible. */
   verticalCrosshairStyle?: React.SVGProps<SVGLineElement>;
   /** Optional styles for the vertical crosshair, if visible. */
   horizontalCrosshairStyle?: React.SVGProps<SVGLineElement>;
   /** Optional styles for the point, if visible. */
-  pointStyle?: React.SVGProps<SVGCircleElement>;
+  circleStyle?: React.SVGProps<SVGCircleElement>;
   /**
    * Tooltip depends on ResizeObserver, which may be pollyfilled globally
    * or injected into this component.
@@ -64,21 +75,22 @@ export default function Tooltip<Datum extends object>({
   debounce,
   detectBounds,
   horizontalCrosshairStyle,
-  pointStyle,
+  circleStyle,
   renderTooltip,
   resizeObserverPolyfill,
   scroll = true,
   showHorizontalCrosshair = true,
-  showPoint = true,
+  showMultipleCircles = true,
+  showCircle = true,
   showVerticalCrosshair = true,
-  snapTooltipToDatumX = false,
+  snapTooltipToDatumX = true,
   snapTooltipToDatumY = true,
   verticalCrosshairStyle,
   ...tooltipProps
 }: TooltipProps<Datum>) {
   const { colorScale, theme, innerHeight, innerWidth, margin, xScale, yScale, dataRegistry } =
     useContext(DataContext) || {};
-  const tooltipContext = useContext(TooltipContext);
+  const tooltipContext = useContext(TooltipContext) as TooltipContextType<Datum>;
   const { containerRef, TooltipInPortal } = useTooltipInPortal({
     debounce,
     detectBounds,
@@ -101,25 +113,69 @@ export default function Tooltip<Datum extends object>({
 
   const showTooltip = tooltipContext?.tooltipOpen && tooltipContent != null;
 
-  const pointRadius = Number(pointStyle?.radius ?? 4);
-
   let tooltipLeft = tooltipContext?.tooltipLeft;
   let tooltipTop = tooltipContext?.tooltipTop;
 
-  if (showTooltip && (snapTooltipToDatumX || snapTooltipToDatumY)) {
-    const snapTooltipToKey = tooltipContext?.tooltipData?.nearestDatum?.key ?? '';
-    const snapTooltipToEntry = dataRegistry?.get(snapTooltipToKey);
-    const snapTooltipToDatum = tooltipContext?.tooltipData?.nearestDatum?.datum;
-    const xAccessor = snapTooltipToEntry?.xAccessor;
-    const yAccessor = snapTooltipToEntry?.yAccessor;
-    tooltipLeft =
-      snapTooltipToDatumX && xAccessor && xScale
-        ? Number(xScale(xAccessor(snapTooltipToDatum))) + getScaleBandwidth(xScale) / 2
-        : tooltipLeft;
-    tooltipTop =
-      snapTooltipToDatumY && yAccessor && yScale
-        ? Number(yScale(yAccessor(snapTooltipToDatum))) + getScaleBandwidth(yScale) / 2
-        : tooltipTop;
+  const xScaleBandwidth = xScale ? getScaleBandwidth(xScale) : 0;
+  const yScaleBandwidth = yScale ? getScaleBandwidth(yScale) : 0;
+
+  const getDatumLeftTop = (key: string, datum: Datum) => {
+    const entry = dataRegistry?.get(key);
+    const xAccessor = entry?.xAccessor;
+    const yAccessor = entry?.yAccessor;
+    const left =
+      xScale && xAccessor ? Number(xScale(xAccessor(datum))) + xScaleBandwidth / 2 ?? 0 : undefined;
+    const top =
+      yScale && yAccessor ? Number(yScale(yAccessor(datum))) + yScaleBandwidth / 2 ?? 0 : undefined;
+    return { left, top };
+  };
+
+  const nearestDatum = tooltipContext?.tooltipData?.nearestDatum;
+  const nearestDatumKey = nearestDatum?.key ?? '';
+
+  // snap x- or y-coord to the actual data point (not event coordinates)
+  if (showTooltip && nearestDatum && (snapTooltipToDatumX || snapTooltipToDatumY)) {
+    const { left, top } = getDatumLeftTop(nearestDatumKey, nearestDatum.datum);
+    tooltipLeft = snapTooltipToDatumX ? left : tooltipLeft;
+    tooltipTop = snapTooltipToDatumY ? top : tooltipTop;
+  }
+
+  // collect positions + styles for circles
+  const circleProps: CircleProps[] = [];
+
+  if (showTooltip && (showCircle || showMultipleCircles)) {
+    const radius = Number(circleStyle?.radius ?? 4);
+    const strokeWidth = Number(circleStyle?.strokeWidth ?? 2);
+
+    if (showMultipleCircles) {
+      // if we show multiple points, we need to snap
+      Object.values(tooltipContext?.tooltipData?.datumByKey ?? {}).forEach(({ key, datum }) => {
+        const color = colorScale?.(key) ?? theme?.htmlLabelStyles?.color ?? '#222';
+        const { left, top } = getDatumLeftTop(key, datum);
+        circleProps.push({
+          left: left == null ? left : left - radius - strokeWidth,
+          top: top == null ? top : top - radius - strokeWidth,
+          fill: color,
+          stroke: theme?.backgroundColor,
+          strokeWidth,
+          radius,
+        });
+      });
+    } else if (nearestDatum) {
+      const { left, top } = getDatumLeftTop(nearestDatumKey, nearestDatum.datum);
+      circleProps.push({
+        left: (left ?? 0) - radius - strokeWidth,
+        top: (top ?? 0) - radius - strokeWidth,
+        fill:
+          (nearestDatumKey && colorScale?.(nearestDatumKey)) ??
+          null ??
+          theme?.gridStyles?.stroke ??
+          theme?.htmlLabelStyles?.color ??
+          '#222',
+        radius,
+        strokeWidth,
+      });
+    }
   }
 
   return (
@@ -175,26 +231,32 @@ export default function Tooltip<Datum extends object>({
               </svg>
             </TooltipInPortal>
           )}
-          {showPoint && (
-            <TooltipInPortal
-              className="visx-crosshair visx-crosshair--horizontal"
-              left={(tooltipLeft ?? 0) - pointRadius}
-              top={(tooltipTop ?? 0) - pointRadius}
-              offsetLeft={0}
-              offsetTop={0}
-              detectBounds={false}
-              style={CROSSHAIR_STYLE}
-            >
-              <svg width={pointRadius * 2} height={pointRadius * 2}>
-                <circle
-                  cx={pointRadius}
-                  cy={pointRadius}
-                  r={pointRadius}
-                  fill={theme?.gridStyles?.stroke ?? theme?.htmlLabelStyles?.color ?? '#222'}
-                  {...pointStyle}
-                />
-              </svg>
-            </TooltipInPortal>
+          {circleProps.map(({ left, top, fill, stroke, strokeWidth, radius }, i) =>
+            top == null || left == null ? null : (
+              <TooltipInPortal
+                key={i}
+                className="visx-crosshair visx-crosshair--horizontal"
+                left={left}
+                top={top}
+                offsetLeft={0}
+                offsetTop={0}
+                detectBounds={false}
+                style={CROSSHAIR_STYLE}
+              >
+                <svg width={(radius + strokeWidth) * 2} height={(radius + strokeWidth) * 2}>
+                  <circle
+                    cx={radius + strokeWidth}
+                    cy={radius + strokeWidth}
+                    r={radius}
+                    fill={fill}
+                    stroke={stroke}
+                    strokeWidth={strokeWidth}
+                    paintOrder="stroke"
+                    {...circleStyle}
+                  />
+                </svg>
+              </TooltipInPortal>
+            ),
           )}
           <TooltipInPortal
             left={tooltipLeft}

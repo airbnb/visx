@@ -1,21 +1,27 @@
-import React, { useRef } from 'react';
+import React, { useCallback, useRef } from 'react';
+import debounce from 'lodash/debounce';
 import { useTooltip } from '@visx/tooltip';
 import TooltipContext from '../context/TooltipContext';
 import { ShowTooltipParams, TooltipData } from '../types';
 
 type TooltipProviderProps = {
+  /** Debounce time for when `hideTooltip` is invoked. */
+  hideTooltipDebounceMs?: number;
   children: React.ReactNode;
 };
 
 /** Simple wrapper around useTooltip, to provide tooltip data via context. */
-export default function TooltipProvider<Datum extends object>({ children }: TooltipProviderProps) {
+export default function TooltipProvider<Datum extends object>({
+  hideTooltipDebounceMs = 400,
+  children,
+}: TooltipProviderProps) {
   const {
     tooltipOpen,
     tooltipLeft,
     tooltipTop,
     tooltipData,
     updateTooltip,
-    hideTooltip,
+    hideTooltip: privateHideTooltip,
   } = useTooltip<TooltipData<Datum>>(undefined);
 
   const showTooltip = useRef(
@@ -47,6 +53,10 @@ export default function TooltipProvider<Datum extends object>({ children }: Tool
       }));
     },
   );
+
+  const hideTooltip = useCallback(debounce(privateHideTooltip, hideTooltipDebounceMs), [
+    privateHideTooltip,
+  ]);
 
   return (
     <TooltipContext.Provider

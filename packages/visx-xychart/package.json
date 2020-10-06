@@ -41,7 +41,9 @@
   },
   "dependencies": {
     "@types/classnames": "^2.2.9",
+    "@types/lodash": "^4.14.146",
     "@types/react": "*",
+    "lodash": "^4.17.10",
     "@visx/axis": "1.0.0",
     "@visx/event": "1.0.0",
     "@visx/grid": "1.0.0",
