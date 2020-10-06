@@ -41,8 +41,8 @@ export default function LinkHorizontalStep<Link, Node>({
   data,
   path,
   percent = 0.5,
-  x = getX,
-  y = getY,
+  x = getY, // note this returns a y value
+  y = getX, // note this returns a x value
   source = getSource,
   target = getTarget,
   children,
