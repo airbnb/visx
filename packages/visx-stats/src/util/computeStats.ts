@@ -1,14 +1,15 @@
 import { BoxPlot, BinDatum } from '../types';
 
+function calcMedian(dataSet: number[]) {
+  const half = Math.floor(dataSet.length / 2);
+  if (dataSet.length % 2) return dataSet[half];
+  return (dataSet[half - 1] + dataSet[half]) / 2;
+}
+
 export default function computeStats(numericalArray: number[]) {
   const points = [...numericalArray].sort((a, b) => a - b);
   const sampleSize = points.length;
 
-  function calcMedian(dataSet: number[]) {
-    const half = Math.floor(dataSet.length / 2);
-    if (dataSet.length % 2) return dataSet[half];
-    return (dataSet[half - 1] + dataSet[half]) / 2;
-  }
   const median = calcMedian(points);
 
   // calculate median of first half i.e. firstQuartile
