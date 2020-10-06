@@ -5,7 +5,7 @@ import Portal from '../Portal';
 import Tooltip, { TooltipProps } from '../tooltips/Tooltip';
 import TooltipWithBounds from '../tooltips/TooltipWithBounds';
 
-export type TooltipInPortalProps = TooltipProps & { detectBounds?: boolean };
+export type TooltipInPortalProps = TooltipProps & Pick<UseTooltipPortalOptions, 'detectBounds'>;
 
 export type UseTooltipInPortal = {
   containerRef: (element: HTMLElement | SVGElement | null) => void;
@@ -38,7 +38,7 @@ export default function useTooltipInPortal({
     () => ({
       left: containerLeft = 0,
       top: containerTop = 0,
-      detectBounds: detectBoundsProp, // allow overrid at component level
+      detectBounds: detectBoundsProp, // allow override at component-level
       ...tooltipProps
     }: TooltipInPortalProps) => {
       const detectBounds = detectBoundsProp == null ? detectBoundsOption : detectBoundsProp;
