@@ -43,7 +43,7 @@ export default function Tooltip({
         top: 0,
         transform: `translate(${
           left == null || offsetLeft == null ? left ?? 0 : left + offsetLeft
-        }px, ${top == null || offsetTop == null ? top ?? 0 : top + offsetTop})`,
+        }px, ${top == null || offsetTop == null ? top ?? 0 : top + offsetTop}px)`,
         ...(!unstyled && style),
       }}
       {...restProps}
