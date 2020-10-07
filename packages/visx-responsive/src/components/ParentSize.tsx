@@ -7,7 +7,7 @@ export type ParentSizeProps = {
   className?: string;
   /** Child render updates upon resize are delayed until `debounceTime` milliseconds _after_ the last resize event is observed. */
   debounceTime?: number;
-  /** Optional keys provided won't trigger a state change when changed */
+  /** Optional dimensions provided won't trigger a state change when changed. */
   disableFor?: keyof ParentSizeState | (keyof ParentSizeState)[];
   /** Optional flag to toggle leading debounce calls. When set to true this will ensure that the component always renders immediately. (defaults to true) */
   enableDebounceLeadingCall?: boolean;
@@ -52,9 +52,7 @@ export default function ParentSize({
       (incoming: ParentSizeState) => {
         setState(existing => {
           const stateKeys = Object.keys(existing) as (keyof ParentSizeState)[];
-          const keysWithChanges = stateKeys.reduce<(keyof ParentSizeState)[]>((diff, key) => {
-            return existing[key] === incoming[key] ? diff : [...diff, key];
-          }, []);
+          const keysWithChanges = stateKeys.filter(key => existing[key] !== incoming[key])
           const shouldBail = keysWithChanges.every(key => normalized.includes(key));
 
           return shouldBail ? existing : incoming;
