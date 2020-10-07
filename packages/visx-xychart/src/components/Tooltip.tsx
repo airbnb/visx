@@ -83,7 +83,7 @@ export default function Tooltip<Datum extends object>({
   scroll = true,
   showHorizontalCrosshair = false,
   showSeriesCircles = false,
-  showDatumCircle = true,
+  showDatumCircle = false,
   showVerticalCrosshair = false,
   snapTooltipToDatumX = false,
   snapTooltipToDatumY = false,
@@ -121,16 +121,23 @@ export default function Tooltip<Datum extends object>({
   const xScaleBandwidth = xScale ? getScaleBandwidth(xScale) : 0;
   const yScaleBandwidth = yScale ? getScaleBandwidth(yScale) : 0;
 
-  const getDatumLeftTop = (key: string, datum: Datum) => {
-    const entry = dataRegistry?.get(key);
-    const xAccessor = entry?.xAccessor;
-    const yAccessor = entry?.yAccessor;
-    const left =
-      xScale && xAccessor ? Number(xScale(xAccessor(datum))) + xScaleBandwidth / 2 ?? 0 : undefined;
-    const top =
-      yScale && yAccessor ? Number(yScale(yAccessor(datum))) + yScaleBandwidth / 2 ?? 0 : undefined;
-    return { left, top };
-  };
+  const getDatumLeftTop = useCallback(
+    (key: string, datum: Datum) => {
+      const entry = dataRegistry?.get(key);
+      const xAccessor = entry?.xAccessor;
+      const yAccessor = entry?.yAccessor;
+      const left =
+        xScale && xAccessor
+          ? Number(xScale(xAccessor(datum))) + xScaleBandwidth / 2 ?? 0
+          : undefined;
+      const top =
+        yScale && yAccessor
+          ? Number(yScale(yAccessor(datum))) + yScaleBandwidth / 2 ?? 0
+          : undefined;
+      return { left, top };
+    },
+    [dataRegistry, xScaleBandwidth, yScaleBandwidth, xScale, yScale],
+  );
 
   const nearestDatum = tooltipContext?.tooltipData?.nearestDatum;
   const nearestDatumKey = nearestDatum?.key ?? '';
@@ -184,7 +191,7 @@ export default function Tooltip<Datum extends object>({
     // So use svg element to find container ref because it's a valid child of SVG and HTML parents.
     <>
       <svg ref={setContainerRef} style={INVISIBLE_STYLES} />
-      {tooltipContext?.tooltipOpen && tooltipContent != null && (
+      {showTooltip && (
         <>
           {/** To correctly position crosshair / circles in a Portal, we leverage the logic in TooltipInPortal */}
           {showVerticalCrosshair && (
