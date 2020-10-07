@@ -17,7 +17,7 @@ const TOOLTIP_NO_STYLE: React.CSSProperties = {
   lineHeight: 0,
 };
 
-type CircleProps = {
+type GlyphProps = {
   left?: number;
   top?: number;
   fill?: string;
@@ -45,16 +45,16 @@ export type TooltipProps<Datum extends object> = {
   showVerticalCrosshair?: boolean;
   /** Whether to show a horizontal line at tooltip position. */
   showHorizontalCrosshair?: boolean;
-  /** Whether to show a circle at the tooltip position for the (single) nearest Datum. */
-  showDatumCircle?: boolean;
-  /** Whether to show a circle for the nearest Datum in each series. */
-  showSeriesCircles?: boolean;
+  /** Whether to show a glyph at the tooltip position for the (single) nearest Datum. */
+  showDatumGlyph?: boolean;
+  /** Whether to show a glyph for the nearest Datum in each series. */
+  showSeriesGlyphs?: boolean;
   /** Optional styles for the vertical crosshair, if visible. */
   verticalCrosshairStyle?: React.SVGProps<SVGLineElement>;
   /** Optional styles for the vertical crosshair, if visible. */
   horizontalCrosshairStyle?: React.SVGProps<SVGLineElement>;
   /** Optional styles for the point, if visible. */
-  circleStyle?: React.SVGProps<SVGCircleElement>;
+  glyphStyle?: React.SVGProps<SVGCircleElement>;
   /**
    * Tooltip depends on ResizeObserver, which may be pollyfilled globally
    * or injected into this component.
@@ -74,16 +74,16 @@ const INVISIBLE_STYLES: React.CSSProperties = {
 };
 
 export default function Tooltip<Datum extends object>({
-  circleStyle,
   debounce,
   detectBounds,
   horizontalCrosshairStyle,
+  glyphStyle,
   renderTooltip,
   resizeObserverPolyfill,
   scroll = true,
+  showDatumGlyph = false,
   showHorizontalCrosshair = false,
-  showSeriesCircles = false,
-  showDatumCircle = false,
+  showSeriesGlyphs = false,
   showVerticalCrosshair = false,
   snapTooltipToDatumX = false,
   snapTooltipToDatumY = false,
@@ -149,18 +149,18 @@ export default function Tooltip<Datum extends object>({
     tooltipTop = snapTooltipToDatumY ? top : tooltipTop;
   }
 
-  // collect positions + styles for circles; circles always snap to Datum, not event coords
-  const circleProps: CircleProps[] = [];
+  // collect positions + styles for glyphs; glyphs always snap to Datum, not event coords
+  const glyphProps: GlyphProps[] = [];
 
-  if (showTooltip && (showDatumCircle || showSeriesCircles)) {
-    const radius = Number(circleStyle?.radius ?? 4);
-    const strokeWidth = Number(circleStyle?.strokeWidth ?? 1.5);
+  if (showTooltip && (showDatumGlyph || showSeriesGlyphs)) {
+    const radius = Number(glyphStyle?.radius ?? 4);
+    const strokeWidth = Number(glyphStyle?.strokeWidth ?? 1.5);
 
-    if (showSeriesCircles) {
+    if (showSeriesGlyphs) {
       Object.values(tooltipContext?.tooltipData?.datumByKey ?? {}).forEach(({ key, datum }) => {
         const color = colorScale?.(key) ?? theme?.htmlLabelStyles?.color ?? '#222';
         const { left, top } = getDatumLeftTop(key, datum);
-        circleProps.push({
+        glyphProps.push({
           left: left == null ? left : left - radius - strokeWidth,
           top: top == null ? top : top - radius - strokeWidth,
           fill: color,
@@ -171,7 +171,7 @@ export default function Tooltip<Datum extends object>({
       });
     } else if (nearestDatum) {
       const { left, top } = getDatumLeftTop(nearestDatumKey, nearestDatum.datum);
-      circleProps.push({
+      glyphProps.push({
         left: (left ?? 0) - radius - strokeWidth,
         top: (top ?? 0) - radius - strokeWidth,
         fill:
@@ -193,7 +193,7 @@ export default function Tooltip<Datum extends object>({
       <svg ref={setContainerRef} style={INVISIBLE_STYLES} />
       {showTooltip && (
         <>
-          {/** To correctly position crosshair / circles in a Portal, we leverage the logic in TooltipInPortal */}
+          {/** To correctly position crosshair / glyphs in a Portal, we leverage the logic in TooltipInPortal */}
           {showVerticalCrosshair && (
             <TooltipInPortal
               className="visx-crosshair visx-crosshair-vertical"
@@ -240,11 +240,11 @@ export default function Tooltip<Datum extends object>({
               </svg>
             </TooltipInPortal>
           )}
-          {circleProps.map(({ left, top, fill, stroke, strokeWidth, radius }, i) =>
+          {glyphProps.map(({ left, top, fill, stroke, strokeWidth, radius }, i) =>
             top == null || left == null ? null : (
               <TooltipInPortal
                 key={i}
-                className="visx-tooltip-circle"
+                className="visx-tooltip-glyph"
                 left={left}
                 top={top}
                 offsetLeft={0}
@@ -253,6 +253,7 @@ export default function Tooltip<Datum extends object>({
                 style={TOOLTIP_NO_STYLE}
               >
                 <svg width={(radius + strokeWidth) * 2} height={(radius + strokeWidth) * 2}>
+                  {/** @TODO expand to support any @visx/glyph glyph */}
                   <circle
                     cx={radius + strokeWidth}
                     cy={radius + strokeWidth}
@@ -261,7 +262,7 @@ export default function Tooltip<Datum extends object>({
                     stroke={stroke}
                     strokeWidth={strokeWidth}
                     paintOrder="fill"
-                    {...circleStyle}
+                    {...glyphStyle}
                   />
                 </svg>
               </TooltipInPortal>

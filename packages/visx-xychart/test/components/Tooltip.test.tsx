@@ -8,8 +8,8 @@ import { TooltipProps } from '../../src/components/Tooltip';
 describe('<Tooltip />', () => {
   type SetupProps =
     | {
-        props?: Partial<TooltipProps>;
-        context?: Partial<TooltipContextType>;
+        props?: Partial<TooltipProps<object>>;
+        context?: Partial<TooltipContextType<object>>;
       }
     | undefined;
   function setup({ props, context }: SetupProps = {}) {
