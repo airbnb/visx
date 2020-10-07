@@ -23,10 +23,14 @@ export default function computeStats(numericalArray: number[]) {
   const thirdQuartile = calcMedian(upperHalf);
   const IQR = thirdQuartile - firstQuartile;
 
-  const min = firstQuartile - 1.5 * IQR;
-  const max = thirdQuartile + 1.5 * IQR;
+  let min = firstQuartile - 1.5 * IQR;
+  let max = thirdQuartile + 1.5 * IQR;
 
   const outliers = points.filter(p => p < min || p > max);
+  if (outliers.length === 0) {
+    min = Math.min(...points);
+    max = Math.max(...points);
+  }
   const binWidth = 2 * IQR * (sampleSize - outliers.length) ** (-1 / 3);
   const binCount = Math.round((max - min) / binWidth);
   const actualBinWidth = (max - min) / binCount;

@@ -19,4 +19,10 @@ describe('computeStats', () => {
     expect(stats.boxPlot).toBeDefined();
     expect(stats.binData).toBeDefined();
   });
+
+  test('min/max should match the dataset when there are no outliers', () => {
+    const stats = computeStats(edgeCaseData);
+    expect(stats.boxPlot.min).toBe(Math.min(...edgeCaseData));
+    expect(stats.boxPlot.max).toBe(Math.max(...edgeCaseData));
+  });
 });
