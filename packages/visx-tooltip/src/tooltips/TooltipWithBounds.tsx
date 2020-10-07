@@ -44,12 +44,11 @@ function TooltipWithBounds({
 
   return (
     <Tooltip
-      style={{
-        top: 0,
-        left: 0,
-        transform: `translate(${left}px, ${top}px)`,
-        ...(!unstyled && style),
-      }}
+      top={top}
+      left={left}
+      offsetTop={0}
+      offsetLeft={0}
+      style={style}
       unstyled={unstyled}
       {...otherProps}
     >
