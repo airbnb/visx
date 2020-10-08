@@ -2,13 +2,19 @@ import React from 'react';
 import cx from 'classnames';
 
 export type TooltipProps = {
+  /** Tooltip content. */
   children?: React.ReactNode;
+  /** Optional className to apply to the Tooltip in addition to `visx-tooltip`. */
   className?: string;
+  /** The `left` position of the Tooltip. */
   left?: number;
+  /** Offset the `left` position of the Tooltip by this margin. */
   offsetLeft?: number;
+  /** Offset the `top` position of the Tooltip by this margin. */
   offsetTop?: number;
   /** Styles to apply, unless `unstyled=true`. */
-  style?: React.CSSProperties | null;
+  style?: React.CSSProperties;
+  /** The `top` position of the Tooltip. */
   top?: number;
   /**
    * Applies position: 'absolute' for tooltips to correctly position themselves
