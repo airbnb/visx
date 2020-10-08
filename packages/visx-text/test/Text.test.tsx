@@ -9,8 +9,6 @@ describe('getStringWidth()', () => {
   });
 });
 
-// TODO: Fix tests (jsdom does not support getComputedTextLength() or getBoundingClientRect()).  Maybe use puppeteer
-
 describe('<Text />', () => {
   beforeEach(addMock);
   afterEach(removeMock);
@@ -100,6 +98,16 @@ describe('<Text />', () => {
     );
 
     expect(wrapperNan.text()).not.toContain('anything');
+  });
+
+  it('Render text when children 0 is a number', () => {
+    const wrapper = mount(
+      <Text x={0} y={0}>
+        {0}
+      </Text>,
+    );
+
+    expect(wrapper.text()).toContain('0');
   });
 
   it('Recalculates text when children are updated', () => {

@@ -115,10 +115,8 @@ class Text extends React.Component<TextProps, TextState> {
     // Only perform calculations if using features that require them (multiline, scaleToFit)
     if (props.width || props.scaleToFit) {
       if (needCalculate) {
-        const words: string[] = props.children
-          ? props.children.toString().split(/(?:(?!\u00A0+)\s+)/)
-          : [];
-
+        const words: string[] =
+          props.children == null ? [] : props.children.toString().split(/(?:(?!\u00A0+)\s+)/);
         this.wordsWithWidth = words.map(word => ({
           word,
           width: getStringWidth(word, props.style) || 0,
@@ -138,7 +136,8 @@ class Text extends React.Component<TextProps, TextState> {
   }
 
   updateWordsWithoutCalculate(props: TextProps) {
-    const words = props.children ? props.children.toString().split(/(?:(?!\u00A0+)\s+)/) : [];
+    const words =
+      props.children == null ? [] : props.children.toString().split(/(?:(?!\u00A0+)\s+)/);
     this.setState({ wordsByLines: [{ words }] });
   }
 
