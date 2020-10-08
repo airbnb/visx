@@ -6,14 +6,18 @@ import { SeriesProps } from '../../types';
 import withRegisteredData, { WithRegisteredDataProps } from '../../enhancers/withRegisteredData';
 import getScaledValueFactory from '../../utils/getScaledValueFactory';
 import useEventEmitter, { HandlerParams } from '../../hooks/useEventEmitter';
-import findNearestDatumXY from '../../utils/findNearestDatumXY';
+import findNearestDatumX from '../../utils/findNearestDatumX';
 import TooltipContext from '../../context/TooltipContext';
+import findNearestDatumY from '../../utils/findNearestDatumY';
 
 type LineSeriesProps<
   XScale extends AxisScale,
   YScale extends AxisScale,
   Datum extends object
-> = SeriesProps<XScale, YScale, Datum>;
+> = SeriesProps<XScale, YScale, Datum> & {
+  /** Whether line should be rendered horizontally instead of vertically. */
+  horizontal?: boolean;
+};
 
 function LineSeries<XScale extends AxisScale, YScale extends AxisScale, Datum extends object>({
   data,
@@ -22,6 +26,7 @@ function LineSeries<XScale extends AxisScale, YScale extends AxisScale, Datum ex
   xScale,
   yAccessor,
   yScale,
+  horizontal = true,
   ...lineProps
 }: LineSeriesProps<XScale, YScale, Datum> & WithRegisteredDataProps<XScale, YScale, Datum>) {
   const { colorScale, theme, width, height } = useContext(DataContext);
@@ -34,7 +39,7 @@ function LineSeries<XScale extends AxisScale, YScale extends AxisScale, Datum ex
     (params: HandlerParams | undefined) => {
       const { svgPoint } = params || {};
       if (svgPoint && width && height && showTooltip) {
-        const datum = findNearestDatumXY({
+        const datum = (horizontal ? findNearestDatumX : findNearestDatumY)({
           point: svgPoint,
           key: dataKey,
           data,
@@ -47,14 +52,14 @@ function LineSeries<XScale extends AxisScale, YScale extends AxisScale, Datum ex
         });
         if (datum) {
           showTooltip({
-            tooltipData: datum.datum,
-            tooltipLeft: svgPoint.x,
-            tooltipTop: svgPoint.y,
+            key: dataKey,
+            ...datum,
+            svgPoint,
           });
         }
       }
     },
-    [dataKey, data, xScale, yScale, xAccessor, yAccessor, width, height, showTooltip],
+    [dataKey, data, xScale, yScale, xAccessor, yAccessor, width, height, showTooltip, horizontal],
   );
   useEventEmitter('mousemove', handleMouseMove);
   useEventEmitter('mouseout', hideTooltip);

@@ -5,10 +5,12 @@ import Portal from '../Portal';
 import Tooltip, { TooltipProps } from '../tooltips/Tooltip';
 import TooltipWithBounds from '../tooltips/TooltipWithBounds';
 
+export type TooltipInPortalProps = TooltipProps & Pick<UseTooltipPortalOptions, 'detectBounds'>;
+
 export type UseTooltipInPortal = {
   containerRef: (element: HTMLElement | SVGElement | null) => void;
   containerBounds: RectReadOnly;
-  TooltipInPortal: React.FC<TooltipProps>;
+  TooltipInPortal: React.FC<TooltipInPortalProps>;
 };
 
 export type UseTooltipPortalOptions = {
@@ -27,13 +29,19 @@ export type UseTooltipPortalOptions = {
  * Handles conversion of container coordinates to page coordinates using the container bounds.
  */
 export default function useTooltipInPortal({
-  detectBounds = true,
+  detectBounds: detectBoundsOption = true,
   ...useMeasureOptions
 }: UseTooltipPortalOptions | undefined = {}): UseTooltipInPortal {
   const [containerRef, containerBounds] = useMeasure(useMeasureOptions);
 
   const TooltipInPortal = useMemo(
-    () => ({ left: containerLeft = 0, top: containerTop = 0, ...tooltipProps }: TooltipProps) => {
+    () => ({
+      left: containerLeft = 0,
+      top: containerTop = 0,
+      detectBounds: detectBoundsProp, // allow override at component-level
+      ...tooltipProps
+    }: TooltipInPortalProps) => {
+      const detectBounds = detectBoundsProp == null ? detectBoundsOption : detectBoundsProp;
       const TooltipComponent = detectBounds ? TooltipWithBounds : Tooltip;
       // convert container coordinates to page coordinates
       const portalLeft = containerLeft + (containerBounds.left || 0) + window.scrollX;
@@ -45,7 +53,7 @@ export default function useTooltipInPortal({
         </Portal>
       );
     },
-    [detectBounds, containerBounds.left, containerBounds.top],
+    [detectBoundsOption, containerBounds.left, containerBounds.top],
   );
 
   return {
