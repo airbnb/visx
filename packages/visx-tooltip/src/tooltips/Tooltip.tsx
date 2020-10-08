@@ -19,7 +19,7 @@ export type TooltipProps = {
    * Whether to omit applying any style, except `left` / `top`.
    * In most cases if this is `true` a developer must do one of the following
    * for positioning to work correctly:
-   * - set `applyPositionStyles=true`
+   * - set `applyPositionStyle=true`
    * - create a CSS selector like: `.visx-tooltip { position: 'absolute' }`
    */
   unstyled?: boolean;
