@@ -55,7 +55,8 @@
     "@visx/tooltip": "1.0.0",
     "@visx/voronoi": "1.0.0",
     "classnames": "^2.2.5",
-    "d3-array": "2.6.0",
+    "d3-array": "^2.6.0",
+    "d3-shape":"^2.0.0",
     "mitt": "^2.1.0",
     "prop-types": "^15.6.2"
   },

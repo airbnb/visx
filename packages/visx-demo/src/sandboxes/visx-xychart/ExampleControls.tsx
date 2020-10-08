@@ -1,13 +1,47 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { lightTheme, darkTheme, XYChartTheme } from '@visx/xychart';
 import { AnimationTrajectory } from '@visx/react-spring/lib/types';
+import cityTemperature, { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
 import customTheme from './customTheme';
 
+const dateScaleConfig = { type: 'band', paddingInner: 0.3 } as const;
+const temperatureScaleConfig = { type: 'linear' } as const;
+const numTicks = 4;
+const data = cityTemperature.slice(200, 275);
+const dataSmall = data.slice(25);
+const getDate = (d: CityTemperature) => d.date;
+const getSfTemperature = (d: CityTemperature) => Number(d['San Francisco']);
+const getNegativeSFTemperature = (d: CityTemperature) => -getSfTemperature(d);
+const getNyTemperature = (d: CityTemperature) => Number(d['New York']);
+const getAustinTemperature = (d: CityTemperature) => Number(d.Austin);
+
+type Accessor = (d: CityTemperature) => number | string;
+
+interface Accessors {
+  'San Francisco': Accessor;
+  'New York': Accessor;
+  Austin: Accessor;
+}
+
+type SimpleScaleConfig = { type: 'band' | 'linear'; paddingInner?: number };
+
 type ProvidedProps = {
+  accessors: {
+    x: Accessors;
+    y: Accessors;
+    date: Accessor;
+  };
+  config: {
+    x: SimpleScaleConfig;
+    y: SimpleScaleConfig;
+  };
   animationTrajectory: AnimationTrajectory;
+  data: CityTemperature[];
+  numTicks: number;
   renderHorizontally: boolean;
   renderBarSeries: boolean;
+  renderBarStack: boolean;
   renderLineSeries: boolean;
   sharedTooltip: boolean;
   showGridColumns: boolean;
@@ -29,7 +63,7 @@ type ControlsProps = {
 export default function ExampleControls({ children }: ControlsProps) {
   const [theme, setTheme] = useState<XYChartTheme>(darkTheme);
   const [animationTrajectory, setAnimationTrajectory] = useState<AnimationTrajectory>('center');
-  const [gridProps, setGridProps] = useState<[boolean, boolean]>([true, true]);
+  const [gridProps, setGridProps] = useState<[boolean, boolean]>([false, false]);
   const [showGridRows, showGridColumns] = gridProps;
   const [xAxisOrientation, setXAxisOrientation] = useState<'top' | 'bottom'>('bottom');
   const [yAxisOrientation, setYAxisOrientation] = useState<'left' | 'right'>('right');
@@ -40,24 +74,63 @@ export default function ExampleControls({ children }: ControlsProps) {
   const [snapTooltipToDatumX, setSnapTooltipToDatumX] = useState(true);
   const [snapTooltipToDatumY, setSnapTooltipToDatumY] = useState(true);
   const [sharedTooltip, setSharedTooltip] = useState(true);
-  const [renderBarSeries, setRenderBarSeries] = useState(true);
-  const [renderLineSeries, setRenderLineSeries] = useState(true);
+  const [renderBarOrBarStack, setRenderBarOrBarStack] = useState<'bar' | 'barstack'>('barstack');
+  const [renderLineSeries, setRenderLineSeries] = useState(false);
+  const [negativeValues, setNegativeValues] = useState(false);
+
+  const accessors = useMemo(
+    () => ({
+      x: {
+        'San Francisco': renderHorizontally
+          ? negativeValues
+            ? getNegativeSFTemperature
+            : getSfTemperature
+          : getDate,
+        'New York': renderHorizontally ? getNyTemperature : getDate,
+        Austin: renderHorizontally ? getAustinTemperature : getDate,
+      },
+      y: {
+        'San Francisco': renderHorizontally
+          ? getDate
+          : negativeValues
+          ? getNegativeSFTemperature
+          : getSfTemperature,
+        'New York': renderHorizontally ? getDate : getNyTemperature,
+        Austin: renderHorizontally ? getDate : getAustinTemperature,
+      },
+      date: getDate,
+    }),
+    [renderHorizontally, negativeValues],
+  );
+
+  const config = useMemo(
+    () => ({
+      x: renderHorizontally ? temperatureScaleConfig : dateScaleConfig,
+      y: renderHorizontally ? dateScaleConfig : temperatureScaleConfig,
+    }),
+    [renderHorizontally],
+  );
 
   return (
     <>
       {children({
+        accessors,
         animationTrajectory,
-        renderBarSeries,
+        config,
+        data: renderBarOrBarStack === 'bar' ? data : dataSmall,
+        numTicks,
+        renderBarSeries: renderBarOrBarStack === 'bar',
+        renderBarStack: renderBarOrBarStack === 'barstack',
         renderHorizontally,
-        renderLineSeries,
+        renderLineSeries: renderBarOrBarStack === 'bar' && renderLineSeries,
         sharedTooltip,
         showGridColumns,
         showGridRows,
         showHorizontalCrosshair,
         showTooltip,
         showVerticalCrosshair,
-        snapTooltipToDatumX,
-        snapTooltipToDatumY,
+        snapTooltipToDatumX: renderBarOrBarStack === 'bar' && snapTooltipToDatumX,
+        snapTooltipToDatumY: renderBarOrBarStack === 'bar' && snapTooltipToDatumY,
         theme,
         xAxisOrientation,
         yAxisOrientation,
@@ -237,7 +310,7 @@ export default function ExampleControls({ children }: ControlsProps) {
           <label>
             <input
               type="checkbox"
-              disabled={!showTooltip}
+              disabled={!showTooltip || renderBarOrBarStack === 'barstack'}
               onChange={() => setSnapTooltipToDatumX(!snapTooltipToDatumX)}
               checked={showTooltip && snapTooltipToDatumX}
             />{' '}
@@ -246,7 +319,7 @@ export default function ExampleControls({ children }: ControlsProps) {
           <label>
             <input
               type="checkbox"
-              disabled={!showTooltip}
+              disabled={!showTooltip || renderBarOrBarStack === 'barstack'}
               onChange={() => setSnapTooltipToDatumY(!snapTooltipToDatumY)}
               checked={showTooltip && snapTooltipToDatumY}
             />{' '}
@@ -293,11 +366,31 @@ export default function ExampleControls({ children }: ControlsProps) {
           </label>
           <label>
             <input
-              type="checkbox"
-              onChange={() => setRenderBarSeries(!renderBarSeries)}
-              checked={renderBarSeries}
+              type="radio"
+              onChange={() => setRenderBarOrBarStack('bar')}
+              checked={renderBarOrBarStack === 'bar'}
             />{' '}
             bar
+          </label>
+          <label>
+            <input
+              type="radio"
+              onChange={() => setRenderBarOrBarStack('barstack')}
+              checked={renderBarOrBarStack === 'barstack'}
+            />{' '}
+            bar stack
+          </label>
+        </div>
+        {/** data */}
+        <div>
+          <strong>data</strong>
+          <label>
+            <input
+              type="checkbox"
+              onChange={() => setNegativeValues(!negativeValues)}
+              checked={negativeValues}
+            />{' '}
+            negative values (SF)
           </label>
         </div>
       </div>

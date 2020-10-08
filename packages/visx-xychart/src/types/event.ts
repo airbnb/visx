@@ -14,7 +14,6 @@ export type NearestDatumArgs<
   xAccessor: (d: Datum) => ScaleInput<XScale>;
   yAccessor: (d: Datum) => ScaleInput<YScale>;
   data: Datum[];
-  key: string;
   width: number;
   height: number;
   xScale: XScale;

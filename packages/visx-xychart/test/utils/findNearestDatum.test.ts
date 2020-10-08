@@ -9,7 +9,6 @@ import { NearestDatumArgs } from '../../lib';
 type Datum = { xVal: number; yVal: string };
 
 const params: NearestDatumArgs<AxisScale, AxisScale, Datum> = {
-  key: 'visx',
   width: 10,
   height: 10,
   point: { x: 3, y: 8 },

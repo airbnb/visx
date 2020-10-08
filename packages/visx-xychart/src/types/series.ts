@@ -1,5 +1,6 @@
 import { AxisScale } from '@visx/axis';
 import { ScaleInput } from '@visx/scale';
+import { Series, SeriesPoint } from 'd3-shape';
 
 export type SeriesProps<
   XScale extends AxisScale,
@@ -15,3 +16,17 @@ export type SeriesProps<
   /** Given a Datum, returns the y-scale value. */
   yAccessor: (d: Datum) => ScaleInput<YScale>;
 };
+
+// BarStack transforms its child series Datum into CombinedData<XScale, YScale>
+export type BarStackDatum<XScale extends AxisScale, YScale extends AxisScale> = SeriesPoint<
+  CombinedStackData<XScale, YScale>
+>;
+
+export type BarStackData<XScale extends AxisScale, YScale extends AxisScale> = Series<
+  CombinedStackData<XScale, YScale>,
+  string
+>[];
+
+export type CombinedStackData<XScale extends AxisScale, YScale extends AxisScale> = {
+  [dataKey: string]: ScaleInput<XScale> | ScaleInput<YScale>;
+} & { stack: ScaleInput<XScale> | ScaleInput<YScale>; positiveSum: number; negativeSum: number };
