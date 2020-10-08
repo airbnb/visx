@@ -52,7 +52,7 @@ export default function Example({ width, height, events = false }: BarsProps) {
         {data.map(d => {
           const letter = getLetter(d);
           const barWidth = xScale.bandwidth();
-          const barHeight = yMax - yScale(getLetterFrequency(d));
+          const barHeight = yMax - (yScale(getLetterFrequency(d)) ?? 0);
           const barX = xScale(letter);
           const barY = yMax - barHeight;
           return (

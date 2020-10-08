@@ -35,7 +35,7 @@ describe('updateScale', () => {
       domain: [2, 8],
       range: [1, 3],
     });
-    expect(scale(4).toFixed(2)).toEqual('2.00');
+    expect(scale(4)?.toFixed(2)).toEqual('2.00');
   });
   it('pow', () => {
     const scale = updateScale(scalePower(), { exponent: 2, domain: [1, 3], range: [2, 18] });
@@ -47,7 +47,7 @@ describe('updateScale', () => {
   });
   it('symlog', () => {
     const scale = updateScale(scaleSymlog(), { domain: [1, 9], range: [1, 3], constant: 2 });
-    expect(scale(4).toFixed(2)).toEqual('2.07');
+    expect(scale(4)?.toFixed(2)).toEqual('2.07');
   });
   it('time', () => {
     TimezoneMock.register('US/Pacific');
@@ -86,7 +86,13 @@ describe('updateScale', () => {
     expect(scale(1000)).toEqual('green');
   });
   it('ordinal', () => {
-    const scale = updateScale(scaleOrdinal(), { domain: ['pig', 'cat'], range: ['red', 'green'] });
+    const scale = updateScale<string | undefined, 'pig' | 'cat'>(
+      scaleOrdinal<'pig' | 'cat', string | undefined>(),
+      {
+        domain: ['pig', 'cat'],
+        range: ['red', 'green'],
+      },
+    );
     expect(scale('pig')).toEqual('red');
     expect(scale('cat')).toEqual('green');
   });

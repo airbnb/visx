@@ -20,32 +20,32 @@ const sizeScale = scaleLinear<number>({
   range: [5, 13],
 });
 
-const sizeColorScale = scaleLinear<string>({
+const sizeColorScale = scaleLinear({
   domain: [0, 10],
   range: ['#75fcfc', '#3236b8'],
 });
 
-const quantileScale = scaleQuantile<string>({
+const quantileScale = scaleQuantile({
   domain: [0, 0.15],
   range: ['#eb4d70', '#f19938', '#6ce18b', '#78f6ef', '#9096f8'],
 });
 
-const linearScale = scaleLinear<string>({
+const linearScale = scaleLinear({
   domain: [0, 10],
   range: ['#ed4fbb', '#e9a039'],
 });
 
-const thresholdScale = scaleThreshold<number, string>({
+const thresholdScale = scaleThreshold({
   domain: [0.01, 0.02, 0.04, 0.06, 0.08],
   range: ['#f2f0f7', '#dadaeb', '#bcbddc', '#9e9ac8', '#756bb1', '#54278f'],
 });
 
-const ordinalColorScale = scaleOrdinal<string, string>({
+const ordinalColorScale = scaleOrdinal({
   domain: ['a', 'b', 'c', 'd'],
   range: ['#66d981', '#71f5ef', '#4899f1', '#7d81f6'],
 });
 
-const ordinalColor2Scale = scaleOrdinal<string, string>({
+const ordinalColor2Scale = scaleOrdinal({
   domain: ['a', 'b', 'c', 'd'],
   range: ['#fae856', '#f29b38', '#e64357', '#8386f7'],
 });
@@ -74,7 +74,7 @@ export default function Example({ events = false }: { events?: boolean }) {
         <LegendSize scale={sizeScale}>
           {labels =>
             labels.map(label => {
-              const size = sizeScale(label.datum);
+              const size = sizeScale(label.datum) ?? 0;
               const color = sizeColorScale(label.datum);
               return (
                 <LegendItem

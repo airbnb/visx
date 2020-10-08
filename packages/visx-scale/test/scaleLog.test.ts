@@ -50,7 +50,7 @@ describe('scaleLog()', () => {
     });
     it('false', () => {
       const scale = scaleLog({ domain: [1, 10], range: [1, 10], round: false });
-      expect(scale(5).toFixed(2)).toEqual('7.29');
+      expect(scale(5)?.toFixed(2)).toEqual('7.29');
     });
   });
 });

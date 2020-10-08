@@ -19,7 +19,7 @@ describe('scaleSymlog', () => {
     });
     it('false', () => {
       const scale = scaleSymlog<number>({ clamp: false });
-      expect(scale(10).toFixed(2)).toEqual('3.46');
+      expect(scale(10)?.toFixed(2)).toEqual('3.46');
     });
   });
   it('set constant', () => {

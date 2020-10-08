@@ -16,7 +16,7 @@ describe('createScale()', () => {
       domain: [2, 8],
       range: [1, 3],
     });
-    expect(scale(4).toFixed(2)).toEqual('2.00');
+    expect(scale(4)?.toFixed(2)).toEqual('2.00');
   });
   it('pow', () => {
     const scale = createScale({ type: 'pow', exponent: 2, domain: [1, 3], range: [2, 18] });
@@ -28,7 +28,7 @@ describe('createScale()', () => {
   });
   it('symlog', () => {
     const scale = createScale({ type: 'symlog', domain: [1, 9], range: [1, 3], constant: 2 });
-    expect(scale(4).toFixed(2)).toEqual('2.07');
+    expect(scale(4)?.toFixed(2)).toEqual('2.07');
   });
   it('time', () => {
     const scale = createScale({

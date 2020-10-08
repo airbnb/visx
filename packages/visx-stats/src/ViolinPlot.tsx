@@ -49,13 +49,13 @@ export default function ViolinPlot<Datum extends object>({
 
   if (horizontal) {
     const topCurve = line<Datum>()
-      .x(d => valueScale(value(d)))
-      .y(d => center - widthScale(count(d)))
+      .x(d => valueScale(value(d)) ?? 0)
+      .y(d => center - (widthScale(count(d)) ?? 0))
       .curve(curveCardinal);
 
     const bottomCurve = line<Datum>()
-      .x(d => valueScale(value(d)))
-      .y(d => center + widthScale(count(d)))
+      .x(d => valueScale(value(d)) ?? 0)
+      .y(d => center + (widthScale(count(d)) ?? 0))
       .curve(curveCardinal);
 
     const topCurvePath = topCurve(data) || '';
@@ -63,13 +63,13 @@ export default function ViolinPlot<Datum extends object>({
     path = `${topCurvePath} ${bottomCurvePath.replace('M', 'L')} Z`;
   } else {
     const rightCurve = line<Datum>()
-      .x(d => center + widthScale(count(d)))
-      .y(d => valueScale(value(d)))
+      .x(d => center + (widthScale(count(d)) ?? 0))
+      .y(d => valueScale(value(d)) ?? 0)
       .curve(curveCardinal);
 
     const leftCurve = line<Datum>()
-      .x(d => center - widthScale(count(d)))
-      .y(d => valueScale(value(d)))
+      .x(d => center - (widthScale(count(d)) ?? 0))
+      .y(d => valueScale(value(d)) ?? 0)
       .curve(curveCardinal);
 
     const rightCurvePath = rightCurve(data) || '';

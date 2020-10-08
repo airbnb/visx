@@ -52,9 +52,9 @@ export default function Example({
         left={margin.left}
         keys={keys}
         data={data}
-        x={d => xScale(getDate(d.data))}
-        y0={d => yScale(getY0(d))}
-        y1={d => yScale(getY1(d))}
+        x={d => xScale(getDate(d.data)) ?? 0}
+        y0={d => yScale(getY0(d)) ?? 0}
+        y1={d => yScale(getY1(d)) ?? 0}
       >
         {({ stacks, path }) =>
           stacks.map(stack => (

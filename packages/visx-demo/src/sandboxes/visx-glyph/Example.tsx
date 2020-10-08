@@ -57,8 +57,8 @@ const yScale = scaleLinear<number>({
 });
 
 // positions
-const getX = (d: DateValue) => xScale(date(d));
-const getY = (d: DateValue) => yScale(value(d));
+const getX = (d: DateValue) => xScale(date(d)) ?? 0;
+const getY = (d: DateValue) => yScale(value(d)) ?? 0;
 
 export type GlyphProps = {
   width: number;

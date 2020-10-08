@@ -43,8 +43,8 @@ const patternScale = scaleOrdinal<number, string>({
 
 // accessors
 type Datum = number[];
-const getY0 = (d: Datum) => yScale(d[0]);
-const getY1 = (d: Datum) => yScale(d[1]);
+const getY0 = (d: Datum) => yScale(d[0]) ?? 0;
+const getY1 = (d: Datum) => yScale(d[1]) ?? 0;
 
 export type StreamGraphProps = {
   width: number;
@@ -94,7 +94,7 @@ export default function Streamgraph({ width, height, animate = true }: StreamGra
           keys={keys}
           offset="wiggle"
           color={colorScale}
-          x={(_, i) => xScale(i)}
+          x={(_, i) => xScale(i) ?? 0}
           y0={getY0}
           y1={getY1}
         >

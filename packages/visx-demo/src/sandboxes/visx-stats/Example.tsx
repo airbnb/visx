@@ -114,7 +114,7 @@ export default withTooltip<StatsPlotProps, TooltipData>(
                   minProps={{
                     onMouseOver: () => {
                       showTooltip({
-                        tooltipTop: yScale(min(d)) + 40,
+                        tooltipTop: yScale(min(d)) ?? 0 + 40,
                         tooltipLeft: xScale(x(d))! + constrainedWidth + 5,
                         tooltipData: {
                           min: min(d),
@@ -129,7 +129,7 @@ export default withTooltip<StatsPlotProps, TooltipData>(
                   maxProps={{
                     onMouseOver: () => {
                       showTooltip({
-                        tooltipTop: yScale(max(d)) + 40,
+                        tooltipTop: yScale(max(d)) ?? 0 + 40,
                         tooltipLeft: xScale(x(d))! + constrainedWidth + 5,
                         tooltipData: {
                           max: max(d),
@@ -144,7 +144,7 @@ export default withTooltip<StatsPlotProps, TooltipData>(
                   boxProps={{
                     onMouseOver: () => {
                       showTooltip({
-                        tooltipTop: yScale(median(d)) + 40,
+                        tooltipTop: yScale(median(d)) ?? 0 + 40,
                         tooltipLeft: xScale(x(d))! + constrainedWidth + 5,
                         tooltipData: {
                           ...d.boxPlot,
@@ -162,7 +162,7 @@ export default withTooltip<StatsPlotProps, TooltipData>(
                     },
                     onMouseOver: () => {
                       showTooltip({
-                        tooltipTop: yScale(median(d)) + 40,
+                        tooltipTop: yScale(median(d)) ?? 0 + 40,
                         tooltipLeft: xScale(x(d))! + constrainedWidth + 5,
                         tooltipData: {
                           median: median(d),
