@@ -127,8 +127,8 @@ export default withTooltip<AreaProps, TooltipData>(
           />
           <AreaClosed<AppleStock>
             data={stock}
-            x={d => dateScale(getDate(d))}
-            y={d => stockValueScale(getStockValue(d))}
+            x={d => dateScale(getDate(d)) ?? 0}
+            y={d => stockValueScale(getStockValue(d)) ?? 0}
             yScale={stockValueScale}
             strokeWidth={1}
             stroke="url(#area-gradient)"

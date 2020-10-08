@@ -31,7 +31,7 @@ const date = (d: AppleStock) => new Date(d.date).valueOf();
 const close = (d: AppleStock) => d.close;
 
 // scales
-const xScale = scaleTime<number>({
+const xScale = scaleTime({
   range: [0, Math.PI * 2],
   domain: extent(appleStock, date),
 });
@@ -39,8 +39,8 @@ const yScale = scaleLog<number>({
   domain: extent(appleStock, close),
 });
 
-const angle = (d: AppleStock) => xScale(date(d));
-const radius = (d: AppleStock) => yScale(close(d));
+const angle = (d: AppleStock) => xScale(date(d)) ?? 0;
+const radius = (d: AppleStock) => yScale(close(d)) ?? 0;
 
 const firstPoint = appleStock[0];
 const lastPoint = appleStock[appleStock.length - 1];
@@ -82,7 +82,7 @@ export default ({ width, height, animate = true }: LineRadialProps) => {
     <>
       {animate && (
         <>
-          <button onClick={handlePress} onTouchStart={handlePress}>
+          <button type="button" onClick={handlePress} onTouchStart={handlePress}>
             Animate
           </button>
           <br />
@@ -108,7 +108,7 @@ export default ({ width, height, animate = true }: LineRadialProps) => {
           {yScaleTicks.map((tick, i) => (
             <text
               key={`radial-grid-${i}`}
-              y={-yScale(tick)}
+              y={-(yScale(tick) ?? 0)}
               dy="-.33em"
               fontSize={8}
               fill={blue}
@@ -150,8 +150,8 @@ export default ({ width, height, animate = true }: LineRadialProps) => {
           </LineRadial>
 
           {[firstPoint, lastPoint].map((d, i) => {
-            const cx = (xScale(date(d)) * Math.PI) / 180;
-            const cy = -yScale(close(d));
+            const cx = ((xScale(date(d)) ?? 0) * Math.PI) / 180;
+            const cy = -(yScale(close(d)) ?? 0);
             return <circle key={`line-cap-${i}`} cx={cx} cy={cy} fill={darkgreen} r={3} />;
           })}
         </Group>

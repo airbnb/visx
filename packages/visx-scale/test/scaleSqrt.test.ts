@@ -22,7 +22,7 @@ describe('scaleSqrt()', () => {
     });
     it('false', () => {
       const scale = scaleSqrt<number>({ clamp: false });
-      expect(scale(10).toFixed(2)).toEqual('3.16');
+      expect(scale(10)?.toFixed(2)).toEqual('3.16');
     });
   });
   it('set (color) interpolate', () => {
@@ -50,7 +50,7 @@ describe('scaleSqrt()', () => {
     });
     it('false', () => {
       const scale = scaleSqrt({ domain: [0, 4], range: [0, 2], round: false });
-      expect(scale(3).toFixed(2)).toEqual('1.73');
+      expect(scale(3)?.toFixed(2)).toEqual('1.73');
     });
   });
   describe('set zero', () => {

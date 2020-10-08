@@ -83,8 +83,8 @@ export default ({
       <Group top={margin.top} left={margin.left}>
         <HeatmapCircle
           data={binData}
-          xScale={xScale}
-          yScale={yScale}
+          xScale={d => xScale(d) ?? 0}
+          yScale={d => yScale(d) ?? 0}
           colorScale={circleColorScale}
           opacityScale={opacityScale}
           radius={radius}
@@ -115,8 +115,8 @@ export default ({
       <Group top={margin.top} left={xMax + margin.left + separation}>
         <HeatmapRect
           data={binData}
-          xScale={xScale}
-          yScale={yScale}
+          xScale={d => xScale(d) ?? 0}
+          yScale={d => yScale(d) ?? 0}
           colorScale={rectColorScale}
           opacityScale={opacityScale}
           binWidth={binWidth}

@@ -61,9 +61,9 @@ export default function Theshold({ width, height, margin = defaultMargin }: Thre
           <Threshold<CityTemperature>
             id={`${Math.random()}`}
             data={cityTemperature}
-            x={d => timeScale(date(d))}
-            y0={d => temperatureScale(ny(d))}
-            y1={d => temperatureScale(sf(d))}
+            x={d => timeScale(date(d)) ?? 0}
+            y0={d => temperatureScale(ny(d)) ?? 0}
+            y1={d => temperatureScale(sf(d)) ?? 0}
             clipAboveTo={0}
             clipBelowTo={yMax}
             curve={curveBasis}
@@ -79,8 +79,8 @@ export default function Theshold({ width, height, margin = defaultMargin }: Thre
           <LinePath
             data={cityTemperature}
             curve={curveBasis}
-            x={d => timeScale(date(d))}
-            y={d => temperatureScale(sf(d))}
+            x={d => timeScale(date(d)) ?? 0}
+            y={d => temperatureScale(sf(d)) ?? 0}
             stroke="#222"
             strokeWidth={1.5}
             strokeOpacity={0.8}
@@ -89,8 +89,8 @@ export default function Theshold({ width, height, margin = defaultMargin }: Thre
           <LinePath
             data={cityTemperature}
             curve={curveBasis}
-            x={d => timeScale(date(d))}
-            y={d => temperatureScale(ny(d))}
+            x={d => timeScale(date(d)) ?? 0}
+            y={d => temperatureScale(ny(d)) ?? 0}
             stroke="#222"
             strokeWidth={1.5}
           />

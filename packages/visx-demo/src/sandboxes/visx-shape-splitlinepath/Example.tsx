@@ -45,12 +45,12 @@ export default function SplitPath({
 
   const getScaledX = useMemo(() => {
     const xScale = scaleLinear({ range: [0, width], domain: [0, width] });
-    return (d: Point) => xScale(getX(d));
+    return (d: Point) => xScale(getX(d)) ?? 0;
   }, [width]);
 
   const getScaledY = useMemo(() => {
     const yScale = scaleLinear({ range: [0, height], domain: [height, 0] });
-    return (d: Point) => yScale(getY(d));
+    return (d: Point) => yScale(getY(d)) ?? 0;
   }, [height]);
 
   return width < 10 ? null : (

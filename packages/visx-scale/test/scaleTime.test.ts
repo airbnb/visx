@@ -32,7 +32,7 @@ describe('scaleTime()', () => {
     });
     it('false', () => {
       const scale = scaleTime({ domain, range: [0, 10], clamp: false });
-      expect(scale(new Date(2019, 11, 31)).toFixed(2)).toEqual('-1.11');
+      expect(scale(new Date(2019, 11, 31))?.toFixed(2)).toEqual('-1.11');
     });
   });
   it('set (color) interpolate', () => {
@@ -87,7 +87,7 @@ describe('scaleTime()', () => {
         range: [1, 5],
         round: false,
       });
-      expect(scale(new Date(2020, 0, 5)).toFixed(2)).toEqual('2.78');
+      expect(scale(new Date(2020, 0, 5))?.toFixed(2)).toEqual('2.78');
     });
   });
 });

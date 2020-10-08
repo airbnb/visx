@@ -32,7 +32,7 @@ describe('scaleUtc()', () => {
     });
     it('false', () => {
       const scale = scaleUtc({ domain, range: [0, 10], clamp: false });
-      expect(scale(new Date(Date.UTC(2019, 11, 31))).toFixed(2)).toEqual('-1.11');
+      expect(scale(new Date(Date.UTC(2019, 11, 31)))?.toFixed(2)).toEqual('-1.11');
     });
   });
   it('set (color) interpolate', () => {
@@ -89,7 +89,7 @@ describe('scaleUtc()', () => {
         range: [1, 5],
         round: false,
       });
-      expect(scale(new Date(Date.UTC(2020, 0, 5))).toFixed(2)).toEqual('2.78');
+      expect(scale(new Date(Date.UTC(2020, 0, 5)))?.toFixed(2)).toEqual('2.78');
     });
   });
 });

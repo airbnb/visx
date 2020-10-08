@@ -63,7 +63,7 @@ export default function ZoomI({ width, height }: ZoomIProps) {
                       cx={x}
                       cy={y}
                       r={i > 500 ? sizeScale(1000 - i) : sizeScale(i)}
-                      fill={interpolateRainbow(colorScale(i))}
+                      fill={interpolateRainbow(colorScale(i) ?? 0)}
                     />
                   </React.Fragment>
                 ))}
@@ -102,7 +102,7 @@ export default function ZoomI({ width, height }: ZoomIProps) {
                         cx={x}
                         cy={y}
                         r={i > 500 ? sizeScale(1000 - i) : sizeScale(i)}
-                        fill={interpolateRainbow(colorScale(i))}
+                        fill={interpolateRainbow(colorScale(i) ?? 0)}
                       />
                     </React.Fragment>
                   ))}
@@ -120,29 +120,35 @@ export default function ZoomI({ width, height }: ZoomIProps) {
             </svg>
             <div className="controls">
               <button
+                type="button"
                 className="btn btn-zoom"
                 onClick={() => zoom.scale({ scaleX: 1.2, scaleY: 1.2 })}
               >
                 +
               </button>
               <button
+                type="button"
                 className="btn btn-zoom btn-bottom"
                 onClick={() => zoom.scale({ scaleX: 0.8, scaleY: 0.8 })}
               >
                 -
               </button>
-              <button className="btn btn-lg" onClick={zoom.center}>
+              <button type="button" className="btn btn-lg" onClick={zoom.center}>
                 Center
               </button>
-              <button className="btn btn-lg" onClick={zoom.reset}>
+              <button type="button" className="btn btn-lg" onClick={zoom.reset}>
                 Reset
               </button>
-              <button className="btn btn-lg" onClick={zoom.clear}>
+              <button type="button" className="btn btn-lg" onClick={zoom.clear}>
                 Clear
               </button>
             </div>
             <div className="mini-map">
-              <button className="btn btn-lg" onClick={() => setShowMiniMap(!showMiniMap)}>
+              <button
+                type="button"
+                className="btn btn-lg"
+                onClick={() => setShowMiniMap(!showMiniMap)}
+              >
                 {showMiniMap ? 'Hide' : 'Show'} Mini Map
               </button>
             </div>
@@ -150,7 +156,7 @@ export default function ZoomI({ width, height }: ZoomIProps) {
         )}
       </Zoom>
       <div className="description">
-        Based on Mike Bostock's{' '}
+        Based on Mike Bostock&apos;s{' '}
         <a href="https://bl.ocks.org/mbostock/4e3925cdc804db257a86fdef3a032a45">Pan & Zoom III</a>
       </div>
       <style jsx>{`
