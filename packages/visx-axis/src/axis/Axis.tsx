@@ -47,8 +47,8 @@ export default function Axis<Scale extends AxisScale>({
   );
 
   const filteredTickValues = (tickValues ?? getTicks(scale, numTicks))
-    .map((value, index) => ({ value, index }))
-    .filter(({ value }) => !hideZero || (value !== 0 && value !== '0'));
+    .filter(value => !hideZero || (value !== 0 && value !== '0'))
+    .map((value, index) => ({ value, index }));
 
   const ticks = filteredTickValues.map(({ value, index }) => {
     const scaledValue = coerceNumber(tickPosition(value));

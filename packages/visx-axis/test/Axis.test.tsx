@@ -118,7 +118,7 @@ describe('<Axis />', () => {
         .find('.visx-axis-tick')
         .at(0)
         .key(),
-    ).toBe('visx-tick-1-1');
+    ).toBe('visx-tick-1-0');
   });
 
   test('it should SHOW an axis line if hideAxisLine is false', () => {

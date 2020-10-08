@@ -12,6 +12,8 @@ export type WithParentSizeProps = {
 type WithParentSizeState = {
   parentWidth?: number;
   parentHeight?: number;
+  initialWidth?: number;
+  initialHeight?: number;
 };
 
 export type WithParentSizeProvidedProps = WithParentSizeState;
@@ -72,7 +74,8 @@ export default function withParentSize<BaseComponentProps extends WithParentSize
     );
 
     render() {
-      const { parentWidth, parentHeight } = this.state;
+      const { initialWidth, initialHeight } = this.props;
+      const { parentWidth = initialWidth, parentHeight = initialHeight } = this.state;
       return (
         <div style={CONTAINER_STYLES} ref={this.setRef}>
           {parentWidth != null && parentHeight != null && (

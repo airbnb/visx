@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ScaleConfig, ScaleConfigToD3Scale } from '@visx/scale';
 import React, { useContext, useMemo } from 'react';
 import createOrdinalScale from '@visx/scale/lib/scales/ordinal';
@@ -11,8 +12,8 @@ import useScales from '../hooks/useScales';
 
 /** Props that can be passed to initialize/update the provider config. */
 export type DataProviderProps<
-  XScaleConfig extends ScaleConfig<AxisScaleOutput>,
-  YScaleConfig extends ScaleConfig<AxisScaleOutput>
+  XScaleConfig extends ScaleConfig<AxisScaleOutput, any, any>,
+  YScaleConfig extends ScaleConfig<AxisScaleOutput, any, any>
 > = {
   theme?: XYChartTheme;
   xScale: XScaleConfig;
@@ -23,7 +24,7 @@ export type DataProviderProps<
 export default function DataProvider<
   XScaleConfig extends ScaleConfig<AxisScaleOutput>,
   YScaleConfig extends ScaleConfig<AxisScaleOutput>,
-  Datum = unknown
+  Datum extends object
 >({
   theme: propsTheme,
   xScale: xScaleConfig,
@@ -35,22 +36,21 @@ export default function DataProvider<
   // a ThemeProvider is not present.
   const contextTheme = useContext(ThemeContext);
   const theme = propsTheme || contextTheme;
-
   const [{ width, height, margin }, setDimensions] = useDimensions();
   const innerWidth = width - (margin?.left ?? 0) - (margin?.right ?? 0);
   const innerHeight = height - (margin?.top ?? 0) - (margin?.bottom ?? 0);
 
-  type XScale = ScaleConfigToD3Scale<XScaleConfig, AxisScaleOutput>;
-  type YScale = ScaleConfigToD3Scale<YScaleConfig, AxisScaleOutput>;
+  type XScale = ScaleConfigToD3Scale<XScaleConfig, AxisScaleOutput, any, any>;
+  type YScale = ScaleConfigToD3Scale<YScaleConfig, AxisScaleOutput, any, any>;
 
   const dataRegistry = useDataRegistry<XScale, YScale, Datum>();
 
-  const scales: { xScale: XScale; yScale: YScale } = useScales({
+  const { xScale, yScale }: { xScale: XScale; yScale: YScale } = useScales({
     dataRegistry,
     xScaleConfig,
     yScaleConfig,
     xRange: [margin.left, width - margin.right],
-    yRange: [margin.top, height - margin.bottom],
+    yRange: [height - margin.bottom, margin.top],
   });
 
   const registryKeys = dataRegistry.keys();
@@ -71,8 +71,8 @@ export default function DataProvider<
         dataRegistry,
         registerData: dataRegistry.registerData,
         unregisterData: dataRegistry.unregisterData,
-        xScale: scales.xScale,
-        yScale: scales.yScale,
+        xScale,
+        yScale,
         colorScale,
         theme,
         width,

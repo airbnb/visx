@@ -31,7 +31,11 @@ export interface DataRegistryEntry<XScale extends AxisScale, YScale extends Axis
   legendShape?: LegendShape;
 }
 
-export interface DataContextType<XScale extends AxisScale, YScale extends AxisScale, Datum> {
+export interface DataContextType<
+  XScale extends AxisScale,
+  YScale extends AxisScale,
+  Datum extends object
+> {
   xScale: XScale;
   yScale: YScale;
   colorScale: ScaleTypeToD3Scale<string, string>['ordinal'];
@@ -40,7 +44,7 @@ export interface DataContextType<XScale extends AxisScale, YScale extends AxisSc
   innerWidth: number;
   innerHeight: number;
   margin: Margin;
-  dataRegistry: DataRegistry<XScale, YScale, Datum>;
+  dataRegistry: Omit<DataRegistry<XScale, YScale, Datum>, 'registry' | 'registryKeys'>;
   registerData: (
     data: DataRegistryEntry<XScale, YScale, Datum> | DataRegistryEntry<XScale, YScale, Datum>[],
   ) => void;

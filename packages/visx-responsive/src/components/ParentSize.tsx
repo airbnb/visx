@@ -1,5 +1,5 @@
 import debounce from 'lodash/debounce';
-import React from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 
 export type ParentSizeProps = {
@@ -9,6 +9,8 @@ export type ParentSizeProps = {
   debounceTime?: number;
   /** Optional flag to toggle leading debounce calls. When set to true this will ensure that the component always renders immediately. (defaults to true) */
   enableDebounceLeadingCall?: boolean;
+  /** Optional dimensions provided won't trigger a state change when changed. */
+  ignoreDimensions?: keyof ParentSizeState | (keyof ParentSizeState)[];
   /** Optional `style` object to apply to the parent `div` wrapper used for size measurement. */
   parentSizeStyles?: React.CSSProperties;
   /** Child render function `({ width, height, top, left, ref, resize }) => ReactNode`. */
@@ -29,74 +31,63 @@ type ParentSizeState = {
 
 export type ParentSizeProvidedProps = ParentSizeState;
 
-export default class ParentSize extends React.Component<
-  ParentSizeProps & Omit<JSX.IntrinsicElements['div'], keyof ParentSizeProps>,
-  ParentSizeState
-> {
-  static defaultProps = {
-    debounceTime: 300,
-    enableDebounceLeadingCall: true,
-    parentSizeStyles: { width: '100%', height: '100%' },
-  };
-  animationFrameID: number = 0;
-  resizeObserver: ResizeObserver | undefined;
-  target: HTMLDivElement | null = null;
+export default function ParentSize({
+  className,
+  children,
+  debounceTime = 300,
+  ignoreDimensions = [],
+  parentSizeStyles = { width: '100%', height: '100%' },
+  enableDebounceLeadingCall = true,
+  ...restProps
+}: ParentSizeProps & Omit<JSX.IntrinsicElements['div'], keyof ParentSizeProps>) {
+  const target = useRef<HTMLDivElement | null>(null);
+  const animationFrameID = useRef(0);
 
-  state = {
-    width: 0,
-    height: 0,
-    top: 0,
-    left: 0,
-  };
+  const [state, setState] = useState<ParentSizeState>({ width: 0, height: 0, top: 0, left: 0 });
 
-  componentDidMount() {
-    this.resizeObserver = new ResizeObserver((entries = [] /** , observer */) => {
+  const resize = useMemo(() => {
+    const normalized = Array.isArray(ignoreDimensions) ? ignoreDimensions : [ignoreDimensions];
+
+    return debounce(
+      (incoming: ParentSizeState) => {
+        setState(existing => {
+          const stateKeys = Object.keys(existing) as (keyof ParentSizeState)[];
+          const keysWithChanges = stateKeys.filter(key => existing[key] !== incoming[key]);
+          const shouldBail = keysWithChanges.every(key => normalized.includes(key));
+
+          return shouldBail ? existing : incoming;
+        });
+      },
+      debounceTime,
+      { leading: enableDebounceLeadingCall },
+    );
+  }, [debounceTime, enableDebounceLeadingCall, ignoreDimensions]);
+
+  useEffect(() => {
+    const observer = new ResizeObserver((entries = [] /** , observer */) => {
       entries.forEach(entry => {
         const { left, top, width, height } = entry.contentRect;
-        this.animationFrameID = window.requestAnimationFrame(() => {
-          this.resize({ width, height, top, left });
+        animationFrameID.current = window.requestAnimationFrame(() => {
+          resize({ width, height, top, left });
         });
       });
     });
-    if (this.target) this.resizeObserver.observe(this.target);
-  }
+    if (target.current) observer.observe(target.current);
 
-  componentWillUnmount() {
-    window.cancelAnimationFrame(this.animationFrameID);
-    if (this.resizeObserver) this.resizeObserver.disconnect();
-    this.resize.cancel();
-  }
+    return () => {
+      window.cancelAnimationFrame(animationFrameID.current);
+      observer.disconnect();
+      resize.cancel();
+    };
+  }, [resize]);
 
-  resize = debounce(
-    ({ width, height, top, left }: ParentSizeState) => {
-      this.setState(() => ({ width, height, top, left }));
-    },
-    this.props.debounceTime,
-    { leading: this.props.enableDebounceLeadingCall },
+  return (
+    <div style={parentSizeStyles} ref={target} className={className} {...restProps}>
+      {children({
+        ...state,
+        ref: target.current,
+        resize,
+      })}
+    </div>
   );
-
-  setTarget = (ref: HTMLDivElement | null) => {
-    this.target = ref;
-  };
-
-  render() {
-    const {
-      className,
-      children,
-      debounceTime,
-      parentSizeStyles,
-      enableDebounceLeadingCall,
-      ...restProps
-    } = this.props;
-
-    return (
-      <div style={parentSizeStyles} ref={this.setTarget} className={className} {...restProps}>
-        {children({
-          ...this.state,
-          ref: this.target,
-          resize: this.resize,
-        })}
-      </div>
-    );
-  }
 }

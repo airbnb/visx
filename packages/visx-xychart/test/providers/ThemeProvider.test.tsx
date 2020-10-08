@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { mount } from 'enzyme';
-import { ThemeProvider, ThemeContext } from '../src';
+import { ThemeProvider, ThemeContext } from '../../src';
 
 describe('<ThemeProvider />', () => {
   it('should be defined', () => {

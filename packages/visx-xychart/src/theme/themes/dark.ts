@@ -4,12 +4,13 @@ import buildChartTheme from '../buildChartTheme';
 export default buildChartTheme({
   backgroundColor: '#222',
   colors: [
-    allColors.cyan[1],
-    allColors.blue[2],
+    allColors.cyan[4],
+    allColors.teal[1],
     allColors.yellow[2],
-    allColors.red[2],
-    allColors.violet[2],
-    allColors.grape[2],
+    allColors.red[4],
+    allColors.grape[3],
+    allColors.grape[6],
+    allColors.pink[3],
   ],
   tickLength: 4,
   tickLabelStyles: {

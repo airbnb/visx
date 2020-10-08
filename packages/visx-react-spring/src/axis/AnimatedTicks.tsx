@@ -20,7 +20,7 @@ export default function AnimatedTicks<Scale extends AxisScale>({
   ticks,
   animationTrajectory,
 }: TicksRendererProps<Scale> & { animationTrajectory?: AnimationTrajectory }) {
-  const animatedTicks = useTransition(ticks, tick => `${tick.value}-${horizontal}`, {
+  const animatedTicks = useTransition(ticks, tick => `${tick.value}`, {
     unique: true,
     ...useLineTransitionConfig({ scale, animateXOrY: horizontal ? 'x' : 'y', animationTrajectory }),
   });
@@ -39,7 +39,7 @@ export default function AnimatedTicks<Scale extends AxisScale>({
           index,
         ) => {
           const tickLabelProps = allTickLabelProps[index] ?? allTickLabelProps[0] ?? {};
-          return (
+          return item == null || key == null ? null : (
             <animated.g
               key={key}
               className={cx('visx-axis-tick', tickClassName)}
@@ -70,7 +70,7 @@ export default function AnimatedTicks<Scale extends AxisScale>({
                 )}
                 opacity={opacity}
               >
-                <Text {...tickLabelProps}>{item.formattedValue}</Text>
+                <Text {...tickLabelProps}>{item?.formattedValue}</Text>
               </animated.g>
             </animated.g>
           );

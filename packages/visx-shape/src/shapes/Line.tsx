@@ -28,6 +28,7 @@ export default function Line({
   innerRef,
   ...restProps
 }: AddSVGProps<LineProps, SVGLineElement>) {
+  const isRectilinear = from.x === to.x || from.y === to.y;
   return (
     <line
       ref={innerRef}
@@ -37,6 +38,7 @@ export default function Line({
       x2={to.x}
       y2={to.y}
       fill={fill}
+      shapeRendering={isRectilinear ? 'crispEdges' : 'auto'}
       {...restProps}
     />
   );

@@ -39,8 +39,11 @@ export default function Tooltip({
     <div
       className={cx('visx-tooltip', className)}
       style={{
-        top: top == null || offsetTop == null ? top : top + offsetTop,
-        left: left == null || offsetLeft == null ? left : left + offsetLeft,
+        left: 0,
+        top: 0,
+        transform: `translate(${
+          left == null || offsetLeft == null ? left ?? 0 : left + offsetLeft
+        }px, ${top == null || offsetTop == null ? top ?? 0 : top + offsetTop}px)`,
         ...(!unstyled && style),
       }}
       {...restProps}
