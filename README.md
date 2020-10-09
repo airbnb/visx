@@ -210,6 +210,8 @@ Lots coming soon, check out the [roadmap](./ROADMAP.md).
   ([Demo](https://coronamap.co.za/)) ([Github](https://github.com/JayWelsh/coronamap))
 - [CNN: Tracking America's Recovery](https://www.cnn.com/business/us-economic-recovery-coronavirus)
 - [Wall Street Journal: Americans Familiarize Themselves with the Word ‘Forbearance’](https://blogs.wsj.com/dailyshot/2020/04/13/the-daily-shot-americans-familiarize-themselves-with-the-word-forbearance/) by [@rayshan](https://github.com/rayshan) ([Demo](https://finance.shan.io/recessions-bear-markets-compared))
+- Dollar to food emoji caculator by [@gmlwo530](https://github.com/gmlwo530)
+  ([Demo](https://dollar-to-food-emoji.web.app/)) ([Github](https://github.com/gmlwo530/dollar-to-food-emoji))
 
 Have a project that's using `visx`? Open a pull request and we'll add it to the list.
 
