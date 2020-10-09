@@ -112,6 +112,7 @@ export default class BrushSelection extends React.Component<
         onDragMove={this.selectionDragMove}
         onDragEnd={this.selectionDragEnd}
       >
+        {/* location */}
         {({ isDragging, dragStart, dragEnd, dragMove }) => (
           <g>
             {isDragging && (
@@ -122,6 +123,8 @@ export default class BrushSelection extends React.Component<
                 onMouseUp={dragEnd}
                 onMouseMove={dragMove}
                 onMouseLeave={dragEnd}
+                onTouchMove={dragMove}
+                onTouchEnd={dragEnd}
                 style={DRAGGING_OVERLAY_STYLES}
               />
             )}
@@ -145,6 +148,15 @@ export default class BrushSelection extends React.Component<
               }}
               onClick={event => {
                 if (onClick) onClick(event);
+              }}
+              onTouchStart={disableDraggingSelection ? undefined : dragStart}
+              onTouchMove={event => {
+                dragMove(event);
+                if (onMouseMove) onMouseMove(event);
+              }}
+              onTouchEnd={event => {
+                dragEnd(event);
+                if (onMouseUp) onMouseUp(event);
               }}
               style={{
                 pointerEvents: brush.isBrushing || brush.activeHandle ? 'none' : 'all',

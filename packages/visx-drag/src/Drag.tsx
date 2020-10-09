@@ -120,6 +120,8 @@ export default class Drag extends React.Component<DragProps, DragState> {
             height={height}
             onMouseMove={this.handleDragMove}
             onMouseUp={this.handleDragEnd}
+            onTouchMove={this.handleDragMove}
+            onTouchEnd={this.handleDragEnd}
             fill="transparent"
           />
         )}

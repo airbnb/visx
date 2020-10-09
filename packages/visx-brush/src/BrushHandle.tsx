@@ -144,6 +144,9 @@ export default class BrushHandle extends React.Component<BrushHandleProps> {
               onMouseDown={dragStart}
               onMouseMove={dragMove}
               onMouseUp={dragEnd}
+              onTouchStart={dragStart}
+              onTouchMove={dragMove}
+              onTouchEnd={dragEnd}
               style={{
                 cursor,
                 pointerEvents: !!brush.activeHandle || !!brush.isBrushing ? 'none' : 'all',

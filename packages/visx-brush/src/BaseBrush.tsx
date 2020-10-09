@@ -376,6 +376,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
           onDragMove={this.handleDragMove}
           onDragEnd={this.handleDragEnd}
         >
+          {/* resize */}
           {({ dragStart, isDragging, dragMove, dragEnd }) => (
             <Bar
               className="visx-brush-overlay"
@@ -401,6 +402,19 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
                 if (isDragging) dragMove(event);
               }}
               onMouseUp={(event: MouseHandlerEvent) => {
+                this.mouseUpTime = Date.now();
+                if (onMouseUp) onMouseUp(event);
+                dragEnd(event);
+              }}
+              onTouchStart={(event: MouseHandlerEvent) => {
+                this.mouseDownTime = Date.now();
+                dragStart(event);
+              }}
+              onTouchMove={(event: MouseHandlerEvent) => {
+                if (!isDragging && onMouseMove) onMouseMove(event);
+                if (isDragging) dragMove(event);
+              }}
+              onTouchEnd={(event: MouseHandlerEvent) => {
                 this.mouseUpTime = Date.now();
                 if (onMouseUp) onMouseUp(event);
                 dragEnd(event);
