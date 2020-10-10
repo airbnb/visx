@@ -112,7 +112,6 @@ export default class BrushSelection extends React.Component<
         onDragMove={this.selectionDragMove}
         onDragEnd={this.selectionDragEnd}
       >
-        {/* location */}
         {({ isDragging, dragStart, dragEnd, dragMove }) => (
           <g>
             {isDragging && (

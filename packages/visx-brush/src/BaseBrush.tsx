@@ -376,7 +376,6 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
           onDragMove={this.handleDragMove}
           onDragEnd={this.handleDragEnd}
         >
-          {/* resize */}
           {({ dragStart, isDragging, dragMove, dragEnd }) => (
             <Bar
               className="visx-brush-overlay"
