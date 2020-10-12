@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { shallow } from 'enzyme';
 import { TooltipWithBounds, defaultStyles } from '../src';
@@ -21,11 +22,7 @@ describe('<TooltipWithBounds />', () => {
     const wrapper = shallow(<TooltipWithBounds unstyled>Hello</TooltipWithBounds>, {
       disableLifecycleMethods: true,
     }).dive();
-    const styles = wrapper
-      .find('Tooltip')
-      .dive()
-      .find('.visx-tooltip')
-      .props().style as any;
+    const styles = wrapper.find('Tooltip').props().style as any;
     Object.keys(defaultStyles).forEach(key => {
       expect(styles[key]).toBeUndefined();
     });

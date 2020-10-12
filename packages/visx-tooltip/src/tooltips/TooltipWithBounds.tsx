@@ -3,23 +3,20 @@ import { withBoundingRects, WithBoundingRectsProps } from '@visx/bounds';
 
 import Tooltip, { TooltipProps, defaultStyles } from './Tooltip';
 
-export type TooltipWithBoundsProps = {
-  offsetLeft?: number;
-  offsetTop?: number;
-} & TooltipProps &
+export type TooltipWithBoundsProps = TooltipProps &
   React.HTMLProps<HTMLDivElement> &
   WithBoundingRectsProps;
 
 function TooltipWithBounds({
+  children,
+  getRects,
   left: initialLeft = 0,
-  top: initialTop = 0,
   offsetLeft = 10,
   offsetTop = 10,
-  children,
-  rect: ownBounds,
   parentRect: parentBounds,
-  getRects,
+  rect: ownBounds,
   style = defaultStyles,
+  top: initialTop = 0,
   unstyled = false,
   ...otherProps
 }: TooltipWithBoundsProps) {
@@ -44,12 +41,12 @@ function TooltipWithBounds({
 
   return (
     <Tooltip
-      top={top}
-      left={left}
-      offsetTop={0}
-      offsetLeft={0}
-      style={style}
-      unstyled={unstyled}
+      style={{
+        left: 0,
+        top: 0,
+        transform: `translate(${left}px, ${top}px)`,
+        ...(!unstyled && style),
+      }}
       {...otherProps}
     >
       {children}
