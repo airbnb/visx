@@ -24,13 +24,29 @@ function TooltipWithBounds({
   let top = initialTop;
 
   if (ownBounds && parentBounds) {
-    const placeTooltipLeft =
-      offsetLeft + ownBounds.right > parentBounds.right ||
-      offsetLeft + ownBounds.right > window.innerWidth;
+    let placeTooltipLeft = false;
+    let placeTooltipUp = false;
 
-    const placeTooltipUp =
-      offsetTop + ownBounds.bottom > parentBounds.bottom ||
-      offsetTop + ownBounds.bottom > window.innerHeight;
+    if (parentBounds.width) {
+      const rightPlacementClippedPx = left + offsetLeft + ownBounds.width - parentBounds.width;
+      const leftPlacementClippedPx = ownBounds.width - left - offsetLeft;
+      placeTooltipLeft =
+        rightPlacementClippedPx > 0 && rightPlacementClippedPx > leftPlacementClippedPx;
+    } else {
+      const rightPlacementClippedPx = left + offsetLeft + ownBounds.width - window.innerWidth;
+      const leftPlacementClippedPx = ownBounds.width - left - offsetLeft;
+      placeTooltipLeft =
+        rightPlacementClippedPx > 0 && rightPlacementClippedPx > leftPlacementClippedPx;
+    }
+
+    if (parentBounds.height) {
+      const bottomPlacementClippedPx = top + offsetTop + ownBounds.height - parentBounds.height;
+      const topPlacementClippedPx = ownBounds.height - top - offsetTop;
+      placeTooltipUp =
+        bottomPlacementClippedPx > 0 && bottomPlacementClippedPx > topPlacementClippedPx;
+    } else {
+      placeTooltipUp = top + offsetTop + ownBounds.height > window.innerHeight;
+    }
 
     left = placeTooltipLeft ? left - ownBounds.width - offsetLeft : left + offsetLeft;
     top = placeTooltipUp ? top - ownBounds.height - offsetTop : top + offsetTop;
