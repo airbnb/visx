@@ -173,30 +173,24 @@ Lots coming soon, check out the [roadmap](./ROADMAP.md).
 
 - [williaster/data-ui](https://github.com/williaster/data-ui)
   ([Demo](https://williaster.github.io/data-ui/))
-- [Flaque/data-structures](https://github.com/Flaque/data-structures)
-  ([Interactive explanation of the trie data structure](https://trie.now.sh/))
 - [dylanmoz/trello](https://github.com/DylanMoz/dylanmoz.github.io/blob/source/src/pages/trello/TrelloGraph.js)
   ([Demo](http://dylanmoz.github.io/trello/))
   ([How to Make Beautiful Graphs With vx and React-Motion](https://devblog.classy.org/how-to-make-beautiful-graphs-with-vx-and-react-motion-6ffe7aecf6f3))
 - [gkunthara/Crypto-Chart](https://github.com/gkunthara/Crypto-Chart)
-  ([Demo](https://www.crypto-chart.com/home))
   ([Tutorial](https://medium.com/@georgekunthara/after-the-tutorial-the-first-react-app-4dce6645634e))
 - Collapsible tree with [`react-move`](https://github.com/react-tools/react-move) by
   [@techniq](https://github.com/techniq) ([Demo](https://codesandbox.io/s/n3w687vmqj))
   ([Radial demo](https://codesandbox.io/s/vmqwrkl395))
   ([More info](https://github.com/airbnb/visx/issues/162#issuecomment-335029517))
 - Bitcoin 30-day price by [@hshoff](https://github.com/hshoff)
-  ([Demo](https://viewsource.now.sh/bitcoin))
   ([Github](https://github.com/hshoff/viewsource#1-bitcoin-price-chart))
   ([YouTube](https://www.youtube.com/watch?v=oeE2tuspdHg))
 - Ethereum candlestick chart by [@hshoff](https://github.com/hshoff)
-  ([Demo](https://viewsource.now.sh/ethereum))
   ([Github](https://github.com/hshoff/viewsource#2-ethereum-candlestick-chart))
 - Song data visualization through spotify by [@bother7](https://github.com/bother7)
   ([Demo](https://spotalyzer-frontend.herokuapp.com/demo)
   ([Github](https://github.com/bother7/spotalyzer_frontend))
 - Investment Calculator ([website](https://investmentcalculator.io/))
-- Cryptagon - crypto portfolio tracker ([website](https://cryptagon.io/))
 - Animation with [`react-spring`](https://github.com/drcmda/react-spring/) by
   [@drcmda](https://github.com/drcmda) ([Demo](https://codesandbox.io/embed/j3x61vjz5v))
 - Code Coverage Dashboard by [@ezy](https://github.com/ezy)
@@ -205,14 +199,14 @@ Lots coming soon, check out the [roadmap](./ROADMAP.md).
 - Ethereum Portfolio Toolkit by [@JayWelsh](https://github.com/JayWelsh)
   ([Demo](https://cryptocape.com/)) ([Github](https://github.com/JayWelsh/CryptoCape))
 - Family tree by [@vkallore](https://github.com/vkallore)
-  ([Demo](https://vk-ft.now.sh/))([Github](https://github.com/vkallore/d3-vx-family-tree))
+  ([Github](https://github.com/vkallore/d3-vx-family-tree))
 - South African Coronavirus Data Visuals by [@JayWelsh](https://github.com/JayWelsh)
   ([Demo](https://coronamap.co.za/)) ([Github](https://github.com/JayWelsh/coronamap))
 - [CNN: Tracking America's Recovery](https://www.cnn.com/business/us-economic-recovery-coronavirus)
 - [Wall Street Journal: Americans Familiarize Themselves with the Word ‘Forbearance’](https://blogs.wsj.com/dailyshot/2020/04/13/the-daily-shot-americans-familiarize-themselves-with-the-word-forbearance/) by [@rayshan](https://github.com/rayshan) ([Demo](https://finance.shan.io/recessions-bear-markets-compared))
 - Dollar to food emoji caculator by [@gmlwo530](https://github.com/gmlwo530)
   ([Demo](https://dollar-to-food-emoji.web.app/)) ([Github](https://github.com/gmlwo530/dollar-to-food-emoji))
-
+- [zh-TW] Taiwan Real-time Air Quality Index by [@ArvinH](https://github.com/ArvinH)([Demo](https://codesandbox.io/s/simpleradar-aqi-with-tooltip-select-data-react-spring-item3?file=/Radar.tsx))([Tutorial](https://blog.arvinh.info/tech/datavis-visx))
 Have a project that's using `visx`? Open a pull request and we'll add it to the list.
 
 ## FAQ
