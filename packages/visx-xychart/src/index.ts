@@ -7,6 +7,7 @@ export { default as Tooltip } from './components/Tooltip';
 export { default as XYChart } from './components/XYChart';
 
 // series components
+export { default as BarGroup } from './components/series/BarGroup';
 export { default as BarSeries } from './components/series/BarSeries';
 export { default as BarStack } from './components/series/BarStack';
 export { default as LineSeries } from './components/series/LineSeries';
