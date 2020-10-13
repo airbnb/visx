@@ -40,7 +40,7 @@ describe('<BarStack />', () => {
     const wrapper = mount(
       <DataProvider {...providerProps}>
         <svg>
-          <BarStack>
+          <BarStack horizontal>
             <BarSeries dataKey={series1.key} {...series1} />
             <BarSeries dataKey={series2.key} {...series2} />
           </BarStack>
