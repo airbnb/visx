@@ -6,11 +6,16 @@ const INITIAL_DIMENSIONS = {
   margin: { top: 0, right: 0, bottom: 0, left: 0 },
 };
 
-type Dimensions = typeof INITIAL_DIMENSIONS;
+export type Dimensions = typeof INITIAL_DIMENSIONS;
 
 /** A hook for accessing and setting memoized width, height, and margin chart dimensions. */
-export default function useDimensions(): [Dimensions, (dims: Dimensions) => void] {
-  const [dimensions, privateSetDimensions] = useState<Dimensions>(INITIAL_DIMENSIONS);
+export default function useDimensions(
+  initialDimensions?: Partial<Dimensions>,
+): [Dimensions, (dims: Dimensions) => void] {
+  const [dimensions, privateSetDimensions] = useState<Dimensions>({
+    ...INITIAL_DIMENSIONS,
+    ...initialDimensions,
+  });
 
   // expose a setter with better memoization logic
   const publicSetDimensions = useCallback(
