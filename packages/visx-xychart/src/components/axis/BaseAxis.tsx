@@ -1,6 +1,7 @@
 import React, { useMemo, useContext } from 'react';
 import { AxisScale } from '@visx/axis';
 import { AxisProps as VxAxisProps } from '@visx/axis/lib/axis/Axis';
+import { ScaleInput } from '@visx/scale';
 import DataContext from '../../context/DataContext';
 
 export type BaseAxisProps<Scale extends AxisScale> = Omit<
@@ -35,15 +36,19 @@ export default function BaseAxis<Scale extends AxisScale>({
 
   const tickLabelProps = useMemo(
     () =>
-      props.tickLabelProps || // use props if passed
-      (axisStyles // else construct from theme if possible
-        ? () =>
-            orientation === 'left' || orientation === 'right'
-              ? // by default, wrap vertical-axis tick labels within the allotted margin space
-                // this does not currently account for axis label
-                { ...axisStyles.tickLabel, width: margin?.[orientation] }
-              : axisStyles.tickLabel
-        : undefined),
+      props.tickLabelProps || axisStyles // construct from props + theme if possible
+        ? (value: ScaleInput<Scale>, index: number) =>
+            // by default, wrap vertical-axis tick labels within the allotted margin space
+            // this does not currently account for axis label
+            ({
+              ...axisStyles?.tickLabel,
+              width:
+                orientation === 'left' || orientation === 'right'
+                  ? margin?.[orientation]
+                  : undefined,
+              ...props.tickLabelProps?.(value, index),
+            })
+        : undefined,
 
     [props.tickLabelProps, axisStyles, orientation, margin],
   );

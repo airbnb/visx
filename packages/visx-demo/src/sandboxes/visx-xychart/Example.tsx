@@ -5,7 +5,7 @@ import {
   AnimatedGrid,
   DataProvider,
   BarGroup,
-  BarSeries,
+  AnimatedBarSeries,
   BarStack,
   LineSeries,
   Tooltip,
@@ -59,19 +59,19 @@ export default function Example({ height }: Props) {
             />
             {renderBarStack && (
               <BarStack horizontal={renderHorizontally}>
-                <BarSeries
+                <AnimatedBarSeries
                   dataKey="New York"
                   data={data}
                   xAccessor={accessors.x['New York']}
                   yAccessor={accessors.y['New York']}
                 />
-                <BarSeries
+                <AnimatedBarSeries
                   dataKey="San Francisco"
                   data={data}
                   xAccessor={accessors.x['San Francisco']}
                   yAccessor={accessors.y['San Francisco']}
                 />
-                <BarSeries
+                <AnimatedBarSeries
                   dataKey="Austin"
                   data={data}
                   xAccessor={accessors.x.Austin}
@@ -81,19 +81,19 @@ export default function Example({ height }: Props) {
             )}
             {renderBarGroup && (
               <BarGroup horizontal={renderHorizontally}>
-                <BarSeries
+                <AnimatedBarSeries
                   dataKey="New York"
                   data={data}
                   xAccessor={accessors.x['New York']}
                   yAccessor={accessors.y['New York']}
                 />
-                <BarSeries
+                <AnimatedBarSeries
                   dataKey="San Francisco"
                   data={data}
                   xAccessor={accessors.x['San Francisco']}
                   yAccessor={accessors.y['San Francisco']}
                 />
-                <BarSeries
+                <AnimatedBarSeries
                   dataKey="Austin"
                   data={data}
                   xAccessor={accessors.x.Austin}
@@ -102,7 +102,7 @@ export default function Example({ height }: Props) {
               </BarGroup>
             )}
             {renderBarSeries && (
-              <BarSeries
+              <AnimatedBarSeries
                 dataKey="New York"
                 data={data}
                 xAccessor={accessors.x['New York']}

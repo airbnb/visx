@@ -12,6 +12,9 @@ export { default as BarSeries } from './components/series/BarSeries';
 export { default as BarStack } from './components/series/BarStack';
 export { default as LineSeries } from './components/series/LineSeries';
 
+// animated series components
+export { default as AnimatedBarSeries } from './components/series/AnimatedBarSeries';
+
 // context
 export { default as DataContext } from './context/DataContext';
 export { default as EventEmitterContext } from './context/EventEmitterContext';
