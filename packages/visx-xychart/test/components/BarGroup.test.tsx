@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { mount } from 'enzyme';
 import { BarGroup, BarSeries, DataProvider, useEventEmitter } from '../../src';
-import setupTooltipTest from '../mocks/setupTooltipTest.test';
+import setupTooltipTest from '../mocks/setupTooltipTest';
 
 const providerProps = {
   initialDimensions: { width: 100, height: 100 },

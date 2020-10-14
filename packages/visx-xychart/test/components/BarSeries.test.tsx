@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { mount } from 'enzyme';
 import { DataContext, BarSeries, useEventEmitter } from '../../src';
 import getDataContext from '../mocks/getDataContext';
-import setupTooltipTest from '../mocks/setupTooltipTest.test';
+import setupTooltipTest from '../mocks/setupTooltipTest';
 
 const series = { key: 'bar', data: [{}, {}], xAccessor: () => 0, yAccessor: () => 10 };
 

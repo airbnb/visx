@@ -1,4 +1,6 @@
+/* eslint import/no-extraneous-dependencies: 'off' */
 import React from 'react';
+import jest from 'jest';
 import { mount } from 'enzyme';
 import { DataProvider, EventEmitterProvider, TooltipContext, TooltipContextType } from '../../src';
 

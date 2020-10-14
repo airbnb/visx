@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 import { LinePath } from '@visx/shape';
 import { DataContext, LineSeries, useEventEmitter } from '../../src';
 import getDataContext from '../mocks/getDataContext';
-import setupTooltipTest from '../mocks/setupTooltipTest.test';
+import setupTooltipTest from '../mocks/setupTooltipTest';
 
 const series = { key: 'line', data: [{}], xAccessor: () => 4, yAccessor: () => 7 };
 
