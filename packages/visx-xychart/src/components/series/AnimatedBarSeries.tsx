@@ -1,7 +1,7 @@
 import { AxisScale } from '@visx/axis';
 import React from 'react';
-import BaseBarSeries, { BaseBarSeriesProps } from './BaseBarSeries';
-import AnimatedBars from './AnimatedBars';
+import BaseBarSeries, { BaseBarSeriesProps } from './private/BaseBarSeries';
+import AnimatedBars from './private/AnimatedBars';
 
 export default function AnimatedBarSeries<
   XScale extends AxisScale,

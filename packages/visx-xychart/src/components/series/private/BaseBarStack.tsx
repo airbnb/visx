@@ -8,15 +8,15 @@ import stackOrder from '@visx/shape/lib/util/stackOrder';
 import { extent } from 'd3-array';
 import getBandwidth from '@visx/shape/lib/util/getBandwidth';
 import { BaseBarSeriesProps } from './BaseBarSeries';
-import DataContext from '../../context/DataContext';
-import { Bar, BarsProps, BarStackDatum, CombinedStackData, DataContextType } from '../../types';
-import TooltipContext from '../../context/TooltipContext';
-import useEventEmitter, { HandlerParams } from '../../hooks/useEventEmitter';
-import isValidNumber from '../../typeguards/isValidNumber';
-import isChildWithProps from '../../typeguards/isChildWithProps';
-import combineBarBarStackData, { getStackValue } from '../../utils/combineBarStackData';
-import getBarStackRegistryData from '../../utils/getBarStackRegistryData';
-import findNearestStackDatum from '../../utils/findNearestStackDatum';
+import DataContext from '../../../context/DataContext';
+import { Bar, BarsProps, BarStackDatum, CombinedStackData, DataContextType } from '../../../types';
+import TooltipContext from '../../../context/TooltipContext';
+import useEventEmitter, { HandlerParams } from '../../../hooks/useEventEmitter';
+import isValidNumber from '../../../typeguards/isValidNumber';
+import isChildWithProps from '../../../typeguards/isChildWithProps';
+import combineBarBarStackData, { getStackValue } from '../../../utils/combineBarStackData';
+import getBarStackRegistryData from '../../../utils/getBarStackRegistryData';
+import findNearestStackDatum from '../../../utils/findNearestStackDatum';
 
 export type BaseBarStackProps<
   XScale extends PositionScale,

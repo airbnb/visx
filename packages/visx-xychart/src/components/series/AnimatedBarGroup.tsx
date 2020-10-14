@@ -1,7 +1,7 @@
 import React from 'react';
 import { PositionScale } from '@visx/shape/lib/types';
-import BaseBarGroup, { BaseBarGroupProps } from './BaseBarGroup';
-import AnimatedBars from './AnimatedBars';
+import BaseBarGroup, { BaseBarGroupProps } from './private/BaseBarGroup';
+import AnimatedBars from './private/AnimatedBars';
 
 export default function AnimatedBarGroup<
   XScale extends PositionScale,

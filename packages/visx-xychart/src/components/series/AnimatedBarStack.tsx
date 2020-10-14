@@ -1,7 +1,7 @@
 import React from 'react';
 import { PositionScale } from '@visx/shape/lib/types';
-import BaseBarStack, { BaseBarStackProps } from './BaseBarStack';
-import AnimatedBars from './AnimatedBars';
+import BaseBarStack, { BaseBarStackProps } from './private/BaseBarStack';
+import AnimatedBars from './private/AnimatedBars';
 
 export default function AnimatedBarStack<
   XScale extends PositionScale,
