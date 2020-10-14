@@ -1,6 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { mount } from 'enzyme';
-import { BarStack, BarSeries, DataProvider, DataContext } from '../../src';
+import { BarStack, BarSeries, DataProvider, DataContext, useEventEmitter } from '../../src';
+import setupTooltipTest from '../mocks/setupTooltipTest.test';
 
 const providerProps = {
   initialDimensions: { width: 100, height: 100 },
@@ -78,6 +79,42 @@ describe('<BarStack />', () => {
         </svg>
         <Assertion />
       </DataProvider>,
+    );
+  });
+
+  it('should invoke showTooltip/hideTooltip on mousemove/mouseout', () => {
+    expect.assertions(2);
+
+    const showTooltip = jest.fn();
+    const hideTooltip = jest.fn();
+
+    const EventEmitter = () => {
+      const emit = useEventEmitter();
+
+      useEffect(() => {
+        if (emit) {
+          // @ts-ignore not a React.MouseEvent
+          emit('mousemove', new MouseEvent('mousemove'));
+          expect(showTooltip).toHaveBeenCalledTimes(2); // one per key
+
+          // @ts-ignore not a React.MouseEvent
+          emit('mouseout', new MouseEvent('mouseout'));
+          expect(showTooltip).toHaveBeenCalled();
+        }
+      });
+
+      return null;
+    };
+
+    setupTooltipTest(
+      <>
+        <BarStack horizontal>
+          <BarSeries dataKey={series1.key} {...series1} />
+          <BarSeries dataKey={series2.key} {...series2} />
+        </BarStack>
+        <EventEmitter />
+      </>,
+      { showTooltip, hideTooltip },
     );
   });
 });

@@ -24,6 +24,9 @@ export { default as EventEmitterProvider } from './providers/EventEmitterProvide
 export { default as ThemeProvider } from './providers/ThemeProvider';
 export { default as TooltipProvider } from './providers/TooltipProvider';
 
+// hooks
+export { default as useEventEmitter } from './hooks/useEventEmitter';
+
 // themes
 export { default as lightTheme } from './theme/themes/light';
 export { default as darkTheme } from './theme/themes/dark';
