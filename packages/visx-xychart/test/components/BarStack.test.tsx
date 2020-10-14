@@ -55,7 +55,6 @@ describe('<BarStack />', () => {
 
     function Assertion() {
       const { yScale, dataRegistry } = useContext(DataContext);
-      console.log('render Assertion');
       if (yScale && dataRegistry?.keys().length === 2) {
         expect(yScale.domain()).toEqual([-20, 10]);
       }

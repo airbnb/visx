@@ -16,7 +16,6 @@ function getDataContext(entries?: Parameters<typeof DataRegistry.prototype.regis
     dataRegistry,
     registerData: data => {
       dataRegistry.registerData(data);
-      console.log('registered', dataRegistry.keys());
     },
     unregisterData: keys => {
       dataRegistry.unregisterData(keys);
