@@ -1,6 +1,5 @@
 /* eslint import/no-extraneous-dependencies: 'off' */
 import React from 'react';
-import jest from 'jest';
 import { mount } from 'enzyme';
 import { DataProvider, EventEmitterProvider, TooltipContext, TooltipContextType } from '../../src';
 
@@ -12,9 +11,11 @@ const providerProps = {
 
 const defaultTooltipContext = {
   tooltipOpen: false,
-  showTooltip: jest.fn(),
+  /* eslint-disable no-undef */
+  showTooltip: jest.fn(), // eslint doesn't know jest is in context in non-.test file
   updateTooltip: jest.fn(),
   hideTooltip: jest.fn(),
+  /* eslint-enable no-undef */
 };
 
 // sets up boilerplate context for testing tooltips
