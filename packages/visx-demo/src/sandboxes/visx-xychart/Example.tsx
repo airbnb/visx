@@ -4,7 +4,7 @@ import {
   AnimatedAxis,
   AnimatedGrid,
   DataProvider,
-  BarGroup,
+  AnimatedBarGroup,
   AnimatedBarSeries,
   AnimatedBarStack,
   LineSeries,
@@ -80,7 +80,7 @@ export default function Example({ height }: Props) {
               </AnimatedBarStack>
             )}
             {renderBarGroup && (
-              <BarGroup horizontal={renderHorizontally}>
+              <AnimatedBarGroup horizontal={renderHorizontally}>
                 <AnimatedBarSeries
                   dataKey="New York"
                   data={data}
@@ -99,7 +99,7 @@ export default function Example({ height }: Props) {
                   xAccessor={accessors.x.Austin}
                   yAccessor={accessors.y.Austin}
                 />
-              </BarGroup>
+              </AnimatedBarGroup>
             )}
             {renderBarSeries && (
               <AnimatedBarSeries

@@ -15,6 +15,7 @@ export { default as LineSeries } from './components/series/LineSeries';
 // animated series components
 export { default as AnimatedBarSeries } from './components/series/AnimatedBarSeries';
 export { default as AnimatedBarStack } from './components/series/AnimatedBarStack';
+export { default as AnimatedBarGroup } from './components/series/AnimatedBarGroup';
 
 // context
 export { default as DataContext } from './context/DataContext';

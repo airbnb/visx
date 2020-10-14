@@ -18,7 +18,6 @@ export type BaseBarSeriesProps<
 > = SeriesProps<XScale, YScale, Datum> & {
   /** Rendered component which is passed BarsProps by BaseBarSeries after processing. */
   BarsComponent: React.FC<BarsProps<XScale, YScale>>;
-
   /** Whether bars should be rendered horizontally instead of vertically. */
   horizontal?: boolean;
   /**

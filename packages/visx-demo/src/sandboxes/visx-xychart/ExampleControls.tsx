@@ -9,7 +9,7 @@ const dateScaleConfig = { type: 'band', paddingInner: 0.3 } as const;
 const temperatureScaleConfig = { type: 'linear' } as const;
 const numTicks = 4;
 const data = cityTemperature.slice(200, 275);
-const dataSmall = data.slice(0, 25);
+const dataSmall = data.slice(0, 20);
 const getDate = (d: CityTemperature) => d.date;
 const getSfTemperature = (d: CityTemperature) => Number(d['San Francisco']);
 const getNegativeSfTemperature = (d: CityTemperature) => -getSfTemperature(d);
