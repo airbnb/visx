@@ -1,15 +1,15 @@
 import React, { useContext, useCallback, useMemo } from 'react';
 import { AxisScale } from '@visx/axis';
-import DataContext from '../../context/DataContext';
-import { BarsProps, SeriesProps } from '../../types';
-import withRegisteredData, { WithRegisteredDataProps } from '../../enhancers/withRegisteredData';
-import getScaledValueFactory from '../../utils/getScaledValueFactory';
-import isValidNumber from '../../typeguards/isValidNumber';
-import getScaleBandwidth from '../../utils/getScaleBandwidth';
-import findNearestDatumX from '../../utils/findNearestDatumX';
-import findNearestDatumY from '../../utils/findNearestDatumY';
-import useEventEmitter, { HandlerParams } from '../../hooks/useEventEmitter';
-import TooltipContext from '../../context/TooltipContext';
+import DataContext from '../../../context/DataContext';
+import { BarsProps, SeriesProps } from '../../../types';
+import withRegisteredData, { WithRegisteredDataProps } from '../../../enhancers/withRegisteredData';
+import getScaledValueFactory from '../../../utils/getScaledValueFactory';
+import isValidNumber from '../../../typeguards/isValidNumber';
+import getScaleBandwidth from '../../../utils/getScaleBandwidth';
+import findNearestDatumX from '../../../utils/findNearestDatumX';
+import findNearestDatumY from '../../../utils/findNearestDatumY';
+import useEventEmitter, { HandlerParams } from '../../../hooks/useEventEmitter';
+import TooltipContext from '../../../context/TooltipContext';
 
 export type BaseBarSeriesProps<
   XScale extends AxisScale,

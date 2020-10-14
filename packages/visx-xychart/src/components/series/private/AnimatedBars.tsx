@@ -2,7 +2,7 @@ import { AxisScale } from '@visx/axis';
 import { coerceNumber } from '@visx/scale';
 import React, { useMemo } from 'react';
 import { animated, useTransition } from 'react-spring';
-import { Bar, BarsProps } from '../../types';
+import { Bar, BarsProps } from '../../../types';
 
 function enterUpdate({ x, y, width, height, fill }: Bar) {
   return {

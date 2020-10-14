@@ -86,7 +86,7 @@ describe('<BaseAxis />', () => {
     expect(axis.prop('tickStroke')).toBe(axisStyles.tickLine.stroke);
   });
   it('should use props.tickLabelProps if passed', () => {
-    const tickLabelProps = jest.fn();
+    const tickLabelProps = jest.fn(() => ({ fill: 'visx' }));
     const axis = mount(
       // @ts-ignore partial context value
       <DataContext.Provider value={{ theme: lightTheme }}>
@@ -97,9 +97,10 @@ describe('<BaseAxis />', () => {
         />
       </DataContext.Provider>,
     ).find(AxisComponent);
-    expect(axis.prop('tickLabelProps')).toBe(tickLabelProps);
+    const tickLabelPropsFn = axis.prop('tickLabelProps') as Function;
+    expect(tickLabelPropsFn()).toMatchObject({ fill: 'visx' });
   });
-  it('should use construct tickLabelProps from theme if props.tickLabelProps is not passed', () => {
+  it('should construct tickLabelProps from theme if props.tickLabelProps is not passed', () => {
     const tickStyles = lightTheme.axisStyles.y.left.tickLabel;
     const axis = mount(
       // @ts-ignore partial context value

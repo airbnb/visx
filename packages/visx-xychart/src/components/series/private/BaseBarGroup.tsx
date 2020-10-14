@@ -1,16 +1,16 @@
 import React, { useContext, useCallback, useMemo, useEffect } from 'react';
 import { PositionScale } from '@visx/shape/lib/types';
 import { scaleBand } from '@visx/scale';
-import isChildWithProps from '../../typeguards/isChildWithProps';
+import isChildWithProps from '../../../typeguards/isChildWithProps';
 import { BaseBarSeriesProps } from './BaseBarSeries';
-import { BarsProps, DataContextType } from '../../types';
-import DataContext from '../../context/DataContext';
-import getScaleBandwidth from '../../utils/getScaleBandwidth';
-import isValidNumber from '../../typeguards/isValidNumber';
-import findNearestDatumY from '../../utils/findNearestDatumY';
-import findNearestDatumX from '../../utils/findNearestDatumX';
-import useEventEmitter, { HandlerParams } from '../../hooks/useEventEmitter';
-import TooltipContext from '../../context/TooltipContext';
+import { BarsProps, DataContextType } from '../../../types';
+import DataContext from '../../../context/DataContext';
+import getScaleBandwidth from '../../../utils/getScaleBandwidth';
+import isValidNumber from '../../../typeguards/isValidNumber';
+import findNearestDatumY from '../../../utils/findNearestDatumY';
+import findNearestDatumX from '../../../utils/findNearestDatumX';
+import useEventEmitter, { HandlerParams } from '../../../hooks/useEventEmitter';
+import TooltipContext from '../../../context/TooltipContext';
 
 export type BaseBarGroupProps<XScale extends PositionScale, YScale extends PositionScale> = {
   /** Whether to render the Stack horizontally instead of vertically. */
