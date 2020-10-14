@@ -6,7 +6,7 @@ import {
   DataProvider,
   BarGroup,
   AnimatedBarSeries,
-  BarStack,
+  AnimatedBarStack,
   LineSeries,
   Tooltip,
   XYChart,
@@ -58,7 +58,7 @@ export default function Example({ height }: Props) {
               numTicks={numTicks}
             />
             {renderBarStack && (
-              <BarStack horizontal={renderHorizontally}>
+              <AnimatedBarStack horizontal={renderHorizontally}>
                 <AnimatedBarSeries
                   dataKey="New York"
                   data={data}
@@ -77,7 +77,7 @@ export default function Example({ height }: Props) {
                   xAccessor={accessors.x.Austin}
                   yAccessor={accessors.y.Austin}
                 />
-              </BarStack>
+              </AnimatedBarStack>
             )}
             {renderBarGroup && (
               <BarGroup horizontal={renderHorizontally}>
