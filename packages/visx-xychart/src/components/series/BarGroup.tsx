@@ -83,7 +83,6 @@ export default function BarGroup<
       // and let Tooltip find the nearest point among them
       dataKeys.forEach(key => {
         const entry = dataRegistry.get(key);
-
         if (entry && svgPoint && width && height && showTooltip) {
           const datum = (horizontal ? findNearestDatumY : findNearestDatumX)({
             point: svgPoint,
