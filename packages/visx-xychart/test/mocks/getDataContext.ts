@@ -8,16 +8,18 @@ const height = 10;
 const margin = { top: 0, right: 0, bottom: 0, left: 0 };
 const noOp = () => {};
 
-const getDataContext = (
-  entries?: Parameters<typeof DataRegistry.prototype.registerData>[0],
-): DataContextType<any, any, any> => {
+function getDataContext(entries?: Parameters<typeof DataRegistry.prototype.registerData>[0]) {
   const dataRegistry = new DataRegistry();
   if (entries) dataRegistry.registerData(entries);
 
-  const mockContext = {
+  const mockContext: DataContextType<any, any, any> = {
     dataRegistry,
-    registerData: dataRegistry.registerData,
-    unregisterData: dataRegistry.unregisterData,
+    registerData: data => {
+      dataRegistry.registerData(data);
+    },
+    unregisterData: keys => {
+      dataRegistry.unregisterData(keys);
+    },
     xScale: scaleLinear({ domain: [0, 10], range: [0, width] }),
     yScale: scaleLinear({ domain: [0, 10], range: [0, height] }),
     colorScale: scaleOrdinal({ domain: ['sf', 'ny', 'la'], range: ['purple', 'violet', 'grape'] }),
@@ -31,6 +33,6 @@ const getDataContext = (
   };
 
   return mockContext;
-};
+}
 
 export default getDataContext;
