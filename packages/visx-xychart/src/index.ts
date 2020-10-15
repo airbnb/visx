@@ -7,12 +7,14 @@ export { default as Tooltip } from './components/Tooltip';
 export { default as XYChart } from './components/XYChart';
 
 // series components
+export { default as AreaSeries } from './components/series/AreaSeries';
 export { default as BarGroup } from './components/series/BarGroup';
 export { default as BarSeries } from './components/series/BarSeries';
 export { default as BarStack } from './components/series/BarStack';
 export { default as LineSeries } from './components/series/LineSeries';
 
 // animated series components
+export { default as AnimatedAreaSeries } from './components/series/AnimatedAreaSeries';
 export { default as AnimatedBarSeries } from './components/series/AnimatedBarSeries';
 export { default as AnimatedBarStack } from './components/series/AnimatedBarStack';
 export { default as AnimatedBarGroup } from './components/series/AnimatedBarGroup';

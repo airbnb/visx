@@ -9,6 +9,7 @@ import useEventEmitter, { HandlerParams } from '../../../hooks/useEventEmitter';
 import findNearestDatumX from '../../../utils/findNearestDatumX';
 import TooltipContext from '../../../context/TooltipContext';
 import findNearestDatumY from '../../../utils/findNearestDatumY';
+import isValidNumber from '../../../typeguards/isValidNumber';
 
 export type BaseLineSeriesProps<
   XScale extends AxisScale,
@@ -28,7 +29,7 @@ function BaseLineSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
   xScale,
   yAccessor,
   yScale,
-  horizontal = true,
+  horizontal,
   PathComponent = 'path',
   ...lineProps
 }: BaseLineSeriesProps<XScale, YScale, Datum> & WithRegisteredDataProps<XScale, YScale, Datum>) {
@@ -42,7 +43,7 @@ function BaseLineSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
     (params?: HandlerParams) => {
       const { svgPoint } = params || {};
       if (svgPoint && width && height && showTooltip) {
-        const datum = (horizontal ? findNearestDatumX : findNearestDatumY)({
+        const datum = (horizontal ? findNearestDatumY : findNearestDatumX)({
           point: svgPoint,
           data,
           xScale,
@@ -76,7 +77,13 @@ function BaseLineSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
       {...lineProps}
     >
       {({ path }) => (
-        <PathComponent stroke={color} strokeWidth={2} {...lineProps} d={path(data) || ''} />
+        <PathComponent
+          stroke={color}
+          strokeWidth={2}
+          fill="transparent"
+          {...lineProps}
+          d={path(data) || ''}
+        />
       )}
     </LinePath>
   );
