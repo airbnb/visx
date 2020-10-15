@@ -21,7 +21,7 @@ export type BaseBarGroupProps<XScale extends PositionScale, YScale extends Posit
   padding?: number;
   /** Comparator function to sort `dataKeys` within a bar group. By default the DOM rendering order of `BarGroup`s `children` is used. */
   sortBars?: (dataKeyA: string, dataKeyB: string) => number;
-  /** Rendered component which is passed BarsProps by BaseBarSeries after processing. */
+  /** Rendered component which is passed BarsProps by BaseBarGroup after processing. */
   BarsComponent: React.FC<BarsProps<XScale, YScale>>;
 };
 

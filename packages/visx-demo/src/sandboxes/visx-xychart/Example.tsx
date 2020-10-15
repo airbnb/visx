@@ -2,12 +2,12 @@ import React from 'react';
 import { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
 import {
   AnimatedAxis,
-  AnimatedGrid,
-  DataProvider,
   AnimatedBarGroup,
   AnimatedBarSeries,
   AnimatedBarStack,
-  LineSeries,
+  AnimatedGrid,
+  AnimatedLineSeries,
+  DataProvider,
   Tooltip,
   XYChart,
 } from '@visx/xychart';
@@ -112,14 +112,14 @@ export default function Example({ height }: Props) {
             )}
             {renderLineSeries && (
               <>
-                <LineSeries
+                <AnimatedLineSeries
                   dataKey="San Francisco"
                   data={renderBarStack ? data : data}
                   xAccessor={accessors.x['San Francisco']}
                   yAccessor={accessors.y['San Francisco']}
                   horizontal={!renderHorizontally}
                 />
-                <LineSeries
+                <AnimatedLineSeries
                   dataKey="Austin"
                   data={renderBarStack ? data : data}
                   xAccessor={accessors.x.Austin}
