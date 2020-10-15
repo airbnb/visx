@@ -16,6 +16,6 @@ export default function getScaledValueFactory<Scale extends AxisScale, Datum>(
         (align === 'start' ? 0 : getScaleBandwidth(scale)) / (align === 'center' ? 2 : 1);
       return scaledValue + bandwidthOffset;
     }
-    return NaN;
+    return null;
   };
 }

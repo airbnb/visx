@@ -1,25 +1,27 @@
 import React, { useContext, useCallback } from 'react';
 import LinePath from '@visx/shape/lib/shapes/LinePath';
 import { AxisScale } from '@visx/axis';
-import DataContext from '../../context/DataContext';
-import { SeriesProps } from '../../types';
-import withRegisteredData, { WithRegisteredDataProps } from '../../enhancers/withRegisteredData';
-import getScaledValueFactory from '../../utils/getScaledValueFactory';
-import useEventEmitter, { HandlerParams } from '../../hooks/useEventEmitter';
-import findNearestDatumX from '../../utils/findNearestDatumX';
-import TooltipContext from '../../context/TooltipContext';
-import findNearestDatumY from '../../utils/findNearestDatumY';
+import DataContext from '../../../context/DataContext';
+import { SeriesProps } from '../../../types';
+import withRegisteredData, { WithRegisteredDataProps } from '../../../enhancers/withRegisteredData';
+import getScaledValueFactory from '../../../utils/getScaledValueFactory';
+import useEventEmitter, { HandlerParams } from '../../../hooks/useEventEmitter';
+import findNearestDatumX from '../../../utils/findNearestDatumX';
+import TooltipContext from '../../../context/TooltipContext';
+import findNearestDatumY from '../../../utils/findNearestDatumY';
 
-type LineSeriesProps<
+export type BaseLineSeriesProps<
   XScale extends AxisScale,
   YScale extends AxisScale,
   Datum extends object
 > = SeriesProps<XScale, YScale, Datum> & {
   /** Whether line should be rendered horizontally instead of vertically. */
   horizontal?: boolean;
+  /** Rendered component which is passed path props by BaseLineSeries after processing. */
+  PathComponent?: React.FC<Omit<React.SVGProps<SVGPathElement>, 'ref'>> | 'path';
 };
 
-function LineSeries<XScale extends AxisScale, YScale extends AxisScale, Datum extends object>({
+function BaseLineSeries<XScale extends AxisScale, YScale extends AxisScale, Datum extends object>({
   data,
   dataKey,
   xAccessor,
@@ -27,8 +29,9 @@ function LineSeries<XScale extends AxisScale, YScale extends AxisScale, Datum ex
   yAccessor,
   yScale,
   horizontal = true,
+  PathComponent = 'path',
   ...lineProps
-}: LineSeriesProps<XScale, YScale, Datum> & WithRegisteredDataProps<XScale, YScale, Datum>) {
+}: BaseLineSeriesProps<XScale, YScale, Datum> & WithRegisteredDataProps<XScale, YScale, Datum>) {
   const { colorScale, theme, width, height } = useContext(DataContext);
   const { showTooltip, hideTooltip } = useContext(TooltipContext) ?? {};
   const getScaledX = useCallback(getScaledValueFactory(xScale, xAccessor), [xScale, xAccessor]);
@@ -71,8 +74,12 @@ function LineSeries<XScale extends AxisScale, YScale extends AxisScale, Datum ex
       stroke={color}
       strokeWidth={2}
       {...lineProps}
-    />
+    >
+      {({ path }) => (
+        <PathComponent stroke={color} strokeWidth={2} {...lineProps} d={path(data) || ''} />
+      )}
+    </LinePath>
   );
 }
 
-export default withRegisteredData(LineSeries);
+export default withRegisteredData(BaseLineSeries);
