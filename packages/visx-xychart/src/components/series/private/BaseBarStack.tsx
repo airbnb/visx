@@ -1,5 +1,5 @@
 import React, { useContext, useCallback, useMemo, useEffect } from 'react';
-import { stack as d3stack } from 'd3-shape';
+import { SeriesPoint, stack as d3stack } from 'd3-shape';
 import { PositionScale, StackPathConfig } from '@visx/shape/lib/types';
 import { getFirstItem, getSecondItem } from '@visx/shape/lib/util/accessors';
 import stackOffset from '@visx/shape/lib/util/stackOffset';
@@ -42,6 +42,7 @@ function BaseBarStack<
   offset,
   BarsComponent,
 }: BaseBarStackProps<XScale, YScale, Datum>) {
+  type StackBar = SeriesPoint<CombinedStackData<XScale, YScale>>;
   const {
     xScale,
     yScale,
@@ -67,7 +68,7 @@ function BaseBarStack<
 
   // extract data keys from child series
   const dataKeys: string[] = useMemo(
-    () => barSeriesChildren.map(child => child.props.dataKey ?? '').filter(key => key),
+    () => barSeriesChildren.filter(child => child.props.dataKey).map(child => child.props.dataKey),
     [barSeriesChildren],
   );
 
@@ -81,9 +82,10 @@ function BaseBarStack<
   // update the domain to account for the (directional) stacked value
   const comprehensiveDomain = useMemo(
     () =>
-      extent<number, number>(
-        combinedData.map(d => d.positiveSum).concat(combinedData.map(d => d.negativeSum)),
-        d => d,
+      extent(
+        (extent(combinedData, d => d.positiveSum) as [number, number]).concat(
+          extent(combinedData, d => d.negativeSum) as [number, number],
+        ),
       ) as [number, number],
     [combinedData],
   );
@@ -177,6 +179,30 @@ function BaseBarStack<
   }
 
   const barThickness = getBandwidth(horizontal ? yScale : xScale);
+  const halfBarThickness = barThickness / 2;
+
+  let getWidth: (bar: StackBar) => number | undefined;
+  let getHeight: (bar: StackBar) => number | undefined;
+  let getX: (bar: StackBar) => number | undefined;
+  let getY: (bar: StackBar) => number | undefined;
+
+  if (horizontal) {
+    getWidth = bar => (xScale(getSecondItem(bar)) || 0) - (xScale(getFirstItem(bar)) || 0);
+    getHeight = () => barThickness;
+    getX = bar => xScale(getFirstItem(bar));
+    getY = bar =>
+      'bandwidth' in yScale
+        ? yScale(getStackValue(bar.data))
+        : Math.max((yScale(getStackValue(bar.data)) || 0) - halfBarThickness);
+  } else {
+    getWidth = () => barThickness;
+    getHeight = bar => (yScale(getFirstItem(bar)) || 0) - (yScale(getSecondItem(bar)) || 0);
+    getX = bar =>
+      'bandwidth' in xScale
+        ? xScale(getStackValue(bar.data))
+        : Math.max((xScale(getStackValue(bar.data)) || 0) - halfBarThickness);
+    getY = bar => yScale(getSecondItem(bar));
+  }
 
   const bars = stackedData
     .flatMap((barStack, stackIndex) => {
@@ -184,32 +210,19 @@ function BaseBarStack<
       if (!entry) return null;
 
       return barStack.map((bar, index) => {
-        const barLength = horizontal
-          ? (xScale(getSecondItem(bar)) || 0) - (xScale(getFirstItem(bar)) || 0)
-          : (yScale(getFirstItem(bar)) || 0) - (yScale(getSecondItem(bar)) || 0);
+        const barX = getX(bar);
+        if (!isValidNumber(barX)) return null;
+        const barY = getY(bar);
+        if (!isValidNumber(barY)) return null;
 
-        const barY = horizontal
-          ? 'bandwidth' in yScale
-            ? yScale(getStackValue(bar.data))
-            : Math.max((yScale(getStackValue(bar.data)) || 0) - barThickness / 2)
-          : yScale(entry.yAccessor(bar));
-
-        const barX: number | undefined = horizontal
-          ? xScale(getFirstItem(bar))
-          : 'bandwidth' in xScale
-          ? xScale(getStackValue(bar.data))
-          : Math.max((xScale(getStackValue(bar.data)) || 0) - barThickness / 2);
-
-        return isValidNumber(barX) && isValidNumber(barY)
-          ? {
-              key: `${stackIndex}-${barStack.key}-${index}`,
-              x: barX ?? 0,
-              y: barY ?? 0,
-              width: horizontal ? barLength : barThickness,
-              height: horizontal ? barThickness : barLength,
-              fill: colorScale(barStack.key),
-            }
-          : null;
+        return {
+          key: `${stackIndex}-${barStack.key}-${index}`,
+          x: barX,
+          y: barY,
+          width: getWidth(bar),
+          height: getHeight(bar),
+          fill: colorScale(barStack.key),
+        };
       });
     })
     .filter(bar => bar) as Bar[];
