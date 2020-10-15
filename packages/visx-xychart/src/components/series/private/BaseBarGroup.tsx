@@ -142,30 +142,38 @@ export default function BaseBarGroup<
 
   const barThickness = getScaleBandwidth(groupScale);
 
-  const bars = registryEntries.flatMap(({ xAccessor, yAccessor, data, key }) =>
-    data.map((datum, index) => {
-      const barLength = horizontal
-        ? (xScale(xAccessor(datum)) ?? 0) - xZeroPosition
-        : (yScale(yAccessor(datum)) ?? 0) - yZeroPosition;
+  const bars = registryEntries.flatMap(({ xAccessor, yAccessor, data, key }) => {
+    const getLength = (d: Datum) =>
+      horizontal
+        ? (xScale(xAccessor(d)) ?? 0) - xZeroPosition
+        : (yScale(yAccessor(d)) ?? 0) - yZeroPosition;
 
-      const groupPosition = (horizontal ? yScale(yAccessor(datum)) : xScale(xAccessor(datum))) ?? 0;
+    const getGroupPosition = horizontal
+      ? (d: Datum) => yScale(yAccessor(d)) ?? 0
+      : (d: Datum) => xScale(xAccessor(d)) ?? 0;
 
-      const withinGroupPosition = groupScale(key) ?? 0;
+    const withinGroupPosition = groupScale(key) ?? 0;
 
-      return {
-        key: `${key}-${index}`,
-        x: horizontal
-          ? xZeroPosition + Math.min(0, barLength)
-          : groupPosition + withinGroupPosition,
-        y: horizontal
-          ? groupPosition + withinGroupPosition
-          : yZeroPosition + Math.min(0, barLength),
-        width: horizontal ? Math.abs(barLength) : barThickness,
-        height: horizontal ? barThickness : Math.abs(barLength),
-        fill: colorScale(key),
-      };
-    }),
-  );
+    const getX = horizontal
+      ? (d: Datum) => xZeroPosition + Math.min(0, getLength(d))
+      : (d: Datum) => getGroupPosition(d) + withinGroupPosition;
+
+    const getY = horizontal
+      ? (d: Datum) => getGroupPosition(d) + withinGroupPosition
+      : (d: Datum) => yZeroPosition + Math.min(0, getLength(d));
+
+    const getWidth = horizontal ? (d: Datum) => Math.abs(getLength(d)) : () => barThickness;
+    const getHeight = horizontal ? () => barThickness : (d: Datum) => Math.abs(getLength(d));
+
+    return data.map((datum, index) => ({
+      key: `${key}-${index}`,
+      x: getX(datum),
+      y: getY(datum),
+      width: getWidth(datum),
+      height: getHeight(datum),
+      fill: colorScale(key),
+    }));
+  });
 
   return (
     <g className="visx-bar-group">
