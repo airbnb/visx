@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react';
+import { animated } from 'react-spring';
 import { mount } from 'enzyme';
-import { DataContext, BarSeries, useEventEmitter } from '../../src';
+import { DataContext, AnimatedBarSeries, BarSeries, useEventEmitter } from '../../src';
 import getDataContext from '../mocks/getDataContext';
 import setupTooltipTest from '../mocks/setupTooltipTest';
 
@@ -60,5 +61,21 @@ describe('<BarSeries />', () => {
       </>,
       { showTooltip, hideTooltip },
     );
+  });
+});
+
+describe('<AnimatedBarSeries />', () => {
+  it('should be defined', () => {
+    expect(AnimatedBarSeries).toBeDefined();
+  });
+  it('should render an animated.rect', () => {
+    const wrapper = mount(
+      <DataContext.Provider value={getDataContext(series)}>
+        <svg>
+          <AnimatedBarSeries dataKey={series.key} {...series} />
+        </svg>
+      </DataContext.Provider>,
+    );
+    expect(wrapper.find(animated.rect)).toHaveLength(series.data.length);
   });
 });

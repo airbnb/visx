@@ -1,7 +1,8 @@
 import React, { useContext, useEffect } from 'react';
+import { animated } from 'react-spring';
 import { mount } from 'enzyme';
 import { LinePath } from '@visx/shape';
-import { DataContext, LineSeries, useEventEmitter } from '../../src';
+import { AnimatedLineSeries, DataContext, LineSeries, useEventEmitter } from '../../src';
 import getDataContext from '../mocks/getDataContext';
 import setupTooltipTest from '../mocks/setupTooltipTest';
 
@@ -62,5 +63,21 @@ describe('<LineSeries />', () => {
       </>,
       { showTooltip, hideTooltip },
     );
+  });
+});
+
+describe('<AnimatedLineSeries />', () => {
+  it('should be defined', () => {
+    expect(AnimatedLineSeries).toBeDefined();
+  });
+  it('should render an animated.path', () => {
+    const wrapper = mount(
+      <DataContext.Provider value={getDataContext(series)}>
+        <svg>
+          <AnimatedLineSeries dataKey={series.key} {...series} />
+        </svg>
+      </DataContext.Provider>,
+    );
+    expect(wrapper.find(animated.path)).toHaveLength(1);
   });
 });
