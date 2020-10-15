@@ -4,12 +4,12 @@ import findNearestDatumX from '../../src/utils/findNearestDatumX';
 import findNearestDatumY from '../../src/utils/findNearestDatumY';
 import findNearestDatumXY from '../../src/utils/findNearestDatumXY';
 import findNearestDatumSingleDimension from '../../src/utils/findNearestDatumSingleDimension';
-import { NearestDatumArgs } from '../../lib';
+import findNearestStackDatum from '../../src/utils/findNearestStackDatum';
+import { BarStackDatum, NearestDatumArgs } from '../../src';
 
 type Datum = { xVal: number; yVal: string };
 
 const params: NearestDatumArgs<AxisScale, AxisScale, Datum> = {
-  key: 'visx',
   width: 10,
   height: 10,
   point: { x: 3, y: 8 },
@@ -108,5 +108,30 @@ describe('findNearestDatumSingleDimension', () => {
         scaledValue: 8,
       })!.datum,
     ).toEqual({ xVal: 8, yVal: '8' });
+  });
+});
+
+describe('findNearestStackDatum', () => {
+  it('should be defined', () => {
+    expect(findNearestStackDatum).toBeDefined();
+  });
+
+  it('should find the nearest datum', () => {
+    const d1 = { yVal: '🍌' };
+    const d2 = { yVal: '🚀' };
+    expect(
+      findNearestStackDatum(
+        ({
+          ...params,
+          // type is not technically correct, but coerce for test
+        } as unknown) as NearestDatumArgs<
+          AxisScale,
+          AxisScale,
+          BarStackDatum<AxisScale, AxisScale>
+        >,
+        [d1, d2],
+        true,
+      )!.datum,
+    ).toEqual(d2); // nearest datum index=1
   });
 });

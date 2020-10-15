@@ -1,5 +1,5 @@
-import { AxisScale, AxisScaleOutput } from '@visx/axis';
-import { ScaleTypeToD3Scale, ScaleInput, D3Scale } from '@visx/scale';
+import { AxisScale } from '@visx/axis';
+import { ScaleTypeToD3Scale, ScaleInput } from '@visx/scale';
 import DataRegistry from '../classes/DataRegistry';
 import { XYChartTheme } from './theme';
 
@@ -24,9 +24,9 @@ export interface DataRegistryEntry<XScale extends AxisScale, YScale extends Axis
   /** whether the entry supports mouse events. */
   mouseEvents?: boolean;
   /** Optionally update the xScale. */
-  xScale?: <Scale extends D3Scale<AxisScaleOutput>>(xScale: Scale) => Scale;
+  xScale?: <Scale extends AxisScale>(xScale: Scale) => Scale;
   /** Optionally update the yScale. */
-  yScale?: <Scale extends D3Scale<AxisScaleOutput>>(yScale: Scale) => Scale;
+  yScale?: <Scale extends AxisScale>(yScale: Scale) => Scale;
   /** Legend shape for the data key. */
   legendShape?: LegendShape;
 }

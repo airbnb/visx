@@ -7,7 +7,7 @@ import { XYChartTheme } from '../types';
 import ThemeContext from '../context/ThemeContext';
 import DataContext from '../context/DataContext';
 import useDataRegistry from '../hooks/useDataRegistry';
-import useDimensions from '../hooks/useDimensions';
+import useDimensions, { Dimensions } from '../hooks/useDimensions';
 import useScales from '../hooks/useScales';
 
 /** Props that can be passed to initialize/update the provider config. */
@@ -15,6 +15,7 @@ export type DataProviderProps<
   XScaleConfig extends ScaleConfig<AxisScaleOutput, any, any>,
   YScaleConfig extends ScaleConfig<AxisScaleOutput, any, any>
 > = {
+  initialDimensions?: Partial<Dimensions>;
   theme?: XYChartTheme;
   xScale: XScaleConfig;
   yScale: YScaleConfig;
@@ -26,6 +27,7 @@ export default function DataProvider<
   YScaleConfig extends ScaleConfig<AxisScaleOutput>,
   Datum extends object
 >({
+  initialDimensions,
   theme: propsTheme,
   xScale: xScaleConfig,
   yScale: yScaleConfig,
@@ -36,7 +38,7 @@ export default function DataProvider<
   // a ThemeProvider is not present.
   const contextTheme = useContext(ThemeContext);
   const theme = propsTheme || contextTheme;
-  const [{ width, height, margin }, setDimensions] = useDimensions();
+  const [{ width, height, margin }, setDimensions] = useDimensions(initialDimensions);
   const innerWidth = width - (margin?.left ?? 0) - (margin?.right ?? 0);
   const innerHeight = height - (margin?.top ?? 0) - (margin?.bottom ?? 0);
 
