@@ -1,6 +1,6 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { mount } from 'enzyme';
-import { BarStack, BarSeries, DataProvider, DataContext, useEventEmitter } from '../../src';
+import { BarGroup, BarSeries, DataProvider, useEventEmitter } from '../../src';
 import setupTooltipTest from '../mocks/setupTooltipTest';
 
 const providerProps = {
@@ -32,7 +32,7 @@ const series2 = {
   ...accessors,
 };
 
-describe('<BarStack />', () => {
+describe('<BarGroup />', () => {
   it('should be defined', () => {
     expect(BarSeries).toBeDefined();
   });
@@ -41,45 +41,14 @@ describe('<BarStack />', () => {
     const wrapper = mount(
       <DataProvider {...providerProps}>
         <svg>
-          <BarStack horizontal>
+          <BarGroup horizontal>
             <BarSeries dataKey={series1.key} {...series1} />
             <BarSeries dataKey={series2.key} {...series2} />
-          </BarStack>
+          </BarGroup>
         </svg>
       </DataProvider>,
     );
     expect(wrapper.find('rect')).toHaveLength(4);
-  });
-
-  it('should update scale domain to include stack sums including negative values', () => {
-    expect.hasAssertions();
-
-    function Assertion() {
-      const { yScale, dataRegistry } = useContext(DataContext);
-      if (yScale && dataRegistry?.keys().length === 2) {
-        expect(yScale.domain()).toEqual([-20, 10]);
-      }
-      return null;
-    }
-
-    mount(
-      <DataProvider {...providerProps}>
-        <svg>
-          <BarStack>
-            <BarSeries dataKey={series1.key} {...series1} />
-            <BarSeries
-              dataKey={series2.key}
-              {...series2}
-              data={[
-                { x: 10, y: 5 },
-                { x: 7, y: -20 },
-              ]}
-            />
-          </BarStack>
-        </svg>
-        <Assertion />
-      </DataProvider>,
-    );
   });
 
   it('should invoke showTooltip/hideTooltip on mousemove/mouseout', () => {
@@ -108,10 +77,10 @@ describe('<BarStack />', () => {
 
     setupTooltipTest(
       <>
-        <BarStack horizontal>
+        <BarGroup horizontal>
           <BarSeries dataKey={series1.key} {...series1} />
           <BarSeries dataKey={series2.key} {...series2} />
-        </BarStack>
+        </BarGroup>
         <EventEmitter />
       </>,
       { showTooltip, hideTooltip },

@@ -9,7 +9,7 @@ const dateScaleConfig = { type: 'band', paddingInner: 0.3 } as const;
 const temperatureScaleConfig = { type: 'linear' } as const;
 const numTicks = 4;
 const data = cityTemperature.slice(200, 275);
-const dataSmall = data.slice(25);
+const dataSmall = data.slice(0, 25);
 const getDate = (d: CityTemperature) => d.date;
 const getSfTemperature = (d: CityTemperature) => Number(d['San Francisco']);
 const getNegativeSFTemperature = (d: CityTemperature) => -getSfTemperature(d);
@@ -42,6 +42,7 @@ type ProvidedProps = {
   renderHorizontally: boolean;
   renderBarSeries: boolean;
   renderBarStack: boolean;
+  renderBarGroup: boolean;
   renderLineSeries: boolean;
   sharedTooltip: boolean;
   showGridColumns: boolean;
@@ -74,7 +75,9 @@ export default function ExampleControls({ children }: ControlsProps) {
   const [snapTooltipToDatumX, setSnapTooltipToDatumX] = useState(true);
   const [snapTooltipToDatumY, setSnapTooltipToDatumY] = useState(true);
   const [sharedTooltip, setSharedTooltip] = useState(true);
-  const [renderBarOrBarStack, setRenderBarOrBarStack] = useState<'bar' | 'barstack'>('barstack');
+  const [renderBarStackOrGroup, setRenderBarStackOrGroup] = useState<'bar' | 'stack' | 'group'>(
+    'group',
+  );
   const [renderLineSeries, setRenderLineSeries] = useState(false);
   const [negativeValues, setNegativeValues] = useState(false);
 
@@ -117,20 +120,21 @@ export default function ExampleControls({ children }: ControlsProps) {
         accessors,
         animationTrajectory,
         config,
-        data: renderBarOrBarStack === 'bar' ? data : dataSmall,
+        data: renderBarStackOrGroup === 'bar' ? data : dataSmall,
         numTicks,
-        renderBarSeries: renderBarOrBarStack === 'bar',
-        renderBarStack: renderBarOrBarStack === 'barstack',
+        renderBarGroup: renderBarStackOrGroup === 'group',
+        renderBarSeries: renderBarStackOrGroup === 'bar',
+        renderBarStack: renderBarStackOrGroup === 'stack',
         renderHorizontally,
-        renderLineSeries: renderBarOrBarStack === 'bar' && renderLineSeries,
+        renderLineSeries: renderBarStackOrGroup === 'bar' && renderLineSeries,
         sharedTooltip,
         showGridColumns,
         showGridRows,
         showHorizontalCrosshair,
         showTooltip,
         showVerticalCrosshair,
-        snapTooltipToDatumX: renderBarOrBarStack === 'bar' && snapTooltipToDatumX,
-        snapTooltipToDatumY: renderBarOrBarStack === 'bar' && snapTooltipToDatumY,
+        snapTooltipToDatumX: renderBarStackOrGroup !== 'stack' && snapTooltipToDatumX,
+        snapTooltipToDatumY: renderBarStackOrGroup !== 'stack' && snapTooltipToDatumY,
         theme,
         xAxisOrientation,
         yAxisOrientation,
@@ -310,7 +314,7 @@ export default function ExampleControls({ children }: ControlsProps) {
           <label>
             <input
               type="checkbox"
-              disabled={!showTooltip || renderBarOrBarStack === 'barstack'}
+              disabled={!showTooltip || renderBarStackOrGroup === 'stack'}
               onChange={() => setSnapTooltipToDatumX(!snapTooltipToDatumX)}
               checked={showTooltip && snapTooltipToDatumX}
             />{' '}
@@ -319,7 +323,7 @@ export default function ExampleControls({ children }: ControlsProps) {
           <label>
             <input
               type="checkbox"
-              disabled={!showTooltip || renderBarOrBarStack === 'barstack'}
+              disabled={!showTooltip || renderBarStackOrGroup === 'stack'}
               onChange={() => setSnapTooltipToDatumY(!snapTooltipToDatumY)}
               checked={showTooltip && snapTooltipToDatumY}
             />{' '}
@@ -359,26 +363,36 @@ export default function ExampleControls({ children }: ControlsProps) {
           <label>
             <input
               type="checkbox"
+              disabled={renderBarStackOrGroup !== 'bar'}
               onChange={() => setRenderLineSeries(!renderLineSeries)}
               checked={renderLineSeries}
             />{' '}
             line
           </label>
+          &nbsp;&nbsp;&nbsp;&nbsp;
           <label>
             <input
               type="radio"
-              onChange={() => setRenderBarOrBarStack('bar')}
-              checked={renderBarOrBarStack === 'bar'}
+              onChange={() => setRenderBarStackOrGroup('bar')}
+              checked={renderBarStackOrGroup === 'bar'}
             />{' '}
             bar
           </label>
           <label>
             <input
               type="radio"
-              onChange={() => setRenderBarOrBarStack('barstack')}
-              checked={renderBarOrBarStack === 'barstack'}
+              onChange={() => setRenderBarStackOrGroup('stack')}
+              checked={renderBarStackOrGroup === 'stack'}
             />{' '}
             bar stack
+          </label>
+          <label>
+            <input
+              type="radio"
+              onChange={() => setRenderBarStackOrGroup('group')}
+              checked={renderBarStackOrGroup === 'group'}
+            />{' '}
+            bar group
           </label>
         </div>
         {/** data */}

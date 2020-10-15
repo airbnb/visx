@@ -7,6 +7,7 @@ export { default as Tooltip } from './components/Tooltip';
 export { default as XYChart } from './components/XYChart';
 
 // series components
+export { default as BarGroup } from './components/series/BarGroup';
 export { default as BarSeries } from './components/series/BarSeries';
 export { default as BarStack } from './components/series/BarStack';
 export { default as LineSeries } from './components/series/LineSeries';
@@ -22,6 +23,9 @@ export { default as DataProvider } from './providers/DataProvider';
 export { default as EventEmitterProvider } from './providers/EventEmitterProvider';
 export { default as ThemeProvider } from './providers/ThemeProvider';
 export { default as TooltipProvider } from './providers/TooltipProvider';
+
+// hooks
+export { default as useEventEmitter } from './hooks/useEventEmitter';
 
 // themes
 export { default as lightTheme } from './theme/themes/light';

@@ -4,6 +4,7 @@ import {
   AnimatedAxis,
   AnimatedGrid,
   DataProvider,
+  BarGroup,
   BarSeries,
   BarStack,
   LineSeries,
@@ -29,6 +30,7 @@ export default function Example({ height }: Props) {
         config,
         data,
         numTicks,
+        renderBarGroup,
         renderBarSeries,
         renderBarStack,
         renderHorizontally,
@@ -56,28 +58,48 @@ export default function Example({ height }: Props) {
               numTicks={numTicks}
             />
             {renderBarStack && (
-              <g fillOpacity={renderLineSeries ? 0.5 : 1}>
-                <BarStack horizontal={renderHorizontally}>
-                  <BarSeries
-                    dataKey="New York"
-                    data={data}
-                    xAccessor={accessors.x['New York']}
-                    yAccessor={accessors.y['New York']}
-                  />
-                  <BarSeries
-                    dataKey="San Francisco"
-                    data={data}
-                    xAccessor={accessors.x['San Francisco']}
-                    yAccessor={accessors.y['San Francisco']}
-                  />
-                  <BarSeries
-                    dataKey="Austin"
-                    data={data}
-                    xAccessor={accessors.x.Austin}
-                    yAccessor={accessors.y.Austin}
-                  />
-                </BarStack>
-              </g>
+              <BarStack horizontal={renderHorizontally}>
+                <BarSeries
+                  dataKey="New York"
+                  data={data}
+                  xAccessor={accessors.x['New York']}
+                  yAccessor={accessors.y['New York']}
+                />
+                <BarSeries
+                  dataKey="San Francisco"
+                  data={data}
+                  xAccessor={accessors.x['San Francisco']}
+                  yAccessor={accessors.y['San Francisco']}
+                />
+                <BarSeries
+                  dataKey="Austin"
+                  data={data}
+                  xAccessor={accessors.x.Austin}
+                  yAccessor={accessors.y.Austin}
+                />
+              </BarStack>
+            )}
+            {renderBarGroup && (
+              <BarGroup horizontal={renderHorizontally}>
+                <BarSeries
+                  dataKey="New York"
+                  data={data}
+                  xAccessor={accessors.x['New York']}
+                  yAccessor={accessors.y['New York']}
+                />
+                <BarSeries
+                  dataKey="San Francisco"
+                  data={data}
+                  xAccessor={accessors.x['San Francisco']}
+                  yAccessor={accessors.y['San Francisco']}
+                />
+                <BarSeries
+                  dataKey="Austin"
+                  data={data}
+                  xAccessor={accessors.x.Austin}
+                  yAccessor={accessors.y.Austin}
+                />
+              </BarGroup>
             )}
             {renderBarSeries && (
               <BarSeries
@@ -125,8 +147,8 @@ export default function Example({ height }: Props) {
                 showVerticalCrosshair={showVerticalCrosshair}
                 snapTooltipToDatumX={snapTooltipToDatumX}
                 snapTooltipToDatumY={snapTooltipToDatumY}
-                showDatumGlyph={snapTooltipToDatumX || snapTooltipToDatumY}
-                showSeriesGlyphs={sharedTooltip}
+                showDatumGlyph={(snapTooltipToDatumX || snapTooltipToDatumY) && !renderBarGroup}
+                showSeriesGlyphs={sharedTooltip && !renderBarGroup}
                 renderTooltip={({ tooltipData, colorScale }) => (
                   <>
                     {/** date */}

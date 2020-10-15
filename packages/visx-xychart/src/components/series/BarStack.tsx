@@ -97,8 +97,9 @@ function BarStack<
     registerData(dataToRegister);
 
     // unregister data on unmount
-    return () => unregisterData(Object.keys(dataToRegister));
+    return () => unregisterData(dataKeys);
   }, [
+    dataKeys,
     comprehensiveDomain,
     horizontal,
     stackedData,
