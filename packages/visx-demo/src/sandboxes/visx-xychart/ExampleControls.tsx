@@ -79,7 +79,7 @@ export default function ExampleControls({ children }: ControlsProps) {
     'bar' | 'stack' | 'group' | 'none'
   >('bar');
   const [renderLineOrAreaSeries, setRenderLineOrAreaSeries] = useState<'line' | 'area' | 'none'>(
-    'area',
+    'line',
   );
   const [negativeValues, setNegativeValues] = useState(false);
 

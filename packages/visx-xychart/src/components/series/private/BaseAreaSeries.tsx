@@ -38,7 +38,9 @@ function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
   PathComponent = 'path',
   lineProps,
   ...areaProps
-}: BaseAreaSeriesProps<XScale, YScale, Datum> & WithRegisteredDataProps<XScale, YScale, Datum>) {
+}: BaseAreaSeriesProps<XScale, YScale, Datum> &
+  WithRegisteredDataProps<XScale, YScale, Datum> &
+  Omit<React.SVGProps<SVGPathElement>, keyof BaseAreaSeriesProps<XScale, YScale, Datum> | 'ref'>) {
   const { colorScale, theme, width, height } = useContext(DataContext);
   const { showTooltip, hideTooltip } = useContext(TooltipContext) ?? {};
   const getScaledX = useCallback(getScaledValueFactory(xScale, xAccessor), [xScale, xAccessor]);

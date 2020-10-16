@@ -9,7 +9,6 @@ import useEventEmitter, { HandlerParams } from '../../../hooks/useEventEmitter';
 import findNearestDatumX from '../../../utils/findNearestDatumX';
 import TooltipContext from '../../../context/TooltipContext';
 import findNearestDatumY from '../../../utils/findNearestDatumY';
-import isValidNumber from '../../../typeguards/isValidNumber';
 
 export type BaseLineSeriesProps<
   XScale extends AxisScale,
@@ -32,7 +31,9 @@ function BaseLineSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
   horizontal,
   PathComponent = 'path',
   ...lineProps
-}: BaseLineSeriesProps<XScale, YScale, Datum> & WithRegisteredDataProps<XScale, YScale, Datum>) {
+}: BaseLineSeriesProps<XScale, YScale, Datum> &
+  WithRegisteredDataProps<XScale, YScale, Datum> &
+  Omit<React.SVGProps<SVGPathElement>, keyof BaseLineSeriesProps<XScale, YScale, Datum> | 'ref'>) {
   const { colorScale, theme, width, height } = useContext(DataContext);
   const { showTooltip, hideTooltip } = useContext(TooltipContext) ?? {};
   const getScaledX = useCallback(getScaledValueFactory(xScale, xAccessor), [xScale, xAccessor]);

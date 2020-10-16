@@ -120,7 +120,7 @@ export default function Example({ height }: Props) {
                   xAccessor={accessors.x.Austin}
                   yAccessor={accessors.y.Austin}
                   horizontal={renderHorizontally}
-                  fillOpacity={0.2}
+                  fillOpacity={0.3}
                 />
                 <AnimatedAreaSeries
                   dataKey="San Francisco"
@@ -128,7 +128,7 @@ export default function Example({ height }: Props) {
                   xAccessor={accessors.x['San Francisco']}
                   yAccessor={accessors.y['San Francisco']}
                   horizontal={renderHorizontally}
-                  fillOpacity={0.2}
+                  fillOpacity={0.3}
                 />
               </>
             )}
