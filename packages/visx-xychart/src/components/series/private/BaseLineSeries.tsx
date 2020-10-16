@@ -19,7 +19,7 @@ export type BaseLineSeriesProps<
   horizontal?: boolean;
   /** Rendered component which is passed path props by BaseLineSeries after processing. */
   PathComponent?: React.FC<Omit<React.SVGProps<SVGPathElement>, 'ref'>> | 'path';
-};
+} & Omit<React.SVGProps<SVGPathElement>, 'x' | 'y' | 'x0' | 'x1' | 'y0' | 'y1' | 'ref'>;
 
 function BaseLineSeries<XScale extends AxisScale, YScale extends AxisScale, Datum extends object>({
   data,
@@ -31,9 +31,7 @@ function BaseLineSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
   horizontal,
   PathComponent = 'path',
   ...lineProps
-}: BaseLineSeriesProps<XScale, YScale, Datum> &
-  WithRegisteredDataProps<XScale, YScale, Datum> &
-  Omit<LinePathProps<Datum>, 'data' | 'x' | 'y' | 'children'>) {
+}: BaseLineSeriesProps<XScale, YScale, Datum> & WithRegisteredDataProps<XScale, YScale, Datum>) {
   const { colorScale, theme, width, height } = useContext(DataContext);
   const { showTooltip, hideTooltip } = useContext(TooltipContext) ?? {};
   const getScaledX = useCallback(getScaledValueFactory(xScale, xAccessor), [xScale, xAccessor]);
