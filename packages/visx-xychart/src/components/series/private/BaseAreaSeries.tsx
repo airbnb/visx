@@ -11,6 +11,7 @@ import findNearestDatumX from '../../../utils/findNearestDatumX';
 import TooltipContext from '../../../context/TooltipContext';
 import findNearestDatumY from '../../../utils/findNearestDatumY';
 import isValidNumber from '../../../typeguards/isValidNumber';
+import getScaleBaseline from '../../../utils/getScaleBaseline';
 
 export type BaseAreaSeriesProps<
   XScale extends AxisScale,
@@ -74,23 +75,11 @@ function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
   useEventEmitter('mousemove', handleMouseMove);
   useEventEmitter('mouseout', hideTooltip);
 
-  const numericScaleBaseline = useMemo(() => {
-    const numericScale = horizontal ? xScale : yScale;
-    const [a, b] = numericScale.range().map(rangeBoundary => coerceNumber(rangeBoundary) ?? 0);
-    const isDescending = a != null && b != null && b < a;
-    const maybeScaleZero = numericScale(0);
-    const [scaleMin, scaleMax] = isDescending ? [b, a] : [a, b];
-
-    // if maybeScaleZero _is_ a number, but the scale is not clamped and it's outside the domain
-    // fallback to the scale's minimum
-    return isDescending
-      ? isValidNumber(maybeScaleZero)
-        ? Math.min(maybeScaleZero, scaleMax)
-        : scaleMax
-      : isValidNumber(maybeScaleZero)
-      ? Math.max(maybeScaleZero, scaleMin)
-      : scaleMin;
-  }, [horizontal, xScale, yScale]);
+  const numericScaleBaseline = useMemo(() => getScaleBaseline(horizontal ? xScale : yScale), [
+    horizontal,
+    xScale,
+    yScale,
+  ]);
 
   const xAccessors = horizontal
     ? {
