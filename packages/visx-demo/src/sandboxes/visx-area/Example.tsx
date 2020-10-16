@@ -60,19 +60,19 @@ export default withTooltip<AreaProps, TooltipData>(
     const dateScale = useMemo(
       () =>
         scaleTime({
-          range: [margin.left, width - margin.right],
+          range: [margin.left, innerWidth + margin.left],
           domain: extent(stock, getDate) as [Date, Date],
         }),
-      [width, margin.left, margin.right],
+      [innerWidth, margin.left],
     );
     const stockValueScale = useMemo(
       () =>
         scaleLinear({
-          range: [height - margin.bottom, margin.top],
+          range: [innerHeight + margin.top, margin.top],
           domain: [0, (max(stock, getStockValue) || 0) + innerHeight / 3],
           nice: true,
         }),
-      [height, margin.bottom, margin.top, innerHeight],
+      [margin.top, innerHeight],
     );
 
     // tooltip handler
@@ -140,8 +140,8 @@ export default withTooltip<AreaProps, TooltipData>(
           <Bar
             x={margin.left}
             y={margin.top}
-            width={width - margin.left - margin.right}
-            height={height - margin.top - margin.bottom}
+            width={innerWidth}
+            height={innerHeight}
             fill="transparent"
             rx={14}
             onTouchStart={handleTooltip}
