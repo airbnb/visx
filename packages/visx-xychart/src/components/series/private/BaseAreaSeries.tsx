@@ -1,6 +1,7 @@
 import React, { useContext, useCallback, useMemo } from 'react';
 import { AxisScale } from '@visx/axis';
-import { Area, LinePath } from '@visx/shape';
+import Area, { AreaProps } from '@visx/shape/lib/shapes/Area';
+import LinePath, { LinePathProps } from '@visx/shape/lib/shapes/LinePath';
 import DataContext from '../../../context/DataContext';
 import { SeriesProps } from '../../../types';
 import withRegisteredData, { WithRegisteredDataProps } from '../../../enhancers/withRegisteredData';
@@ -21,7 +22,7 @@ export type BaseAreaSeriesProps<
   /** Whether to render a Line on top of the Area shape (fill only). */
   renderLine?: boolean;
   /** Props to be passed to the Line, if rendered. */
-  lineProps?: React.SVGProps<SVGPathElement>;
+  lineProps?: Omit<LinePathProps<Datum>, 'data' | 'x' | 'y'>;
   /** Rendered component which is passed path props by BaseAreaSeries after processing. */
   PathComponent?: React.FC<Omit<React.SVGProps<SVGPathElement>, 'ref'>> | 'path';
 };
@@ -40,7 +41,7 @@ function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
   ...areaProps
 }: BaseAreaSeriesProps<XScale, YScale, Datum> &
   WithRegisteredDataProps<XScale, YScale, Datum> &
-  Omit<React.SVGProps<SVGPathElement>, keyof BaseAreaSeriesProps<XScale, YScale, Datum> | 'ref'>) {
+  Omit<AreaProps<Datum>, 'data' | 'x' | 'y' | 'x0' | 'x1' | 'y0' | 'y1'>) {
   const { colorScale, theme, width, height } = useContext(DataContext);
   const { showTooltip, hideTooltip } = useContext(TooltipContext) ?? {};
   const getScaledX = useCallback(getScaledValueFactory(xScale, xAccessor), [xScale, xAccessor]);

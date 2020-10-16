@@ -1,5 +1,5 @@
 import React, { useContext, useCallback } from 'react';
-import LinePath from '@visx/shape/lib/shapes/LinePath';
+import LinePath, { LinePathProps } from '@visx/shape/lib/shapes/LinePath';
 import { AxisScale } from '@visx/axis';
 import DataContext from '../../../context/DataContext';
 import { SeriesProps } from '../../../types';
@@ -33,7 +33,7 @@ function BaseLineSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
   ...lineProps
 }: BaseLineSeriesProps<XScale, YScale, Datum> &
   WithRegisteredDataProps<XScale, YScale, Datum> &
-  Omit<React.SVGProps<SVGPathElement>, keyof BaseLineSeriesProps<XScale, YScale, Datum> | 'ref'>) {
+  Omit<LinePathProps<Datum>, 'data' | 'x' | 'y'>) {
   const { colorScale, theme, width, height } = useContext(DataContext);
   const { showTooltip, hideTooltip } = useContext(TooltipContext) ?? {};
   const getScaledX = useCallback(getScaledValueFactory(xScale, xAccessor), [xScale, xAccessor]);
