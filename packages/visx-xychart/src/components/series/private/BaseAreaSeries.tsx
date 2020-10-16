@@ -22,7 +22,7 @@ export type BaseAreaSeriesProps<
   /** Whether to render a Line on top of the Area shape (fill only). */
   renderLine?: boolean;
   /** Props to be passed to the Line, if rendered. */
-  lineProps?: Omit<LinePathProps<Datum>, 'data' | 'x' | 'y'>;
+  lineProps?: Omit<LinePathProps<Datum>, 'data' | 'x' | 'y' | 'children' | 'defined'>;
   /** Rendered component which is passed path props by BaseAreaSeries after processing. */
   PathComponent?: React.FC<Omit<React.SVGProps<SVGPathElement>, 'ref'>> | 'path';
 };
@@ -41,7 +41,7 @@ function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
   ...areaProps
 }: BaseAreaSeriesProps<XScale, YScale, Datum> &
   WithRegisteredDataProps<XScale, YScale, Datum> &
-  Omit<AreaProps<Datum>, 'data' | 'x' | 'y' | 'x0' | 'x1' | 'y0' | 'y1'>) {
+  Omit<AreaProps<Datum>, 'data' | 'x' | 'y' | 'x0' | 'x1' | 'y0' | 'y1' | 'children'>) {
   const { colorScale, theme, width, height } = useContext(DataContext);
   const { showTooltip, hideTooltip } = useContext(TooltipContext) ?? {};
   const getScaledX = useCallback(getScaledValueFactory(xScale, xAccessor), [xScale, xAccessor]);
@@ -103,7 +103,7 @@ function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
         )}
       </Area>
       {renderLine && (
-        <LinePath
+        <LinePath<Datum>
           data={data}
           x={getScaledX}
           y={getScaledY}

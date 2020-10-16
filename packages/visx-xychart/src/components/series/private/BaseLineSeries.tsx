@@ -33,7 +33,7 @@ function BaseLineSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
   ...lineProps
 }: BaseLineSeriesProps<XScale, YScale, Datum> &
   WithRegisteredDataProps<XScale, YScale, Datum> &
-  Omit<LinePathProps<Datum>, 'data' | 'x' | 'y'>) {
+  Omit<LinePathProps<Datum>, 'data' | 'x' | 'y' | 'children'>) {
   const { colorScale, theme, width, height } = useContext(DataContext);
   const { showTooltip, hideTooltip } = useContext(TooltipContext) ?? {};
   const getScaledX = useCallback(getScaledValueFactory(xScale, xAccessor), [xScale, xAccessor]);
