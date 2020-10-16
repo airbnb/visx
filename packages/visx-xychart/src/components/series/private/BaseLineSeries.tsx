@@ -1,5 +1,5 @@
 import React, { useContext, useCallback } from 'react';
-import LinePath, { LinePathProps } from '@visx/shape/lib/shapes/LinePath';
+import LinePath from '@visx/shape/lib/shapes/LinePath';
 import { AxisScale } from '@visx/axis';
 import DataContext from '../../../context/DataContext';
 import { SeriesProps } from '../../../types';
