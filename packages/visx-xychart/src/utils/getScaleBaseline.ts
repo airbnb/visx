@@ -16,7 +16,7 @@ export default function getScaleBaseline<Scale extends AxisScale>(scale: Scale) 
   // fallback to the scale's minimum
   return isDescending
     ? isValidNumber(maybeScaleZero)
-      ? Math.min(maybeScaleZero, maxOutput)
+      ? Math.min(Math.max(minOutput, maybeScaleZero), maxOutput)
       : maxOutput
     : isValidNumber(maybeScaleZero)
     ? Math.max(maybeScaleZero, minOutput)
