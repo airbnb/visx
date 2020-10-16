@@ -4,7 +4,7 @@ import appleStock, { AppleStock } from '@visx/mock-data/lib/mocks/appleStock';
 import { curveMonotoneX } from '@visx/curve';
 import { GridRows, GridColumns } from '@visx/grid';
 import { scaleTime, scaleLinear } from '@visx/scale';
-import { withTooltip, Tooltip, defaultStyles } from '@visx/tooltip';
+import { withTooltip, Tooltip, TooltipWithBounds, defaultStyles } from '@visx/tooltip';
 import { WithTooltipProvidedProps } from '@visx/tooltip/lib/enhancers/withTooltip';
 import { localPoint } from '@visx/event';
 import { LinearGradient } from '@visx/gradient';
@@ -53,26 +53,26 @@ export default withTooltip<AreaProps, TooltipData>(
     if (width < 10) return null;
 
     // bounds
-    const xMax = width - margin.left - margin.right;
-    const yMax = height - margin.top - margin.bottom;
+    const innerWidth = width - margin.left - margin.right;
+    const innerHeight = height - margin.top - margin.bottom;
 
     // scales
     const dateScale = useMemo(
       () =>
         scaleTime({
-          range: [0, xMax],
+          range: [margin.left, innerWidth + margin.left],
           domain: extent(stock, getDate) as [Date, Date],
         }),
-      [xMax],
+      [innerWidth, margin.left],
     );
     const stockValueScale = useMemo(
       () =>
         scaleLinear({
-          range: [yMax, 0],
-          domain: [0, (max(stock, getStockValue) || 0) + yMax / 3],
+          range: [innerHeight + margin.top, margin.top],
+          domain: [0, (max(stock, getStockValue) || 0) + innerHeight / 3],
           nice: true,
         }),
-      [yMax],
+      [margin.top, innerHeight],
     );
 
     // tooltip handler
@@ -110,16 +110,18 @@ export default withTooltip<AreaProps, TooltipData>(
           <LinearGradient id="area-background-gradient" from={background} to={background2} />
           <LinearGradient id="area-gradient" from={accentColor} to={accentColor} toOpacity={0.1} />
           <GridRows
+            left={margin.left}
             scale={stockValueScale}
-            width={xMax}
+            width={innerWidth}
             strokeDasharray="3,3"
             stroke={accentColor}
             strokeOpacity={0.3}
             pointerEvents="none"
           />
           <GridColumns
+            top={margin.top}
             scale={dateScale}
-            height={yMax}
+            height={innerHeight}
             strokeDasharray="3,3"
             stroke={accentColor}
             strokeOpacity={0.3}
@@ -136,10 +138,10 @@ export default withTooltip<AreaProps, TooltipData>(
             curve={curveMonotoneX}
           />
           <Bar
-            x={0}
-            y={0}
-            width={width}
-            height={height}
+            x={margin.left}
+            y={margin.top}
+            width={innerWidth}
+            height={innerHeight}
             fill="transparent"
             rx={14}
             onTouchStart={handleTooltip}
@@ -150,8 +152,8 @@ export default withTooltip<AreaProps, TooltipData>(
           {tooltipData && (
             <g>
               <Line
-                from={{ x: tooltipLeft, y: 0 }}
-                to={{ x: tooltipLeft, y: yMax }}
+                from={{ x: tooltipLeft, y: margin.top }}
+                to={{ x: tooltipLeft, y: innerHeight + margin.top }}
                 stroke={accentColorDark}
                 strokeWidth={2}
                 pointerEvents="none"
@@ -182,11 +184,16 @@ export default withTooltip<AreaProps, TooltipData>(
         </svg>
         {tooltipData && (
           <div>
-            <Tooltip top={tooltipTop - 12} left={tooltipLeft + 12} style={tooltipStyles}>
+            <TooltipWithBounds
+              key={Math.random()}
+              top={tooltipTop - 12}
+              left={tooltipLeft + 12}
+              style={tooltipStyles}
+            >
               {`$${getStockValue(tooltipData)}`}
-            </Tooltip>
+            </TooltipWithBounds>
             <Tooltip
-              top={yMax - 14}
+              top={innerHeight + margin.top - 14}
               left={tooltipLeft}
               style={{
                 ...defaultStyles,
