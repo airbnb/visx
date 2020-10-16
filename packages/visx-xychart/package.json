@@ -47,6 +47,7 @@
     "@visx/axis": "1.1.0",
     "@visx/event": "1.0.0",
     "@visx/grid": "1.1.0",
+    "@visx/glyph": "1.0.0",
     "@visx/react-spring": "1.1.0",
     "@visx/responsive": "1.1.0",
     "@visx/scale": "1.1.0",

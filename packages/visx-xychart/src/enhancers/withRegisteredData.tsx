@@ -19,21 +19,29 @@ export type WithRegisteredDataProps<
  * prop changes, etc.
  */
 export default function withRegisteredData<
-  BaseComponentProps extends SeriesProps<AxisScale, AxisScale, object>
+  BaseComponentProps extends SeriesProps<XScale, YScale, Datum>,
+  XScale extends AxisScale,
+  YScale extends AxisScale,
+  Datum extends object
 >(BaseSeriesComponent: React.ComponentType<BaseComponentProps>) {
-  function WrappedComponent<XAxis extends AxisScale, YAxis extends AxisScale, Datum extends object>(
+  function WrappedComponent<
+    XScale extends AxisScale,
+    YScale extends AxisScale,
+    Datum extends object
+  >(
     // WrappedComponent props include SeriesProps with appropriate generics
     // and any props in BaseComponentProps that are not in WithRegisteredDataProps
-    props: SeriesProps<XAxis, YAxis, Datum> &
+    props: SeriesProps<XScale, YScale, Datum> &
       Omit<
         BaseComponentProps,
-        keyof SeriesProps<XAxis, YAxis, Datum> | keyof WithRegisteredDataProps<XAxis, YAxis, Datum>
+        | keyof SeriesProps<XScale, YScale, Datum>
+        | keyof WithRegisteredDataProps<XScale, YScale, Datum>
       >,
   ) {
     const { dataKey, data, xAccessor, yAccessor } = props;
     const { xScale, yScale, dataRegistry } = (useContext(
       DataContext,
-    ) as unknown) as DataContextType<XAxis, YAxis, Datum>;
+    ) as unknown) as DataContextType<XScale, YScale, Datum>;
 
     useEffect(() => {
       if (dataRegistry) dataRegistry.registerData({ key: dataKey, data, xAccessor, yAccessor });
@@ -47,7 +55,7 @@ export default function withRegisteredData<
 
     // TODO coercion might be avoidable with variadic tuples in TS 4
     const BaseComponent = (BaseSeriesComponent as unknown) as React.ComponentType<
-      SeriesProps<XAxis, YAxis, Datum> & WithRegisteredDataProps<XAxis, YAxis, Datum>
+      SeriesProps<XScale, YScale, Datum> & WithRegisteredDataProps<XScale, YScale, Datum>
     >;
 
     // otherwise pass props + over-write data/accessors

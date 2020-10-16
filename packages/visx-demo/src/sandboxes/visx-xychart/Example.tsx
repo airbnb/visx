@@ -6,12 +6,14 @@ import {
   AnimatedBarGroup,
   AnimatedBarSeries,
   AnimatedBarStack,
+  AnimatedGlyphSeries,
   AnimatedGrid,
   AnimatedLineSeries,
   DataProvider,
   Tooltip,
   XYChart,
 } from '@visx/xychart';
+import { GlyphCross, GlyphDiamond } from '@visx/glyph';
 import ExampleControls from './ExampleControls';
 import CustomChartBackground from './CustomChartBackground';
 
@@ -116,7 +118,7 @@ export default function Example({ height }: Props) {
               <>
                 <AnimatedAreaSeries
                   dataKey="Austin"
-                  data={renderBarStack ? data : data}
+                  data={data}
                   xAccessor={accessors.x.Austin}
                   yAccessor={accessors.y.Austin}
                   horizontal={renderHorizontally}
@@ -124,7 +126,7 @@ export default function Example({ height }: Props) {
                 />
                 <AnimatedAreaSeries
                   dataKey="San Francisco"
-                  data={renderBarStack ? data : data}
+                  data={data}
                   xAccessor={accessors.x['San Francisco']}
                   yAccessor={accessors.y['San Francisco']}
                   horizontal={renderHorizontally}
@@ -136,20 +138,30 @@ export default function Example({ height }: Props) {
               <>
                 <AnimatedLineSeries
                   dataKey="Austin"
-                  data={renderBarStack ? data : data}
+                  data={data}
                   xAccessor={accessors.x.Austin}
                   yAccessor={accessors.y.Austin}
                   horizontal={renderHorizontally}
                 />
                 <AnimatedLineSeries
                   dataKey="San Francisco"
-                  data={renderBarStack ? data : data}
+                  data={data}
                   xAccessor={accessors.x['San Francisco']}
                   yAccessor={accessors.y['San Francisco']}
                   horizontal={renderHorizontally}
                 />
               </>
             )}
+            <AnimatedGlyphSeries
+              dataKey="San Francisco"
+              data={data}
+              xAccessor={accessors.x['San Francisco']}
+              yAccessor={accessors.y['San Francisco']}
+              horizontal={renderHorizontally}
+              Glyph={({ size, color }) => (
+                <GlyphCross stroke="transparent" fill={color} size={size * 8} />
+              )}
+            />
             <AnimatedAxis
               key={`time-axis-${animationTrajectory}-${renderHorizontally}`}
               orientation={renderHorizontally ? yAxisOrientation : xAxisOrientation}
@@ -169,7 +181,7 @@ export default function Example({ height }: Props) {
                 showVerticalCrosshair={showVerticalCrosshair}
                 snapTooltipToDatumX={snapTooltipToDatumX}
                 snapTooltipToDatumY={snapTooltipToDatumY}
-                showDatumGlyph={(snapTooltipToDatumX || snapTooltipToDatumY) && !renderBarGroup}
+                showDatumGlyph={false} // (snapTooltipToDatumX || snapTooltipToDatumY) && !renderBarGroup}
                 showSeriesGlyphs={sharedTooltip && !renderBarGroup}
                 renderTooltip={({ tooltipData, colorScale }) => (
                   <>
