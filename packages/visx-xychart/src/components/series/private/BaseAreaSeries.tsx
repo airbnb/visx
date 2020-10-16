@@ -1,7 +1,6 @@
 import React, { useContext, useCallback, useMemo } from 'react';
 import { AxisScale } from '@visx/axis';
 import { Area, LinePath } from '@visx/shape';
-import { coerceNumber } from '@visx/scale';
 import DataContext from '../../../context/DataContext';
 import { SeriesProps } from '../../../types';
 import withRegisteredData, { WithRegisteredDataProps } from '../../../enhancers/withRegisteredData';
@@ -10,7 +9,6 @@ import useEventEmitter, { HandlerParams } from '../../../hooks/useEventEmitter';
 import findNearestDatumX from '../../../utils/findNearestDatumX';
 import TooltipContext from '../../../context/TooltipContext';
 import findNearestDatumY from '../../../utils/findNearestDatumY';
-import isValidNumber from '../../../typeguards/isValidNumber';
 import getScaleBaseline from '../../../utils/getScaleBaseline';
 
 export type BaseAreaSeriesProps<

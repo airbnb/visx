@@ -33,9 +33,17 @@ describe('getScaleBaseline', () => {
       getScaleBaseline(
         scaleLinear({
           domain: [100, 200],
-          range: [50, 100],
+          range: [50, 100], // ascending
         }),
       ),
     ).toBe(50);
+    expect(
+      getScaleBaseline(
+        scaleLinear({
+          domain: [100, 200],
+          range: [100, 50], // descending
+        }),
+      ),
+    ).toBe(100);
   });
 });
