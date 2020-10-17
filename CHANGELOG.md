@@ -1,4 +1,5 @@
 # Changelog
+- [v1.1.0](#v110)
 - [v1.0.0](#v100)
 - [v0.0.199](#v00199)
 - [v0.0.198](#v00198)
@@ -6,10 +7,10 @@
 - [v0.0.196](#v00196)
 - [v0.0.195](#v00195)
 - [v0.0.194](#v00194)
-- [v0.0.193](#v00193)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v00193">v0.0.193</a></li>
   <li><a href="#v00192">v0.0.192</a></li>
   <li><a href="#v00191">v0.0.191</a></li>
   <li><a href="#v00190">v0.0.190</a></li>
@@ -90,6 +91,89 @@
 </details>
 
 ------
+# v1.1.0
+
+#### :rocket:  Enhancements
+
+- [scale] bump `@types/d3-scale` to `^3.1.0` [#856](https://github.com/airbnb/visx/pull/856) closes [#855](https://github.com/airbnb/visx/pull/855)
+- [shape] set `Line` shapeRendering to `crispEdges` if rectilinear [#840](https://github.com/airbnb/visx/pull/840)
+- [network] apply fill & radius to DefaultNode [#859](https://github.com/airbnb/visx/pull/859)
+- [tooltip] add `applyPositionStyle` prop so users don't have to set absolute positioning when `unstyled=true` [#857](https://github.com/airbnb/visx/pull/857)
+- [responsive] add `initialWidth` and `initialHeight` to `withParentSize` [#836](https://github.com/airbnb/visx/pull/836) closes [#554](https://github.com/airbnb/visx/pull/554)
+- [responsive] add `ignoreDimensions` prop to optimize re-renders [#834](https://github.com/airbnb/visx/pull/834) closes [#247](https://github.com/airbnb/visx/pull/247)
+- [xychart (unpublished)] add BarSeries [#808](https://github.com/airbnb/visx/pull/808)
+- [xychart (unpublished)] add BarGroup [#870](https://github.com/airbnb/visx/pull/870) [#871](https://github.com/airbnb/visx/pull/871)
+- [xychart (unpublished)] add BarStack [#865](https://github.com/airbnb/visx/pull/865) [#866](https://github.com/airbnb/visx/pull/866)
+- [xychart (unpublished)] add EventEmitterContext, TooltipContext [#825](https://github.com/airbnb/visx/pull/825)
+- [xychart (unpublished)] add Tooltip [#852](https://github.com/airbnb/visx/pull/852)
+
+#### :bug: Bug Fix
+
+- [tooltip] fix `TooltipWithBounds` overlowing its parent on small screens [#837](https://github.com/airbnb/visx/pull/837) closes [#466](https://github.com/airbnb/visx/pull/466)
+- [tooltip] fix `TooltipWithBounds` positioning when `unstyled=true` [#828](https://github.com/airbnb/visx/pull/828)
+- [stats] don't throw when first and third quartile are equal [#841](https://github.com/airbnb/visx/pull/841) closes [#427](https://github.com/airbnb/visx/pull/427)
+- [stats] update min/max to handle no outliers case [#853](https://github.com/airbnb/visx/pull/853) closes [#851](https://github.com/airbnb/visx/pull/851)
+- [text] render 0 as number [#814](https://github.com/airbnb/visx/pull/814) fixes [#813](https://github.com/airbnb/visx/pull/813)
+- [shape] render LinkHorizontalStep horizontally not vertically [#847](https://github.com/airbnb/visx/pull/847) closes [#820](https://github.com/airbnb/visx/pull/820)
+- [axis] fix `tickLabelProps` when `hideZero=true` [#818](https://github.com/airbnb/visx/pull/818) fixes [#815](https://github.com/airbnb/visx/pull/815)
+- [demo/areas] handle non-zero margins [#877](https://github.com/airbnb/visx/pull/877)
+
+#### :house:  Internal
+
+- [responsive] refactor `ParentSize` to function component [#834](https://github.com/airbnb/visx/pull/834)
+- [text] improve test coverage [#833](https://github.com/airbnb/visx/pull/833)
+- [pattern] remove code duplication [#838](https://github.com/airbnb/visx/pull/838)
+
+#### :memo: Documentation
+
+- [in the wild] add Wall Street Journal: Americans Familiarize Themselves with the Word ‘Forbearance’ [#843](https://github.com/airbnb/visx/pull/843)
+- [in the wild] add dollar-to-food-emoji [#860](https://github.com/airbnb/visx/pull/860)
+- [in the wild] remove deadlinks, add Taiwan Real-time Air Quality Index [#867](https://github.com/airbnb/visx/pull/867) 
+- [project readme] fix typos [#826](https://github.com/airbnb/visx/pull/826)
+
+#### :trophy: Contributors
+
+- [birjolaxew](https://github.com/birjolaxew)
+- [wyze](https://github.com/wyze)
+- [shannonrothe](https://github.com/shannonrothe)
+- [anastasiia-gontarieva](https://github.com/anastasiia-gontarieva)
+- [kmiyashiro](https://github.com/kmiyashiro)
+- [LethalPants](https://github.com/LethalPants)
+- [rayshan](https://github.com/rayshan)
+- [kanhegaonkarsaurabh](https://github.com/kanhegaonkarsaurabh)
+- [tombarton](https://github.com/tombarton)
+- [gmlwo530](https://github.com/gmlwo530)
+- [ArvinH](https://github.com/ArvinH)
+- [singhanurag05](https://github.com/singhanurag05)
+- [androiddevnotes](https://github.com/androiddevnotes)
+- [ilariaventurini](https://github.com/ilariaventurini)
+- [kristw](https://github.com/kristw)
+- [hshoff](https://github.com/hshoff)
+- [williaster](https://github.com/williaster)
+
+```Changes:
+Changes:
+ - @visx/annotation: 1.0.0 => 1.1.0
+ - @visx/axis: 1.0.0 => 1.1.0
+ - @visx/brush: 1.0.0 => 1.1.0
+ - @visx/demo: 1.0.0 => 1.1.0
+ - @visx/grid: 1.0.0 => 1.1.0
+ - @visx/legend: 1.0.0 => 1.1.0
+ - @visx/marker: 1.0.0 => 1.1.0
+ - @visx/network: 1.0.0 => 1.1.0
+ - @visx/pattern: 1.0.0 => 1.1.0
+ - @visx/react-spring: 1.0.0 => 1.1.0
+ - @visx/responsive: 1.0.0 => 1.1.0
+ - @visx/scale: 1.0.0 => 1.1.0
+ - @visx/shape: 1.0.0 => 1.1.0
+ - @visx/stats: 1.0.0 => 1.1.0
+ - @visx/text: 1.0.0 => 1.1.0
+ - @visx/threshold: 1.0.0 => 1.1.0
+ - @visx/tooltip: 1.0.0 => 1.1.0
+ - @visx/visx: 1.0.0 => 1.1.0
+ - @visx/xychart: 1.0.0 => 1.1.0 (private)
+```
+
 # v1.0.0
 
 ### :house:  Internal
