@@ -1,8 +1,8 @@
-import React from "react";
-import Show from "../components/Show";
-import BarStack from "../sandboxes/visx-barstack/Example";
-import BarStackSource from "!!raw-loader!../sandboxes/visx-barstack/Example";
-import packageJson from "../sandboxes/visx-barstack/package.json";
+import React from 'react';
+import Show from '../components/Show';
+import BarStack from '../sandboxes/visx-barstack/Example';
+import BarStackSource from '!!raw-loader!../sandboxes/visx-barstack/Example';
+import packageJson from '../sandboxes/visx-barstack/package.json';
 
 const BarStackPage = () => (
   <Show

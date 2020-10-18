@@ -1,8 +1,8 @@
-import React from "react";
-import Show from "../components/Show";
-import StackedAreas from "../sandboxes/visx-stacked-areas/Example";
-import StackedAreasSource from "!!raw-loader!../sandboxes/visx-stacked-areas/Example";
-import packageJson from "../sandboxes/visx-stacked-areas/package.json";
+import React from 'react';
+import Show from '../components/Show';
+import StackedAreas from '../sandboxes/visx-stacked-areas/Example';
+import StackedAreasSource from '!!raw-loader!../sandboxes/visx-stacked-areas/Example';
+import packageJson from '../sandboxes/visx-stacked-areas/package.json';
 
 const StackedAreasPage = () => (
   <Show

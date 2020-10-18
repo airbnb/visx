@@ -1,9 +1,9 @@
-import React from "react";
-import cx from "classnames";
-import Meta from "./Meta";
-import Nav from "./Nav";
+import React from 'react';
+import cx from 'classnames';
+import Meta from './Meta';
+import Nav from './Nav';
 
-export default ({
+const Page = ({
   children,
   title,
   className,
@@ -14,7 +14,7 @@ export default ({
   className?: string | boolean;
   wrapper?: boolean;
 }) => (
-  <div className={cx("main", { wrapper }, className)}>
+  <div className={cx('main', { wrapper }, className)}>
     <Meta title={title} />
     <div className="nav-container">
       <Nav />
@@ -40,3 +40,4 @@ export default ({
     `}</style>
   </div>
 );
+export default Page;

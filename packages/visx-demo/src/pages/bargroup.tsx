@@ -1,8 +1,8 @@
-import React from "react";
-import Show from "../components/Show";
-import BarGroup from "../sandboxes/visx-bargroup/Example";
-import BarGroupSource from "!!raw-loader!../sandboxes/visx-bargroup/Example";
-import packageJson from "../sandboxes/visx-bargroup/package.json";
+import React from 'react';
+import Show from '../components/Show';
+import BarGroup from '../sandboxes/visx-bargroup/Example';
+import BarGroupSource from '!!raw-loader!../sandboxes/visx-bargroup/Example';
+import packageJson from '../sandboxes/visx-bargroup/package.json';
 
 const BarGroupPage = () => (
   <Show

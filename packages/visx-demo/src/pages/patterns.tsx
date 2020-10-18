@@ -1,8 +1,8 @@
-import React from "react";
-import Show from "../components/Show";
-import Patterns from "../sandboxes/visx-pattern/Example";
-import PatternsSource from "!!raw-loader!../sandboxes/visx-pattern/Example";
-import packageJson from "../sandboxes/visx-pattern/package.json";
+import React from 'react';
+import Show from '../components/Show';
+import Patterns from '../sandboxes/visx-pattern/Example';
+import PatternsSource from '!!raw-loader!../sandboxes/visx-pattern/Example';
+import packageJson from '../sandboxes/visx-pattern/package.json';
 
 const PatternsPage = () => {
   return (

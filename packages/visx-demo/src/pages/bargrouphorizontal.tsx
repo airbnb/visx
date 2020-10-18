@@ -1,8 +1,8 @@
-import React from "react";
-import Show from "../components/Show";
-import BarGroupHorizontal from "../sandboxes/visx-bargroup-horizontal/Example";
-import BarGroupHorizontalSource from "!!raw-loader!../sandboxes/visx-bargroup-horizontal/Example";
-import packageJson from "../sandboxes/visx-bargroup-horizontal/package.json";
+import React from 'react';
+import Show from '../components/Show';
+import BarGroupHorizontal from '../sandboxes/visx-bargroup-horizontal/Example';
+import BarGroupHorizontalSource from '!!raw-loader!../sandboxes/visx-bargroup-horizontal/Example';
+import packageJson from '../sandboxes/visx-bargroup-horizontal/package.json';
 
 const BarGroupHorizontalPage = () => (
   <Show

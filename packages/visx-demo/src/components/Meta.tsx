@@ -1,31 +1,34 @@
-import React from "react";
-import Head from "next/head";
-import Router from "next/router";
-import NProgress from "nprogress";
-import ReactGA from "react-ga";
+import React from 'react';
+import Head from 'next/head';
+import Router from 'next/router';
+import NProgress from 'nprogress';
+import ReactGA from 'react-ga';
 
-if (typeof window !== "undefined" && window.location.hostname !== "localhost") {
-  ReactGA.initialize("UA-96843800-1");
+if (typeof window !== 'undefined' && window.location.hostname !== 'localhost') {
+  ReactGA.initialize('UA-96843800-1');
   ReactGA.set({ page: window.location.pathname });
   ReactGA.pageview(window.location.pathname);
 }
 
-Router.events.on("routeChangeStart", () => NProgress.start());
-Router.events.on("routeChangeComplete", () => {
+Router.events.on('routeChangeStart', () => NProgress.start());
+Router.events.on('routeChangeComplete', () => {
   NProgress.done();
-  if (typeof window !== "undefined" && window.location.hostname !== "localhost") {
+  if (typeof window !== 'undefined' && window.location.hostname !== 'localhost') {
     ReactGA.set({ page: window.location.pathname });
     ReactGA.pageview(window.location.pathname);
   }
 });
-Router.events.on("routeChangeError", () => NProgress.done());
+Router.events.on('routeChangeError', () => NProgress.done());
 
-export default ({ title = "visualization components" }) => (
+const Meta = ({ title = 'visualization components' }) => (
   <div>
     <Head>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta charSet="utf-8" />
-      <meta property="og:image" content="https://raw.githubusercontent.com/airbnb/visx/master/assets/x-hero.png" />
+      <meta
+        property="og:image"
+        content="https://raw.githubusercontent.com/airbnb/visx/master/assets/x-hero.png"
+      />
       <meta property="og:image:type" content="image/png" />
       <meta
         property="og:image:secure_url"
@@ -49,7 +52,10 @@ export default ({ title = "visualization components" }) => (
         name="twitter:description"
         content="a collection of expressive, low-level visualization primitives for React"
       />
-      <meta name="twitter:image" content="https://raw.githubusercontent.com/airbnb/visx/master/assets/x-hero.png" />
+      <meta
+        name="twitter:image"
+        content="https://raw.githubusercontent.com/airbnb/visx/master/assets/x-hero.png"
+      />
       <meta name="twitter:image:alt" content="visx logo is an oversized X" />
       <title>{`visx | ${title}`}</title>
       <link rel="shortcut icon" type="image/png" href="static/favicon.png" />
@@ -60,8 +66,8 @@ export default ({ title = "visualization components" }) => (
       body {
         width: 100vw;
         overflow-x: hidden;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-          "Droid Sans", "Helvetica Neue", sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell',
+          'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
         background: #ffffff;
         display: flex;
         color: white;
@@ -116,7 +122,7 @@ export default ({ title = "visualization components" }) => (
         display: flex;
         flex-direction: column;
         flex: 1;
-        font-family: "Karla";
+        font-family: 'Karla';
         color: #000;
       }
 
@@ -142,7 +148,7 @@ export default ({ title = "visualization components" }) => (
       }
 
       code {
-        font-family: "Menlo", monospace;
+        font-family: 'Menlo', monospace;
         font-weight: bold;
         padding: 0.2rem 0.3rem;
         background-color: #ebebeb;
@@ -174,7 +180,7 @@ export default ({ title = "visualization components" }) => (
       }
 
       .logo {
-        background-image: url("/visx/static/favicon.png");
+        background-image: url('/visx/static/favicon.png');
         background-position: center;
         background-size: cover;
         height: 24px;
@@ -245,3 +251,4 @@ export default ({ title = "visualization components" }) => (
     `}</style>
   </div>
 );
+export default Meta;

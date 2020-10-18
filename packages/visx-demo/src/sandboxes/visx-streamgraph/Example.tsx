@@ -17,8 +17,7 @@ import generateData from './generateData';
 const NUM_LAYERS = 20;
 const SAMPLES_PER_LAYER = 200;
 const BUMPS_PER_LAYER = 10;
-const NO_PATTERN = 'transparent';
-export const BACKGROUND = '#ffe1ff';
+export const BACKGROUND = '#ffdede';
 
 // utils
 const range = (n: number) => Array.from(new Array(n), (_, i) => i);
@@ -34,11 +33,11 @@ const yScale = scaleLinear<number>({
 });
 const colorScale = scaleOrdinal<number, string>({
   domain: keys,
-  range: ['#ff777f', '#580040', '#9cfaff', '#bc5399', '#c84653'],
+  range: ['#ffc409', '#f14702', '#262d97', 'white', '#036ecd', '#9ecadd', '#51666e'],
 });
 const patternScale = scaleOrdinal<number, string>({
   domain: keys,
-  range: ['mustard', 'cherry', 'navy', NO_PATTERN, NO_PATTERN, NO_PATTERN, NO_PATTERN],
+  range: ['mustard', 'cherry', 'navy', 'circles', 'circles', 'circles', 'circles'],
 });
 
 // accessors
@@ -68,23 +67,23 @@ export default function Streamgraph({ width, height, animate = true }: StreamGra
 
   return (
     <svg width={width} height={height}>
-      <PatternCircles id="mustard" height={40} width={40} radius={5} fill="#9cfaff" complement />
+      <PatternCircles id="mustard" height={40} width={40} radius={5} fill="#036ecf" complement />
       <PatternWaves
         id="cherry"
         height={12}
         width={12}
         fill="transparent"
-        stroke="#d0ffff"
+        stroke="#232493"
         strokeWidth={1}
       />
       <PatternCircles id="navy" height={60} width={60} radius={10} fill="white" complement />
       <PatternCircles
-        id="transparent"
+        complement
+        id="circles"
         height={60}
         width={60}
         radius={10}
         fill="transparent"
-        complement
       />
 
       <g onClick={handlePress} onTouchStart={handlePress}>

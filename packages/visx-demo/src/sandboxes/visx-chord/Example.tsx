@@ -39,6 +39,7 @@ export type ChordProps = {
 };
 
 export default function Example({ width, height, centerSize = 20, events = false }: ChordProps) {
+  height -= 77;
   const outerRadius = Math.min(width, height) * 0.5 - (centerSize + 10);
   const innerRadius = outerRadius - centerSize;
 

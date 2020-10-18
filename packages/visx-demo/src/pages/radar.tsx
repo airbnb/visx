@@ -1,8 +1,8 @@
-import React from "react";
-import Show from "../components/Show";
-import Radar from "../sandboxes/visx-radar/Example";
-import RadarSource from "!!raw-loader!../sandboxes/visx-radar/Example";
-import packageJson from "../sandboxes/visx-radar/package.json";
+import React from 'react';
+import Show from '../components/Show';
+import Radar from '../sandboxes/visx-radar/Example';
+import RadarSource from '!!raw-loader!../sandboxes/visx-radar/Example';
+import packageJson from '../sandboxes/visx-radar/package.json';
 
 const RadarPage = () => (
   <Show

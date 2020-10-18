@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const GitHub = () => {
   return (
@@ -9,10 +9,10 @@ const GitHub = () => {
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       style={{
-        fill: "#515251",
-        fillRule: "evenodd",
-        clipRule: "evenodd",
-        strokeLinejoin: "round",
+        fill: '#515251',
+        fillRule: 'evenodd',
+        clipRule: 'evenodd',
+        strokeLinejoin: 'round',
         strokeMiterlimit: 2,
       }}
     >

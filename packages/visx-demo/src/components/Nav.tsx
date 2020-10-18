@@ -1,10 +1,10 @@
-import React from "react";
-import Link from "next/link";
+import React from 'react';
+import Link from 'next/link';
 // @ts-ignore
-import GithubButton from "react-github-button";
+import GithubButton from 'react-github-button';
 
-import NavItem from "./NavItem";
-import Belo from "./icons/Belo";
+import NavItem from './NavItem';
+import Belo from './icons/Belo';
 
 const Nav = () => (
   <div className="nav">
@@ -70,7 +70,7 @@ const Nav = () => (
         width: 36px;
         height: 36px;
         margin-right: 1rem;
-        background-image: url("static/x-24.svg");
+        background-image: url('static/x-24.svg');
       }
       @media (max-width: 600px) {
         .github-buttons {

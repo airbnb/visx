@@ -1,8 +1,8 @@
-import React from "react";
-import Show from "../components/Show";
-import VoronoiChart from "../sandboxes/visx-voronoi/Example";
-import VoronoiChartSource from "!!raw-loader!../sandboxes/visx-voronoi/Example";
-import packageJson from "../sandboxes/visx-voronoi/package.json";
+import React from 'react';
+import Show from '../components/Show';
+import VoronoiChart from '../sandboxes/visx-voronoi/Example';
+import VoronoiChartSource from '!!raw-loader!../sandboxes/visx-voronoi/Example';
+import packageJson from '../sandboxes/visx-voronoi/package.json';
 
 const VoronoiPage = () => (
   <Show

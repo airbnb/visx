@@ -1,5 +1,5 @@
-import React from "react";
-import Link from "next/link";
+import React from 'react';
+import Link from 'next/link';
 
 type NavItemProps = {
   href: string;
@@ -9,7 +9,7 @@ type NavItemProps = {
   children: React.ReactNode;
 };
 
-export default ({ id, href, children, className, external }: NavItemProps) => (
+const NavItem = ({ id, href, children, className, external }: NavItemProps) => (
   <li className="Item">
     {external ? (
       <a id={id} href={href} target="_blank" rel="noopener noreferrer" className={className}>
@@ -50,3 +50,4 @@ export default ({ id, href, children, className, external }: NavItemProps) => (
     `}</style>
   </li>
 );
+export default NavItem;
