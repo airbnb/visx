@@ -19,7 +19,19 @@ export type BaseGlyphSeriesProps<
   horizontal?: boolean;
   /** The size of a `Glyph`, a `number` or a function which takes a `Datum` and returns a `number`. */
   size?: number | ((d: Datum) => number);
-  renderGlyphs: (glyphs: GlyphProps<Datum>[]) => React.ReactNode;
+  /** Function which handles rendering glyphs. */
+  renderGlyphs: (glyphsProps: GlyphsProps<XScale, YScale, Datum>) => React.ReactNode;
+};
+
+export type GlyphsProps<
+  XScale extends AxisScale,
+  YScale extends AxisScale,
+  Datum extends object
+> = {
+  xScale: XScale;
+  yScale: YScale;
+  horizontal?: boolean;
+  glyphs: GlyphProps<Datum>[];
 };
 
 export type GlyphProps<Datum extends object> = {
@@ -47,6 +59,7 @@ function BaseGlyphSeries<XScale extends AxisScale, YScale extends AxisScale, Dat
   const { showTooltip, hideTooltip } = useContext(TooltipContext) ?? {};
   const getScaledX = useCallback(getScaledValueFactory(xScale, xAccessor), [xScale, xAccessor]);
   const getScaledY = useCallback(getScaledValueFactory(yScale, yAccessor), [yScale, yAccessor]);
+  // @TODO allow override
   const color = colorScale?.(dataKey) ?? theme?.colors?.[0] ?? '#222';
 
   const handleMouseMove = useCallback(
@@ -77,29 +90,30 @@ function BaseGlyphSeries<XScale extends AxisScale, YScale extends AxisScale, Dat
   useEventEmitter('mousemove', handleMouseMove);
   useEventEmitter('mouseout', hideTooltip);
 
-  const points = useMemo(
+  const glyphs = useMemo(
     () =>
       data
-        .map(d => {
-          const x = getScaledX(d);
+        .map((datum, i) => {
+          const x = getScaledX(datum);
           if (!isValidNumber(x)) return null;
-          const y = getScaledY(d);
+          const y = getScaledY(datum);
           if (!isValidNumber(y)) return null;
           return {
-            key: `${horizontal ? y : x}`,
+            key: `${i}`,
             x,
             y,
             color,
-            size: typeof size === 'function' ? size(d) : size,
+            size: typeof size === 'function' ? size(datum) : size,
+            datum,
           };
         })
         .filter(point => point) as GlyphProps<Datum>[],
-    [getScaledX, getScaledY, data, size, color, horizontal],
+    [getScaledX, getScaledY, data, size, color],
   );
 
   return (
     // eslint-disable-next-line react/jsx-no-useless-fragment
-    <>{renderGlyphs(points)}</>
+    <>{renderGlyphs({ glyphs, xScale, yScale, horizontal })}</>
   );
 }
 
