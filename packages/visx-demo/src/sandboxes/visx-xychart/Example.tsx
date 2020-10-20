@@ -158,9 +158,7 @@ export default function Example({ height }: Props) {
               xAccessor={accessors.x['San Francisco']}
               yAccessor={accessors.y['San Francisco']}
               horizontal={renderHorizontally}
-              Glyph={({ size, color }) => (
-                <GlyphCross stroke="transparent" fill={color} size={size * 8} />
-              )}
+              Glyph={({ size, color }) => <GlyphCross stroke="#222" fill={color} size={size * 8} />}
             />
             <AnimatedAxis
               key={`time-axis-${animationTrajectory}-${renderHorizontally}`}
@@ -181,7 +179,7 @@ export default function Example({ height }: Props) {
                 showVerticalCrosshair={showVerticalCrosshair}
                 snapTooltipToDatumX={snapTooltipToDatumX}
                 snapTooltipToDatumY={snapTooltipToDatumY}
-                showDatumGlyph={false} // (snapTooltipToDatumX || snapTooltipToDatumY) && !renderBarGroup}
+                showDatumGlyph={(snapTooltipToDatumX || snapTooltipToDatumY) && !renderBarGroup}
                 showSeriesGlyphs={sharedTooltip && !renderBarGroup}
                 renderTooltip={({ tooltipData, colorScale }) => (
                   <>

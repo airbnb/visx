@@ -26,6 +26,7 @@ export function useAnimatedGlyphsConfig<
   const yScaleBaseline = getScaleBaseline(yScale);
   return useMemo(
     () => ({
+      unique: true,
       from: ({ x, y, color }) => ({
         x: horizontal ? xScaleBaseline : x,
         y: horizontal ? y : yScaleBaseline,
