@@ -182,7 +182,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="radio"
               onChange={() => setTheme(lightTheme)}
               checked={theme === lightTheme}
-            />{' '}
+            />
             light
           </label>
           <label>
@@ -190,7 +190,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="radio"
               onChange={() => setTheme(darkTheme)}
               checked={theme === darkTheme}
-            />{' '}
+            />
             dark
           </label>
           <label>
@@ -198,7 +198,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="radio"
               onChange={() => setTheme(customTheme)}
               checked={theme === customTheme}
-            />{' '}
+            />
             custom
           </label>
         </div>
@@ -211,7 +211,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="radio"
               onChange={() => setRenderHorizontally(false)}
               checked={!renderHorizontally}
-            />{' '}
+            />
             vertical
           </label>
           <label>
@@ -219,7 +219,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="radio"
               onChange={() => setRenderHorizontally(true)}
               checked={renderHorizontally}
-            />{' '}
+            />
             horizontal
           </label>
         </div>
@@ -232,7 +232,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="radio"
               onChange={() => setXAxisOrientation('bottom')}
               checked={xAxisOrientation === 'bottom'}
-            />{' '}
+            />
             bottom
           </label>
           <label>
@@ -240,7 +240,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="radio"
               onChange={() => setXAxisOrientation('top')}
               checked={xAxisOrientation === 'top'}
-            />{' '}
+            />
             top
           </label>
           &nbsp;&nbsp;&nbsp;&nbsp;
@@ -249,7 +249,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="radio"
               onChange={() => setYAxisOrientation('left')}
               checked={yAxisOrientation === 'left'}
-            />{' '}
+            />
             left
           </label>
           <label>
@@ -257,7 +257,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="radio"
               onChange={() => setYAxisOrientation('right')}
               checked={yAxisOrientation === 'right'}
-            />{' '}
+            />
             right
           </label>
         </div>
@@ -270,7 +270,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="radio"
               onChange={() => setGridProps([true, false])}
               checked={showGridRows && !showGridColumns}
-            />{' '}
+            />
             rows
           </label>
           <label>
@@ -278,7 +278,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="radio"
               onChange={() => setGridProps([false, true])}
               checked={!showGridRows && showGridColumns}
-            />{' '}
+            />
             columns
           </label>
           <label>
@@ -286,7 +286,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="radio"
               onChange={() => setGridProps([true, true])}
               checked={showGridRows && showGridColumns}
-            />{' '}
+            />
             both
           </label>
           <label>
@@ -294,7 +294,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="radio"
               onChange={() => setGridProps([false, false])}
               checked={!showGridRows && !showGridColumns}
-            />{' '}
+            />
             none
           </label>
         </div>
@@ -306,7 +306,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="radio"
               onChange={() => setAnimationTrajectory('center')}
               checked={animationTrajectory === 'center'}
-            />{' '}
+            />
             from center
           </label>
           <label>
@@ -314,7 +314,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="radio"
               onChange={() => setAnimationTrajectory('outside')}
               checked={animationTrajectory === 'outside'}
-            />{' '}
+            />
             from outside
           </label>
           <label>
@@ -322,7 +322,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="radio"
               onChange={() => setAnimationTrajectory('min')}
               checked={animationTrajectory === 'min'}
-            />{' '}
+            />
             from min
           </label>
           <label>
@@ -330,7 +330,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="radio"
               onChange={() => setAnimationTrajectory('max')}
               checked={animationTrajectory === 'max'}
-            />{' '}
+            />
             from max
           </label>
         </div>
@@ -342,7 +342,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="checkbox"
               onChange={() => setShowTooltip(!showTooltip)}
               checked={showTooltip}
-            />{' '}
+            />
             show tooltip
           </label>
           <label>
@@ -351,7 +351,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               disabled={!showTooltip || renderBarStackOrGroup === 'stack'}
               onChange={() => setSnapTooltipToDatumX(!snapTooltipToDatumX)}
               checked={showTooltip && snapTooltipToDatumX}
-            />{' '}
+            />
             snap tooltip to datum x
           </label>
           <label>
@@ -360,7 +360,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               disabled={!showTooltip || renderBarStackOrGroup === 'stack'}
               onChange={() => setSnapTooltipToDatumY(!snapTooltipToDatumY)}
               checked={showTooltip && snapTooltipToDatumY}
-            />{' '}
+            />
             snap tooltip to datum y
           </label>
           <label>
@@ -369,7 +369,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               disabled={!showTooltip}
               onChange={() => setShowVerticalCrosshair(!showVerticalCrosshair)}
               checked={showTooltip && showVerticalCrosshair}
-            />{' '}
+            />
             vertical crosshair
           </label>
           <label>
@@ -378,7 +378,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               disabled={!showTooltip}
               onChange={() => setShowHorizontalCrosshair(!showHorizontalCrosshair)}
               checked={showTooltip && showHorizontalCrosshair}
-            />{' '}
+            />
             horizontal crosshair
           </label>
           <label>
@@ -387,7 +387,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               disabled={!showTooltip}
               onChange={() => setSharedTooltip(!sharedTooltip)}
               checked={showTooltip && sharedTooltip}
-            />{' '}
+            />
             shared tooltip
           </label>
         </div>
@@ -400,7 +400,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               disabled={!canRenderLineOrArea}
               onChange={() => setRenderLineOrAreaSeries('line')}
               checked={canRenderLineOrArea && renderLineOrAreaSeries === 'line'}
-            />{' '}
+            />
             line
           </label>
           <label>
@@ -409,7 +409,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               disabled={!canRenderLineOrArea}
               onChange={() => setRenderLineOrAreaSeries('area')}
               checked={canRenderLineOrArea && renderLineOrAreaSeries === 'area'}
-            />{' '}
+            />
             area
           </label>
           <label>
@@ -418,7 +418,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               disabled={!canRenderLineOrArea}
               onChange={() => setRenderLineOrAreaSeries('none')}
               checked={renderLineOrAreaSeries === 'none' || !canRenderLineOrArea}
-            />{' '}
+            />
             none
           </label>
         </div>
@@ -430,7 +430,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="checkbox"
               onChange={() => setRenderGlyphSeries(!renderGlyphSeries)}
               checked={renderGlyphSeries}
-            />{' '}
+            />
             render glyphs
           </label>
           &nbsp;&nbsp;&nbsp;&nbsp;
@@ -440,7 +440,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               disabled={!renderGlyphSeries}
               onChange={() => setGlyphComponent('circle')}
               checked={glyphComponent === 'circle'}
-            />{' '}
+            />
             circle
           </label>
           <label>
@@ -449,7 +449,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               disabled={!renderGlyphSeries}
               onChange={() => setGlyphComponent('star')}
               checked={glyphComponent === 'star'}
-            />{' '}
+            />
             star
           </label>
           <label>
@@ -458,7 +458,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               disabled={!renderGlyphSeries}
               onChange={() => setGlyphComponent('cross')}
               checked={glyphComponent === 'cross'}
-            />{' '}
+            />
             cross
           </label>
           <label>
@@ -467,7 +467,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               disabled={!renderGlyphSeries}
               onChange={() => setGlyphComponent('🍍')}
               checked={glyphComponent === '🍍'}
-            />{' '}
+            />
             🍍
           </label>
         </div>
@@ -478,7 +478,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="radio"
               onChange={() => setRenderBarStackOrGroup('bar')}
               checked={renderBarStackOrGroup === 'bar'}
-            />{' '}
+            />
             bar
           </label>
           <label>
@@ -486,7 +486,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="radio"
               onChange={() => setRenderBarStackOrGroup('stack')}
               checked={renderBarStackOrGroup === 'stack'}
-            />{' '}
+            />
             bar stack
           </label>
           <label>
@@ -494,7 +494,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="radio"
               onChange={() => setRenderBarStackOrGroup('group')}
               checked={renderBarStackOrGroup === 'group'}
-            />{' '}
+            />
             bar group
           </label>
           <label>
@@ -502,7 +502,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="radio"
               onChange={() => setRenderBarStackOrGroup('none')}
               checked={renderBarStackOrGroup === 'none'}
-            />{' '}
+            />
             none
           </label>
         </div>
@@ -514,7 +514,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="checkbox"
               onChange={() => setNegativeValues(!negativeValues)}
               checked={negativeValues}
-            />{' '}
+            />
             negative values (SF)
           </label>
         </div>
