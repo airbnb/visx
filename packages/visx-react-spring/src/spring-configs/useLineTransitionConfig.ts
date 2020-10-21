@@ -91,6 +91,12 @@ export default function useLineTransitionConfig<Scale extends AxisScale | GridSc
       opacity: 0,
     });
 
-    return { from: fromLeave, leave: fromLeave, enter: enterUpdate, update: enterUpdate };
+    return {
+      unique: true,
+      from: fromLeave,
+      leave: fromLeave,
+      enter: enterUpdate,
+      update: enterUpdate,
+    };
   }, [scale, shouldAnimateX, initAnimationTrajectory]);
 }
