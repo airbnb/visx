@@ -1,7 +1,7 @@
 import React, { useContext, useCallback, useMemo } from 'react';
 import { AxisScale } from '@visx/axis';
 import DataContext from '../../../context/DataContext';
-import { SeriesProps } from '../../../types';
+import { GlyphProps, GlyphsProps, SeriesProps } from '../../../types';
 import withRegisteredData, { WithRegisteredDataProps } from '../../../enhancers/withRegisteredData';
 import getScaledValueFactory from '../../../utils/getScaledValueFactory';
 import useEventEmitter, { HandlerParams } from '../../../hooks/useEventEmitter';
@@ -21,27 +21,6 @@ export type BaseGlyphSeriesProps<
   size?: number | ((d: Datum) => number);
   /** Function which handles rendering glyphs. */
   renderGlyphs: (glyphsProps: GlyphsProps<XScale, YScale, Datum>) => React.ReactNode;
-};
-
-export type GlyphsProps<
-  XScale extends AxisScale,
-  YScale extends AxisScale,
-  Datum extends object
-> = {
-  xScale: XScale;
-  yScale: YScale;
-  horizontal?: boolean;
-  glyphs: GlyphProps<Datum>[];
-};
-
-export type GlyphProps<Datum extends object> = {
-  key: string;
-  datum: Datum;
-  index: number;
-  x: number;
-  y: number;
-  size: number;
-  color: string;
 };
 
 function BaseGlyphSeries<XScale extends AxisScale, YScale extends AxisScale, Datum extends object>({

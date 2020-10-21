@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { animated } from 'react-spring';
 import { mount } from 'enzyme';
 import { AnimatedGlyphSeries, DataContext, GlyphSeries, useEventEmitter } from '../../src';
-import DefaultGlyph from '../../src/components/series/private/DefaultGlyph';
+import defaultRenderGlyph from '../../src/components/series/private/defaultRenderGlyph';
 import getDataContext from '../mocks/getDataContext';
 import setupTooltipTest from '../mocks/setupTooltipTest';
 
@@ -21,15 +21,15 @@ describe('<GlyphSeries />', () => {
         </svg>
       </DataContext.Provider>,
     );
-    expect(wrapper.find(DefaultGlyph)).toHaveLength(series.data.length);
+    expect(wrapper.find(defaultRenderGlyph)).toHaveLength(series.data.length);
   });
 
   it('should render a custom Glyph for each Datum', () => {
-    const CustomGlyph = () => <rect className="custom-glyph" />;
+    const customRenderGlyph = () => <rect className="custom-glyph" />;
     const wrapper = mount(
       <DataContext.Provider value={getDataContext(series)}>
         <svg>
-          <GlyphSeries dataKey={series.key} {...series} Glyph={CustomGlyph} />
+          <GlyphSeries dataKey={series.key} {...series} renderGlyph={customRenderGlyph} />
         </svg>
       </DataContext.Provider>,
     );

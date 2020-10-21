@@ -13,7 +13,6 @@ import {
   Tooltip,
   XYChart,
 } from '@visx/xychart';
-import { GlyphCross, GlyphDiamond } from '@visx/glyph';
 import ExampleControls from './ExampleControls';
 import CustomChartBackground from './CustomChartBackground';
 
@@ -33,11 +32,13 @@ export default function Example({ height }: Props) {
         config,
         data,
         numTicks,
+        renderAreaSeries,
         renderBarGroup,
         renderBarSeries,
         renderBarStack,
+        renderGlyph,
+        renderGlyphSeries,
         renderHorizontally,
-        renderAreaSeries,
         renderLineSeries,
         sharedTooltip,
         showGridColumns,
@@ -152,14 +153,15 @@ export default function Example({ height }: Props) {
                 />
               </>
             )}
-            <AnimatedGlyphSeries
-              dataKey="San Francisco"
-              data={data}
-              xAccessor={accessors.x['San Francisco']}
-              yAccessor={accessors.y['San Francisco']}
-              horizontal={renderHorizontally}
-              Glyph={({ size, color }) => <GlyphCross stroke="#222" fill={color} size={size * 8} />}
-            />
+            {renderGlyphSeries && (
+              <AnimatedGlyphSeries
+                dataKey="San Francisco"
+                data={data}
+                xAccessor={accessors.x['San Francisco']}
+                yAccessor={accessors.y['San Francisco']}
+                renderGlyph={renderGlyph}
+              />
+            )}
             <AnimatedAxis
               key={`time-axis-${animationTrajectory}-${renderHorizontally}`}
               orientation={renderHorizontally ? yAxisOrientation : xAxisOrientation}

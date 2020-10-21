@@ -1,8 +1,11 @@
+/* eslint-disable jsx-a11y/accessible-emoji */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { lightTheme, darkTheme, XYChartTheme } from '@visx/xychart';
+import { GlyphProps } from '@visx/xychart/lib/types';
 import { AnimationTrajectory } from '@visx/react-spring/lib/types';
 import cityTemperature, { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
+import { GlyphCross, GlyphDot, GlyphStar } from '@visx/glyph';
 import customTheme from './customTheme';
 
 const dateScaleConfig = { type: 'band', paddingInner: 0.3 } as const;
@@ -38,11 +41,13 @@ type ProvidedProps = {
   animationTrajectory: AnimationTrajectory;
   data: CityTemperature[];
   numTicks: number;
-  renderHorizontally: boolean;
   renderAreaSeries: boolean;
   renderBarGroup: boolean;
   renderBarSeries: boolean;
   renderBarStack: boolean;
+  renderGlyph: React.FC<GlyphProps<CityTemperature>>;
+  renderGlyphSeries: boolean;
+  renderHorizontally: boolean;
   renderLineSeries: boolean;
   sharedTooltip: boolean;
   showGridColumns: boolean;
@@ -77,11 +82,33 @@ export default function ExampleControls({ children }: ControlsProps) {
   const [sharedTooltip, setSharedTooltip] = useState(true);
   const [renderBarStackOrGroup, setRenderBarStackOrGroup] = useState<
     'bar' | 'stack' | 'group' | 'none'
-  >('bar');
+  >('none');
   const [renderLineOrAreaSeries, setRenderLineOrAreaSeries] = useState<'line' | 'area' | 'none'>(
     'line',
   );
+  const [renderGlyphSeries, setRenderGlyphSeries] = useState(true);
   const [negativeValues, setNegativeValues] = useState(false);
+  const [glyphComponent, setGlyphComponent] = useState<'star' | 'cross' | 'circle' | '🍍'>('star');
+  const themeBackground = theme.backgroundColor;
+  const renderGlyph = useCallback(
+    ({ size, color }: GlyphProps<CityTemperature>) => {
+      if (glyphComponent === 'star') {
+        return <GlyphStar stroke={themeBackground} fill={color} size={size * 8} />;
+      }
+      if (glyphComponent === 'circle') {
+        return <GlyphDot stroke={themeBackground} fill={color} r={size / 2} />;
+      }
+      if (glyphComponent === 'cross') {
+        return <GlyphCross stroke={themeBackground} fill={color} size={size * 8} />;
+      }
+      return (
+        <text dx="-0.75em" dy="0.25em" fontSize={14}>
+          🍍
+        </text>
+      );
+    },
+    [glyphComponent, themeBackground],
+  );
 
   const accessors = useMemo(
     () => ({
@@ -129,6 +156,8 @@ export default function ExampleControls({ children }: ControlsProps) {
         renderBarGroup: renderBarStackOrGroup === 'group',
         renderBarSeries: renderBarStackOrGroup === 'bar',
         renderBarStack: renderBarStackOrGroup === 'stack',
+        renderGlyphSeries,
+        renderGlyph,
         renderHorizontally,
         renderAreaSeries: canRenderLineOrArea && renderLineOrAreaSeries === 'area',
         renderLineSeries: canRenderLineOrArea && renderLineOrAreaSeries === 'line',
@@ -391,6 +420,55 @@ export default function ExampleControls({ children }: ControlsProps) {
               checked={renderLineOrAreaSeries === 'none' || !canRenderLineOrArea}
             />{' '}
             none
+          </label>
+        </div>
+        {/** glyph */}
+        <div>
+          <strong>glyph series</strong>
+          <label>
+            <input
+              type="checkbox"
+              onChange={() => setRenderGlyphSeries(!renderGlyphSeries)}
+              checked={renderGlyphSeries}
+            />{' '}
+            render glyphs
+          </label>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <label>
+            <input
+              type="radio"
+              disabled={!renderGlyphSeries}
+              onChange={() => setGlyphComponent('circle')}
+              checked={glyphComponent === 'circle'}
+            />{' '}
+            circle
+          </label>
+          <label>
+            <input
+              type="radio"
+              disabled={!renderGlyphSeries}
+              onChange={() => setGlyphComponent('star')}
+              checked={glyphComponent === 'star'}
+            />{' '}
+            star
+          </label>
+          <label>
+            <input
+              type="radio"
+              disabled={!renderGlyphSeries}
+              onChange={() => setGlyphComponent('cross')}
+              checked={glyphComponent === 'cross'}
+            />{' '}
+            cross
+          </label>
+          <label>
+            <input
+              type="radio"
+              disabled={!renderGlyphSeries}
+              onChange={() => setGlyphComponent('🍍')}
+              checked={glyphComponent === '🍍'}
+            />{' '}
+            🍍
           </label>
         </div>
         <div>

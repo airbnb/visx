@@ -48,3 +48,26 @@ export type BarStackData<XScale extends AxisScale, YScale extends AxisScale> = S
 export type CombinedStackData<XScale extends AxisScale, YScale extends AxisScale> = {
   [dataKey: string]: ScaleInput<XScale> | ScaleInput<YScale>;
 } & { stack: ScaleInput<XScale> | ScaleInput<YScale>; positiveSum: number; negativeSum: number };
+
+/** Glyphs */
+
+export type GlyphsProps<
+  XScale extends AxisScale,
+  YScale extends AxisScale,
+  Datum extends object
+> = {
+  xScale: XScale;
+  yScale: YScale;
+  horizontal?: boolean;
+  glyphs: GlyphProps<Datum>[];
+};
+
+export type GlyphProps<Datum extends object> = {
+  key: string;
+  datum: Datum;
+  index: number;
+  x: number;
+  y: number;
+  size: number;
+  color: string;
+};

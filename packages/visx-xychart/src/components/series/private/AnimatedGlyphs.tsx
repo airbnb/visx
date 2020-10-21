@@ -51,14 +51,14 @@ export default function AnimatedGlyphs<
   YScale extends AxisScale,
   Datum extends object
 >({
-  Glyph,
+  renderGlyph,
   glyphs,
   horizontal,
   xScale,
   yScale,
 }: {
   // unanimated Glyph component
-  Glyph: React.FC<GlyphProps<Datum>>;
+  renderGlyph: React.FC<GlyphProps<Datum>>;
 } & GlyphsProps<XScale, YScale, Datum>) {
   const animatedGlyphs = useTransition(
     glyphs,
@@ -78,15 +78,15 @@ export default function AnimatedGlyphs<
           transform={interpolate([x, y], (xVal, yVal) => `translate(${xVal}, ${yVal})`)}
           color={color}
         >
-          <Glyph
-            key={key}
-            datum={item.datum}
-            index={item.index}
-            x={0}
-            y={0}
-            size={item.size}
-            color="currentColor" // allows us to animate the color of the <g /> element
-          />
+          {renderGlyph({
+            key,
+            datum: item.datum,
+            index: item.index,
+            x: 0,
+            y: 0,
+            size: item.size,
+            color: 'currentColor', // allows us to animate the color of the <g /> element
+          })}
         </animated.g>
       ))}
     </>

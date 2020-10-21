@@ -1,26 +1,22 @@
 import { AxisScale } from '@visx/axis';
 import React, { useCallback } from 'react';
-import BaseGlyphSeries, {
-  BaseGlyphSeriesProps,
-  GlyphProps,
-  GlyphsProps,
-} from './private/BaseGlyphSeries';
-import DefaultGlyph from './private/DefaultGlyph';
+import { GlyphProps, GlyphsProps } from '../../types';
+import BaseGlyphSeries, { BaseGlyphSeriesProps } from './private/BaseGlyphSeries';
+import defaultRenderGlyph from './private/defaultRenderGlyph';
 
 export default function GlyphSeries<
   XScale extends AxisScale,
   YScale extends AxisScale,
   Datum extends object
 >({
-  Glyph = DefaultGlyph,
+  renderGlyph = defaultRenderGlyph,
   ...props
 }: Omit<BaseGlyphSeriesProps<XScale, YScale, Datum>, 'renderGlyphs'> & {
-  Glyph?: React.FC<GlyphProps<Datum>>;
+  renderGlyph?: React.FC<GlyphProps<Datum>>;
 }) {
   const renderGlyphs = useCallback(
-    ({ glyphs }: GlyphsProps<XScale, YScale, Datum>) =>
-      glyphs.map(({ key, ...glyph }) => <Glyph key={key} {...glyph} />),
-    [],
+    ({ glyphs }: GlyphsProps<XScale, YScale, Datum>) => glyphs.map(glyph => renderGlyph(glyph)),
+    [renderGlyph],
   );
   return (
     <BaseGlyphSeries<XScale, YScale, Datum>
