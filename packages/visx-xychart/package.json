@@ -37,7 +37,8 @@
     "access": "public"
   },
   "peerDependencies": {
-    "react": "^16.3.0-0"
+    "react": "^16.3.0-0",
+    "react-spring": "^8.0.27"
   },
   "dependencies": {
     "@types/classnames": "^2.2.9",

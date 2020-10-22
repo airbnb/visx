@@ -9,10 +9,10 @@ const dateScaleConfig = { type: 'band', paddingInner: 0.3 } as const;
 const temperatureScaleConfig = { type: 'linear' } as const;
 const numTicks = 4;
 const data = cityTemperature.slice(200, 275);
-const dataSmall = data.slice(0, 25);
+const dataSmall = data.slice(0, 20);
 const getDate = (d: CityTemperature) => d.date;
 const getSfTemperature = (d: CityTemperature) => Number(d['San Francisco']);
-const getNegativeSFTemperature = (d: CityTemperature) => -getSfTemperature(d);
+const getNegativeSfTemperature = (d: CityTemperature) => -getSfTemperature(d);
 const getNyTemperature = (d: CityTemperature) => Number(d['New York']);
 const getAustinTemperature = (d: CityTemperature) => Number(d.Austin);
 
@@ -76,7 +76,7 @@ export default function ExampleControls({ children }: ControlsProps) {
   const [snapTooltipToDatumY, setSnapTooltipToDatumY] = useState(true);
   const [sharedTooltip, setSharedTooltip] = useState(true);
   const [renderBarStackOrGroup, setRenderBarStackOrGroup] = useState<'bar' | 'stack' | 'group'>(
-    'group',
+    'bar',
   );
   const [renderLineSeries, setRenderLineSeries] = useState(false);
   const [negativeValues, setNegativeValues] = useState(false);
@@ -86,7 +86,7 @@ export default function ExampleControls({ children }: ControlsProps) {
       x: {
         'San Francisco': renderHorizontally
           ? negativeValues
-            ? getNegativeSFTemperature
+            ? getNegativeSfTemperature
             : getSfTemperature
           : getDate,
         'New York': renderHorizontally ? getNyTemperature : getDate,
@@ -96,7 +96,7 @@ export default function ExampleControls({ children }: ControlsProps) {
         'San Francisco': renderHorizontally
           ? getDate
           : negativeValues
-          ? getNegativeSFTemperature
+          ? getNegativeSfTemperature
           : getSfTemperature,
         'New York': renderHorizontally ? getDate : getNyTemperature,
         Austin: renderHorizontally ? getDate : getAustinTemperature,
