@@ -15,7 +15,8 @@ export default function GlyphSeries<
   renderGlyph?: React.FC<GlyphProps<Datum>>;
 }) {
   const renderGlyphs = useCallback(
-    ({ glyphs }: GlyphsProps<XScale, YScale, Datum>) => glyphs.map(glyph => renderGlyph(glyph)),
+    ({ glyphs }: GlyphsProps<XScale, YScale, Datum>) =>
+      glyphs.map(glyph => <React.Fragment key={glyph.key}>{renderGlyph(glyph)}</React.Fragment>),
     [renderGlyph],
   );
   return (
