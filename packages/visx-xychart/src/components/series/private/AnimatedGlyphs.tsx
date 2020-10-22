@@ -2,7 +2,7 @@ import { AxisScale } from '@visx/axis';
 import React, { useMemo } from 'react';
 import { useTransition, animated, interpolate } from 'react-spring';
 import getScaleBaseline from '../../../utils/getScaleBaseline';
-import { GlyphProps, GlyphsProps } from './BaseGlyphSeries';
+import { GlyphProps, GlyphsProps } from '../../../types';
 
 type ConfigKeys = 'enter' | 'update' | 'from' | 'leave';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { GlyphProps } from './BaseGlyphSeries';
+import { GlyphProps } from '../../../types';
 
 export default function defaultRenderGlyph<Datum extends object>({
   key,
