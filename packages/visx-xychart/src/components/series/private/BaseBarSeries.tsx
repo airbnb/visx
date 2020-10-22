@@ -4,12 +4,12 @@ import DataContext from '../../../context/DataContext';
 import { BarsProps, SeriesProps } from '../../../types';
 import withRegisteredData, { WithRegisteredDataProps } from '../../../enhancers/withRegisteredData';
 import getScaledValueFactory from '../../../utils/getScaledValueFactory';
-import isValidNumber from '../../../typeguards/isValidNumber';
 import getScaleBandwidth from '../../../utils/getScaleBandwidth';
 import findNearestDatumX from '../../../utils/findNearestDatumX';
 import findNearestDatumY from '../../../utils/findNearestDatumY';
 import useEventEmitter, { HandlerParams } from '../../../hooks/useEventEmitter';
 import TooltipContext from '../../../context/TooltipContext';
+import getScaleBaseline from '../../../utils/getScaleBaseline';
 
 export type BaseBarSeriesProps<
   XScale extends AxisScale,
@@ -48,26 +48,13 @@ function BaseBarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum
   );
   const getScaledX = useCallback(getScaledValueFactory(xScale, xAccessor), [xScale, xAccessor]);
   const getScaledY = useCallback(getScaledValueFactory(yScale, yAccessor), [yScale, yAccessor]);
-  const [xMin, xMax] = xScale.range().map(Number);
-  const [yMax, yMin] = yScale.range().map(Number);
-
   const scaleBandwidth = getScaleBandwidth(horizontal ? yScale : xScale);
   const barThickness =
     scaleBandwidth ||
     getFallbackBandwidth((horizontal ? innerHeight : innerWidth) / data.length, barPadding);
 
-  // try to figure out the 0 baseline for correct rendering of negative values
-  // we aren't sure if these are numeric scales or not ahead of time
-  const maybeXZero = xScale(0);
-  const maybeYZero = yScale(0);
-  const xZeroPosition = isValidNumber(maybeXZero)
-    ? // if maybeXZero _is_ a number, but the scale is not clamped and it's outside the domain
-      // fallback to the scale's minimum
-      Math.max(maybeXZero, Math.min(xMin, xMax))
-    : Math.min(xMin, xMax);
-  const yZeroPosition = isValidNumber(maybeYZero)
-    ? Math.min(maybeYZero, Math.max(yMin, yMax))
-    : Math.max(yMin, yMax);
+  const xZeroPosition = useMemo(() => (xScale ? getScaleBaseline(xScale) : 0), [xScale]);
+  const yZeroPosition = useMemo(() => (yScale ? getScaleBaseline(yScale) : 0), [yScale]);
 
   const color = colorScale?.(dataKey) ?? theme?.colors?.[0] ?? '#222';
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
 import {
+  AnimatedAreaSeries,
   AnimatedAxis,
   AnimatedBarGroup,
   AnimatedBarSeries,
@@ -34,6 +35,7 @@ export default function Example({ height }: Props) {
         renderBarSeries,
         renderBarStack,
         renderHorizontally,
+        renderAreaSeries,
         renderLineSeries,
         sharedTooltip,
         showGridColumns,
@@ -110,21 +112,41 @@ export default function Example({ height }: Props) {
                 horizontal={renderHorizontally}
               />
             )}
-            {renderLineSeries && (
+            {renderAreaSeries && (
               <>
-                <AnimatedLineSeries
+                <AnimatedAreaSeries
+                  dataKey="Austin"
+                  data={renderBarStack ? data : data}
+                  xAccessor={accessors.x.Austin}
+                  yAccessor={accessors.y.Austin}
+                  horizontal={renderHorizontally}
+                  fillOpacity={0.3}
+                />
+                <AnimatedAreaSeries
                   dataKey="San Francisco"
                   data={renderBarStack ? data : data}
                   xAccessor={accessors.x['San Francisco']}
                   yAccessor={accessors.y['San Francisco']}
-                  horizontal={!renderHorizontally}
+                  horizontal={renderHorizontally}
+                  fillOpacity={0.3}
                 />
+              </>
+            )}
+            {renderLineSeries && (
+              <>
                 <AnimatedLineSeries
                   dataKey="Austin"
                   data={renderBarStack ? data : data}
                   xAccessor={accessors.x.Austin}
                   yAccessor={accessors.y.Austin}
-                  horizontal={!renderHorizontally}
+                  horizontal={renderHorizontally}
+                />
+                <AnimatedLineSeries
+                  dataKey="San Francisco"
+                  data={renderBarStack ? data : data}
+                  xAccessor={accessors.x['San Francisco']}
+                  yAccessor={accessors.y['San Francisco']}
+                  horizontal={renderHorizontally}
                 />
               </>
             )}

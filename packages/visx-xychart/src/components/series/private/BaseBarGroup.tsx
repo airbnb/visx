@@ -6,11 +6,11 @@ import { BaseBarSeriesProps } from './BaseBarSeries';
 import { BarsProps, DataContextType } from '../../../types';
 import DataContext from '../../../context/DataContext';
 import getScaleBandwidth from '../../../utils/getScaleBandwidth';
-import isValidNumber from '../../../typeguards/isValidNumber';
 import findNearestDatumY from '../../../utils/findNearestDatumY';
 import findNearestDatumX from '../../../utils/findNearestDatumX';
 import useEventEmitter, { HandlerParams } from '../../../hooks/useEventEmitter';
 import TooltipContext from '../../../context/TooltipContext';
+import getScaleBaseline from '../../../utils/getScaleBaseline';
 
 export type BaseBarGroupProps<XScale extends PositionScale, YScale extends PositionScale> = {
   /** Whether to render the Stack horizontally instead of vertically. */
@@ -117,28 +117,15 @@ export default function BaseBarGroup<
   useEventEmitter('mousemove', handleMouseMove);
   useEventEmitter('mouseout', hideTooltip);
 
+  const xZeroPosition = useMemo(() => (xScale ? getScaleBaseline(xScale) : 0), [xScale]);
+  const yZeroPosition = useMemo(() => (yScale ? getScaleBaseline(yScale) : 0), [yScale]);
+
   const registryEntries = dataKeys.map(key => dataRegistry.get(key));
 
   // if scales and data are not available in the registry, bail
   if (registryEntries.some(entry => entry == null) || !xScale || !yScale || !colorScale) {
     return null;
   }
-
-  const [xMin, xMax] = xScale.range().map(Number);
-  const [yMax, yMin] = yScale.range().map(Number);
-
-  // try to figure out the 0 baseline for correct rendering of negative values
-  // we aren't sure if these are numeric scales or not ahead of time
-  const maybeXZero = xScale(0) ?? 0;
-  const maybeYZero = yScale(0) ?? 0;
-  const xZeroPosition = isValidNumber(maybeXZero)
-    ? // if maybeXZero _is_ a number, but the scale is not clamped and it's outside the domain
-      // fallback to the scale's minimum
-      Math.max(maybeXZero, Math.min(xMin, xMax))
-    : Math.min(xMin, xMax);
-  const yZeroPosition = isValidNumber(maybeYZero)
-    ? Math.min(maybeYZero, Math.max(yMin, yMax))
-    : Math.max(yMin, yMax);
 
   const barThickness = getScaleBandwidth(groupScale);
 

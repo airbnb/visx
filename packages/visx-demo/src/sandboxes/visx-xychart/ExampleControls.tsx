@@ -8,8 +8,7 @@ import customTheme from './customTheme';
 const dateScaleConfig = { type: 'band', paddingInner: 0.3 } as const;
 const temperatureScaleConfig = { type: 'linear' } as const;
 const numTicks = 4;
-const data = cityTemperature.slice(200, 275);
-const dataSmall = data.slice(0, 20);
+const data = cityTemperature.slice(225, 275);
 const getDate = (d: CityTemperature) => d.date;
 const getSfTemperature = (d: CityTemperature) => Number(d['San Francisco']);
 const getNegativeSfTemperature = (d: CityTemperature) => -getSfTemperature(d);
@@ -40,9 +39,10 @@ type ProvidedProps = {
   data: CityTemperature[];
   numTicks: number;
   renderHorizontally: boolean;
+  renderAreaSeries: boolean;
+  renderBarGroup: boolean;
   renderBarSeries: boolean;
   renderBarStack: boolean;
-  renderBarGroup: boolean;
   renderLineSeries: boolean;
   sharedTooltip: boolean;
   showGridColumns: boolean;
@@ -75,10 +75,12 @@ export default function ExampleControls({ children }: ControlsProps) {
   const [snapTooltipToDatumX, setSnapTooltipToDatumX] = useState(true);
   const [snapTooltipToDatumY, setSnapTooltipToDatumY] = useState(true);
   const [sharedTooltip, setSharedTooltip] = useState(true);
-  const [renderBarStackOrGroup, setRenderBarStackOrGroup] = useState<'bar' | 'stack' | 'group'>(
-    'bar',
+  const [renderBarStackOrGroup, setRenderBarStackOrGroup] = useState<
+    'bar' | 'stack' | 'group' | 'none'
+  >('bar');
+  const [renderLineOrAreaSeries, setRenderLineOrAreaSeries] = useState<'line' | 'area' | 'none'>(
+    'line',
   );
-  const [renderLineSeries, setRenderLineSeries] = useState(false);
   const [negativeValues, setNegativeValues] = useState(false);
 
   const accessors = useMemo(
@@ -114,19 +116,22 @@ export default function ExampleControls({ children }: ControlsProps) {
     [renderHorizontally],
   );
 
+  const canRenderLineOrArea = renderBarStackOrGroup === 'bar' || renderBarStackOrGroup === 'none';
+
   return (
     <>
       {children({
         accessors,
         animationTrajectory,
         config,
-        data: renderBarStackOrGroup === 'bar' ? data : dataSmall,
+        data,
         numTicks,
         renderBarGroup: renderBarStackOrGroup === 'group',
         renderBarSeries: renderBarStackOrGroup === 'bar',
         renderBarStack: renderBarStackOrGroup === 'stack',
         renderHorizontally,
-        renderLineSeries: renderBarStackOrGroup === 'bar' && renderLineSeries,
+        renderAreaSeries: canRenderLineOrArea && renderLineOrAreaSeries === 'area',
+        renderLineSeries: canRenderLineOrArea && renderLineOrAreaSeries === 'line',
         sharedTooltip,
         showGridColumns,
         showGridRows,
@@ -359,17 +364,37 @@ export default function ExampleControls({ children }: ControlsProps) {
         </div>
         {/** series */}
         <div>
-          <strong>series</strong>
+          <strong>line series</strong>
           <label>
             <input
-              type="checkbox"
-              disabled={renderBarStackOrGroup !== 'bar'}
-              onChange={() => setRenderLineSeries(!renderLineSeries)}
-              checked={renderLineSeries}
+              type="radio"
+              disabled={!canRenderLineOrArea}
+              onChange={() => setRenderLineOrAreaSeries('line')}
+              checked={canRenderLineOrArea && renderLineOrAreaSeries === 'line'}
             />{' '}
             line
           </label>
-          &nbsp;&nbsp;&nbsp;&nbsp;
+          <label>
+            <input
+              type="radio"
+              disabled={!canRenderLineOrArea}
+              onChange={() => setRenderLineOrAreaSeries('area')}
+              checked={canRenderLineOrArea && renderLineOrAreaSeries === 'area'}
+            />{' '}
+            area
+          </label>
+          <label>
+            <input
+              type="radio"
+              disabled={!canRenderLineOrArea}
+              onChange={() => setRenderLineOrAreaSeries('none')}
+              checked={renderLineOrAreaSeries === 'none' || !canRenderLineOrArea}
+            />{' '}
+            none
+          </label>
+        </div>
+        <div>
+          <strong>bar series</strong>
           <label>
             <input
               type="radio"
@@ -393,6 +418,14 @@ export default function ExampleControls({ children }: ControlsProps) {
               checked={renderBarStackOrGroup === 'group'}
             />{' '}
             bar group
+          </label>
+          <label>
+            <input
+              type="radio"
+              onChange={() => setRenderBarStackOrGroup('none')}
+              checked={renderBarStackOrGroup === 'none'}
+            />{' '}
+            none
           </label>
         </div>
         {/** data */}
