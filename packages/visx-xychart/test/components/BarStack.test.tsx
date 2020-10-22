@@ -1,6 +1,14 @@
 import React, { useContext, useEffect } from 'react';
 import { mount } from 'enzyme';
-import { BarStack, BarSeries, DataProvider, DataContext, useEventEmitter } from '../../src';
+import { animated } from 'react-spring';
+import {
+  BarStack,
+  BarSeries,
+  DataProvider,
+  DataContext,
+  useEventEmitter,
+  AnimatedBarStack,
+} from '../../src';
 import setupTooltipTest from '../mocks/setupTooltipTest';
 
 const providerProps = {
@@ -108,7 +116,7 @@ describe('<BarStack />', () => {
 
     setupTooltipTest(
       <>
-        <BarStack horizontal>
+        <BarStack>
           <BarSeries dataKey={series1.key} {...series1} />
           <BarSeries dataKey={series2.key} {...series2} />
         </BarStack>
@@ -116,5 +124,24 @@ describe('<BarStack />', () => {
       </>,
       { showTooltip, hideTooltip },
     );
+  });
+});
+
+describe('<AnimatedBarStack />', () => {
+  it('should be defined', () => {
+    expect(AnimatedBarStack).toBeDefined();
+  });
+  it('should render an animated.rect', () => {
+    const wrapper = mount(
+      <DataProvider {...providerProps}>
+        <svg>
+          <AnimatedBarStack>
+            <BarSeries dataKey={series1.key} {...series1} />
+            <BarSeries dataKey={series2.key} {...series2} />
+          </AnimatedBarStack>
+        </svg>
+      </DataProvider>,
+    );
+    expect(wrapper.find(animated.rect)).toHaveLength(4);
   });
 });

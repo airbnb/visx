@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
+import { animated } from 'react-spring';
 import { mount } from 'enzyme';
-import { BarGroup, BarSeries, DataProvider, useEventEmitter } from '../../src';
+import { AnimatedBarGroup, BarGroup, BarSeries, DataProvider, useEventEmitter } from '../../src';
 import setupTooltipTest from '../mocks/setupTooltipTest';
 
 const providerProps = {
@@ -77,7 +78,7 @@ describe('<BarGroup />', () => {
 
     setupTooltipTest(
       <>
-        <BarGroup horizontal>
+        <BarGroup>
           <BarSeries dataKey={series1.key} {...series1} />
           <BarSeries dataKey={series2.key} {...series2} />
         </BarGroup>
@@ -85,5 +86,24 @@ describe('<BarGroup />', () => {
       </>,
       { showTooltip, hideTooltip },
     );
+  });
+});
+
+describe('<AnimatedBarGroup />', () => {
+  it('should be defined', () => {
+    expect(AnimatedBarGroup).toBeDefined();
+  });
+  it('should render an animated.rect', () => {
+    const wrapper = mount(
+      <DataProvider {...providerProps}>
+        <svg>
+          <AnimatedBarGroup>
+            <BarSeries dataKey={series1.key} {...series1} />
+            <BarSeries dataKey={series2.key} {...series2} />
+          </AnimatedBarGroup>
+        </svg>
+      </DataProvider>,
+    );
+    expect(wrapper.find(animated.rect)).toHaveLength(4);
   });
 });

@@ -16,6 +16,10 @@ export default function getScaledValueFactory<Scale extends AxisScale, Datum>(
         (align === 'start' ? 0 : getScaleBandwidth(scale)) / (align === 'center' ? 2 : 1);
       return scaledValue + bandwidthOffset;
     }
+    // @TODO: NaNs cause react-spring to throw, but the return value of this must be number
+    // this currently causes issues in vertical <> horizontal transitions because
+    // x/yAccessors from context are out of sync with props.horizontal
+    // horizontal should be moved to context
     return NaN;
   };
 }
