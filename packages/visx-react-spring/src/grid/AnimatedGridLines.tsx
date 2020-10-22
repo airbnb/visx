@@ -22,14 +22,15 @@ export default function AnimatedGridLines<Scale extends GridScale>({
   lineStyle,
   ...lineProps
 }: AnimatedGridLinesProps<Scale>) {
-  const animatedLines = useTransition(lines, lineKey, {
-    unique: true,
-    ...useLineTransitionConfig({
+  const animatedLines = useTransition(
+    lines,
+    lineKey,
+    useLineTransitionConfig({
       scale,
       animateXOrY,
       animationTrajectory,
     }),
-  });
+  );
 
   return (
     // eslint-disable-next-line react/jsx-no-useless-fragment
