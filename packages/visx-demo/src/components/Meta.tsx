@@ -79,7 +79,6 @@ const Meta = ({ title = 'visualization components' }) => (
       #__next,
       .wrapper {
         position: relative;
-        z-index: 1;
         display: flex;
         -webkit-box-align: center;
         align-items: center;
