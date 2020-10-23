@@ -85,7 +85,6 @@
     "react": "^16.9.0",
     "react-docgen-typescript-loader": "3.7.2",
     "react-dom": "^16.9.0",
-    "react-ga": "^2.1.2",
     "react-github-button": "^0.1.10",
     "react-markdown": "^4.3.1",
     "react-spring": "^8.0.27",
