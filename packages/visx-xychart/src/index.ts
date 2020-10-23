@@ -11,6 +11,7 @@ export { default as AreaSeries } from './components/series/AreaSeries';
 export { default as BarGroup } from './components/series/BarGroup';
 export { default as BarSeries } from './components/series/BarSeries';
 export { default as BarStack } from './components/series/BarStack';
+export { default as GlyphSeries } from './components/series/GlyphSeries';
 export { default as LineSeries } from './components/series/LineSeries';
 
 // animated series components
@@ -18,6 +19,7 @@ export { default as AnimatedAreaSeries } from './components/series/AnimatedAreaS
 export { default as AnimatedBarSeries } from './components/series/AnimatedBarSeries';
 export { default as AnimatedBarStack } from './components/series/AnimatedBarStack';
 export { default as AnimatedBarGroup } from './components/series/AnimatedBarGroup';
+export { default as AnimatedGlyphSeries } from './components/series/AnimatedGlyphSeries';
 export { default as AnimatedLineSeries } from './components/series/AnimatedLineSeries';
 
 // context

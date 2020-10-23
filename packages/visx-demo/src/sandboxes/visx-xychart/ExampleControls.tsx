@@ -1,8 +1,11 @@
+/* eslint-disable jsx-a11y/accessible-emoji */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { lightTheme, darkTheme, XYChartTheme } from '@visx/xychart';
+import { GlyphProps } from '@visx/xychart/lib/types';
 import { AnimationTrajectory } from '@visx/react-spring/lib/types';
 import cityTemperature, { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
+import { GlyphCross, GlyphDot, GlyphStar } from '@visx/glyph';
 import customTheme from './customTheme';
 
 const dateScaleConfig = { type: 'band', paddingInner: 0.3 } as const;
@@ -38,11 +41,13 @@ type ProvidedProps = {
   animationTrajectory: AnimationTrajectory;
   data: CityTemperature[];
   numTicks: number;
-  renderHorizontally: boolean;
   renderAreaSeries: boolean;
   renderBarGroup: boolean;
   renderBarSeries: boolean;
   renderBarStack: boolean;
+  renderGlyph: React.FC<GlyphProps<CityTemperature>>;
+  renderGlyphSeries: boolean;
+  renderHorizontally: boolean;
   renderLineSeries: boolean;
   sharedTooltip: boolean;
   showGridColumns: boolean;
@@ -77,11 +82,33 @@ export default function ExampleControls({ children }: ControlsProps) {
   const [sharedTooltip, setSharedTooltip] = useState(true);
   const [renderBarStackOrGroup, setRenderBarStackOrGroup] = useState<
     'bar' | 'stack' | 'group' | 'none'
-  >('bar');
+  >('none');
   const [renderLineOrAreaSeries, setRenderLineOrAreaSeries] = useState<'line' | 'area' | 'none'>(
     'line',
   );
+  const [renderGlyphSeries, setRenderGlyphSeries] = useState(true);
   const [negativeValues, setNegativeValues] = useState(false);
+  const [glyphComponent, setGlyphComponent] = useState<'star' | 'cross' | 'circle' | '🍍'>('star');
+  const themeBackground = theme.backgroundColor;
+  const renderGlyph = useCallback(
+    ({ size, color }: GlyphProps<CityTemperature>) => {
+      if (glyphComponent === 'star') {
+        return <GlyphStar stroke={themeBackground} fill={color} size={size * 8} />;
+      }
+      if (glyphComponent === 'circle') {
+        return <GlyphDot stroke={themeBackground} fill={color} r={size / 2} />;
+      }
+      if (glyphComponent === 'cross') {
+        return <GlyphCross stroke={themeBackground} fill={color} size={size * 8} />;
+      }
+      return (
+        <text dx="-0.75em" dy="0.25em" fontSize={14}>
+          🍍
+        </text>
+      );
+    },
+    [glyphComponent, themeBackground],
+  );
 
   const accessors = useMemo(
     () => ({
@@ -129,6 +156,8 @@ export default function ExampleControls({ children }: ControlsProps) {
         renderBarGroup: renderBarStackOrGroup === 'group',
         renderBarSeries: renderBarStackOrGroup === 'bar',
         renderBarStack: renderBarStackOrGroup === 'stack',
+        renderGlyphSeries,
+        renderGlyph,
         renderHorizontally,
         renderAreaSeries: canRenderLineOrArea && renderLineOrAreaSeries === 'area',
         renderLineSeries: canRenderLineOrArea && renderLineOrAreaSeries === 'line',
@@ -153,7 +182,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="radio"
               onChange={() => setTheme(lightTheme)}
               checked={theme === lightTheme}
-            />{' '}
+            />
             light
           </label>
           <label>
@@ -161,7 +190,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="radio"
               onChange={() => setTheme(darkTheme)}
               checked={theme === darkTheme}
-            />{' '}
+            />
             dark
           </label>
           <label>
@@ -169,7 +198,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="radio"
               onChange={() => setTheme(customTheme)}
               checked={theme === customTheme}
-            />{' '}
+            />
             custom
           </label>
         </div>
@@ -182,7 +211,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="radio"
               onChange={() => setRenderHorizontally(false)}
               checked={!renderHorizontally}
-            />{' '}
+            />
             vertical
           </label>
           <label>
@@ -190,7 +219,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="radio"
               onChange={() => setRenderHorizontally(true)}
               checked={renderHorizontally}
-            />{' '}
+            />
             horizontal
           </label>
         </div>
@@ -203,7 +232,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="radio"
               onChange={() => setXAxisOrientation('bottom')}
               checked={xAxisOrientation === 'bottom'}
-            />{' '}
+            />
             bottom
           </label>
           <label>
@@ -211,7 +240,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="radio"
               onChange={() => setXAxisOrientation('top')}
               checked={xAxisOrientation === 'top'}
-            />{' '}
+            />
             top
           </label>
           &nbsp;&nbsp;&nbsp;&nbsp;
@@ -220,7 +249,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="radio"
               onChange={() => setYAxisOrientation('left')}
               checked={yAxisOrientation === 'left'}
-            />{' '}
+            />
             left
           </label>
           <label>
@@ -228,7 +257,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="radio"
               onChange={() => setYAxisOrientation('right')}
               checked={yAxisOrientation === 'right'}
-            />{' '}
+            />
             right
           </label>
         </div>
@@ -241,7 +270,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="radio"
               onChange={() => setGridProps([true, false])}
               checked={showGridRows && !showGridColumns}
-            />{' '}
+            />
             rows
           </label>
           <label>
@@ -249,7 +278,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="radio"
               onChange={() => setGridProps([false, true])}
               checked={!showGridRows && showGridColumns}
-            />{' '}
+            />
             columns
           </label>
           <label>
@@ -257,7 +286,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="radio"
               onChange={() => setGridProps([true, true])}
               checked={showGridRows && showGridColumns}
-            />{' '}
+            />
             both
           </label>
           <label>
@@ -265,7 +294,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="radio"
               onChange={() => setGridProps([false, false])}
               checked={!showGridRows && !showGridColumns}
-            />{' '}
+            />
             none
           </label>
         </div>
@@ -277,7 +306,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="radio"
               onChange={() => setAnimationTrajectory('center')}
               checked={animationTrajectory === 'center'}
-            />{' '}
+            />
             from center
           </label>
           <label>
@@ -285,7 +314,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="radio"
               onChange={() => setAnimationTrajectory('outside')}
               checked={animationTrajectory === 'outside'}
-            />{' '}
+            />
             from outside
           </label>
           <label>
@@ -293,7 +322,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="radio"
               onChange={() => setAnimationTrajectory('min')}
               checked={animationTrajectory === 'min'}
-            />{' '}
+            />
             from min
           </label>
           <label>
@@ -301,7 +330,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="radio"
               onChange={() => setAnimationTrajectory('max')}
               checked={animationTrajectory === 'max'}
-            />{' '}
+            />
             from max
           </label>
         </div>
@@ -313,7 +342,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="checkbox"
               onChange={() => setShowTooltip(!showTooltip)}
               checked={showTooltip}
-            />{' '}
+            />
             show tooltip
           </label>
           <label>
@@ -322,7 +351,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               disabled={!showTooltip || renderBarStackOrGroup === 'stack'}
               onChange={() => setSnapTooltipToDatumX(!snapTooltipToDatumX)}
               checked={showTooltip && snapTooltipToDatumX}
-            />{' '}
+            />
             snap tooltip to datum x
           </label>
           <label>
@@ -331,7 +360,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               disabled={!showTooltip || renderBarStackOrGroup === 'stack'}
               onChange={() => setSnapTooltipToDatumY(!snapTooltipToDatumY)}
               checked={showTooltip && snapTooltipToDatumY}
-            />{' '}
+            />
             snap tooltip to datum y
           </label>
           <label>
@@ -340,7 +369,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               disabled={!showTooltip}
               onChange={() => setShowVerticalCrosshair(!showVerticalCrosshair)}
               checked={showTooltip && showVerticalCrosshair}
-            />{' '}
+            />
             vertical crosshair
           </label>
           <label>
@@ -349,7 +378,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               disabled={!showTooltip}
               onChange={() => setShowHorizontalCrosshair(!showHorizontalCrosshair)}
               checked={showTooltip && showHorizontalCrosshair}
-            />{' '}
+            />
             horizontal crosshair
           </label>
           <label>
@@ -358,7 +387,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               disabled={!showTooltip}
               onChange={() => setSharedTooltip(!sharedTooltip)}
               checked={showTooltip && sharedTooltip}
-            />{' '}
+            />
             shared tooltip
           </label>
         </div>
@@ -371,7 +400,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               disabled={!canRenderLineOrArea}
               onChange={() => setRenderLineOrAreaSeries('line')}
               checked={canRenderLineOrArea && renderLineOrAreaSeries === 'line'}
-            />{' '}
+            />
             line
           </label>
           <label>
@@ -380,7 +409,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               disabled={!canRenderLineOrArea}
               onChange={() => setRenderLineOrAreaSeries('area')}
               checked={canRenderLineOrArea && renderLineOrAreaSeries === 'area'}
-            />{' '}
+            />
             area
           </label>
           <label>
@@ -389,8 +418,57 @@ export default function ExampleControls({ children }: ControlsProps) {
               disabled={!canRenderLineOrArea}
               onChange={() => setRenderLineOrAreaSeries('none')}
               checked={renderLineOrAreaSeries === 'none' || !canRenderLineOrArea}
-            />{' '}
+            />
             none
+          </label>
+        </div>
+        {/** glyph */}
+        <div>
+          <strong>glyph series</strong>
+          <label>
+            <input
+              type="checkbox"
+              onChange={() => setRenderGlyphSeries(!renderGlyphSeries)}
+              checked={renderGlyphSeries}
+            />
+            render glyphs
+          </label>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <label>
+            <input
+              type="radio"
+              disabled={!renderGlyphSeries}
+              onChange={() => setGlyphComponent('circle')}
+              checked={glyphComponent === 'circle'}
+            />
+            circle
+          </label>
+          <label>
+            <input
+              type="radio"
+              disabled={!renderGlyphSeries}
+              onChange={() => setGlyphComponent('star')}
+              checked={glyphComponent === 'star'}
+            />
+            star
+          </label>
+          <label>
+            <input
+              type="radio"
+              disabled={!renderGlyphSeries}
+              onChange={() => setGlyphComponent('cross')}
+              checked={glyphComponent === 'cross'}
+            />
+            cross
+          </label>
+          <label>
+            <input
+              type="radio"
+              disabled={!renderGlyphSeries}
+              onChange={() => setGlyphComponent('🍍')}
+              checked={glyphComponent === '🍍'}
+            />
+            🍍
           </label>
         </div>
         <div>
@@ -400,7 +478,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="radio"
               onChange={() => setRenderBarStackOrGroup('bar')}
               checked={renderBarStackOrGroup === 'bar'}
-            />{' '}
+            />
             bar
           </label>
           <label>
@@ -408,7 +486,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="radio"
               onChange={() => setRenderBarStackOrGroup('stack')}
               checked={renderBarStackOrGroup === 'stack'}
-            />{' '}
+            />
             bar stack
           </label>
           <label>
@@ -416,7 +494,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="radio"
               onChange={() => setRenderBarStackOrGroup('group')}
               checked={renderBarStackOrGroup === 'group'}
-            />{' '}
+            />
             bar group
           </label>
           <label>
@@ -424,7 +502,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="radio"
               onChange={() => setRenderBarStackOrGroup('none')}
               checked={renderBarStackOrGroup === 'none'}
-            />{' '}
+            />
             none
           </label>
         </div>
@@ -436,7 +514,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               type="checkbox"
               onChange={() => setNegativeValues(!negativeValues)}
               checked={negativeValues}
-            />{' '}
+            />
             negative values (SF)
           </label>
         </div>

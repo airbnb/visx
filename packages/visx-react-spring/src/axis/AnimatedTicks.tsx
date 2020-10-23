@@ -20,10 +20,11 @@ export default function AnimatedTicks<Scale extends AxisScale>({
   ticks,
   animationTrajectory,
 }: TicksRendererProps<Scale> & { animationTrajectory?: AnimationTrajectory }) {
-  const animatedTicks = useTransition(ticks, tick => `${tick.value}`, {
-    unique: true,
-    ...useLineTransitionConfig({ scale, animateXOrY: horizontal ? 'x' : 'y', animationTrajectory }),
-  });
+  const animatedTicks = useTransition(
+    ticks,
+    tick => `${tick.value}`,
+    useLineTransitionConfig({ scale, animateXOrY: horizontal ? 'x' : 'y', animationTrajectory }),
+  );
 
   return (
     // eslint-disable-next-line react/jsx-no-useless-fragment

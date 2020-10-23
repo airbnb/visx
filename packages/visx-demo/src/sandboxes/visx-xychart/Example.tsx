@@ -6,6 +6,7 @@ import {
   AnimatedBarGroup,
   AnimatedBarSeries,
   AnimatedBarStack,
+  AnimatedGlyphSeries,
   AnimatedGrid,
   AnimatedLineSeries,
   DataProvider,
@@ -31,11 +32,13 @@ export default function Example({ height }: Props) {
         config,
         data,
         numTicks,
+        renderAreaSeries,
         renderBarGroup,
         renderBarSeries,
         renderBarStack,
+        renderGlyph,
+        renderGlyphSeries,
         renderHorizontally,
-        renderAreaSeries,
         renderLineSeries,
         sharedTooltip,
         showGridColumns,
@@ -116,7 +119,7 @@ export default function Example({ height }: Props) {
               <>
                 <AnimatedAreaSeries
                   dataKey="Austin"
-                  data={renderBarStack ? data : data}
+                  data={data}
                   xAccessor={accessors.x.Austin}
                   yAccessor={accessors.y.Austin}
                   horizontal={renderHorizontally}
@@ -124,7 +127,7 @@ export default function Example({ height }: Props) {
                 />
                 <AnimatedAreaSeries
                   dataKey="San Francisco"
-                  data={renderBarStack ? data : data}
+                  data={data}
                   xAccessor={accessors.x['San Francisco']}
                   yAccessor={accessors.y['San Francisco']}
                   horizontal={renderHorizontally}
@@ -136,19 +139,28 @@ export default function Example({ height }: Props) {
               <>
                 <AnimatedLineSeries
                   dataKey="Austin"
-                  data={renderBarStack ? data : data}
+                  data={data}
                   xAccessor={accessors.x.Austin}
                   yAccessor={accessors.y.Austin}
                   horizontal={renderHorizontally}
                 />
                 <AnimatedLineSeries
                   dataKey="San Francisco"
-                  data={renderBarStack ? data : data}
+                  data={data}
                   xAccessor={accessors.x['San Francisco']}
                   yAccessor={accessors.y['San Francisco']}
                   horizontal={renderHorizontally}
                 />
               </>
+            )}
+            {renderGlyphSeries && (
+              <AnimatedGlyphSeries
+                dataKey="San Francisco"
+                data={data}
+                xAccessor={accessors.x['San Francisco']}
+                yAccessor={accessors.y['San Francisco']}
+                renderGlyph={renderGlyph}
+              />
             )}
             <AnimatedAxis
               key={`time-axis-${animationTrajectory}-${renderHorizontally}`}
