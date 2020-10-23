@@ -51,12 +51,11 @@ export default function Example({ width, height, showControls = true }: TooltipP
   });
 
   // event handlers
-  const handleMouseMove = useCallback(
-    (event: React.MouseEvent | React.TouchEvent) => {
+  const handlePointerMove = useCallback(
+    (event: React.PointerEvent<HTMLDivElement>) => {
       // coordinates should be relative to the container in which Tooltip is rendered
       const containerX = ('clientX' in event ? event.clientX : 0) - containerBounds.left;
       const containerY = ('clientY' in event ? event.clientY : 0) - containerBounds.top;
-
       showTooltip({
         tooltipLeft: containerX,
         tooltipTop: containerY,
@@ -80,8 +79,7 @@ export default function Example({ width, height, showControls = true }: TooltipP
         ref={containerRef}
         className="tooltip-example"
         style={{ width, height }}
-        onMouseMove={handleMouseMove}
-        onTouchMove={handleMouseMove}
+        onPointerMove={handlePointerMove}
       >
         {tooltipOpen ? (
           <>
