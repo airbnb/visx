@@ -178,10 +178,7 @@ describe("<Text />", () => {
   it("Should not render textPath when textPath is not passed", () => {
     const wrapper = mount<Text>(<Text>Text path test</Text>);
 
-    const textPath = wrapper.find("textPath");
-    const path = wrapper.find("path");
-
-    expect(textPath).toHaveLength(0);
-    expect(path).toHaveLength(0);
+    expect(wrapper.find("textPath")).toHaveLength(0);
+    expect(wrapper.find("path")).toHaveLength(0);
   });
 });
