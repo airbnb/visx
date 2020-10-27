@@ -3,6 +3,7 @@ import { ScaleConfig, createScale, ScaleInput } from '@visx/scale';
 import { extent as d3Extent } from 'd3-array';
 import { useMemo } from 'react';
 import DataRegistry from '../classes/DataRegistry';
+import isDiscreteScale from '../utils/isDiscreteScale';
 
 /** A hook for creating memoized x- and y-scales. */
 export default function useScales<
@@ -39,8 +40,7 @@ export default function useScales<
       [],
     );
 
-    const xType = xScaleConfig.type;
-    const xDomain = xType === 'band' || xType === 'ordinal' ? xValues : d3Extent(xValues);
+    const xDomain = isDiscreteScale(xScaleConfig) ? xValues : d3Extent(xValues);
 
     xScale.range(xScaleConfig.range || [xMin, xMax]);
     xScale.domain(xScaleConfig.domain || xDomain);
@@ -66,8 +66,7 @@ export default function useScales<
       [],
     );
 
-    const yType = yScaleConfig.type;
-    const yDomain = yType === 'band' || yType === 'ordinal' ? yValues : d3Extent(yValues);
+    const yDomain = isDiscreteScale(yScaleConfig) ? yValues : d3Extent(yValues);
 
     yScale.range(yScaleConfig.range || [yMin, yMax]);
     yScale.domain(yScaleConfig.domain || yDomain);

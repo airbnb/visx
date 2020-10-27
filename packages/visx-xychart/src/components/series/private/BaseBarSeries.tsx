@@ -18,8 +18,6 @@ export type BaseBarSeriesProps<
 > = SeriesProps<XScale, YScale, Datum> & {
   /** Rendered component which is passed BarsProps by BaseBarSeries after processing. */
   BarsComponent: React.FC<BarsProps<XScale, YScale>>;
-  /** Whether bars should be rendered horizontally instead of vertically. */
-  horizontal?: boolean;
   /**
    * Specify bar padding when bar thickness does not come from a `band` scale.
    * Accepted values are [0, 1], 0 = no padding, 1 = no bar, defaults to 0.1.
@@ -37,15 +35,20 @@ function BaseBarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum
   BarsComponent,
   data,
   dataKey,
-  horizontal,
   xAccessor,
   xScale,
   yAccessor,
   yScale,
 }: BaseBarSeriesProps<XScale, YScale, Datum> & WithRegisteredDataProps<XScale, YScale, Datum>) {
-  const { colorScale, theme, width, height, innerWidth = 0, innerHeight = 0 } = useContext(
-    DataContext,
-  );
+  const {
+    colorScale,
+    horizontal,
+    theme,
+    width,
+    height,
+    innerWidth = 0,
+    innerHeight = 0,
+  } = useContext(DataContext);
   const getScaledX = useCallback(getScaledValueFactory(xScale, xAccessor), [xScale, xAccessor]);
   const getScaledY = useCallback(getScaledValueFactory(yScale, yAccessor), [yScale, yAccessor]);
   const scaleBandwidth = getScaleBandwidth(horizontal ? yScale : xScale);

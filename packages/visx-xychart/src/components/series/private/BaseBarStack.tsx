@@ -23,8 +23,6 @@ export type BaseBarStackProps<
   YScale extends PositionScale,
   Datum extends object
 > = {
-  /** Whether to render the Stack horizontally instead of vertically. */
-  horizontal?: boolean;
   /** `BarSeries` elements */
   children: JSX.Element | JSX.Element[];
   /** Rendered component which is passed BarsProps by BaseBarStack after processing. */
@@ -35,13 +33,7 @@ function BaseBarStack<
   XScale extends PositionScale,
   YScale extends PositionScale,
   Datum extends object
->({
-  children,
-  horizontal,
-  order,
-  offset,
-  BarsComponent,
-}: BaseBarStackProps<XScale, YScale, Datum>) {
+>({ children, order, offset, BarsComponent }: BaseBarStackProps<XScale, YScale, Datum>) {
   type StackBar = SeriesPoint<CombinedStackData<XScale, YScale>>;
   const {
     xScale,
@@ -52,6 +44,7 @@ function BaseBarStack<
     unregisterData,
     width,
     height,
+    horizontal,
   } = (useContext(DataContext) as unknown) as DataContextType<
     XScale,
     YScale,

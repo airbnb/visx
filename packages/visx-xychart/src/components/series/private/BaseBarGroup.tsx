@@ -3,7 +3,7 @@ import { PositionScale } from '@visx/shape/lib/types';
 import { scaleBand } from '@visx/scale';
 import isChildWithProps from '../../../typeguards/isChildWithProps';
 import { BaseBarSeriesProps } from './BaseBarSeries';
-import { BarsProps, DataContextType } from '../../../types';
+import { Bar, BarsProps, DataContextType } from '../../../types';
 import DataContext from '../../../context/DataContext';
 import getScaleBandwidth from '../../../utils/getScaleBandwidth';
 import findNearestDatumY from '../../../utils/findNearestDatumY';
@@ -11,10 +11,9 @@ import findNearestDatumX from '../../../utils/findNearestDatumX';
 import useEventEmitter, { HandlerParams } from '../../../hooks/useEventEmitter';
 import TooltipContext from '../../../context/TooltipContext';
 import getScaleBaseline from '../../../utils/getScaleBaseline';
+import isValidNumber from '../../../typeguards/isValidNumber';
 
 export type BaseBarGroupProps<XScale extends PositionScale, YScale extends PositionScale> = {
-  /** Whether to render the Stack horizontally instead of vertically. */
-  horizontal?: boolean;
   /** `BarSeries` elements */
   children: JSX.Element | JSX.Element[];
   /** Group band scale padding, [0, 1] where 0 = no padding, 1 = no bar. */
@@ -29,13 +28,7 @@ export default function BaseBarGroup<
   XScale extends PositionScale,
   YScale extends PositionScale,
   Datum extends object
->({
-  children,
-  horizontal,
-  padding = 0.1,
-  sortBars,
-  BarsComponent,
-}: BaseBarGroupProps<XScale, YScale>) {
+>({ children, padding = 0.1, sortBars, BarsComponent }: BaseBarGroupProps<XScale, YScale>) {
   const {
     xScale,
     yScale,
@@ -45,6 +38,7 @@ export default function BaseBarGroup<
     unregisterData,
     width,
     height,
+    horizontal,
   } = (useContext(DataContext) as unknown) as DataContextType<XScale, YScale, Datum>;
 
   const barSeriesChildren = useMemo(
@@ -152,14 +146,23 @@ export default function BaseBarGroup<
     const getWidth = horizontal ? (d: Datum) => Math.abs(getLength(d)) : () => barThickness;
     const getHeight = horizontal ? () => barThickness : (d: Datum) => Math.abs(getLength(d));
 
-    return data.map((datum, index) => ({
-      key: `${key}-${index}`,
-      x: getX(datum),
-      y: getY(datum),
-      width: getWidth(datum),
-      height: getHeight(datum),
-      fill: colorScale(key),
-    }));
+    return data
+      .map((bar, index) => {
+        const barX = getX(bar);
+        if (!isValidNumber(barX)) return null;
+        const barY = getY(bar);
+        if (!isValidNumber(barY)) return null;
+
+        return {
+          key: `${key}-${index}`,
+          x: barX,
+          y: barY,
+          width: getWidth(bar),
+          height: getHeight(bar),
+          fill: colorScale(key),
+        };
+      })
+      .filter(bar => bar) as Bar[];
   });
 
   return (
