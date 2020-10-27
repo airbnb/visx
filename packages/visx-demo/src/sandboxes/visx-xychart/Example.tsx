@@ -30,6 +30,7 @@ export default function Example({ height }: Props) {
         accessors,
         animationTrajectory,
         config,
+        curve,
         data,
         numTicks,
         renderAreaSeries,
@@ -122,6 +123,7 @@ export default function Example({ height }: Props) {
                   xAccessor={accessors.x.Austin}
                   yAccessor={accessors.y.Austin}
                   fillOpacity={0.5}
+                  curve={curve}
                 />
                 <AnimatedAreaSeries
                   dataKey="San Francisco"
@@ -129,6 +131,7 @@ export default function Example({ height }: Props) {
                   xAccessor={accessors.x['San Francisco']}
                   yAccessor={accessors.y['San Francisco']}
                   fillOpacity={0.5}
+                  curve={curve}
                 />
               </>
             )}
@@ -139,12 +142,14 @@ export default function Example({ height }: Props) {
                   data={data}
                   xAccessor={accessors.x.Austin}
                   yAccessor={accessors.y.Austin}
+                  curve={curve}
                 />
                 <AnimatedLineSeries
                   dataKey="San Francisco"
                   data={data}
                   xAccessor={accessors.x['San Francisco']}
                   yAccessor={accessors.y['San Francisco']}
+                  curve={curve}
                 />
               </>
             )}

@@ -7,6 +7,7 @@
     "@babel/runtime": "^7.8.4",
     "@types/react": "^16",
     "@types/react-dom": "^16",
+    "@visx/curve": "1.0.0",
     "@visx/glyph": "latest",
     "@visx/mock-data": "latest",
     "@visx/pattern": "latest",
