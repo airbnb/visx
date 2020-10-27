@@ -70,7 +70,6 @@ function BaseLineSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
 
   return (
     <LinePath
-      data={data}
       x={getScaledX}
       y={getScaledY}
       stroke={color}

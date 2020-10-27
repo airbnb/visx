@@ -97,14 +97,13 @@ function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
 
   return (
     <>
-      <Area data={data} {...xAccessors} {...yAccessors} {...areaProps} defined={isDefined}>
+      <Area {...xAccessors} {...yAccessors} {...areaProps} defined={isDefined}>
         {({ path }) => (
           <PathComponent stroke="transparent" fill={color} {...areaProps} d={path(data) || ''} />
         )}
       </Area>
       {renderLine && (
         <LinePath<Datum>
-          data={data}
           x={getScaledX}
           y={getScaledY}
           stroke={color}
