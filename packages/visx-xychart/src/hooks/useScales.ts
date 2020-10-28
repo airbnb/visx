@@ -34,18 +34,14 @@ export default function useScales<
 
     let xScale = createScale(xScaleConfig) as XScale;
     type XScaleInput = ScaleInput<XScale>;
-    const xScaleIsDiscrete = isDiscreteScale(xScaleConfig);
-    const valueIsDefined = xScaleIsDiscrete ? (v: XScaleInput) => v != null : isValidNumber;
 
     const xValues = registryEntries.reduce<XScaleInput[]>(
       (combined, entry) =>
-        entry
-          ? combined.concat(entry.data.map((d: Datum) => entry.xAccessor(d)).filter(valueIsDefined))
-          : combined,
+        entry ? combined.concat(entry.data.map((d: Datum) => entry.xAccessor(d))) : combined,
       [],
     );
 
-    const xDomain = xScaleIsDiscrete ? xValues : d3Extent(xValues);
+    const xDomain = isDiscreteScale(xScaleConfig) ? xValues : d3Extent(xValues);
 
     xScale.range(xScaleConfig.range || [xMin, xMax]);
     xScale.domain(xScaleConfig.domain || xDomain);
@@ -65,13 +61,9 @@ export default function useScales<
     let yScale = createScale(yScaleConfig) as YScale;
     type YScaleInput = ScaleInput<YScale>;
 
-    const yScaleIsDiscrete = isDiscreteScale(yScaleConfig);
-    const valueIsDefined = yScaleIsDiscrete ? (v: YScaleInput) => v != null : isValidNumber;
     const yValues = registryEntries.reduce<YScaleInput[]>(
       (combined, entry) =>
-        entry
-          ? combined.concat(entry.data.map((d: Datum) => entry.yAccessor(d)).filter(valueIsDefined))
-          : combined,
+        entry ? combined.concat(entry.data.map((d: Datum) => entry.yAccessor(d))) : combined,
       [],
     );
 
