@@ -36,8 +36,10 @@
     "@visx/group": "1.0.0",
     "@visx/point": "1.0.0",
     "@visx/shape": "1.1.0",
+    "@visx/text": "1.0.0",
     "classnames": "^2.2.5",
-    "prop-types": "^15.5.10"
+    "prop-types": "^15.5.10",
+    "react-use-measure": "2.0.1"
   },
   "publishConfig": {
     "access": "public"
