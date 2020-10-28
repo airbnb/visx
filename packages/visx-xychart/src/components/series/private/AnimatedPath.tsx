@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { animated, useSpring } from 'react-spring';
-// @ts-ignore
+// @ts-ignore no types
 import { interpolatePath } from 'd3-interpolate-path';
 
 export default function AnimatedPath({
@@ -15,11 +15,16 @@ export default function AnimatedPath({
   // d3-interpolate-path is better at interpolating extra/fewer points so we use that
   const interpolator = interpolatePath(previousD.current, d);
   previousD.current = d;
-  const frame = useSpring({ from: { t: 0 }, to: { t: 1 }, reset: true });
+  // @ts-ignore t is not in CSSProperties
+  const { t } = useSpring({
+    from: { t: 0 },
+    to: { t: 1 },
+    reset: true,
+  });
   const tweened = useSpring({ stroke, fill });
   return (
     <animated.path
-      d={frame.t.interpolate(interpolator)}
+      d={t.interpolate(interpolator)}
       stroke={tweened.stroke}
       fill={tweened.fill}
       {...lineProps}

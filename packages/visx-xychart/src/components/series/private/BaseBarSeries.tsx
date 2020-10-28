@@ -1,7 +1,7 @@
 import React, { useContext, useCallback, useMemo } from 'react';
 import { AxisScale } from '@visx/axis';
 import DataContext from '../../../context/DataContext';
-import { BarsProps, SeriesProps } from '../../../types';
+import { Bar, BarsProps, SeriesProps } from '../../../types';
 import withRegisteredData, { WithRegisteredDataProps } from '../../../enhancers/withRegisteredData';
 import getScaledValueFactory from '../../../utils/getScaledValueFactory';
 import getScaleBandwidth from '../../../utils/getScaleBandwidth';
@@ -83,7 +83,7 @@ function BaseBarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum
           fill: color, // @TODO allow prop overriding
         };
       })
-      .filter(bar => bar);
+      .filter(bar => bar) as Bar[];
   }, [barThickness, color, data, getScaledX, getScaledY, horizontal, xZeroPosition, yZeroPosition]);
 
   const { showTooltip, hideTooltip } = useContext(TooltipContext) ?? {};
