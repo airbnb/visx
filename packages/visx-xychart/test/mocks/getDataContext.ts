@@ -30,6 +30,7 @@ function getDataContext(entries?: Parameters<typeof DataRegistry.prototype.regis
     innerHeight: height,
     theme: lightTheme,
     setDimensions: noOp,
+    horizontal: false,
   };
 
   return mockContext;
