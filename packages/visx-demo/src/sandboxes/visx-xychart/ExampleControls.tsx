@@ -12,7 +12,11 @@ const dateScaleConfig = { type: 'band', paddingInner: 0.3 } as const;
 const temperatureScaleConfig = { type: 'linear' } as const;
 const numTicks = 4;
 const data = cityTemperature.slice(225, 275);
-const dataMissingValues = data.map((d, i) => (i === 10 ? { ...d, 'San Francisco': NaN } : d));
+const dataMissingValues = data.map((d, i) =>
+  i === 10 || i === 11
+    ? { ...d, 'San Francisco': 'nope', 'New York': 'notanumber', Austin: 'null' }
+    : d,
+);
 const dataSmall = data.slice(0, 15);
 const dataSmallMissingValues = dataMissingValues.slice(0, 15);
 const getDate = (d: CityTemperature) => d.date;
@@ -551,8 +555,11 @@ export default function ExampleControls({ children }: ControlsProps) {
           font-size: 13px;
           line-height: 1.5em;
         }
+        .controls > div {
+          margin-bottom: 8px;
+        }
         label {
-          font-size: 11px;
+          font-size: 12px;
         }
         input[type='radio'] {
           height: 10px;
