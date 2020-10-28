@@ -126,8 +126,8 @@ export default function BaseBarGroup<
   const bars = registryEntries.flatMap(({ xAccessor, yAccessor, data, key }) => {
     const getLength = (d: Datum) =>
       horizontal
-        ? (xScale(xAccessor(d)) ?? 0) - xZeroPosition
-        : (yScale(yAccessor(d)) ?? 0) - yZeroPosition;
+        ? (xScale(xAccessor(d)) ?? NaN) - xZeroPosition
+        : (yScale(yAccessor(d)) ?? NaN) - yZeroPosition;
 
     const getGroupPosition = horizontal
       ? (d: Datum) => yScale(yAccessor(d)) ?? 0
@@ -152,13 +152,17 @@ export default function BaseBarGroup<
         if (!isValidNumber(barX)) return null;
         const barY = getY(bar);
         if (!isValidNumber(barY)) return null;
+        const barWidth = getWidth(bar);
+        if (!isValidNumber(barWidth)) return null;
+        const barHeight = getHeight(bar);
+        if (!isValidNumber(barHeight)) return null;
 
         return {
           key: `${key}-${index}`,
           x: barX,
           y: barY,
-          width: getWidth(bar),
-          height: getHeight(bar),
+          width: barWidth,
+          height: barHeight,
           fill: colorScale(key),
         };
       })

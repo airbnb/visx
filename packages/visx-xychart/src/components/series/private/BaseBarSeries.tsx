@@ -10,6 +10,7 @@ import findNearestDatumY from '../../../utils/findNearestDatumY';
 import useEventEmitter, { HandlerParams } from '../../../hooks/useEventEmitter';
 import TooltipContext from '../../../context/TooltipContext';
 import getScaleBaseline from '../../../utils/getScaleBaseline';
+import isValidNumber from '../../../typeguards/isValidNumber';
 
 export type BaseBarSeriesProps<
   XScale extends AxisScale,
@@ -64,20 +65,25 @@ function BaseBarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum
   const bars = useMemo(() => {
     const xOffset = horizontal ? 0 : -barThickness / 2;
     const yOffset = horizontal ? -barThickness / 2 : 0;
-    return data.map((datum, index) => {
-      const x = getScaledX(datum) + xOffset;
-      const y = getScaledY(datum) + yOffset;
-      const barLength = horizontal ? x - xZeroPosition : y - yZeroPosition;
+    return data
+      .map((datum, index) => {
+        const x = getScaledX(datum) + xOffset;
+        if (!isValidNumber(x)) return null;
+        const y = getScaledY(datum) + yOffset;
+        if (!isValidNumber(y)) return null;
+        const barLength = horizontal ? x - xZeroPosition : y - yZeroPosition;
+        if (!isValidNumber(barLength)) return null;
 
-      return {
-        key: `${index}`,
-        x: horizontal ? xZeroPosition + Math.min(0, barLength) : x,
-        y: horizontal ? y : yZeroPosition + Math.min(0, barLength),
-        width: horizontal ? Math.abs(barLength) : barThickness,
-        height: horizontal ? barThickness : Math.abs(barLength),
-        fill: color, // @TODO allow prop overriding
-      };
-    });
+        return {
+          key: `${index}`,
+          x: horizontal ? xZeroPosition + Math.min(0, barLength) : x,
+          y: horizontal ? y : yZeroPosition + Math.min(0, barLength),
+          width: horizontal ? Math.abs(barLength) : barThickness,
+          height: horizontal ? barThickness : Math.abs(barLength),
+          fill: color, // @TODO allow prop overriding
+        };
+      })
+      .filter(bar => bar);
   }, [barThickness, color, data, getScaledX, getScaledY, horizontal, xZeroPosition, yZeroPosition]);
 
   const { showTooltip, hideTooltip } = useContext(TooltipContext) ?? {};
