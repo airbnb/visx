@@ -18,8 +18,8 @@ const providerProps = {
 } as const;
 
 const accessors = {
-  xAccessor: (d: { x: number }) => d.x,
-  yAccessor: (d: { y: number }) => d.y,
+  xAccessor: (d: { x?: number }) => d.x,
+  yAccessor: (d: { y?: number }) => d.y,
 };
 
 const series1 = {
@@ -39,6 +39,11 @@ const series2 = {
   ],
   ...accessors,
 };
+const seriesMissingData = {
+  key: 'seriesMissingData',
+  data: [{ y: 5 }, { x: 7 }, { x: 7, y: 20 }],
+  ...accessors,
+};
 
 describe('<BarStack />', () => {
   it('should be defined', () => {
@@ -52,6 +57,20 @@ describe('<BarStack />', () => {
           <BarStack>
             <BarSeries dataKey={series1.key} {...series1} />
             <BarSeries dataKey={series2.key} {...series2} />
+          </BarStack>
+        </svg>
+      </DataProvider>,
+    );
+    expect(wrapper.find('rect')).toHaveLength(4);
+  });
+
+  it('should not render rects if x or y are invalid', () => {
+    const wrapper = mount(
+      <DataProvider {...providerProps}>
+        <svg>
+          <BarStack>
+            <BarSeries dataKey={series1.key} {...series1} />
+            <BarSeries dataKey={seriesMissingData.key} {...seriesMissingData} />
           </BarStack>
         </svg>
       </DataProvider>,
