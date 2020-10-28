@@ -1,8 +1,8 @@
 import { AxisScale } from '@visx/axis';
-import { coerceNumber } from '@visx/scale';
 import React, { useMemo } from 'react';
 import { animated, useTransition } from 'react-spring';
 import { Bar, BarsProps } from '../../../types';
+import getScaleBaseline from '../../../utils/getScaleBaseline';
 
 function enterUpdate({ x, y, width, height, fill }: Bar) {
   return {
@@ -26,14 +26,12 @@ function useBarTransitionConfig<Scale extends AxisScale>({
 }: BarTransitionConfig<Scale>) {
   const shouldAnimateX = !!horizontal;
   return useMemo(() => {
-    const [a, b] = scale.range().map(coerceNumber);
-    const isDescending = b != null && a != null && b < a;
-    const [scaleMin, scaleMax] = isDescending ? [b, a] : [a, b];
+    const scaleBaseline = getScaleBaseline(scale);
 
     function fromLeave({ x, y, width, height, fill }: Bar) {
       return {
-        x: shouldAnimateX ? scaleMin ?? 0 : x,
-        y: shouldAnimateX ? y : scaleMax ?? 0,
+        x: shouldAnimateX ? scaleBaseline ?? 0 : x,
+        y: shouldAnimateX ? y : scaleBaseline ?? 0,
         width: shouldAnimateX ? 0 : width,
         height: shouldAnimateX ? height : 0,
         fill,
