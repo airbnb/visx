@@ -3,7 +3,6 @@ import { ScaleConfig, createScale, ScaleInput } from '@visx/scale';
 import { extent as d3Extent } from 'd3-array';
 import { useMemo } from 'react';
 import DataRegistry from '../classes/DataRegistry';
-import isValidNumber from '../typeguards/isValidNumber';
 import isDiscreteScale from '../utils/isDiscreteScale';
 
 /** A hook for creating memoized x- and y-scales. */
