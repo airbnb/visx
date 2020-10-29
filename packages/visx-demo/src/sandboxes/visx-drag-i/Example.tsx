@@ -64,27 +64,25 @@ export default function DragI({ width, height }: DragIProps) {
               setDraggingItems(raise(draggingItems, i));
             }}
           >
-            {({ dragStart, dragEnd, dragMove, isDragging, dx, dy }) =>
-              (false && isDragging && console.log(d.id, d.x, dx)) || (
-                <circle
-                  key={`dot-${d.id}`}
-                  cx={d.x}
-                  cy={d.y}
-                  r={isDragging ? d.radius + 4 : d.radius}
-                  fill={isDragging ? 'url(#stroke)' : colorScale(d.id)}
-                  transform={`translate(${dx}, ${dy})`}
-                  fillOpacity={0.9}
-                  stroke={isDragging ? 'white' : 'transparent'}
-                  strokeWidth={2}
-                  onMouseMove={dragMove}
-                  onMouseUp={dragEnd}
-                  onMouseDown={dragStart}
-                  onTouchStart={dragStart}
-                  onTouchMove={dragMove}
-                  onTouchEnd={dragEnd}
-                />
-              )
-            }
+            {({ dragStart, dragEnd, dragMove, isDragging, dx, dy }) => (
+              <circle
+                key={`dot-${d.id}`}
+                cx={d.x}
+                cy={d.y}
+                r={isDragging ? d.radius + 4 : d.radius}
+                fill={isDragging ? 'url(#stroke)' : colorScale(d.id)}
+                transform={`translate(${dx}, ${dy})`}
+                fillOpacity={0.9}
+                stroke={isDragging ? 'white' : 'transparent'}
+                strokeWidth={2}
+                onMouseMove={dragMove}
+                onMouseUp={dragEnd}
+                onMouseDown={dragStart}
+                onTouchStart={dragStart}
+                onTouchMove={dragMove}
+                onTouchEnd={dragEnd}
+              />
+            )}
           </Drag>
         ))}
       </svg>
