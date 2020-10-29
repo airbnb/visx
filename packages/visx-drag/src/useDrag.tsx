@@ -4,17 +4,36 @@ import useStateWithCallback from './util/useStateWithCallback';
 
 type MouseOrTouchEvent = React.MouseEvent | React.TouchEvent;
 
-export type HandlerArgs = DragState & { event: MouseOrTouchEvent };
-
 export type UseDragOptions = {
   /** Whether to reset drag state upon the start of a new drag. */
   resetOnStart?: boolean;
   /** Optional callback invoked upon drag end. */
-  onDragEnd?: (args: HandlerArgs) => void;
+  onDragEnd?: (args: {
+    x: number | undefined; // these are defined multiple times for improved docs
+    y: number | undefined;
+    dx: number;
+    dy: number;
+    isDragging: boolean;
+    event: MouseOrTouchEvent;
+  }) => void;
   /** Optional callback invoked upon drag movement. */
-  onDragMove?: (args: HandlerArgs) => void;
+  onDragMove?: (args: {
+    x: number | undefined;
+    y: number | undefined;
+    dx: number;
+    dy: number;
+    isDragging: boolean;
+    event: MouseOrTouchEvent;
+  }) => void;
   /** Optional callback invoked upon drag start. */
-  onDragStart?: (args: HandlerArgs) => void;
+  onDragStart?: (args: {
+    x: number | undefined;
+    y: number | undefined;
+    dx: number;
+    dy: number;
+    isDragging: boolean;
+    event: MouseOrTouchEvent;
+  }) => void;
 };
 
 export type DragState = {
@@ -32,7 +51,7 @@ export type UseDrag = DragState & {
 };
 
 export default function useDrag({
-  resetOnStart,
+  resetOnStart = false,
   onDragEnd,
   onDragMove,
   onDragStart,
