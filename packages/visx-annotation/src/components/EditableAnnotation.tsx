@@ -23,7 +23,7 @@ export type EditableAnnotationProps = Pick<AnnotationContextType, 'x' | 'y' | 'd
   onDragEnd?: ({ x, y, dx, dy, event }: HandlerArgs) => void;
 };
 
-export type HandlerArgs = Pick<AnnotationContextType, 'x' | 'y' | 'dx' | 'dy'> & {
+export type HandlerArgs = NonNullable<Pick<AnnotationContextType, 'x' | 'y' | 'dx' | 'dy'>> & {
   event: React.MouseEvent | React.TouchEvent;
 };
 
@@ -34,36 +34,6 @@ const defaultDragHandleProps = {
   strokeDasharray: '4,2',
   strokeWidth: 2,
 };
-
-function callbackFactory({
-  x,
-  y,
-  dx,
-  dy,
-  labelDrag,
-  subjectDrag,
-  callback,
-}: {
-  x: number;
-  y: number;
-  dx: number;
-  dy: number;
-  labelDrag?: UseDrag;
-  subjectDrag?: UseDrag;
-  callback?: (args: HandlerArgs) => void;
-}) {
-  return ({ event }: DragHandlerArgs) => {
-    if (callback) {
-      callback({
-        event,
-        x: x + (subjectDrag?.dx ?? 0),
-        y: y + (subjectDrag?.dy ?? 0),
-        dx: dx + (labelDrag?.dx ?? 0),
-        dy: labelDrag?.dy ?? 0,
-      });
-    }
-  };
-}
 
 export default function EditableAnnotation({
   x: subjectX = 0,
@@ -85,54 +55,62 @@ export default function EditableAnnotation({
   const labelDragRef = useRef<UseDrag>();
 
   const handleDragStart = useCallback(
-    callbackFactory({
-      callback: onDragStart,
-      x: subjectX,
-      y: subjectY,
-      dx: labelDx,
-      dy: labelDy,
-      subjectDrag: subjectDragRef.current,
-      labelDrag: labelDragRef.current,
-    }),
+    ({ event }: DragHandlerArgs) => {
+      if (onDragStart) {
+        onDragStart({
+          event,
+          x: subjectX + (subjectDragRef.current?.dx ?? 0),
+          y: subjectY + (subjectDragRef.current?.dy ?? 0),
+          dx: labelDx + (labelDragRef.current?.dx ?? 0),
+          dy: labelDy + (labelDragRef.current?.dy ?? 0),
+        });
+      }
+    },
     [labelDx, labelDy, onDragStart, subjectX, subjectY],
   );
 
   const handleDragMove = useCallback(
-    callbackFactory({
-      callback: onDragMove,
-      x: subjectX,
-      y: subjectY,
-      dx: labelDx,
-      dy: labelDy,
-      subjectDrag: subjectDragRef.current,
-      labelDrag: labelDragRef.current,
-    }),
-    [labelDx, labelDy, onDragStart, subjectX, subjectY],
+    ({ event }: DragHandlerArgs) => {
+      if (onDragMove) {
+        onDragMove({
+          event,
+          x: subjectX + (subjectDragRef.current?.dx ?? 0),
+          y: subjectY + (subjectDragRef.current?.dy ?? 0),
+          dx: labelDx + (labelDragRef.current?.dx ?? 0),
+          dy: labelDy + (labelDragRef.current?.dy ?? 0),
+        });
+      }
+    },
+    [labelDx, labelDy, onDragMove, subjectX, subjectY],
   );
 
   const handleDragEnd = useCallback(
-    callbackFactory({
-      callback: onDragMove,
-      x: subjectX,
-      y: subjectY,
-      dx: labelDx,
-      dy: labelDy,
-      subjectDrag: subjectDragRef.current,
-      labelDrag: labelDragRef.current,
-    }),
-    [labelDx, labelDy, onDragStart, subjectX, subjectY],
+    ({ event }: DragHandlerArgs) => {
+      if (onDragEnd) {
+        onDragEnd({
+          event,
+          x: subjectX + (subjectDragRef.current?.dx ?? 0),
+          y: subjectY + (subjectDragRef.current?.dy ?? 0),
+          dx: labelDx + (labelDragRef.current?.dx ?? 0),
+          dy: labelDy + (labelDragRef.current?.dy ?? 0),
+        });
+      }
+    },
+    [labelDx, labelDy, onDragEnd, subjectX, subjectY],
   );
 
   const subjectDrag = useDrag({
     onDragStart: handleDragStart,
     onDragMove: handleDragMove,
     onDragEnd: handleDragEnd,
+    resetOnStart: true,
   });
 
   const labelDrag = useDrag({
     onDragStart: handleDragStart,
     onDragMove: handleDragMove,
     onDragEnd: handleDragEnd,
+    resetOnStart: true,
   });
 
   // enable referencing these in the callbacks defined before useDrag is called
