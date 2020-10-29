@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useLayoutEffect, useRef, useState } from 'react';
 
 type SetStateWithCallback<State> = (
   nextState: State | ((currState: State) => State),
@@ -19,7 +19,8 @@ export default function useStateWithCallback<State>(
     [setState],
   );
 
-  useEffect(() => {
+  // if we use useEffect, some callback invocations are skipped
+  useLayoutEffect(() => {
     // `null` on initial render, so we only execute callback on state *updates*
     if (callbackRef.current) {
       callbackRef.current(state);

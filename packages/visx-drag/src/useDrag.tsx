@@ -79,11 +79,10 @@ export default function useDrag({
           const point = localPoint(event) || { x: 0, y: 0 };
           return isDragging
             ? {
+                ...currState,
                 isDragging: true,
                 dx: point.x - (x || 0),
                 dy: point.y - (y || 0),
-                x,
-                y,
               }
             : currState;
         },
