@@ -5,6 +5,7 @@ type SetStateWithCallback<State> = (
   callback?: (currState: State) => void,
 ) => void;
 
+/** A hook that exposes a setState(state, callback) API similar to a component class. */
 export default function useStateWithCallback<State>(
   initialState: State,
 ): [State, SetStateWithCallback<State>] {
