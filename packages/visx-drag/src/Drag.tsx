@@ -1,6 +1,8 @@
 /* eslint-disable react/jsx-handler-names */
 import React from 'react';
-import useDrag, { UseDrag, UseDragOptions } from './useDrag';
+import useDrag, { UseDrag, UseDragOptions, HandlerArgs as HandlerArgsType } from './useDrag';
+
+export type HandlerArgs = HandlerArgsType;
 
 export type DragProps = UseDragOptions & {
   /** Children render function which is passed the state of dragging and callbacks for drag start/end/move. */

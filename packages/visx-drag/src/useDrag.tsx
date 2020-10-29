@@ -4,52 +4,45 @@ import useStateWithCallback from './util/useStateWithCallback';
 
 type MouseOrTouchEvent = React.MouseEvent | React.TouchEvent;
 
+export type HandlerArgs = DragState & {
+  /** Drag event. */
+  event: MouseOrTouchEvent;
+};
+
 export type UseDragOptions = {
   /** Whether to reset drag state upon the start of a new drag. */
   resetOnStart?: boolean;
   /** Optional callback invoked upon drag end. */
-  onDragEnd?: (args: {
-    x: number | undefined; // these are defined multiple times for improved docs
-    y: number | undefined;
-    dx: number;
-    dy: number;
-    isDragging: boolean;
-    event: MouseOrTouchEvent;
-  }) => void;
+  onDragEnd?: (args: HandlerArgs) => void;
   /** Optional callback invoked upon drag movement. */
-  onDragMove?: (args: {
-    x: number | undefined;
-    y: number | undefined;
-    dx: number;
-    dy: number;
-    isDragging: boolean;
-    event: MouseOrTouchEvent;
-  }) => void;
+  onDragMove?: (args: HandlerArgs) => void;
   /** Optional callback invoked upon drag start. */
-  onDragStart?: (args: {
-    x: number | undefined;
-    y: number | undefined;
-    dx: number;
-    dy: number;
-    isDragging: boolean;
-    event: MouseOrTouchEvent;
-  }) => void;
+  onDragStart?: (args: HandlerArgs) => void;
 };
 
 export type DragState = {
+  /** x position of drag at drag start time, reset to 0 if `resetOnStart=true`. */
   x: number | undefined;
+  /** y position of drag at drag start time, reset to 0 if `resetOnStart=true`. */
   y: number | undefined;
+  /** Change in x position since drag start, reset to 0 on drag start if `resetOnStart=true`. */
   dx: number;
+  /** Change in y position since drag start, reset to 0 on drag start if `resetOnStart=true`. */
   dy: number;
+  /** Whether a drag is currently in progress. */
   isDragging: boolean;
 };
 
 export type UseDrag = DragState & {
+  /** Callback to be be invoked on drag end. */
   dragEnd: (event: MouseOrTouchEvent) => void;
+  /** Callback to be be invoked on drag move. */
   dragMove: (event: MouseOrTouchEvent) => void;
+  /** Callback to be be invoked on drag start. */
   dragStart: (event: MouseOrTouchEvent) => void;
 };
 
+/** Hook for dragging, returns a `UseDrag` object. */
 export default function useDrag({
   resetOnStart = false,
   onDragEnd,
