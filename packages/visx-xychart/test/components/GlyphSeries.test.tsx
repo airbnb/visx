@@ -37,7 +37,7 @@ describe('<GlyphSeries />', () => {
         </svg>
       </DataContext.Provider>,
     );
-    expect(wrapper.find('circle')).toHaveLength(series.data.length);
+    expect(wrapper.find('circle')).toHaveLength(1);
   });
 
   it('should render a custom Glyph for each Datum', () => {

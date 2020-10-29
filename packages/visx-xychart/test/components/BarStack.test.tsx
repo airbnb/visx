@@ -75,7 +75,7 @@ describe('<BarStack />', () => {
         </svg>
       </DataProvider>,
     );
-    expect(wrapper.find('rect')).toHaveLength(4);
+    expect(wrapper.find('rect')).toHaveLength(3);
   });
 
   it('should update scale domain to include stack sums including negative values', () => {
