@@ -33,6 +33,7 @@
   "dependencies": {
     "@types/classnames": "^2.2.9",
     "@types/react": "*",
+    "@visx/drag": "1.0.0",
     "@visx/group": "1.0.0",
     "@visx/point": "1.0.0",
     "@visx/shape": "1.1.0",

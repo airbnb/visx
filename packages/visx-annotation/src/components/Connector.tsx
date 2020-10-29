@@ -1,17 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import cx from 'classnames';
+import { AnnotationContextType } from '../types';
+import AnnotationContext from '../context/AnnotationContext';
 
-export type AnnotationConnectorProps = {
+// @TODO
+// add end marker support
+
+export type AnnotationConnectorProps = Pick<AnnotationContextType, 'x' | 'y' | 'dx' | 'dy'> & {
   /** Optional className to apply to container in addition to 'visx-annotation-connector'. */
   className?: string;
-  /** x position of the subject. */
-  x: number;
-  /** y position of the subject. */
-  y: number;
-  /** x delta of the label from the subject. */
-  dx: number;
-  /** y delta of the label from the subject. */
-  dy: number;
   /** Connector type. */
   type?: 'line' | 'elbow';
   /** Color of the connector line. */
@@ -22,20 +19,24 @@ export type AnnotationConnectorProps = {
 
 export default function AnnotationConnector({
   className,
-  x,
-  y,
-  dx,
-  dy,
+  x: propsX,
+  y: propsY,
+  dx: propsDx,
+  dy: propsDy,
   type = 'elbow',
   stroke = '#222',
   pathProps,
 }: AnnotationConnectorProps) {
-  const x0 = x;
-  const y0 = y;
-  let x1: number = x; // only used with elbow type
-  let y1: number = y;
-  const x2 = x + dx;
-  const y2 = y + dy;
+  // if props are provided, they take precedence over context
+  const annotationContext = useContext(AnnotationContext);
+  const x0 = propsX == null ? annotationContext.x ?? 0 : propsX;
+  const y0 = propsY == null ? annotationContext.y ?? 0 : propsY;
+  const dx = propsDx == null ? annotationContext.dx ?? 0 : propsDx;
+  const dy = propsDy == null ? annotationContext.dy ?? 0 : propsDy;
+  let x1: number = x0; // only used with elbow type
+  let y1: number = y0;
+  const x2 = x0 + dx;
+  const y2 = y0 + dy;
 
   if (type === 'elbow') {
     // if dx < dy, find the intesection of y=x or y=-x from subject, with vertical line to label
