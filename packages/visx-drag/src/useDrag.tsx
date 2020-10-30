@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import { localPoint } from '@visx/event';
 import useStateWithCallback from './util/useStateWithCallback';
 
@@ -18,13 +18,21 @@ export type UseDragOptions = {
   onDragMove?: (args: HandlerArgs) => void;
   /** Optional callback invoked upon drag start. */
   onDragStart?: (args: HandlerArgs) => void;
+  /** Optionally set the initial drag x, or override the current drag x. */
+  x?: number;
+  /** Optionally set the initial drag y, or override the current drag y. */
+  y?: number;
+  /** Optionally set the initial drag dx, or override the current drag dx. */
+  dx?: number;
+  /** Optionally set the initial drag dy, or override the current drag dy. */
+  dy?: number;
 };
 
 export type DragState = {
   /** x position of drag at drag start time, reset to 0 if `resetOnStart=true`. */
-  x: number | undefined;
+  x?: number;
   /** y position of drag at drag start time, reset to 0 if `resetOnStart=true`. */
-  y: number | undefined;
+  y?: number;
   /** Change in x position since drag start, reset to 0 on drag start if `resetOnStart=true`. */
   dx: number;
   /** Change in y position since drag start, reset to 0 on drag start if `resetOnStart=true`. */
@@ -48,13 +56,34 @@ export default function useDrag({
   onDragEnd,
   onDragMove,
   onDragStart,
+  x,
+  y,
+  dx,
+  dy,
 }: UseDragOptions | undefined = {}): UseDrag {
+  // use ref to detect prop changes
+  const positionPropsRef = useRef({ x, y, dx, dy });
+
   const [dragState, setDragStateWithCallback] = useStateWithCallback<DragState>({
-    x: undefined,
-    y: undefined,
-    dx: 0,
-    dy: 0,
+    x,
+    y,
+    dx: dx ?? 0,
+    dy: dy ?? 0,
     isDragging: false,
+  });
+
+  // if prop position changes, update state
+  useEffect(() => {
+    if (
+      positionPropsRef.current.x !== x ||
+      positionPropsRef.current.y !== y ||
+      positionPropsRef.current.dx !== dx ||
+      positionPropsRef.current.dy !== dy
+    ) {
+      console.log('update drag');
+      positionPropsRef.current = { x, y, dx, dy };
+      setDragStateWithCallback(currState => ({ ...currState, x, y, dx: dx ?? 0, dy: dy ?? 0 }));
+    }
   });
 
   const handleDragStart = useCallback(
@@ -62,14 +91,14 @@ export default function useDrag({
       event.persist();
 
       setDragStateWithCallback(
-        ({ dx, dy }) => {
+        currState => {
           const point = localPoint(event) || { x: 0, y: 0 };
           return {
             isDragging: true,
-            dx: resetOnStart ? 0 : dx,
-            dy: resetOnStart ? 0 : dy,
-            x: resetOnStart ? point.x : point.x - dx,
-            y: resetOnStart ? point.y : point.y - dy,
+            dx: resetOnStart ? 0 : currState.dx,
+            dy: resetOnStart ? 0 : currState.dy,
+            x: resetOnStart ? point.x : point.x - currState.dx,
+            y: resetOnStart ? point.y : point.y - currState.dy,
           };
         },
         onDragStart &&
@@ -87,14 +116,13 @@ export default function useDrag({
 
       setDragStateWithCallback(
         currState => {
-          const { x, y, isDragging } = currState;
           const point = localPoint(event) || { x: 0, y: 0 };
-          return isDragging
+          return currState.isDragging
             ? {
                 ...currState,
                 isDragging: true,
-                dx: point.x - (x || 0),
-                dy: point.y - (y || 0),
+                dx: point.x - (currState.x || 0),
+                dy: point.y - (currState.y || 0),
               }
             : currState;
         },
