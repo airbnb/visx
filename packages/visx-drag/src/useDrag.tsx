@@ -48,7 +48,7 @@ export default function useDrag({
   onDragEnd,
   onDragMove,
   onDragStart,
-}: UseDragOptions): UseDrag {
+}: UseDragOptions | undefined = {}): UseDrag {
   const [dragState, setDragStateWithCallback] = useStateWithCallback<DragState>({
     x: undefined,
     y: undefined,
