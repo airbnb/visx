@@ -80,7 +80,6 @@ export default function useDrag({
       positionPropsRef.current.dx !== dx ||
       positionPropsRef.current.dy !== dy
     ) {
-      console.log('update drag');
       positionPropsRef.current = { x, y, dx, dy };
       setDragStateWithCallback(currState => ({ ...currState, x, y, dx: dx ?? 0, dy: dy ?? 0 }));
     }
