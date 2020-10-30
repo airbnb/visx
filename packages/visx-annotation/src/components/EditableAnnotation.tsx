@@ -138,6 +138,7 @@ export default function EditableAnnotation({
         onTouchStart={subjectDrag.dragStart}
         onTouchMove={subjectDrag.dragMove}
         onTouchEnd={subjectDrag.dragEnd}
+        cursor={subjectDrag.isDragging ? 'grabbing' : 'grab'}
         {...defaultDragHandleProps}
         {...subjectDragHandleProps}
       />
@@ -160,6 +161,7 @@ export default function EditableAnnotation({
         onTouchStart={labelDrag.dragStart}
         onTouchMove={labelDrag.dragMove}
         onTouchEnd={labelDrag.dragEnd}
+        cursor={labelDrag.isDragging ? 'grabbing' : 'grab'}
         {...defaultDragHandleProps}
         {...labelDragHandleProps}
       />
