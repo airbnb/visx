@@ -13,9 +13,10 @@ import { LinePath } from '@visx/shape';
 import { scaleTime, scaleLinear } from '@visx/scale';
 import { extent, bisector } from 'd3-array';
 
-type Props = {
+export type AnnotationProps = {
   width: number;
   height: number;
+  compact?: boolean;
 };
 
 const data = appleStock.slice(-100);
@@ -23,11 +24,11 @@ const getDate = (d: AppleStock) => new Date(d.date).valueOf();
 const getStockValue = (d: AppleStock) => d.close;
 const annotateDatum = data[Math.floor(data.length / 2) + 4];
 
-const APPROX_TOOLTIP_HEIGHT = 60;
-const ORANGE = '#ff7e67';
-const GREENS = ['#ecf4f3', '#68b0ab', '#006a71'];
+const approxTooltipHeight = 60;
+export const orange = '#ff7e67';
+export const greens = ['#ecf4f3', '#68b0ab', '#006a71'];
 
-export default function Example({ width, height }: Props) {
+export default function Example({ width, height, compact }: AnnotationProps) {
   const xScale = useMemo(
     () =>
       scaleTime({
@@ -50,12 +51,12 @@ export default function Example({ width, height }: Props) {
   const [subjectType, setSubjectType] = useState<'circle' | 'horizontal-line' | 'vertical-line'>(
     'circle',
   );
-  const [labelWidth] = useState(175);
+  const [labelWidth] = useState(compact ? 100 : 175);
   const [annotationPosition, setAnnotationPosition] = useState({
     x: xScale(getDate(annotateDatum)) ?? 0,
     y: yScale(getStockValue(annotateDatum)) ?? 0,
-    dx: -100,
-    dy: -50,
+    dx: compact ? -50 : -100,
+    dy: compact ? -30 : -50,
   });
 
   const AnnotationComponent = editAnnotation ? EditableAnnotation : Annotation;
@@ -63,9 +64,9 @@ export default function Example({ width, height }: Props) {
   return (
     <>
       <svg width={width} height={height}>
-        <rect width={width} height={height} fill={GREENS[0]} />
+        <rect width={width} height={height} fill={greens[0]} />
         <LinePath
-          stroke={GREENS[2]}
+          stroke={greens[2]}
           strokeWidth={2}
           data={data}
           x={d => xScale(getDate(d)) ?? 0}
@@ -79,6 +80,7 @@ export default function Example({ width, height }: Props) {
           dx={annotationPosition.dx}
           dy={annotationPosition.dy}
           onDragEnd={({ event, ...nextPosition }) => {
+            // snap Annotation to the nearest data point
             const nearestDatum = findNearestDatum({
               value: subjectType === 'horizontal-line' ? nextPosition.y : nextPosition.x,
               scale: subjectType === 'horizontal-line' ? yScale : xScale,
@@ -86,12 +88,14 @@ export default function Example({ width, height }: Props) {
             });
             const x = xScale(getDate(nearestDatum)) ?? 0;
             const y = yScale(getStockValue(nearestDatum)) ?? 0;
+
+            // flip label to keep in view
             const shouldFlipDx =
               (nextPosition.dx > 0 && x + nextPosition.dx + labelWidth > width) ||
               (nextPosition.dx < 0 && x + nextPosition.dx - labelWidth <= 0);
             const shouldFlipDy = // 100 is est. tooltip height
-              (nextPosition.dy > 0 && height - (y + nextPosition.dy) < APPROX_TOOLTIP_HEIGHT) ||
-              (nextPosition.dy < 0 && y + nextPosition.dy - APPROX_TOOLTIP_HEIGHT <= 0);
+              (nextPosition.dy > 0 && height - (y + nextPosition.dy) < approxTooltipHeight) ||
+              (nextPosition.dy < 0 && y + nextPosition.dy - approxTooltipHeight <= 0);
             setAnnotationPosition({
               x,
               y,
@@ -100,84 +104,86 @@ export default function Example({ width, height }: Props) {
             });
           }}
         >
-          <Connector stroke={ORANGE} type={connectorType} />
+          <Connector stroke={orange} type={connectorType} />
           <Label
-            title="Annotation title"
-            subtitle="Subtitle with deets and deets and deets and deets"
-            fontColor="#fff"
-            titleProps={{ fill: GREENS[2], fontSize: 16 }}
-            backgroundFill={GREENS[1]}
+            title="Annotation"
+            subtitle={compact ? 'Subtitle' : 'Subtitle with deets and deets and deets and deets'}
+            fontColor={greens[2]}
+            backgroundFill={greens[0]}
+            backgroundProps={{ stroke: orange }}
             width={labelWidth}
           />
-          {subjectType === 'circle' && <CircleSubject stroke={ORANGE} />}
+          {subjectType === 'circle' && <CircleSubject stroke={orange} />}
           {subjectType !== 'circle' && (
             <LineSubject
               orientation={subjectType === 'vertical-line' ? 'vertical' : 'horizontal'}
-              stroke={ORANGE}
+              stroke={orange}
               min={0}
               max={subjectType === 'vertical-line' ? height : width}
             />
           )}
         </AnnotationComponent>
       </svg>
-      <div className="controls">
-        <div>
-          <label>
-            <input
-              type="checkbox"
-              onChange={() => setEditAnnotation(!editAnnotation)}
-              checked={editAnnotation}
-            />
-            Edit annotation
-          </label>
+      {!compact && (
+        <div className="controls">
+          <div>
+            <label>
+              <input
+                type="checkbox"
+                onChange={() => setEditAnnotation(!editAnnotation)}
+                checked={editAnnotation}
+              />
+              Edit annotation
+            </label>
+          </div>
+          <div>
+            <strong>Connector type</strong>
+            <label>
+              <input
+                type="radio"
+                onChange={() => setConnectorType('elbow')}
+                checked={connectorType === 'elbow'}
+              />
+              Elbow
+            </label>
+            <label>
+              <input
+                type="radio"
+                onChange={() => setConnectorType('line')}
+                checked={connectorType === 'line'}
+              />
+              Straight line
+            </label>
+          </div>
+          <div>
+            <strong>Subject type</strong>
+            <label>
+              <input
+                type="radio"
+                onChange={() => setSubjectType('circle')}
+                checked={subjectType === 'circle'}
+              />
+              Circle
+            </label>
+            <label>
+              <input
+                type="radio"
+                onChange={() => setSubjectType('vertical-line')}
+                checked={subjectType === 'vertical-line'}
+              />
+              Vertical line
+            </label>
+            <label>
+              <input
+                type="radio"
+                onChange={() => setSubjectType('horizontal-line')}
+                checked={subjectType === 'horizontal-line'}
+              />
+              Horizontal line
+            </label>
+          </div>
         </div>
-        <div>
-          <strong>Connector type</strong>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setConnectorType('elbow')}
-              checked={connectorType === 'elbow'}
-            />
-            Elbow
-          </label>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setConnectorType('line')}
-              checked={connectorType === 'line'}
-            />
-            Straight line
-          </label>
-        </div>
-        <div>
-          <strong>Subject type</strong>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setSubjectType('circle')}
-              checked={subjectType === 'circle'}
-            />
-            Circle
-          </label>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setSubjectType('vertical-line')}
-              checked={subjectType === 'vertical-line'}
-            />
-            Vertical line
-          </label>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setSubjectType('horizontal-line')}
-              checked={subjectType === 'horizontal-line'}
-            />
-            Horizontal line
-          </label>
-        </div>
-      </div>
+      )}
       <style jsx>{`
         .controls {
           font-size: 13px;

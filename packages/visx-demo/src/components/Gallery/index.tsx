@@ -4,6 +4,7 @@ import Tilt from 'react-tilt';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
+import * as AnnotationTile from './AnnotationTile';
 import * as AreaTile from './AreaTile';
 import * as AxisTile from './AxisTile';
 import * as BarGroupHorizontalTile from './BarGroupHorizontalTile';
@@ -63,6 +64,7 @@ const tiles = [
   StreamGraphTile,
   LegendsTile,
   ThresholdTile,
+  AnnotationTile,
   TreemapTile,
   ZoomITile,
   LineRadialTile,
@@ -117,6 +119,7 @@ export default function Gallery() {
                 query: routePackage === visxPackage ? undefined : { pkg: visxPackage },
               }}
             >
+              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
               <a
                 className={cx('filter-button', {
                   emphasize: routePackage === visxPackage,
