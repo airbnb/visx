@@ -2,7 +2,7 @@ import React, { useContext, useMemo } from 'react';
 import cx from 'classnames';
 import Group from '@visx/group/lib/Group';
 import Text, { TextProps } from '@visx/text/lib/Text';
-import useMeasure from 'react-use-measure';
+import useMeasure, { Options as UseMeasureOptions } from 'react-use-measure';
 import AnnotationContext from '../context/AnnotationContext';
 
 export type LabelProps = {
@@ -20,6 +20,8 @@ export type LabelProps = {
   fontColor?: string;
   /** Whether the label is horizontally anchored to the left, middle, or right of its x position. */
   horizontalAnchor?: 'left' | 'middle' | 'right';
+  /** Optionally inject a ResizeObserver polyfill, else this *must* be globally available. */
+  resizeObserverPolyfill?: UseMeasureOptions['polyfill'];
   /** Whether to render a line indicating label text anchor. */
   showAnchorLine?: boolean;
   /** Whether to render a label background. */
@@ -63,14 +65,15 @@ function getCompletePadding(padding: LabelProps['backgroundPadding']) {
 }
 
 export default function AnnotationLabel({
-  backgroundFill = '#eaeaea',
   anchorLineStroke,
-  showAnchorLine,
+  backgroundFill = '#eaeaea',
   backgroundPadding,
   backgroundProps,
   className,
   fontColor = '#222',
   horizontalAnchor: propsHorizontalAnchor,
+  resizeObserverPolyfill,
+  showAnchorLine,
   showBackground = true,
   subtitle,
   subtitleDy = 4,
@@ -87,8 +90,8 @@ export default function AnnotationLabel({
   y: propsY,
 }: LabelProps) {
   // we must measure the rendered title + subtitle to compute container height
-  const [titleRef, titleBounds] = useMeasure();
-  const [subtitleRef, subtitleBounds] = useMeasure();
+  const [titleRef, titleBounds] = useMeasure({ polyfill: resizeObserverPolyfill });
+  const [subtitleRef, subtitleBounds] = useMeasure({ polyfill: resizeObserverPolyfill });
 
   const padding = useMemo(() => getCompletePadding(backgroundPadding), [backgroundPadding]);
 
