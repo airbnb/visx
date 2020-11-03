@@ -2,11 +2,11 @@ import React, { useCallback } from 'react';
 import { localPoint } from '@visx/event';
 import useStateWithCallback from './util/useStateWithCallback';
 
-type MouseOrTouchEvent = React.MouseEvent | React.TouchEvent;
+type MouseTouchOrPointerEvent = React.MouseEvent | React.TouchEvent | React.PointerEvent;
 
 export type HandlerArgs = DragState & {
   /** Drag event. */
-  event: MouseOrTouchEvent;
+  event: MouseTouchOrPointerEvent;
 };
 
 export type UseDragOptions = {
@@ -35,11 +35,11 @@ export type DragState = {
 
 export type UseDrag = DragState & {
   /** Callback to be be invoked on drag end. */
-  dragEnd: (event: MouseOrTouchEvent) => void;
+  dragEnd: (event: MouseTouchOrPointerEvent) => void;
   /** Callback to be be invoked on drag move. */
-  dragMove: (event: MouseOrTouchEvent) => void;
+  dragMove: (event: MouseTouchOrPointerEvent) => void;
   /** Callback to be be invoked on drag start. */
-  dragStart: (event: MouseOrTouchEvent) => void;
+  dragStart: (event: MouseTouchOrPointerEvent) => void;
 };
 
 /** Hook for dragging, returns a `UseDrag` object. */
@@ -58,7 +58,7 @@ export default function useDrag({
   });
 
   const handleDragStart = useCallback(
-    (event: MouseOrTouchEvent) => {
+    (event: MouseTouchOrPointerEvent) => {
       event.persist();
 
       setDragStateWithCallback(
@@ -82,7 +82,7 @@ export default function useDrag({
   );
 
   const handleDragMove = useCallback(
-    (event: MouseOrTouchEvent) => {
+    (event: MouseTouchOrPointerEvent) => {
       event.persist();
 
       setDragStateWithCallback(
@@ -108,7 +108,7 @@ export default function useDrag({
   );
 
   const handleDragEnd = useCallback(
-    (event: MouseOrTouchEvent) => {
+    (event: MouseTouchOrPointerEvent) => {
       event.persist();
 
       setDragStateWithCallback(
