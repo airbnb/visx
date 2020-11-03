@@ -150,6 +150,7 @@ export default function AnnotationLabel({
     >
       {showBackground && (
         <rect
+          className="visx-annotationlabel-background"
           fill={backgroundFill}
           x={0}
           y={0}
