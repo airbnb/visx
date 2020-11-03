@@ -31,7 +31,7 @@
     "access": "public"
   },
   "peerDependencies": {
-    "react": "^16.3.0-0"
+    "react": "^16.8.0-0"
   },
   "dependencies": {
     "@types/react": "*",
