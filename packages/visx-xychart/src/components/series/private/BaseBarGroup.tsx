@@ -169,8 +169,6 @@ export default function BaseBarGroup<
       .filter(bar => bar) as Bar[];
   });
 
-  console.log(bars);
-
   return (
     <g className="visx-bar-group">
       <BarsComponent bars={bars} horizontal={horizontal} xScale={xScale} yScale={yScale} />
