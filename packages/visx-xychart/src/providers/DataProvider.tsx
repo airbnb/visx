@@ -9,17 +9,25 @@ import DataContext from '../context/DataContext';
 import useDataRegistry from '../hooks/useDataRegistry';
 import useDimensions, { Dimensions } from '../hooks/useDimensions';
 import useScales from '../hooks/useScales';
+import isDiscreteScale from '../utils/isDiscreteScale';
 
 /** Props that can be passed to initialize/update the provider config. */
 export type DataProviderProps<
   XScaleConfig extends ScaleConfig<AxisScaleOutput, any, any>,
   YScaleConfig extends ScaleConfig<AxisScaleOutput, any, any>
 > = {
+  /* Optionally define the initial dimensions. */
   initialDimensions?: Partial<Dimensions>;
+  /* Optional chart theme provided by DataProvider, overrides any theme already available in context. */
   theme?: XYChartTheme;
+  /* x-scale configuration whose shape depends on scale type. */
   xScale: XScaleConfig;
+  /* y-scale configuration whose shape depends on scale type. */
   yScale: YScaleConfig;
+  /* Any React children. */
   children: React.ReactNode;
+  /* Determines whether data will be plotted horizontally. @TODO elaborate */
+  horizontal?: boolean | 'auto';
 };
 
 export default function DataProvider<
@@ -32,6 +40,7 @@ export default function DataProvider<
   xScale: xScaleConfig,
   yScale: yScaleConfig,
   children,
+  horizontal: initialHorizontal = 'auto',
 }: DataProviderProps<XScaleConfig, YScaleConfig>) {
   // `DataProvider` provides a theme so that `ThemeProvider` is not strictly needed.
   // `props.theme` takes precedent over `context.theme`, which has a default even if
@@ -66,9 +75,15 @@ export default function DataProvider<
     [registryKeys, theme.colors],
   );
 
+  const horizontal =
+    initialHorizontal === 'auto'
+      ? isDiscreteScale(yScaleConfig) || yScaleConfig.type === 'time' || yScaleConfig.type === 'utc'
+      : initialHorizontal;
+
   return (
     <DataContext.Provider
       // everthing returned here should be memoized between renders
+      // to avoid child re-renders
       value={{
         dataRegistry,
         registerData: dataRegistry.registerData,
@@ -83,6 +98,7 @@ export default function DataProvider<
         innerWidth,
         innerHeight,
         setDimensions,
+        horizontal,
       }}
     >
       {children}

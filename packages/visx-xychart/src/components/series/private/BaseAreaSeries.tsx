@@ -11,15 +11,14 @@ import findNearestDatumX from '../../../utils/findNearestDatumX';
 import TooltipContext from '../../../context/TooltipContext';
 import findNearestDatumY from '../../../utils/findNearestDatumY';
 import getScaleBaseline from '../../../utils/getScaleBaseline';
+import isValidNumber from '../../../typeguards/isValidNumber';
 
 export type BaseAreaSeriesProps<
   XScale extends AxisScale,
   YScale extends AxisScale,
   Datum extends object
 > = SeriesProps<XScale, YScale, Datum> & {
-  /** Whether area should be rendered horizontally instead of vertically. */
-  horizontal?: boolean;
-  /** Whether to render a Line on top of the Area shape (fill only). */
+  /** Whether to render a Line along value of the Area shape (area is fill only). */
   renderLine?: boolean;
   /** Props to be passed to the Line, if rendered. */
   lineProps?: Omit<LinePathProps<Datum>, 'data' | 'x' | 'y' | 'children' | 'defined'>;
@@ -30,7 +29,6 @@ export type BaseAreaSeriesProps<
 function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datum extends object>({
   data,
   dataKey,
-  horizontal,
   xAccessor,
   xScale,
   yAccessor,
@@ -40,10 +38,14 @@ function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
   lineProps,
   ...areaProps
 }: BaseAreaSeriesProps<XScale, YScale, Datum> & WithRegisteredDataProps<XScale, YScale, Datum>) {
-  const { colorScale, theme, width, height } = useContext(DataContext);
+  const { colorScale, theme, width, height, horizontal } = useContext(DataContext);
   const { showTooltip, hideTooltip } = useContext(TooltipContext) ?? {};
   const getScaledX = useCallback(getScaledValueFactory(xScale, xAccessor), [xScale, xAccessor]);
   const getScaledY = useCallback(getScaledValueFactory(yScale, yAccessor), [yScale, yAccessor]);
+  const isDefined = useCallback(
+    (d: Datum) => isValidNumber(xScale(xAccessor(d))) && isValidNumber(yScale(yAccessor(d))),
+    [xScale, xAccessor, yScale, yAccessor],
+  );
   const color = colorScale?.(dataKey) ?? theme?.colors?.[0] ?? '#222';
 
   const handleMouseMove = useCallback(
@@ -95,18 +97,18 @@ function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
 
   return (
     <>
-      <Area data={data} {...xAccessors} {...yAccessors} {...areaProps}>
+      <Area {...xAccessors} {...yAccessors} {...areaProps} defined={isDefined}>
         {({ path }) => (
           <PathComponent stroke="transparent" fill={color} {...areaProps} d={path(data) || ''} />
         )}
       </Area>
       {renderLine && (
         <LinePath<Datum>
-          data={data}
           x={getScaledX}
           y={getScaledY}
           stroke={color}
           strokeWidth={2}
+          defined={isDefined}
           {...lineProps}
         >
           {({ path }) => (

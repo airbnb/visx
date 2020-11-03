@@ -1,7 +1,7 @@
 import React, { useContext, useCallback, useMemo } from 'react';
 import { AxisScale } from '@visx/axis';
 import DataContext from '../../../context/DataContext';
-import { BarsProps, SeriesProps } from '../../../types';
+import { Bar, BarsProps, SeriesProps } from '../../../types';
 import withRegisteredData, { WithRegisteredDataProps } from '../../../enhancers/withRegisteredData';
 import getScaledValueFactory from '../../../utils/getScaledValueFactory';
 import getScaleBandwidth from '../../../utils/getScaleBandwidth';
@@ -10,6 +10,7 @@ import findNearestDatumY from '../../../utils/findNearestDatumY';
 import useEventEmitter, { HandlerParams } from '../../../hooks/useEventEmitter';
 import TooltipContext from '../../../context/TooltipContext';
 import getScaleBaseline from '../../../utils/getScaleBaseline';
+import isValidNumber from '../../../typeguards/isValidNumber';
 
 export type BaseBarSeriesProps<
   XScale extends AxisScale,
@@ -18,8 +19,6 @@ export type BaseBarSeriesProps<
 > = SeriesProps<XScale, YScale, Datum> & {
   /** Rendered component which is passed BarsProps by BaseBarSeries after processing. */
   BarsComponent: React.FC<BarsProps<XScale, YScale>>;
-  /** Whether bars should be rendered horizontally instead of vertically. */
-  horizontal?: boolean;
   /**
    * Specify bar padding when bar thickness does not come from a `band` scale.
    * Accepted values are [0, 1], 0 = no padding, 1 = no bar, defaults to 0.1.
@@ -37,15 +36,20 @@ function BaseBarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum
   BarsComponent,
   data,
   dataKey,
-  horizontal,
   xAccessor,
   xScale,
   yAccessor,
   yScale,
 }: BaseBarSeriesProps<XScale, YScale, Datum> & WithRegisteredDataProps<XScale, YScale, Datum>) {
-  const { colorScale, theme, width, height, innerWidth = 0, innerHeight = 0 } = useContext(
-    DataContext,
-  );
+  const {
+    colorScale,
+    horizontal,
+    theme,
+    width,
+    height,
+    innerWidth = 0,
+    innerHeight = 0,
+  } = useContext(DataContext);
   const getScaledX = useCallback(getScaledValueFactory(xScale, xAccessor), [xScale, xAccessor]);
   const getScaledY = useCallback(getScaledValueFactory(yScale, yAccessor), [yScale, yAccessor]);
   const scaleBandwidth = getScaleBandwidth(horizontal ? yScale : xScale);
@@ -61,20 +65,25 @@ function BaseBarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum
   const bars = useMemo(() => {
     const xOffset = horizontal ? 0 : -barThickness / 2;
     const yOffset = horizontal ? -barThickness / 2 : 0;
-    return data.map((datum, index) => {
-      const x = getScaledX(datum) + xOffset;
-      const y = getScaledY(datum) + yOffset;
-      const barLength = horizontal ? x - xZeroPosition : y - yZeroPosition;
+    return data
+      .map((datum, index) => {
+        const x = getScaledX(datum) + xOffset;
+        if (!isValidNumber(x)) return null;
+        const y = getScaledY(datum) + yOffset;
+        if (!isValidNumber(y)) return null;
+        const barLength = horizontal ? x - xZeroPosition : y - yZeroPosition;
+        if (!isValidNumber(barLength)) return null;
 
-      return {
-        key: `${index}`,
-        x: horizontal ? xZeroPosition + Math.min(0, barLength) : x,
-        y: horizontal ? y : yZeroPosition + Math.min(0, barLength),
-        width: horizontal ? Math.abs(barLength) : barThickness,
-        height: horizontal ? barThickness : Math.abs(barLength),
-        fill: color, // @TODO allow prop overriding
-      };
-    });
+        return {
+          key: `${index}`,
+          x: horizontal ? xZeroPosition + Math.min(0, barLength) : x,
+          y: horizontal ? y : yZeroPosition + Math.min(0, barLength),
+          width: horizontal ? Math.abs(barLength) : barThickness,
+          height: horizontal ? barThickness : Math.abs(barLength),
+          fill: color, // @TODO allow prop overriding
+        };
+      })
+      .filter(bar => bar) as Bar[];
   }, [barThickness, color, data, getScaledX, getScaledY, horizontal, xZeroPosition, yZeroPosition]);
 
   const { showTooltip, hideTooltip } = useContext(TooltipContext) ?? {};

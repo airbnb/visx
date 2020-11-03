@@ -23,8 +23,6 @@ export type BaseBarStackProps<
   YScale extends PositionScale,
   Datum extends object
 > = {
-  /** Whether to render the Stack horizontally instead of vertically. */
-  horizontal?: boolean;
   /** `BarSeries` elements */
   children: JSX.Element | JSX.Element[];
   /** Rendered component which is passed BarsProps by BaseBarStack after processing. */
@@ -35,13 +33,7 @@ function BaseBarStack<
   XScale extends PositionScale,
   YScale extends PositionScale,
   Datum extends object
->({
-  children,
-  horizontal,
-  order,
-  offset,
-  BarsComponent,
-}: BaseBarStackProps<XScale, YScale, Datum>) {
+>({ children, order, offset, BarsComponent }: BaseBarStackProps<XScale, YScale, Datum>) {
   type StackBar = SeriesPoint<CombinedStackData<XScale, YScale>>;
   const {
     xScale,
@@ -52,6 +44,7 @@ function BaseBarStack<
     unregisterData,
     width,
     height,
+    horizontal,
   } = (useContext(DataContext) as unknown) as DataContextType<
     XScale,
     YScale,
@@ -187,20 +180,20 @@ function BaseBarStack<
   let getY: (bar: StackBar) => number | undefined;
 
   if (horizontal) {
-    getWidth = bar => (xScale(getSecondItem(bar)) || 0) - (xScale(getFirstItem(bar)) || 0);
+    getWidth = bar => (xScale(getSecondItem(bar)) ?? NaN) - (xScale(getFirstItem(bar)) ?? NaN);
     getHeight = () => barThickness;
     getX = bar => xScale(getFirstItem(bar));
     getY = bar =>
       'bandwidth' in yScale
         ? yScale(getStackValue(bar.data))
-        : Math.max((yScale(getStackValue(bar.data)) || 0) - halfBarThickness);
+        : Math.max((yScale(getStackValue(bar.data)) ?? NaN) - halfBarThickness);
   } else {
     getWidth = () => barThickness;
-    getHeight = bar => (yScale(getFirstItem(bar)) || 0) - (yScale(getSecondItem(bar)) || 0);
+    getHeight = bar => (yScale(getFirstItem(bar)) ?? NaN) - (yScale(getSecondItem(bar)) ?? NaN);
     getX = bar =>
       'bandwidth' in xScale
         ? xScale(getStackValue(bar.data))
-        : Math.max((xScale(getStackValue(bar.data)) || 0) - halfBarThickness);
+        : Math.max((xScale(getStackValue(bar.data)) ?? NaN) - halfBarThickness);
     getY = bar => yScale(getSecondItem(bar));
   }
 
@@ -214,13 +207,17 @@ function BaseBarStack<
         if (!isValidNumber(barX)) return null;
         const barY = getY(bar);
         if (!isValidNumber(barY)) return null;
+        const barWidth = getWidth(bar);
+        if (!isValidNumber(barWidth)) return null;
+        const barHeight = getHeight(bar);
+        if (!isValidNumber(barHeight)) return null;
 
         return {
           key: `${stackIndex}-${barStack.key}-${index}`,
           x: barX,
           y: barY,
-          width: getWidth(bar),
-          height: getHeight(bar),
+          width: barWidth,
+          height: barHeight,
           fill: colorScale(barStack.key),
         };
       });

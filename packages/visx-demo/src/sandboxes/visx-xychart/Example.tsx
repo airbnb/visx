@@ -63,7 +63,7 @@ export default function Example({ height }: Props) {
               numTicks={numTicks}
             />
             {renderBarStack && (
-              <AnimatedBarStack horizontal={renderHorizontally}>
+              <AnimatedBarStack>
                 <AnimatedBarSeries
                   dataKey="New York"
                   data={data}
@@ -85,7 +85,7 @@ export default function Example({ height }: Props) {
               </AnimatedBarStack>
             )}
             {renderBarGroup && (
-              <AnimatedBarGroup horizontal={renderHorizontally}>
+              <AnimatedBarGroup>
                 <AnimatedBarSeries
                   dataKey="New York"
                   data={data}
@@ -112,7 +112,6 @@ export default function Example({ height }: Props) {
                 data={data}
                 xAccessor={accessors.x['New York']}
                 yAccessor={accessors.y['New York']}
-                horizontal={renderHorizontally}
               />
             )}
             {renderAreaSeries && (
@@ -122,16 +121,14 @@ export default function Example({ height }: Props) {
                   data={data}
                   xAccessor={accessors.x.Austin}
                   yAccessor={accessors.y.Austin}
-                  horizontal={renderHorizontally}
-                  fillOpacity={0.3}
+                  fillOpacity={0.5}
                 />
                 <AnimatedAreaSeries
                   dataKey="San Francisco"
                   data={data}
                   xAccessor={accessors.x['San Francisco']}
                   yAccessor={accessors.y['San Francisco']}
-                  horizontal={renderHorizontally}
-                  fillOpacity={0.3}
+                  fillOpacity={0.5}
                 />
               </>
             )}
@@ -142,14 +139,12 @@ export default function Example({ height }: Props) {
                   data={data}
                   xAccessor={accessors.x.Austin}
                   yAccessor={accessors.y.Austin}
-                  horizontal={renderHorizontally}
                 />
                 <AnimatedLineSeries
                   dataKey="San Francisco"
                   data={data}
                   xAccessor={accessors.x['San Francisco']}
                   yAccessor={accessors.y['San Francisco']}
-                  horizontal={renderHorizontally}
                 />
               </>
             )}

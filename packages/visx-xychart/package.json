@@ -57,6 +57,7 @@
     "@visx/voronoi": "1.0.0",
     "classnames": "^2.2.5",
     "d3-array": "^2.6.0",
+    "d3-interpolate-path": "2.2.1",
     "d3-shape": "^2.0.0",
     "lodash": "^4.17.10",
     "mitt": "^2.1.0",

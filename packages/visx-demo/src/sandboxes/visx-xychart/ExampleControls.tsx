@@ -12,6 +12,13 @@ const dateScaleConfig = { type: 'band', paddingInner: 0.3 } as const;
 const temperatureScaleConfig = { type: 'linear' } as const;
 const numTicks = 4;
 const data = cityTemperature.slice(225, 275);
+const dataMissingValues = data.map((d, i) =>
+  i === 10 || i === 11
+    ? { ...d, 'San Francisco': 'nope', 'New York': 'notanumber', Austin: 'null' }
+    : d,
+);
+const dataSmall = data.slice(0, 15);
+const dataSmallMissingValues = dataMissingValues.slice(0, 15);
 const getDate = (d: CityTemperature) => d.date;
 const getSfTemperature = (d: CityTemperature) => Number(d['San Francisco']);
 const getNegativeSfTemperature = (d: CityTemperature) => -getSfTemperature(d);
@@ -82,12 +89,14 @@ export default function ExampleControls({ children }: ControlsProps) {
   const [sharedTooltip, setSharedTooltip] = useState(true);
   const [renderBarStackOrGroup, setRenderBarStackOrGroup] = useState<
     'bar' | 'stack' | 'group' | 'none'
-  >('none');
+  >('bar');
   const [renderLineOrAreaSeries, setRenderLineOrAreaSeries] = useState<'line' | 'area' | 'none'>(
     'line',
   );
-  const [renderGlyphSeries, setRenderGlyphSeries] = useState(true);
+  const [renderGlyphSeries, setRenderGlyphSeries] = useState(false);
   const [negativeValues, setNegativeValues] = useState(false);
+  const [fewerDatum, setFewerDatum] = useState(false);
+  const [missingValues, setMissingValues] = useState(false);
   const [glyphComponent, setGlyphComponent] = useState<'star' | 'cross' | 'circle' | '🍍'>('star');
   const themeBackground = theme.backgroundColor;
   const renderGlyph = useCallback(
@@ -151,7 +160,13 @@ export default function ExampleControls({ children }: ControlsProps) {
         accessors,
         animationTrajectory,
         config,
-        data,
+        data: fewerDatum
+          ? missingValues
+            ? dataSmallMissingValues
+            : dataSmall
+          : missingValues
+          ? dataMissingValues
+          : data,
         numTicks,
         renderBarGroup: renderBarStackOrGroup === 'group',
         renderBarSeries: renderBarStackOrGroup === 'bar',
@@ -517,6 +532,22 @@ export default function ExampleControls({ children }: ControlsProps) {
             />
             negative values (SF)
           </label>
+          <label>
+            <input
+              type="checkbox"
+              onChange={() => setMissingValues(!missingValues)}
+              checked={missingValues}
+            />
+            missing values
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              onChange={() => setFewerDatum(!fewerDatum)}
+              checked={fewerDatum}
+            />
+            fewer datum
+          </label>
         </div>
       </div>
       <style jsx>{`
@@ -524,8 +555,11 @@ export default function ExampleControls({ children }: ControlsProps) {
           font-size: 13px;
           line-height: 1.5em;
         }
+        .controls > div {
+          margin-bottom: 8px;
+        }
         label {
-          font-size: 11px;
+          font-size: 12px;
         }
         input[type='radio'] {
           height: 10px;

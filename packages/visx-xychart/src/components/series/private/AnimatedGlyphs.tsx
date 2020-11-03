@@ -71,12 +71,13 @@ export default function AnimatedGlyphs<
     <>
       {animatedGlyphs.map((
         // @ts-ignore x/y aren't in react-spring's CSSProperties
-        { item, key, props: { x, y, color } },
+        { item, key, props: { x, y, color, opacity } },
       ) => (
         <animated.g
           key={key}
           transform={interpolate([x, y], (xVal, yVal) => `translate(${xVal}, ${yVal})`)}
           color={color}
+          opacity={opacity}
         >
           {renderGlyph({
             key,

@@ -9,14 +9,13 @@ import useEventEmitter, { HandlerParams } from '../../../hooks/useEventEmitter';
 import findNearestDatumX from '../../../utils/findNearestDatumX';
 import TooltipContext from '../../../context/TooltipContext';
 import findNearestDatumY from '../../../utils/findNearestDatumY';
+import isValidNumber from '../../../typeguards/isValidNumber';
 
 export type BaseLineSeriesProps<
   XScale extends AxisScale,
   YScale extends AxisScale,
   Datum extends object
 > = SeriesProps<XScale, YScale, Datum> & {
-  /** Whether line should be rendered horizontally instead of vertically. */
-  horizontal?: boolean;
   /** Rendered component which is passed path props by BaseLineSeries after processing. */
   PathComponent?: React.FC<Omit<React.SVGProps<SVGPathElement>, 'ref'>> | 'path';
 } & Omit<React.SVGProps<SVGPathElement>, 'x' | 'y' | 'x0' | 'x1' | 'y0' | 'y1' | 'ref'>;
@@ -28,14 +27,17 @@ function BaseLineSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
   xScale,
   yAccessor,
   yScale,
-  horizontal,
   PathComponent = 'path',
   ...lineProps
 }: BaseLineSeriesProps<XScale, YScale, Datum> & WithRegisteredDataProps<XScale, YScale, Datum>) {
-  const { colorScale, theme, width, height } = useContext(DataContext);
+  const { colorScale, theme, width, height, horizontal } = useContext(DataContext);
   const { showTooltip, hideTooltip } = useContext(TooltipContext) ?? {};
   const getScaledX = useCallback(getScaledValueFactory(xScale, xAccessor), [xScale, xAccessor]);
   const getScaledY = useCallback(getScaledValueFactory(yScale, yAccessor), [yScale, yAccessor]);
+  const isDefined = useCallback(
+    (d: Datum) => isValidNumber(xScale(xAccessor(d))) && isValidNumber(yScale(yAccessor(d))),
+    [xScale, xAccessor, yScale, yAccessor],
+  );
   const color = colorScale?.(dataKey) ?? theme?.colors?.[0] ?? '#222';
 
   const handleMouseMove = useCallback(
@@ -68,11 +70,11 @@ function BaseLineSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
 
   return (
     <LinePath
-      data={data}
       x={getScaledX}
       y={getScaledY}
       stroke={color}
       strokeWidth={2}
+      defined={isDefined}
       {...lineProps}
     >
       {({ path }) => (

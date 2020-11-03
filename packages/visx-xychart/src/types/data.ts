@@ -51,4 +51,5 @@ export interface DataContextType<
   unregisterData: (keyOrKeys: string | string[]) => void;
   setDimensions: (dims: { width: number; height: number; margin: Margin }) => void;
   theme: XYChartTheme;
+  horizontal: boolean;
 }

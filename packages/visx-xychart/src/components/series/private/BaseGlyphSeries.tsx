@@ -15,8 +15,6 @@ export type BaseGlyphSeriesProps<
   YScale extends AxisScale,
   Datum extends object
 > = SeriesProps<XScale, YScale, Datum> & {
-  /** Whether line should be rendered horizontally instead of vertically. */
-  horizontal?: boolean;
   /** The size of a `Glyph`, a `number` or a function which takes a `Datum` and returns a `number`. */
   size?: number | ((d: Datum) => number);
   /** Function which handles rendering glyphs. */
@@ -30,11 +28,10 @@ function BaseGlyphSeries<XScale extends AxisScale, YScale extends AxisScale, Dat
   xScale,
   yAccessor,
   yScale,
-  horizontal,
   size = 8,
   renderGlyphs,
 }: BaseGlyphSeriesProps<XScale, YScale, Datum> & WithRegisteredDataProps<XScale, YScale, Datum>) {
-  const { colorScale, theme, width, height } = useContext(DataContext);
+  const { colorScale, theme, width, height, horizontal } = useContext(DataContext);
   const { showTooltip, hideTooltip } = useContext(TooltipContext) ?? {};
   const getScaledX = useCallback(getScaledValueFactory(xScale, xAccessor), [xScale, xAccessor]);
   const getScaledY = useCallback(getScaledValueFactory(yScale, yAccessor), [yScale, yAccessor]);
