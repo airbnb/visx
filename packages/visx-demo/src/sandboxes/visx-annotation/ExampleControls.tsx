@@ -14,7 +14,7 @@ type AnnotationPosition = { x: number; y: number; dx: number; dy: number };
 
 type ProvidedProps = {
   AnnotationComponent: React.FC<any>;
-  anchorOutlinePosition?: 'auto' | 'all' | 'none';
+  anchorLinePosition?: 'auto' | 'all' | 'none';
   annotationPosition: AnnotationPosition;
   approxTooltipHeight: number;
   connectorType: 'line' | 'elbow';
@@ -24,6 +24,7 @@ type ProvidedProps = {
   horizontalAnchor?: 'left' | 'middle' | 'right';
   labelWidth: number;
   setAnnotationPosition: (position: AnnotationPosition) => void;
+  showAnchorLine: boolean;
   subjectType: 'circle' | 'horizontal-line' | 'vertical-line';
   subtitle: string;
   title: string;
@@ -68,9 +69,7 @@ export default function ExampleControls({
   );
   const [connectorType, setConnectorType] = useState<ProvidedProps['connectorType']>('elbow');
   const [subjectType, setSubjectType] = useState<ProvidedProps['subjectType']>('circle');
-  const [anchorOutlinePosition, setBackgroundOutlinePosition] = useState<
-    ProvidedProps['anchorOutlinePosition']
-  >('auto');
+  const [showAnchorLine, setShowAnchorLine] = useState(true);
   const [verticalAnchor, setVerticalAnchor] = useState<ProvidedProps['verticalAnchor'] | 'auto'>(
     'auto',
   );
@@ -91,7 +90,6 @@ export default function ExampleControls({
         AnnotationComponent: editAnnotation ? EditableAnnotation : Annotation,
         annotationPosition,
         approxTooltipHeight,
-        anchorOutlinePosition,
         connectorType,
         data,
         getDate,
@@ -99,6 +97,7 @@ export default function ExampleControls({
         horizontalAnchor: horizontalAnchor === 'auto' ? undefined : horizontalAnchor,
         labelWidth,
         setAnnotationPosition,
+        showAnchorLine,
         subjectType,
         subtitle,
         title,
@@ -175,33 +174,6 @@ export default function ExampleControls({
             </label>
           </div>
           <div>
-            <strong>Background outline</strong>&nbsp;&nbsp;
-            <label>
-              <input
-                type="radio"
-                onChange={() => setBackgroundOutlinePosition('auto')}
-                checked={anchorOutlinePosition === 'auto'}
-              />
-              auto
-            </label>
-            <label>
-              <input
-                type="radio"
-                onChange={() => setBackgroundOutlinePosition('none')}
-                checked={anchorOutlinePosition === 'none'}
-              />
-              none
-            </label>
-            <label>
-              <input
-                type="radio"
-                onChange={() => setBackgroundOutlinePosition('all')}
-                checked={anchorOutlinePosition === 'all'}
-              />
-              all
-            </label>
-          </div>
-          <div>
             <strong>Horizontal label anchor</strong>
             <label>
               <input
@@ -270,6 +242,16 @@ export default function ExampleControls({
               />
               bottom
             </label>
+            <div>
+              <label>
+                <input
+                  type="checkbox"
+                  onChange={() => setShowAnchorLine(!showAnchorLine)}
+                  checked={showAnchorLine}
+                />
+                Show anchor line
+              </label>
+            </div>
           </div>
         </div>
       )}

@@ -1,4 +1,3 @@
-/* eslint @typescript-eslint/no-use-before-define: 'off', jsx-a11y/label-has-associated-control: 'off' */
 import React from 'react';
 import { Label, Connector, CircleSubject, LineSubject } from '@visx/annotation';
 import { LinePath } from '@visx/shape';
@@ -21,7 +20,6 @@ export default function Example({ width, height, compact = false }: AnnotationPr
         AnnotationComponent,
         annotationPosition,
         approxTooltipHeight,
-        anchorOutlinePosition,
         connectorType,
         data,
         getDate,
@@ -29,6 +27,7 @@ export default function Example({ width, height, compact = false }: AnnotationPr
         horizontalAnchor,
         labelWidth,
         setAnnotationPosition,
+        showAnchorLine,
         subjectType,
         subtitle,
         title,
@@ -81,8 +80,8 @@ export default function Example({ width, height, compact = false }: AnnotationPr
             <Connector stroke={orange} type={connectorType} />
             <Label
               backgroundFill="white"
-              anchorOutlinePosition={anchorOutlinePosition}
-              anchorOutlineStroke={greens[2]}
+              showAnchorLine={showAnchorLine}
+              anchorLineStroke={greens[2]}
               backgroundProps={{ stroke: greens[1] }}
               fontColor={greens[2]}
               horizontalAnchor={horizontalAnchor}
