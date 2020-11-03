@@ -13,7 +13,7 @@ type ExampleControlsProps = AnnotationProps & {
 type AnnotationPosition = { x: number; y: number; dx: number; dy: number };
 
 type ProvidedProps = {
-  AnnotationComponent: React.FC<any>;
+  AnnotationComponent: typeof Annotation | typeof EditableAnnotation;
   anchorLinePosition?: 'auto' | 'all' | 'none';
   annotationPosition: AnnotationPosition;
   approxTooltipHeight: number;
@@ -29,8 +29,8 @@ type ProvidedProps = {
   subtitle: string;
   title: string;
   verticalAnchor?: 'top' | 'middle' | 'bottom';
-  xScale: PickD3Scale<'time'>;
-  yScale: PickD3Scale<'linear'>;
+  xScale: PickD3Scale<'time', number>;
+  yScale: PickD3Scale<'linear', number>;
 };
 
 const data = appleStock.slice(-100);
