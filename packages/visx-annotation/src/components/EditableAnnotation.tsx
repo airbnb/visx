@@ -23,7 +23,11 @@ export type EditableAnnotationProps = Pick<AnnotationContextType, 'x' | 'y' | 'd
   onDragEnd?: ({ x, y, dx, dy, event }: HandlerArgs) => void;
 };
 
-export type HandlerArgs = NonNullable<Pick<AnnotationContextType, 'x' | 'y' | 'dx' | 'dy'>> & {
+export type HandlerArgs = {
+  x: number;
+  y: number;
+  dx: number;
+  dy: number;
   event: React.MouseEvent | React.TouchEvent;
 };
 
