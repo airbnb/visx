@@ -1,6 +1,6 @@
 import React, { useContext, useCallback, useMemo } from 'react';
 import { AxisScale } from '@visx/axis';
-import Area from '@visx/shape/lib/shapes/Area';
+import Area, { AreaProps } from '@visx/shape/lib/shapes/Area';
 import LinePath, { LinePathProps } from '@visx/shape/lib/shapes/LinePath';
 import DataContext from '../../../context/DataContext';
 import { SeriesProps } from '../../../types';
@@ -20,6 +20,8 @@ export type BaseAreaSeriesProps<
 > = SeriesProps<XScale, YScale, Datum> & {
   /** Whether to render a Line along value of the Area shape (area is fill only). */
   renderLine?: boolean;
+  /** Sets the curve factory (from @visx/curve or d3-curve) for the line generator. Defaults to curveLinear. */
+  curve?: AreaProps<Datum>['curve'];
   /** Props to be passed to the Line, if rendered. */
   lineProps?: Omit<LinePathProps<Datum>, 'data' | 'x' | 'y' | 'children' | 'defined'>;
   /** Rendered component which is passed path props by BaseAreaSeries after processing. */
@@ -27,6 +29,7 @@ export type BaseAreaSeriesProps<
 } & Omit<React.SVGProps<SVGPathElement>, 'x' | 'y' | 'x0' | 'x1' | 'y0' | 'y1' | 'ref'>;
 
 function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datum extends object>({
+  curve,
   data,
   dataKey,
   xAccessor,
@@ -97,7 +100,7 @@ function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
 
   return (
     <>
-      <Area {...xAccessors} {...yAccessors} {...areaProps} defined={isDefined}>
+      <Area {...xAccessors} {...yAccessors} {...areaProps} curve={curve} defined={isDefined}>
         {({ path }) => (
           <PathComponent stroke="transparent" fill={color} {...areaProps} d={path(data) || ''} />
         )}
@@ -106,9 +109,8 @@ function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
         <LinePath<Datum>
           x={getScaledX}
           y={getScaledY}
-          stroke={color}
-          strokeWidth={2}
           defined={isDefined}
+          curve={curve}
           {...lineProps}
         >
           {({ path }) => (

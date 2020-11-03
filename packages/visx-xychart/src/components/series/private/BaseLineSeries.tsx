@@ -1,5 +1,5 @@
 import React, { useContext, useCallback } from 'react';
-import LinePath from '@visx/shape/lib/shapes/LinePath';
+import LinePath, { LinePathProps } from '@visx/shape/lib/shapes/LinePath';
 import { AxisScale } from '@visx/axis';
 import DataContext from '../../../context/DataContext';
 import { SeriesProps } from '../../../types';
@@ -18,9 +18,12 @@ export type BaseLineSeriesProps<
 > = SeriesProps<XScale, YScale, Datum> & {
   /** Rendered component which is passed path props by BaseLineSeries after processing. */
   PathComponent?: React.FC<Omit<React.SVGProps<SVGPathElement>, 'ref'>> | 'path';
+  /** Sets the curve factory (from @visx/curve or d3-curve) for the line generator. Defaults to curveLinear. */
+  curve?: LinePathProps<Datum>['curve'];
 } & Omit<React.SVGProps<SVGPathElement>, 'x' | 'y' | 'x0' | 'x1' | 'y0' | 'y1' | 'ref'>;
 
 function BaseLineSeries<XScale extends AxisScale, YScale extends AxisScale, Datum extends object>({
+  curve,
   data,
   dataKey,
   xAccessor,
@@ -69,14 +72,7 @@ function BaseLineSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
   useEventEmitter('mouseout', hideTooltip);
 
   return (
-    <LinePath
-      x={getScaledX}
-      y={getScaledY}
-      stroke={color}
-      strokeWidth={2}
-      defined={isDefined}
-      {...lineProps}
-    >
+    <LinePath x={getScaledX} y={getScaledY} defined={isDefined} curve={curve} {...lineProps}>
       {({ path }) => (
         <PathComponent
           stroke={color}
