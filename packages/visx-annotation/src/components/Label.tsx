@@ -5,11 +5,9 @@ import Text, { TextProps } from '@visx/text/lib/Text';
 import useMeasure from 'react-use-measure';
 import AnnotationContext from '../context/AnnotationContext';
 
-// @TODO
-// vertical / horizontal anchors
-// vertical / horizontal line
-
 export type LabelProps = {
+  /** Stroke color of anchor line. */
+  anchorLineStroke?: string;
   /** Background color of label. */
   backgroundFill?: string;
   /** Padding of text from background. */
@@ -22,23 +20,35 @@ export type LabelProps = {
   fontColor?: string;
   /** Whether the label is horizontally anchored to the left, middle, or right of its x position. */
   horizontalAnchor?: 'left' | 'middle' | 'right';
+  /** Whether to render a line indicating label text anchor. */
+  showAnchorLine?: boolean;
+  /** Whether to render a label background. */
+  showBackground?: boolean;
   /** Optional subtitle. */
   subtitle?: string;
+  /** Optional title font size. */
+  subtitleFontSize?: number;
+  /** Optional title font weight. */
+  subtitleFontWeight?: number;
   /** The vertical offset of the subtitle from the title. */
   subtitleDy?: number;
   /** Optional subtitle Text props (to override color, etc.). */
   subtitleProps?: Partial<TextProps>;
   /** Optional title. */
   title?: string;
+  /** Optional title font size. */
+  titleFontSize?: number;
+  /** Optional title font weight. */
+  titleFontWeight?: number;
   /** Optional title Text props (to override color, etc.). */
   titleProps?: Partial<TextProps>;
   /** Whether the label is vertically anchored to the top, middle, or bottom of its x position. */
   verticalAnchor?: 'top' | 'middle' | 'bottom';
   /** Width of annotation, including background, for text wrapping. */
   width?: number;
-  /** Left offset of entire AnnotationLabel. */
+  /** Left offset of entire AnnotationLabel, if not specified uses x + dx from Annotation. */
   x?: number;
-  /** Top offset of entire AnnotationLabel. */
+  /** Top offset of entire AnnotationLabel, if not specified uses y + dy from Annotation. */
   y?: number;
 };
 
@@ -54,17 +64,24 @@ function getCompletePadding(padding: LabelProps['backgroundPadding']) {
 
 export default function AnnotationLabel({
   backgroundFill = '#eaeaea',
+  anchorLineStroke,
+  showAnchorLine,
   backgroundPadding,
   backgroundProps,
   className,
   fontColor = '#222',
-  horizontalAnchor,
+  horizontalAnchor: propsHorizontalAnchor,
+  showBackground = true,
   subtitle,
-  subtitleDy: initialSubtitleDy,
+  subtitleDy = 4,
+  subtitleFontSize = 12,
+  subtitleFontWeight = 200,
   subtitleProps,
   title,
+  titleFontSize = 16,
+  titleFontWeight = 600,
   titleProps,
-  verticalAnchor,
+  verticalAnchor: propsVerticalAnchor,
   width = 125,
   x: propsX,
   y: propsY,
@@ -76,35 +93,49 @@ export default function AnnotationLabel({
   const padding = useMemo(() => getCompletePadding(backgroundPadding), [backgroundPadding]);
 
   // if props are provided, they take precedence over context
-  const { x, y, dx, dy } = useContext(AnnotationContext);
-  const containerHeight =
-    padding.top + padding.bottom + (titleBounds.height ?? 0) + (subtitleBounds.height ?? 0);
+  const { x = 0, y = 0, dx = 0, dy = 0 } = useContext(AnnotationContext);
+  const height = Math.floor(
+    padding.top + padding.bottom + (titleBounds.height ?? 0) + (subtitleBounds.height ?? 0),
+  );
+  const innerWidth = width - padding.left - padding.right;
+
+  // offset container position based on horizontal + vertical anchor
+  const horizontalAnchor =
+    propsHorizontalAnchor || (Math.abs(dx) < Math.abs(dy) ? 'middle' : dx > 0 ? 'left' : 'right');
+  const verticalAnchor =
+    propsVerticalAnchor || (Math.abs(dx) > Math.abs(dy) ? 'middle' : dy > 0 ? 'top' : 'bottom');
 
   const containerCoords = useMemo(() => {
-    let adjustedX: number = propsX == null ? (x ?? 0) + (dx ?? 0) : propsX;
-    let adjustedY: number = propsY == null ? (y ?? 0) + (dy ?? 0) : propsY;
+    let adjustedX: number = propsX == null ? x + dx : propsX;
+    let adjustedY: number = propsY == null ? y + dy : propsY;
 
-    if (horizontalAnchor) {
-      if (horizontalAnchor === 'middle') adjustedX -= width / 2;
-      if (horizontalAnchor === 'right') adjustedX -= width;
-    } else if (dx != null && dx < 0) {
-      adjustedX -= width; // right align
-    }
-
-    if (verticalAnchor) {
-      if (verticalAnchor === 'middle') adjustedY -= containerHeight / 2;
-      if (verticalAnchor === 'bottom') adjustedY -= containerHeight;
-    } else if (dy != null && dy < 0) {
-      adjustedY -= containerHeight; // bottom align
-    }
+    if (horizontalAnchor === 'middle') adjustedX -= width / 2;
+    if (horizontalAnchor === 'right') adjustedX -= width;
+    if (verticalAnchor === 'middle') adjustedY -= height / 2;
+    if (verticalAnchor === 'bottom') adjustedY -= height;
 
     return { x: adjustedX, y: adjustedY };
-  }, [propsX, x, dx, propsY, y, dy, horizontalAnchor, verticalAnchor, width, containerHeight]);
+  }, [propsX, x, dx, propsY, y, dy, horizontalAnchor, verticalAnchor, width, height]);
 
-  const subtitleDy = title
-    ? initialSubtitleDy ??
-      (typeof subtitleProps?.fontSize === 'number' ? subtitleProps.fontSize : 8)
-    : 0;
+  const titleStyle = useMemo(
+    () => ({
+      fontSize: titleFontSize,
+      fontWeight: titleFontWeight,
+    }),
+    [titleFontSize, titleFontWeight],
+  );
+
+  const subtitleStyle = useMemo(
+    () => ({
+      fontSize: subtitleFontSize,
+      fontWeight: subtitleFontWeight,
+    }),
+    [subtitleFontSize, subtitleFontWeight],
+  );
+
+  const anchorLineOrientation = Math.abs(dx) > Math.abs(dy) ? 'vertical' : 'horizontal';
+
+  const backgroundOutline = showAnchorLine ? { stroke: anchorLineStroke, strokeWidth: 2 } : null;
 
   return !title && !subtitle ? null : (
     <Group
@@ -114,27 +145,43 @@ export default function AnnotationLabel({
       className={cx('visx-annotationlabel', className)}
       opacity={titleBounds.height === 0 && subtitleBounds.height === 0 ? 0 : 1}
     >
-      <rect
-        fill={backgroundFill}
-        x={0}
-        y={0}
-        rx={4}
-        ry={4}
-        {...backgroundProps}
-        width={width}
-        height={containerHeight}
-      />
+      {showBackground && (
+        <rect
+          fill={backgroundFill}
+          x={0}
+          y={0}
+          width={width}
+          height={height}
+          {...backgroundProps}
+        />
+      )}
+      {showAnchorLine && (
+        <>
+          {anchorLineOrientation === 'horizontal' && verticalAnchor === 'top' && (
+            <line {...backgroundOutline} x1={0} x2={width} y1={0} y2={0} />
+          )}
+          {anchorLineOrientation === 'horizontal' && verticalAnchor === 'bottom' && (
+            <line {...backgroundOutline} x1={0} x2={width} y1={height} y2={height} />
+          )}
+          {anchorLineOrientation === 'vertical' && horizontalAnchor === 'left' && (
+            <line {...backgroundOutline} x1={0} x2={0} y1={0} y2={height} />
+          )}
+          {anchorLineOrientation === 'vertical' && horizontalAnchor === 'right' && (
+            <line {...backgroundOutline} x1={width} x2={width} y1={0} y2={height} />
+          )}
+        </>
+      )}
       {title && (
         <Text
           // @ts-ignore useMeasure expects HTML ref
           innerRef={titleRef}
-          fontSize={14}
-          fontWeight="bold"
           fill={fontColor}
           verticalAnchor="start"
-          dx={padding.left}
-          dy={padding.top}
-          width={width}
+          x={padding.left}
+          y={padding.top}
+          width={innerWidth}
+          capHeight={titleFontSize} // capHeight should match fontSize, used for first line line height
+          style={titleStyle} // used for size calculation
           {...titleProps}
         >
           {title}
@@ -144,12 +191,14 @@ export default function AnnotationLabel({
         <Text
           // @ts-ignore useMeasure expects HTML ref
           innerRef={subtitleRef}
-          fontSize={12}
           fill={fontColor}
           verticalAnchor="start"
-          dx={padding.left}
-          dy={padding.top + (titleBounds.height ?? 0) + subtitleDy}
-          width={width}
+          x={padding.left}
+          y={padding.top + (titleBounds.height ?? 0)}
+          dy={title ? subtitleDy : 0}
+          width={innerWidth}
+          capHeight={subtitleFontSize} // capHeight should match fontSize, used for first line line height
+          style={subtitleStyle} // used for size calculation
           {...subtitleProps}
         >
           {subtitle}

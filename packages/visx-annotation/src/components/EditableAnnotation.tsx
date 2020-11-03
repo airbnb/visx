@@ -121,6 +121,14 @@ export default function EditableAnnotation({
 
   return (
     <>
+      <Annotation
+        x={subjectX + subjectDrag.dx}
+        y={subjectY + subjectDrag.dy}
+        dx={labelDx + labelDrag.dx}
+        dy={labelDy + labelDrag.dy}
+      >
+        {children}
+      </Annotation>
       {subjectDrag.isDragging && (
         <rect
           width={width}
@@ -167,14 +175,6 @@ export default function EditableAnnotation({
         {...defaultDragHandleProps}
         {...labelDragHandleProps}
       />
-      <Annotation
-        x={subjectX + subjectDrag.dx}
-        y={subjectY + subjectDrag.dy}
-        dx={labelDx + labelDrag.dx}
-        dy={labelDy + labelDrag.dy}
-      >
-        {children}
-      </Annotation>
     </>
   );
 }
