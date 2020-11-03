@@ -6,8 +6,7 @@ export { default as packageJson } from '../../sandboxes/visx-area/package.json';
 
 const tileStyles = { background: greens[0] };
 const detailsStyles: React.CSSProperties = {
-  color: greens[0],
-  background: greens[1],
+  color: greens[2],
   borderBottomRightRadius: 16,
   borderBottomLeftRadius: 16,
 };
