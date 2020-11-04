@@ -232,7 +232,6 @@ const Meta = ({ title = 'visualization components' }) => (
           min-width: 100%;
         }
         #home {
-          background-color: blue;
           display: none;
         }
       }

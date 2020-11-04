@@ -108,7 +108,7 @@ export default function Gallery() {
     <>
       <div className="gallery">
         <div className="filters">
-          <div style={{ fontSize: 16, fontWeight: 500 }}>Filter</div>
+          <div className="filter-label">Filter</div>
           {visxPackages.map(visxPackage => (
             <Link
               key={visxPackage}
@@ -153,6 +153,10 @@ export default function Gallery() {
         }
         h6 {
           margin: 0 4px 0 0;
+        }
+        .filter-label {
+          font-size: 16;
+          font-weight: 500;
         }
         .filter-button {
           display: block;
