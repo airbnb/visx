@@ -90,7 +90,17 @@ export default function XYChart<
     );
   }
   if (width == null || height == null) {
-    return <ParentSize>{dims => <XYChart {...dims} {...props} />}</ParentSize>;
+    return (
+      <ParentSize>
+        {dims => (
+          <XYChart
+            {...props}
+            width={props.width == null ? dims.width : props.width}
+            height={props.height == null ? dims.height : props.height}
+          />
+        )}
+      </ParentSize>
+    );
   }
   if (emit == null) {
     return (
