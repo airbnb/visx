@@ -43,7 +43,7 @@ export const defaultStyles: React.CSSProperties = {
   pointerEvents: 'none',
 };
 
-export default function Tooltip({
+export default React.forwardRef<HTMLDivElement, TooltipProps & React.HTMLProps<HTMLDivElement>>(({
   className,
   top,
   left,
@@ -54,9 +54,10 @@ export default function Tooltip({
   unstyled = false,
   applyPositionStyle = false,
   ...restProps
-}: TooltipProps & React.HTMLProps<HTMLDivElement>) {
+}, ref) => {
   return (
     <div
+      ref={ref}
       className={cx('visx-tooltip', className)}
       style={{
         top: top == null || offsetTop == null ? top : top + offsetTop,
@@ -69,4 +70,4 @@ export default function Tooltip({
       {children}
     </div>
   );
-}
+});

@@ -1,10 +1,16 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { Tooltip, defaultStyles } from '../src';
 
 describe('<Tooltip />', () => {
   test('it should be defined', () => {
     expect(Tooltip).toBeDefined();
+  });
+
+  test('should forward ref', () => {
+    const ref = React.createRef()
+    const wrapper = mount(<Tooltip ref={ref}>Hello</Tooltip>);
+    expect(ref.current).not.toEqual(null);
   });
 
   it('should render with the default styles', () => {
