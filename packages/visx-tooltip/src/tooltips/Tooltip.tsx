@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Ref } from 'react';
 import cx from 'classnames';
 
 export type TooltipProps = {
@@ -30,6 +30,10 @@ export type TooltipProps = {
    */
   unstyled?: boolean;
 };
+
+export type TooltipForwardedRef = TooltipProps & React.HTMLProps<HTMLDivElement> & {
+forwardedRef: Ref<HTMLDivElement>;
+}
 
 export const defaultStyles: React.CSSProperties = {
   position: 'absolute',
