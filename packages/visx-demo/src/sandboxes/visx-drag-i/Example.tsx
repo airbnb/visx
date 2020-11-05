@@ -53,9 +53,11 @@ export default function DragI({ width, height }: DragIProps) {
 
         {draggingItems.map((d, i) => (
           <Drag
-            key={`${d.id}`}
+            key={`drag-${d.id}`}
             width={width}
             height={height}
+            x={d.x}
+            y={d.y}
             onDragStart={() => {
               // svg follows the painter model
               // so we need to move the data item
@@ -64,11 +66,11 @@ export default function DragI({ width, height }: DragIProps) {
               setDraggingItems(raise(draggingItems, i));
             }}
           >
-            {({ dragStart, dragEnd, dragMove, isDragging, dx, dy }) => (
+            {({ dragStart, dragEnd, dragMove, isDragging, x, y, dx, dy }) => (
               <circle
                 key={`dot-${d.id}`}
-                cx={d.x}
-                cy={d.y}
+                cx={x}
+                cy={y}
                 r={isDragging ? d.radius + 4 : d.radius}
                 fill={isDragging ? 'url(#stroke)' : colorScale(d.id)}
                 transform={`translate(${dx}, ${dy})`}

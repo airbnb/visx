@@ -18,14 +18,18 @@ export type DragProps = UseDragOptions & {
 export default function Drag({
   captureDragArea = true,
   children,
+  dx,
+  dy,
   height,
   onDragEnd,
   onDragMove,
   onDragStart,
   resetOnStart,
   width,
+  x,
+  y,
 }: DragProps) {
-  const drag = useDrag({ resetOnStart, onDragEnd, onDragMove, onDragStart });
+  const drag = useDrag({ resetOnStart, onDragEnd, onDragMove, onDragStart, x, y, dx, dy });
 
   return (
     <>
