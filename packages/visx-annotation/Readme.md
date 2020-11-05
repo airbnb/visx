@@ -10,14 +10,12 @@ SVG `Annotation`s enable you to label points, thresholds, or regions of a visual
 
 Each annotation consists of three (optional) parts:
 
-1) `Subject` – what part of a chart is being annotated (point, line, region)
-   - `CircleSubject`
-   - `LineSubject`
-   - (More 🔜)
+1) `Subject` (`CircleSubject`, `LineSubject`, more 🔜) – what part of a chart is being annotated (point, line, region)
 
 2) `Label` – the text component for the annotation. Handles SVG text wrapping using `@visx/text`, and supports `title` and `subtitle` customization as well as vertical & horizontal anchors / alignment
 
 3) `Connector` – line connecting a subject and label
+
 
 The `Annotation` or `EditableAnnotation` component wrappers allow you to compose these components and simplify their individual positioning:
 
