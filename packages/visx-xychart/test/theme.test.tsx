@@ -35,8 +35,8 @@ describe('theme', () => {
       colors: ['violet'],
       gridStyles: { strokeDasharray: '1,5' },
       tickLength: 7.5,
-      labelStyles: { fontFamily: 'Comic Sans', fill: 'grape' },
-      tickLabelStyles: { fontSize: 100, fill: 'banana' },
+      svgLabelBig: { fontFamily: 'Comic Sans', fill: 'grape' },
+      svgLabelSmall: { fontSize: 100, fill: 'banana' },
       xTickLineStyles: { strokeWidth: 2.4 },
     });
 
@@ -44,7 +44,9 @@ describe('theme', () => {
       backgroundColor: 'white',
       colors: ['violet'],
       gridStyles: { stroke: 'fuchsia', strokeDasharray: '1,5' },
-      htmlLabelStyles: { color: 'grape' },
+      htmlLabel: { color: 'grape' },
+      svgLabelBig: { fill: 'grape' },
+      svgLabelSmall: { fill: 'banana' },
       axisStyles: {
         x: {
           top: {
