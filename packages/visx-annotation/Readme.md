@@ -6,11 +6,7 @@
   </a>
 </p>
 
-**Status**
-
-We recommend using [react-annotation](http://react-annotation.susielu.com/) by @susielu. This
-package is a work in progress. In the future we may make some helpers built on top of
-react-annotation.
+Annotations enable you to label points, thresholds, or regions of a visualization to provide additional context for your chart consumer.
 
 ## Installation
 
