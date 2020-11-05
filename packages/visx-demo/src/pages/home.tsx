@@ -1,112 +1,204 @@
+// @ts-nocheck
 import React from 'react';
+import Link from 'next/link';
+import { ParentSize } from '@visx/responsive';
 import Page from '../components/Page';
 import Footer from '../components/Footer';
+import Dots from '../sandboxes/visx-dots/Example';
+import Zoom from '../sandboxes/visx-zoom-i/Example';
+import Radial from '../sandboxes/visx-shape-line-radial/Example';
+import Bars from '../sandboxes/visx-bars/Example';
 
-export default () => (
+// @ts-ignore
+const Button = React.forwardRef(({ onClick, href, children }, ref) => {
+  return (
+    // @ts-ignore
+    <a href={href} onClick={onClick} ref={ref}>
+      {children}
+      <style jsx>{`
+        a {
+          display: block;
+          width: 100%;
+          font-size: 22px;
+          border: none;
+          background-color: #ebebeb;
+          padding: 1rem 0;
+          border-radius: 14px;
+          font-weight: 500;
+          text-align: center;
+        }
+        @media (max-width: 600px) {
+          a {
+            font-size: 20px;
+          }
+        }
+      `}</style>
+    </a>
+  );
+});
+
+const Home = () => (
   <Page>
     <div className="home">
-      <div className="hero">
-        <h1>React + D3 = VISX</h1>
-        <div className="btn-container">
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn"
-            href="https://github.com/airbnb/visx"
-          >
-            View on Github
-          </a>
-        </div>
+      <div className="wrapper home-hero-container">
+        <div className="stack home-x" />
+        <div className="stack home-guides" />
       </div>
-      <div className="container">
+      <div className="wrapper container">
         <div className="content">
+          <h3>
+            <strong>visx</strong> a collection of expressive, low-level visualization primitives for
+            React
+          </h3>
           <p>
-            <code>visx</code> is collection of reusable low-level visualization components.{' '}
-            <code>visx</code> combines the power of <code>d3</code> to generate your visualization
-            with the benefits of <code>react</code> for updating the DOM.
+            At Airbnb, we made it a goal to unify our visualization stack across the company and in
+            the process, we created a new project that brings together the power of D3 with the joy
+            of React.
           </p>
-        </div>
-        <div className="content">
-          <h3>Goal</h3>
-          <p>
-            The goal is to create a library of components you can use to make both your own reusable
-            chart library or your slick custom one-off chart. <code>visx</code> is largely
-            unopinionated and is meant to be build on top of. Keep your bundle sizes down and use
-            only the packages you need.
-          </p>
-        </div>
-        <div className="content">
-          <h3>How?</h3>
-          <p>
-            Under the hood, <code>visx</code> is using <code>d3</code> for the calculations and
-            math. If you're creating your own awesome chart library ontop of visx, it's easy to
-            create a component api that hides <code>d3</code> entirely. Meaning your team could
-            create charts as easily as using reusable react components.
-          </p>
-        </div>
-        <div className="content">
-          <h3>But why?</h3>
-          <p>
-            Mixing two mental models for updating the DOM is never a good time. Copy and pasting d3
-            code into <code>componentDidMount()</code> is just that. This collection of components
-            lets you easily build your own reusable visualization charts or library without having
-            to learn d3. No more selections or <code>enter()</code>/<code>exit()</code>/
-            <code>update()</code>.
-          </p>
-        </div>
-        <div className="content">
-          <h3>FAQ</h3>
-          <ol className="faq">
+          <p>Here are the advantages of visx:</p>
+          <ol>
             <li>
-              <p>
-                What does <code>visx</code> stand for?
-              </p>
-              <blockquote>
-                <p>visx stands for visualization components.</p>
-              </blockquote>
+              <strong>Keep bundle sizes down.</strong> visx is split into multiple packages. Start
+              small and use only what you need.
             </li>
             <li>
-              <p>Do you plan on supporting animation/transitions?</p>
-              <blockquote>
-                <p>yup!</p>
-              </blockquote>
+              <strong>Un-opinionated on purpose.</strong> Bring your own state management, animation
+              library, or CSS-in-JS solution. Odds are good your React app already has an opinion on
+              how animation, theming, or styling is done. visx is careful not to add another one and
+              integrates with all of them.
             </li>
             <li>
-              <p>Do I have to use every package to make a chart?</p>
-              <blockquote>
-                <p>nope! pick and choose the packages you need.</p>
-              </blockquote>
-            </li>
-            <li>
-              <p>Can I use this to create my own library of charts for my team?</p>
-              <blockquote>
-                <p>Please do.</p>
-              </blockquote>
-            </li>
-            <li>
-              <p>
-                I like using <code>d3</code>.
-              </p>
-              <blockquote>
-                <p>Me too.</p>
-              </blockquote>
+              <strong>Not a charting library.</strong> As you start using visualization primitives,
+              you’ll end up building your own charting library that’s optimized for your use case.
+              You’re in control.
             </li>
           </ol>
+          <p>
+            And most importantly — it’s just React. If you know React, you can make visualizations.
+            It’s all the same standard APIs and familiar patterns. visx should feel at home in any
+            React codebase.
+          </p>
+        </div>
+        <div className="links">
+          <div className="buttons">
+            <a href="https://github.com/airbnb/visx">
+              <Button>View on GitHub</Button>
+            </a>
+          </div>
+          <div className="link">
+            <Link href="/zoom-i">
+              <ParentSize>
+                {size => {
+                  return (
+                    <div style={{ pointerEvents: 'none' }}>
+                      <Zoom {...size} height={size.height > 0 ? size.height : 400} />
+                    </div>
+                  );
+                }}
+              </ParentSize>
+            </Link>
+          </div>
+          <div className="link">
+            <Link href="/dots">
+              <ParentSize>
+                {size => {
+                  return <Dots {...size} showControls={false} />;
+                }}
+              </ParentSize>
+            </Link>
+          </div>
+          <div className="link">
+            <Link href="/bars">
+              <ParentSize>
+                {size => {
+                  return <Bars {...size} />;
+                }}
+              </ParentSize>
+            </Link>
+          </div>
+          <div className="link">
+            <Link href="/lineradial">
+              <ParentSize>
+                {size => {
+                  return <Radial animate={false} {...size} />;
+                }}
+              </ParentSize>
+            </Link>
+          </div>
+          <div className="buttons">
+            <Link href="/gallery">
+              <Button>View Gallery</Button>
+            </Link>
+          </div>
         </div>
       </div>
-      <Footer />
     </div>
-
+    <Footer />
+    <style global jsx>{`
+      .link .mini-map,
+      .link .controls {
+        display: none !important;
+      }
+    `}</style>
     <style jsx>{`
+      .links {
+        margin: 2rem 2rem 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        grid-gap: 2rem;
+      }
+      .link {
+        background-color: #ebebeb;
+        height: 420px;
+        overflow: hidden;
+        border-radius: 14px;
+      }
+      .buttons,
+      .link:first-child {
+        grid-column: span 2;
+      }
+      .home-hero-container {
+        max-width: 105rem;
+        height: 60vh;
+        min-height: 40vh;
+        background-color: #ff1231;
+        position: relative;
+        border-radius: 14px;
+      }
+      .stack {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+      .home-x {
+        background-image: url('static/x-light.svg');
+        background-size: 50% 50%;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+      .home-guides {
+        background-image: url('static/x-guide.svg');
+        background-size: contain;
+        background-position: center;
+        background-repeat: repeat;
+      }
+      strong {
+        font-weight: 500;
+      }
       .btn {
         padding: 8px 20px;
         background-color: #fc2e1c;
         border-radius: 30px;
         border-top-right-radius: 0;
         color: #ffffff;
-        font-family: 'Montserrat';
         text-transform: uppercase;
         margin-right: 1rem;
+      }
+
+      .hero-x {
+        background-color: #ff1231;
       }
 
       .btn-container {
@@ -118,24 +210,34 @@ export default () => (
       }
 
       .home {
-        display: flex;
-        flex-direction: column;
+        align-self: center;
         background: white;
-        padding: 1rem;
+        min-height: 80vh;
+        margin: 0 auto;
+        padding-bottom: 1rem;
       }
 
       .home h1 {
-        font-family: 'Montserrat';
-        color: #fc2e1c;
         font-size: 95pt;
         line-height: 1em;
         margin: 0;
         padding: 0;
-        opacity: 0.9;
-        margin-top: 130px;
-        letter-spacing: 20px;
-        text-transform: uppercase;
-        text-align: center;
+        color: #272727;
+      }
+
+      .home h3 {
+        font-size: 36px;
+        line-height: 1em;
+        width: 80%;
+        margin: 1rem 0;
+        font-weight: 300;
+        color: #767676;
+      }
+
+      .home h3 strong {
+        font-size: 42px;
+        color: #272727;
+        font-weight: 600;
       }
 
       .hero {
@@ -152,21 +254,20 @@ export default () => (
       }
 
       .container {
-        display: flex;
-        align-items: center;
+        display: grid;
+        align-items: flex-start;
         flex-direction: column;
+        grid-template-columns: 1fr 1fr;
       }
 
       .content {
-        max-width: 640px;
-        min-width: 640px;
+        color: #272727;
         margin: 1rem auto 0;
+        padding: 0 1rem;
+        max-width: 680px;
         display: flex;
         flex-direction: column;
-      }
-
-      .content h3 {
-        margin-bottom: 0;
+        background-color: #fff;
       }
 
       blockquote {
@@ -183,11 +284,40 @@ export default () => (
         min-width: 640px;
       }
 
+      li {
+        list-style-type: decimal;
+        margin-bottom: 1rem;
+        margin-left: 1.25rem;
+      }
+      li:last-child {
+        margin-bottom: 0;
+      }
+
       @media (max-width: 600px) {
         .hero h1 {
           font-size: 35pt;
           margin-top: 40px;
           padding: 0;
+        }
+
+        .home h3 {
+          font-size: 24px;
+          line-height: 1em;
+          width: 100%;
+          margin: 1rem 0 0.5rem;
+          font-weight: 300;
+          color: #767676;
+        }
+
+        .home h3 strong {
+          font-size: 28px;
+          color: #272727;
+          font-weight: 600;
+        }
+
+        .home .content {
+          font-size: 20px;
+          line-height: 1.3em;
         }
 
         .btn {
@@ -202,11 +332,39 @@ export default () => (
           margin-bottom: 1rem;
         }
 
+        .home {
+          margin-top: 0.5rem;
+          grid-template-columns: 1fr;
+        }
+
         .content,
         .faq {
           min-width: 300px;
+        }
+
+        .container {
+          display: block;
+        }
+
+        .links {
+          display: flex;
+          flex-direction: column;
+          grid-gap: 0;
+          margin: 0.5rem;
+        }
+        .link {
+          height: 40vh;
+          margin: 0.5rem 0;
+        }
+        .buttons:first-child {
+          margin-bottom: 1rem;
+        }
+        .buttons:last-child {
+          margin-top: 1rem;
         }
       }
     `}</style>
   </Page>
 );
+
+export default Home;

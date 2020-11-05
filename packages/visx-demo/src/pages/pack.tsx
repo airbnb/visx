@@ -4,7 +4,7 @@ import Pack from '../sandboxes/visx-pack/Example';
 import PackSource from '!!raw-loader!../sandboxes/visx-pack/Example';
 import packageJson from '../sandboxes/visx-pack/package.json';
 
-export default () => (
+const PackPage = () => (
   <Show
     component={Pack}
     title="Pack"
@@ -14,3 +14,4 @@ export default () => (
     {PackSource}
   </Show>
 );
+export default PackPage;

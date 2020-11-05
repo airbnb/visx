@@ -13,6 +13,7 @@ const components = [Group];
 
 const examples = [PatternsTile, RadarTile, PiesTile, TreemapTile, StatsPlotTile, LineRadialTile];
 
-export default () => (
+const GroupDocs = () => (
   <DocPage components={components} examples={examples} readme={GroupReadme} visxPackage="group" />
 );
+export default GroupDocs;

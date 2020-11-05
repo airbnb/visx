@@ -17,7 +17,7 @@ function Description({ width }: { width: number }) {
   );
 }
 
-export default () => (
+const ThresholdPage = () => (
   <Show
     component={Threshold}
     title="Threshold"
@@ -28,3 +28,4 @@ export default () => (
     {ThresholdSource}
   </Show>
 );
+export default ThresholdPage;

@@ -4,7 +4,7 @@ import Network from '../sandboxes/visx-network/Example';
 import NetworkSource from '!!raw-loader!../sandboxes/visx-network/Example';
 import packageJson from '../sandboxes/visx-network/package.json';
 
-export default () => (
+const NetworkPage = () => (
   <Show
     component={Network}
     title="Network"
@@ -14,3 +14,4 @@ export default () => (
     {NetworkSource}
   </Show>
 );
+export default NetworkPage;

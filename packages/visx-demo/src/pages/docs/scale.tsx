@@ -17,4 +17,5 @@ const examples = [
   GeoMercatorTile,
 ];
 
-export default () => <DocPage examples={examples} readme={ScaleReadme} visxPackage="scale" />;
+const ScaleDocs = () => <DocPage examples={examples} readme={ScaleReadme} visxPackage="scale" />;
+export default ScaleDocs;

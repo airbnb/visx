@@ -25,7 +25,7 @@ const components = Object.values(Gradients).sort((a, b) => {
 
 const examples = [GradientsTile, PiesTile, ChordTile, AreaTile, BarsTile, DragIITile];
 
-export default () => (
+const GradientDocs = () => (
   <DocPage
     components={components}
     examples={examples}
@@ -33,3 +33,4 @@ export default () => (
     visxPackage="gradient"
   />
 );
+export default GradientDocs;

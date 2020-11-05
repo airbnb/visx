@@ -4,7 +4,7 @@ import VoronoiChart from '../sandboxes/visx-voronoi/Example';
 import VoronoiChartSource from '!!raw-loader!../sandboxes/visx-voronoi/Example';
 import packageJson from '../sandboxes/visx-voronoi/package.json';
 
-export default () => (
+const VoronoiPage = () => (
   <Show
     events
     margin={{
@@ -21,3 +21,4 @@ export default () => (
     {VoronoiChartSource}
   </Show>
 );
+export default VoronoiPage;

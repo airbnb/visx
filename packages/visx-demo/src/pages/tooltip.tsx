@@ -4,7 +4,7 @@ import Tooltip from '../sandboxes/visx-tooltip/Example';
 import TooltipSource from '!!raw-loader!../sandboxes/visx-tooltip/Example';
 import packageJson from '../sandboxes/visx-tooltip/package.json';
 
-export default () => (
+const TooltipPage = () => (
   <Show
     component={Tooltip}
     title="Tooltip"
@@ -14,3 +14,4 @@ export default () => (
     {TooltipSource}
   </Show>
 );
+export default TooltipPage;

@@ -14,6 +14,7 @@ const components = [Axis, AxisBottom, AxisLeft, AxisRight, AxisTop];
 
 const examples = [AxisTile, BarStackTile, ThresholdTile];
 
-export default () => (
+const AxisDocs = () => (
   <DocPage components={components} examples={examples} readme={AxisReadme} visxPackage="axis" />
 );
+export default AxisDocs;

@@ -57,7 +57,7 @@ export type HeatmapProps = {
 
 const defaultMargin = { top: 10, left: 20, right: 20, bottom: 110 };
 
-export default ({
+const Example = ({
   width,
   height,
   events = false,
@@ -149,3 +149,5 @@ export default ({
     </svg>
   );
 };
+
+export default Example;

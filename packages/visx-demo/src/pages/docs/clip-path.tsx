@@ -7,6 +7,7 @@ import DocPage from '../../components/DocPage';
 
 const components = [ClipPath, CircleClipPath, RectClipPath];
 
-export default () => (
+const ClipPathDocs = () => (
   <DocPage components={components} readme={ClipPathReadme} visxPackage="clip-path" />
 );
+export default ClipPathDocs;

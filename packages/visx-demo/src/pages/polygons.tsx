@@ -4,7 +4,7 @@ import Polygons from '../sandboxes/visx-polygons/Example';
 import PolygonsSource from '!!raw-loader!../sandboxes/visx-polygons/Example';
 import packageJson from '../sandboxes/visx-polygons/package.json';
 
-export default () => (
+const PolygonsPage = () => (
   <Show
     component={Polygons}
     title="Polygons"
@@ -14,3 +14,4 @@ export default () => (
     {PolygonsSource}
   </Show>
 );
+export default PolygonsPage;

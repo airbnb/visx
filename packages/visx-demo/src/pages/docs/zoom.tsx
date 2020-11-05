@@ -8,6 +8,7 @@ const components = [Zoom];
 
 const examples = [ZoomITile];
 
-export default () => (
+const ZoomDocs = () => (
   <DocPage components={components} examples={examples} readme={ZoomReadme} visxPackage="zoom" />
 );
+export default ZoomDocs;

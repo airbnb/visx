@@ -27,6 +27,7 @@ const components = [
 
 const examples = [GeoMercatorTile, GeoCustomTile];
 
-export default () => (
+const GeoDocs = () => (
   <DocPage components={components} examples={examples} readme={GeoReadme} visxPackage="geo" />
 );
+export default GeoDocs;

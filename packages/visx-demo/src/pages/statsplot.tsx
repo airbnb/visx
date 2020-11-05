@@ -4,7 +4,7 @@ import StatsPlot from '../sandboxes/visx-stats/Example';
 import StatsPlotSource from '!!raw-loader!../sandboxes/visx-stats/Example';
 import packageJson from '../sandboxes/visx-stats/package.json';
 
-export default () => (
+const StatsPlotPage = () => (
   <Show
     events
     component={StatsPlot}
@@ -15,3 +15,4 @@ export default () => (
     {StatsPlotSource}
   </Show>
 );
+export default StatsPlotPage;

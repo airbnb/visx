@@ -3,20 +3,23 @@ import Link from 'next/link';
 
 type NavItemProps = {
   href: string;
+  id?: string;
   className?: string;
   external?: boolean;
   children: React.ReactNode;
 };
 
-export default ({ href, children, className, external }: NavItemProps) => (
+const NavItem = ({ id, href, children, className, external }: NavItemProps) => (
   <li className="Item">
     {external ? (
-      <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
+      <a id={id} href={href} target="_blank" rel="noopener noreferrer" className={className}>
         {children}
       </a>
     ) : (
       <Link href={href}>
-        <a className={className}>{children}</a>
+        <a id={id} className={className}>
+          {children}
+        </a>
       </Link>
     )}
 
@@ -25,8 +28,9 @@ export default ({ href, children, className, external }: NavItemProps) => (
         display: inline-block;
         padding: 10px;
         text-decoration: none;
-        color: #fc2e1c;
-        font-weight: 600;
+        color: #272727;
+        font-weight: 400;
+        font-size: 18px;
       }
       .Item .github {
         font-weight: 600;
@@ -46,3 +50,4 @@ export default ({ href, children, className, external }: NavItemProps) => (
     `}</style>
   </li>
 );
+export default NavItem;

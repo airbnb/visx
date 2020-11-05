@@ -9,7 +9,7 @@ const components = [HeatmapRect, HeatmapCircle];
 
 const examples = [HeatmapsTile];
 
-export default () => (
+const HeatmapDocs = () => (
   <DocPage
     components={components}
     examples={examples}
@@ -17,3 +17,4 @@ export default () => (
     visxPackage="heatmap"
   />
 );
+export default HeatmapDocs;

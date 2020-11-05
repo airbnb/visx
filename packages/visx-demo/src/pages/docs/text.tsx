@@ -8,6 +8,7 @@ const components = [Text];
 
 const examples = [TextTile];
 
-export default () => (
+const TextDocs = () => (
   <DocPage components={components} examples={examples} readme={TextReadme} visxPackage="text" />
 );
+export default TextDocs;

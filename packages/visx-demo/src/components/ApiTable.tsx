@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import Markdown from 'react-markdown/with-html';
 import { DocGenInfo, PropInfo } from '../types';
+import { toExportName } from './util/format';
 
 type Props = {
   docgenInfo: DocGenInfo;
@@ -11,7 +12,6 @@ const alphaSort = (a: PropInfo, b: PropInfo) => a.name.localeCompare(b.name);
 /** Renders a list of props for the passed docgenInfo */
 export default function ApiTable({ docgenInfo }: Props) {
   const { displayName = '' } = docgenInfo;
-  const isComponent = displayName && displayName[0].toLowerCase() !== displayName[0];
   const anchorId = displayName;
 
   // required first, then abc order
@@ -33,12 +33,10 @@ export default function ApiTable({ docgenInfo }: Props) {
   return (
     <div className="api">
       <h3>
-        <a id={anchorId} href={`#${anchorId}`}>
+        <a id={anchorId} href={`#${anchorId}`} className="export-name-anchor">
           #
         </a>
-        {isComponent && <>&lt;</>}
-        {displayName}
-        {isComponent && <>&nbsp;/&gt;</>}
+        {toExportName(displayName)}
       </h3>
       {props.map(prop => {
         const id = `${displayName}_${prop.name}`;
@@ -46,14 +44,18 @@ export default function ApiTable({ docgenInfo }: Props) {
           <div key={prop.name} className="prop">
             <div className="title">
               <span className="name">
-                <a id={id} href={`#${id}`}>
+                <a id={id} href={`#${id}`} className="api-anchor">
                   #
                 </a>{' '}
-                <em>{displayName}</em>.<strong>{prop.name}</strong>
+                <strong>{prop.name}</strong>
               </span>
-              {prop.type && <code>{prop.type.name}</code>}
+              {prop.type && (
+                <span className="typedef">
+                  <code>{prop.type.name}</code>
+                </span>
+              )}
               <span className={prop.required ? 'required' : 'optional'}>
-                {prop.required ? 'required' : 'optional'}
+                {prop.required ? 'required' : ''}
               </span>{' '}
             </div>
             <div className="description">
@@ -69,23 +71,54 @@ export default function ApiTable({ docgenInfo }: Props) {
         );
       })}
       <style jsx>{`
-        h3 + .prop {
-          border-top: 1px solid #eaeaea;
+        h3 {
+          margin-bottom: 0.5rem;
+          margin-left: -29px;
+          font-weight: 400;
         }
         .prop:last-child {
           border-bottom: 1px solid #eaeaea;
         }
         .prop {
-          padding: 1em 0.5em 1em 0;
+          padding: 0.5em 0.5em 0.5em 0;
           line-height: 1.2em;
           vertical-align: middle;
         }
-        .title > :not(:last-child) {
+        .export-name-anchor,
+        .api-anchor {
+          opacity: 0;
+          scroll-margin-top: 88px;
+        }
+        .export-name-anchor {
+          display: inline-block;
           margin-right: 12px;
         }
+        .title:hover .api-anchor,
+        h3:hover .export-name-anchor {
+          opacity: 1;
+        }
+        .title {
+          font-size: 18px;
+          margin-left: -16px;
+        }
+        .title > :not(:last-child) {
+          margin-right: 6px;
+        }
+        .description {
+          max-width: 720px;
+        }
         .description > :global(p) {
-          font-size: 15px;
-          margin: 0;
+          font-size: 18px;
+          margin: 0.25rem 0 0 0;
+        }
+        .typedef code {
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen', 'Ubuntu',
+            'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+          background-color: transparent;
+          font-weight: 400;
+          color: grey;
+          padding: 0;
+          font-size: 16px;
         }
         .required {
           color: #fc2e1c;

@@ -4,7 +4,7 @@ import Bars from '../sandboxes/visx-bars/Example';
 import BarsSource from '!!raw-loader!../sandboxes/visx-bars/Example';
 import packageJson from '../sandboxes/visx-bars/package.json';
 
-export default () => (
+const BarsPage = () => (
   <Show
     events
     component={Bars}
@@ -15,3 +15,4 @@ export default () => (
     {BarsSource}
   </Show>
 );
+export default BarsPage;

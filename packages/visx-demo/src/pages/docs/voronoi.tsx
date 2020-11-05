@@ -9,7 +9,7 @@ const components = [voronoi, VoronoiPolygon];
 
 const examples = [VoronoiTile];
 
-export default () => (
+const VoronoiDocs = () => (
   <DocPage
     components={components}
     examples={examples}
@@ -17,3 +17,4 @@ export default () => (
     visxPackage="voronoi"
   />
 );
+export default VoronoiDocs;

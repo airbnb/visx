@@ -4,7 +4,7 @@ import Heatmaps from '../sandboxes/visx-heatmap/Example';
 import HeatmapsSource from '!!raw-loader!../sandboxes/visx-heatmap/Example';
 import packageJson from '../sandboxes/visx-heatmap/package.json';
 
-export default () => {
+const HeatmapsPage = () => {
   return (
     <Show
       events
@@ -23,3 +23,4 @@ export default () => {
     </Show>
   );
 };
+export default HeatmapsPage;

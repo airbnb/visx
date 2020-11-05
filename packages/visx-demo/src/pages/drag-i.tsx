@@ -4,7 +4,7 @@ import DragI from '../sandboxes/visx-drag-i/Example';
 import DragISource from '!!raw-loader!../sandboxes/visx-drag-i/Example';
 import packageJson from '../sandboxes/visx-drag-i/package.json';
 
-export default () => {
+const DragIPage = () => {
   return (
     <Show
       component={DragI}
@@ -16,3 +16,4 @@ export default () => {
     </Show>
   );
 };
+export default DragIPage;

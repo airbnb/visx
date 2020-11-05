@@ -9,7 +9,7 @@ const components = [ParentSize, ScaleSVG];
 
 const examples = [ResponsiveTile];
 
-export default () => (
+const ResponsiveDocs = () => (
   <DocPage
     components={components}
     examples={examples}
@@ -17,3 +17,4 @@ export default () => (
     visxPackage="responsive"
   />
 );
+export default ResponsiveDocs;

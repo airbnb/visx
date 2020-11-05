@@ -9,6 +9,7 @@ const components = [Chord, Ribbon];
 
 const examples = [ChordTile];
 
-export default () => (
+const ChordDocs = () => (
   <DocPage components={components} examples={examples} readme={ChordReadme} visxPackage="chord" />
 );
+export default ChordDocs;

@@ -4,7 +4,7 @@ import Glyphs from '../sandboxes/visx-glyph/Example';
 import GlyphsSource from '!!raw-loader!../sandboxes/visx-glyph/Example';
 import packageJson from '../sandboxes/visx-glyph/package.json';
 
-export default () => {
+const GlyphsPage = () => {
   return (
     <Show
       component={Glyphs}
@@ -16,3 +16,4 @@ export default () => {
     </Show>
   );
 };
+export default GlyphsPage;

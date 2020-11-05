@@ -17,7 +17,7 @@ const examples = [TooltipTile, DotsTile, BarStackHorizontalTile, StatsPlotTile, 
 
 const components = [TooltipWithBounds, Tooltip, Portal, useTooltip, useTooltipInPortal];
 
-export default () => (
+const TooltipDocs = () => (
   <DocPage
     components={components}
     examples={examples}
@@ -25,3 +25,4 @@ export default () => (
     visxPackage="tooltip"
   />
 );
+export default TooltipDocs;

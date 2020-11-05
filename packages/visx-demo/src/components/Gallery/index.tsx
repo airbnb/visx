@@ -52,46 +52,46 @@ import exampleToVisxDependencyLookup, {
 const tiltOptions = { max: 8, scale: 1 };
 
 const tiles = [
+  CurvesTile,
+  BarsTile,
+  DotsTile,
+  PatternsTile,
   AreaTile,
+  StackedAreasTile,
   AxisTile,
+  ChordTile,
+  StreamGraphTile,
+  LegendsTile,
+  ThresholdTile,
+  TreemapTile,
+  ZoomITile,
+  LineRadialTile,
+  DragITile,
   BarGroupTile,
   BarGroupHorizontalTile,
+  PiesTile,
+  BrushTile,
   BarStackTile,
   BarStackHorizontalTile,
-  BarsTile,
-  BrushTile,
-  ChordTile,
-  CurvesTile,
   DendrogramsTile,
-  DotsTile,
   DragIITile,
-  DragITile,
   GeoCustomTile,
   GeoMercatorTile,
   GlyphsTile,
   GradientsTile,
   HeatmapsTile,
-  LegendsTile,
-  LineRadialTile,
   LinkTypesTile,
   NetworkTile,
   PackTile,
-  PatternsTile,
-  PiesTile,
   PolygonsTile,
   RadarTile,
   ResponsiveTile,
   SplitLinePathTile,
-  StackedAreasTile,
   StatsPlotTile,
-  StreamGraphTile,
   TextTile,
-  ThresholdTile,
   TooltipTile,
-  TreemapTile,
   TreesTile,
   VoronoiTile,
-  ZoomITile,
 ];
 
 export default function Gallery() {
@@ -108,7 +108,7 @@ export default function Gallery() {
     <>
       <div className="gallery">
         <div className="filters">
-          <h6>Examples by package</h6>
+          <div className="filter-label">Filter</div>
           {visxPackages.map(visxPackage => (
             <Link
               key={visxPackage}
@@ -121,7 +121,7 @@ export default function Gallery() {
                 className={cx('filter-button', {
                   emphasize: routePackage === visxPackage,
                 })}
-              >{`@visx/${visxPackage}`}</a>
+              >{`${visxPackage}`}</a>
             </Link>
           ))}
         </div>
@@ -154,17 +154,20 @@ export default function Gallery() {
         h6 {
           margin: 0 4px 0 0;
         }
+        .filter-label {
+          font-size: 16;
+          font-weight: 500;
+        }
         .filter-button {
           display: block;
           cursor: pointer;
           border: none;
           outline: none;
           background: transparent;
-          color: #fc2e1c;
           padding: 0;
           margin: 4px 4px 12px 0;
-          font-size: 14px;
-          line-height: 1rem;
+          font-size: 16px;
+          line-height: 1em;
         }
         .emphasize {
           font-weight: bold;

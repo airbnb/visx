@@ -4,7 +4,7 @@ import BarStackHorizontal from '../sandboxes/visx-barstack-horizontal/Example';
 import BarStackHorizontalSource from '!!raw-loader!../sandboxes/visx-barstack-horizontal/Example';
 import packageJson from '../sandboxes/visx-barstack-horizontal/package.json';
 
-export default () => {
+const BarStackHorizontalPage = () => {
   return (
     <Show
       events
@@ -23,3 +23,4 @@ export default () => {
     </Show>
   );
 };
+export default BarStackHorizontalPage;

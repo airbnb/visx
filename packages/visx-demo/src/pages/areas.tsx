@@ -4,7 +4,7 @@ import Area from '../sandboxes/visx-area/Example';
 import AreaSource from '!!raw-loader!../sandboxes/visx-area/Example';
 import packageJson from '../sandboxes/visx-area/package.json';
 
-export default () => (
+const AreasPage = () => (
   <Show
     component={Area}
     title="Areas"
@@ -14,3 +14,4 @@ export default () => (
     {AreaSource}
   </Show>
 );
+export default AreasPage;

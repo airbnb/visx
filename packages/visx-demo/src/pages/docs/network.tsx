@@ -12,7 +12,7 @@ const components = [Graph, Nodes, Links, DefaultNode, DefaultLink];
 
 const examples = [NetworkTile];
 
-export default () => (
+const NetworkDocs = () => (
   <DocPage
     components={components}
     examples={examples}
@@ -20,3 +20,4 @@ export default () => (
     visxPackage="network"
   />
 );
+export default NetworkDocs;

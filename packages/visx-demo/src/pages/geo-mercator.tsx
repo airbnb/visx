@@ -4,7 +4,7 @@ import GeoMercator from '../sandboxes/visx-geo-mercator/Example';
 import GeoMercatorSource from '!!raw-loader!../sandboxes/visx-geo-mercator/Example';
 import packageJson from '../sandboxes/visx-geo-mercator/package.json';
 
-export default () => {
+const GeoMercatorPage = () => {
   return (
     <Show
       events
@@ -17,3 +17,4 @@ export default () => {
     </Show>
   );
 };
+export default GeoMercatorPage;

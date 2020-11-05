@@ -4,7 +4,7 @@ import StackedAreas from '../sandboxes/visx-stacked-areas/Example';
 import StackedAreasSource from '!!raw-loader!../sandboxes/visx-stacked-areas/Example';
 import packageJson from '../sandboxes/visx-stacked-areas/package.json';
 
-export default () => (
+const StackedAreasPage = () => (
   <Show
     component={StackedAreas}
     title="Stacked Areas"
@@ -20,3 +20,4 @@ export default () => (
     {StackedAreasSource}
   </Show>
 );
+export default StackedAreasPage;

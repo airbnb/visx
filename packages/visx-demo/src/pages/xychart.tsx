@@ -4,7 +4,7 @@ import XYChart from '../sandboxes/visx-xychart/Example';
 import XYChartSource from '!!raw-loader!../sandboxes/visx-xychart/Example';
 import packageJson from '../sandboxes/visx-xychart/package.json';
 
-export default () => (
+const XYChartPage = () => (
   <Show
     component={XYChart}
     title="XYChart"
@@ -14,3 +14,4 @@ export default () => (
     {XYChartSource}
   </Show>
 );
+export default XYChartPage;

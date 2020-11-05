@@ -601,7 +601,7 @@ return (
 
 const packageJson = { dependencies: { '@visx/text': 'latest' } };
 
-export default () => (
+const TextPage = () => (
   <Show
     component={TextDemo}
     title="Text"
@@ -614,3 +614,4 @@ export default () => (
     packageJson={packageJson}
   />
 );
+export default TextPage;

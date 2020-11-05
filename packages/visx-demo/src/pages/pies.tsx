@@ -4,7 +4,7 @@ import Pies from '../sandboxes/visx-shape-pie/Example';
 import PiesSource from '!!raw-loader!../sandboxes/visx-shape-pie/Example';
 import packageJson from '../sandboxes/visx-shape-pie/package.json';
 
-export default () => (
+const PiesPage = () => (
   <Show
     component={Pies}
     title="Pies"
@@ -14,3 +14,4 @@ export default () => (
     {PiesSource}
   </Show>
 );
+export default PiesPage;

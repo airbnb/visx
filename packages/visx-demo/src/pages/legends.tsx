@@ -4,7 +4,7 @@ import Legends from '../sandboxes/visx-legend/Example';
 import LegendsSource from '!!raw-loader!../sandboxes/visx-legend/Example';
 import packageJson from '../sandboxes/visx-legend/package.json';
 
-export default () => {
+const LegendsPage = () => {
   return (
     <Show
       events
@@ -17,3 +17,4 @@ export default () => {
     </Show>
   );
 };
+export default LegendsPage;

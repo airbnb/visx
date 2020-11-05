@@ -51,7 +51,7 @@ export type LineRadialProps = {
   animate?: boolean;
 };
 
-export default ({ width, height, animate = true }: LineRadialProps) => {
+const Example = ({ width, height, animate = true }: LineRadialProps) => {
   const lineRef = useRef<SVGPathElement>(null);
   const [lineLength, setLineLength] = useState<number>(0);
   const [shouldAnimate, setShouldAnimate] = useState<boolean>(false);
@@ -159,3 +159,5 @@ export default ({ width, height, animate = true }: LineRadialProps) => {
     </>
   );
 };
+
+export default Example;

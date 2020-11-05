@@ -113,18 +113,18 @@ export default withTooltip<AreaProps, TooltipData>(
             left={margin.left}
             scale={stockValueScale}
             width={innerWidth}
-            strokeDasharray="3,3"
+            strokeDasharray="1,3"
             stroke={accentColor}
-            strokeOpacity={0.3}
+            strokeOpacity={0}
             pointerEvents="none"
           />
           <GridColumns
             top={margin.top}
             scale={dateScale}
             height={innerHeight}
-            strokeDasharray="3,3"
+            strokeDasharray="1,3"
             stroke={accentColor}
-            strokeOpacity={0.3}
+            strokeOpacity={0.2}
             pointerEvents="none"
           />
           <AreaClosed<AppleStock>

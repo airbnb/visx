@@ -4,7 +4,7 @@ import BarGroupHorizontal from '../sandboxes/visx-bargroup-horizontal/Example';
 import BarGroupHorizontalSource from '!!raw-loader!../sandboxes/visx-bargroup-horizontal/Example';
 import packageJson from '../sandboxes/visx-bargroup-horizontal/package.json';
 
-export default () => (
+const BarGroupHorizontalPage = () => (
   <Show
     events
     margin={{ top: 45, left: 60, right: 20, bottom: 45 }}
@@ -16,3 +16,4 @@ export default () => (
     {BarGroupHorizontalSource}
   </Show>
 );
+export default BarGroupHorizontalPage;

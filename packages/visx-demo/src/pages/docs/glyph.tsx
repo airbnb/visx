@@ -15,6 +15,7 @@ const components = Object.values(Glyph).sort((a, b) =>
 
 const examples = [GlyphsTile, LegendsTile];
 
-export default () => (
+const GlyphDocs = () => (
   <DocPage components={components} examples={examples} readme={GlyphReadme} visxPackage="glyph" />
 );
+export default GlyphDocs;

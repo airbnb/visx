@@ -21,7 +21,7 @@ const root = hierarchy<Datum>(pack)
   .sort(
     (a, b) =>
       // sort by hierarchy, then distance
-      (a && a.data ? 1 : -1) - (b && b.data ? 1 : -1) ||
+      (a?.data ? 1 : -1) - (b?.data ? 1 : -1) ||
       (a.children ? 1 : -1) - (b.children ? 1 : -1) ||
       (a.data.distance == null ? -1 : 1) - (b.data.distance == null ? -1 : 1) ||
       a.data.distance! - b.data.distance!,

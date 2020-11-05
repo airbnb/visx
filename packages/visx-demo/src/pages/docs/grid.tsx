@@ -12,6 +12,7 @@ const components = [GridRows, GridColumns, Grid];
 
 const examples = [AxisTile, BarStackTile, ThresholdTile];
 
-export default () => (
+const GridDocs = () => (
   <DocPage components={components} examples={examples} readme={GridReadme} visxPackage="grid" />
 );
+export default GridDocs;

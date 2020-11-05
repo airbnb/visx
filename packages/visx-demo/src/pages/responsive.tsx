@@ -4,7 +4,7 @@ import Responsive from '../sandboxes/visx-responsive/Example';
 import ResponsiveSource from '!!raw-loader!../sandboxes/visx-responsive/Example';
 import packageJson from '../sandboxes/visx-responsive/package.json';
 
-export default () => (
+const ResponsivePage = () => (
   <Show
     component={Responsive}
     title="Responsive"
@@ -14,3 +14,4 @@ export default () => (
     {ResponsiveSource}
   </Show>
 );
+export default ResponsivePage;

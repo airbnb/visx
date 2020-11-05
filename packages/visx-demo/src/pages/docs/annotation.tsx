@@ -5,6 +5,7 @@ import DocPage from '../../components/DocPage';
 
 const components = [LinePathAnnotation];
 
-export default () => (
+const AnnotationDocs = () => (
   <DocPage components={components} readme={AnnotationReadme} visxPackage="annotation" />
 );
+export default AnnotationDocs;

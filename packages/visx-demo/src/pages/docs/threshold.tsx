@@ -8,7 +8,7 @@ const components = [Threshold];
 
 const examples = [ThresholdTile];
 
-export default () => (
+const ThresholdDocs = () => (
   <DocPage
     components={components}
     examples={examples}
@@ -16,3 +16,4 @@ export default () => (
     visxPackage="threshold"
   />
 );
+export default ThresholdDocs;

@@ -4,7 +4,7 @@ import Lines from '../sandboxes/visx-curve/Example';
 import LinesSource from '!!raw-loader!../sandboxes/visx-curve/Example';
 import packageJson from '../sandboxes/visx-curve/package.json';
 
-export default () => {
+const CurvesPage = () => {
   return (
     <Show
       component={Lines}
@@ -16,3 +16,4 @@ export default () => {
     </Show>
   );
 };
+export default CurvesPage;

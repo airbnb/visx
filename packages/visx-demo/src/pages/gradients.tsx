@@ -4,7 +4,7 @@ import Gradients from '../sandboxes/visx-gradient/Example';
 import GradientsSource from '!!raw-loader!../sandboxes/visx-gradient/Example';
 import packageJson from '../sandboxes/visx-gradient/package.json';
 
-export default () => (
+const GradientsPage = () => (
   <Show
     shadow
     component={Gradients}
@@ -15,3 +15,4 @@ export default () => (
     {GradientsSource}
   </Show>
 );
+export default GradientsPage;

@@ -4,7 +4,7 @@ import GeoCustom from '../sandboxes/visx-geo-custom/Example';
 import GeoCustomSource from '!!raw-loader!../sandboxes/visx-geo-custom/Example';
 import packageJson from '../sandboxes/visx-geo-custom/package.json';
 
-export default () => {
+const GeoCustomPage = () => {
   return (
     <Show
       events
@@ -17,3 +17,4 @@ export default () => {
     </Show>
   );
 };
+export default GeoCustomPage;

@@ -190,7 +190,7 @@ pre.line-numbers > code {
   pointer-events: none;
   top: 0;
   font-size: 100%;
-  left: -0.8em;
+  left: -0.1em;
   width: 2em; /* works for line-numbers below 1000 lines */
   letter-spacing: -1px;
 

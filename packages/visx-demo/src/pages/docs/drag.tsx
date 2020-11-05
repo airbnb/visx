@@ -9,6 +9,7 @@ const components = [Drag];
 
 const examples = [DragITile, DragIITile];
 
-export default () => (
+const DragDocs = () => (
   <DocPage components={components} examples={examples} readme={DragReadme} visxPackage="drag" />
 );
+export default DragDocs;

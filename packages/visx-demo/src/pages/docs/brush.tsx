@@ -8,6 +8,7 @@ const components = [Brush];
 
 const examples = [BrushTile];
 
-export default () => (
+const BrushDocs = () => (
   <DocPage components={components} examples={examples} readme={BrushReadme} visxPackage="brush" />
 );
+export default BrushDocs;

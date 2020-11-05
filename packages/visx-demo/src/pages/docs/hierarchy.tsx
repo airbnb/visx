@@ -16,7 +16,7 @@ const components = [Cluster, Pack, Partition, Tree, Treemap];
 
 const examples = [PackTile, TreemapTile, DendrogramsTile, LinkTypesTile, TreesTile];
 
-export default () => (
+const HierarchyDocs = () => (
   <DocPage
     components={components}
     examples={examples}
@@ -24,3 +24,4 @@ export default () => (
     visxPackage="hierarchy"
   />
 );
+export default HierarchyDocs;

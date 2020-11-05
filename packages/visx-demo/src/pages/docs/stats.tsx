@@ -9,6 +9,7 @@ const components = [BoxPlot, ViolinPlot];
 
 const examples = [StatsPlotTile];
 
-export default () => (
+const StatsDocs = () => (
   <DocPage components={components} examples={examples} readme={StatsReadme} visxPackage="stats" />
 );
+export default StatsDocs;

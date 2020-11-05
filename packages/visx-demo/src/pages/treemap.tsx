@@ -4,7 +4,7 @@ import Treemap from '../sandboxes/visx-treemap/Example';
 import TreemapSource from '!!raw-loader!../sandboxes/visx-treemap/Example';
 import packageJson from '../sandboxes/visx-treemap/package.json';
 
-export default () => (
+const TreemapPage = () => (
   <Show
     component={Treemap}
     title="Treemap"
@@ -14,3 +14,4 @@ export default () => (
     {TreemapSource}
   </Show>
 );
+export default TreemapPage;

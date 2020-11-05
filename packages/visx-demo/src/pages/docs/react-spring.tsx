@@ -10,7 +10,7 @@ const components = [AnimatedAxis, AnimatedGridColumns, AnimatedGridRows];
 
 const examples = [AxisTile];
 
-export default () => (
+const ReactSpringDocs = () => (
   <DocPage
     components={components}
     examples={examples}
@@ -18,3 +18,4 @@ export default () => (
     visxPackage="react-spring"
   />
 );
+export default ReactSpringDocs;

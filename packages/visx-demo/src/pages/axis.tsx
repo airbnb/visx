@@ -4,7 +4,7 @@ import Axis from '../sandboxes/visx-axis/Example';
 import AxisSource from '!!raw-loader!../sandboxes/visx-axis/Example';
 import packageJson from '../sandboxes/visx-axis/package.json';
 
-export default () => (
+const AxisPage = () => (
   <Show
     component={Axis}
     title="Axis"
@@ -14,3 +14,4 @@ export default () => (
     {AxisSource}
   </Show>
 );
+export default AxisPage;

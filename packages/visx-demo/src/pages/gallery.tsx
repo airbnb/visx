@@ -2,8 +2,10 @@ import React from 'react';
 import Page from '../components/Page';
 import Gallery from '../components/Gallery';
 
-export default () => (
-  <Page title="gallery">
+const GalleryPage = () => (
+  <Page wrapper={false} title="gallery">
     <Gallery />
   </Page>
 );
+
+export default GalleryPage;

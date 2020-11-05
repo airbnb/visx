@@ -4,7 +4,7 @@ import LinkTypes from '../sandboxes/visx-linktypes/Example';
 import LinkTypesSource from '!!raw-loader!../sandboxes/visx-linktypes/Example';
 import packageJson from '../sandboxes/visx-linktypes/package.json';
 
-export default () => {
+const LinkTypesPage = () => {
   return (
     <Show
       events
@@ -23,3 +23,4 @@ export default () => {
     </Show>
   );
 };
+export default LinkTypesPage;

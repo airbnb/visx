@@ -4,7 +4,7 @@ import Streamgraph from '../sandboxes/visx-streamgraph/Example';
 import StreamgraphSource from '!!raw-loader!../sandboxes/visx-streamgraph/Example';
 import packageJson from '../sandboxes/visx-streamgraph/package.json';
 
-export default () => (
+const StreamgraphPage = () => (
   <Show
     component={Streamgraph}
     title="Streamgraph"
@@ -14,3 +14,4 @@ export default () => (
     {StreamgraphSource}
   </Show>
 );
+export default StreamgraphPage;

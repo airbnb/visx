@@ -32,6 +32,7 @@ const examples = [
   LinkTypesTile,
 ];
 
-export default () => (
+const ShapeDocs = () => (
   <DocPage components={components} examples={examples} readme={ShapeReadme} visxPackage="shape" />
 );
+export default ShapeDocs;

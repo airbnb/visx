@@ -4,7 +4,7 @@ import Dots from '../sandboxes/visx-dots/Example';
 import DotsSource from '!!raw-loader!../sandboxes/visx-dots/Example';
 import packageJson from '../sandboxes/visx-dots/package.json';
 
-export default () => (
+const DotsPage = () => (
   <Show
     component={Dots}
     title="Dots"
@@ -14,3 +14,4 @@ export default () => (
     {DotsSource}
   </Show>
 );
+export default DotsPage;

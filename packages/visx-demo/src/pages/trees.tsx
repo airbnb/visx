@@ -4,7 +4,7 @@ import Trees from '../sandboxes/visx-tree/Example';
 import TreesSource from '!!raw-loader!../sandboxes/visx-tree/Example';
 import packageJson from '../sandboxes/visx-tree/package.json';
 
-export default () => (
+const TreesPage = () => (
   <Show
     events
     title="Trees"
@@ -15,3 +15,4 @@ export default () => (
     {TreesSource}
   </Show>
 );
+export default TreesPage;

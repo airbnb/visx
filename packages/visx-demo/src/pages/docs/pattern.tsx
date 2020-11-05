@@ -15,7 +15,7 @@ const components = [Pattern, Circles, Hexagons, Lines, Path, Waves];
 
 const examples = [PatternsTile, StreamGraphTile, StatsPlotTile];
 
-export default () => (
+const PatternDocs = () => (
   <DocPage
     components={components}
     examples={examples}
@@ -23,3 +23,4 @@ export default () => (
     visxPackage="pattern"
   />
 );
+export default PatternDocs;

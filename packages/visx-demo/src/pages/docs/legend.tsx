@@ -13,6 +13,7 @@ const components = [Linear, Ordinal, Quantile, Size, Threshold, Legend];
 
 const examples = [LegendsTile];
 
-export default () => (
+const LegendDocs = () => (
   <DocPage components={components} examples={examples} readme={LegendReadme} visxPackage="legend" />
 );
+export default LegendDocs;

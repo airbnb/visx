@@ -4,7 +4,7 @@ import DragII from '../sandboxes/visx-drag-ii/Example';
 import DragIISource from '!!raw-loader!../sandboxes/visx-drag-ii/Example';
 import packageJson from '../sandboxes/visx-drag-ii/package.json';
 
-export default () => {
+const DragIIPage = () => {
   return (
     <Show
       component={DragII}
@@ -16,3 +16,4 @@ export default () => {
     </Show>
   );
 };
+export default DragIIPage;
