@@ -1,6 +1,7 @@
 import React from 'react';
 import { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
 import {
+  AnimatedAnnotation,
   AnimatedAreaSeries,
   AnimatedAxis,
   AnimatedBarGroup,
@@ -9,6 +10,10 @@ import {
   AnimatedGlyphSeries,
   AnimatedGrid,
   AnimatedLineSeries,
+  AnnotationCircleSubject,
+  AnnotationConnector,
+  AnnotationLabel,
+  AnnotationLineSubject,
   Tooltip,
   XYChart,
 } from '@visx/xychart';
@@ -28,6 +33,9 @@ export default function Example({ height }: Props) {
       {({
         accessors,
         animationTrajectory,
+        annotationDataKey,
+        annotationDatum,
+        annotationType,
         config,
         curve,
         data,
@@ -159,6 +167,26 @@ export default function Example({ height }: Props) {
               yAccessor={accessors.y['San Francisco']}
               renderGlyph={renderGlyph}
             />
+          )}
+          {annotationDataKey && annotationDatum && (
+            <AnimatedAnnotation
+              dataKey={annotationDataKey}
+              datum={annotationDatum}
+              dx={-45}
+              dy={-50}
+            >
+              <AnnotationConnector />
+              {annotationType === 'circle' ? (
+                <AnnotationCircleSubject />
+              ) : (
+                <AnnotationLineSubject />
+              )}
+              <AnnotationLabel
+                title={annotationDataKey}
+                subtitle={`${annotationDatum.date}, ${annotationDatum[annotationDataKey]}°F`}
+                backgroundProps={{ stroke: theme.gridStyles.stroke, strokeOpacity: 0.5 }}
+              />
+            </AnimatedAnnotation>
           )}
           <AnimatedAxis
             key={`time-axis-${animationTrajectory}-${renderHorizontally}`}

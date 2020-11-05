@@ -25,6 +25,7 @@ const getSfTemperature = (d: CityTemperature) => Number(d['San Francisco']);
 const getNegativeSfTemperature = (d: CityTemperature) => -getSfTemperature(d);
 const getNyTemperature = (d: CityTemperature) => Number(d['New York']);
 const getAustinTemperature = (d: CityTemperature) => Number(d.Austin);
+const defaultAnnotationDataIndex = 10;
 
 type Accessor = (d: CityTemperature) => number | string;
 
@@ -42,11 +43,14 @@ type ProvidedProps = {
     y: Accessors;
     date: Accessor;
   };
+  animationTrajectory: AnimationTrajectory;
+  annotationDataKey: keyof Accessors | null;
+  annotationDatum?: CityTemperature;
+  annotationType?: 'line' | 'circle';
   config: {
     x: SimpleScaleConfig;
     y: SimpleScaleConfig;
   };
-  animationTrajectory: AnimationTrajectory;
   curve: typeof curveLinear | typeof curveCardinal | typeof curveStep;
   data: CityTemperature[];
   numTicks: number;
@@ -84,6 +88,10 @@ export default function ExampleControls({ children }: ControlsProps) {
   const [yAxisOrientation, setYAxisOrientation] = useState<'left' | 'right'>('right');
   const [renderHorizontally, setRenderHorizontally] = useState(false);
   const [showTooltip, setShowTooltip] = useState(true);
+  const [annotationDataKey, setAnnotationDataKey] = useState<ProvidedProps['annotationDataKey']>(
+    'Austin',
+  );
+  const [annotationType, setAnnotationType] = useState<ProvidedProps['annotationType']>('circle');
   const [showVerticalCrosshair, setShowVerticalCrosshair] = useState(true);
   const [showHorizontalCrosshair, setShowHorizontalCrosshair] = useState(false);
   const [snapTooltipToDatumX, setSnapTooltipToDatumX] = useState(true);
@@ -162,6 +170,9 @@ export default function ExampleControls({ children }: ControlsProps) {
       {children({
         accessors,
         animationTrajectory,
+        annotationDataKey,
+        annotationDatum: data[defaultAnnotationDataIndex],
+        annotationType,
         config,
         curve:
           (curveType === 'cardinal' && curveCardinal) ||
@@ -583,6 +594,60 @@ export default function ExampleControls({ children }: ControlsProps) {
               checked={fewerDatum}
             />
             fewer datum
+          </label>
+        </div>
+        {/** annotation */}
+        <div>
+          <strong>annotate</strong>
+          <label>
+            <input
+              type="radio"
+              onChange={() => setAnnotationDataKey(null)}
+              checked={annotationDataKey == null}
+            />
+            none
+          </label>
+          <label>
+            <input
+              type="radio"
+              onChange={() => setAnnotationDataKey('San Francisco')}
+              checked={annotationDataKey === 'San Francisco'}
+            />
+            SF
+          </label>
+          <label>
+            <input
+              type="radio"
+              onChange={() => setAnnotationDataKey('New York')}
+              checked={annotationDataKey === 'New York'}
+            />
+            NY
+          </label>
+          <label>
+            <input
+              type="radio"
+              onChange={() => setAnnotationDataKey('Austin')}
+              checked={annotationDataKey === 'Austin'}
+            />
+            Austin
+          </label>
+          &nbsp;&nbsp;&nbsp;
+          <strong>type</strong>
+          <label>
+            <input
+              type="radio"
+              onChange={() => setAnnotationType('circle')}
+              checked={annotationType === 'circle'}
+            />
+            circle
+          </label>
+          <label>
+            <input
+              type="radio"
+              onChange={() => setAnnotationType('line')}
+              checked={annotationType === 'line'}
+            />
+            line
           </label>
         </div>
       </div>
