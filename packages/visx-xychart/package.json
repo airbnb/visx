@@ -44,6 +44,7 @@
     "@types/classnames": "^2.2.9",
     "@types/lodash": "^4.14.146",
     "@types/react": "*",
+    "@visx/annotation": "1.2.0",
     "@visx/axis": "1.2.0",
     "@visx/event": "1.0.0",
     "@visx/glyph": "1.0.0",
