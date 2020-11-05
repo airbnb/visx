@@ -6,7 +6,7 @@ import AnnotationContext from '../context/AnnotationContext';
 // @TODO
 // add end marker support
 
-export type AnnotationConnectorProps = Pick<AnnotationContextType, 'x' | 'y' | 'dx' | 'dy'> & {
+export type ConnectorProps = Pick<AnnotationContextType, 'x' | 'y' | 'dx' | 'dy'> & {
   /** Optional className to apply to container in addition to 'visx-annotation-connector'. */
   className?: string;
   /** Connector type. */
@@ -17,7 +17,7 @@ export type AnnotationConnectorProps = Pick<AnnotationContextType, 'x' | 'y' | '
   pathProps?: React.SVGProps<SVGPathElement>;
 };
 
-export default function AnnotationConnector({
+export default function Connector({
   className,
   x: propsX,
   y: propsY,
@@ -26,7 +26,7 @@ export default function AnnotationConnector({
   type = 'elbow',
   stroke = '#222',
   pathProps,
-}: AnnotationConnectorProps) {
+}: ConnectorProps) {
   // if props are provided, they take precedence over context
   const annotationContext = useContext(AnnotationContext);
   const x0 = propsX == null ? annotationContext.x ?? 0 : propsX;

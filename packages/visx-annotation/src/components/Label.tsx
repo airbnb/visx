@@ -29,9 +29,9 @@ export type LabelProps = {
   /** Optional subtitle. */
   subtitle?: string;
   /** Optional title font size. */
-  subtitleFontSize?: number;
+  subtitleFontSize?: TextProps['fontSize'];
   /** Optional title font weight. */
-  subtitleFontWeight?: number;
+  subtitleFontWeight?: TextProps['fontWeight'];
   /** The vertical offset of the subtitle from the title. */
   subtitleDy?: number;
   /** Optional subtitle Text props (to override color, etc.). */
@@ -39,9 +39,9 @@ export type LabelProps = {
   /** Optional title. */
   title?: string;
   /** Optional title font size. */
-  titleFontSize?: number;
+  titleFontSize?: TextProps['fontSize'];
   /** Optional title font weight. */
-  titleFontWeight?: number;
+  titleFontWeight?: TextProps['fontWeight'];
   /** Optional title Text props (to override color, etc.). */
   titleProps?: Partial<TextProps>;
   /** Whether the label is vertically anchored to the top, middle, or bottom of its x position. */
@@ -126,7 +126,7 @@ export default function AnnotationLabel({
       fontWeight: titleFontWeight,
     }),
     [titleFontSize, titleFontWeight],
-  );
+  ) as React.CSSProperties;
 
   const subtitleStyle = useMemo(
     () => ({
@@ -134,7 +134,7 @@ export default function AnnotationLabel({
       fontWeight: subtitleFontWeight,
     }),
     [subtitleFontSize, subtitleFontWeight],
-  );
+  ) as React.CSSProperties;
 
   const anchorLineOrientation = Math.abs(dx) > Math.abs(dy) ? 'vertical' : 'horizontal';
 
@@ -181,7 +181,7 @@ export default function AnnotationLabel({
           innerRef={titleRef}
           fill={fontColor}
           verticalAnchor="start"
-          x={padding.left}
+          x={padding.left + (titleProps?.textAnchor === 'middle' ? innerWidth / 2 : 0)}
           y={padding.top}
           width={innerWidth}
           capHeight={titleFontSize} // capHeight should match fontSize, used for first line line height
@@ -197,7 +197,7 @@ export default function AnnotationLabel({
           innerRef={subtitleRef}
           fill={fontColor}
           verticalAnchor="start"
-          x={padding.left}
+          x={padding.left + (subtitleProps?.textAnchor === 'middle' ? innerWidth / 2 : 0)}
           y={padding.top + (titleBounds.height ?? 0)}
           dy={title ? subtitleDy : 0}
           width={innerWidth}
