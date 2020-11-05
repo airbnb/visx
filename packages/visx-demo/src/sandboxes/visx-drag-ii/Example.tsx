@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { LinePath } from '@visx/shape';
-import { Drag } from '@visx/drag';
+import { useDrag } from '@visx/drag';
 import { curveBasis } from '@visx/curve';
 import { LinearGradient } from '@visx/gradient';
 
@@ -15,6 +15,31 @@ export type DragIIProps = {
 
 export default function DragII({ data = [], width, height }: DragIIProps) {
   const [lines, setLines] = useState<Lines>(data);
+  const onDragStart = useCallback(
+    currDrag => {
+      // add the new line with the starting point
+      setLines(currLines => [...currLines, [{ x: currDrag.x, y: currDrag.y }]]);
+    },
+    [setLines],
+  );
+  const onDragMove = useCallback(
+    currDrag => {
+      // add the new point to the current line
+      setLines(currLines => {
+        const nextLines = [...currLines];
+        const newPoint = { x: currDrag.x + currDrag.dx, y: currDrag.y + currDrag.dy };
+        const lastIndex = nextLines.length - 1;
+        nextLines[lastIndex] = [...(nextLines[lastIndex] || []), newPoint];
+        return nextLines;
+      });
+    },
+    [setLines],
+  );
+  const { x = 0, y = 0, dx, dy, isDragging, dragStart, dragEnd, dragMove } = useDrag({
+    onDragStart,
+    onDragMove,
+    resetOnStart: true,
+  });
 
   return width < 10 ? null : (
     <div className="DragII" style={{ touchAction: 'none' }}>
@@ -33,63 +58,45 @@ export default function DragII({ data = [], width, height }: DragIIProps) {
             y={d => d.y}
           />
         ))}
-        <Drag
-          width={width}
-          height={height}
-          resetOnStart
-          onDragStart={({ x = 0, y = 0 }) => {
-            // add the new line with the starting point
-            setLines(currLines => [...currLines, [{ x, y }]]);
-          }}
-          onDragMove={({ x = 0, y = 0, dx, dy }) => {
-            // add the new point to the current line
-            setLines(currLines => {
-              const nextLines = [...currLines];
-              const newPoint = { x: x + dx, y: y + dy };
-              const lastIndex = nextLines.length - 1;
-              nextLines[lastIndex] = [...(nextLines[lastIndex] || []), newPoint];
-              return nextLines;
-            });
-          }}
-        >
-          {({ x = 0, y = 0, dx, dy, isDragging, dragStart, dragEnd, dragMove }) => (
+
+        <g>
+          {isDragging && (
+            /* capture mouse events (note: <Drag /> does this for you) */
+            <rect
+              width={width}
+              height={height}
+              onMouseMove={dragMove}
+              onMouseUp={dragEnd}
+              fill="transparent"
+            />
+          )}
+          {/* decorate the currently drawing line */}
+          {isDragging && (
             <g>
-              {/* decorate the currently drawing line */}
-              {isDragging && (
-                <g>
-                  <rect
-                    fill="white"
-                    width={8}
-                    height={8}
-                    x={x + dx - 4}
-                    y={y + dy - 4}
-                    pointerEvents="none"
-                  />
-                  <circle
-                    cx={x}
-                    cy={y}
-                    r={4}
-                    fill="transparent"
-                    stroke="white"
-                    pointerEvents="none"
-                  />
-                </g>
-              )}
-              {/* create the drawing area */}
               <rect
-                fill="transparent"
-                width={width}
-                height={height}
-                onMouseDown={dragStart}
-                onMouseUp={dragEnd}
-                onMouseMove={dragMove}
-                onTouchStart={dragStart}
-                onTouchEnd={dragEnd}
-                onTouchMove={dragMove}
+                fill="white"
+                width={8}
+                height={8}
+                x={x + dx - 4}
+                y={y + dy - 4}
+                pointerEvents="none"
               />
+              <circle cx={x} cy={y} r={4} fill="transparent" stroke="white" pointerEvents="none" />
             </g>
           )}
-        </Drag>
+          {/* create the drawing area */}
+          <rect
+            fill="transparent"
+            width={width}
+            height={height}
+            onMouseDown={dragStart}
+            onMouseUp={isDragging ? dragEnd : undefined}
+            onMouseMove={isDragging ? dragMove : undefined}
+            onTouchStart={dragStart}
+            onTouchEnd={isDragging ? dragEnd : undefined}
+            onTouchMove={isDragging ? dragMove : undefined}
+          />
+        </g>
       </svg>
       <div className="deets">
         <div>
