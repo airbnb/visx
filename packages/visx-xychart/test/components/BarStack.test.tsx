@@ -18,8 +18,8 @@ const providerProps = {
 } as const;
 
 const accessors = {
-  xAccessor: (d: { x: number }) => d.x,
-  yAccessor: (d: { y: number }) => d.y,
+  xAccessor: (d: { x?: number }) => d.x,
+  yAccessor: (d: { y?: number }) => d.y,
 };
 
 const series1 = {
@@ -37,6 +37,11 @@ const series2 = {
     { x: 10, y: 5 },
     { x: 7, y: 20 },
   ],
+  ...accessors,
+};
+const seriesMissingData = {
+  key: 'seriesMissingData',
+  data: [{ y: 5 }, { x: 7 }, { x: 7, y: 20 }],
   ...accessors,
 };
 
@@ -57,6 +62,20 @@ describe('<BarStack />', () => {
       </DataProvider>,
     );
     expect(wrapper.find('rect')).toHaveLength(4);
+  });
+
+  it('should not render rects if x or y are invalid', () => {
+    const wrapper = mount(
+      <DataProvider {...providerProps}>
+        <svg>
+          <BarStack>
+            <BarSeries dataKey={series1.key} {...series1} />
+            <BarSeries dataKey={seriesMissingData.key} {...seriesMissingData} />
+          </BarStack>
+        </svg>
+      </DataProvider>,
+    );
+    expect(wrapper.find('rect')).toHaveLength(3);
   });
 
   it('should update scale domain to include stack sums including negative values', () => {

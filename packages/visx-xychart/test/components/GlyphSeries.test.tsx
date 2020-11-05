@@ -6,6 +6,12 @@ import getDataContext from '../mocks/getDataContext';
 import setupTooltipTest from '../mocks/setupTooltipTest';
 
 const series = { key: 'glyph', data: [{}, {}], xAccessor: () => 4, yAccessor: () => 7 };
+const seriesMissingData = {
+  key: 'barMissingData',
+  data: [{ x: 1 }, { x: 0, y: 3 }, { y: 2 }],
+  xAccessor: (d: { x?: number }) => d.x,
+  yAccessor: (d: { y?: number }) => d.y,
+};
 
 describe('<GlyphSeries />', () => {
   it('should be defined', () => {
@@ -21,6 +27,17 @@ describe('<GlyphSeries />', () => {
       </DataContext.Provider>,
     );
     expect(wrapper.find('circle')).toHaveLength(series.data.length);
+  });
+
+  it('should not render Glyphs if x or y is invalid', () => {
+    const wrapper = mount(
+      <DataContext.Provider value={getDataContext(seriesMissingData)}>
+        <svg>
+          <GlyphSeries dataKey={seriesMissingData.key} {...seriesMissingData} />
+        </svg>
+      </DataContext.Provider>,
+    );
+    expect(wrapper.find('circle')).toHaveLength(1);
   });
 
   it('should render a custom Glyph for each Datum', () => {

@@ -130,8 +130,8 @@ export default function BaseBarGroup<
         : (yScale(yAccessor(d)) ?? NaN) - yZeroPosition;
 
     const getGroupPosition = horizontal
-      ? (d: Datum) => yScale(yAccessor(d)) ?? 0
-      : (d: Datum) => xScale(xAccessor(d)) ?? 0;
+      ? (d: Datum) => yScale(yAccessor(d)) ?? NaN
+      : (d: Datum) => xScale(xAccessor(d)) ?? NaN;
 
     const withinGroupPosition = groupScale(key) ?? 0;
 

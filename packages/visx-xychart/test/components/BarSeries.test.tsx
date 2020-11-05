@@ -6,6 +6,12 @@ import getDataContext from '../mocks/getDataContext';
 import setupTooltipTest from '../mocks/setupTooltipTest';
 
 const series = { key: 'bar', data: [{}, {}], xAccessor: () => 0, yAccessor: () => 10 };
+const seriesMissingData = {
+  key: 'barMissingData',
+  data: [{ x: 1 }, { x: 0, y: 3 }, { y: 2 }],
+  xAccessor: (d: { x?: number }) => d.x,
+  yAccessor: (d: { y?: number }) => d.y,
+};
 
 describe('<BarSeries />', () => {
   it('should be defined', () => {
@@ -21,6 +27,17 @@ describe('<BarSeries />', () => {
       </DataContext.Provider>,
     );
     expect(wrapper.find('rect')).toHaveLength(2);
+  });
+
+  it('should not render rects if x or y is invalid', () => {
+    const wrapper = mount(
+      <DataContext.Provider value={getDataContext(seriesMissingData)}>
+        <svg>
+          <BarSeries dataKey={seriesMissingData.key} {...seriesMissingData} />
+        </svg>
+      </DataContext.Provider>,
+    );
+    expect(wrapper.find('rect')).toHaveLength(1);
   });
 
   it('should invoke showTooltip/hideTooltip on mousemove/mouseout', () => {
