@@ -11,29 +11,23 @@ export type BaseAnnotationProps<
   XScale extends AxisScale,
   YScale extends AxisScale,
   Datum extends object
-> = {
+> = Pick<
+  EditableAnnotationProps,
+  | 'canEditLabel'
+  | 'canEditSubject'
+  | 'children'
+  | 'dx'
+  | 'dy'
+  | 'onDragEnd'
+  | 'onDragMove'
+  | 'onDragStart'
+> & {
   /** Annotation component to render. */
   AnnotationComponent: React.FC<AnnotationProps> | React.FC<EditableAnnotationProps>;
-  /** If editable, whether label position can be edited. */
-  canEditLabel: EditableAnnotationProps['canEditLabel'];
-  /** If editable, whether subject position can be edited. */
-  canEditSubject: EditableAnnotationProps['canEditSubject'];
-  /** Annotation children. */
-  children: AnnotationProps['children'];
   /** Key for series to which datum belongs (used for x/yAccessors). Alternatively xAccessor + yAccessor may be specified. */
   dataKey: string;
   /** Datum to annotate, used for Annotation positioning. */
   datum: Datum;
-  /** x offset of annotation label from the datum to be annotated. */
-  dx?: number;
-  /** y offset of annotation label from the datum to be annotated. */
-  dy?: number;
-  /** Callback invoked for editable annotations on drag end. */
-  onDragEnd?: EditableAnnotationProps['onDragEnd'];
-  /** Callback invoked for editable annotations on drag move. */
-  onDragMove?: EditableAnnotationProps['onDragMove'];
-  /** Callback invoked for editable annotations on drag start. */
-  onDragStart?: EditableAnnotationProps['onDragStart'];
   /** If dataKey is not specified, you must specify an xAccessor for datum. */
   xAccessor?: (d: Datum) => ScaleInput<XScale>;
   /** If dataKey is not specified, you must specify an yAccessor for datum. */
