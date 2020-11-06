@@ -11,6 +11,10 @@ export type EditableAnnotationProps = Pick<AnnotationContextType, 'x' | 'y' | 'd
   height: number;
   /** Annotation children (Subject, Label, Connector) */
   children: React.ReactNode;
+  /** Whether the Label position (dx, dy) is editable. */
+  canEditLabel?: boolean;
+  /** Whether the Subject position (x, y) is editable. */
+  canEditSubject?: boolean;
   /** Optional circle props to set on the subject drag handle. */
   subjectDragHandleProps?: React.SVGProps<SVGCircleElement>;
   /** Optional circle props to set on the label drag handle. */
@@ -40,18 +44,20 @@ const defaultDragHandleProps = {
 };
 
 export default function EditableAnnotation({
-  x: subjectX = 0,
-  y: subjectY = 0,
+  canEditLabel = true,
+  canEditSubject = true,
+  children,
   dx: labelDx = 0,
   dy: labelDy = 0,
-  children,
-  width,
   height,
-  subjectDragHandleProps,
   labelDragHandleProps,
-  onDragStart,
-  onDragMove,
   onDragEnd,
+  onDragMove,
+  onDragStart,
+  subjectDragHandleProps,
+  width,
+  x: subjectX = 0,
+  y: subjectY = 0,
 }: EditableAnnotationProps) {
   // chicken before the egg, we need these to reference drag state
   // in drag callbacks which are defined before useDrag() state is available
@@ -142,20 +148,22 @@ export default function EditableAnnotation({
           fill="transparent"
         />
       )}
-      <circle
-        cx={subjectX}
-        cy={subjectY}
-        transform={`translate(${subjectDrag.dx},${subjectDrag.dy})`}
-        onMouseMove={subjectDrag.dragMove}
-        onMouseUp={subjectDrag.dragEnd}
-        onMouseDown={subjectDrag.dragStart}
-        onTouchStart={subjectDrag.dragStart}
-        onTouchMove={subjectDrag.dragMove}
-        onTouchEnd={subjectDrag.dragEnd}
-        cursor={subjectDrag.isDragging ? 'grabbing' : 'grab'}
-        {...defaultDragHandleProps}
-        {...subjectDragHandleProps}
-      />
+      {canEditSubject && (
+        <circle
+          cx={subjectX}
+          cy={subjectY}
+          transform={`translate(${subjectDrag.dx},${subjectDrag.dy})`}
+          onMouseMove={subjectDrag.dragMove}
+          onMouseUp={subjectDrag.dragEnd}
+          onMouseDown={subjectDrag.dragStart}
+          onTouchStart={subjectDrag.dragStart}
+          onTouchMove={subjectDrag.dragMove}
+          onTouchEnd={subjectDrag.dragEnd}
+          cursor={subjectDrag.isDragging ? 'grabbing' : 'grab'}
+          {...defaultDragHandleProps}
+          {...subjectDragHandleProps}
+        />
+      )}
       {labelDrag.isDragging && (
         <rect
           width={width}
@@ -165,20 +173,22 @@ export default function EditableAnnotation({
           fill="transparent"
         />
       )}
-      <circle
-        cx={subjectX + subjectDrag.dx + labelDx}
-        cy={subjectY + subjectDrag.dy + labelDy}
-        transform={`translate(${labelDrag.dx},${labelDrag.dy})`}
-        onMouseMove={labelDrag.dragMove}
-        onMouseUp={labelDrag.dragEnd}
-        onMouseDown={labelDrag.dragStart}
-        onTouchStart={labelDrag.dragStart}
-        onTouchMove={labelDrag.dragMove}
-        onTouchEnd={labelDrag.dragEnd}
-        cursor={labelDrag.isDragging ? 'grabbing' : 'grab'}
-        {...defaultDragHandleProps}
-        {...labelDragHandleProps}
-      />
+      {canEditLabel && (
+        <circle
+          cx={subjectX + subjectDrag.dx + labelDx}
+          cy={subjectY + subjectDrag.dy + labelDy}
+          transform={`translate(${labelDrag.dx},${labelDrag.dy})`}
+          onMouseMove={labelDrag.dragMove}
+          onMouseUp={labelDrag.dragEnd}
+          onMouseDown={labelDrag.dragStart}
+          onTouchStart={labelDrag.dragStart}
+          onTouchMove={labelDrag.dragMove}
+          onTouchEnd={labelDrag.dragEnd}
+          cursor={labelDrag.isDragging ? 'grabbing' : 'grab'}
+          {...defaultDragHandleProps}
+          {...labelDragHandleProps}
+        />
+      )}
     </>
   );
 }
