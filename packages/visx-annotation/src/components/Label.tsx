@@ -73,7 +73,7 @@ export default function AnnotationLabel({
   fontColor = '#222',
   horizontalAnchor: propsHorizontalAnchor,
   resizeObserverPolyfill,
-  showAnchorLine,
+  showAnchorLine = true,
   showBackground = true,
   subtitle,
   subtitleDy = 4,

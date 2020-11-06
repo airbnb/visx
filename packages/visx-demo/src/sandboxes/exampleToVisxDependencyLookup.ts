@@ -1,3 +1,4 @@
+import annotationPackageJson from './visx-annotation/package.json';
 import areaPackageJson from './visx-area/package.json';
 import axisPackageJson from './visx-axis/package.json';
 import bargroupPackageJson from './visx-bargroup/package.json';
@@ -42,6 +43,7 @@ import extractVisxDepsFromPackageJson from '../components/util/extractVisxDepsFr
 import { VisxPackage } from '../types';
 
 const examples = [
+  annotationPackageJson,
   areaPackageJson,
   axisPackageJson,
   bargroupHorizontalPackageJson,
