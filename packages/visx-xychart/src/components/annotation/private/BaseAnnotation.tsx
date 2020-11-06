@@ -14,6 +14,10 @@ export type BaseAnnotationProps<
 > = {
   /** Annotation component to render. */
   AnnotationComponent: React.FC<AnnotationProps> | React.FC<EditableAnnotationProps>;
+  /** If editable, whether label position can be edited. */
+  canEditLabel: EditableAnnotationProps['canEditLabel'];
+  /** If editable, whether subject position can be edited. */
+  canEditSubject: EditableAnnotationProps['canEditSubject'];
   /** Annotation children. */
   children: AnnotationProps['children'];
   /** Key for series to which datum belongs (used for x/yAccessors). Alternatively xAccessor + yAccessor may be specified. */

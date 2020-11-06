@@ -63,10 +63,11 @@ function BaseAnimatedAnnotation<
     from: { x: lastXY.current.x - x, y: lastXY.current.y - y },
     to: { x: 0, y: 0 },
     reset: true,
-    onRest: () => {
-      lastXY.current = { x, y };
-    },
   });
+
+  useEffect(() => {
+    lastXY.current = { x, y };
+  }, [x, y]);
 
   return (
     <animated.g // for perf animate a group element not the Annotation itself

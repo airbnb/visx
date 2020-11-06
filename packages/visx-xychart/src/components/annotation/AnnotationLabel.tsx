@@ -13,7 +13,7 @@ export default function AnnotationLabel(props: AnnotationLabelProps) {
   const subtitleProps = theme?.svgLabelSmall;
   return (
     <BaseLabel
-      anchorLineStroke={theme?.gridStyles.stroke}
+      anchorLineStroke={theme?.axisStyles.x.bottom.axisLine.stroke}
       backgroundFill={theme?.backgroundColor}
       backgroundProps={defaultBackgroundProps}
       showAnchorLine
