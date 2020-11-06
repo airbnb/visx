@@ -35,10 +35,12 @@ export default function Example({ height }: Props) {
         animationTrajectory,
         annotationDataKey,
         annotationDatum,
+        annotationLabelPosition,
         annotationType,
         config,
         curve,
         data,
+        editAnnotationLabelPosition,
         numTicks,
         renderAreaSeries,
         renderBarGroup,
@@ -48,6 +50,7 @@ export default function Example({ height }: Props) {
         renderGlyphSeries,
         renderHorizontally,
         renderLineSeries,
+        setAnnotationLabelPosition,
         sharedTooltip,
         showGridColumns,
         showGridRows,
@@ -60,7 +63,13 @@ export default function Example({ height }: Props) {
         xAxisOrientation,
         yAxisOrientation,
       }) => (
-        <XYChart theme={theme} xScale={config.x} yScale={config.y} height={Math.min(400, height)}>
+        <XYChart
+          theme={theme}
+          xScale={config.x}
+          yScale={config.y}
+          height={Math.min(400, height)}
+          captureEvents={!editAnnotationLabelPosition}
+        >
           <CustomChartBackground />
           <AnimatedGrid
             key={`grid-${animationTrajectory}`} // force animate on update
@@ -128,15 +137,25 @@ export default function Example({ height }: Props) {
                 data={data}
                 xAccessor={accessors.x.Austin}
                 yAccessor={accessors.y.Austin}
-                fillOpacity={0.5}
+                fillOpacity={0.4}
                 curve={curve}
               />
+              {!renderBarSeries && (
+                <AnimatedAreaSeries
+                  dataKey="New York"
+                  data={data}
+                  xAccessor={accessors.x['New York']}
+                  yAccessor={accessors.y['New York']}
+                  fillOpacity={0.4}
+                  curve={curve}
+                />
+              )}
               <AnimatedAreaSeries
                 dataKey="San Francisco"
                 data={data}
                 xAccessor={accessors.x['San Francisco']}
                 yAccessor={accessors.y['San Francisco']}
-                fillOpacity={0.5}
+                fillOpacity={0.4}
                 curve={curve}
               />
             </>
@@ -150,6 +169,15 @@ export default function Example({ height }: Props) {
                 yAccessor={accessors.y.Austin}
                 curve={curve}
               />
+              {!renderBarSeries && (
+                <AnimatedLineSeries
+                  dataKey="New York"
+                  data={data}
+                  xAccessor={accessors.x['New York']}
+                  yAccessor={accessors.y['New York']}
+                  curve={curve}
+                />
+              )}
               <AnimatedLineSeries
                 dataKey="San Francisco"
                 data={data}
@@ -168,26 +196,6 @@ export default function Example({ height }: Props) {
               renderGlyph={renderGlyph}
             />
           )}
-          {annotationDataKey && annotationDatum && (
-            <AnimatedAnnotation
-              dataKey={annotationDataKey}
-              datum={annotationDatum}
-              dx={-45}
-              dy={-50}
-            >
-              <AnnotationConnector />
-              {annotationType === 'circle' ? (
-                <AnnotationCircleSubject />
-              ) : (
-                <AnnotationLineSubject />
-              )}
-              <AnnotationLabel
-                title={annotationDataKey}
-                subtitle={`${annotationDatum.date}, ${annotationDatum[annotationDataKey]}°F`}
-                backgroundProps={{ stroke: theme.gridStyles.stroke, strokeOpacity: 0.5 }}
-              />
-            </AnimatedAnnotation>
-          )}
           <AnimatedAxis
             key={`time-axis-${animationTrajectory}-${renderHorizontally}`}
             orientation={renderHorizontally ? yAxisOrientation : xAxisOrientation}
@@ -201,6 +209,34 @@ export default function Example({ height }: Props) {
             numTicks={numTicks}
             animationTrajectory={animationTrajectory}
           />
+          {annotationDataKey && annotationDatum && (
+            <AnimatedAnnotation
+              dataKey={annotationDataKey}
+              datum={annotationDatum}
+              dx={annotationLabelPosition.dx}
+              dy={annotationLabelPosition.dy}
+              editable={editAnnotationLabelPosition}
+              canEditSubject={false}
+              onDragEnd={({ dx, dy }) => setAnnotationLabelPosition({ dx, dy })}
+            >
+              <AnnotationConnector />
+              {annotationType === 'circle' ? (
+                <AnnotationCircleSubject />
+              ) : (
+                <AnnotationLineSubject />
+              )}
+              <AnnotationLabel
+                title={annotationDataKey}
+                subtitle={`${annotationDatum.date}, ${annotationDatum[annotationDataKey]}°F`}
+                width={135}
+                backgroundProps={{
+                  stroke: theme.gridStyles.stroke,
+                  strokeOpacity: 0.5,
+                  fillOpacity: 0.8,
+                }}
+              />
+            </AnimatedAnnotation>
+          )}
           {showTooltip && (
             <Tooltip<CityTemperature>
               showHorizontalCrosshair={showHorizontalCrosshair}

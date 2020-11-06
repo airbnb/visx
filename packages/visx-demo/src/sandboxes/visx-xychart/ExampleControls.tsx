@@ -25,7 +25,7 @@ const getSfTemperature = (d: CityTemperature) => Number(d['San Francisco']);
 const getNegativeSfTemperature = (d: CityTemperature) => -getSfTemperature(d);
 const getNyTemperature = (d: CityTemperature) => Number(d['New York']);
 const getAustinTemperature = (d: CityTemperature) => Number(d.Austin);
-const defaultAnnotationDataIndex = 10;
+const defaultAnnotationDataIndex = 13;
 
 type Accessor = (d: CityTemperature) => number | string;
 
@@ -46,6 +46,7 @@ type ProvidedProps = {
   animationTrajectory: AnimationTrajectory;
   annotationDataKey: keyof Accessors | null;
   annotationDatum?: CityTemperature;
+  annotationLabelPosition: { dx: number; dy: number };
   annotationType?: 'line' | 'circle';
   config: {
     x: SimpleScaleConfig;
@@ -53,7 +54,9 @@ type ProvidedProps = {
   };
   curve: typeof curveLinear | typeof curveCardinal | typeof curveStep;
   data: CityTemperature[];
+  editAnnotationLabelPosition: boolean;
   numTicks: number;
+  setAnnotationLabelPosition: (position: { dx: number; dy: number }) => void;
   renderAreaSeries: boolean;
   renderBarGroup: boolean;
   renderBarSeries: boolean;
@@ -89,7 +92,7 @@ export default function ExampleControls({ children }: ControlsProps) {
   const [renderHorizontally, setRenderHorizontally] = useState(false);
   const [showTooltip, setShowTooltip] = useState(true);
   const [annotationDataKey, setAnnotationDataKey] = useState<ProvidedProps['annotationDataKey']>(
-    'Austin',
+    'New York',
   );
   const [annotationType, setAnnotationType] = useState<ProvidedProps['annotationType']>('circle');
   const [showVerticalCrosshair, setShowVerticalCrosshair] = useState(true);
@@ -104,6 +107,8 @@ export default function ExampleControls({ children }: ControlsProps) {
     'line',
   );
   const [renderGlyphSeries, setRenderGlyphSeries] = useState(false);
+  const [editAnnotationLabelPosition, setEditAnnotationLabelPosition] = useState(false);
+  const [annotationLabelPosition, setAnnotationLabelPosition] = useState({ dx: -40, dy: -20 });
   const [negativeValues, setNegativeValues] = useState(false);
   const [fewerDatum, setFewerDatum] = useState(false);
   const [missingValues, setMissingValues] = useState(false);
@@ -172,6 +177,7 @@ export default function ExampleControls({ children }: ControlsProps) {
         animationTrajectory,
         annotationDataKey,
         annotationDatum: data[defaultAnnotationDataIndex],
+        annotationLabelPosition,
         annotationType,
         config,
         curve:
@@ -185,6 +191,7 @@ export default function ExampleControls({ children }: ControlsProps) {
           : missingValues
           ? dataMissingValues
           : data,
+        editAnnotationLabelPosition,
         numTicks,
         renderBarGroup: renderBarStackOrGroup === 'group',
         renderBarSeries: renderBarStackOrGroup === 'bar',
@@ -194,6 +201,7 @@ export default function ExampleControls({ children }: ControlsProps) {
         renderHorizontally,
         renderAreaSeries: canRenderLineOrArea && renderLineOrAreaSeries === 'area',
         renderLineSeries: canRenderLineOrArea && renderLineOrAreaSeries === 'line',
+        setAnnotationLabelPosition,
         sharedTooltip,
         showGridColumns,
         showGridRows,
@@ -233,27 +241,6 @@ export default function ExampleControls({ children }: ControlsProps) {
               checked={theme === customTheme}
             />
             custom
-          </label>
-        </div>
-
-        {/** series orientation */}
-        <div>
-          <strong>series orientation</strong>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setRenderHorizontally(false)}
-              checked={!renderHorizontally}
-            />
-            vertical
-          </label>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setRenderHorizontally(true)}
-              checked={renderHorizontally}
-            />
-            horizontal
           </label>
         </div>
 
@@ -367,6 +354,7 @@ export default function ExampleControls({ children }: ControlsProps) {
             from max
           </label>
         </div>
+        <br />
         {/** tooltip */}
         <div>
           <strong>tooltip</strong>
@@ -424,6 +412,72 @@ export default function ExampleControls({ children }: ControlsProps) {
             shared tooltip
           </label>
         </div>
+        {/** annotation */}
+        <div>
+          <strong>annotate</strong>
+          <label>
+            <input
+              type="radio"
+              onChange={() => setAnnotationDataKey(null)}
+              checked={annotationDataKey == null}
+            />
+            none
+          </label>
+          <label>
+            <input
+              type="radio"
+              onChange={() => setAnnotationDataKey('San Francisco')}
+              checked={annotationDataKey === 'San Francisco'}
+            />
+            SF
+          </label>
+          <label>
+            <input
+              type="radio"
+              onChange={() => setAnnotationDataKey('New York')}
+              checked={annotationDataKey === 'New York'}
+            />
+            NY
+          </label>
+          <label>
+            <input
+              type="radio"
+              onChange={() => setAnnotationDataKey('Austin')}
+              checked={annotationDataKey === 'Austin'}
+            />
+            Austin
+          </label>
+          &nbsp;&nbsp;&nbsp;
+          <strong>type</strong>
+          <label>
+            <input
+              type="radio"
+              onChange={() => setAnnotationType('circle')}
+              checked={annotationType === 'circle'}
+            />
+            circle
+          </label>
+          <label>
+            <input
+              type="radio"
+              onChange={() => setAnnotationType('line')}
+              checked={annotationType === 'line'}
+            />
+            line
+          </label>
+          &nbsp;&nbsp;&nbsp;
+          <label>
+            <input
+              type="checkbox"
+              onChange={() => setEditAnnotationLabelPosition(!editAnnotationLabelPosition)}
+              checked={editAnnotationLabelPosition}
+            />
+            edit label position
+          </label>
+        </div>
+
+        <br />
+
         {/** series */}
         <div>
           <strong>line series</strong>
@@ -568,6 +622,29 @@ export default function ExampleControls({ children }: ControlsProps) {
             none
           </label>
         </div>
+        {/** orientation */}
+        <div>
+          <strong>series orientation</strong>
+          <label>
+            <input
+              type="radio"
+              onChange={() => setRenderHorizontally(false)}
+              checked={!renderHorizontally}
+            />
+            vertical
+          </label>
+          <label>
+            <input
+              type="radio"
+              onChange={() => setRenderHorizontally(true)}
+              checked={renderHorizontally}
+            />
+            horizontal
+          </label>
+        </div>
+
+        <br />
+
         {/** data */}
         <div>
           <strong>data</strong>
@@ -596,60 +673,6 @@ export default function ExampleControls({ children }: ControlsProps) {
             fewer datum
           </label>
         </div>
-        {/** annotation */}
-        <div>
-          <strong>annotate</strong>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setAnnotationDataKey(null)}
-              checked={annotationDataKey == null}
-            />
-            none
-          </label>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setAnnotationDataKey('San Francisco')}
-              checked={annotationDataKey === 'San Francisco'}
-            />
-            SF
-          </label>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setAnnotationDataKey('New York')}
-              checked={annotationDataKey === 'New York'}
-            />
-            NY
-          </label>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setAnnotationDataKey('Austin')}
-              checked={annotationDataKey === 'Austin'}
-            />
-            Austin
-          </label>
-          &nbsp;&nbsp;&nbsp;
-          <strong>type</strong>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setAnnotationType('circle')}
-              checked={annotationType === 'circle'}
-            />
-            circle
-          </label>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setAnnotationType('line')}
-              checked={annotationType === 'line'}
-            />
-            line
-          </label>
-        </div>
       </div>
       <style jsx>{`
         .controls {
@@ -657,7 +680,7 @@ export default function ExampleControls({ children }: ControlsProps) {
           line-height: 1.5em;
         }
         .controls > div {
-          margin-bottom: 8px;
+          margin-bottom: 4px;
         }
         label {
           font-size: 12px;
