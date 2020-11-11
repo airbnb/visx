@@ -26,7 +26,7 @@ describe('<Text />', () => {
     const wrapper = shallow<Text>(
       <Text width={300} style={{ fontFamily: 'Courier' }}>
         This is really long text
-      </Text>
+      </Text>,
     );
 
     expect(wrapper.instance().state.wordsByLines).toHaveLength(1);
@@ -36,7 +36,7 @@ describe('<Text />', () => {
     const wrapper = shallow<Text>(
       <Text width={200} style={{ fontFamily: 'Courier' }}>
         This is really long text
-      </Text>
+      </Text>,
     );
 
     expect(wrapper.instance().state.wordsByLines).toHaveLength(2);
@@ -46,7 +46,7 @@ describe('<Text />', () => {
     const wrapper = shallow<Text>(
       <Text width={300} style={{ fontSize: '2em', fontFamily: 'Courier' }}>
         This is really long text
-      </Text>
+      </Text>,
     );
 
     expect(wrapper.instance().state.wordsByLines).toHaveLength(1);
@@ -63,7 +63,7 @@ describe('<Text />', () => {
     const wrapper = mount(
       <Text x={0} y={0} width={30}>
         0
-      </Text>
+      </Text>,
     );
 
     console.log('wrapper', wrapper.text());
@@ -74,7 +74,7 @@ describe('<Text />', () => {
     const wrapper = mount(
       <Text x={0} y={0}>
         0
-      </Text>
+      </Text>,
     );
 
     expect(wrapper.text()).toContain('0');
@@ -84,7 +84,7 @@ describe('<Text />', () => {
     const wrapper = mount(
       <Text x='50%' y='50%'>
         anything
-      </Text>
+      </Text>,
     );
 
     expect(wrapper.text()).toContain('anything');
@@ -94,7 +94,7 @@ describe('<Text />', () => {
     const wrapperNan = mount(
       <Text x={NaN} y={10}>
         anything
-      </Text>
+      </Text>,
     );
 
     expect(wrapperNan.text()).not.toContain('anything');
@@ -104,7 +104,7 @@ describe('<Text />', () => {
     const wrapper = mount(
       <Text x={0} y={0}>
         {0}
-      </Text>
+      </Text>,
     );
 
     expect(wrapper.text()).toContain('0');
@@ -114,7 +114,7 @@ describe('<Text />', () => {
     const wrapper = shallow<Text>(
       <Text width={200} style={{ fontFamily: 'Courier' }}>
         This is short text
-      </Text>
+      </Text>,
     );
     expect(wrapper.instance().state.wordsByLines).toHaveLength(1);
 
@@ -126,7 +126,7 @@ describe('<Text />', () => {
     const wrapper = shallow<Text>(
       <Text width={300} scaleToFit style={{ fontFamily: 'Courier' }}>
         This is really long text
-      </Text>
+      </Text>,
     );
 
     const text = wrapper.find('text').first();
@@ -137,7 +137,7 @@ describe('<Text />', () => {
     const wrapper = shallow<Text>(
       <Text width={300} angle={45} style={{ fontFamily: 'Courier' }}>
         This is really long text
-      </Text>
+      </Text>,
     );
 
     const text = wrapper.find('text').first();
@@ -148,7 +148,7 @@ describe('<Text />', () => {
     const wrapper = shallow<Text>(
       <Text width={200} style={{ fontFamily: 'Courier' }}>
         This is really long text
-      </Text>
+      </Text>,
     );
     const getVerticalOffset = (w: typeof wrapper) =>
       w
