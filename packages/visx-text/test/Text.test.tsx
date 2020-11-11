@@ -82,7 +82,7 @@ describe('<Text />', () => {
 
   it('Render text when x or y is a percentage', () => {
     const wrapper = mount(
-      <Text x='50%' y='50%'>
+      <Text x="50%" y="50%">
         anything
       </Text>,
     );
