@@ -3,7 +3,7 @@ import { scaleTime, scaleLinear } from '@visx/scale';
 import appleStock, { AppleStock } from '@visx/mock-data/lib/mocks/appleStock';
 import { Brush } from '@visx/brush';
 import { Bounds } from '@visx/brush/lib/types';
-import BaseBrush from '@visx/brush/lib/BaseBrush';
+import BaseBrush, { BaseBrushState, UpdateBrush } from '@visx/brush/lib/BaseBrush';
 import { PatternLines } from '@visx/pattern';
 import { LinearGradient } from '@visx/gradient';
 import { max, extent } from 'd3-array';
@@ -125,25 +125,27 @@ function BrushChart({
   };
 
   const handleLastWeekClick = () => {
-    if (!brushRef?.current) {
+    if (brushRef?.current === null) {
       console.log(`innerRef Prop not properly set.`);
+    } else {
+      // Update Brush
+      const updater: UpdateBrush = (prevBrush) => {
+        const start = { x: brushDateScale(getDate(stock[stock.length - 8])) };
+        const end = { x: brushDateScale(getDate(stock[stock.length - 1])) };
+        const extent = brushRef.current!.getExtent(start, end);
+
+        const newState: BaseBrushState = {
+          ...prevBrush,
+          start: { y: extent.y0, x: extent.x0 },
+          end: { y: extent.y1, x: extent.x1 },
+          extent,
+        };
+
+        return newState;
+      }
+      brushRef?.current?.updateBrush(updater);
     }
 
-    // Update Brush
-    brushRef?.current?.updateBrush(prevBrush => {
-      const start = { x: brushDateScale(getDate(stock[stock.length - 8])) };
-      const end = { x: brushDateScale(getDate(stock[stock.length - 1])) };
-      const extent = brushRef?.current?.getExtent(start, end);
-
-      const newState = {
-        ...prevBrush,
-        start: { y: extent.y0, x: extent.x0 },
-        end: { y: extent.y1, x: extent.x1 },
-        extent,
-      };
-
-      return newState;
-    });
   };
 
   return (
