@@ -1,9 +1,9 @@
-import React, {useRef, useState, useMemo } from 'react';
+import React, { useRef, useState, useMemo } from 'react';
 import { scaleTime, scaleLinear } from '@visx/scale';
 import appleStock, { AppleStock } from '@visx/mock-data/lib/mocks/appleStock';
 import { Brush } from '@visx/brush';
 import { Bounds } from '@visx/brush/lib/types';
-import BaseBrush from '@visx/brush/lib/BaseBrush'
+import BaseBrush from '@visx/brush/lib/BaseBrush';
 import { PatternLines } from '@visx/pattern';
 import { LinearGradient } from '@visx/gradient';
 import { max, extent } from 'd3-array';
@@ -46,7 +46,7 @@ function BrushChart({
     right: 20,
   },
 }: BrushProps) {
-  const brushRef = useRef<BaseBrush | null>(null)
+  const brushRef = useRef<BaseBrush | null>(null);
   const [filteredStock, setFilteredStock] = useState(stock);
 
   const onBrushChange = (domain: Bounds | null) => {
@@ -117,34 +117,34 @@ function BrushChart({
 
   const handleResetClick = () => {
     if (!brushRef?.current) {
-      console.log(`innerRef Prop not properly set.`)
+      console.log(`innerRef Prop not properly set.`);
     }
 
-    setFilteredStock(stock)
-    brushRef?.current?.reset()
-  }
+    setFilteredStock(stock);
+    brushRef?.current?.reset();
+  };
 
   const handleLastWeekClick = () => {
     if (!brushRef?.current) {
-      console.log(`innerRef Prop not properly set.`)
+      console.log(`innerRef Prop not properly set.`);
     }
 
     // Update Brush
-    brushRef?.current?.updateBrush((prevBrush) => {
-      const start = {x: brushDateScale(getDate(stock[stock.length -8]))}
-      const end = {x: brushDateScale(getDate(stock[stock.length -1]))}
-      const extent = brushRef?.current?.getExtent(start, end)
+    brushRef?.current?.updateBrush(prevBrush => {
+      const start = { x: brushDateScale(getDate(stock[stock.length - 8])) };
+      const end = { x: brushDateScale(getDate(stock[stock.length - 1])) };
+      const extent = brushRef?.current?.getExtent(start, end);
 
       const newState = {
         ...prevBrush,
         start: { y: extent.y0, x: extent.x0 },
         end: { y: extent.y1, x: extent.x1 },
         extent,
-      }
+      };
 
-      return newState
-    })
-  }
+      return newState;
+    });
+  };
 
   return (
     <div>
