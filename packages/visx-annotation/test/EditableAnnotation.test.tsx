@@ -4,7 +4,7 @@ import { Annotation, EditableAnnotation } from '../src';
 import { EditableAnnotationProps } from '../lib/components/EditableAnnotation';
 
 describe('<EditableAnnotation />', () => {
-  function setup(props?: EditableAnnotationProps) {
+  function setup(props?: Partial<EditableAnnotationProps>) {
     return shallow(
       <EditableAnnotation width={100} height={100} {...props}>
         <div />
