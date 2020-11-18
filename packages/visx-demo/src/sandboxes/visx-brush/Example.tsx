@@ -116,36 +116,35 @@ function BrushChart({
   );
 
   const handleResetClick = () => {
-    if (!brushRef?.current) {
+    if (brushRef?.current) {
+      setFilteredStock(stock);
+      brushRef.current.reset();
+    } else {
       console.log(`innerRef Prop not properly set.`);
     }
-
-    setFilteredStock(stock);
-    brushRef?.current?.reset();
   };
 
   const handleLastWeekClick = () => {
     if (brushRef?.current === null) {
       console.log(`innerRef Prop not properly set.`);
-    } else {
+    } else if (brushRef?.current) {
       // Update Brush
-      const updater: UpdateBrush = (prevBrush) => {
+      const updater: UpdateBrush = prevBrush => {
         const start = { x: brushDateScale(getDate(stock[stock.length - 8])) };
         const end = { x: brushDateScale(getDate(stock[stock.length - 1])) };
-        const extent = brushRef.current!.getExtent(start, end);
+        const newExtent = brushRef.current!.getExtent(start, end);
 
         const newState: BaseBrushState = {
           ...prevBrush,
-          start: { y: extent.y0, x: extent.x0 },
-          end: { y: extent.y1, x: extent.x1 },
-          extent,
+          start: { y: newExtent.y0, x: newExtent.x0 },
+          end: { y: newExtent.y1, x: newExtent.x1 },
+          extent: newExtent,
         };
 
         return newState;
-      }
-      brushRef?.current?.updateBrush(updater);
+      };
+      brushRef.current.updateBrush(updater);
     }
-
   };
 
   return (
