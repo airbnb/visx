@@ -7,6 +7,7 @@ export type AnnotationLabelProps = BaseLabelProps;
 
 const defaultBackgroundProps = { fillOpacity: 0.7 };
 
+/** AnnotationLabel which provides text styles from theme. */
 export default function AnnotationLabel(props: AnnotationLabelProps) {
   const { theme } = useContext(DataContext);
   const titleProps = theme?.svgLabelBig;

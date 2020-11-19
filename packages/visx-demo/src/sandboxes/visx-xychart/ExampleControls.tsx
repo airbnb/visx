@@ -92,7 +92,7 @@ export default function ExampleControls({ children }: ControlsProps) {
   const [renderHorizontally, setRenderHorizontally] = useState(false);
   const [showTooltip, setShowTooltip] = useState(true);
   const [annotationDataKey, setAnnotationDataKey] = useState<ProvidedProps['annotationDataKey']>(
-    'New York',
+    null,
   );
   const [annotationType, setAnnotationType] = useState<ProvidedProps['annotationType']>('circle');
   const [showVerticalCrosshair, setShowVerticalCrosshair] = useState(true);
@@ -102,9 +102,9 @@ export default function ExampleControls({ children }: ControlsProps) {
   const [sharedTooltip, setSharedTooltip] = useState(true);
   const [renderBarStackOrGroup, setRenderBarStackOrGroup] = useState<
     'bar' | 'stack' | 'group' | 'none'
-  >('bar');
+  >('none');
   const [renderLineOrAreaSeries, setRenderLineOrAreaSeries] = useState<'line' | 'area' | 'none'>(
-    'line',
+    'area',
   );
   const [renderGlyphSeries, setRenderGlyphSeries] = useState(false);
   const [editAnnotationLabelPosition, setEditAnnotationLabelPosition] = useState(false);
@@ -215,6 +215,35 @@ export default function ExampleControls({ children }: ControlsProps) {
         yAxisOrientation,
       })}
       <div className="controls">
+        {/** data */}
+        <div>
+          <strong>data</strong>
+          <label>
+            <input
+              type="checkbox"
+              onChange={() => setNegativeValues(!negativeValues)}
+              checked={negativeValues}
+            />
+            negative values (SF)
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              onChange={() => setMissingValues(!missingValues)}
+              checked={missingValues}
+            />
+            missing values
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              onChange={() => setFewerDatum(!fewerDatum)}
+              checked={fewerDatum}
+            />
+            fewer datum
+          </label>
+        </div>
+
         {/** theme */}
         <div>
           <strong>theme</strong>
@@ -244,241 +273,29 @@ export default function ExampleControls({ children }: ControlsProps) {
           </label>
         </div>
 
-        {/** axes */}
-        <div>
-          <strong>axes</strong>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setXAxisOrientation('bottom')}
-              checked={xAxisOrientation === 'bottom'}
-            />
-            bottom
-          </label>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setXAxisOrientation('top')}
-              checked={xAxisOrientation === 'top'}
-            />
-            top
-          </label>
-          &nbsp;&nbsp;&nbsp;&nbsp;
-          <label>
-            <input
-              type="radio"
-              onChange={() => setYAxisOrientation('left')}
-              checked={yAxisOrientation === 'left'}
-            />
-            left
-          </label>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setYAxisOrientation('right')}
-              checked={yAxisOrientation === 'right'}
-            />
-            right
-          </label>
-        </div>
-
-        {/** grid */}
-        <div>
-          <strong>grid</strong>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setGridProps([true, false])}
-              checked={showGridRows && !showGridColumns}
-            />
-            rows
-          </label>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setGridProps([false, true])}
-              checked={!showGridRows && showGridColumns}
-            />
-            columns
-          </label>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setGridProps([true, true])}
-              checked={showGridRows && showGridColumns}
-            />
-            both
-          </label>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setGridProps([false, false])}
-              checked={!showGridRows && !showGridColumns}
-            />
-            none
-          </label>
-        </div>
-        {/** animation trajectory */}
-        <div>
-          <strong>axis + grid animation</strong>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setAnimationTrajectory('center')}
-              checked={animationTrajectory === 'center'}
-            />
-            from center
-          </label>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setAnimationTrajectory('outside')}
-              checked={animationTrajectory === 'outside'}
-            />
-            from outside
-          </label>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setAnimationTrajectory('min')}
-              checked={animationTrajectory === 'min'}
-            />
-            from min
-          </label>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setAnimationTrajectory('max')}
-              checked={animationTrajectory === 'max'}
-            />
-            from max
-          </label>
-        </div>
-        <br />
-        {/** tooltip */}
-        <div>
-          <strong>tooltip</strong>
-          <label>
-            <input
-              type="checkbox"
-              onChange={() => setShowTooltip(!showTooltip)}
-              checked={showTooltip}
-            />
-            show tooltip
-          </label>
-          <label>
-            <input
-              type="checkbox"
-              disabled={!showTooltip || renderBarStackOrGroup === 'stack'}
-              onChange={() => setSnapTooltipToDatumX(!snapTooltipToDatumX)}
-              checked={showTooltip && snapTooltipToDatumX}
-            />
-            snap tooltip to datum x
-          </label>
-          <label>
-            <input
-              type="checkbox"
-              disabled={!showTooltip || renderBarStackOrGroup === 'stack'}
-              onChange={() => setSnapTooltipToDatumY(!snapTooltipToDatumY)}
-              checked={showTooltip && snapTooltipToDatumY}
-            />
-            snap tooltip to datum y
-          </label>
-          <label>
-            <input
-              type="checkbox"
-              disabled={!showTooltip}
-              onChange={() => setShowVerticalCrosshair(!showVerticalCrosshair)}
-              checked={showTooltip && showVerticalCrosshair}
-            />
-            vertical crosshair
-          </label>
-          <label>
-            <input
-              type="checkbox"
-              disabled={!showTooltip}
-              onChange={() => setShowHorizontalCrosshair(!showHorizontalCrosshair)}
-              checked={showTooltip && showHorizontalCrosshair}
-            />
-            horizontal crosshair
-          </label>
-          <label>
-            <input
-              type="checkbox"
-              disabled={!showTooltip}
-              onChange={() => setSharedTooltip(!sharedTooltip)}
-              checked={showTooltip && sharedTooltip}
-            />
-            shared tooltip
-          </label>
-        </div>
-        {/** annotation */}
-        <div>
-          <strong>annotate</strong>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setAnnotationDataKey(null)}
-              checked={annotationDataKey == null}
-            />
-            none
-          </label>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setAnnotationDataKey('San Francisco')}
-              checked={annotationDataKey === 'San Francisco'}
-            />
-            SF
-          </label>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setAnnotationDataKey('New York')}
-              checked={annotationDataKey === 'New York'}
-            />
-            NY
-          </label>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setAnnotationDataKey('Austin')}
-              checked={annotationDataKey === 'Austin'}
-            />
-            Austin
-          </label>
-          &nbsp;&nbsp;&nbsp;
-          <strong>type</strong>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setAnnotationType('circle')}
-              checked={annotationType === 'circle'}
-            />
-            circle
-          </label>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setAnnotationType('line')}
-              checked={annotationType === 'line'}
-            />
-            line
-          </label>
-          &nbsp;&nbsp;&nbsp;
-          <label>
-            <input
-              type="checkbox"
-              onChange={() => setEditAnnotationLabelPosition(!editAnnotationLabelPosition)}
-              checked={editAnnotationLabelPosition}
-            />
-            edit label position
-          </label>
-        </div>
-
         <br />
 
         {/** series */}
+        {/** orientation */}
+        <div>
+          <strong>series orientation</strong>
+          <label>
+            <input
+              type="radio"
+              onChange={() => setRenderHorizontally(false)}
+              checked={!renderHorizontally}
+            />
+            vertical
+          </label>
+          <label>
+            <input
+              type="radio"
+              onChange={() => setRenderHorizontally(true)}
+              checked={renderHorizontally}
+            />
+            horizontal
+          </label>
+        </div>
         <div>
           <strong>line series</strong>
           <label>
@@ -622,55 +439,239 @@ export default function ExampleControls({ children }: ControlsProps) {
             none
           </label>
         </div>
-        {/** orientation */}
+
+        <br />
+        {/** tooltip */}
         <div>
-          <strong>series orientation</strong>
+          <strong>tooltip</strong>
+          <label>
+            <input
+              type="checkbox"
+              onChange={() => setShowTooltip(!showTooltip)}
+              checked={showTooltip}
+            />
+            show tooltip
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              disabled={!showTooltip || renderBarStackOrGroup === 'stack'}
+              onChange={() => setSnapTooltipToDatumX(!snapTooltipToDatumX)}
+              checked={showTooltip && snapTooltipToDatumX}
+            />
+            snap tooltip to datum x
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              disabled={!showTooltip || renderBarStackOrGroup === 'stack'}
+              onChange={() => setSnapTooltipToDatumY(!snapTooltipToDatumY)}
+              checked={showTooltip && snapTooltipToDatumY}
+            />
+            snap tooltip to datum y
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              disabled={!showTooltip}
+              onChange={() => setShowVerticalCrosshair(!showVerticalCrosshair)}
+              checked={showTooltip && showVerticalCrosshair}
+            />
+            vertical crosshair
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              disabled={!showTooltip}
+              onChange={() => setShowHorizontalCrosshair(!showHorizontalCrosshair)}
+              checked={showTooltip && showHorizontalCrosshair}
+            />
+            horizontal crosshair
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              disabled={!showTooltip}
+              onChange={() => setSharedTooltip(!sharedTooltip)}
+              checked={showTooltip && sharedTooltip}
+            />
+            shared tooltip
+          </label>
+        </div>
+        {/** annotation */}
+        <div>
+          <strong>annotation</strong>
           <label>
             <input
               type="radio"
-              onChange={() => setRenderHorizontally(false)}
-              checked={!renderHorizontally}
+              onChange={() => setAnnotationDataKey(null)}
+              checked={annotationDataKey == null}
             />
-            vertical
+            none
           </label>
           <label>
             <input
               type="radio"
-              onChange={() => setRenderHorizontally(true)}
-              checked={renderHorizontally}
+              onChange={() => setAnnotationDataKey('San Francisco')}
+              checked={annotationDataKey === 'San Francisco'}
             />
-            horizontal
+            SF
+          </label>
+          <label>
+            <input
+              type="radio"
+              onChange={() => setAnnotationDataKey('New York')}
+              checked={annotationDataKey === 'New York'}
+            />
+            NY
+          </label>
+          <label>
+            <input
+              type="radio"
+              onChange={() => setAnnotationDataKey('Austin')}
+              checked={annotationDataKey === 'Austin'}
+            />
+            Austin
+          </label>
+          &nbsp;&nbsp;&nbsp;
+          <strong>type</strong>
+          <label>
+            <input
+              type="radio"
+              onChange={() => setAnnotationType('circle')}
+              checked={annotationType === 'circle'}
+            />
+            circle
+          </label>
+          <label>
+            <input
+              type="radio"
+              onChange={() => setAnnotationType('line')}
+              checked={annotationType === 'line'}
+            />
+            line
+          </label>
+          &nbsp;&nbsp;&nbsp;
+          <label>
+            <input
+              type="checkbox"
+              onChange={() => setEditAnnotationLabelPosition(!editAnnotationLabelPosition)}
+              checked={editAnnotationLabelPosition}
+            />
+            edit label position
           </label>
         </div>
 
         <br />
 
-        {/** data */}
+        {/** axes */}
         <div>
-          <strong>data</strong>
+          <strong>axes</strong>
           <label>
             <input
-              type="checkbox"
-              onChange={() => setNegativeValues(!negativeValues)}
-              checked={negativeValues}
+              type="radio"
+              onChange={() => setXAxisOrientation('bottom')}
+              checked={xAxisOrientation === 'bottom'}
             />
-            negative values (SF)
+            bottom
           </label>
           <label>
             <input
-              type="checkbox"
-              onChange={() => setMissingValues(!missingValues)}
-              checked={missingValues}
+              type="radio"
+              onChange={() => setXAxisOrientation('top')}
+              checked={xAxisOrientation === 'top'}
             />
-            missing values
+            top
+          </label>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <label>
+            <input
+              type="radio"
+              onChange={() => setYAxisOrientation('left')}
+              checked={yAxisOrientation === 'left'}
+            />
+            left
           </label>
           <label>
             <input
-              type="checkbox"
-              onChange={() => setFewerDatum(!fewerDatum)}
-              checked={fewerDatum}
+              type="radio"
+              onChange={() => setYAxisOrientation('right')}
+              checked={yAxisOrientation === 'right'}
             />
-            fewer datum
+            right
+          </label>
+        </div>
+
+        {/** grid */}
+        <div>
+          <strong>grid</strong>
+          <label>
+            <input
+              type="radio"
+              onChange={() => setGridProps([true, false])}
+              checked={showGridRows && !showGridColumns}
+            />
+            rows
+          </label>
+          <label>
+            <input
+              type="radio"
+              onChange={() => setGridProps([false, true])}
+              checked={!showGridRows && showGridColumns}
+            />
+            columns
+          </label>
+          <label>
+            <input
+              type="radio"
+              onChange={() => setGridProps([true, true])}
+              checked={showGridRows && showGridColumns}
+            />
+            both
+          </label>
+          <label>
+            <input
+              type="radio"
+              onChange={() => setGridProps([false, false])}
+              checked={!showGridRows && !showGridColumns}
+            />
+            none
+          </label>
+        </div>
+        {/** animation trajectory */}
+        <div>
+          <strong>axis + grid animation</strong>
+          <label>
+            <input
+              type="radio"
+              onChange={() => setAnimationTrajectory('center')}
+              checked={animationTrajectory === 'center'}
+            />
+            from center
+          </label>
+          <label>
+            <input
+              type="radio"
+              onChange={() => setAnimationTrajectory('outside')}
+              checked={animationTrajectory === 'outside'}
+            />
+            from outside
+          </label>
+          <label>
+            <input
+              type="radio"
+              onChange={() => setAnimationTrajectory('min')}
+              checked={animationTrajectory === 'min'}
+            />
+            from min
+          </label>
+          <label>
+            <input
+              type="radio"
+              onChange={() => setAnimationTrajectory('max')}
+              checked={animationTrajectory === 'max'}
+            />
+            from max
           </label>
         </div>
       </div>
