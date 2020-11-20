@@ -161,16 +161,16 @@ export default function AnnotationLabel({
       )}
       {showAnchorLine && (
         <>
-          {anchorLineOrientation === 'horizontal' && verticalAnchor === 'top' && (
+          {anchorLineOrientation === 'horizontal' && verticalAnchor === 'start' && (
             <line {...backgroundOutline} x1={0} x2={width} y1={0} y2={0} />
           )}
-          {anchorLineOrientation === 'horizontal' && verticalAnchor === 'bottom' && (
+          {anchorLineOrientation === 'horizontal' && verticalAnchor === 'end' && (
             <line {...backgroundOutline} x1={0} x2={width} y1={height} y2={height} />
           )}
-          {anchorLineOrientation === 'vertical' && horizontalAnchor === 'left' && (
+          {anchorLineOrientation === 'vertical' && horizontalAnchor === 'start' && (
             <line {...backgroundOutline} x1={0} x2={0} y1={0} y2={height} />
           )}
-          {anchorLineOrientation === 'vertical' && horizontalAnchor === 'right' && (
+          {anchorLineOrientation === 'vertical' && horizontalAnchor === 'end' && (
             <line {...backgroundOutline} x1={width} x2={width} y1={0} y2={height} />
           )}
         </>
