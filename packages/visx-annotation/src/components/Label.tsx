@@ -18,8 +18,8 @@ export type LabelProps = {
   className?: string;
   /** Color of title and subtitle text. */
   fontColor?: string;
-  /** Whether the label is horizontally anchored to the left, middle, or right of its x position. */
-  horizontalAnchor?: 'left' | 'middle' | 'right';
+  /** Whether the label is horizontally anchored to the start, middle, or end of its x position. */
+  horizontalAnchor?: TextProps['textAnchor'];
   /** Optionally inject a ResizeObserver polyfill, else this *must* be globally available. */
   resizeObserverPolyfill?: UseMeasureOptions['polyfill'];
   /** Whether to render a line indicating label text anchor. */
@@ -44,8 +44,8 @@ export type LabelProps = {
   titleFontWeight?: TextProps['fontWeight'];
   /** Optional title Text props (to override color, etc.). */
   titleProps?: Partial<TextProps>;
-  /** Whether the label is vertically anchored to the top, middle, or bottom of its x position. */
-  verticalAnchor?: 'top' | 'middle' | 'bottom';
+  /** Whether the label is vertically anchored to the start, middle, or end of its y position. */
+  verticalAnchor?: TextProps['verticalAnchor'];
   /** Width of annotation, including background, for text wrapping. */
   width?: number;
   /** Left offset of entire AnnotationLabel, if not specified uses x + dx from Annotation. */
@@ -104,18 +104,18 @@ export default function AnnotationLabel({
 
   // offset container position based on horizontal + vertical anchor
   const horizontalAnchor =
-    propsHorizontalAnchor || (Math.abs(dx) < Math.abs(dy) ? 'middle' : dx > 0 ? 'left' : 'right');
+    propsHorizontalAnchor || (Math.abs(dx) < Math.abs(dy) ? 'middle' : dx > 0 ? 'start' : 'end');
   const verticalAnchor =
-    propsVerticalAnchor || (Math.abs(dx) > Math.abs(dy) ? 'middle' : dy > 0 ? 'top' : 'bottom');
+    propsVerticalAnchor || (Math.abs(dx) > Math.abs(dy) ? 'middle' : dy > 0 ? 'start' : 'end');
 
   const containerCoords = useMemo(() => {
     let adjustedX: number = propsX == null ? x + dx : propsX;
     let adjustedY: number = propsY == null ? y + dy : propsY;
 
     if (horizontalAnchor === 'middle') adjustedX -= width / 2;
-    if (horizontalAnchor === 'right') adjustedX -= width;
+    if (horizontalAnchor === 'end') adjustedX -= width;
     if (verticalAnchor === 'middle') adjustedY -= height / 2;
-    if (verticalAnchor === 'bottom') adjustedY -= height;
+    if (verticalAnchor === 'end') adjustedY -= height;
 
     return { x: adjustedX, y: adjustedY };
   }, [propsX, x, dx, propsY, y, dy, horizontalAnchor, verticalAnchor, width, height]);
