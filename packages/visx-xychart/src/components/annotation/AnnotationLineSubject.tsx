@@ -3,7 +3,10 @@ import { LineSubject as BaseLineSubject } from '@visx/annotation';
 import { LineSubjectProps } from '@visx/annotation/lib/components/LineSubject';
 import DataContext from '../../context/DataContext';
 
-export type AnnotationLineSubjectProps = LineSubjectProps & { min?: number; max?: number };
+export type AnnotationLineSubjectProps = Omit<LineSubjectProps, 'min' | 'max'> & {
+  min?: number;
+  max?: number;
+};
 
 /** AnnotationLineSubject which provides color and dimensions from context. */
 export default function AnnotationLineSubject({ min, max, ...props }: AnnotationLineSubjectProps) {
