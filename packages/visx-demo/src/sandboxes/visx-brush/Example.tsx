@@ -115,24 +115,21 @@ function BrushChart({
     [brushDateScale],
   );
 
-  const handleResetClick = () => {
+  // event handlers
+  const handleClearClick = () => {
     if (brushRef?.current) {
       setFilteredStock(stock);
       brushRef.current.reset();
-    } else {
-      console.log(`innerRef Prop not properly set.`);
     }
   };
 
-  const handleLastWeekClick = () => {
-    if (brushRef?.current === null) {
-      console.log(`innerRef Prop not properly set.`);
-    } else if (brushRef?.current) {
-      // Update Brush
+  const handleResetClick = () => {
+    if (brushRef?.current) {
       const updater: UpdateBrush = prevBrush => {
-        const start = { x: brushDateScale(getDate(stock[stock.length - 8])) };
-        const end = { x: brushDateScale(getDate(stock[stock.length - 1])) };
-        const newExtent = brushRef.current!.getExtent(start, end);
+        const newExtent = brushRef.current!.getExtent(
+          initialBrushPosition.start,
+          initialBrushPosition.end,
+        );
 
         const newState: BaseBrushState = {
           ...prevBrush,
@@ -199,8 +196,8 @@ function BrushChart({
           />
         </AreaChart>
       </svg>
-      <button onClick={handleResetClick}>Reset</button>&nbsp;
-      <button onClick={handleLastWeekClick}>1 Week</button>
+      <button onClick={handleClearClick}>Clear</button>&nbsp;
+      <button onClick={handleResetClick}>Reset</button>
     </div>
   );
 }

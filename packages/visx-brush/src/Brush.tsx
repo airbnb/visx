@@ -56,7 +56,7 @@ export type BrushProps = {
   resetOnEnd?: boolean;
   /** Size of Brush handles, applies to all `resizeTriggerAreas`. */
   handleSize: number;
-  /** Reference to the BaseBrush component */
+  /** Reference to the BaseBrush component. */
   innerRef?: React.MutableRefObject<BaseBrush | null>;
 };
 
