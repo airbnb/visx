@@ -56,6 +56,8 @@ export type BrushProps = {
   resetOnEnd?: boolean;
   /** Size of Brush handles, applies to all `resizeTriggerAreas`. */
   handleSize: number;
+  /** Reference to the BaseBrush component. */
+  innerRef?: React.MutableRefObject<BaseBrush | null>;
 };
 
 class Brush extends Component<BrushProps> {
@@ -160,6 +162,7 @@ class Brush extends Component<BrushProps> {
       margin,
       brushDirection,
       initialBrushPosition,
+      innerRef,
       resizeTriggerAreas,
       brushRegion,
       yAxisOrientation,
@@ -216,20 +219,21 @@ class Brush extends Component<BrushProps> {
         height={brushRegionHeight}
         left={left}
         top={top}
+        brushDirection={brushDirection}
+        disableDraggingSelection={disableDraggingSelection}
+        handleSize={handleSize}
         inheritedMargin={margin}
         initialBrushPosition={initialBrushPosition}
-        onChange={this.handleChange}
+        ref={innerRef}
+        resetOnEnd={resetOnEnd}
+        resizeTriggerAreas={resizeTriggerAreas}
+        selectedBoxStyle={selectedBoxStyle}
         onBrushEnd={this.handleBrushEnd}
         onBrushStart={this.handleBrushStart}
-        handleSize={handleSize}
-        resizeTriggerAreas={resizeTriggerAreas}
-        brushDirection={brushDirection}
-        selectedBoxStyle={selectedBoxStyle}
-        disableDraggingSelection={disableDraggingSelection}
-        resetOnEnd={resetOnEnd}
+        onChange={this.handleChange}
+        onClick={onClick}
         onMouseLeave={onMouseLeave}
         onMouseMove={onMouseMove}
-        onClick={onClick}
       />
     );
   }

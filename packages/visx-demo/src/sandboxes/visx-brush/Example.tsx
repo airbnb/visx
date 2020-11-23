@@ -1,8 +1,9 @@
-import React, { useState, useMemo } from 'react';
+import React, { useRef, useState, useMemo } from 'react';
 import { scaleTime, scaleLinear } from '@visx/scale';
 import appleStock, { AppleStock } from '@visx/mock-data/lib/mocks/appleStock';
 import { Brush } from '@visx/brush';
 import { Bounds } from '@visx/brush/lib/types';
+import BaseBrush, { BaseBrushState, UpdateBrush } from '@visx/brush/lib/BaseBrush';
 import { PatternLines } from '@visx/pattern';
 import { LinearGradient } from '@visx/gradient';
 import { max, extent } from 'd3-array';
@@ -45,6 +46,7 @@ function BrushChart({
     right: 20,
   },
 }: BrushProps) {
+  const brushRef = useRef<BaseBrush | null>(null);
   const [filteredStock, setFilteredStock] = useState(stock);
 
   const onBrushChange = (domain: Bounds | null) => {
@@ -113,6 +115,35 @@ function BrushChart({
     [brushDateScale],
   );
 
+  // event handlers
+  const handleClearClick = () => {
+    if (brushRef?.current) {
+      setFilteredStock(stock);
+      brushRef.current.reset();
+    }
+  };
+
+  const handleResetClick = () => {
+    if (brushRef?.current) {
+      const updater: UpdateBrush = prevBrush => {
+        const newExtent = brushRef.current!.getExtent(
+          initialBrushPosition.start,
+          initialBrushPosition.end,
+        );
+
+        const newState: BaseBrushState = {
+          ...prevBrush,
+          start: { y: newExtent.y0, x: newExtent.x0 },
+          end: { y: newExtent.y1, x: newExtent.x1 },
+          extent: newExtent,
+        };
+
+        return newState;
+      };
+      brushRef.current.updateBrush(updater);
+    }
+  };
+
   return (
     <div>
       <svg width={width} height={height}>
@@ -155,6 +186,7 @@ function BrushChart({
             height={yBrushMax}
             margin={brushMargin}
             handleSize={8}
+            innerRef={brushRef}
             resizeTriggerAreas={['left', 'right']}
             brushDirection="horizontal"
             initialBrushPosition={initialBrushPosition}
@@ -164,6 +196,8 @@ function BrushChart({
           />
         </AreaChart>
       </svg>
+      <button onClick={handleClearClick}>Clear</button>&nbsp;
+      <button onClick={handleResetClick}>Reset</button>
     </div>
   );
 }
