@@ -22,6 +22,8 @@ export default function Example({ width, height, compact = false }: AnnotationPr
         approxTooltipHeight,
         connectorType,
         data,
+        editLabelPosition,
+        editSubjectPosition,
         getDate,
         getStockValue,
         horizontalAnchor,
@@ -51,6 +53,8 @@ export default function Example({ width, height, compact = false }: AnnotationPr
             y={annotationPosition.y}
             dx={annotationPosition.dx}
             dy={annotationPosition.dy}
+            canEditLabel={editLabelPosition}
+            canEditSubject={editSubjectPosition}
             onDragEnd={({ event, ...nextPosition }) => {
               // snap Annotation to the nearest data point
               const nearestDatum = findNearestDatum({
