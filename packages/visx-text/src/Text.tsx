@@ -1,20 +1,20 @@
-import React from 'react';
-import reduceCSSCalc from 'reduce-css-calc';
-import getStringWidth from './util/getStringWidth';
-import uniqueId from 'lodash/uniqueId';
+import React from "react";
+import reduceCSSCalc from "reduce-css-calc";
+import getStringWidth from "./util/getStringWidth";
+import uniqueId from "lodash/uniqueId";
 
-const SVG_STYLE = { overflow: 'visible' };
+const SVG_STYLE = { overflow: "visible" };
 
 function isNumber(val: unknown): val is number {
-  return typeof val === 'number';
+  return typeof val === "number";
 }
 
 function isValidXOrY(xOrY: string | number | undefined) {
   return (
     // number that is not NaN or Infinity
-    (typeof xOrY === 'number' && Number.isFinite(xOrY)) ||
+    (typeof xOrY === "number" && Number.isFinite(xOrY)) ||
     // for percentage
-    typeof xOrY === 'string'
+    typeof xOrY === "string"
   );
 }
 
@@ -39,9 +39,9 @@ type OwnProps = {
   /** Rotational angle of the text. */
   angle?: number;
   /** Horizontal text anchor. */
-  textAnchor?: 'start' | 'middle' | 'end' | 'inherit';
+  textAnchor?: "start" | "middle" | "end" | "inherit";
   /** Vertical text anchor. */
-  verticalAnchor?: 'start' | 'middle' | 'end';
+  verticalAnchor?: "start" | "middle" | "end";
   /** Styles to be applied to the text (and used in computation of its size). */
   style?: React.CSSProperties;
   /** Ref passed to the Text SVG element. */
@@ -55,9 +55,9 @@ type OwnProps = {
   /** dy offset of the text. */
   dy?: string | number;
   /** Desired "line height" of the text, implemented as y offsets. */
-  lineHeight?: SVGTSpanProps['dy'];
+  lineHeight?: SVGTSpanProps["dy"];
   /** Cap height of the text. */
-  capHeight?: SVGTSpanProps['capHeight'];
+  capHeight?: SVGTSpanProps["capHeight"];
   /** Font size of text. */
   fontSize?: string | number;
   /** Font family of text. */
@@ -85,25 +85,27 @@ class Text extends React.Component<TextProps, TextState> {
     y: 0,
     dx: 0,
     dy: 0,
-    lineHeight: '1em',
-    capHeight: '0.71em', // Magic number from d3
+    lineHeight: "1em",
+    capHeight: "0.71em", // Magic number from d3
     scaleToFit: false,
-    textAnchor: 'start',
-    verticalAnchor: 'end', // default SVG behavior
-  };
-
-  state: TextState = {
-    wordsByLines: [],
-    textPathId: ''
+    textAnchor: "start",
+    verticalAnchor: "end", // default SVG behavior
   };
 
   private wordsWithWidth: WordWithWidth[] = [];
-
   private spaceWidth: number = 0;
+
+  constructor(props: TextProps) {
+    super(props);
+
+    this.state = {
+      wordsByLines: [],
+      textPathId: props.textPath ? uniqueId("text-path-") : "",
+    };
+  }
 
   componentDidMount() {
     this.updateWordsByLines(this.props, true);
-    this.updateTextPathId(this.props);
   }
 
   componentDidUpdate(prevProps: TextProps, prevState: TextState) {
@@ -113,14 +115,9 @@ class Text extends React.Component<TextProps, TextState> {
     }
 
     const needCalculate =
-      prevProps.children !== this.props.children || prevProps.style !== this.props.style;
+      prevProps.children !== this.props.children ||
+      prevProps.style !== this.props.style;
     this.updateWordsByLines(this.props, needCalculate);
-  }
-
-  updateTextPathId(props: TextProps) {
-    if(props.textPath) {
-      this.setState({ textPathId: uniqueId('text-path-') })
-    }
   }
 
   updateWordsByLines(props: TextProps, needCalculate: boolean = false) {
@@ -128,18 +125,20 @@ class Text extends React.Component<TextProps, TextState> {
     if (props.width || props.scaleToFit) {
       if (needCalculate) {
         const words: string[] =
-          props.children == null ? [] : props.children.toString().split(/(?:(?!\u00A0+)\s+)/);
-        this.wordsWithWidth = words.map(word => ({
+          props.children == null
+            ? []
+            : props.children.toString().split(/(?:(?!\u00A0+)\s+)/);
+        this.wordsWithWidth = words.map((word) => ({
           word,
           width: getStringWidth(word, props.style) || 0,
         }));
-        this.spaceWidth = getStringWidth('\u00A0', props.style) || 0;
+        this.spaceWidth = getStringWidth("\u00A0", props.style) || 0;
       }
 
       const wordsByLines = this.calculateWordsByLines(
         this.wordsWithWidth,
         this.spaceWidth,
-        props.width,
+        props.width
       );
       this.setState({ wordsByLines });
     } else {
@@ -149,33 +148,42 @@ class Text extends React.Component<TextProps, TextState> {
 
   updateWordsWithoutCalculate(props: TextProps) {
     const words =
-      props.children == null ? [] : props.children.toString().split(/(?:(?!\u00A0+)\s+)/);
+      props.children == null
+        ? []
+        : props.children.toString().split(/(?:(?!\u00A0+)\s+)/);
     this.setState({ wordsByLines: [{ words }] });
   }
 
-  calculateWordsByLines(wordsWithWidth: WordWithWidth[], spaceWidth: number, lineWidth?: number) {
+  calculateWordsByLines(
+    wordsWithWidth: WordWithWidth[],
+    spaceWidth: number,
+    lineWidth?: number
+  ) {
     const { scaleToFit } = this.props;
-    return wordsWithWidth.reduce((result: WordsWithWidth[], { word, width }) => {
-      const currentLine = result[result.length - 1];
+    return wordsWithWidth.reduce(
+      (result: WordsWithWidth[], { word, width }) => {
+        const currentLine = result[result.length - 1];
 
-      if (
-        currentLine &&
-        (lineWidth == null ||
-          scaleToFit ||
-          (currentLine.width || 0) + width + spaceWidth < lineWidth)
-      ) {
-        // Word can be added to an existing line
-        currentLine.words.push(word);
-        currentLine.width = currentLine.width || 0;
-        currentLine.width += width + spaceWidth;
-      } else {
-        // Add first word to line or word is too long to scaleToFit on existing line
-        const newLine = { words: [word], width };
-        result.push(newLine);
-      }
+        if (
+          currentLine &&
+          (lineWidth == null ||
+            scaleToFit ||
+            (currentLine.width || 0) + width + spaceWidth < lineWidth)
+        ) {
+          // Word can be added to an existing line
+          currentLine.words.push(word);
+          currentLine.width = currentLine.width || 0;
+          currentLine.width += width + spaceWidth;
+        } else {
+          // Add first word to line or word is too long to scaleToFit on existing line
+          const newLine = { words: [word], width };
+          result.push(newLine);
+        }
 
-      return result;
-    }, []);
+        return result;
+      },
+      []
+    );
   }
 
   render() {
@@ -199,22 +207,39 @@ class Text extends React.Component<TextProps, TextState> {
 
     // Cannot render <text> if x or y is invalid
     if (!isValidXOrY(x) || !isValidXOrY(y)) {
-      return <svg ref={innerRef} x={dx} y={dy} fontSize={textProps.fontSize} style={SVG_STYLE} />;
+      return (
+        <svg
+          ref={innerRef}
+          x={dx}
+          y={dy}
+          fontSize={textProps.fontSize}
+          style={SVG_STYLE}
+        />
+      );
     }
 
     let startDy: string | undefined;
-    if (verticalAnchor === 'start') {
+    if (verticalAnchor === "start") {
       startDy = reduceCSSCalc(`calc(${capHeight})`);
-    } else if (verticalAnchor === 'middle') {
+    } else if (verticalAnchor === "middle") {
       startDy = reduceCSSCalc(
-        `calc(${(wordsByLines.length - 1) / 2} * -${lineHeight} + (${capHeight} / 2))`,
+        `calc(${(wordsByLines.length - 1) /
+          2} * -${lineHeight} + (${capHeight} / 2))`
       );
     } else {
-      startDy = reduceCSSCalc(`calc(${wordsByLines.length - 1} * -${lineHeight})`);
+      startDy = reduceCSSCalc(
+        `calc(${wordsByLines.length - 1} * -${lineHeight})`
+      );
     }
 
     const transforms = [];
-    if (isNumber(x) && isNumber(y) && isNumber(width) && scaleToFit && wordsByLines.length > 0) {
+    if (
+      isNumber(x) &&
+      isNumber(y) &&
+      isNumber(width) &&
+      scaleToFit &&
+      wordsByLines.length > 0
+    ) {
       const lineWidth = wordsByLines[0].width || 1;
       const sx = width / lineWidth;
       const sy = sx;
@@ -226,20 +251,28 @@ class Text extends React.Component<TextProps, TextState> {
       transforms.push(`rotate(${angle}, ${x}, ${y})`);
     }
 
-    const transform = transforms.length > 0 ? transforms.join(' ') : undefined;
+    const transform = transforms.length > 0 ? transforms.join(" ") : undefined;
     const text = wordsByLines.map((line, index) => (
-      <tspan key={index} x={x} dy={(index === 0 ? startDy : lineHeight)}>
-        {line.words.join(' ')}
+      <tspan key={index} x={x} dy={index === 0 ? startDy : lineHeight}>
+        {line.words.join(" ")}
       </tspan>
     ));
 
     return (
-      <svg ref={innerRef} x={dx} y={dy} fontSize={textProps.fontSize} style={SVG_STYLE}>
+      <svg
+        ref={innerRef}
+        x={dx}
+        y={dy}
+        fontSize={textProps.fontSize}
+        style={SVG_STYLE}
+      >
         {textPath && <path id={textPathId} d={textPath} fill="none" />}
         <text transform={transform} {...textProps} textAnchor={textAnchor}>
-          {textPath ? (<textPath href={`#${textPathId}`}>
-            {text}
-          </textPath>) : text}
+          {textPath ? (
+            <textPath href={`#${textPathId}`}>{text}</textPath>
+          ) : (
+            text
+          )}
         </text>
       </svg>
     );
