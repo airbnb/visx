@@ -65,6 +65,7 @@ export default function AnimatedBars<XScale extends AxisScale, YScale extends Ax
         item == null || key == null ? null : (
           <animated.rect
             key={key}
+            className="visx-bar"
             x={x}
             y={y}
             width={width}

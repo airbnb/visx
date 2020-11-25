@@ -13,7 +13,7 @@ export default function Bars({
     // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
       {bars.map(({ key, ...barProps }) => (
-        <rect key={key} {...barProps} {...rectProps} />
+        <rect className="visx-bar" key={key} {...barProps} {...rectProps} />
       ))}
     </>
   );
