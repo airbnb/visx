@@ -56,6 +56,8 @@ type ProvidedProps = {
   data: CityTemperature[];
   editAnnotationLabelPosition: boolean;
   numTicks: number;
+  setAnnotationDataIndex: (index: number) => void;
+  setAnnotationDataKey: (key: keyof Accessors | null) => void;
   setAnnotationLabelPosition: (position: { dx: number; dy: number }) => void;
   renderAreaSeries: boolean;
   renderBarGroup: boolean;
@@ -504,7 +506,7 @@ export default function ExampleControls({ children }: ControlsProps) {
         </div>
         {/** annotation */}
         <div>
-          <strong>annotation (click chart to update)</strong>
+          <strong>annotation</strong> (click chart to update)
           <label>
             <input
               type="radio"
