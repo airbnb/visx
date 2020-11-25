@@ -9,27 +9,16 @@ describe('<Label />', () => {
     expect(Label).toBeDefined();
   });
   it('should render title Text', () => {
-    expect(
-      shallow(<Label title="title test" resizeObserverPolyfill={ResizeObserver} />)
-        .find(Text)
-        .dive()
-        .text(),
-    ).toBe('title test');
+    shallow(<Label title="title test" resizeObserverPolyfill={ResizeObserver} />)
+      .find('visx-annotationlabel').forEach(item => {
+        expect(item.find(Text).prop('children')).toBe('title test');
+      });
   });
   it('should render subtitle Text', () => {
-    expect(
-      shallow(
-        <Label
-          title="title test"
-          subtitle="subtitle test"
-          resizeObserverPolyfill={ResizeObserver}
-        />,
-      )
-        .find(Text)
-        .at(1)
-        .dive()
-        .text(),
-    ).toBe('subtitle test');
+    shallow(<Label title="title test" subtitle="subtitle test" resizeObserverPolyfill={ResizeObserver} />)
+      .find('visx-annotationlabel').forEach(item => {
+        expect(item.find(Text).at(1).prop('children')).toBe('subtitle test');
+      });
   });
   it('should render a background', () => {
     expect(
