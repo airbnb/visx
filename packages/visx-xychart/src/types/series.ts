@@ -74,7 +74,7 @@ export type SeriesProps<
     key,
     svgPoint,
   }: PointerEventParams<Datum>) => void;
-  /** Whether the Series reacts to PointerEvents. */
+  /** Whether the Series emits and subscribes to PointerEvents (including Tooltip triggering). */
   pointerEvents?: boolean;
 };
 

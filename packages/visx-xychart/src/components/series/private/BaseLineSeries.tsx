@@ -5,10 +5,8 @@ import DataContext from '../../../context/DataContext';
 import { PointerEventParams, SeriesProps, TooltipContextType } from '../../../types';
 import withRegisteredData, { WithRegisteredDataProps } from '../../../enhancers/withRegisteredData';
 import getScaledValueFactory from '../../../utils/getScaledValueFactory';
-import useEventEmitter, { HandlerParams } from '../../../hooks/useEventEmitter';
-import findNearestDatumX from '../../../utils/findNearestDatumX';
+import useEventEmitter from '../../../hooks/useEventEmitter';
 import TooltipContext from '../../../context/TooltipContext';
-import findNearestDatumY from '../../../utils/findNearestDatumY';
 import isValidNumber from '../../../typeguards/isValidNumber';
 import { LINESERIES_EVENT_SOURCE, XYCHART_EVENT_SOURCE } from '../../../constants';
 import usePointerEventEmitters from '../../../hooks/usePointerEventEmitters';
@@ -73,9 +71,9 @@ function BaseLineSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
   );
   const pointerEventEmitters = usePointerEventEmitters({
     source: LINESERIES_EVENT_SOURCE,
-    onPointerMove: !!onPointerMoveProps,
-    onPointerOut: !!onPointerOutProps,
-    onPointerUp: !!onPointerUpProps,
+    onPointerMove: !!onPointerMoveProps && pointerEvents,
+    onPointerOut: !!onPointerOutProps && pointerEvents,
+    onPointerUp: !!onPointerUpProps && pointerEvents,
   });
   const pointerEventHandlers = usePointerEventHandlers<Datum>({
     dataKey,

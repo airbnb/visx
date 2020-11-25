@@ -79,9 +79,9 @@ function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
   );
   const pointerEventEmitters = usePointerEventEmitters({
     source: AREASERIES_EVENT_SOURCE,
-    onPointerMove: !!onPointerMoveProps,
-    onPointerOut: !!onPointerOutProps,
-    onPointerUp: !!onPointerUpProps,
+    onPointerMove: !!onPointerMoveProps && pointerEvents,
+    onPointerOut: !!onPointerOutProps && pointerEvents,
+    onPointerUp: !!onPointerUpProps && pointerEvents,
   });
   const pointerEventHandlers = usePointerEventHandlers<Datum>({
     dataKey,

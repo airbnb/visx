@@ -112,9 +112,9 @@ function BaseBarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum
   );
   const pointerEventEmitters = usePointerEventEmitters({
     source: BARSERIES_EVENT_SOURCE,
-    onPointerMove: !!onPointerMoveProps,
-    onPointerOut: !!onPointerOutProps,
-    onPointerUp: !!onPointerUpProps,
+    onPointerMove: !!onPointerMoveProps && pointerEvents,
+    onPointerOut: !!onPointerOutProps && pointerEvents,
+    onPointerUp: !!onPointerUpProps && pointerEvents,
   });
   const pointerEventHandlers = usePointerEventHandlers({
     dataKey,

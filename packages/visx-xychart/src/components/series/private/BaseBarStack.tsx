@@ -158,9 +158,9 @@ function BaseBarStack<
   );
   const pointerEventEmitters = usePointerEventEmitters({
     source: BARSTACK_EVENT_SOURCE,
-    onPointerMove: !!onPointerMoveProps,
-    onPointerOut: !!onPointerOutProps,
-    onPointerUp: !!onPointerUpProps,
+    onPointerMove: !!onPointerMoveProps && pointerEvents,
+    onPointerOut: !!onPointerOutProps && pointerEvents,
+    onPointerUp: !!onPointerUpProps && pointerEvents,
   });
   const pointerEventHandlers = usePointerEventHandlers({
     dataKey: dataKeys,

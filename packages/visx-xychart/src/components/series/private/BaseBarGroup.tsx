@@ -122,9 +122,9 @@ export default function BaseBarGroup<
   );
   const pointerEventEmitters = usePointerEventEmitters({
     source: BARGROUP_EVENT_SOURCE,
-    onPointerMove: !!onPointerMoveProps,
-    onPointerOut: !!onPointerOutProps,
-    onPointerUp: !!onPointerUpProps,
+    onPointerMove: !!onPointerMoveProps && pointerEvents,
+    onPointerOut: !!onPointerOutProps && pointerEvents,
+    onPointerUp: !!onPointerUpProps && pointerEvents,
   });
   const pointerEventHandlers = usePointerEventHandlers({
     dataKey: dataKeys,

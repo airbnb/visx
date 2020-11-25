@@ -69,9 +69,9 @@ function BaseGlyphSeries<XScale extends AxisScale, YScale extends AxisScale, Dat
   );
   const pointerEventEmitters = usePointerEventEmitters({
     source: GLYPHSERIES_EVENT_SOURCE,
-    onPointerMove: !!onPointerMoveProps,
-    onPointerOut: !!onPointerOutProps,
-    onPointerUp: !!onPointerUpProps,
+    onPointerMove: !!onPointerMoveProps && pointerEvents,
+    onPointerOut: !!onPointerOutProps && pointerEvents,
+    onPointerUp: !!onPointerUpProps && pointerEvents,
   });
   const pointerEventHandlers = usePointerEventHandlers({
     dataKey,
