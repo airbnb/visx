@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/airbnb/visx#readme",
   "dependencies": {
+    "@huse/previous-value": "^1.0.3",
     "@types/classnames": "^2.2.9",
     "@types/lodash": "^4.14.160",
     "@types/react": "*",
@@ -41,5 +42,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "devDependencies": {
+    "@testing-library/react-hooks": "^3.4.2"
   }
 }
