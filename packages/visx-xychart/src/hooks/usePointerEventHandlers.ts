@@ -70,7 +70,7 @@ export default function usePointerEventHandlers<Datum extends object>({
             if (nearestDatum) {
               pointerParamsByKey[key] = { key, svgPoint, event, ...nearestDatum };
 
-              // compute nearest Datum if not emitting events for all keys\
+              // compute nearest Datum if not emitting events for all keys
               if (dataKey === POINTER_EVENTS_NEAREST) {
                 const distance = Math.sqrt(
                   (nearestDatum.distanceX ?? Infinity ** 2) +
