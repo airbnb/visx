@@ -69,7 +69,7 @@ export type XYChartProps<
     svgPoint,
   }: PointerEventParams<Datum>) => void;
   /** Whether to invoke PointerEvent handlers for all dataKeys, or the nearest dataKey. */
-  pointerEvents?: 'all' | 'nearest';
+  pointerEventsDataKey?: 'all' | 'nearest';
 };
 
 const eventSourceSubscriptions = [XYCHART_EVENT_SOURCE];
@@ -88,7 +88,7 @@ export default function XYChart<
     onPointerMove,
     onPointerOut,
     onPointerUp,
-    pointerEvents = 'nearest',
+    pointerEventsDataKey = 'nearest',
     theme,
     width,
     xScale,
@@ -107,7 +107,7 @@ export default function XYChart<
 
   const pointerEventEmitters = usePointerEventEmitters({ source: XYCHART_EVENT_SOURCE });
   usePointerEventHandlers({
-    dataKey: pointerEvents === 'nearest' ? POINTER_EVENTS_NEAREST : POINTER_EVENTS_ALL,
+    dataKey: pointerEventsDataKey === 'nearest' ? POINTER_EVENTS_NEAREST : POINTER_EVENTS_ALL,
     onPointerMove,
     onPointerOut,
     onPointerUp,
