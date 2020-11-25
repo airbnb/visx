@@ -24,6 +24,7 @@ export default function AnimatedPath({
   const tweened = useSpring({ stroke, fill });
   return (
     <animated.path
+      className="visx-path"
       d={t.interpolate(interpolator)}
       stroke={tweened.stroke}
       fill={tweened.fill}
