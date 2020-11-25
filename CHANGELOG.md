@@ -1,4 +1,5 @@
 # Changelog
+- [v1.2.0](#v120)
 - [v1.1.0](#v110)
 - [v1.0.0](#v100)
 - [v0.0.199](#v00199)
@@ -6,10 +7,10 @@
 - [v0.0.197](#v00197)
 - [v0.0.196](#v00196)
 - [v0.0.195](#v00195)
-- [v0.0.194](#v00194)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v00194">v0.0.194</a></li>
   <li><a href="#v00193">v0.0.193</a></li>
   <li><a href="#v00192">v0.0.192</a></li>
   <li><a href="#v00191">v0.0.191</a></li>
@@ -91,6 +92,63 @@
 </details>
 
 ------
+# v1.2.0
+
+#### :rocket:  Enhancements
+
+- [brush] expose updateBrush method via innerRef [#934](https://github.com/airbnb/visx/pull/934), closes [#577](https://github.com/airbnb/visx/pull/577)
+- [annotation] add new Annotation components (Annotation, EditableAnnotation, Label, CircleSubject, LineSubject) [#907](https://github.com/airbnb/visx/pull/907)
+- [drag] add useDrag hook [#902](https://github.com/airbnb/visx/pull/902)
+- [drag] allow x,y,dx,dy overrides in useDrag + Drag [#906](https://github.com/airbnb/visx/pull/906), closes [#905](https://github.com/airbnb/visx/pull/905)
+- [annotation] add canEditSubject, canEditLabel to EditableAnnotation [#919](https://github.com/airbnb/visx/pull/919)
+- [xychart (unpublished)] make DataProvider optional [#913](https://github.com/airbnb/visx/pull/913)
+- [xychart (unpublished)] expose curve types in BaseAreaSeries, BaseLineSeries [#899](https://github.com/airbnb/visx/pull/899)
+- [xychart (unpublished)] handle rendering + tweening missing values [#898](https://github.com/airbnb/visx/pull/898)
+- [xychart (unpublished)] add (Animated)GlyphSeries [#885](https://github.com/airbnb/visx/pull/885)
+- [xychart (unpublished)] add AreaSeries + AnimatedAreaSeries [#878](https://github.com/airbnb/visx/pull/878)
+- [xychart (unpublished)] add AnimatedLineSeries [#874](https://github.com/airbnb/visx/pull/874)
+- [xychart (unpublished)] add Animated(BarSeries, BarStack, BarGroup) [#873](https://github.com/airbnb/visx/pull/873)
+
+#### :bug: Bug Fix
+
+- [shape] conditionally render Arc without data [#937](https://github.com/airbnb/visx/pull/937)
+
+### :memo: Documentation
+
+- [demo/annotation] add annotation demo [#909](https://github.com/airbnb/visx/pull/909)
+- [demo] visx rebrand, move to github pages [#890](https://github.com/airbnb/visx/pull/890), fixes [#850](https://github.com/airbnb/visx/pull/850) [#861](https://github.com/airbnb/visx/pull/861)
+- [in the wild] add tokenizedbtc [#931](https://github.com/airbnb/visx/pull/931)
+
+### :house:  Internal
+
+- [deps] next@9.5.4 [#915](https://github.com/airbnb/visx/pull/915), [#916](https://github.com/airbnb/visx/pull/916)
+- [ci] remove .travis.yml [#891](https://github.com/airbnb/visx/pull/891)
+- [xychart (unpublished)] add Annotation tests [#912](https://github.com/airbnb/visx/pull/912)
+- [xychart (unpublished)] add missing data tests [#900](https://github.com/airbnb/visx/pull/900)
+
+#### :trophy: Contributors
+
+- [peterwiebe](https://github.com/peterwiebe)
+- [sakulstra](https://github.com/sakulstra)
+- [hshoff](https://github.com/hshoff)
+- [williaster](https://github.com/williaster)
+
+```
+Changes:
+ - @visx/annotation: 1.1.0 => 1.2.0
+ - @visx/axis: 1.1.0 => 1.2.0
+ - @visx/brush: 1.1.0 => 1.2.0
+ - @visx/demo: 1.1.0 => 1.2.0
+ - @visx/drag: 1.0.0 => 1.2.0
+ - @visx/grid: 1.1.0 => 1.2.0
+ - @visx/marker: 1.1.0 => 1.2.0
+ - @visx/react-spring: 1.1.0 => 1.2.0
+ - @visx/shape: 1.1.0 => 1.2.0
+ - @visx/threshold: 1.1.0 => 1.2.0
+ - @visx/visx: 1.1.0 => 1.2.0
+ - @visx/xychart: 1.1.0 => 1.2.0 (private)
+```
+
 # v1.1.0
 
 #### :rocket:  Enhancements
