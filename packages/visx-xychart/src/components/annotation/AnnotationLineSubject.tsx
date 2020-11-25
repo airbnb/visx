@@ -14,7 +14,7 @@ export default function AnnotationLineSubject({ min, max, ...props }: Annotation
   return (
     <BaseLineSubject
       stroke={theme?.axisStyles.x.bottom.axisLine.stroke}
-      min={min ?? (props.orientation === 'horizontal' ? margin?.left : margin?.top)}
+      min={min ?? (props.orientation === 'horizontal' ? margin?.left : margin?.top) ?? 0}
       max={
         max ??
         (props.orientation === 'horizontal'

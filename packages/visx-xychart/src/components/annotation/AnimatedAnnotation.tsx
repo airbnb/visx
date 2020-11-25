@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import { useSpring, animated, interpolate } from 'react-spring';
 import {
   Annotation as VisxAnnotation,
