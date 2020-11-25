@@ -163,7 +163,7 @@ describe('<Text />', () => {
     expect(getVerticalOffset(wrapper)).toBe('0.71em');
   });
   it('Should render textPath when textPath is passed', () => {
-    const wrapper = mount<Text>(<Text textPath='M10 10'>Text path test</Text>);
+    const wrapper = mount<Text>(<Text textPath="M10 10">Text path test</Text>);
 
     const textPath = wrapper.find('textPath');
     const path = wrapper.find('path');
