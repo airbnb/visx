@@ -118,7 +118,7 @@ export function useText(props: TextProps): [
     transforms.push(`rotate(${angle}, ${x}, ${y})`);
   }
 
-  const transform = transforms.length > 0 ? transforms.join(' ') : undefined;
+  const transform = transforms.length > 0 ? transforms.join(' ') : '';
 
   return [wordsByLines, startDy, transform];
 }
