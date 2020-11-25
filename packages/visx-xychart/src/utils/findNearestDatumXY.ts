@@ -1,6 +1,6 @@
 import { AxisScale } from '@visx/axis';
 import { voronoi } from '@visx/voronoi';
-import { NearestDatumArgs } from '../types';
+import { NearestDatumArgs, NearestDatumReturnType } from '../types';
 
 /* finds the datum nearest to svgMouseX/Y using a voronoi */
 export default function findNearestDatumXY<
@@ -16,7 +16,7 @@ export default function findNearestDatumXY<
   yAccessor,
   point,
   data,
-}: NearestDatumArgs<XScale, YScale, Datum>) {
+}: NearestDatumArgs<XScale, YScale, Datum>): NearestDatumReturnType<Datum> {
   if (!point) return null;
 
   const scaledX = (d: Datum) => Number(xScale(xAccessor(d)));

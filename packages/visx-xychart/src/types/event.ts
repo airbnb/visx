@@ -19,3 +19,11 @@ export type NearestDatumArgs<
   xScale: XScale;
   yScale: YScale;
 };
+
+/** Return type for nearestDatum* functions. */
+export type NearestDatumReturnType<Datum extends object> = {
+  datum: Datum;
+  index: number;
+  distanceX: number;
+  distanceY: number;
+} | null;
