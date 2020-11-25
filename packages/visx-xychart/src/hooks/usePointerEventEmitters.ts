@@ -23,15 +23,15 @@ export default function usePointerEventEmitters({
 
   const emitPointerMove = useCallback(
     (event: React.PointerEvent) => emit?.('pointermove', event, source),
-    [emit],
+    [emit, source],
   );
   const emitPointerOut = useCallback(
     (event: React.PointerEvent) => emit?.('pointerout', event, source),
-    [emit],
+    [emit, source],
   );
   const emitPointerUp = useCallback(
     (event: React.PointerEvent) => emit?.('pointerup', event, source),
-    [emit],
+    [emit, source],
   );
 
   return {

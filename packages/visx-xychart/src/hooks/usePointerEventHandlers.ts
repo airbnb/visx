@@ -3,13 +3,13 @@ import DataContext from '../context/DataContext';
 import { PointerEventParams } from '../types';
 import findNearestDatumX from '../utils/findNearestDatumX';
 import findNearestDatumY from '../utils/findNearestDatumY';
-import { HandlerParams } from './useEventEmitter';
+import useEventEmitter, { HandlerParams } from './useEventEmitter';
 
-export const POINTER_EVENTS_ALL = '__all';
-export const POINTER_EVENTS_NEAREST = '__nearest';
+export const POINTER_EVENTS_ALL = 'allDataKeys';
+export const POINTER_EVENTS_NEAREST = 'nearestDataKeys';
 
 type PointerEventHandlerParams<Datum extends object> = {
-  /** Controls whether callbacks are invoked for a given registry dataKey, the nearest dataKey, or all datakeys. */
+  /** Controls whether callbacks are invoked for one or more registered dataKeys, the nearest dataKey, or all dataKeys. */
   dataKey: string | string[] | typeof POINTER_EVENTS_ALL | typeof POINTER_EVENTS_NEAREST;
   /** Callback invoked onPointerMove for one or more series based on dataKey. */
   onPointerMove?: (params: PointerEventParams<Datum>) => void;
@@ -17,6 +17,8 @@ type PointerEventHandlerParams<Datum extends object> = {
   onPointerOut?: (event: PointerEvent) => void;
   /** Callback invoked onPointerUp for one or more series based on dataKey. */
   onPointerUp?: (params: PointerEventParams<Datum>) => void;
+  /** Valid event sources for which to invoke handlers. */
+  sources?: string[];
 };
 
 /**
@@ -28,13 +30,13 @@ export default function usePointerEventHandlers<Datum extends object>({
   onPointerMove,
   onPointerOut,
   onPointerUp,
+  sources,
 }: PointerEventHandlerParams<Datum>) {
   const { width, height, horizontal, dataRegistry, xScale, yScale } = useContext(DataContext);
 
   const handlePointerMoveOrUp = useCallback(
     (params?: HandlerParams) => {
       const { svgPoint, event } = params || {};
-
       const pointerParamsByKey: { [dataKey: string]: PointerEventParams<Datum> } = {};
 
       // nearest Datum across all dataKeys, if relevant
@@ -45,13 +47,14 @@ export default function usePointerEventHandlers<Datum extends object>({
         const considerAllKeys =
           dataKey === POINTER_EVENTS_NEAREST || dataKey === POINTER_EVENTS_ALL;
 
-        // find nearestDatum for relevant dataKey(s)
-        (considerAllKeys
-          ? dataRegistry?.keys()
+        const dataKeys = considerAllKeys
+          ? dataRegistry?.keys() ?? []
           : Array.isArray(dataKey)
           ? dataKey
-          : [dataKey]
-        )?.forEach(key => {
+          : [dataKey];
+
+        // find nearestDatum for relevant dataKey(s)
+        dataKeys.forEach(key => {
           const entry = dataRegistry?.get(key);
           if (entry) {
             const nearestDatum = (horizontal ? findNearestDatumY : findNearestDatumX)({
@@ -99,7 +102,7 @@ export default function usePointerEventHandlers<Datum extends object>({
         });
       }
     },
-    [dataKey, xScale, yScale, width, height, horizontal, onPointerMove, onPointerOut, onPointerUp],
+    [dataKey, dataRegistry, xScale, yScale, width, height, horizontal, onPointerMove, onPointerUp],
   );
 
   const handlePointerOut = useCallback(
@@ -109,9 +112,7 @@ export default function usePointerEventHandlers<Datum extends object>({
     [onPointerOut],
   );
 
-  return {
-    onPointerMove: onPointerMove ? handlePointerMoveOrUp : undefined,
-    onPointerOut: onPointerOut ? handlePointerOut : undefined,
-    onPointerUp: onPointerUp ? handlePointerMoveOrUp : undefined,
-  };
+  useEventEmitter('pointermove', onPointerMove ? handlePointerMoveOrUp : undefined, sources);
+  useEventEmitter('pointerout', onPointerOut ? handlePointerOut : undefined, sources);
+  useEventEmitter('pointerup', onPointerUp ? handlePointerMoveOrUp : undefined, sources);
 }

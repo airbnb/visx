@@ -4,9 +4,9 @@ import { PositionScale, StackPathConfig } from '@visx/shape/lib/types';
 import { getFirstItem, getSecondItem } from '@visx/shape/lib/util/accessors';
 import stackOffset from '@visx/shape/lib/util/stackOffset';
 import stackOrder from '@visx/shape/lib/util/stackOrder';
-
 import { extent } from 'd3-array';
 import getBandwidth from '@visx/shape/lib/util/getBandwidth';
+
 import { BaseBarSeriesProps } from './BaseBarSeries';
 import DataContext from '../../../context/DataContext';
 import {
@@ -19,7 +19,6 @@ import {
   SeriesProps,
   TooltipContextType,
 } from '../../../types';
-import useEventEmitter from '../../../hooks/useEventEmitter';
 import isValidNumber from '../../../typeguards/isValidNumber';
 import isChildWithProps from '../../../typeguards/isChildWithProps';
 import combineBarBarStackData, { getStackValue } from '../../../utils/combineBarStackData';
@@ -43,10 +42,6 @@ export type BaseBarStackProps<
     SeriesProps<XScale, YScale, Datum>,
     'onPointerMove' | 'onPointerOut' | 'onPointerUp' | 'pointerEvents'
   >;
-
-// in the future, if BarGroup preserves pointer events from child BarSeries,
-// we could add e.g., `${BASEBARGROUP_EVENT_SOURCE}-${dataKey}` to this in render fn.
-const eventSourceSubscriptions = [XYCHART_EVENT_SOURCE, BARSTACK_EVENT_SOURCE];
 
 function BaseBarStack<
   XScale extends PositionScale,
@@ -162,15 +157,13 @@ function BaseBarStack<
     onPointerOut: !!onPointerOutProps && pointerEvents,
     onPointerUp: !!onPointerUpProps && pointerEvents,
   });
-  const pointerEventHandlers = usePointerEventHandlers({
+  usePointerEventHandlers({
     dataKey: dataKeys,
     onPointerMove: pointerEvents ? onPointerMove : undefined,
     onPointerOut: pointerEvents ? onPointerOut : undefined,
     onPointerUp: pointerEvents ? onPointerUpProps : undefined,
+    sources: [XYCHART_EVENT_SOURCE, `${BARSTACK_EVENT_SOURCE}-${dataKeys.join('-')}`],
   });
-  useEventEmitter('pointermove', pointerEventHandlers.onPointerMove, eventSourceSubscriptions);
-  useEventEmitter('pointerout', pointerEventHandlers.onPointerOut, eventSourceSubscriptions);
-  useEventEmitter('pointerup', pointerEventHandlers.onPointerUp, eventSourceSubscriptions);
 
   // if scales and data are not available in the registry, bail
   if (dataKeys.some(key => dataRegistry.get(key) == null) || !xScale || !yScale || !colorScale) {

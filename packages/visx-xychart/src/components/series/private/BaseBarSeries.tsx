@@ -11,7 +11,6 @@ import {
 import withRegisteredData, { WithRegisteredDataProps } from '../../../enhancers/withRegisteredData';
 import getScaledValueFactory from '../../../utils/getScaledValueFactory';
 import getScaleBandwidth from '../../../utils/getScaleBandwidth';
-import useEventEmitter from '../../../hooks/useEventEmitter';
 import getScaleBaseline from '../../../utils/getScaleBaseline';
 import isValidNumber from '../../../typeguards/isValidNumber';
 import { BARSERIES_EVENT_SOURCE, XYCHART_EVENT_SOURCE } from '../../../constants';
@@ -32,8 +31,6 @@ export type BaseBarSeriesProps<
    */
   barPadding?: number;
 };
-
-const eventSourceSubscriptions = [XYCHART_EVENT_SOURCE, BARSERIES_EVENT_SOURCE];
 
 // Fallback bandwidth estimate assumes no missing data values (divides chart space by # datum)
 const getFallbackBandwidth = (fullBarWidth: number, barPadding: number) =>
@@ -116,15 +113,13 @@ function BaseBarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum
     onPointerOut: !!onPointerOutProps && pointerEvents,
     onPointerUp: !!onPointerUpProps && pointerEvents,
   });
-  const pointerEventHandlers = usePointerEventHandlers({
+  usePointerEventHandlers({
     dataKey,
     onPointerMove: pointerEvents ? onPointerMove : undefined,
     onPointerOut: pointerEvents ? onPointerOut : undefined,
     onPointerUp: pointerEvents ? onPointerUpProps : undefined,
+    sources: [XYCHART_EVENT_SOURCE, `${BARSERIES_EVENT_SOURCE}-${dataKey}`],
   });
-  useEventEmitter('pointermove', pointerEventHandlers.onPointerMove, eventSourceSubscriptions);
-  useEventEmitter('pointerout', pointerEventHandlers.onPointerOut, eventSourceSubscriptions);
-  useEventEmitter('pointerup', pointerEventHandlers.onPointerUp, eventSourceSubscriptions);
 
   return (
     <g className="vx-bar-series">

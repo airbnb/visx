@@ -6,7 +6,6 @@ import DataContext from '../../../context/DataContext';
 import { PointerEventParams, SeriesProps, TooltipContextType } from '../../../types';
 import withRegisteredData, { WithRegisteredDataProps } from '../../../enhancers/withRegisteredData';
 import getScaledValueFactory from '../../../utils/getScaledValueFactory';
-import useEventEmitter from '../../../hooks/useEventEmitter';
 import getScaleBaseline from '../../../utils/getScaleBaseline';
 import isValidNumber from '../../../typeguards/isValidNumber';
 import usePointerEventEmitters from '../../../hooks/usePointerEventEmitters';
@@ -31,8 +30,6 @@ export type BaseAreaSeriesProps<
     React.SVGProps<SVGPathElement>,
     'x' | 'y' | 'x0' | 'x1' | 'y0' | 'y1' | 'ref' | 'pointerEvents'
   >;
-
-const eventSourceSubscriptions = [AREASERIES_EVENT_SOURCE, XYCHART_EVENT_SOURCE];
 
 function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datum extends object>({
   PathComponent = 'path',
@@ -83,15 +80,13 @@ function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
     onPointerOut: !!onPointerOutProps && pointerEvents,
     onPointerUp: !!onPointerUpProps && pointerEvents,
   });
-  const pointerEventHandlers = usePointerEventHandlers<Datum>({
+  usePointerEventHandlers({
     dataKey,
     onPointerMove: pointerEvents ? onPointerMove : undefined,
     onPointerOut: pointerEvents ? onPointerOut : undefined,
     onPointerUp: pointerEvents ? onPointerUpProps : undefined,
+    sources: [XYCHART_EVENT_SOURCE, `${AREASERIES_EVENT_SOURCE}-${dataKey}`],
   });
-  useEventEmitter('pointermove', pointerEventHandlers.onPointerMove, eventSourceSubscriptions);
-  useEventEmitter('pointerout', pointerEventHandlers.onPointerOut, eventSourceSubscriptions);
-  useEventEmitter('pointerup', pointerEventHandlers.onPointerUp, eventSourceSubscriptions);
 
   const numericScaleBaseline = useMemo(() => getScaleBaseline(horizontal ? xScale : yScale), [
     horizontal,

@@ -5,7 +5,6 @@ import DataContext from '../../../context/DataContext';
 import { PointerEventParams, SeriesProps, TooltipContextType } from '../../../types';
 import withRegisteredData, { WithRegisteredDataProps } from '../../../enhancers/withRegisteredData';
 import getScaledValueFactory from '../../../utils/getScaledValueFactory';
-import useEventEmitter from '../../../hooks/useEventEmitter';
 import TooltipContext from '../../../context/TooltipContext';
 import isValidNumber from '../../../typeguards/isValidNumber';
 import { LINESERIES_EVENT_SOURCE, XYCHART_EVENT_SOURCE } from '../../../constants';
@@ -25,8 +24,6 @@ export type BaseLineSeriesProps<
     React.SVGProps<SVGPathElement>,
     'x' | 'y' | 'x0' | 'x1' | 'y0' | 'y1' | 'ref' | 'pointerEvents'
   >;
-
-const eventSourceSubscriptions = [LINESERIES_EVENT_SOURCE, XYCHART_EVENT_SOURCE];
 
 function BaseLineSeries<XScale extends AxisScale, YScale extends AxisScale, Datum extends object>({
   curve,
@@ -75,15 +72,13 @@ function BaseLineSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
     onPointerOut: !!onPointerOutProps && pointerEvents,
     onPointerUp: !!onPointerUpProps && pointerEvents,
   });
-  const pointerEventHandlers = usePointerEventHandlers<Datum>({
+  usePointerEventHandlers<Datum>({
     dataKey,
     onPointerMove: pointerEvents ? onPointerMove : undefined,
     onPointerOut: pointerEvents ? onPointerOut : undefined,
     onPointerUp: pointerEvents ? onPointerUpProps : undefined,
+    sources: [XYCHART_EVENT_SOURCE, `${LINESERIES_EVENT_SOURCE}-${dataKey}`],
   });
-  useEventEmitter('pointermove', pointerEventHandlers.onPointerMove, eventSourceSubscriptions);
-  useEventEmitter('pointerout', pointerEventHandlers.onPointerOut, eventSourceSubscriptions);
-  useEventEmitter('pointerup', pointerEventHandlers.onPointerUp, eventSourceSubscriptions);
 
   return (
     <LinePath x={getScaledX} y={getScaledY} defined={isDefined} curve={curve} {...lineProps}>

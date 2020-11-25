@@ -13,7 +13,6 @@ import {
 } from '../../../types';
 import DataContext from '../../../context/DataContext';
 import getScaleBandwidth from '../../../utils/getScaleBandwidth';
-import useEventEmitter from '../../../hooks/useEventEmitter';
 import getScaleBaseline from '../../../utils/getScaleBaseline';
 import isValidNumber from '../../../typeguards/isValidNumber';
 import { BARGROUP_EVENT_SOURCE, XYCHART_EVENT_SOURCE } from '../../../constants';
@@ -38,10 +37,6 @@ export type BaseBarGroupProps<
   SeriesProps<XScale, YScale, Datum>,
   'onPointerMove' | 'onPointerOut' | 'onPointerUp' | 'pointerEvents'
 >;
-
-// in the future, if BarGroup preserves pointer events from child BarSeries,
-// we could add e.g., `${BASEBARGROUP_EVENT_SOURCE}-${dataKey}` to this in render fn.
-const eventSourceSubscriptions = [XYCHART_EVENT_SOURCE, BARGROUP_EVENT_SOURCE];
 
 export default function BaseBarGroup<
   XScale extends PositionScale,
@@ -126,15 +121,13 @@ export default function BaseBarGroup<
     onPointerOut: !!onPointerOutProps && pointerEvents,
     onPointerUp: !!onPointerUpProps && pointerEvents,
   });
-  const pointerEventHandlers = usePointerEventHandlers({
+  usePointerEventHandlers({
     dataKey: dataKeys,
     onPointerMove: pointerEvents ? onPointerMove : undefined,
     onPointerOut: pointerEvents ? onPointerOut : undefined,
     onPointerUp: pointerEvents ? onPointerUpProps : undefined,
+    sources: [XYCHART_EVENT_SOURCE, `${BARGROUP_EVENT_SOURCE}-${dataKeys.join('-')}`],
   });
-  useEventEmitter('pointermove', pointerEventHandlers.onPointerMove, eventSourceSubscriptions);
-  useEventEmitter('pointerout', pointerEventHandlers.onPointerOut, eventSourceSubscriptions);
-  useEventEmitter('pointerup', pointerEventHandlers.onPointerUp, eventSourceSubscriptions);
 
   const xZeroPosition = useMemo(() => (xScale ? getScaleBaseline(xScale) : 0), [xScale]);
   const yZeroPosition = useMemo(() => (yScale ? getScaleBaseline(yScale) : 0), [yScale]);

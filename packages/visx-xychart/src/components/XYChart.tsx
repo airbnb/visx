@@ -105,6 +105,15 @@ export default function XYChart<
     }
   }, [setDimensions, width, height, margin]);
 
+  const pointerEventEmitters = usePointerEventEmitters({ source: XYCHART_EVENT_SOURCE });
+  usePointerEventHandlers({
+    dataKey: pointerEvents === 'nearest' ? POINTER_EVENTS_NEAREST : POINTER_EVENTS_ALL,
+    onPointerMove,
+    onPointerOut,
+    onPointerUp,
+    sources: eventSourceSubscriptions,
+  });
+
   // if Context or dimensions are not available, wrap self in the needed providers
   if (!setDimensions) {
     if (!xScale || !yScale) {
@@ -151,17 +160,6 @@ export default function XYChart<
       </TooltipProvider>
     );
   }
-
-  const pointerEventEmitters = usePointerEventEmitters({ source: XYCHART_EVENT_SOURCE });
-  const pointerEventHandlers = usePointerEventHandlers({
-    dataKey: pointerEvents === 'nearest' ? POINTER_EVENTS_NEAREST : POINTER_EVENTS_ALL,
-    onPointerMove,
-    onPointerOut,
-    onPointerUp,
-  });
-  useEventEmitter('pointermove', pointerEventHandlers.onPointerMove, eventSourceSubscriptions);
-  useEventEmitter('pointerout', pointerEventHandlers.onPointerOut, eventSourceSubscriptions);
-  useEventEmitter('pointerup', pointerEventHandlers.onPointerUp, eventSourceSubscriptions);
 
   return width > 0 && height > 0 ? (
     <svg width={width} height={height} aria-label={accessibilityLabel}>

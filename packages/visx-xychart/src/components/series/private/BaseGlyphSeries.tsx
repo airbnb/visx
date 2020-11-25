@@ -10,7 +10,6 @@ import {
 } from '../../../types';
 import withRegisteredData, { WithRegisteredDataProps } from '../../../enhancers/withRegisteredData';
 import getScaledValueFactory from '../../../utils/getScaledValueFactory';
-import useEventEmitter from '../../../hooks/useEventEmitter';
 import isValidNumber from '../../../typeguards/isValidNumber';
 import usePointerEventEmitters from '../../../hooks/usePointerEventEmitters';
 import { GLYPHSERIES_EVENT_SOURCE, XYCHART_EVENT_SOURCE } from '../../../constants';
@@ -27,8 +26,6 @@ export type BaseGlyphSeriesProps<
   /** Function which handles rendering glyphs. */
   renderGlyphs: (glyphsProps: GlyphsProps<XScale, YScale, Datum>) => React.ReactNode;
 };
-
-const eventSourceSubscriptions = [XYCHART_EVENT_SOURCE, GLYPHSERIES_EVENT_SOURCE];
 
 function BaseGlyphSeries<XScale extends AxisScale, YScale extends AxisScale, Datum extends object>({
   data,
@@ -73,15 +70,13 @@ function BaseGlyphSeries<XScale extends AxisScale, YScale extends AxisScale, Dat
     onPointerOut: !!onPointerOutProps && pointerEvents,
     onPointerUp: !!onPointerUpProps && pointerEvents,
   });
-  const pointerEventHandlers = usePointerEventHandlers({
+  usePointerEventHandlers({
     dataKey,
     onPointerMove: pointerEvents ? onPointerMove : undefined,
     onPointerOut: pointerEvents ? onPointerOut : undefined,
     onPointerUp: pointerEvents ? onPointerUpProps : undefined,
+    sources: [XYCHART_EVENT_SOURCE, `${GLYPHSERIES_EVENT_SOURCE}-${dataKey}`],
   });
-  useEventEmitter('pointermove', pointerEventHandlers.onPointerMove, eventSourceSubscriptions);
-  useEventEmitter('pointerout', pointerEventHandlers.onPointerOut, eventSourceSubscriptions);
-  useEventEmitter('pointerup', pointerEventHandlers.onPointerUp, eventSourceSubscriptions);
 
   const glyphs = useMemo(
     () =>

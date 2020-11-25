@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect } from 'react';
+import { useCallback, useContext, useEffect, useRef } from 'react';
 import { localPoint } from '@visx/event';
 import EventEmitterContext from '../context/EventEmitterContext';
 
@@ -27,27 +27,32 @@ export default function useEventEmitter(
   sources?: string[],
 ) {
   const emitter = useContext(EventEmitterContext);
+  const sourcesRef = useRef<string[] | undefined>();
+  sourcesRef.current = sources; // use ref so sources[] can change without creating new handlers
 
-  // wrap emitter.emit so we can enforce stricter type signature and filter events by source
+  // wrap emitter.emit so we can enforce stricter type signature
   const emit = useCallback(
     (type: EventType, event: HandlerParams['event'], source?: string) => {
-      emitter?.emit<HandlerParams>(type, { event, svgPoint: localPoint(event), source });
+      if (emitter) {
+        emitter.emit<HandlerParams>(type, { event, svgPoint: localPoint(event), source });
+      }
     },
     [emitter],
   );
 
   useEffect(() => {
     if (emitter && eventType && handler) {
-      const handlerWithSourceFilter: Handler = sources
-        ? (params?: HandlerParams) => {
-            if (!params?.source || sources.includes(params.source)) handler(params);
-          }
-        : handler;
+      // register handler, with source filtering as needed
+      const handlerWithSourceFilter: Handler = (params?: HandlerParams) => {
+        if (!params?.source || !sourcesRef.current || sourcesRef.current?.includes(params.source)) {
+          handler(params);
+        }
+      };
       emitter.on<HandlerParams>(eventType, handlerWithSourceFilter);
       return () => emitter?.off<HandlerParams>(eventType, handlerWithSourceFilter);
     }
     return undefined;
-  }, [emitter, eventType, handler, sources]);
+  }, [emitter, eventType, handler]);
 
   return emitter ? emit : null;
 }
