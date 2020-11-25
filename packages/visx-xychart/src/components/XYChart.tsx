@@ -20,6 +20,8 @@ export type XYChartProps<
 > = {
   /** aria-label for the chart svg element. */
   accessibilityLabel?: string;
+  /** Whether to capture and dispatch pointer events. */
+  captureEvents?: boolean;
   /** Total width of the desired chart svg, including margin. */
   width?: number;
   /** Total height of the desired chart svg, including margin. */
@@ -42,6 +44,7 @@ export default function XYChart<
 >(props: XYChartProps<XScaleConfig, YScaleConfig>) {
   const {
     accessibilityLabel = 'XYChart',
+    captureEvents = true,
     children,
     height,
     margin = DEFAULT_MARGIN,
@@ -61,14 +64,12 @@ export default function XYChart<
     }
   }, [setDimensions, width, height, margin]);
 
-  const handleMouseTouchMove = useCallback(
-    (event: React.MouseEvent | React.TouchEvent) => emit?.('mousemove', event),
-    [emit],
-  );
-  const handleMouseOutTouchEnd = useCallback(
-    (event: React.MouseEvent | React.TouchEvent) => emit?.('mouseout', event),
-    [emit],
-  );
+  const handlePointerMove = useCallback((event: React.PointerEvent) => emit?.('mousemove', event), [
+    emit,
+  ]);
+  const handlePointerEnd = useCallback((event: React.PointerEvent) => emit?.('mouseout', event), [
+    emit,
+  ]);
 
   // if Context or dimensions are not available, wrap self in the needed providers
   if (!setDimensions) {
@@ -120,18 +121,18 @@ export default function XYChart<
   return width > 0 && height > 0 ? (
     <svg width={width} height={height} aria-label={accessibilityLabel}>
       {children}
-      {/** capture all mouse/touch events and emit them. */}
-      <rect
-        x={margin.left}
-        y={margin.top}
-        width={width - margin.left - margin.right}
-        height={height - margin.top - margin.bottom}
-        fill="transparent"
-        onMouseMove={handleMouseTouchMove}
-        onTouchMove={handleMouseTouchMove}
-        onMouseOut={handleMouseOutTouchEnd}
-        onTouchEnd={handleMouseOutTouchEnd}
-      />
+      {/** capture all pointer events and emit them. */}
+      {captureEvents && (
+        <rect
+          x={margin.left}
+          y={margin.top}
+          width={width - margin.left - margin.right}
+          height={height - margin.top - margin.bottom}
+          fill="transparent"
+          onPointerMove={handlePointerMove}
+          onPointerOut={handlePointerEnd}
+        />
+      )}
     </svg>
   ) : null;
 }
