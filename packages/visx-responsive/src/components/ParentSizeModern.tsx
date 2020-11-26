@@ -1,5 +1,13 @@
 import debounce from 'lodash/debounce';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
+import type {ResizeObserver} from '../types';
+
+// This can be deleted once https://git.io/Jk9FD lands in TypeScript
+declare global {
+  interface Window {
+    ResizeObserver: ResizeObserver;
+  }
+}
 
 export type ParentSizeProps = {
   /** Optional `className` to add to the parent `div` wrapper used for size measurement. */
@@ -35,35 +43,47 @@ export default function ParentSize({
   children,
   debounceTime = 300,
   ignoreDimensions = [],
-  parentSizeStyles = { width: '100%', height: '100%' },
+  parentSizeStyles = { width: "100%", height: "100%" },
   enableDebounceLeadingCall = true,
   ...restProps
-}: ParentSizeProps & Omit<JSX.IntrinsicElements['div'], keyof ParentSizeProps>) {
+}: ParentSizeProps &
+  Omit<JSX.IntrinsicElements["div"], keyof ParentSizeProps>) {
   const target = useRef<HTMLDivElement | null>(null);
   const animationFrameID = useRef(0);
 
-  const [state, setState] = useState<ParentSizeState>({ width: 0, height: 0, top: 0, left: 0 });
+  const [state, setState] = useState<ParentSizeState>({
+    width: 0,
+    height: 0,
+    top: 0,
+    left: 0
+  });
 
   const resize = useMemo(() => {
-    const normalized = Array.isArray(ignoreDimensions) ? ignoreDimensions : [ignoreDimensions];
+    const normalized = Array.isArray(ignoreDimensions)
+      ? ignoreDimensions
+      : [ignoreDimensions];
 
     return debounce(
       (incoming: ParentSizeState) => {
         setState(existing => {
           const stateKeys = Object.keys(existing) as (keyof ParentSizeState)[];
-          const keysWithChanges = stateKeys.filter(key => existing[key] !== incoming[key]);
-          const shouldBail = keysWithChanges.every(key => normalized.includes(key));
+          const keysWithChanges = stateKeys.filter(
+            key => existing[key] !== incoming[key]
+          );
+          const shouldBail = keysWithChanges.every(key =>
+            normalized.includes(key)
+          );
 
           return shouldBail ? existing : incoming;
         });
       },
       debounceTime,
-      { leading: enableDebounceLeadingCall },
+      { leading: enableDebounceLeadingCall }
     );
   }, [debounceTime, enableDebounceLeadingCall, ignoreDimensions]);
 
   useEffect(() => {
-    const observer = new ResizeObserver((entries = [] /** , observer */) => {
+    const observer = new window.ResizeObserver(entries => {
       entries.forEach(entry => {
         const { left, top, width, height } = entry.contentRect;
         animationFrameID.current = window.requestAnimationFrame(() => {
