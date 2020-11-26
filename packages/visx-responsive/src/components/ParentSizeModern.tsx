@@ -1,6 +1,6 @@
 import debounce from 'lodash/debounce';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import type {ResizeObserver} from '../types';
+import {ResizeObserver} from '../types';
 
 // This can be deleted once https://git.io/Jk9FD lands in TypeScript
 declare global {
