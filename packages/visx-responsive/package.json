@@ -39,5 +39,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "devDependencies": {
+    "@types/resize-observer-browser": "^0.1.4"
   }
 }
