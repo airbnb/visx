@@ -1,7 +1,7 @@
 import React from 'react';
 import reduceCSSCalc from 'reduce-css-calc';
-import getStringWidth from './util/getStringWidth';
 import uniqueId from 'lodash/uniqueId';
+import getStringWidth from './util/getStringWidth';
 
 const SVG_STYLE = { overflow: 'visible' };
 
@@ -101,7 +101,7 @@ class Text extends React.Component<TextProps, TextState> {
     this.state = {
       wordsByLines: [],
       textPathId: props.textPath ? uniqueId('text-path-') : '',
-    } 
+    };
   }
 
   componentDidMount() {
@@ -224,7 +224,7 @@ class Text extends React.Component<TextProps, TextState> {
 
     const transform = transforms.length > 0 ? transforms.join(' ') : undefined;
     const text = wordsByLines.map((line, index) => (
-      <tspan key={index} x={x} dy={(index === 0 ? startDy : lineHeight)}>
+      <tspan key={index} x={x} dy={index === 0 ? startDy : lineHeight}>
         {line.words.join(' ')}
       </tspan>
     ));
@@ -233,9 +233,7 @@ class Text extends React.Component<TextProps, TextState> {
       <svg ref={innerRef} x={dx} y={dy} fontSize={textProps.fontSize} style={SVG_STYLE}>
         {textPath && <path id={textPathId} d={textPath} fill="none" />}
         <text transform={transform} {...textProps} textAnchor={textAnchor}>
-          {textPath ? (<textPath href={`#${textPathId}`}>
-            {text}
-          </textPath>) : text}
+          {textPath ? <textPath href={`#${textPathId}`}>{text}</textPath> : text}
         </text>
       </svg>
     );
