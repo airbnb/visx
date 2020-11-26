@@ -1,6 +1,5 @@
 import React from 'react';
 import debounce from 'lodash/debounce';
-import ResizeObserver from 'resize-observer-polyfill';
 
 const CONTAINER_STYLES = { width: '100%', height: '100%' };
 
