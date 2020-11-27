@@ -1,6 +1,6 @@
-import debounce from 'lodash/debounce';
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-import {ResizeObserver} from '../types';
+import debounce from "lodash/debounce";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import { ResizeObserver } from "../types";
 
 // This can be deleted once https://git.io/Jk9FD lands in TypeScript
 declare global {
@@ -25,7 +25,7 @@ export type ParentSizeProps = {
     args: {
       ref: HTMLDivElement | null;
       resize: (state: ParentSizeState) => void;
-    } & ParentSizeState,
+    } & ParentSizeState
   ) => React.ReactNode;
 };
 
@@ -101,11 +101,16 @@ export default function ParentSize({
   }, [resize]);
 
   return (
-    <div style={parentSizeStyles} ref={target} className={className} {...restProps}>
+    <div
+      style={parentSizeStyles}
+      ref={target}
+      className={className}
+      {...restProps}
+    >
       {children({
         ...state,
         ref: target.current,
-        resize,
+        resize
       })}
     </div>
   );
