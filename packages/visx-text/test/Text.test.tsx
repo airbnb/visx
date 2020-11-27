@@ -1,9 +1,8 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import { Text, getStringWidth } from '../src';
-import { addMock, removeMock } from './svgMock';
 import { renderHook } from '@testing-library/react-hooks';
-import { useText } from '../src';
+import { Text, getStringWidth, useText } from '../src';
+import { addMock, removeMock } from './svgMock';
 
 describe('getStringWidth()', () => {
   it('should be defined', () => {
@@ -27,13 +26,15 @@ describe('<Text />', () => {
   it('Does not wrap long text if enough width', () => {
     const {
       result: {
-        current: [wordsByLines]
-      }
-    } = renderHook(() => useText({
-      width: 300,
-      style: { fontFamily: 'Courier' },
-      children: 'This is really long text'
-    }));
+        current: [wordsByLines],
+      },
+    } = renderHook(() =>
+      useText({
+        width: 300,
+        style: { fontFamily: 'Courier' },
+        children: 'This is really long text',
+      }),
+    );
 
     expect(wordsByLines).toHaveLength(1);
   });
@@ -41,13 +42,15 @@ describe('<Text />', () => {
   it('Wraps text if not enough width', () => {
     const {
       result: {
-        current: [wordsByLines]
-      }
-    } = renderHook(() => useText({
-      width: 200,
-      style: { fontFamily: 'Courier' },
-      children: 'This is really long text'
-    }));
+        current: [wordsByLines],
+      },
+    } = renderHook(() =>
+      useText({
+        width: 200,
+        style: { fontFamily: 'Courier' },
+        children: 'This is really long text',
+      }),
+    );
 
     expect(wordsByLines).toHaveLength(2);
   });
@@ -55,13 +58,15 @@ describe('<Text />', () => {
   it('Does not wrap text if there is enough width', () => {
     const {
       result: {
-        current: [wordsByLines]
-      }
-    } = renderHook(() => useText({
-      width: 300,
-      style: { fontSize: '2em', fontFamily: 'Courier' },
-      children: 'This is really long text'
-    }));
+        current: [wordsByLines],
+      },
+    } = renderHook(() =>
+      useText({
+        width: 300,
+        style: { fontSize: '2em', fontFamily: 'Courier' },
+        children: 'This is really long text',
+      }),
+    );
 
     expect(wordsByLines).toHaveLength(1);
   });
@@ -69,11 +74,13 @@ describe('<Text />', () => {
   it('Does not perform word length calculation if width or scaleToFit props not set', () => {
     const {
       result: {
-        current: [wordsByLines]
-      }
-    } = renderHook(() => useText({
-      children: 'This is really long text'
-    }));
+        current: [wordsByLines],
+      },
+    } = renderHook(() =>
+      useText({
+        children: 'This is really long text',
+      }),
+    );
 
     expect(wordsByLines).toHaveLength(1);
     expect(wordsByLines[0].width).toBeUndefined();
@@ -133,14 +140,16 @@ describe('<Text />', () => {
   it('Applies transform if scaleToFit is set', () => {
     const {
       result: {
-        current: [, , transform]
-      }
-    } = renderHook(() => useText({
-      width: 300,
-      scaleToFit: true,
-      style: { fontFamily: 'Courier' },
-      children: 'This is really long text'
-    }));
+        current: [, , transform],
+      },
+    } = renderHook(() =>
+      useText({
+        width: 300,
+        scaleToFit: true,
+        style: { fontFamily: 'Courier' },
+        children: 'This is really long text',
+      }),
+    );
     expect(transform).toBe('matrix(1.25, 0, 0, 1.25, 0, 0)');
   });
 
@@ -161,9 +170,11 @@ describe('<Text />', () => {
         This is really long text
       </Text>,
     );
-    const getVerticalOffset = (w: typeof wrapper) => {
-      return w.find('tspan').first().prop('dy');
-    }
+    const getVerticalOffset = (w: typeof wrapper) =>
+      w
+        .find('tspan')
+        .first()
+        .prop('dy');
 
     expect(getVerticalOffset(wrapper)).toBe('-1em');
 

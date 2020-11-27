@@ -1,6 +1,7 @@
 import React from 'react';
 import { useText } from './hooks/useText';
 import { TextProps } from './types';
+
 export { TextProps } from './types';
 
 const SVG_STYLE = { overflow: 'visible' };
@@ -23,6 +24,7 @@ export default function Text(props: TextProps) {
     verticalAnchor,
     angle,
     lineHeight = '1em',
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     scaleToFit = false,
     capHeight,
     width,
