@@ -17,7 +17,7 @@ export default function CircleSubject({
   x: propsX,
   y: propsY,
   stroke = '#222',
-  radius = 24,
+  radius = 16,
   ...restProps
 }: CircleSubjectProps & Omit<React.SVGProps<SVGCircleElement>, keyof CircleSubjectProps>) {
   // if props are provided, they take precedence over context

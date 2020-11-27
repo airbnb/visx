@@ -158,7 +158,7 @@ export default function Tooltip<Datum extends object>({
 
     if (showSeriesGlyphs) {
       Object.values(tooltipContext?.tooltipData?.datumByKey ?? {}).forEach(({ key, datum }) => {
-        const color = colorScale?.(key) ?? theme?.htmlLabelStyles?.color ?? '#222';
+        const color = colorScale?.(key) ?? theme?.htmlLabel?.color ?? '#222';
         const { left, top } = getDatumLeftTop(key, datum);
         glyphProps.push({
           left: left == null ? left : left - radius - strokeWidth,
@@ -178,7 +178,7 @@ export default function Tooltip<Datum extends object>({
           (nearestDatumKey && colorScale?.(nearestDatumKey)) ??
           null ??
           theme?.gridStyles?.stroke ??
-          theme?.htmlLabelStyles?.color ??
+          theme?.htmlLabel?.color ??
           '#222',
         radius,
         strokeWidth,
@@ -211,7 +211,7 @@ export default function Tooltip<Datum extends object>({
                   y1={0}
                   y2={innerHeight}
                   strokeWidth={1.5}
-                  stroke={theme?.gridStyles?.stroke ?? theme?.htmlLabelStyles?.color ?? '#222'}
+                  stroke={theme?.gridStyles?.stroke ?? theme?.htmlLabel?.color ?? '#222'}
                   {...verticalCrosshairStyle}
                 />
               </svg>
@@ -234,7 +234,7 @@ export default function Tooltip<Datum extends object>({
                   y1={0}
                   y2={0}
                   strokeWidth={1.5}
-                  stroke={theme?.gridStyles?.stroke ?? theme?.htmlLabelStyles?.color ?? '#222'}
+                  stroke={theme?.gridStyles?.stroke ?? theme?.htmlLabel?.color ?? '#222'}
                   {...horizontalCrosshairStyle}
                 />
               </svg>
@@ -275,10 +275,10 @@ export default function Tooltip<Datum extends object>({
               ...defaultStyles,
               background: theme?.backgroundColor ?? 'white',
               boxShadow: `0 1px 2px ${
-                theme?.htmlLabelStyles?.color ? `${theme?.htmlLabelStyles?.color}55` : '#22222255'
+                theme?.htmlLabel?.color ? `${theme?.htmlLabel?.color}55` : '#22222255'
               }`,
 
-              ...theme?.htmlLabelStyles,
+              ...theme?.htmlLabel,
             }}
             {...tooltipProps}
           >

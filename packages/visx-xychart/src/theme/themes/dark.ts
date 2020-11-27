@@ -13,10 +13,10 @@ export default buildChartTheme({
     allColors.pink[3],
   ],
   tickLength: 4,
-  tickLabelStyles: {
+  svgLabelSmall: {
     fill: grayColors[2],
   },
-  labelStyles: {
+  svgLabelBig: {
     fill: grayColors[0],
   },
   gridColor: grayColors[4],

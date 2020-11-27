@@ -9,9 +9,9 @@ export type ThemeConfig = {
   colors: string[];
 
   // labels
-  labelStyles?: SVGTextProps;
-  tickLabelStyles?: SVGTextProps;
-  htmlLabelStyles?: HTMLTextStyles;
+  svgLabelBig?: SVGTextProps;
+  svgLabelSmall?: SVGTextProps;
+  htmlLabel?: HTMLTextStyles;
 
   // lines
   xAxisLineStyles?: LineStyles;
@@ -41,7 +41,7 @@ export default function buildChartTheme(config: ThemeConfig): XYChartTheme {
     ...defaultLabelStyles,
     fill: textColor,
     stroke: 'none',
-    ...config.labelStyles,
+    ...config.svgLabelBig,
   } as const;
 
   const baseTickLabel: SVGTextProps = {
@@ -50,20 +50,30 @@ export default function buildChartTheme(config: ThemeConfig): XYChartTheme {
     fontSize: 11,
     fill: textColor,
     stroke: 'none',
-    ...config.tickLabelStyles,
+    ...config.svgLabelSmall,
   } as const;
 
   const baseHtmlLabel: HTMLTextStyles = {
-    color: config.labelStyles?.fill ?? textColor,
+    color:
+      config.htmlLabel?.color ??
+      config.svgLabelBig?.fill ??
+      config.svgLabelSmall?.fill ??
+      textColor,
     ...defaultLabelStyles,
-    ...config.htmlLabelStyles,
+    ...config.htmlLabel,
   };
 
   return {
     backgroundColor: config.backgroundColor,
     colors: [...config.colors],
-    htmlLabelStyles: {
+    htmlLabel: {
       ...baseHtmlLabel,
+    },
+    svgLabelSmall: {
+      ...baseTickLabel,
+    },
+    svgLabelBig: {
+      ...baseSvgLabel,
     },
     gridStyles: {
       stroke: config.gridColor,

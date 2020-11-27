@@ -1,4 +1,10 @@
 // components
+export { default as Annotation } from './components/annotation/Annotation';
+export { default as AnimatedAnnotation } from './components/annotation/AnimatedAnnotation';
+export { default as AnnotationLabel } from './components/annotation/AnnotationLabel';
+export { default as AnnotationConnector } from './components/annotation/AnnotationConnector';
+export { default as AnnotationCircleSubject } from './components/annotation/AnnotationCircleSubject';
+export { default as AnnotationLineSubject } from './components/annotation/AnnotationLineSubject';
 export { default as AnimatedAxis } from './components/axis/AnimatedAxis';
 export { default as AnimatedGrid } from './components/grid/AnimatedGrid';
 export { default as Axis } from './components/axis/Axis';

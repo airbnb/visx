@@ -23,14 +23,14 @@ type ProvidedProps = {
   editSubjectPosition: boolean;
   getDate: (d: AppleStock) => number;
   getStockValue: (d: AppleStock) => number;
-  horizontalAnchor?: 'left' | 'middle' | 'right';
+  horizontalAnchor?: 'start' | 'middle' | 'end';
   labelWidth: number;
   setAnnotationPosition: (position: AnnotationPosition) => void;
   showAnchorLine: boolean;
   subjectType: 'circle' | 'horizontal-line' | 'vertical-line';
   subtitle: string;
   title: string;
-  verticalAnchor?: 'top' | 'middle' | 'bottom';
+  verticalAnchor?: 'start' | 'middle' | 'end';
   xScale: PickD3Scale<'time', number>;
   yScale: PickD3Scale<'linear', number>;
 };
@@ -201,8 +201,8 @@ export default function ExampleControls({
             <label>
               <input
                 type="radio"
-                onChange={() => setHorizontalAnchor('left')}
-                checked={horizontalAnchor === 'left'}
+                onChange={() => setHorizontalAnchor('start')}
+                checked={horizontalAnchor === 'start'}
               />
               left
             </label>
@@ -217,8 +217,8 @@ export default function ExampleControls({
             <label>
               <input
                 type="radio"
-                onChange={() => setHorizontalAnchor('right')}
-                checked={horizontalAnchor === 'right'}
+                onChange={() => setHorizontalAnchor('end')}
+                checked={horizontalAnchor === 'end'}
               />
               right
             </label>
@@ -236,8 +236,8 @@ export default function ExampleControls({
             <label>
               <input
                 type="radio"
-                onChange={() => setVerticalAnchor('top')}
-                checked={verticalAnchor === 'top'}
+                onChange={() => setVerticalAnchor('start')}
+                checked={verticalAnchor === 'start'}
               />
               top
             </label>
@@ -252,8 +252,8 @@ export default function ExampleControls({
             <label>
               <input
                 type="radio"
-                onChange={() => setVerticalAnchor('bottom')}
-                checked={verticalAnchor === 'bottom'}
+                onChange={() => setVerticalAnchor('end')}
+                checked={verticalAnchor === 'end'}
               />
               bottom
             </label>
