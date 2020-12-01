@@ -52,7 +52,7 @@ describe('<GlyphSeries />', () => {
     expect(wrapper.find('.custom-glyph')).toHaveLength(series.data.length);
   });
 
-  it('should invoke showTooltip/hideTooltip on mousemove/mouseout', () => {
+  it('should invoke showTooltip/hideTooltip on pointermove/pointerout', () => {
     expect.assertions(2);
 
     const showTooltip = jest.fn();
@@ -71,11 +71,11 @@ describe('<GlyphSeries />', () => {
       useEffect(() => {
         if (emit) {
           // @ts-ignore not a React.MouseEvent
-          emit('mousemove', new MouseEvent('mousemove'));
+          emit('pointermove', new MouseEvent('pointermove'));
           expect(showTooltip).toHaveBeenCalledTimes(1);
 
           // @ts-ignore not a React.MouseEvent
-          emit('mouseout', new MouseEvent('mouseout'));
+          emit('pointerout', new MouseEvent('pointerout'));
           expect(showTooltip).toHaveBeenCalledTimes(1);
         }
       });
