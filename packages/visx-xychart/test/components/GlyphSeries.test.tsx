@@ -4,6 +4,7 @@ import { mount } from 'enzyme';
 import { AnimatedGlyphSeries, DataContext, GlyphSeries, useEventEmitter } from '../../src';
 import getDataContext from '../mocks/getDataContext';
 import setupTooltipTest from '../mocks/setupTooltipTest';
+import { XYCHART_EVENT_SOURCE } from '../../src/constants';
 
 const series = { key: 'glyph', data: [{}, {}], xAccessor: () => 4, yAccessor: () => 7 };
 const seriesMissingData = {
@@ -71,11 +72,11 @@ describe('<GlyphSeries />', () => {
       useEffect(() => {
         if (emit) {
           // @ts-ignore not a React.MouseEvent
-          emit('pointermove', new MouseEvent('pointermove'));
+          emit('pointermove', new MouseEvent('pointermove'), XYCHART_EVENT_SOURCE);
           expect(showTooltip).toHaveBeenCalledTimes(1);
 
           // @ts-ignore not a React.MouseEvent
-          emit('pointerout', new MouseEvent('pointerout'));
+          emit('pointerout', new MouseEvent('pointerout'), XYCHART_EVENT_SOURCE);
           expect(showTooltip).toHaveBeenCalledTimes(1);
         }
       });

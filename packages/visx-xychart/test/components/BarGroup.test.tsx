@@ -3,6 +3,7 @@ import { animated } from 'react-spring';
 import { mount } from 'enzyme';
 import { AnimatedBarGroup, BarGroup, BarSeries, DataProvider, useEventEmitter } from '../../src';
 import setupTooltipTest from '../mocks/setupTooltipTest';
+import { XYCHART_EVENT_SOURCE } from '../../src/constants';
 
 const providerProps = {
   initialDimensions: { width: 100, height: 100 },
@@ -84,11 +85,11 @@ describe('<BarGroup />', () => {
       useEffect(() => {
         if (emit) {
           // @ts-ignore not a React.MouseEvent
-          emit('pointermove', new MouseEvent('pointermove'));
+          emit('pointermove', new MouseEvent('pointermove'), XYCHART_EVENT_SOURCE);
           expect(showTooltip).toHaveBeenCalledTimes(2); // one per key
 
           // @ts-ignore not a React.MouseEvent
-          emit('pointerout', new MouseEvent('pointerout'));
+          emit('pointerout', new MouseEvent('pointerout'), XYCHART_EVENT_SOURCE);
           expect(showTooltip).toHaveBeenCalled();
         }
       });

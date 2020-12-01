@@ -4,6 +4,7 @@ import { mount } from 'enzyme';
 import { DataContext, AnimatedBarSeries, BarSeries, useEventEmitter } from '../../src';
 import getDataContext from '../mocks/getDataContext';
 import setupTooltipTest from '../mocks/setupTooltipTest';
+import { XYCHART_EVENT_SOURCE } from '../../src/constants';
 
 const series = { key: 'bar', data: [{}, {}], xAccessor: () => 0, yAccessor: () => 10 };
 const seriesMissingData = {
@@ -59,11 +60,11 @@ describe('<BarSeries />', () => {
       useEffect(() => {
         if (emit) {
           // @ts-ignore not a React.MouseEvent
-          emit('pointermove', new MouseEvent('pointermove'));
+          emit('pointermove', new MouseEvent('pointermove'), XYCHART_EVENT_SOURCE);
           expect(showTooltip).toHaveBeenCalledTimes(1);
 
           // @ts-ignore not a React.MouseEvent
-          emit('pointerout', new MouseEvent('pointerout'));
+          emit('pointerout', new MouseEvent('pointerout'), XYCHART_EVENT_SOURCE);
           expect(showTooltip).toHaveBeenCalledTimes(1);
         }
       });
