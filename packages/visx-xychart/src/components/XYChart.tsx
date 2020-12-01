@@ -1,5 +1,5 @@
 /* eslint jsx-a11y/mouse-events-have-key-events: 'off', @typescript-eslint/no-explicit-any: 'off' */
-import React, { useCallback, useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import ParentSize from '@visx/responsive/lib/components/ParentSize';
 import { AxisScaleOutput } from '@visx/axis';
 import { ScaleConfig } from '@visx/scale';

@@ -72,7 +72,7 @@ export default function Example({ height }: Props) {
           height={Math.min(400, height)}
           captureEvents={!editAnnotationLabelPosition}
           onPointerUp={d => {
-            setAnnotationDataKey(d.key);
+            setAnnotationDataKey(d.key as 'New York' | 'San Francisco' | 'Austin');
             setAnnotationDataIndex(d.index);
           }}
         >
