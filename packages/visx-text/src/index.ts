@@ -1,3 +1,3 @@
 export { default as Text } from './Text';
 export { default as getStringWidth } from './util/getStringWidth';
-export { useText } from './hooks/useText';
+export { default as useText } from './hooks/useText';

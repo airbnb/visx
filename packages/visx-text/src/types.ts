@@ -44,11 +44,6 @@ export type TextProps = OwnProps & Omit<SVGTextProps, keyof OwnProps>;
 
 export type compareFunction<T> = (prev: T | undefined, next: T) => boolean;
 
-export interface WordWithWidth {
-  word: string;
-  width: number;
-}
-
 export interface WordsWithWidth {
   words: string[];
   width?: number;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useText } from './hooks/useText';
+import useText from './hooks/useText';
 import { TextProps } from './types';
 
 export { TextProps } from './types';
@@ -32,7 +32,7 @@ export default function Text(props: TextProps) {
   } = props;
 
   const { x = 0, y = 0, fontSize } = textProps;
-  const [wordsByLines, startDy, transform] = useText(props);
+  const { wordsByLines, startDy, transform } = useText(props);
 
   // Cannot render <text> if x or y is invalid
   if (!isValidXOrY(x) || !isValidXOrY(y)) {

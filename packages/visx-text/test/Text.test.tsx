@@ -26,7 +26,7 @@ describe('<Text />', () => {
   it('Does not wrap long text if enough width', () => {
     const {
       result: {
-        current: [wordsByLines],
+        current: { wordsByLines },
       },
     } = renderHook(() =>
       useText({
@@ -42,7 +42,7 @@ describe('<Text />', () => {
   it('Wraps text if not enough width', () => {
     const {
       result: {
-        current: [wordsByLines],
+        current: { wordsByLines },
       },
     } = renderHook(() =>
       useText({
@@ -58,7 +58,7 @@ describe('<Text />', () => {
   it('Does not wrap text if there is enough width', () => {
     const {
       result: {
-        current: [wordsByLines],
+        current: { wordsByLines },
       },
     } = renderHook(() =>
       useText({
@@ -74,7 +74,7 @@ describe('<Text />', () => {
   it('Does not perform word length calculation if width or scaleToFit props not set', () => {
     const {
       result: {
-        current: [wordsByLines],
+        current: { wordsByLines },
       },
     } = renderHook(() =>
       useText({
@@ -140,7 +140,7 @@ describe('<Text />', () => {
   it('Applies transform if scaleToFit is set', () => {
     const {
       result: {
-        current: [, , transform],
+        current: { transform },
       },
     } = renderHook(() =>
       useText({
