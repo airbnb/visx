@@ -16,8 +16,8 @@ describe('useEventEmitter', () => {
     expect.assertions(1);
 
     const Component = () => {
-      const registry = useEventEmitter();
-      expect(registry).toEqual(expect.any(Function));
+      const emitter = useEventEmitter();
+      expect(emitter).toEqual(expect.any(Function));
       return null;
     };
 
@@ -53,7 +53,7 @@ describe('useEventEmitter', () => {
   });
 
   it('should filter invalid sources if specified', () => {
-    expect.assertions(3);
+    expect.assertions(4);
 
     const Component = () => {
       const eventType = 'pointermove';
@@ -70,6 +70,7 @@ describe('useEventEmitter', () => {
           expect(listener).toHaveBeenCalledTimes(1);
           expect(filteredListener).toHaveBeenCalledTimes(0);
           emit(eventType, getEvent(eventType), sourceId);
+          expect(listener).toHaveBeenCalledTimes(2);
           expect(filteredListener).toHaveBeenCalledTimes(1);
         }
       });

@@ -64,8 +64,8 @@ describe('usePointerEventHandlers', () => {
     setup(<Component />);
   });
 
-  it('should invoke handlers for all dataKeys if specified', () => {
-    expect.assertions(2);
+  it('should invoke handlers once for each dataKey specified', () => {
+    expect.assertions(4);
 
     const Component = () => {
       const sourceId = 'sourceId';
@@ -87,6 +87,8 @@ describe('usePointerEventHandlers', () => {
       useEffect(() => {
         if (emit) {
           emit('pointermove', getEvent('pointermove'), sourceId);
+          expect(pointerMoveListenerAll).toHaveBeenCalledTimes(2);
+          expect(pointerMoveListenerMultipleKeys).toHaveBeenCalledTimes(2);
           emit('pointermove', getEvent('pointermove'), 'invalidSource');
           expect(pointerMoveListenerAll).toHaveBeenCalledTimes(2);
           expect(pointerMoveListenerMultipleKeys).toHaveBeenCalledTimes(2);
