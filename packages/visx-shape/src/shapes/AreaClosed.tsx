@@ -25,14 +25,14 @@ export default function AreaClosed<Datum>({
   ...restProps
 }: AddSVGProps<AreaClosedProps<Datum>, SVGPathElement>) {
   const path = area<Datum>({ x, x0, x1, defined, curve });
-  if (y0) {
-    setNumOrAccessor(path.y0, y0);
-  } else {
+  if (y0 == null) {
     /**
      * by default set the baseline to the first element of the yRange
      * @TODO take the minimum instead?
      */
     path.y0(yScale.range()[0]);
+  } else {
+    setNumOrAccessor(path.y0, y0);
   }
   if (y && !y1) setNumOrAccessor(path.y1, y);
   if (y1 && !y) setNumOrAccessor(path.y1, y1);
