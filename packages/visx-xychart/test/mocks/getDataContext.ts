@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { scaleLinear, scaleOrdinal } from '@visx/scale';
-import { DataContextType, lightTheme } from '../../lib';
+import { DataContextType, lightTheme } from '../../src';
 import DataRegistry from '../../lib/classes/DataRegistry';
 
 const width = 10;
