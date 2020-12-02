@@ -7,6 +7,15 @@ function isNumber(val: unknown): val is number {
   return typeof val === 'number';
 }
 
+function isValidXOrY(xOrY: string | number | undefined) {
+  return (
+    // number that is not NaN or Infinity
+    (typeof xOrY === 'number' && Number.isFinite(xOrY)) ||
+    // for percentage
+    typeof xOrY === 'string'
+  );
+}
+
 export default function useText(
   props: TextProps,
 ): {
@@ -27,6 +36,7 @@ export default function useText(
   } = props;
 
   const { x = 0, y = 0 } = textProps;
+  const isXOrYValid = !isValidXOrY(x) || !isValidXOrY(y);
 
   const { wordsWithWidth, spaceWidth } = useMemo(() => {
     const words: string[] = children == null ? [] : children.toString().split(/(?:(?!\u00A0+)\s+)/);
@@ -40,6 +50,10 @@ export default function useText(
   }, [children, style]);
 
   const wordsByLines = useMemo(() => {
+    if (isXOrYValid) {
+      return [];
+    }
+
     // Only perform calculations if using features that require them (multiline, scaleToFit)
     if (width || scaleToFit) {
       return wordsWithWidth.reduce((result: WordsWithWidth[], { word, wordWidth }) => {
@@ -68,23 +82,28 @@ export default function useText(
         words: children == null ? [] : children.toString().split(/(?:(?!\u00A0+)\s+)/),
       },
     ];
-  }, [width, scaleToFit, children, wordsWithWidth, spaceWidth]);
+  }, [isXOrYValid, width, scaleToFit, children, wordsWithWidth, spaceWidth]);
 
   const startDy = useMemo(() => {
-    const startDyStr =
-      verticalAnchor === 'start'
-        ? reduceCSSCalc(`calc(${capHeight})`)
-        : verticalAnchor === 'middle'
-        ? reduceCSSCalc(
-            `calc(${(wordsByLines.length - 1) / 2} * -${lineHeight} + (${capHeight} / 2))`,
-          )
-        : reduceCSSCalc(`calc(${wordsByLines.length - 1} * -${lineHeight})`);
+    const startDyStr = isXOrYValid
+      ? ''
+      : verticalAnchor === 'start'
+      ? reduceCSSCalc(`calc(${capHeight})`)
+      : verticalAnchor === 'middle'
+      ? reduceCSSCalc(
+          `calc(${(wordsByLines.length - 1) / 2} * -${lineHeight} + (${capHeight} / 2))`,
+        )
+      : reduceCSSCalc(`calc(${wordsByLines.length - 1} * -${lineHeight})`);
 
     return startDyStr;
-  }, [verticalAnchor, capHeight, wordsByLines, lineHeight]);
+  }, [isXOrYValid, verticalAnchor, capHeight, wordsByLines.length, lineHeight]);
 
   const transform = useMemo(() => {
     const transforms: string[] = [];
+    if (isXOrYValid) {
+      return '';
+    }
+
     if (isNumber(x) && isNumber(y) && isNumber(width) && scaleToFit && wordsByLines.length > 0) {
       const lineWidth = wordsByLines[0].width || 1;
       const sx = width / lineWidth;
@@ -98,7 +117,7 @@ export default function useText(
     }
 
     return transforms.length > 0 ? transforms.join(' ') : '';
-  }, [x, y, width, wordsByLines, angle, scaleToFit]);
+  }, [isXOrYValid, x, y, width, scaleToFit, wordsByLines, angle]);
 
   return { wordsByLines, startDy, transform };
 }

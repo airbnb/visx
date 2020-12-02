@@ -31,23 +31,20 @@ export default function Text(props: TextProps) {
     ...textProps
   } = props;
 
-  const { x = 0, y = 0, fontSize } = textProps;
+  const { x = 0, fontSize } = textProps;
   const { wordsByLines, startDy, transform } = useText(props);
-
-  // Cannot render <text> if x or y is invalid
-  if (!isValidXOrY(x) || !isValidXOrY(y)) {
-    return <svg ref={innerRef} x={dx} y={dy} fontSize={fontSize} style={SVG_STYLE} />;
-  }
 
   return (
     <svg ref={innerRef} x={dx} y={dy} fontSize={fontSize} style={SVG_STYLE}>
-      <text transform={transform} {...textProps} textAnchor={textAnchor}>
-        {wordsByLines.map((line, index) => (
-          <tspan key={index} x={x} dy={index === 0 ? startDy : lineHeight}>
-            {line.words.join(' ')}
-          </tspan>
-        ))}
-      </text>
+      {wordsByLines.length > 0 ? (
+        <text transform={transform} {...textProps} textAnchor={textAnchor}>
+          {wordsByLines.map((line, index) => (
+            <tspan key={index} x={x} dy={index === 0 ? startDy : lineHeight}>
+              {line.words.join(' ')}
+            </tspan>
+          ))}
+        </text>
+      ) : null}
     </svg>
   );
 }
