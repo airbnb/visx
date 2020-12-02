@@ -14,37 +14,48 @@ export default function useText(
   startDy: string;
   transform: string;
 } {
+  const {
+    verticalAnchor = 'end',
+    scaleToFit = false,
+    angle,
+    width,
+    lineHeight = '1em',
+    capHeight = '0.71em', // Magic number from d3
+    children,
+    style,
+    ...textProps
+  } = props;
+
+  const { x = 0, y = 0 } = textProps;
+
   const { wordsWithWidth, spaceWidth } = useMemo(() => {
-    const words: string[] =
-      props.children == null ? [] : props.children.toString().split(/(?:(?!\u00A0+)\s+)/);
+    const words: string[] = children == null ? [] : children.toString().split(/(?:(?!\u00A0+)\s+)/);
     return {
       wordsWithWidth: words.map(word => ({
         word,
-        width: getStringWidth(word, props.style) || 0,
+        wordWidth: getStringWidth(word, style) || 0,
       })),
-      spaceWidth: getStringWidth('\u00A0', props.style) || 0,
+      spaceWidth: getStringWidth('\u00A0', style) || 0,
     };
-  }, [props.children, props.style]);
+  }, [children, style]);
 
   const wordsByLines = useMemo(() => {
     // Only perform calculations if using features that require them (multiline, scaleToFit)
-    if (props.width || props.scaleToFit) {
-      return wordsWithWidth.reduce((result: WordsWithWidth[], { word, width }) => {
+    if (width || scaleToFit) {
+      return wordsWithWidth.reduce((result: WordsWithWidth[], { word, wordWidth }) => {
         const currentLine = result[result.length - 1];
 
         if (
           currentLine &&
-          (props.width == null ||
-            props.scaleToFit ||
-            (currentLine.width || 0) + width + spaceWidth < props.width)
+          (width == null || scaleToFit || (currentLine.width || 0) + wordWidth + spaceWidth < width)
         ) {
           // Word can be added to an existing line
           currentLine.words.push(word);
           currentLine.width = currentLine.width || 0;
-          currentLine.width += width + spaceWidth;
+          currentLine.width += wordWidth + spaceWidth;
         } else {
           // Add first word to line or word is too long to scaleToFit on existing line
-          const newLine = { words: [word], width };
+          const newLine = { words: [word], width: wordWidth };
           result.push(newLine);
         }
 
@@ -54,22 +65,10 @@ export default function useText(
 
     return [
       {
-        words: props.children == null ? [] : props.children.toString().split(/(?:(?!\u00A0+)\s+)/),
+        words: children == null ? [] : children.toString().split(/(?:(?!\u00A0+)\s+)/),
       },
     ];
-  }, [props.width, props.scaleToFit, props.children, wordsWithWidth, spaceWidth]);
-
-  const {
-    verticalAnchor = 'end',
-    scaleToFit = false,
-    angle,
-    lineHeight = '1em',
-    capHeight = '0.71em', // Magic number from d3
-    width,
-    ...textProps
-  } = props;
-
-  const { x = 0, y = 0 } = textProps;
+  }, [width, scaleToFit, children, wordsWithWidth, spaceWidth]);
 
   const startDy = useMemo(() => {
     const startDyStr =
