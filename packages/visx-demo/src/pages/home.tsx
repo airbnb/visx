@@ -126,7 +126,7 @@ const Home = () => (
             </Link>
           </div>
           <div className="buttons">
-            <Link href="/gallery">
+            <Link href="/gallery" passHref>
               <Button>View Gallery</Button>
             </Link>
           </div>
