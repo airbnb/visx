@@ -6,15 +6,6 @@ export { TextProps } from './types';
 
 const SVG_STYLE = { overflow: 'visible' };
 
-function isValidXOrY(xOrY: string | number | undefined) {
-  return (
-    // number that is not NaN or Infinity
-    (typeof xOrY === 'number' && Number.isFinite(xOrY)) ||
-    // for percentage
-    typeof xOrY === 'string'
-  );
-}
-
 export default function Text(props: TextProps) {
   const {
     dx = 0,
