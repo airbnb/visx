@@ -67,8 +67,8 @@ function BaseGlyphSeries<XScale extends AxisScale, YScale extends AxisScale, Dat
   const ownEventSourceKey = `${GLYPHSERIES_EVENT_SOURCE}-${dataKey}`;
   const pointerEventEmitters = usePointerEventEmitters({
     source: ownEventSourceKey,
-    onPointerMove: pointerEvents, // handle tooltip even if pointer prop isn't passed
-    onPointerOut: pointerEvents,
+    onPointerMove: !!onPointerMoveProps && pointerEvents,
+    onPointerOut: !!onPointerOutProps && pointerEvents,
     onPointerUp: !!onPointerUpProps && pointerEvents,
   });
   usePointerEventHandlers({

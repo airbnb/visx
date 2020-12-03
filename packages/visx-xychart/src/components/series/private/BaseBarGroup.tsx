@@ -118,8 +118,8 @@ export default function BaseBarGroup<
   const ownEventSourceKey = `${BARGROUP_EVENT_SOURCE}-${dataKeys.join('-')}}`;
   const pointerEventEmitters = usePointerEventEmitters({
     source: ownEventSourceKey,
-    onPointerMove: pointerEvents, // handle tooltip even if pointer prop isn't passed
-    onPointerOut: pointerEvents,
+    onPointerMove: !!onPointerMoveProps && pointerEvents,
+    onPointerOut: !!onPointerOutProps && pointerEvents,
     onPointerUp: !!onPointerUpProps && pointerEvents,
   });
   usePointerEventHandlers({
