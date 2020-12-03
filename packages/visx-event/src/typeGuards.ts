@@ -23,6 +23,11 @@ export function isTouchEvent(event?: EventType): event is TouchEvent | React.Tou
   return !!event && 'changedTouches' in event;
 }
 
+// functional definition of MouseEvent
+export function isMouseEvent(event?: EventType): event is MouseEvent | React.MouseEvent {
+  return !!event && 'clientX' in event;
+}
+
 // functional definition of event
 export function isEvent(event?: EventType | Element): event is EventType {
   return (
