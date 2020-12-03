@@ -44,7 +44,10 @@ export default function useEventEmitter(
     if (emitter && eventType && handler) {
       // register handler, with source filtering as needed
       const handlerWithSourceFilter: Handler = (params?: HandlerParams) => {
-        if (!params?.source || !sourcesRef.current || sourcesRef.current?.includes(params.source)) {
+        if (
+          !sourcesRef.current ||
+          (params?.source && sourcesRef.current?.includes(params.source))
+        ) {
           handler(params);
         }
       };
