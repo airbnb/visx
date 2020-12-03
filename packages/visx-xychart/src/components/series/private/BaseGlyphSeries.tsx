@@ -64,10 +64,11 @@ function BaseGlyphSeries<XScale extends AxisScale, YScale extends AxisScale, Dat
     },
     [hideTooltip, onPointerOutProps],
   );
+  const ownEventSourceKey = `${GLYPHSERIES_EVENT_SOURCE}-${dataKey}`;
   const pointerEventEmitters = usePointerEventEmitters({
-    source: GLYPHSERIES_EVENT_SOURCE,
-    onPointerMove: !!onPointerMoveProps && pointerEvents,
-    onPointerOut: !!onPointerOutProps && pointerEvents,
+    source: ownEventSourceKey,
+    onPointerMove: pointerEvents, // handle tooltip even if pointer prop isn't passed
+    onPointerOut: pointerEvents,
     onPointerUp: !!onPointerUpProps && pointerEvents,
   });
   usePointerEventHandlers({
@@ -75,7 +76,7 @@ function BaseGlyphSeries<XScale extends AxisScale, YScale extends AxisScale, Dat
     onPointerMove: pointerEvents ? onPointerMove : undefined,
     onPointerOut: pointerEvents ? onPointerOut : undefined,
     onPointerUp: pointerEvents ? onPointerUpProps : undefined,
-    sources: [XYCHART_EVENT_SOURCE, `${GLYPHSERIES_EVENT_SOURCE}-${dataKey}`],
+    sources: [XYCHART_EVENT_SOURCE, ownEventSourceKey],
   });
 
   const glyphs = useMemo(

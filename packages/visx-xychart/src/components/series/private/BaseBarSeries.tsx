@@ -107,10 +107,11 @@ function BaseBarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum
     },
     [hideTooltip, onPointerOutProps],
   );
+  const ownEventSourceKey = `${BARSERIES_EVENT_SOURCE}-${dataKey}`;
   const pointerEventEmitters = usePointerEventEmitters({
-    source: BARSERIES_EVENT_SOURCE,
-    onPointerMove: !!onPointerMoveProps && pointerEvents,
-    onPointerOut: !!onPointerOutProps && pointerEvents,
+    source: ownEventSourceKey,
+    onPointerMove: pointerEvents, // handle tooltip even if pointer prop isn't passed
+    onPointerOut: pointerEvents,
     onPointerUp: !!onPointerUpProps && pointerEvents,
   });
   usePointerEventHandlers({
@@ -118,7 +119,7 @@ function BaseBarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum
     onPointerMove: pointerEvents ? onPointerMove : undefined,
     onPointerOut: pointerEvents ? onPointerOut : undefined,
     onPointerUp: pointerEvents ? onPointerUpProps : undefined,
-    sources: [XYCHART_EVENT_SOURCE, `${BARSERIES_EVENT_SOURCE}-${dataKey}`],
+    sources: [XYCHART_EVENT_SOURCE, ownEventSourceKey],
   });
 
   return (

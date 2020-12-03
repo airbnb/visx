@@ -74,10 +74,11 @@ function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
     },
     [hideTooltip, onPointerOutProps],
   );
+  const ownEventSourceKey = `${AREASERIES_EVENT_SOURCE}-${dataKey}`;
   const pointerEventEmitters = usePointerEventEmitters({
-    source: AREASERIES_EVENT_SOURCE,
-    onPointerMove: !!onPointerMoveProps && pointerEvents,
-    onPointerOut: !!onPointerOutProps && pointerEvents,
+    source: ownEventSourceKey,
+    onPointerMove: pointerEvents, // handle tooltip even if pointer prop isn't passed
+    onPointerOut: pointerEvents,
     onPointerUp: !!onPointerUpProps && pointerEvents,
   });
   usePointerEventHandlers({
@@ -85,7 +86,7 @@ function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
     onPointerMove: pointerEvents ? onPointerMove : undefined,
     onPointerOut: pointerEvents ? onPointerOut : undefined,
     onPointerUp: pointerEvents ? onPointerUpProps : undefined,
-    sources: [XYCHART_EVENT_SOURCE, `${AREASERIES_EVENT_SOURCE}-${dataKey}`],
+    sources: [XYCHART_EVENT_SOURCE, ownEventSourceKey],
   });
 
   const numericScaleBaseline = useMemo(() => getScaleBaseline(horizontal ? xScale : yScale), [
