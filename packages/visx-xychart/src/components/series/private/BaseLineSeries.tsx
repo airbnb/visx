@@ -66,8 +66,9 @@ function BaseLineSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
     },
     [hideTooltip, onPointerOutProps],
   );
+  const ownEventSourceKey = `${LINESERIES_EVENT_SOURCE}-${dataKey}`;
   const pointerEventEmitters = usePointerEventEmitters({
-    source: LINESERIES_EVENT_SOURCE,
+    source: ownEventSourceKey,
     onPointerMove: !!onPointerMoveProps && pointerEvents,
     onPointerOut: !!onPointerOutProps && pointerEvents,
     onPointerUp: !!onPointerUpProps && pointerEvents,
@@ -77,7 +78,7 @@ function BaseLineSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
     onPointerMove: pointerEvents ? onPointerMove : undefined,
     onPointerOut: pointerEvents ? onPointerOut : undefined,
     onPointerUp: pointerEvents ? onPointerUpProps : undefined,
-    sources: [XYCHART_EVENT_SOURCE, `${LINESERIES_EVENT_SOURCE}-${dataKey}`],
+    sources: [XYCHART_EVENT_SOURCE, ownEventSourceKey],
   });
 
   return (

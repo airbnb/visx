@@ -115,8 +115,9 @@ export default function BaseBarGroup<
     },
     [hideTooltip, onPointerOutProps],
   );
+  const ownEventSourceKey = `${BARGROUP_EVENT_SOURCE}-${dataKeys.join('-')}}`;
   const pointerEventEmitters = usePointerEventEmitters({
-    source: BARGROUP_EVENT_SOURCE,
+    source: ownEventSourceKey,
     onPointerMove: !!onPointerMoveProps && pointerEvents,
     onPointerOut: !!onPointerOutProps && pointerEvents,
     onPointerUp: !!onPointerUpProps && pointerEvents,
@@ -126,7 +127,7 @@ export default function BaseBarGroup<
     onPointerMove: pointerEvents ? onPointerMove : undefined,
     onPointerOut: pointerEvents ? onPointerOut : undefined,
     onPointerUp: pointerEvents ? onPointerUpProps : undefined,
-    sources: [XYCHART_EVENT_SOURCE, `${BARGROUP_EVENT_SOURCE}-${dataKeys.join('-')}`],
+    sources: [XYCHART_EVENT_SOURCE, ownEventSourceKey],
   });
 
   const xZeroPosition = useMemo(() => (xScale ? getScaleBaseline(xScale) : 0), [xScale]);

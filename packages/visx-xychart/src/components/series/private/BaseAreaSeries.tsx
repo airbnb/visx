@@ -74,8 +74,9 @@ function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
     },
     [hideTooltip, onPointerOutProps],
   );
+  const ownEventSourceKey = `${AREASERIES_EVENT_SOURCE}-${dataKey}`;
   const pointerEventEmitters = usePointerEventEmitters({
-    source: AREASERIES_EVENT_SOURCE,
+    source: ownEventSourceKey,
     onPointerMove: !!onPointerMoveProps && pointerEvents,
     onPointerOut: !!onPointerOutProps && pointerEvents,
     onPointerUp: !!onPointerUpProps && pointerEvents,
@@ -85,7 +86,7 @@ function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
     onPointerMove: pointerEvents ? onPointerMove : undefined,
     onPointerOut: pointerEvents ? onPointerOut : undefined,
     onPointerUp: pointerEvents ? onPointerUpProps : undefined,
-    sources: [XYCHART_EVENT_SOURCE, `${AREASERIES_EVENT_SOURCE}-${dataKey}`],
+    sources: [XYCHART_EVENT_SOURCE, ownEventSourceKey],
   });
 
   const numericScaleBaseline = useMemo(() => getScaleBaseline(horizontal ? xScale : yScale), [

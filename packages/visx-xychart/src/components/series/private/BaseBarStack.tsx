@@ -151,8 +151,9 @@ function BaseBarStack<
     },
     [hideTooltip, onPointerOutProps],
   );
+  const ownEventSourceKey = `${BARSTACK_EVENT_SOURCE}-${dataKeys.join('-')}`;
   const pointerEventEmitters = usePointerEventEmitters({
-    source: BARSTACK_EVENT_SOURCE,
+    source: ownEventSourceKey,
     onPointerMove: !!onPointerMoveProps && pointerEvents,
     onPointerOut: !!onPointerOutProps && pointerEvents,
     onPointerUp: !!onPointerUpProps && pointerEvents,
@@ -162,7 +163,7 @@ function BaseBarStack<
     onPointerMove: pointerEvents ? onPointerMove : undefined,
     onPointerOut: pointerEvents ? onPointerOut : undefined,
     onPointerUp: pointerEvents ? onPointerUpProps : undefined,
-    sources: [XYCHART_EVENT_SOURCE, `${BARSTACK_EVENT_SOURCE}-${dataKeys.join('-')}`],
+    sources: [XYCHART_EVENT_SOURCE, ownEventSourceKey],
   });
 
   // if scales and data are not available in the registry, bail
