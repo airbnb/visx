@@ -56,6 +56,9 @@ export default function AnimatedGlyphs<
   horizontal,
   xScale,
   yScale,
+  onPointerMove,
+  onPointerOut,
+  onPointerUp,
 }: {
   // unanimated Glyph component
   renderGlyph: React.FC<GlyphProps<Datum>>;
@@ -87,6 +90,9 @@ export default function AnimatedGlyphs<
             y: 0,
             size: item.size,
             color: 'currentColor', // allows us to animate the color of the <g /> element
+            onPointerMove,
+            onPointerOut,
+            onPointerUp,
           })}
         </animated.g>
       ))}

@@ -29,12 +29,12 @@ describe('useEventEmitter', () => {
 
     const Component = () => {
       const listener = jest.fn();
-      const emit = useEventEmitter('mousemove', listener);
+      const emit = useEventEmitter('pointermove', listener);
 
       useEffect(() => {
         if (emit) {
           // @ts-ignore not a React.MouseEvent
-          emit('mousemove', new MouseEvent('mousemove'));
+          emit('pointermove', new MouseEvent('pointermove'));
           expect(listener).toHaveBeenCalledTimes(1);
         }
       });

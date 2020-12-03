@@ -5,6 +5,7 @@ import { LinePath } from '@visx/shape';
 import { AnimatedLineSeries, DataContext, LineSeries, useEventEmitter } from '../../src';
 import getDataContext from '../mocks/getDataContext';
 import setupTooltipTest from '../mocks/setupTooltipTest';
+import { XYCHART_EVENT_SOURCE } from '../../src/constants';
 
 const series = { key: 'line', data: [{}], xAccessor: () => 4, yAccessor: () => 7 };
 
@@ -25,7 +26,7 @@ describe('<LineSeries />', () => {
     expect(wrapper.find(LinePath)).toHaveLength(1);
   });
 
-  it('should invoke showTooltip/hideTooltip on mousemove/mouseout', () => {
+  it('should invoke showTooltip/hideTooltip on pointermove/pointerout', () => {
     expect.assertions(2);
 
     const showTooltip = jest.fn();
@@ -44,11 +45,11 @@ describe('<LineSeries />', () => {
       useEffect(() => {
         if (emit) {
           // @ts-ignore not a React.MouseEvent
-          emit('mousemove', new MouseEvent('mousemove'));
+          emit('pointermove', new MouseEvent('pointermove'), XYCHART_EVENT_SOURCE);
           expect(showTooltip).toHaveBeenCalledTimes(1);
 
           // @ts-ignore not a React.MouseEvent
-          emit('mouseout', new MouseEvent('mouseout'));
+          emit('pointerout', new MouseEvent('pointerout'), XYCHART_EVENT_SOURCE);
           expect(showTooltip).toHaveBeenCalledTimes(1);
         }
       });

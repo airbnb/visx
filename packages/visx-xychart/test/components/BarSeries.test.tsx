@@ -4,6 +4,7 @@ import { mount } from 'enzyme';
 import { DataContext, AnimatedBarSeries, BarSeries, useEventEmitter } from '../../src';
 import getDataContext from '../mocks/getDataContext';
 import setupTooltipTest from '../mocks/setupTooltipTest';
+import { XYCHART_EVENT_SOURCE } from '../../src/constants';
 
 const series = { key: 'bar', data: [{}, {}], xAccessor: () => 0, yAccessor: () => 10 };
 const seriesMissingData = {
@@ -40,7 +41,7 @@ describe('<BarSeries />', () => {
     expect(wrapper.find('rect')).toHaveLength(1);
   });
 
-  it('should invoke showTooltip/hideTooltip on mousemove/mouseout', () => {
+  it('should invoke showTooltip/hideTooltip on pointermove/pointerout', () => {
     expect.assertions(2);
 
     const showTooltip = jest.fn();
@@ -59,11 +60,11 @@ describe('<BarSeries />', () => {
       useEffect(() => {
         if (emit) {
           // @ts-ignore not a React.MouseEvent
-          emit('mousemove', new MouseEvent('mousemove'));
+          emit('pointermove', new MouseEvent('pointermove'), XYCHART_EVENT_SOURCE);
           expect(showTooltip).toHaveBeenCalledTimes(1);
 
           // @ts-ignore not a React.MouseEvent
-          emit('mouseout', new MouseEvent('mouseout'));
+          emit('pointerout', new MouseEvent('pointerout'), XYCHART_EVENT_SOURCE);
           expect(showTooltip).toHaveBeenCalledTimes(1);
         }
       });

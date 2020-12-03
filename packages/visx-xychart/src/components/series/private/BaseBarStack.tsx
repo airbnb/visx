@@ -4,19 +4,29 @@ import { PositionScale, StackPathConfig } from '@visx/shape/lib/types';
 import { getFirstItem, getSecondItem } from '@visx/shape/lib/util/accessors';
 import stackOffset from '@visx/shape/lib/util/stackOffset';
 import stackOrder from '@visx/shape/lib/util/stackOrder';
-
 import { extent } from 'd3-array';
 import getBandwidth from '@visx/shape/lib/util/getBandwidth';
+
 import { BaseBarSeriesProps } from './BaseBarSeries';
 import DataContext from '../../../context/DataContext';
-import { Bar, BarsProps, BarStackDatum, CombinedStackData, DataContextType } from '../../../types';
-import TooltipContext from '../../../context/TooltipContext';
-import useEventEmitter, { HandlerParams } from '../../../hooks/useEventEmitter';
+import {
+  Bar,
+  BarsProps,
+  BarStackDatum,
+  CombinedStackData,
+  DataContextType,
+  PointerEventParams,
+  SeriesProps,
+  TooltipContextType,
+} from '../../../types';
 import isValidNumber from '../../../typeguards/isValidNumber';
 import isChildWithProps from '../../../typeguards/isChildWithProps';
 import combineBarBarStackData, { getStackValue } from '../../../utils/combineBarStackData';
 import getBarStackRegistryData from '../../../utils/getBarStackRegistryData';
-import findNearestStackDatum from '../../../utils/findNearestStackDatum';
+import usePointerEventEmitters from '../../../hooks/usePointerEventEmitters';
+import { BARSTACK_EVENT_SOURCE, XYCHART_EVENT_SOURCE } from '../../../constants';
+import usePointerEventHandlers from '../../../hooks/usePointerEventHandlers';
+import TooltipContext from '../../../context/TooltipContext';
 
 export type BaseBarStackProps<
   XScale extends PositionScale,
@@ -27,24 +37,35 @@ export type BaseBarStackProps<
   children: JSX.Element | JSX.Element[];
   /** Rendered component which is passed BarsProps by BaseBarStack after processing. */
   BarsComponent: React.FC<BarsProps<XScale, YScale>>;
-} & Pick<StackPathConfig<Datum, string>, 'offset' | 'order'>;
+} & Pick<StackPathConfig<Datum, string>, 'offset' | 'order'> &
+  Pick<
+    SeriesProps<XScale, YScale, Datum>,
+    'onPointerMove' | 'onPointerOut' | 'onPointerUp' | 'pointerEvents'
+  >;
 
 function BaseBarStack<
   XScale extends PositionScale,
   YScale extends PositionScale,
   Datum extends object
->({ children, order, offset, BarsComponent }: BaseBarStackProps<XScale, YScale, Datum>) {
+>({
+  children,
+  order,
+  offset,
+  BarsComponent,
+  onPointerMove: onPointerMoveProps,
+  onPointerOut: onPointerOutProps,
+  onPointerUp: onPointerUpProps,
+  pointerEvents = true,
+}: BaseBarStackProps<XScale, YScale, Datum>) {
   type StackBar = SeriesPoint<CombinedStackData<XScale, YScale>>;
   const {
-    xScale,
-    yScale,
     colorScale,
     dataRegistry,
+    horizontal,
     registerData,
     unregisterData,
-    width,
-    height,
-    horizontal,
+    xScale,
+    yScale,
   } = (useContext(DataContext) as unknown) as DataContextType<
     XScale,
     YScale,
@@ -113,58 +134,36 @@ function BaseBarStack<
     barSeriesChildren,
   ]);
 
-  // register mouse listeners
-  const { showTooltip, hideTooltip } = useContext(TooltipContext) ?? {};
-
-  const handleMouseMove = useCallback(
-    (params: HandlerParams | undefined) => {
-      const { svgPoint } = params || {};
-
-      // invoke showTooltip for each key so all data is available in context,
-      // and let Tooltip find the nearest point among them
-      dataKeys.forEach(key => {
-        const entry = dataRegistry.get(key);
-        const childData = barSeriesChildren.find(child => child.props.dataKey === key)?.props.data;
-        if (childData && svgPoint && width && height && showTooltip) {
-          const datum = findNearestStackDatum(
-            {
-              point: svgPoint,
-              data: entry.data,
-              xScale,
-              yScale,
-              xAccessor: entry.xAccessor,
-              yAccessor: entry.yAccessor,
-              width,
-              height,
-            },
-            childData,
-            horizontal,
-          );
-
-          if (datum) {
-            showTooltip({
-              key,
-              svgPoint,
-              ...datum,
-            });
-          }
-        }
-      });
+  const { showTooltip, hideTooltip } = (useContext(TooltipContext) ?? {}) as TooltipContextType<
+    Datum
+  >;
+  const onPointerMove = useCallback(
+    (p: PointerEventParams<Datum>) => {
+      showTooltip(p);
+      if (onPointerMoveProps) onPointerMoveProps(p);
     },
-    [
-      barSeriesChildren,
-      dataRegistry,
-      dataKeys,
-      horizontal,
-      xScale,
-      yScale,
-      width,
-      height,
-      showTooltip,
-    ],
+    [showTooltip, onPointerMoveProps],
   );
-  useEventEmitter('mousemove', handleMouseMove);
-  useEventEmitter('mouseout', hideTooltip);
+  const onPointerOut = useCallback(
+    (event: React.PointerEvent) => {
+      hideTooltip();
+      if (onPointerOutProps) onPointerOutProps(event);
+    },
+    [hideTooltip, onPointerOutProps],
+  );
+  const pointerEventEmitters = usePointerEventEmitters({
+    source: BARSTACK_EVENT_SOURCE,
+    onPointerMove: !!onPointerMoveProps && pointerEvents,
+    onPointerOut: !!onPointerOutProps && pointerEvents,
+    onPointerUp: !!onPointerUpProps && pointerEvents,
+  });
+  usePointerEventHandlers({
+    dataKey: dataKeys,
+    onPointerMove: pointerEvents ? onPointerMove : undefined,
+    onPointerOut: pointerEvents ? onPointerOut : undefined,
+    onPointerUp: pointerEvents ? onPointerUpProps : undefined,
+    sources: [XYCHART_EVENT_SOURCE, `${BARSTACK_EVENT_SOURCE}-${dataKeys.join('-')}`],
+  });
 
   // if scales and data are not available in the registry, bail
   if (dataKeys.some(key => dataRegistry.get(key) == null) || !xScale || !yScale || !colorScale) {
@@ -226,7 +225,13 @@ function BaseBarStack<
 
   return (
     <g className="visx-bar-stack">
-      <BarsComponent bars={bars} horizontal={horizontal} xScale={xScale} yScale={yScale} />
+      <BarsComponent
+        bars={bars}
+        horizontal={horizontal}
+        xScale={xScale}
+        yScale={yScale}
+        {...pointerEventEmitters}
+      />
     </g>
   );
 }

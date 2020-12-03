@@ -50,6 +50,8 @@ export default function Example({ height }: Props) {
         renderGlyphSeries,
         renderHorizontally,
         renderLineSeries,
+        setAnnotationDataIndex,
+        setAnnotationDataKey,
         setAnnotationLabelPosition,
         sharedTooltip,
         showGridColumns,
@@ -69,6 +71,10 @@ export default function Example({ height }: Props) {
           yScale={config.y}
           height={Math.min(400, height)}
           captureEvents={!editAnnotationLabelPosition}
+          onPointerUp={d => {
+            setAnnotationDataKey(d.key as 'New York' | 'San Francisco' | 'Austin');
+            setAnnotationDataIndex(d.index);
+          }}
         >
           <CustomChartBackground />
           <AnimatedGrid

@@ -16,14 +16,8 @@ export default function AnimatedGlyphSeries<
   renderGlyph?: React.FC<GlyphProps<Datum>>;
 }) {
   const renderGlyphs = useCallback(
-    ({ glyphs, xScale, yScale, horizontal }: GlyphsProps<XScale, YScale, Datum>) => (
-      <AnimatedGlyphs
-        renderGlyph={renderGlyph}
-        glyphs={glyphs}
-        xScale={xScale}
-        yScale={yScale}
-        horizontal={horizontal}
-      />
+    (glyphsProps: GlyphsProps<XScale, YScale, Datum>) => (
+      <AnimatedGlyphs {...glyphsProps} renderGlyph={renderGlyph} />
     ),
     [renderGlyph],
   );

@@ -56,6 +56,8 @@ type ProvidedProps = {
   data: CityTemperature[];
   editAnnotationLabelPosition: boolean;
   numTicks: number;
+  setAnnotationDataIndex: (index: number) => void;
+  setAnnotationDataKey: (key: keyof Accessors | null) => void;
   setAnnotationLabelPosition: (position: { dx: number; dy: number }) => void;
   renderAreaSeries: boolean;
   renderBarGroup: boolean;
@@ -109,6 +111,7 @@ export default function ExampleControls({ children }: ControlsProps) {
   const [renderGlyphSeries, setRenderGlyphSeries] = useState(false);
   const [editAnnotationLabelPosition, setEditAnnotationLabelPosition] = useState(false);
   const [annotationLabelPosition, setAnnotationLabelPosition] = useState({ dx: -40, dy: -20 });
+  const [annotationDataIndex, setAnnotationDataIndex] = useState(defaultAnnotationDataIndex);
   const [negativeValues, setNegativeValues] = useState(false);
   const [fewerDatum, setFewerDatum] = useState(false);
   const [missingValues, setMissingValues] = useState(false);
@@ -116,18 +119,19 @@ export default function ExampleControls({ children }: ControlsProps) {
   const [curveType, setCurveType] = useState<'linear' | 'cardinal' | 'step'>('linear');
   const themeBackground = theme.backgroundColor;
   const renderGlyph = useCallback(
-    ({ size, color }: GlyphProps<CityTemperature>) => {
+    ({ size, color, onPointerMove, onPointerOut, onPointerUp }: GlyphProps<CityTemperature>) => {
+      const handlers = { onPointerMove, onPointerOut, onPointerUp };
       if (glyphComponent === 'star') {
-        return <GlyphStar stroke={themeBackground} fill={color} size={size * 8} />;
+        return <GlyphStar stroke={themeBackground} fill={color} size={size * 8} {...handlers} />;
       }
       if (glyphComponent === 'circle') {
-        return <GlyphDot stroke={themeBackground} fill={color} r={size / 2} />;
+        return <GlyphDot stroke={themeBackground} fill={color} r={size / 2} {...handlers} />;
       }
       if (glyphComponent === 'cross') {
-        return <GlyphCross stroke={themeBackground} fill={color} size={size * 8} />;
+        return <GlyphCross stroke={themeBackground} fill={color} size={size * 8} {...handlers} />;
       }
       return (
-        <text dx="-0.75em" dy="0.25em" fontSize={14}>
+        <text dx="-0.75em" dy="0.25em" fontSize={14} {...handlers}>
           🍍
         </text>
       );
@@ -176,7 +180,7 @@ export default function ExampleControls({ children }: ControlsProps) {
         accessors,
         animationTrajectory,
         annotationDataKey,
-        annotationDatum: data[defaultAnnotationDataIndex],
+        annotationDatum: data[annotationDataIndex],
         annotationLabelPosition,
         annotationType,
         config,
@@ -201,6 +205,8 @@ export default function ExampleControls({ children }: ControlsProps) {
         renderHorizontally,
         renderAreaSeries: canRenderLineOrArea && renderLineOrAreaSeries === 'area',
         renderLineSeries: canRenderLineOrArea && renderLineOrAreaSeries === 'line',
+        setAnnotationDataIndex,
+        setAnnotationDataKey,
         setAnnotationLabelPosition,
         sharedTooltip,
         showGridColumns,
@@ -500,7 +506,7 @@ export default function ExampleControls({ children }: ControlsProps) {
         </div>
         {/** annotation */}
         <div>
-          <strong>annotation</strong>
+          <strong>annotation</strong> (click chart to update)
           <label>
             <input
               type="radio"

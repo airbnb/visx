@@ -10,6 +10,7 @@ import {
   AnimatedBarStack,
 } from '../../src';
 import setupTooltipTest from '../mocks/setupTooltipTest';
+import { XYCHART_EVENT_SOURCE } from '../../src/constants';
 
 const providerProps = {
   initialDimensions: { width: 100, height: 100 },
@@ -109,7 +110,7 @@ describe('<BarStack />', () => {
     );
   });
 
-  it('should invoke showTooltip/hideTooltip on mousemove/mouseout', () => {
+  it('should invoke showTooltip/hideTooltip on pointermove/pointerout', () => {
     expect.assertions(2);
 
     const showTooltip = jest.fn();
@@ -121,11 +122,11 @@ describe('<BarStack />', () => {
       useEffect(() => {
         if (emit) {
           // @ts-ignore not a React.MouseEvent
-          emit('mousemove', new MouseEvent('mousemove'));
+          emit('pointermove', new MouseEvent('pointermove'), XYCHART_EVENT_SOURCE);
           expect(showTooltip).toHaveBeenCalledTimes(2); // one per key
 
           // @ts-ignore not a React.MouseEvent
-          emit('mouseout', new MouseEvent('mouseout'));
+          emit('pointerout', new MouseEvent('pointerout'), XYCHART_EVENT_SOURCE);
           expect(showTooltip).toHaveBeenCalled();
         }
       });

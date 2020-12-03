@@ -1,19 +1,30 @@
-import React, { useContext, useCallback, useMemo, useEffect } from 'react';
+import React, { useContext, useMemo, useEffect, useCallback } from 'react';
 import { PositionScale } from '@visx/shape/lib/types';
 import { scaleBand } from '@visx/scale';
 import isChildWithProps from '../../../typeguards/isChildWithProps';
 import { BaseBarSeriesProps } from './BaseBarSeries';
-import { Bar, BarsProps, DataContextType } from '../../../types';
+import {
+  Bar,
+  BarsProps,
+  DataContextType,
+  PointerEventParams,
+  SeriesProps,
+  TooltipContextType,
+} from '../../../types';
 import DataContext from '../../../context/DataContext';
 import getScaleBandwidth from '../../../utils/getScaleBandwidth';
-import findNearestDatumY from '../../../utils/findNearestDatumY';
-import findNearestDatumX from '../../../utils/findNearestDatumX';
-import useEventEmitter, { HandlerParams } from '../../../hooks/useEventEmitter';
-import TooltipContext from '../../../context/TooltipContext';
 import getScaleBaseline from '../../../utils/getScaleBaseline';
 import isValidNumber from '../../../typeguards/isValidNumber';
+import { BARGROUP_EVENT_SOURCE, XYCHART_EVENT_SOURCE } from '../../../constants';
+import usePointerEventEmitters from '../../../hooks/usePointerEventEmitters';
+import usePointerEventHandlers from '../../../hooks/usePointerEventHandlers';
+import TooltipContext from '../../../context/TooltipContext';
 
-export type BaseBarGroupProps<XScale extends PositionScale, YScale extends PositionScale> = {
+export type BaseBarGroupProps<
+  XScale extends PositionScale,
+  YScale extends PositionScale,
+  Datum extends object
+> = {
   /** `BarSeries` elements */
   children: JSX.Element | JSX.Element[];
   /** Group band scale padding, [0, 1] where 0 = no padding, 1 = no bar. */
@@ -22,23 +33,33 @@ export type BaseBarGroupProps<XScale extends PositionScale, YScale extends Posit
   sortBars?: (dataKeyA: string, dataKeyB: string) => number;
   /** Rendered component which is passed BarsProps by BaseBarGroup after processing. */
   BarsComponent: React.FC<BarsProps<XScale, YScale>>;
-};
+} & Pick<
+  SeriesProps<XScale, YScale, Datum>,
+  'onPointerMove' | 'onPointerOut' | 'onPointerUp' | 'pointerEvents'
+>;
 
 export default function BaseBarGroup<
   XScale extends PositionScale,
   YScale extends PositionScale,
   Datum extends object
->({ children, padding = 0.1, sortBars, BarsComponent }: BaseBarGroupProps<XScale, YScale>) {
+>({
+  children,
+  padding = 0.1,
+  sortBars,
+  BarsComponent,
+  onPointerMove: onPointerMoveProps,
+  onPointerOut: onPointerOutProps,
+  onPointerUp: onPointerUpProps,
+  pointerEvents = true,
+}: BaseBarGroupProps<XScale, YScale, Datum>) {
   const {
-    xScale,
-    yScale,
     colorScale,
     dataRegistry,
+    horizontal,
     registerData,
     unregisterData,
-    width,
-    height,
-    horizontal,
+    xScale,
+    yScale,
   } = (useContext(DataContext) as unknown) as DataContextType<XScale, YScale, Datum>;
 
   const barSeriesChildren = useMemo(
@@ -77,39 +98,36 @@ export default function BaseBarGroup<
     [sortBars, dataKeys, xScale, yScale, horizontal, padding],
   );
 
-  const { showTooltip, hideTooltip } = useContext(TooltipContext) ?? {};
-  const handleMouseMove = useCallback(
-    (params?: HandlerParams) => {
-      const { svgPoint } = params || {};
-      // invoke showTooltip for each key so all data is available in context,
-      // and let Tooltip find the nearest point among them
-      dataKeys.forEach(key => {
-        const entry = dataRegistry.get(key);
-        if (entry && svgPoint && width && height && showTooltip) {
-          const datum = (horizontal ? findNearestDatumY : findNearestDatumX)({
-            point: svgPoint,
-            data: entry.data,
-            xScale,
-            yScale,
-            xAccessor: entry.xAccessor,
-            yAccessor: entry.yAccessor,
-            width,
-            height,
-          });
-          if (datum) {
-            showTooltip({
-              key,
-              ...datum,
-              svgPoint,
-            });
-          }
-        }
-      });
+  const { showTooltip, hideTooltip } = (useContext(TooltipContext) ?? {}) as TooltipContextType<
+    Datum
+  >;
+  const onPointerMove = useCallback(
+    (p: PointerEventParams<Datum>) => {
+      showTooltip(p);
+      if (onPointerMoveProps) onPointerMoveProps(p);
     },
-    [dataKeys, dataRegistry, horizontal, xScale, yScale, width, height, showTooltip],
+    [showTooltip, onPointerMoveProps],
   );
-  useEventEmitter('mousemove', handleMouseMove);
-  useEventEmitter('mouseout', hideTooltip);
+  const onPointerOut = useCallback(
+    (event: React.PointerEvent) => {
+      hideTooltip();
+      if (onPointerOutProps) onPointerOutProps(event);
+    },
+    [hideTooltip, onPointerOutProps],
+  );
+  const pointerEventEmitters = usePointerEventEmitters({
+    source: BARGROUP_EVENT_SOURCE,
+    onPointerMove: !!onPointerMoveProps && pointerEvents,
+    onPointerOut: !!onPointerOutProps && pointerEvents,
+    onPointerUp: !!onPointerUpProps && pointerEvents,
+  });
+  usePointerEventHandlers({
+    dataKey: dataKeys,
+    onPointerMove: pointerEvents ? onPointerMove : undefined,
+    onPointerOut: pointerEvents ? onPointerOut : undefined,
+    onPointerUp: pointerEvents ? onPointerUpProps : undefined,
+    sources: [XYCHART_EVENT_SOURCE, `${BARGROUP_EVENT_SOURCE}-${dataKeys.join('-')}`],
+  });
 
   const xZeroPosition = useMemo(() => (xScale ? getScaleBaseline(xScale) : 0), [xScale]);
   const yZeroPosition = useMemo(() => (yScale ? getScaleBaseline(yScale) : 0), [yScale]);
@@ -171,7 +189,13 @@ export default function BaseBarGroup<
 
   return (
     <g className="visx-bar-group">
-      <BarsComponent bars={bars} horizontal={horizontal} xScale={xScale} yScale={yScale} />
+      <BarsComponent
+        bars={bars}
+        horizontal={horizontal}
+        xScale={xScale}
+        yScale={yScale}
+        {...pointerEventEmitters}
+      />
     </g>
   );
 }
