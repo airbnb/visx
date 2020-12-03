@@ -30,10 +30,9 @@ export default function TooltipProvider<Datum extends object>({
     ({ svgPoint, index, key, datum, distanceX, distanceY }: PointerEventParams<Datum>) => {
       // cancel any hideTooltip calls so it won't hide after invoking the logic below
       if (debouncedHideTooltip.current) {
-        console.log('cancel');
         debouncedHideTooltip.current.cancel();
+        debouncedHideTooltip.current = null;
       }
-      debouncedHideTooltip.current = null;
 
       const distance = Math.sqrt((distanceX ?? Infinity ** 2) + (distanceY ?? Infinity ** 2));
 
