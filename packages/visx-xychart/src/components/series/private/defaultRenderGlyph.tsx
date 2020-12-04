@@ -22,6 +22,8 @@ export default function defaultRenderGlyph<Datum extends object>({
       r={size / 2}
       cx={x}
       cy={y}
+      onBlur={onBlur}
+      onFocus={onFocus}
       onPointerMove={onPointerMove}
       onPointerOut={onPointerOut}
       onPointerUp={onPointerUp}

@@ -3,7 +3,7 @@ import { AxisScale } from '@visx/axis';
 import Area, { AreaProps } from '@visx/shape/lib/shapes/Area';
 import LinePath, { LinePathProps } from '@visx/shape/lib/shapes/LinePath';
 import DataContext from '../../../context/DataContext';
-import { EventHandlerParams, SeriesProps, TooltipContextType } from '../../../types';
+import { EventHandlerParams, GlyphsProps, SeriesProps, TooltipContextType } from '../../../types';
 import withRegisteredData, { WithRegisteredDataProps } from '../../../enhancers/withRegisteredData';
 import getScaledValueFactory from '../../../utils/getScaledValueFactory';
 import getScaleBaseline from '../../../utils/getScaleBaseline';
@@ -12,6 +12,8 @@ import usePointerEventEmitters from '../../../hooks/usePointerEventEmitters';
 import { AREASERIES_EVENT_SOURCE, XYCHART_EVENT_SOURCE } from '../../../constants';
 import usePointerEventHandlers from '../../../hooks/usePointerEventHandlers';
 import TooltipContext from '../../../context/TooltipContext';
+import { BaseGlyphSeries } from './BaseGlyphSeries';
+import defaultRenderGlyph from './defaultRenderGlyph';
 
 export type BaseAreaSeriesProps<
   XScale extends AxisScale,
@@ -26,10 +28,7 @@ export type BaseAreaSeriesProps<
   lineProps?: Omit<LinePathProps<Datum>, 'data' | 'x' | 'y' | 'children' | 'defined'>;
   /** Rendered component which is passed path props by BaseAreaSeries after processing. */
   PathComponent?: React.FC<Omit<React.SVGProps<SVGPathElement>, 'ref'>> | 'path';
-} & Omit<
-    React.SVGProps<SVGPathElement>,
-    'x' | 'y' | 'x0' | 'x1' | 'y0' | 'y1' | 'ref' | 'pointerEvents'
-  >;
+} & Omit<React.SVGProps<SVGPathElement>, 'x' | 'y' | 'x0' | 'x1' | 'y0' | 'y1' | 'ref'>;
 
 function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datum extends object>({
   PathComponent = 'path',
@@ -37,10 +36,12 @@ function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
   data,
   dataKey,
   lineProps,
+  onBlur: onBlurProps,
+  onFocus: onFocusProps,
   onPointerMove: onPointerMoveProps,
   onPointerOut: onPointerOutProps,
   onPointerUp: onPointerUpProps,
-  pointerEvents = true,
+  enableEvents = true,
   renderLine = true,
   xAccessor,
   xScale,
@@ -67,25 +68,43 @@ function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
     },
     [showTooltip, onPointerMoveProps],
   );
+  const onFocus = useCallback(
+    (p: EventHandlerParams<Datum>) => {
+      showTooltip(p);
+      if (onFocusProps) onFocusProps(p);
+    },
+    [showTooltip, onFocusProps],
+  );
   const onPointerOut = useCallback(
     (event: React.PointerEvent) => {
       hideTooltip();
-      if (onPointerOutProps) onPointerOutProps(event);
+      if (event && onPointerOutProps) onPointerOutProps(event);
     },
     [hideTooltip, onPointerOutProps],
+  );
+  const onBlur = useCallback(
+    (event: React.FocusEvent) => {
+      hideTooltip();
+      if (event && onBlurProps) onBlurProps(event);
+    },
+    [hideTooltip, onBlurProps],
   );
   const ownEventSourceKey = `${AREASERIES_EVENT_SOURCE}-${dataKey}`;
   const pointerEventEmitters = usePointerEventEmitters({
     source: ownEventSourceKey,
-    onPointerMove: !!onPointerMoveProps && pointerEvents,
-    onPointerOut: !!onPointerOutProps && pointerEvents,
-    onPointerUp: !!onPointerUpProps && pointerEvents,
+    onBlur: !!onBlurProps && enableEvents,
+    onFocus: !!onFocusProps && enableEvents,
+    onPointerMove: !!onPointerMoveProps && enableEvents,
+    onPointerOut: !!onPointerOutProps && enableEvents,
+    onPointerUp: !!onPointerUpProps && enableEvents,
   });
   usePointerEventHandlers({
     dataKey,
-    onPointerMove: pointerEvents ? onPointerMove : undefined,
-    onPointerOut: pointerEvents ? onPointerOut : undefined,
-    onPointerUp: pointerEvents ? onPointerUpProps : undefined,
+    onBlur: enableEvents ? onBlur : undefined,
+    onFocus: enableEvents ? onFocus : undefined,
+    onPointerMove: enableEvents ? onPointerMove : undefined,
+    onPointerOut: enableEvents ? onPointerOut : undefined,
+    onPointerUp: enableEvents ? onPointerUpProps : undefined,
     sources: [XYCHART_EVENT_SOURCE, ownEventSourceKey],
   });
 
@@ -107,6 +126,24 @@ function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
         y: getScaledY,
       }
     : { y0: numericScaleBaseline, y1: getScaledY };
+
+  // render invisible glyphs for focusing if onFocus/onBlur are defined
+  const renderGlyphs = useCallback(
+    ({ glyphs }: GlyphsProps<XScale, YScale, Datum>) =>
+      pointerEventEmitters.onFocus || pointerEventEmitters.onBlur
+        ? glyphs.map(glyph => (
+            <React.Fragment key={glyph.key}>
+              {defaultRenderGlyph({
+                ...glyph,
+                color: 'transparent',
+                onFocus: pointerEventEmitters.onFocus,
+                onBlur: pointerEventEmitters.onBlur,
+              })}
+            </React.Fragment>
+          ))
+        : null,
+    [pointerEventEmitters.onFocus, pointerEventEmitters.onBlur],
+  );
 
   return (
     <>
@@ -142,6 +179,18 @@ function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
             />
           )}
         </LinePath>
+      )}
+      {/** Capture and emit FocusEvents */}
+      {(onFocusProps || onBlurProps) && (
+        <BaseGlyphSeries
+          dataKey={dataKey}
+          data={data}
+          xAccessor={xAccessor}
+          yAccessor={yAccessor}
+          xScale={xScale}
+          yScale={yScale}
+          renderGlyphs={renderGlyphs}
+        />
       )}
     </>
   );

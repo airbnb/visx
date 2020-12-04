@@ -40,7 +40,7 @@ export type BaseBarStackProps<
 } & Pick<StackPathConfig<Datum, string>, 'offset' | 'order'> &
   Pick<
     SeriesProps<XScale, YScale, Datum>,
-    'onPointerMove' | 'onPointerOut' | 'onPointerUp' | 'pointerEvents'
+    'onPointerMove' | 'onPointerOut' | 'onPointerUp' | 'enableEvents'
   >;
 
 function BaseBarStack<
@@ -55,7 +55,7 @@ function BaseBarStack<
   onPointerMove: onPointerMoveProps,
   onPointerOut: onPointerOutProps,
   onPointerUp: onPointerUpProps,
-  pointerEvents = true,
+  enableEvents = true,
 }: BaseBarStackProps<XScale, YScale, Datum>) {
   type StackBar = SeriesPoint<CombinedStackData<XScale, YScale>>;
   const {
@@ -154,15 +154,15 @@ function BaseBarStack<
   const ownEventSourceKey = `${BARSTACK_EVENT_SOURCE}-${dataKeys.join('-')}`;
   const pointerEventEmitters = usePointerEventEmitters({
     source: ownEventSourceKey,
-    onPointerMove: !!onPointerMoveProps && pointerEvents,
-    onPointerOut: !!onPointerOutProps && pointerEvents,
-    onPointerUp: !!onPointerUpProps && pointerEvents,
+    onPointerMove: !!onPointerMoveProps && enableEvents,
+    onPointerOut: !!onPointerOutProps && enableEvents,
+    onPointerUp: !!onPointerUpProps && enableEvents,
   });
   usePointerEventHandlers({
     dataKey: dataKeys,
-    onPointerMove: pointerEvents ? onPointerMove : undefined,
-    onPointerOut: pointerEvents ? onPointerOut : undefined,
-    onPointerUp: pointerEvents ? onPointerUpProps : undefined,
+    onPointerMove: enableEvents ? onPointerMove : undefined,
+    onPointerOut: enableEvents ? onPointerOut : undefined,
+    onPointerUp: enableEvents ? onPointerUpProps : undefined,
     sources: [XYCHART_EVENT_SOURCE, ownEventSourceKey],
   });
 

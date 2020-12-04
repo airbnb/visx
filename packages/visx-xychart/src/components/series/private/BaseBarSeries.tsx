@@ -96,23 +96,33 @@ function BaseBarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum
   const { showTooltip, hideTooltip } = (useContext(TooltipContext) ?? {}) as TooltipContextType<
     Datum
   >;
-  const onPointerMoveOrFocus = useCallback(
+  const onPointerMove = useCallback(
     (p: EventHandlerParams<Datum>) => {
       showTooltip(p);
       if (onPointerMoveProps) onPointerMoveProps(p);
+    },
+    [showTooltip, onPointerMoveProps],
+  );
+  const onFocus = useCallback(
+    (p: EventHandlerParams<Datum>) => {
+      showTooltip(p);
       if (onFocusProps) onFocusProps(p);
     },
-    [showTooltip, onPointerMoveProps, onFocusProps],
+    [showTooltip, onFocusProps],
   );
-  const onPointerOutOrBlur = useCallback(
-    (event: React.PointerEvent | React.FocusEvent) => {
+  const onPointerOut = useCallback(
+    (event: React.PointerEvent) => {
       hideTooltip();
-      if (event) {
-        if (onPointerOutProps && isPointerEvent(event)) onPointerOutProps(event);
-        else if (onBlurProps && !isPointerEvent(event)) onBlurProps(event);
-      }
+      if (event && onPointerOutProps) onPointerOutProps(event);
     },
-    [hideTooltip, onPointerOutProps, onBlurProps],
+    [hideTooltip, onPointerOutProps],
+  );
+  const onBlur = useCallback(
+    (event: React.FocusEvent) => {
+      hideTooltip();
+      if (event && onBlurProps) onBlurProps(event);
+    },
+    [hideTooltip, onBlurProps],
   );
   const ownEventSourceKey = `${BARSERIES_EVENT_SOURCE}-${dataKey}`;
   const pointerEventEmitters = usePointerEventEmitters({
@@ -125,10 +135,10 @@ function BaseBarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum
   });
   usePointerEventHandlers({
     dataKey,
-    onBlur: enableEvents ? onPointerOutOrBlur : undefined,
-    onFocus: enableEvents ? onPointerMoveOrFocus : undefined,
-    onPointerMove: enableEvents ? onPointerMoveOrFocus : undefined,
-    onPointerOut: enableEvents ? onPointerOutOrBlur : undefined,
+    onBlur: enableEvents ? onBlur : undefined,
+    onFocus: enableEvents ? onFocus : undefined,
+    onPointerMove: enableEvents ? onPointerMove : undefined,
+    onPointerOut: enableEvents ? onPointerOut : undefined,
     onPointerUp: enableEvents ? onPointerUpProps : undefined,
     sources: [XYCHART_EVENT_SOURCE, ownEventSourceKey],
   });
