@@ -1,1 +1,7 @@
-export type EventType = MouseEvent | TouchEvent | React.MouseEvent | React.TouchEvent;
+export type EventType =
+  | MouseEvent
+  | TouchEvent
+  | FocusEvent
+  | React.MouseEvent
+  | React.TouchEvent
+  | React.FocusEvent;
