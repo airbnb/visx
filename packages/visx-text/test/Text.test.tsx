@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import { Text, getStringWidth } from '../src';
+import { renderHook } from '@testing-library/react-hooks';
+import { Text, getStringWidth, useText } from '../src';
 import { addMock, removeMock } from './svgMock';
 
 describe('getStringWidth()', () => {
@@ -23,40 +24,66 @@ describe('<Text />', () => {
   });
 
   it('Does not wrap long text if enough width', () => {
-    const wrapper = shallow<Text>(
-      <Text width={300} style={{ fontFamily: 'Courier' }}>
-        This is really long text
-      </Text>,
+    const {
+      result: {
+        current: { wordsByLines },
+      },
+    } = renderHook(() =>
+      useText({
+        width: 300,
+        style: { fontFamily: 'Courier' },
+        children: 'This is really long text',
+      }),
     );
 
-    expect(wrapper.instance().state.wordsByLines).toHaveLength(1);
+    expect(wordsByLines).toHaveLength(1);
   });
 
   it('Wraps text if not enough width', () => {
-    const wrapper = shallow<Text>(
-      <Text width={200} style={{ fontFamily: 'Courier' }}>
-        This is really long text
-      </Text>,
+    const {
+      result: {
+        current: { wordsByLines },
+      },
+    } = renderHook(() =>
+      useText({
+        width: 200,
+        style: { fontFamily: 'Courier' },
+        children: 'This is really long text',
+      }),
     );
 
-    expect(wrapper.instance().state.wordsByLines).toHaveLength(2);
+    expect(wordsByLines).toHaveLength(2);
   });
 
   it('Does not wrap text if there is enough width', () => {
-    const wrapper = shallow<Text>(
-      <Text width={300} style={{ fontSize: '2em', fontFamily: 'Courier' }}>
-        This is really long text
-      </Text>,
+    const {
+      result: {
+        current: { wordsByLines },
+      },
+    } = renderHook(() =>
+      useText({
+        width: 300,
+        style: { fontSize: '2em', fontFamily: 'Courier' },
+        children: 'This is really long text',
+      }),
     );
 
-    expect(wrapper.instance().state.wordsByLines).toHaveLength(1);
+    expect(wordsByLines).toHaveLength(1);
   });
 
   it('Does not perform word length calculation if width or scaleToFit props not set', () => {
-    const wrapper = shallow<Text>(<Text>This is really long text</Text>);
+    const {
+      result: {
+        current: { wordsByLines },
+      },
+    } = renderHook(() =>
+      useText({
+        children: 'This is really long text',
+      }),
+    );
 
-    expect(wrapper.instance().state.wordsByLines).toHaveLength(1);
-    expect(wrapper.instance().state.wordsByLines[0].width).toBeUndefined();
+    expect(wordsByLines).toHaveLength(1);
+    expect(wordsByLines[0].width).toBeUndefined();
   });
 
   it('Render 0 success when specify the width', () => {
@@ -110,27 +137,20 @@ describe('<Text />', () => {
     expect(wrapper.text()).toContain('0');
   });
 
-  it('Recalculates text when children are updated', () => {
-    const wrapper = shallow<Text>(
-      <Text width={200} style={{ fontFamily: 'Courier' }}>
-        This is short text
-      </Text>,
-    );
-    expect(wrapper.instance().state.wordsByLines).toHaveLength(1);
-
-    wrapper.setProps({ children: 'This is really long text' });
-    expect(wrapper.instance().state.wordsByLines).toHaveLength(2);
-  });
-
   it('Applies transform if scaleToFit is set', () => {
-    const wrapper = shallow<Text>(
-      <Text width={300} scaleToFit style={{ fontFamily: 'Courier' }}>
-        This is really long text
-      </Text>,
+    const {
+      result: {
+        current: { transform },
+      },
+    } = renderHook(() =>
+      useText({
+        width: 300,
+        scaleToFit: true,
+        style: { fontFamily: 'Courier' },
+        children: 'This is really long text',
+      }),
     );
-
-    const text = wrapper.find('text').first();
-    expect(text.prop('transform')).toBe('matrix(1.25, 0, 0, 1.25, 0, 0)');
+    expect(transform).toBe('matrix(1.25, 0, 0, 1.25, 0, 0)');
   });
 
   it('Applies transform if angle is given', () => {
@@ -145,7 +165,7 @@ describe('<Text />', () => {
   });
 
   it('Offsets vertically if verticalAnchor is given', () => {
-    const wrapper = shallow<Text>(
+    let wrapper = mount<Text>(
       <Text width={200} style={{ fontFamily: 'Courier' }}>
         This is really long text
       </Text>,
@@ -157,9 +177,19 @@ describe('<Text />', () => {
         .prop('dy');
 
     expect(getVerticalOffset(wrapper)).toBe('-1em');
-    wrapper.setProps({ verticalAnchor: 'middle' });
+
+    wrapper = mount<Text>(
+      <Text width={200} verticalAnchor="middle" style={{ fontFamily: 'Courier' }}>
+        This is really long text
+      </Text>,
+    );
     expect(getVerticalOffset(wrapper)).toBe('-0.145em');
-    wrapper.setProps({ verticalAnchor: 'start' });
+
+    wrapper = mount<Text>(
+      <Text width={200} verticalAnchor="start" style={{ fontFamily: 'Courier' }}>
+        This is really long text
+      </Text>,
+    );
     expect(getVerticalOffset(wrapper)).toBe('0.71em');
   });
 });

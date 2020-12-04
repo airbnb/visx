@@ -11,9 +11,9 @@ describe('<Label />', () => {
   it('should render title Text', () => {
     expect(
       shallow(<Label title="title test" resizeObserverPolyfill={ResizeObserver} />)
+        .children()
         .find(Text)
-        .dive()
-        .text(),
+        .prop('children'),
     ).toBe('title test');
   });
   it('should render subtitle Text', () => {
@@ -25,10 +25,10 @@ describe('<Label />', () => {
           resizeObserverPolyfill={ResizeObserver}
         />,
       )
+        .children()
         .find(Text)
         .at(1)
-        .dive()
-        .text(),
+        .prop('children'),
     ).toBe('subtitle test');
   });
   it('should render a background', () => {
