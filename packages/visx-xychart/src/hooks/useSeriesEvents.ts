@@ -1,0 +1,77 @@
+import { AxisScale } from '@visx/axis';
+import { useCallback, useContext } from 'react';
+import TooltipContext from '../context/TooltipContext';
+import { EventHandlerParams, SeriesProps, TooltipContextType } from '../types';
+import usePointerEventEmitters from './usePointerEventEmitters';
+import usePointerEventHandlers, { PointerEventHandlerParams } from './usePointerEventHandlers';
+
+export type SeriesEventsParams<Datum extends object> = Pick<
+  SeriesProps<AxisScale, AxisScale, Datum>,
+  'enableEvents' | 'onBlur' | 'onFocus' | 'onPointerMove' | 'onPointerOut' | 'onPointerUp'
+> &
+  Pick<PointerEventHandlerParams<Datum>, 'dataKey' | 'sources'> & {
+    /** The source of emitted events. */
+    source: string;
+  };
+
+/** This hook simplifies the logic for initializing Series event emitters + handlers. */
+export default function useSeriesEvents<Datum extends object>({
+  dataKey,
+  enableEvents,
+  onBlur: onBlurProps,
+  onFocus: onFocusProps,
+  onPointerMove: onPointerMoveProps,
+  onPointerOut: onPointerOutProps,
+  onPointerUp: onPointerUpProps,
+  source,
+  sources,
+}: SeriesEventsParams<Datum>) {
+  const { showTooltip, hideTooltip } = (useContext(TooltipContext) ?? {}) as TooltipContextType<
+    Datum
+  >;
+  const onPointerMove = useCallback(
+    (params: EventHandlerParams<Datum>) => {
+      showTooltip(params);
+      if (onPointerMoveProps) onPointerMoveProps(params);
+    },
+    [showTooltip, onPointerMoveProps],
+  );
+  const onFocus = useCallback(
+    (params: EventHandlerParams<Datum>) => {
+      showTooltip(params);
+      if (onFocusProps) onFocusProps(params);
+    },
+    [showTooltip, onFocusProps],
+  );
+  const onPointerOut = useCallback(
+    (event: React.PointerEvent) => {
+      hideTooltip();
+      if (event && onPointerOutProps) onPointerOutProps(event);
+    },
+    [hideTooltip, onPointerOutProps],
+  );
+  const onBlur = useCallback(
+    (event: React.FocusEvent) => {
+      hideTooltip();
+      if (event && onBlurProps) onBlurProps(event);
+    },
+    [hideTooltip, onBlurProps],
+  );
+  usePointerEventHandlers({
+    dataKey,
+    onBlur: enableEvents ? onBlur : undefined,
+    onFocus: enableEvents ? onFocus : undefined,
+    onPointerMove: enableEvents ? onPointerMove : undefined,
+    onPointerOut: enableEvents ? onPointerOut : undefined,
+    onPointerUp: enableEvents ? onPointerUpProps : undefined,
+    sources,
+  });
+  return usePointerEventEmitters({
+    source,
+    onBlur: !!onBlurProps && enableEvents,
+    onFocus: !!onFocusProps && enableEvents,
+    onPointerMove: !!onPointerMoveProps && enableEvents,
+    onPointerOut: !!onPointerOutProps && enableEvents,
+    onPointerUp: !!onPointerUpProps && enableEvents,
+  });
+}
