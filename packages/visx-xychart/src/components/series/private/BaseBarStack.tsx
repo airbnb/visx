@@ -40,7 +40,7 @@ export type BaseBarStackProps<
 } & Pick<StackPathConfig<Datum, string>, 'offset' | 'order'> &
   Pick<
     SeriesProps<XScale, YScale, Datum>,
-    'onPointerMove' | 'onPointerOut' | 'onPointerUp' | 'enableEvents'
+    'onPointerMove' | 'onPointerOut' | 'onPointerUp' | 'onBlur' | 'onFocus' | 'enableEvents'
   >;
 
 function BaseBarStack<
@@ -52,6 +52,8 @@ function BaseBarStack<
   order,
   offset,
   BarsComponent,
+  onBlur: onBlurProps,
+  onFocus: onFocusProps,
   onPointerMove: onPointerMoveProps,
   onPointerOut: onPointerOutProps,
   onPointerUp: onPointerUpProps,

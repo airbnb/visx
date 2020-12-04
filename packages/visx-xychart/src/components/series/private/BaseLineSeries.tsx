@@ -2,16 +2,14 @@ import React, { useContext, useCallback } from 'react';
 import LinePath, { LinePathProps } from '@visx/shape/lib/shapes/LinePath';
 import { AxisScale } from '@visx/axis';
 import DataContext from '../../../context/DataContext';
-import { EventHandlerParams, GlyphsProps, SeriesProps, TooltipContextType } from '../../../types';
+import { GlyphsProps, SeriesProps } from '../../../types';
 import withRegisteredData, { WithRegisteredDataProps } from '../../../enhancers/withRegisteredData';
 import getScaledValueFactory from '../../../utils/getScaledValueFactory';
-import TooltipContext from '../../../context/TooltipContext';
 import isValidNumber from '../../../typeguards/isValidNumber';
 import { LINESERIES_EVENT_SOURCE, XYCHART_EVENT_SOURCE } from '../../../constants';
-import usePointerEventEmitters from '../../../hooks/usePointerEventEmitters';
-import usePointerEventHandlers from '../../../hooks/usePointerEventHandlers';
 import { BaseGlyphSeries } from './BaseGlyphSeries';
 import defaultRenderGlyph from './defaultRenderGlyph';
+import useSeriesEvents from '../../../hooks/useSeriesEvents';
 
 export type BaseLineSeriesProps<
   XScale extends AxisScale,
@@ -28,11 +26,11 @@ function BaseLineSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
   curve,
   data,
   dataKey,
-  onBlur: onBlurProps,
-  onFocus: onFocusProps,
-  onPointerMove: onPointerMoveProps,
-  onPointerOut: onPointerOutProps,
-  onPointerUp: onPointerUpProps,
+  onBlur,
+  onFocus,
+  onPointerMove,
+  onPointerOut,
+  onPointerUp,
   enableEvents = true,
   xAccessor,
   xScale,
@@ -50,72 +48,36 @@ function BaseLineSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
   );
   const color = colorScale?.(dataKey) ?? theme?.colors?.[0] ?? '#222';
 
-  const { showTooltip, hideTooltip } = (useContext(TooltipContext) ?? {}) as TooltipContextType<
-    Datum
-  >;
-  const onPointerMove = useCallback(
-    (p: EventHandlerParams<Datum>) => {
-      showTooltip(p);
-      if (onPointerMoveProps) onPointerMoveProps(p);
-    },
-    [showTooltip, onPointerMoveProps],
-  );
-  const onFocus = useCallback(
-    (p: EventHandlerParams<Datum>) => {
-      showTooltip(p);
-      if (onFocusProps) onFocusProps(p);
-    },
-    [showTooltip, onFocusProps],
-  );
-  const onPointerOut = useCallback(
-    (event: React.PointerEvent) => {
-      hideTooltip();
-      if (onPointerOutProps) onPointerOutProps(event);
-    },
-    [hideTooltip, onPointerOutProps],
-  );
-  const onBlur = useCallback(
-    (event: React.FocusEvent) => {
-      hideTooltip();
-      if (event && onBlurProps) onBlurProps(event);
-    },
-    [hideTooltip, onBlurProps],
-  );
   const ownEventSourceKey = `${LINESERIES_EVENT_SOURCE}-${dataKey}`;
-  const pointerEventEmitters = usePointerEventEmitters({
-    source: ownEventSourceKey,
-    onBlur: !!onBlurProps && enableEvents,
-    onFocus: !!onFocusProps && enableEvents,
-    onPointerMove: !!onPointerMoveProps && enableEvents,
-    onPointerOut: !!onPointerOutProps && enableEvents,
-    onPointerUp: !!onPointerUpProps && enableEvents,
-  });
-  usePointerEventHandlers<Datum>({
+  const eventEmitters = useSeriesEvents<Datum>({
     dataKey,
-    onBlur: enableEvents ? onBlur : undefined,
-    onFocus: enableEvents ? onFocus : undefined,
-    onPointerMove: enableEvents ? onPointerMove : undefined,
-    onPointerOut: enableEvents ? onPointerOut : undefined,
-    onPointerUp: enableEvents ? onPointerUpProps : undefined,
+    enableEvents,
+    onBlur,
+    onFocus,
+    onPointerMove,
+    onPointerOut,
+    onPointerUp,
+    source: ownEventSourceKey,
     sources: [XYCHART_EVENT_SOURCE, ownEventSourceKey],
   });
 
   // render invisible glyphs for focusing if onFocus/onBlur are defined
+  const captureFocusEvents = Boolean(onFocus || onBlur);
   const renderGlyphs = useCallback(
     ({ glyphs }: GlyphsProps<XScale, YScale, Datum>) =>
-      pointerEventEmitters.onFocus || pointerEventEmitters.onBlur
+      captureFocusEvents
         ? glyphs.map(glyph => (
             <React.Fragment key={glyph.key}>
               {defaultRenderGlyph({
                 ...glyph,
                 color: 'transparent',
-                onFocus: pointerEventEmitters.onFocus,
-                onBlur: pointerEventEmitters.onBlur,
+                onFocus: eventEmitters.onFocus,
+                onBlur: eventEmitters.onBlur,
               })}
             </React.Fragment>
           ))
         : null,
-    [pointerEventEmitters.onFocus, pointerEventEmitters.onBlur],
+    [captureFocusEvents, eventEmitters.onFocus, eventEmitters.onBlur],
   );
 
   return (
@@ -128,11 +90,11 @@ function BaseLineSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
             fill="transparent"
             {...lineProps}
             d={path(data) || ''}
-            {...pointerEventEmitters}
+            {...eventEmitters}
           />
         )}
       </LinePath>
-      {(onFocusProps || onBlurProps) && (
+      {captureFocusEvents && (
         <BaseGlyphSeries
           dataKey={dataKey}
           data={data}

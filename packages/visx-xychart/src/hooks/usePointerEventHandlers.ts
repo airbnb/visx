@@ -9,7 +9,7 @@ import useEventEmitter, { HandlerParams } from './useEventEmitter';
 export const POINTER_EVENTS_ALL = '__POINTER_EVENTS_ALL';
 export const POINTER_EVENTS_NEAREST = '__POINTER_EVENTS_NEAREST';
 
-type PointerEventHandlerParams<Datum extends object> = {
+export type PointerEventHandlerParams<Datum extends object> = {
   /** Controls whether callbacks are invoked for one or more registered dataKeys, the nearest dataKey, or all dataKeys. */
   dataKey: string | string[] | typeof POINTER_EVENTS_NEAREST | typeof POINTER_EVENTS_ALL; // last two are eaten by string
   /** Callback invoked onFocus for one or more series based on dataKey. */
