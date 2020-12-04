@@ -5,7 +5,7 @@ import { AxisScaleOutput } from '@visx/axis';
 import { ScaleConfig } from '@visx/scale';
 
 import DataContext from '../context/DataContext';
-import { Margin, PointerEventParams } from '../types';
+import { Margin, EventHandlerParams } from '../types';
 import useEventEmitter from '../hooks/useEventEmitter';
 import EventEmitterProvider from '../providers/EventEmitterProvider';
 import TooltipContext from '../context/TooltipContext';
@@ -52,7 +52,7 @@ export type XYChartProps<
     index,
     key,
     svgPoint,
-  }: PointerEventParams<Datum>) => void;
+  }: EventHandlerParams<Datum>) => void;
   /** Callback invoked for onPointerOut events for the nearest Datum to the PointerEvent _for each Series with pointerEvents={true}_. */
   onPointerOut?: (
     /** The PointerEvent. */
@@ -67,7 +67,7 @@ export type XYChartProps<
     index,
     key,
     svgPoint,
-  }: PointerEventParams<Datum>) => void;
+  }: EventHandlerParams<Datum>) => void;
   /** Whether to invoke PointerEvent handlers for all dataKeys, or the nearest dataKey. */
   pointerEventsDataKey?: 'all' | 'nearest';
 };

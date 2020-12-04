@@ -15,7 +15,7 @@ import {
   BarStackDatum,
   CombinedStackData,
   DataContextType,
-  PointerEventParams,
+  EventHandlerParams,
   SeriesProps,
   TooltipContextType,
 } from '../../../types';
@@ -138,7 +138,7 @@ function BaseBarStack<
     Datum
   >;
   const onPointerMove = useCallback(
-    (p: PointerEventParams<Datum>) => {
+    (p: EventHandlerParams<Datum>) => {
       showTooltip(p);
       if (onPointerMoveProps) onPointerMoveProps(p);
     },

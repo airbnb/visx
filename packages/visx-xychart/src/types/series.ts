@@ -1,10 +1,10 @@
-import { PointerEvent } from 'react';
+import { PointerEvent, FocusEvent } from 'react';
 import { AxisScale } from '@visx/axis';
 import { ScaleInput } from '@visx/scale';
 import { Series, SeriesPoint } from 'd3-shape';
 
 /** Call signature of PointerEvent callback. */
-export type PointerEventParams<Datum> = {
+export type EventHandlerParams<Datum> = {
   /** Series key that datum belongs to. */
   key: string;
   /** Index of datum in series data array. */
@@ -17,8 +17,8 @@ export type PointerEventParams<Datum> = {
   distanceY?: number;
   /** Coordinates of the event in svg space. */
   svgPoint?: { x: number; y: number };
-  /** The PointerEvent. */
-  event: PointerEvent;
+  /** The PointerEvent or FocusEvent. */
+  event: PointerEvent | FocusEvent;
 };
 
 export type SeriesProps<
@@ -48,7 +48,7 @@ export type SeriesProps<
     index,
     key,
     svgPoint,
-  }: PointerEventParams<Datum>) => void;
+  }: EventHandlerParams<Datum>) => void;
   /**
    * Callback invoked for onPointerOut events. By default XYChart will capture and emit
    * PointerEvents, invoking this function for any Series with a defined handler.
@@ -73,9 +73,30 @@ export type SeriesProps<
     index,
     key,
     svgPoint,
-  }: PointerEventParams<Datum>) => void;
-  /** Whether the Series emits and subscribes to PointerEvents (including Tooltip triggering). */
-  pointerEvents?: boolean;
+  }: EventHandlerParams<Datum>) => void;
+  /**
+   * Callback invoked for onFocus events for the nearest Datum to the FocusEvent.
+   * XYChart will NOT capture and emit FocusEvents, they are emitted from individual Series glyph shapes.
+   */
+  onFocus?: ({
+    datum,
+    distanceX,
+    distanceY,
+    event,
+    index,
+    key,
+    svgPoint,
+  }: EventHandlerParams<Datum>) => void;
+  /**
+   * Callback invoked for onBlur events for the nearest Datum to the FocusEvent.
+   * XYChart will NOT capture and emit FocusEvents, they are emitted from individual Series glyph shapes.
+   */
+  onBlur?: (
+    /** The FocusEvent. */
+    event: React.FocusEvent,
+  ) => void;
+  /** Whether the Series emits and subscribes to PointerEvents and FocusEvents (including Tooltip triggering). */
+  enableEvents?: boolean;
 };
 
 /** Bar shape. */
@@ -126,6 +147,10 @@ export type GlyphsProps<
   yScale: YScale;
   horizontal?: boolean;
   glyphs: GlyphProps<Datum>[];
+  /** Callback to invoke for onBlur. */
+  onBlur?: (event: FocusEvent) => void;
+  /** Callback to invoke for onFocus. */
+  onFocus?: (event: FocusEvent) => void;
   /** Callback to invoke for onPointerMove. */
   onPointerMove?: (event: PointerEvent) => void;
   /** Callback to invoke for onPointerOut. */
@@ -149,6 +174,10 @@ export type GlyphProps<Datum extends object> = {
   size: number;
   /** Color of Glyph. */
   color: string;
+  /** Callback to invoke for onBlur. */
+  onBlur?: (event: FocusEvent) => void;
+  /** Callback to invoke for onFocus. */
+  onFocus?: (event: FocusEvent) => void;
   /** Callback to invoke for onPointerMove. */
   onPointerMove?: (event: PointerEvent) => void;
   /** Callback to invoke for onPointerOut. */

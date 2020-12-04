@@ -4,7 +4,7 @@ import DataContext from '../../../context/DataContext';
 import {
   GlyphProps,
   GlyphsProps,
-  PointerEventParams,
+  EventHandlerParams,
   SeriesProps,
   TooltipContextType,
 } from '../../../types';
@@ -15,6 +15,7 @@ import usePointerEventEmitters from '../../../hooks/usePointerEventEmitters';
 import { GLYPHSERIES_EVENT_SOURCE, XYCHART_EVENT_SOURCE } from '../../../constants';
 import usePointerEventHandlers from '../../../hooks/usePointerEventHandlers';
 import TooltipContext from '../../../context/TooltipContext';
+import { isPointerEvent } from '../../../typeguards/events';
 
 export type BaseGlyphSeriesProps<
   XScale extends AxisScale,
@@ -30,10 +31,12 @@ export type BaseGlyphSeriesProps<
 function BaseGlyphSeries<XScale extends AxisScale, YScale extends AxisScale, Datum extends object>({
   data,
   dataKey,
+  onBlur: onBlurProps,
+  onFocus: onFocusProps,
   onPointerMove: onPointerMoveProps,
   onPointerOut: onPointerOutProps,
   onPointerUp: onPointerUpProps,
-  pointerEvents = true,
+  enableEvents = true,
   renderGlyphs,
   size = 8,
   xAccessor,
@@ -50,32 +53,40 @@ function BaseGlyphSeries<XScale extends AxisScale, YScale extends AxisScale, Dat
   const { showTooltip, hideTooltip } = (useContext(TooltipContext) ?? {}) as TooltipContextType<
     Datum
   >;
-  const onPointerMove = useCallback(
-    (p: PointerEventParams<Datum>) => {
+  const onPointerMoveOrFocus = useCallback(
+    (p: EventHandlerParams<Datum>) => {
       showTooltip(p);
       if (onPointerMoveProps) onPointerMoveProps(p);
+      if (onFocusProps) onFocusProps(p);
     },
-    [showTooltip, onPointerMoveProps],
+    [showTooltip, onPointerMoveProps, onFocusProps],
   );
-  const onPointerOut = useCallback(
-    (event: React.PointerEvent) => {
+  const onPointerOutOrBlur = useCallback(
+    (event: React.PointerEvent | React.FocusEvent) => {
       hideTooltip();
-      if (onPointerOutProps) onPointerOutProps(event);
+      if (event) {
+        if (onPointerOutProps && isPointerEvent(event)) onPointerOutProps(event);
+        else if (onBlurProps && !isPointerEvent(event)) onBlurProps(event);
+      }
     },
-    [hideTooltip, onPointerOutProps],
+    [hideTooltip, onPointerOutProps, onBlurProps],
   );
   const ownEventSourceKey = `${GLYPHSERIES_EVENT_SOURCE}-${dataKey}`;
   const pointerEventEmitters = usePointerEventEmitters({
     source: ownEventSourceKey,
-    onPointerMove: !!onPointerMoveProps && pointerEvents,
-    onPointerOut: !!onPointerOutProps && pointerEvents,
-    onPointerUp: !!onPointerUpProps && pointerEvents,
+    onBlur: !!onBlurProps && enableEvents,
+    onFocus: !!onFocusProps && enableEvents,
+    onPointerMove: !!onPointerMoveProps && enableEvents,
+    onPointerOut: !!onPointerOutProps && enableEvents,
+    onPointerUp: !!onPointerUpProps && enableEvents,
   });
   usePointerEventHandlers({
     dataKey,
-    onPointerMove: pointerEvents ? onPointerMove : undefined,
-    onPointerOut: pointerEvents ? onPointerOut : undefined,
-    onPointerUp: pointerEvents ? onPointerUpProps : undefined,
+    onBlur: enableEvents ? onPointerOutOrBlur : undefined,
+    onFocus: enableEvents ? onPointerMoveOrFocus : undefined,
+    onPointerMove: enableEvents ? onPointerMoveOrFocus : undefined,
+    onPointerOut: enableEvents ? onPointerOutOrBlur : undefined,
+    onPointerUp: enableEvents ? onPointerUpProps : undefined,
     sources: [XYCHART_EVENT_SOURCE, ownEventSourceKey],
   });
 

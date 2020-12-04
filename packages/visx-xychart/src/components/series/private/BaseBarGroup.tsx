@@ -7,7 +7,7 @@ import {
   Bar,
   BarsProps,
   DataContextType,
-  PointerEventParams,
+  EventHandlerParams,
   SeriesProps,
   TooltipContextType,
 } from '../../../types';
@@ -102,7 +102,7 @@ export default function BaseBarGroup<
     Datum
   >;
   const onPointerMove = useCallback(
-    (p: PointerEventParams<Datum>) => {
+    (p: EventHandlerParams<Datum>) => {
       showTooltip(p);
       if (onPointerMoveProps) onPointerMoveProps(p);
     },

@@ -3,7 +3,7 @@ import { AxisScale } from '@visx/axis';
 import Area, { AreaProps } from '@visx/shape/lib/shapes/Area';
 import LinePath, { LinePathProps } from '@visx/shape/lib/shapes/LinePath';
 import DataContext from '../../../context/DataContext';
-import { PointerEventParams, SeriesProps, TooltipContextType } from '../../../types';
+import { EventHandlerParams, SeriesProps, TooltipContextType } from '../../../types';
 import withRegisteredData, { WithRegisteredDataProps } from '../../../enhancers/withRegisteredData';
 import getScaledValueFactory from '../../../utils/getScaledValueFactory';
 import getScaleBaseline from '../../../utils/getScaleBaseline';
@@ -61,7 +61,7 @@ function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
     Datum
   >;
   const onPointerMove = useCallback(
-    (p: PointerEventParams<Datum>) => {
+    (p: EventHandlerParams<Datum>) => {
       showTooltip(p);
       if (onPointerMoveProps) onPointerMoveProps(p);
     },

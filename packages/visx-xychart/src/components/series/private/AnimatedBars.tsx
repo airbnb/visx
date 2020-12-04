@@ -54,6 +54,7 @@ export default function AnimatedBars<XScale extends AxisScale, YScale extends Ax
     unique: true,
     ...useBarTransitionConfig({ horizontal, scale: horizontal ? xScale : yScale }),
   });
+  const isFocusable = Boolean(rectProps.onFocus || rectProps.onBlur);
 
   return (
     // eslint-disable-next-line react/jsx-no-useless-fragment
@@ -65,6 +66,7 @@ export default function AnimatedBars<XScale extends AxisScale, YScale extends Ax
         item == null || key == null ? null : (
           <animated.rect
             key={key}
+            tabIndex={isFocusable ? 0 : undefined}
             className="visx-bar"
             x={x}
             y={y}

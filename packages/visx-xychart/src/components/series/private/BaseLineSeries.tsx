@@ -2,7 +2,7 @@ import React, { useContext, useCallback } from 'react';
 import LinePath, { LinePathProps } from '@visx/shape/lib/shapes/LinePath';
 import { AxisScale } from '@visx/axis';
 import DataContext from '../../../context/DataContext';
-import { PointerEventParams, SeriesProps, TooltipContextType } from '../../../types';
+import { EventHandlerParams, SeriesProps, TooltipContextType } from '../../../types';
 import withRegisteredData, { WithRegisteredDataProps } from '../../../enhancers/withRegisteredData';
 import getScaledValueFactory from '../../../utils/getScaledValueFactory';
 import TooltipContext from '../../../context/TooltipContext';
@@ -53,7 +53,7 @@ function BaseLineSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
     Datum
   >;
   const onPointerMove = useCallback(
-    (p: PointerEventParams<Datum>) => {
+    (p: EventHandlerParams<Datum>) => {
       showTooltip(p);
       if (onPointerMoveProps) onPointerMoveProps(p);
     },
