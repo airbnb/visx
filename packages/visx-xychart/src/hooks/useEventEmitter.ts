@@ -2,11 +2,11 @@ import { useCallback, useContext, useEffect, useRef } from 'react';
 import { localPoint } from '@visx/event';
 import EventEmitterContext from '../context/EventEmitterContext';
 
-export type EventType = 'pointermove' | 'pointerout' | 'pointerup';
+export type EventType = 'pointermove' | 'pointerout' | 'pointerup' | 'focus' | 'blur';
 
 export type HandlerParams = {
-  /** The react PointerEvent. */
-  event: React.PointerEvent;
+  /** The react PointerEvent or FocusEvent. */
+  event: React.PointerEvent | React.FocusEvent;
   /** Position of the PointerEvent in svg coordinates. */
   svgPoint: ReturnType<typeof localPoint>;
   /** The source of the event. This can be anything, but for this package is the name of the component which emitted the event. */

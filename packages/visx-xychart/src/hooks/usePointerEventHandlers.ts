@@ -1,6 +1,7 @@
-import { PointerEvent, useCallback, useContext } from 'react';
+import { PointerEvent, FocusEvent, useCallback, useContext } from 'react';
 import DataContext from '../context/DataContext';
-import { PointerEventParams } from '../types';
+import { isPointerEvent } from '../typeguards/events';
+import { EventHandlerParams } from '../types';
 import findNearestDatumX from '../utils/findNearestDatumX';
 import findNearestDatumY from '../utils/findNearestDatumY';
 import useEventEmitter, { HandlerParams } from './useEventEmitter';
@@ -11,12 +12,16 @@ export const POINTER_EVENTS_NEAREST = '__POINTER_EVENTS_NEAREST';
 type PointerEventHandlerParams<Datum extends object> = {
   /** Controls whether callbacks are invoked for one or more registered dataKeys, the nearest dataKey, or all dataKeys. */
   dataKey: string | string[] | typeof POINTER_EVENTS_NEAREST | typeof POINTER_EVENTS_ALL; // last two are eaten by string
+  /** Callback invoked onFocus for one or more series based on dataKey. */
+  onFocus?: (params: EventHandlerParams<Datum>) => void;
+  /** Callback invoked onBlur. */
+  onBlur?: (event: FocusEvent) => void;
   /** Callback invoked onPointerMove for one or more series based on dataKey. */
-  onPointerMove?: (params: PointerEventParams<Datum>) => void;
-  /** Callback invoked onPointerOut for one or more series based on dataKey. */
+  onPointerMove?: (params: EventHandlerParams<Datum>) => void;
+  /** Callback invoked onPointerOut. */
   onPointerOut?: (event: PointerEvent) => void;
   /** Callback invoked onPointerUp for one or more series based on dataKey. */
-  onPointerUp?: (params: PointerEventParams<Datum>) => void;
+  onPointerUp?: (params: EventHandlerParams<Datum>) => void;
   /** Valid event sources for which to invoke handlers. */
   sources?: string[];
 };
@@ -27,6 +32,8 @@ type PointerEventHandlerParams<Datum extends object> = {
  */
 export default function usePointerEventHandlers<Datum extends object>({
   dataKey,
+  onBlur,
+  onFocus,
   onPointerMove,
   onPointerOut,
   onPointerUp,
@@ -34,13 +41,13 @@ export default function usePointerEventHandlers<Datum extends object>({
 }: PointerEventHandlerParams<Datum>) {
   const { width, height, horizontal, dataRegistry, xScale, yScale } = useContext(DataContext);
 
-  const handlePointerMoveOrUp = useCallback(
+  const handlePointerMoveUpOrFocus = useCallback(
     (params?: HandlerParams) => {
       const { svgPoint, event } = params || {};
-      const pointerParamsByKey: { [dataKey: string]: PointerEventParams<Datum> } = {};
+      const pointerParamsByKey: { [dataKey: string]: EventHandlerParams<Datum> } = {};
 
       // nearest Datum across all dataKeys, if relevant
-      let nearestDatumPointerParams: PointerEventParams<Datum> | null = null;
+      let nearestDatumPointerParams: EventHandlerParams<Datum> | null = null;
       let nearestDatumDistance = Infinity;
 
       if (params && event && svgPoint && width && height && xScale && yScale) {
@@ -67,6 +74,7 @@ export default function usePointerEventHandlers<Datum extends object>({
               yAccessor: entry.yAccessor,
               yScale,
             });
+
             if (nearestDatum) {
               pointerParamsByKey[key] = { key, svgPoint, event, ...nearestDatum };
 
@@ -86,18 +94,19 @@ export default function usePointerEventHandlers<Datum extends object>({
           }
         });
 
-        const pointerParams: (null | PointerEventParams<Datum>)[] =
+        const pointerParams: (null | EventHandlerParams<Datum>)[] =
           dataKey === POINTER_EVENTS_NEAREST
             ? [nearestDatumPointerParams]
             : dataKey === POINTER_EVENTS_ALL || Array.isArray(dataKey)
             ? Object.values(pointerParamsByKey)
             : [pointerParamsByKey[dataKey]];
 
-        pointerParams.forEach(p => {
-          if (p?.event.type === 'pointerup' && onPointerUp) {
-            onPointerUp(p);
-          } else if (p?.event.type === 'pointermove') {
-            if (onPointerMove) onPointerMove(p);
+        pointerParams.forEach(pointerParam => {
+          const eventType = pointerParam?.event.type;
+          if (eventType === 'pointerup' && onPointerUp && pointerParam) {
+            onPointerUp(pointerParam);
+          } else if ((eventType === 'pointermove' || eventType === 'focus') && pointerParam) {
+            if (onPointerMove) onPointerMove(pointerParam);
           }
         });
       }
@@ -107,12 +116,22 @@ export default function usePointerEventHandlers<Datum extends object>({
 
   const handlePointerOut = useCallback(
     (params?: HandlerParams) => {
-      if (params && onPointerOut) onPointerOut(params.event);
+      const event = params?.event;
+      if (event && isPointerEvent(event) && onPointerOut) onPointerOut(event);
     },
     [onPointerOut],
   );
+  const handleBlur = useCallback(
+    (params?: HandlerParams) => {
+      const event = params?.event;
+      if (event && !isPointerEvent(event) && onBlur) onBlur(event);
+    },
+    [onBlur],
+  );
 
-  useEventEmitter('pointermove', onPointerMove ? handlePointerMoveOrUp : undefined, sources);
+  useEventEmitter('pointermove', onPointerMove ? handlePointerMoveUpOrFocus : undefined, sources);
   useEventEmitter('pointerout', onPointerOut ? handlePointerOut : undefined, sources);
-  useEventEmitter('pointerup', onPointerUp ? handlePointerMoveOrUp : undefined, sources);
+  useEventEmitter('pointerup', onPointerUp ? handlePointerMoveUpOrFocus : undefined, sources);
+  useEventEmitter('focus', onFocus ? handlePointerMoveUpOrFocus : undefined, sources);
+  useEventEmitter('blur', onBlur ? handleBlur : undefined, sources);
 }
