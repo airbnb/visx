@@ -1,23 +1,35 @@
-import { AxisScale } from '@visx/axis';
 import { useCallback, useContext } from 'react';
+import { AxisScale } from '@visx/axis';
 import TooltipContext from '../context/TooltipContext';
 import { EventHandlerParams, SeriesProps, TooltipContextType } from '../types';
 import usePointerEventEmitters from './usePointerEventEmitters';
 import usePointerEventHandlers, { PointerEventHandlerParams } from './usePointerEventHandlers';
 
-export type SeriesEventsParams<Datum extends object> = Pick<
-  SeriesProps<AxisScale, AxisScale, Datum>,
+export type SeriesEventsParams<
+  XScale extends AxisScale,
+  YScale extends AxisScale,
+  Datum extends object
+> = Pick<
+  SeriesProps<XScale, YScale, Datum>,
   'enableEvents' | 'onBlur' | 'onFocus' | 'onPointerMove' | 'onPointerOut' | 'onPointerUp'
 > &
-  Pick<PointerEventHandlerParams<Datum>, 'dataKey' | 'sources'> & {
+  Pick<
+    PointerEventHandlerParams<XScale, YScale, Datum>,
+    'dataKey' | 'sources' | 'findNearestDatum'
+  > & {
     /** The source of emitted events. */
     source: string;
   };
 
 /** This hook simplifies the logic for initializing Series event emitters + handlers. */
-export default function useSeriesEvents<Datum extends object>({
+export default function useSeriesEvents<
+  XScale extends AxisScale,
+  YScale extends AxisScale,
+  Datum extends object
+>({
   dataKey,
   enableEvents,
+  findNearestDatum,
   onBlur: onBlurProps,
   onFocus: onFocusProps,
   onPointerMove: onPointerMoveProps,
@@ -25,7 +37,7 @@ export default function useSeriesEvents<Datum extends object>({
   onPointerUp: onPointerUpProps,
   source,
   sources,
-}: SeriesEventsParams<Datum>) {
+}: SeriesEventsParams<XScale, YScale, Datum>) {
   const { showTooltip, hideTooltip } = (useContext(TooltipContext) ?? {}) as TooltipContextType<
     Datum
   >;
@@ -59,6 +71,7 @@ export default function useSeriesEvents<Datum extends object>({
   );
   usePointerEventHandlers({
     dataKey,
+    findNearestDatum,
     onBlur: enableEvents ? onBlur : undefined,
     onFocus: enableEvents ? onFocus : undefined,
     onPointerMove: enableEvents ? onPointerMove : undefined,

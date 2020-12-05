@@ -15,18 +15,17 @@ import {
   BarStackDatum,
   CombinedStackData,
   DataContextType,
-  EventHandlerParams,
+  NearestDatumArgs,
+  NearestDatumReturnType,
   SeriesProps,
-  TooltipContextType,
 } from '../../../types';
 import isValidNumber from '../../../typeguards/isValidNumber';
 import isChildWithProps from '../../../typeguards/isChildWithProps';
 import combineBarBarStackData, { getStackValue } from '../../../utils/combineBarStackData';
 import getBarStackRegistryData from '../../../utils/getBarStackRegistryData';
-import usePointerEventEmitters from '../../../hooks/usePointerEventEmitters';
 import { BARSTACK_EVENT_SOURCE, XYCHART_EVENT_SOURCE } from '../../../constants';
-import usePointerEventHandlers from '../../../hooks/usePointerEventHandlers';
-import TooltipContext from '../../../context/TooltipContext';
+import useSeriesEvents from '../../../hooks/useSeriesEvents';
+import findNearestStackDatum from '../../../utils/findNearestStackDatum';
 
 export type BaseBarStackProps<
   XScale extends PositionScale,
@@ -52,11 +51,11 @@ function BaseBarStack<
   order,
   offset,
   BarsComponent,
-  onBlur: onBlurProps,
-  onFocus: onFocusProps,
-  onPointerMove: onPointerMoveProps,
-  onPointerOut: onPointerOutProps,
-  onPointerUp: onPointerUpProps,
+  onBlur,
+  onFocus,
+  onPointerMove,
+  onPointerOut,
+  onPointerUp,
   enableEvents = true,
 }: BaseBarStackProps<XScale, YScale, Datum>) {
   type StackBar = SeriesPoint<CombinedStackData<XScale, YScale>>;
@@ -136,35 +135,28 @@ function BaseBarStack<
     barSeriesChildren,
   ]);
 
-  const { showTooltip, hideTooltip } = (useContext(TooltipContext) ?? {}) as TooltipContextType<
-    Datum
-  >;
-  const onPointerMove = useCallback(
-    (p: EventHandlerParams<Datum>) => {
-      showTooltip(p);
-      if (onPointerMoveProps) onPointerMoveProps(p);
+  const findNearestDatum = useCallback(
+    (
+      params: NearestDatumArgs<XScale, YScale, BarStackDatum<XScale, YScale>>,
+    ): NearestDatumReturnType<Datum> => {
+      const childData = barSeriesChildren.find(child => child.props.dataKey === params.dataKey)
+        ?.props?.data;
+      return childData ? findNearestStackDatum(params, childData, horizontal) : null;
     },
-    [showTooltip, onPointerMoveProps],
+    [barSeriesChildren, horizontal],
   );
-  const onPointerOut = useCallback(
-    (event: React.PointerEvent) => {
-      hideTooltip();
-      if (onPointerOutProps) onPointerOutProps(event);
-    },
-    [hideTooltip, onPointerOutProps],
-  );
+
   const ownEventSourceKey = `${BARSTACK_EVENT_SOURCE}-${dataKeys.join('-')}`;
-  const pointerEventEmitters = usePointerEventEmitters({
-    source: ownEventSourceKey,
-    onPointerMove: !!onPointerMoveProps && enableEvents,
-    onPointerOut: !!onPointerOutProps && enableEvents,
-    onPointerUp: !!onPointerUpProps && enableEvents,
-  });
-  usePointerEventHandlers({
+  const eventEmitters = useSeriesEvents<XScale, YScale, Datum>({
     dataKey: dataKeys,
-    onPointerMove: enableEvents ? onPointerMove : undefined,
-    onPointerOut: enableEvents ? onPointerOut : undefined,
-    onPointerUp: enableEvents ? onPointerUpProps : undefined,
+    enableEvents,
+    findNearestDatum,
+    onBlur,
+    onFocus,
+    onPointerMove,
+    onPointerOut,
+    onPointerUp,
+    source: ownEventSourceKey,
     sources: [XYCHART_EVENT_SOURCE, ownEventSourceKey],
   });
 
@@ -233,7 +225,7 @@ function BaseBarStack<
         horizontal={horizontal}
         xScale={xScale}
         yScale={yScale}
-        {...pointerEventEmitters}
+        {...eventEmitters}
       />
     </g>
   );

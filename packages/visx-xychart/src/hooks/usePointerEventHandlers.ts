@@ -1,7 +1,13 @@
+import { AxisScale } from '@visx/axis';
 import { PointerEvent, FocusEvent, useCallback, useContext } from 'react';
 import DataContext from '../context/DataContext';
 import { isPointerEvent } from '../typeguards/events';
-import { EventHandlerParams } from '../types';
+import {
+  DataContextType,
+  EventHandlerParams,
+  NearestDatumArgs,
+  NearestDatumReturnType,
+} from '../types';
 import findNearestDatumX from '../utils/findNearestDatumX';
 import findNearestDatumY from '../utils/findNearestDatumY';
 import useEventEmitter, { HandlerParams } from './useEventEmitter';
@@ -9,9 +15,17 @@ import useEventEmitter, { HandlerParams } from './useEventEmitter';
 export const POINTER_EVENTS_ALL = '__POINTER_EVENTS_ALL';
 export const POINTER_EVENTS_NEAREST = '__POINTER_EVENTS_NEAREST';
 
-export type PointerEventHandlerParams<Datum extends object> = {
+export type PointerEventHandlerParams<
+  XScale extends AxisScale,
+  YScale extends AxisScale,
+  Datum extends object
+> = {
   /** Controls whether callbacks are invoked for one or more registered dataKeys, the nearest dataKey, or all dataKeys. */
   dataKey: string | string[] | typeof POINTER_EVENTS_NEAREST | typeof POINTER_EVENTS_ALL; // last two are eaten by string
+  /** Optionally override the findNearestDatum logic. */
+  findNearestDatum?: (
+    params: NearestDatumArgs<XScale, YScale, Datum>,
+  ) => NearestDatumReturnType<Datum>;
   /** Callback invoked onFocus for one or more series based on dataKey. */
   onFocus?: (params: EventHandlerParams<Datum>) => void;
   /** Callback invoked onBlur. */
@@ -30,17 +44,26 @@ export type PointerEventHandlerParams<Datum extends object> = {
  * Hook that returns PointerEvent handlers that invoke the passed pointer
  * handlers with the nearest datum to the event for the passed dataKey.
  */
-export default function usePointerEventHandlers<Datum extends object>({
+export default function usePointerEventHandlers<
+  XScale extends AxisScale,
+  YScale extends AxisScale,
+  Datum extends object
+>({
   dataKey,
+  findNearestDatum: findNearestDatumProps,
   onBlur,
   onFocus,
   onPointerMove,
   onPointerOut,
   onPointerUp,
   sources,
-}: PointerEventHandlerParams<Datum>) {
-  const { width, height, horizontal, dataRegistry, xScale, yScale } = useContext(DataContext);
+}: PointerEventHandlerParams<XScale, YScale, Datum>) {
+  const { width, height, horizontal, dataRegistry, xScale, yScale } = (useContext(
+    DataContext,
+  ) as unknown) as DataContextType<XScale, YScale, Datum>;
 
+  const findNearestDatum =
+    findNearestDatumProps || (horizontal ? findNearestDatumY : findNearestDatumX);
   const handlePointerMoveUpOrFocus = useCallback(
     (params?: HandlerParams) => {
       const { svgPoint, event } = params || {};
@@ -64,7 +87,8 @@ export default function usePointerEventHandlers<Datum extends object>({
         dataKeys.forEach(key => {
           const entry = dataRegistry?.get(key);
           if (entry) {
-            const nearestDatum = (horizontal ? findNearestDatumY : findNearestDatumX)({
+            const nearestDatum = findNearestDatum({
+              dataKey: key,
               data: entry.data,
               height,
               point: svgPoint,
@@ -111,7 +135,17 @@ export default function usePointerEventHandlers<Datum extends object>({
         });
       }
     },
-    [dataKey, dataRegistry, xScale, yScale, width, height, horizontal, onPointerMove, onPointerUp],
+    [
+      dataKey,
+      dataRegistry,
+      xScale,
+      yScale,
+      width,
+      height,
+      findNearestDatum,
+      onPointerMove,
+      onPointerUp,
+    ],
   );
 
   const handlePointerOut = useCallback(
