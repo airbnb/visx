@@ -43,7 +43,7 @@ export default function BaseBarGroup<
   Datum extends object
 >({
   children,
-  padding = 0.5,
+  padding = 0.1,
   sortBars,
   BarsComponent,
   onBlur,
