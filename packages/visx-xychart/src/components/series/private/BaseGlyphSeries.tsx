@@ -1,20 +1,11 @@
 import React, { useContext, useCallback, useMemo } from 'react';
 import { AxisScale } from '@visx/axis';
 import DataContext from '../../../context/DataContext';
-import {
-  GlyphProps,
-  GlyphsProps,
-  EventHandlerParams,
-  SeriesProps,
-  TooltipContextType,
-} from '../../../types';
+import { GlyphProps, GlyphsProps, SeriesProps } from '../../../types';
 import withRegisteredData, { WithRegisteredDataProps } from '../../../enhancers/withRegisteredData';
 import getScaledValueFactory from '../../../utils/getScaledValueFactory';
 import isValidNumber from '../../../typeguards/isValidNumber';
-import usePointerEventEmitters from '../../../hooks/usePointerEventEmitters';
 import { GLYPHSERIES_EVENT_SOURCE, XYCHART_EVENT_SOURCE } from '../../../constants';
-import usePointerEventHandlers from '../../../hooks/usePointerEventHandlers';
-import TooltipContext from '../../../context/TooltipContext';
 import useSeriesEvents from '../../../hooks/useSeriesEvents';
 
 export type BaseGlyphSeriesProps<

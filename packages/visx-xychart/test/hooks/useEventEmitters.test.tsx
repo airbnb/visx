@@ -1,18 +1,18 @@
 import React, { useEffect } from 'react';
 import { mount } from 'enzyme';
 import { EventEmitterProvider, useEventEmitter } from '../../src';
-import usePointerEventEmitters from '../../src/hooks/usePointerEventEmitters';
+import useEventEmitters from '../../src/hooks/useEventEmitters';
 
-describe('usePointerEventEmitters', () => {
+describe('useEventEmitters', () => {
   it('should be defined', () => {
-    expect(usePointerEventEmitters).toBeDefined();
+    expect(useEventEmitters).toBeDefined();
   });
 
   it('should provide an emitter for each callback specified', () => {
     expect.assertions(1);
 
     const Component = () => {
-      const emitters = usePointerEventEmitters({ source: 'visx', onPointerOut: false });
+      const emitters = useEventEmitters({ source: 'visx', onPointerOut: false });
       expect(emitters).toEqual({
         onPointerMove: expect.any(Function),
         onPointerOut: undefined,
@@ -34,7 +34,7 @@ describe('usePointerEventEmitters', () => {
       const source = 'sourceId';
       const listener = jest.fn();
       useEventEmitter('pointerup', listener, [source]);
-      const emitters = usePointerEventEmitters({ source });
+      const emitters = useEventEmitters({ source });
 
       useEffect(() => {
         if (emitters.onPointerUp) {

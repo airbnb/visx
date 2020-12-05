@@ -2,8 +2,8 @@ import { useCallback, useContext } from 'react';
 import { AxisScale } from '@visx/axis';
 import TooltipContext from '../context/TooltipContext';
 import { EventHandlerParams, SeriesProps, TooltipContextType } from '../types';
-import usePointerEventEmitters from './usePointerEventEmitters';
-import usePointerEventHandlers, { PointerEventHandlerParams } from './usePointerEventHandlers';
+import useEventEmitters from './useEventEmitters';
+import useEventHandlers, { PointerEventHandlerParams } from './useEventHandlers';
 
 export type SeriesEventsParams<
   XScale extends AxisScale,
@@ -69,7 +69,7 @@ export default function useSeriesEvents<
     },
     [hideTooltip, onBlurProps],
   );
-  usePointerEventHandlers({
+  useEventHandlers({
     dataKey,
     findNearestDatum,
     onBlur: enableEvents ? onBlur : undefined,
@@ -79,7 +79,7 @@ export default function useSeriesEvents<
     onPointerUp: enableEvents ? onPointerUpProps : undefined,
     allowedSources,
   });
-  return usePointerEventEmitters({
+  return useEventEmitters({
     source,
     onBlur: !!onBlurProps && enableEvents,
     onFocus: !!onFocusProps && enableEvents,

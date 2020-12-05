@@ -11,12 +11,12 @@ import EventEmitterProvider from '../providers/EventEmitterProvider';
 import TooltipContext from '../context/TooltipContext';
 import TooltipProvider from '../providers/TooltipProvider';
 import DataProvider, { DataProviderProps } from '../providers/DataProvider';
-import usePointerEventEmitters from '../hooks/usePointerEventEmitters';
+import useEventEmitters from '../hooks/useEventEmitters';
 import { XYCHART_EVENT_SOURCE } from '../constants';
-import usePointerEventHandlers, {
+import useEventHandlers, {
   POINTER_EVENTS_ALL,
   POINTER_EVENTS_NEAREST,
-} from '../hooks/usePointerEventHandlers';
+} from '../hooks/useEventHandlers';
 
 const DEFAULT_MARGIN = { top: 50, right: 50, bottom: 50, left: 50 };
 
@@ -105,8 +105,8 @@ export default function XYChart<
     }
   }, [setDimensions, width, height, margin]);
 
-  const pointerEventEmitters = usePointerEventEmitters({ source: XYCHART_EVENT_SOURCE });
-  usePointerEventHandlers({
+  const eventEmitters = useEventEmitters({ source: XYCHART_EVENT_SOURCE });
+  useEventHandlers({
     dataKey: pointerEventsDataKey === 'nearest' ? POINTER_EVENTS_NEAREST : POINTER_EVENTS_ALL,
     onPointerMove,
     onPointerOut,
@@ -171,7 +171,7 @@ export default function XYChart<
           width={width - margin.left - margin.right}
           height={height - margin.top - margin.bottom}
           fill="transparent"
-          {...pointerEventEmitters}
+          {...eventEmitters}
         />
       )}
     </svg>
