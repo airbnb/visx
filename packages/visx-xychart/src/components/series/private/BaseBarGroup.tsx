@@ -3,22 +3,13 @@ import { PositionScale } from '@visx/shape/lib/types';
 import { scaleBand } from '@visx/scale';
 import isChildWithProps from '../../../typeguards/isChildWithProps';
 import { BaseBarSeriesProps } from './BaseBarSeries';
-import {
-  Bar,
-  BarsProps,
-  DataContextType,
-  EventHandlerParams,
-  SeriesProps,
-  TooltipContextType,
-} from '../../../types';
+import { Bar, BarsProps, DataContextType, SeriesProps } from '../../../types';
 import DataContext from '../../../context/DataContext';
 import getScaleBandwidth from '../../../utils/getScaleBandwidth';
 import getScaleBaseline from '../../../utils/getScaleBaseline';
 import isValidNumber from '../../../typeguards/isValidNumber';
 import { BARGROUP_EVENT_SOURCE, XYCHART_EVENT_SOURCE } from '../../../constants';
-import usePointerEventEmitters from '../../../hooks/usePointerEventEmitters';
-import usePointerEventHandlers from '../../../hooks/usePointerEventHandlers';
-import TooltipContext from '../../../context/TooltipContext';
+import useSeriesEvents from '../../../hooks/useSeriesEvents';
 
 export type BaseBarGroupProps<
   XScale extends PositionScale,
@@ -35,7 +26,7 @@ export type BaseBarGroupProps<
   BarsComponent: React.FC<BarsProps<XScale, YScale>>;
 } & Pick<
   SeriesProps<XScale, YScale, Datum>,
-  'onPointerMove' | 'onPointerOut' | 'onPointerUp' | 'pointerEvents'
+  'onPointerMove' | 'onPointerOut' | 'onPointerUp' | 'onBlur' | 'onFocus' | 'enableEvents'
 >;
 
 export default function BaseBarGroup<
@@ -47,10 +38,12 @@ export default function BaseBarGroup<
   padding = 0.1,
   sortBars,
   BarsComponent,
-  onPointerMove: onPointerMoveProps,
-  onPointerOut: onPointerOutProps,
-  onPointerUp: onPointerUpProps,
-  pointerEvents = true,
+  onBlur,
+  onFocus,
+  onPointerMove,
+  onPointerOut,
+  onPointerUp,
+  enableEvents = true,
 }: BaseBarGroupProps<XScale, YScale, Datum>) {
   const {
     colorScale,
@@ -98,35 +91,16 @@ export default function BaseBarGroup<
     [sortBars, dataKeys, xScale, yScale, horizontal, padding],
   );
 
-  const { showTooltip, hideTooltip } = (useContext(TooltipContext) ?? {}) as TooltipContextType<
-    Datum
-  >;
-  const onPointerMove = useCallback(
-    (p: EventHandlerParams<Datum>) => {
-      showTooltip(p);
-      if (onPointerMoveProps) onPointerMoveProps(p);
-    },
-    [showTooltip, onPointerMoveProps],
-  );
-  const onPointerOut = useCallback(
-    (event: React.PointerEvent) => {
-      hideTooltip();
-      if (onPointerOutProps) onPointerOutProps(event);
-    },
-    [hideTooltip, onPointerOutProps],
-  );
   const ownEventSourceKey = `${BARGROUP_EVENT_SOURCE}-${dataKeys.join('-')}}`;
-  const pointerEventEmitters = usePointerEventEmitters({
-    source: ownEventSourceKey,
-    onPointerMove: !!onPointerMoveProps && pointerEvents,
-    onPointerOut: !!onPointerOutProps && pointerEvents,
-    onPointerUp: !!onPointerUpProps && pointerEvents,
-  });
-  usePointerEventHandlers({
+  const eventEmitters = useSeriesEvents({
     dataKey: dataKeys,
-    onPointerMove: pointerEvents ? onPointerMove : undefined,
-    onPointerOut: pointerEvents ? onPointerOut : undefined,
-    onPointerUp: pointerEvents ? onPointerUpProps : undefined,
+    enableEvents,
+    onBlur,
+    onFocus,
+    onPointerMove,
+    onPointerOut,
+    onPointerUp,
+    source: ownEventSourceKey,
     sources: [XYCHART_EVENT_SOURCE, ownEventSourceKey],
   });
 
@@ -195,7 +169,7 @@ export default function BaseBarGroup<
         horizontal={horizontal}
         xScale={xScale}
         yScale={yScale}
-        {...pointerEventEmitters}
+        {...eventEmitters}
       />
     </g>
   );
