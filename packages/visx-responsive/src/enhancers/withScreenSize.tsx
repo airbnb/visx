@@ -1,63 +1,16 @@
-import debounce from 'lodash/debounce';
 import React from 'react';
+import { WithSizeProps, WithSizeProvidedProps } from '../hooks/useSize';
+import { useScreenSize } from '../hooks/useScreenSize';
 
-export type WithScreenSizeProps = {
-  windowResizeDebounceTime?: number;
-  enableDebounceLeadingCall?: boolean;
-};
+export { WithSizeProvidedProps } from '../hooks/useSize';
 
-type WithScreenSizeState = {
-  screenWidth?: number;
-  screenHeight?: number;
-};
-
-export type WithScreenSizeProvidedProps = WithScreenSizeState;
-
-export default function withScreenSize<BaseComponentProps extends WithScreenSizeProps = {}>(
+export default function withScreenSize<BaseComponentProps extends WithSizeProps = {}>(
   BaseComponent: React.ComponentType<BaseComponentProps>,
 ) {
-  return class WrappedComponent extends React.Component<
-    BaseComponentProps & WithScreenSizeProvidedProps,
-    WithScreenSizeState
-  > {
-    static defaultProps = {
-      windowResizeDebounceTime: 300,
-      enableDebounceLeadingCall: true,
-    };
-
-    state = {
-      screenWidth: undefined,
-      screenHeight: undefined,
-    };
-
-    componentDidMount() {
-      window.addEventListener('resize', this.resize, false);
-      this.resize();
-    }
-
-    componentWillUnmount() {
-      window.removeEventListener('resize', this.resize, false);
-      this.resize.cancel();
-    }
-
-    resize = debounce(
-      () => {
-        this.setState((/** prevState, props */) => {
-          return {
-            screenWidth: window.innerWidth,
-            screenHeight: window.innerHeight,
-          };
-        });
-      },
-      this.props.windowResizeDebounceTime,
-      { leading: this.props.enableDebounceLeadingCall },
+  return (props: BaseComponentProps & WithSizeProvidedProps) => {
+    const [isScreenSize, screenWidth, screenHeight] = useScreenSize(props);
+    return isScreenSize ? null : (
+      <BaseComponent screenWidth={screenWidth} screenHeight={screenHeight} {...props} />
     );
-
-    render() {
-      const { screenWidth, screenHeight } = this.state;
-      return screenWidth == null || screenHeight == null ? null : (
-        <BaseComponent screenWidth={screenWidth} screenHeight={screenHeight} {...this.props} />
-      );
-    }
   };
 }

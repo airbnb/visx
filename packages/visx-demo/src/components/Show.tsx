@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import cx from 'classnames';
 import withScreenSize, {
-  WithScreenSizeProvidedProps,
+  WithSizeProvidedProps,
 } from '@visx/responsive/lib/enhancers/withScreenSize';
 import CodeSandboxLink from './CodeSandboxLink';
 import Page from './Page';
@@ -21,15 +21,15 @@ type ShowProps = {
   events?: boolean;
   margin?: MarginShape;
   description?: Component<{ width: number; height: number }>;
-  windowResizeDebounceTime?: number;
+  debounceTime?: number;
   packageJson?: PackageJson;
 };
 
 const padding = 40;
 
-export default withScreenSize<ShowProps & WithScreenSizeProvidedProps>(
+export default withScreenSize<ShowProps & WithSizeProvidedProps>(
   ({
-    screenWidth,
+    width,
     children,
     title,
     component,
@@ -39,9 +39,9 @@ export default withScreenSize<ShowProps & WithScreenSizeProvidedProps>(
     description,
     codeSandboxDirectoryName,
     packageJson,
-  }: ShowProps & WithScreenSizeProvidedProps) => {
-    const width = Math.min(800, (screenWidth || 0) - padding);
-    const height = width * 0.6;
+  }: ShowProps & WithSizeProvidedProps) => {
+    const calWidth = Math.min(800, (width || 0) - padding);
+    const height = calWidth * 0.6;
     const visxDeps = useMemo(() => extractVisxDepsFromPackageJson(packageJson), [packageJson]);
 
     return (
@@ -51,13 +51,13 @@ export default withScreenSize<ShowProps & WithScreenSizeProvidedProps>(
             <h1>{title}</h1>
             <div className={cx(!!shadow && 'shadow', title.split(' ').join('-'), 'chart')}>
               {React.createElement(component, {
-                width,
+                width: calWidth,
                 height,
                 margin,
                 events,
               })}
             </div>
-            {description && React.createElement(description, { width, height })}
+            {description && React.createElement(description, { width: calWidth, height })}
             {codeSandboxDirectoryName && (
               <div className="sandbox-link">
                 <CodeSandboxLink exampleDirectoryName={codeSandboxDirectoryName} />
