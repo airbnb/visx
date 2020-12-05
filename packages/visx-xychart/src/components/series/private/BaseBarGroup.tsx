@@ -3,13 +3,21 @@ import { PositionScale } from '@visx/shape/lib/types';
 import { scaleBand } from '@visx/scale';
 import isChildWithProps from '../../../typeguards/isChildWithProps';
 import { BaseBarSeriesProps } from './BaseBarSeries';
-import { Bar, BarsProps, DataContextType, SeriesProps } from '../../../types';
+import {
+  Bar,
+  BarsProps,
+  DataContextType,
+  NearestDatumArgs,
+  NearestDatumReturnType,
+  SeriesProps,
+} from '../../../types';
 import DataContext from '../../../context/DataContext';
 import getScaleBandwidth from '../../../utils/getScaleBandwidth';
 import getScaleBaseline from '../../../utils/getScaleBaseline';
 import isValidNumber from '../../../typeguards/isValidNumber';
 import { BARGROUP_EVENT_SOURCE, XYCHART_EVENT_SOURCE } from '../../../constants';
 import useSeriesEvents from '../../../hooks/useSeriesEvents';
+import findNearestGroupDatum from '../../../utils/findNearestGroupDatum';
 
 export type BaseBarGroupProps<
   XScale extends PositionScale,
@@ -35,7 +43,7 @@ export default function BaseBarGroup<
   Datum extends object
 >({
   children,
-  padding = 0.1,
+  padding = 0.5,
   sortBars,
   BarsComponent,
   onBlur,
@@ -91,10 +99,17 @@ export default function BaseBarGroup<
     [sortBars, dataKeys, xScale, yScale, horizontal, padding],
   );
 
+  const findNearestDatum = useCallback(
+    (params: NearestDatumArgs<XScale, YScale, Datum>): NearestDatumReturnType<Datum> =>
+      findNearestGroupDatum(params, groupScale, horizontal),
+    [groupScale, horizontal],
+  );
+
   const ownEventSourceKey = `${BARGROUP_EVENT_SOURCE}-${dataKeys.join('-')}}`;
   const eventEmitters = useSeriesEvents<XScale, YScale, Datum>({
     dataKey: dataKeys,
     enableEvents,
+    findNearestDatum,
     onBlur,
     onFocus,
     onPointerMove,
