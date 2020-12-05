@@ -15,7 +15,7 @@ export type SeriesEventsParams<
 > &
   Pick<
     PointerEventHandlerParams<XScale, YScale, Datum>,
-    'dataKey' | 'sources' | 'findNearestDatum'
+    'dataKey' | 'allowedSources' | 'findNearestDatum'
   > & {
     /** The source of emitted events. */
     source: string;
@@ -36,7 +36,7 @@ export default function useSeriesEvents<
   onPointerOut: onPointerOutProps,
   onPointerUp: onPointerUpProps,
   source,
-  sources,
+  allowedSources,
 }: SeriesEventsParams<XScale, YScale, Datum>) {
   const { showTooltip, hideTooltip } = (useContext(TooltipContext) ?? {}) as TooltipContextType<
     Datum
@@ -77,7 +77,7 @@ export default function useSeriesEvents<
     onPointerMove: enableEvents ? onPointerMove : undefined,
     onPointerOut: enableEvents ? onPointerOut : undefined,
     onPointerUp: enableEvents ? onPointerUpProps : undefined,
-    sources,
+    allowedSources,
   });
   return usePointerEventEmitters({
     source,

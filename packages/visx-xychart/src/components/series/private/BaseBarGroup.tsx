@@ -92,7 +92,7 @@ export default function BaseBarGroup<
   );
 
   const ownEventSourceKey = `${BARGROUP_EVENT_SOURCE}-${dataKeys.join('-')}}`;
-  const eventEmitters = useSeriesEvents({
+  const eventEmitters = useSeriesEvents<XScale, YScale, Datum>({
     dataKey: dataKeys,
     enableEvents,
     onBlur,
@@ -101,7 +101,7 @@ export default function BaseBarGroup<
     onPointerOut,
     onPointerUp,
     source: ownEventSourceKey,
-    sources: [XYCHART_EVENT_SOURCE, ownEventSourceKey],
+    allowedSources: [XYCHART_EVENT_SOURCE, ownEventSourceKey],
   });
 
   const xZeroPosition = useMemo(() => (xScale ? getScaleBaseline(xScale) : 0), [xScale]);

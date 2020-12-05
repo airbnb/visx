@@ -72,7 +72,7 @@ export type XYChartProps<
   pointerEventsDataKey?: 'all' | 'nearest';
 };
 
-const eventSourceSubscriptions = [XYCHART_EVENT_SOURCE];
+const allowedEventSources = [XYCHART_EVENT_SOURCE];
 
 export default function XYChart<
   XScaleConfig extends ScaleConfig<AxisScaleOutput, any, any>,
@@ -111,7 +111,7 @@ export default function XYChart<
     onPointerMove,
     onPointerOut,
     onPointerUp,
-    sources: eventSourceSubscriptions,
+    allowedSources: allowedEventSources,
   });
 
   // if Context or dimensions are not available, wrap self in the needed providers

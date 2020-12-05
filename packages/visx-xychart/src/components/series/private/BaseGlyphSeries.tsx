@@ -55,7 +55,7 @@ export function BaseGlyphSeries<
   const color = colorScale?.(dataKey) ?? theme?.colors?.[0] ?? '#222';
 
   const ownEventSourceKey = `${GLYPHSERIES_EVENT_SOURCE}-${dataKey}`;
-  const eventEmitters = useSeriesEvents<Datum>({
+  const eventEmitters = useSeriesEvents<XScale, YScale, Datum>({
     dataKey,
     enableEvents,
     onBlur,
@@ -64,7 +64,7 @@ export function BaseGlyphSeries<
     onPointerOut,
     onPointerUp,
     source: ownEventSourceKey,
-    sources: [XYCHART_EVENT_SOURCE, ownEventSourceKey],
+    allowedSources: [XYCHART_EVENT_SOURCE, ownEventSourceKey],
   });
 
   const glyphs = useMemo(

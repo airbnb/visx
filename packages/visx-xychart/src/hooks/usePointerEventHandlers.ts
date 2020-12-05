@@ -37,7 +37,7 @@ export type PointerEventHandlerParams<
   /** Callback invoked onPointerUp for one or more series based on dataKey. */
   onPointerUp?: (params: EventHandlerParams<Datum>) => void;
   /** Valid event sources for which to invoke handlers. */
-  sources?: string[];
+  allowedSources?: string[];
 };
 
 /**
@@ -56,7 +56,7 @@ export default function usePointerEventHandlers<
   onPointerMove,
   onPointerOut,
   onPointerUp,
-  sources,
+  allowedSources,
 }: PointerEventHandlerParams<XScale, YScale, Datum>) {
   const { width, height, horizontal, dataRegistry, xScale, yScale } = (useContext(
     DataContext,
@@ -163,9 +163,17 @@ export default function usePointerEventHandlers<
     [onBlur],
   );
 
-  useEventEmitter('pointermove', onPointerMove ? handlePointerMoveUpOrFocus : undefined, sources);
-  useEventEmitter('pointerout', onPointerOut ? handlePointerOut : undefined, sources);
-  useEventEmitter('pointerup', onPointerUp ? handlePointerMoveUpOrFocus : undefined, sources);
-  useEventEmitter('focus', onFocus ? handlePointerMoveUpOrFocus : undefined, sources);
-  useEventEmitter('blur', onBlur ? handleBlur : undefined, sources);
+  useEventEmitter(
+    'pointermove',
+    onPointerMove ? handlePointerMoveUpOrFocus : undefined,
+    allowedSources,
+  );
+  useEventEmitter('pointerout', onPointerOut ? handlePointerOut : undefined, allowedSources);
+  useEventEmitter(
+    'pointerup',
+    onPointerUp ? handlePointerMoveUpOrFocus : undefined,
+    allowedSources,
+  );
+  useEventEmitter('focus', onFocus ? handlePointerMoveUpOrFocus : undefined, allowedSources);
+  useEventEmitter('blur', onBlur ? handleBlur : undefined, allowedSources);
 }

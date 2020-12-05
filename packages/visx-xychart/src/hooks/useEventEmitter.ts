@@ -24,11 +24,11 @@ export default function useEventEmitter(
   /** Handler invoked on emission of EventType event.  */
   handler?: Handler,
   /** Optional valid sources for EventType subscription. */
-  sources?: string[],
+  allowedSources?: string[],
 ) {
   const emitter = useContext(EventEmitterContext);
-  const sourcesRef = useRef<string[] | undefined>();
-  sourcesRef.current = sources; // use ref so sources[] can change without creating new handlers
+  const allowedSourcesRef = useRef<string[] | undefined>();
+  allowedSourcesRef.current = allowedSources; // use ref so allowedSources[] can change without creating new handlers
 
   // wrap emitter.emit so we can enforce stricter type signature
   const emit = useCallback(
@@ -45,8 +45,8 @@ export default function useEventEmitter(
       // register handler, with source filtering as needed
       const handlerWithSourceFilter: Handler = (params?: HandlerParams) => {
         if (
-          !sourcesRef.current ||
-          (params?.source && sourcesRef.current?.includes(params.source))
+          !allowedSourcesRef.current ||
+          (params?.source && allowedSourcesRef.current?.includes(params.source))
         ) {
           handler(params);
         }

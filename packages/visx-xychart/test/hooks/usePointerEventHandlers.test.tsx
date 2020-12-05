@@ -35,7 +35,7 @@ describe('usePointerEventHandlers', () => {
       const emit = useEventEmitter();
 
       usePointerEventHandlers({
-        sources: [sourceId],
+        allowedSources: [sourceId],
         dataKey: series1.key,
         onPointerMove: pointerMoveListener,
         onPointerOut: pointerOutListener,
@@ -74,12 +74,12 @@ describe('usePointerEventHandlers', () => {
       const emit = useEventEmitter();
 
       usePointerEventHandlers({
-        sources: [sourceId],
+        allowedSources: [sourceId],
         dataKey: POINTER_EVENTS_ALL,
         onPointerMove: pointerMoveListenerAll,
       });
       usePointerEventHandlers({
-        sources: [sourceId],
+        allowedSources: [sourceId],
         dataKey: [series1.key, series2.key],
         onPointerMove: pointerMoveListenerMultipleKeys,
       });

@@ -57,7 +57,7 @@ function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
   const color = colorScale?.(dataKey) ?? theme?.colors?.[0] ?? '#222';
 
   const ownEventSourceKey = `${AREASERIES_EVENT_SOURCE}-${dataKey}`;
-  const eventEmitters = useSeriesEvents<Datum>({
+  const eventEmitters = useSeriesEvents<XScale, YScale, Datum>({
     dataKey,
     enableEvents,
     onBlur,
@@ -66,7 +66,7 @@ function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
     onPointerOut,
     onPointerUp,
     source: ownEventSourceKey,
-    sources: [XYCHART_EVENT_SOURCE, ownEventSourceKey],
+    allowedSources: [XYCHART_EVENT_SOURCE, ownEventSourceKey],
   });
 
   const numericScaleBaseline = useMemo(() => getScaleBaseline(horizontal ? xScale : yScale), [

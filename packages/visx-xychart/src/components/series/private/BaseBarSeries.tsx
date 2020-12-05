@@ -85,7 +85,7 @@ function BaseBarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum
   }, [barThickness, color, data, getScaledX, getScaledY, horizontal, xZeroPosition, yZeroPosition]);
 
   const ownEventSourceKey = `${BARSERIES_EVENT_SOURCE}-${dataKey}`;
-  const eventEmitters = useSeriesEvents<Datum>({
+  const eventEmitters = useSeriesEvents<XScale, YScale, Datum>({
     dataKey,
     enableEvents,
     onBlur,
@@ -94,7 +94,7 @@ function BaseBarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum
     onPointerOut,
     onPointerUp,
     source: ownEventSourceKey,
-    sources: [XYCHART_EVENT_SOURCE, ownEventSourceKey],
+    allowedSources: [XYCHART_EVENT_SOURCE, ownEventSourceKey],
   });
 
   return (
