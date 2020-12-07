@@ -23,18 +23,22 @@ describe('useEventHandlers', () => {
     expect(useEventHandlers).toBeDefined();
   });
   it('should invoke handlers for each pointer event handler specified', () => {
-    expect.assertions(3);
+    expect.assertions(5);
 
     const Component = () => {
       const sourceId = 'sourceId';
       const pointerMoveListener = jest.fn();
       const pointerOutListener = jest.fn();
       const pointerUpListener = jest.fn();
+      const focusListener = jest.fn();
+      const blurListener = jest.fn();
       const emit = useEventEmitter();
 
       useEventHandlers({
         allowedSources: [sourceId],
         dataKey: series1.key,
+        onFocus: focusListener,
+        onBlur: blurListener,
         onPointerMove: pointerMoveListener,
         onPointerOut: pointerOutListener,
         onPointerUp: pointerUpListener,
@@ -53,6 +57,14 @@ describe('useEventHandlers', () => {
           emit('pointerup', getEvent('pointerup'), sourceId);
           emit('pointerup', getEvent('pointerup'), 'invalidSource');
           expect(pointerUpListener).toHaveBeenCalledTimes(1);
+
+          emit('focus', (new FocusEvent('focus') as unknown) as React.FocusEvent, sourceId);
+          emit('focus', (new FocusEvent('focus') as unknown) as React.FocusEvent, 'invalidSource');
+          expect(focusListener).toHaveBeenCalledTimes(1);
+
+          emit('blur', (new FocusEvent('blur') as unknown) as React.FocusEvent, sourceId);
+          emit('blur', (new FocusEvent('blur') as unknown) as React.FocusEvent, 'invalidSource');
+          expect(blurListener).toHaveBeenCalledTimes(1);
         }
       });
 

@@ -12,6 +12,7 @@ export type HandlerParams = {
   /** The source of the event. This can be anything, but for this package is the name of the component which emitted the event. */
   source?: string;
 };
+
 export type Handler = (params?: HandlerParams) => void;
 
 /**

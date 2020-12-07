@@ -12,8 +12,15 @@ describe('useEventEmitters', () => {
     expect.assertions(1);
 
     const Component = () => {
-      const emitters = useEventEmitters({ source: 'visx', onPointerOut: false });
+      const emitters = useEventEmitters({
+        source: 'visx',
+        onPointerOut: false,
+        onBlur: true,
+        onFocus: true,
+      });
       expect(emitters).toEqual({
+        onBlur: expect.any(Function),
+        onFocus: expect.any(Function),
         onPointerMove: expect.any(Function),
         onPointerOut: undefined,
         onPointerUp: expect.any(Function),

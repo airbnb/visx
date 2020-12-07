@@ -64,7 +64,9 @@ export default function usePointerEventHandlers<
 
   const findNearestDatum =
     findNearestDatumProps || (horizontal ? findNearestDatumY : findNearestDatumX);
-  const handlePointerMoveUpOrFocus = useCallback(
+
+  // this logic is shared by pointerup, pointermove, and focus handlers
+  const getHandlerParams = useCallback(
     (params?: HandlerParams) => {
       const { svgPoint, event } = params || {};
       const pointerParamsByKey: { [dataKey: string]: EventHandlerParams<Datum> } = {};
@@ -118,36 +120,43 @@ export default function usePointerEventHandlers<
           }
         });
 
-        const pointerParams: (null | EventHandlerParams<Datum>)[] =
+        const pointerParams: (EventHandlerParams<Datum> | null)[] =
           dataKey === POINTER_EVENTS_NEAREST
             ? [nearestDatumPointerParams]
             : dataKey === POINTER_EVENTS_ALL || Array.isArray(dataKey)
             ? Object.values(pointerParamsByKey)
             : [pointerParamsByKey[dataKey]];
 
-        pointerParams.forEach(pointerParam => {
-          const eventType = pointerParam?.event.type;
-          if (eventType === 'pointerup' && onPointerUp && pointerParam) {
-            onPointerUp(pointerParam);
-          } else if ((eventType === 'pointermove' || eventType === 'focus') && pointerParam) {
-            if (onPointerMove) onPointerMove(pointerParam);
-          }
-        });
+        return pointerParams.filter(param => param) as EventHandlerParams<Datum>[];
+      }
+      return [];
+    },
+    [dataKey, dataRegistry, xScale, yScale, width, height, findNearestDatum],
+  );
+  const handlePointerMove = useCallback(
+    (params?: HandlerParams) => {
+      if (onPointerMove) {
+        getHandlerParams(params).forEach(p => onPointerMove(p));
       }
     },
-    [
-      dataKey,
-      dataRegistry,
-      xScale,
-      yScale,
-      width,
-      height,
-      findNearestDatum,
-      onPointerMove,
-      onPointerUp,
-    ],
+    [getHandlerParams, onPointerMove],
   );
-
+  const handlePointerUp = useCallback(
+    (params?: HandlerParams) => {
+      if (onPointerUp) {
+        getHandlerParams(params).forEach(p => onPointerUp(p));
+      }
+    },
+    [getHandlerParams, onPointerUp],
+  );
+  const handleFocus = useCallback(
+    (params?: HandlerParams) => {
+      if (onFocus) {
+        getHandlerParams(params).forEach(p => onFocus(p));
+      }
+    },
+    [getHandlerParams, onFocus],
+  );
   const handlePointerOut = useCallback(
     (params?: HandlerParams) => {
       const event = params?.event;
@@ -163,17 +172,9 @@ export default function usePointerEventHandlers<
     [onBlur],
   );
 
-  useEventEmitter(
-    'pointermove',
-    onPointerMove ? handlePointerMoveUpOrFocus : undefined,
-    allowedSources,
-  );
+  useEventEmitter('pointermove', onPointerMove ? handlePointerMove : undefined, allowedSources);
   useEventEmitter('pointerout', onPointerOut ? handlePointerOut : undefined, allowedSources);
-  useEventEmitter(
-    'pointerup',
-    onPointerUp ? handlePointerMoveUpOrFocus : undefined,
-    allowedSources,
-  );
-  useEventEmitter('focus', onFocus ? handlePointerMoveUpOrFocus : undefined, allowedSources);
+  useEventEmitter('pointerup', onPointerUp ? handlePointerUp : undefined, allowedSources);
+  useEventEmitter('focus', onFocus ? handleFocus : undefined, allowedSources);
   useEventEmitter('blur', onBlur ? handleBlur : undefined, allowedSources);
 }
