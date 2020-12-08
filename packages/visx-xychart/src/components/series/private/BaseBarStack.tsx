@@ -15,18 +15,17 @@ import {
   BarStackDatum,
   CombinedStackData,
   DataContextType,
-  PointerEventParams,
+  NearestDatumArgs,
+  NearestDatumReturnType,
   SeriesProps,
-  TooltipContextType,
 } from '../../../types';
 import isValidNumber from '../../../typeguards/isValidNumber';
 import isChildWithProps from '../../../typeguards/isChildWithProps';
 import combineBarBarStackData, { getStackValue } from '../../../utils/combineBarStackData';
 import getBarStackRegistryData from '../../../utils/getBarStackRegistryData';
-import usePointerEventEmitters from '../../../hooks/usePointerEventEmitters';
 import { BARSTACK_EVENT_SOURCE, XYCHART_EVENT_SOURCE } from '../../../constants';
-import usePointerEventHandlers from '../../../hooks/usePointerEventHandlers';
-import TooltipContext from '../../../context/TooltipContext';
+import useSeriesEvents from '../../../hooks/useSeriesEvents';
+import findNearestStackDatum from '../../../utils/findNearestStackDatum';
 
 export type BaseBarStackProps<
   XScale extends PositionScale,
@@ -40,7 +39,7 @@ export type BaseBarStackProps<
 } & Pick<StackPathConfig<Datum, string>, 'offset' | 'order'> &
   Pick<
     SeriesProps<XScale, YScale, Datum>,
-    'onPointerMove' | 'onPointerOut' | 'onPointerUp' | 'pointerEvents'
+    'onPointerMove' | 'onPointerOut' | 'onPointerUp' | 'onBlur' | 'onFocus' | 'enableEvents'
   >;
 
 function BaseBarStack<
@@ -52,10 +51,12 @@ function BaseBarStack<
   order,
   offset,
   BarsComponent,
-  onPointerMove: onPointerMoveProps,
-  onPointerOut: onPointerOutProps,
-  onPointerUp: onPointerUpProps,
-  pointerEvents = true,
+  onBlur,
+  onFocus,
+  onPointerMove,
+  onPointerOut,
+  onPointerUp,
+  enableEvents = true,
 }: BaseBarStackProps<XScale, YScale, Datum>) {
   type StackBar = SeriesPoint<CombinedStackData<XScale, YScale>>;
   const {
@@ -134,36 +135,30 @@ function BaseBarStack<
     barSeriesChildren,
   ]);
 
-  const { showTooltip, hideTooltip } = (useContext(TooltipContext) ?? {}) as TooltipContextType<
-    Datum
-  >;
-  const onPointerMove = useCallback(
-    (p: PointerEventParams<Datum>) => {
-      showTooltip(p);
-      if (onPointerMoveProps) onPointerMoveProps(p);
+  const findNearestDatum = useCallback(
+    (
+      params: NearestDatumArgs<XScale, YScale, BarStackDatum<XScale, YScale>>,
+    ): NearestDatumReturnType<Datum> => {
+      const childData = barSeriesChildren.find(child => child.props.dataKey === params.dataKey)
+        ?.props?.data;
+      return childData ? findNearestStackDatum(params, childData, horizontal) : null;
     },
-    [showTooltip, onPointerMoveProps],
+    [barSeriesChildren, horizontal],
   );
-  const onPointerOut = useCallback(
-    (event: React.PointerEvent) => {
-      hideTooltip();
-      if (onPointerOutProps) onPointerOutProps(event);
-    },
-    [hideTooltip, onPointerOutProps],
-  );
+
   const ownEventSourceKey = `${BARSTACK_EVENT_SOURCE}-${dataKeys.join('-')}`;
-  const pointerEventEmitters = usePointerEventEmitters({
-    source: ownEventSourceKey,
-    onPointerMove: !!onPointerMoveProps && pointerEvents,
-    onPointerOut: !!onPointerOutProps && pointerEvents,
-    onPointerUp: !!onPointerUpProps && pointerEvents,
-  });
-  usePointerEventHandlers({
+  const eventEmitters = useSeriesEvents<XScale, YScale, Datum>({
     dataKey: dataKeys,
-    onPointerMove: pointerEvents ? onPointerMove : undefined,
-    onPointerOut: pointerEvents ? onPointerOut : undefined,
-    onPointerUp: pointerEvents ? onPointerUpProps : undefined,
-    sources: [XYCHART_EVENT_SOURCE, ownEventSourceKey],
+    enableEvents,
+    // @ts-ignore Datum input + return type are expected to be the same type but they differ for BarStack (registry data is StackedDatum, return type is user Datum)
+    findNearestDatum,
+    onBlur,
+    onFocus,
+    onPointerMove,
+    onPointerOut,
+    onPointerUp,
+    source: ownEventSourceKey,
+    allowedSources: [XYCHART_EVENT_SOURCE, ownEventSourceKey],
   });
 
   // if scales and data are not available in the registry, bail
@@ -231,7 +226,7 @@ function BaseBarStack<
         horizontal={horizontal}
         xScale={xScale}
         yScale={yScale}
-        {...pointerEventEmitters}
+        {...eventEmitters}
       />
     </g>
   );

@@ -1,20 +1,12 @@
 import React, { useContext, useCallback, useMemo } from 'react';
 import { AxisScale } from '@visx/axis';
 import DataContext from '../../../context/DataContext';
-import {
-  GlyphProps,
-  GlyphsProps,
-  PointerEventParams,
-  SeriesProps,
-  TooltipContextType,
-} from '../../../types';
+import { GlyphProps, GlyphsProps, SeriesProps } from '../../../types';
 import withRegisteredData, { WithRegisteredDataProps } from '../../../enhancers/withRegisteredData';
 import getScaledValueFactory from '../../../utils/getScaledValueFactory';
 import isValidNumber from '../../../typeguards/isValidNumber';
-import usePointerEventEmitters from '../../../hooks/usePointerEventEmitters';
 import { GLYPHSERIES_EVENT_SOURCE, XYCHART_EVENT_SOURCE } from '../../../constants';
-import usePointerEventHandlers from '../../../hooks/usePointerEventHandlers';
-import TooltipContext from '../../../context/TooltipContext';
+import useSeriesEvents from '../../../hooks/useSeriesEvents';
 
 export type BaseGlyphSeriesProps<
   XScale extends AxisScale,
@@ -27,13 +19,19 @@ export type BaseGlyphSeriesProps<
   renderGlyphs: (glyphsProps: GlyphsProps<XScale, YScale, Datum>) => React.ReactNode;
 };
 
-function BaseGlyphSeries<XScale extends AxisScale, YScale extends AxisScale, Datum extends object>({
+export function BaseGlyphSeries<
+  XScale extends AxisScale,
+  YScale extends AxisScale,
+  Datum extends object
+>({
   data,
   dataKey,
-  onPointerMove: onPointerMoveProps,
-  onPointerOut: onPointerOutProps,
-  onPointerUp: onPointerUpProps,
-  pointerEvents = true,
+  onBlur,
+  onFocus,
+  onPointerMove,
+  onPointerOut,
+  onPointerUp,
+  enableEvents = true,
   renderGlyphs,
   size = 8,
   xAccessor,
@@ -47,36 +45,17 @@ function BaseGlyphSeries<XScale extends AxisScale, YScale extends AxisScale, Dat
   // @TODO allow override
   const color = colorScale?.(dataKey) ?? theme?.colors?.[0] ?? '#222';
 
-  const { showTooltip, hideTooltip } = (useContext(TooltipContext) ?? {}) as TooltipContextType<
-    Datum
-  >;
-  const onPointerMove = useCallback(
-    (p: PointerEventParams<Datum>) => {
-      showTooltip(p);
-      if (onPointerMoveProps) onPointerMoveProps(p);
-    },
-    [showTooltip, onPointerMoveProps],
-  );
-  const onPointerOut = useCallback(
-    (event: React.PointerEvent) => {
-      hideTooltip();
-      if (onPointerOutProps) onPointerOutProps(event);
-    },
-    [hideTooltip, onPointerOutProps],
-  );
   const ownEventSourceKey = `${GLYPHSERIES_EVENT_SOURCE}-${dataKey}`;
-  const pointerEventEmitters = usePointerEventEmitters({
-    source: ownEventSourceKey,
-    onPointerMove: !!onPointerMoveProps && pointerEvents,
-    onPointerOut: !!onPointerOutProps && pointerEvents,
-    onPointerUp: !!onPointerUpProps && pointerEvents,
-  });
-  usePointerEventHandlers({
+  const eventEmitters = useSeriesEvents<XScale, YScale, Datum>({
     dataKey,
-    onPointerMove: pointerEvents ? onPointerMove : undefined,
-    onPointerOut: pointerEvents ? onPointerOut : undefined,
-    onPointerUp: pointerEvents ? onPointerUpProps : undefined,
-    sources: [XYCHART_EVENT_SOURCE, ownEventSourceKey],
+    enableEvents,
+    onBlur,
+    onFocus,
+    onPointerMove,
+    onPointerOut,
+    onPointerUp,
+    source: ownEventSourceKey,
+    allowedSources: [XYCHART_EVENT_SOURCE, ownEventSourceKey],
   });
 
   const glyphs = useMemo(
@@ -102,7 +81,7 @@ function BaseGlyphSeries<XScale extends AxisScale, YScale extends AxisScale, Dat
 
   return (
     // eslint-disable-next-line react/jsx-no-useless-fragment
-    <>{renderGlyphs({ glyphs, xScale, yScale, horizontal, ...pointerEventEmitters })}</>
+    <>{renderGlyphs({ glyphs, xScale, yScale, horizontal, ...eventEmitters })}</>
   );
 }
 

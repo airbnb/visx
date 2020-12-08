@@ -10,6 +10,7 @@ import { BarStackDatum, NearestDatumArgs } from '../../src';
 type Datum = { xVal: number; yVal: string };
 
 const params: NearestDatumArgs<AxisScale, AxisScale, Datum> = {
+  dataKey: 'visx',
   width: 10,
   height: 10,
   point: { x: 3, y: 8 },
