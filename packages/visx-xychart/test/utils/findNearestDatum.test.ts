@@ -1,10 +1,13 @@
 import { AxisScale } from '@visx/axis';
 import { scaleBand, scaleLinear } from '@visx/scale';
+import { PositionScale } from '@visx/shape/lib/types';
+
 import findNearestDatumX from '../../src/utils/findNearestDatumX';
 import findNearestDatumY from '../../src/utils/findNearestDatumY';
 import findNearestDatumXY from '../../src/utils/findNearestDatumXY';
 import findNearestDatumSingleDimension from '../../src/utils/findNearestDatumSingleDimension';
 import findNearestStackDatum from '../../src/utils/findNearestStackDatum';
+import findNearestGroupDatum from '../../src/utils/findNearestGroupDatum';
 import { BarStackDatum, NearestDatumArgs } from '../../src';
 
 type Datum = { xVal: number; yVal: string };
@@ -134,5 +137,34 @@ describe('findNearestStackDatum', () => {
         true,
       )!.datum,
     ).toEqual(d2); // nearest datum index=1
+  });
+});
+
+describe('findNearestGroupDatum', () => {
+  it('should be defined', () => {
+    expect(findNearestGroupDatum).toBeDefined();
+  });
+
+  it('should find the nearest datum', () => {
+    expect(
+      findNearestGroupDatum(
+        {
+          ...params,
+        } as NearestDatumArgs<PositionScale, PositionScale, Datum>,
+        scaleBand({ domain: [params.dataKey], range: [0, 10] }),
+      )!.datum,
+    ).toEqual({ xVal: 0, yVal: '0' }); // non-horizontal means nearest x value
+  });
+
+  it('should set distance to 0', () => {
+    expect(
+      findNearestGroupDatum(
+        {
+          ...params,
+        } as NearestDatumArgs<PositionScale, PositionScale, Datum>,
+        scaleBand({ domain: [params.dataKey], range: [0, 10] }),
+        true,
+      )!.distanceY,
+    ).toEqual(0);
   });
 });
