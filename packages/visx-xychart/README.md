@@ -161,7 +161,10 @@ The following `PointerEvent`s (handling both `MouseEvent`s and `TouchEvent`s) ar
 supported. They may be set on individual `Series` components (e.g.,
 `<BarSeries onPointerMove={() => ...} />`), or at the chart level (e.g.,
 `<XYChart onPointerMove={() => {}} />`) in which case they are invoked once for _every_ `*Series`.
-To **disable** event emitting for any `Series` set `<*Series enableEvents=false />`.
+To **disable** event emitting for any `Series` set `<*Series enableEvents=false />`. The
+`onFocus/onBlur` handlers enable you to make your chart events and `Tooltip`s accessible via
+keyboard interaction. Note that the current implementation requires your target browser to support
+the `SVG 2.0` spec for `tabIndex` on `SVG` elements.
 
 Below, `HandlerParms` has the following type signature:
 
@@ -315,5 +318,45 @@ is visible (`tooltipOpen`), tooltlip position (`tooltipLeft`, `tooltipTop`),
 (`hideTooltip`, `showTooltip`, and `updateTooltip`).
 
 </details>
+
+<hr />
+
+##### ⚠️ `ResizeObserver` dependency
+
+The `Tooltip` and `AnnotationLabel` components rely on
+[`ResizeObserver`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver)s. If your
+browswer target needs a polyfill, you can either polute the `window` object or inject it cleanly
+using the `resizeObserverPolyfill` prop for these components.
+
+<details>
+  <summary>Examples</summary>
+
+❌ `Error: This browser does not support ResizeObserver out of the box`
+
+```tsx
+// no polyfill, no browser support
+() => <XYChart {...}><Tooltip /></XYChart>
+```
+
+✅ No errors
+
+```tsx
+// no polyfill, target browser supports ResizeObserver
+() => <XYChart {...}><Tooltip /></XYChart>
+
+// import the polyfill in the needed module, or set it on `window` object
+import ResizeObserver from 'resize-observer-polyfill';
+() => <XYChart {...}><Tooltip /></XYChart> // 😎
+
+// cleanly pass polyfill to component that needs it
+import ResizeObserver from 'resize-observer-polyfill';
+() => (
+  <XYChart {...}>
+    <Tooltip resizeObserverPolyfill={ResizeObserver} />
+  </XYChart>
+)
+```
+
+  </details>
 
 <hr />
