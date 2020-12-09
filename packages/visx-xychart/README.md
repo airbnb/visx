@@ -16,7 +16,7 @@ Out of the box it supports the following:
 - \* `theme`ing
 
 The following illustrates basic usage to create an animated line chart with a bottom `Axis`, `Grid`,
-and `Tooltip`, try it on codesandbox [here](todo, simplify code below):
+and `Tooltip`:
 
 ```tsx
 import {
