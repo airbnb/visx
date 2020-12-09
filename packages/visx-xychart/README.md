@@ -8,19 +8,12 @@ expressivity and advanced use cases.
 
 Out of the box it supports the following:
 
-- many common `<*Series />` types (animated or not) such as lines, bars, etc. (can be easily
-  extended to support more in the future)
-- `<Axis />` (animated or not)
-- `<Grid />` (animated or not)
-- `<Annotation />` (animated or not)
-- `<Tooltip />`
-- `theme`ing
-
-See the comprehensive API below for more details.
-
-<hr />
-
-## Basic usage
+- \* many common `<*Series />` types (animated or not) such as lines, bars, etc.
+- \* `<Axis />` (animated or not)
+- \* `<Grid />` (animated or not)
+- \* `<Annotation />` (animated or not)
+- \* `<Tooltip />`
+- \* `theme`ing
 
 The following illustrates basic usage for an animated line chart with a bottom `Axis`, `Grid`, and
 `Tooltip`, try it on codesandbox [here](todo, simplify code below):
@@ -73,7 +66,15 @@ const render = () => (
 );
 ```
 
-### Series types
+Expand sections for more, or explore the detailed API below.
+
+<hr />
+
+## Basic usage
+
+<details>
+
+<summary>Series types</summary>
 
 The following `Series` types are currently supported and we are happy to review or consider
 additional Series types in the future.
@@ -90,7 +91,11 @@ additional Series types in the future.
 All `Series` have animated and non-animated variants to give you more control over your bundle size,
 support missing (`null`) data, and can be rendered vertically or horizontally.
 
-### Theming
+</details>
+
+<details>
+
+<summary>Theming</summary>
 
 Default `lightTheme` and `darkTheme` themes are exported from `@visx/xychart` and the utility
 `buildChartTheme` is exported to support easy creation of custom themes.
@@ -123,10 +128,13 @@ const customTheme = buildTheme({
 });
 
 () => <XYChart theme={customTheme} />
-
 ```
 
-### Tooltips
+</details>
+
+<details>
+
+<summary>Tooltips</summary>
 
 `@visx/tooltip` `Tooltip`s are integrated into `@visx/xychart`, and should be rendered as a child of
 `XYChart` (or a child where `TooltipContext` is provided).
@@ -143,7 +151,11 @@ snapping to data point positions and rendering cross-hairs.
   "shared tooltips" where you can render the nearest data point for each `Series`.
 - a shared `colorScale` which maps `Series`'s `dataKey`s to `theme` colors
 
-### Event handlers
+</details>
+
+<details>
+
+<summary>Event handlers</summary>
 
 The following `PointerEvent`s (handling both `MouseEvent`s and `TouchEvent`s) are currently
 supported. They may be set on individual `Series` components (e.g.,
@@ -173,14 +185,24 @@ type EventHandlerParams<Datum> = {
 | `onFocus`       | `(params: EventHandlerParams<Datum>) => void` | ❌                | ✅                |
 | `onBlur`        | `(event: React.TouchEvent) => void`           | ❌                | ✅                |
 
-### Annotations
+</details>
+
+<details>
+
+<summary>Annotations</summary>
 
 `@visx/annotations` annotations are integrated into `@visx/xychart`, and allow you to annotate
-individual points, or x- or y-thresholds
+individual points, or x- or y-thresholds.
+
+</details>
 
 <hr />
 
 ## Advanced usage
+
+<details>
+
+<summary>Examples</summary>
 
 `XYChart` is implemented using modularized `React.context` layers for scales, canvas dimensions,
 data, events, and tooltips which enables more advanced usage than many other chart-level
@@ -190,23 +212,33 @@ By default `XYChart` renders all context providers if a given context is not ava
 share context across multiple `XYChart`s to implement functionality such as linked tooltips, shared
 themes, or shared data.
 
-**Examples**
-
 - TODO - Custom chart background using theme and chart dimensions
 - TODO - Linked tooltips
 - TODO - Programmatically control tooltips
 
-### DataContext
+</details>
+
+<details>
+
+<summary>DataContext</summary>
 
 This context provides chart canvas dimensions (`width`, `height`, and `margin`), x/y/color scales,
 and a data registry. The data registry includes data from all child `*Series`, and x/y/color scales
 are updated accordingly accounting for canvas dimensions.
 
-### ThemeContext
+</details>
+
+<details>
+
+<summary>ThemeContext</summary>
 
 This context provides an `XYChart` theme.
 
-### EventEmitterContext
+</details>
+
+<details>
+
+<summary>EventEmitterContext</summary>
 
 This context provides an event publishing / subscription object which can be used via the
 `useEventEmitter` hook. `Series` and `XYChart` events, including tooltip updates, are emitted and
@@ -237,18 +269,16 @@ const eventSourceId = 'optional-source-id-filter';
 );
 ```
 
-### TooltipContext
+</details>
+
+<details>
+  <summary>TooltipContext</summary>
 
 This context provides access to `@visx/tooltip`s `useTooltip` state, including whether the tooltip
 is visible (`tooltipOpen`), tooltlip position (`tooltipLeft`, `tooltipTop`),
 `tooltipData: { nearestDatum, datumByKey }` described above, and functions to update context
 (`hideTooltip`, `showTooltip`, and `updateTooltip`).
 
-## Roadmap 🔜
+</details>
 
-- new `*Series` types
-  - `StackedAreaSeries`
-  - `BoxPlotSeries`
-  - `ViolinPlotSeries`
-- integrate `@visx/brush`
-- integrate `@visx/zoom` + `@visx/drag` for panning and zooming
+<hr />
