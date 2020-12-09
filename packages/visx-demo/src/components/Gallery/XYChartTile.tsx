@@ -5,7 +5,6 @@ import GalleryTile from '../GalleryTile';
 export { default as packageJson } from '../../sandboxes/visx-xychart/package.json';
 
 const tileStyles = { background: '#222' };
-const detailsStyles = { color: '#ccc' };
 
 export default function XYChartITile() {
   return (
@@ -15,7 +14,6 @@ export default function XYChartITile() {
       exampleRenderer={XYChartI}
       exampleUrl="/xychart"
       tileStyles={tileStyles}
-      detailsStyles={detailsStyles}
       detailsHeight={0}
     />
   );
