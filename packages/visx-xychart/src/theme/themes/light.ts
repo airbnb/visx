@@ -5,10 +5,10 @@ export default buildChartTheme({
   backgroundColor: '#fff',
   colors: defaultColors,
   tickLength: 4,
-  tickLabelStyles: {
+  svgLabelSmall: {
     fill: grayColors[7],
   },
-  labelStyles: {
+  svgLabelBig: {
     fill: grayColors[9],
   },
   gridColor: grayColors[5],

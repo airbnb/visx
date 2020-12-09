@@ -4,18 +4,27 @@ import { PositionScale, StackPathConfig } from '@visx/shape/lib/types';
 import { getFirstItem, getSecondItem } from '@visx/shape/lib/util/accessors';
 import stackOffset from '@visx/shape/lib/util/stackOffset';
 import stackOrder from '@visx/shape/lib/util/stackOrder';
-
 import { extent } from 'd3-array';
 import getBandwidth from '@visx/shape/lib/util/getBandwidth';
+
 import { BaseBarSeriesProps } from './BaseBarSeries';
 import DataContext from '../../../context/DataContext';
-import { Bar, BarsProps, BarStackDatum, CombinedStackData, DataContextType } from '../../../types';
-import TooltipContext from '../../../context/TooltipContext';
-import useEventEmitter, { HandlerParams } from '../../../hooks/useEventEmitter';
+import {
+  Bar,
+  BarsProps,
+  BarStackDatum,
+  CombinedStackData,
+  DataContextType,
+  NearestDatumArgs,
+  NearestDatumReturnType,
+  SeriesProps,
+} from '../../../types';
 import isValidNumber from '../../../typeguards/isValidNumber';
 import isChildWithProps from '../../../typeguards/isChildWithProps';
 import combineBarBarStackData, { getStackValue } from '../../../utils/combineBarStackData';
 import getBarStackRegistryData from '../../../utils/getBarStackRegistryData';
+import { BARSTACK_EVENT_SOURCE, XYCHART_EVENT_SOURCE } from '../../../constants';
+import useSeriesEvents from '../../../hooks/useSeriesEvents';
 import findNearestStackDatum from '../../../utils/findNearestStackDatum';
 
 export type BaseBarStackProps<
@@ -27,24 +36,37 @@ export type BaseBarStackProps<
   children: JSX.Element | JSX.Element[];
   /** Rendered component which is passed BarsProps by BaseBarStack after processing. */
   BarsComponent: React.FC<BarsProps<XScale, YScale>>;
-} & Pick<StackPathConfig<Datum, string>, 'offset' | 'order'>;
+} & Pick<StackPathConfig<Datum, string>, 'offset' | 'order'> &
+  Pick<
+    SeriesProps<XScale, YScale, Datum>,
+    'onPointerMove' | 'onPointerOut' | 'onPointerUp' | 'onBlur' | 'onFocus' | 'enableEvents'
+  >;
 
 function BaseBarStack<
   XScale extends PositionScale,
   YScale extends PositionScale,
   Datum extends object
->({ children, order, offset, BarsComponent }: BaseBarStackProps<XScale, YScale, Datum>) {
+>({
+  children,
+  order,
+  offset,
+  BarsComponent,
+  onBlur,
+  onFocus,
+  onPointerMove,
+  onPointerOut,
+  onPointerUp,
+  enableEvents = true,
+}: BaseBarStackProps<XScale, YScale, Datum>) {
   type StackBar = SeriesPoint<CombinedStackData<XScale, YScale>>;
   const {
-    xScale,
-    yScale,
     colorScale,
     dataRegistry,
+    horizontal,
     registerData,
     unregisterData,
-    width,
-    height,
-    horizontal,
+    xScale,
+    yScale,
   } = (useContext(DataContext) as unknown) as DataContextType<
     XScale,
     YScale,
@@ -113,58 +135,31 @@ function BaseBarStack<
     barSeriesChildren,
   ]);
 
-  // register mouse listeners
-  const { showTooltip, hideTooltip } = useContext(TooltipContext) ?? {};
-
-  const handleMouseMove = useCallback(
-    (params: HandlerParams | undefined) => {
-      const { svgPoint } = params || {};
-
-      // invoke showTooltip for each key so all data is available in context,
-      // and let Tooltip find the nearest point among them
-      dataKeys.forEach(key => {
-        const entry = dataRegistry.get(key);
-        const childData = barSeriesChildren.find(child => child.props.dataKey === key)?.props.data;
-        if (childData && svgPoint && width && height && showTooltip) {
-          const datum = findNearestStackDatum(
-            {
-              point: svgPoint,
-              data: entry.data,
-              xScale,
-              yScale,
-              xAccessor: entry.xAccessor,
-              yAccessor: entry.yAccessor,
-              width,
-              height,
-            },
-            childData,
-            horizontal,
-          );
-
-          if (datum) {
-            showTooltip({
-              key,
-              svgPoint,
-              ...datum,
-            });
-          }
-        }
-      });
+  const findNearestDatum = useCallback(
+    (
+      params: NearestDatumArgs<XScale, YScale, BarStackDatum<XScale, YScale>>,
+    ): NearestDatumReturnType<Datum> => {
+      const childData = barSeriesChildren.find(child => child.props.dataKey === params.dataKey)
+        ?.props?.data;
+      return childData ? findNearestStackDatum(params, childData, horizontal) : null;
     },
-    [
-      barSeriesChildren,
-      dataRegistry,
-      dataKeys,
-      horizontal,
-      xScale,
-      yScale,
-      width,
-      height,
-      showTooltip,
-    ],
+    [barSeriesChildren, horizontal],
   );
-  useEventEmitter('mousemove', handleMouseMove);
-  useEventEmitter('mouseout', hideTooltip);
+
+  const ownEventSourceKey = `${BARSTACK_EVENT_SOURCE}-${dataKeys.join('-')}`;
+  const eventEmitters = useSeriesEvents<XScale, YScale, Datum>({
+    dataKey: dataKeys,
+    enableEvents,
+    // @ts-ignore Datum input + return type are expected to be the same type but they differ for BarStack (registry data is StackedDatum, return type is user Datum)
+    findNearestDatum,
+    onBlur,
+    onFocus,
+    onPointerMove,
+    onPointerOut,
+    onPointerUp,
+    source: ownEventSourceKey,
+    allowedSources: [XYCHART_EVENT_SOURCE, ownEventSourceKey],
+  });
 
   // if scales and data are not available in the registry, bail
   if (dataKeys.some(key => dataRegistry.get(key) == null) || !xScale || !yScale || !colorScale) {
@@ -226,7 +221,13 @@ function BaseBarStack<
 
   return (
     <g className="visx-bar-stack">
-      <BarsComponent bars={bars} horizontal={horizontal} xScale={xScale} yScale={yScale} />
+      <BarsComponent
+        bars={bars}
+        horizontal={horizontal}
+        xScale={xScale}
+        yScale={yScale}
+        {...eventEmitters}
+      />
     </g>
   );
 }

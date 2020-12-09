@@ -3,6 +3,10 @@ import { mount } from 'enzyme';
 import useEventEmitter from '../../src/hooks/useEventEmitter';
 import { EventEmitterProvider } from '../../src';
 
+// avoids a lot of coercing of types
+const getEvent = (eventType: string) =>
+  (new MouseEvent(eventType) as unknown) as React.PointerEvent;
+
 describe('useEventEmitter', () => {
   it('should be defined', () => {
     expect(useEventEmitter).toBeDefined();
@@ -12,8 +16,8 @@ describe('useEventEmitter', () => {
     expect.assertions(1);
 
     const Component = () => {
-      const registry = useEventEmitter();
-      expect(registry).toEqual(expect.any(Function));
+      const emitter = useEventEmitter();
+      expect(emitter).toEqual(expect.any(Function));
       return null;
     };
 
@@ -29,13 +33,45 @@ describe('useEventEmitter', () => {
 
     const Component = () => {
       const listener = jest.fn();
-      const emit = useEventEmitter('mousemove', listener);
+      const emit = useEventEmitter('pointermove', listener);
 
       useEffect(() => {
         if (emit) {
-          // @ts-ignore not a React.MouseEvent
-          emit('mousemove', new MouseEvent('mousemove'));
+          emit('pointermove', getEvent('pointermove'));
           expect(listener).toHaveBeenCalledTimes(1);
+        }
+      });
+
+      return null;
+    };
+
+    mount(
+      <EventEmitterProvider>
+        <Component />
+      </EventEmitterProvider>,
+    );
+  });
+
+  it('should filter invalid sources if specified', () => {
+    expect.assertions(4);
+
+    const Component = () => {
+      const eventType = 'pointermove';
+      const sourceId = 'sourceId';
+      const listener = jest.fn();
+      const filteredListener = jest.fn();
+      const emit = useEventEmitter();
+      useEventEmitter('pointermove', listener);
+      useEventEmitter('pointermove', filteredListener, [sourceId]);
+
+      useEffect(() => {
+        if (emit) {
+          emit(eventType, getEvent(eventType));
+          expect(listener).toHaveBeenCalledTimes(1);
+          expect(filteredListener).toHaveBeenCalledTimes(0);
+          emit(eventType, getEvent(eventType), sourceId);
+          expect(listener).toHaveBeenCalledTimes(2);
+          expect(filteredListener).toHaveBeenCalledTimes(1);
         }
       });
 

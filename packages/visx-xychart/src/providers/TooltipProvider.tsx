@@ -2,7 +2,7 @@ import React, { useCallback, useRef } from 'react';
 import debounce from 'lodash/debounce';
 import { useTooltip } from '@visx/tooltip';
 import TooltipContext from '../context/TooltipContext';
-import { ShowTooltipParams, TooltipData } from '../types';
+import { EventHandlerParams, TooltipData } from '../types';
 
 type TooltipProviderProps = {
   /** Debounce time for when `hideTooltip` is invoked. */
@@ -24,12 +24,17 @@ export default function TooltipProvider<Datum extends object>({
     hideTooltip: privateHideTooltip,
   } = useTooltip<TooltipData<Datum>>(undefined);
 
+  const debouncedHideTooltip = useRef<ReturnType<typeof debounce> | null>(null);
+
   const showTooltip = useRef(
-    ({ svgPoint, index, key, datum, distanceX, distanceY }: ShowTooltipParams<Datum>) => {
-      const distance =
-        distanceX == null || distanceY == null
-          ? Infinity
-          : Math.sqrt(distanceX ** 2 + distanceY ** 2);
+    ({ svgPoint, index, key, datum, distanceX, distanceY }: EventHandlerParams<Datum>) => {
+      // cancel any hideTooltip calls so it won't hide after invoking the logic below
+      if (debouncedHideTooltip.current) {
+        debouncedHideTooltip.current.cancel();
+        debouncedHideTooltip.current = null;
+      }
+
+      const distance = Math.sqrt((distanceX ?? Infinity ** 2) + (distanceY ?? Infinity ** 2));
 
       updateTooltip(({ tooltipData: currData }) => ({
         tooltipOpen: true,
@@ -54,9 +59,10 @@ export default function TooltipProvider<Datum extends object>({
     },
   );
 
-  const hideTooltip = useCallback(debounce(privateHideTooltip, hideTooltipDebounceMs), [
-    privateHideTooltip,
-  ]);
+  const hideTooltip = useCallback(() => {
+    debouncedHideTooltip.current = debounce(privateHideTooltip, hideTooltipDebounceMs);
+    debouncedHideTooltip.current();
+  }, [privateHideTooltip, hideTooltipDebounceMs]);
 
   return (
     <TooltipContext.Provider

@@ -41,13 +41,21 @@ export default function Arc<Datum>({
 
   // eslint-disable-next-line react/jsx-no-useless-fragment
   if (children) return <>{children({ path })}</>;
-  if (!data) return null;
+  if (
+    !data &&
+    (startAngle == null || endAngle == null || innerRadius == null || outerRadius == null)
+  ) {
+    console.warn(
+      '[@visx/shape/Arc]: expected data because one of startAngle, endAngle, innerRadius, outerRadius is undefined. Bailing.',
+    );
+    return null;
+  }
 
   return (
     <path
       ref={innerRef}
       className={cx('visx-arc', className)}
-      d={path(data) || ''}
+      d={path(data as Datum) || ''}
       {...restProps}
     />
   );

@@ -1,25 +1,34 @@
 /* eslint jsx-a11y/mouse-events-have-key-events: 'off', @typescript-eslint/no-explicit-any: 'off' */
-import React, { useCallback, useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import ParentSize from '@visx/responsive/lib/components/ParentSize';
 import { AxisScaleOutput } from '@visx/axis';
 import { ScaleConfig } from '@visx/scale';
 
 import DataContext from '../context/DataContext';
-import { Margin } from '../types';
+import { Margin, EventHandlerParams } from '../types';
 import useEventEmitter from '../hooks/useEventEmitter';
 import EventEmitterProvider from '../providers/EventEmitterProvider';
 import TooltipContext from '../context/TooltipContext';
 import TooltipProvider from '../providers/TooltipProvider';
 import DataProvider, { DataProviderProps } from '../providers/DataProvider';
+import useEventEmitters from '../hooks/useEventEmitters';
+import { XYCHART_EVENT_SOURCE } from '../constants';
+import useEventHandlers, {
+  POINTER_EVENTS_ALL,
+  POINTER_EVENTS_NEAREST,
+} from '../hooks/useEventHandlers';
 
 const DEFAULT_MARGIN = { top: 50, right: 50, bottom: 50, left: 50 };
 
 export type XYChartProps<
   XScaleConfig extends ScaleConfig<AxisScaleOutput, any, any>,
-  YScaleConfig extends ScaleConfig<AxisScaleOutput, any, any>
+  YScaleConfig extends ScaleConfig<AxisScaleOutput, any, any>,
+  Datum extends object
 > = {
   /** aria-label for the chart svg element. */
   accessibilityLabel?: string;
+  /** Whether to capture and dispatch pointer events to EventEmitter context (which e.g., Series subscribe to). */
+  captureEvents?: boolean;
   /** Total width of the desired chart svg, including margin. */
   width?: number;
   /** Total height of the desired chart svg, including margin. */
@@ -34,17 +43,52 @@ export type XYChartProps<
   xScale?: DataProviderProps<XScaleConfig, YScaleConfig>['xScale'];
   /** If DataContext is not available, XYChart will wrap itself in a DataProvider and set this as the yScale config. */
   yScale?: DataProviderProps<XScaleConfig, YScaleConfig>['yScale'];
+  /** Callback invoked for onPointerMove events for the nearest Datum to the PointerEvent _for each Series with pointerEvents={true}_. */
+  onPointerMove?: ({
+    datum,
+    distanceX,
+    distanceY,
+    event,
+    index,
+    key,
+    svgPoint,
+  }: EventHandlerParams<Datum>) => void;
+  /** Callback invoked for onPointerOut events for the nearest Datum to the PointerEvent _for each Series with pointerEvents={true}_. */
+  onPointerOut?: (
+    /** The PointerEvent. */
+    event: React.PointerEvent,
+  ) => void;
+  /** Callback invoked for onPointerUp events for the nearest Datum to the PointerEvent _for each Series with pointerEvents={true}_. */
+  onPointerUp?: ({
+    datum,
+    distanceX,
+    distanceY,
+    event,
+    index,
+    key,
+    svgPoint,
+  }: EventHandlerParams<Datum>) => void;
+  /** Whether to invoke PointerEvent handlers for all dataKeys, or the nearest dataKey. */
+  pointerEventsDataKey?: 'all' | 'nearest';
 };
+
+const allowedEventSources = [XYCHART_EVENT_SOURCE];
 
 export default function XYChart<
   XScaleConfig extends ScaleConfig<AxisScaleOutput, any, any>,
-  YScaleConfig extends ScaleConfig<AxisScaleOutput, any, any>
->(props: XYChartProps<XScaleConfig, YScaleConfig>) {
+  YScaleConfig extends ScaleConfig<AxisScaleOutput, any, any>,
+  Datum extends object
+>(props: XYChartProps<XScaleConfig, YScaleConfig, Datum>) {
   const {
     accessibilityLabel = 'XYChart',
+    captureEvents = true,
     children,
     height,
     margin = DEFAULT_MARGIN,
+    onPointerMove,
+    onPointerOut,
+    onPointerUp,
+    pointerEventsDataKey = 'nearest',
     theme,
     width,
     xScale,
@@ -61,14 +105,14 @@ export default function XYChart<
     }
   }, [setDimensions, width, height, margin]);
 
-  const handleMouseTouchMove = useCallback(
-    (event: React.MouseEvent | React.TouchEvent) => emit?.('mousemove', event),
-    [emit],
-  );
-  const handleMouseOutTouchEnd = useCallback(
-    (event: React.MouseEvent | React.TouchEvent) => emit?.('mouseout', event),
-    [emit],
-  );
+  const eventEmitters = useEventEmitters({ source: XYCHART_EVENT_SOURCE });
+  useEventHandlers({
+    dataKey: pointerEventsDataKey === 'nearest' ? POINTER_EVENTS_NEAREST : POINTER_EVENTS_ALL,
+    onPointerMove,
+    onPointerOut,
+    onPointerUp,
+    allowedSources: allowedEventSources,
+  });
 
   // if Context or dimensions are not available, wrap self in the needed providers
   if (!setDimensions) {
@@ -120,18 +164,16 @@ export default function XYChart<
   return width > 0 && height > 0 ? (
     <svg width={width} height={height} aria-label={accessibilityLabel}>
       {children}
-      {/** capture all mouse/touch events and emit them. */}
-      <rect
-        x={margin.left}
-        y={margin.top}
-        width={width - margin.left - margin.right}
-        height={height - margin.top - margin.bottom}
-        fill="transparent"
-        onMouseMove={handleMouseTouchMove}
-        onTouchMove={handleMouseTouchMove}
-        onMouseOut={handleMouseOutTouchEnd}
-        onTouchEnd={handleMouseOutTouchEnd}
-      />
+      {captureEvents && (
+        <rect
+          x={margin.left}
+          y={margin.top}
+          width={width - margin.left - margin.right}
+          height={height - margin.top - margin.bottom}
+          fill="transparent"
+          {...eventEmitters}
+        />
+      )}
     </svg>
   ) : null;
 }

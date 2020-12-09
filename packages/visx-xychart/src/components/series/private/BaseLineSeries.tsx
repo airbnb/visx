@@ -2,14 +2,14 @@ import React, { useContext, useCallback } from 'react';
 import LinePath, { LinePathProps } from '@visx/shape/lib/shapes/LinePath';
 import { AxisScale } from '@visx/axis';
 import DataContext from '../../../context/DataContext';
-import { SeriesProps } from '../../../types';
+import { GlyphsProps, SeriesProps } from '../../../types';
 import withRegisteredData, { WithRegisteredDataProps } from '../../../enhancers/withRegisteredData';
 import getScaledValueFactory from '../../../utils/getScaledValueFactory';
-import useEventEmitter, { HandlerParams } from '../../../hooks/useEventEmitter';
-import findNearestDatumX from '../../../utils/findNearestDatumX';
-import TooltipContext from '../../../context/TooltipContext';
-import findNearestDatumY from '../../../utils/findNearestDatumY';
 import isValidNumber from '../../../typeguards/isValidNumber';
+import { LINESERIES_EVENT_SOURCE, XYCHART_EVENT_SOURCE } from '../../../constants';
+import { BaseGlyphSeries } from './BaseGlyphSeries';
+import defaultRenderGlyph from './defaultRenderGlyph';
+import useSeriesEvents from '../../../hooks/useSeriesEvents';
 
 export type BaseLineSeriesProps<
   XScale extends AxisScale,
@@ -26,6 +26,12 @@ function BaseLineSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
   curve,
   data,
   dataKey,
+  onBlur,
+  onFocus,
+  onPointerMove,
+  onPointerOut,
+  onPointerUp,
+  enableEvents = true,
   xAccessor,
   xScale,
   yAccessor,
@@ -33,8 +39,7 @@ function BaseLineSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
   PathComponent = 'path',
   ...lineProps
 }: BaseLineSeriesProps<XScale, YScale, Datum> & WithRegisteredDataProps<XScale, YScale, Datum>) {
-  const { colorScale, theme, width, height, horizontal } = useContext(DataContext);
-  const { showTooltip, hideTooltip } = useContext(TooltipContext) ?? {};
+  const { colorScale, theme } = useContext(DataContext);
   const getScaledX = useCallback(getScaledValueFactory(xScale, xAccessor), [xScale, xAccessor]);
   const getScaledY = useCallback(getScaledValueFactory(yScale, yAccessor), [yScale, yAccessor]);
   const isDefined = useCallback(
@@ -43,46 +48,64 @@ function BaseLineSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
   );
   const color = colorScale?.(dataKey) ?? theme?.colors?.[0] ?? '#222';
 
-  const handleMouseMove = useCallback(
-    (params?: HandlerParams) => {
-      const { svgPoint } = params || {};
-      if (svgPoint && width && height && showTooltip) {
-        const datum = (horizontal ? findNearestDatumY : findNearestDatumX)({
-          point: svgPoint,
-          data,
-          xScale,
-          yScale,
-          xAccessor,
-          yAccessor,
-          width,
-          height,
-        });
-        if (datum) {
-          showTooltip({
-            key: dataKey,
-            ...datum,
-            svgPoint,
-          });
-        }
-      }
-    },
-    [dataKey, data, xScale, yScale, xAccessor, yAccessor, width, height, showTooltip, horizontal],
+  const ownEventSourceKey = `${LINESERIES_EVENT_SOURCE}-${dataKey}`;
+  const eventEmitters = useSeriesEvents<XScale, YScale, Datum>({
+    dataKey,
+    enableEvents,
+    onBlur,
+    onFocus,
+    onPointerMove,
+    onPointerOut,
+    onPointerUp,
+    source: ownEventSourceKey,
+    allowedSources: [XYCHART_EVENT_SOURCE, ownEventSourceKey],
+  });
+
+  // render invisible glyphs for focusing if onFocus/onBlur are defined
+  const captureFocusEvents = Boolean(onFocus || onBlur);
+  const renderGlyphs = useCallback(
+    ({ glyphs }: GlyphsProps<XScale, YScale, Datum>) =>
+      captureFocusEvents
+        ? glyphs.map(glyph => (
+            <React.Fragment key={glyph.key}>
+              {defaultRenderGlyph({
+                ...glyph,
+                color: 'transparent',
+                onFocus: eventEmitters.onFocus,
+                onBlur: eventEmitters.onBlur,
+              })}
+            </React.Fragment>
+          ))
+        : null,
+    [captureFocusEvents, eventEmitters.onFocus, eventEmitters.onBlur],
   );
-  useEventEmitter('mousemove', handleMouseMove);
-  useEventEmitter('mouseout', hideTooltip);
 
   return (
-    <LinePath x={getScaledX} y={getScaledY} defined={isDefined} curve={curve} {...lineProps}>
-      {({ path }) => (
-        <PathComponent
-          stroke={color}
-          strokeWidth={2}
-          fill="transparent"
-          {...lineProps}
-          d={path(data) || ''}
+    <>
+      <LinePath x={getScaledX} y={getScaledY} defined={isDefined} curve={curve} {...lineProps}>
+        {({ path }) => (
+          <PathComponent
+            stroke={color}
+            strokeWidth={2}
+            fill="transparent"
+            {...lineProps}
+            d={path(data) || ''}
+            {...eventEmitters}
+          />
+        )}
+      </LinePath>
+      {captureFocusEvents && (
+        <BaseGlyphSeries
+          dataKey={dataKey}
+          data={data}
+          xAccessor={xAccessor}
+          yAccessor={yAccessor}
+          xScale={xScale}
+          yScale={yScale}
+          renderGlyphs={renderGlyphs}
         />
       )}
-    </LinePath>
+    </>
   );
 }
 

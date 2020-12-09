@@ -7,6 +7,26 @@ export default function defaultRenderGlyph<Datum extends object>({
   x,
   y,
   size,
+  onBlur,
+  onFocus,
+  onPointerMove,
+  onPointerOut,
+  onPointerUp,
 }: GlyphProps<Datum>) {
-  return <circle key={key} fill={color} r={size / 2} cx={x} cy={y} />;
+  return (
+    <circle
+      className="visx-circle-glyph"
+      key={key}
+      tabIndex={onBlur || onFocus ? 0 : undefined}
+      fill={color}
+      r={size / 2}
+      cx={x}
+      cy={y}
+      onBlur={onBlur}
+      onFocus={onFocus}
+      onPointerMove={onPointerMove}
+      onPointerOut={onPointerOut}
+      onPointerUp={onPointerUp}
+    />
+  );
 }

@@ -19,16 +19,18 @@ type ProvidedProps = {
   approxTooltipHeight: number;
   connectorType: 'line' | 'elbow';
   data: AppleStock[];
+  editLabelPosition: boolean;
+  editSubjectPosition: boolean;
   getDate: (d: AppleStock) => number;
   getStockValue: (d: AppleStock) => number;
-  horizontalAnchor?: 'left' | 'middle' | 'right';
+  horizontalAnchor?: 'start' | 'middle' | 'end';
   labelWidth: number;
   setAnnotationPosition: (position: AnnotationPosition) => void;
   showAnchorLine: boolean;
   subjectType: 'circle' | 'horizontal-line' | 'vertical-line';
   subtitle: string;
   title: string;
-  verticalAnchor?: 'top' | 'middle' | 'bottom';
+  verticalAnchor?: 'start' | 'middle' | 'end';
   xScale: PickD3Scale<'time', number>;
   yScale: PickD3Scale<'linear', number>;
 };
@@ -62,7 +64,8 @@ export default function ExampleControls({
     [height],
   );
 
-  const [editAnnotation, setEditAnnotation] = useState(false);
+  const [editLabelPosition, setEditLabelPosition] = useState(false);
+  const [editSubjectPosition, setEditSubjectPosition] = useState(false);
   const [title, setTitle] = useState('Title');
   const [subtitle, setSubtitle] = useState(
     compact ? 'Subtitle' : 'Subtitle with deets and deets and deets and deets',
@@ -87,11 +90,14 @@ export default function ExampleControls({
   return (
     <>
       {children({
-        AnnotationComponent: editAnnotation ? EditableAnnotation : Annotation,
+        AnnotationComponent:
+          editLabelPosition || editSubjectPosition ? EditableAnnotation : Annotation,
         annotationPosition,
         approxTooltipHeight,
         connectorType,
         data,
+        editLabelPosition,
+        editSubjectPosition,
         getDate,
         getStockValue,
         horizontalAnchor: horizontalAnchor === 'auto' ? undefined : horizontalAnchor,
@@ -121,10 +127,19 @@ export default function ExampleControls({
             <label>
               <input
                 type="checkbox"
-                onChange={() => setEditAnnotation(!editAnnotation)}
-                checked={editAnnotation}
+                onChange={() => setEditSubjectPosition(!editSubjectPosition)}
+                checked={editSubjectPosition}
               />
-              Edit annotation
+              Edit subject position
+            </label>
+            &nbsp;&nbsp;
+            <label>
+              <input
+                type="checkbox"
+                onChange={() => setEditLabelPosition(!editLabelPosition)}
+                checked={editLabelPosition}
+              />
+              Edit label position
             </label>
           </div>
           <div>
@@ -186,8 +201,8 @@ export default function ExampleControls({
             <label>
               <input
                 type="radio"
-                onChange={() => setHorizontalAnchor('left')}
-                checked={horizontalAnchor === 'left'}
+                onChange={() => setHorizontalAnchor('start')}
+                checked={horizontalAnchor === 'start'}
               />
               left
             </label>
@@ -202,8 +217,8 @@ export default function ExampleControls({
             <label>
               <input
                 type="radio"
-                onChange={() => setHorizontalAnchor('right')}
-                checked={horizontalAnchor === 'right'}
+                onChange={() => setHorizontalAnchor('end')}
+                checked={horizontalAnchor === 'end'}
               />
               right
             </label>
@@ -221,8 +236,8 @@ export default function ExampleControls({
             <label>
               <input
                 type="radio"
-                onChange={() => setVerticalAnchor('top')}
-                checked={verticalAnchor === 'top'}
+                onChange={() => setVerticalAnchor('start')}
+                checked={verticalAnchor === 'start'}
               />
               top
             </label>
@@ -237,8 +252,8 @@ export default function ExampleControls({
             <label>
               <input
                 type="radio"
-                onChange={() => setVerticalAnchor('bottom')}
-                checked={verticalAnchor === 'bottom'}
+                onChange={() => setVerticalAnchor('end')}
+                checked={verticalAnchor === 'end'}
               />
               bottom
             </label>
