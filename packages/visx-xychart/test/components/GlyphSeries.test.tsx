@@ -1,7 +1,8 @@
 import React, { useContext, useEffect } from 'react';
 import { animated } from 'react-spring';
 import { mount } from 'enzyme';
-import { AnimatedGlyphSeries, DataContext, GlyphSeries, useEventEmitter } from '../../src';
+import { DataContext, GlyphSeries, useEventEmitter } from '../../src';
+import { GlyphSeries as AnimatedGlyphSeries } from '../../src/animated';
 import getDataContext from '../mocks/getDataContext';
 import setupTooltipTest from '../mocks/setupTooltipTest';
 import { XYCHART_EVENT_SOURCE } from '../../src/constants';

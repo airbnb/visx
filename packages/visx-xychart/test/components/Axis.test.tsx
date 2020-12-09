@@ -3,7 +3,8 @@ import { shallow, mount } from 'enzyme';
 import VxAnimatedAxis from '@visx/react-spring/lib/axis/AnimatedAxis';
 import VxAxis from '@visx/axis/lib/axis/Axis';
 import BaseAxis from '../../src/components/axis/BaseAxis';
-import { Axis, AnimatedAxis, DataContext, lightTheme } from '../../src';
+import { Axis, DataContext, lightTheme } from '../../src';
+import { Axis as AnimatedAxis } from '../../src/animated';
 
 describe('<Axis />', () => {
   it('should be defined', () => {

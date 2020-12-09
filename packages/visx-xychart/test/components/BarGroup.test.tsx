@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { animated } from 'react-spring';
 import { mount } from 'enzyme';
-import { AnimatedBarGroup, BarGroup, BarSeries, DataProvider, useEventEmitter } from '../../src';
+import { BarGroup, BarSeries, DataProvider, useEventEmitter } from '../../src';
+import { BarGroup as AnimatedBarGroup } from '../../src/animated';
 import setupTooltipTest from '../mocks/setupTooltipTest';
 import { XYCHART_EVENT_SOURCE } from '../../src/constants';
 

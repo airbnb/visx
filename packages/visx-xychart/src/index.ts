@@ -1,12 +1,9 @@
 // components
 export { default as Annotation } from './components/annotation/Annotation';
-export { default as AnimatedAnnotation } from './components/annotation/AnimatedAnnotation';
 export { default as AnnotationLabel } from './components/annotation/AnnotationLabel';
 export { default as AnnotationConnector } from './components/annotation/AnnotationConnector';
 export { default as AnnotationCircleSubject } from './components/annotation/AnnotationCircleSubject';
 export { default as AnnotationLineSubject } from './components/annotation/AnnotationLineSubject';
-export { default as AnimatedAxis } from './components/axis/AnimatedAxis';
-export { default as AnimatedGrid } from './components/grid/AnimatedGrid';
 export { default as Axis } from './components/axis/Axis';
 export { default as Grid } from './components/grid/Grid';
 export { default as Tooltip } from './components/Tooltip';
@@ -19,14 +16,6 @@ export { default as BarSeries } from './components/series/BarSeries';
 export { default as BarStack } from './components/series/BarStack';
 export { default as GlyphSeries } from './components/series/GlyphSeries';
 export { default as LineSeries } from './components/series/LineSeries';
-
-// animated series components
-export { default as AnimatedAreaSeries } from './components/series/AnimatedAreaSeries';
-export { default as AnimatedBarSeries } from './components/series/AnimatedBarSeries';
-export { default as AnimatedBarStack } from './components/series/AnimatedBarStack';
-export { default as AnimatedBarGroup } from './components/series/AnimatedBarGroup';
-export { default as AnimatedGlyphSeries } from './components/series/AnimatedGlyphSeries';
-export { default as AnimatedLineSeries } from './components/series/AnimatedLineSeries';
 
 // context
 export { default as DataContext } from './context/DataContext';

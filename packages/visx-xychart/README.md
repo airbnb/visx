@@ -1,5 +1,9 @@
 # @visx/xychart
 
+<a title="@visx/xychart npm downloads" href="https://www.npmjs.com/package/@visx/xychart">
+  <img src="https://img.shields.io/npm/dm/@visx/xychart.svg?style=flat-square" />
+</a>
+
 In contrast to other `visx` packages which are low-level, this package seeks to abstract some of the
 complexity of common visualization engineering, and exposes a **high-level** x,y (cartesian
 coordinate) chart API. However, it is implemented using modularized `React.context` layers for
@@ -20,11 +24,11 @@ and `Tooltip`:
 
 ```tsx
 import {
-  AnimatedAxis, // any of these can be non-animated equivalents
-  AnimatedGrid,
-  AnimatedLineSeries,
+  Axis, // equivalent non-animated components can be imported from `@visx/xychart`
+  Grid,
+  LineSeries,
   XYChart,
-} from '@visx/xychart';
+} from '@visx/xychart/animated';
 
 const data1 = [
   { x: '2020-01-01', y: 50 },
@@ -45,10 +49,10 @@ const accessors = {
 
 const render = () => (
   <XYChart height={300} xScale={{ type: 'band' }} yScale={{ type: 'linear' }}>
-    <AnimatedAxis orientation="bottom" />
-    <AnimatedGrid columns={false} numTicks={4} />
-    <AnimatedLineSeries dataKey="Line 1" data={data1} {...accessors} />
-    <AnimatedLineSeries dataKey="Line 2" data={data2} {...accessors} />
+    <Axis orientation="bottom" />
+    <Grid columns={false} numTicks={4} />
+    <LineSeries dataKey="Line 1" data={data1} {...accessors} />
+    <LineSeries dataKey="Line 2" data={data2} {...accessors} />
     <Tooltip
       snapTooltipToDatumX
       snapTooltipToDatumY
@@ -75,6 +79,18 @@ below.
 <hr />
 
 ## Basic usage
+
+<details>
+  <summary>Installation</summary>
+
+```
+npm install --save @visx/xychart react-spring
+```
+
+Note: `react-spring` is only a required `peerDependency` for importing `@visx/xychart/animated`
+components.
+
+</details>
 
 <details>
   <summary>Series types</summary>
@@ -200,7 +216,7 @@ dimension context. These components allow for annotation of individual points us
 ```tsx
 import {
   XYChart,
-  AnimatedAnnotation,
+  Annotation,
   AnnotationLabel,
   AnnotationConnector,
   AnnotationCircleSubject,
@@ -215,7 +231,7 @@ const data = [
 () => (
   <XYChart {...}>
     <LineSeries dataKey="line" data={data} xAccessor={...} yAccessor={...} />
-    <AnimatedAnnotation
+    <Annotation
       dataKey="line" // use this Series's accessor functions, alternatively specify x/yAccessor here
       datum={data[0]}
       dx={labelXOffset}
@@ -229,7 +245,7 @@ const data = [
       <AnnotationCircleSubject />
       {/** Connect label to CircleSubject */}
       <AnnotationConnector />
-    </AnimatedAnnotation>
+    </Annotation>
   </XYChart>
 )
 

@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useCallback, useMemo, useState } from 'react';
 import { lightTheme, darkTheme, XYChartTheme } from '@visx/xychart';
 import { GlyphProps } from '@visx/xychart/lib/types';

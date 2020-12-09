@@ -4,7 +4,8 @@ import {
   Annotation as VxAnnotation,
   EditableAnnotation as VxEditableAnnotation,
 } from '@visx/annotation';
-import { DataContext, Annotation, AnimatedAnnotation } from '../../src';
+import { DataContext, Annotation } from '../../src';
+import { Annotation as AnimatedAnnotation } from '../../src/animated';
 import getDataContext from '../mocks/getDataContext';
 
 const series = { key: 'visx', data: [{}], xAccessor: () => 4, yAccessor: () => 7 };
