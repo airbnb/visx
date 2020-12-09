@@ -1,6 +1,7 @@
 export { default as scaleBand } from './scales/band';
 export { default as scalePoint } from './scales/point';
 export { default as scaleLinear } from './scales/linear';
+export { default as scaleRadial } from './scales/radial';
 export { default as scaleTime } from './scales/time';
 export { default as scaleUtc } from './scales/utc';
 export { default as scaleLog } from './scales/log';
