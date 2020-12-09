@@ -15,37 +15,40 @@ Out of the box it supports the following:
 - \* `<Tooltip />`
 - \* `theme`ing
 
-The following illustrates basic usage for an animated line chart with a bottom `Axis`, `Grid`, and
-`Tooltip`, try it on codesandbox [here](todo, simplify code below):
+The following illustrates basic usage to create an animated line chart with a bottom `Axis`, `Grid`,
+and `Tooltip`, try it on codesandbox [here](todo, simplify code below):
 
 ```tsx
-import { AnimatedAxis, AnimatedGrid, AnimatedLineSeries, XYChart } from '@visx/xychart';
+import {
+  AnimatedAxis, // any of these can be non-animated equivalents
+  AnimatedGrid,
+  AnimatedLineSeries,
+  XYChart,
+} from '@visx/xychart';
 
 const data1 = [
   { x: '2020-01-01', y: 50 },
   { x: '2020-01-02', y: 10 },
   { x: '2020-01-03', y: 20 },
-  { x: '2020-01-04', y: 10 },
-  { x: '2020-01-05', y: 0 },
 ];
 
 const data2 = [
   { x: '2020-01-01', y: 30 },
   { x: '2020-01-02', y: 40 },
   { x: '2020-01-03', y: 80 },
-  { x: '2020-01-04', y: 70 },
-  { x: '2020-01-05', y: 20 },
 ];
 
-const xAccessor = d => d.x;
-const yAccessor = d => d.y;
+const accessors = {
+  xAccessor: d => d.x,
+  yAccessor: d => d.y,
+};
 
 const render = () => (
   <XYChart height={300} xScale={{ type: 'band' }} yScale={{ type: 'linear' }}>
     <AnimatedAxis orientation="bottom" />
     <AnimatedGrid columns={false} numTicks={4} />
-    <AnimatedLineSeries dataKey="Line 1" data={data1} xAccessor={xAccessor} yAccessor={yAccessor} />
-    <AnimatedLineSeries dataKey="Line 2" data={data2} xAccessor={xAccessor} yAccessor={yAccessor} />
+    <AnimatedLineSeries dataKey="Line 1" data={data1} {...accessors} />
+    <AnimatedLineSeries dataKey="Line 2" data={data2} {...accessors} />
     <Tooltip
       snapTooltipToDatumX
       snapTooltipToDatumY
@@ -54,11 +57,11 @@ const render = () => (
       renderTooltip={({ tooltipData, colorScale }) => (
         <div>
           <div style={{ color: colorScale(tooltipData.nearestDatum.key) }}>
-            {tooltipData.nearestDatum.key || 'No key'}
+            {tooltipData.nearestDatum.key}
           </div>
-          {tooltipData.nearestDatum.datum.x || 'No date'}
+          {accessors.xAccessor(tooltipData.nearestDatum.datum)}
           {', '}
-          {tooltipData.nearestDatum.datum.y || 'No value'}
+          {accessors.yAccessor(tooltipData.nearestDatum.datum)}
         </div>
       )}
     />
@@ -66,15 +69,15 @@ const render = () => (
 );
 ```
 
-Expand sections for more, or explore the detailed API below.
+See sections below for more detailed guidance and advanced usage, or explore the comprehensive API
+below.
 
 <hr />
 
 ## Basic usage
 
 <details>
-
-<summary>Series types</summary>
+  <summary>Series types</summary>
 
 The following `Series` types are currently supported and we are happy to review or consider
 additional Series types in the future.
@@ -94,8 +97,7 @@ support missing (`null`) data, and can be rendered vertically or horizontally.
 </details>
 
 <details>
-
-<summary>Theming</summary>
+  <summary>Theming</summary>
 
 Default `lightTheme` and `darkTheme` themes are exported from `@visx/xychart` and the utility
 `buildChartTheme` is exported to support easy creation of custom themes.
@@ -133,8 +135,7 @@ const customTheme = buildTheme({
 </details>
 
 <details>
-
-<summary>Tooltips</summary>
+  <summary>Tooltips</summary>
 
 `@visx/tooltip` `Tooltip`s are integrated into `@visx/xychart`, and should be rendered as a child of
 `XYChart` (or a child where `TooltipContext` is provided).
@@ -154,8 +155,7 @@ snapping to data point positions and rendering cross-hairs.
 </details>
 
 <details>
-
-<summary>Event handlers</summary>
+  <summary>Event handlers</summary>
 
 The following `PointerEvent`s (handling both `MouseEvent`s and `TouchEvent`s) are currently
 supported. They may be set on individual `Series` components (e.g.,
@@ -188,11 +188,49 @@ type EventHandlerParams<Datum> = {
 </details>
 
 <details>
+  <summary>Annotations</summary>
 
-<summary>Annotations</summary>
+Composable `@visx/annotations` annotations are integrated into `@visx/xychart` and use its theme and
+dimension context. These components allow for annotation of individual points using
+`AnnotationCircleSubject`, or x- or y-thresholds using `AnnotationLineSubject`.
 
-`@visx/annotations` annotations are integrated into `@visx/xychart`, and allow you to annotate
-individual points, or x- or y-thresholds.
+```tsx
+import {
+  XYChart,
+  AnimatedAnnotation,
+  AnnotationLabel,
+  AnnotationConnector,
+  AnnotationCircleSubject,
+} from '@visx/xychart';
+
+const data = [
+  { x: '2020-01-01', y: 50 },
+  { x: '2020-01-02', y: 10 },
+  { x: '2020-01-03', y: 20 },
+];
+
+() => (
+  <XYChart {...}>
+    <LineSeries dataKey="line" data={data} xAccessor={...} yAccessor={...} />
+    <AnimatedAnnotation
+      dataKey="line" // use this Series's accessor functions, alternatively specify x/yAccessor here
+      datum={data[0]}
+      dx={labelXOffset}
+      dy={labelYOffset}
+      editable={isEditable}
+      onDragEnd={({ x, y, dx, dy }) => /** handle edit */}
+    >
+      {/** Text label */}
+      <AnnotationLabel title="My point" subtitle="More deets" />
+      {/** Draw circle around point */}
+      <AnnotationCircleSubject />
+      {/** Connect label to CircleSubject */}
+      <AnnotationConnector />
+    </AnimatedAnnotation>
+  </XYChart>
+)
+
+```
 
 </details>
 
@@ -201,8 +239,7 @@ individual points, or x- or y-thresholds.
 ## Advanced usage
 
 <details>
-
-<summary>Examples</summary>
+  <summary>Examples</summary>
 
 `XYChart` is implemented using modularized `React.context` layers for scales, canvas dimensions,
 data, events, and tooltips which enables more advanced usage than many other chart-level
@@ -212,15 +249,14 @@ By default `XYChart` renders all context providers if a given context is not ava
 share context across multiple `XYChart`s to implement functionality such as linked tooltips, shared
 themes, or shared data.
 
-- TODO - Custom chart background using theme and chart dimensions
-- TODO - Linked tooltips
-- TODO - Programmatically control tooltips
+- 🔜 Custom chart background using theme and chart dimensions
+- 🔜 Linked tooltips
+- 🔜 Programmatically control tooltips
 
 </details>
 
 <details>
-
-<summary>DataContext</summary>
+  <summary>DataContext</summary>
 
 This context provides chart canvas dimensions (`width`, `height`, and `margin`), x/y/color scales,
 and a data registry. The data registry includes data from all child `*Series`, and x/y/color scales
@@ -229,16 +265,15 @@ are updated accordingly accounting for canvas dimensions.
 </details>
 
 <details>
+  <summary>ThemeContext</summary>
 
-<summary>ThemeContext</summary>
-
-This context provides an `XYChart` theme.
+This context provides an `XYChart` theme, its used by all visual elements that compose a chart, and
+can be used to render custom visual elements that are on theme.
 
 </details>
 
 <details>
-
-<summary>EventEmitterContext</summary>
+  <summary>EventEmitterContext</summary>
 
 This context provides an event publishing / subscription object which can be used via the
 `useEventEmitter` hook. `Series` and `XYChart` events, including tooltip updates, are emitted and
