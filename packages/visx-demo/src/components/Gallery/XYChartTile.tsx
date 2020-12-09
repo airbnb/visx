@@ -1,5 +1,5 @@
 import React from 'react';
-import XYChartI, { XYChartProps } from '../../sandboxes/visx-xychart/Example';
+import XYChart, { XYChartProps } from '../../sandboxes/visx-xychart/Example';
 import GalleryTile from '../GalleryTile';
 
 export { default as packageJson } from '../../sandboxes/visx-xychart/package.json';
@@ -11,7 +11,7 @@ export default function XYChartITile() {
     <GalleryTile<XYChartProps>
       title="XYChart"
       description="<XYChart />"
-      exampleRenderer={XYChartI}
+      exampleRenderer={XYChart}
       exampleUrl="/xychart"
       tileStyles={tileStyles}
       detailsHeight={0}

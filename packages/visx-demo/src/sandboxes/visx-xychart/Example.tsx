@@ -20,14 +20,14 @@ import {
 import ExampleControls from './ExampleControls';
 import CustomChartBackground from './CustomChartBackground';
 
-type Props = {
+export type XYChartProps = {
   width: number;
   height: number;
 };
 
 type City = 'San Francisco' | 'New York' | 'Austin';
 
-export default function Example({ height }: Props) {
+export default function Example({ height }: XYChartProps) {
   return (
     <ExampleControls>
       {({
