@@ -1,8 +1,8 @@
-import React from "react";
-import debounce from "lodash/debounce";
-import { ResizeObserver } from "../types";
+import React from 'react';
+import debounce from 'lodash/debounce';
+import { ResizeObserver } from '../types';
 
-const CONTAINER_STYLES = { width: "100%", height: "100%" };
+const CONTAINER_STYLES = { width: '100%', height: '100%' };
 
 // This can be deleted once https://git.io/Jk9FD lands in TypeScript
 declare global {
@@ -25,12 +25,8 @@ type WithParentSizeState = {
 
 export type WithParentSizeProvidedProps = WithParentSizeState;
 
-export default function withParentSize<
-  BaseComponentProps extends WithParentSizeProps = {}
->(
-  BaseComponent: React.ComponentType<
-    BaseComponentProps & WithParentSizeProvidedProps
-  >
+export default function withParentSize<BaseComponentProps extends WithParentSizeProps = {}>(
+  BaseComponent: React.ComponentType<BaseComponentProps & WithParentSizeProvidedProps>,
 ) {
   return class WrappedComponent extends React.Component<
     BaseComponentProps & WithParentSizeProvidedProps,
@@ -38,11 +34,11 @@ export default function withParentSize<
   > {
     static defaultProps = {
       debounceTime: 300,
-      enableDebounceLeadingCall: true
+      enableDebounceLeadingCall: true,
     };
     state = {
       parentWidth: undefined,
-      parentHeight: undefined
+      parentHeight: undefined,
     };
     animationFrameID: number = 0;
     resizeObserver: ResizeObserver | undefined;
@@ -55,7 +51,7 @@ export default function withParentSize<
           this.animationFrameID = window.requestAnimationFrame(() => {
             this.resize({
               width,
-              height
+              height,
             });
           });
         });
@@ -77,27 +73,20 @@ export default function withParentSize<
       ({ width, height }: { width: number; height: number }) => {
         this.setState({
           parentWidth: width,
-          parentHeight: height
+          parentHeight: height,
         });
       },
       this.props.debounceTime,
-      { leading: this.props.enableDebounceLeadingCall }
+      { leading: this.props.enableDebounceLeadingCall },
     );
 
     render() {
       const { initialWidth, initialHeight } = this.props;
-      const {
-        parentWidth = initialWidth,
-        parentHeight = initialHeight
-      } = this.state;
+      const { parentWidth = initialWidth, parentHeight = initialHeight } = this.state;
       return (
         <div style={CONTAINER_STYLES} ref={this.setRef}>
           {parentWidth != null && parentHeight != null && (
-            <BaseComponent
-              parentWidth={parentWidth}
-              parentHeight={parentHeight}
-              {...this.props}
-            />
+            <BaseComponent parentWidth={parentWidth} parentHeight={parentHeight} {...this.props} />
           )}
         </div>
       );
