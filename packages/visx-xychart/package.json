@@ -3,7 +3,6 @@
   "version": "1.2.0",
   "description": "Composable cartesian coordinate chart built with visx primitives",
   "sideEffects": false,
-  "private": true,
   "main": "lib/index.js",
   "module": "esm/index.js",
   "types": "lib/index.d.ts",
