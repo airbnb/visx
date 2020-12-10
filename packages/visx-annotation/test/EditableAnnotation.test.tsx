@@ -1,27 +1,35 @@
-import React from 'react';
-import { shallow } from 'enzyme';
-import { Annotation, EditableAnnotation } from '../src';
-import { EditableAnnotationProps } from '../lib/components/EditableAnnotation';
+import React, { ReactNode } from "react";
+import { EditableAnnotation } from "../src";
+import { EditableAnnotationProps } from "../lib/components/EditableAnnotation";
+import { render, screen } from "@testing-library/react";
 
-describe('<EditableAnnotation />', () => {
-  function setup(props?: Partial<EditableAnnotationProps>) {
-    return shallow(
-      <EditableAnnotation width={100} height={100} {...props}>
-        <div />
-      </EditableAnnotation>,
+describe("<EditableAnnotation />", () => {
+  function setup(
+    props?: Partial<EditableAnnotationProps> & { children?: ReactNode }
+  ) {
+    return (
+      <svg>
+        <EditableAnnotation width={100} height={100} {...props}>
+          {props?.children ?? <div />}
+        </EditableAnnotation>
+      </svg>
     );
   }
-  it('should be defined', () => {
-    expect(EditableAnnotation).toBeDefined();
+
+  it("should render two resize handles", () => {
+    render(setup());
+    expect(document.querySelectorAll("circle")).toHaveLength(2);
   });
-  it('should render two resize handles', () => {
-    expect(setup().find('circle')).toHaveLength(2);
+  it("should render one resize handle if canEditLabel is false", () => {
+    render(setup({ canEditLabel: false }));
+    expect(document.querySelector("circle")).toBeVisible();
   });
-  it('should render one resize handle if canEditLabel or canEditSubject are false', () => {
-    expect(setup({ canEditLabel: false }).find('circle')).toHaveLength(1);
-    expect(setup({ canEditSubject: false }).find('circle')).toHaveLength(1);
+  it("should render one resize handle if canEditSubject is false", () => {
+    render(setup({ canEditSubject: false }));
+    expect(document.querySelector("circle")).toBeVisible();
   });
-  it('should render an Annotation', () => {
-    expect(setup().find(Annotation)).toHaveLength(1);
+  it("should render an Annotation", () => {
+    render(setup({ children: "test" }));
+    expect(screen.getByText(/test/i)).toBeVisible();
   });
 });
