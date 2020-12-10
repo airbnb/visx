@@ -55,6 +55,8 @@
     "@airbnb/config-prettier": "^2.0.4",
     "@airbnb/config-typescript": "^2.1.2",
     "@airbnb/nimbus": "^2.1.3",
+    "@testing-library/jest-dom": "^5.11.6",
+    "@testing-library/react": "^11.2.2",
     "@types/enzyme": "^3.10.3",
     "@types/jest": "^24.0.18",
     "@types/jsdom": "^12.2.4",
@@ -97,7 +99,12 @@
     },
     "babel": {
       "plugins": [
-        ["@babel/plugin-proposal-private-methods", { "loose": false }]
+        [
+          "@babel/plugin-proposal-private-methods",
+          {
+            "loose": false
+          }
+        ]
       ]
     },
     "typescript": {
@@ -118,9 +125,9 @@
         "!packages/visx-demo/**",
         "!packages/visx-visx/**"
       ],
-      "testPathIgnorePatterns" : [
+      "testPathIgnorePatterns": [
         "<rootDir>/packages/visx-demo",
-        "<rootDir>/packages/visx-visx" 
+        "<rootDir>/packages/visx-visx"
       ],
       "coverageThreshold": {
         "global": {
@@ -131,7 +138,8 @@
         }
       },
       "setupFilesAfterEnv": [
-        "@airbnb/config-jest/enzyme"
+        "@airbnb/config-jest/enzyme",
+        "./setupTests.js"
       ]
     },
     "eslint": {
