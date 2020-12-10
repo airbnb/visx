@@ -1,12 +1,13 @@
-import React from 'react';
-import { shallow } from 'enzyme';
-import { LineSubject } from '../src';
+import React from "react";
+import { LineSubject } from "../src";
+import { render } from "@testing-library/react";
 
-describe('<LineSubject />', () => {
-  it('should be defined', () => {
-    expect(LineSubject).toBeDefined();
-  });
-  it('should render a line', () => {
-    expect(shallow(<LineSubject min={0} max={100} />).find('line')).toHaveLength(1);
+describe("<LineSubject />", () => {
+  const wrapper: React.FunctionComponent = ({ children }) => (
+    <svg>{children}</svg>
+  );
+  it("should render a line", () => {
+    render(<LineSubject min={0} max={100} />, { wrapper });
+    expect(document.querySelector("line")).toBeVisible();
   });
 });
