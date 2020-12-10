@@ -3,6 +3,7 @@ import {
   ScaleLinear,
   ScaleLogarithmic,
   ScalePower,
+  ScaleRadial,
   ScaleTime,
   ScaleQuantile,
   ScaleQuantize,
@@ -33,6 +34,7 @@ export interface ScaleTypeToD3Scale<
   pow: ScalePower<Output, Output>;
   sqrt: ScalePower<Output, Output>;
   symlog: ScaleSymLog<Output, Output>;
+  radial: ScaleRadial<Output, Output>;
   // Input of time scales are `Date | number | { valueOf(): number }`
   // and cannot be customized via generic type.
   time: ScaleTime<Output, Output>;

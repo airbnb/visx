@@ -1,5 +1,5 @@
 import { UseTooltipParams } from '@visx/tooltip/lib/hooks/useTooltip';
-import { PointerEventParams } from './series';
+import { EventHandlerParams } from './series';
 
 export type TooltipDatum<Datum extends object> = {
   /** Series key that datum belongs to. */
@@ -20,5 +20,5 @@ export type TooltipData<Datum extends object = object> = {
 };
 
 export type TooltipContextType<Datum extends object> = UseTooltipParams<TooltipData<Datum>> & {
-  showTooltip: (params: PointerEventParams<Datum>) => void;
+  showTooltip: (params: EventHandlerParams<Datum>) => void;
 };

@@ -9,11 +9,18 @@ export default function Bars({
   yScale,
   ...rectProps
 }: BarsProps<any, any>) {
+  const isFocusable = Boolean(rectProps.onFocus || rectProps.onBlur);
   return (
     // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
       {bars.map(({ key, ...barProps }) => (
-        <rect className="visx-bar" key={key} {...barProps} {...rectProps} />
+        <rect
+          key={key}
+          className="visx-bar"
+          tabIndex={isFocusable ? 0 : undefined}
+          {...barProps}
+          {...rectProps}
+        />
       ))}
     </>
   );

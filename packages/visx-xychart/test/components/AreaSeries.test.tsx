@@ -38,6 +38,17 @@ describe('<AreaSeries />', () => {
     expect(wrapper.find(LinePath)).toHaveLength(1);
   });
 
+  it('should render Glyphs if focus/blur handlers are set', () => {
+    const wrapper = mount(
+      <DataContext.Provider value={getDataContext(series)}>
+        <svg>
+          <AreaSeries dataKey={series.key} {...series} onFocus={() => {}} />
+        </svg>
+      </DataContext.Provider>,
+    );
+    expect(wrapper.find('circle')).toHaveLength(series.data.length);
+  });
+
   it('should invoke showTooltip/hideTooltip on pointermove/pointerout', () => {
     expect.assertions(2);
 

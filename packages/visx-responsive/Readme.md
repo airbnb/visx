@@ -109,6 +109,10 @@ let chartToRender = (
 // ... Render the chartToRender somewhere
 ```
 
+##### ⚠️ `ResizeObserver` dependency
+
+If you don't need a polyfill for `ResizeObserver` or are already including it in your bundle, you should use `ParentSizeModern` and `withParentSizeModern` which doesn't include the polyfill.
+
 ## Installation
 
 ```

@@ -1,22 +1,14 @@
 import React, { useContext, useCallback, useMemo } from 'react';
 import { AxisScale } from '@visx/axis';
 import DataContext from '../../../context/DataContext';
-import {
-  Bar,
-  BarsProps,
-  PointerEventParams,
-  SeriesProps,
-  TooltipContextType,
-} from '../../../types';
+import { Bar, BarsProps, SeriesProps } from '../../../types';
 import withRegisteredData, { WithRegisteredDataProps } from '../../../enhancers/withRegisteredData';
 import getScaledValueFactory from '../../../utils/getScaledValueFactory';
 import getScaleBandwidth from '../../../utils/getScaleBandwidth';
 import getScaleBaseline from '../../../utils/getScaleBaseline';
 import isValidNumber from '../../../typeguards/isValidNumber';
 import { BARSERIES_EVENT_SOURCE, XYCHART_EVENT_SOURCE } from '../../../constants';
-import usePointerEventEmitters from '../../../hooks/usePointerEventEmitters';
-import usePointerEventHandlers from '../../../hooks/usePointerEventHandlers';
-import TooltipContext from '../../../context/TooltipContext';
+import useSeriesEvents from '../../../hooks/useSeriesEvents';
 
 export type BaseBarSeriesProps<
   XScale extends AxisScale,
@@ -42,10 +34,12 @@ function BaseBarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum
   barPadding = 0.1,
   data,
   dataKey,
-  onPointerMove: onPointerMoveProps,
-  onPointerOut: onPointerOutProps,
-  onPointerUp: onPointerUpProps,
-  pointerEvents = true,
+  onBlur,
+  onFocus,
+  onPointerMove,
+  onPointerOut,
+  onPointerUp,
+  enableEvents = true,
   xAccessor,
   xScale,
   yAccessor,
@@ -90,36 +84,17 @@ function BaseBarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum
       .filter(bar => bar) as Bar[];
   }, [barThickness, color, data, getScaledX, getScaledY, horizontal, xZeroPosition, yZeroPosition]);
 
-  const { showTooltip, hideTooltip } = (useContext(TooltipContext) ?? {}) as TooltipContextType<
-    Datum
-  >;
-  const onPointerMove = useCallback(
-    (p: PointerEventParams<Datum>) => {
-      showTooltip(p);
-      if (onPointerMoveProps) onPointerMoveProps(p);
-    },
-    [showTooltip, onPointerMoveProps],
-  );
-  const onPointerOut = useCallback(
-    (event: React.PointerEvent) => {
-      hideTooltip();
-      if (onPointerOutProps) onPointerOutProps(event);
-    },
-    [hideTooltip, onPointerOutProps],
-  );
   const ownEventSourceKey = `${BARSERIES_EVENT_SOURCE}-${dataKey}`;
-  const pointerEventEmitters = usePointerEventEmitters({
-    source: ownEventSourceKey,
-    onPointerMove: !!onPointerMoveProps && pointerEvents,
-    onPointerOut: !!onPointerOutProps && pointerEvents,
-    onPointerUp: !!onPointerUpProps && pointerEvents,
-  });
-  usePointerEventHandlers({
+  const eventEmitters = useSeriesEvents<XScale, YScale, Datum>({
     dataKey,
-    onPointerMove: pointerEvents ? onPointerMove : undefined,
-    onPointerOut: pointerEvents ? onPointerOut : undefined,
-    onPointerUp: pointerEvents ? onPointerUpProps : undefined,
-    sources: [XYCHART_EVENT_SOURCE, ownEventSourceKey],
+    enableEvents,
+    onBlur,
+    onFocus,
+    onPointerMove,
+    onPointerOut,
+    onPointerUp,
+    source: ownEventSourceKey,
+    allowedSources: [XYCHART_EVENT_SOURCE, ownEventSourceKey],
   });
 
   return (
@@ -129,7 +104,7 @@ function BaseBarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum
         horizontal={horizontal}
         xScale={xScale}
         yScale={yScale}
-        {...pointerEventEmitters}
+        {...eventEmitters}
       />
     </g>
   );

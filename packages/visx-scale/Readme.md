@@ -110,6 +110,24 @@ const scale = Scale.scaleLog({
 });
 ```
 
+### Radial scale
+
+[Original d3 docs](https://github.com/d3/d3-scale/blob/master/README.md#scaleRadial)
+
+Example:
+
+```js
+const scale = Scale.scaleRadial({
+  /*
+    range,
+    round,
+    domain,
+    nice = false,
+    clamp = false,
+  */
+});
+```
+
 ### Ordinal scale
 
 [Original d3 docs](https://github.com/d3/d3-scale/blob/master/README.md#scaleOrdinal)

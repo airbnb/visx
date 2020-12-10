@@ -55,6 +55,13 @@ export type SymlogScaleConfig<Output = DefaultOutput> = CreateScaleConfig<
   'clamp' | 'constant' | 'nice' | 'zero'
 >;
 
+export type RadialScaleConfig<Output = DefaultOutput> = CreateScaleConfig<
+  'radial',
+  ContinuousDomain,
+  Output[],
+  'clamp' | 'nice' | 'round' | 'unknown'
+>;
+
 export type QuantileScaleConfig<Output = DefaultOutput> = CreateScaleConfig<
   'quantile',
   ContinuousDomain,
@@ -127,6 +134,7 @@ export interface ScaleTypeToScaleConfig<
   pow: PowScaleConfig<Output>;
   sqrt: SqrtScaleConfig<Output>;
   symlog: SymlogScaleConfig<Output>;
+  radial: RadialScaleConfig<Output>;
   time: TimeScaleConfig<Output>;
   utc: UtcScaleConfig<Output>;
   quantile: QuantileScaleConfig<Output>;
@@ -144,7 +152,14 @@ export type ScaleType = keyof ScaleTypeToScaleConfig;
 export type TimeScaleType = 'time' | 'utc';
 
 /** Scales that take continuous domains and return continuous ranges */
-export type ContinuousScaleType = 'linear' | 'log' | 'pow' | 'sqrt' | 'symlog' | TimeScaleType;
+export type ContinuousScaleType =
+  | 'linear'
+  | 'log'
+  | 'pow'
+  | 'sqrt'
+  | 'symlog'
+  | 'radial'
+  | TimeScaleType;
 /** Scales that convert continuous domains to discrete ranges */
 export type DiscretizingScaleType = 'quantile' | 'quantize' | 'threshold';
 /** Scales that take discrete domains and return discrete ranges */

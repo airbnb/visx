@@ -1,5 +1,5 @@
 import { AxisScale } from '@visx/axis';
-import { getSecondItem } from '@visx/shape/lib/util/accessors';
+import { getFirstItem, getSecondItem } from '@visx/shape/lib/util/accessors';
 import { extent } from 'd3-array';
 import { BarStackData, BarStackDatum, DataRegistryEntry } from '../types';
 
@@ -7,9 +7,11 @@ const getStack = <XScale extends AxisScale, YScale extends AxisScale>(
   bar: BarStackDatum<XScale, YScale>,
 ) => bar?.data?.stack;
 
+// returns average of top + bottom of bar (the middle) as this enables more accurately
+// finding the nearest datum to a FocusEvent (which is based on the middle of the rect bounding box)
 const getNumericValue = <XScale extends AxisScale, YScale extends AxisScale>(
   bar: BarStackDatum<XScale, YScale>,
-) => getSecondItem(bar); // corresponds to y1, the upper value (topline).
+) => (getFirstItem(bar) + getSecondItem(bar)) / 2;
 
 /** Constructs the `DataRegistryEntry`s for a BarStack, using the stacked data. */
 export default function getBarStackRegistryData<XScale extends AxisScale, YScale extends AxisScale>(

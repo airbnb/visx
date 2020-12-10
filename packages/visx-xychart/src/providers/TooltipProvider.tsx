@@ -2,7 +2,7 @@ import React, { useCallback, useRef } from 'react';
 import debounce from 'lodash/debounce';
 import { useTooltip } from '@visx/tooltip';
 import TooltipContext from '../context/TooltipContext';
-import { PointerEventParams, TooltipData } from '../types';
+import { EventHandlerParams, TooltipData } from '../types';
 
 type TooltipProviderProps = {
   /** Debounce time for when `hideTooltip` is invoked. */
@@ -27,7 +27,7 @@ export default function TooltipProvider<Datum extends object>({
   const debouncedHideTooltip = useRef<ReturnType<typeof debounce> | null>(null);
 
   const showTooltip = useRef(
-    ({ svgPoint, index, key, datum, distanceX, distanceY }: PointerEventParams<Datum>) => {
+    ({ svgPoint, index, key, datum, distanceX, distanceY }: EventHandlerParams<Datum>) => {
       // cancel any hideTooltip calls so it won't hide after invoking the logic below
       if (debouncedHideTooltip.current) {
         debouncedHideTooltip.current.cancel();
