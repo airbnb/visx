@@ -92,7 +92,7 @@ component (i.e., ...restProps):
 | left        | number | --      | The horizontal position of the cursor, tooltip will be place to the left or right of this coordinate depending on the width of the tooltip and the size of the parent container. |
 | top         | number | --      | The vertical position of the cursor, tooltip will be place to the bottom or top of this coordinate depending on the height of the tooltip and the size of the parent container.  |
 | offsetLeft  | number | 10      | Horizontal offset of the tooltip from the passed `left` value, functions as a horizontal padding.                                                                                |
-| offsetRight | number | 10      | Vertical offset of the tooltip from the passed `top` value, functions as a vertical padding.                                                                                     |
+| offsetTop   | number | 10      | Vertical offset of the tooltip from the passed `top` value, functions as a vertical padding.                                                                                     |
 | style       | object | --      | Sets / overrides any styles on the tooltip container (including top and left)                                                                                                    |
 | children    | node   | --      | Sets the children of the tooltip, i.e., the actual content                                                                                                                       |
 | unstyled    | bool   | true    | Whether the tooltip should use styles from the style prop or not                                                                                                                 |
