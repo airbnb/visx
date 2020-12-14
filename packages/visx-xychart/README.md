@@ -1,5 +1,9 @@
 # @visx/xychart
 
+<a title="@visx/xychart npm downloads" href="https://www.npmjs.com/package/@visx/xychart">
+  <img src="https://img.shields.io/npm/dm/@visx/xychart.svg?style=flat-square" />
+</a>
+
 In contrast to other `visx` packages which are low-level, this package seeks to abstract some of the
 complexity of common visualization engineering, and exposes a **high-level** x,y (cartesian
 coordinate) chart API. However, it is implemented using modularized `React.context` layers for
@@ -75,6 +79,15 @@ below.
 <hr />
 
 ## Basic usage
+
+<details>
+  <summary>Installation</summary>
+
+```
+npm install --save @visx/xychart react-spring
+```
+
+Note: `react-spring` is a required `peerDependency` for importing `Animated*` components.
 
 <details>
   <summary>Series types</summary>
