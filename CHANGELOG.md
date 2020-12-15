@@ -149,6 +149,7 @@ Changes:
  - @visx/stats: 1.1.0 => 1.3.0
  - @visx/text: 1.1.0 => 1.3.0
  - @visx/threshold: 1.2.0 => 1.3.0
+ - @visx/tooltip: 1.1.0 => 1.3.0
  - @visx/visx: 1.2.0 => 1.3.0
  - @visx/xychart: 1.2.0 => 1.3.0
  - @visx/zoom: 1.0.0 => 1.3.0
