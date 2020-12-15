@@ -1,4 +1,5 @@
 # Changelog
+- [v1.3.0](#v130)
 - [v1.2.0](#v120)
 - [v1.1.0](#v110)
 - [v1.0.0](#v100)
@@ -6,10 +7,10 @@
 - [v0.0.198](#v00198)
 - [v0.0.197](#v00197)
 - [v0.0.196](#v00196)
-- [v0.0.195](#v00195)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v00195">v0.0.195</a></li>
   <li><a href="#v00194">v0.0.194</a></li>
   <li><a href="#v00193">v0.0.193</a></li>
   <li><a href="#v00192">v0.0.192</a></li>
@@ -92,6 +93,68 @@
 </details>
 
 ------
+# v1.3.0
+
+#### :rocket:  Enhancements
+
+- [responsive] Add ParentSizeModern, withParentSizeModern that don't add ResizeObserver polyfill [#925](https://github.com/airbnb/visx/pull/925) 
+- [scale] add scaleRadial [#958](https://github.com/airbnb/visx/pull/958)
+- [text] add useText hook, refactor Text to use it [#946](https://github.com/airbnb/visx/pull/946)
+- [event] support FocusEvents in localPoint [#956](https://github.com/airbnb/visx/pull/956)
+- [xychart] release package [#965](https://github.com/airbnb/visx/pull/965)
+- [xychart] add PointerEvent handlers to XYChart, all Series [#947](https://github.com/airbnb/visx/pull/947)
+- [xychart] add support for FocusEvents [#959](https://github.com/airbnb/visx/pull/959)
+- [xychart] integrate Annotations [#938](https://github.com/airbnb/visx/pull/938)
+
+#### :bug: Bug Fix
+
+- [shape] set y0 when it equals zero [#955](https://github.com/airbnb/visx/pull/955)
+
+### :memo: Documentation
+
+- [xychart] add README and /docs/xychart to demo site [#963](https://github.com/airbnb/visx/pull/963)
+- [demo] fix view demo hover pointer style [#929](https://github.com/airbnb/visx/pull/929)
+- [tooltip] fix offsetTop documentation [#970](https://github.com/airbnb/visx/pull/970)
+
+### :house:  Internal
+
+- [xychart] add FocusEvent tests [#962](https://github.com/airbnb/visx/pull/962)
+- [xychart] add PointerEvent tests [#952](https://github.com/airbnb/visx/pull/952)
+- [xychart] add Annotations tests [#948](https://github.com/airbnb/visx/pull/948)
+
+#### :trophy: Contributors
+
+- [koddsson](https://github.com/koddsson)
+- [susiwen8](https://github.com/susiwen8)
+- [sarathps93](https://github.com/sarathps93)
+- [cristianmartinez](https://github.com/cristianmartinez)
+- [jfuchs](https://github.com/jfuchs)
+- [williaster](https://github.com/williaster)
+
+```
+Changes:
+ - @visx/annotation: 1.2.0 => 1.3.0
+ - @visx/axis: 1.2.0 => 1.3.0
+ - @visx/brush: 1.2.0 => 1.3.0
+ - @visx/demo: 1.2.0 => 1.3.0
+ - @visx/drag: 1.2.0 => 1.3.0
+ - @visx/event: 1.0.0 => 1.3.0
+ - @visx/grid: 1.2.0 => 1.3.0
+ - @visx/legend: 1.1.0 => 1.3.0
+ - @visx/marker: 1.2.0 => 1.3.0
+ - @visx/react-spring: 1.2.0 => 1.3.0
+ - @visx/responsive: 1.1.0 => 1.3.0
+ - @visx/scale: 1.1.0 => 1.3.0
+ - @visx/shape: 1.2.0 => 1.3.0
+ - @visx/stats: 1.1.0 => 1.3.0
+ - @visx/text: 1.1.0 => 1.3.0
+ - @visx/threshold: 1.2.0 => 1.3.0
+ - @visx/tooltip: 1.1.0 => 1.3.0
+ - @visx/visx: 1.2.0 => 1.3.0
+ - @visx/xychart: 1.2.0 => 1.3.0
+ - @visx/zoom: 1.0.0 => 1.3.0
+```
+
 # v1.2.0
 
 #### :rocket:  Enhancements
