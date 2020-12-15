@@ -132,6 +132,16 @@ export default function PackageList({
               </Link>
               {!compact && <p>Difference charts to compare the delta between two time series</p>}
             </li>
+            <li className={cx(emphasizePackage === 'xychart' && 'emphasize')}>
+              <Link href="/docs/xychart">
+                <a>xychart</a>
+              </Link>
+              {!compact && (
+                <p>
+                  A chart-level API built on & integrated with several other visx building blocks
+                </p>
+              )}
+            </li>
           </ul>
         </div>
         <div>
