@@ -102,7 +102,6 @@
 - [text] add useText hook, refactor Text to use it [#946](https://github.com/airbnb/visx/pull/946)
 - [event] support FocusEvents in localPoint [#956](https://github.com/airbnb/visx/pull/956)
 - [xychart] release package [#965](https://github.com/airbnb/visx/pull/965)
-- [xychart] move all Animated* exports to @visx/xychart/animated [#966](https://github.com/airbnb/visx/pull/966)
 - [xychart] add PointerEvent handlers to XYChart, all Series [#947](https://github.com/airbnb/visx/pull/947)
 - [xychart] add support for FocusEvents [#959](https://github.com/airbnb/visx/pull/959)
 - [xychart] integrate Annotations [#938](https://github.com/airbnb/visx/pull/938)
@@ -115,6 +114,7 @@
 
 - [xychart] add README and /docs/xychart to demo site [#963](https://github.com/airbnb/visx/pull/963)
 - [demo] fix view demo hover pointer style [#929](https://github.com/airbnb/visx/pull/929)
+- [tooltip] fix offsetTop documentation [#970](https://github.com/airbnb/visx/pull/970)
 
 ### :house:  Internal
 
@@ -128,6 +128,7 @@
 - [susiwen8](https://github.com/susiwen8)
 - [sarathps93](https://github.com/sarathps93)
 - [cristianmartinez](https://github.com/cristianmartinez)
+- [jfuchs](https://github.com/jfuchs)
 - [williaster](https://github.com/williaster)
 
 ```
