@@ -212,7 +212,7 @@ Composable `@visx/annotations` annotations are integrated into `@visx/xychart` a
 dimension context. These components allow for annotation of individual points using
 `AnnotationCircleSubject`, or x- or y-thresholds using `AnnotationLineSubject`.
 
-[CodeSandbox](https://codesandbox.io/s/immutable-currying-8npmf?file=/Example.tsx)
+[CodeSandbox](https://codesandbox.io/s/annotations-8npmf?file=/Example.tsx)
 
 ```tsx
 import React from 'react';
@@ -285,9 +285,9 @@ By default `XYChart` renders all context providers if a given context is not ava
 share context across multiple `XYChart`s to implement functionality such as linked tooltips, shared
 themes, or shared data.
 
-- [Custom theme + chart background using theme and chart dimension context](https://codesandbox.io/s/dreamy-mccarthy-sbdvz?file=/Example.tsx)
-- [Linked tooltips](https://codesandbox.io/s/confident-stallman-7s0jz?file=/Example.tsx)
-- [Programmatic and keyboard-triggered tooltips](https://codesandbox.io/s/programmatic-tooltips-hh7ly?file=/Example.tsx)
+- [`ThemeProvider` + custom theme chart background example](https://codesandbox.io/s/themeprovider-sbdvz?file=/Example.tsx)
+- [`DataProvider/EventEmitterProvider` example of linked tooltips / small multiples](https://codesandbox.io/s/linked-tooltips-7s0jz?file=/Example.tsx)
+- [`TooltipProvider` example of programmatic + keyboard tooltip triggering](https://codesandbox.io/s/programmatic-tooltips-hh7ly?file=/Example.tsx)
 
 </details>
 
@@ -315,7 +315,7 @@ This context provides an event publishing / subscription object which can be use
 `useEventEmitter` hook. `Series` and `XYChart` events, including tooltip updates, are emitted and
 handled with through this context.
 
-[CodeSandbox](https://codesandbox.io/s/nifty-neumann-w8jhl?file=/Example.tsx)
+[CodeSandbox](https://codesandbox.io/s/eventemitterprovider-w8jhl?file=/Example.tsx)
 
 ```tsx
 import React, { useState } from 'react';
