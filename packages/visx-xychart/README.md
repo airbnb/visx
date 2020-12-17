@@ -89,6 +89,8 @@ npm install --save @visx/xychart react-spring
 
 Note: `react-spring` is a required `peerDependency` for importing `Animated*` components.
 
+</details>
+
 <details>
   <summary>Series types</summary>
 
@@ -210,42 +212,60 @@ Composable `@visx/annotations` annotations are integrated into `@visx/xychart` a
 dimension context. These components allow for annotation of individual points using
 `AnnotationCircleSubject`, or x- or y-thresholds using `AnnotationLineSubject`.
 
+[CodeSandbox](https://codesandbox.io/s/annotations-8npmf?file=/Example.tsx)
+
 ```tsx
+import React from 'react';
 import {
-  XYChart,
-  AnimatedAnnotation,
+  Annotation,
   AnnotationLabel,
   AnnotationConnector,
   AnnotationCircleSubject,
+  Grid,
+  LineSeries,
+  XYChart,
 } from '@visx/xychart';
 
 const data = [
   { x: '2020-01-01', y: 50 },
   { x: '2020-01-02', y: 10 },
   { x: '2020-01-03', y: 20 },
+  { x: '2020-01-04', y: 5 },
 ];
 
-() => (
-  <XYChart {...}>
-    <LineSeries dataKey="line" data={data} xAccessor={...} yAccessor={...} />
-    <AnimatedAnnotation
+const labelXOffset = -40;
+const labelYOffset = -50;
+const chartConfig = {
+  xScale: { type: 'band' },
+  yScale: { type: 'linear' },
+  height: 300,
+  margin: { top: 10, right: 10, bottom: 10, left: 10 },
+};
+
+export default () => (
+  <XYChart {...chartConfig}>
+    <Grid numTicks={3} />
+    <LineSeries dataKey="line" data={data} xAccessor={d => d.x} yAccessor={d => d.y} />
+    <Annotation
       dataKey="line" // use this Series's accessor functions, alternatively specify x/yAccessor here
-      datum={data[0]}
+      datum={data[2]}
       dx={labelXOffset}
       dy={labelYOffset}
-      editable={isEditable}
-      onDragEnd={({ x, y, dx, dy }) => /** handle edit */}
     >
       {/** Text label */}
-      <AnnotationLabel title="My point" subtitle="More deets" />
+      <AnnotationLabel
+        title="Title"
+        subtitle="Subtitle deets"
+        showAnchorLine={false}
+        backgroundFill="rgba(0,150,150,0.1)"
+      />
       {/** Draw circle around point */}
       <AnnotationCircleSubject />
       {/** Connect label to CircleSubject */}
       <AnnotationConnector />
     </AnimatedAnnotation>
   </XYChart>
-)
-
+);
 ```
 
 </details>
@@ -265,9 +285,9 @@ By default `XYChart` renders all context providers if a given context is not ava
 share context across multiple `XYChart`s to implement functionality such as linked tooltips, shared
 themes, or shared data.
 
-- 🔜 Custom chart background using theme and chart dimensions
-- 🔜 Linked tooltips
-- 🔜 Programmatically control tooltips
+- [`ThemeProvider` + custom theme chart background example](https://codesandbox.io/s/themeprovider-sbdvz?file=/Example.tsx)
+- [`DataProvider/EventEmitterProvider` example of linked tooltips / small multiples](https://codesandbox.io/s/linked-tooltips-7s0jz?file=/Example.tsx)
+- [`TooltipProvider` example of programmatic + keyboard tooltip triggering](https://codesandbox.io/s/programmatic-tooltips-hh7ly?file=/Example.tsx)
 
 </details>
 
@@ -295,29 +315,35 @@ This context provides an event publishing / subscription object which can be use
 `useEventEmitter` hook. `Series` and `XYChart` events, including tooltip updates, are emitted and
 handled with through this context.
 
+[CodeSandbox](https://codesandbox.io/s/eventemitterprovider-w8jhl?file=/Example.tsx)
+
 ```tsx
-import { useEventEmitter, EventEmitterContext } from '@visx/xychart';
+import React, { useState } from 'react';
+import { useEventEmitter, EventEmitterProvider } from '@visx/xychart';
 
 const eventSourceId = 'optional-source-id-filter';
 
-() => (
-  <EventEmitterContext>
-    {/** emit events */}
-    {() => {
-      const emit = useEventEmitter();
-      return (
-        <button onPointerUp={event => emit('pointerup', event, eventSourceId)}>emit event</button>
-      );
-    }}
-    {/** subscribe to events */}
-    {() => {
-      const [clickCount, setClickCount] = useState(0);
-      useEventEmitter('pointerUp', () => setClickCount(clickCount + 1), [eventSourceId]);
+const EmitEvent = () => {
+  const emit = useEventEmitter();
+  return <button onPointerUp={event => emit('pointerup', event, eventSourceId)}>emit event</button>;
+};
 
-      return <div>Pressed {clickCount} times</div>;
-    }}
-  </EventEmitterContext>
-);
+const SubscribeToEvent = () => {
+  const [clickCount, setClickCount] = useState(0);
+  const allowedEventSources = [eventSourceId];
+  useEventEmitter('pointerup', () => setClickCount(clickCount + 1), allowedEventSources);
+
+  return <div>Emitted {clickCount} events</div>;
+};
+
+export default function Example() {
+  return (
+    <EventEmitterProvider>
+      <EmitEvent />
+      <SubscribeToEvent />
+    </EventEmitterProvider>
+  );
+}
 ```
 
 </details>
