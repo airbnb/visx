@@ -28,6 +28,7 @@ import {
   AnimatedGrid,
   AnimatedLineSeries,
   XYChart,
+  Tooltip,
 } from '@visx/xychart';
 
 const data1 = [
