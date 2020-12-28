@@ -1,7 +1,7 @@
 import React from 'react';
 import useMeasure from 'react-use-measure';
 import { ResizeObserver } from '@juggle/resize-observer';
-import { WithSizeProps, WithSizeProvidedProps } from '../hooks/useSize';
+import { WithSizeProps, WithSizeProvidedProps } from '../types';
 
 const CONTAINER_STYLES = { width: '100%', height: '100%' };
 

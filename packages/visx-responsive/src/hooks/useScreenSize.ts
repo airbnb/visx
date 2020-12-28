@@ -1,17 +1,6 @@
 import { useEffect, useState, useCallback } from 'react';
 import debounce from 'lodash/debounce';
-
-export type WithSizeProps = {
-  debounceTime?: number;
-  enableDebounceLeadingCall?: boolean;
-};
-
-export type WithSizeProvidedProps = {
-  width?: number;
-  height?: number;
-  initWidth?: number;
-  initHeight?: number;
-};
+import { WithSizeProps, WithSizeProvidedProps } from '../types';
 
 export function useScreenSize<BaseComponentProps extends WithSizeProps = {}>(
   props: BaseComponentProps & WithSizeProvidedProps,

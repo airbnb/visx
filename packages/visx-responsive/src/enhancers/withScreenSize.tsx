@@ -1,7 +1,6 @@
 import React from 'react';
-import { useScreenSize, WithSizeProps, WithSizeProvidedProps } from '../hooks/useScreenSize';
-
-export { WithSizeProvidedProps } from '../hooks/useScreenSize';
+import { useScreenSize } from '../hooks/useScreenSize';
+import { WithSizeProps, WithSizeProvidedProps } from '../types';
 
 export default function withScreenSize<BaseComponentProps extends WithSizeProps = {}>(
   BaseComponent: React.ComponentType<BaseComponentProps>,
