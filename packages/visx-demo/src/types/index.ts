@@ -50,6 +50,7 @@ export type VisxPackage =
   | 'tooltip'
   | 'voronoi'
   | 'visx'
+  | 'xychart'
   | 'zoom';
 
 export type PackageJson = { dependencies?: { [packageName: string]: string } };

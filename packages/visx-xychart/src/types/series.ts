@@ -18,7 +18,7 @@ export type EventHandlerParams<Datum> = {
   /** Coordinates of the event in svg space. */
   svgPoint?: { x: number; y: number };
   /** The PointerEvent or FocusEvent. */
-  event: PointerEvent | FocusEvent;
+  event?: PointerEvent | FocusEvent;
 };
 
 export type SeriesProps<

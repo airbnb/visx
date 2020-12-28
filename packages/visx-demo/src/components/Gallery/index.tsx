@@ -44,6 +44,7 @@ import * as TooltipTile from './TooltipTile';
 import * as TreemapTile from './TreemapTile';
 import * as TreesTile from './TreesTile';
 import * as VoronoiTile from './VoronoiTile';
+import * as XYChartTile from './XYChartTile';
 import * as ZoomITile from './ZoomITile';
 import { VisxPackage } from '../../types';
 import exampleToVisxDependencyLookup, {
@@ -77,6 +78,7 @@ const tiles = [
   BarStackHorizontalTile,
   DendrogramsTile,
   DragIITile,
+  XYChartTile,
   GeoCustomTile,
   GeoMercatorTile,
   GlyphsTile,
