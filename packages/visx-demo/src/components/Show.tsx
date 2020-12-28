@@ -29,7 +29,7 @@ const padding = 40;
 
 export default withScreenSize<ShowProps & WithSizeProvidedProps>(
   ({
-    width,
+    screenWidth,
     children,
     title,
     component,
@@ -40,8 +40,8 @@ export default withScreenSize<ShowProps & WithSizeProvidedProps>(
     codeSandboxDirectoryName,
     packageJson,
   }: ShowProps & WithSizeProvidedProps) => {
-    const calWidth = Math.min(800, (width || 0) - padding);
-    const height = calWidth * 0.6;
+    const width = Math.min(800, (screenWidth || 0) - padding);
+    const height = width * 0.6;
     const visxDeps = useMemo(() => extractVisxDepsFromPackageJson(packageJson), [packageJson]);
 
     return (
@@ -51,13 +51,13 @@ export default withScreenSize<ShowProps & WithSizeProvidedProps>(
             <h1>{title}</h1>
             <div className={cx(!!shadow && 'shadow', title.split(' ').join('-'), 'chart')}>
               {React.createElement(component, {
-                width: calWidth,
+                width,
                 height,
                 margin,
                 events,
               })}
             </div>
-            {description && React.createElement(description, { width: calWidth, height })}
+            {description && React.createElement(description, { width, height })}
             {codeSandboxDirectoryName && (
               <div className="sandbox-link">
                 <CodeSandboxLink exampleDirectoryName={codeSandboxDirectoryName} />

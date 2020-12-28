@@ -1,10 +1,35 @@
-import { useEffect } from 'react';
-import { useSize, WithSizeProps, WithSizeProvidedProps } from './useSize';
+import { useEffect, useState, useCallback } from 'react';
+import debounce from 'lodash/debounce';
+
+export type WithSizeProps = {
+  debounceTime?: number;
+  enableDebounceLeadingCall?: boolean;
+};
+
+export type WithSizeProvidedProps = {
+  width?: number;
+  height?: number;
+  initWidth?: number;
+  initHeight?: number;
+};
 
 export function useScreenSize<BaseComponentProps extends WithSizeProps = {}>(
   props: BaseComponentProps & WithSizeProvidedProps,
 ) {
-  const { resize, eleHeight, eleWidth } = useSize(props, true);
+  const { debounceTime = 300, enableDebounceLeadingCall = true, initWidth, initHeight } = props;
+  const [eleWidth, setEleWidth] = useState<number | undefined>(undefined);
+  const [eleHeight, setEleHeight] = useState<number | undefined>(undefined);
+  const resize = useCallback(
+    debounce(
+      () => {
+        setEleWidth(window.innerWidth);
+        setEleHeight(window.innerHeight);
+      },
+      debounceTime,
+      { leading: enableDebounceLeadingCall },
+    ),
+    [],
+  );
 
   useEffect(() => {
     window.addEventListener('resize', resize, false);
@@ -15,5 +40,5 @@ export function useScreenSize<BaseComponentProps extends WithSizeProps = {}>(
     };
   }, [resize]);
 
-  return [eleWidth == null || eleHeight == null, eleWidth, eleHeight];
+  return [eleWidth || initWidth, eleHeight || initHeight];
 }
