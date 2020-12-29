@@ -25,4 +25,5 @@ export * from '@visx/shape';
 export * from '@visx/text';
 export * from '@visx/tooltip';
 export * from '@visx/voronoi';
+export * from '@visx/xychart';
 export * from '@visx/zoom';

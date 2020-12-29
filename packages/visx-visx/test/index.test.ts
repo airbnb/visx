@@ -110,6 +110,10 @@ describe('visx', () => {
     expect(visx.voronoi).toBeDefined();
   });
 
+  test('it should export @visx/xychart', () => {
+    expect(visx.XYChart).toBeDefined();
+  });
+
   test('it should export @visx/zoom', () => {
     expect(visx.Zoom).toBeDefined();
   });
