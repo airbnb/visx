@@ -31,7 +31,6 @@ export default function useScales<
   const memoizedXScale = useMemo(() => {
     const registryEntries = registryKeys.map(key => dataRegistry.get(key));
 
-    let xScale = createScale(xScaleConfig) as XScale;
     type XScaleInput = ScaleInput<XScale>;
 
     const xValues = registryEntries.reduce<XScaleInput[]>(
@@ -42,8 +41,11 @@ export default function useScales<
 
     const xDomain = isDiscreteScale(xScaleConfig) ? xValues : d3Extent(xValues);
 
-    xScale.range(xScaleConfig.range || [xMin, xMax]);
-    xScale.domain(xScaleConfig.domain || xDomain);
+    let xScale = createScale({
+      range: [xMin, xMax],
+      domain: xDomain as [number, number],
+      ...xScaleConfig,
+    }) as XScale;
 
     // apply any scale updates from the registy
     registryEntries.forEach(entry => {
@@ -57,7 +59,6 @@ export default function useScales<
   const memoizedYScale = useMemo(() => {
     const registryEntries = registryKeys.map(key => dataRegistry.get(key));
 
-    let yScale = createScale(yScaleConfig) as YScale;
     type YScaleInput = ScaleInput<YScale>;
 
     const yValues = registryEntries.reduce<YScaleInput[]>(
@@ -68,8 +69,11 @@ export default function useScales<
 
     const yDomain = isDiscreteScale(yScaleConfig) ? yValues : d3Extent(yValues);
 
-    yScale.range(yScaleConfig.range || [yMin, yMax]);
-    yScale.domain(yScaleConfig.domain || yDomain);
+    let yScale = createScale({
+      range: [yMin, yMax],
+      domain: yDomain as [number, number],
+      ...yScaleConfig,
+    }) as YScale;
 
     // apply any scale updates from the registy
     registryEntries.forEach(entry => {
