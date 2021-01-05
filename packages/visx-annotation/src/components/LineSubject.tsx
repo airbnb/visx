@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import cx from 'classnames';
 import AnnotationContext from '../context/AnnotationContext';
 
-export type LineSubjectProps = {
+export interface LineSubjectProps extends React.SVGProps<SVGLineElement> {
   /** Optional className to apply to LineSubject in addition to 'visx-annotation-subject'. */
   className?: string;
   /** Color of LineSubject. */
@@ -29,9 +29,8 @@ export default function LineSubject({
   min,
   max,
   stroke = '#222',
-  strokeWidth = 2,
   ...restProps
-}: LineSubjectProps & Omit<React.SVGProps<SVGLineElement>, keyof LineSubjectProps>) {
+}: LineSubjectProps) {
   // if props are provided, they take precedence over context
   const annotationContext = useContext(AnnotationContext);
   const lineIsVertical = orientation === 'vertical';
