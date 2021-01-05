@@ -19,7 +19,7 @@ export interface LineSubjectProps extends React.SVGProps<SVGLineElement> {
   min: number;
   /** The maximum coordinate of the line. */
   max: number;
-};
+}
 
 export default function LineSubject({
   className,
