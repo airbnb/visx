@@ -204,7 +204,7 @@ export default function Tooltip<Datum extends object>({
               detectBounds={false}
               style={TOOLTIP_NO_STYLE}
             >
-              <svg width="1" height={innerHeight}>
+              <svg width="1" height={innerHeight} overflow="visible">
                 <line
                   x1={0}
                   x2={0}
@@ -227,7 +227,7 @@ export default function Tooltip<Datum extends object>({
               detectBounds={false}
               style={TOOLTIP_NO_STYLE}
             >
-              <svg width={innerWidth} height={1}>
+              <svg width={innerWidth} height="1" overflow="visible">
                 <line
                   x1={0}
                   x2={innerWidth}
@@ -277,7 +277,6 @@ export default function Tooltip<Datum extends object>({
               boxShadow: `0 1px 2px ${
                 theme?.htmlLabel?.color ? `${theme?.htmlLabel?.color}55` : '#22222255'
               }`,
-
               ...theme?.htmlLabel,
             }}
             {...tooltipProps}
