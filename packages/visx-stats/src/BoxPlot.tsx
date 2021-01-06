@@ -92,7 +92,7 @@ export default function BoxPlot({
   const center = offset + (boxWidth || 0) / 2;
   const valueRange = valueScale.range();
 
-  const minValue = min ? valueScale(min) ?? 0 : 0;
+  const minValue = valueScale(min ?? 0);
   const firstQuartileValue = firstQuartile ? valueScale(firstQuartile) ?? 0 : 0;
   const medianValue = median ? valueScale(median) ?? 0 : 0;
   const thirdQuartileValue = thirdQuartile ? valueScale(thirdQuartile) ?? 0 : 0;
