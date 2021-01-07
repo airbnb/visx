@@ -223,7 +223,7 @@ function BaseBarStack<
           height: barHeight,
           fill:
             barSeriesDatum && colorAccessor
-              ? colorAccessor(barSeriesDatum)
+              ? colorAccessor(barSeriesDatum, index)
               : colorScale(barStack.key),
         };
       });

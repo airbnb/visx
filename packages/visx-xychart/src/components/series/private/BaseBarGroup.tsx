@@ -173,7 +173,7 @@ export default function BaseBarGroup<
           y: barY,
           width: barWidth,
           height: barHeight,
-          fill: colorAccessor?.(bar) ?? colorScale(key),
+          fill: colorAccessor?.(bar, index) ?? colorScale(key),
         };
       })
       .filter(bar => bar) as Bar[];

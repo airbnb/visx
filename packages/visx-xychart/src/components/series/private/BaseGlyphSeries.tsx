@@ -13,8 +13,8 @@ export type BaseGlyphSeriesProps<
   YScale extends AxisScale,
   Datum extends object
 > = SeriesProps<XScale, YScale, Datum> & {
-  /** Given a Datum, returns its color. */
-  colorAccessor: (d: Datum) => string;
+  /** Given a Datum, returns its color. Falls back to theme color if unspecified or if a null-ish value is returned. */
+  colorAccessor?: (d: Datum, index: number) => string | null | undefined;
   /** The size of a `Glyph`, a `number` or a function which takes a `Datum` and returns a `number`. */
   size?: number | ((d: Datum) => number);
   /** Function which handles rendering glyphs. */
@@ -72,7 +72,7 @@ export function BaseGlyphSeries<
             key: `${i}`,
             x,
             y,
-            color: colorAccessor?.(datum) ?? color,
+            color: colorAccessor?.(datum, i) ?? color,
             size: typeof size === 'function' ? size(datum) : size,
             datum,
           };
