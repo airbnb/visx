@@ -3,6 +3,7 @@ import React, { useMemo } from 'react';
 import { useTransition, animated, interpolate } from 'react-spring';
 import getScaleBaseline from '../../../utils/getScaleBaseline';
 import { GlyphProps, GlyphsProps } from '../../../types';
+import { cleanColor, colorHasUrl } from '../../../utils/cleanColorString';
 
 type ConfigKeys = 'enter' | 'update' | 'from' | 'leave';
 
@@ -30,17 +31,17 @@ export function useAnimatedGlyphsConfig<
       from: ({ x, y, color }) => ({
         x: horizontal ? xScaleBaseline : x,
         y: horizontal ? y : yScaleBaseline,
-        color,
+        color: cleanColor(color),
         opacity: 0,
       }),
       leave: ({ x, y, color }) => ({
         x: horizontal ? xScaleBaseline : x,
         y: horizontal ? y : yScaleBaseline,
-        color,
+        color: cleanColor(color),
         opacity: 0,
       }),
-      enter: ({ x, y, color }) => ({ x, y, color, opacity: 1 }),
-      update: ({ x, y, color }) => ({ x, y, color, opacity: 1 }),
+      enter: ({ x, y, color }) => ({ x, y, color: cleanColor(color), opacity: 1 }),
+      update: ({ x, y, color }) => ({ x, y, color: cleanColor(color), opacity: 1 }),
     }),
     [xScaleBaseline, yScaleBaseline, horizontal],
   );
@@ -91,7 +92,9 @@ export default function AnimatedGlyphs<
             x: 0,
             y: 0,
             size: item.size,
-            color: 'currentColor', // allows us to animate the color of the <g /> element
+            // currentColor doesn't work with url-based colors (pattern, gradient)
+            // otherwise currentColor allows us to animate the color of the <g /> element
+            color: colorHasUrl(item.color) ? item.color : 'currentColor',
             onBlur,
             onFocus,
             onPointerMove,
