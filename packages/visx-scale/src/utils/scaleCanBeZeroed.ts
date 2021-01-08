@@ -1,5 +1,4 @@
-import { DefaultOutput, StringLike } from '../types/Base';
-import { DefaultThresholdInput } from '../types/Scale';
+import { DefaultOutput } from '../types/Base';
 import {
   LinearScaleConfig,
   PowScaleConfig,
