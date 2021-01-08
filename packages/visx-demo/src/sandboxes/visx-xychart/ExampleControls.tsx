@@ -122,18 +122,18 @@ export default function ExampleControls({ children }: ControlsProps) {
   const [missingValues, setMissingValues] = useState(false);
   const [glyphComponent, setGlyphComponent] = useState<'star' | 'cross' | 'circle' | '🍍'>('star');
   const [curveType, setCurveType] = useState<'linear' | 'cardinal' | 'step'>('linear');
-  const themeBackground = theme.backgroundColor;
+  const glyphOutline = theme.gridStyles.stroke;
   const renderGlyph = useCallback(
     ({ size, color, onPointerMove, onPointerOut, onPointerUp }: GlyphProps<CityTemperature>) => {
       const handlers = { onPointerMove, onPointerOut, onPointerUp };
       if (glyphComponent === 'star') {
-        return <GlyphStar stroke={themeBackground} fill={color} size={size * 8} {...handlers} />;
+        return <GlyphStar stroke={glyphOutline} fill={color} size={size * 10} {...handlers} />;
       }
       if (glyphComponent === 'circle') {
-        return <GlyphDot stroke={themeBackground} fill={color} r={size / 2} {...handlers} />;
+        return <GlyphDot stroke={glyphOutline} fill={color} r={size / 2} {...handlers} />;
       }
       if (glyphComponent === 'cross') {
-        return <GlyphCross stroke={themeBackground} fill={color} size={size * 8} {...handlers} />;
+        return <GlyphCross stroke={glyphOutline} fill={color} size={size * 10} {...handlers} />;
       }
       return (
         <text dx="-0.75em" dy="0.25em" fontSize={14} {...handlers}>
@@ -141,7 +141,7 @@ export default function ExampleControls({ children }: ControlsProps) {
         </text>
       );
     },
-    [glyphComponent, themeBackground],
+    [glyphComponent, glyphOutline],
   );
   // for series that support it, return a colorAccessor which returns a custom color if the datum is selected
   const colorAccessorFactory = useCallback(
@@ -238,11 +238,11 @@ export default function ExampleControls({ children }: ControlsProps) {
       <svg>
         <PatternLines
           id={selectedDatumPatternId}
-          width={4}
-          height={4}
+          width={6}
+          height={6}
           orientation={['diagonalRightToLeft']}
           stroke={theme?.axisStyles.x.bottom.axisLine.stroke}
-          strokeWidth={2}
+          strokeWidth={1.5}
         />
       </svg>
       <div className="controls">
