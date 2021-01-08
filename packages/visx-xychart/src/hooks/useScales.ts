@@ -41,18 +41,18 @@ export default function useScales<
 
     const xDomain = isDiscreteScale(xScaleConfig) ? xValues : d3Extent(xValues);
 
-    let xScale = scaleCanBeZeroed(xScaleConfig)
+    let xScale = (scaleCanBeZeroed(xScaleConfig)
       ? createScale({
           range: [xMin, xMax],
           domain: xDomain as [XScaleInput, XScaleInput],
           zero: true,
           ...xScaleConfig,
         })
-      : (createScale({
+      : createScale({
           range: [xMin, xMax],
           domain: xDomain as [XScaleInput, XScaleInput],
           ...xScaleConfig,
-        }) as XScale);
+        })) as XScale;
 
     // apply any scale updates from the registy
     registryEntries.forEach(entry => {
@@ -60,7 +60,7 @@ export default function useScales<
     });
 
     return xScale;
-  }, [dataRegistry, horizontal, xScaleConfig, registryKeys, xMin, xMax]);
+  }, [dataRegistry, xScaleConfig, registryKeys, xMin, xMax]);
 
   // same for yScale. this logic is hard to apply generically because of the scale types / accessors
   const memoizedYScale = useMemo(() => {
@@ -76,18 +76,18 @@ export default function useScales<
 
     const yDomain = isDiscreteScale(yScaleConfig) ? yValues : d3Extent(yValues);
 
-    let yScale = scaleCanBeZeroed(yScaleConfig)
+    let yScale = (scaleCanBeZeroed(yScaleConfig)
       ? createScale({
           range: [yMin, yMax],
           domain: yDomain as [YScaleInput, YScaleInput],
           zero: true,
           ...yScaleConfig,
         })
-      : (createScale({
+      : createScale({
           range: [yMin, yMax],
           domain: yDomain as [YScaleInput, YScaleInput],
           ...yScaleConfig,
-        }) as YScale);
+        })) as YScale;
 
     // apply any scale updates from the registy
     registryEntries.forEach(entry => {
@@ -95,7 +95,7 @@ export default function useScales<
     });
 
     return yScale;
-  }, [dataRegistry, yScaleConfig, horizontal, registryKeys, yMin, yMax]);
+  }, [dataRegistry, yScaleConfig, registryKeys, yMin, yMax]);
 
   return { xScale: memoizedXScale, yScale: memoizedYScale };
 }
