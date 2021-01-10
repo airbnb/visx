@@ -9,7 +9,12 @@ export type AnnotationLineSubjectProps = Omit<LineSubjectProps, 'min' | 'max'> &
 };
 
 /** AnnotationLineSubject which provides color and dimensions from context. */
-export default function AnnotationLineSubject({ min, max, ...props }: AnnotationLineSubjectProps) {
+export default function AnnotationLineSubject({
+  min,
+  max,
+  ...props
+}: AnnotationLineSubjectProps &
+  Omit<React.SVGProps<SVGLineElement>, keyof AnnotationLineSubjectProps>) {
   const { theme, margin, innerHeight = 0, innerWidth = 0 } = useContext(DataContext);
   return (
     <BaseLineSubject

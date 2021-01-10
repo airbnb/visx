@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import cx from 'classnames';
 import AnnotationContext from '../context/AnnotationContext';
 
-export interface LineSubjectProps extends React.SVGProps<SVGLineElement> {
+export type LineSubjectProps = {
   /** Optional className to apply to LineSubject in addition to 'visx-annotation-subject'. */
   className?: string;
   /** Color of LineSubject. */
@@ -19,7 +19,7 @@ export interface LineSubjectProps extends React.SVGProps<SVGLineElement> {
   min: number;
   /** The maximum coordinate of the line. */
   max: number;
-}
+};
 
 export default function LineSubject({
   className,
@@ -29,8 +29,9 @@ export default function LineSubject({
   min,
   max,
   stroke = '#222',
+  strokeWidth = 2,
   ...restProps
-}: LineSubjectProps) {
+}: LineSubjectProps & Omit<React.SVGProps<SVGLineElement>, keyof LineSubjectProps>) {
   // if props are provided, they take precedence over context
   const annotationContext = useContext(AnnotationContext);
   const lineIsVertical = orientation === 'vertical';
