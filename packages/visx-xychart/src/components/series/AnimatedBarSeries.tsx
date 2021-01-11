@@ -7,6 +7,14 @@ export default function AnimatedBarSeries<
   XScale extends AxisScale,
   YScale extends AxisScale,
   Datum extends object
->({ ...props }: Omit<BaseBarSeriesProps<XScale, YScale, Datum>, 'BarsComponent'>) {
-  return <BaseBarSeries<XScale, YScale, Datum> {...props} BarsComponent={AnimatedBars} />;
+>({ colorAccessor, ...props }: Omit<BaseBarSeriesProps<XScale, YScale, Datum>, 'BarsComponent'>) {
+  return (
+    <BaseBarSeries<XScale, YScale, Datum>
+      {...props}
+      // @TODO currently generics for non-SeriesProps are not passed correctly in
+      // withRegisteredData HOC
+      colorAccessor={colorAccessor as BaseBarSeriesProps<XScale, YScale, object>['colorAccessor']}
+      BarsComponent={AnimatedBars}
+    />
+  );
 }

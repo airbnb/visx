@@ -153,6 +153,8 @@ export default function BaseBarGroup<
 
     const getWidth = horizontal ? (d: Datum) => Math.abs(getLength(d)) : () => barThickness;
     const getHeight = horizontal ? () => barThickness : (d: Datum) => Math.abs(getLength(d));
+    const colorAccessor = barSeriesChildren.find(child => child.props.dataKey === key)?.props
+      ?.colorAccessor;
 
     return data
       .map((bar, index) => {
@@ -171,7 +173,7 @@ export default function BaseBarGroup<
           y: barY,
           width: barWidth,
           height: barHeight,
-          fill: colorScale(key),
+          fill: colorAccessor?.(bar, index) ?? colorScale(key),
         };
       })
       .filter(bar => bar) as Bar[];

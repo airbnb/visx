@@ -59,6 +59,28 @@ describe('<BarGroup />', () => {
     expect(wrapper.find('rect')).toHaveLength(4);
   });
 
+  it('should use colorAccessor if passed', () => {
+    const wrapper = mount(
+      <DataProvider {...providerProps}>
+        <svg>
+          <BarGroup>
+            <BarSeries dataKey={series1.key} {...series1} />
+            <BarSeries
+              dataKey={series2.key}
+              {...series2}
+              colorAccessor={(_, i) => (i === 0 ? 'banana' : null)}
+            />
+          </BarGroup>
+        </svg>
+      </DataProvider>,
+    );
+    const rects = wrapper.find('rect');
+    expect(rects.at(0).prop('fill')).not.toBe('banana');
+    expect(rects.at(1).prop('fill')).not.toBe('banana');
+    expect(rects.at(2).prop('fill')).toBe('banana');
+    expect(rects.at(3).prop('fill')).not.toBe('banana');
+  });
+
   it('should not render rects with invalid x or y', () => {
     const wrapper = mount(
       <DataProvider {...providerProps}>

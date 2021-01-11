@@ -30,6 +30,23 @@ describe('<GlyphSeries />', () => {
     expect(wrapper.find('circle')).toHaveLength(series.data.length);
   });
 
+  it('should use colorAccessor if passed', () => {
+    const wrapper = mount(
+      <DataContext.Provider value={getDataContext(series)}>
+        <svg>
+          <GlyphSeries
+            dataKey={series.key}
+            {...series}
+            colorAccessor={(_, i) => (i === 0 ? 'banana' : null)}
+          />
+        </svg>
+      </DataContext.Provider>,
+    );
+    const circles = wrapper.find('circle');
+    expect(circles.at(0).prop('fill')).toBe('banana');
+    expect(circles.at(1).prop('fill')).not.toBe('banana');
+  });
+
   it('should not render Glyphs if x or y is invalid', () => {
     const wrapper = mount(
       <DataContext.Provider value={getDataContext(seriesMissingData)}>

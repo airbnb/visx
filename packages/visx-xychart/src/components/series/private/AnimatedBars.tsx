@@ -2,6 +2,7 @@ import { AxisScale } from '@visx/axis';
 import React, { useMemo } from 'react';
 import { animated, useTransition } from 'react-spring';
 import { Bar, BarsProps } from '../../../types';
+import { cleanColor, colorHasUrl } from '../../../utils/cleanColorString';
 import getScaleBaseline from '../../../utils/getScaleBaseline';
 
 function enterUpdate({ x, y, width, height, fill }: Bar) {
@@ -10,7 +11,7 @@ function enterUpdate({ x, y, width, height, fill }: Bar) {
     y,
     width,
     height,
-    fill,
+    fill: cleanColor(fill),
     opacity: 1,
   };
 }
@@ -34,7 +35,7 @@ function useBarTransitionConfig<Scale extends AxisScale>({
         y: shouldAnimateX ? y : scaleBaseline ?? 0,
         width: shouldAnimateX ? 0 : width,
         height: shouldAnimateX ? height : 0,
-        fill,
+        fill: cleanColor(fill),
         opacity: 0,
       };
     }
@@ -72,7 +73,8 @@ export default function AnimatedBars<XScale extends AxisScale, YScale extends Ax
             y={y}
             width={width}
             height={height}
-            fill={fill}
+            // use the item's fill directly if it's not animate-able
+            fill={colorHasUrl(item.fill) ? item.fill : fill}
             opacity={opacity}
             {...rectProps}
           />

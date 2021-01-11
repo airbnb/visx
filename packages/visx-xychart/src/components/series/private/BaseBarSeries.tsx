@@ -22,6 +22,8 @@ export type BaseBarSeriesProps<
    * Accepted values are [0, 1], 0 = no padding, 1 = no bar, defaults to 0.1.
    */
   barPadding?: number;
+  /** Given a Datum, returns its color. Falls back to theme color if unspecified or if a null-ish value is returned. */
+  colorAccessor?: (d: Datum, index: number) => string | null | undefined;
 };
 
 // Fallback bandwidth estimate assumes no missing data values (divides chart space by # datum)
@@ -32,6 +34,7 @@ const getFallbackBandwidth = (fullBarWidth: number, barPadding: number) =>
 function BaseBarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum extends object>({
   BarsComponent,
   barPadding = 0.1,
+  colorAccessor,
   data,
   dataKey,
   onBlur,
@@ -78,11 +81,21 @@ function BaseBarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum
           y: horizontal ? y : yZeroPosition + Math.min(0, barLength),
           width: horizontal ? Math.abs(barLength) : barThickness,
           height: horizontal ? barThickness : Math.abs(barLength),
-          fill: color, // @TODO allow prop overriding
+          fill: colorAccessor?.(datum, index) ?? color,
         };
       })
       .filter(bar => bar) as Bar[];
-  }, [barThickness, color, data, getScaledX, getScaledY, horizontal, xZeroPosition, yZeroPosition]);
+  }, [
+    barThickness,
+    color,
+    colorAccessor,
+    data,
+    getScaledX,
+    getScaledY,
+    horizontal,
+    xZeroPosition,
+    yZeroPosition,
+  ]);
 
   const ownEventSourceKey = `${BARSERIES_EVENT_SOURCE}-${dataKey}`;
   const eventEmitters = useSeriesEvents<XScale, YScale, Datum>({

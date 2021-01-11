@@ -197,6 +197,12 @@ function BaseBarStack<
       const entry = dataRegistry.get(barStack.key);
       if (!entry) return null;
 
+      // get colorAccessor from child BarSeries, if available
+      const barSeries:
+        | React.ReactElement<BaseBarSeriesProps<XScale, YScale, Datum>>
+        | undefined = barSeriesChildren.find(child => child.props.dataKey === barStack.key);
+      const colorAccessor = barSeries?.props?.colorAccessor;
+
       return barStack.map((bar, index) => {
         const barX = getX(bar);
         if (!isValidNumber(barX)) return null;
@@ -207,13 +213,18 @@ function BaseBarStack<
         const barHeight = getHeight(bar);
         if (!isValidNumber(barHeight)) return null;
 
+        const barSeriesDatum = colorAccessor ? barSeries?.props?.data[index] : null;
+
         return {
           key: `${stackIndex}-${barStack.key}-${index}`,
           x: barX,
           y: barY,
           width: barWidth,
           height: barHeight,
-          fill: colorScale(barStack.key),
+          fill:
+            barSeriesDatum && colorAccessor
+              ? colorAccessor(barSeriesDatum, index)
+              : colorScale(barStack.key),
         };
       });
     })

@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useCallback, useMemo, useState } from 'react';
 import { lightTheme, darkTheme, XYChartTheme } from '@visx/xychart';
+import { PatternLines } from '@visx/pattern';
 import { GlyphProps } from '@visx/xychart/lib/types';
 import { AnimationTrajectory } from '@visx/react-spring/lib/types';
 import cityTemperature, { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
@@ -26,6 +27,7 @@ const getNegativeSfTemperature = (d: CityTemperature) => -getSfTemperature(d);
 const getNyTemperature = (d: CityTemperature) => Number(d['New York']);
 const getAustinTemperature = (d: CityTemperature) => Number(d.Austin);
 const defaultAnnotationDataIndex = 13;
+const selectedDatumPatternId = 'xychart-selected-datum';
 
 type Accessor = (d: CityTemperature) => number | string;
 
@@ -34,6 +36,8 @@ interface Accessors {
   'New York': Accessor;
   Austin: Accessor;
 }
+
+type DataKey = keyof Accessors;
 
 type SimpleScaleConfig = { type: 'band' | 'linear'; paddingInner?: number };
 
@@ -44,10 +48,11 @@ type ProvidedProps = {
     date: Accessor;
   };
   animationTrajectory: AnimationTrajectory;
-  annotationDataKey: keyof Accessors | null;
+  annotationDataKey: DataKey | null;
   annotationDatum?: CityTemperature;
   annotationLabelPosition: { dx: number; dy: number };
   annotationType?: 'line' | 'circle';
+  colorAccessorFactory: (key: DataKey) => (d: CityTemperature) => string | null;
   config: {
     x: SimpleScaleConfig;
     y: SimpleScaleConfig;
@@ -57,7 +62,7 @@ type ProvidedProps = {
   editAnnotationLabelPosition: boolean;
   numTicks: number;
   setAnnotationDataIndex: (index: number) => void;
-  setAnnotationDataKey: (key: keyof Accessors | null) => void;
+  setAnnotationDataKey: (key: DataKey | null) => void;
   setAnnotationLabelPosition: (position: { dx: number; dy: number }) => void;
   renderAreaSeries: boolean;
   renderBarGroup: boolean;
@@ -117,18 +122,18 @@ export default function ExampleControls({ children }: ControlsProps) {
   const [missingValues, setMissingValues] = useState(false);
   const [glyphComponent, setGlyphComponent] = useState<'star' | 'cross' | 'circle' | '🍍'>('star');
   const [curveType, setCurveType] = useState<'linear' | 'cardinal' | 'step'>('linear');
-  const themeBackground = theme.backgroundColor;
+  const glyphOutline = theme.gridStyles.stroke;
   const renderGlyph = useCallback(
     ({ size, color, onPointerMove, onPointerOut, onPointerUp }: GlyphProps<CityTemperature>) => {
       const handlers = { onPointerMove, onPointerOut, onPointerUp };
       if (glyphComponent === 'star') {
-        return <GlyphStar stroke={themeBackground} fill={color} size={size * 8} {...handlers} />;
+        return <GlyphStar stroke={glyphOutline} fill={color} size={size * 10} {...handlers} />;
       }
       if (glyphComponent === 'circle') {
-        return <GlyphDot stroke={themeBackground} fill={color} r={size / 2} {...handlers} />;
+        return <GlyphDot stroke={glyphOutline} fill={color} r={size / 2} {...handlers} />;
       }
       if (glyphComponent === 'cross') {
-        return <GlyphCross stroke={themeBackground} fill={color} size={size * 8} {...handlers} />;
+        return <GlyphCross stroke={glyphOutline} fill={color} size={size * 10} {...handlers} />;
       }
       return (
         <text dx="-0.75em" dy="0.25em" fontSize={14} {...handlers}>
@@ -136,7 +141,15 @@ export default function ExampleControls({ children }: ControlsProps) {
         </text>
       );
     },
-    [glyphComponent, themeBackground],
+    [glyphComponent, glyphOutline],
+  );
+  // for series that support it, return a colorAccessor which returns a custom color if the datum is selected
+  const colorAccessorFactory = useCallback(
+    (dataKey: DataKey) => (d: CityTemperature) =>
+      annotationDataKey === dataKey && d === data[annotationDataIndex]
+        ? `url(#${selectedDatumPatternId})`
+        : null,
+    [annotationDataIndex, annotationDataKey],
   );
 
   const accessors = useMemo(
@@ -183,6 +196,7 @@ export default function ExampleControls({ children }: ControlsProps) {
         annotationDatum: data[annotationDataIndex],
         annotationLabelPosition,
         annotationType,
+        colorAccessorFactory,
         config,
         curve:
           (curveType === 'cardinal' && curveCardinal) ||
@@ -220,6 +234,17 @@ export default function ExampleControls({ children }: ControlsProps) {
         xAxisOrientation,
         yAxisOrientation,
       })}
+      {/** This style is used for annotated elements via colorAccessor. */}
+      <svg>
+        <PatternLines
+          id={selectedDatumPatternId}
+          width={6}
+          height={6}
+          orientation={['diagonalRightToLeft']}
+          stroke={theme?.axisStyles.x.bottom.axisLine.stroke}
+          strokeWidth={1.5}
+        />
+      </svg>
       <div className="controls">
         {/** data */}
         <div>
