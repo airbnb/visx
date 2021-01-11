@@ -29,7 +29,6 @@ export default function LineSubject({
   min,
   max,
   stroke = '#222',
-  strokeWidth = 2,
   ...restProps
 }: LineSubjectProps & Omit<React.SVGProps<SVGLineElement>, keyof LineSubjectProps>) {
   // if props are provided, they take precedence over context
