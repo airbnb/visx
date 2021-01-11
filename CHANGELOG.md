@@ -1,4 +1,5 @@
 # Changelog
+- [v1.4.0](#v140)
 - [v1.3.0](#v130)
 - [v1.2.0](#v120)
 - [v1.1.0](#v110)
@@ -6,10 +7,10 @@
 - [v0.0.199](#v00199)
 - [v0.0.198](#v00198)
 - [v0.0.197](#v00197)
-- [v0.0.196](#v00196)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v00196">v0.0.196</a></li>
   <li><a href="#v00195">v0.0.195</a></li>
   <li><a href="#v00194">v0.0.194</a></li>
   <li><a href="#v00193">v0.0.193</a></li>
@@ -93,6 +94,52 @@
 </details>
 
 ------
+# v1.4.0
+
+#### :rocket:  Enhancements
+
+- [xychart] make `event` in `EventHandlerParams` optional [#972](https://github.com/airbnb/visx/pull/972)
+- [xychart] add `colorAccessor` to relevant series [#1005](https://github.com/airbnb/visx/pull/1005), closes [#996](https://github.com/airbnb/visx/pull/996)
+- [xychart] include zero in scale domains by default [#1008](https://github.com/airbnb/visx/pull/1008)
+
+#### :bug: Bug Fix
+
+- [xychart] fix scale options not applied in XYChart [#987](https://github.com/airbnb/visx/pull/987), closes [#986](https://github.com/airbnb/visx/pull/986)
+- [xychart] expose more AnnotationLineSubject types, fix `strokeWidth` application [#991](https://github.com/airbnb/visx/pull/991)
+- [annotation] fix application of object type `Label` `props.backgroundPadding`, add default `anchorLineStroke` [#989](https://github.com/airbnb/visx/pull/989)
+- [stats] fix handling of `0` in `BoxPlot` `valueScale` [#993](https://github.com/airbnb/visx/pull/993)
+- [xychart] enable style overflow in crosshairs [#997](https://github.com/airbnb/visx/pull/997)
+
+### :memo: Documentation
+
+- [xychart] add advanced usage sandbox examples [#972](https://github.com/airbnb/visx/pull/972)
+- [xychart] fix missing </details> [#972](https://github.com/airbnb/visx/pull/972)
+- [annotation] add docs for Label [#989](https://github.com/airbnb/visx/pull/989)
+
+#### :trophy: Contributors
+
+- [Janpot](https://github.com/Janpot)
+- [rsbh](https://github.com/rsbh)
+- [williaster](https://github.com/williaster)
+
+```
+Changes:
+ - @visx/annotation: 1.3.0 => 1.4.0
+ - @visx/axis: 1.3.0 => 1.4.0
+ - @visx/brush: 1.3.0 => 1.4.0
+ - @visx/demo: 1.3.0 => 1.4.0
+ - @visx/grid: 1.3.0 => 1.4.0
+ - @visx/legend: 1.3.0 => 1.4.0
+ - @visx/marker: 1.3.0 => 1.4.0
+ - @visx/react-spring: 1.3.0 => 1.4.0
+ - @visx/scale: 1.3.0 => 1.4.0
+ - @visx/shape: 1.3.0 => 1.4.0
+ - @visx/stats: 1.3.0 => 1.4.0
+ - @visx/threshold: 1.3.0 => 1.4.0
+ - @visx/visx: 1.3.0 => 1.4.0
+ - @visx/xychart: 1.3.0 => 1.4.0
+```
+
 # v1.3.0
 
 #### :rocket:  Enhancements
