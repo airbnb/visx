@@ -43,6 +43,8 @@ export type XYChartProps<
   xScale?: DataProviderProps<XScaleConfig, YScaleConfig>['xScale'];
   /** If DataContext is not available, XYChart will wrap itself in a DataProvider and set this as the yScale config. */
   yScale?: DataProviderProps<XScaleConfig, YScaleConfig>['yScale'];
+  /* If DataContext is not available, XYChart will wrap itself in a DataProvider and set this as horizontal. Determines whether Series will be plotted horizontally (e.g., horizontal bars). By default this will try to be inferred based on scale types. */
+  horizontal?: boolean | 'auto';
   /** Callback invoked for onPointerMove events for the nearest Datum to the PointerEvent _for each Series with pointerEvents={true}_. */
   onPointerMove?: ({
     datum,
@@ -84,6 +86,7 @@ export default function XYChart<
     captureEvents = true,
     children,
     height,
+    horizontal,
     margin = DEFAULT_MARGIN,
     onPointerMove,
     onPointerOut,
@@ -128,6 +131,7 @@ export default function XYChart<
         yScale={yScale}
         theme={theme}
         initialDimensions={{ width, height, margin }}
+        horizontal={horizontal}
       >
         <XYChart {...props} />
       </DataProvider>

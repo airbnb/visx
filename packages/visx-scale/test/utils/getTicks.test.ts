@@ -1,5 +1,5 @@
 import getTicks from '../../src/utils/getTicks';
-import { scaleLinear, scaleBand } from '../../lib';
+import { scaleLinear, scaleBand } from '../../src';
 
 describe('getTicks(scale)', () => {
   it('linear', () => {

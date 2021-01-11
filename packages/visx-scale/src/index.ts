@@ -20,6 +20,7 @@ export { default as inferScaleType } from './utils/inferScaleType';
 export { default as coerceNumber } from './utils/coerceNumber';
 export { default as getTicks } from './utils/getTicks';
 export { default as toString } from './utils/toString';
+export { default as scaleCanBeZeroed } from './utils/scaleCanBeZeroed';
 
 // export types
 export * from './types/Base';

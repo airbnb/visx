@@ -26,7 +26,7 @@ export type DataProviderProps<
   yScale: YScaleConfig;
   /* Any React children. */
   children: React.ReactNode;
-  /* Determines whether data will be plotted horizontally. @TODO elaborate */
+  /* Determines whether Series will be plotted horizontally (e.g., horizontal bars). By default this will try to be inferred based on scale types. */
   horizontal?: boolean | 'auto';
 };
 

@@ -1,5 +1,5 @@
 import { AxisScaleOutput, AxisScale } from '@visx/axis';
-import { ScaleConfig, createScale, ScaleInput } from '@visx/scale';
+import { ScaleConfig, createScale, ScaleInput, scaleCanBeZeroed } from '@visx/scale';
 import { extent as d3Extent } from 'd3-array';
 import { useMemo } from 'react';
 import DataRegistry from '../classes/DataRegistry';
@@ -11,11 +11,11 @@ export default function useScales<
   YScale extends AxisScale,
   Datum extends object
 >({
-  xScaleConfig,
-  yScaleConfig,
   dataRegistry,
   xRange,
+  xScaleConfig,
   yRange,
+  yScaleConfig,
 }: {
   xScaleConfig: ScaleConfig<AxisScaleOutput>;
   yScaleConfig: ScaleConfig<AxisScaleOutput>;
@@ -41,11 +41,18 @@ export default function useScales<
 
     const xDomain = isDiscreteScale(xScaleConfig) ? xValues : d3Extent(xValues);
 
-    let xScale = createScale({
-      range: [xMin, xMax],
-      domain: xDomain as [number, number],
-      ...xScaleConfig,
-    }) as XScale;
+    let xScale = (scaleCanBeZeroed(xScaleConfig)
+      ? createScale({
+          range: [xMin, xMax],
+          domain: xDomain as [XScaleInput, XScaleInput],
+          zero: true,
+          ...xScaleConfig,
+        })
+      : createScale({
+          range: [xMin, xMax],
+          domain: xDomain as [XScaleInput, XScaleInput],
+          ...xScaleConfig,
+        })) as XScale;
 
     // apply any scale updates from the registy
     registryEntries.forEach(entry => {
@@ -69,11 +76,18 @@ export default function useScales<
 
     const yDomain = isDiscreteScale(yScaleConfig) ? yValues : d3Extent(yValues);
 
-    let yScale = createScale({
-      range: [yMin, yMax],
-      domain: yDomain as [number, number],
-      ...yScaleConfig,
-    }) as YScale;
+    let yScale = (scaleCanBeZeroed(yScaleConfig)
+      ? createScale({
+          range: [yMin, yMax],
+          domain: yDomain as [YScaleInput, YScaleInput],
+          zero: true,
+          ...yScaleConfig,
+        })
+      : createScale({
+          range: [yMin, yMax],
+          domain: yDomain as [YScaleInput, YScaleInput],
+          ...yScaleConfig,
+        })) as YScale;
 
     // apply any scale updates from the registy
     registryEntries.forEach(entry => {
