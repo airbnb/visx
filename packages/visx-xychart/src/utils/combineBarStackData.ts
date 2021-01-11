@@ -1,7 +1,6 @@
 import React from 'react';
 import { AxisScale } from '@visx/axis';
-import { BaseBarSeriesProps } from '../components/series/private/BaseBarSeries';
-import { CombinedStackData } from '../types';
+import { CombinedStackData, SeriesProps } from '../types';
 
 /** Returns the value which forms a stack group. */
 export const getStackValue = <XScale extends AxisScale, YScale extends AxisScale>(
@@ -17,7 +16,7 @@ export default function combineBarStackData<
   YScale extends AxisScale,
   Datum extends object
 >(
-  barSeriesChildren: React.ReactElement<BaseBarSeriesProps<XScale, YScale, Datum>>[],
+  barSeriesChildren: React.ReactElement<SeriesProps<XScale, YScale, Datum>>[],
   horizontal?: boolean,
 ): CombinedStackData<XScale, YScale>[] {
   const dataByStackValue: {

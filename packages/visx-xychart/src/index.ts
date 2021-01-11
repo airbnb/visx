@@ -13,6 +13,7 @@ export { default as Tooltip } from './components/Tooltip';
 export { default as XYChart } from './components/XYChart';
 
 // series components
+export { default as BaseAreaStack } from './components/series/private/BaseAreaStack';
 export { default as AreaSeries } from './components/series/AreaSeries';
 export { default as BarGroup } from './components/series/BarGroup';
 export { default as BarSeries } from './components/series/BarSeries';

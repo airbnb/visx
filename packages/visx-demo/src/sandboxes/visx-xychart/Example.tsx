@@ -14,6 +14,7 @@ import {
   AnnotationConnector,
   AnnotationLabel,
   AnnotationLineSubject,
+  BaseAreaStack,
   Tooltip,
   XYChart,
 } from '@visx/xychart';
@@ -142,7 +143,7 @@ export default function Example({ height }: XYChartProps) {
             />
           )}
           {renderAreaSeries && (
-            <>
+            <BaseAreaStack curve={curve} order="ascending">
               <AnimatedAreaSeries
                 dataKey="Austin"
                 data={data}
@@ -169,7 +170,7 @@ export default function Example({ height }: XYChartProps) {
                 fillOpacity={0.4}
                 curve={curve}
               />
-            </>
+            </BaseAreaStack>
           )}
           {renderLineSeries && (
             <>
