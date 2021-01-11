@@ -61,11 +61,11 @@ function getCompletePadding(padding: LabelProps['backgroundPadding']) {
   if (typeof padding === 'number') {
     return { top: padding, right: padding, bottom: padding, left: padding };
   }
-  return { ...DEFAULT_PADDING, padding };
+  return { ...DEFAULT_PADDING, ...padding };
 }
 
-export default function AnnotationLabel({
-  anchorLineStroke,
+export default function Label({
+  anchorLineStroke = '#222',
   backgroundFill = '#eaeaea',
   backgroundPadding,
   backgroundProps,

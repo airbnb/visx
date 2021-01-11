@@ -1,5 +1,5 @@
 /* eslint jsx-a11y/label-has-associated-control: 'off', @typescript-eslint/no-explicit-any: 'off' */
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import appleStock, { AppleStock } from '@visx/mock-data/lib/mocks/appleStock';
 import { PickD3Scale, scaleTime, scaleLinear } from '@visx/scale';
 import { extent } from 'd3-array';
@@ -86,6 +86,14 @@ export default function ExampleControls({
     dx: compact ? -50 : -100,
     dy: compact ? -30 : -50,
   });
+  // update annotation position when scale's change
+  useEffect(() => {
+    setAnnotationPosition(currPosition => ({
+      ...currPosition,
+      x: xScale(getDate(annotateDatum)) ?? 0,
+      y: yScale(getStockValue(annotateDatum)) ?? 0,
+    }));
+  }, [xScale, yScale]);
 
   return (
     <>
