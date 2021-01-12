@@ -9,6 +9,7 @@ import { scaleBand, scaleLinear, scaleOrdinal } from '@visx/scale';
 import { timeParse, timeFormat } from 'd3-time-format';
 import { useTooltip, useTooltipInPortal, defaultStyles } from '@visx/tooltip';
 import { LegendOrdinal } from '@visx/legend';
+import { localPoint } from '@visx/event';
 
 type CityName = 'New York' | 'San Francisco' | 'Austin';
 
@@ -92,7 +93,12 @@ export default function Example({
     showTooltip,
   } = useTooltip<TooltipData>();
 
-  const { containerRef, TooltipInPortal } = useTooltipInPortal();
+  const { containerRef, TooltipInPortal } = useTooltipInPortal({
+    // TooltipInPortal is rendered in a separate child of <body /> and positioned
+    // with page coordinates which should be updated on scroll. consider using
+    // Tooltip or TooltipWithBounds if you don't need to render inside a Portal
+    scroll: true,
+  });
 
   if (width < 10) return null;
   // bounds
@@ -103,7 +109,6 @@ export default function Example({
   temperatureScale.range([yMax, 0]);
 
   return width < 10 ? null : (
-    // relative position is needed for correct tooltip positioning
     <div style={{ position: 'relative' }}>
       <svg ref={containerRef} width={width} height={height}>
         <rect x={0} y={0} width={width} height={height} fill={background} rx={14} />
@@ -147,11 +152,14 @@ export default function Example({
                     }}
                     onMouseMove={event => {
                       if (tooltipTimeout) clearTimeout(tooltipTimeout);
-                      const top = event.clientY - margin.top - bar.height;
+                      // TooltipInPortal expects coordinates to be relative to containerRef
+                      // localPoint returns coordinates relative to the nearest SVG, which
+                      // is what containerRef is set to in this example.
+                      const eventSvgCoords = localPoint(event);
                       const left = bar.x + bar.width / 2;
                       showTooltip({
                         tooltipData: bar,
-                        tooltipTop: top,
+                        tooltipTop: eventSvgCoords?.y,
                         tooltipLeft: left,
                       });
                     }}
@@ -188,12 +196,7 @@ export default function Example({
       </div>
 
       {tooltipOpen && tooltipData && (
-        <TooltipInPortal
-          key={Math.random()} // update tooltip bounds each render
-          top={tooltipTop}
-          left={tooltipLeft}
-          style={tooltipStyles}
-        >
+        <TooltipInPortal top={tooltipTop} left={tooltipLeft} style={tooltipStyles}>
           <div style={{ color: colorScale(tooltipData.key) }}>
             <strong>{tooltipData.key}</strong>
           </div>
