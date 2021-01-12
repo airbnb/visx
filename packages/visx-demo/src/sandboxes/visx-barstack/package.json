@@ -8,6 +8,7 @@
     "@types/react": "^16",
     "@types/react-dom": "^16",
     "@visx/axis": "latest",
+    "@visx/event": "latest",
     "@visx/grid": "latest",
     "@visx/group": "latest",
     "@visx/legend": "latest",
