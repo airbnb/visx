@@ -20,9 +20,7 @@ import {
   SeriesProps,
 } from '../../../types';
 import isValidNumber from '../../../typeguards/isValidNumber';
-import isChildWithProps from '../../../typeguards/isChildWithProps';
-import combineBarStackData, { getStackValue } from '../../../utils/combineBarStackData';
-import getBarStackRegistryData from '../../../utils/getBarStackRegistryData';
+import { getStackValue } from '../../../utils/combineBarStackData';
 import { BARSTACK_EVENT_SOURCE, XYCHART_EVENT_SOURCE } from '../../../constants';
 import useSeriesEvents from '../../../hooks/useSeriesEvents';
 import findNearestStackDatum from '../../../utils/findNearestStackDatum';
@@ -141,7 +139,7 @@ function BaseBarStack<
       // get colorAccessor from child BarSeries, if available
       const barSeries:
         | React.ReactElement<BaseBarSeriesProps<XScale, YScale, Datum>>
-        | undefined = barSeriesChildren.find(child => child.props.dataKey === barStack.key);
+        | undefined = seriesChildren.find(child => child.props.dataKey === barStack.key);
       const colorAccessor = barSeries?.props?.colorAccessor;
 
       return barStack.map((bar, index) => {
