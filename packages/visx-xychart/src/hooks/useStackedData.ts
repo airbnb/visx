@@ -39,28 +39,17 @@ export default function useStackedData<
     [seriesChildren],
   );
 
-  // group all child data by stack value (`x` for vertical, `y` for horizontal)
+  // group all child data by stack value { [x | y]: { [dataKey]: value } }
   // this format is needed by d3Stack
   const combinedData = useMemo(
     () => combineBarStackData<XScale, YScale, Datum>(seriesChildren, horizontal),
     [horizontal, seriesChildren],
   );
 
-  // update the domain to account for the (directional) stacked value
-  const comprehensiveDomain = useMemo(
-    () =>
-      extent(
-        (extent(combinedData, d => d.positiveSum) as [number, number]).concat(
-          extent(combinedData, d => d.negativeSum) as [number, number],
-        ),
-      ) as [number, number],
-    [combinedData],
-  );
-
   // stack data
   const stackedData = useMemo(() => {
-    const hasSomeNegativeValues =
-      comprehensiveDomain.length > 0 && comprehensiveDomain.some(num => num < 0);
+    // automatically set offset to diverging if it's undefined and negative values are present
+    const hasSomeNegativeValues = offset ? null : combinedData.some(d => d.negativeSum < 0);
 
     const stack = d3stack<CombinedStackData<XScale, YScale>, string>();
     stack.keys(dataKeys);
@@ -68,7 +57,22 @@ export default function useStackedData<
     if (offset || hasSomeNegativeValues) stack.offset(stackOffset(offset || 'diverging'));
 
     return stack(combinedData);
-  }, [combinedData, dataKeys, comprehensiveDomain, order, offset]);
+  }, [combinedData, dataKeys, order, offset]);
+
+  // update the domain to account for the (directional) stacked value
+  const comprehensiveDomain = useMemo(
+    () =>
+      extent(
+        stackedData.reduce((allDatum, stack) => {
+          stack.forEach(([min, max]) => {
+            allDatum.push(min);
+            allDatum.push(max);
+          });
+          return allDatum;
+        }, []),
+      ) as [number, number],
+    [stackedData],
+  );
 
   // register all child data using the stack-transformed values
   useEffect(() => {
