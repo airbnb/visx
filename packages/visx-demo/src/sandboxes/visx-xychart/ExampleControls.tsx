@@ -65,6 +65,7 @@ type ProvidedProps = {
   setAnnotationDataKey: (key: DataKey | null) => void;
   setAnnotationLabelPosition: (position: { dx: number; dy: number }) => void;
   renderAreaSeries: boolean;
+  renderAreaStack: boolean;
   renderBarGroup: boolean;
   renderBarSeries: boolean;
   renderBarStack: boolean;
@@ -80,6 +81,7 @@ type ProvidedProps = {
   showVerticalCrosshair: boolean;
   snapTooltipToDatumX: boolean;
   snapTooltipToDatumY: boolean;
+  stackOffset?: 'wiggle' | 'expand' | 'diverging' | 'silhouette';
   theme: XYChartTheme;
   xAxisOrientation: 'top' | 'bottom';
   yAxisOrientation: 'left' | 'right';
@@ -108,11 +110,12 @@ export default function ExampleControls({ children }: ControlsProps) {
   const [snapTooltipToDatumY, setSnapTooltipToDatumY] = useState(true);
   const [sharedTooltip, setSharedTooltip] = useState(true);
   const [renderBarStackOrGroup, setRenderBarStackOrGroup] = useState<
-    'bar' | 'stack' | 'group' | 'none'
+    'bar' | 'barstack' | 'bargroup' | 'none'
   >('none');
-  const [renderLineOrAreaSeries, setRenderLineOrAreaSeries] = useState<'line' | 'area' | 'none'>(
-    'area',
-  );
+  const [renderAreaLineOrStack, setRenderAreaLineOrStack] = useState<
+    'line' | 'area' | 'areastack' | 'none'
+  >('areastack');
+  const [stackOffset, setStackOffset] = useState<ProvidedProps['stackOffset']>();
   const [renderGlyphSeries, setRenderGlyphSeries] = useState(false);
   const [editAnnotationLabelPosition, setEditAnnotationLabelPosition] = useState(false);
   const [annotationLabelPosition, setAnnotationLabelPosition] = useState({ dx: -40, dy: -20 });
@@ -185,7 +188,9 @@ export default function ExampleControls({ children }: ControlsProps) {
     [renderHorizontally],
   );
 
-  const canRenderLineOrArea = renderBarStackOrGroup === 'bar' || renderBarStackOrGroup === 'none';
+  // cannot snap to a stack position
+  const canSnapTooltipToDatum =
+    renderBarStackOrGroup !== 'barstack' && renderAreaLineOrStack !== 'areastack';
 
   return (
     <>
@@ -211,14 +216,15 @@ export default function ExampleControls({ children }: ControlsProps) {
           : data,
         editAnnotationLabelPosition,
         numTicks,
-        renderBarGroup: renderBarStackOrGroup === 'group',
+        renderBarGroup: renderBarStackOrGroup === 'bargroup',
         renderBarSeries: renderBarStackOrGroup === 'bar',
-        renderBarStack: renderBarStackOrGroup === 'stack',
+        renderBarStack: renderBarStackOrGroup === 'barstack',
         renderGlyphSeries,
         renderGlyph,
         renderHorizontally,
-        renderAreaSeries: canRenderLineOrArea && renderLineOrAreaSeries === 'area',
-        renderLineSeries: canRenderLineOrArea && renderLineOrAreaSeries === 'line',
+        renderAreaSeries: renderAreaLineOrStack === 'area',
+        renderAreaStack: renderAreaLineOrStack === 'areastack',
+        renderLineSeries: renderAreaLineOrStack === 'line',
         setAnnotationDataIndex,
         setAnnotationDataKey,
         setAnnotationLabelPosition,
@@ -228,14 +234,15 @@ export default function ExampleControls({ children }: ControlsProps) {
         showHorizontalCrosshair,
         showTooltip,
         showVerticalCrosshair,
-        snapTooltipToDatumX: renderBarStackOrGroup !== 'stack' && snapTooltipToDatumX,
-        snapTooltipToDatumY: renderBarStackOrGroup !== 'stack' && snapTooltipToDatumY,
+        snapTooltipToDatumX: canSnapTooltipToDatum && snapTooltipToDatumX,
+        snapTooltipToDatumY: canSnapTooltipToDatum && snapTooltipToDatumY,
+        stackOffset,
         theme,
         xAxisOrientation,
         yAxisOrientation,
       })}
       {/** This style is used for annotated elements via colorAccessor. */}
-      <svg>
+      <svg className="pattern-lines">
         <PatternLines
           id={selectedDatumPatternId}
           width={6}
@@ -332,27 +339,45 @@ export default function ExampleControls({ children }: ControlsProps) {
           <label>
             <input
               type="radio"
-              disabled={!canRenderLineOrArea}
-              onChange={() => setRenderLineOrAreaSeries('line')}
-              checked={canRenderLineOrArea && renderLineOrAreaSeries === 'line'}
+              onChange={() => {
+                if (renderBarStackOrGroup === 'barstack' || renderBarStackOrGroup === 'bargroup') {
+                  setRenderBarStackOrGroup('none');
+                }
+                setRenderAreaLineOrStack('line');
+              }}
+              checked={renderAreaLineOrStack === 'line'}
             />
             line
           </label>
           <label>
             <input
               type="radio"
-              disabled={!canRenderLineOrArea}
-              onChange={() => setRenderLineOrAreaSeries('area')}
-              checked={canRenderLineOrArea && renderLineOrAreaSeries === 'area'}
+              onChange={() => {
+                if (renderBarStackOrGroup === 'barstack' || renderBarStackOrGroup === 'bargroup') {
+                  setRenderBarStackOrGroup('none');
+                }
+                setRenderAreaLineOrStack('area');
+              }}
+              checked={renderAreaLineOrStack === 'area'}
             />
             area
           </label>
           <label>
             <input
               type="radio"
-              disabled={!canRenderLineOrArea}
-              onChange={() => setRenderLineOrAreaSeries('none')}
-              checked={renderLineOrAreaSeries === 'none' || !canRenderLineOrArea}
+              onChange={() => {
+                setRenderBarStackOrGroup('none');
+                setRenderAreaLineOrStack('areastack');
+              }}
+              checked={renderAreaLineOrStack === 'areastack'}
+            />
+            area stack
+          </label>
+          <label>
+            <input
+              type="radio"
+              onChange={() => setRenderAreaLineOrStack('none')}
+              checked={renderAreaLineOrStack === 'none'}
             />
             none
           </label>
@@ -361,7 +386,7 @@ export default function ExampleControls({ children }: ControlsProps) {
           <label>
             <input
               type="radio"
-              disabled={!canRenderLineOrArea || renderLineOrAreaSeries === 'none'}
+              disabled={renderAreaLineOrStack === 'none'}
               onChange={() => setCurveType('linear')}
               checked={curveType === 'linear'}
             />
@@ -370,7 +395,7 @@ export default function ExampleControls({ children }: ControlsProps) {
           <label>
             <input
               type="radio"
-              disabled={!canRenderLineOrArea || renderLineOrAreaSeries === 'none'}
+              disabled={renderAreaLineOrStack === 'none'}
               onChange={() => setCurveType('cardinal')}
               checked={curveType === 'cardinal'}
             />
@@ -379,7 +404,7 @@ export default function ExampleControls({ children }: ControlsProps) {
           <label>
             <input
               type="radio"
-              disabled={!canRenderLineOrArea || renderLineOrAreaSeries === 'none'}
+              disabled={renderAreaLineOrStack === 'none'}
               onChange={() => setCurveType('step')}
               checked={curveType === 'step'}
             />
@@ -440,7 +465,12 @@ export default function ExampleControls({ children }: ControlsProps) {
           <label>
             <input
               type="radio"
-              onChange={() => setRenderBarStackOrGroup('bar')}
+              onChange={() => {
+                if (renderAreaLineOrStack === 'areastack') {
+                  setRenderAreaLineOrStack('none');
+                }
+                setRenderBarStackOrGroup('bar');
+              }}
               checked={renderBarStackOrGroup === 'bar'}
             />
             bar
@@ -448,16 +478,22 @@ export default function ExampleControls({ children }: ControlsProps) {
           <label>
             <input
               type="radio"
-              onChange={() => setRenderBarStackOrGroup('stack')}
-              checked={renderBarStackOrGroup === 'stack'}
+              onChange={() => {
+                setRenderAreaLineOrStack('none');
+                setRenderBarStackOrGroup('barstack');
+              }}
+              checked={renderBarStackOrGroup === 'barstack'}
             />
             bar stack
           </label>
           <label>
             <input
               type="radio"
-              onChange={() => setRenderBarStackOrGroup('group')}
-              checked={renderBarStackOrGroup === 'group'}
+              onChange={() => {
+                setRenderAreaLineOrStack('none');
+                setRenderBarStackOrGroup('bargroup');
+              }}
+              checked={renderBarStackOrGroup === 'bargroup'}
             />
             bar group
           </label>
@@ -468,6 +504,42 @@ export default function ExampleControls({ children }: ControlsProps) {
               checked={renderBarStackOrGroup === 'none'}
             />
             none
+          </label>
+        </div>
+        <div>
+          <strong>stack series offset</strong>
+          <label>
+            <input
+              type="radio"
+              disabled={
+                renderAreaLineOrStack !== 'areastack' && renderBarStackOrGroup !== 'barstack'
+              }
+              onChange={() => setStackOffset(undefined)}
+              checked={stackOffset == null}
+            />
+            auto (zero-baseline)
+          </label>
+          <label>
+            <input
+              type="radio"
+              disabled={
+                renderAreaLineOrStack !== 'areastack' && renderBarStackOrGroup !== 'barstack'
+              }
+              onChange={() => setStackOffset('expand')}
+              checked={stackOffset === 'expand'}
+            />
+            expand (values sum to 1)
+          </label>
+          <label>
+            <input
+              type="radio"
+              disabled={
+                renderAreaLineOrStack !== 'areastack' && renderBarStackOrGroup !== 'barstack'
+              }
+              onChange={() => setStackOffset('wiggle')}
+              checked={stackOffset === 'wiggle'}
+            />
+            wiggle (stream graph)
           </label>
         </div>
 
@@ -486,7 +558,7 @@ export default function ExampleControls({ children }: ControlsProps) {
           <label>
             <input
               type="checkbox"
-              disabled={!showTooltip || renderBarStackOrGroup === 'stack'}
+              disabled={!showTooltip || !canSnapTooltipToDatum}
               onChange={() => setSnapTooltipToDatumX(!snapTooltipToDatumX)}
               checked={showTooltip && snapTooltipToDatumX}
             />
@@ -495,7 +567,7 @@ export default function ExampleControls({ children }: ControlsProps) {
           <label>
             <input
               type="checkbox"
-              disabled={!showTooltip || renderBarStackOrGroup === 'stack'}
+              disabled={!showTooltip || !canSnapTooltipToDatum}
               onChange={() => setSnapTooltipToDatumY(!snapTooltipToDatumY)}
               checked={showTooltip && snapTooltipToDatumY}
             />
@@ -719,6 +791,11 @@ export default function ExampleControls({ children }: ControlsProps) {
         }
         input[type='radio'] {
           height: 10px;
+        }
+        .pattern-lines {
+          position: absolute;
+          pointer-events: none;
+          opacity: 0;
         }
       `}</style>
     </>
