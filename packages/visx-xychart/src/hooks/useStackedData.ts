@@ -28,6 +28,7 @@ export default function useStackedData<
   ) as unknown) as DataContextType<XScale, YScale, StackDatum>;
 
   // find series children
+  // @TODO: memoization doesn't work well if at all for this
   const seriesChildren = useMemo(
     () => React.Children.toArray(children).filter(child => isChildWithProps<ChildrenProps>(child)),
     [children],
@@ -63,7 +64,7 @@ export default function useStackedData<
   const comprehensiveDomain = useMemo(
     () =>
       extent(
-        stackedData.reduce((allDatum, stack) => {
+        stackedData.reduce((allDatum: number[], stack) => {
           stack.forEach(([min, max]) => {
             allDatum.push(min);
             allDatum.push(max);

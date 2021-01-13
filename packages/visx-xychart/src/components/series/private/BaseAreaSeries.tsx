@@ -69,24 +69,21 @@ function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
     allowedSources: [XYCHART_EVENT_SOURCE, ownEventSourceKey],
   });
 
-  const numericScaleBaseline = useMemo(() => getScaleBaseline(horizontal ? xScale : yScale), [
-    horizontal,
-    xScale,
-    yScale,
-  ]);
-
-  const xAccessors = horizontal
-    ? {
-        x0: numericScaleBaseline,
-        x1: getScaledX,
-      }
-    : { x: getScaledX };
-
-  const yAccessors = horizontal
-    ? {
-        y: getScaledY,
-      }
-    : { y0: numericScaleBaseline, y1: getScaledY };
+  // accessor functions for the area generator
+  const accessors = useMemo(() => {
+    const numericScaleBaseline = getScaleBaseline(horizontal ? xScale : yScale);
+    return horizontal
+      ? {
+          x0: numericScaleBaseline,
+          x1: getScaledX,
+          y: getScaledY,
+        }
+      : {
+          x: getScaledX,
+          y0: numericScaleBaseline,
+          y1: getScaledY,
+        };
+  }, [xScale, yScale, horizontal, getScaledX, getScaledY]);
 
   // render invisible glyphs for focusing if onFocus/onBlur are defined
   const captureFocusEvents = Boolean(onFocus || onBlur);
@@ -109,7 +106,7 @@ function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
 
   return (
     <>
-      <Area {...xAccessors} {...yAccessors} {...areaProps} curve={curve} defined={isDefined}>
+      <Area {...accessors} {...areaProps} curve={curve} defined={isDefined}>
         {({ path }) => (
           <PathComponent
             className="visx-area"

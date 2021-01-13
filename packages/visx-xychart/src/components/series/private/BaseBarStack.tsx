@@ -1,10 +1,7 @@
-import React, { useContext, useCallback, useMemo, useEffect } from 'react';
-import { SeriesPoint, stack as d3stack } from 'd3-shape';
+import React, { useContext, useCallback } from 'react';
+import { SeriesPoint } from 'd3-shape';
 import { PositionScale, StackPathConfig } from '@visx/shape/lib/types';
 import { getFirstItem, getSecondItem } from '@visx/shape/lib/util/accessors';
-import stackOffset from '@visx/shape/lib/util/stackOffset';
-import stackOrder from '@visx/shape/lib/util/stackOrder';
-import { extent } from 'd3-array';
 import getBandwidth from '@visx/shape/lib/util/getBandwidth';
 
 import { BaseBarSeriesProps } from './BaseBarSeries';
@@ -26,13 +23,21 @@ import useSeriesEvents from '../../../hooks/useSeriesEvents';
 import findNearestStackDatum from '../../../utils/findNearestStackDatum';
 import useStackedData from '../../../hooks/useStackedData';
 
+type BarStackChildProps<
+  XScale extends PositionScale,
+  YScale extends PositionScale,
+  Datum extends object
+> = Omit<BaseBarSeriesProps<XScale, YScale, Datum>, 'BarsComponent'>;
+
 export type BaseBarStackProps<
   XScale extends PositionScale,
   YScale extends PositionScale,
   Datum extends object
 > = {
-  /** `BarSeries` elements */
-  children: JSX.Element | JSX.Element[];
+  /** `BarSeries` elements, note we can't strictuly enforce this with TS yet. */
+  children:
+    | React.ReactElement<BarStackChildProps<XScale, YScale, Datum>>
+    | React.ReactElement<BarStackChildProps<XScale, YScale, Datum>>[];
   /** Rendered component which is passed BarsProps by BaseBarStack after processing. */
   BarsComponent: React.FC<BarsProps<XScale, YScale>>;
 } & Pick<StackPathConfig<Datum, string>, 'offset' | 'order'> &
@@ -74,6 +79,7 @@ function BaseBarStack<
     offset,
   });
 
+  // custom logic to find the nearest AreaStackDatum (context) and return the original Datum (props)
   const findNearestDatum = useCallback(
     (
       params: NearestDatumArgs<XScale, YScale, BarStackDatum<XScale, YScale>>,
