@@ -208,6 +208,7 @@ Lots coming soon, check out the [roadmap](./ROADMAP.md).
   ([Demo](https://dollar-to-food-emoji.web.app/)) ([Github](https://github.com/gmlwo530/dollar-to-food-emoji))
 - [zh-TW] Taiwan Real-time Air Quality Index by [@ArvinH](https://github.com/ArvinH)([Demo](https://codesandbox.io/s/simpleradar-aqi-with-tooltip-select-data-react-spring-item3?file=/Radar.tsx))([Tutorial](https://blog.arvinh.info/tech/datavis-visx))
 - tokenized BTC on ethereum stacked chart with brush by [@sakulstra](https://github.com/sakulstra)([Demo](https://tokenizedbtc.info/))
+- [Escape From Tarkov Ammo Chart](https://eft.monster/) by [@codenomial](https://github.com/codenomial)
 
 
 Have a project that's using `visx`? Open a pull request and we'll add it to the list.
