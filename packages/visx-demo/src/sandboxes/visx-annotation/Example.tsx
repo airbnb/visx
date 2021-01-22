@@ -1,7 +1,6 @@
 import React from 'react';
 import { Label, Connector, CircleSubject, LineSubject } from '@visx/annotation';
 import { LinePath } from '@visx/shape';
-// import resizeObserverPolyfill from 'resize-observer-polyfill';
 
 import ExampleControls from './ExampleControls';
 import findNearestDatum from './findNearestDatum';
