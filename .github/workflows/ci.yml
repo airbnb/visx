@@ -14,6 +14,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '12'
+
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
@@ -24,42 +25,30 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
+
       - name: Install dependencies
         run: yarn install --frozen-lockfile --ignore-engines
+
       - name: Build packages
         run: yarn build
 
-  test:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
       - name: Run jest
         run: yarn jest -w 4
         env:
           CI: true
           COVERAGE: true
+
       - name: Report code coverage
         uses: coverallsapp/github-action@v1.1.1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-  lint:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - run: yarn lint
+      - name: Run lint
+        run: yarn lint
 
-  happo:
-    runs-on: ubuntu-latest
-    needs: build
-    defaults:
-      run:
+      - name: Run happo
+        run: yarn run happo-ci-github-actions
         working-directory: './packages/visx-demo/'
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-      - run: yarn ci
-      - run: yarn run happo-ci-github-actions
         env:
           HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
           HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
