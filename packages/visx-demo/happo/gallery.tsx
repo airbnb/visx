@@ -2,7 +2,7 @@ import React from 'react';
 import { tiles as examples } from '../src/components/Gallery';
 import AxisTile from '../src/components/Gallery/AxisTile';
 import XYChartTile from '../src/components/Gallery/XYChartTile';
-import { asyncTimeout } from '../.happo.js';
+import { asyncTimeout } from '../.happo-variables.js';
 
 type HappoSnapshot = {
   component: string;
