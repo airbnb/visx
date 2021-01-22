@@ -2,6 +2,7 @@ import React from 'react';
 import { tiles as examples } from '../src/components/Gallery';
 import AxisTile from '../src/components/Gallery/AxisTile';
 import XYChartTile from '../src/components/Gallery/XYChartTile';
+import { asyncTimeout } from '../.happo.js';
 
 type HappoSnapshot = {
   component: string;
@@ -12,7 +13,6 @@ type HappoSnapshot = {
   };
 };
 
-const MAX_TIMEOUT_MS = 400;
 const specialCases = new Set(['@visx/demo-axis', '@visx/demo-xychart']);
 
 function getComponentName(T: typeof examples[0]) {
@@ -35,7 +35,7 @@ export default snapshots.concat([
       default: renderInDom => {
         return new Promise(resolve => {
           renderInDom(<AxisTile />);
-          setTimeout(() => resolve(), MAX_TIMEOUT_MS);
+          setTimeout(resolve, asyncTimeout);
         });
       },
     },
@@ -47,7 +47,7 @@ export default snapshots.concat([
       default: renderInDom => {
         return new Promise(resolve => {
           renderInDom(<XYChartTile />);
-          setTimeout(() => resolve(), MAX_TIMEOUT_MS);
+          setTimeout(resolve, asyncTimeout);
         });
       },
     },
