@@ -15,9 +15,8 @@ type HappoSnapshot = {
 
 const specialCases = new Set(['@visx/demo-axis', '@visx/demo-xychart']);
 
-function getComponentName(T: typeof examples[0]) {
-  return T.packageJson.name || 'missing-name';
-}
+const getComponentName = (Example: typeof examples[0]) =>
+  Example.packageJson.name || 'missing-name';
 
 const snapshots: HappoSnapshot[] = examples
   .filter(Example => !specialCases.has(getComponentName(Example)))
