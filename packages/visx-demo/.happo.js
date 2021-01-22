@@ -3,6 +3,7 @@ const { findPagesDir } = require('next/dist/lib/find-pages-dir');
 const getWebpackConfig = require('next/dist/build/webpack-config').default;
 const nextConfig = require('./next.config');
 const path = require('path');
+const { asyncTimeout } = require('./.happo-variables');
 
 const happoTmpDir = './.happo'; // should match .gitignore
 
@@ -13,7 +14,7 @@ module.exports = {
   apiSecret: process.env.HAPPO_API_SECRET,
 
   // ms timeout for async examples (default=200)
-  asyncTimeout: 500,
+  asyncTimeout,
 
   // don't use JSDOM for rendering. saves having to mock out
   // things like getBoundingClientRect + canvas element methods
