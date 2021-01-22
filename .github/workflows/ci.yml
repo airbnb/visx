@@ -27,13 +27,14 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile --ignore-engines
       - name: Build packages
-        run: yarn run build
+        run: yarn build
 
   test:
+    runs-on: ubuntu-latest
     needs: build
     steps:
       - name: Run jest
-        run: yarn run jest -w 4
+        run: yarn jest -w 4
         env:
           CI: true
           COVERAGE: true
@@ -43,9 +44,10 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
   lint:
+    runs-on: ubuntu-latest
     needs: build
     steps:
-      - run: yarn run lint
+      - run: yarn lint
 
   happo:
     runs-on: ubuntu-latest
@@ -54,8 +56,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
-      - run: npm ci
-      - run: npm run happo-ci-github-actions
+      - run: yarn ci
+      - run: yarn run happo-ci-github-actions
         env:
           HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
           HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
