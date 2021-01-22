@@ -53,7 +53,7 @@ import exampleToVisxDependencyLookup, {
 
 const tiltOptions = { max: 8, scale: 1 };
 
-const tiles = [
+export const tiles = [
   CurvesTile,
   BarsTile,
   DotsTile,
