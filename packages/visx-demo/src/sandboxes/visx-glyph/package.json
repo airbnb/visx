@@ -1,5 +1,5 @@
 {
-  "name": "@visx/demo-glyphs",
+  "name": "@visx/demo-glyph",
   "description": "Standalone visx glyph demo.",
   "main": "index.tsx",
   "private": true,

@@ -1,5 +1,5 @@
 {
-  "name": "@visx/demo-example",
+  "name": "@visx/demo-streamgraph",
   "description": "Standalone visx streamgraph demo.",
   "main": "index.tsx",
   "private": true,

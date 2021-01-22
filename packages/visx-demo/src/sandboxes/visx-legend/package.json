@@ -1,5 +1,5 @@
 {
-  "name": "@visx/demo-legends",
+  "name": "@visx/demo-legend",
   "description": "Standalone visx legends demo.",
   "main": "index.tsx",
   "private": true,

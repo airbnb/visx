@@ -1,5 +1,5 @@
 {
-  "name": "@visx/annotation-example",
+  "name": "@visx/demo-annotation",
   "description": "Standalone visx annotation demo.",
   "main": "index.tsx",
   "private": true,
@@ -16,6 +16,7 @@
     "react": "^16",
     "react-dom": "^16",
     "react-scripts-ts": "3.1.0",
+    "resize-observer-polyfill": "1.5.1",
     "typescript": "^3"
   },
   "keywords": [

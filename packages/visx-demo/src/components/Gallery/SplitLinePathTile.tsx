@@ -5,7 +5,7 @@ import SplitLinePath, {
 } from '../../sandboxes/visx-shape-splitlinepath/Example';
 import GalleryTile from '../GalleryTile';
 
-export { default as packageJson } from '../../sandboxes/visx-area/package.json';
+export { default as packageJson } from '../../sandboxes/visx-shape-splitlinepath/package.json';
 
 const tileStyles = { background: backgroundLight };
 const detailsStyles = { color: 'white' };
