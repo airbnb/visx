@@ -1,5 +1,6 @@
 export { default as genDateValue } from './generators/genDateValue';
 export { default as genRandomNormalPoints } from './generators/genRandomNormalPoints';
+export { default as getSeededRandom } from './generators/getSeededRandom';
 export { default as genBin } from './generators/genBin';
 export { default as genBins } from './generators/genBins';
 export { default as genPhyllotaxis } from './generators/genPhyllotaxis';
