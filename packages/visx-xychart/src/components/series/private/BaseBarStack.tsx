@@ -34,7 +34,7 @@ export type BaseBarStackProps<
   YScale extends PositionScale,
   Datum extends object
 > = {
-  /** `BarSeries` elements, note we can't strictuly enforce this with TS yet. */
+  /** `BarSeries` elements, note we can't strictly enforce this with TS yet. */
   children:
     | React.ReactElement<BarStackChildProps<XScale, YScale, Datum>>
     | React.ReactElement<BarStackChildProps<XScale, YScale, Datum>>[];
