@@ -1,4 +1,4 @@
-import React, { SVGProps, useCallback, useContext, useEffect, useMemo, useRef } from 'react';
+import React, { SVGProps, useCallback, useContext, useMemo } from 'react';
 import { AxisScale } from '@visx/axis';
 import { SeriesPoint } from 'd3-shape';
 import { LinePath, StackPathConfig } from '@visx/shape';
