@@ -37,7 +37,7 @@ export type BaseAreaStackProps<
   YScale extends AxisScale,
   Datum extends object
 > = {
-  /** `AreaSeries` elements, note we can't strictuly enforce this with TS yet. */
+  /** `AreaSeries` elements, note we can't strictly enforce this with TS yet. */
   children:
     | React.ReactElement<AreaStackChildProps<XScale, YScale, Datum>>
     | React.ReactElement<AreaStackChildProps<XScale, YScale, Datum>>[];
