@@ -31,7 +31,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@types/d3-random": "^1.1.2",
-    "d3-random": "^1.0.3"
+    "@types/d3-random": "^2.2.0",
+    "d3-random": "^2.2.2"
   }
 }
