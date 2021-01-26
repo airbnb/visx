@@ -48,20 +48,20 @@ export default function DataProvider<
   const contextTheme = useContext(ThemeContext);
   const theme = propsTheme || contextTheme;
   const [{ width, height, margin }, setDimensions] = useDimensions(initialDimensions);
-  const innerWidth = width - (margin?.left ?? 0) - (margin?.right ?? 0);
-  const innerHeight = height - (margin?.top ?? 0) - (margin?.bottom ?? 0);
+  const innerWidth = Math.max(0, width - margin.left - margin.right);
+  const innerHeight = Math.max(0, height - margin.top - margin.bottom);
 
   type XScale = ScaleConfigToD3Scale<XScaleConfig, AxisScaleOutput, any, any>;
   type YScale = ScaleConfigToD3Scale<YScaleConfig, AxisScaleOutput, any, any>;
 
   const dataRegistry = useDataRegistry<XScale, YScale, Datum>();
 
-  const { xScale, yScale }: { xScale: XScale; yScale: YScale } = useScales({
+  const { xScale, yScale }: { xScale?: XScale; yScale?: YScale } = useScales({
     dataRegistry,
     xScaleConfig,
     yScaleConfig,
-    xRange: [margin.left, width - margin.right],
-    yRange: [height - margin.bottom, margin.top],
+    xRange: [margin.left, Math.max(0, width - margin.right)],
+    yRange: [Math.max(0, height - margin.bottom), margin.top],
   });
 
   const registryKeys = dataRegistry.keys();
@@ -82,7 +82,7 @@ export default function DataProvider<
 
   return (
     <DataContext.Provider
-      // everthing returned here should be memoized between renders
+      // everything returned here should be memoized between renders
       // to avoid child re-renders
       value={{
         dataRegistry,
