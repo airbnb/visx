@@ -15,6 +15,16 @@ type HappoSnapshot = {
 
 const specialCases = new Set(['@visx/demo-axis', '@visx/demo-xychart']);
 
+// renders an example with a timeout
+const renderWithTimeout: (
+  Example: React.ReactElement,
+) => HappoSnapshot['variants'][string] = Example => renderInDom => {
+  return new Promise(resolve => {
+    renderInDom(Example);
+    setTimeout(resolve, asyncTimeout);
+  });
+};
+
 const getComponentName = (Example: typeof examples[0]) =>
   Example.packageJson.name || 'missing-name';
 
@@ -31,24 +41,14 @@ export default snapshots.concat([
   {
     component: '@visx/demo-axis',
     variants: {
-      default: renderInDom => {
-        return new Promise(resolve => {
-          renderInDom(<AxisTile />);
-          setTimeout(resolve, asyncTimeout);
-        });
-      },
+      default: renderWithTimeout(<AxisTile />),
     },
   },
   // needs timeout for animated axes
   {
     component: '@visx/demo-xychart',
     variants: {
-      default: renderInDom => {
-        return new Promise(resolve => {
-          renderInDom(<XYChartTile />);
-          setTimeout(resolve, asyncTimeout);
-        });
-      },
+      default: renderWithTimeout(<XYChartTile />),
     },
   },
 ]);
