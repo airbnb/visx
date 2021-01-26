@@ -39,6 +39,9 @@ export default function useScales<
       [],
     );
 
+    // d3Extent scale returns NaN domain for empty arrays
+    if (xValues.length === 0) return undefined;
+
     const xDomain = isDiscreteScale(xScaleConfig) ? xValues : d3Extent(xValues);
 
     let xScale = (scaleCanBeZeroed(xScaleConfig)
@@ -54,7 +57,7 @@ export default function useScales<
           ...xScaleConfig,
         })) as XScale;
 
-    // apply any scale updates from the registy
+    // apply any scale updates from the registry
     registryEntries.forEach(entry => {
       if (entry?.xScale) xScale = entry.xScale(xScale);
     });
@@ -74,6 +77,9 @@ export default function useScales<
       [],
     );
 
+    // d3Extent scale returns NaN domain for empty arrays
+    if (yValues.length === 0) return undefined;
+
     const yDomain = isDiscreteScale(yScaleConfig) ? yValues : d3Extent(yValues);
 
     let yScale = (scaleCanBeZeroed(yScaleConfig)
@@ -89,7 +95,7 @@ export default function useScales<
           ...yScaleConfig,
         })) as YScale;
 
-    // apply any scale updates from the registy
+    // apply any scale updates from the registry
     registryEntries.forEach(entry => {
       if (entry?.yScale) yScale = entry.yScale(yScale);
     });
