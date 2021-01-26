@@ -11,11 +11,12 @@ type CurveType = keyof typeof allCurves;
 
 const curveTypes = Object.keys(allCurves);
 const lineCount = 5;
-const series = new Array(lineCount)
-  .fill(null)
-  .map(_ =>
-    generateDateValue(25).sort((a: DateValue, b: DateValue) => a.date.getTime() - b.date.getTime()),
-  );
+const series = new Array(lineCount).fill(null).map((_, i) =>
+  // vary each series value deterministically
+  generateDateValue(25, /* seed= */ i / 72).sort(
+    (a: DateValue, b: DateValue) => a.date.getTime() - b.date.getTime(),
+  ),
+);
 const allData = series.reduce((rec, d) => rec.concat(d), []);
 
 // data accessors

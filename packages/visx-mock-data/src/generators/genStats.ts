@@ -20,11 +20,18 @@ export interface Stats {
   binData: BinData[];
 }
 
-const random = randomNormal(4, 3);
-const randomOffset = () => Math.random() * 10;
+const defaultRandom = randomNormal(4, 3);
+const defaultRandomOffset = () => Math.random() * 10;
 const sampleSize = 1000;
 
-export default function genStats(number: number): Stats[] {
+export default function genStats(
+  /** Number of stat distributions to generate. */
+  number: number,
+  /** Function which generates a random number. */
+  random: () => number = defaultRandom,
+  /** Function which generates an offset for each data point / invocation of random. */
+  randomOffset: () => number = defaultRandomOffset,
+): Stats[] {
   const data = [];
 
   for (let i = 0; i < number; i += 1) {

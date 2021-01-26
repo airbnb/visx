@@ -11,7 +11,7 @@ import { WithTooltipProvidedProps } from '@visx/tooltip/lib/enhancers/withToolti
 import { voronoi, VoronoiPolygon } from '@visx/voronoi';
 import { localPoint } from '@visx/event';
 
-const points: PointsRange[] = genRandomNormalPoints(600).filter((d, i) => i < 600);
+const points: PointsRange[] = genRandomNormalPoints(600, /* seed= */ 0.5).filter((_, i) => i < 600);
 
 const x = (d: PointsRange) => d[0];
 const y = (d: PointsRange) => d[1];

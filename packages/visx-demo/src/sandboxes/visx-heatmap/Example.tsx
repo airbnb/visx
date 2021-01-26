@@ -3,6 +3,7 @@ import { Group } from '@visx/group';
 import genBins, { Bin, Bins } from '@visx/mock-data/lib/generators/genBins';
 import { scaleLinear } from '@visx/scale';
 import { HeatmapCircle, HeatmapRect } from '@visx/heatmap';
+import { getSeededRandom } from '@visx/mock-data';
 
 const hot1 = '#77312f';
 const hot2 = '#f33d15';
@@ -10,7 +11,14 @@ const cool1 = '#122549';
 const cool2 = '#b4fbde';
 export const background = '#28272c';
 
-const binData = genBins(/* length = */ 16, /* height = */ 16);
+const seededRandom = getSeededRandom(0.41);
+
+const binData = genBins(
+  /* length = */ 16,
+  /* height = */ 16,
+  /** binFunc */ idx => 150 * idx,
+  /** countFunc */ (i, number) => 25 * (number - i) * seededRandom(),
+);
 
 function max<Datum>(data: Datum[], value: (d: Datum) => number): number {
   return Math.max(...data.map(value));

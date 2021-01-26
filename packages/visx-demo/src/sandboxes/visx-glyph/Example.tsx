@@ -42,7 +42,7 @@ const Glyphs = [
   ),
 ];
 
-const data: DateValue[] = genDateValue(Glyphs.length * 2);
+const data: DateValue[] = genDateValue(Glyphs.length * 2, 0.91);
 
 // accessors
 const date = (d: DateValue) => d.date.valueOf();

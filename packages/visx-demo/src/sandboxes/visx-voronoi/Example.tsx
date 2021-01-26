@@ -4,6 +4,7 @@ import { GradientOrangeRed, GradientPinkRed } from '@visx/gradient';
 import { RectClipPath } from '@visx/clip-path';
 import { voronoi, VoronoiPolygon } from '@visx/voronoi';
 import { localPoint } from '@visx/event';
+import { getSeededRandom } from '@visx/mock-data';
 
 type Datum = {
   x: number;
@@ -11,9 +12,11 @@ type Datum = {
   id: string;
 };
 
+const seededRandom = getSeededRandom(0.88);
+
 const data: Datum[] = new Array(150).fill(null).map(() => ({
-  x: Math.random(),
-  y: Math.random(),
+  x: seededRandom(),
+  y: seededRandom(),
   id: Math.random()
     .toString(36)
     .slice(2),
@@ -34,7 +37,7 @@ export type VoronoiProps = {
   margin?: { top: number; right: number; bottom: number; left: number };
 };
 
-export default ({ width, height, margin = defaultMargin }: VoronoiProps) => {
+const Example = ({ width, height, margin = defaultMargin }: VoronoiProps) => {
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
 
@@ -121,3 +124,5 @@ export default ({ width, height, margin = defaultMargin }: VoronoiProps) => {
     </svg>
   );
 };
+
+export default Example;
