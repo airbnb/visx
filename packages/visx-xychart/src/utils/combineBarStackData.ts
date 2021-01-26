@@ -8,8 +8,9 @@ export const getStackValue = <XScale extends AxisScale, YScale extends AxisScale
 ) => d.stack;
 
 /**
- * Merges `seriesChildren` `data` by their `stack` value which forms the stack grouping
- * (`x` if vertical, `y` if horizontal) and returns `CombinedStackData[]`.
+ * Merges `seriesChildren` `props.data` by their `stack` value which
+ * forms the stack grouping (`x` if vertical, `y` if horizontal)
+ * and returns `CombinedStackData[]`.
  */
 export default function combineBarStackData<
   XScale extends AxisScale,
