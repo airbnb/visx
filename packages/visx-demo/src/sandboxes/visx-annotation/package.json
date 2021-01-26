@@ -1,5 +1,5 @@
 {
-  "name": "@visx/annotation-example",
+  "name": "@visx/demo-annotation",
   "description": "Standalone visx annotation demo.",
   "main": "index.tsx",
   "private": true,

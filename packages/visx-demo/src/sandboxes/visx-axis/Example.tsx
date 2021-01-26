@@ -4,6 +4,7 @@ import { curveMonotoneX } from '@visx/curve';
 import { scaleUtc, scaleLinear, scaleLog, scaleBand, ScaleInput, coerceNumber } from '@visx/scale';
 import { Orientation, SharedAxisProps, AxisScale } from '@visx/axis';
 import { AnimatedAxis, AnimatedGridRows, AnimatedGridColumns } from '@visx/react-spring';
+import { getSeededRandom } from '@visx/mock-data';
 import { LinearGradient } from '@visx/gradient';
 import { timeFormat } from 'd3-time-format';
 
@@ -12,6 +13,7 @@ const axisColor = '#fff';
 const tickLabelColor = '#fff';
 export const labelColor = '#340098';
 const gridColor = '#6e0fca';
+const seededRandom = getSeededRandom(0.5);
 const margin = {
   top: 40,
   right: 150,
@@ -167,7 +169,7 @@ export default function Example({
                     ('bandwidth' in scale && typeof scale!.bandwidth !== 'undefined'
                       ? scale.bandwidth!() / 2
                       : 0),
-                  yScale(10 + Math.random() * 90),
+                  yScale(10 + seededRandom() * 90),
                 ])}
                 yScale={yScale}
                 curve={curveMonotoneX}

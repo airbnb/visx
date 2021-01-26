@@ -2,7 +2,7 @@ import React from 'react';
 import Annotation, { AnnotationProps, greens } from '../../sandboxes/visx-annotation/Example';
 import GalleryTile from '../GalleryTile';
 
-export { default as packageJson } from '../../sandboxes/visx-area/package.json';
+export { default as packageJson } from '../../sandboxes/visx-annotation/package.json';
 
 const tileStyles = { background: greens[0] };
 const detailsStyles: React.CSSProperties = {

@@ -1,6 +1,6 @@
 {
-  "name": "@visx/demo-example",
-  "description": "Standalone visx demo.",
+  "name": "@visx/demo-pattern",
+  "description": "Standalone visx pattern demo.",
   "main": "index.tsx",
   "private": true,
   "dependencies": {

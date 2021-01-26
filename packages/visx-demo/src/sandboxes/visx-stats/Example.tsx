@@ -4,11 +4,15 @@ import { ViolinPlot, BoxPlot } from '@visx/stats';
 import { LinearGradient } from '@visx/gradient';
 import { scaleBand, scaleLinear } from '@visx/scale';
 import genStats, { Stats } from '@visx/mock-data/lib/generators/genStats';
+import { getSeededRandom, getRandomNormal } from '@visx/mock-data';
 import { withTooltip, Tooltip, defaultStyles as defaultTooltipStyles } from '@visx/tooltip';
 import { WithTooltipProvidedProps } from '@visx/tooltip/lib/enhancers/withTooltip';
 import { PatternLines } from '@visx/pattern';
 
-const data: Stats[] = genStats(5);
+// seeded randomness
+const seededRandom = getSeededRandom(0.1);
+const randomNormal = getRandomNormal.source(getSeededRandom(0.789))(4, 3);
+const data: Stats[] = genStats(5, randomNormal, () => 10 * seededRandom());
 
 // accessors
 const x = (d: Stats) => d.boxPlot.x;

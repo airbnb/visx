@@ -9,6 +9,7 @@
     "@types/react-dom": "^16",
     "@visx/drag": "latest",
     "@visx/gradient": "latest",
+    "@visx/mock-data": "latest",
     "@visx/responsive": "latest",
     "@visx/scale": "latest",
     "react": "^16",

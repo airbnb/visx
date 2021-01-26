@@ -1,5 +1,5 @@
 {
-  "name": "@visx/demo-example",
+  "name": "@visx/demo-streamgraph",
   "description": "Standalone visx streamgraph demo.",
   "main": "index.tsx",
   "private": true,
@@ -8,8 +8,9 @@
     "@types/d3-array": "^2.0.0",
     "@types/react": "^16",
     "@types/react-dom": "^16",
-    "@visx/responsive": "latest",
+    "@visx/mock-data": "latest",
     "@visx/pattern": "latest",
+    "@visx/responsive": "latest",
     "@visx/scale": "latest",
     "@visx/shape": "latest",
     "d3-array": "^2.4.0",

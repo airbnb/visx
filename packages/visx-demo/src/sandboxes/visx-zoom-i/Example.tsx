@@ -33,8 +33,8 @@ export type ZoomIProps = {
 export default function ZoomI({ width, height }: ZoomIProps) {
   const [showMiniMap, setShowMiniMap] = useState<boolean>(true);
 
-  const genenerator: GenPhyllotaxisFunction = genPhyllotaxis({ radius: 10, width, height });
-  const phyllotaxis: PhyllotaxisPoint[] = points.map((d, i) => genenerator(i));
+  const generator: GenPhyllotaxisFunction = genPhyllotaxis({ radius: 10, width, height });
+  const phyllotaxis: PhyllotaxisPoint[] = points.map((d, i) => generator(i));
 
   return (
     <>

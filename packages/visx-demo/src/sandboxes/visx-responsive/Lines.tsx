@@ -6,7 +6,7 @@ import { scaleTime, scaleLinear } from '@visx/scale';
 import { extent, max } from 'd3-array';
 
 const lineCount = 12;
-const series = new Array(lineCount).fill(null).map(_ => generateDateValue(25));
+const series = new Array(lineCount).fill(null).map((_, i) => generateDateValue(25, i / 47));
 const allData = series.reduce((rec, d) => rec.concat(d), []);
 
 // data accessors
