@@ -1,20 +1,21 @@
 import { useCallback, useState } from 'react';
 
-const INITIAL_DIMENSIONS = {
+const DEFAULT_DIMS = {
   width: 0,
   height: 0,
   margin: { top: 0, right: 0, bottom: 0, left: 0 },
 };
 
-export type Dimensions = typeof INITIAL_DIMENSIONS;
+export type Dimensions = typeof DEFAULT_DIMS;
 
 /** A hook for accessing and setting memoized width, height, and margin chart dimensions. */
 export default function useDimensions(
-  initialDimensions?: Partial<Dimensions>,
+  initialDims?: Partial<Dimensions>,
 ): [Dimensions, (dims: Dimensions) => void] {
   const [dimensions, privateSetDimensions] = useState<Dimensions>({
-    ...INITIAL_DIMENSIONS,
-    ...initialDimensions,
+    width: initialDims?.width == null ? DEFAULT_DIMS.width : initialDims.width,
+    height: initialDims?.height == null ? DEFAULT_DIMS.height : initialDims.height,
+    margin: initialDims?.margin == null ? DEFAULT_DIMS.margin : initialDims.margin,
   });
 
   // expose a setter with better memoization logic
