@@ -3,6 +3,7 @@ import { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
 import {
   AnimatedAnnotation,
   AnimatedAreaSeries,
+  AnimatedAreaStack,
   AnimatedAxis,
   AnimatedBarGroup,
   AnimatedBarSeries,
@@ -142,7 +143,7 @@ export default function Example({ height }: XYChartProps) {
             />
           )}
           {renderAreaSeries && (
-            <>
+            <AnimatedAreaStack curve={curve} order="ascending">
               <AnimatedAreaSeries
                 dataKey="Austin"
                 data={data}
@@ -151,16 +152,14 @@ export default function Example({ height }: XYChartProps) {
                 fillOpacity={0.4}
                 curve={curve}
               />
-              {!renderBarSeries && (
-                <AnimatedAreaSeries
-                  dataKey="New York"
-                  data={data}
-                  xAccessor={accessors.x['New York']}
-                  yAccessor={accessors.y['New York']}
-                  fillOpacity={0.4}
-                  curve={curve}
-                />
-              )}
+              <AnimatedAreaSeries
+                dataKey="New York"
+                data={data}
+                xAccessor={accessors.x['New York']}
+                yAccessor={accessors.y['New York']}
+                fillOpacity={0.4}
+                curve={curve}
+              />
               <AnimatedAreaSeries
                 dataKey="San Francisco"
                 data={data}
@@ -169,7 +168,7 @@ export default function Example({ height }: XYChartProps) {
                 fillOpacity={0.4}
                 curve={curve}
               />
-            </>
+            </AnimatedAreaStack>
           )}
           {renderLineSeries && (
             <>

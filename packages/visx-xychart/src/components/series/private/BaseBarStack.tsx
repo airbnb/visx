@@ -1,10 +1,7 @@
-import React, { useContext, useCallback, useMemo, useEffect } from 'react';
-import { SeriesPoint, stack as d3stack } from 'd3-shape';
+import React, { useContext, useCallback } from 'react';
+import { SeriesPoint } from 'd3-shape';
 import { PositionScale, StackPathConfig } from '@visx/shape/lib/types';
 import { getFirstItem, getSecondItem } from '@visx/shape/lib/util/accessors';
-import stackOffset from '@visx/shape/lib/util/stackOffset';
-import stackOrder from '@visx/shape/lib/util/stackOrder';
-import { extent } from 'd3-array';
 import getBandwidth from '@visx/shape/lib/util/getBandwidth';
 
 import { BaseBarSeriesProps } from './BaseBarSeries';
@@ -20,20 +17,27 @@ import {
   SeriesProps,
 } from '../../../types';
 import isValidNumber from '../../../typeguards/isValidNumber';
-import isChildWithProps from '../../../typeguards/isChildWithProps';
-import combineBarBarStackData, { getStackValue } from '../../../utils/combineBarStackData';
-import getBarStackRegistryData from '../../../utils/getBarStackRegistryData';
+import { getStackValue } from '../../../utils/combineBarStackData';
 import { BARSTACK_EVENT_SOURCE, XYCHART_EVENT_SOURCE } from '../../../constants';
 import useSeriesEvents from '../../../hooks/useSeriesEvents';
 import findNearestStackDatum from '../../../utils/findNearestStackDatum';
+import useStackedData from '../../../hooks/useStackedData';
+
+type BarStackChildProps<
+  XScale extends PositionScale,
+  YScale extends PositionScale,
+  Datum extends object
+> = Omit<BaseBarSeriesProps<XScale, YScale, Datum>, 'BarsComponent'>;
 
 export type BaseBarStackProps<
   XScale extends PositionScale,
   YScale extends PositionScale,
   Datum extends object
 > = {
-  /** `BarSeries` elements */
-  children: JSX.Element | JSX.Element[];
+  /** `BarSeries` elements, note we can't strictly enforce this with TS yet. */
+  children:
+    | React.ReactElement<BarStackChildProps<XScale, YScale, Datum>>
+    | React.ReactElement<BarStackChildProps<XScale, YScale, Datum>>[];
   /** Rendered component which is passed BarsProps by BaseBarStack after processing. */
   BarsComponent: React.FC<BarsProps<XScale, YScale>>;
 } & Pick<StackPathConfig<Datum, string>, 'offset' | 'order'> &
@@ -59,91 +63,32 @@ function BaseBarStack<
   enableEvents = true,
 }: BaseBarStackProps<XScale, YScale, Datum>) {
   type StackBar = SeriesPoint<CombinedStackData<XScale, YScale>>;
-  const {
-    colorScale,
-    dataRegistry,
-    horizontal,
-    registerData,
-    unregisterData,
-    xScale,
-    yScale,
-  } = (useContext(DataContext) as unknown) as DataContextType<
+
+  const { colorScale, dataRegistry, horizontal, xScale, yScale } = (useContext(
+    DataContext,
+  ) as unknown) as DataContextType<XScale, YScale, BarStackDatum<XScale, YScale>>;
+
+  const { seriesChildren, dataKeys, stackedData } = useStackedData<
     XScale,
     YScale,
-    BarStackDatum<XScale, YScale>
-  >;
+    Datum,
+    BaseBarSeriesProps<XScale, YScale, Datum>
+  >({
+    children,
+    order,
+    offset,
+  });
 
-  const barSeriesChildren = useMemo(
-    () =>
-      React.Children.toArray(children).filter(child =>
-        isChildWithProps<BaseBarSeriesProps<XScale, YScale, Datum>>(child),
-      ),
-    [children],
-  ) as React.ReactElement<BaseBarSeriesProps<XScale, YScale, Datum>>[];
-
-  // extract data keys from child series
-  const dataKeys: string[] = useMemo(
-    () => barSeriesChildren.filter(child => child.props.dataKey).map(child => child.props.dataKey),
-    [barSeriesChildren],
-  );
-
-  // group all child data by stack value (`x` for vertical, `y` for horizontal)
-  // this format is needed by d3Stack
-  const combinedData = useMemo(
-    () => combineBarBarStackData<XScale, YScale, Datum>(barSeriesChildren, horizontal),
-    [horizontal, barSeriesChildren],
-  );
-
-  // update the domain to account for the (directional) stacked value
-  const comprehensiveDomain = useMemo(
-    () =>
-      extent(
-        (extent(combinedData, d => d.positiveSum) as [number, number]).concat(
-          extent(combinedData, d => d.negativeSum) as [number, number],
-        ),
-      ) as [number, number],
-    [combinedData],
-  );
-
-  // stack data
-  const stackedData = useMemo(() => {
-    const hasSomeNegativeValues =
-      comprehensiveDomain.length > 0 && comprehensiveDomain.some(num => num < 0);
-
-    const stack = d3stack<CombinedStackData<XScale, YScale>, string>();
-    stack.keys(dataKeys);
-    if (order) stack.order(stackOrder(order));
-    if (offset || hasSomeNegativeValues) stack.offset(stackOffset(offset || 'diverging'));
-
-    return stack(combinedData);
-  }, [combinedData, dataKeys, comprehensiveDomain, order, offset]);
-
-  // register all child data using the stack-transformed values
-  useEffect(() => {
-    const dataToRegister = getBarStackRegistryData(stackedData, comprehensiveDomain, horizontal);
-    registerData(dataToRegister);
-
-    // unregister data on unmount
-    return () => unregisterData(dataKeys);
-  }, [
-    dataKeys,
-    comprehensiveDomain,
-    horizontal,
-    stackedData,
-    registerData,
-    unregisterData,
-    barSeriesChildren,
-  ]);
-
+  // custom logic to find the nearest AreaStackDatum (context) and return the original Datum (props)
   const findNearestDatum = useCallback(
     (
       params: NearestDatumArgs<XScale, YScale, BarStackDatum<XScale, YScale>>,
     ): NearestDatumReturnType<Datum> => {
-      const childData = barSeriesChildren.find(child => child.props.dataKey === params.dataKey)
-        ?.props?.data;
+      const childData = seriesChildren.find(child => child.props.dataKey === params.dataKey)?.props
+        ?.data;
       return childData ? findNearestStackDatum(params, childData, horizontal) : null;
     },
-    [barSeriesChildren, horizontal],
+    [seriesChildren, horizontal],
   );
 
   const ownEventSourceKey = `${BARSTACK_EVENT_SOURCE}-${dataKeys.join('-')}`;
@@ -200,7 +145,7 @@ function BaseBarStack<
       // get colorAccessor from child BarSeries, if available
       const barSeries:
         | React.ReactElement<BaseBarSeriesProps<XScale, YScale, Datum>>
-        | undefined = barSeriesChildren.find(child => child.props.dataKey === barStack.key);
+        | undefined = seriesChildren.find(child => child.props.dataKey === barStack.key);
       const colorAccessor = barSeries?.props?.colorAccessor;
 
       return barStack.map((bar, index) => {

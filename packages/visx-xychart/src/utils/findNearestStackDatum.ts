@@ -16,25 +16,25 @@ export default function findNearestStackDatum<
   Datum extends object
 >(
   nearestDatumArgs: NearestDatumArgs<XScale, YScale, BarStackDatum<XScale, YScale>>,
-  barSeriesData: Datum[],
+  seriesData: Datum[],
   horizontal?: boolean,
 ) {
   const { xScale, yScale, point } = nearestDatumArgs;
   const datum = (horizontal ? findNearestDatumY : findNearestDatumX)(nearestDatumArgs);
-  const barSeriesDatum = datum?.index == null ? null : barSeriesData[datum.index];
+  const seriesDatum = datum?.index == null ? null : seriesData[datum.index];
 
-  return datum && barSeriesDatum && point
+  return datum && seriesDatum && point
     ? {
         index: datum.index,
-        datum: barSeriesDatum,
-        distanceX: horizontal // if mouse is ON the bar, set 0 distance
+        datum: seriesDatum,
+        distanceX: horizontal // if mouse is ON the stack series, set 0 distance
           ? point.x >= (xScale(getFirstItem(datum.datum)) ?? Infinity) &&
             point.x <= (xScale(getSecondItem(datum.datum)) ?? -Infinity)
             ? 0
             : datum.distanceX
           : datum.distanceX,
         distanceY: horizontal
-          ? datum.distanceY // if mouse is ON the bar, set 0 distance
+          ? datum.distanceY // if mouse is ON the stack series, set 0 distance
           : point.y <= (yScale(getFirstItem(datum.datum)) ?? -Infinity) &&
             point.y >= (yScale(getSecondItem(datum.datum)) ?? Infinity)
           ? 0

@@ -1,7 +1,6 @@
 import React from 'react';
 import { AxisScale } from '@visx/axis';
-import { BaseBarSeriesProps } from '../components/series/private/BaseBarSeries';
-import { CombinedStackData } from '../types';
+import { CombinedStackData, SeriesProps } from '../types';
 
 /** Returns the value which forms a stack group. */
 export const getStackValue = <XScale extends AxisScale, YScale extends AxisScale>(
@@ -9,22 +8,23 @@ export const getStackValue = <XScale extends AxisScale, YScale extends AxisScale
 ) => d.stack;
 
 /**
- * Merges `BarSeries` `data` by their `stack` value which forms the stack grouping
- * (`x` if vertical, `y` if horizontal) and returns `CombinedStackData[]`.
+ * Merges `seriesChildren` `props.data` by their `stack` value which
+ * forms the stack grouping (`x` if vertical, `y` if horizontal)
+ * and returns `CombinedStackData[]`.
  */
 export default function combineBarStackData<
   XScale extends AxisScale,
   YScale extends AxisScale,
   Datum extends object
 >(
-  barSeriesChildren: React.ReactElement<BaseBarSeriesProps<XScale, YScale, Datum>>[],
+  seriesChildren: React.ReactElement<SeriesProps<XScale, YScale, Datum>>[],
   horizontal?: boolean,
 ): CombinedStackData<XScale, YScale>[] {
   const dataByStackValue: {
     [stackValue: string]: CombinedStackData<XScale, YScale>;
   } = {};
 
-  barSeriesChildren.forEach(child => {
+  seriesChildren.forEach(child => {
     const { dataKey, data, xAccessor, yAccessor } = child.props;
 
     // this should exist but double check

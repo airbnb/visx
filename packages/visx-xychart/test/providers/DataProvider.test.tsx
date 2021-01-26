@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { mount } from 'enzyme';
 import { DataProvider, DataContext } from '../../src';
 import { DataProviderProps } from '../../lib/providers/DataProvider';
@@ -55,10 +55,30 @@ describe('<DataProvider />', () => {
     expect.assertions(3);
 
     const DataConsumer = () => {
-      const data = useContext(DataContext);
-      expect(data.xScale).toBeDefined();
-      expect(data.yScale).toBeDefined();
-      expect(data.colorScale).toBeDefined();
+      const { xScale, yScale, colorScale, registerData } = useContext(DataContext);
+
+      // some data needs to be registered for valid scales to be available
+      useEffect(() => {
+        if (registerData) {
+          registerData({
+            key: 'visx',
+            xAccessor: d => d.x,
+            yAccessor: d => d.y,
+            data: [
+              { x: 0, y: 1 },
+              { x: 5, y: 7 },
+            ],
+          });
+        }
+      }, [registerData]);
+
+      useEffect(() => {
+        if (xScale && yScale && colorScale) {
+          expect(xScale).toBeDefined();
+          expect(yScale).toBeDefined();
+          expect(colorScale).toBeDefined();
+        }
+      }, [xScale, yScale, colorScale]);
 
       return null;
     };

@@ -66,7 +66,11 @@ export default function BaseAxis<Scale extends AxisScale>({
       ? (width ?? 0) - (margin?.right ?? 0)
       : 0;
 
-  return (
+  const scale = (orientation === 'left' || orientation === 'right' ? yScale : xScale) as
+    | Scale
+    | undefined;
+
+  return scale ? (
     <AxisComponent
       top={topOffset}
       left={leftOffset}
@@ -77,7 +81,7 @@ export default function BaseAxis<Scale extends AxisScale>({
       tickStroke={axisStyles?.tickLine?.stroke}
       {...props}
       tickLabelProps={tickLabelProps}
-      scale={(orientation === 'left' || orientation === 'right' ? yScale : xScale) as Scale}
+      scale={scale}
     />
-  );
+  ) : null;
 }

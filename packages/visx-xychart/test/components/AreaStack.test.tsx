@@ -1,13 +1,14 @@
 import React, { useContext, useEffect } from 'react';
 import { mount } from 'enzyme';
 import { animated } from 'react-spring';
+import { Area, LinePath } from '@visx/shape';
 import {
-  BarStack,
-  BarSeries,
+  AreaStack,
+  AreaSeries,
   DataProvider,
   DataContext,
   useEventEmitter,
-  AnimatedBarStack,
+  AnimatedAreaStack,
 } from '../../src';
 import setupTooltipTest from '../mocks/setupTooltipTest';
 import { XYCHART_EVENT_SOURCE } from '../../src/constants';
@@ -24,7 +25,7 @@ const accessors = {
 };
 
 const series1 = {
-  key: 'bar1',
+  key: 'area1',
   data: [
     { x: 10, y: 5 },
     { x: 7, y: 5 },
@@ -33,80 +34,68 @@ const series1 = {
 };
 
 const series2 = {
-  key: 'bar2',
+  key: 'area2',
   data: [
     { x: 10, y: 5 },
     { x: 7, y: 20 },
   ],
   ...accessors,
 };
-const seriesMissingData = {
-  key: 'seriesMissingData',
-  data: [{ y: 5 }, { x: 7 }, { x: 7, y: 20 }],
-  ...accessors,
-};
 
-describe('<BarStack />', () => {
+describe('<AreaStack />', () => {
   it('should be defined', () => {
-    expect(BarSeries).toBeDefined();
+    expect(AreaSeries).toBeDefined();
   });
 
-  it('should render rects', () => {
+  it('should render Areas', () => {
     const wrapper = mount(
       <DataProvider {...providerProps}>
         <svg>
-          <BarStack>
-            <BarSeries dataKey={series1.key} {...series1} />
-            <BarSeries dataKey={series2.key} {...series2} />
-          </BarStack>
+          <AreaStack>
+            <AreaSeries dataKey={series1.key} {...series1} />
+            <AreaSeries dataKey={series2.key} {...series2} />
+          </AreaStack>
         </svg>
       </DataProvider>,
     );
-    expect(wrapper.find('rect')).toHaveLength(4);
+    // @ts-ignore produces a union type that is too complex to represent.ts(2590)
+    expect(wrapper.find(Area)).toHaveLength(2);
   });
 
-  it('should use colorAccessor if passed', () => {
+  it('should render LinePaths if renderLine=true', () => {
     const wrapper = mount(
       <DataProvider {...providerProps}>
         <svg>
-          <BarStack>
-            <BarSeries dataKey={series1.key} {...series1} />
-            <BarSeries
-              dataKey={series2.key}
-              {...series2}
-              colorAccessor={(_, i) => (i === 0 ? 'banana' : null)}
-            />
-          </BarStack>
+          <AreaStack renderLine>
+            <AreaSeries dataKey={series1.key} {...series1} />
+            <AreaSeries dataKey={series2.key} {...series2} />
+          </AreaStack>
         </svg>
       </DataProvider>,
     );
-    const rects = wrapper.find('rect');
-    expect(rects.at(0).prop('fill')).not.toBe('banana');
-    expect(rects.at(1).prop('fill')).not.toBe('banana');
-    expect(rects.at(2).prop('fill')).toBe('banana');
-    expect(rects.at(3).prop('fill')).not.toBe('banana');
+    // @ts-ignore produces a union type that is too complex to represent.ts(2590)
+    expect(wrapper.find(LinePath)).toHaveLength(2);
   });
 
-  it('should not render rects if x or y are invalid', () => {
+  it('should render Glyphs if focus/blur handlers are set', () => {
     const wrapper = mount(
       <DataProvider {...providerProps}>
         <svg>
-          <BarStack>
-            <BarSeries dataKey={series1.key} {...series1} />
-            <BarSeries dataKey={seriesMissingData.key} {...seriesMissingData} />
-          </BarStack>
+          <AreaStack onFocus={() => {}}>
+            <AreaSeries dataKey={series1.key} {...series1} />
+          </AreaStack>
         </svg>
       </DataProvider>,
     );
-    expect(wrapper.find('rect')).toHaveLength(3);
+    expect(wrapper.find('circle')).toHaveLength(series1.data.length);
   });
 
   it('should update scale domain to include stack sums including negative values', () => {
     expect.hasAssertions();
 
     function Assertion() {
-      const { yScale, dataRegistry } = useContext(DataContext);
-      if (yScale && dataRegistry?.keys().length === 2) {
+      const { yScale } = useContext(DataContext);
+      if (yScale) {
         expect(yScale.domain()).toEqual([-20, 10]);
       }
       return null;
@@ -115,9 +104,9 @@ describe('<BarStack />', () => {
     mount(
       <DataProvider {...providerProps}>
         <svg>
-          <BarStack>
-            <BarSeries dataKey={series1.key} {...series1} />
-            <BarSeries
+          <AreaStack>
+            <AreaSeries dataKey={series1.key} {...series1} />
+            <AreaSeries
               dataKey={series2.key}
               {...series2}
               data={[
@@ -125,7 +114,7 @@ describe('<BarStack />', () => {
                 { x: 7, y: -20 },
               ]}
             />
-          </BarStack>
+          </AreaStack>
         </svg>
         <Assertion />
       </DataProvider>,
@@ -160,10 +149,10 @@ describe('<BarStack />', () => {
 
     setupTooltipTest(
       <>
-        <BarStack>
-          <BarSeries dataKey={series1.key} {...series1} />
-          <BarSeries dataKey={series2.key} {...series2} />
-        </BarStack>
+        <AreaStack>
+          <AreaSeries dataKey={series1.key} {...series1} />
+          <AreaSeries dataKey={series2.key} {...series2} />
+        </AreaStack>
         <EventEmitter />
       </>,
       { showTooltip, hideTooltip },
@@ -171,21 +160,21 @@ describe('<BarStack />', () => {
   });
 });
 
-describe('<AnimatedBarStack />', () => {
+describe('<AnimatedAreaStack />', () => {
   it('should be defined', () => {
-    expect(AnimatedBarStack).toBeDefined();
+    expect(AnimatedAreaStack).toBeDefined();
   });
-  it('should render an animated.rect', () => {
+  it('should render an animated.path', () => {
     const wrapper = mount(
       <DataProvider {...providerProps}>
         <svg>
-          <AnimatedBarStack>
-            <BarSeries dataKey={series1.key} {...series1} />
-            <BarSeries dataKey={series2.key} {...series2} />
-          </AnimatedBarStack>
+          <AnimatedAreaStack renderLine={false}>
+            <AreaSeries dataKey={series1.key} {...series1} />
+            <AreaSeries dataKey={series2.key} {...series2} />
+          </AnimatedAreaStack>
         </svg>
       </DataProvider>,
     );
-    expect(wrapper.find(animated.rect)).toHaveLength(4);
+    expect(wrapper.find(animated.path)).toHaveLength(2);
   });
 });
