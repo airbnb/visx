@@ -140,9 +140,11 @@ describe('<BarStack />', () => {
 
     const EventEmitter = () => {
       const emit = useEventEmitter();
+      const { yScale } = useContext(DataContext);
 
       useEffect(() => {
-        if (emit) {
+        // checking for yScale ensures stack data is registered and stacks are rendered
+        if (emit && yScale) {
           // @ts-ignore not a React.MouseEvent
           emit('pointermove', new MouseEvent('pointermove'), XYCHART_EVENT_SOURCE);
           expect(showTooltip).toHaveBeenCalledTimes(2); // one per key

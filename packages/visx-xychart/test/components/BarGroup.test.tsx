@@ -1,7 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { animated } from 'react-spring';
 import { mount } from 'enzyme';
-import { AnimatedBarGroup, BarGroup, BarSeries, DataProvider, useEventEmitter } from '../../src';
+import {
+  AnimatedBarGroup,
+  BarGroup,
+  BarSeries,
+  DataContext,
+  DataProvider,
+  useEventEmitter,
+} from '../../src';
 import setupTooltipTest from '../mocks/setupTooltipTest';
 import { XYCHART_EVENT_SOURCE } from '../../src/constants';
 
@@ -103,9 +110,11 @@ describe('<BarGroup />', () => {
 
     const EventEmitter = () => {
       const emit = useEventEmitter();
+      const { yScale } = useContext(DataContext);
 
       useEffect(() => {
-        if (emit) {
+        // checking for yScale ensures stack data is registered and stacks are rendered
+        if (emit && yScale) {
           // @ts-ignore not a React.MouseEvent
           emit('pointermove', new MouseEvent('pointermove'), XYCHART_EVENT_SOURCE);
           expect(showTooltip).toHaveBeenCalledTimes(2); // one per key
