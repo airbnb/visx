@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { lightTheme, darkTheme, XYChartTheme } from '@visx/xychart';
 import { PatternLines } from '@visx/pattern';
 import { GlyphProps } from '@visx/xychart/lib/types';
@@ -9,6 +9,7 @@ import cityTemperature, { CityTemperature } from '@visx/mock-data/lib/mocks/city
 import { GlyphCross, GlyphDot, GlyphStar } from '@visx/glyph';
 import { curveLinear, curveStep, curveCardinal } from '@visx/curve';
 import customTheme from './customTheme';
+import userPrefersReducedMotion from './userPrefersReducedMotion';
 
 const dateScaleConfig = { type: 'band', paddingInner: 0.3 } as const;
 const temperatureScaleConfig = { type: 'linear' } as const;
@@ -92,6 +93,7 @@ type ControlsProps = {
 };
 
 export default function ExampleControls({ children }: ControlsProps) {
+  const prefersReducedMotion = useRef(userPrefersReducedMotion()).current;
   const [theme, setTheme] = useState<XYChartTheme>(darkTheme);
   const [animationTrajectory, setAnimationTrajectory] = useState<AnimationTrajectory>('center');
   const [gridProps, setGridProps] = useState<[boolean, boolean]>([false, false]);
@@ -742,41 +744,43 @@ export default function ExampleControls({ children }: ControlsProps) {
           </label>
         </div>
         {/** animation trajectory */}
-        <div>
-          <strong>axis + grid animation</strong>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setAnimationTrajectory('center')}
-              checked={animationTrajectory === 'center'}
-            />
-            from center
-          </label>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setAnimationTrajectory('outside')}
-              checked={animationTrajectory === 'outside'}
-            />
-            from outside
-          </label>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setAnimationTrajectory('min')}
-              checked={animationTrajectory === 'min'}
-            />
-            from min
-          </label>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setAnimationTrajectory('max')}
-              checked={animationTrajectory === 'max'}
-            />
-            from max
-          </label>
-        </div>
+        {!userPrefersReducedMotion && (
+          <div>
+            <strong>axis + grid animation</strong>
+            <label>
+              <input
+                type="radio"
+                onChange={() => setAnimationTrajectory('center')}
+                checked={animationTrajectory === 'center'}
+              />
+              from center
+            </label>
+            <label>
+              <input
+                type="radio"
+                onChange={() => setAnimationTrajectory('outside')}
+                checked={animationTrajectory === 'outside'}
+              />
+              from outside
+            </label>
+            <label>
+              <input
+                type="radio"
+                onChange={() => setAnimationTrajectory('min')}
+                checked={animationTrajectory === 'min'}
+              />
+              from min
+            </label>
+            <label>
+              <input
+                type="radio"
+                onChange={() => setAnimationTrajectory('max')}
+                checked={animationTrajectory === 'max'}
+              />
+              from max
+            </label>
+          </div>
+        )}
       </div>
       <style jsx>{`
         .controls {

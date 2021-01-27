@@ -31,13 +31,10 @@ import {
   Tooltip,
   XYChart,
 } from '@visx/xychart';
+import userPrefersReducedMotion from './userPrefersReducedMotion';
 
 export default function getComponentsBasedOnUserMotionPreference() {
-  // use non-animated components if prefers-reduced-motion is set
-  const prefersReducedMotionQuery = window?.matchMedia('(prefers-reduced-motion: reduce)');
-  const prefersReducedMotion = !prefersReducedMotionQuery || !!prefersReducedMotionQuery.matches;
-
-  return prefersReducedMotion
+  return userPrefersReducedMotion()
     ? {
         Annotation,
         AreaSeries,
