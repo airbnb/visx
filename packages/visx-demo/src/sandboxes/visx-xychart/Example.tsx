@@ -1,7 +1,6 @@
 import React from 'react';
 import { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
 
-import getComponentsBasedOnUserMotionPreference from './getComponentsBasedOnUserMotionPreference';
 import ExampleControls from './ExampleControls';
 import CustomChartBackground from './CustomChartBackground';
 
@@ -13,25 +12,6 @@ export type XYChartProps = {
 type City = 'San Francisco' | 'New York' | 'Austin';
 
 export default function Example({ height }: XYChartProps) {
-  const {
-    Annotation,
-    AreaSeries,
-    AreaStack,
-    Axis,
-    BarGroup,
-    BarSeries,
-    BarStack,
-    GlyphSeries,
-    Grid,
-    LineSeries,
-    AnnotationCircleSubject,
-    AnnotationConnector,
-    AnnotationLabel,
-    AnnotationLineSubject,
-    Tooltip,
-    XYChart,
-  } = getComponentsBasedOnUserMotionPreference();
-
   return (
     <ExampleControls>
       {({
@@ -71,6 +51,24 @@ export default function Example({ height }: XYChartProps) {
         theme,
         xAxisOrientation,
         yAxisOrientation,
+
+        // components are animated or not depending on selection
+        Annotation,
+        AreaSeries,
+        AreaStack,
+        Axis,
+        BarGroup,
+        BarSeries,
+        BarStack,
+        GlyphSeries,
+        Grid,
+        LineSeries,
+        AnnotationCircleSubject,
+        AnnotationConnector,
+        AnnotationLabel,
+        AnnotationLineSubject,
+        Tooltip,
+        XYChart,
       }) => (
         <XYChart
           theme={theme}

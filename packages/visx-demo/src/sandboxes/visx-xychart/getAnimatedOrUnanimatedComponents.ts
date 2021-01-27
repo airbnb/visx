@@ -31,29 +31,10 @@ import {
   Tooltip,
   XYChart,
 } from '@visx/xychart';
-import userPrefersReducedMotion from './userPrefersReducedMotion';
 
-export default function getComponentsBasedOnUserMotionPreference() {
-  return userPrefersReducedMotion()
+export default function getAnimatedOrUnanimatedComponents(animated?: boolean) {
+  return animated
     ? {
-        Annotation,
-        AreaSeries,
-        AreaStack,
-        Axis,
-        BarGroup,
-        BarSeries,
-        BarStack,
-        GlyphSeries,
-        Grid,
-        LineSeries,
-        AnnotationCircleSubject,
-        AnnotationConnector,
-        AnnotationLabel,
-        AnnotationLineSubject,
-        Tooltip,
-        XYChart,
-      }
-    : {
         Annotation: AnimatedAnnotation,
         AreaSeries: AnimatedAreaSeries,
         AreaStack: AnimatedAreaStack,
@@ -64,6 +45,24 @@ export default function getComponentsBasedOnUserMotionPreference() {
         GlyphSeries: AnimatedGlyphSeries,
         Grid: AnimatedGrid,
         LineSeries: AnimatedLineSeries,
+        AnnotationCircleSubject,
+        AnnotationConnector,
+        AnnotationLabel,
+        AnnotationLineSubject,
+        Tooltip,
+        XYChart,
+      }
+    : {
+        Annotation,
+        AreaSeries,
+        AreaStack,
+        Axis,
+        BarGroup,
+        BarSeries,
+        BarStack,
+        GlyphSeries,
+        Grid,
+        LineSeries,
         AnnotationCircleSubject,
         AnnotationConnector,
         AnnotationLabel,

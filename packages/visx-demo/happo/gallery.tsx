@@ -10,13 +10,13 @@ type HappoSnapshot = {
   };
 };
 
-const specialCases = new Set([]);
+const specialCases = new Set(['@visx/demo-xychart', '@visx/demo-axis']);
 
 const getComponentName = (Example: typeof examples[0]) =>
   Example.packageJson.name || 'missing-name';
 
 const snapshots: HappoSnapshot[] = examples
-  .filter(Example => !specialCases.has(getComponentName(Example)))
+  .filter(Example => specialCases.has(getComponentName(Example)))
   .map(Example => ({
     // note: this (reasonably) asserts Examples have unique names
     component: getComponentName(Example),

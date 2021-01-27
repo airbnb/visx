@@ -69,6 +69,7 @@ export default function Example({
   // use non-animated components if prefers-reduced-motion is set
   const prefersReducedMotionQuery = window?.matchMedia('(prefers-reduced-motion: reduce)');
   const prefersReducedMotion = !prefersReducedMotionQuery || !!prefersReducedMotionQuery.matches;
+  const [useAnimatedComponents, setUseAnimatedComponents] = useState(!prefersReducedMotion);
 
   // in svg, margin is subtracted from total width/height
   const width = outerWidth - margin.left - margin.right;
@@ -83,12 +84,11 @@ export default function Example({
     values: ScaleInput<Scale>[];
   }
 
-  // use animated component depending on prefersReducedMotion
-  const AxisComponent: AxisComponent = prefersReducedMotion ? Axis : AnimatedAxis;
-  const GridRowsComponent: GridRowsComponent = prefersReducedMotion ? GridRows : AnimatedGridRows;
-  const GridColumnsComponent: GridColumnsComponent = prefersReducedMotion
-    ? GridColumns
-    : AnimatedGridColumns;
+  const AxisComponent: AxisComponent = useAnimatedComponents ? AnimatedAxis : Axis;
+  const GridRowsComponent: GridRowsComponent = useAnimatedComponents ? AnimatedGridRows : GridRows;
+  const GridColumnsComponent: GridColumnsComponent = useAnimatedComponents
+    ? AnimatedGridColumns
+    : GridColumns;
 
   const axes: AxisDemoProps<AxisScale<number>>[] = useMemo(() => {
     // toggle between two value ranges to demo animation
@@ -239,44 +239,59 @@ export default function Example({
           ))}
         </g>
       </svg>
-      {showControls && !prefersReducedMotion && (
+      {showControls && (
         <>
-          <div style={{ fontSize: 11 }}>
-            <strong>animation trajectory</strong>
+          <div style={{ fontSize: 12 }}>
             <label>
               <input
-                type="radio"
-                onChange={() => setAnimationTrajectory('outside')}
-                checked={animationTrajectory === 'outside'}
+                type="checkbox"
+                onChange={() => setUseAnimatedComponents(!useAnimatedComponents)}
+                checked={useAnimatedComponents}
               />{' '}
-              outside
+              enable animation
             </label>
-            <label>
-              <input
-                type="radio"
-                onChange={() => setAnimationTrajectory('center')}
-                checked={animationTrajectory === 'center'}
-              />{' '}
-              center
-            </label>
-            <label>
-              <input
-                type="radio"
-                onChange={() => setAnimationTrajectory('min')}
-                checked={animationTrajectory === 'min'}
-              />{' '}
-              min
-            </label>
-            <label>
-              <input
-                type="radio"
-                onChange={() => setAnimationTrajectory('max')}
-                checked={animationTrajectory === 'max'}
-              />{' '}
-              max
-            </label>
+            &nbsp;&nbsp;&nbsp;
+            {useAnimatedComponents && (
+              <>
+                <strong>animation trajectory</strong>
+                <label>
+                  <input
+                    type="radio"
+                    onChange={() => setAnimationTrajectory('outside')}
+                    checked={animationTrajectory === 'outside'}
+                  />{' '}
+                  outside
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    onChange={() => setAnimationTrajectory('center')}
+                    checked={animationTrajectory === 'center'}
+                  />{' '}
+                  center
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    onChange={() => setAnimationTrajectory('min')}
+                    checked={animationTrajectory === 'min'}
+                  />{' '}
+                  min
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    onChange={() => setAnimationTrajectory('max')}
+                    checked={animationTrajectory === 'max'}
+                  />{' '}
+                  max
+                </label>
+              </>
+            )}
           </div>
-          <button onClick={() => setDataToggle(!dataToggle)}>Update scales</button>
+          {useAnimatedComponents && (
+            <button onClick={() => setDataToggle(!dataToggle)}>Update scales</button>
+          )}
         </>
       )}
     </>
