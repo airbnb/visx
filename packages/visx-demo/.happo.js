@@ -28,6 +28,7 @@ module.exports = {
   targets: {
     'chrome-desktop': new RemoteBrowserTarget('chrome', {
       viewport: '800x552',
+      prefersReducedMotion: true,
     }),
   },
 
