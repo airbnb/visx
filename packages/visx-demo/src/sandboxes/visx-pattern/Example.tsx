@@ -21,19 +21,21 @@ export type PatternProps = {
   margin?: typeof defaultMargin;
 };
 
-const Patterns: React.FC<{ id: string }>[] = [
+const Patterns: React.FC<{ id: string; prefersReducedMotion?: boolean }>[] = [
   ({ id }) => <PatternLines id={id} height={6} width={6} stroke="black" strokeWidth={1} />,
-  ({ id }) => (
+  ({ id, prefersReducedMotion }) => (
     <CustomPattern id={id} width={10} height={10}>
-      <animateTransform
-        attributeType="xml"
-        attributeName="patternTransform"
-        type="translate"
-        from="0 0"
-        to="0 30"
-        dur="10s"
-        repeatCount="indefinite"
-      />
+      {!prefersReducedMotion && (
+        <animateTransform
+          attributeType="xml"
+          attributeName="patternTransform"
+          type="translate"
+          from="0 0"
+          to="0 30"
+          dur="10s"
+          repeatCount="indefinite"
+        />
+      )}
       <circle cx={5} cy={5} r="3" stroke="none" fill="black" transform-origin="center" />
     </CustomPattern>
   ),
@@ -78,21 +80,23 @@ const Patterns: React.FC<{ id: string }>[] = [
     />
   ),
   ({ id }) => <PatternCircles id={id} height={10} width={10} fill="black" complement />,
-  ({ id }) => {
+  ({ id, prefersReducedMotion }) => {
     const width = 10;
     const height = 10;
 
     return (
       <CustomPattern id={id} width={width} height={height}>
-        <animateTransform
-          attributeType="xml"
-          attributeName="patternTransform"
-          type="translate"
-          from="0 0"
-          to="50 0"
-          dur="10s"
-          repeatCount="indefinite"
-        />
+        {!prefersReducedMotion && (
+          <animateTransform
+            attributeType="xml"
+            attributeName="patternTransform"
+            type="translate"
+            from="0 0"
+            to="50 0"
+            dur="10s"
+            repeatCount="indefinite"
+          />
+        )}
         <path
           d={`M 0 ${height / 2} c ${height / 8} ${-height / 4} , ${(height * 3) / 8} ${-height /
             4} , ${height / 2} 0
@@ -115,6 +119,10 @@ const Patterns: React.FC<{ id: string }>[] = [
 ];
 
 export default function Example({ width, height, margin = defaultMargin }: PatternProps) {
+  // use non-animated components if prefers-reduced-motion is set
+  const prefersReducedMotionQuery = window?.matchMedia('(prefers-reduced-motion: reduce)');
+  const prefersReducedMotion = !prefersReducedMotionQuery || !!prefersReducedMotionQuery.matches;
+
   const numColumns = 3;
   const numRows = Patterns.length / numColumns;
   const columnWidth = Math.max((width - margin.left - margin.right) / numColumns, 0);
@@ -132,7 +140,7 @@ export default function Example({ width, height, margin = defaultMargin }: Patte
           return (
             <React.Fragment key={id}>
               {/** Like SVG <defs />, Patterns are rendered with an id */}
-              <Pattern id={id} />
+              <Pattern id={id} prefersReducedMotion={prefersReducedMotion} />
 
               {/** And are then referenced for a style attribute. */}
               <Bar
