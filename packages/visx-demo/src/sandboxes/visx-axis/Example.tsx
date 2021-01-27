@@ -2,11 +2,14 @@ import React, { useState, useMemo } from 'react';
 import AreaClosed from '@visx/shape/lib/shapes/AreaClosed';
 import { curveMonotoneX } from '@visx/curve';
 import { scaleUtc, scaleLinear, scaleLog, scaleBand, ScaleInput, coerceNumber } from '@visx/scale';
-import { Orientation, SharedAxisProps, AxisScale } from '@visx/axis';
+import { Axis, Orientation, SharedAxisProps, AxisScale } from '@visx/axis';
+import { GridRows, GridColumns } from '@visx/grid';
 import { AnimatedAxis, AnimatedGridRows, AnimatedGridColumns } from '@visx/react-spring';
 import { getSeededRandom } from '@visx/mock-data';
 import { LinearGradient } from '@visx/gradient';
 import { timeFormat } from 'd3-time-format';
+import { GridRowsProps } from '@visx/grid/lib/grids/GridRows';
+import { GridColumnsProps } from '@visx/grid/lib/grids/GridColumns';
 
 export const backgroundColor = '#da7cff';
 const axisColor = '#fff';
@@ -40,22 +43,52 @@ export type AxisProps = {
   showControls?: boolean;
 };
 
+type AnimationTrajectory = 'outside' | 'center' | 'min' | 'max' | undefined;
+
+type AxisComponent = React.FC<
+  SharedAxisProps<AxisScale> & {
+    animationTrajectory: AnimationTrajectory;
+  }
+>;
+type GridRowsComponent = React.FC<
+  GridRowsProps<AxisScale> & {
+    animationTrajectory: AnimationTrajectory;
+  }
+>;
+type GridColumnsComponent = React.FC<
+  GridColumnsProps<AxisScale> & {
+    animationTrajectory: AnimationTrajectory;
+  }
+>;
+
 export default function Example({
   width: outerWidth = 800,
   height: outerHeight = 800,
   showControls = true,
 }: AxisProps) {
+  // use non-animated components if prefers-reduced-motion is set
+  const prefersReducedMotionQuery = window?.matchMedia('(prefers-reduced-motion: reduce)');
+  const prefersReducedMotion = !prefersReducedMotionQuery || !!prefersReducedMotionQuery.matches;
+
   // in svg, margin is subtracted from total width/height
   const width = outerWidth - margin.left - margin.right;
   const height = outerHeight - margin.top - margin.bottom;
   const [dataToggle, setDataToggle] = useState(true);
-  const [animationTrajectory, setAnimationTrajectory] = useState<
-    'outside' | 'center' | 'min' | 'max'
-  >('center');
+  const [animationTrajectory, setAnimationTrajectory] = useState<AnimationTrajectory>(
+    prefersReducedMotion ? undefined : 'center',
+  );
 
+  // define some types
   interface AxisDemoProps<Scale extends AxisScale> extends SharedAxisProps<Scale> {
     values: ScaleInput<Scale>[];
   }
+
+  // use animated component depending on prefersReducedMotion
+  const AxisComponent: AxisComponent = prefersReducedMotion ? Axis : AnimatedAxis;
+  const GridRowsComponent: GridRowsComponent = prefersReducedMotion ? GridRows : AnimatedGridRows;
+  const GridColumnsComponent: GridColumnsComponent = prefersReducedMotion
+    ? GridColumns
+    : AnimatedGridColumns;
 
   const axes: AxisDemoProps<AxisScale<number>>[] = useMemo(() => {
     // toggle between two value ranges to demo animation
@@ -144,23 +177,23 @@ export default function Example({
         <g transform={`translate(${margin.left},${margin.top})`}>
           {axes.map(({ scale, values, label, tickFormat }, i) => (
             <g key={`scale-${i}`} transform={`translate(0, ${i * (scaleHeight + scalePadding)})`}>
-              <AnimatedGridRows
+              <GridRowsComponent
                 // force remount when this changes to see the animation difference
                 key={`gridrows-${animationTrajectory}`}
                 scale={yScale}
                 stroke={gridColor}
                 width={width}
                 numTicks={dataToggle ? 1 : 3}
-                animationTrajectory={animationTrajectory}
+                animationTrajectory={prefersReducedMotion ? undefined : animationTrajectory}
               />
-              <AnimatedGridColumns
+              <GridColumnsComponent
                 // force remount when this changes to see the animation difference
                 key={`gridcolumns-${animationTrajectory}`}
                 scale={scale}
                 stroke={gridColor}
                 height={scaleHeight}
                 numTicks={dataToggle ? 5 : 2}
-                animationTrajectory={animationTrajectory}
+                animationTrajectory={prefersReducedMotion ? undefined : animationTrajectory}
               />
               <AreaClosed
                 data={values.map(x => [
@@ -176,7 +209,7 @@ export default function Example({
                 fill={gridColor}
                 fillOpacity={0.2}
               />
-              <AnimatedAxis
+              <AxisComponent
                 // force remount when this changes to see the animation difference
                 key={`axis-${animationTrajectory}`}
                 orientation={Orientation.bottom}
@@ -206,7 +239,7 @@ export default function Example({
           ))}
         </g>
       </svg>
-      {showControls && (
+      {showControls && !prefersReducedMotion && (
         <>
           <div style={{ fontSize: 11 }}>
             <strong>animation trajectory</strong>
