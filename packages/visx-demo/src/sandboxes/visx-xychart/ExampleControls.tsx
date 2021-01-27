@@ -48,7 +48,7 @@ type ProvidedProps = {
     y: Accessors;
     date: Accessor;
   };
-  animationTrajectory: AnimationTrajectory;
+  animationTrajectory?: AnimationTrajectory;
   annotationDataKey: DataKey | null;
   annotationDatum?: CityTemperature;
   annotationLabelPosition: { dx: number; dy: number };
@@ -95,7 +95,9 @@ type ControlsProps = {
 export default function ExampleControls({ children }: ControlsProps) {
   const prefersReducedMotion = useRef(userPrefersReducedMotion()).current;
   const [theme, setTheme] = useState<XYChartTheme>(darkTheme);
-  const [animationTrajectory, setAnimationTrajectory] = useState<AnimationTrajectory>('center');
+  const [animationTrajectory, setAnimationTrajectory] = useState<AnimationTrajectory | undefined>(
+    prefersReducedMotion ? undefined : 'center',
+  );
   const [gridProps, setGridProps] = useState<[boolean, boolean]>([false, false]);
   const [showGridRows, showGridColumns] = gridProps;
   const [xAxisOrientation, setXAxisOrientation] = useState<'top' | 'bottom'>('bottom');
@@ -744,7 +746,7 @@ export default function ExampleControls({ children }: ControlsProps) {
           </label>
         </div>
         {/** animation trajectory */}
-        {!userPrefersReducedMotion && (
+        {!prefersReducedMotion && (
           <div>
             <strong>axis + grid animation</strong>
             <label>
