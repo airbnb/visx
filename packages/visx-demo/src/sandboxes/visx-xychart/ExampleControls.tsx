@@ -9,6 +9,8 @@ import cityTemperature, { CityTemperature } from '@visx/mock-data/lib/mocks/city
 import { GlyphCross, GlyphDot, GlyphStar } from '@visx/glyph';
 import { curveLinear, curveStep, curveCardinal } from '@visx/curve';
 import customTheme from './customTheme';
+import userPrefersReducedMotion from './userPrefersReducedMotion';
+import getAnimatedOrUnanimatedComponents from './getAnimatedOrUnanimatedComponents';
 
 const dateScaleConfig = { type: 'band', paddingInner: 0.3 } as const;
 const temperatureScaleConfig = { type: 'linear' } as const;
@@ -47,7 +49,7 @@ type ProvidedProps = {
     y: Accessors;
     date: Accessor;
   };
-  animationTrajectory: AnimationTrajectory;
+  animationTrajectory?: AnimationTrajectory;
   annotationDataKey: DataKey | null;
   annotationDatum?: CityTemperature;
   annotationLabelPosition: { dx: number; dy: number };
@@ -85,15 +87,18 @@ type ProvidedProps = {
   theme: XYChartTheme;
   xAxisOrientation: 'top' | 'bottom';
   yAxisOrientation: 'left' | 'right';
-};
+} & ReturnType<typeof getAnimatedOrUnanimatedComponents>;
 
 type ControlsProps = {
   children: (props: ProvidedProps) => React.ReactNode;
 };
 
 export default function ExampleControls({ children }: ControlsProps) {
+  const [useAnimatedComponents, setUseAnimatedComponents] = useState(!userPrefersReducedMotion());
   const [theme, setTheme] = useState<XYChartTheme>(darkTheme);
-  const [animationTrajectory, setAnimationTrajectory] = useState<AnimationTrajectory>('center');
+  const [animationTrajectory, setAnimationTrajectory] = useState<AnimationTrajectory | undefined>(
+    'center',
+  );
   const [gridProps, setGridProps] = useState<[boolean, boolean]>([false, false]);
   const [showGridRows, showGridColumns] = gridProps;
   const [xAxisOrientation, setXAxisOrientation] = useState<'top' | 'bottom'>('bottom');
@@ -240,6 +245,7 @@ export default function ExampleControls({ children }: ControlsProps) {
         theme,
         xAxisOrientation,
         yAxisOrientation,
+        ...getAnimatedOrUnanimatedComponents(useAnimatedComponents),
       })}
       {/** This style is used for annotated elements via colorAccessor. */}
       <svg className="pattern-lines">
@@ -743,39 +749,53 @@ export default function ExampleControls({ children }: ControlsProps) {
         </div>
         {/** animation trajectory */}
         <div>
-          <strong>axis + grid animation</strong>
           <label>
             <input
-              type="radio"
-              onChange={() => setAnimationTrajectory('center')}
-              checked={animationTrajectory === 'center'}
+              type="checkbox"
+              onChange={() => setUseAnimatedComponents(!useAnimatedComponents)}
+              checked={useAnimatedComponents}
             />
-            from center
+            use animated components
           </label>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setAnimationTrajectory('outside')}
-              checked={animationTrajectory === 'outside'}
-            />
-            from outside
-          </label>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setAnimationTrajectory('min')}
-              checked={animationTrajectory === 'min'}
-            />
-            from min
-          </label>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setAnimationTrajectory('max')}
-              checked={animationTrajectory === 'max'}
-            />
-            from max
-          </label>
+
+          {useAnimatedComponents && (
+            <>
+              &nbsp;&nbsp;&nbsp;
+              <strong>axis + grid animation</strong>
+              <label>
+                <input
+                  type="radio"
+                  onChange={() => setAnimationTrajectory('center')}
+                  checked={animationTrajectory === 'center'}
+                />
+                from center
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  onChange={() => setAnimationTrajectory('outside')}
+                  checked={animationTrajectory === 'outside'}
+                />
+                from outside
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  onChange={() => setAnimationTrajectory('min')}
+                  checked={animationTrajectory === 'min'}
+                />
+                from min
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  onChange={() => setAnimationTrajectory('max')}
+                  checked={animationTrajectory === 'max'}
+                />
+                from max
+              </label>
+            </>
+          )}
         </div>
       </div>
       <style jsx>{`
