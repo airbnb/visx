@@ -75,9 +75,7 @@ export default function Example({
   const width = outerWidth - margin.left - margin.right;
   const height = outerHeight - margin.top - margin.bottom;
   const [dataToggle, setDataToggle] = useState(true);
-  const [animationTrajectory, setAnimationTrajectory] = useState<AnimationTrajectory>(
-    prefersReducedMotion ? undefined : 'center',
-  );
+  const [animationTrajectory, setAnimationTrajectory] = useState<AnimationTrajectory>('center');
 
   // define some types
   interface AxisDemoProps<Scale extends AxisScale> extends SharedAxisProps<Scale> {
@@ -184,7 +182,7 @@ export default function Example({
                 stroke={gridColor}
                 width={width}
                 numTicks={dataToggle ? 1 : 3}
-                animationTrajectory={prefersReducedMotion ? undefined : animationTrajectory}
+                animationTrajectory={animationTrajectory}
               />
               <GridColumnsComponent
                 // force remount when this changes to see the animation difference
@@ -193,7 +191,7 @@ export default function Example({
                 stroke={gridColor}
                 height={scaleHeight}
                 numTicks={dataToggle ? 5 : 2}
-                animationTrajectory={prefersReducedMotion ? undefined : animationTrajectory}
+                animationTrajectory={animationTrajectory}
               />
               <AreaClosed
                 data={values.map(x => [
