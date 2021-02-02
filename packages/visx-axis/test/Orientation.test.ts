@@ -1,19 +1,12 @@
 import { Orientation } from '../src';
 
 describe('Orientation', () => {
-  test('it should be defined', () => {
-    expect(Orientation).toBeDefined();
-  });
-  test('top should be defined', () => {
-    expect(Orientation.top).toBeDefined();
-  });
-  test('left should be defined', () => {
-    expect(Orientation.left).toBeDefined();
-  });
-  test('right should be defined', () => {
-    expect(Orientation.right).toBeDefined();
-  });
-  test('bottom should be defined', () => {
-    expect(Orientation.bottom).toBeDefined();
+  it('should have keys for top/right/bottom/left', () => {
+    expect(Orientation).toEqual({
+      top: expect.any(String),
+      right: expect.any(String),
+      bottom: expect.any(String),
+      left: expect.any(String),
+    });
   });
 });

@@ -19,7 +19,7 @@ export type TickFormatter<T> = (
   values: { value: T; index: number }[],
 ) => FormattedValue;
 
-export type TickLabelProps<T> = (value: T, index: number) => Partial<TextProps>;
+export type TickLabelProps<T> = (value: T, index: number, ticks: T[]) => Partial<TextProps>;
 
 export type TickRendererProps = Partial<TextProps> & {
   x: number;
