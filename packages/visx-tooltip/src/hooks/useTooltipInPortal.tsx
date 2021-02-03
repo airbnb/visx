@@ -10,6 +10,7 @@ export type TooltipInPortalProps = TooltipProps & Pick<UseTooltipPortalOptions, 
 export type UseTooltipInPortal = {
   containerRef: (element: HTMLElement | SVGElement | null) => void;
   containerBounds: RectReadOnly;
+  forceRefreshBounds: () => void;
   TooltipInPortal: React.FC<TooltipInPortalProps>;
 };
 
@@ -32,7 +33,7 @@ export default function useTooltipInPortal({
   detectBounds: detectBoundsOption = true,
   ...useMeasureOptions
 }: UseTooltipPortalOptions | undefined = {}): UseTooltipInPortal {
-  const [containerRef, containerBounds] = useMeasure(useMeasureOptions);
+  const [containerRef, containerBounds, forceRefreshBounds] = useMeasure(useMeasureOptions);
 
   const TooltipInPortal = useMemo(
     () => ({
@@ -61,6 +62,7 @@ export default function useTooltipInPortal({
     // @ts-ignore fixed here https://github.com/react-spring/react-use-measure/pull/17
     containerRef,
     containerBounds,
+    forceRefreshBounds,
     TooltipInPortal,
   };
 }
