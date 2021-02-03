@@ -23,7 +23,10 @@ export type BaseAreaSeriesProps<
   /** Sets the curve factory (from @visx/curve or d3-curve) for the line generator. Defaults to curveLinear. */
   curve?: AreaProps<Datum>['curve'];
   /** Props to be passed to the Line, if rendered. */
-  lineProps?: Omit<LinePathProps<Datum>, 'data' | 'x' | 'y' | 'children' | 'defined'>;
+  lineProps?: Omit<
+    LinePathProps<Datum> & React.SVGProps<SVGPathElement>,
+    'data' | 'x' | 'y' | 'children' | 'defined'
+  >;
   /** Rendered component which is passed path props by BaseAreaSeries after processing. */
   PathComponent?: React.FC<Omit<React.SVGProps<SVGPathElement>, 'ref'>> | 'path';
 } & Omit<React.SVGProps<SVGPathElement>, 'x' | 'y' | 'x0' | 'x1' | 'y0' | 'y1' | 'ref'>;
