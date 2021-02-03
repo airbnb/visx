@@ -77,7 +77,7 @@ describe('<Tooltip />', () => {
       props: { renderTooltip },
       context: { tooltipOpen: true },
     });
-    expect(renderTooltip).toHaveBeenCalledTimes(1);
+    expect(renderTooltip).toHaveBeenCalled(); // may be invoked more than once due to forceRefreshBounds invocation
   });
 
   it('should render a vertical crosshair if showVerticalCrossHair=true', () => {
