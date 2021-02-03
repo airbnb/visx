@@ -78,15 +78,22 @@ describe('<Axis />', () => {
     expect.hasAssertions();
   });
 
-  it('should call the tickLabelProps func with the signature (tickValue, index, tickValues)', () => {
+  it('should call the tickLabelProps func with the signature (value, index, values)', () => {
     expect.hasAssertions();
     shallow(
       <Axis
         {...axisProps}
-        tickLabelProps={(value, index, tickValues) => {
+        tickLabelProps={(value, index, values) => {
           expect(value).toEqual(expect.any(Number));
           expect(index).toBeGreaterThan(-1);
-          expect(tickValues).toEqual(expect.arrayContaining(expect.any(Number)));
+          expect(values).toEqual(
+            expect.arrayContaining([
+              expect.objectContaining({
+                value: expect.any(Number),
+                index: expect.any(Number),
+              }),
+            ]),
+          );
           return {};
         }}
       />,
