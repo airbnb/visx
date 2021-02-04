@@ -1,4 +1,4 @@
-import React, { useCallback, useContext } from 'react';
+import React, { useCallback, useContext, useEffect, useRef } from 'react';
 import { useTooltipInPortal, defaultStyles } from '@visx/tooltip';
 import { TooltipProps as BaseTooltipProps } from '@visx/tooltip/lib/tooltips/Tooltip';
 import { PickD3Scale } from '@visx/scale';
@@ -93,7 +93,7 @@ export default function Tooltip<Datum extends object>({
   const { colorScale, theme, innerHeight, innerWidth, margin, xScale, yScale, dataRegistry } =
     useContext(DataContext) || {};
   const tooltipContext = useContext(TooltipContext) as TooltipContextType<Datum>;
-  const { containerRef, TooltipInPortal } = useTooltipInPortal({
+  const { containerRef, TooltipInPortal, forceRefreshBounds } = useTooltipInPortal({
     debounce,
     detectBounds,
     polyfill: resizeObserverPolyfill,
@@ -114,6 +114,19 @@ export default function Tooltip<Datum extends object>({
     : null;
 
   const showTooltip = tooltipContext?.tooltipOpen && tooltipContent != null;
+
+  // useTooltipInPortal is powered by react-use-measure and will update portal positions upon
+  // resize and page scroll. however it **cannot** detect when a chart container moves on a
+  // page due to animation or drag-and-drop, etc.
+  // therefore we force refresh the bounds any time we transition from a hidden tooltip to
+  // one that is visible.
+  const lastShowTooltip = useRef(false);
+  useEffect(() => {
+    if (showTooltip && !lastShowTooltip.current) {
+      forceRefreshBounds();
+    }
+    lastShowTooltip.current = showTooltip;
+  }, [showTooltip, forceRefreshBounds]);
 
   let tooltipLeft = tooltipContext?.tooltipLeft;
   let tooltipTop = tooltipContext?.tooltipTop;
