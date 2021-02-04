@@ -60,6 +60,7 @@
     "@visx/text": "1.3.0",
     "@visx/tooltip": "1.3.0",
     "@visx/voronoi": "1.0.0",
+    "@visx/xychart": "1.4.0",
     "@visx/zoom": "1.3.0"
   }
 }

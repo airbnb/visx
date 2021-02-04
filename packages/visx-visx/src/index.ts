@@ -1,3 +1,6 @@
+// has name conflicts with other packages
+import * as XYChartPackage from '@visx/xychart';
+
 export * from '@visx/annotation';
 export * from '@visx/axis';
 export * from '@visx/bounds';
@@ -26,3 +29,5 @@ export * from '@visx/text';
 export * from '@visx/tooltip';
 export * from '@visx/voronoi';
 export * from '@visx/zoom';
+
+export const XYChart = XYChartPackage;
