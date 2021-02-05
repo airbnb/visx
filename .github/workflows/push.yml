@@ -2,7 +2,7 @@ name: Push
 
 on:
   push:
-    branches: [master]
+    branches: [chris--moar-ci]
 
 jobs:
   build:
