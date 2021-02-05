@@ -58,5 +58,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ github.event.issue.number }}
-          GITHUB_REPOSITORY: ${{ GITHUB_REPOSITORY }}
-          GITHUB_ACTOR: ${{ GITHUB_ACTOR }}
+          GITHUB_REPOSITORY: $GITHUB_REPOSITORY
+          GITHUB_ACTOR: $GITHUB_ACTOR
