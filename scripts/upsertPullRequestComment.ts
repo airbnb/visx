@@ -1,6 +1,6 @@
 import { Octokit } from '@octokit/rest';
 
-function createGitHubClient(authToken: string) {
+function createGitHubClient(authToken?: string) {
   return new Octokit({
     auth: `token ${authToken}`,
     userAgent: 'visx',
@@ -8,7 +8,7 @@ function createGitHubClient(authToken: string) {
 }
 
 export default async function upsertPullRequestComment(query: string, body: string) {
-  const { GITHUB_TOKEN, PR_NUMBER, GITHUB_REPOSITORY } = process.env;
+  const { GITHUB_TOKEN, PR_NUMBER, GITHUB_REPOSITORY = '/', GITHUB_ACTOR } = process.env;
 
   const client = createGitHubClient(GITHUB_TOKEN);
   const [owner, repo] = GITHUB_REPOSITORY.split('/');
@@ -23,7 +23,7 @@ export default async function upsertPullRequestComment(query: string, body: stri
 
   // Find a previously created comment by our bot
   const previousComments = comments.filter(
-    (comment: any) => comment.body.includes(query) && comment.user.login === GITHUB_USER,
+    (comment: any) => comment.body.includes(query) && comment.user.login === GITHUB_ACTOR,
   );
 
   // Update existing comment
