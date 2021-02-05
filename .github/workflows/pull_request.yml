@@ -54,11 +54,11 @@ jobs:
 
       - name: Report package sizes
         run: |
-          echo "Report package sizes on PR #${{ github.event.issue.number }}"
+          echo "Report package sizes for event ${{ github.event }}"
           yarn build:sizes && yarn check:sizes
         # add needed variables for posting on the PR via octokit
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_NUMBER: ${{ github.event.issue.number }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
           GITHUB_REPOSITORY: $GITHUB_REPOSITORY
           GITHUB_ACTOR: $GITHUB_ACTOR
