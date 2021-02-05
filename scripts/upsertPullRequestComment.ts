@@ -1,17 +1,17 @@
-import createGitHubClient from '@airbnb/nimbus/lib/helpers/createGitHubClient';
+import { Octokit } from '@octokit/rest';
+
+function createGitHubClient(authToken: string) {
+  return new Octokit({
+    auth: `token ${authToken}`,
+    userAgent: 'visx',
+  });
+}
 
 export default async function upsertPullRequestComment(query: string, body: string) {
-  const { GITHUB_USER, TRAVIS_PULL_REQUEST = 'false', TRAVIS_PULL_REQUEST_SLUG = '' } = process.env;
+  const { GITHUB_TOKEN, PR_NUMBER, OWNER: owner, REPO: repo } = process.env;
 
-  if (!TRAVIS_PULL_REQUEST || TRAVIS_PULL_REQUEST === 'false') {
-    console.log(`No pull request detected (${TRAVIS_PULL_REQUEST}). Avoiding comment.`);
-
-    return;
-  }
-
-  const [owner, repo] = TRAVIS_PULL_REQUEST_SLUG.split('/');
-  const prNumber = Number(TRAVIS_PULL_REQUEST);
-  const client = createGitHubClient();
+  const client = createGitHubClient(GITHUB_TOKEN);
+  const prNumber = Number(PR_NUMBER);
 
   // Load all comments
   const { data: comments } = await client.issues.listComments({

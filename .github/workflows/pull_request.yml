@@ -54,3 +54,9 @@ jobs:
 
       - name: Report package sizes
         run: yarn build:sizes && yarn check:sizes
+        # this action posts comments on the PR so we need some variables
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ context.issue.number }}
+          OWNER: ${{ context.repo.owner }}
+          REPO: ${{ context.repo.repo }}
