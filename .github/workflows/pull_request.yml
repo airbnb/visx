@@ -57,6 +57,6 @@ jobs:
         # add needed variables for posting on the PR via octokit
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_NUMBER: ${{ context.issue.number }}
-          OWNER: ${{ context.repo.owner }}
-          REPO: ${{ context.repo.repo }}
+          PR_NUMBER: ${{ github.event.issue.number }}
+          GITHUB_REPOSITORY: ${{ GITHUB_REPOSITORY }}
+          GITHUB_ACTOR: ${{ GITHUB_ACTOR }}

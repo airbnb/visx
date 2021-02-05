@@ -8,9 +8,10 @@ function createGitHubClient(authToken: string) {
 }
 
 export default async function upsertPullRequestComment(query: string, body: string) {
-  const { GITHUB_TOKEN, PR_NUMBER, OWNER: owner, REPO: repo } = process.env;
+  const { GITHUB_TOKEN, PR_NUMBER, GITHUB_REPOSITORY } = process.env;
 
   const client = createGitHubClient(GITHUB_TOKEN);
+  const [owner, repo] = GITHUB_REPOSITORY.split('/');
   const prNumber = Number(PR_NUMBER);
 
   // Load all comments
