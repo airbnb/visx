@@ -9,6 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          persist-credentials: false # needed for gh-pages deployment
       - uses: actions/setup-node@v1
         with:
           node-version: '12'
@@ -30,24 +32,11 @@ jobs:
       - name: 🛠 Build packages
         run: yarn build
 
-      - name: 📐 Commit package sizes
-        run: |
-          yarn build:sizes
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add .
-          git commit -m "build(${GITHUB_SHA}): auto-commit package sizes"
-          git push
-
       - name: 🛠 Build gallery
         working-directory: './packages/visx-demo/'
         run: |
           rm -rf out
           yarn build
-
-      - uses: actions/checkout@v2
-        with:
-          persist-credentials: false # needed for gh-pages deployment
 
       - name: 🚀 Deploy gallery
         uses: JamesIves/github-pages-deploy-action@3.7.1
