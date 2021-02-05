@@ -9,6 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          persist-credentials: false # needed for gh-pages deployment
       - uses: actions/setup-node@v1
         with:
           node-version: '12'
@@ -39,20 +41,17 @@ jobs:
           git commit -m "build(${GITHUB_SHA}): auto-commit package sizes"
           git push
 
-      - name: Deploy gallery
+      - name: Build gallery
         working-directory: './packages/visx-demo/'
-        # this builds the next.js static site into an out/ dir, creates a git
-        # repo with its contents and pushes it to the gh-pages branch.
-        # we can't use the visx-demo script because we need git credentials
         run: |
           rm -rf out
           yarn build
-          cd out 
-          touch .nojekyll
-          git init 
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add . 
-          git commit -m "gallery(${GITHUB_SHA}): auto-deploy commit" 
-          git push -f "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git" gh-pages
-          yarn deploy
+
+      - name: Deploy gallery
+        working-directory: './packages/visx-demo/'
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages # branch to deploy to
+          FOLDER: out # folder the action should deploy
+          SINGLE_COMMIT: true # use single commit on gh-pages instead of the full history
