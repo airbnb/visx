@@ -35,9 +35,8 @@ jobs:
           yarn build:sizes
           git config user.name github-actions
           git config user.email github-actions@github.com
-          echo "GITHUB_SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
           git add .
-          git commit -m "build(${GITHUB_SHORT_SHA}): auto-commit package sizes"
+          git commit -m "build(${GITHUB_SHA}): auto-commit package sizes"
           git push
 
       - name: Deploy gallery
@@ -49,12 +48,12 @@ jobs:
           rm -rf out
           yarn build
           cd out 
-          touch .nojekyll 
+          touch .nojekyll
+          git init 
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git init 
           git add . 
-          git commit -m "gallery: deploy commit" 
+          git commit -m "gallery(${GITHUB_SHA}): auto-deploy commit" 
           git remote add origin git@github.com:airbnb/visx.git 
           git push -f origin master:gh-pages
           yarn deploy
