@@ -36,7 +36,7 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           echo "GITHUB_SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
-          yarn add .
+          git add .
           git commit -m "build(${GITHUB_SHORT_SHA}): auto-commit package sizes"
           git push
 
