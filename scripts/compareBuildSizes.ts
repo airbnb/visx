@@ -40,6 +40,7 @@ async function compareBuildSizes() {
 
     prevSizes = await masterFileSizesRequest.json();
   } catch (error) {
+    console.log(`Could not fetch file ${PACKAGE_SIZES_FILENAME} from master. Aborting.`);
     console.log(error.message);
 
     prevSizes = nextSizes;
