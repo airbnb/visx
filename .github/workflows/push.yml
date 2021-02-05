@@ -29,10 +29,10 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile --ignore-engines
 
-      - name: Build packages
+      - name: 🛠 Build packages
         run: yarn build
 
-      - name: Commit package sizes
+      - name: 📐 Commit package sizes
         run: |
           yarn build:sizes
           git config user.name github-actions
@@ -41,17 +41,16 @@ jobs:
           git commit -m "build(${GITHUB_SHA}): auto-commit package sizes"
           git push
 
-      - name: Build gallery
+      - name: 🛠 Build gallery
         working-directory: './packages/visx-demo/'
         run: |
           rm -rf out
           yarn build
 
-      - name: Deploy gallery
-        working-directory: './packages/visx-demo/'
+      - name: 🚀 Deploy gallery
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages # branch to deploy to
-          FOLDER: out # folder the action should deploy
+          FOLDER: ./packages/visx-demo/out # folder the action should deploy
           SINGLE_COMMIT: true # use single commit on gh-pages instead of the full history
