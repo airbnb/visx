@@ -53,3 +53,12 @@ jobs:
           HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
           HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
           HAPPO_COMMAND: '../../node_modules/happo.io/build/cli.js'
+
+      - name: Package sizes
+        run: yarn build:sizes && yarn check:sizes
+
+      - name: Deploy gallery
+        if:
+          github.event_name == 'pull_request' && github.event.action == 'closed' &&
+          github.event.pull_request.merged == true
+        run: yarn build:deploy-demo
