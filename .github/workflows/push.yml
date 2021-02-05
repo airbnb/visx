@@ -9,8 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        with:
-          persist-credentials: false # needed for gh-pages deployment
       - uses: actions/setup-node@v1
         with:
           node-version: '12'
@@ -46,6 +44,10 @@ jobs:
         run: |
           rm -rf out
           yarn build
+
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false # needed for gh-pages deployment
 
       - name: 🚀 Deploy gallery
         uses: JamesIves/github-pages-deploy-action@3.7.1
