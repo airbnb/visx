@@ -3,7 +3,7 @@ import path from 'path';
 import chalk from 'chalk';
 import glob from 'fast-glob';
 
-export const PACKAGE_SIZES_FILENAME = './packageSizes.json';
+export const PACKAGE_SIZES_FILENAME = './packages/sizes.json';
 
 async function getTotalSize(fileGlob: string, cwd: string): Promise<number> {
   const files = await glob(fileGlob, { absolute: true, cwd, onlyFiles: true });
