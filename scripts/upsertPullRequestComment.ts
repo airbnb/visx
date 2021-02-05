@@ -22,7 +22,7 @@ export default async function upsertPullRequestComment(query: string, body: stri
 
   // Find a previously created comment by our bot
   const previousComments = comments.filter(
-    comment => comment.body.includes(query) && comment.user.login === GITHUB_USER,
+    (comment: any) => comment.body.includes(query) && comment.user.login === GITHUB_USER,
   );
 
   // Update existing comment
