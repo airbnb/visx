@@ -67,7 +67,8 @@ export default function Example({
   showControls = true,
 }: AxisProps) {
   // use non-animated components if prefers-reduced-motion is set
-  const prefersReducedMotionQuery = window?.matchMedia('(prefers-reduced-motion: reduce)');
+  const prefersReducedMotionQuery =
+    typeof window === 'undefined' ? false : window.matchMedia('(prefers-reduced-motion: reduce)');
   const prefersReducedMotion = !prefersReducedMotionQuery || !!prefersReducedMotionQuery.matches;
   const [useAnimatedComponents, setUseAnimatedComponents] = useState(!prefersReducedMotion);
 
