@@ -64,6 +64,7 @@
     "@types/enzyme": "^3.10.3",
     "@types/jest": "^24.0.18",
     "@types/jsdom": "^12.2.4",
+    "@types/node-fetch": "1.6.9",
     "@types/react-test-renderer": "^16.9.0",
     "@types/webpack": "^4.41.17",
     "chalk": "4.1.0",
