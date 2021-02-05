@@ -1,8 +1,6 @@
-name: CI
+name: Pull request
 
 on:
-  push:
-    branches: [master]
   pull_request:
     branches: [master]
 
@@ -47,7 +45,6 @@ jobs:
         run: yarn lint
 
       - name: Run happo
-        if: github.event_name == 'pull_request'
         run: yarn run happo-ci-github-actions
         working-directory: './packages/visx-demo/'
         env:
@@ -56,12 +53,4 @@ jobs:
           HAPPO_COMMAND: '../../node_modules/happo.io/build/cli.js'
 
       - name: Report package sizes
-        if: github.event_name == 'pull_request'
         run: yarn build:sizes && yarn check:sizes
-
-      - name: Deploy gallery
-        if:
-          github.event_name == 'pull_request' && github.event.action == 'closed' &&
-          github.event.pull_request.merged == true
-        working-directory: './packages/visx-demo/'
-        run: yarn deploy

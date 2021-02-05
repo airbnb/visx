@@ -1,0 +1,48 @@
+name: Push
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - uses: actions/cache@v1
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile --ignore-engines
+
+      - name: Build packages
+        run: yarn build
+
+      - name: Commit package sizes
+        run: |
+          yarn build:sizes
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          echo "GITHUB_SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
+          yarn add .
+          git commit -m "build(${GITHUB_SHORT_SHA}): auto-commit package sizes"
+          git push
+
+      - name: Deploy gallery
+        working-directory: './packages/visx-demo/'
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          yarn deploy
