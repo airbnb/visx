@@ -53,9 +53,7 @@ jobs:
           HAPPO_COMMAND: '../../node_modules/happo.io/build/cli.js'
 
       - name: Report package sizes
-        run: |
-          echo "Report package sizes for event ${{ github.event }}"
-          yarn build:sizes && yarn check:sizes
+        run: yarn build:sizes && yarn check:sizes
         # add needed variables for posting on the PR via octokit
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
