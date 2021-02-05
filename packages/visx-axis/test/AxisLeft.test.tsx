@@ -13,16 +13,16 @@ const axisProps = {
 };
 
 describe('<AxisLeft />', () => {
-  test('it should be defined', () => {
+  it('should be defined', () => {
     expect(AxisLeft).toBeDefined();
   });
 
-  test('it should render with class .visx-axis-left', () => {
+  it('should render with class .visx-axis-left', () => {
     const wrapper = shallow(<AxisLeft {...axisProps} />);
     expect(wrapper.prop('axisClassName')).toEqual('visx-axis-left');
   });
 
-  test('it should set user-specified axisClassName, axisLineClassName, labelClassName, and tickClassName', () => {
+  it('should set user-specified axisClassName, axisLineClassName, labelClassName, and tickClassName', () => {
     const axisClassName = 'axis-test-class';
     const axisLineClassName = 'axisline-test-class';
     const labelClassName = 'label-test-class';
@@ -45,29 +45,29 @@ describe('<AxisLeft />', () => {
     expect(axis.prop('tickClassName')).toBe(tickClassName);
   });
 
-  test('it should default labelOffset prop to 36', () => {
+  it('should default labelOffset prop to 36', () => {
     const wrapper = shallow(<AxisLeft {...axisProps} />);
     expect(wrapper.prop('labelOffset')).toEqual(36);
   });
 
-  test('it should set labelOffset prop', () => {
+  it('should set labelOffset prop', () => {
     const labelOffset = 3;
     const wrapper = shallow(<AxisLeft {...axisProps} labelOffset={labelOffset} />);
     expect(wrapper.prop('labelOffset')).toEqual(labelOffset);
   });
 
-  test('it should default tickLength prop to 8', () => {
+  it('should default tickLength prop to 8', () => {
     const wrapper = shallow(<AxisLeft {...axisProps} />);
     expect(wrapper.prop('tickLength')).toEqual(8);
   });
 
-  test('it should set tickLength prop', () => {
+  it('should set tickLength prop', () => {
     const tickLength = 15;
     const wrapper = shallow(<AxisLeft {...axisProps} tickLength={tickLength} />);
     expect(wrapper.prop('tickLength')).toEqual(tickLength);
   });
 
-  test('it should set label prop', () => {
+  it('should set label prop', () => {
     const label = 'test';
     const wrapper = shallow(<AxisLeft {...axisProps} label={label} />).dive();
     const text = wrapper.find('.visx-axis-label');

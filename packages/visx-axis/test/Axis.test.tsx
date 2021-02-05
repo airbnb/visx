@@ -17,16 +17,16 @@ const axisProps = {
 };
 
 describe('<Axis />', () => {
-  test('it should be defined', () => {
+  it('should be defined', () => {
     expect(Axis).toBeDefined();
   });
 
-  test('it should render with class .visx-axis', () => {
+  it('should render with class .visx-axis', () => {
     const wrapper = shallow(<Axis {...axisProps} />);
     expect(wrapper.prop('className')).toEqual('visx-axis');
   });
 
-  test('it should call children function with required args', () => {
+  it('should call children function with required args', () => {
     const mockFn = jest.fn();
     shallow(<Axis {...axisProps}>{mockFn}</Axis>);
     const args = mockFn.mock.calls[0][0];
@@ -44,7 +44,7 @@ describe('<Axis />', () => {
     expect(Object.keys(args.ticks[0])).toEqual(['value', 'index', 'from', 'to', 'formattedValue']);
   });
 
-  test('it should set user-specified axisClassName, axisLineClassName, labelClassName, and tickClassName', () => {
+  it('should set user-specified axisClassName, axisLineClassName, labelClassName, and tickClassName', () => {
     const axisClassName = 'axis-test-class';
     const axisLineClassName = 'axisline-test-class';
     const labelClassName = 'label-test-class';
@@ -66,7 +66,7 @@ describe('<Axis />', () => {
     expect(wrapper.find(`.${tickClassName}`).length).toBeGreaterThan(0);
   });
 
-  test('it should pass the output of tickLabelProps to tick labels', () => {
+  it('should pass the output of tickLabelProps to tick labels', () => {
     const tickProps = { fontSize: 50, fill: 'magenta' };
     const wrapper = shallow(<Axis {...axisProps} tickLabelProps={() => tickProps} />);
 
@@ -78,13 +78,22 @@ describe('<Axis />', () => {
     expect.hasAssertions();
   });
 
-  test('it should call the tickLabelProps func with the signature (tickValue, index)', () => {
+  it('should call the tickLabelProps func with the signature (value, index, values)', () => {
+    expect.hasAssertions();
     shallow(
       <Axis
         {...axisProps}
-        tickLabelProps={(value, index) => {
+        tickLabelProps={(value, index, values) => {
           expect(value).toEqual(expect.any(Number));
           expect(index).toBeGreaterThan(-1);
+          expect(values).toEqual(
+            expect.arrayContaining([
+              expect.objectContaining({
+                value: expect.any(Number),
+                index: expect.any(Number),
+              }),
+            ]),
+          );
           return {};
         }}
       />,
@@ -93,7 +102,7 @@ describe('<Axis />', () => {
     expect.hasAssertions();
   });
 
-  test('it should pass labelProps to the axis label', () => {
+  it('should pass labelProps to the axis label', () => {
     const labelProps = { fontSize: 50, fill: 'magenta' };
     const wrapper = shallow(<Axis {...axisProps} labelProps={labelProps} />);
 
@@ -101,7 +110,7 @@ describe('<Axis />', () => {
     expect(label.find(Text).props()).toEqual(expect.objectContaining(labelProps));
   });
 
-  test('it should render the 0th tick if hideZero is false', () => {
+  it('should render the 0th tick if hideZero is false', () => {
     const wrapper = shallow(<Axis {...axisProps} hideZero={false} />);
     expect(
       wrapper
@@ -111,7 +120,7 @@ describe('<Axis />', () => {
     ).toBe('visx-tick-0-0');
   });
 
-  test('it should not show 0th tick if hideZero is true', () => {
+  it('should not show 0th tick if hideZero is true', () => {
     const wrapper = shallow(<Axis {...axisProps} hideZero />);
     expect(
       wrapper
@@ -121,7 +130,7 @@ describe('<Axis />', () => {
     ).toBe('visx-tick-1-0');
   });
 
-  test('it should SHOW an axis line if hideAxisLine is false', () => {
+  it('should SHOW an axis line if hideAxisLine is false', () => {
     const wrapper = shallow(<Axis {...axisProps} hideAxisLine={false} />);
     expect(
       wrapper
@@ -131,7 +140,7 @@ describe('<Axis />', () => {
     ).toHaveLength(1);
   });
 
-  test('it should HIDE an axis line if hideAxisLine is true', () => {
+  it('should HIDE an axis line if hideAxisLine is true', () => {
     const wrapper = shallow(<Axis {...axisProps} hideAxisLine />);
     expect(
       wrapper
@@ -141,12 +150,12 @@ describe('<Axis />', () => {
     ).toHaveLength(0);
   });
 
-  test('it should SHOW ticks if hideTicks is false', () => {
+  it('should SHOW ticks if hideTicks is false', () => {
     const wrapper = shallow(<Axis {...axisProps} hideTicks={false} />);
     expect(wrapper.children().find('.visx-axis-tick').length).toBeGreaterThan(0);
   });
 
-  test('it should HIDE ticks if hideTicks is true', () => {
+  it('should HIDE ticks if hideTicks is true', () => {
     const wrapper = shallow(<Axis {...axisProps} hideTicks />);
     expect(
       wrapper
@@ -156,7 +165,7 @@ describe('<Axis />', () => {
     ).toHaveLength(0);
   });
 
-  test('it should render one tick for each value specified in tickValues', () => {
+  it('should render one tick for each value specified in tickValues', () => {
     let wrapper = shallow(<Axis {...axisProps} tickValues={[]} />);
     expect(
       wrapper
@@ -173,7 +182,7 @@ describe('<Axis />', () => {
     expect(wrapper.children().find('.visx-axis-tick')).toHaveLength(7);
   });
 
-  test('it should use tickFormat to format ticks if passed', () => {
+  it('should use tickFormat to format ticks if passed', () => {
     const wrapper = shallow(<Axis {...axisProps} tickValues={[0]} tickFormat={() => 'test!!!'} />);
     expect(
       wrapper
@@ -197,7 +206,7 @@ describe('<Axis />', () => {
     ).toBe('0');
   });
 
-  test('it should use center if scale is band', () => {
+  it('should use center if scale is band', () => {
     const wrapper = shallow(
       <Axis
         orientation="bottom"
