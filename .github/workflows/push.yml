@@ -42,7 +42,19 @@ jobs:
 
       - name: Deploy gallery
         working-directory: './packages/visx-demo/'
+        # this builds the next.js static site into an out/ dir, creates a git
+        # repo with its contents and pushes it to the gh-pages branch.
+        # we can't use the visx-demo script because we need git credentials
         run: |
+          rm -rf out
+          yarn build
+          cd out 
+          touch .nojekyll 
           git config user.name github-actions
           git config user.email github-actions@github.com
+          git init 
+          git add . 
+          git commit -m "gallery: deploy commit" 
+          git remote add origin git@github.com:airbnb/visx.git 
+          git push -f origin master:gh-pages
           yarn deploy
