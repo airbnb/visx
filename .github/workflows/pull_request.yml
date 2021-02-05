@@ -54,7 +54,7 @@ jobs:
 
       - name: Report package sizes
         run: yarn build:sizes && yarn check:sizes
-        # this action posts comments on the PR so we need some variables
+        # add needed variables for posting on the PR via octokit
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ context.issue.number }}
