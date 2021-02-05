@@ -54,6 +54,5 @@ jobs:
           git config user.email github-actions@github.com
           git add . 
           git commit -m "gallery(${GITHUB_SHA}): auto-deploy commit" 
-          git remote add origin https://github.com/airbnb/visx.git 
-          git push -f origin master:gh-pages
+          git push -f "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git" gh-pages
           yarn deploy
