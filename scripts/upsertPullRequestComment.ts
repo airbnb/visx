@@ -14,6 +14,8 @@ export default async function upsertPullRequestComment(query: string, body: stri
   const [owner, repo] = GITHUB_REPOSITORY.split('/');
   const prNumber = Number(PR_NUMBER);
 
+  console.log(`Loading comments for repo ${GITHUB_REPOSITORY} issue #${prNumber}`);
+
   // Load all comments
   const { data: comments } = await client.issues.listComments({
     issue_number: prNumber,
