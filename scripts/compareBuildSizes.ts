@@ -111,8 +111,9 @@ ${JSON.stringify(nextSizes, null, 2)}
 
   try {
     await upsertPullRequestComment('### Size Changes', breakdown);
-  } catch {
-    console.log(breakdown);
+  } catch (error) {
+    console.log('Could not post size stats', breakdown);
+    console.error(error);
   }
 }
 
