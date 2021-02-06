@@ -41,11 +41,12 @@ jobs:
           git checkout --orphan gh-pages
           git reset --hard
           touch .nojekyll
-          yarn build
           git add .
-          git commit -m "bot(${GITHUB_SHA}): auto-commit gallery"
+          git commit -m "bot(${GITHUB_SHA}): initialize gh-pages branch"
           git checkout master
           rm -rf out
+          yarn build
           git worktree add out gh-pages
           cd out
+          git commit -m "bot(${GITHUB_SHA}): auto-commit gallery"
           git push -f https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git gh-pages
