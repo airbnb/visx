@@ -8,9 +8,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        with:
-          persist-credentials: false # needed for gh-pages deployment
+      - uses: actions/checkout@v2 # checkout visx + this commit
       - uses: actions/setup-node@v1
         with:
           node-version: '12'
@@ -34,14 +32,20 @@ jobs:
 
       - name: 🛠 Build gallery
         working-directory: './packages/visx-demo/'
+        # below we
+        #  checkout gh-pages as an orphan branch so we don't build history
+        #  build the next.js site and commit it
+        #  switch to master and add out/ as a new worktree mapped to the gh-pages branch
+        #  cd into out/ which updates to the gh-pages branch
         run: |
-          rm -rf out
+          git checkout --orphan gh-pages
+          git reset --hard
+          touch .nojekyll
           yarn build
-
-      - name: 🚀 Deploy gallery
-        uses: JamesIves/github-pages-deploy-action@3.7.1
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: gh-pages # branch to deploy to
-          FOLDER: ./packages/visx-demo/out # folder the action should deploy
-          SINGLE_COMMIT: true # use single commit on gh-pages instead of the full history
+          git add .
+          git commit -m "bot(${GITHUB_SHA}): auto-commit gallery"
+          git checkout master
+          rm -rf out
+          git worktree add out gh-pages
+          cd out
+          git push -f https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git gh-pages
