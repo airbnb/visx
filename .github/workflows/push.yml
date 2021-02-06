@@ -33,11 +33,14 @@ jobs:
       - name: 🛠 Build gallery
         working-directory: './packages/visx-demo/'
         # below we
+        #  setup git credentials provided via actions/checkout@v2
         #  checkout gh-pages as an orphan branch so we don't build history
         #  build the next.js site and commit it
         #  switch to master and add out/ as a new worktree mapped to the gh-pages branch
         #  cd into out/ which updates to the gh-pages branch
         run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
           git checkout --orphan gh-pages
           git reset --hard
           touch .nojekyll
