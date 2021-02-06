@@ -48,5 +48,6 @@ jobs:
           yarn build
           git worktree add out gh-pages
           cd out
+          git add .
           git commit -m "bot(${GITHUB_SHA}): auto-commit gallery"
           git push -f https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git gh-pages
