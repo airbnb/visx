@@ -47,9 +47,8 @@ jobs:
           git add .
           git commit -m "bot(${GITHUB_SHA}): initialize gh-pages branch"
           git checkout "$GITHUB_SHA"
-          rm -rf out
-          yarn build
           git worktree add out gh-pages
+          yarn build
           cd out
           git add .
           git commit -m "bot(${GITHUB_SHA}): auto-commit gallery"
