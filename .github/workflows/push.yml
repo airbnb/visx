@@ -31,25 +31,31 @@ jobs:
         run: yarn build
 
       - name: 🛠 Build gallery
-        working-directory: './packages/visx-demo/'
         # below we
-        #  setup git credentials provided via actions/checkout@v2
-        #  checkout gh-pages as an orphan branch so we don't build history
-        #  build the next.js site and commit it
-        #  switch to master and add out/ as a new worktree mapped to the gh-pages branch
-        #  cd into out/ which updates to the gh-pages branch
+        # - setup git credentials provided via actions/checkout@v2
+        # - initialize gh-pages-branch as an orphan branch so we don't build history
+        # - checkout the current commit and create gh-pages-root-dir/ as a new worktree
+        #   - outside that directory HEAD is detached at $GITHUB_SHA
+        #   - within that directory we are on the gh-pages-branch we just initialized
+        #     *worktree initialization should be in a root dir, otherwise the worktree inherits nested directories
+        # - build the static next.js site and copy the output into gh-pages-root-dir/
+        #   - we can't output directly into gh-pages-root-dir/ because next wipes the folder including .git
+        # - commit the demo site within gh-pages-root-dir/ onto the gh-pages-branch
+        # - push gh-pages-branch to visx as gh-pages. we overwrite history every time so it must be forced
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git checkout --orphan gh-pages
+          git checkout --orphan gh-pages-branch
           git reset --hard
           touch .nojekyll
-          git add .
+          git add .nojekyll
           git commit -m "bot(${GITHUB_SHA}): initialize gh-pages branch"
           git checkout "$GITHUB_SHA"
-          git worktree add out gh-pages
+          git worktree add gh-pages-root-dir gh-pages-branch
+          cd ./packages/visx-demo/
           yarn build
-          cd out
+          mv -v out/* ../../gh-pages-root-dir/
+          cd ../../gh-pages-root-dir/
           git add .
-          git commit -m "bot(${GITHUB_SHA}): auto-commit gallery"
-          git push -f "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git" gh-pages
+          git commit -m "bot(${GITHUB_SHA}): build gh-pages"
+          git push -f "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git" HEAD:gh-test
