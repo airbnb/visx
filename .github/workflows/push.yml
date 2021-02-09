@@ -24,7 +24,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
-      - name: 👇 Install dependencies
+      - name: 📡 Install dependencies
         run: yarn install --frozen-lockfile --ignore-engines
 
       - name: 🛠 Build packages
