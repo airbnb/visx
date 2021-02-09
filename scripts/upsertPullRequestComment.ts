@@ -8,7 +8,7 @@ function createGitHubClient(authToken?: string) {
 }
 
 export default async function upsertPullRequestComment(query: string, body: string) {
-  const { GITHUB_TOKEN, PR_NUMBER, GITHUB_REPOSITORY = '/', GITHUB_ACTOR } = process.env;
+  const { GITHUB_TOKEN, PR_NUMBER, GITHUB_REPOSITORY = '/', GITHUB_ACTOR = '' } = process.env;
 
   const client = createGitHubClient(GITHUB_TOKEN);
   const [owner, repo] = GITHUB_REPOSITORY.split('/');
@@ -26,8 +26,8 @@ export default async function upsertPullRequestComment(query: string, body: stri
   // Find a previously created comment by our bot
   const previousComments = comments.filter(
     comment =>
-      comment.body.includes(query) &&
-      comment.user.type === 'Bot' &&
+      comment.body?.includes(query) &&
+      comment.user?.type === 'Bot' &&
       // bots have [bot] appended to GITHUB_ACTOR
       comment.user.login.includes(GITHUB_ACTOR),
   );
