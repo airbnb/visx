@@ -2,7 +2,7 @@ name: Push
 
 on:
   push:
-    branches: [chris--moar-ci]
+    branches: [master]
 
 jobs:
   build:
@@ -24,13 +24,22 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
-      - name: Install dependencies
+      - name: 👇 Install dependencies
         run: yarn install --frozen-lockfile --ignore-engines
 
       - name: 🛠 Build packages
         run: yarn build
 
-      - name: 🛠 Build gallery
+      - name: 📐 Commit package sizes
+        run: |
+          yarn build:sizes	
+          git config user.name github-actions	
+          git config user.email github-actions@github.com	
+          git add .	
+          git commit -m "build(${GITHUB_SHA}): auto-commit package sizes"	
+          git push
+
+      - name: 🚀 Build and deploy gallery
         # below we
         # - setup git credentials provided via actions/checkout@v2
         # - initialize gh-pages-branch as an orphan branch so we don't build history
@@ -58,4 +67,4 @@ jobs:
           cd ../../gh-pages-root-dir/
           git add .
           git commit -m "bot(${GITHUB_SHA}): build gh-pages"
-          git push -f "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git" HEAD:gh-test
+          git push -f "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git" HEAD:gh-pages
