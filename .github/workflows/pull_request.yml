@@ -1,8 +1,6 @@
-name: CI
+name: Pull request
 
 on:
-  push:
-    branches: [master]
   pull_request:
     branches: [master]
 
@@ -10,7 +8,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2 # checkout visx + this commit
       - uses: actions/setup-node@v1
         with:
           node-version: '12'
@@ -26,30 +24,39 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
-      - name: Install dependencies
+      - name: 📡 Install dependencies
         run: yarn install --frozen-lockfile --ignore-engines
 
-      - name: Build packages
+      - name: 🛠 Build packages
         run: yarn build
 
-      - name: Run jest
+      - name: 🧪 Run jest
         run: yarn jest -w 4
         env:
           CI: true
           COVERAGE: true
 
-      - name: Report code coverage
+      - name: 📈 Report code coverage
         uses: coverallsapp/github-action@v1.1.1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Run lint
+      - name: ✨ Run lint
         run: yarn lint
 
-      - name: Run happo
+      - name: 🦛 Run happo
         run: yarn run happo-ci-github-actions
         working-directory: './packages/visx-demo/'
         env:
           HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
           HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
           HAPPO_COMMAND: '../../node_modules/happo.io/build/cli.js'
+
+      - name: 📐 Report package sizes
+        run: yarn build:sizes && yarn check:sizes
+        # add needed variables for posting on the PR via octokit
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          GITHUB_REPOSITORY: $GITHUB_REPOSITORY
+          GITHUB_ACTOR: $GITHUB_ACTOR

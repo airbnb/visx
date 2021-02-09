@@ -1,0 +1,70 @@
+name: Push
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2 # checkout visx + this commit
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - uses: actions/cache@v1
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: 📡 Install dependencies
+        run: yarn install --frozen-lockfile --ignore-engines
+
+      - name: 🛠 Build packages
+        run: yarn build
+
+      - name: 📐 Commit package sizes
+        run: |
+          yarn build:sizes	
+          git config user.name github-actions	
+          git config user.email github-actions@github.com	
+          git add .	
+          git commit -m "build(${GITHUB_SHA}): auto-commit package sizes"	
+          git push
+
+      - name: 🚀 Build and deploy gallery
+        # below we
+        # - setup git credentials provided via actions/checkout@v2
+        # - initialize gh-pages-branch as an orphan branch so we don't build history
+        # - checkout the current commit and create gh-pages-root-dir/ as a new worktree
+        #   - outside that directory HEAD is detached at $GITHUB_SHA
+        #   - within that directory we are on the gh-pages-branch we just initialized
+        #     *worktree initialization should be in a root dir, otherwise the worktree inherits nested directories
+        # - build the static next.js site and copy the output into gh-pages-root-dir/
+        #   - we can't output directly into gh-pages-root-dir/ because next wipes the folder including .git
+        # - commit the demo site within gh-pages-root-dir/ onto the gh-pages-branch
+        # - push gh-pages-branch to visx as gh-pages. we overwrite history every time so it must be forced
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git checkout --orphan gh-pages-branch
+          git reset --hard
+          touch .nojekyll
+          git add .nojekyll
+          git commit -m "bot(${GITHUB_SHA}): initialize gh-pages branch"
+          git checkout "$GITHUB_SHA"
+          git worktree add gh-pages-root-dir gh-pages-branch
+          cd ./packages/visx-demo/
+          yarn build
+          mv -v out/* ../../gh-pages-root-dir/
+          cd ../../gh-pages-root-dir/
+          git add .
+          git commit -m "bot(${GITHUB_SHA}): build gh-pages"
+          git push -f "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git" HEAD:gh-pages

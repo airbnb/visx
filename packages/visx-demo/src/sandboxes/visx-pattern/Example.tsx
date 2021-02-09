@@ -120,7 +120,8 @@ const Patterns: React.FC<{ id: string; prefersReducedMotion?: boolean }>[] = [
 
 export default function Example({ width, height, margin = defaultMargin }: PatternProps) {
   // use non-animated components if prefers-reduced-motion is set
-  const prefersReducedMotionQuery = window?.matchMedia('(prefers-reduced-motion: reduce)');
+  const prefersReducedMotionQuery =
+    typeof window === 'undefined' ? false : window.matchMedia('(prefers-reduced-motion: reduce)');
   const prefersReducedMotion = !prefersReducedMotionQuery || !!prefersReducedMotionQuery.matches;
 
   const numColumns = 3;
