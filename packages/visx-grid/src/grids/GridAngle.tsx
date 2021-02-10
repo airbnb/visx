@@ -12,7 +12,7 @@ export type GridAngleProps<Scale extends GridScale> = CommonGridProps & {
   /** `@visx/scale` or `d3-scale` object used to convert value to angle. */
   scale: Scale;
   /**
-   * Exact values used to generate grid lines using `scale`.
+   * Exact values used to generate angle grid lines using `scale`.
    * Overrides `numTicks` if specified.
    */
   tickValues?: ScaleInput<Scale>[];
