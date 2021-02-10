@@ -9,7 +9,7 @@ import { CommonGridProps, GridScale } from '../types';
 import polarToCartesian from '../utils/polarToCartesian';
 
 export type GridAngleProps<Scale extends GridScale> = CommonGridProps & {
-  /** `@visx/scale` or `d3-scale` object used to convert value to position. */
+  /** `@visx/scale` or `d3-scale` object used to convert value to angle. */
   scale: Scale;
   /**
    * Exact values used to generate grid lines using `scale`.
