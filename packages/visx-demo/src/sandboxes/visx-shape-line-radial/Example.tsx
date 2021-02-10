@@ -5,10 +5,12 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Group } from '@visx/group';
 import { LineRadial } from '@visx/shape';
-import { scaleTime, scaleLog } from '@visx/scale';
+import { scaleTime, scaleLog, NumberLike } from '@visx/scale';
 import { curveBasisOpen } from '@visx/curve';
 import appleStock, { AppleStock } from '@visx/mock-data/lib/mocks/appleStock';
 import { LinearGradient } from '@visx/gradient';
+import { AxisLeft } from '@visx/axis';
+import { GridRadial, GridAngle } from '@visx/grid';
 import { animated, useSpring } from 'react-spring';
 
 const green = '#e5fd3d';
@@ -16,6 +18,7 @@ export const blue = '#aeeef8';
 const darkgreen = '#dff84d';
 export const background = '#744cca';
 const darkbackground = '#603FA8';
+const strokeColor = '#744cca';
 const springConfig = {
   tension: 20,
 };
@@ -29,6 +32,7 @@ function extent<Datum>(data: Datum[], value: (d: Datum) => number) {
 // accessors
 const date = (d: AppleStock) => new Date(d.date).valueOf();
 const close = (d: AppleStock) => d.close;
+const formatTicks = (val: NumberLike) => String(val);
 
 // scales
 const xScale = scaleTime({
@@ -41,6 +45,7 @@ const yScale = scaleLog<number>({
 
 const angle = (d: AppleStock) => xScale(date(d)) ?? 0;
 const radius = (d: AppleStock) => yScale(close(d)) ?? 0;
+const padding = 20;
 
 const firstPoint = appleStock[0];
 const lastPoint = appleStock[appleStock.length - 1];
@@ -73,9 +78,8 @@ const Example = ({ width, height, animate = true }: LineRadialProps) => {
   if (width < 10) return null;
 
   // Update scale output to match component dimensions
-  yScale.range([0, height / 2 - 20]);
-
-  const yScaleTicks = yScale.ticks();
+  yScale.range([0, height / 2 - padding]);
+  const reverseYScale = yScale.copy().range(yScale.range().reverse());
   const handlePress = () => setShouldAnimate(true);
 
   return (
@@ -92,32 +96,43 @@ const Example = ({ width, height, animate = true }: LineRadialProps) => {
         <LinearGradient from={green} to={blue} id="line-gradient" />
         <rect width={width} height={height} fill={background} rx={14} />
         <Group top={height / 2} left={width / 2}>
-          {/** Radial circles */}
-          {yScaleTicks.map((tick, i) => (
-            <circle
-              key={`radial-grid-${i}`}
-              r={yScale(tick)}
-              stroke={blue}
-              strokeWidth={1}
-              fill={blue}
-              fillOpacity={1 / (i + 1) - (1 / i) * 0.2}
-              strokeOpacity={0.2}
-            />
-          ))}
-          {/** Labels on top */}
-          {yScaleTicks.map((tick, i) => (
-            <text
-              key={`radial-grid-${i}`}
-              y={-(yScale(tick) ?? 0)}
-              dy="-.33em"
-              fontSize={8}
-              fill={blue}
-              textAnchor="middle"
-            >
-              {tick}
-            </text>
-          ))}
-
+          <GridAngle
+            scale={xScale}
+            outerRadius={height / 2 - padding}
+            stroke={green}
+            strokeWidth={1}
+            strokeOpacity={0.3}
+            strokeDasharray="5,2"
+            numTicks={20}
+          />
+          <GridRadial
+            scale={yScale}
+            numTicks={5}
+            stroke={blue}
+            strokeWidth={1}
+            fill={blue}
+            fillOpacity={0.1}
+            strokeOpacity={0.2}
+          />
+          <AxisLeft
+            top={-height / 2 + padding}
+            scale={reverseYScale}
+            numTicks={5}
+            tickStroke="none"
+            tickLabelProps={val => ({
+              fontSize: 8,
+              fill: blue,
+              fillOpacity: 1,
+              textAnchor: 'middle',
+              dx: '1em',
+              dy: '-0.5em',
+              stroke: strokeColor,
+              strokeWidth: 0.5,
+              paintOrder: 'stroke',
+            })}
+            tickFormat={formatTicks}
+            hideAxisLine
+          />
           <LineRadial angle={angle} radius={radius} curve={curveBasisOpen}>
             {({ path }) => {
               const d = path(appleStock) || '';
