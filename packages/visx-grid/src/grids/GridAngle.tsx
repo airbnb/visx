@@ -17,15 +17,15 @@ export type GridAngleProps<Scale extends GridScale> = CommonGridProps & {
    */
   tickValues?: ScaleInput<Scale>[];
   /**
-   * Radius which determines the start position of polar lines.
+   * Radius which determines the start position of angle lines.
    */
   innerRadius?: number;
   /**
-   * Radius which determines the end position of polar lines.
+   * Radius which determines the end position of angle lines.
    */
   outerRadius: number;
   /**
-   * The class name applied to all polar lines.
+   * The class name applied to all angle lines.
    */
   lineClassName?: string;
 };

@@ -21,7 +21,7 @@ export type GridPolarProps<
    */
   classNameAngle?: string;
   /**
-   * The class name applied to all radial lines.
+   * The class name applied to the radial grid group.
    */
   classNameRadial?: string;
   /**
@@ -33,15 +33,15 @@ export type GridPolarProps<
    */
   fillRadial?: string;
   /**
-   * Radius which determines the start position of polar lines.
+   * Radius which determines the start position of angle lines.
    */
   innerRadius?: number;
   /**
-   * Classname applied to angle line path.
+   * Classname applied to all angle line paths.
    */
   lineClassNameAngle?: string;
   /**
-   * Classname applied to radial line path.
+   * Classname applied to all radial line paths.
    */
   lineClassNameRadial?: string;
   /**
@@ -67,12 +67,12 @@ export type GridPolarProps<
    */
   numTicksRadial?: number;
   /**
-   * Radius which determines the end position of polar lines.
+   * Radius which determines the end position of angle lines.
    */
   outerRadius: number;
   /**
    * A [d3](https://github.com/d3/d3-scale) or [visx](https://github.com/airbnb/visx/tree/master/packages/visx-scale)
-   * scale function used to generate the angle of polar lines.
+   * scale function used to generate the angle of angle lines.
    */
   scaleAngle: AngleScale;
   /**

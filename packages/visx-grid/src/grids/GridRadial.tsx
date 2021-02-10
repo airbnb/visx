@@ -39,7 +39,7 @@ export type GridRadialProps<Scale extends GridScale> = CommonGridProps & {
    */
   startAngle?: number;
   /**
-   * Child components to the Arc
+   * Child components to the Arc.
    */
   children?: () => React.ReactNode;
 };
