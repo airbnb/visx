@@ -8,6 +8,7 @@ import TooltipContext from '../context/TooltipContext';
 import DataContext from '../context/DataContext';
 import { TooltipContextType } from '../types';
 import getScaleBandwidth from '../utils/getScaleBandwidth';
+import isValidNumber from '../typeguards/isValidNumber';
 
 /** fontSize + lineHeight from default styles break precise location of crosshair, etc. */
 const TOOLTIP_NO_STYLE: React.CSSProperties = {
@@ -158,8 +159,8 @@ export default function Tooltip<Datum extends object>({
   // snap x- or y-coord to the actual data point (not event coordinates)
   if (showTooltip && nearestDatum && (snapTooltipToDatumX || snapTooltipToDatumY)) {
     const { left, top } = getDatumLeftTop(nearestDatumKey, nearestDatum.datum);
-    tooltipLeft = snapTooltipToDatumX ? left : tooltipLeft;
-    tooltipTop = snapTooltipToDatumY ? top : tooltipTop;
+    tooltipLeft = snapTooltipToDatumX && isValidNumber(left) ? left : tooltipLeft;
+    tooltipTop = snapTooltipToDatumY && isValidNumber(top) ? top : tooltipTop;
   }
 
   // collect positions + styles for glyphs; glyphs always snap to Datum, not event coords
@@ -173,9 +174,13 @@ export default function Tooltip<Datum extends object>({
       Object.values(tooltipContext?.tooltipData?.datumByKey ?? {}).forEach(({ key, datum }) => {
         const color = colorScale?.(key) ?? theme?.htmlLabel?.color ?? '#222';
         const { left, top } = getDatumLeftTop(key, datum);
+
+        // don't show glyphs if coords are unavailable
+        if (!isValidNumber(left) || !isValidNumber(top)) return;
+
         glyphProps.push({
-          left: left == null ? left : left - radius - strokeWidth,
-          top: top == null ? top : top - radius - strokeWidth,
+          left: left - radius - strokeWidth,
+          top: top - radius - strokeWidth,
           fill: color,
           stroke: theme?.backgroundColor,
           strokeWidth,
