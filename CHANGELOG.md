@@ -1,4 +1,5 @@
 # Changelog
+- [v1.5.0](#v150)
 - [v1.4.0](#v140)
 - [v1.3.0](#v130)
 - [v1.2.0](#v120)
@@ -6,10 +7,10 @@
 - [v1.0.0](#v100)
 - [v0.0.199](#v00199)
 - [v0.0.198](#v00198)
-- [v0.0.197](#v00197)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v00197">v0.0.197</a></li>
   <li><a href="#v00196">v0.0.196</a></li>
   <li><a href="#v00195">v0.0.195</a></li>
   <li><a href="#v00194">v0.0.194</a></li>
@@ -94,6 +95,55 @@
 </details>
 
 ------
+# v1.5.0
+#### :rocket:  Enhancements
+
+- [grid] add GridPolar, GridAngle, and GridRadial [#1007](https://github.com/airbnb/visx/pull/1007)
+- [mock-data] add stable randomness [#1033](https://github.com/airbnb/visx/pull/1033)
+- [xychart] add AreaStack [#1019](https://github.com/airbnb/visx/pull/1019) closes [#994](https://github.com/airbnb/visx/pull/994)
+- [visx/visx] export @visx/xychart package [#1043](https://github.com/airbnb/visx/pull/1043) closes [#974](https://github.com/airbnb/visx/pull/974)
+- [axis] pass all tick values in tickLabelProps signature [#1044](https://github.com/airbnb/visx/pull/1044)
+
+#### :bug: Bug Fix
+
+- [xychart] improve Tooltip positioning with missing data [#1068](https://github.com/airbnb/visx/pull/1068) closes [#1054](https://github.com/airbnb/visx/pull/1054)
+- [xychart] make Tooltip postion robust to container changes [#1045](https://github.com/airbnb/visx/pull/1045) closes [#983](https://github.com/airbnb/visx/pull/983)
+- [xychart] fix scales for BarStack offset [#1019](https://github.com/airbnb/visx/pull/1019)
+- [xychart] add SVGPathElement props to BaseAreaSeries lineProps [#1046](https://github.com/airbnb/visx/pull/1046)
+
+### :memo: Documentation
+
+- sync code of conduct with Airbnb [#1013](https://github.com/airbnb/visx/pull/1013)
+- [demo/*] respect prefersReducedMotion [#1037](https://github.com/airbnb/visx/pull/1037)
+- [demo/barstack] improve Tooltip positining logic [#1018](https://github.com/airbnb/visx/pull/1018) closes [#1018](https://github.com/airbnb/visx/pull/1018)
+- [demo/xychart] add AreaStack, stackOffset control [#1020](https://github.com/airbnb/visx/pull/1020)
+- [in the wild] add eft.monster [#1010](https://github.com/airbnb/visx/pull/1010)
+
+### :house:  Internal
+
+- [testing] add happo for screenshot testing [#1030](https://github.com/airbnb/visx/pull/1030)
+- [xychart/areastack] add tests [#1036](https://github.com/airbnb/visx/pull/1036)
+- [CI] add package size checks + auto gallery deploy [#1048](https://github.com/airbnb/visx/pull/1048)
+
+#### :trophy: Contributors
+
+- [sarathps93](https://github.com/sarathps93)
+- [codenomial](https://github.com/codenomial)
+- [williaster](https://github.com/williaster)
+
+```
+Changes:
+ - @visx/annotation: 1.4.0 => 1.5.0
+ - @visx/axis: 1.4.0 => 1.5.0
+ - @visx/demo: 1.4.0 => 1.5.0
+ - @visx/grid: 1.4.0 => 1.5.0
+ - @visx/mock-data: 1.0.0 => 1.5.0
+ - @visx/react-spring: 1.4.0 => 1.5.0
+ - @visx/tooltip: 1.3.0 => 1.5.0
+ - @visx/visx: 1.4.0 => 1.5.0
+ - @visx/xychart: 1.4.0 => 1.5.0
+```
+
 # v1.4.0
 
 #### :rocket:  Enhancements
