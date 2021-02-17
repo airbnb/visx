@@ -18,9 +18,9 @@ export type BaseAreaSeriesProps<
   YScale extends AxisScale,
   Datum extends object
 > = SeriesProps<XScale, YScale, Datum> & {
-  /** Optional accessor to override the baseline value of vertically-oriented Area shapes per datum (useful to generate band shapes). Defaults to the scale zero value. Mot compatible with AreaStack. */
+  /** Optional accessor to override the baseline value of Area shapes per datum (useful to generate band shapes). Defaults to the scale zero value, not compatible with AreaStack. */
   y0Accessor?: SeriesProps<XScale, YScale, Datum>['yAccessor'];
-  /** Optional accessor to override the baseline value of horizontally-oriented Area shapes per datum (useful to generate band shapes). Defaults to the scale zero value. Mot compatible with AreaStack. */
+  /** Optional accessor to override the baseline value of Area shapes per datum (useful to generate band shapes) when chart is rendered horizontally (vertical line). Defaults to the scale zero value, not compatible with AreaStack. */
   x0Accessor?: SeriesProps<XScale, YScale, Datum>['xAccessor'];
   /** Whether to render a Line along value of the Area shape (area is fill only). */
   renderLine?: boolean;
