@@ -26,6 +26,23 @@ describe('<AreaSeries />', () => {
     expect(wrapper.find(Area)).toHaveLength(1);
   });
 
+  it('should use x/y0Accessors an Area', () => {
+    const y0Accessor = jest.fn(() => 3);
+    const wrapper = mount(
+      <DataContext.Provider value={getDataContext(series)}>
+        <svg>
+          <AreaSeries dataKey={series.key} {...series} y0Accessor={y0Accessor} />
+        </svg>
+      </DataContext.Provider>,
+    );
+
+    const callCount = y0Accessor.mock.calls.length;
+    expect(y0Accessor).toHaveBeenCalled();
+    const y0Area = wrapper.find(Area).prop('y0') as Function;
+    y0Area();
+    expect(y0Accessor).toHaveBeenCalledTimes(callCount + 1);
+  });
+
   it('should render a LinePath is renderLine=true', () => {
     const wrapper = mount(
       <DataContext.Provider value={getDataContext(series)}>
