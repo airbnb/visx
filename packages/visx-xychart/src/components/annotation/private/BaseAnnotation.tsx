@@ -25,7 +25,7 @@ export type BaseAnnotationProps<
   /** Annotation component to render. */
   AnnotationComponent: React.FC<AnnotationProps> | React.FC<EditableAnnotationProps>;
   /** Key for series to which datum belongs (used for x/yAccessors). Alternatively xAccessor + yAccessor may be specified. */
-  dataKey: string;
+  dataKey?: string;
   /** Datum to annotate, used for Annotation positioning. */
   datum: Datum;
   /** If dataKey is not specified, you must specify an xAccessor for datum. */
@@ -63,7 +63,8 @@ export default function BaseAnnotation<
     return null;
   }
 
-  const registryEntry = propsXAccessor && propsYAccessor ? null : dataRegistry?.get(dataKey);
+  const registryEntry =
+    (propsXAccessor && propsYAccessor) || dataKey == null ? null : dataRegistry?.get(dataKey);
   const xAccessor = propsXAccessor || registryEntry?.xAccessor;
   const yAccessor = propsYAccessor || registryEntry?.yAccessor;
 
