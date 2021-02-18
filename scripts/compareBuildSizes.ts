@@ -1,10 +1,9 @@
-import core from '@actions/core';
 import fs from 'fs';
 import size from 'filesize';
 import chalk from 'chalk';
 import fetch from 'node-fetch';
 import upsertPullRequestComment from './utils/upsertPullRequestComment';
-import { PACKAGE_SIZES_FILENAME } from './computeBuildSizes';
+import { PACKAGE_SIZES_FILENAME } from './utils/computeBuildSizes';
 
 type StatMap = {
   [pkg: string]: {
@@ -114,7 +113,8 @@ ${JSON.stringify(nextSizes, null, 2)}
   try {
     await upsertPullRequestComment('### Size Changes', breakdown);
   } catch (error) {
-    core.warning(`Could not post size stats:\n${breakdown}`);
+    console.warn(`Could not post size stats:\n${breakdown}`);
+    // @TODO this should throw once it works on forks
     console.error(error);
   }
 }
