@@ -39,7 +39,8 @@ async function assertPullRequestReleaseLabelsExist() {
     pull_number: prNumber,
   });
 
-  console.log('Found reviews', JSON.stringify(reviews.data));
+  console.log('Found reviews:\n', JSON.stringify(reviews.data));
+  console.log('Current github actor:', process.env.GITHUB_ACTOR);
 
   const previousBotReview = reviews.data.find(
     review =>
