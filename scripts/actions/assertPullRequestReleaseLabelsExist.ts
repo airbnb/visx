@@ -7,7 +7,7 @@ import getPullRequestNumber from './getPullRequestNumber';
 const RELEASE_LABELS = ['enhancements', 'bug', 'breaking'];
 
 /** Helper to fetch PR labels. */
-async function getPrLabels(client: Octokit, prNumber: number) {
+async function getPrLabels(client: Octokit, prNumber: number): Promise<string[]> {
   const { owner, repo } = github.context.repo;
 
   core.info(`Fetching PR labels for ${owner} ${repo} PR #${prNumber}.`);
@@ -21,7 +21,8 @@ async function getPrLabels(client: Octokit, prNumber: number) {
   if (!data || data.labels.length === 0) {
     throw new Error(`No Pull Requests found for ${prNumber} (${owner}/${repo}).`);
   }
-  return data.labels.map(label => label.name);
+
+  return data.labels.map(label => label.name).filter(label => label) as string[];
 }
 
 const needsReleaseLabelMessage = `👋 Hi,
@@ -29,7 +30,7 @@ const needsReleaseLabelMessage = `👋 Hi,
   The bot will dismiss the review as soon as a valid release label has been assigned.
 Thanks.`;
 
-export default async function assertReleaseLabel() {
+export default async function assertPullRequestReleaseLabelsExist() {
   const client = getGitHubClient();
   const prNumber = getPullRequestNumber();
   const { owner, repo } = github.context.repo;
@@ -43,8 +44,8 @@ export default async function assertReleaseLabel() {
 
   const previousBotReview = reviews.data.find(
     review =>
-      review.user.type === 'bot' &&
-      review.user.login.includes(github.context.actor) &&
+      review.user?.type === 'bot' &&
+      review.user?.login.includes(github.context.actor) &&
       review.body?.includes(needsReleaseLabelMessage),
   );
 
