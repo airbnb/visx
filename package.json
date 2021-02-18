@@ -37,6 +37,7 @@
     "build-one": "echo 'build-one has been replaced with build:workspace' & exit 1",
     "build:sizes": "yarn run ts ./scripts/computeBuildSizes.ts",
     "build:workspace": "nimbus babel --clean",
+    "check:pull_request_release_labels": "yarn run ts ./scripts/actions/assertPullRequestReleaseLabelsExist.ts",
     "check:sizes": "yarn run ts ./scripts/compareBuildSizes.ts",
     "clean": "rm -rf ./packages/**/{lib,esm}",
     "format": "yarn run prettier --write",

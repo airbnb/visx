@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2 # checkout visx + this commit
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2
         with:
           node-version: '12'
 
@@ -54,9 +54,5 @@ jobs:
 
       - name: 📐 Report package sizes
         run: yarn build:sizes && yarn check:sizes
-        # add needed variables for posting on the PR via octokit
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-          GITHUB_REPOSITORY: $GITHUB_REPOSITORY
-          GITHUB_ACTOR: $GITHUB_ACTOR

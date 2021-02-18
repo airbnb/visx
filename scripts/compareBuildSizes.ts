@@ -1,3 +1,4 @@
+import core from '@actions/core';
 import fs from 'fs';
 import size from 'filesize';
 import chalk from 'chalk';
@@ -113,7 +114,7 @@ ${JSON.stringify(nextSizes, null, 2)}
   try {
     await upsertPullRequestComment('### Size Changes', breakdown);
   } catch (error) {
-    console.log('Could not post size stats', breakdown);
+    core.warning(`Could not post size stats:\n${breakdown}`);
     console.error(error);
   }
 }

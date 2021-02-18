@@ -1,20 +1,15 @@
-import { Octokit } from '@octokit/rest';
+import core from '@actions/core';
+import github from '@actions/github';
 
-function createGitHubClient(authToken?: string) {
-  return new Octokit({
-    auth: `token ${authToken}`,
-    userAgent: 'visx',
-  });
-}
+import getGitHubClient from './actions/getGitHubClient';
+import getPullRequestNumber from './actions/getPullRequestNumber';
 
 export default async function upsertPullRequestComment(query: string, body: string) {
-  const { GITHUB_TOKEN, PR_NUMBER, GITHUB_REPOSITORY = '/', GITHUB_ACTOR = '' } = process.env;
+  const client = getGitHubClient();
+  const prNumber = getPullRequestNumber();
+  const { owner, repo } = github.context.repo;
 
-  const client = createGitHubClient(GITHUB_TOKEN);
-  const [owner, repo] = GITHUB_REPOSITORY.split('/');
-  const prNumber = Number(PR_NUMBER);
-
-  console.log(`Loading comments for repo ${GITHUB_REPOSITORY} issue #${prNumber}`);
+  core.info(`Loading comments for repo ${owner} ${repo} PR #${prNumber}`);
 
   // Load all comments
   const { data: comments } = await client.issues.listComments({
@@ -29,14 +24,14 @@ export default async function upsertPullRequestComment(query: string, body: stri
       comment.body?.includes(query) &&
       comment.user?.type === 'Bot' &&
       // bots have [bot] appended to GITHUB_ACTOR
-      comment.user.login.includes(GITHUB_ACTOR),
+      comment.user.login.includes(github.context.actor),
   );
 
   // Update existing comment
   if (previousComments.length > 0) {
     const { id } = previousComments[0];
 
-    console.log(`Updating comment #${id}`);
+    core.info(`Updating comment #${id}`);
 
     await client.issues.updateComment({
       comment_id: id,
@@ -47,7 +42,7 @@ export default async function upsertPullRequestComment(query: string, body: stri
 
     // Insert a new comment
   } else {
-    console.log('Adding a new comment');
+    core.info('Adding a new comment');
 
     await client.issues.createComment({
       issue_number: prNumber,
