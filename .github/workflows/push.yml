@@ -69,7 +69,3 @@ jobs:
           git add .
           git commit -m "bot(${GITHUB_SHA}): build gh-pages"
           git push -f "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git" HEAD:gh-pages
-
-      - name: 🍾 Publish to npm
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}

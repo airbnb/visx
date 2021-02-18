@@ -4,6 +4,7 @@ on:
   # allows safely sharing credentials
   pull_request_target:
     branches: [master]
+    types: [opened, reopened, synchronize, labeled]
 
 jobs:
   ensure_label:
