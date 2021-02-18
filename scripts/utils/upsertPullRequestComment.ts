@@ -1,6 +1,6 @@
 import getGitHubClient from './getGitHubClient';
-import getPullRequestNumber from './actions/getPullRequestNumber';
-import getRepoContext from './actions/getRepoContext';
+import getPullRequestNumber from './getPullRequestNumber';
+import getRepoContext from './getRepoContext';
 
 export default async function upsertPullRequestComment(query: string, body: string) {
   const client = getGitHubClient();

@@ -1,9 +1,9 @@
 import chalk from 'chalk';
 import { Octokit } from '@octokit/rest';
 
-import getGitHubClient from './getGitHubClient';
-import getPullRequestNumber from './actions/getPullRequestNumber';
-import getRepoContext from './actions/getRepoContext';
+import getGitHubClient from './utils/getGitHubClient';
+import getPullRequestNumber from './utils/getPullRequestNumber';
+import getRepoContext from './utils/getRepoContext';
 
 const RELEASE_LABELS = ['enhancements', 'bug', 'breaking'];
 
@@ -11,7 +11,7 @@ const RELEASE_LABELS = ['enhancements', 'bug', 'breaking'];
 async function getPrLabels(client: Octokit, prNumber: number): Promise<string[]> {
   const { owner, repo } = getRepoContext();
 
-  core.info(`Fetching PR labels for ${owner} ${repo} PR #${prNumber}.`);
+  console.log(`Fetching PR labels for ${owner} ${repo} PR #${prNumber}.`);
 
   const { data } = await client.pulls.get({
     pull_number: prNumber,
