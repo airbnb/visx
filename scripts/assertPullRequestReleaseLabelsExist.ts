@@ -19,10 +19,6 @@ async function getPrLabels(client: Octokit, prNumber: number): Promise<string[]>
     repo,
   });
 
-  if (!data || data.labels.length === 0) {
-    throw new Error(`No Pull Requests found for ${prNumber} (${owner}/${repo}).`);
-  }
-
   return data.labels.map(label => label.name).filter(label => label) as string[];
 }
 
