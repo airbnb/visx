@@ -2,7 +2,7 @@ name: Pull request release labels
 
 on:
   # allows safely sharing credentials
-  pull_request_target:
+  pull_request:
     branches: [master]
     types: [opened, reopened, synchronize, labeled]
 

@@ -2,7 +2,7 @@ name: Pull request
 
 on:
   pull_request:
-    branches: [master]
+    branches: [no-branch]
 
 jobs:
   build:
