@@ -120,20 +120,24 @@ export default function Label({
     return { x: adjustedX, y: adjustedY };
   }, [propsX, x, dx, propsY, y, dy, horizontalAnchor, verticalAnchor, width, height]);
 
+  const titleFontFamily = titleProps?.fontFamily;
   const titleStyle = useMemo(
     () => ({
       fontSize: titleFontSize,
       fontWeight: titleFontWeight,
+      fontFamily: titleFontFamily,
     }),
-    [titleFontSize, titleFontWeight],
+    [titleFontSize, titleFontWeight, titleFontFamily],
   ) as React.CSSProperties;
 
+  const subtitleFontFamily = subtitleProps?.fontFamily;
   const subtitleStyle = useMemo(
     () => ({
       fontSize: subtitleFontSize,
       fontWeight: subtitleFontWeight,
+      fontFamily: subtitleFontFamily,
     }),
-    [subtitleFontSize, subtitleFontWeight],
+    [subtitleFontSize, subtitleFontWeight, subtitleFontFamily],
   ) as React.CSSProperties;
 
   const anchorLineOrientation = Math.abs(dx) > Math.abs(dy) ? 'vertical' : 'horizontal';
@@ -177,7 +181,6 @@ export default function Label({
       )}
       {title && (
         <Text
-          // @ts-ignore useMeasure expects HTML ref
           innerRef={titleRef}
           fill={fontColor}
           verticalAnchor="start"
@@ -193,7 +196,6 @@ export default function Label({
       )}
       {subtitle && (
         <Text
-          // @ts-ignore useMeasure expects HTML ref
           innerRef={subtitleRef}
           fill={fontColor}
           verticalAnchor="start"
