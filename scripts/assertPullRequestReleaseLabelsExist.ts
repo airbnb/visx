@@ -39,13 +39,10 @@ async function assertPullRequestReleaseLabelsExist() {
     pull_number: prNumber,
   });
 
-  console.log('Found reviews:\n', JSON.stringify(reviews.data));
-  console.log('Current github actor:', process.env.GITHUB_ACTOR);
-
   const previousBotReview = reviews.data.find(
     review =>
       review.user?.type.toLowerCase() === 'bot' &&
-      (!process.env.GITHUB_ACTOR || review.user?.login.includes(process.env.GITHUB_ACTOR)) &&
+      review.user?.login === 'github-actions[bot]' &&
       review.body?.includes(needsReleaseLabelMessage),
   );
 
