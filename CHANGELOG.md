@@ -1,4 +1,5 @@
 # Changelog
+- [v1.6.0](#v160)
 - [v1.5.0](#v150)
 - [v1.4.0](#v140)
 - [v1.3.0](#v130)
@@ -6,10 +7,10 @@
 - [v1.1.0](#v110)
 - [v1.0.0](#v100)
 - [v0.0.199](#v00199)
-- [v0.0.198](#v00198)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v00198">v0.0.198</a></li>
   <li><a href="#v00197">v0.0.197</a></li>
   <li><a href="#v00196">v0.0.196</a></li>
   <li><a href="#v00195">v0.0.195</a></li>
@@ -95,6 +96,27 @@
 </details>
 
 ------
+# v1.6.0
+#### :rocket:  Enhancements
+
+- [xychart] add x/y0Accessor functions to support AreaSeries bands [#1071](https://github.com/airbnb/visx/pull/1071)
+
+#### :bug: Bug Fix
+
+- [xychart] make AnnotationLabel's make dataKey optional [#1072](https://github.com/airbnb/visx/pull/1072)
+- [annotation] account for fontFamily in Label styles so Text uses it in its size calculations [#1072](https://github.com/airbnb/visx/pull/1072)
+
+#### :trophy: Contributors
+- [williaster](https://github.com/williaster)
+
+```
+Changes
+ - @visx/annotation: 1.5.0 => 1.6.0
+ - @visx/demo: 1.5.0 => 1.6.0
+ - @visx/visx: 1.5.0 => 1.6.0
+ - @visx/xychart: 1.5.0 => 1.6.0
+```
+
 # v1.5.0
 #### :rocket:  Enhancements
 
