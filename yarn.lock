@@ -2,28 +2,6 @@
 # yarn lockfile v1
 
 
-"@actions/core@^1.2.6":
-  version "1.2.6"
-  resolved "https://registry.yarnpkg.com/@actions/core/-/core-1.2.6.tgz#a78d49f41a4def18e88ce47c2cac615d5694bf09"
-  integrity sha512-ZQYitnqiyBc3D+k7LsgSBmMDVkOVidaagDG7j3fOym77jNunWRuYx7VSHa9GNfFZh+zh61xsCjRj4JxMZlDqTA==
-
-"@actions/github@^4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@actions/github/-/github-4.0.0.tgz#d520483151a2bf5d2dc9cd0f20f9ac3a2e458816"
-  integrity sha512-Ej/Y2E+VV6sR9X7pWL5F3VgEWrABaT292DRqRU6R4hnQjPtC/zD3nagxVdXWiRQvYDh8kHXo7IDmG42eJ/dOMA==
-  dependencies:
-    "@actions/http-client" "^1.0.8"
-    "@octokit/core" "^3.0.0"
-    "@octokit/plugin-paginate-rest" "^2.2.3"
-    "@octokit/plugin-rest-endpoint-methods" "^4.0.0"
-
-"@actions/http-client@^1.0.8":
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/@actions/http-client/-/http-client-1.0.9.tgz#af1947d020043dbc6a3b4c5918892095c30ffb52"
-  integrity sha512-0O4SsJ7q+MK0ycvXPl2e6bMXV7dxAXOGjrXS1eTF9s2S401Tp6c/P3c3Joz04QefC1J6Gt942Wl2jbm3f4mLcg==
-  dependencies:
-    tunnel "0.0.6"
-
 "@airbnb/config-babel@^2.1.3":
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/@airbnb/config-babel/-/config-babel-2.2.4.tgz#acdcad5ef0bb13ea7802f652324c54af5cfcb68d"
@@ -3342,7 +3320,7 @@
   dependencies:
     "@octokit/types" "^6.0.3"
 
-"@octokit/core@^3.0.0", "@octokit/core@^3.2.3":
+"@octokit/core@^3.2.3":
   version "3.2.5"
   resolved "https://registry.yarnpkg.com/@octokit/core/-/core-3.2.5.tgz#57becbd5fd789b0592b915840855f3a5f233d554"
   integrity sha512-+DCtPykGnvXKWWQI0E1XD+CCeWSBhB6kwItXqfFmNBlIlhczuDPbg+P6BtLnVBaRJDAjv+1mrUJuRsFSjktopg==
@@ -3377,11 +3355,6 @@
   resolved "https://registry.yarnpkg.com/@octokit/openapi-types/-/openapi-types-4.0.1.tgz#bafd3d173974827ba0b733fcca7f1860cb71a9aa"
   integrity sha512-k2hRcfcLRyPJjtYfJLzg404n7HZ6sUpAWAR/uNI8tf96NgatWOpw1ocdF+WFfx/trO1ivBh7ckynO1rn+xAw/Q==
 
-"@octokit/openapi-types@^5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@octokit/openapi-types/-/openapi-types-5.0.0.tgz#420853cc6d97a12521fa1d105ecc277112b32935"
-  integrity sha512-QXpwbGjidE+XhgCEeXpffQk/XGiexgne8czTebwU359Eoko8FJzAED4aizrQlL9t4n6tMx/1Ka1vwZbP6rayFA==
-
 "@octokit/plugin-enterprise-rest@^6.0.1":
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/@octokit/plugin-enterprise-rest/-/plugin-enterprise-rest-6.0.1.tgz#e07896739618dab8da7d4077c658003775f95437"
@@ -3394,7 +3367,7 @@
   dependencies:
     "@octokit/types" "^2.0.1"
 
-"@octokit/plugin-paginate-rest@^2.2.3", "@octokit/plugin-paginate-rest@^2.6.2":
+"@octokit/plugin-paginate-rest@^2.6.2":
   version "2.9.1"
   resolved "https://registry.yarnpkg.com/@octokit/plugin-paginate-rest/-/plugin-paginate-rest-2.9.1.tgz#e9bb34a89b7ed5b801f1c976feeb9b0078ecd201"
   integrity sha512-8wnuWGjwDIEobbBet2xAjZwgiMVTgIer5wBsnGXzV3lJ4yqphLU2FEMpkhSrDx7y+WkZDfZ+V+1cFMZ1mAaFag==
@@ -3425,14 +3398,6 @@
   integrity sha512-YGMiEidTORzgUmYZu0eH4q2k8kgQSHQMuBOBYiKxUYs/nXea4q/Ze6tDzjcRAPmHNJYXrENs1bEMlcdGKT+8ug==
   dependencies:
     "@octokit/types" "^6.8.2"
-    deprecation "^2.3.1"
-
-"@octokit/plugin-rest-endpoint-methods@^4.0.0":
-  version "4.11.0"
-  resolved "https://registry.yarnpkg.com/@octokit/plugin-rest-endpoint-methods/-/plugin-rest-endpoint-methods-4.11.0.tgz#f02443ad6e53282bddbcbbc5c53b919b607db6f7"
-  integrity sha512-s6PJuuHh1IdFNCxOGpE6L0w5Fo6TEYqqKmrKyXD26FrleY3fqaTPX/Av7LhTaOcqJW5Z30gOfsr89NUK3jOLnw==
-  dependencies:
-    "@octokit/types" "^6.9.0"
     deprecation "^2.3.1"
 
 "@octokit/request-error@^1.0.2":
@@ -3534,13 +3499,6 @@
   dependencies:
     "@octokit/openapi-types" "^4.0.0"
     "@types/node" ">= 8"
-
-"@octokit/types@^6.9.0":
-  version "6.9.0"
-  resolved "https://registry.yarnpkg.com/@octokit/types/-/types-6.9.0.tgz#08505bf87385772032e7d3b08487944f87ee6c52"
-  integrity sha512-j4ms2ukvWciu8hSuIWtWK/LyOWMZ0ZsRcvPIVLBYyAkTKBKrMJyiyv2wawJnyphKyEOhRgIyu5Nmf4yPxp0tcg==
-  dependencies:
-    "@octokit/openapi-types" "^5.0.0"
 
 "@sinonjs/commons@^1.7.0":
   version "1.8.0"
@@ -14397,11 +14355,6 @@ tunnel-agent@^0.6.0:
   integrity sha1-J6XeoGs2sEoKmWZ3SykIaPD8QP0=
   dependencies:
     safe-buffer "^5.0.1"
-
-tunnel@0.0.6:
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/tunnel/-/tunnel-0.0.6.tgz#72f1314b34a5b192db012324df2cc587ca47f92c"
-  integrity sha512-1h/Lnq9yajKY2PEbBadPXj3VxsDDu844OnaAo52UVmIzIvwwtBPIuNvkjuzBlTWpfJyUbG3ez0KSBibQkj4ojg==
 
 tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   version "0.14.5"

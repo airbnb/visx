@@ -1,15 +1,13 @@
-import core from '@actions/core';
-import github from '@actions/github';
-
-import getGitHubClient from './actions/getGitHubClient';
+import getGitHubClient from './getGitHubClient';
 import getPullRequestNumber from './actions/getPullRequestNumber';
+import getRepoContext from './actions/getRepoContext';
 
 export default async function upsertPullRequestComment(query: string, body: string) {
   const client = getGitHubClient();
   const prNumber = getPullRequestNumber();
-  const { owner, repo } = github.context.repo;
+  const { owner, repo } = getRepoContext();
 
-  core.info(`Loading comments for repo ${owner} ${repo} PR #${prNumber}`);
+  console.log(`Loading comments for repo ${owner} ${repo} PR #${prNumber}`);
 
   // Load all comments
   const { data: comments } = await client.issues.listComments({
@@ -24,14 +22,14 @@ export default async function upsertPullRequestComment(query: string, body: stri
       comment.body?.includes(query) &&
       comment.user?.type === 'Bot' &&
       // bots have [bot] appended to GITHUB_ACTOR
-      comment.user.login.includes(github.context.actor),
+      (!process.env.GITHUB_ACTOR || comment.user?.login.includes(process.env.GITHUB_ACTOR)),
   );
 
   // Update existing comment
   if (previousComments.length > 0) {
     const { id } = previousComments[0];
 
-    core.info(`Updating comment #${id}`);
+    console.log(`Updating comment #${id}`);
 
     await client.issues.updateComment({
       comment_id: id,
@@ -42,7 +40,7 @@ export default async function upsertPullRequestComment(query: string, body: stri
 
     // Insert a new comment
   } else {
-    core.info('Adding a new comment');
+    console.log('Adding a new comment');
 
     await client.issues.createComment({
       issue_number: prNumber,

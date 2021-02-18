@@ -1,15 +1,15 @@
-import core from '@actions/core';
 import chalk from 'chalk';
-import github from '@actions/github';
 import { Octokit } from '@octokit/rest';
+
 import getGitHubClient from './getGitHubClient';
-import getPullRequestNumber from './getPullRequestNumber';
+import getPullRequestNumber from './actions/getPullRequestNumber';
+import getRepoContext from './actions/getRepoContext';
 
 const RELEASE_LABELS = ['enhancements', 'bug', 'breaking'];
 
 /** Helper to fetch PR labels. */
 async function getPrLabels(client: Octokit, prNumber: number): Promise<string[]> {
-  const { owner, repo } = github.context.repo;
+  const { owner, repo } = getRepoContext();
 
   core.info(`Fetching PR labels for ${owner} ${repo} PR #${prNumber}.`);
 
@@ -34,7 +34,7 @@ Thanks.`;
 async function assertPullRequestReleaseLabelsExist() {
   const client = getGitHubClient();
   const prNumber = getPullRequestNumber();
-  const { owner, repo } = github.context.repo;
+  const { owner, repo } = getRepoContext();
 
   // find any reviews already left by the bot
   const reviews = await client.pulls.listReviews({
@@ -46,7 +46,7 @@ async function assertPullRequestReleaseLabelsExist() {
   const previousBotReview = reviews.data.find(
     review =>
       review.user?.type === 'bot' &&
-      review.user?.login.includes(github.context.actor) &&
+      (!process.env.GITHUB_ACTOR || review.user?.login.includes(process.env.GITHUB_ACTOR)) &&
       review.body?.includes(needsReleaseLabelMessage),
   );
 
@@ -70,7 +70,7 @@ async function assertPullRequestReleaseLabelsExist() {
     }
   } else {
     if (previousBotReview?.state === 'CHANGES_REQUESTED') {
-      core.info('Bot already requested release label. Skipping review.');
+      console.log('Bot already requested release label. Skipping review.');
       return;
     }
     await client.pulls.createReview({

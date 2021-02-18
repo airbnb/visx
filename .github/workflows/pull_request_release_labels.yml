@@ -33,3 +33,6 @@ jobs:
         run: yarn check:pull_request_release_labels
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          GITHUB_REPOSITORY: $GITHUB_REPOSITORY
+          GITHUB_ACTOR: $GITHUB_ACTOR

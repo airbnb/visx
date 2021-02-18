@@ -56,8 +56,6 @@
     "type:workspace": "nimbus typescript --build"
   },
   "devDependencies": {
-    "@actions/core": "^1.2.6",
-    "@actions/github": "^4.0.0",
     "@airbnb/config-babel": "^2.1.3",
     "@airbnb/config-eslint": "^2.1.3",
     "@airbnb/config-jest": "^2.1.3",
