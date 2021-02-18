@@ -39,6 +39,8 @@ async function assertPullRequestReleaseLabelsExist() {
     pull_number: prNumber,
   });
 
+  console.log('Found reviews', JSON.stringify(reviews));
+
   const previousBotReview = reviews.data.find(
     review =>
       review.user?.type === 'bot' &&
@@ -49,7 +51,7 @@ async function assertPullRequestReleaseLabelsExist() {
   // check for release labels
   const prLabels = await getPrLabels(client, prNumber);
 
-  console.log('Found the following PR labels', prLabels);
+  console.log('Found the following PR labels', prLabels.join(', '));
 
   const hasReleaseLabel = prLabels.some(prLabel =>
     // PR label matches at least one release label
