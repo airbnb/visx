@@ -48,6 +48,9 @@ async function assertPullRequestReleaseLabelsExist() {
 
   // check for release labels
   const prLabels = await getPrLabels(client, prNumber);
+
+  console.log('Found the following PR labels', prLabels);
+
   const hasReleaseLabel = prLabels.some(prLabel =>
     // PR label matches at least one release label
     RELEASE_LABELS.some(releaseLabel => prLabel.toLowerCase().match(releaseLabel)),
@@ -56,6 +59,8 @@ async function assertPullRequestReleaseLabelsExist() {
   if (hasReleaseLabel) {
     // remove any stale reviews that are now addressed
     if (previousBotReview) {
+      console.log('Has valid release label, updating previous bot review.');
+
       await client.pulls.dismissReview({
         owner,
         repo,
@@ -63,12 +68,16 @@ async function assertPullRequestReleaseLabelsExist() {
         review_id: previousBotReview.id,
         message: '✅ Pull Request has a valid release label.',
       });
+    } else {
+      console.log('Has valid release label, no previous bot review found.');
     }
   } else {
     if (previousBotReview?.state === 'CHANGES_REQUESTED') {
       console.log('Bot already requested release label. Skipping review.');
       return;
     }
+
+    console.log('No valid release labels found, requesting changes.');
     await client.pulls.createReview({
       owner,
       repo,
