@@ -1,4 +1,5 @@
 import core from '@actions/core';
+import chalk from 'chalk';
 import github from '@actions/github';
 import { Octokit } from '@octokit/rest';
 import getGitHubClient from './getGitHubClient';
@@ -83,6 +84,6 @@ async function assertPullRequestReleaseLabelsExist() {
 }
 
 assertPullRequestReleaseLabelsExist().catch(error => {
-  core.error(error);
+  console.error(chalk.red(error.message));
   process.exitCode = 1;
 });
