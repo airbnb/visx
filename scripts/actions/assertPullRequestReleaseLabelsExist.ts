@@ -30,7 +30,7 @@ const needsReleaseLabelMessage = `👋 Hi,
   The bot will dismiss the review as soon as a valid release label has been assigned.
 Thanks.`;
 
-export default async function assertPullRequestReleaseLabelsExist() {
+async function assertPullRequestReleaseLabelsExist() {
   const client = getGitHubClient();
   const prNumber = getPullRequestNumber();
   const { owner, repo } = github.context.repo;
@@ -81,3 +81,8 @@ export default async function assertPullRequestReleaseLabelsExist() {
     });
   }
 }
+
+assertPullRequestReleaseLabelsExist().catch(error => {
+  core.error(error);
+  process.exitCode = 1;
+});
