@@ -18,6 +18,10 @@ export type BaseAreaSeriesProps<
   YScale extends AxisScale,
   Datum extends object
 > = SeriesProps<XScale, YScale, Datum> & {
+  /** Optional accessor to override the baseline value of Area shapes per datum (useful to generate band shapes) when chart is rendered horizontally (vertical line). Defaults to the scale zero value, not compatible with AreaStack. */
+  x0Accessor?: SeriesProps<XScale, YScale, Datum>['xAccessor'];
+  /** Optional accessor to override the baseline value of Area shapes per datum (useful to generate band shapes). Defaults to the scale zero value, not compatible with AreaStack. */
+  y0Accessor?: SeriesProps<XScale, YScale, Datum>['yAccessor'];
   /** Whether to render a Line along value of the Area shape (area is fill only). */
   renderLine?: boolean;
   /** Sets the curve factory (from @visx/curve or d3-curve) for the line generator. Defaults to curveLinear. */
@@ -45,13 +49,23 @@ function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
   enableEvents = true,
   renderLine = true,
   xAccessor,
+  x0Accessor,
   xScale,
   yAccessor,
+  y0Accessor,
   yScale,
   ...areaProps
 }: BaseAreaSeriesProps<XScale, YScale, Datum> & WithRegisteredDataProps<XScale, YScale, Datum>) {
   const { colorScale, theme, horizontal } = useContext(DataContext);
+  const getScaledX0 = useMemo(
+    () => (x0Accessor ? getScaledValueFactory(xScale, x0Accessor) : undefined),
+    [xScale, x0Accessor],
+  );
   const getScaledX = useCallback(getScaledValueFactory(xScale, xAccessor), [xScale, xAccessor]);
+  const getScaledY0 = useMemo(
+    () => (y0Accessor ? getScaledValueFactory(yScale, y0Accessor) : undefined),
+    [yScale, y0Accessor],
+  );
   const getScaledY = useCallback(getScaledValueFactory(yScale, yAccessor), [yScale, yAccessor]);
   const isDefined = useCallback(
     (d: Datum) => isValidNumber(xScale(xAccessor(d))) && isValidNumber(yScale(yAccessor(d))),
@@ -77,16 +91,16 @@ function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
     const numericScaleBaseline = getScaleBaseline(horizontal ? xScale : yScale);
     return horizontal
       ? {
-          x0: numericScaleBaseline,
+          x0: getScaledX0 ?? numericScaleBaseline,
           x1: getScaledX,
           y: getScaledY,
         }
       : {
           x: getScaledX,
-          y0: numericScaleBaseline,
+          y0: getScaledY0 ?? numericScaleBaseline,
           y1: getScaledY,
         };
-  }, [xScale, yScale, horizontal, getScaledX, getScaledY]);
+  }, [xScale, yScale, horizontal, getScaledX, getScaledY, getScaledX0, getScaledY0]);
 
   // render invisible glyphs for focusing if onFocus/onBlur are defined
   const captureFocusEvents = Boolean(onFocus || onBlur);
