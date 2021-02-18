@@ -20,7 +20,7 @@ export default async function upsertPullRequestComment(query: string, body: stri
   const previousComments = comments.filter(
     comment =>
       comment.body?.includes(query) &&
-      comment.user?.type === 'Bot' &&
+      comment.user?.type.toLowerCase() === 'bot' &&
       // bots have [bot] appended to GITHUB_ACTOR
       (!process.env.GITHUB_ACTOR || comment.user?.login.includes(process.env.GITHUB_ACTOR)),
   );

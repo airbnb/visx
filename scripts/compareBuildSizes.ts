@@ -119,6 +119,7 @@ ${JSON.stringify(nextSizes, null, 2)}
   }
 }
 
+// invoke function since this is a script
 compareBuildSizes().catch(error => {
   console.error(chalk.red(error.message));
   process.exitCode = 1;

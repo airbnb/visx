@@ -39,11 +39,11 @@ async function assertPullRequestReleaseLabelsExist() {
     pull_number: prNumber,
   });
 
-  console.log('Found reviews', JSON.stringify(reviews));
+  console.log('Found reviews', JSON.stringify(reviews.data));
 
   const previousBotReview = reviews.data.find(
     review =>
-      review.user?.type === 'bot' &&
+      review.user?.type.toLowerCase() === 'bot' &&
       (!process.env.GITHUB_ACTOR || review.user?.login.includes(process.env.GITHUB_ACTOR)) &&
       review.body?.includes(needsReleaseLabelMessage),
   );
@@ -90,6 +90,7 @@ async function assertPullRequestReleaseLabelsExist() {
   }
 }
 
+// invoke function since this is a script
 assertPullRequestReleaseLabelsExist().catch(error => {
   console.error(chalk.red(error.message));
   process.exitCode = 1;
