@@ -33,11 +33,7 @@ export default function Example({ width, height }: NetworkProps) {
         graph={graph}
         top={50}
         left={100}
-        nodeComponent={() => (
-          <text dx="-0.5em" dy="0.5em" fontSize={28}>
-            💜
-          </text>
-        )}
+        nodeComponent={() => <rect x={-25} y={-15} width={50} height={30} fill="purple" />}
         linkComponent={({ link: { source, target } }) => (
           <>
             <line
