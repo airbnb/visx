@@ -10,7 +10,6 @@ export type NodeProps<Node> = {
   nodes?: Node[];
   /** Component for rendering a single link. */
   nodeComponent:
-    | string
     | React.FunctionComponent<NodeProvidedProps<Node>>
     | React.ComponentClass<NodeProvidedProps<Node>>;
   /** Classname to add to each node parent g element. */

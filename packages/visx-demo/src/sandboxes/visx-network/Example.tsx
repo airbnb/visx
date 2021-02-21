@@ -29,7 +29,39 @@ export default function Example({ width, height }: NetworkProps) {
   return width < 10 ? null : (
     <svg width={width} height={height}>
       <rect width={width} height={height} rx={14} fill={background} />
-      <Graph graph={graph} />
+      <Graph
+        graph={graph}
+        top={50}
+        left={100}
+        nodeComponent={() => (
+          <text dx="-0.5em" dy="0.5em" fontSize={28}>
+            💜
+          </text>
+        )}
+        linkComponent={({ link: { source, target } }) => (
+          <>
+            <line
+              x1={source.x}
+              y1={source.y}
+              x2={target.x}
+              y2={target.y}
+              strokeWidth={2}
+              stroke="pink"
+              strokeOpacity={0.5}
+              strokeDasharray="8,4"
+            />
+            <text
+              textAnchor="middle"
+              x={Math.abs(source.x + target.x) / 2}
+              y={Math.abs(source.y + target.y) / 2}
+              dy="0.25em"
+              fill="white"
+            >
+              link
+            </text>
+          </>
+        )}
+      />
     </svg>
   );
 }
