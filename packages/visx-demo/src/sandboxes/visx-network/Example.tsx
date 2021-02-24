@@ -1,21 +1,33 @@
 import React from 'react';
-import { Graph } from '@visx/network';
+import { DefaultNode, Graph } from '@visx/network';
 
 export type NetworkProps = {
   width: number;
   height: number;
 };
 
-const nodes = [
+interface CustomNode {
+  x: number;
+  y: number;
+  color?: string;
+}
+
+interface CustomLink {
+  source: CustomNode;
+  target: CustomNode;
+  dashed?: boolean;
+}
+
+const nodes: CustomNode[] = [
   { x: 50, y: 20 },
-  { x: 200, y: 300 },
-  { x: 300, y: 40 },
+  { x: 200, y: 250 },
+  { x: 300, y: 40, color: '#26deb0' },
 ];
 
-const links = [
+const links: CustomLink[] = [
   { source: nodes[0], target: nodes[1] },
   { source: nodes[1], target: nodes[2] },
-  { source: nodes[2], target: nodes[0] },
+  { source: nodes[2], target: nodes[0], dashed: true },
 ];
 
 const graph = {
@@ -29,33 +41,24 @@ export default function Example({ width, height }: NetworkProps) {
   return width < 10 ? null : (
     <svg width={width} height={height}>
       <rect width={width} height={height} rx={14} fill={background} />
-      <Graph
+      <Graph<CustomLink, CustomNode>
         graph={graph}
-        top={50}
+        top={20}
         left={100}
-        nodeComponent={() => <rect x={-25} y={-15} width={50} height={30} fill="purple" />}
-        linkComponent={({ link: { source, target } }) => (
-          <>
-            <line
-              x1={source.x}
-              y1={source.y}
-              x2={target.x}
-              y2={target.y}
-              strokeWidth={2}
-              stroke="pink"
-              strokeOpacity={0.5}
-              strokeDasharray="8,4"
-            />
-            <text
-              textAnchor="middle"
-              x={Math.abs(source.x + target.x) / 2}
-              y={Math.abs(source.y + target.y) / 2}
-              dy="0.25em"
-              fill="white"
-            >
-              link
-            </text>
-          </>
+        nodeComponent={({ node: { color } }) =>
+          color ? <DefaultNode fill={color} /> : <DefaultNode />
+        }
+        linkComponent={({ link: { source, target, dashed } }) => (
+          <line
+            x1={source.x}
+            y1={source.y}
+            x2={target.x}
+            y2={target.y}
+            strokeWidth={2}
+            stroke="#999"
+            strokeOpacity={0.6}
+            strokeDasharray={dashed ? '8,4' : undefined}
+          />
         )}
       />
     </svg>
