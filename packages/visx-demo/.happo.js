@@ -20,15 +20,19 @@ module.exports = {
   // things like getBoundingClientRect + canvas element methods
   prerender: false,
 
+  // use the demo site styles (else fonts, etc. are 😱)
   stylesheets: [path.join(__dirname, '/public/static/doc_styles.css')],
 
   // happo snapshots to include
   include: 'happo/*.@(ts|tsx)',
 
+  // https://github.com/happo/happo.io/blob/3cba9a0a/README.md#comparethreshold-experimental
+  compareThreshold: 0.008,
+
   targets: {
     'chrome-desktop': new RemoteBrowserTarget('chrome', {
       viewport: '800x552',
-      prefersReducedMotion: true,
+      prefersReducedMotion: true, // disables flaky tests caused by animation
     }),
   },
 
