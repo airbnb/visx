@@ -8,7 +8,6 @@ export type LinkProps<Link> = {
   links?: Link[];
   /** Component for rendering a single link. */
   linkComponent:
-    | string
     | React.FunctionComponent<LinkProvidedProps<Link>>
     | React.ComponentClass<LinkProvidedProps<Link>>;
   /** Classname to add to each link parent g element. */

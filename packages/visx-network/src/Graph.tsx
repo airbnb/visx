@@ -17,12 +17,10 @@ type Props<Link, Node> = {
   graph?: GraphType<Link, Node>;
   /** Component for rendering a single Link. */
   linkComponent?:
-    | string
     | React.FunctionComponent<LinkProvidedProps<Link>>
     | React.ComponentClass<LinkProvidedProps<Link>>;
   /** Component for rendering a single Node. */
   nodeComponent?:
-    | string
     | React.FunctionComponent<NodeProvidedProps<Node>>
     | React.ComponentClass<NodeProvidedProps<Node>>;
   /** Top transform offset to apply to links and nodes. */
