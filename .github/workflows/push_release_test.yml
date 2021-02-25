@@ -1,13 +1,11 @@
-name: Pull request release labels
+name: Push release test
 
 on:
-  # allows safely sharing credentials
   pull_request:
-    branches: [no-branch]
-    types: [opened, reopened, synchronize, labeled]
+    branches: [master]
 
 jobs:
-  ensure_label:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2 # checkout visx + this commit
@@ -29,10 +27,10 @@ jobs:
       - name: 📡 Install dependencies
         run: yarn install --frozen-lockfile --ignore-engines
 
-      - name: ✨ Ensure release labels
-        run: yarn check:pull_request_release_labels
+      - name: 🛠 Build packages
+        run: yarn build
+
+      - name: 🚀 release
+        run: yarn build:release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-          GITHUB_REPOSITORY: $GITHUB_REPOSITORY
-          GITHUB_ACTOR: $GITHUB_ACTOR

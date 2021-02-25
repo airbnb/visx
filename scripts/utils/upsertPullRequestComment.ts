@@ -21,7 +21,7 @@ export default async function upsertPullRequestComment(query: string, body: stri
     comment =>
       comment.body?.includes(query) &&
       comment.user?.type.toLowerCase() === 'bot' &&
-      comment.user?.login === 'github-actions[bot]' &&
+      comment.user?.login === 'github-actions[bot]',
   );
 
   // Update existing comment

@@ -10,3 +10,5 @@ export default function getGitHubClient() {
 
   return client;
 }
+
+export type GithubClient = ReturnType<typeof getGitHubClient>;
