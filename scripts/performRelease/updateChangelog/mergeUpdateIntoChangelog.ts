@@ -42,6 +42,10 @@ export default function mergeUpdateIntoChangelog(
 
   // extract the version + URL id from the oldest recent link `- [v1.3.0](#v130)`
   const oldestRecentLinkMatch = oldestRecentLink.match(/\[(.*)\]\((.*)\)/);
+  if (oldestRecentLinkMatch == null) {
+    console.log('Error merging changes into changelog. Exiting.');
+    process.exit(1);
+  }
   const oldestRecentLinkVersion = oldestRecentLinkMatch[1];
   const oldestRecentLinkUrl = oldestRecentLinkMatch[2];
 

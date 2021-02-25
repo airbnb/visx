@@ -1,3 +1,5 @@
+import { PR } from '../types';
+
 /** Returns a UTC date string in the format YYYY-MM-DD */
 function getCurrentDate() {
   const now = new Date();
@@ -11,23 +13,25 @@ const printPRs = (sectionTitle: string, prs: PR[]) =>
 /** Creates the new content for the changelog. */
 export default function getChangelogAddition(tagName: string, prs: PR[]) {
   // find unique contributors and alphabetize
-  const contributors = Array.from(new Set(prs.map(pr => pr.user.login))).sort((a, b) =>
-    a.toLowerCase().localeCompare(b.toLowerCase()),
-  );
+  const contributors = Array.from(
+    new Set(prs.map(pr => pr.user?.login ?? '').filter(user => user)),
+  ).sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
 
   // categorize PRs. each PR may be in multiple categories tho it will have only one title
-  const enhancements = prs.filter(pr => pr.labels.some(label => label.name.match(/enhancement/gi)));
-  const bugFixes = prs.filter(pr => pr.labels.some(label => label.name.match(/bug/gi)));
-  const breaking = prs.filter(pr => pr.labels.some(label => label.name.match(/breaking/gi)));
-  const internal = prs.filter(pr => pr.labels.some(label => label.name.match(/internal/gi)));
-  const docs = prs.filter(pr => pr.labels.some(label => label.name.match(/docs/gi)));
+  const enhancements = prs.filter(pr =>
+    pr.labels.some(label => label.name?.match(/enhancement/gi)),
+  );
+  const bugFixes = prs.filter(pr => pr.labels.some(label => label.name?.match(/bug/gi)));
+  const breaking = prs.filter(pr => pr.labels.some(label => label.name?.match(/breaking/gi)));
+  const internal = prs.filter(pr => pr.labels.some(label => label.name?.match(/internal/gi)));
+  const docs = prs.filter(pr => pr.labels.some(label => label.name?.match(/docs/gi)));
   const uncategorized = prs.filter(
     ({ id }) =>
       !enhancements.find(pr => pr.id === id) &&
       !bugFixes.find(pr => pr.id === id) &&
       !breaking.find(pr => pr.id === id) &&
-      internal.find(pr => pr.id === id) &&
-      docs.find(pr => pr.id === id),
+      !internal.find(pr => pr.id === id) &&
+      !docs.find(pr => pr.id === id),
   );
 
   const changelogAddition = `

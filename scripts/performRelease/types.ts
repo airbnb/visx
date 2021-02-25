@@ -1,8 +1,3 @@
-export type PR = {
-  id: number;
-  number: number;
-  title: string;
-  html_url: string;
-  labels: { name: string }[];
-  user: { login: string };
-};
+import { components } from '@octokit/openapi-types/generated/types';
+
+export type PR = components['schemas']['pull-request-simple'];
