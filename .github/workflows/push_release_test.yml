@@ -31,6 +31,11 @@ jobs:
         run: yarn build
 
       - name: 🚀 release
-        run: yarn build:release
+        run: |
+          git config user.name github-actions	
+          git config user.email github-actions@github.com	
+          git fetch origin master
+          git checkout master
+          yarn build:release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

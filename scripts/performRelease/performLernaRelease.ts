@@ -35,8 +35,6 @@ export default async function performLernaRelease(prsSinceLastTag: PR[]) {
     }`;
     console.log(`Attempting to publish a '${version}' release.`);
 
-    await exec('git fetch origin master && git checkout master');
-
     const { stdout, stderr } = await exec(`yarn lerna publish ${version} --exact --yes`);
     if (stdout) {
       console.log('Lerna output', stdout);
