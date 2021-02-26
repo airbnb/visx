@@ -9,6 +9,5 @@
       "allowBranch": "master"
     }
   },
-  "npmClient": "npm",
   "useWorkspaces": true
 }

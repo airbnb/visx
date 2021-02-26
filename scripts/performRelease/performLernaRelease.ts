@@ -35,6 +35,7 @@ export default async function performLernaRelease(prsSinceLastTag: PR[]) {
     }`;
     console.log(`Attempting to publish a '${version}' release.`);
 
+    await exec(`npm config set '//registry.npmjs.org/:_authToken=${process.env.NODE_AUTH_TOKEN}'`);
     const whoami = await exec('npm whoami');
     console.log(whoami.stdout);
 
