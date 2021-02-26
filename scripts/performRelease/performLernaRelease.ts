@@ -35,8 +35,11 @@ export default async function performLernaRelease(prsSinceLastTag: PR[]) {
     }`;
     console.log(`Attempting to publish a '${version}' release.`);
 
+    const whoami = await exec('npm whoami');
+    console.log(whoami.stdout);
+
     const { stdout, stderr } = await exec(
-      `yarn lerna publish ${version} --exact --yes --allow-branch chris--actions-prlabels`,
+      `yarn logout && npx lerna publish ${version} --exact --yes --allow-branch chris--actions-prlabels`,
     );
     if (stdout) {
       console.log('Lerna output', stdout);
