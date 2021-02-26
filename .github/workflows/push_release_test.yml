@@ -12,8 +12,6 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '12'
-          registry: 'https://registry.npmjs.org'
-          scope: 'visx'
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
@@ -31,12 +29,13 @@ jobs:
       - name: 🛠 Build packages
         run: yarn build
 
-      - name: 🚀 release
+      - name: 🚀 Release
         run: |
           git config user.name github-actions	
           git config user.email github-actions@github.com	
           git fetch origin chris--actions-prlabels
           git checkout chris--actions-prlabels
+          npm whoami
           yarn build:release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
