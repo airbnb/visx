@@ -38,8 +38,8 @@ export default async function performLernaRelease(prsSinceLastTag: PR[]) {
     await exec(
       `yarn logout && npm config set '//registry.npmjs.org/:_authToken=${process.env.NODE_AUTH_TOKEN}'`,
     );
-    const whoami = await exec('npm whoami');
-    console.log(whoami.stdout);
+    // const whoami = await exec('npm whoami');
+    // console.log(whoami.stdout);
 
     const { stdout, stderr } = await exec(
       `npx lerna publish ${version} --exact --yes --no-verify-access --allow-branch chris--actions-prlabels`,
