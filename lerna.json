@@ -9,5 +9,6 @@
       "allowBranch": "master"
     }
   },
+  "npmClient": "yarn",
   "useWorkspaces": true
 }
