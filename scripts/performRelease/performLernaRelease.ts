@@ -42,7 +42,7 @@ export default async function performLernaRelease(prsSinceLastTag: PR[]) {
     console.log(whoami.stdout);
 
     const { stdout, stderr } = await exec(
-      `yarn logout && npx lerna publish ${version} --exact --yes --allow-branch chris--actions-prlabels`,
+      `npx lerna publish ${version} --exact --yes --no-verify-access --allow-branch chris--actions-prlabels`,
     );
     if (stdout) {
       console.log('Lerna output', stdout);
