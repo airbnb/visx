@@ -12,7 +12,8 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '12'
-
+          registry-url: https://registry.npmjs.org/
+          scope: visx
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
