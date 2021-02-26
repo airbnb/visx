@@ -25,6 +25,8 @@ jobs:
 
       - name: 📡 Install dependencies
         run: yarn install --frozen-lockfile --ignore-engines
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
 
       - name: 🛠 Build packages
         run: yarn build
