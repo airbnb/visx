@@ -37,9 +37,7 @@ jobs:
           git config user.email github-actions@github.com	
           git fetch origin chris--actions-prlabels
           git checkout chris--actions-prlabels
-          echo "@visx:registry=https://registry.npmjs.org" > .npmrc
-          echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" > .npmrc
-          git update-index --assume-unchanged .npmrc
+          npm config set '//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}'
           npm whoami
           yarn build:release
         env:
