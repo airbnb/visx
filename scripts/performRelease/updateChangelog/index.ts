@@ -37,7 +37,7 @@ export default async function updateChangelog(client: GithubClient, prs: PR[], t
       repo,
       path: CHANGELOG_PATH,
       message: `changelog: ${tagName}`,
-      content: btoa(nextChangelog), // base64 encode
+      content: Buffer.from(nextChangelog).toString('base64'), // base64 encode
     });
   } catch (error) {
     console.log(`Could not update CHANGELOG.md from master. Aborting.`);
