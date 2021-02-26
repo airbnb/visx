@@ -34,8 +34,8 @@ jobs:
         run: |
           git config user.name github-actions	
           git config user.email github-actions@github.com	
-          git fetch origin master
-          git checkout master
+          git fetch origin chris--actions-prlabels
+          git checkout chris--actions-prlabels
           yarn build:release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
