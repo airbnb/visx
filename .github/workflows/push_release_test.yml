@@ -26,7 +26,7 @@ jobs:
       - name: 📡 Install dependencies
         run: yarn install --frozen-lockfile --ignore-engines
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }} # TODO replace with XXXXX-XXXXX-XXXXX-XXXXX ?
 
       - name: 🛠 Build packages
         run: yarn build
@@ -37,6 +37,9 @@ jobs:
           git config user.email github-actions@github.com	
           git fetch origin chris--actions-prlabels
           git checkout chris--actions-prlabels
+          echo "@visx:registry=https://registry.npmjs.org" > .npmrc
+          echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" > .npmrc
+          git update-index --assume-unchanged .npmrc
           npm whoami
           yarn build:release
         env:
