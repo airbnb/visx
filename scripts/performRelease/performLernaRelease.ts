@@ -46,10 +46,10 @@ export default async function performLernaRelease(prsSinceLastTag: PR[]) {
     if (stdout) {
       console.log('Lerna output', stdout);
     }
-    // if (stderr) {
-    //   console.warn('The following stderr was generated during publishing. Exiting.', stderr);
-    //   process.exit(1);
-    // }
+    if (stderr) {
+      console.warn('The following stderr was generated during publishing. Exiting.', stderr);
+      // process.exit(1);
+    }
   } catch (e) {
     console.warn('The following error occurred during publishing. Exiting.', e.message);
     process.exit(1);
