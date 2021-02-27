@@ -1,6 +1,6 @@
 {
   "name": "@visx/visx",
-  "version": "1.6.0",
+  "version": "1.6.1-alpha.3",
   "description": "One stop install for all visx packages",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -51,7 +51,7 @@
     "@visx/legend": "1.4.0",
     "@visx/marker": "1.4.0",
     "@visx/mock-data": "1.5.0",
-    "@visx/network": "1.1.0",
+    "@visx/network": "1.6.1-alpha.3",
     "@visx/pattern": "1.1.0",
     "@visx/point": "1.0.0",
     "@visx/responsive": "1.3.0",
