@@ -1,4 +1,8 @@
 import fetch from 'node-fetch';
+import fs from 'fs';
+import util from 'util';
+import childProcess from 'child_process';
+
 import { GithubClient } from '../../utils/getGitHubClient';
 import getRepoContext from '../../utils/getRepoContext';
 import { PR } from '../types';
@@ -6,6 +10,7 @@ import getChangelogAddition from './getChangelogAddition';
 import mergeUpdateIntoChangelog from './mergeUpdateIntoChangelog';
 
 const CHANGELOG_PATH = 'CHANGELOG.md';
+const exec = util.promisify(childProcess.exec);
 
 export default async function updateChangelog(client: GithubClient, prs: PR[], tagName: string) {
   if (prs.length === 0) {
@@ -31,27 +36,17 @@ export default async function updateChangelog(client: GithubClient, prs: PR[], t
 
     console.log('Updating changelog with new content.');
 
-    // fetch most recent sha
-    const masterBranchRequest = await client.request(
-      'GET /repos/{owner}/{repo}/branches/{branch}',
-      {
-        owner,
-        repo,
-        branch: 'master',
-      },
+    fs.writeFileSync(CHANGELOG_PATH, JSON.stringify(nextChangelog), 'utf8');
+
+    const { stdout, stderr } = await exec(
+      `git add . && git commit -m "changelog: ${tagName}" && git push`,
     );
-
-    const masterSha = masterBranchRequest.data.commit.sha;
-
-    // https://docs.github.com/en/rest/reference/repos#create-or-update-file-contents
-    await client.request('PUT /repos/{owner}/{repo}/contents/{path}', {
-      owner,
-      repo,
-      path: CHANGELOG_PATH,
-      message: `changelog: ${tagName}`,
-      content: Buffer.from(nextChangelog).toString('base64'), // base64 encode
-      sha: masterSha,
-    });
+    if (stdout) {
+      console.log('Commit changelog output', stdout);
+    }
+    if (stderr) {
+      console.warn('Commit changelog stderr:', stderr);
+    }
   } catch (error) {
     console.log(`Could not update CHANGELOG.md from master. Aborting.`);
     console.warn(error.message);

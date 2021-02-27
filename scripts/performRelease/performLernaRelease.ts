@@ -35,23 +35,17 @@ export default async function performLernaRelease(prsSinceLastTag: PR[]) {
     }`;
     console.log(`Attempting to publish a '${version}' release.`);
 
-    // @todo could move this to yml
-    // await exec(
-    //   `yarn logout && npm config set '//registry.npmjs.org/:_authToken=${process.env.NODE_AUTH_TOKEN}'`,
-    // );
-
     const { stdout, stderr } = await exec(
       // @TODO use version post-testing
       `npx lerna publish ${
-        false ? version : '1.6.1-alpha.3'
+        false ? version : '1.6.1-alpha.4'
       } --exact --yes --no-verify-access --allow-branch chris--actions-prlabels`,
     );
     if (stdout) {
       console.log('Lerna output', stdout);
     }
     if (stderr) {
-      console.warn('The following stderr was generated during publishing. Exiting.', stderr);
-      // process.exit(1);
+      console.warn('The following stderr was generated during publishing:', stderr);
     }
   } catch (e) {
     console.warn('The following error occurred during publishing. Exiting.', e.message);
