@@ -38,7 +38,7 @@ export default async function performLernaRelease(prsSinceLastTag: PR[]) {
     const { stdout, stderr } = await exec(
       // @TODO use version post-testing
       `npx lerna publish ${
-        false ? version : '1.6.1-alpha.4'
+        false ? version : '1.6.1-alpha.5'
       } --exact --yes --no-verify-access --allow-branch chris--actions-prlabels`,
     );
     if (stdout) {
