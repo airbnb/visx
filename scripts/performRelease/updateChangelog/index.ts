@@ -4,7 +4,6 @@ import util from 'util';
 import childProcess from 'child_process';
 
 import { GithubClient } from '../../utils/getGitHubClient';
-import getRepoContext from '../../utils/getRepoContext';
 import { PR } from '../types';
 import getChangelogAddition from './getChangelogAddition';
 import mergeUpdateIntoChangelog from './mergeUpdateIntoChangelog';
@@ -17,8 +16,6 @@ export default async function updateChangelog(client: GithubClient, prs: PR[], t
     console.log('No PRs with which to update changelog. Exiting.');
     return;
   }
-
-  const { owner, repo } = getRepoContext();
 
   try {
     console.log('Fetching current changelog');
