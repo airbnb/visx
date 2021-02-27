@@ -35,6 +35,8 @@ jobs:
           git config user.email github-actions@github.com	
           git fetch origin chris--actions-prlabels
           git checkout chris--actions-prlabels
+          yarn logout
+          npm config set '//registry.npmjs.org/:_authToken=${{ secrets.NPM_AUTH_TOKEN }}'
           yarn build:release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

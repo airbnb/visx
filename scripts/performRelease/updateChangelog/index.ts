@@ -31,6 +31,18 @@ export default async function updateChangelog(client: GithubClient, prs: PR[], t
 
     console.log('Updating changelog with new content.');
 
+    // fetch most recent sha
+    const masterBranchRequest = await client.request(
+      'GET /repos/{owner}/{repo}/branches/{branch}',
+      {
+        owner,
+        repo,
+        branch: 'master',
+      },
+    );
+
+    const masterSha = masterBranchRequest.data.commit.sha;
+
     // https://docs.github.com/en/rest/reference/repos#create-or-update-file-contents
     await client.request('PUT /repos/{owner}/{repo}/contents/{path}', {
       owner,
@@ -38,6 +50,7 @@ export default async function updateChangelog(client: GithubClient, prs: PR[], t
       path: CHANGELOG_PATH,
       message: `changelog: ${tagName}`,
       content: Buffer.from(nextChangelog).toString('base64'), // base64 encode
+      sha: masterSha,
     });
   } catch (error) {
     console.log(`Could not update CHANGELOG.md from master. Aborting.`);

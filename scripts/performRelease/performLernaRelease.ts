@@ -36,14 +36,14 @@ export default async function performLernaRelease(prsSinceLastTag: PR[]) {
     console.log(`Attempting to publish a '${version}' release.`);
 
     // @todo could move this to yml
-    await exec(
-      `yarn logout && npm config set '//registry.npmjs.org/:_authToken=${process.env.NODE_AUTH_TOKEN}'`,
-    );
+    // await exec(
+    //   `yarn logout && npm config set '//registry.npmjs.org/:_authToken=${process.env.NODE_AUTH_TOKEN}'`,
+    // );
 
     const { stdout, stderr } = await exec(
       // @TODO use version post-testing
       `npx lerna publish ${
-        false ? version : '1.6.1-alpha.2'
+        false ? version : '1.6.1-alpha.3'
       } --exact --yes --no-verify-access --allow-branch chris--actions-prlabels`,
     );
     if (stdout) {
