@@ -51,4 +51,6 @@ export default async function performLernaRelease(prsSinceLastTag: PR[]) {
     console.warn('The following error occurred during publishing. Exiting.', e.message);
     process.exit(1);
   }
+
+  return isPreRelease;
 }

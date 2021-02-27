@@ -3,7 +3,6 @@ import fs from 'fs';
 import util from 'util';
 import childProcess from 'child_process';
 
-import { GithubClient } from '../../utils/getGitHubClient';
 import { PR } from '../types';
 import getChangelogAddition from './getChangelogAddition';
 import mergeUpdateIntoChangelog from './mergeUpdateIntoChangelog';
@@ -11,7 +10,7 @@ import mergeUpdateIntoChangelog from './mergeUpdateIntoChangelog';
 const CHANGELOG_PATH = 'CHANGELOG.md';
 const exec = util.promisify(childProcess.exec);
 
-export default async function updateChangelog(client: GithubClient, prs: PR[], tagName: string) {
+export default async function updateChangelog(prs: PR[], tagName: string) {
   if (prs.length === 0) {
     console.log('No PRs with which to update changelog. Exiting.');
     return;
@@ -33,7 +32,7 @@ export default async function updateChangelog(client: GithubClient, prs: PR[], t
 
     console.log('Updating changelog with new content.');
 
-    fs.writeFileSync(CHANGELOG_PATH, JSON.stringify(nextChangelog), 'utf8');
+    fs.writeFileSync(CHANGELOG_PATH, nextChangelog, 'utf8');
 
     const { stdout, stderr } = await exec(
       `git add . && git commit -m "changelog: ${tagName}" && git push`,

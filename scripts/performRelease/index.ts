@@ -46,7 +46,7 @@ async function performRelease() {
     commitsSinceTag.map(commit => commit.sha),
   );
 
-  await performLernaRelease(prsSinceLastTag);
+  const isPrelease = await performLernaRelease(prsSinceLastTag);
 
   const newTagsRequest = await fetchTags(client);
   const newTag = newTagsRequest.data[0];
@@ -58,7 +58,9 @@ async function performRelease() {
 
   // update changelog
   // @TODO disable this for pre-releases after testing.
-  await updateChangelog(client, prsSinceLastTag, newTag.name);
+  if (false && !isPrelease) {
+    await updateChangelog(prsSinceLastTag, newTag.name);
+  }
 
   // post release version on all PRs to inform authors
   await postReleaseOnPrs(client, prsSinceLastTag, newTag.name);

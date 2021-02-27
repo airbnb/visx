@@ -10,7 +10,7 @@ export default async function fetchPRsForCommits(
   const prs = [];
 
   // for-loop because of async calls
-  for (let index = 0; index < shas.length - 1; index += 1) {
+  for (let index = 0; index < shas.length; index += 1) {
     const sha = shas[index];
     console.log('Fetching PRs associated with commit', sha);
 
