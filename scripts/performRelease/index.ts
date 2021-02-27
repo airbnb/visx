@@ -58,7 +58,7 @@ async function performRelease() {
 
   // update changelog
   // @TODO disable this for pre-releases after testing.
-  if (false && !isPrelease) {
+  if (true || !isPrelease) {
     await updateChangelog(prsSinceLastTag, newTag.name);
   }
 
