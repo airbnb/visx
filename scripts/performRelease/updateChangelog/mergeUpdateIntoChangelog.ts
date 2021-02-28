@@ -1,4 +1,11 @@
+const CHANGELOG_HEADER = '# Changelog';
+
 /**
+ * Util that merges a new changelog entry into the existing changelog. It: 
+ * - inserts a convenience link for the new release tag
+ * - moves the oldest *recent* link into the *older releases section*
+ * - incorporate the new changelog change addition
+
  * Example structure
     # Changelog
     - [v1.6.0](#v160)
@@ -23,17 +30,11 @@ export default function mergeUpdateIntoChangelog(
   changelogAddition: string,
   tagName: string,
 ) {
-  // We need to
-  // - insert the new release tag
-  // - move the oldest recent link into the older releases section
-  // - incorporate the new changelogAddition
-
   // split into all links and actual changelog content
   const [currChangelogLinks, currChangelogContent] = currChangelog.split('------');
   const currChangelogLinksByLine = currChangelogLinks
     .split('\n')
-    .filter(line => line !== '\n' && line !== '# Changelog')
-    .map(line => line.trim()); // remove header
+    .filter(line => line !== '\n' && line !== CHANGELOG_HEADER); // remove header + newlines
 
   // find start of older releases
   const detailsIndex = currChangelogLinksByLine.findIndex(line => line.includes('<details>'));
@@ -57,15 +58,15 @@ export default function mergeUpdateIntoChangelog(
     // previous recent links
     ...currChangelogLinksByLine.slice(0, oldestRecentLinkInsertionIndex),
     // oldest recent link now in older links
-    `<li><a href="${oldestRecentLinkUrl}">${oldestRecentLinkVersion}</a></li>`,
+    `  <li><a href="${oldestRecentLinkUrl}">${oldestRecentLinkVersion}</a></li>`,
     // older links
     ...currChangelogLinksByLine.slice(oldestRecentLinkInsertionIndex),
   ];
 
   // now merge new and old content
-  const nextChangelog = `# Changelog\n${nextChangelogLinksByLine.join(
+  const nextChangelog = `${CHANGELOG_HEADER}\n${nextChangelogLinksByLine.join(
     '\n',
-  )}\n------\n${changelogAddition}\n${currChangelogContent}`;
+  )}------\n${changelogAddition}\n${currChangelogContent}`;
 
   return nextChangelog;
 }

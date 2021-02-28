@@ -1,14 +1,18 @@
 import { PR } from '../types';
 
+const MS_PER_MINUTE = 60 * 1000;
+
 /** Returns a UTC date string in the format YYYY-MM-DD */
 function getCurrentDate() {
   const now = new Date();
-  return new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString().split('T')[0];
+  return new Date(now.getTime() - now.getTimezoneOffset() * MS_PER_MINUTE)
+    .toISOString()
+    .split('T')[0];
 }
 
 /** util to print a section of PRs. */
 const printPRs = (sectionTitle: string, prs: PR[]) =>
-  `\n${sectionTitle}\n\n${prs.map(pr => `- ${pr.title} [${pr.number}](${pr.html_url})\n`)}`;
+  `\n${sectionTitle}\n\n${prs.map(pr => `- ${pr.title} [#${pr.number}](${pr.html_url})\n`)}`;
 
 /** Creates the new content for the changelog. */
 export default function getChangelogAddition(tagName: string, prs: PR[]) {
@@ -34,18 +38,18 @@ export default function getChangelogAddition(tagName: string, prs: PR[]) {
       !docs.find(pr => pr.id === id),
   );
 
-  const changelogAddition = `
-    # ${tagName} (${getCurrentDate()})
-    ${enhancements.length === 0 ? '' : printPRs('#### :rocket: Enhancements', enhancements)}
-    ${bugFixes.length === 0 ? '' : printPRs('#### :bug: Bug Fix', bugFixes)}
-    ${breaking.length === 0 ? '' : printPRs('### :boom:  Breaking Changes', breaking)}
-    ${docs.length === 0 ? '' : printPRs('### :memo: Documentation', docs)}
-    ${internal.length === 0 ? '' : printPRs('### :house:  Internal', internal)}
-    ${uncategorized.length === 0 ? '' : printPRs('#### Uncategorized', uncategorized)}
+  const changelogAddition = `# ${tagName} (${getCurrentDate()})
+${enhancements.length === 0 ? '' : printPRs('#### :rocket: Enhancements', enhancements)}
+${bugFixes.length === 0 ? '' : printPRs('#### :bug: Bug Fix', bugFixes)}
+${breaking.length === 0 ? '' : printPRs('### :boom:  Breaking Changes', breaking)}
+${docs.length === 0 ? '' : printPRs('### :memo: Documentation', docs)}
+${internal.length === 0 ? '' : printPRs('### :house:  Internal', internal)}
+${uncategorized.length === 0 ? '' : printPRs('#### Uncategorized', uncategorized)}
   
-    #### :trophy: Contributors
-    ${contributors.map(contributor => `- [${contributor}](https://github.com/${contributor})`)}
-  `;
+#### :trophy: Contributors
+${contributors
+  .map(contributor => `- [${contributor}](https://github.com/${contributor})`)
+  .join('\n')}`;
 
   return changelogAddition;
 }
