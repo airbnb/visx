@@ -54,7 +54,7 @@ export default function mergeUpdateIntoChangelog(
   const oldestRecentLinkInsertionIndex = ulIndex + 1;
   const nextChangelogLinksByLine = [
     // new link
-    `- [${tagName}](#${tagName.replace('.', '')})`,
+    `- [${tagName}](#${tagName.replace(/\./g, '')})`, // remove '.' in tag
     // previous recent links
     ...currChangelogLinksByLine.slice(0, oldestRecentLinkInsertionIndex),
     // oldest recent link now in older links
