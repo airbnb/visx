@@ -52,7 +52,7 @@ async function performRelease() {
   const newTag = newTagsRequest.data[0];
 
   if (newTag.name === mostRecentTag.name) {
-    console.log('Newest tag equals previous tag, will not update changelog.');
+    console.log('Newest tag equals previous tag, will not update changelog or post on PRs.');
     process.exit(0);
   }
 
