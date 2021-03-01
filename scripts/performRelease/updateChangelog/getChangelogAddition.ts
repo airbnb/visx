@@ -12,7 +12,9 @@ function getCurrentDate() {
 
 /** util to print a section of PRs. */
 const printPRs = (sectionTitle: string, prs: PR[]) =>
-  `${sectionTitle}\n\n${prs.map(pr => `- ${pr.title} [#${pr.number}](${pr.html_url})`).join('\n')}`;
+  `\n${sectionTitle}\n\n${prs
+    .map(pr => `- ${pr.title} [#${pr.number}](${pr.html_url})`)
+    .join('\n')}`;
 
 /** Creates the new content for the changelog. */
 export default function getChangelogAddition(tagName: string, prs: PR[]) {
@@ -38,14 +40,14 @@ export default function getChangelogAddition(tagName: string, prs: PR[]) {
       !docs.find(pr => pr.id === id),
   );
 
-  const changelogAddition = `# ${tagName} (${getCurrentDate()})
-${enhancements.length === 0 ? '' : printPRs('#### :rocket: Enhancements', enhancements)}${
-    bugFixes.length === 0 ? '' : printPRs('#### :bug: Bug Fix', bugFixes)
-  }${breaking.length === 0 ? '' : printPRs('### :boom:  Breaking Changes', breaking)}${
-    docs.length === 0 ? '' : printPRs('### :memo: Documentation', docs)
-  }${internal.length === 0 ? '' : printPRs('### :house:  Internal', internal)}${
-    uncategorized.length === 0 ? '' : printPRs('#### Uncategorized', uncategorized)
-  }
+  const changelogAddition = `# ${tagName} (${getCurrentDate()})${
+    enhancements.length === 0 ? '' : printPRs('#### :rocket: Enhancements', enhancements)
+  }${bugFixes.length === 0 ? '' : printPRs('#### :bug: Bug Fix', bugFixes)}${
+    breaking.length === 0 ? '' : printPRs('### :boom:  Breaking Changes', breaking)
+  }${docs.length === 0 ? '' : printPRs('### :memo: Documentation', docs)}${
+    internal.length === 0 ? '' : printPRs('### :house:  Internal', internal)
+  }${uncategorized.length === 0 ? '' : printPRs('#### Uncategorized', uncategorized)}
+  
 #### :trophy: Contributors
 ${contributors
   .map(contributor => `- [${contributor}](https://github.com/${contributor})`)
