@@ -39,13 +39,13 @@ export default function getChangelogAddition(tagName: string, prs: PR[]) {
   );
 
   const changelogAddition = `# ${tagName} (${getCurrentDate()})
-${enhancements.length === 0 ? '' : printPRs('#### :rocket: Enhancements', enhancements)}
-${bugFixes.length === 0 ? '' : printPRs('#### :bug: Bug Fix', bugFixes)}
-${breaking.length === 0 ? '' : printPRs('### :boom:  Breaking Changes', breaking)}
-${docs.length === 0 ? '' : printPRs('### :memo: Documentation', docs)}
-${internal.length === 0 ? '' : printPRs('### :house:  Internal', internal)}
-${uncategorized.length === 0 ? '' : printPRs('#### Uncategorized', uncategorized)}
-  
+${enhancements.length === 0 ? '' : printPRs('#### :rocket: Enhancements', enhancements)}${
+    bugFixes.length === 0 ? '' : printPRs('#### :bug: Bug Fix', bugFixes)
+  }${breaking.length === 0 ? '' : printPRs('### :boom:  Breaking Changes', breaking)}${
+    docs.length === 0 ? '' : printPRs('### :memo: Documentation', docs)
+  }${internal.length === 0 ? '' : printPRs('### :house:  Internal', internal)}${
+    uncategorized.length === 0 ? '' : printPRs('#### Uncategorized', uncategorized)
+  }
 #### :trophy: Contributors
 ${contributors
   .map(contributor => `- [${contributor}](https://github.com/${contributor})`)
