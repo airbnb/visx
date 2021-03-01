@@ -12,7 +12,7 @@ function getCurrentDate() {
 
 /** util to print a section of PRs. */
 const printPRs = (sectionTitle: string, prs: PR[]) =>
-  `\n${sectionTitle}\n\n${prs
+  `\n\n${sectionTitle}\n\n${prs
     .map(pr => `- ${pr.title} [#${pr.number}](${pr.html_url})`)
     .join('\n')}`;
 
