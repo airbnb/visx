@@ -36,6 +36,7 @@
     "build": "yarn run babel && yarn run type",
     "build-one": "echo 'build-one has been replaced with build:workspace' & exit 1",
     "build:sizes": "yarn run ts ./scripts/computeBuildSizes.ts",
+    "build:release": "yarn run ts ./scripts/performRelease/index.ts",
     "build:workspace": "nimbus babel --clean",
     "check:sizes": "yarn run ts ./scripts/compareBuildSizes.ts",
     "clean": "rm -rf ./packages/**/{lib,esm}",
@@ -110,7 +111,12 @@
     },
     "babel": {
       "plugins": [
-        ["@babel/plugin-proposal-private-methods", { "loose": false }]
+        [
+          "@babel/plugin-proposal-private-methods",
+          {
+            "loose": false
+          }
+        ]
       ]
     },
     "typescript": {
@@ -131,9 +137,9 @@
         "!packages/visx-demo/**",
         "!packages/visx-visx/**"
       ],
-      "testPathIgnorePatterns" : [
+      "testPathIgnorePatterns": [
         "<rootDir>/packages/visx-demo",
-        "<rootDir>/packages/visx-visx" 
+        "<rootDir>/packages/visx-visx"
       ],
       "coverageThreshold": {
         "global": {
