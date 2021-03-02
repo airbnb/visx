@@ -1,4 +1,5 @@
 const CHANGELOG_HEADER = '# Changelog';
+const LINK_CONTENT_SEPARATOR = '------';
 
 /**
  * Util that merges a new changelog entry into the existing changelog. It: 
@@ -31,7 +32,7 @@ export default function mergeUpdateIntoChangelog(
   tagName: string,
 ) {
   // split into all links and actual changelog content
-  const [currChangelogLinks, currChangelogContent] = currChangelog.split('------');
+  const [currChangelogLinks, currChangelogContent] = currChangelog.split(LINK_CONTENT_SEPARATOR);
   const currChangelogLinksByLine = currChangelogLinks
     .split('\n')
     .filter(line => line !== '\n' && line !== CHANGELOG_HEADER); // remove header + newlines
@@ -66,7 +67,7 @@ export default function mergeUpdateIntoChangelog(
   // now merge new and old content
   const nextChangelog = `${CHANGELOG_HEADER}\n${nextChangelogLinksByLine.join(
     '\n',
-  )}------\n${changelogAddition}\n${currChangelogContent}`;
+  )}${LINK_CONTENT_SEPARATOR}\n${changelogAddition}\n${currChangelogContent}`;
 
   return nextChangelog;
 }

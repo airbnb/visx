@@ -2,8 +2,9 @@ import fs from 'fs';
 import size from 'filesize';
 import chalk from 'chalk';
 import fetch from 'node-fetch';
+
 import upsertPullRequestComment from './utils/upsertPullRequestComment';
-import { PACKAGE_SIZES_FILENAME } from './utils/computeBuildSizes';
+import { PACKAGE_SIZES_FILENAME } from './computeBuildSizes';
 
 type StatMap = {
   [pkg: string]: {
