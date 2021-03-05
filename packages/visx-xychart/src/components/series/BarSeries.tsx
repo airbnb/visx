@@ -6,7 +6,7 @@ import Bars from './private/Bars';
 function BarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum extends object>({
   colorAccessor,
   ...props
-}: Omit<BaseBarSeriesProps<XScale, YScale, Datum>, 'BarsComponent'>) {
+}: BaseBarSeriesProps<XScale, YScale, Datum>) {
   return (
     <BaseBarSeries<XScale, YScale, Datum>
       {...props}

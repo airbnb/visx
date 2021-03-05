@@ -30,6 +30,17 @@ describe('<BarSeries />', () => {
     expect(container.querySelectorAll('rect')).toHaveLength(2);
   });
 
+  it('should render rounded rects if radius is set', () => {
+    const { container } = render(
+      <DataContext.Provider value={getDataContext(series)}>
+        <svg>
+          <BarSeries dataKey={series.key} radiusAll radius={4} {...series} />
+        </svg>
+      </DataContext.Provider>,
+    );
+    expect(container.querySelectorAll('path')).toHaveLength(2);
+  });
+
   it('should use colorAccessor if passed', () => {
     const { container } = render(
       <DataContext.Provider value={getDataContext(series)}>

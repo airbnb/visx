@@ -6,8 +6,8 @@ import debounce from 'lodash/debounce';
 
 export default function AnimatedPath({
   d,
-  stroke,
-  fill,
+  stroke = 'transparent',
+  fill = 'transparent',
   ...lineProps
 }: Omit<React.SVGProps<SVGPathElement>, 'ref'>) {
   const previousD = useRef(d);

@@ -24,7 +24,10 @@ export type BaseBarSeriesProps<
   barPadding?: number;
   /** Given a Datum, returns its color. Falls back to theme color if unspecified or if a null-ish value is returned. */
   colorAccessor?: (d: Datum, index: number) => string | null | undefined;
-};
+} & Pick<
+    BarsProps<XScale, YScale>,
+    'radius' | 'radiusAll' | 'radiusTop' | 'radiusRight' | 'radiusBottom' | 'radiusLeft'
+  >;
 
 // Fallback bandwidth estimate assumes no missing data values (divides chart space by # datum)
 const getFallbackBandwidth = (fullBarWidth: number, barPadding: number) =>
@@ -47,6 +50,7 @@ function BaseBarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum
   xScale,
   yAccessor,
   yScale,
+  ...barComponentProps
 }: BaseBarSeriesProps<XScale, YScale, Datum> & WithRegisteredDataProps<XScale, YScale, Datum>) {
   const {
     colorScale,
@@ -122,6 +126,7 @@ function BaseBarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum
         xScale={xScale}
         yScale={yScale}
         {...eventEmitters}
+        {...barComponentProps}
       />
     </g>
   );
