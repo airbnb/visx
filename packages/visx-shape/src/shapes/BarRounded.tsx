@@ -40,7 +40,7 @@ export type BarRoundedProps = {
 };
 
 /** Hook that returns a BarRounded path. */
-export function useBarRounded({
+export function useBarRoundedPath({
   all,
   bottom,
   bottomLeft,
@@ -116,7 +116,7 @@ export default function BarRounded({
   bottomRight = false,
   ...restProps
 }: AddSVGProps<BarRoundedProps, SVGPathElement>) {
-  const path = useBarRounded({
+  const path = useBarRoundedPath({
     x,
     y,
     width,

@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 
 import { BarRounded } from '../src';
-import { useBarRounded } from '../src/shapes/BarRounded';
+import { useBarRoundedPath } from '../src/shapes/BarRounded';
 
 const testProps = { x: 0, y: 0, width: 10, height: 20, radius: 2 };
 const BarRoundedWrapper = (restProps = {}) => shallow(<BarRounded {...testProps} {...restProps} />);
@@ -27,8 +27,8 @@ describe('<BarRounded />', () => {
     expect(wrapper.find('rect#test')).toHaveLength(1);
   });
 
-  it('should support hooks with useBarRounded', () => {
-    const path = useBarRounded({ ...testProps, all: true });
+  it('should support hooks with useBarRoundedPath', () => {
+    const path = useBarRoundedPath({ ...testProps, all: true });
     expect(path).toBe(
       'M2,0 h6 a2,2 0 0 1 2,2 v16 a2,2 0 0 1 -2,2 h-6 a2,2 0 0 1 -2,-2 v-16 a2,2 0 0 1 2,-2z',
     );
