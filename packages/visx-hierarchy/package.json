@@ -1,6 +1,6 @@
 {
   "name": "@visx/hierarchy",
-  "version": "1.0.0",
+  "version": "1.6.1",
   "description": "visx tree",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -34,7 +34,7 @@
     "@types/classnames": "^2.2.9",
     "@types/d3-hierarchy": "^1.1.6",
     "@types/react": "*",
-    "@visx/group": "1.0.0",
+    "@visx/group": "1.6.1",
     "classnames": "^2.2.5",
     "d3-hierarchy": "^1.1.4",
     "prop-types": "^15.6.1"
