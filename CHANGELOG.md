@@ -1,4 +1,5 @@
 # Changelog
+- [v1.6.1](#v161)
 - [v1.6.0](#v160)
 - [v1.5.0](#v150)
 - [v1.4.0](#v140)
@@ -6,10 +7,10 @@
 - [v1.2.0](#v120)
 - [v1.1.0](#v110)
 - [v1.0.0](#v100)
-- [v0.0.199](#v00199)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v00199">v0.0.199</a></li>
   <li><a href="#v00198">v0.0.198</a></li>
   <li><a href="#v00197">v0.0.197</a></li>
   <li><a href="#v00196">v0.0.196</a></li>
@@ -96,6 +97,26 @@
 </details>
 
 ------
+# v1.6.1 (2021-03-08)
+
+#### :bug: Bug Fix
+
+- fix(network): string type in node/linkComponent [#1078](https://github.com/airbnb/visx/pull/1078)
+- fix(xychart/Axis): export AxisScale type, set default Scale generic [#1094](https://github.com/airbnb/visx/pull/1094)
+
+### :memo: Documentation
+
+- fix(network): string type in node/linkComponent [#1078](https://github.com/airbnb/visx/pull/1078)
+
+### :house:  Internal
+
+- build(happo): decrease compare threshold [#1088](https://github.com/airbnb/visx/pull/1088)
+- new(workflows/push): automate releases [#1073](https://github.com/airbnb/visx/pull/1073)
+  
+#### :trophy: Contributors
+- [jraymakers](https://github.com/jraymakers)
+- [williaster](https://github.com/williaster)
+
 # v1.6.0
 #### :rocket:  Enhancements
 
