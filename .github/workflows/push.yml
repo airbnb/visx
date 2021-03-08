@@ -9,9 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2 # checkout visx + this commit
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2
         with:
           node-version: '12'
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
@@ -31,13 +32,28 @@ jobs:
         run: yarn build
 
       - name: 📐 Commit package sizes
+        # note: `git diff-index --quiet HEAD`
+        #       has exit code 0 if there are changes vs HEAD, else nothing to commit
         run: |
           yarn build:sizes	
           git config user.name github-actions	
           git config user.email github-actions@github.com	
           git add .	
-          git commit -m "build(${GITHUB_SHA}): auto-commit package sizes"	
+          git diff-index --quiet HEAD || git commit -m "build(${GITHUB_SHA}): auto-commit package sizes"	
           git push
+
+      - name: 🚀 Release
+        # the following configurations are needed for lerna to
+        #   - have git credentials for commiting tags
+        #   - have correct npm credentials for publishing (yarn does not work)
+        run: |
+          git config user.name github-actions	
+          git config user.email github-actions@github.com
+          yarn logout
+          npm config set '//registry.npmjs.org/:_authToken=${{ secrets.NPM_AUTH_TOKEN }}'
+          yarn build:release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: 🚀 Build and deploy gallery
         # below we

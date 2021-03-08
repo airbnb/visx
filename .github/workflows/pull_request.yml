@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2 # checkout visx + this commit
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2
         with:
           node-version: '12'
 
@@ -52,9 +52,12 @@ jobs:
           HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
           HAPPO_COMMAND: '../../node_modules/happo.io/build/cli.js'
 
+      # @TODO
+      # this fails on forks, we need to update workflow event type to `pull_request_target`
+      # but this needs security review
+      # https://docs.github.com/en/actions/reference/events-that-trigger-workflows#pull_request_target
       - name: 📐 Report package sizes
         run: yarn build:sizes && yarn check:sizes
-        # add needed variables for posting on the PR via octokit
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ github.event.pull_request.number }}

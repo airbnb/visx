@@ -2,7 +2,8 @@ import fs from 'fs';
 import size from 'filesize';
 import chalk from 'chalk';
 import fetch from 'node-fetch';
-import upsertPullRequestComment from './upsertPullRequestComment';
+
+import upsertPullRequestComment from './utils/upsertPullRequestComment';
 import { PACKAGE_SIZES_FILENAME } from './computeBuildSizes';
 
 type StatMap = {
@@ -113,11 +114,13 @@ ${JSON.stringify(nextSizes, null, 2)}
   try {
     await upsertPullRequestComment('### Size Changes', breakdown);
   } catch (error) {
-    console.log('Could not post size stats', breakdown);
+    console.warn(`Could not post size stats:\n${breakdown}`);
+    // @TODO this should throw once it works on forks
     console.error(error);
   }
 }
 
+// invoke function since this is a script
 compareBuildSizes().catch(error => {
   console.error(chalk.red(error.message));
   process.exitCode = 1;
