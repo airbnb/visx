@@ -1,6 +1,6 @@
 {
   "name": "@visx/heatmap",
-  "version": "1.6.1",
+  "version": "1.7.0",
   "description": "visx heatmap",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -36,7 +36,7 @@
   "dependencies": {
     "@types/classnames": "^2.2.9",
     "@types/react": "*",
-    "@visx/group": "1.6.1",
+    "@visx/group": "1.7.0",
     "classnames": "^2.2.5",
     "prop-types": "^15.6.1"
   }

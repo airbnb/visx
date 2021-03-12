@@ -1,6 +1,6 @@
 {
   "name": "@visx/gradient",
-  "version": "1.6.1",
+  "version": "1.7.0",
   "description": "visx gradient",
   "sideEffects": false,
   "main": "lib/index.js",
