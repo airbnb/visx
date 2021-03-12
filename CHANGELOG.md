@@ -1,4 +1,5 @@
 # Changelog
+- [v1.7.0](#v170)
 - [v1.6.1](#v161)
 - [v1.6.0](#v160)
 - [v1.5.0](#v150)
@@ -6,10 +7,10 @@
 - [v1.3.0](#v130)
 - [v1.2.0](#v120)
 - [v1.1.0](#v110)
-- [v1.0.0](#v100)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v100">v1.0.0</a></li>
   <li><a href="#v00199">v0.0.199</a></li>
   <li><a href="#v00198">v0.0.198</a></li>
   <li><a href="#v00197">v0.0.197</a></li>
@@ -97,6 +98,25 @@
 </details>
 
 ------
+# v1.7.0 (2021-03-12)
+
+#### :rocket: Enhancements
+
+- Export types in @visx/text [#1106](https://github.com/airbnb/visx/pull/1106)
+
+#### :bug: Bug Fix
+
+- fix(xychart/Tooltip): don't render glyph for null data [#1102](https://github.com/airbnb/visx/pull/1102)
+- fix(shape, xychart): default LinePath strokeLinecap to round [#1105](https://github.com/airbnb/visx/pull/1105)
+
+### :house:  Internal
+
+- deps(lerna): bump to 3.22.0 [#1103](https://github.com/airbnb/visx/pull/1103)
+  
+#### :trophy: Contributors
+- [ConneXNL](https://github.com/ConneXNL)
+- [williaster](https://github.com/williaster)
+
 # v1.6.1 (2021-03-08)
 
 #### :bug: Bug Fix
