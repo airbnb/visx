@@ -190,20 +190,20 @@ export default function Tooltip<Datum extends object>({
     } else if (nearestDatum) {
       const { left, top } = getDatumLeftTop(nearestDatumKey, nearestDatum.datum);
       // don't show glyphs if coords are unavailable
-      if (!isValidNumber(left) || !isValidNumber(top)) return;
-
-      glyphProps.push({
-        left: left - radius - strokeWidth,
-        top: top - radius - strokeWidth,
-        fill:
-          (nearestDatumKey && colorScale?.(nearestDatumKey)) ??
-          null ??
-          theme?.gridStyles?.stroke ??
-          theme?.htmlLabel?.color ??
-          '#222',
-        radius,
-        strokeWidth,
-      });
+      if (isValidNumber(left) && isValidNumber(top)) {
+        glyphProps.push({
+          left: left - radius - strokeWidth,
+          top: top - radius - strokeWidth,
+          fill:
+            (nearestDatumKey && colorScale?.(nearestDatumKey)) ??
+            null ??
+            theme?.gridStyles?.stroke ??
+            theme?.htmlLabel?.color ??
+            '#222',
+          radius,
+          strokeWidth,
+        });
+      }
     }
   }
 
