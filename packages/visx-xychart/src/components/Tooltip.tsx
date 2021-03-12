@@ -189,9 +189,12 @@ export default function Tooltip<Datum extends object>({
       });
     } else if (nearestDatum) {
       const { left, top } = getDatumLeftTop(nearestDatumKey, nearestDatum.datum);
+      // don't show glyphs if coords are unavailable
+      if (!isValidNumber(left) || !isValidNumber(top)) return;
+
       glyphProps.push({
-        left: (left ?? 0) - radius - strokeWidth,
-        top: (top ?? 0) - radius - strokeWidth,
+        left: left - radius - strokeWidth,
+        top: top - radius - strokeWidth,
         fill:
           (nearestDatumKey && colorScale?.(nearestDatumKey)) ??
           null ??
