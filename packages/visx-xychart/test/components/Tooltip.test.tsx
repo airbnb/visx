@@ -2,7 +2,13 @@ import React from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 import { mount } from 'enzyme';
 import { Tooltip as BaseTooltip } from '@visx/tooltip';
-import { DataContext, Tooltip, TooltipContext, TooltipContextType } from '../../src';
+import {
+  DataContext,
+  DataRegistryEntry,
+  Tooltip,
+  TooltipContext,
+  TooltipContextType,
+} from '../../src';
 import { TooltipProps } from '../../src/components/Tooltip';
 import getDataContext from '../mocks/getDataContext';
 
@@ -11,17 +17,17 @@ describe('<Tooltip />', () => {
     | {
         props?: Partial<TooltipProps<object>>;
         context?: Partial<TooltipContextType<object>>;
-        Parent?: ({ children }: { children: React.ReactElement }) => React.ReactElement;
+        dataEntries?: DataRegistryEntry<any, any, any>[];
       }
     | undefined;
 
-  function setup({
-    props,
-    context,
-    Parent = ({ children }: { children: React.ReactElement }) => children,
-  }: SetupProps = {}) {
+  function setup({ props, context, dataEntries = [] }: SetupProps = {}) {
     const wrapper = mount(
-      <Parent>
+      <DataContext.Provider
+        value={{
+          ...getDataContext(dataEntries),
+        }}
+      >
         <TooltipContext.Provider
           value={{
             tooltipOpen: false,
@@ -37,7 +43,7 @@ describe('<Tooltip />', () => {
             {...props}
           />
         </TooltipContext.Provider>
-      </Parent>,
+      </DataContext.Provider>,
     );
     return wrapper;
   }
@@ -99,7 +105,20 @@ describe('<Tooltip />', () => {
   it('should not render a glyph if showDatumGlyph=true and there is no nearestDatum', () => {
     const wrapper = setup({
       props: { showDatumGlyph: true },
-      context: { tooltipOpen: true },
+      context: {
+        tooltipOpen: true,
+        tooltipData: {
+          datumByKey: {},
+        },
+      },
+      dataEntries: [
+        {
+          key: 'd1',
+          xAccessor: () => 3,
+          yAccessor: () => 7,
+          data: [{}],
+        },
+      ],
     });
     expect(wrapper.find('div.visx-tooltip-glyph')).toHaveLength(0);
   });
@@ -109,10 +128,18 @@ describe('<Tooltip />', () => {
       context: {
         tooltipOpen: true,
         tooltipData: {
-          nearestDatum: { distance: 1, key: '', index: 0, datum: {} },
+          nearestDatum: { distance: 1, key: 'd1', index: 0, datum: {} },
           datumByKey: {},
         },
       },
+      dataEntries: [
+        {
+          key: 'd1',
+          xAccessor: () => 3,
+          yAccessor: () => 7,
+          data: [{}],
+        },
+      ],
     });
     expect(wrapper.find('div.visx-tooltip-glyph')).toHaveLength(1);
   });
@@ -128,30 +155,20 @@ describe('<Tooltip />', () => {
           },
         },
       },
-      Parent: (
-        { children }, // glyphs snap to data points, so scales/accessors must exist
-      ) => (
-        <DataContext.Provider
-          value={{
-            ...getDataContext([
-              {
-                key: 'd1',
-                xAccessor: () => 3,
-                yAccessor: () => 7,
-                data: [{}],
-              },
-              {
-                key: 'd2',
-                xAccessor: () => 3,
-                yAccessor: () => 7,
-                data: [{}],
-              },
-            ]),
-          }}
-        >
-          {children}
-        </DataContext.Provider>
-      ),
+      dataEntries: [
+        {
+          key: 'd1',
+          xAccessor: () => 3,
+          yAccessor: () => 7,
+          data: [{}],
+        },
+        {
+          key: 'd2',
+          xAccessor: () => 3,
+          yAccessor: () => 7,
+          data: [{}],
+        },
+      ],
     });
     expect(wrapper.find('div.visx-tooltip-glyph')).toHaveLength(2);
   });
