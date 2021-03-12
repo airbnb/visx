@@ -38,6 +38,9 @@ export default function LinePath<Datum>({
       className={cx('visx-linepath', className)}
       d={path(data) || ''}
       fill={fill}
+      // without this a datum surrounded by nulls will not be visible
+      // https://github.com/d3/d3-shape#line_defined
+      strokeLinecap="round"
       {...restProps}
     />
   );
