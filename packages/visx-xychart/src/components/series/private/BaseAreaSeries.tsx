@@ -129,6 +129,7 @@ function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
             className="visx-area"
             stroke="transparent"
             fill={color}
+            strokeLinecap="round" // without this a datum surrounded by nulls will not be visible
             {...areaProps}
             d={path(data) || ''}
             {...eventEmitters}
@@ -150,6 +151,7 @@ function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
               stroke={color}
               strokeWidth={2}
               pointerEvents="none"
+              strokeLinecap="round" // without this a datum surrounded by nulls will not be visible
               {...lineProps}
               d={path(data) || ''}
             />

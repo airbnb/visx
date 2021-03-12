@@ -26,6 +26,17 @@ describe('<AreaSeries />', () => {
     expect(wrapper.find(Area)).toHaveLength(1);
   });
 
+  it('should set strokeLinecap="round" to make datum surrounded by nulls visible', () => {
+    const wrapper = mount(
+      <DataContext.Provider value={getDataContext(series)}>
+        <svg>
+          <AreaSeries dataKey={series.key} renderLine={false} {...series} />
+        </svg>
+      </DataContext.Provider>,
+    );
+    expect(wrapper.find('path').prop('strokeLinecap')).toBe('round');
+  });
+
   it('should use x/y0Accessors an Area', () => {
     const y0Accessor = jest.fn(() => 3);
     const wrapper = mount(

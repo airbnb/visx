@@ -88,6 +88,7 @@ function BaseLineSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
             stroke={color}
             strokeWidth={2}
             fill="transparent"
+            strokeLinecap="round" // without this a datum surrounded by nulls will not be visible
             {...lineProps}
             d={path(data) || ''}
             {...eventEmitters}

@@ -26,6 +26,17 @@ describe('<LineSeries />', () => {
     expect(wrapper.find(LinePath)).toHaveLength(1);
   });
 
+  it('should set strokeLinecap="round" to make datum surrounded by nulls visible', () => {
+    const wrapper = mount(
+      <DataContext.Provider value={getDataContext(series)}>
+        <svg>
+          <LineSeries dataKey={series.key} {...series} />
+        </svg>
+      </DataContext.Provider>,
+    );
+    expect(wrapper.find('path').prop('strokeLinecap')).toBe('round');
+  });
+
   it('should render Glyphs if focus/blur handlers are set', () => {
     const wrapper = mount(
       <DataContext.Provider value={getDataContext(series)}>
