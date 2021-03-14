@@ -34,10 +34,13 @@ export default async function performLernaRelease(prsSinceLastTag: PR[]) {
       isMajor ? 'major' : isMinor ? 'minor' : 'patch'
     }`;
 
+    const distTag = isPreRelease ? 'next' : 'latest';
+
     console.log(`Attempting to publish a '${version}' release.`);
 
     const { stdout, stderr } = await exec(
-      `npx lerna publish ${version} --exact --yes --no-verify-access`,
+      // --no-verify-access is needed because the CI token isn't valid for that endpoint
+      `npx lerna publish ${version} --exact --yes --no-verify-access --dist-tag ${distTag}`,
     );
     if (stdout) {
       console.log('Lerna output', stdout);
