@@ -131,7 +131,6 @@ export default class BrushHandle extends React.Component<BrushHandleProps> {
                 style={{ cursor }}
                 onMouseMove={dragMove}
                 onMouseUp={dragEnd}
-                onMouseLeave={dragEnd}
               />
             )}
             <rect
