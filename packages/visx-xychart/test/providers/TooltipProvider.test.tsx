@@ -51,6 +51,7 @@ describe('<TooltipProvider />', () => {
             key: 'far',
             index: 1,
             datum: { good: 'bye' },
+            distanceX: NaN,
             // no distance = Infinity
           });
         }
