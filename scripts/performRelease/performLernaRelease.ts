@@ -19,6 +19,9 @@ export default async function performLernaRelease(prsSinceLastTag: PR[]) {
 
   // run lerna based on the type of release
   const isPreRelease = releasePRsSinceLastTag.some(pr =>
+    // note that this logic requires that all alpha tags be removed from PRs
+    // in order to trigger a non-alpha release. git keeps tag history so
+    // preserving context should not be an issue
     pr.labels.some(label => label.name === ALPHA_RELEASE),
   );
   const isMinor = releasePRsSinceLastTag.some(pr =>
