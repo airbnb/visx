@@ -209,7 +209,7 @@ Lots coming soon, check out the [roadmap](./ROADMAP.md).
 - [zh-TW] Taiwan Real-time Air Quality Index by [@ArvinH](https://github.com/ArvinH)([Demo](https://codesandbox.io/s/simpleradar-aqi-with-tooltip-select-data-react-spring-item3?file=/Radar.tsx))([Tutorial](https://blog.arvinh.info/tech/datavis-visx))
 - tokenized BTC on ethereum stacked chart with brush by [@sakulstra](https://github.com/sakulstra)([Demo](https://tokenizedbtc.info/))
 - [Escape From Tarkov Ammo Chart](https://eft.monster/) by [@codenomial](https://github.com/codenomial)
-
+- [Pry](https://pry.co) Finance for Founders (dashboard by [@valtism](https://github.com/valtism))
 
 Have a project that's using `visx`? Open a pull request and we'll add it to the list.
 
