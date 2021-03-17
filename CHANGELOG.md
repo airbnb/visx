@@ -1,4 +1,5 @@
 # Changelog
+- [v1.7.1](#v171)
 - [v1.7.0](#v170)
 - [v1.6.1](#v161)
 - [v1.6.0](#v160)
@@ -6,10 +7,10 @@
 - [v1.4.0](#v140)
 - [v1.3.0](#v130)
 - [v1.2.0](#v120)
-- [v1.1.0](#v110)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v110">v1.1.0</a></li>
   <li><a href="#v100">v1.0.0</a></li>
   <li><a href="#v00199">v0.0.199</a></li>
   <li><a href="#v00198">v0.0.198</a></li>
@@ -98,6 +99,21 @@
 </details>
 
 ------
+# v1.7.1 (2021-03-17)
+
+#### :bug: Bug Fix
+
+- fix(xychart/TooltipProvider): handles NaNs in nearestDatum logic [#1112](https://github.com/airbnb/visx/pull/1112)
+
+### :house:  Internal
+
+- internal(workflows/release): add next dist-tag, fix lerna releases [#1107](https://github.com/airbnb/visx/pull/1107)
+- fix(workflows/push): fix yaml syntax [#1108](https://github.com/airbnb/visx/pull/1108)
+- fix(scripts/performRelease): add comment, fix typo [#1113](https://github.com/airbnb/visx/pull/1113)
+  
+#### :trophy: Contributors
+- [williaster](https://github.com/williaster)
+
 # v1.7.0 (2021-03-12)
 
 #### :rocket: Enhancements
