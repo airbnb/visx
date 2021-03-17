@@ -46,7 +46,7 @@ async function performRelease() {
     commitsSinceTag.map(commit => commit.sha),
   );
 
-  const isPrelease = await performLernaRelease(prsSinceLastTag);
+  const isPreRelease = await performLernaRelease(prsSinceLastTag);
 
   const newTagsRequest = await fetchTags(client);
   const newTag = newTagsRequest.data[0];
@@ -56,8 +56,8 @@ async function performRelease() {
     process.exit(0);
   }
 
-  // update changelog
-  if (!isPrelease) {
+  // update changelog only for non-pre-releases
+  if (!isPreRelease) {
     await updateChangelog(prsSinceLastTag, newTag.name);
   }
 
