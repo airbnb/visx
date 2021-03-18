@@ -1,4 +1,5 @@
 # Changelog
+- [v1.7.2](#v172)
 - [v1.7.1](#v171)
 - [v1.7.0](#v170)
 - [v1.6.1](#v161)
@@ -6,10 +7,10 @@
 - [v1.5.0](#v150)
 - [v1.4.0](#v140)
 - [v1.3.0](#v130)
-- [v1.2.0](#v120)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v120">v1.2.0</a></li>
   <li><a href="#v110">v1.1.0</a></li>
   <li><a href="#v100">v1.0.0</a></li>
   <li><a href="#v00199">v0.0.199</a></li>
@@ -99,6 +100,15 @@
 </details>
 
 ------
+# v1.7.2 (2021-03-18)
+
+#### :bug: Bug Fix
+
+- fix(tooltip, annotation): bump react-use-measure to ^2.0.4. fixes #1091 [#1116](https://github.com/airbnb/visx/pull/1116)
+  
+#### :trophy: Contributors
+- [hshoff](https://github.com/hshoff)
+
 # v1.7.1 (2021-03-17)
 
 #### :bug: Bug Fix
