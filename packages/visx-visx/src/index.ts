@@ -1,6 +1,3 @@
-// has name conflicts with other packages
-import * as XYChartPackage from '@visx/xychart';
-
 export * from '@visx/annotation';
 export * from '@visx/axis';
 export * from '@visx/bounds';
@@ -30,4 +27,32 @@ export * from '@visx/tooltip';
 export * from '@visx/voronoi';
 export * from '@visx/zoom';
 
-export const XYChart = XYChartPackage;
+export * as XYChart from '@visx/xychart';
+export * as Annotation from '@visx/annotation';
+export * as Axis from '@visx/axis';
+export * as Bounds from '@visx/bounds';
+export * as Brush from '@visx/brush';
+export * as ClipPath from '@visx/clip-path';
+export * as Curve from '@visx/curve';
+export * as Drag from '@visx/drag';
+export * as Event from '@visx/event';
+export * as Geo from '@visx/geo';
+export * as Glyph from '@visx/glyph';
+export * as Gradient from '@visx/gradient';
+export * as Grid from '@visx/grid';
+export * as Group from '@visx/group';
+export * as Heatmap from '@visx/heatmap';
+export * as Hierarchy from '@visx/hierarchy';
+export * as Legend from '@visx/legend';
+export * as Marker from '@visx/marker';
+export * as MockData from '@visx/mock-data';
+export * as Network from '@visx/network';
+export * as Pattern from '@visx/pattern';
+export * as Point from '@visx/point';
+export * as Responsive from '@visx/responsive';
+export * as Scale from '@visx/scale';
+export * as Shape from '@visx/shape';
+export * as Text from '@visx/text';
+export * as Tooltip from '@visx/tooltip';
+export * as Voronoi from '@visx/voronoi';
+export * as Zoom from '@visx/zoom';
