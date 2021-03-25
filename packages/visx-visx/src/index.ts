@@ -58,4 +58,4 @@ export default {
   Tooltip,
   Voronoi,
   Zoom,
-}
+};
