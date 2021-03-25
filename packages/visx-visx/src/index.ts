@@ -57,5 +57,5 @@ export default {
   Text,
   Tooltip,
   Voronoi,
-  Zoom
+  Zoom,
 }
