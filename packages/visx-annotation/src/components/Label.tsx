@@ -85,14 +85,14 @@ export default function Label({
   titleFontWeight = 600,
   titleProps,
   verticalAnchor: propsVerticalAnchor,
-  width = 125,
+  width: propWidth,
   x: propsX,
   y: propsY,
 }: LabelProps) {
   // we must measure the rendered title + subtitle to compute container height
   const [titleRef, titleBounds] = useMeasure({ polyfill: resizeObserverPolyfill });
   const [subtitleRef, subtitleBounds] = useMeasure({ polyfill: resizeObserverPolyfill });
-
+  
   const padding = useMemo(() => getCompletePadding(backgroundPadding), [backgroundPadding]);
 
   // if props are provided, they take precedence over context
@@ -100,14 +100,20 @@ export default function Label({
   const height = Math.floor(
     padding.top + padding.bottom + (titleBounds.height ?? 0) + (subtitleBounds.height ?? 0),
   );
-  const innerWidth = width - padding.left - padding.right;
+
+  const measuredWidth = padding.right + padding.left + Math.max(
+    titleBounds.width ?? 0 ,
+    subtitleBounds.width ?? 0
+  );
+  const width = propWidth ?? measuredWidth;
+  const innerWidth = (width ?? measuredWidth) - padding.left - padding.right;
 
   // offset container position based on horizontal + vertical anchor
   const horizontalAnchor =
     propsHorizontalAnchor || (Math.abs(dx) < Math.abs(dy) ? 'middle' : dx > 0 ? 'start' : 'end');
   const verticalAnchor =
     propsVerticalAnchor || (Math.abs(dx) > Math.abs(dy) ? 'middle' : dy > 0 ? 'start' : 'end');
-
+  
   const containerCoords = useMemo(() => {
     let adjustedX: number = propsX == null ? x + dx : propsX;
     let adjustedY: number = propsY == null ? y + dy : propsY;
