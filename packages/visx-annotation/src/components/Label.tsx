@@ -92,7 +92,7 @@ export default function Label({
   // we must measure the rendered title + subtitle to compute container height
   const [titleRef, titleBounds] = useMeasure({ polyfill: resizeObserverPolyfill });
   const [subtitleRef, subtitleBounds] = useMeasure({ polyfill: resizeObserverPolyfill });
-  
+
   const padding = useMemo(() => getCompletePadding(backgroundPadding), [backgroundPadding]);
 
   // if props are provided, they take precedence over context
@@ -113,7 +113,7 @@ export default function Label({
     propsHorizontalAnchor || (Math.abs(dx) < Math.abs(dy) ? 'middle' : dx > 0 ? 'start' : 'end');
   const verticalAnchor =
     propsVerticalAnchor || (Math.abs(dx) > Math.abs(dy) ? 'middle' : dy > 0 ? 'start' : 'end');
-  
+
   const containerCoords = useMemo(() => {
     let adjustedX: number = propsX == null ? x + dx : propsX;
     let adjustedY: number = propsY == null ? y + dy : propsY;
