@@ -101,10 +101,8 @@ export default function Label({
     padding.top + padding.bottom + (titleBounds.height ?? 0) + (subtitleBounds.height ?? 0),
   );
 
-  const measuredWidth = padding.right + padding.left + Math.max(
-    titleBounds.width ?? 0 ,
-    subtitleBounds.width ?? 0
-  );
+  const measuredWidth =
+    padding.right + padding.left + Math.max(titleBounds.width ?? 0, subtitleBounds.width ?? 0);
   const width = propWidth ?? measuredWidth;
   const innerWidth = (width ?? measuredWidth) - padding.left - padding.right;
 
