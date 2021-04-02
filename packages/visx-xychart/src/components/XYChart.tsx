@@ -150,7 +150,7 @@ export default function XYChart<
       </ParentSize>
     );
   }
- 
+
   if (tooltipContext == null) {
     return (
       <TooltipProvider>
