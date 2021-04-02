@@ -150,18 +150,20 @@ export default function XYChart<
       </ParentSize>
     );
   }
-  if (emit == null) {
-    return (
-      <EventEmitterProvider>
-        <XYChart {...props} />
-      </EventEmitterProvider>
-    );
-  }
+ 
   if (tooltipContext == null) {
     return (
       <TooltipProvider>
         <XYChart {...props} />
       </TooltipProvider>
+    );
+  }
+
+  if (emit == null) {
+    return (
+      <EventEmitterProvider>
+        <XYChart {...props} />
+      </EventEmitterProvider>
     );
   }
 
