@@ -1,8 +1,8 @@
 /* eslint react/jsx-handler-names: 0 */
-import React from 'react';
-import Drag, { HandlerArgs as DragArgs } from '@visx/drag/lib/Drag';
-import { BaseBrushState as BrushState, UpdateBrush } from './BaseBrush';
-import { ResizeTriggerAreas } from './types';
+import React from "react";
+import Drag, { HandlerArgs as DragArgs } from "@visx/drag/lib/Drag";
+import { BaseBrushState as BrushState, UpdateBrush } from "./BaseBrush";
+import { ResizeTriggerAreas } from "./types";
 
 export type BrushHandleProps = {
   stageWidth: number;
@@ -28,7 +28,7 @@ export default class BrushHandle extends React.Component<BrushHandleProps> {
       const yMax = Math.max(start.y, end.y);
       const yMin = Math.min(start.y, end.y);
       switch (type) {
-        case 'right':
+        case "right":
           move = xMax + drag.dx;
           return {
             ...prevBrush,
@@ -39,7 +39,7 @@ export default class BrushHandle extends React.Component<BrushHandleProps> {
               x1: Math.min(Math.max(move, start.x), prevBrush.bounds.x1),
             },
           };
-        case 'left':
+        case "left":
           move = xMin + drag.dx;
           return {
             ...prevBrush,
@@ -50,7 +50,7 @@ export default class BrushHandle extends React.Component<BrushHandleProps> {
               x1: Math.max(move, end.x),
             },
           };
-        case 'bottom':
+        case "bottom":
           move = yMax + drag.dy;
           return {
             ...prevBrush,
@@ -61,7 +61,7 @@ export default class BrushHandle extends React.Component<BrushHandleProps> {
               y1: Math.max(move, start.y),
             },
           };
-        case 'top':
+        case "top":
           move = yMin + drag.dy;
           return {
             ...prevBrush,
@@ -110,7 +110,8 @@ export default class BrushHandle extends React.Component<BrushHandleProps> {
   render() {
     const { stageWidth, stageHeight, brush, type, handle } = this.props;
     const { x, y, width, height } = handle;
-    const cursor = type === 'right' || type === 'left' ? 'ew-resize' : 'ns-resize';
+    const cursor =
+      type === "right" || type === "left" ? "ew-resize" : "ns-resize";
 
     return (
       <Drag
@@ -144,9 +145,13 @@ export default class BrushHandle extends React.Component<BrushHandleProps> {
               onMouseDown={dragStart}
               onMouseMove={dragMove}
               onMouseUp={dragEnd}
+              onTouchStart={dragStart}
+              onTouchMove={dragMove}
+              onTouchEnd={dragEnd}
               style={{
                 cursor,
-                pointerEvents: !!brush.activeHandle || !!brush.isBrushing ? 'none' : 'all',
+                pointerEvents:
+                  !!brush.activeHandle || !!brush.isBrushing ? "none" : "all",
               }}
             />
           </g>
