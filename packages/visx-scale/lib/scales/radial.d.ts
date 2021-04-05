@@ -1,0 +1,5 @@
+import { DefaultOutput } from '../types/Base';
+import { PickScaleConfigWithoutType } from '../types/ScaleConfig';
+export declare const updateRadialScale: <Output = DefaultOutput, DiscreteInput extends import("../types/Base").StringLike = import("../types/Base").StringLike, ThresholdInput extends string | number | Date = string | number | Date>(scale: import("d3-scale").ScaleRadial<Output, Output, never>, config?: Pick<Pick<import("../types/BaseScaleConfig").BaseScaleConfig<"radial", import("../types/ScaleConfig").ContinuousDomain, Output[]>, "reverse" | "type" | "domain" | "range" | "clamp" | "nice" | "round" | "unknown">, "reverse" | "domain" | "range" | "clamp" | "nice" | "round" | "unknown"> | undefined) => import("d3-scale").ScaleRadial<Output, Output, never>;
+export default function createRadialScale<Output = DefaultOutput>(config?: PickScaleConfigWithoutType<'radial', Output>): import("d3-scale").ScaleRadial<Output, Output, never>;
+//# sourceMappingURL=radial.d.ts.map

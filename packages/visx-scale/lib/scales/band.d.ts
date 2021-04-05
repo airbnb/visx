@@ -1,0 +1,5 @@
+import { DefaultOutput, StringLike } from '../types/Base';
+import { PickScaleConfigWithoutType } from '../types/ScaleConfig';
+export declare const updateBandScale: <Output = DefaultOutput, DiscreteInput extends StringLike = StringLike, ThresholdInput extends string | number | Date = string | number | Date>(scale: import("d3-scale").ScaleBand<DiscreteInput>, config?: Pick<Pick<import("../types/BaseScaleConfig").BaseScaleConfig<"band", DiscreteInput[], [number | import("../types/Base").NumberLike, number | import("../types/Base").NumberLike]>, "reverse" | "type" | "domain" | "range" | "align" | "padding" | "paddingInner" | "paddingOuter" | "round">, "reverse" | "domain" | "range" | "align" | "padding" | "paddingInner" | "paddingOuter" | "round"> | undefined) => import("d3-scale").ScaleBand<DiscreteInput>;
+export default function createBandScale<DiscreteInput extends StringLike = StringLike>(config?: PickScaleConfigWithoutType<'band', DefaultOutput, DiscreteInput>): import("d3-scale").ScaleBand<DiscreteInput>;
+//# sourceMappingURL=band.d.ts.map

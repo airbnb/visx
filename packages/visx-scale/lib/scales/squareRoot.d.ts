@@ -1,0 +1,5 @@
+import { DefaultOutput } from '../types/Base';
+import { PickScaleConfigWithoutType } from '../types/ScaleConfig';
+export declare const updateSqrtScale: <Output = DefaultOutput, DiscreteInput extends import("../types/Base").StringLike = import("../types/Base").StringLike, ThresholdInput extends string | number | Date = string | number | Date>(scale: import("d3-scale").ScalePower<Output, Output, never>, config?: Pick<Pick<import("../types/BaseScaleConfig").BaseScaleConfig<"sqrt", import("../types/ScaleConfig").ContinuousDomain, Output[]>, "reverse" | "type" | "domain" | "range" | "clamp" | "interpolate" | "nice" | "round" | "zero">, "reverse" | "domain" | "range" | "clamp" | "interpolate" | "nice" | "round" | "zero"> | undefined) => import("d3-scale").ScalePower<Output, Output, never>;
+export default function createSqrtScale<Output = DefaultOutput>(config?: PickScaleConfigWithoutType<'sqrt', Output>): import("d3-scale").ScalePower<Output, Output, never>;
+//# sourceMappingURL=squareRoot.d.ts.map

@@ -17,8 +17,6 @@ logs/
 # Directories
 build/
 coverage/
-esm/
-lib/
 node_modules/
 tmp/
 

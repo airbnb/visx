@@ -1,0 +1,5 @@
+import { DefaultOutput } from '../types/Base';
+import { PickScaleConfigWithoutType } from '../types/ScaleConfig';
+export declare const updateSymlogScale: <Output = DefaultOutput, DiscreteInput extends import("../types/Base").StringLike = import("../types/Base").StringLike, ThresholdInput extends string | number | Date = string | number | Date>(scale: import("d3-scale").ScaleSymLog<Output, Output, never>, config?: Pick<Pick<import("../types/BaseScaleConfig").BaseScaleConfig<"symlog", import("../types/ScaleConfig").ContinuousDomain, Output[]>, "reverse" | "type" | "domain" | "range" | "clamp" | "constant" | "nice" | "zero">, "reverse" | "domain" | "range" | "clamp" | "constant" | "nice" | "zero"> | undefined) => import("d3-scale").ScaleSymLog<Output, Output, never>;
+export default function createSymlogScale<Output = DefaultOutput>(config?: PickScaleConfigWithoutType<'symlog', Output>): import("d3-scale").ScaleSymLog<Output, Output, never>;
+//# sourceMappingURL=symlog.d.ts.map

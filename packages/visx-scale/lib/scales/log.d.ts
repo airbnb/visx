@@ -1,0 +1,5 @@
+import { DefaultOutput } from '../types/Base';
+import { PickScaleConfigWithoutType } from '../types/ScaleConfig';
+export declare const updateLogScale: <Output = DefaultOutput, DiscreteInput extends import("../types/Base").StringLike = import("../types/Base").StringLike, ThresholdInput extends string | number | Date = string | number | Date>(scale: import("d3-scale").ScaleLogarithmic<Output, Output, never>, config?: Pick<Pick<import("../types/BaseScaleConfig").BaseScaleConfig<"log", import("../types/ScaleConfig").ContinuousDomain, Output[]>, "reverse" | "type" | "domain" | "range" | "base" | "clamp" | "interpolate" | "nice" | "round">, "reverse" | "domain" | "range" | "base" | "clamp" | "interpolate" | "nice" | "round"> | undefined) => import("d3-scale").ScaleLogarithmic<Output, Output, never>;
+export default function createLogScale<Output = DefaultOutput>(config?: PickScaleConfigWithoutType<'log', Output>): import("d3-scale").ScaleLogarithmic<Output, Output, never>;
+//# sourceMappingURL=log.d.ts.map

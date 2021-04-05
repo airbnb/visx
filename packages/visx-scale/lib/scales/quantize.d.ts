@@ -1,0 +1,5 @@
+import { DefaultOutput } from '../types/Base';
+import { PickScaleConfigWithoutType } from '../types/ScaleConfig';
+export declare const updateQuantizeScale: <Output = DefaultOutput, DiscreteInput extends import("../types/Base").StringLike = import("../types/Base").StringLike, ThresholdInput extends string | number | Date = string | number | Date>(scale: import("d3-scale").ScaleQuantize<Output, never>, config?: Pick<Pick<import("../types/BaseScaleConfig").BaseScaleConfig<"quantize", [import("../types/ScaleConfig").TimeInput, import("../types/ScaleConfig").TimeInput], Output[]>, "reverse" | "type" | "domain" | "range" | "nice" | "zero">, "reverse" | "domain" | "range" | "nice" | "zero"> | undefined) => import("d3-scale").ScaleQuantize<Output, never>;
+export default function createQuantizeScale<Output = DefaultOutput>(config?: PickScaleConfigWithoutType<'quantize', Output>): import("d3-scale").ScaleQuantize<Output, never>;
+//# sourceMappingURL=quantize.d.ts.map

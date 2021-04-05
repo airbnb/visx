@@ -1,0 +1,5 @@
+import { DefaultOutput, StringLike } from '../types/Base';
+import { PickScaleConfigWithoutType } from '../types/ScaleConfig';
+export declare const updateOrdinalScale: <Output = DefaultOutput, DiscreteInput extends StringLike = StringLike, ThresholdInput extends string | number | Date = string | number | Date>(scale: import("d3-scale").ScaleOrdinal<DiscreteInput, Output, never>, config?: Pick<Pick<import("../types/BaseScaleConfig").BaseScaleConfig<"ordinal", DiscreteInput[], Output[]>, "reverse" | "type" | "domain" | "range" | "unknown">, "reverse" | "domain" | "range" | "unknown"> | undefined) => import("d3-scale").ScaleOrdinal<DiscreteInput, Output, never>;
+export default function createOrdinalScale<DiscreteInput extends StringLike = StringLike, Output = DefaultOutput>(config?: PickScaleConfigWithoutType<'ordinal', Output, DiscreteInput>): import("d3-scale").ScaleOrdinal<DiscreteInput, Output, never>;
+//# sourceMappingURL=ordinal.d.ts.map

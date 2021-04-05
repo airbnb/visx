@@ -1,0 +1,5 @@
+import { DefaultOutput } from '../types/Base';
+import { PickScaleConfigWithoutType } from '../types/ScaleConfig';
+export declare const updateLinearScale: <Output = DefaultOutput, DiscreteInput extends import("../types/Base").StringLike = import("../types/Base").StringLike, ThresholdInput extends string | number | Date = string | number | Date>(scale: import("d3-scale").ScaleLinear<Output, Output, never>, config?: Pick<Pick<import("../types/BaseScaleConfig").BaseScaleConfig<"linear", import("../types/ScaleConfig").ContinuousDomain, Output[]>, "reverse" | "type" | "domain" | "range" | "clamp" | "interpolate" | "nice" | "round" | "zero">, "reverse" | "domain" | "range" | "clamp" | "interpolate" | "nice" | "round" | "zero"> | undefined) => import("d3-scale").ScaleLinear<Output, Output, never>;
+export default function createLinearScale<Output = DefaultOutput>(config?: PickScaleConfigWithoutType<'linear', Output>): import("d3-scale").ScaleLinear<Output, Output, never>;
+//# sourceMappingURL=linear.d.ts.map
