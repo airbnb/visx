@@ -159,7 +159,7 @@ export default function XYChart<
     );
   }
 
-// EventEmitterProvider should be the last wrapper so we do not duplicate handlers
+  // EventEmitterProvider should be the last wrapper so we do not duplicate handlers
   if (emit == null) {
     return (
       <EventEmitterProvider>
