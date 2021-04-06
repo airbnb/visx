@@ -1,4 +1,5 @@
 # Changelog
+- [v1.7.3](#v173)
 - [v1.7.2](#v172)
 - [v1.7.1](#v171)
 - [v1.7.0](#v170)
@@ -6,10 +7,10 @@
 - [v1.6.0](#v160)
 - [v1.5.0](#v150)
 - [v1.4.0](#v140)
-- [v1.3.0](#v130)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v130">v1.3.0</a></li>
   <li><a href="#v120">v1.2.0</a></li>
   <li><a href="#v110">v1.1.0</a></li>
   <li><a href="#v100">v1.0.0</a></li>
@@ -100,6 +101,20 @@
 </details>
 
 ------
+# v1.7.3 (2021-04-06)
+
+#### :bug: Bug Fix
+
+- fix(xychart): onPointerUp fires twice [#1135](https://github.com/airbnb/visx/pull/1135)
+
+### :memo: Documentation
+
+- docs: Add Pry to In the Wild list [#1115](https://github.com/airbnb/visx/pull/1115)
+  
+#### :trophy: Contributors
+- [valtism](https://github.com/valtism)
+- [vovakulikov](https://github.com/vovakulikov)
+
 # v1.7.2 (2021-03-18)
 
 #### :bug: Bug Fix
