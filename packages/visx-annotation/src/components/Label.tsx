@@ -128,16 +128,16 @@ export default function Label({
   });
 
   const titleMeasuredWidth = titleWordsByLine.reduce(
-    (maxWidth, line) => Math.max(maxWidth, line.width ?? 0),
+    (maxTitleWidth, line) => Math.max(maxTitleWidth, line.width ?? 0),
     0,
   );
 
   const subtitleMeasuredWidth = subtitleWordsByLine.reduce(
-    (maxWidth, line) => Math.max(maxWidth, line.width ?? 0),
+    (maxSubtitleWidth, line) => Math.max(maxSubtitleWidth, line.width ?? 0),
     0,
   );
 
-  const textMeasuredWidth = Math.max(titleMeasuredWidth, subtitleMeasuredWidth);
+  const textMeasuredWidth = Math.floor(Math.min(maxWidth, Math.max(titleMeasuredWidth, subtitleMeasuredWidth)));
   const measuredWidth = padding.right + padding.left + textMeasuredWidth;
   const width = propWidth ?? measuredWidth;
   const innerWidth = width - padding.left - padding.right;
