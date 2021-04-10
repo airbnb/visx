@@ -137,7 +137,9 @@ export default function Label({
     0,
   );
 
-  const textMeasuredWidth = Math.floor(Math.min(maxWidth, Math.max(titleMeasuredWidth, subtitleMeasuredWidth)));
+  const textMeasuredWidth = Math.floor(
+    Math.min(maxWidth, Math.max(titleMeasuredWidth, subtitleMeasuredWidth)),
+  );
   const measuredWidth = padding.right + padding.left + textMeasuredWidth;
   const width = propWidth ?? measuredWidth;
   const innerWidth = width - padding.left - padding.right;
