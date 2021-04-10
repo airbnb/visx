@@ -89,7 +89,7 @@ export default function Label({
   titleProps,
   verticalAnchor: propsVerticalAnchor,
   width: propWidth,
-  maxWidth = 120,
+  maxWidth = 125,
   x: propsX,
   y: propsY,
 }: LabelProps) {
