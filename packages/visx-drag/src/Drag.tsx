@@ -37,8 +37,8 @@ export default function Drag({
         <rect
           width={width}
           height={height}
-          onMouseMove={drag.dragMove}
-          onMouseUp={drag.dragEnd}
+          onPointerMove={drag.dragMove}
+          onPointerUp={drag.dragEnd}
           fill="transparent"
         />
       )}

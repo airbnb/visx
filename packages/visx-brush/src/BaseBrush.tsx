@@ -10,9 +10,10 @@ import { MarginShape, Point, BrushShape, ResizeTriggerAreas, PartialBrushStartEn
 
 const BRUSH_OVERLAY_STYLES = { cursor: 'crosshair' };
 
-type MouseHandlerEvent =
+type PointerHandlerEvent =
   | React.MouseEvent<SVGRectElement, MouseEvent>
-  | React.TouchEvent<SVGRectElement>;
+  | React.TouchEvent<SVGRectElement>
+  | React.PointerEvent<SVGRectElement>;
 
 export type BaseBrushProps = {
   brushDirection?: 'horizontal' | 'vertical' | 'both';
@@ -28,10 +29,10 @@ export type BaseBrushProps = {
   onBrushStart?: (start: BaseBrushState['start']) => void;
   onBrushEnd?: (state: BaseBrushState) => void;
   selectedBoxStyle: React.SVGProps<SVGRectElement>;
-  onMouseLeave?: (event: MouseHandlerEvent) => void;
-  onMouseUp?: (event: MouseHandlerEvent) => void;
-  onMouseMove?: (event: MouseHandlerEvent) => void;
-  onClick?: (event: MouseHandlerEvent) => void;
+  onMouseLeave?: (event: PointerHandlerEvent) => void;
+  onMouseUp?: (event: PointerHandlerEvent) => void;
+  onMouseMove?: (event: PointerHandlerEvent) => void;
+  onClick?: (event: PointerHandlerEvent) => void;
   clickSensitivity: number;
   disableDraggingSelection: boolean;
   resetOnEnd?: boolean;
@@ -385,22 +386,22 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
               width={stageWidth}
               height={stageHeight}
               onDoubleClick={() => this.reset()}
-              onClick={(event: MouseHandlerEvent) => {
+              onClick={(event: PointerHandlerEvent) => {
                 const duration = this.mouseUpTime - this.mouseDownTime;
                 if (onClick && duration < clickSensitivity) onClick(event);
               }}
-              onMouseDown={(event: MouseHandlerEvent) => {
+              onPointerDown={(event: PointerHandlerEvent) => {
                 this.mouseDownTime = Date.now();
                 dragStart(event);
               }}
-              onMouseLeave={(event: MouseHandlerEvent) => {
+              onPointerLeave={(event: PointerHandlerEvent) => {
                 if (onMouseLeave) onMouseLeave(event);
               }}
-              onMouseMove={(event: MouseHandlerEvent) => {
+              onPointerMove={(event: PointerHandlerEvent) => {
                 if (!isDragging && onMouseMove) onMouseMove(event);
                 if (isDragging) dragMove(event);
               }}
-              onMouseUp={(event: MouseHandlerEvent) => {
+              onPointerUp={(event: PointerHandlerEvent) => {
                 this.mouseUpTime = Date.now();
                 if (onMouseUp) onMouseUp(event);
                 dragEnd(event);
