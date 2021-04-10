@@ -96,7 +96,7 @@ export default function Label({
   // we must measure the rendered title + subtitle to compute container height
   const [titleRef, titleBounds] = useMeasure({ polyfill: resizeObserverPolyfill });
   const [subtitleRef, subtitleBounds] = useMeasure({ polyfill: resizeObserverPolyfill });
-  
+
   const padding = useMemo(() => getCompletePadding(backgroundPadding), [backgroundPadding]);
 
   // if props are provided, they take precedence over context
@@ -104,10 +104,10 @@ export default function Label({
   const height = Math.floor(
     padding.top + padding.bottom + (titleBounds.height ?? 0) + (subtitleBounds.height ?? 0),
   );
-  
+
   const { wordsByLines: titleWordsByLine } = useText({
     children: title,
-    verticalAnchor: "start",
+    verticalAnchor: 'start',
     capHeight: titleFontSize,
     fontSize: titleFontSize,
     fontWeight: titleFontWeight,
@@ -115,10 +115,10 @@ export default function Label({
     width: maxWidth,
     ...titleProps,
   });
-  
+
   const { wordsByLines: subtitleWordsByLine } = useText({
     children: subtitle,
-    verticalAnchor: "start",
+    verticalAnchor: 'start',
     capHeight: subtitleFontSize,
     fontSize: subtitleFontSize,
     fontWeight: subtitleFontWeight,
@@ -126,20 +126,18 @@ export default function Label({
     width: maxWidth,
     ...subtitleProps,
   });
-  
-  const titleMeasuredWidth = titleWordsByLine
-    .reduce(
-      (maxWidth, line) => Math.max(maxWidth, line.width ?? 0),
-      0
-    )
-  
-  const subtitleMeasuredWidth = subtitleWordsByLine
-    .reduce(
-      (maxWidth, line) => Math.max(maxWidth, line.width ?? 0),
-      0
-    )
-  
-  const textMeasuredWidth = Math.max(titleMeasuredWidth, subtitleMeasuredWidth)
+
+  const titleMeasuredWidth = titleWordsByLine.reduce(
+    (maxWidth, line) => Math.max(maxWidth, line.width ?? 0),
+    0,
+  );
+
+  const subtitleMeasuredWidth = subtitleWordsByLine.reduce(
+    (maxWidth, line) => Math.max(maxWidth, line.width ?? 0),
+    0,
+  );
+
+  const textMeasuredWidth = Math.max(titleMeasuredWidth, subtitleMeasuredWidth);
   const measuredWidth = padding.right + padding.left + textMeasuredWidth;
   const width = propWidth ?? measuredWidth;
   const innerWidth = width - padding.left - padding.right;
