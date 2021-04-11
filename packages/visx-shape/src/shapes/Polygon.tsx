@@ -60,14 +60,14 @@ export type PolygonProps = {
 };
 
 export default function Polygon({
-  sides,
+  sides = 4,
   size = 25,
   center = DEFAULT_CENTER,
   rotate = 0,
   className,
   children,
   innerRef,
-  points,
+  points = null,
   ...restProps
 }: AddSVGProps<PolygonProps, SVGPolygonElement>) {
   const pointsToRender: [number, number][] = points ? points : getPoints({
