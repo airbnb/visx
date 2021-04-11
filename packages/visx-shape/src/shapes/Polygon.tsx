@@ -39,10 +39,12 @@ export const getPoints = ({
 
 export type PolygonProps = {
   /** Number of polygon sides. */
-  sides: number;
+  sides?: number;
   /** Size of the shape. */
-  size: number;
+  size?: number;
   /** className to apply to polygon element. */
+  /** Points to use to render the polygon. If this is defined, `sides`, `size`, `rotate`, and `center` are ignored. */
+  points?: [number, number][];
   className?: string;
   /** Rotation transform to apply to polygon. */
   rotate?: number;
@@ -65,9 +67,10 @@ export default function Polygon({
   className,
   children,
   innerRef,
+  points,
   ...restProps
 }: AddSVGProps<PolygonProps, SVGPolygonElement>) {
-  const points: [number, number][] = getPoints({
+  const pointsToRender: [number, number][] = points ? points : getPoints({
     sides,
     size,
     center,
@@ -81,7 +84,7 @@ export default function Polygon({
     <polygon
       ref={innerRef}
       className={cx('visx-polygon', className)}
-      points={points.join(' ')}
+      points={pointsToRender.join(' ')}
       {...restProps}
     />
   );
