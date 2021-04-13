@@ -5,9 +5,7 @@ import { BaseBrushState as BrushState, UpdateBrush } from './BaseBrush';
 
 const DRAGGING_OVERLAY_STYLES = { cursor: 'move' };
 
-type PointerHandler = (
-  event: React.MouseEvent<SVGRectElement, MouseEvent> | React.TouchEvent<SVGRectElement> | React.PointerEvent<SVGRectElement>,
-) => void;
+type PointerHandler = (event: React.PointerEvent<SVGRectElement>) => void;
 
 export type BrushSelectionProps = {
   width: number;
@@ -144,7 +142,7 @@ export default class BrushSelection extends React.Component<
                 if (onMouseUp) onMouseUp(event);
               }}
               onClick={event => {
-                if (onClick) onClick(event);
+                if (onClick) onClick(event as React.PointerEvent<SVGRectElement>);
               }}
               style={{
                 pointerEvents: brush.isBrushing || brush.activeHandle ? 'none' : 'all',

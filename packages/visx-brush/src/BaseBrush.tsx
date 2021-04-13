@@ -10,10 +10,7 @@ import { MarginShape, Point, BrushShape, ResizeTriggerAreas, PartialBrushStartEn
 
 const BRUSH_OVERLAY_STYLES = { cursor: 'crosshair' };
 
-type PointerHandlerEvent =
-  | React.MouseEvent<SVGRectElement, MouseEvent>
-  | React.TouchEvent<SVGRectElement>
-  | React.PointerEvent<SVGRectElement>;
+type PointerHandlerEvent = React.PointerEvent<SVGRectElement>;
 
 export type BaseBrushProps = {
   brushDirection?: 'horizontal' | 'vertical' | 'both';
