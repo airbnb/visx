@@ -1,6 +1,6 @@
 {
   "name": "@visx/annotation",
-  "version": "1.7.2",
+  "version": "1.7.4",
   "description": "visx annotation",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -33,7 +33,7 @@
   "dependencies": {
     "@types/classnames": "^2.2.9",
     "@types/react": "*",
-    "@visx/drag": "1.7.0",
+    "@visx/drag": "1.7.4",
     "@visx/group": "1.7.0",
     "@visx/point": "1.7.0",
     "@visx/shape": "1.7.0",
