@@ -1,4 +1,5 @@
 # Changelog
+- [v1.7.4](#v174)
 - [v1.7.3](#v173)
 - [v1.7.2](#v172)
 - [v1.7.1](#v171)
@@ -6,10 +7,10 @@
 - [v1.6.1](#v161)
 - [v1.6.0](#v160)
 - [v1.5.0](#v150)
-- [v1.4.0](#v140)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v140">v1.4.0</a></li>
   <li><a href="#v130">v1.3.0</a></li>
   <li><a href="#v120">v1.2.0</a></li>
   <li><a href="#v110">v1.1.0</a></li>
@@ -101,6 +102,15 @@
 </details>
 
 ------
+# v1.7.4 (2021-04-13)
+
+#### :bug: Bug Fix
+
+- fix(brush): use PointerEvents instead of MouseEvents  [#1155](https://github.com/airbnb/visx/pull/1155)
+  
+#### :trophy: Contributors
+- [RemaaBdair](https://github.com/RemaaBdair)
+
 # v1.7.3 (2021-04-06)
 
 #### :bug: Bug Fix
