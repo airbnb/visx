@@ -5,9 +5,7 @@ import { BaseBrushState as BrushState, UpdateBrush } from './BaseBrush';
 
 const DRAGGING_OVERLAY_STYLES = { cursor: 'move' };
 
-type MouseHandler = (
-  event: React.MouseEvent<SVGRectElement, MouseEvent> | React.TouchEvent<SVGRectElement>,
-) => void;
+type PointerHandler = (event: React.PointerEvent<SVGRectElement>) => void;
 
 export type BrushSelectionProps = {
   width: number;
@@ -18,10 +16,10 @@ export type BrushSelectionProps = {
   updateBrush: (update: UpdateBrush) => void;
   onBrushEnd?: (brush: BrushState) => void;
   disableDraggingSelection: boolean;
-  onMouseLeave: MouseHandler;
-  onMouseMove: MouseHandler;
-  onMouseUp: MouseHandler;
-  onClick: MouseHandler;
+  onMouseLeave: PointerHandler;
+  onMouseMove: PointerHandler;
+  onMouseUp: PointerHandler;
+  onClick: PointerHandler;
   selectedBoxStyle: React.SVGProps<SVGRectElement>;
 };
 
@@ -119,9 +117,9 @@ export default class BrushSelection extends React.Component<
                 width={stageWidth}
                 height={stageHeight}
                 fill="transparent"
-                onMouseUp={dragEnd}
-                onMouseMove={dragMove}
-                onMouseLeave={dragEnd}
+                onPointerUp={dragEnd}
+                onPointerMove={dragMove}
+                onPointerLeave={dragEnd}
                 style={DRAGGING_OVERLAY_STYLES}
               />
             )}
@@ -131,20 +129,20 @@ export default class BrushSelection extends React.Component<
               width={width}
               height={height}
               className="visx-brush-selection"
-              onMouseDown={disableDraggingSelection ? undefined : dragStart}
-              onMouseLeave={event => {
+              onPointerDown={disableDraggingSelection ? undefined : dragStart}
+              onPointerLeave={event => {
                 if (onMouseLeave) onMouseLeave(event);
               }}
-              onMouseMove={event => {
+              onPointerMove={event => {
                 dragMove(event);
                 if (onMouseMove) onMouseMove(event);
               }}
-              onMouseUp={event => {
+              onPointerUp={event => {
                 dragEnd(event);
                 if (onMouseUp) onMouseUp(event);
               }}
               onClick={event => {
-                if (onClick) onClick(event);
+                if (onClick) onClick(event as React.PointerEvent<SVGRectElement>);
               }}
               style={{
                 pointerEvents: brush.isBrushing || brush.activeHandle ? 'none' : 'all',

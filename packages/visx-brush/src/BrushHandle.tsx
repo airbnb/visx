@@ -141,9 +141,9 @@ export default class BrushHandle extends React.Component<BrushHandleProps> {
               height={height}
               fill="transparent"
               className={`visx-brush-handle-${type}`}
-              onMouseDown={dragStart}
-              onMouseMove={dragMove}
-              onMouseUp={dragEnd}
+              onPointerDown={dragStart}
+              onPointerMove={dragMove}
+              onPointerUp={dragEnd}
               style={{
                 cursor,
                 pointerEvents: !!brush.activeHandle || !!brush.isBrushing ? 'none' : 'all',
