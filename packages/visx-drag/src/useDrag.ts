@@ -27,7 +27,7 @@ export type UseDragOptions = {
   /** Optionally set the initial drag dy, or override the current drag dy. */
   dy?: number;
   /** If defined - parent controls dragging state  */
-  isDragging?: boolean
+  isDragging?: boolean;
 };
 
 export type DragState = {
@@ -89,10 +89,10 @@ export default function useDrag({
   });
 
   useEffect(() => {
-      if (isDragging !== undefined && dragState.isDragging !== isDragging) {
-          setDragStateWithCallback(currState => ({ ...currState, isDragging: isDragging }));
-      }
-  }, [isDragging])
+    if (isDragging !== undefined && dragState.isDragging !== isDragging) {
+      setDragStateWithCallback(currState => ({ ...currState, isDragging }));
+    }
+  }, [dragState.isDragging, isDragging, setDragStateWithCallback]);
 
   const handleDragStart = useCallback(
     (event: MouseTouchOrPointerEvent) => {

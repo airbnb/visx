@@ -32,7 +32,17 @@ export default function Drag({
   y,
   isDragging,
 }: DragProps) {
-  const drag = useDrag({ resetOnStart, onDragEnd, onDragMove, onDragStart, x, y, dx, dy, isDragging });
+  const drag = useDrag({
+    resetOnStart,
+    onDragEnd,
+    onDragMove,
+    onDragStart,
+    x,
+    y,
+    dx,
+    dy,
+    isDragging,
+  });
 
   return (
     <>

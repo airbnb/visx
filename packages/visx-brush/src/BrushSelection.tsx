@@ -37,12 +37,12 @@ export default class BrushSelection extends React.Component<
   };
 
   selectionDragStart = () => {
-    const {onMoveSelectionChange} = this.props;
+    const { onMoveSelectionChange } = this.props;
 
     if (onMoveSelectionChange) {
-      onMoveSelectionChange(true)
+      onMoveSelectionChange(true);
     }
-  }
+  };
 
   selectionDragMove = (drag: DragArgs) => {
     const { updateBrush, onMoveSelectionChange } = this.props;
@@ -72,7 +72,7 @@ export default class BrushSelection extends React.Component<
       };
     });
     if (onMoveSelectionChange) {
-      onMoveSelectionChange(true)
+      onMoveSelectionChange(true);
     }
   };
 
@@ -99,9 +99,8 @@ export default class BrushSelection extends React.Component<
       return nextBrush;
     });
     if (onMoveSelectionChange) {
-      onMoveSelectionChange(false)
+      onMoveSelectionChange(false);
     }
-
   };
 
   render() {
@@ -118,7 +117,7 @@ export default class BrushSelection extends React.Component<
       onClick,
       selectedBoxStyle,
       isUseWindowMoveEvents,
-      isDragInProgress
+      isDragInProgress,
     } = this.props;
 
     return (
@@ -160,7 +159,7 @@ export default class BrushSelection extends React.Component<
               }}
               onPointerUp={event => {
                 if (!isUseWindowMoveEvents) {
-                  dragEnd(event)
+                  dragEnd(event);
                 }
                 if (onMouseUp) onMouseUp(event);
               }}

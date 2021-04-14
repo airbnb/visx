@@ -20,15 +20,15 @@ export type BrushHandleProps = {
 /** BrushHandle's are placed along the bounds of the brush and handle Drag events which update the passed brush. */
 export default class BrushHandle extends React.Component<BrushHandleProps> {
   handleDragStart = () => {
-    const {onBrushHandleChange, type} = this.props;
+    const { onBrushHandleChange, type } = this.props;
 
     if (onBrushHandleChange) {
       onBrushHandleChange(true, type);
     }
-  }
+  };
 
   handleDragMove = (drag: DragArgs) => {
-    const { updateBrush, type, onBrushHandleChange} = this.props;
+    const { updateBrush, type, onBrushHandleChange } = this.props;
     if (!drag.isDragging) return;
 
     updateBrush((prevBrush: BrushState) => {
@@ -125,7 +125,15 @@ export default class BrushHandle extends React.Component<BrushHandleProps> {
   };
 
   render() {
-    const { stageWidth, stageHeight, brush, type, handle, isUseWindowMoveEvents, isDragInProgress } = this.props;
+    const {
+      stageWidth,
+      stageHeight,
+      brush,
+      type,
+      handle,
+      isUseWindowMoveEvents,
+      isDragInProgress,
+    } = this.props;
     const { x, y, width, height } = handle;
     const cursor = type === 'right' || type === 'left' ? 'ew-resize' : 'ns-resize';
 
