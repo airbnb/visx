@@ -11,7 +11,7 @@ export const getPoint = ({
   center = DEFAULT_CENTER,
   rotate = 0,
   side,
-}: { side: number } & Pick<PolygonProps, 'sides' | 'size' | 'center' | 'rotate'>) => {
+}: { side: number } & NonNullable<Pick<PolygonProps, 'sides' | 'size' | 'center' | 'rotate'>>) => {
   const degrees = (360 / sides) * side - rotate;
   const radians = degreesToRadians(degrees);
 
