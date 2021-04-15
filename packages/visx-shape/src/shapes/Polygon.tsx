@@ -42,9 +42,9 @@ export type PolygonProps = {
   sides?: number;
   /** Size of the shape. */
   size?: number;
-  /** className to apply to polygon element. */
   /** Points to use to render the polygon. If this is defined, `sides`, `size`, `rotate`, and `center` are ignored. */
   points?: [number, number][];
+  /** className to apply to polygon element. */
   className?: string;
   /** Rotation transform to apply to polygon. */
   rotate?: number;
