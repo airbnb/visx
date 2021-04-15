@@ -70,12 +70,14 @@ export default function Polygon({
   points,
   ...restProps
 }: AddSVGProps<PolygonProps, SVGPolygonElement>) {
-  const pointsToRender: [number, number][] = points ? points : getPoints({
-    sides,
-    size,
-    center,
-    rotate,
-  }).map(({ x, y }) => [x, y]);
+  const pointsToRender: [number, number][] =
+    points ||
+    getPoints({
+      sides,
+      size,
+      center,
+      rotate,
+    }).map(({ x, y }) => [x, y]);
 
   // eslint-disable-next-line react/jsx-no-useless-fragment
   if (children) return <>{children({ points: pointsToRender })}</>;
