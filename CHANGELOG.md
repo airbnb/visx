@@ -1,4 +1,5 @@
 # Changelog
+- [v1.8.0](#v180)
 - [v1.7.4](#v174)
 - [v1.7.3](#v173)
 - [v1.7.2](#v172)
@@ -6,10 +7,10 @@
 - [v1.7.0](#v170)
 - [v1.6.1](#v161)
 - [v1.6.0](#v160)
-- [v1.5.0](#v150)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v150">v1.5.0</a></li>
   <li><a href="#v140">v1.4.0</a></li>
   <li><a href="#v130">v1.3.0</a></li>
   <li><a href="#v120">v1.2.0</a></li>
@@ -102,6 +103,15 @@
 </details>
 
 ------
+# v1.8.0 (2021-04-15)
+
+#### :rocket: Enhancements
+
+- new(shape/Polygon): add optional 'points' override [#1156](https://github.com/airbnb/visx/pull/1156)
+  
+#### :trophy: Contributors
+- [jakeisnt](https://github.com/jakeisnt)
+
 # v1.7.4 (2021-04-13)
 
 #### :bug: Bug Fix
