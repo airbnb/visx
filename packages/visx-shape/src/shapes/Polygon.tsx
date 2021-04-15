@@ -6,12 +6,12 @@ import { AddSVGProps } from '../types';
 const DEFAULT_CENTER = { x: 0, y: 0 };
 
 export const getPoint = ({
-  sides,
-  size,
+  sides = 4,
+  size = 25,
   center = DEFAULT_CENTER,
   rotate = 0,
   side,
-}: { side: number } & Pick<PolygonProps, 'sides' | 'size' | 'center' | 'rotate'>) => {
+}: { side: number } & NonNullable<Pick<PolygonProps, 'sides' | 'size' | 'center' | 'rotate'>>) => {
   const degrees = (360 / sides) * side - rotate;
   const radians = degreesToRadians(degrees);
 
@@ -26,7 +26,7 @@ export const getPoints = ({
   size,
   center,
   rotate,
-}: Pick<PolygonProps, 'sides' | 'size' | 'center' | 'rotate'>) =>
+}: NonNullable<Pick<PolygonProps, 'sides' | 'size' | 'center' | 'rotate'>>) =>
   new Array(sides).fill(0).map((_, side) =>
     getPoint({
       sides,
@@ -39,9 +39,11 @@ export const getPoints = ({
 
 export type PolygonProps = {
   /** Number of polygon sides. */
-  sides: number;
+  sides?: number;
   /** Size of the shape. */
-  size: number;
+  size?: number;
+  /** Points to use to render the polygon. If this is defined, `sides`, `size`, `rotate`, and `center` are ignored. */
+  points?: [number, number][];
   /** className to apply to polygon element. */
   className?: string;
   /** Rotation transform to apply to polygon. */
@@ -58,30 +60,33 @@ export type PolygonProps = {
 };
 
 export default function Polygon({
-  sides,
+  sides = 4,
   size = 25,
   center = DEFAULT_CENTER,
   rotate = 0,
   className,
   children,
   innerRef,
+  points,
   ...restProps
 }: AddSVGProps<PolygonProps, SVGPolygonElement>) {
-  const points: [number, number][] = getPoints({
-    sides,
-    size,
-    center,
-    rotate,
-  }).map(({ x, y }) => [x, y]);
+  const pointsToRender: [number, number][] =
+    points ||
+    getPoints({
+      sides,
+      size,
+      center,
+      rotate,
+    }).map(({ x, y }) => [x, y]);
 
   // eslint-disable-next-line react/jsx-no-useless-fragment
-  if (children) return <>{children({ points })}</>;
+  if (children) return <>{children({ points: pointsToRender })}</>;
 
   return (
     <polygon
       ref={innerRef}
       className={cx('visx-polygon', className)}
-      points={points.join(' ')}
+      points={pointsToRender.join(' ')}
       {...restProps}
     />
   );
