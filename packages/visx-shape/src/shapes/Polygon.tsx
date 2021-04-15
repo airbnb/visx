@@ -67,7 +67,7 @@ export default function Polygon({
   className,
   children,
   innerRef,
-  points = null,
+  points,
   ...restProps
 }: AddSVGProps<PolygonProps, SVGPolygonElement>) {
   const pointsToRender: [number, number][] = points ? points : getPoints({
