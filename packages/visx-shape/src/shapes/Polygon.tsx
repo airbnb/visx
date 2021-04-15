@@ -6,8 +6,8 @@ import { AddSVGProps } from '../types';
 const DEFAULT_CENTER = { x: 0, y: 0 };
 
 export const getPoint = ({
-  sides,
-  size,
+  sides = 4,
+  size = 25,
   center = DEFAULT_CENTER,
   rotate = 0,
   side,
@@ -26,7 +26,7 @@ export const getPoints = ({
   size,
   center,
   rotate,
-}: Pick<PolygonProps, 'sides' | 'size' | 'center' | 'rotate'>) =>
+}: NonNullable<Pick<PolygonProps, 'sides' | 'size' | 'center' | 'rotate'>>) =>
   new Array(sides).fill(0).map((_, side) =>
     getPoint({
       sides,
@@ -78,7 +78,7 @@ export default function Polygon({
   }).map(({ x, y }) => [x, y]);
 
   // eslint-disable-next-line react/jsx-no-useless-fragment
-  if (children) return <>{children({ points })}</>;
+  if (children) return <>{children({ points: pointsToRender })}</>;
 
   return (
     <polygon
