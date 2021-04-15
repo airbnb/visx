@@ -35,7 +35,6 @@ export type BaseBrushProps = {
   disableDraggingSelection: boolean;
   resetOnEnd?: boolean;
   isUseWindowMoveEvents?: boolean;
-  isBrushResizeInProgress?: boolean;
 };
 
 export type BaseBrushState = BrushShape & {

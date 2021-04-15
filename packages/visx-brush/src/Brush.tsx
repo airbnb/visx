@@ -96,7 +96,7 @@ class Brush extends Component<BrushProps> {
     onMouseMove: null,
     onMouseLeave: null,
     onClick: null,
-    isUseWindowMoveEvents: false
+    isUseWindowMoveEvents: false,
   };
 
   handleChange = (brush: BaseBrushState) => {
@@ -177,7 +177,7 @@ class Brush extends Component<BrushProps> {
       onMouseMove,
       onClick,
       handleSize,
-      isUseWindowMoveEvents
+      isUseWindowMoveEvents,
     } = this.props;
     if (!xScale || !yScale) return null;
 
