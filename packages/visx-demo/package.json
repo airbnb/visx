@@ -1,6 +1,6 @@
 {
   "name": "@visx/demo",
-  "version": "1.8.0",
+  "version": "1.9.0",
   "description": "visx demo",
   "repository": "https://github.com/airbnb/visx",
   "scripts": {
@@ -35,7 +35,7 @@
     "@types/d3-time-format": "2.1.0",
     "@types/nprogress": "^0.2.0",
     "@types/prismjs": "^1.16.0",
-    "@visx/annotation": "1.8.0",
+    "@visx/annotation": "1.9.0",
     "@visx/axis": "1.8.0",
     "@visx/brush": "1.8.0",
     "@visx/chord": "1.7.0",
@@ -65,7 +65,7 @@
     "@visx/threshold": "1.8.0",
     "@visx/tooltip": "1.7.2",
     "@visx/voronoi": "1.7.0",
-    "@visx/xychart": "1.8.0",
+    "@visx/xychart": "1.9.0",
     "@visx/zoom": "1.7.0",
     "@zeit/next-css": "^1.0.1",
     "babel-loader": "^8.2.2",

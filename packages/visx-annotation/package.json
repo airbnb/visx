@@ -1,6 +1,6 @@
 {
   "name": "@visx/annotation",
-  "version": "1.8.0",
+  "version": "1.9.0",
   "description": "visx annotation",
   "sideEffects": false,
   "main": "lib/index.js",
