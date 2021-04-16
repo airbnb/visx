@@ -34,10 +34,9 @@
     "babel:cjs": "nimbus babel --clean --workspaces=\"@visx/!(demo)\"",
     "babel:esm": "nimbus babel --clean --workspaces=\"@visx/!(demo)\" --esm",
     "build": "yarn run babel && yarn run type",
-    "build-one": "echo 'build-one has been replaced with build:workspace' & exit 1",
     "build:sizes": "yarn run ts ./scripts/computeBuildSizes.ts",
     "build:release": "yarn run ts ./scripts/performRelease/index.ts",
-    "build:workspace": "nimbus babel --clean",
+    "build:workspaces": "nimbus babel --clean",
     "check:sizes": "yarn run ts ./scripts/compareBuildSizes.ts",
     "clean": "rm -rf ./packages/**/{lib,esm}",
     "format": "yarn run prettier --write",
@@ -51,9 +50,7 @@
     "test": "yarn run jest",
     "ts": "ts-node --project ./tsconfig.node.json",
     "type": "nimbus typescript --build --reference-workspaces",
-    "type-one": "echo 'type-one has been replaced with type:workspace' & exit 1",
-    "type:dts": "echo 'type:dts has been replaced with type' & exit 1",
-    "type:workspace": "nimbus typescript --build"
+    "type:workspaces": "nimbus typescript --build"
   },
   "devDependencies": {
     "@airbnb/config-babel": "^2.1.3",
