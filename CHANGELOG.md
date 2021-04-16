@@ -1,4 +1,5 @@
 # Changelog
+- [v1.9.0](#v190)
 - [v1.8.0](#v180)
 - [v1.7.4](#v174)
 - [v1.7.3](#v173)
@@ -6,10 +7,10 @@
 - [v1.7.1](#v171)
 - [v1.7.0](#v170)
 - [v1.6.1](#v161)
-- [v1.6.0](#v160)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v160">v1.6.0</a></li>
   <li><a href="#v150">v1.5.0</a></li>
   <li><a href="#v140">v1.4.0</a></li>
   <li><a href="#v130">v1.3.0</a></li>
@@ -103,6 +104,24 @@
 </details>
 
 ------
+# v1.9.0 (2021-04-16)
+
+#### :rocket: Enhancements
+
+- fix(visx/annotation) Improve label positioning, add maxWidth [#1127](https://github.com/airbnb/visx/pull/1127)
+
+#### :bug: Bug Fix
+
+- fix(visx/annotation) Improve label positioning, add maxWidth [#1127](https://github.com/airbnb/visx/pull/1127)
+
+### :memo: Documentation
+
+- development(contributing): update docs to rebuild single packages [#1170](https://github.com/airbnb/visx/pull/1170)
+  
+#### :trophy: Contributors
+- [vovakulikov](https://github.com/vovakulikov)
+- [williaster](https://github.com/williaster)
+
 # v1.8.0 (2021-04-15)
 
 #### :rocket: Enhancements
