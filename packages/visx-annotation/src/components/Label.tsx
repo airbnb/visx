@@ -2,6 +2,7 @@ import React, { useContext, useMemo } from 'react';
 import cx from 'classnames';
 import Group from '@visx/group/lib/Group';
 import Text, { TextProps } from '@visx/text/lib/Text';
+import { useText } from '@visx/text';
 import useMeasure, { Options as UseMeasureOptions } from 'react-use-measure';
 import AnnotationContext from '../context/AnnotationContext';
 
@@ -48,6 +49,8 @@ export type LabelProps = {
   verticalAnchor?: TextProps['verticalAnchor'];
   /** Width of annotation, including background, for text wrapping. */
   width?: number;
+  /** Max width of annotation, including background, for text wrapping. */
+  maxWidth?: number;
   /** Left offset of entire AnnotationLabel, if not specified uses x + dx from Annotation. */
   x?: number;
   /** Top offset of entire AnnotationLabel, if not specified uses y + dy from Annotation. */
@@ -85,7 +88,8 @@ export default function Label({
   titleFontWeight = 600,
   titleProps,
   verticalAnchor: propsVerticalAnchor,
-  width = 125,
+  width: propWidth,
+  maxWidth = 125,
   x: propsX,
   y: propsY,
 }: LabelProps) {
@@ -100,6 +104,44 @@ export default function Label({
   const height = Math.floor(
     padding.top + padding.bottom + (titleBounds.height ?? 0) + (subtitleBounds.height ?? 0),
   );
+
+  const { wordsByLines: titleWordsByLine } = useText({
+    children: title,
+    verticalAnchor: 'start',
+    capHeight: titleFontSize,
+    fontSize: titleFontSize,
+    fontWeight: titleFontWeight,
+    fontFamily: titleProps?.fontFamily,
+    width: maxWidth,
+    ...titleProps,
+  });
+
+  const { wordsByLines: subtitleWordsByLine } = useText({
+    children: subtitle,
+    verticalAnchor: 'start',
+    capHeight: subtitleFontSize,
+    fontSize: subtitleFontSize,
+    fontWeight: subtitleFontWeight,
+    fontFamily: subtitleProps?.fontFamily,
+    width: maxWidth,
+    ...subtitleProps,
+  });
+
+  const titleMeasuredWidth = titleWordsByLine.reduce(
+    (maxTitleWidth, line) => Math.max(maxTitleWidth, line.width ?? 0),
+    0,
+  );
+
+  const subtitleMeasuredWidth = subtitleWordsByLine.reduce(
+    (maxSubtitleWidth, line) => Math.max(maxSubtitleWidth, line.width ?? 0),
+    0,
+  );
+
+  const textMeasuredWidth = Math.floor(
+    Math.min(maxWidth, Math.max(titleMeasuredWidth, subtitleMeasuredWidth)),
+  );
+  const measuredWidth = padding.right + padding.left + textMeasuredWidth;
+  const width = propWidth ?? measuredWidth;
   const innerWidth = width - padding.left - padding.right;
 
   // offset container position based on horizontal + vertical anchor
