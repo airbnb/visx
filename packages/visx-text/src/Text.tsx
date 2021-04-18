@@ -21,7 +21,7 @@ export default function Text(props: TextProps) {
     width,
     ...textProps
   } = props;
-  
+
   const { x = 0, fontSize } = textProps;
   const { wordsByLines, startDy, transform } = useText(props);
 
