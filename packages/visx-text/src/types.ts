@@ -15,7 +15,7 @@ type OwnProps = {
   /** Styles to be applied to the text (and used in computation of its size). */
   style?: React.CSSProperties;
   /** Ref passed to the Text SVG element. */
-  innerRef?: React.Ref<SVGSVGElement>;
+  innerRef?: React.Ref<SVGTextElement>;
   /** x position of the text. */
   x?: string | number;
   /** y position of the text. */
