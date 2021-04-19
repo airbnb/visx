@@ -7,7 +7,14 @@ import Drag, { HandlerArgs as DragArgs } from '@visx/drag/lib/Drag';
 import BrushHandle from './BrushHandle';
 import BrushCorner from './BrushCorner';
 import BrushSelection from './BrushSelection';
-import { MarginShape, Point, BrushShape, ResizeTriggerAreas, PartialBrushStartEnd } from './types';
+import {
+  MarginShape,
+  Point,
+  BrushShape,
+  ResizeTriggerAreas,
+  PartialBrushStartEnd,
+  BrushingType,
+} from './types';
 
 const BRUSH_OVERLAY_STYLES = { cursor: 'crosshair' };
 
@@ -34,17 +41,13 @@ export type BaseBrushProps = {
   clickSensitivity: number;
   disableDraggingSelection: boolean;
   resetOnEnd?: boolean;
-  isUseWindowMoveEvents?: boolean;
+  useWindowMoveEvents?: boolean;
 };
 
 export type BaseBrushState = BrushShape & {
   activeHandle: ResizeTriggerAreas | null;
   isBrushing: boolean;
-  isDragInProgress: boolean;
-  isMovingBrushSelection: boolean;
-  brushHandleChange: {
-    [key in ResizeTriggerAreas]?: boolean;
-  };
+  brushingType?: BrushingType;
 };
 
 export type UpdateBrush =
@@ -74,15 +77,8 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
         y1: this.props.height,
       },
       isBrushing: false,
+      brushingType: undefined,
       activeHandle: null,
-      isDragInProgress: false,
-      isMovingBrushSelection: false,
-      brushHandleChange: {
-        top: false,
-        bottom: false,
-        right: false,
-        left: false,
-      },
     };
   }
 
@@ -110,7 +106,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
     clickSensitivity: 200,
     resetOnEnd: false,
     initialBrushPosition: null,
-    isUseWindowMoveEvents: false,
+    useWindowMoveEvents: false,
   };
 
   componentDidUpdate(prevProps: BaseBrushProps) {
@@ -128,27 +124,26 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
   }
 
   componentDidMount() {
-    window.addEventListener('mouseup', this.handleMouseUp, false);
-    window.addEventListener('mousemove', this.handleMouseMove, false);
+    if (this.props.useWindowMoveEvents) {
+      window.addEventListener('mouseup', this.handleMouseUp);
+      window.addEventListener('mousemove', this.handleMouseMove);
+    }
   }
 
   componentWillUnmount() {
-    window.removeEventListener('mouseup', this.handleMouseUp, false);
-    window.removeEventListener('mousemove', this.handleMouseMove, false);
+    if (this.props.useWindowMoveEvents) {
+      window.removeEventListener('mouseup', this.handleMouseUp);
+      window.removeEventListener('mousemove', this.handleMouseMove);
+    }
   }
 
   handleMouseUp = () => {
-    const { isUseWindowMoveEvents } = this.props;
-    const { isDragInProgress, isMovingBrushSelection, brushHandleChange } = this.state;
-    const isBrushHandleChange =
-      brushHandleChange.top ||
-      brushHandleChange.bottom ||
-      brushHandleChange.left ||
-      brushHandleChange.right;
+    const { useWindowMoveEvents } = this.props;
+    const { brushingType } = this.state;
 
     if (
-      isUseWindowMoveEvents &&
-      (isDragInProgress || isMovingBrushSelection || isBrushHandleChange)
+      useWindowMoveEvents &&
+      ['top', 'bottom', 'left', 'right', 'select', 'move'].includes(brushingType ?? '')
     ) {
       this.updateBrush((prevBrush: BaseBrushState) => {
         const { start, end, extent } = prevBrush;
@@ -162,33 +157,17 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
           ...prevBrush,
           activeHandle: null,
           isBrushing: false,
-          isDragInProgress: false,
-          isMovingBrushSelection: false,
-          brushHandleChange: Object.keys(brushHandleChange).reduce(
-            (res, key) => ({
-              ...res,
-              [key]: false,
-            }),
-            {},
-          ),
+          brushingType: undefined,
         };
       });
     }
   };
 
   handleMouseMove = (event: MouseEvent) => {
-    const { isUseWindowMoveEvents, left, top, inheritedMargin } = this.props;
-    const {
-      isDragInProgress,
-      isMovingBrushSelection,
-      brushHandleChange,
-      isBrushing,
-      bounds,
-      start,
-      end,
-    } = this.state;
+    const { useWindowMoveEvents, left, top, inheritedMargin } = this.props;
+    const { brushingType, isBrushing, bounds, start, end } = this.state;
 
-    if (!isUseWindowMoveEvents || !isBrushing) return;
+    if (!useWindowMoveEvents || !isBrushing) return;
 
     const marginLeft = inheritedMargin?.left || 0;
     const marginTop = inheritedMargin?.top || 0;
@@ -199,7 +178,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
     );
     const calculatedY = Math.min(Math.max((point?.y || 0) - top - marginTop, bounds.y0), bounds.y1);
 
-    if (brushHandleChange.left || brushHandleChange.top) {
+    if (['left', 'top'].includes(brushingType ?? '')) {
       const newStart = { x: calculatedX, y: calculatedY };
       this.updateBrush((prevBrush: BaseBrushState) => {
         const extent = this.getExtent(newStart, end);
@@ -213,7 +192,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
       return;
     }
 
-    if (isDragInProgress || brushHandleChange.right || brushHandleChange.bottom) {
+    if (['select', 'right', 'bottom'].includes(brushingType ?? '')) {
       const newEnd = { x: calculatedX, y: calculatedY };
       this.updateBrush((prevBrush: BaseBrushState) => {
         const extent = this.getExtent(start, newEnd);
@@ -226,7 +205,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
       return;
     }
 
-    if (isMovingBrushSelection) {
+    if (brushingType === 'move') {
       let newStart = start;
       const newEnd = { x: calculatedX, y: calculatedY };
 
@@ -306,7 +285,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
         y1: -1,
       },
       isBrushing: true,
-      isDragInProgress: true,
+      brushingType: 'select',
     }));
   };
 
@@ -345,7 +324,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
           y: extent.y1,
         },
         isBrushing: false,
-        isDragInProgress: false,
+        brushingType: undefined,
         activeHandle: null,
       };
 
@@ -493,31 +472,16 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
       },
       isBrushing: false,
       activeHandle: null,
-      isDragInProgress: false,
-      isMovingBrushSelection: false,
-      brushHandleChange: {},
+      brushingType: undefined,
     }));
   };
 
-  handleMovingBrushSelectionChange = (value: boolean) => {
+  handleBrushingTypeChange = (type?: BrushingType) => {
     this.updateBrush((prevBrush: BaseBrushState) => {
       return {
         ...prevBrush,
-        isMovingBrushSelection: value,
-        isBrushing: true,
-      };
-    });
-  };
-
-  handleBrushHandleChange = (value: boolean, type: ResizeTriggerAreas) => {
-    this.updateBrush((prevBrush: BaseBrushState) => {
-      return {
-        ...prevBrush,
-        brushHandleChange: {
-          ...prevBrush.brushHandleChange,
-          [type]: value,
-        },
-        isBrushing: true,
+        brushingType: type,
+        isBrushing: type !== undefined,
       };
     });
   };
@@ -538,10 +502,10 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
       selectedBoxStyle,
       disableDraggingSelection,
       clickSensitivity,
-      isUseWindowMoveEvents,
+      useWindowMoveEvents,
     } = this.props;
 
-    const { isDragInProgress, isMovingBrushSelection, brushHandleChange } = this.state;
+    const { brushingType } = this.state;
 
     const handles = this.handles();
     const corners = this.corners();
@@ -559,7 +523,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
           onDragStart={this.handleDragStart}
           onDragMove={this.handleDragMove}
           onDragEnd={this.handleDragEnd}
-          isDragging={isUseWindowMoveEvents ? isDragInProgress : undefined}
+          isDragging={useWindowMoveEvents ? brushingType === 'select' : undefined}
         >
           {({ dragStart, isDragging, dragMove, dragEnd }) => (
             <Bar
@@ -608,11 +572,11 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
             onMouseLeave={onMouseLeave}
             onMouseMove={onMouseMove}
             onMouseUp={onMouseUp}
-            onMoveSelectionChange={this.handleMovingBrushSelectionChange}
+            onMoveSelectionChange={this.handleBrushingTypeChange}
             onClick={onClick}
             selectedBoxStyle={selectedBoxStyle}
-            isUseWindowMoveEvents={isUseWindowMoveEvents}
-            isDragInProgress={isUseWindowMoveEvents ? isMovingBrushSelection : undefined}
+            useWindowMoveEvents={useWindowMoveEvents}
+            isDragInProgress={useWindowMoveEvents ? brushingType === 'move' : undefined}
           />
         )}
         {/* handles */}
@@ -632,13 +596,11 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
                     stageWidth={stageWidth}
                     stageHeight={stageHeight}
                     updateBrush={this.updateBrush}
-                    brush={{ ...this.state }}
+                    brush={this.state}
                     onBrushEnd={onBrushEnd}
-                    isUseWindowMoveEvents={isUseWindowMoveEvents}
-                    isDragInProgress={
-                      isUseWindowMoveEvents ? brushHandleChange[handleKey] : undefined
-                    }
-                    onBrushHandleChange={this.handleBrushHandleChange}
+                    useWindowMoveEvents={useWindowMoveEvents}
+                    isDragInProgress={useWindowMoveEvents ? brushingType === handleKey : undefined}
+                    onBrushHandleChange={this.handleBrushingTypeChange}
                   />
                 )
               );

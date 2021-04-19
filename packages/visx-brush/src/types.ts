@@ -44,6 +44,8 @@ export type ResizeTriggerAreas =
   | 'bottomLeft'
   | 'bottomRight';
 
+export type BrushingType = 'move' | 'select' | ResizeTriggerAreas;
+
 export interface Scale<Input = any, Output = any> {
   (value: Input): Output;
   ticks?: (count: number) => Input[];

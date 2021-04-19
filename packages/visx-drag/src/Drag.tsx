@@ -13,7 +13,7 @@ export type DragProps = UseDragOptions & {
   height: number;
   /** Whether to render an invisible rect below children to capture the drag area as defined by width and height. */
   captureDragArea?: boolean;
-  /** move drag state control to parent */
+  /** If defined, parent controls dragging state. */
   isDragging?: boolean;
 };
 

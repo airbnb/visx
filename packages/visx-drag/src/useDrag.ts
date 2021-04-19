@@ -26,7 +26,7 @@ export type UseDragOptions = {
   dx?: number;
   /** Optionally set the initial drag dy, or override the current drag dy. */
   dy?: number;
-  /** If defined - parent controls dragging state  */
+  /** If defined, parent controls dragging state.  */
   isDragging?: boolean;
 };
 

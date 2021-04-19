@@ -34,11 +34,11 @@
   },
   "dependencies": {
     "@visx/drag": "1.7.4",
+    "@visx/event": "1.7.0",
     "@visx/group": "1.7.0",
     "@visx/shape": "1.7.0",
     "classnames": "^2.2.5",
-    "prop-types": "^15.6.1",
-    "@visx/event": "1.7.0"
+    "prop-types": "^15.6.1"
   },
   "devDependencies": {
     "@visx/scale": "1.7.0"
