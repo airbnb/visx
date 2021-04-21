@@ -5,6 +5,7 @@ import { Group } from '@visx/group';
 import { Point } from '@visx/point';
 import { getTicks, ScaleInput, coerceNumber } from '@visx/scale';
 import { CommonGridProps, GridScale } from '../types';
+import getScaleBandwidth from '../utils/getScaleBandwidth';
 
 export type GridRowsProps<Scale extends GridScale> = CommonGridProps & {
   /** `@visx/scale` or `d3-scale` object used to convert value to position. */
@@ -41,8 +42,9 @@ export default function GridRows<Scale extends GridScale>({
   ...restProps
 }: AllGridRowsProps<Scale>) {
   const ticks = tickValues ?? getTicks(scale, numTicks);
+  const scaleOffset = (offset ?? 0) + getScaleBandwidth(scale) / 2;
   const tickLines = ticks.map(d => {
-    const y = offset ? (coerceNumber(scale(d)) || 0) + offset : coerceNumber(scale(d)) || 0;
+    const y = (coerceNumber(scale(d)) ?? 0) + scaleOffset;
     return {
       from: new Point({
         x: 0,
