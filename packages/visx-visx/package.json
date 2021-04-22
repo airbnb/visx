@@ -1,6 +1,6 @@
 {
   "name": "@visx/visx",
-  "version": "1.9.0",
+  "version": "1.9.1",
   "description": "One stop install for all visx packages",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -44,7 +44,7 @@
     "@visx/geo": "1.7.0",
     "@visx/glyph": "1.7.0",
     "@visx/gradient": "1.7.0",
-    "@visx/grid": "1.8.0",
+    "@visx/grid": "1.9.1",
     "@visx/group": "1.7.0",
     "@visx/heatmap": "1.7.0",
     "@visx/hierarchy": "1.7.0",
@@ -60,7 +60,7 @@
     "@visx/text": "1.7.0",
     "@visx/tooltip": "1.7.2",
     "@visx/voronoi": "1.7.0",
-    "@visx/xychart": "1.9.0",
+    "@visx/xychart": "1.9.1",
     "@visx/zoom": "1.7.0"
   }
 }
