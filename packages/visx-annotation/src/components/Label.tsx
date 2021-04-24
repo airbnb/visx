@@ -223,7 +223,7 @@ export default function Label({
       )}
       {title && (
         <Text
-          innerRef={titleRef}
+          innerTextRef={titleRef}
           fill={fontColor}
           verticalAnchor="start"
           x={padding.left + (titleProps?.textAnchor === 'middle' ? innerWidth / 2 : 0)}
@@ -238,7 +238,7 @@ export default function Label({
       )}
       {subtitle && (
         <Text
-          innerRef={subtitleRef}
+          innerTextRef={subtitleRef}
           fill={fontColor}
           verticalAnchor="start"
           x={padding.left + (subtitleProps?.textAnchor === 'middle' ? innerWidth / 2 : 0)}

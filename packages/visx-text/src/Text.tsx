@@ -12,6 +12,7 @@ export default function Text(props: TextProps) {
     dy = 0,
     textAnchor = 'start',
     innerRef,
+    innerTextRef,
     verticalAnchor,
     angle,
     lineHeight = '1em',
@@ -26,9 +27,9 @@ export default function Text(props: TextProps) {
   const { wordsByLines, startDy, transform } = useText(props);
 
   return (
-    <svg x={dx} y={dy} fontSize={fontSize} style={SVG_STYLE}>
+    <svg ref={innerRef} x={dx} y={dy} fontSize={fontSize} style={SVG_STYLE}>
       {wordsByLines.length > 0 ? (
-        <text ref={innerRef} transform={transform} {...textProps} textAnchor={textAnchor}>
+        <text ref={innerTextRef} transform={transform} {...textProps} textAnchor={textAnchor}>
           {wordsByLines.map((line, index) => (
             <tspan key={index} x={x} dy={index === 0 ? startDy : lineHeight}>
               {line.words.join(' ')}
