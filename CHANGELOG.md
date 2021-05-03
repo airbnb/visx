@@ -1,4 +1,5 @@
 # Changelog
+- [v1.10.0](#v1100)
 - [v1.9.1](#v191)
 - [v1.9.0](#v190)
 - [v1.8.0](#v180)
@@ -6,10 +7,10 @@
 - [v1.7.3](#v173)
 - [v1.7.2](#v172)
 - [v1.7.1](#v171)
-- [v1.7.0](#v170)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v170">v1.7.0</a></li>
   <li><a href="#v161">v1.6.1</a></li>
   <li><a href="#v160">v1.6.0</a></li>
   <li><a href="#v150">v1.5.0</a></li>
@@ -105,6 +106,24 @@
 </details>
 
 ------
+# v1.10.0 (2021-05-03)
+
+#### :rocket: Enhancements
+
+- fix(@visx/text) Bad size measurements in Firefox [#1175](https://github.com/airbnb/visx/pull/1175)
+
+#### :bug: Bug Fix
+
+- fix(@visx/text) Bad size measurements in Firefox [#1175](https://github.com/airbnb/visx/pull/1175)
+
+#### Uncategorized
+
+- Update push.yml [#1195](https://github.com/airbnb/visx/pull/1195)
+  
+#### :trophy: Contributors
+- [vovakulikov](https://github.com/vovakulikov)
+- [williaster](https://github.com/williaster)
+
 # v1.9.1 (2021-04-22)
 
 #### :bug: Bug Fix
