@@ -1,6 +1,6 @@
 {
   "name": "@visx/xychart",
-  "version": "1.10.0",
+  "version": "1.10.1",
   "description": "Composable cartesian coordinate chart built with visx primitives",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -49,7 +49,7 @@
     "@visx/glyph": "1.7.0",
     "@visx/grid": "1.9.1",
     "@visx/react-spring": "1.10.0",
-    "@visx/responsive": "1.7.0",
+    "@visx/responsive": "1.10.1",
     "@visx/scale": "1.7.0",
     "@visx/shape": "1.8.0",
     "@visx/text": "1.10.0",

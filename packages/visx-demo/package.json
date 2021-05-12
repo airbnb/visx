@@ -1,6 +1,6 @@
 {
   "name": "@visx/demo",
-  "version": "1.10.0",
+  "version": "1.10.1",
   "description": "visx demo",
   "repository": "https://github.com/airbnb/visx",
   "scripts": {
@@ -57,7 +57,7 @@
     "@visx/pattern": "1.7.0",
     "@visx/point": "1.7.0",
     "@visx/react-spring": "1.10.0",
-    "@visx/responsive": "1.7.0",
+    "@visx/responsive": "1.10.1",
     "@visx/scale": "1.7.0",
     "@visx/shape": "1.8.0",
     "@visx/stats": "1.7.0",
@@ -65,7 +65,7 @@
     "@visx/threshold": "1.8.0",
     "@visx/tooltip": "1.7.2",
     "@visx/voronoi": "1.7.0",
-    "@visx/xychart": "1.10.0",
+    "@visx/xychart": "1.10.1",
     "@visx/zoom": "1.7.0",
     "@zeit/next-css": "^1.0.1",
     "babel-loader": "^8.2.2",
