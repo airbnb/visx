@@ -77,7 +77,7 @@ export default function ParentSize({
     return () => {
       window.cancelAnimationFrame(animationFrameID.current);
       observer.disconnect();
-      resize.cancel();
+      if (resize && resize.cancel) resize.cancel();
     };
   }, [resize]);
 
