@@ -206,6 +206,51 @@ describe('<Axis />', () => {
     ).toBe('0');
   });
 
+  test('tick stroke width should be equal parent', () => {
+    const wrapper = shallow(
+      <Axis {...axisProps} strokeWidth={2}/>,
+    );
+    expect(
+      wrapper
+        .children()
+        .find('.visx-axis-tick')
+        .not('.visx-axis-line')
+        .find('Line')
+        .first()
+        .prop('strokeWidth'),
+    ).toBe(2);
+  });
+
+  test('tick stroke width should be different parent and equal to tickStrokeWidth', () => {
+    const wrapper = shallow(
+      <Axis {...axisProps} strokeWidth={2} tickStrokeWidth={3}/>,
+    );
+    expect(
+      wrapper
+        .children()
+        .find('.visx-axis-tick')
+        .not('.visx-axis-line')
+        .find('Line')
+        .first()
+        .prop('strokeWidth'),
+    ).toBe(3);
+  });
+
+  test('default tick stroke should be 1', () => {
+    const wrapper = shallow(
+      <Axis {...axisProps} />,
+    );
+    expect(
+      wrapper
+        .children()
+        .find('.visx-axis-tick')
+        .not('.visx-axis-line')
+        .find('Line')
+        .first()
+        .prop('strokeWidth'),
+    ).toBe(1);
+  });
+
   it('should use center if scale is band', () => {
     const wrapper = shallow(
       <Axis
