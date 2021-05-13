@@ -6,7 +6,7 @@ import { ScaleInput } from '@visx/scale';
 import {
   PositionScale,
   AddSVGProps,
-  BarStack,
+  BarStack as BarStackType,
   BaseBarStackProps,
   StackKey,
   Accessor,
@@ -32,7 +32,7 @@ export type BarStackProps<
   y1?: Accessor<SeriesPoint<Datum>, ScaleInput<YScale>>;
 };
 
-export default function BarStackComponent<
+export default function BarStack<
   Datum,
   Key extends StackKey = StackKey,
   XScale extends PositionScale = PositionScale,
@@ -64,7 +64,7 @@ export default function BarStackComponent<
   const stacks = stack(data);
   const barWidth = getBandwidth(xScale);
 
-  const barStacks: BarStack<Datum, Key>[] = stacks.map((barStack, i) => {
+  const barStacks: BarStackType<Datum, Key>[] = stacks.map((barStack, i) => {
     const { key } = barStack;
     return {
       index: i,

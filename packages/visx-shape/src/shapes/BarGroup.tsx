@@ -9,7 +9,7 @@ import {
   AnyScaleBand,
   AddSVGProps,
   BaseBarGroupProps,
-  BarGroup,
+  BarGroup as BarGroupType,
   GroupKey,
   Accessor,
 } from '../types';
@@ -32,7 +32,7 @@ export type BarGroupProps<
   /** Total height of the y-axis. */
   height: number;
   /** Override render function which is passed the computed BarGroups. */
-  children?: (barGroups: BarGroup<Key>[]) => React.ReactNode;
+  children?: (barGroups: BarGroupType<Key>[]) => React.ReactNode;
 };
 
 /**
@@ -73,7 +73,7 @@ export type BarGroupProps<
  *
  * Example: [https://airbnb.io/visx/bargroup](https://airbnb.io/visx/bargroup)
  */
-export default function BarGroupComponent<
+export default function BarGroup<
   Datum extends DatumObject,
   Key extends GroupKey = GroupKey,
   X0Scale extends AnyScaleBand = AnyScaleBand,
@@ -95,7 +95,7 @@ export default function BarGroupComponent<
 }: AddSVGProps<BarGroupProps<Datum, Key, X0Scale, X1Scale>, SVGRectElement>) {
   const barWidth = getBandwidth(x1Scale);
 
-  const barGroups: BarGroup<Key>[] = data.map((group, i) => ({
+  const barGroups: BarGroupType<Key>[] = data.map((group, i) => ({
     index: i,
     x0: x0Scale(x0(group))!,
     bars: keys.map((key, j) => {
