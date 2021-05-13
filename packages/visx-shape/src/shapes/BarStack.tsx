@@ -1,8 +1,8 @@
-import React from 'react';
-import cx from 'classnames';
-import { stack as d3stack, SeriesPoint } from 'd3-shape';
-import { Group } from '@visx/group';
-import { ScaleInput } from '@visx/scale';
+import React from "react";
+import cx from "classnames";
+import { stack as d3stack, SeriesPoint } from "d3-shape";
+import { Group } from "@seygai/visx-group";
+import { ScaleInput } from "@seygai/visx-scale";
 import {
   PositionScale,
   AddSVGProps,
@@ -10,13 +10,13 @@ import {
   BaseBarStackProps,
   StackKey,
   Accessor,
-} from '../types';
-import { getFirstItem, getSecondItem } from '../util/accessors';
-import getBandwidth from '../util/getBandwidth';
-import setNumOrAccessor from '../util/setNumberOrNumberAccessor';
-import stackOrder from '../util/stackOrder';
-import stackOffset from '../util/stackOffset';
-import Bar from './Bar';
+} from "../types";
+import { getFirstItem, getSecondItem } from "../util/accessors";
+import getBandwidth from "../util/getBandwidth";
+import setNumOrAccessor from "../util/setNumberOrNumberAccessor";
+import stackOrder from "../util/stackOrder";
+import stackOffset from "../util/stackOffset";
+import Bar from "./Bar";
 
 export type BarStackProps<
   Datum,
@@ -73,7 +73,7 @@ export default function BarStackComponent<
         const barHeight = (yScale(y0(bar)) || 0) - (yScale(y1(bar)) || 0);
         const barY = yScale(y1(bar));
         const barX =
-          'bandwidth' in xScale
+          "bandwidth" in xScale
             ? xScale(x(bar.data))
             : Math.max((xScale(x(bar.data)) || 0) - barWidth / 2);
 
@@ -95,9 +95,9 @@ export default function BarStackComponent<
   if (children) return <>{children(barStacks)}</>;
 
   return (
-    <Group className={cx('visx-bar-stack', className)} top={top} left={left}>
-      {barStacks.map(barStack =>
-        barStack.bars.map(bar => (
+    <Group className={cx("visx-bar-stack", className)} top={top} left={left}>
+      {barStacks.map((barStack) =>
+        barStack.bars.map((bar) => (
           <Bar
             key={`bar-stack-${barStack.index}-${bar.index}`}
             x={bar.x}
@@ -107,7 +107,7 @@ export default function BarStackComponent<
             fill={bar.color}
             {...restProps}
           />
-        )),
+        ))
       )}
     </Group>
   );

@@ -1,9 +1,9 @@
-import { AxisScale } from '@visx/axis';
-import React, { useMemo } from 'react';
-import { animated, useTransition } from 'react-spring';
-import { Bar, BarsProps } from '../../../types';
-import { cleanColor, colorHasUrl } from '../../../utils/cleanColorString';
-import getScaleBaseline from '../../../utils/getScaleBaseline';
+import { AxisScale } from "@seygai/visx-axis";
+import React, { useMemo } from "react";
+import { animated, useTransition } from "react-spring";
+import { Bar, BarsProps } from "../../../types";
+import { cleanColor, colorHasUrl } from "../../../utils/cleanColorString";
+import getScaleBaseline from "../../../utils/getScaleBaseline";
 
 function enterUpdate({ x, y, width, height, fill }: Bar) {
   return {
@@ -40,20 +40,31 @@ function useBarTransitionConfig<Scale extends AxisScale>({
       };
     }
 
-    return { from: fromLeave, leave: fromLeave, enter: enterUpdate, update: enterUpdate };
+    return {
+      from: fromLeave,
+      leave: fromLeave,
+      enter: enterUpdate,
+      update: enterUpdate,
+    };
   }, [scale, shouldAnimateX]);
 }
 
-export default function AnimatedBars<XScale extends AxisScale, YScale extends AxisScale>({
+export default function AnimatedBars<
+  XScale extends AxisScale,
+  YScale extends AxisScale
+>({
   bars,
   xScale,
   yScale,
   horizontal,
   ...rectProps
 }: BarsProps<XScale, YScale>) {
-  const animatedBars = useTransition(bars, bar => bar.key, {
+  const animatedBars = useTransition(bars, (bar) => bar.key, {
     unique: true,
-    ...useBarTransitionConfig({ horizontal, scale: horizontal ? xScale : yScale }),
+    ...useBarTransitionConfig({
+      horizontal,
+      scale: horizontal ? xScale : yScale,
+    }),
   });
   const isFocusable = Boolean(rectProps.onFocus || rectProps.onBlur);
 
@@ -62,7 +73,7 @@ export default function AnimatedBars<XScale extends AxisScale, YScale extends Ax
     <>
       {animatedBars.map((
         // @ts-ignore x/y aren't in react-spring types (which are HTML CSS properties)
-        { item, key, props: { x, y, width, height, fill, opacity } },
+        { item, key, props: { x, y, width, height, fill, opacity } }
       ) =>
         item == null || key == null ? null : (
           <animated.rect
@@ -78,7 +89,7 @@ export default function AnimatedBars<XScale extends AxisScale, YScale extends Ax
             opacity={opacity}
             {...rectProps}
           />
-        ),
+        )
       )}
     </>
   );

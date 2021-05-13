@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
-import Pie, { ProvidedProps, PieArcDatum } from '@visx/shape/lib/shapes/Pie';
-import { scaleOrdinal } from '@visx/scale';
-import { Group } from '@visx/group';
-import { GradientPinkBlue } from '@visx/gradient';
-import letterFrequency, { LetterFrequency } from '@visx/mock-data/lib/mocks/letterFrequency';
-import browserUsage, { BrowserUsage as Browsers } from '@visx/mock-data/lib/mocks/browserUsage';
-import { animated, useTransition, interpolate } from 'react-spring';
+import React, { useState } from "react";
+import Pie, {
+  ProvidedProps,
+  PieArcDatum,
+} from "@seygai/visx-shape/lib/shapes/Pie";
+import { scaleOrdinal } from "@seygai/visx-scale";
+import { Group } from "@seygai/visx-group";
+import { GradientPinkBlue } from "@seygai/visx-gradient";
+import letterFrequency, {
+  LetterFrequency,
+} from "@seygai/visx-mock-data/lib/mocks/letterFrequency";
+import browserUsage, {
+  BrowserUsage as Browsers,
+} from "@seygai/visx-mock-data/lib/mocks/browserUsage";
+import { animated, useTransition, interpolate } from "react-spring";
 
 // data and types
 type BrowserNames = keyof Browsers;
@@ -16,8 +23,10 @@ interface BrowserUsage {
 }
 
 const letters: LetterFrequency[] = letterFrequency.slice(0, 4);
-const browserNames = Object.keys(browserUsage[0]).filter(k => k !== 'date') as BrowserNames[];
-const browsers: BrowserUsage[] = browserNames.map(name => ({
+const browserNames = Object.keys(browserUsage[0]).filter(
+  (k) => k !== "date"
+) as BrowserNames[];
+const browsers: BrowserUsage[] = browserNames.map((name) => ({
   label: name,
   usage: Number(browserUsage[0][name]),
 }));
@@ -30,18 +39,23 @@ const frequency = (d: LetterFrequency) => d.frequency;
 const getBrowserColor = scaleOrdinal({
   domain: browserNames,
   range: [
-    'rgba(255,255,255,0.7)',
-    'rgba(255,255,255,0.6)',
-    'rgba(255,255,255,0.5)',
-    'rgba(255,255,255,0.4)',
-    'rgba(255,255,255,0.3)',
-    'rgba(255,255,255,0.2)',
-    'rgba(255,255,255,0.1)',
+    "rgba(255,255,255,0.7)",
+    "rgba(255,255,255,0.6)",
+    "rgba(255,255,255,0.5)",
+    "rgba(255,255,255,0.4)",
+    "rgba(255,255,255,0.3)",
+    "rgba(255,255,255,0.2)",
+    "rgba(255,255,255,0.1)",
   ],
 });
 const getLetterFrequencyColor = scaleOrdinal({
-  domain: letters.map(l => l.letter),
-  range: ['rgba(93,30,91,1)', 'rgba(93,30,91,0.8)', 'rgba(93,30,91,0.6)', 'rgba(93,30,91,0.4)'],
+  domain: letters.map((l) => l.letter),
+  range: [
+    "rgba(93,30,91,1)",
+    "rgba(93,30,91,0.8)",
+    "rgba(93,30,91,0.6)",
+    "rgba(93,30,91,0.4)",
+  ],
 });
 
 const defaultMargin = { top: 20, right: 20, bottom: 20, left: 20 };
@@ -60,7 +74,9 @@ export default function Example({
   animate = true,
 }: PieProps) {
   const [selectedBrowser, setSelectedBrowser] = useState<string | null>(null);
-  const [selectedAlphabetLetter, setSelectedAlphabetLetter] = useState<string | null>(null);
+  const [selectedAlphabetLetter, setSelectedAlphabetLetter] = useState<
+    string | null
+  >(null);
 
   if (width < 10) return null;
 
@@ -74,11 +90,18 @@ export default function Example({
   return (
     <svg width={width} height={height}>
       <GradientPinkBlue id="visx-pie-gradient" />
-      <rect rx={14} width={width} height={height} fill="url('#visx-pie-gradient')" />
+      <rect
+        rx={14}
+        width={width}
+        height={height}
+        fill="url('#visx-pie-gradient')"
+      />
       <Group top={centerY + margin.top} left={centerX + margin.left}>
         <Pie
           data={
-            selectedBrowser ? browsers.filter(({ label }) => label === selectedBrowser) : browsers
+            selectedBrowser
+              ? browsers.filter(({ label }) => label === selectedBrowser)
+              : browsers
           }
           pieValue={usage}
           outerRadius={radius}
@@ -86,30 +109,34 @@ export default function Example({
           cornerRadius={3}
           padAngle={0.005}
         >
-          {pie => (
+          {(pie) => (
             <AnimatedPie<BrowserUsage>
               {...pie}
               animate={animate}
-              getKey={arc => arc.data.label}
+              getKey={(arc) => arc.data.label}
               onClickDatum={({ data: { label } }) =>
                 animate &&
-                setSelectedBrowser(selectedBrowser && selectedBrowser === label ? null : label)
+                setSelectedBrowser(
+                  selectedBrowser && selectedBrowser === label ? null : label
+                )
               }
-              getColor={arc => getBrowserColor(arc.data.label)}
+              getColor={(arc) => getBrowserColor(arc.data.label)}
             />
           )}
         </Pie>
         <Pie
           data={
             selectedAlphabetLetter
-              ? letters.filter(({ letter }) => letter === selectedAlphabetLetter)
+              ? letters.filter(
+                  ({ letter }) => letter === selectedAlphabetLetter
+                )
               : letters
           }
           pieValue={frequency}
           pieSortValues={() => -1}
           outerRadius={radius - donutThickness * 1.3}
         >
-          {pie => (
+          {(pie) => (
             <AnimatedPie<LetterFrequency>
               {...pie}
               animate={animate}
@@ -117,10 +144,14 @@ export default function Example({
               onClickDatum={({ data: { letter } }) =>
                 animate &&
                 setSelectedAlphabetLetter(
-                  selectedAlphabetLetter && selectedAlphabetLetter === letter ? null : letter,
+                  selectedAlphabetLetter && selectedAlphabetLetter === letter
+                    ? null
+                    : letter
                 )
               }
-              getColor={({ data: { letter } }) => getLetterFrequencyColor(letter)}
+              getColor={({ data: { letter } }) =>
+                getLetterFrequencyColor(letter)
+              }
             />
           )}
         </Pie>
@@ -182,7 +213,7 @@ function AnimatedPie<Datum>({
       enter: enterUpdateTransition,
       update: enterUpdateTransition,
       leave: animate ? fromLeaveTransition : enterUpdateTransition,
-    },
+    }
   );
   return (
     <>
@@ -203,12 +234,14 @@ function AnimatedPie<Datum>({
             <g key={key}>
               <animated.path
                 // compute interpolated path d attribute from intermediate angle values
-                d={interpolate([props.startAngle, props.endAngle], (startAngle, endAngle) =>
-                  path({
-                    ...arc,
-                    startAngle,
-                    endAngle,
-                  }),
+                d={interpolate(
+                  [props.startAngle, props.endAngle],
+                  (startAngle, endAngle) =>
+                    path({
+                      ...arc,
+                      startAngle,
+                      endAngle,
+                    })
                 )}
                 fill={getColor(arc)}
                 onClick={() => onClickDatum(arc)}
@@ -231,7 +264,7 @@ function AnimatedPie<Datum>({
               )}
             </g>
           );
-        },
+        }
       )}
     </>
   );

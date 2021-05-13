@@ -1,16 +1,16 @@
-import React from 'react';
-import { Group } from '@visx/group';
-import Links from './Links';
-import Nodes from './Nodes';
-import DefaultNode from './DefaultNode';
-import DefaultLink from './DefaultLink';
+import React from "react";
+import { Group } from "@seygai/visx-group";
+import Links from "./Links";
+import Nodes from "./Nodes";
+import DefaultNode from "./DefaultNode";
+import DefaultLink from "./DefaultLink";
 import {
   Graph as GraphType,
   DefaultNode as DefaultNodeType,
   Link as LinkType,
   LinkProvidedProps,
   NodeProvidedProps,
-} from './types';
+} from "./types";
 
 type Props<Link, Node> = {
   /** Graph to render nodes and links for. */
@@ -29,7 +29,10 @@ type Props<Link, Node> = {
   left?: number;
 };
 
-export default function Graph<Link = LinkType<DefaultNodeType>, Node = DefaultNodeType>({
+export default function Graph<
+  Link = LinkType<DefaultNodeType>,
+  Node = DefaultNodeType
+>({
   graph,
   linkComponent = DefaultLink,
   nodeComponent = DefaultNode,

@@ -1,6 +1,6 @@
-import { TextProps } from '@visx/text/lib/Text';
-import Orientation from '../constants/orientation';
-import { AxisScaleOutput } from '../types';
+import { TextProps } from "@seygai/visx-text/lib/Text";
+import Orientation from "../constants/orientation";
+import { AxisScaleOutput } from "../types";
 
 export interface TransformArgs {
   labelOffset: number;
@@ -19,7 +19,10 @@ export default function getLabelTransform({
   tickLabelFontSize,
   tickLength,
 }: TransformArgs) {
-  const sign = orientation === Orientation.left || orientation === Orientation.top ? -1 : 1;
+  const sign =
+    orientation === Orientation.left || orientation === Orientation.top
+      ? -1
+      : 1;
 
   let x;
   let y;
@@ -27,7 +30,8 @@ export default function getLabelTransform({
 
   if (orientation === Orientation.top || orientation === Orientation.bottom) {
     const yBottomOffset =
-      orientation === Orientation.bottom && typeof labelProps.fontSize === 'number'
+      orientation === Orientation.bottom &&
+      typeof labelProps.fontSize === "number"
         ? labelProps.fontSize
         : 0;
 

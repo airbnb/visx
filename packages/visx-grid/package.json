@@ -1,5 +1,5 @@
 {
-  "name": "@visx/grid",
+  "name": "@seygai/visx-grid",
   "version": "1.9.1",
   "description": "visx grid",
   "sideEffects": false,
@@ -33,11 +33,11 @@
   "dependencies": {
     "@types/classnames": "^2.2.9",
     "@types/react": "*",
-    "@visx/curve": "1.7.0",
-    "@visx/group": "1.7.0",
-    "@visx/point": "1.7.0",
-    "@visx/scale": "1.7.0",
-    "@visx/shape": "1.8.0",
+    "@seygai/visx-curve": "1.7.0",
+    "@seygai/visx-group": "1.7.0",
+    "@seygai/visx-point": "1.7.0",
+    "@seygai/visx-scale": "1.7.0",
+    "@seygai/visx-shape": "1.8.0",
     "classnames": "^2.2.5",
     "prop-types": "^15.6.2"
   },

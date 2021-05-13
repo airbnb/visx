@@ -1,11 +1,19 @@
-import React, { useState } from 'react';
-import { extent, max } from 'd3-array';
-import * as allCurves from '@visx/curve';
-import { Group } from '@visx/group';
-import { LinePath } from '@visx/shape';
-import { scaleTime, scaleLinear } from '@visx/scale';
-import { MarkerArrow, MarkerCross, MarkerX, MarkerCircle, MarkerLine } from '@visx/marker';
-import generateDateValue, { DateValue } from '@visx/mock-data/lib/generators/genDateValue';
+import React, { useState } from "react";
+import { extent, max } from "d3-array";
+import * as allCurves from "@seygai/visx-curve";
+import { Group } from "@seygai/visx-group";
+import { LinePath } from "@seygai/visx-shape";
+import { scaleTime, scaleLinear } from "@seygai/visx-scale";
+import {
+  MarkerArrow,
+  MarkerCross,
+  MarkerX,
+  MarkerCircle,
+  MarkerLine,
+} from "@seygai/visx-marker";
+import generateDateValue, {
+  DateValue,
+} from "@seygai/visx-mock-data/lib/generators/genDateValue";
 
 type CurveType = keyof typeof allCurves;
 
@@ -14,8 +22,8 @@ const lineCount = 5;
 const series = new Array(lineCount).fill(null).map((_, i) =>
   // vary each series value deterministically
   generateDateValue(25, /* seed= */ i / 72).sort(
-    (a: DateValue, b: DateValue) => a.date.getTime() - b.date.getTime(),
-  ),
+    (a: DateValue, b: DateValue) => a.date.getTime() - b.date.getTime()
+  )
 );
 const allData = series.reduce((rec, d) => rec.concat(d), []);
 
@@ -37,8 +45,12 @@ export type CurveProps = {
   showControls?: boolean;
 };
 
-export default function Example({ width, height, showControls = true }: CurveProps) {
-  const [curveType, setCurveType] = useState<CurveType>('curveNatural');
+export default function Example({
+  width,
+  height,
+  showControls = true,
+}: CurveProps) {
+  const [curveType, setCurveType] = useState<CurveType>("curveNatural");
   const [showPoints, setShowPoints] = useState<boolean>(true);
   const svgHeight = showControls ? height - 40 : height;
   const lineHeight = svgHeight / lineCount;
@@ -53,8 +65,11 @@ export default function Example({ width, height, showControls = true }: CurvePro
         <>
           <label>
             Curve type &nbsp;
-            <select onChange={e => setCurveType(e.target.value as CurveType)} value={curveType}>
-              {curveTypes.map(curve => (
+            <select
+              onChange={(e) => setCurveType(e.target.value as CurveType)}
+              value={curveType}
+            >
+              {curveTypes.map((curve) => (
                 <option key={curve} value={curve}>
                   {curve}
                 </option>
@@ -90,16 +105,23 @@ export default function Example({ width, height, showControls = true }: CurvePro
           markerUnits="userSpaceOnUse"
         />
         <MarkerCircle id="marker-circle" fill="#333" size={2} refX={2} />
-        <MarkerArrow id="marker-arrow-odd" stroke="#333" size={8} strokeWidth={1} />
+        <MarkerArrow
+          id="marker-arrow-odd"
+          stroke="#333"
+          size={8}
+          strokeWidth={1}
+        />
         <MarkerLine id="marker-line" fill="#333" size={16} strokeWidth={1} />
         <MarkerArrow id="marker-arrow" fill="#333" refX={2} size={6} />
         <rect width={width} height={svgHeight} fill="#efefef" rx={14} ry={14} />
         {width > 8 &&
           series.map((lineData, i) => {
             const even = i % 2 === 0;
-            let markerStart = even ? 'url(#marker-cross)' : 'url(#marker-x)';
-            if (i === 1) markerStart = 'url(#marker-line)';
-            const markerEnd = even ? 'url(#marker-arrow)' : 'url(#marker-arrow-odd)';
+            let markerStart = even ? "url(#marker-cross)" : "url(#marker-x)";
+            if (i === 1) markerStart = "url(#marker-line)";
+            const markerEnd = even
+              ? "url(#marker-arrow)"
+              : "url(#marker-arrow-odd)";
             return (
               <Group key={`lines-${i}`} top={i * lineHeight} left={13}>
                 {showPoints &&
@@ -116,8 +138,8 @@ export default function Example({ width, height, showControls = true }: CurvePro
                 <LinePath<DateValue>
                   curve={allCurves[curveType]}
                   data={lineData}
-                  x={d => xScale(getX(d)) ?? 0}
-                  y={d => yScale(getY(d)) ?? 0}
+                  x={(d) => xScale(getX(d)) ?? 0}
+                  y={(d) => yScale(getY(d)) ?? 0}
                   stroke="#333"
                   strokeWidth={even ? 2 : 1}
                   strokeOpacity={even ? 0.6 : 1}

@@ -1,7 +1,7 @@
-import { CurveFactory, CurveFactoryLineOnly } from 'd3-shape';
-import { Accessor, AccessorForArrayItem } from './accessor';
-import { STACK_OFFSETS } from '../util/stackOffset';
-import { STACK_ORDERS } from '../util/stackOrder';
+import { CurveFactory, CurveFactoryLineOnly } from "d3-shape";
+import { Accessor, AccessorForArrayItem } from "./accessor";
+import { STACK_OFFSETS } from "../util/stackOffset";
+import { STACK_ORDERS } from "../util/stackOrder";
 
 export type ArcPathConfig<Datum> = {
   /** Number or accessor function which returns a number, which defines the arc innerRadius. */
@@ -23,7 +23,7 @@ export type ArcPathConfig<Datum> = {
 export type AreaPathConfig<Datum> = {
   /** The defined accessor for the shape. The final area shape includes all points for which this function returns true. By default all points are defined. */
   defined?: AccessorForArrayItem<Datum, boolean>;
-  /** Sets the curve factory (from @visx/curve or d3-curve) for the area generator. Defaults to curveLinear. */
+  /** Sets the curve factory (from @seygai/visx-curve or d3-curve) for the area generator. Defaults to curveLinear. */
   curve?: CurveFactory;
   /** Sets the x0 accessor function, and sets x1 to null. */
   x?: number | AccessorForArrayItem<Datum, number>;
@@ -42,7 +42,7 @@ export type AreaPathConfig<Datum> = {
 export type LinePathConfig<Datum> = {
   /** The defined accessor for the shape. The final line shape includes all points for which this function returns true. By default all points are defined. */
   defined?: AccessorForArrayItem<Datum, boolean>;
-  /** Sets the curve factory (from @visx/curve or d3-curve) for the line generator. Defaults to curveLinear. */
+  /** Sets the curve factory (from @seygai/visx-curve or d3-curve) for the line generator. Defaults to curveLinear. */
   curve?: CurveFactory | CurveFactoryLineOnly;
   /** Sets the x0 accessor function, and sets x1 to null. */
   x?: number | AccessorForArrayItem<Datum, number>;
@@ -51,7 +51,11 @@ export type LinePathConfig<Datum> = {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type AngleAccessor<Datum> = (this: any, data: Datum[], ...args: any[]) => number;
+type AngleAccessor<Datum> = (
+  this: any,
+  data: Datum[],
+  ...args: any[]
+) => number;
 
 export type PiePathConfig<Datum> = {
   /** Returns the start angle of the overall Pie shape (the first value starts at startAngle), with 0 at -y (12 o’clock) and positive angles proceeding clockwise. */
@@ -71,7 +75,7 @@ export type PiePathConfig<Datum> = {
 export type RadialLinePathConfig<Datum> = {
   /** The defined accessor for the shape. The final radialLine shape includes all points for which this function returns true. By default all points are defined. */
   defined?: AccessorForArrayItem<Datum, boolean>;
-  /** Sets the curve factory (from @visx/curve or d3-curve) for the radialLine generator. Defaults to curveLinear. */
+  /** Sets the curve factory (from @seygai/visx-curve or d3-curve) for the radialLine generator. Defaults to curveLinear. */
   curve?: CurveFactory | CurveFactoryLineOnly;
   /** Returns the angle value in radians for a given Datum, with 0 at -y (12 o’clock). */
   angle?: number | AccessorForArrayItem<Datum, number>;

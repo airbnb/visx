@@ -1,7 +1,11 @@
-import { Point } from '@visx/point';
-import { EventType } from './types';
-import { isSVGElement, isSVGGraphicsElement, isSVGSVGElement } from './typeGuards';
-import getXAndYFromEvent from './getXAndYFromEvent';
+import { Point } from "@seygai/visx-point";
+import { EventType } from "./types";
+import {
+  isSVGElement,
+  isSVGGraphicsElement,
+  isSVGSVGElement,
+} from "./typeGuards";
+import getXAndYFromEvent from "./getXAndYFromEvent";
 
 export default function localPoint(node: Element, event: EventType) {
   if (!node || !event) return null;

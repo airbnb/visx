@@ -1,5 +1,5 @@
 {
-  "name": "@visx/text",
+  "name": "@seygai/visx-text",
   "version": "1.10.0",
   "description": "visx text",
   "sideEffects": false,

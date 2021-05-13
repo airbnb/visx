@@ -1,17 +1,20 @@
-import React, { useMemo, useState, useCallback, useRef } from 'react';
-import { Group } from '@visx/group';
-import { Circle } from '@visx/shape';
-import { GradientPinkRed } from '@visx/gradient';
-import { scaleLinear } from '@visx/scale';
+import React, { useMemo, useState, useCallback, useRef } from "react";
+import { Group } from "@seygai/visx-group";
+import { Circle } from "@seygai/visx-shape";
+import { GradientPinkRed } from "@seygai/visx-gradient";
+import { scaleLinear } from "@seygai/visx-scale";
 import genRandomNormalPoints, {
   PointsRange,
-} from '@visx/mock-data/lib/generators/genRandomNormalPoints';
-import { withTooltip, Tooltip } from '@visx/tooltip';
-import { WithTooltipProvidedProps } from '@visx/tooltip/lib/enhancers/withTooltip';
-import { voronoi, VoronoiPolygon } from '@visx/voronoi';
-import { localPoint } from '@visx/event';
+} from "@seygai/visx-mock-data/lib/generators/genRandomNormalPoints";
+import { withTooltip, Tooltip } from "@seygai/visx-tooltip";
+import { WithTooltipProvidedProps } from "@seygai/visx-tooltip/lib/enhancers/withTooltip";
+import { voronoi, VoronoiPolygon } from "@seygai/visx-voronoi";
+import { localPoint } from "@seygai/visx-event";
 
-const points: PointsRange[] = genRandomNormalPoints(600, /* seed= */ 0.5).filter((_, i) => i < 600);
+const points: PointsRange[] = genRandomNormalPoints(
+  600,
+  /* seed= */ 0.5
+).filter((_, i) => i < 600);
 
 const x = (d: PointsRange) => d[0];
 const y = (d: PointsRange) => d[1];
@@ -46,7 +49,7 @@ export default withTooltip<DotsProps, PointsRange>(
           range: [0, width],
           clamp: true,
         }),
-      [width],
+      [width]
     );
     const yScale = useMemo(
       () =>
@@ -55,17 +58,17 @@ export default withTooltip<DotsProps, PointsRange>(
           range: [height, 0],
           clamp: true,
         }),
-      [height],
+      [height]
     );
     const voronoiLayout = useMemo(
       () =>
         voronoi<PointsRange>({
-          x: d => xScale(x(d)) ?? 0,
-          y: d => yScale(y(d)) ?? 0,
+          x: (d) => xScale(x(d)) ?? 0,
+          y: (d) => yScale(y(d)) ?? 0,
           width,
           height,
         })(points),
-      [width, height, xScale, yScale],
+      [width, height, xScale, yScale]
     );
 
     // event handlers
@@ -87,7 +90,7 @@ export default withTooltip<DotsProps, PointsRange>(
           });
         }
       },
-      [xScale, yScale, showTooltip, voronoiLayout],
+      [xScale, yScale, showTooltip, voronoiLayout]
     );
 
     const handleMouseLeave = useCallback(() => {
@@ -119,7 +122,7 @@ export default withTooltip<DotsProps, PointsRange>(
                 cx={xScale(x(point))}
                 cy={yScale(y(point))}
                 r={i % 3 === 0 ? 2 : 3}
-                fill={tooltipData === point ? 'white' : '#f6c431'}
+                fill={tooltipData === point ? "white" : "#f6c431"}
               />
             ))}
             {showVoronoi &&
@@ -138,16 +141,19 @@ export default withTooltip<DotsProps, PointsRange>(
                 ))}
           </Group>
         </svg>
-        {tooltipOpen && tooltipData && tooltipLeft != null && tooltipTop != null && (
-          <Tooltip left={tooltipLeft + 10} top={tooltipTop + 10}>
-            <div>
-              <strong>x:</strong> {x(tooltipData)}
-            </div>
-            <div>
-              <strong>y:</strong> {y(tooltipData)}
-            </div>
-          </Tooltip>
-        )}
+        {tooltipOpen &&
+          tooltipData &&
+          tooltipLeft != null &&
+          tooltipTop != null && (
+            <Tooltip left={tooltipLeft + 10} top={tooltipTop + 10}>
+              <div>
+                <strong>x:</strong> {x(tooltipData)}
+              </div>
+              <div>
+                <strong>y:</strong> {y(tooltipData)}
+              </div>
+            </Tooltip>
+          )}
         {showControls && (
           <div>
             <label style={{ fontSize: 12 }}>
@@ -162,5 +168,5 @@ export default withTooltip<DotsProps, PointsRange>(
         )}
       </div>
     );
-  },
+  }
 );

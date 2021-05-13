@@ -1,16 +1,19 @@
-import React, { useMemo } from 'react';
-import { Group } from '@visx/group';
-import { Cluster, hierarchy } from '@visx/hierarchy';
-import { HierarchyPointNode, HierarchyPointLink } from '@visx/hierarchy/lib/types';
-import { LinkVertical } from '@visx/shape';
-import { LinearGradient } from '@visx/gradient';
+import React, { useMemo } from "react";
+import { Group } from "@seygai/visx-group";
+import { Cluster, hierarchy } from "@seygai/visx-hierarchy";
+import {
+  HierarchyPointNode,
+  HierarchyPointLink,
+} from "@seygai/visx-hierarchy/lib/types";
+import { LinkVertical } from "@seygai/visx-shape";
+import { LinearGradient } from "@seygai/visx-gradient";
 
-const citrus = '#ddf163';
-const white = '#ffffff';
-export const green = '#79d259';
-const aqua = '#37ac8c';
-const merlinsbeard = '#f7f7f3';
-export const background = '#306c90';
+const citrus = "#ddf163";
+const white = "#ffffff";
+export const green = "#79d259";
+const aqua = "#37ac8c";
+const merlinsbeard = "#f7f7f3";
+export const background = "#306c90";
 
 interface NodeShape {
   name: string;
@@ -18,32 +21,32 @@ interface NodeShape {
 }
 
 const clusterData: NodeShape = {
-  name: '$',
+  name: "$",
   children: [
     {
-      name: 'A',
+      name: "A",
       children: [
-        { name: 'A1' },
-        { name: 'A2' },
+        { name: "A1" },
+        { name: "A2" },
         {
-          name: 'C',
+          name: "C",
           children: [
             {
-              name: 'C1',
+              name: "C1",
             },
           ],
         },
       ],
     },
     {
-      name: 'B',
-      children: [{ name: 'B1' }, { name: 'B2' }, { name: 'B3' }],
+      name: "B",
+      children: [{ name: "B1" }, { name: "B2" }, { name: "B3" }],
     },
     {
-      name: 'X',
+      name: "X",
       children: [
         {
-          name: 'Z',
+          name: "Z",
         },
       ],
     },
@@ -73,7 +76,7 @@ function Node({ node }: { node: HierarchyPointNode<NodeShape> }) {
         fontSize={9}
         fontFamily="Arial"
         textAnchor="middle"
-        style={{ pointerEvents: 'none' }}
+        style={{ pointerEvents: "none" }}
         fill={isParent ? white : citrus}
       >
         {node.data.name}
@@ -90,13 +93,19 @@ function RootNode({ node }: { node: HierarchyPointNode<NodeShape> }) {
 
   return (
     <Group top={node.y} left={node.x}>
-      <rect width={width} height={height} y={centerY} x={centerX} fill="url('#top')" />
+      <rect
+        width={width}
+        height={height}
+        y={centerY}
+        x={centerX}
+        fill="url('#top')"
+      />
       <text
         dy=".33em"
         fontSize={9}
         fontFamily="Arial"
         textAnchor="middle"
-        style={{ pointerEvents: 'none' }}
+        style={{ pointerEvents: "none" }}
         fill={background}
       >
         {node.data.name}
@@ -113,7 +122,11 @@ export type DendrogramProps = {
   margin?: { top: number; right: number; bottom: number; left: number };
 };
 
-export default function Example({ width, height, margin = defaultMargin }: DendrogramProps) {
+export default function Example({
+  width,
+  height,
+  margin = defaultMargin,
+}: DendrogramProps) {
   const data = useMemo(() => hierarchy<NodeShape>(clusterData), []);
   const xMax = width - margin.left - margin.right;
   const yMax = height - margin.top - margin.bottom;
@@ -123,10 +136,13 @@ export default function Example({ width, height, margin = defaultMargin }: Dendr
       <LinearGradient id="top" from={green} to={aqua} />
       <rect width={width} height={height} rx={14} fill={background} />
       <Cluster<NodeShape> root={data} size={[xMax, yMax]}>
-        {cluster => (
+        {(cluster) => (
           <Group top={margin.top} left={margin.left}>
             {cluster.links().map((link, i) => (
-              <LinkVertical<HierarchyPointLink<NodeShape>, HierarchyPointNode<NodeShape>>
+              <LinkVertical<
+                HierarchyPointLink<NodeShape>,
+                HierarchyPointNode<NodeShape>
+              >
                 key={`cluster-link-${i}`}
                 data={link}
                 stroke={merlinsbeard}

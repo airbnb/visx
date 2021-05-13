@@ -1,8 +1,8 @@
-import React from 'react';
-import { Group } from '@visx/group';
-import { geoGraticule, GeoGraticuleGenerator } from 'd3-geo';
+import React from "react";
+import { Group } from "@seygai/visx-group";
+import { geoGraticule, GeoGraticuleGenerator } from "d3-geo";
 // eslint-disable-next-line import/no-unresolved
-import { LineString, MultiLineString, Polygon } from 'geojson';
+import { LineString, MultiLineString, Polygon } from "geojson";
 
 export type GraticuleProps = {
   /**
@@ -21,7 +21,11 @@ export type GraticuleProps = {
    */
   outline?: (polygon: Polygon) => string;
   /** Override render function, which is passed the configured graticule generator. */
-  children?: ({ graticule }: { graticule: GeoGraticuleGenerator }) => React.ReactNode;
+  children?: ({
+    graticule,
+  }: {
+    graticule: GeoGraticuleGenerator;
+  }) => React.ReactNode;
   /** Sets the major and minor extents of the graticule generator, which defaults to ⟨⟨-180°, -80° - ε⟩, ⟨180°, 80° + ε⟩⟩. */
   extent?: [[number, number], [number, number]];
   /** Sets the major extent of the graticule generator, which defaults to ⟨⟨-180°, -90° + ε⟩, ⟨180°, 90° - ε⟩⟩. */
@@ -51,7 +55,8 @@ export default function Graticule({
   precision,
   children,
   ...restProps
-}: GraticuleProps & Omit<React.SVGProps<SVGPathElement>, keyof GraticuleProps>) {
+}: GraticuleProps &
+  Omit<React.SVGProps<SVGPathElement>, keyof GraticuleProps>) {
   const currGraticule = geoGraticule();
 
   if (extent) currGraticule.extent(extent);
@@ -67,7 +72,12 @@ export default function Graticule({
   return (
     <Group className="visx-geo-graticule">
       {graticule && (
-        <path d={graticule(currGraticule())} fill="none" stroke="black" {...restProps} />
+        <path
+          d={graticule(currGraticule())}
+          fill="none"
+          stroke="black"
+          {...restProps}
+        />
       )}
       {lines &&
         currGraticule.lines().map((line, i) => (
@@ -76,7 +86,12 @@ export default function Graticule({
           </g>
         ))}
       {outline && (
-        <path d={outline(currGraticule.outline())} fill="none" stroke="black" {...restProps} />
+        <path
+          d={outline(currGraticule.outline())}
+          fill="none"
+          stroke="black"
+          {...restProps}
+        />
       )}
     </Group>
   );

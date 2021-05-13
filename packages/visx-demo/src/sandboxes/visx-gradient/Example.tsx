@@ -1,5 +1,5 @@
-import React from 'react';
-import { Bar } from '@visx/shape';
+import React from "react";
+import { Bar } from "@seygai/visx-shape";
 import {
   GradientDarkgreenGreen,
   GradientLightgreenGreen,
@@ -11,7 +11,7 @@ import {
   GradientTealBlue,
   RadialGradient,
   LinearGradient,
-} from '@visx/gradient';
+} from "@seygai/visx-gradient";
 
 const defaultMargin = {
   top: 0,
@@ -25,7 +25,9 @@ const Gradients: React.FC<{ id: string }>[] = [
   ({ id }) => <RadialGradient id={id} from="#55bdd5" to="#4f3681" r="80%" />,
   GradientOrangeRed,
   GradientPinkBlue,
-  ({ id }) => <LinearGradient id={id} from="#351CAB" to="#621A61" rotate="-45" />,
+  ({ id }) => (
+    <LinearGradient id={id} from="#351CAB" to="#621A61" rotate="-45" />
+  ),
   GradientLightgreenGreen,
   GradientPurpleOrange,
   GradientTealBlue,
@@ -39,7 +41,11 @@ export type GradientProps = {
   margin?: typeof defaultMargin;
 };
 
-export default function Example({ width, height, margin = defaultMargin }: GradientProps) {
+export default function Example({
+  width,
+  height,
+  margin = defaultMargin,
+}: GradientProps) {
   const numColumns = width > 600 ? 5 : 2;
   const numRows = Gradients.length / numColumns;
   const columnWidth = Math.max(width / numColumns, 0);

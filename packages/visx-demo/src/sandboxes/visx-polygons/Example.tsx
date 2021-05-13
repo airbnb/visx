@@ -1,32 +1,32 @@
-import React from 'react';
-import { Polygon } from '@visx/shape';
-import { Group } from '@visx/group';
-import { scaleBand } from '@visx/scale';
-import { GradientPinkRed } from '@visx/gradient';
+import React from "react";
+import { Polygon } from "@seygai/visx-shape";
+import { Group } from "@seygai/visx-group";
+import { scaleBand } from "@seygai/visx-scale";
+import { GradientPinkRed } from "@seygai/visx-gradient";
 
-export const background = '#7f82e3';
+export const background = "#7f82e3";
 const polygonSize = 25;
 const defaultMargin = { top: 10, right: 10, bottom: 10, left: 10 };
 
 const polygons = [
   {
     sides: 3,
-    fill: 'rgb(174, 238, 248)',
+    fill: "rgb(174, 238, 248)",
     rotate: 90,
   },
   {
     sides: 4,
-    fill: 'rgb(229, 253, 61)',
+    fill: "rgb(229, 253, 61)",
     rotate: 45,
   },
   {
     sides: 6,
-    fill: 'rgb(229, 130, 255)',
+    fill: "rgb(229, 130, 255)",
     rotate: 0,
   },
   {
     sides: 8,
-    fill: 'url(#polygon-pink)',
+    fill: "url(#polygon-pink)",
     rotate: 0,
   },
 ];

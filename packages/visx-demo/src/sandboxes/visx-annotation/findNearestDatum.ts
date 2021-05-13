@@ -1,6 +1,6 @@
-import { AppleStock } from '@visx/mock-data/lib/mocks/appleStock';
-import { bisector } from 'd3-array';
-import { scaleLinear, scaleTime } from '@visx/scale';
+import { AppleStock } from "@seygai/visx-mock-data/lib/mocks/appleStock";
+import { bisector } from "d3-array";
+import { scaleLinear, scaleTime } from "@seygai/visx-scale";
 
 export default function findNearestDatum({
   value,
@@ -20,7 +20,8 @@ export default function findNearestDatum({
   const d1 = data[nearestValueIndex];
   let nearestDatum = d0;
   if (d1 && accessor(d1)) {
-    nearestDatum = nearestValue - accessor(d0) > accessor(d1) - nearestValue ? d1 : d0;
+    nearestDatum =
+      nearestValue - accessor(d0) > accessor(d1) - nearestValue ? d1 : d0;
   }
   return nearestDatum;
 }

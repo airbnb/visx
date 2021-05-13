@@ -1,5 +1,5 @@
 {
-  "name": "@visx/scale",
+  "name": "@seygai/visx-scale",
   "version": "1.7.0",
   "description": "visx scale",
   "sideEffects": false,

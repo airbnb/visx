@@ -1,9 +1,14 @@
-import React from 'react';
-import { Label, Connector, CircleSubject, LineSubject } from '@visx/annotation';
-import { LinePath } from '@visx/shape';
+import React from "react";
+import {
+  Label,
+  Connector,
+  CircleSubject,
+  LineSubject,
+} from "@seygai/visx-annotation";
+import { LinePath } from "@seygai/visx-shape";
 
-import ExampleControls from './ExampleControls';
-import findNearestDatum from './findNearestDatum';
+import ExampleControls from "./ExampleControls";
+import findNearestDatum from "./findNearestDatum";
 
 export type AnnotationProps = {
   width: number;
@@ -11,10 +16,14 @@ export type AnnotationProps = {
   compact?: boolean;
 };
 
-export const orange = '#ff7e67';
-export const greens = ['#ecf4f3', '#68b0ab', '#006a71'];
+export const orange = "#ff7e67";
+export const greens = ["#ecf4f3", "#68b0ab", "#006a71"];
 
-export default function Example({ width, height, compact = false }: AnnotationProps) {
+export default function Example({
+  width,
+  height,
+  compact = false,
+}: AnnotationProps) {
   return (
     <ExampleControls width={width} height={height} compact={compact}>
       {({
@@ -44,8 +53,8 @@ export default function Example({ width, height, compact = false }: AnnotationPr
             stroke={greens[2]}
             strokeWidth={2}
             data={data}
-            x={d => xScale(getDate(d)) ?? 0}
-            y={d => yScale(getStockValue(d)) ?? 0}
+            x={(d) => xScale(getDate(d)) ?? 0}
+            y={(d) => yScale(getStockValue(d)) ?? 0}
           />
           <AnnotationComponent
             width={width}
@@ -59,21 +68,28 @@ export default function Example({ width, height, compact = false }: AnnotationPr
             onDragEnd={({ event, ...nextPosition }) => {
               // snap Annotation to the nearest data point
               const nearestDatum = findNearestDatum({
-                accessor: subjectType === 'horizontal-line' ? getStockValue : getDate,
+                accessor:
+                  subjectType === "horizontal-line" ? getStockValue : getDate,
                 data,
-                scale: subjectType === 'horizontal-line' ? yScale : xScale,
-                value: subjectType === 'horizontal-line' ? nextPosition.y : nextPosition.x,
+                scale: subjectType === "horizontal-line" ? yScale : xScale,
+                value:
+                  subjectType === "horizontal-line"
+                    ? nextPosition.y
+                    : nextPosition.x,
               });
               const x = xScale(getDate(nearestDatum)) ?? 0;
               const y = yScale(getStockValue(nearestDatum)) ?? 0;
 
               // flip label to keep in view
               const shouldFlipDx =
-                (nextPosition.dx > 0 && x + nextPosition.dx + labelWidth > width) ||
+                (nextPosition.dx > 0 &&
+                  x + nextPosition.dx + labelWidth > width) ||
                 (nextPosition.dx < 0 && x + nextPosition.dx - labelWidth <= 0);
               const shouldFlipDy = // 100 is est. tooltip height
-                (nextPosition.dy > 0 && height - (y + nextPosition.dy) < approxTooltipHeight) ||
-                (nextPosition.dy < 0 && y + nextPosition.dy - approxTooltipHeight <= 0);
+                (nextPosition.dy > 0 &&
+                  height - (y + nextPosition.dy) < approxTooltipHeight) ||
+                (nextPosition.dy < 0 &&
+                  y + nextPosition.dy - approxTooltipHeight <= 0);
               setAnnotationPosition({
                 x,
                 y,
@@ -95,13 +111,15 @@ export default function Example({ width, height, compact = false }: AnnotationPr
               verticalAnchor={verticalAnchor}
               width={labelWidth}
             />
-            {subjectType === 'circle' && <CircleSubject stroke={orange} />}
-            {subjectType !== 'circle' && (
+            {subjectType === "circle" && <CircleSubject stroke={orange} />}
+            {subjectType !== "circle" && (
               <LineSubject
-                orientation={subjectType === 'vertical-line' ? 'vertical' : 'horizontal'}
+                orientation={
+                  subjectType === "vertical-line" ? "vertical" : "horizontal"
+                }
                 stroke={orange}
                 min={0}
-                max={subjectType === 'vertical-line' ? height : width}
+                max={subjectType === "vertical-line" ? height : width}
               />
             )}
           </AnnotationComponent>

@@ -1,10 +1,17 @@
-import React from 'react';
-import GalleryTile from '../GalleryTile';
+import React from "react";
+import GalleryTile from "../GalleryTile";
 
-export const packageJson = { name: '@visx/demo-text', dependencies: { '@visx/text': 'current' } };
+export const packageJson = {
+  name: "@seygai/visx-demo-text",
+  dependencies: { "@seygai/visx-text": "current" },
+};
 
-const tileStyles = { background: 'white', border: '1px solid lightgray', borderRadius: '14px' };
-const detailsStyles = { color: '#232323', zIndex: 1 };
+const tileStyles = {
+  background: "white",
+  border: "1px solid lightgray",
+  borderRadius: "14px",
+};
+const detailsStyles = { color: "#232323", zIndex: 1 };
 const Text = () => (
   <>
     <div className="text-demo">Flexible SVG Text</div>

@@ -1,13 +1,13 @@
-import React from 'react';
-import { render } from 'enzyme';
-import { scaleLinear } from '@visx/scale';
-import { GridColumns } from '../src';
+import React from "react";
+import { render } from "enzyme";
+import { scaleLinear } from "@seygai/visx-scale";
+import { GridColumns } from "../src";
 
-describe('<GridColumns />', () => {
-  it('should be defined', () => {
+describe("<GridColumns />", () => {
+  it("should be defined", () => {
     expect(GridColumns).toBeDefined();
   });
-  it('should create grid lines', () => {
+  it("should create grid lines", () => {
     const wrapper = render(
       <GridColumns
         scale={scaleLinear({ range: [0, 100] })}
@@ -15,8 +15,8 @@ describe('<GridColumns />', () => {
         strokeDasharray="3,3"
         strokeOpacity={0.3}
         pointerEvents="none"
-      />,
+      />
     );
-    expect(wrapper.find('.visx-line')).toHaveLength(11);
+    expect(wrapper.find(".visx-line")).toHaveLength(11);
   });
 });

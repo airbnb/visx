@@ -1,5 +1,5 @@
-import { CSSProperties } from 'react';
-import { D3Scale, NumberLike } from '@visx/scale';
+import { CSSProperties } from "react";
+import { D3Scale, NumberLike } from "@seygai/visx-scale";
 
 // In order to plot values on an axis, output of the scale must be number.
 // Some scales return undefined.
@@ -10,7 +10,10 @@ export type GridScale<Output extends GridScaleOutput = GridScaleOutput> =
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   D3Scale<Output, any, any>;
 
-export type GridLines = { from: { x?: number; y?: number }; to: { x?: number; y?: number } }[];
+export type GridLines = {
+  from: { x?: number; y?: number };
+  to: { x?: number; y?: number };
+}[];
 
 export type CommonGridProps = {
   /** classname to apply to line group element. */

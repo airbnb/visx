@@ -1,5 +1,5 @@
 {
-  "name": "@visx/voronoi",
+  "name": "@seygai/visx-voronoi",
   "version": "1.7.0",
   "description": "visx voronoi",
   "sideEffects": false,

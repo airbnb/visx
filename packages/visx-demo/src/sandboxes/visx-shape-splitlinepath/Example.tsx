@@ -1,17 +1,17 @@
-import React, { useMemo } from 'react';
-import { scaleLinear } from '@visx/scale';
-import { curveCardinal } from '@visx/curve';
-import { LinePath, SplitLinePath } from '@visx/shape';
-import { LinearGradient } from '@visx/gradient';
+import React, { useMemo } from "react";
+import { scaleLinear } from "@seygai/visx-scale";
+import { curveCardinal } from "@seygai/visx-curve";
+import { LinePath, SplitLinePath } from "@seygai/visx-shape";
+import { LinearGradient } from "@seygai/visx-gradient";
 
-import generateSinPoints from './generateSinPoints';
+import generateSinPoints from "./generateSinPoints";
 
 type Point = { x: number; y: number };
 const getX = (d: Point) => d.x;
 const getY = (d: Point) => d.y;
-export const background = '#045275';
-export const backgroundLight = '#089099';
-export const foreground = '#b7e6a5';
+export const background = "#045275";
+export const backgroundLight = "#089099";
+export const foreground = "#b7e6a5";
 
 export type SplitLinePathProps = {
   width: number;
@@ -29,12 +29,10 @@ export default function SplitPath({
   pointsPerWave = 100,
   numberOfSegments = 8,
 }: SplitLinePathProps) {
-  const data = useMemo(() => generateSinPoints({ width, height, numberOfWaves, pointsPerWave }), [
-    width,
-    height,
-    numberOfWaves,
-    pointsPerWave,
-  ]);
+  const data = useMemo(
+    () => generateSinPoints({ width, height, numberOfWaves, pointsPerWave }),
+    [width, height, numberOfWaves, pointsPerWave]
+  );
 
   const dividedData = useMemo(() => {
     const segmentLength = Math.floor(data.length / numberOfSegments);
@@ -90,7 +88,7 @@ export default function SplitPath({
             curve={curveCardinal}
             styles={[
               { stroke: foreground, strokeWidth: 3 },
-              { stroke: '#fff', strokeWidth: 2, strokeDasharray: '9,5' },
+              { stroke: "#fff", strokeWidth: 2, strokeDasharray: "9,5" },
               { stroke: background, strokeWidth: 2 },
             ]}
           >
@@ -108,7 +106,7 @@ export default function SplitPath({
                       fill="transparent"
                       strokeWidth={1}
                     />
-                  ) : null,
+                  ) : null
                 )
               ) : (
                 <LinePath

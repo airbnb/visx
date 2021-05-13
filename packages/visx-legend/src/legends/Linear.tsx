@@ -1,10 +1,10 @@
-import React from 'react';
-import { PickD3Scale } from '@visx/scale';
-import Legend, { LegendProps } from './Legend';
-import defaultDomain from '../util/defaultDomain';
+import React from "react";
+import { PickD3Scale } from "@seygai/visx-scale";
+import Legend, { LegendProps } from "./Legend";
+import defaultDomain from "../util/defaultDomain";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type AnyLinearScale = PickD3Scale<'linear', any>;
+type AnyLinearScale = PickD3Scale<"linear", any>;
 
 export type LegendLinearProps<Scale extends AnyLinearScale> = {
   steps?: number;

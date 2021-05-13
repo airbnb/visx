@@ -1,7 +1,7 @@
-import React from 'react';
-import cx from 'classnames';
-import { Group } from '@visx/group';
-import { GenericCell, ColorScale, OpacityScale } from '../types';
+import React from "react";
+import cx from "classnames";
+import { Group } from "@seygai/visx-group";
+import { GenericCell, ColorScale, OpacityScale } from "../types";
 
 export type HeatmapRectProps<ColumnDatum, BinDatum> = {
   /** Array of column data (one per column desired) for the heatmap. */
@@ -36,7 +36,10 @@ export type HeatmapRectProps<ColumnDatum, BinDatum> = {
   children?: (cells: RectCell<ColumnDatum, BinDatum>[][]) => React.ReactNode;
 };
 
-export type RectCell<ColumnDatum, BinDatum> = GenericCell<ColumnDatum, BinDatum> & {
+export type RectCell<ColumnDatum, BinDatum> = GenericCell<
+  ColumnDatum,
+  BinDatum
+> & {
   /** binWidth less grid gap (effective width). */
   width: number;
   /** binHeight less grid gap (effective height). */
@@ -47,16 +50,19 @@ export type RectCell<ColumnDatum, BinDatum> = GenericCell<ColumnDatum, BinDatum>
   y: number;
 };
 
-export type ComponentProps<ColumnDatum, BinDatum> = HeatmapRectProps<ColumnDatum, BinDatum> &
+export type ComponentProps<ColumnDatum, BinDatum> = HeatmapRectProps<
+  ColumnDatum,
+  BinDatum
+> &
   Omit<
     React.SVGProps<SVGRectElement>,
     | keyof HeatmapRectProps<ColumnDatum, BinDatum>
-    | 'width'
-    | 'height'
-    | 'x'
-    | 'y'
-    | 'fill'
-    | 'fillOpacity'
+    | "width"
+    | "height"
+    | "x"
+    | "y"
+    | "fill"
+    | "fillOpacity"
   >;
 
 export default function HeatmapRect<ColumnDatum, BinDatum>({
@@ -80,36 +86,38 @@ export default function HeatmapRect<ColumnDatum, BinDatum>({
   const width = binWidth - gap;
   const height = binHeight - gap;
 
-  const heatmap: RectCell<ColumnDatum, BinDatum>[][] = data.map((datum, column) => {
-    const x = xScale(column);
-    return bins(datum).map((bin, row) => {
-      const countValue = count(bin);
-      return {
-        bin,
-        row,
-        column,
-        datum,
-        width,
-        height,
-        gap,
-        count: countValue,
-        x: x + x0,
-        y: yScale(row) + gap,
-        color: colorScale(countValue),
-        opacity: opacityScale(countValue),
-      };
-    });
-  });
+  const heatmap: RectCell<ColumnDatum, BinDatum>[][] = data.map(
+    (datum, column) => {
+      const x = xScale(column);
+      return bins(datum).map((bin, row) => {
+        const countValue = count(bin);
+        return {
+          bin,
+          row,
+          column,
+          datum,
+          width,
+          height,
+          gap,
+          count: countValue,
+          x: x + x0,
+          y: yScale(row) + gap,
+          color: colorScale(countValue),
+          opacity: opacityScale(countValue),
+        };
+      });
+    }
+  );
 
   if (children) return <>{children(heatmap)}</>;
 
   return (
     <Group className="visx-heatmap-rects" top={top} left={left}>
-      {heatmap.map(_bins =>
-        _bins.map(bin => (
+      {heatmap.map((_bins) =>
+        _bins.map((bin) => (
           <rect
             key={`heatmap-tile-rect-${bin.row}-${bin.column}`}
-            className={cx('visx-heatmap-rect', className)}
+            className={cx("visx-heatmap-rect", className)}
             width={bin.width}
             height={bin.height}
             x={bin.x}
@@ -118,7 +126,7 @@ export default function HeatmapRect<ColumnDatum, BinDatum>({
             fillOpacity={bin.opacity}
             {...restProps}
           />
-        )),
+        ))
       )}
     </Group>
   );

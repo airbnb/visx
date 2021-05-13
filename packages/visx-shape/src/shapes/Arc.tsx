@@ -1,8 +1,8 @@
-import React from 'react';
-import cx from 'classnames';
-import { Arc as ArcType } from 'd3-shape';
-import { $TSFIXME, AddSVGProps, ArcPathConfig } from '../types';
-import { arc } from '../util/D3ShapeFactories';
+import React from "react";
+import cx from "classnames";
+import { Arc as ArcType } from "d3-shape";
+import { $TSFIXME, AddSVGProps, ArcPathConfig } from "../types";
+import { arc } from "../util/D3ShapeFactories";
 
 export type ArcProps<Datum> = {
   /** className applied to path element. */
@@ -43,10 +43,13 @@ export default function Arc<Datum>({
   if (children) return <>{children({ path })}</>;
   if (
     !data &&
-    (startAngle == null || endAngle == null || innerRadius == null || outerRadius == null)
+    (startAngle == null ||
+      endAngle == null ||
+      innerRadius == null ||
+      outerRadius == null)
   ) {
     console.warn(
-      '[@visx/shape/Arc]: expected data because one of startAngle, endAngle, innerRadius, outerRadius is undefined. Bailing.',
+      "[@seygai/visx-shape/Arc]: expected data because one of startAngle, endAngle, innerRadius, outerRadius is undefined. Bailing."
     );
     return null;
   }
@@ -54,8 +57,8 @@ export default function Arc<Datum>({
   return (
     <path
       ref={innerRef}
-      className={cx('visx-arc', className)}
-      d={path(data as Datum) || ''}
+      className={cx("visx-arc", className)}
+      d={path(data as Datum) || ""}
       {...restProps}
     />
   );

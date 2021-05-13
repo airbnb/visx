@@ -1,11 +1,11 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback } from "react";
 import {
   Tooltip,
   TooltipWithBounds,
   useTooltip,
   useTooltipInPortal,
   defaultStyles,
-} from '@visx/tooltip';
+} from "@seygai/visx-tooltip";
 
 export type TooltipProps = {
   width: number;
@@ -19,21 +19,29 @@ const positionIndicatorSize = 8;
 
 const tooltipStyles = {
   ...defaultStyles,
-  backgroundColor: 'rgba(53,71,125,0.8)',
-  color: 'white',
+  backgroundColor: "rgba(53,71,125,0.8)",
+  color: "white",
   width: 152,
   height: 72,
   padding: 12,
 };
 
-export default function Example({ width, height, showControls = true }: TooltipProps) {
-  const [tooltipShouldDetectBounds, setTooltipShouldDetectBounds] = useState(true);
+export default function Example({
+  width,
+  height,
+  showControls = true,
+}: TooltipProps) {
+  const [tooltipShouldDetectBounds, setTooltipShouldDetectBounds] = useState(
+    true
+  );
   const [renderTooltipInPortal, setRenderTooltipInPortal] = useState(false);
 
-  const { containerRef, containerBounds, TooltipInPortal } = useTooltipInPortal({
-    scroll: true,
-    detectBounds: tooltipShouldDetectBounds,
-  });
+  const { containerRef, containerBounds, TooltipInPortal } = useTooltipInPortal(
+    {
+      scroll: true,
+      detectBounds: tooltipShouldDetectBounds,
+    }
+  );
 
   const {
     showTooltip,
@@ -47,24 +55,26 @@ export default function Example({ width, height, showControls = true }: TooltipP
     tooltipOpen: true,
     tooltipLeft: width / 3,
     tooltipTop: height / 3,
-    tooltipData: 'Move me with your mouse or finger',
+    tooltipData: "Move me with your mouse or finger",
   });
 
   // event handlers
   const handlePointerMove = useCallback(
     (event: React.PointerEvent<HTMLDivElement>) => {
       // coordinates should be relative to the container in which Tooltip is rendered
-      const containerX = ('clientX' in event ? event.clientX : 0) - containerBounds.left;
-      const containerY = ('clientY' in event ? event.clientY : 0) - containerBounds.top;
+      const containerX =
+        ("clientX" in event ? event.clientX : 0) - containerBounds.left;
+      const containerY =
+        ("clientY" in event ? event.clientY : 0) - containerBounds.top;
       showTooltip({
         tooltipLeft: containerX,
         tooltipTop: containerY,
         tooltipData: tooltipShouldDetectBounds
-          ? 'I detect my container boundary'
-          : 'I will get clipped by my container',
+          ? "I detect my container boundary"
+          : "I will get clipped by my container",
       });
     },
-    [showTooltip, tooltipShouldDetectBounds, containerBounds],
+    [showTooltip, tooltipShouldDetectBounds, containerBounds]
   );
 
   const TooltipComponent = renderTooltipInPortal
@@ -86,7 +96,8 @@ export default function Example({ width, height, showControls = true }: TooltipP
             <div
               className="position-indicator"
               style={{
-                transform: `translate(${tooltipLeft - positionIndicatorSize / 2}px, ${tooltipTop -
+                transform: `translate(${tooltipLeft -
+                  positionIndicatorSize / 2}px, ${tooltipTop -
                   positionIndicatorSize / 2}px)`,
               }}
             />
@@ -112,7 +123,9 @@ export default function Example({ width, height, showControls = true }: TooltipP
             </TooltipComponent>
           </>
         ) : (
-          <div className="no-tooltip">Move or touch the canvas to see the tooltip</div>
+          <div className="no-tooltip">
+            Move or touch the canvas to see the tooltip
+          </div>
         )}
         <div className="z-index-bummer">
           I have an annoying z-index. Try&nbsp;
@@ -120,7 +133,7 @@ export default function Example({ width, height, showControls = true }: TooltipP
             <input
               type="checkbox"
               defaultChecked={renderTooltipInPortal}
-              onClick={e => {
+              onClick={(e) => {
                 // if rendered in clickable container, don't trigger that event
                 e.stopPropagation();
                 setRenderTooltipInPortal(!renderTooltipInPortal);
@@ -140,7 +153,9 @@ export default function Example({ width, height, showControls = true }: TooltipP
             <input
               type="checkbox"
               checked={tooltipShouldDetectBounds}
-              onChange={() => setTooltipShouldDetectBounds(!tooltipShouldDetectBounds)}
+              onChange={() =>
+                setTooltipShouldDetectBounds(!tooltipShouldDetectBounds)
+              }
             />
             &nbsp;Tooltip with boundary detection
           </label>

@@ -1,8 +1,10 @@
-import React from 'react';
-import GridColumns, { GridColumnsProps } from '@visx/grid/lib/grids/GridColumns';
-import { GridScale } from '@visx/grid/lib/types';
-import AnimatedGridLines from './AnimatedGridLines';
-import { AnimationTrajectory } from '../types';
+import React from "react";
+import GridColumns, {
+  GridColumnsProps,
+} from "@seygai/visx-grid/lib/grids/GridColumns";
+import { GridScale } from "@seygai/visx-grid/lib/types";
+import AnimatedGridLines from "./AnimatedGridLines";
+import { AnimationTrajectory } from "../types";
 
 export default function AnimatedGridColumns<Scale extends GridScale>({
   scale,
@@ -15,7 +17,9 @@ export default function AnimatedGridColumns<Scale extends GridScale>({
   top,
   left,
   ...lineProps
-}: Omit<GridColumnsProps<Scale>, 'children'> & { animationTrajectory?: AnimationTrajectory }) {
+}: Omit<GridColumnsProps<Scale>, "children"> & {
+  animationTrajectory?: AnimationTrajectory;
+}) {
   return (
     <GridColumns
       scale={scale}
@@ -32,7 +36,7 @@ export default function AnimatedGridColumns<Scale extends GridScale>({
           lines={lines}
           animationTrajectory={animationTrajectory}
           animateXOrY="x"
-          lineKey={line => String(line?.from?.x ?? '')}
+          lineKey={(line) => String(line?.from?.x ?? "")}
           {...lineProps}
         />
       )}

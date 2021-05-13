@@ -1,5 +1,5 @@
 {
-  "name": "@visx/drag",
+  "name": "@seygai/visx-drag",
   "version": "1.7.4",
   "description": "visx drag",
   "sideEffects": false,
@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "@types/react": "*",
-    "@visx/event": "1.7.0",
+    "@seygai/visx-event": "1.7.0",
     "prop-types": "^15.5.10"
   }
 }

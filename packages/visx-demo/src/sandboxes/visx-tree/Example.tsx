@@ -1,18 +1,18 @@
-import React, { useMemo } from 'react';
-import { Group } from '@visx/group';
-import { Tree, hierarchy } from '@visx/hierarchy';
-import { HierarchyPointNode } from '@visx/hierarchy/lib/types';
-import { LinkHorizontal } from '@visx/shape';
-import { LinearGradient } from '@visx/gradient';
+import React, { useMemo } from "react";
+import { Group } from "@seygai/visx-group";
+import { Tree, hierarchy } from "@seygai/visx-hierarchy";
+import { HierarchyPointNode } from "@seygai/visx-hierarchy/lib/types";
+import { LinkHorizontal } from "@seygai/visx-shape";
+import { LinearGradient } from "@seygai/visx-gradient";
 
-const peach = '#fd9b93';
-const pink = '#fe6e9e';
-const blue = '#03c0dc';
-const green = '#26deb0';
-const plum = '#71248e';
-const lightpurple = '#374469';
-const white = '#ffffff';
-export const background = '#272b4d';
+const peach = "#fd9b93";
+const pink = "#fe6e9e";
+const blue = "#03c0dc";
+const green = "#26deb0";
+const plum = "#71248e";
+const lightpurple = "#374469";
+const white = "#ffffff";
+export const background = "#272b4d";
 
 interface TreeNode {
   name: string;
@@ -22,31 +22,31 @@ interface TreeNode {
 type HierarchyNode = HierarchyPointNode<TreeNode>;
 
 const rawTree: TreeNode = {
-  name: 'T',
+  name: "T",
   children: [
     {
-      name: 'A',
+      name: "A",
       children: [
-        { name: 'A1' },
-        { name: 'A2' },
-        { name: 'A3' },
+        { name: "A1" },
+        { name: "A2" },
+        { name: "A3" },
         {
-          name: 'C',
+          name: "C",
           children: [
             {
-              name: 'C1',
+              name: "C1",
             },
             {
-              name: 'D',
+              name: "D",
               children: [
                 {
-                  name: 'D1',
+                  name: "D1",
                 },
                 {
-                  name: 'D2',
+                  name: "D2",
                 },
                 {
-                  name: 'D3',
+                  name: "D3",
                 },
               ],
             },
@@ -54,10 +54,10 @@ const rawTree: TreeNode = {
         },
       ],
     },
-    { name: 'Z' },
+    { name: "Z" },
     {
-      name: 'B',
-      children: [{ name: 'B1' }, { name: 'B2' }, { name: 'B3' }],
+      name: "B",
+      children: [{ name: "B1" }, { name: "B2" }, { name: "B3" }],
     },
   ],
 };
@@ -97,7 +97,7 @@ function Node({ node }: { node: HierarchyNode }) {
         fontFamily="Arial"
         textAnchor="middle"
         fill={green}
-        style={{ pointerEvents: 'none' }}
+        style={{ pointerEvents: "none" }}
       >
         {node.data.name}
       </text>
@@ -114,7 +114,7 @@ function RootNode({ node }: { node: HierarchyNode }) {
         fontSize={9}
         fontFamily="Arial"
         textAnchor="middle"
-        style={{ pointerEvents: 'none' }}
+        style={{ pointerEvents: "none" }}
         fill={plum}
       >
         {node.data.name}
@@ -148,7 +148,7 @@ function ParentNode({ node }: { node: HierarchyNode }) {
         fontSize={9}
         fontFamily="Arial"
         textAnchor="middle"
-        style={{ pointerEvents: 'none' }}
+        style={{ pointerEvents: "none" }}
         fill={white}
       >
         {node.data.name}
@@ -165,7 +165,11 @@ export type TreeProps = {
   margin?: { top: number; right: number; bottom: number; left: number };
 };
 
-export default function Example({ width, height, margin = defaultMargin }: TreeProps) {
+export default function Example({
+  width,
+  height,
+  margin = defaultMargin,
+}: TreeProps) {
   const data = useMemo(() => hierarchy(rawTree), []);
   const yMax = height - margin.top - margin.bottom;
   const xMax = width - margin.left - margin.right;
@@ -175,7 +179,7 @@ export default function Example({ width, height, margin = defaultMargin }: TreeP
       <LinearGradient id="lg" from={peach} to={pink} />
       <rect width={width} height={height} rx={14} fill={background} />
       <Tree<TreeNode> root={data} size={[yMax, xMax]}>
-        {tree => (
+        {(tree) => (
           <Group top={margin.top} left={margin.left}>
             {tree.links().map((link, i) => (
               <LinkHorizontal

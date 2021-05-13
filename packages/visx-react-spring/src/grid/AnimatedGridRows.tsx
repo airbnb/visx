@@ -1,8 +1,8 @@
-import React from 'react';
-import GridRows, { GridRowsProps } from '@visx/grid/lib/grids/GridRows';
-import { GridScale } from '@visx/grid/lib/types';
-import AnimatedGridLines from './AnimatedGridLines';
-import { AnimationTrajectory } from '../types';
+import React from "react";
+import GridRows, { GridRowsProps } from "@seygai/visx-grid/lib/grids/GridRows";
+import { GridScale } from "@seygai/visx-grid/lib/types";
+import AnimatedGridLines from "./AnimatedGridLines";
+import { AnimationTrajectory } from "../types";
 
 export default function AnimatedGridRows<Scale extends GridScale>({
   scale,
@@ -15,7 +15,9 @@ export default function AnimatedGridRows<Scale extends GridScale>({
   top,
   left,
   ...lineProps
-}: Omit<GridRowsProps<Scale>, 'children'> & { animationTrajectory?: AnimationTrajectory }) {
+}: Omit<GridRowsProps<Scale>, "children"> & {
+  animationTrajectory?: AnimationTrajectory;
+}) {
   return (
     <GridRows
       scale={scale}
@@ -32,7 +34,7 @@ export default function AnimatedGridRows<Scale extends GridScale>({
           lines={lines}
           animationTrajectory={animationTrajectory}
           animateXOrY="y"
-          lineKey={line => String(line?.from?.y ?? '')}
+          lineKey={(line) => String(line?.from?.y ?? "")}
           {...lineProps}
         />
       )}

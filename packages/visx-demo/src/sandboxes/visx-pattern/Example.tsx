@@ -1,12 +1,12 @@
-import React from 'react';
-import { Bar } from '@visx/shape';
-import { Group } from '@visx/group';
+import React from "react";
+import { Bar } from "@seygai/visx-shape";
+import { Group } from "@seygai/visx-group";
 import {
   Pattern as CustomPattern,
   PatternLines,
   PatternCircles,
   PatternWaves,
-} from '@visx/pattern';
+} from "@seygai/visx-pattern";
 
 const defaultMargin = {
   top: 0,
@@ -22,7 +22,9 @@ export type PatternProps = {
 };
 
 const Patterns: React.FC<{ id: string; prefersReducedMotion?: boolean }>[] = [
-  ({ id }) => <PatternLines id={id} height={6} width={6} stroke="black" strokeWidth={1} />,
+  ({ id }) => (
+    <PatternLines id={id} height={6} width={6} stroke="black" strokeWidth={1} />
+  ),
   ({ id, prefersReducedMotion }) => (
     <CustomPattern id={id} width={10} height={10}>
       {!prefersReducedMotion && (
@@ -36,7 +38,14 @@ const Patterns: React.FC<{ id: string; prefersReducedMotion?: boolean }>[] = [
           repeatCount="indefinite"
         />
       )}
-      <circle cx={5} cy={5} r="3" stroke="none" fill="black" transform-origin="center" />
+      <circle
+        cx={5}
+        cy={5}
+        r="3"
+        stroke="none"
+        fill="black"
+        transform-origin="center"
+      />
     </CustomPattern>
   ),
   ({ id }) => (
@@ -46,7 +55,7 @@ const Patterns: React.FC<{ id: string; prefersReducedMotion?: boolean }>[] = [
       width={6}
       stroke="black"
       strokeWidth={1}
-      orientation={['horizontal']}
+      orientation={["horizontal"]}
     />
   ),
   ({ id }) => (
@@ -56,7 +65,7 @@ const Patterns: React.FC<{ id: string; prefersReducedMotion?: boolean }>[] = [
       width={6}
       stroke="black"
       strokeWidth={1}
-      orientation={['diagonal']}
+      orientation={["diagonal"]}
     />
   ),
   ({ id }) => (
@@ -66,7 +75,7 @@ const Patterns: React.FC<{ id: string; prefersReducedMotion?: boolean }>[] = [
       width={6}
       stroke="black"
       strokeWidth={1}
-      orientation={['diagonalRightToLeft']}
+      orientation={["diagonalRightToLeft"]}
     />
   ),
   ({ id }) => (
@@ -76,10 +85,12 @@ const Patterns: React.FC<{ id: string; prefersReducedMotion?: boolean }>[] = [
       width={6}
       stroke="black"
       strokeWidth={1}
-      orientation={['vertical', 'horizontal']}
+      orientation={["vertical", "horizontal"]}
     />
   ),
-  ({ id }) => <PatternCircles id={id} height={10} width={10} fill="black" complement />,
+  ({ id }) => (
+    <PatternCircles id={id} height={10} width={10} fill="black" complement />
+  ),
   ({ id, prefersReducedMotion }) => {
     const width = 10;
     const height = 10;
@@ -98,14 +109,15 @@ const Patterns: React.FC<{ id: string; prefersReducedMotion?: boolean }>[] = [
           />
         )}
         <path
-          d={`M 0 ${height / 2} c ${height / 8} ${-height / 4} , ${(height * 3) / 8} ${-height /
-            4} , ${height / 2} 0
-               c ${height / 8} ${height / 4} , ${(height * 3) / 8} ${height / 4} , ${height /
-            2} 0 M ${-height / 2} ${height / 2}
-               c ${height / 8} ${height / 4} , ${(height * 3) / 8} ${height / 4} , ${height /
-            2} 0 M ${height} ${height / 2}
-               c ${height / 8} ${-height / 4} , ${(height * 3) / 8} ${-height / 4} , ${height /
-            2} 0`}
+          d={`M 0 ${height / 2} c ${height / 8} ${-height / 4} , ${(height *
+            3) /
+            8} ${-height / 4} , ${height / 2} 0
+               c ${height / 8} ${height / 4} , ${(height * 3) / 8} ${height /
+            4} , ${height / 2} 0 M ${-height / 2} ${height / 2}
+               c ${height / 8} ${height / 4} , ${(height * 3) / 8} ${height /
+            4} , ${height / 2} 0 M ${height} ${height / 2}
+               c ${height / 8} ${-height / 4} , ${(height * 3) / 8} ${-height /
+            4} , ${height / 2} 0`}
           fill="none"
           stroke="black"
           strokeWidth={1}
@@ -114,20 +126,40 @@ const Patterns: React.FC<{ id: string; prefersReducedMotion?: boolean }>[] = [
     );
   },
   ({ id }) => (
-    <PatternWaves id={id} height={6} width={6} fill="transparent" stroke="black" strokeWidth={1} />
+    <PatternWaves
+      id={id}
+      height={6}
+      width={6}
+      fill="transparent"
+      stroke="black"
+      strokeWidth={1}
+    />
   ),
 ];
 
-export default function Example({ width, height, margin = defaultMargin }: PatternProps) {
+export default function Example({
+  width,
+  height,
+  margin = defaultMargin,
+}: PatternProps) {
   // use non-animated components if prefers-reduced-motion is set
   const prefersReducedMotionQuery =
-    typeof window === 'undefined' ? false : window.matchMedia('(prefers-reduced-motion: reduce)');
-  const prefersReducedMotion = !prefersReducedMotionQuery || !!prefersReducedMotionQuery.matches;
+    typeof window === "undefined"
+      ? false
+      : window.matchMedia("(prefers-reduced-motion: reduce)");
+  const prefersReducedMotion =
+    !prefersReducedMotionQuery || !!prefersReducedMotionQuery.matches;
 
   const numColumns = 3;
   const numRows = Patterns.length / numColumns;
-  const columnWidth = Math.max((width - margin.left - margin.right) / numColumns, 0);
-  const rowHeight = Math.max((height - margin.bottom - margin.top) / numRows, 0);
+  const columnWidth = Math.max(
+    (width - margin.left - margin.right) / numColumns,
+    0
+  );
+  const rowHeight = Math.max(
+    (height - margin.bottom - margin.top) / numRows,
+    0
+  );
 
   return width >= 10 ? (
     <svg width={width} height={height}>

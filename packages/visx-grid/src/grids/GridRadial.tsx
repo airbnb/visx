@@ -1,13 +1,13 @@
-import React from 'react';
-import cx from 'classnames';
-import Arc, { ArcProps } from '@visx/shape/lib/shapes/Arc';
-import { Group } from '@visx/group';
-import { ScaleInput, getTicks } from '@visx/scale';
+import React from "react";
+import cx from "classnames";
+import Arc, { ArcProps } from "@seygai/visx-shape/lib/shapes/Arc";
+import { Group } from "@seygai/visx-group";
+import { ScaleInput, getTicks } from "@seygai/visx-scale";
 
-import { CommonGridProps, GridScale } from '../types';
+import { CommonGridProps, GridScale } from "../types";
 
 export type GridRadialProps<Scale extends GridScale> = CommonGridProps & {
-  /** `@visx/scale` or `d3-scale` object used to convert value to position. */
+  /** `@seygai/visx-scale` or `d3-scale` object used to convert value to position. */
   scale: Scale;
   /**
    * Exact values used to generate grid lines using `scale`.
@@ -44,9 +44,13 @@ export type GridRadialProps<Scale extends GridScale> = CommonGridProps & {
   children?: () => React.ReactNode;
 };
 
-export type AllGridRadialProps<Scale extends GridScale, Datum> = GridRadialProps<Scale> &
+export type AllGridRadialProps<
+  Scale extends GridScale,
+  Datum
+> = GridRadialProps<Scale> &
   Omit<
-    ArcProps<Datum> & Omit<React.SVGProps<SVGPathElement>, keyof ArcProps<Datum>>,
+    ArcProps<Datum> &
+      Omit<React.SVGProps<SVGPathElement>, keyof ArcProps<Datum>>,
     keyof GridRadialProps<Scale>
   >;
 
@@ -54,7 +58,7 @@ export default function GridRadial<Scale extends GridScale, Datum>({
   arcThickness,
   className,
   endAngle = 2 * Math.PI,
-  fill = 'transparent',
+  fill = "transparent",
   fillOpacity = 1,
   left = 0,
   lineClassName,
@@ -62,7 +66,7 @@ export default function GridRadial<Scale extends GridScale, Datum>({
   numTicks = 10,
   scale,
   startAngle = 0,
-  stroke = '#eaf0f6',
+  stroke = "#eaf0f6",
   strokeWidth = 1,
   strokeDasharray,
   tickValues,
@@ -73,14 +77,16 @@ export default function GridRadial<Scale extends GridScale, Datum>({
   const innerRadius = Math.min(...scale.domain());
 
   return (
-    <Group className={cx('visx-grid-radial', className)} top={top} left={left}>
+    <Group className={cx("visx-grid-radial", className)} top={top} left={left}>
       {radii.map((radius, i) => (
         <Arc
           key={`radial-grid-${radius}-${i}`}
           className={lineClassName}
           startAngle={startAngle}
           endAngle={endAngle}
-          innerRadius={scale(arcThickness ? radius - arcThickness : innerRadius) as number}
+          innerRadius={
+            scale(arcThickness ? radius - arcThickness : innerRadius) as number
+          }
           outerRadius={scale(radius) as number}
           fill={fill}
           fillOpacity={fillOpacity}

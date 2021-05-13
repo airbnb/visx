@@ -1,8 +1,13 @@
-import { useCallback, useContext, useEffect, useRef } from 'react';
-import { localPoint } from '@visx/event';
-import EventEmitterContext from '../context/EventEmitterContext';
+import { useCallback, useContext, useEffect, useRef } from "react";
+import { localPoint } from "@seygai/visx-event";
+import EventEmitterContext from "../context/EventEmitterContext";
 
-export type EventType = 'pointermove' | 'pointerout' | 'pointerup' | 'focus' | 'blur';
+export type EventType =
+  | "pointermove"
+  | "pointerout"
+  | "pointerup"
+  | "focus"
+  | "blur";
 
 export type HandlerParams = {
   /** The react PointerEvent or FocusEvent. */
@@ -25,7 +30,7 @@ export default function useEventEmitter(
   /** Handler invoked on emission of EventType event.  */
   handler?: Handler,
   /** Optional valid sources for EventType subscription. */
-  allowedSources?: string[],
+  allowedSources?: string[]
 ) {
   const emitter = useContext(EventEmitterContext);
   const allowedSourcesRef = useRef<string[] | undefined>();
@@ -33,12 +38,16 @@ export default function useEventEmitter(
 
   // wrap emitter.emit so we can enforce stricter type signature
   const emit = useCallback(
-    (type: EventType, event: HandlerParams['event'], source?: string) => {
+    (type: EventType, event: HandlerParams["event"], source?: string) => {
       if (emitter) {
-        emitter.emit<HandlerParams>(type, { event, svgPoint: localPoint(event), source });
+        emitter.emit<HandlerParams>(type, {
+          event,
+          svgPoint: localPoint(event),
+          source,
+        });
       }
     },
-    [emitter],
+    [emitter]
   );
 
   useEffect(() => {
@@ -53,7 +62,8 @@ export default function useEventEmitter(
         }
       };
       emitter.on<HandlerParams>(eventType, handlerWithSourceFilter);
-      return () => emitter?.off<HandlerParams>(eventType, handlerWithSourceFilter);
+      return () =>
+        emitter?.off<HandlerParams>(eventType, handlerWithSourceFilter);
     }
     return undefined;
   }, [emitter, eventType, handler]);

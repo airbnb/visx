@@ -1,8 +1,8 @@
-import React from 'react';
-import classnames from 'classnames';
-import { Group } from '@visx/group';
-import { PickD3Scale, ContinuousDomainScaleType } from '@visx/scale';
-import { SharedProps, ChildRenderProps, LineCoords } from './types';
+import React from "react";
+import classnames from "classnames";
+import { Group } from "@seygai/visx-group";
+import { PickD3Scale, ContinuousDomainScaleType } from "@seygai/visx-scale";
+import { SharedProps, ChildRenderProps, LineCoords } from "./types";
 
 function verticalToHorizontal({ x1, x2, y1, y2 }: LineCoords) {
   return {
@@ -163,7 +163,7 @@ export default function BoxPlot({
   if (children) return <>{children(boxplot)}</>;
 
   return (
-    <Group className={classnames('visx-boxplot', className)}>
+    <Group className={classnames("visx-boxplot", className)}>
       {outliers.map((d, i) => {
         const cx = horizontal ? valueScale(d) : center;
         const cy = horizontal ? center : valueScale(d);

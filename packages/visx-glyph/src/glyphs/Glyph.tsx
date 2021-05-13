@@ -1,6 +1,6 @@
-import React from 'react';
-import cx from 'classnames';
-import { Group } from '@visx/group';
+import React from "react";
+import cx from "classnames";
+import { Group } from "@seygai/visx-group";
 
 export type GlyphProps = {
   /** Top offset to apply to glyph g element container. */
@@ -13,9 +13,14 @@ export type GlyphProps = {
   children?: React.ReactNode;
 };
 
-export default function Glyph({ top = 0, left = 0, className, children }: GlyphProps) {
+export default function Glyph({
+  top = 0,
+  left = 0,
+  className,
+  children,
+}: GlyphProps) {
   return (
-    <Group className={cx('visx-glyph', className)} top={top} left={left}>
+    <Group className={cx("visx-glyph", className)} top={top} left={left}>
       {children}
     </Group>
   );

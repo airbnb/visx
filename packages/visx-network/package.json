@@ -1,5 +1,5 @@
 {
-  "name": "@visx/network",
+  "name": "@seygai/visx-network",
   "version": "1.7.0",
   "description": "visx network",
   "sideEffects": false,
@@ -22,7 +22,7 @@
   "dependencies": {
     "@types/classnames": "^2.2.9",
     "@types/react": "*",
-    "@visx/group": "1.7.0",
+    "@seygai/visx-group": "1.7.0",
     "classnames": "^2.2.5",
     "prop-types": "^15.6.2"
   },

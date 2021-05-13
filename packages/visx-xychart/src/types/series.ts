@@ -1,7 +1,7 @@
-import { PointerEvent, FocusEvent } from 'react';
-import { AxisScale } from '@visx/axis';
-import { ScaleInput } from '@visx/scale';
-import { Series, SeriesPoint } from 'd3-shape';
+import { PointerEvent, FocusEvent } from "react";
+import { AxisScale } from "@seygai/visx-axis";
+import { ScaleInput } from "@seygai/visx-scale";
+import { Series, SeriesPoint } from "d3-shape";
 
 /** Call signature of PointerEvent callback. */
 export type EventHandlerParams<Datum> = {
@@ -57,7 +57,7 @@ export type SeriesProps<
    */
   onPointerOut?: (
     /** The PointerEvent. */
-    event: React.PointerEvent,
+    event: React.PointerEvent
   ) => void;
   /**
    * Callback invoked for onPointerUp events for the nearest Datum to the PointerEvent.
@@ -93,7 +93,7 @@ export type SeriesProps<
    */
   onBlur?: (
     /** The FocusEvent. */
-    event: React.FocusEvent,
+    event: React.FocusEvent
   ) => void;
   /** Whether the Series emits and subscribes to PointerEvents and FocusEvents (including Tooltip triggering). */
   enableEvents?: boolean;
@@ -121,21 +121,32 @@ export type BarsProps<XScale extends AxisScale, YScale extends AxisScale> = {
   xScale: XScale;
   yScale: YScale;
   horizontal?: boolean;
-} & Omit<React.SVGProps<SVGRectElement>, 'x' | 'y' | 'width' | 'height' | 'ref'>;
-
-// BarStack transforms its child series Datum into CombinedData<XScale, YScale>
-export type BarStackDatum<XScale extends AxisScale, YScale extends AxisScale> = SeriesPoint<
-  CombinedStackData<XScale, YScale>
+} & Omit<
+  React.SVGProps<SVGRectElement>,
+  "x" | "y" | "width" | "height" | "ref"
 >;
 
-export type BarStackData<XScale extends AxisScale, YScale extends AxisScale> = Series<
-  CombinedStackData<XScale, YScale>,
-  string
->[];
+// BarStack transforms its child series Datum into CombinedData<XScale, YScale>
+export type BarStackDatum<
+  XScale extends AxisScale,
+  YScale extends AxisScale
+> = SeriesPoint<CombinedStackData<XScale, YScale>>;
 
-export type CombinedStackData<XScale extends AxisScale, YScale extends AxisScale> = {
+export type BarStackData<
+  XScale extends AxisScale,
+  YScale extends AxisScale
+> = Series<CombinedStackData<XScale, YScale>, string>[];
+
+export type CombinedStackData<
+  XScale extends AxisScale,
+  YScale extends AxisScale
+> = {
   [dataKey: string]: ScaleInput<XScale> | ScaleInput<YScale>;
-} & { stack: ScaleInput<XScale> | ScaleInput<YScale>; positiveSum: number; negativeSum: number };
+} & {
+  stack: ScaleInput<XScale> | ScaleInput<YScale>;
+  positiveSum: number;
+  negativeSum: number;
+};
 
 /** Glyphs */
 export type GlyphsProps<

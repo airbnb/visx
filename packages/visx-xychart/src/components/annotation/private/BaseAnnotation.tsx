@@ -1,11 +1,11 @@
-import React, { useContext, useMemo } from 'react';
-import { AnnotationProps } from '@visx/annotation/lib/components/Annotation';
-import { EditableAnnotationProps } from '@visx/annotation/lib/components/EditableAnnotation';
-import { coerceNumber, ScaleInput } from '@visx/scale';
-import { AxisScale } from '@visx/axis';
-import DataContext from '../../../context/DataContext';
-import getScaleBandwidth from '../../../utils/getScaleBandwidth';
-import isValidNumber from '../../../typeguards/isValidNumber';
+import React, { useContext, useMemo } from "react";
+import { AnnotationProps } from "@seygai/visx-annotation/lib/components/Annotation";
+import { EditableAnnotationProps } from "@seygai/visx-annotation/lib/components/EditableAnnotation";
+import { coerceNumber, ScaleInput } from "@seygai/visx-scale";
+import { AxisScale } from "@seygai/visx-axis";
+import DataContext from "../../../context/DataContext";
+import getScaleBandwidth from "../../../utils/getScaleBandwidth";
+import isValidNumber from "../../../typeguards/isValidNumber";
 
 export type BaseAnnotationProps<
   XScale extends AxisScale,
@@ -13,17 +13,19 @@ export type BaseAnnotationProps<
   Datum extends object
 > = Pick<
   EditableAnnotationProps,
-  | 'canEditLabel'
-  | 'canEditSubject'
-  | 'children'
-  | 'dx'
-  | 'dy'
-  | 'onDragEnd'
-  | 'onDragMove'
-  | 'onDragStart'
+  | "canEditLabel"
+  | "canEditSubject"
+  | "children"
+  | "dx"
+  | "dy"
+  | "onDragEnd"
+  | "onDragMove"
+  | "onDragStart"
 > & {
   /** Annotation component to render. */
-  AnnotationComponent: React.FC<AnnotationProps> | React.FC<EditableAnnotationProps>;
+  AnnotationComponent:
+    | React.FC<AnnotationProps>
+    | React.FC<EditableAnnotationProps>;
   /** Key for series to which datum belongs (used for x/yAccessors). Alternatively xAccessor + yAccessor may be specified. */
   dataKey?: string;
   /** Datum to annotate, used for Annotation positioning. */
@@ -55,27 +57,49 @@ export default function BaseAnnotation<
   const { innerHeight, innerWidth, margin, xScale, yScale, dataRegistry } =
     useContext(DataContext) || {};
 
-  const xBandWidth = useMemo(() => (xScale ? getScaleBandwidth(xScale) : 0), [xScale]);
-  const yBandWidth = useMemo(() => (yScale ? getScaleBandwidth(yScale) : 0), [yScale]);
+  const xBandWidth = useMemo(() => (xScale ? getScaleBandwidth(xScale) : 0), [
+    xScale,
+  ]);
+  const yBandWidth = useMemo(() => (yScale ? getScaleBandwidth(yScale) : 0), [
+    yScale,
+  ]);
 
   if ((!propsXAccessor || !propsYAccessor) && !dataKey) {
-    console.warn('[@visx/xychart/BaseAnnotation]: dataKey or x/yAccessors must be specified.');
+    console.warn(
+      "[@seygai/visx-xychart/BaseAnnotation]: dataKey or x/yAccessors must be specified."
+    );
     return null;
   }
 
   const registryEntry =
-    (propsXAccessor && propsYAccessor) || dataKey == null ? null : dataRegistry?.get(dataKey);
+    (propsXAccessor && propsYAccessor) || dataKey == null
+      ? null
+      : dataRegistry?.get(dataKey);
   const xAccessor = propsXAccessor || registryEntry?.xAccessor;
   const yAccessor = propsYAccessor || registryEntry?.yAccessor;
 
-  if (!xScale || !yScale || !innerWidth || !innerHeight || !xAccessor || !yAccessor || !margin) {
+  if (
+    !xScale ||
+    !yScale ||
+    !innerWidth ||
+    !innerHeight ||
+    !xAccessor ||
+    !yAccessor ||
+    !margin
+  ) {
     return null;
   }
 
   const x = (coerceNumber(xScale(xAccessor(datum))) ?? NaN) + xBandWidth / 2;
   const y = (coerceNumber(yScale(yAccessor(datum))) ?? NaN) + yBandWidth / 2;
-  const dx = x + propsDx + minimumLabelDimension > margin.left + innerWidth ? -propsDx : propsDx;
-  const dy = y + propsDy + minimumLabelDimension > margin.top + innerHeight ? -propsDy : propsDy;
+  const dx =
+    x + propsDx + minimumLabelDimension > margin.left + innerWidth
+      ? -propsDx
+      : propsDx;
+  const dy =
+    y + propsDy + minimumLabelDimension > margin.top + innerHeight
+      ? -propsDy
+      : propsDy;
 
   return isValidNumber(x) && isValidNumber(y) ? (
     <AnnotationComponent

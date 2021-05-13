@@ -1,19 +1,23 @@
-import React from 'react';
-import cx from 'classnames';
-import { Area } from '@visx/shape';
-import { AreaProps as AreaOwnProps } from '@visx/shape/lib/shapes/Area';
-import { ClipPath } from '@visx/clip-path';
+import React from "react";
+import cx from "classnames";
+import { Area } from "@seygai/visx-shape";
+import { AreaProps as AreaOwnProps } from "@seygai/visx-shape/lib/shapes/Area";
+import { ClipPath } from "@seygai/visx-clip-path";
 
 type AreaProps<Datum> = AreaOwnProps<Datum> &
   Omit<React.SVGProps<SVGPathElement>, keyof AreaOwnProps<Datum>>;
 
-type NumberAccessor<Datum> = (datum: Datum, index: number, data: Datum[]) => number;
+type NumberAccessor<Datum> = (
+  datum: Datum,
+  index: number,
+  data: Datum[]
+) => number;
 
 export type ThresholdProps<Datum> = {
   /** className applied to container g element. */
   className?: string;
-  /** Sets the curve factory (from @visx/curve or d3-curve) for the area generator. Defaults to curveLinear. */
-  curve?: AreaProps<Datum>['curve'];
+  /** Sets the curve factory (from @seygai/visx-curve or d3-curve) for the area generator. Defaults to curveLinear. */
+  curve?: AreaProps<Datum>["curve"];
   /** Specifies a constant value, or an accessor called per datum, above which the *upper area* is clipped. */
   clipAboveTo: NumberAccessor<Datum> | number;
   /** Specifies a constant value, or an accessor called per datum, below which the *lower area* is clipped. */
@@ -60,27 +64,29 @@ export default function Threshold<Datum>({
   y1,
   aboveAreaProps,
   belowAreaProps,
-  id = '',
+  id = "",
 }: ThresholdProps<Datum>) {
   return (
-    <g className={cx('visx-threshold', className)}>
+    <g className={cx("visx-threshold", className)}>
       <Area<Datum> curve={curve} data={data} x={x} y1={y1} defined={defined}>
         {({ path }) => {
           // TS cannot infer the correct method overload
           let belowPath = null;
           let abovePath = null;
-          if (typeof clipBelowTo === 'number') belowPath = path.y0(clipBelowTo)(data);
+          if (typeof clipBelowTo === "number")
+            belowPath = path.y0(clipBelowTo)(data);
           else belowPath = path.y0(clipBelowTo)(data);
-          if (typeof clipAboveTo === 'number') abovePath = path.y0(clipAboveTo)(data);
+          if (typeof clipAboveTo === "number")
+            abovePath = path.y0(clipAboveTo)(data);
           else abovePath = path.y0(clipAboveTo)(data);
 
           return (
             <g>
               <ClipPath id={`threshold-clip-below-${id}`}>
-                <path d={belowPath || ''} />
+                <path d={belowPath || ""} />
               </ClipPath>
               <ClipPath id={`threshold-clip-above-${id}`}>
-                <path d={abovePath || ''} />
+                <path d={abovePath || ""} />
               </ClipPath>
             </g>
           );

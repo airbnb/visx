@@ -1,14 +1,14 @@
-import React from 'react';
-import cx from 'classnames';
-import { Group } from '@visx/group';
+import React from "react";
+import cx from "classnames";
+import { Group } from "@seygai/visx-group";
 import {
   cluster as d3cluster,
   HierarchyNode,
   HierarchyPointNode,
   HierarchyPointLink,
-} from 'd3-hierarchy';
-import DefaultLink from '../HierarchyDefaultLink';
-import DefaultNode from '../HierarchyDefaultNode';
+} from "d3-hierarchy";
+import DefaultLink from "../HierarchyDefaultLink";
+import DefaultNode from "../HierarchyDefaultNode";
 
 export type NodeComponentProps<Datum> = { node: HierarchyPointNode<Datum> };
 export type LinkComponentProps<Datum> = { link: HierarchyPointLink<Datum> };
@@ -37,7 +37,10 @@ export type ClusterProps<Datum> = {
    */
   nodeSize?: [number, number];
   /** Sets the separation accessor, used to separate neighboring leaves. */
-  separation?: (a: HierarchyPointNode<Datum>, b: HierarchyPointNode<Datum>) => number;
+  separation?: (
+    a: HierarchyPointNode<Datum>,
+    b: HierarchyPointNode<Datum>
+  ) => number;
   /** Component which renders a single cluster link, passed the link object. */
   linkComponent?:
     | React.FunctionComponent<LinkComponentProps<Datum>>
@@ -70,17 +73,21 @@ export default function Cluster<Datum>({
   if (children) return <>{children(data)}</>;
 
   return (
-    <Group top={top} left={left} className={cx('visx-cluster', className)}>
+    <Group top={top} left={left} className={cx("visx-cluster", className)}>
       {linkComponent &&
         data.links().map((link, i) => {
           return (
-            <Group key={`cluster-link-${i}`}>{React.createElement(linkComponent, { link })}</Group>
+            <Group key={`cluster-link-${i}`}>
+              {React.createElement(linkComponent, { link })}
+            </Group>
           );
         })}
       {nodeComponent &&
         data.descendants().map((node, i) => {
           return (
-            <Group key={`cluster-node-${i}`}>{React.createElement(nodeComponent, { node })}</Group>
+            <Group key={`cluster-node-${i}`}>
+              {React.createElement(nodeComponent, { node })}
+            </Group>
           );
         })}
     </Group>

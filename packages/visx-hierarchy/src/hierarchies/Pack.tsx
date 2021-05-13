@@ -1,8 +1,12 @@
-import React from 'react';
-import cx from 'classnames';
-import { Group } from '@visx/group';
-import { pack as d3pack, HierarchyNode, HierarchyCircularNode } from 'd3-hierarchy';
-import DefaultNode from '../HierarchyDefaultNode';
+import React from "react";
+import cx from "classnames";
+import { Group } from "@seygai/visx-group";
+import {
+  pack as d3pack,
+  HierarchyNode,
+  HierarchyCircularNode,
+} from "d3-hierarchy";
+import DefaultNode from "../HierarchyDefaultNode";
 
 type PackProps<Datum> = {
   /** The root hierarchy node from which to derive the pack layout. */
@@ -58,11 +62,13 @@ export default function Pack<Datum>({
   if (children) return <>{children(data)}</>;
 
   return (
-    <Group top={top} left={left} className={cx('visx-pack', className)}>
+    <Group top={top} left={left} className={cx("visx-pack", className)}>
       {nodeComponent &&
         data.descendants().map((node, i) => {
           return (
-            <Group key={`pack-node-${i}`}>{React.createElement(nodeComponent, { node })}</Group>
+            <Group key={`pack-node-${i}`}>
+              {React.createElement(nodeComponent, { node })}
+            </Group>
           );
         })}
     </Group>

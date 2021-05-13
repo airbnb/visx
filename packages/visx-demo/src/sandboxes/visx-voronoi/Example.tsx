@@ -1,10 +1,10 @@
-import React, { useState, useMemo, useRef } from 'react';
-import { Group } from '@visx/group';
-import { GradientOrangeRed, GradientPinkRed } from '@visx/gradient';
-import { RectClipPath } from '@visx/clip-path';
-import { voronoi, VoronoiPolygon } from '@visx/voronoi';
-import { localPoint } from '@visx/event';
-import { getSeededRandom } from '@visx/mock-data';
+import React, { useState, useMemo, useRef } from "react";
+import { Group } from "@seygai/visx-group";
+import { GradientOrangeRed, GradientPinkRed } from "@seygai/visx-gradient";
+import { RectClipPath } from "@seygai/visx-clip-path";
+import { voronoi, VoronoiPolygon } from "@seygai/visx-voronoi";
+import { localPoint } from "@seygai/visx-event";
+import { getSeededRandom } from "@seygai/visx-mock-data";
 
 type Datum = {
   x: number;
@@ -44,12 +44,12 @@ const Example = ({ width, height, margin = defaultMargin }: VoronoiProps) => {
   const voronoiLayout = useMemo(
     () =>
       voronoi<Datum>({
-        x: d => d.x * innerWidth,
-        y: d => d.y * innerHeight,
+        x: (d) => d.x * innerWidth,
+        y: (d) => d.y * innerHeight,
         width: innerWidth,
         height: innerHeight,
       })(data),
-    [innerWidth, innerHeight],
+    [innerWidth, innerHeight]
   );
 
   const polygons = voronoiLayout.polygons();
@@ -61,12 +61,17 @@ const Example = ({ width, height, margin = defaultMargin }: VoronoiProps) => {
     <svg width={width} height={height} ref={svgRef}>
       <GradientOrangeRed id="voronoi_orange_red" />
       <GradientPinkRed id="voronoi_pink_red" />
-      <RectClipPath id="voronoi_clip" width={innerWidth} height={innerHeight} rx={14} />
+      <RectClipPath
+        id="voronoi_clip"
+        width={innerWidth}
+        height={innerHeight}
+        rx={14}
+      />
       <Group
         top={margin.top}
         left={margin.left}
         clipPath="url(#voronoi_clip)"
-        onMouseMove={event => {
+        onMouseMove={(event) => {
           if (!svgRef.current) return;
 
           // find the nearest polygon to the current mouse position
@@ -80,7 +85,7 @@ const Example = ({ width, height, margin = defaultMargin }: VoronoiProps) => {
             const cell = voronoiLayout.cells[closest.index];
             if (!cell) return;
 
-            cell.halfedges.forEach(index => {
+            cell.halfedges.forEach((index) => {
               const edge = voronoiLayout.edges[index];
               const { left, right } = edge;
               if (left && left !== closest) neighbors.add(left.data.id);
@@ -96,18 +101,22 @@ const Example = ({ width, height, margin = defaultMargin }: VoronoiProps) => {
           setNeighborIds(new Set());
         }}
       >
-        {polygons.map(polygon => (
+        {polygons.map((polygon) => (
           <VoronoiPolygon
             key={`polygon-${polygon.data.id}`}
             polygon={polygon}
             fill={
-              hoveredId && (polygon.data.id === hoveredId || neighborIds.has(polygon.data.id))
-                ? 'url(#voronoi_orange_red)'
-                : 'url(#voronoi_pink_red)'
+              hoveredId &&
+              (polygon.data.id === hoveredId ||
+                neighborIds.has(polygon.data.id))
+                ? "url(#voronoi_orange_red)"
+                : "url(#voronoi_pink_red)"
             }
             stroke="#fff"
             strokeWidth={1}
-            fillOpacity={hoveredId && neighborIds.has(polygon.data.id) ? 0.5 : 1}
+            fillOpacity={
+              hoveredId && neighborIds.has(polygon.data.id) ? 0.5 : 1
+            }
           />
         ))}
         {data.map(({ x, y, id }) => (
@@ -116,7 +125,7 @@ const Example = ({ width, height, margin = defaultMargin }: VoronoiProps) => {
             r={2}
             cx={x * innerWidth}
             cy={y * innerHeight}
-            fill={id === hoveredId ? 'fuchsia' : '#fff'}
+            fill={id === hoveredId ? "fuchsia" : "#fff"}
             fillOpacity={0.8}
           />
         ))}

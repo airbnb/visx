@@ -1,16 +1,18 @@
-import React from 'react';
-import { BarStackHorizontal } from '@visx/shape';
-import { SeriesPoint } from '@visx/shape/lib/types';
-import { Group } from '@visx/group';
-import { AxisBottom, AxisLeft } from '@visx/axis';
-import cityTemperature, { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
-import { scaleBand, scaleLinear, scaleOrdinal } from '@visx/scale';
-import { timeParse, timeFormat } from 'd3-time-format';
-import { withTooltip, Tooltip, defaultStyles } from '@visx/tooltip';
-import { WithTooltipProvidedProps } from '@visx/tooltip/lib/enhancers/withTooltip';
-import { LegendOrdinal } from '@visx/legend';
+import React from "react";
+import { BarStackHorizontal } from "@seygai/visx-shape";
+import { SeriesPoint } from "@seygai/visx-shape/lib/types";
+import { Group } from "@seygai/visx-group";
+import { AxisBottom, AxisLeft } from "@seygai/visx-axis";
+import cityTemperature, {
+  CityTemperature,
+} from "@seygai/visx-mock-data/lib/mocks/cityTemperature";
+import { scaleBand, scaleLinear, scaleOrdinal } from "@seygai/visx-scale";
+import { timeParse, timeFormat } from "d3-time-format";
+import { withTooltip, Tooltip, defaultStyles } from "@seygai/visx-tooltip";
+import { WithTooltipProvidedProps } from "@seygai/visx-tooltip/lib/enhancers/withTooltip";
+import { LegendOrdinal } from "@seygai/visx-legend";
 
-type CityName = 'New York' | 'San Francisco' | 'Austin';
+type CityName = "New York" | "San Francisco" | "Austin";
 
 type TooltipData = {
   bar: SeriesPoint<CityTemperature>;
@@ -30,20 +32,20 @@ export type BarStackHorizontalProps = {
   events?: boolean;
 };
 
-const purple1 = '#6c5efb';
-const purple2 = '#c998ff';
-export const purple3 = '#a44afe';
-export const background = '#eaedff';
+const purple1 = "#6c5efb";
+const purple2 = "#c998ff";
+export const purple3 = "#a44afe";
+export const background = "#eaedff";
 const defaultMargin = { top: 40, left: 50, right: 40, bottom: 100 };
 const tooltipStyles = {
   ...defaultStyles,
   minWidth: 60,
-  backgroundColor: 'rgba(0,0,0,0.9)',
-  color: 'white',
+  backgroundColor: "rgba(0,0,0,0.9)",
+  color: "white",
 };
 
 const data = cityTemperature.slice(0, 12);
-const keys = Object.keys(data[0]).filter(d => d !== 'date') as CityName[];
+const keys = Object.keys(data[0]).filter((d) => d !== "date") as CityName[];
 
 const temperatureTotals = data.reduce((allTotals, currentDate) => {
   const totalTemperature = keys.reduce((dailyTotal, k) => {
@@ -54,8 +56,8 @@ const temperatureTotals = data.reduce((allTotals, currentDate) => {
   return allTotals;
 }, [] as number[]);
 
-const parseDate = timeParse('%Y-%m-%d');
-const format = timeFormat('%b %d');
+const parseDate = timeParse("%Y-%m-%d");
+const format = timeFormat("%b %d");
 const formatDate = (date: string) => format(parseDate(date) as Date);
 
 // accessors
@@ -111,9 +113,9 @@ export default withTooltip<BarStackHorizontalProps, TooltipData>(
               yScale={dateScale}
               color={colorScale}
             >
-              {barStacks =>
-                barStacks.map(barStack =>
-                  barStack.bars.map(bar => (
+              {(barStacks) =>
+                barStacks.map((barStack) =>
+                  barStack.bars.map((bar) => (
                     <rect
                       key={`barstack-horizontal-${barStack.index}-${bar.index}`}
                       x={bar.x}
@@ -140,7 +142,7 @@ export default withTooltip<BarStackHorizontalProps, TooltipData>(
                         });
                       }}
                     />
-                  )),
+                  ))
                 )
               }
             </BarStackHorizontal>
@@ -154,8 +156,8 @@ export default withTooltip<BarStackHorizontalProps, TooltipData>(
               tickLabelProps={() => ({
                 fill: purple3,
                 fontSize: 11,
-                textAnchor: 'end',
-                dy: '0.33em',
+                textAnchor: "end",
+                dy: "0.33em",
               })}
             />
             <AxisBottom
@@ -166,22 +168,26 @@ export default withTooltip<BarStackHorizontalProps, TooltipData>(
               tickLabelProps={() => ({
                 fill: purple3,
                 fontSize: 11,
-                textAnchor: 'middle',
+                textAnchor: "middle",
               })}
             />
           </Group>
         </svg>
         <div
           style={{
-            position: 'absolute',
+            position: "absolute",
             top: margin.top / 2 - 10,
-            width: '100%',
-            display: 'flex',
-            justifyContent: 'center',
-            fontSize: '14px',
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            fontSize: "14px",
           }}
         >
-          <LegendOrdinal scale={colorScale} direction="row" labelMargin="0 15px 0 0" />
+          <LegendOrdinal
+            scale={colorScale}
+            direction="row"
+            labelMargin="0 15px 0 0"
+          />
         </div>
         {tooltipOpen && tooltipData && (
           <Tooltip top={tooltipTop} left={tooltipLeft} style={tooltipStyles}>
@@ -196,5 +202,5 @@ export default withTooltip<BarStackHorizontalProps, TooltipData>(
         )}
       </div>
     );
-  },
+  }
 );

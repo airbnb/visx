@@ -1,17 +1,24 @@
-import React, { SVGProps } from 'react';
-import { animated, useTransition } from 'react-spring';
-import { GridScale, GridLines, CommonGridProps } from '@visx/grid/lib/types';
+import React, { SVGProps } from "react";
+import { animated, useTransition } from "react-spring";
+import {
+  GridScale,
+  GridLines,
+  CommonGridProps,
+} from "@seygai/visx-grid/lib/types";
 import useLineTransitionConfig, {
   TransitionConfig,
-} from '../spring-configs/useLineTransitionConfig';
+} from "../spring-configs/useLineTransitionConfig";
 
 export type AnimatedGridLinesProps<Scale extends GridScale> = {
   lines: GridLines;
   lineKey: (line: GridLines[number]) => string;
   scale: Scale;
-} & Omit<SVGProps<SVGLineElement>, 'ref' | 'scale'> &
-  Pick<TransitionConfig<Scale>, 'animationTrajectory' | 'animateXOrY'> &
-  Pick<CommonGridProps, 'stroke' | 'strokeWidth' | 'lineStyle' | 'strokeDasharray'>;
+} & Omit<SVGProps<SVGLineElement>, "ref" | "scale"> &
+  Pick<TransitionConfig<Scale>, "animationTrajectory" | "animateXOrY"> &
+  Pick<
+    CommonGridProps,
+    "stroke" | "strokeWidth" | "lineStyle" | "strokeDasharray"
+  >;
 
 export default function AnimatedGridLines<Scale extends GridScale>({
   scale,
@@ -29,7 +36,7 @@ export default function AnimatedGridLines<Scale extends GridScale>({
       scale,
       animateXOrY,
       animationTrajectory,
-    }),
+    })
   );
 
   return (
@@ -37,7 +44,7 @@ export default function AnimatedGridLines<Scale extends GridScale>({
     <>
       {animatedLines.map((
         // @ts-ignore react-spring types only include CSSProperties
-        { key, props: { fromX, toX, fromY, toY, opacity } },
+        { key, props: { fromX, toX, fromY, toY, opacity } }
       ) => (
         <animated.line
           key={key}

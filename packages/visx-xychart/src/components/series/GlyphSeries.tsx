@@ -1,8 +1,10 @@
-import { AxisScale } from '@visx/axis';
-import React, { useCallback } from 'react';
-import { GlyphProps, GlyphsProps } from '../../types';
-import BaseGlyphSeries, { BaseGlyphSeriesProps } from './private/BaseGlyphSeries';
-import defaultRenderGlyph from './private/defaultRenderGlyph';
+import { AxisScale } from "@seygai/visx-axis";
+import React, { useCallback } from "react";
+import { GlyphProps, GlyphsProps } from "../../types";
+import BaseGlyphSeries, {
+  BaseGlyphSeriesProps,
+} from "./private/BaseGlyphSeries";
+import defaultRenderGlyph from "./private/defaultRenderGlyph";
 
 export default function GlyphSeries<
   XScale extends AxisScale,
@@ -11,7 +13,7 @@ export default function GlyphSeries<
 >({
   renderGlyph = defaultRenderGlyph,
   ...props
-}: Omit<BaseGlyphSeriesProps<XScale, YScale, Datum>, 'renderGlyphs'> & {
+}: Omit<BaseGlyphSeriesProps<XScale, YScale, Datum>, "renderGlyphs"> & {
   renderGlyph?: React.FC<GlyphProps<Datum>>;
 }) {
   const renderGlyphs = useCallback(
@@ -23,12 +25,19 @@ export default function GlyphSeries<
       onFocus,
       onBlur,
     }: GlyphsProps<XScale, YScale, Datum>) =>
-      glyphs.map(glyph => (
+      glyphs.map((glyph) => (
         <React.Fragment key={glyph.key}>
-          {renderGlyph({ ...glyph, onPointerMove, onPointerOut, onPointerUp, onFocus, onBlur })}
+          {renderGlyph({
+            ...glyph,
+            onPointerMove,
+            onPointerOut,
+            onPointerUp,
+            onFocus,
+            onBlur,
+          })}
         </React.Fragment>
       )),
-    [renderGlyph],
+    [renderGlyph]
   );
   return (
     <BaseGlyphSeries<XScale, YScale, Datum>

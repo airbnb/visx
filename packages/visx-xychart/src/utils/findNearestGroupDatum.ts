@@ -1,8 +1,8 @@
-import { PositionScale } from '@visx/shape/lib/types';
-import { ScaleTypeToD3Scale } from '@visx/scale';
-import { NearestDatumArgs } from '../types';
-import findNearestDatumX from './findNearestDatumX';
-import findNearestDatumY from './findNearestDatumY';
+import { PositionScale } from "@seygai/visx-shape/lib/types";
+import { ScaleTypeToD3Scale } from "@seygai/visx-scale";
+import { NearestDatumArgs } from "../types";
+import findNearestDatumX from "./findNearestDatumX";
+import findNearestDatumY from "./findNearestDatumY";
 
 /**
  * This is a wrapper around findNearestDatumX/Y for BarGroup, accounting for a
@@ -14,11 +14,20 @@ export default function findNearestGroupDatum<
   Datum extends object
 >(
   nearestDatumArgs: NearestDatumArgs<XScale, YScale, Datum>,
-  groupScale: ScaleTypeToD3Scale<string, string>['band'],
-  horizontal?: boolean,
+  groupScale: ScaleTypeToD3Scale<string, string>["band"],
+  horizontal?: boolean
 ) {
-  const { dataKey, xAccessor, yAccessor, xScale, yScale, point } = nearestDatumArgs;
-  const datum = (horizontal ? findNearestDatumY : findNearestDatumX)(nearestDatumArgs);
+  const {
+    dataKey,
+    xAccessor,
+    yAccessor,
+    xScale,
+    yScale,
+    point,
+  } = nearestDatumArgs;
+  const datum = (horizontal ? findNearestDatumY : findNearestDatumX)(
+    nearestDatumArgs
+  );
 
   if (!datum || !point) return null;
 

@@ -1,9 +1,13 @@
-import React from 'react';
-import cx from 'classnames';
-import { Group } from '@visx/group';
-import { Arc as ArcType, PieArcDatum as PieArcDatumType, Pie as PieType } from 'd3-shape';
-import { $TSFIXME, AddSVGProps, ArcPathConfig, PiePathConfig } from '../types';
-import { arc as arcPath, pie as piePath } from '../util/D3ShapeFactories';
+import React from "react";
+import cx from "classnames";
+import { Group } from "@seygai/visx-group";
+import {
+  Arc as ArcType,
+  PieArcDatum as PieArcDatumType,
+  Pie as PieType,
+} from "d3-shape";
+import { $TSFIXME, AddSVGProps, ArcPathConfig, PiePathConfig } from "../types";
+import { arc as arcPath, pie as piePath } from "../util/D3ShapeFactories";
 
 export type PieArcDatum<Datum> = PieArcDatumType<Datum>;
 
@@ -23,20 +27,23 @@ export type PieProps<Datum> = {
   /** Array of data to generate a Pie for. */
   data?: Datum[];
   /** Optional render function invoked for each Datum to render something (e.g., a Label) at each pie centroid. */
-  centroid?: (xyCoords: [number, number], arc: PieArcDatum<Datum>) => React.ReactNode;
+  centroid?: (
+    xyCoords: [number, number],
+    arc: PieArcDatum<Datum>
+  ) => React.ReactNode;
   // These three fields are renamed
   /** Invoked for each datum, returns the value for a given Pie segment/arc datum. */
-  pieValue?: PiePathConfig<Datum>['value'];
+  pieValue?: PiePathConfig<Datum>["value"];
   /** Comparator function to sort *arcs*, overridden by pieSortValues if defined. If pieSort and pieSortValues are null, arcs match input data order. */
-  pieSort?: PiePathConfig<Datum>['sort'];
+  pieSort?: PiePathConfig<Datum>["sort"];
   /** Comparator function to sort arc *values*, overrides pieSort if defined. If pieSort and pieSortValues are null, arcs match input data order. */
-  pieSortValues?: PiePathConfig<Datum>['sortValues'];
+  pieSortValues?: PiePathConfig<Datum>["sortValues"];
   /** Render function override which is passed the configured arc generator as input. */
   children?: (provided: ProvidedProps<Datum>) => React.ReactNode;
-} & Pick<PiePathConfig<Datum>, 'startAngle' | 'endAngle' | 'padAngle'> &
+} & Pick<PiePathConfig<Datum>, "startAngle" | "endAngle" | "padAngle"> &
   Pick<
     ArcPathConfig<PieArcDatum<Datum>>,
-    'innerRadius' | 'outerRadius' | 'cornerRadius' | 'padRadius'
+    "innerRadius" | "outerRadius" | "cornerRadius" | "padRadius"
   >;
 
 export default function Pie<Datum>({
@@ -82,7 +89,11 @@ export default function Pie<Datum>({
     <Group className="visx-pie-arcs-group" top={top} left={left}>
       {arcs.map((arc, i) => (
         <g key={`pie-arc-${i}`}>
-          <path className={cx('visx-pie-arc', className)} d={path(arc) || ''} {...restProps} />
+          <path
+            className={cx("visx-pie-arc", className)}
+            d={path(arc) || ""}
+            {...restProps}
+          />
           {centroid?.(path.centroid(arc), arc)}
         </g>
       ))}

@@ -1,10 +1,10 @@
 /* eslint-disable react/jsx-handler-names */
-import React, { useState } from 'react';
-import * as topojson from 'topojson-client';
-import { scaleQuantize } from '@visx/scale';
-import { CustomProjection, Graticule } from '@visx/geo';
-import { Projection } from '@visx/geo/lib/types';
-import { Zoom } from '@visx/zoom';
+import React, { useState } from "react";
+import * as topojson from "topojson-client";
+import { scaleQuantize } from "@seygai/visx-scale";
+import { CustomProjection, Graticule } from "@seygai/visx-geo";
+import { Projection } from "@seygai/visx-geo/lib/types";
+import { Zoom } from "@seygai/visx-zoom";
 import {
   geoConicConformal,
   geoTransverseMercator,
@@ -12,8 +12,8 @@ import {
   geoConicEquidistant,
   geoOrthographic,
   geoStereographic,
-} from 'd3-geo';
-import topology from './world-topo.json';
+} from "d3-geo";
+import topology from "./world-topo.json";
 
 export type GeoCustomProps = {
   width: number;
@@ -22,14 +22,14 @@ export type GeoCustomProps = {
 };
 
 interface FeatureShape {
-  type: 'Feature';
+  type: "Feature";
   id: string;
-  geometry: { coordinates: [number, number][][]; type: 'Polygon' };
+  geometry: { coordinates: [number, number][][]; type: "Polygon" };
   properties: { name: string };
 }
 
-export const background = '#252b7e';
-const purple = '#201c4e';
+export const background = "#252b7e";
+const purple = "#201c4e";
 const PROJECTIONS: { [projection: string]: Projection } = {
   geoConicConformal,
   geoTransverseMercator,
@@ -41,33 +41,39 @@ const PROJECTIONS: { [projection: string]: Projection } = {
 
 // @ts-ignore
 const world = topojson.feature(topology, topology.objects.units) as {
-  type: 'FeatureCollection';
+  type: "FeatureCollection";
   features: FeatureShape[];
 };
 
 const color = scaleQuantize({
   domain: [
-    Math.min(...world.features.map(f => f.geometry.coordinates.length)),
-    Math.max(...world.features.map(f => f.geometry.coordinates.length)),
+    Math.min(...world.features.map((f) => f.geometry.coordinates.length)),
+    Math.max(...world.features.map((f) => f.geometry.coordinates.length)),
   ],
   range: [
-    '#019ece',
-    '#f4448b',
-    '#fccf35',
-    '#82b75d',
-    '#b33c88',
-    '#fc5e2f',
-    '#f94b3a',
-    '#f63a48',
-    '#dde1fe',
-    '#8993f9',
-    '#b6c8fb',
-    '#65fe8d',
+    "#019ece",
+    "#f4448b",
+    "#fccf35",
+    "#82b75d",
+    "#b33c88",
+    "#fc5e2f",
+    "#f94b3a",
+    "#f63a48",
+    "#dde1fe",
+    "#8993f9",
+    "#b6c8fb",
+    "#65fe8d",
   ],
 });
 
-export default function GeoCustom({ width, height, events = true }: GeoCustomProps) {
-  const [projection, setProjection] = useState<keyof typeof PROJECTIONS>('geoConicConformal');
+export default function GeoCustom({
+  width,
+  height,
+  events = true,
+}: GeoCustomProps) {
+  const [projection, setProjection] = useState<keyof typeof PROJECTIONS>(
+    "geoConicConformal"
+  );
 
   const centerX = width / 2;
   const centerY = height / 2;
@@ -91,28 +97,48 @@ export default function GeoCustom({ width, height, events = true }: GeoCustomPro
           skewY: 0,
         }}
       >
-        {zoom => (
+        {(zoom) => (
           <div className="container">
-            <svg width={width} height={height} className={zoom.isDragging ? 'dragging' : undefined}>
-              <rect x={0} y={0} width={width} height={height} fill={background} rx={14} />
+            <svg
+              width={width}
+              height={height}
+              className={zoom.isDragging ? "dragging" : undefined}
+            >
+              <rect
+                x={0}
+                y={0}
+                width={width}
+                height={height}
+                fill={background}
+                rx={14}
+              />
               <CustomProjection<FeatureShape>
                 projection={PROJECTIONS[projection]}
                 data={world.features}
                 scale={zoom.transformMatrix.scaleX}
-                translate={[zoom.transformMatrix.translateX, zoom.transformMatrix.translateY]}
+                translate={[
+                  zoom.transformMatrix.translateX,
+                  zoom.transformMatrix.translateY,
+                ]}
               >
-                {customProjection => (
+                {(customProjection) => (
                   <g>
-                    <Graticule graticule={g => customProjection.path(g) || ''} stroke={purple} />
+                    <Graticule
+                      graticule={(g) => customProjection.path(g) || ""}
+                      stroke={purple}
+                    />
                     {customProjection.features.map(({ feature, path }, i) => (
                       <path
                         key={`map-feature-${i}`}
-                        d={path || ''}
+                        d={path || ""}
                         fill={color(feature.geometry.coordinates.length)}
                         stroke={background}
                         strokeWidth={0.5}
                         onClick={() => {
-                          if (events) alert(`Clicked: ${feature.properties.name} (${feature.id})`);
+                          if (events)
+                            alert(
+                              `Clicked: ${feature.properties.name} (${feature.id})`
+                            );
                         }}
                       />
                     ))}
@@ -162,9 +188,9 @@ export default function GeoCustom({ width, height, events = true }: GeoCustomPro
         )}
       </Zoom>
       <label>
-        projection:{' '}
-        <select onChange={event => setProjection(event.target.value)}>
-          {Object.keys(PROJECTIONS).map(projectionName => (
+        projection:{" "}
+        <select onChange={(event) => setProjection(event.target.value)}>
+          {Object.keys(PROJECTIONS).map((projectionName) => (
             <option key={projectionName} value={projectionName}>
               {projectionName}
             </option>

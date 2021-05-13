@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
-import React from 'react';
-import { Group } from '@visx/group';
+import React from "react";
+import { Group } from "@seygai/visx-group";
 import {
   Glyph as CustomGlyph,
   GlyphCircle,
@@ -10,18 +10,20 @@ import {
   GlyphStar,
   GlyphTriangle,
   GlyphWye,
-} from '@visx/glyph';
-import { LinePath } from '@visx/shape';
-import genDateValue, { DateValue } from '@visx/mock-data/lib/generators/genDateValue';
-import { scaleTime, scaleLinear } from '@visx/scale';
-import { curveMonotoneX, curveBasis } from '@visx/curve';
+} from "@seygai/visx-glyph";
+import { LinePath } from "@seygai/visx-shape";
+import genDateValue, {
+  DateValue,
+} from "@seygai/visx-mock-data/lib/generators/genDateValue";
+import { scaleTime, scaleLinear } from "@seygai/visx-scale";
+import { curveMonotoneX, curveBasis } from "@seygai/visx-curve";
 
 const defaultMargin = { top: 10, right: 10, bottom: 10, left: 10 };
 
 // colors
-export const primaryColor = '#8921e0';
-export const secondaryColor = '#00f2ff';
-const contrastColor = '#ffffff';
+export const primaryColor = "#8921e0";
+export const secondaryColor = "#00f2ff";
+const contrastColor = "#ffffff";
 
 // Glyphs to render
 const Glyphs = [
@@ -36,7 +38,7 @@ const Glyphs = [
     <CustomGlyph left={left} top={top}>
       <circle r={12} fill={secondaryColor} />
       <text fontSize={16} textAnchor="middle" dy="0.5em">
-        {'💜'}
+        {"💜"}
       </text>
     </CustomGlyph>
   ),
@@ -66,7 +68,11 @@ export type GlyphProps = {
   margin?: typeof defaultMargin;
 };
 
-export default function Example({ width, height, margin = defaultMargin }: GlyphProps) {
+export default function Example({
+  width,
+  height,
+  margin = defaultMargin,
+}: GlyphProps) {
   if (width < 10) return null;
 
   // bounds
@@ -79,7 +85,14 @@ export default function Example({ width, height, margin = defaultMargin }: Glyph
 
   return (
     <svg width={width} height={height}>
-      <rect x={0} y={0} width={width} height={height} fill={secondaryColor} rx={14} />
+      <rect
+        x={0}
+        y={0}
+        width={width}
+        height={height}
+        fill={secondaryColor}
+        rx={14}
+      />
       <Group left={margin.left} top={margin.top}>
         <LinePath
           data={data}

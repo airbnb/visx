@@ -1,5 +1,5 @@
 {
-  "name": "@visx/bounds",
+  "name": "@seygai/visx-bounds",
   "version": "1.7.0",
   "description": "Utilities to make your life with bounding boxes better",
   "sideEffects": false,

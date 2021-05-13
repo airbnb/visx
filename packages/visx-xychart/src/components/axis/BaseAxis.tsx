@@ -1,15 +1,15 @@
-import React, { useMemo, useContext } from 'react';
-import { AxisScale, TickLabelProps } from '@visx/axis';
-import { AxisProps as VxAxisProps } from '@visx/axis/lib/axis/Axis';
-import { ScaleInput } from '@visx/scale';
-import DataContext from '../../context/DataContext';
+import React, { useMemo, useContext } from "react";
+import { AxisScale, TickLabelProps } from "@seygai/visx-axis";
+import { AxisProps as VxAxisProps } from "@seygai/visx-axis/lib/axis/Axis";
+import { ScaleInput } from "@seygai/visx-scale";
+import DataContext from "../../context/DataContext";
 
 export type BaseAxisProps<Scale extends AxisScale> = Omit<
   VxAxisProps<Scale>,
-  'scale' | 'orientation'
+  "scale" | "orientation"
 > & {
   /** Required axis orientation. */
-  orientation: NonNullable<VxAxisProps<Scale>['orientation']>;
+  orientation: NonNullable<VxAxisProps<Scale>["orientation"]>;
 } & {
   /** Rendered component which is passed VxAxisProps by BaseAxis after processing. */
   AxisComponent: React.FC<VxAxisProps<Scale>>;
@@ -23,15 +23,17 @@ export default function BaseAxis<Scale extends AxisScale>({
   AxisComponent,
   ...props
 }: BaseAxisProps<Scale>) {
-  const { theme, xScale, yScale, margin, width, height } = useContext(DataContext);
+  const { theme, xScale, yScale, margin, width, height } = useContext(
+    DataContext
+  );
   const { orientation } = props;
 
   const axisStyles = useMemo(
     () =>
-      orientation === 'left' || orientation === 'right'
+      orientation === "left" || orientation === "right"
         ? theme?.axisStyles?.y?.[orientation]
         : theme?.axisStyles?.x?.[orientation],
-    [theme, orientation],
+    [theme, orientation]
   );
 
   const tickLabelProps = useMemo<TickLabelProps<ScaleInput<Scale>> | undefined>(
@@ -43,31 +45,31 @@ export default function BaseAxis<Scale extends AxisScale>({
             ({
               ...axisStyles?.tickLabel,
               width:
-                orientation === 'left' || orientation === 'right'
+                orientation === "left" || orientation === "right"
                   ? margin?.[orientation]
                   : undefined,
               ...props.tickLabelProps?.(value, index, values),
             })
         : undefined,
-    [props.tickLabelProps, axisStyles, orientation, margin],
+    [props.tickLabelProps, axisStyles, orientation, margin]
   );
 
   const topOffset =
-    orientation === 'bottom'
+    orientation === "bottom"
       ? (height ?? 0) - (margin?.bottom ?? 0)
-      : orientation === 'top'
+      : orientation === "top"
       ? margin?.top ?? 0
       : 0;
   const leftOffset =
-    orientation === 'left'
+    orientation === "left"
       ? margin?.left ?? 0
-      : orientation === 'right'
+      : orientation === "right"
       ? (width ?? 0) - (margin?.right ?? 0)
       : 0;
 
-  const scale = (orientation === 'left' || orientation === 'right' ? yScale : xScale) as
-    | Scale
-    | undefined;
+  const scale = (orientation === "left" || orientation === "right"
+    ? yScale
+    : xScale) as Scale | undefined;
 
   return scale ? (
     <AxisComponent

@@ -1,8 +1,11 @@
-import { AxisScale } from '@visx/axis';
-import { getFirstItem, getSecondItem } from '@visx/shape/lib/util/accessors';
-import findNearestDatumY from './findNearestDatumY';
-import findNearestDatumX from './findNearestDatumX';
-import { BarStackDatum, NearestDatumArgs } from '../types';
+import { AxisScale } from "@seygai/visx-axis";
+import {
+  getFirstItem,
+  getSecondItem,
+} from "@seygai/visx-shape/lib/util/accessors";
+import findNearestDatumY from "./findNearestDatumY";
+import findNearestDatumX from "./findNearestDatumX";
+import { BarStackDatum, NearestDatumArgs } from "../types";
 
 /**
  * This is a wrapper around findNearestDatumX/Y for BarStack, accounting for a
@@ -15,12 +18,18 @@ export default function findNearestStackDatum<
   YScale extends AxisScale,
   Datum extends object
 >(
-  nearestDatumArgs: NearestDatumArgs<XScale, YScale, BarStackDatum<XScale, YScale>>,
+  nearestDatumArgs: NearestDatumArgs<
+    XScale,
+    YScale,
+    BarStackDatum<XScale, YScale>
+  >,
   seriesData: Datum[],
-  horizontal?: boolean,
+  horizontal?: boolean
 ) {
   const { xScale, yScale, point } = nearestDatumArgs;
-  const datum = (horizontal ? findNearestDatumY : findNearestDatumX)(nearestDatumArgs);
+  const datum = (horizontal ? findNearestDatumY : findNearestDatumX)(
+    nearestDatumArgs
+  );
   const seriesDatum = datum?.index == null ? null : seriesData[datum.index];
 
   return datum && seriesDatum && point

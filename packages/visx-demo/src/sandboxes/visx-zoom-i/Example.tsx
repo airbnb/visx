@@ -1,16 +1,16 @@
 /* eslint react/jsx-handler-names: "off" */
-import React, { useState } from 'react';
-import { interpolateRainbow } from 'd3-scale-chromatic';
-import { Zoom } from '@visx/zoom';
-import { localPoint } from '@visx/event';
-import { RectClipPath } from '@visx/clip-path';
+import React, { useState } from "react";
+import { interpolateRainbow } from "d3-scale-chromatic";
+import { Zoom } from "@seygai/visx-zoom";
+import { localPoint } from "@seygai/visx-event";
+import { RectClipPath } from "@seygai/visx-clip-path";
 import genPhyllotaxis, {
   GenPhyllotaxisFunction,
   PhyllotaxisPoint,
-} from '@visx/mock-data/lib/generators/genPhyllotaxis';
-import { scaleLinear } from '@visx/scale';
+} from "@seygai/visx-mock-data/lib/generators/genPhyllotaxis";
+import { scaleLinear } from "@seygai/visx-scale";
 
-const bg = '#0a0a0a';
+const bg = "#0a0a0a";
 const points = [...new Array(1000)];
 
 const colorScale = scaleLinear<number>({ range: [0, 1], domain: [0, 1000] });
@@ -33,7 +33,11 @@ export type ZoomIProps = {
 export default function ZoomI({ width, height }: ZoomIProps) {
   const [showMiniMap, setShowMiniMap] = useState<boolean>(true);
 
-  const generator: GenPhyllotaxisFunction = genPhyllotaxis({ radius: 10, width, height });
+  const generator: GenPhyllotaxisFunction = genPhyllotaxis({
+    radius: 10,
+    width,
+    height,
+  });
   const phyllotaxis: PhyllotaxisPoint[] = points.map((d, i) => generator(i));
 
   return (
@@ -47,12 +51,12 @@ export default function ZoomI({ width, height }: ZoomIProps) {
         scaleYMax={4}
         transformMatrix={initialTransform}
       >
-        {zoom => (
+        {(zoom) => (
           <div className="relative">
             <svg
               width={width}
               height={height}
-              style={{ cursor: zoom.isDragging ? 'grabbing' : 'grab' }}
+              style={{ cursor: zoom.isDragging ? "grabbing" : "grab" }}
             >
               <RectClipPath id="zoom-clip" width={width} height={height} />
               <rect width={width} height={height} rx={14} fill={bg} />
@@ -82,7 +86,7 @@ export default function ZoomI({ width, height }: ZoomIProps) {
                 onMouseLeave={() => {
                   if (zoom.isDragging) zoom.dragEnd();
                 }}
-                onDoubleClick={event => {
+                onDoubleClick={(event) => {
                   const point = localPoint(event) || { x: 0, y: 0 };
                   zoom.scale({ scaleX: 1.1, scaleY: 1.1, point });
                 }}
@@ -92,7 +96,9 @@ export default function ZoomI({ width, height }: ZoomIProps) {
                   clipPath="url(#zoom-clip)"
                   transform={`
                     scale(0.25)
-                    translate(${width * 4 - width - 60}, ${height * 4 - height - 60})
+                    translate(${width * 4 - width - 60}, ${height * 4 -
+                    height -
+                    60})
                   `}
                 >
                   <rect width={width} height={height} fill="#1a1a1a" />
@@ -133,7 +139,11 @@ export default function ZoomI({ width, height }: ZoomIProps) {
               >
                 -
               </button>
-              <button type="button" className="btn btn-lg" onClick={zoom.center}>
+              <button
+                type="button"
+                className="btn btn-lg"
+                onClick={zoom.center}
+              >
                 Center
               </button>
               <button type="button" className="btn btn-lg" onClick={zoom.reset}>
@@ -149,15 +159,17 @@ export default function ZoomI({ width, height }: ZoomIProps) {
                 className="btn btn-lg"
                 onClick={() => setShowMiniMap(!showMiniMap)}
               >
-                {showMiniMap ? 'Hide' : 'Show'} Mini Map
+                {showMiniMap ? "Hide" : "Show"} Mini Map
               </button>
             </div>
           </div>
         )}
       </Zoom>
       <div className="description">
-        Based on Mike Bostock&apos;s{' '}
-        <a href="https://bl.ocks.org/mbostock/4e3925cdc804db257a86fdef3a032a45">Pan & Zoom III</a>
+        Based on Mike Bostock&apos;s{" "}
+        <a href="https://bl.ocks.org/mbostock/4e3925cdc804db257a86fdef3a032a45">
+          Pan & Zoom III
+        </a>
       </div>
       <style jsx>{`
         .btn {

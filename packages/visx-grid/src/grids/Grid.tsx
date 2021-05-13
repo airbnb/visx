@@ -1,48 +1,54 @@
-import React from 'react';
-import cx from 'classnames';
-import { Group } from '@visx/group';
-import { ScaleInput } from '@visx/scale';
-import GridRows, { AllGridRowsProps } from './GridRows';
-import GridColumns, { AllGridColumnsProps } from './GridColumns';
-import { CommonGridProps, GridScale } from '../types';
+import React from "react";
+import cx from "classnames";
+import { Group } from "@seygai/visx-group";
+import { ScaleInput } from "@seygai/visx-scale";
+import GridRows, { AllGridRowsProps } from "./GridRows";
+import GridColumns, { AllGridColumnsProps } from "./GridColumns";
+import { CommonGridProps, GridScale } from "../types";
 
 type CommonPropsToOmit =
-  | 'scale'
-  | 'offset'
-  | 'numTicks'
-  | 'lineStyle'
-  | 'tickValues'
-  | 'from'
-  | 'to'
-  | 'children';
+  | "scale"
+  | "offset"
+  | "numTicks"
+  | "lineStyle"
+  | "tickValues"
+  | "from"
+  | "to"
+  | "children";
 
-export type GridProps<XScale extends GridScale, YScale extends GridScale> = Omit<
+export type GridProps<
+  XScale extends GridScale,
+  YScale extends GridScale
+> = Omit<
   AllGridRowsProps<YScale> & AllGridColumnsProps<XScale>,
   CommonPropsToOmit
 > & {
-  /** `@visx/scale` or `d3-scale` object used to map from ScaleInput to x-coordinates (GridColumns). */
+  /** `@seygai/visx-scale` or `d3-scale` object used to map from ScaleInput to x-coordinates (GridColumns). */
   xScale: XScale;
-  /** `@visx/scale` or `d3-scale` object used to map from ScaleInput to y-coordinates (GridRows). */
+  /** `@seygai/visx-scale` or `d3-scale` object used to map from ScaleInput to y-coordinates (GridRows). */
   yScale: YScale;
   /** Pixel offset to apply as an x-translation to each GridColumns line. */
-  xOffset?: CommonGridProps['offset'];
+  xOffset?: CommonGridProps["offset"];
   /** Pixel offset to apply as an y-translation to each GridRows line. */
-  yOffset?: CommonGridProps['offset'];
+  yOffset?: CommonGridProps["offset"];
   /** Approximate number of row gridlines. */
-  numTicksRows?: CommonGridProps['numTicks'];
+  numTicksRows?: CommonGridProps["numTicks"];
   /** Approximate number of column gridlines. */
-  numTicksColumns?: CommonGridProps['numTicks'];
+  numTicksColumns?: CommonGridProps["numTicks"];
   /** Style object to apply to GridRows. */
-  rowLineStyle?: CommonGridProps['lineStyle'];
+  rowLineStyle?: CommonGridProps["lineStyle"];
   /** Style object to apply to GridColumns. */
-  columnLineStyle?: CommonGridProps['lineStyle'];
+  columnLineStyle?: CommonGridProps["lineStyle"];
   /** Exact values to be used for GridRows lines, passed to yScale. Use this if you need precise control over GridRows values.  */
   rowTickValues?: ScaleInput<YScale>[];
   /** Exact values to be used for GridColumns lines, passed to xScale. Use this if you need precise control over GridColumns values.  */
   columnTickValues?: ScaleInput<XScale>[];
 };
 
-export default function Grid<XScale extends GridScale, YScale extends GridScale>({
+export default function Grid<
+  XScale extends GridScale,
+  YScale extends GridScale
+>({
   top,
   left,
   xScale,
@@ -64,7 +70,7 @@ export default function Grid<XScale extends GridScale, YScale extends GridScale>
   ...restProps
 }: GridProps<XScale, YScale>) {
   return (
-    <Group className={cx('visx-grid', className)} top={top} left={left}>
+    <Group className={cx("visx-grid", className)} top={top} left={left}>
       <GridRows
         className={className}
         scale={yScale}

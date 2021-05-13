@@ -1,8 +1,8 @@
-import React from 'react';
-import cx from 'classnames';
-import { Point } from '@visx/point';
-import { Group } from '@visx/group';
-import { LinePath } from '@visx/shape';
+import React from "react";
+import cx from "classnames";
+import { Point } from "@seygai/visx-point";
+import { Group } from "@seygai/visx-group";
+import { LinePath } from "@seygai/visx-shape";
 
 interface SimplePoint {
   x: number;
@@ -41,7 +41,7 @@ export type LinePathAnnotationProps = {
   /**
    * The label's textAnchor.
    */
-  labelAnchor?: 'start' | 'middle' | 'end';
+  labelAnchor?: "start" | "middle" | "end";
   /**
    * The x-coordinate shift to the label.
    */
@@ -76,27 +76,27 @@ export default function LinePathAnnotation({
   top = 0,
   left = 0,
   points = [],
-  stroke = 'black',
+  stroke = "black",
   strokeWidth = 1,
   className,
   label,
-  labelAnchor = 'middle',
+  labelAnchor = "middle",
   labelDx = 0,
   labelDy = 0,
   labelFill,
   labelFontSize = 10,
-  labelStroke = 'white',
+  labelStroke = "white",
   labelStrokeWidth = 3,
-  labelPaintOrder = 'stroke',
+  labelPaintOrder = "stroke",
 }: LinePathAnnotationProps) {
   const endPoint = points[points.length - 1];
   return (
     <Group className="visx-line-path-annotation-group" top={top} left={left}>
       <LinePath<Point | SimplePoint>
-        className={cx('visx-line-path-annotation', className)}
+        className={cx("visx-line-path-annotation", className)}
         data={points}
-        x={p => p.x}
-        y={p => p.y}
+        x={(p) => p.x}
+        y={(p) => p.y}
         stroke={stroke}
         strokeWidth={strokeWidth}
       />

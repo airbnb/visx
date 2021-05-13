@@ -1,5 +1,5 @@
 {
-  "name": "@visx/root",
+  "name": "@seygai/visx-root",
   "license": "MIT",
   "version": "0.0.0",
   "description": "Low-level visualization components",
@@ -31,8 +31,8 @@
   "private": true,
   "scripts": {
     "babel": "yarn run babel:cjs && yarn run babel:esm",
-    "babel:cjs": "nimbus babel --clean --workspaces=\"@visx/!(demo)\"",
-    "babel:esm": "nimbus babel --clean --workspaces=\"@visx/!(demo)\" --esm",
+    "babel:cjs": "nimbus babel --clean --workspaces=\"@seygai/visx-!(demo)\"",
+    "babel:esm": "nimbus babel --clean --workspaces=\"@seygai/visx-!(demo)\" --esm",
     "build": "yarn run babel && yarn run type",
     "build:sizes": "yarn run ts ./scripts/computeBuildSizes.ts",
     "build:release": "yarn run ts ./scripts/performRelease/index.ts",

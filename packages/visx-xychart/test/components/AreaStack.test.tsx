@@ -1,7 +1,7 @@
-import React, { useContext, useEffect } from 'react';
-import { mount } from 'enzyme';
-import { animated } from 'react-spring';
-import { Area, LinePath } from '@visx/shape';
+import React, { useContext, useEffect } from "react";
+import { mount } from "enzyme";
+import { animated } from "react-spring";
+import { Area, LinePath } from "@seygai/visx-shape";
 import {
   AreaStack,
   AreaSeries,
@@ -9,14 +9,14 @@ import {
   DataContext,
   useEventEmitter,
   AnimatedAreaStack,
-} from '../../src';
-import setupTooltipTest from '../mocks/setupTooltipTest';
-import { XYCHART_EVENT_SOURCE } from '../../src/constants';
+} from "../../src";
+import setupTooltipTest from "../mocks/setupTooltipTest";
+import { XYCHART_EVENT_SOURCE } from "../../src/constants";
 
 const providerProps = {
   initialDimensions: { width: 100, height: 100 },
-  xScale: { type: 'linear' },
-  yScale: { type: 'linear' },
+  xScale: { type: "linear" },
+  yScale: { type: "linear" },
 } as const;
 
 const accessors = {
@@ -25,7 +25,7 @@ const accessors = {
 };
 
 const series1 = {
-  key: 'area1',
+  key: "area1",
   data: [
     { x: 10, y: 5 },
     { x: 7, y: 5 },
@@ -34,7 +34,7 @@ const series1 = {
 };
 
 const series2 = {
-  key: 'area2',
+  key: "area2",
   data: [
     { x: 10, y: 5 },
     { x: 7, y: 20 },
@@ -42,12 +42,12 @@ const series2 = {
   ...accessors,
 };
 
-describe('<AreaStack />', () => {
-  it('should be defined', () => {
+describe("<AreaStack />", () => {
+  it("should be defined", () => {
     expect(AreaSeries).toBeDefined();
   });
 
-  it('should render Areas', () => {
+  it("should render Areas", () => {
     const wrapper = mount(
       <DataProvider {...providerProps}>
         <svg>
@@ -56,13 +56,13 @@ describe('<AreaStack />', () => {
             <AreaSeries dataKey={series2.key} {...series2} />
           </AreaStack>
         </svg>
-      </DataProvider>,
+      </DataProvider>
     );
     // @ts-ignore produces a union type that is too complex to represent.ts(2590)
     expect(wrapper.find(Area)).toHaveLength(2);
   });
 
-  it('should render LinePaths if renderLine=true', () => {
+  it("should render LinePaths if renderLine=true", () => {
     const wrapper = mount(
       <DataProvider {...providerProps}>
         <svg>
@@ -71,13 +71,13 @@ describe('<AreaStack />', () => {
             <AreaSeries dataKey={series2.key} {...series2} />
           </AreaStack>
         </svg>
-      </DataProvider>,
+      </DataProvider>
     );
     // @ts-ignore produces a union type that is too complex to represent.ts(2590)
     expect(wrapper.find(LinePath)).toHaveLength(2);
   });
 
-  it('should render Glyphs if focus/blur handlers are set', () => {
+  it("should render Glyphs if focus/blur handlers are set", () => {
     const wrapper = mount(
       <DataProvider {...providerProps}>
         <svg>
@@ -85,12 +85,12 @@ describe('<AreaStack />', () => {
             <AreaSeries dataKey={series1.key} {...series1} />
           </AreaStack>
         </svg>
-      </DataProvider>,
+      </DataProvider>
     );
-    expect(wrapper.find('circle')).toHaveLength(series1.data.length);
+    expect(wrapper.find("circle")).toHaveLength(series1.data.length);
   });
 
-  it('should update scale domain to include stack sums including negative values', () => {
+  it("should update scale domain to include stack sums including negative values", () => {
     expect.hasAssertions();
 
     function Assertion() {
@@ -117,11 +117,11 @@ describe('<AreaStack />', () => {
           </AreaStack>
         </svg>
         <Assertion />
-      </DataProvider>,
+      </DataProvider>
     );
   });
 
-  it('should invoke showTooltip/hideTooltip on pointermove/pointerout', () => {
+  it("should invoke showTooltip/hideTooltip on pointermove/pointerout", () => {
     expect.assertions(2);
 
     const showTooltip = jest.fn();
@@ -135,11 +135,19 @@ describe('<AreaStack />', () => {
         // checking for yScale ensures stack data is registered and stacks are rendered
         if (emit && yScale) {
           // @ts-ignore not a React.MouseEvent
-          emit('pointermove', new MouseEvent('pointermove'), XYCHART_EVENT_SOURCE);
+          emit(
+            "pointermove",
+            new MouseEvent("pointermove"),
+            XYCHART_EVENT_SOURCE
+          );
           expect(showTooltip).toHaveBeenCalledTimes(2); // one per key
 
           // @ts-ignore not a React.MouseEvent
-          emit('pointerout', new MouseEvent('pointerout'), XYCHART_EVENT_SOURCE);
+          emit(
+            "pointerout",
+            new MouseEvent("pointerout"),
+            XYCHART_EVENT_SOURCE
+          );
           expect(showTooltip).toHaveBeenCalled();
         }
       });
@@ -155,16 +163,16 @@ describe('<AreaStack />', () => {
         </AreaStack>
         <EventEmitter />
       </>,
-      { showTooltip, hideTooltip },
+      { showTooltip, hideTooltip }
     );
   });
 });
 
-describe('<AnimatedAreaStack />', () => {
-  it('should be defined', () => {
+describe("<AnimatedAreaStack />", () => {
+  it("should be defined", () => {
     expect(AnimatedAreaStack).toBeDefined();
   });
-  it('should render an animated.path', () => {
+  it("should render an animated.path", () => {
     const wrapper = mount(
       <DataProvider {...providerProps}>
         <svg>
@@ -173,7 +181,7 @@ describe('<AnimatedAreaStack />', () => {
             <AreaSeries dataKey={series2.key} {...series2} />
           </AnimatedAreaStack>
         </svg>
-      </DataProvider>,
+      </DataProvider>
     );
     expect(wrapper.find(animated.path)).toHaveLength(2);
   });

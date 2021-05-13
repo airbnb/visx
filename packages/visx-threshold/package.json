@@ -1,5 +1,5 @@
 {
-  "name": "@visx/threshold",
+  "name": "@seygai/visx-threshold",
   "version": "1.8.0",
   "description": "visx threshold",
   "sideEffects": false,
@@ -26,8 +26,8 @@
   "dependencies": {
     "@types/classnames": "^2.2.9",
     "@types/react": "*",
-    "@visx/clip-path": "1.7.0",
-    "@visx/shape": "1.8.0",
+    "@seygai/visx-clip-path": "1.7.0",
+    "@seygai/visx-shape": "1.8.0",
     "classnames": "^2.2.5",
     "prop-types": "^15.5.10"
   },

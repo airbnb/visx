@@ -1,4 +1,4 @@
-import { D3Scale, PickD3Scale } from '@visx/scale';
+import { D3Scale, PickD3Scale } from "@seygai/visx-scale";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type $TSFIXME = any;
@@ -6,7 +6,7 @@ export type $TSFIXME = any;
 export type DatumObject = Record<string | number, $TSFIXME>;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type AnyScaleBand = PickD3Scale<'band', any, any>;
+export type AnyScaleBand = PickD3Scale<"band", any, any>;
 
 /** A catch-all type for scales that returns number */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -1,5 +1,5 @@
 {
-  "name": "@visx/legend",
+  "name": "@seygai/visx-legend",
   "version": "1.7.0",
   "description": "visx legend",
   "sideEffects": false,
@@ -36,8 +36,8 @@
   "dependencies": {
     "@types/classnames": "^2.2.9",
     "@types/react": "*",
-    "@visx/group": "1.7.0",
-    "@visx/scale": "1.7.0",
+    "@seygai/visx-group": "1.7.0",
+    "@seygai/visx-scale": "1.7.0",
     "classnames": "^2.2.5",
     "prop-types": "^15.5.10"
   }

@@ -1,14 +1,17 @@
-import React, { useContext } from 'react';
-import { PatternLines } from '@visx/pattern';
-import { DataContext } from '@visx/xychart';
+import React, { useContext } from "react";
+import { PatternLines } from "@seygai/visx-pattern";
+import { DataContext } from "@seygai/visx-xychart";
 
-const patternId = 'xy-chart-pattern';
+const patternId = "xy-chart-pattern";
 
 export default function CustomChartBackground() {
-  const { theme, margin, width, height, innerWidth, innerHeight } = useContext(DataContext);
+  const { theme, margin, width, height, innerWidth, innerHeight } = useContext(
+    DataContext
+  );
 
   // early return values not available in context
-  if (width == null || height == null || margin == null || theme == null) return null;
+  if (width == null || height == null || margin == null || theme == null)
+    return null;
 
   return (
     <>
@@ -16,11 +19,17 @@ export default function CustomChartBackground() {
         id={patternId}
         width={16}
         height={16}
-        orientation={['diagonal']}
+        orientation={["diagonal"]}
         stroke={theme?.gridStyles?.stroke}
         strokeWidth={1}
       />
-      <rect x={0} y={0} width={width} height={height} fill={theme?.backgroundColor ?? '#fff'} />
+      <rect
+        x={0}
+        y={0}
+        width={width}
+        height={height}
+        fill={theme?.backgroundColor ?? "#fff"}
+      />
       <rect
         x={margin.left}
         y={margin.top}

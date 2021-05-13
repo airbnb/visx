@@ -1,15 +1,23 @@
 /* eslint-disable @typescript-eslint/unbound-method */
-import React from 'react';
-import cx from 'classnames';
-import { Group } from '@visx/group';
-import { treemap as d3treemap, HierarchyRectangularNode, HierarchyNode } from 'd3-hierarchy';
-import HierarchyDefaultRectNode from '../HierarchyDefaultRectNode';
-import setNumberOrNumberAccessor from '../utils/setNumOrNumAccessor';
-import { TileMethod } from '../types';
+import React from "react";
+import cx from "classnames";
+import { Group } from "@seygai/visx-group";
+import {
+  treemap as d3treemap,
+  HierarchyRectangularNode,
+  HierarchyNode,
+} from "d3-hierarchy";
+import HierarchyDefaultRectNode from "../HierarchyDefaultRectNode";
+import setNumberOrNumberAccessor from "../utils/setNumOrNumAccessor";
+import { TileMethod } from "../types";
 
-export type NodeComponentProps<Datum> = { node: HierarchyRectangularNode<Datum> };
+export type NodeComponentProps<Datum> = {
+  node: HierarchyRectangularNode<Datum>;
+};
 
-type NumerOrNumberAccessor<Datum> = number | ((node: HierarchyRectangularNode<Datum>) => number);
+type NumerOrNumberAccessor<Datum> =
+  | number
+  | ((node: HierarchyRectangularNode<Datum>) => number);
 
 export type TreemapProps<Datum> = {
   /** The root hierarchy node from which to derive the treemap layout. */
@@ -74,11 +82,15 @@ export default function Treemap<Datum>({
   if (size) treemap.size(size);
   if (round) treemap.round(round);
   if (padding) setNumberOrNumberAccessor(treemap.padding, padding);
-  if (paddingInner) setNumberOrNumberAccessor(treemap.paddingInner, paddingInner);
-  if (paddingOuter) setNumberOrNumberAccessor(treemap.paddingOuter, paddingOuter);
+  if (paddingInner)
+    setNumberOrNumberAccessor(treemap.paddingInner, paddingInner);
+  if (paddingOuter)
+    setNumberOrNumberAccessor(treemap.paddingOuter, paddingOuter);
   if (paddingTop) setNumberOrNumberAccessor(treemap.paddingTop, paddingTop);
-  if (paddingRight) setNumberOrNumberAccessor(treemap.paddingRight, paddingRight);
-  if (paddingBottom) setNumberOrNumberAccessor(treemap.paddingBottom, paddingBottom);
+  if (paddingRight)
+    setNumberOrNumberAccessor(treemap.paddingRight, paddingRight);
+  if (paddingBottom)
+    setNumberOrNumberAccessor(treemap.paddingBottom, paddingBottom);
   if (paddingLeft) setNumberOrNumberAccessor(treemap.paddingLeft, paddingLeft);
 
   const data = treemap(root);
@@ -86,11 +98,13 @@ export default function Treemap<Datum>({
   if (children) return <>{children(data)}</>;
 
   return (
-    <Group top={top} left={left} className={cx('visx-treemap', className)}>
+    <Group top={top} left={left} className={cx("visx-treemap", className)}>
       {nodeComponent &&
         data.descendants().map((node, i) => {
           return (
-            <Group key={`treemap-node-${i}`}>{React.createElement(nodeComponent, { node })}</Group>
+            <Group key={`treemap-node-${i}`}>
+              {React.createElement(nodeComponent, { node })}
+            </Group>
           );
         })}
     </Group>

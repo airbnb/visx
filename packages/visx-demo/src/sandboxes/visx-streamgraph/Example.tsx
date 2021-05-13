@@ -3,21 +3,21 @@
  * Inspired by Mike Bostock's Streamgraph & Lee Byron’s test data generator:
  * https://bl.ocks.org/mbostock/4060954
  */
-import React from 'react';
-import { Stack } from '@visx/shape';
-import { PatternCircles, PatternWaves } from '@visx/pattern';
-import { scaleLinear, scaleOrdinal } from '@visx/scale';
-import { transpose } from 'd3-array';
-import { animated, useSpring } from 'react-spring';
+import React from "react";
+import { Stack } from "@seygai/visx-shape";
+import { PatternCircles, PatternWaves } from "@seygai/visx-pattern";
+import { scaleLinear, scaleOrdinal } from "@seygai/visx-scale";
+import { transpose } from "d3-array";
+import { animated, useSpring } from "react-spring";
 
-import useForceUpdate from './useForceUpdate';
-import generateData from './generateData';
+import useForceUpdate from "./useForceUpdate";
+import generateData from "./generateData";
 
 // constants
 const NUM_LAYERS = 20;
 const SAMPLES_PER_LAYER = 200;
 const BUMPS_PER_LAYER = 10;
-export const BACKGROUND = '#ffdede';
+export const BACKGROUND = "#ffdede";
 
 // utils
 const range = (n: number) => Array.from(new Array(n), (_, i) => i);
@@ -33,11 +33,27 @@ const yScale = scaleLinear<number>({
 });
 const colorScale = scaleOrdinal<number, string>({
   domain: keys,
-  range: ['#ffc409', '#f14702', '#262d97', 'white', '#036ecd', '#9ecadd', '#51666e'],
+  range: [
+    "#ffc409",
+    "#f14702",
+    "#262d97",
+    "white",
+    "#036ecd",
+    "#9ecadd",
+    "#51666e",
+  ],
 });
 const patternScale = scaleOrdinal<number, string>({
   domain: keys,
-  range: ['mustard', 'cherry', 'navy', 'circles', 'circles', 'circles', 'circles'],
+  range: [
+    "mustard",
+    "cherry",
+    "navy",
+    "circles",
+    "circles",
+    "circles",
+    "circles",
+  ],
 });
 
 // accessors
@@ -51,7 +67,11 @@ export type StreamGraphProps = {
   animate?: boolean;
 };
 
-export default function Streamgraph({ width, height, animate = true }: StreamGraphProps) {
+export default function Streamgraph({
+  width,
+  height,
+  animate = true,
+}: StreamGraphProps) {
   const forceUpdate = useForceUpdate();
   const handlePress = () => forceUpdate();
 
@@ -62,12 +82,19 @@ export default function Streamgraph({ width, height, animate = true }: StreamGra
 
   // generate layers in render to update on touch
   const layers = transpose<number>(
-    keys.map(() => generateData(SAMPLES_PER_LAYER, BUMPS_PER_LAYER)),
+    keys.map(() => generateData(SAMPLES_PER_LAYER, BUMPS_PER_LAYER))
   );
 
   return (
     <svg width={width} height={height}>
-      <PatternCircles id="mustard" height={40} width={40} radius={5} fill="#036ecf" complement />
+      <PatternCircles
+        id="mustard"
+        height={40}
+        width={40}
+        radius={5}
+        fill="#036ecf"
+        complement
+      />
       <PatternWaves
         id="cherry"
         height={12}
@@ -76,7 +103,14 @@ export default function Streamgraph({ width, height, animate = true }: StreamGra
         stroke="#232493"
         strokeWidth={1}
       />
-      <PatternCircles id="navy" height={60} width={60} radius={10} fill="white" complement />
+      <PatternCircles
+        id="navy"
+        height={60}
+        width={60}
+        radius={10}
+        fill="white"
+        complement
+      />
       <PatternCircles
         complement
         id="circles"
@@ -87,7 +121,14 @@ export default function Streamgraph({ width, height, animate = true }: StreamGra
       />
 
       <g onClick={handlePress} onTouchStart={handlePress}>
-        <rect x={0} y={0} width={width} height={height} fill={BACKGROUND} rx={14} />
+        <rect
+          x={0}
+          y={0}
+          width={width}
+          height={height}
+          fill={BACKGROUND}
+          rx={14}
+        />
         <Stack<number[], number>
           data={layers}
           keys={keys}
@@ -98,15 +139,20 @@ export default function Streamgraph({ width, height, animate = true }: StreamGra
           y1={getY1}
         >
           {({ stacks, path }) =>
-            stacks.map(stack => {
+            stacks.map((stack) => {
               // Alternatively use renderprops <Spring to={{ d }}>{tweened => ...}</Spring>
-              const tweened = animate ? useSpring({ d: path(stack) }) : { d: path(stack) };
+              const tweened = animate
+                ? useSpring({ d: path(stack) })
+                : { d: path(stack) };
               const color = colorScale(stack.key);
               const pattern = patternScale(stack.key);
               return (
                 <g key={`series-${stack.key}`}>
-                  <animated.path d={tweened.d || ''} fill={color} />
-                  <animated.path d={tweened.d || ''} fill={`url(#${pattern})`} />
+                  <animated.path d={tweened.d || ""} fill={color} />
+                  <animated.path
+                    d={tweened.d || ""}
+                    fill={`url(#${pattern})`}
+                  />
                 </g>
               );
             })

@@ -1,8 +1,8 @@
-import React from 'react';
-import cx from 'classnames';
-import { Group } from '@visx/group';
-import { ScaleInput } from '@visx/scale';
-import Bar from './Bar';
+import React from "react";
+import cx from "classnames";
+import { Group } from "@seygai/visx-group";
+import { ScaleInput } from "@seygai/visx-scale";
+import Bar from "./Bar";
 import {
   PositionScale,
   AnyScaleBand,
@@ -12,8 +12,8 @@ import {
   BaseBarGroupProps,
   GroupKey,
   Accessor,
-} from '../types';
-import getBandwidth from '../util/getBandwidth';
+} from "../types";
+import getBandwidth from "../util/getBandwidth";
 
 export type BarGroupHorizontalProps<
   Datum extends DatumObject,
@@ -25,11 +25,11 @@ export type BarGroupHorizontalProps<
   x?: (barValue: number) => number;
   /** Returns the value mapped to the y0 (position of group) of a bar */
   y0: Accessor<Datum, ScaleInput<Y0Scale>>;
-  /** @visx/scale or d3-scale that takes a key value (Datum[key]) and maps it to an x axis position (width of bar). */
+  /** @seygai/visx-scale or d3-scale that takes a key value (Datum[key]) and maps it to an x axis position (width of bar). */
   xScale: PositionScale;
-  /** @visx/scale or d3-scale that takes a y0 value (position of group) and maps it to a y axis position. */
+  /** @seygai/visx-scale or d3-scale that takes a y0 value (position of group) and maps it to a y axis position. */
   y0Scale: Y0Scale;
-  /** @visx/scale or d3-scale that takes a group key and maps it to an y axis position (within a group). */
+  /** @seygai/visx-scale or d3-scale that takes a group key and maps it to an y axis position (within a group). */
   y1Scale: Y1Scale;
   /** Total width of the x-axis. */
   width: number;
@@ -57,7 +57,10 @@ export default function BarGroupHorizontalComponent<
   width,
   children,
   ...restProps
-}: AddSVGProps<BarGroupHorizontalProps<Datum, Key, Y0Scale, Y1Scale>, SVGRectElement>) {
+}: AddSVGProps<
+  BarGroupHorizontalProps<Datum, Key, Y0Scale, Y1Scale>,
+  SVGRectElement
+>) {
   const barHeight = getBandwidth(y1Scale);
 
   const barGroups: BarGroupHorizontal<Key>[] = data.map((group, i) => ({
@@ -82,10 +85,17 @@ export default function BarGroupHorizontalComponent<
   if (children) return <>{children(barGroups)}</>;
 
   return (
-    <Group className={cx('visx-bar-group-horizontal', className)} top={top} left={left}>
-      {barGroups.map(barGroup => (
-        <Group key={`bar-group-${barGroup.index}-${barGroup.y0}`} top={barGroup.y0}>
-          {barGroup.bars.map(bar => (
+    <Group
+      className={cx("visx-bar-group-horizontal", className)}
+      top={top}
+      left={left}
+    >
+      {barGroups.map((barGroup) => (
+        <Group
+          key={`bar-group-${barGroup.index}-${barGroup.y0}`}
+          top={barGroup.y0}
+        >
+          {barGroup.bars.map((bar) => (
             <Bar
               key={`bar-group-bar-${barGroup.index}-${bar.index}-${bar.value}-${bar.key}`}
               x={bar.x}

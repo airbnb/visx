@@ -1,15 +1,17 @@
-import React from 'react';
-import Link from 'next/link';
-import ParentSize from '@visx/responsive/lib/components/ParentSize';
-import { WidthAndHeight } from '../types';
+import React from "react";
+import Link from "next/link";
+import ParentSize from "@seygai/visx-responsive/lib/components/ParentSize";
+import { WidthAndHeight } from "../types";
 
 type Props<ExampleProps extends WidthAndHeight> = {
   description?: string;
   detailsHeight?: number;
   detailsStyles?: React.CSSProperties;
-  exampleRenderer: React.ComponentClass<ExampleProps> | React.FunctionComponent<ExampleProps>;
-  exampleProps?: Omit<ExampleProps, 'width' | 'height'> &
-    Partial<Pick<ExampleProps, 'width' | 'height'>>;
+  exampleRenderer:
+    | React.ComponentClass<ExampleProps>
+    | React.FunctionComponent<ExampleProps>;
+  exampleProps?: Omit<ExampleProps, "width" | "height"> &
+    Partial<Pick<ExampleProps, "width" | "height">>;
   exampleUrl?: string;
   tileStyles?: React.CSSProperties;
   title?: string;
@@ -54,7 +56,7 @@ export default function GalleryTile<ExampleProps extends WidthAndHeight>({
               )}
             </div>
           )}
-        </div>,
+        </div>
       )}
       <style jsx>{`
         h3 {

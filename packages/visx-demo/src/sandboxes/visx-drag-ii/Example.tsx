@@ -1,8 +1,8 @@
-import React, { useCallback, useState } from 'react';
-import { LinePath } from '@visx/shape';
-import { useDrag } from '@visx/drag';
-import { curveBasis } from '@visx/curve';
-import { LinearGradient } from '@visx/gradient';
+import React, { useCallback, useState } from "react";
+import { LinePath } from "@seygai/visx-shape";
+import { useDrag } from "@seygai/visx-drag";
+import { curveBasis } from "@seygai/visx-curve";
+import { LinearGradient } from "@seygai/visx-gradient";
 
 type Line = { x: number; y: number }[];
 type Lines = Line[];
@@ -16,33 +16,48 @@ export type DragIIProps = {
 export default function DragII({ data = [], width, height }: DragIIProps) {
   const [lines, setLines] = useState<Lines>(data);
   const onDragStart = useCallback(
-    currDrag => {
+    (currDrag) => {
       // add the new line with the starting point
-      setLines(currLines => [...currLines, [{ x: currDrag.x, y: currDrag.y }]]);
+      setLines((currLines) => [
+        ...currLines,
+        [{ x: currDrag.x, y: currDrag.y }],
+      ]);
     },
-    [setLines],
+    [setLines]
   );
   const onDragMove = useCallback(
-    currDrag => {
+    (currDrag) => {
       // add the new point to the current line
-      setLines(currLines => {
+      setLines((currLines) => {
         const nextLines = [...currLines];
-        const newPoint = { x: currDrag.x + currDrag.dx, y: currDrag.y + currDrag.dy };
+        const newPoint = {
+          x: currDrag.x + currDrag.dx,
+          y: currDrag.y + currDrag.dy,
+        };
         const lastIndex = nextLines.length - 1;
         nextLines[lastIndex] = [...(nextLines[lastIndex] || []), newPoint];
         return nextLines;
       });
     },
-    [setLines],
+    [setLines]
   );
-  const { x = 0, y = 0, dx, dy, isDragging, dragStart, dragEnd, dragMove } = useDrag({
+  const {
+    x = 0,
+    y = 0,
+    dx,
+    dy,
+    isDragging,
+    dragStart,
+    dragEnd,
+    dragMove,
+  } = useDrag({
     onDragStart,
     onDragMove,
     resetOnStart: true,
   });
 
   return width < 10 ? null : (
-    <div className="DragII" style={{ touchAction: 'none' }}>
+    <div className="DragII" style={{ touchAction: "none" }}>
       <svg width={width} height={height}>
         <LinearGradient id="stroke" from="#ff614e" to="#ffdc64" />
         <rect fill="#04002b" width={width} height={height} rx={14} />
@@ -54,8 +69,8 @@ export default function DragII({ data = [], width, height }: DragIIProps) {
             strokeWidth={3}
             data={line}
             curve={curveBasis}
-            x={d => d.x}
-            y={d => d.y}
+            x={(d) => d.x}
+            y={(d) => d.y}
           />
         ))}
 
@@ -81,7 +96,14 @@ export default function DragII({ data = [], width, height }: DragIIProps) {
                 y={y + dy - 4}
                 pointerEvents="none"
               />
-              <circle cx={x} cy={y} r={4} fill="transparent" stroke="white" pointerEvents="none" />
+              <circle
+                cx={x}
+                cy={y}
+                r={4}
+                fill="transparent"
+                stroke="white"
+                pointerEvents="none"
+              />
             </g>
           )}
           {/* create the drawing area */}
@@ -100,8 +122,10 @@ export default function DragII({ data = [], width, height }: DragIIProps) {
       </svg>
       <div className="deets">
         <div>
-          Based on Mike Bostock's{' '}
-          <a href="https://bl.ocks.org/mbostock/f705fc55e6f26df29354">Line Drawing</a>
+          Based on Mike Bostock's{" "}
+          <a href="https://bl.ocks.org/mbostock/f705fc55e6f26df29354">
+            Line Drawing
+          </a>
         </div>
       </div>
 

@@ -30,7 +30,7 @@ import {
   AnnotationLineSubject,
   Tooltip,
   XYChart,
-} from '@visx/xychart';
+} from "@seygai/visx-xychart";
 
 export default function getAnimatedOrUnanimatedComponents(animated?: boolean) {
   return animated

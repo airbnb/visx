@@ -1,11 +1,11 @@
-import { AxisScale } from '@visx/axis';
-import React, { useMemo } from 'react';
-import { useTransition, animated, interpolate } from 'react-spring';
-import getScaleBaseline from '../../../utils/getScaleBaseline';
-import { GlyphProps, GlyphsProps } from '../../../types';
-import { cleanColor, colorHasUrl } from '../../../utils/cleanColorString';
+import { AxisScale } from "@seygai/visx-axis";
+import React, { useMemo } from "react";
+import { useTransition, animated, interpolate } from "react-spring";
+import getScaleBaseline from "../../../utils/getScaleBaseline";
+import { GlyphProps, GlyphsProps } from "../../../types";
+import { cleanColor, colorHasUrl } from "../../../utils/cleanColorString";
 
-type ConfigKeys = 'enter' | 'update' | 'from' | 'leave';
+type ConfigKeys = "enter" | "update" | "from" | "leave";
 
 /** Memoized useTransition config */
 export function useAnimatedGlyphsConfig<
@@ -40,10 +40,20 @@ export function useAnimatedGlyphsConfig<
         color: cleanColor(color),
         opacity: 0,
       }),
-      enter: ({ x, y, color }) => ({ x, y, color: cleanColor(color), opacity: 1 }),
-      update: ({ x, y, color }) => ({ x, y, color: cleanColor(color), opacity: 1 }),
+      enter: ({ x, y, color }) => ({
+        x,
+        y,
+        color: cleanColor(color),
+        opacity: 1,
+      }),
+      update: ({ x, y, color }) => ({
+        x,
+        y,
+        color: cleanColor(color),
+        opacity: 1,
+      }),
     }),
-    [xScaleBaseline, yScaleBaseline, horizontal],
+    [xScaleBaseline, yScaleBaseline, horizontal]
   );
 }
 
@@ -68,8 +78,8 @@ export default function AnimatedGlyphs<
 } & GlyphsProps<XScale, YScale, Datum>) {
   const animatedGlyphs = useTransition(
     glyphs,
-    glyph => glyph.key,
-    useAnimatedGlyphsConfig({ xScale, yScale, horizontal }),
+    (glyph) => glyph.key,
+    useAnimatedGlyphsConfig({ xScale, yScale, horizontal })
   );
 
   return (
@@ -77,11 +87,14 @@ export default function AnimatedGlyphs<
     <>
       {animatedGlyphs.map((
         // @ts-ignore x/y aren't in react-spring's CSSProperties
-        { item, key, props: { x, y, color, opacity } },
+        { item, key, props: { x, y, color, opacity } }
       ) => (
         <animated.g
           key={key}
-          transform={interpolate([x, y], (xVal, yVal) => `translate(${xVal}, ${yVal})`)}
+          transform={interpolate(
+            [x, y],
+            (xVal, yVal) => `translate(${xVal}, ${yVal})`
+          )}
           color={color}
           opacity={opacity}
         >
@@ -94,7 +107,7 @@ export default function AnimatedGlyphs<
             size: item.size,
             // currentColor doesn't work with url-based colors (pattern, gradient)
             // otherwise currentColor allows us to animate the color of the <g /> element
-            color: colorHasUrl(item.color) ? item.color : 'currentColor',
+            color: colorHasUrl(item.color) ? item.color : "currentColor",
             onBlur,
             onFocus,
             onPointerMove,

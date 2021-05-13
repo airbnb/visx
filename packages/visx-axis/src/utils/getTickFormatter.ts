@@ -1,16 +1,18 @@
-import { ScaleInput, toString } from '@visx/scale';
-import { TickFormatter, AxisScale } from '../types';
+import { ScaleInput, toString } from "@seygai/visx-scale";
+import { TickFormatter, AxisScale } from "../types";
 
 /**
  * Returns a tick position for the given tick value
  */
-export default function getTickFormatter<Scale extends AxisScale>(scale: Scale) {
+export default function getTickFormatter<Scale extends AxisScale>(
+  scale: Scale
+) {
   // Broaden type before using 'xxx' in s as typeguard.
   const s = scale as AxisScale;
 
   // For point or band scales,
   // have to add offset to make the tick centered.
-  if ('tickFormat' in s) {
+  if ("tickFormat" in s) {
     return s.tickFormat() as TickFormatter<ScaleInput<Scale>>;
   }
 

@@ -1,13 +1,19 @@
-import React from 'react';
-import { Group } from '@visx/group';
-import { ViolinPlot, BoxPlot } from '@visx/stats';
-import { LinearGradient } from '@visx/gradient';
-import { scaleBand, scaleLinear } from '@visx/scale';
-import genStats, { Stats } from '@visx/mock-data/lib/generators/genStats';
-import { getSeededRandom, getRandomNormal } from '@visx/mock-data';
-import { withTooltip, Tooltip, defaultStyles as defaultTooltipStyles } from '@visx/tooltip';
-import { WithTooltipProvidedProps } from '@visx/tooltip/lib/enhancers/withTooltip';
-import { PatternLines } from '@visx/pattern';
+import React from "react";
+import { Group } from "@seygai/visx-group";
+import { ViolinPlot, BoxPlot } from "@seygai/visx-stats";
+import { LinearGradient } from "@seygai/visx-gradient";
+import { scaleBand, scaleLinear } from "@seygai/visx-scale";
+import genStats, {
+  Stats,
+} from "@seygai/visx-mock-data/lib/generators/genStats";
+import { getSeededRandom, getRandomNormal } from "@seygai/visx-mock-data";
+import {
+  withTooltip,
+  Tooltip,
+  defaultStyles as defaultTooltipStyles,
+} from "@seygai/visx-tooltip";
+import { WithTooltipProvidedProps } from "@seygai/visx-tooltip/lib/enhancers/withTooltip";
+import { PatternLines } from "@seygai/visx-pattern";
 
 // seeded randomness
 const seededRandom = getSeededRandom(0.1);
@@ -77,10 +83,17 @@ export default withTooltip<StatsPlotProps, TooltipData>(
     const constrainedWidth = Math.min(40, boxWidth);
 
     return width < 10 ? null : (
-      <div style={{ position: 'relative' }}>
+      <div style={{ position: "relative" }}>
         <svg width={width} height={height}>
           <LinearGradient id="statsplot" to="#8b6ce7" from="#87f2d4" />
-          <rect x={0} y={0} width={width} height={height} fill="url(#statsplot)" rx={14} />
+          <rect
+            x={0}
+            y={0}
+            width={width}
+            height={height}
+            fill="url(#statsplot)"
+            rx={14}
+          />
           <PatternLines
             id="hViolinLines"
             height={3}
@@ -88,7 +101,7 @@ export default withTooltip<StatsPlotProps, TooltipData>(
             stroke="#ced4da"
             strokeWidth={1}
             // fill="rgba(0,0,0,0.3)"
-            orientation={['horizontal']}
+            orientation={["horizontal"]}
           />
           <Group top={40}>
             {data.map((d: Stats, i) => (
@@ -162,7 +175,7 @@ export default withTooltip<StatsPlotProps, TooltipData>(
                   }}
                   medianProps={{
                     style: {
-                      stroke: 'white',
+                      stroke: "white",
                     },
                     onMouseOver: () => {
                       showTooltip({
@@ -188,21 +201,29 @@ export default withTooltip<StatsPlotProps, TooltipData>(
           <Tooltip
             top={tooltipTop}
             left={tooltipLeft}
-            style={{ ...defaultTooltipStyles, backgroundColor: '#283238', color: 'white' }}
+            style={{
+              ...defaultTooltipStyles,
+              backgroundColor: "#283238",
+              color: "white",
+            }}
           >
             <div>
               <strong>{tooltipData.name}</strong>
             </div>
-            <div style={{ marginTop: '5px', fontSize: '12px' }}>
+            <div style={{ marginTop: "5px", fontSize: "12px" }}>
               {tooltipData.max && <div>max: {tooltipData.max}</div>}
-              {tooltipData.thirdQuartile && <div>third quartile: {tooltipData.thirdQuartile}</div>}
+              {tooltipData.thirdQuartile && (
+                <div>third quartile: {tooltipData.thirdQuartile}</div>
+              )}
               {tooltipData.median && <div>median: {tooltipData.median}</div>}
-              {tooltipData.firstQuartile && <div>first quartile: {tooltipData.firstQuartile}</div>}
+              {tooltipData.firstQuartile && (
+                <div>first quartile: {tooltipData.firstQuartile}</div>
+              )}
               {tooltipData.min && <div>min: {tooltipData.min}</div>}
             </div>
           </Tooltip>
         )}
       </div>
     );
-  },
+  }
 );

@@ -1,8 +1,8 @@
-import React from 'react';
-import cx from 'classnames';
-import { Group } from '@visx/group';
-import { ScaleInput } from '@visx/scale';
-import Bar from './Bar';
+import React from "react";
+import cx from "classnames";
+import { Group } from "@seygai/visx-group";
+import { ScaleInput } from "@seygai/visx-scale";
+import Bar from "./Bar";
 import {
   PositionScale,
   DatumObject,
@@ -12,8 +12,8 @@ import {
   BarGroup,
   GroupKey,
   Accessor,
-} from '../types';
-import getBandwidth from '../util/getBandwidth';
+} from "../types";
+import getBandwidth from "../util/getBandwidth";
 
 export type BarGroupProps<
   Datum extends DatumObject,
@@ -23,11 +23,11 @@ export type BarGroupProps<
 > = BaseBarGroupProps<Datum, Key> & {
   /** Returns the value mapped to the x0 (group position) of a bar */
   x0: Accessor<Datum, ScaleInput<X0Scale>>;
-  /** @visx/scale or d3-scale that takes an x0 value (position of group) and maps it to an x0 axis position of the group. */
+  /** @seygai/visx-scale or d3-scale that takes an x0 value (position of group) and maps it to an x0 axis position of the group. */
   x0Scale: X0Scale;
-  /** @visx/scale or d3-scale that takes a group key and maps it to an x axis position (within a group). */
+  /** @seygai/visx-scale or d3-scale that takes a group key and maps it to an x axis position (within a group). */
   x1Scale: X1Scale;
-  /** @visx/scale or d3-scale that takes an y value (Datum[key]) and maps it to a y axis position. */
+  /** @seygai/visx-scale or d3-scale that takes an y value (Datum[key]) and maps it to a y axis position. */
   yScale: PositionScale;
   /** Total height of the y-axis. */
   height: number;
@@ -117,10 +117,13 @@ export default function BarGroupComponent<
   if (children) return <>{children(barGroups)}</>;
 
   return (
-    <Group className={cx('visx-bar-group', className)} top={top} left={left}>
-      {barGroups.map(barGroup => (
-        <Group key={`bar-group-${barGroup.index}-${barGroup.x0}`} left={barGroup.x0}>
-          {barGroup.bars.map(bar => (
+    <Group className={cx("visx-bar-group", className)} top={top} left={left}>
+      {barGroups.map((barGroup) => (
+        <Group
+          key={`bar-group-${barGroup.index}-${barGroup.x0}`}
+          left={barGroup.x0}
+        >
+          {barGroup.bars.map((bar) => (
             <Bar
               key={`bar-group-bar-${barGroup.index}-${bar.index}-${bar.value}-${bar.key}`}
               x={bar.x}

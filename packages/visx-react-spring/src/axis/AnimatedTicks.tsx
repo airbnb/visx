@@ -1,12 +1,12 @@
-import React from 'react';
-import { animated, useTransition, interpolate } from 'react-spring';
-import cx from 'classnames';
-import Orientation from '@visx/axis/lib/constants/orientation';
-import { TicksRendererProps, AxisScale } from '@visx/axis/lib/types';
-import { Text } from '@visx/text';
+import React from "react";
+import { animated, useTransition, interpolate } from "react-spring";
+import cx from "classnames";
+import Orientation from "@seygai/visx-axis/lib/constants/orientation";
+import { TicksRendererProps, AxisScale } from "@seygai/visx-axis/lib/types";
+import { Text } from "@seygai/visx-text";
 
-import useLineTransitionConfig from '../spring-configs/useLineTransitionConfig';
-import { AnimationTrajectory } from '../types';
+import useLineTransitionConfig from "../spring-configs/useLineTransitionConfig";
+import { AnimationTrajectory } from "../types";
 
 export default function AnimatedTicks<Scale extends AxisScale>({
   hideTicks,
@@ -15,15 +15,19 @@ export default function AnimatedTicks<Scale extends AxisScale>({
   scale,
   tickClassName,
   tickLabelProps: allTickLabelProps,
-  tickStroke = '#222',
+  tickStroke = "#222",
   tickTransform,
   ticks,
   animationTrajectory,
 }: TicksRendererProps<Scale> & { animationTrajectory?: AnimationTrajectory }) {
   const animatedTicks = useTransition(
     ticks,
-    tick => `${tick.value}`,
-    useLineTransitionConfig({ scale, animateXOrY: horizontal ? 'x' : 'y', animationTrajectory }),
+    (tick) => `${tick.value}`,
+    useLineTransitionConfig({
+      scale,
+      animateXOrY: horizontal ? "x" : "y",
+      animationTrajectory,
+    })
   );
 
   return (
@@ -37,13 +41,14 @@ export default function AnimatedTicks<Scale extends AxisScale>({
             // @ts-ignore react-spring types only include CSSProperties
             props: { fromX, toX, fromY, toY, opacity },
           },
-          index,
+          index
         ) => {
-          const tickLabelProps = allTickLabelProps[index] ?? allTickLabelProps[0] ?? {};
+          const tickLabelProps =
+            allTickLabelProps[index] ?? allTickLabelProps[0] ?? {};
           return item == null || key == null ? null : (
             <animated.g
               key={key}
-              className={cx('visx-axis-tick', tickClassName)}
+              className={cx("visx-axis-tick", tickClassName)}
               transform={tickTransform}
             >
               {!hideTicks && (
@@ -65,9 +70,9 @@ export default function AnimatedTicks<Scale extends AxisScale>({
                   (interpolatedX, interpolatedY) =>
                     `translate(${interpolatedX},${interpolatedY +
                       (orientation === Orientation.bottom &&
-                      typeof tickLabelProps.fontSize === 'number'
+                      typeof tickLabelProps.fontSize === "number"
                         ? tickLabelProps.fontSize ?? 10
-                        : 0)})`,
+                        : 0)})`
                 )}
                 opacity={opacity}
               >
@@ -75,7 +80,7 @@ export default function AnimatedTicks<Scale extends AxisScale>({
               </animated.g>
             </animated.g>
           );
-        },
+        }
       )}
     </>
   );

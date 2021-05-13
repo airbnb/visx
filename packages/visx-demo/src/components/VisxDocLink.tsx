@@ -1,8 +1,8 @@
-import React from 'react';
-import Link from 'next/link';
+import React from "react";
+import Link from "next/link";
 
 function getDocUrlFromVXPackageName(visxPackage: string) {
-  const packageName = visxPackage.split('@visx/')[1]; // e.g., @visx/shape
+  const packageName = visxPackage.split("@seygai/visx-")[1]; // e.g., @seygai/visx-shape
   return packageName ? `docs/${packageName}` : null;
 }
 

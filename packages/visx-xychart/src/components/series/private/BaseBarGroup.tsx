@@ -1,8 +1,8 @@
-import React, { useContext, useMemo, useEffect, useCallback } from 'react';
-import { PositionScale } from '@visx/shape/lib/types';
-import { scaleBand } from '@visx/scale';
-import isChildWithProps from '../../../typeguards/isChildWithProps';
-import { BaseBarSeriesProps } from './BaseBarSeries';
+import React, { useContext, useMemo, useEffect, useCallback } from "react";
+import { PositionScale } from "@seygai/visx-shape/lib/types";
+import { scaleBand } from "@seygai/visx-scale";
+import isChildWithProps from "../../../typeguards/isChildWithProps";
+import { BaseBarSeriesProps } from "./BaseBarSeries";
 import {
   Bar,
   BarsProps,
@@ -10,14 +10,17 @@ import {
   NearestDatumArgs,
   NearestDatumReturnType,
   SeriesProps,
-} from '../../../types';
-import DataContext from '../../../context/DataContext';
-import getScaleBandwidth from '../../../utils/getScaleBandwidth';
-import getScaleBaseline from '../../../utils/getScaleBaseline';
-import isValidNumber from '../../../typeguards/isValidNumber';
-import { BARGROUP_EVENT_SOURCE, XYCHART_EVENT_SOURCE } from '../../../constants';
-import useSeriesEvents from '../../../hooks/useSeriesEvents';
-import findNearestGroupDatum from '../../../utils/findNearestGroupDatum';
+} from "../../../types";
+import DataContext from "../../../context/DataContext";
+import getScaleBandwidth from "../../../utils/getScaleBandwidth";
+import getScaleBaseline from "../../../utils/getScaleBaseline";
+import isValidNumber from "../../../typeguards/isValidNumber";
+import {
+  BARGROUP_EVENT_SOURCE,
+  XYCHART_EVENT_SOURCE,
+} from "../../../constants";
+import useSeriesEvents from "../../../hooks/useSeriesEvents";
+import findNearestGroupDatum from "../../../utils/findNearestGroupDatum";
 
 export type BaseBarGroupProps<
   XScale extends PositionScale,
@@ -34,7 +37,12 @@ export type BaseBarGroupProps<
   BarsComponent: React.FC<BarsProps<XScale, YScale>>;
 } & Pick<
   SeriesProps<XScale, YScale, Datum>,
-  'onPointerMove' | 'onPointerOut' | 'onPointerUp' | 'onBlur' | 'onFocus' | 'enableEvents'
+  | "onPointerMove"
+  | "onPointerOut"
+  | "onPointerUp"
+  | "onBlur"
+  | "onFocus"
+  | "enableEvents"
 >;
 
 export default function BaseBarGroup<
@@ -61,25 +69,32 @@ export default function BaseBarGroup<
     unregisterData,
     xScale,
     yScale,
-  } = (useContext(DataContext) as unknown) as DataContextType<XScale, YScale, Datum>;
+  } = (useContext(DataContext) as unknown) as DataContextType<
+    XScale,
+    YScale,
+    Datum
+  >;
 
   const barSeriesChildren = useMemo(
     () =>
-      React.Children.toArray(children).filter(child =>
-        isChildWithProps<BaseBarSeriesProps<XScale, YScale, Datum>>(child),
+      React.Children.toArray(children).filter((child) =>
+        isChildWithProps<BaseBarSeriesProps<XScale, YScale, Datum>>(child)
       ),
-    [children],
+    [children]
   ) as React.ReactElement<BaseBarSeriesProps<XScale, YScale, Datum>>[];
 
   // extract data keys from child series
   const dataKeys: string[] = useMemo(
-    () => barSeriesChildren.map(child => child.props.dataKey ?? '').filter(key => key),
-    [barSeriesChildren],
+    () =>
+      barSeriesChildren
+        .map((child) => child.props.dataKey ?? "")
+        .filter((key) => key),
+    [barSeriesChildren]
   );
 
   // register all child data
   useEffect(() => {
-    const dataToRegister = barSeriesChildren.map(child => {
+    const dataToRegister = barSeriesChildren.map((child) => {
       const { dataKey: key, data, xAccessor, yAccessor } = child.props;
       return { key, data, xAccessor, yAccessor };
     });
@@ -96,16 +111,18 @@ export default function BaseBarGroup<
         range: [0, getScaleBandwidth(horizontal ? yScale : xScale)],
         padding,
       }),
-    [sortBars, dataKeys, xScale, yScale, horizontal, padding],
+    [sortBars, dataKeys, xScale, yScale, horizontal, padding]
   );
 
   const findNearestDatum = useCallback(
-    (params: NearestDatumArgs<XScale, YScale, Datum>): NearestDatumReturnType<Datum> =>
+    (
+      params: NearestDatumArgs<XScale, YScale, Datum>
+    ): NearestDatumReturnType<Datum> =>
       findNearestGroupDatum(params, groupScale, horizontal),
-    [groupScale, horizontal],
+    [groupScale, horizontal]
   );
 
-  const ownEventSourceKey = `${BARGROUP_EVENT_SOURCE}-${dataKeys.join('-')}}`;
+  const ownEventSourceKey = `${BARGROUP_EVENT_SOURCE}-${dataKeys.join("-")}}`;
   const eventEmitters = useSeriesEvents<XScale, YScale, Datum>({
     dataKey: dataKeys,
     enableEvents,
@@ -119,65 +136,81 @@ export default function BaseBarGroup<
     allowedSources: [XYCHART_EVENT_SOURCE, ownEventSourceKey],
   });
 
-  const xZeroPosition = useMemo(() => (xScale ? getScaleBaseline(xScale) : 0), [xScale]);
-  const yZeroPosition = useMemo(() => (yScale ? getScaleBaseline(yScale) : 0), [yScale]);
+  const xZeroPosition = useMemo(() => (xScale ? getScaleBaseline(xScale) : 0), [
+    xScale,
+  ]);
+  const yZeroPosition = useMemo(() => (yScale ? getScaleBaseline(yScale) : 0), [
+    yScale,
+  ]);
 
-  const registryEntries = dataKeys.map(key => dataRegistry.get(key));
+  const registryEntries = dataKeys.map((key) => dataRegistry.get(key));
 
   // if scales and data are not available in the registry, bail
-  if (registryEntries.some(entry => entry == null) || !xScale || !yScale || !colorScale) {
+  if (
+    registryEntries.some((entry) => entry == null) ||
+    !xScale ||
+    !yScale ||
+    !colorScale
+  ) {
     return null;
   }
 
   const barThickness = getScaleBandwidth(groupScale);
 
-  const bars = registryEntries.flatMap(({ xAccessor, yAccessor, data, key }) => {
-    const getLength = (d: Datum) =>
-      horizontal
-        ? (xScale(xAccessor(d)) ?? NaN) - xZeroPosition
-        : (yScale(yAccessor(d)) ?? NaN) - yZeroPosition;
+  const bars = registryEntries.flatMap(
+    ({ xAccessor, yAccessor, data, key }) => {
+      const getLength = (d: Datum) =>
+        horizontal
+          ? (xScale(xAccessor(d)) ?? NaN) - xZeroPosition
+          : (yScale(yAccessor(d)) ?? NaN) - yZeroPosition;
 
-    const getGroupPosition = horizontal
-      ? (d: Datum) => yScale(yAccessor(d)) ?? NaN
-      : (d: Datum) => xScale(xAccessor(d)) ?? NaN;
+      const getGroupPosition = horizontal
+        ? (d: Datum) => yScale(yAccessor(d)) ?? NaN
+        : (d: Datum) => xScale(xAccessor(d)) ?? NaN;
 
-    const withinGroupPosition = groupScale(key) ?? 0;
+      const withinGroupPosition = groupScale(key) ?? 0;
 
-    const getX = horizontal
-      ? (d: Datum) => xZeroPosition + Math.min(0, getLength(d))
-      : (d: Datum) => getGroupPosition(d) + withinGroupPosition;
+      const getX = horizontal
+        ? (d: Datum) => xZeroPosition + Math.min(0, getLength(d))
+        : (d: Datum) => getGroupPosition(d) + withinGroupPosition;
 
-    const getY = horizontal
-      ? (d: Datum) => getGroupPosition(d) + withinGroupPosition
-      : (d: Datum) => yZeroPosition + Math.min(0, getLength(d));
+      const getY = horizontal
+        ? (d: Datum) => getGroupPosition(d) + withinGroupPosition
+        : (d: Datum) => yZeroPosition + Math.min(0, getLength(d));
 
-    const getWidth = horizontal ? (d: Datum) => Math.abs(getLength(d)) : () => barThickness;
-    const getHeight = horizontal ? () => barThickness : (d: Datum) => Math.abs(getLength(d));
-    const colorAccessor = barSeriesChildren.find(child => child.props.dataKey === key)?.props
-      ?.colorAccessor;
+      const getWidth = horizontal
+        ? (d: Datum) => Math.abs(getLength(d))
+        : () => barThickness;
+      const getHeight = horizontal
+        ? () => barThickness
+        : (d: Datum) => Math.abs(getLength(d));
+      const colorAccessor = barSeriesChildren.find(
+        (child) => child.props.dataKey === key
+      )?.props?.colorAccessor;
 
-    return data
-      .map((bar, index) => {
-        const barX = getX(bar);
-        if (!isValidNumber(barX)) return null;
-        const barY = getY(bar);
-        if (!isValidNumber(barY)) return null;
-        const barWidth = getWidth(bar);
-        if (!isValidNumber(barWidth)) return null;
-        const barHeight = getHeight(bar);
-        if (!isValidNumber(barHeight)) return null;
+      return data
+        .map((bar, index) => {
+          const barX = getX(bar);
+          if (!isValidNumber(barX)) return null;
+          const barY = getY(bar);
+          if (!isValidNumber(barY)) return null;
+          const barWidth = getWidth(bar);
+          if (!isValidNumber(barWidth)) return null;
+          const barHeight = getHeight(bar);
+          if (!isValidNumber(barHeight)) return null;
 
-        return {
-          key: `${key}-${index}`,
-          x: barX,
-          y: barY,
-          width: barWidth,
-          height: barHeight,
-          fill: colorAccessor?.(bar, index) ?? colorScale(key),
-        };
-      })
-      .filter(bar => bar) as Bar[];
-  });
+          return {
+            key: `${key}-${index}`,
+            x: barX,
+            y: barY,
+            width: barWidth,
+            height: barHeight,
+            fill: colorAccessor?.(bar, index) ?? colorScale(key),
+          };
+        })
+        .filter((bar) => bar) as Bar[];
+    }
+  );
 
   return (
     <g className="visx-bar-group">

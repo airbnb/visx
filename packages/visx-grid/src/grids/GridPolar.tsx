@@ -1,12 +1,12 @@
-import React, { CSSProperties } from 'react';
-import cx from 'classnames';
-import { Group } from '@visx/group';
-import { ScaleInput } from '@visx/scale';
-import { LineProps } from '@visx/shape/lib/shapes/Line';
-import GridAngle from './GridAngle';
-import GridRadial from './GridRadial';
+import React, { CSSProperties } from "react";
+import cx from "classnames";
+import { Group } from "@seygai/visx-group";
+import { ScaleInput } from "@seygai/visx-scale";
+import { LineProps } from "@seygai/visx-shape/lib/shapes/Line";
+import GridAngle from "./GridAngle";
+import GridRadial from "./GridRadial";
 
-import { CommonGridProps, GridScale } from '../types';
+import { CommonGridProps, GridScale } from "../types";
 
 export type GridPolarProps<
   AngleScale extends GridScale,
@@ -154,7 +154,7 @@ export default function GridPolar<Scale extends GridScale>({
   top,
 }: GridPolarProps<Scale, Scale>) {
   return (
-    <Group className={cx('visx-grid-polar', className)} top={top} left={left}>
+    <Group className={cx("visx-grid-polar", className)} top={top} left={left}>
       <GridAngle
         className={classNameAngle}
         innerRadius={innerRadius}

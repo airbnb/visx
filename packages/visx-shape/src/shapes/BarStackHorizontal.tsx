@@ -1,15 +1,21 @@
-import React from 'react';
-import cx from 'classnames';
-import { stack as d3stack, SeriesPoint } from 'd3-shape';
-import { Group } from '@visx/group';
-import { ScaleInput } from '@visx/scale';
-import { AddSVGProps, PositionScale, BaseBarStackProps, StackKey, Accessor } from '../types';
-import { getFirstItem, getSecondItem } from '../util/accessors';
-import getBandwidth from '../util/getBandwidth';
-import setNumOrAccessor from '../util/setNumberOrNumberAccessor';
-import stackOrder from '../util/stackOrder';
-import stackOffset from '../util/stackOffset';
-import Bar from './Bar';
+import React from "react";
+import cx from "classnames";
+import { stack as d3stack, SeriesPoint } from "d3-shape";
+import { Group } from "@seygai/visx-group";
+import { ScaleInput } from "@seygai/visx-scale";
+import {
+  AddSVGProps,
+  PositionScale,
+  BaseBarStackProps,
+  StackKey,
+  Accessor,
+} from "../types";
+import { getFirstItem, getSecondItem } from "../util/accessors";
+import getBandwidth from "../util/getBandwidth";
+import setNumOrAccessor from "../util/setNumberOrNumberAccessor";
+import stackOrder from "../util/stackOrder";
+import stackOffset from "../util/stackOffset";
+import Bar from "./Bar";
 
 export type BarStackHorizontalProps<
   Datum,
@@ -47,7 +53,10 @@ export default function BarStackHorizontal<
   offset,
   children,
   ...restProps
-}: AddSVGProps<BarStackHorizontalProps<Datum, Key, XScale, YScale>, SVGRectElement>) {
+}: AddSVGProps<
+  BarStackHorizontalProps<Datum, Key, XScale, YScale>,
+  SVGRectElement
+>) {
   const stack = d3stack<Datum, Key>();
   if (keys) stack.keys(keys);
   if (value) setNumOrAccessor(stack.value, value);
@@ -66,7 +75,7 @@ export default function BarStackHorizontal<
         const barWidth = (xScale(x1(bar)) || 0) - (xScale(x0(bar)) || 0);
         const barX = xScale(x0(bar));
         const barY =
-          'bandwidth' in yScale
+          "bandwidth" in yScale
             ? yScale(y(bar.data))
             : Math.max((yScale(y(bar.data)) || 0) - barWidth / 2);
         return {
@@ -87,9 +96,13 @@ export default function BarStackHorizontal<
   if (children) return <>{children(barStacks)}</>;
 
   return (
-    <Group className={cx('visx-bar-stack-horizontal', className)} top={top} left={left}>
-      {barStacks.map(barStack =>
-        barStack.bars.map(bar => (
+    <Group
+      className={cx("visx-bar-stack-horizontal", className)}
+      top={top}
+      left={left}
+    >
+      {barStacks.map((barStack) =>
+        barStack.bars.map((bar) => (
           <Bar
             key={`bar-stack-${barStack.index}-${bar.index}`}
             x={bar.x}
@@ -99,7 +112,7 @@ export default function BarStackHorizontal<
             fill={bar.color}
             {...restProps}
           />
-        )),
+        ))
       )}
     </Group>
   );

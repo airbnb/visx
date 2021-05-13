@@ -1,6 +1,6 @@
-import { AxisScale } from '@visx/axis';
-import findNearestDatumSingleDimension from './findNearestDatumSingleDimension';
-import { NearestDatumArgs, NearestDatumReturnType } from '../types';
+import { AxisScale } from "@seygai/visx-axis";
+import findNearestDatumSingleDimension from "./findNearestDatumSingleDimension";
+import { NearestDatumArgs, NearestDatumReturnType } from "../types";
 
 export default function findNearestDatumY<
   XScale extends AxisScale,
@@ -28,7 +28,9 @@ export default function findNearestDatumY<
         datum: nearestDatum.datum,
         index: nearestDatum.index,
         distanceY: nearestDatum.distance,
-        distanceX: Math.abs(Number(xScale(xAccessor(nearestDatum.datum))) - point.x),
+        distanceX: Math.abs(
+          Number(xScale(xAccessor(nearestDatum.datum))) - point.x
+        ),
       }
     : null;
 }

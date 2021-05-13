@@ -1,25 +1,25 @@
-import React from 'react';
-import { Group } from '@visx/group';
-import { AreaClosed } from '@visx/shape';
-import { AxisLeft, AxisBottom, AxisScale } from '@visx/axis';
-import { LinearGradient } from '@visx/gradient';
-import { curveMonotoneX } from '@visx/curve';
-import { AppleStock } from '@visx/mock-data/lib/mocks/appleStock';
+import React from "react";
+import { Group } from "@seygai/visx-group";
+import { AreaClosed } from "@seygai/visx-shape";
+import { AxisLeft, AxisBottom, AxisScale } from "@seygai/visx-axis";
+import { LinearGradient } from "@seygai/visx-gradient";
+import { curveMonotoneX } from "@seygai/visx-curve";
+import { AppleStock } from "@seygai/visx-mock-data/lib/mocks/appleStock";
 
 // Initialize some variables
-const axisColor = '#fff';
+const axisColor = "#fff";
 const axisBottomTickLabelProps = {
-  textAnchor: 'middle' as const,
-  fontFamily: 'Arial',
+  textAnchor: "middle" as const,
+  fontFamily: "Arial",
   fontSize: 10,
   fill: axisColor,
 };
 const axisLeftTickLabelProps = {
-  dx: '-0.25em',
-  dy: '0.25em',
-  fontFamily: 'Arial',
+  dx: "-0.25em",
+  dy: "0.25em",
+  fontFamily: "Arial",
   fontSize: 10,
-  textAnchor: 'end' as const,
+  textAnchor: "end" as const,
   fill: axisColor,
 };
 
@@ -66,8 +66,8 @@ export default function AreaChart({
       />
       <AreaClosed<AppleStock>
         data={data}
-        x={d => xScale(getDate(d)) || 0}
-        y={d => yScale(getStockValue(d)) || 0}
+        x={(d) => xScale(getDate(d)) || 0}
+        y={(d) => yScale(getStockValue(d)) || 0}
         yScale={yScale}
         strokeWidth={1}
         stroke="url(#gradient)"

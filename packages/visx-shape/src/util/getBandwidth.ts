@@ -1,7 +1,7 @@
-import { AnyD3Scale } from '@visx/scale';
+import { AnyD3Scale } from "@seygai/visx-scale";
 
 export default function getBandwidth(scale: AnyD3Scale) {
-  if ('bandwidth' in scale) {
+  if ("bandwidth" in scale) {
     return scale.bandwidth();
   }
 

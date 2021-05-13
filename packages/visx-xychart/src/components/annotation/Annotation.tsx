@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 import {
   Annotation as VisxAnnotation,
   EditableAnnotation as VisxEditableAnnotation,
-} from '@visx/annotation';
-import { AxisScale } from '@visx/axis';
-import BaseAnnotation, { BaseAnnotationProps } from './private/BaseAnnotation';
+} from "@seygai/visx-annotation";
+import { AxisScale } from "@seygai/visx-axis";
+import BaseAnnotation, { BaseAnnotationProps } from "./private/BaseAnnotation";
 
 export type AnnotationProps<
   XScale extends AxisScale,
@@ -12,7 +12,7 @@ export type AnnotationProps<
   Datum extends object
 > = { editable?: boolean } & Omit<
   BaseAnnotationProps<XScale, YScale, Datum>,
-  'AnnotationComponent'
+  "AnnotationComponent"
 >;
 
 export default function Annotation<

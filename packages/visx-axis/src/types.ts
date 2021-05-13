@@ -1,6 +1,6 @@
-import { D3Scale, NumberLike, ScaleInput } from '@visx/scale';
-import { TextProps } from '@visx/text/lib/Text';
-import Orientation from './constants/orientation';
+import { D3Scale, NumberLike, ScaleInput } from "@seygai/visx-scale";
+import { TextProps } from "@seygai/visx-text/lib/Text";
+import Orientation from "./constants/orientation";
 
 // In order to plot values on an axis, output of the scale must be number.
 // Some scales return undefined.
@@ -16,13 +16,13 @@ type FormattedValue = string | undefined;
 export type TickFormatter<T> = (
   value: T,
   index: number,
-  values: { value: T; index: number }[],
+  values: { value: T; index: number }[]
 ) => FormattedValue;
 
 export type TickLabelProps<T> = (
   value: T,
   index: number,
-  values: { value: T; index: number }[],
+  values: { value: T; index: number }[]
 ) => Partial<TextProps>;
 
 export type TickRendererProps = Partial<TextProps> & {
@@ -35,15 +35,15 @@ export type TicksRendererProps<Scale extends AxisScale> = {
   tickLabelProps: Partial<TextProps>[];
 } & Pick<
   AxisRendererProps<Scale>,
-  | 'hideTicks'
-  | 'horizontal'
-  | 'orientation'
-  | 'scale'
-  | 'tickClassName'
-  | 'tickComponent'
-  | 'tickStroke'
-  | 'tickTransform'
-  | 'ticks'
+  | "hideTicks"
+  | "horizontal"
+  | "orientation"
+  | "scale"
+  | "tickClassName"
+  | "tickComponent"
+  | "tickStroke"
+  | "tickTransform"
+  | "ticks"
 >;
 
 export type CommonProps<Scale extends AxisScale> = {
@@ -77,10 +77,12 @@ export type CommonProps<Scale extends AxisScale> = {
   strokeDasharray?: string;
   /** The class name applied to each tick group. */
   tickClassName?: string;
-  /** Override the component used to render tick labels (instead of <Text /> from @visx/text). */
+  /** Override the component used to render tick labels (instead of <Text /> from @seygai/visx-text). */
   tickComponent?: (tickRendererProps: TickRendererProps) => React.ReactNode;
   /** Override the component used to render all tick lines and labels. */
-  ticksComponent?: (tickRendererProps: TicksRendererProps<Scale>) => React.ReactNode;
+  ticksComponent?: (
+    tickRendererProps: TicksRendererProps<Scale>
+  ) => React.ReactNode;
   /** A [d3 formatter](https://github.com/d3/d3-scale/blob/master/README.md#continuous_tickFormat) for the tick text. */
   tickFormat?: TickFormatter<ScaleInput<Scale>>;
   /** A function that returns props for a given tick label. */

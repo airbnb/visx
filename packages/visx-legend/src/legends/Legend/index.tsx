@@ -1,22 +1,26 @@
-import React from 'react';
-import cx from 'classnames';
-import { AnyD3Scale, ScaleInput } from '@visx/scale';
-import LegendItem from './LegendItem';
-import LegendLabel, { LegendLabelProps } from './LegendLabel';
-import LegendShape from './LegendShape';
-import valueOrIdentity, { valueOrIdentityString } from '../../util/valueOrIdentity';
-import labelTransformFactory from '../../util/labelTransformFactory';
+import React from "react";
+import cx from "classnames";
+import { AnyD3Scale, ScaleInput } from "@seygai/visx-scale";
+import LegendItem from "./LegendItem";
+import LegendLabel, { LegendLabelProps } from "./LegendLabel";
+import LegendShape from "./LegendShape";
+import valueOrIdentity, {
+  valueOrIdentityString,
+} from "../../util/valueOrIdentity";
+import labelTransformFactory from "../../util/labelTransformFactory";
 import {
   FlexDirection,
   FormattedLabel,
   LabelFormatter,
   LabelFormatterFactory,
   LegendShape as LegendShapeType,
-} from '../../types';
+} from "../../types";
 
 export type LegendProps<Scale extends AnyD3Scale> = {
   /** Optional render function override. */
-  children?: (labels: FormattedLabel<ScaleInput<Scale>, ReturnType<Scale>>[]) => React.ReactNode;
+  children?: (
+    labels: FormattedLabel<ScaleInput<Scale>, ReturnType<Scale>>[]
+  ) => React.ReactNode;
   /** Classname to be applied to legend container. */
   className?: string;
   /** Styles to be applied to the legend container. */
@@ -31,7 +35,7 @@ export type LegendProps<Scale extends AnyD3Scale> = {
   shapeMargin?: string | number;
   /** Flex-box alignment of legend item labels. */
   labelAlign?: string;
-  /** `@visx/scale` or `d3-scale` object used to generate the legend items. */
+  /** `@seygai/visx-scale` or `d3-scale` object used to generate the legend items. */
   scale: Scale;
   /** Flex-box flex of legend item labels. */
   labelFlex?: string | number;
@@ -45,16 +49,18 @@ export type LegendProps<Scale extends AnyD3Scale> = {
   itemDirection?: FlexDirection;
   /** Legend item fill accessor function. */
   fill?: (
-    label: FormattedLabel<ScaleInput<Scale>, ReturnType<Scale>>,
+    label: FormattedLabel<ScaleInput<Scale>, ReturnType<Scale>>
   ) => string | number | undefined;
   /** Legend item size accessor function. */
   size?: (
-    label: FormattedLabel<ScaleInput<Scale>, ReturnType<Scale>>,
+    label: FormattedLabel<ScaleInput<Scale>, ReturnType<Scale>>
   ) => string | number | undefined;
   /** Legend shape string preset or Element or Component. */
   shape?: LegendShapeType<ScaleInput<Scale>, ReturnType<Scale>>;
   /** Styles applied to legend shapes. */
-  shapeStyle?: (label: FormattedLabel<ScaleInput<Scale>, ReturnType<Scale>>) => React.CSSProperties;
+  shapeStyle?: (
+    label: FormattedLabel<ScaleInput<Scale>, ReturnType<Scale>>
+  ) => React.CSSProperties;
   /** Given a legend item and its index, returns an item label. */
   labelFormat?: LabelFormatter<ScaleInput<Scale>>;
   /** Given the legend scale and labelFormatter, returns a label with datum, index, value, and label. */
@@ -64,7 +70,7 @@ export type LegendProps<Scale extends AnyD3Scale> = {
 };
 
 const defaultStyle = {
-  display: 'flex',
+  display: "flex",
 };
 
 export default function Legend<Scale extends AnyD3Scale>({
@@ -79,14 +85,14 @@ export default function Legend<Scale extends AnyD3Scale>({
   labelTransform = labelTransformFactory,
   shapeWidth = 15,
   shapeHeight = 15,
-  shapeMargin = '2px 4px 2px 0',
+  shapeMargin = "2px 4px 2px 0",
   shapeStyle,
-  labelAlign = 'left',
-  labelFlex = '1',
-  labelMargin = '0 4px',
-  itemMargin = '0',
-  direction = 'column',
-  itemDirection = 'row',
+  labelAlign = "left",
+  labelFlex = "1",
+  labelMargin = "0 4px",
+  itemMargin = "0",
+  direction = "column",
+  itemDirection = "row",
   legendLabelProps,
   children,
   ...legendItemProps
@@ -94,7 +100,8 @@ export default function Legend<Scale extends AnyD3Scale>({
   // `Scale extends ScaleType` constraint is tricky
   //  could consider removing `scale` altogether in the future and making `domain: Datum[]` required
   // @ts-ignore doesn't like `.domain()`
-  const domain = inputDomain || (('domain' in scale ? scale.domain() : []) as Datum[]);
+  const domain =
+    inputDomain || (("domain" in scale ? scale.domain() : []) as Datum[]);
   const labelFormatter = labelTransform({ scale, labelFormat });
   const labels = domain.map(labelFormatter);
   // eslint-disable-next-line react/jsx-no-useless-fragment
@@ -102,7 +109,7 @@ export default function Legend<Scale extends AnyD3Scale>({
 
   return (
     <div
-      className={cx('visx-legend', className)}
+      className={cx("visx-legend", className)}
       style={{
         ...style,
         flexDirection: direction,

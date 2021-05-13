@@ -1,8 +1,8 @@
-import { useMemo } from 'react';
-import { coerceNumber } from '@visx/scale';
-import { AxisScale } from '@visx/axis/lib/types';
-import { GridScale } from '@visx/grid/lib/types';
-import { AnimationTrajectory } from '../types';
+import { useMemo } from "react";
+import { coerceNumber } from "@seygai/visx-scale";
+import { AxisScale } from "@seygai/visx-axis/lib/types";
+import { GridScale } from "@seygai/visx-grid/lib/types";
+import { AnimationTrajectory } from "../types";
 
 interface Point {
   x?: number;
@@ -19,18 +19,20 @@ function animatedValue(
   positionOnScale: number | undefined,
   scaleMin: number | undefined,
   scaleMax: number | undefined,
-  scaleHalfwayPoint: number,
+  scaleHalfwayPoint: number
 ): number {
   switch (animationTrajectory) {
-    case 'center':
+    case "center":
       return scaleHalfwayPoint;
-    case 'min':
+    case "min":
       return scaleMin ?? 0;
-    case 'max':
+    case "max":
       return scaleMax ?? 0;
-    case 'outside':
+    case "outside":
     default:
-      return ((positionOnScale ?? 0) < scaleHalfwayPoint ? scaleMin : scaleMax) ?? 0;
+      return (
+        ((positionOnScale ?? 0) < scaleHalfwayPoint ? scaleMin : scaleMax) ?? 0
+      );
   }
 }
 
@@ -48,7 +50,7 @@ export type TransitionConfig<Scale extends AxisScale | GridScale> = {
   /** Scale along which animation occurs. */
   scale: Scale;
   /** Whether to animate the `x` or `y` values of a Line. */
-  animateXOrY: 'x' | 'y';
+  animateXOrY: "x" | "y";
   /** The scale position entering lines come from, and exiting lines leave to. */
   animationTrajectory?: AnimationTrajectory;
 };
@@ -57,12 +59,14 @@ export type TransitionConfig<Scale extends AxisScale | GridScale> = {
  * A hook that returns `react-spring` transition config for animating a Line
  * horizontally, vertically, and from a specific starting point.
  */
-export default function useLineTransitionConfig<Scale extends AxisScale | GridScale>({
+export default function useLineTransitionConfig<
+  Scale extends AxisScale | GridScale
+>({
   scale,
   animateXOrY,
-  animationTrajectory: initAnimationTrajectory = 'outside',
+  animationTrajectory: initAnimationTrajectory = "outside",
 }: TransitionConfig<Scale>) {
-  const shouldAnimateX = animateXOrY === 'x';
+  const shouldAnimateX = animateXOrY === "x";
   return useMemo(() => {
     const [a, b] = scale.range().map(coerceNumber);
     const isDescending = b != null && a != null && b < a;
@@ -72,22 +76,48 @@ export default function useLineTransitionConfig<Scale extends AxisScale | GridSc
     let animationTrajectory = initAnimationTrajectory;
 
     // correct direction for y-axis which is inverted due to svg coords
-    if (!shouldAnimateX && initAnimationTrajectory === 'min') animationTrajectory = 'max';
-    if (!shouldAnimateX && initAnimationTrajectory === 'max') animationTrajectory = 'min';
+    if (!shouldAnimateX && initAnimationTrajectory === "min")
+      animationTrajectory = "max";
+    if (!shouldAnimateX && initAnimationTrajectory === "max")
+      animationTrajectory = "min";
 
     const fromLeave = ({ from, to }: Line) => ({
       fromX: shouldAnimateX
-        ? animatedValue(animationTrajectory, from.x, scaleMin, scaleMax, scaleHalfwayPoint)
+        ? animatedValue(
+            animationTrajectory,
+            from.x,
+            scaleMin,
+            scaleMax,
+            scaleHalfwayPoint
+          )
         : from.x,
       toX: shouldAnimateX
-        ? animatedValue(animationTrajectory, from.x, scaleMin, scaleMax, scaleHalfwayPoint)
+        ? animatedValue(
+            animationTrajectory,
+            from.x,
+            scaleMin,
+            scaleMax,
+            scaleHalfwayPoint
+          )
         : to.x,
       fromY: shouldAnimateX
         ? from.y
-        : animatedValue(animationTrajectory, from.y, scaleMin, scaleMax, scaleHalfwayPoint),
+        : animatedValue(
+            animationTrajectory,
+            from.y,
+            scaleMin,
+            scaleMax,
+            scaleHalfwayPoint
+          ),
       toY: shouldAnimateX
         ? to.y
-        : animatedValue(animationTrajectory, from.y, scaleMin, scaleMax, scaleHalfwayPoint),
+        : animatedValue(
+            animationTrajectory,
+            from.y,
+            scaleMin,
+            scaleMax,
+            scaleHalfwayPoint
+          ),
       opacity: 0,
     });
 

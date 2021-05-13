@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import ParentSize from '@visx/responsive/lib/components/ParentSize';
+import React, { useState } from "react";
+import ParentSize from "@seygai/visx-responsive/lib/components/ParentSize";
 
-import Lines from './Lines';
+import Lines from "./Lines";
 
 export type ResponsiveProps = {
   width: number;
@@ -35,7 +35,7 @@ export default function Example({ width, height }: ResponsiveProps) {
       <div className="app-content">
         <div>
           <button
-            onClick={event => {
+            onClick={(event) => {
               // on gallery page, don't go to example
               event.preventDefault();
               event.stopPropagation();

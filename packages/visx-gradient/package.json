@@ -1,5 +1,5 @@
 {
-  "name": "@visx/gradient",
+  "name": "@seygai/visx-gradient",
   "version": "1.7.0",
   "description": "visx gradient",
   "sideEffects": false,

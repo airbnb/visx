@@ -1,5 +1,5 @@
 {
-  "name": "@visx/geo",
+  "name": "@seygai/visx-geo",
   "version": "1.7.0",
   "description": "visx geo",
   "sideEffects": false,
@@ -33,7 +33,7 @@
     "@types/d3-geo": "^1.11.1",
     "@types/geojson": "*",
     "@types/react": "*",
-    "@visx/group": "1.7.0",
+    "@seygai/visx-group": "1.7.0",
     "classnames": "^2.2.5",
     "d3-geo": "^1.11.3",
     "prop-types": "^15.5.10"

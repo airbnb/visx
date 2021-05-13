@@ -1,5 +1,5 @@
 {
-  "name": "@visx/mock-data",
+  "name": "@seygai/visx-mock-data",
   "version": "1.7.0",
   "description": "visx mock data",
   "sideEffects": false,

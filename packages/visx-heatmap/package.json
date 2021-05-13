@@ -1,5 +1,5 @@
 {
-  "name": "@visx/heatmap",
+  "name": "@seygai/visx-heatmap",
   "version": "1.7.0",
   "description": "visx heatmap",
   "sideEffects": false,
@@ -36,7 +36,7 @@
   "dependencies": {
     "@types/classnames": "^2.2.9",
     "@types/react": "*",
-    "@visx/group": "1.7.0",
+    "@seygai/visx-group": "1.7.0",
     "classnames": "^2.2.5",
     "prop-types": "^15.6.1"
   }

@@ -1,5 +1,5 @@
 {
-  "name": "@visx/zoom",
+  "name": "@seygai/visx-zoom",
   "version": "1.7.0",
   "description": "visx zoom",
   "sideEffects": false,
@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "@types/react": "*",
-    "@visx/event": "1.7.0",
+    "@seygai/visx-event": "1.7.0",
     "prop-types": "^15.6.2"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "name": "@visx/chord",
+  "name": "@seygai/visx-chord",
   "version": "1.7.0",
   "description": "visx group",
   "sideEffects": false,

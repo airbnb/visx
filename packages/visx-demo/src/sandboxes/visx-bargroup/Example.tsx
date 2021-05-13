@@ -1,10 +1,12 @@
-import React from 'react';
-import { Group } from '@visx/group';
-import { BarGroup } from '@visx/shape';
-import { AxisBottom } from '@visx/axis';
-import cityTemperature, { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
-import { scaleBand, scaleLinear, scaleOrdinal } from '@visx/scale';
-import { timeParse, timeFormat } from 'd3-time-format';
+import React from "react";
+import { Group } from "@seygai/visx-group";
+import { BarGroup } from "@seygai/visx-shape";
+import { AxisBottom } from "@seygai/visx-axis";
+import cityTemperature, {
+  CityTemperature,
+} from "@seygai/visx-mock-data/lib/mocks/cityTemperature";
+import { scaleBand, scaleLinear, scaleOrdinal } from "@seygai/visx-scale";
+import { timeParse, timeFormat } from "d3-time-format";
 
 export type BarGroupProps = {
   width: number;
@@ -13,19 +15,19 @@ export type BarGroupProps = {
   events?: boolean;
 };
 
-type CityName = 'New York' | 'San Francisco' | 'Austin';
+type CityName = "New York" | "San Francisco" | "Austin";
 
-const blue = '#aeeef8';
-export const green = '#e5fd3d';
-const purple = '#9caff6';
-export const background = '#612efb';
+const blue = "#aeeef8";
+export const green = "#e5fd3d";
+const purple = "#9caff6";
+export const background = "#612efb";
 
 const data = cityTemperature.slice(0, 8);
-const keys = Object.keys(data[0]).filter(d => d !== 'date') as CityName[];
+const keys = Object.keys(data[0]).filter((d) => d !== "date") as CityName[];
 const defaultMargin = { top: 40, right: 0, bottom: 40, left: 0 };
 
-const parseDate = timeParse('%Y-%m-%d');
-const format = timeFormat('%b %d');
+const parseDate = timeParse("%Y-%m-%d");
+const format = timeFormat("%b %d");
 const formatDate = (date: string) => format(parseDate(date) as Date);
 
 // accessors
@@ -41,7 +43,12 @@ const cityScale = scaleBand<string>({
   padding: 0.1,
 });
 const tempScale = scaleLinear<number>({
-  domain: [0, Math.max(...data.map(d => Math.max(...keys.map(key => Number(d[key])))))],
+  domain: [
+    0,
+    Math.max(
+      ...data.map((d) => Math.max(...keys.map((key) => Number(d[key]))))
+    ),
+  ],
 });
 const colorScale = scaleOrdinal<string, string>({
   domain: keys,
@@ -65,7 +72,14 @@ export default function Example({
 
   return width < 10 ? null : (
     <svg width={width} height={height}>
-      <rect x={0} y={0} width={width} height={height} fill={background} rx={14} />
+      <rect
+        x={0}
+        y={0}
+        width={width}
+        height={height}
+        fill={background}
+        rx={14}
+      />
       <Group top={margin.top} left={margin.left}>
         <BarGroup
           data={data}
@@ -77,10 +91,13 @@ export default function Example({
           yScale={tempScale}
           color={colorScale}
         >
-          {barGroups =>
-            barGroups.map(barGroup => (
-              <Group key={`bar-group-${barGroup.index}-${barGroup.x0}`} left={barGroup.x0}>
-                {barGroup.bars.map(bar => (
+          {(barGroups) =>
+            barGroups.map((barGroup) => (
+              <Group
+                key={`bar-group-${barGroup.index}-${barGroup.x0}`}
+                left={barGroup.x0}
+              >
+                {barGroup.bars.map((bar) => (
                   <rect
                     key={`bar-group-bar-${barGroup.index}-${bar.index}-${bar.value}-${bar.key}`}
                     x={bar.x}
@@ -111,7 +128,7 @@ export default function Example({
         tickLabelProps={() => ({
           fill: green,
           fontSize: 11,
-          textAnchor: 'middle',
+          textAnchor: "middle",
         })}
       />
     </svg>

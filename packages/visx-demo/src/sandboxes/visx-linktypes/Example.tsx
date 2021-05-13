@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { Group } from '@visx/group';
-import { hierarchy, Tree } from '@visx/hierarchy';
-import { LinearGradient } from '@visx/gradient';
-import { pointRadial } from 'd3-shape';
-import useForceUpdate from './useForceUpdate';
-import LinkControls from './LinkControls';
-import getLinkComponent from './getLinkComponent';
+import React, { useState } from "react";
+import { Group } from "@seygai/visx-group";
+import { hierarchy, Tree } from "@seygai/visx-hierarchy";
+import { LinearGradient } from "@seygai/visx-gradient";
+import { pointRadial } from "d3-shape";
+import useForceUpdate from "./useForceUpdate";
+import LinkControls from "./LinkControls";
+import getLinkComponent from "./getLinkComponent";
 
 interface TreeNode {
   name: string;
@@ -14,31 +14,31 @@ interface TreeNode {
 }
 
 const data: TreeNode = {
-  name: 'T',
+  name: "T",
   children: [
     {
-      name: 'A',
+      name: "A",
       children: [
-        { name: 'A1' },
-        { name: 'A2' },
-        { name: 'A3' },
+        { name: "A1" },
+        { name: "A2" },
+        { name: "A3" },
         {
-          name: 'C',
+          name: "C",
           children: [
             {
-              name: 'C1',
+              name: "C1",
             },
             {
-              name: 'D',
+              name: "D",
               children: [
                 {
-                  name: 'D1',
+                  name: "D1",
                 },
                 {
-                  name: 'D2',
+                  name: "D2",
                 },
                 {
-                  name: 'D3',
+                  name: "D3",
                 },
               ],
             },
@@ -46,10 +46,10 @@ const data: TreeNode = {
         },
       ],
     },
-    { name: 'Z' },
+    { name: "Z" },
     {
-      name: 'B',
-      children: [{ name: 'B1' }, { name: 'B2' }, { name: 'B3' }],
+      name: "B",
+      children: [{ name: "B1" }, { name: "B2" }, { name: "B3" }],
     },
   ],
 };
@@ -67,9 +67,9 @@ export default function Example({
   height: totalHeight,
   margin = defaultMargin,
 }: LinkTypesProps) {
-  const [layout, setLayout] = useState<string>('cartesian');
-  const [orientation, setOrientation] = useState<string>('horizontal');
-  const [linkType, setLinkType] = useState<string>('diagonal');
+  const [layout, setLayout] = useState<string>("cartesian");
+  const [orientation, setOrientation] = useState<string>("horizontal");
+  const [linkType, setLinkType] = useState<string>("diagonal");
   const [stepPercent, setStepPercent] = useState<number>(0.5);
   const forceUpdate = useForceUpdate();
 
@@ -80,7 +80,7 @@ export default function Example({
   let sizeWidth: number;
   let sizeHeight: number;
 
-  if (layout === 'polar') {
+  if (layout === "polar") {
     origin = {
       x: innerWidth / 2,
       y: innerHeight / 2,
@@ -89,7 +89,7 @@ export default function Example({
     sizeHeight = Math.min(innerWidth, innerHeight) / 2;
   } else {
     origin = { x: 0, y: 0 };
-    if (orientation === 'vertical') {
+    if (orientation === "vertical") {
       sizeWidth = innerWidth;
       sizeHeight = innerHeight;
     } else {
@@ -117,11 +117,11 @@ export default function Example({
         <rect width={totalWidth} height={totalHeight} rx={14} fill="#272b4d" />
         <Group top={margin.top} left={margin.left}>
           <Tree
-            root={hierarchy(data, d => (d.isExpanded ? null : d.children))}
+            root={hierarchy(data, (d) => (d.isExpanded ? null : d.children))}
             size={[sizeWidth, sizeHeight]}
             separation={(a, b) => (a.parent === b.parent ? 1 : 0.5) / a.depth}
           >
-            {tree => (
+            {(tree) => (
               <Group top={origin.y} left={origin.x}>
                 {tree.links().map((link, i) => (
                   <LinkComponent
@@ -140,11 +140,11 @@ export default function Example({
 
                   let top: number;
                   let left: number;
-                  if (layout === 'polar') {
+                  if (layout === "polar") {
                     const [radialX, radialY] = pointRadial(node.x, node.y);
                     top = radialY;
                     left = radialX;
-                  } else if (orientation === 'vertical') {
+                  } else if (orientation === "vertical") {
                     top = node.y;
                     left = node.x;
                   } else {
@@ -172,9 +172,9 @@ export default function Example({
                           y={-height / 2}
                           x={-width / 2}
                           fill="#272b4d"
-                          stroke={node.data.children ? '#03c0dc' : '#26deb0'}
+                          stroke={node.data.children ? "#03c0dc" : "#26deb0"}
                           strokeWidth={1}
-                          strokeDasharray={node.data.children ? '0' : '2,2'}
+                          strokeDasharray={node.data.children ? "0" : "2,2"}
                           strokeOpacity={node.data.children ? 1 : 0.6}
                           rx={node.data.children ? 0 : 10}
                           onClick={() => {
@@ -189,8 +189,14 @@ export default function Example({
                         fontSize={9}
                         fontFamily="Arial"
                         textAnchor="middle"
-                        style={{ pointerEvents: 'none' }}
-                        fill={node.depth === 0 ? '#71248e' : node.children ? 'white' : '#26deb0'}
+                        style={{ pointerEvents: "none" }}
+                        fill={
+                          node.depth === 0
+                            ? "#71248e"
+                            : node.children
+                            ? "white"
+                            : "#26deb0"
+                        }
                       >
                         {node.data.name}
                       </text>

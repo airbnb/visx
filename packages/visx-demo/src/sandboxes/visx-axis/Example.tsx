@@ -1,21 +1,37 @@
-import React, { useState, useMemo } from 'react';
-import AreaClosed from '@visx/shape/lib/shapes/AreaClosed';
-import { curveMonotoneX } from '@visx/curve';
-import { scaleUtc, scaleLinear, scaleLog, scaleBand, ScaleInput, coerceNumber } from '@visx/scale';
-import { Axis, Orientation, SharedAxisProps, AxisScale } from '@visx/axis';
-import { GridRows, GridColumns } from '@visx/grid';
-import { AnimatedAxis, AnimatedGridRows, AnimatedGridColumns } from '@visx/react-spring';
-import { getSeededRandom } from '@visx/mock-data';
-import { LinearGradient } from '@visx/gradient';
-import { timeFormat } from 'd3-time-format';
-import { GridRowsProps } from '@visx/grid/lib/grids/GridRows';
-import { GridColumnsProps } from '@visx/grid/lib/grids/GridColumns';
+import React, { useState, useMemo } from "react";
+import AreaClosed from "@seygai/visx-shape/lib/shapes/AreaClosed";
+import { curveMonotoneX } from "@seygai/visx-curve";
+import {
+  scaleUtc,
+  scaleLinear,
+  scaleLog,
+  scaleBand,
+  ScaleInput,
+  coerceNumber,
+} from "@seygai/visx-scale";
+import {
+  Axis,
+  Orientation,
+  SharedAxisProps,
+  AxisScale,
+} from "@seygai/visx-axis";
+import { GridRows, GridColumns } from "@seygai/visx-grid";
+import {
+  AnimatedAxis,
+  AnimatedGridRows,
+  AnimatedGridColumns,
+} from "@seygai/visx-react-spring";
+import { getSeededRandom } from "@seygai/visx-mock-data";
+import { LinearGradient } from "@seygai/visx-gradient";
+import { timeFormat } from "d3-time-format";
+import { GridRowsProps } from "@seygai/visx-grid/lib/grids/GridRows";
+import { GridColumnsProps } from "@seygai/visx-grid/lib/grids/GridColumns";
 
-export const backgroundColor = '#da7cff';
-const axisColor = '#fff';
-const tickLabelColor = '#fff';
-export const labelColor = '#340098';
-const gridColor = '#6e0fca';
+export const backgroundColor = "#da7cff";
+const axisColor = "#fff";
+const tickLabelColor = "#fff";
+export const labelColor = "#340098";
+const gridColor = "#6e0fca";
 const seededRandom = getSeededRandom(0.5);
 const margin = {
   top: 40,
@@ -28,8 +44,8 @@ const tickLabelProps = () =>
   ({
     fill: tickLabelColor,
     fontSize: 12,
-    fontFamily: 'sans-serif',
-    textAnchor: 'middle',
+    fontFamily: "sans-serif",
+    textAnchor: "middle",
   } as const);
 
 const getMinMax = (vals: (number | { valueOf(): number })[]) => {
@@ -43,7 +59,7 @@ export type AxisProps = {
   showControls?: boolean;
 };
 
-type AnimationTrajectory = 'outside' | 'center' | 'min' | 'max' | undefined;
+type AnimationTrajectory = "outside" | "center" | "min" | "max" | undefined;
 
 type AxisComponent = React.FC<
   SharedAxisProps<AxisScale> & {
@@ -68,23 +84,35 @@ export default function Example({
 }: AxisProps) {
   // use non-animated components if prefers-reduced-motion is set
   const prefersReducedMotionQuery =
-    typeof window === 'undefined' ? false : window.matchMedia('(prefers-reduced-motion: reduce)');
-  const prefersReducedMotion = !prefersReducedMotionQuery || !!prefersReducedMotionQuery.matches;
-  const [useAnimatedComponents, setUseAnimatedComponents] = useState(!prefersReducedMotion);
+    typeof window === "undefined"
+      ? false
+      : window.matchMedia("(prefers-reduced-motion: reduce)");
+  const prefersReducedMotion =
+    !prefersReducedMotionQuery || !!prefersReducedMotionQuery.matches;
+  const [useAnimatedComponents, setUseAnimatedComponents] = useState(
+    !prefersReducedMotion
+  );
 
   // in svg, margin is subtracted from total width/height
   const width = outerWidth - margin.left - margin.right;
   const height = outerHeight - margin.top - margin.bottom;
   const [dataToggle, setDataToggle] = useState(true);
-  const [animationTrajectory, setAnimationTrajectory] = useState<AnimationTrajectory>('center');
+  const [animationTrajectory, setAnimationTrajectory] = useState<
+    AnimationTrajectory
+  >("center");
 
   // define some types
-  interface AxisDemoProps<Scale extends AxisScale> extends SharedAxisProps<Scale> {
+  interface AxisDemoProps<Scale extends AxisScale>
+    extends SharedAxisProps<Scale> {
     values: ScaleInput<Scale>[];
   }
 
-  const AxisComponent: AxisComponent = useAnimatedComponents ? AnimatedAxis : Axis;
-  const GridRowsComponent: GridRowsComponent = useAnimatedComponents ? AnimatedGridRows : GridRows;
+  const AxisComponent: AxisComponent = useAnimatedComponents
+    ? AnimatedAxis
+    : Axis;
+  const GridRowsComponent: GridRowsComponent = useAnimatedComponents
+    ? AnimatedGridRows
+    : GridRows;
   const GridColumnsComponent: GridColumnsComponent = useAnimatedComponents
     ? AnimatedGridColumns
     : GridColumns;
@@ -92,11 +120,13 @@ export default function Example({
   const axes: AxisDemoProps<AxisScale<number>>[] = useMemo(() => {
     // toggle between two value ranges to demo animation
     const linearValues = dataToggle ? [0, 2, 4, 6, 8, 10] : [6, 8, 10, 12];
-    const bandValues = dataToggle ? ['a', 'b', 'c', 'd'] : ['d', 'c', 'b', 'a'];
+    const bandValues = dataToggle ? ["a", "b", "c", "d"] : ["d", "c", "b", "a"];
     const timeValues = dataToggle
-      ? [new Date('2020-01-01'), new Date('2020-02-01')]
-      : [new Date('2020-02-01'), new Date('2020-03-01')];
-    const logValues = dataToggle ? [1, 10, 100, 1000, 10000] : [0.0001, 0.001, 0.1, 1, 10, 100];
+      ? [new Date("2020-01-01"), new Date("2020-02-01")]
+      : [new Date("2020-02-01"), new Date("2020-03-01")];
+    const logValues = dataToggle
+      ? [1, 10, 100, 1000, 10000]
+      : [0.0001, 0.001, 0.1, 1, 10, 100];
 
     return [
       {
@@ -105,9 +135,17 @@ export default function Example({
           range: [0, width],
         }),
         values: linearValues,
-        tickFormat: (v: number, index: number, ticks: { value: number; index: number }[]) =>
-          index === 0 ? 'first' : index === ticks[ticks.length - 1].index ? 'last' : `${v}`,
-        label: 'linear',
+        tickFormat: (
+          v: number,
+          index: number,
+          ticks: { value: number; index: number }[]
+        ) =>
+          index === 0
+            ? "first"
+            : index === ticks[ticks.length - 1].index
+            ? "last"
+            : `${v}`,
+        label: "linear",
       },
       {
         scale: scaleBand({
@@ -118,7 +156,7 @@ export default function Example({
         }),
         values: bandValues,
         tickFormat: (v: string) => v,
-        label: 'categories',
+        label: "categories",
       },
       {
         scale: scaleUtc({
@@ -127,8 +165,12 @@ export default function Example({
         }),
         values: timeValues,
         tickFormat: (v: Date, i: number) =>
-          i === 3 ? '🎉' : width > 400 || i % 2 === 0 ? timeFormat('%b %d')(v) : '',
-        label: 'time',
+          i === 3
+            ? "🎉"
+            : width > 400 || i % 2 === 0
+            ? timeFormat("%b %d")(v)
+            : "",
+        label: "time",
       },
       {
         scale: scaleLog({
@@ -139,9 +181,9 @@ export default function Example({
         tickFormat: (v: number) => {
           const asString = `${v}`;
           // label only major ticks
-          return asString.match(/^[.01?[\]]*$/) ? asString : '';
+          return asString.match(/^[.01?[\]]*$/) ? asString : "";
         },
-        label: 'log',
+        label: "log",
       },
     ];
   }, [dataToggle, width]);
@@ -170,12 +212,15 @@ export default function Example({
           y={0}
           width={outerWidth}
           height={outerHeight}
-          fill={'url(#visx-axis-gradient)'}
+          fill={"url(#visx-axis-gradient)"}
           rx={14}
         />
         <g transform={`translate(${margin.left},${margin.top})`}>
           {axes.map(({ scale, values, label, tickFormat }, i) => (
-            <g key={`scale-${i}`} transform={`translate(0, ${i * (scaleHeight + scalePadding)})`}>
+            <g
+              key={`scale-${i}`}
+              transform={`translate(0, ${i * (scaleHeight + scalePadding)})`}
+            >
               <GridRowsComponent
                 // force remount when this changes to see the animation difference
                 key={`gridrows-${animationTrajectory}`}
@@ -195,10 +240,11 @@ export default function Example({
                 animationTrajectory={animationTrajectory}
               />
               <AreaClosed
-                data={values.map(x => [
+                data={values.map((x) => [
                   (scale(x) ?? 0) +
                     // offset point half of band width for band scales
-                    ('bandwidth' in scale && typeof scale!.bandwidth !== 'undefined'
+                    ("bandwidth" in scale &&
+                    typeof scale!.bandwidth !== "undefined"
                       ? scale.bandwidth!() / 2
                       : 0),
                   yScale(10 + seededRandom() * 90),
@@ -218,8 +264,10 @@ export default function Example({
                 stroke={axisColor}
                 tickStroke={axisColor}
                 tickLabelProps={tickLabelProps}
-                tickValues={label === 'log' || label === 'time' ? undefined : values}
-                numTicks={label === 'time' ? 6 : undefined}
+                tickValues={
+                  label === "log" || label === "time" ? undefined : values
+                }
+                numTicks={label === "time" ? 6 : undefined}
                 label={label}
                 labelProps={{
                   x: width + 30,
@@ -227,10 +275,10 @@ export default function Example({
                   fill: labelColor,
                   fontSize: 18,
                   strokeWidth: 0,
-                  stroke: '#fff',
-                  paintOrder: 'stroke',
-                  fontFamily: 'sans-serif',
-                  textAnchor: 'start',
+                  stroke: "#fff",
+                  paintOrder: "stroke",
+                  fontFamily: "sans-serif",
+                  textAnchor: "start",
                 }}
                 animationTrajectory={animationTrajectory}
               />
@@ -244,9 +292,11 @@ export default function Example({
             <label>
               <input
                 type="checkbox"
-                onChange={() => setUseAnimatedComponents(!useAnimatedComponents)}
+                onChange={() =>
+                  setUseAnimatedComponents(!useAnimatedComponents)
+                }
                 checked={useAnimatedComponents}
-              />{' '}
+              />{" "}
               enable animation
             </label>
             &nbsp;&nbsp;&nbsp;
@@ -256,40 +306,42 @@ export default function Example({
                 <label>
                   <input
                     type="radio"
-                    onChange={() => setAnimationTrajectory('outside')}
-                    checked={animationTrajectory === 'outside'}
-                  />{' '}
+                    onChange={() => setAnimationTrajectory("outside")}
+                    checked={animationTrajectory === "outside"}
+                  />{" "}
                   outside
                 </label>
                 <label>
                   <input
                     type="radio"
-                    onChange={() => setAnimationTrajectory('center')}
-                    checked={animationTrajectory === 'center'}
-                  />{' '}
+                    onChange={() => setAnimationTrajectory("center")}
+                    checked={animationTrajectory === "center"}
+                  />{" "}
                   center
                 </label>
                 <label>
                   <input
                     type="radio"
-                    onChange={() => setAnimationTrajectory('min')}
-                    checked={animationTrajectory === 'min'}
-                  />{' '}
+                    onChange={() => setAnimationTrajectory("min")}
+                    checked={animationTrajectory === "min"}
+                  />{" "}
                   min
                 </label>
                 <label>
                   <input
                     type="radio"
-                    onChange={() => setAnimationTrajectory('max')}
-                    checked={animationTrajectory === 'max'}
-                  />{' '}
+                    onChange={() => setAnimationTrajectory("max")}
+                    checked={animationTrajectory === "max"}
+                  />{" "}
                   max
                 </label>
               </>
             )}
           </div>
           {useAnimatedComponents && (
-            <button onClick={() => setDataToggle(!dataToggle)}>Update scales</button>
+            <button onClick={() => setDataToggle(!dataToggle)}>
+              Update scales
+            </button>
           )}
         </>
       )}

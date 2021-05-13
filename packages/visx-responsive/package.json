@@ -1,5 +1,5 @@
 {
-  "name": "@visx/responsive",
+  "name": "@seygai/visx-responsive",
   "version": "1.10.1",
   "description": "visx responsive svg",
   "sideEffects": false,

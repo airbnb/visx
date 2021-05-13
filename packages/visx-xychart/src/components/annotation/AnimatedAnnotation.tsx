@@ -1,16 +1,16 @@
-import React, { useCallback, useEffect, useRef } from 'react';
-import { useSpring, animated, interpolate } from 'react-spring';
+import React, { useCallback, useEffect, useRef } from "react";
+import { useSpring, animated, interpolate } from "react-spring";
 import {
   Annotation as VisxAnnotation,
   EditableAnnotation as VisxEditableAnnotation,
-} from '@visx/annotation';
-import { AnnotationProps as VisxAnnotationProps } from '@visx/annotation/lib/components/Annotation';
+} from "@seygai/visx-annotation";
+import { AnnotationProps as VisxAnnotationProps } from "@seygai/visx-annotation/lib/components/Annotation";
 import {
   EditableAnnotationProps,
   EditableAnnotationProps as VisxEditableAnnotationProps,
-} from '@visx/annotation/lib/components/EditableAnnotation';
-import { AxisScale } from '@visx/axis';
-import BaseAnnotation, { BaseAnnotationProps } from './private/BaseAnnotation';
+} from "@seygai/visx-annotation/lib/components/EditableAnnotation";
+import { AxisScale } from "@seygai/visx-axis";
+import BaseAnnotation, { BaseAnnotationProps } from "./private/BaseAnnotation";
 
 export type AnnotationProps<
   XScale extends AxisScale,
@@ -18,7 +18,7 @@ export type AnnotationProps<
   Datum extends object
 > = { editable?: boolean } & Omit<
   BaseAnnotationProps<XScale, YScale, Datum>,
-  'AnnotationComponent'
+  "AnnotationComponent"
 >;
 
 export default function AnimatedAnnotation<
@@ -30,16 +30,18 @@ export default function AnimatedAnnotation<
     XScale,
     YScale,
     Datum
-  >['AnnotationComponent'] = useCallback(
+  >["AnnotationComponent"] = useCallback(
     (annotationProps: VisxAnnotationProps & VisxEditableAnnotationProps) => (
       <BaseAnimatedAnnotation
         AnnotationComponent={editable ? VisxEditableAnnotation : VisxAnnotation}
         {...annotationProps}
       />
     ),
-    [editable],
+    [editable]
   );
-  return <BaseAnnotation AnnotationComponent={AnnotationComponent} {...props} />;
+  return (
+    <BaseAnnotation AnnotationComponent={AnnotationComponent} {...props} />
+  );
 }
 
 function BaseAnimatedAnnotation<
@@ -52,7 +54,9 @@ function BaseAnimatedAnnotation<
   AnnotationComponent,
   ...props
 }: {
-  AnnotationComponent: React.FC<VisxAnnotationProps> | React.FC<VisxEditableAnnotationProps>;
+  AnnotationComponent:
+    | React.FC<VisxAnnotationProps>
+    | React.FC<VisxEditableAnnotationProps>;
 } & VisxAnnotationProps &
   EditableAnnotationProps) {
   const lastXY = useRef({ x, y });
@@ -74,7 +78,7 @@ function BaseAnimatedAnnotation<
       transform={interpolate(
         // @ts-expect-error from/to mess up the useSpring types
         [animatedXY.x, animatedXY.y],
-        (xVal, yVal) => `translate(${xVal}, ${yVal})`,
+        (xVal, yVal) => `translate(${xVal}, ${yVal})`
       )}
     >
       <AnnotationComponent x={x} y={y} {...props} />

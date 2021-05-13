@@ -1,9 +1,11 @@
-import { useCallback, useContext } from 'react';
-import { AxisScale } from '@visx/axis';
-import TooltipContext from '../context/TooltipContext';
-import { EventHandlerParams, SeriesProps, TooltipContextType } from '../types';
-import useEventEmitters from './useEventEmitters';
-import useEventHandlers, { PointerEventHandlerParams } from './useEventHandlers';
+import { useCallback, useContext } from "react";
+import { AxisScale } from "@seygai/visx-axis";
+import TooltipContext from "../context/TooltipContext";
+import { EventHandlerParams, SeriesProps, TooltipContextType } from "../types";
+import useEventEmitters from "./useEventEmitters";
+import useEventHandlers, {
+  PointerEventHandlerParams,
+} from "./useEventHandlers";
 
 export type SeriesEventsParams<
   XScale extends AxisScale,
@@ -11,11 +13,16 @@ export type SeriesEventsParams<
   Datum extends object
 > = Pick<
   SeriesProps<XScale, YScale, Datum>,
-  'enableEvents' | 'onBlur' | 'onFocus' | 'onPointerMove' | 'onPointerOut' | 'onPointerUp'
+  | "enableEvents"
+  | "onBlur"
+  | "onFocus"
+  | "onPointerMove"
+  | "onPointerOut"
+  | "onPointerUp"
 > &
   Pick<
     PointerEventHandlerParams<XScale, YScale, Datum>,
-    'dataKey' | 'allowedSources' | 'findNearestDatum'
+    "dataKey" | "allowedSources" | "findNearestDatum"
   > & {
     /** The source of emitted events. */
     source: string;
@@ -38,36 +45,35 @@ export default function useSeriesEvents<
   source,
   allowedSources,
 }: SeriesEventsParams<XScale, YScale, Datum>) {
-  const { showTooltip, hideTooltip } = (useContext(TooltipContext) ?? {}) as TooltipContextType<
-    Datum
-  >;
+  const { showTooltip, hideTooltip } = (useContext(TooltipContext) ??
+    {}) as TooltipContextType<Datum>;
   const onPointerMove = useCallback(
     (params: EventHandlerParams<Datum>) => {
       showTooltip(params);
       if (onPointerMoveProps) onPointerMoveProps(params);
     },
-    [showTooltip, onPointerMoveProps],
+    [showTooltip, onPointerMoveProps]
   );
   const onFocus = useCallback(
     (params: EventHandlerParams<Datum>) => {
       showTooltip(params);
       if (onFocusProps) onFocusProps(params);
     },
-    [showTooltip, onFocusProps],
+    [showTooltip, onFocusProps]
   );
   const onPointerOut = useCallback(
     (event: React.PointerEvent) => {
       hideTooltip();
       if (event && onPointerOutProps) onPointerOutProps(event);
     },
-    [hideTooltip, onPointerOutProps],
+    [hideTooltip, onPointerOutProps]
   );
   const onBlur = useCallback(
     (event: React.FocusEvent) => {
       hideTooltip();
       if (event && onBlurProps) onBlurProps(event);
     },
-    [hideTooltip, onBlurProps],
+    [hideTooltip, onBlurProps]
   );
   useEventHandlers({
     dataKey,

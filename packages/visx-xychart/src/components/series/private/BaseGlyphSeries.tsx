@@ -1,12 +1,17 @@
-import React, { useContext, useCallback, useMemo } from 'react';
-import { AxisScale } from '@visx/axis';
-import DataContext from '../../../context/DataContext';
-import { GlyphProps, GlyphsProps, SeriesProps } from '../../../types';
-import withRegisteredData, { WithRegisteredDataProps } from '../../../enhancers/withRegisteredData';
-import getScaledValueFactory from '../../../utils/getScaledValueFactory';
-import isValidNumber from '../../../typeguards/isValidNumber';
-import { GLYPHSERIES_EVENT_SOURCE, XYCHART_EVENT_SOURCE } from '../../../constants';
-import useSeriesEvents from '../../../hooks/useSeriesEvents';
+import React, { useContext, useCallback, useMemo } from "react";
+import { AxisScale } from "@seygai/visx-axis";
+import DataContext from "../../../context/DataContext";
+import { GlyphProps, GlyphsProps, SeriesProps } from "../../../types";
+import withRegisteredData, {
+  WithRegisteredDataProps,
+} from "../../../enhancers/withRegisteredData";
+import getScaledValueFactory from "../../../utils/getScaledValueFactory";
+import isValidNumber from "../../../typeguards/isValidNumber";
+import {
+  GLYPHSERIES_EVENT_SOURCE,
+  XYCHART_EVENT_SOURCE,
+} from "../../../constants";
+import useSeriesEvents from "../../../hooks/useSeriesEvents";
 
 export type BaseGlyphSeriesProps<
   XScale extends AxisScale,
@@ -18,7 +23,9 @@ export type BaseGlyphSeriesProps<
   /** The size of a `Glyph`, a `number` or a function which takes a `Datum` and returns a `number`. */
   size?: number | ((d: Datum) => number);
   /** Function which handles rendering glyphs. */
-  renderGlyphs: (glyphsProps: GlyphsProps<XScale, YScale, Datum>) => React.ReactNode;
+  renderGlyphs: (
+    glyphsProps: GlyphsProps<XScale, YScale, Datum>
+  ) => React.ReactNode;
 };
 
 export function BaseGlyphSeries<
@@ -41,11 +48,18 @@ export function BaseGlyphSeries<
   xScale,
   yAccessor,
   yScale,
-}: BaseGlyphSeriesProps<XScale, YScale, Datum> & WithRegisteredDataProps<XScale, YScale, Datum>) {
+}: BaseGlyphSeriesProps<XScale, YScale, Datum> &
+  WithRegisteredDataProps<XScale, YScale, Datum>) {
   const { colorScale, theme, horizontal } = useContext(DataContext);
-  const getScaledX = useCallback(getScaledValueFactory(xScale, xAccessor), [xScale, xAccessor]);
-  const getScaledY = useCallback(getScaledValueFactory(yScale, yAccessor), [yScale, yAccessor]);
-  const color = colorScale?.(dataKey) ?? theme?.colors?.[0] ?? '#222';
+  const getScaledX = useCallback(getScaledValueFactory(xScale, xAccessor), [
+    xScale,
+    xAccessor,
+  ]);
+  const getScaledY = useCallback(getScaledValueFactory(yScale, yAccessor), [
+    yScale,
+    yAccessor,
+  ]);
+  const color = colorScale?.(dataKey) ?? theme?.colors?.[0] ?? "#222";
 
   const ownEventSourceKey = `${GLYPHSERIES_EVENT_SOURCE}-${dataKey}`;
   const eventEmitters = useSeriesEvents<XScale, YScale, Datum>({
@@ -73,17 +87,19 @@ export function BaseGlyphSeries<
             x,
             y,
             color: colorAccessor?.(datum, i) ?? color,
-            size: typeof size === 'function' ? size(datum) : size,
+            size: typeof size === "function" ? size(datum) : size,
             datum,
           };
         })
-        .filter(point => point) as GlyphProps<Datum>[],
-    [color, colorAccessor, data, getScaledX, getScaledY, size],
+        .filter((point) => point) as GlyphProps<Datum>[],
+    [color, colorAccessor, data, getScaledX, getScaledY, size]
   );
 
   return (
     // eslint-disable-next-line react/jsx-no-useless-fragment
-    <>{renderGlyphs({ glyphs, xScale, yScale, horizontal, ...eventEmitters })}</>
+    <>
+      {renderGlyphs({ glyphs, xScale, yScale, horizontal, ...eventEmitters })}
+    </>
   );
 }
 

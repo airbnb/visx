@@ -2,23 +2,25 @@
  * Animated radial line example using svg dash offset trick. See here for more
  * https://www.visualcinnamon.com/2016/01/animating-dashed-line-d3.html
  */
-import React, { useRef, useState, useEffect } from 'react';
-import { Group } from '@visx/group';
-import { LineRadial } from '@visx/shape';
-import { scaleTime, scaleLog, NumberLike } from '@visx/scale';
-import { curveBasisOpen } from '@visx/curve';
-import appleStock, { AppleStock } from '@visx/mock-data/lib/mocks/appleStock';
-import { LinearGradient } from '@visx/gradient';
-import { AxisLeft } from '@visx/axis';
-import { GridRadial, GridAngle } from '@visx/grid';
-import { animated, useSpring } from 'react-spring';
+import React, { useRef, useState, useEffect } from "react";
+import { Group } from "@seygai/visx-group";
+import { LineRadial } from "@seygai/visx-shape";
+import { scaleTime, scaleLog, NumberLike } from "@seygai/visx-scale";
+import { curveBasisOpen } from "@seygai/visx-curve";
+import appleStock, {
+  AppleStock,
+} from "@seygai/visx-mock-data/lib/mocks/appleStock";
+import { LinearGradient } from "@seygai/visx-gradient";
+import { AxisLeft } from "@seygai/visx-axis";
+import { GridRadial, GridAngle } from "@seygai/visx-grid";
+import { animated, useSpring } from "react-spring";
 
-const green = '#e5fd3d';
-export const blue = '#aeeef8';
-const darkgreen = '#dff84d';
-export const background = '#744cca';
-const darkbackground = '#603FA8';
-const strokeColor = '#744cca';
+const green = "#e5fd3d";
+export const blue = "#aeeef8";
+const darkgreen = "#dff84d";
+export const background = "#744cca";
+const darkbackground = "#603FA8";
+const strokeColor = "#744cca";
 const springConfig = {
   tension: 20,
 };
@@ -86,13 +88,21 @@ const Example = ({ width, height, animate = true }: LineRadialProps) => {
     <>
       {animate && (
         <>
-          <button type="button" onClick={handlePress} onTouchStart={handlePress}>
+          <button
+            type="button"
+            onClick={handlePress}
+            onTouchStart={handlePress}
+          >
             Animate
           </button>
           <br />
         </>
       )}
-      <svg width={width} height={height} onClick={() => setShouldAnimate(!shouldAnimate)}>
+      <svg
+        width={width}
+        height={height}
+        onClick={() => setShouldAnimate(!shouldAnimate)}
+      >
         <LinearGradient from={green} to={blue} id="line-gradient" />
         <rect width={width} height={height} fill={background} rx={14} />
         <Group top={height / 2} left={width / 2}>
@@ -119,23 +129,23 @@ const Example = ({ width, height, animate = true }: LineRadialProps) => {
             scale={reverseYScale}
             numTicks={5}
             tickStroke="none"
-            tickLabelProps={val => ({
+            tickLabelProps={(val) => ({
               fontSize: 8,
               fill: blue,
               fillOpacity: 1,
-              textAnchor: 'middle',
-              dx: '1em',
-              dy: '-0.5em',
+              textAnchor: "middle",
+              dx: "1em",
+              dy: "-0.5em",
               stroke: strokeColor,
               strokeWidth: 0.5,
-              paintOrder: 'stroke',
+              paintOrder: "stroke",
             })}
             tickFormat={formatTicks}
             hideAxisLine
           />
           <LineRadial angle={angle} radius={radius} curve={curveBasisOpen}>
             {({ path }) => {
-              const d = path(appleStock) || '';
+              const d = path(appleStock) || "";
               return (
                 <>
                   <animated.path
@@ -145,7 +155,7 @@ const Example = ({ width, height, animate = true }: LineRadialProps) => {
                     strokeOpacity={0.8}
                     strokeLinecap="round"
                     fill="none"
-                    stroke={animate ? darkbackground : 'url(#line-gradient)'}
+                    stroke={animate ? darkbackground : "url(#line-gradient)"}
                   />
                   {shouldAnimate && (
                     <animated.path
@@ -155,7 +165,9 @@ const Example = ({ width, height, animate = true }: LineRadialProps) => {
                       strokeLinecap="round"
                       fill="none"
                       stroke="url(#line-gradient)"
-                      strokeDashoffset={spring.frame.interpolate(v => v * lineLength)}
+                      strokeDashoffset={spring.frame.interpolate(
+                        (v) => v * lineLength
+                      )}
                       strokeDasharray={lineLength}
                     />
                   )}
@@ -167,7 +179,15 @@ const Example = ({ width, height, animate = true }: LineRadialProps) => {
           {[firstPoint, lastPoint].map((d, i) => {
             const cx = ((xScale(date(d)) ?? 0) * Math.PI) / 180;
             const cy = -(yScale(close(d)) ?? 0);
-            return <circle key={`line-cap-${i}`} cx={cx} cy={cy} fill={darkgreen} r={3} />;
+            return (
+              <circle
+                key={`line-cap-${i}`}
+                cx={cx}
+                cy={cy}
+                fill={darkgreen}
+                r={3}
+              />
+            );
           })}
         </Group>
       </svg>

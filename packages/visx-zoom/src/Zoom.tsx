@@ -1,5 +1,5 @@
-import React from 'react';
-import { localPoint } from '@visx/event';
+import React from "react";
+import { localPoint } from "@seygai/visx-event";
 import {
   composeMatrices,
   inverseMatrix,
@@ -8,8 +8,15 @@ import {
   translateMatrix,
   identityMatrix,
   scaleMatrix,
-} from './util/matrix';
-import { TransformMatrix, Point, Translate, Scale, ScaleSignature, ProvidedZoom } from './types';
+} from "./util/matrix";
+import {
+  TransformMatrix,
+  Point,
+  Translate,
+  Scale,
+  ScaleSignature,
+  ProvidedZoom,
+} from "./types";
 
 export type ZoomProps = {
   /** Width of the zoom container. */
@@ -53,7 +60,10 @@ export type ZoomProps = {
    * }
    * ```
    */
-  constrain?: (transform: TransformMatrix, prevTransform: TransformMatrix) => TransformMatrix;
+  constrain?: (
+    transform: TransformMatrix,
+    prevTransform: TransformMatrix
+  ) => TransformMatrix;
   /** Initial transform matrix to apply. */
   transformMatrix?: TransformMatrix;
   /**
@@ -95,7 +105,9 @@ class Zoom extends React.Component<ZoomProps, ZoomState> {
       skewY: 0,
     },
     wheelDelta: (event: React.WheelEvent | WheelEvent) =>
-      -event.deltaY > 0 ? { scaleX: 1.1, scaleY: 1.1 } : { scaleX: 0.9, scaleY: 0.9 },
+      -event.deltaY > 0
+        ? { scaleX: 1.1, scaleY: 1.1 }
+        : { scaleX: 0.9, scaleY: 0.9 },
     style: undefined,
     className: undefined,
   };
@@ -115,14 +127,16 @@ class Zoom extends React.Component<ZoomProps, ZoomState> {
   componentDidMount() {
     const { passive } = this.props;
     if (this.containerRef && !passive) {
-      this.containerRef.addEventListener('wheel', this.handleWheel, { passive: false });
+      this.containerRef.addEventListener("wheel", this.handleWheel, {
+        passive: false,
+      });
     }
   }
 
   componentWillUnmount() {
     const { passive } = this.props;
     if (this.containerRef && !passive) {
-      this.containerRef.removeEventListener('wheel', this.handleWheel);
+      this.containerRef.removeEventListener("wheel", this.handleWheel);
     }
   }
 
@@ -151,14 +165,17 @@ class Zoom extends React.Component<ZoomProps, ZoomState> {
       transformMatrix,
       translateMatrix(translate.x, translate.y),
       scaleMatrix(scaleX, scaleY),
-      translateMatrix(-translate.x, -translate.y),
+      translateMatrix(-translate.x, -translate.y)
     );
     this.setTransformMatrix(nextMatrix);
   };
 
   translate = ({ translateX, translateY }: Translate) => {
     const { transformMatrix } = this.state;
-    const nextMatrix = composeMatrices(transformMatrix, translateMatrix(translateX, translateY));
+    const nextMatrix = composeMatrices(
+      transformMatrix,
+      translateMatrix(translateX, translateY)
+    );
     this.setTransformMatrix(nextMatrix);
   };
 
@@ -179,20 +196,34 @@ class Zoom extends React.Component<ZoomProps, ZoomState> {
   };
 
   setTransformMatrix = (transformMatrix: TransformMatrix) => {
-    this.setState(prevState => ({
-      transformMatrix: this.constrain(transformMatrix, prevState.transformMatrix),
+    this.setState((prevState) => ({
+      transformMatrix: this.constrain(
+        transformMatrix,
+        prevState.transformMatrix
+      ),
     }));
   };
 
   invert = () => inverseMatrix(this.state.transformMatrix);
 
   toStringInvert = () => {
-    const { translateX, translateY, scaleX, scaleY, skewX, skewY } = this.invert();
+    const {
+      translateX,
+      translateY,
+      scaleX,
+      scaleY,
+      skewX,
+      skewY,
+    } = this.invert();
     return `matrix(${scaleX}, ${skewY}, ${skewX}, ${scaleY}, ${translateX}, ${translateY})`;
   };
 
-  constrain = (transformMatrix: TransformMatrix, prevTransformMatrix: TransformMatrix) => {
-    if (this.props.constrain) return this.props.constrain(transformMatrix, prevTransformMatrix);
+  constrain = (
+    transformMatrix: TransformMatrix,
+    prevTransformMatrix: TransformMatrix
+  ) => {
+    if (this.props.constrain)
+      return this.props.constrain(transformMatrix, prevTransformMatrix);
     const { scaleXMin, scaleXMax, scaleYMin, scaleYMax } = this.props;
     const { scaleX, scaleY } = transformMatrix;
     const shouldConstrainScaleX = scaleX > scaleXMax! || scaleX < scaleXMin!;
@@ -204,7 +235,9 @@ class Zoom extends React.Component<ZoomProps, ZoomState> {
     return transformMatrix;
   };
 
-  dragStart = (event: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent) => {
+  dragStart = (
+    event: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent
+  ) => {
     const { transformMatrix } = this.state;
     const { translateX, translateY } = transformMatrix;
     this.startPoint = localPoint(event) || undefined;
@@ -212,11 +245,18 @@ class Zoom extends React.Component<ZoomProps, ZoomState> {
     this.setState({ isDragging: true });
   };
 
-  dragMove = (event: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent) => {
-    if (!this.state.isDragging || !this.startPoint || !this.startTranslate) return;
+  dragMove = (
+    event: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent
+  ) => {
+    if (!this.state.isDragging || !this.startPoint || !this.startTranslate)
+      return;
     const currentPoint = localPoint(event);
-    const dx = currentPoint ? -(this.startPoint.x - currentPoint.x) : -this.startPoint.x;
-    const dy = currentPoint ? -(this.startPoint.y - currentPoint.y) : -this.startPoint.y;
+    const dx = currentPoint
+      ? -(this.startPoint.x - currentPoint.x)
+      : -this.startPoint.x;
+    const dy = currentPoint
+      ? -(this.startPoint.y - currentPoint.y)
+      : -this.startPoint.y;
     this.setTranslate({
       translateX: this.startTranslate.translateX + dx,
       translateY: this.startTranslate.translateY + dy,
@@ -239,7 +279,14 @@ class Zoom extends React.Component<ZoomProps, ZoomState> {
 
   toString = () => {
     const { transformMatrix } = this.state;
-    const { translateX, translateY, scaleX, scaleY, skewX, skewY } = transformMatrix;
+    const {
+      translateX,
+      translateY,
+      scaleX,
+      scaleY,
+      skewX,
+      skewY,
+    } = transformMatrix;
     return `matrix(${scaleX}, ${skewY}, ${skewX}, ${scaleY}, ${translateX}, ${translateY})`;
   };
 
@@ -282,7 +329,7 @@ class Zoom extends React.Component<ZoomProps, ZoomState> {
     if (!passive) {
       return (
         <div
-          ref={c => {
+          ref={(c) => {
             this.containerRef = c;
           }}
           style={style}

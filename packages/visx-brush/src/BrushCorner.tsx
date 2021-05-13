@@ -1,8 +1,8 @@
 /* eslint react/jsx-handler-names: 0 */
-import React from 'react';
-import Drag, { HandlerArgs as DragArgs } from '@visx/drag/lib/Drag';
-import { BaseBrushState as BrushState, UpdateBrush } from './BaseBrush';
-import { ResizeTriggerAreas } from './types';
+import React from "react";
+import Drag, { HandlerArgs as DragArgs } from "@seygai/visx-drag/lib/Drag";
+import { BaseBrushState as BrushState, UpdateBrush } from "./BaseBrush";
+import { ResizeTriggerAreas } from "./types";
 
 export type BrushCornerProps = {
   stageWidth: number;
@@ -17,7 +17,10 @@ export type BrushCornerProps = {
 
 export type BrushCornerState = {};
 
-export default class BrushCorner extends React.Component<BrushCornerProps, BrushCornerState> {
+export default class BrushCorner extends React.Component<
+  BrushCornerProps,
+  BrushCornerState
+> {
   static defaultProps = {
     style: {},
   };
@@ -38,7 +41,7 @@ export default class BrushCorner extends React.Component<BrushCornerProps, Brush
       let moveY = 0;
 
       switch (type) {
-        case 'topRight':
+        case "topRight":
           moveX = xMax + drag.dx;
           moveY = yMin + drag.dy;
           return {
@@ -53,7 +56,7 @@ export default class BrushCorner extends React.Component<BrushCornerProps, Brush
             },
           };
 
-        case 'topLeft':
+        case "topLeft":
           moveX = xMin + drag.dx;
           moveY = yMin + drag.dy;
           return {
@@ -68,7 +71,7 @@ export default class BrushCorner extends React.Component<BrushCornerProps, Brush
             },
           };
 
-        case 'bottomLeft':
+        case "bottomLeft":
           moveX = xMin + drag.dx;
           moveY = yMax + drag.dy;
           return {
@@ -82,7 +85,7 @@ export default class BrushCorner extends React.Component<BrushCornerProps, Brush
               y1: Math.min(Math.max(moveY, start.y), prevBrush.bounds.y1),
             },
           };
-        case 'bottomRight':
+        case "bottomRight":
           moveX = xMax + drag.dx;
           moveY = yMax + drag.dy;
           return {
@@ -132,11 +135,21 @@ export default class BrushCorner extends React.Component<BrushCornerProps, Brush
   };
 
   render() {
-    const { type, brush, stageWidth, stageHeight, style: styleProp, corner } = this.props;
+    const {
+      type,
+      brush,
+      stageWidth,
+      stageHeight,
+      style: styleProp,
+      corner,
+    } = this.props;
     const cursor =
       (styleProp && styleProp.cursor) ||
-      (type === 'topLeft' || type === 'bottomRight' ? 'nwse-resize' : 'nesw-resize');
-    const pointerEvents = brush.activeHandle || brush.isBrushing ? 'none' : 'all';
+      (type === "topLeft" || type === "bottomRight"
+        ? "nwse-resize"
+        : "nesw-resize");
+    const pointerEvents =
+      brush.activeHandle || brush.isBrushing ? "none" : "all";
 
     return (
       <Drag

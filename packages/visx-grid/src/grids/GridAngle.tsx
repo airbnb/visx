@@ -1,15 +1,15 @@
-import React from 'react';
-import cx from 'classnames';
-import Line, { LineProps } from '@visx/shape/lib/shapes/Line';
-import { Group } from '@visx/group';
-import { ScaleInput, getTicks, coerceNumber } from '@visx/scale';
-import { Point } from '@visx/point';
+import React from "react";
+import cx from "classnames";
+import Line, { LineProps } from "@seygai/visx-shape/lib/shapes/Line";
+import { Group } from "@seygai/visx-group";
+import { ScaleInput, getTicks, coerceNumber } from "@seygai/visx-scale";
+import { Point } from "@seygai/visx-point";
 
-import { CommonGridProps, GridScale } from '../types';
-import polarToCartesian from '../utils/polarToCartesian';
+import { CommonGridProps, GridScale } from "../types";
+import polarToCartesian from "../utils/polarToCartesian";
 
 export type GridAngleProps<Scale extends GridScale> = CommonGridProps & {
-  /** `@visx/scale` or `d3-scale` object used to convert value to angle. */
+  /** `@seygai/visx-scale` or `d3-scale` object used to convert value to angle. */
   scale: Scale;
   /**
    * Exact values used to generate angle grid lines using `scale`.
@@ -45,7 +45,7 @@ export default function GridAngle<Scale extends GridScale>({
   numTicks = 10,
   outerRadius = 0,
   scale,
-  stroke = '#eaf0f6',
+  stroke = "#eaf0f6",
   strokeDasharray,
   strokeWidth = 1,
   tickValues,
@@ -54,7 +54,7 @@ export default function GridAngle<Scale extends GridScale>({
 }: AllGridAngleProps<Scale>) {
   const ticks = tickValues ?? getTicks(scale, numTicks);
   return (
-    <Group className={cx('visx-grid-angle', className)} top={top} left={left}>
+    <Group className={cx("visx-grid-angle", className)} top={top} left={left}>
       {ticks.map((tick, i) => {
         const angle = (coerceNumber(scale(tick)) ?? Math.PI / 2) - Math.PI / 2;
         return (

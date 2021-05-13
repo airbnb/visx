@@ -1,11 +1,14 @@
-import React, { useContext, useCallback } from 'react';
-import { SeriesPoint } from 'd3-shape';
-import { PositionScale, StackPathConfig } from '@visx/shape/lib/types';
-import { getFirstItem, getSecondItem } from '@visx/shape/lib/util/accessors';
-import getBandwidth from '@visx/shape/lib/util/getBandwidth';
+import React, { useContext, useCallback } from "react";
+import { SeriesPoint } from "d3-shape";
+import { PositionScale, StackPathConfig } from "@seygai/visx-shape/lib/types";
+import {
+  getFirstItem,
+  getSecondItem,
+} from "@seygai/visx-shape/lib/util/accessors";
+import getBandwidth from "@seygai/visx-shape/lib/util/getBandwidth";
 
-import { BaseBarSeriesProps } from './BaseBarSeries';
-import DataContext from '../../../context/DataContext';
+import { BaseBarSeriesProps } from "./BaseBarSeries";
+import DataContext from "../../../context/DataContext";
 import {
   Bar,
   BarsProps,
@@ -15,19 +18,22 @@ import {
   NearestDatumArgs,
   NearestDatumReturnType,
   SeriesProps,
-} from '../../../types';
-import isValidNumber from '../../../typeguards/isValidNumber';
-import { getStackValue } from '../../../utils/combineBarStackData';
-import { BARSTACK_EVENT_SOURCE, XYCHART_EVENT_SOURCE } from '../../../constants';
-import useSeriesEvents from '../../../hooks/useSeriesEvents';
-import findNearestStackDatum from '../../../utils/findNearestStackDatum';
-import useStackedData from '../../../hooks/useStackedData';
+} from "../../../types";
+import isValidNumber from "../../../typeguards/isValidNumber";
+import { getStackValue } from "../../../utils/combineBarStackData";
+import {
+  BARSTACK_EVENT_SOURCE,
+  XYCHART_EVENT_SOURCE,
+} from "../../../constants";
+import useSeriesEvents from "../../../hooks/useSeriesEvents";
+import findNearestStackDatum from "../../../utils/findNearestStackDatum";
+import useStackedData from "../../../hooks/useStackedData";
 
 type BarStackChildProps<
   XScale extends PositionScale,
   YScale extends PositionScale,
   Datum extends object
-> = Omit<BaseBarSeriesProps<XScale, YScale, Datum>, 'BarsComponent'>;
+> = Omit<BaseBarSeriesProps<XScale, YScale, Datum>, "BarsComponent">;
 
 export type BaseBarStackProps<
   XScale extends PositionScale,
@@ -40,10 +46,15 @@ export type BaseBarStackProps<
     | React.ReactElement<BarStackChildProps<XScale, YScale, Datum>>[];
   /** Rendered component which is passed BarsProps by BaseBarStack after processing. */
   BarsComponent: React.FC<BarsProps<XScale, YScale>>;
-} & Pick<StackPathConfig<Datum, string>, 'offset' | 'order'> &
+} & Pick<StackPathConfig<Datum, string>, "offset" | "order"> &
   Pick<
     SeriesProps<XScale, YScale, Datum>,
-    'onPointerMove' | 'onPointerOut' | 'onPointerUp' | 'onBlur' | 'onFocus' | 'enableEvents'
+    | "onPointerMove"
+    | "onPointerOut"
+    | "onPointerUp"
+    | "onBlur"
+    | "onFocus"
+    | "enableEvents"
   >;
 
 function BaseBarStack<
@@ -65,8 +76,12 @@ function BaseBarStack<
   type StackBar = SeriesPoint<CombinedStackData<XScale, YScale>>;
 
   const { colorScale, dataRegistry, horizontal, xScale, yScale } = (useContext(
-    DataContext,
-  ) as unknown) as DataContextType<XScale, YScale, BarStackDatum<XScale, YScale>>;
+    DataContext
+  ) as unknown) as DataContextType<
+    XScale,
+    YScale,
+    BarStackDatum<XScale, YScale>
+  >;
 
   const { seriesChildren, dataKeys, stackedData } = useStackedData<
     XScale,
@@ -82,16 +97,19 @@ function BaseBarStack<
   // custom logic to find the nearest AreaStackDatum (context) and return the original Datum (props)
   const findNearestDatum = useCallback(
     (
-      params: NearestDatumArgs<XScale, YScale, BarStackDatum<XScale, YScale>>,
+      params: NearestDatumArgs<XScale, YScale, BarStackDatum<XScale, YScale>>
     ): NearestDatumReturnType<Datum> => {
-      const childData = seriesChildren.find(child => child.props.dataKey === params.dataKey)?.props
-        ?.data;
-      return childData ? findNearestStackDatum(params, childData, horizontal) : null;
+      const childData = seriesChildren.find(
+        (child) => child.props.dataKey === params.dataKey
+      )?.props?.data;
+      return childData
+        ? findNearestStackDatum(params, childData, horizontal)
+        : null;
     },
-    [seriesChildren, horizontal],
+    [seriesChildren, horizontal]
   );
 
-  const ownEventSourceKey = `${BARSTACK_EVENT_SOURCE}-${dataKeys.join('-')}`;
+  const ownEventSourceKey = `${BARSTACK_EVENT_SOURCE}-${dataKeys.join("-")}`;
   const eventEmitters = useSeriesEvents<XScale, YScale, Datum>({
     dataKey: dataKeys,
     enableEvents,
@@ -107,7 +125,12 @@ function BaseBarStack<
   });
 
   // if scales and data are not available in the registry, bail
-  if (dataKeys.some(key => dataRegistry.get(key) == null) || !xScale || !yScale || !colorScale) {
+  if (
+    dataKeys.some((key) => dataRegistry.get(key) == null) ||
+    !xScale ||
+    !yScale ||
+    !colorScale
+  ) {
     return null;
   }
 
@@ -120,21 +143,23 @@ function BaseBarStack<
   let getY: (bar: StackBar) => number | undefined;
 
   if (horizontal) {
-    getWidth = bar => (xScale(getSecondItem(bar)) ?? NaN) - (xScale(getFirstItem(bar)) ?? NaN);
+    getWidth = (bar) =>
+      (xScale(getSecondItem(bar)) ?? NaN) - (xScale(getFirstItem(bar)) ?? NaN);
     getHeight = () => barThickness;
-    getX = bar => xScale(getFirstItem(bar));
-    getY = bar =>
-      'bandwidth' in yScale
+    getX = (bar) => xScale(getFirstItem(bar));
+    getY = (bar) =>
+      "bandwidth" in yScale
         ? yScale(getStackValue(bar.data))
         : Math.max((yScale(getStackValue(bar.data)) ?? NaN) - halfBarThickness);
   } else {
     getWidth = () => barThickness;
-    getHeight = bar => (yScale(getFirstItem(bar)) ?? NaN) - (yScale(getSecondItem(bar)) ?? NaN);
-    getX = bar =>
-      'bandwidth' in xScale
+    getHeight = (bar) =>
+      (yScale(getFirstItem(bar)) ?? NaN) - (yScale(getSecondItem(bar)) ?? NaN);
+    getX = (bar) =>
+      "bandwidth" in xScale
         ? xScale(getStackValue(bar.data))
         : Math.max((xScale(getStackValue(bar.data)) ?? NaN) - halfBarThickness);
-    getY = bar => yScale(getSecondItem(bar));
+    getY = (bar) => yScale(getSecondItem(bar));
   }
 
   const bars = stackedData
@@ -145,7 +170,9 @@ function BaseBarStack<
       // get colorAccessor from child BarSeries, if available
       const barSeries:
         | React.ReactElement<BaseBarSeriesProps<XScale, YScale, Datum>>
-        | undefined = seriesChildren.find(child => child.props.dataKey === barStack.key);
+        | undefined = seriesChildren.find(
+        (child) => child.props.dataKey === barStack.key
+      );
       const colorAccessor = barSeries?.props?.colorAccessor;
 
       return barStack.map((bar, index) => {
@@ -158,7 +185,9 @@ function BaseBarStack<
         const barHeight = getHeight(bar);
         if (!isValidNumber(barHeight)) return null;
 
-        const barSeriesDatum = colorAccessor ? barSeries?.props?.data[index] : null;
+        const barSeriesDatum = colorAccessor
+          ? barSeries?.props?.data[index]
+          : null;
 
         return {
           key: `${stackIndex}-${barStack.key}-${index}`,
@@ -173,7 +202,7 @@ function BaseBarStack<
         };
       });
     })
-    .filter(bar => bar) as Bar[];
+    .filter((bar) => bar) as Bar[];
 
   return (
     <g className="visx-bar-stack">

@@ -1,30 +1,30 @@
-import { scaleLinear } from '@visx/scale';
-import getScaleBaseline from '../../src/utils/getScaleBaseline';
+import { scaleLinear } from "@seygai/visx-scale";
+import getScaleBaseline from "../../src/utils/getScaleBaseline";
 
-describe('getScaleBaseline', () => {
-  it('should be defined', () => {
+describe("getScaleBaseline", () => {
+  it("should be defined", () => {
     expect(getScaleBaseline).toBeDefined();
   });
 
-  it('should work for ascending ranges', () => {
+  it("should work for ascending ranges", () => {
     expect(
       getScaleBaseline(
         scaleLinear({
           domain: [0, 100],
           range: [50, 100],
-        }),
-      ),
+        })
+      )
     ).toBe(50);
   });
 
-  it('should work for descending ranges', () => {
+  it("should work for descending ranges", () => {
     expect(
       getScaleBaseline(
         scaleLinear({
           domain: [0, 100],
           range: [100, 50],
-        }),
-      ),
+        })
+      )
     ).toBe(100);
   });
 
@@ -34,16 +34,16 @@ describe('getScaleBaseline', () => {
         scaleLinear({
           domain: [100, 200],
           range: [50, 100], // ascending
-        }),
-      ),
+        })
+      )
     ).toBe(50);
     expect(
       getScaleBaseline(
         scaleLinear({
           domain: [100, 200],
           range: [100, 50], // descending
-        }),
-      ),
+        })
+      )
     ).toBe(100);
   });
 });

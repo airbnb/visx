@@ -1,14 +1,19 @@
-import React, { useContext, useCallback, useMemo } from 'react';
-import { AxisScale } from '@visx/axis';
-import DataContext from '../../../context/DataContext';
-import { Bar, BarsProps, SeriesProps } from '../../../types';
-import withRegisteredData, { WithRegisteredDataProps } from '../../../enhancers/withRegisteredData';
-import getScaledValueFactory from '../../../utils/getScaledValueFactory';
-import getScaleBandwidth from '../../../utils/getScaleBandwidth';
-import getScaleBaseline from '../../../utils/getScaleBaseline';
-import isValidNumber from '../../../typeguards/isValidNumber';
-import { BARSERIES_EVENT_SOURCE, XYCHART_EVENT_SOURCE } from '../../../constants';
-import useSeriesEvents from '../../../hooks/useSeriesEvents';
+import React, { useContext, useCallback, useMemo } from "react";
+import { AxisScale } from "@seygai/visx-axis";
+import DataContext from "../../../context/DataContext";
+import { Bar, BarsProps, SeriesProps } from "../../../types";
+import withRegisteredData, {
+  WithRegisteredDataProps,
+} from "../../../enhancers/withRegisteredData";
+import getScaledValueFactory from "../../../utils/getScaledValueFactory";
+import getScaleBandwidth from "../../../utils/getScaleBandwidth";
+import getScaleBaseline from "../../../utils/getScaleBaseline";
+import isValidNumber from "../../../typeguards/isValidNumber";
+import {
+  BARSERIES_EVENT_SOURCE,
+  XYCHART_EVENT_SOURCE,
+} from "../../../constants";
+import useSeriesEvents from "../../../hooks/useSeriesEvents";
 
 export type BaseBarSeriesProps<
   XScale extends AxisScale,
@@ -31,7 +36,11 @@ const getFallbackBandwidth = (fullBarWidth: number, barPadding: number) =>
   // clamp padding to [0, 1], bar thickness = (1-padding) * availableSpace
   fullBarWidth * (1 - Math.min(1, Math.max(0, barPadding)));
 
-function BaseBarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum extends object>({
+function BaseBarSeries<
+  XScale extends AxisScale,
+  YScale extends AxisScale,
+  Datum extends object
+>({
   BarsComponent,
   barPadding = 0.1,
   colorAccessor,
@@ -47,21 +56,39 @@ function BaseBarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum
   xScale,
   yAccessor,
   yScale,
-}: BaseBarSeriesProps<XScale, YScale, Datum> & WithRegisteredDataProps<XScale, YScale, Datum>) {
-  const { colorScale, horizontal, theme, innerWidth = 0, innerHeight = 0 } = useContext(
-    DataContext,
-  );
-  const getScaledX = useCallback(getScaledValueFactory(xScale, xAccessor), [xScale, xAccessor]);
-  const getScaledY = useCallback(getScaledValueFactory(yScale, yAccessor), [yScale, yAccessor]);
+}: BaseBarSeriesProps<XScale, YScale, Datum> &
+  WithRegisteredDataProps<XScale, YScale, Datum>) {
+  const {
+    colorScale,
+    horizontal,
+    theme,
+    innerWidth = 0,
+    innerHeight = 0,
+  } = useContext(DataContext);
+  const getScaledX = useCallback(getScaledValueFactory(xScale, xAccessor), [
+    xScale,
+    xAccessor,
+  ]);
+  const getScaledY = useCallback(getScaledValueFactory(yScale, yAccessor), [
+    yScale,
+    yAccessor,
+  ]);
   const scaleBandwidth = getScaleBandwidth(horizontal ? yScale : xScale);
   const barThickness =
     scaleBandwidth ||
-    getFallbackBandwidth((horizontal ? innerHeight : innerWidth) / data.length, barPadding);
+    getFallbackBandwidth(
+      (horizontal ? innerHeight : innerWidth) / data.length,
+      barPadding
+    );
 
-  const xZeroPosition = useMemo(() => (xScale ? getScaleBaseline(xScale) : 0), [xScale]);
-  const yZeroPosition = useMemo(() => (yScale ? getScaleBaseline(yScale) : 0), [yScale]);
+  const xZeroPosition = useMemo(() => (xScale ? getScaleBaseline(xScale) : 0), [
+    xScale,
+  ]);
+  const yZeroPosition = useMemo(() => (yScale ? getScaleBaseline(yScale) : 0), [
+    yScale,
+  ]);
 
-  const color = colorScale?.(dataKey) ?? theme?.colors?.[0] ?? '#222';
+  const color = colorScale?.(dataKey) ?? theme?.colors?.[0] ?? "#222";
 
   const bars = useMemo(() => {
     const xOffset = horizontal ? 0 : -barThickness / 2;
@@ -84,7 +111,7 @@ function BaseBarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum
           fill: colorAccessor?.(datum, index) ?? color,
         };
       })
-      .filter(bar => bar) as Bar[];
+      .filter((bar) => bar) as Bar[];
   }, [
     barThickness,
     color,

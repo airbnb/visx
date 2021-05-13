@@ -1,6 +1,6 @@
-import React from 'react';
-import cx from 'classnames';
-import { Group } from '@visx/group';
+import React from "react";
+import cx from "classnames";
+import { Group } from "@seygai/visx-group";
 import {
   geoOrthographic,
   geoAlbers,
@@ -11,15 +11,21 @@ import {
   geoPath,
   GeoPath,
   GeoProjection,
-} from 'd3-geo';
+} from "d3-geo";
 // this is just for types
 // eslint-disable-next-line import/no-unresolved
-import { LineString, Polygon, MultiLineString } from 'geojson';
+import { LineString, Polygon, MultiLineString } from "geojson";
 
-import Graticule, { GraticuleProps } from '../graticule/Graticule';
-import { GeoPermissibleObjects, ProjectionPreset, Projection as ProjectionShape } from '../types';
+import Graticule, { GraticuleProps } from "../graticule/Graticule";
+import {
+  GeoPermissibleObjects,
+  ProjectionPreset,
+  Projection as ProjectionShape,
+} from "../types";
 
-const projectionMapping: { [projection in ProjectionPreset]: () => GeoProjection } = {
+const projectionMapping: {
+  [projection in ProjectionPreset]: () => GeoProjection;
+} = {
   orthographic: () => geoOrthographic(),
   albers: () => geoAlbers(),
   albersUsa: () => geoAlbersUsa(),
@@ -28,7 +34,9 @@ const projectionMapping: { [projection in ProjectionPreset]: () => GeoProjection
   equalEarth: () => geoEqualEarth(),
 };
 
-export type ProjectionProps<Datum extends GeoPermissibleObjects = GeoPermissibleObjects> = {
+export type ProjectionProps<
+  Datum extends GeoPermissibleObjects = GeoPermissibleObjects
+> = {
   /** Array of features to project. */
   data: Datum[];
   /** Preset projection name, or custom projection function which returns a GeoProjection. */
@@ -67,15 +75,18 @@ export type ProjectionProps<Datum extends GeoPermissibleObjects = GeoPermissible
    */
   fitExtent?: [
     [[number, number], [number, number]],
-    any, // ExtendedFeature | ExtendedFeatureCollection | GeoGeometryObjects,
+    any // ExtendedFeature | ExtendedFeatureCollection | GeoGeometryObjects,
   ];
   /** Convenience prop for props.fitExtent where the top-left corner of the extent is [0, 0]. */
   fitSize?: [
     [number, number],
-    any, // ExtendedFeature | ExtendedFeatureCollection | GeoGeometryObjects
+    any // ExtendedFeature | ExtendedFeatureCollection | GeoGeometryObjects
   ];
   /** Hook to render anything at the centroid of a feature. */
-  centroid?: (centroid: [number, number], feature: ParsedFeature<Datum>) => React.ReactNode;
+  centroid?: (
+    centroid: [number, number],
+    feature: ParsedFeature<Datum>
+  ) => React.ReactNode;
   /** className to apply to feature path elements.  */
   className?: string;
   /** Override render function which is passed the  */
@@ -84,13 +95,16 @@ export type ProjectionProps<Datum extends GeoPermissibleObjects = GeoPermissible
     features: ParsedFeature<Datum>[];
   }) => React.ReactNode;
   /** Function invoked for each feature which returns a React.Ref to the projection path element for that feature. */
-  innerRef?: (feature: ParsedFeature<Datum>, index: number) => React.Ref<SVGPathElement>;
+  innerRef?: (
+    feature: ParsedFeature<Datum>,
+    index: number
+  ) => React.Ref<SVGPathElement>;
   /** If specified, renders a Graticule with the specified props. Specify `graticule.foreground = true` to be rendered on top of features. */
-  graticule?: Omit<GraticuleProps, 'lines'> & { foreground: boolean };
+  graticule?: Omit<GraticuleProps, "lines"> & { foreground: boolean };
   /** If specified, renders a Graticule lines with the specified props. Specify `graticuleLines.foreground = true` to be rendered on top of features. */
-  graticuleLines?: Omit<GraticuleProps, 'lines'> & { foreground: boolean };
+  graticuleLines?: Omit<GraticuleProps, "lines"> & { foreground: boolean };
   /** If specified, renders a Graticule outline with the specified props. Specify `graticuleOutline.foreground = true` to be rendered on top of features. */
-  graticuleOutline?: Omit<GraticuleProps, 'outline'> & { foreground: boolean };
+  graticuleOutline?: Omit<GraticuleProps, "outline"> & { foreground: boolean };
   /** Sets the radius used to display Point and MultiPoint geometries to the specified number. */
   pointRadius?: number;
 };
@@ -109,7 +123,7 @@ export interface ParsedFeature<Datum> {
  */
 export default function Projection<Datum extends GeoPermissibleObjects>({
   data,
-  projection = 'mercator',
+  projection = "mercator",
   projectionFunc,
   clipAngle,
   clipExtent,
@@ -129,9 +143,10 @@ export default function Projection<Datum extends GeoPermissibleObjects>({
   pointRadius,
   children,
   ...restProps
-}: ProjectionProps<Datum> & Omit<React.SVGProps<SVGPathElement>, keyof ProjectionProps<Datum>>) {
+}: ProjectionProps<Datum> &
+  Omit<React.SVGProps<SVGPathElement>, keyof ProjectionProps<Datum>>) {
   const maybeCustomProjection =
-    typeof projection === 'string' ? projectionMapping[projection] : projection;
+    typeof projection === "string" ? projectionMapping[projection] : projection;
 
   const currProjection = maybeCustomProjection();
 
@@ -163,20 +178,29 @@ export default function Projection<Datum extends GeoPermissibleObjects>({
   return (
     <Group className="visx-geo">
       {graticule && !graticule.foreground && (
-        <Graticule graticule={(ml: MultiLineString) => path(ml) || ''} {...graticule} />
+        <Graticule
+          graticule={(ml: MultiLineString) => path(ml) || ""}
+          {...graticule}
+        />
       )}
       {graticuleLines && !graticuleLines.foreground && (
-        <Graticule lines={(l: LineString) => path(l) || ''} {...graticuleLines} />
+        <Graticule
+          lines={(l: LineString) => path(l) || ""}
+          {...graticuleLines}
+        />
       )}
       {graticuleOutline && !graticuleOutline.foreground && (
-        <Graticule outline={(p: Polygon) => path(p) || ''} {...graticuleOutline} />
+        <Graticule
+          outline={(p: Polygon) => path(p) || ""}
+          {...graticuleOutline}
+        />
       )}
 
       {features.map((feature, i) => (
         <g key={`${projection}-${i}`}>
           <path
             className={cx(`visx-geo-${projection}`, className)}
-            d={feature.path || ''}
+            d={feature.path || ""}
             ref={innerRef && innerRef(feature, i)}
             {...restProps}
           />
@@ -188,14 +212,23 @@ export default function Projection<Datum extends GeoPermissibleObjects>({
       {projectionFunc && projectionFunc(currProjection)}
 
       {graticule && graticule.foreground && (
-        <Graticule graticule={(ml: MultiLineString) => path(ml) || ''} {...graticule} />
+        <Graticule
+          graticule={(ml: MultiLineString) => path(ml) || ""}
+          {...graticule}
+        />
       )}
 
       {graticuleLines && graticuleLines.foreground && (
-        <Graticule lines={(l: LineString) => path(l) || ''} {...graticuleLines} />
+        <Graticule
+          lines={(l: LineString) => path(l) || ""}
+          {...graticuleLines}
+        />
       )}
       {graticuleOutline && graticuleOutline.foreground && (
-        <Graticule outline={(p: Polygon) => path(p) || ''} {...graticuleOutline} />
+        <Graticule
+          outline={(p: Polygon) => path(p) || ""}
+          {...graticuleOutline}
+        />
       )}
     </Group>
   );

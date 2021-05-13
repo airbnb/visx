@@ -1,5 +1,5 @@
 {
-  "name": "@visx/demo-heatmap",
+  "name": "@seygai/visx-demo-heatmap",
   "description": "Standalone visx heatmap demo.",
   "main": "index.tsx",
   "private": true,
@@ -7,11 +7,11 @@
     "@babel/runtime": "^7.8.4",
     "@types/react": "^16",
     "@types/react-dom": "^16",
-    "@visx/group": "latest",
-    "@visx/heatmap": "latest",
-    "@visx/mock-data": "latest",
-    "@visx/responsive": "latest",
-    "@visx/scale": "latest",
+    "@seygai/visx-group": "latest",
+    "@seygai/visx-heatmap": "latest",
+    "@seygai/visx-mock-data": "latest",
+    "@seygai/visx-responsive": "latest",
+    "@seygai/visx-scale": "latest",
 
     "react": "^16",
     "react-dom": "^16",

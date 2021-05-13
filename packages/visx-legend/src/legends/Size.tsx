@@ -1,9 +1,9 @@
-import React from 'react';
-import { D3Scale } from '@visx/scale';
-import Legend, { LegendProps } from './Legend';
-import labelTransformFactory from '../util/labelTransformFactory';
-import defaultDomain from '../util/defaultDomain';
-import identity from '../util/identity';
+import React from "react";
+import { D3Scale } from "@seygai/visx-scale";
+import Legend, { LegendProps } from "./Legend";
+import labelTransformFactory from "../util/labelTransformFactory";
+import defaultDomain from "../util/defaultDomain";
+import identity from "../util/identity";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type AnySizeScale = D3Scale<number, any, any>;

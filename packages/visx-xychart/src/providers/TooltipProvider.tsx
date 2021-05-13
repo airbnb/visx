@@ -1,9 +1,9 @@
-import React, { useCallback, useRef } from 'react';
-import debounce from 'lodash/debounce';
-import { useTooltip } from '@visx/tooltip';
-import TooltipContext from '../context/TooltipContext';
-import { EventHandlerParams, TooltipData } from '../types';
-import isValidNumber from '../typeguards/isValidNumber';
+import React, { useCallback, useRef } from "react";
+import debounce from "lodash/debounce";
+import { useTooltip } from "@seygai/visx-tooltip";
+import TooltipContext from "../context/TooltipContext";
+import { EventHandlerParams, TooltipData } from "../types";
+import isValidNumber from "../typeguards/isValidNumber";
 
 type TooltipProviderProps = {
   /** Debounce time for when `hideTooltip` is invoked. */
@@ -28,7 +28,14 @@ export default function TooltipProvider<Datum extends object>({
   const debouncedHideTooltip = useRef<ReturnType<typeof debounce> | null>(null);
 
   const showTooltip = useRef(
-    ({ svgPoint, index, key, datum, distanceX, distanceY }: EventHandlerParams<Datum>) => {
+    ({
+      svgPoint,
+      index,
+      key,
+      datum,
+      distanceX,
+      distanceY,
+    }: EventHandlerParams<Datum>) => {
       // cancel any hideTooltip calls so it won't hide after invoking the logic below
       if (debouncedHideTooltip.current) {
         debouncedHideTooltip.current.cancel();
@@ -40,7 +47,8 @@ export default function TooltipProvider<Datum extends object>({
 
       updateTooltip(({ tooltipData: currData }) => {
         const currNearestDatumDistance =
-          currData?.nearestDatum && isValidNumber(currData.nearestDatum.distance)
+          currData?.nearestDatum &&
+          isValidNumber(currData.nearestDatum.distance)
             ? currData.nearestDatum.distance
             : Infinity;
         return {
@@ -49,7 +57,8 @@ export default function TooltipProvider<Datum extends object>({
           tooltipTop: svgPoint?.y,
           tooltipData: {
             nearestDatum:
-              (currData?.nearestDatum?.key ?? '') !== key && currNearestDatumDistance < distance
+              (currData?.nearestDatum?.key ?? "") !== key &&
+              currNearestDatumDistance < distance
                 ? currData?.nearestDatum
                 : { key, index, datum, distance },
             datumByKey: {
@@ -63,11 +72,14 @@ export default function TooltipProvider<Datum extends object>({
           },
         };
       });
-    },
+    }
   );
 
   const hideTooltip = useCallback(() => {
-    debouncedHideTooltip.current = debounce(privateHideTooltip, hideTooltipDebounceMs);
+    debouncedHideTooltip.current = debounce(
+      privateHideTooltip,
+      hideTooltipDebounceMs
+    );
     debouncedHideTooltip.current();
   }, [privateHideTooltip, hideTooltipDebounceMs]);
 

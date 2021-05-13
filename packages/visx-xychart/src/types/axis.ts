@@ -1,3 +1,3 @@
-import { AxisScale as AxisAxisScale } from '@visx/axis';
+import { AxisScale as AxisAxisScale } from "@seygai/visx-axis";
 
 export type AxisScale = AxisAxisScale;

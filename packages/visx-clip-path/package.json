@@ -1,5 +1,5 @@
 {
-  "name": "@visx/clip-path",
+  "name": "@seygai/visx-clip-path",
   "version": "1.7.0",
   "description": "visx clip-path",
   "sideEffects": false,

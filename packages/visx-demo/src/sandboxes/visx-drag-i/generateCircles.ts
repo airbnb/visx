@@ -1,4 +1,4 @@
-import { getSeededRandom } from '@visx/mock-data';
+import { getSeededRandom } from "@seygai/visx-mock-data";
 
 export interface Circle {
   id: string;
@@ -7,7 +7,13 @@ export interface Circle {
   y: number;
 }
 
-const generateCircles = ({ width, height }: { width: number; height: number }) => {
+const generateCircles = ({
+  width,
+  height,
+}: {
+  width: number;
+  height: number;
+}) => {
   const radiusRandom = getSeededRandom(0.2);
   const xRandom = getSeededRandom(0.3);
   const yRandom = getSeededRandom(0.4);

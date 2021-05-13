@@ -1,26 +1,36 @@
-import React, { useContext, useEffect } from 'react';
-import { animated } from 'react-spring';
-import { mount } from 'enzyme';
-import { LinePath } from '@visx/shape';
-import { AnimatedLineSeries, DataContext, LineSeries, useEventEmitter } from '../../src';
-import getDataContext from '../mocks/getDataContext';
-import setupTooltipTest from '../mocks/setupTooltipTest';
-import { XYCHART_EVENT_SOURCE } from '../../src/constants';
+import React, { useContext, useEffect } from "react";
+import { animated } from "react-spring";
+import { mount } from "enzyme";
+import { LinePath } from "@seygai/visx-shape";
+import {
+  AnimatedLineSeries,
+  DataContext,
+  LineSeries,
+  useEventEmitter,
+} from "../../src";
+import getDataContext from "../mocks/getDataContext";
+import setupTooltipTest from "../mocks/setupTooltipTest";
+import { XYCHART_EVENT_SOURCE } from "../../src/constants";
 
-const series = { key: 'line', data: [{}], xAccessor: () => 4, yAccessor: () => 7 };
+const series = {
+  key: "line",
+  data: [{}],
+  xAccessor: () => 4,
+  yAccessor: () => 7,
+};
 
-describe('<LineSeries />', () => {
-  it('should be defined', () => {
+describe("<LineSeries />", () => {
+  it("should be defined", () => {
     expect(LineSeries).toBeDefined();
   });
 
-  it('should render a LinePath', () => {
+  it("should render a LinePath", () => {
     const wrapper = mount(
       <DataContext.Provider value={getDataContext(series)}>
         <svg>
           <LineSeries dataKey={series.key} {...series} />
         </svg>
-      </DataContext.Provider>,
+      </DataContext.Provider>
     );
     // @ts-ignore produces a union type that is too complex to represent.ts(2590)
     expect(wrapper.find(LinePath)).toHaveLength(1);
@@ -32,23 +42,23 @@ describe('<LineSeries />', () => {
         <svg>
           <LineSeries dataKey={series.key} {...series} />
         </svg>
-      </DataContext.Provider>,
+      </DataContext.Provider>
     );
-    expect(wrapper.find('path').prop('strokeLinecap')).toBe('round');
+    expect(wrapper.find("path").prop("strokeLinecap")).toBe("round");
   });
 
-  it('should render Glyphs if focus/blur handlers are set', () => {
+  it("should render Glyphs if focus/blur handlers are set", () => {
     const wrapper = mount(
       <DataContext.Provider value={getDataContext(series)}>
         <svg>
           <LineSeries dataKey={series.key} {...series} onFocus={() => {}} />
         </svg>
-      </DataContext.Provider>,
+      </DataContext.Provider>
     );
-    expect(wrapper.find('circle')).toHaveLength(series.data.length);
+    expect(wrapper.find("circle")).toHaveLength(series.data.length);
   });
 
-  it('should invoke showTooltip/hideTooltip on pointermove/pointerout', () => {
+  it("should invoke showTooltip/hideTooltip on pointermove/pointerout", () => {
     expect.assertions(2);
 
     const showTooltip = jest.fn();
@@ -67,11 +77,19 @@ describe('<LineSeries />', () => {
       useEffect(() => {
         if (emit) {
           // @ts-ignore not a React.MouseEvent
-          emit('pointermove', new MouseEvent('pointermove'), XYCHART_EVENT_SOURCE);
+          emit(
+            "pointermove",
+            new MouseEvent("pointermove"),
+            XYCHART_EVENT_SOURCE
+          );
           expect(showTooltip).toHaveBeenCalledTimes(1);
 
           // @ts-ignore not a React.MouseEvent
-          emit('pointerout', new MouseEvent('pointerout'), XYCHART_EVENT_SOURCE);
+          emit(
+            "pointerout",
+            new MouseEvent("pointerout"),
+            XYCHART_EVENT_SOURCE
+          );
           expect(showTooltip).toHaveBeenCalledTimes(1);
         }
       });
@@ -84,22 +102,22 @@ describe('<LineSeries />', () => {
         <LineSeries dataKey={series.key} {...series} />
         <ConditionalEventEmitter />
       </>,
-      { showTooltip, hideTooltip },
+      { showTooltip, hideTooltip }
     );
   });
 });
 
-describe('<AnimatedLineSeries />', () => {
-  it('should be defined', () => {
+describe("<AnimatedLineSeries />", () => {
+  it("should be defined", () => {
     expect(AnimatedLineSeries).toBeDefined();
   });
-  it('should render an animated.path', () => {
+  it("should render an animated.path", () => {
     const wrapper = mount(
       <DataContext.Provider value={getDataContext(series)}>
         <svg>
           <AnimatedLineSeries dataKey={series.key} {...series} />
         </svg>
-      </DataContext.Provider>,
+      </DataContext.Provider>
     );
     expect(wrapper.find(animated.path)).toHaveLength(1);
   });

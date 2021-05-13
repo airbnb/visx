@@ -1,13 +1,13 @@
-import React from 'react';
-import cx from 'classnames';
-import { Group } from '@visx/group';
-import { getTicks, coerceNumber } from '@visx/scale';
-import { SharedAxisProps, AxisScale } from '../types';
-import AxisRenderer from './AxisRenderer';
-import getTickPosition from '../utils/getTickPosition';
-import getTickFormatter from '../utils/getTickFormatter';
-import createPoint from '../utils/createPoint';
-import Orientation from '../constants/orientation';
+import React from "react";
+import cx from "classnames";
+import { Group } from "@seygai/visx-group";
+import { getTicks, coerceNumber } from "@seygai/visx-scale";
+import { SharedAxisProps, AxisScale } from "../types";
+import AxisRenderer from "./AxisRenderer";
+import getTickPosition from "../utils/getTickPosition";
+import getTickFormatter from "../utils/getTickFormatter";
+import createPoint from "../utils/createPoint";
+import Orientation from "../constants/orientation";
 
 export type AxisProps<Scale extends AxisScale> = SharedAxisProps<Scale> & {
   orientation?: Orientation;
@@ -40,14 +40,17 @@ export default function Axis<Scale extends AxisScale>({
   const tickSign = isLeft || isTop ? -1 : 1;
 
   const range = scale.range();
-  const axisFromPoint = createPoint({ x: Number(range[0]) + 0.5 - rangePadding, y: 0 }, horizontal);
+  const axisFromPoint = createPoint(
+    { x: Number(range[0]) + 0.5 - rangePadding, y: 0 },
+    horizontal
+  );
   const axisToPoint = createPoint(
     { x: Number(range[range.length - 1]) + 0.5 + rangePadding, y: 0 },
-    horizontal,
+    horizontal
   );
 
   const filteredTickValues = (tickValues ?? getTicks(scale, numTicks))
-    .filter(value => !hideZero || (value !== 0 && value !== '0'))
+    .filter((value) => !hideZero || (value !== 0 && value !== "0"))
     .map((value, index) => ({ value, index }));
 
   const ticks = filteredTickValues.map(({ value, index }) => {
@@ -63,7 +66,7 @@ export default function Axis<Scale extends AxisScale>({
   });
 
   return (
-    <Group className={cx('visx-axis', axisClassName)} top={top} left={left}>
+    <Group className={cx("visx-axis", axisClassName)} top={top} left={left}>
       {children({
         ...restProps,
         axisFromPoint,

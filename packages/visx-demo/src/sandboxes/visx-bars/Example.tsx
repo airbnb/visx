@@ -1,9 +1,11 @@
-import React, { useMemo } from 'react';
-import { Bar } from '@visx/shape';
-import { Group } from '@visx/group';
-import { GradientTealBlue } from '@visx/gradient';
-import letterFrequency, { LetterFrequency } from '@visx/mock-data/lib/mocks/letterFrequency';
-import { scaleBand, scaleLinear } from '@visx/scale';
+import React, { useMemo } from "react";
+import { Bar } from "@seygai/visx-shape";
+import { Group } from "@seygai/visx-group";
+import { GradientTealBlue } from "@seygai/visx-gradient";
+import letterFrequency, {
+  LetterFrequency,
+} from "@seygai/visx-mock-data/lib/mocks/letterFrequency";
+import { scaleBand, scaleLinear } from "@seygai/visx-scale";
 
 const data = letterFrequency.slice(5);
 const verticalMargin = 120;
@@ -32,7 +34,7 @@ export default function Example({ width, height, events = false }: BarsProps) {
         domain: data.map(getLetter),
         padding: 0.4,
       }),
-    [xMax],
+    [xMax]
   );
   const yScale = useMemo(
     () =>
@@ -41,7 +43,7 @@ export default function Example({ width, height, events = false }: BarsProps) {
         round: true,
         domain: [0, Math.max(...data.map(getLetterFrequency))],
       }),
-    [yMax],
+    [yMax]
   );
 
   return width < 10 ? null : (
@@ -49,7 +51,7 @@ export default function Example({ width, height, events = false }: BarsProps) {
       <GradientTealBlue id="teal" />
       <rect width={width} height={height} fill="url(#teal)" rx={14} />
       <Group top={verticalMargin / 2}>
-        {data.map(d => {
+        {data.map((d) => {
           const letter = getLetter(d);
           const barWidth = xScale.bandwidth();
           const barHeight = yMax - (yScale(getLetterFrequency(d)) ?? 0);
@@ -64,7 +66,8 @@ export default function Example({ width, height, events = false }: BarsProps) {
               height={barHeight}
               fill="rgba(23, 233, 217, .5)"
               onClick={() => {
-                if (events) alert(`clicked: ${JSON.stringify(Object.values(d))}`);
+                if (events)
+                  alert(`clicked: ${JSON.stringify(Object.values(d))}`);
               }}
             />
           );

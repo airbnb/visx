@@ -1,14 +1,16 @@
-import React from 'react';
-import { Group } from '@visx/group';
-import letterFrequency, { LetterFrequency } from '@visx/mock-data/lib/mocks/letterFrequency';
-import { scaleLinear } from '@visx/scale';
-import { Point } from '@visx/point';
-import { Line, LineRadial } from '@visx/shape';
+import React from "react";
+import { Group } from "@seygai/visx-group";
+import letterFrequency, {
+  LetterFrequency,
+} from "@seygai/visx-mock-data/lib/mocks/letterFrequency";
+import { scaleLinear } from "@seygai/visx-scale";
+import { Point } from "@seygai/visx-point";
+import { Line, LineRadial } from "@seygai/visx-shape";
 
-const orange = '#ff9933';
-export const pumpkin = '#f5810c';
-const silver = '#d9d9d9';
-export const background = '#FAF7E9';
+const orange = "#ff9933";
+export const pumpkin = "#f5810c";
+const silver = "#d9d9d9";
+export const background = "#FAF7E9";
 
 const degrees = 360;
 const data = letterFrequency.slice(2, 12);
@@ -31,18 +33,23 @@ const genPoints = (length: number, radius: number) => {
 function genPolygonPoints<Datum>(
   dataArray: Datum[],
   scale: (n: number) => number,
-  getValue: (d: Datum) => number,
+  getValue: (d: Datum) => number
 ) {
   const step = (Math.PI * 2) / dataArray.length;
-  const points: { x: number; y: number }[] = new Array(dataArray.length).fill({ x: 0, y: 0 });
-  const pointString: string = new Array(dataArray.length + 1).fill('').reduce((res, _, i) => {
-    if (i > dataArray.length) return res;
-    const xVal = scale(getValue(dataArray[i - 1])) * Math.sin(i * step);
-    const yVal = scale(getValue(dataArray[i - 1])) * Math.cos(i * step);
-    points[i - 1] = { x: xVal, y: yVal };
-    res += `${xVal},${yVal} `;
-    return res;
+  const points: { x: number; y: number }[] = new Array(dataArray.length).fill({
+    x: 0,
+    y: 0,
   });
+  const pointString: string = new Array(dataArray.length + 1)
+    .fill("")
+    .reduce((res, _, i) => {
+      if (i > dataArray.length) return res;
+      const xVal = scale(getValue(dataArray[i - 1])) * Math.sin(i * step);
+      const yVal = scale(getValue(dataArray[i - 1])) * Math.cos(i * step);
+      points[i - 1] = { x: xVal, y: yVal };
+      res += `${xVal},${yVal} `;
+      return res;
+    });
 
   return { points, pointString };
 }
@@ -56,7 +63,12 @@ export type RadarProps = {
   levels?: number;
 };
 
-export default function Example({ width, height, levels = 5, margin = defaultMargin }: RadarProps) {
+export default function Example({
+  width,
+  height,
+  levels = 5,
+  margin = defaultMargin,
+}: RadarProps) {
   const xMax = width - margin.left - margin.right;
   const yMax = height - margin.top - margin.bottom;
   const radius = Math.min(xMax, yMax) / 2;
@@ -73,7 +85,7 @@ export default function Example({ width, height, levels = 5, margin = defaultMar
 
   const webs = genAngles(data.length);
   const points = genPoints(data.length, radius);
-  const polygonPoints = genPolygonPoints(data, d => yScale(d) ?? 0, y);
+  const polygonPoints = genPolygonPoints(data, (d) => yScale(d) ?? 0, y);
   const zeroPoint = new Point({ x: 0, y: 0 });
 
   return width < 10 ? null : (
@@ -84,7 +96,7 @@ export default function Example({ width, height, levels = 5, margin = defaultMar
           <LineRadial
             key={`web-${i}`}
             data={webs}
-            angle={d => radialScale(d.angle) ?? 0}
+            angle={(d) => radialScale(d.angle) ?? 0}
             radius={((i + 1) * radius) / levels}
             fill="none"
             stroke={silver}
@@ -94,7 +106,12 @@ export default function Example({ width, height, levels = 5, margin = defaultMar
           />
         ))}
         {[...new Array(data.length)].map((_, i) => (
-          <Line key={`radar-line-${i}`} from={zeroPoint} to={points[i]} stroke={silver} />
+          <Line
+            key={`radar-line-${i}`}
+            from={zeroPoint}
+            to={points[i]}
+            stroke={silver}
+          />
         ))}
         <polygon
           points={polygonPoints.pointString}
@@ -104,7 +121,13 @@ export default function Example({ width, height, levels = 5, margin = defaultMar
           strokeWidth={1}
         />
         {polygonPoints.points.map((point, i) => (
-          <circle key={`radar-point-${i}`} cx={point.x} cy={point.y} r={4} fill={pumpkin} />
+          <circle
+            key={`radar-point-${i}`}
+            cx={point.x}
+            cy={point.y}
+            r={4}
+            fill={pumpkin}
+          />
         ))}
       </Group>
     </svg>

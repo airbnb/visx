@@ -1,5 +1,5 @@
-import React from 'react';
-import { DefaultNode, Graph } from '@visx/network';
+import React from "react";
+import { DefaultNode, Graph } from "@seygai/visx-network";
 
 export type NetworkProps = {
   width: number;
@@ -21,7 +21,7 @@ interface CustomLink {
 const nodes: CustomNode[] = [
   { x: 50, y: 20 },
   { x: 200, y: 250 },
-  { x: 300, y: 40, color: '#26deb0' },
+  { x: 300, y: 40, color: "#26deb0" },
 ];
 
 const links: CustomLink[] = [
@@ -35,7 +35,7 @@ const graph = {
   links,
 };
 
-export const background = '#272b4d';
+export const background = "#272b4d";
 
 export default function Example({ width, height }: NetworkProps) {
   return width < 10 ? null : (
@@ -57,7 +57,7 @@ export default function Example({ width, height }: NetworkProps) {
             strokeWidth={2}
             stroke="#999"
             strokeOpacity={0.6}
-            strokeDasharray={dashed ? '8,4' : undefined}
+            strokeDasharray={dashed ? "8,4" : undefined}
           />
         )}
       />

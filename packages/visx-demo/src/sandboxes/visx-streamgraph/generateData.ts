@@ -1,4 +1,4 @@
-import { getSeededRandom } from '@visx/mock-data';
+import { getSeededRandom } from "@seygai/visx-mock-data";
 
 const random = getSeededRandom(0.65);
 

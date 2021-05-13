@@ -1,5 +1,5 @@
-import React from 'react';
-import { Group } from '@visx/group';
+import React from "react";
+import { Group } from "@seygai/visx-group";
 
 export type ShapeShapeLineProps = {
   fill?: string;
@@ -8,9 +8,16 @@ export type ShapeShapeLineProps = {
   style?: React.CSSProperties;
 };
 
-export default function ShapeLine({ fill, width, height, style }: ShapeShapeLineProps) {
-  const cleanHeight = typeof height === 'string' || typeof height === 'undefined' ? 0 : height;
-  const lineThickness = typeof style?.strokeWidth === 'number' ? style?.strokeWidth : 2;
+export default function ShapeLine({
+  fill,
+  width,
+  height,
+  style,
+}: ShapeShapeLineProps) {
+  const cleanHeight =
+    typeof height === "string" || typeof height === "undefined" ? 0 : height;
+  const lineThickness =
+    typeof style?.strokeWidth === "number" ? style?.strokeWidth : 2;
   return (
     <svg width={width} height={height}>
       <Group top={cleanHeight / 2 - lineThickness / 2}>

@@ -1,7 +1,7 @@
-import React from 'react';
-import cx from 'classnames';
-import { Group } from '@visx/group';
-import { LinkProvidedProps } from './types';
+import React from "react";
+import cx from "classnames";
+import { Group } from "@seygai/visx-group";
+import { LinkProvidedProps } from "./types";
 
 export type LinkProps<Link> = {
   /** Array of links to render. */
@@ -14,11 +14,18 @@ export type LinkProps<Link> = {
   className?: string;
 };
 
-export default function Links<Link>({ links = [], linkComponent, className }: LinkProps<Link>) {
+export default function Links<Link>({
+  links = [],
+  linkComponent,
+  className,
+}: LinkProps<Link>) {
   return (
     <>
       {links.map((link, i) => (
-        <Group key={`network-link-${i}`} className={cx('visx-network-link', className)}>
+        <Group
+          key={`network-link-${i}`}
+          className={cx("visx-network-link", className)}
+        >
           {React.createElement(linkComponent, { link })}
         </Group>
       ))}

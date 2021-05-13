@@ -1,5 +1,5 @@
 {
-  "name": "@visx/curve",
+  "name": "@seygai/visx-curve",
   "version": "1.7.0",
   "description": "visx curve",
   "sideEffects": false,

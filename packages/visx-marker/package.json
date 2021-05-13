@@ -1,5 +1,5 @@
 {
-  "name": "@visx/marker",
+  "name": "@seygai/visx-marker",
   "version": "1.8.0",
   "description": "visx marker",
   "sideEffects": false,
@@ -30,8 +30,8 @@
   "dependencies": {
     "@types/classnames": "^2.2.9",
     "@types/react": "*",
-    "@visx/group": "1.7.0",
-    "@visx/shape": "1.8.0",
+    "@seygai/visx-group": "1.7.0",
+    "@seygai/visx-shape": "1.8.0",
     "classnames": "^2.2.5",
     "prop-types": "^15.6.2"
   },

@@ -1,13 +1,13 @@
 // @ts-nocheck
-import React from 'react';
-import Link from 'next/link';
-import { ParentSize } from '@visx/responsive';
-import Page from '../components/Page';
-import Footer from '../components/Footer';
-import Dots from '../sandboxes/visx-dots/Example';
-import Zoom from '../sandboxes/visx-zoom-i/Example';
-import Radial from '../sandboxes/visx-shape-line-radial/Example';
-import Bars from '../sandboxes/visx-bars/Example';
+import React from "react";
+import Link from "next/link";
+import { ParentSize } from "@seygai/visx-responsive";
+import Page from "../components/Page";
+import Footer from "../components/Footer";
+import Dots from "../sandboxes/visx-dots/Example";
+import Zoom from "../sandboxes/visx-zoom-i/Example";
+import Radial from "../sandboxes/visx-shape-line-radial/Example";
+import Bars from "../sandboxes/visx-bars/Example";
 
 // @ts-ignore
 const Button = React.forwardRef(({ onClick, href, children }, ref) => {
@@ -47,36 +47,37 @@ const Home = () => (
       <div className="wrapper container">
         <div className="content">
           <h3>
-            <strong>visx</strong> a collection of expressive, low-level visualization primitives for
-            React
+            <strong>visx</strong> a collection of expressive, low-level
+            visualization primitives for React
           </h3>
           <p>
-            At Airbnb, we made it a goal to unify our visualization stack across the company and in
-            the process, we created a new project that brings together the power of D3 with the joy
-            of React.
+            At Airbnb, we made it a goal to unify our visualization stack across
+            the company and in the process, we created a new project that brings
+            together the power of D3 with the joy of React.
           </p>
           <p>Here are the advantages of visx:</p>
           <ol>
             <li>
-              <strong>Keep bundle sizes down.</strong> visx is split into multiple packages. Start
-              small and use only what you need.
+              <strong>Keep bundle sizes down.</strong> visx is split into
+              multiple packages. Start small and use only what you need.
             </li>
             <li>
-              <strong>Un-opinionated on purpose.</strong> Bring your own state management, animation
-              library, or CSS-in-JS solution. Odds are good your React app already has an opinion on
-              how animation, theming, or styling is done. visx is careful not to add another one and
-              integrates with all of them.
+              <strong>Un-opinionated on purpose.</strong> Bring your own state
+              management, animation library, or CSS-in-JS solution. Odds are
+              good your React app already has an opinion on how animation,
+              theming, or styling is done. visx is careful not to add another
+              one and integrates with all of them.
             </li>
             <li>
-              <strong>Not a charting library.</strong> As you start using visualization primitives,
-              you’ll end up building your own charting library that’s optimized for your use case.
-              You’re in control.
+              <strong>Not a charting library.</strong> As you start using
+              visualization primitives, you’ll end up building your own charting
+              library that’s optimized for your use case. You’re in control.
             </li>
           </ol>
           <p>
-            And most importantly — it’s just React. If you know React, you can make visualizations.
-            It’s all the same standard APIs and familiar patterns. visx should feel at home in any
-            React codebase.
+            And most importantly — it’s just React. If you know React, you can
+            make visualizations. It’s all the same standard APIs and familiar
+            patterns. visx should feel at home in any React codebase.
           </p>
         </div>
         <div className="links">
@@ -88,10 +89,13 @@ const Home = () => (
           <div className="link">
             <Link href="/zoom-i">
               <ParentSize>
-                {size => {
+                {(size) => {
                   return (
-                    <div style={{ pointerEvents: 'none' }}>
-                      <Zoom {...size} height={size.height > 0 ? size.height : 400} />
+                    <div style={{ pointerEvents: "none" }}>
+                      <Zoom
+                        {...size}
+                        height={size.height > 0 ? size.height : 400}
+                      />
                     </div>
                   );
                 }}
@@ -101,7 +105,7 @@ const Home = () => (
           <div className="link">
             <Link href="/dots">
               <ParentSize>
-                {size => {
+                {(size) => {
                   return <Dots {...size} showControls={false} />;
                 }}
               </ParentSize>
@@ -110,7 +114,7 @@ const Home = () => (
           <div className="link">
             <Link href="/bars">
               <ParentSize>
-                {size => {
+                {(size) => {
                   return <Bars {...size} />;
                 }}
               </ParentSize>
@@ -119,7 +123,7 @@ const Home = () => (
           <div className="link">
             <Link href="/lineradial">
               <ParentSize>
-                {size => {
+                {(size) => {
                   return <Radial animate={false} {...size} />;
                 }}
               </ParentSize>
@@ -173,13 +177,13 @@ const Home = () => (
         bottom: 0;
       }
       .home-x {
-        background-image: url('static/x-light.svg');
+        background-image: url("static/x-light.svg");
         background-size: 50% 50%;
         background-position: center;
         background-repeat: no-repeat;
       }
       .home-guides {
-        background-image: url('static/x-guide.svg');
+        background-image: url("static/x-guide.svg");
         background-size: contain;
         background-position: center;
         background-repeat: repeat;
@@ -249,7 +253,7 @@ const Home = () => (
         background-size: 50%;
         background-repeat: no-repeat;
         background-position: center;
-        background-image: url('static/tiger-gray.png');
+        background-image: url("static/tiger-gray.png");
         margin-bottom: 1rem;
       }
 

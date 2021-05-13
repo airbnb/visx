@@ -1,7 +1,12 @@
-import React from 'react';
-import cx from 'classnames';
-import { Group } from '@visx/group';
-import { Area as AreaType, Stack as StackType, SeriesPoint, Series } from 'd3-shape';
+import React from "react";
+import cx from "classnames";
+import { Group } from "@seygai/visx-group";
+import {
+  Area as AreaType,
+  Stack as StackType,
+  SeriesPoint,
+  Series,
+} from "d3-shape";
 import {
   $TSFIXME,
   AddSVGProps,
@@ -9,8 +14,8 @@ import {
   StackKey,
   BaseStackProps,
   AreaPathConfig,
-} from '../types';
-import { area, stack as stackPath } from '../util/D3ShapeFactories';
+} from "../types";
+import { area, stack as stackPath } from "../util/D3ShapeFactories";
 
 export type StackProps<Datum, Key> = BaseStackProps<Datum, Key> & {
   /** Returns a color for a given stack key and index. */
@@ -31,7 +36,7 @@ export type StackProps<Datum, Key> = BaseStackProps<Datum, Key> & {
   y0?: AccessorForArrayItem<SeriesPoint<Datum>, number>;
   /** Specifies the y1 accessor function which defaults to d => d[1]. */
   y1?: AccessorForArrayItem<SeriesPoint<Datum>, number>;
-} & Pick<AreaPathConfig<SeriesPoint<Datum>>, 'defined' | 'curve'>;
+} & Pick<AreaPathConfig<SeriesPoint<Datum>>, "defined" | "curve">;
 
 export default function Stack<Datum, Key extends StackKey = StackKey>({
   className,
@@ -73,9 +78,9 @@ export default function Stack<Datum, Key extends StackKey = StackKey>({
     <Group top={top} left={left}>
       {stacks.map((series, i) => (
         <path
-          className={cx('visx-stack', className)}
-          key={`stack-${i}-${series.key || ''}`}
-          d={path(series) || ''}
+          className={cx("visx-stack", className)}
+          key={`stack-${i}-${series.key || ""}`}
+          d={path(series) || ""}
           fill={color?.(series.key, i)}
           {...restProps}
         />

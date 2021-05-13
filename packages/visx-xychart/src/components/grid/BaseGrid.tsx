@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
-import { CommonGridProps } from '@visx/grid/lib/types';
-import { AllGridRowsProps } from '@visx/grid/lib/grids/GridRows';
-import { GridColumnsProps } from '@visx/grid/lib/grids/GridColumns';
-import { AxisScale } from '@visx/axis';
-import DataContext from '../../context/DataContext';
+import React, { useContext } from "react";
+import { CommonGridProps } from "@seygai/visx-grid/lib/types";
+import { AllGridRowsProps } from "@seygai/visx-grid/lib/grids/GridRows";
+import { GridColumnsProps } from "@seygai/visx-grid/lib/grids/GridColumns";
+import { AxisScale } from "@seygai/visx-axis";
+import DataContext from "../../context/DataContext";
 
 export type BaseGridProps = {
   /** Whether to render GridRows. */

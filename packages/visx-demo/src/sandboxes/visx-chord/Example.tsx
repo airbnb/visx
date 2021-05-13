@@ -1,19 +1,19 @@
-import React from 'react';
-import { Arc } from '@visx/shape';
-import { Group } from '@visx/group';
-import { Chord, Ribbon } from '@visx/chord';
-import { scaleOrdinal } from '@visx/scale';
-import { LinearGradient } from '@visx/gradient';
+import React from "react";
+import { Arc } from "@seygai/visx-shape";
+import { Group } from "@seygai/visx-group";
+import { Chord, Ribbon } from "@seygai/visx-chord";
+import { scaleOrdinal } from "@seygai/visx-scale";
+import { LinearGradient } from "@seygai/visx-gradient";
 
-const pink = '#ff2fab';
-const orange = '#ffc62e';
-const purple = '#dc04ff';
-const purple2 = '#7324ff';
-const red = '#d04376';
-const green = '#52f091';
-const blue = '#04a6ff';
-const lime = '#00ddc6';
-const bg = '#e4e3d8';
+const pink = "#ff2fab";
+const orange = "#ffc62e";
+const purple = "#dc04ff";
+const purple2 = "#7324ff";
+const red = "#d04376";
+const green = "#52f091";
+const blue = "#04a6ff";
+const lime = "#00ddc6";
+const bg = "#e4e3d8";
 
 const dataMatrix = [
   [11975, 5871, 8916, 2868],
@@ -28,7 +28,12 @@ function descending(a: number, b: number): number {
 
 const color = scaleOrdinal<number, string>({
   domain: [0, 1, 2, 3],
-  range: ['url(#gpinkorange)', 'url(#gpurplered)', 'url(#gpurplegreen)', 'url(#gbluelime)'],
+  range: [
+    "url(#gpinkorange)",
+    "url(#gpurplered)",
+    "url(#gpurplegreen)",
+    "url(#gbluelime)",
+  ],
 });
 
 export type ChordProps = {
@@ -38,7 +43,12 @@ export type ChordProps = {
   events?: boolean;
 };
 
-export default function Example({ width, height, centerSize = 20, events = false }: ChordProps) {
+export default function Example({
+  width,
+  height,
+  centerSize = 20,
+  events = false,
+}: ChordProps) {
   height -= 77;
   const outerRadius = Math.min(width, height) * 0.5 - (centerSize + 10);
   const innerRadius = outerRadius - centerSize;
@@ -46,9 +56,24 @@ export default function Example({ width, height, centerSize = 20, events = false
   return width < 10 ? null : (
     <div className="chords">
       <svg width={width} height={height}>
-        <LinearGradient id="gpinkorange" from={pink} to={orange} vertical={false} />
-        <LinearGradient id="gpurplered" from={purple} to={red} vertical={false} />
-        <LinearGradient id="gpurplegreen" from={purple2} to={green} vertical={false} />
+        <LinearGradient
+          id="gpinkorange"
+          from={pink}
+          to={orange}
+          vertical={false}
+        />
+        <LinearGradient
+          id="gpurplered"
+          from={purple}
+          to={red}
+          vertical={false}
+        />
+        <LinearGradient
+          id="gpurplegreen"
+          from={purple2}
+          to={green}
+          vertical={false}
+        />
         <LinearGradient id="gbluelime" from={blue} to={lime} vertical={false} />
         <rect width={width} height={height} fill={bg} rx={14} />
         <Group top={height / 2} left={width / 2}>
@@ -88,7 +113,8 @@ export default function Example({ width, height, centerSize = 20, events = false
       </svg>
       <div className="deets">
         <div>
-          Based on Mike Bostock's <a href="https://bl.ocks.org/mbostock/4062006">Chord Diagram</a>
+          Based on Mike Bostock's{" "}
+          <a href="https://bl.ocks.org/mbostock/4062006">Chord Diagram</a>
         </div>
       </div>
       <style jsx>{`

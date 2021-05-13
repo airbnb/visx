@@ -1,15 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ScaleConfig, ScaleConfigToD3Scale } from '@visx/scale';
-import React, { useContext, useMemo } from 'react';
-import createOrdinalScale from '@visx/scale/lib/scales/ordinal';
-import { AxisScaleOutput } from '@visx/axis';
-import { XYChartTheme } from '../types';
-import ThemeContext from '../context/ThemeContext';
-import DataContext from '../context/DataContext';
-import useDataRegistry from '../hooks/useDataRegistry';
-import useDimensions, { Dimensions } from '../hooks/useDimensions';
-import useScales from '../hooks/useScales';
-import isDiscreteScale from '../utils/isDiscreteScale';
+import { ScaleConfig, ScaleConfigToD3Scale } from "@seygai/visx-scale";
+import React, { useContext, useMemo } from "react";
+import createOrdinalScale from "@seygai/visx-scale/lib/scales/ordinal";
+import { AxisScaleOutput } from "@seygai/visx-axis";
+import { XYChartTheme } from "../types";
+import ThemeContext from "../context/ThemeContext";
+import DataContext from "../context/DataContext";
+import useDataRegistry from "../hooks/useDataRegistry";
+import useDimensions, { Dimensions } from "../hooks/useDimensions";
+import useScales from "../hooks/useScales";
+import isDiscreteScale from "../utils/isDiscreteScale";
 
 /** Props that can be passed to initialize/update the provider config. */
 export type DataProviderProps<
@@ -27,7 +27,7 @@ export type DataProviderProps<
   /* Any React children. */
   children: React.ReactNode;
   /* Determines whether Series will be plotted horizontally (e.g., horizontal bars). By default this will try to be inferred based on scale types. */
-  horizontal?: boolean | 'auto';
+  horizontal?: boolean | "auto";
 };
 
 export default function DataProvider<
@@ -40,14 +40,16 @@ export default function DataProvider<
   xScale: xScaleConfig,
   yScale: yScaleConfig,
   children,
-  horizontal: initialHorizontal = 'auto',
+  horizontal: initialHorizontal = "auto",
 }: DataProviderProps<XScaleConfig, YScaleConfig>) {
   // `DataProvider` provides a theme so that `ThemeProvider` is not strictly needed.
   // `props.theme` takes precedent over `context.theme`, which has a default even if
   // a ThemeProvider is not present.
   const contextTheme = useContext(ThemeContext);
   const theme = propsTheme || contextTheme;
-  const [{ width, height, margin }, setDimensions] = useDimensions(initialDimensions);
+  const [{ width, height, margin }, setDimensions] = useDimensions(
+    initialDimensions
+  );
   const innerWidth = Math.max(0, width - margin.left - margin.right);
   const innerHeight = Math.max(0, height - margin.top - margin.bottom);
 
@@ -72,12 +74,14 @@ export default function DataProvider<
         domain: registryKeys,
         range: theme.colors,
       }),
-    [registryKeys, theme.colors],
+    [registryKeys, theme.colors]
   );
 
   const horizontal =
-    initialHorizontal === 'auto'
-      ? isDiscreteScale(yScaleConfig) || yScaleConfig.type === 'time' || yScaleConfig.type === 'utc'
+    initialHorizontal === "auto"
+      ? isDiscreteScale(yScaleConfig) ||
+        yScaleConfig.type === "time" ||
+        yScaleConfig.type === "utc"
       : initialHorizontal;
 
   return (

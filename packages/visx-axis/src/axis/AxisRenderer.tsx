@@ -1,19 +1,19 @@
-import React from 'react';
-import cx from 'classnames';
-import { Line } from '@visx/shape';
-import { Text } from '@visx/text';
+import React from "react";
+import cx from "classnames";
+import { Line } from "@seygai/visx-shape";
+import { Text } from "@seygai/visx-text";
 
-import { TextProps } from '@visx/text/lib/Text';
-import getLabelTransform from '../utils/getLabelTransform';
-import { AxisRendererProps, AxisScale } from '../types';
-import Ticks from './Ticks';
-import { Orientation } from '..';
+import { TextProps } from "@seygai/visx-text/lib/Text";
+import getLabelTransform from "../utils/getLabelTransform";
+import { AxisRendererProps, AxisScale } from "../types";
+import Ticks from "./Ticks";
+import { Orientation } from "..";
 
 const defaultTextProps: Partial<TextProps> = {
-  textAnchor: 'middle',
-  fontFamily: 'Arial',
+  textAnchor: "middle",
+  fontFamily: "Arial",
   fontSize: 10,
-  fill: '#222',
+  fill: "#222",
 };
 
 export default function AxisRenderer<Scale extends AxisScale>({
@@ -23,29 +23,33 @@ export default function AxisRenderer<Scale extends AxisScale>({
   hideAxisLine,
   hideTicks,
   horizontal,
-  label = '',
+  label = "",
   labelClassName,
   labelOffset = 14,
   labelProps = defaultTextProps,
   orientation = Orientation.bottom,
   scale,
-  stroke = '#222',
+  stroke = "#222",
   strokeDasharray,
   strokeWidth = 1,
   tickClassName,
   tickComponent,
   tickLabelProps = (/** tickValue, index, tickValues */) => defaultTextProps,
   tickLength = 8,
-  tickStroke = '#222',
+  tickStroke = "#222",
   tickTransform,
   ticks,
   ticksComponent = Ticks,
 }: AxisRendererProps<Scale>) {
   // compute the max tick label size to compute label offset
-  const allTickLabelProps = ticks.map(({ value, index }) => tickLabelProps(value, index, ticks));
+  const allTickLabelProps = ticks.map(({ value, index }) =>
+    tickLabelProps(value, index, ticks)
+  );
   const maxTickLabelFontSize = Math.max(
     10,
-    ...allTickLabelProps.map(props => (typeof props.fontSize === 'number' ? props.fontSize : 0)),
+    ...allTickLabelProps.map((props) =>
+      typeof props.fontSize === "number" ? props.fontSize : 0
+    )
   );
   return (
     <>
@@ -64,7 +68,7 @@ export default function AxisRenderer<Scale extends AxisScale>({
 
       {!hideAxisLine && (
         <Line
-          className={cx('visx-axis-line', axisLineClassName)}
+          className={cx("visx-axis-line", axisLineClassName)}
           from={axisFromPoint}
           to={axisToPoint}
           stroke={stroke}
@@ -75,7 +79,7 @@ export default function AxisRenderer<Scale extends AxisScale>({
 
       {label && (
         <Text
-          className={cx('visx-axis-label', labelClassName)}
+          className={cx("visx-axis-label", labelClassName)}
           {...getLabelTransform({
             labelOffset,
             labelProps,

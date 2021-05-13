@@ -1,13 +1,17 @@
-import { AxisScale } from '@visx/axis';
-import { coerceNumber } from '@visx/scale';
-import isValidNumber from '../typeguards/isValidNumber';
+import { AxisScale } from "@seygai/visx-axis";
+import { coerceNumber } from "@seygai/visx-scale";
+import isValidNumber from "../typeguards/isValidNumber";
 
 /**
  * Returns the output value of a scale's baseline value, which is either zero
  * or the minimum scale value if its domain doesn't include zero.
  */
-export default function getScaleBaseline<Scale extends AxisScale>(scale: Scale) {
-  const [a, b] = scale.range().map(rangeBoundary => coerceNumber(rangeBoundary) ?? 0);
+export default function getScaleBaseline<Scale extends AxisScale>(
+  scale: Scale
+) {
+  const [a, b] = scale
+    .range()
+    .map((rangeBoundary) => coerceNumber(rangeBoundary) ?? 0);
   const isDescending = a != null && b != null && b < a;
   const maybeScaleZero = scale(0);
   const [minOutput, maxOutput] = isDescending ? [b, a] : [a, b];

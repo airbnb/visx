@@ -1,5 +1,5 @@
 {
-  "name": "@visx/group",
+  "name": "@seygai/visx-group",
   "version": "1.7.0",
   "description": "visx group",
   "sideEffects": false,

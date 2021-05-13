@@ -1,5 +1,5 @@
-import React from 'react';
-import { Group } from '@visx/group';
+import React from "react";
+import { Group } from "@seygai/visx-group";
 
 export type ShapeCircleProps = {
   fill?: string;
@@ -8,9 +8,16 @@ export type ShapeCircleProps = {
   style?: React.CSSProperties;
 };
 
-export default function ShapeCircle({ fill, width, height, style }: ShapeCircleProps) {
-  const cleanWidth = typeof width === 'string' || typeof width === 'undefined' ? 0 : width;
-  const cleanHeight = typeof height === 'string' || typeof height === 'undefined' ? 0 : height;
+export default function ShapeCircle({
+  fill,
+  width,
+  height,
+  style,
+}: ShapeCircleProps) {
+  const cleanWidth =
+    typeof width === "string" || typeof width === "undefined" ? 0 : width;
+  const cleanHeight =
+    typeof height === "string" || typeof height === "undefined" ? 0 : height;
   const size = Math.max(cleanWidth, cleanHeight);
   const radius = size / 2;
   return (

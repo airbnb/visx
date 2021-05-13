@@ -1,5 +1,5 @@
-import { AxisScale } from '@visx/axis';
-import { DataRegistryEntry } from '../types/data';
+import { AxisScale } from "@seygai/visx-axis";
+import { DataRegistryEntry } from "../types/data";
 
 /** A class for holding data entries */
 export default class DataRegistry<
@@ -7,7 +7,9 @@ export default class DataRegistry<
   YScale extends AxisScale,
   Datum extends object
 > {
-  private registry: { [key: string]: DataRegistryEntry<XScale, YScale, Datum> } = {};
+  private registry: {
+    [key: string]: DataRegistryEntry<XScale, YScale, Datum>;
+  } = {};
 
   private registryKeys: string[] = [];
 
@@ -15,12 +17,17 @@ export default class DataRegistry<
   public registerData(
     entryOrEntries:
       | DataRegistryEntry<XScale, YScale, Datum>
-      | DataRegistryEntry<XScale, YScale, Datum>[],
+      | DataRegistryEntry<XScale, YScale, Datum>[]
   ) {
-    const entries = Array.isArray(entryOrEntries) ? entryOrEntries : [entryOrEntries];
-    entries.forEach(currEntry => {
-      if (currEntry.key in this.registry && this.registry[currEntry.key] != null) {
-        console.debug('Overriding data registry key', currEntry.key);
+    const entries = Array.isArray(entryOrEntries)
+      ? entryOrEntries
+      : [entryOrEntries];
+    entries.forEach((currEntry) => {
+      if (
+        currEntry.key in this.registry &&
+        this.registry[currEntry.key] != null
+      ) {
+        console.debug("Overriding data registry key", currEntry.key);
       }
       this.registry[currEntry.key] = currEntry;
       this.registryKeys = Object.keys(this.registry);
@@ -30,7 +37,7 @@ export default class DataRegistry<
   /** Remove one or more entries to the registry. */
   public unregisterData(keyOrKeys: string | string[]) {
     const keys = Array.isArray(keyOrKeys) ? keyOrKeys : [keyOrKeys];
-    keys.forEach(currKey => {
+    keys.forEach((currKey) => {
       delete this.registry[currKey];
       this.registryKeys = Object.keys(this.registry);
     });

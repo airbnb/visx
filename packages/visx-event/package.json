@@ -1,5 +1,5 @@
 {
-  "name": "@visx/event",
+  "name": "@seygai/visx-event",
   "version": "1.7.0",
   "description": "visx event",
   "sideEffects": false,
@@ -32,6 +32,6 @@
   },
   "dependencies": {
     "@types/react": "*",
-    "@visx/point": "1.7.0"
+    "@seygai/visx-point": "1.7.0"
   }
 }

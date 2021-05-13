@@ -1,17 +1,19 @@
-import React from 'react';
-import { AreaStack } from '@visx/shape';
-import { SeriesPoint } from '@visx/shape/lib/types';
-import { GradientOrangeRed } from '@visx/gradient';
-import browserUsage, { BrowserUsage } from '@visx/mock-data/lib/mocks/browserUsage';
-import { scaleTime, scaleLinear } from '@visx/scale';
-import { timeParse } from 'd3-time-format';
+import React from "react";
+import { AreaStack } from "@seygai/visx-shape";
+import { SeriesPoint } from "@seygai/visx-shape/lib/types";
+import { GradientOrangeRed } from "@seygai/visx-gradient";
+import browserUsage, {
+  BrowserUsage,
+} from "@seygai/visx-mock-data/lib/mocks/browserUsage";
+import { scaleTime, scaleLinear } from "@seygai/visx-scale";
+import { timeParse } from "d3-time-format";
 
 type BrowserNames = keyof BrowserUsage;
 
 const data = browserUsage;
-const keys = Object.keys(data[0]).filter(k => k !== 'date') as BrowserNames[];
-const parseDate = timeParse('%Y %b %d');
-export const background = '#f38181';
+const keys = Object.keys(data[0]).filter((k) => k !== "date") as BrowserNames[];
+const parseDate = timeParse("%Y %b %d");
+export const background = "#f38181";
 
 const getDate = (d: BrowserUsage) => (parseDate(d.date) as Date).valueOf();
 const getY0 = (d: SeriesPoint<BrowserUsage>) => d[0] / 100;
@@ -46,21 +48,28 @@ export default function Example({
   return width < 10 ? null : (
     <svg width={width} height={height}>
       <GradientOrangeRed id="stacked-area-orangered" />
-      <rect x={0} y={0} width={width} height={height} fill={background} rx={14} />
+      <rect
+        x={0}
+        y={0}
+        width={width}
+        height={height}
+        fill={background}
+        rx={14}
+      />
       <AreaStack
         top={margin.top}
         left={margin.left}
         keys={keys}
         data={data}
-        x={d => xScale(getDate(d.data)) ?? 0}
-        y0={d => yScale(getY0(d)) ?? 0}
-        y1={d => yScale(getY1(d)) ?? 0}
+        x={(d) => xScale(getDate(d.data)) ?? 0}
+        y0={(d) => yScale(getY0(d)) ?? 0}
+        y1={(d) => yScale(getY1(d)) ?? 0}
       >
         {({ stacks, path }) =>
-          stacks.map(stack => (
+          stacks.map((stack) => (
             <path
               key={`stack-${stack.key}`}
-              d={path(stack) || ''}
+              d={path(stack) || ""}
               stroke="transparent"
               fill="url(#stacked-area-orangered)"
               onClick={() => {

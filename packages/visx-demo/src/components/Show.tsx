@@ -1,14 +1,14 @@
-import React, { useMemo } from 'react';
-import cx from 'classnames';
+import React, { useMemo } from "react";
+import cx from "classnames";
 import withScreenSize, {
   WithScreenSizeProvidedProps,
-} from '@visx/responsive/lib/enhancers/withScreenSize';
-import CodeSandboxLink from './CodeSandboxLink';
-import Page from './Page';
-import Codeblock from './Codeblock';
-import { MarginShape, ShowProvidedProps, PackageJson } from '../types';
-import VisxDocLink from './VisxDocLink';
-import extractVisxDepsFromPackageJson from './util/extractVisxDepsFromPackageJson';
+} from "@seygai/visx-responsive/lib/enhancers/withScreenSize";
+import CodeSandboxLink from "./CodeSandboxLink";
+import Page from "./Page";
+import Codeblock from "./Codeblock";
+import { MarginShape, ShowProvidedProps, PackageJson } from "../types";
+import VisxDocLink from "./VisxDocLink";
+import extractVisxDepsFromPackageJson from "./util/extractVisxDepsFromPackageJson";
 
 type Component<P = {}> = React.FC<P> | React.ComponentClass<P>;
 
@@ -42,14 +42,23 @@ export default withScreenSize<ShowProps & WithScreenSizeProvidedProps>(
   }: ShowProps & WithScreenSizeProvidedProps) => {
     const width = Math.min(800, (screenWidth || 0) - padding);
     const height = width * 0.6;
-    const visxDeps = useMemo(() => extractVisxDepsFromPackageJson(packageJson), [packageJson]);
+    const visxDeps = useMemo(
+      () => extractVisxDepsFromPackageJson(packageJson),
+      [packageJson]
+    );
 
     return (
       <Page title={title}>
         <div className="container">
           <div style={{ width }}>
             <h1>{title}</h1>
-            <div className={cx(!!shadow && 'shadow', title.split(' ').join('-'), 'chart')}>
+            <div
+              className={cx(
+                !!shadow && "shadow",
+                title.split(" ").join("-"),
+                "chart"
+              )}
+            >
               {React.createElement(component, {
                 width,
                 height,
@@ -60,14 +69,16 @@ export default withScreenSize<ShowProps & WithScreenSizeProvidedProps>(
             {description && React.createElement(description, { width, height })}
             {codeSandboxDirectoryName && (
               <div className="sandbox-link">
-                <CodeSandboxLink exampleDirectoryName={codeSandboxDirectoryName} />
+                <CodeSandboxLink
+                  exampleDirectoryName={codeSandboxDirectoryName}
+                />
               </div>
             )}
             {visxDeps.length > 0 && (
               <>
                 <h2>Documentation</h2>
                 <div className="doc-links">
-                  {visxDeps.map(packageName => (
+                  {visxDeps.map((packageName) => (
                     <VisxDocLink key={packageName} packageName={packageName} />
                   ))}
                 </div>
@@ -120,5 +131,5 @@ export default withScreenSize<ShowProps & WithScreenSizeProvidedProps>(
         `}</style>
       </Page>
     );
-  },
+  }
 );

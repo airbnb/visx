@@ -1,10 +1,10 @@
-import { ValueOf } from '@visx/scale';
+import { ValueOf } from "@seygai/visx-scale";
 
 const Orientation = {
-  top: 'top',
-  left: 'left',
-  right: 'right',
-  bottom: 'bottom',
+  top: "top",
+  left: "left",
+  right: "right",
+  bottom: "bottom",
 } as const;
 
 type Orientation = ValueOf<typeof Orientation>;

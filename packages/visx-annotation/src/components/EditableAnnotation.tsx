@@ -1,10 +1,16 @@
 /* eslint-disable react/jsx-handler-names */
-import React, { useCallback, useRef } from 'react';
-import useDrag, { UseDrag, HandlerArgs as DragHandlerArgs } from '@visx/drag/lib/useDrag';
-import { AnnotationContextType } from '../types';
-import Annotation from './Annotation';
+import React, { useCallback, useRef } from "react";
+import useDrag, {
+  UseDrag,
+  HandlerArgs as DragHandlerArgs,
+} from "@seygai/visx-drag/lib/useDrag";
+import { AnnotationContextType } from "../types";
+import Annotation from "./Annotation";
 
-export type EditableAnnotationProps = Pick<AnnotationContextType, 'x' | 'y' | 'dx' | 'dy'> & {
+export type EditableAnnotationProps = Pick<
+  AnnotationContextType,
+  "x" | "y" | "dx" | "dy"
+> & {
   /** Width of the possible drag canvas (e.g., SVG container). */
   width: number;
   /** Height of the possible drag canvas (e.g., SVG container). */
@@ -37,9 +43,9 @@ export type HandlerArgs = {
 
 const defaultDragHandleProps = {
   r: 10,
-  fill: 'transparent',
-  stroke: '#777',
-  strokeDasharray: '4,2',
+  fill: "transparent",
+  stroke: "#777",
+  strokeDasharray: "4,2",
   strokeWidth: 2,
 };
 
@@ -76,7 +82,7 @@ export default function EditableAnnotation({
         });
       }
     },
-    [labelDx, labelDy, onDragStart, subjectX, subjectY],
+    [labelDx, labelDy, onDragStart, subjectX, subjectY]
   );
 
   const handleDragMove = useCallback(
@@ -91,7 +97,7 @@ export default function EditableAnnotation({
         });
       }
     },
-    [labelDx, labelDy, onDragMove, subjectX, subjectY],
+    [labelDx, labelDy, onDragMove, subjectX, subjectY]
   );
 
   const handleDragEnd = useCallback(
@@ -106,7 +112,7 @@ export default function EditableAnnotation({
         });
       }
     },
-    [labelDx, labelDy, onDragEnd, subjectX, subjectY],
+    [labelDx, labelDy, onDragEnd, subjectX, subjectY]
   );
 
   const subjectDrag = useDrag({
@@ -159,7 +165,7 @@ export default function EditableAnnotation({
           onTouchStart={subjectDrag.dragStart}
           onTouchMove={subjectDrag.dragMove}
           onTouchEnd={subjectDrag.dragEnd}
-          cursor={subjectDrag.isDragging ? 'grabbing' : 'grab'}
+          cursor={subjectDrag.isDragging ? "grabbing" : "grab"}
           {...defaultDragHandleProps}
           {...subjectDragHandleProps}
         />
@@ -184,7 +190,7 @@ export default function EditableAnnotation({
           onTouchStart={labelDrag.dragStart}
           onTouchMove={labelDrag.dragMove}
           onTouchEnd={labelDrag.dragEnd}
-          cursor={labelDrag.isDragging ? 'grabbing' : 'grab'}
+          cursor={labelDrag.isDragging ? "grabbing" : "grab"}
           {...defaultDragHandleProps}
           {...labelDragHandleProps}
         />
