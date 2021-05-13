@@ -1,4 +1,5 @@
 # Changelog
+- [v1.11.0](#v1110)
 - [v1.10.1](#v1101)
 - [v1.10.0](#v1100)
 - [v1.9.1](#v191)
@@ -6,10 +7,10 @@
 - [v1.8.0](#v180)
 - [v1.7.4](#v174)
 - [v1.7.3](#v173)
-- [v1.7.2](#v172)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v172">v1.7.2</a></li>
   <li><a href="#v171">v1.7.1</a></li>
   <li><a href="#v170">v1.7.0</a></li>
   <li><a href="#v161">v1.6.1</a></li>
@@ -107,6 +108,19 @@
 </details>
 
 ------
+# v1.11.0 (2021-05-13)
+
+#### :rocket: Enhancements
+
+- new(@visx/zoom): adjust drag move to take optional offset [#1180](https://github.com/airbnb/visx/pull/1180)
+
+#### :bug: Bug Fix
+
+- new(@visx/zoom): adjust drag move to take optional offset [#1180](https://github.com/airbnb/visx/pull/1180)
+  
+#### :trophy: Contributors
+- [boy51](https://github.com/boy51)
+
 # v1.10.1 (2021-05-12)
 
 #### :bug: Bug Fix
