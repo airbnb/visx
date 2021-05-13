@@ -44,7 +44,7 @@ export default class BrushSelection extends React.Component<
     if (onMoveSelectionChange) {
       let pageX;
       let pageY;
-      if (drag.event instanceof TouchEvent) {
+      if (window.TouchEvent && drag.event instanceof TouchEvent) {
         const touchEvent = drag.event as React.TouchEvent;
         pageX = touchEvent.touches[0].pageX;
         pageY = touchEvent.touches[0].pageY;
