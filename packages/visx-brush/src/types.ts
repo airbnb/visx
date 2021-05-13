@@ -45,6 +45,10 @@ export type ResizeTriggerAreas =
   | 'bottomRight';
 
 export type BrushingType = 'move' | 'select' | ResizeTriggerAreas;
+export type BrushingOptions = {
+  pageX?: number;
+  pageY?: number;
+};
 
 export interface Scale<Input = any, Output = any> {
   (value: Input): Output;

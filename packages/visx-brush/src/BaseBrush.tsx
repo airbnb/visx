@@ -14,6 +14,7 @@ import {
   ResizeTriggerAreas,
   PartialBrushStartEnd,
   BrushingType,
+  BrushingOptions,
 } from './types';
 
 const BRUSH_OVERLAY_STYLES = { cursor: 'crosshair' };
@@ -47,6 +48,7 @@ export type BaseBrushProps = {
 export type BaseBrushState = BrushShape & {
   activeHandle: ResizeTriggerAreas | null;
   isBrushing: boolean;
+  brushingOptions?: BrushingOptions;
   brushingType?: BrushingType;
 };
 
@@ -165,7 +167,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
 
   handleMouseMove = (event: MouseEvent) => {
     const { useWindowMoveEvents, left, top, inheritedMargin } = this.props;
-    const { brushingType, isBrushing, bounds, start, end } = this.state;
+    const { brushingType, isBrushing, brushingOptions, bounds, start, end } = this.state;
 
     if (!useWindowMoveEvents || !isBrushing) return;
 
@@ -177,6 +179,36 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
       bounds.x1,
     );
     const calculatedY = Math.min(Math.max((point?.y || 0) - top - marginTop, bounds.y0), bounds.y1);
+
+    if (brushingType === 'move') {
+      this.updateBrush((prevBrush: BaseBrushState) => {
+        const offsetX = event.pageX - (brushingOptions?.pageX || 0);
+        const offsetY = event.pageX - (brushingOptions?.pageY || 0);
+        const { x: x0, y: y0 } = prevBrush.start;
+        const { x: x1, y: y1 } = prevBrush.end;
+        const validDx =
+          offsetX > 0
+            ? Math.min(offsetX, prevBrush.bounds.x1 - x1)
+            : Math.max(offsetX, prevBrush.bounds.x0 - x0);
+
+        const validDy =
+          offsetY > 0
+            ? Math.min(offsetY, prevBrush.bounds.y1 - y1)
+            : Math.max(offsetY, prevBrush.bounds.y0 - y0);
+
+        return {
+          ...prevBrush,
+          isBrushing: true,
+          extent: {
+            ...prevBrush.extent,
+            x0: x0 + validDx,
+            x1: x1 + validDx,
+            y0: y0 + validDy,
+            y1: y1 + validDy,
+          },
+        };
+      });
+    }
 
     if (['left', 'top'].includes(brushingType ?? '')) {
       const newStart = { x: calculatedX, y: calculatedY };
@@ -198,46 +230,6 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
         const extent = this.getExtent(start, newEnd);
         return {
           ...prevBrush,
-          end: newEnd,
-          extent,
-        };
-      });
-      return;
-    }
-
-    if (brushingType === 'move') {
-      let newStart = start;
-      const newEnd = { x: calculatedX, y: calculatedY };
-
-      const xDiff = calculatedX - end.x;
-      const yDiff = calculatedY - end.y;
-
-      newStart = {
-        x: newStart.x + xDiff,
-        y: newStart.y + yDiff,
-      };
-
-      if (newStart.x < bounds.x0) {
-        newEnd.x += bounds.x0 - newStart.x;
-        newStart.x = bounds.x0;
-      }
-      if (newStart.y < bounds.y0) {
-        newEnd.y += bounds.y0 - newStart.y;
-        newStart.y = bounds.y0;
-      }
-      if (newEnd.x > bounds.x1) {
-        newStart.x -= newEnd.x - bounds.x1;
-        newEnd.x = bounds.x1;
-      }
-      if (newEnd.y > bounds.y1) {
-        newStart.y -= newEnd.y - bounds.y1;
-        newEnd.y = bounds.y1;
-      }
-      this.updateBrush((prevBrush: BaseBrushState) => {
-        const extent = this.getExtent(newStart, newEnd);
-        return {
-          ...prevBrush,
-          start: newStart,
           end: newEnd,
           extent,
         };
@@ -471,18 +463,25 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
         y1: height,
       },
       isBrushing: false,
+      brushingOptions: undefined,
       activeHandle: null,
       brushingType: undefined,
     }));
   };
 
-  handleBrushingTypeChange = (type?: BrushingType) => {
+  handleBrushingTypeChange = (type?: BrushingType, options?: BrushingOptions) => {
     this.updateBrush((prevBrush: BaseBrushState) => {
-      return {
+      const next = {
         ...prevBrush,
         brushingType: type,
         isBrushing: type !== undefined,
       };
+
+      if (options || type === undefined) {
+        next.brushingOptions = options;
+      }
+
+      return next;
     });
   };
 

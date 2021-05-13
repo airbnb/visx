@@ -1,8 +1,9 @@
 /* eslint react/jsx-handler-names: 0 */
 import React from 'react';
 import Drag, { HandlerArgs as DragArgs } from '@visx/drag/lib/Drag';
+
 import { BaseBrushState as BrushState, UpdateBrush } from './BaseBrush';
-import { BrushingType } from './types';
+import { BrushingOptions, BrushingType } from './types';
 
 const DRAGGING_OVERLAY_STYLES = { cursor: 'move' };
 
@@ -15,7 +16,7 @@ export type BrushSelectionProps = {
   stageHeight: number;
   brush: BrushState;
   updateBrush: (update: UpdateBrush) => void;
-  onMoveSelectionChange?: (type?: BrushingType) => void;
+  onMoveSelectionChange?: (type?: BrushingType, options?: BrushingOptions) => void;
   onBrushEnd?: (brush: BrushState) => void;
   disableDraggingSelection: boolean;
   onMouseLeave: PointerHandler;
@@ -37,11 +38,25 @@ export default class BrushSelection extends React.Component<
     onClick: null,
   };
 
-  selectionDragStart = () => {
+  selectionDragStart = (drag: DragArgs) => {
     const { onMoveSelectionChange } = this.props;
 
     if (onMoveSelectionChange) {
-      onMoveSelectionChange('move');
+      let pageX;
+      let pageY;
+      if (drag.event instanceof TouchEvent) {
+        const touchEvent = drag.event as React.TouchEvent;
+        pageX = touchEvent.touches[0].pageX;
+        pageY = touchEvent.touches[0].pageY;
+      } else {
+        const pointerEvent = drag.event as React.PointerEvent;
+        pageX = pointerEvent.pageX;
+        pageY = pointerEvent.pageY;
+      }
+      onMoveSelectionChange('move', {
+        pageX,
+        pageY,
+      });
     }
   };
 
