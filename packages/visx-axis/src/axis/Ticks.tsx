@@ -17,6 +17,8 @@ export default function Ticks<Scale extends AxisScale>({
   tickStroke = '#222',
   tickTransform,
   ticks,
+  strokeWidth,
+  tickStrokeWidth
 }: TicksRendererProps<Scale>) {
   return ticks.map(({ value, index, from, to, formattedValue }) => {
     const tickLabelProps = allTickLabelProps[index] ?? {};
@@ -34,7 +36,7 @@ export default function Ticks<Scale extends AxisScale>({
         className={cx('visx-axis-tick', tickClassName)}
         transform={tickTransform}
       >
-        {!hideTicks && <Line from={from} to={to} stroke={tickStroke} strokeLinecap="square" />}
+        {!hideTicks && <Line from={from} to={to} stroke={tickStroke} strokeWidth={tickStrokeWidth ?? strokeWidth} strokeLinecap="square" />}
         {tickComponent ? (
           tickComponent({
             ...tickLabelProps,

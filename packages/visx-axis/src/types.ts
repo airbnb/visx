@@ -44,6 +44,8 @@ export type TicksRendererProps<Scale extends AxisScale> = {
   | 'tickStroke'
   | 'tickTransform'
   | 'ticks'
+  | 'strokeWidth'
+  | 'tickStrokeWidth'
 >;
 
 export type CommonProps<Scale extends AxisScale> = {
@@ -75,6 +77,8 @@ export type CommonProps<Scale extends AxisScale> = {
   strokeWidth?: number | string;
   /** The pattern of dashes in the stroke. */
   strokeDasharray?: string;
+   /** The pixel value for the width of the ticks. */
+  tickStrokeWidth?: number | string;
   /** The class name applied to each tick group. */
   tickClassName?: string;
   /** Override the component used to render tick labels (instead of <Text /> from @visx/text). */
