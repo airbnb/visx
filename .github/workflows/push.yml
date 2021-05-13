@@ -58,7 +58,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: 🚀 Build and deploy gallery
+      - name: 🎨 Build and deploy gallery
         # below we
         # - setup git credentials provided via actions/checkout@v2
         # - initialize gh-pages-branch as an orphan branch so we don't build history

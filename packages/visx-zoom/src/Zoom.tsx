@@ -212,14 +212,22 @@ class Zoom extends React.Component<ZoomProps, ZoomState> {
     this.setState({ isDragging: true });
   };
 
-  dragMove = (event: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent) => {
+  dragMove = (
+    event: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent,
+    options?: { offsetX?: number; offsetY?: number },
+  ) => {
     if (!this.state.isDragging || !this.startPoint || !this.startTranslate) return;
     const currentPoint = localPoint(event);
     const dx = currentPoint ? -(this.startPoint.x - currentPoint.x) : -this.startPoint.x;
     const dy = currentPoint ? -(this.startPoint.y - currentPoint.y) : -this.startPoint.y;
+
+    let translateX = this.startTranslate.translateX + dx;
+    if (options?.offsetX) translateX += options?.offsetX;
+    let translateY = this.startTranslate.translateY + dy;
+    if (options?.offsetY) translateY += options?.offsetY;
     this.setTranslate({
-      translateX: this.startTranslate.translateX + dx,
-      translateY: this.startTranslate.translateY + dy,
+      translateX,
+      translateY,
     });
   };
 

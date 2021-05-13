@@ -1,15 +1,21 @@
 # Changelog
+- [v1.11.0](#v1110)
+- [v1.10.1](#v1101)
+- [v1.10.0](#v1100)
+- [v1.9.1](#v191)
+- [v1.9.0](#v190)
+- [v1.8.0](#v180)
 - [v1.7.4](#v174)
 - [v1.7.3](#v173)
-- [v1.7.2](#v172)
-- [v1.7.1](#v171)
-- [v1.7.0](#v170)
-- [v1.6.1](#v161)
-- [v1.6.0](#v160)
-- [v1.5.0](#v150)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v172">v1.7.2</a></li>
+  <li><a href="#v171">v1.7.1</a></li>
+  <li><a href="#v170">v1.7.0</a></li>
+  <li><a href="#v161">v1.6.1</a></li>
+  <li><a href="#v160">v1.6.0</a></li>
+  <li><a href="#v150">v1.5.0</a></li>
   <li><a href="#v140">v1.4.0</a></li>
   <li><a href="#v130">v1.3.0</a></li>
   <li><a href="#v120">v1.2.0</a></li>
@@ -102,6 +108,87 @@
 </details>
 
 ------
+# v1.11.0 (2021-05-13)
+
+#### :rocket: Enhancements
+
+- new(@visx/zoom): adjust drag move to take optional offset [#1180](https://github.com/airbnb/visx/pull/1180)
+
+#### :bug: Bug Fix
+
+- new(@visx/zoom): adjust drag move to take optional offset [#1180](https://github.com/airbnb/visx/pull/1180)
+  
+#### :trophy: Contributors
+- [boy51](https://github.com/boy51)
+
+# v1.10.1 (2021-05-12)
+
+#### :bug: Bug Fix
+
+- fix(responsive): don't call resize.cancel if we never initialised [#1208](https://github.com/airbnb/visx/pull/1208)
+
+#### Uncategorized
+
+- Update pull_request.yml [#1209](https://github.com/airbnb/visx/pull/1209)
+  
+#### :trophy: Contributors
+- [ahixon](https://github.com/ahixon)
+- [williaster](https://github.com/williaster)
+
+# v1.10.0 (2021-05-03)
+
+#### :rocket: Enhancements
+
+- fix(@visx/text) Bad size measurements in Firefox [#1175](https://github.com/airbnb/visx/pull/1175)
+
+#### :bug: Bug Fix
+
+- fix(@visx/text) Bad size measurements in Firefox [#1175](https://github.com/airbnb/visx/pull/1175)
+
+#### Uncategorized
+
+- Update push.yml [#1195](https://github.com/airbnb/visx/pull/1195)
+  
+#### :trophy: Contributors
+- [vovakulikov](https://github.com/vovakulikov)
+- [williaster](https://github.com/williaster)
+
+# v1.9.1 (2021-04-22)
+
+#### :bug: Bug Fix
+
+- fix(grid,xychart): account for scale bandwidth in offsets [#1181](https://github.com/airbnb/visx/pull/1181)
+  
+#### :trophy: Contributors
+- [williaster](https://github.com/williaster)
+
+# v1.9.0 (2021-04-16)
+
+#### :rocket: Enhancements
+
+- fix(visx/annotation) Improve label positioning, add maxWidth [#1127](https://github.com/airbnb/visx/pull/1127)
+
+#### :bug: Bug Fix
+
+- fix(visx/annotation) Improve label positioning, add maxWidth [#1127](https://github.com/airbnb/visx/pull/1127)
+
+### :memo: Documentation
+
+- development(contributing): update docs to rebuild single packages [#1170](https://github.com/airbnb/visx/pull/1170)
+  
+#### :trophy: Contributors
+- [vovakulikov](https://github.com/vovakulikov)
+- [williaster](https://github.com/williaster)
+
+# v1.8.0 (2021-04-15)
+
+#### :rocket: Enhancements
+
+- new(shape/Polygon): add optional 'points' override [#1156](https://github.com/airbnb/visx/pull/1156)
+  
+#### :trophy: Contributors
+- [jakeisnt](https://github.com/jakeisnt)
+
 # v1.7.4 (2021-04-13)
 
 #### :bug: Bug Fix
