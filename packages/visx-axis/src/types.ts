@@ -80,7 +80,7 @@ export type CommonProps<Scale extends AxisScale> = {
   strokeWidth?: number | string;
   /** The pattern of dashes in the stroke. */
   strokeDasharray?: string;
-  /** The pixel value for the width of the ticks. */
+  /** Props to be applied to individual tick lines. */
   tickLineProps?: LineProps;
   /** The class name applied to each tick group. */
   tickClassName?: string;
