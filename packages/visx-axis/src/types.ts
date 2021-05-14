@@ -1,5 +1,6 @@
 import { D3Scale, NumberLike, ScaleInput } from '@visx/scale';
 import { TextProps } from '@visx/text/lib/Text';
+import Line from '@visx/shape/lib/shapes/Line';
 import Orientation from './constants/orientation';
 
 // In order to plot values on an axis, output of the scale must be number.
@@ -10,6 +11,8 @@ export type AxisScaleOutput = number | NumberLike | undefined;
 export type AxisScale<Output extends AxisScaleOutput = AxisScaleOutput> =
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   D3Scale<Output, any, any>;
+
+type LineProps = Omit<React.ComponentProps<typeof Line>, 'to' | 'from'>;
 
 type FormattedValue = string | undefined;
 
@@ -45,7 +48,7 @@ export type TicksRendererProps<Scale extends AxisScale> = {
   | 'tickTransform'
   | 'ticks'
   | 'strokeWidth'
-  | 'tickStrokeWidth'
+  | 'tickLineProps'
 >;
 
 export type CommonProps<Scale extends AxisScale> = {
@@ -77,8 +80,8 @@ export type CommonProps<Scale extends AxisScale> = {
   strokeWidth?: number | string;
   /** The pattern of dashes in the stroke. */
   strokeDasharray?: string;
-   /** The pixel value for the width of the ticks. */
-  tickStrokeWidth?: number | string;
+  /** The pixel value for the width of the ticks. */
+  tickLineProps?: LineProps;
   /** The class name applied to each tick group. */
   tickClassName?: string;
   /** Override the component used to render tick labels (instead of <Text /> from @visx/text). */

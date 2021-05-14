@@ -34,7 +34,7 @@ export default function AxisRenderer<Scale extends AxisScale>({
   strokeWidth = 1,
   tickClassName,
   tickComponent,
-  tickStrokeWidth,
+  tickLineProps,
   tickLabelProps = (/** tickValue, index, tickValues */) => defaultTextProps,
   tickLength = 8,
   tickStroke = '#222',
@@ -62,7 +62,7 @@ export default function AxisRenderer<Scale extends AxisScale>({
         tickTransform,
         ticks,
         strokeWidth,
-        tickStrokeWidth,
+        tickLineProps,
       })}
 
       {!hideAxisLine && (
