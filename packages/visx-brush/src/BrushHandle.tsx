@@ -141,6 +141,7 @@ export default class BrushHandle extends React.Component<BrushHandleProps> {
       <Drag
         width={stageWidth}
         height={stageHeight}
+        onDragStart={this.handleDragStart}
         onDragMove={this.handleDragMove}
         onDragEnd={this.handleDragEnd}
         resetOnStart
