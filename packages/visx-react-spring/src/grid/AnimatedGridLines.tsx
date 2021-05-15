@@ -22,34 +22,32 @@ export default function AnimatedGridLines<Scale extends GridScale>({
   lineStyle,
   ...lineProps
 }: AnimatedGridLinesProps<Scale>) {
-  const animatedLines = useTransition(
-    lines,
-    lineKey,
-    useLineTransitionConfig({
+  const animatedLines = useTransition(lines, {
+    ...useLineTransitionConfig({
       scale,
       animateXOrY,
       animationTrajectory,
     }),
-  );
+    key: lineKey,
+  });
 
   return (
     // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
-      {animatedLines.map((
-        // @ts-ignore react-spring types only include CSSProperties
-        { key, props: { fromX, toX, fromY, toY, opacity } },
-      ) => (
-        <animated.line
-          key={key}
-          x1={fromX}
-          x2={toX}
-          y1={fromY}
-          y2={toY}
-          strokeOpacity={opacity}
-          style={lineStyle}
-          {...lineProps}
-        />
-      ))}
+      {animatedLines(({ fromX, toX, fromY, toY, opacity }, _, { key }) => {
+        return (
+          <animated.line
+            key={key}
+            x1={fromX}
+            x2={toX}
+            y1={fromY}
+            y2={toY}
+            strokeOpacity={opacity}
+            style={lineStyle}
+            {...lineProps}
+          />
+        );
+      })}
     </>
   );
 }

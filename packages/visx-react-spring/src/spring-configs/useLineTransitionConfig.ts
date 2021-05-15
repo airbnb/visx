@@ -92,7 +92,6 @@ export default function useLineTransitionConfig<Scale extends AxisScale | GridSc
     });
 
     return {
-      unique: true,
       from: fromLeave,
       leave: fromLeave,
       enter: enterUpdate,
