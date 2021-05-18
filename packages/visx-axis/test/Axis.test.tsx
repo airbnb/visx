@@ -234,7 +234,7 @@ describe('<Axis />', () => {
     expect(getTickLine(wrapper).prop('strokeLinecap')).toBe('round');
   });
 
-  test('default tick stroke should be 1', () => {
+  test('default tick stroke width should be 1', () => {
     const wrapper = shallow(<Axis {...axisProps} />);
     expect(getTickLine(wrapper).prop('strokeWidth')).toBe(1);
   });
