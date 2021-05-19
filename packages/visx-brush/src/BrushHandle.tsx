@@ -2,7 +2,8 @@
 import React from 'react';
 import Drag, { HandlerArgs as DragArgs } from '@visx/drag/lib/Drag';
 import { BaseBrushState as BrushState, UpdateBrush } from './BaseBrush';
-import { BrushingType, ResizeTriggerAreas } from './types';
+import { BrushingOptions, BrushingType, ResizeTriggerAreas } from './types';
+import { getPageCoordinates } from './utils';
 
 export type BrushHandleProps = {
   stageWidth: number;
@@ -14,22 +15,22 @@ export type BrushHandleProps = {
   handle: { x: number; y: number; width: number; height: number };
   useWindowMoveEvents?: boolean;
   isDragInProgress?: boolean;
-  onBrushHandleChange?: (type?: BrushingType) => void;
+  onBrushHandleChange?: (type?: BrushingType, options?: BrushingOptions) => void;
 };
 
 /** BrushHandle's are placed along the bounds of the brush and handle Drag events which update the passed brush. */
 export default class BrushHandle extends React.Component<BrushHandleProps> {
-  handleDragStart = () => {
+  handleDragStart = (drag: DragArgs) => {
     const { onBrushHandleChange, type } = this.props;
 
     if (onBrushHandleChange) {
-      onBrushHandleChange(type);
+      onBrushHandleChange(type, getPageCoordinates(drag.event));
     }
   };
 
   handleDragMove = (drag: DragArgs) => {
-    const { updateBrush, type, onBrushHandleChange } = this.props;
-    if (!drag.isDragging) return;
+    const { updateBrush, type, useWindowMoveEvents } = this.props;
+    if (!drag.isDragging || useWindowMoveEvents) return;
 
     updateBrush((prevBrush: BrushState) => {
       const { start, end } = prevBrush;
@@ -87,38 +88,39 @@ export default class BrushHandle extends React.Component<BrushHandleProps> {
           return prevBrush;
       }
     });
-    if (onBrushHandleChange) {
-      onBrushHandleChange(type);
-    }
   };
 
   handleDragEnd = () => {
-    const { updateBrush, onBrushEnd, onBrushHandleChange } = this.props;
-    updateBrush((prevBrush: BrushState) => {
-      const { start, end, extent } = prevBrush;
-      start.x = Math.min(extent.x0, extent.x1);
-      start.y = Math.min(extent.y0, extent.y0);
-      end.x = Math.max(extent.x0, extent.x1);
-      end.y = Math.max(extent.y0, extent.y1);
-      const nextBrush: BrushState = {
-        ...prevBrush,
-        start,
-        end,
-        activeHandle: null,
-        isBrushing: false,
-        extent: {
-          x0: Math.min(start.x, end.x),
-          x1: Math.max(start.x, end.x),
-          y0: Math.min(start.y, end.y),
-          y1: Math.max(start.y, end.y),
-        },
-      };
-      if (onBrushEnd) {
-        onBrushEnd(nextBrush);
-      }
+    const { updateBrush, onBrushEnd, onBrushHandleChange, useWindowMoveEvents } = this.props;
 
-      return nextBrush;
-    });
+    if (!useWindowMoveEvents) {
+      updateBrush((prevBrush: BrushState) => {
+        const { start, end, extent } = prevBrush;
+        start.x = Math.min(extent.x0, extent.x1);
+        start.y = Math.min(extent.y0, extent.y0);
+        end.x = Math.max(extent.x0, extent.x1);
+        end.y = Math.max(extent.y0, extent.y1);
+        const nextBrush: BrushState = {
+          ...prevBrush,
+          start,
+          end,
+          activeHandle: null,
+          isBrushing: false,
+          extent: {
+            x0: Math.min(start.x, end.x),
+            x1: Math.max(start.x, end.x),
+            y0: Math.min(start.y, end.y),
+            y1: Math.max(start.y, end.y),
+          },
+        };
+        if (onBrushEnd) {
+          onBrushEnd(nextBrush);
+        }
+
+        return nextBrush;
+      });
+    }
+
     if (onBrushHandleChange) {
       onBrushHandleChange();
     }

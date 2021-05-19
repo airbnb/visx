@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef } from 'react';
 import { localPoint } from '@visx/event';
 import useStateWithCallback from './util/useStateWithCallback';
 
-type MouseTouchOrPointerEvent = React.MouseEvent | React.TouchEvent | React.PointerEvent;
+export type MouseTouchOrPointerEvent = React.MouseEvent | React.TouchEvent | React.PointerEvent;
 
 export type HandlerArgs = DragState & {
   /** Drag event. */

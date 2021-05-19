@@ -4,6 +4,7 @@ import Drag, { HandlerArgs as DragArgs } from '@visx/drag/lib/Drag';
 
 import { BaseBrushState as BrushState, UpdateBrush } from './BaseBrush';
 import { BrushingOptions, BrushingType } from './types';
+import { getPageCoordinates } from './utils';
 
 const DRAGGING_OVERLAY_STYLES = { cursor: 'move' };
 
@@ -42,26 +43,15 @@ export default class BrushSelection extends React.Component<
     const { onMoveSelectionChange } = this.props;
 
     if (onMoveSelectionChange) {
-      let pageX;
-      let pageY;
-      if (window.TouchEvent && drag.event instanceof TouchEvent) {
-        const touchEvent = drag.event as React.TouchEvent;
-        pageX = touchEvent.touches[0].pageX;
-        pageY = touchEvent.touches[0].pageY;
-      } else {
-        const pointerEvent = drag.event as React.PointerEvent;
-        pageX = pointerEvent.pageX;
-        pageY = pointerEvent.pageY;
-      }
-      onMoveSelectionChange('move', {
-        pageX,
-        pageY,
-      });
+      onMoveSelectionChange('move', getPageCoordinates(drag.event));
     }
   };
 
   selectionDragMove = (drag: DragArgs) => {
-    const { updateBrush, onMoveSelectionChange } = this.props;
+    const { updateBrush, useWindowMoveEvents } = this.props;
+
+    if (useWindowMoveEvents) return;
+
     updateBrush((prevBrush: BrushState) => {
       const { x: x0, y: y0 } = prevBrush.start;
       const { x: x1, y: y1 } = prevBrush.end;
@@ -87,33 +77,34 @@ export default class BrushSelection extends React.Component<
         },
       };
     });
-    if (onMoveSelectionChange) {
-      onMoveSelectionChange('move');
-    }
   };
 
   selectionDragEnd = () => {
-    const { updateBrush, onBrushEnd, onMoveSelectionChange } = this.props;
-    updateBrush((prevBrush: BrushState) => {
-      const nextBrush = {
-        ...prevBrush,
-        isBrushing: false,
-        start: {
-          ...prevBrush.start,
-          x: Math.min(prevBrush.extent.x0, prevBrush.extent.x1),
-          y: Math.min(prevBrush.extent.y0, prevBrush.extent.y1),
-        },
-        end: {
-          ...prevBrush.end,
-          x: Math.max(prevBrush.extent.x0, prevBrush.extent.x1),
-          y: Math.max(prevBrush.extent.y0, prevBrush.extent.y1),
-        },
-      };
-      if (onBrushEnd) {
-        onBrushEnd(nextBrush);
-      }
-      return nextBrush;
-    });
+    const { updateBrush, onBrushEnd, onMoveSelectionChange, useWindowMoveEvents } = this.props;
+
+    if (!useWindowMoveEvents) {
+      updateBrush((prevBrush: BrushState) => {
+        const nextBrush = {
+          ...prevBrush,
+          isBrushing: false,
+          start: {
+            ...prevBrush.start,
+            x: Math.min(prevBrush.extent.x0, prevBrush.extent.x1),
+            y: Math.min(prevBrush.extent.y0, prevBrush.extent.y1),
+          },
+          end: {
+            ...prevBrush.end,
+            x: Math.max(prevBrush.extent.x0, prevBrush.extent.x1),
+            y: Math.max(prevBrush.extent.y0, prevBrush.extent.y1),
+          },
+        };
+        if (onBrushEnd) {
+          onBrushEnd(nextBrush);
+        }
+        return nextBrush;
+      });
+    }
+
     if (onMoveSelectionChange) {
       onMoveSelectionChange();
     }
