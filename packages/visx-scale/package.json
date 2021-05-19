@@ -1,6 +1,6 @@
 {
   "name": "@visx/scale",
-  "version": "1.7.0",
+  "version": "1.11.1",
   "description": "visx scale",
   "sideEffects": false,
   "main": "lib/index.js",
