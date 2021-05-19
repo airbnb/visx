@@ -8,7 +8,7 @@ import {
   AnyScaleBand,
   DatumObject,
   AddSVGProps,
-  BarGroupHorizontal,
+  BarGroupHorizontal as BarGroupHorizontalType,
   BaseBarGroupProps,
   GroupKey,
   Accessor,
@@ -34,10 +34,10 @@ export type BarGroupHorizontalProps<
   /** Total width of the x-axis. */
   width: number;
   /** Override render function which is passed the computed Ba/rGroups. */
-  children?: (barGroups: BarGroupHorizontal<Key>[]) => React.ReactNode;
+  children?: (barGroups: BarGroupHorizontalType<Key>[]) => React.ReactNode;
 };
 
-export default function BarGroupHorizontalComponent<
+export default function BarGroupHorizontal<
   Datum extends DatumObject,
   Key extends GroupKey = GroupKey,
   Y0Scale extends AnyScaleBand = AnyScaleBand,
@@ -60,7 +60,7 @@ export default function BarGroupHorizontalComponent<
 }: AddSVGProps<BarGroupHorizontalProps<Datum, Key, Y0Scale, Y1Scale>, SVGRectElement>) {
   const barHeight = getBandwidth(y1Scale);
 
-  const barGroups: BarGroupHorizontal<Key>[] = data.map((group, i) => ({
+  const barGroups: BarGroupHorizontalType<Key>[] = data.map((group, i) => ({
     index: i,
     y0: y0Scale(y0(group)) || 0,
     bars: keys.map((key, j) => {
