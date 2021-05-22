@@ -2,7 +2,7 @@ import React from 'react';
 import { animated, useTransition, to, SpringValue } from 'react-spring';
 import cx from 'classnames';
 import Orientation from '@visx/axis/lib/constants/orientation';
-import { TicksRendererProps, AxisScale } from '@visx/axis/lib/types';
+import { ComputedTick, TicksRendererProps, AxisScale } from '@visx/axis/lib/types';
 import { Text } from '@visx/text';
 
 import useLineTransitionConfig from '../spring-configs/useLineTransitionConfig';
@@ -26,7 +26,7 @@ export default function AnimatedTicks<Scale extends AxisScale>({
       animateXOrY: horizontal ? 'x' : 'y',
       animationTrajectory,
     }),
-    keys: (tick: { value: any }) => `${tick.value}`,
+    keys: (tick: ComputedTick<Scale>) => `${tick.value}`,
   });
 
   return (
