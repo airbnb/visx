@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import { Pie } from '../src';
-import { PieProps } from '../src/shapes/Pie';
+import { PieArcDatum, PieProps } from '../src/shapes/Pie';
 
 interface Datum {
   date: string;
@@ -14,6 +14,7 @@ interface Datum {
   Opera: string;
   Mozilla: string;
   'Other/Unknown': string;
+  color: string;
 }
 
 const browserUsage: Datum[] = [
@@ -27,6 +28,7 @@ const browserUsage: Datum[] = [
     Opera: '1.32',
     Mozilla: '0.12',
     'Other/Unknown': '0.01',
+    color: 'blue',
   },
   {
     date: '2015 Jun 16',
@@ -38,6 +40,7 @@ const browserUsage: Datum[] = [
     Opera: '1.32',
     Mozilla: '0.12',
     'Other/Unknown': '0.01',
+    color: 'red',
   },
 ];
 
@@ -100,6 +103,22 @@ describe('<Pie />', () => {
     const fn = jest.fn();
     PieChildren({ children: fn });
     expect(fn).toHaveBeenCalled();
+  });
+
+  test('it should accept a custom fill function', () => {
+    const paths = PieWrapper({
+      fill: (datum: PieArcDatum<Datum>) => datum.data.color,
+    }).find('path');
+    expect(paths.at(0).prop('fill')).toBe('blue');
+    expect(paths.at(1).prop('fill')).toBe('red');
+  });
+
+  test('it should accept a constant string fill value', () => {
+    const paths = PieWrapper({
+      fill: 'purple',
+    }).find('path');
+    expect(paths.at(0).prop('fill')).toBe('purple');
+    expect(paths.at(1).prop('fill')).toBe('purple');
   });
 
   test('it should call children function with { arcs, path, pie }', () => {
