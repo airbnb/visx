@@ -7,7 +7,7 @@ import { arc as arcPath, pie as piePath } from '../util/D3ShapeFactories';
 
 export type PieArcDatum<Datum> = PieArcDatumType<Datum>;
 
-type StringAccessor<Datum> = (arc: PieArcDatum<Datum>) => string;
+type StringAccessor<Datum> = (pieArcDatum: PieArcDatum<Datum>) => string;
 
 export type ProvidedProps<Datum> = {
   path: ArcType<$TSFIXME, PieArcDatum<Datum>>;
@@ -83,7 +83,6 @@ export default function Pie<Datum>({
   // eslint-disable-next-line react/jsx-no-useless-fragment
   if (children) return <>{children({ arcs, path, pie })}</>;
 
-  const fillGenerator = getFillGenerator(fill);
   return (
     <Group className="visx-pie-arcs-group" top={top} left={left}>
       {arcs.map((arc, i) => (
@@ -91,7 +90,7 @@ export default function Pie<Datum>({
           <path
             className={cx('visx-pie-arc', className)}
             d={path(arc) || ''}
-            fill={fillGenerator(arc)}
+            fill={fill == null || typeof fill === 'string' ? fill : fill(arc)}
             {...restProps}
           />
           {centroid?.(path.centroid(arc), arc)}
@@ -101,10 +100,3 @@ export default function Pie<Datum>({
   );
 }
 
-function getFillGenerator<Datum>(fill: string | StringAccessor<Datum>): StringAccessor<Datum> {
-  if (typeof fill === 'string') {
-    // Convert constant fill string to constant fill generator function
-    return (arc: PieArcDatum<Datum>) => fill;
-  }
-  return fill;
-}
