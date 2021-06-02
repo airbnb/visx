@@ -1,6 +1,6 @@
 {
   "name": "@visx/axis",
-  "version": "1.10.0",
+  "version": "1.11.1",
   "description": "visx axis",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -32,8 +32,8 @@
     "@types/react": "*",
     "@visx/group": "1.7.0",
     "@visx/point": "1.7.0",
-    "@visx/scale": "1.7.0",
-    "@visx/shape": "1.8.0",
+    "@visx/scale": "1.11.1",
+    "@visx/shape": "1.11.1",
     "@visx/text": "1.10.0",
     "classnames": "^2.2.5",
     "prop-types": "^15.6.0"

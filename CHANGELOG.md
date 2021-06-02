@@ -1,15 +1,17 @@
 # Changelog
+- [v1.11.2](#v1112)
+- [v1.11.1](#v1111)
 - [v1.11.0](#v1110)
 - [v1.10.1](#v1101)
 - [v1.10.0](#v1100)
 - [v1.9.1](#v191)
 - [v1.9.0](#v190)
 - [v1.8.0](#v180)
-- [v1.7.4](#v174)
-- [v1.7.3](#v173)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v174">v1.7.4</a></li>
+  <li><a href="#v173">v1.7.3</a></li>
   <li><a href="#v172">v1.7.2</a></li>
   <li><a href="#v171">v1.7.1</a></li>
   <li><a href="#v170">v1.7.0</a></li>
@@ -108,6 +110,29 @@
 </details>
 
 ------
+# v1.11.2 (2021-05-21)
+
+#### :bug: Bug Fix
+
+- fix(xychart/Tooltip): bail early when tooltip is closed [#1213](https://github.com/airbnb/visx/pull/1213)
+  
+#### :trophy: Contributors
+- [williaster](https://github.com/williaster)
+
+# v1.11.1 (2021-05-19)
+
+#### :bug: Bug Fix
+
+- fix(scale): upgrade d3-time to v2.4 for d3-scale compatibility [#1219](https://github.com/airbnb/visx/pull/1219)
+
+### :memo: Documentation
+
+- docs(shape): fix docs fror BarGroup, BarGroupHorizontal, and BarStack [#1212](https://github.com/airbnb/visx/pull/1212)
+  
+#### :trophy: Contributors
+- [Pringels](https://github.com/Pringels)
+- [williaster](https://github.com/williaster)
+
 # v1.11.0 (2021-05-13)
 
 #### :rocket: Enhancements
