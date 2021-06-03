@@ -35,7 +35,7 @@ export type PieProps<Datum> = {
   pieSortValues?: PiePathConfig<Datum>['sortValues'];
   /** Render function override which is passed the configured arc generator as input. */
   children?: (provided: ProvidedProps<Datum>) => React.ReactNode;
-  /** Optional accessor function to return the fill string value of a given arc **/
+  /** Optional accessor function to return the fill string value of a given arc. **/
   fill?: string | StringAccessor<Datum>;
 } & Pick<PiePathConfig<Datum>, 'startAngle' | 'endAngle' | 'padAngle'> &
   Pick<
@@ -99,4 +99,3 @@ export default function Pie<Datum>({
     </Group>
   );
 }
-
