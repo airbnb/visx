@@ -33,7 +33,7 @@ export type XYChartProps<
   width?: number;
   /** Total height of the desired chart svg, including margin. */
   height?: number;
-  /** Margin to apply around the outside the. */
+  /** Margin to apply around the outside. */
   margin?: Margin;
   /** XYChart children (Series, Tooltip, etc.). */
   children: React.ReactNode;
