@@ -13,7 +13,7 @@ const detailsStyles = { color: '#f63a48' };
 export default function GeoMercatorTile() {
   return (
     <GalleryTile<GeoMercatorProps>
-      title="Preset Geos"
+      title="Mercator"
       description="<Geo.Mercator />"
       exampleRenderer={GeoMercator}
       exampleUrl="/geo-mercator"

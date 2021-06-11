@@ -78,7 +78,7 @@ export type ProjectionProps<Datum extends GeoPermissibleObjects = GeoPermissible
   centroid?: (centroid: [number, number], feature: ParsedFeature<Datum>) => React.ReactNode;
   /** className to apply to feature path elements.  */
   className?: string;
-  /** Override render function which is passed the  */
+  /** Override render function which is passed path data and a copy of the constructed projection.  */
   children?: (args: {
     path: GeoPath<any, GeoPermissibleObjects>;
     features: ParsedFeature<Datum>[];
@@ -136,15 +136,15 @@ export default function Projection<Datum extends GeoPermissibleObjects>({
 
   const currProjection = maybeCustomProjection();
 
-  if (clipAngle) currProjection.clipAngle(clipAngle);
-  if (clipExtent) currProjection.clipExtent(clipExtent);
-  if (scale) currProjection.scale(scale);
-  if (translate) currProjection.translate(translate);
-  if (center) currProjection.center(center);
-  if (rotate) currProjection.rotate(rotate);
-  if (precision) currProjection.precision(precision);
-  if (fitExtent) currProjection.fitExtent(...fitExtent);
-  if (fitSize) currProjection.fitSize(...fitSize);
+  if (clipAngle && currProjection.clipAngle) currProjection.clipAngle(clipAngle);
+  if (clipExtent && currProjection.clipExtent) currProjection.clipExtent(clipExtent);
+  if (scale && currProjection.scale) currProjection.scale(scale);
+  if (translate && currProjection.translate) currProjection.translate(translate);
+  if (center && currProjection.center) currProjection.center(center);
+  if (rotate && currProjection.rotate) currProjection.rotate(rotate);
+  if (precision && currProjection.precision) currProjection.precision(precision);
+  if (fitExtent && currProjection.fitExtent) currProjection.fitExtent(...fitExtent);
+  if (fitSize && currProjection.fitSize) currProjection.fitSize(...fitSize);
 
   const path = geoPath().projection(currProjection);
 
