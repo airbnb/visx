@@ -82,6 +82,7 @@ export type ProjectionProps<Datum extends GeoPermissibleObjects = GeoPermissible
   children?: (args: {
     path: GeoPath<any, GeoPermissibleObjects>;
     features: ParsedFeature<Datum>[];
+    projection: GeoProjection;
   }) => React.ReactNode;
   /** Function invoked for each feature which returns a React.Ref to the projection path element for that feature. */
   innerRef?: (feature: ParsedFeature<Datum>, index: number) => React.Ref<SVGPathElement>;
@@ -158,7 +159,7 @@ export default function Projection<Datum extends GeoPermissibleObjects>({
     path: path(feature),
   }));
 
-  if (children) return <>{children({ path, features })}</>;
+  if (children) return <>{children({ path, features, projection: currProjection })}</>;
 
   return (
     <Group className="visx-geo">
