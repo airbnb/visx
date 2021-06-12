@@ -6,6 +6,6 @@ import Example from './Example';
 import './sandbox-styles.css';
 
 render(
-  <ParentSize>{({ width, height }) => <Example width={width} height={height} />}</ParentSize>,
+  <ParentSize>{({ width, height }) => <Example width={width} height={height} fullSize={true} />}</ParentSize>,
   document.getElementById('root'),
 );

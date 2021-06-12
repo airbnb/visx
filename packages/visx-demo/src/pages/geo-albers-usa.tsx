@@ -8,6 +8,7 @@ const GeoAlbersUsaPage = () => {
   return (
     <Show
       events
+      /* @ts-ignore */
       component={GeoAlbersUsa}
       title="Geo AlbersUsa"
       codeSandboxDirectoryName="visx-geo-albers-usa"
