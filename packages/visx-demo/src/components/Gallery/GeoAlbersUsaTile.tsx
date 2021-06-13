@@ -6,6 +6,8 @@ import GeoAlbersUsa, {
 } from '../../sandboxes/visx-geo-albers-usa/Example';
 import GalleryTile from '../GalleryTile';
 
+export { default as packageJson } from '../../sandboxes/visx-geo-albers-usa/package.json';
+
 const tileStyles = { background };
 const detailsStyles = { color: colors[1] };
 
