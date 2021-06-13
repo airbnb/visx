@@ -67,7 +67,7 @@ const GeoAlbersUsa = ({ width, height, fullSize = true }: GeoAlbersUsaProps) => 
         >
           {({ features }) =>
             features.map(({ feature, path, projection }, i) => {
-              const coords:[number,number] | null = projection(geoCentroid(feature));
+              const coords:[number, number] | null = projection(geoCentroid(feature));
               const abbr: string = stateAbbrs[feature.id];
 
               if (coordOffsets[abbr] && coords) {
