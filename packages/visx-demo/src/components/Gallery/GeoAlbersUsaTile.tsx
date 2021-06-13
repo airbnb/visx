@@ -2,7 +2,7 @@ import React from 'react';
 import GeoAlbersUsa, {
   GeoAlbersUsaProps,
   background,
-  colors
+  colors,
 } from '../../sandboxes/visx-geo-albers-usa/Example';
 import GalleryTile from '../GalleryTile';
 
@@ -14,7 +14,7 @@ export default function GeoAlbersUsaTile() {
     <GalleryTile<GeoAlbersUsaProps>
       title="AlbersUsa"
       description="<Geo.AlbersUsa />"
-      exampleProps={{fullSize: false}}
+      exampleProps={{ fullSize: false }}
       exampleRenderer={GeoAlbersUsa}
       exampleUrl="/geo-albers-usa"
       tileStyles={tileStyles}

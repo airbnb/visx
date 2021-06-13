@@ -10,7 +10,7 @@ export const background = '#EBF4F3';
 export type GeoAlbersUsaProps = {
   width: number;
   height: number;
-  fullSize: boolean;
+  fullSize?: boolean;
 };
 
 interface FeatureShape {
@@ -44,18 +44,18 @@ const coordOffsets: Record<string, number[]> = {
 };
 
 /**
- * These states are too small to have text labels 
+ * These states are too small to have text labels
  * inside of them and are usually displayed with pointers.
  * For simplicity they are omitted from this demo.
  */
 const ignoredStates = ['VT', 'NH', 'MA', 'RI', 'CT', 'NJ', 'DE', 'MD'];
 
-const GeoAlbersUsa = ({ width, height, fullSize = true }: GeoAlbersUsaProps) => {
+export default function GeoAlbersUsa({ width, height, fullSize = true }: GeoAlbersUsaProps) {
+  const [displayLabels, setDisplayLabels] = useState<boolean>(fullSize);
+
   const centerX = width / 2;
   const centerY = height / 2;
   const scale = (width + height) / 1.55;
-
-  const [displayLabels, setDisplayLabels] = useState(fullSize);
 
   return width < 10 ? null : (
     <>
@@ -67,7 +67,7 @@ const GeoAlbersUsa = ({ width, height, fullSize = true }: GeoAlbersUsaProps) => 
         >
           {({ features }) =>
             features.map(({ feature, path, projection }, i) => {
-              const coords:[number, number] | null = projection(geoCentroid(feature));
+              const coords: [number, number] | null = projection(geoCentroid(feature));
               const abbr: string = stateAbbrs[feature.id];
 
               if (coordOffsets[abbr] && coords) {
@@ -145,6 +145,4 @@ const GeoAlbersUsa = ({ width, height, fullSize = true }: GeoAlbersUsaProps) => 
       )}
     </>
   );
-};
-
-export default GeoAlbersUsa;
+}
