@@ -12,6 +12,7 @@ import Projection from '../../../../visx-geo/src/projections/Projection';
 import DocPage from '../../components/DocPage';
 import GeoMercatorTile from '../../components/Gallery/GeoMercatorTile';
 import GeoCustomTile from '../../components/Gallery/GeoCustomTile';
+import GeoAlbersUsaTile from '../../components/Gallery/GeoAlbersUsaTile';
 
 const components = [
   Projection,
@@ -25,7 +26,7 @@ const components = [
   Orthographic,
 ];
 
-const examples = [GeoMercatorTile, GeoCustomTile];
+const examples = [GeoMercatorTile, GeoCustomTile, GeoAlbersUsaTile];
 
 const GeoDocs = () => (
   <DocPage components={components} examples={examples} readme={GeoReadme} visxPackage="geo" />
