@@ -1,4 +1,5 @@
 # Changelog
+- [v1.13.0](#v1130)
 - [v1.12.0](#v1120)
 - [v1.11.2](#v1112)
 - [v1.11.1](#v1111)
@@ -6,10 +7,10 @@
 - [v1.10.1](#v1101)
 - [v1.10.0](#v1100)
 - [v1.9.1](#v191)
-- [v1.9.0](#v190)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v190">v1.9.0</a></li>
   <li><a href="#v180">v1.8.0</a></li>
   <li><a href="#v174">v1.7.4</a></li>
   <li><a href="#v173">v1.7.3</a></li>
@@ -111,6 +112,24 @@
 </details>
 
 ------
+# v1.13.0 (2021-06-16)
+
+#### :rocket: Enhancements
+
+- new(geo): pass projection to child override, add U.S.A. demo [#1236](https://github.com/airbnb/visx/pull/1236)
+
+#### :bug: Bug Fix
+
+- new(geo): pass projection to child override, add U.S.A. demo [#1236](https://github.com/airbnb/visx/pull/1236)
+
+### :memo: Documentation
+
+- docs(xychart): fix typos [#1232](https://github.com/airbnb/visx/pull/1232)
+  
+#### :trophy: Contributors
+- [danielimmke](https://github.com/danielimmke)
+- [johnathanludwig](https://github.com/johnathanludwig)
+
 # v1.12.0 (2021-06-03)
 
 #### :rocket: Enhancements
