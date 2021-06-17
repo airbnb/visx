@@ -1,19 +1,17 @@
-import React, { useMemo } from "react";
-import { BarStack } from "@visx/shape";
-import { SeriesPoint } from "@visx/shape/lib/types";
-import { Group } from "@visx/group";
-import { Grid } from "@visx/grid";
-import { AxisBottom } from "@visx/axis";
-import cityTemperature, {
-  CityTemperature,
-} from "@visx/mock-data/lib/mocks/cityTemperature";
-import { scaleBand, scaleLinear, scaleOrdinal } from "@visx/scale";
-import { timeParse, timeFormat } from "d3-time-format";
-import { useTooltip, useTooltipInPortal, defaultStyles } from "@visx/tooltip";
-import { LegendOrdinal } from "@visx/legend";
-import { localPoint } from "@visx/event";
+import React, { useMemo } from 'react';
+import { BarStack } from '@visx/shape';
+import { SeriesPoint } from '@visx/shape/lib/types';
+import { Group } from '@visx/group';
+import { Grid } from '@visx/grid';
+import { AxisBottom } from '@visx/axis';
+import cityTemperature, { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
+import { scaleBand, scaleLinear, scaleOrdinal } from '@visx/scale';
+import { timeParse, timeFormat } from 'd3-time-format';
+import { useTooltip, useTooltipInPortal, defaultStyles } from '@visx/tooltip';
+import { LegendOrdinal } from '@visx/legend';
+import { localPoint } from '@visx/event';
 
-type CityName = "New York" | "San Francisco" | "Austin";
+type CityName = 'New York' | 'San Francisco' | 'Austin';
 
 type TooltipData = {
   bar: SeriesPoint<CityTemperature>;
@@ -34,25 +32,22 @@ export type BarStackProps = {
   data?: CityTemperature[];
 };
 
-const purple1 = "#6c5efb";
-const purple2 = "#c998ff";
-export const purple3 = "#a44afe";
-export const background = "#eaedff";
+const purple1 = '#6c5efb';
+const purple2 = '#c998ff';
+export const purple3 = '#a44afe';
+export const background = '#eaedff';
 const defaultMargin = { top: 40, right: 0, bottom: 0, left: 0 };
 const tooltipStyles = {
   ...defaultStyles,
   minWidth: 60,
-  backgroundColor: "rgba(0,0,0,0.9)",
-  color: "white",
+  backgroundColor: 'rgba(0,0,0,0.9)',
+  color: 'white',
 };
 
 const getKeys = (data: CityTemperature): CityName[] =>
-  Object.keys(data).filter((d) => d !== "date") as CityName[];
+  Object.keys(data).filter(d => d !== 'date') as CityName[];
 
-const getTemperatureTotals = (
-  data: readonly CityTemperature[],
-  keys: readonly CityName[]
-) => {
+const getTemperatureTotals = (data: readonly CityTemperature[], keys: readonly CityName[]) => {
   return data.reduce<number[]>((allTotals, currentDate) => {
     const totalTemperature = keys.reduce((dailyTotal, k) => {
       dailyTotal += Number(currentDate[k]);
@@ -64,21 +59,15 @@ const getTemperatureTotals = (
   }, []);
 };
 
-const parseDate = timeParse("%Y-%m-%d");
-const format = timeFormat("%b %d");
+const parseDate = timeParse('%Y-%m-%d');
+const format = timeFormat('%b %d');
 const formatDate = (date: string) => format(parseDate(date) as Date);
 
 // accessors
 const getDate = (d: CityTemperature) => d.date;
 
 // scales
-const createDateScale = ({
-  data,
-  xMax,
-}: {
-  data: readonly CityTemperature[];
-  xMax: number;
-}) => {
+const createDateScale = ({ data, xMax }: { data: readonly CityTemperature[]; xMax: number }) => {
   const dateScale = scaleBand<string>({
     domain: data.map(getDate),
     padding: 0.2,
@@ -136,36 +125,27 @@ export default function Example({
     scroll: true,
   });
 
-  const keys = useMemo(() => getKeys(data[0]), []); // skipped dependence to compute this only once
+  const keys = useMemo(() => getKeys(data[0]), [data]);
 
   // bounds
   const xMax = width;
   const yMax = height - margin.top - 100;
 
   // scales
-  const dateScale = useMemo(() => createDateScale({ data, xMax }), [
+  const dateScale = useMemo(() => createDateScale({ data, xMax }), [data, xMax]);
+  const temperatureScale = useMemo(() => createTemperatureScale({ data, keys, yMax }), [
     data,
-    xMax,
+    keys,
+    yMax,
   ]);
-  const temperatureScale = useMemo(
-    () => createTemperatureScale({ data, keys, yMax }),
-    [data, keys, yMax]
-  );
   const colorScale = useMemo(() => createColorScale(keys), [keys]);
 
   if (width < 10) return null;
 
   return (
-    <div style={{ position: "relative" }}>
+    <div style={{ position: 'relative' }}>
       <svg ref={containerRef} width={width} height={height}>
-        <rect
-          x={0}
-          y={0}
-          width={width}
-          height={height}
-          fill={background}
-          rx={14}
-        />
+        <rect x={0} y={0} width={width} height={height} fill={background} rx={14} />
         <Grid
           top={margin.top}
           left={margin.left}
@@ -186,9 +166,9 @@ export default function Example({
             yScale={temperatureScale}
             color={colorScale}
           >
-            {(barStacks) =>
-              barStacks.map((barStack) =>
-                barStack.bars.map((bar) => (
+            {barStacks =>
+              barStacks.map(barStack =>
+                barStack.bars.map(bar => (
                   <rect
                     key={`bar-stack-${barStack.index}-${bar.index}`}
                     x={bar.x}
@@ -204,7 +184,7 @@ export default function Example({
                         hideTooltip();
                       }, 300);
                     }}
-                    onMouseMove={(event) => {
+                    onMouseMove={event => {
                       if (tooltipTimeout) clearTimeout(tooltipTimeout);
                       // TooltipInPortal expects coordinates to be relative to containerRef
                       // localPoint returns coordinates relative to the nearest SVG, which
@@ -218,7 +198,7 @@ export default function Example({
                       });
                     }}
                   />
-                ))
+                )),
               )
             }
           </BarStack>
@@ -232,33 +212,25 @@ export default function Example({
           tickLabelProps={() => ({
             fill: purple3,
             fontSize: 11,
-            textAnchor: "middle",
+            textAnchor: 'middle',
           })}
         />
       </svg>
       <div
         style={{
-          position: "absolute",
+          position: 'absolute',
           top: margin.top / 2 - 10,
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          fontSize: "14px",
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'center',
+          fontSize: '14px',
         }}
       >
-        <LegendOrdinal
-          scale={colorScale}
-          direction="row"
-          labelMargin="0 15px 0 0"
-        />
+        <LegendOrdinal scale={colorScale} direction="row" labelMargin="0 15px 0 0" />
       </div>
 
       {tooltipOpen && tooltipData && (
-        <TooltipInPortal
-          top={tooltipTop}
-          left={tooltipLeft}
-          style={tooltipStyles}
-        >
+        <TooltipInPortal top={tooltipTop} left={tooltipLeft} style={tooltipStyles}>
           <div style={{ color: colorScale(tooltipData.key) }}>
             <strong>{tooltipData.key}</strong>
           </div>
