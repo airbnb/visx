@@ -7,6 +7,8 @@ import { arc as arcPath, pie as piePath } from '../util/D3ShapeFactories';
 
 export type PieArcDatum<Datum> = PieArcDatumType<Datum>;
 
+type StringAccessor<Datum> = (pieArcDatum: PieArcDatum<Datum>) => string;
+
 export type ProvidedProps<Datum> = {
   path: ArcType<$TSFIXME, PieArcDatum<Datum>>;
   arcs: PieArcDatum<Datum>[];
@@ -33,6 +35,8 @@ export type PieProps<Datum> = {
   pieSortValues?: PiePathConfig<Datum>['sortValues'];
   /** Render function override which is passed the configured arc generator as input. */
   children?: (provided: ProvidedProps<Datum>) => React.ReactNode;
+  /** Optional accessor function to return the fill string value of a given arc. */
+  fill?: string | StringAccessor<Datum>;
 } & Pick<PiePathConfig<Datum>, 'startAngle' | 'endAngle' | 'padAngle'> &
   Pick<
     ArcPathConfig<PieArcDatum<Datum>>,
@@ -56,6 +60,7 @@ export default function Pie<Datum>({
   pieSortValues,
   pieValue,
   children,
+  fill = '',
   ...restProps
 }: AddSVGProps<PieProps<Datum>, SVGPathElement>) {
   const path = arcPath<PieArcDatum<Datum>>({
@@ -82,7 +87,12 @@ export default function Pie<Datum>({
     <Group className="visx-pie-arcs-group" top={top} left={left}>
       {arcs.map((arc, i) => (
         <g key={`pie-arc-${i}`}>
-          <path className={cx('visx-pie-arc', className)} d={path(arc) || ''} {...restProps} />
+          <path
+            className={cx('visx-pie-arc', className)}
+            d={path(arc) || ''}
+            fill={fill == null || typeof fill === 'string' ? fill : fill(arc)}
+            {...restProps}
+          />
           {centroid?.(path.centroid(arc), arc)}
         </g>
       ))}

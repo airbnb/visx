@@ -11,7 +11,7 @@ const exampleProps = { events: false };
 export default function GeoCustomTile() {
   return (
     <GalleryTile<GeoCustomProps>
-      title="Custom Geos"
+      title="Custom Projection"
       description="<Geo.CustomProjection />"
       exampleProps={exampleProps}
       exampleRenderer={GeoCustom}
