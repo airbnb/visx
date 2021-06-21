@@ -20,6 +20,7 @@ import * as DotsTile from './DotsTile';
 import * as DragIITile from './DragIITile';
 import * as DragITile from './DragITile';
 import * as GeoCustomTile from './GeoCustomTile';
+import * as GeoAlbersUsaTile from './GeoAlbersUsaTile';
 import * as GeoMercatorTile from './GeoMercatorTile';
 import * as GlyphsTile from './GlyphsTile';
 import * as GradientsTile from './GradientsTile';
@@ -80,6 +81,7 @@ export const tiles = [
   DragIITile,
   XYChartTile,
   GeoCustomTile,
+  GeoAlbersUsaTile,
   GeoMercatorTile,
   GlyphsTile,
   GradientsTile,

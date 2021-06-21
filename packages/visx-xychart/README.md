@@ -119,10 +119,10 @@ Default `lightTheme` and `darkTheme` themes are exported from `@visx/xychart` an
 `buildChartTheme` is exported to support easy creation of custom themes.
 
 ```ts
-import { buildTheme, XYChart } from '@visx/xychart';
+import { buildChartTheme, XYChart } from '@visx/xychart';
 import { TextProps as SVGTextProps } from '@visx/text/lib/Text'; // just for types
 
-const customTheme = buildTheme({
+const customTheme = buildChartTheme({
   // colors
   backgroundColor: string; // used by Tooltip, Annotation
   colors: string[]; // categorical colors, mapped to series via `dataKey`s

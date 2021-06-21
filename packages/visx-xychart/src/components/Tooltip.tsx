@@ -74,7 +74,21 @@ const INVISIBLE_STYLES: React.CSSProperties = {
   pointerEvents: 'none',
 };
 
-export default function Tooltip<Datum extends object>({
+/**
+ * This is a wrapper component which bails early if tooltip is not visible.
+ * If scroll detection is enabled in UseTooltipPortalOptions, this avoids re-rendering
+ * the component on every scroll. If many charts with Tooltips are rendered on a page,
+ * this also avoids creating many resize observers / hitting browser limits.
+ */
+export default function Tooltip<Datum extends object>(props: TooltipProps<Datum>) {
+  const tooltipContext = useContext(TooltipContext) as TooltipContextType<Datum>;
+
+  if (!tooltipContext?.tooltipOpen) return null;
+
+  return <TooltipInner {...props} />;
+}
+
+function TooltipInner<Datum extends object>({
   debounce,
   detectBounds,
   horizontalCrosshairStyle,

@@ -1,15 +1,19 @@
 # Changelog
+- [v1.13.0](#v1130)
+- [v1.12.0](#v1120)
+- [v1.11.2](#v1112)
+- [v1.11.1](#v1111)
 - [v1.11.0](#v1110)
 - [v1.10.1](#v1101)
 - [v1.10.0](#v1100)
 - [v1.9.1](#v191)
-- [v1.9.0](#v190)
-- [v1.8.0](#v180)
-- [v1.7.4](#v174)
-- [v1.7.3](#v173)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v190">v1.9.0</a></li>
+  <li><a href="#v180">v1.8.0</a></li>
+  <li><a href="#v174">v1.7.4</a></li>
+  <li><a href="#v173">v1.7.3</a></li>
   <li><a href="#v172">v1.7.2</a></li>
   <li><a href="#v171">v1.7.1</a></li>
   <li><a href="#v170">v1.7.0</a></li>
@@ -108,6 +112,56 @@
 </details>
 
 ------
+# v1.13.0 (2021-06-16)
+
+#### :rocket: Enhancements
+
+- new(geo): pass projection to child override, add U.S.A. demo [#1236](https://github.com/airbnb/visx/pull/1236)
+
+#### :bug: Bug Fix
+
+- new(geo): pass projection to child override, add U.S.A. demo [#1236](https://github.com/airbnb/visx/pull/1236)
+
+### :memo: Documentation
+
+- docs(xychart): fix typos [#1232](https://github.com/airbnb/visx/pull/1232)
+  
+#### :trophy: Contributors
+- [danielimmke](https://github.com/danielimmke)
+- [johnathanludwig](https://github.com/johnathanludwig)
+
+# v1.12.0 (2021-06-03)
+
+#### :rocket: Enhancements
+
+- new(shape): support dynamic fill directly in Pie [#1225](https://github.com/airbnb/visx/pull/1225)
+  
+#### :trophy: Contributors
+- [iampueroo](https://github.com/iampueroo)
+
+# v1.11.2 (2021-05-21)
+
+#### :bug: Bug Fix
+
+- fix(xychart/Tooltip): bail early when tooltip is closed [#1213](https://github.com/airbnb/visx/pull/1213)
+  
+#### :trophy: Contributors
+- [williaster](https://github.com/williaster)
+
+# v1.11.1 (2021-05-19)
+
+#### :bug: Bug Fix
+
+- fix(scale): upgrade d3-time to v2.4 for d3-scale compatibility [#1219](https://github.com/airbnb/visx/pull/1219)
+
+### :memo: Documentation
+
+- docs(shape): fix docs fror BarGroup, BarGroupHorizontal, and BarStack [#1212](https://github.com/airbnb/visx/pull/1212)
+  
+#### :trophy: Contributors
+- [Pringels](https://github.com/Pringels)
+- [williaster](https://github.com/williaster)
+
 # v1.11.0 (2021-05-13)
 
 #### :rocket: Enhancements
