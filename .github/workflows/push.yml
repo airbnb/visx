@@ -35,22 +35,24 @@ jobs:
         run: yarn build
 
       - name: 📐 Commit package sizes
+        if: github.repository_owner == 'airbnb'
         # note: `git diff-index --quiet HEAD`
         #       has exit code 0 if there are changes vs HEAD, else nothing to commit
         run: |
-          yarn build:sizes	
-          git config user.name github-actions	
-          git config user.email github-actions@github.com	
-          git add .	
-          git diff-index --quiet HEAD || git commit -m "build(${GITHUB_SHA}): auto-commit package sizes"	
+          yarn build:sizes
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git diff-index --quiet HEAD || git commit -m "build(${GITHUB_SHA}): auto-commit package sizes"
           git push
 
       - name: 🚀 Release
+        if: github.repository_owner == 'airbnb'
         # the following configurations are needed for lerna to
         #   - have git credentials for commiting tags
         #   - have correct npm credentials for publishing (yarn does not work)
         run: |
-          git config user.name github-actions	
+          git config user.name github-actions
           git config user.email github-actions@github.com
           yarn logout
           npm config set '//registry.npmjs.org/:_authToken=${{ secrets.NPM_AUTH_TOKEN }}'
