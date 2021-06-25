@@ -182,7 +182,7 @@ function TooltipInner<Datum extends object>({
 
   if (!renderGlyph) {
     renderGlyph = <Datum extends object>(props: RenderGlyphProps<Datum>) => {
-      const radius = props.size / 2;
+      const radius = props.size;
       const strokeWidth = Number(glyphStyle?.strokeWidth ?? 1.5);
 
       const x = props.x - radius - strokeWidth;
