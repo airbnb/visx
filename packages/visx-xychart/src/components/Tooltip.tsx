@@ -93,7 +93,7 @@ function TooltipInner<Datum extends object>({
   horizontalCrosshairStyle,
   glyphStyle,
   renderTooltip,
-  renderGlyph,
+  renderGlyph: renderGlyphProp,
   resizeObserverPolyfill,
   scroll = true,
   showDatumGlyph = false,
@@ -180,8 +180,9 @@ function TooltipInner<Datum extends object>({
   // collect positions + styles for glyphs; glyphs always snap to Datum, not event coords
   const glyphs: React.ReactNode[] = [];
 
-  if (!renderGlyph) {
-    renderGlyph = <Datum extends object>(props: RenderGlyphProps<Datum>) => {
+  const renderGlyph =
+    renderGlyphProp ||
+    (<Datum extends object>(props: RenderGlyphProps<Datum>) => {
       const radius = props.size;
       const strokeWidth = Number(glyphStyle?.strokeWidth ?? 1.5);
 
@@ -202,8 +203,7 @@ function TooltipInner<Datum extends object>({
           />
         </g>
       );
-    };
-  }
+    });
 
   if (showTooltip && (showDatumGlyph || showSeriesGlyphs)) {
     const size = Number(glyphStyle?.radius ?? 4);
