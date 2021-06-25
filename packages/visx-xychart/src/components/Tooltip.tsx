@@ -186,22 +186,17 @@ function TooltipInner<Datum extends object>({
       const radius = props.size;
       const strokeWidth = Number(glyphStyle?.strokeWidth ?? 1.5);
 
-      const x = props.x - radius - strokeWidth;
-      const y = props.y - radius - strokeWidth;
-
       return (
-        <g transform={`translate(${x}, ${y})`}>
-          <circle
-            cx={radius + strokeWidth}
-            cy={radius + strokeWidth}
-            r={radius}
-            fill={props.color}
-            stroke={theme?.backgroundColor}
-            strokeWidth={strokeWidth}
-            paintOrder="fill"
-            {...glyphStyle}
-          />
-        </g>
+        <circle
+          cx={props.x}
+          cy={props.y}
+          r={radius}
+          fill={props.color}
+          stroke={theme?.backgroundColor}
+          strokeWidth={strokeWidth}
+          paintOrder="fill"
+          {...glyphStyle}
+        />
       );
     });
 
@@ -217,7 +212,7 @@ function TooltipInner<Datum extends object>({
         if (!isValidNumber(left) || !isValidNumber(top)) return;
 
         glyphs.push(
-          renderGlyph?.({
+          renderGlyph({
             key,
             color,
             datum,
@@ -239,7 +234,7 @@ function TooltipInner<Datum extends object>({
           theme?.htmlLabel?.color ??
           '#222';
         glyphs.push(
-          renderGlyph?.({
+          renderGlyph({
             key: nearestDatumKey,
             color,
             datum: nearestDatum.datum,
@@ -307,7 +302,9 @@ function TooltipInner<Datum extends object>({
               </svg>
             </TooltipInPortal>
           )}
-          {glyphs}
+          {glyphs.map((glyph, i) => (
+            <React.Fragment key={i}>{glyph}</React.Fragment>
+          ))}
           <TooltipInPortal
             left={tooltipLeft}
             top={tooltipTop}
