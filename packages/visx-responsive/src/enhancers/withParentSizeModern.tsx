@@ -3,13 +3,6 @@ import debounce from 'lodash/debounce';
 
 const CONTAINER_STYLES = { width: '100%', height: '100%' };
 
-// This can be deleted once https://git.io/Jk9FD lands in TypeScript
-declare global {
-  interface Window {
-    ResizeObserver: ResizeObserver;
-  }
-}
-
 export type WithParentSizeProps = {
   debounceTime?: number;
   enableDebounceLeadingCall?: boolean;
