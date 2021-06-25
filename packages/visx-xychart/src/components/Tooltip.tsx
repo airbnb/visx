@@ -182,7 +182,7 @@ function TooltipInner<Datum extends object>({
 
   if (!renderGlyph) {
     renderGlyph = <Datum extends object>(props: RenderGlyphProps<Datum>) => {
-      const radius = Math.sqrt(props.size / Math.PI);
+      const radius = props.size / 2;
       const strokeWidth = Number(glyphStyle?.strokeWidth ?? 1.5);
 
       const x = props.x - radius - strokeWidth;
@@ -206,9 +206,7 @@ function TooltipInner<Datum extends object>({
   }
 
   if (showTooltip && (showDatumGlyph || showSeriesGlyphs)) {
-    // in d3, glyph size denotes area
-    // TODO: this is wrong in the renderGlyph prop of the GlyphSeries
-    const size = Number(glyphStyle?.radius ?? 4) ** 2 * Math.PI;
+    const size = Number(glyphStyle?.radius ?? 4);
 
     if (showSeriesGlyphs) {
       Object.values(tooltipContext?.tooltipData?.datumByKey ?? {}).forEach(({ key, datum }) => {
