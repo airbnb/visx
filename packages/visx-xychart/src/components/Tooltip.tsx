@@ -9,6 +9,7 @@ import DataContext from '../context/DataContext';
 import { TooltipContextType } from '../types';
 import getScaleBandwidth from '../utils/getScaleBandwidth';
 import isValidNumber from '../typeguards/isValidNumber';
+import { GlyphProps as RenderGlyphProps } from '../types';
 
 /** fontSize + lineHeight from default styles break precise location of crosshair, etc. */
 const TOOLTIP_NO_STYLE: React.CSSProperties = {
@@ -18,17 +19,14 @@ const TOOLTIP_NO_STYLE: React.CSSProperties = {
   lineHeight: 0,
 };
 
-type GlyphProps = {
-  left?: number;
-  top?: number;
-  fill?: string;
-  stroke?: string;
-  strokeWidth: number;
-  radius: number;
-};
-
 export type RenderTooltipParams<Datum extends object> = TooltipContextType<Datum> & {
   colorScale?: PickD3Scale<'ordinal', string, string>;
+};
+
+export type RenderGlyphParams<Datum extends object> = {
+  datum: Datum;
+  color: string;
+  glyphStyle: React.SVGProps<SVGCircleElement>;
 };
 
 export type TooltipProps<Datum extends object> = {
@@ -38,6 +36,7 @@ export type TooltipProps<Datum extends object> = {
    * Content will be rendered in an HTML parent.
    */
   renderTooltip: (params: RenderTooltipParams<Datum>) => React.ReactNode;
+  renderGlyph?: (params: RenderGlyphProps<Datum>) => React.ReactNode;
   /** Whether to snap tooltip + crosshair x-coord to the nearest Datum x-coord instead of the event x-coord. */
   snapTooltipToDatumX?: boolean;
   /** Whether to snap tooltip + crosshair y-coord to the nearest Datum y-coord instead of the event y-coord. */
@@ -94,6 +93,7 @@ function TooltipInner<Datum extends object>({
   horizontalCrosshairStyle,
   glyphStyle,
   renderTooltip,
+  renderGlyph,
   resizeObserverPolyfill,
   scroll = true,
   showDatumGlyph = false,
@@ -178,11 +178,37 @@ function TooltipInner<Datum extends object>({
   }
 
   // collect positions + styles for glyphs; glyphs always snap to Datum, not event coords
-  const glyphProps: GlyphProps[] = [];
+  const glyphs: React.ReactNode[] = [];
+
+  if (!renderGlyph) {
+    renderGlyph = <Datum extends object>(props: RenderGlyphProps<Datum>) => {
+      const radius = Math.sqrt(props.size / Math.PI);
+      const strokeWidth = Number(glyphStyle?.strokeWidth ?? 1.5);
+
+      const x = props.x - radius - strokeWidth;
+      const y = props.y - radius - strokeWidth;
+
+      return (
+        <g transform={`translate(${x}, ${y})`}>
+          <circle
+            cx={radius + strokeWidth}
+            cy={radius + strokeWidth}
+            r={radius}
+            fill={props.color}
+            stroke={theme?.backgroundColor}
+            strokeWidth={strokeWidth}
+            paintOrder="fill"
+            {...glyphStyle}
+          />
+        </g>
+      );
+    };
+  }
 
   if (showTooltip && (showDatumGlyph || showSeriesGlyphs)) {
-    const radius = Number(glyphStyle?.radius ?? 4);
-    const strokeWidth = Number(glyphStyle?.strokeWidth ?? 1.5);
+    // in d3, glyph size denotes area
+    // TODO: this is wrong in the renderGlyph prop of the GlyphSeries
+    const size = Number(glyphStyle?.radius ?? 4) ** 2 * Math.PI;
 
     if (showSeriesGlyphs) {
       Object.values(tooltipContext?.tooltipData?.datumByKey ?? {}).forEach(({ key, datum }) => {
@@ -192,31 +218,39 @@ function TooltipInner<Datum extends object>({
         // don't show glyphs if coords are unavailable
         if (!isValidNumber(left) || !isValidNumber(top)) return;
 
-        glyphProps.push({
-          left: left - radius - strokeWidth,
-          top: top - radius - strokeWidth,
-          fill: color,
-          stroke: theme?.backgroundColor,
-          strokeWidth,
-          radius,
-        });
+        glyphs.push(
+          renderGlyph?.({
+            key,
+            color,
+            datum,
+            index: 0,
+            size,
+            x: left,
+            y: top,
+          }),
+        );
       });
     } else if (nearestDatum) {
       const { left, top } = getDatumLeftTop(nearestDatumKey, nearestDatum.datum);
       // don't show glyphs if coords are unavailable
       if (isValidNumber(left) && isValidNumber(top)) {
-        glyphProps.push({
-          left: left - radius - strokeWidth,
-          top: top - radius - strokeWidth,
-          fill:
-            (nearestDatumKey && colorScale?.(nearestDatumKey)) ??
-            null ??
-            theme?.gridStyles?.stroke ??
-            theme?.htmlLabel?.color ??
-            '#222',
-          radius,
-          strokeWidth,
-        });
+        const color =
+          (nearestDatumKey && colorScale?.(nearestDatumKey)) ??
+          null ??
+          theme?.gridStyles?.stroke ??
+          theme?.htmlLabel?.color ??
+          '#222';
+        glyphs.push(
+          renderGlyph?.({
+            key: nearestDatumKey,
+            color,
+            datum: nearestDatum.datum,
+            index: 0,
+            size,
+            x: left,
+            y: top,
+          }),
+        );
       }
     }
   }
@@ -275,34 +309,7 @@ function TooltipInner<Datum extends object>({
               </svg>
             </TooltipInPortal>
           )}
-          {glyphProps.map(({ left, top, fill, stroke, strokeWidth, radius }, i) =>
-            top == null || left == null ? null : (
-              <TooltipInPortal
-                key={i}
-                className="visx-tooltip-glyph"
-                left={left}
-                top={top}
-                offsetLeft={0}
-                offsetTop={0}
-                detectBounds={false}
-                style={TOOLTIP_NO_STYLE}
-              >
-                <svg width={(radius + strokeWidth) * 2} height={(radius + strokeWidth) * 2}>
-                  {/** @TODO expand to support any @visx/glyph glyph */}
-                  <circle
-                    cx={radius + strokeWidth}
-                    cy={radius + strokeWidth}
-                    r={radius}
-                    fill={fill}
-                    stroke={stroke}
-                    strokeWidth={strokeWidth}
-                    paintOrder="fill"
-                    {...glyphStyle}
-                  />
-                </svg>
-              </TooltipInPortal>
-            ),
-          )}
+          {glyphs}
           <TooltipInPortal
             left={tooltipLeft}
             top={tooltipTop}

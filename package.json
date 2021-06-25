@@ -37,6 +37,7 @@
     "build:sizes": "yarn run ts ./scripts/computeBuildSizes.ts",
     "build:release": "yarn run ts ./scripts/performRelease/index.ts",
     "build:workspaces": "nimbus babel --clean",
+    "dev:demo": "yarn workspace @visx/demo dev",
     "check:sizes": "yarn run ts ./scripts/compareBuildSizes.ts",
     "clean": "rm -rf ./packages/**/{lib,esm}",
     "format": "yarn run prettier --write",
