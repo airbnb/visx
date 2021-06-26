@@ -6,10 +6,9 @@ import { UseTooltipPortalOptions } from '@visx/tooltip/lib/hooks/useTooltipInPor
 
 import TooltipContext from '../context/TooltipContext';
 import DataContext from '../context/DataContext';
-import { TooltipContextType } from '../types';
 import getScaleBandwidth from '../utils/getScaleBandwidth';
 import isValidNumber from '../typeguards/isValidNumber';
-import { GlyphProps as RenderGlyphProps } from '../types';
+import { GlyphProps as RenderGlyphProps, TooltipContextType } from '../types';
 
 /** fontSize + lineHeight from default styles break precise location of crosshair, etc. */
 const TOOLTIP_NO_STYLE: React.CSSProperties = {
