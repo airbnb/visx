@@ -254,7 +254,11 @@ function TooltipInner<Datum extends object>({
     // Tooltip can be rendered as a child of SVG or HTML since its output is rendered in a Portal.
     // So use svg element to find container ref because it's a valid child of SVG and HTML parents.
     <>
-      <svg ref={setContainerRef} style={INVISIBLE_STYLES} />
+      <svg ref={setContainerRef} style={INVISIBLE_STYLES}>
+        {glyphs.map((glyph, i) => (
+          <React.Fragment key={i}>{glyph}</React.Fragment>
+        ))}
+      </svg>
       {showTooltip && (
         <>
           {/** To correctly position crosshair / glyphs in a Portal, we leverage the logic in TooltipInPortal */}
@@ -304,9 +308,6 @@ function TooltipInner<Datum extends object>({
               </svg>
             </TooltipInPortal>
           )}
-          {glyphs.map((glyph, i) => (
-            <React.Fragment key={i}>{glyph}</React.Fragment>
-          ))}
           <TooltipInPortal
             left={tooltipLeft}
             top={tooltipTop}
