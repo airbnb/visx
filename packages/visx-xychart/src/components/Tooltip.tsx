@@ -36,6 +36,7 @@ export type TooltipProps<Datum extends object> = {
    * Content will be rendered in an HTML parent.
    */
   renderTooltip: (params: RenderTooltipParams<Datum>) => React.ReactNode;
+  /** Function which handles rendering glyphs. */
   renderGlyph?: (params: RenderGlyphProps<Datum>) => React.ReactNode;
   /** Whether to snap tooltip + crosshair x-coord to the nearest Datum x-coord instead of the event x-coord. */
   snapTooltipToDatumX?: boolean;
@@ -188,6 +189,7 @@ function TooltipInner<Datum extends object>({
 
       return (
         <circle
+          className="visx-tooltip-glyph"
           cx={props.x}
           cy={props.y}
           r={radius}
