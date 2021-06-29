@@ -1,4 +1,5 @@
 # Changelog
+- [v1.14.0](#v1140)
 - [v1.13.0](#v1130)
 - [v1.12.0](#v1120)
 - [v1.11.2](#v1112)
@@ -6,10 +7,10 @@
 - [v1.11.0](#v1110)
 - [v1.10.1](#v1101)
 - [v1.10.0](#v1100)
-- [v1.9.1](#v191)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v191">v1.9.1</a></li>
   <li><a href="#v190">v1.9.0</a></li>
   <li><a href="#v180">v1.8.0</a></li>
   <li><a href="#v174">v1.7.4</a></li>
@@ -112,6 +113,27 @@
 </details>
 
 ------
+# v1.14.0 (2021-06-25)
+
+#### :rocket: Enhancements
+
+- feat(scale): support rounding for symlog [#1252](https://github.com/airbnb/visx/pull/1252)
+- feat(animatedaxis): add tickComponent support (#977) [#1228](https://github.com/airbnb/visx/pull/1228)
+
+#### :bug: Bug Fix
+
+- build: skip release workflow when in forked repo [#1251](https://github.com/airbnb/visx/pull/1251)
+
+### :house:  Internal
+
+- build: skip release workflow when in forked repo [#1251](https://github.com/airbnb/visx/pull/1251)
+- build: run happo on push [#1254](https://github.com/airbnb/visx/pull/1254)
+  
+#### :trophy: Contributors
+- [johnathanludwig](https://github.com/johnathanludwig)
+- [kristw](https://github.com/kristw)
+- [williaster](https://github.com/williaster)
+
 # v1.13.0 (2021-06-16)
 
 #### :rocket: Enhancements
