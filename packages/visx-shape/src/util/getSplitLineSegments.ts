@@ -28,6 +28,8 @@ export interface GetLineSegmentsConfig {
    *  assuming y always increase only (segment[i].y > segment[i-1].y)
    *  or decrease only (segment[i].y < segment[i-1].y).
    * - `length`: Assuming the path length between consecutive points are equal.
+   *
+   * Default is `x`.
    */
   segmentation: LineSegmentation;
   /**

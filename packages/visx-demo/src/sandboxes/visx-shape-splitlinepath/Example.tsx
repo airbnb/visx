@@ -25,9 +25,12 @@ const NumberSegment: SplitLinePathChildren = ({ segment, styles }) => (
   <g>
     {segment.map(({ x, y }, i) =>
       i % 25 === 0 ? (
-        <text key={i} x={x} y={y} dy={3} fontSize={8} textAnchor="middle">
-          {i}
-        </text>
+        <g transform={`translate(${x},${y})`}>
+          <circle r={2} fill="#222" />
+          <text key={i} dx={3} dy={3} fontSize={8}>
+            {i}
+          </text>
+        </g>
       ) : null,
     )}
   </g>
@@ -129,6 +132,7 @@ export default function SplitLinePathExample({
           <SplitLinePath
             sampleRate={2}
             segments={data.leftToRight}
+            segmentation="x"
             x={getX}
             y={getY}
             curve={curveCardinal}
@@ -146,6 +150,9 @@ export default function SplitLinePathExample({
               )
             }
           </SplitLinePath>
+          <text dy="0.3em" fontSize={10} fontWeight="bold" textAnchor="middle">
+            Start
+          </text>
         </g>
 
         {/* right to left */}
@@ -164,6 +171,7 @@ export default function SplitLinePathExample({
           <SplitLinePath
             sampleRate={1}
             segments={data.rightToLeft}
+            segmentation="x"
             x={getX}
             y={getY}
             curve={curveCardinal}
@@ -181,6 +189,9 @@ export default function SplitLinePathExample({
               )
             }
           </SplitLinePath>
+          <text dy="0.3em" fontSize={10} fontWeight="bold" textAnchor="middle">
+            Start
+          </text>
         </g>
 
         {/* top to bottom */}
@@ -217,6 +228,9 @@ export default function SplitLinePathExample({
               )
             }
           </SplitLinePath>
+          <text dy="0.3em" fontSize={10} fontWeight="bold" textAnchor="middle">
+            Start
+          </text>
         </g>
 
         {/* bottom to top */}
@@ -253,6 +267,9 @@ export default function SplitLinePathExample({
               )
             }
           </SplitLinePath>
+          <text dy="0.3em" fontSize={10} fontWeight="bold" textAnchor="middle">
+            Start
+          </text>
         </g>
       </svg>
     </div>
