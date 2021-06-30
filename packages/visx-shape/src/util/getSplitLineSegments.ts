@@ -50,14 +50,14 @@ export default function getSplitLineSegments({
     pathElement.setAttribute('d', path);
     const totalPathLength = pathElement.getTotalLength();
 
-    const samples = [];
-    for (let distance = 0; distance <= totalPathLength; distance += sampleRate) {
-      samples.push(pathElement.getPointAtLength(distance));
-    }
-
-    const numSegments = pointsInSegments.length;
-
     if (segmentation === 'x' || segmentation === 'y') {
+      const samples = [];
+      for (let distance = 0; distance <= totalPathLength; distance += sampleRate) {
+        samples.push(pathElement.getPointAtLength(distance));
+      }
+
+      const numSegments = pointsInSegments.length;
+
       const lineSegments: LineSegments = pointsInSegments.map(() => []);
       const segmentBegins = pointsInSegments.map(
         points => points.find(p => typeof p[segmentation] === 'number')?.[segmentation],
@@ -85,27 +85,25 @@ export default function getSplitLineSegments({
     }
 
     // segmentation === "length"
-    const totalPieces = pointsInSegments.reduce((sum, curr) => sum + curr.length, 0);
-    const pieceSize = totalPathLength / totalPieces;
+    const numPoints = pointsInSegments.reduce((sum, curr) => sum + curr.length, 0);
+    const pieceLength = totalPathLength / numPoints;
 
-    let cumulativeSize = 0;
+    let cumulativeCount = 0;
 
-    const lineSegments = pointsInSegments.map(segment => {
-      const segmentPointCount = segment.length;
+    return pointsInSegments.map(segment => {
+      const numPointsInSegment = segment.length;
       const coords: { x: number; y: number }[] = [];
 
-      for (let i = 0; i < segmentPointCount + sampleRate; i += sampleRate) {
-        const distance = (cumulativeSize + i) * pieceSize;
+      for (let i = 0; i < numPointsInSegment + sampleRate; i += sampleRate) {
+        const distance = (cumulativeCount + i) * pieceLength;
         const point = pathElement.getPointAtLength(distance);
         coords.push(point);
       }
 
-      cumulativeSize += segmentPointCount;
+      cumulativeCount += numPointsInSegment;
 
       return coords;
     });
-
-    return lineSegments;
   } catch (e) {
     return [];
   }

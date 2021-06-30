@@ -12,7 +12,7 @@ interface Point {
 const getX = (d: Point) => d.x || 0;
 const getY = (d: Point) => d.y || 0;
 
-export type SplitLinePathChildren = (renderProps: {
+export type SplitLinePathRenderer = (renderProps: {
   index: number;
   segment: { x: number; y: number }[];
   styles?: Omit<React.SVGProps<SVGPathElement>, 'x' | 'y' | 'children'>;
@@ -24,7 +24,7 @@ export type SplitLinePathProps<Datum> = {
   /** Styles to apply to each segment. If fewer styles are specified than the number of segments, they will be re-used. */
   styles: Omit<React.SVGProps<SVGPathElement>, 'x' | 'y' | 'children'>[];
   /** Override render function which is passed the configured path generator as input. */
-  children?: SplitLinePathChildren;
+  children?: SplitLinePathRenderer;
   /** className applied to path element. */
   className?: string;
 } & LinePathConfig<Datum> &
@@ -65,18 +65,22 @@ export default function SplitLinePath<Datum>({
     [pathString, segmentation, pointsInSegments, sampleRate],
   );
 
-  return splitLineSegments.map((segment, index) =>
-    children ? (
-      children({ index, segment, styles: styles[index] || styles[index % styles.length] })
-    ) : (
-      <LinePath
-        key={index}
-        className={className}
-        data={segment}
-        x={getX}
-        y={getY}
-        {...(styles[index] || styles[index % styles.length])}
-      />
-    ),
+  return (
+    <g>
+      {splitLineSegments.map((segment, index) =>
+        children ? (
+          children({ index, segment, styles: styles[index] || styles[index % styles.length] })
+        ) : (
+          <LinePath
+            key={index}
+            className={className}
+            data={segment}
+            x={getX}
+            y={getY}
+            {...(styles[index] || styles[index % styles.length])}
+          />
+        ),
+      )}
+    </g>
   );
 }

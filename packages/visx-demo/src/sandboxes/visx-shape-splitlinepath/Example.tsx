@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { curveCardinal } from '@visx/curve';
 import { LinePath, SplitLinePath } from '@visx/shape';
 import { LinearGradient } from '@visx/gradient';
-import { SplitLinePathChildren } from '@visx/shape/lib/shapes/SplitLinePath';
+import { SplitLinePathRenderer } from '@visx/shape/lib/shapes/SplitLinePath';
 import generateSinSegments from './generateSinSegments';
 
 type Point = { x: number; y: number };
@@ -21,7 +21,7 @@ export type SplitLinePathExampleProps = {
   numberOfSegments?: number;
 };
 
-const NumberSegment: SplitLinePathChildren = ({ segment, styles }) => (
+const renderNumberSegment: SplitLinePathRenderer = ({ segment, styles }) => (
   <g>
     {segment.map(({ x, y }, i) =>
       i % 25 === 0 ? (
@@ -37,7 +37,7 @@ const NumberSegment: SplitLinePathChildren = ({ segment, styles }) => (
 );
 
 /** Overlay growing circles instead of drawing a line */
-const CircleSegment: SplitLinePathChildren = ({ segment, styles }) => (
+const renderCircleSegment: SplitLinePathRenderer = ({ segment, styles }) => (
   <g>
     {segment.map(({ x, y }, i) =>
       i % 8 === 0 ? (
@@ -144,7 +144,7 @@ export default function SplitLinePathExample({
           >
             {({ segment, styles, index }) =>
               index === numberOfWaves - 1 || index === 2 ? (
-                <CircleSegment segment={segment} styles={styles} index={index} />
+                renderCircleSegment({ segment, styles, index })
               ) : (
                 <LinePath data={segment} x={getX} y={getY} {...styles} />
               )
@@ -183,7 +183,7 @@ export default function SplitLinePathExample({
           >
             {({ segment, styles, index }) =>
               index === numberOfWaves - 1 || index === 2 ? (
-                <NumberSegment segment={segment} styles={styles} index={index} />
+                renderNumberSegment({ segment, styles, index })
               ) : (
                 <LinePath data={segment} x={getX} y={getY} {...styles} />
               )
@@ -222,7 +222,7 @@ export default function SplitLinePathExample({
           >
             {({ segment, styles, index }) =>
               index === numberOfWaves - 1 || index === 2 ? (
-                <NumberSegment segment={segment} styles={styles} index={index} />
+                renderNumberSegment({ segment, styles, index })
               ) : (
                 <LinePath data={segment} x={getX} y={getY} {...styles} />
               )
@@ -261,7 +261,7 @@ export default function SplitLinePathExample({
           >
             {({ segment, styles, index }) =>
               index === numberOfWaves - 1 || index === 2 ? (
-                <CircleSegment segment={segment} styles={styles} index={index} />
+                renderCircleSegment({ segment, styles, index })
               ) : (
                 <LinePath data={segment} x={getX} y={getY} {...styles} />
               )
