@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import getSplitLineSegments, { LineSegmentation } from '../util/getSplitLineSegments';
+import getSplitLineSegments, { GetLineSegmentsConfig } from '../util/getSplitLineSegments';
 import { line } from '../util/D3ShapeFactories';
 import { LinePathConfig } from '../types';
 import LinePath from './LinePath';
@@ -19,7 +19,6 @@ export type SplitLinePathChildren = (renderProps: {
 }) => React.ReactNode;
 
 export type SplitLinePathProps<Datum> = {
-  segmentation?: LineSegmentation;
   /** Array of data segments, where each segment will be a separate path in the rendered line. */
   segments: Datum[][];
   /** Styles to apply to each segment. If fewer styles are specified than the number of segments, they will be re-used. */
@@ -28,22 +27,22 @@ export type SplitLinePathProps<Datum> = {
   children?: SplitLinePathChildren;
   /** className applied to path element. */
   className?: string;
-  /** Optionally specify the sample rate for interpolating line segments. */
-  sampleRate?: number;
-} & LinePathConfig<Datum>;
+} & LinePathConfig<Datum> &
+  Pick<GetLineSegmentsConfig, 'segmentation' | 'sampleRate'>;
 
 export default function SplitLinePath<Datum>({
   children,
   className,
   curve,
   defined,
-  segmentation = 'x',
+  segmentation,
   sampleRate,
   segments,
   x,
   y,
   styles,
 }: SplitLinePathProps<Datum>) {
+  // Convert data in all segments to points.
   const pointsInSegments = useMemo(() => {
     const xFn = typeof x === 'number' || typeof x === 'undefined' ? () => x : x;
     const yFn = typeof y === 'number' || typeof y === 'undefined' ? () => y : y;
@@ -58,7 +57,6 @@ export default function SplitLinePath<Datum>({
   const splitLineSegments = useMemo(
     () =>
       getSplitLineSegments({
-        // use entire path to interpolate individual segments
         path: pathString,
         segmentation,
         pointsInSegments,

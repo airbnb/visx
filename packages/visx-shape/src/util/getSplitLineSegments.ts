@@ -1,103 +1,88 @@
+import getOrCreateMeasurementElement from './getOrCreateMeasurementElement';
+
 const MEASUREMENT_ELEMENT_ID = '__visx_splitpath_svg_path_measurement_id';
-const SVG_NAMESPACE_URL = 'http://www.w3.org/2000/svg';
-
-function getOrCreateMeasurementElement() {
-  let pathElement = document.getElementById(MEASUREMENT_ELEMENT_ID) as SVGPathElement | null;
-
-  // create a single path element if not done already
-  if (!pathElement) {
-    const svg = document.createElementNS(SVG_NAMESPACE_URL, 'svg');
-    // not visible
-    svg.style.opacity = '0';
-    svg.style.width = '0';
-    svg.style.height = '0';
-    // off screen
-    svg.style.position = 'absolute';
-    svg.style.top = '-100%';
-    svg.style.left = '-100%';
-    // no mouse events
-    svg.style.pointerEvents = 'none';
-    pathElement = document.createElementNS(SVG_NAMESPACE_URL, 'path');
-    pathElement.setAttribute('id', MEASUREMENT_ELEMENT_ID);
-    svg.appendChild(pathElement);
-    document.body.appendChild(svg);
-  }
-
-  return pathElement;
-}
 
 interface PointInSegment {
   x: number | undefined;
   y: number | undefined;
 }
 
-/**
- * Different methods to segment the line
- * - `x`: Split based on x-position,
- *  assuming x always increase only (segment[i].x > segment[i-1].x)
- *  or decrease only (segment[i].x < segment[i-1].x).
- * - `y`: Split based on y-position,
- *  assuming y always increase only (segment[i].y > segment[i-1].y)
- *  or decrease only (segment[i].y < segment[i-1].y).
- * - `length`: Assuming the path length between consecutive points are equal.
- */
+/** Different algorithms to segment the line */
 export type LineSegmentation = 'x' | 'y' | 'length';
 
 type LineSegments = { x: number; y: number }[][];
 
+const TRUE = () => true;
+
 export interface GetLineSegmentsConfig {
   /** Full path `d` attribute to be broken up into `n` segments. */
   path: string;
-  /**
-   * Array of length `n`, where `n` is the number of resulting line segments.
-   * For each segment of length `m`, `m / sampleRate` evenly spaced points will be returned.
-   */
+  /** Array of length `n`, where `n` is the number of segments. */
   pointsInSegments: PointInSegment[][];
   /**
    * How to segment the line
+   * - `x`: Split based on x-position,
+   *  assuming x always increase only (segment[i].x > segment[i-1].x)
+   *  or decrease only (segment[i].x < segment[i-1].x).
+   * - `y`: Split based on y-position,
+   *  assuming y always increase only (segment[i].y > segment[i-1].y)
+   *  or decrease only (segment[i].y < segment[i-1].y).
+   * - `length`: Assuming the path length between consecutive points are equal.
    */
   segmentation: LineSegmentation;
-  /** For each segment of length `m`, `m / sampleRate` evenly spaced points will be returned. */
+  /**
+   * The `path` will be sampled every `sampleRate` pixel to generate the returned points.
+   * Default is `1` pixel.
+   */
   sampleRate?: number;
 }
 
 export default function getSplitLineSegments({
   path,
   pointsInSegments,
-  segmentation,
+  segmentation = 'x',
   sampleRate = 1,
 }: GetLineSegmentsConfig): LineSegments {
   try {
-    const pathElement = getOrCreateMeasurementElement();
+    const pathElement = getOrCreateMeasurementElement(MEASUREMENT_ELEMENT_ID);
     pathElement.setAttribute('d', path);
-
     const totalPathLength = pathElement.getTotalLength();
 
-    if (segmentation === 'x') {
+    const samples = [];
+    for (let distance = 0; distance <= totalPathLength; distance += sampleRate) {
+      samples.push(pathElement.getPointAtLength(distance));
+    }
+
+    const numSegments = pointsInSegments.length;
+
+    if (segmentation === 'x' || segmentation === 'y') {
       const lineSegments: LineSegments = pointsInSegments.map(() => []);
-      const isIncreasing =
-        pathElement.getPointAtLength(totalPathLength).x > pathElement.getPointAtLength(0).x;
       const segmentBegins = pointsInSegments.map(
-        s => s.find(p => typeof p.x === 'number')?.x ?? (isIncreasing ? -Infinity : Infinity),
+        points => points.find(p => typeof p[segmentation] === 'number')?.[segmentation],
       );
-      let nextSegment = 1;
-      for (let distance = 0; distance <= totalPathLength; distance += sampleRate) {
-        const point = pathElement.getPointAtLength(distance);
-        if (isIncreasing) {
-          while (nextSegment < segmentBegins.length - 1 && point.x >= segmentBegins[nextSegment]) {
-            nextSegment += 1;
-          }
-        } else {
-          while (nextSegment < segmentBegins.length - 1 && point.x <= segmentBegins[nextSegment]) {
-            nextSegment += 1;
-          }
+
+      const isIncreasing = samples[samples.length - 1][segmentation] > samples[0][segmentation];
+      const isBeyondSegments = isIncreasing
+        ? segmentBegins.map(begin =>
+            typeof begin === 'undefined' ? TRUE : (xOrY: number) => xOrY >= begin,
+          )
+        : segmentBegins.map(begin =>
+            typeof begin === 'undefined' ? TRUE : (xOrY: number) => xOrY <= begin,
+          );
+
+      let current = 0;
+      samples.forEach(sample => {
+        const position = sample[segmentation];
+        while (current < numSegments - 1 && isBeyondSegments[current + 1](position)) {
+          current += 1;
         }
-        lineSegments[nextSegment].push(point);
-      }
+        lineSegments[current].push(sample);
+      });
+
       return lineSegments;
     }
 
-    // segmentation "length"
+    // segmentation === "length"
     const totalPieces = pointsInSegments.reduce((sum, curr) => sum + curr.length, 0);
     const pieceSize = totalPathLength / totalPieces;
 

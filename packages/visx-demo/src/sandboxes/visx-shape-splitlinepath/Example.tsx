@@ -24,7 +24,7 @@ export type SplitLinePathExampleProps = {
 const NumberSegment: SplitLinePathChildren = ({ segment, styles }) => (
   <g>
     {segment.map(({ x, y }, i) =>
-      i % 10 === 0 ? (
+      i % 25 === 0 ? (
         <text key={i} x={x} y={y} dy={3} fontSize={8} textAnchor="middle">
           {i}
         </text>
@@ -211,7 +211,7 @@ export default function SplitLinePathExample({
           >
             {({ segment, styles, index }) =>
               index === numberOfWaves - 1 || index === 2 ? (
-                <CircleSegment segment={segment} styles={styles} index={index} />
+                <NumberSegment segment={segment} styles={styles} index={index} />
               ) : (
                 <LinePath data={segment} x={getX} y={getY} {...styles} />
               )
