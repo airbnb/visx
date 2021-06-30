@@ -1,10 +1,9 @@
 import React, { useMemo } from 'react';
-import { scaleLinear } from '@visx/scale';
 import { curveCardinal } from '@visx/curve';
 import { LinePath, SplitLinePath } from '@visx/shape';
 import { LinearGradient } from '@visx/gradient';
-
-import generateSinPoints from './generateSinPoints';
+import { SplitLinePathChildren } from '@visx/shape/lib/shapes/SplitLinePath';
+import generateSinSegments from './generateSinSegments';
 
 type Point = { x: number; y: number };
 const getX = (d: Point) => d.x;
@@ -13,7 +12,7 @@ export const background = '#045275';
 export const backgroundLight = '#089099';
 export const foreground = '#b7e6a5';
 
-export type SplitLinePathProps = {
+export type SplitLinePathExampleProps = {
   width: number;
   height: number;
   margin?: { top: number; right: number; bottom: number; left: number };
@@ -22,40 +21,53 @@ export type SplitLinePathProps = {
   numberOfSegments?: number;
 };
 
-export default function SplitPath({
+const CustomSegment: SplitLinePathChildren = ({ segment, styles }) => (
+  <g>
+    {segment.map(({ x, y }, i) =>
+      i % 8 === 0 ? (
+        <circle
+          key={i}
+          cx={x}
+          cy={y}
+          r={10 * (i / segment.length)}
+          stroke={styles?.stroke}
+          fill="transparent"
+          strokeWidth={1}
+        />
+      ) : null,
+    )}
+  </g>
+);
+
+export default function SplitLinePathExample({
   width,
   height,
   numberOfWaves = 10,
   pointsPerWave = 100,
-  numberOfSegments = 8,
-}: SplitLinePathProps) {
-  const data = useMemo(() => generateSinPoints({ width, height, numberOfWaves, pointsPerWave }), [
-    width,
-    height,
-    numberOfWaves,
-    pointsPerWave,
-  ]);
-
-  const dividedData = useMemo(() => {
-    const segmentLength = Math.floor(data.length / numberOfSegments);
-    return new Array(numberOfSegments)
-      .fill(null)
-      .map((_, i) => data.slice(i * segmentLength, (i + 1) * segmentLength));
-  }, [numberOfSegments, data]);
-
-  const getScaledX = useMemo(() => {
-    const xScale = scaleLinear({ range: [0, width], domain: [0, width] });
-    return (d: Point) => xScale(getX(d)) ?? 0;
-  }, [width]);
-
-  const getScaledY = useMemo(() => {
-    const yScale = scaleLinear({ range: [0, height], domain: [height, 0] });
-    return (d: Point) => yScale(getY(d)) ?? 0;
-  }, [height]);
+}: SplitLinePathExampleProps) {
+  const data = useMemo(
+    () => ({
+      leftToRight: generateSinSegments({
+        width: width / 2,
+        height: height / 2,
+        numberOfWaves,
+        pointsPerWave,
+      }),
+      rightToLeft: generateSinSegments({
+        width: width / 2,
+        height: height / 2,
+        numberOfWaves,
+        pointsPerWave,
+        direction: 'right-to-left',
+      }),
+    }),
+    [width, height, numberOfWaves, pointsPerWave],
+  );
 
   return width < 10 ? null : (
     <div>
       <svg width={width} height={height}>
+        {/* Background */}
         <LinearGradient
           id="visx-shape-splitlinepath-gradient"
           from={background}
@@ -72,11 +84,12 @@ export default function SplitPath({
           rx={14}
         />
 
-        <g transform={`rotate(${0})translate(${-0}, ${-height * 0.5})`}>
+        {/* left to right */}
+        <g transform={`translate(${width / 2}, ${height / 4})`}>
           <LinePath
-            data={data}
-            x={getScaledX}
-            y={getScaledY}
+            data={data.leftToRight.flat()}
+            x={getX}
+            y={getY}
             strokeWidth={8}
             stroke="#fff"
             strokeOpacity={0.15}
@@ -84,9 +97,10 @@ export default function SplitPath({
           />
 
           <SplitLinePath
-            segments={dividedData}
-            x={getScaledX}
-            y={getScaledY}
+            sampleRate={2}
+            segments={data.leftToRight}
+            x={getX}
+            y={getY}
             curve={curveCardinal}
             styles={[
               { stroke: foreground, strokeWidth: 3 },
@@ -96,27 +110,45 @@ export default function SplitPath({
           >
             {({ segment, styles, index }) =>
               /** overlay circles to a couple of the segments */
-              index === numberOfSegments - 1 || index === 2 ? (
-                segment.map(({ x, y }, i) =>
-                  i % 8 === 0 ? (
-                    <circle
-                      key={i}
-                      cx={x}
-                      cy={y}
-                      r={10 * (i / segment.length)}
-                      stroke={styles?.stroke}
-                      fill="transparent"
-                      strokeWidth={1}
-                    />
-                  ) : null,
-                )
+              index === numberOfWaves - 1 || index === 2 ? (
+                <CustomSegment segment={segment} styles={styles} index={index} />
               ) : (
-                <LinePath
-                  data={segment}
-                  x={(d: Point) => d.x || 0}
-                  y={(d: Point) => d.y || 0}
-                  {...styles}
-                />
+                <LinePath data={segment} x={getX} y={getY} {...styles} />
+              )
+            }
+          </SplitLinePath>
+        </g>
+
+        {/* right to left */}
+        <g transform={`translate(${width}, ${(height * 3) / 4})`}>
+          <LinePath
+            data={data.rightToLeft.flat()}
+            x={getX}
+            y={getY}
+            strokeWidth={8}
+            stroke="#fff"
+            strokeOpacity={0.15}
+            curve={curveCardinal}
+          />
+
+          <SplitLinePath
+            sampleRate={1}
+            segments={data.rightToLeft}
+            x={getX}
+            y={getY}
+            curve={curveCardinal}
+            styles={[
+              { stroke: foreground, strokeWidth: 3 },
+              { stroke: '#fff', strokeWidth: 2, strokeDasharray: '9,5' },
+              { stroke: background, strokeWidth: 2 },
+            ]}
+          >
+            {({ segment, styles, index }) =>
+              /** overlay circles to a couple of the segments */
+              index === numberOfWaves - 1 || index === 2 ? (
+                <CustomSegment segment={segment} styles={styles} index={index} />
+              ) : (
+                <LinePath data={segment} x={getX} y={getY} {...styles} />
               )
             }
           </SplitLinePath>

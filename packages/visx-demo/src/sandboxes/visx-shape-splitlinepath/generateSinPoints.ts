@@ -14,7 +14,7 @@ export default function generateSinPoints({
   const distanceBetweenPoints = waveLength / pointsPerWave;
   const sinPoints: { x: number; y: number }[] = [];
 
-  for (let waveIndex = 0; waveIndex <= numberOfWaves; waveIndex += 1) {
+  for (let waveIndex = 0; waveIndex < numberOfWaves; waveIndex += 1) {
     const waveDistFromStart = waveIndex * waveLength;
 
     for (let pointIndex = 0; pointIndex <= pointsPerWave; pointIndex += 1) {
