@@ -1,4 +1,5 @@
 # Changelog
+- [v1.15.0](#v1150)
 - [v1.14.1](#v1141)
 - [v1.14.0](#v1140)
 - [v1.13.0](#v1130)
@@ -6,10 +7,10 @@
 - [v1.11.2](#v1112)
 - [v1.11.1](#v1111)
 - [v1.11.0](#v1110)
-- [v1.10.1](#v1101)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v1101">v1.10.1</a></li>
   <li><a href="#v1100">v1.10.0</a></li>
   <li><a href="#v191">v1.9.1</a></li>
   <li><a href="#v190">v1.9.0</a></li>
@@ -114,6 +115,15 @@
 </details>
 
 ------
+# v1.15.0 (2021-07-01)
+
+#### :rocket: Enhancements
+
+- feat(brush): add using widows move events with brush [#1164](https://github.com/airbnb/visx/pull/1164)
+  
+#### :trophy: Contributors
+- [d3x42](https://github.com/d3x42)
+
 # v1.14.1 (2021-07-01)
 
 #### :bug: Bug Fix
