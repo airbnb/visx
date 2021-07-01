@@ -14,6 +14,7 @@ export default function AnimatedTicks<Scale extends AxisScale>({
   orientation,
   scale,
   tickClassName,
+  tickComponent,
   tickLabelProps: allTickLabelProps,
   tickStroke = '#222',
   tickTransform,
@@ -71,7 +72,16 @@ export default function AnimatedTicks<Scale extends AxisScale>({
                 )}
                 opacity={opacity}
               >
-                <Text {...tickLabelProps}>{item?.formattedValue}</Text>
+                {tickComponent ? (
+                  tickComponent({
+                    ...tickLabelProps,
+                    x: toX,
+                    y: toY,
+                    formattedValue: item?.formattedValue,
+                  })
+                ) : (
+                  <Text {...tickLabelProps}>{item?.formattedValue}</Text>
+                )}
               </animated.g>
             </animated.g>
           );
