@@ -99,8 +99,6 @@ export default function SplitLinePathExample({
     [width, height, numberOfWaves, pointsPerWave],
   );
 
-  console.log('data.spiral', data.spiral);
-
   return width < 10 ? null : (
     <div>
       <svg width={width} height={height}>
