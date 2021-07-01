@@ -239,7 +239,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
       });
     }
 
-    if (['select'].includes(brushingType ?? '')) {
+    if (brushingType === 'select') {
       this.updateBrush((prevBrush: BaseBrushState) => {
         const { x: x0, y: y0 } = prevBrush.start;
         const newEnd = {
