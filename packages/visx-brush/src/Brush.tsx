@@ -58,7 +58,7 @@ export type BrushProps = {
   handleSize: number;
   /** Reference to the BaseBrush component. */
   innerRef?: React.MutableRefObject<BaseBrush | null>;
-  /** Prevent drag end on mouse leave from brush */
+  /** Prevent drag end on mouse leaving from brush stage. */
   useWindowMoveEvents?: boolean;
 };
 
