@@ -1,3 +1,5 @@
+import { MouseTouchOrPointerEvent } from '@visx/drag/lib/useDrag';
+import React from 'react';
 import { Scale } from './types';
 
 export function scaleInvert(scale: Scale, value: number) {
@@ -52,4 +54,18 @@ export function getDomainFromExtent(
   }
 
   return domain;
+}
+
+export function getPageCoordinates(event: MouseTouchOrPointerEvent) {
+  if (typeof window !== 'undefined' && window.TouchEvent && event instanceof TouchEvent) {
+    return {
+      pageX: event.touches[0].pageX,
+      pageY: event.touches[0].pageY,
+    };
+  }
+  const pointerEvent = event as React.PointerEvent;
+  return {
+    pageX: pointerEvent.pageX,
+    pageY: pointerEvent.pageY,
+  };
 }

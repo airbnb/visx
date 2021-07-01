@@ -34,6 +34,7 @@
   },
   "dependencies": {
     "@visx/drag": "1.7.4",
+    "@visx/event": "1.7.0",
     "@visx/group": "1.7.0",
     "@visx/shape": "1.14.0",
     "classnames": "^2.2.5",

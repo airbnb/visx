@@ -13,6 +13,8 @@ export type DragProps = UseDragOptions & {
   height: number;
   /** Whether to render an invisible rect below children to capture the drag area as defined by width and height. */
   captureDragArea?: boolean;
+  /** If defined, parent controls dragging state. */
+  isDragging?: boolean;
 };
 
 export default function Drag({
@@ -28,8 +30,19 @@ export default function Drag({
   width,
   x,
   y,
+  isDragging,
 }: DragProps) {
-  const drag = useDrag({ resetOnStart, onDragEnd, onDragMove, onDragStart, x, y, dx, dy });
+  const drag = useDrag({
+    resetOnStart,
+    onDragEnd,
+    onDragMove,
+    onDragStart,
+    x,
+    y,
+    dx,
+    dy,
+    isDragging,
+  });
 
   return (
     <>
