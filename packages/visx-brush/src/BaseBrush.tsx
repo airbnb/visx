@@ -13,7 +13,7 @@ import {
   ResizeTriggerAreas,
   PartialBrushStartEnd,
   BrushingType,
-  BrushingOptions,
+  BrushPageOffset,
 } from './types';
 import { getPageCoordinates } from './utils';
 
@@ -48,7 +48,7 @@ export type BaseBrushProps = {
 export type BaseBrushState = BrushShape & {
   activeHandle: ResizeTriggerAreas | null;
   isBrushing: boolean;
-  brushingOptions?: BrushingOptions;
+  brushPageOffset?: BrushPageOffset;
   brushingType?: BrushingType;
 };
 
@@ -127,19 +127,19 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
 
   componentDidMount() {
     if (this.props.useWindowMoveEvents) {
-      window.addEventListener('mouseup', this.handleMouseUp);
-      window.addEventListener('mousemove', this.handleMouseMove);
+      window.addEventListener('mouseup', this.handleWindowPointerUp);
+      window.addEventListener('mousemove', this.handleWindowPointerMove);
     }
   }
 
   componentWillUnmount() {
     if (this.props.useWindowMoveEvents) {
-      window.removeEventListener('mouseup', this.handleMouseUp);
-      window.removeEventListener('mousemove', this.handleMouseMove);
+      window.removeEventListener('mouseup', this.handleWindowPointerUp);
+      window.removeEventListener('mousemove', this.handleWindowPointerMove);
     }
   }
 
-  handleMouseUp = () => {
+  handleWindowPointerUp = () => {
     const { useWindowMoveEvents } = this.props;
     const { brushingType } = this.state;
 
@@ -165,14 +165,16 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
     }
   };
 
-  handleMouseMove = (event: MouseEvent) => {
+  handleWindowPointerMove = (event: MouseEvent) => {
     const { useWindowMoveEvents, onBrushEnd, resetOnEnd } = this.props;
-    const { brushingType, isBrushing, brushingOptions, start } = this.state;
+    const { brushingType, isBrushing, brushPageOffset, start } = this.state;
 
     if (!useWindowMoveEvents || !isBrushing) return;
 
-    const offsetX = event.pageX - (brushingOptions?.pageX || 0);
-    const offsetY = event.pageY - (brushingOptions?.pageY || 0);
+    /* We use event page coordinates to calculate the offset between the initial pointer position and
+       the current pointer position so Brush could be resized/moved relatively. */
+    const offsetX = event.pageX - (brushPageOffset?.pageX || 0);
+    const offsetY = event.pageY - (brushPageOffset?.pageY || 0);
 
     if (['left', 'right', 'top', 'bottom'].includes(brushingType ?? '')) {
       this.updateBrush((prevBrush: BaseBrushState) => {
@@ -308,7 +310,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
       },
       isBrushing: true,
       brushingType: 'select',
-      brushingOptions: useWindowMoveEvents ? getPageCoordinates(draw.event) : undefined,
+      brushPageOffset: useWindowMoveEvents ? getPageCoordinates(draw.event) : undefined,
     }));
   };
 
@@ -497,13 +499,13 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
         y1: height,
       },
       isBrushing: false,
-      brushingOptions: undefined,
+      brushPageOffset: undefined,
       activeHandle: null,
       brushingType: undefined,
     }));
   };
 
-  handleBrushingTypeChange = (type?: BrushingType, options?: BrushingOptions) => {
+  handleBrushingTypeChange = (type?: BrushingType, brushPageOffset?: BrushPageOffset) => {
     this.updateBrush((prevBrush: BaseBrushState) => {
       const next = {
         ...prevBrush,
@@ -511,8 +513,8 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
         isBrushing: type !== undefined,
       };
 
-      if (options || type === undefined) {
-        next.brushingOptions = options;
+      if (brushPageOffset || type === undefined) {
+        next.brushPageOffset = brushPageOffset;
       }
 
       return next;

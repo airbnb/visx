@@ -45,7 +45,7 @@ export type ResizeTriggerAreas =
   | 'bottomRight';
 
 export type BrushingType = 'move' | 'select' | ResizeTriggerAreas;
-export type BrushingOptions = {
+export type BrushPageOffset = {
   pageX?: number;
   pageY?: number;
 };

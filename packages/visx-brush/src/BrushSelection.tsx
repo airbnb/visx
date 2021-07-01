@@ -3,7 +3,7 @@ import React from 'react';
 import Drag, { HandlerArgs as DragArgs } from '@visx/drag/lib/Drag';
 
 import { BaseBrushState as BrushState, UpdateBrush } from './BaseBrush';
-import { BrushingOptions, BrushingType } from './types';
+import { BrushPageOffset, BrushingType } from './types';
 import { getPageCoordinates } from './utils';
 
 const DRAGGING_OVERLAY_STYLES = { cursor: 'move' };
@@ -17,7 +17,7 @@ export type BrushSelectionProps = {
   stageHeight: number;
   brush: BrushState;
   updateBrush: (update: UpdateBrush) => void;
-  onMoveSelectionChange?: (type?: BrushingType, options?: BrushingOptions) => void;
+  onMoveSelectionChange?: (type?: BrushingType, options?: BrushPageOffset) => void;
   onBrushEnd?: (brush: BrushState) => void;
   disableDraggingSelection: boolean;
   onMouseLeave: PointerHandler;

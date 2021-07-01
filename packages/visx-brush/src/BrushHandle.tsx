@@ -2,7 +2,7 @@
 import React from 'react';
 import Drag, { HandlerArgs as DragArgs } from '@visx/drag/lib/Drag';
 import { BaseBrushState as BrushState, UpdateBrush } from './BaseBrush';
-import { BrushingOptions, BrushingType, ResizeTriggerAreas } from './types';
+import { BrushPageOffset, BrushingType, ResizeTriggerAreas } from './types';
 import { getPageCoordinates } from './utils';
 
 export type BrushHandleProps = {
@@ -15,7 +15,7 @@ export type BrushHandleProps = {
   handle: { x: number; y: number; width: number; height: number };
   isControlled?: boolean;
   isDragInProgress?: boolean;
-  onBrushHandleChange?: (type?: BrushingType, options?: BrushingOptions) => void;
+  onBrushHandleChange?: (type?: BrushingType, options?: BrushPageOffset) => void;
 };
 
 /** BrushHandle's are placed along the bounds of the brush and handle Drag events which update the passed brush. */
