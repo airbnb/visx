@@ -25,7 +25,7 @@ export type BrushSelectionProps = {
   onMouseUp: PointerHandler;
   onClick: PointerHandler;
   selectedBoxStyle: React.SVGProps<SVGRectElement>;
-  useWindowMoveEvents?: boolean;
+  isControlled?: boolean;
   isDragInProgress?: boolean;
 };
 
@@ -48,9 +48,9 @@ export default class BrushSelection extends React.Component<
   };
 
   selectionDragMove = (drag: DragArgs) => {
-    const { updateBrush, useWindowMoveEvents } = this.props;
+    const { updateBrush, isControlled } = this.props;
 
-    if (useWindowMoveEvents) return;
+    if (isControlled) return;
 
     updateBrush((prevBrush: BrushState) => {
       const { x: x0, y: y0 } = prevBrush.start;
@@ -80,9 +80,9 @@ export default class BrushSelection extends React.Component<
   };
 
   selectionDragEnd = () => {
-    const { updateBrush, onBrushEnd, onMoveSelectionChange, useWindowMoveEvents } = this.props;
+    const { updateBrush, onBrushEnd, onMoveSelectionChange, isControlled } = this.props;
 
-    if (!useWindowMoveEvents) {
+    if (!isControlled) {
       updateBrush((prevBrush: BrushState) => {
         const nextBrush = {
           ...prevBrush,
@@ -123,7 +123,7 @@ export default class BrushSelection extends React.Component<
       onMouseUp,
       onClick,
       selectedBoxStyle,
-      useWindowMoveEvents,
+      isControlled,
       isDragInProgress,
     } = this.props;
 
@@ -135,7 +135,7 @@ export default class BrushSelection extends React.Component<
         onDragStart={this.selectionDragStart}
         onDragMove={this.selectionDragMove}
         onDragEnd={this.selectionDragEnd}
-        isDragging={useWindowMoveEvents ? isDragInProgress : undefined}
+        isDragging={isControlled ? isDragInProgress : undefined}
       >
         {({ isDragging, dragStart, dragEnd, dragMove }) => (
           <g>
@@ -144,9 +144,9 @@ export default class BrushSelection extends React.Component<
                 width={stageWidth}
                 height={stageHeight}
                 fill="transparent"
-                onPointerUp={useWindowMoveEvents ? undefined : dragEnd}
+                onPointerUp={isControlled ? undefined : dragEnd}
                 onPointerMove={dragMove}
-                onPointerLeave={useWindowMoveEvents ? undefined : dragEnd}
+                onPointerLeave={isControlled ? undefined : dragEnd}
                 style={DRAGGING_OVERLAY_STYLES}
               />
             )}
@@ -165,7 +165,7 @@ export default class BrushSelection extends React.Component<
                 if (onMouseMove) onMouseMove(event);
               }}
               onPointerUp={event => {
-                if (!useWindowMoveEvents) {
+                if (!isControlled) {
                   dragEnd(event);
                 }
                 if (onMouseUp) onMouseUp(event);

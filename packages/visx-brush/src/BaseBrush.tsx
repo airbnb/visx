@@ -608,7 +608,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
             onMoveSelectionChange={this.handleBrushingTypeChange}
             onClick={onClick}
             selectedBoxStyle={selectedBoxStyle}
-            useWindowMoveEvents={useWindowMoveEvents}
+            isControlled={useWindowMoveEvents}
             isDragInProgress={useWindowMoveEvents ? brushingType === 'move' : undefined}
           />
         )}
@@ -631,7 +631,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
                     updateBrush={this.updateBrush}
                     brush={this.state}
                     onBrushEnd={onBrushEnd}
-                    useWindowMoveEvents={useWindowMoveEvents}
+                    isControlled={useWindowMoveEvents}
                     isDragInProgress={useWindowMoveEvents ? brushingType === handleKey : undefined}
                     onBrushHandleChange={this.handleBrushingTypeChange}
                   />

@@ -13,7 +13,7 @@ export type BrushHandleProps = {
   onBrushEnd?: (brush: BrushState) => void;
   type: ResizeTriggerAreas;
   handle: { x: number; y: number; width: number; height: number };
-  useWindowMoveEvents?: boolean;
+  isControlled?: boolean;
   isDragInProgress?: boolean;
   onBrushHandleChange?: (type?: BrushingType, options?: BrushingOptions) => void;
 };
@@ -29,8 +29,8 @@ export default class BrushHandle extends React.Component<BrushHandleProps> {
   };
 
   handleDragMove = (drag: DragArgs) => {
-    const { updateBrush, type, useWindowMoveEvents } = this.props;
-    if (!drag.isDragging || useWindowMoveEvents) return;
+    const { updateBrush, type, isControlled } = this.props;
+    if (!drag.isDragging || isControlled) return;
 
     updateBrush((prevBrush: BrushState) => {
       const { start, end } = prevBrush;
@@ -91,9 +91,9 @@ export default class BrushHandle extends React.Component<BrushHandleProps> {
   };
 
   handleDragEnd = () => {
-    const { updateBrush, onBrushEnd, onBrushHandleChange, useWindowMoveEvents } = this.props;
+    const { updateBrush, onBrushEnd, onBrushHandleChange, isControlled } = this.props;
 
-    if (!useWindowMoveEvents) {
+    if (!isControlled) {
       updateBrush((prevBrush: BrushState) => {
         const { start, end, extent } = prevBrush;
         start.x = Math.min(extent.x0, extent.x1);
@@ -133,7 +133,7 @@ export default class BrushHandle extends React.Component<BrushHandleProps> {
       brush,
       type,
       handle,
-      useWindowMoveEvents,
+      isControlled,
       isDragInProgress,
     } = this.props;
     const { x, y, width, height } = handle;
@@ -147,7 +147,7 @@ export default class BrushHandle extends React.Component<BrushHandleProps> {
         onDragMove={this.handleDragMove}
         onDragEnd={this.handleDragEnd}
         resetOnStart
-        isDragging={useWindowMoveEvents ? isDragInProgress : undefined}
+        isDragging={isControlled ? isDragInProgress : undefined}
       >
         {({ dragStart, dragEnd, dragMove, isDragging }) => (
           <g>
@@ -159,8 +159,8 @@ export default class BrushHandle extends React.Component<BrushHandleProps> {
                 height={stageHeight}
                 style={{ cursor }}
                 onMouseMove={dragMove}
-                onMouseUp={useWindowMoveEvents ? undefined : dragEnd}
-                onMouseLeave={useWindowMoveEvents ? undefined : dragEnd}
+                onMouseUp={isControlled ? undefined : dragEnd}
+                onMouseLeave={isControlled ? undefined : dragEnd}
               />
             )}
             <rect
@@ -172,7 +172,7 @@ export default class BrushHandle extends React.Component<BrushHandleProps> {
               className={`visx-brush-handle-${type}`}
               onPointerDown={dragStart}
               onPointerMove={dragMove}
-              onPointerUp={useWindowMoveEvents ? undefined : dragEnd}
+              onPointerUp={isControlled ? undefined : dragEnd}
               style={{
                 cursor,
                 pointerEvents: !!brush.activeHandle || !!brush.isBrushing ? 'none' : 'all',
