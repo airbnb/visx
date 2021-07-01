@@ -22,11 +22,11 @@ export interface GetLineSegmentsConfig {
   /**
    * How to segment the line
    * - `x`: Split based on x-position,
-   *  assuming x always increase only (segment[i].x > segment[i-1].x)
-   *  or decrease only (segment[i].x < segment[i-1].x).
+   *  assuming x values increase only (`segment[i].x > segment[i-1].x`)
+   *  or decrease only (`segment[i].x < segment[i-1].x`).
    * - `y`: Split based on y-position,
-   *  assuming y always increase only (segment[i].y > segment[i-1].y)
-   *  or decrease only (segment[i].y < segment[i-1].y).
+   *  assuming y values increase only (`segment[i].y > segment[i-1].y`)
+   *  or decrease only (`segment[i].y < segment[i-1].y`).
    * - `length`: Assuming the path length between consecutive points are equal.
    *
    * Default is `x`.
