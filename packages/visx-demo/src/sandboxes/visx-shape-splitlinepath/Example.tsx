@@ -1,9 +1,11 @@
 import React, { useMemo } from 'react';
+import { chunk } from 'lodash';
 import { curveCardinal } from '@visx/curve';
 import { LinePath, SplitLinePath } from '@visx/shape';
 import { LinearGradient } from '@visx/gradient';
 import { SplitLinePathRenderer } from '@visx/shape/lib/shapes/SplitLinePath';
 import generateSinSegments from './generateSinSegments';
+import generateSnakePath from './generateSnakePath';
 
 type Point = { x: number; y: number };
 const getX = (d: Point) => d.x;
@@ -55,7 +57,7 @@ const renderCircleSegment: SplitLinePathRenderer = ({ segment, styles }) => (
   </g>
 );
 
-const PADDING = 20;
+const PADDING = 30;
 
 export default function SplitLinePathExample({
   width,
@@ -81,20 +83,23 @@ export default function SplitLinePathExample({
       topToBottom: generateSinSegments({
         width: width / 2 - PADDING * 2,
         height: height / 2 - PADDING * 2,
-        numberOfWaves,
+        numberOfWaves: 5,
         pointsPerWave,
         direction: 'top-to-bottom',
       }),
       bottomToTop: generateSinSegments({
         width: width / 2 - PADDING * 2,
         height: height / 2 - PADDING * 2,
-        numberOfWaves,
+        numberOfWaves: 5,
         pointsPerWave,
         direction: 'bottom-to-top',
       }),
+      spiral: chunk(generateSnakePath({ width: width / 4, height: height / 4, step: 20 }), 8),
     }),
     [width, height, numberOfWaves, pointsPerWave],
   );
+
+  console.log('data.spiral', data.spiral);
 
   return width < 10 ? null : (
     <div>
@@ -268,6 +273,41 @@ export default function SplitLinePathExample({
             }
           </SplitLinePath>
           <text dy="0.3em" fontSize={10} fontWeight="bold" textAnchor="middle">
+            Start
+          </text>
+        </g>
+        {/* spiral */}
+        <g transform={`translate(${width / 2 - width / 8}, ${height / 2 - height / 8})`}>
+          {/* Render all segments as a single line for comparison */}
+          <LinePath
+            data={data.spiral.flat()}
+            x={getX}
+            y={getY}
+            strokeWidth={8}
+            stroke="#fff"
+            strokeOpacity={0.15}
+          />
+
+          <SplitLinePath
+            sampleRate={1}
+            segments={data.spiral}
+            segmentation="length"
+            x={getX}
+            y={getY}
+            styles={[
+              { stroke: foreground, strokeWidth: 3 },
+              { stroke: '#fff', strokeWidth: 2, strokeDasharray: '9,5' },
+              { stroke: background, strokeWidth: 2 },
+            ]}
+          />
+          <text
+            x={width / 8}
+            y={height / 8}
+            dy="0.3em"
+            fontSize={10}
+            fontWeight="bold"
+            textAnchor="middle"
+          >
             Start
           </text>
         </g>

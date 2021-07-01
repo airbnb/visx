@@ -48,22 +48,19 @@ export default function getSplitLineSegments({
   try {
     const pathElement = getOrCreateMeasurementElement(MEASUREMENT_ELEMENT_ID);
     pathElement.setAttribute('d', path);
-    const totalPathLength = pathElement.getTotalLength();
+    const totalLength = pathElement.getTotalLength();
+
+    const numSegments = pointsInSegments.length;
+    const lineSegments: LineSegments = pointsInSegments.map(() => []);
 
     if (segmentation === 'x' || segmentation === 'y') {
-      const samples = [];
-      for (let distance = 0; distance <= totalPathLength; distance += sampleRate) {
-        samples.push(pathElement.getPointAtLength(distance));
-      }
-
-      const numSegments = pointsInSegments.length;
-
-      const lineSegments: LineSegments = pointsInSegments.map(() => []);
       const segmentBegins = pointsInSegments.map(
         points => points.find(p => typeof p[segmentation] === 'number')?.[segmentation],
       );
 
-      const isIncreasing = samples[samples.length - 1][segmentation] > samples[0][segmentation];
+      const first = pathElement.getPointAtLength(0);
+      const last = pathElement.getPointAtLength(totalLength);
+      const isIncreasing = last[segmentation] > first[segmentation];
       const isBeyondSegments = isIncreasing
         ? segmentBegins.map(begin =>
             typeof begin === 'undefined' ? TRUE : (xOrY: number) => xOrY >= begin,
@@ -73,37 +70,40 @@ export default function getSplitLineSegments({
           );
 
       let current = 0;
-      samples.forEach(sample => {
+      for (let distance = 0; distance <= totalLength; distance += sampleRate) {
+        const sample = pathElement.getPointAtLength(distance);
         const position = sample[segmentation];
         while (current < numSegments - 1 && isBeyondSegments[current + 1](position)) {
           current += 1;
         }
         lineSegments[current].push(sample);
-      });
+      }
+    } else {
+      // segmentation === "length"
+      const numPointsInSegment = pointsInSegments.map(points => points.length);
+      const numPoints = numPointsInSegment.reduce((sum, curr) => sum + curr, 0);
+      const lengthBetweenPoints = totalLength / (numPoints - 1);
 
-      return lineSegments;
-    }
-
-    // segmentation === "length"
-    const numPoints = pointsInSegments.reduce((sum, curr) => sum + curr.length, 0);
-    const pieceLength = totalPathLength / numPoints;
-
-    let cumulativeCount = 0;
-
-    return pointsInSegments.map(segment => {
-      const numPointsInSegment = segment.length;
-      const coords: { x: number; y: number }[] = [];
-
-      for (let i = 0; i < numPointsInSegment + sampleRate; i += sampleRate) {
-        const distance = (cumulativeCount + i) * pieceLength;
-        const point = pathElement.getPointAtLength(distance);
-        coords.push(point);
+      const segmentBegins = numPointsInSegment.slice(0, numSegments - 1);
+      segmentBegins.unshift(0);
+      for (let i = 2; i < numSegments; i += 1) {
+        segmentBegins[i] += segmentBegins[i - 1];
+      }
+      for (let i = 0; i < numSegments; i += 1) {
+        segmentBegins[i] *= lengthBetweenPoints;
       }
 
-      cumulativeCount += numPointsInSegment;
+      let current = 0;
+      for (let distance = 0; distance <= totalLength; distance += sampleRate) {
+        const sample = pathElement.getPointAtLength(distance);
+        while (current < numSegments - 1 && distance >= segmentBegins[current + 1]) {
+          current += 1;
+        }
+        lineSegments[current].push(sample);
+      }
+    }
 
-      return coords;
-    });
+    return lineSegments;
   } catch (e) {
     return [];
   }
