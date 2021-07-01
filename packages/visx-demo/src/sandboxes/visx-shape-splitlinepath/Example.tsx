@@ -94,7 +94,7 @@ export default function SplitLinePathExample({
         pointsPerWave,
         direction: 'bottom-to-top',
       }),
-      spiral: chunk(generateSnakePath({ width: width / 4, height: height / 4, step: 20 }), 8),
+      snake: chunk(generateSnakePath({ width: width / 4, height: height / 4, step: 20 }), 8),
     }),
     [width, height, numberOfWaves, pointsPerWave],
   );
@@ -274,11 +274,11 @@ export default function SplitLinePathExample({
             Start
           </text>
         </g>
-        {/* spiral */}
+        {/* snake */}
         <g transform={`translate(${width / 2 - width / 8}, ${height / 2 - height / 8})`}>
           {/* Render all segments as a single line for comparison */}
           <LinePath
-            data={data.spiral.flat()}
+            data={data.snake.flat()}
             x={getX}
             y={getY}
             strokeWidth={8}
@@ -288,7 +288,7 @@ export default function SplitLinePathExample({
 
           <SplitLinePath
             sampleRate={1}
-            segments={data.spiral}
+            segments={data.snake}
             segmentation="length"
             x={getX}
             y={getY}
