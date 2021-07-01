@@ -1,6 +1,6 @@
 {
   "name": "@visx/visx",
-  "version": "1.14.0",
+  "version": "1.14.1",
   "description": "One stop install for all visx packages",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -61,6 +61,6 @@
     "@visx/tooltip": "1.7.2",
     "@visx/voronoi": "1.7.0",
     "@visx/xychart": "1.14.0",
-    "@visx/zoom": "1.11.0"
+    "@visx/zoom": "1.14.1"
   }
 }
