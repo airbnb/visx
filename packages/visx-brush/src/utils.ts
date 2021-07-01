@@ -57,7 +57,7 @@ export function getDomainFromExtent(
 }
 
 export function getPageCoordinates(event: MouseTouchOrPointerEvent) {
-  if (window.TouchEvent && event instanceof TouchEvent) {
+  if (typeof window !== 'undefined' && window.TouchEvent && event instanceof TouchEvent) {
     return {
       pageX: event.touches[0].pageX,
       pageY: event.touches[0].pageY,
