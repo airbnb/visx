@@ -47,7 +47,10 @@ export interface ProvidedZoom {
   /** Callback for dragEnd, sets isDragging to false. */
   dragEnd: () => void;
   /** Callback for dragMove, results in a scale transform. */
-  dragMove: (event: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent) => void;
+  dragMove: (
+    event: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent,
+    options?: { offsetX?: number; offsetY?: number },
+  ) => void;
   /** Callback for dragStart, sets isDragging to true.  */
   dragStart: (event: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent) => void;
   /**
