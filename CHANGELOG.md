@@ -1,4 +1,5 @@
 # Changelog
+- [v1.14.1](#v1141)
 - [v1.14.0](#v1140)
 - [v1.13.0](#v1130)
 - [v1.12.0](#v1120)
@@ -6,10 +7,10 @@
 - [v1.11.1](#v1111)
 - [v1.11.0](#v1110)
 - [v1.10.1](#v1101)
-- [v1.10.0](#v1100)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v1100">v1.10.0</a></li>
   <li><a href="#v191">v1.9.1</a></li>
   <li><a href="#v190">v1.9.0</a></li>
   <li><a href="#v180">v1.8.0</a></li>
@@ -113,6 +114,20 @@
 </details>
 
 ------
+# v1.14.1 (2021-07-01)
+
+#### :bug: Bug Fix
+
+- fix(zoom): fix provided zoom interface [#1257](https://github.com/airbnb/visx/pull/1257)
+
+### :memo: Documentation
+
+- Add Data 2 the People to In the Wild list [#1256](https://github.com/airbnb/visx/pull/1256)
+  
+#### :trophy: Contributors
+- [boy51](https://github.com/boy51)
+- [schillerk](https://github.com/schillerk)
+
 # v1.14.0 (2021-06-25)
 
 #### :rocket: Enhancements
