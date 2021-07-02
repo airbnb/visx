@@ -82,7 +82,7 @@ export default function getSplitLineSegments({
       // segmentation === "length"
       const numPointsInSegment = pointsInSegments.map(points => points.length);
       const numPoints = numPointsInSegment.reduce((sum, curr) => sum + curr, 0);
-      const lengthBetweenPoints = totalLength / (numPoints - 1);
+      const lengthBetweenPoints = totalLength / Math.max(1, (numPoints - 1));
 
       const segmentBegins = numPointsInSegment.slice(0, numSegments - 1);
       segmentBegins.unshift(0);
