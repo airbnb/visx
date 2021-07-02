@@ -9,6 +9,7 @@ function distance(a: Point, b: Point) {
   return Math.sqrt((b.x - a.x) ** 2 + (b.y - a.y) ** 2);
 }
 
+/** generate a continuous path that fill rectangular space, similar to the classic Nokia snake game. */
 export default function generateSnakePath({
   width,
   height,
