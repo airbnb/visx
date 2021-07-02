@@ -54,52 +54,59 @@ export default function getSplitLineSegments({
     const lineSegments: LineSegments = pointsInSegments.map(() => []);
 
     if (segmentation === 'x' || segmentation === 'y') {
-      const segmentBegins = pointsInSegments.map(
+      const segmentStarts = pointsInSegments.map(
         points => points.find(p => typeof p[segmentation] === 'number')?.[segmentation],
       );
 
       const first = pathElement.getPointAtLength(0);
       const last = pathElement.getPointAtLength(totalLength);
       const isIncreasing = last[segmentation] > first[segmentation];
-      const isBeyondSegments = isIncreasing
-        ? segmentBegins.map(begin =>
-            typeof begin === 'undefined' ? TRUE : (xOrY: number) => xOrY >= begin,
+      const isBeyondSegmentStart = isIncreasing
+        ? segmentStarts.map(start =>
+            typeof start === 'undefined' ? TRUE : (xOrY: number) => xOrY >= start,
           )
-        : segmentBegins.map(begin =>
-            typeof begin === 'undefined' ? TRUE : (xOrY: number) => xOrY <= begin,
+        : segmentStarts.map(start =>
+            typeof start === 'undefined' ? TRUE : (xOrY: number) => xOrY <= start,
           );
 
-      let current = 0;
+      let currentSegment = 0;
       for (let distance = 0; distance <= totalLength; distance += sampleRate) {
         const sample = pathElement.getPointAtLength(distance);
         const position = sample[segmentation];
-        while (current < numSegments - 1 && isBeyondSegments[current + 1](position)) {
-          current += 1;
+        // find the current segment to which this sample belongs
+        while (
+          currentSegment < numSegments - 1 &&
+          isBeyondSegmentStart[currentSegment + 1](position)
+        ) {
+          currentSegment += 1;
         }
-        lineSegments[current].push(sample);
+        // add sample to segment
+        lineSegments[currentSegment].push(sample);
       }
     } else {
       // segmentation === "length"
       const numPointsInSegment = pointsInSegments.map(points => points.length);
       const numPoints = numPointsInSegment.reduce((sum, curr) => sum + curr, 0);
-      const lengthBetweenPoints = totalLength / Math.max(1, (numPoints - 1));
+      const lengthBetweenPoints = totalLength / Math.max(1, numPoints - 1);
 
-      const segmentBegins = numPointsInSegment.slice(0, numSegments - 1);
-      segmentBegins.unshift(0);
+      const segmentStarts = numPointsInSegment.slice(0, numSegments - 1);
+      segmentStarts.unshift(0);
       for (let i = 2; i < numSegments; i += 1) {
-        segmentBegins[i] += segmentBegins[i - 1];
+        segmentStarts[i] += segmentStarts[i - 1];
       }
       for (let i = 0; i < numSegments; i += 1) {
-        segmentBegins[i] *= lengthBetweenPoints;
+        segmentStarts[i] *= lengthBetweenPoints;
       }
 
-      let current = 0;
+      let currentSegment = 0;
       for (let distance = 0; distance <= totalLength; distance += sampleRate) {
         const sample = pathElement.getPointAtLength(distance);
-        while (current < numSegments - 1 && distance >= segmentBegins[current + 1]) {
-          current += 1;
+        // find the current segment to which this sample belongs
+        while (currentSegment < numSegments - 1 && distance >= segmentStarts[currentSegment + 1]) {
+          currentSegment += 1;
         }
-        lineSegments[current].push(sample);
+        // add sample to segment
+        lineSegments[currentSegment].push(sample);
       }
     }
 
