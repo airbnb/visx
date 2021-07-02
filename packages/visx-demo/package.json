@@ -81,6 +81,7 @@
     "d3-shape": "^1.0.6",
     "d3-time-format": "^2.0.5",
     "happo.io": "^6.4.0",
+    "lodash" : "^4.17.21",
     "markdown-loader": "^5.1.0",
     "next": "9.5.4",
     "nprogress": "^0.2.0",
