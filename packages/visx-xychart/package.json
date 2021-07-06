@@ -61,7 +61,8 @@
     "d3-shape": "^2.0.0",
     "lodash": "^4.17.10",
     "mitt": "^2.1.0",
-    "prop-types": "^15.6.2"
+    "prop-types": "^15.6.2",
+    "react-spring": "^9.2.3"
   },
   "devDependencies": {
     "resize-observer-polyfill": "1.5.1"
