@@ -193,6 +193,7 @@ function BrushChart({
             onChange={onBrushChange}
             onClick={() => setFilteredStock(stock)}
             selectedBoxStyle={selectedBrushStyle}
+            useWindowMoveEvents
           />
         </AreaChart>
       </svg>

@@ -1,6 +1,6 @@
 {
   "name": "@visx/marker",
-  "version": "1.14.0",
+  "version": "1.16.0",
   "description": "visx marker",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -31,7 +31,7 @@
     "@types/classnames": "^2.2.9",
     "@types/react": "*",
     "@visx/group": "1.7.0",
-    "@visx/shape": "1.14.0",
+    "@visx/shape": "1.16.0",
     "classnames": "^2.2.5",
     "prop-types": "^15.6.2"
   },

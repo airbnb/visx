@@ -1,80 +1,117 @@
-import memoize from 'lodash/memoize';
+import getOrCreateMeasurementElement from './getOrCreateMeasurementElement';
 
 const MEASUREMENT_ELEMENT_ID = '__visx_splitpath_svg_path_measurement_id';
-const SVG_NAMESPACE_URL = 'http://www.w3.org/2000/svg';
 
-export interface GetLineSegmentsConfig<Datum> {
-  /** Full path `d` attribute to be broken up into `n` segments. */
-  path: string;
-  /**
-   * Array of length `n`, where `n` is the number of resulting line segments.
-   * For each segment of length `m`, `m / sampleRate` evenly spaced points will be returned.
-   */
-  segments: Datum[][];
-  /** For each segment of length `m`, `m / sampleRate` evenly spaced points will be returned. */
-  sampleRate?: number;
+interface PointInSegment {
+  x: number | undefined;
+  y: number | undefined;
 }
+
+/** Different algorithms to segment the line */
+export type LineSegmentation = 'x' | 'y' | 'length';
 
 type LineSegments = { x: number; y: number }[][];
 
-export function getSplitLineSegments<Datum>({
+const TRUE = () => true;
+
+export interface GetLineSegmentsConfig {
+  /** Full path `d` attribute to be broken up into `n` segments. */
+  path: string;
+  /** Array of length `n`, where `n` is the number of segments. */
+  pointsInSegments: PointInSegment[][];
+  /**
+   * How to segment the line
+   * - `x`: Split based on x-position,
+   *  assuming x values increase only (`segment[i].x > segment[i-1].x`)
+   *  or decrease only (`segment[i].x < segment[i-1].x`).
+   * - `y`: Split based on y-position,
+   *  assuming y values increase only (`segment[i].y > segment[i-1].y`)
+   *  or decrease only (`segment[i].y < segment[i-1].y`).
+   * - `length`: Assuming the path length between consecutive points are equal.
+   *
+   * Default is `x`.
+   */
+  segmentation: LineSegmentation;
+  /**
+   * The `path` will be sampled every `sampleRate` pixel to generate the returned points.
+   * Default is `1` pixel.
+   */
+  sampleRate?: number;
+}
+
+export default function getSplitLineSegments({
   path,
-  segments,
-  sampleRate = 0.25,
-}: GetLineSegmentsConfig<Datum>): LineSegments {
+  pointsInSegments,
+  segmentation = 'x',
+  sampleRate = 1,
+}: GetLineSegmentsConfig): LineSegments {
   try {
-    let pathElement = document.getElementById(MEASUREMENT_ELEMENT_ID) as SVGPathElement | null;
-
-    // create a single path element if not done already
-    if (!pathElement) {
-      const svg = document.createElementNS(SVG_NAMESPACE_URL, 'svg');
-      // not visible
-      svg.style.opacity = '0';
-      svg.style.width = '0';
-      svg.style.height = '0';
-      // off screen
-      svg.style.position = 'absolute';
-      svg.style.top = '-100%';
-      svg.style.left = '-100%';
-      // no mouse events
-      svg.style.pointerEvents = 'none';
-      pathElement = document.createElementNS(SVG_NAMESPACE_URL, 'path');
-      pathElement.setAttribute('id', MEASUREMENT_ELEMENT_ID);
-      svg.appendChild(pathElement);
-      document.body.appendChild(svg);
-    }
-
+    const pathElement = getOrCreateMeasurementElement(MEASUREMENT_ELEMENT_ID);
     pathElement.setAttribute('d', path);
+    const totalLength = pathElement.getTotalLength();
 
-    const totalPathLength = pathElement.getTotalLength();
-    const totalPieces = segments.reduce((sum, curr) => sum + curr.length, 0);
-    const pieceSize = totalPathLength / totalPieces;
+    const numSegments = pointsInSegments.length;
+    const lineSegments: LineSegments = pointsInSegments.map(() => []);
 
-    let cumulativeSize = 0;
+    if (segmentation === 'x' || segmentation === 'y') {
+      const segmentStarts = pointsInSegments.map(
+        points => points.find(p => typeof p[segmentation] === 'number')?.[segmentation],
+      );
 
-    const lineSegments = segments.map(segment => {
-      const segmentPointCount = segment.length;
-      const coords: { x: number; y: number }[] = [];
+      const first = pathElement.getPointAtLength(0);
+      const last = pathElement.getPointAtLength(totalLength);
+      const isIncreasing = last[segmentation] > first[segmentation];
+      const isBeyondSegmentStart = isIncreasing
+        ? segmentStarts.map(start =>
+            typeof start === 'undefined' ? TRUE : (xOrY: number) => xOrY >= start,
+          )
+        : segmentStarts.map(start =>
+            typeof start === 'undefined' ? TRUE : (xOrY: number) => xOrY <= start,
+          );
 
-      for (let i = 0; i < segmentPointCount + sampleRate; i += sampleRate) {
-        const distance = (cumulativeSize + i) * pieceSize;
-        const point = pathElement!.getPointAtLength(distance);
-        coords.push(point);
+      let currentSegment = 0;
+      for (let distance = 0; distance <= totalLength; distance += sampleRate) {
+        const sample = pathElement.getPointAtLength(distance);
+        const position = sample[segmentation];
+        // find the current segment to which this sample belongs
+        while (
+          currentSegment < numSegments - 1 &&
+          isBeyondSegmentStart[currentSegment + 1](position)
+        ) {
+          currentSegment += 1;
+        }
+        // add sample to segment
+        lineSegments[currentSegment].push(sample);
+      }
+    } else {
+      // segmentation === "length"
+      const numPointsInSegment = pointsInSegments.map(points => points.length);
+      const numPoints = numPointsInSegment.reduce((sum, curr) => sum + curr, 0);
+      const lengthBetweenPoints = totalLength / Math.max(1, numPoints - 1);
+
+      const segmentStarts = numPointsInSegment.slice(0, numSegments - 1);
+      segmentStarts.unshift(0);
+      for (let i = 2; i < numSegments; i += 1) {
+        segmentStarts[i] += segmentStarts[i - 1];
+      }
+      for (let i = 0; i < numSegments; i += 1) {
+        segmentStarts[i] *= lengthBetweenPoints;
       }
 
-      cumulativeSize += segmentPointCount;
-
-      return coords;
-    });
+      let currentSegment = 0;
+      for (let distance = 0; distance <= totalLength; distance += sampleRate) {
+        const sample = pathElement.getPointAtLength(distance);
+        // find the current segment to which this sample belongs
+        while (currentSegment < numSegments - 1 && distance >= segmentStarts[currentSegment + 1]) {
+          currentSegment += 1;
+        }
+        // add sample to segment
+        lineSegments[currentSegment].push(sample);
+      }
+    }
 
     return lineSegments;
   } catch (e) {
     return [];
   }
 }
-
-export default memoize(
-  getSplitLineSegments,
-  ({ path, segments, sampleRate }: GetLineSegmentsConfig<any>) =>
-    `${path}_${segments.length}_${segments.map(segment => segment.length).join('-')}_${sampleRate}`,
-);

@@ -1,15 +1,19 @@
 # Changelog
+- [v1.16.1](#v1161)
+- [v1.16.0](#v1160)
+- [v1.15.0](#v1150)
+- [v1.14.1](#v1141)
 - [v1.14.0](#v1140)
 - [v1.13.0](#v1130)
 - [v1.12.0](#v1120)
 - [v1.11.2](#v1112)
-- [v1.11.1](#v1111)
-- [v1.11.0](#v1110)
-- [v1.10.1](#v1101)
-- [v1.10.0](#v1100)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v1111">v1.11.1</a></li>
+  <li><a href="#v1110">v1.11.0</a></li>
+  <li><a href="#v1101">v1.10.1</a></li>
+  <li><a href="#v1100">v1.10.0</a></li>
   <li><a href="#v191">v1.9.1</a></li>
   <li><a href="#v190">v1.9.0</a></li>
   <li><a href="#v180">v1.8.0</a></li>
@@ -113,6 +117,51 @@
 </details>
 
 ------
+# v1.16.1 (2021-07-07)
+
+#### :bug: Bug Fix
+
+- fix(xychart): support fragment and array type children of stacks/groups [#1259](https://github.com/airbnb/visx/pull/1259)
+  
+#### :trophy: Contributors
+- [williaster](https://github.com/williaster)
+
+# v1.16.0 (2021-07-02)
+
+#### :rocket: Enhancements
+
+- feat(shape): add more segmentation for SplitLinePath [#1261](https://github.com/airbnb/visx/pull/1261)
+
+#### :bug: Bug Fix
+
+- feat(shape): add more segmentation for SplitLinePath [#1261](https://github.com/airbnb/visx/pull/1261)
+  
+#### :trophy: Contributors
+- [kristw](https://github.com/kristw)
+
+# v1.15.0 (2021-07-01)
+
+#### :rocket: Enhancements
+
+- feat(brush): add using widows move events with brush [#1164](https://github.com/airbnb/visx/pull/1164)
+  
+#### :trophy: Contributors
+- [d3x42](https://github.com/d3x42)
+
+# v1.14.1 (2021-07-01)
+
+#### :bug: Bug Fix
+
+- fix(zoom): fix provided zoom interface [#1257](https://github.com/airbnb/visx/pull/1257)
+
+### :memo: Documentation
+
+- Add Data 2 the People to In the Wild list [#1256](https://github.com/airbnb/visx/pull/1256)
+  
+#### :trophy: Contributors
+- [boy51](https://github.com/boy51)
+- [schillerk](https://github.com/schillerk)
+
 # v1.14.0 (2021-06-25)
 
 #### :rocket: Enhancements
