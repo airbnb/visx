@@ -1,4 +1,4 @@
-import { mount } from 'enzyme';
+import { render } from '@testing-library/react';
 import React, { useContext } from 'react';
 import { Annotation } from '../src';
 import AnnotationContext from '../src/context/AnnotationContext';
@@ -16,7 +16,7 @@ describe('<Annotation />', () => {
       return null;
     }
 
-    mount(
+    render(
       <Annotation {...annotation}>
         <AnnotationChild />
       </Annotation>,
