@@ -1,6 +1,6 @@
 {
   "name": "@visx/visx",
-  "version": "1.16.1",
+  "version": "1.17.0",
   "description": "One stop install for all visx packages",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "@visx/annotation": "1.16.0",
-    "@visx/axis": "1.16.0",
+    "@visx/axis": "1.17.0",
     "@visx/bounds": "1.7.0",
     "@visx/brush": "1.16.0",
     "@visx/clip-path": "1.7.0",
@@ -60,7 +60,7 @@
     "@visx/text": "1.10.0",
     "@visx/tooltip": "1.7.2",
     "@visx/voronoi": "1.7.0",
-    "@visx/xychart": "1.16.1",
+    "@visx/xychart": "1.17.0",
     "@visx/zoom": "1.14.1"
   }
 }
