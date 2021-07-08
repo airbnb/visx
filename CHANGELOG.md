@@ -1,4 +1,5 @@
 # Changelog
+- [v1.17.0](#v1170)
 - [v1.16.1](#v1161)
 - [v1.16.0](#v1160)
 - [v1.15.0](#v1150)
@@ -6,10 +7,10 @@
 - [v1.14.0](#v1140)
 - [v1.13.0](#v1130)
 - [v1.12.0](#v1120)
-- [v1.11.2](#v1112)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v1112">v1.11.2</a></li>
   <li><a href="#v1111">v1.11.1</a></li>
   <li><a href="#v1110">v1.11.0</a></li>
   <li><a href="#v1101">v1.10.1</a></li>
@@ -117,6 +118,15 @@
 </details>
 
 ------
+# v1.17.0 (2021-07-08)
+
+#### :rocket: Enhancements
+
+- new(axis): enable customization of tickLineProps [#1211](https://github.com/airbnb/visx/pull/1211)
+  
+#### :trophy: Contributors
+- [LoiKos](https://github.com/LoiKos)
+
 # v1.16.1 (2021-07-07)
 
 #### :bug: Bug Fix
