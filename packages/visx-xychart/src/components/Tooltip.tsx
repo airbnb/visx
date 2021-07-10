@@ -73,6 +73,34 @@ const INVISIBLE_STYLES: React.CSSProperties = {
   pointerEvents: 'none',
 };
 
+interface RenderTooltipGlypProps<Datum extends object> extends RenderGlyphProps<Datum> {
+  glyphStyle?: React.SVGProps<SVGCircleElement>;
+}
+
+function DefaultGlyph<Datum extends object>(props: RenderTooltipGlypProps<Datum>) {
+  const radius = props.size;
+  const strokeWidth = Number(props.glyphStyle?.strokeWidth ?? 1.5);
+  const { theme } = useContext(DataContext) || {};
+
+  return (
+    <circle
+      className="visx-tooltip-glyph"
+      cx={props.x}
+      cy={props.y}
+      r={radius}
+      fill={props.color}
+      stroke={theme?.backgroundColor}
+      strokeWidth={strokeWidth}
+      paintOrder="fill"
+      {...props.glyphStyle}
+    />
+  );
+}
+
+function defaultRenderGlyph<Datum extends object>(props: RenderTooltipGlypProps<Datum>) {
+  return <DefaultGlyph {...props} />;
+}
+
 /**
  * This is a wrapper component which bails early if tooltip is not visible.
  * If scroll detection is enabled in UseTooltipPortalOptions, this avoids re-rendering
@@ -93,7 +121,7 @@ function TooltipInner<Datum extends object>({
   horizontalCrosshairStyle,
   glyphStyle,
   renderTooltip,
-  renderGlyph: renderGlyphProp,
+  renderGlyph = defaultRenderGlyph,
   resizeObserverPolyfill,
   scroll = true,
   showDatumGlyph = false,
@@ -178,28 +206,7 @@ function TooltipInner<Datum extends object>({
   }
 
   // collect positions + styles for glyphs; glyphs always snap to Datum, not event coords
-  const glyphs: React.ReactNode[] = [];
-
-  const renderGlyph =
-    renderGlyphProp ||
-    (<Datum extends object>(props: RenderGlyphProps<Datum>) => {
-      const radius = props.size;
-      const strokeWidth = Number(glyphStyle?.strokeWidth ?? 1.5);
-
-      return (
-        <circle
-          className="visx-tooltip-glyph"
-          cx={props.x}
-          cy={props.y}
-          r={radius}
-          fill={props.color}
-          stroke={theme?.backgroundColor}
-          strokeWidth={strokeWidth}
-          paintOrder="fill"
-          {...glyphStyle}
-        />
-      );
-    });
+  const glyphProps: RenderTooltipGlypProps<Datum>[] = [];
 
   if (showTooltip && (showDatumGlyph || showSeriesGlyphs)) {
     const size = Number(glyphStyle?.radius ?? 4);
@@ -212,17 +219,16 @@ function TooltipInner<Datum extends object>({
         // don't show glyphs if coords are unavailable
         if (!isValidNumber(left) || !isValidNumber(top)) return;
 
-        glyphs.push(
-          renderGlyph({
-            key,
-            color,
-            datum,
-            index: 0,
-            size,
-            x: left,
-            y: top,
-          }),
-        );
+        glyphProps.push({
+          key,
+          color,
+          datum,
+          index: 0,
+          size,
+          x: left,
+          y: top,
+          glyphStyle,
+        });
       });
     } else if (nearestDatum) {
       const { left, top } = getDatumLeftTop(nearestDatumKey, nearestDatum.datum);
@@ -234,17 +240,16 @@ function TooltipInner<Datum extends object>({
           theme?.gridStyles?.stroke ??
           theme?.htmlLabel?.color ??
           '#222';
-        glyphs.push(
-          renderGlyph({
-            key: nearestDatumKey,
-            color,
-            datum: nearestDatum.datum,
-            index: 0,
-            size,
-            x: left,
-            y: top,
-          }),
-        );
+        glyphProps.push({
+          key: nearestDatumKey,
+          color,
+          datum: nearestDatum.datum,
+          index: 0,
+          size,
+          x: left,
+          y: top,
+          glyphStyle,
+        });
       }
     }
   }
@@ -303,11 +308,21 @@ function TooltipInner<Datum extends object>({
               </svg>
             </TooltipInPortal>
           )}
-          <svg>
-            {glyphs.map((glyph, i) => (
-              <React.Fragment key={i}>{glyph}</React.Fragment>
-            ))}
-          </svg>
+          {glyphProps.map(({ x, y, ...props }, i) => (
+            // We render glyps in a portal so that they can overflow the container if necessary
+            <TooltipInPortal
+              key={i}
+              className="visx-tooltip-glyph"
+              left={x}
+              top={y}
+              offsetLeft={0}
+              offsetTop={0}
+              detectBounds={false}
+              style={TOOLTIP_NO_STYLE}
+            >
+              <svg overflow="visible">{renderGlyph({ x: 0, y: 0, ...props })}</svg>
+            </TooltipInPortal>
+          ))}
           <TooltipInPortal
             left={tooltipLeft}
             top={tooltipTop}
