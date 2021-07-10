@@ -22,12 +22,6 @@ export type RenderTooltipParams<Datum extends object> = TooltipContextType<Datum
   colorScale?: PickD3Scale<'ordinal', string, string>;
 };
 
-export type RenderGlyphParams<Datum extends object> = {
-  datum: Datum;
-  color: string;
-  glyphStyle: React.SVGProps<SVGCircleElement>;
-};
-
 export type TooltipProps<Datum extends object> = {
   /**
    * When TooltipContext.tooltipOpen=true, this function is invoked and if the
