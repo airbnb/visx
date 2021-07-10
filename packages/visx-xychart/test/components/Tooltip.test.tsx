@@ -120,7 +120,7 @@ describe('<Tooltip />', () => {
         },
       ],
     });
-    expect(wrapper.find('.visx-tooltip-glyph')).toHaveLength(0);
+    expect(wrapper.find('div.visx-tooltip-glyph')).toHaveLength(0);
   });
   it('should render a glyph if showDatumGlyph=true if there is a nearestDatum', () => {
     const wrapper = setup({
@@ -141,7 +141,7 @@ describe('<Tooltip />', () => {
         },
       ],
     });
-    expect(wrapper.find('.visx-tooltip-glyph')).toHaveLength(1);
+    expect(wrapper.find('div.visx-tooltip-glyph')).toHaveLength(1);
   });
   it('should render a glyph for each series if showSeriesGlyphs=true', () => {
     const wrapper = setup({
@@ -170,6 +170,6 @@ describe('<Tooltip />', () => {
         },
       ],
     });
-    expect(wrapper.find('.visx-tooltip-glyph')).toHaveLength(2);
+    expect(wrapper.find('div.visx-tooltip-glyph')).toHaveLength(2);
   });
 });

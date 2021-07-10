@@ -212,24 +212,26 @@ function TooltipInner<Datum extends object>({
     const size = Number(glyphStyle?.radius ?? 4);
 
     if (showSeriesGlyphs) {
-      Object.values(tooltipContext?.tooltipData?.datumByKey ?? {}).forEach(({ key, datum }) => {
-        const color = colorScale?.(key) ?? theme?.htmlLabel?.color ?? '#222';
-        const { left, top } = getDatumLeftTop(key, datum);
+      Object.values(tooltipContext?.tooltipData?.datumByKey ?? {}).forEach(
+        ({ key, datum, index }) => {
+          const color = colorScale?.(key) ?? theme?.htmlLabel?.color ?? '#222';
+          const { left, top } = getDatumLeftTop(key, datum);
 
-        // don't show glyphs if coords are unavailable
-        if (!isValidNumber(left) || !isValidNumber(top)) return;
+          // don't show glyphs if coords are unavailable
+          if (!isValidNumber(left) || !isValidNumber(top)) return;
 
-        glyphProps.push({
-          key,
-          color,
-          datum,
-          index: 0,
-          size,
-          x: left,
-          y: top,
-          glyphStyle,
-        });
-      });
+          glyphProps.push({
+            key,
+            color,
+            datum,
+            index,
+            size,
+            x: left,
+            y: top,
+            glyphStyle,
+          });
+        },
+      );
     } else if (nearestDatum) {
       const { left, top } = getDatumLeftTop(nearestDatumKey, nearestDatum.datum);
       // don't show glyphs if coords are unavailable
@@ -244,7 +246,7 @@ function TooltipInner<Datum extends object>({
           key: nearestDatumKey,
           color,
           datum: nearestDatum.datum,
-          index: 0,
+          index: nearestDatum.index,
           size,
           x: left,
           y: top,
