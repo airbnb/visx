@@ -188,7 +188,7 @@ Lots coming soon, check out the [roadmap](./ROADMAP.md).
 - Ethereum candlestick chart by [@hshoff](https://github.com/hshoff)
   ([Github](https://github.com/hshoff/viewsource#2-ethereum-candlestick-chart))
 - Song data visualization through spotify by [@bother7](https://github.com/bother7)
-  ([Demo](https://spotalyzer-frontend.herokuapp.com/demo)
+  ([Demo](https://spotalyzer-frontend.herokuapp.com/demo))
   ([Github](https://github.com/bother7/spotalyzer_frontend))
 - Investment Calculator ([website](https://investmentcalculator.io/))
 - Animation with [`react-spring`](https://github.com/drcmda/react-spring/) by
@@ -216,6 +216,7 @@ Lots coming soon, check out the [roadmap](./ROADMAP.md).
 - [Escape From Tarkov Ammo Chart](https://eft.monster/) by
   [@codenomial](https://github.com/codenomial)
 - [Pry](https://pry.co) Finance for Founders (dashboard by [@valtism](https://github.com/valtism))
+- [Data 2 the People](https://www.data2thepeople.org/) Donation Efficacy Analysis for Downballot Races ([Demo](https://donate.data2thepeople.org/)) ([Github](https://github.com/Data-2-the-People/skyfall/blob/master/components/Scatterplot.jsx))
 
 Have a project that's using `visx`? Open a pull request and we'll add it to the list.
 

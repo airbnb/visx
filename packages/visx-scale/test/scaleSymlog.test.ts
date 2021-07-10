@@ -49,4 +49,14 @@ describe('scaleSymlog', () => {
       expect(scaleSymlog({ domain: [-2, 3], zero: false }).domain()).toEqual([-2, 3]);
     });
   });
+  describe('set round', () => {
+    it('true', () => {
+      expect(scaleSymlog({ domain: [1, 3], round: true })(2)).toEqual(1);
+    });
+    it('false', () => {
+      expect((scaleSymlog({ domain: [1, 3], round: false })(2) as number).toFixed(3)).toEqual(
+        '0.585',
+      );
+    });
+  });
 });

@@ -1,6 +1,6 @@
 import React from 'react';
-import SplitLinePath, {
-  SplitLinePathProps,
+import SplitLinePathExample, {
+  SplitLinePathExampleProps,
   backgroundLight,
 } from '../../sandboxes/visx-shape-splitlinepath/Example';
 import GalleryTile from '../GalleryTile';
@@ -12,10 +12,10 @@ const detailsStyles = { color: 'white' };
 
 export default function SplitLinePathTile() {
   return (
-    <GalleryTile<SplitLinePathProps>
+    <GalleryTile<SplitLinePathExampleProps>
       title="SplitLinePath"
       description="<Shape.SplitLinePath />"
-      exampleRenderer={SplitLinePath}
+      exampleRenderer={SplitLinePathExample}
       exampleUrl="/splitlinepath"
       tileStyles={tileStyles}
       detailsStyles={detailsStyles}

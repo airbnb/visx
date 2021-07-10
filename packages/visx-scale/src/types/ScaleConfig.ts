@@ -52,7 +52,7 @@ export type SymlogScaleConfig<Output = DefaultOutput> = CreateScaleConfig<
   'symlog',
   ContinuousDomain,
   Output[],
-  'clamp' | 'constant' | 'nice' | 'zero'
+  'clamp' | 'constant' | 'nice' | 'round' | 'zero'
 >;
 
 export type RadialScaleConfig<Output = DefaultOutput> = CreateScaleConfig<

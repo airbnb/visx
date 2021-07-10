@@ -1,10 +1,20 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, ShallowWrapper } from 'enzyme';
 
 import { Line } from '@visx/shape';
 import { Text } from '@visx/text';
 import { scaleBand, scaleLinear } from '@visx/scale';
 import { Axis } from '../src';
+
+const getTickLine = (
+  wrapper: ShallowWrapper<unknown, Readonly<{}>, React.Component<{}, {}, unknown>>,
+) =>
+  wrapper
+    .children()
+    .find('.visx-axis-tick')
+    .not('.visx-axis-line')
+    .find('Line')
+    .first();
 
 const axisProps = {
   orientation: 'left' as const,
@@ -204,6 +214,29 @@ describe('<Axis />', () => {
         .find(Text)
         .prop('children'),
     ).toBe('0');
+  });
+
+  test('tick default should follow parent', () => {
+    const wrapper = shallow(<Axis {...axisProps} strokeWidth={2} />);
+    expect(getTickLine(wrapper).prop('strokeWidth')).toBe(2);
+    expect(getTickLine(wrapper).prop('strokeLinecap')).toBe('square');
+  });
+
+  test('tick stroke width should be different parent and equal to tickStrokeWidth', () => {
+    const wrapper = shallow(
+      <Axis
+        {...axisProps}
+        strokeWidth={2}
+        tickLineProps={{ strokeWidth: 3, strokeLinecap: 'round' }}
+      />,
+    );
+    expect(getTickLine(wrapper).prop('strokeWidth')).toBe(3);
+    expect(getTickLine(wrapper).prop('strokeLinecap')).toBe('round');
+  });
+
+  test('default tick stroke width should be 1', () => {
+    const wrapper = shallow(<Axis {...axisProps} />);
+    expect(getTickLine(wrapper).prop('strokeWidth')).toBe(1);
   });
 
   it('should use center if scale is band', () => {
