@@ -84,7 +84,6 @@ function DefaultGlyph<Datum extends object>(props: RenderTooltipGlypProps<Datum>
 
   return (
     <circle
-      className="visx-tooltip-glyph"
       cx={props.x}
       cy={props.y}
       r={radius}
