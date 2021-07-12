@@ -1,6 +1,8 @@
 import * as React from 'react';
-import { mount } from 'enzyme';
 import { withBoundingRects } from '../src';
+import { render, waitFor } from '@testing-library/react';
+import fireEvent from '@testing-library/user-event';
+import '@testing-library/jest-dom'
 
 const expectedRectShape = expect.objectContaining({
   top: expect.any(Number),
@@ -16,22 +18,48 @@ const emptyRect = {
   right: 0,
   bottom: 0,
   left: 0,
-  width: 0,
-  height: 0,
 };
+
+const mockRect = {
+  top: 50,
+  left: 50,
+  bottom: 0,
+  right: 0,
+};
+
+// Component created for testing purpose
+function BoundingRectsComponent({ rect, parentRect, getRects, children, ...otherProps}) {
+  const parentRectStyle = {
+    top: parentRect?.top,
+    left: parentRect?.left,
+    bottom: parentRect?.bottom,
+    right: parentRect?.right,
+  }
+
+  const rectStyle = {
+    top: rect?.top,
+    left: rect?.left,
+    bottom: rect?.bottom,
+    right: rect?.right,
+  }
+
+  return <div data-testid="BoundingRectsComponentParent" style={parentRectStyle}>
+      <div data-testid="BoundingRectsComponent" style={rectStyle} onClick={()=>getRects()}>
+        {children}
+        {JSON.stringify(otherProps)}
+    </div>
+  </div>;
+}
 
 describe('withBoundingRects()', () => {
   beforeAll(() => {
     // mock getBoundingClientRect
     Element.prototype.getBoundingClientRect = jest.fn(() => ({
-      width: 100,
-      height: 100,
-      top: 0,
-      left: 0,
-      bottom: 0,
-      right: 0,
+      ...mockRect,
       x: 0,
       y: 0,
+      width: 100,
+      height: 100,
       toJSON: jest.fn(),
     }));
   });
@@ -40,41 +68,48 @@ describe('withBoundingRects()', () => {
     expect(withBoundingRects).toBeDefined();
   });
 
-  test('it should pass rect, parentRect, and getRect props to the wrapped component', () => {
-    const Component = () => <div />;
-    const HOC = withBoundingRects(Component);
-    const wrapper = mount(<HOC />);
-    const RenderedComponent = wrapper.find(Component);
+  test('it should pass rect, parentRect, and getRect props to the wrapped component', async () => {
+    const HOC = withBoundingRects(BoundingRectsComponent);
+    // @ts-ignore
+    const { getByTestId } = render(<HOC />);
 
-    expect(Element.prototype.getBoundingClientRect).toHaveBeenCalled();
-    expect(RenderedComponent.prop('rect')).toEqual(expectedRectShape);
-    expect(RenderedComponent.prop('parentRect')).toEqual(expectedRectShape);
-    expect(typeof RenderedComponent.prop('getRects')).toBe('function');
+    // getBoundingClientRect should be called twice, once for the component, and once for its parent
+    const RenderedComponent = await getByTestId('BoundingRectsComponent');
+    const RenderedComponentParent = await getByTestId('BoundingRectsComponentParent');
+    await waitFor(() => expect(Element.prototype.getBoundingClientRect).toHaveBeenCalledTimes(2), {timeout: 5000});
+
+    console.log(RenderedComponent)
+    const expectedStyle = `top: ${mockRect.top}px; bottom: ${mockRect.bottom}px; left: ${mockRect.left}px; right: ${mockRect.right}px;`;
+    expect(RenderedComponent).toHaveStyle(expectedStyle);
+    expect(RenderedComponentParent).toHaveStyle(expectedStyle);
+
+    fireEvent.click(RenderedComponent);
+    // upon onClick time, getBuondingClientRect should be called extra 2 times
+    expect(Element.prototype.getBoundingClientRect).toHaveBeenCalledTimes(4);
   });
 
   test('it should pass additional props to the wrapped component', () => {
-    const Component = () => <div />;
-    const HOC = withBoundingRects(Component);
+    const HOC = withBoundingRects(BoundingRectsComponent);
     // @ts-ignore
-    const wrapper = mount(<HOC bananas="are yellow" />);
-    const RenderedComponent = wrapper.find(Component);
-    expect(RenderedComponent.prop('bananas')).toBe('are yellow');
+    const { getByText } = render(<HOC bananas="are yellow" />);
+    expect(getByText('are yellow', { exact: false })).toBeInTheDocument();
   });
 
-  test('it should return default empty state if no node', () => {
+  test('it should not render if no node', () => {
     const Component = () => null;
     const HOC = withBoundingRects(Component);
-    const wrapper = mount(<HOC />);
-    const RenderedComponent = wrapper.find(Component);
-    expect(RenderedComponent.prop('rect')).toBeUndefined();
-    expect(RenderedComponent.prop('parentRect')).toBeUndefined();
+    const { container } = render(<HOC />);
+    expect(container.innerHTML).toHaveLength(0);
   });
 
   test('it should set rect and parentRect to empty state if no getBoundingClient()', () => {
-    const Component = () => <>{''}</>;
-    const HOC = withBoundingRects(Component);
-    const wrapper = mount(<HOC />);
-    const RenderedComponent = wrapper.find(Component);
-    expect(RenderedComponent.prop('rect')).toEqual(emptyRect);
+    Element.prototype.getBoundingClientRect = null;
+    const HOC = withBoundingRects(BoundingRectsComponent);
+    // @ts-ignore
+    const { getByTestId } = render(<HOC />);
+    const RenderedComponent = getByTestId('BoundingRectsComponent');
+    const RenderedComponentParent = getByTestId('BoundingRectsComponentParent');
+    expect(RenderedComponent).toHaveStyle(emptyRect);
+    expect(RenderedComponentParent).toHaveStyle(emptyRect);
   });
 });
