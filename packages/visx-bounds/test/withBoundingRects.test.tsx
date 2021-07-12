@@ -74,11 +74,11 @@ describe('withBoundingRects()', () => {
     const { getByTestId } = render(<HOC />);
 
     // getBoundingClientRect should be called twice, once for the component, and once for its parent
+    await waitFor(() => expect(Element.prototype.getBoundingClientRect).toHaveBeenCalledTimes(2));
+
     const RenderedComponent = await getByTestId('BoundingRectsComponent');
     const RenderedComponentParent = await getByTestId('BoundingRectsComponentParent');
-    await waitFor(() => expect(Element.prototype.getBoundingClientRect).toHaveBeenCalledTimes(2), {timeout: 5000});
 
-    console.log(RenderedComponent)
     const expectedStyle = `top: ${mockRect.top}px; bottom: ${mockRect.bottom}px; left: ${mockRect.left}px; right: ${mockRect.right}px;`;
     expect(RenderedComponent).toHaveStyle(expectedStyle);
     expect(RenderedComponentParent).toHaveStyle(expectedStyle);
