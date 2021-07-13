@@ -87,7 +87,7 @@
     "nprogress": "^0.2.0",
     "prismjs": "^1.19.0",
     "raw-loader": "^4.0.0",
-    "react": "^16.9.0",
+    "react": "^16.9.0 || ^17.0.0-0",
     "react-docgen-typescript-loader": "3.7.2",
     "react-dom": "^16.9.0",
     "react-github-button": "^0.1.10",
