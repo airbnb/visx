@@ -1,17 +1,19 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import * as React from 'react';
-import { withBoundingRects } from '../src';
 import { render, waitFor } from '@testing-library/react';
 import fireEvent from '@testing-library/user-event';
-import '@testing-library/jest-dom'
+import { withBoundingRects } from '../src';
+import '@testing-library/jest-dom';
 
-const expectedRectShape = expect.objectContaining({
-  top: expect.any(Number),
-  right: expect.any(Number),
-  bottom: expect.any(Number),
-  left: expect.any(Number),
-  width: expect.any(Number),
-  height: expect.any(Number),
-});
+type RectShape = {
+  top?: number;
+  right?: number;
+  bottom?: number;
+  left?: number;
+  width?: number;
+  height?: number;
+};
 
 const emptyRect = {
   top: 0,
@@ -27,34 +29,50 @@ const mockRect = {
   right: 0,
 };
 
+type BoundingRectsComponentProps = {
+  rect?: RectShape;
+  parentRect?: RectShape;
+  getRects?: () => DOMRect;
+  children?: JSX.Element;
+  otherProps?: object;
+};
+
 // Component created for testing purpose
-function BoundingRectsComponent({ rect, parentRect, getRects, children, ...otherProps}) {
+function BoundingRectsComponent({
+  rect,
+  parentRect,
+  getRects,
+  children,
+  ...otherProps
+}: BoundingRectsComponentProps) {
   const parentRectStyle = {
     top: parentRect?.top,
     left: parentRect?.left,
     bottom: parentRect?.bottom,
     right: parentRect?.right,
-  }
+  };
 
   const rectStyle = {
     top: rect?.top,
     left: rect?.left,
     bottom: rect?.bottom,
     right: rect?.right,
-  }
+  };
 
-  return <div data-testid="BoundingRectsComponentParent" style={parentRectStyle}>
-      <div data-testid="BoundingRectsComponent" style={rectStyle} onClick={()=>getRects()}>
+  return (
+    <div data-testid="BoundingRectsComponentParent" style={parentRectStyle}>
+      <div data-testid="BoundingRectsComponent" style={rectStyle} onClick={() => getRects?.()}>
         {children}
         {JSON.stringify(otherProps)}
+      </div>
     </div>
-  </div>;
+  );
 }
 
 describe('withBoundingRects()', () => {
   beforeAll(() => {
     // mock getBoundingClientRect
-    Element.prototype.getBoundingClientRect = jest.fn(() => ({
+    jest.spyOn(Element.prototype, 'getBoundingClientRect').mockImplementation(() => ({
       ...mockRect,
       x: 0,
       y: 0,
@@ -76,8 +94,8 @@ describe('withBoundingRects()', () => {
     // getBoundingClientRect should be called twice, once for the component, and once for its parent
     await waitFor(() => expect(Element.prototype.getBoundingClientRect).toHaveBeenCalledTimes(2));
 
-    const RenderedComponent = await getByTestId('BoundingRectsComponent');
-    const RenderedComponentParent = await getByTestId('BoundingRectsComponentParent');
+    const RenderedComponent = getByTestId('BoundingRectsComponent');
+    const RenderedComponentParent = getByTestId('BoundingRectsComponentParent');
 
     const expectedStyle = `top: ${mockRect.top}px; bottom: ${mockRect.bottom}px; left: ${mockRect.left}px; right: ${mockRect.right}px;`;
     expect(RenderedComponent).toHaveStyle(expectedStyle);
@@ -103,7 +121,7 @@ describe('withBoundingRects()', () => {
   });
 
   test('it should set rect and parentRect to empty state if no getBoundingClient()', () => {
-    Element.prototype.getBoundingClientRect = null;
+    (Element.prototype.getBoundingClientRect as unknown) = null;
     const HOC = withBoundingRects(BoundingRectsComponent);
     // @ts-ignore
     const { getByTestId } = render(<HOC />);
