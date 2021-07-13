@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
+import { scaleLinear } from '@visx/scale';
 import { GridPolar, GridAngle, GridRadial } from '../src';
-import { scaleLinear } from '../../visx-scale';
 
 const gridProps = {
   innerRadius: 0,

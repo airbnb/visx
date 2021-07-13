@@ -2,8 +2,8 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import { Arc } from '@visx/shape';
+import { scaleLinear } from '@visx/scale';
 import { GridRadial } from '../src';
-import { scaleLinear } from '../../visx-scale';
 
 const gridProps = {
   innerRadius: 0,
