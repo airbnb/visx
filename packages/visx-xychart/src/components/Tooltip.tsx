@@ -72,18 +72,16 @@ interface RenderTooltipGlypProps<Datum extends object> extends RenderGlyphProps<
 }
 
 function DefaultGlyph<Datum extends object>(props: RenderTooltipGlypProps<Datum>) {
-  const radius = props.size;
-  const strokeWidth = Number(props.glyphStyle?.strokeWidth ?? 1.5);
   const { theme } = useContext(DataContext) || {};
 
   return (
     <circle
       cx={props.x}
       cy={props.y}
-      r={radius}
+      r={props.size}
       fill={props.color}
       stroke={theme?.backgroundColor}
-      strokeWidth={strokeWidth}
+      strokeWidth={1.5}
       paintOrder="fill"
       {...props.glyphStyle}
     />
