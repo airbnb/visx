@@ -37,7 +37,7 @@
   },
   "peerDependencies": {
     "react": "^16.4.0-0",
-    "react-spring": "^9.0.0-rc.3"
+    "react-spring": "^9.2.0"
   },
   "dependencies": {
     "@types/classnames": "^2.2.9",
