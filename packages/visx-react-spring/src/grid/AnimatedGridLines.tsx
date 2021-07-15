@@ -32,9 +32,8 @@ export default function AnimatedGridLines<Scale extends GridScale>({
   });
 
   return (
-    // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
-      {/* @ts-ignore: react-spring's type inference issue on the styles */}
+      {/* @ts-expect-error react-spring's type inference issue on the styles */}
       {animatedLines(({ fromX, toX, fromY, toY, opacity }, _, { key }) => {
         return (
           <animated.line
