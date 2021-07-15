@@ -72,7 +72,6 @@ function BaseAnimatedAnnotation<
   return (
     <animated.g // for perf animate a group element not the Annotation itself
       transform={interpolate(
-        // @ts-expect-error from/to mess up the useSpring types
         [animatedXY.x, animatedXY.y],
         (xVal, yVal) => `translate(${xVal}, ${yVal})`,
       )}
