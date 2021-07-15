@@ -1,6 +1,6 @@
 import React from 'react';
-import { mount } from 'enzyme';
-
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { ScaleSVG } from '../src';
 
 describe('<ScaleSVG />', () => {
@@ -9,14 +9,9 @@ describe('<ScaleSVG />', () => {
   });
 
   test('it should expose its ref via an innerRef prop', () => {
-    // eslint-disable-next-line require-await
-    return new Promise(done => {
-      const refCallback = (n: SVGSVGElement) => {
-        expect(n.tagName).toEqual('svg');
-        done();
-      };
-
-      mount(<ScaleSVG innerRef={refCallback} />);
-    });
+    const fakeRef = React.createRef<SVGSVGElement>();
+    const { container } = render(<ScaleSVG innerRef={fakeRef} />);
+    const SVGElement = container.querySelector('svg');
+    expect(fakeRef.current).toContainElement(SVGElement);
   });
 });
