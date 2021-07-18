@@ -28,14 +28,13 @@
   },
   "homepage": "https://github.com/airbnb/visx#readme",
   "dependencies": {
-    "@types/classnames": "^2.2.9",
     "@types/react": "*",
     "@visx/group": "1.7.0",
     "@visx/point": "1.7.0",
     "@visx/scale": "1.14.0",
     "@visx/shape": "1.16.0",
     "@visx/text": "1.10.0",
-    "classnames": "^2.2.5",
+    "classnames": "^2.3.1",
     "prop-types": "^15.6.0"
   },
   "peerDependencies": {

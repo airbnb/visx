@@ -29,12 +29,11 @@
   },
   "homepage": "https://github.com/airbnb/visx#readme",
   "dependencies": {
-    "@types/classnames": "^2.2.9",
     "@types/d3-geo": "^1.11.1",
     "@types/geojson": "*",
     "@types/react": "*",
     "@visx/group": "1.7.0",
-    "classnames": "^2.2.5",
+    "classnames": "^2.3.1",
     "d3-geo": "^1.11.3",
     "prop-types": "^15.5.10"
   },

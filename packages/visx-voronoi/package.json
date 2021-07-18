@@ -31,10 +31,9 @@
     "access": "public"
   },
   "dependencies": {
-    "@types/classnames": "^2.2.9",
     "@types/d3-voronoi": "^1.1.9",
     "@types/react": "*",
-    "classnames": "^2.2.5",
+    "classnames": "^2.3.1",
     "d3-voronoi": "^1.1.2",
     "prop-types": "^15.6.1"
   },
