@@ -1,5 +1,7 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { Circle } from '../src';
 
@@ -19,17 +21,13 @@ describe('<Circle />', () => {
   });
 
   test('it should expose its ref via an innerRef prop', () => {
-    // eslint-disable-next-line jest/no-test-return-statement
-    return new Promise(done => {
-      const refCallback = (ref: SVGCircleElement) => {
-        expect(ref.tagName).toMatch('circle');
-        done();
-      };
-      mount(
-        <svg>
-          <Circle innerRef={refCallback} />
-        </svg>,
-      );
-    });
+    const fakeRef = React.createRef<SVGCircleElement>();
+    const { container } = render(
+      <svg>
+        <Circle innerRef={fakeRef} />
+      </svg>,
+    );
+    const CircleElement = container.querySelector('circle');
+    expect(fakeRef.current).toContainElement(CircleElement);
   });
 });
