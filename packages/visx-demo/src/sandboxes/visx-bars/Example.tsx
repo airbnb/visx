@@ -64,22 +64,20 @@ function Bars<Datum>({
           const xValue = xAccessor(d);
           const barWidth = xScale.bandwidth();
           const barHeight = yMax - (yScale(yAccessor(d)) ?? 0);
-          const barX = xScale(xValue) ?? 0;
+          const barX = xScale(xValue);
           const barY = yMax - barHeight;
           return (
-            <>
-              <Bar
-                key={`bar-${xValue}`}
-                x={barX}
-                y={barY}
-                width={barWidth}
-                height={barHeight}
-                fill="rgba(23, 233, 217, .5)"
-                onClick={() => {
-                  if (events) alert(`clicked: ${JSON.stringify(Object.values(d))}`);
-                }}
-              />
-            </>
+            <Bar
+              key={`bar-${xValue}`}
+              x={barX}
+              y={barY}
+              width={barWidth}
+              height={barHeight}
+              fill="rgba(23, 233, 217, .5)"
+              onClick={() => {
+                if (events) alert(`clicked: ${JSON.stringify(Object.values(d))}`);
+              }}
+            />
           );
         })}
       </Group>

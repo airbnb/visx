@@ -10,6 +10,7 @@ import { timeParse, timeFormat } from 'd3-time-format';
 import { useTooltip, useTooltipInPortal, defaultStyles } from '@visx/tooltip';
 import { LegendOrdinal } from '@visx/legend';
 import { localPoint } from '@visx/event';
+import { LetterFrequency } from '@visx/mock-data/src/mocks/letterFrequency';
 
 type CityName = 'New York' | 'San Francisco' | 'Austin';
 
@@ -22,14 +23,6 @@ type TooltipData = {
   x: number;
   y: number;
   color: string;
-};
-
-export type BarStackProps = {
-  width: number;
-  height: number;
-  margin?: { top: number; right: number; bottom: number; left: number };
-  events?: boolean;
-  data?: CityTemperature[];
 };
 
 const purple1 = '#6c5efb';
@@ -100,15 +93,36 @@ const createColorScale = (keys: CityName[]) => {
   });
 };
 
+type Accessors<Datum, CategoryKey extends StackCategoryKey = StackCategoryKey> = {
+  // TODO: maybe change the type returned by accessors to an array of a union of the possible categories
+  barCategories: (d: Datum) => CategoryKey[];
+};
+
+type StackCategoryKey = string | number;
+
+export type BarStackProps<Datum, CategoryKey extends StackCategoryKey = StackCategoryKey> = {
+  width: number;
+  height: number;
+  margin?: { top: number; right: number; bottom: number; left: number };
+  events?: boolean;
+  data: CityTemperature[];
+
+  // TODO rename this to data
+  trueData: Datum[];
+  accessors: Accessors<Datum, CategoryKey>;
+};
+
 let tooltipTimeout: number;
 
-export default function Example({
+function CustomBarStack<Datum>({
   width,
   height,
   events = false,
   margin = defaultMargin,
-  data = cityTemperature.slice(0, 12),
-}: BarStackProps) {
+  data,
+  accessors: { barCategories },
+  trueData,
+}: BarStackProps<Datum, CityName>) {
   const {
     tooltipOpen,
     tooltipLeft,
@@ -125,7 +139,7 @@ export default function Example({
     scroll: true,
   });
 
-  const keys = useMemo(() => getKeys(data[0]), [data]);
+  const keys = useMemo(() => barCategories(trueData[0]), [trueData]);
 
   // bounds
   const xMax = width;
@@ -241,5 +255,26 @@ export default function Example({
         </TooltipInPortal>
       )}
     </div>
+  );
+}
+
+export default function Example({
+  width,
+  height,
+  margin,
+  events,
+}: Pick<BarStackProps<LetterFrequency, CityName>, 'width' | 'events' | 'height' | 'margin'>) {
+  const data = cityTemperature.slice(0, 12);
+  return (
+    <CustomBarStack
+      width={width}
+      margin={margin}
+      height={height}
+      events={events}
+      data={data}
+      // TODO: rename this to data
+      trueData={data}
+      accessors={{ barCategories: getKeys }}
+    />
   );
 }
