@@ -24,11 +24,10 @@
   "author": "@hshoff",
   "license": "MIT",
   "dependencies": {
-    "@types/classnames": "^2.2.9",
     "@types/react": "*",
     "@visx/clip-path": "1.7.0",
     "@visx/shape": "1.16.0",
-    "classnames": "^2.2.5",
+    "classnames": "^2.3.1",
     "prop-types": "^15.5.10"
   },
   "peerDependencies": {

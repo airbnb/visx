@@ -40,7 +40,6 @@
     "react-spring": "^8.0.27"
   },
   "dependencies": {
-    "@types/classnames": "^2.2.9",
     "@types/lodash": "^4.14.146",
     "@types/react": "*",
     "@visx/annotation": "1.16.0",
@@ -55,7 +54,7 @@
     "@visx/text": "1.10.0",
     "@visx/tooltip": "1.7.2",
     "@visx/voronoi": "1.7.0",
-    "classnames": "^2.2.5",
+    "classnames": "^2.3.1",
     "d3-array": "^2.6.0",
     "d3-interpolate-path": "2.2.1",
     "d3-shape": "^2.0.0",
