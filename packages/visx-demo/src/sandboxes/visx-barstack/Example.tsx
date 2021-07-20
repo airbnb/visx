@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { BarStack } from '@visx/shape';
+import { BarStack as VisxBarStack } from '@visx/shape';
 import { SeriesPoint } from '@visx/shape/lib/types';
 import { Group } from '@visx/group';
 import { Grid } from '@visx/grid';
@@ -10,13 +10,70 @@ import { timeParse, timeFormat } from 'd3-time-format';
 import { useTooltip, useTooltipInPortal, defaultStyles } from '@visx/tooltip';
 import { LegendOrdinal } from '@visx/legend';
 import { localPoint } from '@visx/event';
-import { LetterFrequency } from '@visx/mock-data/src/mocks/letterFrequency';
 
-type CityName = 'New York' | 'San Francisco' | 'Austin';
+const defaultMargin = { top: 40, right: 0, bottom: 0, left: 0 };
 
-type TooltipData = {
-  bar: SeriesPoint<CityTemperature>;
-  key: CityName;
+const purple1 = '#6c5efb';
+const purple2 = '#c998ff';
+export const purple3 = '#a44afe';
+export const background = '#eaedff';
+const tooltipStyles = {
+  ...defaultStyles,
+  minWidth: 60,
+  backgroundColor: 'rgba(0,0,0,0.9)',
+  color: 'white',
+};
+
+// scales
+function createXScale<Datum>({
+  data,
+  xMax,
+  getXValue,
+}: {
+  data: readonly Datum[];
+  xMax: number;
+  getXValue: (d: Datum) => string;
+}) {
+  const xScale = scaleBand<string>({
+    domain: data.map(getXValue),
+    padding: 0.2,
+  });
+  xScale.rangeRound([0, xMax]);
+  return xScale;
+}
+
+function createYScale<Datum, StackCategory extends StackCategoryKey = StackCategoryKey>({
+  data,
+  keys,
+  yMax,
+  getYValues,
+}: {
+  data: readonly Datum[];
+  keys: readonly StackCategory[];
+  yMax: number;
+  getYValues: (d: readonly Datum[], categoryNames: readonly StackCategory[]) => number[];
+}) {
+  const temperatureTotals = getYValues(data, keys);
+  return scaleLinear<number>({
+    domain: [0, Math.max(...temperatureTotals)],
+    nice: true,
+    range: [yMax, 0],
+  });
+}
+
+function createColorScale<StackCategory extends StackCategoryKey = StackCategoryKey>(
+  keys: StackCategory[],
+  colors: string[],
+) {
+  return scaleOrdinal<StackCategory, string>({
+    domain: keys,
+    range: colors,
+  });
+}
+
+type TooltipData<Datum, StackCategory> = {
+  bar: SeriesPoint<Datum>;
+  key: StackCategory;
   index: number;
   height: number;
   width: number;
@@ -25,104 +82,49 @@ type TooltipData = {
   color: string;
 };
 
-const purple1 = '#6c5efb';
-const purple2 = '#c998ff';
-export const purple3 = '#a44afe';
-export const background = '#eaedff';
-const defaultMargin = { top: 40, right: 0, bottom: 0, left: 0 };
-const tooltipStyles = {
-  ...defaultStyles,
-  minWidth: 60,
-  backgroundColor: 'rgba(0,0,0,0.9)',
-  color: 'white',
-};
-
-const getKeys = (data: CityTemperature): CityName[] =>
-  Object.keys(data).filter(d => d !== 'date') as CityName[];
-
-const getTemperatureTotals = (data: readonly CityTemperature[], keys: readonly CityName[]) => {
-  return data.reduce<number[]>((allTotals, currentDate) => {
-    const totalTemperature = keys.reduce((dailyTotal, k) => {
-      dailyTotal += Number(currentDate[k]);
-      return dailyTotal;
-    }, 0);
-
-    allTotals.push(totalTemperature);
-    return allTotals;
-  }, []);
-};
-
-const parseDate = timeParse('%Y-%m-%d');
-const format = timeFormat('%b %d');
-const formatDate = (date: string) => format(parseDate(date) as Date);
-
-// accessors
-const getDate = (d: CityTemperature) => d.date;
-
-// scales
-const createDateScale = ({ data, xMax }: { data: readonly CityTemperature[]; xMax: number }) => {
-  const dateScale = scaleBand<string>({
-    domain: data.map(getDate),
-    padding: 0.2,
-  });
-  dateScale.rangeRound([0, xMax]);
-  return dateScale;
-};
-
-const createTemperatureScale = ({
-  data,
-  keys,
-  yMax,
-}: {
-  data: readonly CityTemperature[];
-  keys: readonly CityName[];
-  yMax: number;
-}) => {
-  const temperatureTotals = getTemperatureTotals(data, keys);
-  return scaleLinear<number>({
-    domain: [0, Math.max(...temperatureTotals)],
-    nice: true,
-    range: [yMax, 0],
-  });
-};
-
-const createColorScale = (keys: CityName[]) => {
-  return scaleOrdinal<CityName, string>({
-    domain: keys,
-    range: [purple1, purple2, purple3],
-  });
-};
-
 type Accessors<Datum, CategoryKey extends StackCategoryKey = StackCategoryKey> = {
-  // TODO: maybe change the type returned by accessors to an array of a union of the possible categories
-  barCategories: (d: Datum) => CategoryKey[];
+  getStackCategories: (d: Datum) => CategoryKey[];
+  getXValue: (d: Datum) => string;
+  getYValues: (d: readonly Datum[], categoryNames: readonly CategoryKey[]) => number[];
+  getTooltipTitle: (d: TooltipData<Datum, CategoryKey>) => string;
+  getTooltipStackCategoryText: (d: TooltipData<Datum, CategoryKey>) => string;
 };
 
-type StackCategoryKey = string | number;
+type Formatters = {
+  formatXValue: (value: string) => string;
+};
+
+export type StackCategoryKey = string | number;
 
 export type BarStackProps<Datum, CategoryKey extends StackCategoryKey = StackCategoryKey> = {
   width: number;
   height: number;
   margin?: { top: number; right: number; bottom: number; left: number };
   events?: boolean;
-  data: CityTemperature[];
-
-  // TODO rename this to data
-  trueData: Datum[];
+  data: Datum[];
   accessors: Accessors<Datum, CategoryKey>;
+  categoryColors: string[];
+  formatters: Formatters;
 };
 
 let tooltipTimeout: number;
 
-function CustomBarStack<Datum>({
+function BarStack<Datum, CategoryKey extends StackCategoryKey = StackCategoryKey>({
   width,
   height,
   events = false,
   margin = defaultMargin,
   data,
-  accessors: { barCategories },
-  trueData,
-}: BarStackProps<Datum, CityName>) {
+  accessors: {
+    getStackCategories,
+    getXValue,
+    getYValues,
+    getTooltipTitle,
+    getTooltipStackCategoryText,
+  },
+  categoryColors,
+  formatters: { formatXValue },
+}: BarStackProps<Datum, CategoryKey>) {
   const {
     tooltipOpen,
     tooltipLeft,
@@ -130,7 +132,7 @@ function CustomBarStack<Datum>({
     tooltipData,
     hideTooltip,
     showTooltip,
-  } = useTooltip<TooltipData>();
+  } = useTooltip<TooltipData<Datum, CategoryKey>>();
 
   const { containerRef, TooltipInPortal } = useTooltipInPortal({
     // TooltipInPortal is rendered in a separate child of <body /> and positioned
@@ -139,20 +141,24 @@ function CustomBarStack<Datum>({
     scroll: true,
   });
 
-  const keys = useMemo(() => barCategories(trueData[0]), [trueData]);
+  const stackCategories = useMemo(() => getStackCategories(data[0]), [data, getStackCategories]);
 
   // bounds
   const xMax = width;
   const yMax = height - margin.top - 100;
 
   // scales
-  const dateScale = useMemo(() => createDateScale({ data, xMax }), [data, xMax]);
-  const temperatureScale = useMemo(() => createTemperatureScale({ data, keys, yMax }), [
+  const xScale = useMemo(() => createXScale({ data, xMax, getXValue }), [data, xMax, getXValue]);
+  const yScale = useMemo(() => createYScale({ data, keys: stackCategories, yMax, getYValues }), [
     data,
-    keys,
+    stackCategories,
     yMax,
+    getYValues,
   ]);
-  const colorScale = useMemo(() => createColorScale(keys), [keys]);
+  const colorScale = useMemo(() => createColorScale(stackCategories, categoryColors), [
+    stackCategories,
+    categoryColors,
+  ]);
 
   if (width < 10) return null;
 
@@ -163,21 +169,21 @@ function CustomBarStack<Datum>({
         <Grid
           top={margin.top}
           left={margin.left}
-          xScale={dateScale}
-          yScale={temperatureScale}
+          xScale={xScale}
+          yScale={yScale}
           width={xMax}
           height={yMax}
           stroke="black"
           strokeOpacity={0.1}
-          xOffset={dateScale.bandwidth() / 2}
+          xOffset={xScale.bandwidth() / 2}
         />
         <Group top={margin.top}>
-          <BarStack<CityTemperature, CityName>
+          <VisxBarStack<Datum, CategoryKey>
             data={data}
-            keys={keys}
-            x={getDate}
-            xScale={dateScale}
-            yScale={temperatureScale}
+            keys={stackCategories}
+            x={getXValue}
+            xScale={xScale}
+            yScale={yScale}
             color={colorScale}
           >
             {barStacks =>
@@ -215,12 +221,12 @@ function CustomBarStack<Datum>({
                 )),
               )
             }
-          </BarStack>
+          </VisxBarStack>
         </Group>
         <AxisBottom
           top={yMax + margin.top}
-          scale={dateScale}
-          tickFormat={formatDate}
+          scale={xScale}
+          tickFormat={formatXValue}
           stroke={purple3}
           tickStroke={purple3}
           tickLabelProps={() => ({
@@ -246,11 +252,11 @@ function CustomBarStack<Datum>({
       {tooltipOpen && tooltipData && (
         <TooltipInPortal top={tooltipTop} left={tooltipLeft} style={tooltipStyles}>
           <div style={{ color: colorScale(tooltipData.key) }}>
-            <strong>{tooltipData.key}</strong>
+            <strong>{getTooltipTitle(tooltipData)}</strong>
           </div>
-          <div>{tooltipData.bar.data[tooltipData.key]}℉</div>
+          <div>{getTooltipStackCategoryText(tooltipData)}</div>
           <div>
-            <small>{formatDate(getDate(tooltipData.bar.data))}</small>
+            <small>{formatXValue(getXValue(tooltipData.bar.data))}</small>
           </div>
         </TooltipInPortal>
       )}
@@ -258,23 +264,59 @@ function CustomBarStack<Datum>({
   );
 }
 
-export default function Example({
-  width,
-  height,
-  margin,
-  events,
-}: Pick<BarStackProps<LetterFrequency, CityName>, 'width' | 'events' | 'height' | 'margin'>) {
-  const data = cityTemperature.slice(0, 12);
+export type CityName = 'New York' | 'San Francisco' | 'Austin';
+
+// accessors
+const getDate = (d: CityTemperature): string => d.date;
+const getKeys = (data: CityTemperature): CityName[] =>
+  Object.keys(data).filter(d => d !== 'date') as CityName[];
+
+const getTemperatureTotals = (data: readonly CityTemperature[], keys: readonly CityName[]) => {
+  return data.reduce<number[]>((allTotals, currentDate) => {
+    const totalTemperature = keys.reduce((dailyTotal, k) => {
+      dailyTotal += Number(currentDate[k]);
+      return dailyTotal;
+    }, 0);
+
+    allTotals.push(totalTemperature);
+    return allTotals;
+  }, []);
+};
+
+const accessors: Accessors<CityTemperature, CityName> = {
+  getStackCategories: getKeys,
+  getXValue: getDate,
+  getYValues: getTemperatureTotals,
+  getTooltipTitle: toolTipData => toolTipData.key,
+  getTooltipStackCategoryText: tooltipData => `${tooltipData.bar.data[tooltipData.key]}℉`,
+};
+
+// formatters.
+const parseDate = timeParse('%Y-%m-%d');
+const format = timeFormat('%b %d');
+const formatDate = (date: string) => format(parseDate(date) as Date);
+const formatters = { formatXValue: formatDate };
+
+const stackCategoryColors = [purple1, purple2, purple3];
+
+export type ExampleProps = Pick<
+  BarStackProps<CityTemperature, CityName>,
+  'width' | 'events' | 'height' | 'margin'
+>;
+
+const citiesTemperatures = cityTemperature.slice(0, 12);
+
+export default function Example({ width, height, margin, events }: ExampleProps) {
   return (
-    <CustomBarStack
+    <BarStack
       width={width}
       margin={margin}
       height={height}
       events={events}
-      data={data}
-      // TODO: rename this to data
-      trueData={data}
-      accessors={{ barCategories: getKeys }}
+      data={citiesTemperatures}
+      accessors={accessors}
+      categoryColors={stackCategoryColors}
+      formatters={formatters}
     />
   );
 }

@@ -1,9 +1,5 @@
 import React from 'react';
-import BarStack, {
-  BarStackProps,
-  background,
-  purple3,
-} from '../../sandboxes/visx-barstack/Example';
+import Example, { ExampleProps, background, purple3 } from '../../sandboxes/visx-barstack/Example';
 import GalleryTile from '../GalleryTile';
 
 export { default as packageJson } from '../../sandboxes/visx-barstack/package.json';
@@ -13,11 +9,11 @@ const detailsStyles = { color: purple3, zIndex: 1 };
 
 export default function BarStackTile() {
   return (
-    <GalleryTile<BarStackProps>
+    <GalleryTile<ExampleProps>
       title="Bar Stack"
       description="<Shape.BarStack />"
       detailsStyles={detailsStyles}
-      exampleRenderer={BarStack}
+      exampleRenderer={Example}
       exampleUrl="/barstack"
       tileStyles={tileStyles}
     />

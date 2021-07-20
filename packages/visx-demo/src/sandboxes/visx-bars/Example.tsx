@@ -85,11 +85,9 @@ function Bars<Datum>({
   );
 }
 
-export default function Example({
-  width,
-  height,
-  events,
-}: Pick<BarsProps<LetterFrequency>, 'width' | 'height' | 'events'>) {
+export type ExampleProps = Pick<BarsProps<LetterFrequency>, 'width' | 'height' | 'events'>;
+
+export default function Example({ width, height, events }: ExampleProps) {
   return (
     <Bars
       width={width}
