@@ -1,6 +1,6 @@
 {
   "name": "@visx/marker",
-  "version": "1.16.0",
+  "version": "1.17.1",
   "description": "visx marker",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -29,8 +29,8 @@
   "homepage": "https://github.com/airbnb/visx#readme",
   "dependencies": {
     "@types/react": "*",
-    "@visx/group": "1.7.0",
-    "@visx/shape": "1.16.0",
+    "@visx/group": "1.17.1",
+    "@visx/shape": "1.17.1",
     "classnames": "^2.3.1",
     "prop-types": "^15.6.2"
   },
