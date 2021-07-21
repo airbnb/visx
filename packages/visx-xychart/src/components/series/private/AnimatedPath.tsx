@@ -26,18 +26,17 @@ export default function AnimatedPath({
   const interpolator = interpolatePath(previousD.current, d);
   setPreviousD(d);
 
-  // @ts-ignore t is not in CSSProperties
   const { t } = useSpring({
     from: { t: 0 },
     to: { t: 1 },
     reset: true,
-    delay: 50,
+    delay: 0,
   });
   const tweened = useSpring({ stroke, fill });
   return (
     <animated.path
       className="visx-path"
-      d={t.interpolate(interpolator)}
+      d={t.to(interpolator)}
       stroke={tweened.stroke}
       fill={tweened.fill}
       {...lineProps}
