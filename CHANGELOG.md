@@ -1,4 +1,5 @@
 # Changelog
+- [v1.18.0](#v1180)
 - [v1.17.1](#v1171)
 - [v1.17.0](#v1170)
 - [v1.16.1](#v1161)
@@ -6,10 +7,10 @@
 - [v1.15.0](#v1150)
 - [v1.14.1](#v1141)
 - [v1.14.0](#v1140)
-- [v1.13.0](#v1130)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v1130">v1.13.0</a></li>
   <li><a href="#v1120">v1.12.0</a></li>
   <li><a href="#v1112">v1.11.2</a></li>
   <li><a href="#v1111">v1.11.1</a></li>
@@ -119,6 +120,15 @@
 </details>
 
 ------
+# v1.18.0 (2021-07-21)
+
+#### :rocket: Enhancements
+
+- new(xychart/tooltip): add renderGlyph property [#1255](https://github.com/airbnb/visx/pull/1255)
+  
+#### :trophy: Contributors
+- [Janpot](https://github.com/Janpot)
+
 # v1.17.1 (2021-07-20)
 
 #### :bug: Bug Fix
