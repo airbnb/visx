@@ -140,13 +140,10 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
   }
 
   handleWindowPointerUp = () => {
-    const { useWindowMoveEvents } = this.props;
+    const { useWindowMoveEvents, onBrushEnd, resetOnEnd } = this.props;
     const { brushingType } = this.state;
 
-    if (
-      useWindowMoveEvents &&
-      ['top', 'bottom', 'left', 'right', 'select', 'move'].includes(brushingType ?? '')
-    ) {
+    if (useWindowMoveEvents && brushingType) {
       this.updateBrush((prevBrush: BaseBrushState) => {
         const { start, end, extent } = prevBrush;
 
@@ -155,18 +152,28 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
         end.x = Math.max(extent.x0, extent.x1);
         end.y = Math.max(extent.y0, extent.y1);
 
-        return {
+        const newState = {
           ...prevBrush,
           activeHandle: null,
           isBrushing: false,
           brushingType: undefined,
         };
+
+        if (onBrushEnd) {
+          onBrushEnd(newState);
+        }
+
+        if (resetOnEnd) {
+          this.reset();
+        }
+
+        return newState;
       });
     }
   };
 
   handleWindowPointerMove = (event: MouseEvent) => {
-    const { useWindowMoveEvents, onBrushEnd, resetOnEnd } = this.props;
+    const { useWindowMoveEvents } = this.props;
     const { brushingType, isBrushing, brushPageOffset, start } = this.state;
 
     if (!useWindowMoveEvents || !isBrushing) return;
@@ -256,14 +263,6 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
           extent,
         };
 
-        if (onBrushEnd) {
-          onBrushEnd(newState);
-        }
-
-        if (resetOnEnd) {
-          this.reset();
-        }
-
         return newState;
       });
     }
@@ -312,6 +311,20 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
       brushingType: 'select',
       brushPageOffset: useWindowMoveEvents ? getPageCoordinates(draw.event) : undefined,
     }));
+  };
+
+  handleBrushStart = (drag: DragArgs) => {
+    const { onBrushStart, left, top, inheritedMargin } = this.props;
+
+    if (onBrushStart) {
+      const marginLeft = inheritedMargin?.left ? inheritedMargin.left : 0;
+      const marginTop = inheritedMargin?.top ? inheritedMargin.top : 0;
+      const start = {
+        x: (drag.x || 0) + drag.dx - left - marginLeft,
+        y: (drag.y || 0) + drag.dy - top - marginTop,
+      };
+      onBrushStart(start);
+    }
   };
 
   handleDragMove = (drag: DragArgs) => {
@@ -550,7 +563,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
 
     return (
       <Group className="visx-brush" top={top} left={left}>
-        {/* overlay */}
+        {/* stage drag detection */}
         <Drag
           width={stageWidth}
           height={stageHeight}
@@ -601,9 +614,10 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
             height={height}
             stageWidth={stageWidth}
             stageHeight={stageHeight}
-            brush={{ ...this.state }}
+            brush={this.state}
             disableDraggingSelection={disableDraggingSelection}
             onBrushEnd={onBrushEnd}
+            onBrushStart={this.handleBrushStart}
             onMouseLeave={onMouseLeave}
             onMouseMove={onMouseMove}
             onMouseUp={onMouseUp}
@@ -632,6 +646,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
                     stageHeight={stageHeight}
                     updateBrush={this.updateBrush}
                     brush={this.state}
+                    onBrushStart={this.handleBrushStart}
                     onBrushEnd={onBrushEnd}
                     isControlled={useWindowMoveEvents}
                     isDragInProgress={useWindowMoveEvents ? brushingType === handleKey : undefined}

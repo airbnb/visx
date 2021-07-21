@@ -50,6 +50,7 @@ export default function Drag({
         <rect
           width={width}
           height={height}
+          onPointerDown={drag.dragStart}
           onPointerMove={drag.dragMove}
           onPointerUp={drag.dragEnd}
           fill="transparent"

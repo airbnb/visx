@@ -18,6 +18,7 @@ export type BrushSelectionProps = {
   brush: BrushState;
   updateBrush: (update: UpdateBrush) => void;
   onMoveSelectionChange?: (type?: BrushingType, options?: BrushPageOffset) => void;
+  onBrushStart?: (brush: DragArgs) => void;
   onBrushEnd?: (brush: BrushState) => void;
   disableDraggingSelection: boolean;
   onMouseLeave: PointerHandler;
@@ -40,10 +41,13 @@ export default class BrushSelection extends React.Component<
   };
 
   selectionDragStart = (drag: DragArgs) => {
-    const { onMoveSelectionChange } = this.props;
+    const { onMoveSelectionChange, onBrushStart } = this.props;
 
     if (onMoveSelectionChange) {
       onMoveSelectionChange('move', getPageCoordinates(drag.event));
+    }
+    if (onBrushStart) {
+      onBrushStart(drag);
     }
   };
 
