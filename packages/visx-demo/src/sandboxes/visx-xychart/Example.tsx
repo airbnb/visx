@@ -34,6 +34,8 @@ export default function Example({ height }: XYChartProps) {
         renderBarStack,
         renderGlyph,
         renderGlyphSeries,
+        enableTooltipGlyph,
+        renderTooltipGlyph,
         renderHorizontally,
         renderLineSeries,
         setAnnotationDataIndex,
@@ -292,6 +294,7 @@ export default function Example({ height }: XYChartProps) {
               snapTooltipToDatumY={snapTooltipToDatumY}
               showDatumGlyph={(snapTooltipToDatumX || snapTooltipToDatumY) && !renderBarGroup}
               showSeriesGlyphs={sharedTooltip && !renderBarGroup}
+              renderGlyph={enableTooltipGlyph ? renderTooltipGlyph : undefined}
               renderTooltip={({ tooltipData, colorScale }) => (
                 <>
                   {/** date */}

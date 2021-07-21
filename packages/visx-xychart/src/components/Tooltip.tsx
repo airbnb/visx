@@ -6,9 +6,9 @@ import { UseTooltipPortalOptions } from '@visx/tooltip/lib/hooks/useTooltipInPor
 
 import TooltipContext from '../context/TooltipContext';
 import DataContext from '../context/DataContext';
-import { TooltipContextType } from '../types';
 import getScaleBandwidth from '../utils/getScaleBandwidth';
 import isValidNumber from '../typeguards/isValidNumber';
+import { GlyphProps as RenderGlyphProps, TooltipContextType } from '../types';
 
 /** fontSize + lineHeight from default styles break precise location of crosshair, etc. */
 const TOOLTIP_NO_STYLE: React.CSSProperties = {
@@ -16,15 +16,6 @@ const TOOLTIP_NO_STYLE: React.CSSProperties = {
   pointerEvents: 'none',
   fontSize: 0,
   lineHeight: 0,
-};
-
-type GlyphProps = {
-  left?: number;
-  top?: number;
-  fill?: string;
-  stroke?: string;
-  strokeWidth: number;
-  radius: number;
 };
 
 export type RenderTooltipParams<Datum extends object> = TooltipContextType<Datum> & {
@@ -38,6 +29,8 @@ export type TooltipProps<Datum extends object> = {
    * Content will be rendered in an HTML parent.
    */
   renderTooltip: (params: RenderTooltipParams<Datum>) => React.ReactNode;
+  /** Function which handles rendering glyphs. */
+  renderGlyph?: (params: RenderGlyphProps<Datum>) => React.ReactNode;
   /** Whether to snap tooltip + crosshair x-coord to the nearest Datum x-coord instead of the event x-coord. */
   snapTooltipToDatumX?: boolean;
   /** Whether to snap tooltip + crosshair y-coord to the nearest Datum y-coord instead of the event y-coord. */
@@ -74,6 +67,31 @@ const INVISIBLE_STYLES: React.CSSProperties = {
   pointerEvents: 'none',
 };
 
+interface RenderTooltipGlypProps<Datum extends object> extends RenderGlyphProps<Datum> {
+  glyphStyle?: React.SVGProps<SVGCircleElement>;
+}
+
+function DefaultGlyph<Datum extends object>(props: RenderTooltipGlypProps<Datum>) {
+  const { theme } = useContext(DataContext) || {};
+
+  return (
+    <circle
+      cx={props.x}
+      cy={props.y}
+      r={props.size}
+      fill={props.color}
+      stroke={theme?.backgroundColor}
+      strokeWidth={1.5}
+      paintOrder="fill"
+      {...props.glyphStyle}
+    />
+  );
+}
+
+function defaultRenderGlyph<Datum extends object>(props: RenderTooltipGlypProps<Datum>) {
+  return <DefaultGlyph {...props} />;
+}
+
 /**
  * This is a wrapper component which bails early if tooltip is not visible.
  * If scroll detection is enabled in UseTooltipPortalOptions, this avoids re-rendering
@@ -94,6 +112,7 @@ function TooltipInner<Datum extends object>({
   horizontalCrosshairStyle,
   glyphStyle,
   renderTooltip,
+  renderGlyph = defaultRenderGlyph,
   resizeObserverPolyfill,
   scroll = true,
   showDatumGlyph = false,
@@ -178,44 +197,51 @@ function TooltipInner<Datum extends object>({
   }
 
   // collect positions + styles for glyphs; glyphs always snap to Datum, not event coords
-  const glyphProps: GlyphProps[] = [];
+  const glyphProps: RenderTooltipGlypProps<Datum>[] = [];
 
   if (showTooltip && (showDatumGlyph || showSeriesGlyphs)) {
-    const radius = Number(glyphStyle?.radius ?? 4);
-    const strokeWidth = Number(glyphStyle?.strokeWidth ?? 1.5);
+    const size = Number(glyphStyle?.radius ?? 4);
 
     if (showSeriesGlyphs) {
-      Object.values(tooltipContext?.tooltipData?.datumByKey ?? {}).forEach(({ key, datum }) => {
-        const color = colorScale?.(key) ?? theme?.htmlLabel?.color ?? '#222';
-        const { left, top } = getDatumLeftTop(key, datum);
+      Object.values(tooltipContext?.tooltipData?.datumByKey ?? {}).forEach(
+        ({ key, datum, index }) => {
+          const color = colorScale?.(key) ?? theme?.htmlLabel?.color ?? '#222';
+          const { left, top } = getDatumLeftTop(key, datum);
 
-        // don't show glyphs if coords are unavailable
-        if (!isValidNumber(left) || !isValidNumber(top)) return;
+          // don't show glyphs if coords are unavailable
+          if (!isValidNumber(left) || !isValidNumber(top)) return;
 
-        glyphProps.push({
-          left: left - radius - strokeWidth,
-          top: top - radius - strokeWidth,
-          fill: color,
-          stroke: theme?.backgroundColor,
-          strokeWidth,
-          radius,
-        });
-      });
+          glyphProps.push({
+            key,
+            color,
+            datum,
+            index,
+            size,
+            x: left,
+            y: top,
+            glyphStyle,
+          });
+        },
+      );
     } else if (nearestDatum) {
       const { left, top } = getDatumLeftTop(nearestDatumKey, nearestDatum.datum);
       // don't show glyphs if coords are unavailable
       if (isValidNumber(left) && isValidNumber(top)) {
+        const color =
+          (nearestDatumKey && colorScale?.(nearestDatumKey)) ??
+          null ??
+          theme?.gridStyles?.stroke ??
+          theme?.htmlLabel?.color ??
+          '#222';
         glyphProps.push({
-          left: left - radius - strokeWidth,
-          top: top - radius - strokeWidth,
-          fill:
-            (nearestDatumKey && colorScale?.(nearestDatumKey)) ??
-            null ??
-            theme?.gridStyles?.stroke ??
-            theme?.htmlLabel?.color ??
-            '#222',
-          radius,
-          strokeWidth,
+          key: nearestDatumKey,
+          color,
+          datum: nearestDatum.datum,
+          index: nearestDatum.index,
+          size,
+          x: left,
+          y: top,
+          glyphStyle,
         });
       }
     }
@@ -275,34 +301,21 @@ function TooltipInner<Datum extends object>({
               </svg>
             </TooltipInPortal>
           )}
-          {glyphProps.map(({ left, top, fill, stroke, strokeWidth, radius }, i) =>
-            top == null || left == null ? null : (
-              <TooltipInPortal
-                key={i}
-                className="visx-tooltip-glyph"
-                left={left}
-                top={top}
-                offsetLeft={0}
-                offsetTop={0}
-                detectBounds={false}
-                style={TOOLTIP_NO_STYLE}
-              >
-                <svg width={(radius + strokeWidth) * 2} height={(radius + strokeWidth) * 2}>
-                  {/** @TODO expand to support any @visx/glyph glyph */}
-                  <circle
-                    cx={radius + strokeWidth}
-                    cy={radius + strokeWidth}
-                    r={radius}
-                    fill={fill}
-                    stroke={stroke}
-                    strokeWidth={strokeWidth}
-                    paintOrder="fill"
-                    {...glyphStyle}
-                  />
-                </svg>
-              </TooltipInPortal>
-            ),
-          )}
+          {glyphProps.map(({ x, y, ...props }, i) => (
+            // We render glyps in a portal so that they can overflow the container if necessary
+            <TooltipInPortal
+              key={i}
+              className="visx-tooltip-glyph"
+              left={x}
+              top={y}
+              offsetLeft={0}
+              offsetTop={0}
+              detectBounds={false}
+              style={TOOLTIP_NO_STYLE}
+            >
+              <svg overflow="visible">{renderGlyph({ x: 0, y: 0, ...props })}</svg>
+            </TooltipInPortal>
+          ))}
           <TooltipInPortal
             left={tooltipLeft}
             top={tooltipTop}

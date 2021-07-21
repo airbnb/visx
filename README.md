@@ -203,12 +203,18 @@ Lots coming soon, check out the [roadmap](./ROADMAP.md).
 - South African Coronavirus Data Visuals by [@JayWelsh](https://github.com/JayWelsh)
   ([Demo](https://coronamap.co.za/)) ([Github](https://github.com/JayWelsh/coronamap))
 - [CNN: Tracking America's Recovery](https://www.cnn.com/business/us-economic-recovery-coronavirus)
-- [Wall Street Journal: Americans Familiarize Themselves with the Word ‘Forbearance’](https://blogs.wsj.com/dailyshot/2020/04/13/the-daily-shot-americans-familiarize-themselves-with-the-word-forbearance/) by [@rayshan](https://github.com/rayshan) ([Demo](https://finance.shan.io/recessions-bear-markets-compared))
+- [Wall Street Journal: Americans Familiarize Themselves with the Word ‘Forbearance’](https://blogs.wsj.com/dailyshot/2020/04/13/the-daily-shot-americans-familiarize-themselves-with-the-word-forbearance/)
+  by [@rayshan](https://github.com/rayshan)
+  ([Demo](https://finance.shan.io/recessions-bear-markets-compared))
 - Dollar to food emoji caculator by [@gmlwo530](https://github.com/gmlwo530)
-  ([Demo](https://dollar-to-food-emoji.web.app/)) ([Github](https://github.com/gmlwo530/dollar-to-food-emoji))
-- [zh-TW] Taiwan Real-time Air Quality Index by [@ArvinH](https://github.com/ArvinH)([Demo](https://codesandbox.io/s/simpleradar-aqi-with-tooltip-select-data-react-spring-item3?file=/Radar.tsx))([Tutorial](https://blog.arvinh.info/tech/datavis-visx))
-- tokenized BTC on ethereum stacked chart with brush by [@sakulstra](https://github.com/sakulstra)([Demo](https://tokenizedbtc.info/))
-- [Escape From Tarkov Ammo Chart](https://eft.monster/) by [@codenomial](https://github.com/codenomial)
+  ([Demo](https://dollar-to-food-emoji.web.app/))
+  ([Github](https://github.com/gmlwo530/dollar-to-food-emoji))
+- [zh-TW] Taiwan Real-time Air Quality Index by
+  [@ArvinH](https://github.com/ArvinH)([Demo](https://codesandbox.io/s/simpleradar-aqi-with-tooltip-select-data-react-spring-item3?file=/Radar.tsx))([Tutorial](https://blog.arvinh.info/tech/datavis-visx))
+- tokenized BTC on ethereum stacked chart with brush by
+  [@sakulstra](https://github.com/sakulstra)([Demo](https://tokenizedbtc.info/))
+- [Escape From Tarkov Ammo Chart](https://eft.monster/) by
+  [@codenomial](https://github.com/codenomial)
 - [Pry](https://pry.co) Finance for Founders (dashboard by [@valtism](https://github.com/valtism))
 - [Data 2 the People](https://www.data2thepeople.org/) Donation Efficacy Analysis for Downballot Races ([Demo](https://donate.data2thepeople.org/)) ([Github](https://github.com/Data-2-the-People/skyfall/blob/master/components/Scatterplot.jsx))
 
