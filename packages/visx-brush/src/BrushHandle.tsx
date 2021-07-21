@@ -10,6 +10,7 @@ export type BrushHandleProps = {
   stageHeight: number;
   brush: BrushState;
   updateBrush: (update: UpdateBrush) => void;
+  onBrushStart?: (brush: DragArgs) => void;
   onBrushEnd?: (brush: BrushState) => void;
   type: ResizeTriggerAreas;
   handle: { x: number; y: number; width: number; height: number };
@@ -21,10 +22,13 @@ export type BrushHandleProps = {
 /** BrushHandle's are placed along the bounds of the brush and handle Drag events which update the passed brush. */
 export default class BrushHandle extends React.Component<BrushHandleProps> {
   handleDragStart = (drag: DragArgs) => {
-    const { onBrushHandleChange, type } = this.props;
+    const { onBrushHandleChange, type, onBrushStart } = this.props;
 
     if (onBrushHandleChange) {
       onBrushHandleChange(type, getPageCoordinates(drag.event));
+    }
+    if (onBrushStart) {
+      onBrushStart(drag);
     }
   };
 
@@ -158,9 +162,9 @@ export default class BrushHandle extends React.Component<BrushHandleProps> {
                 width={stageWidth}
                 height={stageHeight}
                 style={{ cursor }}
-                onMouseMove={dragMove}
-                onMouseUp={isControlled ? undefined : dragEnd}
-                onMouseLeave={isControlled ? undefined : dragEnd}
+                onPointerMove={dragMove}
+                onPointerUp={isControlled ? undefined : dragEnd}
+                onPointerLeave={isControlled ? undefined : dragEnd}
               />
             )}
             <rect

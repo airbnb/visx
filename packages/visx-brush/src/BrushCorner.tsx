@@ -134,7 +134,7 @@ export default class BrushCorner extends React.Component<BrushCornerProps, Brush
   render() {
     const { type, brush, stageWidth, stageHeight, style: styleProp, corner } = this.props;
     const cursor =
-      (styleProp && styleProp.cursor) ||
+      styleProp?.cursor ||
       (type === 'topLeft' || type === 'bottomRight' ? 'nwse-resize' : 'nesw-resize');
     const pointerEvents = brush.activeHandle || brush.isBrushing ? 'none' : 'all';
 
@@ -154,15 +154,15 @@ export default class BrushCorner extends React.Component<BrushCornerProps, Brush
                 width={stageWidth}
                 height={stageHeight}
                 style={{ cursor }}
-                onMouseMove={dragMove}
-                onMouseUp={dragEnd}
+                onPointerMove={dragMove}
+                onPointerUp={dragEnd}
               />
             )}
             <rect
               fill="transparent"
-              onMouseDown={dragStart}
-              onMouseMove={dragMove}
-              onMouseUp={dragEnd}
+              onPointerDown={dragStart}
+              onPointerMove={dragMove}
+              onPointerUp={dragEnd}
               className={`visx-brush-corner-${type}`}
               style={{ cursor, pointerEvents, ...styleProp }}
               {...corner}
