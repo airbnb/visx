@@ -173,66 +173,48 @@ function AnimatedPie<Datum>({
   getColor,
   onClickDatum,
 }: AnimatedPieProps<Datum>) {
-  const transitions = useTransition<PieArcDatum<Datum>, AnimatedStyles>(
-    arcs,
-    getKey,
-    // @ts-ignore react-spring doesn't like this overload
-    {
-      from: animate ? fromLeaveTransition : enterUpdateTransition,
-      enter: enterUpdateTransition,
-      update: enterUpdateTransition,
-      leave: animate ? fromLeaveTransition : enterUpdateTransition,
-    },
-  );
-  return (
-    <>
-      {transitions.map(
-        ({
-          item: arc,
-          props,
-          key,
-        }: {
-          item: PieArcDatum<Datum>;
-          props: AnimatedStyles;
-          key: string;
-        }) => {
-          const [centroidX, centroidY] = path.centroid(arc);
-          const hasSpaceForLabel = arc.endAngle - arc.startAngle >= 0.1;
+  const transitions = useTransition<PieArcDatum<Datum>, AnimatedStyles>(arcs, {
+    from: animate ? fromLeaveTransition : enterUpdateTransition,
+    enter: enterUpdateTransition,
+    update: enterUpdateTransition,
+    leave: animate ? fromLeaveTransition : enterUpdateTransition,
+    keys: getKey,
+  });
+  return transitions((props, arc, { key }) => {
+    const [centroidX, centroidY] = path.centroid(arc);
+    const hasSpaceForLabel = arc.endAngle - arc.startAngle >= 0.1;
 
-          return (
-            <g key={key}>
-              <animated.path
-                // compute interpolated path d attribute from intermediate angle values
-                d={interpolate([props.startAngle, props.endAngle], (startAngle, endAngle) =>
-                  path({
-                    ...arc,
-                    startAngle,
-                    endAngle,
-                  }),
-                )}
-                fill={getColor(arc)}
-                onClick={() => onClickDatum(arc)}
-                onTouchStart={() => onClickDatum(arc)}
-              />
-              {hasSpaceForLabel && (
-                <animated.g style={{ opacity: props.opacity }}>
-                  <text
-                    fill="white"
-                    x={centroidX}
-                    y={centroidY}
-                    dy=".33em"
-                    fontSize={9}
-                    textAnchor="middle"
-                    pointerEvents="none"
-                  >
-                    {getKey(arc)}
-                  </text>
-                </animated.g>
-              )}
-            </g>
-          );
-        },
-      )}
-    </>
-  );
+    return (
+      <g key={key}>
+        <animated.path
+          // compute interpolated path d attribute from intermediate angle values
+          d={interpolate([props.startAngle, props.endAngle], (startAngle, endAngle) =>
+            path({
+              ...arc,
+              startAngle,
+              endAngle,
+            }),
+          )}
+          fill={getColor(arc)}
+          onClick={() => onClickDatum(arc)}
+          onTouchStart={() => onClickDatum(arc)}
+        />
+        {hasSpaceForLabel && (
+          <animated.g style={{ opacity: props.opacity }}>
+            <text
+              fill="white"
+              x={centroidX}
+              y={centroidY}
+              dy=".33em"
+              fontSize={9}
+              textAnchor="middle"
+              pointerEvents="none"
+            >
+              {getKey(arc)}
+            </text>
+          </animated.g>
+        )}
+      </g>
+    );
+  });
 }
