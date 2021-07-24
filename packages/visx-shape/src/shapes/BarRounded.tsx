@@ -35,9 +35,69 @@ export type BarRoundedProps = {
   bottomLeft?: boolean;
   /** apply corner radius to bottom right */
   bottomRight?: boolean;
+  /** Optional children override. */
+  children?: ({ path }: { path: string }) => React.ReactNode;
 };
 
+/** Hook that returns a BarRounded path. */
+export function useBarRoundedPath({
+  all,
+  bottom,
+  bottomLeft,
+  bottomRight,
+  height,
+  left,
+  radius,
+  right,
+  top,
+  topLeft,
+  topRight,
+  width,
+  x,
+  y,
+}: Pick<
+  BarRoundedProps,
+  | 'all'
+  | 'top'
+  | 'bottom'
+  | 'left'
+  | 'right'
+  | 'x'
+  | 'y'
+  | 'width'
+  | 'height'
+  | 'radius'
+  | 'topLeft'
+  | 'topRight'
+  | 'bottomRight'
+  | 'bottomLeft'
+>) {
+  topRight = all || top || right || topRight;
+  bottomRight = all || bottom || right || bottomRight;
+  bottomLeft = all || bottom || left || bottomLeft;
+  topLeft = all || top || left || topLeft;
+
+  // clamp radius to center of shortest side of the rect
+  radius = Math.max(1, Math.min(radius, Math.min(width, height) / 2));
+
+  const diameter = 2 * radius;
+  const path = `M${x + radius},${y} h${width - diameter}
+ ${topRight ? `a${radius},${radius} 0 0 1 ${radius},${radius}` : `h${radius}v${radius}`}
+ v${height - diameter}
+ ${bottomRight ? `a${radius},${radius} 0 0 1 ${-radius},${radius}` : `v${radius}h${-radius}`}
+ h${diameter - width}
+ ${bottomLeft ? `a${radius},${radius} 0 0 1 ${-radius},${-radius}` : `h${-radius}v${-radius}`}
+ v${diameter - height}
+ ${topLeft ? `a${radius},${radius} 0 0 1 ${radius},${-radius}` : `v${-radius}h${radius}`}
+z`
+    .split('\n')
+    .join('');
+
+  return path;
+}
+
 export default function BarRounded({
+  children,
   className,
   innerRef,
   x,
@@ -56,26 +116,24 @@ export default function BarRounded({
   bottomRight = false,
   ...restProps
 }: AddSVGProps<BarRoundedProps, SVGPathElement>) {
-  topRight = all || top || right || topRight;
-  bottomRight = all || bottom || right || bottomRight;
-  bottomLeft = all || bottom || left || bottomLeft;
-  topLeft = all || top || left || topLeft;
+  const path = useBarRoundedPath({
+    x,
+    y,
+    width,
+    height,
+    radius,
+    all,
+    top,
+    bottom,
+    left,
+    right,
+    topLeft,
+    topRight,
+    bottomLeft,
+    bottomRight,
+  });
 
-  // clamp radius to center of shortest side of the rect
-  radius = Math.min(radius, Math.min(width, height) / 2);
-
-  const diameter = 2 * radius;
-  const path = `M${x + radius},${y} h${width - diameter}
- ${topRight ? `a${radius},${radius} 0 0 1 ${radius},${radius}` : `h${radius}v${radius}`}
- v${height - diameter}
- ${bottomRight ? `a${radius},${radius} 0 0 1 ${-radius},${radius}` : `v${radius}h${-radius}`}
- h${diameter - width}
- ${bottomLeft ? `a${radius},${radius} 0 0 1 ${-radius},${-radius}` : `h${-radius}v${-radius}`}
- v${diameter - height}
- ${topLeft ? `a${radius},${radius} 0 0 1 ${radius},${-radius}` : `v${-radius}h${radius}`}
-z`
-    .split('\n')
-    .join('');
+  if (children) return <>{children({ path })}</>;
 
   return (
     <path ref={innerRef} className={cx('visx-bar-rounded', className)} d={path} {...restProps} />
