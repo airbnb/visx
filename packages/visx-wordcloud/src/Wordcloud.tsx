@@ -3,7 +3,7 @@ import d3Cloud from 'd3-cloud';
 import { Group } from '@visx/group';
 import { useWordcloud, WordcloudConfig } from './useWordcloud';
 
-export interface WordcloudProps<T> extends WordcloudConfig<T> {
+export interface WordcloudProps<Datum> extends WordcloudConfig<Datum> {
   children: (words: d3Cloud.Word[]) => React.ReactNode;
 }
 

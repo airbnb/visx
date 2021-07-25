@@ -3,13 +3,17 @@ import d3Cloud from 'd3-cloud';
 
 type BultInSpiral = 'archimedean' | 'rectangular';
 
-export interface WordcloudConfig<T> {
+export interface WordcloudConfig<Datum> {
   /**
    * Width of the wordcloud layout.
+   *
+   * @default 0
    */
   width?: number;
   /**
    * Height of the wordcloud layout.
+   *
+   * @default 0
    */
   height?: number;
   /**
@@ -17,7 +21,7 @@ export interface WordcloudConfig<T> {
    *
    * @default []
    */
-  words?: T[];
+  words?: Datum[];
   /**
    * Sets the padding accessor function, which indicates the numerical padding for each word.
    *
@@ -35,7 +39,7 @@ export interface WordcloudConfig<T> {
    *
    * @default function(datum) { return Math.sqrt(datum.value); }
    */
-  fontSize?: (datum: T, index: number) => number;
+  fontSize?: (datum: Datum, index: number) => number;
   /**
    * Sets the fontStyle accessor function, which indicates the font style for each word.
    *
@@ -53,7 +57,7 @@ export interface WordcloudConfig<T> {
    *
    * @default function() { return (~~(Math.random() * 6) -3) * 30; }
    */
-  rotate?: (datum: T, index: number) => number;
+  rotate?: (datum: Datum, index: number) => number;
   /**
    * Sets the current type of spiral used for positioning words.
    * This can either be one of the two built-in spirals, "archimedean" and "rectangular", or an arbitrary spiral generator can be used.
@@ -70,7 +74,7 @@ export interface WordcloudConfig<T> {
   random?: () => number;
 }
 
-export function useWordcloud<T>({
+export function useWordcloud<Datum>({
   width = 0,
   height = 0,
   font,
@@ -82,11 +86,11 @@ export function useWordcloud<T>({
   rotate,
   spiral,
   words,
-}: WordcloudConfig<T>) {
+}: WordcloudConfig<Datum>) {
   const [cloudWords, setCloudWords] = useState<d3Cloud.Word[]>([]);
 
   useEffect(() => {
-    const layout = d3Cloud<T>().size([width, height]);
+    const layout = d3Cloud<Datum>().size([width, height]);
 
     if (words) layout.words(words);
     if (padding) layout.padding(padding);
