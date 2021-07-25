@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import d3Cloud from 'd3-cloud';
 
-type BultInSpiral = 'archimedean' | 'rectangular';
-
 export interface WordcloudConfig<Datum> {
   /**
    * Width of the wordcloud layout.
@@ -27,44 +25,47 @@ export interface WordcloudConfig<Datum> {
    *
    * @default 1
    */
-  padding?: number;
+  padding?: number | ((datum: Datum, index: number) => number);
   /**
    * Sets the font accessor function, which indicates the font face for each word.
    *
    * @default serif
    */
-  font?: string;
+  font?: string | ((datum: Datum, index: number) => string);
   /**
    * Sets the fontSize accessor function, which indicates the numerical font size for each word.
    *
    * @default function(datum) { return Math.sqrt(datum.value); }
    */
-  fontSize?: (datum: Datum, index: number) => number;
+  fontSize?: number | ((datum: Datum, index: number) => number);
   /**
    * Sets the fontStyle accessor function, which indicates the font style for each word.
    *
    * @default normal
    */
-  fontStyle?: string;
+  fontStyle?: string | ((datum: Datum, index: number) => string);
   /**
    * Sets the fontWeight accessor function, which indicates the font weight for each word.
    *
    * @default normal
    */
-  fontWeight?: string | number;
+  fontWeight?: string | number | ((datum: Datum, index: number) => string | number);
   /**
    * Sets the rotate accessor function, which indicates the rotation angle (in degrees) for each word.
    *
    * @default function() { return (~~(Math.random() * 6) -3) * 30; }
    */
-  rotate?: (datum: Datum, index: number) => number;
+  rotate?: number | ((datum: Datum, index: number) => number);
   /**
    * Sets the current type of spiral used for positioning words.
    * This can either be one of the two built-in spirals, "archimedean" and "rectangular", or an arbitrary spiral generator can be used.
    *
    * @default archimedean
    */
-  spiral?: BultInSpiral;
+  spiral?:
+    | 'archimedean'
+    | 'rectangular'
+    | ((size: [number, number]) => (t: number) => [number, number]);
   /**
    * Sets the internal random number generator, used for selecting the initial position of each word,
    * and the clockwise/counterclockwise direction of the spiral for each word. Random function should return a number in the range [0, 1).
@@ -93,14 +94,34 @@ export function useWordcloud<Datum>({
     const layout = d3Cloud<Datum>().size([width, height]);
 
     if (words) layout.words(words);
-    if (padding) layout.padding(padding);
-    if (font) layout.font(font);
-    if (fontSize) layout.fontSize(fontSize);
-    if (fontStyle) layout.fontStyle(fontStyle);
-    if (fontWeight) layout.fontWeight(fontWeight);
-    if (rotate) layout.rotate(rotate);
     if (random) layout.random(random);
-    if (spiral) layout.spiral(spiral);
+    if (font) layout.font(font);
+    if (padding) {
+      // This is needed in order to help typescript with method overloads see issue here https://github.com/microsoft/TypeScript/issues/14107
+      // Once this gets merged we can remove the if tyepof statements from this file https://github.com/DefinitelyTyped/DefinitelyTyped/pull/54726
+      if (typeof padding === 'number') layout.padding(padding);
+      else layout.padding(padding);
+    }
+    if (fontSize) {
+      if (typeof fontSize === 'number') layout.fontSize(fontSize);
+      else layout.fontSize(fontSize);
+    }
+    if (fontStyle) {
+      if (typeof fontStyle === 'string') layout.fontStyle(fontStyle);
+      else layout.fontStyle(fontStyle);
+    }
+    if (fontWeight) {
+      if (typeof fontWeight === 'function') layout.fontWeight(fontWeight);
+      else layout.fontWeight(fontWeight);
+    }
+    if (rotate) {
+      if (typeof rotate === 'function') layout.rotate(rotate);
+      else layout.rotate(rotate);
+    }
+    if (spiral) {
+      if (typeof spiral === 'string') layout.spiral(spiral);
+      else layout.spiral(spiral);
+    }
 
     layout.on('end', setCloudWords).start();
 
