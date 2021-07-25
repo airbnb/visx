@@ -1,17 +1,23 @@
 import React from 'react';
+import d3Cloud from 'd3-cloud';
+import { Group } from '@visx/group';
+import { useWordcloud, WordcloudConfig } from './useWordcloud';
 
-export interface Config {
-  /** The total width of the wordcloud layout. */
-  width?: number;
-  /** The total width of the wordcloud layout. */
-  height?: number;
+export interface WordcloudProps extends WordcloudConfig {
+  children: (words: d3Cloud.Word[]) => React.ReactNode;
 }
 
-export default function Wordcloud({ width = 0, height = 0 }: Config) {
+export default function Wordcloud(props: WordcloudProps) {
+  const { children, ...wordcloudConfig } = props;
+  const words = useWordcloud(wordcloudConfig);
+
+  if (!wordcloudConfig.height || !wordcloudConfig.width) return null;
+
   return (
-    <div>
-      TODO: Wordcloud!{width}
-      {height}
-    </div>
+    <svg width={wordcloudConfig.width} height={wordcloudConfig.height}>
+      <Group left={wordcloudConfig.width / 2} top={wordcloudConfig.height / 2}>
+        {children(words)}
+      </Group>
+    </svg>
   );
 }

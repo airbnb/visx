@@ -33,6 +33,11 @@
     "react-dom": "^16.8.0-0"
   },
   "dependencies": {
+    "@visx/group": "1.17.1",
+    "d3-cloud":"1.2.5"
+  },
+  "devDependencies": {
+    "@types/d3-cloud":"1.2.4"
   },
   "publishConfig": {
     "access": "public"

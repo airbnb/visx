@@ -1,5 +1,5 @@
 import React from 'react';
-import Wordcloud, { WordcloudProps } from '../../sandboxes/visx-wordcloud/Example';
+import Wordcloud from '../../sandboxes/visx-wordcloud/Example';
 import GalleryTile from '../GalleryTile';
 
 export { default as packageJson } from '../../sandboxes/visx-wordcloud/package.json';
@@ -9,13 +9,14 @@ const detailsStyles = { color: '#111' };
 
 export default function WorcloudTile() {
   return (
-    <GalleryTile<WordcloudProps>
+    <GalleryTile
       title="Wordcloud"
       description="<Wordcloud />"
-      exampleRenderer={Wordcloud}
+      exampleRenderer={size => <Wordcloud width={size.width} height={size.height} />}
       exampleUrl="/wordcloud"
       tileStyles={tileStyles}
       detailsStyles={detailsStyles}
+      detailsHeight={0}
     />
   );
 }
