@@ -3,11 +3,11 @@ import d3Cloud from 'd3-cloud';
 import { Group } from '@visx/group';
 import { useWordcloud, WordcloudConfig } from './useWordcloud';
 
-export interface WordcloudProps extends WordcloudConfig {
+export interface WordcloudProps<T> extends WordcloudConfig<T> {
   children: (words: d3Cloud.Word[]) => React.ReactNode;
 }
 
-export default function Wordcloud(props: WordcloudProps) {
+export default function Wordcloud<T>(props: WordcloudProps<T>) {
   const { children, ...wordcloudConfig } = props;
   const words = useWordcloud(wordcloudConfig);
 

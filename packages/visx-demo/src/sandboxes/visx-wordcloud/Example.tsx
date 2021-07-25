@@ -9,6 +9,11 @@ interface ExampleProps {
   height: number;
 }
 
+export interface WordData {
+  text: string;
+  value: number;
+}
+
 export default function Example({ width, height }: ExampleProps) {
   const colors = ['#143059', '#2F6B9A', '#82a6c2'];
   const fontScale = scaleSqrt({

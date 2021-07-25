@@ -1,14 +1,9 @@
 import { useEffect, useState } from 'react';
 import d3Cloud from 'd3-cloud';
 
-export interface WordData {
-  text: string;
-  value: number;
-}
-
 type BultInSpiral = 'archimedean' | 'rectangular';
 
-export interface WordcloudConfig {
+export interface WordcloudConfig<T> {
   /**
    * Width of the wordcloud layout.
    */
@@ -22,7 +17,7 @@ export interface WordcloudConfig {
    *
    * @default []
    */
-  words?: WordData[];
+  words?: T[];
   /**
    * Sets the padding accessor function, which indicates the numerical padding for each word.
    *
@@ -40,7 +35,7 @@ export interface WordcloudConfig {
    *
    * @default function(datum) { return Math.sqrt(datum.value); }
    */
-  fontSize?: (datum: CloudWord, index: number) => number;
+  fontSize?: (datum: T, index: number) => number;
   /**
    * Sets the fontStyle accessor function, which indicates the font style for each word.
    *
@@ -58,7 +53,7 @@ export interface WordcloudConfig {
    *
    * @default function() { return (~~(Math.random() * 6) -3) * 30; }
    */
-  rotate?: (datum: CloudWord, index: number) => number;
+  rotate?: (datum: T, index: number) => number;
   /**
    * Sets the current type of spiral used for positioning words.
    * This can either be one of the two built-in spirals, "archimedean" and "rectangular", or an arbitrary spiral generator can be used.
@@ -75,11 +70,7 @@ export interface WordcloudConfig {
   random?: () => number;
 }
 
-export type CloudWord = d3Cloud.Word & {
-  value: number;
-};
-
-export function useWordcloud({
+export function useWordcloud<T>({
   width = 0,
   height = 0,
   font,
@@ -91,11 +82,11 @@ export function useWordcloud({
   rotate,
   spiral,
   words,
-}: WordcloudConfig) {
-  const [cloudWords, setCloudWords] = useState<CloudWord[]>([]);
+}: WordcloudConfig<T>) {
+  const [cloudWords, setCloudWords] = useState<d3Cloud.Word[]>([]);
 
   useEffect(() => {
-    const layout = d3Cloud<CloudWord>().size([width, height]);
+    const layout = d3Cloud<T>().size([width, height]);
 
     if (words) layout.words(words);
     if (padding) layout.padding(padding);

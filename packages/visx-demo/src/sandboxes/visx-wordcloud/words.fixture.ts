@@ -1,4 +1,4 @@
-import { WordData } from '../../../../visx-wordcloud/src/useWordcloud';
+import { WordData } from './Example';
 
 const totoAfricaLyrics = `I hear the drums echoing tonight
 But she hears only whispers of some quiet conversation
