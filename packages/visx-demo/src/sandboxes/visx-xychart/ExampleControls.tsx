@@ -11,6 +11,7 @@ import { curveLinear, curveStep, curveCardinal } from '@visx/curve';
 import customTheme from './customTheme';
 import userPrefersReducedMotion from './userPrefersReducedMotion';
 import getAnimatedOrUnanimatedComponents from './getAnimatedOrUnanimatedComponents';
+import { RenderTooltipGlypProps } from '@visx/xychart/src/components/Tooltip';
 
 const dateScaleConfig = { type: 'band', paddingInner: 0.3 } as const;
 const temperatureScaleConfig = { type: 'linear' } as const;
@@ -74,7 +75,7 @@ type ProvidedProps = {
   renderGlyph: React.FC<GlyphProps<CityTemperature>>;
   renderGlyphSeries: boolean;
   enableTooltipGlyph: boolean;
-  renderTooltipGlyph: React.FC<GlyphProps<CityTemperature>>;
+  renderTooltipGlyph: React.FC<RenderTooltipGlypProps<CityTemperature>>;
   renderHorizontally: boolean;
   renderLineSeries: boolean;
   sharedTooltip: boolean;
@@ -166,7 +167,8 @@ export default function ExampleControls({ children }: ControlsProps) {
       onPointerMove,
       onPointerOut,
       onPointerUp,
-    }: GlyphProps<CityTemperature>) => {
+      isNearestDatum,
+    }: RenderTooltipGlypProps<CityTemperature>) => {
       const handlers = { onPointerMove, onPointerOut, onPointerUp };
       if (tooltipGlyphComponent === 'star') {
         return (
@@ -199,7 +201,7 @@ export default function ExampleControls({ children }: ControlsProps) {
       }
       return (
         <text x={x} y={y} dx="-0.75em" dy="0.25em" fontSize={14} {...handlers}>
-          🍍
+          {isNearestDatum ? '🍍' : '🍌'}
         </text>
       );
     },
