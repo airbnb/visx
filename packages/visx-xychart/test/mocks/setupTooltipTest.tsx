@@ -1,6 +1,6 @@
 /* eslint import/no-extraneous-dependencies: 'off' */
 import React from 'react';
-import { mount } from 'enzyme';
+import { render } from '@testing-library/react';
 import { DataProvider, EventEmitterProvider, TooltipContext, TooltipContextType } from '../../src';
 
 const providerProps = {
@@ -23,7 +23,7 @@ export default function setupTooltipTest(
   children: React.ReactNode,
   tooltipContext?: Partial<TooltipContextType<object>>,
 ) {
-  return mount(
+  return render(
     <DataProvider {...providerProps}>
       <EventEmitterProvider>
         <TooltipContext.Provider value={{ ...defaultTooltipContext, ...tooltipContext }}>
