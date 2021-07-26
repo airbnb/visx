@@ -1,6 +1,4 @@
-import { WordData } from './Example';
-
-const totoAfricaLyrics = `I hear the drums echoing tonight
+export const totoAfricaLyrics = `I hear the drums echoing tonight
 But she hears only whispers of some quiet conversation
 She's coming in, 12:30 flight
 The moonlit wings reflect the stars that guide me towards salvation
@@ -30,22 +28,3 @@ I bless the rains down in Africa I bless the rain
 I bless the rains down in Africa
 I bless the rains down in Africa ah, gonna take the time
 Gonna take some time to do the things we never had ooh, ooh`;
-
-function wordFreq(string: string): WordData[] {
-  const words: string[] = string.replace(/\./g, '').split(/\s/);
-  const freqMap: Record<string, number> = {};
-
-  for (const w of words) {
-    if (!freqMap[w]) freqMap[w] = 0;
-    freqMap[w] += 1;
-  }
-
-  const wordsData: WordData[] = [];
-  Object.keys(freqMap).forEach(word => {
-    wordsData.push({ text: word, value: freqMap[word] });
-  });
-
-  return wordsData;
-}
-
-export const wordFreqTotoAfrica = wordFreq(totoAfricaLyrics);

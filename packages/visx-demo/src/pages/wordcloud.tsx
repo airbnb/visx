@@ -7,7 +7,7 @@ import packageJson from '../sandboxes/visx-wordcloud/package.json';
 const WordcloudPage = () => {
   return (
     <Show
-      component={Wordcloud}
+      component={({ width, height }) => <Wordcloud width={width} height={height} showControls />}
       title="Wordcloud"
       codeSandboxDirectoryName="visx-wordcloud"
       packageJson={packageJson}
