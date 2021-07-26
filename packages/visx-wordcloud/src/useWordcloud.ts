@@ -76,8 +76,8 @@ export interface WordcloudConfig<Datum> {
 }
 
 export function useWordcloud<Datum>({
-  width = 0,
-  height = 0,
+  width,
+  height,
   font,
   fontSize,
   fontStyle,
@@ -91,39 +91,41 @@ export function useWordcloud<Datum>({
   const [cloudWords, setCloudWords] = useState<d3Cloud.Word[]>([]);
 
   useEffect(() => {
-    const layout = d3Cloud<Datum>().size([width, height]);
+    const layout = d3Cloud<Datum>();
 
-    if (words) layout.words(words);
-    if (random) layout.random(random);
-    if (font) layout.font(font);
-    if (padding) {
+    if (width !== undefined && height !== undefined) layout.size([width, height]);
+    if (words !== undefined) layout.words(words);
+    if (random !== undefined) layout.random(random);
+    if (font !== undefined) layout.font(font);
+    if (padding !== undefined) {
       // This is needed in order to help typescript with method overloads see issue here https://github.com/microsoft/TypeScript/issues/14107
       // Once this gets merged we can remove the if tyepof statements from this file https://github.com/DefinitelyTyped/DefinitelyTyped/pull/54726
       if (typeof padding === 'number') layout.padding(padding);
       else layout.padding(padding);
     }
-    if (fontSize) {
+    if (fontSize !== undefined) {
       if (typeof fontSize === 'number') layout.fontSize(fontSize);
       else layout.fontSize(fontSize);
     }
-    if (fontStyle) {
+    if (fontStyle !== undefined) {
       if (typeof fontStyle === 'string') layout.fontStyle(fontStyle);
       else layout.fontStyle(fontStyle);
     }
-    if (fontWeight) {
+    if (fontWeight !== undefined) {
       if (typeof fontWeight === 'function') layout.fontWeight(fontWeight);
       else layout.fontWeight(fontWeight);
     }
-    if (rotate) {
+    if (rotate !== undefined) {
       if (typeof rotate === 'function') layout.rotate(rotate);
       else layout.rotate(rotate);
     }
-    if (spiral) {
+    if (spiral !== undefined) {
       if (typeof spiral === 'string') layout.spiral(spiral);
       else layout.spiral(spiral);
     }
 
-    layout.on('end', setCloudWords).start();
+    layout.on('end', setCloudWords);
+    layout.start();
 
     return function cleanup() {
       layout.stop();
