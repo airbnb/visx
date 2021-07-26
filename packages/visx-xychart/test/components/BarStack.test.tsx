@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
-import { mount } from 'enzyme';
-import { animated } from 'react-spring';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import {
   BarStack,
   BarSeries,
@@ -52,7 +52,7 @@ describe('<BarStack />', () => {
   });
 
   it('should render rects', () => {
-    const wrapper = mount(
+    const { container } = render(
       <DataProvider {...providerProps}>
         <svg>
           <BarStack>
@@ -62,11 +62,12 @@ describe('<BarStack />', () => {
         </svg>
       </DataProvider>,
     );
-    expect(wrapper.find('rect')).toHaveLength(4);
+    const RectElements = container.querySelectorAll('rect');
+    expect(RectElements).toHaveLength(4);
   });
 
   it('should use colorAccessor if passed', () => {
-    const wrapper = mount(
+    const { container } = render(
       <DataProvider {...providerProps}>
         <svg>
           <BarStack>
@@ -80,15 +81,15 @@ describe('<BarStack />', () => {
         </svg>
       </DataProvider>,
     );
-    const rects = wrapper.find('rect');
-    expect(rects.at(0).prop('fill')).not.toBe('banana');
-    expect(rects.at(1).prop('fill')).not.toBe('banana');
-    expect(rects.at(2).prop('fill')).toBe('banana');
-    expect(rects.at(3).prop('fill')).not.toBe('banana');
+    const RectElements = container.querySelectorAll('rect');
+    expect(RectElements[0]).not.toHaveAttribute('fill', 'banana');
+    expect(RectElements[1]).not.toHaveAttribute('fill', 'banana');
+    expect(RectElements[2]).toHaveAttribute('fill', 'banana');
+    expect(RectElements[3]).not.toHaveAttribute('fill', 'banana');
   });
 
   it('should not render rects if x or y are invalid', () => {
-    const wrapper = mount(
+    const { container } = render(
       <DataProvider {...providerProps}>
         <svg>
           <BarStack>
@@ -98,7 +99,8 @@ describe('<BarStack />', () => {
         </svg>
       </DataProvider>,
     );
-    expect(wrapper.find('rect')).toHaveLength(3);
+    const RectElements = container.querySelectorAll('rect');
+    expect(RectElements).toHaveLength(3);
   });
 
   it('should update scale domain to include stack sums including negative values', () => {
@@ -112,7 +114,7 @@ describe('<BarStack />', () => {
       return null;
     }
 
-    mount(
+    render(
       <DataProvider {...providerProps}>
         <svg>
           <BarStack>
@@ -176,7 +178,7 @@ describe('<AnimatedBarStack />', () => {
     expect(AnimatedBarStack).toBeDefined();
   });
   it('should render an animated.rect', () => {
-    const wrapper = mount(
+    const { container } = render(
       <DataProvider {...providerProps}>
         <svg>
           <AnimatedBarStack>
@@ -186,6 +188,7 @@ describe('<AnimatedBarStack />', () => {
         </svg>
       </DataProvider>,
     );
-    expect(wrapper.find(animated.rect)).toHaveLength(4);
+    const RectElements = container.querySelectorAll('rect');
+    expect(RectElements).toHaveLength(4);
   });
 });
