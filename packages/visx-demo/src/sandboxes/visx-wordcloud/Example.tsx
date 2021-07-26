@@ -33,7 +33,7 @@ export default function Example({ width, height }: ExampleProps) {
         fontSize={datum => fontScale(datum.value)}
         font={`Impact`}
         padding={2}
-        rotate={() => 0}
+        rotate={0}
         random={() => 0.5}
       >
         {words =>

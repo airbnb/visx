@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react';
 import d3Cloud from 'd3-cloud';
 
-export interface WordcloudConfig<Datum> {
+export interface BaseDatum {
+  text: string;
+}
+
+export interface WordcloudConfig<Datum extends BaseDatum> {
   /**
    * Width of the wordcloud layout.
    *
