@@ -1,6 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
-import Arc, { ArcProps } from '@visx/shape/lib/shapes/Arc';
+import type { ArcProps } from '@visx/shape/lib/shapes/Arc';
+import { Arc } from '@visx/shape';
 import { Group } from '@visx/group';
 import { ScaleInput, getTicks } from '@visx/scale';
 
