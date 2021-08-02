@@ -6,7 +6,7 @@ export function scaleInvert(scale: Scale, value: number) {
   // Test if the scale is an ordinalScale or not,
   // Since an ordinalScale doesn't support invert function.
   if (!scale.invert) {
-    const [start, end] = scale.range();
+    const [start, end] = (scale as Scale<unknown, number>).range();
     let i = 0;
     // ordinal should have step
     const width = (scale.step!() * (end - start)) / Math.abs(end - start);
@@ -23,7 +23,7 @@ export function scaleInvert(scale: Scale, value: number) {
     return i;
   }
 
-  return scale.invert(value);
+  return scale.invert(value) as number;
 }
 
 export function getDomainFromExtent(

@@ -1,7 +1,13 @@
 import React from 'react';
 import ShapeRect from '../../shapes/Rect';
 import renderShape from '../../util/renderShape';
-import { FormattedLabel, LegendShape as LegendShapeType } from '../../types';
+import {
+  FillAccessor,
+  FormattedLabel,
+  LegendShape as LegendShapeType,
+  SizeAccessor,
+  ShapeStyleAccessor,
+} from '../../types';
 
 export type LegendShapeProps<Data, Output> = {
   label: FormattedLabel<Data, Output>;
@@ -9,9 +15,9 @@ export type LegendShapeProps<Data, Output> = {
   itemIndex: number;
   margin?: string | number;
   shape?: LegendShapeType<Data, Output>;
-  fill?: (label: FormattedLabel<Data, Output>) => unknown;
-  size?: (label: FormattedLabel<Data, Output>) => unknown;
-  shapeStyle?: (label: FormattedLabel<Data, Output>) => unknown;
+  fill?: FillAccessor<Data, Output>;
+  size?: SizeAccessor<Data, Output>;
+  shapeStyle?: ShapeStyleAccessor<Data, Output>;
   width?: string | number;
   height?: string | number;
 };

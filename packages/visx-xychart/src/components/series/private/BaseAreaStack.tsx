@@ -157,7 +157,7 @@ function BaseAreaStack<XScale extends AxisScale, YScale extends AxisScale, Datum
   const eventEmitters = useSeriesEvents<XScale, YScale, Datum>({
     dataKey: dataKeys,
     enableEvents,
-    // @ts-ignore Datum input + return type are expected to be the same type but they differ
+    // @ts-expect-error Datum input + return type are expected to be the same type but they differ
     // for AreaStack (registry data is StackedDatum, return type is user Datum)
     findNearestDatum,
     onBlur,
@@ -237,8 +237,9 @@ function BaseAreaStack<XScale extends AxisScale, YScale extends AxisScale, Datum
       {captureFocusEvents &&
         stacks.map((_, i) => {
           // render in reverse stack order tab to top-values first
-          const stack = stacks[stacks.length - i - 1];
+          const stack: typeof stacks[number] = stacks[stacks.length - i - 1];
           return (
+            // @ts-expect-error doesn't like unknown, identity functions aren't typical scales
             <BaseGlyphSeries<unknown, unknown, AreaStackDatum>
               key={`glyphs-${stack.key}`}
               dataKey={stack.key}

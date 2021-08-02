@@ -139,8 +139,8 @@ class Brush extends Component<BrushProps> {
     const invertedX = scaleInvert(xScale, x);
     const invertedY = scaleInvert(yScale, y);
     onBrushStart({
-      x: xScale.invert ? invertedX : xScale.domain()[invertedX],
-      y: yScale.invert ? invertedY : yScale.domain()[invertedY],
+      x: xScale.invert ? invertedX : (xScale as Scale<number, unknown>).domain()[invertedX],
+      y: yScale.invert ? invertedY : (yScale as Scale<number, unknown>).domain()[invertedY],
     });
   };
 
