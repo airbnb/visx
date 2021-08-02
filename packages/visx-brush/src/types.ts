@@ -1,3 +1,5 @@
+import { D3Scale, NumberLike } from '@visx/scale';
+
 export type Point = {
   x: number;
   y: number;
@@ -50,13 +52,11 @@ export type BrushPageOffset = {
   pageY?: number;
 };
 
-export interface Scale<Input = unknown, Output = unknown> {
-  (value: Input): Output;
-  ticks?: (count: number) => Input[];
-  domain(input: Input[]): this;
-  domain(): Input[];
-  range(): Output[];
-  range(output: Output[]): this;
-  invert?: (output: Output) => Input;
-  step?: () => number;
-}
+// In order to plot values on a brush, output of the scale must be number.
+// Some scales return undefined.
+type BrushScaleOutput = number | NumberLike | undefined;
+
+/** A catch-all type for scales that are compatible with axis */
+export type Scale<Output extends BrushScaleOutput = BrushScaleOutput> =
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  D3Scale<Output, any, any>;
