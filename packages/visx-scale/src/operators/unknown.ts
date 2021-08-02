@@ -11,6 +11,6 @@ export default function applyUnknown<
   config: ScaleConfigWithoutType<Output, DiscreteInput, ThresholdInput>,
 ) {
   if ('unknown' in scale && 'unknown' in config && typeof config.unknown !== 'undefined') {
-    (scale.unknown as unknown)(config.unknown);
+    (scale.unknown as Function)(config.unknown);
   }
 }

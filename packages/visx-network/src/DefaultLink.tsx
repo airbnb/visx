@@ -1,7 +1,7 @@
 import React from 'react';
 import { LinkProvidedProps } from './types';
 
-export default function DefaultLink({ link }: LinkProvidedProps<unknown>) {
+export default function DefaultLink({ link }: LinkProvidedProps<any>) {
   return link?.source && link.target ? (
     <line
       x1={link.source.x}

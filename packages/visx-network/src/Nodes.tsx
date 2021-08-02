@@ -24,8 +24,8 @@ export default function Nodes<Node>({
   nodes = [],
   nodeComponent = DefaultNode,
   className,
-  x = (d: unknown) => d?.x || 0,
-  y = (d: unknown) => d?.y || 0,
+  x = (d: any) => d?.x || 0,
+  y = (d: any) => d?.y || 0,
 }: NodeProps<Node>) {
   return (
     <>

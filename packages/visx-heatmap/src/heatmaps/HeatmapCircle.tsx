@@ -54,8 +54,8 @@ export default function HeatmapCircle<ColumnDatum, BinDatum>({
   yScale,
   colorScale = () => undefined,
   opacityScale = () => 1,
-  bins = (column: unknown) => column?.bins,
-  count = (cell: unknown) => cell?.count,
+  bins = (column: any) => (column)?.bins,
+  count = (cell: any) => (cell)?.count,
   children,
   ...restProps
 }: HeatmapCircleProps<ColumnDatum, BinDatum> &

@@ -11,6 +11,7 @@ import {
   geoPath,
   GeoPath,
   GeoProjection,
+  ExtendedFeature,
 } from 'd3-geo';
 // this is just for types
 // eslint-disable-next-line import/no-unresolved
@@ -67,12 +68,12 @@ export type ProjectionProps<Datum extends GeoPermissibleObjects = GeoPermissible
    */
   fitExtent?: [
     [[number, number], [number, number]],
-    unknown, // ExtendedFeature | ExtendedFeatureCollection | GeoGeometryObjects,
+    ExtendedFeature, // ExtendedFeature | ExtendedFeatureCollection | GeoGeometryObjects,
   ];
   /** Convenience prop for props.fitExtent where the top-left corner of the extent is [0, 0]. */
   fitSize?: [
     [number, number],
-    unknown, // ExtendedFeature | ExtendedFeatureCollection | GeoGeometryObjects
+    ExtendedFeature, // ExtendedFeature | ExtendedFeatureCollection | GeoGeometryObjects
   ];
   /** Hook to render anything at the centroid of a feature. */
   centroid?: (centroid: [number, number], feature: ParsedFeature<Datum>) => React.ReactNode;
