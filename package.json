@@ -55,12 +55,12 @@
     "type:workspaces": "nimbus typescript --build"
   },
   "devDependencies": {
-    "@airbnb/config-babel": "^2.1.3",
-    "@airbnb/config-eslint": "^2.1.3",
-    "@airbnb/config-jest": "^2.1.3",
-    "@airbnb/config-prettier": "^2.0.4",
-    "@airbnb/config-typescript": "^2.1.2",
-    "@airbnb/nimbus": "^2.1.3",
+    "@airbnb/config-babel": "^3.1.0",
+    "@airbnb/config-eslint": "^3.1.0",
+    "@airbnb/config-jest": "^3.0.2",
+    "@airbnb/config-prettier": "^3.1.0",
+    "@airbnb/config-typescript": "^3.0.1",
+    "@airbnb/nimbus": "^3.1.4",
     "@octokit/rest": "18.1.0",
     "@types/enzyme": "^3.10.3",
     "@types/jest": "^24.0.18",
