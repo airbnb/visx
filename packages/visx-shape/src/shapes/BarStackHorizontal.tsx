@@ -83,7 +83,6 @@ export default function BarStackHorizontal<
     };
   });
 
-  // eslint-disable-next-line react/jsx-no-useless-fragment
   if (children) return <>{children(barStacks)}</>;
 
   return (

@@ -91,7 +91,6 @@ export default function BarStack<
     };
   });
 
-  // eslint-disable-next-line react/jsx-no-useless-fragment
   if (children) return <>{children(barStacks)}</>;
 
   return (

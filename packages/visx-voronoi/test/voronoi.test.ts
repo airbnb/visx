@@ -1,9 +1,9 @@
 import { voronoi } from '../src';
 
+const x = () => 123;
+const y = () => 123;
+
 describe('voronoi', () => {
-  const x = () => 123;
-  const y = () => 123;
-  
   test('it should be defined', () => {
     expect(voronoi).toBeDefined();
   });

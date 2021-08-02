@@ -113,7 +113,6 @@ export default function BarGroup<
     }),
   }));
 
-  // eslint-disable-next-line react/jsx-no-useless-fragment
   if (children) return <>{children(barGroups)}</>;
 
   return (

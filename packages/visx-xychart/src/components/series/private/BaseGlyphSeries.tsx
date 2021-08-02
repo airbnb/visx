@@ -81,10 +81,7 @@ export function BaseGlyphSeries<
     [color, colorAccessor, data, getScaledX, getScaledY, size],
   );
 
-  return (
-    // eslint-disable-next-line react/jsx-no-useless-fragment
-    <>{renderGlyphs({ glyphs, xScale, yScale, horizontal, ...eventEmitters })}</>
-  );
+  return <>{renderGlyphs({ glyphs, xScale, yScale, horizontal, ...eventEmitters })}</>;
 }
 
 export default withRegisteredData(BaseGlyphSeries);

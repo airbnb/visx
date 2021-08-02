@@ -31,7 +31,6 @@ export default function LineRadial<Datum>({
     defined,
     curve,
   });
-  // eslint-disable-next-line react/jsx-no-useless-fragment
   if (children) return <>{children({ path })}</>;
   return (
     <path
