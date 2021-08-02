@@ -6,10 +6,10 @@ export type Point = {
 export type Bounds = {
   x0: number;
   x1: number;
-  xValues?: any[];
+  xValues?: unknown[];
   y0: number;
   y1: number;
-  yValues?: any[];
+  yValues?: unknown[];
 };
 
 export interface MarginShape {
@@ -50,7 +50,7 @@ export type BrushPageOffset = {
   pageY?: number;
 };
 
-export interface Scale<Input = any, Output = any> {
+export interface Scale<Input = unknown, Output = unknown> {
   (value: Input): Output;
   ticks?: (count: number) => Input[];
   domain(input: Input[]): this;

@@ -17,7 +17,7 @@ describe('sclaeRadial()', () => {
 
   it('set unknown', () => {
     const scale = scaleRadial({ domain: [0, 10], unknown: 'green' });
-    expect(scale('sandwich' as any)).toEqual('green');
+    expect(scale('sandwich' as unknown)).toEqual('green');
   });
 
   describe('set clamp', () => {

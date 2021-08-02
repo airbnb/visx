@@ -41,8 +41,8 @@ const Lines = ({ width, height }: Props) => {
           <Group key={`lines-${i}`} top={i * lineHeight}>
             <LinePath<DateValue>
               data={lineData}
-              x={d => xScale(getX(d)) ?? 0}
-              y={d => yScale(getY(d)) ?? 0}
+              x={(d) => xScale(getX(d)) ?? 0}
+              y={(d) => yScale(getY(d)) ?? 0}
               stroke="#ffffff"
               strokeWidth={1.5}
               shapeRendering="geometricPrecision"

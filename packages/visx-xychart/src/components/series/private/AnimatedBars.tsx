@@ -66,27 +66,28 @@ export default function AnimatedBars<XScale extends AxisScale, YScale extends Ax
   return (
     // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
-      {animatedBars((
-        // @ts-expect-error x/y aren't in react-spring types (which are HTML CSS properties)
-        { x, y, width, height, fill, opacity },
-        item,
-        { key },
-      ) =>
-        item == null || key == null ? null : (
-          <animated.rect
-            key={key}
-            tabIndex={isFocusable ? 0 : undefined}
-            className="visx-bar"
-            x={x}
-            y={y}
-            width={width}
-            height={height}
-            // use the item's fill directly if it's not animate-able
-            fill={colorHasUrl(item.fill) ? item.fill : fill}
-            opacity={opacity}
-            {...rectProps}
-          />
-        ),
+      {animatedBars(
+        (
+          // @ts-expect-error x/y aren't in react-spring types (which are HTML CSS properties)
+          { x, y, width, height, fill, opacity },
+          item,
+          { key },
+        ) =>
+          item == null || key == null ? null : (
+            <animated.rect
+              key={key}
+              tabIndex={isFocusable ? 0 : undefined}
+              className="visx-bar"
+              x={x}
+              y={y}
+              width={width}
+              height={height}
+              // use the item's fill directly if it's not animate-able
+              fill={colorHasUrl(item.fill) ? item.fill : fill}
+              opacity={opacity}
+              {...rectProps}
+            />
+          ),
       )}
     </>
   );

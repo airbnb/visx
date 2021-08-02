@@ -11,7 +11,7 @@ import useSeriesEvents from '../../../hooks/useSeriesEvents';
 export type BaseGlyphSeriesProps<
   XScale extends AxisScale,
   YScale extends AxisScale,
-  Datum extends object
+  Datum extends object,
 > = SeriesProps<XScale, YScale, Datum> & {
   /** Given a Datum, returns its color. Falls back to theme color if unspecified or if a null-ish value is returned. */
   colorAccessor?: (d: Datum, index: number) => string | null | undefined;
@@ -24,7 +24,7 @@ export type BaseGlyphSeriesProps<
 export function BaseGlyphSeries<
   XScale extends AxisScale,
   YScale extends AxisScale,
-  Datum extends object
+  Datum extends object,
 >({
   colorAccessor,
   data,
@@ -77,7 +77,7 @@ export function BaseGlyphSeries<
             datum,
           };
         })
-        .filter(point => point) as GlyphProps<Datum>[],
+        .filter((point) => point) as GlyphProps<Datum>[],
     [color, colorAccessor, data, getScaledX, getScaledY, size],
   );
 

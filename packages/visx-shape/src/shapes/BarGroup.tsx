@@ -19,7 +19,7 @@ export type BarGroupProps<
   Datum extends DatumObject,
   Key extends GroupKey = GroupKey,
   X0Scale extends AnyScaleBand = AnyScaleBand,
-  X1Scale extends AnyScaleBand = AnyScaleBand
+  X1Scale extends AnyScaleBand = AnyScaleBand,
 > = BaseBarGroupProps<Datum, Key> & {
   /** Returns the value mapped to the x0 (group position) of a bar */
   x0: Accessor<Datum, ScaleInput<X0Scale>>;
@@ -77,7 +77,7 @@ export default function BarGroup<
   Datum extends DatumObject,
   Key extends GroupKey = GroupKey,
   X0Scale extends AnyScaleBand = AnyScaleBand,
-  X1Scale extends AnyScaleBand = AnyScaleBand
+  X1Scale extends AnyScaleBand = AnyScaleBand,
 >({
   data,
   className,
@@ -118,9 +118,9 @@ export default function BarGroup<
 
   return (
     <Group className={cx('visx-bar-group', className)} top={top} left={left}>
-      {barGroups.map(barGroup => (
+      {barGroups.map((barGroup) => (
         <Group key={`bar-group-${barGroup.index}-${barGroup.x0}`} left={barGroup.x0}>
-          {barGroup.bars.map(bar => (
+          {barGroup.bars.map((bar) => (
             <Bar
               key={`bar-group-bar-${barGroup.index}-${bar.index}-${bar.value}-${bar.key}`}
               x={bar.x}

@@ -5,7 +5,7 @@ import Glyph from './Glyph';
 
 export type GlyphCrossProps<Datum> = {
   /** Render function override which is passed the configured path generator. */
-  children?: ({ path }: { path: Symbol<any, Datum> }) => React.ReactNode;
+  children?: ({ path }: { path: Symbol<unknown, Datum> }) => React.ReactNode;
   /** classname to apply to glyph path element. */
   className?: string;
   /** Top offset to apply to glyph g element container. */
@@ -16,7 +16,7 @@ export type GlyphCrossProps<Datum> = {
   size?: number | ((d: Datum) => number);
 };
 
-export default function GlyphCross<Datum = any>({
+export default function GlyphCross<Datum = unknown>({
   children,
   className,
   top,

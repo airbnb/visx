@@ -185,10 +185,10 @@ class Brush extends Component<BrushProps> {
     let brushRegionHeight;
     let left;
     let top;
-    const marginLeft = margin && margin.left ? margin.left : 0;
-    const marginTop = margin && margin.top ? margin.top : 0;
-    const marginRight = margin && margin.right ? margin.right : 0;
-    const marginBottom = margin && margin.bottom ? margin.bottom : 0;
+    const marginLeft = margin?.left ? margin.left : 0;
+    const marginTop = margin?.top ? margin.top : 0;
+    const marginRight = margin?.right ? margin.right : 0;
+    const marginBottom = margin?.bottom ? margin.bottom : 0;
 
     if (brushRegion === 'chart') {
       left = 0;

@@ -16,8 +16,8 @@ interface BrowserUsage {
 }
 
 const letters: LetterFrequency[] = letterFrequency.slice(0, 4);
-const browserNames = Object.keys(browserUsage[0]).filter(k => k !== 'date') as BrowserNames[];
-const browsers: BrowserUsage[] = browserNames.map(name => ({
+const browserNames = Object.keys(browserUsage[0]).filter((k) => k !== 'date') as BrowserNames[];
+const browsers: BrowserUsage[] = browserNames.map((name) => ({
   label: name,
   usage: Number(browserUsage[0][name]),
 }));
@@ -40,7 +40,7 @@ const getBrowserColor = scaleOrdinal({
   ],
 });
 const getLetterFrequencyColor = scaleOrdinal({
-  domain: letters.map(l => l.letter),
+  domain: letters.map((l) => l.letter),
   range: ['rgba(93,30,91,1)', 'rgba(93,30,91,0.8)', 'rgba(93,30,91,0.6)', 'rgba(93,30,91,0.4)'],
 });
 
@@ -86,16 +86,16 @@ export default function Example({
           cornerRadius={3}
           padAngle={0.005}
         >
-          {pie => (
+          {(pie) => (
             <AnimatedPie<BrowserUsage>
               {...pie}
               animate={animate}
-              getKey={arc => arc.data.label}
+              getKey={(arc) => arc.data.label}
               onClickDatum={({ data: { label } }) =>
                 animate &&
                 setSelectedBrowser(selectedBrowser && selectedBrowser === label ? null : label)
               }
-              getColor={arc => getBrowserColor(arc.data.label)}
+              getColor={(arc) => getBrowserColor(arc.data.label)}
             />
           )}
         </Pie>
@@ -109,7 +109,7 @@ export default function Example({
           pieSortValues={() => -1}
           outerRadius={radius - donutThickness * 1.3}
         >
-          {pie => (
+          {(pie) => (
             <AnimatedPie<LetterFrequency>
               {...pie}
               animate={animate}

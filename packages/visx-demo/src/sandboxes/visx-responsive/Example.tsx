@@ -35,7 +35,7 @@ export default function Example({ width, height }: ResponsiveProps) {
       <div className="app-content">
         <div>
           <button
-            onClick={event => {
+            onClick={(event) => {
               // on gallery page, don't go to example
               event.preventDefault();
               event.stopPropagation();

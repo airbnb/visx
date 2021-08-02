@@ -67,12 +67,12 @@ export type ProjectionProps<Datum extends GeoPermissibleObjects = GeoPermissible
    */
   fitExtent?: [
     [[number, number], [number, number]],
-    any, // ExtendedFeature | ExtendedFeatureCollection | GeoGeometryObjects,
+    unknown, // ExtendedFeature | ExtendedFeatureCollection | GeoGeometryObjects,
   ];
   /** Convenience prop for props.fitExtent where the top-left corner of the extent is [0, 0]. */
   fitSize?: [
     [number, number],
-    any, // ExtendedFeature | ExtendedFeatureCollection | GeoGeometryObjects
+    unknown, // ExtendedFeature | ExtendedFeatureCollection | GeoGeometryObjects
   ];
   /** Hook to render anything at the centroid of a feature. */
   centroid?: (centroid: [number, number], feature: ParsedFeature<Datum>) => React.ReactNode;
@@ -80,7 +80,7 @@ export type ProjectionProps<Datum extends GeoPermissibleObjects = GeoPermissible
   className?: string;
   /** Override render function which is passed path data and a copy of the constructed projection.  */
   children?: (args: {
-    path: GeoPath<any, GeoPermissibleObjects>;
+    path: GeoPath<unknown, GeoPermissibleObjects>;
     features: ParsedFeature<Datum>[];
     projection: GeoProjection;
   }) => React.ReactNode;
@@ -178,24 +178,24 @@ export default function Projection<Datum extends GeoPermissibleObjects>({
           <path
             className={cx(`visx-geo-${projection}`, className)}
             d={feature.path || ''}
-            ref={innerRef && innerRef(feature, i)}
+            ref={innerRef?.(feature, i)}
             {...restProps}
           />
-          {centroid && centroid(feature.centroid, feature)}
+          {centroid?.(feature.centroid, feature)}
         </g>
       ))}
 
       {/* TODO: Maybe find a different way to pass projection function to use for example invert */}
-      {projectionFunc && projectionFunc(currProjection)}
+      {projectionFunc?.(currProjection)}
 
-      {graticule && graticule.foreground && (
+      {graticule?.foreground && (
         <Graticule graticule={(ml: MultiLineString) => path(ml) || ''} {...graticule} />
       )}
 
-      {graticuleLines && graticuleLines.foreground && (
+      {graticuleLines?.foreground && (
         <Graticule lines={(l: LineString) => path(l) || ''} {...graticuleLines} />
       )}
-      {graticuleOutline && graticuleOutline.foreground && (
+      {graticuleOutline?.foreground && (
         <Graticule outline={(p: Polygon) => path(p) || ''} {...graticuleOutline} />
       )}
     </Group>

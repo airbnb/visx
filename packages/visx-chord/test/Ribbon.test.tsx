@@ -21,7 +21,7 @@ describe('<Ribbon />', () => {
     const children = jest.fn(() => 'test');
     shallow(<Ribbon chord={chords[0]} children={children} />);
     // we don't know type of the arguments
-    const args = (children.mock.calls[0] as any)[0];
+    const args = (children.mock.calls[0] as unknown)[0];
     expect(children.mock.calls).toHaveLength(1);
     expect(args.path).toBeDefined();
   });

@@ -41,7 +41,7 @@ export type BaseBarStackProps<
   Datum,
   Key extends StackKey = StackKey,
   XScale extends PositionScale = PositionScale,
-  YScale extends PositionScale = PositionScale
+  YScale extends PositionScale = PositionScale,
 > = BaseStackProps<Datum, Key> & {
   /** @visx/scale or d3-scale that takes an x value and maps it to an x axis position. */
   xScale: XScale;

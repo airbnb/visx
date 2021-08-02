@@ -29,13 +29,13 @@ import getScaleBandwidth from '../../../utils/getScaleBandwidth';
 type AreaStackChildProps<
   XScale extends AxisScale,
   YScale extends AxisScale,
-  Datum extends object
+  Datum extends object,
 > = Omit<BaseAreaSeriesProps<XScale, YScale, Datum>, 'PathComponent' | 'curve'>;
 
 export type BaseAreaStackProps<
   XScale extends AxisScale,
   YScale extends AxisScale,
-  Datum extends object
+  Datum extends object,
 > = {
   /** `AreaSeries` elements, note we can't strictly enforce this with TS yet. */
   children:
@@ -71,9 +71,9 @@ function BaseAreaStack<XScale extends AxisScale, YScale extends AxisScale, Datum
 }: BaseAreaStackProps<XScale, YScale, Datum>) {
   type AreaStackDatum = SeriesPoint<CombinedStackData<XScale, YScale>>;
 
-  const { colorScale, dataRegistry, horizontal, xScale, yScale, theme } = (useContext(
+  const { colorScale, dataRegistry, horizontal, xScale, yScale, theme } = useContext(
     DataContext,
-  ) as unknown) as DataContextType<XScale, YScale, AreaStackDatum>;
+  ) as unknown as DataContextType<XScale, YScale, AreaStackDatum>;
 
   const { dataKeys, seriesChildren, stackedData } = useStackedData<
     XScale,
@@ -114,7 +114,7 @@ function BaseAreaStack<XScale extends AxisScale, YScale extends AxisScale, Datum
       stackedData.map((stack, stackIndex) => {
         const areaSeries:
           | React.ReactElement<BaseAreaSeriesProps<XScale, YScale, Datum>>
-          | undefined = seriesChildren.find(child => child.props.dataKey === stack.key);
+          | undefined = seriesChildren.find((child) => child.props.dataKey === stack.key);
         const {
           data,
           dataKey,
@@ -146,8 +146,8 @@ function BaseAreaStack<XScale extends AxisScale, YScale extends AxisScale, Datum
   // custom logic to find the nearest AreaStackDatum (context) and return the original Datum (props)
   const findNearestDatum = useCallback(
     (params: NearestDatumArgs<XScale, YScale, AreaStackDatum>): NearestDatumReturnType<Datum> => {
-      const childData = seriesChildren.find(child => child.props.dataKey === params.dataKey)?.props
-        ?.data;
+      const childData = seriesChildren.find((child) => child.props.dataKey === params.dataKey)
+        ?.props?.data;
       return childData ? findNearestStackDatum(params, childData, horizontal) : null;
     },
     [seriesChildren, horizontal],
@@ -174,7 +174,7 @@ function BaseAreaStack<XScale extends AxisScale, YScale extends AxisScale, Datum
   const renderGlyphs = useCallback(
     ({ glyphs }: GlyphsProps<XScale, YScale, AreaStackDatum>) =>
       captureFocusEvents
-        ? glyphs.map(glyph => (
+        ? glyphs.map((glyph) => (
             <React.Fragment key={glyph.key}>
               {defaultRenderGlyph({
                 ...glyph,
@@ -189,13 +189,13 @@ function BaseAreaStack<XScale extends AxisScale, YScale extends AxisScale, Datum
   );
 
   // if scales and data are not available in the registry, bail
-  if (dataKeys.some(key => dataRegistry.get(key) == null) || !xScale || !yScale || !colorScale) {
+  if (dataKeys.some((key) => dataRegistry.get(key) == null) || !xScale || !yScale || !colorScale) {
     return null;
   }
 
   return (
     <g className="visx-area-stack">
-      {stacks.map(stack => (
+      {stacks.map((stack) => (
         <Area key={stack.key} curve={curve} {...stack.accessors}>
           {({ path }) => (
             <PathComponent
@@ -209,7 +209,7 @@ function BaseAreaStack<XScale extends AxisScale, YScale extends AxisScale, Datum
         </Area>
       ))}
       {renderLine &&
-        stacks.map(stack => (
+        stacks.map((stack) => (
           <LinePath<AreaStackDatum>
             key={`line-${stack.key}`}
             // note: this currently doesn't work well for offset=wiggle
@@ -239,7 +239,7 @@ function BaseAreaStack<XScale extends AxisScale, YScale extends AxisScale, Datum
           // render in reverse stack order tab to top-values first
           const stack = stacks[stacks.length - i - 1];
           return (
-            <BaseGlyphSeries<any, any, AreaStackDatum>
+            <BaseGlyphSeries<unknown, unknown, AreaStackDatum>
               key={`glyphs-${stack.key}`}
               dataKey={stack.key}
               data={stack.data}

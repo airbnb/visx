@@ -72,8 +72,8 @@ export default function HeatmapRect<ColumnDatum, BinDatum>({
   yScale,
   colorScale = () => undefined,
   opacityScale = () => 1,
-  bins = (d: any) => d && d.bins,
-  count = (d: any) => d && d.count,
+  bins = (d: unknown) => d?.bins,
+  count = (d: unknown) => d?.count,
   children,
   ...restProps
 }: ComponentProps<ColumnDatum, BinDatum>) {
@@ -105,8 +105,8 @@ export default function HeatmapRect<ColumnDatum, BinDatum>({
 
   return (
     <Group className="visx-heatmap-rects" top={top} left={left}>
-      {heatmap.map(_bins =>
-        _bins.map(bin => (
+      {heatmap.map((_bins) =>
+        _bins.map((bin) => (
           <rect
             key={`heatmap-tile-rect-${bin.row}-${bin.column}`}
             className={cx('visx-heatmap-rect', className)}

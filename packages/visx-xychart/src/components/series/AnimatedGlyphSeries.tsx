@@ -8,7 +8,7 @@ import defaultRenderGlyph from './private/defaultRenderGlyph';
 export default function AnimatedGlyphSeries<
   XScale extends AxisScale,
   YScale extends AxisScale,
-  Datum extends object
+  Datum extends object,
 >({
   renderGlyph = defaultRenderGlyph,
   ...props

@@ -1,18 +1,19 @@
 import { voronoi } from '../src';
 
 describe('voronoi', () => {
+  const x = () => 123;
+  const y = () => 123;
+  
   test('it should be defined', () => {
     expect(voronoi).toBeDefined();
   });
 
   test('x param should set voronoi x', () => {
-    const x = () => 123;
     const v = voronoi({ x });
     expect(v.x()).toEqual(x);
   });
 
   test('y param should set voronoi y', () => {
-    const y = () => 123;
     const v = voronoi({ y });
     expect(v.y()).toEqual(y);
   });

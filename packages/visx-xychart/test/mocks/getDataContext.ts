@@ -14,10 +14,10 @@ function getDataContext(entries?: Parameters<typeof DataRegistry.prototype.regis
 
   const mockContext: DataContextType<any, any, any> = {
     dataRegistry,
-    registerData: data => {
+    registerData: (data) => {
       dataRegistry.registerData(data);
     },
-    unregisterData: keys => {
+    unregisterData: (keys) => {
       dataRegistry.unregisterData(keys);
     },
     xScale: scaleLinear({ domain: [0, 10], range: [0, width] }),

@@ -98,7 +98,7 @@ export default function Streamgraph({ width, height, animate = true }: StreamGra
           y1={getY1}
         >
           {({ stacks, path }) =>
-            stacks.map(stack => {
+            stacks.map((stack) => {
               // Alternatively use renderprops <Spring to={{ d }}>{tweened => ...}</Spring>
               const pathString = path(stack) || '';
               const tweened = animate ? useSpring({ pathString }) : { pathString };

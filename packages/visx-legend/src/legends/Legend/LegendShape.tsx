@@ -9,9 +9,9 @@ export type LegendShapeProps<Data, Output> = {
   itemIndex: number;
   margin?: string | number;
   shape?: LegendShapeType<Data, Output>;
-  fill?: (label: FormattedLabel<Data, Output>) => any;
-  size?: (label: FormattedLabel<Data, Output>) => any;
-  shapeStyle?: (label: FormattedLabel<Data, Output>) => any;
+  fill?: (label: FormattedLabel<Data, Output>) => unknown;
+  size?: (label: FormattedLabel<Data, Output>) => unknown;
+  shapeStyle?: (label: FormattedLabel<Data, Output>) => unknown;
   width?: string | number;
   height?: string | number;
 };

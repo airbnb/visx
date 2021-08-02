@@ -5,12 +5,12 @@ import { ScaleConfigWithoutType } from '../types/ScaleConfig';
 export default function applyUnknown<
   Output,
   DiscreteInput extends StringLike,
-  ThresholdInput extends DefaultThresholdInput
+  ThresholdInput extends DefaultThresholdInput,
 >(
   scale: D3Scale<Output, DiscreteInput, ThresholdInput>,
   config: ScaleConfigWithoutType<Output, DiscreteInput, ThresholdInput>,
 ) {
   if ('unknown' in scale && 'unknown' in config && typeof config.unknown !== 'undefined') {
-    (scale.unknown as any)(config.unknown);
+    (scale.unknown as unknown)(config.unknown);
   }
 }

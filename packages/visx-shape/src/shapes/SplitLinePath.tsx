@@ -46,7 +46,7 @@ export default function SplitLinePath<Datum>({
   const pointsInSegments = useMemo(() => {
     const xFn = typeof x === 'number' || typeof x === 'undefined' ? () => x : x;
     const yFn = typeof y === 'number' || typeof y === 'undefined' ? () => y : y;
-    return segments.map(s => s.map((value, i) => ({ x: xFn(value, i, s), y: yFn(value, i, s) })));
+    return segments.map((s) => s.map((value, i) => ({ x: xFn(value, i, s), y: yFn(value, i, s) })));
   }, [x, y, segments]);
 
   const pathString = useMemo(() => {

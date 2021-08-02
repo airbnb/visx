@@ -6,7 +6,7 @@ import { NearestDatumArgs, NearestDatumReturnType } from '../types';
 export default function findNearestDatumXY<
   XScale extends AxisScale,
   YScale extends AxisScale,
-  Datum extends object
+  Datum extends object,
 >({
   width,
   height,

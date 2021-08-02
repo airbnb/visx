@@ -50,7 +50,7 @@ export default function ExampleControls({
   const xScale = useMemo(
     () =>
       scaleTime({
-        domain: extent(data, d => getDate(d)) as number[],
+        domain: extent(data, (d) => getDate(d)) as number[],
         range: [0, width],
       }),
     [width],
@@ -58,7 +58,7 @@ export default function ExampleControls({
   const yScale = useMemo(
     () =>
       scaleLinear({
-        domain: extent(data, d => getStockValue(d)) as number[],
+        domain: extent(data, (d) => getStockValue(d)) as number[],
         range: [height - 100, 100],
       }),
     [height],
@@ -88,7 +88,7 @@ export default function ExampleControls({
   });
   // update annotation position when scale's change
   useEffect(() => {
-    setAnnotationPosition(currPosition => ({
+    setAnnotationPosition((currPosition) => ({
       ...currPosition,
       x: xScale(getDate(annotateDatum)) ?? 0,
       y: yScale(getStockValue(annotateDatum)) ?? 0,
@@ -124,12 +124,12 @@ export default function ExampleControls({
           <div>
             <label>
               <strong>Title</strong>&nbsp;&nbsp;
-              <input type="text" onChange={e => setTitle(e.target.value)} value={title} />
+              <input type="text" onChange={(e) => setTitle(e.target.value)} value={title} />
             </label>
             &nbsp;&nbsp;&nbsp;
             <label>
               <strong>Subtitle</strong>&nbsp;&nbsp;
-              <input type="text" onChange={e => setSubtitle(e.target.value)} value={subtitle} />
+              <input type="text" onChange={(e) => setSubtitle(e.target.value)} value={subtitle} />
             </label>
             &nbsp;&nbsp;&nbsp;
             <label>

@@ -60,8 +60,8 @@ export default withTooltip<DotsProps, PointsRange>(
     const voronoiLayout = useMemo(
       () =>
         voronoi<PointsRange>({
-          x: d => xScale(x(d)) ?? 0,
-          y: d => yScale(y(d)) ?? 0,
+          x: (d) => xScale(x(d)) ?? 0,
+          y: (d) => yScale(y(d)) ?? 0,
           width,
           height,
         })(points),
