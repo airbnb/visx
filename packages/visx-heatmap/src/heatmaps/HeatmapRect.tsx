@@ -72,8 +72,8 @@ export default function HeatmapRect<ColumnDatum, BinDatum>({
   yScale,
   colorScale = () => undefined,
   opacityScale = () => 1,
-  bins = (d: unknown) => d?.bins,
-  count = (d: unknown) => d?.count,
+  bins = (d: any) => d?.bins, // eslint-disable-line @typescript-eslint/no-explicit-any
+  count = (d: any) => d?.count, // eslint-disable-line @typescript-eslint/no-explicit-any
   children,
   ...restProps
 }: ComponentProps<ColumnDatum, BinDatum>) {
