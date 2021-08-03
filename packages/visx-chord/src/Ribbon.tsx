@@ -43,13 +43,13 @@ export default function Ribbon({
   className,
   ...restProps
 }: Omit<React.SVGProps<SVGPathElement>, keyof RibbonProps> & RibbonProps) {
-  const ribbon = d3ribbon<any, Chord, ChordSubgroup>();
+  const ribbon = d3ribbon<unknown, Chord, ChordSubgroup>();
   if (source) ribbon.source(source);
   if (target) ribbon.target(target);
   if (radius) setNumberOrNumberAccessor(ribbon.radius, radius);
   if (startAngle) setNumberOrNumberAccessor(ribbon.startAngle, startAngle);
   if (endAngle) setNumberOrNumberAccessor(ribbon.endAngle, endAngle);
-  const path = (ribbon(chord) as unknown) as string | null;
+  const path = ribbon(chord) as unknown as string | null;
   if (children) return <>{children({ path })}</>;
 
   return <path className={cx('visx-ribbon', className)} d={path || ''} {...restProps} />;

@@ -1,8 +1,8 @@
 import React from 'react';
 import useText from './hooks/useText';
-import { TextProps } from './types';
+import type { TextProps as TxtProps } from './types';
 
-export { TextProps } from './types';
+export type TextProps = TxtProps;
 
 const SVG_STYLE = { overflow: 'visible' };
 

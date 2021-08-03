@@ -20,7 +20,7 @@ describe('<Line />', () => {
 
   test('it should expose its ref via an innerRef prop', () => {
     // eslint-disable-next-line jest/no-test-return-statement
-    return new Promise(done => {
+    return new Promise((done) => {
       const refCallback = (ref: SVGLineElement) => {
         expect(ref.tagName).toMatch('line');
         done();

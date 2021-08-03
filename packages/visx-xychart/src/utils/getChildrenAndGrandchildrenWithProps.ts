@@ -15,11 +15,11 @@ export default function getChildrenAndGrandchildrenWithProps<P extends object>(
   children: JSX.Element | JSX.Element[],
 ): React.ReactElement<P>[] {
   return React.Children.toArray(children)
-    .flatMap(child => {
+    .flatMap((child) => {
       if (typeof child === 'object' && 'props' in child && child.props.children) {
         return child.props.children;
       }
       return child;
     })
-    .filter(child => isChildWithProps<P>(child));
+    .filter((child) => isChildWithProps<P>(child));
 }

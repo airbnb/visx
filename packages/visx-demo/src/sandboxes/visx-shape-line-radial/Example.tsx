@@ -119,7 +119,7 @@ const Example = ({ width, height, animate = true }: LineRadialProps) => {
             scale={reverseYScale}
             numTicks={5}
             tickStroke="none"
-            tickLabelProps={val => ({
+            tickLabelProps={(val) => ({
               fontSize: 8,
               fill: blue,
               fillOpacity: 1,
@@ -155,7 +155,7 @@ const Example = ({ width, height, animate = true }: LineRadialProps) => {
                       strokeLinecap="round"
                       fill="none"
                       stroke="url(#line-gradient)"
-                      strokeDashoffset={spring.frame.interpolate(v => v * lineLength)}
+                      strokeDashoffset={spring.frame.interpolate((v) => v * lineLength)}
                       strokeDasharray={lineLength}
                     />
                   )}

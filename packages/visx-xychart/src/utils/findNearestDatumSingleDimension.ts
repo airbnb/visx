@@ -6,7 +6,7 @@ import { bisector, range as d3Range, bisectLeft } from 'd3-array';
 /** Finds the nearest datum in a single direction (x or y) closest to the specified `scaledValue`. */
 export default function findNearestDatumSingleDimension<
   Scale extends AxisScale,
-  Datum extends object
+  Datum extends object,
 >({
   scale,
   accessor,
@@ -48,7 +48,7 @@ export default function findNearestDatumSingleDimension<
     // y-axis scales may have reverse ranges, correct for this
     const sortedDomain = range[0] < range[1] ? domain : domain.reverse();
     const domainValue = sortedDomain[domainIndex - 1];
-    const index = data.findIndex(d => String(accessor(d)) === String(domainValue));
+    const index = data.findIndex((d) => String(accessor(d)) === String(domainValue));
     nearestDatum = data[index];
     nearestDatumIndex = index;
   } else {

@@ -55,17 +55,17 @@ export default function getSplitLineSegments({
 
     if (segmentation === 'x' || segmentation === 'y') {
       const segmentStarts = pointsInSegments.map(
-        points => points.find(p => typeof p[segmentation] === 'number')?.[segmentation],
+        (points) => points.find((p) => typeof p[segmentation] === 'number')?.[segmentation],
       );
 
       const first = pathElement.getPointAtLength(0);
       const last = pathElement.getPointAtLength(totalLength);
       const isIncreasing = last[segmentation] > first[segmentation];
       const isBeyondSegmentStart = isIncreasing
-        ? segmentStarts.map(start =>
+        ? segmentStarts.map((start) =>
             typeof start === 'undefined' ? TRUE : (xOrY: number) => xOrY >= start,
           )
-        : segmentStarts.map(start =>
+        : segmentStarts.map((start) =>
             typeof start === 'undefined' ? TRUE : (xOrY: number) => xOrY <= start,
           );
 
@@ -85,7 +85,7 @@ export default function getSplitLineSegments({
       }
     } else {
       // segmentation === "length"
-      const numPointsInSegment = pointsInSegments.map(points => points.length);
+      const numPointsInSegment = pointsInSegments.map((points) => points.length);
       const numPoints = numPointsInSegment.reduce((sum, curr) => sum + curr, 0);
       const lengthBetweenPoints = totalLength / Math.max(1, numPoints - 1);
 

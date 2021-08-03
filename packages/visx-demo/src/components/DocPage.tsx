@@ -42,7 +42,7 @@ export default function DocPage({ components, examples, visxPackage, readme }: P
             <div className="component-docs">
               <div>
                 <h2>APIs</h2>
-                {components.map(component => {
+                {components.map((component) => {
                   // @ts-ignore TS doesn't know about docgenInfo
                   const docgenInfo = component.__docgenInfo as DocGenInfo | undefined;
                   return docgenInfo ? (
@@ -53,7 +53,7 @@ export default function DocPage({ components, examples, visxPackage, readme }: P
               <div>
                 <h2>Exports</h2>
                 <ul>
-                  {components.map(component => {
+                  {components.map((component) => {
                     // @ts-ignore TS doesn't know about docgenInfo
                     const docgenInfo = component?.__docgenInfo as DocGenInfo | undefined;
                     const { displayName = '' } = docgenInfo || {};

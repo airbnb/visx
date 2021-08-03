@@ -34,7 +34,7 @@ export interface DataRegistryEntry<XScale extends AxisScale, YScale extends Axis
 export interface DataContextType<
   XScale extends AxisScale,
   YScale extends AxisScale,
-  Datum extends object
+  Datum extends object,
 > {
   xScale: XScale;
   yScale: YScale;

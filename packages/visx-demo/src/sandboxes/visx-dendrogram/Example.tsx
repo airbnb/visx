@@ -123,7 +123,7 @@ export default function Example({ width, height, margin = defaultMargin }: Dendr
       <LinearGradient id="top" from={green} to={aqua} />
       <rect width={width} height={height} rx={14} fill={background} />
       <Cluster<NodeShape> root={data} size={[xMax, yMax]}>
-        {cluster => (
+        {(cluster) => (
           <Group top={margin.top} left={margin.left}>
             {cluster.links().map((link, i) => (
               <LinkVertical<HierarchyPointLink<NodeShape>, HierarchyPointNode<NodeShape>>

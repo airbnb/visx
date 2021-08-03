@@ -10,7 +10,7 @@ import isValidNumber from '../../../typeguards/isValidNumber';
 export type BaseAnnotationProps<
   XScale extends AxisScale,
   YScale extends AxisScale,
-  Datum extends object
+  Datum extends object,
 > = Pick<
   EditableAnnotationProps,
   | 'canEditLabel'
@@ -40,7 +40,7 @@ const minimumLabelDimension = 16;
 export default function BaseAnnotation<
   XScale extends AxisScale,
   YScale extends AxisScale,
-  Datum extends object
+  Datum extends object,
 >({
   AnnotationComponent,
   children,

@@ -18,9 +18,9 @@ describe('<Threshold />', () => {
         <Threshold
           id={`${Math.random()}`}
           data={data}
-          x={d => d.x}
-          y0={d => d.y0}
-          y1={d => d.y1}
+          x={(d) => d.x}
+          y0={(d) => d.y0}
+          y1={(d) => d.y1}
           clipAboveTo={0}
           clipBelowTo={100}
           belowAreaProps={{
@@ -44,9 +44,9 @@ describe('<Threshold />', () => {
         <Threshold
           id={`${Math.random()}`}
           data={data}
-          x={d => d.x}
-          y0={d => d.y0}
-          y1={d => d.y1}
+          x={(d) => d.x}
+          y0={(d) => d.y0}
+          y1={(d) => d.y1}
           clipAboveTo={() => 0}
           clipBelowTo={() => 100}
           belowAreaProps={{

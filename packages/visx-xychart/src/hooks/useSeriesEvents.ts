@@ -8,7 +8,7 @@ import useEventHandlers, { PointerEventHandlerParams } from './useEventHandlers'
 export type SeriesEventsParams<
   XScale extends AxisScale,
   YScale extends AxisScale,
-  Datum extends object
+  Datum extends object,
 > = Pick<
   SeriesProps<XScale, YScale, Datum>,
   'enableEvents' | 'onBlur' | 'onFocus' | 'onPointerMove' | 'onPointerOut' | 'onPointerUp'
@@ -25,7 +25,7 @@ export type SeriesEventsParams<
 export default function useSeriesEvents<
   XScale extends AxisScale,
   YScale extends AxisScale,
-  Datum extends object
+  Datum extends object,
 >({
   dataKey,
   enableEvents,
@@ -38,9 +38,8 @@ export default function useSeriesEvents<
   source,
   allowedSources,
 }: SeriesEventsParams<XScale, YScale, Datum>) {
-  const { showTooltip, hideTooltip } = (useContext(TooltipContext) ?? {}) as TooltipContextType<
-    Datum
-  >;
+  const { showTooltip, hideTooltip } = (useContext(TooltipContext) ??
+    {}) as TooltipContextType<Datum>;
   const onPointerMove = useCallback(
     (params: EventHandlerParams<Datum>) => {
       showTooltip(params);

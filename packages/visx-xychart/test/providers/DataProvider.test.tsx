@@ -62,8 +62,8 @@ describe('<DataProvider />', () => {
         if (registerData) {
           registerData({
             key: 'visx',
-            xAccessor: d => d.x,
-            yAccessor: d => d.y,
+            xAccessor: (d) => d.x,
+            yAccessor: (d) => d.y,
             data: [
               { x: 0, y: 1 },
               { x: 5, y: 7 },

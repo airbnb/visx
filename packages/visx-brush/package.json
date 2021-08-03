@@ -36,11 +36,9 @@
     "@visx/drag": "1.18.1",
     "@visx/event": "1.7.0",
     "@visx/group": "1.17.1",
+    "@visx/scale": "1.14.0",
     "@visx/shape": "1.17.1",
     "classnames": "^2.3.1",
     "prop-types": "^15.6.1"
-  },
-  "devDependencies": {
-    "@visx/scale": "1.14.0"
   }
 }

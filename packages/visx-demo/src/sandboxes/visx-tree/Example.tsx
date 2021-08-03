@@ -175,7 +175,7 @@ export default function Example({ width, height, margin = defaultMargin }: TreeP
       <LinearGradient id="lg" from={peach} to={pink} />
       <rect width={width} height={height} rx={14} fill={background} />
       <Tree<TreeNode> root={data} size={[yMax, xMax]}>
-        {tree => (
+        {(tree) => (
           <Group top={margin.top} left={margin.left}>
             {tree.links().map((link, i) => (
               <LinkHorizontal

@@ -39,7 +39,7 @@ export default function withParentSize<BaseComponentProps extends WithParentSize
 
     componentDidMount() {
       this.resizeObserver = new ResizeObserver((entries /** , observer */) => {
-        entries.forEach(entry => {
+        entries.forEach((entry) => {
           const { width, height } = entry.contentRect;
           this.animationFrameID = window.requestAnimationFrame(() => {
             this.resize({

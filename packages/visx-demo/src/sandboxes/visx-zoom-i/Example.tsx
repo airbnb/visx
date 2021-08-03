@@ -47,7 +47,7 @@ export default function ZoomI({ width, height }: ZoomIProps) {
         scaleYMax={4}
         transformMatrix={initialTransform}
       >
-        {zoom => (
+        {(zoom) => (
           <div className="relative">
             <svg
               width={width}
@@ -82,7 +82,7 @@ export default function ZoomI({ width, height }: ZoomIProps) {
                 onMouseLeave={() => {
                   if (zoom.isDragging) zoom.dragEnd();
                 }}
-                onDoubleClick={event => {
+                onDoubleClick={(event) => {
                   const point = localPoint(event) || { x: 0, y: 0 };
                   zoom.scale({ scaleX: 1.1, scaleY: 1.1, point });
                 }}

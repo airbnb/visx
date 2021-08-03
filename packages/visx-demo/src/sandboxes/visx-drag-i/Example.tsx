@@ -37,7 +37,7 @@ export default function DragI({ width, height }: DragIProps) {
     () =>
       scaleOrdinal({
         range: colors,
-        domain: draggingItems.map(d => d.id),
+        domain: draggingItems.map((d) => d.id),
       }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [width, height],

@@ -44,8 +44,8 @@ export default function Example({ width, height, compact = false }: AnnotationPr
             stroke={greens[2]}
             strokeWidth={2}
             data={data}
-            x={d => xScale(getDate(d)) ?? 0}
-            y={d => yScale(getStockValue(d)) ?? 0}
+            x={(d) => xScale(getDate(d)) ?? 0}
+            y={(d) => yScale(getStockValue(d)) ?? 0}
           />
           <AnnotationComponent
             width={width}

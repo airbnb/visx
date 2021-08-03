@@ -23,7 +23,7 @@ const emptyRect = {
 describe('withBoundingRects()', () => {
   beforeAll(() => {
     // mock getBoundingClientRect
-    Element.prototype.getBoundingClientRect = jest.fn(() => ({
+    jest.spyOn(Element.prototype, 'getBoundingClientRect').mockImplementation(() => ({
       width: 100,
       height: 100,
       top: 0,
@@ -71,6 +71,7 @@ describe('withBoundingRects()', () => {
   });
 
   test('it should set rect and parentRect to empty state if no getBoundingClient()', () => {
+    // eslint-disable-next-line react/jsx-no-useless-fragment
     const Component = () => <>{''}</>;
     const HOC = withBoundingRects(Component);
     const wrapper = mount(<HOC />);

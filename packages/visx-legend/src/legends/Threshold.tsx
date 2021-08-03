@@ -81,7 +81,7 @@ export default function Threshold<Scale extends AnyThresholdScale>({
   // https://github.com/d3/d3-scale#threshold_domain
   // therefore if a domain is not specified we transform the range into input values
   // because it should contain more elements
-  const domain = inputDomain || scale.range().map(output => scale.invertExtent(output)[0]);
+  const domain = inputDomain || scale.range().map((output) => scale.invertExtent(output)[0]);
 
   const labelTransform =
     inputLabelTransform ||

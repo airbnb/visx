@@ -27,8 +27,8 @@ export default function LinkControls({
     <div style={controlStyles}>
       <label>layout:</label>&nbsp;
       <select
-        onClick={e => e.stopPropagation()}
-        onChange={e => setLayout(e.target.value)}
+        onClick={(e) => e.stopPropagation()}
+        onChange={(e) => setLayout(e.target.value)}
         value={layout}
       >
         <option value="cartesian">cartesian</option>
@@ -37,8 +37,8 @@ export default function LinkControls({
       &nbsp;&nbsp;
       <label>orientation:</label>&nbsp;
       <select
-        onClick={e => e.stopPropagation()}
-        onChange={e => setOrientation(e.target.value)}
+        onClick={(e) => e.stopPropagation()}
+        onChange={(e) => setOrientation(e.target.value)}
         value={orientation}
         disabled={layout === 'polar'}
       >
@@ -48,8 +48,8 @@ export default function LinkControls({
       &nbsp;&nbsp;
       <label>link:</label>&nbsp;
       <select
-        onClick={e => e.stopPropagation()}
-        onChange={e => setLinkType(e.target.value)}
+        onClick={(e) => e.stopPropagation()}
+        onChange={(e) => setLinkType(e.target.value)}
         value={linkType}
       >
         <option value="diagonal">diagonal</option>
@@ -62,12 +62,12 @@ export default function LinkControls({
           &nbsp;&nbsp;
           <label>step:</label>&nbsp;
           <input
-            onClick={e => e.stopPropagation()}
+            onClick={(e) => e.stopPropagation()}
             type="range"
             min={0}
             max={1}
             step={0.1}
-            onChange={e => setStepPercent(Number(e.target.value))}
+            onChange={(e) => setStepPercent(Number(e.target.value))}
             value={stepPercent}
             disabled={linkType !== 'step' || layout === 'polar'}
           />

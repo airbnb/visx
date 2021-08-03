@@ -1,6 +1,7 @@
 import React from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 import { mount } from 'enzyme';
+import { AnyD3Scale } from '@visx/scale';
 import { Tooltip as BaseTooltip } from '@visx/tooltip';
 import {
   DataContext,
@@ -17,7 +18,7 @@ describe('<Tooltip />', () => {
     | {
         props?: Partial<TooltipProps<object>>;
         context?: Partial<TooltipContextType<object>>;
-        dataEntries?: DataRegistryEntry<any, any, any>[];
+        dataEntries?: DataRegistryEntry<AnyD3Scale, AnyD3Scale, {}>[];
       }
     | undefined;
 

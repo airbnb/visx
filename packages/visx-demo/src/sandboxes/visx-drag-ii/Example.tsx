@@ -16,16 +16,16 @@ export type DragIIProps = {
 export default function DragII({ data = [], width, height }: DragIIProps) {
   const [lines, setLines] = useState<Lines>(data);
   const onDragStart = useCallback(
-    currDrag => {
+    (currDrag) => {
       // add the new line with the starting point
-      setLines(currLines => [...currLines, [{ x: currDrag.x, y: currDrag.y }]]);
+      setLines((currLines) => [...currLines, [{ x: currDrag.x, y: currDrag.y }]]);
     },
     [setLines],
   );
   const onDragMove = useCallback(
-    currDrag => {
+    (currDrag) => {
       // add the new point to the current line
-      setLines(currLines => {
+      setLines((currLines) => {
         const nextLines = [...currLines];
         const newPoint = { x: currDrag.x + currDrag.dx, y: currDrag.y + currDrag.dy };
         const lastIndex = nextLines.length - 1;
@@ -35,7 +35,16 @@ export default function DragII({ data = [], width, height }: DragIIProps) {
     },
     [setLines],
   );
-  const { x = 0, y = 0, dx, dy, isDragging, dragStart, dragEnd, dragMove } = useDrag({
+  const {
+    x = 0,
+    y = 0,
+    dx,
+    dy,
+    isDragging,
+    dragStart,
+    dragEnd,
+    dragMove,
+  } = useDrag({
     onDragStart,
     onDragMove,
     resetOnStart: true,
@@ -54,8 +63,8 @@ export default function DragII({ data = [], width, height }: DragIIProps) {
             strokeWidth={3}
             data={line}
             curve={curveBasis}
-            x={d => d.x}
-            y={d => d.y}
+            x={(d) => d.x}
+            y={(d) => d.y}
           />
         ))}
 

@@ -84,13 +84,13 @@ export default function useDrag({
       positionPropsRef.current.dy !== dy
     ) {
       positionPropsRef.current = { x, y, dx, dy };
-      setDragStateWithCallback(currState => ({ ...currState, x, y, dx: dx ?? 0, dy: dy ?? 0 }));
+      setDragStateWithCallback((currState) => ({ ...currState, x, y, dx: dx ?? 0, dy: dy ?? 0 }));
     }
   });
 
   useEffect(() => {
     if (isDragging !== undefined && dragState.isDragging !== isDragging) {
-      setDragStateWithCallback(currState => ({ ...currState, isDragging }));
+      setDragStateWithCallback((currState) => ({ ...currState, isDragging }));
     }
   }, [dragState.isDragging, isDragging, setDragStateWithCallback]);
 
@@ -99,7 +99,7 @@ export default function useDrag({
       event.persist();
 
       setDragStateWithCallback(
-        currState => {
+        (currState) => {
           const point = localPoint(event) || { x: 0, y: 0 };
           return {
             isDragging: true,
@@ -110,7 +110,7 @@ export default function useDrag({
           };
         },
         onDragStart &&
-          (currState => {
+          ((currState) => {
             onDragStart({ ...currState, event });
           }),
       );
@@ -123,7 +123,7 @@ export default function useDrag({
       event.persist();
 
       setDragStateWithCallback(
-        currState => {
+        (currState) => {
           const point = localPoint(event) || { x: 0, y: 0 };
           return currState.isDragging
             ? {
@@ -135,7 +135,7 @@ export default function useDrag({
             : currState;
         },
         onDragMove &&
-          (currState => {
+          ((currState) => {
             if (currState.isDragging) onDragMove({ ...currState, event });
           }),
       );
@@ -148,9 +148,9 @@ export default function useDrag({
       event.persist();
 
       setDragStateWithCallback(
-        currState => ({ ...currState, isDragging: false }),
+        (currState) => ({ ...currState, isDragging: false }),
         onDragEnd &&
-          (currState => {
+          ((currState) => {
             onDragEnd({ ...currState, event });
           }),
       );

@@ -9,7 +9,7 @@ import { cleanColor, colorHasUrl } from '../../../utils/cleanColorString';
 export function useAnimatedGlyphsConfig<
   XScale extends AxisScale,
   YScale extends AxisScale,
-  Datum extends object
+  Datum extends object,
 >({ xScale, yScale, horizontal }: { xScale: XScale; yScale: YScale; horizontal?: boolean }) {
   type Props = GlyphProps<Datum>;
   const xScaleBaseline = getScaleBaseline(xScale);
@@ -40,7 +40,7 @@ export function useAnimatedGlyphsConfig<
 export default function AnimatedGlyphs<
   XScale extends AxisScale,
   YScale extends AxisScale,
-  Datum extends object
+  Datum extends object,
 >({
   renderGlyph,
   glyphs,

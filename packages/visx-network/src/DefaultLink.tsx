@@ -1,8 +1,9 @@
 import React from 'react';
 import { LinkProvidedProps } from './types';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function DefaultLink({ link }: LinkProvidedProps<any>) {
-  return link && link.source && link.target ? (
+  return link?.source && link.target ? (
     <line
       x1={link.source.x}
       y1={link.source.y}

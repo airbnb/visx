@@ -42,14 +42,12 @@ describe('<XYChart />', () => {
   });
 
   it('should warn if DataProvider is not available and no x- or yScale config is passed', () => {
-    expect(
-      () =>
-        mount(
-          <XYChart>
-            <rect />
-          </XYChart>,
-        ),
-      // eslint-disable-next-line jest/require-to-throw-message
+    expect(() =>
+      mount(
+        <XYChart>
+          <rect />
+        </XYChart>,
+      ),
     ).toThrow();
   });
 
@@ -78,6 +76,7 @@ describe('<XYChart />', () => {
 
     const DataConsumer = () => {
       const data = useContext(DataContext);
+      // eslint-disable-next-line jest/no-if
       if (data.width && data.height) {
         expect(data.width).toBe(width);
         expect(data.height).toBe(height);

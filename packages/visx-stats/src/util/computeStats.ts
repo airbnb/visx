@@ -26,7 +26,7 @@ export default function computeStats(numericalArray: number[]) {
   let min = firstQuartile - 1.5 * IQR;
   let max = thirdQuartile + 1.5 * IQR;
 
-  const outliers = points.filter(p => p < min || p > max);
+  const outliers = points.filter((p) => p < min || p > max);
   if (outliers.length === 0) {
     min = Math.min(...points);
     max = Math.max(...points);
@@ -45,8 +45,8 @@ export default function computeStats(numericalArray: number[]) {
   values[values.length - 1] = max;
 
   points
-    .filter(p => p >= min && p <= max)
-    .forEach(p => {
+    .filter((p) => p >= min && p <= max)
+    .forEach((p) => {
       bins[Math.floor((p - min) / actualBinWidth) + 1] += 1;
     });
 

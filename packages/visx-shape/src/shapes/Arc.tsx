@@ -39,7 +39,6 @@ export default function Arc<Datum>({
     padRadius,
   });
 
-  // eslint-disable-next-line react/jsx-no-useless-fragment
   if (children) return <>{children({ path })}</>;
   if (
     !data &&

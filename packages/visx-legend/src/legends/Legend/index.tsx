@@ -44,9 +44,7 @@ export type LegendProps<Scale extends AnyD3Scale> = {
   /** Flex direction of legend items. */
   itemDirection?: FlexDirection;
   /** Legend item fill accessor function. */
-  fill?: (
-    label: FormattedLabel<ScaleInput<Scale>, ReturnType<Scale>>,
-  ) => string | number | undefined;
+  fill?: (label: FormattedLabel<ScaleInput<Scale>, ReturnType<Scale>>) => string | undefined;
   /** Legend item size accessor function. */
   size?: (
     label: FormattedLabel<ScaleInput<Scale>, ReturnType<Scale>>,
@@ -97,7 +95,6 @@ export default function Legend<Scale extends AnyD3Scale>({
   const domain = inputDomain || (('domain' in scale ? scale.domain() : []) as Datum[]);
   const labelFormatter = labelTransform({ scale, labelFormat });
   const labels = domain.map(labelFormatter);
-  // eslint-disable-next-line react/jsx-no-useless-fragment
   if (children) return <>{children(labels)}</>;
 
   return (

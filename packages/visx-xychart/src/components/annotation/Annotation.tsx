@@ -9,7 +9,7 @@ import BaseAnnotation, { BaseAnnotationProps } from './private/BaseAnnotation';
 export type AnnotationProps<
   XScale extends AxisScale,
   YScale extends AxisScale,
-  Datum extends object
+  Datum extends object,
 > = { editable?: boolean } & Omit<
   BaseAnnotationProps<XScale, YScale, Datum>,
   'AnnotationComponent'
@@ -18,7 +18,7 @@ export type AnnotationProps<
 export default function Annotation<
   XScale extends AxisScale,
   YScale extends AxisScale,
-  Datum extends object
+  Datum extends object,
 >({ editable, ...props }: AnnotationProps<XScale, YScale, Datum>) {
   return (
     <BaseAnnotation

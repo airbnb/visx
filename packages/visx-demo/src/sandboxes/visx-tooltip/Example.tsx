@@ -86,8 +86,9 @@ export default function Example({ width, height, showControls = true }: TooltipP
             <div
               className="position-indicator"
               style={{
-                transform: `translate(${tooltipLeft - positionIndicatorSize / 2}px, ${tooltipTop -
-                  positionIndicatorSize / 2}px)`,
+                transform: `translate(${tooltipLeft - positionIndicatorSize / 2}px, ${
+                  tooltipTop - positionIndicatorSize / 2
+                }px)`,
               }}
             />
             <div
@@ -120,7 +121,7 @@ export default function Example({ width, height, showControls = true }: TooltipP
             <input
               type="checkbox"
               defaultChecked={renderTooltipInPortal}
-              onClick={e => {
+              onClick={(e) => {
                 // if rendered in clickable container, don't trigger that event
                 e.stopPropagation();
                 setRenderTooltipInPortal(!renderTooltipInPortal);

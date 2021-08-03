@@ -10,7 +10,7 @@ import { CommonGridProps, GridScale } from '../types';
 
 export type GridPolarProps<
   AngleScale extends GridScale,
-  RadialScale extends GridScale
+  RadialScale extends GridScale,
 > = CommonGridProps & {
   /**
    * If specified, the arc of each radial grid line will have this thickness, useful for fills.

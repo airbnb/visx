@@ -52,7 +52,7 @@ function BrushChart({
   const onBrushChange = (domain: Bounds | null) => {
     if (!domain) return;
     const { x0, x1, y0, y1 } = domain;
-    const stockCopy = stock.filter(s => {
+    const stockCopy = stock.filter((s) => {
       const x = getDate(s).getTime();
       const y = getStockValue(s);
       return x > x0 && x < x1 && y > y0 && y < y1;
@@ -125,7 +125,7 @@ function BrushChart({
 
   const handleResetClick = () => {
     if (brushRef?.current) {
-      const updater: UpdateBrush = prevBrush => {
+      const updater: UpdateBrush = (prevBrush) => {
         const newExtent = brushRef.current!.getExtent(
           initialBrushPosition.start,
           initialBrushPosition.end,

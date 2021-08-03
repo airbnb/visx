@@ -17,15 +17,13 @@ export type AnimatedGridProps = Omit<
 
 export default function AnimatedGrid({ animationTrajectory, ...props }: AnimatedGridProps) {
   const RowsComponent = useMemo(
-    () => (rowProps: GridRowsProps<AxisScale>) => (
-      <AnimatedGridRows {...rowProps} animationTrajectory={animationTrajectory} />
-    ),
+    () => (rowProps: GridRowsProps<AxisScale>) =>
+      <AnimatedGridRows {...rowProps} animationTrajectory={animationTrajectory} />,
     [animationTrajectory],
   );
   const ColumnsComponent = useMemo(
-    () => (rowProps: GridColumnsProps<AxisScale>) => (
-      <AnimatedGridColumns {...rowProps} animationTrajectory={animationTrajectory} />
-    ),
+    () => (rowProps: GridColumnsProps<AxisScale>) =>
+      <AnimatedGridColumns {...rowProps} animationTrajectory={animationTrajectory} />,
     [animationTrajectory],
   );
   return (

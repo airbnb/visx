@@ -179,7 +179,7 @@ class Zoom extends React.Component<ZoomProps, ZoomState> {
   };
 
   setTransformMatrix = (transformMatrix: TransformMatrix) => {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       transformMatrix: this.constrain(transformMatrix, prevState.transformMatrix),
     }));
   };
@@ -290,7 +290,7 @@ class Zoom extends React.Component<ZoomProps, ZoomState> {
     if (!passive) {
       return (
         <div
-          ref={c => {
+          ref={(c) => {
             this.containerRef = c;
           }}
           style={style}

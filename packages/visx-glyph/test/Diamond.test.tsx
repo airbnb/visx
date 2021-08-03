@@ -29,7 +29,7 @@ describe('<GlyphDiamond />', () => {
     shallow(<GlyphDiamond>{fn}</GlyphDiamond>);
     const args = fn.mock.calls[0][0];
     const keys = Object.keys(args);
-    expect(keys.includes('path')).toEqual(true);
+    expect(keys).toContain('path');
   });
 
   test('it should take a size prop as a number', () => {

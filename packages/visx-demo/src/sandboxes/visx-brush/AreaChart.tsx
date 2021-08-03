@@ -66,8 +66,8 @@ export default function AreaChart({
       />
       <AreaClosed<AppleStock>
         data={data}
-        x={d => xScale(getDate(d)) || 0}
-        y={d => yScale(getStockValue(d)) || 0}
+        x={(d) => xScale(getDate(d)) || 0}
+        y={(d) => yScale(getStockValue(d)) || 0}
         yScale={yScale}
         strokeWidth={1}
         stroke="url(#gradient)"

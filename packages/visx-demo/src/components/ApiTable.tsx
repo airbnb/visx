@@ -19,7 +19,7 @@ export default function ApiTable({ docgenInfo }: Props) {
     const requiredProps: PropInfo[] = [];
     const optionalProps: PropInfo[] = [];
 
-    Object.values(docgenInfo.props).forEach(prop => {
+    Object.values(docgenInfo.props).forEach((prop) => {
       if (prop.required) {
         requiredProps.push(prop);
       } else {
@@ -38,7 +38,7 @@ export default function ApiTable({ docgenInfo }: Props) {
         </a>
         {toExportName(displayName)}
       </h3>
-      {props.map(prop => {
+      {props.map((prop) => {
         const id = `${displayName}_${prop.name}`;
         return (
           <div key={prop.name} className="prop">

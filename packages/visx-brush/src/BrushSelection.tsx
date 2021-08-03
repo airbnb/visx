@@ -161,20 +161,20 @@ export default class BrushSelection extends React.Component<
               height={height}
               className="visx-brush-selection"
               onPointerDown={disableDraggingSelection ? undefined : dragStart}
-              onPointerLeave={event => {
+              onPointerLeave={(event) => {
                 if (onMouseLeave) onMouseLeave(event);
               }}
-              onPointerMove={event => {
+              onPointerMove={(event) => {
                 dragMove(event);
                 if (onMouseMove) onMouseMove(event);
               }}
-              onPointerUp={event => {
+              onPointerUp={(event) => {
                 if (!isControlled) {
                   dragEnd(event);
                 }
                 if (onMouseUp) onMouseUp(event);
               }}
-              onClick={event => {
+              onClick={(event) => {
                 if (onClick) onClick(event as React.PointerEvent<SVGRectElement>);
               }}
               style={{

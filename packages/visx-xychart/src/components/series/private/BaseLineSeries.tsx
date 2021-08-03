@@ -14,7 +14,7 @@ import useSeriesEvents from '../../../hooks/useSeriesEvents';
 export type BaseLineSeriesProps<
   XScale extends AxisScale,
   YScale extends AxisScale,
-  Datum extends object
+  Datum extends object,
 > = SeriesProps<XScale, YScale, Datum> & {
   /** Rendered component which is passed path props by BaseLineSeries after processing. */
   PathComponent?: React.FC<Omit<React.SVGProps<SVGPathElement>, 'ref'>> | 'path';
@@ -66,7 +66,7 @@ function BaseLineSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
   const renderGlyphs = useCallback(
     ({ glyphs }: GlyphsProps<XScale, YScale, Datum>) =>
       captureFocusEvents
-        ? glyphs.map(glyph => (
+        ? glyphs.map((glyph) => (
             <React.Fragment key={glyph.key}>
               {defaultRenderGlyph({
                 ...glyph,

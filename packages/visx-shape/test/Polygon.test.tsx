@@ -52,7 +52,7 @@ describe('<Polygon />', () => {
     PolygonChildren({ children: fn, sides: 8, size: 25 });
     const args = fn.mock.calls[0][0];
     const keys = Object.keys(args);
-    expect(keys.includes('points')).toEqual(true);
+    expect(keys).toContain('points');
     expect(args.points).toHaveLength(8);
   });
 });

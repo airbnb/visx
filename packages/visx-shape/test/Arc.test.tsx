@@ -208,7 +208,7 @@ describe('<Arc />', () => {
 
   it('should expose its ref via an innerRef prop', () => {
     // eslint-disable-next-line jest/no-test-return-statement
-    return new Promise(done => {
+    return new Promise((done) => {
       const refCallback = (ref: SVGPathElement) => {
         expect(ref.tagName).toMatch('path');
         done();

@@ -105,7 +105,7 @@ export default function Gallery() {
   const { pkg: routePackage } = router.query;
 
   const filteredTiles = routePackage
-    ? tiles.filter(Tile =>
+    ? tiles.filter((Tile) =>
         exampleToVisxDependencyLookup[Tile.packageJson.name]?.has(routePackage as VisxPackage),
       )
     : tiles;
@@ -115,7 +115,7 @@ export default function Gallery() {
       <div className="gallery">
         <div className="filters">
           <div className="filter-label">Filter</div>
-          {visxPackages.map(visxPackage => (
+          {visxPackages.map((visxPackage) => (
             <Link
               key={visxPackage}
               href={{

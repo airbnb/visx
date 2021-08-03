@@ -7,7 +7,7 @@ import { ScaleConfigWithoutType } from '../types/ScaleConfig';
 export default function applyRound<
   Output,
   DiscreteInput extends StringLike,
-  ThresholdInput extends DefaultThresholdInput
+  ThresholdInput extends DefaultThresholdInput,
 >(
   scale: D3Scale<Output, DiscreteInput, ThresholdInput>,
   config: ScaleConfigWithoutType<Output, DiscreteInput, ThresholdInput>,
@@ -26,7 +26,7 @@ export default function applyRound<
       // setting config.round = true
       // is actually setting interpolator to interpolateRound
       // as these scales do not have scale.round() function
-      scale.interpolate((interpolateRound as unknown) as InterpolatorFactory<Output, Output>);
+      scale.interpolate(interpolateRound as unknown as InterpolatorFactory<Output, Output>);
     }
   }
 }

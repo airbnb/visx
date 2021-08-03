@@ -95,8 +95,8 @@ export default function LinePathAnnotation({
       <LinePath<Point | SimplePoint>
         className={cx('visx-line-path-annotation', className)}
         data={points}
-        x={p => p.x}
-        y={p => p.y}
+        x={(p) => p.x}
+        y={(p) => p.y}
         stroke={stroke}
         strokeWidth={strokeWidth}
       />

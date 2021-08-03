@@ -33,17 +33,17 @@ export default function generateSinSegments({
 
   // Split into equal width or height segments
   const segmentSize = (isHorizontal ? width : height) / numberOfWaves;
-  data.forEach(d => {
+  data.forEach((d) => {
     segments[Math.min(Math.floor(d.x / segmentSize), segments.length - 1)].push(d);
   });
 
   switch (direction) {
     case 'right-to-left':
-      return segments.map(segment => segment.map(({ x, y }) => ({ x: -x, y })));
+      return segments.map((segment) => segment.map(({ x, y }) => ({ x: -x, y })));
     case 'top-to-bottom':
-      return segments.map(segment => segment.map(({ x, y }) => ({ x: y, y: x })));
+      return segments.map((segment) => segment.map(({ x, y }) => ({ x: y, y: x })));
     case 'bottom-to-top':
-      return segments.map(segment => segment.map(({ x, y }) => ({ x: y, y: -x })));
+      return segments.map((segment) => segment.map(({ x, y }) => ({ x: y, y: -x })));
     default:
     case 'left-to-right':
       return segments;

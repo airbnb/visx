@@ -43,7 +43,7 @@ export default function GridColumns<Scale extends GridScale>({
 }: AllGridColumnsProps<Scale>) {
   const ticks = tickValues ?? getTicks(scale, numTicks);
   const scaleOffset = (offset ?? 0) + getScaleBandwidth(scale) / 2;
-  const tickLines = ticks.map(d => {
+  const tickLines = ticks.map((d) => {
     const x = (coerceNumber(scale(d)) ?? 0) + scaleOffset;
     return {
       from: new Point({

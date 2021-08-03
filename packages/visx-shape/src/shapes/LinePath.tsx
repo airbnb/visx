@@ -30,7 +30,6 @@ export default function LinePath<Datum>({
   ...restProps
 }: AddSVGProps<LinePathProps<Datum>, SVGPathElement>) {
   const path = line<Datum>({ x, y, defined, curve });
-  // eslint-disable-next-line react/jsx-no-useless-fragment
   if (children) return <>{children({ path })}</>;
   return (
     <path

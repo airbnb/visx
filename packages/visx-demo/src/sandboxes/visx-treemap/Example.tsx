@@ -21,14 +21,14 @@ const color2 = '#4281a4';
 export const background = '#114b5f';
 
 const colorScale = scaleLinear<string>({
-  domain: [0, Math.max(...shakespeare.map(d => d.size || 0))],
+  domain: [0, Math.max(...shakespeare.map((d) => d.size || 0))],
   range: [color2, color1],
 });
 
 const data = stratify<Shakespeare>()
-  .id(d => d.id)
-  .parentId(d => d.parent)(shakespeare)
-  .sum(d => d.size || 0);
+  .id((d) => d.id)
+  .parentId((d) => d.parent)(shakespeare)
+  .sum((d) => d.size || 0);
 
 const tileMethods: { [tile: string]: TileMethod<typeof data> } = {
   treemapSquarify,
@@ -57,11 +57,11 @@ export default function TreemapDemo({ width, height, margin = defaultMargin }: T
     <div>
       <label>tile method</label>{' '}
       <select
-        onClick={e => e.stopPropagation()}
-        onChange={e => setTileMethod(e.target.value)}
+        onClick={(e) => e.stopPropagation()}
+        onChange={(e) => setTileMethod(e.target.value)}
         value={tileMethod}
       >
-        {Object.keys(tileMethods).map(tile => (
+        {Object.keys(tileMethods).map((tile) => (
           <option key={tile} value={tile}>
             {tile}
           </option>
@@ -77,7 +77,7 @@ export default function TreemapDemo({ width, height, margin = defaultMargin }: T
             tile={tileMethods[tileMethod]}
             round
           >
-            {treemap => (
+            {(treemap) => (
               <Group>
                 {treemap
                   .descendants()

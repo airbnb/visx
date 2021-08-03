@@ -6,7 +6,7 @@ import { withParentSize } from '../src';
 describe('withParentSize', () => {
   beforeAll(() => {
     // mock getBoundingClientRect
-    Element.prototype.getBoundingClientRect = jest.fn(() => ({
+    jest.spyOn(Element.prototype, 'getBoundingClientRect').mockImplementation(() => ({
       width: 220,
       height: 120,
       top: 0,

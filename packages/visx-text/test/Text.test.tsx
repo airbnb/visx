@@ -170,11 +170,7 @@ describe('<Text />', () => {
         This is really long text
       </Text>,
     );
-    const getVerticalOffset = (w: typeof wrapper) =>
-      w
-        .find('tspan')
-        .first()
-        .prop('dy');
+    const getVerticalOffset = (w: typeof wrapper) => w.find('tspan').first().prop('dy');
 
     expect(getVerticalOffset(wrapper)).toBe('-1em');
 

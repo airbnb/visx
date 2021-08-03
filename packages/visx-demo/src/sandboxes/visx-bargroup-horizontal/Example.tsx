@@ -29,7 +29,7 @@ function max<D>(arr: D[], fn: (d: D) => number) {
 }
 
 const data = cityTemperature.slice(0, 4);
-const keys = Object.keys(data[0]).filter(d => d !== 'date') as CityName[];
+const keys = Object.keys(data[0]).filter((d) => d !== 'date') as CityName[];
 
 // accessors
 const getDate = (d: CityTemperature) => d.date;
@@ -44,7 +44,7 @@ const cityScale = scaleBand({
   padding: 0.1,
 });
 const tempScale = scaleLinear<number>({
-  domain: [0, max(data, d => max(keys, key => Number(d[key])))],
+  domain: [0, max(data, (d) => max(keys, (key) => Number(d[key])))],
 });
 const colorScale = scaleOrdinal<string, string>({
   domain: keys,
@@ -80,13 +80,13 @@ export default function Example({
           xScale={tempScale}
           color={colorScale}
         >
-          {barGroups =>
-            barGroups.map(barGroup => (
+          {(barGroups) =>
+            barGroups.map((barGroup) => (
               <Group
                 key={`bar-group-horizontal-${barGroup.index}-${barGroup.y0}`}
                 top={barGroup.y0}
               >
-                {barGroup.bars.map(bar => (
+                {barGroup.bars.map((bar) => (
                   <Bar
                     key={`${barGroup.index}-${bar.index}-${bar.key}`}
                     x={bar.x}

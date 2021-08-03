@@ -25,7 +25,7 @@ export type DefaultThresholdInput = number | string | Date;
 export interface ScaleTypeToD3Scale<
   Output = DefaultOutput,
   DiscreteInput extends StringLike = StringLike,
-  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
+  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput,
 > {
   // Input of these continuous scales are `number | { valueOf(): number }`
   // and cannot be customized via generic type.
@@ -56,13 +56,13 @@ export type PickD3Scale<
   T extends keyof ScaleTypeToD3Scale<Output, DiscreteInput, DefaultThresholdInput>,
   Output = DefaultOutput,
   DiscreteInput extends StringLike = StringLike,
-  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
+  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput,
 > = ValueOf<Pick<ScaleTypeToD3Scale<Output, DiscreteInput, ThresholdInput>, T>>;
 
 export type D3Scale<
   Output = DefaultOutput,
   DiscreteInput extends StringLike = StringLike,
-  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
+  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput,
 > = ValueOf<ScaleTypeToD3Scale<Output, DiscreteInput, ThresholdInput>>;
 
 /**

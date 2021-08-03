@@ -88,15 +88,15 @@ const examples = [
 const exampleToVisxDependencyLookup: { [exampleName: string]: Set<VisxPackage> } = {};
 const seenPackages = new Set<VisxPackage>();
 
-examples.forEach(packageJson => {
+examples.forEach((packageJson) => {
   // create a visx package set per example
   const visxPackages = new Set<VisxPackage>(
     extractVisxDepsFromPackageJson(packageJson).map(
-      visxPackage => visxPackage.split('@visx/')[1] ?? '',
+      (visxPackage) => visxPackage.split('@visx/')[1] ?? '',
     ) as VisxPackage[],
   );
 
-  visxPackages.forEach(visxPackage => seenPackages.add(visxPackage));
+  visxPackages.forEach((visxPackage) => seenPackages.add(visxPackage));
   exampleToVisxDependencyLookup[packageJson.name] = visxPackages;
 });
 

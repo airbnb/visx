@@ -38,13 +38,13 @@ describe('<PatternLines />', () => {
   test('it should render only the specified pattern lines', () => {
     const size = 4;
     const orientation: PatternOrientationType[] = ['diagonal', 'diagonalRightToLeft'];
-    const renderedPaths = orientation.map(o =>
+    const renderedPaths = orientation.map((o) =>
       pathForOrientation({ orientation: o, height: size }),
     );
     const wrapper = shallow(
       <PatternLines id="test" height={size} width={size} orientation={orientation} />,
     );
     expect(wrapper.find('path')).toHaveLength(2);
-    expect(wrapper.find('path').map(path => path.prop('d'))).toEqual(renderedPaths);
+    expect(wrapper.find('path').map((path) => path.prop('d'))).toEqual(renderedPaths);
   });
 });

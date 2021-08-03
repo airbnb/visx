@@ -54,10 +54,9 @@ export default function withBoundingRects<Props extends object = {}>(
 
       const rect = node.getBoundingClientRect ? node.getBoundingClientRect() : emptyRect;
 
-      const parentRect =
-        parentNode && parentNode.getBoundingClientRect
-          ? parentNode.getBoundingClientRect()
-          : emptyRect;
+      const parentRect = parentNode?.getBoundingClientRect
+        ? parentNode.getBoundingClientRect()
+        : emptyRect;
 
       return { rect, parentRect };
     }

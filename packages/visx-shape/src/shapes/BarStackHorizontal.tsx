@@ -15,7 +15,7 @@ export type BarStackHorizontalProps<
   Datum,
   Key extends StackKey = StackKey,
   XScale extends PositionScale = PositionScale,
-  YScale extends PositionScale = PositionScale
+  YScale extends PositionScale = PositionScale,
 > = BaseBarStackProps<Datum, Key, XScale, YScale> & {
   /** Returns the value mapped to the x0 of a bar. */
   x0?: Accessor<SeriesPoint<Datum>, ScaleInput<XScale>>;
@@ -29,7 +29,7 @@ export default function BarStackHorizontal<
   Datum,
   Key extends StackKey = StackKey,
   XScale extends PositionScale = PositionScale,
-  YScale extends PositionScale = PositionScale
+  YScale extends PositionScale = PositionScale,
 >({
   data,
   className,
@@ -83,13 +83,12 @@ export default function BarStackHorizontal<
     };
   });
 
-  // eslint-disable-next-line react/jsx-no-useless-fragment
   if (children) return <>{children(barStacks)}</>;
 
   return (
     <Group className={cx('visx-bar-stack-horizontal', className)} top={top} left={left}>
-      {barStacks.map(barStack =>
-        barStack.bars.map(bar => (
+      {barStacks.map((barStack) =>
+        barStack.bars.map((bar) => (
           <Bar
             key={`bar-stack-${barStack.index}-${bar.index}`}
             x={bar.x}

@@ -47,8 +47,8 @@ const world = topojson.feature(topology, topology.objects.units) as {
 
 const color = scaleQuantize({
   domain: [
-    Math.min(...world.features.map(f => f.geometry.coordinates.length)),
-    Math.max(...world.features.map(f => f.geometry.coordinates.length)),
+    Math.min(...world.features.map((f) => f.geometry.coordinates.length)),
+    Math.max(...world.features.map((f) => f.geometry.coordinates.length)),
   ],
   range: [
     '#019ece',
@@ -91,7 +91,7 @@ export default function GeoCustom({ width, height, events = true }: GeoCustomPro
           skewY: 0,
         }}
       >
-        {zoom => (
+        {(zoom) => (
           <div className="container">
             <svg width={width} height={height} className={zoom.isDragging ? 'dragging' : undefined}>
               <rect x={0} y={0} width={width} height={height} fill={background} rx={14} />
@@ -101,9 +101,9 @@ export default function GeoCustom({ width, height, events = true }: GeoCustomPro
                 scale={zoom.transformMatrix.scaleX}
                 translate={[zoom.transformMatrix.translateX, zoom.transformMatrix.translateY]}
               >
-                {customProjection => (
+                {(customProjection) => (
                   <g>
-                    <Graticule graticule={g => customProjection.path(g) || ''} stroke={purple} />
+                    <Graticule graticule={(g) => customProjection.path(g) || ''} stroke={purple} />
                     {customProjection.features.map(({ feature, path }, i) => (
                       <path
                         key={`map-feature-${i}`}
@@ -163,8 +163,8 @@ export default function GeoCustom({ width, height, events = true }: GeoCustomPro
       </Zoom>
       <label>
         projection:{' '}
-        <select onChange={event => setProjection(event.target.value)}>
-          {Object.keys(PROJECTIONS).map(projectionName => (
+        <select onChange={(event) => setProjection(event.target.value)}>
+          {Object.keys(PROJECTIONS).map((projectionName) => (
             <option key={projectionName} value={projectionName}>
               {projectionName}
             </option>

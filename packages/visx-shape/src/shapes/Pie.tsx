@@ -80,7 +80,6 @@ export default function Pie<Datum>({
   });
 
   const arcs = pie(data);
-  // eslint-disable-next-line react/jsx-no-useless-fragment
   if (children) return <>{children({ arcs, path, pie })}</>;
 
   return (

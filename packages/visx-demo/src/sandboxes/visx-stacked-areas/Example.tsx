@@ -9,7 +9,7 @@ import { timeParse } from 'd3-time-format';
 type BrowserNames = keyof BrowserUsage;
 
 const data = browserUsage;
-const keys = Object.keys(data[0]).filter(k => k !== 'date') as BrowserNames[];
+const keys = Object.keys(data[0]).filter((k) => k !== 'date') as BrowserNames[];
 const parseDate = timeParse('%Y %b %d');
 export const background = '#f38181';
 
@@ -52,12 +52,12 @@ export default function Example({
         left={margin.left}
         keys={keys}
         data={data}
-        x={d => xScale(getDate(d.data)) ?? 0}
-        y0={d => yScale(getY0(d)) ?? 0}
-        y1={d => yScale(getY1(d)) ?? 0}
+        x={(d) => xScale(getDate(d.data)) ?? 0}
+        y0={(d) => yScale(getY0(d)) ?? 0}
+        y1={(d) => yScale(getY1(d)) ?? 0}
       >
         {({ stacks, path }) =>
-          stacks.map(stack => (
+          stacks.map((stack) => (
             <path
               key={`stack-${stack.key}`}
               d={path(stack) || ''}

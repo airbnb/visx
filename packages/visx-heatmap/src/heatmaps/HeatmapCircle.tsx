@@ -54,8 +54,8 @@ export default function HeatmapCircle<ColumnDatum, BinDatum>({
   yScale,
   colorScale = () => undefined,
   opacityScale = () => 1,
-  bins = (column: any) => column && column.bins,
-  count = (cell: any) => cell && cell.count,
+  bins = (column: any) => column?.bins, // eslint-disable-line @typescript-eslint/no-explicit-any
+  count = (cell: any) => cell?.count, // eslint-disable-line @typescript-eslint/no-explicit-any
   children,
   ...restProps
 }: HeatmapCircleProps<ColumnDatum, BinDatum> &
@@ -90,8 +90,8 @@ export default function HeatmapCircle<ColumnDatum, BinDatum>({
 
   return (
     <Group className="visx-heatmap-circles" top={top} left={left}>
-      {heatmap.map(columns =>
-        columns.map(bin => (
+      {heatmap.map((columns) =>
+        columns.map((bin) => (
           <circle
             key={`heatmap-tile-circle-${bin.row}-${bin.column}`}
             className={cx('visx-heatmap-circle', className)}

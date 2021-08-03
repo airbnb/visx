@@ -36,7 +36,6 @@ export default function AreaClosed<Datum>({
   }
   if (y && !y1) setNumOrAccessor(path.y1, y);
   if (y1 && !y) setNumOrAccessor(path.y1, y1);
-  // eslint-disable-next-line react/jsx-no-useless-fragment
   if (children) return <>{children({ path })}</>;
   return (
     <path

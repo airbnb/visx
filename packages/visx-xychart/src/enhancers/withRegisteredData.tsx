@@ -6,7 +6,7 @@ import { DataContextType, SeriesProps } from '../types';
 export type WithRegisteredDataProps<
   XScale extends AxisScale,
   YScale extends AxisScale,
-  Datum extends object
+  Datum extends object,
 > = Pick<DataContextType<XScale, YScale, Datum>, 'xScale' | 'yScale'>;
 
 /**
@@ -22,12 +22,12 @@ export default function withRegisteredData<
   BaseComponentProps extends SeriesProps<XScale, YScale, Datum>,
   XScale extends AxisScale,
   YScale extends AxisScale,
-  Datum extends object
+  Datum extends object,
 >(BaseSeriesComponent: React.ComponentType<BaseComponentProps>) {
   function WrappedComponent<
     XScale extends AxisScale,
     YScale extends AxisScale,
-    Datum extends object
+    Datum extends object,
   >(
     // WrappedComponent props include SeriesProps with appropriate generics
     // and any props in BaseComponentProps that are not in WithRegisteredDataProps
@@ -39,9 +39,11 @@ export default function withRegisteredData<
       >,
   ) {
     const { dataKey, data, xAccessor, yAccessor } = props;
-    const { xScale, yScale, dataRegistry } = (useContext(
-      DataContext,
-    ) as unknown) as DataContextType<XScale, YScale, Datum>;
+    const { xScale, yScale, dataRegistry } = useContext(DataContext) as unknown as DataContextType<
+      XScale,
+      YScale,
+      Datum
+    >;
 
     useEffect(() => {
       if (dataRegistry) dataRegistry.registerData({ key: dataKey, data, xAccessor, yAccessor });
@@ -54,7 +56,7 @@ export default function withRegisteredData<
     if (!xScale || !yScale || !registryEntry) return null;
 
     // TODO coercion might be avoidable with variadic tuples in TS 4
-    const BaseComponent = (BaseSeriesComponent as unknown) as React.ComponentType<
+    const BaseComponent = BaseSeriesComponent as unknown as React.ComponentType<
       SeriesProps<XScale, YScale, Datum> & WithRegisteredDataProps<XScale, YScale, Datum>
     >;
 

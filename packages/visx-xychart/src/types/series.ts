@@ -24,7 +24,7 @@ export type EventHandlerParams<Datum> = {
 export type SeriesProps<
   XScale extends AxisScale,
   YScale extends AxisScale,
-  Datum extends object
+  Datum extends object,
 > = {
   /** Required data key for the Series, should be unique across all series. */
   dataKey: string;
@@ -141,7 +141,7 @@ export type CombinedStackData<XScale extends AxisScale, YScale extends AxisScale
 export type GlyphsProps<
   XScale extends AxisScale,
   YScale extends AxisScale,
-  Datum extends object
+  Datum extends object,
 > = {
   xScale: XScale;
   yScale: YScale;

@@ -32,7 +32,7 @@ export default function AnimatedGridRows<Scale extends GridScale>({
           lines={lines}
           animationTrajectory={animationTrajectory}
           animateXOrY="y"
-          lineKey={line => String(line?.from?.y ?? '')}
+          lineKey={(line) => String(line?.from?.y ?? '')}
           {...lineProps}
         />
       )}

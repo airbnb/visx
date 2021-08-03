@@ -7,7 +7,7 @@ import isUtcScale from './isUtcScale';
 export default function inferScaleType<
   Output,
   DiscreteInput extends StringLike,
-  ThresholdInput extends DefaultThresholdInput
+  ThresholdInput extends DefaultThresholdInput,
 >(scale: D3Scale<Output, DiscreteInput, ThresholdInput>): ScaleType {
   // Try a sequence of typeguards to figure out the scale type
 

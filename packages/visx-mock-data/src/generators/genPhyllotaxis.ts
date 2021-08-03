@@ -16,7 +16,7 @@ export default function genPhyllotaxis({
   height,
 }: GenPhyllotaxis): GenPhyllotaxisFunction {
   const theta = Math.PI * (3 - Math.sqrt(5));
-  return idx => {
+  return (idx) => {
     const r = radius * Math.sqrt(idx);
     const a = theta * idx;
     return {

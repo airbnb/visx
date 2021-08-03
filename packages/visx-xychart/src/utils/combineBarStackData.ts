@@ -15,7 +15,7 @@ export const getStackValue = <XScale extends AxisScale, YScale extends AxisScale
 export default function combineBarStackData<
   XScale extends AxisScale,
   YScale extends AxisScale,
-  Datum extends object
+  Datum extends object,
 >(
   seriesChildren: React.ReactElement<SeriesProps<XScale, YScale, Datum>>[],
   horizontal?: boolean,
@@ -24,7 +24,7 @@ export default function combineBarStackData<
     [stackValue: string]: CombinedStackData<XScale, YScale>;
   } = {};
 
-  seriesChildren.forEach(child => {
+  seriesChildren.forEach((child) => {
     const { dataKey, data, xAccessor, yAccessor } = child.props;
 
     // this should exist but double check
@@ -32,7 +32,7 @@ export default function combineBarStackData<
 
     const [stackFn, valueFn] = horizontal ? [yAccessor, xAccessor] : [xAccessor, yAccessor];
 
-    data.forEach(d => {
+    data.forEach((d) => {
       const stack = stackFn(d);
       const numericValue = valueFn(d);
       const stackKey = String(stack);

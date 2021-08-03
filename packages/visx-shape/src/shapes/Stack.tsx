@@ -66,7 +66,6 @@ export default function Stack<Datum, Key extends StackKey = StackKey>({
 
   const stacks = stack(data);
 
-  // eslint-disable-next-line react/jsx-no-useless-fragment
   if (children) return <>{children({ stacks, path, stack })}</>;
 
   return (

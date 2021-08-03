@@ -38,7 +38,7 @@ export default function ViolinPlot<Datum extends object>({
   ...restProps
 }: ViolinPlotProps<Datum> & Omit<React.SVGProps<SVGPathElement>, keyof ViolinPlotProps<Datum>>) {
   const center = (horizontal ? top : left) + width / 2;
-  const binCounts = data.map(bin => count(bin));
+  const binCounts = data.map((bin) => count(bin));
   const widthScale = scaleLinear<number>({
     range: [0, width / 2],
     round: true,
@@ -49,13 +49,13 @@ export default function ViolinPlot<Datum extends object>({
 
   if (horizontal) {
     const topCurve = line<Datum>()
-      .x(d => valueScale(value(d)) ?? 0)
-      .y(d => center - (widthScale(count(d)) ?? 0))
+      .x((d) => valueScale(value(d)) ?? 0)
+      .y((d) => center - (widthScale(count(d)) ?? 0))
       .curve(curveCardinal);
 
     const bottomCurve = line<Datum>()
-      .x(d => valueScale(value(d)) ?? 0)
-      .y(d => center + (widthScale(count(d)) ?? 0))
+      .x((d) => valueScale(value(d)) ?? 0)
+      .y((d) => center + (widthScale(count(d)) ?? 0))
       .curve(curveCardinal);
 
     const topCurvePath = topCurve(data) || '';
@@ -63,13 +63,13 @@ export default function ViolinPlot<Datum extends object>({
     path = `${topCurvePath} ${bottomCurvePath.replace('M', 'L')} Z`;
   } else {
     const rightCurve = line<Datum>()
-      .x(d => center + (widthScale(count(d)) ?? 0))
-      .y(d => valueScale(value(d)) ?? 0)
+      .x((d) => center + (widthScale(count(d)) ?? 0))
+      .y((d) => valueScale(value(d)) ?? 0)
       .curve(curveCardinal);
 
     const leftCurve = line<Datum>()
-      .x(d => center - (widthScale(count(d)) ?? 0))
-      .y(d => valueScale(value(d)) ?? 0)
+      .x((d) => center - (widthScale(count(d)) ?? 0))
+      .y((d) => valueScale(value(d)) ?? 0)
       .curve(curveCardinal);
 
     const rightCurvePath = rightCurve(data) || '';

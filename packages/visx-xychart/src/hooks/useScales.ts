@@ -9,7 +9,7 @@ import isDiscreteScale from '../utils/isDiscreteScale';
 export default function useScales<
   XScale extends AxisScale,
   YScale extends AxisScale,
-  Datum extends object
+  Datum extends object,
 >({
   dataRegistry,
   xRange,
@@ -29,7 +29,7 @@ export default function useScales<
   const [yMin, yMax] = yRange;
 
   const memoizedXScale = useMemo(() => {
-    const registryEntries = registryKeys.map(key => dataRegistry.get(key));
+    const registryEntries = registryKeys.map((key) => dataRegistry.get(key));
 
     type XScaleInput = ScaleInput<XScale>;
 
@@ -44,21 +44,23 @@ export default function useScales<
 
     const xDomain = isDiscreteScale(xScaleConfig) ? xValues : d3Extent(xValues);
 
-    let xScale = (scaleCanBeZeroed(xScaleConfig)
-      ? createScale({
-          range: [xMin, xMax],
-          domain: xDomain as [XScaleInput, XScaleInput],
-          zero: true,
-          ...xScaleConfig,
-        })
-      : createScale({
-          range: [xMin, xMax],
-          domain: xDomain as [XScaleInput, XScaleInput],
-          ...xScaleConfig,
-        })) as XScale;
+    let xScale = (
+      scaleCanBeZeroed(xScaleConfig)
+        ? createScale({
+            range: [xMin, xMax],
+            domain: xDomain as [XScaleInput, XScaleInput],
+            zero: true,
+            ...xScaleConfig,
+          })
+        : createScale({
+            range: [xMin, xMax],
+            domain: xDomain as [XScaleInput, XScaleInput],
+            ...xScaleConfig,
+          })
+    ) as XScale;
 
     // apply any scale updates from the registry
-    registryEntries.forEach(entry => {
+    registryEntries.forEach((entry) => {
       if (entry?.xScale) xScale = entry.xScale(xScale);
     });
 
@@ -67,7 +69,7 @@ export default function useScales<
 
   // same for yScale. this logic is hard to apply generically because of the scale types / accessors
   const memoizedYScale = useMemo(() => {
-    const registryEntries = registryKeys.map(key => dataRegistry.get(key));
+    const registryEntries = registryKeys.map((key) => dataRegistry.get(key));
 
     type YScaleInput = ScaleInput<YScale>;
 
@@ -82,21 +84,23 @@ export default function useScales<
 
     const yDomain = isDiscreteScale(yScaleConfig) ? yValues : d3Extent(yValues);
 
-    let yScale = (scaleCanBeZeroed(yScaleConfig)
-      ? createScale({
-          range: [yMin, yMax],
-          domain: yDomain as [YScaleInput, YScaleInput],
-          zero: true,
-          ...yScaleConfig,
-        })
-      : createScale({
-          range: [yMin, yMax],
-          domain: yDomain as [YScaleInput, YScaleInput],
-          ...yScaleConfig,
-        })) as YScale;
+    let yScale = (
+      scaleCanBeZeroed(yScaleConfig)
+        ? createScale({
+            range: [yMin, yMax],
+            domain: yDomain as [YScaleInput, YScaleInput],
+            zero: true,
+            ...yScaleConfig,
+          })
+        : createScale({
+            range: [yMin, yMax],
+            domain: yDomain as [YScaleInput, YScaleInput],
+            ...yScaleConfig,
+          })
+    ) as YScale;
 
     // apply any scale updates from the registry
-    registryEntries.forEach(entry => {
+    registryEntries.forEach((entry) => {
       if (entry?.yScale) yScale = entry.yScale(yScale);
     });
 

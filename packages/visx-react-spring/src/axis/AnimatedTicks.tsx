@@ -58,11 +58,13 @@ export default function AnimatedTicks<Scale extends AxisScale>({
               transform={to(
                 [toX as SpringValue<number>, toY as SpringValue<number>],
                 (interpolatedX, interpolatedY) =>
-                  `translate(${interpolatedX},${interpolatedY +
+                  `translate(${interpolatedX},${
+                    interpolatedY +
                     (orientation === Orientation.bottom &&
                     typeof tickLabelProps.fontSize === 'number'
                       ? tickLabelProps.fontSize ?? 10
-                      : 0)})`,
+                      : 0)
+                  })`,
               )}
               opacity={opacity}
             >

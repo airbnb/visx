@@ -107,9 +107,8 @@ export default function ExampleControls({ children }: ControlsProps) {
   const [yAxisOrientation, setYAxisOrientation] = useState<'left' | 'right'>('right');
   const [renderHorizontally, setRenderHorizontally] = useState(false);
   const [showTooltip, setShowTooltip] = useState(true);
-  const [annotationDataKey, setAnnotationDataKey] = useState<ProvidedProps['annotationDataKey']>(
-    null,
-  );
+  const [annotationDataKey, setAnnotationDataKey] =
+    useState<ProvidedProps['annotationDataKey']>(null);
   const [annotationType, setAnnotationType] = useState<ProvidedProps['annotationType']>('circle');
   const [showVerticalCrosshair, setShowVerticalCrosshair] = useState(true);
   const [showHorizontalCrosshair, setShowHorizontalCrosshair] = useState(false);
