@@ -24,7 +24,7 @@ describe('<Zoom />', () => {
         scaleXMax={4}
         scaleYMin={1 / 2}
         scaleYMax={4}
-        transformMatrix={initialTransform}
+        initialTransformMatrix={initialTransform}
       >
         {({ transformMatrix }) => {
           const { scaleX, scaleY, translateX, translateY } = transformMatrix;
