@@ -21,7 +21,6 @@ describe('<LineSeries />', () => {
         </svg>
       </DataContext.Provider>,
     );
-    // @ts-ignore produces a union type that is too complex to represent.ts(2590)
     expect(container.querySelectorAll('path')).toHaveLength(1);
   });
 

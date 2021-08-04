@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { scaleLinear } from '@visx/scale';
 import BaseAxis from '../../src/components/axis/BaseAxis';
 import { Axis, AnimatedAxis, DataContext, lightTheme } from '../../src';
 import getDataContext from '../mocks/getDataContext';
@@ -50,6 +51,32 @@ describe('<BaseAxis />', () => {
     );
     const AxisComponents = container.querySelectorAll('.visx-axis');
     expect(AxisComponents).toHaveLength(1);
+  });
+
+  it('should use scale=xScale for orientation=top (or bottom)', () => {
+    const xScale = scaleLinear({ domain: [0, 4], range: [0, 10] });
+    const { container } = setup(
+      <BaseAxis orientation="top" AxisComponent={() => <Axis orientation="top" />} />,
+      { xScale },
+    );
+    const TickLabels = container.querySelectorAll('tspan');
+    expect(TickLabels[0].textContent).toEqual('0.0');
+    expect(TickLabels[0]).toHaveAttribute('x', '0');
+    expect(TickLabels[TickLabels.length - 1].textContent).toEqual('4.0');
+    expect(TickLabels[TickLabels.length - 1]).toHaveAttribute('x', '10');
+  });
+
+  it('should use scale=yScale for orientation=left (or right)', () => {
+    const yScale = scaleLinear({ domain: [0, 4], range: [0, 10] });
+    const { container } = setup(
+      <BaseAxis orientation="left" AxisComponent={() => <Axis orientation="left" />} />,
+      { yScale },
+    );
+    const TickLabels = container.querySelectorAll('tspan');
+    expect(TickLabels[0].textContent).toEqual('0.0');
+    expect(TickLabels[0].parentNode).toHaveAttribute('y', '0');
+    expect(TickLabels[TickLabels.length - 1].textContent).toEqual('4.0');
+    expect(TickLabels[TickLabels.length - 1].parentNode).toHaveAttribute('y', '10');
   });
 
   it('should use axis styles from context theme unless specified in props', () => {
