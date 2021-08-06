@@ -1,4 +1,4 @@
-import { useGesture } from '@use-gesture/react';
+import { UserHandlers } from '@use-gesture/react';
 
 export interface TransformMatrix {
   scaleX: number;
@@ -46,8 +46,8 @@ export interface ProvidedZoom<ElementType> {
   reset: () => void;
   /** Callback for a wheel event, updating scale based on props.wheelDelta, relative to the mouse position. */
   handleWheel: (event: React.WheelEvent | WheelEvent) => void;
-  /** Callback for a react-use-gesture on pinch event, updating scale based on props.pinchDelta, relative to the pinch position */
-  handlePinch: Parameters<typeof useGesture>[0]['onPinch'];
+  /** Callback for a react-use-gesture on pinch event, updating scale based on props.pinchDelta, relative to the pinch position. */
+  handlePinch: UserHandlers['onPinch'];
   /** Callback for dragEnd, sets isDragging to false. */
   dragEnd: () => void;
   /** Callback for dragMove, results in a scale transform. */
@@ -73,6 +73,6 @@ export interface ProvidedZoom<ElementType> {
   applyToPoint: ({ x, y }: Point) => Point;
   /** Applies the inverse of the current transform matrix to the specified point. */
   applyInverseToPoint: ({ x, y }: Point) => Point;
-  /** Ref to stick on element to attach all handlers automatically */
+  /** Ref to stick on element to attach all handlers automatically. */
   containerRef: React.RefObject<ElementType>;
 }
