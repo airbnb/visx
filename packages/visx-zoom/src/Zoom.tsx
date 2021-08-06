@@ -39,7 +39,7 @@ export type ZoomProps<ElementType> = {
     params: Parameters<
       Handler<'pinch', TouchEvent | PointerEvent | WheelEvent | WebKitGestureEvent>
     >[0],
-  ) => ScaleSignature;
+  ) => Scale;
   /** Minimum x scale value for transform. */
   scaleXMin?: number;
   /** Maximum x scale value for transform. */
@@ -95,7 +95,10 @@ function Zoom<ElementType extends Element>({
   },
   wheelDelta = (event: React.WheelEvent | WheelEvent) =>
     -event.deltaY > 0 ? { scaleX: 1.1, scaleY: 1.1 } : { scaleX: 0.9, scaleY: 0.9 },
-  pinchDelta,
+  pinchDelta = ({ offset: [s], lastOffset: [lastS] }) => ({
+    scaleX: s - lastS < 0 ? 0.9 : 1.1,
+    scaleY: s - lastS < 0 ? 0.9 : 1.1,
+  }),
   width,
   height,
   constrain,
@@ -257,20 +260,15 @@ function Zoom<ElementType extends Element>({
 
   const handlePinch: UserHandlers['onPinch'] = useCallback(
     state => {
-      if (pinchDelta) {
-        return scale(pinchDelta(state));
-      }
-
       const {
         origin: [ox, oy],
-        offset: [s],
-        lastOffset: [lastS],
       } = state;
       if (containerRef.current) {
         const { top, left } = containerRef.current.getBoundingClientRect();
+        const { scaleX, scaleY } = pinchDelta(state);
         scale({
-          scaleX: s - lastS < 0 ? 0.9 : 1.1,
-          scaleY: s - lastS < 0 ? 0.9 : 1.1,
+          scaleX,
+          scaleY,
           point: { x: ox - left, y: oy - top },
         });
       }
