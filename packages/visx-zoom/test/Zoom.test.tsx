@@ -33,8 +33,7 @@ describe('<Zoom />', () => {
       </Zoom>,
     );
 
-    expect(wrapper.find('div')).toHaveLength(1);
-    expect(wrapper.find('div').text()).toEqual('1.27,1.27,-211.62,162.59');
+    expect(wrapper.html()).toEqual('1.27,1.27,-211.62,162.59');
   });
 });
 

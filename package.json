@@ -49,6 +49,7 @@
     "release": "yarn run prepare-release && lerna publish --exact",
     "setup": "yarn run build",
     "test": "yarn run jest",
+    "test:watch": "yarn run jest --watch",
     "ts": "ts-node --project ./tsconfig.node.json",
     "type": "nimbus typescript --build --reference-workspaces",
     "type:workspaces": "nimbus typescript --build"
