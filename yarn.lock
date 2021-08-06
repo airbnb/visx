@@ -4065,13 +4065,13 @@
 
 "@use-gesture/core@^10.0.0-beta.22":
   version "10.0.0-beta.22"
-  resolved "https://snapchat.jfrog.io/snapchat/api/npm/npm-virtual/@use-gesture/core/-/core-10.0.0-beta.22.tgz#5627dd00137462e306116942aedeadf249634353"
-  integrity sha1-VifdABN0YuMGEWlCrt6t8kljQ1M=
+  resolved "https://registry.yarnpkg.com/@use-gesture/core/-/core-10.0.0-beta.22.tgz#5627dd00137462e306116942aedeadf249634353"
+  integrity sha512-nFPsMiHii99huDpeKjC9e5Ggagn4M/UAb3DFWw1/dEZl1fJSfFobrNdtB+5sPOTwyDBBsKpk4oS7Nde4coGDzA==
 
 "@use-gesture/react@^10.0.0-beta.22":
   version "10.0.0-beta.22"
-  resolved "https://snapchat.jfrog.io/snapchat/api/npm/npm-virtual/@use-gesture/react/-/react-10.0.0-beta.22.tgz#e88da83d1eedde4f422d53a09fbc09522e823a67"
-  integrity sha1-6I2oPR7t3k9CLVOgn7wJUi6COmc=
+  resolved "https://registry.yarnpkg.com/@use-gesture/react/-/react-10.0.0-beta.22.tgz#e88da83d1eedde4f422d53a09fbc09522e823a67"
+  integrity sha512-6ZTpyK1XwL6xgzV0LArxE/rMBNueOiIp0LJoKHdX5/LSf33unMd/E7v9YGOf55NM7vl0tOevpa9f5gSlw4Pvhw==
   dependencies:
     "@use-gesture/core" "^10.0.0-beta.22"
 
