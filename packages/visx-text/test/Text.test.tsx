@@ -1,5 +1,4 @@
 import React from 'react';
-import { shallow } from 'enzyme';
 import { render } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
 import '@testing-library/jest-dom';
@@ -18,11 +17,6 @@ describe('<Text />', () => {
 
   it('should be defined', () => {
     expect(Text).toBeDefined();
-  });
-
-  it('should not throw', () => {
-    expect(() => shallow(<Text />)).not.toThrow();
-    expect(() => shallow(<Text>Hi</Text>)).not.toThrow();
   });
 
   it('Does not wrap long text if enough width', () => {
@@ -158,14 +152,14 @@ describe('<Text />', () => {
   });
 
   it('Applies transform if angle is given', () => {
-    const wrapper = shallow<Text>(
+    const { container } = render(
       <Text width={300} angle={45} style={{ fontFamily: 'Courier' }}>
         This is really long text
       </Text>,
     );
 
-    const text = wrapper.find('text').first();
-    expect(text.prop('transform')).toBe('rotate(45, 0, 0)');
+    const text = container.querySelector('text');
+    expect(text).toHaveAttribute('transform', 'rotate(45, 0, 0)');
   });
 
   it('Offsets vertically if verticalAnchor is given', () => {
