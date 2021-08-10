@@ -35,7 +35,7 @@
     "resize-observer-polyfill": "1.5.1"
   },
   "peerDependencies": {
-    "react": "^15.0.0-0 || ^16.0.0-0"
+    "react": "^16.0.0-0 || ^17.0.0-0"
   },
   "publishConfig": {
     "access": "public"

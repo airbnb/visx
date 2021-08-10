@@ -1,13 +1,8 @@
 import React, { useContext } from 'react';
 import { mount } from 'enzyme';
-import ParentSize from '@visx/responsive/lib/components/ParentSize';
-import {
-  XYChart,
-  DataContext,
-  DataProvider,
-  EventEmitterProvider,
-  TooltipProvider,
-} from '../../src';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import { XYChart, DataProvider, DataContext } from '../../src';
 
 const chartProps = {
   xScale: { type: 'linear' },
@@ -21,24 +16,18 @@ describe('<XYChart />', () => {
     expect(XYChart).toBeDefined();
   });
 
-  it('should render a ParentSize if width or height is not provided', () => {
-    const wrapper = mount(
-      <XYChart {...chartProps} width={undefined}>
-        <rect />
-      </XYChart>,
+  it('should render with parent size if width or height is not provided', () => {
+    const { getByTestId } = render(
+      <div style={{ width: '200px', height: '200px' }} data-testid="wrapper">
+        <XYChart {...chartProps} width={undefined} data-testid="rect">
+          <rect />
+        </XYChart>
+      </div>,
     );
-    expect(wrapper.find(ParentSize)).toHaveLength(1);
-  });
 
-  it('should render DataProvider, EventEmitterProvider, and TooltipProvider if not available in context', () => {
-    const wrapper = mount(
-      <XYChart {...chartProps}>
-        <rect />
-      </XYChart>,
-    );
-    expect(wrapper.find(DataProvider)).toHaveLength(1);
-    expect(wrapper.find(EventEmitterProvider)).toHaveLength(1);
-    expect(wrapper.find(TooltipProvider)).toHaveLength(1);
+    // the XYChart should auto-resize to it's parent size
+    const Wrapper = getByTestId('wrapper');
+    expect(Wrapper.firstChild).toHaveStyle('width: 100%; height: 100%');
   });
 
   it('should warn if DataProvider is not available and no x- or yScale config is passed', () => {
@@ -54,21 +43,23 @@ describe('<XYChart />', () => {
   });
 
   it('should render an svg', () => {
-    const wrapper = mount(
+    const { container } = render(
       <XYChart {...chartProps}>
         <rect />
       </XYChart>,
     );
-    expect(wrapper.find('svg')).toHaveLength(1);
+    const SVGElement = container.querySelector('svg');
+    expect(SVGElement).toBeDefined();
   });
 
   it('should render children', () => {
-    const wrapper = mount(
+    const { container } = render(
       <XYChart {...chartProps}>
         <rect id="xychart-child" />
       </XYChart>,
     );
-    expect(wrapper.find('#xychart-child')).toHaveLength(1);
+    const XYChartChild = container.querySelector('#xychart-child');
+    expect(XYChartChild).toBeDefined();
   });
 
   it('should update the registry dimensions', () => {
@@ -85,7 +76,7 @@ describe('<XYChart />', () => {
       return null;
     };
 
-    mount(
+    render(
       <DataProvider xScale={{ type: 'linear' }} yScale={{ type: 'linear' }}>
         <XYChart width={width} height={height}>
           <DataConsumer />

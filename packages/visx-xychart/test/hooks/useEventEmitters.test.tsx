@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { mount } from 'enzyme';
+import { render } from '@testing-library/react';
 import { EventEmitterProvider, useEventEmitter } from '../../src';
 import useEventEmitters from '../../src/hooks/useEventEmitters';
 
@@ -28,7 +28,7 @@ describe('useEventEmitters', () => {
       return null;
     };
 
-    mount(
+    render(
       <EventEmitterProvider>
         <Component />
       </EventEmitterProvider>,
@@ -53,7 +53,7 @@ describe('useEventEmitters', () => {
       return null;
     };
 
-    mount(
+    render(
       <EventEmitterProvider>
         <Component />
       </EventEmitterProvider>,

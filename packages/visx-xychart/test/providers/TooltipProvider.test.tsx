@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { mount } from 'enzyme';
+import { render } from '@testing-library/react';
 import { TooltipProvider, TooltipContext, TooltipData } from '../../src';
 
 describe('<TooltipProvider />', () => {
@@ -22,7 +22,7 @@ describe('<TooltipProvider />', () => {
       return null;
     };
 
-    mount(
+    render(
       <TooltipProvider>
         <TooltipConsumer />
       </TooltipProvider>,
@@ -70,7 +70,7 @@ describe('<TooltipProvider />', () => {
       return null;
     };
 
-    mount(
+    render(
       <TooltipProvider>
         <TooltipConsumer />
       </TooltipProvider>,

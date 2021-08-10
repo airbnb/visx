@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { mount } from 'enzyme';
+import { render } from '@testing-library/react';
 import { useDrag } from '../src';
 import { UseDragOptions } from '../lib/useDrag';
 
@@ -26,7 +26,7 @@ describe('useDrag', () => {
       return null;
     }
 
-    mount(<Consumer />);
+    render(<Consumer />);
   });
 
   test('should update drag state when useDrag options change', () => {
@@ -46,7 +46,7 @@ describe('useDrag', () => {
       return null;
     }
 
-    const wrapper = mount(<Consumer {...options1} />);
-    wrapper.setProps(options2);
+    const { rerender } = render(<Consumer {...options1} />);
+    rerender(<Consumer {...options2} />);
   });
 });

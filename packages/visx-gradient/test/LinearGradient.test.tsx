@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { render } from '@testing-library/react';
 
 import { LinearGradient } from '../src';
 
@@ -10,7 +10,7 @@ describe('<LinearGradient />', () => {
 
   test('it should render without crashing', () => {
     expect(() =>
-      mount(
+      render(
         <svg>
           <LinearGradient id="linear" />
         </svg>,

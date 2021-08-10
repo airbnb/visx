@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { mount } from 'enzyme';
+import { render } from '@testing-library/react';
 import { EventEmitterProvider, EventEmitterContext } from '../../src';
 
 describe('<EventEmitterProvider />', () => {
@@ -17,7 +17,7 @@ describe('<EventEmitterProvider />', () => {
       return null;
     };
 
-    mount(
+    render(
       <EventEmitterProvider>
         <EventEmitterConsumer />
       </EventEmitterProvider>,

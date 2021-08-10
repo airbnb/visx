@@ -36,7 +36,7 @@
     "access": "public"
   },
   "peerDependencies": {
-    "react": "^16.4.0-0",
+    "react": "^16.8.0 || ^17.0.0",
     "react-spring": "^9.2.0"
   },
   "dependencies": {

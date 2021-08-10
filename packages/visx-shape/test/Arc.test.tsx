@@ -1,9 +1,9 @@
 import React from 'react';
 import mockConsole from 'jest-mock-console';
-import { shallow, mount } from 'enzyme';
-
+import { render } from '@testing-library/react';
 import { Arc } from '../src';
 import { ArcProps } from '../src/shapes/Arc';
+import '@testing-library/jest-dom';
 
 interface Datum {
   data: number;
@@ -23,11 +23,8 @@ const data: Datum = {
   padAngle: 0,
 };
 
-const ArcWrapper = (overrideProps: Partial<ArcProps<Datum>> = { data }) =>
-  shallow(<Arc {...overrideProps} />);
-
 const ArcChildren = ({ children, ...restProps }: Partial<ArcProps<Datum>>) =>
-  shallow(
+  render(
     <Arc data={data} {...restProps}>
       {children}
     </Arc>,
@@ -38,25 +35,36 @@ describe('<Arc />', () => {
     expect(Arc).toBeDefined();
   });
 
-  it('should have the .visx-arcs-group class', () => {
-    expect(ArcWrapper().prop('className')).toBe('visx-arc');
-  });
-
-  it('should render a path', () => {
-    expect(ArcWrapper().find('path')).toHaveLength(1);
+  it('should render a path that has the .visx-arcs-group class', () => {
+    const { container } = render(
+      <svg>
+        <Arc data={data} />
+      </svg>,
+    );
+    const PathElement = container.querySelector('path');
+    expect(PathElement).toBeInTheDocument();
+    expect(PathElement).toHaveClass('visx-arc');
   });
 
   it('should warn and render null when none of data, radii, and angles are passed', () => {
     const restoreConsole = mockConsole();
-    expect(ArcWrapper({}).find('path')).toHaveLength(0);
+    const { container } = render(
+      <svg>
+        <Arc data={null} />
+      </svg>,
+    );
+    expect(container.querySelector('path')).not.toBeInTheDocument();
     expect(console.warn).toHaveBeenCalledTimes(1);
     restoreConsole();
   });
 
   it('should render a path without data when radii + angles are defined', () => {
-    expect(
-      ArcWrapper({ startAngle: 0, endAngle: 6, innerRadius: 5, outerRadius: 10 }).find('path'),
-    ).toHaveLength(1);
+    const { container } = render(
+      <svg>
+        <Arc data={{ startAngle: 0, endAngle: 6, innerRadius: 5, outerRadius: 10 }} />
+      </svg>,
+    );
+    expect(container.querySelector('path')).toBeInTheDocument();
   });
 
   it('should take a children as function prop', () => {
@@ -207,17 +215,14 @@ describe('<Arc />', () => {
   });
 
   it('should expose its ref via an innerRef prop', () => {
-    // eslint-disable-next-line jest/no-test-return-statement
-    return new Promise(done => {
-      const refCallback = (ref: SVGPathElement) => {
-        expect(ref.tagName).toMatch('path');
-        done();
-      };
-      mount(
-        <svg>
-          <Arc data={data} innerRef={refCallback} />
-        </svg>,
-      );
-    });
+    const fakeRef = React.createRef<SVGPathElement>();
+
+    const { container } = render(
+      <svg>
+        <Arc data={data} innerRef={fakeRef} />
+      </svg>,
+    );
+    const PathElement = container.querySelector('path');
+    expect(fakeRef.current).toContainElement(PathElement);
   });
 });
