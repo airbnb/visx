@@ -115,6 +115,6 @@ describe('visx', () => {
   });
 
   it('should export @visx/zoom', () => {
-    expect(visx.Zoom).toBeDefined();
+    expect(visx.Zoom.Zoom).toBeDefined();
   });
 });
