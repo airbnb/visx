@@ -28,7 +28,7 @@ import * as Tooltip from '@visx/tooltip';
 import * as Voronoi from '@visx/voronoi';
 import * as Zoom from '@visx/zoom';
 
-export default {
+export {
   XYChart,
   Annotation,
   Axis,
