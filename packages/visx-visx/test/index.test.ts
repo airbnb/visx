@@ -1,5 +1,5 @@
 /* eslint-disable import/namespace */
-import visx from '../src';
+import * as visx from '../src';
 
 describe('visx', () => {
   it('should be defined', () => {
