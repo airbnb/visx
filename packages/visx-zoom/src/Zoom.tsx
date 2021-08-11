@@ -1,6 +1,6 @@
 import React, { useState, useRef, useCallback } from 'react';
 import { localPoint } from '@visx/event';
-import { useGesture, WebKitGestureEvent, Handler, UserHandlers } from '@use-gesture/react';
+import { useGesture, UserHandlers } from '@use-gesture/react';
 import {
   composeMatrices,
   inverseMatrix,
@@ -10,7 +10,33 @@ import {
   identityMatrix,
   scaleMatrix,
 } from './util/matrix';
-import { TransformMatrix, Point, Translate, Scale, ScaleSignature, ProvidedZoom } from './types';
+import {
+  TransformMatrix,
+  Point,
+  Translate,
+  Scale,
+  ScaleSignature,
+  ProvidedZoom,
+  PinchDelta,
+} from './types';
+
+// default prop values
+const defaultInitialTransformMatrix = {
+  scaleX: 1,
+  scaleY: 1,
+  translateX: 0,
+  translateY: 0,
+  skewX: 0,
+  skewY: 0,
+};
+
+const defaultWheelDelta = (event: React.WheelEvent | WheelEvent) =>
+  -event.deltaY > 0 ? { scaleX: 1.1, scaleY: 1.1 } : { scaleX: 0.9, scaleY: 0.9 };
+
+const defaultPinchDelta: PinchDelta = ({ offset: [s], lastOffset: [lastS] }) => ({
+  scaleX: s - lastS < 0 ? 0.9 : 1.1,
+  scaleY: s - lastS < 0 ? 0.9 : 1.1,
+});
 
 export type ZoomProps<ElementType> = {
   /** Width of the zoom container. */
@@ -35,11 +61,7 @@ export type ZoomProps<ElementType> = {
    * Scale factors greater than 1 will increase (zoom in), less than 1 will descrease (zoom out), the point is used to find where to zoom.
    * The state parameter is from react-use-gestures onPinch handler
    */
-  pinchDelta?: (
-    params: Parameters<
-      Handler<'pinch', TouchEvent | PointerEvent | WheelEvent | WebKitGestureEvent>
-    >[0],
-  ) => Scale;
+  pinchDelta?: PinchDelta;
   /** Minimum x scale value for transform. */
   scaleXMin?: number;
   /** Maximum x scale value for transform. */
@@ -85,20 +107,9 @@ function Zoom<ElementType extends Element>({
   scaleXMax = Infinity,
   scaleYMin = 0,
   scaleYMax = Infinity,
-  initialTransformMatrix = {
-    scaleX: 1,
-    scaleY: 1,
-    translateX: 0,
-    translateY: 0,
-    skewX: 0,
-    skewY: 0,
-  },
-  wheelDelta = (event: React.WheelEvent | WheelEvent) =>
-    -event.deltaY > 0 ? { scaleX: 1.1, scaleY: 1.1 } : { scaleX: 0.9, scaleY: 0.9 },
-  pinchDelta = ({ offset: [s], lastOffset: [lastS] }) => ({
-    scaleX: s - lastS < 0 ? 0.9 : 1.1,
-    scaleY: s - lastS < 0 ? 0.9 : 1.1,
-  }),
+  initialTransformMatrix = defaultInitialTransformMatrix,
+  wheelDelta = defaultWheelDelta,
+  pinchDelta = defaultPinchDelta,
   width,
   height,
   constrain,
@@ -262,9 +273,14 @@ function Zoom<ElementType extends Element>({
     state => {
       const {
         origin: [ox, oy],
+        memo,
       } = state;
+      let currentMemo = memo;
       if (containerRef.current) {
-        const { top, left } = containerRef.current.getBoundingClientRect();
+        const { top, left } = currentMemo ?? containerRef.current.getBoundingClientRect();
+        if (!currentMemo) {
+          currentMemo = { top, left };
+        }
         const { scaleX, scaleY } = pinchDelta(state);
         scale({
           scaleX,
@@ -272,6 +288,7 @@ function Zoom<ElementType extends Element>({
           point: { x: ox - left, y: oy - top },
         });
       }
+      return currentMemo;
     },
     [scale, pinchDelta],
   );

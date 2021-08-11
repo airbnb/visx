@@ -1,4 +1,4 @@
-import { UserHandlers } from '@use-gesture/react';
+import { UserHandlers, WebKitGestureEvent, Handler } from '@use-gesture/react';
 
 export interface TransformMatrix {
   scaleX: number;
@@ -17,6 +17,12 @@ export interface Point {
 export type Translate = Pick<TransformMatrix, 'translateX' | 'translateY'>;
 
 export type Scale = Pick<TransformMatrix, 'scaleX' | 'scaleY'>;
+
+export type PinchDelta = (
+  params: Parameters<
+    Handler<'pinch', TouchEvent | PointerEvent | WheelEvent | WebKitGestureEvent>
+  >[0],
+) => Scale;
 
 export interface ScaleSignature {
   scaleX: TransformMatrix['scaleX'];
