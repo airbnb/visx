@@ -43,10 +43,10 @@
   },
   "dependencies": {
     "@types/react": "*",
-    "@visx/axis": "^2.0.0-alpha.1",
-    "@visx/grid": "^2.0.0-alpha.1",
+    "@visx/axis": "2.0.0-alpha.1",
+    "@visx/grid": "2.0.0-alpha.1",
     "@visx/scale": "1.14.0",
-    "@visx/text": "^2.0.0-alpha.1",
+    "@visx/text": "2.0.0-alpha.1",
     "classnames": "^2.3.1",
     "prop-types": "^15.6.2"
   }

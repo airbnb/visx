@@ -21,7 +21,7 @@
   "license": "MIT",
   "dependencies": {
     "@types/react": "*",
-    "@visx/group": "^2.0.0-alpha.1",
+    "@visx/group": "2.0.0-alpha.1",
     "classnames": "^2.3.1",
     "prop-types": "^15.6.2"
   },

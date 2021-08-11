@@ -25,8 +25,8 @@
   "license": "MIT",
   "dependencies": {
     "@types/react": "*",
-    "@visx/clip-path": "^2.0.0-alpha.1",
-    "@visx/shape": "^2.0.0-alpha.1",
+    "@visx/clip-path": "2.0.0-alpha.1",
+    "@visx/shape": "2.0.0-alpha.1",
     "classnames": "^2.3.1",
     "prop-types": "^15.5.10"
   },
