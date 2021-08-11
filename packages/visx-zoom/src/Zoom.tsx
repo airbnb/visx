@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import { localPoint } from '@visx/event';
+import { useGesture, UserHandlers } from '@use-gesture/react';
 import {
   composeMatrices,
   inverseMatrix,
@@ -9,9 +10,35 @@ import {
   identityMatrix,
   scaleMatrix,
 } from './util/matrix';
-import { TransformMatrix, Point, Translate, Scale, ScaleSignature, ProvidedZoom } from './types';
+import {
+  TransformMatrix,
+  Point,
+  Translate,
+  Scale,
+  ScaleSignature,
+  ProvidedZoom,
+  PinchDelta,
+} from './types';
 
-export type ZoomProps = {
+// default prop values
+const defaultInitialTransformMatrix = {
+  scaleX: 1,
+  scaleY: 1,
+  translateX: 0,
+  translateY: 0,
+  skewX: 0,
+  skewY: 0,
+};
+
+const defaultWheelDelta = (event: React.WheelEvent | WheelEvent) =>
+  -event.deltaY > 0 ? { scaleX: 1.1, scaleY: 1.1 } : { scaleX: 0.9, scaleY: 0.9 };
+
+const defaultPinchDelta: PinchDelta = ({ offset: [s], lastOffset: [lastS] }) => ({
+  scaleX: s - lastS < 0 ? 0.9 : 1.1,
+  scaleY: s - lastS < 0 ? 0.9 : 1.1,
+});
+
+export type ZoomProps<ElementType> = {
   /** Width of the zoom container. */
   width: number;
   /** Height of the zoom container. */
@@ -25,6 +52,16 @@ export type ZoomProps = {
    * Scale factors greater than 1 will increase (zoom in), less than 1 will descrease (zoom out).
    */
   wheelDelta?: (event: React.WheelEvent | WheelEvent) => Scale;
+  /**
+   * ```js
+   *  pinchDelta(state)
+   * ```
+   *
+   * A function that returns { scaleX, scaleY, point } factors to scale the matrix by.
+   * Scale factors greater than 1 will increase (zoom in), less than 1 will descrease (zoom out), the point is used to find where to zoom.
+   * The state parameter is from react-use-gestures onPinch handler
+   */
+  pinchDelta?: PinchDelta;
   /** Minimum x scale value for transform. */
   scaleXMin?: number;
   /** Maximum x scale value for transform. */
@@ -55,22 +92,8 @@ export type ZoomProps = {
    */
   constrain?: (transform: TransformMatrix, prevTransform: TransformMatrix) => TransformMatrix;
   /** Initial transform matrix to apply. */
-  transformMatrix?: TransformMatrix;
-  /**
-   * When `false` (default), `<Zoom>` `children` are wrapped in a `<div>` with an active wheel
-   * event listener (`handleWheel`). `handleWheel()` will call `event.preventDefault()` before other
-   * execution to prevent an outer parent from scrolling when the mouse wheel is used to zoom.
-   *
-   * When passive is `true` it is **required** to add `<MyComponent onWheel={zoom.handleWheel} />` to handle
-   * wheel events. **Note:** By default you do not need to add `<MyComponent onWheel={zoom.handleWheel} />`.
-   * This is only necessary when `<Zoom passive={true} />`.
-   */
-  passive?: boolean;
-  /** style object to apply to zoom div container. */
-  style?: React.CSSProperties;
-  /** className to apply to zoom div container. */
-  className?: string;
-  children: (zoom: ProvidedZoom & ZoomState) => React.ReactNode;
+  initialTransformMatrix?: TransformMatrix;
+  children: (zoom: ProvidedZoom<ElementType> & ZoomState) => React.ReactNode;
 };
 
 type ZoomState = {
@@ -79,229 +102,262 @@ type ZoomState = {
   isDragging: boolean;
 };
 
-class Zoom extends React.Component<ZoomProps, ZoomState> {
-  static defaultProps = {
-    passive: false,
-    scaleXMin: 0,
-    scaleXMax: Infinity,
-    scaleYMin: 0,
-    scaleYMax: Infinity,
-    transformMatrix: {
-      scaleX: 1,
-      scaleY: 1,
-      translateX: 0,
-      translateY: 0,
-      skewX: 0,
-      skewY: 0,
+function Zoom<ElementType extends Element>({
+  scaleXMin = 0,
+  scaleXMax = Infinity,
+  scaleYMin = 0,
+  scaleYMax = Infinity,
+  initialTransformMatrix = defaultInitialTransformMatrix,
+  wheelDelta = defaultWheelDelta,
+  pinchDelta = defaultPinchDelta,
+  width,
+  height,
+  constrain,
+  children,
+}: ZoomProps<ElementType>): JSX.Element {
+  const containerRef = useRef<ElementType>(null);
+  const matrixStateRef = useRef<TransformMatrix>(initialTransformMatrix);
+
+  const [transformMatrix, setTransformMatrixState] = useState<TransformMatrix>(
+    initialTransformMatrix!,
+  );
+  const [isDragging, setIsDragging] = useState(false);
+  const [startTranslate, setStartTranslate] = useState<Translate | undefined>(undefined);
+  const [startPoint, setStartPoint] = useState<Point | undefined>(undefined);
+
+  const defaultConstrain = useCallback(
+    (newTransformMatrix: TransformMatrix, prevTransformMatrix: TransformMatrix) => {
+      if (constrain) return constrain(newTransformMatrix, prevTransformMatrix);
+      const { scaleX, scaleY } = newTransformMatrix;
+      const shouldConstrainScaleX = scaleX > scaleXMax! || scaleX < scaleXMin!;
+      const shouldConstrainScaleY = scaleY > scaleYMax! || scaleY < scaleYMin!;
+
+      if (shouldConstrainScaleX || shouldConstrainScaleY) {
+        return prevTransformMatrix;
+      }
+      return newTransformMatrix;
     },
-    wheelDelta: (event: React.WheelEvent | WheelEvent) =>
-      -event.deltaY > 0 ? { scaleX: 1.1, scaleY: 1.1 } : { scaleX: 0.9, scaleY: 0.9 },
-    style: undefined,
-    className: undefined,
-  };
+    [constrain, scaleXMin, scaleXMax, scaleYMin, scaleYMax],
+  );
 
-  containerRef: HTMLDivElement | null = null;
+  const setTransformMatrix = useCallback(
+    (newTransformMatrix: TransformMatrix) => {
+      setTransformMatrixState(prevTransformMatrix => {
+        const updatedTransformMatrix = defaultConstrain(newTransformMatrix, prevTransformMatrix);
+        matrixStateRef.current = updatedTransformMatrix;
+        return updatedTransformMatrix;
+      });
+    },
+    [defaultConstrain],
+  );
 
-  startPoint: Point | undefined = undefined;
+  const applyToPoint = useCallback(
+    ({ x, y }: Point) => {
+      return applyMatrixToPoint(transformMatrix, { x, y });
+    },
+    [transformMatrix],
+  );
 
-  startTranslate: Translate | undefined = undefined;
+  const applyInverseToPoint = useCallback(
+    ({ x, y }: Point) => {
+      return applyInverseMatrixToPoint(transformMatrix, { x, y });
+    },
+    [transformMatrix],
+  );
 
-  state = {
-    initialTransformMatrix: this.props.transformMatrix!,
-    transformMatrix: this.props.transformMatrix!,
-    isDragging: false,
-  };
+  const reset = useCallback(() => {
+    setTransformMatrix(initialTransformMatrix);
+  }, [initialTransformMatrix, setTransformMatrix]);
 
-  componentDidMount() {
-    const { passive } = this.props;
-    if (this.containerRef && !passive) {
-      this.containerRef.addEventListener('wheel', this.handleWheel, { passive: false });
-    }
-  }
+  const scale = useCallback(
+    ({ scaleX, scaleY: maybeScaleY, point }: ScaleSignature) => {
+      const scaleY = maybeScaleY || scaleX;
+      const cleanPoint = point || { x: width / 2, y: height / 2 };
+      // need to use ref value instead of state here because wheel listener does not have access to latest state
+      const translate = applyInverseMatrixToPoint(matrixStateRef.current, cleanPoint);
+      const nextMatrix = composeMatrices(
+        matrixStateRef.current,
+        translateMatrix(translate.x, translate.y),
+        scaleMatrix(scaleX, scaleY),
+        translateMatrix(-translate.x, -translate.y),
+      );
+      setTransformMatrix(nextMatrix);
+    },
+    [height, width, setTransformMatrix],
+  );
 
-  componentWillUnmount() {
-    const { passive } = this.props;
-    if (this.containerRef && !passive) {
-      this.containerRef.removeEventListener('wheel', this.handleWheel);
-    }
-  }
+  const translate = useCallback(
+    ({ translateX, translateY }: Translate) => {
+      const nextMatrix = composeMatrices(transformMatrix, translateMatrix(translateX, translateY));
+      setTransformMatrix(nextMatrix);
+    },
+    [setTransformMatrix, transformMatrix],
+  );
 
-  applyToPoint = ({ x, y }: Point) => {
-    const { transformMatrix } = this.state;
-    return applyMatrixToPoint(transformMatrix, { x, y });
-  };
+  const setTranslate = useCallback(
+    ({ translateX, translateY }: Translate) => {
+      const nextMatrix = {
+        ...transformMatrix,
+        translateX,
+        translateY,
+      };
+      setTransformMatrix(nextMatrix);
+    },
+    [setTransformMatrix, transformMatrix],
+  );
 
-  applyInverseToPoint = ({ x, y }: Point) => {
-    const { transformMatrix } = this.state;
-    return applyInverseMatrixToPoint(transformMatrix, { x, y });
-  };
+  const translateTo = useCallback(
+    ({ x, y }: Point) => {
+      const point = applyInverseMatrixToPoint(transformMatrix, { x, y });
+      setTranslate({ translateX: point.x, translateY: point.y });
+    },
+    [setTranslate, transformMatrix],
+  );
 
-  reset = () => {
-    const { initialTransformMatrix } = this.state;
-    this.setTransformMatrix(initialTransformMatrix);
-  };
+  const invert = useCallback(() => inverseMatrix(transformMatrix), [transformMatrix]);
 
-  scale = ({ scaleX, scaleY: maybeScaleY, point }: ScaleSignature) => {
-    const scaleY = maybeScaleY || scaleX;
-    const { transformMatrix } = this.state;
-    const { width, height } = this.props;
-    const cleanPoint = point || { x: width / 2, y: height / 2 };
-    const translate = applyInverseMatrixToPoint(transformMatrix, cleanPoint);
-    const nextMatrix = composeMatrices(
-      transformMatrix,
-      translateMatrix(translate.x, translate.y),
-      scaleMatrix(scaleX, scaleY),
-      translateMatrix(-translate.x, -translate.y),
-    );
-    this.setTransformMatrix(nextMatrix);
-  };
-
-  translate = ({ translateX, translateY }: Translate) => {
-    const { transformMatrix } = this.state;
-    const nextMatrix = composeMatrices(transformMatrix, translateMatrix(translateX, translateY));
-    this.setTransformMatrix(nextMatrix);
-  };
-
-  translateTo = ({ x, y }: Point) => {
-    const { transformMatrix } = this.state;
-    const point = applyInverseMatrixToPoint(transformMatrix, { x, y });
-    this.setTranslate({ translateX: point.x, translateY: point.y });
-  };
-
-  setTranslate = ({ translateX, translateY }: Translate) => {
-    const { transformMatrix } = this.state;
-    const nextMatrix = {
-      ...transformMatrix,
-      translateX,
-      translateY,
-    };
-    this.setTransformMatrix(nextMatrix);
-  };
-
-  setTransformMatrix = (transformMatrix: TransformMatrix) => {
-    this.setState(prevState => ({
-      transformMatrix: this.constrain(transformMatrix, prevState.transformMatrix),
-    }));
-  };
-
-  invert = () => inverseMatrix(this.state.transformMatrix);
-
-  toStringInvert = () => {
-    const { translateX, translateY, scaleX, scaleY, skewX, skewY } = this.invert();
+  const toStringInvert = useCallback(() => {
+    const { translateX, translateY, scaleX, scaleY, skewX, skewY } = invert();
     return `matrix(${scaleX}, ${skewY}, ${skewX}, ${scaleY}, ${translateX}, ${translateY})`;
-  };
+  }, [invert]);
 
-  constrain = (transformMatrix: TransformMatrix, prevTransformMatrix: TransformMatrix) => {
-    if (this.props.constrain) return this.props.constrain(transformMatrix, prevTransformMatrix);
-    const { scaleXMin, scaleXMax, scaleYMin, scaleYMax } = this.props;
-    const { scaleX, scaleY } = transformMatrix;
-    const shouldConstrainScaleX = scaleX > scaleXMax! || scaleX < scaleXMin!;
-    const shouldConstrainScaleY = scaleY > scaleYMax! || scaleY < scaleYMin!;
+  const dragStart = useCallback(
+    (event: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent | React.PointerEvent) => {
+      const { translateX, translateY } = transformMatrix;
+      setStartPoint(localPoint(event) || undefined);
+      setStartTranslate({ translateX, translateY });
+      setIsDragging(true);
+    },
+    [transformMatrix],
+  );
 
-    if (shouldConstrainScaleX || shouldConstrainScaleY) {
-      return prevTransformMatrix;
-    }
-    return transformMatrix;
-  };
+  const dragMove = useCallback(
+    (
+      event: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent | React.PointerEvent,
+      options?: { offsetX?: number; offsetY?: number },
+    ) => {
+      if (!isDragging || !startPoint || !startTranslate) return;
+      const currentPoint = localPoint(event);
+      const dx = currentPoint ? -(startPoint.x - currentPoint.x) : -startPoint.x;
+      const dy = currentPoint ? -(startPoint.y - currentPoint.y) : -startPoint.y;
 
-  dragStart = (event: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent) => {
-    const { transformMatrix } = this.state;
-    const { translateX, translateY } = transformMatrix;
-    this.startPoint = localPoint(event) || undefined;
-    this.startTranslate = { translateX, translateY };
-    this.setState({ isDragging: true });
-  };
+      let translateX = startTranslate.translateX + dx;
+      if (options?.offsetX) translateX += options?.offsetX;
+      let translateY = startTranslate.translateY + dy;
+      if (options?.offsetY) translateY += options?.offsetY;
+      setTranslate({
+        translateX,
+        translateY,
+      });
+    },
+    [isDragging, setTranslate, startPoint, startTranslate],
+  );
 
-  dragMove = (
-    event: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent,
-    options?: { offsetX?: number; offsetY?: number },
-  ) => {
-    if (!this.state.isDragging || !this.startPoint || !this.startTranslate) return;
-    const currentPoint = localPoint(event);
-    const dx = currentPoint ? -(this.startPoint.x - currentPoint.x) : -this.startPoint.x;
-    const dy = currentPoint ? -(this.startPoint.y - currentPoint.y) : -this.startPoint.y;
+  const dragEnd = useCallback(() => {
+    setStartPoint(undefined);
+    setStartTranslate(undefined);
+    setIsDragging(false);
+  }, []);
 
-    let translateX = this.startTranslate.translateX + dx;
-    if (options?.offsetX) translateX += options?.offsetX;
-    let translateY = this.startTranslate.translateY + dy;
-    if (options?.offsetY) translateY += options?.offsetY;
-    this.setTranslate({
-      translateX,
-      translateY,
-    });
-  };
+  const handleWheel = useCallback(
+    (event: React.WheelEvent | WheelEvent) => {
+      event.preventDefault();
+      const point = localPoint(event) || undefined;
+      const { scaleX, scaleY } = wheelDelta!(event);
+      scale({ scaleX, scaleY, point });
+    },
+    [scale, wheelDelta],
+  );
 
-  dragEnd = () => {
-    this.startPoint = undefined;
-    this.startTranslate = undefined;
-    this.setState({ isDragging: false });
-  };
+  const handlePinch: UserHandlers['onPinch'] = useCallback(
+    state => {
+      const {
+        origin: [ox, oy],
+        memo,
+      } = state;
+      let currentMemo = memo;
+      if (containerRef.current) {
+        const { top, left } = currentMemo ?? containerRef.current.getBoundingClientRect();
+        if (!currentMemo) {
+          currentMemo = { top, left };
+        }
+        const { scaleX, scaleY } = pinchDelta(state);
+        scale({
+          scaleX,
+          scaleY,
+          point: { x: ox - left, y: oy - top },
+        });
+      }
+      return currentMemo;
+    },
+    [scale, pinchDelta],
+  );
 
-  handleWheel = (event: React.WheelEvent | WheelEvent) => {
-    const { passive, wheelDelta } = this.props;
-    if (!passive) event.preventDefault();
-    const point = localPoint(event) || undefined;
-    const { scaleX, scaleY } = wheelDelta!(event);
-    this.scale({ scaleX, scaleY, point });
-  };
-
-  toString = () => {
-    const { transformMatrix } = this.state;
+  const toString = useCallback(() => {
     const { translateX, translateY, scaleX, scaleY, skewX, skewY } = transformMatrix;
     return `matrix(${scaleX}, ${skewY}, ${skewX}, ${scaleY}, ${translateX}, ${translateY})`;
-  };
+  }, [transformMatrix]);
 
-  center = () => {
-    const { width, height } = this.props;
-    const center = { x: width / 2, y: height / 2 };
-    const inverseCentroid = this.applyInverseToPoint(center);
-    this.translate({
-      translateX: inverseCentroid.x - center.x,
-      translateY: inverseCentroid.y - center.y,
+  const center = useCallback(() => {
+    const centerPoint = { x: width / 2, y: height / 2 };
+    const inverseCentroid = applyInverseToPoint(centerPoint);
+    translate({
+      translateX: inverseCentroid.x - centerPoint.x,
+      translateY: inverseCentroid.y - centerPoint.y,
     });
+  }, [height, width, applyInverseToPoint, translate]);
+
+  const clear = useCallback(() => {
+    setTransformMatrix(identityMatrix());
+  }, [setTransformMatrix]);
+
+  useGesture(
+    {
+      onDragStart: ({ event }) => {
+        if (!(event instanceof KeyboardEvent)) dragStart(event);
+      },
+      onDrag: ({ event, pinching, cancel }) => {
+        if (pinching) {
+          cancel();
+          dragEnd();
+        } else if (!(event instanceof KeyboardEvent)) {
+          dragMove(event);
+        }
+      },
+      onDragEnd: dragEnd,
+      onPinch: handlePinch,
+      onWheel: ({ event }) => handleWheel(event),
+    },
+    { target: containerRef, eventOptions: { passive: false }, drag: { filterTaps: true } },
+  );
+
+  const zoom: ProvidedZoom<ElementType> & ZoomState = {
+    initialTransformMatrix,
+    transformMatrix,
+    isDragging,
+    center,
+    clear,
+    scale,
+    translate,
+    translateTo,
+    setTranslate,
+    setTransformMatrix,
+    reset,
+    handleWheel,
+    handlePinch,
+    dragEnd,
+    dragMove,
+    dragStart,
+    toString,
+    invert,
+    toStringInvert,
+    applyToPoint,
+    applyInverseToPoint,
+    containerRef,
   };
 
-  clear = () => {
-    this.setTransformMatrix(identityMatrix());
-  };
-
-  render() {
-    const { passive, children, style, className } = this.props;
-    const zoom: ProvidedZoom & ZoomState = {
-      ...this.state,
-      center: this.center,
-      clear: this.clear,
-      scale: this.scale,
-      translate: this.translate,
-      translateTo: this.translateTo,
-      setTranslate: this.setTranslate,
-      setTransformMatrix: this.setTransformMatrix,
-      reset: this.reset,
-      handleWheel: this.handleWheel,
-      dragEnd: this.dragEnd,
-      dragMove: this.dragMove,
-      dragStart: this.dragStart,
-      toString: this.toString,
-      invert: this.invert,
-      toStringInvert: this.toStringInvert,
-      applyToPoint: this.applyToPoint,
-      applyInverseToPoint: this.applyInverseToPoint,
-    };
-    if (!passive) {
-      return (
-        <div
-          ref={c => {
-            this.containerRef = c;
-          }}
-          style={style}
-          className={className}
-        >
-          {children(zoom)}
-        </div>
-      );
-    }
-    return children(zoom);
-  }
+  // eslint-disable-next-line react/jsx-no-useless-fragment
+  return <>{children(zoom)}</>;
 }
 
 export default Zoom;
