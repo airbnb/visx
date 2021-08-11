@@ -11,6 +11,7 @@ export const updateSymlogScale = scaleOperator<'symlog'>(
   'constant',
   'nice',
   'zero',
+  'round',
 );
 
 export default function createSymlogScale<Output = DefaultOutput>(

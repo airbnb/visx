@@ -1,7 +1,6 @@
 import React, { useContext, useMemo, useEffect, useCallback } from 'react';
 import { PositionScale } from '@visx/shape/lib/types';
 import { scaleBand } from '@visx/scale';
-import isChildWithProps from '../../../typeguards/isChildWithProps';
 import { BaseBarSeriesProps } from './BaseBarSeries';
 import {
   Bar,
@@ -18,6 +17,7 @@ import isValidNumber from '../../../typeguards/isValidNumber';
 import { BARGROUP_EVENT_SOURCE, XYCHART_EVENT_SOURCE } from '../../../constants';
 import useSeriesEvents from '../../../hooks/useSeriesEvents';
 import findNearestGroupDatum from '../../../utils/findNearestGroupDatum';
+import getChildrenAndGrandchildrenWithProps from '../../../utils/getChildrenAndGrandchildrenWithProps';
 
 export type BaseBarGroupProps<
   XScale extends PositionScale,
@@ -64,12 +64,9 @@ export default function BaseBarGroup<
   } = (useContext(DataContext) as unknown) as DataContextType<XScale, YScale, Datum>;
 
   const barSeriesChildren = useMemo(
-    () =>
-      React.Children.toArray(children).filter(child =>
-        isChildWithProps<BaseBarSeriesProps<XScale, YScale, Datum>>(child),
-      ),
+    () => getChildrenAndGrandchildrenWithProps<BaseBarSeriesProps<XScale, YScale, Datum>>(children),
     [children],
-  ) as React.ReactElement<BaseBarSeriesProps<XScale, YScale, Datum>>[];
+  );
 
   // extract data keys from child series
   const dataKeys: string[] = useMemo(

@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from 'react';
-import { mount } from 'enzyme';
-import { animated } from 'react-spring';
-import { Area, LinePath } from '@visx/shape';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import {
   AreaStack,
   AreaSeries,
@@ -48,7 +47,7 @@ describe('<AreaStack />', () => {
   });
 
   it('should render Areas', () => {
-    const wrapper = mount(
+    const { container } = render(
       <DataProvider {...providerProps}>
         <svg>
           <AreaStack>
@@ -58,12 +57,12 @@ describe('<AreaStack />', () => {
         </svg>
       </DataProvider>,
     );
-    // @ts-ignore produces a union type that is too complex to represent.ts(2590)
-    expect(wrapper.find(Area)).toHaveLength(2);
+    const Areas = container.querySelectorAll('.visx-area');
+    expect(Areas).toHaveLength(2);
   });
 
   it('should render LinePaths if renderLine=true', () => {
-    const wrapper = mount(
+    const { container } = render(
       <DataProvider {...providerProps}>
         <svg>
           <AreaStack renderLine>
@@ -73,12 +72,12 @@ describe('<AreaStack />', () => {
         </svg>
       </DataProvider>,
     );
-    // @ts-ignore produces a union type that is too complex to represent.ts(2590)
-    expect(wrapper.find(LinePath)).toHaveLength(2);
+    const LinePaths = container.querySelectorAll('.visx-line');
+    expect(LinePaths).toHaveLength(2);
   });
 
   it('should render Glyphs if focus/blur handlers are set', () => {
-    const wrapper = mount(
+    const { container } = render(
       <DataProvider {...providerProps}>
         <svg>
           <AreaStack onFocus={() => {}}>
@@ -87,7 +86,8 @@ describe('<AreaStack />', () => {
         </svg>
       </DataProvider>,
     );
-    expect(wrapper.find('circle')).toHaveLength(series1.data.length);
+    const Circles = container.querySelectorAll('circle');
+    expect(Circles).toHaveLength(series1.data.length);
   });
 
   it('should update scale domain to include stack sums including negative values', () => {
@@ -101,7 +101,7 @@ describe('<AreaStack />', () => {
       return null;
     }
 
-    mount(
+    render(
       <DataProvider {...providerProps}>
         <svg>
           <AreaStack>
@@ -165,7 +165,7 @@ describe('<AnimatedAreaStack />', () => {
     expect(AnimatedAreaStack).toBeDefined();
   });
   it('should render an animated.path', () => {
-    const wrapper = mount(
+    const { container } = render(
       <DataProvider {...providerProps}>
         <svg>
           <AnimatedAreaStack renderLine={false}>
@@ -175,6 +175,7 @@ describe('<AnimatedAreaStack />', () => {
         </svg>
       </DataProvider>,
     );
-    expect(wrapper.find(animated.path)).toHaveLength(2);
+    const Circles = container.querySelectorAll('path');
+    expect(Circles).toHaveLength(2);
   });
 });

@@ -1,15 +1,36 @@
 # Changelog
-- [v1.7.2](#v172)
-- [v1.7.1](#v171)
-- [v1.7.0](#v170)
-- [v1.6.1](#v161)
-- [v1.6.0](#v160)
-- [v1.5.0](#v150)
-- [v1.4.0](#v140)
-- [v1.3.0](#v130)
+- [v1.18.1](#v1181)
+- [v1.18.0](#v1180)
+- [v1.17.1](#v1171)
+- [v1.17.0](#v1170)
+- [v1.16.1](#v1161)
+- [v1.16.0](#v1160)
+- [v1.15.0](#v1150)
+- [v1.14.1](#v1141)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v1140">v1.14.0</a></li>
+  <li><a href="#v1130">v1.13.0</a></li>
+  <li><a href="#v1120">v1.12.0</a></li>
+  <li><a href="#v1112">v1.11.2</a></li>
+  <li><a href="#v1111">v1.11.1</a></li>
+  <li><a href="#v1110">v1.11.0</a></li>
+  <li><a href="#v1101">v1.10.1</a></li>
+  <li><a href="#v1100">v1.10.0</a></li>
+  <li><a href="#v191">v1.9.1</a></li>
+  <li><a href="#v190">v1.9.0</a></li>
+  <li><a href="#v180">v1.8.0</a></li>
+  <li><a href="#v174">v1.7.4</a></li>
+  <li><a href="#v173">v1.7.3</a></li>
+  <li><a href="#v172">v1.7.2</a></li>
+  <li><a href="#v171">v1.7.1</a></li>
+  <li><a href="#v170">v1.7.0</a></li>
+  <li><a href="#v161">v1.6.1</a></li>
+  <li><a href="#v160">v1.6.0</a></li>
+  <li><a href="#v150">v1.5.0</a></li>
+  <li><a href="#v140">v1.4.0</a></li>
+  <li><a href="#v130">v1.3.0</a></li>
   <li><a href="#v120">v1.2.0</a></li>
   <li><a href="#v110">v1.1.0</a></li>
   <li><a href="#v100">v1.0.0</a></li>
@@ -100,6 +121,262 @@
 </details>
 
 ------
+# v1.18.1 (2021-07-21)
+
+#### :bug: Bug Fix
+
+- fix(brush, drag): call start callbacks consistently, support mobile [#1286](https://github.com/airbnb/visx/pull/1286)
+  
+#### :trophy: Contributors
+- [williaster](https://github.com/williaster)
+
+# v1.18.0 (2021-07-21)
+
+#### :rocket: Enhancements
+
+- new(xychart/tooltip): add renderGlyph property [#1255](https://github.com/airbnb/visx/pull/1255)
+  
+#### :trophy: Contributors
+- [Janpot](https://github.com/Janpot)
+
+# v1.17.1 (2021-07-20)
+
+#### :bug: Bug Fix
+
+- fix: remove @types/classnames [#1281](https://github.com/airbnb/visx/pull/1281)
+  
+#### :trophy: Contributors
+- [Janpot](https://github.com/Janpot)
+
+# v1.17.0 (2021-07-08)
+
+#### :rocket: Enhancements
+
+- new(axis): enable customization of tickLineProps [#1211](https://github.com/airbnb/visx/pull/1211)
+  
+#### :trophy: Contributors
+- [LoiKos](https://github.com/LoiKos)
+
+# v1.16.1 (2021-07-07)
+
+#### :bug: Bug Fix
+
+- fix(xychart): support fragment and array type children of stacks/groups [#1259](https://github.com/airbnb/visx/pull/1259)
+  
+#### :trophy: Contributors
+- [williaster](https://github.com/williaster)
+
+# v1.16.0 (2021-07-02)
+
+#### :rocket: Enhancements
+
+- feat(shape): add more segmentation for SplitLinePath [#1261](https://github.com/airbnb/visx/pull/1261)
+
+#### :bug: Bug Fix
+
+- feat(shape): add more segmentation for SplitLinePath [#1261](https://github.com/airbnb/visx/pull/1261)
+  
+#### :trophy: Contributors
+- [kristw](https://github.com/kristw)
+
+# v1.15.0 (2021-07-01)
+
+#### :rocket: Enhancements
+
+- feat(brush): add using widows move events with brush [#1164](https://github.com/airbnb/visx/pull/1164)
+  
+#### :trophy: Contributors
+- [d3x42](https://github.com/d3x42)
+
+# v1.14.1 (2021-07-01)
+
+#### :bug: Bug Fix
+
+- fix(zoom): fix provided zoom interface [#1257](https://github.com/airbnb/visx/pull/1257)
+
+### :memo: Documentation
+
+- Add Data 2 the People to In the Wild list [#1256](https://github.com/airbnb/visx/pull/1256)
+  
+#### :trophy: Contributors
+- [boy51](https://github.com/boy51)
+- [schillerk](https://github.com/schillerk)
+
+# v1.14.0 (2021-06-25)
+
+#### :rocket: Enhancements
+
+- feat(scale): support rounding for symlog [#1252](https://github.com/airbnb/visx/pull/1252)
+- feat(animatedaxis): add tickComponent support (#977) [#1228](https://github.com/airbnb/visx/pull/1228)
+
+#### :bug: Bug Fix
+
+- build: skip release workflow when in forked repo [#1251](https://github.com/airbnb/visx/pull/1251)
+
+### :house:  Internal
+
+- build: skip release workflow when in forked repo [#1251](https://github.com/airbnb/visx/pull/1251)
+- build: run happo on push [#1254](https://github.com/airbnb/visx/pull/1254)
+  
+#### :trophy: Contributors
+- [johnathanludwig](https://github.com/johnathanludwig)
+- [kristw](https://github.com/kristw)
+- [williaster](https://github.com/williaster)
+
+# v1.13.0 (2021-06-16)
+
+#### :rocket: Enhancements
+
+- new(geo): pass projection to child override, add U.S.A. demo [#1236](https://github.com/airbnb/visx/pull/1236)
+
+#### :bug: Bug Fix
+
+- new(geo): pass projection to child override, add U.S.A. demo [#1236](https://github.com/airbnb/visx/pull/1236)
+
+### :memo: Documentation
+
+- docs(xychart): fix typos [#1232](https://github.com/airbnb/visx/pull/1232)
+  
+#### :trophy: Contributors
+- [danielimmke](https://github.com/danielimmke)
+- [johnathanludwig](https://github.com/johnathanludwig)
+
+# v1.12.0 (2021-06-03)
+
+#### :rocket: Enhancements
+
+- new(shape): support dynamic fill directly in Pie [#1225](https://github.com/airbnb/visx/pull/1225)
+  
+#### :trophy: Contributors
+- [iampueroo](https://github.com/iampueroo)
+
+# v1.11.2 (2021-05-21)
+
+#### :bug: Bug Fix
+
+- fix(xychart/Tooltip): bail early when tooltip is closed [#1213](https://github.com/airbnb/visx/pull/1213)
+  
+#### :trophy: Contributors
+- [williaster](https://github.com/williaster)
+
+# v1.11.1 (2021-05-19)
+
+#### :bug: Bug Fix
+
+- fix(scale): upgrade d3-time to v2.4 for d3-scale compatibility [#1219](https://github.com/airbnb/visx/pull/1219)
+
+### :memo: Documentation
+
+- docs(shape): fix docs fror BarGroup, BarGroupHorizontal, and BarStack [#1212](https://github.com/airbnb/visx/pull/1212)
+  
+#### :trophy: Contributors
+- [Pringels](https://github.com/Pringels)
+- [williaster](https://github.com/williaster)
+
+# v1.11.0 (2021-05-13)
+
+#### :rocket: Enhancements
+
+- new(@visx/zoom): adjust drag move to take optional offset [#1180](https://github.com/airbnb/visx/pull/1180)
+
+#### :bug: Bug Fix
+
+- new(@visx/zoom): adjust drag move to take optional offset [#1180](https://github.com/airbnb/visx/pull/1180)
+  
+#### :trophy: Contributors
+- [boy51](https://github.com/boy51)
+
+# v1.10.1 (2021-05-12)
+
+#### :bug: Bug Fix
+
+- fix(responsive): don't call resize.cancel if we never initialised [#1208](https://github.com/airbnb/visx/pull/1208)
+
+#### Uncategorized
+
+- Update pull_request.yml [#1209](https://github.com/airbnb/visx/pull/1209)
+  
+#### :trophy: Contributors
+- [ahixon](https://github.com/ahixon)
+- [williaster](https://github.com/williaster)
+
+# v1.10.0 (2021-05-03)
+
+#### :rocket: Enhancements
+
+- fix(@visx/text) Bad size measurements in Firefox [#1175](https://github.com/airbnb/visx/pull/1175)
+
+#### :bug: Bug Fix
+
+- fix(@visx/text) Bad size measurements in Firefox [#1175](https://github.com/airbnb/visx/pull/1175)
+
+#### Uncategorized
+
+- Update push.yml [#1195](https://github.com/airbnb/visx/pull/1195)
+  
+#### :trophy: Contributors
+- [vovakulikov](https://github.com/vovakulikov)
+- [williaster](https://github.com/williaster)
+
+# v1.9.1 (2021-04-22)
+
+#### :bug: Bug Fix
+
+- fix(grid,xychart): account for scale bandwidth in offsets [#1181](https://github.com/airbnb/visx/pull/1181)
+  
+#### :trophy: Contributors
+- [williaster](https://github.com/williaster)
+
+# v1.9.0 (2021-04-16)
+
+#### :rocket: Enhancements
+
+- fix(visx/annotation) Improve label positioning, add maxWidth [#1127](https://github.com/airbnb/visx/pull/1127)
+
+#### :bug: Bug Fix
+
+- fix(visx/annotation) Improve label positioning, add maxWidth [#1127](https://github.com/airbnb/visx/pull/1127)
+
+### :memo: Documentation
+
+- development(contributing): update docs to rebuild single packages [#1170](https://github.com/airbnb/visx/pull/1170)
+  
+#### :trophy: Contributors
+- [vovakulikov](https://github.com/vovakulikov)
+- [williaster](https://github.com/williaster)
+
+# v1.8.0 (2021-04-15)
+
+#### :rocket: Enhancements
+
+- new(shape/Polygon): add optional 'points' override [#1156](https://github.com/airbnb/visx/pull/1156)
+  
+#### :trophy: Contributors
+- [jakeisnt](https://github.com/jakeisnt)
+
+# v1.7.4 (2021-04-13)
+
+#### :bug: Bug Fix
+
+- fix(brush): use PointerEvents instead of MouseEvents  [#1155](https://github.com/airbnb/visx/pull/1155)
+  
+#### :trophy: Contributors
+- [RemaaBdair](https://github.com/RemaaBdair)
+
+# v1.7.3 (2021-04-06)
+
+#### :bug: Bug Fix
+
+- fix(xychart): onPointerUp fires twice [#1135](https://github.com/airbnb/visx/pull/1135)
+
+### :memo: Documentation
+
+- docs: Add Pry to In the Wild list [#1115](https://github.com/airbnb/visx/pull/1115)
+  
+#### :trophy: Contributors
+- [valtism](https://github.com/valtism)
+- [vovakulikov](https://github.com/vovakulikov)
+
 # v1.7.2 (2021-03-18)
 
 #### :bug: Bug Fix

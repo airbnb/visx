@@ -1,6 +1,6 @@
 {
   "name": "@visx/bounds",
-  "version": "1.7.0",
+  "version": "3.0.0-alpha.0",
   "description": "Utilities to make your life with bounding boxes better",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -35,7 +35,7 @@
     "prop-types": "^15.5.10"
   },
   "peerDependencies": {
-    "react": "^15.0.0-0 || ^16.0.0-0",
-    "react-dom": "^15.0.0-0 || ^16.0.0-0"
+    "react": "^16.0.0-0 || ^17.0.0-0",
+    "react-dom": "^16.0.0-0 || ^17.0.0-0"
   }
 }

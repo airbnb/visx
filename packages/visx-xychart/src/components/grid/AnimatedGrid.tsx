@@ -11,7 +11,7 @@ export type AnimatedGridProps = Omit<
   BaseGridProps,
   'GridRowsComponent' | 'GridColumnsComponent'
 > & {
-  /** Animation trjectory of grid lines. */
+  /** Animation trajectory of grid lines. */
   animationTrajectory?: AnimationTrajectory;
 };
 

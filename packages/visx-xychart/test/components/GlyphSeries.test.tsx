@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
-import { animated } from 'react-spring';
-import { mount } from 'enzyme';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { AnimatedGlyphSeries, DataContext, GlyphSeries, useEventEmitter } from '../../src';
 import getDataContext from '../mocks/getDataContext';
 import setupTooltipTest from '../mocks/setupTooltipTest';
@@ -20,18 +20,18 @@ describe('<GlyphSeries />', () => {
   });
 
   it('should render a DefaultGlyph for each Datum', () => {
-    const wrapper = mount(
+    const { container } = render(
       <DataContext.Provider value={getDataContext(series)}>
         <svg>
           <GlyphSeries dataKey={series.key} {...series} />
         </svg>
       </DataContext.Provider>,
     );
-    expect(wrapper.find('circle')).toHaveLength(series.data.length);
+    expect(container.querySelectorAll('circle')).toHaveLength(series.data.length);
   });
 
   it('should use colorAccessor if passed', () => {
-    const wrapper = mount(
+    const { container } = render(
       <DataContext.Provider value={getDataContext(series)}>
         <svg>
           <GlyphSeries
@@ -42,32 +42,32 @@ describe('<GlyphSeries />', () => {
         </svg>
       </DataContext.Provider>,
     );
-    const circles = wrapper.find('circle');
-    expect(circles.at(0).prop('fill')).toBe('banana');
-    expect(circles.at(1).prop('fill')).not.toBe('banana');
+    const circles = container.querySelectorAll('circle');
+    expect(circles[0]).toHaveAttribute('fill', 'banana');
+    expect(circles[1]).not.toHaveAttribute('fill', 'banana');
   });
 
   it('should not render Glyphs if x or y is invalid', () => {
-    const wrapper = mount(
+    const { container } = render(
       <DataContext.Provider value={getDataContext(seriesMissingData)}>
         <svg>
           <GlyphSeries dataKey={seriesMissingData.key} {...seriesMissingData} />
         </svg>
       </DataContext.Provider>,
     );
-    expect(wrapper.find('circle')).toHaveLength(1);
+    expect(container.querySelectorAll('circle')).toHaveLength(1);
   });
 
   it('should render a custom Glyph for each Datum', () => {
     const customRenderGlyph = () => <rect className="custom-glyph" />;
-    const wrapper = mount(
+    const { container } = render(
       <DataContext.Provider value={getDataContext(series)}>
         <svg>
           <GlyphSeries dataKey={series.key} {...series} renderGlyph={customRenderGlyph} />
         </svg>
       </DataContext.Provider>,
     );
-    expect(wrapper.find('.custom-glyph')).toHaveLength(series.data.length);
+    expect(container.querySelectorAll('.custom-glyph')).toHaveLength(series.data.length);
   });
 
   it('should invoke showTooltip/hideTooltip on pointermove/pointerout', () => {
@@ -116,13 +116,13 @@ describe('<AnimatedGlyphSeries />', () => {
     expect(AnimatedGlyphSeries).toBeDefined();
   });
   it('should render an animated.g for each datum', () => {
-    const wrapper = mount(
+    const { container } = render(
       <DataContext.Provider value={getDataContext(series)}>
         <svg>
           <AnimatedGlyphSeries dataKey={series.key} {...series} />
         </svg>
       </DataContext.Provider>,
     );
-    expect(wrapper.find(animated.g)).toHaveLength(series.data.length);
+    expect(container.querySelectorAll('g')).toHaveLength(series.data.length);
   });
 });

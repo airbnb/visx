@@ -73,6 +73,8 @@ type ProvidedProps = {
   renderBarStack: boolean;
   renderGlyph: React.FC<GlyphProps<CityTemperature>>;
   renderGlyphSeries: boolean;
+  enableTooltipGlyph: boolean;
+  renderTooltipGlyph: React.FC<GlyphProps<CityTemperature>>;
   renderHorizontally: boolean;
   renderLineSeries: boolean;
   sharedTooltip: boolean;
@@ -151,6 +153,58 @@ export default function ExampleControls({ children }: ControlsProps) {
     },
     [glyphComponent, glyphOutline],
   );
+  const [enableTooltipGlyph, setEnableTooltipGlyph] = useState(false);
+  const [tooltipGlyphComponent, setTooltipGlyphComponent] = useState<
+    'star' | 'cross' | 'circle' | '🍍'
+  >('star');
+  const renderTooltipGlyph = useCallback(
+    ({
+      x,
+      y,
+      size,
+      color,
+      onPointerMove,
+      onPointerOut,
+      onPointerUp,
+    }: GlyphProps<CityTemperature>) => {
+      const handlers = { onPointerMove, onPointerOut, onPointerUp };
+      if (tooltipGlyphComponent === 'star') {
+        return (
+          <GlyphStar
+            left={x}
+            top={y}
+            stroke={glyphOutline}
+            fill={color}
+            size={size * 10}
+            {...handlers}
+          />
+        );
+      }
+      if (tooltipGlyphComponent === 'circle') {
+        return (
+          <GlyphDot left={x} top={y} stroke={glyphOutline} fill={color} r={size} {...handlers} />
+        );
+      }
+      if (tooltipGlyphComponent === 'cross') {
+        return (
+          <GlyphCross
+            left={x}
+            top={y}
+            stroke={glyphOutline}
+            fill={color}
+            size={size * 10}
+            {...handlers}
+          />
+        );
+      }
+      return (
+        <text x={x} y={y} dx="-0.75em" dy="0.25em" fontSize={14} {...handlers}>
+          🍍
+        </text>
+      );
+    },
+    [tooltipGlyphComponent, glyphOutline],
+  );
   // for series that support it, return a colorAccessor which returns a custom color if the datum is selected
   const colorAccessorFactory = useCallback(
     (dataKey: DataKey) => (d: CityTemperature) =>
@@ -226,6 +280,8 @@ export default function ExampleControls({ children }: ControlsProps) {
         renderBarStack: renderBarStackOrGroup === 'barstack',
         renderGlyphSeries,
         renderGlyph,
+        enableTooltipGlyph,
+        renderTooltipGlyph,
         renderHorizontally,
         renderAreaSeries: renderAreaLineOrStack === 'area',
         renderAreaStack: renderAreaLineOrStack === 'areastack',
@@ -605,6 +661,55 @@ export default function ExampleControls({ children }: ControlsProps) {
               checked={showTooltip && sharedTooltip}
             />
             shared tooltip
+          </label>
+        </div>
+        <div>
+          <strong>tooltip gliph</strong>
+          <label>
+            <input
+              type="checkbox"
+              onChange={() => setEnableTooltipGlyph(!enableTooltipGlyph)}
+              disabled={!canSnapTooltipToDatum}
+              checked={enableTooltipGlyph}
+            />
+            show custom tooltip gliph
+          </label>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <label>
+            <input
+              type="radio"
+              disabled={!enableTooltipGlyph || !canSnapTooltipToDatum}
+              onChange={() => setTooltipGlyphComponent('circle')}
+              checked={tooltipGlyphComponent === 'circle'}
+            />
+            circle
+          </label>
+          <label>
+            <input
+              type="radio"
+              disabled={!enableTooltipGlyph || !canSnapTooltipToDatum}
+              onChange={() => setTooltipGlyphComponent('star')}
+              checked={tooltipGlyphComponent === 'star'}
+            />
+            star
+          </label>
+          <label>
+            <input
+              type="radio"
+              disabled={!enableTooltipGlyph || !canSnapTooltipToDatum}
+              onChange={() => setTooltipGlyphComponent('cross')}
+              checked={tooltipGlyphComponent === 'cross'}
+            />
+            cross
+          </label>
+          <label>
+            <input
+              type="radio"
+              disabled={!enableTooltipGlyph || !canSnapTooltipToDatum}
+              onChange={() => setTooltipGlyphComponent('🍍')}
+              checked={tooltipGlyphComponent === '🍍'}
+            />
+            🍍
           </label>
         </div>
         {/** annotation */}

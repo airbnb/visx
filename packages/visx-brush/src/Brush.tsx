@@ -58,6 +58,8 @@ export type BrushProps = {
   handleSize: number;
   /** Reference to the BaseBrush component. */
   innerRef?: React.MutableRefObject<BaseBrush | null>;
+  /** Prevent drag end on mouse leaving from brush stage. */
+  useWindowMoveEvents?: boolean;
 };
 
 class Brush extends Component<BrushProps> {
@@ -94,6 +96,7 @@ class Brush extends Component<BrushProps> {
     onMouseMove: null,
     onMouseLeave: null,
     onClick: null,
+    useWindowMoveEvents: false,
   };
 
   handleChange = (brush: BaseBrushState) => {
@@ -174,6 +177,7 @@ class Brush extends Component<BrushProps> {
       onMouseMove,
       onClick,
       handleSize,
+      useWindowMoveEvents,
     } = this.props;
     if (!xScale || !yScale) return null;
 
@@ -234,6 +238,7 @@ class Brush extends Component<BrushProps> {
         onClick={onClick}
         onMouseLeave={onMouseLeave}
         onMouseMove={onMouseMove}
+        useWindowMoveEvents={useWindowMoveEvents}
       />
     );
   }

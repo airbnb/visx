@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
-import { animated } from 'react-spring';
-import { mount } from 'enzyme';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { DataContext, AnimatedBarSeries, BarSeries, useEventEmitter } from '../../src';
 import getDataContext from '../mocks/getDataContext';
 import setupTooltipTest from '../mocks/setupTooltipTest';
@@ -20,18 +20,18 @@ describe('<BarSeries />', () => {
   });
 
   it('should render rects', () => {
-    const wrapper = mount(
+    const { container } = render(
       <DataContext.Provider value={getDataContext(series)}>
         <svg>
           <BarSeries dataKey={series.key} {...series} />
         </svg>
       </DataContext.Provider>,
     );
-    expect(wrapper.find('rect')).toHaveLength(2);
+    expect(container.querySelectorAll('rect')).toHaveLength(2);
   });
 
   it('should use colorAccessor if passed', () => {
-    const wrapper = mount(
+    const { container } = render(
       <DataContext.Provider value={getDataContext(series)}>
         <svg>
           <BarSeries
@@ -42,20 +42,20 @@ describe('<BarSeries />', () => {
         </svg>
       </DataContext.Provider>,
     );
-    const rects = wrapper.find('rect');
-    expect(rects.at(0).prop('fill')).toBe('banana');
-    expect(rects.at(1).prop('fill')).not.toBe('banana');
+    const rects = container.querySelectorAll('rect');
+    expect(rects[0]).toHaveAttribute('fill', 'banana');
+    expect(rects[1]).not.toHaveAttribute('fill', 'banana');
   });
 
   it('should not render rects if x or y is invalid', () => {
-    const wrapper = mount(
+    const { container } = render(
       <DataContext.Provider value={getDataContext(seriesMissingData)}>
         <svg>
           <BarSeries dataKey={seriesMissingData.key} {...seriesMissingData} />
         </svg>
       </DataContext.Provider>,
     );
-    expect(wrapper.find('rect')).toHaveLength(1);
+    expect(container.querySelectorAll('rect')).toHaveLength(1);
   });
 
   it('should invoke showTooltip/hideTooltip on pointermove/pointerout', () => {
@@ -104,13 +104,13 @@ describe('<AnimatedBarSeries />', () => {
     expect(AnimatedBarSeries).toBeDefined();
   });
   it('should render an animated.rect', () => {
-    const wrapper = mount(
+    const { container } = render(
       <DataContext.Provider value={getDataContext(series)}>
         <svg>
           <AnimatedBarSeries dataKey={series.key} {...series} />
         </svg>
       </DataContext.Provider>,
     );
-    expect(wrapper.find(animated.rect)).toHaveLength(series.data.length);
+    expect(container.querySelectorAll('rect')).toHaveLength(series.data.length);
   });
 });

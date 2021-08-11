@@ -1,39 +1,27 @@
 import React from 'react';
-import { mount } from 'enzyme';
-
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { withParentSize } from '../src';
 
-describe('withParentSize', () => {
-  beforeAll(() => {
-    // mock getBoundingClientRect
-    Element.prototype.getBoundingClientRect = jest.fn(() => ({
-      width: 220,
-      height: 120,
-      top: 0,
-      left: 0,
-      bottom: 0,
-      right: 0,
-      x: 0,
-      y: 0,
-      toJSON: () => '',
-    }));
-  });
+type ComponentProps = {
+  parentWidth?: number;
+  parentHeight?: number;
+};
 
+function Component({ parentWidth, parentHeight }: ComponentProps) {
+  return <div data-testid="Component" style={{ width: parentWidth, height: parentHeight }} />;
+}
+
+describe('withParentSize', () => {
   test('it should be defined', () => {
     expect(withParentSize).toBeDefined();
   });
 
   test('it chould pass parentWidth and parentHeight props to its child', () => {
-    const Component = () => <div />;
     const HOC = withParentSize(Component);
-    const wrapper = mount(<HOC />);
+    const { getByTestId } = render(<HOC initialWidth={200} initialHeight={200} />);
 
-    // wait for the resizeObserver to run
-    setTimeout(() => {
-      const RenderedComponent = wrapper.find(Component);
-      expect(Element.prototype.getBoundingClientRect).toHaveBeenCalled();
-      expect(RenderedComponent.prop('parentWidth')).toBe(220);
-      expect(RenderedComponent.prop('parentHeight')).toBe(120);
-    }, 0);
+    const RenderedComponent = getByTestId('Component');
+    expect(RenderedComponent).toHaveStyle('width: 200px; height: 200px');
   });
 });

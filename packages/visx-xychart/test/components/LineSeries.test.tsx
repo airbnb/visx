@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from 'react';
-import { animated } from 'react-spring';
-import { mount } from 'enzyme';
-import { LinePath } from '@visx/shape';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { AnimatedLineSeries, DataContext, LineSeries, useEventEmitter } from '../../src';
 import getDataContext from '../mocks/getDataContext';
 import setupTooltipTest from '../mocks/setupTooltipTest';
@@ -15,37 +14,36 @@ describe('<LineSeries />', () => {
   });
 
   it('should render a LinePath', () => {
-    const wrapper = mount(
+    const { container } = render(
       <DataContext.Provider value={getDataContext(series)}>
         <svg>
           <LineSeries dataKey={series.key} {...series} />
         </svg>
       </DataContext.Provider>,
     );
-    // @ts-ignore produces a union type that is too complex to represent.ts(2590)
-    expect(wrapper.find(LinePath)).toHaveLength(1);
+    expect(container.querySelectorAll('path')).toHaveLength(1);
   });
 
   it('should set strokeLinecap="round" to make datum surrounded by nulls visible', () => {
-    const wrapper = mount(
+    const { container } = render(
       <DataContext.Provider value={getDataContext(series)}>
         <svg>
           <LineSeries dataKey={series.key} {...series} />
         </svg>
       </DataContext.Provider>,
     );
-    expect(wrapper.find('path').prop('strokeLinecap')).toBe('round');
+    expect(container.querySelector('path')).toHaveAttribute('stroke-linecap', 'round');
   });
 
   it('should render Glyphs if focus/blur handlers are set', () => {
-    const wrapper = mount(
+    const { container } = render(
       <DataContext.Provider value={getDataContext(series)}>
         <svg>
           <LineSeries dataKey={series.key} {...series} onFocus={() => {}} />
         </svg>
       </DataContext.Provider>,
     );
-    expect(wrapper.find('circle')).toHaveLength(series.data.length);
+    expect(container.querySelectorAll('circle')).toHaveLength(series.data.length);
   });
 
   it('should invoke showTooltip/hideTooltip on pointermove/pointerout', () => {
@@ -94,13 +92,13 @@ describe('<AnimatedLineSeries />', () => {
     expect(AnimatedLineSeries).toBeDefined();
   });
   it('should render an animated.path', () => {
-    const wrapper = mount(
+    const { container } = render(
       <DataContext.Provider value={getDataContext(series)}>
         <svg>
           <AnimatedLineSeries dataKey={series.key} {...series} />
         </svg>
       </DataContext.Provider>,
     );
-    expect(wrapper.find(animated.path)).toHaveLength(1);
+    expect(container.querySelectorAll('path')).toHaveLength(1);
   });
 });

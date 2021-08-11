@@ -10,6 +10,7 @@ export type AxisScaleOutput = number | NumberLike | undefined;
 export type AxisScale<Output extends AxisScaleOutput = AxisScaleOutput> =
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   D3Scale<Output, any, any>;
+type LineProps = Omit<React.SVGProps<SVGLineElement>, 'to' | 'from'>;
 
 type FormattedValue = string | undefined;
 
@@ -44,6 +45,8 @@ export type TicksRendererProps<Scale extends AxisScale> = {
   | 'tickStroke'
   | 'tickTransform'
   | 'ticks'
+  | 'strokeWidth'
+  | 'tickLineProps'
 >;
 
 export type CommonProps<Scale extends AxisScale> = {
@@ -75,6 +78,8 @@ export type CommonProps<Scale extends AxisScale> = {
   strokeWidth?: number | string;
   /** The pattern of dashes in the stroke. */
   strokeDasharray?: string;
+  /** Props to be applied to individual tick lines. */
+  tickLineProps?: LineProps;
   /** The class name applied to each tick group. */
   tickClassName?: string;
   /** Override the component used to render tick labels (instead of <Text /> from @visx/text). */

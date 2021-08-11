@@ -27,7 +27,7 @@ export default function AnimatedGlyphSeries<
       {...props}
       // @TODO currently generics for non-SeriesProps are not passed correctly in
       // withRegisteredData HOC
-      // @ts-ignore
+      // @ts-expect-error
       renderGlyphs={renderGlyphs}
     />
   );

@@ -1,7 +1,7 @@
 import React from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
-import { mount } from 'enzyme';
-import { Tooltip as BaseTooltip } from '@visx/tooltip';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import {
   DataContext,
   DataRegistryEntry,
@@ -17,12 +17,14 @@ describe('<Tooltip />', () => {
     | {
         props?: Partial<TooltipProps<object>>;
         context?: Partial<TooltipContextType<object>>;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         dataEntries?: DataRegistryEntry<any, any, any>[];
       }
     | undefined;
 
   function setup({ props, context, dataEntries = [] }: SetupProps = {}) {
-    const wrapper = mount(
+    //  Disable Warning: render(): Rendering components directly into document.body is discouraged.
+    const wrapper = render(
       <DataContext.Provider
         value={{
           ...getDataContext(dataEntries),
@@ -52,21 +54,24 @@ describe('<Tooltip />', () => {
   });
 
   it('should not render a BaseTooltip when TooltipContext.tooltipOpen=false', () => {
-    const wrapper = setup();
-    expect(wrapper.find(BaseTooltip)).toHaveLength(0);
+    const { container } = setup();
+    expect(container?.parentNode?.querySelectorAll('.visx-tooltip')).toHaveLength(0);
   });
 
   it('should not render a BaseTooltip when TooltipContext.tooltipOpen=true and renderTooltip returns false', () => {
-    const wrapper = setup({ context: { tooltipOpen: true }, props: { renderTooltip: () => null } });
-    expect(wrapper.find(BaseTooltip)).toHaveLength(0);
+    const { container } = setup({
+      context: { tooltipOpen: true },
+      props: { renderTooltip: () => null },
+    });
+    expect(container?.parentNode?.querySelectorAll('.visx-tooltip')).toHaveLength(0);
   });
 
   it('should render a BaseTooltip when TooltipContext.tooltipOpen=true and renderTooltip returns non-null', () => {
-    const wrapper = setup({
+    const { container } = setup({
       props: { renderTooltip: () => <div />, snapTooltipToDatumX: true },
       context: { tooltipOpen: true },
     });
-    expect(wrapper.find(BaseTooltip)).toHaveLength(1);
+    expect(container?.parentNode?.querySelectorAll('.visx-tooltip')).toHaveLength(1);
   });
 
   it('should not invoke props.renderTooltip when TooltipContext.tooltipOpen=false', () => {
@@ -87,23 +92,25 @@ describe('<Tooltip />', () => {
   });
 
   it('should render a vertical crosshair if showVerticalCrossHair=true', () => {
-    const wrapper = setup({
+    const { container } = setup({
       props: { showVerticalCrosshair: true },
       context: { tooltipOpen: true },
     });
-    expect(wrapper.find('div.visx-crosshair-vertical')).toHaveLength(1);
+    expect(container?.parentNode?.querySelectorAll('div.visx-crosshair-vertical')).toHaveLength(1);
   });
 
   it('should render a horizontal crosshair if showVerticalCrossHair=true', () => {
-    const wrapper = setup({
+    const { container } = setup({
       props: { showHorizontalCrosshair: true },
       context: { tooltipOpen: true },
     });
-    expect(wrapper.find('div.visx-crosshair-horizontal')).toHaveLength(1);
+    expect(container?.parentNode?.querySelectorAll('div.visx-crosshair-horizontal')).toHaveLength(
+      1,
+    );
   });
 
   it('should not render a glyph if showDatumGlyph=true and there is no nearestDatum', () => {
-    const wrapper = setup({
+    const { container } = setup({
       props: { showDatumGlyph: true },
       context: {
         tooltipOpen: true,
@@ -120,10 +127,11 @@ describe('<Tooltip />', () => {
         },
       ],
     });
-    expect(wrapper.find('div.visx-tooltip-glyph')).toHaveLength(0);
+    expect(container?.parentNode?.querySelectorAll('div.visx-tooltip-glyph')).toHaveLength(0);
   });
+
   it('should render a glyph if showDatumGlyph=true if there is a nearestDatum', () => {
-    const wrapper = setup({
+    const { container } = setup({
       props: { showDatumGlyph: true },
       context: {
         tooltipOpen: true,
@@ -141,10 +149,11 @@ describe('<Tooltip />', () => {
         },
       ],
     });
-    expect(wrapper.find('div.visx-tooltip-glyph')).toHaveLength(1);
+    expect(container?.parentNode?.querySelectorAll('.visx-tooltip-glyph')).toHaveLength(1);
   });
+
   it('should render a glyph for each series if showSeriesGlyphs=true', () => {
-    const wrapper = setup({
+    const { container } = setup({
       props: { showSeriesGlyphs: true },
       context: {
         tooltipOpen: true,
@@ -170,6 +179,6 @@ describe('<Tooltip />', () => {
         },
       ],
     });
-    expect(wrapper.find('div.visx-tooltip-glyph')).toHaveLength(2);
+    expect(container?.parentNode?.querySelectorAll('div.visx-tooltip-glyph')).toHaveLength(2);
   });
 });
