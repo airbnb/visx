@@ -1,6 +1,6 @@
 {
   "name": "@visx/geo",
-  "version": "2.0.0-alpha.1",
+  "version": "2.0.1-alpha.0",
   "description": "visx geo",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -32,7 +32,7 @@
     "@types/d3-geo": "^1.11.1",
     "@types/geojson": "*",
     "@types/react": "*",
-    "@visx/group": "2.0.0-alpha.1",
+    "@visx/group": "2.0.1-alpha.0",
     "classnames": "^2.3.1",
     "d3-geo": "^1.11.3",
     "prop-types": "^15.5.10"
