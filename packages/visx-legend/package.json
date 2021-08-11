@@ -1,6 +1,6 @@
 {
   "name": "@visx/legend",
-  "version": "3.0.0-alpha.0",
+  "version": "2.0.0-alpha.1",
   "description": "visx legend",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "@types/react": "*",
-    "@visx/group": "3.0.0-alpha.0",
+    "@visx/group": "2.0.0-alpha.1",
     "@visx/scale": "1.14.0",
     "classnames": "^2.3.1",
     "prop-types": "^15.5.10"
