@@ -117,4 +117,8 @@ describe('visx', () => {
   it('should export @visx/zoom', () => {
     expect(visx.Zoom.Zoom).toBeDefined();
   });
+
+  it('should export @visx/wordcloud', () => {
+    expect(visx.Wordcloud.Wordcloud).toBeDefined();
+  });
 });
