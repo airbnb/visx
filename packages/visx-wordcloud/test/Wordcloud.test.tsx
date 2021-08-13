@@ -1,4 +1,4 @@
-import { mount } from 'enzyme';
+import { render } from '@testing-library/react';
 import React from 'react';
 import { Wordcloud } from '../src';
 import { WordcloudConfig } from '../src/useWordcloud';
@@ -34,7 +34,7 @@ describe('<Wordcloud />', () => {
   test('it returns early if width or height is zero', () => {
     const childrenSpy = jest.fn();
 
-    const wrapper = mount(
+    const { rerender } = render(
       <Wordcloud width={100} height={0} words={[{ text: 'bla', value: 1 }]}>
         {childrenSpy}
       </Wordcloud>,
@@ -42,7 +42,11 @@ describe('<Wordcloud />', () => {
 
     expect(childrenSpy).not.toHaveBeenCalled();
 
-    wrapper.setProps({ width: 0, height: 200 });
+    rerender(
+      <Wordcloud width={0} height={200} words={[{ text: 'bla', value: 1 }]}>
+        {childrenSpy}
+      </Wordcloud>,
+    );
     expect(childrenSpy).not.toHaveBeenCalled();
   });
 
@@ -51,7 +55,7 @@ describe('<Wordcloud />', () => {
     mockd3Cloud.on.mockImplementation((_, setWords) => setWords([mockWord]));
     const childrenSpy = jest.fn();
 
-    mount(
+    render(
       <Wordcloud width={100} height={100} words={[{ text: 'bla', value: 1 }]}>
         {childrenSpy}
       </Wordcloud>,
@@ -75,7 +79,7 @@ describe('<Wordcloud />', () => {
       words: [{ text: 'myMockedWord' }],
     };
 
-    mount(<Wordcloud {...wordcloudConfig}>{jest.fn()}</Wordcloud>);
+    render(<Wordcloud {...wordcloudConfig}>{jest.fn()}</Wordcloud>);
 
     expect(mockd3Cloud.size).toHaveBeenCalledWith([wordcloudConfig.width, wordcloudConfig.height]);
     expect(mockd3Cloud.font).toHaveBeenCalledWith(wordcloudConfig.font);
