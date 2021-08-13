@@ -1,6 +1,6 @@
 {
   "name": "@visx/zoom",
-  "version": "1.14.1",
+  "version": "2.0.2-alpha.0",
   "description": "visx zoom",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -31,10 +31,11 @@
     "access": "public"
   },
   "peerDependencies": {
-    "react": "^15.0.0-0 || ^16.0.0-0"
+    "react": "^16.0.0-0 || ^17.0.0-0"
   },
   "dependencies": {
     "@types/react": "*",
+    "@use-gesture/react": "^10.0.0-beta.22",
     "@visx/event": "1.7.0",
     "prop-types": "^15.6.2"
   }

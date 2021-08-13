@@ -1,5 +1,7 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { Bar } from '../src';
 
@@ -19,17 +21,13 @@ describe('<Bar />', () => {
   });
 
   test('it should expose its ref via an innerRef prop', () => {
-    // eslint-disable-next-line jest/no-test-return-statement
-    return new Promise(done => {
-      const refCallback = (ref: SVGRectElement) => {
-        expect(ref.tagName).toMatch('rect');
-        done();
-      };
-      mount(
-        <svg>
-          <Bar innerRef={refCallback} />
-        </svg>,
-      );
-    });
+    const fakeRef = React.createRef<SVGRectElement>();
+    const { container } = render(
+      <svg>
+        <Bar innerRef={fakeRef} />
+      </svg>,
+    );
+    const RectElement = container.querySelector('rect');
+    expect(fakeRef.current).toContainElement(RectElement);
   });
 });

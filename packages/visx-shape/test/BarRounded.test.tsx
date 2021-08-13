@@ -1,5 +1,7 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { BarRounded } from '../src';
 
@@ -20,18 +22,14 @@ describe('<BarRounded />', () => {
   });
 
   test('it should expose its ref via an innerRef prop', () => {
-    // eslint-disable-next-line jest/no-test-return-statement
-    return new Promise(done => {
-      const refCallback = (ref: SVGPathElement) => {
-        expect(ref.tagName).toMatch('path');
-        done();
-      };
-      mount(
-        <svg>
-          <BarRounded innerRef={refCallback} {...testProps} />
-        </svg>,
-      );
-    });
+    const fakeRef = React.createRef<SVGPathElement>();
+    const { container } = render(
+      <svg>
+        <BarRounded innerRef={fakeRef} {...testProps} />
+      </svg>,
+    );
+    const PathElement = container.querySelector('path');
+    expect(fakeRef.current).toContainElement(PathElement);
   });
 
   test('it should set top left corner radius', () => {

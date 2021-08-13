@@ -7,107 +7,107 @@ describe('visx', () => {
   });
 
   it('should export @visx/annotation', () => {
-    expect(visx.LinePathAnnotation).toBeDefined();
+    expect(visx.Annotation.LinePathAnnotation).toBeDefined();
   });
 
   it('should export @visx/axis', () => {
-    expect(visx.Axis).toBeDefined();
+    expect(visx.Axis.Axis).toBeDefined();
   });
 
   it('should export @visx/bounds', () => {
-    expect(visx.withBoundingRects).toBeDefined();
+    expect(visx.Bounds.withBoundingRects).toBeDefined();
   });
 
   it('should export @visx/clip-path', () => {
-    expect(visx.ClipPath).toBeDefined();
+    expect(visx.ClipPath.ClipPath).toBeDefined();
   });
 
   it('should export @visx/curve', () => {
-    expect(visx.curveBasis).toBeDefined();
+    expect(visx.Curve.curveBasis).toBeDefined();
   });
 
   it('should export @visx/drag', () => {
-    expect(visx.Drag).toBeDefined();
+    expect(visx.Drag.Drag).toBeDefined();
   });
 
   it('should export @visx/event', () => {
-    expect(visx.localPoint).toBeDefined();
+    expect(visx.Event.localPoint).toBeDefined();
   });
 
   it('should export @visx/geo', () => {
-    expect(visx.Albers).toBeDefined();
+    expect(visx.Geo.Albers).toBeDefined();
   });
 
   it('should export @visx/glyph', () => {
-    expect(visx.Glyph).toBeDefined();
+    expect(visx.Glyph.Glyph).toBeDefined();
   });
 
   it('should export @visx/gradient', () => {
-    expect(visx.LinearGradient).toBeDefined();
+    expect(visx.Gradient.LinearGradient).toBeDefined();
   });
 
   it('should export @visx/grid', () => {
-    expect(visx.Grid).toBeDefined();
+    expect(visx.Grid.Grid).toBeDefined();
   });
 
   it('should export @visx/group', () => {
-    expect(visx.Group).toBeDefined();
+    expect(visx.Group.Group).toBeDefined();
   });
 
   it('should export @visx/heatmap', () => {
-    expect(visx.HeatmapRect).toBeDefined();
+    expect(visx.Heatmap.HeatmapRect).toBeDefined();
   });
 
   it('should export @visx/hierarchy', () => {
-    expect(visx.Tree).toBeDefined();
+    expect(visx.Hierarchy.Tree).toBeDefined();
   });
 
   it('should export @visx/legend', () => {
-    expect(visx.Legend).toBeDefined();
+    expect(visx.Legend.Legend).toBeDefined();
   });
 
   it('should export @visx/marker', () => {
-    expect(visx.Marker).toBeDefined();
+    expect(visx.Marker.Marker).toBeDefined();
   });
 
   it('should export @visx/mock-data', () => {
-    expect(visx.genDateValue).toBeDefined();
+    expect(visx.MockData.genDateValue).toBeDefined();
   });
 
   it('should export @visx/network', () => {
-    expect(visx.Graph).toBeDefined();
+    expect(visx.Network.Graph).toBeDefined();
   });
 
   it('should export @visx/pattern', () => {
-    expect(visx.Pattern).toBeDefined();
+    expect(visx.Pattern.Pattern).toBeDefined();
   });
 
   it('should export @visx/point', () => {
-    expect(visx.Point).toBeDefined();
+    expect(visx.Point.Point).toBeDefined();
   });
 
   it('should export @visx/responsive', () => {
-    expect(visx.withParentSize).toBeDefined();
+    expect(visx.Responsive.withParentSize).toBeDefined();
   });
 
   it('should export @visx/scale', () => {
-    expect(visx.scaleBand).toBeDefined();
+    expect(visx.Scale.scaleBand).toBeDefined();
   });
 
   it('should export @visx/shape', () => {
-    expect(visx.Bar).toBeDefined();
+    expect(visx.Shape.Bar).toBeDefined();
   });
 
   it('should export @visx/text', () => {
-    expect(visx.Text).toBeDefined();
+    expect(visx.Text.Text).toBeDefined();
   });
 
   it('should export @visx/tooltip', () => {
-    expect(visx.Tooltip).toBeDefined();
+    expect(visx.Tooltip.Tooltip).toBeDefined();
   });
 
   it('should export @visx/voronoi', () => {
-    expect(visx.voronoi).toBeDefined();
+    expect(visx.Voronoi.voronoi).toBeDefined();
   });
 
   it('should export @visx/xychart', () => {
@@ -115,6 +115,6 @@ describe('visx', () => {
   });
 
   it('should export @visx/zoom', () => {
-    expect(visx.Zoom).toBeDefined();
+    expect(visx.Zoom.Zoom).toBeDefined();
   });
 });

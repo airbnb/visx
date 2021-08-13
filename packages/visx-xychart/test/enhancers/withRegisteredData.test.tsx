@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
-import { mount } from 'enzyme';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import withRegisteredData from '../../src/enhancers/withRegisteredData';
 import getDataContext from '../mocks/getDataContext';
 import { DataContext } from '../../src';
@@ -28,19 +29,19 @@ describe('withRegisteredData', () => {
     const BaseComponent = () => <div />;
     const WrappedComponent = withRegisteredData(BaseComponent);
 
-    const wrapperNoContext = mount(
+    const { container: containerNoContext } = render(
       <DataContext.Provider value={{}}>
         <WrappedComponent dataKey={series.key} {...series} />
       </DataContext.Provider>,
     );
-    const wrapperCompleteContext = mount(
+    const { container: containerCompleteContext } = render(
       <DataContext.Provider value={mockContextWithSeries}>
         <WrappedComponent dataKey={series.key} {...series} />
       </DataContext.Provider>,
     );
 
-    expect(wrapperNoContext.find('div')).toHaveLength(0);
-    expect(wrapperCompleteContext.find('div')).toHaveLength(1);
+    expect(containerNoContext.querySelectorAll('div')).toHaveLength(0);
+    expect(containerCompleteContext.querySelectorAll('div')).toHaveLength(1);
   });
 
   it('should pass data and accessors to BaseComponent from context not props', () => {
@@ -54,7 +55,7 @@ describe('withRegisteredData', () => {
     };
     const WrappedComponent = withRegisteredData(BaseComponent);
 
-    mount(
+    render(
       <DataContext.Provider value={mockContext}>
         <WrappedComponent
           dataKey={series.key}

@@ -75,14 +75,14 @@ export default function GeoCustom({ width, height, events = true }: GeoCustomPro
 
   return width < 10 ? null : (
     <>
-      <Zoom
+      <Zoom<SVGSVGElement>
         width={width}
         height={height}
         scaleXMin={100}
         scaleXMax={1000}
         scaleYMin={100}
         scaleYMax={1000}
-        transformMatrix={{
+        initialTransformMatrix={{
           scaleX: initialScale,
           scaleY: initialScale,
           translateX: centerX,
@@ -93,7 +93,13 @@ export default function GeoCustom({ width, height, events = true }: GeoCustomPro
       >
         {zoom => (
           <div className="container">
-            <svg width={width} height={height} className={zoom.isDragging ? 'dragging' : undefined}>
+            <svg
+              width={width}
+              height={height}
+              className={zoom.isDragging ? 'dragging' : undefined}
+              ref={zoom.containerRef}
+              style={{ touchAction: 'none' }}
+            >
               <rect x={0} y={0} width={width} height={height} fill={background} rx={14} />
               <CustomProjection<FeatureShape>
                 projection={PROJECTIONS[projection]}

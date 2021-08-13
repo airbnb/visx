@@ -1,5 +1,7 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { LinePath } from '../src';
 import { LinePathProps } from '../src/shapes/LinePath';
@@ -54,17 +56,14 @@ describe('<LinePath />', () => {
   });
 
   it('should expose its ref via an innerRef prop', () => {
-    // eslint-disable-next-line jest/no-test-return-statement
-    return new Promise(done => {
-      const refCallback = (ref: SVGPathElement) => {
-        expect(ref.tagName).toMatch('path');
-        done();
-      };
-      mount(
-        <svg>
-          <LinePath innerRef={refCallback} {...linePathProps} />
-        </svg>,
-      );
-    });
+    const fakeRef = React.createRef<SVGPathElement>();
+
+    const { container } = render(
+      <svg>
+        <LinePath data={linePathProps.data} innerRef={fakeRef} />
+      </svg>,
+    );
+    const PathElement = container.querySelector('path');
+    expect(fakeRef.current).toContainElement(PathElement);
   });
 });

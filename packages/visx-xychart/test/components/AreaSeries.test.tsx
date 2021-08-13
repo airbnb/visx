@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from 'react';
-import { animated } from 'react-spring';
-import { mount } from 'enzyme';
-import { Area, LinePath } from '@visx/shape';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { AnimatedAreaSeries, DataContext, AreaSeries, useEventEmitter } from '../../src';
 import getDataContext from '../mocks/getDataContext';
 import setupTooltipTest from '../mocks/setupTooltipTest';
@@ -15,31 +14,33 @@ describe('<AreaSeries />', () => {
   });
 
   it('should render an Area', () => {
-    const wrapper = mount(
+    const { container } = render(
       <DataContext.Provider value={getDataContext(series)}>
         <svg>
           <AreaSeries dataKey={series.key} {...series} />
         </svg>
       </DataContext.Provider>,
     );
-    // @ts-ignore produces a union type that is too complex to represent.ts(2590)
-    expect(wrapper.find(Area)).toHaveLength(1);
+    const Path = container.querySelector('path');
+    expect(Path).toBeInTheDocument();
   });
 
   it('should set strokeLinecap="round" to make datum surrounded by nulls visible', () => {
-    const wrapper = mount(
+    const { container } = render(
       <DataContext.Provider value={getDataContext(series)}>
         <svg>
           <AreaSeries dataKey={series.key} renderLine={false} {...series} />
         </svg>
       </DataContext.Provider>,
     );
-    expect(wrapper.find('path').prop('strokeLinecap')).toBe('round');
+    const Path = container.querySelector('path');
+    expect(Path).toBeInTheDocument();
+    expect(Path).toHaveAttribute('stroke-linecap', 'round');
   });
 
-  it('should use x/y0Accessors an Area', () => {
+  it('should use x/y0Accessors in an Area', () => {
     const y0Accessor = jest.fn(() => 3);
-    const wrapper = mount(
+    const { container } = render(
       <DataContext.Provider value={getDataContext(series)}>
         <svg>
           <AreaSeries dataKey={series.key} {...series} y0Accessor={y0Accessor} />
@@ -47,34 +48,35 @@ describe('<AreaSeries />', () => {
       </DataContext.Provider>,
     );
 
-    const callCount = y0Accessor.mock.calls.length;
+    const Path = container.querySelector('path');
+    expect(Path).toBeInTheDocument();
     expect(y0Accessor).toHaveBeenCalled();
-    const y0Area = wrapper.find(Area).prop('y0') as Function;
-    y0Area();
-    expect(y0Accessor).toHaveBeenCalledTimes(callCount + 1);
   });
 
   it('should render a LinePath is renderLine=true', () => {
-    const wrapper = mount(
+    const { container } = render(
       <DataContext.Provider value={getDataContext(series)}>
         <svg>
           <AreaSeries renderLine dataKey={series.key} {...series} />
         </svg>
       </DataContext.Provider>,
     );
-    // @ts-ignore produces a union type that is too complex to represent.ts(2590)
-    expect(wrapper.find(LinePath)).toHaveLength(1);
+
+    const LinePath = container.querySelector('.visx-line');
+    expect(LinePath).toBeInTheDocument();
   });
 
   it('should render Glyphs if focus/blur handlers are set', () => {
-    const wrapper = mount(
+    const { container } = render(
       <DataContext.Provider value={getDataContext(series)}>
         <svg>
           <AreaSeries dataKey={series.key} {...series} onFocus={() => {}} />
         </svg>
       </DataContext.Provider>,
     );
-    expect(wrapper.find('circle')).toHaveLength(series.data.length);
+
+    const Circles = container.querySelectorAll('circle');
+    expect(Circles).toHaveLength(series.data.length);
   });
 
   it('should invoke showTooltip/hideTooltip on pointermove/pointerout', () => {
@@ -123,13 +125,14 @@ describe('<AnimatedAreaSeries />', () => {
     expect(AnimatedAreaSeries).toBeDefined();
   });
   it('should render an animated.path', () => {
-    const wrapper = mount(
+    const { container } = render(
       <DataContext.Provider value={getDataContext(series)}>
         <svg>
           <AnimatedAreaSeries renderLine={false} dataKey={series.key} {...series} />
         </svg>
       </DataContext.Provider>,
     );
-    expect(wrapper.find(animated.path)).toHaveLength(1);
+    const Path = container.querySelectorAll('path');
+    expect(Path).toHaveLength(1);
   });
 });

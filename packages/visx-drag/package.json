@@ -1,6 +1,6 @@
 {
   "name": "@visx/drag",
-  "version": "1.18.1",
+  "version": "2.0.1-alpha.0",
   "description": "visx drag",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -31,7 +31,7 @@
     "access": "public"
   },
   "peerDependencies": {
-    "react": "^16.8.0-0"
+    "react": "^16.8.0-0 || ^17.0.0-0"
   },
   "dependencies": {
     "@types/react": "*",

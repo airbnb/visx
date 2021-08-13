@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { render } from '@testing-library/react';
 
 import {
   GradientDarkgreenGreen,
@@ -21,7 +21,7 @@ describe('<GradientDarkgreenGreen />', () => {
 
   test('it should render without crashing', () => {
     expect(() =>
-      mount(
+      render(
         <svg>
           <GradientDarkgreenGreen id="gradient" />
         </svg>,
@@ -37,7 +37,7 @@ describe('<GradientLightgreenGreen />', () => {
 
   test('it should render without crashing', () => {
     expect(() =>
-      mount(
+      render(
         <svg>
           <GradientLightgreenGreen id="gradient" />
         </svg>,
@@ -53,7 +53,7 @@ describe('<GradientOrangeRed />', () => {
 
   test('it should render without crashing', () => {
     expect(() =>
-      mount(
+      render(
         <svg>
           <GradientOrangeRed id="gradient" />
         </svg>,
@@ -69,7 +69,7 @@ describe('<GradientPinkBlue />', () => {
 
   test('it should render without crashing', () => {
     expect(() =>
-      mount(
+      render(
         <svg>
           <GradientPinkBlue id="gradient" />
         </svg>,
@@ -85,7 +85,7 @@ describe('<GradientPinkRed />', () => {
 
   test('it should render without crashing', () => {
     expect(() =>
-      mount(
+      render(
         <svg>
           <GradientPinkRed id="gradient" />
         </svg>,
@@ -101,7 +101,7 @@ describe('<GradientPurpleOrange />', () => {
 
   test('it should render without crashing', () => {
     expect(() =>
-      mount(
+      render(
         <svg>
           <GradientPurpleOrange id="gradient" />
         </svg>,
@@ -117,7 +117,7 @@ describe('<GradientPurpleRed />', () => {
 
   test('it should render without crashing', () => {
     expect(() =>
-      mount(
+      render(
         <svg>
           <GradientPurpleRed id="gradient" />
         </svg>,
@@ -133,7 +133,7 @@ describe('<GradientPurpleTeal />', () => {
 
   test('it should render without crashing', () => {
     expect(() =>
-      mount(
+      render(
         <svg>
           <GradientPurpleTeal id="gradient" />
         </svg>,
@@ -149,7 +149,7 @@ describe('<GradientSteelPurple />', () => {
 
   test('it should render without crashing', () => {
     expect(() =>
-      mount(
+      render(
         <svg>
           <GradientSteelPurple id="gradient" />
         </svg>,
@@ -165,7 +165,7 @@ describe('<GradientTealBlue />', () => {
 
   test('it should render without crashing', () => {
     expect(() =>
-      mount(
+      render(
         <svg>
           <GradientTealBlue id="gradient" />
         </svg>,

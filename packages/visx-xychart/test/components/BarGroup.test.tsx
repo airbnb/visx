@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
-import { animated } from 'react-spring';
-import { mount } from 'enzyme';
+import '@testing-library/jest-dom';
+import { render } from '@testing-library/react';
 import {
   AnimatedBarGroup,
   BarGroup,
@@ -53,7 +53,7 @@ describe('<BarGroup />', () => {
   });
 
   it('should render rects', () => {
-    const wrapper = mount(
+    const { container } = render(
       <DataProvider {...providerProps}>
         <svg>
           <BarGroup>
@@ -63,11 +63,11 @@ describe('<BarGroup />', () => {
         </svg>
       </DataProvider>,
     );
-    expect(wrapper.find('rect')).toHaveLength(4);
+    expect(container.querySelectorAll('rect')).toHaveLength(4);
   });
 
   it('should use colorAccessor if passed', () => {
-    const wrapper = mount(
+    const { container } = render(
       <DataProvider {...providerProps}>
         <svg>
           <BarGroup>
@@ -81,15 +81,15 @@ describe('<BarGroup />', () => {
         </svg>
       </DataProvider>,
     );
-    const rects = wrapper.find('rect');
-    expect(rects.at(0).prop('fill')).not.toBe('banana');
-    expect(rects.at(1).prop('fill')).not.toBe('banana');
-    expect(rects.at(2).prop('fill')).toBe('banana');
-    expect(rects.at(3).prop('fill')).not.toBe('banana');
+    const rects = container.querySelectorAll('rect');
+    expect(rects[0]).not.toHaveAttribute('fill', 'banana');
+    expect(rects[1]).not.toHaveAttribute('fill', 'banana');
+    expect(rects[2]).toHaveAttribute('fill', 'banana');
+    expect(rects[3]).not.toHaveAttribute('fill', 'banana');
   });
 
   it('should not render rects with invalid x or y', () => {
-    const wrapper = mount(
+    const { container } = render(
       <DataProvider {...providerProps}>
         <svg>
           <BarGroup>
@@ -99,7 +99,7 @@ describe('<BarGroup />', () => {
         </svg>
       </DataProvider>,
     );
-    expect(wrapper.find('rect')).toHaveLength(3);
+    expect(container.querySelectorAll('rect')).toHaveLength(3);
   });
 
   it('should invoke showTooltip/hideTooltip on pointermove/pointerout', () => {
@@ -146,7 +146,7 @@ describe('<AnimatedBarGroup />', () => {
     expect(AnimatedBarGroup).toBeDefined();
   });
   it('should render an animated.rect', () => {
-    const wrapper = mount(
+    const { container } = render(
       <DataProvider {...providerProps}>
         <svg>
           <AnimatedBarGroup>
@@ -156,6 +156,6 @@ describe('<AnimatedBarGroup />', () => {
         </svg>
       </DataProvider>,
     );
-    expect(wrapper.find(animated.rect)).toHaveLength(4);
+    expect(container.querySelectorAll('rect')).toHaveLength(4);
   });
 });

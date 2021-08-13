@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { render } from '@testing-library/react';
 import useDataRegistry from '../../src/hooks/useDataRegistry';
 
 describe('useDataRegistry', () => {
@@ -17,6 +17,6 @@ describe('useDataRegistry', () => {
       return null;
     };
 
-    mount(<RegistryConsumer />);
+    render(<RegistryConsumer />);
   });
 });

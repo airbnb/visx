@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { mount } from 'enzyme';
+import { render } from '@testing-library/react';
 import { EventEmitterProvider, useEventEmitter, DataContext } from '../../src';
 import useEventHandlers, { POINTER_EVENTS_ALL } from '../../src/hooks/useEventHandlers';
 import getDataContext from '../mocks/getDataContext';
@@ -12,7 +12,7 @@ const getEvent = (eventType: string) =>
 
 describe('useEventHandlers', () => {
   function setup(children: React.ReactNode) {
-    return mount(
+    return render(
       <DataContext.Provider value={getDataContext([series1, series2])}>
         <EventEmitterProvider>{children}</EventEmitterProvider>
       </DataContext.Provider>,

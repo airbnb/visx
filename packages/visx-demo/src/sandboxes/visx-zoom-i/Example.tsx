@@ -38,21 +38,22 @@ export default function ZoomI({ width, height }: ZoomIProps) {
 
   return (
     <>
-      <Zoom
+      <Zoom<SVGSVGElement>
         width={width}
         height={height}
         scaleXMin={1 / 2}
         scaleXMax={4}
         scaleYMin={1 / 2}
         scaleYMax={4}
-        transformMatrix={initialTransform}
+        initialTransformMatrix={initialTransform}
       >
         {zoom => (
           <div className="relative">
             <svg
               width={width}
               height={height}
-              style={{ cursor: zoom.isDragging ? 'grabbing' : 'grab' }}
+              style={{ cursor: zoom.isDragging ? 'grabbing' : 'grab', touchAction: 'none' }}
+              ref={zoom.containerRef}
             >
               <RectClipPath id="zoom-clip" width={width} height={height} />
               <rect width={width} height={height} rx={14} fill={bg} />

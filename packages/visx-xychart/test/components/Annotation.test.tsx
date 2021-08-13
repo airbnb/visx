@@ -1,16 +1,13 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import {
-  Annotation as VxAnnotation,
-  EditableAnnotation as VxEditableAnnotation,
-} from '@visx/annotation';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { DataContext, Annotation, AnimatedAnnotation } from '../../src';
 import getDataContext from '../mocks/getDataContext';
 
 const series = { key: 'visx', data: [{}], xAccessor: () => 4, yAccessor: () => 7 };
 
 function setup(children: React.ReactNode) {
-  return mount(
+  return render(
     <DataContext.Provider value={getDataContext(series)}>
       <svg>{children}</svg>
     </DataContext.Provider>,
@@ -22,20 +19,22 @@ describe('<Annotation />', () => {
     expect(Annotation).toBeDefined();
   });
   it('should render a VxAnnotation', () => {
-    const wrapper = setup(
+    const { getByText } = setup(
       <Annotation dataKey={series.key} datum={{}}>
         {'test'}
       </Annotation>,
     );
-    expect(wrapper.find(VxAnnotation)).toHaveLength(1);
+    expect(getByText('test')).toBeInTheDocument();
   });
   it('should render a VxEditableAnnotation when editable=true', () => {
-    const wrapper = setup(
+    const { container } = setup(
       <Annotation editable dataKey={series.key} datum={{}}>
         {'test'}
       </Annotation>,
     );
-    expect(wrapper.find(VxEditableAnnotation)).toHaveLength(1);
+    // with editable=true, the svg should have a circle overlay with 'cursor: grab' attribute
+    const CircleElement = container.querySelector('circle');
+    expect(CircleElement).toHaveAttribute('cursor');
   });
 });
 
@@ -44,19 +43,22 @@ describe('<AnimatedAnnotation />', () => {
     expect(AnimatedAnnotation).toBeDefined();
   });
   it('should render a VxAnnotation', () => {
-    const wrapper = setup(
+    const { getByText } = setup(
       <AnimatedAnnotation dataKey={series.key} datum={{}}>
         {'test'}
       </AnimatedAnnotation>,
     );
-    expect(wrapper.find(VxAnnotation)).toHaveLength(1);
+    expect(getByText('test')).toBeInTheDocument();
   });
   it('should render a VxEditableAnnotation when editable=true', () => {
-    const wrapper = setup(
+    const { container } = setup(
       <AnimatedAnnotation editable dataKey={series.key} datum={{}}>
         {'test'}
       </AnimatedAnnotation>,
     );
-    expect(wrapper.find(VxEditableAnnotation)).toHaveLength(1);
+
+    // with editable=true, the svg should have a circle overlay with 'cursor: grab' attribute
+    const CircleElement = container.querySelector('circle');
+    expect(CircleElement).toHaveAttribute('cursor');
   });
 });
