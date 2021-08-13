@@ -79,7 +79,7 @@ export interface WordcloudConfig<Datum extends BaseDatum> {
   random?: () => number;
 }
 
-export function useWordcloud<Datum>({
+export function useWordcloud<Datum extends BaseDatum>({
   width,
   height,
   font,
@@ -101,32 +101,12 @@ export function useWordcloud<Datum>({
     if (words !== undefined) layout.words(words);
     if (random !== undefined) layout.random(random);
     if (font !== undefined) layout.font(font);
-    if (padding !== undefined) {
-      // This is needed in order to help typescript with method overloads see issue here https://github.com/microsoft/TypeScript/issues/14107
-      // Once this gets merged we can remove the if tyepof statements from this file https://github.com/DefinitelyTyped/DefinitelyTyped/pull/54726
-      if (typeof padding === 'number') layout.padding(padding);
-      else layout.padding(padding);
-    }
-    if (fontSize !== undefined) {
-      if (typeof fontSize === 'number') layout.fontSize(fontSize);
-      else layout.fontSize(fontSize);
-    }
-    if (fontStyle !== undefined) {
-      if (typeof fontStyle === 'string') layout.fontStyle(fontStyle);
-      else layout.fontStyle(fontStyle);
-    }
-    if (fontWeight !== undefined) {
-      if (typeof fontWeight === 'function') layout.fontWeight(fontWeight);
-      else layout.fontWeight(fontWeight);
-    }
-    if (rotate !== undefined) {
-      if (typeof rotate === 'function') layout.rotate(rotate);
-      else layout.rotate(rotate);
-    }
-    if (spiral !== undefined) {
-      if (typeof spiral === 'string') layout.spiral(spiral);
-      else layout.spiral(spiral);
-    }
+    if (padding !== undefined) layout.padding(padding);
+    if (fontSize !== undefined) layout.fontSize(fontSize);
+    if (fontStyle !== undefined) layout.fontStyle(fontStyle);
+    if (fontWeight !== undefined) layout.fontWeight(fontWeight);
+    if (rotate !== undefined) layout.rotate(rotate);
+    if (spiral !== undefined) layout.spiral(spiral);
 
     layout.on('end', setCloudWords);
     layout.start();

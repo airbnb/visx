@@ -37,7 +37,7 @@
     "d3-cloud":"1.2.5"
   },
   "devDependencies": {
-    "@types/d3-cloud":"1.2.4"
+    "@types/d3-cloud":"1.2.5"
   },
   "publishConfig": {
     "access": "public"

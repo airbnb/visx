@@ -66,36 +66,15 @@ export default function Example({ width, height, showControls }: ExampleProps) {
               key={w.text}
               fill={colors[i % colors.length]}
               textAnchor={'middle'}
-              transform={`translate(${w.x}, ${w.y})rotate(${w.rotate})`}
+              transform={`translate(${w.x}, ${w.y}) rotate(${w.rotate})`}
               fontSize={w.size}
-              fontFamily={'Impact'}
+              fontFamily={w.font}
             >
               {w.text}
             </Text>
           ))
         }
       </Wordcloud>
-      <style jsx>{`
-        .wordcloud {
-          display: flex;
-          flex-direction: column;
-          user-select: none;
-        }
-        svg {
-          margin: 1rem 0;
-          cursor: pointer;
-        }
-
-        .wordcloud label {
-          display: inline-flex;
-          align-items: center;
-          font-size: 14px;
-          margin-right: 8px;
-        }
-        .wordcloud textarea {
-          min-height: 100px;
-        }
-      `}</style>
       {showControls && (
         <div>
           <label>
@@ -120,6 +99,27 @@ export default function Example({ width, height, showControls }: ExampleProps) {
           <br />
         </div>
       )}
+      <style jsx>{`
+        .wordcloud {
+          display: flex;
+          flex-direction: column;
+          user-select: none;
+        }
+        svg {
+          margin: 1rem 0;
+          cursor: pointer;
+        }
+
+        .wordcloud label {
+          display: inline-flex;
+          align-items: center;
+          font-size: 14px;
+          margin-right: 8px;
+        }
+        .wordcloud textarea {
+          min-height: 100px;
+        }
+      `}</style>
     </div>
   );
 }

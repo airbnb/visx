@@ -3665,10 +3665,10 @@
   resolved "https://registry.yarnpkg.com/@types/d3-chord/-/d3-chord-1.0.9.tgz#ccc5de03ff079025491b7aa6b750670a140b45ae"
   integrity sha512-UA6lI9CVW5cT5Ku/RV4hxoFn4mKySHm7HEgodtfRthAj1lt9rKZEPon58vyYfk+HIAm33DtJJgZwMXy2QgyPXw==
 
-"@types/d3-cloud@1.2.4":
-  version "1.2.4"
-  resolved "https://registry.yarnpkg.com/@types/d3-cloud/-/d3-cloud-1.2.4.tgz#9868e3cf4bbe9da34409529b6c591c88d2622d28"
-  integrity sha512-7CTB4RQsc990X5ffhtIK1XdYuLYVG+o8JWxSFg7V/53vRnxcSH0zLAHYlxTqklQ2eFmO8L/B5xcqfOZDYIkgyA==
+"@types/d3-cloud@1.2.5":
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/@types/d3-cloud/-/d3-cloud-1.2.5.tgz#0300bedc826aacd505ae6c41c5f8c4ab75c45135"
+  integrity sha512-vEIER9DsEBUOdpRiwCh3n1qE+cV6h4e1LhxhY2sLt+m8LPNAIkOOhTlqk0JDiBwD+ZPM8ynFAOU3AuPuVYBFBA==
   dependencies:
     "@types/d3" "^3"
 
