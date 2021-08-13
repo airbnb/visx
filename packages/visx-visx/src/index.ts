@@ -26,6 +26,7 @@ import * as Shape from '@visx/shape';
 import * as Text from '@visx/text';
 import * as Tooltip from '@visx/tooltip';
 import * as Voronoi from '@visx/voronoi';
+import * as Wordcloud from '@visx/wordcloud';
 import * as Zoom from '@visx/zoom';
 
 export {
@@ -57,5 +58,6 @@ export {
   Text,
   Tooltip,
   Voronoi,
+  Wordcloud,
   Zoom,
 };

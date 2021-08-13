@@ -60,6 +60,7 @@
     "@visx/text": "2.0.1-alpha.0",
     "@visx/tooltip": "2.0.1-alpha.0",
     "@visx/voronoi": "2.0.1-alpha.0",
+    "@visx/wordcloud":"0.1.0",
     "@visx/xychart": "2.0.1-alpha.0",
     "@visx/zoom": "2.0.2-alpha.0"
   }
