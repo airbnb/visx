@@ -10,9 +10,10 @@ export interface WordcloudProps<Datum extends BaseDatum> extends WordcloudConfig
 
 export default function Wordcloud<Datum extends BaseDatum>(props: WordcloudProps<Datum>) {
   const { children, ...wordcloudConfig } = props;
+  const { width, height } = wordcloudConfig;
   const words = useWordcloud(wordcloudConfig);
 
-  if (!wordcloudConfig.height || !wordcloudConfig.width) return null;
+  if (width === 0 || height === 0) return null;
 
   return (
     <svg width={wordcloudConfig.width} height={wordcloudConfig.height}>

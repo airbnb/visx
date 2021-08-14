@@ -18,6 +18,10 @@ export default function useWordcloud<Datum extends BaseDatum>({
   const [cloudWords, setCloudWords] = useState<d3Cloud.Word[]>([]);
 
   useEffect(() => {
+    if (width === 0 || height === 0) {
+      return;
+    }
+
     const layout = d3Cloud<Datum>();
 
     if (width !== undefined && height !== undefined) layout.size([width, height]);

@@ -5,16 +5,12 @@ export interface BaseDatum {
 export interface WordcloudConfig<Datum extends BaseDatum> {
   /**
    * Width of the wordcloud layout.
-   *
-   * @default 0
    */
-  width?: number;
+  width: number;
   /**
    * Height of the wordcloud layout.
-   *
-   * @default 0
    */
-  height?: number;
+  height: number;
   /**
    * Sets the words array.
    *
