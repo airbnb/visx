@@ -13,10 +13,8 @@ export interface WordcloudConfig<Datum extends BaseDatum> {
   height: number;
   /**
    * Sets the words array.
-   *
-   * @default []
    */
-  words?: Datum[];
+  words: Datum[];
   /**
    * Sets the padding accessor function, which indicates the numerical padding for each word.
    *
