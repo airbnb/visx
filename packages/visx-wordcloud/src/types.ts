@@ -64,6 +64,8 @@ export interface WordcloudConfig<Datum extends BaseDatum> {
   /**
    * Sets the internal random number generator, used for selecting the initial position of each word,
    * and the clockwise/counterclockwise direction of the spiral for each word. Random function should return a number in the range [0, 1).
+   * When the returned value is a fixed value, the layout coordinates of each word will be the same every time the word cloud of the same data is rendered.
+   * By default, the browser's built-in 'Math.random' is used, which means that each rendering will change the position of the word.
    *
    * @default Math.random
    */

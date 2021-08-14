@@ -22,7 +22,7 @@ function wordFreq(text: string): WordData[] {
   const freqMap: Record<string, number> = {};
 
   for (const w of words) {
-    if (!freqMap[w]) freqMap[w] = 1;
+    if (!freqMap[w]) freqMap[w] = 0;
     freqMap[w] += 1;
   }
   return Object.keys(freqMap).map(word => ({ text: word, value: freqMap[word] }));
@@ -40,6 +40,9 @@ const fontScale = scaleLog({
   domain: [Math.min(...words.map(w => w.value)), Math.max(...words.map(w => w.value))],
   range: [10, 100],
 });
+const fontSizeSetter = (datum: WordData) => fontScale(datum.value);
+
+const fixedValueGenerator = () => 0.5;
 
 type SpiralType = 'archimedean' | 'rectangular';
 
@@ -53,12 +56,12 @@ export default function Example({ width, height, showControls }: ExampleProps) {
         words={words}
         width={width}
         height={height}
-        fontSize={datum => fontScale(datum.value)}
-        font={`Impact`}
+        fontSize={fontSizeSetter}
+        font={'Impact'}
         padding={2}
         spiral={spiralType}
         rotate={withRotation ? getRotationDegree : 0}
-        random={() => 0.5}
+        random={fixedValueGenerator}
       >
         {cloudWords =>
           cloudWords.map((w, i) => (
@@ -105,7 +108,7 @@ export default function Example({ width, height, showControls }: ExampleProps) {
           flex-direction: column;
           user-select: none;
         }
-        svg {
+        .wordcloud svg {
           margin: 1rem 0;
           cursor: pointer;
         }
