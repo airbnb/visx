@@ -7,7 +7,7 @@ export { default as packageJson } from '../../sandboxes/visx-wordcloud/package.j
 const tileStyles = { background: '#e4e3d8' };
 const detailsStyles = { color: '#111' };
 
-export default function WorcloudTile() {
+export default function WordcloudTile() {
   return (
     <GalleryTile
       title="Wordcloud"

@@ -3,7 +3,7 @@ import React from 'react';
 import { Wordcloud } from '../src';
 import { WordcloudConfig } from '../src/types';
 
-const mockd3Cloud = {
+const mocked3Cloud = {
   size: jest.fn(),
   words: jest.fn(),
   random: jest.fn(),
@@ -21,13 +21,13 @@ const mockd3Cloud = {
 
 jest.mock('d3-cloud', () => {
   return function d3cloud() {
-    return mockd3Cloud;
+    return mocked3Cloud;
   };
 });
 
 describe('<Wordcloud />', () => {
   afterEach(() => {
-    for (const mockFn of Object.values(mockd3Cloud)) {
+    for (const mockFn of Object.values(mocked3Cloud)) {
       mockFn.mockReset();
     }
   });
@@ -52,7 +52,7 @@ describe('<Wordcloud />', () => {
 
   test('it passes d3 cloud words to the children render function', () => {
     const mockWord = { text: 'myMockedWord' };
-    mockd3Cloud.on.mockImplementation((_, setWords) => setWords([mockWord]));
+    mocked3Cloud.on.mockImplementation((_, setWords) => setWords([mockWord]));
     const childrenSpy = jest.fn();
 
     render(
@@ -81,15 +81,15 @@ describe('<Wordcloud />', () => {
 
     render(<Wordcloud {...wordcloudConfig}>{jest.fn()}</Wordcloud>);
 
-    expect(mockd3Cloud.size).toHaveBeenCalledWith([wordcloudConfig.width, wordcloudConfig.height]);
-    expect(mockd3Cloud.font).toHaveBeenCalledWith(wordcloudConfig.font);
-    expect(mockd3Cloud.fontSize).toHaveBeenCalledWith(wordcloudConfig.fontSize);
-    expect(mockd3Cloud.fontStyle).toHaveBeenCalledWith(wordcloudConfig.fontStyle);
-    expect(mockd3Cloud.fontWeight).toHaveBeenCalledWith(wordcloudConfig.fontWeight);
-    expect(mockd3Cloud.padding).toHaveBeenCalledWith(wordcloudConfig.padding);
-    expect(mockd3Cloud.random).toHaveBeenCalledWith(wordcloudConfig.random);
-    expect(mockd3Cloud.rotate).toHaveBeenCalledWith(wordcloudConfig.rotate);
-    expect(mockd3Cloud.spiral).toHaveBeenCalledWith(wordcloudConfig.spiral);
-    expect(mockd3Cloud.words).toHaveBeenCalledWith(wordcloudConfig.words);
+    expect(mocked3Cloud.size).toHaveBeenCalledWith([wordcloudConfig.width, wordcloudConfig.height]);
+    expect(mocked3Cloud.font).toHaveBeenCalledWith(wordcloudConfig.font);
+    expect(mocked3Cloud.fontSize).toHaveBeenCalledWith(wordcloudConfig.fontSize);
+    expect(mocked3Cloud.fontStyle).toHaveBeenCalledWith(wordcloudConfig.fontStyle);
+    expect(mocked3Cloud.fontWeight).toHaveBeenCalledWith(wordcloudConfig.fontWeight);
+    expect(mocked3Cloud.padding).toHaveBeenCalledWith(wordcloudConfig.padding);
+    expect(mocked3Cloud.random).toHaveBeenCalledWith(wordcloudConfig.random);
+    expect(mocked3Cloud.rotate).toHaveBeenCalledWith(wordcloudConfig.rotate);
+    expect(mocked3Cloud.spiral).toHaveBeenCalledWith(wordcloudConfig.spiral);
+    expect(mocked3Cloud.words).toHaveBeenCalledWith(wordcloudConfig.words);
   });
 });
