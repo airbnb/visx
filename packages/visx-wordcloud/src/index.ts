@@ -1,5 +1,2 @@
-import Wordcloud from './Wordcloud';
-
-export default Wordcloud;
-export { Wordcloud };
-export { useWordcloud } from './useWordcloud';
+export { default as Wordcloud } from './Wordcloud';
+export { default as useWordcloud } from './useWordcloud';

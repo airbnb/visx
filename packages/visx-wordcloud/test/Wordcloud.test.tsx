@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import React from 'react';
 import { Wordcloud } from '../src';
-import { WordcloudConfig } from '../src/useWordcloud';
+import { WordcloudConfig } from '../src/types';
 
 const mockd3Cloud = {
   size: jest.fn(),
