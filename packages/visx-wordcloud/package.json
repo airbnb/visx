@@ -29,15 +29,12 @@
   },
   "homepage": "https://github.com/airbnb/visx#readme",
   "peerDependencies": {
-    "react": "^16.8.0-0",
-    "react-dom": "^16.8.0-0"
+    "react": "^16.8.0-0 || ^17.0.0-0"
   },
   "dependencies": {
-    "@visx/group": "1.17.1",
-    "d3-cloud":"1.2.5"
-  },
-  "devDependencies": {
-    "@types/d3-cloud":"1.2.5"
+    "@types/d3-cloud":"1.2.5",
+    "@visx/group": "2.0.1-alpha.0",
+    "d3-cloud":"^1.2.5"
   },
   "publishConfig": {
     "access": "public"
