@@ -1,4 +1,5 @@
 # Changelog
+- [v2.1.0](#v210)
 - [v1.18.1](#v1181)
 - [v1.18.0](#v1180)
 - [v1.17.1](#v1171)
@@ -6,10 +7,10 @@
 - [v1.16.1](#v1161)
 - [v1.16.0](#v1160)
 - [v1.15.0](#v1150)
-- [v1.14.1](#v1141)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v1141">v1.14.1</a></li>
   <li><a href="#v1140">v1.14.0</a></li>
   <li><a href="#v1130">v1.13.0</a></li>
   <li><a href="#v1120">v1.12.0</a></li>
@@ -121,6 +122,37 @@
 </details>
 
 ------
+# v2.1.0 (2021-08-17)
+
+#### :rocket: Enhancements
+
+- deps: update to react-spring@9 [#1277](https://github.com/airbnb/visx/pull/1277)
+- new(zoom): add pinch and zoom support [#1305](https://github.com/airbnb/visx/pull/1305)
+- new(demo/geo-albers/usa): use all 4 colors in the map [#1314](https://github.com/airbnb/visx/pull/1314)
+- new(wordcloud): add @visx/wordcloud [#1311](https://github.com/airbnb/visx/pull/1311)
+
+#### :bug: Bug Fix
+
+- fix(scripts/performRelease): fix alpha release logic [#1310](https://github.com/airbnb/visx/pull/1310)
+
+### :boom:  Breaking Changes
+
+- deps: update to react-spring@9 [#1277](https://github.com/airbnb/visx/pull/1277)
+- [deps] Upgrade to react v17 and react-testing-library [#1268](https://github.com/airbnb/visx/pull/1268)
+- breaking(visx/visx): export by package namespace [#1121](https://github.com/airbnb/visx/pull/1121)
+
+### :house:  Internal
+
+- fix(scripts/performRelease): fix alpha release logic [#1310](https://github.com/airbnb/visx/pull/1310)
+  
+#### :trophy: Contributors
+- [craciuncezar](https://github.com/craciuncezar)
+- [gazcn007](https://github.com/gazcn007)
+- [kenfehling](https://github.com/kenfehling)
+- [robsutcliffe](https://github.com/robsutcliffe)
+- [tonyneel923](https://github.com/tonyneel923)
+- [williaster](https://github.com/williaster)
+
 # v1.18.1 (2021-07-21)
 
 #### :bug: Bug Fix
