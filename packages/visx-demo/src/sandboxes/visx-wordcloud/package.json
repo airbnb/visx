@@ -1,0 +1,25 @@
+{
+  "name": "@visx/demo-wordcloud",
+  "description": "Standalone visx wordcloud demo.",
+  "main": "index.tsx",
+  "private": true,
+  "dependencies": {
+    "@visx/responsive":"latest",
+    "@visx/scale":"latest",
+    "@visx/text":"latest",
+    "@visx/wordcloud":"latest",
+    "react": "^16.8",
+    "react-dom": "^16.8"
+  },
+  "devDependencies": {
+    "@types/react": "^16.8",
+    "@types/react-dom": "^16.8",
+    "typescript": "^3"
+  },
+  "keywords": [
+    "visualization",
+    "d3",
+    "react",
+    "visx"
+  ]
+}
