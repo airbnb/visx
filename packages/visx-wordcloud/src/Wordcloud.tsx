@@ -16,8 +16,8 @@ export default function Wordcloud<Datum extends BaseDatum>(props: WordcloudProps
   if (width === 0 || height === 0) return null;
 
   return (
-    <svg width={wordcloudConfig.width} height={wordcloudConfig.height}>
-      <Group left={wordcloudConfig.width / 2} top={wordcloudConfig.height / 2}>
+    <svg width={width} height={height}>
+      <Group left={width / 2} top={height / 2}>
         {children(words)}
       </Group>
     </svg>
