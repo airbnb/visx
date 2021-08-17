@@ -90,7 +90,7 @@ export default function GeoAlbersUsa({ width, height, fullSize = true }: GeoAlbe
                   <path
                     key={`map-feature-${i}`}
                     d={path || ''}
-                    fill={i % 2 === 0 ? colors[0] : colors[1]}
+                    fill={colors[i % 4]}
                     stroke={background}
                     strokeWidth={0.5}
                   />
@@ -102,7 +102,7 @@ export default function GeoAlbersUsa({ width, height, fullSize = true }: GeoAlbe
                   <path
                     key={`map-feature-${i}`}
                     d={path || ''}
-                    fill={i % 2 === 0 ? colors[0] : colors[1]}
+                    fill={colors[i % 4]}
                     stroke={background}
                     strokeWidth={0.5}
                   />
