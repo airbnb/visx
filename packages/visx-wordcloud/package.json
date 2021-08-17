@@ -1,6 +1,6 @@
 {
   "name": "@visx/wordcloud",
-  "version": "0.1.0",
+  "version": "2.1.0",
   "description": "visx wordcloud",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -32,9 +32,9 @@
     "react": "^16.8.0-0 || ^17.0.0-0"
   },
   "dependencies": {
-    "@types/d3-cloud":"1.2.5",
-    "@visx/group": "2.0.1-alpha.0",
-    "d3-cloud":"^1.2.5"
+    "@types/d3-cloud": "1.2.5",
+    "@visx/group": "2.1.0",
+    "d3-cloud": "^1.2.5"
   },
   "publishConfig": {
     "access": "public"
