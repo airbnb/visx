@@ -1,6 +1,6 @@
 import React from 'react';
 import BarStackHorizontal, {
-  BarStackHorizontalProps,
+  HorizontalBarStackExampleProps,
   background,
   purple3,
 } from '../../sandboxes/visx-barstack-horizontal/Example';
@@ -13,7 +13,7 @@ const detailsStyles = { color: purple3, zIndex: 1 };
 
 export default function BarStackHorizontalTile() {
   return (
-    <GalleryTile<BarStackHorizontalProps>
+    <GalleryTile<HorizontalBarStackExampleProps>
       title="Bar Stack Horizontal"
       description="<Shape.BarStackHorizontal />"
       detailsStyles={detailsStyles}
