@@ -76,7 +76,6 @@ export default function ViolinPlot<Datum extends object>({
     const leftCurvePath = leftCurve([...data].reverse()) || '';
     path = `${rightCurvePath} ${leftCurvePath.replace('M', 'L')} Z`;
   }
-  // eslint-disable-next-line react/jsx-no-useless-fragment
   if (children) return <>{children({ path })}</>;
   return <path className={cx('visx-violin', className)} d={path} {...restProps} />;
 }

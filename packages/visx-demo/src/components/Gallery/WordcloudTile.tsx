@@ -12,7 +12,7 @@ export default function WordcloudTile() {
     <GalleryTile
       title="Wordcloud"
       description="<Wordcloud />"
-      exampleRenderer={size => <Wordcloud width={size.width} height={size.height} />}
+      exampleRenderer={(size) => <Wordcloud width={size.width} height={size.height} />}
       exampleUrl="/wordcloud"
       tileStyles={tileStyles}
       detailsStyles={detailsStyles}
