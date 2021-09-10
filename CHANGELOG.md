@@ -1,4 +1,5 @@
 # Changelog
+- [v2.1.1](#v211)
 - [v2.1.0](#v210)
 - [v1.18.1](#v1181)
 - [v1.18.0](#v1180)
@@ -6,10 +7,10 @@
 - [v1.17.0](#v1170)
 - [v1.16.1](#v1161)
 - [v1.16.0](#v1160)
-- [v1.15.0](#v1150)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v1150">v1.15.0</a></li>
   <li><a href="#v1141">v1.14.1</a></li>
   <li><a href="#v1140">v1.14.0</a></li>
   <li><a href="#v1130">v1.13.0</a></li>
@@ -122,6 +123,15 @@
 </details>
 
 ------
+# v2.1.1 (2021-09-10)
+
+### :house:  Internal
+
+- deps: bump lodash throughout [#1341](https://github.com/airbnb/visx/pull/1341)
+  
+#### :trophy: Contributors
+- [williaster](https://github.com/williaster)
+
 # v2.1.0 (2021-08-17)
 
 #### :rocket: Enhancements
