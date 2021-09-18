@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import useMeasure, { RectReadOnly, Options as BaseUseMeasureOptions } from 'react-use-measure';
 
-import Portal from '../Portal';
+import Portal, { PortalProps } from '../Portal';
 import Tooltip, { TooltipProps } from '../tooltips/Tooltip';
 import TooltipWithBounds from '../tooltips/TooltipWithBounds';
 
@@ -14,7 +14,7 @@ export type UseTooltipInPortal = {
   TooltipInPortal: React.FC<TooltipInPortalProps>;
 };
 
-export type UseTooltipPortalOptions = {
+export type UseTooltipPortalOptions = Pick<PortalProps, 'zIndex'> & {
   /** whether TooltipWithBounds should be used to auto-detect (page) boundaries and reposition itself. */
   detectBounds?: boolean;
   /** Debounce resize or scroll events in milliseconds (needed for positioning) */
@@ -31,6 +31,7 @@ export type UseTooltipPortalOptions = {
  */
 export default function useTooltipInPortal({
   detectBounds: detectBoundsOption = true,
+  zIndex,
   ...useMeasureOptions
 }: UseTooltipPortalOptions | undefined = {}): UseTooltipInPortal {
   const [containerRef, containerBounds, forceRefreshBounds] = useMeasure(useMeasureOptions);
@@ -49,7 +50,7 @@ export default function useTooltipInPortal({
       const portalTop = containerTop + (containerBounds.top || 0) + window.scrollY;
 
       return (
-        <Portal>
+        <Portal zIndex={zIndex}>
           <TooltipComponent left={portalLeft} top={portalTop} {...tooltipProps} />
         </Portal>
       );
