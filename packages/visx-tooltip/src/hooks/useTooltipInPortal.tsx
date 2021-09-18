@@ -5,7 +5,7 @@ import Portal, { PortalProps } from '../Portal';
 import Tooltip, { TooltipProps } from '../tooltips/Tooltip';
 import TooltipWithBounds from '../tooltips/TooltipWithBounds';
 
-export type TooltipInPortalProps = TooltipProps & Pick<UseTooltipPortalOptions, 'detectBounds'>;
+export type TooltipInPortalProps = TooltipProps & Pick<UseTooltipPortalOptions, 'detectBounds' | 'zIndex'>;
 
 export type UseTooltipInPortal = {
   containerRef: (element: HTMLElement | SVGElement | null) => void;
@@ -31,7 +31,7 @@ export type UseTooltipPortalOptions = Pick<PortalProps, 'zIndex'> & {
  */
 export default function useTooltipInPortal({
   detectBounds: detectBoundsOption = true,
-  zIndex,
+  zIndex: zIndexOption,
   ...useMeasureOptions
 }: UseTooltipPortalOptions | undefined = {}): UseTooltipInPortal {
   const [containerRef, containerBounds, forceRefreshBounds] = useMeasure(useMeasureOptions);
@@ -41,9 +41,11 @@ export default function useTooltipInPortal({
       left: containerLeft = 0,
       top: containerTop = 0,
       detectBounds: detectBoundsProp, // allow override at component-level
+      zIndex: zIndexProp, // allow override at the component-level
       ...tooltipProps
     }: TooltipInPortalProps) => {
       const detectBounds = detectBoundsProp == null ? detectBoundsOption : detectBoundsProp;
+      const zIndex = zIndexProp == null ? zIndexOption : zIndexProp;
       const TooltipComponent = detectBounds ? TooltipWithBounds : Tooltip;
       // convert container coordinates to page coordinates
       const portalLeft = containerLeft + (containerBounds.left || 0) + window.scrollX;
