@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 export type PortalProps = {
   /** Optional z-index to set on the Portal. */
-  zIndex?: number;
+  zIndex?: number | string;
   /** Content to render in the Portal. */
   children: NonNullable<React.ReactNode>;
 };
