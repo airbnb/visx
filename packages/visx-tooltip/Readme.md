@@ -154,8 +154,8 @@ interface RectReadOnly {
 
 `Portal` is a component which simply renders its children inside a `div` element appended to
 `document.body` created by `ReactDOM`. A `Portal` can be an effective strategy for solving the
-(`z-index` stacking context
-problem)[rg/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context] for
+[`z-index` stacking context
+problem](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context) for
 `Tooltip`s.
 
 For example, if your chart is rendered inside a stacking context with a lower `z-index` than a
