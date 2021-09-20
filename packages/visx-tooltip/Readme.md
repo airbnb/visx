@@ -124,6 +124,8 @@ type Options = {
   scroll?: boolean
   /** You can optionally inject a resize-observer polyfill */
   polyfill?: { new (cb: ResizeObserverCallback): ResizeObserver }
+  /** Optional z-index to set on the Portal div */
+  zIndex?: number | string;
 }
 
 useTooltipInPortal(
