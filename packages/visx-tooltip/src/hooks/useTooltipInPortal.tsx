@@ -57,7 +57,7 @@ export default function useTooltipInPortal({
         </Portal>
       );
     },
-    [detectBoundsOption, containerBounds.left, containerBounds.top],
+    [detectBoundsOption, zIndexOption, containerBounds.left, containerBounds.top],
   );
 
   return {
