@@ -1,5 +1,9 @@
 import React from 'react';
-import BarGroup, { BarGroupProps, background, green } from '../../sandboxes/visx-bargroup/Example';
+import BarGroupExample, {
+  BarGroupExampleProps,
+  background,
+  green,
+} from '../../sandboxes/visx-bargroup/Example';
 import GalleryTile from '../GalleryTile';
 
 export { default as packageJson } from '../../sandboxes/visx-bargroup/package.json';
@@ -9,11 +13,11 @@ const detailsStyles = { color: green };
 
 export default function BarGroupTile() {
   return (
-    <GalleryTile<BarGroupProps>
+    <GalleryTile<BarGroupExampleProps>
       title="Bar Group"
       description="<Shape.BarGroup />"
       detailsStyles={detailsStyles}
-      exampleRenderer={BarGroup}
+      exampleRenderer={BarGroupExample}
       exampleUrl="/bargroup"
       tileStyles={tileStyles}
     />

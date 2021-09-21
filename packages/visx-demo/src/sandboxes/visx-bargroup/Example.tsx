@@ -1,80 +1,121 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Group } from '@visx/group';
-import { BarGroup } from '@visx/shape';
+import { BarGroup as VisxBarGroup } from '@visx/shape';
 import { AxisBottom } from '@visx/axis';
 import cityTemperature, { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
 import { scaleBand, scaleLinear, scaleOrdinal } from '@visx/scale';
 import { timeParse, timeFormat } from 'd3-time-format';
-
-export type BarGroupProps = {
-  width: number;
-  height: number;
-  margin?: { top: number; right: number; bottom: number; left: number };
-  events?: boolean;
-};
-
-type CityName = 'New York' | 'San Francisco' | 'Austin';
 
 const blue = '#aeeef8';
 export const green = '#e5fd3d';
 const purple = '#9caff6';
 export const background = '#612efb';
 
-const data = cityTemperature.slice(0, 8);
-const keys = Object.keys(data[0]).filter(d => d !== 'date') as CityName[];
 const defaultMargin = { top: 40, right: 0, bottom: 40, left: 0 };
 
-const parseDate = timeParse('%Y-%m-%d');
-const format = timeFormat('%b %d');
-const formatDate = (date: string) => format(parseDate(date) as Date);
-
-// accessors
-const getDate = (d: CityTemperature) => d.date;
+type GroupKey = string | number;
 
 // scales
-const dateScale = scaleBand<string>({
-  domain: data.map(getDate),
-  padding: 0.2,
-});
-const cityScale = scaleBand<string>({
-  domain: keys,
-  padding: 0.1,
-});
-const tempScale = scaleLinear<number>({
-  domain: [0, Math.max(...data.map(d => Math.max(...keys.map(key => Number(d[key])))))],
-});
-const colorScale = scaleOrdinal<string, string>({
-  domain: keys,
-  range: [blue, green, purple],
-});
+function createXScale<Datum>(
+  data: Datum[],
+  getXValue: BarGroupProps<Datum>['xAccessor'],
+  xMax: number,
+) {
+  const xScale = scaleBand<string>({
+    domain: data.map(getXValue),
+    padding: 0.2,
+  });
+  xScale.rangeRound([0, xMax]);
+  return xScale;
+}
 
-export default function Example({
+function createGroupScale<Key extends GroupKey = GroupKey>(
+  groupKeys: Key[],
+  groupBarWidth: number,
+) {
+  const groupBarScale = scaleBand<Key>({
+    domain: groupKeys,
+    padding: 0.1,
+  });
+  groupBarScale.rangeRound([0, groupBarWidth]);
+  return groupBarScale;
+}
+
+function createYScale<Datum, Key extends GroupKey = GroupKey>(
+  data: Datum[],
+  getMaxGroupValue: (d: Datum, groupKeys: Key[]) => number,
+  yMax: number,
+  groupKeys: Key[],
+) {
+  const yScale = scaleLinear<number>({
+    domain: [0, Math.max(...data.map(datum => getMaxGroupValue(datum, groupKeys)))],
+  });
+  yScale.range([yMax, 0]);
+  return yScale;
+}
+
+function createColorScale<Key extends GroupKey = GroupKey>(groupKeys: Key[]) {
+  const colorScale = scaleOrdinal<Key, string>({
+    domain: groupKeys,
+    range: [blue, green, purple],
+  });
+  return colorScale;
+}
+
+export type BarGroupProps<Datum, Key extends GroupKey = GroupKey> = {
+  data: Datum[];
+  width: number;
+  height: number;
+  margin?: { top: number; right: number; bottom: number; left: number };
+  events?: boolean;
+  yAccessor: (d: Datum, groupKeys: Key[]) => number;
+  xAccessor: (d: Datum) => string;
+  getGroupKeys: (d: Datum) => Key[];
+  formatXValue: (value: string) => string;
+};
+
+function BarGroup<Datum, Key extends GroupKey = GroupKey>({
   width,
   height,
   events = false,
   margin = defaultMargin,
-}: BarGroupProps) {
+  xAccessor,
+  yAccessor,
+  getGroupKeys,
+  formatXValue,
+  data,
+}: BarGroupProps<Datum, Key>) {
   // bounds
   const xMax = width - margin.left - margin.right;
   const yMax = height - margin.top - margin.bottom;
 
-  // update scale output dimensions
-  dateScale.rangeRound([0, xMax]);
-  cityScale.rangeRound([0, dateScale.bandwidth()]);
-  tempScale.range([yMax, 0]);
+  // names of items in each bar group
+  const groupKeys = useMemo(() => getGroupKeys(data[0]), [data, getGroupKeys]);
+
+  // scales
+  const xScale = useMemo(() => createXScale(data, xAccessor, xMax), [data, xAccessor, xMax]);
+  const barWidth = xScale.bandwidth();
+  const x1Scale = useMemo(() => createGroupScale(groupKeys, barWidth), [groupKeys, barWidth]);
+  const yScale = useMemo(() => createYScale(data, yAccessor, yMax, groupKeys), [
+    data,
+    yAccessor,
+    yMax,
+    groupKeys,
+  ]);
+  const colorScale = useMemo(() => createColorScale(groupKeys), [groupKeys]);
 
   return width < 10 ? null : (
     <svg width={width} height={height}>
       <rect x={0} y={0} width={width} height={height} fill={background} rx={14} />
       <Group top={margin.top} left={margin.left}>
-        <BarGroup
+        <VisxBarGroup
           data={data}
-          keys={keys}
+          keys={groupKeys}
           height={yMax}
-          x0={getDate}
-          x0Scale={dateScale}
-          x1Scale={cityScale}
-          yScale={tempScale}
+          x0={xAccessor}
+          x0Scale={xScale}
+          x1Scale={x1Scale}
+          yScale={yScale}
           color={colorScale}
         >
           {barGroups =>
@@ -99,12 +140,12 @@ export default function Example({
               </Group>
             ))
           }
-        </BarGroup>
+        </VisxBarGroup>
       </Group>
       <AxisBottom
         top={yMax + margin.top}
-        tickFormat={formatDate}
-        scale={dateScale}
+        tickFormat={formatXValue}
+        scale={xScale}
         stroke={green}
         tickStroke={green}
         hideAxisLine
@@ -115,5 +156,44 @@ export default function Example({
         })}
       />
     </svg>
+  );
+}
+
+type CityName = 'New York' | 'San Francisco' | 'Austin';
+
+// accessors
+const getDate = (datum: CityTemperature) => datum.date;
+
+const getGroupMaxCityTemperature = (data: CityTemperature, cities: CityName[]): number =>
+  Math.max(...cities.map(city => Number(data[city])));
+
+const getCityNames = (datum: CityTemperature) =>
+  Object.keys(datum).filter(d => d !== 'date') as CityName[];
+
+const data = cityTemperature.slice(0, 8);
+
+// formatters
+const parseDate = timeParse('%Y-%m-%d');
+const format = timeFormat('%b %d');
+const formatDate = (date: string) => format(parseDate(date) as Date);
+
+export type BarGroupExampleProps = Pick<
+  BarGroupProps<CityTemperature, CityName>,
+  'events' | 'height' | 'width' | 'margin'
+>;
+
+export default function BarGroupExample({ width, height, margin, events }: BarGroupExampleProps) {
+  return (
+    <BarGroup
+      events={events}
+      width={width}
+      height={height}
+      margin={margin}
+      data={data}
+      xAccessor={getDate}
+      yAccessor={getGroupMaxCityTemperature}
+      formatXValue={formatDate}
+      getGroupKeys={getCityNames}
+    />
   );
 }
