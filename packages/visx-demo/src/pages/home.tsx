@@ -88,7 +88,7 @@ const Home = () => (
           <div className="link">
             <Link href="/zoom-i">
               <ParentSize>
-                {size => {
+                {(size) => {
                   return (
                     <div style={{ pointerEvents: 'none' }}>
                       <Zoom {...size} height={size.height > 0 ? size.height : 400} />
@@ -101,7 +101,7 @@ const Home = () => (
           <div className="link">
             <Link href="/dots">
               <ParentSize>
-                {size => {
+                {(size) => {
                   return <Dots {...size} showControls={false} />;
                 }}
               </ParentSize>
@@ -110,7 +110,7 @@ const Home = () => (
           <div className="link">
             <Link href="/bars">
               <ParentSize>
-                {size => {
+                {(size) => {
                   return <Bars {...size} />;
                 }}
               </ParentSize>
@@ -119,7 +119,7 @@ const Home = () => (
           <div className="link">
             <Link href="/lineradial">
               <ParentSize>
-                {size => {
+                {(size) => {
                   return <Radial animate={false} {...size} />;
                 }}
               </ParentSize>

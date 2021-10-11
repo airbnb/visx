@@ -21,8 +21,8 @@ const params: NearestDatumArgs<AxisScale, AxisScale, Datum> = {
     { xVal: 0, yVal: '0' },
     { xVal: 8, yVal: '8' },
   ],
-  xAccessor: d => d.xVal,
-  yAccessor: d => d.yVal,
+  xAccessor: (d) => d.xVal,
+  yAccessor: (d) => d.yVal,
   xScale: scaleLinear({ domain: [0, 10], range: [0, 10] }),
   yScale: scaleBand({ domain: ['0', '8'], range: [0, 10] }),
 };
@@ -125,14 +125,10 @@ describe('findNearestStackDatum', () => {
     const d2 = { yVal: '🚀' };
     expect(
       findNearestStackDatum(
-        ({
+        {
           ...params,
           // type is not technically correct, but coerce for test
-        } as unknown) as NearestDatumArgs<
-          AxisScale,
-          AxisScale,
-          BarStackDatum<AxisScale, AxisScale>
-        >,
+        } as unknown as NearestDatumArgs<AxisScale, AxisScale, BarStackDatum<AxisScale, AxisScale>>,
         [d1, d2],
         true,
       )!.datum,

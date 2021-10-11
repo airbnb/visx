@@ -26,13 +26,13 @@ import useStackedData from '../../../hooks/useStackedData';
 type BarStackChildProps<
   XScale extends PositionScale,
   YScale extends PositionScale,
-  Datum extends object
+  Datum extends object,
 > = Omit<BaseBarSeriesProps<XScale, YScale, Datum>, 'BarsComponent'>;
 
 export type BaseBarStackProps<
   XScale extends PositionScale,
   YScale extends PositionScale,
-  Datum extends object
+  Datum extends object,
 > = {
   /** `BarSeries` elements, note we can't strictly enforce this with TS yet. */
   children:
@@ -49,7 +49,7 @@ export type BaseBarStackProps<
 function BaseBarStack<
   XScale extends PositionScale,
   YScale extends PositionScale,
-  Datum extends object
+  Datum extends object,
 >({
   children,
   order,
@@ -64,9 +64,9 @@ function BaseBarStack<
 }: BaseBarStackProps<XScale, YScale, Datum>) {
   type StackBar = SeriesPoint<CombinedStackData<XScale, YScale>>;
 
-  const { colorScale, dataRegistry, horizontal, xScale, yScale } = (useContext(
+  const { colorScale, dataRegistry, horizontal, xScale, yScale } = useContext(
     DataContext,
-  ) as unknown) as DataContextType<XScale, YScale, BarStackDatum<XScale, YScale>>;
+  ) as unknown as DataContextType<XScale, YScale, BarStackDatum<XScale, YScale>>;
 
   const { seriesChildren, dataKeys, stackedData } = useStackedData<
     XScale,
@@ -84,8 +84,8 @@ function BaseBarStack<
     (
       params: NearestDatumArgs<XScale, YScale, BarStackDatum<XScale, YScale>>,
     ): NearestDatumReturnType<Datum> => {
-      const childData = seriesChildren.find(child => child.props.dataKey === params.dataKey)?.props
-        ?.data;
+      const childData = seriesChildren.find((child) => child.props.dataKey === params.dataKey)
+        ?.props?.data;
       return childData ? findNearestStackDatum(params, childData, horizontal) : null;
     },
     [seriesChildren, horizontal],
@@ -107,7 +107,7 @@ function BaseBarStack<
   });
 
   // if scales and data are not available in the registry, bail
-  if (dataKeys.some(key => dataRegistry.get(key) == null) || !xScale || !yScale || !colorScale) {
+  if (dataKeys.some((key) => dataRegistry.get(key) == null) || !xScale || !yScale || !colorScale) {
     return null;
   }
 
@@ -120,21 +120,21 @@ function BaseBarStack<
   let getY: (bar: StackBar) => number | undefined;
 
   if (horizontal) {
-    getWidth = bar => (xScale(getSecondItem(bar)) ?? NaN) - (xScale(getFirstItem(bar)) ?? NaN);
+    getWidth = (bar) => (xScale(getSecondItem(bar)) ?? NaN) - (xScale(getFirstItem(bar)) ?? NaN);
     getHeight = () => barThickness;
-    getX = bar => xScale(getFirstItem(bar));
-    getY = bar =>
+    getX = (bar) => xScale(getFirstItem(bar));
+    getY = (bar) =>
       'bandwidth' in yScale
         ? yScale(getStackValue(bar.data))
         : Math.max((yScale(getStackValue(bar.data)) ?? NaN) - halfBarThickness);
   } else {
     getWidth = () => barThickness;
-    getHeight = bar => (yScale(getFirstItem(bar)) ?? NaN) - (yScale(getSecondItem(bar)) ?? NaN);
-    getX = bar =>
+    getHeight = (bar) => (yScale(getFirstItem(bar)) ?? NaN) - (yScale(getSecondItem(bar)) ?? NaN);
+    getX = (bar) =>
       'bandwidth' in xScale
         ? xScale(getStackValue(bar.data))
         : Math.max((xScale(getStackValue(bar.data)) ?? NaN) - halfBarThickness);
-    getY = bar => yScale(getSecondItem(bar));
+    getY = (bar) => yScale(getSecondItem(bar));
   }
 
   const bars = stackedData
@@ -143,9 +143,8 @@ function BaseBarStack<
       if (!entry) return null;
 
       // get colorAccessor from child BarSeries, if available
-      const barSeries:
-        | React.ReactElement<BaseBarSeriesProps<XScale, YScale, Datum>>
-        | undefined = seriesChildren.find(child => child.props.dataKey === barStack.key);
+      const barSeries: React.ReactElement<BaseBarSeriesProps<XScale, YScale, Datum>> | undefined =
+        seriesChildren.find((child) => child.props.dataKey === barStack.key);
       const colorAccessor = barSeries?.props?.colorAccessor;
 
       return barStack.map((bar, index) => {
@@ -173,7 +172,7 @@ function BaseBarStack<
         };
       });
     })
-    .filter(bar => bar) as Bar[];
+    .filter((bar) => bar) as Bar[];
 
   return (
     <g className="visx-bar-stack">

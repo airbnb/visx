@@ -45,7 +45,7 @@ describe('useEventEmitters', () => {
 
       useEffect(() => {
         if (emitters.onPointerUp) {
-          emitters.onPointerUp((new MouseEvent('pointerup') as unknown) as React.PointerEvent);
+          emitters.onPointerUp(new MouseEvent('pointerup') as unknown as React.PointerEvent);
           expect(listener).toHaveBeenCalledTimes(1);
         }
       });

@@ -35,8 +35,10 @@ export default function generateSnakePath({
       { x: x + step, y },
       { x: x + step, y: y + step },
     ]
-      .filter(p => p.x >= 0 && p.x <= width && p.y >= 0 && p.y <= height && !used.has(pointKey(p)))
-      .map(p => ({
+      .filter(
+        (p) => p.x >= 0 && p.x <= width && p.y >= 0 && p.y <= height && !used.has(pointKey(p)),
+      )
+      .map((p) => ({
         point: p,
         distance: distance(point, p),
       }))

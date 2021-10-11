@@ -131,15 +131,8 @@ export default class BrushHandle extends React.Component<BrushHandleProps> {
   };
 
   render() {
-    const {
-      stageWidth,
-      stageHeight,
-      brush,
-      type,
-      handle,
-      isControlled,
-      isDragInProgress,
-    } = this.props;
+    const { stageWidth, stageHeight, brush, type, handle, isControlled, isDragInProgress } =
+      this.props;
     const { x, y, width, height } = handle;
     const cursor = type === 'right' || type === 'left' ? 'ew-resize' : 'ns-resize';
 

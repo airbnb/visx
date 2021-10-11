@@ -17,9 +17,7 @@ const seededRandom = getSeededRandom(0.88);
 const data: Datum[] = new Array(150).fill(null).map(() => ({
   x: seededRandom(),
   y: seededRandom(),
-  id: Math.random()
-    .toString(36)
-    .slice(2),
+  id: Math.random().toString(36).slice(2),
 }));
 
 const neighborRadius = 75;
@@ -44,8 +42,8 @@ const Example = ({ width, height, margin = defaultMargin }: VoronoiProps) => {
   const voronoiLayout = useMemo(
     () =>
       voronoi<Datum>({
-        x: d => d.x * innerWidth,
-        y: d => d.y * innerHeight,
+        x: (d) => d.x * innerWidth,
+        y: (d) => d.y * innerHeight,
         width: innerWidth,
         height: innerHeight,
       })(data),
@@ -66,7 +64,7 @@ const Example = ({ width, height, margin = defaultMargin }: VoronoiProps) => {
         top={margin.top}
         left={margin.left}
         clipPath="url(#voronoi_clip)"
-        onMouseMove={event => {
+        onMouseMove={(event) => {
           if (!svgRef.current) return;
 
           // find the nearest polygon to the current mouse position
@@ -80,7 +78,7 @@ const Example = ({ width, height, margin = defaultMargin }: VoronoiProps) => {
             const cell = voronoiLayout.cells[closest.index];
             if (!cell) return;
 
-            cell.halfedges.forEach(index => {
+            cell.halfedges.forEach((index) => {
               const edge = voronoiLayout.edges[index];
               const { left, right } = edge;
               if (left && left !== closest) neighbors.add(left.data.id);
@@ -96,7 +94,7 @@ const Example = ({ width, height, margin = defaultMargin }: VoronoiProps) => {
           setNeighborIds(new Set());
         }}
       >
-        {polygons.map(polygon => (
+        {polygons.map((polygon) => (
           <VoronoiPolygon
             key={`polygon-${polygon.data.id}`}
             polygon={polygon}

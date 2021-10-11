@@ -36,24 +36,25 @@ export default function useTooltipInPortal({
   const [containerRef, containerBounds, forceRefreshBounds] = useMeasure(useMeasureOptions);
 
   const TooltipInPortal = useMemo(
-    () => ({
-      left: containerLeft = 0,
-      top: containerTop = 0,
-      detectBounds: detectBoundsProp, // allow override at component-level
-      ...tooltipProps
-    }: TooltipInPortalProps) => {
-      const detectBounds = detectBoundsProp == null ? detectBoundsOption : detectBoundsProp;
-      const TooltipComponent = detectBounds ? TooltipWithBounds : Tooltip;
-      // convert container coordinates to page coordinates
-      const portalLeft = containerLeft + (containerBounds.left || 0) + window.scrollX;
-      const portalTop = containerTop + (containerBounds.top || 0) + window.scrollY;
+    () =>
+      ({
+        left: containerLeft = 0,
+        top: containerTop = 0,
+        detectBounds: detectBoundsProp, // allow override at component-level
+        ...tooltipProps
+      }: TooltipInPortalProps) => {
+        const detectBounds = detectBoundsProp == null ? detectBoundsOption : detectBoundsProp;
+        const TooltipComponent = detectBounds ? TooltipWithBounds : Tooltip;
+        // convert container coordinates to page coordinates
+        const portalLeft = containerLeft + (containerBounds.left || 0) + window.scrollX;
+        const portalTop = containerTop + (containerBounds.top || 0) + window.scrollY;
 
-      return (
-        <Portal>
-          <TooltipComponent left={portalLeft} top={portalTop} {...tooltipProps} />
-        </Portal>
-      );
-    },
+        return (
+          <Portal>
+            <TooltipComponent left={portalLeft} top={portalTop} {...tooltipProps} />
+          </Portal>
+        );
+      },
     [detectBoundsOption, containerBounds.left, containerBounds.top],
   );
 

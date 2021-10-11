@@ -14,8 +14,9 @@ export function pathForOrientation({
     case PatternOrientation.horizontal:
       return `M 0,${height / 2} l ${height},0`;
     case PatternOrientation.diagonal:
-      return `M 0,${height} l ${height},${-height} M ${-height / 4},${height / 4} l ${height /
-        2},${-height / 2}
+      return `M 0,${height} l ${height},${-height} M ${-height / 4},${height / 4} l ${height / 2},${
+        -height / 2
+      }
              M ${(3 / 4) * height},${(5 / 4) * height} l ${height / 2},${-height / 2}`;
     case PatternOrientation.diagonalRightToLeft:
       return `M 0,0 l ${height},${height}

@@ -12,7 +12,7 @@ const DummyComponentWithCustomContainerPropsTooltip = withTooltip(DummyComponent
 const DummyComponentWithNoContainerTooltip = withTooltip(
   DummyComponent,
   undefined,
-  children => children,
+  (children) => children,
 );
 
 describe('withTooltip()', () => {
@@ -24,12 +24,7 @@ describe('withTooltip()', () => {
     const wrapper = shallow(<DummyComponentWithDefaultTooltip />);
 
     expect(wrapper.find('div')).toHaveLength(1);
-    expect(
-      wrapper
-        .find('div')
-        .first()
-        .prop('style'),
-    ).toEqual({
+    expect(wrapper.find('div').first().prop('style')).toEqual({
       position: 'relative',
       width: 'inherit',
       height: 'inherit',
@@ -41,12 +36,7 @@ describe('withTooltip()', () => {
     const wrapper = shallow(<DummyComponentWithCustomContainerPropsTooltip />);
 
     expect(wrapper.find('div')).toHaveLength(1);
-    expect(
-      wrapper
-        .find('div')
-        .first()
-        .prop('style'),
-    ).toEqual({
+    expect(wrapper.find('div').first().prop('style')).toEqual({
       position: 'static',
     });
     expect(wrapper.find(DummyComponent)).toHaveLength(1);

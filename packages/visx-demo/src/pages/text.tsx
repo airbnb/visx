@@ -68,7 +68,7 @@ function TextDemo() {
               type="text"
               style={styles.exampleText}
               value={exampleText}
-              onChange={e => setExampleText(e.target.value)}
+              onChange={(e) => setExampleText(e.target.value)}
             />
           </div>
 
@@ -80,9 +80,9 @@ function TextDemo() {
               min="0"
               max="225"
               value={x}
-              onChange={e => setX(Number(e.target.value))}
+              onChange={(e) => setX(Number(e.target.value))}
             />
-            <input type="text" value={x} onChange={e => setX(Number(e.target.value))} />
+            <input type="text" value={x} onChange={(e) => setX(Number(e.target.value))} />
           </div>
 
           <div>
@@ -93,9 +93,9 @@ function TextDemo() {
               min="0"
               max="200"
               value={y}
-              onChange={e => setY(Number(e.target.value))}
+              onChange={(e) => setY(Number(e.target.value))}
             />
-            <input type="text" value={y} onChange={e => setY(Number(e.target.value))} />
+            <input type="text" value={y} onChange={(e) => setY(Number(e.target.value))} />
           </div>
 
           <div>
@@ -106,7 +106,7 @@ function TextDemo() {
               min="25"
               max="225"
               value={width}
-              onChange={e => setWidth(Number(e.target.value))}
+              onChange={(e) => setWidth(Number(e.target.value))}
             />{' '}
             {width}
           </div>
@@ -117,7 +117,7 @@ function TextDemo() {
               <input
                 type="radio"
                 value="start"
-                onChange={e => setTextAnchor(e.target.value)}
+                onChange={(e) => setTextAnchor(e.target.value)}
                 checked={textAnchor === 'start'}
               />{' '}
               start
@@ -126,7 +126,7 @@ function TextDemo() {
               <input
                 type="radio"
                 value="middle"
-                onChange={e => setTextAnchor(e.target.value)}
+                onChange={(e) => setTextAnchor(e.target.value)}
                 checked={textAnchor === 'middle'}
               />{' '}
               middle
@@ -135,7 +135,7 @@ function TextDemo() {
               <input
                 type="radio"
                 value="end"
-                onChange={e => setTextAnchor(e.target.value)}
+                onChange={(e) => setTextAnchor(e.target.value)}
                 checked={textAnchor === 'end'}
               />{' '}
               end
@@ -148,7 +148,7 @@ function TextDemo() {
               <input
                 type="radio"
                 value="start"
-                onChange={e => setVerticalAnchor(e.target.value)}
+                onChange={(e) => setVerticalAnchor(e.target.value)}
                 checked={verticalAnchor === 'start'}
               />{' '}
               start
@@ -157,7 +157,7 @@ function TextDemo() {
               <input
                 type="radio"
                 value="middle"
-                onChange={e => setVerticalAnchor(e.target.value)}
+                onChange={(e) => setVerticalAnchor(e.target.value)}
                 checked={verticalAnchor === 'middle'}
               />{' '}
               middle
@@ -166,7 +166,7 @@ function TextDemo() {
               <input
                 type="radio"
                 value="end"
-                onChange={e => setVerticalAnchor(e.target.value)}
+                onChange={(e) => setVerticalAnchor(e.target.value)}
                 checked={verticalAnchor === 'end'}
               />{' '}
               end
@@ -175,22 +175,22 @@ function TextDemo() {
 
           <div>
             fontSize:
-            <input type="text" value={fontSize} onChange={e => setFontSize(e.target.value)} />
+            <input type="text" value={fontSize} onChange={(e) => setFontSize(e.target.value)} />
           </div>
 
           <div>
             fontFamily:
-            <input type="text" value={fontFamily} onChange={e => setFontFamily(e.target.value)} />
+            <input type="text" value={fontFamily} onChange={(e) => setFontFamily(e.target.value)} />
           </div>
 
           <div>
             fontWeight:
-            <input type="text" value={fontWeight} onChange={e => setFontWeight(e.target.value)} />
+            <input type="text" value={fontWeight} onChange={(e) => setFontWeight(e.target.value)} />
           </div>
 
           <div>
             lineHeight:
-            <input type="text" value={lineHeight} onChange={e => setLineHeight(e.target.value)} />
+            <input type="text" value={lineHeight} onChange={(e) => setLineHeight(e.target.value)} />
           </div>
 
           <div>
@@ -200,7 +200,7 @@ function TextDemo() {
               min="0"
               max="360"
               value={angle}
-              onChange={e => setAngle(Number(e.target.value))}
+              onChange={(e) => setAngle(Number(e.target.value))}
             />
           </div>
 

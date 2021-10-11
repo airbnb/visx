@@ -49,7 +49,7 @@ const utcIntervals: {
 export default function applyNice<
   Output,
   DiscreteInput extends StringLike,
-  ThresholdInput extends DefaultThresholdInput
+  ThresholdInput extends DefaultThresholdInput,
 >(
   scale: D3Scale<Output, DiscreteInput, ThresholdInput>,
   config: ScaleConfigWithoutType<Output, DiscreteInput, ThresholdInput>,
@@ -69,9 +69,8 @@ export default function applyNice<
         timeScale.nice(isUtc ? utcIntervals[nice] : localTimeIntervals[nice]);
       } else {
         const { interval, step } = nice;
-        const parsedInterval = (isUtc
-          ? utcIntervals[interval]
-          : localTimeIntervals[interval]
+        const parsedInterval = (
+          isUtc ? utcIntervals[interval] : localTimeIntervals[interval]
         ).every(step);
         if (parsedInterval != null) {
           timeScale.nice(parsedInterval as CountableTimeInterval);

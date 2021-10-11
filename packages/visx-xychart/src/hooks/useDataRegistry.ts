@@ -7,7 +7,7 @@ import { DataContextType } from '../types';
 export default function useDataRegistry<
   XScale extends AxisScale,
   YScale extends AxisScale,
-  Datum extends object
+  Datum extends object,
 >(): DataContextType<XScale, YScale, Datum>['dataRegistry'] {
   const [, forceUpdate] = useState(Math.random());
   const privateRegistry = useMemo(() => new DataRegistry<XScale, YScale, Datum>(), []);

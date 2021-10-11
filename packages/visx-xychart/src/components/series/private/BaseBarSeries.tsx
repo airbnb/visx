@@ -13,7 +13,7 @@ import useSeriesEvents from '../../../hooks/useSeriesEvents';
 export type BaseBarSeriesProps<
   XScale extends AxisScale,
   YScale extends AxisScale,
-  Datum extends object
+  Datum extends object,
 > = SeriesProps<XScale, YScale, Datum> & {
   /** Rendered component which is passed BarsProps by BaseBarSeries after processing. */
   BarsComponent: React.FC<BarsProps<XScale, YScale>>;
@@ -48,9 +48,13 @@ function BaseBarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum
   yAccessor,
   yScale,
 }: BaseBarSeriesProps<XScale, YScale, Datum> & WithRegisteredDataProps<XScale, YScale, Datum>) {
-  const { colorScale, horizontal, theme, innerWidth = 0, innerHeight = 0 } = useContext(
-    DataContext,
-  );
+  const {
+    colorScale,
+    horizontal,
+    theme,
+    innerWidth = 0,
+    innerHeight = 0,
+  } = useContext(DataContext);
   const getScaledX = useCallback(getScaledValueFactory(xScale, xAccessor), [xScale, xAccessor]);
   const getScaledY = useCallback(getScaledValueFactory(yScale, yAccessor), [yScale, yAccessor]);
   const scaleBandwidth = getScaleBandwidth(horizontal ? yScale : xScale);
@@ -84,7 +88,7 @@ function BaseBarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum
           fill: colorAccessor?.(datum, index) ?? color,
         };
       })
-      .filter(bar => bar) as Bar[];
+      .filter((bar) => bar) as Bar[];
   }, [
     barThickness,
     color,

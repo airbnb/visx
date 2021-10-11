@@ -51,7 +51,7 @@ export default function genStats(
     const min = firstQuartile - 1.5 * IQR;
     const max = thirdQuartile + 1.5 * IQR;
 
-    const outliers = points.filter(p => p < min || p > max);
+    const outliers = points.filter((p) => p < min || p > max);
     const binWidth = 2 * IQR * (sampleSize - outliers.length) ** (-1 / 3);
     const binNum = Math.round((max - min) / binWidth);
     const actualBinWidth = (max - min) / binNum;
@@ -66,8 +66,8 @@ export default function genStats(
     values[values.length - 1] = max;
 
     points
-      .filter(p => p >= min && p <= max)
-      .forEach(p => {
+      .filter((p) => p >= min && p <= max)
+      .forEach((p) => {
         bins[Math.floor((p - min) / actualBinWidth) + 1] += 1;
       });
 

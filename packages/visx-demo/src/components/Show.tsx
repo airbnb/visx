@@ -67,7 +67,7 @@ export default withScreenSize<ShowProps & WithScreenSizeProvidedProps>(
               <>
                 <h2>Documentation</h2>
                 <div className="doc-links">
-                  {visxDeps.map(packageName => (
+                  {visxDeps.map((packageName) => (
                     <VisxDocLink key={packageName} packageName={packageName} />
                   ))}
                 </div>

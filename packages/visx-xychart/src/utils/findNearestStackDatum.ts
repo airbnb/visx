@@ -13,7 +13,7 @@ import { BarStackDatum, NearestDatumArgs } from '../types';
 export default function findNearestStackDatum<
   XScale extends AxisScale,
   YScale extends AxisScale,
-  Datum extends object
+  Datum extends object,
 >(
   nearestDatumArgs: NearestDatumArgs<XScale, YScale, BarStackDatum<XScale, YScale>>,
   seriesData: Datum[],

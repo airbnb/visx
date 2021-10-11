@@ -14,12 +14,12 @@ describe('generators/genBins', () => {
   });
 
   it('should take an optional bin function parameter', () => {
-    const bins = genBins(1, 1, i => i);
+    const bins = genBins(1, 1, (i) => i);
     expect(bins[0].bins[0].bin).toEqual(0);
   });
 
   it('should take an optional count function parameter', () => {
-    const bins = genBins(1, 1, undefined, i => i);
+    const bins = genBins(1, 1, undefined, (i) => i);
     expect(bins[0].bins[0].count).toEqual(0);
   });
 
@@ -31,14 +31,14 @@ describe('generators/genBins', () => {
       genBins(
         2,
         2,
-        i => i,
+        (i) => i,
         (i, number) => 25 * (number - i) * seededRandom1(),
       ),
     ).toEqual(
       genBins(
         2,
         2,
-        i => i,
+        (i) => i,
         (i, number) => 25 * (number - i) * seededRandom2(),
       ),
     );

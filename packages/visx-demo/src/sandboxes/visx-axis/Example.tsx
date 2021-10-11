@@ -195,7 +195,7 @@ export default function Example({
                 animationTrajectory={animationTrajectory}
               />
               <AreaClosed
-                data={values.map(x => [
+                data={values.map((x) => [
                   (scale(x) ?? 0) +
                     // offset point half of band width for band scales
                     ('bandwidth' in scale && typeof scale!.bandwidth !== 'undefined'

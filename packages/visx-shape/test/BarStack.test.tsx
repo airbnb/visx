@@ -19,10 +19,10 @@ describe('<BarStack />', () => {
         data={[]}
         top={2}
         left={3}
-        x={d => d}
+        x={(d) => d}
         xScale={scale}
         yScale={scale}
-        color={d => d}
+        color={(d) => d}
         keys={[]}
       />,
     );
@@ -36,10 +36,10 @@ describe('<BarStack />', () => {
         data={[]}
         top={2}
         left={3}
-        x={d => d}
+        x={(d) => d}
         xScale={scale}
         yScale={scale}
-        color={d => d}
+        color={(d) => d}
         keys={[]}
       />,
     );
@@ -53,10 +53,10 @@ describe('<BarStack />', () => {
         data={[]}
         top={2}
         left={3}
-        x={d => d}
+        x={(d) => d}
         xScale={scale}
         yScale={scale}
-        color={d => d}
+        color={(d) => d}
         keys={[]}
       />,
     );

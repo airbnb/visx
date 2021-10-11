@@ -62,20 +62,19 @@ export default function Circles({
         strokeWidth={strokeWidth}
         strokeDasharray={strokeDasharray}
       />
-      {corners &&
-        corners.map(([cornerX, cornerY]) => (
-          <circle
-            key={`${id}-complement-${cornerX}-${cornerY}`}
-            className={cx('visx-pattern-circle visx-pattern-circle-complement', className)}
-            cx={cornerX}
-            cy={cornerY}
-            r={radius}
-            fill={fill}
-            stroke={stroke}
-            strokeWidth={strokeWidth}
-            strokeDasharray={strokeDasharray}
-          />
-        ))}
+      {corners?.map(([cornerX, cornerY]) => (
+        <circle
+          key={`${id}-complement-${cornerX}-${cornerY}`}
+          className={cx('visx-pattern-circle visx-pattern-circle-complement', className)}
+          cx={cornerX}
+          cy={cornerY}
+          r={radius}
+          fill={fill}
+          stroke={stroke}
+          strokeWidth={strokeWidth}
+          strokeDasharray={strokeDasharray}
+        />
+      ))}
     </Pattern>
   );
 }

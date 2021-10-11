@@ -72,8 +72,8 @@ export default function Example({ events = false }: { events?: boolean }) {
     <div className="legends">
       <LegendDemo title="Size">
         <LegendSize scale={sizeScale}>
-          {labels =>
-            labels.map(label => {
+          {(labels) =>
+            labels.map((label) => {
               const size = sizeScale(label.datum) ?? 0;
               const color = sizeColorScale(label.datum);
               return (
@@ -97,7 +97,7 @@ export default function Example({ events = false }: { events?: boolean }) {
       </LegendDemo>
       <LegendDemo title="Quantile">
         <LegendQuantile scale={quantileScale}>
-          {labels =>
+          {(labels) =>
             labels.map((label, i) => (
               <LegendItem
                 key={`legend-${i}`}
@@ -126,7 +126,7 @@ export default function Example({ events = false }: { events?: boolean }) {
           scale={linearScale}
           labelFormat={(d, i) => (i % 2 === 0 ? oneDecimalFormat(d) : '')}
         >
-          {labels =>
+          {(labels) =>
             labels.map((label, i) => (
               <LegendItem
                 key={`legend-quantile-${i}`}
@@ -152,7 +152,7 @@ export default function Example({ events = false }: { events?: boolean }) {
       </LegendDemo>
       <LegendDemo title="Threshold">
         <LegendThreshold scale={thresholdScale}>
-          {labels =>
+          {(labels) =>
             labels.reverse().map((label, i) => (
               <LegendItem
                 key={`legend-quantile-${i}`}
@@ -173,8 +173,8 @@ export default function Example({ events = false }: { events?: boolean }) {
         </LegendThreshold>
       </LegendDemo>
       <LegendDemo title="Ordinal">
-        <LegendOrdinal scale={ordinalColorScale} labelFormat={label => `${label.toUpperCase()}`}>
-          {labels => (
+        <LegendOrdinal scale={ordinalColorScale} labelFormat={(label) => `${label.toUpperCase()}`}>
+          {(labels) => (
             <div style={{ display: 'flex', flexDirection: 'row' }}>
               {labels.map((label, i) => (
                 <LegendItem
@@ -198,7 +198,7 @@ export default function Example({ events = false }: { events?: boolean }) {
       </LegendDemo>
       <LegendDemo title="Custom Legend">
         <Legend scale={shapeScale}>
-          {labels => (
+          {(labels) => (
             <div style={{ display: 'flex', flexDirection: 'row' }}>
               {labels.map((label, i) => {
                 const color = ordinalColor2Scale(label.datum);

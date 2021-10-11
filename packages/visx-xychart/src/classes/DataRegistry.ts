@@ -5,7 +5,7 @@ import { DataRegistryEntry } from '../types/data';
 export default class DataRegistry<
   XScale extends AxisScale,
   YScale extends AxisScale,
-  Datum extends object
+  Datum extends object,
 > {
   private registry: { [key: string]: DataRegistryEntry<XScale, YScale, Datum> } = {};
 
@@ -18,7 +18,7 @@ export default class DataRegistry<
       | DataRegistryEntry<XScale, YScale, Datum>[],
   ) {
     const entries = Array.isArray(entryOrEntries) ? entryOrEntries : [entryOrEntries];
-    entries.forEach(currEntry => {
+    entries.forEach((currEntry) => {
       if (currEntry.key in this.registry && this.registry[currEntry.key] != null) {
         console.debug('Overriding data registry key', currEntry.key);
       }
@@ -30,7 +30,7 @@ export default class DataRegistry<
   /** Remove one or more entries to the registry. */
   public unregisterData(keyOrKeys: string | string[]) {
     const keys = Array.isArray(keyOrKeys) ? keyOrKeys : [keyOrKeys];
-    keys.forEach(currKey => {
+    keys.forEach((currKey) => {
       delete this.registry[currKey];
       this.registryKeys = Object.keys(this.registry);
     });

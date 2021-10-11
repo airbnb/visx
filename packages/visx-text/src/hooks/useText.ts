@@ -16,9 +16,7 @@ function isXOrYInValid(xOrY: string | number | undefined) {
   );
 }
 
-export default function useText(
-  props: TextProps,
-): {
+export default function useText(props: TextProps): {
   wordsByLines: WordsWithWidth[];
   startDy: string;
   transform: string;
@@ -41,7 +39,7 @@ export default function useText(
   const { wordsWithWidth, spaceWidth } = useMemo(() => {
     const words: string[] = children == null ? [] : children.toString().split(/(?:(?!\u00A0+)\s+)/);
     return {
-      wordsWithWidth: words.map(word => ({
+      wordsWithWidth: words.map((word) => ({
         word,
         wordWidth: getStringWidth(word, style) || 0,
       })),

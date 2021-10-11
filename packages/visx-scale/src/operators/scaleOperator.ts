@@ -65,18 +65,18 @@ const operators: Record<OperatorType, typeof domain> = {
 
 export default function scaleOperator<T extends ScaleType>(...ops: OperatorType[]) {
   const selection = new Set(ops);
-  const selectedOps = ALL_OPERATORS.filter(o => selection.has(o));
+  const selectedOps = ALL_OPERATORS.filter((o) => selection.has(o));
 
   return function applyOperators<
     Output = DefaultOutput,
     DiscreteInput extends StringLike = StringLike,
-    ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
+    ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput,
   >(
     scale: PickD3Scale<T, Output, DiscreteInput, ThresholdInput>,
     config?: PickScaleConfigWithoutType<T, Output, DiscreteInput, ThresholdInput>,
   ) {
     if (typeof config !== 'undefined') {
-      selectedOps.forEach(op => {
+      selectedOps.forEach((op) => {
         operators[op]<Output, DiscreteInput, ThresholdInput>(scale, config);
       });
     }

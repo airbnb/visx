@@ -31,7 +31,7 @@ const formatDate = timeFormat("%b %d, '%y");
 // accessors
 const getDate = (d: AppleStock) => new Date(d.date);
 const getStockValue = (d: AppleStock) => d.close;
-const bisectDate = bisector<AppleStock, Date>(d => new Date(d.date)).left;
+const bisectDate = bisector<AppleStock, Date>((d) => new Date(d.date)).left;
 
 export type AreaProps = {
   width: number;
@@ -129,8 +129,8 @@ export default withTooltip<AreaProps, TooltipData>(
           />
           <AreaClosed<AppleStock>
             data={stock}
-            x={d => dateScale(getDate(d)) ?? 0}
-            y={d => stockValueScale(getStockValue(d)) ?? 0}
+            x={(d) => dateScale(getDate(d)) ?? 0}
+            y={(d) => stockValueScale(getStockValue(d)) ?? 0}
             yScale={stockValueScale}
             strokeWidth={1}
             stroke="url(#area-gradient)"

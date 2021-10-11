@@ -49,7 +49,7 @@ export type ZoomProps<ElementType> = {
    * ```
    *
    * A function that returns { scaleX,scaleY } factors to scale the matrix by.
-   * Scale factors greater than 1 will increase (zoom in), less than 1 will descrease (zoom out).
+   * Scale factors greater than 1 will increase (zoom in), less than 1 will decrease (zoom out).
    */
   wheelDelta?: (event: React.WheelEvent | WheelEvent) => Scale;
   /**
@@ -58,7 +58,7 @@ export type ZoomProps<ElementType> = {
    * ```
    *
    * A function that returns { scaleX, scaleY, point } factors to scale the matrix by.
-   * Scale factors greater than 1 will increase (zoom in), less than 1 will descrease (zoom out), the point is used to find where to zoom.
+   * Scale factors greater than 1 will increase (zoom in), less than 1 will decrease (zoom out), the point is used to find where to zoom.
    * The state parameter is from react-use-gestures onPinch handler
    */
   pinchDelta?: PinchDelta;
@@ -142,7 +142,7 @@ function Zoom<ElementType extends Element>({
 
   const setTransformMatrix = useCallback(
     (newTransformMatrix: TransformMatrix) => {
-      setTransformMatrixState(prevTransformMatrix => {
+      setTransformMatrixState((prevTransformMatrix) => {
         const updatedTransformMatrix = defaultConstrain(newTransformMatrix, prevTransformMatrix);
         matrixStateRef.current = updatedTransformMatrix;
         return updatedTransformMatrix;
@@ -270,7 +270,7 @@ function Zoom<ElementType extends Element>({
   );
 
   const handlePinch: UserHandlers['onPinch'] = useCallback(
-    state => {
+    (state) => {
       const {
         origin: [ox, oy],
         memo,
@@ -356,7 +356,6 @@ function Zoom<ElementType extends Element>({
     containerRef,
   };
 
-  // eslint-disable-next-line react/jsx-no-useless-fragment
   return <>{children(zoom)}</>;
 }
 

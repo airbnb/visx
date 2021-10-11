@@ -25,7 +25,7 @@ function wordFreq(text: string): WordData[] {
     if (!freqMap[w]) freqMap[w] = 0;
     freqMap[w] += 1;
   }
-  return Object.keys(freqMap).map(word => ({ text: word, value: freqMap[word] }));
+  return Object.keys(freqMap).map((word) => ({ text: word, value: freqMap[word] }));
 }
 
 function getRotationDegree() {
@@ -37,7 +37,7 @@ function getRotationDegree() {
 const words = wordFreq(totoAfricaLyrics);
 
 const fontScale = scaleLog({
-  domain: [Math.min(...words.map(w => w.value)), Math.max(...words.map(w => w.value))],
+  domain: [Math.min(...words.map((w) => w.value)), Math.max(...words.map((w) => w.value))],
   range: [10, 100],
 });
 const fontSizeSetter = (datum: WordData) => fontScale(datum.value);
@@ -63,7 +63,7 @@ export default function Example({ width, height, showControls }: ExampleProps) {
         rotate={withRotation ? getRotationDegree : 0}
         random={fixedValueGenerator}
       >
-        {cloudWords =>
+        {(cloudWords) =>
           cloudWords.map((w, i) => (
             <Text
               key={w.text}
@@ -82,7 +82,10 @@ export default function Example({ width, height, showControls }: ExampleProps) {
         <div>
           <label>
             Spiral type &nbsp;
-            <select onChange={e => setSpiralType(e.target.value as SpiralType)} value={spiralType}>
+            <select
+              onChange={(e) => setSpiralType(e.target.value as SpiralType)}
+              value={spiralType}
+            >
               <option key={'archimedean'} value={'archimedean'}>
                 archimedean
               </option>

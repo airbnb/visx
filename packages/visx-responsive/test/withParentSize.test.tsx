@@ -17,7 +17,7 @@ describe('withParentSize', () => {
     expect(withParentSize).toBeDefined();
   });
 
-  test('it chould pass parentWidth and parentHeight props to its child', () => {
+  test('it should pass parentWidth and parentHeight props to its child', () => {
     const HOC = withParentSize(Component);
     const { getByTestId } = render(<HOC initialWidth={200} initialHeight={200} />);
 

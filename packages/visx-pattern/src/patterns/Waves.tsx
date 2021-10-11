@@ -43,12 +43,15 @@ export default function Waves({
   return (
     <Path
       className={cx('visx-pattern-wave', className)}
-      path={`M 0 ${height / 2} c ${height / 8} ${-height / 4} , ${(height * 3) / 8} ${-height /
-        4} , ${height / 2} 0
-             c ${height / 8} ${height / 4} , ${(height * 3) / 8} ${height / 4} , ${height /
-        2} 0 M ${-height / 2} ${height / 2}
-             c ${height / 8} ${height / 4} , ${(height * 3) / 8} ${height / 4} , ${height /
-        2} 0 M ${height} ${height / 2}
+      path={`M 0 ${height / 2} c ${height / 8} ${-height / 4} , ${(height * 3) / 8} ${
+        -height / 4
+      } , ${height / 2} 0
+             c ${height / 8} ${height / 4} , ${(height * 3) / 8} ${height / 4} , ${
+        height / 2
+      } 0 M ${-height / 2} ${height / 2}
+             c ${height / 8} ${height / 4} , ${(height * 3) / 8} ${height / 4} , ${
+        height / 2
+      } 0 M ${height} ${height / 2}
              c ${height / 8} ${-height / 4} , ${(height * 3) / 8} ${-height / 4} , ${height / 2} 0`}
       id={id}
       width={width}

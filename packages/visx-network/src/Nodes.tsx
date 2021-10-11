@@ -24,8 +24,8 @@ export default function Nodes<Node>({
   nodes = [],
   nodeComponent = DefaultNode,
   className,
-  x = (d: any) => (d && d.x) || 0,
-  y = (d: any) => (d && d.y) || 0,
+  x = (d: any) => d?.x || 0, // eslint-disable-line @typescript-eslint/no-explicit-any
+  y = (d: any) => d?.y || 0, // eslint-disable-line @typescript-eslint/no-explicit-any
 }: NodeProps<Node>) {
   return (
     <>

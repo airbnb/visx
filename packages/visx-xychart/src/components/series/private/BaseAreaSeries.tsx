@@ -16,7 +16,7 @@ import useSeriesEvents from '../../../hooks/useSeriesEvents';
 export type BaseAreaSeriesProps<
   XScale extends AxisScale,
   YScale extends AxisScale,
-  Datum extends object
+  Datum extends object,
 > = SeriesProps<XScale, YScale, Datum> & {
   /** Optional accessor to override the baseline value of Area shapes per datum (useful to generate band shapes) when chart is rendered horizontally (vertical line). Defaults to the scale zero value, not compatible with AreaStack. */
   x0Accessor?: SeriesProps<XScale, YScale, Datum>['xAccessor'];
@@ -107,7 +107,7 @@ function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
   const renderGlyphs = useCallback(
     ({ glyphs }: GlyphsProps<XScale, YScale, Datum>) =>
       captureFocusEvents
-        ? glyphs.map(glyph => (
+        ? glyphs.map((glyph) => (
             <React.Fragment key={glyph.key}>
               {defaultRenderGlyph({
                 ...glyph,

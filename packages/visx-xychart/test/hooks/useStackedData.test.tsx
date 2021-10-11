@@ -47,7 +47,7 @@ describe('useStackedData', () => {
     const Consumer = ({ children }: { children: React.ReactElement | React.ReactElement[] }) => {
       const { stackedData } = useStackedData({ children });
       // stackedData has arrays with data properties set by d3 which jest doesn't like
-      expect(stackedData.map(series => series.map(([min, max]) => [min, max]))).toMatchObject([
+      expect(stackedData.map((series) => series.map(([min, max]) => [min, max]))).toMatchObject([
         [
           // series a
           [0, 3],

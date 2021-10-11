@@ -35,15 +35,15 @@ export default function getBarStackRegistryData<XScale extends AxisScale, YScale
       // only need to do this for one key
       if (comprehensiveDomain.length > 0 && index === 0) {
         if (horizontal) {
-          entry.xScale = scale =>
+          entry.xScale = (scale) =>
             scale.domain(extent(scale.domain().concat(comprehensiveDomain))) as typeof scale;
         } else {
-          entry.yScale = scale =>
+          entry.yScale = (scale) =>
             scale.domain(extent(scale.domain().concat(comprehensiveDomain))) as typeof scale;
         }
       }
 
       return entry;
     })
-    .filter(entry => entry) as DataRegistryEntry<XScale, YScale, BarStackDatum<XScale, YScale>>[];
+    .filter((entry) => entry) as DataRegistryEntry<XScale, YScale, BarStackDatum<XScale, YScale>>[];
 }
