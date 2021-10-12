@@ -5,7 +5,8 @@ import Portal, { PortalProps } from '../Portal';
 import Tooltip, { TooltipProps } from '../tooltips/Tooltip';
 import TooltipWithBounds from '../tooltips/TooltipWithBounds';
 
-export type TooltipInPortalProps = TooltipProps & Pick<UseTooltipPortalOptions, 'detectBounds' | 'zIndex'>;
+export type TooltipInPortalProps = TooltipProps &
+  Pick<UseTooltipPortalOptions, 'detectBounds' | 'zIndex'>;
 
 export type UseTooltipInPortal = {
   containerRef: (element: HTMLElement | SVGElement | null) => void;
