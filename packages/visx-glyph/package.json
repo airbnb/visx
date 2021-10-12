@@ -1,6 +1,6 @@
 {
   "name": "@visx/glyph",
-  "version": "2.1.0",
+  "version": "2.1.2",
   "description": "visx glyph",
   "sideEffects": false,
   "main": "lib/index.js",

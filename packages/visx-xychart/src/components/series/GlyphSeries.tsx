@@ -7,7 +7,7 @@ import defaultRenderGlyph from './private/defaultRenderGlyph';
 export default function GlyphSeries<
   XScale extends AxisScale,
   YScale extends AxisScale,
-  Datum extends object
+  Datum extends object,
 >({
   renderGlyph = defaultRenderGlyph,
   ...props
@@ -23,7 +23,7 @@ export default function GlyphSeries<
       onFocus,
       onBlur,
     }: GlyphsProps<XScale, YScale, Datum>) =>
-      glyphs.map(glyph => (
+      glyphs.map((glyph) => (
         <React.Fragment key={glyph.key}>
           {renderGlyph({ ...glyph, onPointerMove, onPointerOut, onPointerUp, onFocus, onBlur })}
         </React.Fragment>

@@ -18,7 +18,7 @@ export const POINTER_EVENTS_NEAREST = '__POINTER_EVENTS_NEAREST';
 export type PointerEventHandlerParams<
   XScale extends AxisScale,
   YScale extends AxisScale,
-  Datum extends object
+  Datum extends object,
 > = {
   /** Controls whether callbacks are invoked for one or more registered dataKeys, the nearest dataKey, or all dataKeys. */
   dataKey: string | string[] | typeof POINTER_EVENTS_NEAREST | typeof POINTER_EVENTS_ALL; // last two are eaten by string
@@ -47,7 +47,7 @@ export type PointerEventHandlerParams<
 export default function usePointerEventHandlers<
   XScale extends AxisScale,
   YScale extends AxisScale,
-  Datum extends object
+  Datum extends object,
 >({
   dataKey,
   findNearestDatum: findNearestDatumProps,
@@ -58,9 +58,9 @@ export default function usePointerEventHandlers<
   onPointerUp,
   allowedSources,
 }: PointerEventHandlerParams<XScale, YScale, Datum>) {
-  const { width, height, horizontal, dataRegistry, xScale, yScale } = (useContext(
+  const { width, height, horizontal, dataRegistry, xScale, yScale } = useContext(
     DataContext,
-  ) as unknown) as DataContextType<XScale, YScale, Datum>;
+  ) as unknown as DataContextType<XScale, YScale, Datum>;
 
   const findNearestDatum =
     findNearestDatumProps || (horizontal ? findNearestDatumY : findNearestDatumX);
@@ -86,7 +86,7 @@ export default function usePointerEventHandlers<
           : [dataKey];
 
         // find nearestDatum for relevant dataKey(s)
-        dataKeys.forEach(key => {
+        dataKeys.forEach((key) => {
           const entry = dataRegistry?.get(key);
           if (entry) {
             const nearestDatum = findNearestDatum({
@@ -127,7 +127,7 @@ export default function usePointerEventHandlers<
             ? Object.values(pointerParamsByKey)
             : [pointerParamsByKey[dataKey]];
 
-        return pointerParams.filter(param => param) as EventHandlerParams<Datum>[];
+        return pointerParams.filter((param) => param) as EventHandlerParams<Datum>[];
       }
       return [];
     },
@@ -136,7 +136,7 @@ export default function usePointerEventHandlers<
   const handlePointerMove = useCallback(
     (params?: HandlerParams) => {
       if (onPointerMove) {
-        getHandlerParams(params).forEach(p => onPointerMove(p));
+        getHandlerParams(params).forEach((p) => onPointerMove(p));
       }
     },
     [getHandlerParams, onPointerMove],
@@ -144,7 +144,7 @@ export default function usePointerEventHandlers<
   const handlePointerUp = useCallback(
     (params?: HandlerParams) => {
       if (onPointerUp) {
-        getHandlerParams(params).forEach(p => onPointerUp(p));
+        getHandlerParams(params).forEach((p) => onPointerUp(p));
       }
     },
     [getHandlerParams, onPointerUp],
@@ -152,7 +152,7 @@ export default function usePointerEventHandlers<
   const handleFocus = useCallback(
     (params?: HandlerParams) => {
       if (onFocus) {
-        getHandlerParams(params).forEach(p => onFocus(p));
+        getHandlerParams(params).forEach((p) => onFocus(p));
       }
     },
     [getHandlerParams, onFocus],

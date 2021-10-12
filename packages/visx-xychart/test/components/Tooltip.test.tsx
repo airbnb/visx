@@ -2,6 +2,7 @@ import React from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { AnyD3Scale } from '@visx/scale';
 import {
   DataContext,
   DataRegistryEntry,
@@ -17,8 +18,7 @@ describe('<Tooltip />', () => {
     | {
         props?: Partial<TooltipProps<object>>;
         context?: Partial<TooltipContextType<object>>;
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        dataEntries?: DataRegistryEntry<any, any, any>[];
+        dataEntries?: DataRegistryEntry<AnyD3Scale, AnyD3Scale, {}>[];
       }
     | undefined;
 

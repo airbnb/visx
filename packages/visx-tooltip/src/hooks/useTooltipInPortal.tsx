@@ -37,26 +37,27 @@ export default function useTooltipInPortal({
   const [containerRef, containerBounds, forceRefreshBounds] = useMeasure(useMeasureOptions);
 
   const TooltipInPortal = useMemo(
-    () => ({
-      left: containerLeft = 0,
-      top: containerTop = 0,
-      detectBounds: detectBoundsProp, // allow override at component-level
-      zIndex: zIndexProp, // allow override at the component-level
-      ...tooltipProps
-    }: TooltipInPortalProps) => {
-      const detectBounds = detectBoundsProp == null ? detectBoundsOption : detectBoundsProp;
-      const zIndex = zIndexProp == null ? zIndexOption : zIndexProp;
-      const TooltipComponent = detectBounds ? TooltipWithBounds : Tooltip;
-      // convert container coordinates to page coordinates
-      const portalLeft = containerLeft + (containerBounds.left || 0) + window.scrollX;
-      const portalTop = containerTop + (containerBounds.top || 0) + window.scrollY;
+    () =>
+      ({
+        left: containerLeft = 0,
+        top: containerTop = 0,
+        detectBounds: detectBoundsProp, // allow override at component-level
+        zIndex: zIndexProp, // allow override at the component-level
+        ...tooltipProps
+      }: TooltipInPortalProps) => {
+        const detectBounds = detectBoundsProp == null ? detectBoundsOption : detectBoundsProp;
+        const zIndex = zIndexProp == null ? zIndexOption : zIndexProp;
+        const TooltipComponent = detectBounds ? TooltipWithBounds : Tooltip;
+        // convert container coordinates to page coordinates
+        const portalLeft = containerLeft + (containerBounds.left || 0) + window.scrollX;
+        const portalTop = containerTop + (containerBounds.top || 0) + window.scrollY;
 
-      return (
-        <Portal zIndex={zIndex}>
-          <TooltipComponent left={portalLeft} top={portalTop} {...tooltipProps} />
-        </Portal>
-      );
-    },
+        return (
+          <Portal zIndex={zIndex}>
+            <TooltipComponent left={portalLeft} top={portalTop} {...tooltipProps} />
+          </Portal>
+        );
+      },
     [detectBoundsOption, zIndexOption, containerBounds.left, containerBounds.top],
   );
 

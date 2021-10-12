@@ -51,7 +51,7 @@ describe('d3 exports', () => {
 
     expect.assertions(tilers.length);
 
-    tilers.forEach(tiler => {
+    tilers.forEach((tiler) => {
       expect(tiler).toBeDefined();
     });
   });

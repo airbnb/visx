@@ -7,7 +7,7 @@ import isValidNumber from '../typeguards/isValidNumber';
  * or the minimum scale value if its domain doesn't include zero.
  */
 export default function getScaleBaseline<Scale extends AxisScale>(scale: Scale) {
-  const [a, b] = scale.range().map(rangeBoundary => coerceNumber(rangeBoundary) ?? 0);
+  const [a, b] = scale.range().map((rangeBoundary) => coerceNumber(rangeBoundary) ?? 0);
   const isDescending = a != null && b != null && b < a;
   const maybeScaleZero = scale(0);
   const [minOutput, maxOutput] = isDescending ? [b, a] : [a, b];

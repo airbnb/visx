@@ -117,11 +117,11 @@ export default function Example({
         <rect width={totalWidth} height={totalHeight} rx={14} fill="#272b4d" />
         <Group top={margin.top} left={margin.left}>
           <Tree
-            root={hierarchy(data, d => (d.isExpanded ? null : d.children))}
+            root={hierarchy(data, (d) => (d.isExpanded ? null : d.children))}
             size={[sizeWidth, sizeHeight]}
             separation={(a, b) => (a.parent === b.parent ? 1 : 0.5) / a.depth}
           >
-            {tree => (
+            {(tree) => (
               <Group top={origin.y} left={origin.x}>
                 {tree.links().map((link, i) => (
                   <LinkComponent

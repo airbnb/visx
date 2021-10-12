@@ -21,7 +21,6 @@ export default function Area<Datum>({
   ...restProps
 }: AddSVGProps<AreaProps<Datum>, SVGPathElement>) {
   const path = area<Datum>({ x, x0, x1, y, y0, y1, defined, curve });
-  // eslint-disable-next-line react/jsx-no-useless-fragment
   if (children) return <>{children({ path })}</>;
   return (
     <path

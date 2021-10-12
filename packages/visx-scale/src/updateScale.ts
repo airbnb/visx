@@ -11,7 +11,7 @@ const applyAllOperators = scaleOperator(...ALL_OPERATORS);
 function updateScale<
   Output = DefaultOutput,
   DiscreteInput extends StringLike = StringLike,
-  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
+  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput,
 >(
   scale: PickD3Scale<'linear', Output>,
   config: PickScaleConfigWithoutType<'linear', Output>,
@@ -20,7 +20,7 @@ function updateScale<
 function updateScale<
   Output = DefaultOutput,
   DiscreteInput extends StringLike = StringLike,
-  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
+  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput,
 >(
   scale: PickD3Scale<'log', Output>,
   config: PickScaleConfigWithoutType<'log', Output>,
@@ -29,7 +29,7 @@ function updateScale<
 function updateScale<
   Output = DefaultOutput,
   DiscreteInput extends StringLike = StringLike,
-  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
+  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput,
 >(
   scale: PickD3Scale<'pow', Output>,
   config: PickScaleConfigWithoutType<'pow', Output>,
@@ -38,7 +38,7 @@ function updateScale<
 function updateScale<
   Output = DefaultOutput,
   DiscreteInput extends StringLike = StringLike,
-  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
+  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput,
 >(
   scale: PickD3Scale<'sqrt', Output>,
   config: PickScaleConfigWithoutType<'sqrt', Output>,
@@ -47,7 +47,7 @@ function updateScale<
 function updateScale<
   Output = DefaultOutput,
   DiscreteInput extends StringLike = StringLike,
-  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
+  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput,
 >(
   scale: PickD3Scale<'symlog', Output>,
   config: PickScaleConfigWithoutType<'symlog', Output>,
@@ -56,7 +56,7 @@ function updateScale<
 function updateScale<
   Output = DefaultOutput,
   DiscreteInput extends StringLike = StringLike,
-  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
+  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput,
 >(
   scale: PickD3Scale<'time', Output>,
   config: PickScaleConfigWithoutType<'time', Output>,
@@ -65,7 +65,7 @@ function updateScale<
 function updateScale<
   Output = DefaultOutput,
   DiscreteInput extends StringLike = StringLike,
-  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
+  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput,
 >(
   scale: PickD3Scale<'utc', Output>,
   config: PickScaleConfigWithoutType<'utc', Output>,
@@ -74,7 +74,7 @@ function updateScale<
 function updateScale<
   Output = DefaultOutput,
   DiscreteInput extends StringLike = StringLike,
-  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
+  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput,
 >(
   scale: PickD3Scale<'quantile', Output>,
   config: PickScaleConfigWithoutType<'quantile', Output>,
@@ -83,7 +83,7 @@ function updateScale<
 function updateScale<
   Output = DefaultOutput,
   DiscreteInput extends StringLike = StringLike,
-  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
+  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput,
 >(
   scale: PickD3Scale<'quantize', Output>,
   config: PickScaleConfigWithoutType<'quantize', Output>,
@@ -92,7 +92,7 @@ function updateScale<
 function updateScale<
   Output = DefaultOutput,
   DiscreteInput extends StringLike = StringLike,
-  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
+  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput,
 >(
   scale: PickD3Scale<'threshold', Output, StringLike, ThresholdInput>,
   config: PickScaleConfigWithoutType<'threshold', Output, StringLike, ThresholdInput>,
@@ -101,7 +101,7 @@ function updateScale<
 function updateScale<
   Output = DefaultOutput,
   DiscreteInput extends StringLike = StringLike,
-  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
+  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput,
 >(
   scale: PickD3Scale<'ordinal', Output, DiscreteInput>,
   config: PickScaleConfigWithoutType<'ordinal', Output, DiscreteInput>,
@@ -110,7 +110,7 @@ function updateScale<
 function updateScale<
   Output = DefaultOutput,
   DiscreteInput extends StringLike = StringLike,
-  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
+  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput,
 >(
   scale: PickD3Scale<'point', Output, DiscreteInput>,
   config: PickScaleConfigWithoutType<'point', Output, DiscreteInput>,
@@ -119,7 +119,7 @@ function updateScale<
 function updateScale<
   Output = DefaultOutput,
   DiscreteInput extends StringLike = StringLike,
-  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput
+  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput,
 >(
   scale: PickD3Scale<'band', Output, DiscreteInput>,
   config: PickScaleConfigWithoutType<'band', Output, DiscreteInput>,
@@ -133,7 +133,7 @@ function updateScale<
     Output,
     DiscreteInput,
     ThresholdInput
-  >
+  >,
 >(scale: Scale, config?: undefined): Scale;
 
 // Actual implementation
@@ -141,7 +141,7 @@ function updateScale<
 function updateScale<
   Output,
   DiscreteInput extends StringLike,
-  ThresholdInput extends DefaultThresholdInput
+  ThresholdInput extends DefaultThresholdInput,
 >(
   scale: D3Scale<Output, DiscreteInput, ThresholdInput>,
   config?: ScaleConfigWithoutType<Output, DiscreteInput, ThresholdInput>,

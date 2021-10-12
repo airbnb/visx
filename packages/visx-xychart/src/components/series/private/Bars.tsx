@@ -11,7 +11,6 @@ export default function Bars({
 }: BarsProps<any, any>) {
   const isFocusable = Boolean(rectProps.onFocus || rectProps.onBlur);
   return (
-    // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
       {bars.map(({ key, ...barProps }) => (
         <rect

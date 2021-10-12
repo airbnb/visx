@@ -8,7 +8,7 @@ export type EventEmitterContextType = Emitter;
 export type NearestDatumArgs<
   XScale extends AxisScale,
   YScale extends AxisScale,
-  Datum extends object
+  Datum extends object,
 > = {
   dataKey: string;
   point: { x: number; y: number } | null;

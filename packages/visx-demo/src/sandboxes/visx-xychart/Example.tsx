@@ -78,7 +78,7 @@ export default function Example({ height }: XYChartProps) {
           yScale={config.y}
           height={Math.min(400, height)}
           captureEvents={!editAnnotationLabelPosition}
-          onPointerUp={d => {
+          onPointerUp={(d) => {
             setAnnotationDataKey(d.key as 'New York' | 'San Francisco' | 'Austin');
             setAnnotationDataIndex(d.index);
           }}
@@ -304,10 +304,12 @@ export default function Example({ height }: XYChartProps) {
                   <br />
                   <br />
                   {/** temperatures */}
-                  {((sharedTooltip
-                    ? Object.keys(tooltipData?.datumByKey ?? {})
-                    : [tooltipData?.nearestDatum?.key]
-                  ).filter(city => city) as City[]).map(city => {
+                  {(
+                    (sharedTooltip
+                      ? Object.keys(tooltipData?.datumByKey ?? {})
+                      : [tooltipData?.nearestDatum?.key]
+                    ).filter((city) => city) as City[]
+                  ).map((city) => {
                     const temperature =
                       tooltipData?.nearestDatum?.datum &&
                       accessors[renderHorizontally ? 'x' : 'y'][city](

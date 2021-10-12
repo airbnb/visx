@@ -98,14 +98,18 @@ const Patterns: React.FC<{ id: string; prefersReducedMotion?: boolean }>[] = [
           />
         )}
         <path
-          d={`M 0 ${height / 2} c ${height / 8} ${-height / 4} , ${(height * 3) / 8} ${-height /
-            4} , ${height / 2} 0
-               c ${height / 8} ${height / 4} , ${(height * 3) / 8} ${height / 4} , ${height /
-            2} 0 M ${-height / 2} ${height / 2}
-               c ${height / 8} ${height / 4} , ${(height * 3) / 8} ${height / 4} , ${height /
-            2} 0 M ${height} ${height / 2}
-               c ${height / 8} ${-height / 4} , ${(height * 3) / 8} ${-height / 4} , ${height /
-            2} 0`}
+          d={`M 0 ${height / 2} c ${height / 8} ${-height / 4} , ${(height * 3) / 8} ${
+            -height / 4
+          } , ${height / 2} 0
+               c ${height / 8} ${height / 4} , ${(height * 3) / 8} ${height / 4} , ${
+            height / 2
+          } 0 M ${-height / 2} ${height / 2}
+               c ${height / 8} ${height / 4} , ${(height * 3) / 8} ${height / 4} , ${
+            height / 2
+          } 0 M ${height} ${height / 2}
+               c ${height / 8} ${-height / 4} , ${(height * 3) / 8} ${-height / 4} , ${
+            height / 2
+          } 0`}
           fill="none"
           stroke="black"
           strokeWidth={1}

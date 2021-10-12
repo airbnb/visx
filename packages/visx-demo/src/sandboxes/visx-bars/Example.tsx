@@ -49,7 +49,7 @@ export default function Example({ width, height, events = false }: BarsProps) {
       <GradientTealBlue id="teal" />
       <rect width={width} height={height} fill="url(#teal)" rx={14} />
       <Group top={verticalMargin / 2}>
-        {data.map(d => {
+        {data.map((d) => {
           const letter = getLetter(d);
           const barWidth = xScale.bandwidth();
           const barHeight = yMax - (yScale(getLetterFrequency(d)) ?? 0);

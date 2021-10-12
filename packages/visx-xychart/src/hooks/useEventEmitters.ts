@@ -37,14 +37,14 @@ export default function usePointerEventEmitters({
     (event: React.PointerEvent) => emit?.('pointerup', event, source),
     [emit, source],
   );
-  const emitFocus = useCallback((event: React.FocusEvent) => emit?.('focus', event, source), [
-    emit,
-    source,
-  ]);
-  const emitBlur = useCallback((event: React.FocusEvent) => emit?.('blur', event, source), [
-    emit,
-    source,
-  ]);
+  const emitFocus = useCallback(
+    (event: React.FocusEvent) => emit?.('focus', event, source),
+    [emit, source],
+  );
+  const emitBlur = useCallback(
+    (event: React.FocusEvent) => emit?.('blur', event, source),
+    [emit, source],
+  );
 
   return {
     onPointerMove: onPointerMove ? emitPointerMove : undefined,

@@ -44,7 +44,7 @@ const tooltipStyles = {
 };
 
 const data = cityTemperature.slice(0, 12);
-const keys = Object.keys(data[0]).filter(d => d !== 'date') as CityName[];
+const keys = Object.keys(data[0]).filter((d) => d !== 'date') as CityName[];
 
 const temperatureTotals = data.reduce((allTotals, currentDate) => {
   const totalTemperature = keys.reduce((dailyTotal, k) => {
@@ -84,14 +84,8 @@ export default function Example({
   events = false,
   margin = defaultMargin,
 }: BarStackProps) {
-  const {
-    tooltipOpen,
-    tooltipLeft,
-    tooltipTop,
-    tooltipData,
-    hideTooltip,
-    showTooltip,
-  } = useTooltip<TooltipData>();
+  const { tooltipOpen, tooltipLeft, tooltipTop, tooltipData, hideTooltip, showTooltip } =
+    useTooltip<TooltipData>();
 
   const { containerRef, TooltipInPortal } = useTooltipInPortal({
     // TooltipInPortal is rendered in a separate child of <body /> and positioned
@@ -132,9 +126,9 @@ export default function Example({
             yScale={temperatureScale}
             color={colorScale}
           >
-            {barStacks =>
-              barStacks.map(barStack =>
-                barStack.bars.map(bar => (
+            {(barStacks) =>
+              barStacks.map((barStack) =>
+                barStack.bars.map((bar) => (
                   <rect
                     key={`bar-stack-${barStack.index}-${bar.index}`}
                     x={bar.x}
@@ -150,7 +144,7 @@ export default function Example({
                         hideTooltip();
                       }, 300);
                     }}
-                    onMouseMove={event => {
+                    onMouseMove={(event) => {
                       if (tooltipTimeout) clearTimeout(tooltipTimeout);
                       // TooltipInPortal expects coordinates to be relative to containerRef
                       // localPoint returns coordinates relative to the nearest SVG, which

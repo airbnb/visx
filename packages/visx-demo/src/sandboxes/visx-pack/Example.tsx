@@ -8,16 +8,16 @@ function extent<D>(allData: D[], value: (d: D) => number): [number, number] {
   return [Math.min(...allData.map(value)), Math.max(...allData.map(value))];
 }
 
-const filteredPlanets = rawData.filter(d => d.distance !== 0 && d.distance != null);
+const filteredPlanets = rawData.filter((d) => d.distance !== 0 && d.distance != null);
 const pack = { children: filteredPlanets, name: 'root', radius: 0, distance: 0 };
 
 const colorScale = scaleQuantize({
-  domain: extent(rawData, d => d.radius),
+  domain: extent(rawData, (d) => d.radius),
   range: ['#ffe108', '#ffc10e', '#fd6d6f', '#855af2', '#11d2f9', '#49f4e7'],
 });
 
 const root = hierarchy<Datum>(pack)
-  .sum(d => d.radius * d.radius)
+  .sum((d) => d.radius * d.radius)
   .sort(
     (a, b) =>
       // sort by hierarchy, then distance
@@ -41,7 +41,7 @@ export default function Example({ width, height, margin = defaultMargin }: PackP
       <rect width={width} height={height} rx={14} fill="#ffffff" />
 
       <Pack<Datum> root={root} size={[width * 2, height * 2]}>
-        {packData => {
+        {(packData) => {
           const circles = packData.descendants().slice(2); // skip outer hierarchies
           return (
             <Group top={-height - margin.bottom} left={-width / 2}>

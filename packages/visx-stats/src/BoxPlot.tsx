@@ -159,7 +159,6 @@ export default function BoxPlot({
     boxplot.container.y1 = Math.min(...valueRange);
   }
 
-  // eslint-disable-next-line react/jsx-no-useless-fragment
   if (children) return <>{children(boxplot)}</>;
 
   return (

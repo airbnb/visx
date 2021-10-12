@@ -7,8 +7,7 @@ import getDataContext from '../mocks/getDataContext';
 const series1 = { key: 'series1', data: [{}], xAccessor: () => 4, yAccessor: () => 7 };
 const series2 = { key: 'series2', data: [{}], xAccessor: () => 4, yAccessor: () => 7 };
 // avoids a lot of coercing of types
-const getEvent = (eventType: string) =>
-  (new MouseEvent(eventType) as unknown) as React.PointerEvent;
+const getEvent = (eventType: string) => new MouseEvent(eventType) as unknown as React.PointerEvent;
 
 describe('useEventHandlers', () => {
   function setup(children: React.ReactNode) {
@@ -58,12 +57,12 @@ describe('useEventHandlers', () => {
           emit('pointerup', getEvent('pointerup'), 'invalidSource');
           expect(pointerUpListener).toHaveBeenCalledTimes(1);
 
-          emit('focus', (new FocusEvent('focus') as unknown) as React.FocusEvent, sourceId);
-          emit('focus', (new FocusEvent('focus') as unknown) as React.FocusEvent, 'invalidSource');
+          emit('focus', new FocusEvent('focus') as unknown as React.FocusEvent, sourceId);
+          emit('focus', new FocusEvent('focus') as unknown as React.FocusEvent, 'invalidSource');
           expect(focusListener).toHaveBeenCalledTimes(1);
 
-          emit('blur', (new FocusEvent('blur') as unknown) as React.FocusEvent, sourceId);
-          emit('blur', (new FocusEvent('blur') as unknown) as React.FocusEvent, 'invalidSource');
+          emit('blur', new FocusEvent('blur') as unknown as React.FocusEvent, sourceId);
+          emit('blur', new FocusEvent('blur') as unknown as React.FocusEvent, 'invalidSource');
           expect(blurListener).toHaveBeenCalledTimes(1);
         }
       });

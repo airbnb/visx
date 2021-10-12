@@ -45,8 +45,8 @@ export default function withParentSize<BaseComponentProps extends WithParentSize
     container: HTMLDivElement | null = null;
 
     componentDidMount() {
-      this.resizeObserver = new window.ResizeObserver(entries => {
-        entries.forEach(entry => {
+      this.resizeObserver = new window.ResizeObserver((entries) => {
+        entries.forEach((entry) => {
           const { width, height } = entry.contentRect;
           this.animationFrameID = window.requestAnimationFrame(() => {
             this.resize({

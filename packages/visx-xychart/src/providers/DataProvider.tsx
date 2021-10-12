@@ -14,7 +14,7 @@ import isDiscreteScale from '../utils/isDiscreteScale';
 /** Props that can be passed to initialize/update the provider config. */
 export type DataProviderProps<
   XScaleConfig extends ScaleConfig<AxisScaleOutput, any, any>,
-  YScaleConfig extends ScaleConfig<AxisScaleOutput, any, any>
+  YScaleConfig extends ScaleConfig<AxisScaleOutput, any, any>,
 > = {
   /* Optionally define the initial dimensions. */
   initialDimensions?: Partial<Dimensions>;
@@ -33,7 +33,7 @@ export type DataProviderProps<
 export default function DataProvider<
   XScaleConfig extends ScaleConfig<AxisScaleOutput>,
   YScaleConfig extends ScaleConfig<AxisScaleOutput>,
-  Datum extends object
+  Datum extends object,
 >({
   initialDimensions,
   theme: propsTheme,

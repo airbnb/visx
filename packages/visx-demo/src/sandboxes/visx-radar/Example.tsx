@@ -73,7 +73,7 @@ export default function Example({ width, height, levels = 5, margin = defaultMar
 
   const webs = genAngles(data.length);
   const points = genPoints(data.length, radius);
-  const polygonPoints = genPolygonPoints(data, d => yScale(d) ?? 0, y);
+  const polygonPoints = genPolygonPoints(data, (d) => yScale(d) ?? 0, y);
   const zeroPoint = new Point({ x: 0, y: 0 });
 
   return width < 10 ? null : (
@@ -84,7 +84,7 @@ export default function Example({ width, height, levels = 5, margin = defaultMar
           <LineRadial
             key={`web-${i}`}
             data={webs}
-            angle={d => radialScale(d.angle) ?? 0}
+            angle={(d) => radialScale(d.angle) ?? 0}
             radius={((i + 1) * radius) / levels}
             fill="none"
             stroke={silver}

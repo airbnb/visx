@@ -11,7 +11,7 @@ import findNearestDatumY from './findNearestDatumY';
 export default function findNearestGroupDatum<
   XScale extends PositionScale,
   YScale extends PositionScale,
-  Datum extends object
+  Datum extends object,
 >(
   nearestDatumArgs: NearestDatumArgs<XScale, YScale, Datum>,
   groupScale: ScaleTypeToD3Scale<string, string>['band'],

@@ -23,7 +23,7 @@ const DEFAULT_MARGIN = { top: 50, right: 50, bottom: 50, left: 50 };
 export type XYChartProps<
   XScaleConfig extends ScaleConfig<AxisScaleOutput, any, any>,
   YScaleConfig extends ScaleConfig<AxisScaleOutput, any, any>,
-  Datum extends object
+  Datum extends object,
 > = {
   /** aria-label for the chart svg element. */
   accessibilityLabel?: string;
@@ -79,7 +79,7 @@ const allowedEventSources = [XYCHART_EVENT_SOURCE];
 export default function XYChart<
   XScaleConfig extends ScaleConfig<AxisScaleOutput, any, any>,
   YScaleConfig extends ScaleConfig<AxisScaleOutput, any, any>,
-  Datum extends object
+  Datum extends object,
 >(props: XYChartProps<XScaleConfig, YScaleConfig, Datum>) {
   const {
     accessibilityLabel = 'XYChart',
@@ -140,7 +140,7 @@ export default function XYChart<
   if (width == null || height == null) {
     return (
       <ParentSize>
-        {dims => (
+        {(dims) => (
           <XYChart
             {...props}
             width={props.width == null ? dims.width : props.width}

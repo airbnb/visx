@@ -95,6 +95,7 @@ describe('<AreaStack />', () => {
 
     function Assertion() {
       const { yScale } = useContext(DataContext);
+      // eslint-disable-next-line jest/no-if
       if (yScale) {
         expect(yScale.domain()).toEqual([-20, 10]);
       }

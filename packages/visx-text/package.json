@@ -1,6 +1,6 @@
 {
   "name": "@visx/text",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "visx text",
   "sideEffects": false,
   "main": "lib/index.js",

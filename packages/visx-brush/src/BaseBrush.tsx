@@ -632,8 +632,8 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
         {start &&
           end &&
           (Object.keys(handles) as ResizeTriggerAreas[])
-            .filter(handleKey => resizeTriggerAreaSet.has(handleKey))
-            .map(handleKey => {
+            .filter((handleKey) => resizeTriggerAreaSet.has(handleKey))
+            .map((handleKey) => {
               const handle = handles[handleKey];
 
               return (
@@ -659,8 +659,8 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
         {start &&
           end &&
           (Object.keys(corners) as ResizeTriggerAreas[])
-            .filter(cornerKey => resizeTriggerAreaSet.has(cornerKey))
-            .map(cornerKey => {
+            .filter((cornerKey) => resizeTriggerAreaSet.has(cornerKey))
+            .map((cornerKey) => {
               const corner = corners[cornerKey];
 
               return (

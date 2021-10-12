@@ -23,7 +23,7 @@ describe('<TooltipWithBounds />', () => {
       disableLifecycleMethods: true,
     }).dive();
     const styles = wrapper.find('Tooltip').props().style as any;
-    Object.keys(defaultStyles).forEach(key => {
+    Object.keys(defaultStyles).forEach((key) => {
       expect(styles[key]).toBeUndefined();
     });
   });
