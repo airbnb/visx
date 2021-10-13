@@ -1,4 +1,5 @@
 # Changelog
+- [v2.2.1](#v221)
 - [v2.2.0](#v220)
 - [v2.1.2](#v212)
 - [v2.1.1](#v211)
@@ -6,10 +7,10 @@
 - [v1.18.1](#v1181)
 - [v1.18.0](#v1180)
 - [v1.17.1](#v1171)
-- [v1.17.0](#v1170)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v1170">v1.17.0</a></li>
   <li><a href="#v1161">v1.16.1</a></li>
   <li><a href="#v1160">v1.16.0</a></li>
   <li><a href="#v1150">v1.15.0</a></li>
@@ -125,6 +126,15 @@
 </details>
 
 ------
+# v2.2.1 (2021-10-13)
+
+#### :bug: Bug Fix
+
+- Round up instead of down on text width within Label to avoid unnecessary wrapping [#1353](https://github.com/airbnb/visx/pull/1353)
+  
+#### :trophy: Contributors
+- [dylanmoz](https://github.com/dylanmoz)
+
 # v2.2.0 (2021-10-13)
 
 #### :rocket: Enhancements
