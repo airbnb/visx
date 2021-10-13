@@ -1,4 +1,5 @@
 # Changelog
+- [v2.2.0](#v220)
 - [v2.1.2](#v212)
 - [v2.1.1](#v211)
 - [v2.1.0](#v210)
@@ -6,10 +7,10 @@
 - [v1.18.0](#v1180)
 - [v1.17.1](#v1171)
 - [v1.17.0](#v1170)
-- [v1.16.1](#v1161)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v1161">v1.16.1</a></li>
   <li><a href="#v1160">v1.16.0</a></li>
   <li><a href="#v1150">v1.15.0</a></li>
   <li><a href="#v1141">v1.14.1</a></li>
@@ -124,6 +125,15 @@
 </details>
 
 ------
+# v2.2.0 (2021-10-13)
+
+#### :rocket: Enhancements
+
+- Allow specifying zIndex for tooltip portals [#1346](https://github.com/airbnb/visx/pull/1346)
+  
+#### :trophy: Contributors
+- [kangaechigai](https://github.com/kangaechigai)
+
 # v2.1.2 (2021-10-11)
 
 ### :house:  Internal
