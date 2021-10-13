@@ -55,7 +55,7 @@ export type TooltipProps<Datum extends object> = {
    */
   resizeObserverPolyfill?: UseTooltipPortalOptions['polyfill'];
 } & Omit<BaseTooltipProps, 'left' | 'top' | 'children'> &
-  Pick<UseTooltipPortalOptions, 'debounce' | 'detectBounds' | 'scroll'>;
+  Pick<UseTooltipPortalOptions, 'debounce' | 'detectBounds' | 'scroll' | 'zIndex'>;
 
 const INVISIBLE_STYLES: React.CSSProperties = {
   position: 'absolute',
@@ -122,6 +122,7 @@ function TooltipInner<Datum extends object>({
   snapTooltipToDatumX = false,
   snapTooltipToDatumY = false,
   verticalCrosshairStyle,
+  zIndex,
   ...tooltipProps
 }: TooltipProps<Datum>) {
   const { colorScale, theme, innerHeight, innerWidth, margin, xScale, yScale, dataRegistry } =
@@ -132,6 +133,7 @@ function TooltipInner<Datum extends object>({
     detectBounds,
     polyfill: resizeObserverPolyfill,
     scroll,
+    zIndex,
   });
 
   // To correctly position itself in a Portal, the tooltip must know its container bounds

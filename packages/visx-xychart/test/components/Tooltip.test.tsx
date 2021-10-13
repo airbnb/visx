@@ -181,4 +181,14 @@ describe('<Tooltip />', () => {
     });
     expect(container?.parentNode?.querySelectorAll('div.visx-tooltip-glyph')).toHaveLength(2);
   });
+
+  it('should pass zIndex prop to Portal', () => {
+    const { container } = setup({
+      props: { zIndex: 123 },
+      context: { tooltipOpen: true },
+    });
+    const zIndex =
+      container?.parentNode?.querySelector('div.visx-tooltip')?.parentElement?.style.zIndex;
+    expect(zIndex).toBe('123');
+  });
 });
