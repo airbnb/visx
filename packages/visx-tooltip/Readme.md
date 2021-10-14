@@ -65,6 +65,8 @@ You may override the container by specifying `containerProps` as the second argu
 Tooltip **components** render tooltip **state** and can be used in conjunction with `useTooltip` and
 `withTooltip` above.
 
+> Note: Because Tooltip and TooltipWithBounds components are rendered within `<div>` elements, they **cannot** be inserted within any VisX charts (`<svg>` elements). Instead, place them anywhere outside of your rendered charts.
+
 #### Tooltip
 
 This is a simple Tooltip container component meant to be used to actually render a Tooltip. It
