@@ -1,7 +1,7 @@
-import React from 'react';
-import { withBoundingRects, WithBoundingRectsProps } from '@visx/bounds';
+import React from "react";
+import { withBoundingRects, WithBoundingRectsProps } from "@visx/bounds";
 
-import Tooltip, { TooltipProps, defaultStyles } from './Tooltip';
+import Tooltip, { TooltipProps, defaultStyles } from "./Tooltip";
 
 export type TooltipWithBoundsProps = TooltipProps &
   React.HTMLProps<HTMLDivElement> &
@@ -21,6 +21,7 @@ function TooltipWithBounds({
   ...otherProps
 }: TooltipWithBoundsProps) {
   let transform: React.CSSProperties['transform'];
+  let childrenProps;
 
   if (ownBounds && parentBounds) {
     let left = initialLeft;
@@ -56,7 +57,15 @@ function TooltipWithBounds({
     top = Math.round(top);
 
     transform = `translate(${left}px, ${top}px)`;
+    childrenProps = {
+      isFlippedVertically: !placeTooltipUp,
+      isFlippedHorizontally: !placeTooltipLeft,
+    };
   }
+
+  const childrenToRender = Array.isArray(children)
+    ? (children as React.ReactNode[])
+    : [children];
 
   return (
     <Tooltip
@@ -68,7 +77,11 @@ function TooltipWithBounds({
       }}
       {...otherProps}
     >
-      {children}
+      {childrenToRender.map((child) =>
+        React.isValidElement(child)
+          ? React.cloneElement(child, childrenProps)
+          : child
+      )}
     </Tooltip>
   );
 }
