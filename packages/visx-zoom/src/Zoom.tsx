@@ -182,8 +182,13 @@ function Zoom<ElementType extends Element>({
         translateMatrix(-translate.x, -translate.y),
       );
       setTransformMatrix(nextMatrix);
+      if (isDragging) {
+        const { translateX, translateY } = nextMatrix;
+        setStartPoint(point);
+        setStartTranslate({ translateX, translateY });
+      }
     },
-    [height, width, setTransformMatrix],
+    [width, height, isDragging, setTransformMatrix],
   );
 
   const translate = useCallback(
