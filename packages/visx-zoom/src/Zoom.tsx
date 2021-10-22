@@ -183,7 +183,7 @@ function Zoom<ElementType extends Element>({
       );
       setTransformMatrix(nextMatrix);
       if (isDragging) {
-        const { translateX, translateY } = nextMatrix;
+        const { translateX, translateY } = matrixStateRef.current;
         setStartPoint(point);
         setStartTranslate({ translateX, translateY });
       }
