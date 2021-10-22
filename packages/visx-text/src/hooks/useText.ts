@@ -104,7 +104,7 @@ export default function useText(props: TextProps): {
 
     if (isNumber(x) && isNumber(y) && isNumber(width) && scaleToFit && wordsByLines.length > 0) {
       const lineWidth = wordsByLines[0].width || 1;
-      const sx = width / lineWidth;
+      const sx = scaleToFit === 'shrink-only' ? Math.min(width / lineWidth, 1) : width / lineWidth;
       const sy = sx;
       const originX = x - sx * x;
       const originY = y - sy * y;
