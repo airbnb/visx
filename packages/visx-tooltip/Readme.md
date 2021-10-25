@@ -222,7 +222,7 @@ const ChartWithTooltip = () => {
       <svg ref={containerRef} width={...} height={...}>
         // Chart here...
         <SomeChartElement
-          onMouseOver={this.handleMouseOver}
+          onMouseOver={handleMouseOver}
           onMouseOut={hideTooltip}
         />
       </svg>
