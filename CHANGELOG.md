@@ -1,4 +1,5 @@
 # Changelog
+- [v2.2.2](#v222)
 - [v2.2.1](#v221)
 - [v2.2.0](#v220)
 - [v2.1.2](#v212)
@@ -6,10 +7,10 @@
 - [v2.1.0](#v210)
 - [v1.18.1](#v1181)
 - [v1.18.0](#v1180)
-- [v1.17.1](#v1171)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v1171">v1.17.1</a></li>
   <li><a href="#v1170">v1.17.0</a></li>
   <li><a href="#v1161">v1.16.1</a></li>
   <li><a href="#v1160">v1.16.0</a></li>
@@ -126,6 +127,25 @@
 </details>
 
 ------
+# v2.2.2 (2021-10-27)
+
+#### :bug: Bug Fix
+
+- fix(tooltip): mount TooltipWithBounds before adding transform [#1367](https://github.com/airbnb/visx/pull/1367)
+- fix(zoom): better handling of simultaneous drag and scale [#1361](https://github.com/airbnb/visx/pull/1361)
+
+### :memo: Documentation
+
+- docs: add note about dangers of rendering divs within svg [#1354](https://github.com/airbnb/visx/pull/1354)
+- docs(scale): Add note on scaleLog domain not containing 0 [#1363](https://github.com/airbnb/visx/pull/1363)
+- docs(tooltip): remove incorrect handler from readme example [#1366](https://github.com/airbnb/visx/pull/1366)
+  
+#### :trophy: Contributors
+- [amhunt](https://github.com/amhunt)
+- [kangaechigai](https://github.com/kangaechigai)
+- [valtism](https://github.com/valtism)
+- [whalderman](https://github.com/whalderman)
+
 # v2.2.1 (2021-10-13)
 
 #### :bug: Bug Fix
