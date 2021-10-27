@@ -19,6 +19,7 @@ export type DragProps = UseDragOptions & {
 
 export default function Drag({
   captureDragArea = true,
+  snapToPointer = true,
   children,
   dx,
   dy,
@@ -34,6 +35,7 @@ export default function Drag({
 }: DragProps) {
   const drag = useDrag({
     resetOnStart,
+    snapToPointer,
     onDragEnd,
     onDragMove,
     onDragStart,
