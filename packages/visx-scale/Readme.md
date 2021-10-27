@@ -110,6 +110,8 @@ const scale = Scale.scaleLog({
 });
 ```
 
+**Important note:** As log(0) = -∞, a log scale domain must be strictly-positive or strictly-negative; the domain must not include or cross zero.
+
 ### Radial scale
 
 [Original d3 docs](https://github.com/d3/d3-scale/blob/master/README.md#scaleRadial)
