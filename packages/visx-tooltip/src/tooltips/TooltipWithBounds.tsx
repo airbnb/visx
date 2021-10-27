@@ -20,10 +20,11 @@ function TooltipWithBounds({
   unstyled = false,
   ...otherProps
 }: TooltipWithBoundsProps) {
-  let left = initialLeft;
-  let top = initialTop;
+  let transform: React.CSSProperties['transform'];
 
   if (ownBounds && parentBounds) {
+    let left = initialLeft;
+    let top = initialTop;
     let placeTooltipLeft = false;
     let placeTooltipUp = false;
 
@@ -50,17 +51,19 @@ function TooltipWithBounds({
 
     left = placeTooltipLeft ? left - ownBounds.width - offsetLeft : left + offsetLeft;
     top = placeTooltipUp ? top - ownBounds.height - offsetTop : top + offsetTop;
-  }
 
-  left = Math.round(left);
-  top = Math.round(top);
+    left = Math.round(left);
+    top = Math.round(top);
+
+    transform = `translate(${left}px, ${top}px)`;
+  }
 
   return (
     <Tooltip
       style={{
         left: 0,
         top: 0,
-        transform: `translate(${left}px, ${top}px)`,
+        transform,
         ...(!unstyled && style),
       }}
       {...otherProps}
