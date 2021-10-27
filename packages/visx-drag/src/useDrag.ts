@@ -1,11 +1,8 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { localPoint } from "@visx/event";
-import useStateWithCallback from "./util/useStateWithCallback";
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { localPoint } from '@visx/event';
+import useStateWithCallback from './util/useStateWithCallback';
 
-export type MouseTouchOrPointerEvent =
-  | React.MouseEvent
-  | React.TouchEvent
-  | React.PointerEvent;
+export type MouseTouchOrPointerEvent = React.MouseEvent | React.TouchEvent | React.PointerEvent;
 
 export type HandlerArgs = DragState & {
   /** Drag event. */
@@ -144,7 +141,7 @@ export default function useDrag({
           }),
       );
     },
-    [onDragStart, resetOnStart, setDragStateWithCallback, snapToPointer]
+    [onDragStart, resetOnStart, setDragStateWithCallback, snapToPointer],
   );
 
   const handleDragMove = useCallback(
@@ -179,7 +176,7 @@ export default function useDrag({
       snapToPointer,
       dragStartPointerOffset.x,
       dragStartPointerOffset.y,
-    ]
+    ],
   );
 
   const handleDragEnd = useCallback(
@@ -194,7 +191,7 @@ export default function useDrag({
           }),
       );
     },
-    [onDragEnd, setDragStateWithCallback]
+    [onDragEnd, setDragStateWithCallback],
   );
 
   return {
