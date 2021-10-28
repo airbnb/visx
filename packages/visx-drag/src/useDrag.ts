@@ -79,13 +79,14 @@ export default function useDrag({
   // use ref to detect prop changes
   const positionPropsRef = useRef({ x, y, dx, dy });
 
+  const { xMin, xMax, yMin, yMax } = restrict;
   const clampX = useCallback(
-    (num: number) => clampNumber(num, restrict?.xMin ?? -Infinity, restrict?.xMax ?? Infinity),
-    [restrict.xMax, restrict.xMin],
+    (num: number) => clampNumber(num, xMin ?? -Infinity, xMax ?? Infinity),
+    [xMax, xMin],
   );
   const clampY = useCallback(
-    (num: number) => clampNumber(num, restrict?.yMin ?? -Infinity, restrict?.yMax ?? Infinity),
-    [restrict.yMax, restrict.yMin],
+    (num: number) => clampNumber(num, yMin ?? -Infinity, yMax ?? Infinity),
+    [yMax, yMin],
   );
 
   const [dragState, setDragStateWithCallback] = useStateWithCallback<DragState>({
