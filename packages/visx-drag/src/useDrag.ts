@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { localPoint } from '@visx/event';
 import useStateWithCallback from './util/useStateWithCallback';
+import clampNumber from './util/clampNumber';
 
 export type MouseTouchOrPointerEvent = React.MouseEvent | React.TouchEvent | React.PointerEvent;
 
@@ -30,6 +31,13 @@ export type UseDragOptions = {
   isDragging?: boolean;
   /** Snap element being dragged to middle of pointer */
   snapToPointer?: boolean;
+  /** Options for limiting dragging in the x and y plane */
+  restrict?: {
+    xMin?: number;
+    xMax?: number;
+    yMin?: number;
+    yMax?: number;
+  };
 };
 
 export type DragState = {
@@ -66,9 +74,19 @@ export default function useDrag({
   dx,
   dy,
   isDragging,
+  restrict = {},
 }: UseDragOptions | undefined = {}): UseDrag {
   // use ref to detect prop changes
   const positionPropsRef = useRef({ x, y, dx, dy });
+
+  const clampX = useCallback(
+    (num: number) => clampNumber(num, restrict?.xMin ?? -Infinity, restrict?.xMax ?? Infinity),
+    [restrict.xMax, restrict.xMin],
+  );
+  const clampY = useCallback(
+    (num: number) => clampNumber(num, restrict?.yMin ?? -Infinity, restrict?.yMax ?? Infinity),
+    [restrict.yMax, restrict.yMin],
+  );
 
   const [dragState, setDragStateWithCallback] = useStateWithCallback<DragState>({
     x,
@@ -131,8 +149,8 @@ export default function useDrag({
             isDragging: true,
             dx: resetOnStart ? 0 : currState.dx,
             dy: resetOnStart ? 0 : currState.dy,
-            x: resetOnStart ? point.x : point.x - currState.dx,
-            y: resetOnStart ? point.y : point.y - currState.dy,
+            x: resetOnStart ? clampX(point.x) : clampX(point.x) - currState.dx,
+            y: resetOnStart ? clampY(point.y) : clampY(point.y) - currState.dy,
           };
         },
         onDragStart &&
@@ -141,7 +159,7 @@ export default function useDrag({
           }),
       );
     },
-    [onDragStart, resetOnStart, setDragStateWithCallback, snapToPointer],
+    [clampX, clampY, onDragStart, resetOnStart, setDragStateWithCallback, snapToPointer],
   );
 
   const handleDragMove = useCallback(
@@ -156,11 +174,11 @@ export default function useDrag({
                 ...currState,
                 isDragging: true,
                 dx: snapToPointer
-                  ? point.x - (currState.x || 0)
-                  : point.x - (currState.x || 0) + dragStartPointerOffset.x,
+                  ? clampX(point.x) - (currState.x || 0)
+                  : clampX(point.x + dragStartPointerOffset.x) - (currState.x || 0),
                 dy: snapToPointer
-                  ? point.y - (currState.y || 0)
-                  : point.y - (currState.y || 0) + dragStartPointerOffset.y,
+                  ? clampY(point.y) - (currState.y || 0)
+                  : clampY(point.y + dragStartPointerOffset.y) - (currState.y || 0),
               }
             : currState;
         },
@@ -176,6 +194,8 @@ export default function useDrag({
       snapToPointer,
       dragStartPointerOffset.x,
       dragStartPointerOffset.y,
+      clampX,
+      clampY,
     ],
   );
 
