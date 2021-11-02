@@ -1,6 +1,6 @@
 {
   "name": "@visx/annotation",
-  "version": "2.2.2",
+  "version": "2.3.0",
   "description": "visx annotation",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -36,7 +36,7 @@
     "@visx/group": "2.1.0",
     "@visx/point": "2.1.0",
     "@visx/shape": "2.2.2",
-    "@visx/text": "2.1.2",
+    "@visx/text": "2.3.0",
     "classnames": "^2.3.1",
     "prop-types": "^15.5.10",
     "react-use-measure": "^2.0.4"
