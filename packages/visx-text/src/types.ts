@@ -5,7 +5,7 @@ type OwnProps = {
   /** className to apply to the SVGText element. */
   className?: string;
   /** Whether to scale the fontSize to accommodate the specified width.  */
-  scaleToFit?: boolean;
+  scaleToFit?: boolean | 'shrink-only';
   /** Rotational angle of the text. */
   angle?: number;
   /** Horizontal text anchor. */

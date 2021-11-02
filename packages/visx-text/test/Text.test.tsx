@@ -151,6 +151,38 @@ describe('<Text />', () => {
     expect(transform).toBe('matrix(1.25, 0, 0, 1.25, 0, 0)');
   });
 
+  it("Does not scale above 1 when scaleToFit is set to 'shrink-only'", () => {
+    const {
+      result: {
+        current: { transform },
+      },
+    } = renderHook(() =>
+      useText({
+        width: 300,
+        scaleToFit: 'shrink-only',
+        style: { fontFamily: 'Courier' },
+        children: 'This is really long text',
+      }),
+    );
+    expect(transform).toBe('matrix(1, 0, 0, 1, 0, 0)');
+  });
+
+  it("Shrinks long text when scaleToFit is set to 'shrink-only'", () => {
+    const {
+      result: {
+        current: { transform },
+      },
+    } = renderHook(() =>
+      useText({
+        width: 30,
+        scaleToFit: 'shrink-only',
+        style: { fontFamily: 'Courier' },
+        children: 'This is really long text',
+      }),
+    );
+    expect(transform).toBe('matrix(0.125, 0, 0, 0.125, 0, 0)');
+  });
+
   it('Applies transform if angle is given', () => {
     const { container } = render(
       <Text width={300} angle={45} style={{ fontFamily: 'Courier' }}>
