@@ -1,4 +1,5 @@
 # Changelog
+- [v2.3.0](#v230)
 - [v2.2.2](#v222)
 - [v2.2.1](#v221)
 - [v2.2.0](#v220)
@@ -6,10 +7,10 @@
 - [v2.1.1](#v211)
 - [v2.1.0](#v210)
 - [v1.18.1](#v1181)
-- [v1.18.0](#v1180)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v1180">v1.18.0</a></li>
   <li><a href="#v1171">v1.17.1</a></li>
   <li><a href="#v1170">v1.17.0</a></li>
   <li><a href="#v1161">v1.16.1</a></li>
@@ -127,6 +128,15 @@
 </details>
 
 ------
+# v2.3.0 (2021-11-02)
+
+#### :rocket: Enhancements
+
+- new(text): Add 'shrink-only' option to 'scaleToFit' [#1362](https://github.com/airbnb/visx/pull/1362)
+  
+#### :trophy: Contributors
+- [kyythane](https://github.com/kyythane)
+
 # v2.2.2 (2021-10-27)
 
 #### :bug: Bug Fix
