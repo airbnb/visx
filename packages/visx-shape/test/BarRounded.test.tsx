@@ -32,7 +32,6 @@ describe('<BarRounded />', () => {
     const PathElement = container.querySelector('path');
     expect(fakeRef.current).toContainElement(PathElement);
   });
-  
   it('should support hooks with useBarRoundedPath', () => {
     const path = useBarRoundedPath({ ...testProps, all: true });
     expect(path).toBe(
