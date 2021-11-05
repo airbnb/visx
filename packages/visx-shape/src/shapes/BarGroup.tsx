@@ -9,7 +9,7 @@ import {
   AnyScaleBand,
   AddSVGProps,
   BaseBarGroupProps,
-  BarGroup,
+  BarGroup as BarGroupType,
   GroupKey,
   Accessor,
 } from '../types';
@@ -19,7 +19,7 @@ export type BarGroupProps<
   Datum extends DatumObject,
   Key extends GroupKey = GroupKey,
   X0Scale extends AnyScaleBand = AnyScaleBand,
-  X1Scale extends AnyScaleBand = AnyScaleBand
+  X1Scale extends AnyScaleBand = AnyScaleBand,
 > = BaseBarGroupProps<Datum, Key> & {
   /** Returns the value mapped to the x0 (group position) of a bar */
   x0: Accessor<Datum, ScaleInput<X0Scale>>;
@@ -32,7 +32,7 @@ export type BarGroupProps<
   /** Total height of the y-axis. */
   height: number;
   /** Override render function which is passed the computed BarGroups. */
-  children?: (barGroups: BarGroup<Key>[]) => React.ReactNode;
+  children?: (barGroups: BarGroupType<Key>[]) => React.ReactNode;
 };
 
 /**
@@ -73,11 +73,11 @@ export type BarGroupProps<
  *
  * Example: [https://airbnb.io/visx/bargroup](https://airbnb.io/visx/bargroup)
  */
-export default function BarGroupComponent<
+export default function BarGroup<
   Datum extends DatumObject,
   Key extends GroupKey = GroupKey,
   X0Scale extends AnyScaleBand = AnyScaleBand,
-  X1Scale extends AnyScaleBand = AnyScaleBand
+  X1Scale extends AnyScaleBand = AnyScaleBand,
 >({
   data,
   className,
@@ -95,7 +95,7 @@ export default function BarGroupComponent<
 }: AddSVGProps<BarGroupProps<Datum, Key, X0Scale, X1Scale>, SVGRectElement>) {
   const barWidth = getBandwidth(x1Scale);
 
-  const barGroups: BarGroup<Key>[] = data.map((group, i) => ({
+  const barGroups: BarGroupType<Key>[] = data.map((group, i) => ({
     index: i,
     x0: x0Scale(x0(group))!,
     bars: keys.map((key, j) => {
@@ -113,14 +113,13 @@ export default function BarGroupComponent<
     }),
   }));
 
-  // eslint-disable-next-line react/jsx-no-useless-fragment
   if (children) return <>{children(barGroups)}</>;
 
   return (
     <Group className={cx('visx-bar-group', className)} top={top} left={left}>
-      {barGroups.map(barGroup => (
+      {barGroups.map((barGroup) => (
         <Group key={`bar-group-${barGroup.index}-${barGroup.x0}`} left={barGroup.x0}>
-          {barGroup.bars.map(bar => (
+          {barGroup.bars.map((bar) => (
             <Bar
               key={`bar-group-bar-${barGroup.index}-${bar.index}-${bar.value}-${bar.key}`}
               x={bar.x}

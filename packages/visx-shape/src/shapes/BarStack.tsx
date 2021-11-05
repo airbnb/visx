@@ -6,7 +6,7 @@ import { ScaleInput } from '@visx/scale';
 import {
   PositionScale,
   AddSVGProps,
-  BarStack,
+  BarStack as BarStackType,
   BaseBarStackProps,
   StackKey,
   Accessor,
@@ -22,7 +22,7 @@ export type BarStackProps<
   Datum,
   Key extends StackKey = StackKey,
   XScale extends PositionScale = PositionScale,
-  YScale extends PositionScale = PositionScale
+  YScale extends PositionScale = PositionScale,
 > = BaseBarStackProps<Datum, Key, XScale, YScale> & {
   /** Returns the value mapped to the x of a bar. */
   x: Accessor<Datum, ScaleInput<XScale>>;
@@ -32,11 +32,11 @@ export type BarStackProps<
   y1?: Accessor<SeriesPoint<Datum>, ScaleInput<YScale>>;
 };
 
-export default function BarStackComponent<
+export default function BarStack<
   Datum,
   Key extends StackKey = StackKey,
   XScale extends PositionScale = PositionScale,
-  YScale extends PositionScale = PositionScale
+  YScale extends PositionScale = PositionScale,
 >({
   data,
   className,
@@ -64,7 +64,7 @@ export default function BarStackComponent<
   const stacks = stack(data);
   const barWidth = getBandwidth(xScale);
 
-  const barStacks: BarStack<Datum, Key>[] = stacks.map((barStack, i) => {
+  const barStacks: BarStackType<Datum, Key>[] = stacks.map((barStack, i) => {
     const { key } = barStack;
     return {
       index: i,
@@ -91,13 +91,12 @@ export default function BarStackComponent<
     };
   });
 
-  // eslint-disable-next-line react/jsx-no-useless-fragment
   if (children) return <>{children(barStacks)}</>;
 
   return (
     <Group className={cx('visx-bar-stack', className)} top={top} left={left}>
-      {barStacks.map(barStack =>
-        barStack.bars.map(bar => (
+      {barStacks.map((barStack) =>
+        barStack.bars.map((bar) => (
           <Bar
             key={`bar-stack-${barStack.index}-${bar.index}`}
             x={bar.x}

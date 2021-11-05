@@ -1,6 +1,6 @@
 {
   "name": "@visx/group",
-  "version": "1.0.0",
+  "version": "2.1.0",
   "description": "visx group",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -29,12 +29,11 @@
   },
   "homepage": "https://github.com/airbnb/visx#readme",
   "peerDependencies": {
-    "react": "^15.0.0-0 || ^16.0.0-0"
+    "react": "^16.0.0-0 || ^17.0.0-0"
   },
   "dependencies": {
-    "@types/classnames": "^2.2.9",
     "@types/react": "*",
-    "classnames": "^2.2.5",
+    "classnames": "^2.3.1",
     "prop-types": "^15.6.2"
   },
   "publishConfig": {

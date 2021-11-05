@@ -58,6 +58,8 @@ export type BrushProps = {
   handleSize: number;
   /** Reference to the BaseBrush component. */
   innerRef?: React.MutableRefObject<BaseBrush | null>;
+  /** Prevent drag end on mouse leaving from brush stage. */
+  useWindowMoveEvents?: boolean;
 };
 
 class Brush extends Component<BrushProps> {
@@ -94,6 +96,7 @@ class Brush extends Component<BrushProps> {
     onMouseMove: null,
     onMouseLeave: null,
     onClick: null,
+    useWindowMoveEvents: false,
   };
 
   handleChange = (brush: BaseBrushState) => {
@@ -136,8 +139,14 @@ class Brush extends Component<BrushProps> {
     const invertedX = scaleInvert(xScale, x);
     const invertedY = scaleInvert(yScale, y);
     onBrushStart({
-      x: xScale.invert ? invertedX : xScale.domain()[invertedX],
-      y: yScale.invert ? invertedY : yScale.domain()[invertedY],
+      x:
+        'invert' in xScale && typeof xScale.invert !== 'undefined'
+          ? invertedX
+          : xScale.domain()[invertedX],
+      y:
+        'invert' in yScale && typeof yScale.invert !== 'undefined'
+          ? invertedY
+          : yScale.domain()[invertedY],
     });
   };
 
@@ -174,6 +183,7 @@ class Brush extends Component<BrushProps> {
       onMouseMove,
       onClick,
       handleSize,
+      useWindowMoveEvents,
     } = this.props;
     if (!xScale || !yScale) return null;
 
@@ -181,10 +191,10 @@ class Brush extends Component<BrushProps> {
     let brushRegionHeight;
     let left;
     let top;
-    const marginLeft = margin && margin.left ? margin.left : 0;
-    const marginTop = margin && margin.top ? margin.top : 0;
-    const marginRight = margin && margin.right ? margin.right : 0;
-    const marginBottom = margin && margin.bottom ? margin.bottom : 0;
+    const marginLeft = margin?.left ? margin.left : 0;
+    const marginTop = margin?.top ? margin.top : 0;
+    const marginRight = margin?.right ? margin.right : 0;
+    const marginBottom = margin?.bottom ? margin.bottom : 0;
 
     if (brushRegion === 'chart') {
       left = 0;
@@ -234,6 +244,7 @@ class Brush extends Component<BrushProps> {
         onClick={onClick}
         onMouseLeave={onMouseLeave}
         onMouseMove={onMouseMove}
+        useWindowMoveEvents={useWindowMoveEvents}
       />
     );
   }

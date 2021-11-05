@@ -98,15 +98,16 @@ export default function Streamgraph({ width, height, animate = true }: StreamGra
           y1={getY1}
         >
           {({ stacks, path }) =>
-            stacks.map(stack => {
+            stacks.map((stack) => {
               // Alternatively use renderprops <Spring to={{ d }}>{tweened => ...}</Spring>
-              const tweened = animate ? useSpring({ d: path(stack) }) : { d: path(stack) };
+              const pathString = path(stack) || '';
+              const tweened = animate ? useSpring({ pathString }) : { pathString };
               const color = colorScale(stack.key);
               const pattern = patternScale(stack.key);
               return (
                 <g key={`series-${stack.key}`}>
-                  <animated.path d={tweened.d || ''} fill={color} />
-                  <animated.path d={tweened.d || ''} fill={`url(#${pattern})`} />
+                  <animated.path d={tweened.pathString} fill={color} />
+                  <animated.path d={tweened.pathString} fill={`url(#${pattern})`} />
                 </g>
               );
             })

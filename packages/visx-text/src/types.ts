@@ -5,7 +5,7 @@ type OwnProps = {
   /** className to apply to the SVGText element. */
   className?: string;
   /** Whether to scale the fontSize to accommodate the specified width.  */
-  scaleToFit?: boolean;
+  scaleToFit?: boolean | 'shrink-only';
   /** Rotational angle of the text. */
   angle?: number;
   /** Horizontal text anchor. */
@@ -16,6 +16,8 @@ type OwnProps = {
   style?: React.CSSProperties;
   /** Ref passed to the Text SVG element. */
   innerRef?: React.Ref<SVGSVGElement>;
+  /** Ref passed to the Text text element */
+  innerTextRef?: React.Ref<SVGTextElement>;
   /** x position of the text. */
   x?: string | number;
   /** y position of the text. */

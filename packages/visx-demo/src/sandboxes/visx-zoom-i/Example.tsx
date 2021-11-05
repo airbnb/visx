@@ -38,21 +38,22 @@ export default function ZoomI({ width, height }: ZoomIProps) {
 
   return (
     <>
-      <Zoom
+      <Zoom<SVGSVGElement>
         width={width}
         height={height}
         scaleXMin={1 / 2}
         scaleXMax={4}
         scaleYMin={1 / 2}
         scaleYMax={4}
-        transformMatrix={initialTransform}
+        initialTransformMatrix={initialTransform}
       >
-        {zoom => (
+        {(zoom) => (
           <div className="relative">
             <svg
               width={width}
               height={height}
-              style={{ cursor: zoom.isDragging ? 'grabbing' : 'grab' }}
+              style={{ cursor: zoom.isDragging ? 'grabbing' : 'grab', touchAction: 'none' }}
+              ref={zoom.containerRef}
             >
               <RectClipPath id="zoom-clip" width={width} height={height} />
               <rect width={width} height={height} rx={14} fill={bg} />
@@ -82,7 +83,7 @@ export default function ZoomI({ width, height }: ZoomIProps) {
                 onMouseLeave={() => {
                   if (zoom.isDragging) zoom.dragEnd();
                 }}
-                onDoubleClick={event => {
+                onDoubleClick={(event) => {
                   const point = localPoint(event) || { x: 0, y: 0 };
                   zoom.scale({ scaleX: 1.1, scaleY: 1.1, point });
                 }}

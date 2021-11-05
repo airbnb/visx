@@ -1,5 +1,7 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { LinePath } from '../src';
 import { LinePathProps } from '../src/shapes/LinePath';
@@ -23,44 +25,45 @@ const LinePathChildren = ({ children, ...restProps }: Partial<LinePathProps<Datu
   shallow(<LinePath {...restProps}>{children}</LinePath>);
 
 describe('<LinePath />', () => {
-  test('it should be defined', () => {
+  it('should be defined', () => {
     expect(LinePath).toBeDefined();
   });
 
-  test('it should have the .visx-linepath class', () => {
+  it('should have the .visx-linepath class', () => {
     expect(LinePathWrapper(linePathProps).prop('className')).toBe('visx-linepath');
   });
 
-  test('it should contain paths', () => {
+  it('should default to strokeLinecap="round" for superior missing data rendering', () => {
+    expect(LinePathWrapper(linePathProps).prop('strokeLinecap')).toBe('round');
+  });
+
+  it('should contain paths', () => {
     expect(LinePathWrapper(linePathProps).find('path').length).toBeGreaterThan(0);
   });
 
-  test('it should take a children as function prop', () => {
+  it('should take a children as function prop', () => {
     const fn = jest.fn();
     LinePathChildren({ children: fn });
     expect(fn).toHaveBeenCalled();
   });
 
-  test('it should call children function with { path }', () => {
+  it('should call children function with { path }', () => {
     const fn = jest.fn();
     LinePathChildren({ children: fn });
     const args = fn.mock.calls[0][0];
     const keys = Object.keys(args);
-    expect(keys.includes('path')).toEqual(true);
+    expect(keys).toContain('path');
   });
 
-  test('it should expose its ref via an innerRef prop', () => {
-    // eslint-disable-next-line jest/no-test-return-statement
-    return new Promise(done => {
-      const refCallback = (ref: SVGPathElement) => {
-        expect(ref.tagName).toMatch('path');
-        done();
-      };
-      mount(
-        <svg>
-          <LinePath innerRef={refCallback} {...linePathProps} />
-        </svg>,
-      );
-    });
+  it('should expose its ref via an innerRef prop', () => {
+    const fakeRef = React.createRef<SVGPathElement>();
+
+    const { container } = render(
+      <svg>
+        <LinePath data={linePathProps.data} innerRef={fakeRef} />
+      </svg>,
+    );
+    const PathElement = container.querySelector('path');
+    expect(fakeRef.current).toContainElement(PathElement);
   });
 });

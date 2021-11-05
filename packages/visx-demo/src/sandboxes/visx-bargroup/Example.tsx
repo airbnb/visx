@@ -21,7 +21,7 @@ const purple = '#9caff6';
 export const background = '#612efb';
 
 const data = cityTemperature.slice(0, 8);
-const keys = Object.keys(data[0]).filter(d => d !== 'date') as CityName[];
+const keys = Object.keys(data[0]).filter((d) => d !== 'date') as CityName[];
 const defaultMargin = { top: 40, right: 0, bottom: 40, left: 0 };
 
 const parseDate = timeParse('%Y-%m-%d');
@@ -41,7 +41,7 @@ const cityScale = scaleBand<string>({
   padding: 0.1,
 });
 const tempScale = scaleLinear<number>({
-  domain: [0, Math.max(...data.map(d => Math.max(...keys.map(key => Number(d[key])))))],
+  domain: [0, Math.max(...data.map((d) => Math.max(...keys.map((key) => Number(d[key])))))],
 });
 const colorScale = scaleOrdinal<string, string>({
   domain: keys,
@@ -77,10 +77,10 @@ export default function Example({
           yScale={tempScale}
           color={colorScale}
         >
-          {barGroups =>
-            barGroups.map(barGroup => (
+          {(barGroups) =>
+            barGroups.map((barGroup) => (
               <Group key={`bar-group-${barGroup.index}-${barGroup.x0}`} left={barGroup.x0}>
-                {barGroup.bars.map(bar => (
+                {barGroup.bars.map((bar) => (
                   <rect
                     key={`bar-group-bar-${barGroup.index}-${bar.index}-${bar.value}-${bar.key}`}
                     x={bar.x}

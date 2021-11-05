@@ -1,7 +1,6 @@
 import React, { useContext, useMemo, useEffect, useCallback } from 'react';
 import { PositionScale } from '@visx/shape/lib/types';
 import { scaleBand } from '@visx/scale';
-import isChildWithProps from '../../../typeguards/isChildWithProps';
 import { BaseBarSeriesProps } from './BaseBarSeries';
 import {
   Bar,
@@ -18,11 +17,12 @@ import isValidNumber from '../../../typeguards/isValidNumber';
 import { BARGROUP_EVENT_SOURCE, XYCHART_EVENT_SOURCE } from '../../../constants';
 import useSeriesEvents from '../../../hooks/useSeriesEvents';
 import findNearestGroupDatum from '../../../utils/findNearestGroupDatum';
+import getChildrenAndGrandchildrenWithProps from '../../../utils/getChildrenAndGrandchildrenWithProps';
 
 export type BaseBarGroupProps<
   XScale extends PositionScale,
   YScale extends PositionScale,
-  Datum extends object
+  Datum extends object,
 > = {
   /** `BarSeries` elements */
   children: JSX.Element | JSX.Element[];
@@ -40,7 +40,7 @@ export type BaseBarGroupProps<
 export default function BaseBarGroup<
   XScale extends PositionScale,
   YScale extends PositionScale,
-  Datum extends object
+  Datum extends object,
 >({
   children,
   padding = 0.1,
@@ -53,33 +53,23 @@ export default function BaseBarGroup<
   onPointerUp,
   enableEvents = true,
 }: BaseBarGroupProps<XScale, YScale, Datum>) {
-  const {
-    colorScale,
-    dataRegistry,
-    horizontal,
-    registerData,
-    unregisterData,
-    xScale,
-    yScale,
-  } = (useContext(DataContext) as unknown) as DataContextType<XScale, YScale, Datum>;
+  const { colorScale, dataRegistry, horizontal, registerData, unregisterData, xScale, yScale } =
+    useContext(DataContext) as unknown as DataContextType<XScale, YScale, Datum>;
 
   const barSeriesChildren = useMemo(
-    () =>
-      React.Children.toArray(children).filter(child =>
-        isChildWithProps<BaseBarSeriesProps<XScale, YScale, Datum>>(child),
-      ),
+    () => getChildrenAndGrandchildrenWithProps<BaseBarSeriesProps<XScale, YScale, Datum>>(children),
     [children],
-  ) as React.ReactElement<BaseBarSeriesProps<XScale, YScale, Datum>>[];
+  );
 
   // extract data keys from child series
   const dataKeys: string[] = useMemo(
-    () => barSeriesChildren.map(child => child.props.dataKey ?? '').filter(key => key),
+    () => barSeriesChildren.map((child) => child.props.dataKey ?? '').filter((key) => key),
     [barSeriesChildren],
   );
 
   // register all child data
   useEffect(() => {
-    const dataToRegister = barSeriesChildren.map(child => {
+    const dataToRegister = barSeriesChildren.map((child) => {
       const { dataKey: key, data, xAccessor, yAccessor } = child.props;
       return { key, data, xAccessor, yAccessor };
     });
@@ -122,10 +112,10 @@ export default function BaseBarGroup<
   const xZeroPosition = useMemo(() => (xScale ? getScaleBaseline(xScale) : 0), [xScale]);
   const yZeroPosition = useMemo(() => (yScale ? getScaleBaseline(yScale) : 0), [yScale]);
 
-  const registryEntries = dataKeys.map(key => dataRegistry.get(key));
+  const registryEntries = dataKeys.map((key) => dataRegistry.get(key));
 
   // if scales and data are not available in the registry, bail
-  if (registryEntries.some(entry => entry == null) || !xScale || !yScale || !colorScale) {
+  if (registryEntries.some((entry) => entry == null) || !xScale || !yScale || !colorScale) {
     return null;
   }
 
@@ -153,7 +143,7 @@ export default function BaseBarGroup<
 
     const getWidth = horizontal ? (d: Datum) => Math.abs(getLength(d)) : () => barThickness;
     const getHeight = horizontal ? () => barThickness : (d: Datum) => Math.abs(getLength(d));
-    const colorAccessor = barSeriesChildren.find(child => child.props.dataKey === key)?.props
+    const colorAccessor = barSeriesChildren.find((child) => child.props.dataKey === key)?.props
       ?.colorAccessor;
 
     return data
@@ -176,7 +166,7 @@ export default function BaseBarGroup<
           fill: colorAccessor?.(bar, index) ?? colorScale(key),
         };
       })
-      .filter(bar => bar) as Bar[];
+      .filter((bar) => bar) as Bar[];
   });
 
   return (

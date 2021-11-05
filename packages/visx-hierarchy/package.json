@@ -1,6 +1,6 @@
 {
   "name": "@visx/hierarchy",
-  "version": "1.0.0",
+  "version": "2.1.2",
   "description": "visx tree",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -31,15 +31,14 @@
     "access": "public"
   },
   "dependencies": {
-    "@types/classnames": "^2.2.9",
     "@types/d3-hierarchy": "^1.1.6",
     "@types/react": "*",
-    "@visx/group": "1.0.0",
-    "classnames": "^2.2.5",
+    "@visx/group": "2.1.0",
+    "classnames": "^2.3.1",
     "d3-hierarchy": "^1.1.4",
     "prop-types": "^15.6.1"
   },
   "peerDependencies": {
-    "react": "^16.3.0-0"
+    "react": "^16.3.0-0 || ^17.0.0-0"
   }
 }

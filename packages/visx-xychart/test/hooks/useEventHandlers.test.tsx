@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { mount } from 'enzyme';
+import { render } from '@testing-library/react';
 import { EventEmitterProvider, useEventEmitter, DataContext } from '../../src';
 import useEventHandlers, { POINTER_EVENTS_ALL } from '../../src/hooks/useEventHandlers';
 import getDataContext from '../mocks/getDataContext';
@@ -7,12 +7,11 @@ import getDataContext from '../mocks/getDataContext';
 const series1 = { key: 'series1', data: [{}], xAccessor: () => 4, yAccessor: () => 7 };
 const series2 = { key: 'series2', data: [{}], xAccessor: () => 4, yAccessor: () => 7 };
 // avoids a lot of coercing of types
-const getEvent = (eventType: string) =>
-  (new MouseEvent(eventType) as unknown) as React.PointerEvent;
+const getEvent = (eventType: string) => new MouseEvent(eventType) as unknown as React.PointerEvent;
 
 describe('useEventHandlers', () => {
   function setup(children: React.ReactNode) {
-    return mount(
+    return render(
       <DataContext.Provider value={getDataContext([series1, series2])}>
         <EventEmitterProvider>{children}</EventEmitterProvider>
       </DataContext.Provider>,
@@ -58,12 +57,12 @@ describe('useEventHandlers', () => {
           emit('pointerup', getEvent('pointerup'), 'invalidSource');
           expect(pointerUpListener).toHaveBeenCalledTimes(1);
 
-          emit('focus', (new FocusEvent('focus') as unknown) as React.FocusEvent, sourceId);
-          emit('focus', (new FocusEvent('focus') as unknown) as React.FocusEvent, 'invalidSource');
+          emit('focus', new FocusEvent('focus') as unknown as React.FocusEvent, sourceId);
+          emit('focus', new FocusEvent('focus') as unknown as React.FocusEvent, 'invalidSource');
           expect(focusListener).toHaveBeenCalledTimes(1);
 
-          emit('blur', (new FocusEvent('blur') as unknown) as React.FocusEvent, sourceId);
-          emit('blur', (new FocusEvent('blur') as unknown) as React.FocusEvent, 'invalidSource');
+          emit('blur', new FocusEvent('blur') as unknown as React.FocusEvent, sourceId);
+          emit('blur', new FocusEvent('blur') as unknown as React.FocusEvent, 'invalidSource');
           expect(blurListener).toHaveBeenCalledTimes(1);
         }
       });

@@ -20,6 +20,7 @@ import * as DotsTile from './DotsTile';
 import * as DragIITile from './DragIITile';
 import * as DragITile from './DragITile';
 import * as GeoCustomTile from './GeoCustomTile';
+import * as GeoAlbersUsaTile from './GeoAlbersUsaTile';
 import * as GeoMercatorTile from './GeoMercatorTile';
 import * as GlyphsTile from './GlyphsTile';
 import * as GradientsTile from './GradientsTile';
@@ -44,6 +45,7 @@ import * as TooltipTile from './TooltipTile';
 import * as TreemapTile from './TreemapTile';
 import * as TreesTile from './TreesTile';
 import * as VoronoiTile from './VoronoiTile';
+import * as WordcloudTile from './WordcloudTile';
 import * as XYChartTile from './XYChartTile';
 import * as ZoomITile from './ZoomITile';
 import { VisxPackage } from '../../types';
@@ -80,6 +82,7 @@ export const tiles = [
   DragIITile,
   XYChartTile,
   GeoCustomTile,
+  GeoAlbersUsaTile,
   GeoMercatorTile,
   GlyphsTile,
   GradientsTile,
@@ -96,6 +99,7 @@ export const tiles = [
   TooltipTile,
   TreesTile,
   VoronoiTile,
+  WordcloudTile,
 ];
 
 export default function Gallery() {
@@ -103,7 +107,7 @@ export default function Gallery() {
   const { pkg: routePackage } = router.query;
 
   const filteredTiles = routePackage
-    ? tiles.filter(Tile =>
+    ? tiles.filter((Tile) =>
         exampleToVisxDependencyLookup[Tile.packageJson.name]?.has(routePackage as VisxPackage),
       )
     : tiles;
@@ -113,7 +117,7 @@ export default function Gallery() {
       <div className="gallery">
         <div className="filters">
           <div className="filter-label">Filter</div>
-          {visxPackages.map(visxPackage => (
+          {visxPackages.map((visxPackage) => (
             <Link
               key={visxPackage}
               href={{

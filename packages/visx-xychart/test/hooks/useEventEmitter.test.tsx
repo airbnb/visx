@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
-import { mount } from 'enzyme';
+import { render } from '@testing-library/react';
 import useEventEmitter from '../../src/hooks/useEventEmitter';
 import { EventEmitterProvider } from '../../src';
 
 // avoids a lot of coercing of types
-const getEvent = (eventType: string) =>
-  (new MouseEvent(eventType) as unknown) as React.PointerEvent;
+const getEvent = (eventType: string) => new MouseEvent(eventType) as unknown as React.PointerEvent;
 
 describe('useEventEmitter', () => {
   it('should be defined', () => {
@@ -21,7 +20,7 @@ describe('useEventEmitter', () => {
       return null;
     };
 
-    mount(
+    render(
       <EventEmitterProvider>
         <Component />
       </EventEmitterProvider>,
@@ -45,7 +44,7 @@ describe('useEventEmitter', () => {
       return null;
     };
 
-    mount(
+    render(
       <EventEmitterProvider>
         <Component />
       </EventEmitterProvider>,
@@ -78,7 +77,7 @@ describe('useEventEmitter', () => {
       return null;
     };
 
-    mount(
+    render(
       <EventEmitterProvider>
         <Component />
       </EventEmitterProvider>,

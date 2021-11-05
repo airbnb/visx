@@ -11,7 +11,7 @@ const detailsStyles: React.CSSProperties = {
   borderBottomLeftRadius: 16,
 };
 const exampleProps = { compact: true };
-const exampleRenderer: React.FC<AnnotationProps> = props =>
+const exampleRenderer: React.FC<AnnotationProps> = (props) =>
   props.width > 0 && props.height > 0 ? <Annotation {...props} /> : null;
 
 export default function AnnotationTile() {

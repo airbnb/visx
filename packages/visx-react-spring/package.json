@@ -1,6 +1,6 @@
 {
   "name": "@visx/react-spring",
-  "version": "1.5.0",
+  "version": "2.3.0",
   "description": "visx primitives that rely on react-spring for animation",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -38,17 +38,16 @@
     "access": "public"
   },
   "peerDependencies": {
-    "react": "^16.3.0-0",
-    "react-spring": "^8.0.27"
+    "react": "^16.3.0-0 || ^17.0.0",
+    "react-spring": "^9.2.0"
   },
   "dependencies": {
-    "@types/classnames": "^2.2.9",
     "@types/react": "*",
-    "@visx/axis": "1.5.0",
-    "@visx/grid": "1.5.0",
-    "@visx/scale": "1.4.0",
-    "@visx/text": "1.3.0",
-    "classnames": "^2.2.5",
+    "@visx/axis": "2.3.0",
+    "@visx/grid": "2.2.2",
+    "@visx/scale": "2.2.2",
+    "@visx/text": "2.3.0",
+    "classnames": "^2.3.1",
     "prop-types": "^15.6.2"
   }
 }

@@ -53,8 +53,8 @@ export default function Example({ width, height, showControls = true }: CurvePro
         <>
           <label>
             Curve type &nbsp;
-            <select onChange={e => setCurveType(e.target.value as CurveType)} value={curveType}>
-              {curveTypes.map(curve => (
+            <select onChange={(e) => setCurveType(e.target.value as CurveType)} value={curveType}>
+              {curveTypes.map((curve) => (
                 <option key={curve} value={curve}>
                   {curve}
                 </option>
@@ -116,8 +116,8 @@ export default function Example({ width, height, showControls = true }: CurvePro
                 <LinePath<DateValue>
                   curve={allCurves[curveType]}
                   data={lineData}
-                  x={d => xScale(getX(d)) ?? 0}
-                  y={d => yScale(getY(d)) ?? 0}
+                  x={(d) => xScale(getX(d)) ?? 0}
+                  y={(d) => yScale(getY(d)) ?? 0}
                   stroke="#333"
                   strokeWidth={even ? 2 : 1}
                   strokeOpacity={even ? 0.6 : 1}

@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef } from 'react';
 import { localPoint } from '@visx/event';
 import useStateWithCallback from './util/useStateWithCallback';
 
-type MouseTouchOrPointerEvent = React.MouseEvent | React.TouchEvent | React.PointerEvent;
+export type MouseTouchOrPointerEvent = React.MouseEvent | React.TouchEvent | React.PointerEvent;
 
 export type HandlerArgs = DragState & {
   /** Drag event. */
@@ -26,6 +26,8 @@ export type UseDragOptions = {
   dx?: number;
   /** Optionally set the initial drag dy, or override the current drag dy. */
   dy?: number;
+  /** If defined, parent controls dragging state.  */
+  isDragging?: boolean;
 };
 
 export type DragState = {
@@ -60,6 +62,7 @@ export default function useDrag({
   y,
   dx,
   dy,
+  isDragging,
 }: UseDragOptions | undefined = {}): UseDrag {
   // use ref to detect prop changes
   const positionPropsRef = useRef({ x, y, dx, dy });
@@ -81,16 +84,22 @@ export default function useDrag({
       positionPropsRef.current.dy !== dy
     ) {
       positionPropsRef.current = { x, y, dx, dy };
-      setDragStateWithCallback(currState => ({ ...currState, x, y, dx: dx ?? 0, dy: dy ?? 0 }));
+      setDragStateWithCallback((currState) => ({ ...currState, x, y, dx: dx ?? 0, dy: dy ?? 0 }));
     }
   });
+
+  useEffect(() => {
+    if (isDragging !== undefined && dragState.isDragging !== isDragging) {
+      setDragStateWithCallback((currState) => ({ ...currState, isDragging }));
+    }
+  }, [dragState.isDragging, isDragging, setDragStateWithCallback]);
 
   const handleDragStart = useCallback(
     (event: MouseTouchOrPointerEvent) => {
       event.persist();
 
       setDragStateWithCallback(
-        currState => {
+        (currState) => {
           const point = localPoint(event) || { x: 0, y: 0 };
           return {
             isDragging: true,
@@ -101,7 +110,7 @@ export default function useDrag({
           };
         },
         onDragStart &&
-          (currState => {
+          ((currState) => {
             onDragStart({ ...currState, event });
           }),
       );
@@ -114,7 +123,7 @@ export default function useDrag({
       event.persist();
 
       setDragStateWithCallback(
-        currState => {
+        (currState) => {
           const point = localPoint(event) || { x: 0, y: 0 };
           return currState.isDragging
             ? {
@@ -126,7 +135,7 @@ export default function useDrag({
             : currState;
         },
         onDragMove &&
-          (currState => {
+          ((currState) => {
             if (currState.isDragging) onDragMove({ ...currState, event });
           }),
       );
@@ -139,9 +148,9 @@ export default function useDrag({
       event.persist();
 
       setDragStateWithCallback(
-        currState => ({ ...currState, isDragging: false }),
+        (currState) => ({ ...currState, isDragging: false }),
         onDragEnd &&
-          (currState => {
+          ((currState) => {
             onDragEnd({ ...currState, event });
           }),
       );

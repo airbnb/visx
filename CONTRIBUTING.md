@@ -45,19 +45,22 @@ yarn
 yarn build
 ```
 
-#### Rebuild one package
+#### Rebuild specific package(s)
 
-Upon modification of a single `package` you can run
+Upon modification of a single `package` you can run the following to rebuild it. Note that you can
+specify multiple packages to build this way, and optionally append `--watch` to continuously watch
+for changes.
 
 ```sh
-# build the package as cjs version
-yarn build-one --workspaces=@visx/package
+# build the specified package(s) as cjs version
+# example `yarn build:workspaces --workspaces=@visx/shape`
+yarn build:workspaces --workspaces=@visx/package[,@visx/package,...]
 
 # build the esm version (the @visx/demo next server sources these files)
-yarn build-one --workspaces=@visx/package --esm
+yarn build:workspaces --workspaces=@visx/package[,@visx/package,...] --esm
 
-# generate d.ts(definition files) for a lib
-yarn type-one --workspaces=@visx/package --esm
+# generate d.ts(definition files) the specified package(s)
+yarn type:workspaces --workspaces=@visx/package[,@visx/package,...]
 ```
 
 from the `visx` monorepo root to re-build the package with your changes.
@@ -67,7 +70,7 @@ from the `visx` monorepo root to re-build the package with your changes.
 You can use the local [`next.js`](https://nextjs.org) dev server within `packages/visx-demo` to view
 and iterate on your changes in the gallery. From the `packages/visx-demo` folder run `yarn dev` to
 start the next server which (if correctly sym-linked) will also watch for changes you make to other
-packages (upon re-building them).
+packages (upon re-building them, see above section).
 
 #### Config generation
 

@@ -8,7 +8,7 @@ import {
   AnyScaleBand,
   DatumObject,
   AddSVGProps,
-  BarGroupHorizontal,
+  BarGroupHorizontal as BarGroupHorizontalType,
   BaseBarGroupProps,
   GroupKey,
   Accessor,
@@ -19,7 +19,7 @@ export type BarGroupHorizontalProps<
   Datum extends DatumObject,
   Key extends GroupKey = GroupKey,
   Y0Scale extends AnyScaleBand = AnyScaleBand,
-  Y1Scale extends AnyScaleBand = AnyScaleBand
+  Y1Scale extends AnyScaleBand = AnyScaleBand,
 > = BaseBarGroupProps<Datum, Key> & {
   /** Returns the value (Datum[key]) mapped to the x of a bar */
   x?: (barValue: number) => number;
@@ -34,14 +34,14 @@ export type BarGroupHorizontalProps<
   /** Total width of the x-axis. */
   width: number;
   /** Override render function which is passed the computed Ba/rGroups. */
-  children?: (barGroups: BarGroupHorizontal<Key>[]) => React.ReactNode;
+  children?: (barGroups: BarGroupHorizontalType<Key>[]) => React.ReactNode;
 };
 
-export default function BarGroupHorizontalComponent<
+export default function BarGroupHorizontal<
   Datum extends DatumObject,
   Key extends GroupKey = GroupKey,
   Y0Scale extends AnyScaleBand = AnyScaleBand,
-  Y1Scale extends AnyScaleBand = AnyScaleBand
+  Y1Scale extends AnyScaleBand = AnyScaleBand,
 >({
   data,
   className,
@@ -60,7 +60,7 @@ export default function BarGroupHorizontalComponent<
 }: AddSVGProps<BarGroupHorizontalProps<Datum, Key, Y0Scale, Y1Scale>, SVGRectElement>) {
   const barHeight = getBandwidth(y1Scale);
 
-  const barGroups: BarGroupHorizontal<Key>[] = data.map((group, i) => ({
+  const barGroups: BarGroupHorizontalType<Key>[] = data.map((group, i) => ({
     index: i,
     y0: y0Scale(y0(group)) || 0,
     bars: keys.map((key, j) => {
@@ -78,14 +78,13 @@ export default function BarGroupHorizontalComponent<
     }),
   }));
 
-  // eslint-disable-next-line react/jsx-no-useless-fragment
   if (children) return <>{children(barGroups)}</>;
 
   return (
     <Group className={cx('visx-bar-group-horizontal', className)} top={top} left={left}>
-      {barGroups.map(barGroup => (
+      {barGroups.map((barGroup) => (
         <Group key={`bar-group-${barGroup.index}-${barGroup.y0}`} top={barGroup.y0}>
-          {barGroup.bars.map(bar => (
+          {barGroup.bars.map((bar) => (
             <Bar
               key={`bar-group-bar-${barGroup.index}-${bar.index}-${bar.value}-${bar.key}`}
               x={bar.x}

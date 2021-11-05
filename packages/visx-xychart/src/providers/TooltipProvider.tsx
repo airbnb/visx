@@ -3,6 +3,7 @@ import debounce from 'lodash/debounce';
 import { useTooltip } from '@visx/tooltip';
 import TooltipContext from '../context/TooltipContext';
 import { EventHandlerParams, TooltipData } from '../types';
+import isValidNumber from '../typeguards/isValidNumber';
 
 type TooltipProviderProps = {
   /** Debounce time for when `hideTooltip` is invoked. */
@@ -33,29 +34,35 @@ export default function TooltipProvider<Datum extends object>({
         debouncedHideTooltip.current.cancel();
         debouncedHideTooltip.current = null;
       }
+      const cleanDistanceX = isValidNumber(distanceX) ? distanceX : Infinity;
+      const cleanDistanceY = isValidNumber(distanceY) ? distanceY : Infinity;
+      const distance = Math.sqrt(cleanDistanceX ** 2 + cleanDistanceY ** 2);
 
-      const distance = Math.sqrt((distanceX ?? Infinity ** 2) + (distanceY ?? Infinity ** 2));
-
-      updateTooltip(({ tooltipData: currData }) => ({
-        tooltipOpen: true,
-        tooltipLeft: svgPoint?.x,
-        tooltipTop: svgPoint?.y,
-        tooltipData: {
-          nearestDatum:
-            (currData?.nearestDatum?.key ?? '') !== key &&
-            (currData?.nearestDatum?.distance ?? Infinity) < distance
-              ? currData?.nearestDatum
-              : { key, index, datum, distance },
-          datumByKey: {
-            ...currData?.datumByKey,
-            [key]: {
-              datum,
-              index,
-              key,
+      updateTooltip(({ tooltipData: currData }) => {
+        const currNearestDatumDistance =
+          currData?.nearestDatum && isValidNumber(currData.nearestDatum.distance)
+            ? currData.nearestDatum.distance
+            : Infinity;
+        return {
+          tooltipOpen: true,
+          tooltipLeft: svgPoint?.x,
+          tooltipTop: svgPoint?.y,
+          tooltipData: {
+            nearestDatum:
+              (currData?.nearestDatum?.key ?? '') !== key && currNearestDatumDistance < distance
+                ? currData?.nearestDatum
+                : { key, index, datum, distance },
+            datumByKey: {
+              ...currData?.datumByKey,
+              [key]: {
+                datum,
+                index,
+                key,
+              },
             },
           },
-        },
-      }));
+        };
+      });
     },
   );
 

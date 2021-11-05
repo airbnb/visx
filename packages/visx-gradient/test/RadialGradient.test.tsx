@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { render } from '@testing-library/react';
 
 import { RadialGradient } from '../src';
 
@@ -10,7 +10,7 @@ describe('<RadialGradient />', () => {
 
   test('it should render without crashing', () => {
     expect(() =>
-      mount(
+      render(
         <svg>
           <RadialGradient id="radial" />
         </svg>,

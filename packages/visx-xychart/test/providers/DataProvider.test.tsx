@@ -1,11 +1,11 @@
 import React, { useContext, useEffect } from 'react';
-import { mount } from 'enzyme';
+import { render } from '@testing-library/react';
 import { DataProvider, DataContext } from '../../src';
 import { DataProviderProps } from '../../lib/providers/DataProvider';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const getWrapper = (consumer: React.ReactNode, props?: DataProviderProps<any, any>) => {
-  mount(
+  render(
     <DataProvider xScale={{ type: 'linear' }} yScale={{ type: 'linear' }} {...props}>
       {consumer}
     </DataProvider>,
@@ -62,8 +62,8 @@ describe('<DataProvider />', () => {
         if (registerData) {
           registerData({
             key: 'visx',
-            xAccessor: d => d.x,
-            yAccessor: d => d.y,
+            xAccessor: (d) => d.x,
+            yAccessor: (d) => d.y,
             data: [
               { x: 0, y: 1 },
               { x: 5, y: 7 },

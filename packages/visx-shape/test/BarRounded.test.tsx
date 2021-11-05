@@ -1,5 +1,7 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { BarRounded } from '../src';
 import { useBarRoundedPath } from '../src/shapes/BarRounded';
@@ -20,33 +22,22 @@ describe('<BarRounded />', () => {
     ).toBe('visx-bar-rounded test');
   });
 
-  it('should support children render function', () => {
-    const children = jest.fn(() => <rect id="test" />);
-    const wrapper = BarRoundedWrapper({ children });
-    expect(children).toHaveBeenCalledTimes(1);
-    expect(wrapper.find('rect#test')).toHaveLength(1);
+  it('should expose its ref via an innerRef prop', () => {
+    const fakeRef = React.createRef<SVGPathElement>();
+    const { container } = render(
+      <svg>
+        <BarRounded innerRef={fakeRef} {...testProps} />
+      </svg>,
+    );
+    const PathElement = container.querySelector('path');
+    expect(fakeRef.current).toContainElement(PathElement);
   });
-
+  
   it('should support hooks with useBarRoundedPath', () => {
     const path = useBarRoundedPath({ ...testProps, all: true });
     expect(path).toBe(
       'M2,0 h6 a2,2 0 0 1 2,2 v16 a2,2 0 0 1 -2,2 h-6 a2,2 0 0 1 -2,-2 v-16 a2,2 0 0 1 2,-2z',
     );
-  });
-
-  it('should expose its ref via an innerRef prop', () => {
-    // eslint-disable-next-line jest/no-test-return-statement
-    return new Promise(done => {
-      const refCallback = (ref: SVGPathElement) => {
-        expect(ref.tagName).toMatch('path');
-        done();
-      };
-      mount(
-        <svg>
-          <BarRounded innerRef={refCallback} {...testProps} />
-        </svg>,
-      );
-    });
   });
 
   it('should set top left corner radius', () => {

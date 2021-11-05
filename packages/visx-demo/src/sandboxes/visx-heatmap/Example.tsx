@@ -16,7 +16,7 @@ const seededRandom = getSeededRandom(0.41);
 const binData = genBins(
   /* length = */ 16,
   /* height = */ 16,
-  /** binFunc */ idx => 150 * idx,
+  /** binFunc */ (idx) => 150 * idx,
   /** countFunc */ (i, number) => 25 * (number - i) * seededRandom(),
 );
 
@@ -32,8 +32,8 @@ function min<Datum>(data: Datum[], value: (d: Datum) => number): number {
 const bins = (d: Bins) => d.bins;
 const count = (d: Bin) => d.count;
 
-const colorMax = max(binData, d => max(bins(d), count));
-const bucketSizeMax = max(binData, d => bins(d).length);
+const colorMax = max(binData, (d) => max(bins(d), count));
+const bucketSizeMax = max(binData, (d) => bins(d).length);
 
 // scales
 const xScale = scaleLinear<number>({
@@ -80,7 +80,7 @@ const Example = ({
 
   const binWidth = xMax / binData.length;
   const binHeight = yMax / bucketSizeMax;
-  const radius = min([binWidth, binHeight], d => d) / 2;
+  const radius = min([binWidth, binHeight], (d) => d) / 2;
 
   xScale.range([0, xMax]);
   yScale.range([yMax, 0]);
@@ -91,16 +91,16 @@ const Example = ({
       <Group top={margin.top} left={margin.left}>
         <HeatmapCircle
           data={binData}
-          xScale={d => xScale(d) ?? 0}
-          yScale={d => yScale(d) ?? 0}
+          xScale={(d) => xScale(d) ?? 0}
+          yScale={(d) => yScale(d) ?? 0}
           colorScale={circleColorScale}
           opacityScale={opacityScale}
           radius={radius}
           gap={2}
         >
-          {heatmap =>
-            heatmap.map(heatmapBins =>
-              heatmapBins.map(bin => (
+          {(heatmap) =>
+            heatmap.map((heatmapBins) =>
+              heatmapBins.map((bin) => (
                 <circle
                   key={`heatmap-circle-${bin.row}-${bin.column}`}
                   className="visx-heatmap-circle"
@@ -123,17 +123,17 @@ const Example = ({
       <Group top={margin.top} left={xMax + margin.left + separation}>
         <HeatmapRect
           data={binData}
-          xScale={d => xScale(d) ?? 0}
-          yScale={d => yScale(d) ?? 0}
+          xScale={(d) => xScale(d) ?? 0}
+          yScale={(d) => yScale(d) ?? 0}
           colorScale={rectColorScale}
           opacityScale={opacityScale}
           binWidth={binWidth}
           binHeight={binWidth}
           gap={2}
         >
-          {heatmap =>
-            heatmap.map(heatmapBins =>
-              heatmapBins.map(bin => (
+          {(heatmap) =>
+            heatmap.map((heatmapBins) =>
+              heatmapBins.map((bin) => (
                 <rect
                   key={`heatmap-rect-${bin.row}-${bin.column}`}
                   className="visx-heatmap-rect"

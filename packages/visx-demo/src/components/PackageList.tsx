@@ -132,6 +132,12 @@ export default function PackageList({
               </Link>
               {!compact && <p>Difference charts to compare the delta between two time series</p>}
             </li>
+            <li className={cx(emphasizePackage === 'wordcloud' && 'emphasize')}>
+              <Link href="/docs/wordcloud">
+                <a>wordcloud</a>
+              </Link>
+              {!compact && <p>Visualize word frequency</p>}
+            </li>
             <li className={cx(emphasizePackage === 'xychart' && 'emphasize')}>
               <Link href="/docs/xychart">
                 <a>xychart</a>

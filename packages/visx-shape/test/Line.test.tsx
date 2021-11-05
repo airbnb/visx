@@ -1,6 +1,7 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
-
+import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { Line } from '../src';
 
 const LineWrapper = (restProps = {}) => shallow(<Line {...restProps} />);
@@ -19,18 +20,14 @@ describe('<Line />', () => {
   });
 
   test('it should expose its ref via an innerRef prop', () => {
-    // eslint-disable-next-line jest/no-test-return-statement
-    return new Promise(done => {
-      const refCallback = (ref: SVGLineElement) => {
-        expect(ref.tagName).toMatch('line');
-        done();
-      };
-      mount(
-        <svg>
-          <Line innerRef={refCallback} />
-        </svg>,
-      );
-    });
+    const fakeRef = React.createRef<SVGLineElement>();
+    const { container } = render(
+      <svg>
+        <Line innerRef={fakeRef} />
+      </svg>,
+    );
+    const LineElement = container.querySelector('line');
+    expect(fakeRef.current).toContainElement(LineElement);
   });
 
   test('it should set shapeRendering to auto if not rectilinear', () => {

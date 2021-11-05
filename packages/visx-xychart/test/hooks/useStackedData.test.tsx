@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { mount } from 'enzyme';
+import { render } from '@testing-library/react';
 import { AreaSeries, DataContext, DataProvider } from '../../src';
 import useStackedData from '../../src/hooks/useStackedData';
 
@@ -25,7 +25,7 @@ const seriesBProps = {
 };
 
 function setup(children: React.ReactElement | React.ReactElement[]) {
-  return mount(
+  return render(
     <DataProvider
       initialDimensions={{ width: 10, height: 10 }}
       xScale={{ type: 'band' }}
@@ -47,7 +47,7 @@ describe('useStackedData', () => {
     const Consumer = ({ children }: { children: React.ReactElement | React.ReactElement[] }) => {
       const { stackedData } = useStackedData({ children });
       // stackedData has arrays with data properties set by d3 which jest doesn't like
-      expect(stackedData.map(series => series.map(([min, max]) => [min, max]))).toMatchObject([
+      expect(stackedData.map((series) => series.map(([min, max]) => [min, max]))).toMatchObject([
         [
           // series a
           [0, 3],

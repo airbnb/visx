@@ -11,6 +11,7 @@ import {
   geoPath,
   GeoPath,
   GeoProjection,
+  ExtendedFeature,
 } from 'd3-geo';
 // this is just for types
 // eslint-disable-next-line import/no-unresolved
@@ -67,21 +68,22 @@ export type ProjectionProps<Datum extends GeoPermissibleObjects = GeoPermissible
    */
   fitExtent?: [
     [[number, number], [number, number]],
-    any, // ExtendedFeature | ExtendedFeatureCollection | GeoGeometryObjects,
+    ExtendedFeature, // ExtendedFeature | ExtendedFeatureCollection | GeoGeometryObjects,
   ];
   /** Convenience prop for props.fitExtent where the top-left corner of the extent is [0, 0]. */
   fitSize?: [
     [number, number],
-    any, // ExtendedFeature | ExtendedFeatureCollection | GeoGeometryObjects
+    ExtendedFeature, // ExtendedFeature | ExtendedFeatureCollection | GeoGeometryObjects
   ];
   /** Hook to render anything at the centroid of a feature. */
   centroid?: (centroid: [number, number], feature: ParsedFeature<Datum>) => React.ReactNode;
   /** className to apply to feature path elements.  */
   className?: string;
-  /** Override render function which is passed the  */
+  /** Override render function which is passed path data and a copy of the constructed projection.  */
   children?: (args: {
-    path: GeoPath<any, GeoPermissibleObjects>;
+    path: GeoPath<unknown, GeoPermissibleObjects>;
     features: ParsedFeature<Datum>[];
+    projection: GeoProjection;
   }) => React.ReactNode;
   /** Function invoked for each feature which returns a React.Ref to the projection path element for that feature. */
   innerRef?: (feature: ParsedFeature<Datum>, index: number) => React.Ref<SVGPathElement>;
@@ -135,15 +137,15 @@ export default function Projection<Datum extends GeoPermissibleObjects>({
 
   const currProjection = maybeCustomProjection();
 
-  if (clipAngle) currProjection.clipAngle(clipAngle);
-  if (clipExtent) currProjection.clipExtent(clipExtent);
-  if (scale) currProjection.scale(scale);
-  if (translate) currProjection.translate(translate);
-  if (center) currProjection.center(center);
-  if (rotate) currProjection.rotate(rotate);
-  if (precision) currProjection.precision(precision);
-  if (fitExtent) currProjection.fitExtent(...fitExtent);
-  if (fitSize) currProjection.fitSize(...fitSize);
+  if (clipAngle && currProjection.clipAngle) currProjection.clipAngle(clipAngle);
+  if (clipExtent && currProjection.clipExtent) currProjection.clipExtent(clipExtent);
+  if (scale && currProjection.scale) currProjection.scale(scale);
+  if (translate && currProjection.translate) currProjection.translate(translate);
+  if (center && currProjection.center) currProjection.center(center);
+  if (rotate && currProjection.rotate) currProjection.rotate(rotate);
+  if (precision && currProjection.precision) currProjection.precision(precision);
+  if (fitExtent && currProjection.fitExtent) currProjection.fitExtent(...fitExtent);
+  if (fitSize && currProjection.fitSize) currProjection.fitSize(...fitSize);
 
   const path = geoPath().projection(currProjection);
 
@@ -158,7 +160,7 @@ export default function Projection<Datum extends GeoPermissibleObjects>({
     path: path(feature),
   }));
 
-  if (children) return <>{children({ path, features })}</>;
+  if (children) return <>{children({ path, features, projection: currProjection })}</>;
 
   return (
     <Group className="visx-geo">
@@ -177,24 +179,24 @@ export default function Projection<Datum extends GeoPermissibleObjects>({
           <path
             className={cx(`visx-geo-${projection}`, className)}
             d={feature.path || ''}
-            ref={innerRef && innerRef(feature, i)}
+            ref={innerRef?.(feature, i)}
             {...restProps}
           />
-          {centroid && centroid(feature.centroid, feature)}
+          {centroid?.(feature.centroid, feature)}
         </g>
       ))}
 
       {/* TODO: Maybe find a different way to pass projection function to use for example invert */}
-      {projectionFunc && projectionFunc(currProjection)}
+      {projectionFunc?.(currProjection)}
 
-      {graticule && graticule.foreground && (
+      {graticule?.foreground && (
         <Graticule graticule={(ml: MultiLineString) => path(ml) || ''} {...graticule} />
       )}
 
-      {graticuleLines && graticuleLines.foreground && (
+      {graticuleLines?.foreground && (
         <Graticule lines={(l: LineString) => path(l) || ''} {...graticuleLines} />
       )}
-      {graticuleOutline && graticuleOutline.foreground && (
+      {graticuleOutline?.foreground && (
         <Graticule outline={(p: Polygon) => path(p) || ''} {...graticuleOutline} />
       )}
     </Group>

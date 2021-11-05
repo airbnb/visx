@@ -43,7 +43,7 @@ const tooltipStyles = {
 };
 
 const data = cityTemperature.slice(0, 12);
-const keys = Object.keys(data[0]).filter(d => d !== 'date') as CityName[];
+const keys = Object.keys(data[0]).filter((d) => d !== 'date') as CityName[];
 
 const temperatureTotals = data.reduce((allTotals, currentDate) => {
   const totalTemperature = keys.reduce((dailyTotal, k) => {
@@ -111,9 +111,9 @@ export default withTooltip<BarStackHorizontalProps, TooltipData>(
               yScale={dateScale}
               color={colorScale}
             >
-              {barStacks =>
-                barStacks.map(barStack =>
-                  barStack.bars.map(bar => (
+              {(barStacks) =>
+                barStacks.map((barStack) =>
+                  barStack.bars.map((bar) => (
                     <rect
                       key={`barstack-horizontal-${barStack.index}-${bar.index}`}
                       x={bar.x}

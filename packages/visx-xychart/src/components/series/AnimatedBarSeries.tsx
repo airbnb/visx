@@ -6,7 +6,7 @@ import AnimatedBars from './private/AnimatedBars';
 export default function AnimatedBarSeries<
   XScale extends AxisScale,
   YScale extends AxisScale,
-  Datum extends object
+  Datum extends object,
 >({ colorAccessor, ...props }: Omit<BaseBarSeriesProps<XScale, YScale, Datum>, 'BarsComponent'>) {
   return (
     <BaseBarSeries<XScale, YScale, Datum>

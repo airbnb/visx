@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { mount } from 'enzyme';
+import { render } from '@testing-library/react';
 import { ThemeProvider, ThemeContext } from '../../src';
 
 describe('<ThemeProvider />', () => {
@@ -17,7 +17,7 @@ describe('<ThemeProvider />', () => {
       return null;
     };
 
-    mount(
+    render(
       <ThemeProvider>
         <ThemeConsumer />
       </ThemeProvider>,

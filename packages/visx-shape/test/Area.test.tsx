@@ -1,5 +1,7 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { Area } from '../src';
 import { AreaProps } from '../src/shapes/Area';
@@ -40,18 +42,14 @@ describe('<Area />', () => {
   });
 
   test('it should expose its ref via an innerRef prop', () => {
-    // eslint-disable-next-line jest/no-test-return-statement
-    return new Promise(done => {
-      const refCallback = (ref: SVGPathElement) => {
-        expect(ref.tagName).toMatch('path');
-        done();
-      };
-      mount(
-        <svg>
-          <Area data={fakeData} x={x} y={y} innerRef={refCallback} />
-        </svg>,
-      );
-    });
+    const fakeRef = React.createRef<SVGPathElement>();
+    const { container } = render(
+      <svg>
+        <Area data={fakeData} x={x} y={y} innerRef={fakeRef} />
+      </svg>,
+    );
+    const PathElement = container.querySelector('path');
+    expect(fakeRef.current).toContainElement(PathElement);
   });
 
   test('it should take a children as function prop', () => {

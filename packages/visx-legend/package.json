@@ -1,6 +1,6 @@
 {
   "name": "@visx/legend",
-  "version": "1.4.0",
+  "version": "2.2.2",
   "description": "visx legend",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -28,17 +28,16 @@
   },
   "homepage": "https://github.com/airbnb/visx#readme",
   "peerDependencies": {
-    "react": "^16.3.0-0"
+    "react": "^16.3.0-0 || ^17.0.0-0"
   },
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@types/classnames": "^2.2.9",
     "@types/react": "*",
-    "@visx/group": "1.0.0",
-    "@visx/scale": "1.4.0",
-    "classnames": "^2.2.5",
+    "@visx/group": "2.1.0",
+    "@visx/scale": "2.2.2",
+    "classnames": "^2.3.1",
     "prop-types": "^15.5.10"
   }
 }

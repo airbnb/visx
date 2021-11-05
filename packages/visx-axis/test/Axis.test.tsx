@@ -1,10 +1,14 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, ShallowWrapper } from 'enzyme';
 
 import { Line } from '@visx/shape';
 import { Text } from '@visx/text';
 import { scaleBand, scaleLinear } from '@visx/scale';
 import { Axis } from '../src';
+
+const getTickLine = (
+  wrapper: ShallowWrapper<unknown, Readonly<{}>, React.Component<{}, {}, unknown>>,
+) => wrapper.children().find('.visx-axis-tick').not('.visx-axis-line').find('Line').first();
 
 const axisProps = {
   orientation: 'left' as const,
@@ -71,7 +75,7 @@ describe('<Axis />', () => {
     const wrapper = shallow(<Axis {...axisProps} tickLabelProps={() => tickProps} />);
 
     const ticks = wrapper.find('.visx-axis-tick');
-    ticks.forEach(tick => {
+    ticks.forEach((tick) => {
       expect(tick.find(Text).props()).toEqual(expect.objectContaining(tickProps));
     });
 
@@ -112,42 +116,22 @@ describe('<Axis />', () => {
 
   it('should render the 0th tick if hideZero is false', () => {
     const wrapper = shallow(<Axis {...axisProps} hideZero={false} />);
-    expect(
-      wrapper
-        .find('.visx-axis-tick')
-        .at(0)
-        .key(),
-    ).toBe('visx-tick-0-0');
+    expect(wrapper.find('.visx-axis-tick').at(0).key()).toBe('visx-tick-0-0');
   });
 
   it('should not show 0th tick if hideZero is true', () => {
     const wrapper = shallow(<Axis {...axisProps} hideZero />);
-    expect(
-      wrapper
-        .find('.visx-axis-tick')
-        .at(0)
-        .key(),
-    ).toBe('visx-tick-1-0');
+    expect(wrapper.find('.visx-axis-tick').at(0).key()).toBe('visx-tick-1-0');
   });
 
   it('should SHOW an axis line if hideAxisLine is false', () => {
     const wrapper = shallow(<Axis {...axisProps} hideAxisLine={false} />);
-    expect(
-      wrapper
-        .children()
-        .not('.visx-axis-tick')
-        .find('.visx-axis-line'),
-    ).toHaveLength(1);
+    expect(wrapper.children().not('.visx-axis-tick').find('.visx-axis-line')).toHaveLength(1);
   });
 
   it('should HIDE an axis line if hideAxisLine is true', () => {
     const wrapper = shallow(<Axis {...axisProps} hideAxisLine />);
-    expect(
-      wrapper
-        .children()
-        .not('.visx-axis-tick')
-        .find('Line'),
-    ).toHaveLength(0);
+    expect(wrapper.children().not('.visx-axis-tick').find('Line')).toHaveLength(0);
   });
 
   it('should SHOW ticks if hideTicks is false', () => {
@@ -157,22 +141,13 @@ describe('<Axis />', () => {
 
   it('should HIDE ticks if hideTicks is true', () => {
     const wrapper = shallow(<Axis {...axisProps} hideTicks />);
-    expect(
-      wrapper
-        .children()
-        .find('.visx-axis-tick')
-        .find('Line'),
-    ).toHaveLength(0);
+    expect(wrapper.children().find('.visx-axis-tick').find('Line')).toHaveLength(0);
   });
 
   it('should render one tick for each value specified in tickValues', () => {
     let wrapper = shallow(<Axis {...axisProps} tickValues={[]} />);
     expect(
-      wrapper
-        .children()
-        .find('.visx-axis-tick')
-        .not('.visx-axis-line')
-        .find('Line'),
+      wrapper.children().find('.visx-axis-tick').not('.visx-axis-line').find('Line'),
     ).toHaveLength(0);
 
     wrapper = shallow(<Axis {...axisProps} tickValues={[2]} />);
@@ -184,26 +159,37 @@ describe('<Axis />', () => {
 
   it('should use tickFormat to format ticks if passed', () => {
     const wrapper = shallow(<Axis {...axisProps} tickValues={[0]} tickFormat={() => 'test!!!'} />);
-    expect(
-      wrapper
-        .children()
-        .find('.visx-axis-tick')
-        .find(Text)
-        .prop('children'),
-    ).toBe('test!!!');
+    expect(wrapper.children().find('.visx-axis-tick').find(Text).prop('children')).toBe('test!!!');
   });
 
   test('tickFormat should have access to tick index', () => {
     const wrapper = shallow(
       <Axis {...axisProps} tickValues={[9]} tickFormat={(val, i) => `${i}`} />,
     );
-    expect(
-      wrapper
-        .children()
-        .find('.visx-axis-tick')
-        .find(Text)
-        .prop('children'),
-    ).toBe('0');
+    expect(wrapper.children().find('.visx-axis-tick').find(Text).prop('children')).toBe('0');
+  });
+
+  test('tick default should follow parent', () => {
+    const wrapper = shallow(<Axis {...axisProps} strokeWidth={2} />);
+    expect(getTickLine(wrapper).prop('strokeWidth')).toBe(2);
+    expect(getTickLine(wrapper).prop('strokeLinecap')).toBe('square');
+  });
+
+  test('tick stroke width should be different parent and equal to tickStrokeWidth', () => {
+    const wrapper = shallow(
+      <Axis
+        {...axisProps}
+        strokeWidth={2}
+        tickLineProps={{ strokeWidth: 3, strokeLinecap: 'round' }}
+      />,
+    );
+    expect(getTickLine(wrapper).prop('strokeWidth')).toBe(3);
+    expect(getTickLine(wrapper).prop('strokeLinecap')).toBe('round');
+  });
+
+  test('default tick stroke width should be 1', () => {
+    const wrapper = shallow(<Axis {...axisProps} />);
+    expect(getTickLine(wrapper).prop('strokeWidth')).toBe(1);
   });
 
   it('should use center if scale is band', () => {

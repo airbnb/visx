@@ -8,7 +8,7 @@ import defaultRenderGlyph from './private/defaultRenderGlyph';
 export default function AnimatedGlyphSeries<
   XScale extends AxisScale,
   YScale extends AxisScale,
-  Datum extends object
+  Datum extends object,
 >({
   renderGlyph = defaultRenderGlyph,
   ...props
@@ -27,7 +27,7 @@ export default function AnimatedGlyphSeries<
       {...props}
       // @TODO currently generics for non-SeriesProps are not passed correctly in
       // withRegisteredData HOC
-      // @ts-ignore
+      // @ts-expect-error
       renderGlyphs={renderGlyphs}
     />
   );

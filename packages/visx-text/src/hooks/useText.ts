@@ -16,9 +16,7 @@ function isXOrYInValid(xOrY: string | number | undefined) {
   );
 }
 
-export default function useText(
-  props: TextProps,
-): {
+export default function useText(props: TextProps): {
   wordsByLines: WordsWithWidth[];
   startDy: string;
   transform: string;
@@ -41,7 +39,7 @@ export default function useText(
   const { wordsWithWidth, spaceWidth } = useMemo(() => {
     const words: string[] = children == null ? [] : children.toString().split(/(?:(?!\u00A0+)\s+)/);
     return {
-      wordsWithWidth: words.map(word => ({
+      wordsWithWidth: words.map((word) => ({
         word,
         wordWidth: getStringWidth(word, style) || 0,
       })),
@@ -106,7 +104,7 @@ export default function useText(
 
     if (isNumber(x) && isNumber(y) && isNumber(width) && scaleToFit && wordsByLines.length > 0) {
       const lineWidth = wordsByLines[0].width || 1;
-      const sx = width / lineWidth;
+      const sx = scaleToFit === 'shrink-only' ? Math.min(width / lineWidth, 1) : width / lineWidth;
       const sy = sx;
       const originX = x - sx * x;
       const originY = y - sy * y;

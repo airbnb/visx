@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo } from 'react';
+import { useContext, useEffect, useMemo } from 'react';
 import { SeriesPoint, stack as d3stack } from 'd3-shape';
 import stackOffset from '@visx/shape/lib/util/stackOffset';
 import stackOrder from '@visx/shape/lib/util/stackOrder';
@@ -9,7 +9,7 @@ import DataContext from '../context/DataContext';
 import { CombinedStackData, DataContextType, SeriesProps } from '../types';
 import getBarStackRegistryData from '../utils/getBarStackRegistryData';
 import combineBarStackData from '../utils/combineBarStackData';
-import isChildWithProps from '../typeguards/isChildWithProps';
+import getChildrenAndGrandchildrenWithProps from '../utils/getChildrenAndGrandchildrenWithProps';
 
 type UseStackedData<Datum extends object> = {
   children: JSX.Element | JSX.Element[];
@@ -19,24 +19,24 @@ export default function useStackedData<
   XScale extends AxisScale,
   YScale extends AxisScale,
   Datum extends object,
-  ChildrenProps extends SeriesProps<XScale, YScale, Datum>
+  ChildrenProps extends SeriesProps<XScale, YScale, Datum>,
 >({ children, order, offset }: UseStackedData<Datum>) {
   type StackDatum = SeriesPoint<CombinedStackData<XScale, YScale>>;
 
-  const { horizontal, registerData, unregisterData } = (useContext(
+  const { horizontal, registerData, unregisterData } = useContext(
     DataContext,
-  ) as unknown) as DataContextType<XScale, YScale, StackDatum>;
+  ) as unknown as DataContextType<XScale, YScale, StackDatum>;
 
   // find series children
   // @TODO: memoization doesn't work well if at all for this
   const seriesChildren = useMemo(
-    () => React.Children.toArray(children).filter(child => isChildWithProps<ChildrenProps>(child)),
+    () => getChildrenAndGrandchildrenWithProps<ChildrenProps>(children),
     [children],
-  ) as React.ReactElement<ChildrenProps>[];
+  );
 
   // extract data keys from child series
   const dataKeys: string[] = useMemo(
-    () => seriesChildren.filter(child => child.props.dataKey).map(child => child.props.dataKey),
+    () => seriesChildren.filter((child) => child.props.dataKey).map((child) => child.props.dataKey),
     [seriesChildren],
   );
 
@@ -50,7 +50,7 @@ export default function useStackedData<
   // stack data
   const stackedData = useMemo(() => {
     // automatically set offset to diverging if it's undefined and negative values are present
-    const hasSomeNegativeValues = offset ? null : combinedData.some(d => d.negativeSum < 0);
+    const hasSomeNegativeValues = offset ? null : combinedData.some((d) => d.negativeSum < 0);
 
     const stack = d3stack<CombinedStackData<XScale, YScale>, string>();
     stack.keys(dataKeys);

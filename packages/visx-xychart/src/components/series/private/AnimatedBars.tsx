@@ -40,7 +40,14 @@ function useBarTransitionConfig<Scale extends AxisScale>({
       };
     }
 
-    return { from: fromLeave, leave: fromLeave, enter: enterUpdate, update: enterUpdate };
+    return {
+      unique: true,
+      from: fromLeave,
+      leave: fromLeave,
+      enter: enterUpdate,
+      update: enterUpdate,
+      keys: (bar: Bar) => bar.key,
+    };
   }, [scale, shouldAnimateX]);
 }
 
@@ -51,34 +58,35 @@ export default function AnimatedBars<XScale extends AxisScale, YScale extends Ax
   horizontal,
   ...rectProps
 }: BarsProps<XScale, YScale>) {
-  const animatedBars = useTransition(bars, bar => bar.key, {
-    unique: true,
+  const animatedBars = useTransition(bars, {
     ...useBarTransitionConfig({ horizontal, scale: horizontal ? xScale : yScale }),
   });
   const isFocusable = Boolean(rectProps.onFocus || rectProps.onBlur);
 
   return (
-    // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
-      {animatedBars.map((
-        // @ts-ignore x/y aren't in react-spring types (which are HTML CSS properties)
-        { item, key, props: { x, y, width, height, fill, opacity } },
-      ) =>
-        item == null || key == null ? null : (
-          <animated.rect
-            key={key}
-            tabIndex={isFocusable ? 0 : undefined}
-            className="visx-bar"
-            x={x}
-            y={y}
-            width={width}
-            height={height}
-            // use the item's fill directly if it's not animate-able
-            fill={colorHasUrl(item.fill) ? item.fill : fill}
-            opacity={opacity}
-            {...rectProps}
-          />
-        ),
+      {animatedBars(
+        (
+          // @ts-expect-error x/y aren't in react-spring types (which are HTML CSS properties)
+          { x, y, width, height, fill, opacity },
+          item,
+          { key },
+        ) =>
+          item == null || key == null ? null : (
+            <animated.rect
+              key={key}
+              tabIndex={isFocusable ? 0 : undefined}
+              className="visx-bar"
+              x={x}
+              y={y}
+              width={width}
+              height={height}
+              // use the item's fill directly if it's not animate-able
+              fill={colorHasUrl(item.fill) ? item.fill : fill}
+              opacity={opacity}
+              {...rectProps}
+            />
+          ),
       )}
     </>
   );

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef } from 'react';
-import { useSpring, animated, interpolate } from 'react-spring';
+import { useSpring, animated, to } from 'react-spring';
 import {
   Annotation as VisxAnnotation,
   EditableAnnotation as VisxEditableAnnotation,
@@ -15,7 +15,7 @@ import BaseAnnotation, { BaseAnnotationProps } from './private/BaseAnnotation';
 export type AnnotationProps<
   XScale extends AxisScale,
   YScale extends AxisScale,
-  Datum extends object
+  Datum extends object,
 > = { editable?: boolean } & Omit<
   BaseAnnotationProps<XScale, YScale, Datum>,
   'AnnotationComponent'
@@ -24,28 +24,25 @@ export type AnnotationProps<
 export default function AnimatedAnnotation<
   XScale extends AxisScale,
   YScale extends AxisScale,
-  Datum extends object
+  Datum extends object,
 >({ editable, ...props }: AnnotationProps<XScale, YScale, Datum>) {
-  const AnnotationComponent: BaseAnnotationProps<
-    XScale,
-    YScale,
-    Datum
-  >['AnnotationComponent'] = useCallback(
-    (annotationProps: VisxAnnotationProps & VisxEditableAnnotationProps) => (
-      <BaseAnimatedAnnotation
-        AnnotationComponent={editable ? VisxEditableAnnotation : VisxAnnotation}
-        {...annotationProps}
-      />
-    ),
-    [editable],
-  );
+  const AnnotationComponent: BaseAnnotationProps<XScale, YScale, Datum>['AnnotationComponent'] =
+    useCallback(
+      (annotationProps: VisxAnnotationProps & VisxEditableAnnotationProps) => (
+        <BaseAnimatedAnnotation
+          AnnotationComponent={editable ? VisxEditableAnnotation : VisxAnnotation}
+          {...annotationProps}
+        />
+      ),
+      [editable],
+    );
   return <BaseAnnotation AnnotationComponent={AnnotationComponent} {...props} />;
 }
 
 function BaseAnimatedAnnotation<
   XScale extends AxisScale,
   YScale extends AxisScale,
-  Datum extends object
+  Datum extends object,
 >({
   x = 0,
   y = 0,
@@ -71,11 +68,7 @@ function BaseAnimatedAnnotation<
 
   return (
     <animated.g // for perf animate a group element not the Annotation itself
-      transform={interpolate(
-        // @ts-expect-error from/to mess up the useSpring types
-        [animatedXY.x, animatedXY.y],
-        (xVal, yVal) => `translate(${xVal}, ${yVal})`,
-      )}
+      transform={to([animatedXY.x, animatedXY.y], (xVal, yVal) => `translate(${xVal}, ${yVal})`)}
     >
       <AnnotationComponent x={x} y={y} {...props} />
     </animated.g>

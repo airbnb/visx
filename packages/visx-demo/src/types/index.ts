@@ -50,6 +50,7 @@ export type VisxPackage =
   | 'tooltip'
   | 'voronoi'
   | 'visx'
+  | 'wordcloud'
   | 'xychart'
   | 'zoom';
 
