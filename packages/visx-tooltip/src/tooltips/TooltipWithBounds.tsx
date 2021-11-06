@@ -1,7 +1,7 @@
-import React from "react";
-import { withBoundingRects, WithBoundingRectsProps } from "@visx/bounds";
+import React from 'react';
+import { withBoundingRects, WithBoundingRectsProps } from '@visx/bounds';
 
-import Tooltip, { TooltipProps, defaultStyles } from "./Tooltip";
+import Tooltip, { TooltipProps, defaultStyles } from './Tooltip';
 
 export type TooltipWithBoundsProps = TooltipProps &
   React.HTMLProps<HTMLDivElement> &
