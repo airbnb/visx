@@ -63,9 +63,7 @@ function TooltipWithBounds({
     };
   }
 
-  const childrenToRender = Array.isArray(children)
-    ? (children as React.ReactNode[])
-    : [children];
+  const childrenToRender = Array.isArray(children) ? (children as React.ReactNode[]) : [children];
 
   return (
     <Tooltip
@@ -78,9 +76,7 @@ function TooltipWithBounds({
       {...otherProps}
     >
       {childrenToRender.map((child) =>
-        React.isValidElement(child)
-          ? React.cloneElement(child, childrenProps)
-          : child
+        React.isValidElement(child) ? React.cloneElement(child, childrenProps) : child,
       )}
     </Tooltip>
   );
