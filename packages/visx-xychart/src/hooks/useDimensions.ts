@@ -8,7 +8,7 @@ const DEFAULT_DIMS = {
 
 export type Dimensions = typeof DEFAULT_DIMS;
 type Margin = { top: number; right: number; bottom: number; left: number };
-type PartialDimensions = { width?: number; height?: number; margin?: Partial<Margin> };
+export type PartialDimensions = { width?: number; height?: number; margin?: Partial<Margin> };
 
 /** A hook for accessing and setting memoized width, height, and margin chart dimensions. */
 export default function useDimensions(
