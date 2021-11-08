@@ -51,10 +51,10 @@ export default function useDimensions(
     [
       dimensions.width,
       dimensions.height,
-      dimensions.margin?.left,
-      dimensions.margin?.right,
-      dimensions.margin?.bottom,
-      dimensions.margin?.top,
+      dimensions.margin.left,
+      dimensions.margin.right,
+      dimensions.margin.bottom,
+      dimensions.margin.top,
     ],
   );
 
