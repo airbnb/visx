@@ -7,7 +7,7 @@ import { XYChartTheme } from '../types';
 import ThemeContext from '../context/ThemeContext';
 import DataContext from '../context/DataContext';
 import useDataRegistry from '../hooks/useDataRegistry';
-import useDimensions, { Dimensions } from '../hooks/useDimensions';
+import useDimensions, { PartialDimensions } from '../hooks/useDimensions';
 import useScales from '../hooks/useScales';
 import isDiscreteScale from '../utils/isDiscreteScale';
 
@@ -17,7 +17,7 @@ export type DataProviderProps<
   YScaleConfig extends ScaleConfig<AxisScaleOutput, any, any>,
 > = {
   /* Optionally define the initial dimensions. */
-  initialDimensions?: Partial<Dimensions>;
+  initialDimensions?: PartialDimensions;
   /* Optional chart theme provided by DataProvider, overrides any theme already available in context. */
   theme?: XYChartTheme;
   /* x-scale configuration whose shape depends on scale type. */

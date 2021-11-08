@@ -49,7 +49,7 @@ export interface DataContextType<
     data: DataRegistryEntry<XScale, YScale, Datum> | DataRegistryEntry<XScale, YScale, Datum>[],
   ) => void;
   unregisterData: (keyOrKeys: string | string[]) => void;
-  setDimensions: (dims: { width: number; height: number; margin: Margin }) => void;
+  setDimensions: (dims: { width: number; height: number; margin: Partial<Margin> }) => void;
   theme: XYChartTheme;
   horizontal: boolean;
 }

@@ -7,38 +7,52 @@ const DEFAULT_DIMS = {
 };
 
 export type Dimensions = typeof DEFAULT_DIMS;
+type Margin = { top: number; right: number; bottom: number; left: number };
+type PartialDimensions = { width?: number; height?: number; margin?: Partial<Margin> };
 
 /** A hook for accessing and setting memoized width, height, and margin chart dimensions. */
 export default function useDimensions(
-  initialDims?: Partial<Dimensions>,
-): [Dimensions, (dims: Dimensions) => void] {
+  initialDims: PartialDimensions = {},
+): [Dimensions, (dims: PartialDimensions) => void] {
   const [dimensions, privateSetDimensions] = useState<Dimensions>({
-    width: initialDims?.width == null ? DEFAULT_DIMS.width : initialDims.width,
-    height: initialDims?.height == null ? DEFAULT_DIMS.height : initialDims.height,
-    margin: initialDims?.margin == null ? DEFAULT_DIMS.margin : initialDims.margin,
+    width: initialDims.width ?? DEFAULT_DIMS.width,
+    height: initialDims.height ?? DEFAULT_DIMS.height,
+    margin: {
+      ...DEFAULT_DIMS.margin,
+      ...(initialDims.margin ?? {}),
+    },
   });
 
   // expose a setter with better memoization logic
   const publicSetDimensions = useCallback(
-    (dims: Dimensions) => {
+    (dims: PartialDimensions) => {
       if (
         dims.width !== dimensions.width ||
         dims.height !== dimensions.height ||
-        dims.margin.left !== dimensions.margin.left ||
-        dims.margin.right !== dimensions.margin.right ||
-        dims.margin.top !== dimensions.margin.top ||
-        dims.margin.bottom !== dimensions.margin.bottom
+        dims.margin?.left !== dimensions.margin.left ||
+        dims.margin?.right !== dimensions.margin.right ||
+        dims.margin?.top !== dimensions.margin.top ||
+        dims.margin?.bottom !== dimensions.margin.bottom
       ) {
-        privateSetDimensions(dims);
+        privateSetDimensions((previous) => {
+          return {
+            width: dims.width ?? previous.width,
+            height: dims.height ?? previous.height,
+            margin: {
+              ...previous.margin,
+              ...(dims.margin ?? {}),
+            },
+          };
+        });
       }
     },
     [
       dimensions.width,
       dimensions.height,
-      dimensions.margin.left,
-      dimensions.margin.right,
-      dimensions.margin.bottom,
-      dimensions.margin.top,
+      dimensions.margin?.left,
+      dimensions.margin?.right,
+      dimensions.margin?.bottom,
+      dimensions.margin?.top,
     ],
   );
 

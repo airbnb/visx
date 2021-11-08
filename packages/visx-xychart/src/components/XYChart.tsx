@@ -34,7 +34,7 @@ export type XYChartProps<
   /** Total height of the desired chart svg, including margin. */
   height?: number;
   /** Margin to apply around the outside. */
-  margin?: Margin;
+  margin?: Margin | null;
   /** XYChart children (Series, Tooltip, etc.). */
   children: React.ReactNode;
   /** If DataContext is not available, XYChart will wrap itself in a DataProvider and set this as the theme. */
@@ -104,7 +104,7 @@ export default function XYChart<
   // update dimensions in context
   useEffect(() => {
     if (setDimensions && width != null && height != null && width > 0 && height > 0) {
-      setDimensions({ width, height, margin });
+      setDimensions({ width, height, margin: margin ?? {} });
     }
   }, [setDimensions, width, height, margin]);
 
@@ -130,7 +130,7 @@ export default function XYChart<
         xScale={xScale}
         yScale={yScale}
         theme={theme}
-        initialDimensions={{ width, height, margin }}
+        initialDimensions={{ width, height, margin: margin ?? {} }}
         horizontal={horizontal}
       >
         <XYChart {...props} />
