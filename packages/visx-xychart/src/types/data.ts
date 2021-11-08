@@ -1,6 +1,7 @@
 import { AxisScale } from '@visx/axis';
 import { ScaleTypeToD3Scale, ScaleInput } from '@visx/scale';
 import DataRegistry from '../classes/DataRegistry';
+import { PartialDimensions } from '../hooks/useDimensions';
 import { XYChartTheme } from './theme';
 
 export type Margin = {
@@ -49,7 +50,7 @@ export interface DataContextType<
     data: DataRegistryEntry<XScale, YScale, Datum> | DataRegistryEntry<XScale, YScale, Datum>[],
   ) => void;
   unregisterData: (keyOrKeys: string | string[]) => void;
-  setDimensions: (dims: { width: number; height: number; margin: Partial<Margin> }) => void;
+  setDimensions: (dims: PartialDimensions) => void;
   theme: XYChartTheme;
   horizontal: boolean;
 }

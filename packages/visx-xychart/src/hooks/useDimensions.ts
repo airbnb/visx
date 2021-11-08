@@ -15,8 +15,9 @@ export default function useDimensions(
   initialDims: PartialDimensions = {},
 ): [Dimensions, (dims: PartialDimensions) => void] {
   const [dimensions, privateSetDimensions] = useState<Dimensions>({
-    width: initialDims.width ?? DEFAULT_DIMS.width,
-    height: initialDims.height ?? DEFAULT_DIMS.height,
+    // using || instead of ?? to include 0 as falsy
+    width: initialDims.width || DEFAULT_DIMS.width,
+    height: initialDims.height || DEFAULT_DIMS.height,
     margin: {
       ...DEFAULT_DIMS.margin,
       ...(initialDims.margin ?? {}),
@@ -36,8 +37,9 @@ export default function useDimensions(
       ) {
         privateSetDimensions((previous) => {
           return {
-            width: dims.width ?? previous.width,
-            height: dims.height ?? previous.height,
+            // using || instead of ?? to include 0 as falsy
+            width: dims.width || previous.width,
+            height: dims.height || previous.height,
             margin: {
               ...previous.margin,
               ...(dims.margin ?? {}),

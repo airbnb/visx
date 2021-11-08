@@ -103,12 +103,11 @@ export default function XYChart<
 
   // update dimensions in context
   useEffect(() => {
-    if (setDimensions && width != null && height != null && width > 0 && height > 0) {
+    if (setDimensions && ((width != null && width > 0) || (height != null && height > 0))) {
       setDimensions({ width, height, margin: margin ?? {} });
     }
   }, [setDimensions, width, height, margin]);
 
-  const eventEmitters = useEventEmitters({ source: XYCHART_EVENT_SOURCE });
   useEventHandlers({
     dataKey: pointerEventsDataKey === 'nearest' ? POINTER_EVENTS_NEAREST : POINTER_EVENTS_ALL,
     onPointerMove,
@@ -168,7 +167,23 @@ export default function XYChart<
     );
   }
 
-  return width > 0 && height > 0 ? (
+  return (
+    <XYChartInternal captureEvents={captureEvents} accessibilityLabel={accessibilityLabel}>
+      {children}
+    </XYChartInternal>
+  );
+}
+
+function XYChartInternal(props: {
+  captureEvents: boolean;
+  accessibilityLabel: string;
+  children: React.ReactNode;
+}) {
+  const { captureEvents, accessibilityLabel, children } = props;
+  const eventEmitters = useEventEmitters({ source: XYCHART_EVENT_SOURCE });
+  const { width, height, margin } = useContext(DataContext);
+
+  return width && height && margin ? (
     <svg width={width} height={height} aria-label={accessibilityLabel}>
       {children}
       {captureEvents && (
