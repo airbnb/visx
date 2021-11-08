@@ -8,6 +8,7 @@ import { AnimationTrajectory } from '@visx/react-spring/lib/types';
 import cityTemperature, { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
 import { GlyphCross, GlyphDot, GlyphStar } from '@visx/glyph';
 import { curveLinear, curveStep, curveCardinal } from '@visx/curve';
+import { RenderTooltipGlypProps } from '@visx/xychart/src/components/Tooltip';
 import customTheme from './customTheme';
 import userPrefersReducedMotion from './userPrefersReducedMotion';
 import getAnimatedOrUnanimatedComponents from './getAnimatedOrUnanimatedComponents';
@@ -74,7 +75,7 @@ type ProvidedProps = {
   renderGlyph: React.FC<GlyphProps<CityTemperature>>;
   renderGlyphSeries: boolean;
   enableTooltipGlyph: boolean;
-  renderTooltipGlyph: React.FC<GlyphProps<CityTemperature>>;
+  renderTooltipGlyph: React.FC<RenderTooltipGlypProps<CityTemperature>>;
   renderHorizontally: boolean;
   renderLineSeries: boolean;
   sharedTooltip: boolean;
@@ -165,7 +166,8 @@ export default function ExampleControls({ children }: ControlsProps) {
       onPointerMove,
       onPointerOut,
       onPointerUp,
-    }: GlyphProps<CityTemperature>) => {
+      isNearestDatum,
+    }: RenderTooltipGlypProps<CityTemperature>) => {
       const handlers = { onPointerMove, onPointerOut, onPointerUp };
       if (tooltipGlyphComponent === 'star') {
         return (
@@ -198,7 +200,7 @@ export default function ExampleControls({ children }: ControlsProps) {
       }
       return (
         <text x={x} y={y} dx="-0.75em" dy="0.25em" fontSize={14} {...handlers}>
-          🍍
+          {isNearestDatum ? '🍍' : '🍌'}
         </text>
       );
     },

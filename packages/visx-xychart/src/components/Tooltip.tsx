@@ -22,6 +22,11 @@ export type RenderTooltipParams<Datum extends object> = TooltipContextType<Datum
   colorScale?: PickD3Scale<'ordinal', string, string>;
 };
 
+export interface RenderTooltipGlypProps<Datum extends object> extends RenderGlyphProps<Datum> {
+  glyphStyle?: React.SVGProps<SVGCircleElement>;
+  isNearestDatum: boolean;
+}
+
 export type TooltipProps<Datum extends object> = {
   /**
    * When TooltipContext.tooltipOpen=true, this function is invoked and if the
@@ -30,7 +35,7 @@ export type TooltipProps<Datum extends object> = {
    */
   renderTooltip: (params: RenderTooltipParams<Datum>) => React.ReactNode;
   /** Function which handles rendering glyphs. */
-  renderGlyph?: (params: RenderGlyphProps<Datum>) => React.ReactNode;
+  renderGlyph?: (params: RenderTooltipGlypProps<Datum>) => React.ReactNode;
   /** Whether to snap tooltip + crosshair x-coord to the nearest Datum x-coord instead of the event x-coord. */
   snapTooltipToDatumX?: boolean;
   /** Whether to snap tooltip + crosshair y-coord to the nearest Datum y-coord instead of the event y-coord. */
@@ -66,10 +71,6 @@ const INVISIBLE_STYLES: React.CSSProperties = {
   height: 0,
   pointerEvents: 'none',
 };
-
-interface RenderTooltipGlypProps<Datum extends object> extends RenderGlyphProps<Datum> {
-  glyphStyle?: React.SVGProps<SVGCircleElement>;
-}
 
 function DefaultGlyph<Datum extends object>(props: RenderTooltipGlypProps<Datum>) {
   const { theme } = useContext(DataContext) || {};
@@ -222,6 +223,7 @@ function TooltipInner<Datum extends object>({
             x: left,
             y: top,
             glyphStyle,
+            isNearestDatum: nearestDatum ? nearestDatum.key === key : false,
           });
         },
       );
@@ -244,6 +246,7 @@ function TooltipInner<Datum extends object>({
           x: left,
           y: top,
           glyphStyle,
+          isNearestDatum: true,
         });
       }
     }
