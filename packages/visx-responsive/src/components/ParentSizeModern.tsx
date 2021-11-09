@@ -1,6 +1,6 @@
-import debounce from 'lodash/debounce';
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { ResizeObserver } from '../types';
+import debounce from "lodash/debounce";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import { ResizeObserver } from "../types";
 
 // This can be deleted once https://git.io/Jk9FD lands in TypeScript
 declare global {
@@ -25,7 +25,7 @@ export type ParentSizeProps = {
     args: {
       ref: HTMLDivElement | null;
       resize: (state: ParentSizeState) => void;
-    } & ParentSizeState,
+    } & ParentSizeState
   ) => React.ReactNode;
 };
 
@@ -38,24 +38,27 @@ type ParentSizeState = {
 
 export type ParentSizeProvidedProps = ParentSizeState;
 
-const defaultIgnoreDimensions: ParentSizeProps['ignoreDimensions'] = [];
+const defaultIgnoreDimensions: ParentSizeProps["ignoreDimensions"] = [];
 
 export default function ParentSize({
   className,
   children,
   debounceTime = 300,
   ignoreDimensions = defaultIgnoreDimensions,
-  parentSizeStyles = { width: '100%', height: '100%' },
+  parentSizeStyles = { width: "100%", height: "100%" },
   enableDebounceLeadingCall = true,
   ...restProps
-}: ParentSizeProps & Omit<JSX.IntrinsicElements['div'], keyof ParentSizeProps>) {
+}: ParentSizeProps &
+  Omit<JSX.IntrinsicElements["div"], keyof ParentSizeProps>) {
   const target = useRef<HTMLDivElement | null>(null);
   const animationFrameID = useRef(0);
 
   const [state, setState] = useState<ParentSizeState | null>(null);
 
   const resize = useMemo(() => {
-    const normalized = Array.isArray(ignoreDimensions) ? ignoreDimensions : [ignoreDimensions];
+    const normalized = Array.isArray(ignoreDimensions)
+      ? ignoreDimensions
+      : [ignoreDimensions];
 
     return debounce(
       (incoming: ParentSizeState) => {
@@ -68,14 +71,18 @@ export default function ParentSize({
           };
 
           const stateKeys = Object.keys(existing) as (keyof ParentSizeState)[];
-          const keysWithChanges = stateKeys.filter((key) => existing[key] !== incoming[key]);
-          const shouldBail = keysWithChanges.every((key) => normalized.includes(key));
+          const keysWithChanges = stateKeys.filter(
+            (key) => existing[key] !== incoming[key]
+          );
+          const shouldBail = keysWithChanges.every((key) =>
+            normalized.includes(key)
+          );
 
           return shouldBail ? existing : incoming;
         });
       },
       debounceTime,
-      { leading: enableDebounceLeadingCall },
+      { leading: enableDebounceLeadingCall }
     );
   }, [debounceTime, enableDebounceLeadingCall, ignoreDimensions]);
 
@@ -98,12 +105,18 @@ export default function ParentSize({
   }, [resize]);
 
   return (
-    <div style={parentSizeStyles} ref={target} className={className} {...restProps}>
-      {state && children({
-        ...state,
-        ref: target.current,
-        resize,
-      })}
+    <div
+      style={parentSizeStyles}
+      ref={target}
+      className={className}
+      {...restProps}
+    >
+      {state &&
+        children({
+          ...state,
+          ref: target.current,
+          resize,
+        })}
     </div>
   );
 }
