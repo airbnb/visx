@@ -38,11 +38,13 @@ type ParentSizeState = {
 
 export type ParentSizeProvidedProps = ParentSizeState;
 
+const defaultIgnoreDimensions: ParentSizeProps['ignoreDimensions'] = [];
+
 export default function ParentSize({
   className,
   children,
   debounceTime = 300,
-  ignoreDimensions = [],
+  ignoreDimensions = defaultIgnoreDimensions,
   parentSizeStyles = { width: '100%', height: '100%' },
   enableDebounceLeadingCall = true,
   ...restProps
@@ -50,19 +52,21 @@ export default function ParentSize({
   const target = useRef<HTMLDivElement | null>(null);
   const animationFrameID = useRef(0);
 
-  const [state, setState] = useState<ParentSizeState>({
-    width: 0,
-    height: 0,
-    top: 0,
-    left: 0,
-  });
+  const [state, setState] = useState<ParentSizeState | null>(null);
 
   const resize = useMemo(() => {
     const normalized = Array.isArray(ignoreDimensions) ? ignoreDimensions : [ignoreDimensions];
 
     return debounce(
       (incoming: ParentSizeState) => {
-        setState((existing) => {
+        setState((existingState) => {
+          const existing = existingState || {
+            width: 0,
+            height: 0,
+            top: 0,
+            left: 0,
+          };
+
           const stateKeys = Object.keys(existing) as (keyof ParentSizeState)[];
           const keysWithChanges = stateKeys.filter((key) => existing[key] !== incoming[key]);
           const shouldBail = keysWithChanges.every((key) => normalized.includes(key));
@@ -95,7 +99,7 @@ export default function ParentSize({
 
   return (
     <div style={parentSizeStyles} ref={target} className={className} {...restProps}>
-      {children({
+      {state && children({
         ...state,
         ref: target.current,
         resize,
