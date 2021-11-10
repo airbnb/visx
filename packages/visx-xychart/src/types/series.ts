@@ -107,9 +107,9 @@ export type Bar = {
   x: number;
   /** Y coordinate of Bar. */
   y: number;
-  /** Width coordinate of Bar. */
+  /** Width of Bar. */
   width: number;
-  /** Height coordinate of Bar. */
+  /** Height of Bar. */
   height: number;
   /** Fill color of Bar */
   fill?: string;
@@ -121,7 +121,22 @@ export type BarsProps<XScale extends AxisScale, YScale extends AxisScale> = {
   xScale: XScale;
   yScale: YScale;
   horizontal?: boolean;
-} & Omit<React.SVGProps<SVGRectElement>, 'x' | 'y' | 'width' | 'height' | 'ref'>;
+  /** Optional radius to apply to bar corners. */
+  radius?: number;
+  /** Whether to apply radius to all corners. */
+  radiusAll?: boolean;
+  /** Whether to apply radius to top corners. */
+  radiusTop?: boolean;
+  /** Whether to apply radius to right corners. */
+  radiusRight?: boolean;
+  /** Whether to apply radius to bottom corners. */
+  radiusBottom?: boolean;
+  /** Whether to apply radius to left corners. */
+  radiusLeft?: boolean;
+} & Omit<
+  React.SVGProps<SVGRectElement | SVGPathElement>,
+  'x' | 'y' | 'width' | 'height' | 'ref' | 'children'
+>;
 
 // BarStack transforms its child series Datum into CombinedData<XScale, YScale>
 export type BarStackDatum<XScale extends AxisScale, YScale extends AxisScale> = SeriesPoint<

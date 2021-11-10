@@ -66,6 +66,20 @@ describe('<BarStack />', () => {
     expect(RectElements).toHaveLength(4);
   });
 
+  it('should render BarRounded if radius is set', () => {
+    const { container } = render(
+      <DataProvider {...providerProps}>
+        <svg>
+          <BarStack>
+            <BarSeries dataKey={series1.key} radiusAll radius={4} {...series1} />
+            <BarSeries dataKey={series2.key} {...series2} />
+          </BarStack>
+        </svg>
+      </DataProvider>,
+    );
+    expect(container.querySelectorAll('path')).toHaveLength(2);
+  });
+
   it('should use colorAccessor if passed', () => {
     const { container } = render(
       <DataProvider {...providerProps}>

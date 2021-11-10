@@ -1,9 +1,11 @@
 import { AxisScale } from '@visx/axis';
+import { BarRounded } from '@visx/shape';
 import React, { useMemo } from 'react';
 import { animated, useTransition } from 'react-spring';
 import { Bar, BarsProps } from '../../../types';
 import { cleanColor, colorHasUrl } from '../../../utils/cleanColorString';
 import getScaleBaseline from '../../../utils/getScaleBaseline';
+import AnimatedPath from './AnimatedPath';
 
 function enterUpdate({ x, y, width, height, fill }: Bar) {
   return {
@@ -51,11 +53,72 @@ function useBarTransitionConfig<Scale extends AxisScale>({
   }, [scale, shouldAnimateX]);
 }
 
-export default function AnimatedBars<XScale extends AxisScale, YScale extends AxisScale>({
+/** Wrapper component which renders a Bars component depending on whether it needs rounded corners. */
+export default function AnimatedBars<XScale extends AxisScale, YScale extends AxisScale>(
+  props: BarsProps<XScale, YScale>,
+) {
+  return props.radius == null ? (
+    <AnimatedBarsUnrounded {...props} />
+  ) : (
+    <AnimatedBarsRounded {...props} radius={props.radius} />
+  );
+}
+
+function AnimatedBarsRounded<XScale extends AxisScale, YScale extends AxisScale>({
   bars,
   xScale,
   yScale,
   horizontal,
+  radius,
+  radiusAll,
+  radiusTop,
+  radiusRight,
+  radiusBottom,
+  radiusLeft,
+  ...pathProps
+}: BarsProps<XScale, YScale> & { radius: number }) {
+  return (
+    // eslint-disable-next-line react/jsx-no-useless-fragment
+    <>
+      {bars.map(({ key, fill, x, y, width, height }) => (
+        <BarRounded
+          key={key}
+          x={x}
+          y={y}
+          width={width}
+          height={height}
+          radius={radius}
+          all={radiusAll}
+          top={radiusTop}
+          right={radiusRight}
+          bottom={radiusBottom}
+          left={radiusLeft}
+        >
+          {({ path }) => (
+            <AnimatedPath
+              className="visx-bar visx-bar-rounded"
+              d={path}
+              fill={fill}
+              {...pathProps}
+            />
+          )}
+        </BarRounded>
+      ))}
+    </>
+  );
+}
+
+function AnimatedBarsUnrounded<XScale extends AxisScale, YScale extends AxisScale>({
+  bars,
+  xScale,
+  yScale,
+  horizontal,
+  radius,
+  radiusAll,
+  radiusTop,
+  radiusRight,
+  radiusBottom,
+  radiusLeft,
   ...rectProps
 }: BarsProps<XScale, YScale>) {
   const animatedBars = useTransition(bars, {

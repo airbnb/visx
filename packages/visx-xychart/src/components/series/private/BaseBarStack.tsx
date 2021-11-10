@@ -106,8 +106,10 @@ function BaseBarStack<
     allowedSources: [XYCHART_EVENT_SOURCE, ownEventSourceKey],
   });
 
+  const registryEntries = dataKeys.map((key) => dataRegistry.get(key));
+
   // if scales and data are not available in the registry, bail
-  if (dataKeys.some((key) => dataRegistry.get(key) == null) || !xScale || !yScale || !colorScale) {
+  if (registryEntries.some((entry) => entry == null) || !xScale || !yScale || !colorScale) {
     return null;
   }
 
@@ -137,52 +139,70 @@ function BaseBarStack<
     getY = (bar) => yScale(getSecondItem(bar));
   }
 
-  const bars = stackedData
-    .flatMap((barStack, stackIndex) => {
+  const barSeries = stackedData
+    .map((barStack, stackIndex) => {
       const entry = dataRegistry.get(barStack.key);
       if (!entry) return null;
 
-      // get colorAccessor from child BarSeries, if available
-      const barSeries: React.ReactElement<BaseBarSeriesProps<XScale, YScale, Datum>> | undefined =
-        seriesChildren.find((child) => child.props.dataKey === barStack.key);
-      const colorAccessor = barSeries?.props?.colorAccessor;
+      // get props from child BarSeries, if available
+      const childBarSeries:
+        | React.ReactElement<BaseBarSeriesProps<XScale, YScale, Datum>>
+        | undefined = seriesChildren.find((child) => child.props.dataKey === barStack.key);
+      const { colorAccessor, radius, radiusAll, radiusBottom, radiusLeft, radiusRight, radiusTop } =
+        childBarSeries?.props || {};
 
-      return barStack.map((bar, index) => {
-        const barX = getX(bar);
-        if (!isValidNumber(barX)) return null;
-        const barY = getY(bar);
-        if (!isValidNumber(barY)) return null;
-        const barWidth = getWidth(bar);
-        if (!isValidNumber(barWidth)) return null;
-        const barHeight = getHeight(bar);
-        if (!isValidNumber(barHeight)) return null;
+      return {
+        key: barStack.key,
+        radius,
+        radiusAll,
+        radiusBottom,
+        radiusLeft,
+        radiusRight,
+        radiusTop,
+        bars: barStack
+          .map((bar, index) => {
+            const barX = getX(bar);
+            if (!isValidNumber(barX)) return null;
+            const barY = getY(bar);
+            if (!isValidNumber(barY)) return null;
+            const barWidth = getWidth(bar);
+            if (!isValidNumber(barWidth)) return null;
+            const barHeight = getHeight(bar);
+            if (!isValidNumber(barHeight)) return null;
 
-        const barSeriesDatum = colorAccessor ? barSeries?.props?.data[index] : null;
+            const barSeriesDatum = colorAccessor ? childBarSeries?.props?.data[index] : null;
 
-        return {
-          key: `${stackIndex}-${barStack.key}-${index}`,
-          x: barX,
-          y: barY,
-          width: barWidth,
-          height: barHeight,
-          fill:
-            barSeriesDatum && colorAccessor
-              ? colorAccessor(barSeriesDatum, index)
-              : colorScale(barStack.key),
-        };
-      });
+            return {
+              key: `${stackIndex}-${barStack.key}-${index}`,
+              x: barX,
+              y: barY,
+              width: barWidth,
+              height: barHeight,
+              fill:
+                barSeriesDatum && colorAccessor
+                  ? colorAccessor(barSeriesDatum, index)
+                  : colorScale(barStack.key),
+            };
+          })
+          .filter((bar) => bar) as Bar[],
+      };
     })
-    .filter((bar) => bar) as Bar[];
+    .filter((series) => series);
 
   return (
     <g className="visx-bar-stack">
-      <BarsComponent
-        bars={bars}
-        horizontal={horizontal}
-        xScale={xScale}
-        yScale={yScale}
-        {...eventEmitters}
-      />
+      {barSeries.map(
+        (series) =>
+          series && (
+            <BarsComponent
+              horizontal={horizontal}
+              xScale={xScale}
+              yScale={yScale}
+              {...series}
+              {...eventEmitters}
+            />
+          ),
+      )}
     </g>
   );
 }

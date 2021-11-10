@@ -121,7 +121,7 @@ export default function BaseBarGroup<
 
   const barThickness = getScaleBandwidth(groupScale);
 
-  const bars = registryEntries.flatMap(({ xAccessor, yAccessor, data, key }) => {
+  const barSeries = registryEntries.map(({ xAccessor, yAccessor, data, key }) => {
     const getLength = (d: Datum) =>
       horizontal
         ? (xScale(xAccessor(d)) ?? NaN) - xZeroPosition
@@ -143,41 +143,59 @@ export default function BaseBarGroup<
 
     const getWidth = horizontal ? (d: Datum) => Math.abs(getLength(d)) : () => barThickness;
     const getHeight = horizontal ? () => barThickness : (d: Datum) => Math.abs(getLength(d));
-    const colorAccessor = barSeriesChildren.find((child) => child.props.dataKey === key)?.props
-      ?.colorAccessor;
+    // get props from child BarSeries, if available
+    const childBarSeries:
+      | React.ReactElement<BaseBarSeriesProps<XScale, YScale, Datum>>
+      | undefined = barSeriesChildren.find((child) => child.props.dataKey === key);
+    const { colorAccessor, radius, radiusAll, radiusBottom, radiusLeft, radiusRight, radiusTop } =
+      childBarSeries?.props || {};
 
-    return data
-      .map((bar, index) => {
-        const barX = getX(bar);
-        if (!isValidNumber(barX)) return null;
-        const barY = getY(bar);
-        if (!isValidNumber(barY)) return null;
-        const barWidth = getWidth(bar);
-        if (!isValidNumber(barWidth)) return null;
-        const barHeight = getHeight(bar);
-        if (!isValidNumber(barHeight)) return null;
+    return {
+      key,
+      radius,
+      radiusAll,
+      radiusBottom,
+      radiusLeft,
+      radiusRight,
+      radiusTop,
+      bars: data
+        .map((bar, index) => {
+          const barX = getX(bar);
+          if (!isValidNumber(barX)) return null;
+          const barY = getY(bar);
+          if (!isValidNumber(barY)) return null;
+          const barWidth = getWidth(bar);
+          if (!isValidNumber(barWidth)) return null;
+          const barHeight = getHeight(bar);
+          if (!isValidNumber(barHeight)) return null;
 
-        return {
-          key: `${key}-${index}`,
-          x: barX,
-          y: barY,
-          width: barWidth,
-          height: barHeight,
-          fill: colorAccessor?.(bar, index) ?? colorScale(key),
-        };
-      })
-      .filter((bar) => bar) as Bar[];
+          return {
+            key: `${key}-${index}`,
+            x: barX,
+            y: barY,
+            width: barWidth,
+            height: barHeight,
+            fill: colorAccessor?.(bar, index) ?? colorScale(key),
+          };
+        })
+        .filter((bar) => bar) as Bar[],
+    };
   });
 
   return (
     <g className="visx-bar-group">
-      <BarsComponent
-        bars={bars}
-        horizontal={horizontal}
-        xScale={xScale}
-        yScale={yScale}
-        {...eventEmitters}
-      />
+      {barSeries.map(
+        (series) =>
+          series && (
+            <BarsComponent
+              horizontal={horizontal}
+              xScale={xScale}
+              yScale={yScale}
+              {...series}
+              {...eventEmitters}
+            />
+          ),
+      )}
     </g>
   );
 }
