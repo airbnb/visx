@@ -1,4 +1,5 @@
 # Changelog
+- [v2.4.0](#v240)
 - [v2.3.0](#v230)
 - [v2.2.2](#v222)
 - [v2.2.1](#v221)
@@ -6,10 +7,10 @@
 - [v2.1.2](#v212)
 - [v2.1.1](#v211)
 - [v2.1.0](#v210)
-- [v1.18.1](#v1181)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v1181">v1.18.1</a></li>
   <li><a href="#v1180">v1.18.0</a></li>
   <li><a href="#v1171">v1.17.1</a></li>
   <li><a href="#v1170">v1.17.0</a></li>
@@ -128,6 +129,27 @@
 </details>
 
 ------
+# v2.4.0 (2021-11-10)
+
+#### :rocket: Enhancements
+
+- new(xychart): distinguish nearestDatum in renderGlyph [#1294](https://github.com/airbnb/visx/pull/1294)
+- new(shape/BarRounded): export useBarRounded, support render functions [#1097](https://github.com/airbnb/visx/pull/1097)
+- new(xychart/BarSeries,BarGroup,BarStack): add support for bar radius [#1098](https://github.com/airbnb/visx/pull/1098)
+
+#### :bug: Bug Fix
+
+- Update Readme.md [#1372](https://github.com/airbnb/visx/pull/1372)
+
+### :memo: Documentation
+
+- Update Readme.md [#1372](https://github.com/airbnb/visx/pull/1372)
+  
+#### :trophy: Contributors
+- [AryanBeezadhur](https://github.com/AryanBeezadhur)
+- [Janpot](https://github.com/Janpot)
+- [williaster](https://github.com/williaster)
+
 # v2.3.0 (2021-11-02)
 
 #### :rocket: Enhancements
