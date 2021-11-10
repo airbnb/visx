@@ -77,7 +77,7 @@ describe('<BarStack />', () => {
         </svg>
       </DataProvider>,
     );
-    expect('path').toHaveLength(2);
+    expect(container.querySelectorAll('path')).toHaveLength(2);
   });
 
   it('should use colorAccessor if passed', () => {
