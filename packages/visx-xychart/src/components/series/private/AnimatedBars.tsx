@@ -88,6 +88,7 @@ function AnimatedBarsRounded<XScale extends AxisScale, YScale extends AxisScale>
           width={width}
           height={height}
           radius={radius}
+          all={radiusAll}
           top={radiusTop}
           right={radiusRight}
           bottom={radiusBottom}
