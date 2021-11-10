@@ -106,10 +106,10 @@ function BaseBarStack<
     allowedSources: [XYCHART_EVENT_SOURCE, ownEventSourceKey],
   });
 
-  const registryEntries = dataKeys.map(key => dataRegistry.get(key));
+  const registryEntries = dataKeys.map((key) => dataRegistry.get(key));
 
   // if scales and data are not available in the registry, bail
-  if (registryEntries.some(entry => entry == null) || !xScale || !yScale || !colorScale) {
+  if (registryEntries.some((entry) => entry == null) || !xScale || !yScale || !colorScale) {
     return null;
   }
 
@@ -147,7 +147,7 @@ function BaseBarStack<
       // get props from child BarSeries, if available
       const childBarSeries:
         | React.ReactElement<BaseBarSeriesProps<XScale, YScale, Datum>>
-        | undefined = seriesChildren.find(child => child.props.dataKey === barStack.key);
+        | undefined = seriesChildren.find((child) => child.props.dataKey === barStack.key);
       const { colorAccessor, radius, radiusAll, radiusBottom, radiusLeft, radiusRight, radiusTop } =
         childBarSeries?.props || {};
 
@@ -184,15 +184,15 @@ function BaseBarStack<
                   : colorScale(barStack.key),
             };
           })
-          .filter(bar => bar) as Bar[],
+          .filter((bar) => bar) as Bar[],
       };
     })
-    .filter(series => series);
+    .filter((series) => series);
 
   return (
     <g className="visx-bar-stack">
       {barSeries.map(
-        series =>
+        (series) =>
           series && (
             <BarsComponent
               horizontal={horizontal}

@@ -146,7 +146,7 @@ export default function BaseBarGroup<
     // get props from child BarSeries, if available
     const childBarSeries:
       | React.ReactElement<BaseBarSeriesProps<XScale, YScale, Datum>>
-      | undefined = barSeriesChildren.find(child => child.props.dataKey === key);
+      | undefined = barSeriesChildren.find((child) => child.props.dataKey === key);
     const { colorAccessor, radius, radiusAll, radiusBottom, radiusLeft, radiusRight, radiusTop } =
       childBarSeries?.props || {};
 
@@ -178,14 +178,14 @@ export default function BaseBarGroup<
             fill: colorAccessor?.(bar, index) ?? colorScale(key),
           };
         })
-        .filter(bar => bar) as Bar[],
+        .filter((bar) => bar) as Bar[],
     };
   });
 
   return (
     <g className="visx-bar-group">
       {barSeries.map(
-        series =>
+        (series) =>
           series && (
             <BarsComponent
               horizontal={horizontal}
