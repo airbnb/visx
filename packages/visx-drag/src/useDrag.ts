@@ -29,9 +29,9 @@ export type UseDragOptions = {
   dy?: number;
   /** If defined, parent controls dragging state.  */
   isDragging?: boolean;
-  /** Snap element being dragged to middle of pointer */
+  /** Snap element being dragged to middle of pointer. */
   snapToPointer?: boolean;
-  /** Options for limiting dragging in the x and y plane */
+  /** Options for limiting dragging in the x and y plane. */
   restrict?: {
     xMin?: number;
     xMax?: number;
