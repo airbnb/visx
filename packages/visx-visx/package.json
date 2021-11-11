@@ -1,6 +1,6 @@
 {
   "name": "@visx/visx",
-  "version": "2.4.1",
+  "version": "2.5.0",
   "description": "One stop install for all visx packages",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -33,13 +33,13 @@
     "react": "^16.3.0-0 || ^17.0.0-0"
   },
   "dependencies": {
-    "@visx/annotation": "2.4.0",
+    "@visx/annotation": "2.5.0",
     "@visx/axis": "2.4.0",
     "@visx/bounds": "2.1.2",
-    "@visx/brush": "2.4.0",
+    "@visx/brush": "2.5.0",
     "@visx/clip-path": "2.1.0",
     "@visx/curve": "2.1.0",
-    "@visx/drag": "2.1.2",
+    "@visx/drag": "2.5.0",
     "@visx/event": "2.1.2",
     "@visx/geo": "2.1.2",
     "@visx/glyph": "2.1.2",
@@ -61,7 +61,7 @@
     "@visx/tooltip": "2.2.2",
     "@visx/voronoi": "2.1.2",
     "@visx/wordcloud": "2.1.0",
-    "@visx/xychart": "2.4.1",
+    "@visx/xychart": "2.5.0",
     "@visx/zoom": "2.2.2"
   }
 }
