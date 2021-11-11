@@ -1,6 +1,6 @@
 {
   "name": "@visx/visx",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "description": "One stop install for all visx packages",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -54,14 +54,14 @@
     "@visx/network": "2.1.2",
     "@visx/pattern": "2.1.2",
     "@visx/point": "2.1.0",
-    "@visx/responsive": "2.1.2",
+    "@visx/responsive": "2.4.1",
     "@visx/scale": "2.2.2",
     "@visx/shape": "2.4.0",
     "@visx/text": "2.3.0",
     "@visx/tooltip": "2.2.2",
     "@visx/voronoi": "2.1.2",
     "@visx/wordcloud": "2.1.0",
-    "@visx/xychart": "2.4.0",
+    "@visx/xychart": "2.4.1",
     "@visx/zoom": "2.2.2"
   }
 }
