@@ -45,20 +45,19 @@ export default function ParentSize({
   const target = useRef<HTMLDivElement | null>(null);
   const animationFrameID = useRef(0);
 
-  const [state, setState] = useState<ParentSizeState | null>(null);
+  const [state, setState] = useState<ParentSizeState>({
+    width: 0,
+    height: 0,
+    top: 0,
+    left: 0,
+  });
 
   const resize = useMemo(() => {
     const normalized = Array.isArray(ignoreDimensions) ? ignoreDimensions : [ignoreDimensions];
 
     return debounce(
       (incoming: ParentSizeState) => {
-        setState((existingState) => {
-          const existing = existingState || {
-            width: 0,
-            height: 0,
-            top: 0,
-            left: 0,
-          };
+        setState((existing) => {
           const stateKeys = Object.keys(existing) as (keyof ParentSizeState)[];
           const keysWithChanges = stateKeys.filter((key) => existing[key] !== incoming[key]);
           const shouldBail = keysWithChanges.every((key) => normalized.includes(key));
@@ -91,12 +90,11 @@ export default function ParentSize({
 
   return (
     <div style={parentSizeStyles} ref={target} className={className} {...restProps}>
-      {state &&
-        children({
-          ...state,
-          ref: target.current,
-          resize,
-        })}
+      {children({
+        ...state,
+        ref: target.current,
+        resize,
+      })}
     </div>
   );
 }
