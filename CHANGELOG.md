@@ -1,4 +1,5 @@
 # Changelog
+- [v2.5.0](#v250)
 - [v2.4.1](#v241)
 - [v2.4.0](#v240)
 - [v2.3.0](#v230)
@@ -6,10 +7,10 @@
 - [v2.2.1](#v221)
 - [v2.2.0](#v220)
 - [v2.1.2](#v212)
-- [v2.1.1](#v211)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v211">v2.1.1</a></li>
   <li><a href="#v210">v2.1.0</a></li>
   <li><a href="#v1181">v1.18.1</a></li>
   <li><a href="#v1180">v1.18.0</a></li>
@@ -130,6 +131,15 @@
 </details>
 
 ------
+# v2.5.0 (2021-11-11)
+
+#### :rocket: Enhancements
+
+- new(drag): add options to restrict <Drag> area and control snapToPointer behaviour [#1368](https://github.com/airbnb/visx/pull/1368)
+  
+#### :trophy: Contributors
+- [valtism](https://github.com/valtism)
+
 # v2.4.1 (2021-11-11)
 
 #### :bug: Bug Fix
