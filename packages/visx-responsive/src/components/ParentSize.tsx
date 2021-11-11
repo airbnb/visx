@@ -31,11 +31,13 @@ type ParentSizeState = {
 
 export type ParentSizeProvidedProps = ParentSizeState;
 
+const defaultIgnoreDimensions: ParentSizeProps['ignoreDimensions'] = [];
+
 export default function ParentSize({
   className,
   children,
   debounceTime = 300,
-  ignoreDimensions = [],
+  ignoreDimensions = defaultIgnoreDimensions,
   parentSizeStyles = { width: '100%', height: '100%' },
   enableDebounceLeadingCall = true,
   ...restProps
@@ -43,7 +45,12 @@ export default function ParentSize({
   const target = useRef<HTMLDivElement | null>(null);
   const animationFrameID = useRef(0);
 
-  const [state, setState] = useState<ParentSizeState>({ width: 0, height: 0, top: 0, left: 0 });
+  const [state, setState] = useState<ParentSizeState>({
+    width: 0,
+    height: 0,
+    top: 0,
+    left: 0,
+  });
 
   const resize = useMemo(() => {
     const normalized = Array.isArray(ignoreDimensions) ? ignoreDimensions : [ignoreDimensions];

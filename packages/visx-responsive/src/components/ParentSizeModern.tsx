@@ -38,11 +38,13 @@ type ParentSizeState = {
 
 export type ParentSizeProvidedProps = ParentSizeState;
 
+const defaultIgnoreDimensions: ParentSizeProps['ignoreDimensions'] = [];
+
 export default function ParentSize({
   className,
   children,
   debounceTime = 300,
-  ignoreDimensions = [],
+  ignoreDimensions = defaultIgnoreDimensions,
   parentSizeStyles = { width: '100%', height: '100%' },
   enableDebounceLeadingCall = true,
   ...restProps
