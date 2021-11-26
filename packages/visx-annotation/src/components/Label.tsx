@@ -92,7 +92,6 @@ function ForeignObjectLabel({
     polyfill: resizeObserverPolyfill,
   });
   const { width, height } = titleBounds;
-  console.log(width, height);
 
   // if props are provided, they take precedence over context
   const { x = 0, y = 0, dx = 0, dy = 0 } = useContext(AnnotationContext);
