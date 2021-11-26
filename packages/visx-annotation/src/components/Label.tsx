@@ -132,7 +132,7 @@ function ForeignObjectLabel({
           height={height}
         />
       )}
-      <foreignObject overflow="visible">
+      <foreignObject width={width} height={height} overflow="visible">
         <div ref={labelRef} style={{ display: 'inline-block' }}>
           {children}
         </div>
