@@ -69,7 +69,7 @@ Let's make a simple bar graph.
 
 First we'll install the relevant packages:
 
-```
+```bash
 npm install --save @visx/mock-data @visx/group @visx/shape @visx/scale
 ```
 
