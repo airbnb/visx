@@ -69,8 +69,8 @@ Let's make a simple bar graph.
 
 First we'll install the relevant packages:
 
-```
-$ npm install --save @visx/mock-data @visx/group @visx/shape @visx/scale
+```bash
+npm install --save @visx/mock-data @visx/group @visx/shape @visx/scale
 ```
 
 <img src="./assets/simplebar.png" height="150" />
