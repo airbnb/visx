@@ -1,6 +1,6 @@
 {
   "name": "@visx/visx",
-  "version": "2.5.0",
+  "version": "2.6.0",
   "description": "One stop install for all visx packages",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -33,18 +33,18 @@
     "react": "^16.3.0-0 || ^17.0.0-0"
   },
   "dependencies": {
-    "@visx/annotation": "2.5.0",
-    "@visx/axis": "2.4.0",
+    "@visx/annotation": "2.6.0",
+    "@visx/axis": "2.6.0",
     "@visx/bounds": "2.1.2",
-    "@visx/brush": "2.5.0",
+    "@visx/brush": "2.6.0",
     "@visx/clip-path": "2.1.0",
     "@visx/curve": "2.1.0",
-    "@visx/drag": "2.5.0",
-    "@visx/event": "2.1.2",
+    "@visx/drag": "2.6.0",
+    "@visx/event": "2.6.0",
     "@visx/geo": "2.1.2",
     "@visx/glyph": "2.1.2",
     "@visx/gradient": "2.1.0",
-    "@visx/grid": "2.4.0",
+    "@visx/grid": "2.6.0",
     "@visx/group": "2.1.0",
     "@visx/heatmap": "2.1.2",
     "@visx/hierarchy": "2.1.2",
@@ -53,7 +53,7 @@
     "@visx/mock-data": "2.1.2",
     "@visx/network": "2.1.2",
     "@visx/pattern": "2.1.2",
-    "@visx/point": "2.1.0",
+    "@visx/point": "2.6.0",
     "@visx/responsive": "2.4.1",
     "@visx/scale": "2.2.2",
     "@visx/shape": "2.4.0",
@@ -61,7 +61,7 @@
     "@visx/tooltip": "2.2.2",
     "@visx/voronoi": "2.1.2",
     "@visx/wordcloud": "2.1.0",
-    "@visx/xychart": "2.5.0",
-    "@visx/zoom": "2.2.2"
+    "@visx/xychart": "2.6.0",
+    "@visx/zoom": "2.6.0"
   }
 }
