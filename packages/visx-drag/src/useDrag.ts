@@ -40,7 +40,7 @@ export type UseDragOptions = {
     yMin?: number;
     yMax?: number;
   };
-  /** Limit drag to an SVG path. Overrides `restrict` constraints */
+  /** Limit drag to an SVG path. Overrides `restrict` constraints. */
   restrictToPath?: SVGGeometryElement | null;
 };
 
