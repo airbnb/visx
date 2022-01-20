@@ -1,6 +1,6 @@
 {
   "name": "@visx/visx",
-  "version": "2.6.0",
+  "version": "2.6.1",
   "description": "One stop install for all visx packages",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -62,6 +62,6 @@
     "@visx/voronoi": "2.1.2",
     "@visx/wordcloud": "2.1.0",
     "@visx/xychart": "2.6.0",
-    "@visx/zoom": "2.6.0"
+    "@visx/zoom": "2.6.1"
   }
 }
