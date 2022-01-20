@@ -33,6 +33,7 @@ export default function Drag({
   y,
   isDragging,
   restrict,
+  restrictToPath,
 }: DragProps) {
   const drag = useDrag({
     resetOnStart,
@@ -46,6 +47,7 @@ export default function Drag({
     dy,
     isDragging,
     restrict,
+    restrictToPath,
   });
 
   return (

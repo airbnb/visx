@@ -1,7 +1,9 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { Point, subtractPoints, sumPoints } from '@visx/point';
 import { localPoint } from '@visx/event';
 import useStateWithCallback from './util/useStateWithCallback';
-import clampNumber from './util/clampNumber';
+import restrictPoint from './util/restrictPoint';
+import useSamplesAlongPath from './util/useSamplesAlongPath';
 
 export type MouseTouchOrPointerEvent = React.MouseEvent | React.TouchEvent | React.PointerEvent;
 
@@ -38,6 +40,8 @@ export type UseDragOptions = {
     yMin?: number;
     yMax?: number;
   };
+  /** Limit drag to an SVG path. Overrides `restrict` constraints. */
+  restrictToPath?: SVGGeometryElement | null;
 };
 
 export type DragState = {
@@ -75,19 +79,10 @@ export default function useDrag({
   dy,
   isDragging,
   restrict = {},
+  restrictToPath,
 }: UseDragOptions | undefined = {}): UseDrag {
   // use ref to detect prop changes
   const positionPropsRef = useRef({ x, y, dx, dy });
-
-  const { xMin, xMax, yMin, yMax } = restrict;
-  const clampX = useCallback(
-    (num: number) => clampNumber(num, xMin ?? -Infinity, xMax ?? Infinity),
-    [xMax, xMin],
-  );
-  const clampY = useCallback(
-    (num: number) => clampNumber(num, yMin ?? -Infinity, yMax ?? Infinity),
-    [yMax, yMin],
-  );
 
   const [dragState, setDragStateWithCallback] = useStateWithCallback<DragState>({
     x,
@@ -98,10 +93,9 @@ export default function useDrag({
   });
 
   // Track distance between pointer on dragStart and position of element being dragged
-  const [dragStartPointerOffset, setDragStartPointerOffset] = useState<{
-    x: number;
-    y: number;
-  }>({ x: 0, y: 0 });
+  const [dragStartPointerOffset, setDragStartPointerOffset] = useState<Point>(
+    new Point({ x: 0, y: 0 }),
+  );
 
   // if prop position changes, update state
   useEffect(() => {
@@ -128,30 +122,32 @@ export default function useDrag({
     }
   }, [dragState.isDragging, isDragging, setDragStateWithCallback]);
 
+  const restrictToPathSamples = useSamplesAlongPath(restrictToPath);
+
   const handleDragStart = useCallback(
     (event: MouseTouchOrPointerEvent) => {
       event.persist();
 
       setDragStateWithCallback(
         (currState) => {
-          const currentPoint = {
-            x: (currState.x || 0) + currState.dx,
-            y: (currState.y || 0) + currState.dy,
-          };
-          const eventPoint = localPoint(event) || { x: 0, y: 0 };
-          const point = snapToPointer ? eventPoint : currentPoint;
-
-          setDragStartPointerOffset({
-            x: currentPoint.x - eventPoint.x,
-            y: currentPoint.y - eventPoint.y,
+          // eslint-disable-next-line no-shadow
+          const { x = 0, y = 0, dx, dy } = currState;
+          const currentPoint = new Point({
+            x: (x || 0) + dx,
+            y: (y || 0) + dy,
           });
+          const eventPoint = localPoint(event) || new Point({ x: 0, y: 0 });
+          const point = snapToPointer ? eventPoint : currentPoint;
+          const dragPoint = restrictPoint(point, restrictToPathSamples, restrict);
+
+          setDragStartPointerOffset(subtractPoints(currentPoint, eventPoint));
 
           return {
             isDragging: true,
             dx: resetOnStart ? 0 : currState.dx,
             dy: resetOnStart ? 0 : currState.dy,
-            x: resetOnStart ? clampX(point.x) : clampX(point.x) - currState.dx,
-            y: resetOnStart ? clampY(point.y) : clampY(point.y) - currState.dy,
+            x: resetOnStart ? dragPoint.x : dragPoint.x - currState.dx,
+            y: resetOnStart ? dragPoint.y : dragPoint.y - currState.dy,
           };
         },
         onDragStart &&
@@ -160,7 +156,14 @@ export default function useDrag({
           }),
       );
     },
-    [clampX, clampY, onDragStart, resetOnStart, setDragStateWithCallback, snapToPointer],
+    [
+      onDragStart,
+      resetOnStart,
+      restrict,
+      restrictToPathSamples,
+      setDragStateWithCallback,
+      snapToPointer,
+    ],
   );
 
   const handleDragMove = useCallback(
@@ -169,19 +172,19 @@ export default function useDrag({
 
       setDragStateWithCallback(
         (currState) => {
-          const point = localPoint(event) || { x: 0, y: 0 };
-          return currState.isDragging
-            ? {
-                ...currState,
-                isDragging: true,
-                dx: snapToPointer
-                  ? clampX(point.x) - (currState.x || 0)
-                  : clampX(point.x + dragStartPointerOffset.x) - (currState.x || 0),
-                dy: snapToPointer
-                  ? clampY(point.y) - (currState.y || 0)
-                  : clampY(point.y + dragStartPointerOffset.y) - (currState.y || 0),
-              }
-            : currState;
+          if (!currState.isDragging) return currState;
+          // eslint-disable-next-line no-shadow
+          const { x = 0, y = 0 } = currState;
+          const pointerPoint = localPoint(event) || new Point({ x: 0, y: 0 });
+          const point = snapToPointer
+            ? pointerPoint
+            : sumPoints(pointerPoint, dragStartPointerOffset);
+          const dragPoint = restrictPoint(point, restrictToPathSamples, restrict);
+          return {
+            ...currState,
+            dx: dragPoint.x - x,
+            dy: dragPoint.y - y,
+          };
         },
         onDragMove &&
           ((currState) => {
@@ -193,10 +196,9 @@ export default function useDrag({
       setDragStateWithCallback,
       onDragMove,
       snapToPointer,
-      dragStartPointerOffset.x,
-      dragStartPointerOffset.y,
-      clampX,
-      clampY,
+      dragStartPointerOffset,
+      restrictToPathSamples,
+      restrict,
     ],
   );
 
