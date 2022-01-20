@@ -331,7 +331,12 @@ function Zoom<ElementType extends Element>({
       },
       onDragEnd: dragEnd,
       onPinch: handlePinch,
-      onWheel: ({ event }) => handleWheel(event),
+      onWheel: ({ event, active }) => {
+        // currently onWheelEnd emits one final wheel event which causes 2x scale
+        // updates for the last tick. ensuring that the gesture is active avoids this
+        if (!active) return;
+        handleWheel(event);
+      },
     },
     { target: containerRef, eventOptions: { passive: false }, drag: { filterTaps: true } },
   );
