@@ -5,6 +5,7 @@ import Text, { TextProps } from '@visx/text/lib/Text';
 import { useText } from '@visx/text';
 import useMeasure, { Options as UseMeasureOptions } from 'react-use-measure';
 import AnnotationContext from '../context/AnnotationContext';
+import AnchorLine from './LabelAnchorLine';
 
 export type LabelProps = {
   /** Stroke color of anchor line. */
@@ -15,8 +16,6 @@ export type LabelProps = {
   backgroundPadding?: number | { top?: number; right?: number; bottom?: number; left?: number };
   /** Additional props to be passed to background SVGRectElement. */
   backgroundProps?: React.SVGProps<SVGRectElement>;
-  /** Pass in a custom element as the label to style as you like. Renders inside a <foreignObject> */
-  children?: React.ReactNode;
   /** Optional className to apply to container in addition to 'visx-annotation-label'. */
   className?: string;
   /** Color of title and subtitle text. */
@@ -69,78 +68,7 @@ function getCompletePadding(padding: LabelProps['backgroundPadding']) {
   return { ...DEFAULT_PADDING, ...padding };
 }
 
-export default function Label({ ...props }: LabelProps) {
-  if (props.children) {
-    return <ForeignObjectLabel {...props} />;
-  }
-  return <SvgLabel {...props} />;
-}
-
-function ForeignObjectLabel({
-  anchorLineStroke = '#222',
-  children,
-  className,
-  horizontalAnchor: propsHorizontalAnchor,
-  resizeObserverPolyfill,
-  showAnchorLine = true,
-  verticalAnchor: propsVerticalAnchor,
-  x: propsX,
-  y: propsY,
-}: LabelProps) {
-  // we must measure the rendered title + subtitle to compute container height
-  const [labelRef, titleBounds] = useMeasure({
-    polyfill: resizeObserverPolyfill,
-  });
-  const { width, height } = titleBounds;
-
-  // if props are provided, they take precedence over context
-  const { x = 0, y = 0, dx = 0, dy = 0 } = useContext(AnnotationContext);
-
-  // offset container position based on horizontal + vertical anchor
-  const horizontalAnchor =
-    propsHorizontalAnchor || (Math.abs(dx) < Math.abs(dy) ? 'middle' : dx > 0 ? 'start' : 'end');
-  const verticalAnchor =
-    propsVerticalAnchor || (Math.abs(dx) > Math.abs(dy) ? 'middle' : dy > 0 ? 'start' : 'end');
-
-  const containerCoords = useMemo(() => {
-    let adjustedX: number = propsX == null ? x + dx : propsX;
-    let adjustedY: number = propsY == null ? y + dy : propsY;
-
-    if (horizontalAnchor === 'middle') adjustedX -= width / 2;
-    if (horizontalAnchor === 'end') adjustedX -= width;
-    if (verticalAnchor === 'middle') adjustedY -= height / 2;
-    if (verticalAnchor === 'end') adjustedY -= height;
-
-    return { x: adjustedX, y: adjustedY };
-  }, [propsX, x, dx, propsY, y, dy, horizontalAnchor, verticalAnchor, width, height]);
-
-  return (
-    <Group
-      top={containerCoords.y}
-      left={containerCoords.x}
-      pointerEvents="none"
-      className={cx('visx-annotationlabel', className)}
-    >
-      {showAnchorLine && (
-        <AnchorLine
-          anchorLineOrientation={Math.abs(dx) > Math.abs(dy) ? 'vertical' : 'horizontal'}
-          anchorLineStroke={anchorLineStroke}
-          verticalAnchor={verticalAnchor}
-          horizontalAnchor={horizontalAnchor}
-          width={width}
-          height={height}
-        />
-      )}
-      <foreignObject width={width} height={height} overflow="visible">
-        <div ref={labelRef} style={{ display: 'inline-block' }}>
-          {children}
-        </div>
-      </foreignObject>
-    </Group>
-  );
-}
-
-function SvgLabel({
+export default function Label({
   anchorLineStroke = '#222',
   backgroundFill = '#eaeaea',
   backgroundPadding,
@@ -166,7 +94,7 @@ function SvgLabel({
   x: propsX,
   y: propsY,
 }: LabelProps) {
-  // we must measure the rendered title + subtitle to compute container height
+  // we must measure the rendered html content to compute container height
   const [titleRef, titleBounds] = useMeasure({
     polyfill: resizeObserverPolyfill,
   });
@@ -320,41 +248,5 @@ function SvgLabel({
         </Text>
       )}
     </Group>
-  );
-}
-
-interface AnchorLineProps {
-  anchorLineOrientation: 'horizontal' | 'vertical';
-  verticalAnchor: TextProps['verticalAnchor'];
-  horizontalAnchor: TextProps['textAnchor'];
-  anchorLineStroke: string;
-  width: number;
-  height: number;
-}
-function AnchorLine({
-  anchorLineOrientation,
-  anchorLineStroke,
-  verticalAnchor,
-  horizontalAnchor,
-  width,
-  height,
-}: AnchorLineProps) {
-  const backgroundOutline = { stroke: anchorLineStroke, strokeWidth: 2 };
-
-  return (
-    <>
-      {anchorLineOrientation === 'horizontal' && verticalAnchor === 'start' && (
-        <line {...backgroundOutline} x1={0} x2={width} y1={0} y2={0} />
-      )}
-      {anchorLineOrientation === 'horizontal' && verticalAnchor === 'end' && (
-        <line {...backgroundOutline} x1={0} x2={width} y1={height} y2={height} />
-      )}
-      {anchorLineOrientation === 'vertical' && horizontalAnchor === 'start' && (
-        <line {...backgroundOutline} x1={0} x2={0} y1={0} y2={height} />
-      )}
-      {anchorLineOrientation === 'vertical' && horizontalAnchor === 'end' && (
-        <line {...backgroundOutline} x1={width} x2={width} y1={0} y2={height} />
-      )}
-    </>
   );
 }
