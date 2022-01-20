@@ -321,7 +321,13 @@ function Zoom<ElementType extends Element>({
       onDragStart: ({ event }) => {
         if (!(event instanceof KeyboardEvent)) dragStart(event);
       },
-      onDrag: ({ event, pinching, cancel }) => {
+      onDrag: (args) => {
+        console.log('onDrag args', args);
+        const { event, pinching, cancel, active } = args;
+        if (!active) {
+          console.log('onDrag !active, bailing');
+          return;
+        }
         if (pinching) {
           cancel();
           dragEnd();
@@ -331,7 +337,13 @@ function Zoom<ElementType extends Element>({
       },
       onDragEnd: dragEnd,
       onPinch: handlePinch,
-      onWheel: ({ event }) => handleWheel(event),
+      onWheel: ({ event, active }) => {
+        // currently onWheelEnd emits one final wheel event which causes 2x scale
+        // updates for the last tick. ensuring that the gesture is active avoids this
+        // https://github.com/pmndrs/use-gesture/blob/374b87e043030c0927de9eb609149b3156b5bc5b/packages/core/src/engines/WheelEngine.ts#L33
+        if (!active) return;
+        handleWheel(event);
+      },
     },
     { target: containerRef, eventOptions: { passive: false }, drag: { filterTaps: true } },
   );
