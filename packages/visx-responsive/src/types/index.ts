@@ -1,4 +1,4 @@
-// This file can be deleted once https://git.io/Jk9FD lands in TypeScript
+// @TODO remove when upgraded to TS 4 which has its own declaration
 interface ResizeObserverEntry {
   contentRect: {
     left: number;
