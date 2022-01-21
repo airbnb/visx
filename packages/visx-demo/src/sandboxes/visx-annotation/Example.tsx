@@ -1,5 +1,5 @@
 import React from 'react';
-import { Label, Connector, CircleSubject, LineSubject } from '@visx/annotation';
+import { HtmlLabel, Label, Connector, CircleSubject, LineSubject } from '@visx/annotation';
 import { LinePath } from '@visx/shape';
 
 import ExampleControls from './ExampleControls';
@@ -28,6 +28,7 @@ export default function Example({ width, height, compact = false }: AnnotationPr
         getDate,
         getStockValue,
         horizontalAnchor,
+        labelType,
         labelWidth,
         setAnnotationPosition,
         showAnchorLine,
@@ -83,18 +84,41 @@ export default function Example({ width, height, compact = false }: AnnotationPr
             }}
           >
             <Connector stroke={orange} type={connectorType} />
-            <Label
-              backgroundFill="white"
-              showAnchorLine={showAnchorLine}
-              anchorLineStroke={greens[2]}
-              backgroundProps={{ stroke: greens[1] }}
-              fontColor={greens[2]}
-              horizontalAnchor={horizontalAnchor}
-              subtitle={subtitle}
-              title={title}
-              verticalAnchor={verticalAnchor}
-              width={labelWidth}
-            />
+            {labelType === 'svg' ? (
+              <Label
+                backgroundFill="white"
+                showAnchorLine={showAnchorLine}
+                anchorLineStroke={greens[2]}
+                backgroundProps={{ stroke: greens[1] }}
+                fontColor={greens[2]}
+                horizontalAnchor={horizontalAnchor}
+                subtitle={subtitle}
+                title={title}
+                verticalAnchor={verticalAnchor}
+                width={labelWidth}
+              />
+            ) : (
+              <HtmlLabel
+                showAnchorLine={showAnchorLine}
+                anchorLineStroke={greens[2]}
+                horizontalAnchor={horizontalAnchor}
+                verticalAnchor={verticalAnchor}
+                containerStyle={{
+                  width: labelWidth,
+                  background: 'white',
+                  border: `1px solid ${greens[1]}`,
+                  borderRadius: 2,
+                  color: greens[2],
+                  fontSize: '0.55em',
+                  lineHeight: '1em',
+                  padding: '0 0.4em 0 1em',
+                  fontWeight: 200,
+                }}
+              >
+                <h3 style={{ margin: '1em 0 -0.5em' }}>{title}</h3>
+                <p>{subtitle}</p>
+              </HtmlLabel>
+            )}
             {subjectType === 'circle' && <CircleSubject stroke={orange} />}
             {subjectType !== 'circle' && (
               <LineSubject
