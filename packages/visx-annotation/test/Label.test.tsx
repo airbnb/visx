@@ -11,6 +11,7 @@ describe('<Label />', () => {
   it('should render title Text', () => {
     expect(
       shallow(<Label title="title test" resizeObserverPolyfill={ResizeObserver} />)
+        .dive()
         .children()
         .find(Text)
         .prop('children'),
@@ -25,6 +26,7 @@ describe('<Label />', () => {
           resizeObserverPolyfill={ResizeObserver}
         />,
       )
+        .dive()
         .children()
         .find(Text)
         .at(1)
@@ -33,16 +35,18 @@ describe('<Label />', () => {
   });
   it('should render a background', () => {
     expect(
-      shallow(
-        <Label title="title test" showBackground resizeObserverPolyfill={ResizeObserver} />,
-      ).find('rect'),
+      shallow(<Label title="title test" showBackground resizeObserverPolyfill={ResizeObserver} />)
+        .dive()
+        .find('rect'),
     ).toHaveLength(1);
   });
   it('should render an anchor line', () => {
     expect(
-      shallow(
-        <Label title="title test" showAnchorLine resizeObserverPolyfill={ResizeObserver} />,
-      ).find('line'),
+      shallow(<Label title="title test" showAnchorLine resizeObserverPolyfill={ResizeObserver} />)
+        .dive()
+        .find('AnchorLine')
+        .dive()
+        .find('line'),
     ).toHaveLength(1);
   });
 });

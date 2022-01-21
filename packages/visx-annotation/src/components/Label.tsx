@@ -5,6 +5,7 @@ import Text, { TextProps } from '@visx/text/lib/Text';
 import { useText } from '@visx/text';
 import useMeasure, { Options as UseMeasureOptions } from 'react-use-measure';
 import AnnotationContext from '../context/AnnotationContext';
+import AnchorLine from './LabelAnchorLine';
 
 export type LabelProps = {
   /** Stroke color of anchor line. */
@@ -93,9 +94,13 @@ export default function Label({
   x: propsX,
   y: propsY,
 }: LabelProps) {
-  // we must measure the rendered title + subtitle to compute container height
-  const [titleRef, titleBounds] = useMeasure({ polyfill: resizeObserverPolyfill });
-  const [subtitleRef, subtitleBounds] = useMeasure({ polyfill: resizeObserverPolyfill });
+  // we must measure the rendered html content to compute container height
+  const [titleRef, titleBounds] = useMeasure({
+    polyfill: resizeObserverPolyfill,
+  });
+  const [subtitleRef, subtitleBounds] = useMeasure({
+    polyfill: resizeObserverPolyfill,
+  });
 
   const padding = useMemo(() => getCompletePadding(backgroundPadding), [backgroundPadding]);
 
@@ -182,10 +187,6 @@ export default function Label({
     [subtitleFontSize, subtitleFontWeight, subtitleFontFamily],
   ) as React.CSSProperties;
 
-  const anchorLineOrientation = Math.abs(dx) > Math.abs(dy) ? 'vertical' : 'horizontal';
-
-  const backgroundOutline = showAnchorLine ? { stroke: anchorLineStroke, strokeWidth: 2 } : null;
-
   return !title && !subtitle ? null : (
     <Group
       top={containerCoords.y}
@@ -206,20 +207,14 @@ export default function Label({
         />
       )}
       {showAnchorLine && (
-        <>
-          {anchorLineOrientation === 'horizontal' && verticalAnchor === 'start' && (
-            <line {...backgroundOutline} x1={0} x2={width} y1={0} y2={0} />
-          )}
-          {anchorLineOrientation === 'horizontal' && verticalAnchor === 'end' && (
-            <line {...backgroundOutline} x1={0} x2={width} y1={height} y2={height} />
-          )}
-          {anchorLineOrientation === 'vertical' && horizontalAnchor === 'start' && (
-            <line {...backgroundOutline} x1={0} x2={0} y1={0} y2={height} />
-          )}
-          {anchorLineOrientation === 'vertical' && horizontalAnchor === 'end' && (
-            <line {...backgroundOutline} x1={width} x2={width} y1={0} y2={height} />
-          )}
-        </>
+        <AnchorLine
+          anchorLineOrientation={Math.abs(dx) > Math.abs(dy) ? 'vertical' : 'horizontal'}
+          anchorLineStroke={anchorLineStroke}
+          verticalAnchor={verticalAnchor}
+          horizontalAnchor={horizontalAnchor}
+          width={width}
+          height={height}
+        />
       )}
       {title && (
         <Text
