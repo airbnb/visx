@@ -1,5 +1,5 @@
 import React from 'react';
-import ResizeObserver from 'resize-observer-polyfill';
+import { ResizeObserver } from '@juggle/resize-observer';
 import Text from '@visx/text/lib/Text';
 import { shallow } from 'enzyme';
 import { Label } from '../src';

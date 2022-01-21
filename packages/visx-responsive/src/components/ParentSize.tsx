@@ -1,6 +1,6 @@
 import debounce from 'lodash/debounce';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import ResizeObserver from 'resize-observer-polyfill';
+import { ResizeObserver } from '@juggle/resize-observer';
 
 export type ParentSizeProps = {
   /** Optional `className` to add to the parent `div` wrapper used for size measurement. */
