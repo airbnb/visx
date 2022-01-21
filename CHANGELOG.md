@@ -1,4 +1,5 @@
 # Changelog
+- [v2.7.0](#v270)
 - [v2.6.1](#v261)
 - [v2.6.0](#v260)
 - [v2.5.0](#v250)
@@ -6,10 +7,10 @@
 - [v2.4.0](#v240)
 - [v2.3.0](#v230)
 - [v2.2.2](#v222)
-- [v2.2.1](#v221)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v221">v2.2.1</a></li>
   <li><a href="#v220">v2.2.0</a></li>
   <li><a href="#v212">v2.1.2</a></li>
   <li><a href="#v211">v2.1.1</a></li>
@@ -133,6 +134,15 @@
 </details>
 
 ------
+# v2.7.0 (2022-01-21)
+
+#### :rocket: Enhancements
+
+- Annotation label <foreignobject> render [#1383](https://github.com/airbnb/visx/pull/1383)
+  
+#### :trophy: Contributors
+- [valtism](https://github.com/valtism)
+
 # v2.6.1 (2022-01-20)
 
 #### :bug: Bug Fix
