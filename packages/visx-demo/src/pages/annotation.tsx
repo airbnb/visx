@@ -4,7 +4,7 @@ import Annotation from '../sandboxes/visx-annotation/Example';
 import AnnotationSource from '!!raw-loader!../sandboxes/visx-annotation/Example';
 import packageJson from '../sandboxes/visx-annotation/package.json';
 
-export default () => (
+const AnnotationPage = () => (
   <Show
     component={Annotation}
     title="Annotation"
@@ -14,3 +14,5 @@ export default () => (
     {AnnotationSource}
   </Show>
 );
+
+export default AnnotationPage;
