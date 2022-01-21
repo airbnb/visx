@@ -2,11 +2,9 @@ import debounce from 'lodash/debounce';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { ResizeObserver } from '../types';
 
-// This can be deleted once https://git.io/Jk9FD lands in TypeScript
-declare global {
-  interface Window {
-    ResizeObserver: ResizeObserver;
-  }
+// @TODO remove when upgraded to TS 4 which has its own declaration
+interface PrivateWindow {
+  ResizeObserver: ResizeObserver;
 }
 
 export type ParentSizeProps = {
@@ -78,7 +76,7 @@ export default function ParentSize({
   }, [debounceTime, enableDebounceLeadingCall, ignoreDimensions]);
 
   useEffect(() => {
-    const observer = new window.ResizeObserver((entries) => {
+    const observer = new (window as unknown as PrivateWindow).ResizeObserver((entries) => {
       entries.forEach((entry) => {
         const { left, top, width, height } = entry.contentRect;
         animationFrameID.current = window.requestAnimationFrame(() => {
