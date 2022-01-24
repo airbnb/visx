@@ -1,6 +1,6 @@
 {
   "name": "@visx/responsive",
-  "version": "2.4.1",
+  "version": "2.7.1",
   "description": "visx responsive svg",
   "sideEffects": false,
   "main": "lib/index.js",
