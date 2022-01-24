@@ -4,11 +4,9 @@ import { ResizeObserver } from '../types';
 
 const CONTAINER_STYLES = { width: '100%', height: '100%' };
 
-// This can be deleted once https://git.io/Jk9FD lands in TypeScript
-declare global {
-  interface Window {
-    ResizeObserver: ResizeObserver;
-  }
+// @TODO remove when upgraded to TS 4 which has its own declaration
+interface PrivateWindow {
+  ResizeObserver: ResizeObserver;
 }
 
 export type WithParentSizeProps = {
@@ -45,7 +43,7 @@ export default function withParentSize<BaseComponentProps extends WithParentSize
     container: HTMLDivElement | null = null;
 
     componentDidMount() {
-      this.resizeObserver = new window.ResizeObserver((entries) => {
+      this.resizeObserver = new (window as unknown as PrivateWindow).ResizeObserver((entries) => {
         entries.forEach((entry) => {
           const { width, height } = entry.contentRect;
           this.animationFrameID = window.requestAnimationFrame(() => {
