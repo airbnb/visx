@@ -1,6 +1,6 @@
 {
   "name": "@visx/responsive",
-  "version": "2.7.1",
+  "version": "2.8.0",
   "description": "visx responsive svg",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -28,11 +28,11 @@
   },
   "homepage": "https://github.com/airbnb/visx#readme",
   "dependencies": {
+    "@juggle/resize-observer": "^3.3.1",
     "@types/lodash": "^4.14.172",
     "@types/react": "*",
     "lodash": "^4.17.21",
-    "prop-types": "^15.6.1",
-    "@juggle/resize-observer": "^3.3.1"
+    "prop-types": "^15.6.1"
   },
   "peerDependencies": {
     "react": "^16.0.0-0 || ^17.0.0-0"
