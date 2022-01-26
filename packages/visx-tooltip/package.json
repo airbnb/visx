@@ -38,6 +38,9 @@
     "react": "^16.8.0-0 || ^17.0.0-0",
     "react-dom": "^16.8.0-0 || ^17.0.0-0"
   },
+  "devDependencies": {
+    "@juggle/resize-observer": "^3.3.1"
+  },
   "publishConfig": {
     "access": "public"
   }

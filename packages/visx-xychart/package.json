@@ -63,6 +63,6 @@
     "prop-types": "^15.6.2"
   },
   "devDependencies": {
-    "resize-observer-polyfill": "1.5.1"
+    "@juggle/resize-observer": "^3.3.1"
   }
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ResizeObserver from 'resize-observer-polyfill';
+import { ResizeObserver } from '@juggle/resize-observer';
 import { useTooltipInPortal } from '../src';
 import { UseTooltipPortalOptions } from '../src/hooks/useTooltipInPortal';
 

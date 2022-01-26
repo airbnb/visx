@@ -1,5 +1,5 @@
 import React from 'react';
-import ResizeObserver from 'resize-observer-polyfill';
+import { ResizeObserver } from '@juggle/resize-observer';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { AnyD3Scale } from '@visx/scale';
