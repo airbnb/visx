@@ -24,6 +24,7 @@ type ProvidedProps = {
   getDate: (d: AppleStock) => number;
   getStockValue: (d: AppleStock) => number;
   horizontalAnchor?: 'start' | 'middle' | 'end';
+  labelType: 'svg' | 'html';
   labelWidth: number;
   setAnnotationPosition: (position: AnnotationPosition) => void;
   showAnchorLine: boolean;
@@ -73,6 +74,7 @@ export default function ExampleControls({
   const [connectorType, setConnectorType] = useState<ProvidedProps['connectorType']>('elbow');
   const [subjectType, setSubjectType] = useState<ProvidedProps['subjectType']>('circle');
   const [showAnchorLine, setShowAnchorLine] = useState(true);
+  const [labelType, setLabelType] = useState<ProvidedProps['labelType']>('svg');
   const [verticalAnchor, setVerticalAnchor] = useState<ProvidedProps['verticalAnchor'] | 'auto'>(
     'auto',
   );
@@ -109,6 +111,7 @@ export default function ExampleControls({
         getDate,
         getStockValue,
         horizontalAnchor: horizontalAnchor === 'auto' ? undefined : horizontalAnchor,
+        labelType,
         labelWidth,
         setAnnotationPosition,
         showAnchorLine,
@@ -148,6 +151,25 @@ export default function ExampleControls({
                 checked={editLabelPosition}
               />
               Edit label position
+            </label>
+          </div>
+          <div>
+            <strong>Label content type</strong>
+            <label>
+              <input
+                type="radio"
+                onChange={() => setLabelType('svg')}
+                checked={labelType === 'svg'}
+              />
+              Svg
+            </label>
+            <label>
+              <input
+                type="radio"
+                onChange={() => setLabelType('html')}
+                checked={labelType === 'html'}
+              />
+              Html
             </label>
           </div>
           <div>

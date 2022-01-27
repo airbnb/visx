@@ -21,11 +21,14 @@ export type HtmlLabelProps = Pick<
 > & {
   /** Pass in a custom element as the label to style as you like. Renders inside a <foreignObject>, be aware that most non-browser SVG renderers will not render HTML <foreignObject>s. See: https://github.com/airbnb/visx/issues/1173#issuecomment-1014380545.  */
   children?: React.ReactNode;
+  /** Optional styles to apply to the HTML container. */
+  containerStyle?: React.CSSProperties;
 };
 export default function HtmlLabel({
   anchorLineStroke = '#222',
   children,
   className,
+  containerStyle,
   horizontalAnchor: propsHorizontalAnchor,
   resizeObserverPolyfill,
   showAnchorLine = true,
@@ -67,6 +70,14 @@ export default function HtmlLabel({
       pointerEvents="none"
       className={cx('visx-annotationlabel', className)}
     >
+      <foreignObject width={width} height={height} overflow="visible">
+        <div
+          ref={labelRef}
+          style={containerStyle ? { ...wrapperStyle, ...containerStyle } : wrapperStyle}
+        >
+          {children}
+        </div>
+      </foreignObject>
       {showAnchorLine && (
         <AnchorLine
           anchorLineOrientation={Math.abs(dx) > Math.abs(dy) ? 'vertical' : 'horizontal'}
@@ -77,11 +88,6 @@ export default function HtmlLabel({
           height={height}
         />
       )}
-      <foreignObject width={width} height={height} overflow="visible">
-        <div ref={labelRef} style={wrapperStyle}>
-          {children}
-        </div>
-      </foreignObject>
     </Group>
   );
 }
