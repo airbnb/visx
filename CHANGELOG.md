@@ -1,4 +1,5 @@
 # Changelog
+- [v2.9.0](#v290)
 - [v2.8.0](#v280)
 - [v2.7.1](#v271)
 - [v2.7.0](#v270)
@@ -6,10 +7,10 @@
 - [v2.6.0](#v260)
 - [v2.5.0](#v250)
 - [v2.4.1](#v241)
-- [v2.4.0](#v240)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v240">v2.4.0</a></li>
   <li><a href="#v230">v2.3.0</a></li>
   <li><a href="#v222">v2.2.2</a></li>
   <li><a href="#v221">v2.2.1</a></li>
@@ -136,6 +137,23 @@
 </details>
 
 ------
+# v2.9.0 (2022-01-27)
+
+#### :rocket: Enhancements
+
+- new(annotation): add HtmlLabel demo, add containterStyle prop [#1424](https://github.com/airbnb/visx/pull/1424)
+
+### :memo: Documentation
+
+- new(annotation): add HtmlLabel demo, add containterStyle prop [#1424](https://github.com/airbnb/visx/pull/1424)
+
+### :house:  Internal
+
+- new(annotation): add HtmlLabel demo, add containterStyle prop [#1424](https://github.com/airbnb/visx/pull/1424)
+  
+#### :trophy: Contributors
+- [williaster](https://github.com/williaster)
+
 # v2.8.0 (2022-01-26)
 
 ### :house:  Internal
