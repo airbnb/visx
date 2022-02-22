@@ -45,6 +45,7 @@ function BaseBarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum
   onPointerMove,
   onPointerOut,
   onPointerUp,
+  onPointerDown,
   enableEvents = true,
   xAccessor,
   xScale,
@@ -114,6 +115,7 @@ function BaseBarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum
     onPointerMove,
     onPointerOut,
     onPointerUp,
+    onPointerDown,
     source: ownEventSourceKey,
     allowedSources: [XYCHART_EVENT_SOURCE, ownEventSourceKey],
   });

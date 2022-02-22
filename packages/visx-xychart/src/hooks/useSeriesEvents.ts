@@ -11,7 +11,7 @@ export type SeriesEventsParams<
   Datum extends object,
 > = Pick<
   SeriesProps<XScale, YScale, Datum>,
-  'enableEvents' | 'onBlur' | 'onFocus' | 'onPointerMove' | 'onPointerOut' | 'onPointerUp'
+  'enableEvents' | 'onBlur' | 'onFocus' | 'onPointerMove' | 'onPointerOut'  | 'onPointerUp' | 'onPointerDown'
 > &
   Pick<
     PointerEventHandlerParams<XScale, YScale, Datum>,
@@ -35,6 +35,7 @@ export default function useSeriesEvents<
   onPointerMove: onPointerMoveProps,
   onPointerOut: onPointerOutProps,
   onPointerUp: onPointerUpProps,
+  onPointerDown: onPointerDownProps,
   source,
   allowedSources,
 }: SeriesEventsParams<XScale, YScale, Datum>) {
@@ -50,6 +51,7 @@ export default function useSeriesEvents<
   const onFocus = useCallback(
     (params: EventHandlerParams<Datum>) => {
       showTooltip(params);
+
       if (onFocusProps) onFocusProps(params);
     },
     [showTooltip, onFocusProps],
@@ -61,6 +63,7 @@ export default function useSeriesEvents<
     },
     [hideTooltip, onPointerOutProps],
   );
+
   const onBlur = useCallback(
     (event: React.FocusEvent) => {
       hideTooltip();
@@ -68,6 +71,16 @@ export default function useSeriesEvents<
     },
     [hideTooltip, onBlurProps],
   );
+
+  const onPointerDown = useCallback(
+    (params: EventHandlerParams<Datum>) => {
+      console.log('onPointerDown',params);
+      showTooltip(params);
+      if (onPointerDownProps) onPointerDownProps(params);
+    },
+    [showTooltip, onPointerDownProps],
+  );
+
   useEventHandlers({
     dataKey,
     findNearestDatum,
@@ -76,6 +89,7 @@ export default function useSeriesEvents<
     onPointerMove: enableEvents ? onPointerMove : undefined,
     onPointerOut: enableEvents ? onPointerOut : undefined,
     onPointerUp: enableEvents ? onPointerUpProps : undefined,
+    onPointerDown: enableEvents ? onPointerDown : undefined,
     allowedSources,
   });
   return useEventEmitters({
@@ -85,5 +99,6 @@ export default function useSeriesEvents<
     onPointerMove: !!onPointerMoveProps && enableEvents,
     onPointerOut: !!onPointerOutProps && enableEvents,
     onPointerUp: !!onPointerUpProps && enableEvents,
+    onPointerDown: !!onPointerDownProps && enableEvents
   });
 }

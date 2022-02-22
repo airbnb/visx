@@ -34,6 +34,7 @@ export function BaseGlyphSeries<
   onPointerMove,
   onPointerOut,
   onPointerUp,
+  onPointerDown,
   enableEvents = true,
   renderGlyphs,
   size = 8,
@@ -56,6 +57,7 @@ export function BaseGlyphSeries<
     onPointerMove,
     onPointerOut,
     onPointerUp,
+    onPointerDown,
     source: ownEventSourceKey,
     allowedSources: [XYCHART_EVENT_SOURCE, ownEventSourceKey],
   });

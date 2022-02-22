@@ -46,6 +46,7 @@ function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
   onPointerMove,
   onPointerOut,
   onPointerUp,
+  onPointerDown,
   enableEvents = true,
   renderLine = true,
   xAccessor,
@@ -82,6 +83,7 @@ function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
     onPointerMove,
     onPointerOut,
     onPointerUp,
+    onPointerDown,
     source: ownEventSourceKey,
     allowedSources: [XYCHART_EVENT_SOURCE, ownEventSourceKey],
   });

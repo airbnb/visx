@@ -253,7 +253,9 @@ export default function ExampleControls({ children }: ControlsProps) {
     renderBarStackOrGroup !== 'barstack' && renderAreaLineOrStack !== 'areastack';
 
   return (
-    <>
+    <div style={{
+      touchAction: 'none',
+    }}>
       {children({
         accessors,
         animationTrajectory,
@@ -924,6 +926,6 @@ export default function ExampleControls({ children }: ControlsProps) {
           opacity: 0;
         }
       `}</style>
-    </>
+    </div>
   );
 }

@@ -70,6 +70,18 @@ export type XYChartProps<
     key,
     svgPoint,
   }: EventHandlerParams<Datum>) => void;
+
+  /** Callback invoked for onPointerDown events for the nearest Datum to the PointerEvent _for each Series with pointerEvents={true}_. */
+  onPointerDown?: ({
+    datum,
+    distanceX,
+    distanceY,
+    event,
+    index,
+    key,
+    svgPoint,
+  }: EventHandlerParams<Datum>) => void;
+
   /** Whether to invoke PointerEvent handlers for all dataKeys, or the nearest dataKey. */
   pointerEventsDataKey?: 'all' | 'nearest';
 };
@@ -91,6 +103,7 @@ export default function XYChart<
     onPointerMove,
     onPointerOut,
     onPointerUp,
+    onPointerDown,
     pointerEventsDataKey = 'nearest',
     theme,
     width,
@@ -114,6 +127,7 @@ export default function XYChart<
     onPointerMove,
     onPointerOut,
     onPointerUp,
+    onPointerDown,
     allowedSources: allowedEventSources,
   });
 
