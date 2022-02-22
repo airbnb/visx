@@ -34,6 +34,7 @@ function BaseLineSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
   onPointerMove,
   onPointerOut,
   onPointerUp,
+  onPointerDown,
   enableEvents = true,
   xAccessor,
   xScale,
@@ -60,6 +61,7 @@ function BaseLineSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
     onPointerMove,
     onPointerOut,
     onPointerUp,
+    onPointerDown,
     source: ownEventSourceKey,
     allowedSources: [XYCHART_EVENT_SOURCE, ownEventSourceKey],
   });
