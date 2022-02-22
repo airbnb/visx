@@ -24,6 +24,7 @@ describe('useEventEmitters', () => {
         onPointerMove: expect.any(Function),
         onPointerOut: undefined,
         onPointerUp: expect.any(Function),
+        onPointerDown: expect.any(Function),
       });
       return null;
     };
