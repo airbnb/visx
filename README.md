@@ -217,6 +217,7 @@ Lots coming soon, check out the [roadmap](./ROADMAP.md).
   [@codenomial](https://github.com/codenomial)
 - [Pry](https://pry.co) Finance for Founders (dashboard by [@valtism](https://github.com/valtism))
 - [Data 2 the People](https://www.data2thepeople.org/) Donation Efficacy Analysis for Downballot Races ([Demo](https://donate.data2thepeople.org/)) ([Github](https://github.com/Data-2-the-People/skyfall/blob/master/components/Scatterplot.jsx))
+- [Augora](https://augora.fr) Display information of french deputies ([Demo](https://augora.fr/statistiques))([Github](https://github.com/Augora/Augora))
 
 Have a project that's using `visx`? Open a pull request and we'll add it to the list.
 
