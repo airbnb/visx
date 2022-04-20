@@ -66,7 +66,7 @@
     "@types/jest": "^24.0.18",
     "@types/jsdom": "^12.2.4",
     "@types/node-fetch": "1.6.9",
-    "@types/react-test-renderer": "^16.9.0",
+    "@types/react-test-renderer": "^18.0.0",
     "@types/webpack": "^4.41.17",
     "@testing-library/jest-dom": "^5.9.0",
     "@testing-library/react": "^13.1.0",
@@ -89,7 +89,7 @@
     "raf": "^3.4.0",
     "react": "^16.0.0-0 || ^17.0.0-0 || ^18.0.0-0",
     "react-dom": "^16.0.0-0 || ^17.0.0-0 || ^18.0.0-0",
-    "react-test-renderer": "^16.8.6",
+    "react-test-renderer": "^18.0.0",
     "regenerator-runtime": "^0.10.5",
     "timezone-mock": "^1.1.0",
     "ts-node": "9.1.1"
