@@ -42,6 +42,6 @@
     "access": "public"
   },
   "devDependencies": {
-    "@testing-library/react-hooks": "^3.4.2"
+    "@testing-library/react-hooks": "^8.0.0"
   }
 }

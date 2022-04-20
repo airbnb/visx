@@ -70,7 +70,7 @@
     "@types/webpack": "^4.41.17",
     "@testing-library/jest-dom": "^5.9.0",
     "@testing-library/react": "^13.1.0",
-    "@testing-library/react-hooks": "^3.2.1",
+    "@testing-library/react-hooks": "^8.0.0",
     "@testing-library/user-event": "^11.0.1",
     "chalk": "4.1.0",
     "coveralls": "^3.0.6",
