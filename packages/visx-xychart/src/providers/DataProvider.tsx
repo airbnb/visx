@@ -2,8 +2,9 @@
 import { ScaleConfig, ScaleConfigToD3Scale } from '@visx/scale';
 import React, { useContext, useMemo } from 'react';
 import createOrdinalScale from '@visx/scale/lib/scales/ordinal';
-import { AxisScaleOutput } from '@visx/axis';
+import { AxisScale, AxisScaleOutput } from '@visx/axis';
 import { XYChartTheme } from '../types';
+import { DataRegistryEntry } from '../types/data';
 import ThemeContext from '../context/ThemeContext';
 import DataContext from '../context/DataContext';
 import useDataRegistry from '../hooks/useDataRegistry';
@@ -15,6 +16,7 @@ import isDiscreteScale from '../utils/isDiscreteScale';
 export type DataProviderProps<
   XScaleConfig extends ScaleConfig<AxisScaleOutput, any, any>,
   YScaleConfig extends ScaleConfig<AxisScaleOutput, any, any>,
+  Datum extends object,
 > = {
   /* Optionally define the initial dimensions. */
   initialDimensions?: Partial<Dimensions>;
@@ -24,6 +26,10 @@ export type DataProviderProps<
   xScale: XScaleConfig;
   /* y-scale configuration whose shape depends on scale type. */
   yScale: YScaleConfig;
+  /** XYChart data to be rendered in Series. */
+  data?:
+    | DataRegistryEntry<AxisScale, AxisScale, Datum>
+    | DataRegistryEntry<AxisScale, AxisScale, Datum>[];
   /* Any React children. */
   children: React.ReactNode;
   /* Determines whether Series will be plotted horizontally (e.g., horizontal bars). By default this will try to be inferred based on scale types. */
@@ -39,9 +45,10 @@ export default function DataProvider<
   theme: propsTheme,
   xScale: xScaleConfig,
   yScale: yScaleConfig,
+  data,
   children,
   horizontal: initialHorizontal = 'auto',
-}: DataProviderProps<XScaleConfig, YScaleConfig>) {
+}: DataProviderProps<XScaleConfig, YScaleConfig, Datum>) {
   // `DataProvider` provides a theme so that `ThemeProvider` is not strictly needed.
   // `props.theme` takes precedent over `context.theme`, which has a default even if
   // a ThemeProvider is not present.
@@ -55,6 +62,10 @@ export default function DataProvider<
   type YScale = ScaleConfigToD3Scale<YScaleConfig, AxisScaleOutput, any, any>;
 
   const dataRegistry = useDataRegistry<XScale, YScale, Datum>();
+
+  useMemo(() => {
+    if (data) dataRegistry.registerData(data)
+  }, [data]);
 
   const { xScale, yScale }: { xScale?: XScale; yScale?: YScale } = useScales({
     dataRegistry,

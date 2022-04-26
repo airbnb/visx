@@ -1,11 +1,12 @@
 /* eslint jsx-a11y/mouse-events-have-key-events: 'off', @typescript-eslint/no-explicit-any: 'off' */
 import React, { useContext, useEffect } from 'react';
 import ParentSize from '@visx/responsive/lib/components/ParentSize';
-import { AxisScaleOutput } from '@visx/axis';
+import { AxisScale, AxisScaleOutput } from '@visx/axis';
 import { ScaleConfig } from '@visx/scale';
 
 import DataContext from '../context/DataContext';
 import { Margin, EventHandlerParams } from '../types';
+import { DataRegistryEntry } from '../types/data';
 import useEventEmitter from '../hooks/useEventEmitter';
 import EventEmitterProvider from '../providers/EventEmitterProvider';
 import TooltipContext from '../context/TooltipContext';
@@ -35,14 +36,18 @@ export type XYChartProps<
   height?: number;
   /** Margin to apply around the outside. */
   margin?: Margin;
+  /** XYChart data to be rendered in Series. */
+  data?:
+    | DataRegistryEntry<AxisScale, AxisScale, Datum>
+    | DataRegistryEntry<AxisScale, AxisScale, Datum>[];
   /** XYChart children (Series, Tooltip, etc.). */
   children: React.ReactNode;
   /** If DataContext is not available, XYChart will wrap itself in a DataProvider and set this as the theme. */
-  theme?: DataProviderProps<XScaleConfig, YScaleConfig>['theme'];
+  theme?: DataProviderProps<XScaleConfig, YScaleConfig, Datum>['theme'];
   /** If DataContext is not available, XYChart will wrap itself in a DataProvider and set this as the xScale config. */
-  xScale?: DataProviderProps<XScaleConfig, YScaleConfig>['xScale'];
+  xScale?: DataProviderProps<XScaleConfig, YScaleConfig, Datum>['xScale'];
   /** If DataContext is not available, XYChart will wrap itself in a DataProvider and set this as the yScale config. */
-  yScale?: DataProviderProps<XScaleConfig, YScaleConfig>['yScale'];
+  yScale?: DataProviderProps<XScaleConfig, YScaleConfig, Datum>['yScale'];
   /* If DataContext is not available, XYChart will wrap itself in a DataProvider and set this as horizontal. Determines whether Series will be plotted horizontally (e.g., horizontal bars). By default this will try to be inferred based on scale types. */
   horizontal?: boolean | 'auto';
   /** Callback invoked for onPointerMove events for the nearest Datum to the PointerEvent _for each Series with pointerEvents={true}_. */
@@ -85,6 +90,7 @@ export default function XYChart<
     accessibilityLabel = 'XYChart',
     captureEvents = true,
     children,
+    data,
     height,
     horizontal,
     margin = DEFAULT_MARGIN,
@@ -127,6 +133,7 @@ export default function XYChart<
     }
     return (
       <DataProvider
+        data={data}
         xScale={xScale}
         yScale={yScale}
         theme={theme}
