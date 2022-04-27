@@ -1,4 +1,5 @@
 # Changelog
+- [v2.9.1](#v291)
 - [v2.9.0](#v290)
 - [v2.8.0](#v280)
 - [v2.7.1](#v271)
@@ -6,10 +7,10 @@
 - [v2.6.1](#v261)
 - [v2.6.0](#v260)
 - [v2.5.0](#v250)
-- [v2.4.1](#v241)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v241">v2.4.1</a></li>
   <li><a href="#v240">v2.4.0</a></li>
   <li><a href="#v230">v2.3.0</a></li>
   <li><a href="#v222">v2.2.2</a></li>
@@ -137,6 +138,20 @@
 </details>
 
 ------
+# v2.9.1 (2022-04-27)
+
+#### :bug: Bug Fix
+
+- fix(xychart): fix typo [#1460](https://github.com/airbnb/visx/pull/1460)
+
+### :memo: Documentation
+
+- docs: Add https://augora.fr to "In the wild" section [#1443](https://github.com/airbnb/visx/pull/1443)
+  
+#### :trophy: Contributors
+- [goldenivan](https://github.com/goldenivan)
+- [tetsugi](https://github.com/tetsugi)
+
 # v2.9.0 (2022-01-27)
 
 #### :rocket: Enhancements
