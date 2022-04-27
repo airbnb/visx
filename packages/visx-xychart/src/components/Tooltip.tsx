@@ -22,7 +22,7 @@ export type RenderTooltipParams<Datum extends object> = TooltipContextType<Datum
   colorScale?: PickD3Scale<'ordinal', string, string>;
 };
 
-export interface RenderTooltipGlypProps<Datum extends object> extends RenderGlyphProps<Datum> {
+export interface RenderTooltipGlyphProps<Datum extends object> extends RenderGlyphProps<Datum> {
   glyphStyle?: React.SVGProps<SVGCircleElement>;
   isNearestDatum: boolean;
 }
@@ -35,7 +35,7 @@ export type TooltipProps<Datum extends object> = {
    */
   renderTooltip: (params: RenderTooltipParams<Datum>) => React.ReactNode;
   /** Function which handles rendering glyphs. */
-  renderGlyph?: (params: RenderTooltipGlypProps<Datum>) => React.ReactNode;
+  renderGlyph?: (params: RenderTooltipGlyphProps<Datum>) => React.ReactNode;
   /** Whether to snap tooltip + crosshair x-coord to the nearest Datum x-coord instead of the event x-coord. */
   snapTooltipToDatumX?: boolean;
   /** Whether to snap tooltip + crosshair y-coord to the nearest Datum y-coord instead of the event y-coord. */
@@ -72,7 +72,7 @@ const INVISIBLE_STYLES: React.CSSProperties = {
   pointerEvents: 'none',
 };
 
-function DefaultGlyph<Datum extends object>(props: RenderTooltipGlypProps<Datum>) {
+function DefaultGlyph<Datum extends object>(props: RenderTooltipGlyphProps<Datum>) {
   const { theme } = useContext(DataContext) || {};
 
   return (
@@ -89,7 +89,7 @@ function DefaultGlyph<Datum extends object>(props: RenderTooltipGlypProps<Datum>
   );
 }
 
-function defaultRenderGlyph<Datum extends object>(props: RenderTooltipGlypProps<Datum>) {
+function defaultRenderGlyph<Datum extends object>(props: RenderTooltipGlyphProps<Datum>) {
   return <DefaultGlyph {...props} />;
 }
 
@@ -200,7 +200,7 @@ function TooltipInner<Datum extends object>({
   }
 
   // collect positions + styles for glyphs; glyphs always snap to Datum, not event coords
-  const glyphProps: RenderTooltipGlypProps<Datum>[] = [];
+  const glyphProps: RenderTooltipGlyphProps<Datum>[] = [];
 
   if (showTooltip && (showDatumGlyph || showSeriesGlyphs)) {
     const size = Number(glyphStyle?.radius ?? 4);
