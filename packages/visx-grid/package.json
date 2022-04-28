@@ -1,6 +1,6 @@
 {
   "name": "@visx/grid",
-  "version": "2.6.0",
+  "version": "2.9.2",
   "description": "visx grid",
   "sideEffects": false,
   "main": "lib/index.js",
