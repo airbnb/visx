@@ -1,4 +1,5 @@
 # Changelog
+- [v2.9.2](#v292)
 - [v2.9.1](#v291)
 - [v2.9.0](#v290)
 - [v2.8.0](#v280)
@@ -6,10 +7,10 @@
 - [v2.7.0](#v270)
 - [v2.6.1](#v261)
 - [v2.6.0](#v260)
-- [v2.5.0](#v250)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v250">v2.5.0</a></li>
   <li><a href="#v241">v2.4.1</a></li>
   <li><a href="#v240">v2.4.0</a></li>
   <li><a href="#v230">v2.3.0</a></li>
@@ -138,6 +139,15 @@
 </details>
 
 ------
+# v2.9.2 (2022-04-28)
+
+#### :bug: Bug Fix
+
+- fix(xychart, react-spring): fix duplicate key warning in Axis/Grid [#1485](https://github.com/airbnb/visx/pull/1485)
+  
+#### :trophy: Contributors
+- [williaster](https://github.com/williaster)
+
 # v2.9.1 (2022-04-27)
 
 #### :bug: Bug Fix
