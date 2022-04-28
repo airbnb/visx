@@ -10,7 +10,11 @@ export type GridScale<Output extends GridScaleOutput = GridScaleOutput> =
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   D3Scale<Output, any, any>;
 
-export type GridLines = { from: { x?: number; y?: number }; to: { x?: number; y?: number } }[];
+export type GridLines = {
+  from: { x?: number; y?: number };
+  to: { x?: number; y?: number };
+  index: number;
+}[];
 
 export type CommonGridProps = {
   /** classname to apply to line group element. */

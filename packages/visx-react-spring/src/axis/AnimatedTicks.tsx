@@ -27,7 +27,7 @@ export default function AnimatedTicks<Scale extends AxisScale>({
       animateXOrY: horizontal ? 'x' : 'y',
       animationTrajectory,
     }),
-    keys: (tick: ComputedTick<Scale>) => `${tick.value}`,
+    keys: (tick: ComputedTick<Scale>) => `tick-${tick.value}-${tick.index}`,
   });
 
   return (
