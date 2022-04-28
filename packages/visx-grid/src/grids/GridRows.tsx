@@ -43,9 +43,10 @@ export default function GridRows<Scale extends GridScale>({
 }: AllGridRowsProps<Scale>) {
   const ticks = tickValues ?? getTicks(scale, numTicks);
   const scaleOffset = (offset ?? 0) + getScaleBandwidth(scale) / 2;
-  const tickLines = ticks.map((d) => {
+  const tickLines = ticks.map((d, index) => {
     const y = (coerceNumber(scale(d)) ?? 0) + scaleOffset;
     return {
+      index,
       from: new Point({
         x: 0,
         y,
@@ -60,9 +61,9 @@ export default function GridRows<Scale extends GridScale>({
     <Group className={cx('visx-rows', className)} top={top} left={left}>
       {children
         ? children({ lines: tickLines })
-        : tickLines.map(({ from, to }, i) => (
+        : tickLines.map(({ from, to, index }) => (
             <Line
-              key={`row-line-${i}`}
+              key={`row-line-${index}`}
               from={from}
               to={to}
               stroke={stroke}
