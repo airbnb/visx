@@ -32,7 +32,7 @@ export default function AnimatedGridColumns<Scale extends GridScale>({
           lines={lines}
           animationTrajectory={animationTrajectory}
           animateXOrY="x"
-          lineKey={(line) => String(line?.from?.x ?? '')}
+          lineKey={(line) => `column-${line?.from?.x ?? ''}-${line.index}`}
           {...lineProps}
         />
       )}
