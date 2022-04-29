@@ -8,12 +8,12 @@
     "@visx/scale":"latest",
     "@visx/text":"latest",
     "@visx/wordcloud":"latest",
-    "react": "^16.8",
-    "react-dom": "^16.8"
+    "react": "^18",
+    "react-dom": "^18"
   },
   "devDependencies": {
-    "@types/react": "^16.8",
-    "@types/react-dom": "^16.8",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
     "typescript": "^3"
   },
   "keywords": [

@@ -5,8 +5,8 @@
   "private": true,
   "dependencies": {
     "@babel/runtime": "^7.8.4",
-    "@types/react": "^17",
-    "@types/react-dom": "^17",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
     "@visx/gradient": "latest",
     "@visx/group": "latest",
     "@visx/mock-data": "latest",
@@ -15,8 +15,8 @@
     "@visx/scale": "latest",
     "@visx/stats": "latest",
     "@visx/tooltip": "latest",
-    "react": "^17",
-    "react-dom": "^17",
+    "react": "^18",
+    "react-dom": "^18",
     "react-scripts-ts": "3.1.0",
     "typescript": "^3"
   },
