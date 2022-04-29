@@ -1,7 +1,9 @@
 import React from 'react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import Example from './Example';
 import './sandbox-styles.css';
 
-render(<Example />, document.getElementById('root'));
+const root = createRoot(document.getElementById('root')!);
+
+root.render(<Example />);
