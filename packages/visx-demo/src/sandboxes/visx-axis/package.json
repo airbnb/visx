@@ -6,8 +6,8 @@
   "dependencies": {
     "@babel/runtime": "^7.8.4",
     "@types/d3-time-format": "2.1.1",
-    "@types/react": "^17",
-    "@types/react-dom": "^17",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
     "@visx/axis": "latest",
     "@visx/curve": "latest",
     "@visx/gradient": "latest",
@@ -19,8 +19,8 @@
     "@visx/shape": "latest",
     "@visx/scale": "latest",
     "d3-time-format": "^2.2.3",
-    "react": "^17",
-    "react-dom": "^17",
+    "react": "^18",
+    "react-dom": "^18",
     "react-scripts-ts": "3.1.0",
     "react-spring": "^9.2.0",
     "typescript": "^3"

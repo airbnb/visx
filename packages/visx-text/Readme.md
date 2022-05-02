@@ -20,7 +20,8 @@ you'd expect.
 
 ```jsx
 import React from 'react';
-import { render } from 'react-dom';
+// note: react@18 syntax
+import { createRoot } from 'react-dom/client';
 import { Text } from '@visx/text';
 
 const App = () => (
@@ -29,7 +30,9 @@ const App = () => (
   </svg>
 );
 
-render(<App />, document.getElementById('root'));
+const root = createRoot(document.getElementById('root'));
+
+root.render(<App />);
 ```
 
 ## Installation
