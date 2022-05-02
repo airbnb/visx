@@ -20,6 +20,7 @@ you'd expect.
 
 ```jsx
 import React from 'react';
+// note: react@18 syntax
 import { createRoot } from 'react-dom/client';
 import { Text } from '@visx/text';
 
