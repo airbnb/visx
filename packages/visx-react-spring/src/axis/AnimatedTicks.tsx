@@ -19,6 +19,7 @@ export default function AnimatedTicks<Scale extends AxisScale>({
   tickStroke = '#222',
   tickTransform,
   ticks,
+  tickLineProps,
   animationTrajectory,
 }: TicksRendererProps<Scale> & { animationTrajectory?: AnimationTrajectory }) {
   const animatedTicks = useTransition(ticks, {
@@ -50,6 +51,7 @@ export default function AnimatedTicks<Scale extends AxisScale>({
                 stroke={tickStroke}
                 strokeLinecap="square"
                 strokeOpacity={opacity}
+                {...tickLineProps}
               />
             )}
             {/** animate the group, not the Text */}

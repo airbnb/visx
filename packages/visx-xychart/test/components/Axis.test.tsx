@@ -101,4 +101,21 @@ describe('<BaseAxis />', () => {
     expect(VisxLine).toHaveAttribute('stroke-width', `${axisStyles.axisLine.strokeWidth}`);
     expect(VisxLine).toHaveAttribute('stroke', axisStyles.tickLine.stroke);
   });
+
+  it('should accept props for tickline', () => {
+    const tickLineProps = { strokeWidth: 12345, stroke: 'banana', opacity: 0.5 };
+    const { container } = setup(
+      <BaseAxis
+        orientation="left"
+        AxisComponent={() => <AnimatedAxis orientation="top" tickLineProps={tickLineProps} />}
+      />,
+    );
+
+    const VisxAxisTick = container.querySelector('.visx-axis-tick > line');
+
+    // specified styles in the props
+    expect(VisxAxisTick).toHaveAttribute('stroke-width', `${tickLineProps.strokeWidth}`);
+    expect(VisxAxisTick).toHaveAttribute('stroke', `${tickLineProps.stroke}`);
+    expect(VisxAxisTick).toHaveAttribute('opacity', `${tickLineProps.opacity}`);
+  });
 });
