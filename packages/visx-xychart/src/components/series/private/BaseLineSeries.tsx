@@ -21,7 +21,7 @@ export type BaseLineSeriesProps<
   /** Sets the curve factory (from @visx/curve or d3-curve) for the line generator. Defaults to curveLinear. */
   curve?: LinePathProps<Datum>['curve'];
   /** Given a datakey, returns its color. Falls back to theme color if unspecified or if a null-ish value is returned. */
-  colorAccessor?: (dataKey: string) => string | undefined | null,
+  colorAccessor?: (dataKey: string) => string | undefined | null;
 } & Omit<React.SVGProps<SVGPathElement>, 'x' | 'y' | 'x0' | 'x1' | 'y0' | 'y1' | 'ref'>;
 
 function BaseLineSeries<XScale extends AxisScale, YScale extends AxisScale, Datum extends object>({
