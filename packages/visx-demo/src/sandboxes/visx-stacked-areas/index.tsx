@@ -7,4 +7,6 @@ import './sandbox-styles.css';
 
 const root = createRoot(document.getElementById('root')!);
 
-root.render(<ParentSize>{({ width, height }) => <Example width={width} height={height} />}</ParentSize>);
+root.render(
+  <ParentSize>{({ width, height }) => <Example width={width} height={height} />}</ParentSize>,
+);
