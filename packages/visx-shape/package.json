@@ -1,6 +1,6 @@
 {
   "name": "@visx/shape",
-  "version": "2.10.0-alpha.0",
+  "version": "2.10.0",
   "description": "visx shape",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -26,7 +26,7 @@
     "@types/lodash": "^4.14.172",
     "@types/react": "*",
     "@visx/curve": "2.1.0",
-    "@visx/group": "2.10.0-alpha.0",
+    "@visx/group": "2.10.0",
     "@visx/scale": "2.2.2",
     "classnames": "^2.3.1",
     "d3-path": "^1.0.5",
