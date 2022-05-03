@@ -47,9 +47,9 @@ function BaseBarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum
   onPointerOut,
   onPointerUp,
   enableEvents = true,
-  xAccessor,
+  xAccessor: _xAccessor,
   xScale,
-  yAccessor,
+  yAccessor: _yAccessor,
   yScale,
   ...barComponentProps
 }: BaseBarSeriesProps<XScale, YScale, Datum> & WithRegisteredDataProps<XScale, YScale, Datum>) {
@@ -62,10 +62,10 @@ function BaseBarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum
     innerHeight = 0,
   } = useContext(DataContext);
 
-  const _xAccessor: (d: Datum) => ScaleInput<XScale> = xAccessor ?? dataRegistry.get(dataKey).xAccessor;
-  const _yAccessor: (d: Datum) => ScaleInput<YScale> = yAccessor ?? dataRegistry.get(dataKey).yAccessor;
-  const getScaledX = useCallback(getScaledValueFactory(xScale, _xAccessor), [xScale, _xAccessor]);
-  const getScaledY = useCallback(getScaledValueFactory(yScale, _yAccessor), [yScale, _yAccessor]);
+  const xAccessor: (d: Datum) => ScaleInput<XScale> = _xAccessor ?? dataRegistry.get(dataKey).xAccessor;
+  const yAccessor: (d: Datum) => ScaleInput<YScale> = _yAccessor ?? dataRegistry.get(dataKey).yAccessor;
+  const getScaledX = useCallback(getScaledValueFactory(xScale, xAccessor), [xScale, xAccessor]);
+  const getScaledY = useCallback(getScaledValueFactory(yScale, yAccessor), [yScale, yAccessor]);
   const scaleBandwidth = getScaleBandwidth(horizontal ? yScale : xScale);
   const barThickness =
     scaleBandwidth ||

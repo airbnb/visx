@@ -49,28 +49,28 @@ function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
   onPointerUp,
   enableEvents = true,
   renderLine = true,
-  xAccessor,
+  xAccessor: _xAccessor,
   x0Accessor,
   xScale,
-  yAccessor,
+  yAccessor: _yAccessor,
   y0Accessor,
   yScale,
   ...areaProps
 }: BaseAreaSeriesProps<XScale, YScale, Datum> & WithRegisteredDataProps<XScale, YScale, Datum>) {
   const { colorScale, dataRegistry, theme, horizontal } = useContext(DataContext);
 
-  const _xAccessor: (d: Datum) => ScaleInput<XScale> = xAccessor ?? dataRegistry.get(dataKey).xAccessor;
-  const _yAccessor: (d: Datum) => ScaleInput<YScale> = yAccessor ?? dataRegistry.get(dataKey).yAccessor;
+  const xAccessor: (d: Datum) => ScaleInput<XScale> = _xAccessor ?? dataRegistry.get(dataKey).xAccessor;
+  const yAccessor: (d: Datum) => ScaleInput<YScale> = _yAccessor ?? dataRegistry.get(dataKey).yAccessor;
   const getScaledX0 = useMemo(
     () => (x0Accessor ? getScaledValueFactory(xScale, x0Accessor) : undefined),
     [xScale, x0Accessor],
   );
-  const getScaledX = useCallback(getScaledValueFactory(xScale, _xAccessor), [xScale, _xAccessor]);
+  const getScaledX = useCallback(getScaledValueFactory(xScale, xAccessor), [xScale, xAccessor]);
   const getScaledY0 = useMemo(
     () => (y0Accessor ? getScaledValueFactory(yScale, y0Accessor) : undefined),
     [yScale, y0Accessor],
   );
-  const getScaledY = useCallback(getScaledValueFactory(yScale, _yAccessor), [yScale, _yAccessor]);
+  const getScaledY = useCallback(getScaledValueFactory(yScale, yAccessor), [yScale, yAccessor]);
   const isDefined = useCallback(
     (d: Datum) => isValidNumber(xScale(xAccessor(d))) && isValidNumber(yScale(yAccessor(d))),
     [xScale, xAccessor, yScale, yAccessor],

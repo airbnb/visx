@@ -38,17 +38,17 @@ export function BaseGlyphSeries<
   enableEvents = true,
   renderGlyphs,
   size = 8,
-  xAccessor,
+  xAccessor: _xAccessor,
   xScale,
-  yAccessor,
+  yAccessor: _yAccessor,
   yScale,
 }: BaseGlyphSeriesProps<XScale, YScale, Datum> & WithRegisteredDataProps<XScale, YScale, Datum>) {
   const { colorScale, dataRegistry, theme, horizontal } = useContext(DataContext);
 
-  const _xAccessor: (d: Datum) => ScaleInput<XScale> = xAccessor ?? dataRegistry.get(dataKey).xAccessor;
-  const _yAccessor: (d: Datum) => ScaleInput<YScale> = yAccessor ?? dataRegistry.get(dataKey).yAccessor;
-  const getScaledX = useCallback(getScaledValueFactory(xScale, _xAccessor), [xScale, _xAccessor]);
-  const getScaledY = useCallback(getScaledValueFactory(yScale, _yAccessor), [yScale, _yAccessor]);
+  const xAccessor: (d: Datum) => ScaleInput<XScale> = _xAccessor ?? dataRegistry.get(dataKey).xAccessor;
+  const yAccessor: (d: Datum) => ScaleInput<YScale> = _yAccessor ?? dataRegistry.get(dataKey).yAccessor;
+  const getScaledX = useCallback(getScaledValueFactory(xScale, xAccessor), [xScale, xAccessor]);
+  const getScaledY = useCallback(getScaledValueFactory(yScale, yAccessor), [yScale, yAccessor]);
   const color = colorScale?.(dataKey) ?? theme?.colors?.[0] ?? '#222';
 
   const ownEventSourceKey = `${GLYPHSERIES_EVENT_SOURCE}-${dataKey}`;
