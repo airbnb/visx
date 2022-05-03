@@ -1,5 +1,6 @@
 import React, { useContext, useCallback, useMemo } from 'react';
 import { AxisScale } from '@visx/axis';
+import { ScaleInput } from '@visx/scale';
 import Area, { AreaProps } from '@visx/shape/lib/shapes/Area';
 import LinePath, { LinePathProps } from '@visx/shape/lib/shapes/LinePath';
 import DataContext from '../../../context/DataContext';
@@ -56,17 +57,20 @@ function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
   yScale,
   ...areaProps
 }: BaseAreaSeriesProps<XScale, YScale, Datum> & WithRegisteredDataProps<XScale, YScale, Datum>) {
-  const { colorScale, theme, horizontal } = useContext(DataContext);
+  const { colorScale, dataRegistry, theme, horizontal } = useContext(DataContext);
+
+  const _xAccessor: (d: Datum) => ScaleInput<XScale> = xAccessor ?? dataRegistry.get(dataKey).xAccessor;
+  const _yAccessor: (d: Datum) => ScaleInput<YScale> = yAccessor ?? dataRegistry.get(dataKey).yAccessor;
   const getScaledX0 = useMemo(
     () => (x0Accessor ? getScaledValueFactory(xScale, x0Accessor) : undefined),
     [xScale, x0Accessor],
   );
-  const getScaledX = useCallback(getScaledValueFactory(xScale, xAccessor), [xScale, xAccessor]);
+  const getScaledX = useCallback(getScaledValueFactory(xScale, _xAccessor), [xScale, _xAccessor]);
   const getScaledY0 = useMemo(
     () => (y0Accessor ? getScaledValueFactory(yScale, y0Accessor) : undefined),
     [yScale, y0Accessor],
   );
-  const getScaledY = useCallback(getScaledValueFactory(yScale, yAccessor), [yScale, yAccessor]);
+  const getScaledY = useCallback(getScaledValueFactory(yScale, _yAccessor), [yScale, _yAccessor]);
   const isDefined = useCallback(
     (d: Datum) => isValidNumber(xScale(xAccessor(d))) && isValidNumber(yScale(yAccessor(d))),
     [xScale, xAccessor, yScale, yAccessor],
