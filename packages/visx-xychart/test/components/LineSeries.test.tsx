@@ -85,6 +85,17 @@ describe('<LineSeries />', () => {
       { showTooltip, hideTooltip },
     );
   });
+
+  it('should use colorAccessor if passed', () => {
+    const { container } = render(
+      <DataContext.Provider value={getDataContext(series)}>
+        <svg>
+          <LineSeries dataKey={series.key} {...series} colorAccessor={(_) => 'banana'} />
+        </svg>
+      </DataContext.Provider>,
+    );
+    expect(container.querySelector('path')).toHaveAttribute('stroke', 'banana');
+  });
 });
 
 describe('<AnimatedLineSeries />', () => {

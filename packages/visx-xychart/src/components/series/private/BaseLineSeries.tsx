@@ -20,9 +20,12 @@ export type BaseLineSeriesProps<
   PathComponent?: React.FC<Omit<React.SVGProps<SVGPathElement>, 'ref'>> | 'path';
   /** Sets the curve factory (from @visx/curve or d3-curve) for the line generator. Defaults to curveLinear. */
   curve?: LinePathProps<Datum>['curve'];
+  /** Given a datakey, returns its color. Falls back to theme color if unspecified or if a null-ish value is returned. */
+  colorAccessor?: (dataKey: string) => string | undefined | null;
 } & Omit<React.SVGProps<SVGPathElement>, 'x' | 'y' | 'x0' | 'x1' | 'y0' | 'y1' | 'ref'>;
 
 function BaseLineSeries<XScale extends AxisScale, YScale extends AxisScale, Datum extends object>({
+  colorAccessor,
   curve,
   data,
   dataKey,
@@ -85,7 +88,7 @@ function BaseLineSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
       <LinePath x={getScaledX} y={getScaledY} defined={isDefined} curve={curve} {...lineProps}>
         {({ path }) => (
           <PathComponent
-            stroke={color}
+            stroke={colorAccessor?.(dataKey) ?? color}
             strokeWidth={2}
             fill="transparent"
             strokeLinecap="round" // without this a datum surrounded by nulls will not be visible
