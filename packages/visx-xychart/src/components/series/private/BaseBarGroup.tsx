@@ -69,12 +69,12 @@ export default function BaseBarGroup<
 
   // register all child data
   useEffect(() => {
-    const dataToRegister = barSeriesChildren.map((child) => {
+    barSeriesChildren.forEach((child) => {
       const { dataKey: key, data, xAccessor, yAccessor } = child.props;
-      return { key, data, xAccessor, yAccessor };
+      const dataToRegister = { key, data, xAccessor, yAccessor };
+      if (data && xAccessor && yAccessor) registerData(dataToRegister);
     });
 
-    registerData(dataToRegister);
     return () => unregisterData(dataKeys);
   }, [registerData, unregisterData, barSeriesChildren, dataKeys]);
 

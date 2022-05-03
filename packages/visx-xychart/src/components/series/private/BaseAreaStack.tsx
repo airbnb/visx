@@ -147,7 +147,7 @@ function BaseAreaStack<XScale extends AxisScale, YScale extends AxisScale, Datum
   const findNearestDatum = useCallback(
     (params: NearestDatumArgs<XScale, YScale, AreaStackDatum>): NearestDatumReturnType<Datum> => {
       const childData = seriesChildren.find((child) => child.props.dataKey === params.dataKey)
-        ?.props?.data;
+        ?.props?.data ?? dataRegistry.get(params.dataKey);
       return childData ? findNearestStackDatum(params, childData, horizontal) : null;
     },
     [seriesChildren, horizontal],
