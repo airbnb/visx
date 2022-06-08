@@ -1,6 +1,6 @@
 {
   "name": "@visx/demo",
-  "version": "2.10.0",
+  "version": "2.10.1",
   "description": "visx demo",
   "repository": "https://github.com/airbnb/visx",
   "scripts": {
@@ -37,7 +37,7 @@
     "@types/prismjs": "^1.16.0",
     "@visx/annotation": "2.10.0",
     "@visx/axis": "2.10.0",
-    "@visx/brush": "2.10.0",
+    "@visx/brush": "2.10.1",
     "@visx/chord": "2.10.0",
     "@visx/clip-path": "2.10.0",
     "@visx/curve": "2.1.0",

@@ -2,7 +2,7 @@
   "packages": [
     "packages/*"
   ],
-  "version": "2.10.0",
+  "version": "2.10.1",
   "command": {
     "publish": {
       "allowBranch": "master"
