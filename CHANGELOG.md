@@ -1,4 +1,5 @@
 # Changelog
+- [v2.10.1](#v2101)
 - [v2.10.0](#v2100)
 - [v2.9.2](#v292)
 - [v2.9.1](#v291)
@@ -6,10 +7,10 @@
 - [v2.8.0](#v280)
 - [v2.7.1](#v271)
 - [v2.7.0](#v270)
-- [v2.6.1](#v261)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v261">v2.6.1</a></li>
   <li><a href="#v260">v2.6.0</a></li>
   <li><a href="#v250">v2.5.0</a></li>
   <li><a href="#v241">v2.4.1</a></li>
@@ -140,6 +141,15 @@
 </details>
 
 ------
+# v2.10.1 (2022-06-08)
+
+#### :bug: Bug Fix
+
+- fix(brush): vertical brush with useWindowMoveEvents [#1522](https://github.com/airbnb/visx/pull/1522)
+  
+#### :trophy: Contributors
+- [kangaechigai](https://github.com/kangaechigai)
+
 # v2.10.0 (2022-05-03)
 
 #### :rocket: Enhancements
