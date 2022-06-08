@@ -200,7 +200,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
                     ? Math.min(Math.max(x0 + offsetX, prevBrush.bounds.x0), prevBrush.bounds.x1)
                     : x0,
                 y:
-                  brushingType === 'bottom'
+                  brushingType === 'top'
                     ? Math.min(Math.max(y0 + offsetY, prevBrush.bounds.y0), prevBrush.bounds.y1)
                     : y0,
               },
