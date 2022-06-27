@@ -11,7 +11,13 @@ export type SeriesEventsParams<
   Datum extends object,
 > = Pick<
   SeriesProps<XScale, YScale, Datum>,
-  'enableEvents' | 'onBlur' | 'onFocus' | 'onPointerMove' | 'onPointerOut'  | 'onPointerUp' | 'onPointerDown'
+  | 'enableEvents'
+  | 'onBlur'
+  | 'onFocus'
+  | 'onPointerMove'
+  | 'onPointerOut'
+  | 'onPointerUp'
+  | 'onPointerDown'
 > &
   Pick<
     PointerEventHandlerParams<XScale, YScale, Datum>,
@@ -96,6 +102,6 @@ export default function useSeriesEvents<
     onPointerMove: !!onPointerMoveProps && enableEvents,
     onPointerOut: !!onPointerOutProps && enableEvents,
     onPointerUp: !!onPointerUpProps && enableEvents,
-    onPointerDown: !!onPointerDownProps && enableEvents
+    onPointerDown: !!onPointerDownProps && enableEvents,
   });
 }

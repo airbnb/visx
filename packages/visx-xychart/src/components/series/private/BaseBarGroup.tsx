@@ -34,7 +34,13 @@ export type BaseBarGroupProps<
   BarsComponent: React.FC<BarsProps<XScale, YScale>>;
 } & Pick<
   SeriesProps<XScale, YScale, Datum>,
-  'onPointerMove' | 'onPointerOut' | 'onPointerUp' | 'onPointerDown' | 'onBlur' | 'onFocus' | 'enableEvents'
+  | 'onPointerMove'
+  | 'onPointerOut'
+  | 'onPointerUp'
+  | 'onPointerDown'
+  | 'onBlur'
+  | 'onFocus'
+  | 'enableEvents'
 >;
 
 export default function BaseBarGroup<

@@ -50,7 +50,13 @@ export type BaseAreaStackProps<
 } & Pick<StackPathConfig<Datum, string>, 'offset' | 'order'> &
   Pick<
     SeriesProps<XScale, YScale, Datum>,
-    'onPointerMove' | 'onPointerOut' | 'onPointerUp' | 'onPointerDown' | 'onBlur' | 'onFocus' | 'enableEvents'
+    | 'onPointerMove'
+    | 'onPointerOut'
+    | 'onPointerUp'
+    | 'onPointerDown'
+    | 'onBlur'
+    | 'onFocus'
+    | 'enableEvents'
   >;
 
 const identity = (_: unknown) => _;

@@ -81,7 +81,7 @@ export type SeriesProps<
    * any Series with a defined handler. Alternatively you may set <XYChart captureEvents={false} />
    * and Series will emit their own events.
    */
-   onPointerDown?: ({
+  onPointerDown?: ({
     datum,
     distanceX,
     distanceY,
