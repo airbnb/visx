@@ -1,5 +1,5 @@
 import React from 'react';
-import { animated, useTransition, to, SpringValue } from 'react-spring';
+import { animated, useTransition, to, SpringValue } from '@react-spring/web';
 import cx from 'classnames';
 import Orientation from '@visx/axis/lib/constants/orientation';
 import { ComputedTick, TicksRendererProps, AxisScale } from '@visx/axis/lib/types';

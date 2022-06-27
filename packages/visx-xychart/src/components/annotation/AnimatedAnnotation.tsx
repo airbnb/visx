@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef } from 'react';
-import { useSpring, animated, to } from 'react-spring';
+import { useSpring, animated, to } from '@react-spring/web';
 import {
   Annotation as VisxAnnotation,
   EditableAnnotation as VisxEditableAnnotation,

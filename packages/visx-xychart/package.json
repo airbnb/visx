@@ -37,7 +37,7 @@
   },
   "peerDependencies": {
     "react": "^16.8.0 || ^17.0.0 || ^ 18.0.0",
-    "react-spring": "^9.2.0"
+    "@react-spring/web": "^9.4.5"
   },
   "dependencies": {
     "@types/lodash": "^4.14.172",
