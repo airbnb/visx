@@ -9,6 +9,7 @@ type PointerEventEmitterParams = {
   onPointerMove?: boolean;
   onPointerOut?: boolean;
   onPointerUp?: boolean;
+  onPointerDown?: boolean;
 };
 
 /**
@@ -20,6 +21,7 @@ export default function usePointerEventEmitters({
   onPointerOut = true,
   onPointerMove = true,
   onPointerUp = true,
+  onPointerDown = true,
   onFocus = false,
   onBlur = false,
 }: PointerEventEmitterParams) {
@@ -37,6 +39,10 @@ export default function usePointerEventEmitters({
     (event: React.PointerEvent) => emit?.('pointerup', event, source),
     [emit, source],
   );
+  const emitPointerDown = useCallback(
+    (event: React.PointerEvent) => emit?.('pointerdown', event, source),
+    [emit, source],
+  );
   const emitFocus = useCallback(
     (event: React.FocusEvent) => emit?.('focus', event, source),
     [emit, source],
@@ -52,5 +58,6 @@ export default function usePointerEventEmitters({
     onBlur: onBlur ? emitBlur : undefined,
     onPointerOut: onPointerOut ? emitPointerOut : undefined,
     onPointerUp: onPointerUp ? emitPointerUp : undefined,
+    onPointerDown: onPointerDown ? emitPointerDown : undefined,
   };
 }

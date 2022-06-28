@@ -74,6 +74,23 @@ export type SeriesProps<
     key,
     svgPoint,
   }: EventHandlerParams<Datum>) => void;
+
+  /**
+   * Callback invoked for onPointerDown events for the nearest Datum to the PointerEvent.
+   * By default XYChart will capture and emit PointerEvents, invoking this function for
+   * any Series with a defined handler. Alternatively you may set <XYChart captureEvents={false} />
+   * and Series will emit their own events.
+   */
+  onPointerDown?: ({
+    datum,
+    distanceX,
+    distanceY,
+    event,
+    index,
+    key,
+    svgPoint,
+  }: EventHandlerParams<Datum>) => void;
+
   /**
    * Callback invoked for onFocus events for the nearest Datum to the FocusEvent.
    * XYChart will NOT capture and emit FocusEvents, they are emitted from individual Series glyph shapes.

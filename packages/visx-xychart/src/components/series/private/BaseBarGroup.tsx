@@ -34,7 +34,13 @@ export type BaseBarGroupProps<
   BarsComponent: React.FC<BarsProps<XScale, YScale>>;
 } & Pick<
   SeriesProps<XScale, YScale, Datum>,
-  'onPointerMove' | 'onPointerOut' | 'onPointerUp' | 'onBlur' | 'onFocus' | 'enableEvents'
+  | 'onPointerMove'
+  | 'onPointerOut'
+  | 'onPointerUp'
+  | 'onPointerDown'
+  | 'onBlur'
+  | 'onFocus'
+  | 'enableEvents'
 >;
 
 export default function BaseBarGroup<
@@ -51,6 +57,7 @@ export default function BaseBarGroup<
   onPointerMove,
   onPointerOut,
   onPointerUp,
+  onPointerDown,
   enableEvents = true,
 }: BaseBarGroupProps<XScale, YScale, Datum>) {
   const { colorScale, dataRegistry, horizontal, registerData, unregisterData, xScale, yScale } =
@@ -105,6 +112,7 @@ export default function BaseBarGroup<
     onPointerMove,
     onPointerOut,
     onPointerUp,
+    onPointerDown,
     source: ownEventSourceKey,
     allowedSources: [XYCHART_EVENT_SOURCE, ownEventSourceKey],
   });

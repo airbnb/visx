@@ -50,7 +50,13 @@ export type BaseAreaStackProps<
 } & Pick<StackPathConfig<Datum, string>, 'offset' | 'order'> &
   Pick<
     SeriesProps<XScale, YScale, Datum>,
-    'onPointerMove' | 'onPointerOut' | 'onPointerUp' | 'onBlur' | 'onFocus' | 'enableEvents'
+    | 'onPointerMove'
+    | 'onPointerOut'
+    | 'onPointerUp'
+    | 'onPointerDown'
+    | 'onBlur'
+    | 'onFocus'
+    | 'enableEvents'
   >;
 
 const identity = (_: unknown) => _;
@@ -66,6 +72,7 @@ function BaseAreaStack<XScale extends AxisScale, YScale extends AxisScale, Datum
   onPointerMove,
   onPointerOut,
   onPointerUp,
+  onPointerDown,
   order,
   renderLine = true,
 }: BaseAreaStackProps<XScale, YScale, Datum>) {
@@ -165,6 +172,7 @@ function BaseAreaStack<XScale extends AxisScale, YScale extends AxisScale, Datum
     onPointerMove,
     onPointerOut,
     onPointerUp,
+    onPointerDown,
     source: ownEventSourceKey,
     allowedSources: [XYCHART_EVENT_SOURCE, ownEventSourceKey],
   });

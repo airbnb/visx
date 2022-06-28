@@ -201,6 +201,7 @@ type EventHandlerParams<Datum> = {
 | `onPointerMove` | `(params: EventHandlerParams<Datum>) => void` | ✅                | ✅                |
 | `onPointerOut`  | `(event: React.PointerEvent) => void`         | ✅                | ✅                |
 | `onPointerUp`   | `(params: EventHandlerParams<Datum>) => void` | ✅                | ✅                |
+| `onPointerDown` | `(params: EventHandlerParams<Datum>) => void` | ✅                | ✅                |
 | `onFocus`       | `(params: EventHandlerParams<Datum>) => void` | ❌                | ✅                |
 | `onBlur`        | `(event: React.TouchEvent) => void`           | ❌                | ✅                |
 

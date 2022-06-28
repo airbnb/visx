@@ -2,7 +2,13 @@ import { useCallback, useContext, useEffect, useRef } from 'react';
 import { localPoint } from '@visx/event';
 import EventEmitterContext from '../context/EventEmitterContext';
 
-export type EventType = 'pointermove' | 'pointerout' | 'pointerup' | 'focus' | 'blur';
+export type EventType =
+  | 'pointermove'
+  | 'pointerout'
+  | 'pointerup'
+  | 'pointerdown'
+  | 'focus'
+  | 'blur';
 
 export type HandlerParams = {
   /** The react PointerEvent or FocusEvent. */

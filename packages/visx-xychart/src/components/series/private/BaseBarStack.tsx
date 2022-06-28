@@ -43,7 +43,13 @@ export type BaseBarStackProps<
 } & Pick<StackPathConfig<Datum, string>, 'offset' | 'order'> &
   Pick<
     SeriesProps<XScale, YScale, Datum>,
-    'onPointerMove' | 'onPointerOut' | 'onPointerUp' | 'onBlur' | 'onFocus' | 'enableEvents'
+    | 'onPointerMove'
+    | 'onPointerOut'
+    | 'onPointerUp'
+    | 'onPointerDown'
+    | 'onBlur'
+    | 'onFocus'
+    | 'enableEvents'
   >;
 
 function BaseBarStack<
@@ -60,6 +66,7 @@ function BaseBarStack<
   onPointerMove,
   onPointerOut,
   onPointerUp,
+  onPointerDown,
   enableEvents = true,
 }: BaseBarStackProps<XScale, YScale, Datum>) {
   type StackBar = SeriesPoint<CombinedStackData<XScale, YScale>>;
@@ -102,6 +109,7 @@ function BaseBarStack<
     onPointerMove,
     onPointerOut,
     onPointerUp,
+    onPointerDown,
     source: ownEventSourceKey,
     allowedSources: [XYCHART_EVENT_SOURCE, ownEventSourceKey],
   });
