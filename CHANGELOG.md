@@ -1,4 +1,5 @@
 # Changelog
+- [v2.11.0](#v2110)
 - [v2.10.2](#v2102)
 - [v2.10.1](#v2101)
 - [v2.10.0](#v2100)
@@ -6,10 +7,10 @@
 - [v2.9.1](#v291)
 - [v2.9.0](#v290)
 - [v2.8.0](#v280)
-- [v2.7.1](#v271)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v271">v2.7.1</a></li>
   <li><a href="#v270">v2.7.0</a></li>
   <li><a href="#v261">v2.6.1</a></li>
   <li><a href="#v260">v2.6.0</a></li>
@@ -142,6 +143,15 @@
 </details>
 
 ------
+# v2.11.0 (2022-06-28)
+
+#### :rocket: Enhancements
+
+- feat(xychart): support onPointerDown event [#1440](https://github.com/airbnb/visx/pull/1440)
+  
+#### :trophy: Contributors
+- [abusada](https://github.com/abusada)
+
 # v2.10.2 (2022-06-28)
 
 ### :house:  Internal
