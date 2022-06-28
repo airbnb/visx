@@ -1,6 +1,6 @@
 {
   "name": "@visx/xychart",
-  "version": "2.10.2",
+  "version": "2.11.0",
   "description": "Composable cartesian coordinate chart built with visx primitives",
   "sideEffects": false,
   "main": "lib/index.js",
