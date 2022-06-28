@@ -11,7 +11,7 @@ import appleStock, { AppleStock } from '@visx/mock-data/lib/mocks/appleStock';
 import { LinearGradient } from '@visx/gradient';
 import { AxisLeft } from '@visx/axis';
 import { GridRadial, GridAngle } from '@visx/grid';
-import { animated, useSpring } from 'react-spring';
+import { animated, useSpring } from '@react-spring/web';
 
 const green = '#e5fd3d';
 export const blue = '#aeeef8';

@@ -1,5 +1,5 @@
 import React, { useCallback, useRef } from 'react';
-import { animated, useSpring } from 'react-spring';
+import { animated, useSpring } from '@react-spring/web';
 // @ts-ignore no types
 import { interpolatePath } from 'd3-interpolate-path';
 import debounce from 'lodash/debounce';
