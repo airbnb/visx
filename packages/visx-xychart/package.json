@@ -1,6 +1,6 @@
 {
   "name": "@visx/xychart",
-  "version": "2.10.0",
+  "version": "2.10.2",
   "description": "Composable cartesian coordinate chart built with visx primitives",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -36,8 +36,8 @@
     "access": "public"
   },
   "peerDependencies": {
-    "react": "^16.8.0 || ^17.0.0 || ^ 18.0.0",
-    "@react-spring/web": "^9.4.5"
+    "@react-spring/web": "^9.4.5",
+    "react": "^16.8.0 || ^17.0.0 || ^ 18.0.0"
   },
   "dependencies": {
     "@types/lodash": "^4.14.172",
@@ -47,7 +47,7 @@
     "@visx/event": "2.6.0",
     "@visx/glyph": "2.10.0",
     "@visx/grid": "2.10.0",
-    "@visx/react-spring": "2.10.0",
+    "@visx/react-spring": "2.10.2",
     "@visx/responsive": "2.10.0",
     "@visx/scale": "2.2.2",
     "@visx/shape": "2.10.0",
