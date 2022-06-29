@@ -27,7 +27,7 @@ const renderNumberSegment: SplitLinePathRenderer = ({ segment, styles }) => (
   <g>
     {segment.map(({ x, y }, i) =>
       i % 25 === 0 ? (
-        <g transform={`translate(${x},${y})`}>
+        <g key={i} transform={`translate(${x},${y})`}>
           <circle r={2} fill="#222" />
           <text key={i} dx={3} dy={3} fontSize={8}>
             {i}

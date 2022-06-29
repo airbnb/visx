@@ -69,7 +69,9 @@ export default function SplitLinePath<Datum>({
     <g>
       {splitLineSegments.map((segment, index) =>
         children ? (
-          children({ index, segment, styles: styles[index] || styles[index % styles.length] })
+          <React.Fragment key={index}>
+            {children({ index, segment, styles: styles[index] || styles[index % styles.length] })}
+          </React.Fragment>
         ) : (
           <LinePath
             key={index}
