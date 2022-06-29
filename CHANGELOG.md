@@ -1,4 +1,5 @@
 # Changelog
+- [v2.11.1](#v2111)
 - [v2.11.0](#v2110)
 - [v2.10.2](#v2102)
 - [v2.10.1](#v2101)
@@ -6,10 +7,10 @@
 - [v2.9.2](#v292)
 - [v2.9.1](#v291)
 - [v2.9.0](#v290)
-- [v2.8.0](#v280)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v280">v2.8.0</a></li>
   <li><a href="#v271">v2.7.1</a></li>
   <li><a href="#v270">v2.7.0</a></li>
   <li><a href="#v261">v2.6.1</a></li>
@@ -143,6 +144,15 @@
 </details>
 
 ------
+# v2.11.1 (2022-06-29)
+
+#### :bug: Bug Fix
+
+- fix(demo,shape): fix SplitLinePath key [#1531](https://github.com/airbnb/visx/pull/1531)
+  
+#### :trophy: Contributors
+- [williaster](https://github.com/williaster)
+
 # v2.11.0 (2022-06-28)
 
 #### :rocket: Enhancements
