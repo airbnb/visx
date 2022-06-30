@@ -24,7 +24,7 @@ export type BrushHandleProps = {
   isControlled?: boolean;
   isDragInProgress?: boolean;
   onBrushHandleChange?: (type?: BrushingType, options?: BrushPageOffset) => void;
-  renderBrushHandles?: (props: BrushHandleRenderProps) => JSX.Element | null;
+  renderBrushHandle?: (props: BrushHandleRenderProps) => React.ReactNode;
 };
 
 export type BrushHandleRenderProps = HandleProps & {
@@ -153,7 +153,7 @@ export default class BrushHandle extends React.Component<BrushHandleProps> {
       handle,
       isControlled,
       isDragInProgress,
-      renderBrushHandles,
+      renderBrushHandle,
     } = this.props;
     const { x, y, width, height } = handle;
     const cursor = type === 'right' || type === 'left' ? 'ew-resize' : 'ns-resize';
@@ -181,7 +181,7 @@ export default class BrushHandle extends React.Component<BrushHandleProps> {
                 onPointerLeave={isControlled ? undefined : dragEnd}
               />
             )}
-            {!renderBrushHandles && (
+            {!renderBrushHandle && (
               <rect
                 x={x}
                 y={y}
@@ -198,13 +198,13 @@ export default class BrushHandle extends React.Component<BrushHandleProps> {
                 }}
               />
             )}
-            {renderBrushHandles && (
+            {renderBrushHandle && (
               <g
                 onPointerDown={dragStart}
                 onPointerMove={dragMove}
                 onPointerUp={isControlled ? undefined : dragEnd}
               >
-                {renderBrushHandles({
+                {renderBrushHandle({
                   ...this.props.handle,
                   height: stageHeight,
                   className: `visx-brush-handle-${type}`,

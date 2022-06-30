@@ -43,7 +43,7 @@ export type BaseBrushProps = {
   disableDraggingSelection: boolean;
   resetOnEnd?: boolean;
   useWindowMoveEvents?: boolean;
-  renderBrushHandles?: (props: BrushHandleRenderProps) => JSX.Element | null;
+  renderBrushHandle?: (props: BrushHandleRenderProps) => React.ReactNode;
 };
 
 export type BaseBrushState = BrushShape & {
@@ -553,7 +553,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
       disableDraggingSelection,
       clickSensitivity,
       useWindowMoveEvents,
-      renderBrushHandles,
+      renderBrushHandle,
     } = this.props;
 
     const { brushingType } = this.state;
@@ -654,7 +654,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
                     isControlled={useWindowMoveEvents}
                     isDragInProgress={useWindowMoveEvents ? brushingType === handleKey : undefined}
                     onBrushHandleChange={this.handleBrushingTypeChange}
-                    renderBrushHandles={renderBrushHandles}
+                    renderBrushHandle={renderBrushHandle}
                   />
                 )
               );

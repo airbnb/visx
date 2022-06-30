@@ -61,8 +61,8 @@ export type BrushProps = {
   innerRef?: React.MutableRefObject<BaseBrush | null>;
   /** Prevent drag end on mouse leaving from brush stage. */
   useWindowMoveEvents?: boolean;
-  /** Render function for custom brush handles */
-  renderBrushHandles?: (props: BrushHandleRenderProps) => JSX.Element | null;
+  /** Render function for custom brush handles. */
+  renderBrushHandle?: (props: BrushHandleRenderProps) => React.ReactNode;
 };
 
 class Brush extends Component<BrushProps> {
@@ -188,7 +188,7 @@ class Brush extends Component<BrushProps> {
       onClick,
       handleSize,
       useWindowMoveEvents,
-      renderBrushHandles,
+      renderBrushHandle,
     } = this.props;
     if (!xScale || !yScale) return null;
 
@@ -250,7 +250,7 @@ class Brush extends Component<BrushProps> {
         onMouseLeave={onMouseLeave}
         onMouseMove={onMouseMove}
         useWindowMoveEvents={useWindowMoveEvents}
-        renderBrushHandles={renderBrushHandles}
+        renderBrushHandle={renderBrushHandle}
       />
     );
   }
