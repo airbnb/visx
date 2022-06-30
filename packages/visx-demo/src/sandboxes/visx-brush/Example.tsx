@@ -195,9 +195,7 @@ function BrushChart({
             onClick={() => setFilteredStock(stock)}
             selectedBoxStyle={selectedBrushStyle}
             useWindowMoveEvents
-            renderBrushHandles={(props) =>
-              props.isBrushActive ? <BrushHandle {...props} /> : null
-            }
+            renderBrushHandle={(props) => <BrushHandle {...props} />}
           />
         </AreaChart>
       </svg>
@@ -207,9 +205,12 @@ function BrushChart({
   );
 }
 // We need to manually offset the handles for them to be rendered at the right position
-const BrushHandle = ({ x, height }: BrushHandleRenderProps) => {
+const BrushHandle = ({ x, height, isBrushActive }: BrushHandleRenderProps) => {
   const pathWidth = 8;
   const pathHeight = 15;
+  if (!isBrushActive) {
+    return null;
+  }
   return (
     <Group left={x + pathWidth / 2} top={(height - pathHeight) / 2}>
       <path
