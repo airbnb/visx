@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import BaseBrush, { BaseBrushProps, BaseBrushState } from './BaseBrush';
+import { BrushHandleRenderProps } from './BrushHandle';
 import {
   Bounds,
   PartialBrushStartEnd,
@@ -60,6 +61,8 @@ export type BrushProps = {
   innerRef?: React.MutableRefObject<BaseBrush | null>;
   /** Prevent drag end on mouse leaving from brush stage. */
   useWindowMoveEvents?: boolean;
+  /** Render function for custom brush handles. */
+  renderBrushHandle?: (props: BrushHandleRenderProps) => React.ReactNode;
 };
 
 class Brush extends Component<BrushProps> {
@@ -97,6 +100,7 @@ class Brush extends Component<BrushProps> {
     onMouseLeave: null,
     onClick: null,
     useWindowMoveEvents: false,
+    renderBrushHandles: null,
   };
 
   handleChange = (brush: BaseBrushState) => {
@@ -184,6 +188,7 @@ class Brush extends Component<BrushProps> {
       onClick,
       handleSize,
       useWindowMoveEvents,
+      renderBrushHandle,
     } = this.props;
     if (!xScale || !yScale) return null;
 
@@ -245,6 +250,7 @@ class Brush extends Component<BrushProps> {
         onMouseLeave={onMouseLeave}
         onMouseMove={onMouseMove}
         useWindowMoveEvents={useWindowMoveEvents}
+        renderBrushHandle={renderBrushHandle}
       />
     );
   }

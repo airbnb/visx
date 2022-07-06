@@ -3,7 +3,7 @@ import { Group } from '@visx/group';
 import { Bar } from '@visx/shape';
 import Drag, { HandlerArgs as DragArgs } from '@visx/drag/lib/Drag';
 
-import BrushHandle from './BrushHandle';
+import BrushHandle, { BrushHandleRenderProps } from './BrushHandle';
 import BrushCorner from './BrushCorner';
 import BrushSelection from './BrushSelection';
 import {
@@ -43,6 +43,7 @@ export type BaseBrushProps = {
   disableDraggingSelection: boolean;
   resetOnEnd?: boolean;
   useWindowMoveEvents?: boolean;
+  renderBrushHandle?: (props: BrushHandleRenderProps) => React.ReactNode;
 };
 
 export type BaseBrushState = BrushShape & {
@@ -109,6 +110,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
     resetOnEnd: false,
     initialBrushPosition: null,
     useWindowMoveEvents: false,
+    renderBrushHandles: null,
   };
 
   componentDidUpdate(prevProps: BaseBrushProps) {
@@ -551,6 +553,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
       disableDraggingSelection,
       clickSensitivity,
       useWindowMoveEvents,
+      renderBrushHandle,
     } = this.props;
 
     const { brushingType } = this.state;
@@ -651,6 +654,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
                     isControlled={useWindowMoveEvents}
                     isDragInProgress={useWindowMoveEvents ? brushingType === handleKey : undefined}
                     onBrushHandleChange={this.handleBrushingTypeChange}
+                    renderBrushHandle={renderBrushHandle}
                   />
                 )
               );
