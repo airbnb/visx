@@ -1,4 +1,5 @@
 # Changelog
+- [v2.12.0](#v2120)
 - [v2.11.1](#v2111)
 - [v2.11.0](#v2110)
 - [v2.10.2](#v2102)
@@ -6,10 +7,10 @@
 - [v2.10.0](#v2100)
 - [v2.9.2](#v292)
 - [v2.9.1](#v291)
-- [v2.9.0](#v290)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v290">v2.9.0</a></li>
   <li><a href="#v280">v2.8.0</a></li>
   <li><a href="#v271">v2.7.1</a></li>
   <li><a href="#v270">v2.7.0</a></li>
@@ -144,6 +145,15 @@
 </details>
 
 ------
+# v2.12.0 (2022-07-06)
+
+#### :rocket: Enhancements
+
+- feat(brush): add renderBrushHandle [#1495](https://github.com/airbnb/visx/pull/1495)
+  
+#### :trophy: Contributors
+- [arnthor-agustsson](https://github.com/arnthor-agustsson)
+
 # v2.11.1 (2022-06-29)
 
 #### :bug: Bug Fix
