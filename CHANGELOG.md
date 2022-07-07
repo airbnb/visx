@@ -1,4 +1,5 @@
 # Changelog
+- [v2.12.1](#v2121)
 - [v2.12.0](#v2120)
 - [v2.11.1](#v2111)
 - [v2.11.0](#v2110)
@@ -6,10 +7,10 @@
 - [v2.10.1](#v2101)
 - [v2.10.0](#v2100)
 - [v2.9.2](#v292)
-- [v2.9.1](#v291)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v291">v2.9.1</a></li>
   <li><a href="#v290">v2.9.0</a></li>
   <li><a href="#v280">v2.8.0</a></li>
   <li><a href="#v271">v2.7.1</a></li>
@@ -145,6 +146,15 @@
 </details>
 
 ------
+# v2.12.1 (2022-07-07)
+
+#### :bug: Bug Fix
+
+- fix(brush): resize brush selection when chart resizes [#1536](https://github.com/airbnb/visx/pull/1536)
+  
+#### :trophy: Contributors
+- [lucassarcanjo](https://github.com/lucassarcanjo)
+
 # v2.12.0 (2022-07-06)
 
 #### :rocket: Enhancements
