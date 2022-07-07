@@ -116,14 +116,32 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
   componentDidUpdate(prevProps: BaseBrushProps) {
     if (this.props.width !== prevProps.width || this.props.height !== prevProps.height) {
       // eslint-disable-next-line react/no-did-update-set-state
-      this.setState(() => ({
-        bounds: {
-          x0: 0,
-          x1: this.props.width,
-          y0: 0,
-          y1: this.props.height,
-        },
-      }));
+      this.setState((prevBrush: BaseBrushState) => {
+        const widthRatio = this.props.width / prevProps.width;
+        const heightRatio = this.props.height / prevProps.height;
+
+        const start = {
+          x: widthRatio * prevBrush.extent.x0,
+          y: heightRatio * prevBrush.extent.y0,
+        };
+
+        const end = {
+          x: widthRatio * prevBrush.extent.x1,
+          y: heightRatio * prevBrush.extent.y1,
+        };
+
+        const extent = this.getExtent(start, end);
+
+        return {
+          extent,
+          bounds: {
+            x0: 0,
+            x1: this.props.width,
+            y0: 0,
+            y1: this.props.height,
+          },
+        };
+      });
     }
   }
 
