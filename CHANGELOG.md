@@ -1,4 +1,5 @@
 # Changelog
+- [v2.12.2](#v2122)
 - [v2.12.1](#v2121)
 - [v2.12.0](#v2120)
 - [v2.11.1](#v2111)
@@ -6,10 +7,10 @@
 - [v2.10.2](#v2102)
 - [v2.10.1](#v2101)
 - [v2.10.0](#v2100)
-- [v2.9.2](#v292)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v292">v2.9.2</a></li>
   <li><a href="#v291">v2.9.1</a></li>
   <li><a href="#v290">v2.9.0</a></li>
   <li><a href="#v280">v2.8.0</a></li>
@@ -146,6 +147,15 @@
 </details>
 
 ------
+# v2.12.2 (2022-08-03)
+
+#### :bug: Bug Fix
+
+- fix(text, shape): Hide generated text element from assistive technologies [#1551](https://github.com/airbnb/visx/pull/1551)
+  
+#### :trophy: Contributors
+- [thomashoggard](https://github.com/thomashoggard)
+
 # v2.12.1 (2022-07-07)
 
 #### :bug: Bug Fix
