@@ -1,6 +1,6 @@
 {
   "name": "@visx/brush",
-  "version": "2.12.1",
+  "version": "2.12.2",
   "description": "visx brush",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -37,7 +37,7 @@
     "@visx/event": "2.6.0",
     "@visx/group": "2.10.0",
     "@visx/scale": "2.2.2",
-    "@visx/shape": "2.11.1",
+    "@visx/shape": "2.12.2",
     "classnames": "^2.3.1",
     "prop-types": "^15.6.1"
   }

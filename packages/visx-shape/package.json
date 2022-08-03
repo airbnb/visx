@@ -1,6 +1,6 @@
 {
   "name": "@visx/shape",
-  "version": "2.11.1",
+  "version": "2.12.2",
   "description": "visx shape",
   "sideEffects": false,
   "main": "lib/index.js",
