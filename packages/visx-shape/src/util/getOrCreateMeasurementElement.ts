@@ -6,7 +6,9 @@ export default function getOrCreateMeasurementElement(elementId: string) {
   // create a single path element if not done already
   if (!pathElement) {
     const svg = document.createElementNS(SVG_NAMESPACE_URL, 'svg');
+
     // not visible
+    svg.setAttribute('aria-hidden', 'true');
     svg.style.opacity = '0';
     svg.style.width = '0';
     svg.style.height = '0';
