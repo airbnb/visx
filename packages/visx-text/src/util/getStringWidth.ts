@@ -8,6 +8,7 @@ function getStringWidth(str: string, style?: object) {
     let textEl = document.getElementById(MEASUREMENT_ELEMENT_ID) as SVGTextElement | null;
     if (!textEl) {
       const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('aria-hidden', 'true');
       svg.style.width = '0';
       svg.style.height = '0';
       svg.style.position = 'absolute';
