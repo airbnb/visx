@@ -58,6 +58,7 @@
     "@visx/scale": "2.2.2",
     "@visx/shape": "2.12.2",
     "@visx/text": "2.12.2",
+    "@visx/threshold": "2.12.2",
     "@visx/tooltip": "2.10.0",
     "@visx/voronoi": "2.10.0",
     "@visx/wordcloud": "2.10.0",

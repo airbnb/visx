@@ -24,6 +24,7 @@ import * as Responsive from '@visx/responsive';
 import * as Scale from '@visx/scale';
 import * as Shape from '@visx/shape';
 import * as Text from '@visx/text';
+import * as Threshold from '@visx/threshold';
 import * as Tooltip from '@visx/tooltip';
 import * as Voronoi from '@visx/voronoi';
 import * as Wordcloud from '@visx/wordcloud';
@@ -56,6 +57,7 @@ export {
   Scale,
   Shape,
   Text,
+  Threshold,
   Tooltip,
   Voronoi,
   Wordcloud,
