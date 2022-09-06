@@ -1,4 +1,5 @@
 # Changelog
+- [v2.13.0](#v2130)
 - [v2.12.2](#v2122)
 - [v2.12.1](#v2121)
 - [v2.12.0](#v2120)
@@ -6,10 +7,10 @@
 - [v2.11.0](#v2110)
 - [v2.10.2](#v2102)
 - [v2.10.1](#v2101)
-- [v2.10.0](#v2100)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v2100">v2.10.0</a></li>
   <li><a href="#v292">v2.9.2</a></li>
   <li><a href="#v291">v2.9.1</a></li>
   <li><a href="#v290">v2.9.0</a></li>
@@ -147,6 +148,15 @@
 </details>
 
 ------
+# v2.13.0 (2022-09-06)
+
+#### :rocket: Enhancements
+
+- Include visx/threshold in visx/visx [#1563](https://github.com/airbnb/visx/pull/1563)
+  
+#### :trophy: Contributors
+- [DantrazTrev](https://github.com/DantrazTrev)
+
 # v2.12.2 (2022-08-03)
 
 #### :bug: Bug Fix
