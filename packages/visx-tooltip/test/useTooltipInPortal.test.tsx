@@ -41,7 +41,7 @@ const TooltipWithPortalContainer = ({
     <>
       <div data-testid="inner-div" ref={shouldUsePortalContainer ? onRefChange : undefined} />
       <TooltipInPortal>
-        <div data-testid="element-in-tooltip"></div>
+        <div data-testid="element-in-tooltip" />
       </TooltipInPortal>
     </>
   );
@@ -74,7 +74,7 @@ describe('useTooltipInPortal()', () => {
   });
 
   describe('portalContainer', () => {
-    it('it should render tooltip at the document root', async () => {
+    it('should render tooltip at the document root', async () => {
       render(<TooltipWithPortalContainer shouldUsePortalContainer={false} />);
       const elementInPortal = await screen.findByTestId('element-in-tooltip');
       expect(elementInPortal).toBeInTheDocument();
@@ -83,8 +83,8 @@ describe('useTooltipInPortal()', () => {
       ).not.toBeInTheDocument();
     });
 
-    it('it should render tooltip in the provided portal container', async () => {
-      render(<TooltipWithPortalContainer shouldUsePortalContainer={true} />);
+    it('should render tooltip in the provided portal container', async () => {
+      render(<TooltipWithPortalContainer shouldUsePortalContainer />);
       const elementInPortal = await screen.findByTestId('element-in-tooltip');
       expect(elementInPortal).toBeInTheDocument();
       expect(

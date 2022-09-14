@@ -285,7 +285,6 @@ const OverlayLayer = function OverlayLayer({
       </div>,
       container,
     );
-  } else {
-    return null;
   }
+  return null;
 };

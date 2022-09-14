@@ -14,7 +14,7 @@ const PortalWithContainer = () => {
       <div data-testid="inner-div" ref={onRefChange} />
       {portalContainer && (
         <Portal container={portalContainer}>
-          <div data-testid="element-in-portal"></div>
+          <div data-testid="element-in-portal" />
         </Portal>
       )}
     </>
@@ -31,7 +31,7 @@ describe('Portal', () => {
       <>
         <div data-testid="inner-div" />
         <Portal>
-          <div data-testid="element-in-portal"></div>
+          <div data-testid="element-in-portal" />
         </Portal>
       </>,
     );
