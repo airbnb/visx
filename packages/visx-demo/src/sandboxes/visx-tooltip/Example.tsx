@@ -29,17 +29,18 @@ const tooltipStyles = {
 
 export default function Example({ width, height, showControls = true }: TooltipProps) {
   const [tooltipShouldDetectBounds, setTooltipShouldDetectBounds] = useState(true);
-  const [tooltipPortalShouldUseCustomContainer, setTooltipPortalShouldUseCustomContainer] = useState(true);
+  const [tooltipPortalShouldUseCustomContainer, setTooltipPortalShouldUseCustomContainer] =
+    useState(true);
   const [renderTooltipInPortal, setRenderTooltipInPortal] = useState(false);
   const overlayRootRef = React.useRef<HTMLDivElement | null>(null);
 
-  const { containerRef, containerBounds, TooltipInPortal } = useTooltipInPortal(
-    {
-      scroll: true,
-      detectBounds: tooltipShouldDetectBounds,
-      portalContainer: tooltipPortalShouldUseCustomContainer ? overlayRootRef.current ?? undefined : undefined,
-    }
-  );
+  const { containerRef, containerBounds, TooltipInPortal } = useTooltipInPortal({
+    scroll: true,
+    detectBounds: tooltipShouldDetectBounds,
+    portalContainer: tooltipPortalShouldUseCustomContainer
+      ? overlayRootRef.current ?? undefined
+      : undefined,
+  });
 
   const {
     showTooltip,
@@ -91,7 +92,7 @@ export default function Example({ width, height, showControls = true }: TooltipP
         <OverlayLayer
           className="overlay-layer overlay-under-tooltip"
           container={overlayRootRef.current}
-          text='We want this to appear under the tooltip.'
+          text="We want this to appear under the tooltip."
         />
         {tooltipOpen ? (
           <>
@@ -125,15 +126,13 @@ export default function Example({ width, height, showControls = true }: TooltipP
             </TooltipComponent>
           </>
         ) : (
-          <div className="no-tooltip">
-            Move or touch the canvas to see the tooltip
-          </div>
+          <div className="no-tooltip">Move or touch the canvas to see the tooltip</div>
         )}
         <OverlayLayer
           className="overlay-layer overlay-over-tooltip"
           container={overlayRootRef.current}
           placeAfterTooltipInDom // Force DOM node to be placed after tooltip for demo purposes
-          text='We want this to appear over the tooltip.'
+          text="We want this to appear over the tooltip."
         />
         <div className="z-index-bummer">
           I have an annoying z-index. Try&nbsp;
@@ -171,7 +170,9 @@ export default function Example({ width, height, showControls = true }: TooltipP
               <input
                 type="checkbox"
                 checked={tooltipPortalShouldUseCustomContainer}
-                onChange={() => setTooltipPortalShouldUseCustomContainer(!tooltipPortalShouldUseCustomContainer)}
+                onChange={() =>
+                  setTooltipPortalShouldUseCustomContainer(!tooltipPortalShouldUseCustomContainer)
+                }
               />
               &nbsp;Tooltip portal in custom container
             </label>
@@ -274,15 +275,15 @@ const OverlayLayer = function OverlayLayer({
   text,
 }: OverlayLayerProps) {
   if (container) {
-    // Since we re-render the tooltip every time the pointer moves and its DOM node 
+    // Since we re-render the tooltip every time the pointer moves and its DOM node
     // is placed at the end of the container, if placeAfterTooltipInDom is true we
     // also want to re-render the overlay layer
-    const key = placeAfterTooltipInDom ? Math.random() : "overlay-under";
+    const key = placeAfterTooltipInDom ? Math.random() : 'overlay-under';
     return ReactDOM.createPortal(
       <div className={className} key={key}>
         {text}
       </div>,
-      container
+      container,
     );
   } else {
     return null;

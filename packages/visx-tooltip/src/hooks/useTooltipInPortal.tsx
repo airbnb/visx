@@ -51,7 +51,8 @@ export default function useTooltipInPortal({
         ...tooltipProps
       }: TooltipInPortalProps) {
         const detectBounds = detectBoundsProp == null ? detectBoundsOption : detectBoundsProp;
-        const portalContainer = portalContainerProp == null ? portalContainerOption : portalContainerProp;
+        const portalContainer =
+          portalContainerProp == null ? portalContainerOption : portalContainerProp;
         const portalContainerRect = portalContainer?.getBoundingClientRect();
         const zIndex = zIndexProp == null ? zIndexOption : zIndexProp;
         const TooltipComponent = detectBounds ? TooltipWithBounds : Tooltip;
@@ -67,11 +68,22 @@ export default function useTooltipInPortal({
 
         return (
           <Portal container={portalContainer} zIndex={zIndex}>
-            <TooltipComponent left={portalLeft} top={portalTop} {...tooltipProps} {...additionalTooltipProps} />
+            <TooltipComponent
+              left={portalLeft}
+              top={portalTop}
+              {...tooltipProps}
+              {...additionalTooltipProps}
+            />
           </Portal>
         );
       },
-    [detectBoundsOption, portalContainerOption, zIndexOption, containerBounds.left, containerBounds.top],
+    [
+      detectBoundsOption,
+      portalContainerOption,
+      zIndexOption,
+      containerBounds.left,
+      containerBounds.top,
+    ],
   );
 
   return {

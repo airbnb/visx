@@ -23,31 +23,28 @@ interface TooltipWithPortalContainerProps {
   shouldUsePortalContainer: boolean;
 }
 
-const TooltipWithPortalContainer = ({ shouldUsePortalContainer }: TooltipWithPortalContainerProps) => {
+const TooltipWithPortalContainer = ({
+  shouldUsePortalContainer,
+}: TooltipWithPortalContainerProps) => {
   // useState rather than useRef so it will react to the ref being available for testing purposes
   const [portalContainer, setPortalContainer] = React.useState<HTMLDivElement | null>(null);
-  const onRefChange = React.useCallback(
-    (node) => {
-      setPortalContainer(node);
-    },
-    []
-  );
+  const onRefChange = React.useCallback((node) => {
+    setPortalContainer(node);
+  }, []);
 
-  const { TooltipInPortal } = useTooltipInPortal(
-    {
-      polyfill: ResizeObserver,
-      portalContainer: shouldUsePortalContainer ? portalContainer ?? undefined : undefined,
-    }
-  );
+  const { TooltipInPortal } = useTooltipInPortal({
+    polyfill: ResizeObserver,
+    portalContainer: shouldUsePortalContainer ? portalContainer ?? undefined : undefined,
+  });
 
   return (
     <>
-      <div data-testid='inner-div' ref={shouldUsePortalContainer ? onRefChange : undefined} />
+      <div data-testid="inner-div" ref={shouldUsePortalContainer ? onRefChange : undefined} />
       <TooltipInPortal>
-        <div data-testid='element-in-tooltip'></div>
+        <div data-testid="element-in-tooltip"></div>
       </TooltipInPortal>
     </>
-  )
+  );
 };
 
 describe('useTooltipInPortal()', () => {
@@ -63,7 +60,7 @@ describe('useTooltipInPortal()', () => {
       const zIndex = wrapper.find('Portal').prop('zIndex');
       expect(zIndex).toBe(1);
     });
-  
+
     it('should pass zIndex prop from component to Portal', () => {
       const wrapper = shallow(
         <TooltipWithZIndex zIndexOption={1} zIndexProp="var(--tooltip-zindex)" />,
@@ -81,14 +78,18 @@ describe('useTooltipInPortal()', () => {
       render(<TooltipWithPortalContainer shouldUsePortalContainer={false} />);
       const elementInPortal = await screen.findByTestId('element-in-tooltip');
       expect(elementInPortal).toBeInTheDocument();
-      expect(within(screen.getByTestId('inner-div')).queryByTestId('element-in-tooltip')).not.toBeInTheDocument();
+      expect(
+        within(screen.getByTestId('inner-div')).queryByTestId('element-in-tooltip'),
+      ).not.toBeInTheDocument();
     });
 
     it('it should render tooltip in the provided portal container', async () => {
       render(<TooltipWithPortalContainer shouldUsePortalContainer={true} />);
       const elementInPortal = await screen.findByTestId('element-in-tooltip');
       expect(elementInPortal).toBeInTheDocument();
-      expect(within(screen.getByTestId('inner-div')).getByTestId('element-in-tooltip')).toBeInTheDocument();
+      expect(
+        within(screen.getByTestId('inner-div')).getByTestId('element-in-tooltip'),
+      ).toBeInTheDocument();
     });
   });
 });
