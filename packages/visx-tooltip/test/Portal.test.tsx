@@ -28,12 +28,11 @@ describe('Portal', () => {
 
   it('should render children at the document root', async () => {
     render(
-      <>
-        <div data-testid="inner-div" />
+      <div data-testid="inner-div">
         <Portal>
           <div data-testid="element-in-portal" />
         </Portal>
-      </>,
+      </div>,
     );
     const elementInPortal = await screen.findByTestId('element-in-portal');
     expect(elementInPortal).toBeInTheDocument();

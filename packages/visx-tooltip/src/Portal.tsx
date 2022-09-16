@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 export type PortalProps = {
   /** Optional container for the Portal. */
   container?: HTMLDivElement;
-  /** Optional z-index to set on the Portal. */
+  /** Optional z-index to set on the Portal (not applicable when a specific portal container is provided). */
   zIndex?: number | string;
   /** Content to render in the Portal. */
   children: NonNullable<React.ReactNode>;
@@ -24,7 +24,6 @@ export default class Portal extends React.PureComponent<PortalProps> {
   render() {
     if (!this.node && this.props.container) {
       this.node = this.props.container;
-      if (this.props.zIndex != null) this.node.style.zIndex = `${this.props.zIndex}`;
     }
 
     // SSR check

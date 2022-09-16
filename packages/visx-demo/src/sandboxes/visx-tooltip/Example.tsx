@@ -268,12 +268,7 @@ type OverlayLayerProps = {
   placeAfterTooltipInDom?: boolean;
 };
 
-const OverlayLayer = function OverlayLayer({
-  className,
-  container,
-  placeAfterTooltipInDom,
-  text,
-}: OverlayLayerProps) {
+function OverlayLayer({ className, container, placeAfterTooltipInDom, text }: OverlayLayerProps) {
   if (container) {
     // Since we re-render the tooltip every time the pointer moves and its DOM node
     // is placed at the end of the container, if placeAfterTooltipInDom is true we
@@ -287,4 +282,4 @@ const OverlayLayer = function OverlayLayer({
     );
   }
   return null;
-};
+}

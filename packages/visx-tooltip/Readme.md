@@ -131,7 +131,7 @@ type Options = {
   polyfill?: { new (cb: ResizeObserverCallback): ResizeObserver }
   /** Optional container for the portal. */
   portalContainer?: HTMLDivElement;
-  /** Optional z-index to set on the Portal div */
+  /** Optional z-index to set on the Portal div (not applicable when a specific portal container is provided) */
   zIndex?: number | string;
 }
 

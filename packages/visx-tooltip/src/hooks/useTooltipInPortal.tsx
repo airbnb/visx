@@ -34,11 +34,16 @@ export type UseTooltipPortalOptions = Pick<PortalProps, 'zIndex'> & {
  */
 export default function useTooltipInPortal({
   detectBounds: detectBoundsOption = true,
-  portalContainer: portalContainerOption,
+  portalContainer,
   zIndex: zIndexOption,
   ...useMeasureOptions
 }: UseTooltipPortalOptions | undefined = {}): UseTooltipInPortal {
   const [containerRef, containerBounds, forceRefreshBounds] = useMeasure(useMeasureOptions);
+
+  const portalContainerRect = useMemo(
+    () => portalContainer?.getBoundingClientRect(),
+    [portalContainer],
+  );
 
   const TooltipInPortal = useMemo(
     () =>
@@ -46,14 +51,10 @@ export default function useTooltipInPortal({
         left: tooltipLeft = 0,
         top: tooltipTop = 0,
         detectBounds: detectBoundsProp, // allow override at component-level
-        portalContainer: portalContainerProp, // allow override at component-level
         zIndex: zIndexProp, // allow override at the component-level
         ...tooltipProps
       }: TooltipInPortalProps) {
         const detectBounds = detectBoundsProp == null ? detectBoundsOption : detectBoundsProp;
-        const portalContainer =
-          portalContainerProp == null ? portalContainerOption : portalContainerProp;
-        const portalContainerRect = portalContainer?.getBoundingClientRect();
         const zIndex = zIndexProp == null ? zIndexOption : zIndexProp;
         const TooltipComponent = detectBounds ? TooltipWithBounds : Tooltip;
         // convert container coordinates to page coordinates
@@ -77,7 +78,7 @@ export default function useTooltipInPortal({
           </Portal>
         );
       },
-    [containerBounds, detectBoundsOption, portalContainerOption, zIndexOption],
+    [containerBounds, detectBoundsOption, portalContainer, portalContainerRect, zIndexOption],
   );
 
   return {

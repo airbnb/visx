@@ -38,12 +38,11 @@ const TooltipWithPortalContainer = ({
   });
 
   return (
-    <>
-      <div data-testid="inner-div" ref={shouldUsePortalContainer ? onRefChange : undefined} />
+    <div data-testid="inner-div" ref={shouldUsePortalContainer ? onRefChange : undefined}>
       <TooltipInPortal>
         <div data-testid="element-in-tooltip" />
       </TooltipInPortal>
-    </>
+    </div>
   );
 };
 
