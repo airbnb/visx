@@ -56,7 +56,7 @@ export default ({ width, height, events = false }: GeoMercatorProps) => {
                 fill={color(feature.geometry.coordinates.length)}
                 stroke={background}
                 strokeWidth={0.5}
-                onClick={() => {
+                onClick={(events) => {
                   if (events) alert(`Clicked: ${feature.properties.name} (${feature.id})`);
                 }}
               />
