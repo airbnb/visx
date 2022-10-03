@@ -1,4 +1,5 @@
 # Changelog
+- [v2.14.0](#v2140)
 - [v2.13.0](#v2130)
 - [v2.12.2](#v2122)
 - [v2.12.1](#v2121)
@@ -6,10 +7,10 @@
 - [v2.11.1](#v2111)
 - [v2.11.0](#v2110)
 - [v2.10.2](#v2102)
-- [v2.10.1](#v2101)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v2101">v2.10.1</a></li>
   <li><a href="#v2100">v2.10.0</a></li>
   <li><a href="#v292">v2.9.2</a></li>
   <li><a href="#v291">v2.9.1</a></li>
@@ -148,6 +149,15 @@
 </details>
 
 ------
+# v2.14.0 (2022-10-03)
+
+#### :rocket: Enhancements
+
+- feat(axis): add an ability to specify different paddings for the start and the end of the axis [#1574](https://github.com/airbnb/visx/pull/1574)
+  
+#### :trophy: Contributors
+- [andreykrupskii](https://github.com/andreykrupskii)
+
 # v2.13.0 (2022-09-06)
 
 #### :rocket: Enhancements
