@@ -70,8 +70,8 @@ export type CommonProps<Scale extends AxisScale> = {
   numTicks?: number;
   /** Placement of the axis */
   orientation?: Orientation;
-  /** Pixel padding to apply to both sides of the axis. */
-  rangePadding?: number;
+  /** Pixel padding to apply to axis sides. */
+  rangePadding?: number | { start?: number; end?: number };
   /** The color for the stroke of the lines. */
   stroke?: string;
   /** The pixel value for the width of the lines. */

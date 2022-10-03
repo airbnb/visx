@@ -8,6 +8,7 @@ import getTickPosition from '../utils/getTickPosition';
 import getTickFormatter from '../utils/getTickFormatter';
 import createPoint from '../utils/createPoint';
 import Orientation from '../constants/orientation';
+import getAxisRangePaddingConfig from '../utils/getAxisRangePaddingConfig';
 
 export type AxisProps<Scale extends AxisScale> = SharedAxisProps<Scale> & {
   orientation?: Orientation;
@@ -40,9 +41,14 @@ export default function Axis<Scale extends AxisScale>({
   const tickSign = isLeft || isTop ? -1 : 1;
 
   const range = scale.range();
-  const axisFromPoint = createPoint({ x: Number(range[0]) + 0.5 - rangePadding, y: 0 }, horizontal);
+  const rangePaddingConfig = getAxisRangePaddingConfig(rangePadding);
+
+  const axisFromPoint = createPoint(
+    { x: Number(range[0]) + 0.5 - rangePaddingConfig.start, y: 0 },
+    horizontal,
+  );
   const axisToPoint = createPoint(
-    { x: Number(range[range.length - 1]) + 0.5 + rangePadding, y: 0 },
+    { x: Number(range[range.length - 1]) + 0.5 + rangePaddingConfig.end, y: 0 },
     horizontal,
   );
 
