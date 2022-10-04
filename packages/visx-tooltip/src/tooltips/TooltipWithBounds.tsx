@@ -2,6 +2,7 @@ import React from 'react';
 import { withBoundingRects, WithBoundingRectsProps } from '@visx/bounds';
 
 import Tooltip, { TooltipProps, defaultStyles } from './Tooltip';
+import { TooltipPositionProvider } from '../context/TooltipPositionContext';
 
 export type TooltipWithBoundsProps = TooltipProps &
   React.HTMLProps<HTMLDivElement> &
@@ -21,12 +22,12 @@ function TooltipWithBounds({
   ...otherProps
 }: TooltipWithBoundsProps) {
   let transform: React.CSSProperties['transform'];
+  let placeTooltipLeft = false;
+  let placeTooltipUp = false;
 
   if (ownBounds && parentBounds) {
     let left = initialLeft;
     let top = initialTop;
-    let placeTooltipLeft = false;
-    let placeTooltipUp = false;
 
     if (parentBounds.width) {
       const rightPlacementClippedPx = left + offsetLeft + ownBounds.width - parentBounds.width;
@@ -68,7 +69,11 @@ function TooltipWithBounds({
       }}
       {...otherProps}
     >
-      {children}
+      <TooltipPositionProvider
+        value={{ isFlippedVertically: !placeTooltipUp, isFlippedHorizontally: !placeTooltipLeft }}
+      >
+        {children}
+      </TooltipPositionProvider>
     </Tooltip>
   );
 }
