@@ -1,4 +1,5 @@
 # Changelog
+- [v2.15.0](#v2150)
 - [v2.14.0](#v2140)
 - [v2.13.0](#v2130)
 - [v2.12.2](#v2122)
@@ -6,10 +7,10 @@
 - [v2.12.0](#v2120)
 - [v2.11.1](#v2111)
 - [v2.11.0](#v2110)
-- [v2.10.2](#v2102)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v2102">v2.10.2</a></li>
   <li><a href="#v2101">v2.10.1</a></li>
   <li><a href="#v2100">v2.10.0</a></li>
   <li><a href="#v292">v2.9.2</a></li>
@@ -149,6 +150,15 @@
 </details>
 
 ------
+# v2.15.0 (2022-10-04)
+
+#### :rocket: Enhancements
+
+- new(tooltip): provide isFlippedVertically and isFlippedHorizontally context [#1355](https://github.com/airbnb/visx/pull/1355)
+  
+#### :trophy: Contributors
+- [taksuparth](https://github.com/taksuparth)
+
 # v2.14.0 (2022-10-03)
 
 #### :rocket: Enhancements
