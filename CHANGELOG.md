@@ -1,4 +1,5 @@
 # Changelog
+- [v2.15.1](#v2151)
 - [v2.15.0](#v2150)
 - [v2.14.0](#v2140)
 - [v2.13.0](#v2130)
@@ -6,10 +7,10 @@
 - [v2.12.1](#v2121)
 - [v2.12.0](#v2120)
 - [v2.11.1](#v2111)
-- [v2.11.0](#v2110)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v2110">v2.11.0</a></li>
   <li><a href="#v2102">v2.10.2</a></li>
   <li><a href="#v2101">v2.10.1</a></li>
   <li><a href="#v2100">v2.10.0</a></li>
@@ -150,6 +151,15 @@
 </details>
 
 ------
+# v2.15.1 (2022-10-13)
+
+#### :bug: Bug Fix
+
+- fix(mock-data): add missing bitcoinPrice to index.ts [#1582](https://github.com/airbnb/visx/pull/1582)
+  
+#### :trophy: Contributors
+- [filiprejmus](https://github.com/filiprejmus)
+
 # v2.15.0 (2022-10-04)
 
 #### :rocket: Enhancements
