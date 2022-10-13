@@ -7,6 +7,7 @@ export { default as genBins } from './generators/genBins';
 export { default as genPhyllotaxis } from './generators/genPhyllotaxis';
 export { default as genStats } from './generators/genStats';
 export { default as appleStock } from './mocks/appleStock';
+export { default as bitcoinPrice } from './mocks/bitcoinPrice';
 export { default as letterFrequency } from './mocks/letterFrequency';
 export { default as browserUsage } from './mocks/browserUsage';
 export { default as groupDateValue } from './mocks/groupDateValue';
