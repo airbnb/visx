@@ -1,6 +1,6 @@
 {
   "name": "@visx/demo",
-  "version": "2.15.0",
+  "version": "2.15.1",
   "description": "visx demo",
   "repository": "https://github.com/airbnb/visx",
   "scripts": {
@@ -53,7 +53,7 @@
     "@visx/hierarchy": "2.10.0",
     "@visx/legend": "2.10.0",
     "@visx/marker": "2.12.2",
-    "@visx/mock-data": "2.1.2",
+    "@visx/mock-data": "2.15.1",
     "@visx/network": "2.10.0",
     "@visx/pattern": "2.10.0",
     "@visx/point": "2.6.0",
