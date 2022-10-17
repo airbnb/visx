@@ -43,30 +43,42 @@ export const defaultStyles: React.CSSProperties = {
   pointerEvents: 'none',
 };
 
-export default function Tooltip({
-  className,
-  top,
-  left,
-  offsetLeft = 10,
-  offsetTop = 10,
-  style = defaultStyles,
-  children,
-  unstyled = false,
-  applyPositionStyle = false,
-  ...restProps
-}: TooltipProps & React.HTMLProps<HTMLDivElement>) {
-  return (
-    <div
-      className={cx('visx-tooltip', className)}
-      style={{
-        top: top == null || offsetTop == null ? top : top + offsetTop,
-        left: left == null || offsetLeft == null ? left : left + offsetLeft,
-        ...(applyPositionStyle && { position: 'absolute' }),
-        ...(!unstyled && style),
-      }}
-      {...restProps}
-    >
-      {children}
-    </div>
-  );
-}
+const Tooltip = React.forwardRef<
+  HTMLDivElement,
+  TooltipProps & React.HTMLAttributes<HTMLDivElement>
+>(
+  (
+    {
+      className,
+      top,
+      left,
+      offsetLeft = 10,
+      offsetTop = 10,
+      style = defaultStyles,
+      children,
+      unstyled = false,
+      applyPositionStyle = false,
+      ...restProps
+    },
+    ref,
+  ) => {
+    return (
+      <div
+        ref={ref}
+        className={cx('visx-tooltip', className)}
+        style={{
+          top: top == null || offsetTop == null ? top : top + offsetTop,
+          left: left == null || offsetLeft == null ? left : left + offsetLeft,
+          ...(applyPositionStyle && { position: 'absolute' }),
+          ...(!unstyled && style),
+        }}
+        {...restProps}
+      >
+        {children}
+      </div>
+    );
+  },
+);
+
+Tooltip.displayName = 'Tooltip';
+export default Tooltip;

@@ -5,8 +5,8 @@ import Tooltip, { TooltipProps, defaultStyles } from './Tooltip';
 import { TooltipPositionProvider } from '../context/TooltipPositionContext';
 
 export type TooltipWithBoundsProps = TooltipProps &
-  React.HTMLProps<HTMLDivElement> &
-  WithBoundingRectsProps;
+  React.HTMLAttributes<HTMLDivElement> &
+  WithBoundingRectsProps & { nodeRef?: React.Ref<HTMLDivElement> };
 
 function TooltipWithBounds({
   children,
@@ -19,6 +19,7 @@ function TooltipWithBounds({
   style = defaultStyles,
   top: initialTop = 0,
   unstyled = false,
+  nodeRef,
   ...otherProps
 }: TooltipWithBoundsProps) {
   let transform: React.CSSProperties['transform'];
@@ -61,6 +62,7 @@ function TooltipWithBounds({
 
   return (
     <Tooltip
+      ref={nodeRef}
       style={{
         left: 0,
         top: 0,
