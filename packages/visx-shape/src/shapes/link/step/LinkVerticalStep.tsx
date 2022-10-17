@@ -30,7 +30,7 @@ export function pathVerticalStep<Link, Node>({
   };
 }
 
-type LinkVerticalStepProps<Link, Node> = {
+export type LinkVerticalStepProps<Link, Node> = {
   percent?: number;
 } & AccessorProps<Link, Node> &
   SharedLinkProps<Link>;

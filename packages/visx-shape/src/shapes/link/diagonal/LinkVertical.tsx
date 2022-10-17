@@ -20,7 +20,8 @@ export function pathVerticalDiagonal<Link, Node>({
   };
 }
 
-type LinkVerticalDiagonalProps<Link, Node> = AccessorProps<Link, Node> & SharedLinkProps<Link>;
+export type LinkVerticalDiagonalProps<Link, Node> = AccessorProps<Link, Node> &
+  SharedLinkProps<Link>;
 
 export default function LinkVerticalDiagonal<Link, Node>({
   className,

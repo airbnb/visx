@@ -37,7 +37,7 @@ export function pathRadialStep<Link, Node>({
   };
 }
 
-type LinkRadialStepProps<Link, Node> = {
+export type LinkRadialStepProps<Link, Node> = {
   percent?: number;
 } & AccessorProps<Link, Node> &
   SharedLinkProps<Link>;

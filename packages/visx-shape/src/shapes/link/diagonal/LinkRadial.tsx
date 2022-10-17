@@ -20,7 +20,7 @@ export function pathRadialDiagonal<Link, Node>({
   };
 }
 
-type LinkRadialDiagonalProps<Link, Node> = {
+export type LinkRadialDiagonalProps<Link, Node> = {
   angle: (node: Node) => number;
   radius: (node: Node) => number;
 } & RadialAccessorProps<Link, Node> &
