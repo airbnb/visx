@@ -24,6 +24,7 @@ export type WithBoundingRectsProps = {
   getRects?: () => { rect: rectShape; parentRect: rectShape };
   rect?: rectShape;
   parentRect?: rectShape;
+  nodeRef?: React.RefObject<HTMLElement>;
 };
 
 export default function withBoundingRects<Props extends object = {}>(
@@ -32,17 +33,21 @@ export default function withBoundingRects<Props extends object = {}>(
   return class WrappedComponent extends React.PureComponent<Props> {
     static displayName = `withBoundingRects(${BaseComponent.displayName || ''})`;
     node: HTMLElement | undefined | null;
+    nodeRef: React.RefObject<HTMLElement>;
     constructor(props: Props) {
       super(props);
       this.state = {
         rect: undefined,
         parentRect: undefined,
       };
+      this.nodeRef = React.createRef();
       this.getRects = this.getRects.bind(this);
     }
 
     componentDidMount() {
-      this.node = ReactDOM.findDOMNode(this) as HTMLElement;
+      this.node = this.nodeRef?.current
+        ? this.nodeRef.current
+        : (ReactDOM.findDOMNode(this) as HTMLElement);
       this.setState(() => this.getRects());
     }
 
@@ -62,7 +67,14 @@ export default function withBoundingRects<Props extends object = {}>(
     }
 
     render() {
-      return <BaseComponent getRects={this.getRects} {...this.state} {...this.props} />;
+      return (
+        <BaseComponent
+          nodeRef={this.nodeRef}
+          getRects={this.getRects}
+          {...this.state}
+          {...this.props}
+        />
+      );
     }
   };
 }
