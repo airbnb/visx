@@ -7,6 +7,7 @@ import getGitHubClient from '../utils/getGitHubClient';
 import performLernaRelease from './performLernaRelease';
 import postReleaseOnPrs from './postReleaseOnPrs';
 import updateChangelog from './updateChangelog';
+import createGithubRelease from './createGithubRelease';
 /**
  * Performs a release + updates changelog as needed using the following approach
  * - fetch PRs for all commits since last non-alpha tag
@@ -24,7 +25,7 @@ async function performRelease() {
   // while only using PRs since the last (alpha or non-alpha) tag to dictate the next release version
   const tagsRequest = await fetchTags(client); // sorted new => old
   const mostRecentTag = tagsRequest.data[0];
-  const mostRecentNonAlphaTag = tagsRequest.data.find(tag => !tag.name.includes('alpha'));
+  const mostRecentNonAlphaTag = tagsRequest.data.find((tag) => !tag.name.includes('alpha'));
 
   if (!mostRecentTag || !mostRecentNonAlphaTag) {
     console.log('Could not find recent tag. Exiting.');
@@ -53,11 +54,11 @@ async function performRelease() {
   // and for changelog generation
   const prsSinceLastTag = await fetchPRsForCommits(
     client,
-    commitsSinceLastTag.map(commit => commit.sha),
+    commitsSinceLastTag.map((commit) => commit.sha),
   );
   const prsSinceLastNonAlphaTag = await fetchPRsForCommits(
     client,
-    commitsSinceNonAlphaTag.map(commit => commit.sha),
+    commitsSinceNonAlphaTag.map((commit) => commit.sha),
   );
 
   // release is based on tags since last tag regardless of alpha / non-alpha
@@ -78,10 +79,11 @@ async function performRelease() {
     process.exit(0);
   }
 
-  // update changelog only for non-alpha releases
+  // update changelog + create Github release only for non-alpha releases
   // include all PRs since last non-alpha release
   if (!isPreRelease) {
     await updateChangelog(prsSinceLastNonAlphaTag, newTag.name);
+    await createGithubRelease(client, prsSinceLastNonAlphaTag, newTag.name);
   }
 
   // post release version on all PRs since last non-alpha release to inform authors
@@ -89,7 +91,7 @@ async function performRelease() {
   await postReleaseOnPrs(client, prsSinceLastNonAlphaTag, newTag.name);
 }
 
-performRelease().catch(error => {
+performRelease().catch((error) => {
   console.error(chalk.red(error.message));
   process.exit(1);
 });
