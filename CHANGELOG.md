@@ -1,4 +1,5 @@
 # Changelog
+- [v2.16.0](#v2160)
 - [v2.15.1](#v2151)
 - [v2.15.0](#v2150)
 - [v2.14.0](#v2140)
@@ -6,10 +7,10 @@
 - [v2.12.2](#v2122)
 - [v2.12.1](#v2121)
 - [v2.12.0](#v2120)
-- [v2.11.1](#v2111)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v2111">v2.11.1</a></li>
   <li><a href="#v2110">v2.11.0</a></li>
   <li><a href="#v2102">v2.10.2</a></li>
   <li><a href="#v2101">v2.10.1</a></li>
@@ -151,6 +152,15 @@
 </details>
 
 ------
+# v2.16.0 (2022-10-19)
+
+#### :bug: Bug Fix
+
+- fix(tooltip, bounds): replace findDOMNode with refs for TooltipWithBounds [#1583](https://github.com/airbnb/visx/pull/1583)
+  
+#### :trophy: Contributors
+- [0xmax](https://github.com/0xmax)
+
 # v2.15.1 (2022-10-13)
 
 #### :bug: Bug Fix
