@@ -114,6 +114,9 @@
       "next": true
     },
     "babel": {
+      "ignore": [
+        "node_modules/(?!(d3-(array|color|format|interpolate|scale|time|time-format)|internmap)/)"
+      ],
       "plugins": [
         [
           "@babel/plugin-proposal-private-methods",
