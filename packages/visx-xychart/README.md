@@ -366,7 +366,7 @@ is visible (`tooltipOpen`), tooltlip position (`tooltipLeft`, `tooltipTop`),
 
 The `Tooltip` and `AnnotationLabel` components rely on
 [`ResizeObserver`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver)s. If your
-browswer target needs a polyfill, you can either polute the `window` object or inject it cleanly
+browser target needs a polyfill, you can either polute the `window` object or inject it cleanly
 using the `resizeObserverPolyfill` prop for these components.
 
 <details>
