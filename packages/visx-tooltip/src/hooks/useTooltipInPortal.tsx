@@ -1,5 +1,6 @@
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import useMeasure, { RectReadOnly, Options as BaseUseMeasureOptions } from 'react-use-measure';
+import useResizeObserver from '@react-hook/resize-observer';
 
 import Portal, { PortalProps } from '../Portal';
 import Tooltip, { TooltipProps } from '../tooltips/Tooltip';
@@ -40,10 +41,18 @@ export default function useTooltipInPortal({
 }: UseTooltipPortalOptions | undefined = {}): UseTooltipInPortal {
   const [containerRef, containerBounds, forceRefreshBounds] = useMeasure(useMeasureOptions);
 
-  const portalContainerRect = useMemo(
-    () => portalContainer?.getBoundingClientRect(),
-    [portalContainer],
+  const [portalContainerRect, setPortalContainerRect] = useState<DOMRect | null>(
+    portalContainer?.getBoundingClientRect() ?? null,
   );
+
+  const updatePortalContainerRect = useCallback(() => {
+    if (portalContainer) {
+      setPortalContainerRect(portalContainer?.getBoundingClientRect());
+    }
+  }, [portalContainer]);
+
+  React.useEffect(updatePortalContainerRect, [containerBounds, portalContainer]);
+  useResizeObserver(portalContainer ?? null, updatePortalContainerRect);
 
   const TooltipInPortal = useMemo(
     () =>

@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/airbnb/visx#readme",
   "dependencies": {
+    "@react-hook/resize-observer": "^1.2.6",
     "@types/react": "*",
     "@visx/bounds": "3.0.0",
     "classnames": "^2.3.1",
