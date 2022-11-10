@@ -6,7 +6,20 @@ import { TooltipPositionProvider } from '../context/TooltipPositionContext';
 
 export type TooltipWithBoundsProps = TooltipProps &
   React.HTMLAttributes<HTMLDivElement> &
-  WithBoundingRectsProps & { nodeRef?: React.Ref<HTMLDivElement> };
+  WithBoundingRectsProps & {
+    nodeRef?: React.Ref<HTMLDivElement>;
+    /**
+     * When the tooltip is in a portal, this is the position of the portal
+     * container to be used for offsetting calculations around bounds as a consequence.
+     */
+    portalContainerPosition?: { left: number; top: number };
+    /**
+     * When the tooltip is in a portal, the portal container becomes the direct parent of the tooltip.
+     * Often the portal is not what we want the tooltip to be bound to. Another visual parent can be specified
+     * by specifying its dimensions here.
+     */
+    visualParentRect?: { width: number; height: number; left: number; top: number };
+  };
 
 function TooltipWithBounds({
   children,
@@ -20,19 +33,26 @@ function TooltipWithBounds({
   top: initialTop = 0,
   unstyled = false,
   nodeRef,
+  portalContainerPosition,
+  visualParentRect: visualParentBounds = parentBounds,
   ...otherProps
 }: TooltipWithBoundsProps) {
   let transform: React.CSSProperties['transform'];
   let placeTooltipLeft = false;
   let placeTooltipUp = false;
 
-  if (ownBounds && parentBounds) {
+  if (ownBounds && visualParentBounds) {
     let left = initialLeft;
     let top = initialTop;
 
-    if (parentBounds.width) {
-      const rightPlacementClippedPx = left + offsetLeft + ownBounds.width - parentBounds.width;
-      const leftPlacementClippedPx = ownBounds.width - left - offsetLeft;
+    if (visualParentBounds.width) {
+      const leftInVisualParent =
+        left +
+        (portalContainerPosition?.left || 0) -
+        (portalContainerPosition ? visualParentBounds.left : 0);
+      const rightPlacementClippedPx =
+        leftInVisualParent + offsetLeft + ownBounds.width - visualParentBounds.width;
+      const leftPlacementClippedPx = ownBounds.width - leftInVisualParent - offsetLeft;
       placeTooltipLeft =
         rightPlacementClippedPx > 0 && rightPlacementClippedPx > leftPlacementClippedPx;
     } else {
@@ -42,9 +62,14 @@ function TooltipWithBounds({
         rightPlacementClippedPx > 0 && rightPlacementClippedPx > leftPlacementClippedPx;
     }
 
-    if (parentBounds.height) {
-      const bottomPlacementClippedPx = top + offsetTop + ownBounds.height - parentBounds.height;
-      const topPlacementClippedPx = ownBounds.height - top - offsetTop;
+    if (visualParentBounds.height) {
+      const topInVisualParent =
+        top +
+        (portalContainerPosition?.top || 0) -
+        (portalContainerPosition ? visualParentBounds.top : 0);
+      const bottomPlacementClippedPx =
+        topInVisualParent + offsetTop + ownBounds.height - visualParentBounds.height;
+      const topPlacementClippedPx = ownBounds.height - topInVisualParent - offsetTop;
       placeTooltipUp =
         bottomPlacementClippedPx > 0 && bottomPlacementClippedPx > topPlacementClippedPx;
     } else {

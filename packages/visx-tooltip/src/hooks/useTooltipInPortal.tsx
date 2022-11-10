@@ -74,7 +74,21 @@ export default function useTooltipInPortal({
           ? tooltipTop - (portalContainerRect?.top || 0) + (containerBounds.top || 0)
           : tooltipTop + (containerBounds.top || 0) + window.scrollY;
 
-        const additionalTooltipProps = portalContainer ? { parentRect: containerBounds } : {};
+        const additionalTooltipProps =
+          detectBounds && portalContainer
+            ? {
+                portalContainerPosition: {
+                  left: portalContainerRect?.left || 0,
+                  top: portalContainerRect?.top || 0,
+                },
+                visualParentRect: {
+                  width: containerBounds.width,
+                  height: containerBounds.height,
+                  left: containerBounds.left,
+                  top: containerBounds.top,
+                },
+              }
+            : {};
 
         return (
           <Portal container={portalContainer} zIndex={zIndex}>
