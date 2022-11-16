@@ -17,7 +17,7 @@ const y = (d: LetterFrequency) => d.frequency;
 
 const genAngles = (length: number) =>
   [...new Array(length + 1)].map((_, i) => ({
-    angle: i * (degrees / length),
+    angle: i * (degrees / length) + (length % 2 === 0 ? 0 : degrees / length / 2),
   }));
 
 const genPoints = (length: number, radius: number) => {
