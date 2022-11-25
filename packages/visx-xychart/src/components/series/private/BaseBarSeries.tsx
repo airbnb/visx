@@ -1,5 +1,6 @@
 import React, { useContext, useCallback, useMemo } from 'react';
 import { AxisScale } from '@visx/axis';
+import { ScaleInput } from '@visx/scale';
 import DataContext from '../../../context/DataContext';
 import { Bar, BarsProps, SeriesProps } from '../../../types';
 import withRegisteredData, { WithRegisteredDataProps } from '../../../enhancers/withRegisteredData';
@@ -47,19 +48,23 @@ function BaseBarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum
   onPointerUp,
   onPointerDown,
   enableEvents = true,
-  xAccessor,
+  xAccessor: _xAccessor,
   xScale,
-  yAccessor,
+  yAccessor: _yAccessor,
   yScale,
   ...barComponentProps
 }: BaseBarSeriesProps<XScale, YScale, Datum> & WithRegisteredDataProps<XScale, YScale, Datum>) {
   const {
     colorScale,
+    dataRegistry,
     horizontal,
     theme,
     innerWidth = 0,
     innerHeight = 0,
   } = useContext(DataContext);
+
+  const xAccessor: (d: Datum) => ScaleInput<XScale> = _xAccessor ?? dataRegistry.get(dataKey).xAccessor;
+  const yAccessor: (d: Datum) => ScaleInput<YScale> = _yAccessor ?? dataRegistry.get(dataKey).yAccessor;
   const getScaledX = useCallback(getScaledValueFactory(xScale, xAccessor), [xScale, xAccessor]);
   const getScaledY = useCallback(getScaledValueFactory(yScale, yAccessor), [yScale, yAccessor]);
   const scaleBandwidth = getScaleBandwidth(horizontal ? yScale : xScale);

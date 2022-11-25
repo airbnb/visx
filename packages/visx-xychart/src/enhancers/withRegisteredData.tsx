@@ -46,7 +46,9 @@ export default function withRegisteredData<
     >;
 
     useEffect(() => {
-      if (dataRegistry) dataRegistry.registerData({ key: dataKey, data, xAccessor, yAccessor });
+      if (data && xAccessor && yAccessor && dataRegistry) {
+        dataRegistry.registerData({ key: dataKey, data, xAccessor, yAccessor });
+      }
       return () => dataRegistry?.unregisterData(dataKey);
     }, [dataRegistry, dataKey, data, xAccessor, yAccessor]);
 

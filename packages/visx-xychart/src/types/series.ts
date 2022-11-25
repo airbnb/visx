@@ -29,11 +29,11 @@ export type SeriesProps<
   /** Required data key for the Series, should be unique across all series. */
   dataKey: string;
   /** Data for the Series. */
-  data: Datum[];
+  data?: Datum[];
   /** Given a Datum, returns the x-scale value. */
-  xAccessor: (d: Datum) => ScaleInput<XScale>;
+  xAccessor?: (d: Datum) => ScaleInput<XScale>;
   /** Given a Datum, returns the y-scale value. */
-  yAccessor: (d: Datum) => ScaleInput<YScale>;
+  yAccessor?: (d: Datum) => ScaleInput<YScale>;
   /**
    * Callback invoked for onPointerMove events for the nearest Datum to the PointerEvent.
    * By default XYChart will capture and emit PointerEvents, invoking this function for

@@ -92,7 +92,7 @@ function BaseBarStack<
       params: NearestDatumArgs<XScale, YScale, BarStackDatum<XScale, YScale>>,
     ): NearestDatumReturnType<Datum> => {
       const childData = seriesChildren.find((child) => child.props.dataKey === params.dataKey)
-        ?.props?.data;
+        ?.props?.data ?? dataRegistry.get(params.dataKey);
       return childData ? findNearestStackDatum(params, childData, horizontal) : null;
     },
     [seriesChildren, horizontal],

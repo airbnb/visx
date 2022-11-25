@@ -1,6 +1,6 @@
 import React from 'react';
 import { AxisScale } from '@visx/axis';
-import { CombinedStackData, SeriesProps } from '../types';
+import { CombinedStackData, DataRegistryEntry, SeriesProps } from '../types';
 
 /** Returns the value which forms a stack group. */
 export const getStackValue = <XScale extends AxisScale, YScale extends AxisScale>(
@@ -17,15 +17,15 @@ export default function combineBarStackData<
   YScale extends AxisScale,
   Datum extends object,
 >(
-  seriesChildren: React.ReactElement<SeriesProps<XScale, YScale, Datum>>[],
+  stackedSeries: DataRegistryEntry<XScale, YScale, Datum>[],
   horizontal?: boolean,
 ): CombinedStackData<XScale, YScale>[] {
   const dataByStackValue: {
     [stackValue: string]: CombinedStackData<XScale, YScale>;
   } = {};
 
-  seriesChildren.forEach((child) => {
-    const { dataKey, data, xAccessor, yAccessor } = child.props;
+  stackedSeries.forEach((series) => {
+    const { key, data, xAccessor, yAccessor } = series;
 
     // this should exist but double check
     if (!xAccessor || !yAccessor) return;
@@ -39,7 +39,7 @@ export default function combineBarStackData<
       if (!dataByStackValue[stackKey]) {
         dataByStackValue[stackKey] = { stack, positiveSum: 0, negativeSum: 0 };
       }
-      dataByStackValue[stackKey][dataKey] = numericValue;
+      dataByStackValue[stackKey][key] = numericValue;
       dataByStackValue[stackKey][numericValue >= 0 ? 'positiveSum' : 'negativeSum'] += numericValue;
     });
   });

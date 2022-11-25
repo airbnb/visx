@@ -6,7 +6,12 @@ import { StackPathConfig } from '@visx/shape';
 import { extent } from 'd3-array';
 import { AxisScale } from '@visx/axis';
 import DataContext from '../context/DataContext';
-import { CombinedStackData, DataContextType, SeriesProps } from '../types';
+import {
+  CombinedStackData,
+  DataContextType,
+  DataRegistryEntry,
+  SeriesProps,
+} from '../types';
 import getBarStackRegistryData from '../utils/getBarStackRegistryData';
 import combineBarStackData from '../utils/combineBarStackData';
 import getChildrenAndGrandchildrenWithProps from '../utils/getChildrenAndGrandchildrenWithProps';
@@ -23,7 +28,7 @@ export default function useStackedData<
 >({ children, order, offset }: UseStackedData<Datum>) {
   type StackDatum = SeriesPoint<CombinedStackData<XScale, YScale>>;
 
-  const { horizontal, registerData, unregisterData } = useContext(
+  const { horizontal, dataRegistry, registerData, unregisterData } = useContext(
     DataContext,
   ) as unknown as DataContextType<XScale, YScale, StackDatum>;
 
@@ -34,17 +39,28 @@ export default function useStackedData<
     [children],
   );
 
-  // extract data keys from child series
-  const dataKeys: string[] = useMemo(
-    () => seriesChildren.filter((child) => child.props.dataKey).map((child) => child.props.dataKey),
+  const stackedSeries: DataRegistryEntry<XScale, YScale, Datum>[] = useMemo(
+    () => seriesChildren
+    .filter((child) => child.props.dataKey)
+    .map((child) => (
+      'data' in child.props
+        ? {key: child.props.dataKey, ...child.props}
+        : dataRegistry.get(child.props.dataKey)
+    )),
     [seriesChildren],
+  );
+
+  // extract data keys from child series
+  const dataKeys = useMemo(
+    () => stackedSeries.map((series) => series.key),
+    [stackedSeries],
   );
 
   // group all child data by stack value { [x | y]: { [dataKey]: value } }
   // this format is needed by d3Stack
   const combinedData = useMemo(
-    () => combineBarStackData<XScale, YScale, Datum>(seriesChildren, horizontal),
-    [horizontal, seriesChildren],
+    () => combineBarStackData<XScale, YScale, Datum>(stackedSeries, horizontal),
+    [stackedSeries, horizontal],
   );
 
   // stack data

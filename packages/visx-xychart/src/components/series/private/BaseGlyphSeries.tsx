@@ -1,5 +1,6 @@
 import React, { useContext, useCallback, useMemo } from 'react';
 import { AxisScale } from '@visx/axis';
+import { ScaleInput } from '@visx/scale';
 import DataContext from '../../../context/DataContext';
 import { GlyphProps, GlyphsProps, SeriesProps } from '../../../types';
 import withRegisteredData, { WithRegisteredDataProps } from '../../../enhancers/withRegisteredData';
@@ -38,12 +39,15 @@ export function BaseGlyphSeries<
   enableEvents = true,
   renderGlyphs,
   size = 8,
-  xAccessor,
+  xAccessor: _xAccessor,
   xScale,
-  yAccessor,
+  yAccessor: _yAccessor,
   yScale,
 }: BaseGlyphSeriesProps<XScale, YScale, Datum> & WithRegisteredDataProps<XScale, YScale, Datum>) {
-  const { colorScale, theme, horizontal } = useContext(DataContext);
+  const { colorScale, dataRegistry, theme, horizontal } = useContext(DataContext);
+
+  const xAccessor: (d: Datum) => ScaleInput<XScale> = _xAccessor ?? dataRegistry.get(dataKey).xAccessor;
+  const yAccessor: (d: Datum) => ScaleInput<YScale> = _yAccessor ?? dataRegistry.get(dataKey).yAccessor;
   const getScaledX = useCallback(getScaledValueFactory(xScale, xAccessor), [xScale, xAccessor]);
   const getScaledY = useCallback(getScaledValueFactory(yScale, yAccessor), [yScale, yAccessor]);
   const color = colorScale?.(dataKey) ?? theme?.colors?.[0] ?? '#222';

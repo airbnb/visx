@@ -1,6 +1,7 @@
 import React, { useContext, useCallback } from 'react';
 import LinePath, { LinePathProps } from '@visx/shape/lib/shapes/LinePath';
 import { AxisScale } from '@visx/axis';
+import { ScaleInput } from '@visx/scale';
 import DataContext from '../../../context/DataContext';
 import { GlyphsProps, SeriesProps } from '../../../types';
 import withRegisteredData, { WithRegisteredDataProps } from '../../../enhancers/withRegisteredData';
@@ -36,14 +37,16 @@ function BaseLineSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
   onPointerUp,
   onPointerDown,
   enableEvents = true,
-  xAccessor,
+  xAccessor: _xAccessor,
   xScale,
-  yAccessor,
+  yAccessor: _yAccessor,
   yScale,
   PathComponent = 'path',
   ...lineProps
 }: BaseLineSeriesProps<XScale, YScale, Datum> & WithRegisteredDataProps<XScale, YScale, Datum>) {
-  const { colorScale, theme } = useContext(DataContext);
+  const { colorScale, dataRegistry, theme } = useContext(DataContext);
+  const xAccessor: (d: Datum) => ScaleInput<XScale> = _xAccessor ?? dataRegistry.get(dataKey).xAccessor;
+  const yAccessor: (d: Datum) => ScaleInput<YScale> = _yAccessor ?? dataRegistry.get(dataKey).yAccessor;
   const getScaledX = useCallback(getScaledValueFactory(xScale, xAccessor), [xScale, xAccessor]);
   const getScaledY = useCallback(getScaledValueFactory(yScale, yAccessor), [yScale, yAccessor]);
   const isDefined = useCallback(

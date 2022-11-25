@@ -1,5 +1,6 @@
 import React, { useContext, useCallback, useMemo } from 'react';
 import { AxisScale } from '@visx/axis';
+import { ScaleInput } from '@visx/scale';
 import Area, { AreaProps } from '@visx/shape/lib/shapes/Area';
 import LinePath, { LinePathProps } from '@visx/shape/lib/shapes/LinePath';
 import DataContext from '../../../context/DataContext';
@@ -49,15 +50,18 @@ function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
   onPointerDown,
   enableEvents = true,
   renderLine = true,
-  xAccessor,
+  xAccessor: _xAccessor,
   x0Accessor,
   xScale,
-  yAccessor,
+  yAccessor: _yAccessor,
   y0Accessor,
   yScale,
   ...areaProps
 }: BaseAreaSeriesProps<XScale, YScale, Datum> & WithRegisteredDataProps<XScale, YScale, Datum>) {
-  const { colorScale, theme, horizontal } = useContext(DataContext);
+  const { colorScale, dataRegistry, theme, horizontal } = useContext(DataContext);
+
+  const xAccessor: (d: Datum) => ScaleInput<XScale> = _xAccessor ?? dataRegistry.get(dataKey).xAccessor;
+  const yAccessor: (d: Datum) => ScaleInput<YScale> = _yAccessor ?? dataRegistry.get(dataKey).yAccessor;
   const getScaledX0 = useMemo(
     () => (x0Accessor ? getScaledValueFactory(xScale, x0Accessor) : undefined),
     [xScale, x0Accessor],
