@@ -31,12 +31,12 @@
   "private": true,
   "scripts": {
     "babel": "yarn run babel:cjs && yarn run babel:esm",
-    "babel:cjs": "nimbus babel --clean --workspaces=\"@visx/!(demo)\"",
-    "babel:esm": "nimbus babel --clean --workspaces=\"@visx/!(demo)\" --esm",
+    "babel:cjs": "lerna exec --ignore @visx/demo --parallel -- babel --root-mode upward --delete-dir-on-start src/ --out-dir lib --extensions .ts,.tsx",
+    "babel:esm": "ESM=true lerna exec --ignore @visx/demo --parallel -- babel --root-mode upward --delete-dir-on-start src/ --out-dir esm --extensions .ts,.tsx",
     "build": "yarn run babel && yarn run type",
     "build:sizes": "yarn run ts ./scripts/computeBuildSizes.ts",
     "build:release": "yarn run ts ./scripts/performRelease/index.ts",
-    "build:workspaces": "nimbus babel --clean",
+    "build:workspaces": "yarn babel --delete-dir-on-start",
     "dev:demo": "yarn workspace @visx/demo dev",
     "check:sizes": "yarn run ts ./scripts/compareBuildSizes.ts",
     "clean": "rm -rf ./packages/**/{lib,esm}",
@@ -55,23 +55,28 @@
     "type:workspaces": "nimbus typescript --build"
   },
   "devDependencies": {
-    "@airbnb/config-babel": "^3.1.0",
     "@airbnb/config-eslint": "^3.1.0",
     "@airbnb/config-jest": "^3.0.2",
     "@airbnb/config-prettier": "^3.1.0",
     "@airbnb/config-typescript": "^3.0.1",
     "@airbnb/nimbus": "^3.1.4",
+    "@babel/cli": "^7.19.3",
+    "@babel/core": "^7.20.5",
+    "@babel/preset-env": "^7.20.2",
+    "@babel/preset-react": "^7.18.6",
+    "@babel/preset-typescript": "^7.18.6",
     "@octokit/rest": "18.1.0",
+    "@testing-library/jest-dom": "^5.9.0",
+    "@testing-library/react": "^13.1.0",
+    "@testing-library/react-hooks": "^8.0.0",
+    "@testing-library/user-event": "^11.0.1",
     "@types/enzyme": "^3.10.3",
     "@types/jest": "^24.0.18",
     "@types/jsdom": "^12.2.4",
     "@types/node-fetch": "1.6.9",
     "@types/react-test-renderer": "^18.0.0",
     "@types/webpack": "^4.41.17",
-    "@testing-library/jest-dom": "^5.9.0",
-    "@testing-library/react": "^13.1.0",
-    "@testing-library/react-hooks": "^8.0.0",
-    "@testing-library/user-event": "^11.0.1",
+    "babel-plugin-typescript-to-proptypes": "^2.0.0",
     "chalk": "4.1.0",
     "coveralls": "^3.0.6",
     "enzyme": "^3.10.0",
@@ -102,7 +107,6 @@
   },
   "nimbus": {
     "drivers": [
-      "babel",
       "eslint",
       "jest",
       "prettier",
@@ -112,16 +116,6 @@
       "library": true,
       "react": true,
       "next": true
-    },
-    "babel": {
-      "plugins": [
-        [
-          "@babel/plugin-proposal-private-methods",
-          {
-            "loose": false
-          }
-        ]
-      ]
     },
     "typescript": {
       "compilerOptions": {
