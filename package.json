@@ -36,16 +36,14 @@
     "build": "yarn run babel && yarn run type",
     "build:sizes": "yarn run ts ./scripts/computeBuildSizes.ts",
     "build:release": "yarn run ts ./scripts/performRelease/index.ts",
-    "build:workspaces": "yarn babel --delete-dir-on-start",
     "dev:demo": "yarn workspace @visx/demo dev",
     "check:sizes": "yarn run ts ./scripts/compareBuildSizes.ts",
     "clean": "rm -rf ./packages/**/{lib,esm}",
-    "format": "yarn run prettier --write",
+    "format": "lerna exec --parallel -- prettier --write --ignore-path ../../.prettierignore .",
     "jest": "NODE_ENV=test nimbus jest --coverage --verbose",
     "lint": "nimbus eslint",
     "lint:fix": "yarn run lint --fix",
     "prepare-release": "git checkout master && git pull --rebase origin master && lerna updated",
-    "prettier": "nimbus prettier",
     "release": "yarn run prepare-release && lerna publish --exact",
     "setup": "yarn run build",
     "test": "yarn run jest",
@@ -57,7 +55,6 @@
   "devDependencies": {
     "@airbnb/config-eslint": "^3.1.0",
     "@airbnb/config-jest": "^3.0.2",
-    "@airbnb/config-prettier": "^3.1.0",
     "@airbnb/config-typescript": "^3.0.1",
     "@airbnb/nimbus": "^3.1.4",
     "@babel/cli": "^7.19.3",
@@ -91,6 +88,7 @@
     "lerna": "^3.22.0",
     "marked": "^0.7.0",
     "node-fetch": "2.6.1",
+    "prettier": "^2.8.1",
     "raf": "^3.4.0",
     "react": "^16.0.0-0 || ^17.0.0-0 || ^18.0.0-0",
     "react-dom": "^16.0.0-0 || ^17.0.0-0 || ^18.0.0-0",
@@ -109,7 +107,6 @@
     "drivers": [
       "eslint",
       "jest",
-      "prettier",
       "typescript"
     ],
     "settings": {
