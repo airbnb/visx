@@ -49,7 +49,7 @@
     "test": "yarn run jest",
     "test:watch": "yarn run jest --watch",
     "ts": "ts-node --project ./tsconfig.node.json",
-    "type": "lerna exec --parallel -- tsc --build --verbose",
+    "type": "lerna exec --parallel -- tsc --build",
     "type:update-refs": "yarn run ts ./scripts/updateTsReferences.ts"
   },
   "devDependencies": {

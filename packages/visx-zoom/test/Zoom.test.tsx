@@ -33,7 +33,7 @@ describe('<Zoom />', () => {
       </Zoom>,
     );
 
-    expect(wrapper.html()).toEqual('1.27,1.27,-211.62,162.59');
+    expect(wrapper.html()).toBe('1.27,1.27,-211.62,162.59');
   });
 });
 

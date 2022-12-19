@@ -52,13 +52,6 @@ describe('<LineSeries />', () => {
     const showTooltip = jest.fn();
     const hideTooltip = jest.fn();
 
-    const ConditionalEventEmitter = () => {
-      const { dataRegistry } = useContext(DataContext);
-      // LineSeries won't render until its data is registered
-      // wait for that to emit the events
-      return dataRegistry?.get(series.key) ? <EventEmitter /> : null;
-    };
-
     const EventEmitter = () => {
       const emit = useEventEmitter();
 
@@ -75,6 +68,13 @@ describe('<LineSeries />', () => {
       });
 
       return null;
+    };
+
+    const ConditionalEventEmitter = () => {
+      const { dataRegistry } = useContext(DataContext);
+      // LineSeries won't render until its data is registered
+      // wait for that to emit the events
+      return dataRegistry?.get(series.key) ? <EventEmitter /> : null;
     };
 
     setupTooltipTest(

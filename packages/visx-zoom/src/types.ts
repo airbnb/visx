@@ -1,4 +1,9 @@
 import { UserHandlers, WebKitGestureEvent, Handler } from '@use-gesture/react';
+import {
+  RefObject,
+  MouseEvent as ReactMouseEvent,
+  TouchEvent as ReactTouchEvent,
+} from 'react';
 
 export interface TransformMatrix {
   scaleX: number;
@@ -58,11 +63,11 @@ export interface ProvidedZoom<ElementType> {
   dragEnd: () => void;
   /** Callback for dragMove, results in a scale transform. */
   dragMove: (
-    event: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent,
+    event: ReactMouseEvent | ReactTouchEvent | MouseEvent | TouchEvent,
     options?: { offsetX?: number; offsetY?: number },
   ) => void;
   /** Callback for dragStart, sets isDragging to true.  */
-  dragStart: (event: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent) => void;
+  dragStart: (event: ReactMouseEvent | ReactTouchEvent | MouseEvent | TouchEvent) => void;
   /**
    * Returns a string representation of the matrix transform:
    * matrix(${scaleX}, ${skewY}, ${skewX}, ${scaleY}, ${translateX}, ${translateY})
@@ -80,5 +85,5 @@ export interface ProvidedZoom<ElementType> {
   /** Applies the inverse of the current transform matrix to the specified point. */
   applyInverseToPoint: ({ x, y }: Point) => Point;
   /** Ref to stick on element to attach all handlers automatically. */
-  containerRef: React.RefObject<ElementType>;
+  containerRef: RefObject<ElementType>;
 }
