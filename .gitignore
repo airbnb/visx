@@ -29,7 +29,6 @@ tmp/
 
 # Configs (provided by Nimbus)
 .babelrc
-jest.config.js
 *.tsbuildinfo
 webpack.config.js
 
