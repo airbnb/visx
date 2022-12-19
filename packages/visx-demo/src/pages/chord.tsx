@@ -1,6 +1,6 @@
 import React from 'react';
-import Chord from '@visx/demo-chord/Example';
-import packageJson from '@visx/demo-chord/package.json';
+import Chord from '../sandboxes/visx-chord/Example';
+import packageJson from '../sandboxes/visx-chord/package.json';
 import Show from '../components/Show';
 import ChordSource from '!!raw-loader!../sandboxes/visx-chord/Example';
 

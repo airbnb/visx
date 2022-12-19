@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import AnnotationContext from '../context/AnnotationContext';
 import { AnnotationContextType } from '../types';
 
@@ -8,7 +8,6 @@ export type AnnotationProps = Pick<AnnotationContextType, 'x' | 'y' | 'dx' | 'dy
 };
 
 export default function Annotation({ x, y, dx, dy, children }: AnnotationProps) {
-  return (
-    <AnnotationContext.Provider value={{ x, y, dx, dy }}>{children}</AnnotationContext.Provider>
-  );
+  const value = useMemo(() => ({ x, y, dx, dy }), [x, y, dx, dy]);
+  return <AnnotationContext.Provider value={value}>{children}</AnnotationContext.Provider>;
 }

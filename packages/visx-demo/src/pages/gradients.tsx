@@ -1,6 +1,6 @@
 import React from 'react';
-import Gradients from '@visx/demo-gradient/Example';
-import packageJson from '@visx/demo-gradient/package.json';
+import Gradients from '../sandboxes/visx-gradient/Example';
+import packageJson from '../sandboxes/visx-gradient/package.json';
 import Show from '../components/Show';
 import GradientsSource from '!!raw-loader!../sandboxes/visx-gradient/Example';
 

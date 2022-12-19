@@ -1,6 +1,6 @@
 import React from 'react';
-import Patterns from '@visx/demo-pattern/Example';
-import packageJson from '@visx/demo-pattern/package.json';
+import Patterns from '../sandboxes/visx-pattern/Example';
+import packageJson from '../sandboxes/visx-pattern/package.json';
 import Show from '../components/Show';
 import PatternsSource from '!!raw-loader!../sandboxes/visx-pattern/Example';
 

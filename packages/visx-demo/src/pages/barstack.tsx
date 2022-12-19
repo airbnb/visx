@@ -1,6 +1,6 @@
 import React from 'react';
-import BarStack from '@visx/demo-barstack/Example';
-import packageJson from '@visx/demo-barstack/package.json';
+import BarStack from '../sandboxes/visx-barstack/Example';
+import packageJson from '../sandboxes/visx-barstack/package.json';
 import Show from '../components/Show';
 import BarStackSource from '!!raw-loader!../sandboxes/visx-barstack/Example';
 

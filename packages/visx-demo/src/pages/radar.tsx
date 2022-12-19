@@ -1,6 +1,6 @@
 import React from 'react';
-import Radar from '@visx/demo-radar/Example';
-import packageJson from '@visx/demo-radar/package.json';
+import Radar from '../sandboxes/visx-radar/Example';
+import packageJson from '../sandboxes/visx-radar/package.json';
 import Show from '../components/Show';
 import RadarSource from '!!raw-loader!../sandboxes/visx-radar/Example';
 

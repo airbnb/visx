@@ -1,8 +1,8 @@
 import React from 'react';
-import Legends from '@visx/demo-legend/Example';
+import Legends from '../../sandboxes/visx-legend/Example';
 import GalleryTile from '../GalleryTile';
 
-export { default as packageJson } from '@visx/demo-legend/package.json';
+export { default as packageJson } from '../../sandboxes/visx-legend/package.json';
 
 const tileStyles = { background: 'black' };
 const detailsStyles = { color: '#aaa' };

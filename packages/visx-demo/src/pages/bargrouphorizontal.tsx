@@ -1,6 +1,6 @@
 import React from 'react';
-import BarGroupHorizontal from '@visx/demo-bargroup-horizontal/Example';
-import packageJson from '@visx/demo-bargroup-horizontal/package.json';
+import BarGroupHorizontal from '../sandboxes/visx-bargroup-horizontal/Example';
+import packageJson from '../sandboxes/visx-bargroup-horizontal/package.json';
 import Show from '../components/Show';
 import BarGroupHorizontalSource from '!!raw-loader!../sandboxes/visx-bargroup-horizontal/Example';
 

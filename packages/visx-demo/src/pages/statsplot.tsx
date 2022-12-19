@@ -1,6 +1,6 @@
 import React from 'react';
-import StatsPlot from '@visx/demo-stats/Example';
-import packageJson from '@visx/demo-stats/package.json';
+import StatsPlot from '../sandboxes/visx-stats/Example';
+import packageJson from '../sandboxes/visx-stats/package.json';
 import Show from '../components/Show';
 import StatsPlotSource from '!!raw-loader!../sandboxes/visx-stats/Example';
 

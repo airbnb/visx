@@ -1,6 +1,6 @@
 import React from 'react';
-import Axis from '@visx/demo-axis/Example';
-import packageJson from '@visx/demo-axis/package.json';
+import Axis from '../sandboxes/visx-axis/Example';
+import packageJson from '../sandboxes/visx-axis/package.json';
 import Show from '../components/Show';
 import AxisSource from '!!raw-loader!../sandboxes/visx-axis/Example';
 

@@ -1,6 +1,6 @@
 import React from 'react';
-import Dots from '@visx/demo-dots/Example';
-import packageJson from '@visx/demo-dots/package.json';
+import Dots from '../sandboxes/visx-dots/Example';
+import packageJson from '../sandboxes/visx-dots/package.json';
 import Show from '../components/Show';
 import DotsSource from '!!raw-loader!../sandboxes/visx-dots/Example';
 

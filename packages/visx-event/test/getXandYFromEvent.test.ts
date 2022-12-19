@@ -3,7 +3,7 @@ import getXAndYFromEvent from '../src/getXAndYFromEvent';
 describe('getXAndYFromEvent()', () => {
   it('should return { x: 0, y: 0 } if no event argument', () => {
     const result = getXAndYFromEvent();
-    // @ts-ignore
+    // @ts-expect-error
     const result2 = getXAndYFromEvent(null);
     expect(result).toEqual({ x: 0, y: 0 });
     expect(result2).toEqual({ x: 0, y: 0 });

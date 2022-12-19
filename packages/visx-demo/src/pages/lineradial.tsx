@@ -1,6 +1,6 @@
 import React from 'react';
-import LineRadial from '@visx/demo-shape-line-radial/Example';
-import packageJson from '@visx/demo-shape-line-radial/package.json';
+import LineRadial from '../sandboxes/visx-shape-line-radial/Example';
+import packageJson from '../sandboxes/visx-shape-line-radial/package.json';
 import Show from '../components/Show';
 import LineRadialSource from '!!raw-loader!../sandboxes/visx-shape-line-radial/Example';
 

@@ -17,6 +17,7 @@
   "extends": "../../tsconfig.options.json",
   "include": [
     "src/**/*",
+    "happo/**/*",
     "../../types/**/*"
   ],
   "references": [

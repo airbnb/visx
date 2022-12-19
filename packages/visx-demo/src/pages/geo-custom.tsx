@@ -1,6 +1,6 @@
 import React from 'react';
-import GeoCustom from '@visx/demo-geo-custom/Example';
-import packageJson from '@visx/demo-geo-custom/package.json';
+import GeoCustom from '../sandboxes/visx-geo-custom/Example';
+import packageJson from '../sandboxes/visx-geo-custom/package.json';
 import Show from '../components/Show';
 import GeoCustomSource from '!!raw-loader!../sandboxes/visx-geo-custom/Example';
 

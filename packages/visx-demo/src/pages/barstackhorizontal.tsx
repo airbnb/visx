@@ -1,6 +1,6 @@
 import React from 'react';
-import BarStackHorizontal from '@visx/demo-barstack-horizontal/Example';
-import packageJson from '@visx/demo-barstack-horizontal/package.json';
+import BarStackHorizontal from '../sandboxes/visx-barstack-horizontal/Example';
+import packageJson from '../sandboxes/visx-barstack-horizontal/package.json';
 import Show from '../components/Show';
 import BarStackHorizontalSource from '!!raw-loader!../sandboxes/visx-barstack-horizontal/Example';
 

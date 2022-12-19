@@ -1,6 +1,6 @@
 import React from 'react';
-import Dendrograms from '@visx/demo-dendrogram/Example';
-import packageJson from '@visx/demo-dendrogram/package.json';
+import Dendrograms from '../sandboxes/visx-dendrogram/Example';
+import packageJson from '../sandboxes/visx-dendrogram/package.json';
 import Show from '../components/Show';
 import DendrogramsSource from '!!raw-loader!../sandboxes/visx-dendrogram/Example';
 

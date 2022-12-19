@@ -1,6 +1,6 @@
 import React from 'react';
-import Responsive from '@visx/demo-responsive/Example';
-import packageJson from '@visx/demo-responsive/package.json';
+import Responsive from '../sandboxes/visx-responsive/Example';
+import packageJson from '../sandboxes/visx-responsive/package.json';
 import Show from '../components/Show';
 import ResponsiveSource from '!!raw-loader!../sandboxes/visx-responsive/Example';
 

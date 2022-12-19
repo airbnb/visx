@@ -1,8 +1,8 @@
 import React from 'react';
-import Network, { NetworkProps, background } from '@visx/demo-network/Example';
+import Network, { NetworkProps, background } from '../../sandboxes/visx-network/Example';
 import GalleryTile from '../GalleryTile';
 
-export { default as packageJson } from '@visx/demo-network/package.json';
+export { default as packageJson } from '../../sandboxes/visx-network/package.json';
 
 const tileStyles = { background };
 

@@ -1,6 +1,6 @@
 import React from 'react';
-import Area from '@visx/demo-area/Example';
-import packageJson from '@visx/demo-area/package.json';
+import Area from '../sandboxes/visx-area/Example';
+import packageJson from '../sandboxes/visx-area/package.json';
 import Show from '../components/Show';
 import AreaSource from '!!raw-loader!../sandboxes/visx-area/Example';
 

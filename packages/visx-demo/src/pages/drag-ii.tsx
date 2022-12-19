@@ -1,6 +1,6 @@
 import React from 'react';
-import DragII from '@visx/demo-drag-ii/Example';
-import packageJson from '@visx/demo-drag-ii/package.json';
+import DragII from '../sandboxes/visx-drag-ii/Example';
+import packageJson from '../sandboxes/visx-drag-ii/package.json';
 import Show from '../components/Show';
 import DragIISource from '!!raw-loader!../sandboxes/visx-drag-ii/Example';
 

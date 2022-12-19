@@ -1,6 +1,6 @@
 import React from 'react';
-import Heatmaps from '@visx/demo-heatmap/Example';
-import packageJson from '@visx/demo-heatmap/package.json';
+import Heatmaps from '../sandboxes/visx-heatmap/Example';
+import packageJson from '../sandboxes/visx-heatmap/package.json';
 import Show from '../components/Show';
 import HeatmapsSource from '!!raw-loader!../sandboxes/visx-heatmap/Example';
 

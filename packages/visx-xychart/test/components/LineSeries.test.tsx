@@ -57,11 +57,11 @@ describe('<LineSeries />', () => {
 
       useEffect(() => {
         if (emit) {
-          // @ts-ignore not a React.MouseEvent
+          //  not a React.MouseEvent
           emit('pointermove', new MouseEvent('pointermove'), XYCHART_EVENT_SOURCE);
           expect(showTooltip).toHaveBeenCalledTimes(1);
 
-          // @ts-ignore not a React.MouseEvent
+          //  not a React.MouseEvent
           emit('pointerout', new MouseEvent('pointerout'), XYCHART_EVENT_SOURCE);
           expect(showTooltip).toHaveBeenCalledTimes(1);
         }

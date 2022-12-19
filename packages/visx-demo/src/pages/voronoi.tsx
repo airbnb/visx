@@ -1,6 +1,6 @@
 import React from 'react';
-import VoronoiChart from '@visx/demo-voronoi/Example';
-import packageJson from '@visx/demo-voronoi/package.json';
+import VoronoiChart from '../sandboxes/visx-voronoi/Example';
+import packageJson from '../sandboxes/visx-voronoi/package.json';
 import Show from '../components/Show';
 import VoronoiChartSource from '!!raw-loader!../sandboxes/visx-voronoi/Example';
 

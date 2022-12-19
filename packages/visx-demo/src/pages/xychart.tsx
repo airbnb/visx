@@ -1,6 +1,6 @@
 import React from 'react';
-import XYChart from '@visx/demo-xychart/Example';
-import packageJson from '@visx/demo-xychart/package.json';
+import XYChart from '../sandboxes/visx-xychart/Example';
+import packageJson from '../sandboxes/visx-xychart/package.json';
 import Show from '../components/Show';
 import XYChartSource from '!!raw-loader!../sandboxes/visx-xychart/Example';
 

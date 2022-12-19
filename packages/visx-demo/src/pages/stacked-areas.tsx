@@ -1,6 +1,6 @@
 import React from 'react';
-import StackedAreas from '@visx/demo-stacked-areas/Example';
-import packageJson from '@visx/demo-stacked-areas/package.json';
+import StackedAreas from '../sandboxes/visx-stacked-areas/Example';
+import packageJson from '../sandboxes/visx-stacked-areas/package.json';
 import Show from '../components/Show';
 import StackedAreasSource from '!!raw-loader!../sandboxes/visx-stacked-areas/Example';
 

@@ -1,6 +1,6 @@
 import React from 'react';
-import Brush from '@visx/demo-brush/Example';
-import packageJson from '@visx/demo-brush/package.json';
+import Brush from '../sandboxes/visx-brush/Example';
+import packageJson from '../sandboxes/visx-brush/package.json';
 import Show from '../components/Show';
 import BrushSource from '!!raw-loader!../sandboxes/visx-brush/Example';
 

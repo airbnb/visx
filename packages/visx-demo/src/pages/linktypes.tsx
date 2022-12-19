@@ -1,6 +1,6 @@
 import React from 'react';
-import LinkTypes from '@visx/demo-linktypes/Example';
-import packageJson from '@visx/demo-linktypes/package.json';
+import LinkTypes from '../sandboxes/visx-linktypes/Example';
+import packageJson from '../sandboxes/visx-linktypes/package.json';
 import Show from '../components/Show';
 import LinkTypesSource from '!!raw-loader!../sandboxes/visx-linktypes/Example';
 

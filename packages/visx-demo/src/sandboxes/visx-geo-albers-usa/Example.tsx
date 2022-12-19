@@ -20,7 +20,7 @@ interface FeatureShape {
   properties: { name: string };
 }
 
-// @ts-ignore
+// @ts-expect-error
 const { features: unitedStates } = topojson.feature(topology, topology.objects.states) as {
   type: 'FeatureCollection';
   features: FeatureShape[];

@@ -95,7 +95,7 @@ describe('createScale()', () => {
     expect(scale('c')).toBe(2.7);
   });
   it('invalid type', () => {
-    // @ts-ignore
+    // @ts-expect-error
     expect(createScale({ type: 'invalid' })).toBeDefined();
   });
 });

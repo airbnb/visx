@@ -1,6 +1,6 @@
 import React from 'react';
-import Lines from '@visx/demo-curve/Example';
-import packageJson from '@visx/demo-curve/package.json';
+import Lines from '../sandboxes/visx-curve/Example';
+import packageJson from '../sandboxes/visx-curve/package.json';
 import Show from '../components/Show';
 import LinesSource from '!!raw-loader!../sandboxes/visx-curve/Example';
 

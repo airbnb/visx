@@ -1,6 +1,6 @@
 import React from 'react';
-import Wordcloud from '@visx/demo-wordcloud/Example';
-import packageJson from '@visx/demo-wordcloud/package.json';
+import Wordcloud from '../sandboxes/visx-wordcloud/Example';
+import packageJson from '../sandboxes/visx-wordcloud/package.json';
 import WordcloudSource from '!!raw-loader!../sandboxes/visx-wordcloud/Example';
 import Show from '../components/Show';
 

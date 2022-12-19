@@ -63,8 +63,6 @@ export default function useTooltipInPortal({
   );
 
   return {
-    // react-use-measure doesn't currently accept SVGElement refs
-    // @ts-ignore fixed here https://github.com/react-spring/react-use-measure/pull/17
     containerRef,
     containerBounds,
     forceRefreshBounds,

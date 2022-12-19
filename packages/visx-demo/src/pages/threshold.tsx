@@ -1,6 +1,6 @@
 import React from 'react';
-import Threshold from '@visx/demo-threshold/Example';
-import packageJson from '@visx/demo-threshold/package.json';
+import Threshold from '../sandboxes/visx-threshold/Example';
+import packageJson from '../sandboxes/visx-threshold/package.json';
 import Show from '../components/Show';
 import ThresholdSource from '!!raw-loader!../sandboxes/visx-threshold/Example';
 

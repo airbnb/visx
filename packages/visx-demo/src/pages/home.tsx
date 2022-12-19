@@ -2,16 +2,14 @@
 import React from 'react';
 import Link from 'next/link';
 import { ParentSize } from '@visx/responsive';
-import Dots from '@visx/demo-dots/Example';
-import Zoom from '@visx/demo-zoom-i/Example';
-import Radial from '@visx/demo-shape-line-radial/Example';
-import Bars from '@visx/demo-bars/Example';
+import Dots from '../sandboxes/visx-dots/Example';
+import Zoom from '../sandboxes/visx-zoom-i/Example';
+import Radial from '../sandboxes/visx-shape-line-radial/Example';
+import Bars from '../sandboxes/visx-bars/Example';
 import Footer from '../components/Footer';
 import Page from '../components/Page';
 
-// @ts-ignore
 const Button = React.forwardRef(({ onClick, href, children }, ref) => (
-  // @ts-ignore
   <a href={href} onClick={onClick} ref={ref}>
     {children}
     <style jsx>{`

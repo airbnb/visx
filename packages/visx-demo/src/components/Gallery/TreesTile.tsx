@@ -1,8 +1,8 @@
 import React from 'react';
-import Tree, { TreeProps, background } from '@visx/demo-tree/Example';
+import Tree, { TreeProps, background } from '../../sandboxes/visx-tree/Example';
 import GalleryTile from '../GalleryTile';
 
-export { default as packageJson } from '@visx/demo-tree/package.json';
+export { default as packageJson } from '../../sandboxes/visx-tree/package.json';
 
 const tileStyles = { background };
 const detailsStyles = { color: '#269688' };

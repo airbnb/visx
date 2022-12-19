@@ -1,6 +1,6 @@
 import React from 'react';
-import Trees from '@visx/demo-tree/Example';
-import packageJson from '@visx/demo-tree/package.json';
+import Trees from '../sandboxes/visx-tree/Example';
+import packageJson from '../sandboxes/visx-tree/package.json';
 import Show from '../components/Show';
 import TreesSource from '!!raw-loader!../sandboxes/visx-tree/Example';
 

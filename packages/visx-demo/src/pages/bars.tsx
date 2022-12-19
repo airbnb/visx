@@ -1,6 +1,6 @@
 import React from 'react';
-import Bars from '@visx/demo-bars/Example';
-import packageJson from '@visx/demo-bars/package.json';
+import Bars from '../sandboxes/visx-bars/Example';
+import packageJson from '../sandboxes/visx-bars/package.json';
 import Show from '../components/Show';
 import BarsSource from '!!raw-loader!../sandboxes/visx-bars/Example';
 

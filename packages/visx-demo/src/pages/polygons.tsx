@@ -1,6 +1,6 @@
 import React from 'react';
-import Polygons from '@visx/demo-polygons/Example';
-import packageJson from '@visx/demo-polygons/package.json';
+import Polygons from '../sandboxes/visx-polygons/Example';
+import packageJson from '../sandboxes/visx-polygons/package.json';
 import Show from '../components/Show';
 import PolygonsSource from '!!raw-loader!../sandboxes/visx-polygons/Example';
 

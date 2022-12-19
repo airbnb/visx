@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-// @ts-ignore
+// @ts-expect-error
 import GithubButton from 'react-github-button';
 
 import NavItem from './NavItem';

@@ -1,6 +1,6 @@
 import React from 'react';
-import BarGroup from '@visx/demo-bargroup/Example';
-import packageJson from '@visx/demo-bargroup/package.json';
+import BarGroup from '../sandboxes/visx-bargroup/Example';
+import packageJson from '../sandboxes/visx-bargroup/package.json';
 import Show from '../components/Show';
 import BarGroupSource from '!!raw-loader!../sandboxes/visx-bargroup/Example';
 

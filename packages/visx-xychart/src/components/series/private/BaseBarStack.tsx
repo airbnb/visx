@@ -102,7 +102,7 @@ function BaseBarStack<
   const eventEmitters = useSeriesEvents<XScale, YScale, Datum>({
     dataKey: dataKeys,
     enableEvents,
-    // @ts-ignore Datum input + return type are expected to be the same type but they differ for BarStack (registry data is StackedDatum, return type is user Datum)
+    // @ts-expect-error Datum input + return type are expected to be the same type but they differ for BarStack (registry data is StackedDatum, return type is user Datum)
     findNearestDatum,
     onBlur,
     onFocus,
@@ -208,6 +208,7 @@ function BaseBarStack<
               yScale={yScale}
               {...series}
               {...eventEmitters}
+              key={series.key}
             />
           ),
       )}

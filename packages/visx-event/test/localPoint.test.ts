@@ -8,9 +8,9 @@ describe('localPoint', () => {
   });
 
   test('it should return null if called with no arguments', () => {
-    // @ts-ignore
+    // @ts-expect-error
     expect(localPoint()).toBeNull();
-    // @ts-ignore
+    // @ts-expect-error
     expect(localPointGeneric(document.createElement('div'))).toBeNull();
   });
 
@@ -27,7 +27,6 @@ describe('localPoint', () => {
         getBoundingClientRect: () => ({ left: 0, top: 0 }),
       },
     });
-    // @ts-ignore
     const result = localPoint(e);
     expect(result).toEqual(new Point({ x: 10, y: 10 }));
   });
@@ -39,9 +38,9 @@ describe('localPoint', () => {
     });
     const node = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    // @ts-ignore
+    // @ts-expect-error
     svg.createSVGPoint = () => ({ matrixTransform: () => ({ x: 10, y: 10 }) });
-    // @ts-ignore
+    // @ts-expect-error
     svg.getScreenCTM = () => ({ inverse: () => [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] });
     svg.appendChild(node);
     const result = localPoint(node, e);

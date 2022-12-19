@@ -1,6 +1,6 @@
 import React from 'react';
-import Tooltip from '@visx/demo-tooltip/Example';
-import packageJson from '@visx/demo-tooltip/package.json';
+import Tooltip from '../sandboxes/visx-tooltip/Example';
+import packageJson from '../sandboxes/visx-tooltip/package.json';
 import Show from '../components/Show';
 import TooltipSource from '!!raw-loader!../sandboxes/visx-tooltip/Example';
 

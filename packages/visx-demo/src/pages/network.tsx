@@ -1,6 +1,6 @@
 import React from 'react';
-import Network from '@visx/demo-network/Example';
-import packageJson from '@visx/demo-network/package.json';
+import Network from '../sandboxes/visx-network/Example';
+import packageJson from '../sandboxes/visx-network/package.json';
 import Show from '../components/Show';
 import NetworkSource from '!!raw-loader!../sandboxes/visx-network/Example';
 

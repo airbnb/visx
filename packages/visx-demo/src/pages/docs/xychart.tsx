@@ -1,6 +1,6 @@
 import React from 'react';
 import XYChartReadme from '!!raw-loader!../../../../visx-xychart/README.md';
-import * as XYChartPackage from '@visx/xychart/src/src';
+import * as XYChartPackage from '@visx/xychart';
 import DocPage from '../../components/DocPage';
 import XYChartTile from '../../components/Gallery/XYChartTile';
 

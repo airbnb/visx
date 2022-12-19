@@ -1,6 +1,6 @@
 import React, { useCallback, useRef } from 'react';
 import { animated, useSpring } from '@react-spring/web';
-// @ts-ignore no types
+// @ts-expect-error no types
 import { interpolatePath } from 'd3-interpolate-path';
 import debounce from 'lodash/debounce';
 
@@ -13,6 +13,7 @@ export default function AnimatedPath({
   const previousD = useRef(d);
   // updating d in quick succession will ruin the animation because startD === endD.
   // debounce it slightly
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const setPreviousD = useCallback(
     debounce((dValue?: string) => {
       previousD.current = dValue;

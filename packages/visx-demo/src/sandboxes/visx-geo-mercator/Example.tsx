@@ -19,7 +19,7 @@ interface FeatureShape {
   properties: { name: string };
 }
 
-// @ts-ignore
+// @ts-expect-error
 const world = topojson.feature(topology, topology.objects.units) as {
   type: 'FeatureCollection';
   features: FeatureShape[];

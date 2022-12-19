@@ -1,6 +1,6 @@
 import React from 'react';
-import Treemap from '@visx/demo-treemap/Example';
-import packageJson from '@visx/demo-treemap/package.json';
+import Treemap from '../sandboxes/visx-treemap/Example';
+import packageJson from '../sandboxes/visx-treemap/package.json';
 import Show from '../components/Show';
 import TreemapSource from '!!raw-loader!../sandboxes/visx-treemap/Example';
 

@@ -13,7 +13,6 @@ export default function labelTransformFactory<Scale extends AnyD3Scale>({
     datum: d,
     index: i,
     text: `${labelFormat(d, i)}`,
-    // @ts-ignore
     value: scale(d),
   });
 }
