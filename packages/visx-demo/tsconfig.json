@@ -5,19 +5,18 @@
     "rootDir": "src",
     "allowJs": true,
     "skipLibCheck": true,
-    "noEmit": true,
-    "resolveJsonModule": true,
+    "resolveJsonModule": false,
     "isolatedModules": true,
     "jsx": "preserve"
   },
   "exclude": [
     "lib",
-    "test"
+    "test",
+    "src/sandboxes/**/package.json"
   ],
   "extends": "../../tsconfig.options.json",
   "include": [
     "src/**/*",
-    "types/**/*",
     "../../types/**/*"
   ],
   "references": [
