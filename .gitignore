@@ -29,11 +29,7 @@ tmp/
 
 # Configs (provided by Nimbus)
 .babelrc
-.flowconfig
 jest.config.js
-tsconfig.eslint.json
-tsconfig.json
-tsconfig.options.json
 *.tsbuildinfo
 webpack.config.js
 

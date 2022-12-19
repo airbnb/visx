@@ -54,7 +54,6 @@
   },
   "devDependencies": {
     "@airbnb/config-jest": "^3.0.2",
-    "@airbnb/config-typescript": "^3.0.1",
     "@airbnb/nimbus": "^3.1.4",
     "@babel/cli": "^7.19.3",
     "@babel/core": "^7.20.5",
@@ -107,7 +106,8 @@
     "react-test-renderer": "^18.0.0",
     "regenerator-runtime": "^0.10.5",
     "timezone-mock": "^1.1.0",
-    "ts-node": "9.1.1"
+    "ts-node": "9.1.1",
+    "typescript": "^3.8.3"
   },
   "workspaces": [
     "./packages/*"
@@ -117,18 +117,12 @@
   },
   "nimbus": {
     "drivers": [
-      "jest",
-      "typescript"
+      "jest"
     ],
     "settings": {
       "library": true,
       "react": true,
       "next": true
-    },
-    "typescript": {
-      "compilerOptions": {
-        "emitDeclarationOnly": true
-      }
     },
     "jest": {
       "coverageReporters": [
