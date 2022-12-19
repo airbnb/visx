@@ -60,9 +60,9 @@ describe('<BaseAxis />', () => {
       { xScale },
     );
     const TickLabels = container.querySelectorAll('tspan');
-    expect(TickLabels[0].textContent).toEqual('0.0');
+    expect(TickLabels[0].textContent).toBe('0.0');
     expect(TickLabels[0]).toHaveAttribute('x', '0');
-    expect(TickLabels[TickLabels.length - 1].textContent).toEqual('4.0');
+    expect(TickLabels[TickLabels.length - 1].textContent).toBe('4.0');
     expect(TickLabels[TickLabels.length - 1]).toHaveAttribute('x', '10');
   });
 
@@ -73,9 +73,9 @@ describe('<BaseAxis />', () => {
       { yScale },
     );
     const TickLabels = container.querySelectorAll('tspan');
-    expect(TickLabels[0].textContent).toEqual('0.0');
+    expect(TickLabels[0].textContent).toBe('0.0');
     expect(TickLabels[0].parentNode).toHaveAttribute('y', '0');
-    expect(TickLabels[TickLabels.length - 1].textContent).toEqual('4.0');
+    expect(TickLabels[TickLabels.length - 1].textContent).toBe('4.0');
     expect(TickLabels[TickLabels.length - 1].parentNode).toHaveAttribute('y', '10');
   });
 

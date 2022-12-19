@@ -3,10 +3,10 @@ import BarGroupHorizontal, {
   BarGroupHorizontalProps,
   background,
   green,
-} from '../../sandboxes/visx-bargroup-horizontal/Example';
+} from '@visx/demo-bargroup-horizontal/Example';
 import GalleryTile from '../GalleryTile';
 
-export { default as packageJson } from '../../sandboxes/visx-bargroup-horizontal/package.json';
+export { default as packageJson } from '@visx/demo-bargroup-horizontal/package.json';
 
 const tileStyles = { background };
 const detailsStyles = { color: green };

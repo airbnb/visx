@@ -1,8 +1,8 @@
 import React from 'react';
-import Heatmap, { HeatmapProps, background } from '../../sandboxes/visx-heatmap/Example';
+import Heatmap, { HeatmapProps, background } from '@visx/demo-heatmap/Example';
 import GalleryTile from '../GalleryTile';
 
-export { default as packageJson } from '../../sandboxes/visx-heatmap/package.json';
+export { default as packageJson } from '@visx/demo-heatmap/package.json';
 
 const tileStyles = { background };
 const detailsStyles = { color: 'rgba(255,255,255,0.3)' };

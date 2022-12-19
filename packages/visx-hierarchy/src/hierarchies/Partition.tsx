@@ -52,13 +52,13 @@ export default function Partition<Datum>({
   return (
     <Group top={top} left={left} className={cx('visx-partition', className)}>
       {nodeComponent &&
-        data.descendants().map((node, i) => {
-          return (
+        data
+          .descendants()
+          .map((node, i) => (
             <Group key={`partition-node-${i}`}>
               {React.createElement(nodeComponent, { node })}
             </Group>
-          );
-        })}
+          ))}
     </Group>
   );
 }

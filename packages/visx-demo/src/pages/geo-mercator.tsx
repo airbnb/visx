@@ -1,10 +1,10 @@
 import React from 'react';
+import GeoMercator from '@visx/demo-geo-mercator/Example';
+import packageJson from '@visx/demo-geo-mercator/package.json';
 import Show from '../components/Show';
-import GeoMercator from '../sandboxes/visx-geo-mercator/Example';
 import GeoMercatorSource from '!!raw-loader!../sandboxes/visx-geo-mercator/Example';
-import packageJson from '../sandboxes/visx-geo-mercator/package.json';
 
-const GeoMercatorPage = () => {
+function GeoMercatorPage() {
   return (
     <Show
       events
@@ -16,5 +16,5 @@ const GeoMercatorPage = () => {
       {GeoMercatorSource}
     </Show>
   );
-};
+}
 export default GeoMercatorPage;

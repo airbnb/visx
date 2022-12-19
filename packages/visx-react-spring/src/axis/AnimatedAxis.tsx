@@ -16,14 +16,16 @@ export default function AnimatedAxis<Scale extends AxisScale>({
 }: AnimatedAxisProps<Scale>) {
   // wrap the ticksComponent so we can pass animationTrajectory
   const ticksComponent = useMemo(
-    () => (ticks: TicksRendererProps<Scale>) =>
-      (
-        <AnimatedTicks
-          {...ticks}
-          tickComponent={tickComponent}
-          animationTrajectory={animationTrajectory}
-        />
-      ),
+    () =>
+      function (ticks: TicksRendererProps<Scale>) {
+        return (
+          <AnimatedTicks
+            {...ticks}
+            tickComponent={tickComponent}
+            animationTrajectory={animationTrajectory}
+          />
+        );
+      },
     [animationTrajectory, tickComponent],
   );
   return <Axis {...axisProps} ticksComponent={ticksComponent} />;

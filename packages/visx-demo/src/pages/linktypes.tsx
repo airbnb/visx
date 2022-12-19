@@ -1,10 +1,10 @@
 import React from 'react';
+import LinkTypes from '@visx/demo-linktypes/Example';
+import packageJson from '@visx/demo-linktypes/package.json';
 import Show from '../components/Show';
-import LinkTypes from '../sandboxes/visx-linktypes/Example';
 import LinkTypesSource from '!!raw-loader!../sandboxes/visx-linktypes/Example';
-import packageJson from '../sandboxes/visx-linktypes/package.json';
 
-const LinkTypesPage = () => {
+function LinkTypesPage() {
   return (
     <Show
       events
@@ -22,5 +22,5 @@ const LinkTypesPage = () => {
       {LinkTypesSource}
     </Show>
   );
-};
+}
 export default LinkTypesPage;

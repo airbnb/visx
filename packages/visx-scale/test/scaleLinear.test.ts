@@ -20,11 +20,11 @@ describe('scaleLinear()', () => {
   describe('set clamp', () => {
     it('true', () => {
       const scale = scaleLinear({ clamp: true });
-      expect(scale(10)).toEqual(1);
+      expect(scale(10)).toBe(1);
     });
     it('false', () => {
       const scale = scaleLinear({ clamp: false });
-      expect(scale(10)).toEqual(10);
+      expect(scale(10)).toBe(10);
     });
   });
   describe('set (color) interpolate', () => {
@@ -34,7 +34,7 @@ describe('scaleLinear()', () => {
         range: ['#ff0000', '#000000'],
         interpolate: 'lab',
       });
-      expect(scale(5)).toEqual('rgb(122, 27, 11)');
+      expect(scale(5)).toBe('rgb(122, 27, 11)');
     });
     it('config object', () => {
       const scale = scaleLinear({
@@ -44,7 +44,7 @@ describe('scaleLinear()', () => {
           type: 'rgb',
         },
       });
-      expect(scale(5)).toEqual('rgb(128, 0, 0)');
+      expect(scale(5)).toBe('rgb(128, 0, 0)');
     });
     it('config object with gamma', () => {
       const scale = scaleLinear({
@@ -55,7 +55,7 @@ describe('scaleLinear()', () => {
           gamma: 0.9,
         },
       });
-      expect(scale(5)).toEqual('rgb(118, 0, 0)');
+      expect(scale(5)).toBe('rgb(118, 0, 0)');
     });
   });
   describe('set nice', () => {
@@ -71,13 +71,13 @@ describe('scaleLinear()', () => {
   describe('set round', () => {
     it('true', () => {
       const scale = scaleLinear({ domain: [0, 10], range: [0, 10], round: true });
-      expect(scale(2.2)).toEqual(2);
-      expect(scale(2.6)).toEqual(3);
+      expect(scale(2.2)).toBe(2);
+      expect(scale(2.6)).toBe(3);
     });
     it('false', () => {
       const scale = scaleLinear({ domain: [0, 10], range: [0, 10], round: false });
-      expect(scale(2.2)).toEqual(2.2);
-      expect(scale(2.6)).toEqual(2.6);
+      expect(scale(2.2)).toBe(2.2);
+      expect(scale(2.6)).toBe(2.6);
     });
     it('warns if do both interpolate and round', () => {
       const restoreConsole = mockConsole();

@@ -15,9 +15,7 @@ export function genPointsRange(
   [offsetX, offsetY, index]: PointConfig,
   random: () => number = randomNormal(0, 0.2),
 ): PointsRange[] {
-  return range(length).map(() => {
-    return [random() + offsetX, random() + offsetY, index];
-  });
+  return range(length).map(() => [random() + offsetX, random() + offsetY, index]);
 }
 
 export default function genPoints(

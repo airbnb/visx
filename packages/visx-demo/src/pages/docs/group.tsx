@@ -1,6 +1,6 @@
 import React from 'react';
 import GroupReadme from '!!raw-loader!../../../../visx-group/Readme.md';
-import Group from '../../../../visx-group/src/Group';
+import Group from '@visx/group/src/Group';
 import DocPage from '../../components/DocPage';
 import PatternsTile from '../../components/Gallery/PatternsTile';
 import RadarTile from '../../components/Gallery/RadarTile';
@@ -13,7 +13,9 @@ const components = [Group];
 
 const examples = [PatternsTile, RadarTile, PiesTile, TreemapTile, StatsPlotTile, LineRadialTile];
 
-const GroupDocs = () => (
-  <DocPage components={components} examples={examples} readme={GroupReadme} visxPackage="group" />
-);
+function GroupDocs() {
+  return (
+    <DocPage components={components} examples={examples} readme={GroupReadme} visxPackage="group" />
+  );
+}
 export default GroupDocs;

@@ -60,11 +60,11 @@ export default function Pack<Datum>({
   return (
     <Group top={top} left={left} className={cx('visx-pack', className)}>
       {nodeComponent &&
-        data.descendants().map((node, i) => {
-          return (
+        data
+          .descendants()
+          .map((node, i) => (
             <Group key={`pack-node-${i}`}>{React.createElement(nodeComponent, { node })}</Group>
-          );
-        })}
+          ))}
     </Group>
   );
 }

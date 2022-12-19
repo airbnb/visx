@@ -1,8 +1,8 @@
 import React from 'react';
-import Responsive, { ResponsiveProps } from '../../sandboxes/visx-responsive/Example';
+import Responsive, { ResponsiveProps } from '@visx/demo-responsive/Example';
 import GalleryTile from '../GalleryTile';
 
-export { default as packageJson } from '../../sandboxes/visx-responsive/package.json';
+export { default as packageJson } from '@visx/demo-responsive/package.json';
 
 const tileStyles = { background: 'white' };
 const detailsStyles = {

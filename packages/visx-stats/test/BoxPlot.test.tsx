@@ -33,7 +33,7 @@ describe('<BoxPlot />', () => {
         outliers={outliers}
       />,
     );
-    expect(wrapper.prop('className')).toEqual('visx-boxplot');
+    expect(wrapper.prop('className')).toBe('visx-boxplot');
   });
 
   test('it should render 5 lines and one rectangle', () => {

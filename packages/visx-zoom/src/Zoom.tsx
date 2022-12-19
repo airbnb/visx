@@ -152,16 +152,12 @@ function Zoom<ElementType extends Element>({
   );
 
   const applyToPoint = useCallback(
-    ({ x, y }: Point) => {
-      return applyMatrixToPoint(transformMatrix, { x, y });
-    },
+    ({ x, y }: Point) => applyMatrixToPoint(transformMatrix, { x, y }),
     [transformMatrix],
   );
 
   const applyInverseToPoint = useCallback(
-    ({ x, y }: Point) => {
-      return applyInverseMatrixToPoint(transformMatrix, { x, y });
-    },
+    ({ x, y }: Point) => applyInverseMatrixToPoint(transformMatrix, { x, y }),
     [transformMatrix],
   );
 

@@ -27,7 +27,7 @@ describe('useTooltipInPortal()', () => {
       disableLifecycleMethods: true,
     }).dive();
     const zIndex = wrapper.find('Portal').prop('zIndex');
-    expect(zIndex).toEqual(1);
+    expect(zIndex).toBe(1);
   });
 
   it('should pass zIndex prop from component to Portal', () => {
@@ -38,6 +38,6 @@ describe('useTooltipInPortal()', () => {
       },
     ).dive();
     const zIndex = wrapper.find('Portal').prop('zIndex');
-    expect(zIndex).toEqual('var(--tooltip-zindex)');
+    expect(zIndex).toBe('var(--tooltip-zindex)');
   });
 });

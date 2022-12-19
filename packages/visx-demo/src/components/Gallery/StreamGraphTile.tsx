@@ -2,10 +2,10 @@ import React from 'react';
 import StreamGraph, {
   StreamGraphProps,
   BACKGROUND as background,
-} from '../../sandboxes/visx-streamgraph/Example';
+} from '@visx/demo-streamgraph/Example';
 import GalleryTile from '../GalleryTile';
 
-export { default as packageJson } from '../../sandboxes/visx-streamgraph/package.json';
+export { default as packageJson } from '@visx/demo-streamgraph/package.json';
 
 const tileStyles = { background };
 const detailsStyles = { color: 'rgb(93,30,91)' };

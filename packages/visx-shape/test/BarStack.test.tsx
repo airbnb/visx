@@ -26,7 +26,7 @@ describe('<BarStack />', () => {
         keys={[]}
       />,
     );
-    expect(wrapper.prop('className')).toEqual('visx-bar-stack');
+    expect(wrapper.prop('className')).toBe('visx-bar-stack');
   });
 
   test('it should set className prop', () => {
@@ -43,7 +43,7 @@ describe('<BarStack />', () => {
         keys={[]}
       />,
     );
-    expect(wrapper.prop('className')).toEqual('visx-bar-stack test');
+    expect(wrapper.prop('className')).toBe('visx-bar-stack test');
   });
 
   test('it should set top & left props', () => {
@@ -60,7 +60,7 @@ describe('<BarStack />', () => {
         keys={[]}
       />,
     );
-    expect(wrapper.prop('top')).toEqual(2);
-    expect(wrapper.prop('left')).toEqual(3);
+    expect(wrapper.prop('top')).toBe(2);
+    expect(wrapper.prop('left')).toBe(3);
   });
 });

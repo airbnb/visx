@@ -56,7 +56,7 @@ export type LineRadialProps = {
   animate?: boolean;
 };
 
-const Example = ({ width, height, animate = true }: LineRadialProps) => {
+function Example({ width, height, animate = true }: LineRadialProps) {
   const lineRef = useRef<SVGPathElement>(null);
   const [lineLength, setLineLength] = useState<number>(0);
   const [shouldAnimate, setShouldAnimate] = useState<boolean>(false);
@@ -173,6 +173,6 @@ const Example = ({ width, height, animate = true }: LineRadialProps) => {
       </svg>
     </>
   );
-};
+}
 
 export default Example;

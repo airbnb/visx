@@ -421,16 +421,14 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
     return Math.max(Math.max(y0, y1) - Math.min(y0, y1), 0);
   };
 
-  handles = (): Partial<
-    {
-      [key in ResizeTriggerAreas]: {
-        x: number;
-        y: number;
-        height: number;
-        width: number;
-      };
-    }
-  > => {
+  handles = (): Partial<{
+    [key in ResizeTriggerAreas]: {
+      x: number;
+      y: number;
+      height: number;
+      width: number;
+    };
+  }> => {
     const { handleSize } = this.props;
     const { extent } = this.state;
     const { x0, x1, y0, y1 } = extent;
@@ -466,16 +464,14 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
     };
   };
 
-  corners = (): Partial<
-    {
-      [key in ResizeTriggerAreas]: {
-        x: number;
-        y: number;
-        width: number;
-        height: number;
-      };
-    }
-  > => {
+  corners = (): Partial<{
+    [key in ResizeTriggerAreas]: {
+      x: number;
+      y: number;
+      width: number;
+      height: number;
+    };
+  }> => {
     const { handleSize } = this.props;
     const { extent } = this.state;
     const { x0, x1, y0, y1 } = extent;

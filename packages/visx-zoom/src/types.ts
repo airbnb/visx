@@ -1,9 +1,5 @@
 import { UserHandlers, WebKitGestureEvent, Handler } from '@use-gesture/react';
-import {
-  RefObject,
-  MouseEvent as ReactMouseEvent,
-  TouchEvent as ReactTouchEvent,
-} from 'react';
+import { RefObject, MouseEvent as ReactMouseEvent, TouchEvent as ReactTouchEvent } from 'react';
 
 export interface TransformMatrix {
   scaleX: number;

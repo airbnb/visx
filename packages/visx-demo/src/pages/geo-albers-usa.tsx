@@ -1,10 +1,10 @@
 import React from 'react';
+import GeoAlbersUsa from '@visx/demo-geo-albers-usa/Example';
+import packageJson from '@visx/demo-geo-albers-usa/package.json';
 import Show from '../components/Show';
-import GeoAlbersUsa from '../sandboxes/visx-geo-albers-usa/Example';
 import GeoAlbersUsaSource from '!!raw-loader!../sandboxes/visx-geo-albers-usa/Example';
-import packageJson from '../sandboxes/visx-geo-albers-usa/package.json';
 
-const GeoAlbersUsaPage = () => {
+function GeoAlbersUsaPage() {
   return (
     <Show
       events
@@ -17,5 +17,5 @@ const GeoAlbersUsaPage = () => {
       {GeoAlbersUsaSource}
     </Show>
   );
-};
+}
 export default GeoAlbersUsaPage;

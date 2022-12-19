@@ -3,10 +3,10 @@ import GeoAlbersUsa, {
   GeoAlbersUsaProps,
   background,
   colors,
-} from '../../sandboxes/visx-geo-albers-usa/Example';
+} from '@visx/demo-geo-albers-usa/Example';
 import GalleryTile from '../GalleryTile';
 
-export { default as packageJson } from '../../sandboxes/visx-geo-albers-usa/package.json';
+export { default as packageJson } from '@visx/demo-geo-albers-usa/package.json';
 
 const tileStyles = { background };
 const detailsStyles = { color: colors[1] };

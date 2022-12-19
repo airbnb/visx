@@ -6,25 +6,23 @@ export interface Bin {
   count: number;
 }
 
-const defaultCount: CountFunction = (idx, number) => {
-  return Math.random() * (25 * (number - idx));
-};
+const defaultCount: CountFunction = (idx, number) => Math.random() * (25 * (number - idx));
 
-const defaultBin: BinFunction = (idx, length) => {
-  return idx * 150;
-};
+const defaultBin: BinFunction = (idx, length) => idx * 150;
 
 export default function genBin(
   length: number,
   bin: BinFunction = defaultBin,
   count: CountFunction = defaultCount,
 ): Bin[] {
-  return new Array(length).fill(1).reduce((data, d, i) => {
-    return data.concat([
-      {
-        bin: bin(i, length),
-        count: count(i, length),
-      },
-    ]);
-  }, []);
+  return new Array(length).fill(1).reduce(
+    (data, d, i) =>
+      data.concat([
+        {
+          bin: bin(i, length),
+          count: count(i, length),
+        },
+      ]),
+    [],
+  );
 }

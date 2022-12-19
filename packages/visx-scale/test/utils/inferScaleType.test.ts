@@ -18,51 +18,51 @@ import inferScaleType from '../../src/utils/inferScaleType';
 
 describe('inferScaleType(scale)', () => {
   it('linear scale', () => {
-    expect(inferScaleType(scaleLinear())).toEqual('linear');
+    expect(inferScaleType(scaleLinear())).toBe('linear');
   });
   it('log scale', () => {
-    expect(inferScaleType(scaleLog())).toEqual('log');
+    expect(inferScaleType(scaleLog())).toBe('log');
   });
   it('pow scale', () => {
-    expect(inferScaleType(scalePow())).toEqual('pow');
+    expect(inferScaleType(scalePow())).toBe('pow');
   });
   it('sqrt scale', () => {
-    expect(inferScaleType(scaleSqrt())).toEqual('sqrt');
+    expect(inferScaleType(scaleSqrt())).toBe('sqrt');
   });
   it('symlog scale', () => {
-    expect(inferScaleType(scaleSymlog())).toEqual('symlog');
+    expect(inferScaleType(scaleSymlog())).toBe('symlog');
   });
   describe('time scale', () => {
     it('returns time when local time is not UTC', () => {
       TimezoneMock.register('US/Pacific');
-      expect(inferScaleType(scaleTime())).toEqual('time');
+      expect(inferScaleType(scaleTime())).toBe('time');
       TimezoneMock.unregister();
     });
     it('returns utc when local time is UTC', () => {
       TimezoneMock.register('UTC');
-      expect(inferScaleType(scaleTime())).toEqual('utc');
+      expect(inferScaleType(scaleTime())).toBe('utc');
       TimezoneMock.unregister();
     });
   });
   it('utc scale', () => {
-    expect(inferScaleType(scaleUtc())).toEqual('utc');
+    expect(inferScaleType(scaleUtc())).toBe('utc');
   });
   it('quantile scale', () => {
-    expect(inferScaleType(scaleQuantile())).toEqual('quantile');
+    expect(inferScaleType(scaleQuantile())).toBe('quantile');
   });
   it('quantize scale', () => {
-    expect(inferScaleType(scaleQuantize())).toEqual('quantize');
+    expect(inferScaleType(scaleQuantize())).toBe('quantize');
   });
   it('threshold scale', () => {
-    expect(inferScaleType(scaleThreshold())).toEqual('threshold');
+    expect(inferScaleType(scaleThreshold())).toBe('threshold');
   });
   it('ordinal scale', () => {
-    expect(inferScaleType(scaleOrdinal<string>())).toEqual('ordinal');
+    expect(inferScaleType(scaleOrdinal<string>())).toBe('ordinal');
   });
   it('point scale', () => {
-    expect(inferScaleType(scalePoint())).toEqual('point');
+    expect(inferScaleType(scalePoint())).toBe('point');
   });
   it('band scale', () => {
-    expect(inferScaleType(scaleBand())).toEqual('band');
+    expect(inferScaleType(scaleBand())).toBe('band');
   });
 });

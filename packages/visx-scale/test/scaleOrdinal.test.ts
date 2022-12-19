@@ -16,6 +16,6 @@ describe('scaleOrdinal', () => {
   });
   it('set unknown', () => {
     const scale = scaleOrdinal({ domain: ['noodle', 'burger'], unknown: 'green' });
-    expect(scale('sandwich')).toEqual('green');
+    expect(scale('sandwich')).toBe('green');
   });
 });

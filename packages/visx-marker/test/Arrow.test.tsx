@@ -32,7 +32,7 @@ describe('<MarkerArrow />', () => {
     expect(marker.prop('markerHeight')).toEqual(max);
     expect(marker.prop('refX')).toEqual(midX);
     expect(marker.prop('refY')).toEqual(midY);
-    expect(g.prop('transform')).toEqual(`translate(${strokeWidth}, ${strokeWidth})`);
+    expect(g.prop('transform')).toBe(`translate(${strokeWidth}, ${strokeWidth})`);
     expect(polyline.prop('points')).toEqual(points);
   });
 });

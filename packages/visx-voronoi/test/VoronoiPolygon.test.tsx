@@ -30,6 +30,6 @@ describe('<VoronoiPolygon />', () => {
 
   test('it should add extra (non-func) props to the path element', () => {
     const wrapper = shallow(<VoronoiPolygon {...props} fill="orange" />);
-    expect(wrapper.find('path').props().fill).toEqual('orange');
+    expect(wrapper.find('path').props().fill).toBe('orange');
   });
 });

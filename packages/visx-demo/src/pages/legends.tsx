@@ -1,10 +1,10 @@
 import React from 'react';
+import Legends from '@visx/demo-legend/Example';
+import packageJson from '@visx/demo-legend/package.json';
 import Show from '../components/Show';
-import Legends from '../sandboxes/visx-legend/Example';
 import LegendsSource from '!!raw-loader!../sandboxes/visx-legend/Example';
-import packageJson from '../sandboxes/visx-legend/package.json';
 
-const LegendsPage = () => {
+function LegendsPage() {
   return (
     <Show
       events
@@ -16,5 +16,5 @@ const LegendsPage = () => {
       {LegendsSource}
     </Show>
   );
-};
+}
 export default LegendsPage;

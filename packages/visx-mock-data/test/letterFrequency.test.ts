@@ -13,7 +13,7 @@ describe('mocks/letterFrequency', () => {
     const data = letterFrequency;
     expect(data[0].letter).toBeDefined();
     expect(data[0].frequency).toBeDefined();
-    expect(typeof data[0].letter).toEqual('string');
-    expect(typeof data[0].frequency).toEqual('number');
+    expect(typeof data[0].letter).toBe('string');
+    expect(typeof data[0].frequency).toBe('number');
   });
 });

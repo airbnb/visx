@@ -1,8 +1,8 @@
 import React from 'react';
-import Dots, { DotsProps } from '../../sandboxes/visx-dots/Example';
+import Dots, { DotsProps } from '@visx/demo-dots/Example';
 import GalleryTile from '../GalleryTile';
 
-export { default as packageJson } from '../../sandboxes/visx-dots/package.json';
+export { default as packageJson } from '@visx/demo-dots/package.json';
 
 const tileStyles = { background: '#fd6e7f' };
 const detailsStyles = { color: '#f6c431' };

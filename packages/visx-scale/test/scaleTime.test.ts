@@ -28,11 +28,11 @@ describe('scaleTime()', () => {
   describe('set clamp', () => {
     it('true', () => {
       const scale = scaleTime({ domain, range: [0, 10], clamp: true });
-      expect(scale(new Date(2019, 11, 31))).toEqual(0);
+      expect(scale(new Date(2019, 11, 31))).toBe(0);
     });
     it('false', () => {
       const scale = scaleTime({ domain, range: [0, 10], clamp: false });
-      expect(scale(new Date(2019, 11, 31))?.toFixed(2)).toEqual('-1.11');
+      expect(scale(new Date(2019, 11, 31))?.toFixed(2)).toBe('-1.11');
     });
   });
   it('set (color) interpolate', () => {
@@ -41,7 +41,7 @@ describe('scaleTime()', () => {
       range: ['#ff0000', '#000000'],
       interpolate: 'lab',
     });
-    expect(scale(new Date(2020, 0, 5))).toEqual('rgb(136, 28, 11)');
+    expect(scale(new Date(2020, 0, 5))).toBe('rgb(136, 28, 11)');
   });
   describe('set nice', () => {
     it('true', () => {
@@ -79,7 +79,7 @@ describe('scaleTime()', () => {
         range: [1, 5],
         round: true,
       });
-      expect(scale(new Date(2020, 0, 5))).toEqual(3);
+      expect(scale(new Date(2020, 0, 5))).toBe(3);
     });
     it('false', () => {
       const scale = scaleTime({
@@ -87,7 +87,7 @@ describe('scaleTime()', () => {
         range: [1, 5],
         round: false,
       });
-      expect(scale(new Date(2020, 0, 5))?.toFixed(2)).toEqual('2.78');
+      expect(scale(new Date(2020, 0, 5))?.toFixed(2)).toBe('2.78');
     });
   });
 });

@@ -11,15 +11,15 @@ describe('<LinePathAnnotation />', () => {
 
   test('it should be wrapped with defaults <Group top={0} left={0} />', () => {
     const wrapper = shallow(<LinePathAnnotation />);
-    expect(wrapper.prop('top')).toEqual(0);
-    expect(wrapper.prop('left')).toEqual(0);
+    expect(wrapper.prop('top')).toBe(0);
+    expect(wrapper.prop('left')).toBe(0);
     expect(wrapper.is('.visx-line-path-annotation-group')).toBe(true);
   });
 
   test('it should set <Group top= left= /> wrapper props', () => {
     const wrapper = shallow(<LinePathAnnotation top={20} left={300} />);
-    expect(wrapper.prop('top')).toEqual(20);
-    expect(wrapper.prop('left')).toEqual(300);
+    expect(wrapper.prop('top')).toBe(20);
+    expect(wrapper.prop('left')).toBe(300);
   });
 
   test('it should contain a <LinePath />', () => {
@@ -32,9 +32,9 @@ describe('<LinePathAnnotation />', () => {
     const wrapper = shallow(<LinePathAnnotation className="test" points={points} />);
     const linePath = wrapper.find('.visx-line-path-annotation');
     expect(linePath.prop('data')).toBe(points);
-    expect(linePath.prop('stroke')).toEqual('black');
-    expect(linePath.prop('strokeWidth')).toEqual(1);
-    expect(linePath.prop('className')).toEqual('visx-line-path-annotation test');
+    expect(linePath.prop('stroke')).toBe('black');
+    expect(linePath.prop('strokeWidth')).toBe(1);
+    expect(linePath.prop('className')).toBe('visx-line-path-annotation test');
   });
 
   test('it should not render a label if label prop is undefined', () => {

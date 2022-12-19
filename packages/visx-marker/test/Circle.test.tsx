@@ -27,7 +27,7 @@ describe('<MarkerCircle />', () => {
     const mid = bounds / 2;
     expect(marker.prop('markerWidth')).toEqual(bounds);
     expect(marker.prop('markerHeight')).toEqual(bounds);
-    expect(marker.prop('refX')).toEqual(0);
+    expect(marker.prop('refX')).toBe(0);
     expect(marker.prop('refY')).toEqual(mid);
     expect(circle.prop('r')).toEqual(size);
     expect(circle.prop('cx')).toEqual(mid);

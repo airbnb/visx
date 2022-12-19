@@ -1,10 +1,10 @@
 import React from 'react';
+import Wordcloud from '@visx/demo-wordcloud/Example';
+import packageJson from '@visx/demo-wordcloud/package.json';
 import WordcloudSource from '!!raw-loader!../sandboxes/visx-wordcloud/Example';
 import Show from '../components/Show';
-import Wordcloud from '../sandboxes/visx-wordcloud/Example';
-import packageJson from '../sandboxes/visx-wordcloud/package.json';
 
-const WordcloudPage = () => {
+function WordcloudPage() {
   return (
     <Show
       component={({ width, height }) => <Wordcloud width={width} height={height} showControls />}
@@ -15,5 +15,5 @@ const WordcloudPage = () => {
       {WordcloudSource}
     </Show>
   );
-};
+}
 export default WordcloudPage;

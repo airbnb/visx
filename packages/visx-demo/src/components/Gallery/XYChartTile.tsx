@@ -1,8 +1,8 @@
 import React from 'react';
-import XYChart, { XYChartProps } from '../../sandboxes/visx-xychart/Example';
+import XYChart, { XYChartProps } from '@visx/demo-xychart/Example';
 import GalleryTile from '../GalleryTile';
 
-export { default as packageJson } from '../../sandboxes/visx-xychart/package.json';
+export { default as packageJson } from '@visx/demo-xychart/package.json';
 
 const tileStyles = { background: '#222' };
 

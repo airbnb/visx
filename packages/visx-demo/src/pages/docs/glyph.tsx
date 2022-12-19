@@ -1,6 +1,6 @@
 import React from 'react';
 import GlyphReadme from '!!raw-loader!../../../../visx-glyph/Readme.md';
-import * as Glyph from '../../../../visx-glyph/src';
+import * as Glyph from '@visx/glyph/src/src';
 import DocPage from '../../components/DocPage';
 import GlyphsTile from '../../components/Gallery/GlyphsTile';
 import LegendsTile from '../../components/Gallery/LegendsTile';
@@ -15,7 +15,9 @@ const components = Object.values(Glyph).sort((a, b) =>
 
 const examples = [GlyphsTile, LegendsTile];
 
-const GlyphDocs = () => (
-  <DocPage components={components} examples={examples} readme={GlyphReadme} visxPackage="glyph" />
-);
+function GlyphDocs() {
+  return (
+    <DocPage components={components} examples={examples} readme={GlyphReadme} visxPackage="glyph" />
+  );
+}
 export default GlyphDocs;

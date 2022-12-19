@@ -1,8 +1,8 @@
 import React from 'react';
-import Wordcloud from '../../sandboxes/visx-wordcloud/Example';
+import Wordcloud from '@visx/demo-wordcloud/Example';
 import GalleryTile from '../GalleryTile';
 
-export { default as packageJson } from '../../sandboxes/visx-wordcloud/package.json';
+export { default as packageJson } from '@visx/demo-wordcloud/package.json';
 
 const tileStyles = { background: '#e4e3d8' };
 const detailsStyles = { color: '#111' };

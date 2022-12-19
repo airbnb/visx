@@ -26,7 +26,7 @@ type Props = {
   exampleDirectoryName: string;
 };
 
-const CodeSandboxLink = ({ branch = 'master', exampleDirectoryName }: Props) => {
+function CodeSandboxLink({ branch = 'master', exampleDirectoryName }: Props) {
   return exampleDirectoryName ? (
     <>
       <a
@@ -47,6 +47,6 @@ const CodeSandboxLink = ({ branch = 'master', exampleDirectoryName }: Props) => 
       `}</style>
     </>
   ) : null;
-};
+}
 
 export default CodeSandboxLink;

@@ -27,9 +27,9 @@ describe('generators/genRandomNormalPoints', () => {
     expect(data[0][0]).toBeDefined();
     expect(data[0][1]).toBeDefined();
     expect(data[0][2]).toBeDefined();
-    expect(data[0][2]).toEqual(0);
-    expect(data[3][2]).toEqual(1);
-    expect(data[6][2]).toEqual(2);
+    expect(data[0][2]).toBe(0);
+    expect(data[3][2]).toBe(1);
+    expect(data[6][2]).toBe(2);
   });
 
   it('should support seeded randomness', () => {

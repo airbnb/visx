@@ -11,7 +11,7 @@ describe('generators/genPhyllotaxis', () => {
       width: 200,
       height: 200,
     });
-    expect(typeof pointFn).toEqual('function');
+    expect(typeof pointFn).toBe('function');
   });
 
   test('it should return a point [x, y] when calling the returned function', () => {
