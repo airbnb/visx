@@ -33,11 +33,11 @@ module.exports = {
   moduleFileExtensions: ['mock.js', 'ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   moduleNameMapper: {
     '^.+\\.(ttf|eot|otf|svg|woff|woff2|mp3|png|jpg|jpeg|gif|ico)$':
-      '<rootDir>/node_modules/@airbnb/config-jest/mocks/file.js',
+      '<rootDir>/config-jest/mocks/file.js',
   },
   roots: ['<rootDir>/packages'],
   setupFiles: ['<rootDir>/config-jest/setup/shims.js', '<rootDir>/config-jest/setup/console.js'],
-  setupFilesAfterEnv: ['<rootDir>/config-jest/enzyme.js'],
+  setupFilesAfterEnv: ['<rootDir>/config-jest/setup/enzyme.js'],
   testEnvironment: 'jsdom',
   testURL: 'http://localhost',
   timers: 'fake',

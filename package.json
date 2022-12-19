@@ -40,7 +40,7 @@
     "check:sizes": "yarn run ts ./scripts/compareBuildSizes.ts",
     "clean": "rm -rf ./packages/**/{lib,esm}",
     "format": "lerna exec --parallel -- prettier --write --ignore-path ../../.prettierignore .",
-    "jest": "NODE_ENV=test nimbus jest --coverage --verbose",
+    "jest": "NODE_ENV=test jest --coverage --verbose",
     "lint": "eslint packages/ --quiet",
     "lint:fix": "yarn run lint --fix",
     "prepare-release": "git checkout master && git pull --rebase origin master && lerna updated",
