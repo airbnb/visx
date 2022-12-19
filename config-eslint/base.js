@@ -5,7 +5,7 @@ const ASSET_EXT_PATTERN = /\.(ttf|eot|otf|svg|woff|woff2|mp3|png|jpg|jpeg|gif|ic
 module.exports = {
   root: true,
 
-  parser: 'babel-eslint',
+  parser: '@babel/eslint-parser',
 
   parserOptions: {
     requireConfigFile: false,

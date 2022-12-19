@@ -82,6 +82,12 @@ module.exports = {
     ],
     'react/no-did-mount-set-state': 'error',
     'react/no-direct-mutation-state': 'error',
+    'react/no-unknown-property': [
+      2,
+      {
+        ignore: ['jsx', 'global'], // used by next
+      },
+    ],
     'react/sort-comp': 'off',
     'react/sort-prop-types': [
       'error',

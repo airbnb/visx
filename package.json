@@ -55,6 +55,7 @@
   "devDependencies": {
     "@babel/cli": "^7.19.3",
     "@babel/core": "^7.20.5",
+    "@babel/eslint-parser": "^7.19.1",
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-react": "^7.18.6",
     "@babel/preset-typescript": "^7.18.6",
@@ -72,7 +73,6 @@
     "@typescript-eslint/eslint-plugin": "^5.46.1",
     "@typescript-eslint/parser": "^5.46.1",
     "airbnb-js-shims": "^2.2.1",
-    "babel-eslint": "^10.1.0",
     "babel-plugin-typescript-to-proptypes": "^2.0.0",
     "chalk": "4.1.0",
     "coveralls": "^3.0.6",
