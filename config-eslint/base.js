@@ -16,10 +16,8 @@ module.exports = {
   plugins: ['import', 'react', 'react-hooks'],
 
   globals: {
-    __DEV__: 'readonly',
     // Metrics and analytics providers
     ga: 'readonly',
-    newrelic: 'readonly',
     // Mostly for easier compatibility between browsers, workers, etc
     global: 'readonly',
     // Mostly references to `process.env.NODE_ENV`

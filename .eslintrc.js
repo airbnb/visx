@@ -2,10 +2,10 @@ module.exports = {
   root: true,
   extends: [
     // these are relics of nimbus, we could definitely simplify + consolidate
-    './eslint-presets/base.js',
-    './eslint-presets/next.js',
-    './eslint-presets/typescript.js',
-    './eslint-presets/prettier.js',
+    './config-eslint/base.js',
+    './config-eslint/next.js',
+    './config-eslint/typescript.js',
+    './config-eslint/prettier.js',
   ],
   overrides: [
     {
