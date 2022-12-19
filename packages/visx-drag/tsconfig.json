@@ -4,9 +4,16 @@
     "outDir": "lib",
     "rootDir": "src"
   },
-  "exclude": ["lib", "test"],
+  "exclude": [
+    "lib",
+    "test"
+  ],
   "extends": "../../tsconfig.options.json",
-  "include": ["src/**/*", "types/**/*", "../../types/**/*"],
+  "include": [
+    "src/**/*",
+    "types/**/*",
+    "../../types/**/*"
+  ],
   "references": [
     {
       "path": "../visx-event"

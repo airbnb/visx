@@ -9,7 +9,7 @@ async function getTotalSize(fileGlob: string, cwd: string): Promise<number> {
   const files = await glob(fileGlob, { absolute: true, cwd, onlyFiles: true });
   const sizes = await Promise.all<number>(
     files.map(
-      file =>
+      (file) =>
         new Promise((resolve, reject) => {
           fs.stat(file, (error, stats) => {
             if (error) {
@@ -30,7 +30,7 @@ async function computeBuildSizes() {
   const stats: { name: string; sizes: object }[] = [];
 
   await Promise.all(
-    packages.map(async packagePath => {
+    packages.map(async (packagePath) => {
       const packageName = path.basename(packagePath);
 
       stats.push({
@@ -58,7 +58,7 @@ async function computeBuildSizes() {
   fs.writeFileSync(PACKAGE_SIZES_FILENAME, JSON.stringify(sizes), 'utf8');
 }
 
-computeBuildSizes().catch(error => {
+computeBuildSizes().catch((error) => {
   console.error(chalk.red(error.message));
   process.exitCode = 1;
 });

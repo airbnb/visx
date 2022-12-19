@@ -49,8 +49,8 @@
     "test": "yarn run jest",
     "test:watch": "yarn run jest --watch",
     "ts": "ts-node --project ./tsconfig.node.json",
-    "type": "nimbus typescript --build --reference-workspaces",
-    "type:workspaces": "nimbus typescript --build"
+    "type": "lerna exec --parallel -- tsc --build --verbose",
+    "type:update-refs": "yarn run ts ./scripts/updateTsReferences.ts"
   },
   "devDependencies": {
     "@airbnb/nimbus": "^3.1.4",
