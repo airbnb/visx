@@ -93,7 +93,7 @@ export type ZoomProps<ElementType> = {
   constrain?: (transform: TransformMatrix, prevTransform: TransformMatrix) => TransformMatrix;
   /** Initial transform matrix to apply. */
   initialTransformMatrix?: TransformMatrix;
-  children: (zoom: ProvidedZoom<ElementType> & ZoomState) => React.ReactNode;
+  children: (zoom: ProvidedZoom<ElementType> & ZoomState) => React.ReactElement;
 };
 
 type ZoomState = {
@@ -114,7 +114,7 @@ function Zoom<ElementType extends Element>({
   height,
   constrain,
   children,
-}: ZoomProps<ElementType>): React.ReactNode {
+}: ZoomProps<ElementType>): React.ReactElement {
   const containerRef = useRef<ElementType>(null);
   const matrixStateRef = useRef<TransformMatrix>(initialTransformMatrix);
 
