@@ -2,7 +2,7 @@ import React from 'react';
 import GalleryTile from '../GalleryTile';
 
 export const packageJson = {
-  name: '../../sandboxes/visx-text',
+  name: '@visx/demo-text',
   dependencies: { '@visx/text': 'current' },
 };
 
