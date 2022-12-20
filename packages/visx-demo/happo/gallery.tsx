@@ -13,7 +13,7 @@ type HappoSnapshot = {
 const getComponentName = (Example: typeof examples[0]) =>
   Example.packageJson.name || 'missing-name';
 
-const snapshots: HappoSnapshot[] = examples.map(Example => ({
+const snapshots: HappoSnapshot[] = examples.map((Example) => ({
   // note: this (reasonably) asserts Examples have unique names
   component: getComponentName(Example),
   variants: { default: () => <Example.default /> },

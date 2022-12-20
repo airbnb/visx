@@ -65,7 +65,9 @@ You may override the container by specifying `containerProps` as the second argu
 Tooltip **components** render tooltip **state** and can be used in conjunction with `useTooltip` and
 `withTooltip` above.
 
-> Note: Because Tooltip and TooltipWithBounds components are rendered within `<div>` elements, they **cannot** be inserted within any VisX charts (`<svg>` elements). Instead, place them anywhere outside of your rendered charts.
+> Note: Because Tooltip and TooltipWithBounds components are rendered within `<div>` elements, they
+> **cannot** be inserted within any VisX charts (`<svg>` elements). Instead, place them anywhere
+> outside of your rendered charts.
 
 #### Tooltip
 
@@ -89,15 +91,15 @@ meaning that it will flip left/right and bottom/top based on whether it would ov
 boundaries. It accepts the following props, and will spread any additional props on the Tooltip
 component (i.e., ...restProps):
 
-| Name        | Type   | Default | Description                                                                                                                                                                      |
-| :---------- | :----- | :------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| left        | number | --      | The horizontal position of the cursor, tooltip will be place to the left or right of this coordinate depending on the width of the tooltip and the size of the parent container. |
-| top         | number | --      | The vertical position of the cursor, tooltip will be place to the bottom or top of this coordinate depending on the height of the tooltip and the size of the parent container.  |
-| offsetLeft  | number | 10      | Horizontal offset of the tooltip from the passed `left` value, functions as a horizontal padding.                                                                                |
-| offsetTop   | number | 10      | Vertical offset of the tooltip from the passed `top` value, functions as a vertical padding.                                                                                     |
-| style       | object | --      | Sets / overrides any styles on the tooltip container (including top and left)                                                                                                    |
-| children    | node   | --      | Sets the children of the tooltip, i.e., the actual content                                                                                                                       |
-| unstyled    | bool   | true    | Whether the tooltip should use styles from the style prop or not                                                                                                                 |
+| Name       | Type   | Default | Description                                                                                                                                                                      |
+| :--------- | :----- | :------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| left       | number | --      | The horizontal position of the cursor, tooltip will be place to the left or right of this coordinate depending on the width of the tooltip and the size of the parent container. |
+| top        | number | --      | The vertical position of the cursor, tooltip will be place to the bottom or top of this coordinate depending on the height of the tooltip and the size of the parent container.  |
+| offsetLeft | number | 10      | Horizontal offset of the tooltip from the passed `left` value, functions as a horizontal padding.                                                                                |
+| offsetTop  | number | 10      | Vertical offset of the tooltip from the passed `top` value, functions as a vertical padding.                                                                                     |
+| style      | object | --      | Sets / overrides any styles on the tooltip container (including top and left)                                                                                                    |
+| children   | node   | --      | Sets the children of the tooltip, i.e., the actual content                                                                                                                       |
+| unstyled   | bool   | true    | Whether the tooltip should use styles from the style prop or not                                                                                                                 |
 
 Note that this component is positioned using a `transform`, so overriding `left` and `top` via
 styles may have no effect.
@@ -158,9 +160,8 @@ interface RectReadOnly {
 
 `Portal` is a component which simply renders its children inside a `div` element appended to
 `document.body` created by `ReactDOM`. A `Portal` can be an effective strategy for solving the
-[`z-index` stacking context
-problem](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context) for
-`Tooltip`s.
+[`z-index` stacking context problem](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context)
+for `Tooltip`s.
 
 For example, if your chart is rendered inside a stacking context with a lower `z-index` than a
 surrounding container, it may get clipped by that container even if you specify a higher `z-index`.
