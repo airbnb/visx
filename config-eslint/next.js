@@ -1,6 +1,8 @@
 const EXTS_GROUP = '{ts,tsx,js,jsx}';
 
 module.exports = {
+  parser: '@babel/eslint-parser',
+
   plugins: ['promise', 'unicorn'],
 
   rules: {

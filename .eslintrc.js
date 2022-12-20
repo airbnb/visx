@@ -1,5 +1,5 @@
 module.exports = {
-  root: true,
+  parser: '@babel/eslint-parser',
   extends: [
     // these are relics of nimbus, we could definitely simplify + consolidate
     './config-eslint/base.js',
