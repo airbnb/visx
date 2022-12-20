@@ -1,6 +1,6 @@
-import { FocusEvent as ReactFocusEvent, PointerEvent as ReactPointerEvent } from 'react';
+import { FocusEvent, PointerEvent } from 'react';
 
-type EventType = PointerEvent | FocusEvent | ReactFocusEvent | ReactPointerEvent;
+type EventType = PointerEvent | FocusEvent;
 
 // functional definition of a PointerEvent (mouse, touch)
 export function isPointerEvent(event?: EventType): event is PointerEvent {
