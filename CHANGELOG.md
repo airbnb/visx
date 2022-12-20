@@ -1,4 +1,5 @@
 # Changelog
+- [v2.16.1](#v2161)
 - [v2.16.0](#v2160)
 - [v2.15.1](#v2151)
 - [v2.15.0](#v2150)
@@ -6,10 +7,10 @@
 - [v2.13.0](#v2130)
 - [v2.12.2](#v2122)
 - [v2.12.1](#v2121)
-- [v2.12.0](#v2120)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v2120">v2.12.0</a></li>
   <li><a href="#v2111">v2.11.1</a></li>
   <li><a href="#v2110">v2.11.0</a></li>
   <li><a href="#v2102">v2.10.2</a></li>
@@ -152,6 +153,27 @@
 </details>
 
 ------
+# v2.16.1 (2022-12-20)
+
+#### :bug: Bug Fix
+
+- fix(demo/radar):  uneven data elements renders spokes and web out of sync [#1599](https://github.com/airbnb/visx/pull/1599)
+- fix(brush): update brush start/end on window resize [#1606](https://github.com/airbnb/visx/pull/1606)
+
+### :memo: Documentation
+
+- docs(xychart): fix typo [#1594](https://github.com/airbnb/visx/pull/1594)
+
+### :house:  Internal
+
+- internal(github-actions): add github release script [#1585](https://github.com/airbnb/visx/pull/1585)
+  
+#### :trophy: Contributors
+- [datananda](https://github.com/datananda)
+- [gammaflauge](https://github.com/gammaflauge)
+- [valMn](https://github.com/valMn)
+- [williaster](https://github.com/williaster)
+
 # v2.16.0 (2022-10-19)
 
 #### :bug: Bug Fix
