@@ -1,7 +1,12 @@
 import { AxisScale } from '@visx/axis';
-import { PointerEvent, FocusEvent, useCallback, useContext } from 'react';
+import {
+  PointerEvent as ReactPointerEvent,
+  FocusEvent as ReactFocusEvent,
+  useCallback,
+  useContext,
+} from 'react';
 import DataContext from '../context/DataContext';
-import { isPointerEvent } from '../typeguards/events';
+import { isFocusEvent, isPointerEvent } from '../typeguards/events';
 import {
   DataContextType,
   EventHandlerParams,
@@ -29,11 +34,11 @@ export type PointerEventHandlerParams<
   /** Callback invoked onFocus for one or more series based on dataKey. */
   onFocus?: (params: EventHandlerParams<Datum>) => void;
   /** Callback invoked onBlur. */
-  onBlur?: (event: FocusEvent) => void;
+  onBlur?: (event: FocusEvent | ReactFocusEvent) => void;
   /** Callback invoked onPointerMove for one or more series based on dataKey. */
   onPointerMove?: (params: EventHandlerParams<Datum>) => void;
   /** Callback invoked onPointerOut. */
-  onPointerOut?: (event: PointerEvent) => void;
+  onPointerOut?: (event: PointerEvent | ReactPointerEvent) => void;
   /** Callback invoked onPointerUp for one or more series based on dataKey. */
   onPointerUp?: (params: EventHandlerParams<Datum>) => void;
   /** Callback invoked onPointerDown for one or more series based on dataKey. */
@@ -178,7 +183,7 @@ export default function usePointerEventHandlers<
   const handleBlur = useCallback(
     (params?: HandlerParams) => {
       const event = params?.event;
-      if (event && !isPointerEvent(event) && onBlur) onBlur(event);
+      if (event && isFocusEvent(event) && onBlur) onBlur(event);
     },
     [onBlur],
   );
