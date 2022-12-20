@@ -1,4 +1,11 @@
-import { useCallback, useContext, useEffect, useRef } from 'react';
+import {
+  PointerEvent as ReactPointerEvent,
+  FocusEvent as ReactFocusEvent,
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+} from 'react';
 import { localPoint } from '@visx/event';
 import EventEmitterContext from '../context/EventEmitterContext';
 
@@ -12,7 +19,7 @@ export type EventType =
 
 export type HandlerParams = {
   /** The react PointerEvent or FocusEvent. */
-  event: React.PointerEvent | React.FocusEvent;
+  event: ReactPointerEvent | ReactFocusEvent | PointerEvent | FocusEvent;
   /** Position of the PointerEvent in svg coordinates. */
   svgPoint: ReturnType<typeof localPoint>;
   /** The source of the event. This can be anything, but for this package is the name of the component which emitted the event. */

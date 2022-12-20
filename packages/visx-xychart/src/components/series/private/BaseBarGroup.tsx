@@ -25,7 +25,7 @@ export type BaseBarGroupProps<
   Datum extends object,
 > = {
   /** `BarSeries` elements */
-  children: JSX.Element | JSX.Element[];
+  children: React.ReactNode;
   /** Group band scale padding, [0, 1] where 0 = no padding, 1 = no bar. */
   padding?: number;
   /** Comparator function to sort `dataKeys` within a bar group. By default the DOM rendering order of `BarGroup`s `children` is used. */
@@ -201,6 +201,7 @@ export default function BaseBarGroup<
               yScale={yScale}
               {...series}
               {...eventEmitters}
+              key={series.key}
             />
           ),
       )}

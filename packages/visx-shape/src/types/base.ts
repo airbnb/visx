@@ -1,4 +1,5 @@
 import { D3Scale, PickD3Scale } from '@visx/scale';
+import { ReactNode, SVGProps } from 'react';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type $TSFIXME = any;
@@ -17,6 +18,6 @@ export type PositionScale = D3Scale<number, any, any>;
  * to `Props` except fields that already exist in `Props`
  */
 export type AddSVGProps<Props, Element extends SVGElement> = Props &
-  Omit<React.SVGProps<Element>, keyof Props>;
+  Omit<SVGProps<Element>, keyof Props>;
 
-export type RenderProp<Input> = (args: Input) => React.ReactNode;
+export type RenderProp<Input> = (args: Input) => ReactNode;

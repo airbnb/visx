@@ -53,17 +53,6 @@ function useBarTransitionConfig<Scale extends AxisScale>({
   }, [scale, shouldAnimateX]);
 }
 
-/** Wrapper component which renders a Bars component depending on whether it needs rounded corners. */
-export default function AnimatedBars<XScale extends AxisScale, YScale extends AxisScale>(
-  props: BarsProps<XScale, YScale>,
-) {
-  return props.radius == null ? (
-    <AnimatedBarsUnrounded {...props} />
-  ) : (
-    <AnimatedBarsRounded {...props} radius={props.radius} />
-  );
-}
-
 function AnimatedBarsRounded<XScale extends AxisScale, YScale extends AxisScale>({
   bars,
   xScale,
@@ -152,5 +141,16 @@ function AnimatedBarsUnrounded<XScale extends AxisScale, YScale extends AxisScal
           ),
       )}
     </>
+  );
+}
+
+/** Wrapper component which renders a Bars component depending on whether it needs rounded corners. */
+export default function AnimatedBars<XScale extends AxisScale, YScale extends AxisScale>(
+  props: BarsProps<XScale, YScale>,
+) {
+  return props.radius == null ? (
+    <AnimatedBarsUnrounded {...props} />
+  ) : (
+    <AnimatedBarsRounded {...props} radius={props.radius} />
   );
 }

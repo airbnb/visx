@@ -12,7 +12,7 @@ function isChildWithProps<P extends object>(
  * Flattens children one level to support React.Fragments and Array type children.
  */
 export default function getChildrenAndGrandchildrenWithProps<P extends object>(
-  children: JSX.Element | JSX.Element[],
+  children: React.ReactNode,
 ): React.ReactElement<P>[] {
   return React.Children.toArray(children)
     .flatMap((child) => {

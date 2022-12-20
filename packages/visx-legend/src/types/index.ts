@@ -1,4 +1,5 @@
 import { AnyD3Scale, ScaleInput } from '@visx/scale';
+import { ComponentClass, CSSProperties, FC } from 'react';
 
 export type LabelFormatterFactory<Scale extends AnyD3Scale> = (args: {
   scale: Scale;
@@ -30,15 +31,15 @@ export type RenderShapeProvidedProps<Data, Output> = {
   itemIndex: number;
   fill?: string;
   size?: string | number;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
 };
 
 export type LegendShape<Data, Output> =
   | 'rect'
   | 'circle'
   | 'line'
-  | React.FC<RenderShapeProvidedProps<Data, Output>>
-  | React.ComponentClass<RenderShapeProvidedProps<Data, Output>>;
+  | FC<RenderShapeProvidedProps<Data, Output>>
+  | ComponentClass<RenderShapeProvidedProps<Data, Output>>;
 
 export type FillAccessor<Datum, Output> = (
   label: FormattedLabel<Datum, Output>,
@@ -50,7 +51,7 @@ export type SizeAccessor<Datum, Output> = (
 
 export type ShapeStyleAccessor<Datum, Output> = (
   label: FormattedLabel<Datum, Output>,
-) => React.CSSProperties | undefined; // TODO: ideally this would support SVGProps, but this is invalid for Rect/Circle shapes
+) => CSSProperties | undefined; // TODO: ideally this would support SVGProps, but this is invalid for Rect/Circle shapes
 
 export type FlexDirection =
   | 'inherit'

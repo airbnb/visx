@@ -1,4 +1,4 @@
-import { CSSProperties } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 import { D3Scale, NumberLike } from '@visx/scale';
 
 // In order to plot values on an axis, output of the scale must be number.
@@ -20,7 +20,7 @@ export type CommonGridProps = {
   /** classname to apply to line group element. */
   className?: string;
   /** Optionally override rendering of grid lines. */
-  children?: (props: { lines: GridLines }) => React.ReactNode;
+  children?: (props: { lines: GridLines }) => ReactNode;
   /** Top offset to apply to glyph g element container. */
   top?: number;
   /** Left offset to apply to glyph g element container. */

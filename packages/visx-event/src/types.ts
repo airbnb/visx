@@ -1,7 +1,13 @@
+import type {
+  FocusEvent as ReactFocusEvent,
+  MouseEvent as ReactMouseEvent,
+  TouchEvent as ReactTouchEvent,
+} from 'react';
+
 export type EventType =
   | MouseEvent
   | TouchEvent
   | FocusEvent
-  | React.MouseEvent
-  | React.TouchEvent
-  | React.FocusEvent;
+  | ReactFocusEvent
+  | ReactMouseEvent
+  | ReactTouchEvent;

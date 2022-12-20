@@ -17,7 +17,8 @@ export default function AnimatedAxis<Scale extends AxisScale>({
   // wrap the ticksComponent so we can pass animationTrajectory
   const ticksComponent = useMemo(
     () =>
-      function (ticks: TicksRendererProps<Scale>) {
+      // eslint-disable-next-line react/no-unstable-nested-components
+      function TicksComponent(ticks: TicksRendererProps<Scale>) {
         return (
           <AnimatedTicks
             {...ticks}

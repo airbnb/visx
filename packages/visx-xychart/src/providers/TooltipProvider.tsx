@@ -1,8 +1,8 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useMemo, useRef } from 'react';
 import debounce from 'lodash/debounce';
 import { useTooltip } from '@visx/tooltip';
 import TooltipContext from '../context/TooltipContext';
-import { EventHandlerParams, TooltipData } from '../types';
+import { EventHandlerParams, TooltipContextType, TooltipData } from '../types';
 import isValidNumber from '../typeguards/isValidNumber';
 
 type TooltipProviderProps = {
@@ -71,19 +71,18 @@ export default function TooltipProvider<Datum extends object>({
     debouncedHideTooltip.current();
   }, [privateHideTooltip, hideTooltipDebounceMs]);
 
-  return (
-    <TooltipContext.Provider
-      value={{
-        tooltipOpen,
-        tooltipLeft,
-        tooltipTop,
-        tooltipData,
-        updateTooltip,
-        showTooltip: showTooltip.current,
-        hideTooltip,
-      }}
-    >
-      {children}
-    </TooltipContext.Provider>
+  const value = useMemo(
+    () => ({
+      tooltipOpen,
+      tooltipLeft,
+      tooltipTop,
+      tooltipData,
+      updateTooltip,
+      showTooltip: showTooltip.current as TooltipContextType<Datum>['showTooltip'],
+      hideTooltip,
+    }),
+    [hideTooltip, tooltipData, tooltipLeft, tooltipOpen, tooltipTop, updateTooltip],
   );
+
+  return <TooltipContext.Provider value={value}>{children}</TooltipContext.Provider>;
 }

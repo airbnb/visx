@@ -114,7 +114,7 @@ function Zoom<ElementType extends Element>({
   height,
   constrain,
   children,
-}: ZoomProps<ElementType>): JSX.Element {
+}: ZoomProps<ElementType>): React.ReactNode {
   const containerRef = useRef<ElementType>(null);
   const matrixStateRef = useRef<TransformMatrix>(initialTransformMatrix);
 
@@ -243,9 +243,9 @@ function Zoom<ElementType extends Element>({
       const dy = currentPoint ? -(startPoint.y - currentPoint.y) : -startPoint.y;
 
       let translateX = startTranslate.translateX + dx;
-      if (options?.offsetX) translateX += options?.offsetX;
+      if (options?.offsetX) translateX += options?.offsetX ?? 0;
       let translateY = startTranslate.translateY + dy;
-      if (options?.offsetY) translateY += options?.offsetY;
+      if (options?.offsetY) translateY += options?.offsetY ?? 0;
       setTranslate({
         translateX,
         translateY,

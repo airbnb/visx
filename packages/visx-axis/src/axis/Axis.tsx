@@ -7,11 +7,11 @@ import AxisRenderer from './AxisRenderer';
 import getTickPosition from '../utils/getTickPosition';
 import getTickFormatter from '../utils/getTickFormatter';
 import createPoint from '../utils/createPoint';
-import Orientation from '../constants/orientation';
+import Orientation, { OrientationType } from '../constants/orientation';
 import getAxisRangePaddingConfig from '../utils/getAxisRangePaddingConfig';
 
 export type AxisProps<Scale extends AxisScale> = SharedAxisProps<Scale> & {
-  orientation?: Orientation;
+  orientation?: OrientationType;
 };
 
 export default function Axis<Scale extends AxisScale>({

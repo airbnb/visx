@@ -80,28 +80,40 @@ export default function DataProvider<
       ? isDiscreteScale(yScaleConfig) || yScaleConfig.type === 'time' || yScaleConfig.type === 'utc'
       : initialHorizontal;
 
-  return (
-    <DataContext.Provider
-      // everything returned here should be memoized between renders
-      // to avoid child re-renders
-      value={{
-        dataRegistry,
-        registerData: dataRegistry.registerData,
-        unregisterData: dataRegistry.unregisterData,
-        xScale,
-        yScale,
-        colorScale,
-        theme,
-        width,
-        height,
-        margin,
-        innerWidth,
-        innerHeight,
-        setDimensions,
-        horizontal,
-      }}
-    >
-      {children}
-    </DataContext.Provider>
+  const value = useMemo(
+    () => ({
+      dataRegistry,
+      registerData: dataRegistry.registerData,
+      unregisterData: dataRegistry.unregisterData,
+      xScale,
+      yScale,
+      colorScale,
+      theme,
+      width,
+      height,
+      margin,
+      innerWidth,
+      innerHeight,
+      setDimensions,
+      horizontal,
+    }),
+    // everything here should be memoized between renders
+    // to avoid child re-renders
+    [
+      colorScale,
+      dataRegistry,
+      height,
+      horizontal,
+      innerHeight,
+      innerWidth,
+      margin,
+      setDimensions,
+      theme,
+      width,
+      xScale,
+      yScale,
+    ],
   );
+
+  return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
 }

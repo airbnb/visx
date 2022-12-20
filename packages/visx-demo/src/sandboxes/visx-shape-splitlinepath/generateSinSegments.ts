@@ -44,8 +44,8 @@ export default function generateSinSegments({
       return segments.map((segment) => segment.map(({ x, y }) => ({ x: y, y: x })));
     case 'bottom-to-top':
       return segments.map((segment) => segment.map(({ x, y }) => ({ x: y, y: -x })));
-    default:
     case 'left-to-right':
+    default:
       return segments;
   }
 }

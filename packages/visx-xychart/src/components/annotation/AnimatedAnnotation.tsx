@@ -21,29 +21,7 @@ export type AnnotationProps<
   'AnnotationComponent'
 >;
 
-export default function AnimatedAnnotation<
-  XScale extends AxisScale,
-  YScale extends AxisScale,
-  Datum extends object,
->({ editable, ...props }: AnnotationProps<XScale, YScale, Datum>) {
-  const AnnotationComponent: BaseAnnotationProps<XScale, YScale, Datum>['AnnotationComponent'] =
-    useCallback(
-      (annotationProps: VisxAnnotationProps & VisxEditableAnnotationProps) => (
-        <BaseAnimatedAnnotation
-          AnnotationComponent={editable ? VisxEditableAnnotation : VisxAnnotation}
-          {...annotationProps}
-        />
-      ),
-      [editable],
-    );
-  return <BaseAnnotation AnnotationComponent={AnnotationComponent} {...props} />;
-}
-
-function BaseAnimatedAnnotation<
-  XScale extends AxisScale,
-  YScale extends AxisScale,
-  Datum extends object,
->({
+function BaseAnimatedAnnotation({
   x = 0,
   y = 0,
   AnnotationComponent,
@@ -73,4 +51,22 @@ function BaseAnimatedAnnotation<
       <AnnotationComponent x={x} y={y} {...props} />
     </animated.g>
   );
+}
+
+export default function AnimatedAnnotation<
+  XScale extends AxisScale,
+  YScale extends AxisScale,
+  Datum extends object,
+>({ editable, ...props }: AnnotationProps<XScale, YScale, Datum>) {
+  const AnnotationComponent: BaseAnnotationProps<XScale, YScale, Datum>['AnnotationComponent'] =
+    useCallback(
+      (annotationProps: VisxAnnotationProps & VisxEditableAnnotationProps) => (
+        <BaseAnimatedAnnotation
+          AnnotationComponent={editable ? VisxEditableAnnotation : VisxAnnotation}
+          {...annotationProps}
+        />
+      ),
+      [editable],
+    );
+  return <BaseAnnotation AnnotationComponent={AnnotationComponent} {...props} />;
 }

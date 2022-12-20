@@ -2,8 +2,6 @@
 import { createContext } from 'react';
 import { TooltipContextType } from '../types';
 
-type InferTooltipContext<D extends object = any> = D extends TooltipContextType<infer D> ? D : any;
-
-const TooltipContext = createContext<InferTooltipContext>(null);
+const TooltipContext = createContext<TooltipContextType<any> | null>(null);
 
 export default TooltipContext;

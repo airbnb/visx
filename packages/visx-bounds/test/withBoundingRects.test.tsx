@@ -69,6 +69,8 @@ function BoundingRectsComponent({
   );
 }
 
+const Component = () => null;
+
 describe('withBoundingRects()', () => {
   beforeAll(() => {
     // mock getBoundingClientRect
@@ -113,7 +115,6 @@ describe('withBoundingRects()', () => {
   });
 
   test('it should not render if no node', () => {
-    const Component = () => null;
     const HOC = withBoundingRects(Component);
     const { container } = render(<HOC />);
     expect(container.innerHTML).toHaveLength(0);

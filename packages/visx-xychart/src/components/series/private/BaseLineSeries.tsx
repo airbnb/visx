@@ -1,4 +1,4 @@
-import React, { useContext, useCallback } from 'react';
+import React, { useContext, useCallback, useMemo } from 'react';
 import LinePath, { LinePathProps } from '@visx/shape/lib/shapes/LinePath';
 import { AxisScale } from '@visx/axis';
 import DataContext from '../../../context/DataContext';
@@ -44,8 +44,8 @@ function BaseLineSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
   ...lineProps
 }: BaseLineSeriesProps<XScale, YScale, Datum> & WithRegisteredDataProps<XScale, YScale, Datum>) {
   const { colorScale, theme } = useContext(DataContext);
-  const getScaledX = useCallback(getScaledValueFactory(xScale, xAccessor), [xScale, xAccessor]);
-  const getScaledY = useCallback(getScaledValueFactory(yScale, yAccessor), [yScale, yAccessor]);
+  const getScaledX = useMemo(() => getScaledValueFactory(xScale, xAccessor), [xScale, xAccessor]);
+  const getScaledY = useMemo(() => getScaledValueFactory(yScale, yAccessor), [yScale, yAccessor]);
   const isDefined = useCallback(
     (d: Datum) => isValidNumber(xScale(xAccessor(d))) && isValidNumber(yScale(yAccessor(d))),
     [xScale, xAccessor, yScale, yAccessor],

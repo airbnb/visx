@@ -65,6 +65,33 @@ const shapeScale = scaleOrdinal<string, React.FC | React.ReactNode>({
   ],
 });
 
+function LegendDemo({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <div className="legend">
+      <div className="title">{title}</div>
+      {children}
+      <style jsx>{`
+        .legend {
+          line-height: 0.9em;
+          color: #efefef;
+          font-size: 10px;
+          font-family: arial;
+          padding: 10px 10px;
+          float: left;
+          border: 1px solid rgba(255, 255, 255, 0.3);
+          border-radius: 8px;
+          margin: 5px 5px;
+        }
+        .title {
+          font-size: 12px;
+          margin-bottom: 10px;
+          font-weight: 100;
+        }
+      `}</style>
+    </div>
+  );
+}
+
 const legendGlyphSize = 15;
 
 export default function Example({ events = false }: { events?: boolean }) {
@@ -248,33 +275,6 @@ export default function Example({ events = false }: { events?: boolean }) {
         }
         .chart h2 {
           margin-left: 10px;
-        }
-      `}</style>
-    </div>
-  );
-}
-
-function LegendDemo({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <div className="legend">
-      <div className="title">{title}</div>
-      {children}
-      <style jsx>{`
-        .legend {
-          line-height: 0.9em;
-          color: #efefef;
-          font-size: 10px;
-          font-family: arial;
-          padding: 10px 10px;
-          float: left;
-          border: 1px solid rgba(255, 255, 255, 0.3);
-          border-radius: 8px;
-          margin: 5px 5px;
-        }
-        .title {
-          font-size: 12px;
-          margin-bottom: 10px;
-          font-weight: 100;
         }
       `}</style>
     </div>

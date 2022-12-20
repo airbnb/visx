@@ -1,4 +1,4 @@
-import { useContext, useEffect, useMemo } from 'react';
+import { ReactNode, useContext, useEffect, useMemo } from 'react';
 import { SeriesPoint, stack as d3stack } from 'd3-shape';
 import stackOffset from '@visx/shape/lib/util/stackOffset';
 import stackOrder from '@visx/shape/lib/util/stackOrder';
@@ -12,7 +12,7 @@ import combineBarStackData from '../utils/combineBarStackData';
 import getChildrenAndGrandchildrenWithProps from '../utils/getChildrenAndGrandchildrenWithProps';
 
 type UseStackedData<Datum extends object> = {
-  children: JSX.Element | JSX.Element[];
+  children: ReactNode;
 } & Pick<StackPathConfig<Datum, string>, 'offset' | 'order'>;
 
 export default function useStackedData<

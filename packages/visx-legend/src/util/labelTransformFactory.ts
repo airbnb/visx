@@ -1,4 +1,4 @@
-import { AnyD3Scale, ScaleInput } from '@visx/scale/lib/lib';
+import { AnyD3Scale, ScaleInput } from '@visx/scale';
 import { LabelFormatter, ItemTransformer } from '../types';
 
 /** Returns a function which takes a Datum and index as input, and returns a formatted label object. */

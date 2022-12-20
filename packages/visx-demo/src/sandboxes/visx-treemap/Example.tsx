@@ -21,14 +21,14 @@ const color2 = '#4281a4';
 export const background = '#114b5f';
 
 const colorScale = scaleLinear<string>({
-  domain: [0, Math.max(...shakespeare.map((d) => d.size || 0))],
+  domain: [0, Math.max(...shakespeare.map((d) => d.size ?? 0))],
   range: [color2, color1],
 });
 
 const data = stratify<Shakespeare>()
   .id((d) => d.id)
   .parentId((d) => d.parent)(shakespeare)
-  .sum((d) => d.size || 0);
+  .sum((d) => d.size ?? 0);
 
 const tileMethods: { [tile: string]: TileMethod<typeof data> } = {
   treemapSquarify,

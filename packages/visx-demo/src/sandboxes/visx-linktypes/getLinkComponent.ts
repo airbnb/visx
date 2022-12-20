@@ -1,3 +1,4 @@
+import { ComponentType } from 'react';
 import {
   LinkHorizontal,
   LinkVertical,
@@ -21,8 +22,8 @@ export default function getLinkComponent({
   layout: string;
   linkType: string;
   orientation: string;
-}): React.ComponentType<any> {
-  let LinkComponent: React.ComponentType<any>;
+}): ComponentType<any> {
+  let LinkComponent: ComponentType<any>;
 
   if (layout === 'polar') {
     if (linkType === 'step') {

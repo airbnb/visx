@@ -45,17 +45,17 @@ export type AxisProps = {
 
 type AnimationTrajectory = 'outside' | 'center' | 'min' | 'max' | undefined;
 
-type AxisComponent = React.FC<
+type AxisComponentType = React.FC<
   SharedAxisProps<AxisScale> & {
     animationTrajectory: AnimationTrajectory;
   }
 >;
-type GridRowsComponent = React.FC<
+type GridRowsComponentType = React.FC<
   GridRowsProps<AxisScale> & {
     animationTrajectory: AnimationTrajectory;
   }
 >;
-type GridColumnsComponent = React.FC<
+type GridColumnsComponentType = React.FC<
   GridColumnsProps<AxisScale> & {
     animationTrajectory: AnimationTrajectory;
   }
@@ -83,9 +83,11 @@ export default function Example({
     values: ScaleInput<Scale>[];
   }
 
-  const AxisComponent: AxisComponent = useAnimatedComponents ? AnimatedAxis : Axis;
-  const GridRowsComponent: GridRowsComponent = useAnimatedComponents ? AnimatedGridRows : GridRows;
-  const GridColumnsComponent: GridColumnsComponent = useAnimatedComponents
+  const AxisComponent: AxisComponentType = useAnimatedComponents ? AnimatedAxis : Axis;
+  const GridRowsComponent: GridRowsComponentType = useAnimatedComponents
+    ? AnimatedGridRows
+    : GridRows;
+  const GridColumnsComponent: GridColumnsComponentType = useAnimatedComponents
     ? AnimatedGridColumns
     : GridColumns;
 

@@ -1,6 +1,6 @@
 import { D3Scale, NumberLike, ScaleInput, ValueOf } from '@visx/scale';
 import { TextProps } from '@visx/text/lib/Text';
-import { ReactNode } from 'react';
+import { ReactNode, SVGProps } from 'react';
 import Orientation from './constants/orientation';
 
 // In order to plot values on an axis, output of the scale must be number.
@@ -11,7 +11,7 @@ export type AxisScaleOutput = number | NumberLike | undefined;
 export type AxisScale<Output extends AxisScaleOutput = AxisScaleOutput> =
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   D3Scale<Output, any, any>;
-type LineProps = Omit<React.SVGProps<SVGLineElement>, 'to' | 'from' | 'ref'>;
+type LineProps = Omit<SVGProps<SVGLineElement>, 'to' | 'from' | 'ref'>;
 
 type FormattedValue = string | undefined;
 

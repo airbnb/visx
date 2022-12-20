@@ -62,6 +62,24 @@ const rawTree: TreeNode = {
   ],
 };
 
+function RootNode({ node }: { node: HierarchyNode }) {
+  return (
+    <Group top={node.x} left={node.y}>
+      <circle r={12} fill="url('#lg')" />
+      <text
+        dy=".33em"
+        fontSize={9}
+        fontFamily="Arial"
+        textAnchor="middle"
+        style={{ pointerEvents: 'none' }}
+        fill={plum}
+      >
+        {node.data.name}
+      </text>
+    </Group>
+  );
+}
+
 /** Handles rendering Root, Parent, and other Nodes. */
 function Node({ node }: { node: HierarchyNode }) {
   const width = 40;
@@ -98,24 +116,6 @@ function Node({ node }: { node: HierarchyNode }) {
         textAnchor="middle"
         fill={green}
         style={{ pointerEvents: 'none' }}
-      >
-        {node.data.name}
-      </text>
-    </Group>
-  );
-}
-
-function RootNode({ node }: { node: HierarchyNode }) {
-  return (
-    <Group top={node.x} left={node.y}>
-      <circle r={12} fill="url('#lg')" />
-      <text
-        dy=".33em"
-        fontSize={9}
-        fontFamily="Arial"
-        textAnchor="middle"
-        style={{ pointerEvents: 'none' }}
-        fill={plum}
       >
         {node.data.name}
       </text>

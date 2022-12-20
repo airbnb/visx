@@ -60,8 +60,8 @@ function BaseBarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum
     innerWidth = 0,
     innerHeight = 0,
   } = useContext(DataContext);
-  const getScaledX = useCallback(getScaledValueFactory(xScale, xAccessor), [xScale, xAccessor]);
-  const getScaledY = useCallback(getScaledValueFactory(yScale, yAccessor), [yScale, yAccessor]);
+  const getScaledX = useMemo(() => getScaledValueFactory(xScale, xAccessor), [xScale, xAccessor]);
+  const getScaledY = useMemo(() => getScaledValueFactory(yScale, yAccessor), [yScale, yAccessor]);
   const scaleBandwidth = getScaleBandwidth(horizontal ? yScale : xScale);
   const barThickness =
     scaleBandwidth ||

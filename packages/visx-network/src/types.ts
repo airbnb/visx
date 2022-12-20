@@ -8,13 +8,13 @@ export interface Link<Node> {
   target: Node;
 }
 
-export interface Graph<Link, Node> {
-  links: Link[];
+export interface Graph<L, Node> {
+  links: L[];
   nodes: Node[];
 }
 
-export interface LinkProvidedProps<Link> {
-  link: Link;
+export interface LinkProvidedProps<L> {
+  link: L;
 }
 
 export interface NodeProvidedProps<Node> {

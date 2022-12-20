@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 import React, { useContext, useEffect } from 'react';
 import { AxisScale } from '@visx/axis';
 import DataContext from '../context/DataContext';

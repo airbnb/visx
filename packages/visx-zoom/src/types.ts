@@ -1,5 +1,11 @@
 import { UserHandlers, WebKitGestureEvent, Handler } from '@use-gesture/react';
-import { RefObject, MouseEvent as ReactMouseEvent, TouchEvent as ReactTouchEvent } from 'react';
+import {
+  RefObject,
+  MouseEvent as ReactMouseEvent,
+  TouchEvent as ReactTouchEvent,
+  PointerEvent as ReactPointerEvent,
+  WheelEvent as ReactWheelEvent,
+} from 'react';
 
 export interface TransformMatrix {
   scaleX: number;
@@ -21,7 +27,16 @@ export type Scale = Pick<TransformMatrix, 'scaleX' | 'scaleY'>;
 
 export type PinchDelta = (
   params: Parameters<
-    Handler<'pinch', TouchEvent | PointerEvent | WheelEvent | WebKitGestureEvent>
+    Handler<
+      'pinch',
+      | TouchEvent
+      | ReactTouchEvent
+      | PointerEvent
+      | ReactPointerEvent
+      | WheelEvent
+      | ReactWheelEvent
+      | WebKitGestureEvent
+    >
   >[0],
 ) => Scale;
 
@@ -52,7 +67,7 @@ export interface ProvidedZoom<ElementType> {
   /** Resets the transform to the initial transform specified by props. */
   reset: () => void;
   /** Callback for a wheel event, updating scale based on props.wheelDelta, relative to the mouse position. */
-  handleWheel: (event: React.WheelEvent | WheelEvent) => void;
+  handleWheel: (event: ReactWheelEvent | WheelEvent) => void;
   /** Callback for a react-use-gesture on pinch event, updating scale based on props.pinchDelta, relative to the pinch position. */
   handlePinch: UserHandlers['onPinch'];
   /** Callback for dragEnd, sets isDragging to false. */

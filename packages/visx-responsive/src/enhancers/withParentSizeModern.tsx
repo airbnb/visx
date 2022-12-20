@@ -68,6 +68,7 @@ export default function withParentSize<BaseComponentProps extends WithParentSize
     };
 
     resize = debounce(
+      // eslint-disable-next-line unicorn/consistent-function-scoping
       ({ width, height }: { width: number; height: number }) => {
         this.setState({
           parentWidth: width,

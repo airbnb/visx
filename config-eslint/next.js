@@ -142,6 +142,7 @@ module.exports = {
       files: [`*.test.${EXTS_GROUP}`],
       rules: {
         'unicorn/no-fn-reference-in-iterator': 'off',
+        'unicorn/consistent-function-scoping': 'off',
       },
     },
   ],

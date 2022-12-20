@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, PointerEvent, FocusEvent } from 'react';
 import useEventEmitter from './useEventEmitter';
 
 type PointerEventEmitterParams = {
@@ -28,27 +28,27 @@ export default function usePointerEventEmitters({
   const emit = useEventEmitter();
 
   const emitPointerMove = useCallback(
-    (event: React.PointerEvent) => emit?.('pointermove', event, source),
+    (event: PointerEvent) => emit?.('pointermove', event, source),
     [emit, source],
   );
   const emitPointerOut = useCallback(
-    (event: React.PointerEvent) => emit?.('pointerout', event, source),
+    (event: PointerEvent) => emit?.('pointerout', event, source),
     [emit, source],
   );
   const emitPointerUp = useCallback(
-    (event: React.PointerEvent) => emit?.('pointerup', event, source),
+    (event: PointerEvent) => emit?.('pointerup', event, source),
     [emit, source],
   );
   const emitPointerDown = useCallback(
-    (event: React.PointerEvent) => emit?.('pointerdown', event, source),
+    (event: PointerEvent) => emit?.('pointerdown', event, source),
     [emit, source],
   );
   const emitFocus = useCallback(
-    (event: React.FocusEvent) => emit?.('focus', event, source),
+    (event: FocusEvent) => emit?.('focus', event, source),
     [emit, source],
   );
   const emitBlur = useCallback(
-    (event: React.FocusEvent) => emit?.('blur', event, source),
+    (event: FocusEvent) => emit?.('blur', event, source),
     [emit, source],
   );
 
