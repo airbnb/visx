@@ -1,11 +1,11 @@
 import { TextProps } from '@visx/text/lib/Text';
-import Orientation from '../constants/orientation';
+import Orientation, { OrientationType } from '../constants/orientation';
 import { AxisScaleOutput } from '../types';
 
 export interface TransformArgs {
   labelOffset: number;
   labelProps: Partial<TextProps>;
-  orientation: Orientation;
+  orientation: OrientationType;
   range: AxisScaleOutput[];
   tickLabelFontSize: number;
   tickLength: number;
