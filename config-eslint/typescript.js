@@ -88,8 +88,8 @@ module.exports = {
         '@typescript-eslint/no-empty-function': 'off', // Default props are usually empty
         '@typescript-eslint/no-empty-interface': 'error',
         '@typescript-eslint/no-explicit-any': [
-          'error',
-          { fixToUnknown: true, ignoreRestArgs: true },
+          'warn',
+          { fixToUnknown: false, ignoreRestArgs: true },
         ],
         '@typescript-eslint/no-extra-parens': 'error',
         '@typescript-eslint/no-for-in-array': 'error',

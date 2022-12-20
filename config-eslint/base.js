@@ -3,8 +3,6 @@ const EXTS_GROUP = '{ts,tsx,js,jsx}';
 const ASSET_EXT_PATTERN = /\.(ttf|eot|otf|svg|woff|woff2|mp3|png|jpg|jpeg|gif|ico)$/;
 
 module.exports = {
-  root: true,
-
   parser: '@babel/eslint-parser',
 
   parserOptions: {

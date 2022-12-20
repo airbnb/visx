@@ -1,5 +1,5 @@
 module.exports = {
-  parser: '@babel/eslint-parser',
+  root: true,
   extends: [
     // these are relics of nimbus, we could definitely simplify + consolidate
     './config-eslint/base.js',
@@ -53,12 +53,6 @@ module.exports = {
     {
       files: './packages/visx-demo/**',
       rules: {
-        '@typescript-eslint/no-explicit-any': [
-          'warn',
-          {
-            fixToUnknown: false,
-          },
-        ],
         'import/no-unresolved': [
           'error',
           {
