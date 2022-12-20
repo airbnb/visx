@@ -1,4 +1,4 @@
-import React, { useContext, useCallback, useMemo } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { AxisScale } from '@visx/axis';
 import DataContext from '../../../context/DataContext';
 import { Bar, BarsProps, SeriesProps } from '../../../types';

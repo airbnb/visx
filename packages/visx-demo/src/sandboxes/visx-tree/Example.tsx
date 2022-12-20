@@ -80,6 +80,40 @@ function RootNode({ node }: { node: HierarchyNode }) {
   );
 }
 
+function ParentNode({ node }: { node: HierarchyNode }) {
+  const width = 40;
+  const height = 20;
+  const centerX = -width / 2;
+  const centerY = -height / 2;
+
+  return (
+    <Group top={node.x} left={node.y}>
+      <rect
+        height={height}
+        width={width}
+        y={centerY}
+        x={centerX}
+        fill={background}
+        stroke={blue}
+        strokeWidth={1}
+        onClick={() => {
+          alert(`clicked: ${JSON.stringify(node.data.name)}`);
+        }}
+      />
+      <text
+        dy=".33em"
+        fontSize={9}
+        fontFamily="Arial"
+        textAnchor="middle"
+        style={{ pointerEvents: 'none' }}
+        fill={white}
+      >
+        {node.data.name}
+      </text>
+    </Group>
+  );
+}
+
 /** Handles rendering Root, Parent, and other Nodes. */
 function Node({ node }: { node: HierarchyNode }) {
   const width = 40;
@@ -116,40 +150,6 @@ function Node({ node }: { node: HierarchyNode }) {
         textAnchor="middle"
         fill={green}
         style={{ pointerEvents: 'none' }}
-      >
-        {node.data.name}
-      </text>
-    </Group>
-  );
-}
-
-function ParentNode({ node }: { node: HierarchyNode }) {
-  const width = 40;
-  const height = 20;
-  const centerX = -width / 2;
-  const centerY = -height / 2;
-
-  return (
-    <Group top={node.x} left={node.y}>
-      <rect
-        height={height}
-        width={width}
-        y={centerY}
-        x={centerX}
-        fill={background}
-        stroke={blue}
-        strokeWidth={1}
-        onClick={() => {
-          alert(`clicked: ${JSON.stringify(node.data.name)}`);
-        }}
-      />
-      <text
-        dy=".33em"
-        fontSize={9}
-        fontFamily="Arial"
-        textAnchor="middle"
-        style={{ pointerEvents: 'none' }}
-        fill={white}
       >
         {node.data.name}
       </text>
