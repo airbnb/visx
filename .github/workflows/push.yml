@@ -14,7 +14,7 @@ jobs:
           fetch-depth: '0'
       - uses: actions/setup-node@v2
         with:
-          node-version: '12'
+          node-version: '16.10.0'
           registry-url: 'https://registry.npmjs.org'
 
       - name: Get yarn cache directory path
@@ -89,7 +89,7 @@ jobs:
           git add .
           git commit -m "bot(${GITHUB_SHA}): build gh-pages"
           git push -f "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git" HEAD:gh-pages
-          
+
       - name: 🦛 Run happo
         # not running happo on push results in stale base shas in pull_request
         run: yarn run happo-ci-github-actions
@@ -98,4 +98,3 @@ jobs:
           HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
           HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
           HAPPO_COMMAND: '../../node_modules/happo.io/build/cli.js'
-
