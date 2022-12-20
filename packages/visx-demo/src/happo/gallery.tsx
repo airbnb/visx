@@ -1,5 +1,5 @@
 import React from 'react';
-import { tiles as examples } from '../src/components/Gallery';
+import { tiles as examples } from '../components/Gallery';
 
 type HappoSnapshot = {
   component: string;

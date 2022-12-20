@@ -24,7 +24,7 @@ module.exports = {
   stylesheets: [path.join(__dirname, '/public/static/doc_styles.css')],
 
   // happo snapshots to include
-  include: 'happo/*.@(ts|tsx)',
+  include: 'src/happo/*.@(ts|tsx)',
 
   // https://github.com/happo/happo.io/blob/3cba9a0a/README.md#comparethreshold-experimental
   compareThreshold: 0.008,
