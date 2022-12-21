@@ -20,7 +20,8 @@ const plugins = ['babel-plugin-typescript-to-proptypes'];
 
 const ignore = [
   'coverage/',
-  'node_modules/',
+  // these d3 packages are esm so we must transform them
+  'node_modules/(?!(d3-(array|color|format|interpolate|scale|time|time-format)|internmap)/)',
   'public/',
   'esm/',
   'lib/',
