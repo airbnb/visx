@@ -1,6 +1,6 @@
 {
   "name": "@visx/bounds",
-  "version": "2.16.0",
+  "version": "2.17.0-alpha.0",
   "description": "Utilities to make your life with bounding boxes better",
   "sideEffects": false,
   "main": "lib/index.js",
