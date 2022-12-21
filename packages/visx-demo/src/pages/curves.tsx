@@ -1,10 +1,10 @@
 import React from 'react';
-import Show from '../components/Show';
 import Lines from '../sandboxes/visx-curve/Example';
-import LinesSource from '!!raw-loader!../sandboxes/visx-curve/Example';
 import packageJson from '../sandboxes/visx-curve/package.json';
+import Show from '../components/Show';
+import LinesSource from '!!raw-loader!../sandboxes/visx-curve/Example';
 
-const CurvesPage = () => {
+function CurvesPage() {
   return (
     <Show
       component={Lines}
@@ -15,5 +15,5 @@ const CurvesPage = () => {
       {LinesSource}
     </Show>
   );
-};
+}
 export default CurvesPage;

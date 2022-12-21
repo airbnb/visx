@@ -1,3 +1,5 @@
+/* eslint-disable no-redeclare */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { PickScaleConfigWithoutType, ScaleConfigWithoutType } from './types/ScaleConfig';
 import { DefaultThresholdInput, D3Scale, PickD3Scale } from './types/Scale';
 import { StringLike, DefaultOutput } from './types/Base';

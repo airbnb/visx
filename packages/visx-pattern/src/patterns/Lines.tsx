@@ -78,20 +78,18 @@ export default function Lines({
           fill={background}
         />
       )}
-      {orientations.map((o, i) => {
-        return (
-          <path
-            key={`visx-${id}-line-${o}-${i}`}
-            className={cx('visx-pattern-line', className)}
-            d={pathForOrientation({ orientation: o, height })}
-            stroke={stroke}
-            strokeWidth={strokeWidth}
-            strokeDasharray={strokeDasharray}
-            strokeLinecap={strokeLinecap}
-            shapeRendering={shapeRendering}
-          />
-        );
-      })}
+      {orientations.map((o, i) => (
+        <path
+          key={`visx-${id}-line-${o}-${i}`}
+          className={cx('visx-pattern-line', className)}
+          d={pathForOrientation({ orientation: o, height })}
+          stroke={stroke}
+          strokeWidth={strokeWidth}
+          strokeDasharray={strokeDasharray}
+          strokeLinecap={strokeLinecap}
+          shapeRendering={shapeRendering}
+        />
+      ))}
     </Pattern>
   );
 }

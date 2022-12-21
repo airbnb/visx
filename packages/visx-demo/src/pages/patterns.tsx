@@ -1,10 +1,10 @@
 import React from 'react';
-import Show from '../components/Show';
 import Patterns from '../sandboxes/visx-pattern/Example';
-import PatternsSource from '!!raw-loader!../sandboxes/visx-pattern/Example';
 import packageJson from '../sandboxes/visx-pattern/package.json';
+import Show from '../components/Show';
+import PatternsSource from '!!raw-loader!../sandboxes/visx-pattern/Example';
 
-const PatternsPage = () => {
+function PatternsPage() {
   return (
     <Show
       component={Patterns}
@@ -21,5 +21,5 @@ const PatternsPage = () => {
       {PatternsSource}
     </Show>
   );
-};
+}
 export default PatternsPage;

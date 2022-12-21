@@ -129,11 +129,11 @@ describe('<BarGroup />', () => {
       useEffect(() => {
         // checking for yScale ensures stack data is registered and stacks are rendered
         if (emit && yScale) {
-          // @ts-ignore not a React.MouseEvent
+          // @ts-expect-error not a React.MouseEvent
           emit('pointermove', new MouseEvent('pointermove'), XYCHART_EVENT_SOURCE);
           expect(showTooltip).toHaveBeenCalledTimes(2); // one per key
 
-          // @ts-ignore not a React.MouseEvent
+          // @ts-expect-error not a React.MouseEvent
           emit('pointerout', new MouseEvent('pointerout'), XYCHART_EVENT_SOURCE);
           expect(showTooltip).toHaveBeenCalled();
         }

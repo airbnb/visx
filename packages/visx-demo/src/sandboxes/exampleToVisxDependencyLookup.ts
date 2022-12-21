@@ -32,13 +32,13 @@ import splitLinePathPackageJson from './visx-shape-splitlinepath/package.json';
 import stackedAreasPackageJson from './visx-stacked-areas/package.json';
 import statsPackageJson from './visx-stats/package.json';
 import streamgraphPackageJson from './visx-streamgraph/package.json';
-import { packageJson as textPackageJson } from '../components/Gallery/TextTile';
 import thresholdPackageJson from './visx-threshold/package.json';
 import treePackageJson from './visx-tree/package.json';
 import treemapPackageJson from './visx-treemap/package.json';
 import voronoiPackageJson from './visx-voronoi/package.json';
 import wordcloudPackageJson from './visx-wordcloud/package.json';
 import zoomPackageJson from './visx-zoom-i/package.json';
+import { packageJson as textPackageJson } from '../components/Gallery/TextTile';
 
 import extractVisxDepsFromPackageJson from '../components/util/extractVisxDepsFromPackageJson';
 import { VisxPackage } from '../types';

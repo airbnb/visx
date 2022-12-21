@@ -1,10 +1,10 @@
 import React from 'react';
-import Show from '../components/Show';
 import BarStackHorizontal from '../sandboxes/visx-barstack-horizontal/Example';
-import BarStackHorizontalSource from '!!raw-loader!../sandboxes/visx-barstack-horizontal/Example';
 import packageJson from '../sandboxes/visx-barstack-horizontal/package.json';
+import Show from '../components/Show';
+import BarStackHorizontalSource from '!!raw-loader!../sandboxes/visx-barstack-horizontal/Example';
 
-const BarStackHorizontalPage = () => {
+function BarStackHorizontalPage() {
   return (
     <Show
       events
@@ -22,5 +22,5 @@ const BarStackHorizontalPage = () => {
       {BarStackHorizontalSource}
     </Show>
   );
-};
+}
 export default BarStackHorizontalPage;

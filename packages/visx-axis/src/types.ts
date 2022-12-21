@@ -1,5 +1,6 @@
-import { D3Scale, NumberLike, ScaleInput } from '@visx/scale';
+import { D3Scale, NumberLike, ScaleInput, ValueOf } from '@visx/scale';
 import { TextProps } from '@visx/text/lib/Text';
+import { ReactNode, SVGProps } from 'react';
 import Orientation from './constants/orientation';
 
 // In order to plot values on an axis, output of the scale must be number.
@@ -10,7 +11,7 @@ export type AxisScaleOutput = number | NumberLike | undefined;
 export type AxisScale<Output extends AxisScaleOutput = AxisScaleOutput> =
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   D3Scale<Output, any, any>;
-type LineProps = Omit<React.SVGProps<SVGLineElement>, 'to' | 'from' | 'ref'>;
+type LineProps = Omit<SVGProps<SVGLineElement>, 'to' | 'from' | 'ref'>;
 
 type FormattedValue = string | undefined;
 
@@ -69,7 +70,7 @@ export type CommonProps<Scale extends AxisScale> = {
   /** The number of ticks wanted for the axis (note this is approximate)  */
   numTicks?: number;
   /** Placement of the axis */
-  orientation?: Orientation;
+  orientation?: ValueOf<typeof Orientation>;
   /** Pixel padding to apply to axis sides. */
   rangePadding?: number | { start?: number; end?: number };
   /** The color for the stroke of the lines. */
@@ -83,9 +84,9 @@ export type CommonProps<Scale extends AxisScale> = {
   /** The class name applied to each tick group. */
   tickClassName?: string;
   /** Override the component used to render tick labels (instead of <Text /> from @visx/text). */
-  tickComponent?: (tickRendererProps: TickRendererProps) => React.ReactNode;
+  tickComponent?: (tickRendererProps: TickRendererProps) => ReactNode;
   /** Override the component used to render all tick lines and labels. */
-  ticksComponent?: (tickRendererProps: TicksRendererProps<Scale>) => React.ReactNode;
+  ticksComponent?: (tickRendererProps: TicksRendererProps<Scale>) => ReactNode;
   /** A [d3 formatter](https://github.com/d3/d3-scale/blob/master/README.md#continuous_tickFormat) for the tick text. */
   tickFormat?: TickFormatter<ScaleInput<Scale>>;
   /** A function that returns props for a given tick label. */
@@ -140,5 +141,5 @@ export type SharedAxisProps<Scale extends AxisScale> = CommonProps<Scale> & {
   /** A top pixel offset applied to the entire axis. */
   top?: number;
   /** For more control over rendering or to add event handlers to datum, pass a function as children. */
-  children?: (renderProps: AxisRendererProps<Scale>) => React.ReactNode;
+  children?: (renderProps: AxisRendererProps<Scale>) => ReactNode;
 };

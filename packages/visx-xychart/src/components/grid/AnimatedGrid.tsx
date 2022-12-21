@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unstable-nested-components */
 import React, { useMemo } from 'react';
 import AnimatedGridRows from '@visx/react-spring/lib/grid/AnimatedGridRows';
 import AnimatedGridColumns from '@visx/react-spring/lib/grid/AnimatedGridColumns';
@@ -17,13 +18,17 @@ export type AnimatedGridProps = Omit<
 
 export default function AnimatedGrid({ animationTrajectory, ...props }: AnimatedGridProps) {
   const RowsComponent = useMemo(
-    () => (rowProps: GridRowsProps<AxisScale>) =>
-      <AnimatedGridRows {...rowProps} animationTrajectory={animationTrajectory} />,
+    () =>
+      function RowsFC(rowProps: GridRowsProps<AxisScale>) {
+        return <AnimatedGridRows {...rowProps} animationTrajectory={animationTrajectory} />;
+      },
     [animationTrajectory],
   );
   const ColumnsComponent = useMemo(
-    () => (rowProps: GridColumnsProps<AxisScale>) =>
-      <AnimatedGridColumns {...rowProps} animationTrajectory={animationTrajectory} />,
+    () =>
+      function ColumnsFC(rowProps: GridColumnsProps<AxisScale>) {
+        return <AnimatedGridColumns {...rowProps} animationTrajectory={animationTrajectory} />;
+      },
     [animationTrajectory],
   );
   return (

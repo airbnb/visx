@@ -26,7 +26,7 @@ type Props = {
   height: number;
 };
 
-const Lines = ({ width, height }: Props) => {
+function Lines({ width, height }: Props) {
   // bounds
   const lineHeight = height / lineCount;
 
@@ -51,6 +51,6 @@ const Lines = ({ width, height }: Props) => {
         ))}
     </svg>
   );
-};
+}
 
 export default Lines;

@@ -65,13 +65,13 @@ export type HeatmapProps = {
 
 const defaultMargin = { top: 10, left: 20, right: 20, bottom: 110 };
 
-const Example = ({
+function Example({
   width,
   height,
   events = false,
   margin = defaultMargin,
   separation = 20,
-}: HeatmapProps) => {
+}: HeatmapProps) {
   // bounds
   const size =
     width > margin.left + margin.right ? width - margin.left - margin.right - separation : width;
@@ -156,6 +156,6 @@ const Example = ({
       </Group>
     </svg>
   );
-};
+}
 
 export default Example;

@@ -19,11 +19,13 @@ const mocked3Cloud = {
   stop: jest.fn(),
 };
 
-jest.mock('d3-cloud', () => {
-  return function d3cloud() {
-    return mocked3Cloud;
-  };
-});
+jest.mock(
+  'd3-cloud',
+  () =>
+    function d3cloud() {
+      return mocked3Cloud;
+    },
+);
 
 describe('<Wordcloud />', () => {
   afterEach(() => {

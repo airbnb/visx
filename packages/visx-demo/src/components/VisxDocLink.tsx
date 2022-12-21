@@ -10,13 +10,13 @@ type Props = {
   packageName: string;
 };
 
-const VisxDocLink = ({ packageName }: Props) => {
+function VisxDocLink({ packageName }: Props) {
   const url = getDocUrlFromVXPackageName(packageName);
   return url ? (
     <Link href={url}>
       <a>{packageName}</a>
     </Link>
   ) : null;
-};
+}
 
 export default VisxDocLink;

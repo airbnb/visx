@@ -24,7 +24,7 @@ module.exports = {
   stylesheets: [path.join(__dirname, '/public/static/doc_styles.css')],
 
   // happo snapshots to include
-  include: 'happo/*.@(ts|tsx)',
+  include: 'src/happo/*.@(ts|tsx)',
 
   // https://github.com/happo/happo.io/blob/3cba9a0a/README.md#comparethreshold-experimental
   compareThreshold: 0.008,
@@ -38,7 +38,7 @@ module.exports = {
 
   // extend next's webpack config so examples can be used directly
   // this is largely taken from the happo storybook plugin
-  customizeWebpackConfig: async config => {
+  customizeWebpackConfig: async (config) => {
     const base = await getWebpackConfig(__dirname, {
       config: {
         devIndicators: {},
@@ -57,7 +57,7 @@ module.exports = {
     config.plugins = base.plugins;
     config.resolve = base.resolve;
     config.resolveLoader = base.resolveLoader;
-    Object.keys(config.resolve.alias).forEach(key => {
+    Object.keys(config.resolve.alias).forEach((key) => {
       if (!config.resolve.alias[key]) {
         delete config.resolve.alias[key];
       }

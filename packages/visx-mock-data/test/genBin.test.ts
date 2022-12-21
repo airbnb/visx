@@ -14,13 +14,13 @@ describe('generators/genBin', () => {
 
   it('should take optional bin function', () => {
     const bin = genBin(1, (i) => i);
-    expect(bin[0].bin).toEqual(0);
+    expect(bin[0].bin).toBe(0);
   });
 
   it('should take an optional count function', () => {
     const bin = genBin(1, undefined, (i) => i);
-    expect(bin[0].count).toEqual(0);
-    expect(bin[0].bin).toEqual(0);
+    expect(bin[0].count).toBe(0);
+    expect(bin[0].bin).toBe(0);
   });
 
   it('should support seeded randomness', () => {

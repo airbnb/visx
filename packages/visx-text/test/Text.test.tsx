@@ -90,7 +90,7 @@ describe('<Text />', () => {
     );
 
     const text = container.querySelector('tspan');
-    expect(text?.textContent).toEqual('0');
+    expect(text?.textContent).toBe('0');
   });
 
   it('Render 0 success when not specify the width', () => {
@@ -100,7 +100,7 @@ describe('<Text />', () => {
       </Text>,
     );
     const text = container.querySelector('tspan');
-    expect(text?.textContent).toEqual('0');
+    expect(text?.textContent).toBe('0');
   });
 
   it('Render text when x or y is a percentage', () => {
@@ -110,7 +110,7 @@ describe('<Text />', () => {
       </Text>,
     );
     const text = container.querySelector('tspan');
-    expect(text?.textContent).toEqual('anything');
+    expect(text?.textContent).toBe('anything');
   });
 
   it("Don't Render text when x or y is NaN", () => {
@@ -132,7 +132,7 @@ describe('<Text />', () => {
     );
 
     const text = container.querySelector('tspan');
-    expect(text?.textContent).toEqual('0');
+    expect(text?.textContent).toBe('0');
   });
 
   it('Applies transform if scaleToFit is set', () => {

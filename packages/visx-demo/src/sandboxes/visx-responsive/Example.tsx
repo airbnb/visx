@@ -8,19 +8,21 @@ export type ResponsiveProps = {
   height: number;
 };
 
-const Nav = () => (
-  <ul>
-    <li>
-      <span role="img" aria-label="robot">
-        🤖
-      </span>
-    </li>
-    <li>Home</li>
-    <li>Profile</li>
-    <li>Favorites</li>
-    <li>Settings</li>
-  </ul>
-);
+function Nav() {
+  return (
+    <ul>
+      <li>
+        <span role="img" aria-label="robot">
+          🤖
+        </span>
+      </li>
+      <li>Home</li>
+      <li>Profile</li>
+      <li>Favorites</li>
+      <li>Settings</li>
+    </ul>
+  );
+}
 
 export default function Example({ width, height }: ResponsiveProps) {
   const [showSidebar, setShowSidebar] = useState<boolean>(true);

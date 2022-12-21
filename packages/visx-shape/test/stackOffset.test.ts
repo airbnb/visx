@@ -12,7 +12,7 @@ describe('STACK_OFFSETS', () => {
 
 describe('stackOffset()', () => {
   test('it should default to d3.stackOffsetNone', () => {
-    // @ts-ignore allow invalid input
+    // @ts-expect-error allow invalid input
     const offset = stackOffset('x');
     expect(offset).toEqual(STACK_OFFSETS.none);
   });

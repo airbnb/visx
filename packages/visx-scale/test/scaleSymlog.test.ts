@@ -15,11 +15,11 @@ describe('scaleSymlog', () => {
   describe('set clamp', () => {
     it('true', () => {
       const scale = scaleSymlog({ clamp: true });
-      expect(scale(10)).toEqual(1);
+      expect(scale(10)).toBe(1);
     });
     it('false', () => {
       const scale = scaleSymlog<number>({ clamp: false });
-      expect(scale(10)?.toFixed(2)).toEqual('3.46');
+      expect(scale(10)?.toFixed(2)).toBe('3.46');
     });
   });
   it('set constant', () => {
@@ -51,12 +51,10 @@ describe('scaleSymlog', () => {
   });
   describe('set round', () => {
     it('true', () => {
-      expect(scaleSymlog({ domain: [1, 3], round: true })(2)).toEqual(1);
+      expect(scaleSymlog({ domain: [1, 3], round: true })(2)).toBe(1);
     });
     it('false', () => {
-      expect((scaleSymlog({ domain: [1, 3], round: false })(2) as number).toFixed(3)).toEqual(
-        '0.585',
-      );
+      expect((scaleSymlog({ domain: [1, 3], round: false })(2) as number).toFixed(3)).toBe('0.585');
     });
   });
 });

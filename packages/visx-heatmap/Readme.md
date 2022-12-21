@@ -44,9 +44,9 @@ However, you're welcome to use your own structure by defining `x`, `y`, `z` acce
 
 ```js
 // Example accessors
-const x = d => d.myBin;
-const y = d => d.myBins;
-const z = d => d.myCount;
+const x = (d) => d.myBin;
+const y = (d) => d.myBins;
+const z = (d) => d.myCount;
 
 // Example scale with an accessors
 const xScale = scaleLinear({

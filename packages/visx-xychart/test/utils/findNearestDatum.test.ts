@@ -161,6 +161,6 @@ describe('findNearestGroupDatum', () => {
         scaleBand({ domain: [params.dataKey], range: [0, 10] }),
         true,
       )!.distanceY,
-    ).toEqual(0);
+    ).toBe(0);
   });
 });

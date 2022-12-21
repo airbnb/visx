@@ -52,15 +52,14 @@ specify multiple packages to build this way, and optionally append `--watch` to 
 for changes.
 
 ```sh
-# build the specified package(s) as cjs version
-# example `yarn build:workspaces --workspaces=@visx/shape`
-yarn build:workspaces --workspaces=@visx/package[,@visx/package,...]
-
-# build the esm version (the @visx/demo next server sources these files)
-yarn build:workspaces --workspaces=@visx/package[,@visx/package,...] --esm
+# build the specified package(s) as cjs + esm versions
+# example `PKG=@visx/axis yarn babel:pkg`
+PKG=@visx/{package[,package]} yarn babel:pkg
 
 # generate d.ts(definition files) the specified package(s)
-yarn type:workspaces --workspaces=@visx/package[,@visx/package,...]
+# and rebuild any other packages the specified package(s) depend on
+# example `PKG=@visx/axis yarn type:pkg`
+PKG=@visx/{package[,package]} yarn type:pkg
 ```
 
 from the `visx` monorepo root to re-build the package with your changes.

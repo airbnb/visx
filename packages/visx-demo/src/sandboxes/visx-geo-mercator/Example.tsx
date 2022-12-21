@@ -19,7 +19,7 @@ interface FeatureShape {
   properties: { name: string };
 }
 
-// @ts-ignore
+// @ts-expect-error
 const world = topojson.feature(topology, topology.objects.units) as {
   type: 'FeatureCollection';
   features: FeatureShape[];
@@ -33,7 +33,7 @@ const color = scaleQuantize({
   range: ['#ffb01d', '#ffa020', '#ff9221', '#ff8424', '#ff7425', '#fc5e2f', '#f94b3a', '#f63a48'],
 });
 
-export default ({ width, height, events = false }: GeoMercatorProps) => {
+export default function ({ width, height, events = false }: GeoMercatorProps) {
   const centerX = width / 2;
   const centerY = height / 2;
   const scale = (width / 630) * 100;
@@ -66,4 +66,4 @@ export default ({ width, height, events = false }: GeoMercatorProps) => {
       </Mercator>
     </svg>
   );
-};
+}

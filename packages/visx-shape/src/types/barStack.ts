@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import { BarGroupBar } from './barGroup';
 import { BaseStackProps, StackKey } from './stack';
 import { PositionScale } from './base';
@@ -50,5 +51,5 @@ export type BaseBarStackProps<
   /** Returns the desired color for a bar with a given key and index. */
   color: (key: Key, index: number) => string;
   /** Override render function which is passed the configured stack generator as input. */
-  children?: (stacks: BarStack<Datum, Key>[]) => React.ReactNode;
+  children?: (stacks: BarStack<Datum, Key>[]) => ReactNode;
 };

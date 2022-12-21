@@ -29,7 +29,7 @@ describe('<BarStackHorizontal />', () => {
         keys={[]}
       />,
     );
-    expect(wrapper.prop('className')).toEqual('visx-bar-stack-horizontal');
+    expect(wrapper.prop('className')).toBe('visx-bar-stack-horizontal');
   });
 
   test('it should set className prop', () => {
@@ -46,7 +46,7 @@ describe('<BarStackHorizontal />', () => {
         keys={[]}
       />,
     );
-    expect(wrapper.prop('className')).toEqual('visx-bar-stack-horizontal test');
+    expect(wrapper.prop('className')).toBe('visx-bar-stack-horizontal test');
   });
 
   test('it should set top & left props', () => {
@@ -63,7 +63,7 @@ describe('<BarStackHorizontal />', () => {
         keys={[]}
       />,
     );
-    expect(wrapper.prop('top')).toEqual(2);
-    expect(wrapper.prop('left')).toEqual(3);
+    expect(wrapper.prop('top')).toBe(2);
+    expect(wrapper.prop('left')).toBe(3);
   });
 });

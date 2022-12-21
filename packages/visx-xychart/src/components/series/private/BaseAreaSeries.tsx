@@ -62,12 +62,12 @@ function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
     () => (x0Accessor ? getScaledValueFactory(xScale, x0Accessor) : undefined),
     [xScale, x0Accessor],
   );
-  const getScaledX = useCallback(getScaledValueFactory(xScale, xAccessor), [xScale, xAccessor]);
+  const getScaledX = useMemo(() => getScaledValueFactory(xScale, xAccessor), [xScale, xAccessor]);
   const getScaledY0 = useMemo(
     () => (y0Accessor ? getScaledValueFactory(yScale, y0Accessor) : undefined),
     [yScale, y0Accessor],
   );
-  const getScaledY = useCallback(getScaledValueFactory(yScale, yAccessor), [yScale, yAccessor]);
+  const getScaledY = useMemo(() => getScaledValueFactory(yScale, yAccessor), [yScale, yAccessor]);
   const isDefined = useCallback(
     (d: Datum) => isValidNumber(xScale(xAccessor(d))) && isValidNumber(yScale(yAccessor(d))),
     [xScale, xAccessor, yScale, yAccessor],

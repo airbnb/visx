@@ -70,7 +70,7 @@ import { ParentSize } from '@visx/responsive';
 
 let chartToRender = (
   <ParentSize>
-    {parent => (
+    {(parent) => (
       <MySuperCoolVisxChart
         parentWidth={parent.width}
         parentHeight={parent.height}
@@ -111,7 +111,8 @@ let chartToRender = (
 
 ##### ⚠️ `ResizeObserver` dependency
 
-If you don't need a polyfill for `ResizeObserver` or are already including it in your bundle, you should use `ParentSizeModern` and `withParentSizeModern` which doesn't include the polyfill.
+If you don't need a polyfill for `ResizeObserver` or are already including it in your bundle, you
+should use `ParentSizeModern` and `withParentSizeModern` which doesn't include the polyfill.
 
 ## Installation
 

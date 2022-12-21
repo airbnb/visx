@@ -1,10 +1,10 @@
 import React from 'react';
-import Show from '../components/Show';
 import Glyphs from '../sandboxes/visx-glyph/Example';
-import GlyphsSource from '!!raw-loader!../sandboxes/visx-glyph/Example';
 import packageJson from '../sandboxes/visx-glyph/package.json';
+import Show from '../components/Show';
+import GlyphsSource from '!!raw-loader!../sandboxes/visx-glyph/Example';
 
-const GlyphsPage = () => {
+function GlyphsPage() {
   return (
     <Show
       component={Glyphs}
@@ -15,5 +15,5 @@ const GlyphsPage = () => {
       {GlyphsSource}
     </Show>
   );
-};
+}
 export default GlyphsPage;

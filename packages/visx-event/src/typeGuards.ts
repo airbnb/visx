@@ -19,12 +19,12 @@ export function isSVGGraphicsElement(elem?: Element | null): elem is SVGGraphics
 }
 
 // functional definition of TouchEvent
-export function isTouchEvent(event?: EventType): event is TouchEvent | React.TouchEvent {
+export function isTouchEvent(event?: EventType): event is TouchEvent {
   return !!event && 'changedTouches' in event;
 }
 
 // functional definition of MouseEvent
-export function isMouseEvent(event?: EventType): event is MouseEvent | React.MouseEvent {
+export function isMouseEvent(event?: EventType): event is MouseEvent {
   return !!event && 'clientX' in event;
 }
 

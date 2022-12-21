@@ -91,8 +91,7 @@ export default function Legend<Scale extends AnyD3Scale>({
 }: LegendProps<Scale>) {
   // `Scale extends ScaleType` constraint is tricky
   //  could consider removing `scale` altogether in the future and making `domain: Datum[]` required
-  // @ts-ignore doesn't like `.domain()`
-  const domain = inputDomain || (('domain' in scale ? scale.domain() : []) as Datum[]);
+  const domain = inputDomain || ('domain' in scale ? scale.domain() : []);
   const labelFormatter = labelTransform({ scale, labelFormat });
   const labels = domain.map(labelFormatter);
   if (children) return <>{children(labels)}</>;

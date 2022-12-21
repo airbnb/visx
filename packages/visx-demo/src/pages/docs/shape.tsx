@@ -1,6 +1,6 @@
 import React from 'react';
 import ShapeReadme from '!!raw-loader!../../../../visx-shape/Readme.md';
-import * as Shapes from '../../../../visx-shape/src';
+import * as Shapes from '@visx/shape';
 import DocPage from '../../components/DocPage';
 import LineRadialTile from '../../components/Gallery/LineRadialTile';
 import PiesTile from '../../components/Gallery/PiesTile';
@@ -13,9 +13,9 @@ import RadarTile from '../../components/Gallery/RadarTile';
 import LinkTypesTile from '../../components/Gallery/LinkTypesTile';
 
 const components = Object.values(Shapes).sort((a, b) =>
-  // @ts-ignore TS doesn't know about docgenInfo
+  // @ts-expect-errorTS doesn't know about docgenInfo
   (a?.__docgenInfo?.displayName ?? '').localeCompare(
-    // @ts-ignore TS doesn't know about docgenInfo
+    // @ts-expect-errorTS doesn't know about docgenInfo
     b?.__docgenInfo?.displayName ?? '',
   ),
 );
@@ -32,7 +32,9 @@ const examples = [
   LinkTypesTile,
 ];
 
-const ShapeDocs = () => (
-  <DocPage components={components} examples={examples} readme={ShapeReadme} visxPackage="shape" />
-);
+function ShapeDocs() {
+  return (
+    <DocPage components={components} examples={examples} readme={ShapeReadme} visxPackage="shape" />
+  );
+}
 export default ShapeDocs;

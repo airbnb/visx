@@ -6,18 +6,24 @@
   </a>
 </p>
 
-SVG `Annotation`s enable you to label points, thresholds, or regions of a visualization to provide additional context to for your chart consumer. This package is heavily inspired by [Susie Lu](https://github.com/susielu/)'s [`react-annotation`](https://github.com/susielu/react-annotation) library.
+SVG `Annotation`s enable you to label points, thresholds, or regions of a visualization to provide
+additional context to for your chart consumer. This package is heavily inspired by
+[Susie Lu](https://github.com/susielu/)'s
+[`react-annotation`](https://github.com/susielu/react-annotation) library.
 
 Each annotation consists of three (optional) parts:
 
-1) `Subject` (`CircleSubject`, `LineSubject`, more 🔜) – what part of a chart is being annotated (point, line, region)
+1. `Subject` (`CircleSubject`, `LineSubject`, more 🔜) – what part of a chart is being annotated
+   (point, line, region)
 
-2) `Label` – the text component for the annotation. Handles SVG text wrapping using `@visx/text`, and supports `title` and `subtitle` customization as well as vertical & horizontal anchors / alignment
+2. `Label` – the text component for the annotation. Handles SVG text wrapping using `@visx/text`,
+   and supports `title` and `subtitle` customization as well as vertical & horizontal anchors /
+   alignment
 
-3) `Connector` – line connecting a subject and label
+3. `Connector` – line connecting a subject and label
 
-
-The `Annotation` or `EditableAnnotation` component wrappers allow you to compose these components and simplify their individual positioning:
+The `Annotation` or `EditableAnnotation` component wrappers allow you to compose these components
+and simplify their individual positioning:
 
 ```tsx
 <EditableAnnotation
@@ -33,7 +39,8 @@ The `Annotation` or `EditableAnnotation` component wrappers allow you to compose
 </EditableAnnotation>
 ```
 
-Components can also be used in isolation, in which case you must specify exact positions for each item:
+Components can also be used in isolation, in which case you must specify exact positions for each
+item:
 
 ```tsx
 () => (
@@ -47,8 +54,8 @@ Components can also be used in isolation, in which case you must specify exact p
 
 ##### ⚠️ `ResizeObserver` dependency
 
-The `Label` component relies on `ResizeObserver`s for auto-sizing. If you need a polyfill, you can either polute the `window` object or inject it cleanly through props:
-
+The `Label` component relies on `ResizeObserver`s for auto-sizing. If you need a polyfill, you can
+either polute the `window` object or inject it cleanly through props:
 
 ```tsx
 import { ResizeObserver } from 'your-favorite-polyfill';
@@ -56,7 +63,6 @@ import { ResizeObserver } from 'your-favorite-polyfill';
 function App() {
   return <Label resizeObserverPolyfill={ResizeObserver} {...} />
 ```
-
 
 ## Installation
 

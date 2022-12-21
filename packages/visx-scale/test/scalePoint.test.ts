@@ -18,23 +18,23 @@ describe('scalePoint', () => {
     expect(scalePoint({ range: [1, 2], reverse: true }).range()).toEqual([2, 1]);
   });
   it('set align', () => {
-    expect(scalePoint({ align: 0.5 }).align()).toEqual(0.5);
+    expect(scalePoint({ align: 0.5 }).align()).toBe(0.5);
   });
   it('set padding', () => {
-    expect(scalePoint({ padding: 0.5 }).padding()).toEqual(0.5);
+    expect(scalePoint({ padding: 0.5 }).padding()).toBe(0.5);
   });
   describe('set round', () => {
     it('true', () => {
       const scale = scalePoint({ domain: ['a', 'b', 'c'], range: [1.1, 3.5], round: true });
-      expect(scale('a')).toEqual(1);
-      expect(scale('b')).toEqual(2);
-      expect(scale('c')).toEqual(3);
+      expect(scale('a')).toBe(1);
+      expect(scale('b')).toBe(2);
+      expect(scale('c')).toBe(3);
     });
     it('false', () => {
       const scale = scalePoint({ domain: ['a', 'b', 'c'], range: [1.1, 3.5], round: false });
-      expect(scale('a')).toEqual(1.1);
-      expect(scale('b')).toEqual(2.3);
-      expect(scale('c')).toEqual(3.5);
+      expect(scale('a')).toBe(1.1);
+      expect(scale('b')).toBe(2.3);
+      expect(scale('c')).toBe(3.5);
     });
   });
 });

@@ -13,16 +13,16 @@ describe('scalePower()', () => {
     expect(scalePower({ range: [1, 2] }).range()).toEqual(range);
   });
   it('set exponent', () => {
-    expect(scalePower({ exponent: 3 }).exponent()).toEqual(3);
+    expect(scalePower({ exponent: 3 }).exponent()).toBe(3);
   });
   describe('set clamp', () => {
     it('true', () => {
       const scale = scalePower({ clamp: true });
-      expect(scale(10)).toEqual(1);
+      expect(scale(10)).toBe(1);
     });
     it('false', () => {
       const scale = scalePower({ clamp: false });
-      expect(scale(10)).toEqual(10);
+      expect(scale(10)).toBe(10);
     });
   });
   it('set (color) interpolate', () => {
@@ -31,7 +31,7 @@ describe('scalePower()', () => {
       range: ['#ff0000', '#000000'],
       interpolate: 'lab',
     });
-    expect(scale(5)).toEqual('rgb(122, 27, 11)');
+    expect(scale(5)).toBe('rgb(122, 27, 11)');
   });
   describe('set nice', () => {
     it('true', () => {
@@ -46,13 +46,13 @@ describe('scalePower()', () => {
   describe('set round', () => {
     it('true', () => {
       const scale = scalePower({ domain: [0, 10], range: [0, 10], round: true });
-      expect(scale(2.2)).toEqual(2);
-      expect(scale(2.6)).toEqual(3);
+      expect(scale(2.2)).toBe(2);
+      expect(scale(2.6)).toBe(3);
     });
     it('false', () => {
       const scale = scalePower({ domain: [0, 10], range: [0, 10], round: false });
-      expect(scale(2.2)).toEqual(2.2);
-      expect(scale(2.6)).toEqual(2.6);
+      expect(scale(2.2)).toBe(2.2);
+      expect(scale(2.6)).toBe(2.6);
     });
   });
   describe('set zero', () => {

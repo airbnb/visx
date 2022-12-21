@@ -13,12 +13,14 @@ export default function genBins(
   bin?: BinFunction,
   count?: CountFunction,
 ): Bins[] {
-  return new Array(length).fill(1).reduce((arr, _, i) => {
-    return arr.concat([
-      {
-        bin: i,
-        bins: genBin(height, bin, count),
-      },
-    ]);
-  }, []);
+  return new Array(length).fill(1).reduce(
+    (arr, _, i) =>
+      arr.concat([
+        {
+          bin: i,
+          bins: genBin(height, bin, count),
+        },
+      ]),
+    [],
+  );
 }

@@ -1,4 +1,4 @@
-import React, { useContext, useCallback, useMemo } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { AxisScale } from '@visx/axis';
 import DataContext from '../../../context/DataContext';
 import { GlyphProps, GlyphsProps, SeriesProps } from '../../../types';
@@ -44,8 +44,8 @@ export function BaseGlyphSeries<
   yScale,
 }: BaseGlyphSeriesProps<XScale, YScale, Datum> & WithRegisteredDataProps<XScale, YScale, Datum>) {
   const { colorScale, theme, horizontal } = useContext(DataContext);
-  const getScaledX = useCallback(getScaledValueFactory(xScale, xAccessor), [xScale, xAccessor]);
-  const getScaledY = useCallback(getScaledValueFactory(yScale, yAccessor), [yScale, yAccessor]);
+  const getScaledX = useMemo(() => getScaledValueFactory(xScale, xAccessor), [xScale, xAccessor]);
+  const getScaledY = useMemo(() => getScaledValueFactory(yScale, yAccessor), [yScale, yAccessor]);
   const color = colorScale?.(dataKey) ?? theme?.colors?.[0] ?? '#222';
 
   const ownEventSourceKey = `${GLYPHSERIES_EVENT_SOURCE}-${dataKey}`;

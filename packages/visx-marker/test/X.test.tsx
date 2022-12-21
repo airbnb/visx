@@ -12,6 +12,6 @@ describe('<MarkerX />', () => {
   test('it should render a <MarkerCross /> rotated 45deg', () => {
     const cross = Wrapper().find(MarkerCross);
     expect(cross).toHaveLength(1);
-    expect(cross.prop('orient')).toEqual(45);
+    expect(cross.prop('orient')).toBe(45);
   });
 });

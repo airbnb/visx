@@ -1,3 +1,5 @@
+import { ReactNode, Ref } from 'react';
+
 export type AccessorProps<Link, Node> = {
   /** Given a node, returns its x coordinate. */
   x?: (node: Node) => number;
@@ -25,11 +27,11 @@ export type SharedLinkProps<Link> = {
   /** className applied to path element. */
   className?: string;
   /** React ref to the path element. */
-  innerRef?: React.Ref<SVGPathElement>;
+  innerRef?: Ref<SVGPathElement>;
   /** Path generator, given a link returns a path d attribute string */
   path?: PathType<Link>;
   /** Render function override which is passed the configured path generator as input. */
-  children?: (args: { path: PathType<Link> }) => React.ReactNode;
+  children?: (args: { path: PathType<Link> }) => ReactNode;
   /** Datum for which to render a link. */
   data: Link;
 };

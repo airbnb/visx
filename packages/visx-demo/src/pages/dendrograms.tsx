@@ -1,10 +1,10 @@
 import React from 'react';
-import Show from '../components/Show';
 import Dendrograms from '../sandboxes/visx-dendrogram/Example';
-import DendrogramsSource from '!!raw-loader!../sandboxes/visx-dendrogram/Example';
 import packageJson from '../sandboxes/visx-dendrogram/package.json';
+import Show from '../components/Show';
+import DendrogramsSource from '!!raw-loader!../sandboxes/visx-dendrogram/Example';
 
-const DendrogramsPage = () => {
+function DendrogramsPage() {
   return (
     <Show
       events
@@ -22,5 +22,5 @@ const DendrogramsPage = () => {
       {DendrogramsSource}
     </Show>
   );
-};
+}
 export default DendrogramsPage;

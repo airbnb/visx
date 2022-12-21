@@ -9,12 +9,12 @@ describe('<PatternHexagons />', () => {
   });
 
   test('it should require an id prop', () => {
-    // @ts-ignore allow invalid props
+    // @ts-expect-error allow invalid props
     expect(() => shallow(<PatternHexagons width={4} height={4} />)).toThrow();
   });
 
   test('it should require a height prop', () => {
-    // @ts-ignore allow invalid props
+    // @ts-expect-error allow invalid props
     expect(() => shallow(<PatternHexagons id="test" width={4} />)).toThrow();
   });
 });

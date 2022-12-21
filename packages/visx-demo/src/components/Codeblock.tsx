@@ -6,15 +6,17 @@ import 'prismjs/components/prism-jsx.min';
 import 'prismjs/components/prism-typescript.min';
 import 'prismjs/components/prism-tsx.min';
 
-const Lines = ({ lines }: { lines: number[] }) => (
-  <span aria-hidden="true" className="line-numbers-rows">
-    {lines.map((_, i) => (
-      <span key={`line-number-${lines.length}-${i}`} />
-    ))}
-  </span>
-);
+function Lines({ lines }: { lines: number[] }) {
+  return (
+    <span aria-hidden="true" className="line-numbers-rows">
+      {lines.map((_, i) => (
+        <span key={`line-number-${lines.length}-${i}`} />
+      ))}
+    </span>
+  );
+}
 
-export default ({ children }: { children: string }) => {
+export default function ({ children }: { children: string }) {
   const match = children.match(/\n(?!$)/g);
   const linesNum = match ? match.length + 1 : 1;
   const lines: number[] = new Array(linesNum + 1).fill(1);
@@ -52,4 +54,4 @@ export default ({ children }: { children: string }) => {
       `}</style>
     </pre>
   );
-};
+}

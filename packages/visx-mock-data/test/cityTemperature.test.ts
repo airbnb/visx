@@ -15,6 +15,6 @@ describe('mocks/cityTemperature', () => {
     expect(data[0]['New York']).toBeDefined();
     expect(data[0]['San Francisco']).toBeDefined();
     expect(data[0].Austin).toBeDefined();
-    expect(typeof data[0]['New York']).toEqual('string');
+    expect(typeof data[0]['New York']).toBe('string');
   });
 });

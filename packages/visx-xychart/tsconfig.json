@@ -1,0 +1,55 @@
+{
+  "compilerOptions": {
+    "declarationDir": "lib",
+    "outDir": "lib",
+    "rootDir": "src"
+  },
+  "exclude": [
+    "lib",
+    "test"
+  ],
+  "extends": "../../tsconfig.options.json",
+  "include": [
+    "src/**/*",
+    "types/**/*",
+    "../../types/**/*"
+  ],
+  "references": [
+    {
+      "path": "../visx-annotation"
+    },
+    {
+      "path": "../visx-axis"
+    },
+    {
+      "path": "../visx-event"
+    },
+    {
+      "path": "../visx-glyph"
+    },
+    {
+      "path": "../visx-grid"
+    },
+    {
+      "path": "../visx-react-spring"
+    },
+    {
+      "path": "../visx-responsive"
+    },
+    {
+      "path": "../visx-scale"
+    },
+    {
+      "path": "../visx-shape"
+    },
+    {
+      "path": "../visx-text"
+    },
+    {
+      "path": "../visx-tooltip"
+    },
+    {
+      "path": "../visx-voronoi"
+    }
+  ]
+}

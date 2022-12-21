@@ -10,7 +10,7 @@ export default function useStateWithCallback<State>(
   initialState: State,
 ): [State, SetStateWithCallback<State>] {
   const [state, setState] = useState(initialState);
-  const callbackRef = useRef<null | ((state: State) => void)>(null);
+  const callbackRef = useRef<null | ((s: State) => void)>(null);
 
   const setStateCallback = useCallback<SetStateWithCallback<State>>(
     (nextState, callback) => {

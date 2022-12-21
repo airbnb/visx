@@ -42,7 +42,7 @@ export type PolygonProps = {
   margin?: typeof defaultMargin;
 };
 
-export default ({ width, height, margin = defaultMargin }: PolygonProps) => {
+export default function ({ width, height, margin = defaultMargin }: PolygonProps) {
   yScale.rangeRound([0, height - margin.top - margin.bottom]);
   const centerX = (width - margin.left - margin.right) / 2;
   return (
@@ -65,4 +65,4 @@ export default ({ width, height, margin = defaultMargin }: PolygonProps) => {
       ))}
     </svg>
   );
-};
+}

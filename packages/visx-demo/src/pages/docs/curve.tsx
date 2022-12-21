@@ -5,5 +5,7 @@ import CurvesTile from '../../components/Gallery/CurvesTile';
 
 const examples = [CurvesTile];
 
-const CurveDocs = () => <DocPage readme={CurveReadme} examples={examples} visxPackage="curve" />;
+function CurveDocs() {
+  return <DocPage readme={CurveReadme} examples={examples} visxPackage="curve" />;
+}
 export default CurveDocs;

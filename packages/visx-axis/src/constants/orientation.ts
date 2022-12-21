@@ -7,6 +7,6 @@ const Orientation = {
   bottom: 'bottom',
 } as const;
 
-type Orientation = ValueOf<typeof Orientation>;
+export type OrientationType = ValueOf<typeof Orientation>;
 
 export default Orientation;

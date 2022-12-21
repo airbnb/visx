@@ -1,0 +1,112 @@
+{
+  "compilerOptions": {
+    "declarationDir": "lib",
+    "outDir": "lib",
+    "rootDir": "src"
+  },
+  "exclude": [
+    "lib",
+    "test"
+  ],
+  "extends": "../../tsconfig.options.json",
+  "include": [
+    "src/**/*",
+    "types/**/*",
+    "../../types/**/*"
+  ],
+  "references": [
+    {
+      "path": "../visx-annotation"
+    },
+    {
+      "path": "../visx-axis"
+    },
+    {
+      "path": "../visx-bounds"
+    },
+    {
+      "path": "../visx-brush"
+    },
+    {
+      "path": "../visx-clip-path"
+    },
+    {
+      "path": "../visx-curve"
+    },
+    {
+      "path": "../visx-drag"
+    },
+    {
+      "path": "../visx-event"
+    },
+    {
+      "path": "../visx-geo"
+    },
+    {
+      "path": "../visx-glyph"
+    },
+    {
+      "path": "../visx-gradient"
+    },
+    {
+      "path": "../visx-grid"
+    },
+    {
+      "path": "../visx-group"
+    },
+    {
+      "path": "../visx-heatmap"
+    },
+    {
+      "path": "../visx-hierarchy"
+    },
+    {
+      "path": "../visx-legend"
+    },
+    {
+      "path": "../visx-marker"
+    },
+    {
+      "path": "../visx-mock-data"
+    },
+    {
+      "path": "../visx-network"
+    },
+    {
+      "path": "../visx-pattern"
+    },
+    {
+      "path": "../visx-point"
+    },
+    {
+      "path": "../visx-responsive"
+    },
+    {
+      "path": "../visx-scale"
+    },
+    {
+      "path": "../visx-shape"
+    },
+    {
+      "path": "../visx-text"
+    },
+    {
+      "path": "../visx-threshold"
+    },
+    {
+      "path": "../visx-tooltip"
+    },
+    {
+      "path": "../visx-voronoi"
+    },
+    {
+      "path": "../visx-wordcloud"
+    },
+    {
+      "path": "../visx-xychart"
+    },
+    {
+      "path": "../visx-zoom"
+    }
+  ]
+}

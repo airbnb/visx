@@ -34,9 +34,10 @@ export default function BaseAxis<Scale extends AxisScale>({
     [theme, orientation],
   );
 
+  const maybeTickLabelProps = props.tickLabelProps;
   const tickLabelProps = useMemo<TickLabelProps<ScaleInput<Scale>> | undefined>(
     () =>
-      props.tickLabelProps || axisStyles // construct from props + theme if possible
+      maybeTickLabelProps || axisStyles // construct from props + theme if possible
         ? (value, index, values) =>
             // by default, wrap vertical-axis tick labels within the allotted margin space
             // this does not currently account for axis label
@@ -46,10 +47,10 @@ export default function BaseAxis<Scale extends AxisScale>({
                 orientation === 'left' || orientation === 'right'
                   ? margin?.[orientation]
                   : undefined,
-              ...props.tickLabelProps?.(value, index, values),
+              ...maybeTickLabelProps?.(value, index, values),
             })
         : undefined,
-    [props.tickLabelProps, axisStyles, orientation, margin],
+    [maybeTickLabelProps, axisStyles, orientation, margin],
   );
 
   const topOffset =

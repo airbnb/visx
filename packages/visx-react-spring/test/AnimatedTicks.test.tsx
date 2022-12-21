@@ -29,7 +29,7 @@ describe('AnimatedTicks', () => {
       />,
     );
 
-    expect(wrapper.text()).toEqual('Test Component');
+    expect(wrapper.text()).toBe('Test Component');
   });
 
   it('should not throw', () => {

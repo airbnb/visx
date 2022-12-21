@@ -1,10 +1,10 @@
 import React from 'react';
-import Show from '../components/Show';
 import Heatmaps from '../sandboxes/visx-heatmap/Example';
-import HeatmapsSource from '!!raw-loader!../sandboxes/visx-heatmap/Example';
 import packageJson from '../sandboxes/visx-heatmap/package.json';
+import Show from '../components/Show';
+import HeatmapsSource from '!!raw-loader!../sandboxes/visx-heatmap/Example';
 
-const HeatmapsPage = () => {
+function HeatmapsPage() {
   return (
     <Show
       events
@@ -22,5 +22,5 @@ const HeatmapsPage = () => {
       {HeatmapsSource}
     </Show>
   );
-};
+}
 export default HeatmapsPage;

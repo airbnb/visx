@@ -21,7 +21,7 @@ describe('<VoilinPlot />', () => {
     const wrapper = shallow(
       <ViolinPlot data={binData} left={3} width={100} valueScale={valueScale} />,
     );
-    expect(wrapper.prop('className')).toEqual('visx-violin');
+    expect(wrapper.prop('className')).toBe('visx-violin');
   });
 
   test('it should render one path element', () => {

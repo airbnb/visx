@@ -1,5 +1,7 @@
-type SVGTSpanProps = React.SVGAttributes<SVGTSpanElement>;
-type SVGTextProps = React.SVGAttributes<SVGTextElement>;
+import { CSSProperties, Ref, SVGAttributes } from 'react';
+
+type SVGTSpanProps = SVGAttributes<SVGTSpanElement>;
+type SVGTextProps = SVGAttributes<SVGTextElement>;
 
 type OwnProps = {
   /** className to apply to the SVGText element. */
@@ -13,11 +15,11 @@ type OwnProps = {
   /** Vertical text anchor. */
   verticalAnchor?: 'start' | 'middle' | 'end';
   /** Styles to be applied to the text (and used in computation of its size). */
-  style?: React.CSSProperties;
+  style?: CSSProperties;
   /** Ref passed to the Text SVG element. */
-  innerRef?: React.Ref<SVGSVGElement>;
+  innerRef?: Ref<SVGSVGElement>;
   /** Ref passed to the Text text element */
-  innerTextRef?: React.Ref<SVGTextElement>;
+  innerTextRef?: Ref<SVGTextElement>;
   /** x position of the text. */
   x?: string | number;
   /** y position of the text. */

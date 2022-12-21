@@ -75,17 +75,17 @@ export default function Tree<Datum>({
   return (
     <Group top={top} left={left} className={cx('visx-tree', className)}>
       {linkComponent &&
-        data.links().map((link, i) => {
-          return (
+        data
+          .links()
+          .map((link, i) => (
             <Group key={`tree-link-${i}`}>{React.createElement(linkComponent, { link })}</Group>
-          );
-        })}
+          ))}
       {nodeComponent &&
-        data.descendants().map((node, i) => {
-          return (
+        data
+          .descendants()
+          .map((node, i) => (
             <Group key={`tree-node-${i}`}>{React.createElement(nodeComponent, { node })}</Group>
-          );
-        })}
+          ))}
     </Group>
   );
 }

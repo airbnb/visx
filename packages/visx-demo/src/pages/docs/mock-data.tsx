@@ -10,7 +10,7 @@ import StatsPlotTile from '../../components/Gallery/StatsPlotTile';
 
 const examples = [PackTile, TreemapTile, PiesTile, ChordTile, CurvesTile, StatsPlotTile];
 
-const MockDataDocs = () => (
-  <DocPage examples={examples} readme={MockDataReadme} visxPackage="mock-data" />
-);
+function MockDataDocs() {
+  return <DocPage examples={examples} readme={MockDataReadme} visxPackage="mock-data" />;
+}
 export default MockDataDocs;

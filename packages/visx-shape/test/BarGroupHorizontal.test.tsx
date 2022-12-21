@@ -74,18 +74,18 @@ describe('<BarGroupHorizontal />', () => {
 
   test('it should have className .visx-bar-group', () => {
     const wrapper = BarGroupWrapper();
-    expect(wrapper.prop('className')).toEqual('visx-bar-group-horizontal');
+    expect(wrapper.prop('className')).toBe('visx-bar-group-horizontal');
   });
 
   test('it should set className prop', () => {
     const wrapper = BarGroupWrapper({ className: 'test' });
-    expect(wrapper.prop('className')).toEqual('visx-bar-group-horizontal test');
+    expect(wrapper.prop('className')).toBe('visx-bar-group-horizontal test');
   });
 
   test('it should set top & left props', () => {
     const wrapper = BarGroupWrapper({ top: 2, left: 3 });
-    expect(wrapper.prop('top')).toEqual(2);
-    expect(wrapper.prop('left')).toEqual(3);
+    expect(wrapper.prop('top')).toBe(2);
+    expect(wrapper.prop('left')).toBe(3);
   });
 
   test('it should take a children as function prop', () => {
@@ -98,7 +98,7 @@ describe('<BarGroupHorizontal />', () => {
     const fn = jest.fn();
     BarGroupChildren({ children: fn });
     const args = fn.mock.calls[0][0];
-    expect(!!args.length).toEqual(true);
+    expect(args.length > 0).toBe(true);
   });
 
   test('it should create barGroup with shape { index, x0, bars }', () => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import GradientReadme from '!!raw-loader!../../../../visx-gradient/Readme.md';
-import * as Gradients from '../../../../visx-gradient/src';
+import * as Gradients from '@visx/gradient';
 import DocPage from '../../components/DocPage';
 import GradientsTile from '../../components/Gallery/GradientsTile';
 import AreaTile from '../../components/Gallery/AreaTile';
@@ -10,9 +10,9 @@ import DragIITile from '../../components/Gallery/DragIITile';
 import PiesTile from '../../components/Gallery/PiesTile';
 
 const components = Object.values(Gradients).sort((a, b) => {
-  // @ts-ignore TS doesn't know about docgenInfo
+  // @ts-expect-errorTS doesn't know about docgenInfo
   const aName = a?.__docgenInfo?.displayName ?? '';
-  // @ts-ignore TS doesn't know about docgenInfo
+  // @ts-expect-errorTS doesn't know about docgenInfo
   const bName = b?.__docgenInfo?.displayName ?? '';
   return (
     (aName === 'LinearGradient' && -2) ||
@@ -25,12 +25,14 @@ const components = Object.values(Gradients).sort((a, b) => {
 
 const examples = [GradientsTile, PiesTile, ChordTile, AreaTile, BarsTile, DragIITile];
 
-const GradientDocs = () => (
-  <DocPage
-    components={components}
-    examples={examples}
-    readme={GradientReadme}
-    visxPackage="gradient"
-  />
-);
+function GradientDocs() {
+  return (
+    <DocPage
+      components={components}
+      examples={examples}
+      readme={GradientReadme}
+      visxPackage="gradient"
+    />
+  );
+}
 export default GradientDocs;

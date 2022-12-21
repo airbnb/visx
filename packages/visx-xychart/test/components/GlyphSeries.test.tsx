@@ -76,29 +76,29 @@ describe('<GlyphSeries />', () => {
     const showTooltip = jest.fn();
     const hideTooltip = jest.fn();
 
-    const ConditionalEventEmitter = () => {
-      const { dataRegistry } = useContext(DataContext);
-      // GlyphSeries won't render until its data is registered
-      // wait for that to emit the events
-      return dataRegistry?.get(series.key) ? <EventEmitter /> : null;
-    };
-
     const EventEmitter = () => {
       const emit = useEventEmitter();
 
       useEffect(() => {
         if (emit) {
-          // @ts-ignore not a React.MouseEvent
+          //  not a React.MouseEvent
           emit('pointermove', new MouseEvent('pointermove'), XYCHART_EVENT_SOURCE);
           expect(showTooltip).toHaveBeenCalledTimes(1);
 
-          // @ts-ignore not a React.MouseEvent
+          //  not a React.MouseEvent
           emit('pointerout', new MouseEvent('pointerout'), XYCHART_EVENT_SOURCE);
           expect(showTooltip).toHaveBeenCalledTimes(1);
         }
       });
 
       return null;
+    };
+
+    const ConditionalEventEmitter = () => {
+      const { dataRegistry } = useContext(DataContext);
+      // GlyphSeries won't render until its data is registered
+      // wait for that to emit the events
+      return dataRegistry?.get(series.key) ? <EventEmitter /> : null;
     };
 
     setupTooltipTest(

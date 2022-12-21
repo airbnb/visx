@@ -39,13 +39,13 @@ export default function useTooltipInPortal({
 
   const TooltipInPortal = useMemo(
     () =>
-      ({
+      function ({
         left: containerLeft = 0,
         top: containerTop = 0,
         detectBounds: detectBoundsProp, // allow override at component-level
         zIndex: zIndexProp, // allow override at the component-level
         ...tooltipProps
-      }: TooltipInPortalProps) => {
+      }: TooltipInPortalProps) {
         const detectBounds = detectBoundsProp == null ? detectBoundsOption : detectBoundsProp;
         const zIndex = zIndexProp == null ? zIndexOption : zIndexProp;
         const TooltipComponent = detectBounds ? TooltipWithBounds : Tooltip;
@@ -63,8 +63,6 @@ export default function useTooltipInPortal({
   );
 
   return {
-    // react-use-measure doesn't currently accept SVGElement refs
-    // @ts-ignore fixed here https://github.com/react-spring/react-use-measure/pull/17
     containerRef,
     containerBounds,
     forceRefreshBounds,

@@ -35,7 +35,7 @@ export type VoronoiProps = {
   margin?: { top: number; right: number; bottom: number; left: number };
 };
 
-const Example = ({ width, height, margin = defaultMargin }: VoronoiProps) => {
+function Example({ width, height, margin = defaultMargin }: VoronoiProps) {
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
 
@@ -121,6 +121,6 @@ const Example = ({ width, height, margin = defaultMargin }: VoronoiProps) => {
       </Group>
     </svg>
   );
-};
+}
 
 export default Example;

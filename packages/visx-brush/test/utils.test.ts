@@ -58,7 +58,7 @@ describe('scaleInvert()', () => {
     });
     const value = 3;
     const result = scaleInvert(scale, value);
-    expect(result).toEqual(2);
+    expect(result).toBe(2);
   });
 
   test('it should handle band scales where end < start', () => {
@@ -70,6 +70,6 @@ describe('scaleInvert()', () => {
     });
     const value = 3;
     const result = scaleInvert(scale, value);
-    expect(result).toEqual(2);
+    expect(result).toBe(2);
   });
 });

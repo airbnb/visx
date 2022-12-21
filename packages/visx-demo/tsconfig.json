@@ -1,0 +1,123 @@
+{
+  "compilerOptions": {
+    "declarationDir": "lib",
+    "outDir": "lib",
+    "rootDir": "src",
+    "allowJs": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": false,
+    "isolatedModules": true,
+    "jsx": "preserve"
+  },
+  "exclude": [
+    "lib",
+    "test",
+    "src/sandboxes/**/package.json"
+  ],
+  "extends": "../../tsconfig.options.json",
+  "include": [
+    "src/**/*",
+    "../../types/**/*"
+  ],
+  "references": [
+    {
+      "path": "../visx-annotation"
+    },
+    {
+      "path": "../visx-axis"
+    },
+    {
+      "path": "../visx-brush"
+    },
+    {
+      "path": "../visx-chord"
+    },
+    {
+      "path": "../visx-clip-path"
+    },
+    {
+      "path": "../visx-curve"
+    },
+    {
+      "path": "../visx-drag"
+    },
+    {
+      "path": "../visx-event"
+    },
+    {
+      "path": "../visx-geo"
+    },
+    {
+      "path": "../visx-glyph"
+    },
+    {
+      "path": "../visx-gradient"
+    },
+    {
+      "path": "../visx-grid"
+    },
+    {
+      "path": "../visx-group"
+    },
+    {
+      "path": "../visx-heatmap"
+    },
+    {
+      "path": "../visx-hierarchy"
+    },
+    {
+      "path": "../visx-legend"
+    },
+    {
+      "path": "../visx-marker"
+    },
+    {
+      "path": "../visx-mock-data"
+    },
+    {
+      "path": "../visx-network"
+    },
+    {
+      "path": "../visx-pattern"
+    },
+    {
+      "path": "../visx-point"
+    },
+    {
+      "path": "../visx-react-spring"
+    },
+    {
+      "path": "../visx-responsive"
+    },
+    {
+      "path": "../visx-scale"
+    },
+    {
+      "path": "../visx-shape"
+    },
+    {
+      "path": "../visx-stats"
+    },
+    {
+      "path": "../visx-text"
+    },
+    {
+      "path": "../visx-threshold"
+    },
+    {
+      "path": "../visx-tooltip"
+    },
+    {
+      "path": "../visx-voronoi"
+    },
+    {
+      "path": "../visx-wordcloud"
+    },
+    {
+      "path": "../visx-xychart"
+    },
+    {
+      "path": "../visx-zoom"
+    }
+  ]
+}

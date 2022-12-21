@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import * as React from 'react';
+import React, { ReactNode } from 'react';
 import { render, waitFor } from '@testing-library/react';
 import fireEvent from '@testing-library/user-event';
 import { withBoundingRects } from '../src';
@@ -33,7 +33,7 @@ type BoundingRectsComponentProps = {
   rect?: RectShape;
   parentRect?: RectShape;
   getRects?: () => DOMRect;
-  children?: JSX.Element;
+  children?: ReactNode;
   otherProps?: object;
 };
 
@@ -69,6 +69,8 @@ function BoundingRectsComponent({
   );
 }
 
+const Component = () => null;
+
 describe('withBoundingRects()', () => {
   beforeAll(() => {
     // mock getBoundingClientRect
@@ -88,7 +90,6 @@ describe('withBoundingRects()', () => {
 
   test('it should pass rect, parentRect, and getRect props to the wrapped component', async () => {
     const HOC = withBoundingRects(BoundingRectsComponent);
-    // @ts-ignore
     const { getByTestId } = render(<HOC />);
 
     // getBoundingClientRect should be called twice, once for the component, and once for its parent
@@ -102,19 +103,18 @@ describe('withBoundingRects()', () => {
     expect(RenderedComponentParent).toHaveStyle(expectedStyle);
 
     fireEvent.click(RenderedComponent);
-    // upon onClick time, getBuondingClientRect should be called extra 2 times
+    // upon onClick time, getBoundingClientRect should be called extra 2 times
     expect(Element.prototype.getBoundingClientRect).toHaveBeenCalledTimes(4);
   });
 
   test('it should pass additional props to the wrapped component', () => {
     const HOC = withBoundingRects(BoundingRectsComponent);
-    // @ts-ignore
+    // @ts-expect-error
     const { getByText } = render(<HOC bananas="are yellow" />);
     expect(getByText('are yellow', { exact: false })).toBeInTheDocument();
   });
 
   test('it should not render if no node', () => {
-    const Component = () => null;
     const HOC = withBoundingRects(Component);
     const { container } = render(<HOC />);
     expect(container.innerHTML).toHaveLength(0);
@@ -123,7 +123,6 @@ describe('withBoundingRects()', () => {
   test('it should set rect and parentRect to empty state if no getBoundingClient()', () => {
     (Element.prototype.getBoundingClientRect as unknown) = null;
     const HOC = withBoundingRects(BoundingRectsComponent);
-    // @ts-ignore
     const { getByTestId } = render(<HOC />);
     const RenderedComponent = getByTestId('BoundingRectsComponent');
     const RenderedComponentParent = getByTestId('BoundingRectsComponentParent');

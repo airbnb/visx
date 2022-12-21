@@ -1,10 +1,10 @@
 import React from 'react';
-import Show from '../components/Show';
 import DragII from '../sandboxes/visx-drag-ii/Example';
-import DragIISource from '!!raw-loader!../sandboxes/visx-drag-ii/Example';
 import packageJson from '../sandboxes/visx-drag-ii/package.json';
+import Show from '../components/Show';
+import DragIISource from '!!raw-loader!../sandboxes/visx-drag-ii/Example';
 
-const DragIIPage = () => {
+function DragIIPage() {
   return (
     <Show
       component={DragII}
@@ -15,5 +15,5 @@ const DragIIPage = () => {
       {DragIISource}
     </Show>
   );
-};
+}
 export default DragIIPage;

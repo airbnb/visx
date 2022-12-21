@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "declarationDir": "lib",
+    "outDir": "lib",
+    "rootDir": "src"
+  },
+  "exclude": [
+    "lib",
+    "test"
+  ],
+  "extends": "../../tsconfig.options.json",
+  "include": [
+    "src/**/*",
+    "types/**/*",
+    "../../types/**/*"
+  ],
+  "references": [
+    {
+      "path": "../visx-axis"
+    },
+    {
+      "path": "../visx-grid"
+    },
+    {
+      "path": "../visx-scale"
+    },
+    {
+      "path": "../visx-text"
+    }
+  ]
+}

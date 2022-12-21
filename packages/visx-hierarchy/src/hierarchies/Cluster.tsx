@@ -72,17 +72,17 @@ export default function Cluster<Datum>({
   return (
     <Group top={top} left={left} className={cx('visx-cluster', className)}>
       {linkComponent &&
-        data.links().map((link, i) => {
-          return (
+        data
+          .links()
+          .map((link, i) => (
             <Group key={`cluster-link-${i}`}>{React.createElement(linkComponent, { link })}</Group>
-          );
-        })}
+          ))}
       {nodeComponent &&
-        data.descendants().map((node, i) => {
-          return (
+        data
+          .descendants()
+          .map((node, i) => (
             <Group key={`cluster-node-${i}`}>{React.createElement(nodeComponent, { node })}</Group>
-          );
-        })}
+          ))}
     </Group>
   );
 }

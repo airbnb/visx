@@ -34,20 +34,18 @@ export default function AnimatedGridLines<Scale extends GridScale>({
   return (
     <>
       {/* @ts-expect-error react-spring's type inference issue on the styles */}
-      {animatedLines(({ fromX, toX, fromY, toY, opacity }, _, { key }) => {
-        return (
-          <animated.line
-            key={key}
-            x1={fromX}
-            x2={toX}
-            y1={fromY}
-            y2={toY}
-            strokeOpacity={opacity}
-            style={lineStyle}
-            {...lineProps}
-          />
-        );
-      })}
+      {animatedLines(({ fromX, toX, fromY, toY, opacity }, _, { key }) => (
+        <animated.line
+          key={key}
+          x1={fromX}
+          x2={toX}
+          y1={fromY}
+          y2={toY}
+          strokeOpacity={opacity}
+          style={lineStyle}
+          {...lineProps}
+        />
+      ))}
     </>
   );
 }

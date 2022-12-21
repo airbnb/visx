@@ -1,3 +1,5 @@
+.happo/
+.next/
 coverage/
 node_modules/
 public/
@@ -5,4 +7,10 @@ esm/
 lib/
 tmp/
 dist/
+out/
 *.d.ts
+lerna.json
+npm-shrinkwrap.json
+package.json
+package-lock.json
+tsconfig.json

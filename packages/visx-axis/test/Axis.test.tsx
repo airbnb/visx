@@ -27,7 +27,7 @@ describe('<Axis />', () => {
 
   it('should render with class .visx-axis', () => {
     const wrapper = shallow(<Axis {...axisProps} />);
-    expect(wrapper.prop('className')).toEqual('visx-axis');
+    expect(wrapper.prop('className')).toBe('visx-axis');
   });
 
   it('should call children function with required args', () => {

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-use-before-define */
 import React, { useRef, useState, useMemo } from 'react';
 import { scaleTime, scaleLinear } from '@visx/scale';
 import appleStock, { AppleStock } from '@visx/mock-data/lib/mocks/appleStock';
@@ -205,7 +206,7 @@ function BrushChart({
   );
 }
 // We need to manually offset the handles for them to be rendered at the right position
-const BrushHandle = ({ x, height, isBrushActive }: BrushHandleRenderProps) => {
+function BrushHandle({ x, height, isBrushActive }: BrushHandleRenderProps) {
   const pathWidth = 8;
   const pathHeight = 15;
   if (!isBrushActive) {
@@ -222,6 +223,6 @@ const BrushHandle = ({ x, height, isBrushActive }: BrushHandleRenderProps) => {
       />
     </Group>
   );
-};
+}
 
 export default BrushChart;

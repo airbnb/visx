@@ -1,18 +1,20 @@
 import React from 'react';
-import Show from '../components/Show';
 import Annotation from '../sandboxes/visx-annotation/Example';
-import AnnotationSource from '!!raw-loader!../sandboxes/visx-annotation/Example';
 import packageJson from '../sandboxes/visx-annotation/package.json';
+import Show from '../components/Show';
+import AnnotationSource from '!!raw-loader!../sandboxes/visx-annotation/Example';
 
-const AnnotationPage = () => (
-  <Show
-    component={Annotation}
-    title="Annotation"
-    codeSandboxDirectoryName="visx-annotation"
-    packageJson={packageJson}
-  >
-    {AnnotationSource}
-  </Show>
-);
+function AnnotationPage() {
+  return (
+    <Show
+      component={Annotation}
+      title="Annotation"
+      codeSandboxDirectoryName="visx-annotation"
+      packageJson={packageJson}
+    >
+      {AnnotationSource}
+    </Show>
+  );
+}
 
 export default AnnotationPage;

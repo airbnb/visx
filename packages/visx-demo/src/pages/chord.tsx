@@ -1,10 +1,10 @@
 import React from 'react';
-import Show from '../components/Show';
 import Chord from '../sandboxes/visx-chord/Example';
-import ChordSource from '!!raw-loader!../sandboxes/visx-chord/Example';
 import packageJson from '../sandboxes/visx-chord/package.json';
+import Show from '../components/Show';
+import ChordSource from '!!raw-loader!../sandboxes/visx-chord/Example';
 
-const ChordPage = () => {
+function ChordPage() {
   return (
     <Show
       component={Chord}
@@ -15,5 +15,5 @@ const ChordPage = () => {
       {ChordSource}
     </Show>
   );
-};
+}
 export default ChordPage;

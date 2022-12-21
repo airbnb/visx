@@ -1,7 +1,7 @@
 import { AxisScale } from '@visx/axis';
 import { PointerEvent, FocusEvent, useCallback, useContext } from 'react';
 import DataContext from '../context/DataContext';
-import { isPointerEvent } from '../typeguards/events';
+import { isFocusEvent, isPointerEvent } from '../typeguards/events';
 import {
   DataContextType,
   EventHandlerParams,
@@ -178,7 +178,7 @@ export default function usePointerEventHandlers<
   const handleBlur = useCallback(
     (params?: HandlerParams) => {
       const event = params?.event;
-      if (event && !isPointerEvent(event) && onBlur) onBlur(event);
+      if (event && isFocusEvent(event) && onBlur) onBlur(event);
     },
     [onBlur],
   );

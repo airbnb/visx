@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Medium = () => {
+function Medium() {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -14,6 +14,6 @@ const Medium = () => {
       />
     </svg>
   );
-};
+}
 
 export default Medium;

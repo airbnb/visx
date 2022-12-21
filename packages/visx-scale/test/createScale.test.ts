@@ -3,11 +3,11 @@ import { createScale } from '../src';
 describe('createScale()', () => {
   it('linear', () => {
     const scale = createScale({ type: 'linear', domain: [0, 10], range: [2, 4] });
-    expect(scale(5)).toEqual(3);
+    expect(scale(5)).toBe(3);
   });
   it('fallbacks to linear if type is not defined', () => {
     const scale = createScale({ domain: [0, 10], range: [2, 4] });
-    expect(scale(5)).toEqual(3);
+    expect(scale(5)).toBe(3);
   });
   it('log', () => {
     const scale = createScale({
@@ -16,19 +16,19 @@ describe('createScale()', () => {
       domain: [2, 8],
       range: [1, 3],
     });
-    expect(scale(4)?.toFixed(2)).toEqual('2.00');
+    expect(scale(4)?.toFixed(2)).toBe('2.00');
   });
   it('pow', () => {
     const scale = createScale({ type: 'pow', exponent: 2, domain: [1, 3], range: [2, 18] });
-    expect(scale(2)).toEqual(8);
+    expect(scale(2)).toBe(8);
   });
   it('sqrt', () => {
     const scale = createScale({ type: 'sqrt', domain: [1, 9], range: [1, 3] });
-    expect(scale(4)).toEqual(2);
+    expect(scale(4)).toBe(2);
   });
   it('symlog', () => {
     const scale = createScale({ type: 'symlog', domain: [1, 9], range: [1, 3], constant: 2 });
-    expect(scale(4)?.toFixed(2)).toEqual('2.07');
+    expect(scale(4)?.toFixed(2)).toBe('2.07');
   });
   it('time', () => {
     const scale = createScale({
@@ -36,7 +36,7 @@ describe('createScale()', () => {
       domain: [new Date(2020, 0, 1), new Date(2020, 0, 10)],
       range: [1, 10],
     });
-    expect(scale(new Date(2020, 0, 4))).toEqual(4);
+    expect(scale(new Date(2020, 0, 4))).toBe(4);
   });
   it('utc', () => {
     const scale = createScale({
@@ -44,16 +44,16 @@ describe('createScale()', () => {
       domain: [new Date(Date.UTC(2020, 0, 1)), new Date(Date.UTC(2020, 0, 10))],
       range: [1, 10],
     });
-    expect(scale(new Date(Date.UTC(2020, 0, 4)))).toEqual(4);
+    expect(scale(new Date(Date.UTC(2020, 0, 4)))).toBe(4);
   });
   it('quantile', () => {
     const scale = createScale({ type: 'quantile', domain: [1, 3, 5, 7], range: [0, 10] });
-    expect(scale(2)).toEqual(0);
+    expect(scale(2)).toBe(0);
   });
   it('quantize', () => {
     const scale = createScale({ type: 'quantize', domain: [1, 10], range: ['red', 'green'] });
-    expect(scale(2)).toEqual('red');
-    expect(scale(6)).toEqual('green');
+    expect(scale(2)).toBe('red');
+    expect(scale(6)).toBe('green');
   });
   it('threshold', () => {
     const scale = createScale({
@@ -61,16 +61,16 @@ describe('createScale()', () => {
       domain: [0, 1] as number[],
       range: ['red', 'white', 'green'],
     });
-    expect(scale(-1)).toEqual('red');
-    expect(scale(0)).toEqual('white');
-    expect(scale(0.5)).toEqual('white');
-    expect(scale(1)).toEqual('green');
-    expect(scale(1000)).toEqual('green');
+    expect(scale(-1)).toBe('red');
+    expect(scale(0)).toBe('white');
+    expect(scale(0.5)).toBe('white');
+    expect(scale(1)).toBe('green');
+    expect(scale(1000)).toBe('green');
   });
   it('ordinal', () => {
     const scale = createScale({ type: 'ordinal', domain: ['pig', 'cat'], range: ['red', 'green'] });
-    expect(scale('pig')).toEqual('red');
-    expect(scale('cat')).toEqual('green');
+    expect(scale('pig')).toBe('red');
+    expect(scale('cat')).toBe('green');
   });
   it('point', () => {
     const scale = createScale({
@@ -79,9 +79,9 @@ describe('createScale()', () => {
       range: [1.1, 3.5],
       round: true,
     });
-    expect(scale('a')).toEqual(1);
-    expect(scale('b')).toEqual(2);
-    expect(scale('c')).toEqual(3);
+    expect(scale('a')).toBe(1);
+    expect(scale('b')).toBe(2);
+    expect(scale('c')).toBe(3);
   });
   it('band', () => {
     const scale = createScale({
@@ -90,12 +90,12 @@ describe('createScale()', () => {
       range: [1.1, 3.5],
       round: false,
     });
-    expect(scale('a')).toEqual(1.1);
-    expect(scale('b')).toEqual(1.9);
-    expect(scale('c')).toEqual(2.7);
+    expect(scale('a')).toBe(1.1);
+    expect(scale('b')).toBe(1.9);
+    expect(scale('c')).toBe(2.7);
   });
   it('invalid type', () => {
-    // @ts-ignore
+    // @ts-expect-error
     expect(createScale({ type: 'invalid' })).toBeDefined();
   });
 });

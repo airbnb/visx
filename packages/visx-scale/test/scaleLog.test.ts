@@ -13,16 +13,16 @@ describe('scaleLog()', () => {
     expect(scaleLog({ range: [1, 2] }).range()).toEqual(range);
   });
   it('set base', () => {
-    expect(scaleLog({ base: 2 }).base()).toEqual(2);
+    expect(scaleLog({ base: 2 }).base()).toBe(2);
   });
   describe('set clamp', () => {
     it('true', () => {
       const scale = scaleLog({ range: [1, 2], clamp: true });
-      expect(scale(100)).toEqual(2);
+      expect(scale(100)).toBe(2);
     });
     it('false', () => {
       const scale = scaleLog({ range: [1, 2], clamp: false });
-      expect(scale(100)).toEqual(3);
+      expect(scale(100)).toBe(3);
     });
   });
   it('set (color) interpolate', () => {
@@ -31,7 +31,7 @@ describe('scaleLog()', () => {
       range: ['#ff0000', '#000000'],
       interpolate: 'lab',
     });
-    expect(scale(10)).toEqual('rgb(122, 27, 11)');
+    expect(scale(10)).toBe('rgb(122, 27, 11)');
   });
   describe('set nice', () => {
     it('true', () => {
@@ -46,11 +46,11 @@ describe('scaleLog()', () => {
   describe('set round', () => {
     it('true', () => {
       const scale = scaleLog({ domain: [1, 10], range: [1, 10], round: true });
-      expect(scale(2.2)).toEqual(4);
+      expect(scale(2.2)).toBe(4);
     });
     it('false', () => {
       const scale = scaleLog({ domain: [1, 10], range: [1, 10], round: false });
-      expect(scale(5)?.toFixed(2)).toEqual('7.29');
+      expect(scale(5)?.toFixed(2)).toBe('7.29');
     });
   });
 });

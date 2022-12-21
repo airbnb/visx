@@ -1,8 +1,8 @@
 import React from 'react';
-import Show from '../components/Show';
 import Threshold from '../sandboxes/visx-threshold/Example';
-import ThresholdSource from '!!raw-loader!../sandboxes/visx-threshold/Example';
 import packageJson from '../sandboxes/visx-threshold/package.json';
+import Show from '../components/Show';
+import ThresholdSource from '!!raw-loader!../sandboxes/visx-threshold/Example';
 
 function Description({ width }: { width: number }) {
   return (
@@ -17,15 +17,17 @@ function Description({ width }: { width: number }) {
   );
 }
 
-const ThresholdPage = () => (
-  <Show
-    component={Threshold}
-    title="Threshold"
-    description={Description}
-    codeSandboxDirectoryName="visx-threshold"
-    packageJson={packageJson}
-  >
-    {ThresholdSource}
-  </Show>
-);
+function ThresholdPage() {
+  return (
+    <Show
+      component={Threshold}
+      title="Threshold"
+      description={Description}
+      codeSandboxDirectoryName="visx-threshold"
+      packageJson={packageJson}
+    >
+      {ThresholdSource}
+    </Show>
+  );
+}
 export default ThresholdPage;

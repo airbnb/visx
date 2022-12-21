@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "declarationDir": "lib",
+    "outDir": "lib",
+    "rootDir": "src"
+  },
+  "exclude": [
+    "lib",
+    "test"
+  ],
+  "extends": "../../tsconfig.options.json",
+  "include": [
+    "src/**/*",
+    "types/**/*",
+    "../../types/**/*"
+  ],
+  "references": [
+    {
+      "path": "../visx-curve"
+    },
+    {
+      "path": "../visx-group"
+    },
+    {
+      "path": "../visx-point"
+    },
+    {
+      "path": "../visx-scale"
+    },
+    {
+      "path": "../visx-shape"
+    }
+  ]
+}

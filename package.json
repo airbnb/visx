@@ -11,7 +11,7 @@
     "charts"
   ],
   "engines": {
-    "node": ">=10.15.0",
+    "node": ">=16.10.0",
     "yarn": ">=1.17.0"
   },
   "contributors": [
@@ -31,207 +31,90 @@
   "private": true,
   "scripts": {
     "babel": "yarn run babel:cjs && yarn run babel:esm",
-    "babel:cjs": "nimbus babel --clean --workspaces=\"@visx/!(demo)\"",
-    "babel:esm": "nimbus babel --clean --workspaces=\"@visx/!(demo)\" --esm",
+    "babel:cjs": "lerna exec --ignore @visx/demo --parallel -- babel --root-mode upward --delete-dir-on-start src/ --out-dir lib --extensions .ts,.tsx",
+    "babel:esm": "ESM=true lerna exec --ignore @visx/demo --parallel -- babel --root-mode upward --delete-dir-on-start src/ --out-dir esm --extensions .ts,.tsx",
+    "babel:pkg": "lerna exec --scope $PKG -- babel --root-mode upward --delete-dir-on-start src/ --out-dir lib --extensions .ts,.tsx && lerna exec --scope $PKG -- ESM=true babel --root-mode upward --delete-dir-on-start src/ --out-dir esm --extensions .ts,.tsx",
     "build": "yarn run babel && yarn run type",
     "build:sizes": "yarn run ts ./scripts/computeBuildSizes.ts",
     "build:release": "yarn run ts ./scripts/performRelease/index.ts",
-    "build:workspaces": "nimbus babel --clean",
     "dev:demo": "yarn workspace @visx/demo dev",
     "check:sizes": "yarn run ts ./scripts/compareBuildSizes.ts",
     "clean": "rm -rf ./packages/**/{lib,esm}",
-    "format": "yarn run prettier --write",
-    "jest": "NODE_ENV=test nimbus jest --coverage --verbose",
-    "lint": "nimbus eslint",
+    "format": "lerna exec --parallel -- prettier --write --ignore-path ../../.prettierignore .",
+    "jest": "NODE_ENV=test jest --coverage --verbose",
+    "lint": "eslint packages/ --quiet",
     "lint:fix": "yarn run lint --fix",
     "prepare-release": "git checkout master && git pull --rebase origin master && lerna updated",
-    "prettier": "nimbus prettier",
     "release": "yarn run prepare-release && lerna publish --exact",
     "setup": "yarn run build",
     "test": "yarn run jest",
     "test:watch": "yarn run jest --watch",
     "ts": "ts-node --project ./tsconfig.node.json",
-    "type": "nimbus typescript --build --reference-workspaces",
-    "type:workspaces": "nimbus typescript --build"
+    "type": "lerna exec --parallel -- tsc --build",
+    "type:pkg": "lerna exec --scope $PKG -- tsc --build --verbose",
+    "type:update-refs": "yarn run ts ./scripts/updateTsReferences.ts"
   },
   "devDependencies": {
-    "@airbnb/config-babel": "^3.1.0",
-    "@airbnb/config-eslint": "^3.1.0",
-    "@airbnb/config-jest": "^3.0.2",
-    "@airbnb/config-prettier": "^3.1.0",
-    "@airbnb/config-typescript": "^3.0.1",
-    "@airbnb/nimbus": "^3.1.4",
+    "@babel/cli": "^7.19.3",
+    "@babel/core": "^7.20.5",
+    "@babel/eslint-parser": "^7.19.1",
+    "@babel/preset-env": "^7.20.2",
+    "@babel/preset-react": "^7.18.6",
+    "@babel/preset-typescript": "^7.18.6",
     "@octokit/rest": "18.1.0",
+    "@testing-library/jest-dom": "^5.9.0",
+    "@testing-library/react": "^13.1.0",
+    "@testing-library/react-hooks": "^8.0.0",
+    "@testing-library/user-event": "^11.0.1",
     "@types/enzyme": "^3.10.3",
     "@types/jest": "^24.0.18",
     "@types/jsdom": "^12.2.4",
     "@types/node-fetch": "1.6.9",
     "@types/react-test-renderer": "^18.0.0",
     "@types/webpack": "^4.41.17",
-    "@testing-library/jest-dom": "^5.9.0",
-    "@testing-library/react": "^13.1.0",
-    "@testing-library/react-hooks": "^8.0.0",
-    "@testing-library/user-event": "^11.0.1",
+    "@typescript-eslint/eslint-plugin": "^5.46.1",
+    "@typescript-eslint/parser": "^5.46.1",
+    "airbnb-js-shims": "^2.2.1",
+    "babel-plugin-typescript-to-proptypes": "^2.0.0",
     "chalk": "4.1.0",
     "coveralls": "^3.0.6",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "enzyme-to-json": "^3.4.0",
-    "eslint-plugin-import": "^2.22.1",
+    "eslint": "^8.30.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jest": "^27.1.7",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-react": "^7.31.11",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-unicorn": "^45.0.2",
     "fast-glob": "3.2.5",
     "filesize": "6.1.0",
     "fs-jetpack": "^1.3.0",
     "husky": "^3.0.0",
+    "jest": "^25.5.4",
     "jest-mock-console": "^1.0.1",
     "lerna": "^3.22.0",
     "marked": "^0.7.0",
     "node-fetch": "2.6.1",
+    "prettier": "^2.8.1",
     "raf": "^3.4.0",
     "react": "^16.0.0-0 || ^17.0.0-0 || ^18.0.0-0",
     "react-dom": "^16.0.0-0 || ^17.0.0-0 || ^18.0.0-0",
     "react-test-renderer": "^18.0.0",
     "regenerator-runtime": "^0.10.5",
     "timezone-mock": "^1.1.0",
-    "ts-node": "9.1.1"
+    "ts-node": "9.1.1",
+    "typescript": "^3.8.3"
   },
   "workspaces": [
     "./packages/*"
   ],
   "resolutions": {
     "handlebars": "4.5.3"
-  },
-  "nimbus": {
-    "drivers": [
-      "babel",
-      "eslint",
-      "jest",
-      "prettier",
-      "typescript"
-    ],
-    "settings": {
-      "library": true,
-      "react": true,
-      "next": true
-    },
-    "babel": {
-      "plugins": [
-        [
-          "@babel/plugin-proposal-private-methods",
-          {
-            "loose": false
-          }
-        ]
-      ]
-    },
-    "typescript": {
-      "compilerOptions": {
-        "emitDeclarationOnly": true
-      }
-    },
-    "jest": {
-      "coverageReporters": [
-        "json"
-      ],
-      "collectCoverageFrom": [
-        "packages/src/**/*.{ts,tsx}",
-        "!node_modules/**",
-        "!packages/**/esm/**",
-        "!packages/**/lib/**",
-        "!packages/**/node_modules/**",
-        "!packages/visx-demo/**",
-        "!packages/visx-visx/**"
-      ],
-      "testPathIgnorePatterns": [
-        "<rootDir>/packages/visx-demo",
-        "<rootDir>/packages/visx-visx"
-      ],
-      "coverageThreshold": {
-        "global": {
-          "branches": 0,
-          "functions": 0,
-          "lines": 0,
-          "statements": 0
-        }
-      },
-      "setupFilesAfterEnv": [
-        "@airbnb/config-jest/enzyme"
-      ]
-    },
-    "eslint": {
-      "overrides": [
-        {
-          "files": "*.test.{js,jsx,ts,tsx}",
-          "rules": {
-            "import/no-extraneous-dependencies": "off",
-            "jest/require-to-throw-message": "off"
-          }
-        },
-        {
-          "files": "*.{js,jsx,ts,tsx}",
-          "rules": {
-            "arrow-parens": "off",
-            "consistent-return": "off",
-            "import/prefer-default-export": "off",
-            "linebreak-style": "off",
-            "lines-between-class-members": "off",
-            "no-console": "off",
-            "no-nested-ternary": "off",
-            "no-param-reassign": "warn",
-            "no-restricted-syntax": "off",
-            "no-use-before-define": "off",
-            "no-useless-rename": "off",
-            "object-curly-newline": "off",
-            "operator-linebreak": "off",
-            "promise/param-names": "off",
-            "react/destructuring-assignment": "off",
-            "react/forbid-prop-types": "off",
-            "react/jsx-curly-brace-presence": "off",
-            "react/jsx-filename-extension": "off",
-            "react/jsx-no-literals": "off",
-            "react/jsx-props-no-spreading": "off",
-            "react/jsx-sort-default-props": "off",
-            "react/jsx-sort-props": "off",
-            "react/no-array-index-key": "off",
-            "react/no-children-prop": "off",
-            "react/require-default-props": "off",
-            "react/sort-comp": "off",
-            "react/sort-prop-types": "off",
-            "unicorn/catch-error-name": "off",
-            "unicorn/no-fn-reference-in-iterator": "off",
-            "unicorn/prefer-node-append": "off"
-          }
-        },
-        {
-          "files": "./packages/visx-demo/**",
-          "rules": {
-            "@typescript-eslint/no-explicit-any": [
-              "warn",
-              {
-                "fixToUnknown": false
-              }
-            ],
-            "import/no-unresolved": [
-              "error",
-              {
-                "ignore": [
-                  "^!!raw-loader!.*"
-                ]
-              }
-            ],
-            "import/no-webpack-loader-syntax": "off",
-            "jsx-a11y/anchor-is-valid": "off",
-            "jsx-a11y/label-has-associated-control": "off",
-            "jsx-a11y/no-onchange": "off",
-            "no-alert": "off",
-            "no-param-reassign": "off",
-            "react/button-has-type": "off",
-            "react/no-danger": "off",
-            "react/no-unescaped-entities": "off",
-            "react/prop-types": "off",
-            "react/state-in-constructor": "off"
-          }
-        }
-      ]
-    }
   }
 }

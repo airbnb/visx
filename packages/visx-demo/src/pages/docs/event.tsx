@@ -7,5 +7,7 @@ import VoronoiTile from '../../components/Gallery/VoronoiTile';
 
 const examples = [AreaTile, DotsTile, VoronoiTile];
 
-const EventDocs = () => <DocPage readme={EventReadme} examples={examples} visxPackage="event" />;
+function EventDocs() {
+  return <DocPage readme={EventReadme} examples={examples} visxPackage="event" />;
+}
 export default EventDocs;

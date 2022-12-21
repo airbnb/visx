@@ -44,8 +44,8 @@ const data2 = [
 ];
 
 const accessors = {
-  xAccessor: d => d.x,
-  yAccessor: d => d.y,
+  xAccessor: (d) => d.x,
+  yAccessor: (d) => d.y,
 };
 
 const render = () => (
@@ -99,11 +99,11 @@ The following `Series` types are currently supported and we are happy to review 
 additional Series types in the future.
 
 | Component name        | Description                                                                                      | Usage                                                |
-| --------------------- | ------------------------------------------------------------------------------------------------ | ---------------------------------------------------- |
+| --------------------- | ------------------------------------------------------------------------------------------------ | ---------------------------------------------------- | --- |
 | (Animated)AreaSeries  | Connect data points with a `<path />`, with a color fill to the zero baseline                    | `<AreaSeries />`                                     |
 | (Animated)BarSeries   | Render a `<rect />` for each data point                                                          | `<BarSeries />`                                      |
 | (Animated)BarGroup    | Group multiple child `<BarSeries />` values together                                             | `<BarGroup><BarSeries /><BarSeries />...</BarGroup>` |
-| (Animated)BarStack    | Stack multiple child `<BarSeries />` values together                                             | `<BarStack><BarSeries /><BarSeries />...</BarStack>` |  |
+| (Animated)BarStack    | Stack multiple child `<BarSeries />` values together                                             | `<BarStack><BarSeries /><BarSeries />...</BarStack>` |     |
 | (Animated)GlyphSeries | Render a `Glyph` (any shape, defaults to `<circle />`) for each data point, e.g., a scatter plot | `<GlyphSeries renderGlyph={() => ...} />`            |
 | (Animated)LineSeries  | Connect data points with a `<path>`                                                              | `<GlyphSeries />`                                    |
 
@@ -327,7 +327,9 @@ const eventSourceId = 'optional-source-id-filter';
 
 const EmitEvent = () => {
   const emit = useEventEmitter();
-  return <button onPointerUp={event => emit('pointerup', event, eventSourceId)}>emit event</button>;
+  return (
+    <button onPointerUp={(event) => emit('pointerup', event, eventSourceId)}>emit event</button>
+  );
 };
 
 const SubscribeToEvent = () => {

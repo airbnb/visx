@@ -1,4 +1,4 @@
-import { useCallback, useContext } from 'react';
+import { FocusEvent, PointerEvent, useCallback, useContext } from 'react';
 import { AxisScale } from '@visx/axis';
 import TooltipContext from '../context/TooltipContext';
 import { EventHandlerParams, SeriesProps, TooltipContextType } from '../types';
@@ -62,14 +62,14 @@ export default function useSeriesEvents<
     [showTooltip, onFocusProps],
   );
   const onPointerOut = useCallback(
-    (event: React.PointerEvent) => {
+    (event: PointerEvent) => {
       hideTooltip();
       if (event && onPointerOutProps) onPointerOutProps(event);
     },
     [hideTooltip, onPointerOutProps],
   );
   const onBlur = useCallback(
-    (event: React.FocusEvent) => {
+    (event: FocusEvent) => {
       hideTooltip();
       if (event && onBlurProps) onBlurProps(event);
     },

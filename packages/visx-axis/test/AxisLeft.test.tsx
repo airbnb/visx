@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { scaleLinear } from '../../visx-scale/src';
+import { scaleLinear } from '@visx/scale';
 import { Axis, AxisLeft } from '../src';
 
 const axisProps = {
@@ -19,7 +19,7 @@ describe('<AxisLeft />', () => {
 
   it('should render with class .visx-axis-left', () => {
     const wrapper = shallow(<AxisLeft {...axisProps} />);
-    expect(wrapper.prop('axisClassName')).toEqual('visx-axis-left');
+    expect(wrapper.prop('axisClassName')).toBe('visx-axis-left');
   });
 
   it('should set user-specified axisClassName, axisLineClassName, labelClassName, and tickClassName', () => {
@@ -47,7 +47,7 @@ describe('<AxisLeft />', () => {
 
   it('should default labelOffset prop to 36', () => {
     const wrapper = shallow(<AxisLeft {...axisProps} />);
-    expect(wrapper.prop('labelOffset')).toEqual(36);
+    expect(wrapper.prop('labelOffset')).toBe(36);
   });
 
   it('should set labelOffset prop', () => {
@@ -58,7 +58,7 @@ describe('<AxisLeft />', () => {
 
   it('should default tickLength prop to 8', () => {
     const wrapper = shallow(<AxisLeft {...axisProps} />);
-    expect(wrapper.prop('tickLength')).toEqual(8);
+    expect(wrapper.prop('tickLength')).toBe(8);
   });
 
   it('should set tickLength prop', () => {

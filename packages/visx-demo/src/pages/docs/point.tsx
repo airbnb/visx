@@ -5,5 +5,7 @@ import RadarTile from '../../components/Gallery/RadarTile';
 
 const examples = [RadarTile];
 
-const PointDocs = () => <DocPage examples={examples} readme={PointReadme} visxPackage="point" />;
+function PointDocs() {
+  return <DocPage examples={examples} readme={PointReadme} visxPackage="point" />;
+}
 export default PointDocs;

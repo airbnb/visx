@@ -1,4 +1,4 @@
-import { PointerEvent, FocusEvent } from 'react';
+import { PointerEvent, FocusEvent, SVGProps } from 'react';
 import { AxisScale } from '@visx/axis';
 import { ScaleInput } from '@visx/scale';
 import { Series, SeriesPoint } from 'd3-shape';
@@ -57,7 +57,7 @@ export type SeriesProps<
    */
   onPointerOut?: (
     /** The PointerEvent. */
-    event: React.PointerEvent,
+    event: PointerEvent,
   ) => void;
   /**
    * Callback invoked for onPointerUp events for the nearest Datum to the PointerEvent.
@@ -110,7 +110,7 @@ export type SeriesProps<
    */
   onBlur?: (
     /** The FocusEvent. */
-    event: React.FocusEvent,
+    event: FocusEvent,
   ) => void;
   /** Whether the Series emits and subscribes to PointerEvents and FocusEvents (including Tooltip triggering). */
   enableEvents?: boolean;
@@ -151,7 +151,7 @@ export type BarsProps<XScale extends AxisScale, YScale extends AxisScale> = {
   /** Whether to apply radius to left corners. */
   radiusLeft?: boolean;
 } & Omit<
-  React.SVGProps<SVGRectElement | SVGPathElement>,
+  SVGProps<SVGRectElement | SVGPathElement>,
   'x' | 'y' | 'width' | 'height' | 'ref' | 'children'
 >;
 

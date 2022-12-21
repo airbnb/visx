@@ -46,7 +46,7 @@ export default function ParentSize({
   parentSizeStyles = { width: '100%', height: '100%' },
   enableDebounceLeadingCall = true,
   ...restProps
-}: ParentSizeProps & Omit<JSX.IntrinsicElements['div'], keyof ParentSizeProps>) {
+}: ParentSizeProps & Omit<React.HTMLAttributes<HTMLDivElement>, keyof ParentSizeProps>) {
   const target = useRef<HTMLDivElement | null>(null);
   const animationFrameID = useRef(0);
 

@@ -1,4 +1,11 @@
 import { UserHandlers, WebKitGestureEvent, Handler } from '@use-gesture/react';
+import {
+  RefObject,
+  MouseEvent as ReactMouseEvent,
+  TouchEvent as ReactTouchEvent,
+  PointerEvent as ReactPointerEvent,
+  WheelEvent as ReactWheelEvent,
+} from 'react';
 
 export interface TransformMatrix {
   scaleX: number;
@@ -20,7 +27,16 @@ export type Scale = Pick<TransformMatrix, 'scaleX' | 'scaleY'>;
 
 export type PinchDelta = (
   params: Parameters<
-    Handler<'pinch', TouchEvent | PointerEvent | WheelEvent | WebKitGestureEvent>
+    Handler<
+      'pinch',
+      | TouchEvent
+      | ReactTouchEvent
+      | PointerEvent
+      | ReactPointerEvent
+      | WheelEvent
+      | ReactWheelEvent
+      | WebKitGestureEvent
+    >
   >[0],
 ) => Scale;
 
@@ -51,18 +67,18 @@ export interface ProvidedZoom<ElementType> {
   /** Resets the transform to the initial transform specified by props. */
   reset: () => void;
   /** Callback for a wheel event, updating scale based on props.wheelDelta, relative to the mouse position. */
-  handleWheel: (event: React.WheelEvent | WheelEvent) => void;
+  handleWheel: (event: ReactWheelEvent | WheelEvent) => void;
   /** Callback for a react-use-gesture on pinch event, updating scale based on props.pinchDelta, relative to the pinch position. */
   handlePinch: UserHandlers['onPinch'];
   /** Callback for dragEnd, sets isDragging to false. */
   dragEnd: () => void;
   /** Callback for dragMove, results in a scale transform. */
   dragMove: (
-    event: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent,
+    event: ReactMouseEvent | ReactTouchEvent | MouseEvent | TouchEvent,
     options?: { offsetX?: number; offsetY?: number },
   ) => void;
   /** Callback for dragStart, sets isDragging to true.  */
-  dragStart: (event: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent) => void;
+  dragStart: (event: ReactMouseEvent | ReactTouchEvent | MouseEvent | TouchEvent) => void;
   /**
    * Returns a string representation of the matrix transform:
    * matrix(${scaleX}, ${skewY}, ${skewX}, ${scaleY}, ${translateX}, ${translateY})
@@ -80,5 +96,5 @@ export interface ProvidedZoom<ElementType> {
   /** Applies the inverse of the current transform matrix to the specified point. */
   applyInverseToPoint: ({ x, y }: Point) => Point;
   /** Ref to stick on element to attach all handlers automatically. */
-  containerRef: React.RefObject<ElementType>;
+  containerRef: RefObject<ElementType>;
 }

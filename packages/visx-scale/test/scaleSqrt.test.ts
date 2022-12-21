@@ -13,16 +13,16 @@ describe('scaleSqrt()', () => {
     expect(scaleSqrt({ range: [1, 2] }).range()).toEqual(range);
   });
   it('exponent is 0.5', () => {
-    expect(scaleSqrt({}).exponent()).toEqual(0.5);
+    expect(scaleSqrt({}).exponent()).toBe(0.5);
   });
   describe('set clamp', () => {
     it('true', () => {
       const scale = scaleSqrt({ clamp: true });
-      expect(scale(10)).toEqual(1);
+      expect(scale(10)).toBe(1);
     });
     it('false', () => {
       const scale = scaleSqrt<number>({ clamp: false });
-      expect(scale(10)?.toFixed(2)).toEqual('3.16');
+      expect(scale(10)?.toFixed(2)).toBe('3.16');
     });
   });
   it('set (color) interpolate', () => {
@@ -31,7 +31,7 @@ describe('scaleSqrt()', () => {
       range: ['#ff0000', '#000000'],
       interpolate: 'lab',
     });
-    expect(scale(5)).toEqual('rgb(73, 23, 9)');
+    expect(scale(5)).toBe('rgb(73, 23, 9)');
   });
   describe('set nice', () => {
     it('true', () => {
@@ -46,11 +46,11 @@ describe('scaleSqrt()', () => {
   describe('set round', () => {
     it('true', () => {
       const scale = scaleSqrt({ domain: [0, 4], range: [0, 2], round: true });
-      expect(scale(3)).toEqual(2);
+      expect(scale(3)).toBe(2);
     });
     it('false', () => {
       const scale = scaleSqrt({ domain: [0, 4], range: [0, 2], round: false });
-      expect(scale(3)?.toFixed(2)).toEqual('1.73');
+      expect(scale(3)?.toFixed(2)).toBe('1.73');
     });
   });
   describe('set zero', () => {

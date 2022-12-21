@@ -41,13 +41,12 @@ export default function withScreenSize<BaseComponentProps extends WithScreenSize
     }
 
     resize = debounce(
+      // eslint-disable-next-line unicorn/consistent-function-scoping
       () => {
-        this.setState((/** prevState, props */) => {
-          return {
-            screenWidth: window.innerWidth,
-            screenHeight: window.innerHeight,
-          };
-        });
+        this.setState((/** prevState, props */) => ({
+          screenWidth: window.innerWidth,
+          screenHeight: window.innerHeight,
+        }));
       },
       this.props.windowResizeDebounceTime,
       { leading: this.props.enableDebounceLeadingCall },

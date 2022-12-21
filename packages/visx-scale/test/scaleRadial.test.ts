@@ -18,13 +18,13 @@ describe('sclaeRadial()', () => {
   it('set unknown', () => {
     const scale = scaleRadial({ domain: [0, 10], unknown: 'green' });
     // coerce to make TS happy
-    expect(scale('sandwich' as unknown as number)).toEqual('green');
+    expect(scale('sandwich' as unknown as number)).toBe('green');
   });
 
   describe('set clamp', () => {
     it('true', () => {
       const scale = scaleRadial({ clamp: true });
-      expect(scale(10)).toEqual(1);
+      expect(scale(10)).toBe(1);
     });
     it('false', () => {
       const scale = scaleRadial({ clamp: false });

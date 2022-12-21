@@ -67,20 +67,18 @@ export default function Example({ width, height, centerSize = 20, events = false
                     }}
                   />
                 ))}
-                {chords.map((chord, i) => {
-                  return (
-                    <Ribbon
-                      key={`ribbon-${i}`}
-                      chord={chord}
-                      radius={innerRadius}
-                      fill={color(chord.target.index)}
-                      fillOpacity={0.75}
-                      onClick={() => {
-                        if (events) alert(`${JSON.stringify(chord)}`);
-                      }}
-                    />
-                  );
-                })}
+                {chords.map((chord, i) => (
+                  <Ribbon
+                    key={`ribbon-${i}`}
+                    chord={chord}
+                    radius={innerRadius}
+                    fill={color(chord.target.index)}
+                    fillOpacity={0.75}
+                    onClick={() => {
+                      if (events) alert(`${JSON.stringify(chord)}`);
+                    }}
+                  />
+                ))}
               </g>
             )}
           </Chord>

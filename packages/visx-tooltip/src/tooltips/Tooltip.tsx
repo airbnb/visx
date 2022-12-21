@@ -61,23 +61,21 @@ const Tooltip = React.forwardRef<
       ...restProps
     },
     ref,
-  ) => {
-    return (
-      <div
-        ref={ref}
-        className={cx('visx-tooltip', className)}
-        style={{
-          top: top == null || offsetTop == null ? top : top + offsetTop,
-          left: left == null || offsetLeft == null ? left : left + offsetLeft,
-          ...(applyPositionStyle && { position: 'absolute' }),
-          ...(!unstyled && style),
-        }}
-        {...restProps}
-      >
-        {children}
-      </div>
-    );
-  },
+  ) => (
+    <div
+      ref={ref}
+      className={cx('visx-tooltip', className)}
+      style={{
+        top: top == null || offsetTop == null ? top : top + offsetTop,
+        left: left == null || offsetLeft == null ? left : left + offsetLeft,
+        ...(applyPositionStyle && { position: 'absolute' }),
+        ...(!unstyled && style),
+      }}
+      {...restProps}
+    >
+      {children}
+    </div>
+  ),
 );
 
 Tooltip.displayName = 'Tooltip';
