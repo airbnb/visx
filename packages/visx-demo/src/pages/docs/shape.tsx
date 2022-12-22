@@ -1,6 +1,6 @@
 import React from 'react';
 import ShapeReadme from '!!raw-loader!../../../../visx-shape/Readme.md';
-import * as Shapes from '@visx/shape';
+import * as Shapes from '../../../../visx-shape';
 import DocPage from '../../components/DocPage';
 import LineRadialTile from '../../components/Gallery/LineRadialTile';
 import PiesTile from '../../components/Gallery/PiesTile';
