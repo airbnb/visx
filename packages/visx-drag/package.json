@@ -1,6 +1,6 @@
 {
   "name": "@visx/drag",
-  "version": "2.17.0-alpha.0",
+  "version": "2.17.0",
   "description": "visx drag",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -35,8 +35,8 @@
   },
   "dependencies": {
     "@types/react": "*",
-    "@visx/event": "2.17.0-alpha.0",
-    "@visx/point": "2.17.0-alpha.0",
+    "@visx/event": "2.17.0",
+    "@visx/point": "2.17.0",
     "prop-types": "^15.5.10"
   }
 }
