@@ -1,8 +1,7 @@
 import React, { useContext, useMemo } from 'react';
 import cx from 'classnames';
-import Group from '@visx/group/lib/Group';
-import Text, { TextProps } from '@visx/text/lib/Text';
-import { useText } from '@visx/text';
+import { Group } from '@visx/group';
+import { Text, TextProps, useText } from '@visx/text';
 import useMeasure, { Options as UseMeasureOptions } from 'react-use-measure';
 import AnnotationContext from '../context/AnnotationContext';
 import AnchorLine from './LabelAnchorLine';

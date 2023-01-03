@@ -34,8 +34,6 @@
     "@types/react": "*",
     "@visx/drag": "2.17.0",
     "@visx/group": "2.17.0",
-    "@visx/point": "2.17.0",
-    "@visx/shape": "2.18.0",
     "@visx/text": "2.17.0",
     "classnames": "^2.3.1",
     "prop-types": "^15.5.10",
