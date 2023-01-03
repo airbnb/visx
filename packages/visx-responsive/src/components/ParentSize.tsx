@@ -1,6 +1,11 @@
 import debounce from 'lodash/debounce';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { ResizeObserver } from '@juggle/resize-observer';
+import { ResizeObserver } from '../types';
+
+// @TODO remove when upgraded to TS 4 which has its own declaration
+interface PrivateWindow {
+  ResizeObserver: ResizeObserver;
+}
 
 export type ParentSizeProps = {
   /** Optional `className` to add to the parent `div` wrapper used for size measurement. */
@@ -13,6 +18,8 @@ export type ParentSizeProps = {
   ignoreDimensions?: keyof ParentSizeState | (keyof ParentSizeState)[];
   /** Optional `style` object to apply to the parent `div` wrapper used for size measurement. */
   parentSizeStyles?: React.CSSProperties;
+  /** Optionally inject a ResizeObserver polyfill, else this *must* be globally available. */
+  resizeObserverPolyfill?: ResizeObserver;
   /** Child render function `({ width, height, top, left, ref, resize }) => ReactNode`. */
   children: (
     args: {
@@ -40,6 +47,7 @@ export default function ParentSize({
   ignoreDimensions = defaultIgnoreDimensions,
   parentSizeStyles = { width: '100%', height: '100%' },
   enableDebounceLeadingCall = true,
+  resizeObserverPolyfill,
   ...restProps
 }: ParentSizeProps & Omit<React.HTMLAttributes<HTMLDivElement>, keyof ParentSizeProps>) {
   const target = useRef<HTMLDivElement | null>(null);
@@ -71,7 +79,10 @@ export default function ParentSize({
   }, [debounceTime, enableDebounceLeadingCall, ignoreDimensions]);
 
   useEffect(() => {
-    const observer = new ResizeObserver((entries = [] /** , observer */) => {
+    const LocalResizeObserver =
+      resizeObserverPolyfill || (window as unknown as PrivateWindow).ResizeObserver;
+
+    const observer = new LocalResizeObserver((entries) => {
       entries.forEach((entry) => {
         const { left, top, width, height } = entry.contentRect;
         animationFrameID.current = window.requestAnimationFrame(() => {
@@ -84,9 +95,9 @@ export default function ParentSize({
     return () => {
       window.cancelAnimationFrame(animationFrameID.current);
       observer.disconnect();
-      if (resize?.cancel) resize.cancel();
+      resize.cancel();
     };
-  }, [resize]);
+  }, [resize, resizeObserverPolyfill]);
 
   return (
     <div style={parentSizeStyles} ref={target} className={className} {...restProps}>
