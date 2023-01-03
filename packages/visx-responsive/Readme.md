@@ -76,9 +76,9 @@ let chartToRender = (
         parentHeight={parent.height}
         parentTop={parent.top}
         parentLeft={parent.left}
-        // this is the referer to the wrapper component
+        // this is the referrer to the wrapper component
         parentRef={parent.ref}
-        // this function can be called inside MySuperCoolVisxChart to cause a resize of the wrapper component
+        // this function can be called inside MyVisxChart to cause a resize of the wrapper component
         resizeParent={parent.resize}
       />
     )}
@@ -111,8 +111,16 @@ let chartToRender = (
 
 ##### ⚠️ `ResizeObserver` dependency
 
-If you don't need a polyfill for `ResizeObserver` or are already including it in your bundle, you
-should use `ParentSizeModern` and `withParentSizeModern` which doesn't include the polyfill.
+The `ParentSize` component and `withParentSize` enhancer rely on `ResizeObserver`s for auto-sizing.
+If you need a polyfill, you can either polute the `window` object or inject it cleanly through
+props:
+
+```tsx
+import { ResizeObserver } from 'your-favorite-polyfill';
+
+function App() {
+  return <Label resizeObserverPolyfill={ResizeObserver} {...} />
+```
 
 ## Installation
 
