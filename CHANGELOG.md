@@ -1,4 +1,5 @@
 # Changelog
+- [v2.18.0](#v2180)
 - [v2.17.0](#v2170)
 - [v2.16.1](#v2161)
 - [v2.16.0](#v2160)
@@ -6,10 +7,10 @@
 - [v2.15.0](#v2150)
 - [v2.14.0](#v2140)
 - [v2.13.0](#v2130)
-- [v2.12.2](#v2122)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v2122">v2.12.2</a></li>
   <li><a href="#v2121">v2.12.1</a></li>
   <li><a href="#v2120">v2.12.0</a></li>
   <li><a href="#v2111">v2.11.1</a></li>
@@ -154,6 +155,20 @@
 </details>
 
 ------
+# v2.18.0 (2023-01-03)
+
+#### :bug: Bug Fix
+
+- fix(demo/pages/docs): use relative imports to fix API docs [#1612](https://github.com/airbnb/visx/pull/1612)
+- Revert breaking "deps(scale): bump `d3-interpolate` and `d3-scale`" [#1619](https://github.com/airbnb/visx/pull/1619)
+
+### :memo: Documentation
+
+- fix(demo/pages/docs): use relative imports to fix API docs [#1612](https://github.com/airbnb/visx/pull/1612)
+  
+#### :trophy: Contributors
+- [williaster](https://github.com/williaster)
+
 # v2.17.0 (2022-12-22)
 
 #### :bug: Bug Fix
