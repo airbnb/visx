@@ -43,7 +43,4 @@ module.exports = {
   timers: 'fake',
   verbose: false,
   testPathIgnorePatterns: ['<rootDir>/packages/visx-demo', '<rootDir>/packages/visx-visx'],
-  transformIgnorePatterns: [
-    'node_modules/(?!(d3-(array|color|format|interpolate|scale|time|time-format)|internmap)/)',
-  ],
 };
