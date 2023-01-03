@@ -1,7 +1,7 @@
 import React from 'react';
 import ChordReadme from '!!raw-loader!../../../../visx-chord/Readme.md';
-import Chord from '@visx/chord/src/Chord';
-import Ribbon from '@visx/chord/src/Ribbon';
+import Chord from '../../../../visx-chord/src/Chord';
+import Ribbon from '../../../../visx-chord/src/Ribbon';
 import DocPage from '../../components/DocPage';
 import ChordTile from '../../components/Gallery/ChordTile';
 
