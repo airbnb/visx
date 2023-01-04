@@ -3,7 +3,9 @@ import { ScaleConfig, ScaleConfigToD3Scale } from '@visx/scale';
 import React, { useContext, useMemo } from 'react';
 import createOrdinalScale from '@visx/scale/lib/scales/ordinal';
 import { AxisScaleOutput } from '@visx/axis';
-import { DataContextType, XYChartTheme } from '../types';
+import { ResizeObserverPolyfill } from '@visx/responsive/src/types';
+
+import { XYChartTheme } from '../types';
 import ThemeContext from '../context/ThemeContext';
 import DataContext from '../context/DataContext';
 import useDataRegistry from '../hooks/useDataRegistry';
@@ -32,7 +34,7 @@ export type DataProviderProps<
    * Optionally set the resizeObserverPolyfill context, which will be available to
    * ParentSize, Tooltip, and AnnotationLabel components.
    */
-  resizeObserverPolyfill?: DataContextType<any, any, any>['resizeObserverPolyfill'];
+  resizeObserverPolyfill?: ResizeObserverPolyfill;
 };
 
 export default function DataProvider<

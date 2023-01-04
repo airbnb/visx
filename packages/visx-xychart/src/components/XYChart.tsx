@@ -1,12 +1,12 @@
 /* eslint jsx-a11y/mouse-events-have-key-events: 'off', @typescript-eslint/no-explicit-any: 'off' */
 import React, { useContext, useEffect } from 'react';
 import ParentSize from '@visx/responsive/lib/components/ParentSize';
-import { ResizeObserver, ResizeObserverCallback } from '@visx/responsive/src/types';
+import { ResizeObserverPolyfill } from '@visx/responsive/src/types';
 import { AxisScaleOutput } from '@visx/axis';
 import { ScaleConfig } from '@visx/scale';
 
 import DataContext from '../context/DataContext';
-import { Margin, EventHandlerParams, DataContextType } from '../types';
+import { Margin, EventHandlerParams } from '../types';
 import useEventEmitter from '../hooks/useEventEmitter';
 import EventEmitterProvider from '../providers/EventEmitterProvider';
 import TooltipContext from '../context/TooltipContext';
@@ -89,7 +89,7 @@ export type XYChartProps<
    * which may be polyfilled globally, passed to individual components or injected once
    * into this component.
    */
-  resizeObserverPolyfill?: DataContextType<any, any, any>['resizeObserverPolyfill'];
+  resizeObserverPolyfill?: ResizeObserverPolyfill;
 };
 
 const allowedEventSources = [XYCHART_EVENT_SOURCE];
