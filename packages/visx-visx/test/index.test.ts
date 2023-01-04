@@ -1,4 +1,3 @@
-/* eslint-disable import/namespace */
 import * as visx from '../src';
 
 describe('visx', () => {
@@ -7,7 +6,7 @@ describe('visx', () => {
   });
 
   it('should export @visx/annotation', () => {
-    expect(visx.Annotation.LinePathAnnotation).toBeDefined();
+    expect(visx.Annotation.Annotation).toBeDefined();
   });
 
   it('should export @visx/axis', () => {

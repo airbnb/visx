@@ -1,4 +1,3 @@
-import * as XYChart from '@visx/xychart';
 import * as Annotation from '@visx/annotation';
 import * as Axis from '@visx/axis';
 import * as Bounds from '@visx/bounds';
@@ -28,10 +27,10 @@ import * as Threshold from '@visx/threshold';
 import * as Tooltip from '@visx/tooltip';
 import * as Voronoi from '@visx/voronoi';
 import * as Wordcloud from '@visx/wordcloud';
+import * as XYChart from '@visx/xychart';
 import * as Zoom from '@visx/zoom';
 
 export {
-  XYChart,
   Annotation,
   Axis,
   Bounds,
@@ -61,5 +60,6 @@ export {
   Tooltip,
   Voronoi,
   Wordcloud,
+  XYChart,
   Zoom,
 };
