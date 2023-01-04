@@ -1,12 +1,12 @@
 import React from 'react';
 import debounce from 'lodash/debounce';
-import { ResizeObserver } from '../types';
+import { ResizeObserver, ResizeObserverPolyfill } from '../types';
 
 const CONTAINER_STYLES = { width: '100%', height: '100%' };
 
 // @TODO remove when upgraded to TS 4 which has its own declaration
 interface PrivateWindow {
-  ResizeObserver: ResizeObserver;
+  ResizeObserver: ResizeObserverPolyfill;
 }
 
 export type WithParentSizeProps = {
@@ -26,7 +26,7 @@ export type WithParentSizeProvidedProps = WithParentSizeState;
 export default function withParentSize<BaseComponentProps extends WithParentSizeProps = {}>(
   BaseComponent: React.ComponentType<BaseComponentProps & WithParentSizeProvidedProps>,
   /** Optionally inject a ResizeObserver polyfill, else this *must* be globally available. */
-  resizeObserverPolyfill?: ResizeObserver,
+  resizeObserverPolyfill?: ResizeObserverPolyfill,
 ) {
   return class WrappedComponent extends React.Component<
     BaseComponentProps & WithParentSizeProvidedProps,
@@ -47,6 +47,7 @@ export default function withParentSize<BaseComponentProps extends WithParentSize
     componentDidMount() {
       const ResizeObserverLocal =
         resizeObserverPolyfill || (window as unknown as PrivateWindow).ResizeObserver;
+
       this.resizeObserver = new ResizeObserverLocal((entries) => {
         entries.forEach((entry) => {
           const { width, height } = entry.contentRect;

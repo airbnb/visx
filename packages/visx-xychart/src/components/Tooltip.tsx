@@ -55,8 +55,8 @@ export type TooltipProps<Datum extends object> = {
   /** Optional styles for the point, if visible. */
   glyphStyle?: React.SVGProps<SVGCircleElement>;
   /**
-   * Tooltip depends on ResizeObserver, which may be pollyfilled globally
-   * or injected into this component.
+   * Tooltip depends on ResizeObserver, which may be polyfilled globally,
+   * passed to XYChart, or injected into this component.
    */
   resizeObserverPolyfill?: UseTooltipPortalOptions['polyfill'];
 } & Omit<BaseTooltipProps, 'left' | 'top' | 'children'> &
@@ -100,7 +100,7 @@ function TooltipInner<Datum extends object>({
   glyphStyle,
   renderTooltip,
   renderGlyph = defaultRenderGlyph,
-  resizeObserverPolyfill,
+  resizeObserverPolyfill: resizeObserverPolyfillProp,
   scroll = true,
   showDatumGlyph = false,
   showHorizontalCrosshair = false,
@@ -112,13 +112,22 @@ function TooltipInner<Datum extends object>({
   zIndex,
   ...tooltipProps
 }: TooltipProps<Datum>) {
-  const { colorScale, theme, innerHeight, innerWidth, margin, xScale, yScale, dataRegistry } =
-    useContext(DataContext) || {};
+  const {
+    colorScale,
+    theme,
+    innerHeight,
+    innerWidth,
+    margin,
+    xScale,
+    yScale,
+    dataRegistry,
+    resizeObserverPolyfill,
+  } = useContext(DataContext) || {};
   const tooltipContext = useContext(TooltipContext) as TooltipContextType<Datum>;
   const { containerRef, TooltipInPortal, forceRefreshBounds } = useTooltipInPortal({
     debounce,
     detectBounds,
-    polyfill: resizeObserverPolyfill,
+    polyfill: resizeObserverPolyfill || resizeObserverPolyfillProp,
     scroll,
     zIndex,
   });

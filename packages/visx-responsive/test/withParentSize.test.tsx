@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import { ResizeObserver } from '@juggle/resize-observer';
 import '@testing-library/jest-dom';
 import { withParentSize } from '../src';
 
@@ -18,7 +19,7 @@ describe('withParentSize', () => {
   });
 
   test('it should pass parentWidth and parentHeight props to its child', () => {
-    const HOC = withParentSize(Component);
+    const HOC = withParentSize(Component, ResizeObserver);
     const { getByTestId } = render(<HOC initialWidth={200} initialHeight={200} />);
 
     const RenderedComponent = getByTestId('Component');

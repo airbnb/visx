@@ -7,11 +7,19 @@ interface ResizeObserverEntry {
     height: number;
   };
 }
-type ResizeObserverCallback = (entries: ResizeObserverEntry[]) => void;
 
-export interface ResizeObserver {
-  // eslint-disable-next-line @typescript-eslint/no-misused-new
-  new (callback: ResizeObserverCallback): ResizeObserver;
-  observe(el: Element): void;
+type ResizeObserverCallback = (entries: ResizeObserverEntry[], observer: ResizeObserver) => void;
+
+declare class ResizeObserver {
+  constructor(callback: ResizeObserverCallback);
+  observe(target: Element, options?: any): void;
+  unobserve(target: Element): void;
   disconnect(): void;
+  static toString(): string;
 }
+
+interface ResizeObserverPolyfill {
+  new (callback: ResizeObserverCallback): ResizeObserver;
+}
+
+export { ResizeObserver, ResizeObserverCallback, ResizeObserverPolyfill };

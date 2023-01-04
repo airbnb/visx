@@ -1,3 +1,6 @@
-console.warn = console.error = function mockedConsole(message) {
-  throw new Error(message);
-};
+function mockedConsole(...args) {
+  throw new Error(args);
+}
+
+console.warn = mockedConsole;
+console.error = mockedConsole;
