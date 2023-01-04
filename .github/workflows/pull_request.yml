@@ -28,7 +28,7 @@ jobs:
         run: yarn install --frozen-lockfile --ignore-engines
 
       - name: 🤖 Ensure TS references are up to date
-        run: yarn type:update-refs && [-z "$(git status --porcelain)"]
+        run: yarn type:update-refs && git diff --exit-code
 
       - name: 🛠 Build packages
         run: yarn build
