@@ -27,6 +27,9 @@ jobs:
       - name: 📡 Install dependencies
         run: yarn install --frozen-lockfile --ignore-engines
 
+      - name: 🤖 Ensure TS references are up to date
+        run: yarn type:update-refs && git diff --exit-code
+
       - name: 🛠 Build packages
         run: yarn build
 
@@ -43,6 +46,10 @@ jobs:
 
       - name: ❤️ Run lint
         run: yarn lint
+
+      - name: ✨ Build visx site without failure
+        run: yarn build
+        working-directory: './packages/visx-demo/'
 
       - name: 🦛 Run happo
         run: yarn run happo-ci-github-actions

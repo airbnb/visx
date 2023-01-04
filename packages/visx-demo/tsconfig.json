@@ -27,6 +27,9 @@
       "path": "../visx-axis"
     },
     {
+      "path": "../visx-bounds"
+    },
+    {
       "path": "../visx-brush"
     },
     {
@@ -106,6 +109,9 @@
     },
     {
       "path": "../visx-tooltip"
+    },
+    {
+      "path": "../visx-visx"
     },
     {
       "path": "../visx-voronoi"
