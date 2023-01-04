@@ -5,9 +5,10 @@
     "rootDir": "src",
     "allowJs": true,
     "skipLibCheck": true,
-    "resolveJsonModule": false,
+    "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "noEmit": true
   },
   "exclude": [
     "lib",
