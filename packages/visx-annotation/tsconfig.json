@@ -22,12 +22,6 @@
       "path": "../visx-group"
     },
     {
-      "path": "../visx-point"
-    },
-    {
-      "path": "../visx-shape"
-    },
-    {
       "path": "../visx-text"
     }
   ]
