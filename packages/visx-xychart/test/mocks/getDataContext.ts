@@ -1,5 +1,7 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { scaleLinear, scaleOrdinal } from '@visx/scale';
+import { ResizeObserver } from '@juggle/resize-observer';
 import { DataContextType, lightTheme } from '../../src';
 import DataRegistry from '../../lib/classes/DataRegistry';
 
@@ -31,6 +33,7 @@ function getDataContext(entries?: Parameters<typeof DataRegistry.prototype.regis
     theme: lightTheme,
     setDimensions: noOp,
     horizontal: false,
+    resizeObserverPolyfill: ResizeObserver,
   };
 
   return mockContext;

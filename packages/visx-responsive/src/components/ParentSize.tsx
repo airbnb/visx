@@ -1,10 +1,10 @@
 import debounce from 'lodash/debounce';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { ResizeObserver } from '../types';
+import { ResizeObserverPolyfill } from '../types';
 
 // @TODO remove when upgraded to TS 4 which has its own declaration
 interface PrivateWindow {
-  ResizeObserver: ResizeObserver;
+  ResizeObserver: ResizeObserverPolyfill;
 }
 
 export type ParentSizeProps = {
@@ -19,7 +19,7 @@ export type ParentSizeProps = {
   /** Optional `style` object to apply to the parent `div` wrapper used for size measurement. */
   parentSizeStyles?: React.CSSProperties;
   /** Optionally inject a ResizeObserver polyfill, else this *must* be globally available. */
-  resizeObserverPolyfill?: ResizeObserver;
+  resizeObserverPolyfill?: ResizeObserverPolyfill;
   /** Child render function `({ width, height, top, left, ref, resize }) => ReactNode`. */
   children: (
     args: {
@@ -39,13 +39,14 @@ type ParentSizeState = {
 export type ParentSizeProvidedProps = ParentSizeState;
 
 const defaultIgnoreDimensions: ParentSizeProps['ignoreDimensions'] = [];
+const defaultParentSizeStyles = { width: '100%', height: '100%' };
 
 export default function ParentSize({
   className,
   children,
   debounceTime = 300,
   ignoreDimensions = defaultIgnoreDimensions,
-  parentSizeStyles = { width: '100%', height: '100%' },
+  parentSizeStyles = defaultParentSizeStyles,
   enableDebounceLeadingCall = true,
   resizeObserverPolyfill,
   ...restProps
@@ -84,7 +85,7 @@ export default function ParentSize({
 
     const observer = new LocalResizeObserver((entries) => {
       entries.forEach((entry) => {
-        const { left, top, width, height } = entry.contentRect;
+        const { left, top, width, height } = entry?.contentRect ?? {};
         animationFrameID.current = window.requestAnimationFrame(() => {
           resize({ width, height, top, left });
         });
