@@ -1,9 +1,13 @@
 const { RemoteBrowserTarget } = require('happo.io');
 const { findPagesDir } = require('next/dist/lib/find-pages-dir');
 const getWebpackConfig = require('next/dist/build/webpack-config').default;
-const nextConfig = require('./next.config');
+const loadNextConfig = require('next/dist/next-server/server/config').default;
+const webpack = require('next/dist/compiled/webpack/webpack');
 const path = require('path');
+
 const { asyncTimeout } = require('./.happo-variables');
+
+webpack.init(true);
 
 const happoTmpDir = './.happo'; // should match .gitignore
 
@@ -37,27 +41,14 @@ module.exports = {
   },
 
   // extend next's webpack config so examples can be used directly
-  // this is largely taken from the happo storybook plugin
+  // https://github.com/happo/happo-next-demo
   customizeWebpackConfig: async (config) => {
+    const nextConfig = await loadNextConfig('production', __dirname, null);
     const base = await getWebpackConfig(__dirname, {
-      config: {
-        devIndicators: {},
-        distDir: happoTmpDir,
-        experimental: { plugins: [] },
-        future: {},
-        env: {},
-        images: {},
-        pageExtensions: ['pages.js'],
-        sassOptions: {}, // we don't have this loader
-        ...nextConfig,
-      },
-      rewrites: {
-        beforeFiles: [],
-        afterFiles: [],
-        fallback: [],
-      },
+      config: nextConfig,
       entrypoints: {},
       pagesDir: findPagesDir(process.cwd()),
+      rewrites: { beforeFiles: [], afterFiles: [], fallback: [] },
     });
     config.plugins = base.plugins;
     config.resolve = base.resolve;
