@@ -1,9 +1,12 @@
 const { RemoteBrowserTarget } = require('happo.io');
 const { findPagesDir } = require('next/dist/lib/find-pages-dir');
-const getWebpackConfig = require('next/dist/build/webpack-config').default;
-const loadNextConfig = require('next/dist/next-server/server/config').default;
+const getBaseWebpackConfig = require('next/dist/build/webpack-config').default;
+const loadNextConfig = require('next/dist/server/config').default;
 const webpack = require('next/dist/compiled/webpack/webpack');
 const path = require('path');
+
+const trace = require('next/dist/telemetry/trace');
+const nextBuildSpan = trace.trace('next-build');
 
 const { asyncTimeout } = require('./.happo-variables');
 
@@ -44,11 +47,12 @@ module.exports = {
   // https://github.com/happo/happo-next-demo
   customizeWebpackConfig: async (config) => {
     const nextConfig = await loadNextConfig('production', __dirname, null);
-    const base = await getWebpackConfig(__dirname, {
+    const base = await getBaseWebpackConfig(__dirname, {
       config: nextConfig,
       entrypoints: {},
       pagesDir: findPagesDir(process.cwd()),
       rewrites: { beforeFiles: [], afterFiles: [], fallback: [] },
+      runWebpackSpan: nextBuildSpan,
     });
     config.plugins = base.plugins;
     config.resolve = base.resolve;
@@ -61,6 +65,9 @@ module.exports = {
     config.module = base.module;
     return config;
   },
+
+  // use webpack from next.js
+  webpack: webpack.webpack,
 
   // happo is unable to resolve some imports if the tmpdir isn't located inside
   // the project structure. The default is an OS provided folder, `os.tmpdir()`.
