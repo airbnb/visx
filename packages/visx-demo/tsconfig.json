@@ -1,20 +1,30 @@
 {
   "compilerOptions": {
-    "declarationDir": "lib",
-    "outDir": "lib",
-    "rootDir": "src",
     "allowJs": true,
-    "skipLibCheck": true,
-    "resolveJsonModule": false,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "composite": true,
+    "outDir": "lib",
+    "resolveJsonModule": false,
+    "rootDir": "src",
+    "skipLibCheck": true,
+    "strict": false,
+    "target": "es5"
   },
   "exclude": [
     "lib",
     "test",
     "src/sandboxes/**/package.json"
   ],
-  "extends": "../../tsconfig.options.json",
   "include": [
     "src/**/*",
     "../../types/**/*"

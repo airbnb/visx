@@ -1,9 +1,19 @@
 const { RemoteBrowserTarget } = require('happo.io');
 const { findPagesDir } = require('next/dist/lib/find-pages-dir');
-const getWebpackConfig = require('next/dist/build/webpack-config').default;
-const nextConfig = require('./next.config');
+const getBaseWebpackConfig = require('next/dist/build/webpack-config').default;
+const loadNextConfig = require('next/dist/server/config').default;
+const webpack = require('next/dist/compiled/webpack/webpack');
 const path = require('path');
+
+// note: these refs very much depend on our version of next.js and are based off
+// visx-demo/node_modules/next/dist/build/index.js
+const trace = require('next/dist/telemetry/trace');
+const nextBuildSpan = trace.trace('next-build');
+
 const { asyncTimeout } = require('./.happo-variables');
+
+// happo will use next's compiled version of webpack
+webpack.init(true);
 
 const happoTmpDir = './.happo'; // should match .gitignore
 
@@ -37,22 +47,15 @@ module.exports = {
   },
 
   // extend next's webpack config so examples can be used directly
-  // this is largely taken from the happo storybook plugin
+  // https://github.com/happo/happo-next-demo
   customizeWebpackConfig: async (config) => {
-    const base = await getWebpackConfig(__dirname, {
-      config: {
-        devIndicators: {},
-        distDir: happoTmpDir,
-        experimental: { plugins: [] },
-        future: {},
-        env: {},
-        pageExtensions: ['pages.js'],
-        sassOptions: {}, // we don't have this loader
-        ...nextConfig,
-      },
-      rewrites: [],
+    const nextConfig = await loadNextConfig('production', __dirname, null);
+    const base = await getBaseWebpackConfig(__dirname, {
+      config: nextConfig,
       entrypoints: {},
       pagesDir: findPagesDir(process.cwd()),
+      rewrites: { beforeFiles: [], afterFiles: [], fallback: [] },
+      runWebpackSpan: nextBuildSpan,
     });
     config.plugins = base.plugins;
     config.resolve = base.resolve;
@@ -65,6 +68,9 @@ module.exports = {
     config.module = base.module;
     return config;
   },
+
+  // use webpack from next.js
+  webpack: webpack.webpack,
 
   // happo is unable to resolve some imports if the tmpdir isn't located inside
   // the project structure. The default is an OS provided folder, `os.tmpdir()`.
