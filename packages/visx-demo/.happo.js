@@ -50,7 +50,11 @@ module.exports = {
         sassOptions: {}, // we don't have this loader
         ...nextConfig,
       },
-      rewrites: [],
+      rewrites: {
+        beforeFiles: [],
+        afterFiles: [],
+        fallback: [],
+      },
       entrypoints: {},
       pagesDir: findPagesDir(process.cwd()),
     });
