@@ -6,19 +6,19 @@
 
 The `@visx/responsive` package is here to help you make responsive graphs.
 
-**With Enhancers**
+**Enhancers**
 
 `withScreenSize`
 
 `withParentSize`
 
-**With Components**
+**Components**
 
 `ParentSize`
 
 `ScaleSVG`
 
-## `withScreenSize`
+### `withScreenSize`
 
 If you would like your graph to adapt to the screen size, you can use `withScreenSize()`. The
 resulting component will pass `screenWidth` and `screenHeight` props to the wrapped component
@@ -109,7 +109,7 @@ let chartToRender = (
 // ... Render the chartToRender somewhere
 ```
 
-##### ⚠️ `ResizeObserver` dependency
+### ⚠️ `ResizeObserver` dependency
 
 The `ParentSize` component and `withParentSize` enhancer rely on `ResizeObserver`s for auto-sizing.
 If you need a polyfill, you can either polute the `window` object or inject it cleanly through
@@ -119,7 +119,11 @@ props:
 import { ResizeObserver } from 'your-favorite-polyfill';
 
 function App() {
-  return <Label resizeObserverPolyfill={ResizeObserver} {...} />
+  return (
+    <ParentSize resizeObserverPolyfill={ResizeObserver} {...}>
+      {() => {...}}
+    </ParentSize>
+  );
 ```
 
 ## Installation
