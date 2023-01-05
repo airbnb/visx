@@ -46,6 +46,7 @@ module.exports = {
         experimental: { plugins: [] },
         future: {},
         env: {},
+        images: {},
         pageExtensions: ['pages.js'],
         sassOptions: {}, // we don't have this loader
         ...nextConfig,
