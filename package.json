@@ -71,7 +71,6 @@
     "@types/jsdom": "^12.2.4",
     "@types/node-fetch": "1.6.9",
     "@types/react-test-renderer": "^18.0.0",
-    "@types/webpack": "^4.41.17",
     "@typescript-eslint/eslint-plugin": "^5.46.1",
     "@typescript-eslint/parser": "^5.46.1",
     "airbnb-js-shims": "^2.2.1",
