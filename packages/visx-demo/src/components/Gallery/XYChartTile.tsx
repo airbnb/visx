@@ -1,9 +1,11 @@
 import React from 'react';
-import dynamic from 'next/dynamic';
-import { XYChartProps } from '../../sandboxes/visx-xychart/Example';
+import XYChart, { XYChartProps } from '../../sandboxes/visx-xychart/Example';
 import GalleryTile from '../GalleryTile';
 
-const XYChart = dynamic(() => import('../../sandboxes/visx-xychart/Example'), { ssr: false });
+function XYChartWrapper(props) {
+  if (typeof window === 'undefined') return null;
+  return <XYChart {...props} />;
+}
 
 export { default as packageJson } from '../../sandboxes/visx-xychart/package.json';
 
@@ -14,7 +16,7 @@ export default function XYChartITile() {
     <GalleryTile<XYChartProps>
       title="XYChart"
       description="<XYChart />"
-      exampleRenderer={XYChart}
+      exampleRenderer={XYChartWrapper}
       exampleUrl="/xychart"
       tileStyles={tileStyles}
       detailsHeight={0}

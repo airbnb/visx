@@ -5,11 +5,14 @@ const loadNextConfig = require('next/dist/server/config').default;
 const webpack = require('next/dist/compiled/webpack/webpack');
 const path = require('path');
 
+// note: these refs very much depend on our version of next.js and are based off
+// visx-demo/node_modules/next/dist/build/index.js
 const trace = require('next/dist/telemetry/trace');
 const nextBuildSpan = trace.trace('next-build');
 
 const { asyncTimeout } = require('./.happo-variables');
 
+// happo will use next's compiled version of webpack
 webpack.init(true);
 
 const happoTmpDir = './.happo'; // should match .gitignore
