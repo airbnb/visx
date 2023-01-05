@@ -1,6 +1,7 @@
 import React from 'react';
 import debounce from 'lodash/debounce';
 import { ResizeObserver, ResizeObserverPolyfill } from '../types';
+import { getResizeObserverPolyfill } from '../utils/resizeObserverPolyfill';
 
 const CONTAINER_STYLES = { width: '100%', height: '100%' };
 
@@ -46,7 +47,9 @@ export default function withParentSize<BaseComponentProps extends WithParentSize
 
     componentDidMount() {
       const ResizeObserverLocal =
-        resizeObserverPolyfill || (window as unknown as PrivateWindow).ResizeObserver;
+        resizeObserverPolyfill ||
+        getResizeObserverPolyfill() ||
+        (window as unknown as PrivateWindow).ResizeObserver;
 
       this.resizeObserver = new ResizeObserverLocal((entries) => {
         entries.forEach((entry) => {

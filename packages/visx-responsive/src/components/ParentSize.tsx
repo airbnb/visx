@@ -1,6 +1,7 @@
 import debounce from 'lodash/debounce';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { ResizeObserverPolyfill } from '../types';
+import { getResizeObserverPolyfill } from '../utils/resizeObserverPolyfill';
 
 // @TODO remove when upgraded to TS 4 which has its own declaration
 interface PrivateWindow {
@@ -81,7 +82,9 @@ export default function ParentSize({
 
   useEffect(() => {
     const LocalResizeObserver =
-      resizeObserverPolyfill || (window as unknown as PrivateWindow).ResizeObserver;
+      resizeObserverPolyfill ||
+      getResizeObserverPolyfill() ||
+      (window as unknown as PrivateWindow).ResizeObserver;
 
     const observer = new LocalResizeObserver((entries) => {
       entries.forEach((entry) => {
