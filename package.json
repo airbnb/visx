@@ -114,6 +114,7 @@
     "./packages/*"
   ],
   "resolutions": {
+    "@babel/parser": "^7.15.3",
     "handlebars": "4.5.3"
   }
 }
