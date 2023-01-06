@@ -1,4 +1,5 @@
 # Changelog
+- [v3.0.0](#v300)
 - [v2.18.0](#v2180)
 - [v2.17.0](#v2170)
 - [v2.16.1](#v2161)
@@ -6,10 +7,10 @@
 - [v2.15.1](#v2151)
 - [v2.15.0](#v2150)
 - [v2.14.0](#v2140)
-- [v2.13.0](#v2130)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v2130">v2.13.0</a></li>
   <li><a href="#v2122">v2.12.2</a></li>
   <li><a href="#v2121">v2.12.1</a></li>
   <li><a href="#v2120">v2.12.0</a></li>
@@ -155,6 +156,23 @@
 </details>
 
 ------
+# v3.0.0 (2023-01-06)
+
+#### :boom: Breaking Changes
+
+- security: Revert "Revert breaking "deps(scale): bump `d3-interpolate` and `d3-scale`"" [#1621](https://github.com/airbnb/visx/pull/1621)
+- breaking(annotation): remove `deprecated/LinePathAnnotation` [#1620](https://github.com/airbnb/visx/pull/1620)
+- breaking(responsive, xychart): require ResizeObserver or polyfill [#1622](https://github.com/airbnb/visx/pull/1622)
+
+### :house: Internal
+
+- internal(github/workflows): add tsconfig + demo site build checks [#1626](https://github.com/airbnb/visx/pull/1626)
+- deps(demo): upgrade to next@11 [#1627](https://github.com/airbnb/visx/pull/1627)
+
+#### :trophy: Contributors
+- [jreyes33](https://github.com/jreyes33)
+- [williaster](https://github.com/williaster)
+
 # v2.18.0 (2023-01-03)
 
 #### :bug: Bug Fix
