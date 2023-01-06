@@ -274,6 +274,50 @@ export default () => (
 
 <hr />
 
+##### ⚠️ `ResizeObserver` dependency
+
+Responsive `XYChart`s, `Tooltip`, and `AnnotationLabel` components rely on
+[`ResizeObserver`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver)s. If your
+browser target needs a polyfill, you can either pollute the `window` object or inject it cleanly
+using the `resizeObserverPolyfill` prop for these components. A polyfill passed to `XYChart` will be
+accessible to child `Tooltip` and `AnnotationLabel` components.
+
+<details>
+  <summary>Examples ✅ ❌</summary>
+
+❌ `Error: This browser does not support ResizeObserver out of the box`
+
+```tsx
+// no polyfill, no browser support
+() => <XYChart {...} />
+() => <XYChart {...}><Tooltip /></XYChart>
+
+```
+
+✅ No errors
+
+```tsx
+// no polyfill, target browser supports ResizeObserver
+() => <XYChart {...} />
+() => <XYChart {...}><Tooltip /></XYChart>
+
+// import the polyfill in the needed module, or set it on `window` object
+import ResizeObserver from 'resize-observer-polyfill';
+() => <XYChart {...}><Tooltip /></XYChart> // 😎
+
+// cleanly pass polyfill to component that needs it
+import ResizeObserver from 'resize-observer-polyfill';
+() => (
+  <XYChart resizeObserverPolyfill={ResizeObserver} {...}>
+    <Tooltip />
+  </XYChart>
+)
+```
+
+  </details>
+
+<hr />
+
 ## Advanced usage
 
 <details>
@@ -361,45 +405,5 @@ is visible (`tooltipOpen`), tooltlip position (`tooltipLeft`, `tooltipTop`),
 (`hideTooltip`, `showTooltip`, and `updateTooltip`).
 
 </details>
-
-<hr />
-
-##### ⚠️ `ResizeObserver` dependency
-
-The `Tooltip` and `AnnotationLabel` components rely on
-[`ResizeObserver`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver)s. If your
-browser target needs a polyfill, you can either polute the `window` object or inject it cleanly
-using the `resizeObserverPolyfill` prop for these components.
-
-<details>
-  <summary>Examples</summary>
-
-❌ `Error: This browser does not support ResizeObserver out of the box`
-
-```tsx
-// no polyfill, no browser support
-() => <XYChart {...}><Tooltip /></XYChart>
-```
-
-✅ No errors
-
-```tsx
-// no polyfill, target browser supports ResizeObserver
-() => <XYChart {...}><Tooltip /></XYChart>
-
-// import the polyfill in the needed module, or set it on `window` object
-import ResizeObserver from 'resize-observer-polyfill';
-() => <XYChart {...}><Tooltip /></XYChart> // 😎
-
-// cleanly pass polyfill to component that needs it
-import ResizeObserver from 'resize-observer-polyfill';
-() => (
-  <XYChart {...}>
-    <Tooltip resizeObserverPolyfill={ResizeObserver} />
-  </XYChart>
-)
-```
-
-  </details>
 
 <hr />

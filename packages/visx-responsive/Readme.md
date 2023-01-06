@@ -6,19 +6,19 @@
 
 The `@visx/responsive` package is here to help you make responsive graphs.
 
-**With Enhancers**
+**Enhancers**
 
 `withScreenSize`
 
 `withParentSize`
 
-**With Components**
+**Components**
 
 `ParentSize`
 
 `ScaleSVG`
 
-## `withScreenSize`
+### `withScreenSize`
 
 If you would like your graph to adapt to the screen size, you can use `withScreenSize()`. The
 resulting component will pass `screenWidth` and `screenHeight` props to the wrapped component
@@ -76,9 +76,9 @@ let chartToRender = (
         parentHeight={parent.height}
         parentTop={parent.top}
         parentLeft={parent.left}
-        // this is the referer to the wrapper component
+        // this is the referrer to the wrapper component
         parentRef={parent.ref}
-        // this function can be called inside MySuperCoolVisxChart to cause a resize of the wrapper component
+        // this function can be called inside MyVisxChart to cause a resize of the wrapper component
         resizeParent={parent.resize}
       />
     )}
@@ -109,10 +109,22 @@ let chartToRender = (
 // ... Render the chartToRender somewhere
 ```
 
-##### ⚠️ `ResizeObserver` dependency
+### ⚠️ `ResizeObserver` dependency
 
-If you don't need a polyfill for `ResizeObserver` or are already including it in your bundle, you
-should use `ParentSizeModern` and `withParentSizeModern` which doesn't include the polyfill.
+The `ParentSize` component and `withParentSize` enhancer rely on `ResizeObserver`s for auto-sizing.
+If you need a polyfill, you can either polute the `window` object or inject it cleanly through
+props:
+
+```tsx
+import { ResizeObserver } from 'your-favorite-polyfill';
+
+function App() {
+  return (
+    <ParentSize resizeObserverPolyfill={ResizeObserver} {...}>
+      {() => {...}}
+    </ParentSize>
+  );
+```
 
 ## Installation
 

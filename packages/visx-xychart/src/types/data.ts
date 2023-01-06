@@ -1,4 +1,5 @@
 import { AxisScale } from '@visx/axis';
+import { ResizeObserverPolyfill } from '@visx/responsive/src/types';
 import { ScaleTypeToD3Scale, ScaleInput } from '@visx/scale';
 import DataRegistry from '../classes/DataRegistry';
 import { XYChartTheme } from './theme';
@@ -52,4 +53,5 @@ export interface DataContextType<
   setDimensions: (dims: { width: number; height: number; margin: Margin }) => void;
   theme: XYChartTheme;
   horizontal: boolean;
+  resizeObserverPolyfill?: ResizeObserverPolyfill;
 }

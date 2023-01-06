@@ -9,7 +9,7 @@ const defaultBackgroundProps = { fillOpacity: 0.7 };
 
 /** AnnotationLabel which provides text styles from theme. */
 export default function AnnotationLabel(props: AnnotationLabelProps) {
-  const { theme } = useContext(DataContext);
+  const { theme, resizeObserverPolyfill } = useContext(DataContext);
   const titleProps = theme?.svgLabelBig;
   const subtitleProps = theme?.svgLabelSmall;
   return (
@@ -24,6 +24,7 @@ export default function AnnotationLabel(props: AnnotationLabelProps) {
       titleFontSize={titleProps?.fontSize}
       titleFontWeight={titleProps?.fontWeight}
       titleProps={titleProps}
+      resizeObserverPolyfill={resizeObserverPolyfill}
       {...props}
     />
   );

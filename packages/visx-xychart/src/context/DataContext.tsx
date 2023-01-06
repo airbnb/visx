@@ -5,7 +5,7 @@ import { DataContextType } from '../types';
 
 type AnyDataContext = DataContextType<AxisScale, AxisScale, any>;
 
-/** Utilities for infering context generics */
+/** Utilities for inferring context generics */
 export type InferXScaleConfig<X extends AnyDataContext> = X extends DataContextType<
   infer T,
   any,

@@ -3,6 +3,8 @@ import { ScaleConfig, ScaleConfigToD3Scale } from '@visx/scale';
 import React, { useContext, useMemo } from 'react';
 import createOrdinalScale from '@visx/scale/lib/scales/ordinal';
 import { AxisScaleOutput } from '@visx/axis';
+import { ResizeObserverPolyfill } from '@visx/responsive/src/types';
+
 import { XYChartTheme } from '../types';
 import ThemeContext from '../context/ThemeContext';
 import DataContext from '../context/DataContext';
@@ -28,6 +30,11 @@ export type DataProviderProps<
   children: React.ReactNode;
   /* Determines whether Series will be plotted horizontally (e.g., horizontal bars). By default this will try to be inferred based on scale types. */
   horizontal?: boolean | 'auto';
+  /**
+   * Optionally set the resizeObserverPolyfill context, which will be available to
+   * ParentSize, Tooltip, and AnnotationLabel components.
+   */
+  resizeObserverPolyfill?: ResizeObserverPolyfill;
 };
 
 export default function DataProvider<
@@ -41,6 +48,7 @@ export default function DataProvider<
   yScale: yScaleConfig,
   children,
   horizontal: initialHorizontal = 'auto',
+  resizeObserverPolyfill,
 }: DataProviderProps<XScaleConfig, YScaleConfig>) {
   // `DataProvider` provides a theme so that `ThemeProvider` is not strictly needed.
   // `props.theme` takes precedent over `context.theme`, which has a default even if
@@ -96,6 +104,7 @@ export default function DataProvider<
       innerHeight,
       setDimensions,
       horizontal,
+      resizeObserverPolyfill,
     }),
     // everything here should be memoized between renders
     // to avoid child re-renders
@@ -112,6 +121,7 @@ export default function DataProvider<
       width,
       xScale,
       yScale,
+      resizeObserverPolyfill,
     ],
   );
 

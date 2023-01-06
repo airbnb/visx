@@ -1,6 +1,7 @@
 /* eslint jsx-a11y/mouse-events-have-key-events: 'off', @typescript-eslint/no-explicit-any: 'off' */
 import React, { useContext, useEffect } from 'react';
 import ParentSize from '@visx/responsive/lib/components/ParentSize';
+import { ResizeObserverPolyfill } from '@visx/responsive/src/types';
 import { AxisScaleOutput } from '@visx/axis';
 import { ScaleConfig } from '@visx/scale';
 
@@ -70,7 +71,6 @@ export type XYChartProps<
     key,
     svgPoint,
   }: EventHandlerParams<Datum>) => void;
-
   /** Callback invoked for onPointerDown events for the nearest Datum to the PointerEvent _for each Series with pointerEvents={true}_. */
   onPointerDown?: ({
     datum,
@@ -84,6 +84,12 @@ export type XYChartProps<
 
   /** Whether to invoke PointerEvent handlers for all dataKeys, or the nearest dataKey. */
   pointerEventsDataKey?: 'all' | 'nearest';
+  /**
+   * Responsive charts, <Tooltip />, and <AnnotationLabel /> depend on ResizeObserver
+   * which may be polyfilled globally, passed to individual components or injected once
+   * into this component.
+   */
+  resizeObserverPolyfill?: ResizeObserverPolyfill;
 };
 
 const allowedEventSources = [XYCHART_EVENT_SOURCE];
@@ -109,8 +115,10 @@ export default function XYChart<
     width,
     xScale,
     yScale,
+    // pass prop to context so it can be used anywhere
+    resizeObserverPolyfill: resizeObserverPolyfillProp,
   } = props;
-  const { setDimensions } = useContext(DataContext);
+  const { setDimensions, resizeObserverPolyfill } = useContext(DataContext);
   const tooltipContext = useContext(TooltipContext);
   const emit = useEventEmitter();
 
@@ -146,6 +154,7 @@ export default function XYChart<
         theme={theme}
         initialDimensions={{ width, height, margin }}
         horizontal={horizontal}
+        resizeObserverPolyfill={resizeObserverPolyfillProp}
       >
         <XYChart {...props} />
       </DataProvider>
@@ -153,7 +162,7 @@ export default function XYChart<
   }
   if (width == null || height == null) {
     return (
-      <ParentSize>
+      <ParentSize resizeObserverPolyfill={resizeObserverPolyfill}>
         {(dims) => (
           <XYChart
             {...props}
@@ -182,7 +191,12 @@ export default function XYChart<
     );
   }
 
-  return width > 0 && height > 0 ? (
+  if (width <= 0 || height <= 0) {
+    console.info('XYChart has a zero width or height, bailing', { width, height });
+    return null;
+  }
+
+  return (
     <svg width={width} height={height} aria-label={accessibilityLabel}>
       {children}
       {captureEvents && (
@@ -196,5 +210,5 @@ export default function XYChart<
         />
       )}
     </svg>
-  ) : null;
+  );
 }

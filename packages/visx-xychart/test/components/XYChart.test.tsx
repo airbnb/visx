@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { mount } from 'enzyme';
+import { ResizeObserver } from '@juggle/resize-observer';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { XYChart, DataProvider, DataContext } from '../../src';
@@ -12,6 +13,17 @@ const chartProps = {
 } as const;
 
 describe('<XYChart />', () => {
+  let initialResizeObserver: typeof ResizeObserver;
+  beforeAll(() => {
+    // don't worry about passing it via context
+    initialResizeObserver = window.ResizeObserver;
+    window.ResizeObserver = ResizeObserver;
+  });
+
+  afterAll(() => {
+    window.ResizeObserver = initialResizeObserver;
+  });
+
   it('should be defined', () => {
     expect(XYChart).toBeDefined();
   });

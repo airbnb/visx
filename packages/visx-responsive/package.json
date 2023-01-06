@@ -28,7 +28,6 @@
   },
   "homepage": "https://github.com/airbnb/visx#readme",
   "dependencies": {
-    "@juggle/resize-observer": "^3.3.1",
     "@types/lodash": "^4.14.172",
     "@types/react": "*",
     "lodash": "^4.17.21",
@@ -36,6 +35,9 @@
   },
   "peerDependencies": {
     "react": "^16.0.0-0 || ^17.0.0-0 || ^18.0.0-0"
+  },
+  "devDependencies": {
+    "@juggle/resize-observer": "^3.3.1"
   },
   "publishConfig": {
     "access": "public"

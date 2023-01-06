@@ -42,5 +42,5 @@ module.exports = {
   testURL: 'http://localhost',
   timers: 'fake',
   verbose: false,
-  testPathIgnorePatterns: ['<rootDir>/packages/visx-demo', '<rootDir>/packages/visx-visx'],
+  testPathIgnorePatterns: ['<rootDir>/packages/visx-demo'],
 };
