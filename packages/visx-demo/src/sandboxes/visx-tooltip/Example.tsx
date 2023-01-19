@@ -52,15 +52,14 @@ function OverlayLayer({ className, container, placeAfterTooltipInDom, text }: Ov
 
 export default function Example({ width, height, showControls = true }: TooltipProps) {
   const [tooltipShouldDetectBounds, setTooltipShouldDetectBounds] = useState(true);
-  const [tooltipPortalShouldUseCustomContainer, setTooltipPortalShouldUseCustomContainer] =
-    useState(true);
+  const [tooltipShouldUseCustomContainer, setTooltipShouldUseCustomContainer] = useState(true);
   const [renderTooltipInPortal, setRenderTooltipInPortal] = useState(false);
   const overlayRootRef = React.useRef<HTMLDivElement | null>(null);
 
   const { containerRef, containerBounds, TooltipInPortal } = useTooltipInPortal({
     scroll: true,
     detectBounds: tooltipShouldDetectBounds,
-    portalContainer: tooltipPortalShouldUseCustomContainer
+    portalContainer: tooltipShouldUseCustomContainer
       ? overlayRootRef.current ?? undefined
       : undefined,
   });
@@ -192,9 +191,9 @@ export default function Example({ width, height, showControls = true }: TooltipP
             <label>
               <input
                 type="checkbox"
-                checked={tooltipPortalShouldUseCustomContainer}
+                checked={tooltipShouldUseCustomContainer}
                 onChange={() =>
-                  setTooltipPortalShouldUseCustomContainer(!tooltipPortalShouldUseCustomContainer)
+                  setTooltipShouldUseCustomContainer(!tooltipShouldUseCustomContainer)
                 }
               />
               &nbsp;Tooltip portal in custom container
