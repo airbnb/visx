@@ -27,6 +27,29 @@ const tooltipStyles = {
   padding: 12,
 };
 
+type OverlayLayerProps = {
+  container: HTMLDivElement | null;
+  text: string;
+  className?: string;
+  placeAfterTooltipInDom?: boolean;
+};
+
+function OverlayLayer({ className, container, placeAfterTooltipInDom, text }: OverlayLayerProps) {
+  if (container) {
+    // Since we re-render the tooltip every time the pointer moves and its DOM node
+    // is placed at the end of the container, if placeAfterTooltipInDom is true we
+    // also want to re-render the overlay layer
+    const key = placeAfterTooltipInDom ? Math.random() : 'overlay-under';
+    return ReactDOM.createPortal(
+      <div className={className} key={key}>
+        {text}
+      </div>,
+      container,
+    );
+  }
+  return null;
+}
+
 export default function Example({ width, height, showControls = true }: TooltipProps) {
   const [tooltipShouldDetectBounds, setTooltipShouldDetectBounds] = useState(true);
   const [tooltipPortalShouldUseCustomContainer, setTooltipPortalShouldUseCustomContainer] =
@@ -259,27 +282,4 @@ export default function Example({ width, height, showControls = true }: TooltipP
       `}</style>
     </>
   );
-}
-
-type OverlayLayerProps = {
-  container: HTMLDivElement | null;
-  text: string;
-  className?: string;
-  placeAfterTooltipInDom?: boolean;
-};
-
-function OverlayLayer({ className, container, placeAfterTooltipInDom, text }: OverlayLayerProps) {
-  if (container) {
-    // Since we re-render the tooltip every time the pointer moves and its DOM node
-    // is placed at the end of the container, if placeAfterTooltipInDom is true we
-    // also want to re-render the overlay layer
-    const key = placeAfterTooltipInDom ? Math.random() : 'overlay-under';
-    return ReactDOM.createPortal(
-      <div className={className} key={key}>
-        {text}
-      </div>,
-      container,
-    );
-  }
-  return null;
 }

@@ -51,7 +51,11 @@ export default function useTooltipInPortal({
     }
   }, [portalContainer]);
 
-  React.useEffect(updatePortalContainerRect, [containerBounds, portalContainer]);
+  React.useEffect(updatePortalContainerRect, [
+    containerBounds,
+    portalContainer,
+    updatePortalContainerRect,
+  ]);
   useResizeObserver(portalContainer ?? null, updatePortalContainerRect);
 
   const TooltipInPortal = useMemo(
