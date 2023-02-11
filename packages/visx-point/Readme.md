@@ -4,11 +4,13 @@
   <img src="https://img.shields.io/npm/dm/@visx/point.svg?style=flat-square" />
 </a>
 
+A simple class to represent an `x, y` coordinate.
+
+## Installation
+
 ```
 npm install --save @visx/point
 ```
-
-A simple class to represent an `x, y` coordinate.
 
 ## Example Usage
 
