@@ -1,6 +1,6 @@
 {
   "name": "@visx/brush",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "visx brush",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -33,8 +33,8 @@
     "react": "^16.0.0-0 || ^17.0.0-0 || ^18.0.0-0"
   },
   "dependencies": {
-    "@visx/drag": "3.0.0",
-    "@visx/event": "3.0.0",
+    "@visx/drag": "3.0.1",
+    "@visx/event": "3.0.1",
     "@visx/group": "3.0.0",
     "@visx/scale": "3.0.0",
     "@visx/shape": "3.0.0",

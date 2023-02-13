@@ -1,6 +1,6 @@
 {
   "name": "@visx/grid",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "visx grid",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -34,7 +34,7 @@
     "@types/react": "*",
     "@visx/curve": "3.0.0",
     "@visx/group": "3.0.0",
-    "@visx/point": "3.0.0",
+    "@visx/point": "3.0.1",
     "@visx/scale": "3.0.0",
     "@visx/shape": "3.0.0",
     "classnames": "^2.3.1",
