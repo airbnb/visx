@@ -165,10 +165,6 @@ Mixing two mental models for updating the DOM is never a good time. Copy and pas
 reusable visualization charts or library without having to learn d3. No more selections or
 `enter()`/`exit()`/`update()`.
 
-## Roadmap
-
-Lots coming soon, check out the [roadmap](./ROADMAP.md).
-
 ## In the wild
 
 - [williaster/data-ui](https://github.com/williaster/data-ui)
