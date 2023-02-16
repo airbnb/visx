@@ -108,11 +108,11 @@ export default function Example({
         stroke={green}
         tickStroke={green}
         hideAxisLine
-        tickLabelProps={() => ({
+        tickLabelProps={{
           fill: green,
           fontSize: 11,
           textAnchor: 'middle',
-        })}
+        }}
       />
     </svg>
   );

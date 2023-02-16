@@ -81,7 +81,7 @@ export default function AreaChart({
           numTicks={width > 520 ? 10 : 5}
           stroke={axisColor}
           tickStroke={axisColor}
-          tickLabelProps={() => axisBottomTickLabelProps}
+          tickLabelProps={axisBottomTickLabelProps}
         />
       )}
       {!hideLeftAxis && (
@@ -90,7 +90,7 @@ export default function AreaChart({
           numTicks={5}
           stroke={axisColor}
           tickStroke={axisColor}
-          tickLabelProps={() => axisLeftTickLabelProps}
+          tickLabelProps={axisLeftTickLabelProps}
         />
       )}
       {children}

@@ -4,14 +4,13 @@ import Axis from './Axis';
 import Orientation from '../constants/orientation';
 import { SharedAxisProps, AxisScale } from '../types';
 
-export const bottomTickLabelProps = (/** tickValue, index */) =>
-  ({
-    dy: '0.25em',
-    fill: '#222',
-    fontFamily: 'Arial',
-    fontSize: 10,
-    textAnchor: 'middle',
-  } as const);
+export const bottomTickLabelProps = {
+  dy: '0.25em',
+  fill: '#222',
+  fontFamily: 'Arial',
+  fontSize: 10,
+  textAnchor: 'middle',
+} as const;
 
 export default function AxisBottom<Scale extends AxisScale>({
   axisClassName,

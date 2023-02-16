@@ -6,14 +6,13 @@ import { SharedAxisProps, AxisScale } from '../types';
 
 export type AxisTopProps<Scale extends AxisScale> = SharedAxisProps<Scale>;
 
-export const topTickLabelProps = (/** tickValue, index */) =>
-  ({
-    dy: '-0.75em',
-    fill: '#222',
-    fontFamily: 'Arial',
-    fontSize: 10,
-    textAnchor: 'middle',
-  } as const);
+export const topTickLabelProps = {
+  dy: '-0.75em',
+  fill: '#222',
+  fontFamily: 'Arial',
+  fontSize: 10,
+  textAnchor: 'middle',
+} as const;
 
 export default function AxisTop<Scale extends AxisScale>({
   axisClassName,

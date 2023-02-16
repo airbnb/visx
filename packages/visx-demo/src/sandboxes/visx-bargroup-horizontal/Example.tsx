@@ -110,12 +110,12 @@ export default function Example({
           tickStroke={green}
           tickFormat={formatDate}
           hideAxisLine
-          tickLabelProps={() => ({
+          tickLabelProps={{
             fill: green,
             fontSize: 11,
             textAnchor: 'end',
             dy: '0.33em',
-          })}
+          }}
         />
       </Group>
     </svg>

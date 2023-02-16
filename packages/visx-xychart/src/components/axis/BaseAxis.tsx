@@ -47,7 +47,9 @@ export default function BaseAxis<Scale extends AxisScale>({
                 orientation === 'left' || orientation === 'right'
                   ? margin?.[orientation]
                   : undefined,
-              ...maybeTickLabelProps?.(value, index, values),
+              ...(typeof maybeTickLabelProps === 'function'
+                ? maybeTickLabelProps(value, index, values)
+                : maybeTickLabelProps),
             })
         : undefined,
     [maybeTickLabelProps, axisStyles, orientation, margin],

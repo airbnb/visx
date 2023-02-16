@@ -151,23 +151,23 @@ export default withTooltip<BarStackHorizontalProps, TooltipData>(
               tickFormat={formatDate}
               stroke={purple3}
               tickStroke={purple3}
-              tickLabelProps={() => ({
+              tickLabelProps={{
                 fill: purple3,
                 fontSize: 11,
                 textAnchor: 'end',
                 dy: '0.33em',
-              })}
+              }}
             />
             <AxisBottom
               top={yMax}
               scale={temperatureScale}
               stroke={purple3}
               tickStroke={purple3}
-              tickLabelProps={() => ({
+              tickLabelProps={{
                 fill: purple3,
                 fontSize: 11,
                 textAnchor: 'middle',
-              })}
+              }}
             />
           </Group>
         </svg>

@@ -4,15 +4,14 @@ import Axis from './Axis';
 import Orientation from '../constants/orientation';
 import { SharedAxisProps, AxisScale } from '../types';
 
-export const leftTickLabelProps = (/** tickValue, index */) =>
-  ({
-    dx: '-0.25em',
-    dy: '0.25em',
-    fill: '#222',
-    fontFamily: 'Arial',
-    fontSize: 10,
-    textAnchor: 'end',
-  } as const);
+export const leftTickLabelProps = {
+  dx: '-0.25em',
+  dy: '0.25em',
+  fill: '#222',
+  fontFamily: 'Arial',
+  fontSize: 10,
+  textAnchor: 'end',
+} as const;
 
 export default function AxisLeft<Scale extends AxisScale>({
   axisClassName,
