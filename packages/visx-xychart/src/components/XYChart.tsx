@@ -1,7 +1,7 @@
 /* eslint jsx-a11y/mouse-events-have-key-events: 'off', @typescript-eslint/no-explicit-any: 'off' */
 import React, { useContext, useEffect } from 'react';
 import ParentSize from '@visx/responsive/lib/components/ParentSize';
-import { ResizeObserverPolyfill } from '@visx/responsive/src/types';
+import { ResizeObserverPolyfill } from '@visx/responsive/lib/types';
 import { AxisScaleOutput } from '@visx/axis';
 import { ScaleConfig } from '@visx/scale';
 
