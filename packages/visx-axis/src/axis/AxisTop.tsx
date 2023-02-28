@@ -3,6 +3,7 @@ import cx from 'classnames';
 import Axis from './Axis';
 import Orientation from '../constants/orientation';
 import { SharedAxisProps, AxisScale } from '../types';
+import { getTickLabelProps } from '../utils/getTickLabelProps';
 
 export type AxisTopProps<Scale extends AxisScale> = SharedAxisProps<Scale>;
 
@@ -17,8 +18,8 @@ export const topTickLabelProps = {
 export default function AxisTop<Scale extends AxisScale>({
   axisClassName,
   labelOffset = 8,
-  tickLabelProps = topTickLabelProps,
   tickLength = 8,
+  tickLabelProps,
   ...restProps
 }: AxisTopProps<Scale>) {
   return (
@@ -26,7 +27,7 @@ export default function AxisTop<Scale extends AxisScale>({
       axisClassName={cx('visx-axis-top', axisClassName)}
       labelOffset={labelOffset}
       orientation={Orientation.top}
-      tickLabelProps={tickLabelProps}
+      tickLabelProps={getTickLabelProps<Scale>(topTickLabelProps, tickLabelProps)}
       tickLength={tickLength}
       {...restProps}
     />

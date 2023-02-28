@@ -8,6 +8,7 @@ import getLabelTransform from '../utils/getLabelTransform';
 import { AxisRendererProps, AxisScale } from '../types';
 import Ticks from './Ticks';
 import { Orientation } from '..';
+import { getTickLabelProps } from '../utils/getTickLabelProps';
 
 const defaultTextProps: Partial<TextProps> = {
   textAnchor: 'middle',
@@ -35,7 +36,7 @@ export default function AxisRenderer<Scale extends AxisScale>({
   tickClassName,
   tickComponent,
   tickLineProps,
-  tickLabelProps = defaultTextProps,
+  tickLabelProps,
   tickLength = 8,
   tickStroke = '#222',
   tickTransform,
@@ -44,7 +45,9 @@ export default function AxisRenderer<Scale extends AxisScale>({
 }: AxisRendererProps<Scale>) {
   // compute the max tick label size to compute label offset
   const allTickLabelProps = ticks.map(({ value, index }) =>
-    typeof tickLabelProps === 'function' ? tickLabelProps(value, index, ticks) : tickLabelProps,
+    typeof tickLabelProps === 'function'
+      ? tickLabelProps(value, index, ticks)
+      : (getTickLabelProps<Scale>(defaultTextProps, tickLabelProps) as Partial<TextProps>),
   );
   const maxTickLabelFontSize = Math.max(
     10,
