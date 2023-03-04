@@ -90,12 +90,9 @@ function BaseBarStack<
   const findNearestDatum = useCallback(
     (
       params: NearestDatumArgs<XScale, YScale, BarStackDatum<XScale, YScale>>,
-    ): NearestDatumReturnType<Datum> => {
-      const childData = seriesChildren.find((child) => child.props.dataKey === params.dataKey)
-        ?.props?.data;
-      return childData ? findNearestStackDatum(params, childData, horizontal) : null;
-    },
-    [seriesChildren, horizontal],
+    ): NearestDatumReturnType<BarStackDatum<XScale, YScale>> =>
+      findNearestStackDatum(params, horizontal),
+    [horizontal],
   );
 
   const ownEventSourceKey = `${BARSTACK_EVENT_SOURCE}-${dataKeys.join('-')}`;

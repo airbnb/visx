@@ -152,12 +152,10 @@ function BaseAreaStack<XScale extends AxisScale, YScale extends AxisScale, Datum
 
   // custom logic to find the nearest AreaStackDatum (context) and return the original Datum (props)
   const findNearestDatum = useCallback(
-    (params: NearestDatumArgs<XScale, YScale, AreaStackDatum>): NearestDatumReturnType<Datum> => {
-      const childData = seriesChildren.find((child) => child.props.dataKey === params.dataKey)
-        ?.props?.data;
-      return childData ? findNearestStackDatum(params, childData, horizontal) : null;
-    },
-    [seriesChildren, horizontal],
+    (
+      params: NearestDatumArgs<XScale, YScale, AreaStackDatum>,
+    ): NearestDatumReturnType<AreaStackDatum> => findNearestStackDatum(params, horizontal),
+    [horizontal],
   );
 
   const ownEventSourceKey = `${AREASTACK_EVENT_SOURCE}-${dataKeys.join('-')}`;

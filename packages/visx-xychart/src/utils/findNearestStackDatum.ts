@@ -13,20 +13,17 @@ import { BarStackDatum, NearestDatumArgs } from '../types';
 export default function findNearestStackDatum<
   XScale extends AxisScale,
   YScale extends AxisScale,
-  Datum extends object,
 >(
   nearestDatumArgs: NearestDatumArgs<XScale, YScale, BarStackDatum<XScale, YScale>>,
-  seriesData: Datum[],
   horizontal?: boolean,
 ) {
   const { xScale, yScale, point } = nearestDatumArgs;
   const datum = (horizontal ? findNearestDatumY : findNearestDatumX)(nearestDatumArgs);
-  const seriesDatum = datum?.index == null ? null : seriesData[datum.index];
 
-  return datum && seriesDatum && point
+  return datum && point
     ? {
         index: datum.index,
-        datum: seriesDatum,
+        datum: datum.datum,
         distanceX: horizontal // if mouse is ON the stack series, set 0 distance
           ? point.x >= (xScale(getFirstItem(datum.datum)) ?? Infinity) &&
             point.x <= (xScale(getSecondItem(datum.datum)) ?? -Infinity)
