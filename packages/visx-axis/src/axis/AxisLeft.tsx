@@ -3,7 +3,6 @@ import cx from 'classnames';
 import Axis from './Axis';
 import Orientation from '../constants/orientation';
 import { SharedAxisProps, AxisScale } from '../types';
-import { getTickLabelProps } from '../utils/getTickLabelProps';
 
 export const leftTickLabelProps = {
   dx: '-0.25em',
@@ -21,12 +20,19 @@ export default function AxisLeft<Scale extends AxisScale>({
   tickLabelProps,
   ...restProps
 }: SharedAxisProps<Scale>) {
+  const tickLabelPropsFinal =
+    typeof tickLabelProps === 'function'
+      ? tickLabelProps
+      : {
+          ...leftTickLabelProps,
+          ...tickLabelProps,
+        };
   return (
     <Axis
       axisClassName={cx('visx-axis-left', axisClassName)}
       labelOffset={labelOffset}
       orientation={Orientation.left}
-      tickLabelProps={getTickLabelProps<Scale>(leftTickLabelProps, tickLabelProps)}
+      tickLabelProps={tickLabelPropsFinal}
       tickLength={tickLength}
       {...restProps}
     />

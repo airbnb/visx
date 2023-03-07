@@ -3,7 +3,6 @@ import cx from 'classnames';
 import Axis from './Axis';
 import Orientation from '../constants/orientation';
 import { SharedAxisProps, AxisScale } from '../types';
-import { getTickLabelProps } from '../utils/getTickLabelProps';
 
 export const bottomTickLabelProps = {
   dy: '0.25em',
@@ -20,12 +19,20 @@ export default function AxisBottom<Scale extends AxisScale>({
   tickLabelProps,
   ...restProps
 }: SharedAxisProps<Scale>) {
+  const tickLabelPropsFinal =
+    typeof tickLabelProps === 'function'
+      ? tickLabelProps
+      : {
+          ...bottomTickLabelProps,
+          ...tickLabelProps,
+        };
+
   return (
     <Axis
       axisClassName={cx('visx-axis-bottom', axisClassName)}
       labelOffset={labelOffset}
       orientation={Orientation.bottom}
-      tickLabelProps={getTickLabelProps<Scale>(bottomTickLabelProps, tickLabelProps)}
+      tickLabelProps={tickLabelPropsFinal}
       tickLength={tickLength}
       {...restProps}
     />
