@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Text } from '@visx/text';
 import { scaleLog } from '@visx/scale';
-import Wordcloud from '@visx/wordcloud/src/Wordcloud';
+import Wordcloud from '@visx/wordcloud/lib/Wordcloud';
 import { totoAfricaLyrics } from './text.fixture';
 
 interface ExampleProps {

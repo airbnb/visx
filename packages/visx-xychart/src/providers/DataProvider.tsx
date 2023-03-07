@@ -3,7 +3,7 @@ import { ScaleConfig, ScaleConfigToD3Scale } from '@visx/scale';
 import React, { useContext, useMemo } from 'react';
 import createOrdinalScale from '@visx/scale/lib/scales/ordinal';
 import { AxisScaleOutput } from '@visx/axis';
-import { ResizeObserverPolyfill } from '@visx/responsive/src/types';
+import { ResizeObserverPolyfill } from '@visx/responsive/lib/types';
 
 import { XYChartTheme } from '../types';
 import ThemeContext from '../context/ThemeContext';
