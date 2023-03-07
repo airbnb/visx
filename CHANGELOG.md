@@ -1,4 +1,5 @@
 # Changelog
+- [v3.0.2](#v302)
 - [v3.0.1](#v301)
 - [v3.0.0](#v300)
 - [v2.18.0](#v2180)
@@ -6,10 +7,10 @@
 - [v2.16.1](#v2161)
 - [v2.16.0](#v2160)
 - [v2.15.1](#v2151)
-- [v2.15.0](#v2150)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v2150">v2.15.0</a></li>
   <li><a href="#v2140">v2.14.0</a></li>
   <li><a href="#v2130">v2.13.0</a></li>
   <li><a href="#v2122">v2.12.2</a></li>
@@ -157,6 +158,20 @@
 </details>
 
 ------
+# v3.0.2 (2023-03-07)
+
+#### :bug: Bug Fix
+
+- fix(demo/sandboxes, xychart): Convert '@visx/.../src/...' to '@visx/.../lib/...' [#1660](https://github.com/airbnb/visx/pull/1660)
+
+### :memo: Documentation
+
+- docs: Add Fig Stats to In the wild [#1652](https://github.com/airbnb/visx/pull/1652)
+  
+#### :trophy: Contributors
+- [SheaJanke](https://github.com/SheaJanke)
+- [VojtechVidra](https://github.com/VojtechVidra)
+
 # v3.0.1 (2023-02-13)
 
 #### :bug: Bug Fix
