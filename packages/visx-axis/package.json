@@ -1,6 +1,6 @@
 {
   "name": "@visx/axis",
-  "version": "3.0.1",
+  "version": "3.1.0",
   "description": "visx axis",
   "sideEffects": false,
   "main": "lib/index.js",
