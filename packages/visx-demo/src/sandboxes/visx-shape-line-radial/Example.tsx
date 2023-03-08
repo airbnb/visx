@@ -119,7 +119,7 @@ function Example({ width, height, animate = true }: LineRadialProps) {
             scale={reverseYScale}
             numTicks={5}
             tickStroke="none"
-            tickLabelProps={(val) => ({
+            tickLabelProps={{
               fontSize: 8,
               fill: blue,
               fillOpacity: 1,
@@ -129,7 +129,7 @@ function Example({ width, height, animate = true }: LineRadialProps) {
               stroke: strokeColor,
               strokeWidth: 0.5,
               paintOrder: 'stroke',
-            })}
+            }}
             tickFormat={formatTicks}
             hideAxisLine
           />

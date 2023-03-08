@@ -35,15 +35,23 @@ export default function AxisRenderer<Scale extends AxisScale>({
   tickClassName,
   tickComponent,
   tickLineProps,
-  tickLabelProps = (/** tickValue, index, tickValues */) => defaultTextProps,
+  tickLabelProps,
   tickLength = 8,
   tickStroke = '#222',
   tickTransform,
   ticks,
   ticksComponent = Ticks,
 }: AxisRendererProps<Scale>) {
+  const tickLabelPropsDefault = {
+    ...defaultTextProps,
+    ...(typeof tickLabelProps === 'object' ? tickLabelProps : null),
+  };
   // compute the max tick label size to compute label offset
-  const allTickLabelProps = ticks.map(({ value, index }) => tickLabelProps(value, index, ticks));
+  const allTickLabelProps = ticks.map(({ value, index }) =>
+    typeof tickLabelProps === 'function'
+      ? tickLabelProps(value, index, ticks)
+      : tickLabelPropsDefault,
+  );
   const maxTickLabelFontSize = Math.max(
     10,
     ...allTickLabelProps.map((props) => (typeof props.fontSize === 'number' ? props.fontSize : 0)),

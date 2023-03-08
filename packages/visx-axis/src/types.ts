@@ -21,11 +21,9 @@ export type TickFormatter<T> = (
   values: { value: T; index: number }[],
 ) => FormattedValue;
 
-export type TickLabelProps<T> = (
-  value: T,
-  index: number,
-  values: { value: T; index: number }[],
-) => Partial<TextProps>;
+export type TickLabelProps<T> =
+  | Partial<TextProps>
+  | ((value: T, index: number, values: { value: T; index: number }[]) => Partial<TextProps>);
 
 export type TickRendererProps = Partial<TextProps> & {
   x: number;
@@ -89,7 +87,7 @@ export type CommonProps<Scale extends AxisScale> = {
   ticksComponent?: (tickRendererProps: TicksRendererProps<Scale>) => ReactNode;
   /** A [d3 formatter](https://github.com/d3/d3-scale/blob/master/README.md#continuous_tickFormat) for the tick text. */
   tickFormat?: TickFormatter<ScaleInput<Scale>>;
-  /** A function that returns props for a given tick label. */
+  /** Either an object with the props for all tick labels or a function that returns props for a given tick label. */
   tickLabelProps?: TickLabelProps<ScaleInput<Scale>>;
   /** The length of the tick lines. */
   tickLength?: number;

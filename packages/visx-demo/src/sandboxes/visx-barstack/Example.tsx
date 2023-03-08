@@ -169,11 +169,11 @@ export default function Example({
           tickFormat={formatDate}
           stroke={purple3}
           tickStroke={purple3}
-          tickLabelProps={() => ({
+          tickLabelProps={{
             fill: purple3,
             fontSize: 11,
             textAnchor: 'middle',
-          })}
+          }}
         />
       </svg>
       <div
