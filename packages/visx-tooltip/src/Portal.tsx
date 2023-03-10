@@ -2,7 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 export type PortalProps = {
-  /** Optional z-index to set on the Portal. */
+  /** Optional container for the Portal. */
+  container?: HTMLDivElement;
+  /** Optional z-index to set on the Portal (not applicable when a specific portal container is provided). */
   zIndex?: number | string;
   /** Content to render in the Portal. */
   children: NonNullable<React.ReactNode>;
@@ -13,13 +15,17 @@ export default class Portal extends React.PureComponent<PortalProps> {
   private node?: HTMLDivElement;
 
   componentWillUnmount() {
-    if (this.node && document.body) {
+    if (this.node && document.body && !this.props.container) {
       document.body.removeChild(this.node);
       delete this.node;
     }
   }
 
   render() {
+    if (!this.node && this.props.container) {
+      this.node = this.props.container;
+    }
+
     // SSR check
     if (!this.node && typeof document !== 'undefined') {
       this.node = document.createElement('div');

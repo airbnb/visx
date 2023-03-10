@@ -113,7 +113,8 @@ object or inject it cleanly using the `polyfill` config option below.
 
 `useTooltipInPortal` is a hook which gives you a `TooltipInPortal` component for rendering `Tooltip`
 or `TooltipWithBounds` in a `Portal`, outside of your component DOM tree which can be useful in many
-circumstances (see below for more on `Portal`s).
+circumstances (see below for more on `Portal`s). A custom portal container can be provided
+via the `portalContainer` config option.
 
 ##### API
 
@@ -128,7 +129,9 @@ type Options = {
   scroll?: boolean
   /** You can optionally inject a resize-observer polyfill */
   polyfill?: { new (cb: ResizeObserverCallback): ResizeObserver }
-  /** Optional z-index to set on the Portal div */
+  /** Optional container for the portal. */
+  portalContainer?: HTMLDivElement;
+  /** Optional z-index to set on the Portal div (not applicable when a specific portal container is provided) */
   zIndex?: number | string;
 }
 

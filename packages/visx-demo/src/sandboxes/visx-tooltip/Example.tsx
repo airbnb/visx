@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from 'react';
+import ReactDOM from 'react-dom';
 import {
   Tooltip,
   TooltipWithBounds,
@@ -26,13 +27,41 @@ const tooltipStyles = {
   padding: 12,
 };
 
+type OverlayLayerProps = {
+  container: HTMLDivElement | null;
+  text: string;
+  className?: string;
+  placeAfterTooltipInDom?: boolean;
+};
+
+function OverlayLayer({ className, container, placeAfterTooltipInDom, text }: OverlayLayerProps) {
+  if (container) {
+    // Since we re-render the tooltip every time the pointer moves and its DOM node
+    // is placed at the end of the container, if placeAfterTooltipInDom is true we
+    // also want to re-render the overlay layer
+    const key = placeAfterTooltipInDom ? Math.random() : 'overlay-under';
+    return ReactDOM.createPortal(
+      <div className={className} key={key}>
+        {text}
+      </div>,
+      container,
+    );
+  }
+  return null;
+}
+
 export default function Example({ width, height, showControls = true }: TooltipProps) {
   const [tooltipShouldDetectBounds, setTooltipShouldDetectBounds] = useState(true);
+  const [tooltipShouldUseCustomContainer, setTooltipShouldUseCustomContainer] = useState(true);
   const [renderTooltipInPortal, setRenderTooltipInPortal] = useState(false);
+  const overlayRootRef = React.useRef<HTMLDivElement | null>(null);
 
   const { containerRef, containerBounds, TooltipInPortal } = useTooltipInPortal({
     scroll: true,
     detectBounds: tooltipShouldDetectBounds,
+    portalContainer: tooltipShouldUseCustomContainer
+      ? overlayRootRef.current ?? undefined
+      : undefined,
   });
 
   const {
@@ -81,6 +110,12 @@ export default function Example({ width, height, showControls = true }: TooltipP
         style={{ width, height }}
         onPointerMove={handlePointerMove}
       >
+        <div className="overlay-root" ref={overlayRootRef} />
+        <OverlayLayer
+          className="overlay-layer overlay-under-tooltip"
+          container={overlayRootRef.current}
+          text="We want this to appear under the tooltip."
+        />
         {tooltipOpen ? (
           <>
             <div
@@ -115,6 +150,12 @@ export default function Example({ width, height, showControls = true }: TooltipP
         ) : (
           <div className="no-tooltip">Move or touch the canvas to see the tooltip</div>
         )}
+        <OverlayLayer
+          className="overlay-layer overlay-over-tooltip"
+          container={overlayRootRef.current}
+          placeAfterTooltipInDom // Force DOM node to be placed after tooltip for demo purposes
+          text="We want this to appear over the tooltip."
+        />
         <div className="z-index-bummer">
           I have an annoying z-index. Try&nbsp;
           <label>
@@ -145,6 +186,19 @@ export default function Example({ width, height, showControls = true }: TooltipP
             />
             &nbsp;Tooltip with boundary detection
           </label>
+
+          {renderTooltipInPortal && (
+            <label>
+              <input
+                type="checkbox"
+                checked={tooltipShouldUseCustomContainer}
+                onChange={() =>
+                  setTooltipShouldUseCustomContainer(!tooltipShouldUseCustomContainer)
+                }
+              />
+              &nbsp;Tooltip portal in custom container
+            </label>
+          )}
 
           <button onClick={() => hideTooltip()}>Hide tooltip</button>
         </div>
@@ -204,6 +258,25 @@ export default function Example({ width, height, showControls = true }: TooltipP
           border-radius: 8px;
           padding: 16px;
           line-height: 1.2em;
+        }
+        .overlay-root {
+          z-index: 3000;
+          position: relative;
+        }
+        .overlay-layer {
+          position: absolute;
+          border-radius: 8px;
+          padding: 8px;
+        }
+        .overlay-under-tooltip {
+          top: 30px;
+          right: 10px;
+          background: rgba(52, 235, 180, 0.8);
+        }
+        .overlay-over-tooltip {
+          top: 70px;
+          right: 30px;
+          background: rgba(250, 235, 180, 0.8);
         }
       `}</style>
     </>
