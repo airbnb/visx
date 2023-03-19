@@ -14,11 +14,12 @@
     "moduleResolution": "node",
     "composite": true,
     "outDir": "lib",
-    "resolveJsonModule": false,
+    "resolveJsonModule": true,
     "rootDir": "src",
     "skipLibCheck": true,
     "strict": false,
-    "target": "es5"
+    "target": "es5",
+    "noEmit": true
   },
   "exclude": [
     "lib",
@@ -50,6 +51,9 @@
     },
     {
       "path": "../visx-curve"
+    },
+    {
+      "path": "../visx-delaunay"
     },
     {
       "path": "../visx-drag"

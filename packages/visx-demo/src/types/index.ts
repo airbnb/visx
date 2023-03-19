@@ -25,6 +25,7 @@ export type VisxPackage =
   | 'chord'
   | 'clip-path'
   | 'curve'
+  | 'delaunay'
   | 'drag'
   | 'event'
   | 'geo'
