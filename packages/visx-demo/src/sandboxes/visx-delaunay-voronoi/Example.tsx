@@ -2,7 +2,7 @@ import React, { useState, useMemo, useRef } from 'react';
 import { Group } from '@visx/group';
 import { GradientOrangeRed, GradientPinkRed } from '@visx/gradient';
 import { RectClipPath } from '@visx/clip-path';
-import { delaunay, Polygon } from '../../../../visx-delaunay/src';
+import { voronoi, Polygon } from '../../../../visx-delaunay/src';
 import { localPoint } from '@visx/event';
 import { getSeededRandom } from '@visx/mock-data';
 
@@ -37,16 +37,17 @@ function Example({ width, height, margin = defaultMargin }: VoronoiProps) {
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
 
-  const delaunayDiagram = useMemo(
+  const voronoiDiagram = useMemo(
     () =>
-      delaunay<Datum>({
+      voronoi<Datum>({
         data,
         x: (d) => d.x * innerWidth,
         y: (d) => d.y * innerHeight,
+        width: innerWidth,
+        height: innerHeight,
       }),
     [innerWidth, innerHeight],
   );
-  const triangles = Array.from(delaunayDiagram.trianglePolygons());
 
   const svgRef = useRef<SVGSVGElement>(null);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
@@ -54,6 +55,7 @@ function Example({ width, height, margin = defaultMargin }: VoronoiProps) {
 
   return width < 10 ? null : (
     <svg width={width} height={height} ref={svgRef}>
+      <GradientOrangeRed id="voronoi_orange_red" />
       <GradientPinkRed id="voronoi_pink_red" />
       <RectClipPath id="voronoi_clip" width={innerWidth} height={innerHeight} rx={14} />
       <Group
@@ -63,14 +65,14 @@ function Example({ width, height, margin = defaultMargin }: VoronoiProps) {
         onMouseMove={(event) => {
           if (!svgRef.current) return;
 
-          // find the nearest point to the current mouse position
+          // find the nearest polygon to the current mouse position
           const point = localPoint(svgRef.current, event);
           if (!point) return;
 
-          const closest = delaunayDiagram.find(point.x, point.y);;
-          // find neighboring points to hightlight
+          const closest = voronoiDiagram.delaunay.find(point.x, point.y);;
+          // find neighboring polygons to hightlight
           if (closest && data[closest].id !== hoveredId) {
-            const neighbors = Array.from(delaunayDiagram.neighbors(closest));
+            const neighbors = Array.from(voronoiDiagram.neighbors(closest));
             setNeighborIds(new Set(neighbors.map((d) => data[d].id)));
             setHoveredId(data[closest].id);
           }
@@ -80,13 +82,18 @@ function Example({ width, height, margin = defaultMargin }: VoronoiProps) {
           setNeighborIds(new Set());
         }}
       >
-        {triangles.map((triangle, i) => (
+        {data.map((d, i) => (
           <Polygon
-            key={`triangle-${i}`}
-            polygon={triangle}
-            fill='url(#voronoi_pink_red)'
+            key={`polygon-${d.id}`}
+            polygon={voronoiDiagram.cellPolygon(i)}
+            fill={
+              hoveredId && (d.id === hoveredId || neighborIds.has(d.id))
+                ? 'url(#voronoi_orange_red)'
+                : 'url(#voronoi_pink_red)'
+            }
             stroke="#fff"
             strokeWidth={1}
+            fillOpacity={hoveredId && neighborIds.has(d.id) ? 0.5 : 1}
           />
         ))}
         {data.map(({ x, y, id }) => (
@@ -95,7 +102,7 @@ function Example({ width, height, margin = defaultMargin }: VoronoiProps) {
             r={2}
             cx={x * innerWidth}
             cy={y * innerHeight}
-            fill={neighborIds.has(id) ? 'fuchsia' : '#fff'}
+            fill={id === hoveredId ? 'fuchsia' : '#fff'}
             fillOpacity={0.8}
           />
         ))}

@@ -1,13 +1,14 @@
 import React from 'react';
 import DelaunayReadme from '!!raw-loader!../../../../visx-delaunay/Readme.md';
-import VoronoiPolygon from '../../../../visx-delaunay/src/components/VoronoiPolygon';
+import Polygon from '../../../../visx-delaunay/src/components/Polygon';
 import voronoi from '../../../../visx-delaunay/src/voronoi';
 import DocPage from '../../components/DocPage';
 import DelaunayTile from '../../components/Gallery/DelaunayTile';
+import DelaunayVoronoiTile from '../../components/Gallery/DelaunayVoronoiTile';
 
-const components = [voronoi, VoronoiPolygon];
+const components = [voronoi, Polygon];
 
-const examples = [DelaunayTile];
+const examples = [DelaunayTile, DelaunayVoronoiTile];
 
 function DelaunayDocs() {
   return (

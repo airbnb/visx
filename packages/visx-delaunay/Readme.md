@@ -1,7 +1,7 @@
-# @visx/voronoi
+# @visx/delaunay
 
-<a title="@visx/voronoi npm downloads" href="https://www.npmjs.com/package/@visx/voronoi">
-  <img src="https://img.shields.io/npm/dm/@visx/voronoi.svg?style=flat-square" />
+<a title="@visx/delaunay npm downloads" href="https://www.npmjs.com/package/@visx/delaunay">
+  <img src="https://img.shields.io/npm/dm/@visx/delaunay.svg?style=flat-square" />
 </a>
 
 ## Overview
@@ -15,22 +15,22 @@ Not only are Voronoi diagrams 😍, but they can be used to
 This is most often accomplished by overlaying an invisible voronoi grid on top of the visualization
 to increase the target area of interaction sites such as points on a scatter plot.
 
-The `@visx/voronoi` package provides a wrapper around the existing
-[d3-voronoi](https://github.com/d3/d3-voronoi) package with some `react`-specific utilities.
+The `@visx/delaunay` package provides a wrapper around the existing
+[d3-delaunay](https://github.com/d3/d3-delaunay) package with some `react`-specific utilities.
 
 ## Installation
 
 ```
-npm install --save @visx/voronoi
+npm install --save @visx/delaunay
 ```
 
 ## Usage
 
-The `@visx/voronoi` package exports a wrapped version of the d3 `voronoi` layout for flexible usage,
-as well as a `<VoronoiPolygon />` component for rendering Voronoi regions.
+The `@visx/delaunay` package exports a wrapped version of the d3 `voronoi` and `delaunay` layouts for flexible usage,
+as well as a `<Polygon />` component for rendering Voronoi and Delaunay regions.
 
 ```js
-import { voronoi, VoronoiPolygon } from '@visx/voronoi';
+import { voronoi, Polygon } from '@visx/delaunay';
 
 const points = Array(n).fill(null).map(() => ({
   x: Math.random() * innerWidth,
@@ -39,21 +39,21 @@ const points = Array(n).fill(null).map(() => ({
 
 // width + height set an extent on the voronoi
 // x + y set relevant accessors depending on the shape of your data
-const voronoiLayout = voronoi({
+const voronoiDiagram = voronoi({
+  data,
   x: d => d.x,
   y: d => d.y,
   width,
   height,
 });
 
-const voronoiDiagram = voronoiLayout(data);
-const polygons = voronoiDiagram.polygons(); // equivalent to voronoiLayout.polygons(points)
+const polygons = Array.from(voronoiDiagram.cellPolygons());
 
 return (
   <svg>
     <Group>
       {polygons.map((polygon) => (
-        <VoronoiPolygon key={...} polygon={polygon} />
+        <Polygon key={...} polygon={polygon} />
       ))}
       {points.map(({ x, y }) => (
         <circle key={...} cx={x} cy={y} />
@@ -63,6 +63,6 @@ return (
 )
 ```
 
-For more advanced usage with events, see [this example](https://airbnb.io/visx/voronoi). Additional
+For more advanced usage with events, see [this example](https://airbnb.io/visx/delaunay). Additional
 information about the voronoi layout + diagram can be found in the
 [d3-voronoi documentation](https://github.com/d3/d3-voronoi).

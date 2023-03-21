@@ -1,8 +1,8 @@
 import React from 'react';
-import Delaunay, { VoronoiProps } from '../../sandboxes/visx-delaunay/Example';
+import Voronoi, { VoronoiProps } from '../../sandboxes/visx-delaunay-voronoi/Example';
 import GalleryTile from '../GalleryTile';
 
-export { default as packageJson } from '../../sandboxes/visx-delaunay/package.json';
+export { default as packageJson } from '../../sandboxes/visx-delaunay-voronoi/package.json';
 
 const tileStyles = {
   background: '#eb6d88',
@@ -14,10 +14,10 @@ const detailsStyles = { background: 'white', color: '#eb6d88', borderRadius: '0 
 export default function DelaunayTile() {
   return (
     <GalleryTile<VoronoiProps>
-      title="Delaunay Triangulation"
+      title="Voronoi Overlay"
       description="<Delaunay.Polygon />"
-      exampleRenderer={Delaunay}
-      exampleUrl="/delaunay"
+      exampleRenderer={Voronoi}
+      exampleUrl="/delaunay-voronoi"
       tileStyles={tileStyles}
       detailsStyles={detailsStyles}
     />
