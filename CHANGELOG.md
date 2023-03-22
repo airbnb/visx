@@ -1,4 +1,5 @@
 # Changelog
+- [v3.1.1](#v311)
 - [v3.1.0](#v310)
 - [v3.0.2](#v302)
 - [v3.0.1](#v301)
@@ -6,10 +7,10 @@
 - [v2.18.0](#v2180)
 - [v2.17.0](#v2170)
 - [v2.16.1](#v2161)
-- [v2.16.0](#v2160)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v2160">v2.16.0</a></li>
   <li><a href="#v2151">v2.15.1</a></li>
   <li><a href="#v2150">v2.15.0</a></li>
   <li><a href="#v2140">v2.14.0</a></li>
@@ -159,6 +160,15 @@
 </details>
 
 ------
+# v3.1.1 (2023-03-22)
+
+#### :bug: Bug Fix
+
+- fix(zoom): prevent wheel interfering with pinch [#1639](https://github.com/airbnb/visx/pull/1639)
+  
+#### :trophy: Contributors
+- [kiliancs](https://github.com/kiliancs)
+
 # v3.1.0 (2023-03-08)
 
 #### :rocket: Enhancements
