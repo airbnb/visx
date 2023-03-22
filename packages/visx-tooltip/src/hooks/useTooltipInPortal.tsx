@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import useMeasure, { RectReadOnly, Options as BaseUseMeasureOptions } from 'react-use-measure';
 
 import Portal, { PortalProps } from '../Portal';
@@ -36,6 +36,11 @@ export default function useTooltipInPortal({
   ...useMeasureOptions
 }: UseTooltipPortalOptions | undefined = {}): UseTooltipInPortal {
   const [containerRef, containerBounds, forceRefreshBounds] = useMeasure(useMeasureOptions);
+  const [isSsr, setIsSsr] = useState(false);
+
+  useEffect(() => {
+    setIsSsr(false);
+  }, []);
 
   const TooltipInPortal = useMemo(
     () =>
@@ -50,8 +55,10 @@ export default function useTooltipInPortal({
         const zIndex = zIndexProp == null ? zIndexOption : zIndexProp;
         const TooltipComponent = detectBounds ? TooltipWithBounds : Tooltip;
         // convert container coordinates to page coordinates
-        const portalLeft = containerLeft + (containerBounds.left || 0) + window.scrollX;
-        const portalTop = containerTop + (containerBounds.top || 0) + window.scrollY;
+        const scrollX = isSsr ? 0 : window.scrollX;
+        const scrollY = isSsr ? 0 : window.scrollY;
+        const portalLeft = containerLeft + (containerBounds.left || 0) + scrollX;
+        const portalTop = containerTop + (containerBounds.top || 0) + scrollY;
 
         return (
           <Portal zIndex={zIndex}>
@@ -59,7 +66,7 @@ export default function useTooltipInPortal({
           </Portal>
         );
       },
-    [detectBoundsOption, zIndexOption, containerBounds.left, containerBounds.top],
+    [detectBoundsOption, zIndexOption, containerBounds.left, containerBounds.top, isSsr],
   );
 
   return {
