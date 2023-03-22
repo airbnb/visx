@@ -1,6 +1,6 @@
 {
   "name": "@visx/visx",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "One stop install for all visx packages",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -63,6 +63,6 @@
     "@visx/voronoi": "3.0.0",
     "@visx/wordcloud": "3.0.0",
     "@visx/xychart": "3.1.0",
-    "@visx/zoom": "3.0.1"
+    "@visx/zoom": "3.1.1"
   }
 }
