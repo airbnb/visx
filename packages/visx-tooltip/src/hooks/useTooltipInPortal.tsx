@@ -36,7 +36,7 @@ export default function useTooltipInPortal({
   ...useMeasureOptions
 }: UseTooltipPortalOptions | undefined = {}): UseTooltipInPortal {
   const [containerRef, containerBounds, forceRefreshBounds] = useMeasure(useMeasureOptions);
-  const [isSsr, setIsSsr] = useState(false)
+  const [isSsr, setIsSsr] = useState(false);
 
   useEffect(() => {
     setIsSsr(false);
@@ -55,8 +55,8 @@ export default function useTooltipInPortal({
         const zIndex = zIndexProp == null ? zIndexOption : zIndexProp;
         const TooltipComponent = detectBounds ? TooltipWithBounds : Tooltip;
         // convert container coordinates to page coordinates
-        const scrollX = isSsr ? 0 : window.scrollX
-        const scrollY = isSsr ? 0 : window.scrollY
+        const scrollX = isSsr ? 0 : window.scrollX;
+        const scrollY = isSsr ? 0 : window.scrollY;
         const portalLeft = containerLeft + (containerBounds.left || 0) + scrollX;
         const portalTop = containerTop + (containerBounds.top || 0) + scrollY;
 
