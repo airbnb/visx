@@ -1,6 +1,6 @@
 {
   "name": "@visx/visx",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "description": "One stop install for all visx packages",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -59,10 +59,10 @@
     "@visx/shape": "3.0.0",
     "@visx/text": "3.0.0",
     "@visx/threshold": "3.0.0",
-    "@visx/tooltip": "3.0.0",
+    "@visx/tooltip": "3.1.2",
     "@visx/voronoi": "3.0.0",
     "@visx/wordcloud": "3.0.0",
-    "@visx/xychart": "3.1.0",
+    "@visx/xychart": "3.1.2",
     "@visx/zoom": "3.1.1"
   }
 }
