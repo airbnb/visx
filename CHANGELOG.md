@@ -1,4 +1,5 @@
 # Changelog
+- [v3.1.2](#v312)
 - [v3.1.1](#v311)
 - [v3.1.0](#v310)
 - [v3.0.2](#v302)
@@ -6,10 +7,10 @@
 - [v3.0.0](#v300)
 - [v2.18.0](#v2180)
 - [v2.17.0](#v2170)
-- [v2.16.1](#v2161)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v2161">v2.16.1</a></li>
   <li><a href="#v2160">v2.16.0</a></li>
   <li><a href="#v2151">v2.15.1</a></li>
   <li><a href="#v2150">v2.15.0</a></li>
@@ -160,6 +161,15 @@
 </details>
 
 ------
+# v3.1.2 (2023-03-22)
+
+#### :bug: Bug Fix
+
+- fix(tooltip): handle SSR in useTooltipInPortal [#1672](https://github.com/airbnb/visx/pull/1672)
+  
+#### :trophy: Contributors
+- [korompaiistvan](https://github.com/korompaiistvan)
+
 # v3.1.1 (2023-03-22)
 
 #### :bug: Bug Fix
