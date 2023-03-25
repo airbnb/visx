@@ -20,7 +20,7 @@ const plugins = ['babel-plugin-typescript-to-proptypes'];
 
 const ignore = [
   'coverage/',
-  'node_modules/(?!(d3-(array|color|format|interpolate|scale|time|time-format)|internmap)/)',
+  'node_modules/(?!(d3-(array|color|delaunay|format|interpolate|scale|time|time-format)|delaunator|internmap|robust-predicates)/)',
   'public/',
   'esm/',
   'lib/',
