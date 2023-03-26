@@ -327,10 +327,16 @@ function Zoom<ElementType extends Element>({
       },
       onDragEnd: dragEnd,
       onPinch: handlePinch,
-      onWheel: ({ event, active }) => {
-        // currently onWheelEnd emits one final wheel event which causes 2x scale
-        // updates for the last tick. ensuring that the gesture is active avoids this
-        if (!active) return;
+      onWheel: ({ event, active, pinching }) => {
+        if (
+          // Outside of Safari, the wheel event is fired together with the pinch event
+          pinching ||
+          // currently onWheelEnd emits one final wheel event which causes 2x scale
+          // updates for the last tick. ensuring that the gesture is active avoids this
+          !active
+        ) {
+          return;
+        }
         handleWheel(event);
       },
     },
