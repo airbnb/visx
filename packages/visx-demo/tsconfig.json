@@ -12,14 +12,13 @@
     ],
     "module": "esnext",
     "moduleResolution": "node",
-    "composite": false,
+    "composite": true,
     "outDir": "lib",
-    "resolveJsonModule": true,
+    "resolveJsonModule": false,
     "rootDir": "src",
     "skipLibCheck": true,
     "strict": false,
-    "target": "es5",
-    "noEmit": true
+    "target": "es5"
   },
   "exclude": [
     "lib",

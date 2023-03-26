@@ -1,6 +1,6 @@
 {
-  "name": "@visx/demo-delaunay",
-  "description": "Standalone visx delaunay demo.",
+  "name": "@visx/demo-delaunay-voronoi",
+  "description": "Standalone @visx/delaunay voronoi demo.",
   "main": "index.tsx",
   "private": true,
   "dependencies": {

@@ -4,12 +4,12 @@ import Polygon from '../../../../visx-delaunay/src/components/Polygon';
 import delaunay from '../../../../visx-delaunay/src/delaunay';
 import voronoi from '../../../../visx-delaunay/src/voronoi';
 import DocPage from '../../components/DocPage';
-import DelaunayTile from '../../components/Gallery/DelaunayTile';
+import DelaunayTriangulationTile from '../../components/Gallery/DelaunayTriangulationTile';
 import DelaunayVoronoiTile from '../../components/Gallery/DelaunayVoronoiTile';
 
 const components = [delaunay, voronoi, Polygon];
 
-const examples = [DelaunayVoronoiTile, DelaunayTile];
+const examples = [DelaunayVoronoiTile, DelaunayTriangulationTile];
 
 function DelaunayDocs() {
   return (

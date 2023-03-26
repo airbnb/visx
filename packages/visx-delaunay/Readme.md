@@ -40,7 +40,7 @@ const points = Array(n).fill(null).map(() => ({
 // width + height set an extent on the voronoi
 // x + y set relevant accessors depending on the shape of your data
 const voronoiDiagram = voronoi({
-  data,
+  data: points,
   x: d => d.x,
   y: d => d.y,
   width,
@@ -64,5 +64,5 @@ return (
 ```
 
 For more advanced usage with events, see [this example](https://airbnb.io/visx/delaunay). Additional
-information about the voronoi layout + diagram can be found in the
-[d3-voronoi documentation](https://github.com/d3/d3-voronoi).
+information about the voronoi diagram API can be found in the
+[d3-delaunay documentation](https://github.com/d3/d3-delaunay#voronoi).

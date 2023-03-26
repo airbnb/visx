@@ -19,13 +19,10 @@ describe('voronoi', () => {
   });
 
   test('100 random points should give 100 cell polygons', () => {
-    const data = [];
-    for (let i = 0; i < 100; i += 1) {
-      data.push({
-        x: Math.random(),
-        y: Math.random(),
-      });
-    }
+    const data = new Array(100).fill(null).map(() => ({
+      x: Math.random(),
+      y: Math.random(),
+    }));
     const v = voronoi({ data, x: (d) => d.x, y: (d) => d.y });
     expect(Array.from(v.cellPolygons())).toHaveLength(100);
   });

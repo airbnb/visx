@@ -27,13 +27,13 @@ const defaultMargin = {
   bottom: 92,
 };
 
-export type DelaunayProps = {
+export type DelaunayTriangulationProps = {
   width: number;
   height: number;
   margin?: { top: number; right: number; bottom: number; left: number };
 };
 
-function Example({ width, height, margin = defaultMargin }: DelaunayProps) {
+function Example({ width, height, margin = defaultMargin }: DelaunayTriangulationProps) {
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
 

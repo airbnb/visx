@@ -1,6 +1,6 @@
 {
-  "name": "@visx/demo-delaunay",
-  "description": "Standalone visx delaunay demo.",
+  "name": "@visx/demo-delaunay-triangulation",
+  "description": "Standalone visx delaunay triangulation demo.",
   "main": "index.tsx",
   "private": true,
   "dependencies": {
@@ -24,6 +24,7 @@
     "d3",
     "react",
     "visx",
-    "delaunay"
+    "delaunay",
+    "triangulation"
   ]
 }

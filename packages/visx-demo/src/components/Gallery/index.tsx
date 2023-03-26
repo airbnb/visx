@@ -15,7 +15,7 @@ import * as BarsTile from './BarsTile';
 import * as BrushTile from './BrushTile';
 import * as ChordTile from './ChordTile';
 import * as CurvesTile from './CurvesTile';
-import * as DelaunayTile from './DelaunayTile';
+import * as DelaunayTile from './DelaunayTriangulationTile';
 import * as DelaunayVoronoiTile from './DelaunayVoronoiTile';
 import * as DendrogramsTile from './DendrogramsTile';
 import * as DotsTile from './DotsTile';

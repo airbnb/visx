@@ -1,8 +1,10 @@
 import React from 'react';
-import Delaunay, { DelaunayProps } from '../../sandboxes/visx-delaunay/Example';
+import Delaunay, {
+  DelaunayTriangulationProps,
+} from '../../sandboxes/visx-delaunay-triangulation/Example';
 import GalleryTile from '../GalleryTile';
 
-export { default as packageJson } from '../../sandboxes/visx-delaunay/package.json';
+export { default as packageJson } from '../../sandboxes/visx-delaunay-triangulation/package.json';
 
 const tileStyles = {
   background: 'black',
@@ -11,13 +13,13 @@ const tileStyles = {
 };
 const detailsStyles = { background: 'white', color: '#5B247A', borderRadius: '0 0 14px 14px' };
 
-export default function DelaunayTile() {
+export default function DelaunayTriangulationTile() {
   return (
-    <GalleryTile<DelaunayProps>
+    <GalleryTile<DelaunayTriangulationProps>
       title="Delaunay Triangulation"
       description="<Delaunay.Polygon />"
       exampleRenderer={Delaunay}
-      exampleUrl="/delaunay"
+      exampleUrl="/delaunay-triangulation"
       tileStyles={tileStyles}
       detailsStyles={detailsStyles}
     />
