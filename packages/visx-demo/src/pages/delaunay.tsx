@@ -9,10 +9,10 @@ function DelaunayPage() {
     <Show
       events
       margin={{
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
+        top: 16,
+        left: 16,
+        right: 16,
+        bottom: 16,
       }}
       component={DelaunayChart}
       title="Delaunay"

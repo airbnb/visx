@@ -21,5 +21,10 @@ interface Config<Datum> {
  */
 export default function voronoi<Datum>({ data = [], width = 0, height = 0, x, y }: Config<Datum>) {
   const delaunay = Delaunay.from(data, x, y);
-  return delaunay.voronoi([-CLIP_PADDING, -CLIP_PADDING, width + CLIP_PADDING, height + CLIP_PADDING]);
+  return delaunay.voronoi([
+    -CLIP_PADDING,
+    -CLIP_PADDING,
+    width + CLIP_PADDING,
+    height + CLIP_PADDING,
+  ]);
 }

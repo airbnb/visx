@@ -9,7 +9,7 @@ import DelaunayVoronoiTile from '../../components/Gallery/DelaunayVoronoiTile';
 
 const components = [delaunay, voronoi, Polygon];
 
-const examples = [DelaunayTile, DelaunayVoronoiTile];
+const examples = [DelaunayVoronoiTile, DelaunayTile];
 
 function DelaunayDocs() {
   return (

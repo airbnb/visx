@@ -2,7 +2,7 @@ import React, { useState, useMemo, useRef } from 'react';
 import { Group } from '@visx/group';
 import { GradientOrangeRed, GradientPinkRed } from '@visx/gradient';
 import { RectClipPath } from '@visx/clip-path';
-import { voronoi, Polygon } from '../../../../visx-delaunay/src';
+import { voronoi, Polygon } from '@visx/delaunay';
 import { localPoint } from '@visx/event';
 import { getSeededRandom } from '@visx/mock-data';
 
@@ -69,7 +69,7 @@ function Example({ width, height, margin = defaultMargin }: VoronoiProps) {
           const point = localPoint(svgRef.current, event);
           if (!point) return;
 
-          const closest = voronoiDiagram.delaunay.find(point.x, point.y);;
+          const closest = voronoiDiagram.delaunay.find(point.x, point.y);
           // find neighboring polygons to hightlight
           if (closest && data[closest].id !== hoveredId) {
             const neighbors = Array.from(voronoiDiagram.neighbors(closest));
