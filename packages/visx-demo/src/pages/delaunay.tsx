@@ -1,8 +1,8 @@
 import React from 'react';
-import VoronoiChart from '../sandboxes/visx-voronoi/Example';
-import packageJson from '../sandboxes/visx-voronoi/package.json';
+import DelaunayChart from '../sandboxes/visx-delaunay/Example';
+import packageJson from '../sandboxes/visx-delaunay/package.json';
 import Show from '../components/Show';
-import VoronoiChartSource from '!!raw-loader!../sandboxes/visx-voronoi/Example';
+import DelaunayChartSource from '!!raw-loader!../sandboxes/visx-delaunay/Example';
 
 function DelaunayPage() {
   return (
@@ -14,12 +14,12 @@ function DelaunayPage() {
         right: 0,
         bottom: 0,
       }}
-      component={VoronoiChart}
+      component={DelaunayChart}
       title="Delaunay"
       codeSandboxDirectoryName="visx-delaunay"
       packageJson={packageJson}
     >
-      {VoronoiChartSource}
+      {DelaunayChartSource}
     </Show>
   );
 }

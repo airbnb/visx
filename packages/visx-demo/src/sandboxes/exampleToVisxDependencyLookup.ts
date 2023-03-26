@@ -9,7 +9,8 @@ import barstackHorizontalPackageJson from './visx-barstack-horizontal/package.js
 import brushPackageJson from './visx-brush/package.json';
 import chordPackageJson from './visx-chord/package.json';
 import curvePackageJson from './visx-curve/package.json';
-import delaunayPackageJson from './visx-delaunay/package.json'
+import delaunayPackageJson from './visx-delaunay/package.json';
+import delaunayVoronoiPackageJson from './visx-delaunay-voronoi/package.json';
 import dendrogramPackageJson from './visx-dendrogram/package.json';
 import dotsPackageJson from './visx-dots/package.json';
 import dragIPackageJson from './visx-drag-i/package.json';
@@ -57,6 +58,7 @@ const examples = [
   chordPackageJson,
   curvePackageJson,
   delaunayPackageJson,
+  delaunayVoronoiPackageJson,
   dendrogramPackageJson,
   dotsPackageJson,
   dragIIPackageJson,

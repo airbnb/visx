@@ -24,6 +24,6 @@
     "d3",
     "react",
     "visx",
-    "voronoi"
+    "delaunay"
   ]
 }
