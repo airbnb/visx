@@ -16,7 +16,7 @@ const withTM = transpileModules([
   'd3-time-format',
   'delaunator',
   'internmap',
-  'robust-predicates'
+  'robust-predicates',
 ]);
 
 const nextConfig = withTM({
