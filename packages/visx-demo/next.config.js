@@ -9,11 +9,14 @@ const isProd = process.env.NODE_ENV === 'production';
 const withTM = transpileModules([
   'd3-array',
   'd3-color',
+  'd3-delaunay',
   'd3-format',
   'd3-interpolate',
   'd3-time',
   'd3-time-format',
+  'delaunator',
   'internmap',
+  'robust-predicates'
 ]);
 
 const nextConfig = withTM({
