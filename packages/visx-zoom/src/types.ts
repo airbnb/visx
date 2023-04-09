@@ -68,7 +68,7 @@ export interface ProvidedZoom<ElementType> {
   reset: () => void;
   /** Callback for a wheel event, updating scale based on props.wheelDelta, relative to the mouse position. */
   handleWheel: (event: ReactWheelEvent | WheelEvent) => void;
-  /** Callback for a react-use-gesture on pinch event, updating scale based on props.pinchDelta, relative to the pinch position. */
+  /** Callback for a @use-gesture/react on pinch event, updating scale based on props.pinchDelta, relative to the pinch position. */
   handlePinch: UserHandlers['onPinch'];
   /** Callback for dragEnd, sets isDragging to false. */
   dragEnd: () => void;
