@@ -1,7 +1,8 @@
-import { PointerEvent, FocusEvent, SVGProps } from 'react';
+import React, { PointerEvent, FocusEvent, SVGProps } from 'react';
 import { AxisScale } from '@visx/axis';
 import { ScaleInput } from '@visx/scale';
 import { Series, SeriesPoint } from 'd3-shape';
+import { BaseBarSeriesProps } from '../components/series/private/BaseBarSeries';
 
 /** Call signature of PointerEvent callback. */
 export type EventHandlerParams<Datum> = {
@@ -132,11 +133,15 @@ export type Bar = {
   fill?: string;
 };
 
+export type BarComponentProps = Omit<SVGProps<SVGRectElement | SVGPathElement>, 'ref' | 'children'>;
+
 /** Props for base Bars components */
 export type BarsProps<XScale extends AxisScale, YScale extends AxisScale> = {
   bars: Bar[];
   xScale: XScale;
   yScale: YScale;
+  /** Custom bar component for the bar series */
+  BarComponent?: React.FC<BarComponentProps>;
   horizontal?: boolean;
   /** Optional radius to apply to bar corners. */
   radius?: number;
@@ -154,6 +159,15 @@ export type BarsProps<XScale extends AxisScale, YScale extends AxisScale> = {
   SVGProps<SVGRectElement | SVGPathElement>,
   'x' | 'y' | 'width' | 'height' | 'ref' | 'children'
 >;
+
+/** Props for BarSeries component */
+export type BarSeriesProps<
+  XScale extends AxisScale,
+  YScale extends AxisScale,
+  Datum extends object,
+> = Omit<BaseBarSeriesProps<XScale, YScale, Datum>, 'BarsComponent'> & {
+  BarComponent?: React.FC<BarComponentProps>;
+};
 
 // BarStack transforms its child series Datum into CombinedData<XScale, YScale>
 export type BarStackDatum<XScale extends AxisScale, YScale extends AxisScale> = SeriesPoint<

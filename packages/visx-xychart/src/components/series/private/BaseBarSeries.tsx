@@ -9,14 +9,13 @@ import getScaleBaseline from '../../../utils/getScaleBaseline';
 import isValidNumber from '../../../typeguards/isValidNumber';
 import { BARSERIES_EVENT_SOURCE, XYCHART_EVENT_SOURCE } from '../../../constants';
 import useSeriesEvents from '../../../hooks/useSeriesEvents';
+import Bars from './Bars';
 
 export type BaseBarSeriesProps<
   XScale extends AxisScale,
   YScale extends AxisScale,
   Datum extends object,
 > = SeriesProps<XScale, YScale, Datum> & {
-  /** Rendered component which is passed BarsProps by BaseBarSeries after processing. */
-  BarsComponent: React.FC<BarsProps<XScale, YScale>>;
   /**
    * Specify bar padding when bar thickness does not come from a `band` scale.
    * Accepted values are [0, 1], 0 = no padding, 1 = no bar, defaults to 0.1.
@@ -26,7 +25,13 @@ export type BaseBarSeriesProps<
   colorAccessor?: (d: Datum, index: number) => string | null | undefined;
 } & Pick<
     BarsProps<XScale, YScale>,
-    'radius' | 'radiusAll' | 'radiusTop' | 'radiusRight' | 'radiusBottom' | 'radiusLeft'
+    | 'radius'
+    | 'radiusAll'
+    | 'radiusTop'
+    | 'radiusRight'
+    | 'radiusBottom'
+    | 'radiusLeft'
+    | 'BarComponent'
   >;
 
 // Fallback bandwidth estimate assumes no missing data values (divides chart space by # datum)
@@ -35,7 +40,7 @@ const getFallbackBandwidth = (fullBarWidth: number, barPadding: number) =>
   fullBarWidth * (1 - Math.min(1, Math.max(0, barPadding)));
 
 function BaseBarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum extends object>({
-  BarsComponent,
+  BarComponent,
   barPadding = 0.1,
   colorAccessor,
   data,
@@ -72,7 +77,7 @@ function BaseBarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum
 
   const color = colorScale?.(dataKey) ?? theme?.colors?.[0] ?? '#222';
 
-  const bars = useMemo(() => {
+  const bars: Bar[] = useMemo(() => {
     const xOffset = horizontal ? 0 : -barThickness / 2;
     const yOffset = horizontal ? -barThickness / 2 : 0;
     return data
@@ -122,8 +127,9 @@ function BaseBarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum
 
   return (
     <g className="vx-bar-series">
-      <BarsComponent
+      <Bars
         bars={bars}
+        BarComponent={BarComponent}
         horizontal={horizontal}
         xScale={xScale}
         yScale={yScale}
