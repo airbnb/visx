@@ -184,7 +184,6 @@ reusable visualization charts or library without having to learn d3. No more sel
 - Ethereum candlestick chart by [@hshoff](https://github.com/hshoff)
   ([Github](https://github.com/hshoff/viewsource#2-ethereum-candlestick-chart))
 - Song data visualization through spotify by [@bother7](https://github.com/bother7)
-  ([Demo](https://spotalyzer-frontend.herokuapp.com/demo))
   ([Github](https://github.com/bother7/spotalyzer_frontend))
 - Investment Calculator ([website](https://investmentcalculator.io/))
 - Animation with [`react-spring`](https://github.com/drcmda/react-spring/) by
