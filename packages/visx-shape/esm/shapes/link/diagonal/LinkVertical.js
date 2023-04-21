@@ -1,0 +1,51 @@
+var _excluded = ["className", "children", "data", "innerRef", "path", "x", "y", "source", "target"];
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+import React from 'react';
+import cx from 'classnames';
+import { linkVertical } from 'd3-shape';
+import { getX, getY, getSource, getTarget } from '../../../util/accessors';
+export function pathVerticalDiagonal(_ref) {
+  var source = _ref.source,
+    target = _ref.target,
+    x = _ref.x,
+    y = _ref.y;
+  return function (data) {
+    var link = linkVertical();
+    link.x(x);
+    link.y(y);
+    link.source(source);
+    link.target(target);
+    return link(data);
+  };
+}
+export default function LinkVerticalDiagonal(_ref2) {
+  var className = _ref2.className,
+    children = _ref2.children,
+    data = _ref2.data,
+    innerRef = _ref2.innerRef,
+    path = _ref2.path,
+    _ref2$x = _ref2.x,
+    x = _ref2$x === void 0 ? getX : _ref2$x,
+    _ref2$y = _ref2.y,
+    y = _ref2$y === void 0 ? getY : _ref2$y,
+    _ref2$source = _ref2.source,
+    source = _ref2$source === void 0 ? getSource : _ref2$source,
+    _ref2$target = _ref2.target,
+    target = _ref2$target === void 0 ? getTarget : _ref2$target,
+    restProps = _objectWithoutPropertiesLoose(_ref2, _excluded);
+  var pathGen = path || pathVerticalDiagonal({
+    source: source,
+    target: target,
+    x: x,
+    y: y
+  });
+  if (children) return /*#__PURE__*/React.createElement(React.Fragment, null, children({
+    path: pathGen
+  }));
+  return /*#__PURE__*/React.createElement("path", _extends({
+    ref: innerRef,
+    className: cx('visx-link visx-link-vertical-diagonal', className),
+    d: pathGen(data) || ''
+  }, restProps));
+}

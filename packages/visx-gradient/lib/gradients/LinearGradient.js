@@ -1,0 +1,76 @@
+"use strict";
+
+exports.__esModule = true;
+exports.default = LinearGradient;
+var _propTypes = _interopRequireDefault(require("prop-types"));
+var _react = _interopRequireDefault(require("react"));
+var _excluded = ["children", "id", "from", "to", "x1", "y1", "x2", "y2", "fromOffset", "fromOpacity", "toOffset", "toOpacity", "rotate", "transform", "vertical"];
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+function LinearGradient(_ref) {
+  var children = _ref.children,
+    id = _ref.id,
+    from = _ref.from,
+    to = _ref.to,
+    _x1 = _ref.x1,
+    _y1 = _ref.y1,
+    _x2 = _ref.x2,
+    _y2 = _ref.y2,
+    _ref$fromOffset = _ref.fromOffset,
+    fromOffset = _ref$fromOffset === void 0 ? '0%' : _ref$fromOffset,
+    _ref$fromOpacity = _ref.fromOpacity,
+    fromOpacity = _ref$fromOpacity === void 0 ? 1 : _ref$fromOpacity,
+    _ref$toOffset = _ref.toOffset,
+    toOffset = _ref$toOffset === void 0 ? '100%' : _ref$toOffset,
+    _ref$toOpacity = _ref.toOpacity,
+    toOpacity = _ref$toOpacity === void 0 ? 1 : _ref$toOpacity,
+    rotate = _ref.rotate,
+    transform = _ref.transform,
+    _ref$vertical = _ref.vertical,
+    vertical = _ref$vertical === void 0 ? true : _ref$vertical,
+    restProps = _objectWithoutPropertiesLoose(_ref, _excluded);
+  var x1 = _x1;
+  var x2 = _x2;
+  var y1 = _y1;
+  var y2 = _y2;
+  if (vertical && !x1 && !x2 && !y1 && !y2) {
+    x1 = '0';
+    x2 = '0';
+    y1 = '0';
+    y2 = '1';
+  }
+  return /*#__PURE__*/_react.default.createElement("defs", null, /*#__PURE__*/_react.default.createElement("linearGradient", _extends({
+    id: id,
+    x1: x1,
+    y1: y1,
+    x2: x2,
+    y2: y2,
+    gradientTransform: rotate ? "rotate(" + rotate + ")" : transform
+  }, restProps), !!children && children, !children && /*#__PURE__*/_react.default.createElement("stop", {
+    offset: fromOffset,
+    stopColor: from,
+    stopOpacity: fromOpacity
+  }), !children && /*#__PURE__*/_react.default.createElement("stop", {
+    offset: toOffset,
+    stopColor: to,
+    stopOpacity: toOpacity
+  })));
+}
+LinearGradient.propTypes = {
+  id: _propTypes.default.string.isRequired,
+  from: _propTypes.default.string,
+  to: _propTypes.default.string,
+  x1: _propTypes.default.oneOfType([_propTypes.default.string, _propTypes.default.number]),
+  x2: _propTypes.default.oneOfType([_propTypes.default.string, _propTypes.default.number]),
+  y1: _propTypes.default.oneOfType([_propTypes.default.string, _propTypes.default.number]),
+  y2: _propTypes.default.oneOfType([_propTypes.default.string, _propTypes.default.number]),
+  fromOffset: _propTypes.default.oneOfType([_propTypes.default.string, _propTypes.default.number]),
+  fromOpacity: _propTypes.default.oneOfType([_propTypes.default.string, _propTypes.default.number]),
+  toOffset: _propTypes.default.oneOfType([_propTypes.default.string, _propTypes.default.number]),
+  toOpacity: _propTypes.default.oneOfType([_propTypes.default.string, _propTypes.default.number]),
+  rotate: _propTypes.default.oneOfType([_propTypes.default.string, _propTypes.default.number]),
+  transform: _propTypes.default.string,
+  children: _propTypes.default.node,
+  vertical: _propTypes.default.bool
+};

@@ -1,0 +1,13 @@
+import React from 'react';
+import DragReadme from '!!raw-loader!../../../../visx-drag/Readme.md';
+import Drag from '../../../../visx-drag/src/Drag';
+import useDrag from '../../../../visx-drag/src/useDrag';
+import DocPage from '../../components/DocPage';
+import DragITile from '../../components/Gallery/DragITile';
+import DragIITile from '../../components/Gallery/DragIITile';
+var components = [useDrag, Drag];
+var examples = [DragITile, DragIITile];
+function DragDocs() {
+    return (<DocPage components={components} examples={examples} readme={DragReadme} visxPackage="drag"/>);
+}
+export default DragDocs;

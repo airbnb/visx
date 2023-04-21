@@ -1,0 +1,11 @@
+import React from 'react';
+import ZoomReadme from '!!raw-loader!../../../../visx-zoom/Readme.md';
+import Zoom from '../../../../visx-zoom/src/Zoom';
+import DocPage from '../../components/DocPage';
+import ZoomITile from '../../components/Gallery/ZoomITile';
+var components = [Zoom];
+var examples = [ZoomITile];
+function ZoomDocs() {
+    return (<DocPage components={components} examples={examples} readme={ZoomReadme} visxPackage="zoom"/>);
+}
+export default ZoomDocs;

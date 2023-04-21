@@ -18,8 +18,8 @@ logs/
 build/
 coverage/
 dist/
-esm/
-lib/
+# esm/
+# lib/
 node_modules/
 tmp/
 
