@@ -1,0 +1,8 @@
+<svg width="200" height="200" viewBox="3 3 194 194" color="#EBEBEB" fill="#E7383C" xmlns="http://www.w3.org/2000/svg">
+    <title>visx</title>
+    <rect width="200" height="200" />
+    <path d="M3 3H49.5866L99.1681 52.2487L149.082 3H197L99.6664 96.1732L3 3Z" fill="currentColor" />
+    <path d="M3 197L95.8552 99.8336L3 3V50.5849L51.5832 99.8336L3 149.082V197Z" fill="currentColor" />
+    <path d="M197 197L103.814 99.8336L197 3V50.5849L147.751 99.8336L197 149.082V197Z" fill="currentColor" />
+    <path d="M197 197L99.6664 103.827L3 197H49.5866L99.1681 147.419L149.748 197H197Z" fill="currentColor" />
+</svg>
