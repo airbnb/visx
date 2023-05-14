@@ -63,6 +63,5 @@ return (
 )
 ```
 
-For more advanced usage with events, see [this example](https://airbnb.io/visx/delaunay). Additional
-information about the voronoi diagram API can be found in the
+Additional information about the voronoi diagram API can be found in the
 [d3-delaunay documentation](https://github.com/d3/d3-delaunay#voronoi).
