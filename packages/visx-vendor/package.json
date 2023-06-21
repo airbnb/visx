@@ -1,0 +1,21 @@
+{
+    "name": "@visx/vendor",
+    "version": "3.0.0",
+    "description": "visx vendor",
+    "sideEffects": false,
+    "repository": "https://github.com/airbnb/visx",
+    "keywords": [
+      "visx",
+      "data",
+      "visualizations",
+      "charts"
+    ],
+    "author": "@williaster",
+    "license": "MIT",
+    "dependencies": {},
+    "devDependencies": {},
+    "publishConfig": {
+      "access": "public"
+    }
+  }
+  
