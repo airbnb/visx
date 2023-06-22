@@ -1,3 +1,4 @@
+/* eslint import/no-extraneous-dependencies: 'off' */
 import { compareVersions } from 'compare-versions';
 import chalk from 'chalk';
 import childProcess from 'child_process';
@@ -7,7 +8,7 @@ const exec = util.promisify(childProcess.exec);
 
 // based off of package.json history of packages in https://github.com/d3
 // it is not 100% comprehensive but includes all packages that might make
-// their way int visx
+// their way into visx
 const ESM_ONLY_MAP = {
   'd3-array': '3.0.0',
   'd3-chord': '3.0.0',
@@ -21,6 +22,7 @@ const ESM_ONLY_MAP = {
   'd3-hierarchy': '3.0.0',
   'd3-interpolate': '3.0.0',
   'd3-path': '3.0.0',
+  'd3-polygon': '3.0.0',
   'd3-quadtree': '3.0.0',
   'd3-random': '3.0.0',
   'd3-scale': '4.0.0',
@@ -30,7 +32,6 @@ const ESM_ONLY_MAP = {
   'd3-time-format': '4.0.0',
   'd3-voronoi': '3.0.0',
   internmap: '2.0.0',
-  'd3-polygon': '3.0.0',
 
   // unlikely to ever be in visx
   'd3-axis': '3.0.0',
@@ -40,7 +41,7 @@ const ESM_ONLY_MAP = {
   'd3-fetch': '3.0.0',
   'd3-zoom': '3.0.0',
 
-  // non-esm-only
+  // non-esm-only, here for completeness
   'd3-geo-polygon': '',
   'd3-hexbin': '',
   'd3-sankey': '',
