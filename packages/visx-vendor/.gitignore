@@ -1,0 +1,4 @@
+# the following are built and should not be checked in
+lib/
+esm/
+vendor-cjs/

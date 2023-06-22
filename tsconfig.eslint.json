@@ -4,6 +4,7 @@
     "scripts/**/*",
     "packages/*/src/**/*",
     "packages/*/test/**/*",
-    "packages/*/types/**/*"
+    "packages/*/types/**/*",
+    "packages/*/scripts/**/*",
   ]
 }
