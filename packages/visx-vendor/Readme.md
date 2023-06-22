@@ -32,26 +32,8 @@ contains the **transpiled** version of the underlying `d3-*` (or other) library 
 `@visx/vendor/lib-vendor/d3-interpolate/**/*.js`.
 
 ```ts
-const { interpolate } = require('victory-vendor/d3-interpolate');
+const { interpolate } = require('@visx/vendor/d3-interpolate');
 ```
 
 Such transpiled versions have _internally consistent_ import references to other other
-`@visx/vendor/lib-vendor/<pkg-name>` paths that need to be transpiled.
-
-### TODO
-
-- [x] collect d3 requirements (manual) to inform design
-- [ ] automate dependency requirements
-  - yarn install packages
-  - script
-    - crawls packages from the root, finding those in the map
-      - yarn why <pgk> => extract <pgk>@XXX => compare XXX to map => if in map => add to dep
-      -
-  - bump d3-dep anywhere to version that needs vendor => CI should assert that the package.json diff
-    is clean
-  -
-- [ ] create @visx/vendor
-  - [ ]
-- [ ] write transpilation
-- [ ] update `d3-*` imports to reference `@visx/vendor/d3-*`
-  - [ ]
+`@visx/vendor/vendor-cjs/<pkg-name>` paths that need to be transpiled.
