@@ -13,13 +13,19 @@ import {
   BABEL_CONFIG_PATH,
   ESM_PATH,
   CJS_PATH,
+  TS_PATH,
   VENDOR_CJS_PATH,
   ROOT_NODE_MODULES_PATH,
+  getTSContent,
 } from './utils';
 
 const exec = util.promisify(childProcess.exec);
 const rimraf = util.promisify(baseRimraf);
 
+/**
+ * Handles building the entire package, assuming correct (aliased) vendor packages are included
+ * in the package.json and yarn installed in the monorepo root.
+ */
 async function build() {
   // print out packages to be vendored
   console.log(
@@ -44,7 +50,7 @@ async function build() {
   console.log(chalk.green('✅ Verified all packages are installed.'));
 
   // clean output directories
-  const paths = [ESM_PATH, CJS_PATH, VENDOR_CJS_PATH];
+  const paths = [ESM_PATH, CJS_PATH, VENDOR_CJS_PATH, TS_PATH];
 
   console.log(chalk.green('🧹 Cleaning old vendor directories.'));
   await Promise.all(paths.map((glob) => rimraf(glob)));
@@ -77,34 +83,35 @@ async function build() {
   }
 
   // write esm + cjs files, and copy licenses
-  console.log(chalk.green('🏗️ Copying licenses and generating indexes.'));
+  console.log(chalk.green('🏗️ Generating esm, cjs, and type files, and copying licenses.'));
   await Promise.all(
     Object.values(parsedVendorPkgsMap).map(async (pkg) => {
-      // type files are referenced in the ESM file
-      if (pkg.isTypeFile) return;
-
       console.log(chalk.green(`  -${pkg.packageName}`));
 
-      // paths
-      const libVendorPath = pkg.vendorPath;
-      const pkgJsonPath = path.join(pkg.nodeModulesPath, 'package.json');
-      const srcLicencePath = path.join(pkg.nodeModulesPath, 'LICENSE');
-      const vendorLicencePath = path.join(libVendorPath, 'LICENSE');
+      if (pkg.isTypeFile) {
+        await Promise.all([fsPromises.writeFile(`${pkg.tsPath}.d.ts`, getTSContent(pkg))]);
+      } else {
+        // paths
+        const libVendorPath = pkg.vendorPath;
+        const pkgJsonPath = path.join(pkg.nodeModulesPath, 'package.json');
+        const srcLicensePath = path.join(pkg.nodeModulesPath, 'LICENSE');
+        const vendorLicensePath = path.join(libVendorPath, 'LICENSE');
 
-      const parsedPkgJson = await fsPromises
-        .readFile(pkgJsonPath)
-        .then((buf) => JSON.parse(buf.toString()));
+        const parsedPkgJson = await fsPromises
+          .readFile(pkgJsonPath)
+          .then((buf) => JSON.parse(buf.toString()));
 
-      await Promise.all([
-        // write ESM version
-        fsPromises.writeFile(`${pkg.esmPath}.js`, getESMContent(parsedPkgJson, pkg)),
+        await Promise.all([
+          // write ESM version
+          fsPromises.writeFile(`${pkg.esmPath}.js`, getESMContent(parsedPkgJson, pkg)),
 
-        // write CJS version
-        fsPromises.writeFile(`${pkg.cjsPath}.js`, getCJSContent(parsedPkgJson, pkg)),
+          // write CJS version
+          fsPromises.writeFile(`${pkg.cjsPath}.js`, getCJSContent(parsedPkgJson, pkg)),
 
-        // copy licenses
-        fsPromises.copyFile(srcLicencePath, vendorLicencePath),
-      ]);
+          // copy licenses
+          fsPromises.copyFile(srcLicensePath, vendorLicensePath),
+        ]);
+      }
     }),
   );
 

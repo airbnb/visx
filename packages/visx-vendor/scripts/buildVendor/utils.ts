@@ -11,8 +11,6 @@ export type VendoredPkg = {
   packageName: string;
   /** Whether this package is a types file. */
   isTypeFile: boolean;
-  /** Name of the corresponding types file, if any. */
-  typesPackageName: string | null;
   /** Fully-resolved path to transpiled vendor source in @visx/vendor. */
   vendorPath: string;
   /** Vendor path with src/index.js */
@@ -21,6 +19,8 @@ export type VendoredPkg = {
   cjsPath: string;
   /** Path of the vendored ESM package. */
   esmPath: string;
+  /** Path of the vendored TS package (for TS files). */
+  tsPath?: string;
   /** Fully-resolved path to root node_modules/ source. */
   nodeModulesPath: string;
 };
@@ -35,10 +35,12 @@ type PackageJson = {
 export const DIRNAME = __dirname; // eslint-disable-line no-undef
 export const ESM_DIR = 'esm/';
 export const CJS_DIR = 'lib/';
+export const TS_DIR = 'types/';
 export const VENDOR_CJS_DIR = 'vendor-cjs/';
 
 export const ESM_PATH = path.resolve(DIRNAME, `../../${ESM_DIR}`);
 export const CJS_PATH = path.resolve(DIRNAME, `../../${CJS_DIR}`);
+export const TS_PATH = path.resolve(DIRNAME, `../../${TS_DIR}`);
 export const VENDOR_CJS_PATH = path.resolve(DIRNAME, `../../${VENDOR_CJS_DIR}`);
 export const BABEL_CONFIG_PATH = path.resolve(DIRNAME, './babel.config.js');
 export const ROOT_NODE_MODULES_PATH = path.resolve(DIRNAME, '../../../../node_modules/');
@@ -75,12 +77,13 @@ const parseVendorPkgs = (pkgJsonDeps: {
   const result = Object.keys(pkgToAliasMap).reduce<{ [pkg: string]: VendoredPkg }>(
     (all, packageName) => {
       const npmAlias = pkgToAliasMap[packageName];
-
+      const isTypeFile = packageName.includes('@types/');
       const pkg: VendoredPkg = {
         packageName,
         npmAlias,
-        isTypeFile: packageName.includes('@types/'),
-        typesPackageName: pkgToAliasMap?.[`@types/${packageName}`] ?? null,
+        isTypeFile,
+        // if we don't remove @types/, this creates a nested directory
+        tsPath: isTypeFile ? `${TS_PATH}/${packageName.replace('@types/', '')}` : undefined,
         esmPath: `${ESM_PATH}/${packageName}`,
         cjsPath: `${CJS_PATH}/${packageName}`,
         vendorPath: `${VENDOR_CJS_PATH}/${npmAlias}`,
@@ -106,12 +109,10 @@ export function getESMContent(pkgJson: PackageJson, pkg: VendoredPkg) {
  * \`@visx/vendor/${pkg.packageName}\` (ESM)
  * See upstream license: ${licenseUrl}
  *
- * This ESM package re-exports the underlying installed dependencies of \`node_modules/${
-   pkg.packageName
- }\`
+ * This ESM package re-exports the underlying installed dependencies of 
+ * \`node_modules/${pkg.packageName}\` (aliased as \`${pkg.npmAlias}\`)
  */
-export * from '${pkg.npmAlias}';
-${pkg.typesPackageName ? `export * from '${pkg.typesPackageName}';` : ''}`;
+export * from '${pkg.npmAlias}';`;
 }
 
 /** Generates the content of the vendored CJS package. */
@@ -121,9 +122,18 @@ export function getCJSContent(pkgJson: PackageJson, pkg: VendoredPkg) {
  * \`@visx/vendor/${pkg.packageName}\` (CommonJS)
  * See upstream license: ${licenseUrl}
  *
- * This CJS package exports transpiled vendor files in \`${pkg.vendorPath}\`
+ * This CJS package exports transpiled vendor files in \`${VENDOR_CJS_DIR}${pkg.npmAlias}\`
  */
-module.exports = require("../${VENDOR_CJS_DIR}${pkg.npmAlias}/src/index.js");`;
+module.exports = require('../${VENDOR_CJS_DIR}${pkg.npmAlias}/src/index.js');`;
+}
+
+/** Generates the content of the vendored TS types. */
+export function getTSContent(pkg: VendoredPkg) {
+  return `/** \`@visx/vendor/${pkg.packageName}\` (TypeScript) 
+ *
+ * Re-exports the types from \`${pkg.packageName}\` 
+ */
+export * from '${pkg.npmAlias}';`;
 }
 
 // note: this is how we pass these dynamic variables into the
