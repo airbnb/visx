@@ -7,13 +7,13 @@ import util from 'util';
 import baseRimraf from 'rimraf';
 
 import {
+  parsedVendorPkgsMap,
   getESMContent,
   getCJSContent,
-  BABEL_CONFIG,
+  BABEL_CONFIG_PATH,
   ESM_PATH,
   CJS_PATH,
   VENDOR_CJS_PATH,
-  parsedVendorPkgsMap,
   ROOT_NODE_MODULES_PATH,
 } from './utils';
 
@@ -21,14 +21,13 @@ const exec = util.promisify(childProcess.exec);
 const rimraf = util.promisify(baseRimraf);
 
 async function build() {
+  // print out packages to be vendored
   console.log(
     chalk.green(
-      'Vendoring the following packages',
-      JSON.stringify(
-        Object.values(parsedVendorPkgsMap).map((pkg) => pkg.packageName),
-        null,
-        2,
-      ),
+      `👀 Vendoring the following packages\n  --${Object.values(parsedVendorPkgsMap)
+        .map((pkg) => pkg.packageName)
+        .sort()
+        .join('\n  --')}`,
     ),
   );
 
@@ -42,31 +41,31 @@ async function build() {
       );
     }
   });
-  console.log(chalk.green('Verified all packages are installed.'));
+  console.log(chalk.green('✅ Verified all packages are installed.'));
 
   // clean output directories
   const paths = [ESM_PATH, CJS_PATH, VENDOR_CJS_PATH];
 
-  console.log(chalk.green('Cleaning old vendor directories.'));
+  console.log(chalk.green('🧹 Cleaning old vendor directories.'));
   await Promise.all(paths.map((glob) => rimraf(glob)));
 
-  console.log(chalk.green('Creating empty vendor directories.'));
+  console.log(chalk.green('📁 Creating empty vendor directories.'));
   await Promise.all(paths.map((libPath) => fsPromises.mkdir(libPath, { recursive: true })));
 
   // transpile vendor packages to CJS
-  console.log(chalk.green('Transpiling vendor sources to CJS'));
+  console.log(chalk.green('🪄  Transpiling vendor sources to CJS'));
 
-  const outDirPath = VENDOR_CJS_PATH;
+  // transpile the src/ of non-type files
   const transpileGlob = Object.values(parsedVendorPkgsMap)
     .filter((pkg) => !pkg.isTypeFile)
     .map((pkg) => `"${pkg.nodeModulesPath}/src/**/*.js"`)
-    .join(', ');
+    .join(',');
 
   const { stdout, stderr } = await exec(
     `babel \
-      --config-file ${BABEL_CONFIG} \
+      --config-file ${BABEL_CONFIG_PATH} \
       --only ${transpileGlob} \
-      --out-dir ${outDirPath} \
+      --out-dir ${VENDOR_CJS_PATH} \
       ${ROOT_NODE_MODULES_PATH}`,
   );
 
@@ -77,14 +76,14 @@ async function build() {
     console.log(chalk.redBright(`  ${stderr}`));
   }
 
-  // write files
-  console.log(chalk.green('Copying licenses and generating indexes.'));
+  // write esm + cjs files, and copy licenses
+  console.log(chalk.green('🏗️ Copying licenses and generating indexes.'));
   await Promise.all(
     Object.values(parsedVendorPkgsMap).map(async (pkg) => {
       // type files are referenced in the ESM file
       if (pkg.isTypeFile) return;
 
-      console.log(chalk.green(`  ${pkg.packageName}`));
+      console.log(chalk.green(`  -${pkg.packageName}`));
 
       // paths
       const libVendorPath = pkg.vendorPath;
@@ -97,9 +96,6 @@ async function build() {
         .then((buf) => JSON.parse(buf.toString()));
 
       await Promise.all([
-        // make vendored directory
-        fsPromises.mkdir(libVendorPath, { recursive: true }),
-
         // write ESM version
         fsPromises.writeFile(`${pkg.esmPath}.js`, getESMContent(parsedPkgJson, pkg)),
 
@@ -111,6 +107,8 @@ async function build() {
       ]);
     }),
   );
+
+  console.log(chalk.green('✅ Completed successfully'));
 }
 
 // run build

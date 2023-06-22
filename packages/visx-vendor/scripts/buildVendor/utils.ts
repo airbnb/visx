@@ -1,4 +1,5 @@
 import path from 'path';
+
 import packageJson from '../../package.json';
 
 // types
@@ -39,11 +40,10 @@ export const VENDOR_CJS_DIR = 'vendor-cjs/';
 export const ESM_PATH = path.resolve(DIRNAME, `../../${ESM_DIR}`);
 export const CJS_PATH = path.resolve(DIRNAME, `../../${CJS_DIR}`);
 export const VENDOR_CJS_PATH = path.resolve(DIRNAME, `../../${VENDOR_CJS_DIR}`);
-export const BABEL_CONFIG = path.resolve(DIRNAME, './babel.config.js');
+export const BABEL_CONFIG_PATH = path.resolve(DIRNAME, './babel.config.js');
 export const ROOT_NODE_MODULES_PATH = path.resolve(DIRNAME, '../../../../node_modules/');
 
-// parsed packages
-
+// vendor package metadata
 const parseVendorPkgs = (pkgJsonDeps: {
   [dep: string]: string;
 }): { [pkg: string]: VendoredPkg } => {
@@ -55,13 +55,14 @@ const parseVendorPkgs = (pkgJsonDeps: {
     pkgDependencies.map((pkgJsonName) => {
       /**
        * Vendored packages are added as dependencies with aliases
-       * to guarantee that we reference the correct version within the monorepo
+       * to guarantee that we reference the correct version within the monorepo.
+       * This parses these dependencies into the alias source path
+       * and the actual package name.
+       *
        * examples (note aliases cannot include `@` or `/`):
        *   d3-array        => vendor-d3-array@npm:d3-array
        *   @types/d3-array => vendor-types-d3-array@npm:@types/d3-array
        *
-       * This parses these dependencies into the alias source path
-       * and the actual package name.
        */
       const [npmAlias, packageName] = pkgJsonName.split('@npm:');
       if (!npmAlias || !packageName) {
@@ -127,6 +128,6 @@ module.exports = require("../${VENDOR_CJS_DIR}${pkg.npmAlias}/src/index.js");`;
 
 // note: this is how we pass these dynamic variables into the
 // babel config. it's not great but babel config files can't easily
-// import from TS modules like this
+// import from TS module files like this
 process.env.VENDOR_CJS_DIR = VENDOR_CJS_DIR;
 process.env.VENDOR_PKG_MAP = JSON.stringify(parsedVendorPkgsMap);
