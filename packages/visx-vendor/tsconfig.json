@@ -1,4 +1,11 @@
 {
   "extends": "../../tsconfig.options.json",
-  "references": []
+  "compilerOptions": {
+    "noUnusedLocals": false,
+    "noUnusedParameters": false
+  },
+  "references": [],
+  "include": [
+    "./package.json"
+  ]
 }

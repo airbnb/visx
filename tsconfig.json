@@ -20,6 +20,7 @@
     "strict": true,
     "target": "es2015",
     "useDefineForClassFields": false,
+    "resolveJsonModule": true,
     "declarationDir": "./lib",
     "outDir": "./lib",
     "emitDeclarationOnly": true
