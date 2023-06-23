@@ -5,7 +5,6 @@
   "private": true,
   "dependencies": {
     "@babel/runtime": "^7.8.4",
-    "@types/d3-array": "^2.0.0",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@visx/mock-data": "latest",
@@ -13,7 +12,7 @@
     "@visx/responsive": "latest",
     "@visx/scale": "latest",
     "@visx/shape": "latest",
-    "d3-array": "^2.4.0",
+    "@visx/vendor": "latest",
     "react": "^18",
     "react-dom": "^18",
     "react-scripts-ts": "3.1.0",
