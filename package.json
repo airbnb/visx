@@ -11,7 +11,7 @@
     "charts"
   ],
   "engines": {
-    "node": ">=16.10.0",
+    "node": ">=16.13.0",
     "yarn": ">=1.17.0"
   },
   "contributors": [
@@ -32,8 +32,8 @@
   "scripts": {
     "build:vendor": "yarn run ts ./packages/visx-vendor/scripts/buildVendor",
     "babel": "yarn run babel:cjs && yarn run babel:esm",
-    "babel:cjs": "lerna exec --ignore @visx/demo,@visx/vendor --parallel -- babel --root-mode upward --delete-dir-on-start src/ --out-dir lib --extensions .ts,.tsx",
-    "babel:esm": "ESM=true lerna exec --ignore @visx/demo,@visx/vendor --parallel -- babel --root-mode upward --delete-dir-on-start src/ --out-dir esm --extensions .ts,.tsx",
+    "babel:cjs": "lerna exec --ignore @visx/{demo,vendor} --parallel -- babel --root-mode upward --delete-dir-on-start src/ --out-dir lib --extensions .ts,.tsx",
+    "babel:esm": "ESM=true lerna exec --ignore @visx/{demo,vendor} --parallel -- babel --root-mode upward --delete-dir-on-start src/ --out-dir esm --extensions .ts,.tsx",
     "babel:pkg": "lerna exec --scope $PKG -- babel --root-mode upward --delete-dir-on-start src/ --out-dir lib --extensions .ts,.tsx && lerna exec --scope $PKG -- ESM=true babel --root-mode upward --delete-dir-on-start src/ --out-dir esm --extensions .ts,.tsx",
     "build": "yarn run build:vendor && yarn run babel && yarn run type",
     "build:sizes": "yarn run ts ./scripts/computeBuildSizes.ts",
@@ -98,7 +98,7 @@
     "husky": "^3.0.0",
     "jest": "^25.5.4",
     "jest-mock-console": "^1.0.1",
-    "lerna": "^3.22.0",
+    "lerna": "^7.0.2",
     "marked": "^0.7.0",
     "node-fetch": "2.6.1",
     "prettier": "^2.8.1",
