@@ -10,7 +10,19 @@ which aims to solve the same problem.
 
 ## Vendored packages
 
-All vendored packages are listed as `dependencies` in the `package.json` of this package.
+All vendored packages are listed as `dependencies` in the `package.json` of this package (note that
+NPM aliases are used to guarantee version specificity in this large monorepo where we may have mixed
+versions of `d3` packages). For each (non-types) package `<pkg>`, we generate the following:
+
+- an ESM version of the package in `esm/<pkg>.js`
+- a CJS version of the package in `lib/<pkg>.js`
+  - this points to the fully-transpiled version of the package in
+    `vendor-cjs/vendor-<pgk>/src/index.js`
+  - `vendor-cjs/vendor-<pgk>/LICENSE` contains the upstream license of the vendored package
+- TypeScript types from `@types/<pgk>` as root `<pkg>.d.ts` files
+- a root `<pkg>.js` file (pointing to the CJS version of the lib) for tooling that doesn't yet
+  support `package.json:exports`
+  ([conditional exports](https://nodejs.org/api/packages.html#conditional-exports))
 
 ## How it works
 
@@ -37,3 +49,7 @@ const { interpolate } = require('@visx/vendor/d3-interpolate');
 
 Such transpiled versions have _internally consistent_ import references to other other
 `@visx/vendor/vendor-cjs/<pkg-name>` paths that need to be transpiled.
+
+### Root index files & types
+
+In addition to supporting

@@ -133,7 +133,7 @@ export function getCJSContent(pkgJson: PackageJson, pkg: VendoredPkg) {
 module.exports = require('../${VENDOR_CJS_DIR}${pkg.npmAlias}/src/index.js');`;
 }
 
-/**  */
+/** Generates the content of the root index file which points to CJS. */
 export function getIndexContent(pkgJson: PackageJson, pkg: VendoredPkg) {
   return `/**
  * \`@visx/vendor/${pkg.packageName}\` (CommonJS)
@@ -157,5 +157,6 @@ export * from '${pkg.npmAlias}';`;
 // note: this is how we pass these dynamic variables into the
 // babel config. it's not great but babel config files can't easily
 // import from TS module files like this
-process.env.VENDOR_CJS_DIR = VENDOR_CJS_DIR;
+process.env.VENDOR_CJS_PATH = VENDOR_CJS_PATH;
+process.env.ROOT_NODE_MODULES_PATH = ROOT_NODE_MODULES_PATH;
 process.env.VENDOR_PKG_MAP = JSON.stringify(parsedVendorPkgsMap);
