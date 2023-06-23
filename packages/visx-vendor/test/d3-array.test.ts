@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* This test verifies that these modules and types are exported correctly */
 import {
   // @ts-expect-error Make sure invalid imports fail:
@@ -13,7 +12,7 @@ import {
   bisectRight,
   bisector,
   count,
-} from '../esm/d3-array'; // @todo update to `@visx/vendor/d3-array`
+} from '@visx/vendor/d3-array';
 
 describe('d3-array', () => {
   it('exports valid functions', () => {

@@ -17,9 +17,12 @@ versions of `d3` packages). For each (non-types) package `<pkg>`, we generate th
 - an ESM version of the package in `esm/<pkg>.js`
 - a CJS version of the package in `lib/<pkg>.js`
   - this points to the fully-transpiled version of the package in
-    `vendor-cjs/vendor-<pgk>/src/index.js`
-  - `vendor-cjs/vendor-<pgk>/LICENSE` contains the upstream license of the vendored package
-- TypeScript types from `@types/<pgk>` as root `<pkg>.d.ts` files
+    `vendor-cjs/vendor-<pkg>/src/index.js`
+  - `vendor-cjs/vendor-<pkg>/LICENSE` contains the upstream license of the vendored package
+  - other ESM-only packages (e.g., `<pkg2>`) that are referenced by `<pkg>` are updated to point to
+    `vendor-cjs/vendor-<pkg2>/src/index.js`
+- TypeScript types from `@types/<pkg>` as root `<pkg>.d.ts` files (when available as specified in
+  the `package.json` `dependencies`)
 - a root `<pkg>.js` file (pointing to the CJS version of the lib) for tooling that doesn't yet
   support `package.json:exports`
   ([conditional exports](https://nodejs.org/api/packages.html#conditional-exports))

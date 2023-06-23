@@ -147,7 +147,7 @@ module.exports = require('./${VENDOR_CJS_DIR}${pkg.npmAlias}/src/index.js');`;
 
 /** Generates the content of the vendored TS types. */
 export function getTSContent(pkg: VendoredPkg) {
-  return `/** \`@visx/vendor/${pkg.packageName}\` (TypeScript) 
+  return `/** \`@visx/vendor/${pkg.packageName.replace('@types/', '')}\` (TypeScript) 
  *
  * Re-exports the types from \`${pkg.packageName}\` 
  */
