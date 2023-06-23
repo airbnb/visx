@@ -14,13 +14,15 @@ export type VendoredPkg = {
   /** Fully-resolved path to transpiled vendor source in @visx/vendor. */
   vendorPath: string;
   /** Vendor path with src/index.js */
-  vendorIndexPath: string;
+  vendorIndexFileName: string;
   /** Path of the vendored CJS package. This points to the transpiled vendor path. */
-  cjsPath: string;
+  cjsFileName: string;
   /** Path of the vendored ESM package. */
-  esmPath: string;
+  esmFileName: string;
   /** Path of the vendored TS package (for TS files). */
-  tsPath?: string;
+  tsFileName?: string;
+  /** */
+  indexFileName: string;
   /** Fully-resolved path to root node_modules/ source. */
   nodeModulesPath: string;
 };
@@ -35,14 +37,15 @@ type PackageJson = {
 export const DIRNAME = __dirname; // eslint-disable-line no-undef
 export const ESM_DIR = 'esm/';
 export const CJS_DIR = 'lib/';
-export const TS_DIR = 'types/';
+const ROOT_PATH = path.resolve(DIRNAME, '../../');
+export const TS_GLOB = path.resolve(ROOT_PATH, '*.d.ts');
+export const INDEX_GLOB = path.resolve(ROOT_PATH, '*.js');
 export const VENDOR_CJS_DIR = 'vendor-cjs/';
 
 export const ESM_PATH = path.resolve(DIRNAME, `../../${ESM_DIR}`);
 export const CJS_PATH = path.resolve(DIRNAME, `../../${CJS_DIR}`);
-export const TS_PATH = path.resolve(DIRNAME, `../../${TS_DIR}`);
 export const VENDOR_CJS_PATH = path.resolve(DIRNAME, `../../${VENDOR_CJS_DIR}`);
-export const BABEL_CONFIG_PATH = path.resolve(DIRNAME, './babel.config.js');
+export const BABEL_CONFIG_FILE = path.resolve(DIRNAME, './babel.config.js');
 export const ROOT_NODE_MODULES_PATH = path.resolve(DIRNAME, '../../../../node_modules/');
 
 // vendor package metadata
@@ -82,12 +85,14 @@ const parseVendorPkgs = (pkgJsonDeps: {
         packageName,
         npmAlias,
         isTypeFile,
-        // if we don't remove @types/, this creates a nested directory
-        tsPath: isTypeFile ? `${TS_PATH}/${packageName.replace('@types/', '')}` : undefined,
-        esmPath: `${ESM_PATH}/${packageName}`,
-        cjsPath: `${CJS_PATH}/${packageName}`,
+        tsFileName: isTypeFile
+          ? `${ROOT_PATH}/${packageName.replace('@types/', '')}.d.ts`
+          : undefined,
+        esmFileName: `${ESM_PATH}/${packageName}.js`,
+        cjsFileName: `${CJS_PATH}/${packageName}.js`,
+        indexFileName: `${ROOT_PATH}/${packageName}.js`,
+        vendorIndexFileName: `${VENDOR_CJS_PATH}/${npmAlias}/src/index.js`,
         vendorPath: `${VENDOR_CJS_PATH}/${npmAlias}`,
-        vendorIndexPath: `${VENDOR_CJS_PATH}/${npmAlias}/src/index.js`,
         nodeModulesPath: `${ROOT_NODE_MODULES_PATH}/${npmAlias}`,
       };
 
@@ -102,12 +107,14 @@ const parseVendorPkgs = (pkgJsonDeps: {
 
 export const parsedVendorPkgsMap = parseVendorPkgs(packageJson.dependencies);
 
+const getLicenseUrl = (pkgJson: PackageJson) =>
+  `${pkgJson.repository.url.replace(/\.git$/, '')}/blob/main/LICENSE`;
+
 /** Generates the content of the vendored ESM package. */
 export function getESMContent(pkgJson: PackageJson, pkg: VendoredPkg) {
-  const licenseUrl = `${pkgJson.repository.url.replace(/\.git$/, '')}/blob/main/LICENSE`;
   return `/**
  * \`@visx/vendor/${pkg.packageName}\` (ESM)
- * See upstream license: ${licenseUrl}
+ * See upstream license: ${getLicenseUrl(pkgJson)}
  *
  * This ESM package re-exports the underlying installed dependencies of 
  * \`node_modules/${pkg.packageName}\` (aliased as \`${pkg.npmAlias}\`)
@@ -117,14 +124,25 @@ export * from '${pkg.npmAlias}';`;
 
 /** Generates the content of the vendored CJS package. */
 export function getCJSContent(pkgJson: PackageJson, pkg: VendoredPkg) {
-  const licenseUrl = `${pkgJson.repository.url.replace(/\.git$/, '')}/blob/main/LICENSE`;
   return `/**
  * \`@visx/vendor/${pkg.packageName}\` (CommonJS)
- * See upstream license: ${licenseUrl}
+ * See upstream license: ${getLicenseUrl(pkgJson)}
  *
  * This CJS package exports transpiled vendor files in \`${VENDOR_CJS_DIR}${pkg.npmAlias}\`
  */
 module.exports = require('../${VENDOR_CJS_DIR}${pkg.npmAlias}/src/index.js');`;
+}
+
+/**  */
+export function getIndexContent(pkgJson: PackageJson, pkg: VendoredPkg) {
+  return `/**
+ * \`@visx/vendor/${pkg.packageName}\` (CommonJS)
+ * See upstream license: ${getLicenseUrl(pkgJson)}
+ *
+ * This file only exists for tooling that doesn't work yet with package.json:exports
+ * by proxying through the CommonJS version.
+ */
+module.exports = require('./${VENDOR_CJS_DIR}${pkg.npmAlias}/src/index.js');`;
 }
 
 /** Generates the content of the vendored TS types. */

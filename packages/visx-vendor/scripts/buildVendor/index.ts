@@ -10,13 +10,15 @@ import {
   parsedVendorPkgsMap,
   getESMContent,
   getCJSContent,
-  BABEL_CONFIG_PATH,
+  BABEL_CONFIG_FILE,
   ESM_PATH,
   CJS_PATH,
-  TS_PATH,
   VENDOR_CJS_PATH,
   ROOT_NODE_MODULES_PATH,
   getTSContent,
+  TS_GLOB,
+  INDEX_GLOB,
+  getIndexContent,
 } from './utils';
 
 const exec = util.promisify(childProcess.exec);
@@ -50,13 +52,14 @@ async function build() {
   console.log(chalk.green('✅ Verified all packages are installed.'));
 
   // clean output directories
-  const paths = [ESM_PATH, CJS_PATH, VENDOR_CJS_PATH, TS_PATH];
+  const dirs = [ESM_PATH, CJS_PATH, VENDOR_CJS_PATH];
+  const dirsAndFiles = [...dirs, TS_GLOB, INDEX_GLOB];
 
   console.log(chalk.green('🧹 Cleaning old vendor directories.'));
-  await Promise.all(paths.map((glob) => rimraf(glob)));
+  await Promise.all(dirsAndFiles.map((glob) => rimraf(glob)));
 
   console.log(chalk.green('📁 Creating empty vendor directories.'));
-  await Promise.all(paths.map((libPath) => fsPromises.mkdir(libPath, { recursive: true })));
+  await Promise.all(dirs.map((libPath) => fsPromises.mkdir(libPath)));
 
   // transpile vendor packages to CJS
   console.log(chalk.green('🪄  Transpiling vendor sources to CJS'));
@@ -69,7 +72,7 @@ async function build() {
 
   const { stdout, stderr } = await exec(
     `babel \
-      --config-file ${BABEL_CONFIG_PATH} \
+      --config-file ${BABEL_CONFIG_FILE} \
       --only ${transpileGlob} \
       --out-dir ${VENDOR_CJS_PATH} \
       ${ROOT_NODE_MODULES_PATH}`,
@@ -89,7 +92,10 @@ async function build() {
       console.log(chalk.green(`  -${pkg.packageName}`));
 
       if (pkg.isTypeFile) {
-        await Promise.all([fsPromises.writeFile(`${pkg.tsPath}.d.ts`, getTSContent(pkg))]);
+        if (!pkg.tsFileName) {
+          throw new Error(`Missing tsFileName for ${pkg.packageName}`);
+        }
+        await Promise.all([fsPromises.writeFile(pkg.tsFileName, getTSContent(pkg))]);
       } else {
         // paths
         const libVendorPath = pkg.vendorPath;
@@ -103,10 +109,13 @@ async function build() {
 
         await Promise.all([
           // write ESM version
-          fsPromises.writeFile(`${pkg.esmPath}.js`, getESMContent(parsedPkgJson, pkg)),
+          fsPromises.writeFile(pkg.esmFileName, getESMContent(parsedPkgJson, pkg)),
 
           // write CJS version
-          fsPromises.writeFile(`${pkg.cjsPath}.js`, getCJSContent(parsedPkgJson, pkg)),
+          fsPromises.writeFile(pkg.cjsFileName, getCJSContent(parsedPkgJson, pkg)),
+
+          // write index file
+          fsPromises.writeFile(pkg.indexFileName, getIndexContent(parsedPkgJson, pkg)),
 
           // copy licenses
           fsPromises.copyFile(srcLicensePath, vendorLicensePath),

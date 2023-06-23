@@ -1,4 +1,4 @@
-import { InterpolatorFactory } from 'd3-scale';
+import { InterpolatorFactory } from '@visx/vendor/d3-scale';
 import { StringLike } from '../types/Base';
 import { D3Scale, DefaultThresholdInput } from '../types/Scale';
 import createColorInterpolator from '../utils/createColorInterpolator';

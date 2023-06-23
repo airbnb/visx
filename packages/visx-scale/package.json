@@ -31,12 +31,7 @@
   },
   "homepage": "https://github.com/airbnb/visx#readme",
   "dependencies": {
-    "@types/d3-interpolate": "^3.0.1",
-    "@types/d3-scale": "^4.0.2",
-    "@types/d3-time": "^2.0.0",
-    "d3-interpolate": "^3.0.1",
-    "d3-scale": "^4.0.2",
-    "d3-time": "^2.1.1"
+    "@visx/vendor": "3.0.0"
   },
   "publishConfig": {
     "access": "public"
