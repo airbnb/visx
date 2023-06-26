@@ -53,6 +53,7 @@
     "ts": "ts-node --project ./tsconfig.node.json",
     "type": "lerna exec --parallel -- tsc --build",
     "type:pkg": "lerna exec --scope $PKG -- tsc --build --verbose",
+    "type:clean-tsinfo": "find . -type f -name 'tsconfig.tsbuildinfo' -delete",
     "type:update-refs": "yarn run ts ./scripts/updateTsReferences.ts"
   },
   "devDependencies": {
