@@ -1,8 +1,9 @@
 {
   "extends": "../../tsconfig.options.json",
   "compilerOptions": {
+    // note: this is needed to compile tests/ which have 
+    // unused locals to test their proper export
     "noUnusedLocals": false,
-    "noUnusedParameters": false
   },
   "references": [],
   "include": [
