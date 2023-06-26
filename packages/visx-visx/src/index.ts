@@ -3,6 +3,7 @@ import * as Axis from '@visx/axis';
 import * as Bounds from '@visx/bounds';
 import * as Brush from '@visx/brush';
 import * as ClipPath from '@visx/clip-path';
+import * as Chord from '@visx/chord';
 import * as Curve from '@visx/curve';
 import * as Drag from '@visx/drag';
 import * as Event from '@visx/event';
@@ -36,6 +37,7 @@ export {
   Bounds,
   Brush,
   ClipPath,
+  Chord,
   Curve,
   Drag,
   Event,

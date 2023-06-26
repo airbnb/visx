@@ -3,9 +3,11 @@
   "version": "3.0.0",
   "description": "visx curve",
   "sideEffects": false,
-  "main": "lib/index.js",
-  "module": "esm/index.js",
-  "types": "lib/index.d.ts",
+  "exports": {
+    "types": "./lib/index.d.ts",
+    "import": "./esm/index.js",
+    "require": "./lib/index.js"
+  },
   "repository": "https://github.com/airbnb/visx",
   "files": [
     "lib",

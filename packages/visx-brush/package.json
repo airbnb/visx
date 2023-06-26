@@ -3,8 +3,11 @@
   "version": "3.0.1",
   "description": "visx brush",
   "sideEffects": false,
-  "main": "lib/index.js",
-  "module": "esm/index.js",
+  "exports": {
+    "types": "./lib/index.d.ts",
+    "import": "./esm/index.js",
+    "require": "./lib/index.js"
+  },
   "files": [
     "lib",
     "esm"

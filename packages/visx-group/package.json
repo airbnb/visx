@@ -3,13 +3,15 @@
   "version": "3.0.0",
   "description": "visx group",
   "sideEffects": false,
-  "main": "lib/index.js",
-  "module": "esm/index.js",
+  "exports": {
+    "types": "./lib/index.d.ts",
+    "import": "./esm/index.js",
+    "require": "./lib/index.js"
+  },
   "files": [
     "lib",
     "esm"
   ],
-  "types": "lib/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/airbnb/visx.git"
