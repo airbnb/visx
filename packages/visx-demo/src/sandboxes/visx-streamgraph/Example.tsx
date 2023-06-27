@@ -7,7 +7,7 @@ import React from 'react';
 import { Stack } from '@visx/shape';
 import { PatternCircles, PatternWaves } from '@visx/pattern';
 import { scaleLinear, scaleOrdinal } from '@visx/scale';
-import { transpose } from 'd3-array';
+import { transpose } from '@visx/vendor/d3-array';
 import { animated, useSpring } from '@react-spring/web';
 
 import useForceUpdate from './useForceUpdate';

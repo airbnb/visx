@@ -59,7 +59,7 @@ async function build() {
   await Promise.all(dirsAndFiles.map((glob) => rimraf(glob)));
 
   console.log(chalk.green('📁 Creating empty vendor directories.'));
-  await Promise.all(dirs.map((libPath) => fsPromises.mkdir(libPath)));
+  await Promise.all(dirs.map((libPath) => fsPromises.mkdir(libPath, { recursive: true })));
 
   // transpile vendor packages to CJS
   console.log(chalk.green('🪄  Transpiling vendor sources to CJS'));

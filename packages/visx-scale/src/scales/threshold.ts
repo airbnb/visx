@@ -1,4 +1,4 @@
-import { scaleThreshold } from 'd3-scale';
+import { scaleThreshold } from '@visx/vendor/d3-scale';
 import { DefaultOutput, StringLike } from '../types/Base';
 import { PickScaleConfigWithoutType } from '../types/ScaleConfig';
 import { DefaultThresholdInput } from '../types/Scale';

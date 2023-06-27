@@ -1,4 +1,4 @@
-import { scaleRadial } from 'd3-scale';
+import { scaleRadial } from '@visx/vendor/d3-scale';
 import { DefaultOutput } from '../types/Base';
 import { PickScaleConfigWithoutType } from '../types/ScaleConfig';
 import scaleOperator from '../operators/scaleOperator';

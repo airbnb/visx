@@ -14,5 +14,9 @@
     "types/**/*",
     "../../types/**/*"
   ],
-  "references": []
+  "references": [
+    {
+      "path": "../visx-vendor"
+    }
+  ]
 }

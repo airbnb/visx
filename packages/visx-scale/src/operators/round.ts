@@ -1,5 +1,5 @@
-import { interpolateRound } from 'd3-interpolate';
-import { InterpolatorFactory } from 'd3-scale';
+import { interpolateRound } from '@visx/vendor/d3-interpolate';
+import { InterpolatorFactory } from '@visx/vendor/d3-scale';
 import { StringLike } from '../types/Base';
 import { D3Scale, DefaultThresholdInput } from '../types/Scale';
 import { ScaleConfigWithoutType } from '../types/ScaleConfig';

@@ -8,8 +8,8 @@ import { withTooltip, Tooltip, TooltipWithBounds, defaultStyles } from '@visx/to
 import { WithTooltipProvidedProps } from '@visx/tooltip/lib/enhancers/withTooltip';
 import { localPoint } from '@visx/event';
 import { LinearGradient } from '@visx/gradient';
-import { max, extent, bisector } from 'd3-array';
-import { timeFormat } from 'd3-time-format';
+import { max, extent, bisector } from '@visx/vendor/d3-array';
+import { timeFormat } from '@visx/vendor/d3-time-format';
 
 type TooltipData = AppleStock;
 

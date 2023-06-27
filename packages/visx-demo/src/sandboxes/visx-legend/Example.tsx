@@ -1,5 +1,5 @@
 import React from 'react';
-import { format } from 'd3-format';
+import { format } from '@visx/vendor/d3-format';
 import { scaleLinear, scaleOrdinal, scaleThreshold, scaleQuantile } from '@visx/scale';
 import { GlyphStar, GlyphWye, GlyphTriangle, GlyphDiamond } from '@visx/glyph';
 import {

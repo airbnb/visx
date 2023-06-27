@@ -7,7 +7,7 @@ import { GridRows, GridColumns } from '@visx/grid';
 import { AnimatedAxis, AnimatedGridRows, AnimatedGridColumns } from '@visx/react-spring';
 import { getSeededRandom } from '@visx/mock-data';
 import { LinearGradient } from '@visx/gradient';
-import { timeFormat } from 'd3-time-format';
+import { timeFormat } from '@visx/vendor/d3-time-format';
 import { GridRowsProps } from '@visx/grid/lib/grids/GridRows';
 import { GridColumnsProps } from '@visx/grid/lib/grids/GridColumns';
 

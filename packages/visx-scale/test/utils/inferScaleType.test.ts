@@ -12,7 +12,7 @@ import {
   scaleOrdinal,
   scalePoint,
   scaleBand,
-} from 'd3-scale';
+} from '@visx/vendor/d3-scale';
 import TimezoneMock from 'timezone-mock';
 import inferScaleType from '../../src/utils/inferScaleType';
 

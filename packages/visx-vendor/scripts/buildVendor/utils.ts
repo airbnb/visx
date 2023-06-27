@@ -124,7 +124,7 @@ export function getTSContent(pkg: VendoredPkg) {
  *
  * Re-exports the types from \`${pkg.packageName}\` 
  */
-export * from '${pkg.packageName}';`;
+export * from '${pkg.packageName.replace('@types/', '')}';`;
 }
 
 // note: this is how we pass these dynamic variables into the

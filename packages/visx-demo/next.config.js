@@ -1,22 +1,9 @@
 /* eslint-disable no-undef */
-const transpileModules = require('next-transpile-modules');
 const path = require('path');
 
 const isProd = process.env.NODE_ENV === 'production';
 
-// these deps are ESM-only so we must compile them even
-// though we also use experimental.esmExternals
-const withTM = transpileModules([
-  'd3-array',
-  'd3-color',
-  'd3-format',
-  'd3-interpolate',
-  'd3-time',
-  'd3-time-format',
-  'internmap',
-]);
-
-const nextConfig = withTM({
+const nextConfig = {
   basePath: isProd ? '/visx' : '',
   assetPrefix: isProd ? '/visx/' : '',
   typescript: {
@@ -59,6 +46,6 @@ const nextConfig = withTM({
 
     return config;
   },
-});
+};
 
 module.exports = nextConfig;
