@@ -50,8 +50,7 @@
       },
       "./internmap": {
         "import": "./esm/internmap.js",
-        "require": "./lib/internmap.js",
-        "types": "./types/internmap.d.ts"
+        "require": "./lib/internmap.js"
       }
     }
 }
