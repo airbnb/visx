@@ -30,11 +30,12 @@
   ],
   "private": true,
   "scripts": {
+    "build:vendor": "yarn run ts ./packages/visx-vendor/scripts/buildVendor",
     "babel": "yarn run babel:cjs && yarn run babel:esm",
     "babel:cjs": "lerna exec --ignore @visx/demo --parallel -- babel --root-mode upward --delete-dir-on-start src/ --out-dir lib --extensions .ts,.tsx",
     "babel:esm": "ESM=true lerna exec --ignore @visx/demo --parallel -- babel --root-mode upward --delete-dir-on-start src/ --out-dir esm --extensions .ts,.tsx",
     "babel:pkg": "lerna exec --scope $PKG -- babel --root-mode upward --delete-dir-on-start src/ --out-dir lib --extensions .ts,.tsx && lerna exec --scope $PKG -- ESM=true babel --root-mode upward --delete-dir-on-start src/ --out-dir esm --extensions .ts,.tsx",
-    "build": "yarn run babel && yarn run type",
+    "build": "yarn run build:vendor && yarn run babel && yarn run type",
     "build:sizes": "yarn run ts ./scripts/computeBuildSizes.ts",
     "build:release": "yarn run ts ./scripts/performRelease/index.ts",
     "dev:demo": "yarn workspace @visx/demo dev",
@@ -110,9 +111,10 @@
     "ts-node": "9.1.1",
     "typescript": "^3.8.3"
   },
-  "workspaces": [
-    "./packages/*"
-  ],
+  "workspaces": {
+    "packages": ["./packages/*"],
+    "nohoist": ["**/@visx/vendor/**"]
+  },
   "resolutions": {
     "@babel/parser": "^7.15.3",
     "handlebars": "4.5.3"
