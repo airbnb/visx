@@ -1,7 +1,7 @@
 {
   "extends": "../../tsconfig.options.json",
   "compilerOptions": {
-    "noUnusedLocals": false,
+    "noUnusedLocals": false
   },
   "references": [],
   "include": [
