@@ -44,9 +44,9 @@
     "exports": {
       "./package.json": "./package.json",
       "./d3-*": {
+        "types": "./d3-*.d.ts",
         "import": "./esm/d3-*.js",
-        "require": "./lib/d3-*.js",
-        "types": "./d3-*.d.ts"
+        "require": "./lib/d3-*.js"
       },
       "./internmap": {
         "import": "./esm/internmap.js",
