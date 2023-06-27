@@ -30,6 +30,9 @@ jobs:
       - name: 🤖 Ensure TS references are up to date
         run: yarn type:update-refs && git diff --exit-code
 
+      - name: 👀 Ensure we have no ESM-only dependencies
+        run: yarn vendor-check
+
       - name: 🛠 Build packages
         run: yarn build
 
