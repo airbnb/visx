@@ -22,8 +22,8 @@ module.exports = {
          * importing from `d3-time-format`.
          *
          * sourcePath: 'd3-time-format'
-         * currentFile: '/some/path/visx/node_modules/vendor-d3-scale/src/time.js'
-         * relativePath: '../../vendor-d3-time-format/src/index.js'
+         * currentFile: '/some/path/visx/node_modules/d3-scale/src/time.js'
+         * relativePath: '../../d3-time-format/src/index.js'
          */
         resolvePath(sourcePath, currentFile) {
           // extract the pkg name and detect if there is a deep import path
@@ -45,8 +45,8 @@ module.exports = {
               const sourcePkg = vendorPkgMap[pkgName];
 
               // convert from node_modules to the target vendored path, e.g.,
-              //    /path/visx/node_modules/vendor-d3-array/src/difference.js
-              //    /path/visx/packages/visx-vendor/lib/vendor-d3-array/src/difference.js
+              //    /path/visx/node_modules/d3-array/src/difference.js
+              //    /path/visx/packages/visx-vendor/lib/d3-array/src/difference.js
               const currentFileVendoredFilename = currentFile.replace(
                 process.env.ROOT_NODE_MODULES_PATH,
                 process.env.VENDOR_CJS_PATH,
@@ -54,9 +54,9 @@ module.exports = {
 
               // now create a *relative* path from the current vendor file to the
               // vendored source file being imported in the current file, e.g., the path from
-              //    /path/visx/packages/visx-vendor/lib/vendor-d3-array/src/difference.js
+              //    /path/visx/packages/visx-vendor/lib/d3-array/src/difference.js
               // to
-              //    /path/visx/packages/visx-vendor/lib/vendor-d3-XXX/src/index.js
+              //    /path/visx/packages/visx-vendor/lib/d3-XXX/src/index.js
               const relativePath = path.relative(
                 path.dirname(currentFileVendoredFilename),
                 sourcePkg.vendorIndexFileName,

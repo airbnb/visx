@@ -2,6 +2,8 @@
 /lib
 /esm
 /vendor-cjs
+
+# root index and type files
 /d3-*.js
 /internmap.js
 /*.d.ts

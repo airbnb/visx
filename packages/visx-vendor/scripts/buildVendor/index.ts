@@ -14,7 +14,7 @@ import {
   ESM_PATH,
   CJS_PATH,
   VENDOR_CJS_PATH,
-  ROOT_NODE_MODULES_PATH,
+  NODE_MODULES_PATH,
   getTSContent,
   TS_GLOB,
   INDEX_GLOB,
@@ -25,8 +25,10 @@ const exec = util.promisify(childProcess.exec);
 const rimraf = util.promisify(baseRimraf);
 
 /**
- * Handles building the entire package, assuming correct (aliased) vendor packages are included
- * in the package.json and yarn installed in the monorepo root.
+ * Handles building the entire package. Assumes all vendored packages are included
+ * in the package.json and yarn installed in `./packages/visx-vendor/node_modules`
+ * (i.e., they are not hoisted to the root, this helps guarantee specificity of
+ * vendored packages).
  */
 async function build() {
   // print out packages to be vendored
@@ -44,9 +46,7 @@ async function build() {
   Object.values(parsedVendorPkgsMap).forEach((pkg) => {
     const exists = fs.existsSync(pkg.nodeModulesPath);
     if (!exists) {
-      throw new Error(
-        `Module note found: ${pkg.packageName} (alias: ${pkg.vendorPath}, path: ${pkg.nodeModulesPath})`,
-      );
+      throw new Error(`Module note found: ${pkg.packageName} (looked for: ${pkg.nodeModulesPath})`);
     }
   });
   console.log(chalk.green('✅ Verified all packages are installed.'));
@@ -75,7 +75,7 @@ async function build() {
       --config-file ${BABEL_CONFIG_FILE} \
       --only ${transpileGlob} \
       --out-dir ${VENDOR_CJS_PATH} \
-      ${ROOT_NODE_MODULES_PATH}`,
+      ${NODE_MODULES_PATH}`,
   );
 
   if (stdout) {

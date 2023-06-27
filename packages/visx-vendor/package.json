@@ -13,28 +13,21 @@
     "author": "@williaster",
     "license": "MIT and ISC",
     "dependencies": {
-      "vendor-d3-array@npm:d3-array": "^3.2.1",
-      "vendor-types-d3-array@npm:@types/d3-array": "^3.0.3",
-
-      "vendor-internmap@npm:internmap": "^2.0.3",
-      
-      "vendor-d3-time-format@npm:d3-time-format": "^4.1.0",
-      "vendor-types-d3-time-format@npm:@types/d3-time-format": "^2.1.0",
-
-      "vendor-d3-scale@npm:d3-scale": "^4.0.2",
-      "vendor-types-d3-scale@npm:@types/d3-scale": "^4.0.2",
-
-      "vendor-d3-color@npm:d3-color": "^3.1.0",
-      "vendor-types-d3-color@npm:@types/d3-color": "^3.1.0",
-      
-      "vendor-d3-time@npm:d3-time": "^3.1.0",
-      "vendor-types-d3-time@npm:@types/d3-time": "^3.0.0",
-
-      "vendor-d3-format@npm:d3-format": "^3.1.0",
-      "vendor-types-d3-format@npm:@types/d3-format": "^3.0.1",
-      
-      "vendor-d3-interpolate@npm:d3-interpolate": "^3.0.1",
-      "vendor-types-d3-interpolate@npm:@types/d3-interpolate": "^3.0.1"
+      "@types/d3-array": "^3.0.3",
+      "@types/d3-color": "^3.1.0",
+      "@types/d3-format": "^3.0.1",
+      "@types/d3-interpolate": "^3.0.1",
+      "@types/d3-scale": "^4.0.2",
+      "@types/d3-time": "^3.0.0",
+      "@types/d3-time-format": "^2.1.0",
+      "d3-array": "^3.2.1",
+      "d3-color": "^3.1.0",
+      "d3-format": "^3.1.0",
+      "d3-interpolate": "^3.0.1",
+      "d3-scale": "^4.0.2",
+      "d3-time": "^3.1.0",
+      "d3-time-format": "^4.1.0",
+      "internmap": "^2.0.3"
     },
     "devDependencies": {
       "@babel/plugin-transform-modules-commonjs": "^7.22.5",

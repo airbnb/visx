@@ -11,8 +11,9 @@ which aims to solve the same problem.
 ## Vendored packages
 
 All vendored packages are listed as `dependencies` in the `package.json` of this package (note that
-NPM aliases are used to guarantee version specificity in this large monorepo where we may have mixed
-versions of `d3` packages). For each (non-types) package `<pkg>`, we generate the following:
+the `yarn` `nohoist` option is set for this package to guarantee version specificity in this large
+monorepo where we may have mixed versions of `d3` packages). For each (non-types) package `<pkg>`,
+we generate the following:
 
 - an ESM version of the package in `esm/<pkg>.js`
 - a CJS version of the package in `lib/<pkg>.js`
@@ -44,7 +45,7 @@ import { interpolate } from '@visx/vendor/d3-interpolate';
 
 If you use a CJS `require` syntax like the following, it will resolve to an alternate path that
 contains the **transpiled** version of the underlying `d3-*` (or other) library to be found at
-`@visx/vendor/lib-vendor/d3-interpolate/**/*.js`.
+`@visx/vendor/vendor-cjs/d3-interpolate/**/*.js`.
 
 ```ts
 const { interpolate } = require('@visx/vendor/d3-interpolate');
@@ -55,4 +56,9 @@ Such transpiled versions have _internally consistent_ import references to other
 
 ### Root index files & types
 
-In addition to supporting
+For tooling that doesn't yet support `package.json:exports`
+([conditional exports](https://nodejs.org/api/packages.html#conditional-exports)), we include root
+index files for all vendored packages, e.g., `@visx/vendor/d3-array.js`.
+
+Type declaration files are also included in the root, e.g., `@types/d3-array` is exported as
+`@visx/vendor/d3-array.d.ts`.
