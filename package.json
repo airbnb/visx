@@ -53,7 +53,8 @@
     "ts": "ts-node --project ./tsconfig.node.json",
     "type": "lerna exec --parallel -- tsc --build",
     "type:pkg": "lerna exec --scope $PKG -- tsc --build --verbose",
-    "type:update-refs": "yarn run ts ./scripts/updateTsReferences.ts"
+    "type:update-refs": "yarn run ts ./scripts/updateTsReferences.ts",
+    "vendor-check": "yarn run ts ./packages/visx-vendor/scripts/flagVendorRequirements.ts"
   },
   "devDependencies": {
     "@babel/cli": "^7.19.3",
