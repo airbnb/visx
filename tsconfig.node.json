@@ -17,6 +17,7 @@
     "noUnusedLocals": true,
     "pretty": true,
     "removeComments": false,
+    "resolveJsonModule": true,
     "strict": true,
     "target": "es2015",
     "typeRoots": ["./node_modules/@types", "./types"],
