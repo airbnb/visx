@@ -4,6 +4,7 @@
   "description": "visx network",
   "sideEffects": false,
   "repository": "https://github.com/airbnb/visx",
+  "types": "./lib/index.d.ts",
   "exports": {
     "types": "./lib/index.d.ts",
     "import": "./esm/index.js",

@@ -3,6 +3,7 @@
   "version": "3.0.0",
   "description": "visx clip-path",
   "sideEffects": false,
+  "types": "./lib/index.d.ts",
   "exports": {
     "types": "./lib/index.d.ts",
     "import": "./esm/index.js",

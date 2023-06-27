@@ -3,6 +3,7 @@
   "version": "3.1.2",
   "description": "One stop install for all visx packages",
   "sideEffects": false,
+  "types": "./lib/index.d.ts",
   "exports": {
     "types": "./lib/index.d.ts",
     "import": "./esm/index.js",

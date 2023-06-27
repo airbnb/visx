@@ -3,6 +3,7 @@
   "version": "3.1.0",
   "description": "visx primitives that rely on react-spring for animation",
   "sideEffects": false,
+  "types": "./lib/index.d.ts",
   "exports": {
     "types": "./lib/index.d.ts",
     "import": "./esm/index.js",
