@@ -17,7 +17,7 @@
     "@visx/responsive": "latest",
     "@visx/scale": "latest",
     "@visx/shape": "latest",
-    "d3-array": "^2.4.0",
+    "@visx/vendor": "latest",
     "react": "^18",
     "react-dom": "^18",
     "react-scripts-ts": "3.1.0",

@@ -3,7 +3,7 @@ import { SeriesPoint, stack as d3stack } from 'd3-shape';
 import stackOffset from '@visx/shape/lib/util/stackOffset';
 import stackOrder from '@visx/shape/lib/util/stackOrder';
 import { StackPathConfig } from '@visx/shape';
-import { extent } from 'd3-array';
+import { extent } from '@visx/vendor/d3-array';
 import { AxisScale } from '@visx/axis';
 import DataContext from '../context/DataContext';
 import { CombinedStackData, DataContextType, SeriesProps } from '../types';

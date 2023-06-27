@@ -14,8 +14,8 @@ import {
   utcMonth,
   utcYear,
   CountableTimeInterval,
-} from 'd3-time';
-import { ScaleTime } from 'd3-scale';
+} from '@visx/vendor/d3-time';
+import { ScaleTime } from '@visx/vendor/d3-scale';
 import { StringLike } from '../types/Base';
 import { DefaultThresholdInput, D3Scale } from '../types/Scale';
 import { ScaleConfigWithoutType } from '../types/ScaleConfig';

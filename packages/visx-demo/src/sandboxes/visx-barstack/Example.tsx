@@ -6,7 +6,7 @@ import { Grid } from '@visx/grid';
 import { AxisBottom } from '@visx/axis';
 import cityTemperature, { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
 import { scaleBand, scaleLinear, scaleOrdinal } from '@visx/scale';
-import { timeParse, timeFormat } from 'd3-time-format';
+import { timeParse, timeFormat } from '@visx/vendor/d3-time-format';
 import { useTooltip, useTooltipInPortal, defaultStyles } from '@visx/tooltip';
 import { LegendOrdinal } from '@visx/legend';
 import { localPoint } from '@visx/event';

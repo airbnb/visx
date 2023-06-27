@@ -27,7 +27,7 @@ type ShowProps = {
 
 const padding = 40;
 
-export default withScreenSize<ShowProps & WithScreenSizeProvidedProps>(
+const Show = withScreenSize<ShowProps & WithScreenSizeProvidedProps>(
   ({
     screenWidth,
     children,
@@ -122,3 +122,5 @@ export default withScreenSize<ShowProps & WithScreenSizeProvidedProps>(
     );
   },
 );
+
+export default Show;

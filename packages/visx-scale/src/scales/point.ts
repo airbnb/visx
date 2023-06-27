@@ -1,4 +1,4 @@
-import { scalePoint } from 'd3-scale';
+import { scalePoint } from '@visx/vendor/d3-scale';
 import { DefaultOutput, StringLike } from '../types/Base';
 import { PickScaleConfigWithoutType } from '../types/ScaleConfig';
 import scaleOperator from '../operators/scaleOperator';
