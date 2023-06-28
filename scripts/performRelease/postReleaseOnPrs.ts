@@ -7,16 +7,16 @@ export default async function postReleaseOnPrs(client: GithubClient, prs: PR[], 
   const { owner, repo } = getRepoContext();
   const message = `🎉 This PR is included in version \`${tagName}\` of the packages modified 🎉`;
 
-  for (let i = 0; i < prs.length; i += 1) {
-    const pr = prs[i];
+  await Promise.all(
+    prs.map(async (pr) => {
+      console.log('Posting release on PR #', pr.number);
 
-    console.log('Posting release on PR #', pr.number);
-
-    await client.issues.createComment({
-      issue_number: pr.number,
-      owner,
-      repo,
-      body: message,
-    });
-  }
+      await client.issues.createComment({
+        issue_number: pr.number,
+        owner,
+        repo,
+        body: message,
+      });
+    }),
+  );
 }

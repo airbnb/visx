@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { Octokit } from '@octokit/rest';
 
 export default function getGitHubClient() {
