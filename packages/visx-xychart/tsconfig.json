@@ -49,10 +49,10 @@
       "path": "../visx-tooltip"
     },
     {
-      "path": "../visx-voronoi"
+      "path": "../visx-vendor"
     },
     {
-      "path": "../visx-vendor"
+      "path": "../visx-voronoi"
     }
   ]
 }
