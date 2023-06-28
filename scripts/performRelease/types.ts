@@ -1,3 +1,3 @@
-import { components } from '@octokit/openapi-types/generated/types';
+import type { components } from '@octokit/openapi-types';
 
 export type PR = components['schemas']['pull-request-simple'];

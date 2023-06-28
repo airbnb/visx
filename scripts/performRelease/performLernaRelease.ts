@@ -6,7 +6,9 @@ import { PR } from './types';
 const exec = util.promisify(childProcess.exec);
 
 export function isReleasePR(pr: PR) {
-  return RELEASE_LABELS.some(releaseLabel => pr.labels.some(label => label.name === releaseLabel));
+  return RELEASE_LABELS.some((releaseLabel) =>
+    pr.labels.some((label) => label.name === releaseLabel),
+  );
 }
 
 export default async function performLernaRelease(prsSinceLastTag: PR[]) {
@@ -18,17 +20,17 @@ export default async function performLernaRelease(prsSinceLastTag: PR[]) {
   }
 
   // run lerna based on the type of release
-  const isPreRelease = releasePRsSinceLastTag.some(pr =>
+  const isPreRelease = releasePRsSinceLastTag.some((pr) =>
     // note that this logic requires that all alpha tags be removed from PRs
     // in order to trigger a non-alpha release. git keeps tag history so
     // preserving context should not be an issue
-    pr.labels.some(label => label.name === ALPHA_RELEASE),
+    pr.labels.some((label) => label.name === ALPHA_RELEASE),
   );
-  const isMinor = releasePRsSinceLastTag.some(pr =>
-    pr.labels.some(label => label.name === MINOR_RELEASE),
+  const isMinor = releasePRsSinceLastTag.some((pr) =>
+    pr.labels.some((label) => label.name === MINOR_RELEASE),
   );
-  const isMajor = releasePRsSinceLastTag.some(pr =>
-    pr.labels.some(label => label.name === MAJOR_RELEASE),
+  const isMajor = releasePRsSinceLastTag.some((pr) =>
+    pr.labels.some((label) => label.name === MAJOR_RELEASE),
   );
 
   // perform release
@@ -43,7 +45,7 @@ export default async function performLernaRelease(prsSinceLastTag: PR[]) {
 
     const { stdout, stderr } = await exec(
       // --no-verify-access is needed because the CI token isn't valid for that endpoint
-      `npx lerna publish ${version} --exact --yes --no-verify-access --dist-tag ${distTag}`,
+      `npx lerna publish ${version} --exact --yes --dist-tag ${distTag}`,
     );
     if (stdout) {
       console.log('Lerna output', stdout);
