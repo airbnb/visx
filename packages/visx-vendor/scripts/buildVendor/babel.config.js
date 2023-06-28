@@ -2,8 +2,10 @@
  * This file handles the logic of transpiling ESM-only modules, ensuring that
  * any references to _other_ ESM-only modules also points to our vendored libs.
  */
+// eslint-disable-next-line no-undef
 const path = require('path');
 
+// eslint-disable-next-line no-undef
 module.exports = {
   plugins: [
     [
