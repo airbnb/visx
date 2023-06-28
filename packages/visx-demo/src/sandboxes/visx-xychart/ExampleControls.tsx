@@ -665,7 +665,7 @@ export default function ExampleControls({ children }: ControlsProps) {
           </label>
         </div>
         <div>
-          <strong>tooltip gliph</strong>
+          <strong>tooltip glyph</strong>
           <label>
             <input
               type="checkbox"
@@ -673,7 +673,7 @@ export default function ExampleControls({ children }: ControlsProps) {
               disabled={!canSnapTooltipToDatum}
               checked={enableTooltipGlyph}
             />
-            show custom tooltip gliph
+            show custom tooltip glyph
           </label>
           &nbsp;&nbsp;&nbsp;&nbsp;
           <label>
