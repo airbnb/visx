@@ -1,0 +1,55 @@
+{
+  "name": "@visx/vendor",
+  "version": "3.0.0",
+  "description": "vendored packages for visx",
+  "sideEffects": false,
+  "repository": "https://github.com/airbnb/visx",
+  "keywords": [
+    "visx",
+    "data",
+    "visualizations",
+    "charts"
+  ],
+  "author": "@williaster",
+  "license": "MIT and ISC",
+  "dependencies": {
+    "@types/d3-array": "3.0.3",
+    "@types/d3-color": "3.1.0",
+    "@types/d3-format": "3.0.1",
+    "@types/d3-interpolate": "3.0.1",
+    "@types/d3-scale": "4.0.2",
+    "@types/d3-time": "3.0.0",
+    "@types/d3-time-format": "2.1.0",
+    "d3-array": "3.2.1",
+    "d3-color": "3.1.0",
+    "d3-format": "3.1.0",
+    "d3-interpolate": "3.0.1",
+    "d3-scale": "4.0.2",
+    "d3-time": "3.1.0",
+    "d3-time-format": "4.1.0",
+    "internmap": "2.0.3"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.22.5",
+    "babel-plugin-module-resolver": "^5.0.0",
+    "@types/rimraf": "^3.0.2",
+    "chalk": "4.1.0",
+    "compare-versions": "^5.0.0",
+    "rimraf": "^3.0.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    "./d3-*": {
+      "types": "./d3-*.d.ts",
+      "import": "./esm/d3-*.js",
+      "require": "./lib/d3-*.js"
+    },
+    "./internmap": {
+      "import": "./esm/internmap.js",
+      "require": "./lib/internmap.js"
+    }
+  }
+}

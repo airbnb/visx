@@ -1,6 +1,6 @@
 import { AxisScale } from '@visx/axis';
 import { getFirstItem, getSecondItem } from '@visx/shape/lib/util/accessors';
-import { extent } from 'd3-array';
+import { extent } from '@visx/vendor/d3-array';
 import { BarStackData, BarStackDatum, DataRegistryEntry } from '../types';
 
 const getStack = <XScale extends AxisScale, YScale extends AxisScale>(

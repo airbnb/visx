@@ -1,9 +1,14 @@
 import React from 'react';
 import { AppProps } from 'next/app';
 import 'prismjs/themes/prism.css';
+import NoSsr from '../components/NoSsr';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <NoSsr>
+      <Component {...pageProps} />
+    </NoSsr>
+  );
 }
 
 export default MyApp;

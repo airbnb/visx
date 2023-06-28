@@ -2,7 +2,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import appleStock, { AppleStock } from '@visx/mock-data/lib/mocks/appleStock';
 import { PickD3Scale, scaleTime, scaleLinear } from '@visx/scale';
-import { extent } from 'd3-array';
+import { extent } from '@visx/vendor/d3-array';
 import { Annotation, EditableAnnotation } from '@visx/annotation';
 import { AnnotationProps } from './Example';
 

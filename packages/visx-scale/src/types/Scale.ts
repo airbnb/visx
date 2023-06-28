@@ -11,7 +11,7 @@ import {
   ScalePoint,
   ScaleBand,
   ScaleSymLog,
-} from 'd3-scale';
+} from '@visx/vendor/d3-scale';
 import { StringLike, DefaultOutput, ValueOf } from './Base';
 
 export type DefaultThresholdInput = number | string | Date;

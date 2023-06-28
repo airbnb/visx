@@ -5,7 +5,6 @@
   "private": true,
   "dependencies": {
     "@babel/runtime": "^7.8.4",
-    "@types/d3-time-format": "2.1.1",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@visx/axis": "latest",
@@ -18,7 +17,7 @@
     "@visx/responsive": "latest",
     "@visx/shape": "latest",
     "@visx/scale": "latest",
-    "d3-time-format": "^2.2.3",
+    "@visx/vendor": "latest",
     "react": "^18",
     "react-dom": "^18",
     "react-scripts-ts": "3.1.0",

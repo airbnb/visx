@@ -8,7 +8,7 @@ import BaseBrush, { BaseBrushState, UpdateBrush } from '@visx/brush/lib/BaseBrus
 import { PatternLines } from '@visx/pattern';
 import { Group } from '@visx/group';
 import { LinearGradient } from '@visx/gradient';
-import { max, extent } from 'd3-array';
+import { max, extent } from '@visx/vendor/d3-array';
 import { BrushHandleRenderProps } from '@visx/brush/lib/BrushHandle';
 import AreaChart from './AreaChart';
 

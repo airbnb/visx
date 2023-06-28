@@ -50,6 +50,9 @@
     },
     {
       "path": "../visx-voronoi"
+    },
+    {
+      "path": "../visx-vendor"
     }
   ]
 }
