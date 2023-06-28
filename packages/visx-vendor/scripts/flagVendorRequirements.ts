@@ -56,8 +56,8 @@ const ESM_ONLY_MAP = {
 async function flagVendorRequirements(esmOnlyMap: { [pkg: string]: string }) {
   const flaggedPackages: { [pkg: string]: string[] } = {};
 
-  // the map below does nothing, but is an easy way to await all calls
   await Promise.all(
+    // .map() does nothing, but is an easy way to await all calls
     Object.entries(esmOnlyMap).map(async ([pkg, esmOnlyVersion]) => {
       if (!esmOnlyVersion) return;
 
@@ -65,24 +65,38 @@ async function flagVendorRequirements(esmOnlyMap: { [pkg: string]: string }) {
       const command = `yarn why ${pkg} --recursive`;
 
       const { stdout, stderr } = await exec(command);
+
       if (stdout) {
-        const pkgVersionRegex = new RegExp(`${pkg}@([0-9\.]+)`, 'g');
+        // match instances of this package, pulling out vendor and version groups
+        // e.g., for `d3-array` match all of these
+        //   d3-chord#d3-array@1.2.4
+        //   @visx/vendor#d3-array@3.2.4
+        //   @visx/vendor#vendor-d3-time#d3-array@3.2.1
+        const pkgVersionRegex = new RegExp(
+          `(?<vendor>(@visx/vendor#.*))?${pkg}@(?<version>([0-9.]+))`,
+          'g',
+        );
         const esmOnlyMatches = new Set<string>();
 
         // find all matches/installed versions
+        // eslint-disable-next-line no-constant-condition
         while (true) {
           const match = pkgVersionRegex.exec(stdout);
+          const seenVersion = match?.groups?.version;
+          const isVendorDependency = match?.groups?.vendor;
 
           // if there's a match check if it's esm-only
-          if (match) {
-            const [, seenVersion] = match;
-            if (
-              // if seen is >= esmOnly, this returns 0 or 1 (not -1)
-              compareVersions(seenVersion, esmOnlyVersion) >= 0 &&
-              !esmOnlyMatches.has(seenVersion)
-            ) {
-              console.info(`${pkg}@${seenVersion} is ≥ the esm-only version ${esmOnlyVersion}`);
-              esmOnlyMatches.add(seenVersion);
+          if (seenVersion) {
+            // if seen is >= esmOnly, this returns 0 or 1 (not -1)
+            const isEsmOnly = compareVersions(seenVersion, esmOnlyVersion) >= 0;
+
+            if (isEsmOnly && !esmOnlyMatches.has(seenVersion)) {
+              if (isVendorDependency) {
+                console.info(`VENDORED ${pkg}@${seenVersion} is ESM-only (≥ ${esmOnlyVersion})`);
+              } else {
+                console.info(`${pkg}@${seenVersion} is ESM-only (≥ ${esmOnlyVersion})`, match);
+                esmOnlyMatches.add(seenVersion);
+              }
             }
           } else {
             break;
@@ -108,7 +122,7 @@ async function flagVendorRequirements(esmOnlyMap: { [pkg: string]: string }) {
     );
     process.exitCode = 1;
   } else {
-    console.log(chalk.green('No ESM-only packages detected ✨'));
+    console.log(chalk.green('No (non-vendored) ESM-only packages detected ✨'));
   }
 }
 
