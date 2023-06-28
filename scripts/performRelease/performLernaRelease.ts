@@ -45,7 +45,7 @@ export default async function performLernaRelease(prsSinceLastTag: PR[]) {
 
     const { stdout, stderr } = await exec(
       // --no-verify-access is needed because the CI token isn't valid for that endpoint
-      `npx lerna publish ${version} --exact --yes --no-verify-access --dist-tag ${distTag}`,
+      `npx lerna publish ${version} --exact --yes --dist-tag ${distTag}`,
     );
     if (stdout) {
       console.log('Lerna output', stdout);
