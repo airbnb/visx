@@ -4,7 +4,5 @@
     "noUnusedLocals": false
   },
   "references": [],
-  "include": [
-    "./package.json"
-  ]
+  "include": []
 }
