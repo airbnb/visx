@@ -1,4 +1,5 @@
 # Changelog
+- [v3.2.0](#v320)
 - [v3.1.3](#v313)
 - [v3.1.2](#v312)
 - [v3.1.1](#v311)
@@ -6,10 +7,10 @@
 - [v3.0.2](#v302)
 - [v3.0.1](#v301)
 - [v3.0.0](#v300)
-- [v2.18.0](#v2180)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v2180">v2.18.0</a></li>
   <li><a href="#v2170">v2.17.0</a></li>
   <li><a href="#v2161">v2.16.1</a></li>
   <li><a href="#v2160">v2.16.0</a></li>
@@ -162,6 +163,28 @@
 </details>
 
 ------
+# v3.2.0 (2023-06-29)
+
+#### :bug: Bug Fix
+
+- fix: vendor esm-only packages [#1716](https://github.com/airbnb/visx/pull/1716)
+- vendor: add files entry to package.json [#1724](https://github.com/airbnb/visx/pull/1724)
+- docs(xychart): fix typo [#1714](https://github.com/airbnb/visx/pull/1714)
+
+### :memo: Documentation
+
+- docs(xychart): fix typo [#1714](https://github.com/airbnb/visx/pull/1714)
+
+### :house:  Internal
+
+- fix: vendor esm-only packages [#1716](https://github.com/airbnb/visx/pull/1716)
+- github: update @octokit/openapi-types to fix release script [#1722](https://github.com/airbnb/visx/pull/1722)
+- github: fix release types and logic [#1723](https://github.com/airbnb/visx/pull/1723)
+  
+#### :trophy: Contributors
+- [sshsphere](https://github.com/sshsphere)
+- [williaster](https://github.com/williaster)
+
 # v3.1.3 (2023-06-28)
 
 #### :bug: Bug Fix
