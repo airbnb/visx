@@ -1,6 +1,6 @@
 {
   "name": "@visx/vendor",
-  "version": "3.2.0-alpha.0",
+  "version": "3.2.0",
   "description": "vendored packages for visx",
   "sideEffects": false,
   "repository": "https://github.com/airbnb/visx",
