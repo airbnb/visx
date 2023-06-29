@@ -51,7 +51,9 @@
     "test": "yarn run jest",
     "test:watch": "yarn run jest --watch",
     "ts": "ts-node --project ./tsconfig.node.json",
-    "type": "lerna exec --parallel -- tsc --build",
+    "type": "yarn type:clean && yarn type:build",
+    "type:build": "lerna exec --parallel -- tsc --build",
+    "type:clean": "find . -type f -name 'tsconfig.tsbuildinfo' -delete",
     "type:pkg": "lerna exec --scope $PKG -- tsc --build --verbose",
     "type:update-refs": "yarn run ts ./scripts/updateTsReferences.ts",
     "vendor-check": "yarn run ts ./packages/visx-vendor/scripts/flagVendorRequirements.ts"
