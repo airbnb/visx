@@ -34,9 +34,7 @@ export default function TooltipProvider<Datum extends object>({
     }
   }
 
-  useEffect(() => {
-    return cancelDeboundedHideTooltip;
-  }, []);
+  useEffect(() => cancelDeboundedHideTooltip, []);
 
   const showTooltip = useRef(
     ({ svgPoint, index, key, datum, distanceX, distanceY }: EventHandlerParams<Datum>) => {
