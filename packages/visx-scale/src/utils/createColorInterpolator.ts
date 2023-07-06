@@ -7,7 +7,7 @@ import {
   interpolateHslLong,
   interpolateCubehelix,
   interpolateCubehelixLong,
-} from 'd3-interpolate';
+} from '@visx/vendor/d3-interpolate';
 import { ScaleInterpolateParams, ScaleInterpolate } from '../types/ScaleInterpolate';
 
 const interpolatorMap = {

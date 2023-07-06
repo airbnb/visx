@@ -4,7 +4,7 @@ import { SeriesPoint } from '@visx/shape/lib/types';
 import { GradientOrangeRed } from '@visx/gradient';
 import browserUsage, { BrowserUsage } from '@visx/mock-data/lib/mocks/browserUsage';
 import { scaleTime, scaleLinear } from '@visx/scale';
-import { timeParse } from 'd3-time-format';
+import { timeParse } from '@visx/vendor/d3-time-format';
 
 type BrowserNames = keyof BrowserUsage;
 

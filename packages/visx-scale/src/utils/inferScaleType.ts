@@ -1,4 +1,4 @@
-import { ScaleTime } from 'd3-scale';
+import { ScaleTime } from '@visx/vendor/d3-scale';
 import { StringLike } from '../types/Base';
 import { DefaultThresholdInput, D3Scale } from '../types/Scale';
 import { ScaleType } from '../types/ScaleConfig';

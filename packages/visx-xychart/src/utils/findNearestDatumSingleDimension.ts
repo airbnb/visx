@@ -1,6 +1,6 @@
 import { AxisScale } from '@visx/axis';
 import { ScaleInput } from '@visx/scale';
-import { bisector, range as d3Range, bisectLeft } from 'd3-array';
+import { bisector, range as d3Range, bisectLeft } from '@visx/vendor/d3-array';
 
 // @TODO make more robust to null/undefined scaled values
 /** Finds the nearest datum in a single direction (x or y) closest to the specified `scaledValue`. */

@@ -22,6 +22,7 @@
     "useDefineForClassFields": false,
     "composite": true,
     "declarationMap": true,
-    "emitDeclarationOnly": true
+    "emitDeclarationOnly": true,
+    "resolveJsonModule": true
   }
 }

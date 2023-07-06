@@ -49,6 +49,9 @@
       "path": "../visx-tooltip"
     },
     {
+      "path": "../visx-vendor"
+    },
+    {
       "path": "../visx-voronoi"
     }
   ]

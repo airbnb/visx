@@ -1,4 +1,4 @@
-import { scaleUtc, scaleTime } from 'd3-scale';
+import { scaleUtc, scaleTime } from '@visx/vendor/d3-scale';
 import TimezoneMock from 'timezone-mock';
 import isUtcScale from '../../src/utils/isUtcScale';
 

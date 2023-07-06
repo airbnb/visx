@@ -36,6 +36,4 @@ export default async function createGithubRelease(
     console.log(`Could not post new Github release. Aborting.`);
     console.warn(error.message); // log but don't fail the job
   }
-
-  return;
 }

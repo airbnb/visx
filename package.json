@@ -11,7 +11,7 @@
     "charts"
   ],
   "engines": {
-    "node": ">=16.10.0",
+    "node": ">=16.13.0",
     "yarn": ">=1.17.0"
   },
   "contributors": [
@@ -30,11 +30,12 @@
   ],
   "private": true,
   "scripts": {
+    "build:vendor": "yarn run ts ./packages/visx-vendor/scripts/buildVendor",
     "babel": "yarn run babel:cjs && yarn run babel:esm",
-    "babel:cjs": "lerna exec --ignore @visx/demo --parallel -- babel --root-mode upward --delete-dir-on-start src/ --out-dir lib --extensions .ts,.tsx",
-    "babel:esm": "ESM=true lerna exec --ignore @visx/demo --parallel -- babel --root-mode upward --delete-dir-on-start src/ --out-dir esm --extensions .ts,.tsx",
+    "babel:cjs": "lerna exec --ignore '@visx/{demo,vendor}' --parallel -- babel --root-mode upward --delete-dir-on-start src/ --out-dir lib --extensions .ts,.tsx",
+    "babel:esm": "ESM=true lerna exec --ignore '@visx/{demo,vendor}' --parallel -- babel --root-mode upward --delete-dir-on-start src/ --out-dir esm --extensions .ts,.tsx",
     "babel:pkg": "lerna exec --scope $PKG -- babel --root-mode upward --delete-dir-on-start src/ --out-dir lib --extensions .ts,.tsx && lerna exec --scope $PKG -- ESM=true babel --root-mode upward --delete-dir-on-start src/ --out-dir esm --extensions .ts,.tsx",
-    "build": "yarn run babel && yarn run type",
+    "build": "yarn run build:vendor && yarn run babel && yarn run type",
     "build:sizes": "yarn run ts ./scripts/computeBuildSizes.ts",
     "build:release": "yarn run ts ./scripts/performRelease/index.ts",
     "dev:demo": "yarn workspace @visx/demo dev",
@@ -50,9 +51,12 @@
     "test": "yarn run jest",
     "test:watch": "yarn run jest --watch",
     "ts": "ts-node --project ./tsconfig.node.json",
-    "type": "rm -rf ./packages/**/tsconfig.tsbuildinfo && lerna exec --parallel -- tsc --build",
+    "type": "yarn type:clean && yarn type:build",
+    "type:build": "lerna exec --parallel -- tsc --build",
+    "type:clean": "find . -type f -name 'tsconfig.tsbuildinfo' -delete",
     "type:pkg": "lerna exec --scope $PKG -- tsc --build --verbose",
-    "type:update-refs": "yarn run ts ./scripts/updateTsReferences.ts"
+    "type:update-refs": "yarn run ts ./scripts/updateTsReferences.ts",
+    "vendor-check": "yarn run ts ./packages/visx-vendor/scripts/flagVendorRequirements.ts"
   },
   "devDependencies": {
     "@babel/cli": "^7.19.3",
@@ -61,6 +65,7 @@
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-react": "^7.18.6",
     "@babel/preset-typescript": "^7.18.6",
+    "@octokit/openapi-types": "18.0.0",
     "@octokit/rest": "18.1.0",
     "@testing-library/jest-dom": "^5.9.0",
     "@testing-library/react": "^13.1.0",
@@ -97,7 +102,7 @@
     "husky": "^3.0.0",
     "jest": "^25.5.4",
     "jest-mock-console": "^1.0.1",
-    "lerna": "^3.22.0",
+    "lerna": "^7.0.2",
     "marked": "^0.7.0",
     "node-fetch": "2.6.1",
     "prettier": "^2.8.1",
@@ -110,9 +115,10 @@
     "ts-node": "9.1.1",
     "typescript": "^3.8.3"
   },
-  "workspaces": [
-    "./packages/*"
-  ],
+  "workspaces": {
+    "packages": ["./packages/*"],
+    "nohoist": ["**/@visx/vendor/**"]
+  },
   "resolutions": {
     "@babel/parser": "^7.15.3",
     "handlebars": "4.5.3"

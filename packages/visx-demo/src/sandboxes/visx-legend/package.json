@@ -10,7 +10,7 @@
     "@visx/glyph": "latest",
     "@visx/legend": "latest",
     "@visx/scale": "latest",
-    "d3-format": "^1.4.4",
+    "@visx/vendor": "latest",
     "react": "^18",
     "react-dom": "^18",
     "react-scripts-ts": "3.1.0",

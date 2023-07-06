@@ -3,7 +3,7 @@ import { Group } from '@visx/group';
 import { LinePath } from '@visx/shape';
 import generateDateValue, { DateValue } from '@visx/mock-data/lib/generators/genDateValue';
 import { scaleTime, scaleLinear } from '@visx/scale';
-import { extent, max } from 'd3-array';
+import { extent, max } from '@visx/vendor/d3-array';
 
 const lineCount = 12;
 const series = new Array(lineCount).fill(null).map((_, i) => generateDateValue(25, i / 47));
