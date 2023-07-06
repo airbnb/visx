@@ -1,4 +1,4 @@
-import { Delaunay } from 'd3-delaunay';
+import { Delaunay } from '@visx/vendor/d3-delaunay';
 
 const CLIP_PADDING = 1;
 

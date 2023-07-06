@@ -31,10 +31,9 @@
     "access": "public"
   },
   "dependencies": {
-    "@types/d3-delaunay": "^6.0.1",
     "@types/react": "*",
+    "@visx/vendor": "3.2.0",
     "classnames": "^2.3.1",
-    "d3-delaunay": "^6.0.2",
     "prop-types": "^15.6.1"
   },
   "peerDependencies": {
