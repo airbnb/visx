@@ -1,4 +1,5 @@
 # Changelog
+- [v3.2.1](#v321)
 - [v3.2.0](#v320)
 - [v3.1.3](#v313)
 - [v3.1.2](#v312)
@@ -6,10 +7,10 @@
 - [v3.1.0](#v310)
 - [v3.0.2](#v302)
 - [v3.0.1](#v301)
-- [v3.0.0](#v300)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v300">v3.0.0</a></li>
   <li><a href="#v2180">v2.18.0</a></li>
   <li><a href="#v2170">v2.17.0</a></li>
   <li><a href="#v2161">v2.16.1</a></li>
@@ -163,6 +164,15 @@
 </details>
 
 ------
+# v3.2.1 (2023-07-06)
+
+#### :bug: Bug Fix
+
+- fix(xychart): Cleanup async function in TooltipProvider [#1728](https://github.com/airbnb/visx/pull/1728)
+  
+#### :trophy: Contributors
+- [SheaJanke](https://github.com/SheaJanke)
+
 # v3.2.0 (2023-06-29)
 
 #### :bug: Bug Fix
