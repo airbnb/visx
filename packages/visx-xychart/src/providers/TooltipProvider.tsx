@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useRef } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef } from 'react';
 import debounce from 'lodash/debounce';
 import { useTooltip } from '@visx/tooltip';
 import TooltipContext from '../context/TooltipContext';
@@ -27,13 +27,19 @@ export default function TooltipProvider<Datum extends object>({
 
   const debouncedHideTooltip = useRef<ReturnType<typeof debounce> | null>(null);
 
+  function cancelDeboundedHideTooltip() {
+    if (debouncedHideTooltip.current) {
+      debouncedHideTooltip.current.cancel();
+      debouncedHideTooltip.current = null;
+    }
+  }
+
+  useEffect(() => cancelDeboundedHideTooltip, []);
+
   const showTooltip = useRef(
     ({ svgPoint, index, key, datum, distanceX, distanceY }: EventHandlerParams<Datum>) => {
       // cancel any hideTooltip calls so it won't hide after invoking the logic below
-      if (debouncedHideTooltip.current) {
-        debouncedHideTooltip.current.cancel();
-        debouncedHideTooltip.current = null;
-      }
+      cancelDeboundedHideTooltip();
       const cleanDistanceX = isValidNumber(distanceX) ? distanceX : Infinity;
       const cleanDistanceY = isValidNumber(distanceY) ? distanceY : Infinity;
       const distance = Math.sqrt(cleanDistanceX ** 2 + cleanDistanceY ** 2);
