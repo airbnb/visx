@@ -67,7 +67,7 @@ function Example({ width, height, margin = defaultMargin }: DelaunayTriangulatio
             const point = localPoint(svgRef.current, event);
             if (!point) return;
 
-            const closest = delaunayDiagram.find(point.x, point.y);
+            const closest = delaunayDiagram.find(point.x - margin.left, point.y - margin.top);
             setHoveredId(data[closest].id);
           }}
           onMouseLeave={() => {
