@@ -44,6 +44,6 @@ module.exports = {
   verbose: false,
   testPathIgnorePatterns: ['<rootDir>/packages/visx-demo'],
   transformIgnorePatterns: [
-    'node_modules/(?!(d3-(array|color|format|interpolate|scale|time|time-format)|internmap)/)',
+    'node_modules/(?!(d3-(array|color|format|interpolate|scale|time|time-format)|delaunator|internmap|robust-predicates)/)',
   ],
 };

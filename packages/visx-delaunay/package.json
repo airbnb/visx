@@ -1,0 +1,42 @@
+{
+  "name": "@visx/delaunay",
+  "version": "1.0.0",
+  "description": "visx delaunay",
+  "sideEffects": false,
+  "main": "lib/index.js",
+  "module": "esm/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib",
+    "esm"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/airbnb/visx.git"
+  },
+  "keywords": [
+    "visx",
+    "react",
+    "d3",
+    "visualizations",
+    "charts"
+  ],
+  "author": "@SheaJanke",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/airbnb/visx/issues"
+  },
+  "homepage": "https://github.com/airbnb/visx#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@types/react": "*",
+    "@visx/vendor": "3.2.0",
+    "classnames": "^2.3.1",
+    "prop-types": "^15.6.1"
+  },
+  "peerDependencies": {
+    "react": "^16.3.0-0 || ^17.0.0-0 || ^18.0.0-0"
+  }
+}

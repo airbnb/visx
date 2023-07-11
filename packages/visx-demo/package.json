@@ -40,6 +40,7 @@
     "@visx/chord": "3.0.0",
     "@visx/clip-path": "3.0.0",
     "@visx/curve": "3.0.0",
+    "@visx/delaunay": "1.0.0",
     "@visx/drag": "3.0.1",
     "@visx/event": "3.0.1",
     "@visx/geo": "3.0.0",

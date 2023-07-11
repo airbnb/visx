@@ -52,6 +52,9 @@
       "path": "../visx-curve"
     },
     {
+      "path": "../visx-delaunay"
+    },
+    {
       "path": "../visx-drag"
     },
     {

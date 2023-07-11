@@ -15,6 +15,8 @@ import * as BarsTile from './BarsTile';
 import * as BrushTile from './BrushTile';
 import * as ChordTile from './ChordTile';
 import * as CurvesTile from './CurvesTile';
+import * as DelaunayTile from './DelaunayTriangulationTile';
+import * as DelaunayVoronoiTile from './DelaunayVoronoiTile';
 import * as DendrogramsTile from './DendrogramsTile';
 import * as DotsTile from './DotsTile';
 import * as DragIITile from './DragIITile';
@@ -44,7 +46,6 @@ import * as ThresholdTile from './ThresholdTile';
 import * as TooltipTile from './TooltipTile';
 import * as TreemapTile from './TreemapTile';
 import * as TreesTile from './TreesTile';
-import * as VoronoiTile from './VoronoiTile';
 import * as WordcloudTile from './WordcloudTile';
 import * as XYChartTile from './XYChartTile';
 import * as ZoomITile from './ZoomITile';
@@ -58,6 +59,8 @@ const tiltOptions = { max: 8, scale: 1 };
 export const tiles = [
   CurvesTile,
   BarsTile,
+  DelaunayTile,
+  DelaunayVoronoiTile,
   DotsTile,
   PatternsTile,
   AreaTile,
@@ -98,7 +101,6 @@ export const tiles = [
   TextTile,
   TooltipTile,
   TreesTile,
-  VoronoiTile,
   WordcloudTile,
 ];
 

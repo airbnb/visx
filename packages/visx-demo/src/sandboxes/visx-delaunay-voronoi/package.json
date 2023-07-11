@@ -1,0 +1,30 @@
+{
+  "name": "@visx/demo-delaunay-voronoi",
+  "description": "Standalone @visx/delaunay voronoi demo.",
+  "main": "index.tsx",
+  "private": true,
+  "dependencies": {
+    "@babel/runtime": "^7.8.4",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@visx/clip-path": "latest",
+    "@visx/delaunay": "latest",
+    "@visx/event": "latest",
+    "@visx/gradient": "latest",
+    "@visx/group": "latest",
+    "@visx/mock-data": "latest",
+    "@visx/responsive": "latest",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-scripts-ts": "3.1.0",
+    "typescript": "^3"
+  },
+  "keywords": [
+    "visualization",
+    "d3",
+    "react",
+    "visx",
+    "voronoi",
+    "delaunay"
+  ]
+}

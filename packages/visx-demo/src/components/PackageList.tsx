@@ -159,6 +159,12 @@ export default function PackageList({
               </Link>
               {!compact && <p>Enable selection of a part of an interface</p>}
             </li>
+            <li className={cx(emphasizePackage === 'delaunay' && 'emphasize')}>
+              <Link href="/docs/delaunay">
+                <a>delaunay</a>
+              </Link>
+              {!compact && <p>Partition points in a chart to improve user interaction</p>}
+            </li>
             <li className={cx(emphasizePackage === 'drag' && 'emphasize')}>
               <Link href="/docs/drag">
                 <a>drag</a>
