@@ -1,6 +1,6 @@
 {
   "name": "@visx/voronoi",
-  "version": "3.0.0",
+  "version": "3.3.0",
   "description": "visx voronoi",
   "sideEffects": false,
   "main": "lib/index.js",

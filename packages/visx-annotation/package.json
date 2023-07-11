@@ -1,6 +1,6 @@
 {
   "name": "@visx/annotation",
-  "version": "3.0.1",
+  "version": "3.3.0",
   "description": "visx annotation",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -32,9 +32,9 @@
   },
   "dependencies": {
     "@types/react": "*",
-    "@visx/drag": "3.0.1",
-    "@visx/group": "3.0.0",
-    "@visx/text": "3.0.0",
+    "@visx/drag": "3.3.0",
+    "@visx/group": "3.3.0",
+    "@visx/text": "3.3.0",
     "classnames": "^2.3.1",
     "prop-types": "^15.5.10",
     "react-use-measure": "^2.0.4"

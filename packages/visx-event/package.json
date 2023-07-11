@@ -1,6 +1,6 @@
 {
   "name": "@visx/event",
-  "version": "3.0.1",
+  "version": "3.3.0",
   "description": "visx event",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -32,6 +32,6 @@
   },
   "dependencies": {
     "@types/react": "*",
-    "@visx/point": "3.0.1"
+    "@visx/point": "3.3.0"
   }
 }

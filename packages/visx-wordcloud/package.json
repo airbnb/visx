@@ -1,6 +1,6 @@
 {
   "name": "@visx/wordcloud",
-  "version": "3.0.0",
+  "version": "3.3.0",
   "description": "visx wordcloud",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "@types/d3-cloud": "1.2.5",
-    "@visx/group": "3.0.0",
+    "@visx/group": "3.3.0",
     "d3-cloud": "^1.2.5"
   },
   "publishConfig": {
