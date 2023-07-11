@@ -46,7 +46,6 @@ import * as ThresholdTile from './ThresholdTile';
 import * as TooltipTile from './TooltipTile';
 import * as TreemapTile from './TreemapTile';
 import * as TreesTile from './TreesTile';
-import * as VoronoiTile from './VoronoiTile';
 import * as WordcloudTile from './WordcloudTile';
 import * as XYChartTile from './XYChartTile';
 import * as ZoomITile from './ZoomITile';
@@ -102,7 +101,6 @@ export const tiles = [
   TextTile,
   TooltipTile,
   TreesTile,
-  VoronoiTile,
   WordcloudTile,
 ];
 
