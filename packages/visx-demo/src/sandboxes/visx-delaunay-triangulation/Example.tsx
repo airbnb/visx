@@ -63,7 +63,7 @@ function Example({ width, height, margin = defaultMargin }: DelaunayTriangulatio
           onMouseMove={(event) => {
             if (!svgRef.current) return;
 
-            // find the nearest point to the current mouse position
+            // find the nearest point to the current mouse position.
             const point = localPoint(svgRef.current, event);
             if (!point) return;
 
