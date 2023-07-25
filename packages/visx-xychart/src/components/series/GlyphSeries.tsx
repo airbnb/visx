@@ -1,6 +1,6 @@
 import { AxisScale } from '@visx/axis';
 import React, { useCallback } from 'react';
-import { GlyphProps, GlyphsProps } from '../../types';
+import { GlyphProps, GlyphsProps, NearestDatumArgs, NearestDatumReturnType } from '../../types';
 import BaseGlyphSeries, { BaseGlyphSeriesProps } from './private/BaseGlyphSeries';
 import defaultRenderGlyph from './private/defaultRenderGlyph';
 
@@ -13,6 +13,8 @@ export default function GlyphSeries<
   ...props
 }: Omit<BaseGlyphSeriesProps<XScale, YScale, Datum>, 'renderGlyphs'> & {
   renderGlyph?: React.FC<GlyphProps<Datum>>;
+  /** Passed to useEventHandlers to override findNearestDatum logic */
+  findNearestDatumOverride?: (params: NearestDatumArgs<XScale, YScale, Datum>,) => NearestDatumReturnType<Datum>;
 }) {
   const renderGlyphs = useCallback(
     ({
