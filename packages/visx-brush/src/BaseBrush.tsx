@@ -1,6 +1,5 @@
 import React from 'react';
 import { Group } from '@visx/group';
-import { Bar } from '@visx/shape';
 import Drag, { HandlerArgs as DragArgs } from '@visx/drag/lib/Drag';
 
 import BrushHandle, { BrushHandleRenderProps } from './BrushHandle';
@@ -16,6 +15,7 @@ import {
   BrushPageOffset,
 } from './types';
 import { getPageCoordinates } from './utils';
+import BrushOverlay from './BrushOverlay';
 
 type PointerHandlerEvent = React.PointerEvent<SVGRectElement>;
 
@@ -309,6 +309,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
   };
 
   handleDragStart = (draw: DragArgs) => {
+    console.log('handleDragStart');
     const { onBrushStart, left, top, inheritedMargin, useWindowMoveEvents } = this.props;
     const marginLeft = inheritedMargin?.left ? inheritedMargin.left : 0;
     const marginTop = inheritedMargin?.top ? inheritedMargin.top : 0;
@@ -353,6 +354,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
   };
 
   handleDragMove = (drag: DragArgs) => {
+    console.log('handleDragMove');
     const { left, top, inheritedMargin, useWindowMoveEvents } = this.props;
     if (!drag.isDragging || useWindowMoveEvents) return;
     const marginLeft = inheritedMargin?.left || 0;
@@ -373,6 +375,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
   };
 
   handleDragEnd = () => {
+    console.log('handleDragEnd');
     const { onBrushEnd, resetOnEnd, useWindowMoveEvents } = this.props;
 
     if (!useWindowMoveEvents) {
@@ -587,15 +590,11 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
     return (
       <Group className="visx-brush" top={top} left={left}>
         {disableDragOverlay ? (
-          <Bar
-            className="visx-brush-overlay"
-            fill="transparent"
-            x={0}
-            y={0}
+          <BrushOverlay
             width={stageWidth}
             height={stageHeight}
             onDoubleClick={() => this.reset()}
-            onClick={(event: PointerHandlerEvent) => {
+            onClick={(event) => {
               const duration = this.mouseUpTime - this.mouseDownTime;
               if (onClick && duration < clickSensitivity) onClick(event);
             }}
@@ -612,11 +611,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
             isDragging={useWindowMoveEvents ? brushingType === 'select' : undefined}
           >
             {({ dragStart, isDragging, dragMove, dragEnd }) => (
-              <Bar
-                className="visx-brush-overlay"
-                fill="transparent"
-                x={0}
-                y={0}
+              <BrushOverlay
                 width={stageWidth}
                 height={stageHeight}
                 onDoubleClick={() => this.reset()}
