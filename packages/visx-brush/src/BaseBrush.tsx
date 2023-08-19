@@ -309,7 +309,6 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
   };
 
   handleDragStart = (draw: DragArgs) => {
-    console.log('handleDragStart');
     const { onBrushStart, left, top, inheritedMargin, useWindowMoveEvents } = this.props;
     const marginLeft = inheritedMargin?.left ? inheritedMargin.left : 0;
     const marginTop = inheritedMargin?.top ? inheritedMargin.top : 0;
@@ -354,7 +353,6 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
   };
 
   handleDragMove = (drag: DragArgs) => {
-    console.log('handleDragMove');
     const { left, top, inheritedMargin, useWindowMoveEvents } = this.props;
     if (!drag.isDragging || useWindowMoveEvents) return;
     const marginLeft = inheritedMargin?.left || 0;
@@ -375,7 +373,6 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
   };
 
   handleDragEnd = () => {
-    console.log('handleDragEnd');
     const { onBrushEnd, resetOnEnd, useWindowMoveEvents } = this.props;
 
     if (!useWindowMoveEvents) {
