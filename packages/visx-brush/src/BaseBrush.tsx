@@ -17,8 +17,6 @@ import {
 } from './types';
 import { getPageCoordinates } from './utils';
 
-const BRUSH_OVERLAY_STYLES = { cursor: 'crosshair' };
-
 type PointerHandlerEvent = React.PointerEvent<SVGRectElement>;
 
 export type BaseBrushProps = {
@@ -41,6 +39,7 @@ export type BaseBrushProps = {
   onClick?: (event: PointerHandlerEvent) => void;
   clickSensitivity: number;
   disableDraggingSelection: boolean;
+  disableDragOverlay?: boolean;
   resetOnEnd?: boolean;
   useWindowMoveEvents?: boolean;
   renderBrushHandle?: (props: BrushHandleRenderProps) => React.ReactNode;
@@ -106,6 +105,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
     onMouseMove: null,
     onClick: null,
     disableDraggingSelection: false,
+    disableDragOverlay: false,
     clickSensitivity: 200,
     resetOnEnd: false,
     initialBrushPosition: null,
@@ -115,7 +115,6 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
 
   componentDidUpdate(prevProps: BaseBrushProps) {
     if (this.props.width !== prevProps.width || this.props.height !== prevProps.height) {
-      // eslint-disable-next-line react/no-did-update-set-state
       this.setState((prevBrush: BaseBrushState) => {
         let { start, end, extent } = prevBrush;
 
@@ -571,6 +570,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
       resizeTriggerAreas,
       selectedBoxStyle,
       disableDraggingSelection,
+      disableDragOverlay,
       clickSensitivity,
       useWindowMoveEvents,
       renderBrushHandle,
@@ -586,17 +586,8 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
 
     return (
       <Group className="visx-brush" top={top} left={left}>
-        {/* stage drag detection */}
-        <Drag
-          width={stageWidth}
-          height={stageHeight}
-          resetOnStart
-          onDragStart={this.handleDragStart}
-          onDragMove={this.handleDragMove}
-          onDragEnd={this.handleDragEnd}
-          isDragging={useWindowMoveEvents ? brushingType === 'select' : undefined}
-        >
-          {({ dragStart, isDragging, dragMove, dragEnd }) => (
+        {disableDragOverlay ? (
+          <Group width={stageWidth} height={stageHeight}>
             <Bar
               className="visx-brush-overlay"
               fill="transparent"
@@ -609,26 +600,54 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
                 const duration = this.mouseUpTime - this.mouseDownTime;
                 if (onClick && duration < clickSensitivity) onClick(event);
               }}
-              onPointerDown={(event: PointerHandlerEvent) => {
-                this.mouseDownTime = Date.now();
-                dragStart(event);
-              }}
-              onPointerLeave={(event: PointerHandlerEvent) => {
-                if (onMouseLeave) onMouseLeave(event);
-              }}
-              onPointerMove={(event: PointerHandlerEvent) => {
-                if (!isDragging && onMouseMove) onMouseMove(event);
-                if (isDragging) dragMove(event);
-              }}
-              onPointerUp={(event: PointerHandlerEvent) => {
-                this.mouseUpTime = Date.now();
-                if (onMouseUp) onMouseUp(event);
-                dragEnd(event);
-              }}
-              style={BRUSH_OVERLAY_STYLES}
+              style={{ cursor: 'default' }}
             />
-          )}
-        </Drag>
+          </Group>
+        ) : (
+          <Drag
+            width={stageWidth}
+            height={stageHeight}
+            resetOnStart
+            onDragStart={this.handleDragStart}
+            onDragMove={this.handleDragMove}
+            onDragEnd={this.handleDragEnd}
+            isDragging={useWindowMoveEvents ? brushingType === 'select' : undefined}
+          >
+            {({ dragStart, isDragging, dragMove, dragEnd }) => (
+              <Bar
+                className="visx-brush-overlay"
+                fill="transparent"
+                x={0}
+                y={0}
+                width={stageWidth}
+                height={stageHeight}
+                onDoubleClick={() => this.reset()}
+                onClick={(event: PointerHandlerEvent) => {
+                  const duration = this.mouseUpTime - this.mouseDownTime;
+                  if (onClick && duration < clickSensitivity) onClick(event);
+                }}
+                onPointerDown={(event: PointerHandlerEvent) => {
+                  this.mouseDownTime = Date.now();
+                  dragStart(event);
+                }}
+                onPointerLeave={(event: PointerHandlerEvent) => {
+                  if (onMouseLeave) onMouseLeave(event);
+                }}
+                onPointerMove={(event: PointerHandlerEvent) => {
+                  if (!isDragging && onMouseMove) onMouseMove(event);
+                  if (isDragging) dragMove(event);
+                }}
+                onPointerUp={(event: PointerHandlerEvent) => {
+                  this.mouseUpTime = Date.now();
+                  if (onMouseUp) onMouseUp(event);
+                  dragEnd(event);
+                }}
+                style={{ cursor: 'crosshair' }}
+              />
+            )}
+          </Drag>
+        )}
+
         {/* selection */}
         {start && end && (
           <BrushSelection
