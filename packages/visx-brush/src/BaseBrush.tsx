@@ -587,22 +587,20 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
     return (
       <Group className="visx-brush" top={top} left={left}>
         {disableDragOverlay ? (
-          <Group width={stageWidth} height={stageHeight}>
-            <Bar
-              className="visx-brush-overlay"
-              fill="transparent"
-              x={0}
-              y={0}
-              width={stageWidth}
-              height={stageHeight}
-              onDoubleClick={() => this.reset()}
-              onClick={(event: PointerHandlerEvent) => {
-                const duration = this.mouseUpTime - this.mouseDownTime;
-                if (onClick && duration < clickSensitivity) onClick(event);
-              }}
-              style={{ cursor: 'default' }}
-            />
-          </Group>
+          <Bar
+            className="visx-brush-overlay"
+            fill="transparent"
+            x={0}
+            y={0}
+            width={stageWidth}
+            height={stageHeight}
+            onDoubleClick={() => this.reset()}
+            onClick={(event: PointerHandlerEvent) => {
+              const duration = this.mouseUpTime - this.mouseDownTime;
+              if (onClick && duration < clickSensitivity) onClick(event);
+            }}
+            style={{ cursor: 'default' }}
+          />
         ) : (
           <Drag
             width={stageWidth}
