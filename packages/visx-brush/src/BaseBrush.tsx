@@ -5,6 +5,7 @@ import Drag, { HandlerArgs as DragArgs } from '@visx/drag/lib/Drag';
 import BrushHandle, { BrushHandleRenderProps } from './BrushHandle';
 import BrushCorner from './BrushCorner';
 import BrushSelection from './BrushSelection';
+import BrushOverlay from './BrushOverlay';
 import {
   MarginShape,
   Point,
@@ -15,7 +16,6 @@ import {
   BrushPageOffset,
 } from './types';
 import { getPageCoordinates } from './utils';
-import BrushOverlay from './BrushOverlay';
 
 type PointerHandlerEvent = React.PointerEvent<SVGRectElement>;
 
