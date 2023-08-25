@@ -39,7 +39,7 @@ export type BaseBrushProps = {
   onClick?: (event: PointerHandlerEvent) => void;
   clickSensitivity: number;
   disableDraggingSelection: boolean;
-  disableDragOverlay?: boolean;
+  disableDraggingOverlay?: boolean;
   resetOnEnd?: boolean;
   useWindowMoveEvents?: boolean;
   renderBrushHandle?: (props: BrushHandleRenderProps) => React.ReactNode;
@@ -105,7 +105,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
     onMouseMove: null,
     onClick: null,
     disableDraggingSelection: false,
-    disableDragOverlay: false,
+    disableDraggingOverlay: false,
     clickSensitivity: 200,
     resetOnEnd: false,
     initialBrushPosition: null,
@@ -570,7 +570,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
       resizeTriggerAreas,
       selectedBoxStyle,
       disableDraggingSelection,
-      disableDragOverlay,
+      disableDraggingOverlay,
       clickSensitivity,
       useWindowMoveEvents,
       renderBrushHandle,
@@ -586,7 +586,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
 
     return (
       <Group className="visx-brush" top={top} left={left}>
-        {disableDragOverlay ? (
+        {disableDraggingOverlay ? (
           <BrushOverlay
             width={stageWidth}
             height={stageHeight}

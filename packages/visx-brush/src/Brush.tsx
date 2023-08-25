@@ -53,8 +53,8 @@ export type BrushProps = {
   xAxisOrientation?: 'top' | 'bottom';
   /** Whether movement of Brush should be disabled. */
   disableDraggingSelection: boolean;
-  /** Whether changing brush by clicking overlay should be disabled. */
-  disableDragOverlay?: boolean;
+  /** Whether changing Brush size and position by clicking overlay should be disabled. */
+  disableDraggingOverlay?: boolean;
   /** Whether to reset the Brush on drag end. */
   resetOnEnd?: boolean;
   /** Size of Brush handles, applies to all `resizeTriggerAreas`. */
@@ -184,7 +184,7 @@ class Brush extends Component<BrushProps> {
       xAxisOrientation,
       selectedBoxStyle,
       disableDraggingSelection,
-      disableDragOverlay,
+      disableDraggingOverlay,
       resetOnEnd,
       onMouseLeave,
       onMouseMove,
@@ -239,7 +239,7 @@ class Brush extends Component<BrushProps> {
         top={top}
         brushDirection={brushDirection}
         disableDraggingSelection={disableDraggingSelection}
-        disableDragOverlay={disableDragOverlay}
+        disableDraggingOverlay={disableDraggingOverlay}
         handleSize={handleSize}
         inheritedMargin={margin}
         initialBrushPosition={initialBrushPosition}
