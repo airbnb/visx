@@ -590,7 +590,6 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
           <BrushOverlay
             width={stageWidth}
             height={stageHeight}
-            onDoubleClick={() => this.reset()}
             onClick={(event) => {
               const duration = this.mouseUpTime - this.mouseDownTime;
               if (onClick && duration < clickSensitivity) onClick(event);
