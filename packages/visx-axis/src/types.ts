@@ -132,7 +132,7 @@ export type SharedAxisProps<Scale extends AxisScale> = CommonProps<Scale> & {
   axisClassName?: string;
   /** A left pixel offset applied to the entire axis. */
   left?: number;
-  /** The reference to the axis group element */
+  /** The reference to the outermost axis group element. */
   innerRef?: Ref<SVGGElement>;
   /** A [d3](https://github.com/d3/d3-scale) or [visx](https://github.com/airbnb/visx/tree/master/packages/visx-scale) scale function. */
   scale: Scale;
