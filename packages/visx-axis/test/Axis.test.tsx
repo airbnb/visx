@@ -1,7 +1,6 @@
 import React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
 import { render } from '@testing-library/react';
-import '@testing-library/jest-dom';
 
 import { Line } from '@visx/shape';
 import { Text } from '@visx/text';
