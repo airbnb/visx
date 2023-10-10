@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
+import { render } from '@testing-library/react';
 
 import { Line } from '@visx/shape';
 import { Text } from '@visx/text';
@@ -214,5 +215,16 @@ describe('<Axis />', () => {
     // Third point
     expect(points.at(2).prop('from')).toEqual({ x: 10.5, y: 0 });
     expect(points.at(2).prop('to')).toEqual({ x: 0.5, y: 0 });
+  });
+
+  test('should expose its ref via an innerRef prop', () => {
+    const fakeRef = React.createRef<SVGGElement>();
+    const { container } = render(
+      <svg>
+        <Axis {...axisProps} innerRef={fakeRef} />
+      </svg>,
+    );
+    const AxisGroupElement = container.querySelector('g.visx-axis');
+    expect(fakeRef.current).toBe(AxisGroupElement);
   });
 });

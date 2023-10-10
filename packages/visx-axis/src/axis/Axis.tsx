@@ -20,6 +20,7 @@ export default function Axis<Scale extends AxisScale>({
   hideAxisLine = false,
   hideTicks = false,
   hideZero = false,
+  innerRef,
   left = 0,
   numTicks = 10,
   orientation = Orientation.bottom,
@@ -69,7 +70,7 @@ export default function Axis<Scale extends AxisScale>({
   });
 
   return (
-    <Group className={cx('visx-axis', axisClassName)} top={top} left={left}>
+    <Group className={cx('visx-axis', axisClassName)} innerRef={innerRef} top={top} left={left}>
       {children({
         ...restProps,
         axisFromPoint,
