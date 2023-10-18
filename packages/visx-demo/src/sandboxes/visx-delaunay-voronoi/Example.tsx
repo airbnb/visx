@@ -71,7 +71,7 @@ function Example({ width, height, margin = defaultMargin }: VoronoiProps) {
 
           const closest = voronoiDiagram.delaunay.find(point.x, point.y);
           // find neighboring polygons to hightlight
-          if (closest && data[closest].id !== hoveredId) {
+          if (data[closest].id !== hoveredId) {
             const neighbors = Array.from(voronoiDiagram.neighbors(closest));
             setNeighborIds(new Set(neighbors.map((d) => data[d].id)));
             setHoveredId(data[closest].id);
