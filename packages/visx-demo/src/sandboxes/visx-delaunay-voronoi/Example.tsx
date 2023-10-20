@@ -34,10 +34,8 @@ export type VoronoiProps = {
 };
 
 function Example({ width, height, margin = defaultMargin }: VoronoiProps) {
-  const innerWidth = width - margin.left - margin.right;
-  const innerHeight = height - margin.top - margin.bottom;
-
-  if (innerWidth < 0 || innerHeight < 0) return null;
+  const innerWidth = Math.max(0, width - margin.left - margin.right);
+  const innerHeight = Math.max(0, height - margin.top - margin.bottom);
 
   const voronoiDiagram = useMemo(
     () =>
