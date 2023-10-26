@@ -1,4 +1,5 @@
 # Changelog
+- [v3.4.1](#v341)
 - [v3.4.0](#v340)
 - [v3.3.0](#v330)
 - [v3.2.1](#v321)
@@ -6,10 +7,10 @@
 - [v3.1.3](#v313)
 - [v3.1.2](#v312)
 - [v3.1.1](#v311)
-- [v3.1.0](#v310)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v310">v3.1.0</a></li>
   <li><a href="#v302">v3.0.2</a></li>
   <li><a href="#v301">v3.0.1</a></li>
   <li><a href="#v300">v3.0.0</a></li>
@@ -166,6 +167,15 @@
 </details>
 
 ------
+# v3.4.1 (2023-10-26)
+
+#### :bug: Bug Fix
+
+- visx-axis AxisRenderer.tsx: resolve circular dependency [#1762](https://github.com/airbnb/visx/pull/1762)
+  
+#### :trophy: Contributors
+- [ithrforu](https://github.com/ithrforu)
+
 # v3.4.0 (2023-10-10)
 
 #### :rocket: Enhancements
