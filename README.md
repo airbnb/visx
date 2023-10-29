@@ -215,6 +215,7 @@ reusable visualization charts or library without having to learn d3. No more sel
 - [Augora](https://augora.fr) Display information of french deputies ([Demo](https://augora.fr/statistiques))([Github](https://github.com/Augora/Augora))
 - WHO Coronavirus (COVID-19) Dashboard is built on top of `vx`, earlier version of `visx`. ([Demo](https://covid19.who.int/))
 - [Fig Stats](https://fig-stats.com) - Figma community plugin & widget analytics
+- [Physician.FYI](https://physician.fyi) - Explore physicians' disciplinary history
 
 Have a project that's using `visx`? Open a pull request and we'll add it to the list.
 
