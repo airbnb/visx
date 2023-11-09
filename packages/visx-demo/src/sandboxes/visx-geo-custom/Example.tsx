@@ -4,7 +4,6 @@ import * as topojson from 'topojson-client';
 import { scaleQuantize } from '@visx/scale';
 import { CustomProjection, Graticule } from '@visx/geo';
 import { Projection } from '@visx/geo/lib/types';
-import { Zoom } from '@visx/zoom';
 import {
   geoConicConformal,
   geoTransverseMercator,
@@ -12,7 +11,8 @@ import {
   geoConicEquidistant,
   geoOrthographic,
   geoStereographic,
-} from 'd3-geo';
+} from '@visx/vendor/d3-geo';
+import { Zoom } from '@visx/zoom';
 import topology from './world-topo.json';
 
 export type GeoCustomProps = {

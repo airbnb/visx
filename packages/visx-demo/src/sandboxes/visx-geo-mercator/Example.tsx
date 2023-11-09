@@ -43,6 +43,7 @@ export default function ({ width, height, events = false }: GeoMercatorProps) {
       <rect x={0} y={0} width={width} height={height} fill={background} rx={14} />
       <Mercator<FeatureShape>
         data={world.features}
+        digits={3}
         scale={scale}
         translate={[centerX, centerY + 50]}
       >

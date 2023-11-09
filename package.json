@@ -115,6 +115,7 @@
     "ts-node": "9.1.1",
     "typescript": "^3.8.3"
   },
+  "packageManager": "yarn@1.22.19",
   "workspaces": {
     "packages": ["./packages/*"],
     "nohoist": ["**/@visx/vendor/**"]
