@@ -93,7 +93,7 @@ export type ProjectionProps<Datum extends GeoPermissibleObjects = GeoPermissible
   graticuleLines?: Omit<GraticuleProps, 'lines'> & { foreground: boolean };
   /** If specified, renders a Graticule outline with the specified props. Specify `graticuleOutline.foreground = true` to be rendered on top of features. */
   graticuleOutline?: Omit<GraticuleProps, 'outline'> & { foreground: boolean };
-  /** Limits the digits after the decimal to the specified number of digits. */
+  /** Limits the digits for coordinates generated in SVG path strings to the specified number of digits. */
   digits?: number;
   /** Sets the radius used to display Point and MultiPoint geometries to the specified number. */
   pointRadius?: number;
