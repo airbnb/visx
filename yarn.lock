@@ -2693,10 +2693,10 @@
   resolved "https://registry.yarnpkg.com/@types/d3-format/-/d3-format-3.0.1.tgz#194f1317a499edd7e58766f96735bdc0216bb89d"
   integrity sha512-5KY70ifCCzorkLuIkDe0Z9YTf9RR2CjBX1iaJG+rgM/cPP+sO+q9YdQ9WdhQcgPj1EQiJ2/0+yUkkziTG6Lubg==
 
-"@types/d3-geo@3.0.8":
-  version "3.0.8"
-  resolved "https://registry.yarnpkg.com/@types/d3-geo/-/d3-geo-3.0.8.tgz#8353234ce899642052e71962b364b5abafe97f09"
-  integrity sha512-eDivwKKB4ELHw93QNxigleCxZczcyrFgtKyHK5HoCQoeUD0i5feT8i5tH6RxXvt5hPPhpruvKWDSwvfsW448zQ==
+"@types/d3-geo@3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@types/d3-geo/-/d3-geo-3.1.0.tgz#b9e56a079449174f0a2c8684a9a4df3f60522440"
+  integrity sha512-856sckF0oP/diXtS4jNsiQw/UuK5fQG8l/a9VVLeSouf1/PPbBE1i1W852zVwKwYCBkFJJB7nCFTbk6UMEXBOQ==
   dependencies:
     "@types/geojson" "*"
 

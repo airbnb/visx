@@ -152,9 +152,6 @@ export default function Projection<Datum extends GeoPermissibleObjects>({
 
   const path = geoPath().projection(currProjection);
 
-  // @ts-expect-error Pending `@types/d3-geo` to add digits method (introduced in 3.1.0)
-  // @see https://github.com/DefinitelyTyped/DefinitelyTyped/discussions/67363
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
   if (digits !== undefined) path.digits(digits);
   if (pointRadius !== undefined) path.pointRadius(pointRadius);
 
