@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { geoCentroid } from 'd3-geo';
 import { AlbersUsa } from '@visx/geo';
+import { geoCentroid } from '@visx/vendor/d3-geo';
 import * as topojson from 'topojson-client';
 import topology from './usa-topo.json';
 import stateAbbrs from './us-abbr.json';
