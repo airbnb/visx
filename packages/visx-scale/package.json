@@ -1,6 +1,6 @@
 {
   "name": "@visx/scale",
-  "version": "3.3.0",
+  "version": "3.5.0",
   "description": "visx scale",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -31,7 +31,7 @@
   },
   "homepage": "https://github.com/airbnb/visx#readme",
   "dependencies": {
-    "@visx/vendor": "3.3.0"
+    "@visx/vendor": "3.5.0"
   },
   "publishConfig": {
     "access": "public"
