@@ -23,6 +23,7 @@ export default function AnimatedGridColumns<Scale extends GridScale>({
       numTicks={numTicks}
       tickValues={tickValues}
       className={className}
+      offset={offset}
       top={top}
       left={left}
     >
