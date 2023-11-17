@@ -1,6 +1,6 @@
 {
   "name": "@visx/react-spring",
-  "version": "3.5.0",
+  "version": "3.5.1",
   "description": "visx primitives that rely on react-spring for animation",
   "sideEffects": false,
   "main": "lib/index.js",
