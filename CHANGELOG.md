@@ -1,4 +1,5 @@
 # Changelog
+- [v3.5.1](#v351)
 - [v3.5.0](#v350)
 - [v3.4.1](#v341)
 - [v3.4.0](#v340)
@@ -6,10 +7,10 @@
 - [v3.2.1](#v321)
 - [v3.2.0](#v320)
 - [v3.1.3](#v313)
-- [v3.1.2](#v312)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v312">v3.1.2</a></li>
   <li><a href="#v311">v3.1.1</a></li>
   <li><a href="#v310">v3.1.0</a></li>
   <li><a href="#v302">v3.0.2</a></li>
@@ -168,6 +169,20 @@
 </details>
 
 ------
+# v3.5.1 (2023-11-17)
+
+#### :bug: Bug Fix
+
+- fix: correctly pass through offset from AnimatedGridRows/Columns [#1769](https://github.com/airbnb/visx/pull/1769)
+
+### :memo: Documentation
+
+- docs: add Superstardle in the wild [#1768](https://github.com/airbnb/visx/pull/1768)
+  
+#### :trophy: Contributors
+- [henrinormak](https://github.com/henrinormak)
+- [mcioffi](https://github.com/mcioffi)
+
 # v3.5.0 (2023-11-13)
 
 #### :rocket: Enhancements
