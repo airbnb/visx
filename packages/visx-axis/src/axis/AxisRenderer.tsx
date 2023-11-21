@@ -5,9 +5,9 @@ import { Text } from '@visx/text';
 
 import { TextProps } from '@visx/text/lib/Text';
 import getLabelTransform from '../utils/getLabelTransform';
+import Orientation from '../constants/orientation';
 import { AxisRendererProps, AxisScale } from '../types';
 import Ticks from './Ticks';
-import { Orientation } from '..';
 
 const defaultTextProps: Partial<TextProps> = {
   textAnchor: 'middle',

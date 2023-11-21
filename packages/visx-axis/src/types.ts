@@ -1,6 +1,6 @@
 import { D3Scale, NumberLike, ScaleInput, ValueOf } from '@visx/scale';
 import { TextProps } from '@visx/text/lib/Text';
-import { ReactNode, SVGProps } from 'react';
+import { ReactNode, Ref, SVGProps } from 'react';
 import Orientation from './constants/orientation';
 
 // In order to plot values on an axis, output of the scale must be number.
@@ -132,6 +132,8 @@ export type SharedAxisProps<Scale extends AxisScale> = CommonProps<Scale> & {
   axisClassName?: string;
   /** A left pixel offset applied to the entire axis. */
   left?: number;
+  /** The ref to the outermost axis group element. */
+  innerRef?: Ref<SVGGElement>;
   /** A [d3](https://github.com/d3/d3-scale) or [visx](https://github.com/airbnb/visx/tree/master/packages/visx-scale) scale function. */
   scale: Scale;
   /** An array of values that determine the number and values of the ticks. Falls back to `scale.ticks()` or `.domain()`. */
