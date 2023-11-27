@@ -12,7 +12,7 @@ import {
   GeoPath,
   GeoProjection,
   ExtendedFeature,
-} from 'd3-geo';
+} from '@visx/vendor/d3-geo';
 // this is just for types
 // eslint-disable-next-line import/no-unresolved
 import { LineString, Polygon, MultiLineString } from 'geojson';
@@ -93,6 +93,8 @@ export type ProjectionProps<Datum extends GeoPermissibleObjects = GeoPermissible
   graticuleLines?: Omit<GraticuleProps, 'lines'> & { foreground: boolean };
   /** If specified, renders a Graticule outline with the specified props. Specify `graticuleOutline.foreground = true` to be rendered on top of features. */
   graticuleOutline?: Omit<GraticuleProps, 'outline'> & { foreground: boolean };
+  /** Limits the digits for coordinates generated in SVG path strings to the specified number of digits. */
+  digits?: number;
   /** Sets the radius used to display Point and MultiPoint geometries to the specified number. */
   pointRadius?: number;
 };
@@ -128,6 +130,7 @@ export default function Projection<Datum extends GeoPermissibleObjects>({
   graticuleOutline,
   className,
   innerRef,
+  digits,
   pointRadius,
   children,
   ...restProps
@@ -149,7 +152,8 @@ export default function Projection<Datum extends GeoPermissibleObjects>({
 
   const path = geoPath().projection(currProjection);
 
-  if (pointRadius) path.pointRadius(pointRadius);
+  if (digits !== undefined) path.digits(digits);
+  if (pointRadius !== undefined) path.pointRadius(pointRadius);
 
   const features: ParsedFeature<Datum>[] = data.map((feature, i) => ({
     feature,

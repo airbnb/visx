@@ -25,6 +25,7 @@ export default function AnimatedGridRows<Scale extends GridScale>({
       className={className}
       top={top}
       left={left}
+      offset={offset}
     >
       {({ lines }) => (
         <AnimatedGridLines
