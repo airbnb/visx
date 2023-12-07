@@ -1,4 +1,5 @@
 # Changelog
+- [v3.6.0](#v360)
 - [v3.5.1](#v351)
 - [v3.5.0](#v350)
 - [v3.4.1](#v341)
@@ -6,10 +7,10 @@
 - [v3.3.0](#v330)
 - [v3.2.1](#v321)
 - [v3.2.0](#v320)
-- [v3.1.3](#v313)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v313">v3.1.3</a></li>
   <li><a href="#v312">v3.1.2</a></li>
   <li><a href="#v311">v3.1.1</a></li>
   <li><a href="#v310">v3.1.0</a></li>
@@ -169,6 +170,15 @@
 </details>
 
 ------
+# v3.6.0 (2023-12-07)
+
+#### :rocket: Enhancements
+
+- feat(brush): disable drag overlay [#1744](https://github.com/airbnb/visx/pull/1744)
+  
+#### :trophy: Contributors
+- [Onxi95](https://github.com/Onxi95)
+
 # v3.5.1 (2023-11-17)
 
 #### :bug: Bug Fix
