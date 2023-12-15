@@ -113,6 +113,30 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
     renderBrushHandles: null,
   };
 
+  getIdleState = () => {
+    const { width, height } = this.props;
+    return {
+      start: { x: 0, y: 0 },
+      end: { x: 0, y: 0 },
+      extent: {
+        x0: -1,
+        x1: -1,
+        y0: -1,
+        y1: -1,
+      },
+      bounds: {
+        x0: 0,
+        x1: width,
+        y0: 0,
+        y1: height,
+      },
+      isBrushing: false,
+      brushPageOffset: undefined,
+      activeHandle: null,
+      brushingType: undefined,
+    };
+  };
+
   componentDidUpdate(prevProps: BaseBrushProps) {
     if (this.props.width !== prevProps.width || this.props.height !== prevProps.height) {
       this.setState((prevBrush: BaseBrushState) => {
@@ -177,7 +201,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
         end.x = Math.max(extent.x0, extent.x1);
         end.y = Math.max(extent.y0, extent.y1);
 
-        const newState = {
+        let newState = {
           ...prevBrush,
           activeHandle: null,
           isBrushing: false,
@@ -189,7 +213,10 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
         }
 
         if (resetOnEnd) {
-          this.reset();
+          newState = {
+            ...newState,
+            ...this.getIdleState(),
+          };
         }
 
         return newState;
@@ -378,7 +405,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
     if (!useWindowMoveEvents) {
       this.updateBrush((prevBrush: BaseBrushState) => {
         const { extent } = prevBrush;
-        const newState = {
+        let newState = {
           ...prevBrush,
           start: {
             x: extent.x0,
@@ -398,7 +425,10 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
         }
 
         if (resetOnEnd) {
-          this.reset();
+          newState = {
+            ...newState,
+            ...this.getIdleState(),
+          };
         }
 
         return newState;
@@ -515,29 +545,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
     });
   };
 
-  reset = () => {
-    const { width, height } = this.props;
-    this.updateBrush(() => ({
-      start: { x: 0, y: 0 },
-      end: { x: 0, y: 0 },
-      extent: {
-        x0: -1,
-        x1: -1,
-        y0: -1,
-        y1: -1,
-      },
-      bounds: {
-        x0: 0,
-        x1: width,
-        y0: 0,
-        y1: height,
-      },
-      isBrushing: false,
-      brushPageOffset: undefined,
-      activeHandle: null,
-      brushingType: undefined,
-    }));
-  };
+  reset = () => this.updateBrush(() => this.getIdleState());
 
   handleBrushingTypeChange = (type?: BrushingType, brushPageOffset?: BrushPageOffset) => {
     this.updateBrush((prevBrush: BaseBrushState) => {
