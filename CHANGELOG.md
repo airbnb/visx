@@ -1,4 +1,5 @@
 # Changelog
+- [v3.6.1](#v361)
 - [v3.6.0](#v360)
 - [v3.5.1](#v351)
 - [v3.5.0](#v350)
@@ -6,10 +7,10 @@
 - [v3.4.0](#v340)
 - [v3.3.0](#v330)
 - [v3.2.1](#v321)
-- [v3.2.0](#v320)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v320">v3.2.0</a></li>
   <li><a href="#v313">v3.1.3</a></li>
   <li><a href="#v312">v3.1.2</a></li>
   <li><a href="#v311">v3.1.1</a></li>
@@ -170,6 +171,15 @@
 </details>
 
 ------
+# v3.6.1 (2023-12-15)
+
+#### :bug: Bug Fix
+
+- fix(brush): fix issue 'update was scheduled' warning on resetOnEnd #1465 [#1778](https://github.com/airbnb/visx/pull/1778)
+  
+#### :trophy: Contributors
+- [dsdevgit](https://github.com/dsdevgit)
+
 # v3.6.0 (2023-12-07)
 
 #### :rocket: Enhancements
