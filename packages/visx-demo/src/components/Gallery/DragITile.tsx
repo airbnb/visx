@@ -11,7 +11,7 @@ export default function DragITile() {
   return (
     <GalleryTile<DragIProps>
       title="Drag i"
-      description="<Drag.Drag />>"
+      description="<Drag.Drag />"
       exampleRenderer={DragI}
       exampleUrl="/drag-i"
       tileStyles={tileStyles}
