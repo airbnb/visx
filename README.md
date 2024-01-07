@@ -217,6 +217,7 @@ reusable visualization charts or library without having to learn d3. No more sel
 - [Fig Stats](https://fig-stats.com) - Figma community plugin & widget analytics
 - [Physician.FYI](https://physician.fyi) - Explore physicians' disciplinary history
 - [Index by Superstardle](https://index.superstardle.com), [Salaries by Superstardle](https://salaries.superstardle.com) - Explore sports teams and superstars in the world of underdogs and salaries
+- Ridgeline chart visualizing shuffling probabilities by [@jmssnr](https://github.com/jmssnr) ([Demo](https://shuffling-probability.vercel.app/)) ([Github](https://github.com/jmssnr/shuffling-probability))
 
 Have a project that's using `visx`? Open a pull request and we'll add it to the list.
 
