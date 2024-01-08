@@ -22,17 +22,31 @@ The `@visx/responsive` package is here to help you make responsive graphs.
 
 If you would like your graph to adapt to the screen size, you can use `withScreenSize()`. The
 resulting component will pass `screenWidth` and `screenHeight` props to the wrapped component
-containing the respective screen dimensions.
+containing the respective screen dimensions. You can also optionally pass two config props to the
+wrapped component, although in 99% of the cases this is not necessary:
+
+- `windowResizeDebounceTime` - determines how often the size is updated in miliseconds, defaults to
+  `300`,
+- `enableDebounceLeadingCall` - determines whether the size is updated immediately on first render,
+  defaults to `true`. This is essentially the value of
+  [`options.leading` in Lodash's `debounce`](https://lodash.com/docs/4.17.15#debounce).
 
 ### Example:
 
-```js
-import { withScreenSize } from '@visx/responsive';
-// or
-// import * as Responsive from '@visx/responsive';
-// Responsive.withScreenSize(...);
+```tsx
+import { withScreenSize, WithScreenSizeProvidedProps } from '@visx/responsive';
 
-let chartToRender = withScreenSize(MySuperCoolVisxChart);
+interface Props extends WithScreenSizeProvidedProps {
+  myProp: string;
+}
+
+const MySuperCoolVisxChart = ({ myProp, screenWidth, screenHeight }: Props) => {
+  // ...
+};
+
+const ChartToRender = withScreenSize(MySuperCoolVisxChart);
+
+const chartToRender = <ChartToRender />;
 
 // ... Render the chartToRender somewhere
 ```
@@ -41,17 +55,32 @@ let chartToRender = withScreenSize(MySuperCoolVisxChart);
 
 If you would like your graph to adapt to it's parent component's size, you can use
 `withParentSize()`. The resulting component will pass `parentWidth` and `parentHeight` props to the
-wrapped component containing the respective parent's dimensions.
+wrapped component containing the respective parent's dimensions. You can also optionally pass config
+props to the wrapped component:
+
+- `initialWidth` - initial chart width used before the parent size is determined,
+- `initialHeight` - initial chart height used before the parent size is determined,
+- `debounceTime` - determines how often the size is updated in miliseconds, defaults to `300`,
+- `enableDebounceLeadingCall` - determines whether the size is updated immediately on first render,
+  defaults to `true`. This is essentially the value of
+  [`options.leading` in Lodash's `debounce`](https://lodash.com/docs/4.17.15#debounce).
 
 ### Example:
 
-```js
-import { withParentSize } from '@visx/responsive';
-// or
-// import * as Responsive from '@visx/responsive';
-// Responsive.withParentSize(...);
+```tsx
+import { withParentSize, WithParentSizeProvidedProps } from '@visx/responsive';
 
-let chartToRender = withParentSize(MySuperCoolVisxChart);
+interface Props extends WithParentSizeProvidedProps {
+  myProp: string;
+}
+
+const MySuperCoolVisxChart = ({ myProp, parentWidth, parentHeight }: Props) => {
+  // ...
+};
+
+const ChartWithParentSize = withParentSize(MySuperCoolVisxChart);
+
+const chartToRender = <ChartWithParentSize initialWidth={400} />;
 
 // ... Render the chartToRender somewhere
 ```
@@ -62,13 +91,10 @@ You might do the same thing using the `ParentSize` component.
 
 ### Example:
 
-```js
+```tsx
 import { ParentSize } from '@visx/responsive';
-// or
-// import * as Responsive from '@visx/responsive';
-// <Responsive.ParentSize />;
 
-let chartToRender = (
+const chartToRender = (
   <ParentSize>
     {(parent) => (
       <MySuperCoolVisxChart
@@ -94,13 +120,10 @@ You can also create a responsive chart with a specific viewBox with the `ScaleSV
 
 ### Example:
 
-```js
+```tsx
 import { ScaleSVG } from '@visx/responsive';
-// or
-// import * as Responsive from '@visx/responsive';
-// <Responsive.ScaleSVG />
 
-let chartToRender = (
+const chartToRender = (
   <ScaleSVG width={400} height={400}>
     <MySuperCoolVXChart />
   </ScaleSVG>

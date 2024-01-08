@@ -23,3 +23,5 @@ interface ResizeObserverPolyfill {
 }
 
 export { ResizeObserver, ResizeObserverCallback, ResizeObserverPolyfill };
+
+export type Simplify<T> = { [Key in keyof T]: T[Key] } & {};
