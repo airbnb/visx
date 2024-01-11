@@ -19,7 +19,7 @@ const toRadians = (x: number) => (x * Math.PI) / 180;
 const toDegrees = (x: number) => (x * 180) / Math.PI;
 
 const barColor = '#93F9B9';
-const margin = { top: 20, bottom: 20 };
+const margin = { top: 20, bottom: 20, left: 20, right: 20 };
 
 export type RadialBarsProps = {
   width: number;
@@ -32,7 +32,7 @@ export default function Example({ width, height, showControls = true }: RadialBa
   const [sortAlphabetically, setSortAlphabetically] = useState(true);
 
   // bounds
-  const xMax = width;
+  const xMax = width - margin.left - margin.right;
   const yMax = height - margin.top - margin.bottom;
   const radiusMax = Math.min(xMax, yMax) / 2;
 
@@ -65,9 +65,9 @@ export default function Example({ width, height, showControls = true }: RadialBa
   return width < 10 ? null : (
     <>
       <svg width={width} height={height}>
-        <GradientLightgreenGreen id="green" />
-        <rect width={width} height={height} fill="url(#green)" rx={14} />
-        <Group top={yMax / 2 + margin.top} left={xMax / 2}>
+        <GradientLightgreenGreen id="radial-bars-green" />
+        <rect width={width} height={height} fill="url(#radial-bars-green)" rx={14} />
+        <Group top={yMax / 2 + margin.top} left={xMax / 2 + margin.left}>
           {data.map((d) => {
             const letter = getLetter(d);
             const startAngle = xScale(letter);
