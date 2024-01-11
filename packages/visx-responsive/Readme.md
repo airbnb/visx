@@ -46,7 +46,7 @@ const MySuperCoolVisxChart = ({ myProp, screenWidth, screenHeight }: Props) => {
 
 const ChartToRender = withScreenSize(MySuperCoolVisxChart);
 
-const chartToRender = <ChartToRender />;
+const chartToRender = <ChartToRender myProp="string" />;
 
 // ... Render the chartToRender somewhere
 ```
@@ -80,7 +80,7 @@ const MySuperCoolVisxChart = ({ myProp, parentWidth, parentHeight }: Props) => {
 
 const ChartWithParentSize = withParentSize(MySuperCoolVisxChart);
 
-const chartToRender = <ChartWithParentSize initialWidth={400} />;
+const chartToRender = <ChartWithParentSize myProp="string" initialWidth={400} />;
 
 // ... Render the chartToRender somewhere
 ```

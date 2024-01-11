@@ -21,8 +21,14 @@ describe('withParentSize', () => {
   });
 
   test('it should pass parentWidth and parentHeight props to its child', () => {
-    const HOC = withParentSize(Component, ResizeObserver);
-    const { getByTestId } = render(<HOC role="img" initialWidth={200} initialHeight={200} />);
+    const WrappedComponent = withParentSize(Component, ResizeObserver);
+
+    // @ts-expect-error ensure unknown types still error
+    render(<WrappedComponent unknown="prop" />);
+
+    const { getByTestId } = render(
+      <WrappedComponent role="img" initialWidth={200} initialHeight={200} />,
+    );
 
     const RenderedComponent = getByTestId('Component');
     expect(RenderedComponent).toHaveStyle('width: 200px; height: 200px');

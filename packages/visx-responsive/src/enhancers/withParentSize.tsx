@@ -9,6 +9,15 @@ interface PrivateWindow {
   ResizeObserver: ResizeObserverPolyfill;
 }
 
+/**
+ * @deprecated
+ * @TODO remove in the next major version - exported for backwards compatibility
+ */
+export type WithParentSizeProps = Pick<
+  WithParentSizeConfig,
+  'debounceTime' | 'enableDebounceLeadingCall'
+>;
+
 type WithParentSizeConfig = {
   debounceTime?: number;
   enableDebounceLeadingCall?: boolean;

@@ -7,6 +7,12 @@ type WithScreenSizeConfig = {
   enableDebounceLeadingCall?: boolean;
 };
 
+/**
+ * @deprecated
+ * @TODO remove in the next major version - exported for backwards compatibility
+ */
+export type WithParentSizeProps = WithScreenSizeConfig;
+
 type WithScreenSizeState = {
   screenWidth?: number;
   screenHeight?: number;
