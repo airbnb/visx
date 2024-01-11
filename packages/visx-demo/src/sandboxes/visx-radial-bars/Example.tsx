@@ -4,7 +4,7 @@ import { Group } from '@visx/group';
 import { GradientLightgreenGreen } from '@visx/gradient';
 import { scaleBand, scaleRadial } from '@visx/scale';
 import { Text } from '@visx/text';
-import letterFrequency, { LetterFrequency } from '@visx/mock-data/src/mocks/letterFrequency';
+import letterFrequency, { LetterFrequency } from '@visx/mock-data/lib/mocks/letterFrequency';
 
 const data = letterFrequency;
 
