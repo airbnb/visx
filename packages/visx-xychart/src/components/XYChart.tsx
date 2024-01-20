@@ -192,7 +192,9 @@ export default function XYChart<
   }
 
   if (width <= 0 || height <= 0) {
-    console.info('XYChart has a zero width or height, bailing', { width, height });
+    if (process.env.NODE_ENV === 'development') {
+      console.info('XYChart has a zero width or height, bailing', { width, height });
+    }
     return null;
   }
 
