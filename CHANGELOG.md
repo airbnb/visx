@@ -1,4 +1,5 @@
 # Changelog
+- [v3.7.0](#v370)
 - [v3.6.1](#v361)
 - [v3.6.0](#v360)
 - [v3.5.1](#v351)
@@ -6,10 +7,10 @@
 - [v3.4.1](#v341)
 - [v3.4.0](#v340)
 - [v3.3.0](#v330)
-- [v3.2.1](#v321)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v321">v3.2.1</a></li>
   <li><a href="#v320">v3.2.0</a></li>
   <li><a href="#v313">v3.1.3</a></li>
   <li><a href="#v312">v3.1.2</a></li>
@@ -171,6 +172,29 @@
 </details>
 
 ------
+# v3.7.0 (2024-01-23)
+
+#### :rocket: Enhancements
+
+- fix: radial bars demo import in CodeSandbox [#1786](https://github.com/airbnb/visx/pull/1786)
+- feat(xychart): print console.info only in dev mode [#1792](https://github.com/airbnb/visx/pull/1792)
+- feat(demo): add radial bars demo using Arc [#1785](https://github.com/airbnb/visx/pull/1785)
+
+#### :bug: Bug Fix
+
+- fix: radial bars demo import in CodeSandbox [#1786](https://github.com/airbnb/visx/pull/1786)
+- fix: typo in DragITile description [#1779](https://github.com/airbnb/visx/pull/1779)
+
+### :memo: Documentation
+
+- fix: typo in DragITile description [#1779](https://github.com/airbnb/visx/pull/1779)
+- docs: add ridge line chart with KDE to 'in the wild' [#1781](https://github.com/airbnb/visx/pull/1781)
+  
+#### :trophy: Contributors
+- [adamzuch](https://github.com/adamzuch)
+- [jmssnr](https://github.com/jmssnr)
+- [sleonia](https://github.com/sleonia)
+
 # v3.6.1 (2023-12-15)
 
 #### :bug: Bug Fix
