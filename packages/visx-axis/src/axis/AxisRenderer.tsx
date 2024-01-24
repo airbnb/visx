@@ -99,7 +99,7 @@ export default function AxisRenderer<Scale extends AxisScale>({
             tickLabelFontSize: maxTickLabelFontSize,
             tickLength,
           })}
-          {...labelPropsDefault}
+          {...combinedLabelProps}
         >
           {label}
         </Text>
