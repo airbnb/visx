@@ -45,7 +45,7 @@ export default function AxisRenderer<Scale extends AxisScale>({
   const combinedLabelProps = {
     ...defaultTextProps,
     ...labelProps,
-  }
+  };
   const tickLabelPropsDefault = {
     ...defaultTextProps,
     ...(typeof tickLabelProps === 'object' ? tickLabelProps : null),
