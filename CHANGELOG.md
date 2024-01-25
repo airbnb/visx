@@ -1,4 +1,5 @@
 # Changelog
+- [v3.8.0](#v380)
 - [v3.7.0](#v370)
 - [v3.6.1](#v361)
 - [v3.6.0](#v360)
@@ -6,10 +7,10 @@
 - [v3.5.0](#v350)
 - [v3.4.1](#v341)
 - [v3.4.0](#v340)
-- [v3.3.0](#v330)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v330">v3.3.0</a></li>
   <li><a href="#v321">v3.2.1</a></li>
   <li><a href="#v320">v3.2.0</a></li>
   <li><a href="#v313">v3.1.3</a></li>
@@ -172,6 +173,15 @@
 </details>
 
 ------
+# v3.8.0 (2024-01-25)
+
+#### :rocket: Enhancements
+
+- fix(axis): include defaultTextProps in Axis labelProps [#1791](https://github.com/airbnb/visx/pull/1791)
+  
+#### :trophy: Contributors
+- [RyKilleen](https://github.com/RyKilleen)
+
 # v3.7.0 (2024-01-23)
 
 #### :rocket: Enhancements
