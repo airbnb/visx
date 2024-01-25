@@ -26,7 +26,7 @@ export default function AxisRenderer<Scale extends AxisScale>({
   label = '',
   labelClassName,
   labelOffset = 14,
-  labelProps = defaultTextProps,
+  labelProps,
   orientation = Orientation.bottom,
   scale,
   stroke = '#222',
@@ -42,6 +42,10 @@ export default function AxisRenderer<Scale extends AxisScale>({
   ticks,
   ticksComponent = Ticks,
 }: AxisRendererProps<Scale>) {
+  const combinedLabelProps = {
+    ...defaultTextProps,
+    ...labelProps,
+  };
   const tickLabelPropsDefault = {
     ...defaultTextProps,
     ...(typeof tickLabelProps === 'object' ? tickLabelProps : null),
@@ -89,13 +93,13 @@ export default function AxisRenderer<Scale extends AxisScale>({
           className={cx('visx-axis-label', labelClassName)}
           {...getLabelTransform({
             labelOffset,
-            labelProps,
+            labelProps: combinedLabelProps,
             orientation,
             range: scale.range(),
             tickLabelFontSize: maxTickLabelFontSize,
             tickLength,
           })}
-          {...labelProps}
+          {...combinedLabelProps}
         >
           {label}
         </Text>
