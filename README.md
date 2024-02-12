@@ -216,7 +216,7 @@ reusable visualization charts or library without having to learn d3. No more sel
 - WHO Coronavirus (COVID-19) Dashboard is built on top of `vx`, earlier version of `visx`. ([Demo](https://covid19.who.int/))
 - [Fig Stats](https://fig-stats.com) - Figma community plugin & widget analytics
 - [Physician.FYI](https://physician.fyi) - Explore physicians' disciplinary history
-- [Index by Superstardle](https://index.superstardle.com), [Salaries by Superstardle](https://salaries.superstardle.com) - Explore sports teams and superstars in the world of underdogs and salaries
+- [Index by Superstardle](https://index.superstardle.com), [Salaries by Superstardle](https://salaries.superstardle.com), & [Pack'Em by Superstardle](https://playoffs.superstardle.com) - Explore professional sports teams and superstars in the world of underdogs, salaries, and playoff performances.
 - Ridgeline chart visualizing shuffling probabilities by [@jmssnr](https://github.com/jmssnr) ([Demo](https://shuffling-probability.vercel.app/)) ([Github](https://github.com/jmssnr/shuffling-probability))
 
 Have a project that's using `visx`? Open a pull request and we'll add it to the list.
