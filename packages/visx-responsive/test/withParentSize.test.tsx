@@ -2,7 +2,7 @@ import { ResizeObserver } from '@juggle/resize-observer';
 import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
 import React from 'react';
-import { withParentSize, WithParentSizeProvidedProps } from '../src';
+import { setResizeObserverPolyfill, withParentSize, WithParentSizeProvidedProps } from '../src';
 
 interface ComponentProps extends WithParentSizeProvidedProps {
   // only there to ensure that TS allows enhanced component to have own props, different than the ones passed by the HOC
@@ -32,5 +32,16 @@ describe('withParentSize', () => {
 
     const RenderedComponent = getByTestId('Component');
     expect(RenderedComponent).toHaveStyle('width: 200px; height: 200px');
+  });
+
+  test('should not throw when resize observer is set through setResizeObserverPolyfill', () => {
+    setResizeObserverPolyfill(ResizeObserver);
+
+    const WrappedComponent = withParentSize(Component);
+    expect(() => {
+      render(<WrappedComponent role="img" />);
+    }).not.toThrow();
+
+    setResizeObserverPolyfill(undefined);
   });
 });

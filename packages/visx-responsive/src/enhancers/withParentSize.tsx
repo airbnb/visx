@@ -1,13 +1,9 @@
 import debounce from 'lodash/debounce';
 import React from 'react';
-import { ResizeObserver, ResizeObserverPolyfill, Simplify } from '../types';
+import { getResizeObserver, ResizeObserver, ResizeObserverPolyfill } from '../resizeObserver';
+import { Simplify } from '../types';
 
 const CONTAINER_STYLES = { width: '100%', height: '100%' };
-
-// @TODO remove when upgraded to TS 4 which has its own declaration
-interface PrivateWindow {
-  ResizeObserver: ResizeObserverPolyfill;
-}
 
 /**
  * @deprecated
@@ -38,7 +34,11 @@ type WithParentSizeComponentProps<P extends WithParentSizeProvidedProps> = Simpl
 
 export default function withParentSize<P extends WithParentSizeProvidedProps>(
   BaseComponent: React.ComponentType<P>,
-  /** Optionally inject a ResizeObserver polyfill, else this *must* be globally available. */
+  /**
+   * @deprecated - use `setResizeObserverPolyfill`
+   * @TODO remove in the next major version
+   * Optionally inject a ResizeObserver polyfill, else this *must* be globally available.
+   */
   resizeObserverPolyfill?: ResizeObserverPolyfill,
 ): React.ComponentType<WithParentSizeComponentProps<P>> {
   return class WrappedComponent extends React.Component<
@@ -57,8 +57,7 @@ export default function withParentSize<P extends WithParentSizeProvidedProps>(
     container: HTMLDivElement | null = null;
 
     componentDidMount() {
-      const ResizeObserverLocal =
-        resizeObserverPolyfill || (window as unknown as PrivateWindow).ResizeObserver;
+      const ResizeObserverLocal = resizeObserverPolyfill || getResizeObserver();
 
       this.resizeObserver = new ResizeObserverLocal((entries) => {
         entries.forEach((entry) => {
