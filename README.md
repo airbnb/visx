@@ -43,7 +43,7 @@ to generate your visualization with the benefits of react for updating the DOM.
   </strong>
   &bull;
   <strong>
-    <a href="https://d3-slackin.herokuapp.com/" title="Join https://d3js.slack.com">Slack #visx</a>
+    <a href="https://github.com/airbnb/visx/discussions">Discussions</a>
   </strong>
   &bull;
   <strong>
