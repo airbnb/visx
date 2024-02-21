@@ -43,7 +43,7 @@ to generate your visualization with the benefits of react for updating the DOM.
   </strong>
   &bull;
   <strong>
-    <a href="https://d3-slackin.herokuapp.com/" title="Join https://d3js.slack.com">Slack #visx</a>
+    <a href="https://github.com/airbnb/visx/discussions">Discussions</a>
   </strong>
   &bull;
   <strong>
@@ -189,7 +189,6 @@ reusable visualization charts or library without having to learn d3. No more sel
 - Animation with [`react-spring`](https://github.com/drcmda/react-spring/) by
   [@drcmda](https://github.com/drcmda) ([Demo](https://codesandbox.io/embed/j3x61vjz5v))
 - Code Coverage Dashboard by [@ezy](https://github.com/ezy)
-  ([Demo](https://codecov-dash.herokuapp.com/))
   ([Github](https://github.com/ezy/code-coverage-dashboard))
 - Ethereum Portfolio Toolkit by [@JayWelsh](https://github.com/JayWelsh)
   ([Demo](https://cryptocape.com/)) ([Github](https://github.com/JayWelsh/CryptoCape))
@@ -207,7 +206,7 @@ reusable visualization charts or library without having to learn d3. No more sel
 - [zh-TW] Taiwan Real-time Air Quality Index by
   [@ArvinH](https://github.com/ArvinH)([Demo](https://codesandbox.io/s/simpleradar-aqi-with-tooltip-select-data-react-spring-item3?file=/Radar.tsx))([Tutorial](https://blog.arvinh.info/tech/datavis-visx))
 - tokenized BTC on ethereum stacked chart with brush by
-  [@sakulstra](https://github.com/sakulstra)([Demo](https://tokenizedbtc.info/))
+  [@sakulstra](https://github.com/sakulstra)
 - [Escape From Tarkov Ammo Chart](https://eft.monster/) by
   [@codenomial](https://github.com/codenomial)
 - [Pry](https://pry.co) Finance for Founders (dashboard by [@valtism](https://github.com/valtism))
