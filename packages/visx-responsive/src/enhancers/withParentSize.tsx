@@ -1,7 +1,12 @@
 import debounce from 'lodash/debounce';
 import React from 'react';
-import { getResizeObserver, ResizeObserver, ResizeObserverPolyfill } from '../resizeObserver';
-import { Simplify } from '../types';
+import {
+  DebounceSettings,
+  Simplify,
+  PrivateWindow,
+  ResizeObserverPolyfill,
+  ResizeObserver,
+} from '../types';
 
 const CONTAINER_STYLES = { width: '100%', height: '100%' };
 
@@ -9,17 +14,12 @@ const CONTAINER_STYLES = { width: '100%', height: '100%' };
  * @deprecated
  * @TODO remove in the next major version - exported for backwards compatibility
  */
-export type WithParentSizeProps = Pick<
-  WithParentSizeConfig,
-  'debounceTime' | 'enableDebounceLeadingCall'
->;
+export type WithParentSizeProps = DebounceSettings;
 
 type WithParentSizeConfig = {
-  debounceTime?: number;
-  enableDebounceLeadingCall?: boolean;
   initialWidth?: number;
   initialHeight?: number;
-};
+} & DebounceSettings;
 
 type WithParentSizeState = {
   parentWidth?: number;
@@ -34,11 +34,7 @@ type WithParentSizeComponentProps<P extends WithParentSizeProvidedProps> = Simpl
 
 export default function withParentSize<P extends WithParentSizeProvidedProps>(
   BaseComponent: React.ComponentType<P>,
-  /**
-   * @deprecated - use `setResizeObserverPolyfill`
-   * @TODO remove in the next major version
-   * Optionally inject a ResizeObserver polyfill, else this *must* be globally available.
-   */
+  /** Optionally inject a ResizeObserver polyfill, else this *must* be globally available. */
   resizeObserverPolyfill?: ResizeObserverPolyfill,
 ): React.ComponentType<WithParentSizeComponentProps<P>> {
   return class WrappedComponent extends React.Component<
@@ -57,7 +53,8 @@ export default function withParentSize<P extends WithParentSizeProvidedProps>(
     container: HTMLDivElement | null = null;
 
     componentDidMount() {
-      const ResizeObserverLocal = resizeObserverPolyfill || getResizeObserver();
+      const ResizeObserverLocal =
+        resizeObserverPolyfill || (window as unknown as PrivateWindow).ResizeObserver;
 
       this.resizeObserver = new ResizeObserverLocal((entries) => {
         entries.forEach((entry) => {

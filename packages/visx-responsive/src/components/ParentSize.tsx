@@ -26,12 +26,14 @@ export default function ParentSize({
   children,
   debounceTime,
   ignoreDimensions,
+  initialSize,
   parentSizeStyles = defaultParentSizeStyles,
   enableDebounceLeadingCall = true,
   resizeObserverPolyfill,
   ...restProps
 }: ParentSizeProps & Omit<React.HTMLAttributes<HTMLDivElement>, keyof ParentSizeProps>) {
   const { parentRef, resize, ...dimensions } = useParentSize({
+    initialSize,
     debounceTime,
     ignoreDimensions,
     enableDebounceLeadingCall,

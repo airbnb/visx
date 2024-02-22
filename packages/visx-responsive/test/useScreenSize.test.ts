@@ -1,4 +1,4 @@
-import { fireEvent } from '@testing-library/react';
+import { fireEvent, waitFor } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
 import useScreenSize from '../src/hooks/useScreenSize';
 
@@ -32,12 +32,20 @@ describe('useScreenSize', () => {
     expect(result.current).toEqual({ width: 1280, height: 1024 });
   });
 
-  test('it should update the screen size on window resize', () => {
+  test('it should update the screen size on window resize', async () => {
+    // fake timers in Jest 25 are completely unusable so I'm using real timers here
+    // when it's upgraded should be updated to use advanceTimersByTime
+    jest.useRealTimers();
+
     const { result } = renderHook(() => useScreenSize());
+
+    expect(result.current).toEqual({ width: 1280, height: 1024 });
 
     setWindowSize(800, 600);
     fireEvent(window, new Event('resize'));
 
-    expect(result.current).toEqual({ width: 800, height: 600 });
+    await waitFor(() => expect(result.current).toEqual({ width: 800, height: 600 }));
+
+    jest.useFakeTimers();
   });
 });

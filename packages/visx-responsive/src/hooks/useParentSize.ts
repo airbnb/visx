@@ -1,7 +1,6 @@
 import debounce from 'lodash/debounce';
-import { RefObject, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import { getResizeObserver, ResizeObserverPolyfill } from '../resizeObserver';
-import { DebounceSettings } from '../types';
+import { RefObject, useEffect, useMemo, useRef, useState } from 'react';
+import { DebounceSettings, PrivateWindow, ResizeObserverPolyfill } from '../types';
 
 export type ParentSizeState = {
   width: number;
@@ -11,11 +10,9 @@ export type ParentSizeState = {
 };
 
 export type UseParentSizeConfig = {
-  /**
-   * @deprecated - use `setResizeObserverPolyfill` function instead.
-   * @TODO - remove in the next major version.
-   * Optionally inject a ResizeObserver polyfill, else this *must* be globally available.
-   */
+  /** Initial size before measuring the parent. */
+  initialSize?: Partial<ParentSizeState>;
+  /** Optionally inject a ResizeObserver polyfill, else this *must* be globally available. */
   resizeObserverPolyfill?: ResizeObserverPolyfill;
   /** Optional dimensions provided won't trigger a state change when changed. */
   ignoreDimensions?: keyof ParentSizeState | (keyof ParentSizeState)[];
@@ -27,8 +24,15 @@ type UseParentSizeResult<T extends HTMLElement = HTMLDivElement> = ParentSizeSta
 };
 
 const defaultIgnoreDimensions: UseParentSizeConfig['ignoreDimensions'] = [];
+const defaultInitialSize: ParentSizeState = {
+  width: 0,
+  height: 0,
+  top: 0,
+  left: 0,
+};
 
 export default function useParentSize<T extends HTMLElement = HTMLDivElement>({
+  initialSize = defaultInitialSize,
   debounceTime = 300,
   ignoreDimensions = defaultIgnoreDimensions,
   enableDebounceLeadingCall = true,
@@ -37,19 +41,13 @@ export default function useParentSize<T extends HTMLElement = HTMLDivElement>({
   const parentRef = useRef<T>(null);
   const animationFrameID = useRef(0);
 
-  const [state, setState] = useState<ParentSizeState>({
-    width: 0,
-    height: 0,
-    top: 0,
-    left: 0,
-  });
+  const [state, setState] = useState<ParentSizeState>({ ...defaultInitialSize, ...initialSize });
 
   const resize = useMemo(() => {
     const normalized = Array.isArray(ignoreDimensions) ? ignoreDimensions : [ignoreDimensions];
 
     return debounce(
       (incoming: ParentSizeState) => {
-        console.log('eee');
         setState((existing) => {
           const stateKeys = Object.keys(existing) as (keyof ParentSizeState)[];
           const keysWithChanges = stateKeys.filter((key) => existing[key] !== incoming[key]);
@@ -63,8 +61,9 @@ export default function useParentSize<T extends HTMLElement = HTMLDivElement>({
     );
   }, [debounceTime, enableDebounceLeadingCall, ignoreDimensions]);
 
-  useLayoutEffect(() => {
-    const LocalResizeObserver = resizeObserverPolyfill || getResizeObserver();
+  useEffect(() => {
+    const LocalResizeObserver =
+      resizeObserverPolyfill || (window as unknown as PrivateWindow).ResizeObserver;
 
     const observer = new LocalResizeObserver((entries) => {
       entries.forEach((entry) => {

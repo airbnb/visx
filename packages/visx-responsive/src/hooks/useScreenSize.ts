@@ -7,16 +7,22 @@ interface ScreenSize {
   height: number;
 }
 
-export type UseScreenSizeConfig = DebounceSettings;
+const defaultInitialSize: ScreenSize = {
+  width: 0,
+  height: 0,
+};
+
+export type UseScreenSizeConfig = {
+  /** Initial size before measuring the screen. */
+  initialSize?: ScreenSize;
+} & DebounceSettings;
 
 const useScreenSize = ({
+  initialSize = defaultInitialSize,
   debounceTime = 300,
   enableDebounceLeadingCall = true,
 }: UseScreenSizeConfig = {}) => {
-  const [screenSize, setScreenSize] = useState<ScreenSize>({
-    width: window.innerWidth,
-    height: window.innerHeight,
-  });
+  const [screenSize, setScreenSize] = useState<ScreenSize>(initialSize);
 
   const handleResize = useMemo(
     () =>
@@ -34,6 +40,7 @@ const useScreenSize = ({
   );
 
   useEffect(() => {
+    handleResize();
     window.addEventListener('resize', handleResize, false);
     return () => {
       window.removeEventListener('resize', handleResize, false);

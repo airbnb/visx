@@ -1,17 +1,17 @@
 import debounce from 'lodash/debounce';
 import React from 'react';
-import { Simplify } from '../types';
+import { Simplify, DebounceSettings } from '../types';
 
 type WithScreenSizeConfig = {
+  /** @deprecated use `debounceTime` instead */
   windowResizeDebounceTime?: number;
-  enableDebounceLeadingCall?: boolean;
-};
+} & DebounceSettings;
 
 /**
  * @deprecated
  * @TODO remove in the next major version - exported for backwards compatibility
  */
-export type WithParentSizeProps = WithScreenSizeConfig;
+export type WithParentSizeProps = Omit<WithScreenSizeConfig, 'debounceTime'>;
 
 type WithScreenSizeState = {
   screenWidth?: number;
@@ -57,7 +57,7 @@ export default function withScreenSize<P extends WithScreenSizeProvidedProps>(
           screenHeight: window.innerHeight,
         }));
       },
-      this.props.windowResizeDebounceTime ?? 300,
+      this.props.debounceTime ?? this.props.windowResizeDebounceTime ?? 300,
       { leading: this.props.enableDebounceLeadingCall ?? true },
     );
 

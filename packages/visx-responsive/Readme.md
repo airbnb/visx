@@ -22,6 +22,7 @@ returns current screen width and height and updates the value automatically on b
 resize. You can optionally pass a config object as an argument to the hook. Config object attributes
 are:
 
+- `initialSize` - initial size before measuring the screen, defaults to `{ width: 0, height: 0 }`.
 - `debounceTime` - determines how often the size is updated in milliseconds, defaults to `300`.
 - `enableDebounceLeadingCall` - determines whether the size is updated immediately on first render,
   defaults to `true`. This is essentially the value of
@@ -52,6 +53,8 @@ If you want your graph to adapt to its parent size, you can use `useParentSize()
 properties which describe dimensions of the container which received `parentRef` ref. You can
 optionally pass a config object as an argument to the hook. Config object attributes are:
 
+- `initialSize` - initial size before measuring the parent, defaults to
+  `{ width: 0, height: 0, left: 0, top: 0 }`.
 - `debounceTime` - determines how often the size is updated in miliseconds, defaults to `300`.
 - `enableDebounceLeadingCall` - determines whether the size is updated immediately on first render,
   defaults to `true`. This is essentially the value of
@@ -88,8 +91,8 @@ If you prefer to use an enhancer, you can use the `withScreenSize()`. The result
 pass `screenWidth` and `screenHeight` props to the wrapped component containing the respective
 screen dimensions. You can also optionally pass config props to the wrapped component:
 
-- `windowResizeDebounceTime` - determines how often the size is updated in milliseconds, defaults to
-  `300`.
+- `debounceTime` - determines how often the size is updated in milliseconds, defaults to `300`.
+- `windowResizeDebounceTime` - deprecated, equivalent to the above, kept for backwards compatibility
 - `enableDebounceLeadingCall` - determines whether the size is updated immediately on first render,
   defaults to `true`. This is essentially the value of
   [`options.leading` in Lodash's `debounce`](https://lodash.com/docs/4.17.15#debounce).
@@ -192,16 +195,19 @@ const chartToRender = (
 ## ⚠️ `ResizeObserver` dependency
 
 `useParentSize`, `ParentSize` and `withParentSize` rely on `ResizeObserver`s for auto-sizing. If you
-need a polyfill (although [it is widely supported now](https://caniuse.com/resizeobserver)), it is
-recommended to use `setResizeObserverPolyfill` function, which won't pollute `window` object.
+need a polyfill, you can either pollute the `window` object or inject it cleanly like this:
 
 ```tsx
 import { ResizeObserver } from 'your-favorite-polyfill';
-import { setResizeObserverPolyfill } from '@visx/responsive';
 
-// You only have to do this once
-setResizeObserverPolyfill(ResizeObserver);
+// hook
+useParentSize({ resizeObserverPolyfill: ResizeObserver });
+
+// component
+<ParentSize resizeObserverPolyfill={ResizeObserver} {...}>
+  {() => {...}}
+</ParentSize>
+
+// enhancer
+withParentSize(MyComponent, ResizeObserver);
 ```
-
-Now `useParentSize`, `ParentSize` and `withParentSize` will use that polyfill instead of global
-`ResizeObserver`.
