@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import classNames from 'classnames';
 import ParentSize from '@visx/responsive/lib/components/ParentSize';
 import { WidthAndHeight } from '../types';
 
@@ -13,6 +14,7 @@ type Props<ExampleProps extends WidthAndHeight> = {
   exampleUrl?: string;
   tileStyles?: React.CSSProperties;
   title?: string;
+  tileShort?: boolean;
 };
 
 const renderLinkWrapper = (url: string | undefined, node: React.ReactNode) =>
@@ -27,12 +29,19 @@ export default function GalleryTile<ExampleProps extends WidthAndHeight>({
   exampleUrl,
   tileStyles,
   title,
+  tileShort
 }: Props<ExampleProps>) {
+
+  const galleryTileCx = classNames({
+    'gallery-tile': true,
+    '--short': tileShort
+  });
+
   return (
     <>
       {renderLinkWrapper(
         exampleUrl,
-        <div className="gallery-tile" style={tileStyles}>
+        <div className={galleryTileCx} style={tileStyles}>
           <div className="image">
             <ParentSize>
               {({ width, height }) =>
@@ -72,6 +81,9 @@ export default function GalleryTile<ExampleProps extends WidthAndHeight>({
           flex-direction: column;
           border-radius: 14px;
           cursor: pointer;
+        }
+        .--short {
+          height: 250px;
         }
         .image {
           flex: 1;

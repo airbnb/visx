@@ -20,6 +20,7 @@ function Nav() {
           </NavItem>
           <NavItem href="/docs">Docs</NavItem>
           <NavItem href="/gallery">Gallery</NavItem>
+          <NavItem href="/showcase">In the Wild</NavItem>
         </ul>
 
         <GithubButton type="stargazers" namespace="airbnb" repo="visx" />
