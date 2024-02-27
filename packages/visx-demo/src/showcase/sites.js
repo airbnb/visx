@@ -1,5 +1,6 @@
 const sites = [
   {title:"williaster/data-ui", description: "williaster.github.io/data-ui/", url: "https://williaster.github.io/data-ui/" },
+  {title:"Vercel Analytics", description: "Traffic analytics on Vercel", url: "https://vercel.com/analytics" },
   {title:"Investment Calculator", description: "An investment calculator tool", url: "https://investmentcalculator.io/"},
   {title:"The Daily Shot on WSJ", description: "Americans and forbearance", url: "https://finance.shan.io/recessions-bear-markets-compared"},
   {title:"Data 2 the People", description: "Donation efficacy analysis", url: "https://donate.data2thepeople.org/"},
