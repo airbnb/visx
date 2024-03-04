@@ -1,4 +1,5 @@
 # Changelog
+- [v3.9.0](#v390)
 - [v3.8.0](#v380)
 - [v3.7.0](#v370)
 - [v3.6.1](#v361)
@@ -6,10 +7,10 @@
 - [v3.5.1](#v351)
 - [v3.5.0](#v350)
 - [v3.4.1](#v341)
-- [v3.4.0](#v340)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v340">v3.4.0</a></li>
   <li><a href="#v330">v3.3.0</a></li>
   <li><a href="#v321">v3.2.1</a></li>
   <li><a href="#v320">v3.2.0</a></li>
@@ -173,6 +174,32 @@
 </details>
 
 ------
+# v3.9.0 (2024-03-04)
+
+#### :rocket: Enhancements
+
+- new(axis): add shapeRendering prop to Axis [#1739](https://github.com/airbnb/visx/pull/1739)
+
+#### :bug: Bug Fix
+
+- internal: specify node js version [#1796](https://github.com/airbnb/visx/pull/1796)
+- docs: remove broken links from 'In the wild' [#1800](https://github.com/airbnb/visx/pull/1800)
+
+### :memo: Documentation
+
+- docs: remove broken links from 'In the wild' [#1800](https://github.com/airbnb/visx/pull/1800)
+- Adds to "in the wild", new site using visx/drag [#1799](https://github.com/airbnb/visx/pull/1799)
+
+### :house:  Internal
+
+- internal: specify node js version [#1796](https://github.com/airbnb/visx/pull/1796)
+  
+#### :trophy: Contributors
+- [BrianCurrie](https://github.com/BrianCurrie)
+- [Lonami](https://github.com/Lonami)
+- [mcioffi](https://github.com/mcioffi)
+- [sleonia](https://github.com/sleonia)
+
 # v3.8.0 (2024-01-25)
 
 #### :rocket: Enhancements
