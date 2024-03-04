@@ -29,6 +29,7 @@ export default function AxisRenderer<Scale extends AxisScale>({
   labelProps,
   orientation = Orientation.bottom,
   scale,
+  shapeRendering,
   stroke = '#222',
   strokeDasharray,
   strokeWidth = 1,
@@ -82,6 +83,7 @@ export default function AxisRenderer<Scale extends AxisScale>({
           className={cx('visx-axis-line', axisLineClassName)}
           from={axisFromPoint}
           to={axisToPoint}
+          shapeRendering={shapeRendering}
           stroke={stroke}
           strokeWidth={strokeWidth}
           strokeDasharray={strokeDasharray}
