@@ -1,4 +1,5 @@
 # Changelog
+- [v3.10.1](#v3101)
 - [v3.10.0](#v3100)
 - [v3.9.0](#v390)
 - [v3.8.0](#v380)
@@ -6,10 +7,10 @@
 - [v3.6.1](#v361)
 - [v3.6.0](#v360)
 - [v3.5.1](#v351)
-- [v3.5.0](#v350)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v350">v3.5.0</a></li>
   <li><a href="#v341">v3.4.1</a></li>
   <li><a href="#v340">v3.4.0</a></li>
   <li><a href="#v330">v3.3.0</a></li>
@@ -175,6 +176,15 @@
 </details>
 
 ------
+# v3.10.1 (2024-03-08)
+
+#### Uncategorized
+
+- Revert "new(axis): add shapeRendering prop to Axis" [#1808](https://github.com/airbnb/visx/pull/1808)
+  
+#### :trophy: Contributors
+- [williaster](https://github.com/williaster)
+
 # v3.10.0 (2024-03-08)
 
 #### :rocket: Enhancements
