@@ -71,8 +71,6 @@ export type CommonProps<Scale extends AxisScale> = {
   orientation?: ValueOf<typeof Orientation>;
   /** Pixel padding to apply to axis sides. */
   rangePadding?: number | { start?: number; end?: number };
-  /** Shape rendering for the lines. */
-  shapeRendering?: SVGProps<SVGLineElement>['shapeRendering'];
   /** The color for the stroke of the lines. */
   stroke?: string;
   /** The pixel value for the width of the lines. */
