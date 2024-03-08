@@ -1,41 +1,49 @@
-import React from 'react';
 import debounce from 'lodash/debounce';
-import { ResizeObserver, ResizeObserverPolyfill } from '../types';
+import React from 'react';
+import {
+  DebounceSettings,
+  Simplify,
+  PrivateWindow,
+  ResizeObserverPolyfill,
+  ResizeObserver,
+} from '../types';
 
 const CONTAINER_STYLES = { width: '100%', height: '100%' };
 
-// @TODO remove when upgraded to TS 4 which has its own declaration
-interface PrivateWindow {
-  ResizeObserver: ResizeObserverPolyfill;
-}
+/**
+ * @deprecated
+ * @TODO remove in the next major version - exported for backwards compatibility
+ */
+export type WithParentSizeProps = DebounceSettings;
 
-export type WithParentSizeProps = {
-  debounceTime?: number;
-  enableDebounceLeadingCall?: boolean;
-};
+type WithParentSizeConfig = {
+  initialWidth?: number;
+  initialHeight?: number;
+} & DebounceSettings;
 
 type WithParentSizeState = {
   parentWidth?: number;
   parentHeight?: number;
-  initialWidth?: number;
-  initialHeight?: number;
 };
 
 export type WithParentSizeProvidedProps = WithParentSizeState;
 
-export default function withParentSize<BaseComponentProps extends WithParentSizeProps = {}>(
-  BaseComponent: React.ComponentType<BaseComponentProps & WithParentSizeProvidedProps>,
+type WithParentSizeComponentProps<P extends WithParentSizeProvidedProps> = Simplify<
+  Omit<P, keyof WithParentSizeProvidedProps> & WithParentSizeConfig
+>;
+
+export default function withParentSize<P extends WithParentSizeProvidedProps>(
+  BaseComponent: React.ComponentType<P>,
   /** Optionally inject a ResizeObserver polyfill, else this *must* be globally available. */
   resizeObserverPolyfill?: ResizeObserverPolyfill,
-) {
+): React.ComponentType<WithParentSizeComponentProps<P>> {
   return class WrappedComponent extends React.Component<
-    BaseComponentProps & WithParentSizeProvidedProps,
+    WithParentSizeComponentProps<P>,
     WithParentSizeState
   > {
-    static defaultProps = {
-      debounceTime: 300,
-      enableDebounceLeadingCall: true,
-    };
+    displayName = `withParentSize(${
+      BaseComponent.displayName ?? BaseComponent.name ?? 'Component'
+    })`;
     state = {
       parentWidth: undefined,
       parentHeight: undefined,
@@ -80,8 +88,8 @@ export default function withParentSize<BaseComponentProps extends WithParentSize
           parentHeight: height,
         });
       },
-      this.props.debounceTime,
-      { leading: this.props.enableDebounceLeadingCall },
+      this.props.debounceTime ?? 300,
+      { leading: this.props.enableDebounceLeadingCall ?? true },
     );
 
     render() {
@@ -90,7 +98,11 @@ export default function withParentSize<BaseComponentProps extends WithParentSize
       return (
         <div style={CONTAINER_STYLES} ref={this.setRef}>
           {parentWidth != null && parentHeight != null && (
-            <BaseComponent parentWidth={parentWidth} parentHeight={parentHeight} {...this.props} />
+            <BaseComponent
+              parentWidth={parentWidth}
+              parentHeight={parentHeight}
+              {...(this.props as P)}
+            />
           )}
         </div>
       );

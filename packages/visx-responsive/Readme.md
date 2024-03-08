@@ -4,71 +4,161 @@
   <img src="https://img.shields.io/npm/dm/@visx/responsive.svg?style=flat-square" />
 </a>
 
-The `@visx/responsive` package is here to help you make responsive graphs.
+The `@visx/responsive` package is here to help you make responsive graphs by providing a collection
+of hooks, enhancers and components.
 
-**Enhancers**
+## Installation
 
-`withScreenSize`
+```
+npm install --save @visx/responsive
+```
 
-`withParentSize`
+## Hooks
 
-**Components**
+### `useScreenSize`
 
-`ParentSize`
+If you would like your graph to adapt to the screen size, you can use the `useScreenSize()` hook. It
+returns current screen width and height and updates the value automatically on browser window
+resize. You can optionally pass a config object as an argument to the hook. Config object attributes
+are:
 
-`ScaleSVG`
+- `initialSize` - initial size before measuring the screen, defaults to `{ width: 0, height: 0 }`.
+- `debounceTime` - determines how often the size is updated in milliseconds, defaults to `300`.
+- `enableDebounceLeadingCall` - determines whether the size is updated immediately on first render,
+  defaults to `true`. This is essentially the value of
+  [`options.leading` in Lodash's `debounce`](https://lodash.com/docs/4.17.15#debounce).
+
+#### Example
+
+```tsx
+import { useScreenSize } from '@visx/responsive';
+
+const ChartToRender = () => {
+  const { width, height } = useScreenSize({ debounceTime: 150 });
+
+  return (
+    <svg width={width} height={height}>
+      {/* content */}
+    </svg>
+  );
+};
+
+const chartToRender = <ChartToRender myProp="string" />;
+```
+
+### `useParentSize`
+
+If you want your graph to adapt to its parent size, you can use `useParentSize()` hook.
+`<ParentSize>` uses this hook internally. The hook returns `width`, `height`, `left`, `top`
+properties which describe dimensions of the container which received `parentRef` ref. You can
+optionally pass a config object as an argument to the hook. Config object attributes are:
+
+- `initialSize` - initial size before measuring the parent, defaults to
+  `{ width: 0, height: 0, left: 0, top: 0 }`.
+- `debounceTime` - determines how often the size is updated in miliseconds, defaults to `300`.
+- `enableDebounceLeadingCall` - determines whether the size is updated immediately on first render,
+  defaults to `true`. This is essentially the value of
+  [`options.leading` in Lodash's `debounce`](https://lodash.com/docs/4.17.15#debounce).
+- `ignoreDimensions` - array of dimensions for which an update should be skipped. For example, if
+  you pass `['width']`, width changes of the component that received `parentRef` won't be
+  propagated. Defaults to `[]` (all dimensions changes trigger updates).
+
+#### Example
+
+```tsx
+import { useParentSize } from '@visx/responsive';
+
+const ChartToRender = () => {
+  const { parentRef, width, height } = useParentSize({ debounceTime: 150 });
+
+  return (
+    <div ref={parentRef}>
+      <svg width={width} height={height}>
+        {/* content */}
+      </svg>
+    </div>
+  );
+};
+
+const chartToRender = <ChartToRender myProp="string" />;
+```
+
+## Enhancers / (HOCs)
 
 ### `withScreenSize`
 
-If you would like your graph to adapt to the screen size, you can use `withScreenSize()`. The
-resulting component will pass `screenWidth` and `screenHeight` props to the wrapped component
-containing the respective screen dimensions.
+If you prefer to use an enhancer, you can use the `withScreenSize()`. The resulting component will
+pass `screenWidth` and `screenHeight` props to the wrapped component containing the respective
+screen dimensions. You can also optionally pass config props to the wrapped component:
 
-### Example:
+- `debounceTime` - determines how often the size is updated in milliseconds, defaults to `300`.
+- `windowResizeDebounceTime` - deprecated, equivalent to the above, kept for backwards compatibility
+- `enableDebounceLeadingCall` - determines whether the size is updated immediately on first render,
+  defaults to `true`. This is essentially the value of
+  [`options.leading` in Lodash's `debounce`](https://lodash.com/docs/4.17.15#debounce).
 
-```js
-import { withScreenSize } from '@visx/responsive';
-// or
-// import * as Responsive from '@visx/responsive';
-// Responsive.withScreenSize(...);
+#### Example
 
-let chartToRender = withScreenSize(MySuperCoolVisxChart);
+```tsx
+import { withScreenSize, WithScreenSizeProvidedProps } from '@visx/responsive';
 
-// ... Render the chartToRender somewhere
+interface Props extends WithScreenSizeProvidedProps {
+  myProp: string;
+}
+
+const MySuperCoolVisxChart = ({ myProp, screenWidth, screenHeight }: Props) => {
+  // ...
+};
+
+const ChartToRender = withScreenSize(MySuperCoolVisxChart);
+
+const chartToRender = <ChartToRender myProp="string" />;
 ```
 
-## `withParentSize`
+### `withParentSize`
 
-If you would like your graph to adapt to it's parent component's size, you can use
+If you prefer to use an enhancer to adapt your graph to its parent component's size, you can use
 `withParentSize()`. The resulting component will pass `parentWidth` and `parentHeight` props to the
-wrapped component containing the respective parent's dimensions.
+wrapped component containing the respective parent's dimensions. You can also optionally pass config
+props to the wrapped component:
 
-### Example:
+- `initialWidth` - initial chart width used before the parent size is determined.
+- `initialHeight` - initial chart height used before the parent size is determined.
+- `debounceTime` - determines how often the size is updated in miliseconds, defaults to `300`.
+- `enableDebounceLeadingCall` - determines whether the size is updated immediately on first render,
+  defaults to `true`. This is essentially the value of
+  [`options.leading` in Lodash's `debounce`](https://lodash.com/docs/4.17.15#debounce).
 
-```js
-import { withParentSize } from '@visx/responsive';
-// or
-// import * as Responsive from '@visx/responsive';
-// Responsive.withParentSize(...);
+#### Example
 
-let chartToRender = withParentSize(MySuperCoolVisxChart);
+```tsx
+import { withParentSize, WithParentSizeProvidedProps } from '@visx/responsive';
 
-// ... Render the chartToRender somewhere
+interface Props extends WithParentSizeProvidedProps {
+  myProp: string;
+}
+
+const MySuperCoolVisxChart = ({ myProp, parentWidth, parentHeight }: Props) => {
+  // ...
+};
+
+const ChartWithParentSize = withParentSize(MySuperCoolVisxChart);
+
+const chartToRender = <ChartWithParentSize myProp="string" initialWidth={400} />;
 ```
 
-## `ParentSize`
+## Components
 
-You might do the same thing using the `ParentSize` component.
+### `ParentSize`
 
-### Example:
+You might do the same thing as `useParentSize` or `withParentSize` using the `ParentSize` component.
 
-```js
+#### Example
+
+```tsx
 import { ParentSize } from '@visx/responsive';
-// or
-// import * as Responsive from '@visx/responsive';
-// <Responsive.ParentSize />;
 
-let chartToRender = (
+const chartToRender = (
   <ParentSize>
     {(parent) => (
       <MySuperCoolVisxChart
@@ -84,50 +174,40 @@ let chartToRender = (
     )}
   </ParentSize>
 );
-
-// ... Render the chartToRender somewhere
 ```
 
-## `ScaleSVG`
+### `ScaleSVG`
 
 You can also create a responsive chart with a specific viewBox with the `ScaleSVG` component.
 
-### Example:
+#### Example
 
-```js
+```tsx
 import { ScaleSVG } from '@visx/responsive';
-// or
-// import * as Responsive from '@visx/responsive';
-// <Responsive.ScaleSVG />
 
-let chartToRender = (
+const chartToRender = (
   <ScaleSVG width={400} height={400}>
     <MySuperCoolVXChart />
   </ScaleSVG>
 );
-
-// ... Render the chartToRender somewhere
 ```
 
-### ⚠️ `ResizeObserver` dependency
+## ⚠️ `ResizeObserver` dependency
 
-The `ParentSize` component and `withParentSize` enhancer rely on `ResizeObserver`s for auto-sizing.
-If you need a polyfill, you can either polute the `window` object or inject it cleanly through
-props:
+`useParentSize`, `ParentSize` and `withParentSize` rely on `ResizeObserver`s for auto-sizing. If you
+need a polyfill, you can either pollute the `window` object or inject it cleanly like this:
 
 ```tsx
 import { ResizeObserver } from 'your-favorite-polyfill';
 
-function App() {
-  return (
-    <ParentSize resizeObserverPolyfill={ResizeObserver} {...}>
-      {() => {...}}
-    </ParentSize>
-  );
-```
+// hook
+useParentSize({ resizeObserverPolyfill: ResizeObserver });
 
-## Installation
+// component
+<ParentSize resizeObserverPolyfill={ResizeObserver} {...}>
+  {() => {...}}
+</ParentSize>
 
-```
-npm install --save @visx/responsive
+// enhancer
+withParentSize(MyComponent, ResizeObserver);
 ```

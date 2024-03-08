@@ -1,10 +1,17 @@
 import debounce from 'lodash/debounce';
 import React from 'react';
+import { Simplify, DebounceSettings } from '../types';
 
-export type WithScreenSizeProps = {
+type WithScreenSizeConfig = {
+  /** @deprecated use `debounceTime` instead */
   windowResizeDebounceTime?: number;
-  enableDebounceLeadingCall?: boolean;
-};
+} & DebounceSettings;
+
+/**
+ * @deprecated
+ * @TODO remove in the next major version - exported for backwards compatibility
+ */
+export type WithParentSizeProps = Omit<WithScreenSizeConfig, 'debounceTime'>;
 
 type WithScreenSizeState = {
   screenWidth?: number;
@@ -13,18 +20,20 @@ type WithScreenSizeState = {
 
 export type WithScreenSizeProvidedProps = WithScreenSizeState;
 
-export default function withScreenSize<BaseComponentProps extends WithScreenSizeProps = {}>(
-  BaseComponent: React.ComponentType<BaseComponentProps>,
-) {
+type WithScreenSizeComponentProps<P extends WithScreenSizeProvidedProps> = Simplify<
+  Omit<P, keyof WithScreenSizeProvidedProps> & WithScreenSizeConfig
+>;
+
+export default function withScreenSize<P extends WithScreenSizeProvidedProps>(
+  BaseComponent: React.ComponentType<P>,
+): React.ComponentType<WithScreenSizeComponentProps<P>> {
   return class WrappedComponent extends React.Component<
-    BaseComponentProps & WithScreenSizeProvidedProps,
+    WithScreenSizeComponentProps<P>,
     WithScreenSizeState
   > {
-    static defaultProps = {
-      windowResizeDebounceTime: 300,
-      enableDebounceLeadingCall: true,
-    };
-
+    displayName = `withScreenSize(${
+      BaseComponent.displayName ?? BaseComponent.name ?? 'Component'
+    })`;
     state = {
       screenWidth: undefined,
       screenHeight: undefined,
@@ -48,14 +57,18 @@ export default function withScreenSize<BaseComponentProps extends WithScreenSize
           screenHeight: window.innerHeight,
         }));
       },
-      this.props.windowResizeDebounceTime,
-      { leading: this.props.enableDebounceLeadingCall },
+      this.props.debounceTime ?? this.props.windowResizeDebounceTime ?? 300,
+      { leading: this.props.enableDebounceLeadingCall ?? true },
     );
 
     render() {
       const { screenWidth, screenHeight } = this.state;
       return screenWidth == null || screenHeight == null ? null : (
-        <BaseComponent screenWidth={screenWidth} screenHeight={screenHeight} {...this.props} />
+        <BaseComponent
+          screenWidth={screenWidth}
+          screenHeight={screenHeight}
+          {...(this.props as P)}
+        />
       );
     }
   };
