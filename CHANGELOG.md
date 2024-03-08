@@ -1,4 +1,5 @@
 # Changelog
+- [v3.10.0](#v3100)
 - [v3.9.0](#v390)
 - [v3.8.0](#v380)
 - [v3.7.0](#v370)
@@ -6,10 +7,10 @@
 - [v3.6.0](#v360)
 - [v3.5.1](#v351)
 - [v3.5.0](#v350)
-- [v3.4.1](#v341)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v341">v3.4.1</a></li>
   <li><a href="#v340">v3.4.0</a></li>
   <li><a href="#v330">v3.3.0</a></li>
   <li><a href="#v321">v3.2.1</a></li>
@@ -174,6 +175,19 @@
 </details>
 
 ------
+# v3.10.0 (2024-03-08)
+
+#### :rocket: Enhancements
+
+- fix: Improve typing in @visx/responsive enhancers [#1783](https://github.com/airbnb/visx/pull/1783)
+
+#### :bug: Bug Fix
+
+- fix: Improve typing in @visx/responsive enhancers [#1783](https://github.com/airbnb/visx/pull/1783)
+  
+#### :trophy: Contributors
+- [paolostyle](https://github.com/paolostyle)
+
 # v3.9.0 (2024-03-04)
 
 #### :rocket: Enhancements
