@@ -1,4 +1,5 @@
 # Changelog
+- [v3.10.2](#v3102)
 - [v3.10.1](#v3101)
 - [v3.10.0](#v3100)
 - [v3.9.0](#v390)
@@ -6,10 +7,10 @@
 - [v3.7.0](#v370)
 - [v3.6.1](#v361)
 - [v3.6.0](#v360)
-- [v3.5.1](#v351)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v351">v3.5.1</a></li>
   <li><a href="#v350">v3.5.0</a></li>
   <li><a href="#v341">v3.4.1</a></li>
   <li><a href="#v340">v3.4.0</a></li>
@@ -176,6 +177,15 @@
 </details>
 
 ------
+# v3.10.2 (2024-03-09)
+
+#### :bug: Bug Fix
+
+- fix: explicit type exports in @visx/responsive [#1809](https://github.com/airbnb/visx/pull/1809)
+  
+#### :trophy: Contributors
+- [paolostyle](https://github.com/paolostyle)
+
 # v3.10.1 (2024-03-08)
 
 #### Uncategorized
