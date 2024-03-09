@@ -1,6 +1,10 @@
 export { default as ParentSize } from './components/ParentSize';
 export { default as ScaleSVG } from './components/ScaleSVG';
-export { default as withParentSize, WithParentSizeProvidedProps } from './enhancers/withParentSize';
-export { default as withScreenSize, WithScreenSizeProvidedProps } from './enhancers/withScreenSize';
-export { default as useParentSize, UseParentSizeConfig } from './hooks/useParentSize';
-export { default as useScreenSize, UseScreenSizeConfig } from './hooks/useScreenSize';
+export { default as withParentSize } from './enhancers/withParentSize';
+export type { WithParentSizeProvidedProps } from './enhancers/withParentSize';
+export { default as withScreenSize } from './enhancers/withScreenSize';
+export type { WithScreenSizeProvidedProps } from './enhancers/withScreenSize';
+export { default as useParentSize } from './hooks/useParentSize';
+export type { UseParentSizeConfig } from './hooks/useParentSize';
+export { default as useScreenSize } from './hooks/useScreenSize';
+export type { UseScreenSizeConfig } from './hooks/useScreenSize';
