@@ -80,7 +80,7 @@ export default function useParentSize<T extends HTMLElement = HTMLDivElement>({
       observer.disconnect();
       resize.cancel();
     };
-  }, [resize, resizeObserverPolyfill]);
+  }, [resize, parentRef.current, resizeObserverPolyfill])
 
   return { parentRef, resize, ...state };
 }
