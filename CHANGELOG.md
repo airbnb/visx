@@ -1,4 +1,5 @@
 # Changelog
+- [v3.10.3](#v3103)
 - [v3.10.2](#v3102)
 - [v3.10.1](#v3101)
 - [v3.10.0](#v3100)
@@ -6,10 +7,10 @@
 - [v3.8.0](#v380)
 - [v3.7.0](#v370)
 - [v3.6.1](#v361)
-- [v3.6.0](#v360)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v360">v3.6.0</a></li>
   <li><a href="#v351">v3.5.1</a></li>
   <li><a href="#v350">v3.5.0</a></li>
   <li><a href="#v341">v3.4.1</a></li>
@@ -177,6 +178,15 @@
 </details>
 
 ------
+# v3.10.3 (2024-05-20)
+
+#### :bug: Bug Fix
+
+- Fix LegendThreshold [#1831](https://github.com/airbnb/visx/pull/1831)
+  
+#### :trophy: Contributors
+- [ZachBarbre](https://github.com/ZachBarbre)
+
 # v3.10.2 (2024-03-09)
 
 #### :bug: Bug Fix
