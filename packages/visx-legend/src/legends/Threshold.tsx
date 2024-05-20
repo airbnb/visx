@@ -28,7 +28,6 @@ function defaultTransform<Scale extends AnyThresholdScale>({
 }: TransformProps): LabelFormatterFactory<Scale> {
   return ({ scale, labelFormat }) => {
     const scaleRange = scale.range();
-    const scaleDomain = scale.domain();
 
     type Datum = ScaleInput<Scale>;
 
@@ -43,7 +42,7 @@ function defaultTransform<Scale extends AnyThresholdScale>({
       if (d0 == null && typeof d1 === 'number') {
         // lower threshold e.g., [undefined, number]
         delimiter = labelLower || delimiter;
-        value = d1 - 1;
+        value = d1 - Math.abs(2 * d1 - 1); // guarantees a value smaller than the lower threshold
         text = `${delimiter}${formatZero(labelFormat(d1, i))}`;
       } else if (d0 != null && d1 != null) {
         // threshold step
@@ -52,13 +51,13 @@ function defaultTransform<Scale extends AnyThresholdScale>({
       } else if (typeof d0 === 'number' && d1 == null) {
         // upper threshold e.g., [number, undefined]
         delimiter = labelUpper || delimiter;
-        value = d0 + scaleDomain[1]; // x0,x1 are from the domain, so the domain is numeric if d0 is
+        value = d0 + Math.abs(2 * d0 + 1); // // guarantees a value larger than the upper threshold
         text = `${delimiter}${formatZero(labelFormat(d0, i))}`;
       }
 
       return {
         extent: [d0, d1],
-        value: scale(value || d),
+        value: scale(value),
         text,
         datum: d,
         index: i,
@@ -81,7 +80,9 @@ export default function Threshold<Scale extends AnyThresholdScale>({
   // https://github.com/d3/d3-scale#threshold_domain
   // therefore if a domain is not specified we transform the range into input values
   // because it should contain more elements
-  const domain = inputDomain || scale.range().map((output) => scale.invertExtent(output)[0]);
+
+  const domain =
+    inputDomain || scale.range().map((output) => scale.invertExtent(output)[0] as Range);
 
   const labelTransform =
     inputLabelTransform ||
