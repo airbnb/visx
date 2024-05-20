@@ -1,6 +1,6 @@
 {
   "name": "@visx/visx",
-  "version": "3.10.2",
+  "version": "3.10.3",
   "description": "One stop install for all visx packages",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -49,7 +49,7 @@
     "@visx/group": "3.3.0",
     "@visx/heatmap": "3.3.0",
     "@visx/hierarchy": "3.3.0",
-    "@visx/legend": "3.5.0",
+    "@visx/legend": "3.10.3",
     "@visx/marker": "3.5.0",
     "@visx/mock-data": "3.3.0",
     "@visx/network": "3.3.0",
