@@ -16,6 +16,7 @@ import {
   BrushPageOffset,
 } from './types';
 import { getPageCoordinates } from './utils';
+import debounce from 'lodash/debounce';
 
 type PointerHandlerEvent = React.PointerEvent<SVGRectElement>;
 
@@ -224,7 +225,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
     }
   };
 
-  handleWindowPointerMove = (event: MouseEvent) => {
+  handleWindowPointerMove = debounce((event: MouseEvent) => {
     const { useWindowMoveEvents } = this.props;
     const { brushingType, isBrushing, brushPageOffset, start } = this.state;
 
@@ -318,7 +319,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
         return newState;
       });
     }
-  };
+  }, 1);
 
   getExtent = (start: Partial<Point>, end: Partial<Point>) => {
     const { brushDirection, width, height } = this.props;
