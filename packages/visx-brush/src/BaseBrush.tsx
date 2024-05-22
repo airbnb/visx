@@ -15,7 +15,7 @@ import {
   BrushingType,
   BrushPageOffset,
 } from './types';
-import { getPageCoordinates, debounce } from './utils';
+import { debounce, getPageCoordinates } from './utils';
 
 type PointerHandlerEvent = React.PointerEvent<SVGRectElement>;
 
@@ -177,14 +177,14 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
   componentDidMount() {
     if (this.props.useWindowMoveEvents) {
       window.addEventListener('mouseup', this.handleWindowPointerUp);
-      window.addEventListener('mousemove', this.handleWindowPointerMove);
+      window.addEventListener('mousemove', this.debouncedHandleWindowPointerMove);
     }
   }
 
   componentWillUnmount() {
     if (this.props.useWindowMoveEvents) {
       window.removeEventListener('mouseup', this.handleWindowPointerUp);
-      window.removeEventListener('mousemove', this.handleWindowPointerMove);
+      window.removeEventListener('mousemove', this.debouncedHandleWindowPointerMove);
     }
   }
 
@@ -224,7 +224,7 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
     }
   };
 
-  handleWindowPointerMove = debounce((event: MouseEvent) => {
+  handleWindowPointerMove = (event: MouseEvent) => {
     const { useWindowMoveEvents } = this.props;
     const { brushingType, isBrushing, brushPageOffset, start } = this.state;
 
@@ -318,7 +318,9 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
         return newState;
       });
     }
-  }, 1);
+  };
+
+  debouncedHandleWindowPointerMove = debounce(this.handleWindowPointerMove, 1);
 
   getExtent = (start: Partial<Point>, end: Partial<Point>) => {
     const { brushDirection, width, height } = this.props;
