@@ -75,10 +75,9 @@ export function getPageCoordinates(event: MouseTouchOrPointerEvent) {
 export function debounce<T extends Function>(func: T, delay: number): (...args: any[]) => void {
   let timeoutId: ReturnType<typeof setTimeout>;
   return function debouncedFn(this: unknown, ...args: unknown[]) {
-    const context = this;
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => {
-      func.apply(context, args);
+      func.apply(this, args);
     }, delay);
   };
 }
