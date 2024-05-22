@@ -15,8 +15,7 @@ import {
   BrushingType,
   BrushPageOffset,
 } from './types';
-import { getPageCoordinates } from './utils';
-import debounce from 'lodash/debounce';
+import { getPageCoordinates, debounce } from './utils';
 
 type PointerHandlerEvent = React.PointerEvent<SVGRectElement>;
 
