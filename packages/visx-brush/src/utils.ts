@@ -69,3 +69,14 @@ export function getPageCoordinates(event: MouseTouchOrPointerEvent) {
     pageY: pointerEvent.pageY,
   };
 }
+
+// Tweaked from https://dev.to/cantem/how-to-write-a-debounce-function-1bdf
+export function debounce<T extends Function>(func: T, delay: number): (...args: any[]) => void {
+  let timeoutId: ReturnType<typeof setTimeout>;
+  return function debouncedFn(this: unknown, ...args: unknown[]) {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+      func.apply(this, args);
+    }, delay);
+  };
+}
