@@ -1,4 +1,5 @@
 # Changelog
+- [v3.10.4](#v3104)
 - [v3.10.3](#v3103)
 - [v3.10.2](#v3102)
 - [v3.10.1](#v3101)
@@ -6,10 +7,10 @@
 - [v3.9.0](#v390)
 - [v3.8.0](#v380)
 - [v3.7.0](#v370)
-- [v3.6.1](#v361)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v361">v3.6.1</a></li>
   <li><a href="#v360">v3.6.0</a></li>
   <li><a href="#v351">v3.5.1</a></li>
   <li><a href="#v350">v3.5.0</a></li>
@@ -178,6 +179,15 @@
 </details>
 
 ------
+# v3.10.4 (2024-05-24)
+
+#### :bug: Bug Fix
+
+- brush: fix brush jumping around after mouseup [#1836](https://github.com/airbnb/visx/pull/1836)
+  
+#### :trophy: Contributors
+- [tfineberg4](https://github.com/tfineberg4)
+
 # v3.10.3 (2024-05-20)
 
 #### :bug: Bug Fix
