@@ -1,6 +1,6 @@
 {
   "name": "@visx/visx",
-  "version": "3.10.3",
+  "version": "3.10.4",
   "description": "One stop install for all visx packages",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -36,7 +36,7 @@
     "@visx/annotation": "3.3.0",
     "@visx/axis": "3.10.1",
     "@visx/bounds": "3.3.0",
-    "@visx/brush": "3.6.1",
+    "@visx/brush": "3.10.4",
     "@visx/clip-path": "3.3.0",
     "@visx/curve": "3.3.0",
     "@visx/delaunay": "3.5.0",
