@@ -16,14 +16,31 @@ import getAnimatedOrUnanimatedComponents from './getAnimatedOrUnanimatedComponen
 const dateScaleConfig = { type: 'band', paddingInner: 0.3 } as const;
 const temperatureScaleConfig = { type: 'linear' } as const;
 const numTicks = 4;
-const data = cityTemperature.slice(225, 275);
-const dataMissingValues = data.map((d, i) =>
-  i === 10 || i === 11
-    ? { ...d, 'San Francisco': 'nope', 'New York': 'notanumber', Austin: 'null' }
-    : d,
-);
-const dataSmall = data.slice(0, 15);
-const dataSmallMissingValues = dataMissingValues.slice(0, 15);
+const withMissingValues = (cityTemperatures: CityTemperature[]) =>
+  cityTemperatures.map((d, i) =>
+    i === 10 || i === 11
+      ? { ...d, 'San Francisco': 'nope', 'New York': 'notanumber', Austin: 'null' }
+      : d,
+  );
+const addYears = (cityTemperatures: CityTemperature[], years: number) =>
+  cityTemperatures.map((d) => {
+    const date = new Date(d.date);
+    date.setFullYear(date.getFullYear() + years);
+    return {
+      ...d,
+      date: date.toISOString().slice(0, 10),
+    };
+  });
+const data = {
+  small: cityTemperature.slice(225, 240),
+  regular: cityTemperature.slice(225, 275),
+  large: [...cityTemperature, ...addYears(cityTemperature, 1), ...addYears(cityTemperature, 2)],
+};
+const dataMissingValues = {
+  small: withMissingValues(data.small),
+  regular: withMissingValues(data.regular),
+  large: withMissingValues(data.large),
+};
 const getDate = (d: CityTemperature) => d.date;
 const getSfTemperature = (d: CityTemperature) => Number(d['San Francisco']);
 const getNegativeSfTemperature = (d: CityTemperature) => -getSfTemperature(d);
@@ -128,7 +145,7 @@ export default function ExampleControls({ children }: ControlsProps) {
   const [annotationLabelPosition, setAnnotationLabelPosition] = useState({ dx: -40, dy: -20 });
   const [annotationDataIndex, setAnnotationDataIndex] = useState(defaultAnnotationDataIndex);
   const [negativeValues, setNegativeValues] = useState(false);
-  const [fewerDatum, setFewerDatum] = useState(false);
+  const [dataSize, setDataSize] = useState<keyof typeof data>('regular');
   const [missingValues, setMissingValues] = useState(false);
   const [glyphComponent, setGlyphComponent] = useState<'star' | 'cross' | 'circle' | '🍍'>('star');
   const [curveType, setCurveType] = useState<'linear' | 'cardinal' | 'step'>('linear');
@@ -302,13 +319,7 @@ export default function ExampleControls({ children }: ControlsProps) {
           (curveType === 'cardinal' && curveCardinal) ||
           (curveType === 'step' && curveStep) ||
           curveLinear,
-        data: fewerDatum
-          ? missingValues
-            ? dataSmallMissingValues
-            : dataSmall
-          : missingValues
-          ? dataMissingValues
-          : data,
+        data: (missingValues ? dataMissingValues : data)[dataSize],
         editAnnotationLabelPosition,
         numTicks,
         renderBarGroup: renderBarStackOrGroup === 'bargroup',
@@ -370,14 +381,15 @@ export default function ExampleControls({ children }: ControlsProps) {
             />
             missing values
           </label>
-          <label>
-            <input
-              type="checkbox"
-              onChange={() => setFewerDatum(!fewerDatum)}
-              checked={fewerDatum}
-            />
-            fewer datum
-          </label>
+        </div>
+        <div>
+          <strong>data size</strong>
+          {Object.keys(data).map((size: keyof typeof data) => (
+            <label key={size}>
+              <input type="radio" onChange={() => setDataSize(size)} checked={dataSize === size} />
+              {size}
+            </label>
+          ))}
         </div>
 
         {/** theme */}
