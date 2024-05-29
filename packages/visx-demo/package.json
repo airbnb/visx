@@ -1,6 +1,6 @@
 {
   "name": "@visx/demo",
-  "version": "3.10.4",
+  "version": "3.11.0",
   "description": "visx demo",
   "repository": "https://github.com/airbnb/visx",
   "scripts": {
@@ -65,10 +65,10 @@
     "@visx/threshold": "3.5.0",
     "@visx/tooltip": "3.3.0",
     "@visx/vendor": "3.5.0",
-    "@visx/visx": "3.10.4",
+    "@visx/visx": "3.11.0",
     "@visx/voronoi": "3.3.0",
     "@visx/wordcloud": "3.3.0",
-    "@visx/xychart": "3.10.2",
+    "@visx/xychart": "3.11.0",
     "@visx/zoom": "3.3.0",
     "@zeit/next-css": "^1.0.1",
     "babel-loader": "^8.2.2",
