@@ -1,10 +1,10 @@
-import React, { useCallback, useRef } from 'react';
+import React, { memo, useCallback, useRef } from 'react';
 import { animated, useSpring } from '@react-spring/web';
 // @ts-expect-error no types
 import { interpolatePath } from 'd3-interpolate-path';
 import debounce from 'lodash/debounce';
 
-export default function AnimatedPath({
+function AnimatedPath({
   d,
   stroke = 'transparent',
   fill = 'transparent',
@@ -44,3 +44,5 @@ export default function AnimatedPath({
     />
   );
 }
+
+export default memo(AnimatedPath);
