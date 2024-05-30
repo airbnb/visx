@@ -1,5 +1,5 @@
 /* eslint react/no-did-mount-set-state: 0, react/no-find-dom-node: 0 */
-import React from 'react';
+import React, { ComponentClass } from 'react';
 import ReactDOM from 'react-dom';
 
 const emptyRect = {
@@ -29,7 +29,7 @@ export type WithBoundingRectsProps = {
 
 export default function withBoundingRects<Props extends object = {}>(
   BaseComponent: React.ComponentType<Props>,
-) {
+): ComponentClass<Props> {
   return class WrappedComponent extends React.PureComponent<Props> {
     static displayName = `withBoundingRects(${BaseComponent.displayName || ''})`;
     node: HTMLElement | undefined | null;
