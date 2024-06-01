@@ -1,4 +1,10 @@
-import { UserHandlers, WebKitGestureEvent, Handler } from '@use-gesture/react';
+import {
+  UserHandlers,
+  WebKitGestureEvent,
+  Handler,
+  GestureHandlers,
+  EventTypes,
+} from '@use-gesture/react';
 import {
   RefObject,
   MouseEvent as ReactMouseEvent,
@@ -45,6 +51,10 @@ export interface ScaleSignature {
   scaleY?: TransformMatrix['scaleY'];
   point?: Point;
 }
+
+export type CreateGestureHandlers = <ElementType>(
+  zoom: ProvidedZoom<ElementType>,
+) => GestureHandlers<EventTypes>;
 
 export interface ProvidedZoom<ElementType> {
   /** Sets translateX/Y to the center defined by width and height. */
