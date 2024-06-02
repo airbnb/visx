@@ -2,7 +2,7 @@ import React, { memo, useCallback, useRef } from 'react';
 import { animated, useSpring } from '@react-spring/web';
 // @ts-expect-error no types
 import { interpolatePath } from 'd3-interpolate-path';
-import debounce from 'lodash/debounce';
+import debounce from 'lodash.debounce';
 
 function AnimatedPath({
   d,

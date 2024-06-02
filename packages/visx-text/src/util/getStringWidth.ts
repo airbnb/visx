@@ -1,4 +1,4 @@
-import memoize from 'lodash/memoize';
+import memoize from 'lodash.memoize';
 
 const MEASUREMENT_ELEMENT_ID = '__react_svg_text_measurement_id';
 

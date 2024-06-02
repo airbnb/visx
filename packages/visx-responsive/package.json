@@ -28,9 +28,9 @@
   },
   "homepage": "https://github.com/airbnb/visx#readme",
   "dependencies": {
-    "@types/lodash": "^4.14.172",
+    "@types/lodash.debounce": "^4.0.9",
     "@types/react": "*",
-    "lodash": "^4.17.21",
+    "lodash.debounce": "^4.0.8",
     "prop-types": "^15.6.1"
   },
   "peerDependencies": {
