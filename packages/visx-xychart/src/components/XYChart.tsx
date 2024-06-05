@@ -2,11 +2,11 @@
 import React, { useContext, useEffect } from 'react';
 import ParentSize from '@visx/responsive/lib/components/ParentSize';
 import { ResizeObserverPolyfill } from '@visx/responsive/lib/types';
-import { AxisScaleOutput } from '@visx/axis';
+import { AxisScale, AxisScaleOutput } from '@visx/axis';
 import { ScaleConfig } from '@visx/scale';
 
 import DataContext from '../context/DataContext';
-import { Margin, EventHandlerParams } from '../types';
+import { Margin, EventHandlerParams, NearestDatumArgs, NearestDatumReturnType } from '../types';
 import useEventEmitter from '../hooks/useEventEmitter';
 import EventEmitterProvider from '../providers/EventEmitterProvider';
 import TooltipContext from '../context/TooltipContext';
@@ -25,6 +25,8 @@ export type XYChartProps<
   XScaleConfig extends ScaleConfig<AxisScaleOutput, any, any>,
   YScaleConfig extends ScaleConfig<AxisScaleOutput, any, any>,
   Datum extends object,
+  XScale extends AxisScale,
+  YScale extends AxisScale,
 > = {
   /** aria-label for the chart svg element. */
   accessibilityLabel?: string;
@@ -90,6 +92,9 @@ export type XYChartProps<
    * into this component.
    */
   resizeObserverPolyfill?: ResizeObserverPolyfill;
+
+  /** Passed to useEventHandlers to override findNearestDatum logic */
+  findNearestDatumOverride?: (params: NearestDatumArgs<XScale, YScale, Datum>,) => NearestDatumReturnType<Datum>;
 };
 
 const allowedEventSources = [XYCHART_EVENT_SOURCE];
@@ -98,7 +103,9 @@ export default function XYChart<
   XScaleConfig extends ScaleConfig<AxisScaleOutput, any, any>,
   YScaleConfig extends ScaleConfig<AxisScaleOutput, any, any>,
   Datum extends object,
->(props: XYChartProps<XScaleConfig, YScaleConfig, Datum>) {
+  XScale extends AxisScale,
+  YScale extends AxisScale,
+>(props: XYChartProps<XScaleConfig, YScaleConfig, Datum, XScale, YScale>) {
   const {
     accessibilityLabel = 'XYChart',
     captureEvents = true,
@@ -117,6 +124,7 @@ export default function XYChart<
     yScale,
     // pass prop to context so it can be used anywhere
     resizeObserverPolyfill: resizeObserverPolyfillProp,
+    findNearestDatumOverride,
   } = props;
   const { setDimensions, resizeObserverPolyfill } = useContext(DataContext);
   const tooltipContext = useContext(TooltipContext);
@@ -137,6 +145,7 @@ export default function XYChart<
     onPointerUp,
     onPointerDown,
     allowedSources: allowedEventSources,
+    findNearestDatum: findNearestDatumOverride,
   });
 
   // if Context or dimensions are not available, wrap self in the needed providers
