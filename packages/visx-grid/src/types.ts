@@ -1,5 +1,5 @@
 import { CSSProperties, ReactNode } from 'react';
-import { D3Scale, NumberLike } from '@visx/scale';
+import { D3Scale, NumberLike, ScaleInput } from '@visx/scale';
 
 // In order to plot values on an axis, output of the scale must be number.
 // Some scales return undefined.
@@ -31,8 +31,12 @@ export type CommonGridProps = {
   strokeWidth?: string | number;
   /** Grid line stroke-dasharray attribute. */
   strokeDasharray?: string;
-  /** Approximate number of grid lines. Approximate due to d3 alogrithm, specify `tickValues` for precise control. */
+  /** Approximate number of grid lines. Approximate due to d3 alogrithm, specify `rowTickValues` or `columnTickValues` for precise control. */
   numTicks?: number;
+  /** Exact values to be used for GridRows lines, passed to yScale. Use this if you need precise control over GridRows values.  */
+  rowTickValues?: ScaleInput<GridScale>[];
+  /** Exact values to be used for GridColumns lines, passed to xScale. Use this if you need precise control over GridColumns values.  */
+  columnTickValues?: ScaleInput<GridScale>[];
   /** Styles to apply as grid line style. */
   lineStyle?: CSSProperties;
   /** Pixel offset to apply as a translation (y- for Rows, x- for Columns) to each grid lines. */

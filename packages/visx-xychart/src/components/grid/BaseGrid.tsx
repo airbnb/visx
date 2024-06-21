@@ -22,6 +22,8 @@ export default function BaseGrid({
   columns = true,
   GridRowsComponent,
   GridColumnsComponent,
+  rowTickValues,
+  columnTickValues,
   ...props
 }: BaseGridProps) {
   const {
@@ -43,6 +45,7 @@ export default function BaseGrid({
           lineStyle={gridLineStyles}
           width={innerWidth}
           scale={rowsScale}
+          tickValues={rowTickValues}
           {...props}
         />
       )}
@@ -52,6 +55,7 @@ export default function BaseGrid({
           lineStyle={gridLineStyles}
           height={innerHeight}
           scale={columnsScale}
+          tickValues={columnTickValues}
           {...props}
         />
       )}
