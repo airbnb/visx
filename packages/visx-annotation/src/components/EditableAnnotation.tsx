@@ -25,6 +25,7 @@ export type EditableAnnotationProps = Pick<AnnotationContextType, 'x' | 'y' | 'd
   onDragMove?: ({ x, y, dx, dy, event }: HandlerArgs) => void;
   /** Callback invoked on drag end. */
   onDragEnd?: ({ x, y, dx, dy, event }: HandlerArgs) => void;
+  /** Optional x/y desired bounds for subject/label. */
   restrict?: {
     xMin?: number;
     xMax?: number;
@@ -121,7 +122,7 @@ export default function EditableAnnotation({
     onDragMove: handleDragMove,
     onDragEnd: handleDragEnd,
     x: subjectX,
-    y: subjectX,
+    y: subjectY,
     restrict: restrict,
   });
 
