@@ -25,6 +25,12 @@ export type EditableAnnotationProps = Pick<AnnotationContextType, 'x' | 'y' | 'd
   onDragMove?: ({ x, y, dx, dy, event }: HandlerArgs) => void;
   /** Callback invoked on drag end. */
   onDragEnd?: ({ x, y, dx, dy, event }: HandlerArgs) => void;
+  restrict?: {
+    xMin?: number;
+    xMax?: number;
+    yMin?: number;
+    yMax?: number;
+  };
 };
 
 export type HandlerArgs = {
@@ -58,6 +64,7 @@ export default function EditableAnnotation({
   width,
   x: subjectX = 0,
   y: subjectY = 0,
+  restrict,
 }: EditableAnnotationProps) {
   // chicken before the egg, we need these to reference drag state
   // in drag callbacks which are defined before useDrag() state is available
@@ -114,7 +121,8 @@ export default function EditableAnnotation({
     onDragMove: handleDragMove,
     onDragEnd: handleDragEnd,
     x: subjectX,
-    y: subjectY,
+    y: subjectX,
+    restrict: restrict,
   });
 
   const labelDrag = useDrag({
@@ -123,6 +131,7 @@ export default function EditableAnnotation({
     onDragEnd: handleDragEnd,
     x: labelDx,
     y: labelDy,
+    restrict: restrict,
   });
 
   // enable referencing these in the callbacks defined before useDrag is called
