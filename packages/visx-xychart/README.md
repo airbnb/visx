@@ -124,25 +124,25 @@ import { TextProps as SVGTextProps } from '@visx/text/lib/Text'; // just for typ
 
 const customTheme = buildChartTheme({
   // colors
-  backgroundColor: string; // used by Tooltip, Annotation
-  colors: string[]; // categorical colors, mapped to series via `dataKey`s
+  backgroundColor: string, // used by Tooltip, Annotation
+  colors: string[], // categorical colors, mapped to series via `dataKey`s
 
   // labels
-  svgLabelBig?: SVGTextProps;
-  svgLabelSmall?: SVGTextProps;
-  htmlLabel?: HTMLTextStyles;
+  svgLabelBig?: SVGTextProps,
+  svgLabelSmall?: SVGTextProps,
+  htmlLabel?: HTMLTextStyles,
 
   // lines
-  xAxisLineStyles?: LineStyles;
-  yAxisLineStyles?: LineStyles;
-  xTickLineStyles?: LineStyles;
-  yTickLineStyles?: LineStyles;
-  tickLength: number;
+  xAxisLineStyles?: LineStyles,
+  yAxisLineStyles?: LineStyles,
+  xTickLineStyles?: LineStyles,
+  yTickLineStyles?: LineStyles,
+  tickLength: number,
 
   // grid
-  gridColor: string;
-  gridColorDark: string; // used for axis baseline if x/yxAxisLineStyles not set
-  gridStyles?: CSSProperties;
+  gridColor: string,
+  gridColorDark: string, // used for axis baseline if x/yxAxisLineStyles not set
+  gridStyles?: CSSProperties,
 });
 
 () => <XYChart theme={customTheme} />
