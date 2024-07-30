@@ -4,3 +4,4 @@ export * from './event';
 export * from './series';
 export * from './theme';
 export * from './tooltip';
+export * from './util';

@@ -2,7 +2,7 @@ import React, { useContext, useCallback, useMemo } from 'react';
 import LinePath, { LinePathProps } from '@visx/shape/lib/shapes/LinePath';
 import { AxisScale } from '@visx/axis';
 import DataContext from '../../../context/DataContext';
-import { GlyphsProps, SeriesProps } from '../../../types';
+import { GlyphsProps, LegacyReactEvents, SeriesProps } from '../../../types';
 import withRegisteredData, { WithRegisteredDataProps } from '../../../enhancers/withRegisteredData';
 import getScaledValueFactory from '../../../utils/getScaledValueFactory';
 import isValidNumber from '../../../typeguards/isValidNumber';
@@ -17,12 +17,17 @@ export type BaseLineSeriesProps<
   Datum extends object,
 > = SeriesProps<XScale, YScale, Datum> & {
   /** Rendered component which is passed path props by BaseLineSeries after processing. */
-  PathComponent?: React.FC<Omit<React.SVGProps<SVGPathElement>, 'ref'>> | 'path';
+  PathComponent?:
+    | React.FC<Omit<React.SVGProps<SVGPathElement>, 'ref' | LegacyReactEvents>>
+    | 'path';
   /** Sets the curve factory (from @visx/curve or d3-curve) for the line generator. Defaults to curveLinear. */
   curve?: LinePathProps<Datum>['curve'];
   /** Given a datakey, returns its color. Falls back to theme color if unspecified or if a null-ish value is returned. */
   colorAccessor?: (dataKey: string) => string | undefined | null;
-} & Omit<React.SVGProps<SVGPathElement>, 'x' | 'y' | 'x0' | 'x1' | 'y0' | 'y1' | 'ref'>;
+} & Omit<
+    React.SVGProps<SVGPathElement>,
+    'x' | 'y' | 'x0' | 'x1' | 'y0' | 'y1' | 'ref' | LegacyReactEvents
+  >;
 
 function BaseLineSeries<XScale extends AxisScale, YScale extends AxisScale, Datum extends object>({
   colorAccessor,
