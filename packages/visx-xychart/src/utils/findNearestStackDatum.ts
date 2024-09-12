@@ -25,7 +25,7 @@ export default function findNearestStackDatum<
   horizontal?: boolean,
 ) {
   const { xScale, yScale, point } = nearestDatumArgs;
-  const datum = (horizontal ? findNearestDatumY : findNearestDatumX)(nearestDatumArgs); // <-- might be something wrong with the datum.index here
+  const datum = (horizontal ? findNearestDatumY : findNearestDatumX)(nearestDatumArgs);
   const stack = datum?.datum.data.stack;
   const seriesDatum = seriesData.find((d) => {
     const { yAccessor, xAccessor } = childAccessors;
