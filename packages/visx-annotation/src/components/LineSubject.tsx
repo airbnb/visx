@@ -11,6 +11,10 @@ export type LineSubjectProps = {
   strokeWidth?: number;
   /** Orientation of line. */
   orientation?: 'vertical' | 'horizontal';
+  /** Allows you to customize the pointerEvents attribute on the `<line>` element.
+   * 
+   * Default: `"none"` */
+  pointerEvents?: React.SVGAttributes<SVGLineElement>['pointerEvents'];
   /** x position of LineSubject (for vertical LineSubjects). */
   x?: number;
   /** y position of LineSubject (for horizontal LineSubjects). */
@@ -26,6 +30,7 @@ export default function LineSubject({
   x: propsX,
   y: propsY,
   orientation = 'vertical',
+  pointerEvents = 'none',
   min,
   max,
   stroke = '#222',
@@ -43,7 +48,7 @@ export default function LineSubject({
       y1={lineIsVertical ? min : propsY || annotationContext.y}
       y2={lineIsVertical ? max : propsY || annotationContext.y}
       fill="transparent"
-      pointerEvents="none"
+      pointerEvents={pointerEvents}
       stroke={stroke}
       {...restProps}
     />
