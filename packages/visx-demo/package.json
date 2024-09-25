@@ -58,6 +58,7 @@
     "@visx/point": "3.3.0",
     "@visx/react-spring": "3.10.1",
     "@visx/responsive": "3.10.2",
+    "@visx/sankey": "3.3.0",
     "@visx/scale": "3.5.0",
     "@visx/shape": "3.5.0",
     "@visx/stats": "3.5.0",

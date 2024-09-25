@@ -120,6 +120,12 @@ export default function PackageList({
               </Link>
               {!compact && <p>Animated visx primitives</p>}
             </li>
+            <li className={cx(emphasizePackage === 'sankey' && 'emphasize')}>
+              <Link href="/docs/sankey">
+                <a>sankey</a>
+              </Link>
+              {!compact && <p>Components to visualize sankey charts</p>}
+            </li>
             <li className={cx(emphasizePackage === 'stats' && 'emphasize')}>
               <Link href="/docs/stats">
                 <a>stats</a>

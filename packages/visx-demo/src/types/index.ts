@@ -43,6 +43,7 @@ export type VisxPackage =
   | 'point'
   | 'react-spring'
   | 'responsive'
+  | 'sankey'
   | 'scale'
   | 'shape'
   | 'stats'
