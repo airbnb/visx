@@ -12,6 +12,38 @@ import { Link } from 'd3-shape';
 
 const DEFAULT_COLOR = '#000';
 
+type NodeProps = Pick<
+  SVGAttributes<SVGRectElement>,
+  'stroke' | 'strokeOpacity' | 'strokeWidth' | 'fill' | 'fillOpacity'
+>;
+type LinkProps = Pick<
+  SVGAttributes<SVGPathElement>,
+  | 'fill'
+  | 'fillOpacity'
+  | 'stroke'
+  | 'strokeOpacity'
+  | 'strokeWidth'
+  | 'strokeDasharray'
+  | 'strokeDashoffset'
+>;
+
+type SourceAccessor<
+  NodeDatum extends SankeyExtraProperties,
+  LinkDatum extends SankeyExtraProperties,
+> = Exclude<
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  Parameters<Link<any, SankeyLink<NodeDatum, LinkDatum>, [number, number]>['source']>,
+  undefined
+>[0];
+type TargetAccessor<
+  NodeDatum extends SankeyExtraProperties,
+  LinkDatum extends SankeyExtraProperties,
+> = Exclude<
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  Parameters<Link<any, SankeyLink<NodeDatum, LinkDatum>, [number, number]>['target']>,
+  undefined
+>[0];
+
 export type SankeyProps<
   NodeDatum extends SankeyExtraProperties,
   LinkDatum extends SankeyExtraProperties,
@@ -45,21 +77,13 @@ export type SankeyProps<
     b: SankeyLink<NodeDatum, LinkDatum>,
   ) => number | undefined | null;
   /** Sets the props for the default rendered node rect. Ignored when children is defined. */
-  nodeProps?: Omit<SVGAttributes<SVGRectElement>, 'width' | 'height' | 'x' | 'y'>;
+  nodeProps?: NodeProps;
   /** Sets the props for the default rendered link path. Ignored when children is defined. */
-  linkProps?: Omit<SVGAttributes<SVGPathElement>, 'd'>;
+  linkProps?: LinkProps;
   /** Sets the source accessor for determining the link path. */
-  sourceAccessor?: Exclude<
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    Parameters<Link<any, SankeyLink<NodeDatum, LinkDatum>, [number, number]>['source']>,
-    undefined
-  >[0];
+  sourceAccessor?: SourceAccessor<NodeDatum, LinkDatum>;
   /** Sets the target accessor for determining the link path. */
-  targetAccessor?: Exclude<
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    Parameters<Link<any, SankeyLink<NodeDatum, LinkDatum>, [number, number]>['target']>,
-    undefined
-  >[0];
+  targetAccessor?: TargetAccessor<NodeDatum, LinkDatum>;
 };
 
 /**
