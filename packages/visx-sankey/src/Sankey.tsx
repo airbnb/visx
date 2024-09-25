@@ -10,6 +10,8 @@ import {
 } from 'd3-sankey';
 import { Link } from 'd3-shape';
 
+const DEFAULT_COLOR = '#000';
+
 export type SankeyProps<
   NodeDatum extends SankeyExtraProperties,
   LinkDatum extends SankeyExtraProperties,
@@ -111,7 +113,7 @@ export default function Sankey<
             d={path(link) ?? ''}
             key={i}
             fill="transparent"
-            stroke="#000"
+            stroke={DEFAULT_COLOR}
             strokeWidth={link.width}
             strokeOpacity={0.5}
             {...linkProps}
@@ -121,7 +123,15 @@ export default function Sankey<
       <Group>
         {graph.nodes.map(({ y0, y1, x0, x1 }, i) =>
           y0 !== undefined && y1 !== undefined && x0 !== undefined && x1 !== undefined ? (
-            <rect width={x1 - x0} height={y1 - y0} x={x0} y={y0} key={i} {...nodeProps} />
+            <rect
+              fill={DEFAULT_COLOR}
+              width={x1 - x0}
+              height={y1 - y0}
+              x={x0}
+              y={y0}
+              key={i}
+              {...nodeProps}
+            />
           ) : null,
         )}
       </Group>
