@@ -1,0 +1,41 @@
+{
+  "name": "@visx/sankey",
+  "version": "3.3.0",
+  "description": "visx sankey",
+  "sideEffects": false,
+  "main": "lib/index.js",
+  "module": "esm/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib",
+    "esm"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/airbnb/visx.git"
+  },
+  "keywords": [
+    "visx",
+    "d3",
+    "react",
+    "visualizations",
+    "charts"
+  ],
+  "author": "@jacksonhardaker",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/airbnb/visx/issues"
+  },
+  "homepage": "https://github.com/airbnb/visx#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@types/d3-sankey": "^0.12.4",
+    "@types/react": "*",
+    "d3-sankey": "^0.12.3"
+  },
+  "peerDependencies": {
+    "react": "^16.3.0-0 || ^17.0.0-0 || ^18.0.0-0"
+  }
+}
