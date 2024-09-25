@@ -13,7 +13,7 @@ function SankeyDocs() {
       components={components}
       examples={examples}
       readme={SankeyReadme}
-      visxPackage="hierarchy"
+      visxPackage="sankey"
     />
   );
 }
