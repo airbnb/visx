@@ -126,7 +126,7 @@ export default function Sankey<
   if (targetAccessor) path.target(targetAccessor);
 
   if (children) {
-    return children({ graph });
+    return <>{children({ graph })}</>;
   }
 
   return (
@@ -138,7 +138,7 @@ export default function Sankey<
             key={i}
             fill="transparent"
             stroke={DEFAULT_COLOR}
-            strokeWidth={link.width}
+            strokeWidth={Math.max(1, link.width ?? 0)}
             strokeOpacity={0.5}
             {...linkProps}
           />
