@@ -33,7 +33,9 @@
   "dependencies": {
     "@types/d3-sankey": "^0.12.4",
     "@types/react": "*",
-    "d3-sankey": "^0.12.3"
+    "@visx/group": "^3.3.0",
+    "d3-sankey": "^0.12.3",
+    "d3-shape": "^3.2.0"
   },
   "peerDependencies": {
     "react": "^16.3.0-0 || ^17.0.0-0 || ^18.0.0-0"
