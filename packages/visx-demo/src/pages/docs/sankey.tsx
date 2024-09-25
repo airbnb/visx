@@ -1,6 +1,6 @@
 import React from 'react';
 import SankeyReadme from '!!raw-loader!../../../../visx-sankey/Readme.md';
-import { Sankey } from '../../../../visx-sankey';
+import Sankey from '../../../../visx-sankey/src/Sankey';
 import DocPage from '../../components/DocPage';
 
 const components = [Sankey];
