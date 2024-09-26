@@ -1,4 +1,4 @@
-export type { SankeyProps, NodeAlignment } from './Sankey';
+export type { SankeyProps } from './Sankey';
 export type {
   SankeyExtraProperties,
   SankeyGraph,

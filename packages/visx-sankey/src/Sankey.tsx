@@ -1,4 +1,4 @@
-import React, { SVGAttributes } from 'react';
+import React, { ReactNode, SVGAttributes } from 'react';
 import { Group } from '@visx/group';
 import {
   sankey as d3sankey,
@@ -27,26 +27,34 @@ type LinkProps = Pick<
   | 'strokeDashoffset'
 >;
 
+type CreatePath<
+  NodeDatum extends SankeyExtraProperties,
+  LinkDatum extends SankeyExtraProperties,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+> = Link<any, SankeyLink<NodeDatum, LinkDatum>, [number, number]>;
+
 type SourceAccessor<
   NodeDatum extends SankeyExtraProperties,
   LinkDatum extends SankeyExtraProperties,
-> = Exclude<
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  Parameters<Link<any, SankeyLink<NodeDatum, LinkDatum>, [number, number]>['source']>,
-  undefined
->[0];
+> = Exclude<Parameters<CreatePath<NodeDatum, LinkDatum>['source']>, undefined>[0];
+
 type TargetAccessor<
   NodeDatum extends SankeyExtraProperties,
   LinkDatum extends SankeyExtraProperties,
-> = Exclude<
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  Parameters<Link<any, SankeyLink<NodeDatum, LinkDatum>, [number, number]>['target']>,
-  undefined
->[0];
-export type NodeAlignment<
+> = Exclude<Parameters<CreatePath<NodeDatum, LinkDatum>['target']>, undefined>[0];
+
+type NodeAlignment<
   NodeDatum extends SankeyExtraProperties,
   LinkDatum extends SankeyExtraProperties,
 > = (node: SankeyNode<NodeDatum, LinkDatum>, n: number) => number;
+
+type SankeyChildrenFunction<
+  NodeDatum extends SankeyExtraProperties,
+  LinkDatum extends SankeyExtraProperties,
+> = (args: {
+  graph: SankeyGraph<NodeDatum, LinkDatum>;
+  createPath: CreatePath<NodeDatum, LinkDatum>;
+}) => ReactNode;
 
 export type SankeyProps<
   NodeDatum extends SankeyExtraProperties,
@@ -55,7 +63,7 @@ export type SankeyProps<
   /** The root data from which to derive the sankey layout. */
   root: SankeyGraph<NodeDatum, LinkDatum>;
   /** Render override function which is passed the computed sankey data graph */
-  children?: (args: { graph: SankeyGraph<NodeDatum, LinkDatum> }) => React.ReactNode;
+  children?: SankeyChildrenFunction<NodeDatum, LinkDatum>;
   /** Sets the node id accessor. */
   nodeId?: (node: SankeyNode<NodeDatum, LinkDatum>) => string | number;
   /** Sets the node width. */
@@ -125,12 +133,12 @@ export default function Sankey<
   if (linkSort) sankey.linkSort(linkSort);
 
   const graph = sankey(root);
-  const path = sankeyLinkHorizontal<NodeDatum, LinkDatum>();
-  if (sourceAccessor) path.source(sourceAccessor);
-  if (targetAccessor) path.target(targetAccessor);
+  const createPath = sankeyLinkHorizontal<NodeDatum, LinkDatum>();
+  if (sourceAccessor) createPath.source(sourceAccessor);
+  if (targetAccessor) createPath.target(targetAccessor);
 
   if (children) {
-    return <>{children({ graph })}</>;
+    return <>{children({ graph, createPath })}</>;
   }
 
   return (
@@ -138,7 +146,7 @@ export default function Sankey<
       <Group>
         {graph.links.map((link, i) => (
           <path
-            d={path(link) ?? ''}
+            d={createPath(link) ?? ''}
             key={i}
             fill="transparent"
             stroke={DEFAULT_COLOR}
