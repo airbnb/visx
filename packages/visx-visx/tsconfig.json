@@ -85,6 +85,9 @@
       "path": "../visx-responsive"
     },
     {
+      "path": "../visx-sankey"
+    },
+    {
       "path": "../visx-scale"
     },
     {

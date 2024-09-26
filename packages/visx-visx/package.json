@@ -56,6 +56,7 @@
     "@visx/pattern": "3.3.0",
     "@visx/point": "3.3.0",
     "@visx/responsive": "3.10.2",
+    "@visx/sankey": "1.0.0",
     "@visx/scale": "3.5.0",
     "@visx/shape": "3.5.0",
     "@visx/text": "3.3.0",
