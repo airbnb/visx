@@ -38,6 +38,7 @@ import * as PolygonsTile from './PolygonsTile';
 import * as RadarTile from './RadarTile';
 import * as RadialBarsTile from './RadialBarsTile';
 import * as ResponsiveTile from './ResponsiveTile';
+import * as SankeyTile from './SankeyTile';
 import * as SplitLinePathTile from './SplitLinePathTile';
 import * as StackedAreasTile from './StackedAreasTile';
 import * as StatsPlotTile from './StatsPlotTile';
@@ -98,6 +99,7 @@ export const tiles = [
   RadarTile,
   RadialBarsTile,
   ResponsiveTile,
+  SankeyTile,
   SplitLinePathTile,
   StatsPlotTile,
   TextTile,

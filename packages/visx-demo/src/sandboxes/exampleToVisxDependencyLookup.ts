@@ -30,6 +30,7 @@ import radarPackageJson from './visx-radar/package.json';
 import responsivePackageJson from './visx-responsive/package.json';
 import lineRadialPackageJson from './visx-shape-line-radial/package.json';
 import piePackageJson from './visx-shape-pie/package.json';
+import sankeyPackageJson from './visx-sankey/package.json';
 import splitLinePathPackageJson from './visx-shape-splitlinepath/package.json';
 import stackedAreasPackageJson from './visx-stacked-areas/package.json';
 import statsPackageJson from './visx-stats/package.json';
@@ -44,6 +45,8 @@ import { packageJson as textPackageJson } from '../components/Gallery/TextTile';
 
 import extractVisxDepsFromPackageJson from '../components/util/extractVisxDepsFromPackageJson';
 import { VisxPackage } from '../types';
+
+console.log({ sankeyPackageJson });
 
 const examples = [
   annotationPackageJson,
@@ -78,6 +81,7 @@ const examples = [
   polygonsPackageJson,
   radarPackageJson,
   responsivePackageJson,
+  sankeyPackageJson,
   splitLinePathPackageJson,
   stackedAreasPackageJson,
   statsPackageJson,
