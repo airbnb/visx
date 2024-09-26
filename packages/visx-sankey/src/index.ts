@@ -7,3 +7,14 @@ export {
   sankeyCenter,
   sankeyJustify,
 } from 'd3-sankey';
+export type {
+  SankeyProps,
+  NodeAlignment,
+  SankeyExtraProperties,
+  SankeyGraph,
+  SankeyLink,
+  SankeyNode,
+  SankeyNodeMinimal,
+  SankeyLinkMinimal,
+  SankeyLayout,
+} from './types';

@@ -43,6 +43,10 @@ type TargetAccessor<
   Parameters<Link<any, SankeyLink<NodeDatum, LinkDatum>, [number, number]>['target']>,
   undefined
 >[0];
+export type NodeAlignment<
+  NodeDatum extends SankeyExtraProperties,
+  LinkDatum extends SankeyExtraProperties,
+> = (node: SankeyNode<NodeDatum, LinkDatum>, n: number) => number;
 
 export type SankeyProps<
   NodeDatum extends SankeyExtraProperties,
@@ -59,7 +63,7 @@ export type SankeyProps<
   /** Sets the node padding. */
   nodePadding?: number;
   /** Sets the node alignment function. */
-  nodeAlign?: (node: SankeyNode<NodeDatum, LinkDatum>, n: number) => number;
+  nodeAlign?: NodeAlignment<NodeDatum, LinkDatum>;
   /** Sets the extent of the sankey layout. */
   extent?: [[number, number], [number, number]];
   /** Sets the size of the layout. A convenience method equivalent to using an extent of [[0, 0], [width, height]] */
@@ -96,7 +100,7 @@ export default function Sankey<
   root,
   children,
   nodeId,
-  nodeWidth,
+  nodeWidth = 2,
   nodePadding,
   nodeAlign,
   extent,
