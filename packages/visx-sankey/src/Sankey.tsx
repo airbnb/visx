@@ -1,4 +1,5 @@
 import React, { ReactNode, SVGAttributes } from 'react';
+import cx from 'classnames';
 import { Group } from '@visx/group';
 import {
   sankey as d3sankey,
@@ -62,6 +63,8 @@ export type SankeyProps<
 > = {
   /** The root data from which to derive the sankey layout. */
   root: SankeyGraph<NodeDatum, LinkDatum>;
+  /** The class name(s) applied to the g element container. */
+  className?: string;
   /** Render override function which is passed the computed sankey data graph */
   children?: SankeyChildrenFunction<NodeDatum, LinkDatum>;
   /** Sets the node id accessor. */
@@ -106,6 +109,7 @@ export default function Sankey<
   LinkDatum extends SankeyExtraProperties,
 >({
   root,
+  className,
   children,
   nodeId,
   nodeWidth = 2,
@@ -142,8 +146,8 @@ export default function Sankey<
   }
 
   return (
-    <>
-      <Group>
+    <Group className={cx('visx-sankey', className)}>
+      <Group className="visx-sankey-links">
         {graph.links.map((link, i) => (
           <path
             d={createPath(link) ?? ''}
@@ -156,7 +160,7 @@ export default function Sankey<
           />
         ))}
       </Group>
-      <Group>
+      <Group className="visx-sankey-nodes">
         {graph.nodes.map(({ y0, y1, x0, x1 }, i) =>
           y0 !== undefined && y1 !== undefined && x0 !== undefined && x1 !== undefined ? (
             <rect
@@ -171,6 +175,6 @@ export default function Sankey<
           ) : null,
         )}
       </Group>
-    </>
+    </Group>
   );
 }
