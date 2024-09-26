@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { Sankey, sankeyCenter, sankeyRight, sankeyLeft, sankeyJustify } from '@visx/sankey';
 import energy from './energy.json';
 
-console.log({ energy });
-
 const controlStyles = { fontSize: 10 };
 
 export const background = '#84dccf';
