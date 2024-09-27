@@ -73,8 +73,8 @@ const data = { nodes, links };
 return (
   <svg>
     <Sankey root={data}>
-      {' '}
-      nodeAlign={sankeyCenter} size={[100, 100]}>{({ graph, createPath }) => (
+      nodeAlign={sankeyCenter}
+      size={[100, 100]}>{({ graph, createPath }) => (
         <>
           <Group>
             {graph.links.map((link, i) => (
