@@ -34,6 +34,11 @@ type CreatePath<
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
 > = Link<any, SankeyLink<NodeDatum, LinkDatum>, [number, number]>;
 
+type NodeIdAccessor<
+  NodeDatum extends SankeyExtraProperties,
+  LinkDatum extends SankeyExtraProperties,
+> = (node: SankeyNode<NodeDatum, LinkDatum>) => string | number;
+
 type SourceAccessor<
   NodeDatum extends SankeyExtraProperties,
   LinkDatum extends SankeyExtraProperties,
@@ -68,7 +73,7 @@ export type SankeyProps<
   /** Render override function which is passed the computed sankey data graph */
   children?: SankeyChildrenFunction<NodeDatum, LinkDatum>;
   /** Sets the node id accessor. */
-  nodeId?: (node: SankeyNode<NodeDatum, LinkDatum>) => string | number;
+  nodeId?: NodeIdAccessor<NodeDatum, LinkDatum>;
   /** Sets the node width. */
   nodeWidth?: number;
   /** Sets the node padding. */
