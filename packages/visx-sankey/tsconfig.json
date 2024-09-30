@@ -15,5 +15,8 @@
     "../../types/**/*"
   ],
   "references": [
+    {
+      "path": "../visx-group"
+    }
   ]
 }
