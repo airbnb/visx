@@ -47,5 +47,5 @@ export default function combineBarStackData<
     });
   });
 
-  return Object.values(dataByStackValue);
+  return Array.from(dataByStackValue.values());
 }
