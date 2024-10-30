@@ -20,9 +20,7 @@ export default function combineBarStackData<
   seriesChildren: React.ReactElement<SeriesProps<XScale, YScale, Datum>>[],
   horizontal?: boolean,
 ): CombinedStackData<XScale, YScale>[] {
-  const dataByStackValue: {
-    [stackValue: string]: CombinedStackData<XScale, YScale>;
-  } = {};
+  const dataByStackValue = new Map<string, CombinedStackData<XScale, YScale>>();
 
   seriesChildren.forEach((child) => {
     const { dataKey, data, xAccessor, yAccessor } = child.props;
@@ -36,11 +34,16 @@ export default function combineBarStackData<
       const stack = stackFn(d);
       const numericValue = valueFn(d);
       const stackKey = String(stack);
-      if (!dataByStackValue[stackKey]) {
-        dataByStackValue[stackKey] = { stack, positiveSum: 0, negativeSum: 0 };
+      if (!dataByStackValue.has(stackKey)) {
+        dataByStackValue.set(stackKey, {
+          stack,
+          positiveSum: 0,
+          negativeSum: 0,
+        });
       }
-      dataByStackValue[stackKey][dataKey] = numericValue;
-      dataByStackValue[stackKey][numericValue >= 0 ? 'positiveSum' : 'negativeSum'] += numericValue;
+      const stackEntry = dataByStackValue.get(stackKey)!;
+      stackEntry[dataKey] = numericValue;
+      stackEntry[numericValue >= 0 ? 'positiveSum' : 'negativeSum'] += numericValue;
     });
   });
 
