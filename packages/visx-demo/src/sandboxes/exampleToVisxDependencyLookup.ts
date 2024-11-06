@@ -46,8 +46,6 @@ import { packageJson as textPackageJson } from '../components/Gallery/TextTile';
 import extractVisxDepsFromPackageJson from '../components/util/extractVisxDepsFromPackageJson';
 import { VisxPackage } from '../types';
 
-console.log({ sankeyPackageJson });
-
 const examples = [
   annotationPackageJson,
   areaPackageJson,
