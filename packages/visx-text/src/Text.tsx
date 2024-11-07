@@ -27,7 +27,7 @@ export default function Text(props: TextProps) {
   const { wordsByLines, startDy, transform } = useText(props);
 
   return (
-    <svg ref={innerRef} x={dx} y={dy} fontSize={fontSize} style={SVG_STYLE}>
+    <svg ref={innerRef} x={dx} y={dy} fontSize={fontSize} style={SVG_STYLE} height={1} width={1}>
       {wordsByLines.length > 0 ? (
         <text ref={innerTextRef} transform={transform} {...textProps} textAnchor={textAnchor}>
           {wordsByLines.map((line, index) => (
