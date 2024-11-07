@@ -1,4 +1,5 @@
 # Changelog
+- [v3.12.0](#v3120)
 - [v3.11.0](#v3110)
 - [v3.10.4](#v3104)
 - [v3.10.3](#v3103)
@@ -6,10 +7,10 @@
 - [v3.10.1](#v3101)
 - [v3.10.0](#v3100)
 - [v3.9.0](#v390)
-- [v3.8.0](#v380)
 <details>
   <summary>Older Releases...</summary>
   <ul>
+  <li><a href="#v380">v3.8.0</a></li>
   <li><a href="#v370">v3.7.0</a></li>
   <li><a href="#v361">v3.6.1</a></li>
   <li><a href="#v360">v3.6.0</a></li>
@@ -180,6 +181,20 @@
 </details>
 
 ------
+# v3.12.0 (2024-11-07)
+
+#### :rocket: Enhancements
+
+- feat(sankey): add @visx/sankey [#1880](https://github.com/airbnb/visx/pull/1880)
+
+### :memo: Documentation
+
+- Fix small error in the code example in the "Theming" section [#1863](https://github.com/airbnb/visx/pull/1863)
+  
+#### :trophy: Contributors
+- [jacksonhardaker](https://github.com/jacksonhardaker)
+- [maurer2](https://github.com/maurer2)
+
 # v3.11.0 (2024-05-29)
 
 #### :rocket: Enhancements
