@@ -1,6 +1,7 @@
 import { AxisScale } from '@visx/axis';
 import { scaleBand, scaleLinear } from '@visx/scale';
 import { PositionScale } from '@visx/shape/lib/types';
+import { Point } from '@visx/point';
 
 import findNearestDatumX from '../../src/utils/findNearestDatumX';
 import findNearestDatumY from '../../src/utils/findNearestDatumY';
@@ -121,18 +122,32 @@ describe('findNearestStackDatum', () => {
   });
 
   it('should find the nearest datum', () => {
-    const d1 = { yVal: '🍌' };
-    const d2 = { yVal: '🚀' };
+    const d1 = { xVal: 0, yVal: '0' };
+    const d2 = { xVal: 8, yVal: '8' };
+
+    const stackData = [
+      { xy: [0, 0], item: { '0': 0, stack: '0' } },
+      { xy: [1, 1], item: { '8': 8, stack: '8' } },
+    ].map(({ xy, item }) => {
+      const dataItem = [...xy];
+      // @ts-ignore
+      dataItem.data = item;
+      return dataItem;
+    });
+
     expect(
       findNearestStackDatum(
         {
           ...params,
+          data: stackData,
+          point: new Point({ x: 0, y: 0 }),
           // type is not technically correct, but coerce for test
         } as unknown as NearestDatumArgs<AxisScale, AxisScale, BarStackDatum<AxisScale, AxisScale>>,
         [d1, d2],
+        { xAccessor: ({ xVal }) => xVal, yAccessor: ({ yVal }) => yVal },
         true,
       )!.datum,
-    ).toEqual(d2); // nearest datum index=1
+    ).toEqual(d1); // nearest datum index=0
   });
 });
 

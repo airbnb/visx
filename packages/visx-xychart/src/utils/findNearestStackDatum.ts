@@ -1,5 +1,6 @@
 import { AxisScale } from '@visx/axis';
 import { getFirstItem, getSecondItem } from '@visx/shape/lib/util/accessors';
+import { ScaleInput } from '@visx/scale';
 import findNearestDatumY from './findNearestDatumY';
 import findNearestDatumX from './findNearestDatumX';
 import { BarStackDatum, NearestDatumArgs } from '../types';
@@ -17,11 +18,19 @@ export default function findNearestStackDatum<
 >(
   nearestDatumArgs: NearestDatumArgs<XScale, YScale, BarStackDatum<XScale, YScale>>,
   seriesData: Datum[],
+  childAccessors: {
+    xAccessor: (d: Datum) => ScaleInput<XScale>;
+    yAccessor: (d: Datum) => ScaleInput<YScale>;
+  },
   horizontal?: boolean,
 ) {
   const { xScale, yScale, point } = nearestDatumArgs;
   const datum = (horizontal ? findNearestDatumY : findNearestDatumX)(nearestDatumArgs);
-  const seriesDatum = datum?.index == null ? null : seriesData[datum.index];
+  const stack = datum?.datum.data.stack;
+  const seriesDatum = seriesData.find((d) => {
+    const { yAccessor, xAccessor } = childAccessors;
+    return (horizontal ? yAccessor : xAccessor)(d) === stack;
+  });
 
   return datum && seriesDatum && point
     ? {
