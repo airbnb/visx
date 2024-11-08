@@ -4,7 +4,7 @@
   <img src="https://img.shields.io/npm/dm/@visx/visx.svg?style=flat-square" />
 </a>
 
-The one stop install for all `visx` packages.
+The one step install for all `visx` packages.
 
 ## Installation
 
