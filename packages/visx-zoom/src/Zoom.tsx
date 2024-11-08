@@ -18,6 +18,7 @@ import {
   ScaleSignature,
   ProvidedZoom,
   PinchDelta,
+  CreateGestureHandlers,
 } from './types';
 
 // default prop values
@@ -36,6 +37,40 @@ const defaultWheelDelta = (event: React.WheelEvent | WheelEvent) =>
 const defaultPinchDelta: PinchDelta = ({ offset: [s], lastOffset: [lastS] }) => ({
   scaleX: s - lastS < 0 ? 0.9 : 1.1,
   scaleY: s - lastS < 0 ? 0.9 : 1.1,
+});
+
+const defaultCreateGestureHandlers: CreateGestureHandlers = <ElementType,>({
+  dragStart,
+  dragEnd,
+  dragMove,
+  handlePinch,
+  handleWheel,
+}: ProvidedZoom<ElementType>) => ({
+  onDragStart: ({ event }) => {
+    if (!(event instanceof KeyboardEvent)) dragStart(event);
+  },
+  onDrag: ({ event, pinching, cancel }) => {
+    if (pinching) {
+      cancel();
+      dragEnd();
+    } else if (!(event instanceof KeyboardEvent)) {
+      dragMove(event);
+    }
+  },
+  onDragEnd: dragEnd,
+  onPinch: handlePinch,
+  onWheel: ({ event, active, pinching }) => {
+    if (
+      // Outside of Safari, the wheel event is fired together with the pinch event
+      pinching ||
+      // currently onWheelEnd emits one final wheel event which causes 2x scale
+      // updates for the last tick. ensuring that the gesture is active avoids this
+      !active
+    ) {
+      return;
+    }
+    handleWheel(event);
+  },
 });
 
 export type ZoomProps<ElementType> = {
@@ -94,6 +129,8 @@ export type ZoomProps<ElementType> = {
   /** Initial transform matrix to apply. */
   initialTransformMatrix?: TransformMatrix;
   children: (zoom: ProvidedZoom<ElementType> & ZoomState) => React.ReactElement;
+  /** A function that returns gesture handlers for managing UI interactions  */
+  createGestureHandlers?: CreateGestureHandlers;
 };
 
 type ZoomState = {
@@ -114,6 +151,7 @@ function Zoom<ElementType extends Element>({
   height,
   constrain,
   children,
+  createGestureHandlers = defaultCreateGestureHandlers,
 }: ZoomProps<ElementType>): React.ReactElement {
   const containerRef = useRef<ElementType>(null);
   const matrixStateRef = useRef<TransformMatrix>(initialTransformMatrix);
@@ -312,37 +350,6 @@ function Zoom<ElementType extends Element>({
     setTransformMatrix(identityMatrix());
   }, [setTransformMatrix]);
 
-  useGesture(
-    {
-      onDragStart: ({ event }) => {
-        if (!(event instanceof KeyboardEvent)) dragStart(event);
-      },
-      onDrag: ({ event, pinching, cancel }) => {
-        if (pinching) {
-          cancel();
-          dragEnd();
-        } else if (!(event instanceof KeyboardEvent)) {
-          dragMove(event);
-        }
-      },
-      onDragEnd: dragEnd,
-      onPinch: handlePinch,
-      onWheel: ({ event, active, pinching }) => {
-        if (
-          // Outside of Safari, the wheel event is fired together with the pinch event
-          pinching ||
-          // currently onWheelEnd emits one final wheel event which causes 2x scale
-          // updates for the last tick. ensuring that the gesture is active avoids this
-          !active
-        ) {
-          return;
-        }
-        handleWheel(event);
-      },
-    },
-    { target: containerRef, eventOptions: { passive: false }, drag: { filterTaps: true } },
-  );
-
   const zoom: ProvidedZoom<ElementType> & ZoomState = {
     initialTransformMatrix,
     transformMatrix,
@@ -367,6 +374,12 @@ function Zoom<ElementType extends Element>({
     applyInverseToPoint,
     containerRef,
   };
+
+  useGesture(createGestureHandlers(zoom), {
+    target: containerRef,
+    eventOptions: { passive: false },
+    drag: { filterTaps: true },
+  });
 
   return <>{children(zoom)}</>;
 }
