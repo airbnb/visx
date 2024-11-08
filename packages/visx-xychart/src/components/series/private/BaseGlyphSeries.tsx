@@ -1,7 +1,7 @@
 import React, { useContext, useMemo } from 'react';
 import { AxisScale } from '@visx/axis';
 import DataContext from '../../../context/DataContext';
-import { GlyphProps, GlyphsProps, SeriesProps } from '../../../types';
+import { GlyphProps, GlyphsProps, SeriesProps, NearestDatumArgs, NearestDatumReturnType } from '../../../types';
 import withRegisteredData, { WithRegisteredDataProps } from '../../../enhancers/withRegisteredData';
 import getScaledValueFactory from '../../../utils/getScaledValueFactory';
 import isValidNumber from '../../../typeguards/isValidNumber';
@@ -19,6 +19,8 @@ export type BaseGlyphSeriesProps<
   size?: number | ((d: Datum) => number);
   /** Function which handles rendering glyphs. */
   renderGlyphs: (glyphsProps: GlyphsProps<XScale, YScale, Datum>) => React.ReactNode;
+  /** Passed to useEventHandlers to override findNearestDatum logic */
+  findNearestDatumOverride?: (params: NearestDatumArgs<XScale, YScale, Datum>,) => NearestDatumReturnType<Datum>;
 };
 
 export function BaseGlyphSeries<
@@ -42,6 +44,7 @@ export function BaseGlyphSeries<
   xScale,
   yAccessor,
   yScale,
+  findNearestDatumOverride,
 }: BaseGlyphSeriesProps<XScale, YScale, Datum> & WithRegisteredDataProps<XScale, YScale, Datum>) {
   const { colorScale, theme, horizontal } = useContext(DataContext);
   const getScaledX = useMemo(() => getScaledValueFactory(xScale, xAccessor), [xScale, xAccessor]);
@@ -60,6 +63,7 @@ export function BaseGlyphSeries<
     onPointerDown,
     source: ownEventSourceKey,
     allowedSources: [XYCHART_EVENT_SOURCE, ownEventSourceKey],
+    findNearestDatum: findNearestDatumOverride,
   });
 
   const glyphs = useMemo(
