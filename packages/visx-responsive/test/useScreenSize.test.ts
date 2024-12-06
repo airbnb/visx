@@ -1,5 +1,4 @@
-import { fireEvent, waitFor } from '@testing-library/react';
-import { renderHook } from '@testing-library/react-hooks';
+import { fireEvent, waitFor, renderHook } from '@testing-library/react';
 import useScreenSize from '../src/hooks/useScreenSize';
 
 const setWindowSize = (width: number, height: number) => {
