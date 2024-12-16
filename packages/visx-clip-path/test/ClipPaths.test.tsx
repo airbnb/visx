@@ -1,3 +1,4 @@
+/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -9,7 +10,7 @@
  * to more idiomatic RTL (and then removing this banner!).
  */
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 
 import { ClipPath, CircleClipPath, RectClipPath } from '../src';
 
@@ -19,14 +20,28 @@ describe('<ClipPath />', () => {
   });
 
   test('it should render defs and clipPath elements', () => {
-    const wrapper = shallow(<ClipPath id="test" />);
-    expect(wrapper.type()).toBe('defs');
-    expect(wrapper.find('clipPath')).toHaveLength(1);
+    const { container } = render(<ClipPath id="test" />);
+    const defs = container.querySelector('defs');
+    const clipPath = container.querySelector('clippath');
+    
+    expect(defs).toBeInTheDocument();
+    expect(clipPath).toBeInTheDocument();
   });
 
   test('it should assign the passed id to the clipPath', () => {
-    const wrapper = shallow(<ClipPath id="best_clip" />);
-    expect(wrapper.find('clipPath#best_clip')).toHaveLength(1);
+    const { container } = render(<ClipPath id="best_clip" />);
+    const clipPath = container.querySelector('clippath#best_clip');
+    expect(clipPath).toBeInTheDocument();
+  });
+
+  test('it should render children', () => {
+    const { container } = render(
+      <ClipPath id="test">
+        <circle r={5} />
+      </ClipPath>
+    );
+    const circle = container.querySelector('clippath > circle');
+    expect(circle).toBeInTheDocument();
   });
 });
 
@@ -36,8 +51,20 @@ describe('<RectClipPath />', () => {
   });
 
   test('it should render a rect', () => {
-    const wrapper = shallow(<RectClipPath id="test" />);
-    expect(wrapper.find('rect')).toHaveLength(1);
+    const { container } = render(<RectClipPath id="test" />);
+    const rect = container.querySelector('clippath > rect');
+    expect(rect).toBeInTheDocument();
+  });
+
+  test('it should pass props to the rect', () => {
+    const { container } = render(
+      <RectClipPath id="test" width={100} height={200} x={10} y={20} />
+    );
+    const rect = container.querySelector('clippath > rect');
+    expect(rect).toHaveAttribute('width', '100');
+    expect(rect).toHaveAttribute('height', '200');
+    expect(rect).toHaveAttribute('x', '10');
+    expect(rect).toHaveAttribute('y', '20');
   });
 });
 
@@ -47,8 +74,19 @@ describe('<CircleClipPath />', () => {
   });
 
   test('it should render a circle', () => {
-    const wrapper = shallow(<CircleClipPath id="test" />);
-    expect(wrapper.find('circle')).toHaveLength(1);
+    const { container } = render(<CircleClipPath id="test" />);
+    const circle = container.querySelector('clippath > circle');
+    expect(circle).toBeInTheDocument();
+  });
+
+  test('it should pass props to the circle', () => {
+    const { container } = render(
+      <CircleClipPath id="test" r={50} cx={100} cy={200} />
+    );
+    const circle = container.querySelector('clippath > circle');
+    expect(circle).toHaveAttribute('r', '50');
+    expect(circle).toHaveAttribute('cx', '100');
+    expect(circle).toHaveAttribute('cy', '200');
   });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":7,"failed":0,"total":7,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"pending"}
+// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":3,"failed":7,"total":10,"skipped":0,"successRate":30},"tsc":"pending","enyzme":"converted"}

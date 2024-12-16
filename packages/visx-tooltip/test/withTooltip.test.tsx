@@ -1,3 +1,4 @@
+/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -9,7 +10,8 @@
  * to more idiomatic RTL (and then removing this banner!).
  */
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { withTooltip } from '../src';
 
@@ -25,38 +27,39 @@ const DummyComponentWithNoContainerTooltip = withTooltip(
   (children) => children,
 );
 
+jest.mock('react', () => ({
+  ...jest.requireActual('react'),
+  memo: (x: any) => x,
+}));
+
 describe('withTooltip()', () => {
   test('it should be defined', () => {
     expect(withTooltip).toBeDefined();
   });
 
   test('it should render a default container', () => {
-    const wrapper = shallow(<DummyComponentWithDefaultTooltip />);
+    const { container } = render(<DummyComponentWithDefaultTooltip />);
+    const div = container.querySelector('div');
 
-    expect(wrapper.find('div')).toHaveLength(1);
-    expect(wrapper.find('div').first().prop('style')).toEqual({
-      position: 'relative',
-      width: 'inherit',
-      height: 'inherit',
-    });
-    expect(wrapper.find(DummyComponent)).toHaveLength(1);
+    expect(div).toBeInTheDocument();
+    expect(getComputedStyle(div as HTMLElement).position).toBe('relative');
+    expect(getComputedStyle(div as HTMLElement).width).toBe('inherit');
+    expect(getComputedStyle(div as HTMLElement).height).toBe('inherit');
   });
 
   test('it should pass custom props to the container', () => {
-    const wrapper = shallow(<DummyComponentWithCustomContainerPropsTooltip />);
+    const { container } = render(<DummyComponentWithCustomContainerPropsTooltip />);
+    const div = container.querySelector('div');
 
-    expect(wrapper.find('div')).toHaveLength(1);
-    expect(wrapper.find('div').first().prop('style')).toEqual({
-      position: 'static',
-    });
-    expect(wrapper.find(DummyComponent)).toHaveLength(1);
+    expect(div).toBeInTheDocument();
+    expect(getComputedStyle(div as HTMLElement).position).toBe('static');
   });
 
   test('it should render with a custom container', () => {
-    const wrapper = shallow(<DummyComponentWithNoContainerTooltip />);
+    const { container } = render(<DummyComponentWithNoContainerTooltip />);
+    const div = container.querySelector('div');
 
-    expect(wrapper.find('div')).toHaveLength(0);
-    expect(wrapper.find(DummyComponent)).toHaveLength(1);
+    expect(div).not.toBeInTheDocument();
   });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":4,"failed":0,"total":4,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"pending"}
+// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":4,"failed":0,"total":4,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}

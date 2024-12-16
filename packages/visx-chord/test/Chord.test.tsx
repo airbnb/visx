@@ -1,3 +1,4 @@
+/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -9,8 +10,7 @@
  * to more idiomatic RTL (and then removing this banner!).
  */
 import React from 'react';
-import { shallow } from 'enzyme';
-
+import { render } from '@testing-library/react';
 import { Chord } from '../src';
 
 const matrix = [
@@ -20,12 +20,6 @@ const matrix = [
   [1013, 990, 940, 6907],
 ];
 
-type WrapperProps = {
-  matrix: number[][];
-  children: () => React.ReactNode;
-};
-const ChordWrapper = ({ ...restProps }: WrapperProps) => shallow(<Chord {...restProps} />);
-
 describe('<Chord />', () => {
   test('it should be defined', () => {
     expect(Chord).toBeDefined();
@@ -33,10 +27,10 @@ describe('<Chord />', () => {
 
   test('it should call children as a function with required args', () => {
     const children = jest.fn();
-    ChordWrapper({ children, matrix });
+    render(<Chord matrix={matrix} children={children} />);
     const args = children.mock.calls[0][0];
     expect(children.mock.calls).toHaveLength(1);
     expect(args.chords).toBeDefined();
   });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":2,"failed":0,"total":2,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"pending"}
+// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":2,"failed":0,"total":2,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}

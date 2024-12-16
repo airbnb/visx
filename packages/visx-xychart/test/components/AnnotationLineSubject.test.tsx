@@ -1,3 +1,4 @@
+/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -9,17 +10,28 @@
  * to more idiomatic RTL (and then removing this banner!).
  */
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { LineSubject as VxAnnotationLineSubject } from '@visx/annotation';
 import { AnnotationLineSubject } from '../../src';
 
+jest.mock('@visx/annotation', () => ({
+  LineSubject: jest.fn(() => <div data-testid="vx-line-subject" />),
+}));
+
 describe('<AnnotationLineSubject />', () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('should be defined', () => {
     expect(AnnotationLineSubject).toBeDefined();
   });
+
   it('should render a VxAnnotationLineSubject', () => {
-    const wrapper = shallow(<AnnotationLineSubject />);
-    expect(wrapper.find(VxAnnotationLineSubject)).toHaveLength(1);
+    const { getByTestId } = render(<AnnotationLineSubject />);
+    expect(getByTestId('vx-line-subject')).toBeInTheDocument();
+    expect(VxAnnotationLineSubject).toHaveBeenCalled();
   });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":2,"failed":0,"total":2,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"pending"}
+// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":2,"failed":0,"total":2,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}

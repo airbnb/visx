@@ -1,3 +1,4 @@
+/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -9,7 +10,8 @@
  * to more idiomatic RTL (and then removing this banner!).
  */
 import React from 'react';
-import { render } from 'enzyme';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { Threshold } from '../src';
 
 const data = [
@@ -23,7 +25,7 @@ describe('<Threshold />', () => {
   });
 
   it('should render the path', () => {
-    const wrapper = render(
+    const { container } = render(
       <svg>
         <Threshold
           id={`${Math.random()}`}
@@ -44,12 +46,13 @@ describe('<Threshold />', () => {
         />
       </svg>,
     );
-    expect(wrapper.find('g.visx-threshold')).toHaveLength(1);
-    expect(wrapper.find('path')).toHaveLength(4);
+    
+    expect(container.querySelector('g.visx-threshold')).toBeInTheDocument();
+    expect(container.querySelectorAll('path')).toHaveLength(4);
   });
 
   it('supports accessors for clipping', () => {
-    const wrapper = render(
+    const { container } = render(
       <svg>
         <Threshold
           id={`${Math.random()}`}
@@ -70,8 +73,9 @@ describe('<Threshold />', () => {
         />
       </svg>,
     );
-    expect(wrapper.find('g.visx-threshold')).toHaveLength(1);
-    expect(wrapper.find('path')).toHaveLength(4);
+    
+    expect(container.querySelector('g.visx-threshold')).toBeInTheDocument();
+    expect(container.querySelectorAll('path')).toHaveLength(4);
   });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":3,"failed":0,"total":3,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"pending"}
+// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":3,"failed":0,"total":3,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}

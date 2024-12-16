@@ -1,3 +1,4 @@
+/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -9,7 +10,6 @@
  * to more idiomatic RTL (and then removing this banner!).
  */
 import React, { useContext } from 'react';
-import { mount } from 'enzyme';
 import { ResizeObserver } from '@juggle/resize-observer';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
@@ -25,7 +25,6 @@ const chartProps = {
 describe('<XYChart />', () => {
   let initialResizeObserver: typeof ResizeObserver;
   beforeAll(() => {
-    // don't worry about passing it via context
     initialResizeObserver = window.ResizeObserver;
     window.ResizeObserver = ResizeObserver;
   });
@@ -41,20 +40,19 @@ describe('<XYChart />', () => {
   it('should render with parent size if width or height is not provided', () => {
     const { getByTestId } = render(
       <div style={{ width: '200px', height: '200px' }} data-testid="wrapper">
-        <XYChart {...chartProps} width={undefined} data-testid="rect">
+        <XYChart {...chartProps} width={undefined}>
           <rect />
         </XYChart>
       </div>,
     );
 
-    // the XYChart should auto-resize to it's parent size
-    const Wrapper = getByTestId('wrapper');
-    expect(Wrapper.firstChild).toHaveStyle('width: 100%; height: 100%');
+    const wrapper = getByTestId('wrapper');
+    expect(wrapper.firstChild).toHaveStyle('width: 100%; height: 100%');
   });
 
-  it('should warn if DataProvider is not available and no x- or yScale config is passed', () => {
+  it('should throw if DataProvider is not available and no x- or yScale config is passed', () => {
     expect(() =>
-      mount(
+      render(
         <XYChart>
           <rect />
         </XYChart>,
@@ -68,8 +66,7 @@ describe('<XYChart />', () => {
         <rect />
       </XYChart>,
     );
-    const SVGElement = container.querySelector('svg');
-    expect(SVGElement).toBeDefined();
+    expect(container.querySelector('svg')).toBeInTheDocument();
   });
 
   it('should render children', () => {
@@ -78,8 +75,7 @@ describe('<XYChart />', () => {
         <rect id="xychart-child" />
       </XYChart>,
     );
-    const XYChartChild = container.querySelector('#xychart-child');
-    expect(XYChartChild).toBeDefined();
+    expect(container.querySelector('#xychart-child')).toBeInTheDocument();
   });
 
   it('should update the registry dimensions', () => {
@@ -89,7 +85,7 @@ describe('<XYChart />', () => {
 
     const DataConsumer = () => {
       const data = useContext(DataContext);
-      // eslint-disable-next-line jest/no-if
+
       if (data.width && data.height) {
         expect(data.width).toBe(width);
         expect(data.height).toBe(height);
@@ -106,4 +102,4 @@ describe('<XYChart />', () => {
     );
   });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":6,"failed":0,"total":6,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"pending"}
+// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":6,"failed":0,"total":6,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}

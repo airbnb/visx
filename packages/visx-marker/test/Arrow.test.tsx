@@ -1,3 +1,4 @@
+/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -9,41 +10,54 @@
  * to more idiomatic RTL (and then removing this banner!).
  */
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 import { MarkerArrow, Marker } from '../src';
 
-const Wrapper = (restProps = {}) => shallow(<MarkerArrow id="marker-circle-test" {...restProps} />);
+jest.mock('../src/markers/Marker', () => ({
+  default: jest.fn(() => null),
+  __esModule: true,
+}));
 
 describe('<MarkerArrow />', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   test('it should be defined', () => {
     expect(MarkerArrow).toBeDefined();
   });
 
-  test('it should render a <Marker> containing a <g>, <polyline>', () => {
-    const marker = Wrapper().find(Marker);
-    const g = marker.dive().find('g');
-    const polyline = marker.dive().find('polyline');
-    expect(marker).toHaveLength(1);
-    expect(g).toHaveLength(1);
-    expect(polyline).toHaveLength(1);
+  test('it should render marker with correct structure', () => {
+    render(<MarkerArrow id="marker-circle-test" />);
+    expect(Marker).toHaveBeenCalled();
+    const markerProps = (Marker as jest.Mock).mock.calls[0][0];
+    expect(markerProps.id).toBe('marker-circle-test');
   });
 
   test('it should size correctly', () => {
     const size = 8;
     const strokeWidth = 1;
-    const marker = Wrapper({ size, strokeWidth }).find(Marker);
-    const g = marker.dive().find('g');
-    const polyline = marker.dive().find('polyline');
     const max = size + strokeWidth * 2;
     const midX = size;
     const midY = max / 2;
-    const points = `0 0, ${size} ${size / 2}, 0 ${size}`;
-    expect(marker.prop('markerWidth')).toEqual(max);
-    expect(marker.prop('markerHeight')).toEqual(max);
-    expect(marker.prop('refX')).toEqual(midX);
-    expect(marker.prop('refY')).toEqual(midY);
-    expect(g.prop('transform')).toBe(`translate(${strokeWidth}, ${strokeWidth})`);
-    expect(polyline.prop('points')).toEqual(points);
+
+    render(<MarkerArrow id="marker-circle-test" size={size} strokeWidth={strokeWidth} />);
+    
+    const markerProps = (Marker as jest.Mock).mock.calls[0][0];
+    expect(markerProps.markerWidth).toBe(max);
+    expect(markerProps.markerHeight).toBe(max);
+    expect(markerProps.refX).toBe(midX);
+    expect(markerProps.refY).toBe(midY);
+    
+    expect(markerProps.children).toMatchInlineSnapshot(`
+      <g
+        transform="translate(1, 1)"
+      >
+        <polyline
+          points="0 0, 8 4, 0 8"
+        />
+      </g>
+    `);
   });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":3,"failed":0,"total":3,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"pending"}
+// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":3,"failed":0,"total":3,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}

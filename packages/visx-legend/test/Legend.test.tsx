@@ -1,3 +1,4 @@
+/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -9,10 +10,15 @@
  * to more idiomatic RTL (and then removing this banner!).
  */
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 import { scaleLinear } from '@visx/scale';
 
 import { Legend, LegendLabel } from '../src';
+
+jest.mock('../src/legends/Legend/LegendLabel', () => ({
+  __esModule: true,
+  default: jest.fn(() => null)
+}));
 
 const defaultProps = {
   scale: scaleLinear<number>({
@@ -23,39 +29,47 @@ const defaultProps = {
 };
 
 describe('<Legend />', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   test('it should be defined', () => {
     expect(Legend).toBeDefined();
   });
 
   test('it should default style to display: flex, flex-direction: column', () => {
-    const wrapper = shallow(<Legend {...defaultProps} />);
-    expect(wrapper.prop('style')).toEqual({
-      display: 'flex',
-      flexDirection: 'column',
-    });
+    const { container } = render(<Legend {...defaultProps} />);
+    const legend = container.firstChild as HTMLElement;
+    const styles = getComputedStyle(legend);
+    
+    expect(styles.display).toBe('flex');
+    expect(styles.flexDirection).toBe('column');
   });
 
   test('it should extend style prop', () => {
-    const wrapper = shallow(<Legend {...defaultProps} style={{ display: 'block' }} />);
-    expect(wrapper.prop('style')).toEqual({
-      display: 'block',
-      flexDirection: 'column',
-    });
+    const { container } = render(<Legend {...defaultProps} style={{ display: 'block' }} />);
+    const legend = container.firstChild as HTMLElement;
+    const styles = getComputedStyle(legend);
+    
+    expect(styles.display).toBe('block');
+    expect(styles.flexDirection).toBe('column');
   });
 
   test('it should pass through direction prop to style prop', () => {
-    const wrapper = shallow(<Legend {...defaultProps} direction="row" />);
-    expect(wrapper.prop('style')).toEqual({
-      display: 'flex',
-      flexDirection: 'row',
-    });
+    const { container } = render(<Legend {...defaultProps} direction="row" />);
+    const legend = container.firstChild as HTMLElement;
+    const styles = getComputedStyle(legend);
+    
+    expect(styles.display).toBe('flex');
+    expect(styles.flexDirection).toBe('row');
   });
 
   test('it should pass through legendLabelProps to legend labels', () => {
     const style = { fontFamily: 'Comic Sans' };
-    const wrapper = shallow(<Legend {...defaultProps} legendLabelProps={{ style }} />);
-    const label = wrapper.find(LegendLabel).first();
-    expect(label.prop('style')).toEqual(style);
+    render(<Legend {...defaultProps} legendLabelProps={{ style }} />);
+    
+    const mockCalls = (LegendLabel as jest.Mock).mock.calls;
+    expect(mockCalls[0][0].style).toEqual(style);
   });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":5,"failed":0,"total":5,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"pending"}
+// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":5,"failed":0,"total":5,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}

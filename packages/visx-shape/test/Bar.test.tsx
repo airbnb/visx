@@ -1,3 +1,4 @@
+/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -9,13 +10,10 @@
  * to more idiomatic RTL (and then removing this banner!).
  */
 import React from 'react';
-import { shallow } from 'enzyme';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import { Bar } from '../src';
-
-const BarWrapper = (restProps = {}) => shallow(<Bar {...restProps} />);
 
 describe('<Bar />', () => {
   test('it should be defined', () => {
@@ -23,11 +21,13 @@ describe('<Bar />', () => {
   });
 
   test('it should have the .visx-bar class', () => {
-    expect(
-      BarWrapper({
-        className: 'test',
-      }).prop('className'),
-    ).toBe('visx-bar test');
+    const { container } = render(
+      <svg>
+        <Bar className="test" />
+      </svg>
+    );
+    const rect = container.querySelector('rect');
+    expect(rect).toHaveClass('visx-bar', 'test');
   });
 
   test('it should expose its ref via an innerRef prop', () => {
@@ -35,10 +35,10 @@ describe('<Bar />', () => {
     const { container } = render(
       <svg>
         <Bar innerRef={fakeRef} />
-      </svg>,
+      </svg>
     );
-    const RectElement = container.querySelector('rect');
-    expect(fakeRef.current).toContainElement(RectElement);
+    const rectElement = container.querySelector('rect');
+    expect(fakeRef.current).toBe(rectElement);
   });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":3,"failed":0,"total":3,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"pending"}
+// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":3,"failed":0,"total":3,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}

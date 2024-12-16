@@ -1,3 +1,4 @@
+/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -9,10 +10,12 @@
  * to more idiomatic RTL (and then removing this banner!).
  */
 import React from 'react';
-import { shallow } from 'enzyme';
-
+import { render } from '@testing-library/react';
 import { scaleLinear } from '@visx/scale';
-import { Axis, AxisTop } from '../src';
+import { AxisTop } from '../src';
+import Axis from '../src/axis/Axis';
+
+jest.mock('../src/axis/Axis');
 
 const axisProps = {
   scale: scaleLinear({
@@ -23,22 +26,27 @@ const axisProps = {
 };
 
 describe('<AxisTop />', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('should be defined', () => {
     expect(AxisTop).toBeDefined();
   });
 
   it('should render with class .visx-axis-top', () => {
-    const wrapper = shallow(<AxisTop {...axisProps} />);
-    expect(wrapper.prop('axisClassName')).toBe('visx-axis-top');
+    render(<AxisTop {...axisProps} />);
+    const props = (Axis as jest.Mock).mock.calls[0][0];
+    expect(props.axisClassName).toBe('visx-axis-top');
   });
 
-  it('should set user-specified axisClassName, axisLineClassName, labelClassName, and tickClassName', () => {
+  it('should set user-specified class names', () => {
     const axisClassName = 'axis-test-class';
     const axisLineClassName = 'axisline-test-class';
     const labelClassName = 'label-test-class';
     const tickClassName = 'tick-test-class';
 
-    const wrapper = shallow(
+    render(
       <AxisTop
         {...axisProps}
         axisClassName={axisClassName}
@@ -48,40 +56,44 @@ describe('<AxisTop />', () => {
       />,
     );
 
-    const axis = wrapper.find(Axis);
-    expect(axis.prop('axisClassName')).toMatch(axisClassName);
-    expect(axis.prop('axisLineClassName')).toBe(axisLineClassName);
-    expect(axis.prop('labelClassName')).toBe(labelClassName);
-    expect(axis.prop('tickClassName')).toBe(tickClassName);
+    const props = (Axis as jest.Mock).mock.calls[0][0];
+    expect(props.axisClassName).toMatch(axisClassName);
+    expect(props.axisLineClassName).toBe(axisLineClassName);
+    expect(props.labelClassName).toBe(labelClassName);
+    expect(props.tickClassName).toBe(tickClassName);
   });
 
   it('should default labelOffset prop to 8', () => {
-    const wrapper = shallow(<AxisTop {...axisProps} />);
-    expect(wrapper.prop('labelOffset')).toBe(8);
+    render(<AxisTop {...axisProps} />);
+    const props = (Axis as jest.Mock).mock.calls[0][0];
+    expect(props.labelOffset).toBe(8);
   });
 
   it('should set labelOffset prop', () => {
     const labelOffset = 3;
-    const wrapper = shallow(<AxisTop {...axisProps} labelOffset={labelOffset} />);
-    expect(wrapper.prop('labelOffset')).toEqual(labelOffset);
+    render(<AxisTop {...axisProps} labelOffset={labelOffset} />);
+    const props = (Axis as jest.Mock).mock.calls[0][0];
+    expect(props.labelOffset).toEqual(labelOffset);
   });
 
   it('should default tickLength prop to 8', () => {
-    const wrapper = shallow(<AxisTop {...axisProps} />);
-    expect(wrapper.prop('tickLength')).toBe(8);
+    render(<AxisTop {...axisProps} />);
+    const props = (Axis as jest.Mock).mock.calls[0][0];
+    expect(props.tickLength).toBe(8);
   });
 
   it('should set tickLength prop', () => {
     const tickLength = 15;
-    const wrapper = shallow(<AxisTop {...axisProps} tickLength={tickLength} />);
-    expect(wrapper.prop('tickLength')).toEqual(tickLength);
+    render(<AxisTop {...axisProps} tickLength={tickLength} />);
+    const props = (Axis as jest.Mock).mock.calls[0][0];
+    expect(props.tickLength).toEqual(tickLength);
   });
 
   it('should set label prop', () => {
     const label = 'test';
-    const wrapper = shallow(<AxisTop {...axisProps} label={label} />).dive();
-    const text = wrapper.find('.visx-axis-label');
-    expect(text.prop('children')).toEqual(label);
+    render(<AxisTop {...axisProps} label={label} />);
+    const props = (Axis as jest.Mock).mock.calls[0][0];
+    expect(props.label).toEqual(label);
   });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":8,"failed":0,"total":8,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"pending"}
+// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":8,"failed":0,"total":8,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}

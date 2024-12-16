@@ -1,3 +1,4 @@
+/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -9,17 +10,21 @@
  * to more idiomatic RTL (and then removing this banner!).
  */
 import React from 'react';
-import { shallow } from 'enzyme';
-import { Connector as VxAnnotationConnector } from '@visx/annotation';
+import { render } from '@testing-library/react';
 import { AnnotationConnector } from '../../src';
+
+jest.mock('@visx/annotation', () => ({
+  Connector: jest.fn(() => null)
+}));
 
 describe('<AnnotationConnector />', () => {
   it('should be defined', () => {
     expect(AnnotationConnector).toBeDefined();
   });
-  it('should render a VxAnnotationConnector', () => {
-    const wrapper = shallow(<AnnotationConnector />);
-    expect(wrapper.find(VxAnnotationConnector)).toHaveLength(1);
+
+  it('should render VxAnnotationConnector', () => {
+    render(<AnnotationConnector />);
+    expect(jest.requireMock('@visx/annotation').Connector).toHaveBeenCalled();
   });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":2,"failed":0,"total":2,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"pending"}
+// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":2,"failed":0,"total":2,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}

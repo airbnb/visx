@@ -1,3 +1,4 @@
+/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -9,7 +10,8 @@
  * to more idiomatic RTL (and then removing this banner!).
  */
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import {
   scaleBand,
   scaleLinear,
@@ -33,8 +35,8 @@ const axisProps = {
 
 describe('Axis scales', () => {
   it('should render with scaleBand', () => {
-    expect(() =>
-      shallow(
+    const { getByText } = render(
+      <svg>
         <Axis
           {...axisProps}
           scale={scaleBand({
@@ -42,14 +44,15 @@ describe('Axis scales', () => {
             round: true,
             domain: ['a', 'b', 'c'],
           })}
-        />,
-      ),
-    ).not.toThrow();
+        />
+      </svg>,
+    );
+    expect(getByText('test axis')).toBeInTheDocument();
   });
 
   it('should render with scaleLinear', () => {
-    expect(() =>
-      shallow(
+    const { getByText } = render(
+      <svg>
         <Axis
           {...axisProps}
           scale={scaleLinear({
@@ -57,14 +60,15 @@ describe('Axis scales', () => {
             round: true,
             domain: [0, 10],
           })}
-        />,
-      ),
-    ).not.toThrow();
+        />
+      </svg>,
+    );
+    expect(getByText('test axis')).toBeInTheDocument();
   });
 
   it('should render with scaleLog', () => {
-    expect(() =>
-      shallow(
+    const { getByText } = render(
+      <svg>
         <Axis
           {...axisProps}
           scale={scaleLog({
@@ -72,28 +76,30 @@ describe('Axis scales', () => {
             round: true,
             domain: [1, 10, 100, 1000],
           })}
-        />,
-      ),
-    ).not.toThrow();
+        />
+      </svg>,
+    );
+    expect(getByText('test axis')).toBeInTheDocument();
   });
 
   it('should render with scaleOrdinal', () => {
-    expect(() =>
-      shallow(
+    const { getByText } = render(
+      <svg>
         <Axis
           {...axisProps}
           scale={scaleOrdinal({
             range: [0, 10],
             domain: ['a', 'b', 'c'],
           })}
-        />,
-      ),
-    ).not.toThrow();
+        />
+      </svg>,
+    );
+    expect(getByText('test axis')).toBeInTheDocument();
   });
 
   it('should render with scalePoint', () => {
-    expect(() =>
-      shallow(
+    const { getByText } = render(
+      <svg>
         <Axis
           {...axisProps}
           scale={scalePoint({
@@ -101,107 +107,115 @@ describe('Axis scales', () => {
             round: true,
             domain: ['a', 'b', 'c'],
           })}
-        />,
-      ),
-    ).not.toThrow();
+        />
+      </svg>,
+    );
+    expect(getByText('test axis')).toBeInTheDocument();
   });
 
   it('should render with scalePower', () => {
-    expect(() =>
-      shallow(
+    const { getByText } = render(
+      <svg>
         <Axis
           {...axisProps}
           scale={scalePower({
             range: [1, 2, 3, 4, 5],
             domain: [1, 10, 100, 1000, 10000],
           })}
-        />,
-      ),
-    ).not.toThrow();
+        />
+      </svg>,
+    );
+    expect(getByText('test axis')).toBeInTheDocument();
   });
 
   it('should render with scaleQuantile', () => {
-    expect(() =>
-      shallow(
+    const { getByText } = render(
+      <svg>
         <Axis
           {...axisProps}
           scale={scaleQuantile({
             range: [0, 2, 4, 6, 8, 10],
             domain: [1, 10, 100, 1000, 10000],
           })}
-        />,
-      ),
-    ).not.toThrow();
+        />
+      </svg>,
+    );
+    expect(getByText('test axis')).toBeInTheDocument();
   });
 
   it('should render with scaleQuantize', () => {
-    expect(() =>
-      shallow(
+    const { getByText } = render(
+      <svg>
         <Axis
           {...axisProps}
           scale={scaleQuantize({
             range: [1, 10],
             domain: [1, 10],
           })}
-        />,
-      ),
-    ).not.toThrow();
+        />
+      </svg>,
+    );
+    expect(getByText('test axis')).toBeInTheDocument();
   });
 
   it('should render with scaleSymlog', () => {
-    expect(() =>
-      shallow(
+    const { getByText } = render(
+      <svg>
         <Axis
           {...axisProps}
           scale={scaleSymlog({
             range: [1, 10],
             domain: [1, 10],
           })}
-        />,
-      ),
-    ).not.toThrow();
+        />
+      </svg>,
+    );
+    expect(getByText('test axis')).toBeInTheDocument();
   });
 
   it('should render with scaleThreshold', () => {
-    expect(() =>
-      shallow(
+    const { getByText } = render(
+      <svg>
         <Axis
           {...axisProps}
           scale={scaleThreshold({
             range: [1, 10],
             domain: [1, 10],
           })}
-        />,
-      ),
-    ).not.toThrow();
+        />
+      </svg>,
+    );
+    expect(getByText('test axis')).toBeInTheDocument();
   });
 
   it('should render with scaleTime', () => {
-    expect(() =>
-      shallow(
+    const { getByText } = render(
+      <svg>
         <Axis
           {...axisProps}
           scale={scaleTime({
             range: [1, 10],
             domain: [new Date('2020-01-01'), new Date('2020-01-05')],
           })}
-        />,
-      ),
-    ).not.toThrow();
+        />
+      </svg>,
+    );
+    expect(getByText('test axis')).toBeInTheDocument();
   });
 
   it('should render with scaleUtc', () => {
-    expect(() =>
-      shallow(
+    const { getByText } = render(
+      <svg>
         <Axis
           {...axisProps}
           scale={scaleUtc({
             range: [1, 10],
             domain: [new Date('2020-01-01'), new Date('2020-01-05')],
           })}
-        />,
-      ),
-    ).not.toThrow();
+        />
+      </svg>,
+    );
+    expect(getByText('test axis')).toBeInTheDocument();
   });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":12,"failed":0,"total":12,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"pending"}
+// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":12,"failed":0,"total":12,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}

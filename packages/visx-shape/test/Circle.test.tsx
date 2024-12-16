@@ -1,3 +1,4 @@
+/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -9,13 +10,10 @@
  * to more idiomatic RTL (and then removing this banner!).
  */
 import React from 'react';
-import { shallow } from 'enzyme';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import { Circle } from '../src';
-
-const CircleWrapper = ({ ...restProps }) => shallow(<Circle {...restProps} />);
 
 describe('<Circle />', () => {
   test('it should be defined', () => {
@@ -23,11 +21,13 @@ describe('<Circle />', () => {
   });
 
   test('it should have the .visx-circle class', () => {
-    expect(
-      CircleWrapper({
-        className: 'test',
-      }).prop('className'),
-    ).toBe('visx-circle test');
+    const { container } = render(
+      <svg>
+        <Circle className="test" />
+      </svg>
+    );
+    const circle = container.querySelector('circle');
+    expect(circle).toHaveClass('visx-circle', 'test');
   });
 
   test('it should expose its ref via an innerRef prop', () => {
@@ -35,10 +35,10 @@ describe('<Circle />', () => {
     const { container } = render(
       <svg>
         <Circle innerRef={fakeRef} />
-      </svg>,
+      </svg>
     );
-    const CircleElement = container.querySelector('circle');
-    expect(fakeRef.current).toContainElement(CircleElement);
+    const circle = container.querySelector('circle');
+    expect(fakeRef.current).toBe(circle);
   });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":3,"failed":0,"total":3,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"pending"}
+// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":3,"failed":0,"total":3,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}

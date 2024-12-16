@@ -1,3 +1,4 @@
+/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -9,45 +10,90 @@
  * to more idiomatic RTL (and then removing this banner!).
  */
 import React from 'react';
-import { shallow } from 'enzyme';
-
-import { Arc } from '@visx/shape';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { scaleLinear } from '@visx/scale';
 import { GridRadial } from '../src';
+
+jest.mock('@visx/shape', () => ({
+  Arc: jest.fn(({ className, children, ...props }) => (
+    <path
+      className={`visx-arc ${className || ''}`}
+      data-testid="grid-arc"
+      {...props}
+    >
+      {children}
+    </path>
+  )),
+}));
+
+jest.mock('@visx/group', () => ({
+  Group: jest.fn(({ className, children }) => (
+    <svg>
+      <g className={className} data-testid="grid-group">
+        {children}
+      </g>
+    </svg>
+  )),
+}));
 
 const gridProps = {
   innerRadius: 0,
   outerRadius: 10,
-  scale: scaleLinear({ range: [1, 100], domain: [1, 10] }),
+  scale: scaleLinear({
+    range: [1, 100],
+    domain: [1, 10],
+  }),
+  startAngle: 0,
+  endAngle: Math.PI * 2,
 };
 
 describe('<GridRadial />', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('should be defined', () => {
     expect(GridRadial).toBeDefined();
   });
 
   it('should render with class .visx-grid-radial', () => {
-    const wrapper = shallow(<GridRadial {...gridProps} />);
-    expect(wrapper.find('.visx-grid-radial')).toHaveLength(1);
+    const { container } = render(<GridRadial {...gridProps} />);
+    const group = container.querySelector('.visx-grid-radial');
+    expect(group).toBeInTheDocument();
   });
 
   it('should set user-specified lineClassName', () => {
-    const wrapper = shallow(<GridRadial {...gridProps} lineClassName="test-class" />);
-    expect(wrapper.find('.test-class').length).toBeGreaterThan(0);
+    const { container } = render(
+      <GridRadial {...gridProps} lineClassName="test-class" />
+    );
+    const paths = container.querySelectorAll('path.test-class');
+    expect(paths.length).toBeGreaterThan(0);
+    paths.forEach(path => {
+      expect(path).toHaveClass('test-class');
+    });
   });
 
   it('should render `numTicks` grid line arcs', () => {
-    const fiveTickWrapper = shallow(<GridRadial {...gridProps} numTicks={5} />);
-    const tenTickWrapper = shallow(<GridRadial {...gridProps} numTicks={10} />);
+    const { container } = render(
+      <GridRadial {...gridProps} numTicks={5} />
+    );
+    const paths = container.querySelectorAll('path.visx-arc');
+    expect(paths).toHaveLength(5);
 
-    expect(fiveTickWrapper.find(Arc)).toHaveLength(5);
-    expect(tenTickWrapper.find(Arc)).toHaveLength(10);
+    const { container: container2 } = render(
+      <GridRadial {...gridProps} numTicks={10} />
+    );
+    const paths2 = container2.querySelectorAll('path.visx-arc');
+    expect(paths2).toHaveLength(10);
   });
 
   it('should render grid line arcs according to tickValues', () => {
-    const wrapper = shallow(<GridRadial {...gridProps} tickValues={[1, 2, 3]} />);
-
-    expect(wrapper.find(Arc)).toHaveLength(3);
+    const { container } = render(
+      <GridRadial {...gridProps} tickValues={[1, 2, 3]} />
+    );
+    const paths = container.querySelectorAll('path.visx-arc');
+    expect(paths).toHaveLength(3);
   });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":5,"failed":0,"total":5,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"pending"}
+// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":5,"failed":0,"total":5,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}

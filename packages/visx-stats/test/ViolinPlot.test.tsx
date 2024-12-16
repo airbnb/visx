@@ -1,3 +1,4 @@
+/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -9,7 +10,8 @@
  * to more idiomatic RTL (and then removing this banner!).
  */
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { scaleLinear } from '@visx/scale';
 import { ViolinPlot, computeStats } from '../src';
 
@@ -22,23 +24,28 @@ const valueScale = scaleLinear({
   domain: [0, 10],
 });
 
-describe('<VoilinPlot />', () => {
+describe('<ViolinPlot />', () => {
   test('it should be defined', () => {
     expect(ViolinPlot).toBeDefined();
   });
 
   test('it should have className .visx-violin', () => {
-    const wrapper = shallow(
-      <ViolinPlot data={binData} left={3} width={100} valueScale={valueScale} />,
+    const { container } = render(
+      <svg>
+        <ViolinPlot data={binData} left={3} width={100} valueScale={valueScale} />
+      </svg>
     );
-    expect(wrapper.prop('className')).toBe('visx-violin');
+    expect(container.querySelector('.visx-violin')).toBeInTheDocument();
   });
 
   test('it should render one path element', () => {
-    const wrapper = shallow(
-      <ViolinPlot data={binData} left={3} width={100} valueScale={valueScale} />,
+    const { container } = render(
+      <svg width={100} height={100}>
+        <ViolinPlot data={binData} left={3} width={100} valueScale={valueScale} />
+      </svg>
     );
-    expect(wrapper.find('path')).toHaveLength(1);
+    const paths = container.getElementsByTagName('path');
+    expect(paths).toHaveLength(1);
   });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":3,"failed":0,"total":3,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"pending"}
+// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":3,"failed":0,"total":3,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}

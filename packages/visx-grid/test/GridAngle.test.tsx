@@ -1,3 +1,4 @@
+/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -9,12 +10,29 @@
  * to more idiomatic RTL (and then removing this banner!).
  */
 import React from 'react';
-import { shallow } from 'enzyme';
-
-import { Line } from '@visx/shape';
+import { render, waitFor } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { scaleLinear } from '@visx/scale';
 import { GridAngle } from '../src';
 import * as polarToCartesian from '../src/utils/polarToCartesian';
+
+jest.mock('@visx/group', () => ({
+  __esModule: true,
+  Group: function Group(props) {
+    return (
+      <svg>
+        <g className={`visx-group ${props.className || ''}`}>{props.children}</g>
+      </svg>
+    );
+  },
+}));
+
+jest.mock('@visx/shape', () => ({
+  __esModule: true,
+  Line: function Line(props) {
+    return <line data-testid="grid-line" className={props.className} {...props} />;
+  },
+}));
 
 const gridProps = {
   innerRadius: 0,
@@ -26,35 +44,54 @@ const gridProps = {
 };
 
 describe('<GridAngle />', () => {
-  it('should render with class .vx-grid-angle', () => {
-    const wrapper = shallow(<GridAngle {...gridProps} />);
-    expect(wrapper.find('.visx-grid-angle')).toHaveLength(1);
+  beforeEach(() => {
+    jest.clearAllMocks();
   });
 
-  it('should set user-specified lineClassName', () => {
-    const wrapper = shallow(<GridAngle {...gridProps} lineClassName="test-class" />);
-    expect(wrapper.find('.test-class').length).toBeGreaterThan(0);
+  it('should render with class .visx-grid-angle', async () => {
+    const { container } = render(<GridAngle {...gridProps} />);
+    await waitFor(() => {
+      const element = container.querySelector('g.visx-group');
+      expect(element).toBeInTheDocument();
+    });
   });
 
-  it('should render `numTicks` grid lines', () => {
-    const fiveTickWrapper = shallow(<GridAngle {...gridProps} numTicks={5} />);
-    const tenTickWrapper = shallow(<GridAngle {...gridProps} numTicks={10} />);
-
-    expect(fiveTickWrapper.find(Line)).toHaveLength(5);
-    expect(tenTickWrapper.find(Line)).toHaveLength(10);
+  it('should set user-specified lineClassName', async () => {
+    const { container } = render(<GridAngle {...gridProps} lineClassName="test-class" />);
+    await waitFor(() => {
+      const lines = container.querySelectorAll('line.test-class');
+      expect(lines.length).toBeGreaterThan(0);
+    });
   });
 
-  it('should render grid lines according to tickValues', () => {
-    const wrapper = shallow(<GridAngle {...gridProps} tickValues={[1, 2, 3]} />);
+  it('should render `numTicks` grid lines', async () => {
+    const { container } = render(<GridAngle {...gridProps} numTicks={5} />);
+    await waitFor(() => {
+      const lines = container.querySelectorAll('line');
+      expect(lines).toHaveLength(5);
+    });
 
-    expect(wrapper.find(Line)).toHaveLength(3);
+    const { container: container2 } = render(<GridAngle {...gridProps} numTicks={10} />);
+    await waitFor(() => {
+      const lines = container2.querySelectorAll('line');
+      expect(lines).toHaveLength(10);
+    });
+  });
+
+  it('should render grid lines according to tickValues', async () => {
+    const { container } = render(<GridAngle {...gridProps} tickValues={[1, 2, 3]} />);
+    await waitFor(() => {
+      const lines = container.querySelectorAll('line');
+      expect(lines).toHaveLength(3);
+    });
   });
 
   it('should compute radial lines using innerRadius and outerRadius', () => {
     const polarToCartesianSpy = jest.spyOn(polarToCartesian, 'default');
     const innerRadius = 4;
     const outerRadius = 7;
-    shallow(<GridAngle {...gridProps} innerRadius={innerRadius} outerRadius={outerRadius} />);
+    
+    render(<GridAngle {...gridProps} innerRadius={innerRadius} outerRadius={outerRadius} />);
 
     expect(polarToCartesianSpy.mock.calls.length).toBeGreaterThanOrEqual(2);
 
@@ -67,4 +104,4 @@ describe('<GridAngle />', () => {
     polarToCartesianSpy.mockRestore();
   });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":5,"failed":0,"total":5,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"pending"}
+// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":5,"failed":0,"total":5,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}

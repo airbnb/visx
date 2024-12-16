@@ -1,3 +1,4 @@
+/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -9,12 +10,9 @@
  * to more idiomatic RTL (and then removing this banner!).
  */
 import React from 'react';
-import { shallow } from 'enzyme';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { Line } from '../src';
-
-const LineWrapper = (restProps = {}) => shallow(<Line {...restProps} />);
 
 describe('<Line />', () => {
   test('it should be defined', () => {
@@ -22,11 +20,13 @@ describe('<Line />', () => {
   });
 
   test('it should contain a <line />', () => {
-    expect(LineWrapper().find('line')).toHaveLength(1);
+    const { container } = render(<svg><Line /></svg>);
+    expect(container.querySelector('line')).toBeInTheDocument();
   });
 
   test('it should have the .visx-line class', () => {
-    expect(LineWrapper().prop('className')).toBe('visx-line');
+    const { container } = render(<svg><Line /></svg>);
+    expect(container.querySelector('line')).toHaveClass('visx-line');
   });
 
   test('it should expose its ref via an innerRef prop', () => {
@@ -36,39 +36,48 @@ describe('<Line />', () => {
         <Line innerRef={fakeRef} />
       </svg>,
     );
-    const LineElement = container.querySelector('line');
-    expect(fakeRef.current).toContainElement(LineElement);
+    const lineElement = container.querySelector('line');
+    expect(fakeRef.current).toBe(lineElement);
   });
 
   test('it should set shapeRendering to auto if not rectilinear', () => {
-    expect(
-      LineWrapper({
-        to: {
-          x: 50,
-          y: 100,
-        },
-      }).prop('shapeRendering'),
-    ).toBe('auto');
+    const { container } = render(
+      <svg>
+        <Line
+          to={{
+            x: 50,
+            y: 100,
+          }}
+        />
+      </svg>,
+    );
+    expect(container.querySelector('line')).toHaveAttribute('shape-rendering', 'auto');
   });
 
   test('it should set shapeRendering to crispEdges if rectilinear', () => {
-    expect(
-      LineWrapper({
-        to: {
-          x: 0,
-          y: 100,
-        },
-      }).prop('shapeRendering'),
-    ).toBe('crispEdges');
+    const { container } = render(
+      <svg>
+        <Line
+          to={{
+            x: 0,
+            y: 100,
+          }}
+        />
+      </svg>,
+    );
+    expect(container.querySelector('line')).toHaveAttribute('shape-rendering', 'crispEdges');
 
-    expect(
-      LineWrapper({
-        to: {
-          x: 100,
-          y: 0,
-        },
-      }).prop('shapeRendering'),
-    ).toBe('crispEdges');
+    const { container: container2 } = render(
+      <svg>
+        <Line
+          to={{
+            x: 100,
+            y: 0,
+          }}
+        />
+      </svg>,
+    );
+    expect(container2.querySelector('line')).toHaveAttribute('shape-rendering', 'crispEdges');
   });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":6,"failed":0,"total":6,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"pending"}
+// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":6,"failed":0,"total":6,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}

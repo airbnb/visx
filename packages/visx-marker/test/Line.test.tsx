@@ -1,3 +1,4 @@
+/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -9,40 +10,56 @@
  * to more idiomatic RTL (and then removing this banner!).
  */
 import React from 'react';
-import { shallow } from 'enzyme';
-import { MarkerLine, Marker } from '../src';
+import { render } from '@testing-library/react';
+import { MarkerLine } from '../src';
+import { Marker } from '../src';
 
-const Wrapper = (restProps = {}) => shallow(<MarkerLine id="marker-line-test" {...restProps} />);
+jest.mock('../src/markers/Marker', () => ({
+  __esModule: true,
+  default: jest.fn(() => null)
+}));
 
 describe('<MarkerLine />', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   test('it should be defined', () => {
     expect(MarkerLine).toBeDefined();
   });
 
-  test('it should render a <Marker> containing a <rect>', () => {
-    const marker = Wrapper().find(Marker);
-    const rect = marker.dive().find('rect');
-    expect(marker).toHaveLength(1);
-    expect(rect).toHaveLength(1);
+  test('it should render a Marker component', () => {
+    render(<MarkerLine id="marker-line-test" />);
+    expect(Marker).toHaveBeenCalled();
   });
 
-  test('it should size correctly', () => {
+  test('it should pass correct props to Marker', () => {
     const size = 8;
     const strokeWidth = 1;
     const stroke = 'blue';
-    const marker = Wrapper({ size, stroke, strokeWidth }).find(Marker);
-    const rect = marker.dive().find('rect');
+    
+    render(<MarkerLine id="marker-line-test" size={size} stroke={stroke} strokeWidth={strokeWidth} />);
+    
+    expect(Marker).toHaveBeenCalledTimes(1);
+    const props = (Marker as jest.Mock).mock.calls[0][0];
     const max = Math.max(size, strokeWidth * 2);
     const midX = max / 2;
     const midY = size / 2;
-    expect(marker.prop('markerWidth')).toEqual(max);
-    expect(marker.prop('markerHeight')).toEqual(size);
-    expect(marker.prop('refX')).toEqual(midX);
-    expect(marker.prop('refY')).toEqual(midY);
-    expect(marker.prop('fill')).toEqual(stroke);
-    expect(rect.prop('width')).toEqual(strokeWidth);
-    expect(rect.prop('height')).toEqual(size);
-    expect(rect.prop('x')).toEqual(midX);
+
+    expect(props.markerWidth).toBe(max);
+    expect(props.markerHeight).toBe(size);
+    expect(props.refX).toBe(midX);
+    expect(props.refY).toBe(midY);
+    expect(props.fill).toBe(stroke);
+    
+    // Check the rect element props individually
+    const rectElement = props.children;
+    expect(rectElement.type).toBe('rect');
+    expect(rectElement.props).toEqual({
+      width: strokeWidth,
+      height: size,
+      x: midX
+    });
   });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":3,"failed":0,"total":3,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"pending"}
+// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":3,"failed":0,"total":3,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}

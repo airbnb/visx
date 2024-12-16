@@ -1,3 +1,4 @@
+/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -9,8 +10,8 @@
  * to more idiomatic RTL (and then removing this banner!).
  */
 import React from 'react';
+import { renderHook } from '@testing-library/react-hooks';
 import { scaleLinear } from '@visx/scale';
-import { shallow } from 'enzyme';
 import useLineTransitionConfig from '../src/spring-configs/useLineTransitionConfig';
 
 const scale = scaleLinear({ domain: [0, 10], range: [0, 10] });
@@ -22,84 +23,85 @@ describe('useLineTransitionConfig', () => {
   it('should be defined', () => {
     expect(useLineTransitionConfig).toBeDefined();
   });
+
   it('should return react-spring config with from, enter, update, leave keys', () => {
-    expect.assertions(1);
-    function HookTest() {
-      const config = useLineTransitionConfig({ scale, animateXOrY: 'x' });
-      expect(config).toMatchObject({
-        from: expect.any(Function),
-        enter: expect.any(Function),
-        update: expect.any(Function),
-        leave: expect.any(Function),
-      });
-      return null;
-    }
-    shallow(<HookTest />);
+    const { result } = renderHook(() =>
+      useLineTransitionConfig({ scale, animateXOrY: 'x' })
+    );
+
+    expect(result.current).toMatchObject({
+      from: expect.any(Function),
+      enter: expect.any(Function),
+      update: expect.any(Function),
+      leave: expect.any(Function),
+    });
   });
+
   it('should animate from scale min', () => {
-    expect.assertions(2);
-    function HookTest() {
-      const config = useLineTransitionConfig({
+    const { result } = renderHook(() =>
+      useLineTransitionConfig({
         scale,
         animateXOrY: 'x',
         animationTrajectory: 'min',
-      });
-      const invertedConfig = useLineTransitionConfig({
+      })
+    );
+
+    const { result: invertedResult } = renderHook(() =>
+      useLineTransitionConfig({
         scale: invertedScale,
         animateXOrY: 'y',
         animationTrajectory: 'min',
-      });
-      expect(config.from(verticalLine).fromX).toBe(0);
-      expect(invertedConfig.from(verticalLine).fromY).toBe(10);
-      return null;
-    }
-    shallow(<HookTest />);
+      })
+    );
+
+    expect(result.current.from(verticalLine).fromX).toBe(0);
+    expect(invertedResult.current.from(verticalLine).fromY).toBe(10);
   });
+
   it('should animate from scale max', () => {
-    expect.assertions(2);
-    function HookTest() {
-      const config = useLineTransitionConfig({
+    const { result } = renderHook(() =>
+      useLineTransitionConfig({
         scale,
         animateXOrY: 'x',
         animationTrajectory: 'max',
-      });
-      const invertedConfig = useLineTransitionConfig({
+      })
+    );
+
+    const { result: invertedResult } = renderHook(() =>
+      useLineTransitionConfig({
         scale: invertedScale,
         animateXOrY: 'y',
         animationTrajectory: 'max',
-      });
-      expect(config.from(verticalLine).fromX).toBe(10);
-      expect(invertedConfig.from(verticalLine).fromY).toBe(0);
-      return null;
-    }
-    shallow(<HookTest />);
+      })
+    );
+
+    expect(result.current.from(verticalLine).fromX).toBe(10);
+    expect(invertedResult.current.from(verticalLine).fromY).toBe(0);
   });
+
   it('should animate from outside', () => {
-    expect.assertions(2);
-    function HookTest() {
-      const config = useLineTransitionConfig({
+    const { result } = renderHook(() =>
+      useLineTransitionConfig({
         scale,
         animateXOrY: 'x',
         animationTrajectory: 'outside',
-      });
-      expect(config.from(verticalLine).fromX).toBe(0);
-      expect(config.from(verticalLineMax).fromX).toBe(10);
-      return null;
-    }
-    shallow(<HookTest />);
+      })
+    );
+
+    expect(result.current.from(verticalLine).fromX).toBe(0);
+    expect(result.current.from(verticalLineMax).fromX).toBe(10);
   });
+
   it('should animate from center', () => {
-    expect.assertions(1);
-    function HookTest() {
-      const config = useLineTransitionConfig({
+    const { result } = renderHook(() =>
+      useLineTransitionConfig({
         scale,
         animateXOrY: 'x',
         animationTrajectory: 'center',
-      });
-      expect(config.from(verticalLine).fromX).toBe(5);
-      return null;
-    }
-    shallow(<HookTest />);
+      })
+    );
+
+    expect(result.current.from(verticalLine).fromX).toBe(5);
   });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":6,"failed":0,"total":6,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"pending"}
+// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":6,"failed":0,"total":6,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}

@@ -1,3 +1,4 @@
+/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -9,7 +10,7 @@
  * to more idiomatic RTL (and then removing this banner!).
  */
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 import { chord as d3Chord } from 'd3-chord';
 import { Ribbon } from '../src';
 
@@ -29,11 +30,10 @@ describe('<Ribbon />', () => {
 
   test('it should call children as a function with required args', () => {
     const children = jest.fn(() => 'test');
-    shallow(<Ribbon chord={chords[0]} children={children} />);
-    // we don't know type of the arguments
+    render(<Ribbon chord={chords[0]} children={children} />);
     const args = (children.mock.calls[0] as { path?: unknown }[])[0];
     expect(children.mock.calls).toHaveLength(1);
     expect(args.path).toBeDefined();
   });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":2,"failed":0,"total":2,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"pending"}
+// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":2,"failed":0,"total":2,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}

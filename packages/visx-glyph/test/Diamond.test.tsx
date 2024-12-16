@@ -1,3 +1,4 @@
+/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -9,52 +10,50 @@
  * to more idiomatic RTL (and then removing this banner!).
  */
 import React from 'react';
-import { shallow } from 'enzyme';
-
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { GlyphDiamond } from '../src';
 
 describe('<GlyphDiamond />', () => {
-  test('it should be defined', () => {
+  test('should be defined', () => {
     expect(GlyphDiamond).toBeDefined();
   });
 
-  test('it should be wrapped in a <Glyph />', () => {
-    const wrapper = shallow(<GlyphDiamond />);
-    expect(wrapper.dive().prop('className')).toBe('visx-glyph');
+  test('should render with custom className', () => {
+    const { container } = render(
+      <svg>
+        <GlyphDiamond className="test">
+          {({ path }) => <path className="test" />}
+        </GlyphDiamond>
+      </svg>
+    );
+    expect(container.querySelector('.test')).toBeInTheDocument();
   });
 
-  test('it should add className to <path />', () => {
-    const wrapper = shallow(<GlyphDiamond className="test" />);
-    expect(wrapper.find('.test')).toHaveLength(1);
+  test('should render children function with path prop', () => {
+    const childrenFn = jest.fn(() => <div>Diamond</div>);
+    render(<GlyphDiamond>{childrenFn}</GlyphDiamond>);
+    
+    expect(childrenFn).toHaveBeenCalled();
+    const args = childrenFn.mock.calls[0][0];
+    expect(args).toHaveProperty('path');
   });
 
-  test('it should take a children as function prop', () => {
-    const fn = jest.fn();
-    shallow(<GlyphDiamond>{fn}</GlyphDiamond>);
-    expect(fn).toHaveBeenCalled();
-  });
-
-  test('it should call children function with { path }', () => {
-    const fn = jest.fn();
-    shallow(<GlyphDiamond>{fn}</GlyphDiamond>);
-    const args = fn.mock.calls[0][0];
-    const keys = Object.keys(args);
-    expect(keys).toContain('path');
-  });
-
-  test('it should take a size prop as a number', () => {
-    const fn = jest.fn();
-    shallow(<GlyphDiamond size={42}>{fn}</GlyphDiamond>);
-    const args = fn.mock.calls[0][0];
+  test('should accept numeric size prop', () => {
+    const childrenFn = jest.fn(() => <div>Diamond</div>);
+    render(<GlyphDiamond size={42}>{childrenFn}</GlyphDiamond>);
+    
+    const args = childrenFn.mock.calls[0][0];
     expect(args.path.size()()).toBe(42);
   });
 
-  test('it should take a size prop as a function', () => {
-    const fn = jest.fn();
+  test('should accept function size prop', () => {
     const sizeFn = () => 42;
-    shallow(<GlyphDiamond size={sizeFn}>{fn}</GlyphDiamond>);
-    const args = fn.mock.calls[0][0];
+    const childrenFn = jest.fn(() => <div>Diamond</div>);
+    render(<GlyphDiamond size={sizeFn}>{childrenFn}</GlyphDiamond>);
+    
+    const args = childrenFn.mock.calls[0][0];
     expect(args.path.size()()).toBe(42);
   });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":7,"failed":0,"total":7,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"pending"}
+// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":5,"failed":0,"total":5,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}

@@ -1,3 +1,4 @@
+/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -9,13 +10,15 @@
  * to more idiomatic RTL (and then removing this banner!).
  */
 import React from 'react';
-import { render } from 'enzyme';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { Zoom, inverseMatrix } from '../src';
 
 describe('<Zoom />', () => {
   it('should be defined', () => {
     expect(Zoom).toBeDefined();
   });
+
   it('should render the children and pass zoom params', () => {
     const initialTransform = {
       scaleX: 1.27,
@@ -26,7 +29,7 @@ describe('<Zoom />', () => {
       skewY: 0,
     };
 
-    const wrapper = render(
+    const { getByText } = render(
       <Zoom
         width={400}
         height={400}
@@ -43,7 +46,7 @@ describe('<Zoom />', () => {
       </Zoom>,
     );
 
-    expect(wrapper.html()).toBe('1.27,1.27,-211.62,162.59');
+    expect(getByText('1.27,1.27,-211.62,162.59')).toBeInTheDocument();
   });
 });
 
@@ -52,4 +55,4 @@ describe('inverseMatrix', () => {
     expect(inverseMatrix).toBeDefined();
   });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":3,"failed":0,"total":3,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"pending"}
+// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":3,"failed":0,"total":3,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}

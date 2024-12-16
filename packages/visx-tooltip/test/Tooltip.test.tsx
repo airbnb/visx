@@ -1,3 +1,4 @@
+/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -9,7 +10,7 @@
  * to more idiomatic RTL (and then removing this banner!).
  */
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 import { Tooltip, defaultStyles } from '../src';
 
 describe('<Tooltip />', () => {
@@ -18,18 +19,37 @@ describe('<Tooltip />', () => {
   });
 
   it('should render with the default styles', () => {
-    const wrapper = shallow(<Tooltip>Hello</Tooltip>);
-    const styles = wrapper.props().style;
+    const { container } = render(<Tooltip>Hello</Tooltip>);
+    const tooltip = container.firstChild as HTMLElement;
+    const computedStyle = window.getComputedStyle(tooltip);
+    
     Object.entries(defaultStyles).forEach(([key, value]) => {
-      expect(styles[key]).toBe(value);
+      // For colors, compare the computed style which will be normalized
+      if (key === 'backgroundColor' || key === 'color') {
+        expect(computedStyle[key as any]).toBe(
+          // Create a temp div to get browser-normalized color value
+          (() => {
+            const temp = document.createElement('div');
+            temp.style.color = value;
+            document.body.appendChild(temp);
+            const normalized = window.getComputedStyle(temp).color;
+            document.body.removeChild(temp);
+            return normalized;
+          })()
+        );
+      } else {
+        // For other styles, compare directly
+        expect(tooltip.style[key as any]).toBe(value);
+      }
     });
   });
 
   it('should render with no default styles', () => {
-    const wrapper = shallow(<Tooltip unstyled>Hello</Tooltip>);
-    const styles = wrapper.props().style;
+    const { container } = render(<Tooltip unstyled>Hello</Tooltip>);
+    const tooltip = container.firstChild as HTMLElement;
+    
     Object.keys(defaultStyles).forEach((key) => {
-      expect(styles[key]).toBeUndefined();
+      expect(tooltip.style[key as any]).toBe('');
     });
   });
 
@@ -44,11 +64,13 @@ describe('<Tooltip />', () => {
       boxShadow: '0 2px 3px rgba(133,133,133,0.5)',
       lineHeight: '2em',
     };
-    const wrapper = shallow(<Tooltip style={newStyles} />);
-    const styles = wrapper.props().style;
+    
+    const { container } = render(<Tooltip style={newStyles} />);
+    const tooltip = container.firstChild as HTMLElement;
+    
     Object.entries(newStyles).forEach(([key, value]) => {
-      expect(styles[key]).toBe(value);
+      expect(tooltip.style[key as any]).toBe(value);
     });
   });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":4,"failed":0,"total":4,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"pending"}
+// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":4,"failed":0,"total":4,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}

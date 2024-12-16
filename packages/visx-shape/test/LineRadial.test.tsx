@@ -1,3 +1,4 @@
+/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -9,11 +10,9 @@
  * to more idiomatic RTL (and then removing this banner!).
  */
 import React from 'react';
-import { shallow } from 'enzyme';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { LineRadial } from '../src';
-import { LineRadialProps } from '../src/shapes/LineRadial';
 
 interface Datum {
   x: number;
@@ -29,35 +28,50 @@ const mockProps = {
   radius: (d: Datum) => d.y,
 };
 
-const LineRadialWrapper = (restProps = {}) => shallow(<LineRadial {...restProps} />);
-const LineRadialChildren = ({ children, ...restProps }: Partial<LineRadialProps<Datum>>) =>
-  shallow(<LineRadial {...restProps}>{children}</LineRadial>);
-
 describe('<LineRadial />', () => {
   test('it should be defined', () => {
     expect(LineRadial).toBeDefined();
   });
 
   test('it should have the .visx-line-radial class', () => {
-    expect(LineRadialWrapper(mockProps).prop('className')).toBe('visx-line-radial');
+    const { container } = render(
+      <svg>
+        <LineRadial {...mockProps} />
+      </svg>
+    );
+    const path = container.querySelector('path');
+    expect(path).toHaveClass('visx-line-radial');
   });
 
   test('it should contain paths', () => {
-    expect(LineRadialWrapper(mockProps).find('path').length).toBeGreaterThan(0);
+    const { container } = render(
+      <svg>
+        <LineRadial {...mockProps} />
+      </svg>
+    );
+    const paths = container.querySelectorAll('path');
+    expect(paths.length).toBeGreaterThan(0);
   });
 
   test('it should take a children as function prop', () => {
-    const fn = jest.fn();
-    LineRadialChildren({ children: fn, ...mockProps });
+    const fn = jest.fn(() => <g />);
+    render(
+      <svg>
+        <LineRadial {...mockProps}>{fn}</LineRadial>
+      </svg>
+    );
     expect(fn).toHaveBeenCalled();
   });
 
   test('it should call children function with { path }', () => {
-    const fn = jest.fn();
-    LineRadialChildren({ children: fn, ...mockProps });
+    const fn = jest.fn(() => <g />);
+    render(
+      <svg>
+        <LineRadial {...mockProps}>{fn}</LineRadial>
+      </svg>
+    );
     const args = fn.mock.calls[0][0];
-    const keys = Object.keys(args);
-    expect(keys).toContain('path');
+    expect(args).toHaveProperty('path');
   });
 
   test('it should expose its ref via an innerRef prop', () => {
@@ -65,10 +79,10 @@ describe('<LineRadial />', () => {
     const { container } = render(
       <svg>
         <LineRadial innerRef={fakeRef} {...mockProps} />
-      </svg>,
+      </svg>
     );
-    const PathElement = container.querySelector('path');
-    expect(fakeRef.current).toContainElement(PathElement);
+    const pathElement = container.querySelector('path');
+    expect(fakeRef.current).toBe(pathElement);
   });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":6,"failed":0,"total":6,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"pending"}
+// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":6,"failed":0,"total":6,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}

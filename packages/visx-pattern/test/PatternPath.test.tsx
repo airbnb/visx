@@ -1,3 +1,4 @@
+/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -9,7 +10,8 @@
  * to more idiomatic RTL (and then removing this banner!).
  */
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { PatternPath } from '../src';
 
@@ -20,27 +22,35 @@ describe('<PatternPath />', () => {
 
   test('it should require an id prop', () => {
     // @ts-expect-error allow invalid props
-    expect(() => shallow(<PatternPath width={4} height={4} />)).toThrow();
+    expect(() => render(<PatternPath width={4} height={4} />)).toThrow();
   });
 
   test('it should require a width prop', () => {
     // @ts-expect-error allow invalid props
-    expect(() => shallow(<PatternPath id="test" height={4} />)).toThrow();
+    expect(() => render(<PatternPath id="test" height={4} />)).toThrow();
   });
 
   test('it should require a height prop', () => {
     // @ts-expect-error allow invalid props
-    expect(() => shallow(<PatternPath id="test" width={4} />)).toThrow();
+    expect(() => render(<PatternPath id="test" width={4} />)).toThrow();
   });
 
   test('it should render a rect background if background prop defined', () => {
-    const wrapper = shallow(<PatternPath id="test" height={4} width={4} background="blue" />);
-    expect(wrapper.find('rect')).toHaveLength(1);
+    const { container } = render(
+      <svg>
+        <PatternPath id="test" height={4} width={4} background="blue" />
+      </svg>
+    );
+    expect(container.querySelector('rect')).toBeInTheDocument();
   });
 
   test('it should not render a rect background if no background prop', () => {
-    const wrapper = shallow(<PatternPath id="test" height={4} width={4} />);
-    expect(wrapper.find('rect')).toHaveLength(0);
+    const { container } = render(
+      <svg>
+        <PatternPath id="test" height={4} width={4} />
+      </svg>
+    );
+    expect(container.querySelector('rect')).not.toBeInTheDocument();
   });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":6,"failed":0,"total":6,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"pending"}
+// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":6,"failed":0,"total":6,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}

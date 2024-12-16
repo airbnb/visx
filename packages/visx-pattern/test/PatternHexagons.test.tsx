@@ -1,3 +1,4 @@
+/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -9,7 +10,7 @@
  * to more idiomatic RTL (and then removing this banner!).
  */
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 
 import { PatternHexagons } from '../src';
 
@@ -20,12 +21,12 @@ describe('<PatternHexagons />', () => {
 
   test('it should require an id prop', () => {
     // @ts-expect-error allow invalid props
-    expect(() => shallow(<PatternHexagons width={4} height={4} />)).toThrow();
+    expect(() => render(<PatternHexagons width={4} height={4} />)).toThrow();
   });
 
   test('it should require a height prop', () => {
     // @ts-expect-error allow invalid props
-    expect(() => shallow(<PatternHexagons id="test" width={4} />)).toThrow();
+    expect(() => render(<PatternHexagons id="test" width={4} />)).toThrow();
   });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":3,"failed":0,"total":3,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"pending"}
+// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":3,"failed":0,"total":3,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}

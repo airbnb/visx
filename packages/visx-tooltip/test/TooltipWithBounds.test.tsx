@@ -1,3 +1,4 @@
+/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -8,34 +9,41 @@
  * If you are making changes to this file, please consider refactoring
  * to more idiomatic RTL (and then removing this banner!).
  */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 import { TooltipWithBounds, defaultStyles } from '../src';
+import { Tooltip } from '../src/tooltips/Tooltip';
+
+jest.mock('../src/tooltips/Tooltip', () => ({
+  __esModule: true,
+  default: jest.fn(() => null),
+}));
 
 describe('<TooltipWithBounds />', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   test('it should be defined', () => {
     expect(TooltipWithBounds).toBeDefined();
   });
 
   it('should render the Tooltip with default styles by default', () => {
-    const wrapper = shallow(<TooltipWithBounds>Hello</TooltipWithBounds>, {
-      disableLifecycleMethods: true,
-    }).dive();
-    const styles = wrapper.find('Tooltip').props().style as any;
+    render(<TooltipWithBounds>Hello</TooltipWithBounds>);
+    
+    const props = jest.mocked(Tooltip).mock.calls[0][0];
     Object.entries(defaultStyles).forEach(([key, value]) => {
-      expect(styles[key]).toBe(value);
+      expect(props.style[key]).toBe(value);
     });
   });
 
   it('should render the tooltip without default styles if unstyled is set to true', () => {
-    const wrapper = shallow(<TooltipWithBounds unstyled>Hello</TooltipWithBounds>, {
-      disableLifecycleMethods: true,
-    }).dive();
-    const styles = wrapper.find('Tooltip').props().style as any;
+    render(<TooltipWithBounds unstyled>Hello</TooltipWithBounds>);
+    
+    const props = jest.mocked(Tooltip).mock.calls[0][0];
     Object.keys(defaultStyles).forEach((key) => {
-      expect(styles[key]).toBeUndefined();
+      expect(props.style[key]).toBeUndefined();
     });
   });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":3,"failed":0,"total":3,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"pending"}
+// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":1,"failed":2,"total":3,"skipped":0,"successRate":33.33333333333333},"tsc":"pending","enyzme":"converted"}

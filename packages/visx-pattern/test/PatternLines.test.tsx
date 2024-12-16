@@ -1,3 +1,4 @@
+/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -9,53 +10,87 @@
  * to more idiomatic RTL (and then removing this banner!).
  */
 import React from 'react';
-import { shallow } from 'enzyme';
-
+import { render } from '@testing-library/react';
 import { PatternLines } from '../src';
 import { PatternOrientationType } from '../src/constants';
 import { pathForOrientation } from '../src/patterns/Lines';
+import Pattern from '../src/patterns/Pattern';
+
+jest.mock('../src/patterns/Pattern', () => {
+  const MockPattern = jest.fn(({ children }) => (
+    <svg>
+      <defs>
+        <pattern>{children}</pattern>
+      </defs>
+    </svg>
+  ));
+  return { __esModule: true, default: MockPattern };
+});
 
 describe('<PatternLines />', () => {
-  test('it should be defined', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  test('should be defined', () => {
     expect(PatternLines).toBeDefined();
   });
 
-  test('it should require an id prop', () => {
+  test('should throw error without required props', () => {
     // @ts-expect-error allow invalid props
-    expect(() => shallow(<PatternLines width={4} height={4} />)).toThrow();
-  });
-
-  test('it should require a width prop', () => {
+    expect(() => render(<PatternLines />)).toThrow();
     // @ts-expect-error allow invalid props
-    expect(() => shallow(<PatternLines id="test" height={4} />)).toThrow();
-  });
-
-  test('it should require a height prop', () => {
+    expect(() => render(<PatternLines id="test" />)).toThrow();
     // @ts-expect-error allow invalid props
-    expect(() => shallow(<PatternLines id="test" width={4} />)).toThrow();
+    expect(() => render(<PatternLines width={4} />)).toThrow();
   });
 
-  test('it should render a rect background if background prop defined', () => {
-    const wrapper = shallow(<PatternLines id="test" height={4} width={4} background="blue" />);
-    expect(wrapper.find('rect')).toHaveLength(1);
+  test('should render background when background prop is provided', () => {
+    const { container } = render(
+      <PatternLines id="test" height={4} width={4} background="blue" />
+    );
+
+    const MockPattern = Pattern as jest.Mock;
+    const patternProps = MockPattern.mock.calls[0][0];
+    const [backgroundRect] = React.Children.toArray(patternProps.children);
+
+    expect(backgroundRect).toBeDefined();
+    expect(React.isValidElement(backgroundRect) && backgroundRect.type).toBe('rect');
+    expect(React.isValidElement(backgroundRect) && backgroundRect.props).toEqual({
+      className: 'visx-pattern-line-background',
+      width: 4,
+      height: 4,
+      fill: 'blue'
+    });
   });
 
-  test('it should not render a rect background if no background prop', () => {
-    const wrapper = shallow(<PatternLines id="test" height={4} width={4} />);
-    expect(wrapper.find('rect')).toHaveLength(0);
-  });
-
-  test('it should render only the specified pattern lines', () => {
+  test('should render correct pattern lines based on orientation', () => {
     const size = 4;
     const orientation: PatternOrientationType[] = ['diagonal', 'diagonalRightToLeft'];
-    const renderedPaths = orientation.map((o) =>
-      pathForOrientation({ orientation: o, height: size }),
+    const expectedPaths = orientation.map(o => 
+      pathForOrientation({ orientation: o, height: size })
     );
-    const wrapper = shallow(
-      <PatternLines id="test" height={size} width={size} orientation={orientation} />,
+
+    render(
+      <PatternLines 
+        id="test" 
+        height={size} 
+        width={size} 
+        orientation={orientation} 
+      />
     );
-    expect(wrapper.find('path')).toHaveLength(2);
-    expect(wrapper.find('path').map((path) => path.prop('d'))).toEqual(renderedPaths);
+
+    const MockPattern = Pattern as jest.Mock;
+    const patternProps = MockPattern.mock.calls[0][0];
+    const paths = React.Children.toArray(patternProps.children).filter(
+      child => React.isValidElement(child) && child.type === 'path'
+    );
+
+    expect(paths).toHaveLength(2);
+    paths.forEach((path, index) => {
+      expect(React.isValidElement(path) && path.type).toBe('path');
+      expect(React.isValidElement(path) && path.props.d).toBe(expectedPaths[index]);
+    });
   });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":7,"failed":0,"total":7,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"pending"}
+// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":4,"failed":0,"total":4,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}

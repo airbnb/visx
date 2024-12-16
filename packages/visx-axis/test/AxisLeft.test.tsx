@@ -1,3 +1,4 @@
+/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -9,10 +10,15 @@
  * to more idiomatic RTL (and then removing this banner!).
  */
 import React from 'react';
-import { shallow } from 'enzyme';
-
+import { render } from '@testing-library/react';
 import { scaleLinear } from '@visx/scale';
-import { Axis, AxisLeft } from '../src';
+import { AxisLeft } from '../src';
+import { Axis } from '../src';
+
+jest.mock('../src/axis/Axis', () => ({
+  __esModule: true,
+  default: jest.fn(() => null),
+}));
 
 const axisProps = {
   scale: scaleLinear({
@@ -23,22 +29,27 @@ const axisProps = {
 };
 
 describe('<AxisLeft />', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('should be defined', () => {
     expect(AxisLeft).toBeDefined();
   });
 
-  it('should render with class .visx-axis-left', () => {
-    const wrapper = shallow(<AxisLeft {...axisProps} />);
-    expect(wrapper.prop('axisClassName')).toBe('visx-axis-left');
+  it('should render with correct class', () => {
+    render(<AxisLeft {...axisProps} />);
+    const props = (Axis as jest.Mock).mock.calls[0][0];
+    expect(props.axisClassName).toBe('visx-axis-left');
   });
 
-  it('should set user-specified axisClassName, axisLineClassName, labelClassName, and tickClassName', () => {
+  it('should apply custom class names', () => {
     const axisClassName = 'axis-test-class';
     const axisLineClassName = 'axisline-test-class';
     const labelClassName = 'label-test-class';
     const tickClassName = 'tick-test-class';
 
-    const wrapper = shallow(
+    render(
       <AxisLeft
         {...axisProps}
         axisClassName={axisClassName}
@@ -48,40 +59,44 @@ describe('<AxisLeft />', () => {
       />,
     );
 
-    const axis = wrapper.find(Axis);
-    expect(axis.prop('axisClassName')).toMatch(axisClassName);
-    expect(axis.prop('axisLineClassName')).toBe(axisLineClassName);
-    expect(axis.prop('labelClassName')).toBe(labelClassName);
-    expect(axis.prop('tickClassName')).toBe(tickClassName);
+    const props = (Axis as jest.Mock).mock.calls[0][0];
+    expect(props.axisClassName).toMatch(axisClassName);
+    expect(props.axisLineClassName).toBe(axisLineClassName);
+    expect(props.labelClassName).toBe(labelClassName);
+    expect(props.tickClassName).toBe(tickClassName);
   });
 
-  it('should default labelOffset prop to 36', () => {
-    const wrapper = shallow(<AxisLeft {...axisProps} />);
-    expect(wrapper.prop('labelOffset')).toBe(36);
+  it('should use default labelOffset', () => {
+    render(<AxisLeft {...axisProps} />);
+    const props = (Axis as jest.Mock).mock.calls[0][0];
+    expect(props.labelOffset).toBe(36);
   });
 
-  it('should set labelOffset prop', () => {
+  it('should set custom labelOffset', () => {
     const labelOffset = 3;
-    const wrapper = shallow(<AxisLeft {...axisProps} labelOffset={labelOffset} />);
-    expect(wrapper.prop('labelOffset')).toEqual(labelOffset);
+    render(<AxisLeft {...axisProps} labelOffset={labelOffset} />);
+    const props = (Axis as jest.Mock).mock.calls[0][0];
+    expect(props.labelOffset).toBe(labelOffset);
   });
 
-  it('should default tickLength prop to 8', () => {
-    const wrapper = shallow(<AxisLeft {...axisProps} />);
-    expect(wrapper.prop('tickLength')).toBe(8);
+  it('should use default tickLength', () => {
+    render(<AxisLeft {...axisProps} />);
+    const props = (Axis as jest.Mock).mock.calls[0][0];
+    expect(props.tickLength).toBe(8);
   });
 
-  it('should set tickLength prop', () => {
+  it('should set custom tickLength', () => {
     const tickLength = 15;
-    const wrapper = shallow(<AxisLeft {...axisProps} tickLength={tickLength} />);
-    expect(wrapper.prop('tickLength')).toEqual(tickLength);
+    render(<AxisLeft {...axisProps} tickLength={tickLength} />);
+    const props = (Axis as jest.Mock).mock.calls[0][0];
+    expect(props.tickLength).toBe(tickLength);
   });
 
-  it('should set label prop', () => {
+  it('should render label text', () => {
     const label = 'test';
-    const wrapper = shallow(<AxisLeft {...axisProps} label={label} />).dive();
-    const text = wrapper.find('.visx-axis-label');
-    expect(text.prop('children')).toEqual(label);
+    render(<AxisLeft {...axisProps} label={label} />);
+    const props = (Axis as jest.Mock).mock.calls[0][0];
+    expect(props.label).toBe(label);
   });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":8,"failed":0,"total":8,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"pending"}
+// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":8,"failed":0,"total":8,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}

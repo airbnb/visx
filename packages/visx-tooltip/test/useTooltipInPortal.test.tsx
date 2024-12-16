@@ -1,3 +1,4 @@
+/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -9,10 +10,16 @@
  * to more idiomatic RTL (and then removing this banner!).
  */
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 import { ResizeObserver } from '@juggle/resize-observer';
 import { useTooltipInPortal } from '../src';
 import { UseTooltipPortalOptions } from '../src/hooks/useTooltipInPortal';
+import Portal from '../src/Portal';
+
+jest.mock('../src/Portal', () => ({
+  __esModule: true,
+  default: jest.fn(({ children }) => <div>{children}</div>),
+}));
 
 interface TooltipWithZIndexProps {
   zIndexOption?: UseTooltipPortalOptions['zIndex'];
@@ -28,27 +35,28 @@ const TooltipWithZIndex = ({ zIndexOption, zIndexProp }: TooltipWithZIndexProps)
 };
 
 describe('useTooltipInPortal()', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   test('it should be defined', () => {
     expect(useTooltipInPortal).toBeDefined();
   });
 
   it('should pass zIndex prop from options to Portal', () => {
-    const wrapper = shallow(<TooltipWithZIndex zIndexOption={1} />, {
-      disableLifecycleMethods: true,
-    }).dive();
-    const zIndex = wrapper.find('Portal').prop('zIndex');
-    expect(zIndex).toBe(1);
+    render(<TooltipWithZIndex zIndexOption={1} />);
+    expect(Portal).toHaveBeenCalledWith(
+      expect.objectContaining({ zIndex: 1 }),
+      expect.any(Object),
+    );
   });
 
   it('should pass zIndex prop from component to Portal', () => {
-    const wrapper = shallow(
-      <TooltipWithZIndex zIndexOption={1} zIndexProp="var(--tooltip-zindex)" />,
-      {
-        disableLifecycleMethods: true,
-      },
-    ).dive();
-    const zIndex = wrapper.find('Portal').prop('zIndex');
-    expect(zIndex).toBe('var(--tooltip-zindex)');
+    render(<TooltipWithZIndex zIndexOption={1} zIndexProp="var(--tooltip-zindex)" />);
+    expect(Portal).toHaveBeenCalledWith(
+      expect.objectContaining({ zIndex: 'var(--tooltip-zindex)' }),
+      expect.any(Object),
+    );
   });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":3,"failed":0,"total":3,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"pending"}
+// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":3,"failed":0,"total":3,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}
