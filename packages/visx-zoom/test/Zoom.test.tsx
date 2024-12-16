@@ -1,11 +1,14 @@
 import React from 'react';
-import { render } from 'enzyme';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { Zoom, inverseMatrix } from '../src';
+import { CreateGestureHandlers } from '../lib/types';
 
 describe('<Zoom />', () => {
   it('should be defined', () => {
     expect(Zoom).toBeDefined();
   });
+
   it('should render the children and pass zoom params', () => {
     const initialTransform = {
       scaleX: 1.27,
@@ -16,7 +19,7 @@ describe('<Zoom />', () => {
       skewY: 0,
     };
 
-    const wrapper = render(
+    render(
       <Zoom
         width={400}
         height={400}
@@ -28,12 +31,32 @@ describe('<Zoom />', () => {
       >
         {({ transformMatrix }) => {
           const { scaleX, scaleY, translateX, translateY } = transformMatrix;
-          return <div>{[scaleX, scaleY, translateX, translateY].join(',')}</div>;
+          return (
+            <div data-testid="zoom-child">{[scaleX, scaleY, translateX, translateY].join(',')}</div>
+          );
         }}
       </Zoom>,
     );
+    expect(screen.getByTestId('zoom-child').innerHTML).toBe('1.27,1.27,-211.62,162.59');
+  });
+  it('should accept custom gesture handlers', () => {
+    const onClick = jest.fn();
 
-    expect(wrapper.html()).toBe('1.27,1.27,-211.62,162.59');
+    const createGestureHandlers: CreateGestureHandlers = () => ({ onClick });
+
+    render(
+      <Zoom<HTMLButtonElement>
+        width={400}
+        height={400}
+        createGestureHandlers={createGestureHandlers}
+      >
+        {({ containerRef }) => <button type="button" ref={containerRef} />}
+      </Zoom>,
+    );
+
+    const button = screen.getByRole('button');
+    userEvent.click(button);
+    expect(onClick.mock.calls).toHaveLength(1);
   });
 });
 
