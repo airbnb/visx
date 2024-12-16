@@ -141,4 +141,4 @@ describe('<Pie />', () => {
     expect(keys).toContain('pie');
   });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":0,"failed":0,"total":0,"skipped":0,"successRate":0},"tsc":"pending","enyzme":"pending"}
+// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":10,"failed":0,"total":10,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"pending"}

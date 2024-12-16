@@ -124,4 +124,4 @@ describe('<AreaClosed />', () => {
     expect(typeof args.path(data)).toBe('string');
   });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":0,"failed":0,"total":0,"skipped":0,"successRate":0},"tsc":"pending","enyzme":"pending"}
+// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":11,"failed":0,"total":11,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"pending"}
