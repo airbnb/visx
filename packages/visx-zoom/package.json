@@ -1,6 +1,6 @@
 {
   "name": "@visx/zoom",
-  "version": "3.12.0",
+  "version": "3.13.0-alpha.0",
   "description": "visx zoom",
   "sideEffects": false,
   "main": "lib/index.js",
