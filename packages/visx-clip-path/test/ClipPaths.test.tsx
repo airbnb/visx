@@ -30,8 +30,9 @@ describe('<ClipPath />', () => {
 
   test('it should assign the passed id to the clipPath', () => {
     const { container } = render(<ClipPath id="best_clip" />);
-    const clipPath = container.querySelector('clippath#best_clip');
+    const clipPath = container.querySelector('clippath');
     expect(clipPath).toBeInTheDocument();
+    expect(clipPath).toHaveAttribute('id', 'best_clip');
   });
 
   test('it should render children', () => {
@@ -42,6 +43,7 @@ describe('<ClipPath />', () => {
     );
     const circle = container.querySelector('clippath > circle');
     expect(circle).toBeInTheDocument();
+    expect(circle).toHaveAttribute('r', '5');
   });
 });
 
@@ -61,6 +63,7 @@ describe('<RectClipPath />', () => {
       <RectClipPath id="test" width={100} height={200} x={10} y={20} />
     );
     const rect = container.querySelector('clippath > rect');
+    expect(rect).toBeInTheDocument();
     expect(rect).toHaveAttribute('width', '100');
     expect(rect).toHaveAttribute('height', '200');
     expect(rect).toHaveAttribute('x', '10');
@@ -84,6 +87,7 @@ describe('<CircleClipPath />', () => {
       <CircleClipPath id="test" r={50} cx={100} cy={200} />
     );
     const circle = container.querySelector('clippath > circle');
+    expect(circle).toBeInTheDocument();
     expect(circle).toHaveAttribute('r', '50');
     expect(circle).toHaveAttribute('cx', '100');
     expect(circle).toHaveAttribute('cy', '200');

@@ -13,15 +13,9 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import EditableAnnotation from '../src/components/EditableAnnotation';
 
-jest.mock('../src/components/EditableAnnotation', () => {
-  const MockEditableAnnotation = jest.fn(({ children, canEditLabel = true, canEditSubject = true, ...props }) => (
-    <g data-testid="mock-annotation" {...props}>
-      {children}
-      {canEditLabel && <circle data-testid="label-handle" cx={0} cy={0} r={4} />}
-      {canEditSubject && <circle data-testid="subject-handle" cx={10} cy={10} r={4} />}
-    </g>
-  ));
-  return { __esModule: true, default: MockEditableAnnotation };
+jest.mock('../src/components/Annotation', () => {
+  const MockAnnotation = jest.fn(() => <g data-testid="annotation" />);
+  return { __esModule: true, default: MockAnnotation };
 });
 
 describe('<EditableAnnotation />', () => {
@@ -49,26 +43,33 @@ describe('<EditableAnnotation />', () => {
     expect(() => renderComponent()).not.toThrow();
   });
 
-  it('should render two resize handles', () => {
-    const { getAllByTestId } = renderComponent();
-    const circles = getAllByTestId(/-handle$/);
-    expect(circles).toHaveLength(2);
+  it('should render two resize handles by default', () => {
+    const { getByTestId } = renderComponent();
+    
+    // With default props, both handles should be present
+    expect(getByTestId('label-handle')).toBeInTheDocument();
+    expect(getByTestId('subject-handle')).toBeInTheDocument();
   });
 
-  it('should render one resize handle if canEditLabel or canEditSubject are false', () => {
-    const { getAllByTestId } = renderComponent({ canEditLabel: false });
-    const circles1 = getAllByTestId(/-handle$/);
-    expect(circles1).toHaveLength(1);
+  it('should render one resize handle if canEditLabel is false', () => {
+    const { queryByTestId } = renderComponent({ canEditLabel: false });
+    
+    // Only subject handle should be present
+    expect(queryByTestId('subject-handle')).toBeInTheDocument();
+    expect(queryByTestId('label-handle')).not.toBeInTheDocument();
+  });
 
-    const { getAllByTestId: getAllByTestId2 } = renderComponent({ canEditSubject: false });
-    const circles2 = getAllByTestId2(/-handle$/);
-    expect(circles2).toHaveLength(1);
+  it('should render one resize handle if canEditSubject is false', () => {
+    const { queryByTestId } = renderComponent({ canEditSubject: false });
+    
+    // Only label handle should be present  
+    expect(queryByTestId('label-handle')).toBeInTheDocument();
+    expect(queryByTestId('subject-handle')).not.toBeInTheDocument();
   });
 
   it('should render an Annotation', () => {
-    renderComponent();
-    const mockComponent = jest.mocked(EditableAnnotation);
-    expect(mockComponent).toHaveBeenCalled();
+    const { getByTestId } = renderComponent();
+    expect(getByTestId('annotation')).toBeInTheDocument();
   });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":2,"failed":2,"total":4,"skipped":0,"successRate":50},"tsc":"pending","enyzme":"converted"}
+// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":1,"failed":4,"total":5,"skipped":0,"successRate":20},"tsc":"pending","enyzme":"converted"}

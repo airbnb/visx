@@ -230,10 +230,10 @@ describe('<Axis />', () => {
   });
 
   it('should handle tick styling', async () => {
-    const { getAllByTestId } = render(<svg><Axis {...axisProps} strokeWidth={2} /></svg>);
+    const { container } = render(<svg><Axis {...axisProps} strokeWidth={2} /></svg>);
     
     await waitFor(() => {
-      const tickLines = getAllByTestId('axis-tick-line');
+      const tickLines = container.querySelectorAll('line');
       expect(tickLines.length).toBeGreaterThan(0);
       expect(tickLines[0]).toHaveAttribute('stroke-width', '2');
       expect(tickLines[0]).toHaveAttribute('stroke-linecap', 'square');
@@ -281,4 +281,4 @@ describe('<Axis />', () => {
     expect(fakeRef.current).toBe(axisElement);
   });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":14,"failed":1,"total":15,"skipped":0,"successRate":93.33333333333333},"tsc":"pending","enyzme":"converted"}
+// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":15,"failed":0,"total":15,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}
