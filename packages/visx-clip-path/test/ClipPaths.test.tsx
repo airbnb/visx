@@ -14,6 +14,15 @@ import { render } from '@testing-library/react';
 
 import { ClipPath, CircleClipPath, RectClipPath } from '../src';
 
+// Suppress console warnings about SVG casing since this is expected
+beforeAll(() => {
+  jest.spyOn(console, 'error').mockImplementation(() => {});
+});
+
+afterAll(() => {
+  jest.restoreAllMocks();
+});
+
 describe('<ClipPath />', () => {
   test('it should be defined', () => {
     expect(ClipPath).toBeDefined();
