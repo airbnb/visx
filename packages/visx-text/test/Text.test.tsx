@@ -1,6 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
-import { renderHook } from '@testing-library/react-hooks';
+import { render, renderHook } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { Text, getStringWidth, useText } from '../src';
 import { addMock, removeMock } from './svgMock';
