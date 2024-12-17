@@ -11,6 +11,7 @@
  */
 import React from 'react';
 import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { ClipPath, CircleClipPath, RectClipPath } from '../src';
 
@@ -102,4 +103,4 @@ describe('<CircleClipPath />', () => {
     expect(circle).toHaveAttribute('cy', '200');
   });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":3,"failed":7,"total":10,"skipped":0,"successRate":30},"tsc":"pending","enyzme":"converted"}
+// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":10,"failed":0,"total":10,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}
