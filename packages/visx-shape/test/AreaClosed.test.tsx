@@ -2,6 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { scaleLinear } from '@visx/scale';
+import { Area } from 'd3-shape';
 import { AreaClosed } from '../src';
 
 interface Datum {
@@ -47,7 +48,7 @@ describe('<AreaClosed />', () => {
   });
 
   test('it should handle children function prop', () => {
-    const childrenFn = jest.fn(() => null);
+    const childrenFn = jest.fn((_) => null);
     render(
       <svg>
         <AreaClosed data={data} yScale={yScale} x={x} y1={y}>
@@ -73,8 +74,8 @@ describe('<AreaClosed />', () => {
   });
 
   test('it should handle number and function props', () => {
-    const childrenFn = jest.fn(() => null);
-
+    const childrenFn = jest.fn((_: { path: Area<Datum> }) => null);
+    const args = [data[0], 0, data] as const;
     // Test with number prop
     render(
       <svg>
@@ -84,10 +85,13 @@ describe('<AreaClosed />', () => {
       </svg>,
     );
 
-    let args = childrenFn.mock.calls[0][0];
-    expect(args.path.x()()).toBe(42);
-    expect(args.path.y0()()).toBe(yScale.range()[0]);
-    expect(args.path.y1()()).toBe(42);
+    const { path } = childrenFn.mock.calls[0][0];
+
+    expect(path.x()(...args)).toBe(42);
+
+    expect(path.y0()(...args)).toBe(yScale.range()[0]);
+
+    expect(path.y1()?.(...args)).toBe(42);
 
     // Test with function prop
     childrenFn.mockClear();
@@ -99,10 +103,14 @@ describe('<AreaClosed />', () => {
       </svg>,
     );
 
-    args = childrenFn.mock.calls[0][0];
-    expect(args.path.x()()).toBe(42);
-    expect(args.path.y0()()).toBe(yScale.range()[0]);
-    expect(args.path.y1()()).toBe(42);
-    expect(args.path.defined()()).toBe(true);
+    const [{ path: path2 }] = childrenFn.mock.calls[0];
+
+    expect(path2.x()(...args)).toBe(42);
+
+    expect(path2.y0()(...args)).toBe(yScale.range()[0]);
+
+    expect(path2.y1()?.(...args)).toBe(42);
+
+    expect(path2.defined()(...args)).toBe(true);
   });
 });

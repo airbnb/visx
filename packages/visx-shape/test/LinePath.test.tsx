@@ -3,7 +3,6 @@ import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import { LinePath } from '../src';
-import { LinePathProps } from '../src/shapes/LinePath';
 
 interface Datum {
   x: number;
@@ -65,7 +64,7 @@ describe('<LinePath />', () => {
   });
 
   it('should call children function with { path }', () => {
-    const fn = jest.fn(() => null);
+    const fn = jest.fn((_) => null);
     render(
       <svg>
         <LinePath>{fn}</LinePath>

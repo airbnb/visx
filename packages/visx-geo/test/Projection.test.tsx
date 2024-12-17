@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import { feature } from 'topojson-client';
-import { GeometryCollection } from 'geojson';
+import type { GeometryCollection } from 'geojson';
 import Projection from '../src/projections/Projection';
 
 const mockTopology = {
@@ -82,7 +82,7 @@ describe('<Projection />', () => {
     renderWithSvg(<Projection projectionFunc={projectionFunc} {...defaultProps} />);
     expect(projectionFunc).toHaveBeenCalledTimes(1);
     // Verify projection is passed
-    expect(projectionFunc.mock.calls[0][0]).toBeDefined();
+    expect(projectionFunc.mock.calls[0]?.[0]).toBeDefined();
   });
 
   test('it should call centroid prop function', () => {
@@ -90,7 +90,7 @@ describe('<Projection />', () => {
     renderWithSvg(<Projection centroid={centroid} {...defaultProps} />);
     expect(centroid).toHaveBeenCalledTimes(2);
     // Verify centroid coordinates and feature are passed
-    expect(centroid.mock.calls[0][0]).toEqual(expect.any(Array));
-    expect(centroid.mock.calls[0][1]).toEqual(expect.any(Object));
+    expect(centroid.mock.calls[0]?.[0]).toEqual(expect.any(Array));
+    expect(centroid.mock.calls[0]?.[1]).toEqual(expect.any(Object));
   });
 });

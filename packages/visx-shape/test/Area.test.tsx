@@ -1,9 +1,8 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
-
+import { Area as D3Area } from 'd3-shape';
 import { Area } from '../src';
-import { AreaProps } from '../src/shapes/Area';
 
 interface Datum {
   x: Date;
@@ -69,7 +68,8 @@ describe('<Area />', () => {
   });
 
   test('should handle x and y props correctly', () => {
-    const childrenFn = jest.fn(() => null);
+    const childrenFn = jest.fn((_: { path: D3Area<Datum> }) => null);
+    const args = [fakeData[0], 0, fakeData] as const;
 
     // Test number props
     render(
@@ -80,9 +80,9 @@ describe('<Area />', () => {
       </svg>,
     );
 
-    let args = childrenFn.mock.calls[0][0];
-    expect(args.path.x()()).toBe(42);
-    expect(args.path.y()()).toBe(42);
+    const [{ path }] = childrenFn.mock.calls[0];
+    expect(path.x()(...args)).toBe(42);
+    expect(path.y()(...args)).toBe(42);
 
     childrenFn.mockClear();
 
@@ -95,17 +95,24 @@ describe('<Area />', () => {
       </svg>,
     );
 
-    args = childrenFn.mock.calls[0][0];
-    expect(args.path.x()()).toBe(42);
-    expect(args.path.x0()()).toBe(42);
-    expect(args.path.x1()).toBeNull();
-    expect(args.path.y()()).toBe(42);
-    expect(args.path.y0()()).toBe(42);
-    expect(args.path.y1()).toBeNull();
+    const [{ path: path2 }] = childrenFn.mock.calls[0];
+
+    expect(path2.x()(...args)).toBe(42);
+
+    expect(path2.x0()(...args)).toBe(42);
+
+    expect(path2.x1()).toBeNull();
+
+    expect(path2.y()(...args)).toBe(42);
+
+    expect(path2.y0()(...args)).toBe(42);
+
+    expect(path2.y1()).toBeNull();
   });
 
   test('should handle default defined prop and generate path string', () => {
-    const childrenFn = jest.fn(() => null);
+    const childrenFn = jest.fn((_: { path: D3Area<Datum> }) => null);
+    const args = [fakeData[0], 0, fakeData] as const;
     render(
       <svg>
         <Area data={fakeData} x={x} y={y}>
@@ -114,8 +121,10 @@ describe('<Area />', () => {
       </svg>,
     );
 
-    const args = childrenFn.mock.calls[0][0];
-    expect(args.path.defined()()).toBe(true);
-    expect(typeof args.path(fakeData)).toBe('string');
+    const [{ path }] = childrenFn.mock.calls[0];
+
+    expect(path.defined()(...args)).toBe(true);
+
+    expect(typeof path(fakeData)).toBe('string');
   });
 });

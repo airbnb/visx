@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import { TooltipWithBounds, defaultStyles } from '../src';
+import { TooltipWithBounds } from '../src';
 
 describe('<TooltipWithBounds />', () => {
   test('it should be defined', () => {

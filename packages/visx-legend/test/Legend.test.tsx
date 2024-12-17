@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { scaleLinear } from '@visx/scale';
 
-import { Legend, LegendLabel } from '../src';
+import { Legend } from '../src';
 
 const defaultProps = {
   scale: scaleLinear<number>({

@@ -68,18 +68,13 @@ describe('<XYChart />', () => {
   });
 
   it('should update the registry dimensions', () => {
-    expect.assertions(2);
+    const spy = jest.fn((_) => null);
     const width = 123;
     const height = 456;
 
     const DataConsumer = () => {
       const data = useContext(DataContext);
-
-      if (data.width && data.height) {
-        expect(data.width).toBe(width);
-        expect(data.height).toBe(height);
-      }
-      return null;
+      return spy(data);
     };
 
     render(
@@ -88,6 +83,13 @@ describe('<XYChart />', () => {
           <DataConsumer />
         </XYChart>
       </DataProvider>,
+    );
+
+    expect(spy).toHaveBeenCalledWith(
+      expect.objectContaining({
+        width,
+        height,
+      }),
     );
   });
 });
