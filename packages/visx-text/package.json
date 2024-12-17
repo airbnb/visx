@@ -40,8 +40,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "devDependencies": {
-    "@testing-library/react-hooks": "^8.0.0"
   }
 }
