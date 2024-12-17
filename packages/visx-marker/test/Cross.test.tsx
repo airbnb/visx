@@ -1,4 +1,3 @@
-/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -26,17 +25,31 @@ describe('<MarkerCross />', () => {
       </svg>,
     );
     expect(container.querySelector('marker')).toBeTruthy();
+    expect(container.querySelector('polyline')).toBeTruthy();
   });
 
   test('it should size correctly', () => {
     const size = 8;
     const strokeWidth = 1;
+    const bounds = size + strokeWidth;
+    const mid = size / 2;
+    const points = `0 ${mid}, ${mid} ${mid}, ${mid} 0, ${mid} ${size}, ${mid} ${mid}, ${size} ${mid}`;
+
     const { container } = render(
       <svg>
         <MarkerCross id="marker-cross-test" size={size} strokeWidth={strokeWidth} />
       </svg>,
     );
-    expect(container.querySelector('marker')).toBeTruthy();
+
+    const marker = container.querySelector('marker');
+    const polyline = container.querySelector('polyline');
+
+    expect(marker).toBeTruthy();
+    expect(marker?.getAttribute('markerWidth')).toBe(bounds.toString());
+    expect(marker?.getAttribute('markerHeight')).toBe(bounds.toString());
+    expect(marker?.getAttribute('refX')).toBe(mid.toString());
+    expect(marker?.getAttribute('refY')).toBe(mid.toString());
+    expect(polyline?.getAttribute('points')).toBe(points);
   });
 });
 // MIGRATION STATUS: {"eslint":"pass","jest":{"passed":3,"failed":0,"total":3,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}

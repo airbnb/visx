@@ -210,6 +210,17 @@ describe('<Axis />', () => {
     expect(tickText).toHaveTextContent('test!!!');
   });
 
+  it('should provide tick index to tickFormat function', () => {
+    const { container } = render(
+      <svg>
+        <Axis {...axisProps} tickValues={[9]} tickFormat={(val, i) => `index-${i}`} />
+      </svg>,
+    );
+
+    const tickText = container.querySelector('.visx-axis-tick text');
+    expect(tickText).toHaveTextContent('index-0');
+  });
+
   it('should handle tick styling', () => {
     const { container } = render(
       <svg>
@@ -267,4 +278,4 @@ describe('<Axis />', () => {
     expect(fakeRef.current).toBe(axisElement);
   });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":15,"failed":0,"total":15,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}
+// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":16,"failed":0,"total":16,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}

@@ -68,7 +68,15 @@ describe('<AxisLeft />', () => {
     expect(label).toHaveAttribute('transform', 'rotate(-90)');
   });
 
-  it('should rotate label with custom offset', () => {
+  it('should use default labelOffset of 36', () => {
+    const { container } = renderAxis({
+      label: "Test Label"
+    });
+    const label = container.querySelector('text.visx-axis-label');
+    expect(label).toHaveAttribute('transform', 'rotate(-90)');
+  });
+
+  it('should apply custom labelOffset', () => {
     const labelOffset = 3;
     const { container } = renderAxis({ 
       label: "Test Label",
@@ -99,4 +107,4 @@ describe('<AxisLeft />', () => {
     expect(elements[0]).toBeInTheDocument();
   });
 });
-// MIGRATION STATUS: {"eslint":"pass","jest":{"passed":8,"failed":0,"total":8,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}
+// MIGRATION STATUS: {"eslint":"pass","jest":{"passed":9,"failed":0,"total":9,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}

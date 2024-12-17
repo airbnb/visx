@@ -83,7 +83,6 @@ describe('<AxisRight />', () => {
     const label = 'test';
     const { container } = renderAxis({ label });
     
-    // Find label specifically in the axis label element
     const labelElement = container.querySelector('.visx-axis-label');
     expect(labelElement).toHaveTextContent(label);
   });

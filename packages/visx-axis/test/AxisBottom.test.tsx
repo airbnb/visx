@@ -70,5 +70,34 @@ describe('<AxisBottom />', () => {
     const { getByText } = renderAxis({ label });
     expect(getByText(label)).toBeInTheDocument();
   });
+
+  it('should apply transform attribute with labelOffset', () => {
+    const { container } = renderAxis();
+    const axis = container.querySelector('.visx-axis');
+    expect(axis).toHaveAttribute('transform');
+  });
+
+  it('should render with different labelOffsets', () => {
+    const { container } = renderAxis({ labelOffset: 50 });
+    const axis = container.querySelector('.visx-axis');
+    expect(axis).toHaveAttribute('transform');
+  });
+
+  it('should have default tickLength of 8', () => {
+    const { container } = renderAxis();
+    const ticks = container.querySelectorAll('.visx-axis-tick line');
+    ticks.forEach(tick => {
+      expect(tick).toHaveAttribute('y2', '8');
+    });
+  });
+
+  it('should set custom tickLength', () => {
+    const tickLength = 15;
+    const { container } = renderAxis({ tickLength });
+    const ticks = container.querySelectorAll('.visx-axis-tick line');
+    ticks.forEach(tick => {
+      expect(tick).toHaveAttribute('y2', '15');
+    });
+  });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":5,"failed":0,"total":5,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}
+// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":9,"failed":0,"total":9,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}

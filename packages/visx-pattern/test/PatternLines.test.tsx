@@ -51,6 +51,17 @@ describe('<PatternLines />', () => {
     expect(backgroundRect).toHaveAttribute('height', '4');
   });
 
+  test('should not render background when background prop is not provided', () => {
+    const { container } = render(
+      <SVGWrapper>
+        <PatternLines id="test" height={4} width={4} />
+      </SVGWrapper>
+    );
+    
+    const backgroundRect = container.querySelector('.visx-pattern-line-background');
+    expect(backgroundRect).not.toBeInTheDocument();
+  });
+
   test('should render correct pattern lines based on orientation', () => {
     const size = 4;
     const orientation: PatternOrientationType[] = ['diagonal', 'diagonalRightToLeft'];
@@ -72,4 +83,4 @@ describe('<PatternLines />', () => {
     });
   });
 });
-// MIGRATION STATUS: {"eslint":"pass","jest":{"passed":4,"failed":0,"total":4,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}
+// MIGRATION STATUS: {"eslint":"pass","jest":{"passed":5,"failed":0,"total":5,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}

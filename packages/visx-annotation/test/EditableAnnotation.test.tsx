@@ -65,5 +65,22 @@ describe('<EditableAnnotation />', () => {
     const { getByTestId } = renderComponent();
     expect(getByTestId('child-content')).toBeInTheDocument();
   });
+
+  it('should render with correct initial positions', () => {
+    const { container } = renderComponent({
+      x: 10,
+      y: 20,
+      dx: 30,
+      dy: 40,
+    });
+    
+    const circles = container.querySelectorAll('circle');
+    const [subjectHandle, labelHandle] = circles;
+
+    expect(subjectHandle).toHaveAttribute('cx', '10');
+    expect(subjectHandle).toHaveAttribute('cy', '20');
+    expect(labelHandle).toHaveAttribute('cx', '40'); // x + dx
+    expect(labelHandle).toHaveAttribute('cy', '60'); // y + dy
+  });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":5,"failed":0,"total":5,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}
+// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":6,"failed":0,"total":6,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}

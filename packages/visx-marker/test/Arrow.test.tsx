@@ -55,6 +55,10 @@ describe('<MarkerArrow />', () => {
     expect(marker).toHaveAttribute('refX', midX.toString());
     expect(marker).toHaveAttribute('refY', midY.toString());
 
+    const g = container.querySelector('g');
+    expect(g).toBeInTheDocument();
+    expect(g).toHaveAttribute('transform', `translate(${strokeWidth}, ${strokeWidth})`);
+
     const polyline = container.querySelector('polyline');
     expect(polyline).toBeInTheDocument();
     expect(polyline).toHaveAttribute('points', '0 0, 8 4, 0 8');
