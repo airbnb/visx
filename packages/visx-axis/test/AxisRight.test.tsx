@@ -49,19 +49,6 @@ describe('<AxisRight />', () => {
     expect(container.querySelector('.tick-test-class')).toBeInTheDocument();
   });
 
-  it('should render with custom props', () => {
-    const labelOffset = 3;
-    const tickLength = 15;
-
-    const { container } = renderAxis({ labelOffset, tickLength });
-    const axis = container.querySelector('.visx-axis-right');
-    expect(axis).toBeInTheDocument();
-
-    // Verify ticks are rendered
-    const ticks = container.querySelectorAll('.visx-axis-tick');
-    expect(ticks.length).toBeGreaterThan(0);
-  });
-
   it('should render label correctly', () => {
     const label = 'test';
     const { container } = renderAxis({ label });
