@@ -20,12 +20,12 @@ describe('<AnnotationConnector />', () => {
     const { container } = render(
       <svg>
         <AnnotationConnector {...defaultProps} />
-      </svg>
+      </svg>,
     );
-    
+
     const path = container.querySelector('path');
     expect(path).toBeInTheDocument();
-    
+
     // Verify the path has correct attributes
     expect(path).toHaveAttribute('d', expect.any(String));
     expect(path).toHaveAttribute('stroke', expect.any(String));

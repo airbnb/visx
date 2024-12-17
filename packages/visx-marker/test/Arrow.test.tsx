@@ -15,9 +15,9 @@ describe('<MarkerArrow />', () => {
         <defs>
           <MarkerArrow id="marker-circle-test" />
         </defs>
-      </svg>
+      </svg>,
     );
-    
+
     const marker = container.querySelector('marker');
     expect(marker).toBeInTheDocument();
     expect(marker).toHaveAttribute('id', 'marker-circle-test');
@@ -35,7 +35,7 @@ describe('<MarkerArrow />', () => {
         <defs>
           <MarkerArrow id="marker-circle-test" size={size} strokeWidth={strokeWidth} />
         </defs>
-      </svg>
+      </svg>,
     );
 
     const marker = container.querySelector('marker');

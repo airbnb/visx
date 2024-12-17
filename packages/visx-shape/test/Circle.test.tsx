@@ -13,7 +13,7 @@ describe('<Circle />', () => {
     const { container } = render(
       <svg>
         <Circle className="test" />
-      </svg>
+      </svg>,
     );
     const circle = container.querySelector('circle');
     expect(circle).toHaveClass('visx-circle', 'test');
@@ -24,7 +24,7 @@ describe('<Circle />', () => {
     const { container } = render(
       <svg>
         <Circle innerRef={fakeRef} />
-      </svg>
+      </svg>,
     );
     const circle = container.querySelector('circle');
     expect(fakeRef.current).toBe(circle);

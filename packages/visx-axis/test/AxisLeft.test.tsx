@@ -14,11 +14,11 @@ const axisProps = {
 };
 
 describe('<AxisLeft />', () => {
-  const renderAxis = (props = {}) => 
+  const renderAxis = (props = {}) =>
     render(
       <svg>
         <AxisLeft {...axisProps} {...props} />
-      </svg>
+      </svg>,
     );
 
   it('should be defined', () => {
@@ -37,7 +37,7 @@ describe('<AxisLeft />', () => {
     const tickClassName = 'tick-test-class';
 
     const { container } = renderAxis({
-      label: "Test Label",
+      label: 'Test Label',
       axisClassName,
       axisLineClassName,
       labelClassName,
@@ -52,7 +52,7 @@ describe('<AxisLeft />', () => {
 
   it('should rotate label by default', () => {
     const { container } = renderAxis({
-      label: "Test Label"
+      label: 'Test Label',
     });
     const label = container.querySelector('text.visx-axis-label');
     expect(label).toHaveAttribute('transform', 'rotate(-90)');
@@ -60,7 +60,7 @@ describe('<AxisLeft />', () => {
 
   it('should use default labelOffset of 36', () => {
     const { container } = renderAxis({
-      label: "Test Label"
+      label: 'Test Label',
     });
     const label = container.querySelector('text.visx-axis-label');
     expect(label).toHaveAttribute('transform', 'rotate(-90)');
@@ -68,9 +68,9 @@ describe('<AxisLeft />', () => {
 
   it('should apply custom labelOffset', () => {
     const labelOffset = 3;
-    const { container } = renderAxis({ 
-      label: "Test Label",
-      labelOffset 
+    const { container } = renderAxis({
+      label: 'Test Label',
+      labelOffset,
     });
     const label = container.querySelector('text.visx-axis-label');
     expect(label).toHaveAttribute('transform', 'rotate(-90)');

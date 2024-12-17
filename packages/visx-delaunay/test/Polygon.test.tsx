@@ -21,7 +21,7 @@ describe('<Polygon />', () => {
     const { container } = render(
       <svg>
         <Polygon {...props} />
-      </svg>
+      </svg>,
     );
     const path = container.querySelector('path');
     expect(path).toBeInTheDocument();
@@ -31,7 +31,7 @@ describe('<Polygon />', () => {
     const { container } = render(
       <svg>
         <Polygon {...props} />
-      </svg>
+      </svg>,
     );
     const path = container.querySelector('path');
     expect(path?.getAttribute('d')).toBe('M0,0L1,1L2,2Z');
@@ -41,7 +41,7 @@ describe('<Polygon />', () => {
     const { container } = render(
       <svg>
         <Polygon {...props} fill="orange" />
-      </svg>
+      </svg>,
     );
     const path = container.querySelector('path');
     expect(path?.getAttribute('fill')).toBe('orange');

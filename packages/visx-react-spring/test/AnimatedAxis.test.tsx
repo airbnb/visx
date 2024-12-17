@@ -6,9 +6,9 @@ import { AnimatedAxis } from '../src';
 
 describe('AnimatedAxis', () => {
   const defaultProps = {
-    scale: scaleLinear({ 
-      domain: [0, 10], 
-      range: [0, 100] 
+    scale: scaleLinear({
+      domain: [0, 10],
+      range: [0, 100],
     }),
     orientation: 'bottom',
   };
@@ -24,10 +24,8 @@ describe('AnimatedAxis', () => {
   it('should render without errors', async () => {
     const { container } = render(
       <svg width={100} height={100}>
-        <AnimatedAxis 
-          {...defaultProps}
-        />
-      </svg>
+        <AnimatedAxis {...defaultProps} />
+      </svg>,
     );
 
     await waitFor(() => {

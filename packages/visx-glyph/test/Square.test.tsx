@@ -12,14 +12,9 @@ describe('<GlyphSquare />', () => {
     const { container } = render(
       <svg>
         <GlyphSquare>
-          {({ path }) => (
-            <path
-              className="visx-glyph"
-              d={path.toString()}
-            />
-          )}
+          {({ path }) => <path className="visx-glyph" d={path.toString()} />}
         </GlyphSquare>
-      </svg>
+      </svg>,
     );
     expect(container.querySelector('.visx-glyph')).toBeInTheDocument();
   });
@@ -28,14 +23,9 @@ describe('<GlyphSquare />', () => {
     const { container } = render(
       <svg>
         <GlyphSquare className="test">
-          {({ path }) => (
-            <path
-              className="test"
-              d={path.toString()}
-            />
-          )}
+          {({ path }) => <path className="test" d={path.toString()} />}
         </GlyphSquare>
-      </svg>
+      </svg>,
     );
     expect(container.querySelector('.test')).toBeInTheDocument();
   });

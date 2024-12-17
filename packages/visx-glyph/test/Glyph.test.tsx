@@ -5,13 +5,12 @@ import '@testing-library/jest-dom';
 import { Glyph } from '../src';
 
 describe('<Glyph />', () => {
-  const renderGlyph = (props = {}) => {
-    return render(
+  const renderGlyph = (props = {}) =>
+    render(
       <svg>
         <Glyph {...props} />
-      </svg>
+      </svg>,
     );
-  };
 
   test('it should be defined', () => {
     expect(Glyph).toBeDefined();

@@ -22,7 +22,7 @@ describe('<HeatmapCircle />', () => {
     const { container } = render(
       <svg>
         <HeatmapCircle data={data} xScale={xScale} yScale={yScale} />
-      </svg>
+      </svg>,
     );
     expect(container.querySelector('.visx-heatmap-circles')).toBeInTheDocument();
   });
@@ -32,7 +32,7 @@ describe('<HeatmapCircle />', () => {
     const { container } = render(
       <svg>
         <HeatmapCircle data={data} xScale={xScale} yScale={yScale} className="test" />
-      </svg>
+      </svg>,
     );
     const circle = container.querySelector('circle');
     expect(circle).toHaveClass('visx-heatmap-circle');
@@ -44,7 +44,7 @@ describe('<HeatmapCircle />', () => {
     const { container } = render(
       <svg>
         <HeatmapCircle data={data} xScale={xScale} yScale={yScale} radius={10} gap={2} />
-      </svg>
+      </svg>,
     );
     expect(container.querySelector('circle')).toHaveAttribute('r', '8');
   });

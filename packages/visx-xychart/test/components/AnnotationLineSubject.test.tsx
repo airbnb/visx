@@ -11,7 +11,7 @@ describe('<AnnotationLineSubject />', () => {
     x1: 100,
     y1: 100,
     x2: 200,
-    y2: 200
+    y2: 200,
   };
 
   it('should be defined', () => {
@@ -22,9 +22,9 @@ describe('<AnnotationLineSubject />', () => {
     const { container } = render(
       <svg>
         <AnnotationLineSubject {...defaultProps} />
-      </svg>
+      </svg>,
     );
-    
+
     const line = container.querySelector('line');
     expect(line).toBeInTheDocument();
     expect(line).toHaveAttribute('x1', '100');
@@ -38,9 +38,9 @@ describe('<AnnotationLineSubject />', () => {
     const { container } = render(
       <svg>
         <AnnotationLineSubject {...defaultProps} className={className} />
-      </svg>
+      </svg>,
     );
-    
+
     const line = container.querySelector('line');
     expect(line).toBeInTheDocument();
     expect(line).toHaveClass(className);

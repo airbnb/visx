@@ -29,9 +29,9 @@ describe('<BarStackHorizontal />', () => {
           color={(d) => d}
           keys={[]}
         />
-      </svg>
+      </svg>,
     );
-    
+
     const element = container.querySelector('.visx-bar-stack-horizontal');
     expect(element).toBeInTheDocument();
     expect(element).toHaveClass('visx-bar-stack-horizontal');
@@ -51,9 +51,9 @@ describe('<BarStackHorizontal />', () => {
           color={(d) => d}
           keys={[]}
         />
-      </svg>
+      </svg>,
     );
-    
+
     const element = container.querySelector('.visx-bar-stack-horizontal');
     expect(element).toBeInTheDocument();
     expect(element).toHaveClass('visx-bar-stack-horizontal', 'test');
@@ -73,9 +73,9 @@ describe('<BarStackHorizontal />', () => {
           color={(d) => d}
           keys={[]}
         />
-      </svg>
+      </svg>,
     );
-    
+
     const element = container.querySelector('.visx-bar-stack-horizontal');
     expect(element).toBeInTheDocument();
     expect(element).toHaveAttribute('transform', 'translate(3, 2)');

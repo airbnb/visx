@@ -4,8 +4,7 @@ import '@testing-library/jest-dom';
 import { Polygon } from '../src';
 
 describe('<Polygon />', () => {
-  const renderInSvg = (ui: React.ReactElement) =>
-    render(<svg>{ui}</svg>);
+  const renderInSvg = (ui: React.ReactElement) => render(<svg>{ui}</svg>);
 
   it('should be defined', () => {
     expect(Polygon).toBeDefined();
@@ -40,14 +39,22 @@ describe('<Polygon />', () => {
 
   it('should render children function', () => {
     const fn = jest.fn(() => <g data-testid="child" />);
-    const { getByTestId } = renderInSvg(<Polygon sides={8} size={25}>{fn}</Polygon>);
+    const { getByTestId } = renderInSvg(
+      <Polygon sides={8} size={25}>
+        {fn}
+      </Polygon>,
+    );
     expect(fn).toHaveBeenCalled();
     expect(getByTestId('child')).toBeInTheDocument();
   });
 
   it('should pass points to children function', () => {
     const fn = jest.fn(() => null);
-    renderInSvg(<Polygon sides={8} size={25}>{fn}</Polygon>);
+    renderInSvg(
+      <Polygon sides={8} size={25}>
+        {fn}
+      </Polygon>,
+    );
     const args = fn.mock.calls[0][0];
     expect(args).toHaveProperty('points');
     expect(args.points).toHaveLength(8);

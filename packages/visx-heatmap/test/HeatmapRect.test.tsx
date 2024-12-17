@@ -17,7 +17,7 @@ describe('<HeatmapRect />', () => {
     const { container } = render(
       <svg>
         <HeatmapRect data={data} xScale={xScale} yScale={yScale} />
-      </svg>
+      </svg>,
     );
     const group = container.querySelector('svg g');
     expect(group).toHaveClass('visx-heatmap-rects');
@@ -26,13 +26,8 @@ describe('<HeatmapRect />', () => {
   test('it should have the .visx-heatmap-rect class', () => {
     const { container } = render(
       <svg>
-        <HeatmapRect 
-          data={data} 
-          xScale={xScale} 
-          yScale={yScale} 
-          className="test" 
-        />
-      </svg>
+        <HeatmapRect data={data} xScale={xScale} yScale={yScale} className="test" />
+      </svg>,
     );
     const rect = container.querySelector('svg rect');
     expect(rect).not.toBeNull();
@@ -43,15 +38,15 @@ describe('<HeatmapRect />', () => {
   test('it should set <rect /> width & height to bin{Width,Height} - gap', () => {
     const { container } = render(
       <svg>
-        <HeatmapRect 
-          data={data} 
-          xScale={xScale} 
-          yScale={yScale} 
-          binWidth={10} 
-          binHeight={14} 
-          gap={2} 
+        <HeatmapRect
+          data={data}
+          xScale={xScale}
+          yScale={yScale}
+          binWidth={10}
+          binHeight={14}
+          gap={2}
         />
-      </svg>
+      </svg>,
     );
     const rect = container.querySelector('svg rect');
     expect(rect).not.toBeNull();

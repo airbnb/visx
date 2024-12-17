@@ -28,7 +28,7 @@ describe('<LinePath />', () => {
     const { container } = render(
       <svg>
         <LinePath {...linePathProps} />
-      </svg>
+      </svg>,
     );
     const path = container.querySelector('path');
     expect(path).toHaveClass('visx-linepath');
@@ -38,7 +38,7 @@ describe('<LinePath />', () => {
     const { container } = render(
       <svg>
         <LinePath {...linePathProps} />
-      </svg>
+      </svg>,
     );
     const path = container.querySelector('path');
     expect(path).toHaveAttribute('stroke-linecap', 'round');
@@ -48,7 +48,7 @@ describe('<LinePath />', () => {
     const { container } = render(
       <svg>
         <LinePath {...linePathProps} />
-      </svg>
+      </svg>,
     );
     const paths = container.querySelectorAll('path');
     expect(paths.length).toBeGreaterThan(0);
@@ -59,7 +59,7 @@ describe('<LinePath />', () => {
     render(
       <svg>
         <LinePath>{fn}</LinePath>
-      </svg>
+      </svg>,
     );
     expect(fn).toHaveBeenCalled();
   });
@@ -69,7 +69,7 @@ describe('<LinePath />', () => {
     render(
       <svg>
         <LinePath>{fn}</LinePath>
-      </svg>
+      </svg>,
     );
     const args = fn.mock.calls[0][0];
     expect(args).toHaveProperty('path');
@@ -80,7 +80,7 @@ describe('<LinePath />', () => {
     const { container } = render(
       <svg>
         <LinePath data={linePathProps.data} innerRef={fakeRef} />
-      </svg>
+      </svg>,
     );
     const pathElement = container.querySelector('path');
     expect(fakeRef.current).toBe(pathElement);

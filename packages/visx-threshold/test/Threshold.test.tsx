@@ -35,7 +35,7 @@ describe('<Threshold />', () => {
         />
       </svg>,
     );
-    
+
     expect(container.querySelector('g.visx-threshold')).toBeInTheDocument();
     expect(container.querySelectorAll('path')).toHaveLength(4);
   });
@@ -62,7 +62,7 @@ describe('<Threshold />', () => {
         />
       </svg>,
     );
-    
+
     expect(container.querySelector('g.visx-threshold')).toBeInTheDocument();
     expect(container.querySelectorAll('path')).toHaveLength(4);
   });

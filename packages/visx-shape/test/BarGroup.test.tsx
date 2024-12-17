@@ -32,9 +32,7 @@ const defaultProps = {
 };
 
 describe('<BarGroup />', () => {
-  const renderWithSvg = (ui: React.ReactElement) => {
-    return render(<svg>{ui}</svg>);
-  };
+  const renderWithSvg = (ui: React.ReactElement) => render(<svg>{ui}</svg>);
 
   test('it should be defined', () => {
     expect(BarGroup).toBeDefined();

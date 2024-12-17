@@ -9,12 +9,20 @@ describe('<Line />', () => {
   });
 
   test('it should contain a <line />', () => {
-    const { container } = render(<svg><Line /></svg>);
+    const { container } = render(
+      <svg>
+        <Line />
+      </svg>,
+    );
     expect(container.querySelector('line')).toBeInTheDocument();
   });
 
   test('it should have the .visx-line class', () => {
-    const { container } = render(<svg><Line /></svg>);
+    const { container } = render(
+      <svg>
+        <Line />
+      </svg>,
+    );
     expect(container.querySelector('line')).toHaveClass('visx-line');
   });
 

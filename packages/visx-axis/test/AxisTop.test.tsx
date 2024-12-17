@@ -13,8 +13,7 @@ const axisProps = {
 };
 
 describe('<AxisTop />', () => {
-  const renderInSVG = (children: React.ReactElement) => 
-    render(<svg>{children}</svg>);
+  const renderInSVG = (children: React.ReactElement) => render(<svg>{children}</svg>);
 
   it('should be defined', () => {
     expect(AxisTop).toBeDefined();
@@ -75,7 +74,7 @@ describe('<AxisTop />', () => {
   it('should render with custom labelOffset', async () => {
     const labelOffset = 3;
     const { container } = renderInSVG(
-      <AxisTop {...axisProps} label="test label" labelOffset={labelOffset} />
+      <AxisTop {...axisProps} label="test label" labelOffset={labelOffset} />,
     );
     await waitFor(() => {
       const label = container.querySelector('.visx-axis-label');
@@ -87,7 +86,7 @@ describe('<AxisTop />', () => {
     const { container } = renderInSVG(<AxisTop {...axisProps} />);
     await waitFor(() => {
       const ticks = container.querySelectorAll('.visx-axis-tick line.visx-line');
-      ticks.forEach(tick => {
+      ticks.forEach((tick) => {
         const y1 = Math.abs(parseFloat(tick.getAttribute('y1') || '0'));
         const y2 = Math.abs(parseFloat(tick.getAttribute('y2') || '0'));
         expect(Math.abs(y2 - y1)).toBe(8);
@@ -100,7 +99,7 @@ describe('<AxisTop />', () => {
     const { container } = renderInSVG(<AxisTop {...axisProps} tickLength={tickLength} />);
     await waitFor(() => {
       const ticks = container.querySelectorAll('.visx-axis-tick line.visx-line');
-      ticks.forEach(tick => {
+      ticks.forEach((tick) => {
         const y1 = Math.abs(parseFloat(tick.getAttribute('y1') || '0'));
         const y2 = Math.abs(parseFloat(tick.getAttribute('y2') || '0'));
         expect(Math.abs(y2 - y1)).toBe(tickLength);

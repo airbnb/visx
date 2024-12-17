@@ -8,11 +8,11 @@ describe('AnimatedGridRows', () => {
   const defaultProps = {
     width: 100,
     height: 100,
-    scale: scaleLinear({ 
-      domain: [0, 10], 
-      range: [0, 100] 
+    scale: scaleLinear({
+      domain: [0, 10],
+      range: [0, 100],
     }),
-    numTicks: 5
+    numTicks: 5,
   };
 
   it('should be defined', () => {
@@ -23,7 +23,7 @@ describe('AnimatedGridRows', () => {
     const { container } = render(
       <svg>
         <AnimatedGridRows {...defaultProps} />
-      </svg>
+      </svg>,
     );
     expect(container.querySelector('svg')).toBeInTheDocument();
     expect(container.querySelector('g')).toBeInTheDocument();
@@ -32,12 +32,8 @@ describe('AnimatedGridRows', () => {
   it('should render with custom dimensions', () => {
     const { container } = render(
       <svg>
-        <AnimatedGridRows
-          {...defaultProps}
-          width={200}
-          height={200}
-        />
-      </svg>
+        <AnimatedGridRows {...defaultProps} width={200} height={200} />
+      </svg>,
     );
     const gridGroup = container.querySelector('g');
     expect(gridGroup).toBeInTheDocument();
@@ -47,16 +43,13 @@ describe('AnimatedGridRows', () => {
   it('should render with custom scale', () => {
     const customScale = scaleLinear({
       domain: [0, 100],
-      range: [0, 500]
+      range: [0, 500],
     });
 
     const { container } = render(
       <svg>
-        <AnimatedGridRows
-          {...defaultProps}
-          scale={customScale}
-        />
-      </svg>
+        <AnimatedGridRows {...defaultProps} scale={customScale} />
+      </svg>,
     );
     const gridGroup = container.querySelector('g');
     expect(gridGroup).toBeInTheDocument();

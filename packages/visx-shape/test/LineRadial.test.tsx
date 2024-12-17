@@ -26,7 +26,7 @@ describe('<LineRadial />', () => {
     const { container } = render(
       <svg>
         <LineRadial {...mockProps} />
-      </svg>
+      </svg>,
     );
     const path = container.querySelector('path');
     expect(path).toHaveClass('visx-line-radial');
@@ -36,7 +36,7 @@ describe('<LineRadial />', () => {
     const { container } = render(
       <svg>
         <LineRadial {...mockProps} />
-      </svg>
+      </svg>,
     );
     const paths = container.querySelectorAll('path');
     expect(paths.length).toBeGreaterThan(0);
@@ -47,7 +47,7 @@ describe('<LineRadial />', () => {
     render(
       <svg>
         <LineRadial {...mockProps}>{fn}</LineRadial>
-      </svg>
+      </svg>,
     );
     expect(fn).toHaveBeenCalled();
   });
@@ -57,7 +57,7 @@ describe('<LineRadial />', () => {
     render(
       <svg>
         <LineRadial {...mockProps}>{fn}</LineRadial>
-      </svg>
+      </svg>,
     );
     const args = fn.mock.calls[0][0];
     expect(args).toHaveProperty('path');
@@ -68,7 +68,7 @@ describe('<LineRadial />', () => {
     const { container } = render(
       <svg>
         <LineRadial innerRef={fakeRef} {...mockProps} />
-      </svg>
+      </svg>,
     );
     const pathElement = container.querySelector('path');
     expect(fakeRef.current).toBe(pathElement);

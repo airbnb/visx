@@ -14,13 +14,12 @@ const axisProps = {
 };
 
 describe('<AxisBottom />', () => {
-  const renderAxis = (props = {}) => {
-    return render(
+  const renderAxis = (props = {}) =>
+    render(
       <svg>
         <AxisBottom {...axisProps} {...props} />
-      </svg>
+      </svg>,
     );
-  };
 
   it('should be defined', () => {
     expect(AxisBottom).toBeDefined();
@@ -76,7 +75,7 @@ describe('<AxisBottom />', () => {
   it('should have default tickLength of 8', () => {
     const { container } = renderAxis();
     const ticks = container.querySelectorAll('.visx-axis-tick line');
-    ticks.forEach(tick => {
+    ticks.forEach((tick) => {
       expect(tick).toHaveAttribute('y2', '8');
     });
   });
@@ -85,7 +84,7 @@ describe('<AxisBottom />', () => {
     const tickLength = 15;
     const { container } = renderAxis({ tickLength });
     const ticks = container.querySelectorAll('.visx-axis-tick line');
-    ticks.forEach(tick => {
+    ticks.forEach((tick) => {
       expect(tick).toHaveAttribute('y2', '15');
     });
   });

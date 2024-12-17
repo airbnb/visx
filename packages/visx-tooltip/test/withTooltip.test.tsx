@@ -31,7 +31,7 @@ describe('withTooltip()', () => {
     expect(div).toHaveStyle({
       position: 'relative',
       width: 'inherit',
-      height: 'inherit'
+      height: 'inherit',
     });
   });
 
@@ -41,7 +41,7 @@ describe('withTooltip()', () => {
 
     expect(div).toBeInTheDocument();
     expect(div).toHaveStyle({
-      position: 'static'
+      position: 'static',
     });
   });
 

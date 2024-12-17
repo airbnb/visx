@@ -45,10 +45,8 @@ describe('<Legend />', () => {
 
   test('it should pass through legendLabelProps to legend labels', () => {
     const style = { fontFamily: 'Comic Sans MS' };
-    const { container } = render(
-      <Legend {...defaultProps} legendLabelProps={{ style }} />,
-    );
-    
+    const { container } = render(<Legend {...defaultProps} legendLabelProps={{ style }} />);
+
     const labelElement = container.querySelector('[style*="font-family: Comic Sans MS"]');
     expect(labelElement).not.toBeNull();
     expect(labelElement).toBeInTheDocument();

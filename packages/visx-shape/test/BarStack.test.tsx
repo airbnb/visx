@@ -27,9 +27,9 @@ describe('<BarStack />', () => {
           color={(d) => d}
           keys={[]}
         />
-      </svg>
+      </svg>,
     );
-    
+
     expect(container.querySelector('.visx-bar-stack')).toBeInTheDocument();
   });
 
@@ -47,7 +47,7 @@ describe('<BarStack />', () => {
           color={(d) => d}
           keys={[]}
         />
-      </svg>
+      </svg>,
     );
 
     const element = container.querySelector('.visx-bar-stack');
@@ -69,7 +69,7 @@ describe('<BarStack />', () => {
           color={(d) => d}
           keys={[]}
         />
-      </svg>
+      </svg>,
     );
 
     const element = container.querySelector('.visx-bar-stack');

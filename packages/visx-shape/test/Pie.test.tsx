@@ -53,7 +53,7 @@ describe('<Pie />', () => {
     const { container } = render(
       <svg>
         <Pie data={browserUsage} pieSort={() => 0} pieSortValues={() => 0} />
-      </svg>
+      </svg>,
     );
     expect(container).toBeInTheDocument();
   });
@@ -64,7 +64,7 @@ describe('<Pie />', () => {
     const { container } = render(
       <svg>
         <Pie data={browserUsage} pieSort={null} pieSortValues={null} />
-      </svg>
+      </svg>,
     );
     expect(container).toBeInTheDocument();
 
@@ -77,7 +77,7 @@ describe('<Pie />', () => {
         <Pie data={[A, B]} pieSortValues={null}>
           {childrenFn}
         </Pie>
-      </svg>
+      </svg>,
     );
 
     const args = childrenFn.mock.calls[0][0];
@@ -86,23 +86,27 @@ describe('<Pie />', () => {
   });
 
   test('it should break on invalid sort callbacks', () => {
-    expect(() => render(
-      <svg>
-        <Pie data={browserUsage} pieSort={12 as any} />
-      </svg>
-    )).toThrow();
-    expect(() => render(
-      <svg>
-        <Pie data={browserUsage} pieSortValues={12 as any} />
-      </svg>
-    )).toThrow();
+    expect(() =>
+      render(
+        <svg>
+          <Pie data={browserUsage} pieSort={12 as any} />
+        </svg>,
+      ),
+    ).toThrow();
+    expect(() =>
+      render(
+        <svg>
+          <Pie data={browserUsage} pieSortValues={12 as any} />
+        </svg>,
+      ),
+    ).toThrow();
   });
 
   test('it should render pie chart with correct structure', () => {
     const { container } = render(
       <svg>
         <Pie data={browserUsage} />
-      </svg>
+      </svg>,
     );
     const group = container.querySelector('.visx-pie-arcs-group');
     expect(group).toBeInTheDocument();
@@ -115,9 +119,9 @@ describe('<Pie />', () => {
     render(
       <svg>
         <Pie data={browserUsage}>{childrenFn}</Pie>
-      </svg>
+      </svg>,
     );
-    
+
     expect(childrenFn).toHaveBeenCalled();
     const args = childrenFn.mock.calls[0][0];
     expect(args).toHaveProperty('path');
@@ -129,9 +133,9 @@ describe('<Pie />', () => {
     const { container } = render(
       <svg>
         <Pie data={browserUsage} fill={(datum: PieArcDatum<Datum>) => datum.data.color} />
-      </svg>
+      </svg>,
     );
-    
+
     const paths = container.querySelectorAll('path');
     expect(paths[0]).toHaveAttribute('fill', 'blue');
     expect(paths[1]).toHaveAttribute('fill', 'red');
@@ -141,9 +145,9 @@ describe('<Pie />', () => {
     const { container } = render(
       <svg>
         <Pie data={browserUsage} fill="purple" />
-      </svg>
+      </svg>,
     );
-    
+
     const paths = container.querySelectorAll('path');
     expect(paths[0]).toHaveAttribute('fill', 'purple');
     expect(paths[1]).toHaveAttribute('fill', 'purple');

@@ -13,7 +13,7 @@ describe('<Bar />', () => {
     const { container } = render(
       <svg>
         <Bar className="test" />
-      </svg>
+      </svg>,
     );
     const rect = container.querySelector('rect');
     expect(rect).toHaveClass('visx-bar', 'test');
@@ -24,7 +24,7 @@ describe('<Bar />', () => {
     const { container } = render(
       <svg>
         <Bar innerRef={fakeRef} />
-      </svg>
+      </svg>,
     );
     const rectElement = container.querySelector('rect');
     expect(fakeRef.current).toBe(rectElement);

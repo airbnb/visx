@@ -29,7 +29,7 @@ describe('<GridRadial />', () => {
     const { container } = render(
       <svg>
         <GridRadial {...gridProps} />
-      </svg>
+      </svg>,
     );
     const group = container.querySelector('.visx-grid-radial');
     expect(group).toBeInTheDocument();
@@ -39,7 +39,7 @@ describe('<GridRadial />', () => {
     const { container } = render(
       <svg>
         <GridRadial {...gridProps} lineClassName="test-class" />
-      </svg>
+      </svg>,
     );
     const paths = container.querySelectorAll('path');
     expect(paths.length).toBeGreaterThan(0);
@@ -52,7 +52,7 @@ describe('<GridRadial />', () => {
     const { container } = render(
       <svg>
         <GridRadial {...gridProps} numTicks={5} />
-      </svg>
+      </svg>,
     );
     const paths = container.querySelectorAll('path.visx-arc');
     expect(paths).toHaveLength(5);
@@ -60,7 +60,7 @@ describe('<GridRadial />', () => {
     const { container: container2 } = render(
       <svg>
         <GridRadial {...gridProps} numTicks={10} />
-      </svg>
+      </svg>,
     );
     const paths2 = container2.querySelectorAll('path.visx-arc');
     expect(paths2).toHaveLength(10);
@@ -70,7 +70,7 @@ describe('<GridRadial />', () => {
     const { container } = render(
       <svg>
         <GridRadial {...gridProps} tickValues={[1, 2, 3]} />
-      </svg>
+      </svg>,
     );
     const paths = container.querySelectorAll('path.visx-arc');
     expect(paths).toHaveLength(3);

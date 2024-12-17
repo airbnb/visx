@@ -163,7 +163,7 @@ describe('<Axis />', () => {
       </svg>,
     );
     const ticks = hidden.querySelectorAll('line.visx-axis-tick');
-    expect(ticks.length).toBe(0);
+    expect(ticks).toHaveLength(0);
   });
 
   it('should render specified tick values', () => {
@@ -172,21 +172,21 @@ describe('<Axis />', () => {
         <Axis {...axisProps} tickValues={[]} />
       </svg>,
     );
-    expect(empty.querySelectorAll('.visx-axis-tick').length).toBe(0);
+    expect(empty.querySelectorAll('.visx-axis-tick')).toHaveLength(0);
 
     const { container: single } = render(
       <svg>
         <Axis {...axisProps} tickValues={[2]} />
       </svg>,
     );
-    expect(single.querySelectorAll('.visx-axis-tick').length).toBe(1);
+    expect(single.querySelectorAll('.visx-axis-tick')).toHaveLength(1);
 
     const { container: multiple } = render(
       <svg>
         <Axis {...axisProps} tickValues={[0, 1, 2, 3, 4, 5, 6]} />
       </svg>,
     );
-    expect(multiple.querySelectorAll('.visx-axis-tick').length).toBe(7);
+    expect(multiple.querySelectorAll('.visx-axis-tick')).toHaveLength(7);
   });
 
   it('should format ticks correctly', () => {
@@ -241,12 +241,12 @@ describe('<Axis />', () => {
 
     const lines = container.querySelectorAll('line');
     expect(lines.length).toBeGreaterThan(0);
-    
+
     const firstLine = lines[0];
     const secondLine = lines[1];
-    
+
     expect(firstLine).toHaveAttribute('x1', '8');
-    expect(firstLine).toHaveAttribute('y1', '0'); 
+    expect(firstLine).toHaveAttribute('y1', '0');
     expect(firstLine).toHaveAttribute('x2', '8');
     expect(firstLine).toHaveAttribute('y2', '8');
 

@@ -89,7 +89,7 @@ describe('<BarGroupHorizontal />', () => {
     const args = children.mock.calls[0][0];
     const barGroups = args;
     const group = barGroups[0];
-    
+
     expect(Object.keys(group)).toEqual(['index', 'y0', 'bars']);
     expect(group.index).toBe(0);
     expect(typeof group.index).toBe('number');

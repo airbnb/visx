@@ -28,7 +28,7 @@ describe('<PatternPath />', () => {
     const { container } = render(
       <svg>
         <PatternPath id="test" height={4} width={4} background="blue" />
-      </svg>
+      </svg>,
     );
     expect(container.querySelector('rect')).toBeInTheDocument();
   });
@@ -37,7 +37,7 @@ describe('<PatternPath />', () => {
     const { container } = render(
       <svg>
         <PatternPath id="test" height={4} width={4} />
-      </svg>
+      </svg>,
     );
     expect(container.querySelector('rect')).not.toBeInTheDocument();
   });

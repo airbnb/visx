@@ -19,14 +19,14 @@ describe('<GridRows />', () => {
           strokeOpacity={0.3}
           pointerEvents="none"
         />
-      </svg>
+      </svg>,
     );
-    
+
     const lines = container.querySelectorAll('.visx-line');
     expect(lines).toHaveLength(11);
 
     // Verify line attributes were passed through
-    lines.forEach(line => {
+    lines.forEach((line) => {
       expect(line).toHaveAttribute('stroke-dasharray', '3,3');
       expect(line).toHaveAttribute('stroke-opacity', '0.3');
       expect(line).toHaveAttribute('pointer-events', 'none');

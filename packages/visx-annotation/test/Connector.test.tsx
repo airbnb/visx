@@ -12,7 +12,7 @@ describe('<Connector />', () => {
     const { container } = render(
       <svg width={100} height={100}>
         <Connector />
-      </svg>
+      </svg>,
     );
     expect(container.querySelector('path')).toBeInTheDocument();
   });

@@ -13,9 +13,9 @@ describe('<AnnotationCircleSubject />', () => {
     const { container } = render(
       <svg>
         <AnnotationCircleSubject x={10} y={10} />
-      </svg>
+      </svg>,
     );
-    
+
     expect(container.querySelector('circle')).toBeInTheDocument();
   });
 });

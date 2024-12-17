@@ -28,12 +28,12 @@ describe('<PatternLines />', () => {
     const { container } = render(
       <SVGWrapper>
         <PatternLines id="test" height={4} width={4} background="blue" />
-      </SVGWrapper>
+      </SVGWrapper>,
     );
 
     const pattern = container.querySelector('pattern');
     expect(pattern).toBeInTheDocument();
-    
+
     const backgroundRect = container.querySelector('.visx-pattern-line-background');
     expect(backgroundRect).toBeInTheDocument();
     expect(backgroundRect).toHaveAttribute('fill', 'blue');
@@ -45,9 +45,9 @@ describe('<PatternLines />', () => {
     const { container } = render(
       <SVGWrapper>
         <PatternLines id="test" height={4} width={4} />
-      </SVGWrapper>
+      </SVGWrapper>,
     );
-    
+
     const backgroundRect = container.querySelector('.visx-pattern-line-background');
     expect(backgroundRect).not.toBeInTheDocument();
   });
@@ -62,12 +62,12 @@ describe('<PatternLines />', () => {
     const { container } = render(
       <SVGWrapper>
         <PatternLines id="test" height={size} width={size} orientation={orientation} />
-      </SVGWrapper>
+      </SVGWrapper>,
     );
 
     const paths = container.querySelectorAll('.visx-pattern-line');
     expect(paths).toHaveLength(2);
-    
+
     paths.forEach((path, index) => {
       expect(path).toHaveAttribute('d', expectedPaths[index]);
     });

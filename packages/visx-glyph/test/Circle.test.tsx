@@ -13,9 +13,13 @@ describe('<GlyphCircle />', () => {
       <GlyphCircle>
         {({ path }) => {
           const renderedPath = typeof path === 'function' ? path() : path;
-          return <svg role="img" className="visx-glyph">{renderedPath}</svg>;
+          return (
+            <svg role="img" className="visx-glyph">
+              {renderedPath}
+            </svg>
+          );
         }}
-      </GlyphCircle>
+      </GlyphCircle>,
     );
     expect(container.querySelector('.visx-glyph')).toBeInTheDocument();
   });
@@ -25,9 +29,13 @@ describe('<GlyphCircle />', () => {
       <GlyphCircle className="test">
         {({ path }) => {
           const renderedPath = typeof path === 'function' ? path() : path;
-          return <svg role="img" className="test">{renderedPath}</svg>;
+          return (
+            <svg role="img" className="test">
+              {renderedPath}
+            </svg>
+          );
         }}
-      </GlyphCircle>
+      </GlyphCircle>,
     );
     expect(container.querySelector('.test')).toBeInTheDocument();
   });

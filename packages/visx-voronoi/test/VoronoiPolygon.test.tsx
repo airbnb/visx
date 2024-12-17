@@ -17,7 +17,7 @@ describe('<VoronoiPolygon />', () => {
     const { container } = render(
       <svg>
         <VoronoiPolygon />
-      </svg>
+      </svg>,
     );
     expect(container.querySelector('path')).not.toBeInTheDocument();
   });
@@ -26,7 +26,7 @@ describe('<VoronoiPolygon />', () => {
     const { container } = render(
       <svg>
         <VoronoiPolygon {...props} />
-      </svg>
+      </svg>,
     );
     expect(container.querySelector('path')).toBeInTheDocument();
   });
@@ -35,7 +35,7 @@ describe('<VoronoiPolygon />', () => {
     const { container } = render(
       <svg>
         <VoronoiPolygon {...props} />
-      </svg>
+      </svg>,
     );
     const path = container.querySelector('path');
     expect(path?.getAttribute('d')).toBe('M0,0L1,1L2,2Z');
@@ -45,7 +45,7 @@ describe('<VoronoiPolygon />', () => {
     const { container } = render(
       <svg>
         <VoronoiPolygon {...props} fill="orange" />
-      </svg>
+      </svg>,
     );
     const path = container.querySelector('path');
     expect(path?.getAttribute('fill')).toBe('orange');

@@ -22,7 +22,7 @@ describe('<ClipPath />', () => {
     const { container } = render(<ClipPath id="test" />);
     const defs = container.querySelector('defs');
     const clipPath = container.querySelector('clippath');
-    
+
     expect(defs).toBeInTheDocument();
     expect(clipPath).toBeInTheDocument();
   });
@@ -38,7 +38,7 @@ describe('<ClipPath />', () => {
     const { container } = render(
       <ClipPath id="test">
         <circle r={5} />
-      </ClipPath>
+      </ClipPath>,
     );
     const circle = container.querySelector('clippath > circle');
     expect(circle).toBeInTheDocument();
@@ -58,9 +58,7 @@ describe('<RectClipPath />', () => {
   });
 
   test('it should pass props to the rect', () => {
-    const { container } = render(
-      <RectClipPath id="test" width={100} height={200} x={10} y={20} />
-    );
+    const { container } = render(<RectClipPath id="test" width={100} height={200} x={10} y={20} />);
     const rect = container.querySelector('clippath > rect');
     expect(rect).toBeInTheDocument();
     expect(rect).toHaveAttribute('width', '100');
@@ -82,9 +80,7 @@ describe('<CircleClipPath />', () => {
   });
 
   test('it should pass props to the circle', () => {
-    const { container } = render(
-      <CircleClipPath id="test" r={50} cx={100} cy={200} />
-    );
+    const { container } = render(<CircleClipPath id="test" r={50} cx={100} cy={200} />);
     const circle = container.querySelector('clippath > circle');
     expect(circle).toBeInTheDocument();
     expect(circle).toHaveAttribute('r', '50');

@@ -15,7 +15,7 @@ const valueScale = scaleLinear<number>({
 });
 
 describe('<BoxPlot />', () => {
-  const renderBoxPlot = () => 
+  const renderBoxPlot = () =>
     render(
       <svg width={100} height={100}>
         <BoxPlot
@@ -29,7 +29,7 @@ describe('<BoxPlot />', () => {
           valueScale={valueScale}
           outliers={outliers}
         />
-      </svg>
+      </svg>,
     );
 
   test('it should be defined', () => {

@@ -11,10 +11,8 @@ describe('<GlyphDiamond />', () => {
   test('should render with default className', () => {
     const { container } = render(
       <svg>
-        <GlyphDiamond>
-          {() => <path data-testid="diamond-path" />}
-        </GlyphDiamond>
-      </svg>
+        <GlyphDiamond>{() => <path data-testid="diamond-path" />}</GlyphDiamond>
+      </svg>,
     );
     expect(container.querySelector('svg')).toBeInTheDocument();
   });
@@ -22,10 +20,8 @@ describe('<GlyphDiamond />', () => {
   test('should render with custom className', () => {
     const { container } = render(
       <svg>
-        <GlyphDiamond className="test">
-          {({ path }) => <path className="test" />}
-        </GlyphDiamond>
-      </svg>
+        <GlyphDiamond className="test">{({ path }) => <path className="test" />}</GlyphDiamond>
+      </svg>,
     );
     expect(container.querySelector('.test')).toBeInTheDocument();
   });
@@ -35,7 +31,7 @@ describe('<GlyphDiamond />', () => {
     render(
       <svg>
         <GlyphDiamond>{childrenFn}</GlyphDiamond>
-      </svg>
+      </svg>,
     );
     expect(childrenFn).toHaveBeenCalled();
   });
@@ -45,9 +41,9 @@ describe('<GlyphDiamond />', () => {
     render(
       <svg>
         <GlyphDiamond>{childrenFn}</GlyphDiamond>
-      </svg>
+      </svg>,
     );
-    
+
     expect(childrenFn).toHaveBeenCalled();
     const args = childrenFn.mock.calls[0][0];
     expect(args).toHaveProperty('path');
@@ -58,9 +54,9 @@ describe('<GlyphDiamond />', () => {
     render(
       <svg>
         <GlyphDiamond size={42}>{childrenFn}</GlyphDiamond>
-      </svg>
+      </svg>,
     );
-    
+
     const args = childrenFn.mock.calls[0][0];
     expect(args.path.size()()).toBe(42);
   });
@@ -71,9 +67,9 @@ describe('<GlyphDiamond />', () => {
     render(
       <svg>
         <GlyphDiamond size={sizeFn}>{childrenFn}</GlyphDiamond>
-      </svg>
+      </svg>,
     );
-    
+
     const args = childrenFn.mock.calls[0][0];
     expect(args.path.size()()).toBe(42);
   });

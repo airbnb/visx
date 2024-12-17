@@ -20,7 +20,7 @@ describe('<GridColumns />', () => {
         />
       </svg>,
     );
-    
+
     const lines = container.querySelectorAll('.visx-line');
     expect(lines).toHaveLength(11);
   });

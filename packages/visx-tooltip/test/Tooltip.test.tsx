@@ -11,7 +11,7 @@ describe('<Tooltip />', () => {
     const { container } = render(<Tooltip>Hello</Tooltip>);
     const tooltip = container.firstChild as HTMLElement;
     const computedStyle = window.getComputedStyle(tooltip);
-    
+
     Object.entries(defaultStyles).forEach(([key, value]) => {
       // For colors, compare the computed style which will be normalized
       if (key === 'backgroundColor' || key === 'color') {
@@ -24,7 +24,7 @@ describe('<Tooltip />', () => {
             const normalized = window.getComputedStyle(temp).color;
             document.body.removeChild(temp);
             return normalized;
-          })()
+          })(),
         );
       } else {
         // For other styles, compare directly
@@ -36,7 +36,7 @@ describe('<Tooltip />', () => {
   it('should render with no default styles', () => {
     const { container } = render(<Tooltip unstyled>Hello</Tooltip>);
     const tooltip = container.firstChild as HTMLElement;
-    
+
     Object.keys(defaultStyles).forEach((key) => {
       expect(tooltip.style[key as any]).toBe('');
     });
@@ -53,10 +53,10 @@ describe('<Tooltip />', () => {
       boxShadow: '0 2px 3px rgba(133,133,133,0.5)',
       lineHeight: '2em',
     };
-    
+
     const { container } = render(<Tooltip style={newStyles} />);
     const tooltip = container.firstChild as HTMLElement;
-    
+
     Object.entries(newStyles).forEach(([key, value]) => {
       expect(tooltip.style[key as any]).toBe(value);
     });

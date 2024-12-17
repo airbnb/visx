@@ -12,9 +12,9 @@ describe('<CircleSubject />', () => {
     const { container } = render(
       <svg>
         <CircleSubject x={10} y={10} />
-      </svg>
+      </svg>,
     );
-    
+
     const circle = container.querySelector('circle');
     expect(circle).toBeInTheDocument();
     expect(circle).toHaveAttribute('cx', '10');

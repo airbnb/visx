@@ -29,29 +29,35 @@ describe('useTooltipInPortal()', () => {
 
   it('should pass zIndex prop from options to Portal', async () => {
     const { baseElement } = render(<TooltipWithZIndex zIndexOption={1} />);
-    
-    await waitFor(() => {
-      const portalDiv = baseElement.querySelector('[style*="z-index: 1"]');
-      expect(portalDiv).toBeInTheDocument();
-      expect(portalDiv).toHaveStyle('z-index: 1');
-    }, {
-      timeout: 1000,
-      interval: 100,
-    });
+
+    await waitFor(
+      () => {
+        const portalDiv = baseElement.querySelector('[style*="z-index: 1"]');
+        expect(portalDiv).toBeInTheDocument();
+        expect(portalDiv).toHaveStyle('z-index: 1');
+      },
+      {
+        timeout: 1000,
+        interval: 100,
+      },
+    );
   });
 
   it('should pass zIndex prop from component to Portal', async () => {
     const { baseElement } = render(
-      <TooltipWithZIndex zIndexOption={1} zIndexProp="var(--tooltip-zindex)" />
+      <TooltipWithZIndex zIndexOption={1} zIndexProp="var(--tooltip-zindex)" />,
     );
 
-    await waitFor(() => {
-      const portalDiv = baseElement.querySelector('[style*="z-index: var(--tooltip-zindex)"]');
-      expect(portalDiv).toBeInTheDocument(); 
-      expect(portalDiv).toHaveStyle('z-index: var(--tooltip-zindex)');
-    }, {
-      timeout: 1000,
-      interval: 100,
-    });
+    await waitFor(
+      () => {
+        const portalDiv = baseElement.querySelector('[style*="z-index: var(--tooltip-zindex)"]');
+        expect(portalDiv).toBeInTheDocument();
+        expect(portalDiv).toHaveStyle('z-index: var(--tooltip-zindex)');
+      },
+      {
+        timeout: 1000,
+        interval: 100,
+      },
+    );
   });
 });

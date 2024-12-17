@@ -23,7 +23,7 @@ describe('<GridAngle />', () => {
     const { container } = render(
       <svg>
         <GridAngle {...gridProps} />
-      </svg>
+      </svg>,
     );
     const element = container.querySelector('g.visx-group');
     expect(element).toBeTruthy();
@@ -34,7 +34,7 @@ describe('<GridAngle />', () => {
     const { container } = render(
       <svg>
         <GridAngle {...gridProps} lineClassName="test-class" />
-      </svg>
+      </svg>,
     );
     const lines = container.querySelectorAll('line.test-class');
     expect(lines.length).toBeGreaterThan(0);
@@ -44,7 +44,7 @@ describe('<GridAngle />', () => {
     const { container } = render(
       <svg>
         <GridAngle {...gridProps} numTicks={5} />
-      </svg>
+      </svg>,
     );
     const lines = container.querySelectorAll('line');
     expect(lines).toHaveLength(5);
@@ -52,7 +52,7 @@ describe('<GridAngle />', () => {
     const { container: container2 } = render(
       <svg>
         <GridAngle {...gridProps} numTicks={10} />
-      </svg>
+      </svg>,
     );
     const lines2 = container2.querySelectorAll('line');
     expect(lines2).toHaveLength(10);
@@ -62,7 +62,7 @@ describe('<GridAngle />', () => {
     const { container } = render(
       <svg>
         <GridAngle {...gridProps} tickValues={[1, 2, 3]} />
-      </svg>
+      </svg>,
     );
     const lines = container.querySelectorAll('line');
     expect(lines).toHaveLength(3);
@@ -76,7 +76,7 @@ describe('<GridAngle />', () => {
     render(
       <svg>
         <GridAngle {...gridProps} innerRadius={innerRadius} outerRadius={outerRadius} />
-      </svg>
+      </svg>,
     );
 
     expect(polarToCartesianSpy.mock.calls.length).toBeGreaterThanOrEqual(2);

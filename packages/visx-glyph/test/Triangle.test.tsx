@@ -14,7 +14,7 @@ describe('<GlyphTriangle />', () => {
         <GlyphTriangle>
           {({ path }) => <path className="visx-glyph" d={path.toString()} />}
         </GlyphTriangle>
-      </svg>
+      </svg>,
     );
     const element = container.querySelector('.visx-glyph');
     expect(element).toBeInTheDocument();
@@ -26,7 +26,7 @@ describe('<GlyphTriangle />', () => {
         <GlyphTriangle className="test">
           {({ path }) => <path className="test" d={path.toString()} />}
         </GlyphTriangle>
-      </svg>
+      </svg>,
     );
     const element = container.querySelector('.test');
     expect(element).toBeInTheDocument();
@@ -37,7 +37,7 @@ describe('<GlyphTriangle />', () => {
     render(
       <svg>
         <GlyphTriangle>{fn}</GlyphTriangle>
-      </svg>
+      </svg>,
     );
     expect(fn).toHaveBeenCalled();
   });
@@ -47,7 +47,7 @@ describe('<GlyphTriangle />', () => {
     render(
       <svg>
         <GlyphTriangle>{fn}</GlyphTriangle>
-      </svg>
+      </svg>,
     );
     const args = fn.mock.calls[0][0];
     expect(args).toHaveProperty('path');
@@ -55,22 +55,22 @@ describe('<GlyphTriangle />', () => {
 
   test('should handle size prop correctly', () => {
     const fn = jest.fn();
-    
+
     // Test number size
     render(
       <svg>
         <GlyphTriangle size={42}>{fn}</GlyphTriangle>
-      </svg>
+      </svg>,
     );
     expect(fn.mock.calls[0][0].path.size()()).toBe(42);
-    
+
     // Test function size
     fn.mockClear();
     const sizeFn = () => 42;
     render(
       <svg>
         <GlyphTriangle size={sizeFn}>{fn}</GlyphTriangle>
-      </svg>
+      </svg>,
     );
     expect(fn.mock.calls[0][0].path.size()()).toBe(42);
   });

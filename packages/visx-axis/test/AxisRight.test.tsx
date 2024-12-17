@@ -14,11 +14,11 @@ const axisProps = {
 };
 
 describe('<AxisRight />', () => {
-  const renderAxis = (props = {}) => 
+  const renderAxis = (props = {}) =>
     render(
       <svg>
         <AxisRight {...axisProps} {...props} />
-      </svg>
+      </svg>,
     );
 
   it('should be defined', () => {
@@ -49,7 +49,7 @@ describe('<AxisRight />', () => {
     const { container } = renderAxis();
     const axis = container.querySelector('.visx-axis-right');
     expect(axis).toBeInTheDocument();
-    
+
     // Default props are reflected in rendered output
     const ticks = container.querySelectorAll('.visx-axis-tick');
     expect(ticks.length).toBeGreaterThan(0);
@@ -60,7 +60,7 @@ describe('<AxisRight />', () => {
     const tickLength = 15;
 
     const { container } = renderAxis({ labelOffset, tickLength });
-    
+
     const axis = container.querySelector('.visx-axis-right');
     expect(axis).toBeInTheDocument();
 
@@ -72,7 +72,7 @@ describe('<AxisRight />', () => {
   it('should render label correctly', () => {
     const label = 'test';
     const { container } = renderAxis({ label });
-    
+
     const labelElement = container.querySelector('.visx-axis-label');
     expect(labelElement).toHaveTextContent(label);
   });

@@ -27,7 +27,7 @@ describe('<PatternCircles />', () => {
     const { container } = render(
       <svg>
         <PatternCircles id="test" height={4} width={4} background="blue" />
-      </svg>
+      </svg>,
     );
     const rect = container.querySelector('pattern rect');
     expect(rect).toBeInTheDocument();
@@ -38,7 +38,7 @@ describe('<PatternCircles />', () => {
     const { container } = render(
       <svg>
         <PatternCircles id="test" height={4} width={4} />
-      </svg>
+      </svg>,
     );
     const rect = container.querySelector('pattern rect');
     expect(rect).not.toBeInTheDocument();

@@ -28,7 +28,7 @@ describe('<Area />', () => {
     const { container } = render(
       <svg>
         <Area data={fakeData} x={x} y={y} />
-      </svg>
+      </svg>,
     );
     expect(container.querySelector('path')).toBeInTheDocument();
   });
@@ -37,7 +37,7 @@ describe('<Area />', () => {
     const { container } = render(
       <svg>
         <Area data={fakeData} x={x} y={y} />
-      </svg>
+      </svg>,
     );
     expect(container.querySelector('path')).toHaveClass('visx-area');
   });
@@ -47,7 +47,7 @@ describe('<Area />', () => {
     const { container } = render(
       <svg>
         <Area data={fakeData} x={x} y={y} innerRef={fakeRef} />
-      </svg>
+      </svg>,
     );
     const pathElement = container.querySelector('path');
     expect(fakeRef.current).toBe(pathElement);
@@ -60,9 +60,9 @@ describe('<Area />', () => {
         <Area data={fakeData} x={x} y={y}>
           {childrenFn}
         </Area>
-      </svg>
+      </svg>,
     );
-    
+
     expect(childrenFn).toHaveBeenCalled();
     const args = childrenFn.mock.calls[0][0];
     expect(args).toHaveProperty('path');
@@ -70,16 +70,16 @@ describe('<Area />', () => {
 
   test('should handle x and y props correctly', () => {
     const childrenFn = jest.fn(() => null);
-    
+
     // Test number props
     render(
       <svg>
         <Area data={fakeData} x={42} y={42}>
           {childrenFn}
         </Area>
-      </svg>
+      </svg>,
     );
-    
+
     let args = childrenFn.mock.calls[0][0];
     expect(args.path.x()()).toBe(42);
     expect(args.path.y()()).toBe(42);
@@ -92,9 +92,9 @@ describe('<Area />', () => {
         <Area data={fakeData} x={() => 42} y={() => 42}>
           {childrenFn}
         </Area>
-      </svg>
+      </svg>,
     );
-    
+
     args = childrenFn.mock.calls[0][0];
     expect(args.path.x()()).toBe(42);
     expect(args.path.x0()()).toBe(42);
@@ -111,9 +111,9 @@ describe('<Area />', () => {
         <Area data={fakeData} x={x} y={y}>
           {childrenFn}
         </Area>
-      </svg>
+      </svg>,
     );
-    
+
     const args = childrenFn.mock.calls[0][0];
     expect(args.path.defined()()).toBe(true);
     expect(typeof args.path(fakeData)).toBe('string');

@@ -29,7 +29,7 @@ describe('AnimatedTicks', () => {
             },
           ]}
         />
-      </svg>
+      </svg>,
     );
 
     expect(getByText('Test Component')).toBeInTheDocument();
@@ -48,12 +48,12 @@ describe('AnimatedTicks', () => {
             { from: { x: 0, y: 0 }, to: { x: 0, y: 5 }, value: 0, index: 0, formattedValue: '0' },
           ]}
         />
-      </svg>
+      </svg>,
     );
 
     const svgElement = container.querySelector('svg');
     expect(svgElement).toBeInTheDocument();
-    
+
     // Check that ticks are rendered
     const tickGroup = container.querySelector('g');
     expect(tickGroup).toBeInTheDocument();

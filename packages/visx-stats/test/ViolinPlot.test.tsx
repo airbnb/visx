@@ -22,7 +22,7 @@ describe('<ViolinPlot />', () => {
     const { container } = render(
       <svg>
         <ViolinPlot data={binData} left={3} width={100} valueScale={valueScale} />
-      </svg>
+      </svg>,
     );
     expect(container.querySelector('.visx-violin')).toBeInTheDocument();
   });
@@ -31,7 +31,7 @@ describe('<ViolinPlot />', () => {
     const { container } = render(
       <svg width={100} height={100}>
         <ViolinPlot data={binData} left={3} width={100} valueScale={valueScale} />
-      </svg>
+      </svg>,
     );
     const paths = container.getElementsByTagName('path');
     expect(paths).toHaveLength(1);

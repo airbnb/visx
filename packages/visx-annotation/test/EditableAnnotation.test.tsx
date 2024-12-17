@@ -63,7 +63,7 @@ describe('<EditableAnnotation />', () => {
       dx: 30,
       dy: 40,
     });
-    
+
     const circles = container.querySelectorAll('circle');
     const [subjectHandle, labelHandle] = circles;
 

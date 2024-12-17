@@ -12,7 +12,7 @@ describe('<Group />', () => {
     const { container } = render(
       <svg>
         <Group />
-      </svg>
+      </svg>,
     );
     const group = container.querySelector('.visx-group');
     expect(group).toBeInTheDocument();
@@ -23,7 +23,7 @@ describe('<Group />', () => {
     const { container } = render(
       <svg>
         <Group />
-      </svg>
+      </svg>,
     );
     const group = container.querySelector('.visx-group');
     expect(group?.getAttribute('transform')).toBe('translate(0, 0)');
@@ -33,7 +33,7 @@ describe('<Group />', () => {
     const { container } = render(
       <svg>
         <Group className="test" top={3} left={4} />
-      </svg>
+      </svg>,
     );
     const group = container.querySelector('.visx-group');
     expect(group?.getAttribute('transform')).toBe('translate(4, 3)');
@@ -44,7 +44,7 @@ describe('<Group />', () => {
     const { container } = render(
       <svg>
         <Group clipPath="url(#myClip)" stroke="mapleSyrup" />
-      </svg>
+      </svg>,
     );
     const group = container.querySelector('.visx-group');
     expect(group?.getAttribute('clip-path')).toBe('url(#myClip)');

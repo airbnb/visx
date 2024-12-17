@@ -12,11 +12,13 @@ describe('<GlyphWye />', () => {
     const { getByTestId } = render(
       <svg>
         <GlyphWye>
-          {({ path }) => <path data-testid="test-path" className="visx-glyph" d={path.toString()} />}
+          {({ path }) => (
+            <path data-testid="test-path" className="visx-glyph" d={path.toString()} />
+          )}
         </GlyphWye>
-      </svg>
+      </svg>,
     );
-    
+
     const pathElement = getByTestId('test-path');
     expect(pathElement).toBeInTheDocument();
     expect(pathElement).toHaveClass('visx-glyph');
@@ -27,16 +29,12 @@ describe('<GlyphWye />', () => {
       <svg>
         <GlyphWye>
           {({ path }) => (
-            <path 
-              data-testid="test-path" 
-              className="test visx-glyph" 
-              d={path.toString()} 
-            />
+            <path data-testid="test-path" className="test visx-glyph" d={path.toString()} />
           )}
         </GlyphWye>
-      </svg>
+      </svg>,
     );
-    
+
     const pathElement = getByTestId('test-path');
     expect(pathElement).toBeInTheDocument();
     expect(pathElement).toHaveClass('test');
@@ -48,7 +46,7 @@ describe('<GlyphWye />', () => {
     render(
       <svg>
         <GlyphWye>{fn}</GlyphWye>
-      </svg>
+      </svg>,
     );
     expect(fn).toHaveBeenCalledTimes(1);
   });
@@ -58,7 +56,7 @@ describe('<GlyphWye />', () => {
     render(
       <svg>
         <GlyphWye>{fn}</GlyphWye>
-      </svg>
+      </svg>,
     );
     expect(fn).toHaveBeenCalledTimes(1);
     const args = fn.mock.calls[0][0];
@@ -70,7 +68,7 @@ describe('<GlyphWye />', () => {
     render(
       <svg>
         <GlyphWye size={42}>{fn}</GlyphWye>
-      </svg>
+      </svg>,
     );
     expect(fn).toHaveBeenCalledTimes(1);
     const args = fn.mock.calls[0][0];
@@ -83,7 +81,7 @@ describe('<GlyphWye />', () => {
     render(
       <svg>
         <GlyphWye size={sizeFn}>{fn}</GlyphWye>
-      </svg>
+      </svg>,
     );
     expect(fn).toHaveBeenCalledTimes(1);
     const args = fn.mock.calls[0][0];

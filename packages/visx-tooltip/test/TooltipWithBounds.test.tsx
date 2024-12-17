@@ -12,10 +12,10 @@ describe('<TooltipWithBounds />', () => {
   it('should render with default styles by default', () => {
     const { getByText } = render(<TooltipWithBounds>Hello</TooltipWithBounds>);
     const tooltip = getByText('Hello');
-    
+
     expect(tooltip).toBeInTheDocument();
     expect(tooltip).toHaveClass('visx-tooltip');
-    
+
     // Check that default styles are applied
     expect(tooltip).toHaveStyle({
       position: 'absolute',
@@ -25,22 +25,22 @@ describe('<TooltipWithBounds />', () => {
       borderRadius: '3px',
       fontSize: '14px',
       boxShadow: '0 1px 2px rgba(33,33,33,0.2)',
-      pointerEvents: 'none'
+      pointerEvents: 'none',
     });
   });
 
   it('should render without default styles if unstyled is set to true', () => {
     const { getByText } = render(<TooltipWithBounds unstyled>Hello</TooltipWithBounds>);
     const tooltip = getByText('Hello');
-    
+
     expect(tooltip).toBeInTheDocument();
     expect(tooltip).toHaveClass('visx-tooltip');
-    
+
     // Verify only positioning styles are applied
     expect(tooltip).toHaveStyle({
       top: '0px',
       left: '0px',
-      transform: 'translate(10px, 10px)'
+      transform: 'translate(10px, 10px)',
     });
 
     // Verify default styles are not applied
@@ -51,7 +51,7 @@ describe('<TooltipWithBounds />', () => {
       borderRadius: '3px',
       fontSize: '14px',
       boxShadow: '0 1px 2px rgba(33,33,33,0.2)',
-      pointerEvents: 'none'
+      pointerEvents: 'none',
     });
   });
 });

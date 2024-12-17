@@ -29,7 +29,7 @@ describe('<AreaClosed />', () => {
     const { container } = render(
       <svg>
         <AreaClosed data={data} yScale={yScale} x={x} y1={y} />
-      </svg>
+      </svg>,
     );
     const path = container.querySelector('path');
     expect(path).toHaveClass('visx-area-closed');
@@ -40,7 +40,7 @@ describe('<AreaClosed />', () => {
     const { container } = render(
       <svg>
         <AreaClosed data={data} yScale={yScale} x={x} y1={y} innerRef={fakeRef} />
-      </svg>
+      </svg>,
     );
     const path = container.querySelector('path');
     expect(fakeRef.current).toBe(path);
@@ -53,9 +53,9 @@ describe('<AreaClosed />', () => {
         <AreaClosed data={data} yScale={yScale} x={x} y1={y}>
           {childrenFn}
         </AreaClosed>
-      </svg>
+      </svg>,
     );
-    
+
     expect(childrenFn).toHaveBeenCalled();
     const args = childrenFn.mock.calls[0][0];
     expect(args).toHaveProperty('path');
@@ -65,7 +65,7 @@ describe('<AreaClosed />', () => {
     const { container } = render(
       <svg>
         <AreaClosed data={data} yScale={yScale} x={x} y1={y} />
-      </svg>
+      </svg>,
     );
     const path = container.querySelector('path');
     expect(path).toHaveAttribute('d');
@@ -74,16 +74,16 @@ describe('<AreaClosed />', () => {
 
   test('it should handle number and function props', () => {
     const childrenFn = jest.fn(() => null);
-    
+
     // Test with number prop
     render(
       <svg>
         <AreaClosed data={data} yScale={yScale} x={42} y1={42}>
           {childrenFn}
         </AreaClosed>
-      </svg>
+      </svg>,
     );
-    
+
     let args = childrenFn.mock.calls[0][0];
     expect(args.path.x()()).toBe(42);
     expect(args.path.y0()()).toBe(yScale.range()[0]);
@@ -96,9 +96,9 @@ describe('<AreaClosed />', () => {
         <AreaClosed data={data} yScale={yScale} x={() => 42} y1={() => 42}>
           {childrenFn}
         </AreaClosed>
-      </svg>
+      </svg>,
     );
-    
+
     args = childrenFn.mock.calls[0][0];
     expect(args.path.x()()).toBe(42);
     expect(args.path.y0()()).toBe(yScale.range()[0]);

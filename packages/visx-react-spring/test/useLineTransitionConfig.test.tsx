@@ -14,9 +14,7 @@ describe('useLineTransitionConfig', () => {
   });
 
   it('should return react-spring config with from, enter, update, leave keys', () => {
-    const { result } = renderHook(() =>
-      useLineTransitionConfig({ scale, animateXOrY: 'x' })
-    );
+    const { result } = renderHook(() => useLineTransitionConfig({ scale, animateXOrY: 'x' }));
 
     expect(result.current).toMatchObject({
       from: expect.any(Function),
@@ -32,7 +30,7 @@ describe('useLineTransitionConfig', () => {
         scale,
         animateXOrY: 'x',
         animationTrajectory: 'min',
-      })
+      }),
     );
 
     const { result: invertedResult } = renderHook(() =>
@@ -40,7 +38,7 @@ describe('useLineTransitionConfig', () => {
         scale: invertedScale,
         animateXOrY: 'y',
         animationTrajectory: 'min',
-      })
+      }),
     );
 
     expect(result.current.from(verticalLine).fromX).toBe(0);
@@ -53,7 +51,7 @@ describe('useLineTransitionConfig', () => {
         scale,
         animateXOrY: 'x',
         animationTrajectory: 'max',
-      })
+      }),
     );
 
     const { result: invertedResult } = renderHook(() =>
@@ -61,7 +59,7 @@ describe('useLineTransitionConfig', () => {
         scale: invertedScale,
         animateXOrY: 'y',
         animationTrajectory: 'max',
-      })
+      }),
     );
 
     expect(result.current.from(verticalLine).fromX).toBe(10);
@@ -74,7 +72,7 @@ describe('useLineTransitionConfig', () => {
         scale,
         animateXOrY: 'x',
         animationTrajectory: 'outside',
-      })
+      }),
     );
 
     expect(result.current.from(verticalLine).fromX).toBe(0);
@@ -87,7 +85,7 @@ describe('useLineTransitionConfig', () => {
         scale,
         animateXOrY: 'x',
         animationTrajectory: 'center',
-      })
+      }),
     );
 
     expect(result.current.from(verticalLine).fromX).toBe(5);

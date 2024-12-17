@@ -15,7 +15,7 @@ describe('<MarkerX />', () => {
         <defs>
           <MarkerX id="marker-x-test" />
         </defs>
-      </svg>
+      </svg>,
     );
 
     const marker = container.querySelector('#marker-x-test');

@@ -20,9 +20,9 @@ describe('AnimatedGridColumns', () => {
     const { container } = render(
       <svg>
         <AnimatedGridColumns {...defaultProps} />
-      </svg>
+      </svg>,
     );
-    
+
     // Check that SVG elements are rendered
     const gridGroup = container.querySelector('g');
     expect(gridGroup).toBeInTheDocument();

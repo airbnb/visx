@@ -18,7 +18,7 @@ describe('<MarkerCircle />', () => {
 
     const marker = container.querySelector('marker');
     const circle = container.querySelector('circle');
-    
+
     expect(marker).toBeInTheDocument();
     expect(circle).toBeInTheDocument();
   });
@@ -43,7 +43,7 @@ describe('<MarkerCircle />', () => {
     expect(marker).toHaveAttribute('refX', '0');
     expect(marker).toHaveAttribute('refY', mid.toString());
 
-    // Check circle attributes 
+    // Check circle attributes
     const circle = container.querySelector('circle');
     expect(circle).toHaveAttribute('r', size.toString());
     expect(circle).toHaveAttribute('cx', mid.toString());

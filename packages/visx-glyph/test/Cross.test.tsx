@@ -12,9 +12,13 @@ describe('<GlyphCross />', () => {
     const { container } = render(
       <svg>
         <GlyphCross>
-          {() => <g className="visx-glyph"><path d="M0,0" /></g>}
+          {() => (
+            <g className="visx-glyph">
+              <path d="M0,0" />
+            </g>
+          )}
         </GlyphCross>
-      </svg>
+      </svg>,
     );
     expect(container.querySelector('.visx-glyph')).toHaveClass('visx-glyph');
   });
@@ -23,9 +27,13 @@ describe('<GlyphCross />', () => {
     const { container } = render(
       <svg>
         <GlyphCross className="test">
-          {() => <g className="test"><path d="M0,0" /></g>}
+          {() => (
+            <g className="test">
+              <path d="M0,0" />
+            </g>
+          )}
         </GlyphCross>
-      </svg>
+      </svg>,
     );
     expect(container.querySelector('.test')).toHaveClass('test');
   });

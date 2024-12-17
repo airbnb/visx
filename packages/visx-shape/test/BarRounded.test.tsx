@@ -16,7 +16,7 @@ describe('<BarRounded />', () => {
     const { container } = render(
       <svg>
         <BarRounded {...testProps} className="test" />
-      </svg>
+      </svg>,
     );
     expect(container.querySelector('path')).toHaveClass('visx-bar-rounded', 'test');
   });
@@ -26,7 +26,7 @@ describe('<BarRounded />', () => {
     const { container } = render(
       <svg>
         <BarRounded innerRef={fakeRef} {...testProps} />
-      </svg>
+      </svg>,
     );
     const pathElement = container.querySelector('path');
     expect(fakeRef.current).toBe(pathElement);
@@ -35,7 +35,7 @@ describe('<BarRounded />', () => {
   it('should support hooks with useBarRoundedPath', () => {
     const path = useBarRoundedPath({ ...testProps, all: true });
     expect(path).toBe(
-      'M2,0 h6 a2,2 0 0 1 2,2 v16 a2,2 0 0 1 -2,2 h-6 a2,2 0 0 1 -2,-2 v-16 a2,2 0 0 1 2,-2z'
+      'M2,0 h6 a2,2 0 0 1 2,2 v16 a2,2 0 0 1 -2,2 h-6 a2,2 0 0 1 -2,-2 v-16 a2,2 0 0 1 2,-2z',
     );
   });
 
@@ -43,47 +43,48 @@ describe('<BarRounded />', () => {
     const cases = [
       {
         props: { topLeft: true },
-        expected: 'M2,0 h6 h2v2 v16 v2h-2 h-6 h-2v-2 v-16 a2,2 0 0 1 2,-2z'
+        expected: 'M2,0 h6 h2v2 v16 v2h-2 h-6 h-2v-2 v-16 a2,2 0 0 1 2,-2z',
       },
       {
         props: { topRight: true },
-        expected: 'M2,0 h6 a2,2 0 0 1 2,2 v16 v2h-2 h-6 h-2v-2 v-16 v-2h2z'
+        expected: 'M2,0 h6 a2,2 0 0 1 2,2 v16 v2h-2 h-6 h-2v-2 v-16 v-2h2z',
       },
       {
         props: { bottomLeft: true },
-        expected: 'M2,0 h6 h2v2 v16 v2h-2 h-6 a2,2 0 0 1 -2,-2 v-16 v-2h2z'
+        expected: 'M2,0 h6 h2v2 v16 v2h-2 h-6 a2,2 0 0 1 -2,-2 v-16 v-2h2z',
       },
       {
         props: { bottomRight: true },
-        expected: 'M2,0 h6 h2v2 v16 a2,2 0 0 1 -2,2 h-6 h-2v-2 v-16 v-2h2z'
+        expected: 'M2,0 h6 h2v2 v16 a2,2 0 0 1 -2,2 h-6 h-2v-2 v-16 v-2h2z',
       },
       {
         props: { top: true },
-        expected: 'M2,0 h6 a2,2 0 0 1 2,2 v16 v2h-2 h-6 h-2v-2 v-16 a2,2 0 0 1 2,-2z'
+        expected: 'M2,0 h6 a2,2 0 0 1 2,2 v16 v2h-2 h-6 h-2v-2 v-16 a2,2 0 0 1 2,-2z',
       },
       {
         props: { bottom: true },
-        expected: 'M2,0 h6 h2v2 v16 a2,2 0 0 1 -2,2 h-6 a2,2 0 0 1 -2,-2 v-16 v-2h2z'
+        expected: 'M2,0 h6 h2v2 v16 a2,2 0 0 1 -2,2 h-6 a2,2 0 0 1 -2,-2 v-16 v-2h2z',
       },
       {
         props: { left: true },
-        expected: 'M2,0 h6 h2v2 v16 v2h-2 h-6 a2,2 0 0 1 -2,-2 v-16 a2,2 0 0 1 2,-2z'
+        expected: 'M2,0 h6 h2v2 v16 v2h-2 h-6 a2,2 0 0 1 -2,-2 v-16 a2,2 0 0 1 2,-2z',
       },
       {
         props: { right: true },
-        expected: 'M2,0 h6 a2,2 0 0 1 2,2 v16 a2,2 0 0 1 -2,2 h-6 h-2v-2 v-16 v-2h2z'
+        expected: 'M2,0 h6 a2,2 0 0 1 2,2 v16 a2,2 0 0 1 -2,2 h-6 h-2v-2 v-16 v-2h2z',
       },
       {
         props: { all: true },
-        expected: 'M2,0 h6 a2,2 0 0 1 2,2 v16 a2,2 0 0 1 -2,2 h-6 a2,2 0 0 1 -2,-2 v-16 a2,2 0 0 1 2,-2z'
-      }
+        expected:
+          'M2,0 h6 a2,2 0 0 1 2,2 v16 a2,2 0 0 1 -2,2 h-6 a2,2 0 0 1 -2,-2 v-16 a2,2 0 0 1 2,-2z',
+      },
     ];
 
     cases.forEach(({ props, expected }) => {
       const { container } = render(
         <svg>
           <BarRounded {...testProps} {...props} />
-        </svg>
+        </svg>,
       );
       expect(container.querySelector('path')).toHaveAttribute('d', expected);
     });
@@ -93,12 +94,12 @@ describe('<BarRounded />', () => {
     const { container } = render(
       <svg>
         <BarRounded {...testProps} topLeft width={4} radius={400} />
-      </svg>
+      </svg>,
     );
     const r = Math.min(4, testProps.height) / 2;
     expect(container.querySelector('path')).toHaveAttribute(
       'd',
-      `M2,0 h0 h2v2 v16 v2h-2 h0 h-2v-2 v-16 a${r},${r} 0 0 1 ${r},-${r}z`
+      `M2,0 h0 h2v2 v16 v2h-2 h0 h-2v-2 v-16 a${r},${r} 0 0 1 ${r},-${r}z`,
     );
   });
 });

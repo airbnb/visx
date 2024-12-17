@@ -13,9 +13,9 @@ describe('<MarkerLine />', () => {
     const { container } = render(
       <svg>
         <MarkerLine id="marker-line-test" />
-      </svg>
+      </svg>,
     );
-    
+
     const marker = container.querySelector('marker');
     expect(marker).toBeInTheDocument();
   });
@@ -28,12 +28,12 @@ describe('<MarkerLine />', () => {
     const { container } = render(
       <svg>
         <MarkerLine id="marker-line-test" size={size} stroke={stroke} strokeWidth={strokeWidth} />
-      </svg>
+      </svg>,
     );
 
     const marker = container.querySelector('marker');
     const rect = container.querySelector('rect');
-    
+
     // Calculate expected values
     const max = Math.max(size, strokeWidth * 2);
     const midX = max / 2;
