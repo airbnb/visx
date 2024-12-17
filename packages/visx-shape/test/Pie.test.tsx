@@ -50,12 +50,13 @@ describe('<Pie />', () => {
   });
 
   test('it should not break on sort callbacks', () => {
-    const { container } = render(
-      <svg>
-        <Pie data={browserUsage} pieSort={() => 0} pieSortValues={() => 0} />
-      </svg>,
-    );
-    expect(container).toBeInTheDocument();
+    expect(() =>
+      render(
+        <svg>
+          <Pie data={browserUsage} pieSort={() => 0} pieSortValues={() => 0} />
+        </svg>,
+      ),
+    ).not.toThrow();
   });
 
   test('it should accept null sort callbacks', () => {

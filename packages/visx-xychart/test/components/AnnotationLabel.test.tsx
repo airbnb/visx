@@ -63,9 +63,5 @@ describe('<AnnotationLabel />', () => {
 
     expect(title).toBeInTheDocument();
     expect(subtitle).toBeInTheDocument();
-
-    // Verify the text is within an SVG element
-    expect(title.closest('svg')).toBeInTheDocument();
-    expect(subtitle.closest('svg')).toBeInTheDocument();
   });
 });

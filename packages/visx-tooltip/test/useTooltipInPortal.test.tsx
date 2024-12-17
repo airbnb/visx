@@ -34,7 +34,6 @@ describe('useTooltipInPortal()', () => {
       () => {
         const portalDiv = baseElement.querySelector('[style*="z-index: 1"]');
         expect(portalDiv).toBeInTheDocument();
-        expect(portalDiv).toHaveStyle('z-index: 1');
       },
       {
         timeout: 1000,
@@ -52,7 +51,6 @@ describe('useTooltipInPortal()', () => {
       () => {
         const portalDiv = baseElement.querySelector('[style*="z-index: var(--tooltip-zindex)"]');
         expect(portalDiv).toBeInTheDocument();
-        expect(portalDiv).toHaveStyle('z-index: var(--tooltip-zindex)');
       },
       {
         timeout: 1000,

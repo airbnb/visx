@@ -1,4 +1,5 @@
 import { renderHook } from '@testing-library/react-hooks';
+import '@testing-library/jest-dom';
 import { scaleLinear } from '@visx/scale';
 import useLineTransitionConfig from '../src/spring-configs/useLineTransitionConfig';
 

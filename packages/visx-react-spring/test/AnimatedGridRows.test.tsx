@@ -25,19 +25,20 @@ describe('AnimatedGridRows', () => {
         <AnimatedGridRows {...defaultProps} />
       </svg>,
     );
-    expect(container.querySelector('svg')).toBeInTheDocument();
-    expect(container.querySelector('g')).toBeInTheDocument();
+    expect(container.querySelector('g.visx-rows')).toBeInTheDocument();
   });
 
   it('should render with custom dimensions', () => {
     const { container } = render(
       <svg>
-        <AnimatedGridRows {...defaultProps} width={200} height={200} />
+        <AnimatedGridRows {...defaultProps} width={200} />
       </svg>,
     );
-    const gridGroup = container.querySelector('g');
+    const gridGroup = container.querySelector('g.visx-rows');
     expect(gridGroup).toBeInTheDocument();
-    expect(gridGroup?.getAttribute('transform')).toBeDefined();
+
+    const lines = container.querySelectorAll('line');
+    expect(lines[0]).toHaveAttribute('x2', '200');
   });
 
   it('should render with custom scale', () => {
@@ -51,7 +52,7 @@ describe('AnimatedGridRows', () => {
         <AnimatedGridRows {...defaultProps} scale={customScale} />
       </svg>,
     );
-    const gridGroup = container.querySelector('g');
+    const gridGroup = container.querySelector('g.visx-rows');
     expect(gridGroup).toBeInTheDocument();
     expect(gridGroup?.getAttribute('transform')).toBeDefined();
   });

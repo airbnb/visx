@@ -9,7 +9,7 @@ describe('<MarkerLine />', () => {
     expect(MarkerLine).toBeDefined();
   });
 
-  test('it should render a marker element', () => {
+  test('it should render a marker and rect', () => {
     const { container } = render(
       <svg>
         <MarkerLine id="marker-line-test" />
@@ -17,7 +17,9 @@ describe('<MarkerLine />', () => {
     );
 
     const marker = container.querySelector('marker');
+    const rect = container.querySelector('rect');
     expect(marker).toBeInTheDocument();
+    expect(rect).toBeInTheDocument();
   });
 
   test('it should render with correct attributes', () => {

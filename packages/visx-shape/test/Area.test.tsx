@@ -1,7 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { Area as D3Area } from 'd3-shape';
 import { Area } from '../src';
 
 interface Datum {
@@ -68,7 +67,7 @@ describe('<Area />', () => {
   });
 
   test('should handle x and y props correctly', () => {
-    const childrenFn = jest.fn((_: { path: D3Area<Datum> }) => null);
+    const childrenFn = jest.fn((_: { path: any }) => null);
     const args = [fakeData[0], 0, fakeData] as const;
 
     // Test number props
@@ -98,20 +97,15 @@ describe('<Area />', () => {
     const [{ path: path2 }] = childrenFn.mock.calls[0];
 
     expect(path2.x()(...args)).toBe(42);
-
     expect(path2.x0()(...args)).toBe(42);
-
     expect(path2.x1()).toBeNull();
-
     expect(path2.y()(...args)).toBe(42);
-
     expect(path2.y0()(...args)).toBe(42);
-
     expect(path2.y1()).toBeNull();
   });
 
   test('should handle default defined prop and generate path string', () => {
-    const childrenFn = jest.fn((_: { path: D3Area<Datum> }) => null);
+    const childrenFn = jest.fn((_: { path: any }) => null);
     const args = [fakeData[0], 0, fakeData] as const;
     render(
       <svg>
@@ -122,9 +116,7 @@ describe('<Area />', () => {
     );
 
     const [{ path }] = childrenFn.mock.calls[0];
-
     expect(path.defined()(...args)).toBe(true);
-
     expect(typeof path(fakeData)).toBe('string');
   });
 });

@@ -34,7 +34,6 @@ describe('<BarStackHorizontal />', () => {
 
     const element = container.querySelector('.visx-bar-stack-horizontal');
     expect(element).toBeInTheDocument();
-    expect(element).toHaveClass('visx-bar-stack-horizontal');
   });
 
   test('it should set className prop', () => {

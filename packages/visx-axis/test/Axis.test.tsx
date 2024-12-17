@@ -123,14 +123,18 @@ describe('<Axis />', () => {
         <Axis {...axisProps} hideZero={false} />
       </svg>,
     );
-    expect(container.querySelector('.visx-axis-tick')).toBeInTheDocument();
 
     const { container: hiddenContainer } = render(
       <svg>
         <Axis {...axisProps} hideZero />
       </svg>,
     );
-    expect(hiddenContainer.querySelector('.visx-axis-tick-0')).not.toBeInTheDocument();
+
+    const allLines = container.querySelectorAll('.visx-axis-tick line');
+    const hiddenZero = hiddenContainer.querySelectorAll('.visx-axis-tick line');
+
+    expect(hiddenZero.length).toBeGreaterThan(0);
+    expect(allLines).toHaveLength(hiddenZero.length + 1);
   });
 
   it('should handle axis line visibility', () => {
@@ -155,14 +159,14 @@ describe('<Axis />', () => {
         <Axis {...axisProps} hideTicks={false} />
       </svg>,
     );
-    expect(visible.querySelectorAll('.visx-axis-tick').length).toBeGreaterThan(0);
+    expect(visible.querySelectorAll('.visx-axis-tick line').length).toBeGreaterThan(0);
 
     const { container: hidden } = render(
       <svg>
         <Axis {...axisProps} hideTicks />
       </svg>,
     );
-    const ticks = hidden.querySelectorAll('line.visx-axis-tick');
+    const ticks = hidden.querySelectorAll('.visx-axis-tick line');
     expect(ticks).toHaveLength(0);
   });
 

@@ -20,13 +20,13 @@ describe('Legend scales', () => {
     });
 
     const { container: container1 } = render(<LegendLinear scale={linearScale} />);
-    expect(container1).toBeInTheDocument();
+    expect(container1.querySelector('.visx-legend')).toBeInTheDocument();
 
     const { container: container2 } = render(<LegendSize scale={linearScale} />);
-    expect(container2).toBeInTheDocument();
+    expect(container2.querySelector('.visx-legend')).toBeInTheDocument();
 
     const { container: container3 } = render(<Legend scale={linearScale} />);
-    expect(container3).toBeInTheDocument();
+    expect(container3.querySelector('.visx-legend')).toBeInTheDocument();
   });
 
   it('should render with scaleOrdinal', () => {

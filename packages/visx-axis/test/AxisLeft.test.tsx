@@ -62,8 +62,9 @@ describe('<AxisLeft />', () => {
     const { container } = renderAxis({
       label: 'Test Label',
     });
-    const label = container.querySelector('text.visx-axis-label');
-    expect(label).toHaveAttribute('transform', 'rotate(-90)');
+    const label = container.querySelector('.visx-axis-label');
+    expect(label?.getAttribute('y')).toBe('-44');
+    expect(label?.getAttribute('x')).toBe('-5');
   });
 
   it('should apply custom labelOffset', () => {
@@ -72,8 +73,9 @@ describe('<AxisLeft />', () => {
       label: 'Test Label',
       labelOffset,
     });
-    const label = container.querySelector('text.visx-axis-label');
-    expect(label).toHaveAttribute('transform', 'rotate(-90)');
+    const label = container.querySelector('.visx-axis-label');
+    expect(label?.getAttribute('y')).toBe('-11');
+    expect(label?.getAttribute('x')).toBe('-5');
   });
 
   it('should use default tickLength', () => {

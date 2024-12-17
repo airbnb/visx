@@ -2,7 +2,6 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { scaleLinear } from '@visx/scale';
-import { Area } from 'd3-shape';
 import { AreaClosed } from '../src';
 
 interface Datum {
@@ -74,7 +73,7 @@ describe('<AreaClosed />', () => {
   });
 
   test('it should handle number and function props', () => {
-    const childrenFn = jest.fn((_: { path: Area<Datum> }) => null);
+    const childrenFn = jest.fn((_: { path: any }) => null);
     const args = [data[0], 0, data] as const;
     // Test with number prop
     render(
@@ -86,11 +85,8 @@ describe('<AreaClosed />', () => {
     );
 
     const { path } = childrenFn.mock.calls[0][0];
-
     expect(path.x()(...args)).toBe(42);
-
     expect(path.y0()(...args)).toBe(yScale.range()[0]);
-
     expect(path.y1()?.(...args)).toBe(42);
 
     // Test with function prop
@@ -104,13 +100,9 @@ describe('<AreaClosed />', () => {
     );
 
     const [{ path: path2 }] = childrenFn.mock.calls[0];
-
     expect(path2.x()(...args)).toBe(42);
-
     expect(path2.y0()(...args)).toBe(yScale.range()[0]);
-
     expect(path2.y1()?.(...args)).toBe(42);
-
     expect(path2.defined()(...args)).toBe(true);
   });
 });

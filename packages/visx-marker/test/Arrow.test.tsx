@@ -9,7 +9,7 @@ describe('<MarkerArrow />', () => {
     expect(MarkerArrow).toBeDefined();
   });
 
-  test('it should render marker with correct structure', () => {
+  test('it should render marker with polyline', () => {
     const { container } = render(
       <svg>
         <defs>
@@ -19,8 +19,11 @@ describe('<MarkerArrow />', () => {
     );
 
     const marker = container.querySelector('marker');
+    const polyline = container.querySelector('polyline');
+
     expect(marker).toBeInTheDocument();
     expect(marker).toHaveAttribute('id', 'marker-circle-test');
+    expect(polyline).toBeInTheDocument();
   });
 
   test('it should size correctly', () => {

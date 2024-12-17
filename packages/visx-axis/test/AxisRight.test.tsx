@@ -76,4 +76,12 @@ describe('<AxisRight />', () => {
     const labelElement = container.querySelector('.visx-axis-label');
     expect(labelElement).toHaveTextContent(label);
   });
+
+  it('should rotate label by default', () => {
+    const { container } = renderAxis({
+      label: 'Test Label',
+    });
+    const label = container.querySelector('text.visx-axis-label');
+    expect(label).toHaveAttribute('transform', 'rotate(90)');
+  });
 });

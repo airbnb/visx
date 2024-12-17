@@ -60,16 +60,10 @@ describe('<AxisBottom />', () => {
     expect(getByText(label)).toBeInTheDocument();
   });
 
-  it('should apply transform attribute with labelOffset', () => {
-    const { container } = renderAxis();
-    const axis = container.querySelector('.visx-axis');
-    expect(axis).toHaveAttribute('transform');
-  });
-
   it('should render with different labelOffsets', () => {
-    const { container } = renderAxis({ labelOffset: 50 });
-    const axis = container.querySelector('.visx-axis');
-    expect(axis).toHaveAttribute('transform');
+    const { container } = renderAxis({ labelOffset: 50, label: 'test' });
+    const label = container.querySelector('.visx-axis-label');
+    expect(label?.getAttribute('y')).toBe('78');
   });
 
   it('should have default tickLength of 8', () => {

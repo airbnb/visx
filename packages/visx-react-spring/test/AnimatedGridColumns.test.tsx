@@ -24,7 +24,7 @@ describe('AnimatedGridColumns', () => {
     );
 
     // Check that SVG elements are rendered
-    const gridGroup = container.querySelector('g');
+    const gridGroup = container.querySelector('g.visx-columns');
     expect(gridGroup).toBeInTheDocument();
   });
 });

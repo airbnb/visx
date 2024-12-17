@@ -50,12 +50,8 @@ describe('AnimatedTicks', () => {
         />
       </svg>,
     );
-
-    const svgElement = container.querySelector('svg');
-    expect(svgElement).toBeInTheDocument();
-
     // Check that ticks are rendered
-    const tickGroup = container.querySelector('g');
+    const tickGroup = container.querySelector('.visx-axis-tick');
     expect(tickGroup).toBeInTheDocument();
   });
 });

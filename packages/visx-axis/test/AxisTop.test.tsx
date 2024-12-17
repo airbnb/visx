@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, waitFor } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { scaleLinear } from '@visx/scale';
 import { AxisTop } from '../src';
@@ -19,15 +19,13 @@ describe('<AxisTop />', () => {
     expect(AxisTop).toBeDefined();
   });
 
-  it('should render with class .visx-axis-top', async () => {
+  it('should render with class .visx-axis-top', () => {
     const { container } = renderInSVG(<AxisTop {...axisProps} />);
-    await waitFor(() => {
-      const axis = container.querySelector('.visx-axis');
-      expect(axis).toHaveClass('visx-axis-top');
-    });
+    const axis = container.querySelector('.visx-axis');
+    expect(axis).toHaveClass('visx-axis-top');
   });
 
-  it('should set user-specified class names', async () => {
+  it('should set user-specified class names', () => {
     const axisClassName = 'axis-test-class';
     const axisLineClassName = 'axisline-test-class';
     const labelClassName = 'label-test-class';
@@ -40,78 +38,65 @@ describe('<AxisTop />', () => {
         axisLineClassName={axisLineClassName}
         labelClassName={labelClassName}
         tickClassName={tickClassName}
+        label="test"
       />,
     );
 
-    await waitFor(() => {
-      const axis = container.querySelector('.visx-axis');
-      expect(axis).toHaveClass('axis-test-class');
-      expect(axis).toHaveClass('visx-axis-top');
+    const axis = container.querySelector('.visx-axis');
+    expect(axis).toHaveClass('axis-test-class');
+    expect(axis).toHaveClass('visx-axis-top');
 
-      const axisLine = container.querySelector('.visx-axis-line');
-      expect(axisLine).toHaveClass(axisLineClassName);
+    const axisLine = container.querySelector('.visx-axis-line');
+    expect(axisLine).toHaveClass(axisLineClassName);
 
-      const label = container.querySelector('.visx-axis-label');
-      if (label) {
-        expect(label).toHaveClass(labelClassName);
-      }
+    const label = container.querySelector('.visx-axis-label');
+    expect(label).toHaveClass(labelClassName);
 
-      const tick = container.querySelector('.visx-axis-tick');
-      if (tick) {
-        expect(tick).toHaveClass(tickClassName);
-      }
-    });
+    const tick = container.querySelector('.visx-axis-tick');
+    expect(tick).toHaveClass(tickClassName);
   });
 
-  it('should render with default labelOffset of 8', async () => {
+  it('should render with default labelOffset of 8', () => {
     const { container } = renderInSVG(<AxisTop {...axisProps} label="test label" />);
-    await waitFor(() => {
-      const label = container.querySelector('.visx-axis-label');
-      expect(label?.getAttribute('y')).toBe('-26');
-    });
+    const label = container.querySelector('.visx-axis-label');
+    expect(label?.getAttribute('y')).toBe('-26');
   });
 
-  it('should render with custom labelOffset', async () => {
+  it('should render with custom labelOffset', () => {
     const labelOffset = 3;
     const { container } = renderInSVG(
       <AxisTop {...axisProps} label="test label" labelOffset={labelOffset} />,
     );
-    await waitFor(() => {
-      const label = container.querySelector('.visx-axis-label');
-      expect(label?.getAttribute('y')).toBe('-21');
-    });
+
+    const label = container.querySelector('.visx-axis-label');
+    expect(label?.getAttribute('y')).toBe('-21');
   });
 
-  it('should render ticks with default length of 8', async () => {
+  it('should render ticks with default length of 8', () => {
     const { container } = renderInSVG(<AxisTop {...axisProps} />);
-    await waitFor(() => {
-      const ticks = container.querySelectorAll('.visx-axis-tick line.visx-line');
-      ticks.forEach((tick) => {
-        const y1 = Math.abs(parseFloat(tick.getAttribute('y1') || '0'));
-        const y2 = Math.abs(parseFloat(tick.getAttribute('y2') || '0'));
-        expect(Math.abs(y2 - y1)).toBe(8);
-      });
+    const ticks = container.querySelectorAll('.visx-axis-tick line.visx-line');
+    ticks.forEach((tick) => {
+      const y1 = Math.abs(parseFloat(tick.getAttribute('y1') || '0'));
+      const y2 = Math.abs(parseFloat(tick.getAttribute('y2') || '0'));
+      expect(Math.abs(y2 - y1)).toBe(8);
     });
   });
 
-  it('should render ticks with custom length', async () => {
+  it('should render ticks with custom length', () => {
     const tickLength = 15;
     const { container } = renderInSVG(<AxisTop {...axisProps} tickLength={tickLength} />);
-    await waitFor(() => {
-      const ticks = container.querySelectorAll('.visx-axis-tick line.visx-line');
-      ticks.forEach((tick) => {
-        const y1 = Math.abs(parseFloat(tick.getAttribute('y1') || '0'));
-        const y2 = Math.abs(parseFloat(tick.getAttribute('y2') || '0'));
-        expect(Math.abs(y2 - y1)).toBe(tickLength);
-      });
+    const ticks = container.querySelectorAll('.visx-axis-tick line.visx-line');
+    ticks.forEach((tick) => {
+      const y1 = Math.abs(parseFloat(tick.getAttribute('y1') || '0'));
+      const y2 = Math.abs(parseFloat(tick.getAttribute('y2') || '0'));
+      expect(Math.abs(y2 - y1)).toBe(tickLength);
     });
   });
 
-  it('should render label text', async () => {
+  it('should render label text', () => {
     const label = 'test';
     const { getByText } = renderInSVG(<AxisTop {...axisProps} label={label} />);
-    await waitFor(() => {
-      expect(getByText(label)).toBeInTheDocument();
-    });
+
+    expect(getByText(label)).toBeInTheDocument();
   });
 });

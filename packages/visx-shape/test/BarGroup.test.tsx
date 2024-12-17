@@ -47,7 +47,6 @@ describe('<BarGroup />', () => {
     const { container } = renderWithSvg(<BarGroup {...defaultProps} className="test" />);
     const element = container.querySelector('g.visx-bar-group');
     expect(element).toHaveClass('test');
-    expect(element).toHaveClass('visx-bar-group');
   });
 
   test('it should set top & left props', () => {

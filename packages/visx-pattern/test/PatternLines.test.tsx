@@ -34,7 +34,7 @@ describe('<PatternLines />', () => {
     const pattern = container.querySelector('pattern');
     expect(pattern).toBeInTheDocument();
 
-    const backgroundRect = container.querySelector('.visx-pattern-line-background');
+    const backgroundRect = container.querySelector('rect');
     expect(backgroundRect).toBeInTheDocument();
     expect(backgroundRect).toHaveAttribute('fill', 'blue');
     expect(backgroundRect).toHaveAttribute('width', '4');
