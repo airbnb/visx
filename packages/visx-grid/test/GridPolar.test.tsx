@@ -11,21 +11,9 @@
  */
 import React from 'react';
 import { render } from '@testing-library/react';
-import '@testing-library/jest-dom';
+
 import { scaleLinear } from '@visx/scale';
 import { GridPolar } from '../src';
-import GridAngle from '../src/grids/GridAngle';
-import GridRadial from '../src/grids/GridRadial';
-
-jest.mock('../src/grids/GridAngle', () => ({
-  __esModule: true,
-  default: jest.fn(() => null)
-}));
-
-jest.mock('../src/grids/GridRadial', () => ({
-  __esModule: true,
-  default: jest.fn(() => null)
-}));
 
 const gridProps = {
   innerRadius: 0,
@@ -35,10 +23,6 @@ const gridProps = {
 };
 
 describe('<GridPolar />', () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
-
   it('should be defined', () => {
     expect(GridPolar).toBeDefined();
   });
@@ -47,23 +31,24 @@ describe('<GridPolar />', () => {
     const { container } = render(
       <svg>
         <GridPolar {...gridProps} />
-      </svg>
+      </svg>,
     );
-    expect(container.querySelector('.visx-grid-polar')).toBeInTheDocument();
+    expect(container.querySelector('.visx-grid-polar')).toBeTruthy();
   });
 
-  it('should render both GridAngle & GridRadial', () => {
-    render(
+  it('should render both angle and radial grid lines', () => {
+    const { container } = render(
       <svg>
         <GridPolar {...gridProps} />
-      </svg>
+      </svg>,
     );
-    
-    const mockGridAngle = GridAngle as jest.Mock;
-    const mockGridRadial = GridRadial as jest.Mock;
-    
-    expect(mockGridAngle).toHaveBeenCalled();
-    expect(mockGridRadial).toHaveBeenCalled();
+
+    // Look for actual rendered lines rather than mocked components
+    const lines = container.querySelectorAll('line');
+    const arcs = container.querySelectorAll('path'); // radial grids are rendered as arcs/paths
+
+    expect(lines.length).toBeGreaterThan(0); // Should have some angle lines
+    expect(arcs.length).toBeGreaterThan(0); // Should have some radial lines
   });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":3,"failed":0,"total":3,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}
+// MIGRATION STATUS: {"eslint":"pass","jest":{"passed":3,"failed":0,"total":3,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}

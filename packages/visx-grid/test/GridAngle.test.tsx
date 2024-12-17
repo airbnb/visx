@@ -1,4 +1,3 @@
-/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -10,29 +9,11 @@
  * to more idiomatic RTL (and then removing this banner!).
  */
 import React from 'react';
-import { render, waitFor } from '@testing-library/react';
-import '@testing-library/jest-dom';
+import { render } from '@testing-library/react';
+
 import { scaleLinear } from '@visx/scale';
 import { GridAngle } from '../src';
 import * as polarToCartesian from '../src/utils/polarToCartesian';
-
-jest.mock('@visx/group', () => ({
-  __esModule: true,
-  Group: function Group(props) {
-    return (
-      <svg>
-        <g className={`visx-group ${props.className || ''}`}>{props.children}</g>
-      </svg>
-    );
-  },
-}));
-
-jest.mock('@visx/shape', () => ({
-  __esModule: true,
-  Line: function Line(props) {
-    return <line data-testid="grid-line" className={props.className} {...props} />;
-  },
-}));
 
 const gridProps = {
   innerRadius: 0,
@@ -48,50 +29,65 @@ describe('<GridAngle />', () => {
     jest.clearAllMocks();
   });
 
-  it('should render with class .visx-grid-angle', async () => {
-    const { container } = render(<GridAngle {...gridProps} />);
-    await waitFor(() => {
-      const element = container.querySelector('g.visx-group');
-      expect(element).toBeInTheDocument();
-    });
+  it('should render with class .visx-grid-angle', () => {
+    const { container } = render(
+      <svg>
+        <GridAngle {...gridProps} />
+      </svg>
+    );
+    const element = container.querySelector('g.visx-group');
+    expect(element).toBeTruthy();
+    expect(element?.classList.contains('visx-grid-angle')).toBe(true);
   });
 
-  it('should set user-specified lineClassName', async () => {
-    const { container } = render(<GridAngle {...gridProps} lineClassName="test-class" />);
-    await waitFor(() => {
-      const lines = container.querySelectorAll('line.test-class');
-      expect(lines.length).toBeGreaterThan(0);
-    });
+  it('should set user-specified lineClassName', () => {
+    const { container } = render(
+      <svg>
+        <GridAngle {...gridProps} lineClassName="test-class" />
+      </svg>
+    );
+    const lines = container.querySelectorAll('line.test-class');
+    expect(lines.length).toBeGreaterThan(0);
   });
 
-  it('should render `numTicks` grid lines', async () => {
-    const { container } = render(<GridAngle {...gridProps} numTicks={5} />);
-    await waitFor(() => {
-      const lines = container.querySelectorAll('line');
-      expect(lines).toHaveLength(5);
-    });
+  it('should render `numTicks` grid lines', () => {
+    const { container } = render(
+      <svg>
+        <GridAngle {...gridProps} numTicks={5} />
+      </svg>
+    );
+    const lines = container.querySelectorAll('line');
+    expect(lines).toHaveLength(5);
 
-    const { container: container2 } = render(<GridAngle {...gridProps} numTicks={10} />);
-    await waitFor(() => {
-      const lines = container2.querySelectorAll('line');
-      expect(lines).toHaveLength(10);
-    });
+    const { container: container2 } = render(
+      <svg>
+        <GridAngle {...gridProps} numTicks={10} />
+      </svg>
+    );
+    const lines2 = container2.querySelectorAll('line');
+    expect(lines2).toHaveLength(10);
   });
 
-  it('should render grid lines according to tickValues', async () => {
-    const { container } = render(<GridAngle {...gridProps} tickValues={[1, 2, 3]} />);
-    await waitFor(() => {
-      const lines = container.querySelectorAll('line');
-      expect(lines).toHaveLength(3);
-    });
+  it('should render grid lines according to tickValues', () => {
+    const { container } = render(
+      <svg>
+        <GridAngle {...gridProps} tickValues={[1, 2, 3]} />
+      </svg>
+    );
+    const lines = container.querySelectorAll('line');
+    expect(lines).toHaveLength(3);
   });
 
   it('should compute radial lines using innerRadius and outerRadius', () => {
     const polarToCartesianSpy = jest.spyOn(polarToCartesian, 'default');
     const innerRadius = 4;
     const outerRadius = 7;
-    
-    render(<GridAngle {...gridProps} innerRadius={innerRadius} outerRadius={outerRadius} />);
+
+    render(
+      <svg>
+        <GridAngle {...gridProps} innerRadius={innerRadius} outerRadius={outerRadius} />
+      </svg>
+    );
 
     expect(polarToCartesianSpy.mock.calls.length).toBeGreaterThanOrEqual(2);
 
@@ -104,4 +100,4 @@ describe('<GridAngle />', () => {
     polarToCartesianSpy.mockRestore();
   });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":5,"failed":0,"total":5,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}
+// MIGRATION STATUS: {"eslint":"pass","jest":{"passed":5,"failed":0,"total":5,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}

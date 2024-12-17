@@ -1,4 +1,3 @@
-/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -12,29 +11,9 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
+
 import { scaleBand, scaleLinear } from '@visx/scale';
 import { BarGroup } from '../src';
-
-jest.mock('@visx/group', () => ({
-  Group: jest.fn(({ children, top, left, ...props }) => (
-    <svg>
-      <g 
-        data-testid="visx-group" 
-        transform={`translate(${left || 0}, ${top || 0})`}
-        {...props}
-      >
-        {children}
-      </g>
-    </svg>
-  )),
-}));
-
-jest.mock('../src/shapes/Bar', () => ({
-  __esModule: true,
-  default: function Bar(props) {
-    return <rect data-testid="visx-bar" {...props} />;
-  }
-}));
 
 const data = [
   {

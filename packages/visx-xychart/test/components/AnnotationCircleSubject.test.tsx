@@ -1,4 +1,3 @@
-/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -11,12 +10,9 @@
  */
 import React from 'react';
 import { render } from '@testing-library/react';
-import { CircleSubject as VxAnnotationCircleSubject } from '@visx/annotation';
-import { AnnotationCircleSubject } from '../../src';
+import '@testing-library/jest-dom';
 
-jest.mock('@visx/annotation', () => ({
-  CircleSubject: jest.fn(() => null),
-}));
+import { AnnotationCircleSubject } from '../../src';
 
 describe('<AnnotationCircleSubject />', () => {
   it('should be defined', () => {
@@ -24,8 +20,13 @@ describe('<AnnotationCircleSubject />', () => {
   });
 
   it('should render VxAnnotationCircleSubject', () => {
-    render(<AnnotationCircleSubject />);
-    expect(VxAnnotationCircleSubject).toHaveBeenCalled();
+    const { container } = render(
+      <svg>
+        <AnnotationCircleSubject x={10} y={10} />
+      </svg>
+    );
+    
+    expect(container.querySelector('circle')).toBeInTheDocument();
   });
 });
 // MIGRATION STATUS: {"eslint":"pending","jest":{"passed":2,"failed":0,"total":2,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}

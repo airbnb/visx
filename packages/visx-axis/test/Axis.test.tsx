@@ -1,4 +1,3 @@
-/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -10,47 +9,11 @@
  * to more idiomatic RTL (and then removing this banner!).
  */
 import React from 'react';
-import { render, waitFor } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { Line } from '@visx/shape';
-import { Text } from '@visx/text';
+
 import { scaleBand, scaleLinear } from '@visx/scale';
 import { Axis } from '../src';
-
-jest.mock('@visx/shape', () => ({
-  Line: jest.fn((props) => {
-    const { className = '', from, to, strokeWidth, strokeLinecap, stroke, ...rest } = props;
-    return (
-      <line 
-        className={className}
-        data-testid={className.includes('visx-axis-tick') ? 'axis-tick-line' : 'axis-line'}
-        data-from={JSON.stringify(from)}
-        data-to={JSON.stringify(to)}
-        strokeWidth={strokeWidth}
-        strokeLinecap={strokeLinecap}
-        stroke={stroke}
-        {...rest}
-      />
-    );
-  })
-}));
-
-jest.mock('@visx/text', () => ({
-  Text: jest.fn((props) => {
-    const { className = '', children, fontSize, fill, ...rest } = props;
-    return (
-      <text 
-        data-testid={className.includes('visx-axis-label') ? 'axis-label' : 'axis-tick-label'}
-        className={className}
-        fontSize={fontSize} 
-        fill={fill} 
-        {...rest}
-      >
-        {children}
-      </text>
-    );
-  })
-}));
 
 const axisProps = {
   orientation: 'left' as const,
@@ -72,14 +35,23 @@ describe('<Axis />', () => {
   });
 
   it('should render with class .visx-axis', () => {
-    const { container } = render(<svg><Axis {...axisProps} /></svg>);
-    expect(container.querySelector('.visx-axis')).toBeInTheDocument();
+    const { container } = render(
+      <svg>
+        <Axis {...axisProps} />
+      </svg>,
+    );
+    const axis = container.querySelector('.visx-axis');
+    expect(axis).toBeInTheDocument();
   });
 
   it('should call children function with required args', () => {
     const mockFn = jest.fn(() => null);
-    render(<svg><Axis {...axisProps}>{mockFn}</Axis></svg>);
-    
+    render(
+      <svg>
+        <Axis {...axisProps}>{mockFn}</Axis>
+      </svg>,
+    );
+
     const args = mockFn.mock.calls[0][0];
     expect(args.axisFromPoint).toBeDefined();
     expect(args.axisToPoint).toBeDefined();
@@ -95,7 +67,7 @@ describe('<Axis />', () => {
     expect(Object.keys(args.ticks[0])).toEqual(['value', 'index', 'from', 'to', 'formattedValue']);
   });
 
-  it('should set user-specified class names', async () => {
+  it('should set user-specified class names', () => {
     const { container } = render(
       <svg>
         <Axis
@@ -105,29 +77,27 @@ describe('<Axis />', () => {
           labelClassName="label-test-class"
           tickClassName="tick-test-class"
         />
-      </svg>
+      </svg>,
     );
 
-    await waitFor(() => {
-      expect(container.querySelector('.visx-axis.axis-test-class')).toBeInTheDocument();
-      expect(container.querySelector('.visx-axis-line.axisline-test-class')).toBeInTheDocument();
-      expect(container.querySelector('.visx-axis-label.label-test-class')).toBeInTheDocument();
-      expect(container.querySelector('.visx-axis-tick.tick-test-class')).toBeInTheDocument();
-    });
+    expect(container.querySelector('.visx-axis.axis-test-class')).toBeInTheDocument();
+    expect(container.querySelector('.visx-axis-line.axisline-test-class')).toBeInTheDocument();
+    expect(container.querySelector('.visx-axis-label.label-test-class')).toBeInTheDocument();
+    expect(container.querySelector('.visx-axis-tick.tick-test-class')).toBeInTheDocument();
   });
 
-  it('should pass the output of tickLabelProps to tick labels', async () => {
+  it('should pass the output of tickLabelProps to tick labels', () => {
     const tickProps = { fontSize: 50, fill: 'magenta' };
-    const { getAllByTestId } = render(
-      <svg><Axis {...axisProps} tickLabelProps={() => tickProps} /></svg>
+    const { container } = render(
+      <svg>
+        <Axis {...axisProps} tickLabelProps={() => tickProps} />
+      </svg>,
     );
-    
-    await waitFor(() => {
-      const tickLabels = getAllByTestId('axis-tick-label');
-      expect(tickLabels.length).toBeGreaterThan(0);
-      expect(tickLabels[0]).toHaveAttribute('font-size', '50');
-      expect(tickLabels[0]).toHaveAttribute('fill', 'magenta');
-    });
+
+    const tickLabels = container.querySelectorAll('text');
+    expect(tickLabels.length).toBeGreaterThan(0);
+    expect(tickLabels[0]).toHaveAttribute('font-size', '50');
+    expect(tickLabels[0]).toHaveAttribute('fill', 'magenta');
   });
 
   it('should call the tickLabelProps func with correct signature', () => {
@@ -135,7 +105,7 @@ describe('<Axis />', () => {
     render(
       <svg>
         <Axis {...axisProps} tickLabelProps={tickLabelPropsSpy} />
-      </svg>
+      </svg>,
     );
 
     const firstCall = tickLabelPropsSpy.mock.calls[0];
@@ -144,104 +114,117 @@ describe('<Axis />', () => {
     expect(Array.isArray(firstCall[2])).toBe(true);
   });
 
-  it('should pass labelProps to the axis label', async () => {
+  it('should pass labelProps to the axis label', () => {
     const labelProps = { fontSize: 50, fill: 'magenta' };
-    const { getByTestId } = render(<svg><Axis {...axisProps} labelProps={labelProps} /></svg>);
+    const { container } = render(
+      <svg>
+        <Axis {...axisProps} labelProps={labelProps} />
+      </svg>,
+    );
 
-    await waitFor(() => {
-      const label = getByTestId('axis-label');
-      expect(label).toHaveAttribute('font-size', '50');
-      expect(label).toHaveAttribute('fill', 'magenta');
-    });
+    const label = container.querySelector('.visx-axis-label');
+    expect(label).toHaveAttribute('font-size', '50');
+    expect(label).toHaveAttribute('fill', 'magenta');
   });
 
   it('should handle hideZero prop correctly', () => {
     const { container } = render(
-      <svg><Axis {...axisProps} hideZero={false} /></svg>
+      <svg>
+        <Axis {...axisProps} hideZero={false} />
+      </svg>,
     );
     expect(container.querySelector('.visx-axis-tick')).toBeInTheDocument();
 
     const { container: hiddenContainer } = render(
-      <svg><Axis {...axisProps} hideZero /></svg>
+      <svg>
+        <Axis {...axisProps} hideZero />
+      </svg>,
     );
     expect(hiddenContainer.querySelector('.visx-axis-tick-0')).not.toBeInTheDocument();
   });
 
-  it('should handle axis line visibility', async () => {
+  it('should handle axis line visibility', () => {
     const { container } = render(
-      <svg><Axis {...axisProps} hideAxisLine={false} /></svg>
+      <svg>
+        <Axis {...axisProps} hideAxisLine={false} />
+      </svg>,
     );
-    await waitFor(() => {
-      expect(container.querySelector('.visx-axis-line')).toBeInTheDocument();
-    });
+    expect(container.querySelector('.visx-axis-line')).toBeInTheDocument();
 
     const { container: hiddenContainer } = render(
-      <svg><Axis {...axisProps} hideAxisLine /></svg>
+      <svg>
+        <Axis {...axisProps} hideAxisLine />
+      </svg>,
     );
     expect(hiddenContainer.querySelector('.visx-axis-line')).not.toBeInTheDocument();
   });
 
-  it('should handle ticks visibility', async () => {
+  it('should handle ticks visibility', () => {
     const { container: visible } = render(
-      <svg><Axis {...axisProps} hideTicks={false} /></svg>
+      <svg>
+        <Axis {...axisProps} hideTicks={false} />
+      </svg>,
     );
-    await waitFor(() => {
-      expect(visible.querySelectorAll('.visx-axis-tick').length).toBeGreaterThan(0);
-    });
+    expect(visible.querySelectorAll('.visx-axis-tick').length).toBeGreaterThan(0);
 
     const { container: hidden } = render(
-      <svg><Axis {...axisProps} hideTicks /></svg>
+      <svg>
+        <Axis {...axisProps} hideTicks />
+      </svg>,
     );
-    await waitFor(() => {
-      const ticks = hidden.querySelectorAll('line.visx-axis-tick');
-      expect(ticks.length).toBe(0);
-    });
+    const ticks = hidden.querySelectorAll('line.visx-axis-tick');
+    expect(ticks.length).toBe(0);
   });
 
   it('should render specified tick values', () => {
     const { container: empty } = render(
-      <svg><Axis {...axisProps} tickValues={[]} /></svg>
+      <svg>
+        <Axis {...axisProps} tickValues={[]} />
+      </svg>,
     );
     expect(empty.querySelectorAll('.visx-axis-tick').length).toBe(0);
 
     const { container: single } = render(
-      <svg><Axis {...axisProps} tickValues={[2]} /></svg>
+      <svg>
+        <Axis {...axisProps} tickValues={[2]} />
+      </svg>,
     );
     expect(single.querySelectorAll('.visx-axis-tick').length).toBe(1);
 
     const { container: multiple } = render(
-      <svg><Axis {...axisProps} tickValues={[0, 1, 2, 3, 4, 5, 6]} /></svg>
+      <svg>
+        <Axis {...axisProps} tickValues={[0, 1, 2, 3, 4, 5, 6]} />
+      </svg>,
     );
     expect(multiple.querySelectorAll('.visx-axis-tick').length).toBe(7);
   });
 
-  it('should format ticks correctly', async () => {
-    const { getAllByTestId } = render(
+  it('should format ticks correctly', () => {
+    const { container } = render(
       <svg>
         <Axis {...axisProps} tickValues={[0]} tickFormat={() => 'test!!!'} />
-      </svg>
+      </svg>,
     );
-    
-    await waitFor(() => {
-      const tickLabels = getAllByTestId('axis-tick-label');
-      expect(tickLabels.length).toBeGreaterThan(0);
-      expect(tickLabels[0]).toHaveTextContent('test!!!');
-    });
+
+    const tickText = container.querySelector('.visx-axis-tick text');
+    expect(tickText).toHaveTextContent('test!!!');
   });
 
-  it('should handle tick styling', async () => {
-    const { container } = render(<svg><Axis {...axisProps} strokeWidth={2} /></svg>);
-    
-    await waitFor(() => {
-      const tickLines = container.querySelectorAll('line');
-      expect(tickLines.length).toBeGreaterThan(0);
-      expect(tickLines[0]).toHaveAttribute('stroke-width', '2');
-      expect(tickLines[0]).toHaveAttribute('stroke-linecap', 'square');
-    });
+  it('should handle tick styling', () => {
+    const { container } = render(
+      <svg>
+        <Axis {...axisProps} tickValues={[0]} strokeWidth={2} />
+      </svg>,
+    );
+
+    const tickLines = container.querySelectorAll('line');
+    expect(tickLines.length).toBeGreaterThan(0);
+    expect(tickLines[0]).toHaveAttribute('stroke-width', '2');
+    expect(tickLines[0]).toHaveAttribute('stroke-linecap', 'square');
   });
 
-  it('should handle band scales', async () => {
-    render(
+  it('should handle band scales', () => {
+    const { container } = render(
       <svg>
         <Axis
           orientation="bottom"
@@ -252,21 +235,24 @@ describe('<Axis />', () => {
           })}
           tickStroke="blue"
         />
-      </svg>
+      </svg>,
     );
 
-    await waitFor(() => {
-      const MockLine = Line as jest.Mock;
-      const calls = MockLine.mock.calls;
-      expect(calls.length).toBeGreaterThan(0);
-      const firstCall = calls[0][0];
-      const secondCall = calls[1][0];
-      
-      expect(firstCall.from).toEqual({ x: 8, y: 0 });
-      expect(firstCall.to).toEqual({ x: 8, y: 8 });
-      expect(secondCall.from).toEqual({ x: 3, y: 0 });
-      expect(secondCall.to).toEqual({ x: 3, y: 8 });
-    });
+    const lines = container.querySelectorAll('line');
+    expect(lines.length).toBeGreaterThan(0);
+    
+    const firstLine = lines[0];
+    const secondLine = lines[1];
+    
+    expect(firstLine).toHaveAttribute('x1', '8');
+    expect(firstLine).toHaveAttribute('y1', '0'); 
+    expect(firstLine).toHaveAttribute('x2', '8');
+    expect(firstLine).toHaveAttribute('y2', '8');
+
+    expect(secondLine).toHaveAttribute('x1', '3');
+    expect(secondLine).toHaveAttribute('y1', '0');
+    expect(secondLine).toHaveAttribute('x2', '3');
+    expect(secondLine).toHaveAttribute('y2', '8');
   });
 
   it('should expose its ref via an innerRef prop', () => {
@@ -274,9 +260,9 @@ describe('<Axis />', () => {
     const { container } = render(
       <svg>
         <Axis {...axisProps} innerRef={fakeRef} />
-      </svg>
+      </svg>,
     );
-    
+
     const axisElement = container.querySelector('g.visx-axis');
     expect(fakeRef.current).toBe(axisElement);
   });

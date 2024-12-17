@@ -1,4 +1,3 @@
-/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -11,27 +10,17 @@
  */
 import React from 'react';
 import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
+
 import { PatternLines } from '../src';
 import { PatternOrientationType } from '../src/constants';
 import { pathForOrientation } from '../src/patterns/Lines';
-import Pattern from '../src/patterns/Pattern';
 
-jest.mock('../src/patterns/Pattern', () => {
-  const MockPattern = jest.fn(({ children }) => (
-    <svg>
-      <defs>
-        <pattern>{children}</pattern>
-      </defs>
-    </svg>
-  ));
-  return { __esModule: true, default: MockPattern };
-});
+const SVGWrapper = ({ children }: { children: React.ReactNode }) => (
+  <svg data-testid="svg-wrapper">{children}</svg>
+);
 
 describe('<PatternLines />', () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
-
   test('should be defined', () => {
     expect(PatternLines).toBeDefined();
   });
@@ -47,50 +36,40 @@ describe('<PatternLines />', () => {
 
   test('should render background when background prop is provided', () => {
     const { container } = render(
-      <PatternLines id="test" height={4} width={4} background="blue" />
+      <SVGWrapper>
+        <PatternLines id="test" height={4} width={4} background="blue" />
+      </SVGWrapper>
     );
 
-    const MockPattern = Pattern as jest.Mock;
-    const patternProps = MockPattern.mock.calls[0][0];
-    const [backgroundRect] = React.Children.toArray(patternProps.children);
-
-    expect(backgroundRect).toBeDefined();
-    expect(React.isValidElement(backgroundRect) && backgroundRect.type).toBe('rect');
-    expect(React.isValidElement(backgroundRect) && backgroundRect.props).toEqual({
-      className: 'visx-pattern-line-background',
-      width: 4,
-      height: 4,
-      fill: 'blue'
-    });
+    const pattern = container.querySelector('pattern');
+    expect(pattern).toBeInTheDocument();
+    
+    const backgroundRect = container.querySelector('.visx-pattern-line-background');
+    expect(backgroundRect).toBeInTheDocument();
+    expect(backgroundRect).toHaveAttribute('fill', 'blue');
+    expect(backgroundRect).toHaveAttribute('width', '4');
+    expect(backgroundRect).toHaveAttribute('height', '4');
   });
 
   test('should render correct pattern lines based on orientation', () => {
     const size = 4;
     const orientation: PatternOrientationType[] = ['diagonal', 'diagonalRightToLeft'];
-    const expectedPaths = orientation.map(o => 
-      pathForOrientation({ orientation: o, height: size })
+    const expectedPaths = orientation.map((o) =>
+      pathForOrientation({ orientation: o, height: size }),
     );
 
-    render(
-      <PatternLines 
-        id="test" 
-        height={size} 
-        width={size} 
-        orientation={orientation} 
-      />
+    const { container } = render(
+      <SVGWrapper>
+        <PatternLines id="test" height={size} width={size} orientation={orientation} />
+      </SVGWrapper>
     );
 
-    const MockPattern = Pattern as jest.Mock;
-    const patternProps = MockPattern.mock.calls[0][0];
-    const paths = React.Children.toArray(patternProps.children).filter(
-      child => React.isValidElement(child) && child.type === 'path'
-    );
-
+    const paths = container.querySelectorAll('.visx-pattern-line');
     expect(paths).toHaveLength(2);
+    
     paths.forEach((path, index) => {
-      expect(React.isValidElement(path) && path.type).toBe('path');
-      expect(React.isValidElement(path) && path.props.d).toBe(expectedPaths[index]);
+      expect(path).toHaveAttribute('d', expectedPaths[index]);
     });
   });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":4,"failed":0,"total":4,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}
+// MIGRATION STATUS: {"eslint":"pass","jest":{"passed":4,"failed":0,"total":4,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}

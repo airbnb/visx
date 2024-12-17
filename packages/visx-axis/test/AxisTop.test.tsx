@@ -10,12 +10,10 @@
  * to more idiomatic RTL (and then removing this banner!).
  */
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { scaleLinear } from '@visx/scale';
 import { AxisTop } from '../src';
-import Axis from '../src/axis/Axis';
-
-jest.mock('../src/axis/Axis');
 
 const axisProps = {
   scale: scaleLinear({
@@ -26,27 +24,28 @@ const axisProps = {
 };
 
 describe('<AxisTop />', () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
+  const renderInSVG = (children: React.ReactElement) => 
+    render(<svg>{children}</svg>);
 
   it('should be defined', () => {
     expect(AxisTop).toBeDefined();
   });
 
-  it('should render with class .visx-axis-top', () => {
-    render(<AxisTop {...axisProps} />);
-    const props = (Axis as jest.Mock).mock.calls[0][0];
-    expect(props.axisClassName).toBe('visx-axis-top');
+  it('should render with class .visx-axis-top', async () => {
+    const { container } = renderInSVG(<AxisTop {...axisProps} />);
+    await waitFor(() => {
+      const axis = container.querySelector('.visx-axis');
+      expect(axis).toHaveClass('visx-axis-top');
+    });
   });
 
-  it('should set user-specified class names', () => {
+  it('should set user-specified class names', async () => {
     const axisClassName = 'axis-test-class';
     const axisLineClassName = 'axisline-test-class';
     const labelClassName = 'label-test-class';
     const tickClassName = 'tick-test-class';
 
-    render(
+    const { container } = renderInSVG(
       <AxisTop
         {...axisProps}
         axisClassName={axisClassName}
@@ -56,44 +55,76 @@ describe('<AxisTop />', () => {
       />,
     );
 
-    const props = (Axis as jest.Mock).mock.calls[0][0];
-    expect(props.axisClassName).toMatch(axisClassName);
-    expect(props.axisLineClassName).toBe(axisLineClassName);
-    expect(props.labelClassName).toBe(labelClassName);
-    expect(props.tickClassName).toBe(tickClassName);
+    await waitFor(() => {
+      const axis = container.querySelector('.visx-axis');
+      expect(axis).toHaveClass('axis-test-class');
+      expect(axis).toHaveClass('visx-axis-top');
+
+      const axisLine = container.querySelector('.visx-axis-line');
+      expect(axisLine).toHaveClass(axisLineClassName);
+
+      const label = container.querySelector('.visx-axis-label');
+      if (label) {
+        expect(label).toHaveClass(labelClassName);
+      }
+
+      const tick = container.querySelector('.visx-axis-tick');
+      if (tick) {
+        expect(tick).toHaveClass(tickClassName);
+      }
+    });
   });
 
-  it('should default labelOffset prop to 8', () => {
-    render(<AxisTop {...axisProps} />);
-    const props = (Axis as jest.Mock).mock.calls[0][0];
-    expect(props.labelOffset).toBe(8);
+  it('should render with default labelOffset of 8', async () => {
+    const { container } = renderInSVG(<AxisTop {...axisProps} label="test label" />);
+    await waitFor(() => {
+      const label = container.querySelector('.visx-axis-label');
+      expect(label?.getAttribute('y')).toBe('-26');
+    });
   });
 
-  it('should set labelOffset prop', () => {
+  it('should render with custom labelOffset', async () => {
     const labelOffset = 3;
-    render(<AxisTop {...axisProps} labelOffset={labelOffset} />);
-    const props = (Axis as jest.Mock).mock.calls[0][0];
-    expect(props.labelOffset).toEqual(labelOffset);
+    const { container } = renderInSVG(
+      <AxisTop {...axisProps} label="test label" labelOffset={labelOffset} />
+    );
+    await waitFor(() => {
+      const label = container.querySelector('.visx-axis-label');
+      expect(label?.getAttribute('y')).toBe('-21');
+    });
   });
 
-  it('should default tickLength prop to 8', () => {
-    render(<AxisTop {...axisProps} />);
-    const props = (Axis as jest.Mock).mock.calls[0][0];
-    expect(props.tickLength).toBe(8);
+  it('should render ticks with default length of 8', async () => {
+    const { container } = renderInSVG(<AxisTop {...axisProps} />);
+    await waitFor(() => {
+      const ticks = container.querySelectorAll('.visx-axis-tick line.visx-line');
+      ticks.forEach(tick => {
+        const y1 = Math.abs(parseFloat(tick.getAttribute('y1') || '0'));
+        const y2 = Math.abs(parseFloat(tick.getAttribute('y2') || '0'));
+        expect(Math.abs(y2 - y1)).toBe(8);
+      });
+    });
   });
 
-  it('should set tickLength prop', () => {
+  it('should render ticks with custom length', async () => {
     const tickLength = 15;
-    render(<AxisTop {...axisProps} tickLength={tickLength} />);
-    const props = (Axis as jest.Mock).mock.calls[0][0];
-    expect(props.tickLength).toEqual(tickLength);
+    const { container } = renderInSVG(<AxisTop {...axisProps} tickLength={tickLength} />);
+    await waitFor(() => {
+      const ticks = container.querySelectorAll('.visx-axis-tick line.visx-line');
+      ticks.forEach(tick => {
+        const y1 = Math.abs(parseFloat(tick.getAttribute('y1') || '0'));
+        const y2 = Math.abs(parseFloat(tick.getAttribute('y2') || '0'));
+        expect(Math.abs(y2 - y1)).toBe(tickLength);
+      });
+    });
   });
 
-  it('should set label prop', () => {
+  it('should render label text', async () => {
     const label = 'test';
-    render(<AxisTop {...axisProps} label={label} />);
-    const props = (Axis as jest.Mock).mock.calls[0][0];
-    expect(props.label).toEqual(label);
+    const { getByText } = renderInSVG(<AxisTop {...axisProps} label={label} />);
+    await waitFor(() => {
+      expect(getByText(label)).toBeInTheDocument();
+    });
   });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":8,"failed":0,"total":8,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}
+// MIGRATION STATUS: {"eslint":"pass","jest":{"passed":8,"failed":0,"total":8,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}

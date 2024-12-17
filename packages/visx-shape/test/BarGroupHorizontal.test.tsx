@@ -1,4 +1,3 @@
-/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -12,19 +11,9 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
+
 import { scaleBand, scaleLinear } from '@visx/scale';
 import { BarGroupHorizontal } from '../src';
-import { Group } from '@visx/group';
-
-jest.mock('@visx/group', () => ({
-  Group: jest.fn(({ children, className, top, left }) => (
-    <svg>
-      <g className={className} transform={`translate(${left || 0},${top || 0})`}>
-        {children}
-      </g>
-    </svg>
-  )),
-}));
 
 interface Datum {
   date: Date;
@@ -60,17 +49,23 @@ const defaultProps = {
 };
 
 describe('<BarGroupHorizontal />', () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
+  // Suppress expected console warnings about lowercase SVG elements
+  beforeAll(() => {
+    jest.spyOn(console, 'error').mockImplementation(() => {});
+  });
+
+  afterAll(() => {
+    jest.restoreAllMocks();
   });
 
   test('it should be defined', () => {
     expect(BarGroupHorizontal).toBeDefined();
   });
 
-  test('it should have className .visx-bar-group', () => {
+  test('it should have className .visx-bar-group-horizontal', () => {
     const { container } = render(<BarGroupHorizontal {...defaultProps} />);
-    expect(container.querySelector('.visx-bar-group-horizontal')).toBeInTheDocument();
+    const element = container.querySelector('.visx-bar-group-horizontal');
+    expect(element).toBeInTheDocument();
   });
 
   test('it should set className prop', () => {
@@ -80,14 +75,9 @@ describe('<BarGroupHorizontal />', () => {
   });
 
   test('it should set top & left props', () => {
-    render(<BarGroupHorizontal {...defaultProps} top={2} left={3} />);
-    expect(Group).toHaveBeenCalledWith(
-      expect.objectContaining({
-        top: 2,
-        left: 3,
-      }),
-      expect.any(Object),
-    );
+    const { container } = render(<BarGroupHorizontal {...defaultProps} top={2} left={3} />);
+    const group = container.querySelector('g');
+    expect(group).toHaveAttribute('transform', 'translate(3, 2)');
   });
 
   test('it should take a children as function prop', () => {

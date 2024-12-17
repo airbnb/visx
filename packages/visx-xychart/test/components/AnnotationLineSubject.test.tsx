@@ -1,4 +1,3 @@
-/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -12,26 +11,49 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { LineSubject as VxAnnotationLineSubject } from '@visx/annotation';
+
 import { AnnotationLineSubject } from '../../src';
 
-jest.mock('@visx/annotation', () => ({
-  LineSubject: jest.fn(() => <div data-testid="vx-line-subject" />),
-}));
-
 describe('<AnnotationLineSubject />', () => {
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
+  const defaultProps = {
+    x: 100,
+    y: 100,
+    x1: 100,
+    y1: 100,
+    x2: 200,
+    y2: 200
+  };
 
   it('should be defined', () => {
     expect(AnnotationLineSubject).toBeDefined();
   });
 
-  it('should render a VxAnnotationLineSubject', () => {
-    const { getByTestId } = render(<AnnotationLineSubject />);
-    expect(getByTestId('vx-line-subject')).toBeInTheDocument();
-    expect(VxAnnotationLineSubject).toHaveBeenCalled();
+  it('should render with minimal props', () => {
+    const { container } = render(
+      <svg>
+        <AnnotationLineSubject {...defaultProps} />
+      </svg>
+    );
+    
+    const line = container.querySelector('line');
+    expect(line).toBeInTheDocument();
+    expect(line).toHaveAttribute('x1', '100');
+    expect(line).toHaveAttribute('y1', '100');
+    expect(line).toHaveAttribute('x2', '200');
+    expect(line).toHaveAttribute('y2', '200');
+  });
+
+  it('should render with custom className', () => {
+    const className = 'custom-line';
+    const { container } = render(
+      <svg>
+        <AnnotationLineSubject {...defaultProps} className={className} />
+      </svg>
+    );
+    
+    const line = container.querySelector('line');
+    expect(line).toBeInTheDocument();
+    expect(line).toHaveClass(className);
   });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":2,"failed":0,"total":2,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}
+// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":3,"failed":0,"total":3,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}

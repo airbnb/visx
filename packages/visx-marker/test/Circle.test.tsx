@@ -1,4 +1,3 @@
-/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -12,37 +11,26 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { MarkerCircle } from '../src';
-import { Marker } from '../src';
 
-jest.mock('../src/markers/Marker', () => ({
-  __esModule: true,
-  default: jest.fn(({ children, ...props }) => (
-    <svg>
-      <g data-mock="marker" {...props}>
-        {children}
-      </g>
-    </svg>
-  )),
-}));
+import { MarkerCircle } from '../src';
 
 describe('<MarkerCircle />', () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
-
   test('it should be defined', () => {
     expect(MarkerCircle).toBeDefined();
   });
 
-  test('it should render a <Marker> containing a <circle>', () => {
+  test('it should render a marker containing a circle', () => {
     const { container } = render(
       <svg>
         <MarkerCircle id="marker-circle-test" />
-      </svg>
+      </svg>,
     );
-    expect(Marker).toHaveBeenCalled();
-    expect(container.querySelector('circle')).toBeInTheDocument();
+
+    const marker = container.querySelector('marker');
+    const circle = container.querySelector('circle');
+    
+    expect(marker).toBeInTheDocument();
+    expect(circle).toBeInTheDocument();
   });
 
   test('it should size correctly', () => {
@@ -55,17 +43,17 @@ describe('<MarkerCircle />', () => {
     const { container } = render(
       <svg>
         <MarkerCircle id="marker-circle-test" size={size} strokeWidth={strokeWidth} />
-      </svg>
+      </svg>,
     );
 
-    // Check Marker props
-    const markerProps = (Marker as jest.Mock).mock.calls[0][0];
-    expect(markerProps.markerWidth).toBe(bounds);
-    expect(markerProps.markerHeight).toBe(bounds);
-    expect(markerProps.refX).toBe(0);
-    expect(markerProps.refY).toBe(mid);
+    // Check marker attributes
+    const marker = container.querySelector('marker');
+    expect(marker).toHaveAttribute('markerWidth', bounds.toString());
+    expect(marker).toHaveAttribute('markerHeight', bounds.toString());
+    expect(marker).toHaveAttribute('refX', '0');
+    expect(marker).toHaveAttribute('refY', mid.toString());
 
-    // Check circle attributes
+    // Check circle attributes 
     const circle = container.querySelector('circle');
     expect(circle).toHaveAttribute('r', size.toString());
     expect(circle).toHaveAttribute('cx', mid.toString());

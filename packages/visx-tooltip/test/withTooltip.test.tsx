@@ -1,4 +1,3 @@
-/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -10,7 +9,7 @@
  * to more idiomatic RTL (and then removing this banner!).
  */
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import { withTooltip } from '../src';
@@ -27,12 +26,9 @@ const DummyComponentWithNoContainerTooltip = withTooltip(
   (children) => children,
 );
 
-jest.mock('react', () => ({
-  ...jest.requireActual('react'),
-  memo: (x: any) => x,
-}));
-
 describe('withTooltip()', () => {
+  afterEach(cleanup);
+
   test('it should be defined', () => {
     expect(withTooltip).toBeDefined();
   });
@@ -42,9 +38,11 @@ describe('withTooltip()', () => {
     const div = container.querySelector('div');
 
     expect(div).toBeInTheDocument();
-    expect(getComputedStyle(div as HTMLElement).position).toBe('relative');
-    expect(getComputedStyle(div as HTMLElement).width).toBe('inherit');
-    expect(getComputedStyle(div as HTMLElement).height).toBe('inherit');
+    expect(div).toHaveStyle({
+      position: 'relative',
+      width: 'inherit',
+      height: 'inherit'
+    });
   });
 
   test('it should pass custom props to the container', () => {
@@ -52,7 +50,9 @@ describe('withTooltip()', () => {
     const div = container.querySelector('div');
 
     expect(div).toBeInTheDocument();
-    expect(getComputedStyle(div as HTMLElement).position).toBe('static');
+    expect(div).toHaveStyle({
+      position: 'static'
+    });
   });
 
   test('it should render with a custom container', () => {

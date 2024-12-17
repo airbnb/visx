@@ -1,4 +1,3 @@
-/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -12,18 +11,9 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
+
 import { ResizeObserver } from '@juggle/resize-observer';
 import { Label } from '../src';
-
-jest.mock('@visx/text/lib/Text', () => ({
-  __esModule: true,
-  default: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
-}));
-
-jest.mock('@visx/group/lib/Group', () => ({
-  __esModule: true,
-  default: ({ children }: { children: React.ReactNode }) => <g>{children}</g>,
-}));
 
 describe('<Label />', () => {
   const renderLabel = (props: React.ComponentProps<typeof Label>) =>

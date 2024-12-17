@@ -1,4 +1,3 @@
-/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -11,39 +10,59 @@
  */
 import React from 'react';
 import { render } from '@testing-library/react';
-import { TooltipWithBounds, defaultStyles } from '../src';
-import { Tooltip } from '../src/tooltips/Tooltip';
+import '@testing-library/jest-dom';
 
-jest.mock('../src/tooltips/Tooltip', () => ({
-  __esModule: true,
-  default: jest.fn(() => null),
-}));
+import { TooltipWithBounds, defaultStyles } from '../src';
 
 describe('<TooltipWithBounds />', () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
-
   test('it should be defined', () => {
     expect(TooltipWithBounds).toBeDefined();
   });
 
-  it('should render the Tooltip with default styles by default', () => {
-    render(<TooltipWithBounds>Hello</TooltipWithBounds>);
+  it('should render with default styles by default', () => {
+    const { getByText } = render(<TooltipWithBounds>Hello</TooltipWithBounds>);
+    const tooltip = getByText('Hello');
     
-    const props = jest.mocked(Tooltip).mock.calls[0][0];
-    Object.entries(defaultStyles).forEach(([key, value]) => {
-      expect(props.style[key]).toBe(value);
+    expect(tooltip).toBeInTheDocument();
+    expect(tooltip).toHaveClass('visx-tooltip');
+    
+    // Check that default styles are applied
+    expect(tooltip).toHaveStyle({
+      position: 'absolute',
+      backgroundColor: 'white',
+      color: '#666666',
+      padding: '.3rem .5rem',
+      borderRadius: '3px',
+      fontSize: '14px',
+      boxShadow: '0 1px 2px rgba(33,33,33,0.2)',
+      pointerEvents: 'none'
     });
   });
 
-  it('should render the tooltip without default styles if unstyled is set to true', () => {
-    render(<TooltipWithBounds unstyled>Hello</TooltipWithBounds>);
+  it('should render without default styles if unstyled is set to true', () => {
+    const { getByText } = render(<TooltipWithBounds unstyled>Hello</TooltipWithBounds>);
+    const tooltip = getByText('Hello');
     
-    const props = jest.mocked(Tooltip).mock.calls[0][0];
-    Object.keys(defaultStyles).forEach((key) => {
-      expect(props.style[key]).toBeUndefined();
+    expect(tooltip).toBeInTheDocument();
+    expect(tooltip).toHaveClass('visx-tooltip');
+    
+    // Verify only positioning styles are applied
+    expect(tooltip).toHaveStyle({
+      top: '0px',
+      left: '0px',
+      transform: 'translate(10px, 10px)'
+    });
+
+    // Verify default styles are not applied
+    expect(tooltip).not.toHaveStyle({
+      backgroundColor: 'white',
+      color: '#666666',
+      padding: '.3rem .5rem',
+      borderRadius: '3px',
+      fontSize: '14px',
+      boxShadow: '0 1px 2px rgba(33,33,33,0.2)',
+      pointerEvents: 'none'
     });
   });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":1,"failed":2,"total":3,"skipped":0,"successRate":33.33333333333333},"tsc":"pending","enyzme":"converted"}
+// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":3,"failed":0,"total":3,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}

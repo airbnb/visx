@@ -1,4 +1,3 @@
-/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -11,27 +10,27 @@
  */
 import React from 'react';
 import { render } from '@testing-library/react';
-import { MarkerArrow, Marker } from '../src';
+import '@testing-library/jest-dom';
 
-jest.mock('../src/markers/Marker', () => ({
-  default: jest.fn(() => null),
-  __esModule: true,
-}));
+import { MarkerArrow } from '../src';
 
 describe('<MarkerArrow />', () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
-
   test('it should be defined', () => {
     expect(MarkerArrow).toBeDefined();
   });
 
   test('it should render marker with correct structure', () => {
-    render(<MarkerArrow id="marker-circle-test" />);
-    expect(Marker).toHaveBeenCalled();
-    const markerProps = (Marker as jest.Mock).mock.calls[0][0];
-    expect(markerProps.id).toBe('marker-circle-test');
+    const { container } = render(
+      <svg>
+        <defs>
+          <MarkerArrow id="marker-circle-test" />
+        </defs>
+      </svg>
+    );
+    
+    const marker = container.querySelector('marker');
+    expect(marker).toBeInTheDocument();
+    expect(marker).toHaveAttribute('id', 'marker-circle-test');
   });
 
   test('it should size correctly', () => {
@@ -41,23 +40,24 @@ describe('<MarkerArrow />', () => {
     const midX = size;
     const midY = max / 2;
 
-    render(<MarkerArrow id="marker-circle-test" size={size} strokeWidth={strokeWidth} />);
-    
-    const markerProps = (Marker as jest.Mock).mock.calls[0][0];
-    expect(markerProps.markerWidth).toBe(max);
-    expect(markerProps.markerHeight).toBe(max);
-    expect(markerProps.refX).toBe(midX);
-    expect(markerProps.refY).toBe(midY);
-    
-    expect(markerProps.children).toMatchInlineSnapshot(`
-      <g
-        transform="translate(1, 1)"
-      >
-        <polyline
-          points="0 0, 8 4, 0 8"
-        />
-      </g>
-    `);
+    const { container } = render(
+      <svg>
+        <defs>
+          <MarkerArrow id="marker-circle-test" size={size} strokeWidth={strokeWidth} />
+        </defs>
+      </svg>
+    );
+
+    const marker = container.querySelector('marker');
+    expect(marker).toBeInTheDocument();
+    expect(marker).toHaveAttribute('markerWidth', max.toString());
+    expect(marker).toHaveAttribute('markerHeight', max.toString());
+    expect(marker).toHaveAttribute('refX', midX.toString());
+    expect(marker).toHaveAttribute('refY', midY.toString());
+
+    const polyline = container.querySelector('polyline');
+    expect(polyline).toBeInTheDocument();
+    expect(polyline).toHaveAttribute('points', '0 0, 8 4, 0 8');
   });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":3,"failed":0,"total":3,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}
+// MIGRATION STATUS: {"eslint":"pass","jest":{"passed":3,"failed":0,"total":3,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}

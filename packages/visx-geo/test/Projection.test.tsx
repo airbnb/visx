@@ -1,4 +1,3 @@
-/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -12,12 +11,12 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
+
 import { feature } from 'topojson-client';
 import { GeometryCollection } from 'geojson';
 import Projection from '../src/projections/Projection';
 
-// Mock topology with minimal valid structure
-jest.mock('./topo.json', () => ({
+const mockTopology = {
   type: 'Topology',
   objects: {
     collection: {
@@ -40,14 +39,13 @@ jest.mock('./topo.json', () => ({
     [[0, 0], [1, 0]],
     [[1, 1], [0, 1]]
   ]
-}));
+};
 
 describe('<Projection />', () => {
   // Create valid test data
-  const topology = require('./topo.json');
   const data = feature(
-    topology,
-    topology.objects.collection
+    mockTopology,
+    mockTopology.objects.collection
   ).features as GeometryCollection[];
 
   const defaultProps = { data };

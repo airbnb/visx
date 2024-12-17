@@ -1,4 +1,3 @@
-/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -11,14 +10,10 @@
  */
 import React from 'react';
 import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { scaleLinear } from '@visx/scale';
 
 import { Legend, LegendLabel } from '../src';
-
-jest.mock('../src/legends/Legend/LegendLabel', () => ({
-  __esModule: true,
-  default: jest.fn(() => null)
-}));
 
 const defaultProps = {
   scale: scaleLinear<number>({
@@ -40,36 +35,33 @@ describe('<Legend />', () => {
   test('it should default style to display: flex, flex-direction: column', () => {
     const { container } = render(<Legend {...defaultProps} />);
     const legend = container.firstChild as HTMLElement;
-    const styles = getComputedStyle(legend);
-    
-    expect(styles.display).toBe('flex');
-    expect(styles.flexDirection).toBe('column');
+    expect(legend.style.display).toBe('flex');
+    expect(legend.style.flexDirection).toBe('column');
   });
 
   test('it should extend style prop', () => {
     const { container } = render(<Legend {...defaultProps} style={{ display: 'block' }} />);
     const legend = container.firstChild as HTMLElement;
-    const styles = getComputedStyle(legend);
-    
-    expect(styles.display).toBe('block');
-    expect(styles.flexDirection).toBe('column');
+    expect(legend.style.display).toBe('block');
+    expect(legend.style.flexDirection).toBe('column');
   });
 
   test('it should pass through direction prop to style prop', () => {
     const { container } = render(<Legend {...defaultProps} direction="row" />);
     const legend = container.firstChild as HTMLElement;
-    const styles = getComputedStyle(legend);
-    
-    expect(styles.display).toBe('flex');
-    expect(styles.flexDirection).toBe('row');
+    expect(legend.style.display).toBe('flex');
+    expect(legend.style.flexDirection).toBe('row');
   });
 
   test('it should pass through legendLabelProps to legend labels', () => {
-    const style = { fontFamily: 'Comic Sans' };
-    render(<Legend {...defaultProps} legendLabelProps={{ style }} />);
+    const style = { fontFamily: 'Comic Sans MS' };
+    const { container } = render(
+      <Legend {...defaultProps} legendLabelProps={{ style }} />,
+    );
     
-    const mockCalls = (LegendLabel as jest.Mock).mock.calls;
-    expect(mockCalls[0][0].style).toEqual(style);
+    const labelElement = container.querySelector('[style*="font-family: Comic Sans MS"]');
+    expect(labelElement).not.toBeNull();
+    expect(labelElement).toBeInTheDocument();
   });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":5,"failed":0,"total":5,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}
+// MIGRATION STATUS: {"eslint":"pass","jest":{"passed":5,"failed":0,"total":5,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}

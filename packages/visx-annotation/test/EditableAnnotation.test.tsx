@@ -1,4 +1,3 @@
-/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -9,15 +8,11 @@
  * If you are making changes to this file, please consider refactoring
  * to more idiomatic RTL (and then removing this banner!).
  */
-import '@testing-library/jest-dom';
 import React from 'react';
 import { render } from '@testing-library/react';
-import EditableAnnotation from '../src/components/EditableAnnotation';
+import '@testing-library/jest-dom';
 
-jest.mock('../src/components/Annotation', () => {
-  const MockAnnotation = jest.fn(() => <g data-testid="annotation" />);
-  return { __esModule: true, default: MockAnnotation };
-});
+import EditableAnnotation from '../src/components/EditableAnnotation';
 
 describe('<EditableAnnotation />', () => {
   type EditableAnnotationProps = React.ComponentProps<typeof EditableAnnotation>;
@@ -25,14 +20,18 @@ describe('<EditableAnnotation />', () => {
   const defaultProps: EditableAnnotationProps = {
     width: 100,
     height: 100,
-    children: <div />,
+    x: 0,
+    y: 0,
+    dx: 0,
+    dy: 0,
+    children: <div data-testid="child-content">Child content</div>,
   };
 
   function renderComponent(props?: Partial<EditableAnnotationProps>) {
     return render(
       <svg>
         <EditableAnnotation {...defaultProps} {...props} />
-      </svg>
+      </svg>,
     );
   }
 
@@ -46,31 +45,25 @@ describe('<EditableAnnotation />', () => {
 
   it('should render two resize handles by default', () => {
     const { container } = renderComponent();
-    
-    // With default props, both handles should be present
-    const circles = container.getElementsByTagName('circle');
+    const circles = container.querySelectorAll('circle');
     expect(circles).toHaveLength(2);
   });
 
   it('should render one resize handle if canEditLabel is false', () => {
     const { container } = renderComponent({ canEditLabel: false });
-    
-    // Only subject handle should be present
-    const circles = container.getElementsByTagName('circle');
+    const circles = container.querySelectorAll('circle');
     expect(circles).toHaveLength(1);
   });
 
   it('should render one resize handle if canEditSubject is false', () => {
     const { container } = renderComponent({ canEditSubject: false });
-    
-    // Only label handle should be present  
-    const circles = container.getElementsByTagName('circle');
+    const circles = container.querySelectorAll('circle');
     expect(circles).toHaveLength(1);
   });
 
-  it('should render an Annotation', () => {
+  it('should render children content', () => {
     const { getByTestId } = renderComponent();
-    expect(getByTestId('annotation')).toBeInTheDocument();
+    expect(getByTestId('child-content')).toBeInTheDocument();
   });
 });
 // MIGRATION STATUS: {"eslint":"pending","jest":{"passed":5,"failed":0,"total":5,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}

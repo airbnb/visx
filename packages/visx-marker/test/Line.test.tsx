@@ -1,4 +1,3 @@
-/** @jest-environment jsdom */
 /**
  * LLM-GENERATED REFACTOR
  *
@@ -11,55 +10,56 @@
  */
 import React from 'react';
 import { render } from '@testing-library/react';
-import { MarkerLine } from '../src';
-import { Marker } from '../src';
+import '@testing-library/jest-dom';
 
-jest.mock('../src/markers/Marker', () => ({
-  __esModule: true,
-  default: jest.fn(() => null)
-}));
+import { MarkerLine } from '../src';
 
 describe('<MarkerLine />', () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
-
   test('it should be defined', () => {
     expect(MarkerLine).toBeDefined();
   });
 
-  test('it should render a Marker component', () => {
-    render(<MarkerLine id="marker-line-test" />);
-    expect(Marker).toHaveBeenCalled();
+  test('it should render a marker element', () => {
+    const { container } = render(
+      <svg>
+        <MarkerLine id="marker-line-test" />
+      </svg>
+    );
+    
+    const marker = container.querySelector('marker');
+    expect(marker).toBeInTheDocument();
   });
 
-  test('it should pass correct props to Marker', () => {
+  test('it should render with correct attributes', () => {
     const size = 8;
     const strokeWidth = 1;
     const stroke = 'blue';
+
+    const { container } = render(
+      <svg>
+        <MarkerLine id="marker-line-test" size={size} stroke={stroke} strokeWidth={strokeWidth} />
+      </svg>
+    );
+
+    const marker = container.querySelector('marker');
+    const rect = container.querySelector('rect');
     
-    render(<MarkerLine id="marker-line-test" size={size} stroke={stroke} strokeWidth={strokeWidth} />);
-    
-    expect(Marker).toHaveBeenCalledTimes(1);
-    const props = (Marker as jest.Mock).mock.calls[0][0];
+    // Calculate expected values
     const max = Math.max(size, strokeWidth * 2);
     const midX = max / 2;
     const midY = size / 2;
 
-    expect(props.markerWidth).toBe(max);
-    expect(props.markerHeight).toBe(size);
-    expect(props.refX).toBe(midX);
-    expect(props.refY).toBe(midY);
-    expect(props.fill).toBe(stroke);
-    
-    // Check the rect element props individually
-    const rectElement = props.children;
-    expect(rectElement.type).toBe('rect');
-    expect(rectElement.props).toEqual({
-      width: strokeWidth,
-      height: size,
-      x: midX
-    });
+    // Check marker attributes
+    expect(marker).toHaveAttribute('markerWidth', max.toString());
+    expect(marker).toHaveAttribute('markerHeight', size.toString());
+    expect(marker).toHaveAttribute('refX', midX.toString());
+    expect(marker).toHaveAttribute('refY', midY.toString());
+    expect(marker).toHaveAttribute('fill', stroke);
+
+    // Check rect element attributes
+    expect(rect).toHaveAttribute('width', strokeWidth.toString());
+    expect(rect).toHaveAttribute('height', size.toString());
+    expect(rect).toHaveAttribute('x', midX.toString());
   });
 });
-// MIGRATION STATUS: {"eslint":"pending","jest":{"passed":3,"failed":0,"total":3,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}
+// MIGRATION STATUS: {"eslint":"pass","jest":{"passed":3,"failed":0,"total":3,"skipped":0,"successRate":100},"tsc":"pending","enyzme":"converted"}
