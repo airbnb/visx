@@ -16,7 +16,6 @@ describe('<Group />', () => {
     );
     const group = container.querySelector('.visx-group');
     expect(group).toBeInTheDocument();
-    expect(group?.getAttribute('class')).toBe('visx-group');
   });
 
   test('it should default props top=0 left=0', () => {

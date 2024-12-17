@@ -13,7 +13,7 @@ describe('<MarkerArrow />', () => {
     const { container } = render(
       <svg>
         <defs>
-          <MarkerArrow id="marker-circle-test" />
+          <MarkerArrow id="marker-arrow-test" />
         </defs>
       </svg>,
     );
@@ -22,7 +22,7 @@ describe('<MarkerArrow />', () => {
     const polyline = container.querySelector('polyline');
 
     expect(marker).toBeInTheDocument();
-    expect(marker).toHaveAttribute('id', 'marker-circle-test');
+    expect(marker).toHaveAttribute('id', 'marker-arrow-test');
     expect(polyline).toBeInTheDocument();
   });
 
