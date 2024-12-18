@@ -4,66 +4,50 @@ import '@testing-library/jest-dom';
 import { GlyphCircle } from '../src';
 
 describe('<GlyphCircle />', () => {
+  const renderGlyph = (props = {}) =>
+    render(
+      <svg>
+        <GlyphCircle {...props} />
+      </svg>,
+    );
+
   test('should be defined', () => {
     expect(GlyphCircle).toBeDefined();
   });
 
   test('should render with correct class', () => {
-    const { container } = render(
-      <GlyphCircle>
-        {({ path }) => {
-          const renderedPath = typeof path === 'function' ? path() : path;
-          return (
-            <svg role="img" className="visx-glyph">
-              {renderedPath}
-            </svg>
-          );
-        }}
-      </GlyphCircle>,
-    );
+    const { container } = renderGlyph();
     expect(container.querySelector('.visx-glyph')).toBeInTheDocument();
   });
 
   test('should render with custom className', () => {
-    const { container } = render(
-      <GlyphCircle className="test">
-        {({ path }) => {
-          const renderedPath = typeof path === 'function' ? path() : path;
-          return (
-            <svg role="img" className="test">
-              {renderedPath}
-            </svg>
-          );
-        }}
-      </GlyphCircle>,
-    );
+    const { container } = renderGlyph({ className: 'test' });
     expect(container.querySelector('.test')).toBeInTheDocument();
   });
 
   test('should call children function', () => {
     const fn = jest.fn(() => <svg />);
-    render(<GlyphCircle>{fn}</GlyphCircle>);
+    renderGlyph({ children: fn });
     expect(fn).toHaveBeenCalled();
   });
 
   test('should pass path to children function', () => {
     const fn = jest.fn(() => <svg />);
-    render(<GlyphCircle>{fn}</GlyphCircle>);
+    renderGlyph({ children: fn });
     const args = fn.mock.calls[0][0];
     expect(args).toHaveProperty('path');
   });
 
   test('should handle numeric size prop', () => {
     const fn = jest.fn(() => <svg />);
-    render(<GlyphCircle size={42}>{fn}</GlyphCircle>);
+    renderGlyph({ children: fn, size: 42 });
     const args = fn.mock.calls[0][0];
     expect(args.path.size()()).toBe(42);
   });
 
   test('should handle function size prop', () => {
     const fn = jest.fn(() => <svg />);
-    const sizeFn = () => 42;
-    render(<GlyphCircle size={sizeFn}>{fn}</GlyphCircle>);
+    renderGlyph({ children: fn, size: () => 42 });
     const args = fn.mock.calls[0][0];
     expect(args.path.size()()).toBe(42);
   });

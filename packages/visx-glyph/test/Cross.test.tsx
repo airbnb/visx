@@ -4,64 +4,51 @@ import '@testing-library/jest-dom';
 import { GlyphCross } from '../src';
 
 describe('<GlyphCross />', () => {
+  const renderGlyph = (props = {}) =>
+    render(
+      <svg>
+        <GlyphCross {...props} />
+      </svg>,
+    );
+
   test('should be defined', () => {
     expect(GlyphCross).toBeDefined();
   });
 
-  test('should render with base glyph class', () => {
-    const { container } = render(
-      <svg>
-        <GlyphCross>
-          {() => (
-            <g className="visx-glyph">
-              <path d="M0,0" />
-            </g>
-          )}
-        </GlyphCross>
-      </svg>,
-    );
-    expect(container.querySelector('.visx-glyph')).toHaveClass('visx-glyph');
+  test('should render with correct class', () => {
+    const { container } = renderGlyph();
+    expect(container.querySelector('.visx-glyph')).toBeInTheDocument();
   });
 
-  test('should render with custom class', () => {
-    const { container } = render(
-      <svg>
-        <GlyphCross className="test">
-          {() => (
-            <g className="test">
-              <path d="M0,0" />
-            </g>
-          )}
-        </GlyphCross>
-      </svg>,
-    );
-    expect(container.querySelector('.test')).toHaveClass('test');
+  test('should render with custom className', () => {
+    const { container } = renderGlyph({ className: 'test' });
+    expect(container.querySelector('.test')).toBeInTheDocument();
   });
 
   test('should call children function', () => {
-    const childrenFn = jest.fn(() => null);
-    render(<GlyphCross>{childrenFn}</GlyphCross>);
-    expect(childrenFn).toHaveBeenCalled();
+    const fn = jest.fn(() => <svg />);
+    renderGlyph({ children: fn });
+    expect(fn).toHaveBeenCalled();
   });
 
-  test('should pass path object to children function', () => {
-    const childrenFn = jest.fn(() => null);
-    render(<GlyphCross>{childrenFn}</GlyphCross>);
-    const args = childrenFn.mock.calls[0][0];
+  test('should pass path to children function', () => {
+    const fn = jest.fn(() => <svg />);
+    renderGlyph({ children: fn });
+    const args = fn.mock.calls[0][0];
     expect(args).toHaveProperty('path');
   });
 
-  test('should handle size prop as number and function', () => {
-    const childrenFn = jest.fn(() => null);
-    const sizeFn = () => 42;
+  test('should handle numeric size prop', () => {
+    const fn = jest.fn(() => <svg />);
+    renderGlyph({ children: fn, size: 42 });
+    const args = fn.mock.calls[0][0];
+    expect(args.path.size()()).toBe(42);
+  });
 
-    // Test number size
-    render(<GlyphCross size={42}>{childrenFn}</GlyphCross>);
-    expect(childrenFn.mock.calls[0][0].path.size()()).toBe(42);
-
-    // Test function size
-    childrenFn.mockClear();
-    render(<GlyphCross size={sizeFn}>{childrenFn}</GlyphCross>);
-    expect(childrenFn.mock.calls[0][0].path.size()()).toBe(42);
+  test('should handle function size prop', () => {
+    const fn = jest.fn(() => <svg />);
+    renderGlyph({ children: fn, size: () => 42 });
+    const args = fn.mock.calls[0][0];
+    expect(args.path.size()()).toBe(42);
   });
 });

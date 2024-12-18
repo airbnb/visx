@@ -4,73 +4,51 @@ import '@testing-library/jest-dom';
 import { GlyphDiamond } from '../src';
 
 describe('<GlyphDiamond />', () => {
+  const renderGlyph = (props = {}) =>
+    render(
+      <svg>
+        <GlyphDiamond {...props} />
+      </svg>,
+    );
+
   test('should be defined', () => {
     expect(GlyphDiamond).toBeDefined();
   });
 
-  test('should render with default className', () => {
-    const { container } = render(
-      <svg>
-        <GlyphDiamond>{() => <path data-testid="diamond-path" />}</GlyphDiamond>
-      </svg>,
-    );
-    expect(container.querySelector('svg')).toBeInTheDocument();
+  test('should render with correct class', () => {
+    const { container } = renderGlyph();
+    expect(container.querySelector('.visx-glyph')).toBeInTheDocument();
   });
 
   test('should render with custom className', () => {
-    const { container } = render(
-      <svg>
-        <GlyphDiamond className="test">{({ path }) => <path className="test" />}</GlyphDiamond>
-      </svg>,
-    );
+    const { container } = renderGlyph({ className: 'test' });
     expect(container.querySelector('.test')).toBeInTheDocument();
   });
 
   test('should call children function', () => {
-    const childrenFn = jest.fn(() => null);
-    render(
-      <svg>
-        <GlyphDiamond>{childrenFn}</GlyphDiamond>
-      </svg>,
-    );
-    expect(childrenFn).toHaveBeenCalled();
+    const fn = jest.fn(() => <svg />);
+    renderGlyph({ children: fn });
+    expect(fn).toHaveBeenCalled();
   });
 
-  test('should render children function with path prop', () => {
-    const childrenFn = jest.fn(() => <div>Diamond</div>);
-    render(
-      <svg>
-        <GlyphDiamond>{childrenFn}</GlyphDiamond>
-      </svg>,
-    );
-
-    expect(childrenFn).toHaveBeenCalled();
-    const args = childrenFn.mock.calls[0][0];
+  test('should pass path to children function', () => {
+    const fn = jest.fn(() => <svg />);
+    renderGlyph({ children: fn });
+    const args = fn.mock.calls[0][0];
     expect(args).toHaveProperty('path');
   });
 
-  test('should accept numeric size prop', () => {
-    const childrenFn = jest.fn(() => <div>Diamond</div>);
-    render(
-      <svg>
-        <GlyphDiamond size={42}>{childrenFn}</GlyphDiamond>
-      </svg>,
-    );
-
-    const args = childrenFn.mock.calls[0][0];
+  test('should handle numeric size prop', () => {
+    const fn = jest.fn(() => <svg />);
+    renderGlyph({ children: fn, size: 42 });
+    const args = fn.mock.calls[0][0];
     expect(args.path.size()()).toBe(42);
   });
 
-  test('should accept function size prop', () => {
-    const sizeFn = () => 42;
-    const childrenFn = jest.fn(() => <div>Diamond</div>);
-    render(
-      <svg>
-        <GlyphDiamond size={sizeFn}>{childrenFn}</GlyphDiamond>
-      </svg>,
-    );
-
-    const args = childrenFn.mock.calls[0][0];
+  test('should handle function size prop', () => {
+    const fn = jest.fn(() => <svg />);
+    renderGlyph({ children: fn, size: () => 42 });
+    const args = fn.mock.calls[0][0];
     expect(args.path.size()()).toBe(42);
   });
 });
