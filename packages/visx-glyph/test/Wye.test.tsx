@@ -1,48 +1,53 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { GlyphWye } from '../src';
 
 describe('<GlyphWye />', () => {
-  test('it should be defined', () => {
+  const renderGlyph = (props = {}) =>
+    render(
+      <svg>
+        <GlyphWye {...props} />
+      </svg>,
+    );
+
+  test('should be defined', () => {
     expect(GlyphWye).toBeDefined();
   });
 
-  test('it should be wrapped in a <Glyph />', () => {
-    const wrapper = shallow(<GlyphWye />);
-    expect(wrapper.dive().prop('className')).toBe('visx-glyph');
+  test('should render with correct class', () => {
+    const { container } = renderGlyph();
+    expect(container.querySelector('.visx-glyph')).toBeInTheDocument();
   });
 
-  test('it should add className to <path />', () => {
-    const wrapper = shallow(<GlyphWye className="test" />);
-    expect(wrapper.find('.test')).toHaveLength(1);
+  test('should render with custom className', () => {
+    const { container } = renderGlyph({ className: 'test' });
+    expect(container.querySelector('.test')).toBeInTheDocument();
   });
 
-  test('it should take a children as function prop', () => {
-    const fn = jest.fn();
-    shallow(<GlyphWye>{fn}</GlyphWye>);
+  test('should call children function', () => {
+    const fn = jest.fn(() => <svg />);
+    renderGlyph({ children: fn });
     expect(fn).toHaveBeenCalled();
   });
 
-  test('it should call children function with { path }', () => {
-    const fn = jest.fn();
-    shallow(<GlyphWye>{fn}</GlyphWye>);
+  test('should pass path to children function', () => {
+    const fn = jest.fn(() => <svg />);
+    renderGlyph({ children: fn });
     const args = fn.mock.calls[0][0];
-    const keys = Object.keys(args);
-    expect(keys).toContain('path');
+    expect(args).toHaveProperty('path');
   });
 
-  test('it should take a size prop as a number', () => {
-    const fn = jest.fn();
-    shallow(<GlyphWye size={42}>{fn}</GlyphWye>);
+  test('should handle numeric size prop', () => {
+    const fn = jest.fn(() => <svg />);
+    renderGlyph({ children: fn, size: 42 });
     const args = fn.mock.calls[0][0];
     expect(args.path.size()()).toBe(42);
   });
 
-  test('it should take a size prop as a function', () => {
-    const fn = jest.fn();
-    const sizeFn = () => 42;
-    shallow(<GlyphWye size={sizeFn}>{fn}</GlyphWye>);
+  test('should handle function size prop', () => {
+    const fn = jest.fn(() => <svg />);
+    renderGlyph({ children: fn, size: () => 42 });
     const args = fn.mock.calls[0][0];
     expect(args.path.size()()).toBe(42);
   });

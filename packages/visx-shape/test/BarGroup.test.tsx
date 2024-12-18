@@ -1,19 +1,11 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { scaleBand, scaleLinear } from '@visx/scale';
 import { BarGroup } from '../src';
-import { BarGroupProps } from '../src/shapes/BarGroup';
-import { GroupKey } from '../src/types/barGroup';
 
-interface Datum {
-  date: Date;
-  'New York': string;
-  'San Francisco': string;
-  Austin: string;
-}
-
-const data: Datum[] = [
+const data = [
   {
     date: new Date(),
     'New York': '63.4',
@@ -28,92 +20,65 @@ const data: Datum[] = [
   },
 ];
 
-const x0 = () => 5;
-const x0Scale = scaleBand({ domain: [5, 15], range: [0, 100] });
-const x1Scale = scaleBand({ domain: [0, 100], range: [0, 100] });
-const yScale = scaleLinear({ domain: [0, 100], range: [0, 100] });
-
-const color = () => 'skyblue';
-const keys = ['New York', 'San Francisco', 'Austin'];
-const height = 1;
-
-const BarGroupWrapper = (restProps = {}) =>
-  shallow(
-    <BarGroup
-      data={data}
-      x0={x0}
-      x0Scale={x0Scale}
-      x1Scale={x1Scale}
-      yScale={yScale}
-      color={color}
-      keys={keys}
-      height={height}
-      {...restProps}
-    />,
-  );
-
-const BarGroupChildren = ({ children, ...restProps }: Partial<BarGroupProps<Datum, GroupKey>>) =>
-  shallow(
-    <BarGroup
-      data={data}
-      x0={x0}
-      x0Scale={x0Scale}
-      x1Scale={x1Scale}
-      yScale={yScale}
-      color={color}
-      keys={keys}
-      height={height}
-      {...restProps}
-    >
-      {children}
-    </BarGroup>,
-  );
+const defaultProps = {
+  data,
+  x0: () => 5,
+  x0Scale: scaleBand({ domain: [5, 15], range: [0, 100] }),
+  x1Scale: scaleBand({ domain: [0, 100], range: [0, 100] }),
+  yScale: scaleLinear({ domain: [0, 100], range: [0, 100] }),
+  color: () => 'skyblue',
+  keys: ['New York', 'San Francisco', 'Austin'],
+  height: 1,
+};
 
 describe('<BarGroup />', () => {
+  const renderWithSvg = (ui: React.ReactElement) => render(<svg>{ui}</svg>);
+
   test('it should be defined', () => {
     expect(BarGroup).toBeDefined();
   });
 
   test('it should have className .visx-bar-group', () => {
-    const wrapper = BarGroupWrapper();
-    expect(wrapper.prop('className')).toBe('visx-bar-group');
+    const { container } = renderWithSvg(<BarGroup {...defaultProps} />);
+    expect(container.querySelector('.visx-bar-group')).toBeInTheDocument();
   });
 
   test('it should set className prop', () => {
-    const wrapper = BarGroupWrapper({ className: 'test' });
-    expect(wrapper.prop('className')).toBe('visx-bar-group test');
+    const { container } = renderWithSvg(<BarGroup {...defaultProps} className="test" />);
+    const element = container.querySelector('g.visx-bar-group');
+    expect(element).toHaveClass('test');
   });
 
   test('it should set top & left props', () => {
-    const wrapper = BarGroupWrapper({ top: 2, left: 3 });
-    expect(wrapper.prop('top')).toBe(2);
-    expect(wrapper.prop('left')).toBe(3);
+    const { container } = renderWithSvg(<BarGroup {...defaultProps} top={2} left={3} />);
+    const element = container.querySelector('g.visx-bar-group');
+    expect(element).toHaveAttribute('transform', 'translate(3, 2)');
   });
 
   test('it should take a children as function prop', () => {
-    const fn = jest.fn();
-    BarGroupChildren({ children: fn });
-    expect(fn).toHaveBeenCalled();
+    const children = jest.fn(() => null);
+    renderWithSvg(<BarGroup {...defaultProps}>{children}</BarGroup>);
+    expect(children).toHaveBeenCalled();
   });
 
   test('it should call children function with [barGroups]', () => {
-    const fn = jest.fn();
-    BarGroupChildren({ children: fn });
-    const args = fn.mock.calls[0][0];
-    expect(args.length > 0).toBe(true);
+    const children = jest.fn(() => null);
+    renderWithSvg(<BarGroup {...defaultProps}>{children}</BarGroup>);
+    const args = children.mock.calls[0][0];
+    expect(args.length).toBeGreaterThan(0);
   });
 
   test('it should create barGroup with shape { index, x0, bars }', () => {
-    const fn = jest.fn();
-    BarGroupChildren({ children: fn });
-    const args = fn.mock.calls[0][0];
-    const barGroups = args;
+    const children = jest.fn(() => null);
+    renderWithSvg(<BarGroup {...defaultProps}>{children}</BarGroup>);
+    const [barGroups] = children.mock.calls[0];
     const group = barGroups[0];
+
     expect(Object.keys(group)).toEqual(['index', 'x0', 'bars']);
     expect(group.index).toBe(0);
     expect(typeof group.index).toBe('number');
     expect(typeof group.x0).toBe('number');
-    expect(group.bars).toHaveLength(keys.length);
+    expect(group.bars).toHaveLength(defaultProps.keys.length);
     expect(Object.keys(group.bars[0])).toEqual([
       'index',
       'key',

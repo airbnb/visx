@@ -1,9 +1,9 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { scaleBand, scaleLinear } from '@visx/scale';
 import { BarGroupHorizontal } from '../src';
-import { BarGroupHorizontalProps } from '../lib/shapes/BarGroupHorizontal';
 
 interface Datum {
   date: Date;
@@ -27,91 +27,74 @@ const data: Datum[] = [
   },
 ];
 
-const y0 = () => 5;
-const y0Scale = scaleBand({ domain: [0, 100], range: [0, 100] });
-const y1Scale = scaleBand({ domain: [0, 100], range: [0, 100] });
-const xScale = scaleLinear({ domain: [0, 100], range: [0, 100] });
-const color = () => 'violet';
-const keys = ['New York', 'San Francisco', 'Austin'];
-const width = 1;
-
-const BarGroupWrapper = (restProps = {}) =>
-  shallow(
-    <BarGroupHorizontal
-      data={data}
-      y0={y0}
-      y0Scale={y0Scale}
-      y1Scale={y1Scale}
-      xScale={xScale}
-      color={color}
-      keys={keys}
-      width={width}
-      {...restProps}
-    />,
-  );
-
-const BarGroupChildren = ({ children, ...restProps }: Partial<BarGroupHorizontalProps<Datum>>) =>
-  shallow(
-    <BarGroupHorizontal
-      data={data}
-      y0={y0}
-      y0Scale={y0Scale}
-      y1Scale={y1Scale}
-      xScale={xScale}
-      color={color}
-      keys={keys}
-      width={width}
-      {...restProps}
-    >
-      {children}
-    </BarGroupHorizontal>,
-  );
+const defaultProps = {
+  data,
+  y0: () => 5,
+  y0Scale: scaleBand({ domain: [0, 100], range: [0, 100] }),
+  y1Scale: scaleBand({ domain: [0, 100], range: [0, 100] }),
+  xScale: scaleLinear({ domain: [0, 100], range: [0, 100] }),
+  color: () => 'violet',
+  keys: ['New York', 'San Francisco', 'Austin'],
+  width: 1,
+};
 
 describe('<BarGroupHorizontal />', () => {
+  // Suppress expected console warnings about lowercase SVG elements
+  beforeAll(() => {
+    jest.spyOn(console, 'error').mockImplementation(() => {});
+  });
+
+  afterAll(() => {
+    jest.restoreAllMocks();
+  });
+
   test('it should be defined', () => {
     expect(BarGroupHorizontal).toBeDefined();
   });
 
-  test('it should have className .visx-bar-group', () => {
-    const wrapper = BarGroupWrapper();
-    expect(wrapper.prop('className')).toBe('visx-bar-group-horizontal');
+  test('it should have className .visx-bar-group-horizontal', () => {
+    const { container } = render(<BarGroupHorizontal {...defaultProps} />);
+    const element = container.querySelector('.visx-bar-group-horizontal');
+    expect(element).toBeInTheDocument();
   });
 
   test('it should set className prop', () => {
-    const wrapper = BarGroupWrapper({ className: 'test' });
-    expect(wrapper.prop('className')).toBe('visx-bar-group-horizontal test');
+    const { container } = render(<BarGroupHorizontal {...defaultProps} className="test" />);
+    const element = container.querySelector('.visx-bar-group-horizontal.test');
+    expect(element).toBeInTheDocument();
   });
 
   test('it should set top & left props', () => {
-    const wrapper = BarGroupWrapper({ top: 2, left: 3 });
-    expect(wrapper.prop('top')).toBe(2);
-    expect(wrapper.prop('left')).toBe(3);
+    const { container } = render(<BarGroupHorizontal {...defaultProps} top={2} left={3} />);
+    const group = container.querySelector('g');
+    expect(group).toHaveAttribute('transform', 'translate(3, 2)');
   });
 
   test('it should take a children as function prop', () => {
-    const fn = jest.fn();
-    BarGroupChildren({ children: fn });
-    expect(fn).toHaveBeenCalled();
+    const children = jest.fn(() => null);
+    render(<BarGroupHorizontal {...defaultProps}>{children}</BarGroupHorizontal>);
+    expect(children).toHaveBeenCalled();
   });
 
   test('it should call children function with [barGroups]', () => {
-    const fn = jest.fn();
-    BarGroupChildren({ children: fn });
-    const args = fn.mock.calls[0][0];
+    const children = jest.fn(() => null);
+    render(<BarGroupHorizontal {...defaultProps}>{children}</BarGroupHorizontal>);
+    const args = children.mock.calls[0][0];
     expect(args.length > 0).toBe(true);
   });
 
   test('it should create barGroup with shape { index, x0, bars }', () => {
-    const fn = jest.fn();
-    BarGroupChildren({ children: fn });
-    const args = fn.mock.calls[0][0];
+    const children = jest.fn(() => null);
+    render(<BarGroupHorizontal {...defaultProps}>{children}</BarGroupHorizontal>);
+    const args = children.mock.calls[0][0];
     const barGroups = args;
     const group = barGroups[0];
+
     expect(Object.keys(group)).toEqual(['index', 'y0', 'bars']);
     expect(group.index).toBe(0);
     expect(typeof group.index).toBe('number');
     expect(typeof group.y0).toBe('number');
-    expect(group.bars).toHaveLength(keys.length);
+    expect(group.bars).toHaveLength(defaultProps.keys.length);
     expect(Object.keys(group.bars[0])).toEqual([
       'index',
       'key',

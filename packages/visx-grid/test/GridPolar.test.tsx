@@ -1,8 +1,8 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 
 import { scaleLinear } from '@visx/scale';
-import { GridPolar, GridAngle, GridRadial } from '../src';
+import { GridPolar } from '../src';
 
 const gridProps = {
   innerRadius: 0,
@@ -17,13 +17,26 @@ describe('<GridPolar />', () => {
   });
 
   it('should render with class .visx-grid-polar', () => {
-    const wrapper = shallow(<GridPolar {...gridProps} />);
-    expect(wrapper.find('.visx-grid-polar')).toHaveLength(1);
+    const { container } = render(
+      <svg>
+        <GridPolar {...gridProps} />
+      </svg>,
+    );
+    expect(container.querySelector('.visx-grid-polar')).toBeTruthy();
   });
 
-  it('should render both GridAngle & GridRadial', () => {
-    const wrapper = shallow(<GridPolar {...gridProps} />);
-    expect(wrapper.find(GridAngle)).toHaveLength(1);
-    expect(wrapper.find(GridRadial)).toHaveLength(1);
+  it('should render both angle and radial grid lines', () => {
+    const { container } = render(
+      <svg>
+        <GridPolar {...gridProps} />
+      </svg>,
+    );
+
+    // Look for actual rendered lines rather than mocked components
+    const lines = container.querySelectorAll('line');
+    const arcs = container.querySelectorAll('path'); // radial grids are rendered as arcs/paths
+
+    expect(lines.length).toBeGreaterThan(0); // Should have some angle lines
+    expect(arcs.length).toBeGreaterThan(0); // Should have some radial lines
   });
 });

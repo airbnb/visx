@@ -1,52 +1,56 @@
 import React from 'react';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
+
 import { ResizeObserver } from '@juggle/resize-observer';
-import Text from '@visx/text/lib/Text';
-import { shallow } from 'enzyme';
 import { Label } from '../src';
 
 describe('<Label />', () => {
+  const renderLabel = (props: React.ComponentProps<typeof Label>) =>
+    render(
+      <svg>
+        <Label {...props} />
+      </svg>,
+    );
+
   it('should be defined', () => {
     expect(Label).toBeDefined();
   });
-  it('should render title Text', () => {
-    expect(
-      shallow(<Label title="title test" resizeObserverPolyfill={ResizeObserver} />)
-        .dive()
-        .children()
-        .find(Text)
-        .prop('children'),
-    ).toBe('title test');
+
+  it('should render title text', () => {
+    const { getByText } = renderLabel({
+      title: 'title test',
+      resizeObserverPolyfill: ResizeObserver,
+    });
+    expect(getByText('title test')).toBeInTheDocument();
   });
-  it('should render subtitle Text', () => {
-    expect(
-      shallow(
-        <Label
-          title="title test"
-          subtitle="subtitle test"
-          resizeObserverPolyfill={ResizeObserver}
-        />,
-      )
-        .dive()
-        .children()
-        .find(Text)
-        .at(1)
-        .prop('children'),
-    ).toBe('subtitle test');
+
+  it('should render subtitle text', () => {
+    const { getByText } = renderLabel({
+      title: 'title test',
+      subtitle: 'subtitle test',
+      resizeObserverPolyfill: ResizeObserver,
+    });
+    expect(getByText('subtitle test')).toBeInTheDocument();
   });
-  it('should render a background', () => {
-    expect(
-      shallow(<Label title="title test" showBackground resizeObserverPolyfill={ResizeObserver} />)
-        .dive()
-        .find('rect'),
-    ).toHaveLength(1);
+
+  it('should render background', () => {
+    const { container } = renderLabel({
+      title: 'title test',
+      showBackground: true,
+      resizeObserverPolyfill: ResizeObserver,
+    });
+    const rect = container.querySelector('rect');
+    expect(rect).toBeInTheDocument();
   });
-  it('should render an anchor line', () => {
-    expect(
-      shallow(<Label title="title test" showAnchorLine resizeObserverPolyfill={ResizeObserver} />)
-        .dive()
-        .find('AnchorLine')
-        .dive()
-        .find('line'),
-    ).toHaveLength(1);
+
+  it('should render anchor line', () => {
+    const { container } = renderLabel({
+      title: 'title test',
+      showAnchorLine: true,
+      resizeObserverPolyfill: ResizeObserver,
+    });
+    const line = container.querySelector('line');
+    expect(line).toBeInTheDocument();
   });
 });

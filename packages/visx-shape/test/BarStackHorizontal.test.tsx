@@ -1,6 +1,6 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { scaleBand } from '@visx/scale';
 import { BarStackHorizontal } from '../src';
 
@@ -17,53 +17,66 @@ describe('<BarStackHorizontal />', () => {
   });
 
   test('it should have className .visx-bar-stack-horizontal', () => {
-    const wrapper = shallow(
-      <BarStackHorizontal
-        data={[]}
-        top={2}
-        left={3}
-        y={(d) => d}
-        xScale={scale}
-        yScale={scale}
-        color={(d) => d}
-        keys={[]}
-      />,
+    const { container } = render(
+      <svg>
+        <BarStackHorizontal
+          data={[]}
+          top={2}
+          left={3}
+          y={(d) => d}
+          xScale={scale}
+          yScale={scale}
+          color={(d) => d}
+          keys={[]}
+        />
+      </svg>,
     );
-    expect(wrapper.prop('className')).toBe('visx-bar-stack-horizontal');
+
+    const element = container.querySelector('.visx-bar-stack-horizontal');
+    expect(element).toBeInTheDocument();
   });
 
   test('it should set className prop', () => {
-    const wrapper = shallow(
-      <BarStackHorizontal
-        className="test"
-        data={[]}
-        top={2}
-        left={3}
-        y={(d) => d}
-        xScale={scale}
-        yScale={scale}
-        color={(d) => d}
-        keys={[]}
-      />,
+    const { container } = render(
+      <svg>
+        <BarStackHorizontal
+          className="test"
+          data={[]}
+          top={2}
+          left={3}
+          y={(d) => d}
+          xScale={scale}
+          yScale={scale}
+          color={(d) => d}
+          keys={[]}
+        />
+      </svg>,
     );
-    expect(wrapper.prop('className')).toBe('visx-bar-stack-horizontal test');
+
+    const element = container.querySelector('.visx-bar-stack-horizontal');
+    expect(element).toBeInTheDocument();
+    expect(element).toHaveClass('visx-bar-stack-horizontal', 'test');
   });
 
   test('it should set top & left props', () => {
-    const wrapper = shallow(
-      <BarStackHorizontal
-        className="test"
-        data={[]}
-        top={2}
-        left={3}
-        y={(d) => d}
-        xScale={scale}
-        yScale={scale}
-        color={(d) => d}
-        keys={[]}
-      />,
+    const { container } = render(
+      <svg>
+        <BarStackHorizontal
+          className="test"
+          data={[]}
+          top={2}
+          left={3}
+          y={(d) => d}
+          xScale={scale}
+          yScale={scale}
+          color={(d) => d}
+          keys={[]}
+        />
+      </svg>,
     );
-    expect(wrapper.prop('top')).toBe(2);
-    expect(wrapper.prop('left')).toBe(3);
+
+    const element = container.querySelector('.visx-bar-stack-horizontal');
+    expect(element).toBeInTheDocument();
+    expect(element).toHaveAttribute('transform', 'translate(3, 2)');
   });
 });

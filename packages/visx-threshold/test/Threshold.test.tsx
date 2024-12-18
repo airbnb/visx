@@ -1,5 +1,6 @@
 import React from 'react';
-import { render } from 'enzyme';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { Threshold } from '../src';
 
 const data = [
@@ -13,7 +14,7 @@ describe('<Threshold />', () => {
   });
 
   it('should render the path', () => {
-    const wrapper = render(
+    const { container } = render(
       <svg>
         <Threshold
           id={`${Math.random()}`}
@@ -34,12 +35,13 @@ describe('<Threshold />', () => {
         />
       </svg>,
     );
-    expect(wrapper.find('g.visx-threshold')).toHaveLength(1);
-    expect(wrapper.find('path')).toHaveLength(4);
+
+    expect(container.querySelector('g.visx-threshold')).toBeInTheDocument();
+    expect(container.querySelectorAll('path')).toHaveLength(4);
   });
 
   it('supports accessors for clipping', () => {
-    const wrapper = render(
+    const { container } = render(
       <svg>
         <Threshold
           id={`${Math.random()}`}
@@ -60,7 +62,8 @@ describe('<Threshold />', () => {
         />
       </svg>,
     );
-    expect(wrapper.find('g.visx-threshold')).toHaveLength(1);
-    expect(wrapper.find('path')).toHaveLength(4);
+
+    expect(container.querySelector('g.visx-threshold')).toBeInTheDocument();
+    expect(container.querySelectorAll('path')).toHaveLength(4);
   });
 });

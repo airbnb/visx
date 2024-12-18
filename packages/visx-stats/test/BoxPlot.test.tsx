@@ -1,6 +1,6 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { scaleLinear } from '@visx/scale';
 import { BoxPlot, computeStats } from '../src';
 
@@ -15,42 +15,37 @@ const valueScale = scaleLinear<number>({
 });
 
 describe('<BoxPlot />', () => {
+  const renderBoxPlot = () =>
+    render(
+      <svg width={100} height={100}>
+        <BoxPlot
+          min={min}
+          max={max}
+          left={0}
+          firstQuartile={firstQuartile}
+          thirdQuartile={thirdQuartile}
+          median={median}
+          boxWidth={100}
+          valueScale={valueScale}
+          outliers={outliers}
+        />
+      </svg>,
+    );
+
   test('it should be defined', () => {
     expect(BoxPlot).toBeDefined();
   });
 
   test('it should have className .visx-boxplot', () => {
-    const wrapper = shallow(
-      <BoxPlot
-        min={min}
-        max={max}
-        left={0}
-        firstQuartile={firstQuartile}
-        thirdQuartile={thirdQuartile}
-        median={median}
-        boxWidth={100}
-        valueScale={valueScale}
-        outliers={outliers}
-      />,
-    );
-    expect(wrapper.prop('className')).toBe('visx-boxplot');
+    const { container } = renderBoxPlot();
+    const boxPlotGroup = container.querySelector('.visx-boxplot');
+    expect(boxPlotGroup).toBeInTheDocument();
   });
 
   test('it should render 5 lines and one rectangle', () => {
-    const wrapper = shallow(
-      <BoxPlot
-        min={min}
-        max={max}
-        left={0}
-        firstQuartile={firstQuartile}
-        thirdQuartile={thirdQuartile}
-        median={median}
-        boxWidth={100}
-        valueScale={valueScale}
-        outliers={outliers}
-      />,
-    );
-    expect(wrapper.find('line')).toHaveLength(5);
-    expect(wrapper.find('rect')).toHaveLength(1);
+    const { container } = renderBoxPlot();
+    const boxPlotGroup = container.querySelector('.visx-boxplot');
+    expect(boxPlotGroup?.querySelectorAll('line')).toHaveLength(5);
+    expect(boxPlotGroup?.querySelectorAll('rect')).toHaveLength(1);
   });
 });

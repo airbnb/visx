@@ -1,8 +1,8 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { Pie } from '../src';
-import { PieArcDatum, PieProps } from '../src/shapes/Pie';
+import { PieArcDatum } from '../src/shapes/Pie';
 
 interface Datum {
   date: string;
@@ -44,90 +44,113 @@ const browserUsage: Datum[] = [
   },
 ];
 
-const PieWrapper = (restProps = {}) => shallow(<Pie data={browserUsage} {...restProps} />);
-const PieChildren = ({ children, ...restProps }: Partial<PieProps<Datum>>) =>
-  shallow(
-    <Pie data={browserUsage} {...restProps}>
-      {children}
-    </Pie>,
-  );
-
 describe('<Pie />', () => {
   test('it should be defined', () => {
     expect(Pie).toBeDefined();
   });
 
   test('it should not break on sort callbacks', () => {
-    expect(() => {
-      PieWrapper({ pieSort: () => 0, pieSortValues: () => 0 });
-    }).not.toThrow();
+    expect(() =>
+      render(
+        <svg>
+          <Pie data={browserUsage} pieSort={() => 0} pieSortValues={() => 0} />
+        </svg>,
+      ),
+    ).not.toThrow();
   });
 
   test('it should accept null sort callbacks', () => {
     expect.assertions(3);
 
-    expect(() => {
-      PieWrapper({ pieSort: null, pieSortValues: null });
-    }).not.toThrow();
+    const { container } = render(
+      <svg>
+        <Pie data={browserUsage} pieSort={null} pieSortValues={null} />
+      </svg>,
+    );
+    expect(container).toBeInTheDocument();
 
-    // Should sort the arcs the same order as the input data
-    // The default pieSortValues sorts data by descending values
     const A = 1;
     const B = 20;
-    shallow(
-      <Pie data={[A, B]} pieSortValues={null}>
-        {({ arcs }) => {
-          expect(arcs[0]).toMatchObject({ value: A, index: 0 });
-          expect(arcs[1]).toMatchObject({ value: B, index: 1 });
+    const childrenFn = jest.fn(() => null);
 
-          return null;
-        }}
-      </Pie>,
+    render(
+      <svg>
+        <Pie data={[A, B]} pieSortValues={null}>
+          {childrenFn}
+        </Pie>
+      </svg>,
     );
+
+    const args = childrenFn.mock.calls[0][0];
+    expect(args.arcs[0]).toMatchObject({ value: A, index: 0 });
+    expect(args.arcs[1]).toMatchObject({ value: B, index: 1 });
   });
 
   test('it should break on invalid sort callbacks', () => {
-    expect(() => PieWrapper({ pieSort: 12 })).toThrow();
-    expect(() => PieWrapper({ pieSortValues: 12 })).toThrow();
+    expect(() =>
+      render(
+        <svg>
+          <Pie data={browserUsage} pieSort={12 as any} />
+        </svg>,
+      ),
+    ).toThrow();
+    expect(() =>
+      render(
+        <svg>
+          <Pie data={browserUsage} pieSortValues={12 as any} />
+        </svg>,
+      ),
+    ).toThrow();
   });
 
-  test('it should have the .visx-pie-arcs-group class', () => {
-    expect(PieWrapper().prop('className')).toBe('visx-pie-arcs-group');
+  test('it should render pie chart with correct structure', () => {
+    const { container } = render(
+      <svg>
+        <Pie data={browserUsage} />
+      </svg>,
+    );
+    const group = container.querySelector('.visx-pie-arcs-group');
+    expect(group).toBeInTheDocument();
+    const paths = container.querySelectorAll('path');
+    expect(paths).toHaveLength(browserUsage.length);
   });
 
-  test('it should contain paths', () => {
-    expect(PieWrapper().find('path').length).toBeGreaterThan(0);
-  });
+  test('it should handle children render prop correctly', () => {
+    const childrenFn = jest.fn(() => null);
+    render(
+      <svg>
+        <Pie data={browserUsage}>{childrenFn}</Pie>
+      </svg>,
+    );
 
-  test('it should take a children as function prop', () => {
-    const fn = jest.fn();
-    PieChildren({ children: fn });
-    expect(fn).toHaveBeenCalled();
+    expect(childrenFn).toHaveBeenCalled();
+    const args = childrenFn.mock.calls[0][0];
+    expect(args).toHaveProperty('path');
+    expect(args).toHaveProperty('arcs');
+    expect(args).toHaveProperty('pie');
   });
 
   test('it should accept a custom fill function', () => {
-    const paths = PieWrapper({
-      fill: (datum: PieArcDatum<Datum>) => datum.data.color,
-    }).find('path');
-    expect(paths.at(0).prop('fill')).toBe('blue');
-    expect(paths.at(1).prop('fill')).toBe('red');
+    const { container } = render(
+      <svg>
+        <Pie data={browserUsage} fill={(datum: PieArcDatum<Datum>) => datum.data.color} />
+      </svg>,
+    );
+
+    const paths = container.querySelectorAll('path');
+    expect(paths[0]).toHaveAttribute('fill', 'blue');
+    expect(paths[1]).toHaveAttribute('fill', 'red');
   });
 
   test('it should accept a constant string fill value', () => {
-    const paths = PieWrapper({
-      fill: 'purple',
-    }).find('path');
-    expect(paths.at(0).prop('fill')).toBe('purple');
-    expect(paths.at(1).prop('fill')).toBe('purple');
-  });
+    const { container } = render(
+      <svg>
+        <Pie data={browserUsage} fill="purple" />
+      </svg>,
+    );
 
-  test('it should call children function with { arcs, path, pie }', () => {
-    const fn = jest.fn();
-    PieChildren({ children: fn });
-    const args = fn.mock.calls[0][0];
-    const keys = Object.keys(args);
-    expect(keys).toContain('path');
-    expect(keys).toContain('arcs');
-    expect(keys).toContain('pie');
+    const paths = container.querySelectorAll('path');
+    expect(paths[0]).toHaveAttribute('fill', 'purple');
+    expect(paths[1]).toHaveAttribute('fill', 'purple');
   });
 });

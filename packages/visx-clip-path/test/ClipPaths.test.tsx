@@ -1,43 +1,94 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { ClipPath, CircleClipPath, RectClipPath } from '../src';
 
-describe('<ClipPath />', () => {
-  test('it should be defined', () => {
-    expect(ClipPath).toBeDefined();
+describe('ClipPath Components', () => {
+  // Suppress console warnings about SVG casing since this is expected
+  beforeAll(() => {
+    jest.spyOn(console, 'error').mockImplementation(() => {});
   });
 
-  test('it should render defs and clipPath elements', () => {
-    const wrapper = shallow(<ClipPath id="test" />);
-    expect(wrapper.type()).toBe('defs');
-    expect(wrapper.find('clipPath')).toHaveLength(1);
+  afterAll(() => {
+    jest.restoreAllMocks();
   });
 
-  test('it should assign the passed id to the clipPath', () => {
-    const wrapper = shallow(<ClipPath id="best_clip" />);
-    expect(wrapper.find('clipPath#best_clip')).toHaveLength(1);
-  });
-});
+  describe('<ClipPath />', () => {
+    test('it should be defined', () => {
+      expect(ClipPath).toBeDefined();
+    });
 
-describe('<RectClipPath />', () => {
-  test('it should be defined', () => {
-    expect(RectClipPath).toBeDefined();
+    test('it should render defs and clipPath elements', () => {
+      const { container } = render(<ClipPath id="test" />);
+      const defs = container.querySelector('defs');
+      const clipPath = container.querySelector('clippath');
+
+      expect(defs).toBeInTheDocument();
+      expect(clipPath).toBeInTheDocument();
+    });
+
+    test('it should assign the passed id to the clipPath', () => {
+      const { container } = render(<ClipPath id="best_clip" />);
+      const clipPath = container.querySelector('clippath');
+      expect(clipPath).toBeInTheDocument();
+      expect(clipPath).toHaveAttribute('id', 'best_clip');
+    });
+
+    test('it should render children', () => {
+      const { container } = render(
+        <ClipPath id="test">
+          <circle r={5} />
+        </ClipPath>,
+      );
+      const circle = container.querySelector('clippath > circle');
+      expect(circle).toBeInTheDocument();
+      expect(circle).toHaveAttribute('r', '5');
+    });
   });
 
-  test('it should render a rect', () => {
-    const wrapper = shallow(<RectClipPath id="test" />);
-    expect(wrapper.find('rect')).toHaveLength(1);
-  });
-});
+  describe('<RectClipPath />', () => {
+    test('it should be defined', () => {
+      expect(RectClipPath).toBeDefined();
+    });
 
-describe('<CircleClipPath />', () => {
-  test('it should be defined', () => {
-    expect(CircleClipPath).toBeDefined();
+    test('it should render a rect', () => {
+      const { container } = render(<RectClipPath id="test" />);
+      const rect = container.querySelector('clippath > rect');
+      expect(rect).toBeInTheDocument();
+    });
+
+    test('it should pass props to the rect', () => {
+      const { container } = render(
+        <RectClipPath id="test" width={100} height={200} x={10} y={20} />,
+      );
+      const rect = container.querySelector('clippath > rect');
+      expect(rect).toBeInTheDocument();
+      expect(rect).toHaveAttribute('width', '100');
+      expect(rect).toHaveAttribute('height', '200');
+      expect(rect).toHaveAttribute('x', '10');
+      expect(rect).toHaveAttribute('y', '20');
+    });
   });
 
-  test('it should render a circle', () => {
-    const wrapper = shallow(<CircleClipPath id="test" />);
-    expect(wrapper.find('circle')).toHaveLength(1);
+  describe('<CircleClipPath />', () => {
+    test('it should be defined', () => {
+      expect(CircleClipPath).toBeDefined();
+    });
+
+    test('it should render a circle', () => {
+      const { container } = render(<CircleClipPath id="test" />);
+      const circle = container.querySelector('clippath > circle');
+      expect(circle).toBeInTheDocument();
+    });
+
+    test('it should pass props to the circle', () => {
+      const { container } = render(<CircleClipPath id="test" r={50} cx={100} cy={200} />);
+      const circle = container.querySelector('clippath > circle');
+      expect(circle).toBeInTheDocument();
+      expect(circle).toHaveAttribute('r', '50');
+      expect(circle).toHaveAttribute('cx', '100');
+      expect(circle).toHaveAttribute('cy', '200');
+    });
   });
 });

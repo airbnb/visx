@@ -1,10 +1,7 @@
 import React from 'react';
-import { shallow } from 'enzyme';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
-
 import { Area } from '../src';
-import { AreaProps } from '../src/shapes/Area';
 
 interface Datum {
   x: Date;
@@ -17,13 +14,6 @@ const fakeData: Datum[] = [
   { x: new Date('2017-01-03'), y: 5 },
 ];
 
-const AreaChildren = ({ children, ...restProps }: Partial<AreaProps<Datum>>) =>
-  shallow(
-    <Area data={fakeData} {...restProps}>
-      {children}
-    </Area>,
-  );
-
 const xScale = () => 50;
 const yScale = () => 50;
 yScale.range = () => [100, 0];
@@ -32,83 +22,101 @@ const x = () => xScale();
 const y = () => yScale();
 
 describe('<Area />', () => {
-  test('it should be defined', () => {
-    expect(Area).toBeDefined();
+  test('should be defined', () => {
+    const { container } = render(
+      <svg>
+        <Area data={fakeData} x={x} y={y} />
+      </svg>,
+    );
+    expect(container.querySelector('path')).toBeInTheDocument();
   });
 
-  test('it should have the .visx-area class', () => {
-    const wrapper = shallow(<Area data={fakeData} x={x} y={y} />);
-    expect(wrapper.find('path').prop('className')).toBe('visx-area');
+  test('should have the .visx-area class', () => {
+    const { container } = render(
+      <svg>
+        <Area data={fakeData} x={x} y={y} />
+      </svg>,
+    );
+    expect(container.querySelector('path')).toHaveClass('visx-area');
   });
 
-  test('it should expose its ref via an innerRef prop', () => {
+  test('should expose its ref via an innerRef prop', () => {
     const fakeRef = React.createRef<SVGPathElement>();
     const { container } = render(
       <svg>
         <Area data={fakeData} x={x} y={y} innerRef={fakeRef} />
       </svg>,
     );
-    const PathElement = container.querySelector('path');
-    expect(fakeRef.current).toContainElement(PathElement);
+    const pathElement = container.querySelector('path');
+    expect(fakeRef.current).toBe(pathElement);
   });
 
-  test('it should take a children as function prop', () => {
-    const fn = jest.fn();
-    AreaChildren({ children: fn });
-    expect(fn).toHaveBeenCalled();
+  test('should handle children as function prop', () => {
+    const childrenFn = jest.fn(() => null);
+    render(
+      <svg>
+        <Area data={fakeData} x={x} y={y}>
+          {childrenFn}
+        </Area>
+      </svg>,
+    );
+
+    expect(childrenFn).toHaveBeenCalled();
+    const args = childrenFn.mock.calls[0][0];
+    expect(args).toHaveProperty('path');
   });
 
-  test('it should call children function with { path }', () => {
-    const fn = jest.fn();
-    AreaChildren({ children: fn });
-    const args = fn.mock.calls[0][0];
-    const keys = Object.keys(args);
-    expect(keys).toContain('path');
+  test('should handle x and y props correctly', () => {
+    const childrenFn = jest.fn((_: { path: any }) => null);
+    const args = [fakeData[0], 0, fakeData] as const;
+
+    // Test number props
+    render(
+      <svg>
+        <Area data={fakeData} x={42} y={42}>
+          {childrenFn}
+        </Area>
+      </svg>,
+    );
+
+    const [{ path }] = childrenFn.mock.calls[0];
+    expect(path.x()(...args)).toBe(42);
+    expect(path.y()(...args)).toBe(42);
+
+    childrenFn.mockClear();
+
+    // Test function props
+    render(
+      <svg>
+        <Area data={fakeData} x={() => 42} y={() => 42}>
+          {childrenFn}
+        </Area>
+      </svg>,
+    );
+
+    const [{ path: path2 }] = childrenFn.mock.calls[0];
+
+    expect(path2.x()(...args)).toBe(42);
+    expect(path2.x0()(...args)).toBe(42);
+    expect(path2.x1()).toBeNull();
+    expect(path2.y()(...args)).toBe(42);
+    expect(path2.y0()(...args)).toBe(42);
+    expect(path2.y1()).toBeNull();
   });
 
-  test('it should take an x number prop', () => {
-    const fn = jest.fn();
-    AreaChildren({ children: fn, x: 42 });
-    const args = fn.mock.calls[0][0];
-    expect(args.path.x()()).toBe(42);
-  });
+  test('should handle default defined prop and generate path string', () => {
+    const childrenFn = jest.fn((_: { path: any }) => null);
+    const args = [fakeData[0], 0, fakeData] as const;
+    render(
+      <svg>
+        <Area data={fakeData} x={x} y={y}>
+          {childrenFn}
+        </Area>
+      </svg>,
+    );
 
-  test('it should take an x fn prop', () => {
-    const fn = jest.fn();
-    AreaChildren({ children: fn, x: () => 42 });
-    const args = fn.mock.calls[0][0];
-    expect(args.path.x()()).toBe(42);
-    expect(args.path.x0()()).toBe(42);
-    expect(args.path.x1()).toBeNull();
-  });
-
-  test('it should take an y number prop', () => {
-    const fn = jest.fn();
-    AreaChildren({ children: fn, y: 42 });
-    const args = fn.mock.calls[0][0];
-    expect(args.path.y()()).toBe(42);
-  });
-
-  test('it should take an y fn prop', () => {
-    const fn = jest.fn();
-    AreaChildren({ children: fn, y: () => 42 });
-    const args = fn.mock.calls[0][0];
-    expect(args.path.y()()).toBe(42);
-    expect(args.path.y0()()).toBe(42);
-    expect(args.path.y1()).toBeNull();
-  });
-
-  test('it should default defined prop to true', () => {
-    const fn = jest.fn();
-    AreaChildren({ children: fn });
-    const args = fn.mock.calls[0][0];
-    expect(args.path.defined()()).toBe(true);
-  });
-
-  test('calling path with data returns a string', () => {
-    const fn = jest.fn();
-    AreaChildren({ children: fn });
-    const args = fn.mock.calls[0][0];
-    expect(typeof args.path(fakeData)).toBe('string');
+    const [{ path }] = childrenFn.mock.calls[0];
+    expect(path.defined()(...args)).toBe(true);
+    expect(typeof path(fakeData)).toBe('string');
   });
 });

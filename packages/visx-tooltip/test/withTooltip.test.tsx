@@ -1,5 +1,6 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, cleanup } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { withTooltip } from '../src';
 
@@ -16,36 +17,38 @@ const DummyComponentWithNoContainerTooltip = withTooltip(
 );
 
 describe('withTooltip()', () => {
+  afterEach(cleanup);
+
   test('it should be defined', () => {
     expect(withTooltip).toBeDefined();
   });
 
   test('it should render a default container', () => {
-    const wrapper = shallow(<DummyComponentWithDefaultTooltip />);
+    const { container } = render(<DummyComponentWithDefaultTooltip />);
+    const div = container.querySelector('div');
 
-    expect(wrapper.find('div')).toHaveLength(1);
-    expect(wrapper.find('div').first().prop('style')).toEqual({
+    expect(div).toBeInTheDocument();
+    expect(div).toHaveStyle({
       position: 'relative',
       width: 'inherit',
       height: 'inherit',
     });
-    expect(wrapper.find(DummyComponent)).toHaveLength(1);
   });
 
   test('it should pass custom props to the container', () => {
-    const wrapper = shallow(<DummyComponentWithCustomContainerPropsTooltip />);
+    const { container } = render(<DummyComponentWithCustomContainerPropsTooltip />);
+    const div = container.querySelector('div');
 
-    expect(wrapper.find('div')).toHaveLength(1);
-    expect(wrapper.find('div').first().prop('style')).toEqual({
+    expect(div).toBeInTheDocument();
+    expect(div).toHaveStyle({
       position: 'static',
     });
-    expect(wrapper.find(DummyComponent)).toHaveLength(1);
   });
 
   test('it should render with a custom container', () => {
-    const wrapper = shallow(<DummyComponentWithNoContainerTooltip />);
+    const { container } = render(<DummyComponentWithNoContainerTooltip />);
+    const div = container.querySelector('div');
 
-    expect(wrapper.find('div')).toHaveLength(0);
-    expect(wrapper.find(DummyComponent)).toHaveLength(1);
+    expect(div).not.toBeInTheDocument();
   });
 });

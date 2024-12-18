@@ -1,33 +1,44 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import { MarkerCross, Marker } from '../src';
+import { render } from '@testing-library/react';
 
-const Wrapper = (restProps = {}) => shallow(<MarkerCross id="marker-cross-test" {...restProps} />);
+import { MarkerCross } from '../src';
 
 describe('<MarkerCross />', () => {
   test('it should be defined', () => {
     expect(MarkerCross).toBeDefined();
   });
 
-  test('it should render a <Marker> containing a <polyline>', () => {
-    const marker = Wrapper().find(Marker);
-    const polyline = marker.dive().find('polyline');
-    expect(marker).toHaveLength(1);
-    expect(polyline).toHaveLength(1);
+  test('it should render a Marker containing a polyline', () => {
+    const { container } = render(
+      <svg>
+        <MarkerCross id="marker-cross-test" />
+      </svg>,
+    );
+    expect(container.querySelector('marker')).toBeTruthy();
+    expect(container.querySelector('polyline')).toBeTruthy();
   });
 
   test('it should size correctly', () => {
     const size = 8;
     const strokeWidth = 1;
-    const marker = Wrapper({ size, strokeWidth }).find(Marker);
-    const polyline = marker.dive().find('polyline');
     const bounds = size + strokeWidth;
     const mid = size / 2;
     const points = `0 ${mid}, ${mid} ${mid}, ${mid} 0, ${mid} ${size}, ${mid} ${mid}, ${size} ${mid}`;
-    expect(marker.prop('markerWidth')).toEqual(bounds);
-    expect(marker.prop('markerHeight')).toEqual(bounds);
-    expect(marker.prop('refX')).toEqual(mid);
-    expect(marker.prop('refY')).toEqual(mid);
-    expect(polyline.prop('points')).toEqual(points);
+
+    const { container } = render(
+      <svg>
+        <MarkerCross id="marker-cross-test" size={size} strokeWidth={strokeWidth} />
+      </svg>,
+    );
+
+    const marker = container.querySelector('marker');
+    const polyline = container.querySelector('polyline');
+
+    expect(marker).toBeTruthy();
+    expect(marker?.getAttribute('markerWidth')).toBe(bounds.toString());
+    expect(marker?.getAttribute('markerHeight')).toBe(bounds.toString());
+    expect(marker?.getAttribute('refX')).toBe(mid.toString());
+    expect(marker?.getAttribute('refY')).toBe(mid.toString());
+    expect(polyline?.getAttribute('points')).toBe(points);
   });
 });

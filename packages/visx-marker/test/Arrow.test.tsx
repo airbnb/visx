@@ -1,38 +1,59 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import { MarkerArrow, Marker } from '../src';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
-const Wrapper = (restProps = {}) => shallow(<MarkerArrow id="marker-circle-test" {...restProps} />);
+import { MarkerArrow } from '../src';
 
 describe('<MarkerArrow />', () => {
   test('it should be defined', () => {
     expect(MarkerArrow).toBeDefined();
   });
 
-  test('it should render a <Marker> containing a <g>, <polyline>', () => {
-    const marker = Wrapper().find(Marker);
-    const g = marker.dive().find('g');
-    const polyline = marker.dive().find('polyline');
-    expect(marker).toHaveLength(1);
-    expect(g).toHaveLength(1);
-    expect(polyline).toHaveLength(1);
+  test('it should render marker with polyline', () => {
+    const { container } = render(
+      <svg>
+        <defs>
+          <MarkerArrow id="marker-arrow-test" />
+        </defs>
+      </svg>,
+    );
+
+    const marker = container.querySelector('marker');
+    const polyline = container.querySelector('polyline');
+
+    expect(marker).toBeInTheDocument();
+    expect(marker).toHaveAttribute('id', 'marker-arrow-test');
+    expect(polyline).toBeInTheDocument();
   });
 
   test('it should size correctly', () => {
     const size = 8;
     const strokeWidth = 1;
-    const marker = Wrapper({ size, strokeWidth }).find(Marker);
-    const g = marker.dive().find('g');
-    const polyline = marker.dive().find('polyline');
     const max = size + strokeWidth * 2;
     const midX = size;
     const midY = max / 2;
-    const points = `0 0, ${size} ${size / 2}, 0 ${size}`;
-    expect(marker.prop('markerWidth')).toEqual(max);
-    expect(marker.prop('markerHeight')).toEqual(max);
-    expect(marker.prop('refX')).toEqual(midX);
-    expect(marker.prop('refY')).toEqual(midY);
-    expect(g.prop('transform')).toBe(`translate(${strokeWidth}, ${strokeWidth})`);
-    expect(polyline.prop('points')).toEqual(points);
+
+    const { container } = render(
+      <svg>
+        <defs>
+          <MarkerArrow id="marker-circle-test" size={size} strokeWidth={strokeWidth} />
+        </defs>
+      </svg>,
+    );
+
+    const marker = container.querySelector('marker');
+    expect(marker).toBeInTheDocument();
+    expect(marker).toHaveAttribute('markerWidth', max.toString());
+    expect(marker).toHaveAttribute('markerHeight', max.toString());
+    expect(marker).toHaveAttribute('refX', midX.toString());
+    expect(marker).toHaveAttribute('refY', midY.toString());
+
+    const g = container.querySelector('g');
+    expect(g).toBeInTheDocument();
+    expect(g).toHaveAttribute('transform', `translate(${strokeWidth}, ${strokeWidth})`);
+
+    const polyline = container.querySelector('polyline');
+    expect(polyline).toBeInTheDocument();
+    expect(polyline).toHaveAttribute('points', '0 0, 8 4, 0 8');
   });
 });

@@ -1,8 +1,9 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, waitFor } from '@testing-library/react';
+import '@testing-library/jest-dom'; // Add jest-dom matchers
 import { ResizeObserver } from '@juggle/resize-observer';
 import { useTooltipInPortal } from '../src';
-import { UseTooltipPortalOptions } from '../src/hooks/useTooltipInPortal';
+import type { UseTooltipPortalOptions } from '../src/hooks/useTooltipInPortal';
 
 interface TooltipWithZIndexProps {
   zIndexOption?: UseTooltipPortalOptions['zIndex'];
@@ -14,7 +15,11 @@ const TooltipWithZIndex = ({ zIndexOption, zIndexProp }: TooltipWithZIndexProps)
     polyfill: ResizeObserver,
     zIndex: zIndexOption,
   });
-  return <TooltipInPortal zIndex={zIndexProp}>Hello</TooltipInPortal>;
+  return (
+    <TooltipInPortal zIndex={zIndexProp} data-testid="tooltip-portal">
+      Hello
+    </TooltipInPortal>
+  );
 };
 
 describe('useTooltipInPortal()', () => {
@@ -22,22 +27,35 @@ describe('useTooltipInPortal()', () => {
     expect(useTooltipInPortal).toBeDefined();
   });
 
-  it('should pass zIndex prop from options to Portal', () => {
-    const wrapper = shallow(<TooltipWithZIndex zIndexOption={1} />, {
-      disableLifecycleMethods: true,
-    }).dive();
-    const zIndex = wrapper.find('Portal').prop('zIndex');
-    expect(zIndex).toBe(1);
+  it('should pass zIndex prop from options to Portal', async () => {
+    const { baseElement } = render(<TooltipWithZIndex zIndexOption={1} />);
+
+    await waitFor(
+      () => {
+        const portalDiv = baseElement.querySelector('[style*="z-index: 1"]');
+        expect(portalDiv).toBeInTheDocument();
+      },
+      {
+        timeout: 1000,
+        interval: 100,
+      },
+    );
   });
 
-  it('should pass zIndex prop from component to Portal', () => {
-    const wrapper = shallow(
+  it('should pass zIndex prop from component to Portal', async () => {
+    const { baseElement } = render(
       <TooltipWithZIndex zIndexOption={1} zIndexProp="var(--tooltip-zindex)" />,
-      {
-        disableLifecycleMethods: true,
+    );
+
+    await waitFor(
+      () => {
+        const portalDiv = baseElement.querySelector('[style*="z-index: var(--tooltip-zindex)"]');
+        expect(portalDiv).toBeInTheDocument();
       },
-    ).dive();
-    const zIndex = wrapper.find('Portal').prop('zIndex');
-    expect(zIndex).toBe('var(--tooltip-zindex)');
+      {
+        timeout: 1000,
+        interval: 100,
+      },
+    );
   });
 });

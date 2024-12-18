@@ -1,6 +1,6 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom'; // Added this import
 import { Polygon } from '../src';
 
 describe('<Polygon />', () => {
@@ -13,23 +13,37 @@ describe('<Polygon />', () => {
   });
 
   test('it should not render without a polygon', () => {
-    const wrapper = shallow(<Polygon />);
-    expect(wrapper.type()).toBeNull();
+    const { container } = render(<Polygon />);
+    expect(container.firstChild).toBeNull();
   });
 
   test('it should render a path', () => {
-    const wrapper = shallow(<Polygon {...props} />);
-    expect(wrapper.find('path')).toHaveLength(1);
+    const { container } = render(
+      <svg>
+        <Polygon {...props} />
+      </svg>,
+    );
+    const path = container.querySelector('path');
+    expect(path).toBeInTheDocument();
   });
 
   test('it should set a d attribute based on the polygon prop', () => {
-    const wrapper = shallow(<Polygon {...props} />);
-    const d = 'M0,0L1,1L2,2Z';
-    expect(wrapper.find('path').props().d).toEqual(d);
+    const { container } = render(
+      <svg>
+        <Polygon {...props} />
+      </svg>,
+    );
+    const path = container.querySelector('path');
+    expect(path?.getAttribute('d')).toBe('M0,0L1,1L2,2Z');
   });
 
   test('it should add extra (non-func) props to the path element', () => {
-    const wrapper = shallow(<Polygon {...props} fill="orange" />);
-    expect(wrapper.find('path').props().fill).toBe('orange');
+    const { container } = render(
+      <svg>
+        <Polygon {...props} fill="orange" />
+      </svg>,
+    );
+    const path = container.querySelector('path');
+    expect(path?.getAttribute('fill')).toBe('orange');
   });
 });

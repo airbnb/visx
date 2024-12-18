@@ -1,7 +1,6 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 
-import { Line } from '@visx/shape';
 import { scaleLinear } from '@visx/scale';
 import { GridAngle } from '../src';
 import * as polarToCartesian from '../src/utils/polarToCartesian';
@@ -16,35 +15,69 @@ const gridProps = {
 };
 
 describe('<GridAngle />', () => {
-  it('should render with class .vx-grid-angle', () => {
-    const wrapper = shallow(<GridAngle {...gridProps} />);
-    expect(wrapper.find('.visx-grid-angle')).toHaveLength(1);
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it('should render with class .visx-grid-angle', () => {
+    const { container } = render(
+      <svg>
+        <GridAngle {...gridProps} />
+      </svg>,
+    );
+    const element = container.querySelector('g.visx-group');
+    expect(element).toBeTruthy();
+    expect(element?.classList.contains('visx-grid-angle')).toBe(true);
   });
 
   it('should set user-specified lineClassName', () => {
-    const wrapper = shallow(<GridAngle {...gridProps} lineClassName="test-class" />);
-    expect(wrapper.find('.test-class').length).toBeGreaterThan(0);
+    const { container } = render(
+      <svg>
+        <GridAngle {...gridProps} lineClassName="test-class" />
+      </svg>,
+    );
+    const lines = container.querySelectorAll('line.test-class');
+    expect(lines.length).toBeGreaterThan(0);
   });
 
   it('should render `numTicks` grid lines', () => {
-    const fiveTickWrapper = shallow(<GridAngle {...gridProps} numTicks={5} />);
-    const tenTickWrapper = shallow(<GridAngle {...gridProps} numTicks={10} />);
+    const { container } = render(
+      <svg>
+        <GridAngle {...gridProps} numTicks={5} />
+      </svg>,
+    );
+    const lines = container.querySelectorAll('line');
+    expect(lines).toHaveLength(5);
 
-    expect(fiveTickWrapper.find(Line)).toHaveLength(5);
-    expect(tenTickWrapper.find(Line)).toHaveLength(10);
+    const { container: container2 } = render(
+      <svg>
+        <GridAngle {...gridProps} numTicks={10} />
+      </svg>,
+    );
+    const lines2 = container2.querySelectorAll('line');
+    expect(lines2).toHaveLength(10);
   });
 
   it('should render grid lines according to tickValues', () => {
-    const wrapper = shallow(<GridAngle {...gridProps} tickValues={[1, 2, 3]} />);
-
-    expect(wrapper.find(Line)).toHaveLength(3);
+    const { container } = render(
+      <svg>
+        <GridAngle {...gridProps} tickValues={[1, 2, 3]} />
+      </svg>,
+    );
+    const lines = container.querySelectorAll('line');
+    expect(lines).toHaveLength(3);
   });
 
   it('should compute radial lines using innerRadius and outerRadius', () => {
     const polarToCartesianSpy = jest.spyOn(polarToCartesian, 'default');
     const innerRadius = 4;
     const outerRadius = 7;
-    shallow(<GridAngle {...gridProps} innerRadius={innerRadius} outerRadius={outerRadius} />);
+
+    render(
+      <svg>
+        <GridAngle {...gridProps} innerRadius={innerRadius} outerRadius={outerRadius} />
+      </svg>,
+    );
 
     expect(polarToCartesianSpy.mock.calls.length).toBeGreaterThanOrEqual(2);
 

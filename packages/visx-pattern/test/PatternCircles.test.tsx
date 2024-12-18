@@ -1,35 +1,46 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { PatternCircles } from '../src';
 
 describe('<PatternCircles />', () => {
-  test('it should be defined', () => {
+  test('should be defined', () => {
     expect(PatternCircles).toBeDefined();
   });
 
-  test('it should require an id prop', () => {
+  test('should require an id prop', () => {
     // @ts-expect-error allow invalid props
-    expect(() => shallow(<PatternCircles width={4} height={4} />)).toThrow();
+    expect(() => render(<PatternCircles width={4} height={4} />)).toThrow();
   });
 
-  test('it should require a width prop', () => {
+  test('should require a width prop', () => {
     // @ts-expect-error allow invalid props
-    expect(() => shallow(<PatternCircles id="test" height={4} />)).toThrow();
+    expect(() => render(<PatternCircles id="test" height={4} />)).toThrow();
   });
 
-  test('it should require a height prop', () => {
+  test('should require a height prop', () => {
     // @ts-expect-error allow invalid props
-    expect(() => shallow(<PatternCircles id="test" width={4} />)).toThrow();
+    expect(() => render(<PatternCircles id="test" width={4} />)).toThrow();
   });
 
-  test('it should render a rect background if background prop defined', () => {
-    const wrapper = shallow(<PatternCircles id="test" height={4} width={4} background="blue" />);
-    expect(wrapper.find('rect')).toHaveLength(1);
+  test('should render a rect background if background prop defined', () => {
+    const { container } = render(
+      <svg>
+        <PatternCircles id="test" height={4} width={4} background="blue" />
+      </svg>,
+    );
+    const rect = container.querySelector('pattern rect');
+    expect(rect).toBeInTheDocument();
+    expect(rect).toHaveAttribute('fill', 'blue');
   });
 
-  test('it should not render a rect background if no background prop', () => {
-    const wrapper = shallow(<PatternCircles id="test" height={4} width={4} />);
-    expect(wrapper.find('rect')).toHaveLength(0);
+  test('should not render a rect background if no background prop', () => {
+    const { container } = render(
+      <svg>
+        <PatternCircles id="test" height={4} width={4} />
+      </svg>,
+    );
+    const rect = container.querySelector('pattern rect');
+    expect(rect).not.toBeInTheDocument();
   });
 });

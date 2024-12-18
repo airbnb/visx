@@ -1,17 +1,25 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import { MarkerX, MarkerCross } from '../src';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
-const Wrapper = (restProps = {}) => shallow(<MarkerX id="marker-x-test" {...restProps} />);
+import { MarkerX } from '../src';
 
 describe('<MarkerX />', () => {
   test('it should be defined', () => {
     expect(MarkerX).toBeDefined();
   });
 
-  test('it should render a <MarkerCross /> rotated 45deg', () => {
-    const cross = Wrapper().find(MarkerCross);
-    expect(cross).toHaveLength(1);
-    expect(cross.prop('orient')).toBe(45);
+  test('it should render marker with 45 degree rotation', () => {
+    const { container } = render(
+      <svg>
+        <defs>
+          <MarkerX id="marker-x-test" />
+        </defs>
+      </svg>,
+    );
+
+    const marker = container.querySelector('#marker-x-test');
+    expect(marker).toBeInTheDocument();
+    expect(marker).toHaveAttribute('orient', '45');
   });
 });

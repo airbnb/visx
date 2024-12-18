@@ -1,8 +1,8 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { scaleLinear } from '@visx/scale';
-import { Axis, AxisTop } from '../src';
+import { AxisTop } from '../src';
 
 const axisProps = {
   scale: scaleLinear({
@@ -13,64 +13,90 @@ const axisProps = {
 };
 
 describe('<AxisTop />', () => {
+  const renderInSVG = (children: React.ReactElement) => render(<svg>{children}</svg>);
+
   it('should be defined', () => {
     expect(AxisTop).toBeDefined();
   });
 
   it('should render with class .visx-axis-top', () => {
-    const wrapper = shallow(<AxisTop {...axisProps} />);
-    expect(wrapper.prop('axisClassName')).toBe('visx-axis-top');
+    const { container } = renderInSVG(<AxisTop {...axisProps} />);
+    const axis = container.querySelector('.visx-axis');
+    expect(axis).toHaveClass('visx-axis-top');
   });
 
-  it('should set user-specified axisClassName, axisLineClassName, labelClassName, and tickClassName', () => {
+  it('should set user-specified class names', () => {
     const axisClassName = 'axis-test-class';
     const axisLineClassName = 'axisline-test-class';
     const labelClassName = 'label-test-class';
     const tickClassName = 'tick-test-class';
 
-    const wrapper = shallow(
+    const { container } = renderInSVG(
       <AxisTop
         {...axisProps}
         axisClassName={axisClassName}
         axisLineClassName={axisLineClassName}
         labelClassName={labelClassName}
         tickClassName={tickClassName}
+        label="test"
       />,
     );
 
-    const axis = wrapper.find(Axis);
-    expect(axis.prop('axisClassName')).toMatch(axisClassName);
-    expect(axis.prop('axisLineClassName')).toBe(axisLineClassName);
-    expect(axis.prop('labelClassName')).toBe(labelClassName);
-    expect(axis.prop('tickClassName')).toBe(tickClassName);
+    const axis = container.querySelector('.visx-axis');
+    expect(axis).toHaveClass('axis-test-class');
+    expect(axis).toHaveClass('visx-axis-top');
+
+    const axisLine = container.querySelector('.visx-axis-line');
+    expect(axisLine).toHaveClass(axisLineClassName);
+
+    const label = container.querySelector('.visx-axis-label');
+    expect(label).toHaveClass(labelClassName);
+
+    const tick = container.querySelector('.visx-axis-tick');
+    expect(tick).toHaveClass(tickClassName);
   });
 
-  it('should default labelOffset prop to 8', () => {
-    const wrapper = shallow(<AxisTop {...axisProps} />);
-    expect(wrapper.prop('labelOffset')).toBe(8);
+  it('should render with default labelOffset of 8', () => {
+    const { container } = renderInSVG(<AxisTop {...axisProps} label="test label" />);
+    const label = container.querySelector('.visx-axis-label');
+    expect(label?.getAttribute('y')).toBe('-26');
   });
 
-  it('should set labelOffset prop', () => {
+  it('should render with custom labelOffset', () => {
     const labelOffset = 3;
-    const wrapper = shallow(<AxisTop {...axisProps} labelOffset={labelOffset} />);
-    expect(wrapper.prop('labelOffset')).toEqual(labelOffset);
+    const { container } = renderInSVG(
+      <AxisTop {...axisProps} label="test label" labelOffset={labelOffset} />,
+    );
+
+    const label = container.querySelector('.visx-axis-label');
+    expect(label?.getAttribute('y')).toBe('-21');
   });
 
-  it('should default tickLength prop to 8', () => {
-    const wrapper = shallow(<AxisTop {...axisProps} />);
-    expect(wrapper.prop('tickLength')).toBe(8);
+  it('should render ticks with default length of 8', () => {
+    const { container } = renderInSVG(<AxisTop {...axisProps} />);
+    const ticks = container.querySelectorAll('.visx-axis-tick line.visx-line');
+    ticks.forEach((tick) => {
+      const y1 = Math.abs(parseFloat(tick.getAttribute('y1') || '0'));
+      const y2 = Math.abs(parseFloat(tick.getAttribute('y2') || '0'));
+      expect(Math.abs(y2 - y1)).toBe(8);
+    });
   });
 
-  it('should set tickLength prop', () => {
+  it('should render ticks with custom length', () => {
     const tickLength = 15;
-    const wrapper = shallow(<AxisTop {...axisProps} tickLength={tickLength} />);
-    expect(wrapper.prop('tickLength')).toEqual(tickLength);
+    const { container } = renderInSVG(<AxisTop {...axisProps} tickLength={tickLength} />);
+    const ticks = container.querySelectorAll('.visx-axis-tick line.visx-line');
+    ticks.forEach((tick) => {
+      const y1 = Math.abs(parseFloat(tick.getAttribute('y1') || '0'));
+      const y2 = Math.abs(parseFloat(tick.getAttribute('y2') || '0'));
+      expect(Math.abs(y2 - y1)).toBe(tickLength);
+    });
   });
 
-  it('should set label prop', () => {
+  it('should render label text', () => {
     const label = 'test';
-    const wrapper = shallow(<AxisTop {...axisProps} label={label} />).dive();
-    const text = wrapper.find('.visx-axis-label');
-    expect(text.prop('children')).toEqual(label);
+    const { getByText } = renderInSVG(<AxisTop {...axisProps} label={label} />);
+
+    expect(getByText(label)).toBeInTheDocument();
   });
 });

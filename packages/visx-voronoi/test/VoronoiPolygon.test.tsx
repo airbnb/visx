@@ -1,5 +1,6 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { VoronoiPolygon } from '../src';
 
@@ -13,23 +14,40 @@ describe('<VoronoiPolygon />', () => {
   });
 
   test('it should not render without a polygon', () => {
-    const wrapper = shallow(<VoronoiPolygon />);
-    expect(wrapper.type()).toBeNull();
+    const { container } = render(
+      <svg>
+        <VoronoiPolygon />
+      </svg>,
+    );
+    expect(container.querySelector('path')).not.toBeInTheDocument();
   });
 
   test('it should render a path', () => {
-    const wrapper = shallow(<VoronoiPolygon {...props} />);
-    expect(wrapper.find('path')).toHaveLength(1);
+    const { container } = render(
+      <svg>
+        <VoronoiPolygon {...props} />
+      </svg>,
+    );
+    expect(container.querySelector('path')).toBeInTheDocument();
   });
 
   test('it should set a d attribute based on the polygon prop', () => {
-    const wrapper = shallow(<VoronoiPolygon {...props} />);
-    const d = 'M0,0L1,1L2,2Z';
-    expect(wrapper.find('path').props().d).toEqual(d);
+    const { container } = render(
+      <svg>
+        <VoronoiPolygon {...props} />
+      </svg>,
+    );
+    const path = container.querySelector('path');
+    expect(path?.getAttribute('d')).toBe('M0,0L1,1L2,2Z');
   });
 
   test('it should add extra (non-func) props to the path element', () => {
-    const wrapper = shallow(<VoronoiPolygon {...props} fill="orange" />);
-    expect(wrapper.find('path').props().fill).toBe('orange');
+    const { container } = render(
+      <svg>
+        <VoronoiPolygon {...props} fill="orange" />
+      </svg>,
+    );
+    const path = container.querySelector('path');
+    expect(path?.getAttribute('fill')).toBe('orange');
   });
 });

@@ -1,5 +1,6 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { scaleBand, scaleLinear, scaleOrdinal, scaleThreshold, scaleQuantile } from '@visx/scale';
 
 import {
@@ -18,9 +19,14 @@ describe('Legend scales', () => {
       range: [1, 5, 10, 15, 20],
     });
 
-    expect(() => shallow(<LegendLinear scale={linearScale} />)).not.toThrow();
-    expect(() => shallow(<LegendSize scale={linearScale} />)).not.toThrow();
-    expect(() => shallow(<Legend scale={linearScale} />)).not.toThrow();
+    const { container: container1 } = render(<LegendLinear scale={linearScale} />);
+    expect(container1.querySelector('.visx-legend')).toBeInTheDocument();
+
+    const { container: container2 } = render(<LegendSize scale={linearScale} />);
+    expect(container2.querySelector('.visx-legend')).toBeInTheDocument();
+
+    const { container: container3 } = render(<Legend scale={linearScale} />);
+    expect(container3.querySelector('.visx-legend')).toBeInTheDocument();
   });
 
   it('should render with scaleOrdinal', () => {
@@ -29,8 +35,11 @@ describe('Legend scales', () => {
       range: ['#66d981', '#71f5ef', '#4899f1', '#7d81f6'],
     });
 
-    expect(() => shallow(<LegendOrdinal scale={ordinalScale} />)).not.toThrow();
-    expect(() => shallow(<Legend scale={ordinalScale} />)).not.toThrow();
+    const { container: container1 } = render(<LegendOrdinal scale={ordinalScale} />);
+    expect(container1).toBeInTheDocument();
+
+    const { container: container2 } = render(<Legend scale={ordinalScale} />);
+    expect(container2).toBeInTheDocument();
   });
 
   it('should render with scaleBand', () => {
@@ -39,7 +48,8 @@ describe('Legend scales', () => {
       range: [1, 10],
     });
 
-    expect(() => shallow(<Legend scale={bandScale} />)).not.toThrow();
+    const { container } = render(<Legend scale={bandScale} />);
+    expect(container).toBeInTheDocument();
   });
 
   it('should render with scaleThreshold', () => {
@@ -48,8 +58,11 @@ describe('Legend scales', () => {
       range: ['#f2f0f7', '#dadaeb', '#bcbddc', '#9e9ac8', '#756bb1', '#54278f'],
     });
 
-    expect(() => shallow(<LegendThreshold scale={thresholdScale} />)).not.toThrow();
-    expect(() => shallow(<Legend scale={thresholdScale} />)).not.toThrow();
+    const { container: container1 } = render(<LegendThreshold scale={thresholdScale} />);
+    expect(container1).toBeInTheDocument();
+
+    const { container: container2 } = render(<Legend scale={thresholdScale} />);
+    expect(container2).toBeInTheDocument();
   });
 
   it('should render with scaleQuantile', () => {
@@ -58,7 +71,10 @@ describe('Legend scales', () => {
       range: ['#f2f0f7', '#dadaeb', '#bcbddc', '#9e9ac8', '#756bb1', '#54278f'],
     });
 
-    expect(() => shallow(<LegendQuantile scale={quantileScale} />)).not.toThrow();
-    expect(() => shallow(<Legend scale={quantileScale} />)).not.toThrow();
+    const { container: container1 } = render(<LegendQuantile scale={quantileScale} />);
+    expect(container1).toBeInTheDocument();
+
+    const { container: container2 } = render(<Legend scale={quantileScale} />);
+    expect(container2).toBeInTheDocument();
   });
 });

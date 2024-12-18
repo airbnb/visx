@@ -1,6 +1,6 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { Group } from '../src';
 
 describe('<Group />', () => {
@@ -9,24 +9,44 @@ describe('<Group />', () => {
   });
 
   test("it should have class='visx-group'", () => {
-    const wrapper = shallow(<Group />);
-    expect(wrapper.prop('className')).toBe('visx-group');
+    const { container } = render(
+      <svg>
+        <Group />
+      </svg>,
+    );
+    const group = container.querySelector('.visx-group');
+    expect(group).toBeInTheDocument();
   });
 
   test('it should default props top=0 left=0', () => {
-    const wrapper = shallow(<Group />);
-    expect(wrapper.prop('transform')).toBe('translate(0, 0)');
+    const { container } = render(
+      <svg>
+        <Group />
+      </svg>,
+    );
+    const group = container.querySelector('.visx-group');
+    expect(group?.getAttribute('transform')).toBe('translate(0, 0)');
   });
 
   test('it should set props top, left, className', () => {
-    const wrapper = shallow(<Group className="test" top={3} left={4} />);
-    expect(wrapper.prop('transform')).toBe('translate(4, 3)');
-    expect(wrapper.prop('className')).toBe('visx-group test');
+    const { container } = render(
+      <svg>
+        <Group className="test" top={3} left={4} />
+      </svg>,
+    );
+    const group = container.querySelector('.visx-group');
+    expect(group?.getAttribute('transform')).toBe('translate(4, 3)');
+    expect(group?.getAttribute('class')).toBe('visx-group test');
   });
 
   test('it should set restProps', () => {
-    const wrapper = shallow(<Group clipPath="url(#myClip)" stroke="mapleSyrup" />);
-    expect(wrapper.prop('clipPath')).toBe('url(#myClip)');
-    expect(wrapper.prop('stroke')).toBe('mapleSyrup');
+    const { container } = render(
+      <svg>
+        <Group clipPath="url(#myClip)" stroke="mapleSyrup" />
+      </svg>,
+    );
+    const group = container.querySelector('.visx-group');
+    expect(group?.getAttribute('clip-path')).toBe('url(#myClip)');
+    expect(group?.getAttribute('stroke')).toBe('mapleSyrup');
   });
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 
 import { Pattern } from '../src';
 
@@ -10,7 +10,7 @@ describe('<Pattern />', () => {
 
   test('it should require an id prop', () => {
     expect(() =>
-      shallow(
+      render(
         // @ts-expect-error allow invalid props
         <Pattern width={4} height={4}>
           <rect />
@@ -21,7 +21,7 @@ describe('<Pattern />', () => {
 
   test('it should require a width prop', () => {
     expect(() =>
-      shallow(
+      render(
         // @ts-expect-error allow invalid props
         <Pattern id="test" height={4}>
           <rect />
@@ -32,7 +32,7 @@ describe('<Pattern />', () => {
 
   test('it should require a height prop', () => {
     expect(() =>
-      shallow(
+      render(
         // @ts-expect-error allow invalid props
         <Pattern id="test" width={4}>
           <rect />
@@ -42,7 +42,11 @@ describe('<Pattern />', () => {
   });
 
   test('it should require children', () => {
-    // @ts-expect-error allow invalid prop
-    expect(() => shallow(<Pattern id="test" width={4} />)).toThrow();
+    expect(() =>
+      render(
+        // @ts-expect-error allow invalid prop
+        <Pattern id="test" width={4} height={4} />,
+      ),
+    ).toThrow();
   });
 });
