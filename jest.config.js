@@ -1,3 +1,4 @@
+/** @type {import('jest').Config} */
 module.exports = {
   bail: false,
   collectCoverageFrom: [
@@ -37,9 +38,15 @@ module.exports = {
   },
   roots: ['<rootDir>/packages'],
   setupFiles: ['<rootDir>/config-jest/setup/shims.js', '<rootDir>/config-jest/setup/console.js'],
+  setupFilesAfterEnv: ['<rootDir>/config-jest/setup/enzyme.js'],
   testEnvironment: 'jsdom',
-  testURL: 'http://localhost',
-  timers: 'fake',
+  testEnvironmentOptions: {
+    url: 'http://localhost',
+  },
+  fakeTimers: {
+    enableGlobally: true,
+    legacyFakeTimers: true,
+  },
   verbose: false,
   testPathIgnorePatterns: ['<rootDir>/packages/visx-demo'],
   transformIgnorePatterns: [
