@@ -4,7 +4,7 @@ import * as allCurves from '@visx/curve';
 import { Group } from '@visx/group';
 import { LinePath } from '@visx/shape';
 import { scaleTime, scaleLinear } from '@visx/scale';
-import { MarkerArrow, MarkerCross, MarkerX, MarkerCircle, MarkerLine } from '@visx/marker';
+import { MarkerArrow, MarkerCross, MarkerX, MarkerCircle2, MarkerLine } from '@visx/marker';
 import generateDateValue, { DateValue } from '@visx/mock-data/lib/generators/genDateValue';
 
 type CurveType = keyof typeof allCurves;
@@ -89,7 +89,7 @@ export default function Example({ width, height, showControls = true }: CurvePro
           strokeOpacity={0.6}
           markerUnits="userSpaceOnUse"
         />
-        <MarkerCircle id="marker-circle" fill="#333" size={2} refX={2} />
+        <MarkerCircle2 id="marker-circle" fill="#333" size={2} />
         <MarkerArrow id="marker-arrow-odd" stroke="#333" size={8} strokeWidth={1} />
         <MarkerLine id="marker-line" fill="#333" size={16} strokeWidth={1} />
         <MarkerArrow id="marker-arrow" fill="#333" refX={2} size={6} />
