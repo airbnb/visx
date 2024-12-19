@@ -45,6 +45,7 @@
     "jest": "NODE_ENV=test jest --coverage --verbose",
     "lint": "eslint packages/ --quiet",
     "lint:fix": "yarn run lint --fix",
+    "postinstall": "yarn run ts ./scripts/postInstall.ts",
     "prepare-release": "git checkout master && git pull --rebase origin master && lerna updated",
     "release": "yarn run prepare-release && lerna publish --exact",
     "setup": "yarn run build",
