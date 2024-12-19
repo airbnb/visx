@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import d3Cloud from 'd3-cloud';
-import { BaseDatum, WordcloudConfig } from './types';
+import { BaseDatum, Cloud, WordcloudConfig } from './types';
 
 export default function useWordcloud<Datum extends BaseDatum>({
   width,
@@ -22,7 +22,7 @@ export default function useWordcloud<Datum extends BaseDatum>({
       return;
     }
 
-    const layout = d3Cloud<Datum>();
+    const layout = d3Cloud<Datum>() as Cloud<Datum>;
 
     layout.size([width, height]);
     layout.words(words);
