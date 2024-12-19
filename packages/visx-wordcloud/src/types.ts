@@ -76,7 +76,7 @@ export interface WordcloudConfig<Datum extends BaseDatum> {
  * below are taken from @types/d3-cloud
  * they are copied below because TS@^4.8 is incompatible with its @d3/types dep.
  */
-interface CloudWord {
+export interface CloudWord {
   text?: string | undefined;
   font?: string | undefined;
   style?: string | undefined;
