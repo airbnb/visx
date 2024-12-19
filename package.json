@@ -11,7 +11,7 @@
     "charts"
   ],
   "engines": {
-    "node": ">=16.13.0",
+    "node": ">=18.18.0",
     "yarn": ">=1.17.0"
   },
   "contributors": [
