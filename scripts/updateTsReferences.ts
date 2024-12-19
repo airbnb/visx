@@ -25,8 +25,8 @@ async function updateTsReferences() {
 
       fs.writeFileSync(`${packagePath}/tsconfig.json`, JSON.stringify(tsConfig, null, 2));
     } catch (error) {
-      console.error(chalk.red(error.message));
-      throw new Error(error.message);
+      console.error(chalk.red(String(error)));
+      throw error;
     }
   });
 
@@ -34,6 +34,6 @@ async function updateTsReferences() {
 }
 
 updateTsReferences().catch((error) => {
-  console.error(chalk.red(error.message));
+  console.error(chalk.red(String(error)));
   process.exitCode = 1;
 });
