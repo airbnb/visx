@@ -78,7 +78,7 @@ export default function usePointerEventHandlers<
       let nearestDatumPointerParams: EventHandlerParams<Datum> | null = null;
       let nearestDatumDistance = Infinity;
 
-      if (params && event && svgPoint && width && height && xScale && yScale) {
+      if (params && event && svgPoint && width && height) {
         const considerAllKeys =
           dataKey === POINTER_EVENTS_NEAREST || dataKey === POINTER_EVENTS_ALL;
 
