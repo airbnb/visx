@@ -1,4 +1,4 @@
-import debounce from 'lodash/debounce';
+import debounce from 'lodash.debounce';
 import { useEffect, useMemo, useState } from 'react';
 import { DebounceSettings } from '../types/index';
 

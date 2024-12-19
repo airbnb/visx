@@ -1,4 +1,4 @@
-import debounce from 'lodash/debounce';
+import debounce from 'lodash.debounce';
 import { RefObject, useEffect, useMemo, useRef, useState } from 'react';
 import { DebounceSettings, PrivateWindow, ResizeObserverPolyfill } from '../types';
 
