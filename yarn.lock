@@ -2830,10 +2830,10 @@
   resolved "https://registry.yarnpkg.com/@types/d3-chord/-/d3-chord-1.0.9.tgz#ccc5de03ff079025491b7aa6b750670a140b45ae"
   integrity sha512-UA6lI9CVW5cT5Ku/RV4hxoFn4mKySHm7HEgodtfRthAj1lt9rKZEPon58vyYfk+HIAm33DtJJgZwMXy2QgyPXw==
 
-"@types/d3-cloud@1.2.5":
-  version "1.2.5"
-  resolved "https://registry.yarnpkg.com/@types/d3-cloud/-/d3-cloud-1.2.5.tgz#0300bedc826aacd505ae6c41c5f8c4ab75c45135"
-  integrity sha512-vEIER9DsEBUOdpRiwCh3n1qE+cV6h4e1LhxhY2sLt+m8LPNAIkOOhTlqk0JDiBwD+ZPM8ynFAOU3AuPuVYBFBA==
+"@types/d3-cloud@^1.2.9":
+  version "1.2.9"
+  resolved "https://registry.yarnpkg.com/@types/d3-cloud/-/d3-cloud-1.2.9.tgz#82f7010de8fc4812eb8d68274befd84c7ca6f991"
+  integrity sha512-5EWJvnlCrqTThGp8lYHx+DL00sOjx2HTlXH1WRe93k5pfOIhPQaL63NttaKYIbT7bTXp/USiunjNS/N4ipttIQ==
   dependencies:
     "@types/d3" "^3"
 
@@ -5201,10 +5201,10 @@ d3-chord@^1.0.4:
     d3-array "1"
     d3-path "1"
 
-d3-cloud@^1.2.5:
-  version "1.2.5"
-  resolved "https://registry.yarnpkg.com/d3-cloud/-/d3-cloud-1.2.5.tgz#3e91564f2d27fba47fcc7d812eb5081ea24c603d"
-  integrity sha512-4s2hXZgvs0CoUIw31oBAGrHt9Kt/7P9Ik5HIVzISFiWkD0Ga2VLAuO/emO/z1tYIpE7KG2smB4PhMPfFMJpahw==
+d3-cloud@^1.2.7:
+  version "1.2.7"
+  resolved "https://registry.yarnpkg.com/d3-cloud/-/d3-cloud-1.2.7.tgz#5a733c4bae43238cbb4760bb8f2d15912a8ad7a5"
+  integrity sha512-8TrgcgwRIpoZYQp7s3fGB7tATWfhckRb8KcVd1bOgqkNdkJRDGWfdSf4HkHHzZxSczwQJdSxvfPudwir5IAJ3w==
   dependencies:
     d3-dispatch "^1.0.3"
 
