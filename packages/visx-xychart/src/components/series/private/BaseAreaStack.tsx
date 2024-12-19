@@ -247,8 +247,7 @@ function BaseAreaStack<XScale extends AxisScale, YScale extends AxisScale, Datum
           // render in reverse stack order tab to top-values first
           const stack: typeof stacks[number] = stacks[stacks.length - i - 1];
           return (
-            // @ts-expect-error doesn't like unknown, identity functions aren't typical scales
-            <BaseGlyphSeries<unknown, unknown, AreaStackDatum>
+            <BaseGlyphSeries<any, any, AreaStackDatum>
               key={`glyphs-${stack.key}`}
               dataKey={stack.key}
               data={stack.data}
