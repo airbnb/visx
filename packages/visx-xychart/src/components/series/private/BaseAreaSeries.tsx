@@ -3,7 +3,7 @@ import { AxisScale } from '@visx/axis';
 import Area, { AreaProps } from '@visx/shape/lib/shapes/Area';
 import LinePath, { LinePathProps } from '@visx/shape/lib/shapes/LinePath';
 import DataContext from '../../../context/DataContext';
-import { GlyphsProps, SeriesProps } from '../../../types';
+import { GlyphsProps, SeriesProps, LegacyReactEvents } from '../../../types';
 import withRegisteredData, { WithRegisteredDataProps } from '../../../enhancers/withRegisteredData';
 import getScaledValueFactory from '../../../utils/getScaledValueFactory';
 import getScaleBaseline from '../../../utils/getScaleBaseline';
@@ -29,11 +29,16 @@ export type BaseAreaSeriesProps<
   /** Props to be passed to the Line, if rendered. */
   lineProps?: Omit<
     LinePathProps<Datum> & React.SVGProps<SVGPathElement>,
-    'data' | 'x' | 'y' | 'children' | 'defined'
+    'data' | 'x' | 'y' | 'children' | 'defined' | LegacyReactEvents
   >;
   /** Rendered component which is passed path props by BaseAreaSeries after processing. */
-  PathComponent?: React.FC<Omit<React.SVGProps<SVGPathElement>, 'ref'>> | 'path';
-} & Omit<React.SVGProps<SVGPathElement>, 'x' | 'y' | 'x0' | 'x1' | 'y0' | 'y1' | 'ref'>;
+  PathComponent?:
+    | React.FC<Omit<React.SVGProps<SVGPathElement>, 'ref' | LegacyReactEvents>>
+    | 'path';
+} & Omit<
+    React.SVGProps<SVGPathElement>,
+    'x' | 'y' | 'x0' | 'x1' | 'y0' | 'y1' | 'ref' | LegacyReactEvents
+  >;
 
 function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datum extends object>({
   PathComponent = 'path',
