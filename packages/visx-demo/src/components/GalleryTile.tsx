@@ -30,23 +30,24 @@ function useEverVisible() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          // ever visible
           setIsVisible((visible) => visible || entry.isIntersecting);
         });
       },
       {
         root: null, // viewport is the root
-        threshold: 0.05, // 10% visibility threshold
+        threshold: 0.01,
       },
     );
 
+    let curr;
     if (ref.current) {
+      curr = ref.current;
       observer.observe(ref.current);
     }
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
+      if (curr) {
+        observer.unobserve(curr);
       }
     };
   }, [ref]);
