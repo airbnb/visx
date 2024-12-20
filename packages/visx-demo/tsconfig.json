@@ -27,8 +27,8 @@
     "src/sandboxes/**/package.json"
   ],
   "include": [
-    "src/**/*",
-    "../../types/**/*"
+    "src/**/*.{ts,tsx}",
+    "../../types/**/*.{ts,tsx}"
   ],
   "references": [
     {
