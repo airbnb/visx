@@ -8,7 +8,7 @@
     "deploy": "rm -rf out && yarn build && cd out && touch .nojekyll && git init && git add . && git commit -m \"Deploy commit\" && git remote add origin git@github.com:airbnb/visx.git && git push -f origin master:gh-pages",
     "dev": "NODE_OPTIONS=--openssl-legacy-provider next",
     "happo": "happo",
-    "happo-ci-github-actions": "happo-ci-github-actions",
+    "happo-ci-github-actions": "NODE_OPTIONS=--openssl-legacy-provider happo-ci-github-actions",
     "preview": "yarn build && cd ./out && npx serve",
     "start": "next start"
   },
