@@ -70,7 +70,6 @@ module.exports = {
         'jest/no-export': 'error',
         'jest/no-focused-tests': 'error',
         'jest/no-identical-title': 'error',
-        'jest/no-if': 'error',
         'jest/no-jasmine-globals': 'error',
         'jest/no-standalone-expect': 'error',
         'jest/no-test-prefixes': 'error',
