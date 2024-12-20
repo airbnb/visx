@@ -1,8 +1,8 @@
 import { interpolateRound } from '@visx/vendor/d3-interpolate';
-import { InterpolatorFactory } from '@visx/vendor/d3-scale';
-import { StringLike } from '../types/Base';
-import { D3Scale, DefaultThresholdInput } from '../types/Scale';
-import { ScaleConfigWithoutType } from '../types/ScaleConfig';
+import type { InterpolatorFactory } from '@visx/vendor/d3-scale';
+import type { StringLike } from '../types/Base';
+import type { D3Scale, DefaultThresholdInput } from '../types/Scale';
+import type { ScaleConfigWithoutType } from '../types/ScaleConfig';
 
 export default function applyRound<
   Output,

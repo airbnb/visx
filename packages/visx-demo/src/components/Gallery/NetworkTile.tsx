@@ -1,5 +1,6 @@
 import React from 'react';
-import Network, { NetworkProps, background } from '../../sandboxes/visx-network/Example';
+import type { NetworkProps } from '../../sandboxes/visx-network/Example';
+import Network, { background } from '../../sandboxes/visx-network/Example';
 import GalleryTile from '../GalleryTile';
 
 export { default as packageJson } from '../../sandboxes/visx-network/package.json';

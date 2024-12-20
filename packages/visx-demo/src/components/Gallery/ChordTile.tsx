@@ -1,5 +1,6 @@
 import React from 'react';
-import Chord, { ChordProps } from '../../sandboxes/visx-chord/Example';
+import type { ChordProps } from '../../sandboxes/visx-chord/Example';
+import Chord from '../../sandboxes/visx-chord/Example';
 import GalleryTile from '../GalleryTile';
 
 export { default as packageJson } from '../../sandboxes/visx-chord/package.json';

@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { SharedLinkProps, AccessorProps, AddSVGProps } from '../../../types';
+import type { SharedLinkProps, AccessorProps, AddSVGProps } from '../../../types';
 import { getX, getY, getSource, getTarget } from '../../../util/accessors';
 
 export function pathRadialStep<Link, Node>({

@@ -1,4 +1,4 @@
-import { PackageJson } from '../../types';
+import type { PackageJson } from '../../types';
 
 export default function extractVisxDepsFromPackageJson(packageJson?: PackageJson) {
   const visxDeps: string[] = [];

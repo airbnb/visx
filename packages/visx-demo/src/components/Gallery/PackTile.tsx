@@ -1,5 +1,6 @@
 import React from 'react';
-import Pack, { PackProps } from '../../sandboxes/visx-pack/Example';
+import type { PackProps } from '../../sandboxes/visx-pack/Example';
+import Pack from '../../sandboxes/visx-pack/Example';
 import GalleryTile from '../GalleryTile';
 
 export { default as packageJson } from '../../sandboxes/visx-pack/package.json';

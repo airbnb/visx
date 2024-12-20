@@ -1,8 +1,8 @@
 import React from 'react';
 import classnames from 'classnames';
 import { Group } from '@visx/group';
-import { PickD3Scale, ContinuousDomainScaleType } from '@visx/scale';
-import { SharedProps, ChildRenderProps, LineCoords } from './types';
+import type { PickD3Scale, ContinuousDomainScaleType } from '@visx/scale';
+import type { SharedProps, ChildRenderProps, LineCoords } from './types';
 
 function verticalToHorizontal({ x1, x2, y1, y2 }: LineCoords) {
   return {

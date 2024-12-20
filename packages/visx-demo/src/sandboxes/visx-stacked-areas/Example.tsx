@@ -1,8 +1,9 @@
 import React from 'react';
 import { AreaStack } from '@visx/shape';
-import { SeriesPoint } from '@visx/shape/lib/types';
+import type { SeriesPoint } from '@visx/shape/lib/types';
 import { GradientOrangeRed } from '@visx/gradient';
-import browserUsage, { BrowserUsage } from '@visx/mock-data/lib/mocks/browserUsage';
+import type { BrowserUsage } from '@visx/mock-data/lib/mocks/browserUsage';
+import browserUsage from '@visx/mock-data/lib/mocks/browserUsage';
 import { scaleTime, scaleLinear } from '@visx/scale';
 import { timeParse } from '@visx/vendor/d3-time-format';
 

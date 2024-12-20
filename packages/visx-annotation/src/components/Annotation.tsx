@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import AnnotationContext from '../context/AnnotationContext';
-import { AnnotationContextType } from '../types';
+import type { AnnotationContextType } from '../types';
 
 export type AnnotationProps = Pick<AnnotationContextType, 'x' | 'y' | 'dx' | 'dy'> & {
   /** Annotation children (Subject, Label, Connector) */

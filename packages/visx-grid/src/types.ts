@@ -1,5 +1,5 @@
-import { CSSProperties, ReactNode } from 'react';
-import { D3Scale, NumberLike } from '@visx/scale';
+import type { CSSProperties, ReactNode } from 'react';
+import type { D3Scale, NumberLike } from '@visx/scale';
 
 // In order to plot values on an axis, output of the scale must be number.
 // Some scales return undefined.

@@ -1,6 +1,6 @@
-import { DefaultThresholdInput, PickD3Scale } from '../types/Scale';
-import { ScaleType, PickScaleConfigWithoutType } from '../types/ScaleConfig';
-import { DefaultOutput, StringLike } from '../types/Base';
+import type { DefaultThresholdInput, PickD3Scale } from '../types/Scale';
+import type { ScaleType, PickScaleConfigWithoutType } from '../types/ScaleConfig';
+import type { DefaultOutput, StringLike } from '../types/Base';
 import domain from './domain';
 import range from './range';
 import align from './align';

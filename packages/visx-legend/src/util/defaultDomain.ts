@@ -1,4 +1,4 @@
-import { D3Scale } from '@visx/scale';
+import type { D3Scale } from '@visx/scale';
 
 export default function defaultDomain<Scale extends D3Scale<number>>({
   steps = 5,

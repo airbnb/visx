@@ -1,7 +1,7 @@
-import { ReactNode } from 'react';
-import { BarGroupBar } from './barGroup';
-import { BaseStackProps, StackKey } from './stack';
-import { PositionScale } from './base';
+import type { ReactNode } from 'react';
+import type { BarGroupBar } from './barGroup';
+import type { BaseStackProps, StackKey } from './stack';
+import type { PositionScale } from './base';
 
 /**
  * Each series point j in a stack chart corresponds to the jth element in the input data.

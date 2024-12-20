@@ -1,6 +1,6 @@
-import { StringLike } from '../types/Base';
-import { DefaultThresholdInput, D3Scale } from '../types/Scale';
-import { ScaleConfigWithoutType } from '../types/ScaleConfig';
+import type { StringLike } from '../types/Base';
+import type { DefaultThresholdInput, D3Scale } from '../types/Scale';
+import type { ScaleConfigWithoutType } from '../types/ScaleConfig';
 
 export default function applyZero<
   Output,

@@ -1,4 +1,4 @@
-import { AxisScale } from '@visx/axis';
+import type { AxisScale } from '@visx/axis';
 import { coerceNumber } from '@visx/scale';
 import isValidNumber from '../typeguards/isValidNumber';
 

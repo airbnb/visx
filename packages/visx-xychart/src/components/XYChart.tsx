@@ -1,17 +1,18 @@
 /* eslint jsx-a11y/mouse-events-have-key-events: 'off', @typescript-eslint/no-explicit-any: 'off' */
 import React, { useContext, useEffect } from 'react';
 import ParentSize from '@visx/responsive/lib/components/ParentSize';
-import { ResizeObserverPolyfill } from '@visx/responsive/lib/types';
-import { AxisScaleOutput } from '@visx/axis';
-import { ScaleConfig } from '@visx/scale';
+import type { ResizeObserverPolyfill } from '@visx/responsive/lib/types';
+import type { AxisScaleOutput } from '@visx/axis';
+import type { ScaleConfig } from '@visx/scale';
 
 import DataContext from '../context/DataContext';
-import { Margin, EventHandlerParams } from '../types';
+import type { Margin, EventHandlerParams } from '../types';
 import useEventEmitter from '../hooks/useEventEmitter';
 import EventEmitterProvider from '../providers/EventEmitterProvider';
 import TooltipContext from '../context/TooltipContext';
 import TooltipProvider from '../providers/TooltipProvider';
-import DataProvider, { DataProviderProps } from '../providers/DataProvider';
+import type { DataProviderProps } from '../providers/DataProvider';
+import DataProvider from '../providers/DataProvider';
 import useEventEmitters from '../hooks/useEventEmitters';
 import { XYCHART_EVENT_SOURCE } from '../constants';
 import useEventHandlers, {

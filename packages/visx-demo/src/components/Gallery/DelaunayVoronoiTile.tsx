@@ -1,5 +1,6 @@
 import React from 'react';
-import Voronoi, { VoronoiProps } from '../../sandboxes/visx-delaunay-voronoi/Example';
+import type { VoronoiProps } from '../../sandboxes/visx-delaunay-voronoi/Example';
+import Voronoi from '../../sandboxes/visx-delaunay-voronoi/Example';
 import GalleryTile from '../GalleryTile';
 
 export { default as packageJson } from '../../sandboxes/visx-delaunay-voronoi/package.json';

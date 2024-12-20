@@ -1,6 +1,7 @@
 import React from 'react';
-import { PickD3Scale } from '@visx/scale';
-import Legend, { LegendProps } from './Legend';
+import type { PickD3Scale } from '@visx/scale';
+import type { LegendProps } from './Legend';
+import Legend from './Legend';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type AnyOrdinalScale = PickD3Scale<'ordinal', any, any>;

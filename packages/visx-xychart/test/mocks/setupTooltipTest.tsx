@@ -1,7 +1,8 @@
 /* eslint import/no-extraneous-dependencies: 'off' */
 import React from 'react';
 import { render } from '@testing-library/react';
-import { DataProvider, EventEmitterProvider, TooltipContext, TooltipContextType } from '../../src';
+import type { TooltipContextType } from '../../src';
+import { DataProvider, EventEmitterProvider, TooltipContext } from '../../src';
 
 const providerProps = {
   initialDimensions: { width: 100, height: 100 },

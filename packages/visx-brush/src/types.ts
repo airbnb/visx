@@ -1,4 +1,4 @@
-import { D3Scale, NumberLike } from '@visx/scale';
+import type { D3Scale, NumberLike } from '@visx/scale';
 
 export type Point = {
   x: number;

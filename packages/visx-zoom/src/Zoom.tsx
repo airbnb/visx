@@ -1,6 +1,7 @@
 import React, { useState, useRef, useCallback } from 'react';
 import { localPoint } from '@visx/event';
-import { useGesture, UserHandlers } from '@use-gesture/react';
+import type { UserHandlers } from '@use-gesture/react';
+import { useGesture } from '@use-gesture/react';
 import {
   composeMatrices,
   inverseMatrix,
@@ -10,7 +11,7 @@ import {
   identityMatrix,
   scaleMatrix,
 } from './util/matrix';
-import {
+import type {
   TransformMatrix,
   Point,
   Translate,

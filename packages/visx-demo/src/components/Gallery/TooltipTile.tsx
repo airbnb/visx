@@ -1,5 +1,6 @@
 import React from 'react';
-import Tooltip, { TooltipProps } from '../../sandboxes/visx-tooltip/Example';
+import type { TooltipProps } from '../../sandboxes/visx-tooltip/Example';
+import Tooltip from '../../sandboxes/visx-tooltip/Example';
 import GalleryTile from '../GalleryTile';
 
 export { default as packageJson } from '../../sandboxes/visx-tooltip/package.json';

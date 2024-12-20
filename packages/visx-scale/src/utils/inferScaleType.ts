@@ -1,7 +1,7 @@
-import { ScaleTime } from '@visx/vendor/d3-scale';
-import { StringLike } from '../types/Base';
-import { DefaultThresholdInput, D3Scale } from '../types/Scale';
-import { ScaleType } from '../types/ScaleConfig';
+import type { ScaleTime } from '@visx/vendor/d3-scale';
+import type { StringLike } from '../types/Base';
+import type { DefaultThresholdInput, D3Scale } from '../types/Scale';
+import type { ScaleType } from '../types/ScaleConfig';
 import isUtcScale from './isUtcScale';
 
 export default function inferScaleType<

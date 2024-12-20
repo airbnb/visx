@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { render } from '@testing-library/react';
 import { DataProvider, DataContext } from '../../src';
-import { DataProviderProps } from '../../lib/providers/DataProvider';
+import type { DataProviderProps } from '../../lib/providers/DataProvider';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const getWrapper = (consumer: React.ReactNode, props?: DataProviderProps<any, any>) => {
@@ -52,7 +52,7 @@ describe('<DataProvider />', () => {
   });
 
   it('should provide scales', () => {
-    expect.assertions(3);
+    expect.hasAssertions();
 
     const DataConsumer = () => {
       const { xScale, yScale, colorScale, registerData } = useContext(DataContext);

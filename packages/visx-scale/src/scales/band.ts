@@ -1,6 +1,6 @@
 import { scaleBand } from '@visx/vendor/d3-scale';
-import { DefaultOutput, StringLike } from '../types/Base';
-import { PickScaleConfigWithoutType } from '../types/ScaleConfig';
+import type { DefaultOutput, StringLike } from '../types/Base';
+import type { PickScaleConfigWithoutType } from '../types/ScaleConfig';
 import scaleOperator from '../operators/scaleOperator';
 
 export const updateBandScale = scaleOperator<'band'>(

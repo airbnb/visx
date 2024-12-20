@@ -5,9 +5,11 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Group } from '@visx/group';
 import { LineRadial } from '@visx/shape';
-import { scaleTime, scaleLog, NumberLike } from '@visx/scale';
+import type { NumberLike } from '@visx/scale';
+import { scaleTime, scaleLog } from '@visx/scale';
 import { curveBasisOpen } from '@visx/curve';
-import appleStock, { AppleStock } from '@visx/mock-data/lib/mocks/appleStock';
+import type { AppleStock } from '@visx/mock-data/lib/mocks/appleStock';
+import appleStock from '@visx/mock-data/lib/mocks/appleStock';
 import { LinearGradient } from '@visx/gradient';
 import { AxisLeft } from '@visx/axis';
 import { GridRadial, GridAngle } from '@visx/grid';

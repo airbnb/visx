@@ -1,4 +1,5 @@
-import genBin, { Bin as BinType, BinFunction, CountFunction } from './genBin';
+import type { Bin as BinType, BinFunction, CountFunction } from './genBin';
+import genBin from './genBin';
 
 export type Bin = BinType;
 

@@ -1,5 +1,6 @@
 import React from 'react';
-import GeoCustom, { GeoCustomProps, background } from '../../sandboxes/visx-geo-custom/Example';
+import type { GeoCustomProps } from '../../sandboxes/visx-geo-custom/Example';
+import GeoCustom, { background } from '../../sandboxes/visx-geo-custom/Example';
 import GalleryTile from '../GalleryTile';
 
 export { default as packageJson } from '../../sandboxes/visx-geo-custom/package.json';

@@ -1,8 +1,8 @@
 import React from 'react';
 import cx from 'classnames';
-import { RadialLine } from 'd3-shape';
-import { LinePathProps } from './LinePath';
-import { AddSVGProps, RadialLinePathConfig } from '../types';
+import type { RadialLine } from 'd3-shape';
+import type { LinePathProps } from './LinePath';
+import type { AddSVGProps, RadialLinePathConfig } from '../types';
 import { radialLine } from '../util/D3ShapeFactories';
 
 export type LineRadialProps<Datum> = Pick<

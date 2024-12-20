@@ -1,5 +1,5 @@
 import React from 'react';
-import { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
+import type { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
 
 import ExampleControls from './ExampleControls';
 import CustomChartBackground from './CustomChartBackground';

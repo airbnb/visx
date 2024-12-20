@@ -1,5 +1,6 @@
 import React from 'react';
-import Treemap, { TreemapProps, background, color1 } from '../../sandboxes/visx-treemap/Example';
+import type { TreemapProps } from '../../sandboxes/visx-treemap/Example';
+import Treemap, { background, color1 } from '../../sandboxes/visx-treemap/Example';
 import GalleryTile from '../GalleryTile';
 
 export { default as packageJson } from '../../sandboxes/visx-treemap/package.json';

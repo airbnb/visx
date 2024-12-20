@@ -1,5 +1,6 @@
 import React from 'react';
-import useParentSize, { ParentSizeState, UseParentSizeConfig } from '../hooks/useParentSize';
+import type { ParentSizeState, UseParentSizeConfig } from '../hooks/useParentSize';
+import useParentSize from '../hooks/useParentSize';
 
 export type ParentSizeProvidedProps = ParentSizeState & {
   ref: HTMLDivElement | null;

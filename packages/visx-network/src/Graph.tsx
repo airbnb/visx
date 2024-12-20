@@ -4,7 +4,7 @@ import Links from './Links';
 import Nodes from './Nodes';
 import DefaultNode from './DefaultNode';
 import DefaultLink from './DefaultLink';
-import {
+import type {
   Graph as GraphType,
   DefaultNode as DefaultNodeType,
   Link as LinkType,

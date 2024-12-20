@@ -1,8 +1,9 @@
 import React from 'react';
 import cx from 'classnames';
-import { scaleLinear, PickD3Scale, ContinuousDomainScaleType } from '@visx/scale';
+import type { PickD3Scale, ContinuousDomainScaleType } from '@visx/scale';
+import { scaleLinear } from '@visx/scale';
 import { line, curveCardinal } from 'd3-shape';
-import { SharedProps } from './types';
+import type { SharedProps } from './types';
 
 export type ViolinPlotProps<Datum extends object> = SharedProps & {
   /** Scale for converting values to pixel offsets. */

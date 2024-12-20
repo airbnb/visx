@@ -4,10 +4,11 @@ import { interpolateRainbow } from 'd3-scale-chromatic';
 import { Zoom } from '@visx/zoom';
 import { localPoint } from '@visx/event';
 import { RectClipPath } from '@visx/clip-path';
-import genPhyllotaxis, {
+import type {
   GenPhyllotaxisFunction,
   PhyllotaxisPoint,
 } from '@visx/mock-data/lib/generators/genPhyllotaxis';
+import genPhyllotaxis from '@visx/mock-data/lib/generators/genPhyllotaxis';
 import { scaleLinear } from '@visx/scale';
 
 const bg = '#0a0a0a';

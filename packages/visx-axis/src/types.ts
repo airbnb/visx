@@ -1,7 +1,7 @@
-import { D3Scale, NumberLike, ScaleInput, ValueOf } from '@visx/scale';
-import { TextProps } from '@visx/text/lib/Text';
-import { ReactNode, Ref, SVGProps } from 'react';
-import Orientation from './constants/orientation';
+import type { D3Scale, NumberLike, ScaleInput, ValueOf } from '@visx/scale';
+import type { TextProps } from '@visx/text/lib/Text';
+import type { ReactNode, Ref, SVGProps } from 'react';
+import type Orientation from './constants/orientation';
 
 // In order to plot values on an axis, output of the scale must be number.
 // Some scales return undefined.

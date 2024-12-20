@@ -1,6 +1,7 @@
 import React from 'react';
-import { AxisScale } from '@visx/axis/lib/types';
-import BaseAreaStack, { BaseAreaStackProps } from './private/BaseAreaStack';
+import type { AxisScale } from '@visx/axis/lib/types';
+import type { BaseAreaStackProps } from './private/BaseAreaStack';
+import BaseAreaStack from './private/BaseAreaStack';
 import AnimatedPath from './private/AnimatedPath';
 
 export default function AnimatedAreaStack<

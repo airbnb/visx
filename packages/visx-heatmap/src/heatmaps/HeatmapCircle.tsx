@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { Group } from '@visx/group';
-import { GenericCell, ColorScale, OpacityScale } from '../types';
+import type { GenericCell, ColorScale, OpacityScale } from '../types';
 
 export type HeatmapCircleProps<ColumnDatum, BinDatum> = {
   /** Array of column data (one per column desired) for the heatmap. */

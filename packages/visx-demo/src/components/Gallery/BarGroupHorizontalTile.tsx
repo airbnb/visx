@@ -1,6 +1,6 @@
 import React from 'react';
+import type { BarGroupHorizontalProps } from '../../sandboxes/visx-bargroup-horizontal/Example';
 import BarGroupHorizontal, {
-  BarGroupHorizontalProps,
   background,
   green,
 } from '../../sandboxes/visx-bargroup-horizontal/Example';

@@ -1,7 +1,8 @@
 import React, { useMemo } from 'react';
-import getSplitLineSegments, { GetLineSegmentsConfig } from '../util/getSplitLineSegments';
+import type { GetLineSegmentsConfig } from '../util/getSplitLineSegments';
+import getSplitLineSegments from '../util/getSplitLineSegments';
 import { line } from '../util/D3ShapeFactories';
-import { LinePathConfig } from '../types';
+import type { LinePathConfig } from '../types';
 import LinePath from './LinePath';
 
 interface Point {

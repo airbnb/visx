@@ -1,8 +1,9 @@
 import React, { useContext, useMemo } from 'react';
-import { AnnotationProps } from '@visx/annotation/lib/components/Annotation';
-import { EditableAnnotationProps } from '@visx/annotation/lib/components/EditableAnnotation';
-import { coerceNumber, ScaleInput } from '@visx/scale';
-import { AxisScale } from '@visx/axis';
+import type { AnnotationProps } from '@visx/annotation/lib/components/Annotation';
+import type { EditableAnnotationProps } from '@visx/annotation/lib/components/EditableAnnotation';
+import type { ScaleInput } from '@visx/scale';
+import { coerceNumber } from '@visx/scale';
+import type { AxisScale } from '@visx/axis';
 import DataContext from '../../../context/DataContext';
 import getScaleBandwidth from '../../../utils/getScaleBandwidth';
 import isValidNumber from '../../../typeguards/isValidNumber';

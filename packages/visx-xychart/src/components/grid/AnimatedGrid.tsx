@@ -2,11 +2,12 @@
 import React, { useMemo } from 'react';
 import AnimatedGridRows from '@visx/react-spring/lib/grid/AnimatedGridRows';
 import AnimatedGridColumns from '@visx/react-spring/lib/grid/AnimatedGridColumns';
-import { AnimationTrajectory } from '@visx/react-spring';
-import { GridRowsProps } from '@visx/grid/lib/grids/GridRows';
-import { AxisScale } from '@visx/axis';
-import { GridColumnsProps } from '@visx/grid/lib/grids/GridColumns';
-import BaseGrid, { BaseGridProps } from './BaseGrid';
+import type { AnimationTrajectory } from '@visx/react-spring';
+import type { GridRowsProps } from '@visx/grid/lib/grids/GridRows';
+import type { AxisScale } from '@visx/axis';
+import type { GridColumnsProps } from '@visx/grid/lib/grids/GridColumns';
+import type { BaseGridProps } from './BaseGrid';
+import BaseGrid from './BaseGrid';
 
 export type AnimatedGridProps = Omit<
   BaseGridProps,

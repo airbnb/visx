@@ -2,10 +2,11 @@
 import React from 'react';
 import cx from 'classnames';
 import { Group } from '@visx/group';
-import { treemap as d3treemap, HierarchyRectangularNode, HierarchyNode } from 'd3-hierarchy';
+import type { HierarchyRectangularNode, HierarchyNode } from 'd3-hierarchy';
+import { treemap as d3treemap } from 'd3-hierarchy';
 import HierarchyDefaultRectNode from '../HierarchyDefaultRectNode';
 import setNumberOrNumberAccessor from '../utils/setNumOrNumAccessor';
-import { TileMethod } from '../types';
+import type { TileMethod } from '../types';
 
 export type NodeComponentProps<Datum> = { node: HierarchyRectangularNode<Datum> };
 

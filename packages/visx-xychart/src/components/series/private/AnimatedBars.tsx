@@ -1,8 +1,8 @@
-import { AxisScale } from '@visx/axis';
+import type { AxisScale } from '@visx/axis';
 import { BarRounded } from '@visx/shape';
 import React, { useMemo } from 'react';
 import { animated, useTransition } from '@react-spring/web';
-import { Bar, BarsProps } from '../../../types';
+import type { Bar, BarsProps } from '../../../types';
 import { cleanColor, colorHasUrl } from '../../../utils/cleanColorString';
 import getScaleBaseline from '../../../utils/getScaleBaseline';
 import AnimatedPath from './AnimatedPath';

@@ -4,11 +4,11 @@
   "description": "visx demo",
   "repository": "https://github.com/airbnb/visx",
   "scripts": {
-    "build": "next build && next export",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider next build && NODE_OPTIONS=--openssl-legacy-provider next export",
     "deploy": "rm -rf out && yarn build && cd out && touch .nojekyll && git init && git add . && git commit -m \"Deploy commit\" && git remote add origin git@github.com:airbnb/visx.git && git push -f origin master:gh-pages",
-    "dev": "next",
+    "dev": "NODE_OPTIONS=--openssl-legacy-provider next",
     "happo": "happo",
-    "happo-ci-github-actions": "happo-ci-github-actions",
+    "happo-ci-github-actions": "NODE_OPTIONS=--openssl-legacy-provider happo-ci-github-actions",
     "preview": "yarn build && cd ./out && npx serve",
     "start": "next start"
   },
@@ -29,7 +29,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-spring/web": "^9.4.5",
+    "@react-spring/web": "^9.7.5",
     "@types/d3-scale-chromatic": "^1.3.1",
     "@types/nprogress": "^0.2.0",
     "@types/prismjs": "^1.16.0",

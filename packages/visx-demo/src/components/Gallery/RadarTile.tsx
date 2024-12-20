@@ -1,5 +1,6 @@
 import React from 'react';
-import Radar, { RadarProps, background, pumpkin } from '../../sandboxes/visx-radar/Example';
+import type { RadarProps } from '../../sandboxes/visx-radar/Example';
+import Radar, { background, pumpkin } from '../../sandboxes/visx-radar/Example';
 import GalleryTile from '../GalleryTile';
 
 export { default as packageJson } from '../../sandboxes/visx-radar/package.json';

@@ -1,6 +1,7 @@
 import React from 'react';
-import Projection, { ProjectionProps } from './Projection';
-import { GeoPermissibleObjects } from '../types';
+import type { ProjectionProps } from './Projection';
+import Projection from './Projection';
+import type { GeoPermissibleObjects } from '../types';
 
 /**
  * All props pass through to `<Projection projection="equalEarth" {...props} />`

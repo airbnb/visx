@@ -1,5 +1,6 @@
 import React from 'react';
-import XYChart, { XYChartProps } from '../../sandboxes/visx-xychart/Example';
+import type { XYChartProps } from '../../sandboxes/visx-xychart/Example';
+import XYChart from '../../sandboxes/visx-xychart/Example';
 import GalleryTile from '../GalleryTile';
 
 function XYChartWrapper(props) {

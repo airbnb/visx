@@ -1,5 +1,5 @@
-import { AxisScale } from '@visx/axis';
-import { ScaleInput } from '@visx/scale';
+import type { AxisScale } from '@visx/axis';
+import type { ScaleInput } from '@visx/scale';
 import { bisector, range as d3Range, bisectLeft } from '@visx/vendor/d3-array';
 
 // @TODO make more robust to null/undefined scaled values

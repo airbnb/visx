@@ -1,9 +1,9 @@
-import React, { SVGProps } from 'react';
+import type { SVGProps } from 'react';
+import React from 'react';
 import { animated, useTransition } from '@react-spring/web';
-import { GridScale, GridLines, CommonGridProps } from '@visx/grid/lib/types';
-import useLineTransitionConfig, {
-  TransitionConfig,
-} from '../spring-configs/useLineTransitionConfig';
+import type { GridScale, GridLines, CommonGridProps } from '@visx/grid/lib/types';
+import type { TransitionConfig } from '../spring-configs/useLineTransitionConfig';
+import useLineTransitionConfig from '../spring-configs/useLineTransitionConfig';
 
 export type AnimatedGridLinesProps<Scale extends GridScale> = {
   lines: GridLines;

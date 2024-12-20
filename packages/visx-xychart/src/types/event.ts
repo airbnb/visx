@@ -1,6 +1,6 @@
-import { AxisScale } from '@visx/axis';
-import { ScaleInput } from '@visx/scale';
-import { Emitter } from 'mitt';
+import type { AxisScale } from '@visx/axis';
+import type { ScaleInput } from '@visx/scale';
+import type { Emitter } from 'mitt';
 
 export type EventEmitterContextType = Emitter;
 

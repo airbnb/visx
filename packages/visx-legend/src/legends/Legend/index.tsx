@@ -1,12 +1,13 @@
 import React from 'react';
 import cx from 'classnames';
-import { AnyD3Scale, ScaleInput } from '@visx/scale';
+import type { AnyD3Scale, ScaleInput } from '@visx/scale';
 import LegendItem from './LegendItem';
-import LegendLabel, { LegendLabelProps } from './LegendLabel';
+import type { LegendLabelProps } from './LegendLabel';
+import LegendLabel from './LegendLabel';
 import LegendShape from './LegendShape';
 import valueOrIdentity, { valueOrIdentityString } from '../../util/valueOrIdentity';
 import labelTransformFactory from '../../util/labelTransformFactory';
-import {
+import type {
   FlexDirection,
   FormattedLabel,
   LabelFormatter,

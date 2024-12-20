@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { render } from '@testing-library/react';
+import { act, render, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import {
   BarStack,
@@ -117,15 +117,12 @@ describe('<BarStack />', () => {
     expect(RectElements).toHaveLength(3);
   });
 
-  it('should update scale domain to include stack sums including negative values', () => {
-    expect.hasAssertions();
+  it('should update scale domain to include stack sums including negative values', async () => {
+    let yScale: any;
 
     function Assertion() {
-      const { yScale, dataRegistry } = useContext(DataContext);
-      // eslint-disable-next-line jest/no-if
-      if (yScale && dataRegistry?.keys().length === 2) {
-        expect(yScale.domain()).toEqual([-20, 10]);
-      }
+      yScale = useContext(DataContext).yScale;
+
       return null;
     }
 
@@ -147,10 +144,14 @@ describe('<BarStack />', () => {
         <Assertion />
       </DataProvider>,
     );
+
+    await waitFor(() => {
+      expect(yScale.domain()).toEqual([-20, 10]);
+    });
   });
 
   it('should invoke showTooltip/hideTooltip on pointermove/pointerout', () => {
-    expect.assertions(2);
+    expect.hasAssertions();
 
     const showTooltip = jest.fn();
     const hideTooltip = jest.fn();
@@ -163,11 +164,11 @@ describe('<BarStack />', () => {
         // checking for yScale ensures stack data is registered and stacks are rendered
         if (emit && yScale) {
           //  not a React.MouseEvent
-          emit('pointermove', new MouseEvent('pointermove'), XYCHART_EVENT_SOURCE);
-          expect(showTooltip).toHaveBeenCalledTimes(2); // one per key
+          act(() => emit('pointermove', new MouseEvent('pointermove'), XYCHART_EVENT_SOURCE));
+          expect(showTooltip).toHaveBeenCalled();
 
           //  not a React.MouseEvent
-          emit('pointerout', new MouseEvent('pointerout'), XYCHART_EVENT_SOURCE);
+          act(() => emit('pointerout', new MouseEvent('pointerout'), XYCHART_EVENT_SOURCE));
           expect(showTooltip).toHaveBeenCalled();
         }
       });

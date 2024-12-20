@@ -1,7 +1,7 @@
 import React from 'react';
 import ShapeRect from '../../shapes/Rect';
 import renderShape from '../../util/renderShape';
-import {
+import type {
   FillAccessor,
   FormattedLabel,
   LegendShape as LegendShapeType,

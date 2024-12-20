@@ -1,6 +1,6 @@
 import { scalePow } from '@visx/vendor/d3-scale';
-import { DefaultOutput } from '../types/Base';
-import { PickScaleConfigWithoutType } from '../types/ScaleConfig';
+import type { DefaultOutput } from '../types/Base';
+import type { PickScaleConfigWithoutType } from '../types/ScaleConfig';
 import scaleOperator from '../operators/scaleOperator';
 
 export const updatePowScale = scaleOperator<'pow'>(

@@ -1,8 +1,8 @@
-import { AxisScale } from '@visx/axis';
-import { ResizeObserverPolyfill } from '@visx/responsive/lib/types';
-import { ScaleTypeToD3Scale, ScaleInput } from '@visx/scale';
-import DataRegistry from '../classes/DataRegistry';
-import { XYChartTheme } from './theme';
+import type { AxisScale } from '@visx/axis';
+import type { ResizeObserverPolyfill } from '@visx/responsive/lib/types';
+import type { ScaleTypeToD3Scale, ScaleInput } from '@visx/scale';
+import type DataRegistry from '../classes/DataRegistry';
+import type { XYChartTheme } from './theme';
 
 export type Margin = {
   top: number;

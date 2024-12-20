@@ -1,12 +1,6 @@
 import React, { useState } from 'react';
-import {
-  Sankey,
-  sankeyCenter,
-  sankeyRight,
-  sankeyLeft,
-  sankeyJustify,
-  SankeyNode,
-} from '@visx/sankey';
+import type { SankeyNode } from '@visx/sankey';
+import { Sankey, sankeyCenter, sankeyRight, sankeyLeft, sankeyJustify } from '@visx/sankey';
 import { Group } from '@visx/group';
 import { BarRounded, LinkHorizontal } from '@visx/shape';
 import { useTooltip, TooltipWithBounds } from '@visx/tooltip';

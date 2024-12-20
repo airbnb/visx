@@ -1,7 +1,8 @@
 /* eslint-disable react/jsx-handler-names */
 import React, { useCallback, useRef } from 'react';
-import useDrag, { UseDrag, HandlerArgs as DragHandlerArgs } from '@visx/drag/lib/useDrag';
-import { AnnotationContextType } from '../types';
+import type { UseDrag, HandlerArgs as DragHandlerArgs } from '@visx/drag/lib/useDrag';
+import useDrag from '@visx/drag/lib/useDrag';
+import type { AnnotationContextType } from '../types';
 import Annotation from './Annotation';
 
 export type EditableAnnotationProps = Pick<AnnotationContextType, 'x' | 'y' | 'dx' | 'dy'> & {

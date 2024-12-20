@@ -1,6 +1,6 @@
-import { GithubClient } from '../utils/getGitHubClient';
+import type { GithubClient } from '../utils/getGitHubClient';
 import getChangelogAddition from './updateChangelog/getChangelogAddition';
-import { PR } from './types';
+import type { PR } from './types';
 import getRepoContext from '../utils/getRepoContext';
 
 /**

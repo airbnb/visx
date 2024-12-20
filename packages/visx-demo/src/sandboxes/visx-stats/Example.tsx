@@ -3,10 +3,11 @@ import { Group } from '@visx/group';
 import { ViolinPlot, BoxPlot } from '@visx/stats';
 import { LinearGradient } from '@visx/gradient';
 import { scaleBand, scaleLinear } from '@visx/scale';
-import genStats, { Stats } from '@visx/mock-data/lib/generators/genStats';
+import type { Stats } from '@visx/mock-data/lib/generators/genStats';
+import genStats from '@visx/mock-data/lib/generators/genStats';
 import { getSeededRandom, getRandomNormal } from '@visx/mock-data';
 import { withTooltip, Tooltip, defaultStyles as defaultTooltipStyles } from '@visx/tooltip';
-import { WithTooltipProvidedProps } from '@visx/tooltip/lib/enhancers/withTooltip';
+import type { WithTooltipProvidedProps } from '@visx/tooltip/lib/enhancers/withTooltip';
 import { PatternLines } from '@visx/pattern';
 
 // seeded randomness

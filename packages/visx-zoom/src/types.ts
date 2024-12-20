@@ -1,5 +1,5 @@
-import { UserHandlers, WebKitGestureEvent, Handler } from '@use-gesture/react';
-import {
+import type { UserHandlers, WebKitGestureEvent, Handler } from '@use-gesture/react';
+import type {
   RefObject,
   MouseEvent as ReactMouseEvent,
   TouchEvent as ReactTouchEvent,

@@ -1,6 +1,6 @@
-import React from 'react';
-import { AxisScale } from '@visx/axis';
-import { CombinedStackData, SeriesProps } from '../types';
+import type React from 'react';
+import type { AxisScale } from '@visx/axis';
+import type { CombinedStackData, SeriesProps } from '../types';
 
 /** Returns the value which forms a stack group. */
 export const getStackValue = <XScale extends AxisScale, YScale extends AxisScale>(

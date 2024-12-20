@@ -1,5 +1,6 @@
 import React from 'react';
-import Tree, { TreeProps, background } from '../../sandboxes/visx-tree/Example';
+import type { TreeProps } from '../../sandboxes/visx-tree/Example';
+import Tree, { background } from '../../sandboxes/visx-tree/Example';
 import GalleryTile from '../GalleryTile';
 
 export { default as packageJson } from '../../sandboxes/visx-tree/package.json';
