@@ -1,8 +1,9 @@
-import { AxisScaleOutput, AxisScale } from '@visx/axis';
-import { ScaleConfig, createScale, ScaleInput, scaleCanBeZeroed } from '@visx/scale';
+import type { AxisScaleOutput, AxisScale } from '@visx/axis';
+import type { ScaleConfig, ScaleInput } from '@visx/scale';
+import { createScale, scaleCanBeZeroed } from '@visx/scale';
 import { extent as d3Extent } from '@visx/vendor/d3-array';
 import { useMemo } from 'react';
-import DataRegistry from '../classes/DataRegistry';
+import type DataRegistry from '../classes/DataRegistry';
 import isDiscreteScale from '../utils/isDiscreteScale';
 
 /** A hook for creating memoized x- and y-scales. */

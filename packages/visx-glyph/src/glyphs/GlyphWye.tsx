@@ -1,6 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
-import { Symbol, symbol, symbolWye } from 'd3-shape';
+import type { Symbol } from 'd3-shape';
+import { symbol, symbolWye } from 'd3-shape';
 import Glyph from './Glyph';
 
 export type GlyphWyeProps<Datum> = {

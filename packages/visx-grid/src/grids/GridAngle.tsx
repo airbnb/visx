@@ -1,11 +1,13 @@
 import React from 'react';
 import cx from 'classnames';
-import Line, { LineProps } from '@visx/shape/lib/shapes/Line';
+import type { LineProps } from '@visx/shape/lib/shapes/Line';
+import Line from '@visx/shape/lib/shapes/Line';
 import { Group } from '@visx/group';
-import { ScaleInput, getTicks, coerceNumber } from '@visx/scale';
+import type { ScaleInput } from '@visx/scale';
+import { getTicks, coerceNumber } from '@visx/scale';
 import { Point } from '@visx/point';
 
-import { CommonGridProps, GridScale } from '../types';
+import type { CommonGridProps, GridScale } from '../types';
 import polarToCartesian from '../utils/polarToCartesian';
 
 export type GridAngleProps<Scale extends GridScale> = CommonGridProps & {

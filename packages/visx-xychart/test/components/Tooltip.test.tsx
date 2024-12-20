@@ -3,15 +3,10 @@ import React from 'react';
 import { ResizeObserver } from '@juggle/resize-observer';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { AnyD3Scale } from '@visx/scale';
-import {
-  DataContext,
-  DataRegistryEntry,
-  Tooltip,
-  TooltipContext,
-  TooltipContextType,
-} from '../../src';
-import { TooltipProps } from '../../src/components/Tooltip';
+import type { AnyD3Scale } from '@visx/scale';
+import type { DataRegistryEntry, TooltipContextType } from '../../src';
+import { DataContext, Tooltip, TooltipContext } from '../../src';
+import type { TooltipProps } from '../../src/components/Tooltip';
 import getDataContext from '../mocks/getDataContext';
 
 describe('<Tooltip />', () => {

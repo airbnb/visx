@@ -1,7 +1,8 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { vi } from 'vitest';
-import React, { ReactNode } from 'react';
+import type { ReactNode } from 'react';
+import React from 'react';
 import { render, waitFor } from '@testing-library/react';
 import fireEvent from '@testing-library/user-event';
 import { withBoundingRects } from '../src';

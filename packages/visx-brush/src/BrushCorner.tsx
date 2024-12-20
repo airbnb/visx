@@ -1,8 +1,9 @@
 /* eslint react/jsx-handler-names: 0 */
 import React from 'react';
-import Drag, { HandlerArgs as DragArgs } from '@visx/drag/lib/Drag';
-import { BaseBrushState as BrushState, UpdateBrush } from './BaseBrush';
-import { ResizeTriggerAreas } from './types';
+import type { HandlerArgs as DragArgs } from '@visx/drag/lib/Drag';
+import Drag from '@visx/drag/lib/Drag';
+import type { BaseBrushState as BrushState, UpdateBrush } from './BaseBrush';
+import type { ResizeTriggerAreas } from './types';
 
 export type BrushCornerProps = {
   stageWidth: number;
@@ -96,6 +97,11 @@ export default class BrushCorner extends React.Component<BrushCornerProps, Brush
               y1: Math.min(Math.max(moveY, start.y), prevBrush.bounds.y1),
             },
           };
+
+        case 'top':
+        case 'right':
+        case 'bottom':
+        case 'left':
         default:
           return prevBrush;
       }

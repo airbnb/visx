@@ -2,7 +2,7 @@ import { vi } from 'vitest';
 import { render } from '@testing-library/react';
 import React from 'react';
 import { Wordcloud } from '../src';
-import { WordcloudConfig } from '../src/types';
+import type { WordcloudConfig } from '../src/types';
 
 const mocked3Cloud = {
   size: vi.fn(),

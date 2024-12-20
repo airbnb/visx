@@ -1,9 +1,11 @@
-import { FocusEvent, PointerEvent, useCallback, useContext } from 'react';
-import { AxisScale } from '@visx/axis';
+import type { FocusEvent, PointerEvent } from 'react';
+import { useCallback, useContext } from 'react';
+import type { AxisScale } from '@visx/axis';
 import TooltipContext from '../context/TooltipContext';
-import { EventHandlerParams, SeriesProps, TooltipContextType } from '../types';
+import type { EventHandlerParams, SeriesProps, TooltipContextType } from '../types';
 import useEventEmitters from './useEventEmitters';
-import useEventHandlers, { PointerEventHandlerParams } from './useEventHandlers';
+import type { PointerEventHandlerParams } from './useEventHandlers';
+import useEventHandlers from './useEventHandlers';
 
 export type SeriesEventsParams<
   XScale extends AxisScale,

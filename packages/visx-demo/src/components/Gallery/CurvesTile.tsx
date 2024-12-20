@@ -1,5 +1,6 @@
 import React from 'react';
-import Curve, { CurveProps } from '../../sandboxes/visx-curve/Example';
+import type { CurveProps } from '../../sandboxes/visx-curve/Example';
+import Curve from '../../sandboxes/visx-curve/Example';
 import GalleryTile from '../GalleryTile';
 
 export { default as packageJson } from '../../sandboxes/visx-curve/package.json';

@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { linkHorizontal } from 'd3-shape';
-import { SharedLinkProps, AccessorProps, AddSVGProps } from '../../../types';
+import type { SharedLinkProps, AccessorProps, AddSVGProps } from '../../../types';
 import { getY, getX, getSource, getTarget } from '../../../util/accessors';
 
 export function pathHorizontalDiagonal<Link, Node>({

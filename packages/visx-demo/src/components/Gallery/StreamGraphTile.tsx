@@ -1,8 +1,6 @@
 import React from 'react';
-import StreamGraph, {
-  StreamGraphProps,
-  BACKGROUND as background,
-} from '../../sandboxes/visx-streamgraph/Example';
+import type { StreamGraphProps } from '../../sandboxes/visx-streamgraph/Example';
+import StreamGraph, { BACKGROUND as background } from '../../sandboxes/visx-streamgraph/Example';
 import GalleryTile from '../GalleryTile';
 
 export { default as packageJson } from '../../sandboxes/visx-streamgraph/package.json';

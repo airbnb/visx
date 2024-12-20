@@ -1,4 +1,4 @@
-import { BoxPlot, BinDatum } from '../types';
+import type { BoxPlot, BinDatum } from '../types';
 
 function calcMedian(dataSet: number[]) {
   const half = Math.floor(dataSet.length / 2);

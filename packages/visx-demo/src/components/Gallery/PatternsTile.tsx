@@ -1,5 +1,6 @@
 import React from 'react';
-import Patterns, { PatternProps } from '../../sandboxes/visx-pattern/Example';
+import type { PatternProps } from '../../sandboxes/visx-pattern/Example';
+import Patterns from '../../sandboxes/visx-pattern/Example';
 import GalleryTile from '../GalleryTile';
 
 export { default as packageJson } from '../../sandboxes/visx-pattern/package.json';

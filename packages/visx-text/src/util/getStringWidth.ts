@@ -24,6 +24,7 @@ function getStringWidth(str: string, style?: object) {
     textEl.textContent = str;
     return textEl.getComputedTextLength();
   } catch (e) {
+    console.warn(e);
     return null;
   }
 }

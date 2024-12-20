@@ -1,5 +1,6 @@
 import React from 'react';
-import Threshold, { ThresholdProps, background } from '../../sandboxes/visx-threshold/Example';
+import type { ThresholdProps } from '../../sandboxes/visx-threshold/Example';
+import Threshold, { background } from '../../sandboxes/visx-threshold/Example';
 import GalleryTile from '../GalleryTile';
 
 export { default as packageJson } from '../../sandboxes/visx-threshold/package.json';

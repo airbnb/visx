@@ -1,4 +1,4 @@
-import { UseDragOptions } from '../useDrag';
+import type { UseDragOptions } from '../useDrag';
 import clampNumber from './clampNumber';
 import getClosestPoint from './getClosestPoint';
 

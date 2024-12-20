@@ -1,9 +1,11 @@
 import React, { useContext, useCallback, useMemo } from 'react';
-import LinePath, { LinePathProps } from '@visx/shape/lib/shapes/LinePath';
-import { AxisScale } from '@visx/axis';
+import type { LinePathProps } from '@visx/shape/lib/shapes/LinePath';
+import LinePath from '@visx/shape/lib/shapes/LinePath';
+import type { AxisScale } from '@visx/axis';
 import DataContext from '../../../context/DataContext';
-import { GlyphsProps, SeriesProps } from '../../../types';
-import withRegisteredData, { WithRegisteredDataProps } from '../../../enhancers/withRegisteredData';
+import type { GlyphsProps, SeriesProps } from '../../../types';
+import type { WithRegisteredDataProps } from '../../../enhancers/withRegisteredData';
+import withRegisteredData from '../../../enhancers/withRegisteredData';
 import getScaledValueFactory from '../../../utils/getScaledValueFactory';
 import isValidNumber from '../../../typeguards/isValidNumber';
 import { LINESERIES_EVENT_SOURCE, XYCHART_EVENT_SOURCE } from '../../../constants';

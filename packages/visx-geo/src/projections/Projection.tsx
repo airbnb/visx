@@ -1,6 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { Group } from '@visx/group';
+import type { GeoPath, GeoProjection, ExtendedFeature } from '@visx/vendor/d3-geo';
 import {
   geoOrthographic,
   geoAlbers,
@@ -9,16 +10,18 @@ import {
   geoNaturalEarth1,
   geoEqualEarth,
   geoPath,
-  GeoPath,
-  GeoProjection,
-  ExtendedFeature,
 } from '@visx/vendor/d3-geo';
 // this is just for types
 // eslint-disable-next-line import/no-unresolved
-import { LineString, Polygon, MultiLineString } from 'geojson';
+import type { LineString, Polygon, MultiLineString } from 'geojson';
 
-import Graticule, { GraticuleProps } from '../graticule/Graticule';
-import { GeoPermissibleObjects, ProjectionPreset, Projection as ProjectionShape } from '../types';
+import type { GraticuleProps } from '../graticule/Graticule';
+import Graticule from '../graticule/Graticule';
+import type {
+  GeoPermissibleObjects,
+  ProjectionPreset,
+  Projection as ProjectionShape,
+} from '../types';
 
 const projectionMapping: { [projection in ProjectionPreset]: () => GeoProjection } = {
   orthographic: () => geoOrthographic(),

@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import cx from 'classnames';
-import { VisxPackage } from '../types';
+import type { VisxPackage } from '../types';
 
 export default function PackageList({
   emphasizePackage,

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { render } from '@testing-library/react';
 import { DataProvider, DataContext } from '../../src';
-import { DataProviderProps } from '../../lib/providers/DataProvider';
+import type { DataProviderProps } from '../../lib/providers/DataProvider';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const getWrapper = (consumer: React.ReactNode, props?: DataProviderProps<any, any>) => {

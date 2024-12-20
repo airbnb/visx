@@ -6,7 +6,8 @@ import { Threshold } from '@visx/threshold';
 import { scaleTime, scaleLinear } from '@visx/scale';
 import { AxisLeft, AxisBottom } from '@visx/axis';
 import { GridRows, GridColumns } from '@visx/grid';
-import cityTemperature, { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
+import type { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
+import cityTemperature from '@visx/mock-data/lib/mocks/cityTemperature';
 
 export const background = '#f3f3f3';
 

@@ -3,8 +3,8 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { Pie } from '../src';
-import { PieArcDatum, ProvidedProps } from '../src/shapes/Pie';
 import { addMock, removeMock } from './svgMock';
+import type { PieArcDatum, ProvidedProps } from '../src/shapes/Pie';
 
 interface Datum {
   date: string;

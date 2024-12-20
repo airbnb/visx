@@ -1,5 +1,6 @@
 import React from 'react';
-import Gradient, { GradientProps } from '../../sandboxes/visx-gradient/Example';
+import type { GradientProps } from '../../sandboxes/visx-gradient/Example';
+import Gradient from '../../sandboxes/visx-gradient/Example';
 import GalleryTile from '../GalleryTile';
 
 export { default as packageJson } from '../../sandboxes/visx-gradient/package.json';

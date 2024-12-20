@@ -1,9 +1,6 @@
 import React from 'react';
-import BarStack, {
-  BarStackProps,
-  background,
-  purple3,
-} from '../../sandboxes/visx-barstack/Example';
+import type { BarStackProps } from '../../sandboxes/visx-barstack/Example';
+import BarStack, { background, purple3 } from '../../sandboxes/visx-barstack/Example';
 import GalleryTile from '../GalleryTile';
 
 export { default as packageJson } from '../../sandboxes/visx-barstack/package.json';

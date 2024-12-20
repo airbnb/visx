@@ -1,6 +1,6 @@
 import React from 'react';
 import Wordcloud from '../../sandboxes/visx-wordcloud/Example';
-import { WidthAndHeight } from '../../types';
+import type { WidthAndHeight } from '../../types';
 import GalleryTile from '../GalleryTile';
 
 export { default as packageJson } from '../../sandboxes/visx-wordcloud/package.json';

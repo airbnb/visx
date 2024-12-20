@@ -1,3 +1,4 @@
+import type { CountableTimeInterval } from '@visx/vendor/d3-time';
 import {
   timeSecond,
   timeMinute,
@@ -13,13 +14,12 @@ import {
   utcWeek,
   utcMonth,
   utcYear,
-  CountableTimeInterval,
 } from '@visx/vendor/d3-time';
-import { ScaleTime } from '@visx/vendor/d3-scale';
-import { StringLike } from '../types/Base';
-import { DefaultThresholdInput, D3Scale } from '../types/Scale';
-import { ScaleConfigWithoutType } from '../types/ScaleConfig';
-import { NiceTime } from '../types/Nice';
+import type { ScaleTime } from '@visx/vendor/d3-scale';
+import type { StringLike } from '../types/Base';
+import type { DefaultThresholdInput, D3Scale } from '../types/Scale';
+import type { ScaleConfigWithoutType } from '../types/ScaleConfig';
+import type { NiceTime } from '../types/Nice';
 import isUtcScale from '../utils/isUtcScale';
 
 const localTimeIntervals: {

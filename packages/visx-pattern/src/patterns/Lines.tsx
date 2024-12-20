@@ -1,7 +1,8 @@
 import React from 'react';
 import cx from 'classnames';
 import Pattern from './Pattern';
-import { PatternOrientation, PatternOrientationType } from '../constants';
+import type { PatternOrientationType } from '../constants';
+import { PatternOrientation } from '../constants';
 
 export function pathForOrientation({
   height,

@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-redeclare */
-import { ScaleConfig, PickScaleConfigWithoutType, PickScaleConfig } from './types/ScaleConfig';
-import { DefaultThresholdInput, PickD3Scale, D3Scale } from './types/Scale';
-import { StringLike, DefaultOutput } from './types/Base';
+import type { ScaleConfig, PickScaleConfigWithoutType, PickScaleConfig } from './types/ScaleConfig';
+import type { DefaultThresholdInput, PickD3Scale, D3Scale } from './types/Scale';
+import type { StringLike, DefaultOutput } from './types/Base';
 import createLinearScale from './scales/linear';
 import createLogScale from './scales/log';
 import createPowScale from './scales/power';
@@ -156,6 +156,7 @@ function createScale<
         return createPointScale(config);
       case 'band':
         return createBandScale(config);
+      case 'radial':
       default:
     }
   }

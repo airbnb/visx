@@ -1,7 +1,8 @@
 import React from 'react';
 import { Group } from '@visx/group';
 import { LinePath } from '@visx/shape';
-import generateDateValue, { DateValue } from '@visx/mock-data/lib/generators/genDateValue';
+import type { DateValue } from '@visx/mock-data/lib/generators/genDateValue';
+import generateDateValue from '@visx/mock-data/lib/generators/genDateValue';
 import { scaleTime, scaleLinear } from '@visx/scale';
 import { extent, max } from '@visx/vendor/d3-array';
 

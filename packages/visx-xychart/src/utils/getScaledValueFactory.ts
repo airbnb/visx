@@ -1,5 +1,5 @@
-import { AxisScale } from '@visx/axis';
-import { ScaleInput } from '@visx/scale';
+import type { AxisScale } from '@visx/axis';
+import type { ScaleInput } from '@visx/scale';
 import isValidNumber from '../typeguards/isValidNumber';
 import getScaleBandwidth from './getScaleBandwidth';
 

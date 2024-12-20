@@ -1,6 +1,6 @@
-import { AxisScale } from '@visx/axis';
+import type { AxisScale } from '@visx/axis';
 import findNearestDatumSingleDimension from './findNearestDatumSingleDimension';
-import { NearestDatumArgs, NearestDatumReturnType } from '../types';
+import type { NearestDatumArgs, NearestDatumReturnType } from '../types';
 
 export default function findNearestDatumX<
   XScale extends AxisScale,

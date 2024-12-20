@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import Markdown from 'react-markdown/with-html';
-import { DocGenInfo, PropInfo } from '../types';
+import type { DocGenInfo, PropInfo } from '../types';
 import { toExportName } from './util/format';
 
 type Props = {

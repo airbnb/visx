@@ -1,6 +1,6 @@
-import { MouseTouchOrPointerEvent } from '@visx/drag/lib/useDrag';
-import React from 'react';
-import { Scale } from './types';
+import type { MouseTouchOrPointerEvent } from '@visx/drag/lib/useDrag';
+import type React from 'react';
+import type { Scale } from './types';
 
 export function scaleInvert(scale: Scale, value: number) {
   // Test if the scale is an ordinalScale or not,

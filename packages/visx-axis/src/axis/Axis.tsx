@@ -2,12 +2,13 @@ import React from 'react';
 import cx from 'classnames';
 import { Group } from '@visx/group';
 import { getTicks, coerceNumber } from '@visx/scale';
-import { SharedAxisProps, AxisScale } from '../types';
+import type { SharedAxisProps, AxisScale } from '../types';
 import AxisRenderer from './AxisRenderer';
 import getTickPosition from '../utils/getTickPosition';
 import getTickFormatter from '../utils/getTickFormatter';
 import createPoint from '../utils/createPoint';
-import Orientation, { OrientationType } from '../constants/orientation';
+import type { OrientationType } from '../constants/orientation';
+import Orientation from '../constants/orientation';
 import getAxisRangePaddingConfig from '../utils/getAxisRangePaddingConfig';
 
 export type AxisProps<Scale extends AxisScale> = SharedAxisProps<Scale> & {

@@ -5,7 +5,7 @@ import Markdown from 'react-markdown/with-html';
 import ApiTable from './ApiTable';
 import PackageList from './PackageList';
 import Page from './Page';
-import { DocGenInfo, VisxPackage } from '../types';
+import type { DocGenInfo, VisxPackage } from '../types';
 import { toExportName } from './util/format';
 
 type Props = {

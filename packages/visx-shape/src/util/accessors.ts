@@ -1,4 +1,4 @@
-import { $TSFIXME } from '../types';
+import type { $TSFIXME } from '../types';
 
 export function getX(l: any) {
   return typeof l?.x === 'number' ? l?.x : 0;

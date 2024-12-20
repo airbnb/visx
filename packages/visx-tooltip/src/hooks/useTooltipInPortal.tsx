@@ -1,8 +1,11 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import useMeasure, { RectReadOnly, Options as BaseUseMeasureOptions } from 'react-use-measure';
+import type { RectReadOnly, Options as BaseUseMeasureOptions } from 'react-use-measure';
+import useMeasure from 'react-use-measure';
 
-import Portal, { PortalProps } from '../Portal';
-import Tooltip, { TooltipProps } from '../tooltips/Tooltip';
+import type { PortalProps } from '../Portal';
+import Portal from '../Portal';
+import type { TooltipProps } from '../tooltips/Tooltip';
+import Tooltip from '../tooltips/Tooltip';
 import TooltipWithBounds from '../tooltips/TooltipWithBounds';
 
 export type TooltipInPortalProps = TooltipProps &
