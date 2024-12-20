@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { render, waitFor } from '@testing-library/react';
 import { AreaSeries, DataContext, DataProvider } from '../../src';
 import useStackedData from '../../src/hooks/useStackedData';
