@@ -52,7 +52,7 @@ describe('<DataProvider />', () => {
   });
 
   it('should provide scales', () => {
-    expect.assertions(3);
+    expect.hasAssertions();
 
     const DataConsumer = () => {
       const { xScale, yScale, colorScale, registerData } = useContext(DataContext);

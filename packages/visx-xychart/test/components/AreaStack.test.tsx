@@ -81,7 +81,7 @@ describe('<AreaStack />', () => {
     const { container } = render(
       <DataProvider {...providerProps}>
         <svg>
-          <AreaStack onFocus={() => {}}>
+          <AreaStack onFocus={() => { }}>
             <AreaSeries dataKey={series1.key} {...series1} />
           </AreaStack>
         </svg>
@@ -91,14 +91,11 @@ describe('<AreaStack />', () => {
     expect(Circles).toHaveLength(series1.data.length);
   });
 
-  it('should update scale domain to include stack sums including negative values', () => {
-    expect.hasAssertions();
+  it('should update scale domain to include stack sums including negative values', async () => {
+    let yScale: any;
 
     function Assertion() {
-      const { yScale } = useContext(DataContext);
-      if (yScale) {
-        expect(yScale.domain()).toEqual([-20, 10]);
-      }
+      yScale = useContext(DataContext).yScale;
       return null;
     }
 
@@ -120,6 +117,10 @@ describe('<AreaStack />', () => {
         <Assertion />
       </DataProvider>,
     );
+
+    await waitFor(() => {
+      expect(yScale.domain()).toEqual([-20, 10]);
+    });
   });
 
   it('should invoke showTooltip/hideTooltip on pointermove/pointerout', async () => {

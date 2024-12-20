@@ -50,7 +50,7 @@ describe('<Label />', () => {
 
   it('should render anchor line', () => {
     const { container } = renderLabel({
-      title: 'title test',
+      title: 'title',
       showAnchorLine: true,
       resizeObserverPolyfill: ResizeObserver,
     });

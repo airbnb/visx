@@ -118,14 +118,12 @@ describe('<BarStack />', () => {
     expect(RectElements).toHaveLength(3);
   });
 
-  it('should update scale domain to include stack sums including negative values', () => {
-    expect.hasAssertions();
+  it('should update scale domain to include stack sums including negative values', async () => {
+    let yScale: any;
 
     function Assertion() {
-      const { yScale, dataRegistry } = useContext(DataContext);
-      if (yScale && dataRegistry?.keys().length === 2) {
-        expect(yScale.domain()).toEqual([-20, 10]);
-      }
+      yScale = useContext(DataContext).yScale;
+
       return null;
     }
 
@@ -147,6 +145,10 @@ describe('<BarStack />', () => {
         <Assertion />
       </DataProvider>,
     );
+
+    await waitFor(() => {
+      expect(yScale.domain()).toEqual([-20, 10]);
+    });
   });
 
   it('should invoke showTooltip/hideTooltip on pointermove/pointerout', async () => {

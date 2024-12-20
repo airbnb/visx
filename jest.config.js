@@ -42,11 +42,7 @@ module.exports = {
   testEnvironmentOptions: {
     url: 'http://localhost',
   },
-  fakeTimers: {
-    enableGlobally: true,
-    legacyFakeTimers: true,
-  },
-  verbose: false,
+  verbose: true,
   testPathIgnorePatterns: ['<rootDir>/packages/visx-demo'],
   transformIgnorePatterns: [
     'node_modules/(?!(d3-(array|color|format|geo|interpolate|scale|time|time-format)|delaunator|internmap|robust-predicates)/)',
