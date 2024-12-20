@@ -1,5 +1,6 @@
 import React from 'react';
-import Heatmap, { HeatmapProps, background } from '../../sandboxes/visx-heatmap/Example';
+import type { HeatmapProps } from '../../sandboxes/visx-heatmap/Example';
+import Heatmap, { background } from '../../sandboxes/visx-heatmap/Example';
 import GalleryTile from '../GalleryTile';
 
 export { default as packageJson } from '../../sandboxes/visx-heatmap/package.json';

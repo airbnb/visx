@@ -1,5 +1,6 @@
 import React from 'react';
-import LinkTypes, { LinkTypesProps } from '../../sandboxes/visx-linktypes/Example';
+import type { LinkTypesProps } from '../../sandboxes/visx-linktypes/Example';
+import LinkTypes from '../../sandboxes/visx-linktypes/Example';
 import GalleryTile from '../GalleryTile';
 
 export { default as packageJson } from '../../sandboxes/visx-linktypes/package.json';

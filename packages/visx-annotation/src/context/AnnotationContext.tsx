@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { AnnotationContextType } from '../types';
+import type { AnnotationContextType } from '../types';
 
 const AnnotationContext = createContext<AnnotationContextType>({});
 

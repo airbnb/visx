@@ -1,8 +1,6 @@
 import React from 'react';
-import StackedAreas, {
-  StackedAreasProps,
-  background,
-} from '../../sandboxes/visx-stacked-areas/Example';
+import type { StackedAreasProps } from '../../sandboxes/visx-stacked-areas/Example';
+import StackedAreas, { background } from '../../sandboxes/visx-stacked-areas/Example';
 import GalleryTile from '../GalleryTile';
 
 export { default as packageJson } from '../../sandboxes/visx-stacked-areas/package.json';

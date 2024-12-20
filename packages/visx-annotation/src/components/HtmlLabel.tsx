@@ -4,7 +4,7 @@ import useMeasure from 'react-use-measure';
 import { Group } from '@visx/group';
 import AnnotationContext from '../context/AnnotationContext';
 import AnchorLine from './LabelAnchorLine';
-import { LabelProps } from './Label';
+import type { LabelProps } from './Label';
 
 const wrapperStyle = { display: 'inline-block' };
 

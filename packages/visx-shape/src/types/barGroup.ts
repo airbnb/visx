@@ -1,4 +1,4 @@
-import { DatumObject } from './base';
+import type { DatumObject } from './base';
 
 /** Unique key for item in a group. */
 export type GroupKey = string | number;

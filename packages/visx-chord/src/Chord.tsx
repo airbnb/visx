@@ -1,5 +1,6 @@
 import React from 'react';
-import { chord as d3chord, Chords } from 'd3-chord';
+import type { Chords } from 'd3-chord';
+import { chord as d3chord } from 'd3-chord';
 
 type DefaultSortComporator = (a: number, b: number) => number;
 

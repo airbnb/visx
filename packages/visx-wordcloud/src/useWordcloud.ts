@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import d3Cloud from 'd3-cloud';
-import { BaseDatum, Cloud, CloudWord, WordcloudConfig } from './types';
+import type { BaseDatum, Cloud, CloudWord, WordcloudConfig } from './types';
 
 export default function useWordcloud<Datum extends BaseDatum>({
   width,

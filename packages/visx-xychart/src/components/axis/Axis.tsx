@@ -1,6 +1,8 @@
 import React from 'react';
-import { Axis as VisxAxis, AxisScale } from '@visx/axis';
-import BaseAxis, { BaseAxisProps } from './BaseAxis';
+import type { AxisScale } from '@visx/axis';
+import { Axis as VisxAxis } from '@visx/axis';
+import type { BaseAxisProps } from './BaseAxis';
+import BaseAxis from './BaseAxis';
 
 export type AxisProps<Scale extends AxisScale = AxisScale> = Omit<
   BaseAxisProps<Scale>,

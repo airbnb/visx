@@ -2,7 +2,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { scaleLinear, scaleOrdinal } from '@visx/scale';
 import { ResizeObserver } from '@juggle/resize-observer';
-import { DataContextType, lightTheme } from '../../src';
+import type { DataContextType } from '../../src';
+import { lightTheme } from '../../src';
 import DataRegistry from '../../lib/classes/DataRegistry';
 
 const width = 10;

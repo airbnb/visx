@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { Pie } from '../src';
-import { PieArcDatum } from '../src/shapes/Pie';
+import type { PieArcDatum } from '../src/shapes/Pie';
 
 interface Datum {
   date: string;

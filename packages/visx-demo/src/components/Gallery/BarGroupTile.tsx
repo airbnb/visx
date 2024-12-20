@@ -1,5 +1,6 @@
 import React from 'react';
-import BarGroup, { BarGroupProps, background, green } from '../../sandboxes/visx-bargroup/Example';
+import type { BarGroupProps } from '../../sandboxes/visx-bargroup/Example';
+import BarGroup, { background, green } from '../../sandboxes/visx-bargroup/Example';
 import GalleryTile from '../GalleryTile';
 
 export { default as packageJson } from '../../sandboxes/visx-bargroup/package.json';

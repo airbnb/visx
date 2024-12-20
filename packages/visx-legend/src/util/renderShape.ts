@@ -3,7 +3,7 @@ import RectShape from '../shapes/Rect';
 import CircleShape from '../shapes/Circle';
 import LineShape from '../shapes/Line';
 
-import {
+import type {
   LegendShape,
   FormattedLabel,
   FillAccessor,

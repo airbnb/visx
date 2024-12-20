@@ -1,12 +1,15 @@
-import React, { SVGProps, useCallback, useContext, useMemo } from 'react';
-import { AxisScale } from '@visx/axis';
-import { SeriesPoint } from 'd3-shape';
-import { LinePath, StackPathConfig } from '@visx/shape';
-import Area, { AreaProps } from '@visx/shape/lib/shapes/Area';
+import type { SVGProps } from 'react';
+import React, { useCallback, useContext, useMemo } from 'react';
+import type { AxisScale } from '@visx/axis';
+import type { SeriesPoint } from 'd3-shape';
+import type { StackPathConfig } from '@visx/shape';
+import { LinePath } from '@visx/shape';
+import type { AreaProps } from '@visx/shape/lib/shapes/Area';
+import Area from '@visx/shape/lib/shapes/Area';
 import { coerceNumber } from '@visx/scale';
 import { getFirstItem, getSecondItem } from '@visx/shape/lib/util/accessors';
 
-import {
+import type {
   CombinedStackData,
   DataContextType,
   GlyphsProps,
@@ -15,7 +18,7 @@ import {
   SeriesProps,
 } from '../../../types';
 import DataContext from '../../../context/DataContext';
-import { BaseAreaSeriesProps } from './BaseAreaSeries';
+import type { BaseAreaSeriesProps } from './BaseAreaSeries';
 import { BaseGlyphSeries } from './BaseGlyphSeries';
 import useStackedData from '../../../hooks/useStackedData';
 import { getStackValue } from '../../../utils/combineBarStackData';

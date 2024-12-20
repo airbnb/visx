@@ -1,9 +1,6 @@
 import React from 'react';
-import LineRadial, {
-  LineRadialProps,
-  background,
-  blue,
-} from '../../sandboxes/visx-shape-line-radial/Example';
+import type { LineRadialProps } from '../../sandboxes/visx-shape-line-radial/Example';
+import LineRadial, { background, blue } from '../../sandboxes/visx-shape-line-radial/Example';
 import GalleryTile from '../GalleryTile';
 
 export { default as packageJson } from '../../sandboxes/visx-shape-line-radial/package.json';

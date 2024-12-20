@@ -1,4 +1,4 @@
-import { FocusEvent, PointerEvent } from 'react';
+import type { FocusEvent, PointerEvent } from 'react';
 
 type EventType = PointerEvent | FocusEvent;
 

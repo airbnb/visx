@@ -1,8 +1,9 @@
 import React, { useContext, useMemo } from 'react';
-import { AxisScale } from '@visx/axis';
+import type { AxisScale } from '@visx/axis';
 import DataContext from '../../../context/DataContext';
-import { Bar, BarsProps, SeriesProps } from '../../../types';
-import withRegisteredData, { WithRegisteredDataProps } from '../../../enhancers/withRegisteredData';
+import type { Bar, BarsProps, SeriesProps } from '../../../types';
+import type { WithRegisteredDataProps } from '../../../enhancers/withRegisteredData';
+import withRegisteredData from '../../../enhancers/withRegisteredData';
 import getScaledValueFactory from '../../../utils/getScaledValueFactory';
 import getScaleBandwidth from '../../../utils/getScaleBandwidth';
 import getScaleBaseline from '../../../utils/getScaleBaseline';
@@ -34,25 +35,29 @@ const getFallbackBandwidth = (fullBarWidth: number, barPadding: number) =>
   // clamp padding to [0, 1], bar thickness = (1-padding) * availableSpace
   fullBarWidth * (1 - Math.min(1, Math.max(0, barPadding)));
 
-function BaseBarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum extends object>({
-  BarsComponent,
-  barPadding = 0.1,
-  colorAccessor,
-  data,
-  dataKey,
-  onBlur,
-  onFocus,
-  onPointerMove,
-  onPointerOut,
-  onPointerUp,
-  onPointerDown,
-  enableEvents = true,
-  xAccessor,
-  xScale,
-  yAccessor,
-  yScale,
-  ...barComponentProps
-}: BaseBarSeriesProps<XScale, YScale, Datum> & WithRegisteredDataProps<XScale, YScale, Datum>) {
+function BaseBarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum extends object>(
+  props: BaseBarSeriesProps<XScale, YScale, Datum>,
+) {
+  const {
+    BarsComponent,
+    barPadding = 0.1,
+    colorAccessor,
+    data,
+    dataKey,
+    onBlur,
+    onFocus,
+    onPointerMove,
+    onPointerOut,
+    onPointerUp,
+    onPointerDown,
+    enableEvents = true,
+    xAccessor,
+    xScale,
+    yAccessor,
+    yScale,
+    ...barComponentProps
+  } = props as BaseBarSeriesProps<XScale, YScale, Datum> &
+    WithRegisteredDataProps<XScale, YScale, Datum>;
   const {
     colorScale,
     horizontal,

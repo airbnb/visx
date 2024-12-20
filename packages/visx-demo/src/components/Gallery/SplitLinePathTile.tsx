@@ -1,6 +1,6 @@
 import React from 'react';
+import type { SplitLinePathExampleProps } from '../../sandboxes/visx-shape-splitlinepath/Example';
 import SplitLinePathExample, {
-  SplitLinePathExampleProps,
   backgroundLight,
 } from '../../sandboxes/visx-shape-splitlinepath/Example';
 import GalleryTile from '../GalleryTile';

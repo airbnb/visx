@@ -1,7 +1,8 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Sankey, { SankeyProps } from '../src/Sankey';
+import type { SankeyProps } from '../src/Sankey';
+import Sankey from '../src/Sankey';
 
 const nodes = [{ name: 'node 1' }, { name: 'node 2' }, { name: 'node 3' }];
 const links = [

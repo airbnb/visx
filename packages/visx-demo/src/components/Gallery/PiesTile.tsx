@@ -1,5 +1,6 @@
 import React from 'react';
-import Pie, { PieProps } from '../../sandboxes/visx-shape-pie/Example';
+import type { PieProps } from '../../sandboxes/visx-shape-pie/Example';
+import Pie from '../../sandboxes/visx-shape-pie/Example';
 import GalleryTile from '../GalleryTile';
 
 export { default as packageJson } from '../../sandboxes/visx-shape-pie/package.json';

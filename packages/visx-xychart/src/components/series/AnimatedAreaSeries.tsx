@@ -1,7 +1,8 @@
-import { AxisScale } from '@visx/axis';
+import type { AxisScale } from '@visx/axis';
 import React from 'react';
 import AnimatedPath from './private/AnimatedPath';
-import BaseAreaSeries, { BaseAreaSeriesProps } from './private/BaseAreaSeries';
+import type { BaseAreaSeriesProps } from './private/BaseAreaSeries';
+import BaseAreaSeries from './private/BaseAreaSeries';
 
 export default function AnimatedAreaSeries<
   XScale extends AxisScale,

@@ -1,10 +1,12 @@
 import React from 'react';
 import cx from 'classnames';
 import { Group } from '@visx/group';
-import { ScaleInput } from '@visx/scale';
-import GridRows, { AllGridRowsProps } from './GridRows';
-import GridColumns, { AllGridColumnsProps } from './GridColumns';
-import { CommonGridProps, GridScale } from '../types';
+import type { ScaleInput } from '@visx/scale';
+import type { AllGridRowsProps } from './GridRows';
+import GridRows from './GridRows';
+import type { AllGridColumnsProps } from './GridColumns';
+import GridColumns from './GridColumns';
+import type { CommonGridProps, GridScale } from '../types';
 
 type CommonPropsToOmit =
   | 'scale'

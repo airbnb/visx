@@ -1,5 +1,6 @@
 import React from 'react';
-import RadialBars, { RadialBarsProps } from '../../sandboxes/visx-radial-bars/Example';
+import type { RadialBarsProps } from '../../sandboxes/visx-radial-bars/Example';
+import RadialBars from '../../sandboxes/visx-radial-bars/Example';
 import GalleryTile from '../GalleryTile';
 
 export { default as packageJson } from '../../sandboxes/visx-radial-bars/package.json';

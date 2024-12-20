@@ -1,7 +1,7 @@
-import { CurveFactory, CurveFactoryLineOnly } from 'd3-shape';
-import { Accessor, AccessorForArrayItem } from './accessor';
-import { STACK_OFFSETS } from '../util/stackOffset';
-import { STACK_ORDERS } from '../util/stackOrder';
+import type { CurveFactory, CurveFactoryLineOnly } from 'd3-shape';
+import type { Accessor, AccessorForArrayItem } from './accessor';
+import type { STACK_OFFSETS } from '../util/stackOffset';
+import type { STACK_ORDERS } from '../util/stackOrder';
 
 export type ArcPathConfig<Datum> = {
   /** Number or accessor function which returns a number, which defines the arc innerRadius. */

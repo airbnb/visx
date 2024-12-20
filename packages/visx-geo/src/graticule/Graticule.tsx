@@ -1,8 +1,9 @@
 import React from 'react';
 import { Group } from '@visx/group';
-import { geoGraticule, GeoGraticuleGenerator } from '@visx/vendor/d3-geo';
+import type { GeoGraticuleGenerator } from '@visx/vendor/d3-geo';
+import { geoGraticule } from '@visx/vendor/d3-geo';
 // eslint-disable-next-line import/no-unresolved
-import { LineString, MultiLineString, Polygon } from 'geojson';
+import type { LineString, MultiLineString, Polygon } from 'geojson';
 
 export type GraticuleProps = {
   /**

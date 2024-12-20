@@ -1,6 +1,7 @@
-import { TextProps } from '@visx/text/lib/Text';
-import Orientation, { OrientationType } from '../constants/orientation';
-import { AxisScaleOutput } from '../types';
+import type { TextProps } from '@visx/text/lib/Text';
+import type { OrientationType } from '../constants/orientation';
+import Orientation from '../constants/orientation';
+import type { AxisScaleOutput } from '../types';
 
 export interface TransformArgs {
   labelOffset: number;

@@ -1,5 +1,5 @@
-import { AxisScale } from '@visx/axis';
-import { DataRegistryEntry } from '../types/data';
+import type { AxisScale } from '@visx/axis';
+import type { DataRegistryEntry } from '../types/data';
 
 /** A class for holding data entries */
 export default class DataRegistry<

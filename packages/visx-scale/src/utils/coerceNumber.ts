@@ -1,4 +1,4 @@
-import { NumberLike } from '../types/Base';
+import type { NumberLike } from '../types/Base';
 
 export default function coerceNumber<T>(val: T | NumberLike): T | number {
   if ((typeof val === 'function' || (typeof val === 'object' && !!val)) && 'valueOf' in val) {

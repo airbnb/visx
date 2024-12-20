@@ -1,5 +1,6 @@
 import React from 'react';
-import ZoomI, { ZoomIProps } from '../../sandboxes/visx-zoom-i/Example';
+import type { ZoomIProps } from '../../sandboxes/visx-zoom-i/Example';
+import ZoomI from '../../sandboxes/visx-zoom-i/Example';
 import GalleryTile from '../GalleryTile';
 
 export { default as packageJson } from '../../sandboxes/visx-zoom-i/package.json';

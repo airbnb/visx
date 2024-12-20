@@ -1,12 +1,8 @@
 import React from 'react';
 import cx from 'classnames';
 import { Group } from '@visx/group';
-import {
-  tree as d3tree,
-  HierarchyNode,
-  HierarchyPointNode,
-  HierarchyPointLink,
-} from 'd3-hierarchy';
+import type { HierarchyNode, HierarchyPointNode, HierarchyPointLink } from 'd3-hierarchy';
+import { tree as d3tree } from 'd3-hierarchy';
 import DefaultLink from '../HierarchyDefaultLink';
 import DefaultNode from '../HierarchyDefaultNode';
 

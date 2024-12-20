@@ -1,5 +1,5 @@
-import { ScaleInput } from '@visx/scale';
-import { AxisScale, AxisScaleOutput } from '../types';
+import type { ScaleInput } from '@visx/scale';
+import type { AxisScale, AxisScaleOutput } from '../types';
 
 /**
  * Create a function that returns a tick position for the given tick value

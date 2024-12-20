@@ -1,10 +1,13 @@
 import React, { useContext, useCallback, useMemo } from 'react';
-import { AxisScale } from '@visx/axis';
-import Area, { AreaProps } from '@visx/shape/lib/shapes/Area';
-import LinePath, { LinePathProps } from '@visx/shape/lib/shapes/LinePath';
+import type { AxisScale } from '@visx/axis';
+import type { AreaProps } from '@visx/shape/lib/shapes/Area';
+import Area from '@visx/shape/lib/shapes/Area';
+import type { LinePathProps } from '@visx/shape/lib/shapes/LinePath';
+import LinePath from '@visx/shape/lib/shapes/LinePath';
 import DataContext from '../../../context/DataContext';
-import { GlyphsProps, SeriesProps } from '../../../types';
-import withRegisteredData, { WithRegisteredDataProps } from '../../../enhancers/withRegisteredData';
+import type { GlyphsProps, SeriesProps } from '../../../types';
+import type { WithRegisteredDataProps } from '../../../enhancers/withRegisteredData';
+import withRegisteredData from '../../../enhancers/withRegisteredData';
 import getScaledValueFactory from '../../../utils/getScaledValueFactory';
 import getScaleBaseline from '../../../utils/getScaleBaseline';
 import isValidNumber from '../../../typeguards/isValidNumber';
@@ -35,28 +38,32 @@ export type BaseAreaSeriesProps<
   PathComponent?: React.FC<Omit<React.SVGProps<SVGPathElement>, 'ref'>> | 'path';
 } & Omit<React.SVGProps<SVGPathElement>, 'x' | 'y' | 'x0' | 'x1' | 'y0' | 'y1' | 'ref'>;
 
-function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datum extends object>({
-  PathComponent = 'path',
-  curve,
-  data,
-  dataKey,
-  lineProps,
-  onBlur,
-  onFocus,
-  onPointerMove,
-  onPointerOut,
-  onPointerUp,
-  onPointerDown,
-  enableEvents = true,
-  renderLine = true,
-  xAccessor,
-  x0Accessor,
-  xScale,
-  yAccessor,
-  y0Accessor,
-  yScale,
-  ...areaProps
-}: BaseAreaSeriesProps<XScale, YScale, Datum> & WithRegisteredDataProps<XScale, YScale, Datum>) {
+function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datum extends object>(
+  props: BaseAreaSeriesProps<XScale, YScale, Datum>,
+) {
+  const {
+    PathComponent = 'path',
+    curve,
+    data,
+    dataKey,
+    lineProps,
+    onBlur,
+    onFocus,
+    onPointerMove,
+    onPointerOut,
+    onPointerUp,
+    onPointerDown,
+    enableEvents = true,
+    renderLine = true,
+    xAccessor,
+    x0Accessor,
+    xScale,
+    yAccessor,
+    y0Accessor,
+    yScale,
+    ...areaProps
+  } = props as BaseAreaSeriesProps<XScale, YScale, Datum> &
+    WithRegisteredDataProps<XScale, YScale, Datum>;
   const { colorScale, theme, horizontal } = useContext(DataContext);
   const getScaledX0 = useMemo(
     () => (x0Accessor ? getScaledValueFactory(xScale, x0Accessor) : undefined),

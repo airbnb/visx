@@ -1,5 +1,6 @@
 import React from 'react';
-import Dots, { DotsProps } from '../../sandboxes/visx-dots/Example';
+import type { DotsProps } from '../../sandboxes/visx-dots/Example';
+import Dots from '../../sandboxes/visx-dots/Example';
 import GalleryTile from '../GalleryTile';
 
 export { default as packageJson } from '../../sandboxes/visx-dots/package.json';

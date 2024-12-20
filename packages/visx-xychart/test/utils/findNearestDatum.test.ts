@@ -1,6 +1,6 @@
-import { AxisScale } from '@visx/axis';
+import type { AxisScale } from '@visx/axis';
 import { scaleBand, scaleLinear } from '@visx/scale';
-import { PositionScale } from '@visx/shape/lib/types';
+import type { PositionScale } from '@visx/shape/lib/types';
 
 import findNearestDatumX from '../../src/utils/findNearestDatumX';
 import findNearestDatumY from '../../src/utils/findNearestDatumY';
@@ -8,7 +8,7 @@ import findNearestDatumXY from '../../src/utils/findNearestDatumXY';
 import findNearestDatumSingleDimension from '../../src/utils/findNearestDatumSingleDimension';
 import findNearestStackDatum from '../../src/utils/findNearestStackDatum';
 import findNearestGroupDatum from '../../src/utils/findNearestGroupDatum';
-import { BarStackDatum, NearestDatumArgs } from '../../src';
+import type { BarStackDatum, NearestDatumArgs } from '../../src';
 
 type Datum = { xVal: number; yVal: string };
 

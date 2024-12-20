@@ -1,7 +1,9 @@
 import React from 'react';
-import { withBoundingRects, WithBoundingRectsProps } from '@visx/bounds';
+import type { WithBoundingRectsProps } from '@visx/bounds';
+import { withBoundingRects } from '@visx/bounds';
 
-import Tooltip, { TooltipProps, defaultStyles } from './Tooltip';
+import type { TooltipProps } from './Tooltip';
+import Tooltip, { defaultStyles } from './Tooltip';
 import { TooltipPositionProvider } from '../context/TooltipPositionContext';
 
 export type TooltipWithBoundsProps = TooltipProps &

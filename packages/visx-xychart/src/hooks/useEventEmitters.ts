@@ -1,4 +1,5 @@
-import { useCallback, PointerEvent, FocusEvent } from 'react';
+import type { PointerEvent, FocusEvent } from 'react';
+import { useCallback } from 'react';
 import useEventEmitter from './useEventEmitter';
 
 type PointerEventEmitterParams = {

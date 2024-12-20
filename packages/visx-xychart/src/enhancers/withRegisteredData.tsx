@@ -1,8 +1,8 @@
 /* eslint-disable no-shadow */
 import React, { useContext, useEffect } from 'react';
-import { AxisScale } from '@visx/axis';
+import type { AxisScale } from '@visx/axis';
 import DataContext from '../context/DataContext';
-import { DataContextType, SeriesProps } from '../types';
+import type { DataContextType, SeriesProps } from '../types';
 
 export type WithRegisteredDataProps<
   XScale extends AxisScale,

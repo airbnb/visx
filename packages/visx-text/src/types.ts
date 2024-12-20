@@ -1,4 +1,4 @@
-import { CSSProperties, Ref, SVGAttributes } from 'react';
+import type { CSSProperties, Ref, SVGAttributes } from 'react';
 
 type SVGTSpanProps = SVGAttributes<SVGTSpanElement>;
 type SVGTextProps = SVGAttributes<SVGTextElement>;

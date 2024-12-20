@@ -1,4 +1,4 @@
-import { StackPathConfig } from './D3ShapeConfig';
+import type { StackPathConfig } from './D3ShapeConfig';
 
 /** Unique key for item in a stack. */
 export type StackKey = string | number;

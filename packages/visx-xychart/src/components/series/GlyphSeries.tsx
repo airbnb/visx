@@ -1,7 +1,8 @@
-import { AxisScale } from '@visx/axis';
+import type { AxisScale } from '@visx/axis';
 import React, { useCallback } from 'react';
-import { GlyphProps, GlyphsProps } from '../../types';
-import BaseGlyphSeries, { BaseGlyphSeriesProps } from './private/BaseGlyphSeries';
+import type { GlyphProps, GlyphsProps } from '../../types';
+import type { BaseGlyphSeriesProps } from './private/BaseGlyphSeries';
+import BaseGlyphSeries from './private/BaseGlyphSeries';
 import defaultRenderGlyph from './private/defaultRenderGlyph';
 
 export default function GlyphSeries<

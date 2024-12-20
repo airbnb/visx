@@ -2,7 +2,8 @@ import { ResizeObserver } from '@juggle/resize-observer';
 import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
 import React from 'react';
-import { withParentSize, WithParentSizeProvidedProps } from '../src';
+import type { WithParentSizeProvidedProps } from '../src';
+import { withParentSize } from '../src';
 
 interface ComponentProps extends WithParentSizeProvidedProps {
   // only there to ensure that TS allows enhanced component to have own props, different than the ones passed by the HOC

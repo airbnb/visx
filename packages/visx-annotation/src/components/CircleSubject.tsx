@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import cx from 'classnames';
-import { AnnotationContextType } from '../types';
+import type { AnnotationContextType } from '../types';
 import AnnotationContext from '../context/AnnotationContext';
 
 export type CircleSubjectProps = Pick<AnnotationContextType, 'x' | 'y'> & {

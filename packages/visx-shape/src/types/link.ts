@@ -1,4 +1,4 @@
-import { ReactNode, Ref } from 'react';
+import type { ReactNode, Ref } from 'react';
 
 export type AccessorProps<Link, Node> = {
   /** Given a node, returns its x coordinate. */

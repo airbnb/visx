@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { render } from '@testing-library/react';
 import { useDrag } from '../src';
-import { UseDragOptions } from '../lib/useDrag';
+import type { UseDragOptions } from '../lib/useDrag';
 
 describe('useDrag', () => {
   test('it should be defined', () => {

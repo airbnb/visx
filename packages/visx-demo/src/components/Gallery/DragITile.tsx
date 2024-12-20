@@ -1,5 +1,6 @@
 import React from 'react';
-import DragI, { DragIProps } from '../../sandboxes/visx-drag-i/Example';
+import type { DragIProps } from '../../sandboxes/visx-drag-i/Example';
+import DragI from '../../sandboxes/visx-drag-i/Example';
 import GalleryTile from '../GalleryTile';
 
 export { default as packageJson } from '../../sandboxes/visx-drag-i/package.json';

@@ -1,5 +1,5 @@
-import { Unarray } from './Base';
-import { ScaleInterpolate, ScaleInterpolateParams } from './ScaleInterpolate';
+import type { Unarray } from './Base';
+import type { ScaleInterpolate, ScaleInterpolateParams } from './ScaleInterpolate';
 
 export interface BaseScaleConfig<T, D, R> {
   type: T;

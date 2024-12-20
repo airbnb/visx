@@ -1,5 +1,6 @@
 import React from 'react';
-import Sankey, { SankeyDemoProps, background, color } from '../../sandboxes/visx-sankey/Example';
+import type { SankeyDemoProps } from '../../sandboxes/visx-sankey/Example';
+import Sankey, { background, color } from '../../sandboxes/visx-sankey/Example';
 import GalleryTile from '../GalleryTile';
 
 export { default as packageJson } from '../../sandboxes/visx-sankey/package.json';

@@ -1,8 +1,9 @@
 import React, { useContext, useMemo } from 'react';
-import { AxisScale } from '@visx/axis';
+import type { AxisScale } from '@visx/axis';
 import DataContext from '../../../context/DataContext';
-import { GlyphProps, GlyphsProps, SeriesProps } from '../../../types';
-import withRegisteredData, { WithRegisteredDataProps } from '../../../enhancers/withRegisteredData';
+import type { GlyphProps, GlyphsProps, SeriesProps } from '../../../types';
+import type { WithRegisteredDataProps } from '../../../enhancers/withRegisteredData';
+import withRegisteredData from '../../../enhancers/withRegisteredData';
 import getScaledValueFactory from '../../../utils/getScaledValueFactory';
 import isValidNumber from '../../../typeguards/isValidNumber';
 import { GLYPHSERIES_EVENT_SOURCE, XYCHART_EVENT_SOURCE } from '../../../constants';

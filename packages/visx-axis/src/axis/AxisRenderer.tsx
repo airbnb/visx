@@ -3,10 +3,10 @@ import cx from 'classnames';
 import { Line } from '@visx/shape';
 import { Text } from '@visx/text';
 
-import { TextProps } from '@visx/text/lib/Text';
+import type { TextProps } from '@visx/text/lib/Text';
 import getLabelTransform from '../utils/getLabelTransform';
 import Orientation from '../constants/orientation';
-import { AxisRendererProps, AxisScale } from '../types';
+import type { AxisRendererProps, AxisScale } from '../types';
 import Ticks from './Ticks';
 
 const defaultTextProps: Partial<TextProps> = {
