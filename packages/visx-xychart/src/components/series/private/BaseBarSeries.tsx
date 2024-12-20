@@ -1,9 +1,7 @@
-import React, { useContext, useMemo } from 'react';
+import React, { useContext, useEffect, useMemo } from 'react';
 import type { AxisScale } from '@visx/axis';
 import DataContext from '../../../context/DataContext';
-import type { Bar, BarsProps, SeriesProps } from '../../../types';
-import type { WithRegisteredDataProps } from '../../../enhancers/withRegisteredData';
-import withRegisteredData from '../../../enhancers/withRegisteredData';
+import type { Bar, BarsProps, DataContextType, SeriesProps } from '../../../types';
 import getScaledValueFactory from '../../../utils/getScaledValueFactory';
 import getScaleBandwidth from '../../../utils/getScaleBandwidth';
 import getScaleBaseline from '../../../utils/getScaleBaseline';
@@ -35,29 +33,26 @@ const getFallbackBandwidth = (fullBarWidth: number, barPadding: number) =>
   // clamp padding to [0, 1], bar thickness = (1-padding) * availableSpace
   fullBarWidth * (1 - Math.min(1, Math.max(0, barPadding)));
 
-function BaseBarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum extends object>(
-  props: BaseBarSeriesProps<XScale, YScale, Datum>,
-) {
-  const {
-    BarsComponent,
-    barPadding = 0.1,
-    colorAccessor,
-    data,
-    dataKey,
-    onBlur,
-    onFocus,
-    onPointerMove,
-    onPointerOut,
-    onPointerUp,
-    onPointerDown,
-    enableEvents = true,
-    xAccessor,
-    xScale,
-    yAccessor,
-    yScale,
-    ...barComponentProps
-  } = props as BaseBarSeriesProps<XScale, YScale, Datum> &
-    WithRegisteredDataProps<XScale, YScale, Datum>;
+function BaseBarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum extends object>({
+  BarsComponent,
+  barPadding = 0.1,
+  colorAccessor,
+  data,
+  dataKey,
+  onBlur,
+  onFocus,
+  onPointerMove,
+  onPointerOut,
+  onPointerUp,
+  onPointerDown,
+  enableEvents = true,
+  xAccessor,
+  xScale,
+  yAccessor,
+  yScale,
+  ...barComponentProps
+}: BaseBarSeriesProps<XScale, YScale, Datum> &
+  Pick<DataContextType<XScale, YScale, Datum>, 'xScale' | 'yScale'>) {
   const {
     colorScale,
     horizontal,
@@ -139,4 +134,37 @@ function BaseBarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum
   );
 }
 
-export default withRegisteredData(BaseBarSeries);
+export default function BaseBarSeriesWithRegisteredData<
+  XScale extends AxisScale,
+  YScale extends AxisScale,
+  Datum extends object,
+>(props: BaseBarSeriesProps<XScale, YScale, Datum>) {
+  const { dataKey, data, xAccessor, yAccessor } = props;
+  const { xScale, yScale, dataRegistry } = useContext(DataContext) as unknown as DataContextType<
+    XScale,
+    YScale,
+    Datum
+  >;
+
+  useEffect(() => {
+    if (dataRegistry) dataRegistry.registerData({ key: dataKey, data, xAccessor, yAccessor });
+    return () => dataRegistry?.unregisterData(dataKey);
+  }, [dataRegistry, dataKey, data, xAccessor, yAccessor]);
+
+  const registryEntry = dataRegistry?.get(dataKey);
+
+  // if scales or data are not available in context, render nothing
+  if (!xScale || !yScale || !registryEntry) return null;
+
+  // otherwise pass props + over-write data/accessors
+  return (
+    <BaseBarSeries
+      {...props}
+      xScale={xScale}
+      yScale={yScale}
+      data={registryEntry.data}
+      xAccessor={registryEntry.xAccessor}
+      yAccessor={registryEntry.yAccessor}
+    />
+  );
+}

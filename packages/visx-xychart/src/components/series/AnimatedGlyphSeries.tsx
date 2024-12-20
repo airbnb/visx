@@ -23,13 +23,5 @@ export default function AnimatedGlyphSeries<
     [renderGlyph],
   );
 
-  return (
-    <BaseGlyphSeries<XScale, YScale, Datum>
-      {...props}
-      // @TODO currently generics for non-SeriesProps are not passed correctly in
-      // withRegisteredData HOC
-      // @ts-expect-error
-      renderGlyphs={renderGlyphs}
-    />
-  );
+  return <BaseGlyphSeries<XScale, YScale, Datum> {...props} renderGlyphs={renderGlyphs} />;
 }

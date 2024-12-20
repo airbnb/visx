@@ -11,9 +11,7 @@ function BarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum ext
   return (
     <BaseBarSeries<XScale, YScale, Datum>
       {...props}
-      // @TODO currently generics for non-SeriesProps are not passed correctly in
-      // withRegisteredData HOC
-      colorAccessor={colorAccessor as BaseBarSeriesProps<XScale, YScale, object>['colorAccessor']}
+      colorAccessor={colorAccessor}
       BarsComponent={Bars}
     />
   );
