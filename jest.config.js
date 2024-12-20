@@ -38,7 +38,6 @@ module.exports = {
   },
   roots: ['<rootDir>/packages'],
   setupFiles: ['<rootDir>/config-jest/setup/shims.js', '<rootDir>/config-jest/setup/console.js'],
-  setupFilesAfterEnv: ['<rootDir>/config-jest/setup/enzyme.js'],
   testEnvironment: 'jsdom',
   testEnvironmentOptions: {
     url: 'http://localhost',
