@@ -15,8 +15,8 @@ describe('<AnnotationLabel />', () => {
   const defaultProps = {
     x: 100,
     y: 100,
-    title: 'Test Label',
-    subtitle: 'Test subtitle',
+    title: 'Title',
+    subtitle: 'Subtitle',
     showAnchorLine: true,
   };
 
@@ -41,27 +41,7 @@ describe('<AnnotationLabel />', () => {
       </svg>,
     );
 
-    expect(getByText('Test Label')).toBeInTheDocument();
-    expect(getByText('Test subtitle')).toBeInTheDocument();
-  });
-
-  it('should render within foreignObject', () => {
-    const { getByText } = render(
-      <svg>
-        <AnnotationLabel
-          {...defaultProps}
-          title="Title in foreignObject"
-          subtitle="Subtitle in foreignObject"
-        />
-      </svg>,
-    );
-
-    // Since foreignObject contains the text, if we can find the text
-    // then foreignObject must exist and be working correctly
-    const title = getByText('Title in foreignObject');
-    const subtitle = getByText('Subtitle in foreignObject');
-
-    expect(title).toBeInTheDocument();
-    expect(subtitle).toBeInTheDocument();
+    expect(getByText('Title')).toBeInTheDocument();
+    expect(getByText('Subtitle')).toBeInTheDocument();
   });
 });
