@@ -114,7 +114,7 @@
     "regenerator-runtime": "^0.10.5",
     "timezone-mock": "^1.1.0",
     "ts-node": "^10.9.1",
-    "typescript": "~5.5.0",
+    "typescript": "^5.7.0",
     "vitest": "2"
   },
   "packageManager": "yarn@1.22.19",
