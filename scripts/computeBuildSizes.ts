@@ -59,6 +59,6 @@ async function computeBuildSizes() {
 }
 
 computeBuildSizes().catch((error) => {
-  console.error(chalk.red(error.message));
+  console.error(chalk.red(String(error.message)));
   process.exitCode = 1;
 });

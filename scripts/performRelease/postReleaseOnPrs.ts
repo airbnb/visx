@@ -1,6 +1,6 @@
-import { GithubClient } from '../utils/getGitHubClient';
+import type { GithubClient } from '../utils/getGitHubClient';
 import getRepoContext from '../utils/getRepoContext';
-import { PR } from './types';
+import type { PR } from './types';
 
 export default async function postReleaseOnPrs(client: GithubClient, prs: PR[], tagName: string) {
   console.log(`Posting release on ${prs.length} PRs`);

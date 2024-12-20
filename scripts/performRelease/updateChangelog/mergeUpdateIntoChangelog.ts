@@ -35,10 +35,10 @@ export default function mergeUpdateIntoChangelog(
   const [currChangelogLinks, currChangelogContent] = currChangelog.split(LINK_CONTENT_SEPARATOR);
   const currChangelogLinksByLine = currChangelogLinks
     .split('\n')
-    .filter(line => line !== '\n' && line !== CHANGELOG_HEADER); // remove header + newlines
+    .filter((line) => line !== '\n' && line !== CHANGELOG_HEADER); // remove header + newlines
 
   // find start of older releases
-  const detailsIndex = currChangelogLinksByLine.findIndex(line => line.includes('<details>'));
+  const detailsIndex = currChangelogLinksByLine.findIndex((line) => line.includes('<details>'));
   const oldestRecentLinkIndex = detailsIndex - 1;
   const [oldestRecentLink] = currChangelogLinksByLine.splice(oldestRecentLinkIndex, 1);
 
@@ -51,7 +51,7 @@ export default function mergeUpdateIntoChangelog(
   const oldestRecentLinkVersion = oldestRecentLinkMatch[1];
   const oldestRecentLinkUrl = oldestRecentLinkMatch[2];
 
-  const ulIndex = currChangelogLinksByLine.findIndex(line => line.includes('<ul>'));
+  const ulIndex = currChangelogLinksByLine.findIndex((line) => line.includes('<ul>'));
   const oldestRecentLinkInsertionIndex = ulIndex + 1;
   const nextChangelogLinksByLine = [
     // new link

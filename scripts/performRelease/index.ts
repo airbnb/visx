@@ -92,6 +92,6 @@ async function performRelease() {
 }
 
 performRelease().catch((error) => {
-  console.error(chalk.red(error.message));
+  console.error(chalk.red(String(error.message)));
   process.exit(1);
 });
