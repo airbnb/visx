@@ -48,6 +48,7 @@ function useEverVisible() {
     return () => {
       if (curr) {
         observer.unobserve(curr);
+        observer.disconnect();
       }
     };
   }, []);
@@ -72,6 +73,7 @@ export default function GalleryTile<ExampleProps extends WidthAndHeight>({
         exampleUrl,
         <div ref={ref} className="gallery-tile" style={tileStyles}>
           <div className="image">
+            {/** lazy render */}
             {everVisible && (
               <ParentSize>
                 {({ width, height }) =>
