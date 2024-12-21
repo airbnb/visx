@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import ParentSize from '@visx/responsive/lib/components/ParentSize';
 import { WidthAndHeight } from '../types';
