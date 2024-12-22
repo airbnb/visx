@@ -8,7 +8,8 @@ export { default as packageJson } from '../../sandboxes/visx-geo-albers-usa/pack
 const tileStyles = { background };
 const detailsStyles = { color: colors[1] };
 
-export default function GeoAlbersUsaTile() {
+export default GeoAlbersUsaTile;
+function GeoAlbersUsaTile() {
   return (
     <GalleryTile<GeoAlbersUsaProps>
       title="AlbersUsa"

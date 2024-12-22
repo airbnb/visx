@@ -8,7 +8,8 @@ export { default as packageJson } from '../../sandboxes/visx-stats/package.json'
 const tileStyles = { background: '#8a88e3' };
 const detailsStyles = { color: '#ffffff', zIndex: 1 };
 
-export default function StatsPlotTile() {
+export default StatsPlotTile;
+function StatsPlotTile() {
   return (
     <GalleryTile<StatsPlotProps>
       title="Stats Plots"

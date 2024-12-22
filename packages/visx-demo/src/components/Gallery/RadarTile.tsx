@@ -8,7 +8,8 @@ export { default as packageJson } from '../../sandboxes/visx-radar/package.json'
 const tileStyles = { background };
 const detailsStyles = { color: pumpkin };
 
-export default function RadarTile() {
+export default RadarTile;
+function RadarTile() {
   return (
     <GalleryTile<RadarProps>
       title="Radar"

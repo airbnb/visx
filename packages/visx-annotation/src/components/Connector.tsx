@@ -17,7 +17,8 @@ export type ConnectorProps = Pick<AnnotationContextType, 'x' | 'y' | 'dx' | 'dy'
   pathProps?: React.SVGProps<SVGPathElement>;
 };
 
-export default function Connector({
+export default Connector;
+function Connector({
   className,
   x: propsX,
   y: propsY,

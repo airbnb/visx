@@ -10,7 +10,8 @@ interface AnchorLineProps {
   height: number;
 }
 
-export default function AnchorLine({
+export default AnchorLine;
+function AnchorLine({
   anchorLineOrientation,
   anchorLineStroke,
   verticalAnchor,

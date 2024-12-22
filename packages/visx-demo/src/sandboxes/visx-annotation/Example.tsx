@@ -14,7 +14,8 @@ export type AnnotationProps = {
 export const orange = '#ff7e67';
 export const greens = ['#ecf4f3', '#68b0ab', '#006a71'];
 
-export default function Example({ width, height, compact = false }: AnnotationProps) {
+export default Example;
+function Example({ width, height, compact = false }: AnnotationProps) {
   return (
     <ExampleControls width={width} height={height} compact={compact}>
       {({

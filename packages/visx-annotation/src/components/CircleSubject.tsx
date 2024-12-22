@@ -12,7 +12,8 @@ export type CircleSubjectProps = Pick<AnnotationContextType, 'x' | 'y'> & {
   radius?: number;
 };
 
-export default function CircleSubject({
+export default CircleSubject;
+function CircleSubject({
   className,
   x: propsX,
   y: propsY,

@@ -44,7 +44,8 @@ const defaultDragHandleProps = {
   strokeWidth: 2,
 };
 
-export default function EditableAnnotation({
+export default EditableAnnotation;
+function EditableAnnotation({
   canEditLabel = true,
   canEditSubject = true,
   children,

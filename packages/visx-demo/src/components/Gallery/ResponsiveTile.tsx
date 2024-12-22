@@ -15,7 +15,8 @@ const detailsStyles = {
   borderBottomRightRadius: '14px',
 };
 
-export default function ResponsiveTile() {
+export default ResponsiveTile;
+function ResponsiveTile() {
   return (
     <GalleryTile<ResponsiveProps>
       title="Responsive"

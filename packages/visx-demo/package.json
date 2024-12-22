@@ -6,7 +6,7 @@
   "scripts": {
     "build": "NODE_OPTIONS=--openssl-legacy-provider next build && NODE_OPTIONS=--openssl-legacy-provider next export",
     "deploy": "rm -rf out && yarn build && cd out && touch .nojekyll && git init && git add . && git commit -m \"Deploy commit\" && git remote add origin git@github.com:airbnb/visx.git && git push -f origin master:gh-pages",
-    "dev": "NODE_OPTIONS=--openssl-legacy-provider next",
+    "dev": "NODE_OPTIONS=--openssl-legacy-provider NEXT_PRIVATE_LOCAL_WEBPACK=1 next",
     "happo": "happo",
     "happo-ci-github-actions": "NODE_OPTIONS=--openssl-legacy-provider happo-ci-github-actions",
     "preview": "yarn build && cd ./out && npx serve",
@@ -86,13 +86,14 @@
     "prismjs": "^1.19.0",
     "raw-loader": "^4.0.0",
     "react": "^19.0.0",
-    "react-docgen-typescript-loader": "3.7.2",
+    "react-docgen-typescript-plugin": "^1.0.8",
     "react-dom": "^19.0.0",
     "react-github-button": "^0.1.10",
     "react-markdown": "^4.3.1",
     "react-tilt": "^0.1.4",
     "recompose": "^0.26.0",
-    "topojson-client": "^3.0.0"
+    "topojson-client": "^3.0.0",
+    "webpack": "^5.0.0"
   },
   "publishConfig": {
     "access": "public"

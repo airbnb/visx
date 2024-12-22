@@ -9,7 +9,8 @@ const tileStyles = { background };
 const detailsStyles = { color: '#019ece' };
 const exampleProps = { events: false };
 
-export default function GeoCustomTile() {
+export default GeoCustomTile;
+function GeoCustomTile() {
   return (
     <GalleryTile<GeoCustomProps>
       title="Custom Projection"

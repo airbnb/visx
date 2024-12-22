@@ -9,7 +9,8 @@ const tileStyles = { background };
 const detailsStyles = { color: 'rgb(93,30,91)' };
 const exampleProps = { animate: false };
 
-export default function StreamGraphTile() {
+export default StreamGraphTile;
+function StreamGraphTile() {
   return (
     <GalleryTile<StreamGraphProps>
       title="Streamgraph"

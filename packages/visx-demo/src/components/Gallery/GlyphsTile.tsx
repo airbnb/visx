@@ -9,7 +9,8 @@ const tileStyles = { background: secondaryColor };
 const detailsStyles = { color: primaryColor };
 const exampleProps = { margin: { top: 30, left: 10, right: 10, bottom: 80 } };
 
-export default function GlyphsTile() {
+export default GlyphsTile;
+function GlyphsTile() {
   return (
     <GalleryTile<GlyphProps>
       title="Glyphs"

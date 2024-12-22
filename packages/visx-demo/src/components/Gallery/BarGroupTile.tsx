@@ -8,7 +8,8 @@ export { default as packageJson } from '../../sandboxes/visx-bargroup/package.js
 const tileStyles = { background };
 const detailsStyles = { color: green };
 
-export default function BarGroupTile() {
+export default BarGroupTile;
+function BarGroupTile() {
   return (
     <GalleryTile<BarGroupProps>
       title="Bar Group"

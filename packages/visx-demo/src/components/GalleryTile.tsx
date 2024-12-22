@@ -18,7 +18,8 @@ type Props<ExampleProps extends WidthAndHeight> = {
 const renderLinkWrapper = (url: string | undefined, node: React.ReactNode) =>
   url ? <Link href={url}>{node}</Link> : node;
 
-export default function GalleryTile<ExampleProps extends WidthAndHeight>({
+export default GalleryTile;
+function GalleryTile<ExampleProps extends WidthAndHeight>({
   description,
   detailsHeight = 76,
   detailsStyles,

@@ -10,7 +10,8 @@ type Props = {
 const alphaSort = (a: PropInfo, b: PropInfo) => a.name.localeCompare(b.name);
 
 /** Renders a list of props for the passed docgenInfo */
-export default function ApiTable({ docgenInfo }: Props) {
+export default ApiTable;
+function ApiTable({ docgenInfo }: Props) {
   const { displayName = '' } = docgenInfo;
   const anchorId = displayName;
 

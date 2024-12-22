@@ -8,7 +8,8 @@ export { default as packageJson } from '../../sandboxes/visx-chord/package.json'
 const tileStyles = { background: '#e4e3d8' };
 const detailsStyles = { color: '#111' };
 
-export default function ChordTile() {
+export default ChordTile;
+function ChordTile() {
   return (
     <GalleryTile<ChordProps>
       title="Chord"

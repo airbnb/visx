@@ -108,7 +108,8 @@ export const tiles = [
   WordcloudTile,
 ];
 
-export default function Gallery() {
+export default Gallery;
+function Gallery() {
   const router = useRouter();
   const { pkg: routePackage } = router.query;
 

@@ -29,7 +29,8 @@ function Text() {
   );
 }
 
-export default function TextTile() {
+export default TextTile;
+function TextTile() {
   return (
     <GalleryTile<any>
       title="Text"

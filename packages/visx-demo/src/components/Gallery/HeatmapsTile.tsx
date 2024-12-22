@@ -8,7 +8,8 @@ export { default as packageJson } from '../../sandboxes/visx-heatmap/package.jso
 const tileStyles = { background };
 const detailsStyles = { color: 'rgba(255,255,255,0.3)' };
 
-export default function HeatmapsTile() {
+export default HeatmapsTile;
+function HeatmapsTile() {
   return (
     <GalleryTile<HeatmapProps>
       title="Heatmaps"

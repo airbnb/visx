@@ -8,7 +8,8 @@ export { default as packageJson } from '../../sandboxes/visx-stacked-areas/packa
 const tileStyles = { background };
 const detailsStyles = { color: 'rgba(251, 224, 137, 1.000)' };
 
-export default function StackedAreasTile() {
+export default StackedAreasTile;
+function StackedAreasTile() {
   return (
     <GalleryTile<StackedAreasProps>
       title="Stacked Areas"

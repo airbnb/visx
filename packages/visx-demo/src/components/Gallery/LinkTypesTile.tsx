@@ -8,7 +8,8 @@ export { default as packageJson } from '../../sandboxes/visx-linktypes/package.j
 const tileStyles = { background: '#272b4d' };
 const detailsStyles = { color: '#269688' };
 
-export default function LinkTypesTile() {
+export default LinkTypesTile;
+function LinkTypesTile() {
   return (
     <GalleryTile<LinkTypesProps>
       title="Link Types"

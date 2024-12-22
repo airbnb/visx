@@ -9,7 +9,8 @@ const tileStyles = { backgroundColor };
 const detailsStyles = { color: labelColor };
 const exampleProps = { showControls: false };
 
-export default function AxisTile() {
+export default AxisTile;
+function AxisTile() {
   return (
     <GalleryTile<AxisProps>
       title="Axes & scales"

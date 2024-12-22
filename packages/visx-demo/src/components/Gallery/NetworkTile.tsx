@@ -7,7 +7,8 @@ export { default as packageJson } from '../../sandboxes/visx-network/package.jso
 
 const tileStyles = { background };
 
-export default function NetworkTile() {
+export default NetworkTile;
+function NetworkTile() {
   return (
     <GalleryTile<NetworkProps>
       title="Network"

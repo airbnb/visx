@@ -9,7 +9,8 @@ const tileStyles = { border: `1px solid ${accentColor}` };
 const detailsStyles = { color: background };
 const exampleProps = { compact: true, margin: { top: 10, left: 50, bottom: 60, right: 20 } };
 
-export default function BrushTile() {
+export default BrushTile;
+function BrushTile() {
   return (
     <GalleryTile<BrushProps>
       title="Brush"

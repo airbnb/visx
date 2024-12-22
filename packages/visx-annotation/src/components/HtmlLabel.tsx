@@ -24,7 +24,8 @@ export type HtmlLabelProps = Pick<
   /** Optional styles to apply to the HTML container. */
   containerStyle?: React.CSSProperties;
 };
-export default function HtmlLabel({
+export default HtmlLabel;
+function HtmlLabel({
   anchorLineStroke = '#222',
   children,
   className,

@@ -8,7 +8,8 @@ export { default as packageJson } from '../../sandboxes/visx-geo-mercator/packag
 const tileStyles = { background };
 const detailsStyles = { color: '#f63a48' };
 
-export default function GeoMercatorTile() {
+export default GeoMercatorTile;
+function GeoMercatorTile() {
   return (
     <GalleryTile<GeoMercatorProps>
       title="Mercator"

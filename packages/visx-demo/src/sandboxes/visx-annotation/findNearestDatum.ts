@@ -2,7 +2,8 @@ import type { AppleStock } from '@visx/mock-data/lib/mocks/appleStock';
 import { bisector } from '@visx/vendor/d3-array';
 import type { scaleLinear, scaleTime } from '@visx/scale';
 
-export default function findNearestDatum({
+export default findNearestDatum;
+function findNearestDatum({
   value,
   scale,
   accessor,

@@ -11,7 +11,8 @@ export { default as packageJson } from '../../sandboxes/visx-barstack-horizontal
 const tileStyles = { background };
 const detailsStyles = { color: purple3, zIndex: 1 };
 
-export default function BarStackHorizontalTile() {
+export default BarStackHorizontalTile;
+function BarStackHorizontalTile() {
   return (
     <GalleryTile<BarStackHorizontalProps>
       title="Bar Stack Horizontal"

@@ -21,7 +21,8 @@ export type LineSubjectProps = {
   max: number;
 };
 
-export default function LineSubject({
+export default LineSubject;
+function LineSubject({
   className,
   x: propsX,
   y: propsY,

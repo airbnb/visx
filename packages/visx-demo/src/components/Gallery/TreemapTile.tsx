@@ -9,7 +9,8 @@ const tileStyles = { background };
 const detailsStyles = { color: color1 };
 const exampleProps = { margin: { top: 0, left: 10, right: 10, bottom: 76 } };
 
-export default function TreemapTile() {
+export default TreemapTile;
+function TreemapTile() {
   return (
     <GalleryTile<TreemapProps>
       title="Treemap"

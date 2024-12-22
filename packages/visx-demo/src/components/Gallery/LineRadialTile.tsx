@@ -9,7 +9,8 @@ const tileStyles = { background };
 const detailsStyles = { color: blue };
 const exampleProps = { animate: false };
 
-export default function LineRadialTile() {
+export default LineRadialTile;
+function LineRadialTile() {
   return (
     <GalleryTile<LineRadialProps>
       title="Radial Lines"

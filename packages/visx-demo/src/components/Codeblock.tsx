@@ -16,7 +16,8 @@ function Lines({ lines }: { lines: number[] }) {
   );
 }
 
-export default function ({ children }: { children: string }) {
+export default ;
+function ({ children }: { children: string }) {
   const match = children.match(/\n(?!$)/g);
   const linesNum = match ? match.length + 1 : 1;
   const lines: number[] = new Array(linesNum + 1).fill(1);

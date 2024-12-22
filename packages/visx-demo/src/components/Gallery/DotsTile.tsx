@@ -9,7 +9,8 @@ const tileStyles = { background: '#fd6e7f' };
 const detailsStyles = { color: '#f6c431' };
 const exampleProps = { showControls: false };
 
-export default function DotsTile() {
+export default DotsTile;
+function DotsTile() {
   return (
     <GalleryTile<DotsProps>
       title="Dots"

@@ -15,7 +15,8 @@ type Props = {
   readme: string;
 };
 
-export default function DocPage({ components, examples, visxPackage, readme }: Props) {
+export default DocPage;
+function DocPage({ components, examples, visxPackage, readme }: Props) {
   return (
     <Page wrapper={false} title={`@visx/${visxPackage} documentation`}>
       <div className="doc-container">

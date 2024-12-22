@@ -9,7 +9,8 @@ const tileStyles = { background };
 const detailsStyles = { color: green };
 const exampleProps = { margin: { top: 40, left: 0, right: 0, bottom: 90 } };
 
-export default function DendrogramsTile() {
+export default DendrogramsTile;
+function DendrogramsTile() {
   return (
     <GalleryTile<DendrogramProps>
       title="Dendrograms"

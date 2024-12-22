@@ -9,7 +9,8 @@ const tileStyles = { background };
 const detailsStyles = { color: '#111' };
 const exampleProps = { margin: { top: 40, left: 40, right: 20, bottom: 30 } };
 
-export default function ThresholdTile() {
+export default ThresholdTile;
+function ThresholdTile() {
   return (
     <GalleryTile<ThresholdProps>
       title="Area difference chart"

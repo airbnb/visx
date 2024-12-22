@@ -11,7 +11,8 @@ const detailsStyles = {
   color: 'rgba(53,71,125,1)',
 };
 
-export default function DotsTile() {
+export default DotsTile;
+function DotsTile() {
   return (
     <GalleryTile<TooltipProps>
       title="Tooltip"

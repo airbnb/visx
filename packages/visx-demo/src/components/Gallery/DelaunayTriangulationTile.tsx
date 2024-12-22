@@ -12,7 +12,8 @@ const tileStyles = {
 };
 const detailsStyles = { background: 'white', color: '#5B247A', borderRadius: '0 0 14px 14px' };
 
-export default function DelaunayTriangulationTile() {
+export default DelaunayTriangulationTile;
+function DelaunayTriangulationTile() {
   return (
     <GalleryTile<DelaunayTriangulationProps>
       title="Delaunay Triangulation"

@@ -10,7 +10,8 @@ export { default as packageJson } from '../../sandboxes/visx-shape-splitlinepath
 const tileStyles = { background: backgroundLight };
 const detailsStyles = { color: 'white' };
 
-export default function SplitLinePathTile() {
+export default SplitLinePathTile;
+function SplitLinePathTile() {
   return (
     <GalleryTile<SplitLinePathExampleProps>
       title="SplitLinePath"

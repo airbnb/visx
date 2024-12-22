@@ -12,7 +12,8 @@ const tileStyles = {
 };
 const detailsStyles = { background: 'white', color: '#eb6d88', borderRadius: '0 0 14px 14px' };
 
-export default function VoronoiTile() {
+export default VoronoiTile;
+function VoronoiTile() {
   return (
     <GalleryTile<VoronoiProps>
       title="Voronoi overlay"

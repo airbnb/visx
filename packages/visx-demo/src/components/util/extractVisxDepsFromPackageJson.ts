@@ -1,6 +1,7 @@
 import type { PackageJson } from '../../types';
 
-export default function extractVisxDepsFromPackageJson(packageJson?: PackageJson) {
+export default extractVisxDepsFromPackageJson;
+function extractVisxDepsFromPackageJson(packageJson?: PackageJson) {
   const visxDeps: string[] = [];
 
   Object.keys(packageJson?.dependencies ?? {}).forEach((dep) => {

@@ -69,7 +69,8 @@ function getCompletePadding(padding: LabelProps['backgroundPadding']) {
   return { ...DEFAULT_PADDING, ...padding };
 }
 
-export default function Label({
+export default Label;
+function Label({
   anchorLineStroke = '#222',
   backgroundFill = '#eaeaea',
   backgroundPadding,

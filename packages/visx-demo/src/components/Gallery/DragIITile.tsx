@@ -10,7 +10,8 @@ const tileStyles = { background: '#04002b', borderRadius: 14 };
 const detailsStyles = { color: '#ff614e', zIndex: 1 };
 const exampleProps = { data: drawData };
 
-export default function DragIITile() {
+export default DragIITile;
+function DragIITile() {
   return (
     <GalleryTile<DragIIProps>
       title="Drag ii"

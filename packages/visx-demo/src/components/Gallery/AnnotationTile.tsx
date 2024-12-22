@@ -15,7 +15,8 @@ const exampleProps = { compact: true };
 const exampleRenderer: React.FC<AnnotationProps> = (props) =>
   props.width > 0 && props.height > 0 ? <Annotation {...props} /> : null;
 
-export default function AnnotationTile() {
+export default AnnotationTile;
+function AnnotationTile() {
   return (
     <GalleryTile<AnnotationProps>
       title="Annotation"

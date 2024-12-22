@@ -12,7 +12,8 @@ export { default as packageJson } from '../../sandboxes/visx-xychart/package.jso
 
 const tileStyles = { background: '#222' };
 
-export default function XYChartITile() {
+export default XYChartITile;
+function XYChartITile() {
   return (
     <GalleryTile<XYChartProps>
       title="XYChart"

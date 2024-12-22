@@ -9,7 +9,8 @@ const tileStyles = { background: '#e4e3d8' };
 const detailsStyles = { color: '#111' };
 const renderer = (size: WidthAndHeight) => <Wordcloud width={size.width} height={size.height} />;
 
-export default function WordcloudTile() {
+export default WordcloudTile;
+function WordcloudTile() {
   return (
     <GalleryTile
       title="Wordcloud"

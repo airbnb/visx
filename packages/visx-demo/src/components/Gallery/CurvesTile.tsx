@@ -9,7 +9,8 @@ const tileStyles = { border: '1px solid lightgray' };
 const detailsStyles = { color: '#222' };
 const exampleProps = { showControls: false };
 
-export default function CurvesTile() {
+export default CurvesTile;
+function CurvesTile() {
   return (
     <GalleryTile<CurveProps>
       title="Curves"

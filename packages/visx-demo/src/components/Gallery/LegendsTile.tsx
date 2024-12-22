@@ -7,7 +7,8 @@ export { default as packageJson } from '../../sandboxes/visx-legend/package.json
 const tileStyles = { background: 'black' };
 const detailsStyles = { color: '#aaa' };
 
-export default function LegendsTile() {
+export default LegendsTile;
+function LegendsTile() {
   return (
     <GalleryTile<any>
       title="Legends"

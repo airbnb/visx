@@ -8,7 +8,8 @@ export { default as packageJson } from '../../sandboxes/visx-drag-i/package.json
 const tileStyles = { background: '#c4c3cb', borderRadius: 14 };
 const detailsStyles = { color: '#6437d6', zIndex: 1 };
 
-export default function DragITile() {
+export default DragITile;
+function DragITile() {
   return (
     <GalleryTile<DragIProps>
       title="Drag i"

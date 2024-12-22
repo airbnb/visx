@@ -9,7 +9,8 @@ const tileStyles = { background };
 const detailsStyles = { color: '#269688' };
 const exampleProps = { margin: { top: 10, left: 30, right: 40, bottom: 76 } };
 
-export default function TreesTile() {
+export default TreesTile;
+function TreesTile() {
   return (
     <GalleryTile<TreeProps>
       title="Trees"

@@ -8,7 +8,8 @@ export { default as packageJson } from '../../sandboxes/visx-area/package.json';
 const tileStyles = { background };
 const detailsStyles = { color: accentColor };
 
-export default function AreaTile() {
+export default AreaTile;
+function AreaTile() {
   return (
     <GalleryTile<AreaProps>
       title="AreaClosed"

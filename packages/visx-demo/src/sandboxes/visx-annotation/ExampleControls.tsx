@@ -44,7 +44,8 @@ const getStockValue = (d: AppleStock) => d.close;
 const annotateDatum = data[Math.floor(data.length / 2) + 4];
 const approxTooltipHeight = 70;
 
-export default function ExampleControls({
+export default ExampleControls;
+function ExampleControls({
   width,
   height,
   compact = false,

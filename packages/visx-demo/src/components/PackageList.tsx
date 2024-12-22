@@ -3,7 +3,8 @@ import Link from 'next/link';
 import cx from 'classnames';
 import type { VisxPackage } from '../types';
 
-export default function PackageList({
+export default PackageList;
+function PackageList({
   emphasizePackage,
   compact,
   grid,

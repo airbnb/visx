@@ -8,7 +8,8 @@ export { default as packageJson } from '../../sandboxes/visx-barstack/package.js
 const tileStyles = { background };
 const detailsStyles = { color: purple3, zIndex: 1 };
 
-export default function BarStackTile() {
+export default BarStackTile;
+function BarStackTile() {
   return (
     <GalleryTile<BarStackProps>
       title="Bar Stack"

@@ -8,7 +8,8 @@ export { default as packageJson } from '../../sandboxes/visx-zoom-i/package.json
 const tileStyles = { background: '#0a0a0a' };
 const detailsStyles = { color: '#ccc' };
 
-export default function ZoomITile() {
+export default ZoomITile;
+function ZoomITile() {
   return (
     <GalleryTile<ZoomIProps>
       title="Zoom"

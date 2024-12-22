@@ -9,7 +9,8 @@ const tileStyles = { background: '#3dbdb1' };
 const detailsStyles = { color: '#93F9B9' };
 const exampleProps = { showControls: false };
 
-export default function BarsTile() {
+export default BarsTile;
+function BarsTile() {
   return (
     <GalleryTile<RadialBarsProps>
       title="Radial Bars"

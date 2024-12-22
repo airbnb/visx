@@ -9,7 +9,8 @@ const tileStyles = { background };
 const detailsStyles = { color };
 const exampleProps = { showControls: false };
 
-export default function SankeyTile() {
+export default SankeyTile;
+function SankeyTile() {
   return (
     <GalleryTile<SankeyDemoProps>
       title="Sankey"

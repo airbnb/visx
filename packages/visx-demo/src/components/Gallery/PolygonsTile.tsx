@@ -9,7 +9,8 @@ const tileStyles = { background };
 const detailsStyles = { color: 'white' };
 const exampleProps = { margin: { top: 10, right: 0, bottom: 76, left: 0 } };
 
-export default function PolygonsTile() {
+export default PolygonsTile;
+function PolygonsTile() {
   return (
     <GalleryTile<PolygonProps>
       title="Polygons"

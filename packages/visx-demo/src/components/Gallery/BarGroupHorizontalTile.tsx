@@ -12,7 +12,8 @@ const tileStyles = { background };
 const detailsStyles = { color: green };
 const exampleProps = { margin: { top: 20, bottom: 70, left: 50, right: 20 } };
 
-export default function BarGroupHorizontalTile() {
+export default BarGroupHorizontalTile;
+function BarGroupHorizontalTile() {
   return (
     <GalleryTile<BarGroupHorizontalProps>
       title="Bar Group Horizontal"
