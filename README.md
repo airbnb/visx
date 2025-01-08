@@ -217,6 +217,7 @@ reusable visualization charts or library without having to learn d3. No more sel
 - [Physician.FYI](https://physician.fyi) - Explore physicians' disciplinary history
 - [Index by Superstardle](https://index.superstardle.com), [Salaries by Superstardle](https://salaries.superstardle.com), & [Pack'Em by Superstardle](https://playoffs.superstardle.com) - Explore professional sports teams and superstars in the world of underdogs, salaries, and playoff performances.
 - Ridgeline chart visualizing shuffling probabilities by [@jmssnr](https://github.com/jmssnr) ([Demo](https://shuffling-probability.vercel.app/)) ([Github](https://github.com/jmssnr/shuffling-probability))
+- [UCSF Data Library](https://datalibrary.ucsf.edu) - Landing page for disease research tools ([Github](https://github.com/mountetna/monoetna/tree/master/vesta/ui))
 
 Have a project that's using `visx`? Open a pull request and we'll add it to the list.
 
