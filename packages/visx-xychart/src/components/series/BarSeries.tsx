@@ -5,6 +5,12 @@ import Bars from './private/Bars';
 
 function BarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum extends object>({
   colorAccessor,
+  radius,
+  radiusAll,
+  radiusTop,
+  radiusRight,
+  radiusBottom,
+  radiusLeft,
   ...props
 }: Omit<BaseBarSeriesProps<XScale, YScale, Datum>, 'BarsComponent'>) {
   return (
@@ -13,6 +19,11 @@ function BarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum ext
       // @TODO currently generics for non-SeriesProps are not passed correctly in
       // withRegisteredData HOC
       colorAccessor={colorAccessor as BaseBarSeriesProps<XScale, YScale, object>['colorAccessor']}
+      radius={radius as BaseBarSeriesProps<XScale, YScale, object>['radius']}
+      radiusAll={radiusAll as BaseBarSeriesProps<XScale, YScale, object>['radiusAll']}
+      radiusTop={radiusTop as BaseBarSeriesProps<XScale, YScale, object>['radiusTop']}
+      radiusRight={radiusRight as BaseBarSeriesProps<XScale, YScale, object>['radiusRight']}
+      radiusBottom={radiusBottom as BaseBarSeriesProps<XScale, YScale, object>['radiusBottom']}
       BarsComponent={Bars}
     />
   );

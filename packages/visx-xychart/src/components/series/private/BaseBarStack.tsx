@@ -39,7 +39,7 @@ export type BaseBarStackProps<
     | React.ReactElement<BarStackChildProps<XScale, YScale, Datum>>
     | React.ReactElement<BarStackChildProps<XScale, YScale, Datum>>[];
   /** Rendered component which is passed BarsProps by BaseBarStack after processing. */
-  BarsComponent: React.FC<BarsProps<XScale, YScale>>;
+  BarsComponent: React.FC<BarsProps<XScale, YScale, Datum>>;
 } & Pick<StackPathConfig<Datum, string>, 'offset' | 'order'> &
   Pick<
     SeriesProps<XScale, YScale, Datum>,
@@ -192,7 +192,7 @@ function BaseBarStack<
                   : colorScale(barStack.key),
             };
           })
-          .filter((bar) => bar) as Bar[],
+          .filter((bar) => bar) as Bar<Datum>[],
       };
     })
     .filter((series) => series);
