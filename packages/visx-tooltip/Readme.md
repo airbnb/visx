@@ -172,7 +172,7 @@ To use a `Portal`, simply pass your `Tooltip` as a child: `<Portal><Tooltip {...
 will also need to correct the `left` and `top` positions to be in _page coordinates_, not the
 coordinates of your container which you would use when _not_ using a `Portal`. If reacting to a
 mouse event, you can use `event.pageX/Y`. Alternatively, if you have container coordinates, you can
-convert them to page coordinates using the following (note: `useTooltipInPortal` does handles this
+convert them to page coordinates using the following (note: `useTooltipInPortal` handles this
 for you):
 
 ```js
