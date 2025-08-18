@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { chunk } from 'lodash';
+import chunk from 'lodash-es/chunk';
 import { curveCardinal } from '@visx/curve';
 import { LinePath, SplitLinePath } from '@visx/shape';
 import { LinearGradient } from '@visx/gradient';

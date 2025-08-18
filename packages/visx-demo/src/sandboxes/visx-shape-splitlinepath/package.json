@@ -12,7 +12,7 @@
     "@visx/responsive": "latest",
     "@visx/scale": "latest",
     "@visx/shape": "latest",
-    "lodash": "^4.17.21",
+    "lodash-es": "^4.17.21",
     "react": "^18",
     "react-dom": "^18",
     "react-scripts-ts": "3.1.0",
