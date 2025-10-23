@@ -34,8 +34,8 @@ export type VoronoiProps = {
 };
 
 function Example({ width, height, margin = defaultMargin }: VoronoiProps) {
-  const innerWidth = width - margin.left - margin.right;
-  const innerHeight = height - margin.top - margin.bottom;
+  const innerWidth = Math.max(0, width - margin.left - margin.right);
+  const innerHeight = Math.max(0, height - margin.top - margin.bottom);
 
   const voronoiDiagram = useMemo(
     () =>
@@ -71,7 +71,7 @@ function Example({ width, height, margin = defaultMargin }: VoronoiProps) {
 
           const closest = voronoiDiagram.delaunay.find(point.x, point.y);
           // find neighboring polygons to hightlight
-          if (closest && data[closest].id !== hoveredId) {
+          if (data[closest].id !== hoveredId) {
             const neighbors = Array.from(voronoiDiagram.neighbors(closest));
             setNeighborIds(new Set(neighbors.map((d) => data[d].id)));
             setHoveredId(data[closest].id);
