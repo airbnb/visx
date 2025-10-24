@@ -1,12 +1,16 @@
 import React, { useContext, useEffect } from 'react';
 import { render } from '@testing-library/react';
-import { DataProvider, DataContext } from '../../src';
-import { DataProviderProps } from '../../lib/providers/DataProvider';
+import { DataProvider, DataContext, DataContextType } from '../../src';
+import { DataProviderProps, XScale, YScale } from '../../lib/providers/DataProvider';
+import useDataRegistry from '../../src/hooks/useDataRegistry';
+
+const xScaleConfig = { type: 'linear' } as const;
+const yScaleConfig = { type: 'linear' } as const;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const getWrapper = (consumer: React.ReactNode, props?: DataProviderProps<any, any>) => {
+const getWrapper = (consumer: React.ReactNode, props?: Partial<DataProviderProps<any, any>>) => {
   render(
-    <DataProvider xScale={{ type: 'linear' }} yScale={{ type: 'linear' }} {...props}>
+    <DataProvider xScale={xScaleConfig} yScale={yScaleConfig} {...props}>
       {consumer}
     </DataProvider>,
   );
@@ -84,5 +88,53 @@ describe('<DataProvider />', () => {
     };
 
     getWrapper(<DataConsumer />);
+  });
+
+  it('should use specified data registry', () => {
+    expect.assertions(1);
+
+    const Wrapper = () => {
+      const dataRegistry = useDataRegistry<
+        XScale<typeof xScaleConfig>,
+        YScale<typeof yScaleConfig>,
+        any
+      >();
+      return (
+        <DataProvider xScale={xScaleConfig} yScale={yScaleConfig} dataRegistry={dataRegistry}>
+          <DataConsumer dataRegistry={dataRegistry} />
+        </DataProvider>
+      );
+    };
+
+    const DataConsumer = ({
+      dataRegistry,
+    }: {
+      dataRegistry: DataContextType<
+        XScale<typeof xScaleConfig>,
+        YScale<typeof yScaleConfig>,
+        any
+      >['dataRegistry'];
+    }) => {
+      const { registerData } = useContext(DataContext);
+
+      useEffect(() => {
+        if (registerData) {
+          registerData({
+            key: 'visx',
+            xAccessor: (d) => d.x,
+            yAccessor: (d) => d.y,
+            data: [
+              { x: 0, y: 1 },
+              { x: 5, y: 7 },
+            ],
+          });
+          expect(dataRegistry.keys()).toEqual(['visx']);
+        }
+      }, [registerData]);
+
+      return null;
+    };
+
+    render(<Wrapper />);
   });
 });

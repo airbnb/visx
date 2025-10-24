@@ -5,7 +5,7 @@ import createOrdinalScale from '@visx/scale/lib/scales/ordinal';
 import { AxisScaleOutput } from '@visx/axis';
 import { ResizeObserverPolyfill } from '@visx/responsive/lib/types';
 
-import { XYChartTheme } from '../types';
+import { DataContextType, XYChartTheme } from '../types';
 import ThemeContext from '../context/ThemeContext';
 import DataContext from '../context/DataContext';
 import useDataRegistry from '../hooks/useDataRegistry';
@@ -13,10 +13,17 @@ import useDimensions, { Dimensions } from '../hooks/useDimensions';
 import useScales from '../hooks/useScales';
 import isDiscreteScale from '../utils/isDiscreteScale';
 
+export type XScale<XScaleConfig extends ScaleConfig<AxisScaleOutput, any, any>> =
+  ScaleConfigToD3Scale<XScaleConfig, AxisScaleOutput, any, any>;
+
+export type YScale<YScaleConfig extends ScaleConfig<AxisScaleOutput, any, any>> =
+  ScaleConfigToD3Scale<YScaleConfig, AxisScaleOutput, any, any>;
+
 /** Props that can be passed to initialize/update the provider config. */
 export type DataProviderProps<
   XScaleConfig extends ScaleConfig<AxisScaleOutput, any, any>,
   YScaleConfig extends ScaleConfig<AxisScaleOutput, any, any>,
+  Datum extends object = any,
 > = {
   /* Optionally define the initial dimensions. */
   initialDimensions?: Partial<Dimensions>;
@@ -26,6 +33,8 @@ export type DataProviderProps<
   xScale: XScaleConfig;
   /* y-scale configuration whose shape depends on scale type. */
   yScale: YScaleConfig;
+  /* Optionally specify the data registry to be used. This is useful if you want to sync domain/range of differently sized charts. */
+  dataRegistry?: DataContextType<XScale<XScaleConfig>, YScale<YScaleConfig>, Datum>['dataRegistry'];
   /* Any React children. */
   children: React.ReactNode;
   /* Determines whether Series will be plotted horizontally (e.g., horizontal bars). By default this will try to be inferred based on scale types. */
@@ -46,10 +55,11 @@ export default function DataProvider<
   theme: propsTheme,
   xScale: xScaleConfig,
   yScale: yScaleConfig,
+  dataRegistry: dataRegistryOverride,
   children,
   horizontal: initialHorizontal = 'auto',
   resizeObserverPolyfill,
-}: DataProviderProps<XScaleConfig, YScaleConfig>) {
+}: DataProviderProps<XScaleConfig, YScaleConfig, Datum>) {
   // `DataProvider` provides a theme so that `ThemeProvider` is not strictly needed.
   // `props.theme` takes precedent over `context.theme`, which has a default even if
   // a ThemeProvider is not present.
@@ -59,18 +69,17 @@ export default function DataProvider<
   const innerWidth = Math.max(0, width - margin.left - margin.right);
   const innerHeight = Math.max(0, height - margin.top - margin.bottom);
 
-  type XScale = ScaleConfigToD3Scale<XScaleConfig, AxisScaleOutput, any, any>;
-  type YScale = ScaleConfigToD3Scale<YScaleConfig, AxisScaleOutput, any, any>;
+  const dataRegistry =
+    dataRegistryOverride ?? useDataRegistry<XScale<XScaleConfig>, YScale<YScaleConfig>, Datum>();
 
-  const dataRegistry = useDataRegistry<XScale, YScale, Datum>();
-
-  const { xScale, yScale }: { xScale?: XScale; yScale?: YScale } = useScales({
-    dataRegistry,
-    xScaleConfig,
-    yScaleConfig,
-    xRange: [margin.left, Math.max(0, width - margin.right)],
-    yRange: [Math.max(0, height - margin.bottom), margin.top],
-  });
+  const { xScale, yScale }: { xScale?: XScale<XScaleConfig>; yScale?: YScale<YScaleConfig> } =
+    useScales({
+      dataRegistry,
+      xScaleConfig,
+      yScaleConfig,
+      xRange: [margin.left, Math.max(0, width - margin.right)],
+      yRange: [Math.max(0, height - margin.bottom), margin.top],
+    });
 
   const registryKeys = dataRegistry.keys();
 
