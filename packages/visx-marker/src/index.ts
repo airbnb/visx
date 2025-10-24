@@ -3,4 +3,5 @@ export { default as MarkerArrow } from './markers/Arrow';
 export { default as MarkerCross } from './markers/Cross';
 export { default as MarkerX } from './markers/X';
 export { default as MarkerCircle } from './markers/Circle';
+export { default as MarkerCircle2 } from './markers/Circle2';
 export { default as MarkerLine } from './markers/Line';
