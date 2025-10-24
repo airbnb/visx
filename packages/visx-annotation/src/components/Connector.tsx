@@ -14,7 +14,11 @@ export type ConnectorProps = Pick<AnnotationContextType, 'x' | 'y' | 'dx' | 'dy'
   /** Color of the connector line. */
   stroke?: string;
   /** Optional additional props. */
-  pathProps?: React.SVGProps<SVGPathElement>;
+  pathProps?: Omit<React.SVGProps<SVGPathElement>, 'pointerEvents'>;
+  /** Allows you to customize the pointerEvents attribute on the `<path>` element.
+   * 
+   * Default: `"none"` */
+  pointerEvents?: React.SVGAttributes<SVGPathElement>['pointerEvents'];
 };
 
 export default function Connector({
@@ -26,6 +30,7 @@ export default function Connector({
   type = 'elbow',
   stroke = '#222',
   pathProps,
+  pointerEvents = 'none',
 }: ConnectorProps) {
   // if props are provided, they take precedence over context
   const annotationContext = useContext(AnnotationContext);
@@ -63,7 +68,7 @@ export default function Connector({
       strokeWidth={1}
       stroke={stroke}
       fill="transparent"
-      pointerEvents="none"
+      pointerEvents={pointerEvents}
       d={`M${x0},${y0}${type === 'elbow' ? `L${x1},${y1}` : ''}L${x2},${y2}`}
       {...pathProps}
     />
