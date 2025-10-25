@@ -37,15 +37,15 @@ describe('combineBarStackData', () => {
 
   it('should combine data by x stack value when horizontal=false', () => {
     expect(combineBarStackData(seriesChildren)).toEqual([
-      { stack: 7, bar1: -5, bar2: 20, positiveSum: 20, negativeSum: -5 },
       { stack: 10, bar1: 5, bar2: 5, positiveSum: 10, negativeSum: 0 },
+      { stack: 7, bar1: -5, bar2: 20, positiveSum: 20, negativeSum: -5 },
     ]);
   });
   it('should combine data by y stack value when horizontal=true', () => {
     expect(combineBarStackData(seriesChildren, true)).toEqual([
       { stack: 5, bar1: 10, bar2: 10, positiveSum: 20, negativeSum: 0 },
-      { stack: 20, bar1: undefined, bar2: 7, positiveSum: 7, negativeSum: 0 },
-      { stack: -5, bar1: 7, bar2: undefined, positiveSum: 7, negativeSum: 0 },
+      { stack: -5, bar1: 7, positiveSum: 7, negativeSum: 0 },
+      { stack: 20, bar2: 7, positiveSum: 7, negativeSum: 0 },
     ]);
   });
 });
