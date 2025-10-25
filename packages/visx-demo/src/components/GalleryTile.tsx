@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import ParentSize from '@visx/responsive/lib/components/ParentSize';
 import { WidthAndHeight } from '../types';
@@ -18,6 +18,44 @@ type Props<ExampleProps extends WidthAndHeight> = {
 const renderLinkWrapper = (url: string | undefined, node: React.ReactNode) =>
   url ? <Link href={url}>{node}</Link> : node;
 
+/**
+ * hook which returns if the ref was ever visible.
+ * used for better perf/not rendering all tiles on load.
+ */
+function useEverVisible() {
+  const ref = useRef();
+  const [everVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsVisible((visible) => visible || entry.isIntersecting);
+        });
+      },
+      {
+        root: null, // viewport is the root
+        threshold: 0.01,
+      },
+    );
+
+    let curr;
+    if (ref.current) {
+      curr = ref.current;
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (curr) {
+        observer.unobserve(curr);
+        observer.disconnect();
+      }
+    };
+  }, []);
+
+  return { everVisible, ref };
+}
+
 export default function GalleryTile<ExampleProps extends WidthAndHeight>({
   description,
   detailsHeight = 76,
@@ -28,21 +66,25 @@ export default function GalleryTile<ExampleProps extends WidthAndHeight>({
   tileStyles,
   title,
 }: Props<ExampleProps>) {
+  const { everVisible, ref } = useEverVisible();
   return (
     <>
       {renderLinkWrapper(
         exampleUrl,
-        <div className="gallery-tile" style={tileStyles}>
+        <div ref={ref} className="gallery-tile" style={tileStyles}>
           <div className="image">
-            <ParentSize>
-              {({ width, height }) =>
-                React.createElement(exampleRenderer, {
-                  width,
-                  height: height + (title || description ? detailsHeight : 0),
-                  ...exampleProps,
-                } as ExampleProps)
-              }
-            </ParentSize>
+            {/** lazy render */}
+            {everVisible && (
+              <ParentSize>
+                {({ width, height }) =>
+                  React.createElement(exampleRenderer, {
+                    width,
+                    height: height + (title || description ? detailsHeight : 0),
+                    ...exampleProps,
+                  } as ExampleProps)
+                }
+              </ParentSize>
+            )}
           </div>
           {(title || description) && (
             <div className="details" style={detailsStyles}>
