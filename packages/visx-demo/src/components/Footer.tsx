@@ -1,5 +1,4 @@
 import React from 'react';
-import Instagram from './icons/Instagram';
 import Twitter from './icons/Twitter';
 import Medium from './icons/Medium';
 import GitHub from './icons/GitHub';
