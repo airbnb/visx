@@ -1,8 +1,8 @@
 import React from 'react';
 import cx from 'classnames';
 import { Group } from '@visx/group';
-import { Area as AreaType, Stack as StackType, SeriesPoint, Series } from 'd3-shape';
-import {
+import type { Area as AreaType, Stack as StackType, SeriesPoint, Series } from 'd3-shape';
+import type {
   $TSFIXME,
   AddSVGProps,
   AccessorForArrayItem,

@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { PositionScale, AddSVGProps, BaseAreaProps } from '../types';
+import type { PositionScale, AddSVGProps, BaseAreaProps } from '../types';
 import setNumOrAccessor from '../util/setNumberOrNumberAccessor';
 import { area } from '../util/D3ShapeFactories';
 

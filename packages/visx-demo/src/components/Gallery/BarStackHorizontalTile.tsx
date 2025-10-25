@@ -1,6 +1,6 @@
 import React from 'react';
+import type { BarStackHorizontalProps } from '../../sandboxes/visx-barstack-horizontal/Example';
 import BarStackHorizontal, {
-  BarStackHorizontalProps,
   background,
   purple3,
 } from '../../sandboxes/visx-barstack-horizontal/Example';

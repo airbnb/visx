@@ -1,5 +1,5 @@
 import React from 'react';
-import { LinearGradientProps } from './LinearGradient';
+import type { LinearGradientProps } from './LinearGradient';
 
 export type RadialGradientProps = Pick<
   LinearGradientProps,

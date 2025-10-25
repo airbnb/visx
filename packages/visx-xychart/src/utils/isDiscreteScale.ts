@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { AxisScaleOutput } from '@visx/axis';
-import { ScaleConfig } from '@visx/scale';
+import type { AxisScaleOutput } from '@visx/axis';
+import type { ScaleConfig } from '@visx/scale';
 
 export default function isDiscreteScale(scaleConfig: ScaleConfig<AxisScaleOutput, any, any>) {
   return (

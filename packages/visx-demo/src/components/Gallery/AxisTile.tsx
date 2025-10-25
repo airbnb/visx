@@ -1,5 +1,6 @@
 import React from 'react';
-import Axis, { AxisProps, backgroundColor, labelColor } from '../../sandboxes/visx-axis/Example';
+import type { AxisProps } from '../../sandboxes/visx-axis/Example';
+import Axis, { backgroundColor, labelColor } from '../../sandboxes/visx-axis/Example';
 import GalleryTile from '../GalleryTile';
 
 export { default as packageJson } from '../../sandboxes/visx-axis/package.json';

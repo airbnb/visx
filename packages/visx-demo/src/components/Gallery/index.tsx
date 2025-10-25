@@ -51,7 +51,7 @@ import * as TreesTile from './TreesTile';
 import * as WordcloudTile from './WordcloudTile';
 import * as XYChartTile from './XYChartTile';
 import * as ZoomITile from './ZoomITile';
-import { VisxPackage } from '../../types';
+import type { VisxPackage } from '../../types';
 import exampleToVisxDependencyLookup, {
   visxPackages,
 } from '../../sandboxes/exampleToVisxDependencyLookup';

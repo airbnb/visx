@@ -21,5 +21,5 @@ export default function getChildrenAndGrandchildrenWithProps<P extends object>(
       }
       return child;
     })
-    .filter((child) => isChildWithProps<P>(child));
+    .filter((child) => isChildWithProps<P>(child)) as unknown as React.ReactElement<P>[];
 }

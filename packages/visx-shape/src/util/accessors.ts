@@ -1,10 +1,10 @@
-import { $TSFIXME } from '../types';
+import type { $TSFIXME } from '../types';
 
-export function getX(l?: { x?: unknown }) {
+export function getX(l: any) {
   return typeof l?.x === 'number' ? l?.x : 0;
 }
 
-export function getY(l?: { y?: unknown }) {
+export function getY(l: any) {
   return typeof l?.y === 'number' ? l?.y : 0;
 }
 

@@ -1,10 +1,11 @@
 import React from 'react';
 import { BarStack } from '@visx/shape';
-import { SeriesPoint } from '@visx/shape/lib/types';
+import type { SeriesPoint } from '@visx/shape/lib/types';
 import { Group } from '@visx/group';
 import { Grid } from '@visx/grid';
 import { AxisBottom } from '@visx/axis';
-import cityTemperature, { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
+import type { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
+import cityTemperature from '@visx/mock-data/lib/mocks/cityTemperature';
 import { scaleBand, scaleLinear, scaleOrdinal } from '@visx/scale';
 import { timeParse, timeFormat } from '@visx/vendor/d3-time-format';
 import { useTooltip, useTooltipInPortal, defaultStyles } from '@visx/tooltip';

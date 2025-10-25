@@ -12,7 +12,8 @@ import {
   GlyphWye,
 } from '@visx/glyph';
 import { LinePath } from '@visx/shape';
-import genDateValue, { DateValue } from '@visx/mock-data/lib/generators/genDateValue';
+import type { DateValue } from '@visx/mock-data/lib/generators/genDateValue';
+import genDateValue from '@visx/mock-data/lib/generators/genDateValue';
 import { scaleTime, scaleLinear } from '@visx/scale';
 import { curveMonotoneX, curveBasis } from '@visx/curve';
 

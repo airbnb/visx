@@ -1,6 +1,8 @@
-import React, { ReactElement, FunctionComponent } from 'react';
+import type { ReactElement, FunctionComponent } from 'react';
+import React from 'react';
 
-import useTooltip, { UseTooltipParams } from '../hooks/useTooltip';
+import type { UseTooltipParams } from '../hooks/useTooltip';
+import useTooltip from '../hooks/useTooltip';
 
 export type WithTooltipProvidedProps<TooltipData> = UseTooltipParams<TooltipData>;
 type WithTooltipContainerProps = React.HTMLProps<HTMLDivElement>;

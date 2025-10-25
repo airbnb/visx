@@ -1,6 +1,6 @@
 import debounce from 'lodash/debounce';
 import React from 'react';
-import { Simplify, DebounceSettings } from '../types';
+import type { Simplify, DebounceSettings } from '../types';
 
 type WithScreenSizeConfig = {
   /** @deprecated use `debounceTime` instead */

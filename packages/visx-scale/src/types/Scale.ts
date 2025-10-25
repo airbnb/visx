@@ -1,4 +1,4 @@
-import {
+import type {
   ScaleOrdinal,
   ScaleLinear,
   ScaleLogarithmic,
@@ -12,7 +12,7 @@ import {
   ScaleBand,
   ScaleSymLog,
 } from '@visx/vendor/d3-scale';
-import { StringLike, DefaultOutput, ValueOf } from './Base';
+import type { StringLike, DefaultOutput, ValueOf } from './Base';
 
 export type DefaultThresholdInput = number | string | Date;
 

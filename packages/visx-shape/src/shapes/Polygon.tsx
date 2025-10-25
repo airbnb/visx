@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { degreesToRadians } from '../util/trigonometry';
-import { AddSVGProps } from '../types';
+import type { AddSVGProps } from '../types';
 
 const DEFAULT_CENTER = { x: 0, y: 0 };
 

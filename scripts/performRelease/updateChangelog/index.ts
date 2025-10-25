@@ -3,7 +3,7 @@ import fs from 'fs';
 import util from 'util';
 import childProcess from 'child_process';
 
-import { PR } from '../types';
+import type { PR } from '../types';
 import getChangelogAddition from './getChangelogAddition';
 import mergeUpdateIntoChangelog from './mergeUpdateIntoChangelog';
 

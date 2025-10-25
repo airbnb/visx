@@ -1,5 +1,5 @@
-import { CSSProperties } from 'react';
-import { SVGTextProps, HTMLTextStyles, LineStyles, XYChartTheme } from '../types/theme';
+import type { CSSProperties } from 'react';
+import type { SVGTextProps, HTMLTextStyles, LineStyles, XYChartTheme } from '../types/theme';
 import { textColor } from './colors';
 
 export type ThemeConfig = {

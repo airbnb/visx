@@ -1,9 +1,9 @@
 import React from 'react';
 import cx from 'classnames';
 import { Group } from '@visx/group';
-import { ScaleInput } from '@visx/scale';
+import type { ScaleInput } from '@visx/scale';
 import Bar from './Bar';
-import {
+import type {
   PositionScale,
   DatumObject,
   AnyScaleBand,

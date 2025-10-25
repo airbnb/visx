@@ -1,4 +1,4 @@
-import { SharedAxisProps } from '../types';
+import type { SharedAxisProps } from '../types';
 
 export const defaultAxisRangePadding = 0;
 

@@ -1,7 +1,7 @@
-import { AxisScale } from '@visx/axis';
+import type { AxisScale } from '@visx/axis';
 import { useMemo, useState } from 'react';
 import DataRegistry from '../classes/DataRegistry';
-import { DataContextType } from '../types';
+import type { DataContextType } from '../types';
 
 /** Hook that returns an API equivalent to DataRegistry but which updates as needed for use as a hook. */
 export default function useDataRegistry<

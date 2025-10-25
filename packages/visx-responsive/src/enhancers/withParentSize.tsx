@@ -1,6 +1,6 @@
 import debounce from 'lodash/debounce';
 import React from 'react';
-import {
+import type {
   DebounceSettings,
   Simplify,
   PrivateWindow,

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { render } from '@testing-library/react';
+import { act, render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { AnimatedAreaSeries, DataContext, AreaSeries, useEventEmitter } from '../../src';
 import getDataContext from '../mocks/getDataContext';
@@ -90,10 +90,10 @@ describe('<AreaSeries />', () => {
 
       useEffect(() => {
         if (emit) {
-          emit('pointermove', new MouseEvent('pointermove'), XYCHART_EVENT_SOURCE);
+          act(() => emit('pointermove', new MouseEvent('pointermove'), XYCHART_EVENT_SOURCE));
           expect(showTooltip).toHaveBeenCalledTimes(1);
 
-          emit('pointerout', new MouseEvent('pointerout'), XYCHART_EVENT_SOURCE);
+          act(() => emit('pointerout', new MouseEvent('pointerout'), XYCHART_EVENT_SOURCE));
           expect(showTooltip).toHaveBeenCalledTimes(1);
         }
       });

@@ -1,8 +1,8 @@
 import React, { useContext, useMemo, useEffect, useCallback } from 'react';
-import { PositionScale } from '@visx/shape/lib/types';
+import type { PositionScale } from '@visx/shape/lib/types';
 import { scaleBand } from '@visx/scale';
-import { BaseBarSeriesProps } from './BaseBarSeries';
-import {
+import type { BaseBarSeriesProps } from './BaseBarSeries';
+import type {
   Bar,
   BarsProps,
   DataContextType,

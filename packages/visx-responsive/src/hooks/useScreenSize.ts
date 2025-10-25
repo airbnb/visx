@@ -1,6 +1,6 @@
 import debounce from 'lodash/debounce';
 import { useEffect, useMemo, useState } from 'react';
-import { DebounceSettings } from '../types/index';
+import type { DebounceSettings } from '../types/index';
 
 interface ScreenSize {
   width: number;

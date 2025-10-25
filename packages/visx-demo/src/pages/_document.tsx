@@ -1,5 +1,6 @@
 import React from 'react';
-import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document';
+import type { DocumentContext } from 'next/document';
+import Document, { Html, Head, Main, NextScript } from 'next/document';
 
 class VisxDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {

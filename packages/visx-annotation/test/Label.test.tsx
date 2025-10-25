@@ -19,24 +19,24 @@ describe('<Label />', () => {
 
   it('should render title text', () => {
     const { getByText } = renderLabel({
-      title: 'title test',
+      title: 'title',
       resizeObserverPolyfill: ResizeObserver,
     });
-    expect(getByText('title test')).toBeInTheDocument();
+    expect(getByText('title')).toBeInTheDocument();
   });
 
   it('should render subtitle text', () => {
     const { getByText } = renderLabel({
-      title: 'title test',
-      subtitle: 'subtitle test',
+      title: 'title',
+      subtitle: 'subtitle',
       resizeObserverPolyfill: ResizeObserver,
     });
-    expect(getByText('subtitle test')).toBeInTheDocument();
+    expect(getByText('subtitle')).toBeInTheDocument();
   });
 
   it('should render background', () => {
     const { container } = renderLabel({
-      title: 'title test',
+      title: 'title',
       showBackground: true,
       resizeObserverPolyfill: ResizeObserver,
     });
@@ -46,7 +46,7 @@ describe('<Label />', () => {
 
   it('should render anchor line', () => {
     const { container } = renderLabel({
-      title: 'title test',
+      title: 'title',
       showAnchorLine: true,
       resizeObserverPolyfill: ResizeObserver,
     });

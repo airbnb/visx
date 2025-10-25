@@ -1,4 +1,5 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import type React from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Point, subtractPoints, sumPoints } from '@visx/point';
 import { localPoint } from '@visx/event';
 import useStateWithCallback from './util/useStateWithCallback';

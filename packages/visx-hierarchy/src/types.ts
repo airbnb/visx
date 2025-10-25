@@ -1,5 +1,5 @@
 /** Re-export useful types from d3-hierarchy. */
-import { HierarchyRectangularNode } from 'd3-hierarchy';
+import type { HierarchyRectangularNode } from 'd3-hierarchy';
 
 export {
   HierarchyNode,

@@ -1,7 +1,7 @@
 import util from 'util';
 import childProcess from 'child_process';
 import { ALPHA_RELEASE, MAJOR_RELEASE, MINOR_RELEASE, RELEASE_LABELS } from './constants';
-import { PR } from './types';
+import type { PR } from './types';
 
 const exec = util.promisify(childProcess.exec);
 

@@ -1,4 +1,4 @@
-import { EventType } from './types';
+import type { EventType } from './types';
 import { isMouseEvent, isTouchEvent } from './typeGuards';
 
 const DEFAULT_POINT = { x: 0, y: 0 };

@@ -1,5 +1,6 @@
 import React from 'react';
-import Bars, { BarsProps } from '../../sandboxes/visx-bars/Example';
+import type { BarsProps } from '../../sandboxes/visx-bars/Example';
+import Bars from '../../sandboxes/visx-bars/Example';
 import GalleryTile from '../GalleryTile';
 
 export { default as packageJson } from '../../sandboxes/visx-bars/package.json';

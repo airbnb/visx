@@ -1,12 +1,12 @@
 import React, { useContext, useCallback } from 'react';
-import { SeriesPoint } from 'd3-shape';
-import { PositionScale, StackPathConfig } from '@visx/shape/lib/types';
+import type { SeriesPoint } from 'd3-shape';
+import type { PositionScale, StackPathConfig } from '@visx/shape/lib/types';
 import { getFirstItem, getSecondItem } from '@visx/shape/lib/util/accessors';
 import getBandwidth from '@visx/shape/lib/util/getBandwidth';
 
-import { BaseBarSeriesProps } from './BaseBarSeries';
+import type { BaseBarSeriesProps } from './BaseBarSeries';
 import DataContext from '../../../context/DataContext';
-import {
+import type {
   Bar,
   BarsProps,
   BarStackDatum,

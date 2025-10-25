@@ -1,5 +1,5 @@
-import { D3Scale, PickD3Scale } from '@visx/scale';
-import { ReactNode, SVGProps } from 'react';
+import type { D3Scale, PickD3Scale } from '@visx/scale';
+import type { ReactNode, SVGProps } from 'react';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type $TSFIXME = any;

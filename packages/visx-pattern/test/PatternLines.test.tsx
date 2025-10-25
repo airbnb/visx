@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import { PatternLines } from '../src';
-import { PatternOrientationType } from '../src/constants';
+import type { PatternOrientationType } from '../src/constants';
 import { pathForOrientation } from '../src/patterns/Lines';
 
 const SVGWrapper = ({ children }: { children: React.ReactNode }) => (

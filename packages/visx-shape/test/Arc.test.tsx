@@ -2,7 +2,7 @@ import React from 'react';
 import mockConsole from 'jest-mock-console';
 import { render } from '@testing-library/react';
 import { Arc } from '../src';
-import { ArcProps } from '../src/shapes/Arc';
+import type { ArcProps } from '../src/shapes/Arc';
 import '@testing-library/jest-dom';
 
 interface Datum {

@@ -1,5 +1,5 @@
 import localPointGeneric from './localPointGeneric';
-import { EventType } from './types';
+import type { EventType } from './types';
 import { isElement, isEvent } from './typeGuards';
 
 /** Handles two signatures for backwards compatibility. */

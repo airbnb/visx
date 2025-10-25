@@ -1,5 +1,6 @@
 import React from 'react';
-import LinearGradient, { LinearGradientProps } from './LinearGradient';
+import type { LinearGradientProps } from './LinearGradient';
+import LinearGradient from './LinearGradient';
 
 /**
  * All props pass through to `<LinearGradient {...props} />`

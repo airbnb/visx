@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlexDirection } from '../../types';
+import type { FlexDirection } from '../../types';
 
 export type LegendItemProps = {
   flexDirection?: FlexDirection;

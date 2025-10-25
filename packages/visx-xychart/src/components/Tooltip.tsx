@@ -1,14 +1,14 @@
 import React, { useCallback, useContext, useEffect, useRef } from 'react';
 import { useTooltipInPortal, defaultStyles } from '@visx/tooltip';
-import { TooltipProps as BaseTooltipProps } from '@visx/tooltip/lib/tooltips/Tooltip';
-import { PickD3Scale } from '@visx/scale';
-import { UseTooltipPortalOptions } from '@visx/tooltip/lib/hooks/useTooltipInPortal';
+import type { TooltipProps as BaseTooltipProps } from '@visx/tooltip/lib/tooltips/Tooltip';
+import type { PickD3Scale } from '@visx/scale';
+import type { UseTooltipPortalOptions } from '@visx/tooltip/lib/hooks/useTooltipInPortal';
 
 import TooltipContext from '../context/TooltipContext';
 import DataContext from '../context/DataContext';
 import getScaleBandwidth from '../utils/getScaleBandwidth';
 import isValidNumber from '../typeguards/isValidNumber';
-import { GlyphProps as RenderGlyphProps, TooltipContextType } from '../types';
+import type { GlyphProps as RenderGlyphProps, TooltipContextType } from '../types';
 
 /** fontSize + lineHeight from default styles break precise location of crosshair, etc. */
 const TOOLTIP_NO_STYLE: React.CSSProperties = {
@@ -172,13 +172,9 @@ function TooltipInner<Datum extends object>({
       const xAccessor = entry?.xAccessor;
       const yAccessor = entry?.yAccessor;
       const left =
-        xScale && xAccessor
-          ? Number(xScale(xAccessor(datum))) + xScaleBandwidth / 2 ?? 0
-          : undefined;
+        xScale && xAccessor ? Number(xScale(xAccessor(datum))) + xScaleBandwidth / 2 : undefined;
       const top =
-        yScale && yAccessor
-          ? Number(yScale(yAccessor(datum))) + yScaleBandwidth / 2 ?? 0
-          : undefined;
+        yScale && yAccessor ? Number(yScale(yAccessor(datum))) + yScaleBandwidth / 2 : undefined;
       return { left, top };
     },
     [dataRegistry, xScaleBandwidth, yScaleBandwidth, xScale, yScale],

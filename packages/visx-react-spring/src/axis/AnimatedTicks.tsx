@@ -1,12 +1,13 @@
 import React from 'react';
-import { animated, useTransition, to, SpringValue } from '@react-spring/web';
+import type { SpringValue } from '@react-spring/web';
+import { animated, useTransition, to } from '@react-spring/web';
 import cx from 'classnames';
 import Orientation from '@visx/axis/lib/constants/orientation';
-import { ComputedTick, TicksRendererProps, AxisScale } from '@visx/axis/lib/types';
+import type { ComputedTick, TicksRendererProps, AxisScale } from '@visx/axis/lib/types';
 import { Text } from '@visx/text';
 
 import useLineTransitionConfig from '../spring-configs/useLineTransitionConfig';
-import { AnimationTrajectory } from '../types';
+import type { AnimationTrajectory } from '../types';
 
 export default function AnimatedTicks<Scale extends AxisScale>({
   hideTicks,

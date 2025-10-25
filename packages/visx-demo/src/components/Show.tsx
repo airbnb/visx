@@ -1,12 +1,11 @@
 import React, { useMemo } from 'react';
 import cx from 'classnames';
-import withScreenSize, {
-  WithScreenSizeProvidedProps,
-} from '@visx/responsive/lib/enhancers/withScreenSize';
+import type { WithScreenSizeProvidedProps } from '@visx/responsive/lib/enhancers/withScreenSize';
+import withScreenSize from '@visx/responsive/lib/enhancers/withScreenSize';
 import CodeSandboxLink from './CodeSandboxLink';
 import Page from './Page';
 import Codeblock from './Codeblock';
-import { MarginShape, ShowProvidedProps, PackageJson } from '../types';
+import type { MarginShape, ShowProvidedProps, PackageJson } from '../types';
 import VisxDocLink from './VisxDocLink';
 import extractVisxDepsFromPackageJson from './util/extractVisxDepsFromPackageJson';
 

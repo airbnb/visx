@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppProps } from 'next/app';
+import type { AppProps } from 'next/app';
 import 'prismjs/themes/prism.css';
 import NoSsr from '../components/NoSsr';
 

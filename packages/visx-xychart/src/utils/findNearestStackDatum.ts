@@ -1,8 +1,8 @@
-import { AxisScale } from '@visx/axis';
+import type { AxisScale } from '@visx/axis';
 import { getFirstItem, getSecondItem } from '@visx/shape/lib/util/accessors';
 import findNearestDatumY from './findNearestDatumY';
 import findNearestDatumX from './findNearestDatumX';
-import { BarStackDatum, NearestDatumArgs } from '../types';
+import type { BarStackDatum, NearestDatumArgs } from '../types';
 
 /**
  * This is a wrapper around findNearestDatumX/Y for BarStack, accounting for a
@@ -28,15 +28,15 @@ export default function findNearestStackDatum<
         index: datum.index,
         datum: seriesDatum,
         distanceX: horizontal // if mouse is ON the stack series, set 0 distance
-          ? point.x >= (xScale(getFirstItem(datum.datum)) ?? Infinity) &&
-            point.x <= (xScale(getSecondItem(datum.datum)) ?? -Infinity)
+          ? point.x >= Number(xScale(getFirstItem(datum.datum)) ?? Infinity) &&
+            point.x <= Number(xScale(getSecondItem(datum.datum)) ?? -Infinity)
             ? 0
             : datum.distanceX
           : datum.distanceX,
         distanceY: horizontal
           ? datum.distanceY // if mouse is ON the stack series, set 0 distance
-          : point.y <= (yScale(getFirstItem(datum.datum)) ?? -Infinity) &&
-            point.y >= (yScale(getSecondItem(datum.datum)) ?? Infinity)
+          : point.y <= Number(yScale(getFirstItem(datum.datum)) ?? -Infinity) &&
+            point.y >= Number(yScale(getSecondItem(datum.datum)) ?? Infinity)
           ? 0
           : datum.distanceY,
       }

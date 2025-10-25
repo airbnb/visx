@@ -1,8 +1,9 @@
-import { AxisScale } from '@visx/axis';
-import { PointerEvent, FocusEvent, useCallback, useContext } from 'react';
+import type { AxisScale } from '@visx/axis';
+import type { PointerEvent, FocusEvent } from 'react';
+import { useCallback, useContext } from 'react';
 import DataContext from '../context/DataContext';
 import { isFocusEvent, isPointerEvent } from '../typeguards/events';
-import {
+import type {
   DataContextType,
   EventHandlerParams,
   NearestDatumArgs,
@@ -10,7 +11,8 @@ import {
 } from '../types';
 import findNearestDatumX from '../utils/findNearestDatumX';
 import findNearestDatumY from '../utils/findNearestDatumY';
-import useEventEmitter, { HandlerParams } from './useEventEmitter';
+import type { HandlerParams } from './useEventEmitter';
+import useEventEmitter from './useEventEmitter';
 
 export const POINTER_EVENTS_ALL = '__POINTER_EVENTS_ALL';
 export const POINTER_EVENTS_NEAREST = '__POINTER_EVENTS_NEAREST';
@@ -78,7 +80,7 @@ export default function usePointerEventHandlers<
       let nearestDatumPointerParams: EventHandlerParams<Datum> | null = null;
       let nearestDatumDistance = Infinity;
 
-      if (params && event && svgPoint && width && height && xScale && yScale) {
+      if (params && event && svgPoint && width && height) {
         const considerAllKeys =
           dataKey === POINTER_EVENTS_NEAREST || dataKey === POINTER_EVENTS_ALL;
 

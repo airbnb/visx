@@ -1,15 +1,17 @@
 import React, { useState, useMemo } from 'react';
 import AreaClosed from '@visx/shape/lib/shapes/AreaClosed';
 import { curveMonotoneX } from '@visx/curve';
-import { scaleUtc, scaleLinear, scaleLog, scaleBand, ScaleInput, coerceNumber } from '@visx/scale';
-import { Axis, Orientation, SharedAxisProps, AxisScale } from '@visx/axis';
+import type { ScaleInput } from '@visx/scale';
+import { scaleUtc, scaleLinear, scaleLog, scaleBand, coerceNumber } from '@visx/scale';
+import type { SharedAxisProps, AxisScale } from '@visx/axis';
+import { Axis, Orientation } from '@visx/axis';
 import { GridRows, GridColumns } from '@visx/grid';
 import { AnimatedAxis, AnimatedGridRows, AnimatedGridColumns } from '@visx/react-spring';
 import { getSeededRandom } from '@visx/mock-data';
 import { LinearGradient } from '@visx/gradient';
 import { timeFormat } from '@visx/vendor/d3-time-format';
-import { GridRowsProps } from '@visx/grid/lib/grids/GridRows';
-import { GridColumnsProps } from '@visx/grid/lib/grids/GridColumns';
+import type { GridRowsProps } from '@visx/grid/lib/grids/GridRows';
+import type { GridColumnsProps } from '@visx/grid/lib/grids/GridColumns';
 
 export const backgroundColor = '#da7cff';
 const axisColor = '#fff';

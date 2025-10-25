@@ -1,5 +1,6 @@
 import React from 'react';
-import Marker, { MarkerComponentProps } from './Marker';
+import type { MarkerComponentProps } from './Marker';
+import Marker from './Marker';
 
 export default function MarkerCross({
   id,

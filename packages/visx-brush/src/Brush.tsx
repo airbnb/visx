@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import BaseBrush, { BaseBrushProps, BaseBrushState } from './BaseBrush';
-import { BrushHandleRenderProps } from './BrushHandle';
-import {
+import type { BaseBrushProps, BaseBrushState } from './BaseBrush';
+import BaseBrush from './BaseBrush';
+import type { BrushHandleRenderProps } from './BrushHandle';
+import type {
   Bounds,
   PartialBrushStartEnd,
   MarginShape,

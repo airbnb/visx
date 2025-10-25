@@ -3,11 +3,10 @@ import { Group } from '@visx/group';
 import { Circle } from '@visx/shape';
 import { GradientPinkRed } from '@visx/gradient';
 import { scaleLinear } from '@visx/scale';
-import genRandomNormalPoints, {
-  PointsRange,
-} from '@visx/mock-data/lib/generators/genRandomNormalPoints';
+import type { PointsRange } from '@visx/mock-data/lib/generators/genRandomNormalPoints';
+import genRandomNormalPoints from '@visx/mock-data/lib/generators/genRandomNormalPoints';
 import { withTooltip, Tooltip } from '@visx/tooltip';
-import { WithTooltipProvidedProps } from '@visx/tooltip/lib/enhancers/withTooltip';
+import type { WithTooltipProvidedProps } from '@visx/tooltip/lib/enhancers/withTooltip';
 import { voronoi, VoronoiPolygon } from '@visx/voronoi';
 import { localPoint } from '@visx/event';
 

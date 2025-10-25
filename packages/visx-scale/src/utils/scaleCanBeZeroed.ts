@@ -1,5 +1,5 @@
-import { DefaultOutput } from '../types/Base';
-import {
+import type { DefaultOutput } from '../types/Base';
+import type {
   LinearScaleConfig,
   PowScaleConfig,
   QuantizeScaleConfig,

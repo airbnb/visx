@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import reduceCSSCalc from 'reduce-css-calc';
-import { TextProps, WordsWithWidth } from '../types';
+import type { TextProps, WordsWithWidth } from '../types';
 import getStringWidth from '../util/getStringWidth';
 
 function isNumber(val: unknown): val is number {

@@ -1,5 +1,5 @@
-import { AnyD3Scale, ScaleInput } from '@visx/scale';
-import { ComponentClass, CSSProperties, FC } from 'react';
+import type { AnyD3Scale, ScaleInput } from '@visx/scale';
+import type { ComponentClass, CSSProperties, FC } from 'react';
 
 export type LabelFormatterFactory<Scale extends AnyD3Scale> = (args: {
   scale: Scale;

@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { render } from '@testing-library/react';
-import { TooltipProvider, TooltipContext, TooltipData } from '../../src';
+import type { TooltipData } from '../../src';
+import { TooltipProvider, TooltipContext } from '../../src';
 
 describe('<TooltipProvider />', () => {
   it('should be defined', () => {

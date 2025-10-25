@@ -1,5 +1,6 @@
 import React from 'react';
-import StatsPlot, { StatsPlotProps } from '../../sandboxes/visx-stats/Example';
+import type { StatsPlotProps } from '../../sandboxes/visx-stats/Example';
+import StatsPlot from '../../sandboxes/visx-stats/Example';
 import GalleryTile from '../GalleryTile';
 
 export { default as packageJson } from '../../sandboxes/visx-stats/package.json';

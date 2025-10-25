@@ -1,10 +1,11 @@
-import React, { useContext, useCallback, useMemo } from 'react';
-import { AxisScale } from '@visx/axis';
-import Area, { AreaProps } from '@visx/shape/lib/shapes/Area';
-import LinePath, { LinePathProps } from '@visx/shape/lib/shapes/LinePath';
+import React, { useContext, useCallback, useMemo, useEffect } from 'react';
+import type { AxisScale } from '@visx/axis';
+import type { AreaProps } from '@visx/shape/lib/shapes/Area';
+import Area from '@visx/shape/lib/shapes/Area';
+import type { LinePathProps } from '@visx/shape/lib/shapes/LinePath';
+import LinePath from '@visx/shape/lib/shapes/LinePath';
 import DataContext from '../../../context/DataContext';
-import { GlyphsProps, SeriesProps } from '../../../types';
-import withRegisteredData, { WithRegisteredDataProps } from '../../../enhancers/withRegisteredData';
+import type { DataContextType, GlyphsProps, SeriesProps } from '../../../types';
 import getScaledValueFactory from '../../../utils/getScaledValueFactory';
 import getScaleBaseline from '../../../utils/getScaleBaseline';
 import isValidNumber from '../../../typeguards/isValidNumber';
@@ -56,7 +57,8 @@ function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
   y0Accessor,
   yScale,
   ...areaProps
-}: BaseAreaSeriesProps<XScale, YScale, Datum> & WithRegisteredDataProps<XScale, YScale, Datum>) {
+}: BaseAreaSeriesProps<XScale, YScale, Datum> &
+  Pick<DataContextType<XScale, YScale, Datum>, 'xScale' | 'yScale'>) {
   const { colorScale, theme, horizontal } = useContext(DataContext);
   const getScaledX0 = useMemo(
     () => (x0Accessor ? getScaledValueFactory(xScale, x0Accessor) : undefined),
@@ -175,4 +177,37 @@ function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
   );
 }
 
-export default withRegisteredData(BaseAreaSeries);
+export default function BaseAreaSeriesWithRegisteredData<
+  XScale extends AxisScale,
+  YScale extends AxisScale,
+  Datum extends object,
+>(props: BaseAreaSeriesProps<XScale, YScale, Datum>) {
+  const { dataKey, data, xAccessor, yAccessor } = props;
+  const { xScale, yScale, dataRegistry } = useContext(DataContext) as unknown as DataContextType<
+    XScale,
+    YScale,
+    Datum
+  >;
+
+  useEffect(() => {
+    if (dataRegistry) dataRegistry.registerData({ key: dataKey, data, xAccessor, yAccessor });
+    return () => dataRegistry?.unregisterData(dataKey);
+  }, [dataRegistry, dataKey, data, xAccessor, yAccessor]);
+
+  const registryEntry = dataRegistry?.get(dataKey);
+
+  // if scales or data are not available in context, render nothing
+  if (!xScale || !yScale || !registryEntry) return null;
+
+  // otherwise pass props + over-write data/accessors
+  return (
+    <BaseAreaSeries
+      {...props}
+      xScale={xScale}
+      yScale={yScale}
+      data={registryEntry.data}
+      xAccessor={registryEntry.xAccessor}
+      yAccessor={registryEntry.yAccessor}
+    />
+  );
+}

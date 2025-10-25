@@ -112,6 +112,7 @@ export default function getSplitLineSegments({
 
     return lineSegments;
   } catch (e) {
+    console.warn(e);
     return [];
   }
 }

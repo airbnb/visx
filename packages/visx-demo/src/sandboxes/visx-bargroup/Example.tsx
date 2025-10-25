@@ -2,7 +2,8 @@ import React from 'react';
 import { Group } from '@visx/group';
 import { BarGroup } from '@visx/shape';
 import { AxisBottom } from '@visx/axis';
-import cityTemperature, { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
+import type { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
+import cityTemperature from '@visx/mock-data/lib/mocks/cityTemperature';
 import { scaleBand, scaleLinear, scaleOrdinal } from '@visx/scale';
 import { timeParse, timeFormat } from '@visx/vendor/d3-time-format';
 

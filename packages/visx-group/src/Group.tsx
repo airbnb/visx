@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 
-type GroupProps = {
+export type GroupProps = {
   /** Top offset applied to `<g/>`. */
   top?: number;
   /** Left offset applied to `<g/>`. */

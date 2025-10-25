@@ -1,6 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
-import { ribbon as d3ribbon, Chord, ChordSubgroup } from 'd3-chord';
+import type { Chord, ChordSubgroup } from 'd3-chord';
+import { ribbon as d3ribbon } from 'd3-chord';
 
 type NumAccessor = (d: ChordSubgroup) => number;
 

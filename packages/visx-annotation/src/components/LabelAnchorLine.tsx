@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextProps } from '@visx/text';
+import type { TextProps } from '@visx/text';
 
 interface AnchorLineProps {
   anchorLineOrientation: 'horizontal' | 'vertical';

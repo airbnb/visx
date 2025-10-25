@@ -1,4 +1,4 @@
-import { EventType } from './types';
+import type { EventType } from './types';
 
 export function isElement(elem?: Element | EventType): elem is Element {
   return !!elem && elem instanceof Element;

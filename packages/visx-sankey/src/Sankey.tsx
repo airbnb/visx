@@ -1,15 +1,10 @@
-import React, { ReactNode, SVGAttributes } from 'react';
+import type { ReactNode, SVGAttributes } from 'react';
+import React from 'react';
 import cx from 'classnames';
 import { Group } from '@visx/group';
-import {
-  sankey as d3sankey,
-  SankeyExtraProperties,
-  SankeyGraph,
-  SankeyLink,
-  sankeyLinkHorizontal,
-  SankeyNode,
-} from 'd3-sankey';
-import { Link } from 'd3-shape';
+import type { SankeyExtraProperties, SankeyGraph, SankeyLink, SankeyNode } from 'd3-sankey';
+import { sankey as d3sankey, sankeyLinkHorizontal } from 'd3-sankey';
+import type { Link } from 'd3-shape';
 
 const DEFAULT_COLOR = '#000';
 

@@ -3,8 +3,9 @@ import {
   Annotation as VisxAnnotation,
   EditableAnnotation as VisxEditableAnnotation,
 } from '@visx/annotation';
-import { AxisScale } from '@visx/axis';
-import BaseAnnotation, { BaseAnnotationProps } from './private/BaseAnnotation';
+import type { AxisScale } from '@visx/axis';
+import type { BaseAnnotationProps } from './private/BaseAnnotation';
+import BaseAnnotation from './private/BaseAnnotation';
 
 export type AnnotationProps<
   XScale extends AxisScale,

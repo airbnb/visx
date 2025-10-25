@@ -1,5 +1,6 @@
 import React from 'react';
-import DragII, { DragIIProps } from '../../sandboxes/visx-drag-ii/Example';
+import type { DragIIProps } from '../../sandboxes/visx-drag-ii/Example';
+import DragII from '../../sandboxes/visx-drag-ii/Example';
 import GalleryTile from '../GalleryTile';
 import drawData from '../util/drawData';
 

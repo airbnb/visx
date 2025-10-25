@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { Group } from '@visx/group';
-import { LinkProvidedProps } from './types';
+import type { LinkProvidedProps } from './types';
 
 export type LinkProps<Link> = {
   /** Array of links to render. */

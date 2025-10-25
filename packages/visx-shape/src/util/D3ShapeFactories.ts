@@ -7,7 +7,7 @@ import {
   stack as d3Stack,
 } from 'd3-shape';
 import setNumberOrNumberAccessor from './setNumberOrNumberAccessor';
-import {
+import type {
   ArcPathConfig,
   AreaPathConfig,
   LinePathConfig,

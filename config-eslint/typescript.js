@@ -80,6 +80,7 @@ module.exports = {
           'error',
           { assertionStyle: 'as', objectLiteralTypeAssertions: 'allow-as-parameter' },
         ],
+        '@typescript-eslint/consistent-type-imports': ['error', { prefer: 'type-imports' }],
         '@typescript-eslint/explicit-function-return-type': 'off', // Allow inferrence
         '@typescript-eslint/func-call-spacing': ['error', 'never'],
         '@typescript-eslint/member-delimiter-style': 'error',
@@ -95,9 +96,7 @@ module.exports = {
         '@typescript-eslint/no-for-in-array': 'error',
         '@typescript-eslint/no-misused-new': 'error',
         '@typescript-eslint/no-misused-promises': 'error',
-        '@typescript-eslint/no-parameter-properties': 'error',
         '@typescript-eslint/no-require-imports': 'error',
-        '@typescript-eslint/no-throw-literal': 'error',
         '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'error',
         '@typescript-eslint/no-unsafe-call': 'warn',
         '@typescript-eslint/no-unsafe-member-access': 'warn',

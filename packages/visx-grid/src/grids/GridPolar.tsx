@@ -1,12 +1,13 @@
-import React, { CSSProperties } from 'react';
+import type { CSSProperties } from 'react';
+import React from 'react';
 import cx from 'classnames';
 import { Group } from '@visx/group';
-import { ScaleInput } from '@visx/scale';
-import { LineProps } from '@visx/shape/lib/shapes/Line';
+import type { ScaleInput } from '@visx/scale';
+import type { LineProps } from '@visx/shape/lib/shapes/Line';
 import GridAngle from './GridAngle';
 import GridRadial from './GridRadial';
 
-import { CommonGridProps, GridScale } from '../types';
+import type { CommonGridProps, GridScale } from '../types';
 
 export type GridPolarProps<
   AngleScale extends GridScale,
