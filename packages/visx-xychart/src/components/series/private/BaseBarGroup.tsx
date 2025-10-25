@@ -31,7 +31,7 @@ export type BaseBarGroupProps<
   /** Comparator function to sort `dataKeys` within a bar group. By default the DOM rendering order of `BarGroup`s `children` is used. */
   sortBars?: (dataKeyA: string, dataKeyB: string) => number;
   /** Rendered component which is passed BarsProps by BaseBarGroup after processing. */
-  BarsComponent: React.FC<BarsProps<XScale, YScale>>;
+  BarsComponent: React.FC<BarsProps<XScale, YScale, Datum>>;
 } & Pick<
   SeriesProps<XScale, YScale, Datum>,
   | 'onPointerMove'
@@ -186,7 +186,7 @@ export default function BaseBarGroup<
             fill: colorAccessor?.(bar, index) ?? colorScale(key),
           };
         })
-        .filter((bar) => bar) as Bar[],
+        .filter((bar) => bar) as Bar<Datum>[],
     };
   });
 
