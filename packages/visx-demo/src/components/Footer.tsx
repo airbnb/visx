@@ -1,5 +1,4 @@
 import React from 'react';
-import Instagram from './icons/Instagram';
 import Twitter from './icons/Twitter';
 import Medium from './icons/Medium';
 import GitHub from './icons/GitHub';
@@ -14,11 +13,8 @@ function Footer() {
         <a href="https://github.com/airbnb/visx" className="icon" aria-label="github logo">
           <GitHub />
         </a>
-        <a href="https://twitter.com/AirbnbEng" className="icon" aria-label="twitter logo">
+        <a href="https://x.com/AirbnbEng" className="icon" aria-label="x logo">
           <Twitter />
-        </a>
-        <a href="https://instagram.com/AirbnbTech" className="icon" aria-label="instagram logo">
-          <Instagram />
         </a>
         <a href="https://medium.com/airbnb-engineering" className="icon" aria-label="medium logo">
           <Medium />
