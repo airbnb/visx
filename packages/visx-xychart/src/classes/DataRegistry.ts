@@ -19,9 +19,6 @@ export default class DataRegistry<
   ) {
     const entries = Array.isArray(entryOrEntries) ? entryOrEntries : [entryOrEntries];
     entries.forEach((currEntry) => {
-      if (currEntry.key in this.registry && this.registry[currEntry.key] != null) {
-        console.debug('Overriding data registry key', currEntry.key);
-      }
       this.registry[currEntry.key] = currEntry;
       this.registryKeys = Object.keys(this.registry);
     });
