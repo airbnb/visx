@@ -47,6 +47,8 @@ jobs:
       - name: ✨ Build visx site without failure
         run: yarn build
         working-directory: './packages/visx-demo/'
+        env:
+          NODE_OPTIONS: '--openssl-legacy-provider'
 
       - name: 🦛 Run happo
         run: yarn run happo-ci-github-actions
@@ -55,6 +57,7 @@ jobs:
           HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
           HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
           HAPPO_COMMAND: '../../node_modules/happo.io/build/cli.js'
+          NODE_OPTIONS: '--openssl-legacy-provider'
 
       # @TODO
       # this fails on forks, we need to update workflow event type to `pull_request_target`
