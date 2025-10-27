@@ -1,9 +1,11 @@
+import { vi } from 'vitest';
 import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import { scaleBand, scaleLinear } from '@visx/scale';
 import { BarGroupHorizontal } from '../src';
+import { BarGroupHorizontal as BarGroupHorizontalType } from '../src/types';
 
 interface Datum {
   date: Date;
@@ -41,11 +43,12 @@ const defaultProps = {
 describe('<BarGroupHorizontal />', () => {
   // Suppress expected console warnings about lowercase SVG elements
   beforeAll(() => {
-    jest.spyOn(console, 'error').mockImplementation(() => {});
+    // eslint-disable-next-line
+    vi.spyOn(console, 'error').mockImplementation(() => { });
   });
 
   afterAll(() => {
-    jest.restoreAllMocks();
+    vi.restoreAllMocks();
   });
 
   test('it should be defined', () => {
@@ -71,22 +74,24 @@ describe('<BarGroupHorizontal />', () => {
   });
 
   test('it should take a children as function prop', () => {
-    const children = jest.fn(() => null);
+    const children = vi.fn(() => null);
     render(<BarGroupHorizontal {...defaultProps}>{children}</BarGroupHorizontal>);
     expect(children).toHaveBeenCalled();
   });
 
   test('it should call children function with [barGroups]', () => {
-    const children = jest.fn(() => null);
+    // eslint-disable-next-line
+    const children = vi.fn(({ }) => null);
     render(<BarGroupHorizontal {...defaultProps}>{children}</BarGroupHorizontal>);
-    const args = children.mock.calls[0][0];
+    const args = children.mock.calls[0][0] as BarGroupHorizontalType<'New York'>[];
     expect(args.length > 0).toBe(true);
   });
 
   test('it should create barGroup with shape { index, x0, bars }', () => {
-    const children = jest.fn(() => null);
+    // eslint-disable-next-line
+    const children = vi.fn(({ }) => null);
     render(<BarGroupHorizontal {...defaultProps}>{children}</BarGroupHorizontal>);
-    const args = children.mock.calls[0][0];
+    const args = children.mock.calls[0][0] as BarGroupHorizontalType<'New York'>[];
     const barGroups = args;
     const group = barGroups[0];
 

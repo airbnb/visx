@@ -1,5 +1,5 @@
+import { vi } from 'vitest';
 import React from 'react';
-import mockConsole from 'jest-mock-console';
 import { render } from '@testing-library/react';
 import { Arc } from '../src';
 import { ArcProps } from '../src/shapes/Arc';
@@ -47,15 +47,15 @@ describe('<Arc />', () => {
   });
 
   it('should warn and render null when none of data, radii, and angles are passed', () => {
-    const restoreConsole = mockConsole();
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
     const { container } = render(
       <svg>
         <Arc data={null} />
       </svg>,
     );
     expect(container.querySelector('path')).not.toBeInTheDocument();
-    expect(console.warn).toHaveBeenCalledTimes(1);
-    restoreConsole();
+    expect(warnSpy).toHaveBeenCalledTimes(1);
+    warnSpy.mockRestore();
   });
 
   it('should render a path without data when radii + angles are defined', () => {
@@ -68,13 +68,13 @@ describe('<Arc />', () => {
   });
 
   it('should take a children as function prop', () => {
-    const fn = jest.fn();
+    const fn = vi.fn();
     ArcChildren({ children: fn });
     expect(fn).toHaveBeenCalled();
   });
 
   it('should call children function with { path }', () => {
-    const fn = jest.fn();
+    const fn = vi.fn();
     ArcChildren({ children: fn });
     const args = fn.mock.calls[0][0];
     const keys = Object.keys(args);
@@ -82,133 +82,133 @@ describe('<Arc />', () => {
   });
 
   it('should take an innerRadius number prop', () => {
-    const fn = jest.fn();
+    const fn = vi.fn();
     ArcChildren({ children: fn, innerRadius: 42 });
     const args = fn.mock.calls[0][0];
     expect(args.path.innerRadius()()).toBe(42);
   });
 
   it('should take an innerRadius fn prop', () => {
-    const fn = jest.fn();
+    const fn = vi.fn();
     ArcChildren({ children: fn, innerRadius: () => 42 });
     const args = fn.mock.calls[0][0];
     expect(args.path.innerRadius()()).toBe(42);
   });
 
   it('should take an outerRadius number prop', () => {
-    const fn = jest.fn();
+    const fn = vi.fn();
     ArcChildren({ children: fn, outerRadius: 42 });
     const args = fn.mock.calls[0][0];
     expect(args.path.outerRadius()()).toBe(42);
   });
 
   it('should take an outerRadius fn prop', () => {
-    const fn = jest.fn();
+    const fn = vi.fn();
     ArcChildren({ children: fn, outerRadius: () => 42 });
     const args = fn.mock.calls[0][0];
     expect(args.path.outerRadius()()).toBe(42);
   });
 
   it('should take a cornerRadius number prop', () => {
-    const fn = jest.fn();
+    const fn = vi.fn();
     ArcChildren({ children: fn, cornerRadius: 42 });
     const args = fn.mock.calls[0][0];
     expect(args.path.cornerRadius()()).toBe(42);
   });
 
   it('should take a cornerRadius fn prop', () => {
-    const fn = jest.fn();
+    const fn = vi.fn();
     ArcChildren({ children: fn, cornerRadius: () => 42 });
     const args = fn.mock.calls[0][0];
     expect(args.path.cornerRadius()()).toBe(42);
   });
 
   it('should take a startAngle number prop', () => {
-    const fn = jest.fn();
+    const fn = vi.fn();
     ArcChildren({ children: fn, startAngle: 42 });
     const args = fn.mock.calls[0][0];
     expect(args.path.startAngle()()).toBe(42);
   });
 
   it('should take a startAngle 0 prop', () => {
-    const fn = jest.fn();
+    const fn = vi.fn();
     ArcChildren({ children: fn, startAngle: 0 });
     const args = fn.mock.calls[0][0];
     expect(args.path.startAngle()()).toBe(0);
   });
 
   it('should take a startAngle fn prop', () => {
-    const fn = jest.fn();
+    const fn = vi.fn();
     ArcChildren({ children: fn, startAngle: () => 42 });
     const args = fn.mock.calls[0][0];
     expect(args.path.startAngle()()).toBe(42);
   });
 
   it('should take a endAngle number prop', () => {
-    const fn = jest.fn();
+    const fn = vi.fn();
     ArcChildren({ children: fn, endAngle: 42 });
     const args = fn.mock.calls[0][0];
     expect(args.path.endAngle()()).toBe(42);
   });
 
   it('should take a endAngle 0 prop', () => {
-    const fn = jest.fn();
+    const fn = vi.fn();
     ArcChildren({ children: fn, endAngle: 0 });
     const args = fn.mock.calls[0][0];
     expect(args.path.endAngle()()).toBe(0);
   });
 
   it('should take a endAngle fn prop', () => {
-    const fn = jest.fn();
+    const fn = vi.fn();
     ArcChildren({ children: fn, endAngle: () => 42 });
     const args = fn.mock.calls[0][0];
     expect(args.path.endAngle()()).toBe(42);
   });
 
   it('should take a padAngle number prop', () => {
-    const fn = jest.fn();
+    const fn = vi.fn();
     ArcChildren({ children: fn, padAngle: 42 });
     const args = fn.mock.calls[0][0];
     expect(args.path.padAngle()()).toBe(42);
   });
 
   it('should take a padAngle 0 prop', () => {
-    const fn = jest.fn();
+    const fn = vi.fn();
     ArcChildren({ children: fn, padAngle: 0 });
     const args = fn.mock.calls[0][0];
     expect(args.path.padAngle()()).toBe(0);
   });
 
   it('should take a padAngle fn prop', () => {
-    const fn = jest.fn();
+    const fn = vi.fn();
     ArcChildren({ children: fn, padAngle: () => 42 });
     const args = fn.mock.calls[0][0];
     expect(args.path.padAngle()()).toBe(42);
   });
 
   it('should take a padRadius number prop', () => {
-    const fn = jest.fn();
+    const fn = vi.fn();
     ArcChildren({ children: fn, padRadius: 42 });
     const args = fn.mock.calls[0][0];
     expect(args.path.padRadius()()).toBe(42);
   });
 
   it('should take a padRadius 0 prop', () => {
-    const fn = jest.fn();
+    const fn = vi.fn();
     ArcChildren({ children: fn, padRadius: 0 });
     const args = fn.mock.calls[0][0];
     expect(args.path.padRadius()()).toBe(0);
   });
 
   it('should take a padRadius fn prop', () => {
-    const fn = jest.fn();
+    const fn = vi.fn();
     ArcChildren({ children: fn, padRadius: () => 42 });
     const args = fn.mock.calls[0][0];
     expect(args.path.padRadius()()).toBe(42);
   });
 
   it('calling path with data returns a string', () => {
-    const fn = jest.fn();
+    const fn = vi.fn();
     ArcChildren({ children: fn });
     const args = fn.mock.calls[0][0];
     expect(typeof args.path(data)).toBe('string');

@@ -1,8 +1,10 @@
+import { vi } from 'vitest';
 import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { Pie } from '../src';
-import { PieArcDatum } from '../src/shapes/Pie';
+import { PieArcDatum, ProvidedProps } from '../src/shapes/Pie';
+import { addMock, removeMock } from './svgMock';
 
 interface Datum {
   date: string;
@@ -45,6 +47,17 @@ const browserUsage: Datum[] = [
 ];
 
 describe('<Pie />', () => {
+  beforeAll(() => {
+    // eslint-disable-next-line
+    vi.spyOn(console, 'error').mockImplementation(() => { });
+    addMock();
+  });
+
+  afterAll(() => {
+    vi.restoreAllMocks();
+    removeMock();
+  });
+
   test('it should be defined', () => {
     expect(Pie).toBeDefined();
   });
@@ -71,7 +84,8 @@ describe('<Pie />', () => {
 
     const A = 1;
     const B = 20;
-    const childrenFn = jest.fn(() => null);
+    // eslint-disable-next-line
+    const childrenFn = vi.fn(({ }) => null);
 
     render(
       <svg>
@@ -81,7 +95,7 @@ describe('<Pie />', () => {
       </svg>,
     );
 
-    const args = childrenFn.mock.calls[0][0];
+    const args = childrenFn.mock.calls[0][0] as ProvidedProps<Datum>;
     expect(args.arcs[0]).toMatchObject({ value: A, index: 0 });
     expect(args.arcs[1]).toMatchObject({ value: B, index: 1 });
   });
@@ -90,14 +104,16 @@ describe('<Pie />', () => {
     expect(() =>
       render(
         <svg>
-          <Pie data={browserUsage} pieSort={12 as any} />
+          {/* @ts-expect-error testing invalid prop */}
+          <Pie data={browserUsage} pieSort={12} />
         </svg>,
       ),
     ).toThrow();
     expect(() =>
       render(
         <svg>
-          <Pie data={browserUsage} pieSortValues={12 as any} />
+          {/* @ts-expect-error testing invalid prop */}
+          <Pie data={browserUsage} pieSortValues={12} />
         </svg>,
       ),
     ).toThrow();
@@ -116,7 +132,8 @@ describe('<Pie />', () => {
   });
 
   test('it should handle children render prop correctly', () => {
-    const childrenFn = jest.fn(() => null);
+    // eslint-disable-next-line
+    const childrenFn = vi.fn(({ }) => null);
     render(
       <svg>
         <Pie data={browserUsage}>{childrenFn}</Pie>

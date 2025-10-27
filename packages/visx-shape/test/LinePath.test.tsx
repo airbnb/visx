@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
@@ -54,7 +55,7 @@ describe('<LinePath />', () => {
   });
 
   it('should take a children as function prop', () => {
-    const fn = jest.fn(() => null);
+    const fn = vi.fn(() => null);
     render(
       <svg>
         <LinePath>{fn}</LinePath>
@@ -64,7 +65,7 @@ describe('<LinePath />', () => {
   });
 
   it('should call children function with { path }', () => {
-    const fn = jest.fn((_) => null);
+    const fn = vi.fn((_) => null);
     render(
       <svg>
         <LinePath>{fn}</LinePath>
