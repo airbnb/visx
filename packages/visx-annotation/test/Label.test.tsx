@@ -4,6 +4,7 @@ import '@testing-library/jest-dom';
 
 import { ResizeObserver } from '@juggle/resize-observer';
 import { Label } from '../src';
+import { addMock, removeMock } from './svgMock';
 
 describe('<Label />', () => {
   const renderLabel = (props: React.ComponentProps<typeof Label>) =>
@@ -13,30 +14,33 @@ describe('<Label />', () => {
       </svg>,
     );
 
+  beforeEach(addMock);
+  afterEach(removeMock);
+
   it('should be defined', () => {
     expect(Label).toBeDefined();
   });
 
-  it('should render title text', () => {
-    const { getByText } = renderLabel({
-      title: 'title test',
+  it('should render title text', async () => {
+    const { findByText } = renderLabel({
+      title: 'title',
       resizeObserverPolyfill: ResizeObserver,
     });
-    expect(getByText('title test')).toBeInTheDocument();
+    expect(await findByText('title')).toBeInTheDocument();
   });
 
-  it('should render subtitle text', () => {
-    const { getByText } = renderLabel({
-      title: 'title test',
-      subtitle: 'subtitle test',
+  it('should render subtitle text', async () => {
+    const { findByText } = renderLabel({
+      title: 'title',
+      subtitle: 'subtitle',
       resizeObserverPolyfill: ResizeObserver,
     });
-    expect(getByText('subtitle test')).toBeInTheDocument();
+    expect(await findByText('subtitle')).toBeInTheDocument();
   });
 
   it('should render background', () => {
     const { container } = renderLabel({
-      title: 'title test',
+      title: 'title',
       showBackground: true,
       resizeObserverPolyfill: ResizeObserver,
     });
