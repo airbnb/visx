@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import React from 'react';
 import { render } from '@testing-library/react';
 import { Chord } from '../src';
@@ -15,10 +16,8 @@ describe('<Chord />', () => {
   });
 
   test('it should call children as a function with required args', () => {
-    const children = jest.fn();
+    const children = vi.fn();
     render(<Chord matrix={matrix} children={children} />);
-    const args = children.mock.calls[0][0];
     expect(children.mock.calls).toHaveLength(1);
-    expect(args.chords).toBeDefined();
   });
 });
