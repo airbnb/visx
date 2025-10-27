@@ -4,13 +4,13 @@
   "description": "visx demo",
   "repository": "https://github.com/airbnb/visx",
   "scripts": {
-    "build": "next build && next export",
+    "build": "NODE_OPTIONS='--openssl-legacy-provider' next build && NODE_OPTIONS='--openssl-legacy-provider' next export",
     "deploy": "rm -rf out && yarn build && cd out && touch .nojekyll && git init && git add . && git commit -m \"Deploy commit\" && git remote add origin git@github.com:airbnb/visx.git && git push -f origin master:gh-pages",
-    "dev": "next",
-    "happo": "happo",
-    "happo-ci-github-actions": "happo-ci-github-actions",
+    "dev": "NODE_OPTIONS='--openssl-legacy-provider' next",
+    "happo": "NODE_OPTIONS='--openssl-legacy-provider' happo",
+    "happo-ci-github-actions": "NODE_OPTIONS='--openssl-legacy-provider' happo-ci-github-actions",
     "preview": "yarn build && cd ./out && npx serve",
-    "start": "next start"
+    "start": "NODE_OPTIONS='--openssl-legacy-provider' next start"
   },
   "keywords": [
     "visx",
