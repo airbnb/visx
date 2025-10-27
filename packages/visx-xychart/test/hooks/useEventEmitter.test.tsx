@@ -1,10 +1,23 @@
+import { vi } from 'vitest';
 import React, { useEffect } from 'react';
-import { render } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import useEventEmitter from '../../src/hooks/useEventEmitter';
 import { EventEmitterProvider } from '../../src';
 
-// avoids a lot of coercing of types
-const getEvent = (eventType: string) => new MouseEvent(eventType) as unknown as React.PointerEvent;
+// Create a properly formed PointerEvent with a target
+const getEvent = (eventType: string) => {
+  const svg = document.querySelector('svg') || document.createElement('svg');
+  const event = new PointerEvent(eventType, {
+    bubbles: true,
+    clientX: 50,
+    clientY: 50,
+  });
+  Object.defineProperty(event, 'target', {
+    value: svg,
+    enumerable: true,
+  });
+  return event as unknown as React.PointerEvent;
+};
 
 describe('useEventEmitter', () => {
   it('should be defined', () => {
@@ -27,17 +40,17 @@ describe('useEventEmitter', () => {
     );
   });
 
-  it('should register event listeners and emit events', () => {
+  it('should register event listeners and emit events', async () => {
     expect.assertions(1);
 
+    const listener = vi.fn();
+
     const Component = () => {
-      const listener = jest.fn();
       const emit = useEventEmitter('pointermove', listener);
 
       useEffect(() => {
         if (emit) {
           emit('pointermove', getEvent('pointermove'));
-          expect(listener).toHaveBeenCalledTimes(1);
         }
       });
 
@@ -49,16 +62,21 @@ describe('useEventEmitter', () => {
         <Component />
       </EventEmitterProvider>,
     );
+
+    await waitFor(() => {
+      expect(listener).toHaveBeenCalledTimes(1);
+    });
   });
 
-  it('should filter invalid sources if specified', () => {
-    expect.assertions(4);
+  it('should filter invalid sources if specified', async () => {
+    expect.assertions(2);
+
+    const eventType = 'pointermove';
+    const sourceId = 'sourceId';
+    const listener = vi.fn();
+    const filteredListener = vi.fn();
 
     const Component = () => {
-      const eventType = 'pointermove';
-      const sourceId = 'sourceId';
-      const listener = jest.fn();
-      const filteredListener = jest.fn();
       const emit = useEventEmitter();
       useEventEmitter('pointermove', listener);
       useEventEmitter('pointermove', filteredListener, [sourceId]);
@@ -66,11 +84,7 @@ describe('useEventEmitter', () => {
       useEffect(() => {
         if (emit) {
           emit(eventType, getEvent(eventType));
-          expect(listener).toHaveBeenCalledTimes(1);
-          expect(filteredListener).toHaveBeenCalledTimes(0);
           emit(eventType, getEvent(eventType), sourceId);
-          expect(listener).toHaveBeenCalledTimes(2);
-          expect(filteredListener).toHaveBeenCalledTimes(1);
         }
       });
 
@@ -82,5 +96,14 @@ describe('useEventEmitter', () => {
         <Component />
       </EventEmitterProvider>,
     );
+
+    // Wait for both emits to complete and verify filtering behavior
+    await waitFor(() => {
+      // listener receives all events (no filter)
+      expect(listener).toHaveBeenCalledTimes(2);
+    });
+
+    // filteredListener only receives events with matching sourceId
+    expect(filteredListener).toHaveBeenCalledTimes(1);
   });
 });

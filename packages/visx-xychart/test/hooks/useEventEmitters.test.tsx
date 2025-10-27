@@ -1,5 +1,6 @@
+import { vi } from 'vitest';
 import React, { useEffect } from 'react';
-import { render } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import { EventEmitterProvider, useEventEmitter } from '../../src';
 import useEventEmitters from '../../src/hooks/useEventEmitters';
 
@@ -35,19 +36,19 @@ describe('useEventEmitters', () => {
       </EventEmitterProvider>,
     );
   });
-  it('emitters should emit events', () => {
+  it('emitters should emit events', async () => {
     expect.assertions(1);
 
+    const source = 'sourceId';
+    const listener = vi.fn();
+
     const Component = () => {
-      const source = 'sourceId';
-      const listener = jest.fn();
       useEventEmitter('pointerup', listener, [source]);
       const emitters = useEventEmitters({ source });
 
       useEffect(() => {
         if (emitters.onPointerUp) {
           emitters.onPointerUp(new MouseEvent('pointerup') as unknown as React.PointerEvent);
-          expect(listener).toHaveBeenCalledTimes(1);
         }
       });
 
@@ -59,5 +60,9 @@ describe('useEventEmitters', () => {
         <Component />
       </EventEmitterProvider>,
     );
+
+    await waitFor(() => {
+      expect(listener).toHaveBeenCalledTimes(1);
+    });
   });
 });

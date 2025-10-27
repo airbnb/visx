@@ -5,6 +5,7 @@ import { scaleLinear } from '@visx/scale';
 import BaseAxis from '../../src/components/axis/BaseAxis';
 import { Axis, AnimatedAxis, DataContext, lightTheme } from '../../src';
 import getDataContext from '../mocks/getDataContext';
+import { addMock, removeMock } from '../mocks/svgMock';
 
 const series = { key: 'visx', data: [{}], xAccessor: () => 4, yAccessor: () => 7 };
 
@@ -20,6 +21,9 @@ function setup(
 }
 
 describe('<Axis />', () => {
+  beforeAll(addMock);
+  afterAll(removeMock);
+
   it('should be defined', () => {
     expect(Axis).toBeDefined();
   });
@@ -31,6 +35,9 @@ describe('<Axis />', () => {
 });
 
 describe('<AnimatedAxis />', () => {
+  beforeAll(addMock);
+  afterAll(removeMock);
+
   it('should be defined', () => {
     expect(AnimatedAxis).toBeDefined();
   });
@@ -42,6 +49,9 @@ describe('<AnimatedAxis />', () => {
 });
 
 describe('<BaseAxis />', () => {
+  beforeAll(addMock);
+  afterAll(removeMock);
+
   it('should be defined', () => {
     expect(BaseAxis).toBeDefined();
   });

@@ -1,6 +1,8 @@
-/* eslint import/no-extraneous-dependencies: 'off' */
-import React from 'react';
+/* eslint-disable import/no-extraneous-dependencies */
+import { vi } from 'vitest';
 import { render } from '@testing-library/react';
+/* eslint-enable import/no-extraneous-dependencies */
+import React from 'react';
 import { DataProvider, EventEmitterProvider, TooltipContext, TooltipContextType } from '../../src';
 
 const providerProps = {
@@ -11,11 +13,9 @@ const providerProps = {
 
 const defaultTooltipContext = {
   tooltipOpen: false,
-  /* eslint-disable no-undef */
-  showTooltip: jest.fn(), // eslint doesn't know jest is in context in non-.test file
-  updateTooltip: jest.fn(),
-  hideTooltip: jest.fn(),
-  /* eslint-enable no-undef */
+  showTooltip: vi.fn(),
+  updateTooltip: vi.fn(),
+  hideTooltip: vi.fn(),
 };
 
 // sets up boilerplate context for testing tooltips

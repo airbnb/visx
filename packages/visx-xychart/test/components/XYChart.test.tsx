@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import React, { useContext } from 'react';
 import { ResizeObserver } from '@juggle/resize-observer';
 import { render } from '@testing-library/react';
@@ -39,14 +40,23 @@ describe('<XYChart />', () => {
     expect(wrapper.firstChild).toHaveStyle('width: 100%; height: 100%');
   });
 
-  it('should throw if DataProvider is not available and no x- or yScale config is passed', () => {
-    expect(() =>
-      render(
-        <XYChart>
-          <rect />
-        </XYChart>,
-      ),
-    ).toThrow();
+  it('should warn if DataProvider is not available and no x- or yScale config is passed', () => {
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+    const { container } = render(
+      <XYChart>
+        <rect />
+      </XYChart>,
+    );
+
+    expect(warnSpy).toHaveBeenCalledWith(
+      '[@visx/xychart] XYChart: When no DataProvider is available in context, you must pass xScale & yScale config to XYChart.',
+    );
+
+    // Component should return null and not render an SVG
+    expect(container.querySelector('svg')).not.toBeInTheDocument();
+
+    warnSpy.mockRestore();
   });
 
   it('should render an svg', () => {
@@ -68,7 +78,7 @@ describe('<XYChart />', () => {
   });
 
   it('should update the registry dimensions', () => {
-    const spy = jest.fn((_) => null);
+    const spy = vi.fn((_) => null);
     const width = 123;
     const height = 456;
 
