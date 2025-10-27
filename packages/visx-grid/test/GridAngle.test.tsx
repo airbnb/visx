@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import React from 'react';
 import { render } from '@testing-library/react';
 
@@ -16,7 +17,7 @@ const gridProps = {
 
 describe('<GridAngle />', () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it('should render with class .visx-grid-angle', () => {
@@ -69,7 +70,7 @@ describe('<GridAngle />', () => {
   });
 
   it('should compute radial lines using innerRadius and outerRadius', () => {
-    const polarToCartesianSpy = jest.spyOn(polarToCartesian, 'default');
+    const polarToCartesianSpy = vi.spyOn(polarToCartesian, 'default');
     const innerRadius = 4;
     const outerRadius = 7;
 
