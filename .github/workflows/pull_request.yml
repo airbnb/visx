@@ -40,12 +40,6 @@ jobs:
         run: yarn test
         env:
           CI: true
-          COVERAGE: true
-
-      - name: 📈 Report code coverage
-        uses: coverallsapp/github-action@v1.1.1
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: ❤️ Run lint
         run: yarn lint
