@@ -16,6 +16,16 @@ module.exports = {
       },
     },
     {
+      files: ['**/vitest.config.ts', 'vitest.workspace.ts'],
+      env: {
+        node: true,
+      },
+      rules: {
+        'import/no-unresolved': ['error', { ignore: ['^vitest'] }],
+        'import/no-extraneous-dependencies': 'off',
+      },
+    },
+    {
       files: '*.{js,jsx,ts,tsx}',
       rules: {
         'arrow-parens': 'off',
