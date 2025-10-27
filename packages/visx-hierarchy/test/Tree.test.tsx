@@ -1,10 +1,11 @@
+import { vi } from 'vitest';
 import React from 'react';
 import { render } from '@testing-library/react';
 import { hierarchy } from 'd3-hierarchy';
 import { Tree } from '../src';
 
 type Datum = { name: string; children: Datum[] };
-const childrenFunc = jest.fn();
+const childrenFunc = vi.fn();
 const mockHierarchy = hierarchy({
   name: 'Eve',
   children: [
@@ -18,7 +19,7 @@ const mockHierarchy = hierarchy({
 
 describe('<Tree />', () => {
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   test('it should be defined', () => {
