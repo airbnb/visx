@@ -3,6 +3,7 @@ import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { scaleLinear } from '@visx/scale';
 import { AxisTop } from '../src';
+import { addMock, removeMock } from './svgMock';
 
 const axisProps = {
   scale: scaleLinear({
@@ -14,6 +15,9 @@ const axisProps = {
 
 describe('<AxisTop />', () => {
   const renderInSVG = (children: React.ReactElement) => render(<svg>{children}</svg>);
+
+  beforeEach(addMock);
+  afterEach(removeMock);
 
   it('should be defined', () => {
     expect(AxisTop).toBeDefined();

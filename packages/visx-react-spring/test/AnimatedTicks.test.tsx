@@ -3,8 +3,12 @@ import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { scaleLinear } from '@visx/scale';
 import { AnimatedTicks } from '../src';
+import { addMock, removeMock } from './svgMock';
 
 describe('AnimatedTicks', () => {
+  beforeEach(addMock);
+  afterEach(removeMock);
+
   it('should be defined', () => {
     expect(AnimatedTicks).toBeDefined();
   });

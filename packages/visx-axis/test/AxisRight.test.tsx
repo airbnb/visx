@@ -4,6 +4,7 @@ import '@testing-library/jest-dom';
 
 import { scaleLinear } from '@visx/scale';
 import { AxisRight } from '../src';
+import { addMock, removeMock } from './svgMock';
 
 const axisProps = {
   scale: scaleLinear({
@@ -20,6 +21,9 @@ describe('<AxisRight />', () => {
         <AxisRight {...axisProps} {...props} />
       </svg>,
     );
+
+  beforeEach(addMock);
+  afterEach(removeMock);
 
   it('should be defined', () => {
     expect(AxisRight).toBeDefined();

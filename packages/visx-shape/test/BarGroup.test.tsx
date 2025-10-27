@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
@@ -56,20 +57,20 @@ describe('<BarGroup />', () => {
   });
 
   test('it should take a children as function prop', () => {
-    const children = jest.fn(() => null);
+    const children = vi.fn(() => null);
     renderWithSvg(<BarGroup {...defaultProps}>{children}</BarGroup>);
     expect(children).toHaveBeenCalled();
   });
 
   test('it should call children function with [barGroups]', () => {
-    const children = jest.fn(() => null);
+    const children = vi.fn(() => null);
     renderWithSvg(<BarGroup {...defaultProps}>{children}</BarGroup>);
     const args = children.mock.calls[0][0];
     expect(args.length).toBeGreaterThan(0);
   });
 
   test('it should create barGroup with shape { index, x0, bars }', () => {
-    const children = jest.fn(() => null);
+    const children = vi.fn(() => null);
     renderWithSvg(<BarGroup {...defaultProps}>{children}</BarGroup>);
     const [barGroups] = children.mock.calls[0];
     const group = barGroups[0];

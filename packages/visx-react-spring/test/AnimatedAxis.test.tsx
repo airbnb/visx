@@ -1,8 +1,10 @@
+import { vi } from 'vitest';
 import React from 'react';
 import { render, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { scaleLinear } from '@visx/scale';
 import { AnimatedAxis } from '../src';
+import { addMock, removeMock } from './svgMock';
 
 describe('AnimatedAxis', () => {
   const defaultProps = {
@@ -11,11 +13,13 @@ describe('AnimatedAxis', () => {
       range: [0, 100],
     }),
     orientation: 'bottom',
-  };
+  } as const;
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
+    addMock();
   });
+  afterEach(removeMock);
 
   it('should be defined', () => {
     expect(AnimatedAxis).toBeDefined();

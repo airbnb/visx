@@ -16,6 +16,7 @@ import {
   scaleUtc,
 } from '@visx/scale';
 import { Axis } from '../src';
+import { addMock, removeMock } from './svgMock';
 
 const axisProps = {
   orientation: 'left' as const,
@@ -23,6 +24,9 @@ const axisProps = {
 };
 
 describe('Axis scales', () => {
+  beforeEach(addMock);
+  afterEach(removeMock);
+
   it('should render with scaleBand', () => {
     const { getByText } = render(
       <svg>

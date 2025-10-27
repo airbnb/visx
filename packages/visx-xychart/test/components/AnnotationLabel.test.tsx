@@ -1,33 +1,37 @@
+import { vi } from 'vitest';
 import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import { AnnotationLabel } from '../../src';
+import { addMock, removeMock } from '../mocks/svgMock';
 
 // Mock ResizeObserver
-const mockResizeObserver = jest.fn().mockImplementation(() => ({
-  observe: jest.fn(),
-  unobserve: jest.fn(),
-  disconnect: jest.fn(),
+const mockResizeObserver = vi.fn().mockImplementation(() => ({
+  observe: vi.fn(),
+  unobserve: vi.fn(),
+  disconnect: vi.fn(),
 }));
 
 describe('<AnnotationLabel />', () => {
   const defaultProps = {
     x: 100,
     y: 100,
-    title: 'Test Label',
-    subtitle: 'Test subtitle',
+    title: 'label',
+    subtitle: 'subtitle',
     showAnchorLine: true,
   };
 
   beforeAll(() => {
     // Add ResizeObserver mock
-    window.ResizeObserver = mockResizeObserver;
+    vi.stubGlobal('ResizeObserver', mockResizeObserver);
+    addMock();
   });
 
   afterAll(() => {
     // Clean up
-    window.ResizeObserver = undefined;
+    vi.unstubAllGlobals();
+    removeMock();
   });
 
   it('should be defined', () => {
@@ -41,12 +45,12 @@ describe('<AnnotationLabel />', () => {
       </svg>,
     );
 
-    expect(getByText('Test Label')).toBeInTheDocument();
-    expect(getByText('Test subtitle')).toBeInTheDocument();
+    expect(getByText('label')).toBeInTheDocument();
+    expect(getByText('subtitle')).toBeInTheDocument();
   });
 
-  it('should render within foreignObject', () => {
-    const { getByText } = render(
+  it('should render within foreignObject', async () => {
+    const { findByText } = render(
       <svg>
         <AnnotationLabel
           {...defaultProps}
@@ -58,8 +62,8 @@ describe('<AnnotationLabel />', () => {
 
     // Since foreignObject contains the text, if we can find the text
     // then foreignObject must exist and be working correctly
-    const title = getByText('Title in foreignObject');
-    const subtitle = getByText('Subtitle in foreignObject');
+    const title = await findByText('Title in');
+    const subtitle = await findByText('Subtitle in');
 
     expect(title).toBeInTheDocument();
     expect(subtitle).toBeInTheDocument();

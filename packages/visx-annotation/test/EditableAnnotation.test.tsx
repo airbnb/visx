@@ -1,8 +1,10 @@
+import { vi } from 'vitest';
 import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import EditableAnnotation from '../src/components/EditableAnnotation';
+import { addMock, removeMock } from './svgMock';
 
 describe('<EditableAnnotation />', () => {
   type EditableAnnotationProps = React.ComponentProps<typeof EditableAnnotation>;
@@ -26,8 +28,10 @@ describe('<EditableAnnotation />', () => {
   }
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
+    addMock();
   });
+  afterEach(removeMock);
 
   it('should be defined', () => {
     expect(() => renderComponent()).not.toThrow();
@@ -65,7 +69,7 @@ describe('<EditableAnnotation />', () => {
     });
 
     const circles = container.querySelectorAll('circle');
-    const [subjectHandle, labelHandle] = circles;
+    const [subjectHandle, labelHandle] = Array.from(circles);
 
     expect(subjectHandle).toHaveAttribute('cx', '10');
     expect(subjectHandle).toHaveAttribute('cy', '20');

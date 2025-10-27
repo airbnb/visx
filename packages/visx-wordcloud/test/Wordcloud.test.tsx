@@ -1,31 +1,26 @@
+import { vi } from 'vitest';
 import { render } from '@testing-library/react';
 import React from 'react';
 import { Wordcloud } from '../src';
 import { WordcloudConfig } from '../src/types';
 
 const mocked3Cloud = {
-  size: jest.fn(),
-  words: jest.fn(),
-  random: jest.fn(),
-  font: jest.fn(),
-  padding: jest.fn(),
-  fontSize: jest.fn(),
-  fontStyle: jest.fn(),
-  fontWeight: jest.fn(),
-  rotate: jest.fn(),
-  spiral: jest.fn(),
-  on: jest.fn(),
-  start: jest.fn(),
-  stop: jest.fn(),
+  size: vi.fn(),
+  words: vi.fn(),
+  random: vi.fn(),
+  font: vi.fn(),
+  padding: vi.fn(),
+  fontSize: vi.fn(),
+  fontStyle: vi.fn(),
+  fontWeight: vi.fn(),
+  rotate: vi.fn(),
+  spiral: vi.fn(),
+  on: vi.fn(),
+  start: vi.fn(),
+  stop: vi.fn(),
 };
 
-jest.mock(
-  'd3-cloud',
-  () =>
-    function d3cloud() {
-      return mocked3Cloud;
-    },
-);
+vi.mock('d3-cloud', () => ({ default: () => mocked3Cloud }));
 
 describe('<Wordcloud />', () => {
   afterEach(() => {
@@ -34,7 +29,7 @@ describe('<Wordcloud />', () => {
     }
   });
   test('it returns early if width or height is zero', () => {
-    const childrenSpy = jest.fn();
+    const childrenSpy = vi.fn();
 
     const { rerender } = render(
       <Wordcloud width={100} height={0} words={[{ text: 'bla', value: 1 }]}>
@@ -54,8 +49,10 @@ describe('<Wordcloud />', () => {
 
   test('it passes d3 cloud words to the children render function', () => {
     const mockWord = { text: 'myMockedWord' };
-    mocked3Cloud.on.mockImplementation((_, setWords) => setWords([mockWord]));
-    const childrenSpy = jest.fn();
+    mocked3Cloud.on.mockImplementation(
+      (_: unknown, setWords: (words: { text: string }[]) => void) => setWords([mockWord]),
+    );
+    const childrenSpy = vi.fn();
 
     render(
       <Wordcloud width={100} height={100} words={[{ text: 'bla', value: 1 }]}>
@@ -81,7 +78,7 @@ describe('<Wordcloud />', () => {
       words: [{ text: 'myMockedWord' }],
     };
 
-    render(<Wordcloud {...wordcloudConfig}>{jest.fn()}</Wordcloud>);
+    render(<Wordcloud {...wordcloudConfig}>{vi.fn()}</Wordcloud>);
 
     expect(mocked3Cloud.size).toHaveBeenCalledWith([wordcloudConfig.width, wordcloudConfig.height]);
     expect(mocked3Cloud.font).toHaveBeenCalledWith(wordcloudConfig.font);

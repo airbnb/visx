@@ -1,5 +1,6 @@
+import { vi } from 'vitest';
 import React, { useContext, useEffect } from 'react';
-import { render } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { AnimatedLineSeries, DataContext, LineSeries, useEventEmitter } from '../../src';
 import getDataContext from '../mocks/getDataContext';
@@ -46,24 +47,49 @@ describe('<LineSeries />', () => {
     expect(container.querySelectorAll('circle')).toHaveLength(series.data.length);
   });
 
-  it('should invoke showTooltip/hideTooltip on pointermove/pointerout', () => {
+  it('should invoke showTooltip/hideTooltip on pointermove/pointerout', async () => {
     expect.assertions(2);
 
-    const showTooltip = jest.fn();
-    const hideTooltip = jest.fn();
+    const showTooltip = vi.fn();
+    const hideTooltip = vi.fn();
 
     const EventEmitter = () => {
       const emit = useEventEmitter();
 
       useEffect(() => {
         if (emit) {
-          //  not a React.MouseEvent
-          emit('pointermove', new MouseEvent('pointermove'), XYCHART_EVENT_SOURCE);
-          expect(showTooltip).toHaveBeenCalledTimes(1);
+          // Get the SVG element to use as event target
+          const svg = document.querySelector('svg');
 
-          //  not a React.MouseEvent
-          emit('pointerout', new MouseEvent('pointerout'), XYCHART_EVENT_SOURCE);
-          expect(showTooltip).toHaveBeenCalledTimes(1);
+          // Create PointerEvent with proper target
+          const moveEvent = new PointerEvent('pointermove', {
+            bubbles: true,
+            clientX: 50,
+            clientY: 50,
+          });
+          Object.defineProperty(moveEvent, 'target', {
+            value: svg,
+            enumerable: true,
+          });
+
+          const outEvent = new PointerEvent('pointerout', {
+            bubbles: true,
+          });
+          Object.defineProperty(outEvent, 'target', {
+            value: svg,
+            enumerable: true,
+          });
+
+          emit(
+            'pointermove',
+            moveEvent as unknown as React.PointerEvent<Element>,
+            XYCHART_EVENT_SOURCE,
+          );
+          emit(
+            'pointerout',
+            outEvent as unknown as React.PointerEvent<Element>,
+            XYCHART_EVENT_SOURCE,
+          );
         }
       });
 
@@ -84,6 +110,13 @@ describe('<LineSeries />', () => {
       </>,
       { showTooltip, hideTooltip },
     );
+
+    // Wait for async event handlers to be called
+    await waitFor(() => {
+      expect(showTooltip).toHaveBeenCalledTimes(1);
+    });
+
+    expect(hideTooltip).toHaveBeenCalledTimes(1);
   });
 
   it('should use colorAccessor if passed', () => {

@@ -6,5 +6,7 @@
     "packages/*/test/**/*",
     "packages/*/types/**/*",
     "packages/*/scripts/**/*",
+    "vitest.workspace.ts",
+    "packages/*/vitest.config.ts"
   ]
 }

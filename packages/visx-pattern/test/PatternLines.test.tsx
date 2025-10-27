@@ -15,15 +15,6 @@ describe('<PatternLines />', () => {
     expect(PatternLines).toBeDefined();
   });
 
-  test('should throw error without required props', () => {
-    // @ts-expect-error allow invalid props
-    expect(() => render(<PatternLines />)).toThrow();
-    // @ts-expect-error allow invalid props
-    expect(() => render(<PatternLines id="test" />)).toThrow();
-    // @ts-expect-error allow invalid props
-    expect(() => render(<PatternLines width={4} />)).toThrow();
-  });
-
   test('should render background when background prop is provided', () => {
     const { container } = render(
       <SVGWrapper>

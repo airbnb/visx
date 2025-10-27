@@ -1,4 +1,5 @@
 import React from 'react';
+import { vi } from 'vitest';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { GlyphSquare } from '../src';
@@ -26,27 +27,27 @@ describe('<GlyphSquare />', () => {
   });
 
   test('should call children function', () => {
-    const fn = jest.fn(() => <svg />);
+    const fn = vi.fn(() => <svg />);
     renderGlyph({ children: fn });
     expect(fn).toHaveBeenCalled();
   });
 
   test('should pass path to children function', () => {
-    const fn = jest.fn(() => <svg />);
+    const fn = vi.fn(() => <svg />);
     renderGlyph({ children: fn });
     const args = fn.mock.calls[0][0];
     expect(args).toHaveProperty('path');
   });
 
   test('should handle numeric size prop', () => {
-    const fn = jest.fn(() => <svg />);
+    const fn = vi.fn(() => <svg />);
     renderGlyph({ children: fn, size: 42 });
     const args = fn.mock.calls[0][0];
     expect(args.path.size()()).toBe(42);
   });
 
   test('should handle function size prop', () => {
-    const fn = jest.fn(() => <svg />);
+    const fn = vi.fn(() => <svg />);
     renderGlyph({ children: fn, size: () => 42 });
     const args = fn.mock.calls[0][0];
     expect(args.path.size()()).toBe(42);

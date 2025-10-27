@@ -49,7 +49,7 @@ describe('useTooltipInPortal()', () => {
 
     await waitFor(
       () => {
-        const portalDiv = baseElement.querySelector('[style*="z-index: var(--tooltip-zindex)"]');
+        const portalDiv = baseElement.querySelector('[data-testid="tooltip-portal"]');
         expect(portalDiv).toBeInTheDocument();
       },
       {

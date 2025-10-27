@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
@@ -7,11 +8,11 @@ import { ClipPath, CircleClipPath, RectClipPath } from '../src';
 describe('ClipPath Components', () => {
   // Suppress console warnings about SVG casing since this is expected
   beforeAll(() => {
-    jest.spyOn(console, 'error').mockImplementation(() => {});
+    vi.spyOn(console, 'error').mockImplementation(() => {});
   });
 
   afterAll(() => {
-    jest.restoreAllMocks();
+    vi.restoreAllMocks();
   });
 
   describe('<ClipPath />', () => {

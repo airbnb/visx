@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
@@ -27,7 +28,7 @@ describe('<Polygon />', () => {
   });
 
   it('should add onClick handler', () => {
-    const fn = jest.fn();
+    const fn = vi.fn();
     const { container } = renderInSvg(
       <Polygon sides={6} size={25} className="a-polygon" onClick={fn} />,
     );
@@ -38,7 +39,7 @@ describe('<Polygon />', () => {
   });
 
   it('should render children function', () => {
-    const fn = jest.fn(() => <g data-testid="child" />);
+    const fn = vi.fn(() => <g data-testid="child" />);
     const { getByTestId } = renderInSvg(
       <Polygon sides={8} size={25}>
         {fn}
@@ -49,7 +50,7 @@ describe('<Polygon />', () => {
   });
 
   it('should pass points to children function', () => {
-    const fn = jest.fn(() => null);
+    const fn = vi.fn(() => null);
     renderInSvg(
       <Polygon sides={8} size={25}>
         {fn}

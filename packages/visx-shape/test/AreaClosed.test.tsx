@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
@@ -47,7 +48,7 @@ describe('<AreaClosed />', () => {
   });
 
   test('it should handle children function prop', () => {
-    const childrenFn = jest.fn((_) => null);
+    const childrenFn = vi.fn((_) => null);
     render(
       <svg>
         <AreaClosed data={data} yScale={yScale} x={x} y1={y}>
@@ -73,7 +74,7 @@ describe('<AreaClosed />', () => {
   });
 
   test('it should handle number and function props', () => {
-    const childrenFn = jest.fn((_: { path: any }) => null);
+    const childrenFn = vi.fn((_: { path: any }) => null);
     const args = [data[0], 0, data] as const;
     // Test with number prop
     render(

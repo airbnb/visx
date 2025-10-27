@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
@@ -52,7 +53,7 @@ describe('<Area />', () => {
   });
 
   test('should handle children as function prop', () => {
-    const childrenFn = jest.fn(() => null);
+    const childrenFn = vi.fn(() => null);
     render(
       <svg>
         <Area data={fakeData} x={x} y={y}>
@@ -67,7 +68,7 @@ describe('<Area />', () => {
   });
 
   test('should handle x and y props correctly', () => {
-    const childrenFn = jest.fn((_: { path: any }) => null);
+    const childrenFn = vi.fn((_: { path: any }) => null);
     const args = [fakeData[0], 0, fakeData] as const;
 
     // Test number props
@@ -105,7 +106,7 @@ describe('<Area />', () => {
   });
 
   test('should handle default defined prop and generate path string', () => {
-    const childrenFn = jest.fn((_: { path: any }) => null);
+    const childrenFn = vi.fn((_: { path: any }) => null);
     const args = [fakeData[0], 0, fakeData] as const;
     render(
       <svg>

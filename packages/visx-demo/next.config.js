@@ -11,6 +11,10 @@ const nextConfig = {
     ignoreDevErrors: true,
     ignoreBuildErrors: true,
   },
+  eslint: {
+    // Don't run ESLint during builds (it's run at the root level)
+    ignoreDuringBuilds: true,
+  },
   experimental: {
     // note: this can be removed in future next versions
     esmExternals: 'loose',

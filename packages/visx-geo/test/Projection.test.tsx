@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
@@ -78,7 +79,7 @@ describe('<Projection />', () => {
   });
 
   test('it should call projectionFunc prop function', () => {
-    const projectionFunc = jest.fn();
+    const projectionFunc = vi.fn();
     renderWithSvg(<Projection projectionFunc={projectionFunc} {...defaultProps} />);
     expect(projectionFunc).toHaveBeenCalledTimes(1);
     // Verify projection is passed
@@ -86,7 +87,7 @@ describe('<Projection />', () => {
   });
 
   test('it should call centroid prop function', () => {
-    const centroid = jest.fn();
+    const centroid = vi.fn();
     renderWithSvg(<Projection centroid={centroid} {...defaultProps} />);
     expect(centroid).toHaveBeenCalledTimes(2);
     // Verify centroid coordinates and feature are passed

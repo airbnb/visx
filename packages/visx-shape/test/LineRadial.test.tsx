@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
@@ -43,7 +44,7 @@ describe('<LineRadial />', () => {
   });
 
   test('it should take a children as function prop', () => {
-    const fn = jest.fn(() => <g />);
+    const fn = vi.fn(() => <g />);
     render(
       <svg>
         <LineRadial {...mockProps}>{fn}</LineRadial>
@@ -53,7 +54,7 @@ describe('<LineRadial />', () => {
   });
 
   test('it should call children function with { path }', () => {
-    const fn = jest.fn(() => <g />);
+    const fn = vi.fn(() => <g />);
     render(
       <svg>
         <LineRadial {...mockProps}>{fn}</LineRadial>

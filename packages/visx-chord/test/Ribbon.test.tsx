@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import React from 'react';
 import { render } from '@testing-library/react';
 import { chord as d3Chord } from 'd3-chord';
@@ -18,7 +19,7 @@ describe('<Ribbon />', () => {
   });
 
   test('it should call children as a function with required args', () => {
-    const children = jest.fn(() => 'test');
+    const children = vi.fn(() => 'test');
     render(<Ribbon chord={chords[0]} children={children} />);
     const args = (children.mock.calls[0] as { path?: unknown }[])[0];
     expect(children.mock.calls).toHaveLength(1);
