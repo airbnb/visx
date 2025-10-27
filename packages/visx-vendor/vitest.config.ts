@@ -11,13 +11,7 @@ export default defineConfig({
       reporter: ['lcov', 'json-summary', 'html', 'json', 'text'],
       // vendor package re-exports d3 modules, coverage not applicable
       include: ['packages/visx-vendor/vendor-cjs/**/*.js'],
-      exclude: [
-        '**/node_modules/**',
-        '**/esm/**',
-        '**/lib/**',
-        '**/test/**',
-        '**/dist/**',
-      ],
+      exclude: ['**/node_modules/**', '**/esm/**', '**/lib/**', '**/test/**', '**/dist/**'],
       reportsDirectory: './coverage',
     },
   },
