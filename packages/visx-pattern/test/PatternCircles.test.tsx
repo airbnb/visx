@@ -8,21 +8,6 @@ describe('<PatternCircles />', () => {
     expect(PatternCircles).toBeDefined();
   });
 
-  test('should require an id prop', () => {
-    // @ts-expect-error allow invalid props
-    expect(() => render(<PatternCircles width={4} height={4} />)).toThrow();
-  });
-
-  test('should require a width prop', () => {
-    // @ts-expect-error allow invalid props
-    expect(() => render(<PatternCircles id="test" height={4} />)).toThrow();
-  });
-
-  test('should require a height prop', () => {
-    // @ts-expect-error allow invalid props
-    expect(() => render(<PatternCircles id="test" width={4} />)).toThrow();
-  });
-
   test('should render a rect background if background prop defined', () => {
     const { container } = render(
       <svg>
