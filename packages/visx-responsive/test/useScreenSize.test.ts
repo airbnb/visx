@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import { fireEvent, waitFor, renderHook } from '@testing-library/react';
 import useScreenSize from '../src/hooks/useScreenSize';
 
@@ -34,7 +35,7 @@ describe('useScreenSize', () => {
   test('it should update the screen size on window resize', async () => {
     // fake timers in Jest 25 are completely unusable so I'm using real timers here
     // when it's upgraded should be updated to use advanceTimersByTime
-    jest.useRealTimers();
+    vi.useRealTimers();
 
     const { result } = renderHook(() => useScreenSize());
 
@@ -45,6 +46,6 @@ describe('useScreenSize', () => {
 
     await waitFor(() => expect(result.current).toEqual({ width: 800, height: 600 }));
 
-    jest.useFakeTimers();
+    vi.useFakeTimers();
   });
 });
