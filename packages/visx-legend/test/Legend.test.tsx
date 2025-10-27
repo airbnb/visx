@@ -1,9 +1,11 @@
+import { vi } from 'vitest';
 import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { scaleLinear } from '@visx/scale';
 
 import { Legend } from '../src';
+import { addMock, removeMock } from './svgMock';
 
 const defaultProps = {
   scale: scaleLinear<number>({
@@ -15,8 +17,10 @@ const defaultProps = {
 
 describe('<Legend />', () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
+    addMock();
   });
+  afterEach(removeMock);
 
   test('it should be defined', () => {
     expect(Legend).toBeDefined();
@@ -45,10 +49,12 @@ describe('<Legend />', () => {
 
   test('it should pass through legendLabelProps to legend labels', () => {
     const style = { fontFamily: 'Comic Sans MS' };
-    const { container } = render(<Legend {...defaultProps} legendLabelProps={{ style }} />);
+    const { container } = render(
+      <Legend {...defaultProps} legendLabelProps={{ id: 'test-legend-label', style }} />,
+    );
 
-    const labelElement = container.querySelector('[style*="font-family: Comic Sans MS"]');
+    const labelElement = container.querySelector('#test-legend-label');
     expect(labelElement).not.toBeNull();
-    expect(labelElement).toBeInTheDocument();
+    expect(labelElement).toHaveStyle('font-family: "Comic Sans MS"');
   });
 });

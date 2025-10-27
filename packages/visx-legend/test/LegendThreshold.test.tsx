@@ -3,8 +3,12 @@ import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { scaleThreshold } from '@visx/scale';
 import { LegendThreshold } from '../src';
+import { addMock, removeMock } from './svgMock';
 
 describe('<LegendThreshold />', () => {
+  beforeEach(addMock);
+  afterEach(removeMock);
+
   test('it should be defined', () => {
     expect(LegendThreshold).toBeDefined();
   });
