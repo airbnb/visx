@@ -37,7 +37,7 @@ describe('<Tooltip />', () => {
       position: 'relative',
       backgroundColor: 'green',
       color: 'red',
-      padding: '.8rem .8rem',
+      padding: '.8rem',
       borderRadius: '13px',
       fontSize: '17px',
       boxShadow: '0 2px 3px rgba(133,133,133,0.5)',
