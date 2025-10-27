@@ -36,8 +36,8 @@ jobs:
       - name: 🛠 Build packages
         run: yarn build
 
-      - name: 🧪 Run jest
-        run: yarn jest -w 4
+      - name: 🧪 Run tests
+        run: yarn test
         env:
           CI: true
           COVERAGE: true
