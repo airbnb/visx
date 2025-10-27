@@ -6,16 +6,8 @@
   <a title="npm version" href="https://www.npmjs.com/~visx">
     <img src="https://img.shields.io/npm/v/@visx/demo.svg?style=flat-square" />
   </a>
-  <a title="build status" href="https://travis-ci.org/airbnb/visx">
-    <img src="https://travis-ci.org/airbnb/visx.svg?branch=master" />
-  </a>
-  <a href='https://coveralls.io/github/airbnb/visx?branch=master'>
-    <img src='https://coveralls.io/repos/github/airbnb/visx/badge.svg?branch=master' alt='Coverage Status' />
-  </a>
   <a title="@visx/shape npm downloads" href="https://www.npmjs.com/package/@visx/shape">
     <img src="https://img.shields.io/npm/dm/@visx/shape.svg?style=flat-square" />
-  </a>
-  <a href="https://app.fossa.io/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fhshoff%2Fvx?ref=badge_shield" alt="FOSSA Status">     <img src="https://app.fossa.io/api/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fhshoff%2Fvx.svg?type=shield"/>
   </a>
   <a href="https://lernajs.io/" alt="lerna">
      <img src="https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg"/>
@@ -95,8 +87,8 @@ const xMax = width - margin.left - margin.right;
 const yMax = height - margin.top - margin.bottom;
 
 // We'll make some helpers to get at the data we want
-const x = d => d.letter;
-const y = d => +d.frequency * 100;
+const x = (d) => d.letter;
+const y = (d) => +d.frequency * 100;
 
 // And then scale the graph by our data
 const xScale = scaleBand({
@@ -112,7 +104,7 @@ const yScale = scaleLinear({
 });
 
 // Compose together the scale and accessor functions to get point functions
-const compose = (scale, accessor) => data => scale(accessor(data));
+const compose = (scale, accessor) => (data) => scale(accessor(data));
 const xPoint = compose(xScale, x);
 const yPoint = compose(yScale, y);
 
@@ -205,19 +197,28 @@ reusable visualization charts or library without having to learn d3. No more sel
   ([Github](https://github.com/gmlwo530/dollar-to-food-emoji))
 - [zh-TW] Taiwan Real-time Air Quality Index by
   [@ArvinH](https://github.com/ArvinH)([Demo](https://codesandbox.io/s/simpleradar-aqi-with-tooltip-select-data-react-spring-item3?file=/Radar.tsx))([Tutorial](https://blog.arvinh.info/tech/datavis-visx))
-- tokenized BTC on ethereum stacked chart with brush by
-  [@sakulstra](https://github.com/sakulstra)
+- tokenized BTC on ethereum stacked chart with brush by [@sakulstra](https://github.com/sakulstra)
 - [Escape From Tarkov Ammo Chart](https://eft.monster/) by
   [@codenomial](https://github.com/codenomial)
 - [Pry](https://pry.co) Finance for Founders (dashboard by [@valtism](https://github.com/valtism))
-- [Data 2 the People](https://www.data2thepeople.org/) Donation Efficacy Analysis for Downballot Races ([Demo](https://donate.data2thepeople.org/)) ([Github](https://github.com/Data-2-the-People/skyfall/blob/master/components/Scatterplot.jsx))
-- [Augora](https://augora.fr) Display information of french deputies ([Demo](https://augora.fr/statistiques))([Github](https://github.com/Augora/Augora))
-- WHO Coronavirus (COVID-19) Dashboard is built on top of `vx`, earlier version of `visx`. ([Demo](https://covid19.who.int/))
+- [Data 2 the People](https://www.data2thepeople.org/) Donation Efficacy Analysis for Downballot
+  Races ([Demo](https://donate.data2thepeople.org/))
+  ([Github](https://github.com/Data-2-the-People/skyfall/blob/master/components/Scatterplot.jsx))
+- [Augora](https://augora.fr) Display information of french deputies
+  ([Demo](https://augora.fr/statistiques))([Github](https://github.com/Augora/Augora))
+- WHO Coronavirus (COVID-19) Dashboard is built on top of `vx`, earlier version of `visx`.
+  ([Demo](https://covid19.who.int/))
 - [Fig Stats](https://fig-stats.com) - Figma community plugin & widget analytics
 - [Physician.FYI](https://physician.fyi) - Explore physicians' disciplinary history
-- [Index by Superstardle](https://index.superstardle.com), [Salaries by Superstardle](https://salaries.superstardle.com), & [Pack'Em by Superstardle](https://playoffs.superstardle.com) - Explore professional sports teams and superstars in the world of underdogs, salaries, and playoff performances.
-- Ridgeline chart visualizing shuffling probabilities by [@jmssnr](https://github.com/jmssnr) ([Demo](https://shuffling-probability.vercel.app/)) ([Github](https://github.com/jmssnr/shuffling-probability))
-- [UCSF Data Library](https://datalibrary.ucsf.edu) - Landing page for disease research tools ([Github](https://github.com/mountetna/monoetna/tree/master/vesta/ui))
+- [Index by Superstardle](https://index.superstardle.com),
+  [Salaries by Superstardle](https://salaries.superstardle.com), &
+  [Pack'Em by Superstardle](https://playoffs.superstardle.com) - Explore professional sports teams
+  and superstars in the world of underdogs, salaries, and playoff performances.
+- Ridgeline chart visualizing shuffling probabilities by [@jmssnr](https://github.com/jmssnr)
+  ([Demo](https://shuffling-probability.vercel.app/))
+  ([Github](https://github.com/jmssnr/shuffling-probability))
+- [UCSF Data Library](https://datalibrary.ucsf.edu) - Landing page for disease research tools
+  ([Github](https://github.com/mountetna/monoetna/tree/master/vesta/ui))
 
 Have a project that's using `visx`? Open a pull request and we'll add it to the list.
 
