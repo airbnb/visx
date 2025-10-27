@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
+import { vi } from 'vitest';
 import React, { ReactNode } from 'react';
 import { render, waitFor } from '@testing-library/react';
 import fireEvent from '@testing-library/user-event';
@@ -74,13 +75,13 @@ const Component = () => null;
 describe('withBoundingRects()', () => {
   beforeAll(() => {
     // mock getBoundingClientRect
-    jest.spyOn(Element.prototype, 'getBoundingClientRect').mockImplementation(() => ({
+    vi.spyOn(Element.prototype, 'getBoundingClientRect').mockImplementation(() => ({
       ...mockRect,
       x: 0,
       y: 0,
       width: 100,
       height: 100,
-      toJSON: jest.fn(),
+      toJSON: vi.fn(),
     }));
   });
 
