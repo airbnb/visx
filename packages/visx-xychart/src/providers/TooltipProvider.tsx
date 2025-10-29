@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef } from 'react';
-import debounce from 'lodash/debounce';
+import debounce from 'lodash.debounce';
 import { useTooltip } from '@visx/tooltip';
 import TooltipContext from '../context/TooltipContext';
 import { EventHandlerParams, TooltipContextType, TooltipData } from '../types';

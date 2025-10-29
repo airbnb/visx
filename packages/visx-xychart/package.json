@@ -40,7 +40,7 @@
     "react": "^16.8.0-0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0"
   },
   "dependencies": {
-    "@types/lodash": "^4.14.172",
+    "@types/lodash.debounce": "^4.0.9",
     "@types/react": "*",
     "@visx/annotation": "3.13.2-alpha.0",
     "@visx/axis": "3.13.2-alpha.0",
@@ -58,7 +58,7 @@
     "classnames": "^2.3.1",
     "d3-interpolate-path": "2.2.1",
     "d3-shape": "^2.0.0",
-    "lodash": "^4.17.21",
+    "lodash.debounce": "^4.0.8",
     "mitt": "^2.1.0",
     "prop-types": "^15.6.2"
   },
