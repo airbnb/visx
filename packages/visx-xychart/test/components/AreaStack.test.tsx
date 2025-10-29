@@ -1,5 +1,5 @@
 import { vi } from 'vitest';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import { render, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import {
@@ -81,7 +81,7 @@ describe('<AreaStack />', () => {
     const { container } = render(
       <DataProvider {...providerProps}>
         <svg>
-          <AreaStack onFocus={() => { }}>
+          <AreaStack onFocus={() => {}}>
             <AreaSeries dataKey={series1.key} {...series1} />
           </AreaStack>
         </svg>
@@ -132,10 +132,13 @@ describe('<AreaStack />', () => {
     const EventEmitter = () => {
       const emit = useEventEmitter();
       const { yScale } = useContext(DataContext);
+      const hasEmitted = useRef(false);
 
       useEffect(() => {
         // checking for yScale ensures stack data is registered and stacks are rendered
-        if (emit && yScale) {
+        if (emit && yScale && !hasEmitted.current) {
+          hasEmitted.current = true;
+
           // Get the SVG element to use as event target
           const svg = document.querySelector('svg');
 
@@ -185,12 +188,11 @@ describe('<AreaStack />', () => {
       { showTooltip, hideTooltip },
     );
 
-    // Wait for async event handlers to be called
+    // Wait for both async event handlers to be called
     await waitFor(() => {
       expect(showTooltip).toHaveBeenCalledTimes(2); // one per key
+      expect(hideTooltip).toHaveBeenCalledTimes(1);
     });
-
-    expect(hideTooltip).toHaveBeenCalledTimes(1);
   });
 });
 

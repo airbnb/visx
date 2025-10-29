@@ -5,7 +5,7 @@ import '@testing-library/jest-dom';
 
 import { scaleBand, scaleLinear } from '@visx/scale';
 import { BarGroupHorizontal } from '../src';
-import { BarGroupHorizontal as BarGroupHorizontalType } from '../src/types';
+import type { BarGroupHorizontal as BarGroupHorizontalType } from '../src/types';
 
 interface Datum {
   date: Date;
