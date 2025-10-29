@@ -4,7 +4,7 @@ import { BarRounded } from '@visx/shape';
 import React from 'react';
 import { BarsProps } from '../../../types';
 
-export default function Bars({
+export default function Bars<Datum extends object>({
   bars,
   horizontal,
   xScale,
@@ -16,7 +16,7 @@ export default function Bars({
   radiusBottom,
   radiusLeft,
   ...restProps
-}: BarsProps<AxisScale, AxisScale>) {
+}: BarsProps<AxisScale, AxisScale, Datum>) {
   const isFocusable = Boolean(restProps.onFocus || restProps.onBlur);
   return (
     <>
@@ -34,12 +34,12 @@ export default function Bars({
             key={key}
             className="visx-bar"
             tabIndex={isFocusable ? 0 : undefined}
-            radius={radius}
-            all={radiusAll}
-            top={radiusTop}
-            right={radiusRight}
-            bottom={radiusBottom}
-            left={radiusLeft}
+            radius={typeof radius === 'function' ? radius(barProps) : radius}
+            all={typeof radiusAll === 'function' ? radiusAll(barProps) : radiusAll}
+            top={typeof radiusTop === 'function' ? radiusTop(barProps) : radiusTop}
+            right={typeof radiusRight === 'function' ? radiusRight(barProps) : radiusRight}
+            bottom={typeof radiusBottom === 'function' ? radiusBottom(barProps) : radiusBottom}
+            left={typeof radiusLeft === 'function' ? radiusLeft(barProps) : radiusLeft}
             {...barProps}
             {...restProps}
           />

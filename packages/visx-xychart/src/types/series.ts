@@ -117,7 +117,9 @@ export type SeriesProps<
 };
 
 /** Bar shape. */
-export type Bar = {
+export type Bar<Datum extends object> = {
+  /** Datum being represented. */
+  datum: Datum;
   /** Unique key for Bar (not dataKey). */
   key: string;
   /** X coordinate of Bar. */
@@ -132,27 +134,33 @@ export type Bar = {
   fill?: string;
 };
 
+/** Given Bar props, returns the radius size of the bar. */
+export type BarsRadiusSizeFunc<Datum extends object> = (bar: Omit<Bar<Datum>, 'key'>) => number;
+
+/** Given Bar props, returns true if the radius should be applied, otherwise false. */
+export type BarsApplyRadiusFunc<Datum extends object> = (bar: Omit<Bar<Datum>, 'key'>) => boolean;
+
 /** Props for base Bars components */
-export type BarsProps<XScale extends AxisScale, YScale extends AxisScale> = {
-  bars: Bar[];
+export type BarsProps<XScale extends AxisScale, YScale extends AxisScale, Datum extends object> = {
+  bars: Bar<Datum>[];
   xScale: XScale;
   yScale: YScale;
   horizontal?: boolean;
   /** Optional radius to apply to bar corners. */
-  radius?: number;
+  radius?: number | BarsRadiusSizeFunc<Datum>;
   /** Whether to apply radius to all corners. */
-  radiusAll?: boolean;
+  radiusAll?: boolean | BarsApplyRadiusFunc<Datum>;
   /** Whether to apply radius to top corners. */
-  radiusTop?: boolean;
+  radiusTop?: boolean | BarsApplyRadiusFunc<Datum>;
   /** Whether to apply radius to right corners. */
-  radiusRight?: boolean;
+  radiusRight?: boolean | BarsApplyRadiusFunc<Datum>;
   /** Whether to apply radius to bottom corners. */
-  radiusBottom?: boolean;
+  radiusBottom?: boolean | BarsApplyRadiusFunc<Datum>;
   /** Whether to apply radius to left corners. */
-  radiusLeft?: boolean;
+  radiusLeft?: boolean | BarsApplyRadiusFunc<Datum>;
 } & Omit<
   SVGProps<SVGRectElement | SVGPathElement>,
-  'x' | 'y' | 'width' | 'height' | 'ref' | 'children'
+  'x' | 'y' | 'width' | 'height' | 'ref' | 'children' | 'radius'
 >;
 
 // BarStack transforms its child series Datum into CombinedData<XScale, YScale>

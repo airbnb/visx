@@ -16,7 +16,7 @@ export type BaseBarSeriesProps<
   Datum extends object,
 > = SeriesProps<XScale, YScale, Datum> & {
   /** Rendered component which is passed BarsProps by BaseBarSeries after processing. */
-  BarsComponent: React.FC<BarsProps<XScale, YScale>>;
+  BarsComponent: React.FC<BarsProps<XScale, YScale, Datum>>;
   /**
    * Specify bar padding when bar thickness does not come from a `band` scale.
    * Accepted values are [0, 1], 0 = no padding, 1 = no bar, defaults to 0.1.
@@ -25,7 +25,7 @@ export type BaseBarSeriesProps<
   /** Given a Datum, returns its color. Falls back to theme color if unspecified or if a null-ish value is returned. */
   colorAccessor?: (d: Datum, index: number) => string | null | undefined;
 } & Pick<
-    BarsProps<XScale, YScale>,
+    BarsProps<XScale, YScale, Datum>,
     'radius' | 'radiusAll' | 'radiusTop' | 'radiusRight' | 'radiusBottom' | 'radiusLeft'
   >;
 
@@ -85,6 +85,7 @@ function BaseBarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum
         if (!isValidNumber(barLength)) return null;
 
         return {
+          datum,
           key: `${index}`,
           x: horizontal ? xZeroPosition + Math.min(0, barLength) : x,
           y: horizontal ? y : yZeroPosition + Math.min(0, barLength),
@@ -93,7 +94,7 @@ function BaseBarSeries<XScale extends AxisScale, YScale extends AxisScale, Datum
           fill: colorAccessor?.(datum, index) ?? color,
         };
       })
-      .filter((bar) => bar) as Bar[];
+      .filter((bar) => bar) as Bar<Datum>[];
   }, [
     barThickness,
     color,
