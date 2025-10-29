@@ -1,11 +1,16 @@
 import React from 'react';
 import VoronoiReadme from '!!raw-loader!../../../../visx-voronoi/Readme.md';
-import VoronoiPolygon from '../../../../visx-voronoi/src/components/VoronoiPolygon';
-import voronoi from '../../../../visx-voronoi/src/voronoi';
+import * as VoronoiComponents from '../../../../visx-voronoi/src';
 import DocPage from '../../components/DocPage';
+import { attachDocGenInfo } from '../../utils/getDocGenInfo';
 import VoronoiTile from '../../components/Gallery/VoronoiTile';
 
-const components = [voronoi, VoronoiPolygon];
+// Attach documentation to components
+const componentsWithDocs = attachDocGenInfo('voronoi', VoronoiComponents);
+
+const components = Object.values(componentsWithDocs).sort((a, b) =>
+  (a?.__docgenInfo?.displayName ?? '').localeCompare(b?.__docgenInfo?.displayName ?? ''),
+);
 
 const examples = [VoronoiTile];
 

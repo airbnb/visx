@@ -1,10 +1,16 @@
 import React from 'react';
 import SankeyReadme from '!!raw-loader!../../../../visx-sankey/Readme.md';
-import Sankey from '../../../../visx-sankey/src/Sankey';
+import * as SankeyComponents from '../../../../visx-sankey/src';
 import DocPage from '../../components/DocPage';
+import { attachDocGenInfo } from '../../utils/getDocGenInfo';
 import SankeyTile from '../../components/Gallery/SankeyTile';
 
-const components = [Sankey];
+// Attach documentation to components
+const componentsWithDocs = attachDocGenInfo('sankey', SankeyComponents);
+
+const components = Object.values(componentsWithDocs).sort((a, b) =>
+  (a?.__docgenInfo?.displayName ?? '').localeCompare(b?.__docgenInfo?.displayName ?? ''),
+);
 
 const examples = [SankeyTile];
 

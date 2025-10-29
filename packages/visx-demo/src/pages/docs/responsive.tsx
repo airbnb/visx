@@ -1,11 +1,16 @@
 import React from 'react';
 import ResponsiveReadme from '!!raw-loader!../../../../visx-responsive/Readme.md';
-import ParentSize from '../../../../visx-responsive/src/components/ParentSize';
-import ScaleSVG from '../../../../visx-responsive/src/components/ScaleSVG';
+import * as ResponsiveComponents from '../../../../visx-responsive/src';
 import DocPage from '../../components/DocPage';
+import { attachDocGenInfo } from '../../utils/getDocGenInfo';
 import ResponsiveTile from '../../components/Gallery/ResponsiveTile';
 
-const components = [ParentSize, ScaleSVG];
+// Attach documentation to components
+const componentsWithDocs = attachDocGenInfo('responsive', ResponsiveComponents);
+
+const components = Object.values(componentsWithDocs).sort((a, b) =>
+  (a?.__docgenInfo?.displayName ?? '').localeCompare(b?.__docgenInfo?.displayName ?? ''),
+);
 
 const examples = [ResponsiveTile];
 

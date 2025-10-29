@@ -1,15 +1,16 @@
 import React from 'react';
 import LegendReadme from '!!raw-loader!../../../../visx-legend/Readme.md';
-import Legend from '../../../../visx-legend/src/legends/Legend';
-import Linear from '../../../../visx-legend/src/legends/Linear';
-import Ordinal from '../../../../visx-legend/src/legends/Ordinal';
-import Quantile from '../../../../visx-legend/src/legends/Quantile';
-import Size from '../../../../visx-legend/src/legends/Size';
-import Threshold from '../../../../visx-legend/src/legends/Threshold';
+import * as LegendComponents from '../../../../visx-legend/src';
 import DocPage from '../../components/DocPage';
+import { attachDocGenInfo } from '../../utils/getDocGenInfo';
 import LegendsTile from '../../components/Gallery/LegendsTile';
 
-const components = [Linear, Ordinal, Quantile, Size, Threshold, Legend];
+// Attach documentation to components
+const componentsWithDocs = attachDocGenInfo('legend', LegendComponents);
+
+const components = Object.values(componentsWithDocs).sort((a, b) =>
+  (a?.__docgenInfo?.displayName ?? '').localeCompare(b?.__docgenInfo?.displayName ?? ''),
+);
 
 const examples = [LegendsTile];
 
