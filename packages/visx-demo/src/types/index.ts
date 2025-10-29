@@ -67,9 +67,25 @@ export type PropInfo = {
   type?: { name: string };
 };
 
-/** DocGenInfo, added to components by react-docgen-typescript-loader */
+/** ParamInfo for function parameters */
+export type ParamInfo = {
+  name: string;
+  description?: string;
+  type?: { name: string };
+  defaultValue?: { value?: unknown };
+};
+
+/** DocGenInfo, added to components by react-docgen-typescript-loader or our custom generator */
 export type DocGenInfo = {
   description?: string;
   displayName?: string;
+  // For components/hooks - their props/return values
   props: { [propName: string]: PropInfo };
+  // For utility functions - their parameters and return type
+  kind?: 'component' | 'hook' | 'function';
+  parameters?: ParamInfo[];
+  returnType?: string;
+  // Source file information for "View Source" links
+  filePath?: string;
+  lineNumber?: number;
 };
