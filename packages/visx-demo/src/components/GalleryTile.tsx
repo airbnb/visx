@@ -9,7 +9,7 @@ type Props<ExampleProps extends WidthAndHeight> = {
   detailsStyles?: React.CSSProperties;
   exampleRenderer: React.ComponentClass<ExampleProps> | React.FunctionComponent<ExampleProps>;
   exampleProps?: Omit<ExampleProps, 'width' | 'height'> &
-    Partial<Pick<ExampleProps, 'width' | 'height'>>;
+  Partial<Pick<ExampleProps, 'width' | 'height'>>;
   exampleUrl?: string;
   tileStyles?: React.CSSProperties;
   title?: string;
@@ -96,7 +96,7 @@ export default function GalleryTile<ExampleProps extends WidthAndHeight>({
               )}
             </div>
           )}
-        </div>,
+        </div>
       )}
       <style jsx>{`
         h3 {
@@ -114,6 +114,8 @@ export default function GalleryTile<ExampleProps extends WidthAndHeight>({
           flex-direction: column;
           border-radius: 14px;
           cursor: pointer;
+          text-decoration: none;
+          color: inherit;
         }
         .image {
           flex: 1;

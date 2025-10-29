@@ -68,7 +68,7 @@ export const tiles = [
   AreaTile,
   StackedAreasTile,
   AxisTile,
-  ChordTile,
+  // ChordTile,
   StreamGraphTile,
   LegendsTile,
   ThresholdTile,
@@ -130,13 +130,11 @@ export default function Gallery() {
                 pathname: '/gallery',
                 query: routePackage === visxPackage ? undefined : { pkg: visxPackage },
               }}
+              className={cx('filter-button', {
+                emphasize: routePackage === visxPackage,
+              })}
             >
-              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-              <a
-                className={cx('filter-button', {
-                  emphasize: routePackage === visxPackage,
-                })}
-              >{`${visxPackage}`}</a>
+              {`${visxPackage}`}
             </Link>
           ))}
         </div>

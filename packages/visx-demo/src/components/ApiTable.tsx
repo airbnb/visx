@@ -1,7 +1,8 @@
 import React, { useMemo } from 'react';
 import Markdown from 'react-markdown/with-html';
-import type { DocGenInfo, PropInfo } from '../types';
+import type { DocGenInfo, PropInfo, ParamInfo } from '../types';
 import { toExportName } from './util/format';
+import { getGitHubUrl } from '../utils/getGitHubUrl';
 
 type Props = {
   docgenInfo: DocGenInfo;
@@ -9,10 +10,20 @@ type Props = {
 
 const alphaSort = (a: PropInfo, b: PropInfo) => a.name.localeCompare(b.name);
 
-/** Renders a list of props for the passed docgenInfo */
+/** Renders a list of props/parameters for the passed docgenInfo */
 export default function ApiTable({ docgenInfo }: Props) {
-  const { displayName = '' } = docgenInfo;
+  const {
+    displayName = '',
+    kind = 'component',
+    description,
+    parameters,
+    returnType,
+    filePath,
+    lineNumber,
+  } = docgenInfo;
   const anchorId = displayName;
+  const isFunction = kind === 'function';
+  const sourceUrl = getGitHubUrl(filePath, lineNumber);
 
   // required first, then abc order
   const props = useMemo(() => {
@@ -37,43 +48,148 @@ export default function ApiTable({ docgenInfo }: Props) {
           #
         </a>
         {toExportName(displayName)}
+        {kind === 'hook' && <span className="kind-badge hook">hook</span>}
+        {kind === 'function' && <span className="kind-badge function">function</span>}
+        {sourceUrl && (
+          <a href={sourceUrl} target="_blank" rel="noopener noreferrer" className="source-link">
+            View Source →
+          </a>
+        )}
       </h3>
-      {props.map((prop) => {
-        const id = `${displayName}_${prop.name}`;
-        return (
-          <div key={prop.name} className="prop">
-            <div className="title">
-              <span className="name">
-                <a id={id} href={`#${id}`} className="api-anchor">
-                  #
-                </a>{' '}
-                <strong>{prop.name}</strong>
-              </span>
-              {prop.type && (
-                <span className="typedef">
-                  <code>{prop.type.name}</code>
-                </span>
-              )}
-              <span className={prop.required ? 'required' : 'optional'}>
-                {prop.required ? 'required' : ''}
-              </span>{' '}
+      {description && (
+        <div className="doc-description">
+          <Markdown source={description} />
+        </div>
+      )}
+      {isFunction && parameters && parameters.length > 0 ? (
+        <>
+          <h4>Parameters</h4>
+          {parameters.map((param: ParamInfo) => {
+            const id = `${displayName}_${param.name}`;
+            return (
+              <div key={param.name} className="prop">
+                <div className="title">
+                  <span className="name">
+                    <a id={id} href={`#${id}`} className="api-anchor">
+                      #
+                    </a>{' '}
+                    <strong>{param.name}</strong>
+                  </span>
+                  {param.type && (
+                    <span className="typedef">
+                      <code>{param.type.name}</code>
+                    </span>
+                  )}
+                </div>
+                <div className="description">
+                  <Markdown
+                    source={`${param.description || ''}${param.defaultValue
+                      ? `\n\nDefault \`${String(param.defaultValue.value) || '""'}\``
+                      : ''
+                      }`}
+                  />
+                </div>
+              </div>
+            );
+          })}
+          {returnType && (
+            <div className="return-type">
+              <strong>Returns:</strong> <code>{returnType}</code>
             </div>
-            <div className="description">
-              <Markdown
-                source={`${prop.description}${
-                  prop.defaultValue
+          )}
+        </>
+      ) : (
+        props.map((prop) => {
+          const id = `${displayName}_${prop.name}`;
+          return (
+            <div key={prop.name} className="prop">
+              <div className="title">
+                <span className="name">
+                  <a id={id} href={`#${id}`} className="api-anchor">
+                    #
+                  </a>{' '}
+                  <strong>{prop.name}</strong>
+                </span>
+                {prop.type && (
+                  <span className="typedef">
+                    <code>{prop.type.name}</code>
+                  </span>
+                )}
+                {prop.required && <span className="kind-badge required">required</span>}
+              </div>
+              <div className="description">
+                <Markdown
+                  source={`${prop.description}${prop.defaultValue
                     ? `\n\nDefault \`${String(prop.defaultValue.value) || '""'}\``
                     : ''
-                }`}
-              />
+                    }`}
+                />
+              </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })
+      )}
       <style jsx>{`
         h3 {
           margin-bottom: 0.5rem;
           margin-left: -29px;
+          font-weight: 400;
+        }
+        h4 {
+          margin-top: 1rem;
+          margin-bottom: 0.5rem;
+          font-weight: 500;
+          font-size: 16px;
+        }
+        .kind-badge {
+          font-size: 12px;
+          font-weight: 500;
+          padding: 2px 8px;
+          border-radius: 3px;
+          margin-left: 8px;
+        }
+        .kind-badge.hook {
+          background-color: #e3f2fd;
+          color: #1976d2;
+        }
+        .kind-badge.function {
+          background-color: #f3e5f5;
+          color: #7b1fa2;
+        }
+        .kind-badge.required {
+          background-color: #ffebee;
+          color: #c62828;
+        }
+        .source-link {
+          font-size: 14px;
+          font-weight: 400;
+          margin-left: 12px;
+          color: #666;
+          text-decoration: none;
+          opacity: 0.7;
+          transition: opacity 0.2s;
+        }
+        .source-link:hover {
+          opacity: 1;
+          text-decoration: underline;
+        }
+        .doc-description {
+          margin-bottom: 1rem;
+          font-size: 16px;
+        }
+        .doc-description :global(p) {
+          margin: 0.25rem 0;
+        }
+        .return-type {
+          margin-top: 1rem;
+          padding: 0.5rem;
+          background-color: #f5f5f5;
+          border-radius: 4px;
+          font-size: 16px;
+        }
+        .return-type code {
+          font-family: 'Menlo', monospace;
+          background-color: transparent;
           font-weight: 400;
         }
         .prop:last-child {
