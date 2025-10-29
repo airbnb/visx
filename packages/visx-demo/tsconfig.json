@@ -19,7 +19,8 @@
     "skipLibCheck": true,
     "strict": false,
     "target": "es5",
-    "noEmit": true
+    "noEmit": true,
+    "incremental": true
   },
   "exclude": [
     "lib",
