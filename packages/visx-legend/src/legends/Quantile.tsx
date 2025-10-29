@@ -9,6 +9,7 @@ import identity from '../util/identity';
 type AnyQuantileScale = PickD3Scale<'quantile', any>;
 
 type FactoryProps = {
+  /** The delimiter string to use between the min and max values in the label (e.g., '-' renders as '0 - 10'). */
   labelDelimiter?: string;
 };
 

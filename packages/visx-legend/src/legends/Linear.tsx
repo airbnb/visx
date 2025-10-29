@@ -8,6 +8,7 @@ import defaultDomain from '../util/defaultDomain';
 type AnyLinearScale = PickD3Scale<'linear', any>;
 
 export type LegendLinearProps<Scale extends AnyLinearScale> = {
+  /** Number of discrete steps to show in the legend. The scale domain is divided into this many intervals. */
   steps?: number;
 } & LegendProps<Scale>;
 
