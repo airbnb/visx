@@ -34,7 +34,7 @@ export type GridAngleProps<Scale extends GridScale> = CommonGridProps & {
 
 export type AllGridAngleProps<Scale extends GridScale> = GridAngleProps<Scale> &
   Omit<
-    LineProps & Omit<React.SVGProps<SVGLineElement>, keyof LineProps>,
+    LineProps & Omit<React.SVGProps<SVGLineElement>, keyof LineProps | 'children'>,
     keyof GridAngleProps<Scale>
   >;
 
@@ -52,6 +52,7 @@ export default function GridAngle<Scale extends GridScale>({
   strokeWidth = 1,
   tickValues,
   top = 0,
+  children, // Explicitly extract children so it doesn't get spread to Line
   ...restProps
 }: AllGridAngleProps<Scale>) {
   const ticks = tickValues ?? getTicks(scale, numTicks);
