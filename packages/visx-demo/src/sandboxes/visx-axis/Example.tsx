@@ -1,7 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import AreaClosed from '@visx/shape/lib/shapes/AreaClosed';
 import { curveMonotoneX } from '@visx/curve';
-import { scaleUtc, scaleLinear, scaleLog, scaleBand, ScaleInput, coerceNumber } from '@visx/scale';
+import { scaleUtc, scaleLinear, scaleLog, scaleBand, ScaleInput, coerceNumber }
+  from '@visx/scale';
 import { Axis, Orientation, SharedAxisProps, AxisScale } from '@visx/axis';
 import { GridRows, GridColumns } from '@visx/grid';
 import { AnimatedAxis, AnimatedGridRows, AnimatedGridColumns } from '@visx/react-spring';
