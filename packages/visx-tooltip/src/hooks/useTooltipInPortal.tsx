@@ -12,9 +12,13 @@ export type TooltipInPortalProps = TooltipProps &
   Pick<UseTooltipPortalOptions, 'detectBounds' | 'zIndex'>;
 
 export type UseTooltipInPortal = {
+  /** Ref callback to be attached to the container element for boundary detection. */
   containerRef: (element: HTMLElement | SVGElement | null) => void;
+  /** The bounding box of the container element. */
   containerBounds: RectReadOnly;
+  /** Function to force a refresh of the container bounds. */
   forceRefreshBounds: () => void;
+  /** Component to render the tooltip in a portal. */
   TooltipInPortal: React.FC<TooltipInPortalProps>;
 };
 
