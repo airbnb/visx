@@ -59,7 +59,7 @@ export type UpdateBrush =
   | ((prevState: Readonly<BaseBrushState>, props: Readonly<BaseBrushProps>) => BaseBrushState);
 
 export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrushState> {
-  private constructor(props: BaseBrushProps) {
+  constructor(props: BaseBrushProps) {
     super(props);
     const { initialBrushPosition } = props;
     const extent = initialBrushPosition
