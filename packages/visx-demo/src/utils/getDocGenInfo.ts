@@ -19,7 +19,7 @@ type ComponentWithDocs = {
  */
 export function getComponentDocs(
   packageName: string,
-  componentNames?: string[]
+  componentNames?: string[],
 ): ComponentWithDocs[] {
   const packageKey = `@visx/${packageName}`;
   const packageDocs = (generatedDocs as any)[packageKey];
@@ -51,7 +51,7 @@ export function getComponentDocs(
  */
 export function attachDocGenInfo<T extends Record<string, any>>(
   packageName: string,
-  components: T
+  components: T,
 ): T {
   const packageKey = `@visx/${packageName}`;
   const packageDocs = (generatedDocs as any)[packageKey];
@@ -68,6 +68,7 @@ export function attachDocGenInfo<T extends Record<string, any>>(
 
     if (docInfo && typeof component === 'function') {
       // Attach the docgenInfo to the component function
+      // eslint-disable-next-line no-underscore-dangle
       (component as any).__docgenInfo = docInfo;
     }
   });

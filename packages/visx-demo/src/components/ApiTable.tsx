@@ -83,10 +83,11 @@ export default function ApiTable({ docgenInfo }: Props) {
                 </div>
                 <div className="description">
                   <Markdown
-                    source={`${param.description || ''}${param.defaultValue
-                      ? `\n\nDefault \`${String(param.defaultValue.value) || '""'}\``
-                      : ''
-                      }`}
+                    source={`${param.description || ''}${
+                      param.defaultValue
+                        ? `\n\nDefault \`${String(param.defaultValue.value) || '""'}\``
+                        : ''
+                    }`}
                   />
                 </div>
               </div>
@@ -119,10 +120,11 @@ export default function ApiTable({ docgenInfo }: Props) {
               </div>
               <div className="description">
                 <Markdown
-                  source={`${prop.description}${prop.defaultValue
-                    ? `\n\nDefault \`${String(prop.defaultValue.value) || '""'}\``
-                    : ''
-                    }`}
+                  source={`${prop.description}${
+                    prop.defaultValue
+                      ? `\n\nDefault \`${String(prop.defaultValue.value) || '""'}\``
+                      : ''
+                  }`}
                 />
               </div>
             </div>

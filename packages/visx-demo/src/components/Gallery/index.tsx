@@ -68,7 +68,7 @@ export const tiles = [
   AreaTile,
   StackedAreasTile,
   AxisTile,
-  // ChordTile,
+  ChordTile,
   StreamGraphTile,
   LegendsTile,
   ThresholdTile,
