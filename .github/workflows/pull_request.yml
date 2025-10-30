@@ -41,14 +41,17 @@ jobs:
         env:
           CI: true
 
+      - name: 📃 Generate docs
+        run: yarn docs:generate
+
+      - name: ❤️ Run lint
+        run: yarn lint
+
       - name: ✨ Build visx site without failure
         run: yarn build
         working-directory: './packages/visx-demo/'
         env:
           NODE_OPTIONS: '--openssl-legacy-provider'
-      
-      - name: ❤️ Run lint
-        run: yarn lint
 
       - name: 🦛 Run happo
         run: yarn run happo-ci-github-actions
