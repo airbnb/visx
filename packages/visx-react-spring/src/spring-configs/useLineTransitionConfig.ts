@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { coerceNumber } from '@visx/scale';
-import type { AxisScale } from '@visx/axis/lib/types';
-import type { GridScale } from '@visx/grid/lib/types';
+import type { AxisScale } from '@visx/axis';
+import type { GridScale } from '@visx/grid';
 import type { AnimationTrajectory } from '../types';
 
 interface Point {

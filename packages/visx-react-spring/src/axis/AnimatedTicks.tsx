@@ -2,8 +2,8 @@ import React from 'react';
 import type { SpringValue } from '@react-spring/web';
 import { animated, useTransition, to } from '@react-spring/web';
 import cx from 'classnames';
-import Orientation from '@visx/axis/lib/constants/orientation';
-import type { ComputedTick, TicksRendererProps, AxisScale } from '@visx/axis/lib/types';
+import { Orientation } from '@visx/axis';
+import type { ComputedTick, TicksRendererProps, AxisScale } from '@visx/axis';
 import { Text } from '@visx/text';
 
 import useLineTransitionConfig from '../spring-configs/useLineTransitionConfig';
