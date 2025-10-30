@@ -89,12 +89,3 @@ jobs:
           git add .
           git commit -m "bot(${GITHUB_SHA}): build gh-pages"
           git push -f "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git" HEAD:gh-pages
-
-      - name: 🦛 Run happo
-        # not running happo on push results in stale base shas in pull_request
-        run: yarn run happo-ci-github-actions
-        working-directory: './packages/visx-demo/'
-        env:
-          HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
-          HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
-          HAPPO_COMMAND: '../../node_modules/happo.io/build/cli.js'
