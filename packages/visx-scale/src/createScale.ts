@@ -16,6 +16,7 @@ import createThresholdScale from './scales/threshold';
 import createOrdinalScale from './scales/ordinal';
 import createPointScale from './scales/point';
 import createBandScale from './scales/band';
+import createRadialScale from './scales/radial';
 
 // Overload function for more strict typing, e.g.,
 // If the config is a linear config then a ScaleLinear will be returned
@@ -113,6 +114,12 @@ function createScale<
   Output = DefaultOutput,
   DiscreteInput extends StringLike = StringLike,
   ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput,
+>(config: PickScaleConfig<'radial', Output>): PickD3Scale<'radial', Output>;
+
+function createScale<
+  Output = DefaultOutput,
+  DiscreteInput extends StringLike = StringLike,
+  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput,
 >(
   config: ScaleConfig<Output, DiscreteInput, ThresholdInput>,
 ): D3Scale<Output, DiscreteInput, ThresholdInput>;
@@ -157,6 +164,7 @@ function createScale<
       case 'band':
         return createBandScale(config);
       case 'radial':
+        return createRadialScale(config);
       default:
     }
   }

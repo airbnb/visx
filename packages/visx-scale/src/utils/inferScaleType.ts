@@ -36,8 +36,13 @@ export default function inferScaleType<
   }
 
   if ('clamp' in scale) {
+    // Check for radial scale (has both unknown and clamp)
+    if ('unknown' in scale) {
+      return 'radial';
+    }
     // Linear, Time or Utc scales
-    if (scale.ticks()[0] instanceof Date) {
+    const ticks = (scale as any).ticks?.();
+    if (ticks?.[0] instanceof Date) {
       return isUtcScale(scale as ScaleTime<Output, Output>) ? 'utc' : 'time';
     }
     return 'linear';

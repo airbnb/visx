@@ -4,6 +4,7 @@ import {
   scalePow,
   scaleSqrt,
   scaleSymlog,
+  scaleRadial,
   scaleTime,
   scaleUtc,
   scaleQuantile,
@@ -31,6 +32,9 @@ describe('inferScaleType(scale)', () => {
   });
   it('symlog scale', () => {
     expect(inferScaleType(scaleSymlog())).toBe('symlog');
+  });
+  it('radial scale', () => {
+    expect(inferScaleType(scaleRadial())).toBe('radial');
   });
   describe('time scale', () => {
     it('returns time when local time is not UTC', () => {

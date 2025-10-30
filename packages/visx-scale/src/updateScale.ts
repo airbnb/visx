@@ -131,6 +131,15 @@ function updateScale<
   Output = DefaultOutput,
   DiscreteInput extends StringLike = StringLike,
   ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput,
+>(
+  scale: PickD3Scale<'radial', Output>,
+  config: PickScaleConfigWithoutType<'radial', Output>,
+): PickD3Scale<'radial', Output>;
+
+function updateScale<
+  Output = DefaultOutput,
+  DiscreteInput extends StringLike = StringLike,
+  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput,
   Scale extends D3Scale<Output, DiscreteInput, ThresholdInput> = D3Scale<
     Output,
     DiscreteInput,
