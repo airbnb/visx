@@ -100,7 +100,8 @@ describe('createScale()', () => {
       domain: [0, 100],
       range: [0, Math.PI],
     });
-    expect(scale(50)).toBeCloseTo(Math.PI / 2);
+    // Radial scales use sqrt transformation: sqrt(0.5) * PI = PI/sqrt(2)
+    expect(scale(50)).toBeCloseTo(Math.PI / Math.sqrt(2));
   });
   it('invalid type', () => {
     // @ts-expect-error
