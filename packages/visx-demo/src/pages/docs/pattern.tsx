@@ -1,17 +1,18 @@
 import React from 'react';
 import PatternReadme from '!!raw-loader!../../../../visx-pattern/Readme.md';
-import Circles from '../../../../visx-pattern/src/patterns/Circles';
-import Hexagons from '../../../../visx-pattern/src/patterns/Hexagons';
-import Lines from '../../../../visx-pattern/src/patterns/Lines';
-import Path from '../../../../visx-pattern/src/patterns/Path';
-import Pattern from '../../../../visx-pattern/src/patterns/Pattern';
-import Waves from '../../../../visx-pattern/src/patterns/Waves';
+import * as PatternComponents from '../../../../visx-pattern/src';
 import DocPage from '../../components/DocPage';
+import { attachDocGenInfo } from '../../utils/getDocGenInfo';
 import PatternsTile from '../../components/Gallery/PatternsTile';
 import StreamGraphTile from '../../components/Gallery/StreamGraphTile';
 import StatsPlotTile from '../../components/Gallery/StatsPlotTile';
 
-const components = [Pattern, Circles, Hexagons, Lines, Path, Waves];
+// Attach documentation to components
+const componentsWithDocs = attachDocGenInfo('pattern', PatternComponents);
+
+const components = Object.values(componentsWithDocs).sort((a, b) =>
+  (a?.__docgenInfo?.displayName ?? '').localeCompare(b?.__docgenInfo?.displayName ?? ''),
+);
 
 const examples = [PatternsTile, StreamGraphTile, StatsPlotTile];
 

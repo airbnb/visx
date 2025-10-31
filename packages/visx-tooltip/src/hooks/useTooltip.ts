@@ -1,12 +1,19 @@
 import { useState, useCallback } from 'react';
 
 export type UseTooltipParams<TooltipData> = {
+  /** Whether the tooltip is currently open/visible. */
   tooltipOpen: boolean;
+  /** The left position (in pixels) of the tooltip. */
   tooltipLeft?: number;
+  /** The top position (in pixels) of the tooltip. */
   tooltipTop?: number;
+  /** The data associated with the tooltip. */
   tooltipData?: TooltipData;
+  /** Function to update tooltip state. */
   updateTooltip: (args: UpdateTooltipArgs<TooltipData>) => void;
+  /** Function to show the tooltip with the specified position and data. */
   showTooltip: (args: ShowTooltipArgs<TooltipData>) => void;
+  /** Function to hide the tooltip. */
   hideTooltip: () => void;
 };
 type UseTooltipState<TooltipData> = Pick<

@@ -1,7 +1,8 @@
 import React from 'react';
 import cx from 'classnames';
 import { Group } from '@visx/group';
-import { partition as d3partition, HierarchyNode, HierarchyRectangularNode } from 'd3-hierarchy';
+import type { HierarchyNode, HierarchyRectangularNode } from 'd3-hierarchy';
+import { partition as d3partition } from 'd3-hierarchy';
 import DefaultNode from '../HierarchyDefaultRectNode';
 
 export type NodeComponentProps<Datum> = { node: HierarchyRectangularNode<Datum> };

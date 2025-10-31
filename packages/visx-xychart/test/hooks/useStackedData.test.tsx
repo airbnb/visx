@@ -1,5 +1,5 @@
-import React, { useContext, useEffect } from 'react';
-import { render } from '@testing-library/react';
+import React, { useContext } from 'react';
+import { render, waitFor } from '@testing-library/react';
 import { AreaSeries, DataContext, DataProvider } from '../../src';
 import useStackedData from '../../src/hooks/useStackedData';
 
@@ -72,18 +72,11 @@ describe('useStackedData', () => {
     );
   });
 
-  it('compute a comprehensive domain based on the total stack value', () => {
-    expect.hasAssertions();
-
+  it('compute a comprehensive domain based on the total stack value', async () => {
+    let yScale: any;
     const Consumer = ({ children }: { children: React.ReactElement | React.ReactElement[] }) => {
       useStackedData({ children });
-      const { dataRegistry, yScale } = useContext(DataContext);
-
-      useEffect(() => {
-        if (dataRegistry?.get('a') && yScale) {
-          expect(yScale.domain()).toEqual([-2, 14]);
-        }
-      }, [dataRegistry, yScale]);
+      yScale = useContext(DataContext).yScale;
       return null;
     };
 
@@ -93,5 +86,9 @@ describe('useStackedData', () => {
         <AreaSeries {...seriesBProps} />
       </Consumer>,
     );
+
+    await waitFor(() => {
+      expect(yScale.domain()).toEqual([-2, 14]);
+    });
   });
 });

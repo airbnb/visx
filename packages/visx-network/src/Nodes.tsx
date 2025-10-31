@@ -3,7 +3,7 @@ import cx from 'classnames';
 import { Group } from '@visx/group';
 
 import DefaultNode from './DefaultNode';
-import { NodeProvidedProps } from './types';
+import type { NodeProvidedProps } from './types';
 
 export type NodeProps<Node> = {
   /** Array of links to render. */

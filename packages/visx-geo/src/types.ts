@@ -1,4 +1,4 @@
-import {
+import type {
   GeoProjection,
   GeoPermissibleObjects as GeoPermissibleObjectType,
 } from '@visx/vendor/d3-geo';

@@ -1,5 +1,6 @@
 import React from 'react';
-import Brush, { BrushProps, background, accentColor } from '../../sandboxes/visx-brush/Example';
+import type { BrushProps } from '../../sandboxes/visx-brush/Example';
+import Brush, { background, accentColor } from '../../sandboxes/visx-brush/Example';
 import GalleryTile from '../GalleryTile';
 
 export { default as packageJson } from '../../sandboxes/visx-brush/package.json';

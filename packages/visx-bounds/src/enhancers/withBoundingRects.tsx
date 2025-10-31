@@ -1,5 +1,6 @@
 /* eslint react/no-did-mount-set-state: 0, react/no-find-dom-node: 0 */
-import React, { ComponentClass } from 'react';
+import type { ComponentClass } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 
 const emptyRect = {

@@ -1,11 +1,11 @@
 import React from 'react';
 import ThemeContext from '../context/ThemeContext';
-import { XYChartTheme } from '../types';
+import type { XYChartTheme } from '../types';
 import lightTheme from '../theme/themes/light';
 
 export type ThemeProviderProps = {
   theme?: XYChartTheme;
-  children: React.ReactNode | React.FC | React.Component;
+  children: React.ReactNode;
 };
 
 export default function ThemeProvider({ theme = lightTheme, children }: ThemeProviderProps) {

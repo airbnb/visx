@@ -1,17 +1,24 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import useMeasure, { RectReadOnly, Options as BaseUseMeasureOptions } from 'react-use-measure';
+import type { RectReadOnly, Options as BaseUseMeasureOptions } from 'react-use-measure';
+import useMeasure from 'react-use-measure';
 
-import Portal, { PortalProps } from '../Portal';
-import Tooltip, { TooltipProps } from '../tooltips/Tooltip';
+import type { PortalProps } from '../Portal';
+import Portal from '../Portal';
+import type { TooltipProps } from '../tooltips/Tooltip';
+import Tooltip from '../tooltips/Tooltip';
 import TooltipWithBounds from '../tooltips/TooltipWithBounds';
 
 export type TooltipInPortalProps = TooltipProps &
   Pick<UseTooltipPortalOptions, 'detectBounds' | 'zIndex'>;
 
 export type UseTooltipInPortal = {
+  /** Ref callback to be attached to the container element for boundary detection. */
   containerRef: (element: HTMLElement | SVGElement | null) => void;
+  /** The bounding box of the container element. */
   containerBounds: RectReadOnly;
+  /** Function to force a refresh of the container bounds. */
   forceRefreshBounds: () => void;
+  /** Component to render the tooltip in a portal. */
   TooltipInPortal: React.FC<TooltipInPortalProps>;
 };
 

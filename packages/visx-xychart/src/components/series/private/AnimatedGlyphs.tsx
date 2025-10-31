@@ -1,8 +1,8 @@
-import { AxisScale } from '@visx/axis';
+import type { AxisScale } from '@visx/axis';
 import React, { useMemo } from 'react';
 import { useTransition, animated, to } from '@react-spring/web';
 import getScaleBaseline from '../../../utils/getScaleBaseline';
-import { GlyphProps, GlyphsProps } from '../../../types';
+import type { GlyphProps, GlyphsProps } from '../../../types';
 import { cleanColor, colorHasUrl } from '../../../utils/cleanColorString';
 
 /** Memoized useTransition config */

@@ -1,24 +1,16 @@
 import React from 'react';
 import AnnotationReadme from '!!raw-loader!../../../../visx-annotation/Readme.md';
-import Annotation from '../../../../visx-annotation/src/components/Annotation';
-import EditableAnnotation from '../../../../visx-annotation/src/components/EditableAnnotation';
-import CircleSubject from '../../../../visx-annotation/src/components/CircleSubject';
-import LineSubject from '../../../../visx-annotation/src/components/LineSubject';
-import Connector from '../../../../visx-annotation/src/components/Connector';
-import Label from '../../../../visx-annotation/src/components/Label';
-import HtmlLabel from '../../../../visx-annotation/src/components/HtmlLabel';
+import * as AnnotationComponents from '../../../../visx-annotation/src';
 import DocPage from '../../components/DocPage';
 import AnnotationTile from '../../components/Gallery/AnnotationTile';
+import { attachDocGenInfo } from '../../utils/getDocGenInfo';
 
-const components = [
-  Annotation,
-  EditableAnnotation,
-  CircleSubject,
-  LineSubject,
-  Connector,
-  Label,
-  HtmlLabel,
-];
+// Attach documentation to components
+const componentsWithDocs = attachDocGenInfo('annotation', AnnotationComponents);
+
+const components = Object.values(componentsWithDocs).sort((a, b) =>
+  (a?.__docgenInfo?.displayName ?? '').localeCompare(b?.__docgenInfo?.displayName ?? ''),
+);
 
 const examples = [AnnotationTile];
 

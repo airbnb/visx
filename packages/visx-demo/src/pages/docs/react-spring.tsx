@@ -1,12 +1,16 @@
 import React from 'react';
 import ReactSpringReadme from '!!raw-loader!../../../../visx-react-spring/README.md';
-import AnimatedAxis from '../../../../visx-react-spring/src/axis/AnimatedAxis';
-import AnimatedGridColumns from '../../../../visx-react-spring/src/grid/AnimatedGridColumns';
-import AnimatedGridRows from '../../../../visx-react-spring/src/grid/AnimatedGridRows';
+import * as ReactSpringComponents from '../../../../visx-react-spring/src';
 import DocPage from '../../components/DocPage';
+import { attachDocGenInfo } from '../../utils/getDocGenInfo';
 import AxisTile from '../../components/Gallery/AxisTile';
 
-const components = [AnimatedAxis, AnimatedGridColumns, AnimatedGridRows];
+// Attach documentation to components
+const componentsWithDocs = attachDocGenInfo('react-spring', ReactSpringComponents);
+
+const components = Object.values(componentsWithDocs).sort((a, b) =>
+  (a?.__docgenInfo?.displayName ?? '').localeCompare(b?.__docgenInfo?.displayName ?? ''),
+);
 
 const examples = [AxisTile];
 

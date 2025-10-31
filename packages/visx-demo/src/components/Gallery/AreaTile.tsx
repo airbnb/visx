@@ -1,5 +1,6 @@
 import React from 'react';
-import Area, { AreaProps, accentColor, background } from '../../sandboxes/visx-area/Example';
+import type { AreaProps } from '../../sandboxes/visx-area/Example';
+import Area, { accentColor, background } from '../../sandboxes/visx-area/Example';
 import GalleryTile from '../GalleryTile';
 
 export { default as packageJson } from '../../sandboxes/visx-area/package.json';

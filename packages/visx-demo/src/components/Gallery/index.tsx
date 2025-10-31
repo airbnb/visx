@@ -51,7 +51,7 @@ import * as TreesTile from './TreesTile';
 import * as WordcloudTile from './WordcloudTile';
 import * as XYChartTile from './XYChartTile';
 import * as ZoomITile from './ZoomITile';
-import { VisxPackage } from '../../types';
+import type { VisxPackage } from '../../types';
 import exampleToVisxDependencyLookup, {
   visxPackages,
 } from '../../sandboxes/exampleToVisxDependencyLookup';
@@ -130,13 +130,11 @@ export default function Gallery() {
                 pathname: '/gallery',
                 query: routePackage === visxPackage ? undefined : { pkg: visxPackage },
               }}
+              className={cx('filter-button', {
+                emphasize: routePackage === visxPackage,
+              })}
             >
-              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-              <a
-                className={cx('filter-button', {
-                  emphasize: routePackage === visxPackage,
-                })}
-              >{`${visxPackage}`}</a>
+              {`${visxPackage}`}
             </Link>
           ))}
         </div>

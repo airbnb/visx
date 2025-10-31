@@ -1,5 +1,6 @@
 import React from 'react';
-import Polygon, { PolygonProps, background } from '../../sandboxes/visx-polygons/Example';
+import type { PolygonProps } from '../../sandboxes/visx-polygons/Example';
+import Polygon, { background } from '../../sandboxes/visx-polygons/Example';
 import GalleryTile from '../GalleryTile';
 
 export { default as packageJson } from '../../sandboxes/visx-polygons/package.json';

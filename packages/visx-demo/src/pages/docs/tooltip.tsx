@@ -1,12 +1,9 @@
 import React from 'react';
 import TooltipReadme from '!!raw-loader!../../../../visx-tooltip/Readme.md';
-import Tooltip from '../../../../visx-tooltip/src/tooltips/Tooltip';
-import TooltipWithBounds from '../../../../visx-tooltip/src/tooltips/TooltipWithBounds';
-import useTooltip from '../../../../visx-tooltip/src/hooks/useTooltip';
-import useTooltipInPortal from '../../../../visx-tooltip/src/hooks/useTooltipInPortal';
-import Portal from '../../../../visx-tooltip/src/Portal';
+import * as TooltipComponents from '../../../../visx-tooltip/src';
 
 import DocPage from '../../components/DocPage';
+import { attachDocGenInfo } from '../../utils/getDocGenInfo';
 import TooltipTile from '../../components/Gallery/TooltipTile';
 import DotsTile from '../../components/Gallery/DotsTile';
 import BarStackHorizontalTile from '../../components/Gallery/BarStackHorizontalTile';
@@ -15,7 +12,12 @@ import AreaTile from '../../components/Gallery/AreaTile';
 
 const examples = [TooltipTile, DotsTile, BarStackHorizontalTile, StatsPlotTile, AreaTile];
 
-const components = [TooltipWithBounds, Tooltip, Portal, useTooltip, useTooltipInPortal];
+// Attach documentation to components
+const componentsWithDocs = attachDocGenInfo('tooltip', TooltipComponents);
+
+const components = Object.values(componentsWithDocs).sort((a, b) =>
+  (a?.__docgenInfo?.displayName ?? '').localeCompare(b?.__docgenInfo?.displayName ?? ''),
+);
 
 function TooltipDocs() {
   return (

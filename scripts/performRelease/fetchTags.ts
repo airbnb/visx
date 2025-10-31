@@ -1,4 +1,4 @@
-import { GithubClient } from '../utils/getGitHubClient';
+import type { GithubClient } from '../utils/getGitHubClient';
 import getRepoContext from '../utils/getRepoContext';
 
 export default async function fetchTags(client: GithubClient) {

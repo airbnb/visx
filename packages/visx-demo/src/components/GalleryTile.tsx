@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import ParentSize from '@visx/responsive/lib/components/ParentSize';
-import { WidthAndHeight } from '../types';
+import type { WidthAndHeight } from '../types';
 
 type Props<ExampleProps extends WidthAndHeight> = {
   description?: string;
@@ -114,6 +114,8 @@ export default function GalleryTile<ExampleProps extends WidthAndHeight>({
           flex-direction: column;
           border-radius: 14px;
           cursor: pointer;
+          text-decoration: none;
+          color: inherit;
         }
         .image {
           flex: 1;

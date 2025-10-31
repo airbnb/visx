@@ -1,5 +1,5 @@
 import { vi } from 'vitest';
-import { fireEvent, waitFor, renderHook } from '@testing-library/react';
+import { act, fireEvent, renderHook } from '@testing-library/react';
 import useScreenSize from '../src/hooks/useScreenSize';
 
 const setWindowSize = (width: number, height: number) => {
@@ -32,20 +32,25 @@ describe('useScreenSize', () => {
     expect(result.current).toEqual({ width: 1280, height: 1024 });
   });
 
-  test('it should update the screen size on window resize', async () => {
-    // fake timers in Jest 25 are completely unusable so I'm using real timers here
-    // when it's upgraded should be updated to use advanceTimersByTime
-    vi.useRealTimers();
+  test('it should update the screen size on window resize', () => {
+    // Use modern fake timers to gain better control of timers
+    vi.useFakeTimers();
 
     const { result } = renderHook(() => useScreenSize());
 
     expect(result.current).toEqual({ width: 1280, height: 1024 });
 
+    // Simulate the window resize event
     setWindowSize(800, 600);
-    fireEvent(window, new Event('resize'));
+    act(() => {
+      fireEvent(window, new Event('resize'));
+      // Move the timers forward, triggering the debounce/throttle logic in `useScreenSize`
+      vi.advanceTimersByTime(500);
+    });
 
-    await waitFor(() => expect(result.current).toEqual({ width: 800, height: 600 }));
+    expect(result.current).toEqual({ width: 800, height: 600 });
 
-    vi.useFakeTimers();
+    // Reset to real timers after the test
+    vi.useRealTimers();
   });
 });

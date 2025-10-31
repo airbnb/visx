@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { AddSVGProps, BaseAreaProps } from '../types';
+import type { AddSVGProps, BaseAreaProps } from '../types';
 import { area } from '../util/D3ShapeFactories';
 
 export type AreaProps<Datum> = BaseAreaProps<Datum>;

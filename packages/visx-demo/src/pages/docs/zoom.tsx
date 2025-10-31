@@ -1,10 +1,16 @@
 import React from 'react';
 import ZoomReadme from '!!raw-loader!../../../../visx-zoom/Readme.md';
-import Zoom from '../../../../visx-zoom/src/Zoom';
+import * as ZoomComponents from '../../../../visx-zoom/src';
 import DocPage from '../../components/DocPage';
+import { attachDocGenInfo } from '../../utils/getDocGenInfo';
 import ZoomITile from '../../components/Gallery/ZoomITile';
 
-const components = [Zoom];
+// Attach documentation to components
+const componentsWithDocs = attachDocGenInfo('zoom', ZoomComponents);
+
+const components = Object.values(componentsWithDocs).sort((a, b) =>
+  (a?.__docgenInfo?.displayName ?? '').localeCompare(b?.__docgenInfo?.displayName ?? ''),
+);
 
 const examples = [ZoomITile];
 

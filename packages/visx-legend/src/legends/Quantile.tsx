@@ -1,13 +1,15 @@
 import React from 'react';
-import { PickD3Scale } from '@visx/scale';
-import Legend, { LegendProps } from './Legend';
-import { LabelFormatterFactory } from '../types';
+import type { PickD3Scale } from '@visx/scale';
+import type { LegendProps } from './Legend';
+import Legend from './Legend';
+import type { LabelFormatterFactory } from '../types';
 import identity from '../util/identity';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type AnyQuantileScale = PickD3Scale<'quantile', any>;
 
 type FactoryProps = {
+  /** The delimiter string to use between the min and max values in the label (e.g., '-' renders as '0 - 10'). */
   labelDelimiter?: string;
 };
 

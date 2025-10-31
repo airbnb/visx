@@ -1,9 +1,15 @@
 import React from 'react';
 import MarkerReadme from '!!raw-loader!../../../../visx-marker/Readme.md';
-import Marker from '../../../../visx-marker/src/markers/Marker';
+import * as MarkerComponents from '../../../../visx-marker/src';
 import DocPage from '../../components/DocPage';
+import { attachDocGenInfo } from '../../utils/getDocGenInfo';
 
-const components = [Marker];
+// Attach documentation to components
+const componentsWithDocs = attachDocGenInfo('marker', MarkerComponents);
+
+const components = Object.values(componentsWithDocs).sort((a, b) =>
+  (a?.__docgenInfo?.displayName ?? '').localeCompare(b?.__docgenInfo?.displayName ?? ''),
+);
 
 function MarkerDocs() {
   return <DocPage components={components} readme={MarkerReadme} visxPackage="marker" />;

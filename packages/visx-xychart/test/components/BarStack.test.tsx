@@ -1,5 +1,5 @@
 import { vi } from 'vitest';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import { render, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import {
@@ -118,15 +118,12 @@ describe('<BarStack />', () => {
     expect(RectElements).toHaveLength(3);
   });
 
-  it('should update scale domain to include stack sums including negative values', () => {
-    expect.hasAssertions();
+  it('should update scale domain to include stack sums including negative values', async () => {
+    let yScale: any;
 
     function Assertion() {
-      const { yScale, dataRegistry } = useContext(DataContext);
-      // eslint-disable-next-line jest/no-if
-      if (yScale && dataRegistry?.keys().length === 2) {
-        expect(yScale.domain()).toEqual([-20, 10]);
-      }
+      yScale = useContext(DataContext).yScale;
+
       return null;
     }
 
@@ -148,6 +145,10 @@ describe('<BarStack />', () => {
         <Assertion />
       </DataProvider>,
     );
+
+    await waitFor(() => {
+      expect(yScale.domain()).toEqual([-20, 10]);
+    });
   });
 
   it('should invoke showTooltip/hideTooltip on pointermove/pointerout', async () => {
@@ -159,10 +160,13 @@ describe('<BarStack />', () => {
     const EventEmitter = () => {
       const emit = useEventEmitter();
       const { yScale } = useContext(DataContext);
+      const hasEmitted = useRef(false);
 
       useEffect(() => {
         // checking for yScale ensures stack data is registered and stacks are rendered
-        if (emit && yScale) {
+        if (emit && yScale && !hasEmitted.current) {
+          hasEmitted.current = true;
+
           // Get the SVG element to use as event target
           const svg = document.querySelector('svg');
 

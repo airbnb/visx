@@ -1,7 +1,7 @@
-import { ScaleTime } from '@visx/vendor/d3-scale';
-import { StringLike } from '../types/Base';
-import { DefaultThresholdInput, D3Scale } from '../types/Scale';
-import { ScaleType } from '../types/ScaleConfig';
+import type { ScaleTime } from '@visx/vendor/d3-scale';
+import type { StringLike } from '../types/Base';
+import type { DefaultThresholdInput, D3Scale } from '../types/Scale';
+import type { ScaleType } from '../types/ScaleConfig';
 import isUtcScale from './isUtcScale';
 
 export default function inferScaleType<
@@ -36,8 +36,13 @@ export default function inferScaleType<
   }
 
   if ('clamp' in scale) {
+    // Radial scales don't have interpolate method (unlike linear/time/utc)
+    if (!('interpolate' in scale)) {
+      return 'radial';
+    }
     // Linear, Time or Utc scales
-    if (scale.ticks()[0] instanceof Date) {
+    const ticks = (scale as any).ticks?.();
+    if (ticks?.[0] instanceof Date) {
       return isUtcScale(scale as ScaleTime<Output, Output>) ? 'utc' : 'time';
     }
     return 'linear';

@@ -14,11 +14,13 @@
     "moduleResolution": "node",
     "composite": true,
     "outDir": "lib",
-    "resolveJsonModule": false,
+    "resolveJsonModule": true,
     "rootDir": "src",
     "skipLibCheck": true,
     "strict": false,
-    "target": "es5"
+    "target": "es5",
+    "noEmit": true,
+    "incremental": true
   },
   "exclude": [
     "lib",
@@ -26,8 +28,8 @@
     "src/sandboxes/**/package.json"
   ],
   "include": [
-    "src/**/*",
-    "../../types/**/*"
+    "src/**/*.{ts,tsx}",
+    "../../types/**/*.{ts,tsx}"
   ],
   "references": [
     {

@@ -1,7 +1,6 @@
 import React from 'react';
-import Delaunay, {
-  DelaunayTriangulationProps,
-} from '../../sandboxes/visx-delaunay-triangulation/Example';
+import type { DelaunayTriangulationProps } from '../../sandboxes/visx-delaunay-triangulation/Example';
+import Delaunay from '../../sandboxes/visx-delaunay-triangulation/Example';
 import GalleryTile from '../GalleryTile';
 
 export { default as packageJson } from '../../sandboxes/visx-delaunay-triangulation/package.json';

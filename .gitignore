@@ -8,7 +8,6 @@ logs/
 # Cache
 .bundle/
 .eslintcache/
-.happo/
 .idea/
 .next/
 .npm/
@@ -34,4 +33,7 @@ webpack.config.js
 
 # Lock files
 npm-shrinkwrap.json
-package-lock.json 
+package-lock.json
+
+# Generated files
+packages/visx-demo/src/generated/

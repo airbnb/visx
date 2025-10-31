@@ -1,4 +1,5 @@
 export { default as Axis } from './axis/Axis';
+export type { AxisProps } from './axis/Axis';
 export { default as AxisLeft } from './axis/AxisLeft';
 export { default as AxisRight } from './axis/AxisRight';
 export { default as AxisTop } from './axis/AxisTop';

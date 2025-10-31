@@ -1,6 +1,6 @@
-import { AxisScale } from '@visx/axis';
+import type { AxisScale } from '@visx/axis';
 import { voronoi } from '@visx/voronoi';
-import { NearestDatumArgs, NearestDatumReturnType } from '../types';
+import type { NearestDatumArgs, NearestDatumReturnType } from '../types';
 
 /* finds the datum nearest to svgMouseX/Y using a voronoi */
 export default function findNearestDatumXY<

@@ -1,9 +1,10 @@
 /* eslint react/jsx-handler-names: 0 */
 import React from 'react';
-import Drag, { HandlerArgs as DragArgs } from '@visx/drag/lib/Drag';
+import type { HandlerArgs as DragArgs } from '@visx/drag/lib/Drag';
+import Drag from '@visx/drag/lib/Drag';
 
-import { BaseBrushState as BrushState, UpdateBrush } from './BaseBrush';
-import { BrushPageOffset, BrushingType } from './types';
+import type { BaseBrushState as BrushState, UpdateBrush } from './BaseBrush';
+import type { BrushPageOffset, BrushingType } from './types';
 import { getPageCoordinates } from './utils';
 
 const DRAGGING_OVERLAY_STYLES = { cursor: 'move' };

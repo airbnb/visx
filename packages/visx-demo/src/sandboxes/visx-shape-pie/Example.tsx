@@ -1,11 +1,14 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import React, { useState } from 'react';
-import Pie, { ProvidedProps, PieArcDatum } from '@visx/shape/lib/shapes/Pie';
+import type { ProvidedProps, PieArcDatum } from '@visx/shape/lib/shapes/Pie';
+import Pie from '@visx/shape/lib/shapes/Pie';
 import { scaleOrdinal } from '@visx/scale';
 import { Group } from '@visx/group';
 import { GradientPinkBlue } from '@visx/gradient';
-import letterFrequency, { LetterFrequency } from '@visx/mock-data/lib/mocks/letterFrequency';
-import browserUsage, { BrowserUsage as Browsers } from '@visx/mock-data/lib/mocks/browserUsage';
+import type { LetterFrequency } from '@visx/mock-data/lib/mocks/letterFrequency';
+import letterFrequency from '@visx/mock-data/lib/mocks/letterFrequency';
+import type { BrowserUsage as Browsers } from '@visx/mock-data/lib/mocks/browserUsage';
+import browserUsage from '@visx/mock-data/lib/mocks/browserUsage';
 import { animated, useTransition, interpolate } from '@react-spring/web';
 
 // data and types

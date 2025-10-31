@@ -17,15 +17,13 @@ function NavItem({ id, href, children, className, external }: NavItemProps) {
           {children}
         </a>
       ) : (
-        <Link href={href}>
-          <a id={id} className={className}>
-            {children}
-          </a>
+        <Link href={href} id={id} className={className}>
+          {children}
         </Link>
       )}
 
       <style jsx>{`
-        .Item a {
+        .Item {
           display: inline-block;
           padding: 10px;
           text-decoration: none;

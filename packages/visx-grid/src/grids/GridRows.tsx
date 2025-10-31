@@ -1,10 +1,12 @@
 import React from 'react';
 import cx from 'classnames';
-import Line, { LineProps } from '@visx/shape/lib/shapes/Line';
+import type { LineProps } from '@visx/shape/lib/shapes/Line';
+import Line from '@visx/shape/lib/shapes/Line';
 import { Group } from '@visx/group';
 import { Point } from '@visx/point';
-import { getTicks, ScaleInput, coerceNumber } from '@visx/scale';
-import { CommonGridProps, GridScale } from '../types';
+import type { ScaleInput } from '@visx/scale';
+import { getTicks, coerceNumber } from '@visx/scale';
+import type { CommonGridProps, GridScale } from '../types';
 import getScaleBandwidth from '../utils/getScaleBandwidth';
 
 export type GridRowsProps<Scale extends GridScale> = CommonGridProps & {

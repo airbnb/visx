@@ -1,5 +1,6 @@
 import React from 'react';
-import Annotation, { AnnotationProps, greens } from '../../sandboxes/visx-annotation/Example';
+import type { AnnotationProps } from '../../sandboxes/visx-annotation/Example';
+import Annotation, { greens } from '../../sandboxes/visx-annotation/Example';
 import GalleryTile from '../GalleryTile';
 
 export { default as packageJson } from '../../sandboxes/visx-annotation/package.json';

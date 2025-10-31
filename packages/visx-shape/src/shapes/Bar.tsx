@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { AddSVGProps } from '../types';
+import type { AddSVGProps } from '../types';
 
 export type BarProps = {
   /** className to apply to rect element. */

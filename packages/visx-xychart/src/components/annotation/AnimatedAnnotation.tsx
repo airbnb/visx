@@ -4,13 +4,14 @@ import {
   Annotation as VisxAnnotation,
   EditableAnnotation as VisxEditableAnnotation,
 } from '@visx/annotation';
-import { AnnotationProps as VisxAnnotationProps } from '@visx/annotation/lib/components/Annotation';
-import {
+import type { AnnotationProps as VisxAnnotationProps } from '@visx/annotation/lib/components/Annotation';
+import type {
   EditableAnnotationProps,
   EditableAnnotationProps as VisxEditableAnnotationProps,
 } from '@visx/annotation/lib/components/EditableAnnotation';
-import { AxisScale } from '@visx/axis';
-import BaseAnnotation, { BaseAnnotationProps } from './private/BaseAnnotation';
+import type { AxisScale } from '@visx/axis';
+import type { BaseAnnotationProps } from './private/BaseAnnotation';
+import BaseAnnotation from './private/BaseAnnotation';
 
 export type AnnotationProps<
   XScale extends AxisScale,

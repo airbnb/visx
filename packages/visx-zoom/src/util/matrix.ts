@@ -1,4 +1,4 @@
-import { TransformMatrix, Point } from '../types';
+import type { TransformMatrix, Point } from '../types';
 
 export function identityMatrix(): TransformMatrix {
   return {

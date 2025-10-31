@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import cx from 'classnames';
-import { VisxPackage } from '../types';
+import type { VisxPackage } from '../types';
 
 export default function PackageList({
   emphasizePackage,
@@ -20,63 +20,43 @@ export default function PackageList({
           <HeaderElement>Chart primitives</HeaderElement>
           <ul>
             <li className={cx(emphasizePackage === 'annotation' && 'emphasize')}>
-              <Link href="/docs/annotation">
-                <a>annotation</a>
-              </Link>
+              <Link href="/docs/annotation">annotation</Link>
               {!compact && <p>Annotate elements of a chart</p>}
             </li>
             <li className={cx(cx(emphasizePackage === 'axis' && 'emphasize'))}>
-              <Link href="/docs/axis">
-                <a>axis</a>
-              </Link>
+              <Link href="/docs/axis">axis</Link>
               {!compact && <p>Annotate your coordinate system</p>}
             </li>
             <li className={cx(cx(emphasizePackage === 'curve' && 'emphasize'))}>
-              <Link href="/docs/curve">
-                <a>curve</a>
-              </Link>
+              <Link href="/docs/curve">curve</Link>
               {!compact && <p>d3 line interpolators for @visx/shape</p>}
             </li>
             <li className={cx(emphasizePackage === 'glyph' && 'emphasize')}>
-              <Link href="/docs/glyph">
-                <a>glyph</a>
-              </Link>
+              <Link href="/docs/glyph">glyph</Link>
               {!compact && <p>Complex marks & symbols to be used in visuals</p>}
             </li>
             <li className={cx(emphasizePackage === 'grid' && 'emphasize')}>
-              <Link href="/docs/grid">
-                <a>grid</a>
-              </Link>
+              <Link href="/docs/grid">grid</Link>
               {!compact && <p>Grid lines for a chart</p>}
             </li>
             <li className={cx(emphasizePackage === 'legend' && 'emphasize')}>
-              <Link href="/docs/legend">
-                <a>legend</a>
-              </Link>
+              <Link href="/docs/legend">legend</Link>
               {!compact && <p>Make your visual encodings readable</p>}
             </li>
             <li className={cx(emphasizePackage === 'marker' && 'emphasize')}>
-              <Link href="/docs/marker">
-                <a>marker</a>
-              </Link>
+              <Link href="/docs/marker">marker</Link>
               {!compact && <p>Annotation lines with text</p>}
             </li>
             <li className={cx(emphasizePackage === 'scale' && 'emphasize')}>
-              <Link href="/docs/scale">
-                <a>scale</a>
-              </Link>
+              <Link href="/docs/scale">scale</Link>
               {!compact && <p>Map data to visual dimensions</p>}
             </li>
             <li className={cx(emphasizePackage === 'shape' && 'emphasize')}>
-              <Link href="/docs/shape">
-                <a>shape</a>
-              </Link>
+              <Link href="/docs/shape">shape</Link>
               {!compact && <p>Fundamental visualization shape primatives, the core of visx</p>}
             </li>
             <li className={cx(emphasizePackage === 'tooltip' && 'emphasize')}>
-              <Link href="/docs/tooltip">
-                <a>tooltip</a>
-              </Link>
+              <Link href="/docs/tooltip">tooltip</Link>
               {!compact && <p>Show details on demand</p>}
             </li>
           </ul>
@@ -85,69 +65,47 @@ export default function PackageList({
           <HeaderElement>Layouts & specialized</HeaderElement>
           <ul>
             <li className={cx(emphasizePackage === 'chord' && 'emphasize')}>
-              <Link href="/docs/chord">
-                <a>chord</a>
-              </Link>
+              <Link href="/docs/chord">chord</Link>
               {!compact && <p>Radial layout for matrix relationships</p>}
             </li>
             <li className={cx(emphasizePackage === 'geo' && 'emphasize')}>
-              <Link href="/docs/geo">
-                <a>geo</a>
-              </Link>
+              <Link href="/docs/geo">geo</Link>
               {!compact && <p>Geographic projections</p>}
             </li>
             <li className={cx(emphasizePackage === 'heatmap' && 'emphasize')}>
-              <Link href="/docs/heatmap">
-                <a>heatmap</a>
-              </Link>
+              <Link href="/docs/heatmap">heatmap</Link>
               {!compact && <p>Represent data values using color</p>}
             </li>
             <li className={cx(emphasizePackage === 'hierarchy' && 'emphasize')}>
-              <Link href="/docs/hierarchy">
-                <a>hierarchy</a>
-              </Link>
+              <Link href="/docs/hierarchy">hierarchy</Link>
               {!compact && <p>Components to visualize hierarchical or nested data</p>}
             </li>
             <li className={cx(emphasizePackage === 'network' && 'emphasize')}>
-              <Link href="/docs/network">
-                <a>network</a>
-              </Link>
+              <Link href="/docs/network">network</Link>
               {!compact && <p>Visualize nodes and links between them</p>}
             </li>
             <li className={cx(emphasizePackage === 'react-spring' && 'emphasize')}>
-              <Link href="/docs/react-spring">
-                <a>react-spring</a>
-              </Link>
+              <Link href="/docs/react-spring">react-spring</Link>
               {!compact && <p>Animated visx primitives</p>}
             </li>
             <li className={cx(emphasizePackage === 'sankey' && 'emphasize')}>
-              <Link href="/docs/sankey">
-                <a>sankey</a>
-              </Link>
+              <Link href="/docs/sankey">sankey</Link>
               {!compact && <p>Components to visualize sankey charts</p>}
             </li>
             <li className={cx(emphasizePackage === 'stats' && 'emphasize')}>
-              <Link href="/docs/stats">
-                <a>stats</a>
-              </Link>
+              <Link href="/docs/stats">stats</Link>
               {!compact && <p>Common ways to visualize distributions</p>}
             </li>
             <li className={cx(emphasizePackage === 'threshold' && 'emphasize')}>
-              <Link href="/docs/threshold">
-                <a>threshold</a>
-              </Link>
+              <Link href="/docs/threshold">threshold</Link>
               {!compact && <p>Difference charts to compare the delta between two time series</p>}
             </li>
             <li className={cx(emphasizePackage === 'wordcloud' && 'emphasize')}>
-              <Link href="/docs/wordcloud">
-                <a>wordcloud</a>
-              </Link>
+              <Link href="/docs/wordcloud">wordcloud</Link>
               {!compact && <p>Visualize word frequency</p>}
             </li>
             <li className={cx(emphasizePackage === 'xychart' && 'emphasize')}>
-              <Link href="/docs/xychart">
-                <a>xychart</a>
-              </Link>
+              <Link href="/docs/xychart">xychart</Link>
               {!compact && (
                 <p>
                   A chart-level API built on & integrated with several other visx building blocks
@@ -160,33 +118,23 @@ export default function PackageList({
           <HeaderElement>Interactions</HeaderElement>
           <ul>
             <li className={cx(emphasizePackage === 'brush' && 'emphasize')}>
-              <Link href="/docs/brush">
-                <a>brush</a>
-              </Link>
+              <Link href="/docs/brush">brush</Link>
               {!compact && <p>Enable selection of a part of an interface</p>}
             </li>
             <li className={cx(emphasizePackage === 'delaunay' && 'emphasize')}>
-              <Link href="/docs/delaunay">
-                <a>delaunay</a>
-              </Link>
+              <Link href="/docs/delaunay">delaunay</Link>
               {!compact && <p>Partition points in a chart to improve user interaction</p>}
             </li>
             <li className={cx(emphasizePackage === 'drag' && 'emphasize')}>
-              <Link href="/docs/drag">
-                <a>drag</a>
-              </Link>
+              <Link href="/docs/drag">drag</Link>
               {!compact && <p>Make elements of an interface draggable</p>}
             </li>
             <li className={cx(emphasizePackage === 'voronoi' && 'emphasize')}>
-              <Link href="/docs/voronoi">
-                <a>voronoi</a>
-              </Link>
+              <Link href="/docs/voronoi">voronoi</Link>
               {!compact && <p>Partition points in a chart to improve user interaction</p>}
             </li>
             <li className={cx(emphasizePackage === 'zoom' && 'emphasize')}>
-              <Link href="/docs/zoom">
-                <a>zoom</a>
-              </Link>
+              <Link href="/docs/zoom">zoom</Link>
               {!compact && <p>Apply transforms to a viewport</p>}
             </li>
           </ul>
@@ -195,41 +143,29 @@ export default function PackageList({
           <HeaderElement>SVG utilities</HeaderElement>
           <ul>
             <li className={cx(emphasizePackage === 'clip-path' && 'emphasize')}>
-              <Link href="/docs/clip-path">
-                <a>clip-path</a>
-              </Link>
+              <Link href="/docs/clip-path">clip-path</Link>
               {!compact && <p>Utilities for clip-path elements</p>}
             </li>
             <li className={cx(emphasizePackage === 'event' && 'emphasize')}>
-              <Link href="/docs/event">
-                <a>event</a>
-              </Link>
+              <Link href="/docs/event">event</Link>
               {!compact && (
                 <p>Utilities for computing svg coordinates from mouse or touch events</p>
               )}
             </li>
             <li className={cx(emphasizePackage === 'group' && 'emphasize')}>
-              <Link href="/docs/group">
-                <a>group</a>
-              </Link>
+              <Link href="/docs/group">group</Link>
               {!compact && <p>Simplified API for &lt;g /&gt; elements</p>}
             </li>
             <li className={cx(emphasizePackage === 'gradient' && 'emphasize')}>
-              <Link href="/docs/gradient">
-                <a>gradient</a>
-              </Link>
+              <Link href="/docs/gradient">gradient</Link>
               {!compact && <p>Utilities for making making color gradient definitions</p>}
             </li>
             <li className={cx(emphasizePackage === 'pattern' && 'emphasize')}>
-              <Link href="/docs/pattern">
-                <a>pattern</a>
-              </Link>
+              <Link href="/docs/pattern">pattern</Link>
               {!compact && <p>Utilities for creating pattern definitions</p>}
             </li>
             <li className={cx(emphasizePackage === 'text' && 'emphasize')}>
-              <Link href="/docs/text">
-                <a>text</a>
-              </Link>
+              <Link href="/docs/text">text</Link>
               {!compact && <p>An improved SVG Text component</p>}
             </li>
           </ul>
@@ -238,27 +174,19 @@ export default function PackageList({
           <HeaderElement>Data utilities</HeaderElement>
           <ul>
             <li className={cx(emphasizePackage === 'bounds' && 'emphasize')}>
-              <Link href="/docs/bounds">
-                <a>bounds</a>
-              </Link>
+              <Link href="/docs/bounds">bounds</Link>
               {!compact && <p>Detect the bounding box of an element & its parent</p>}
             </li>
             <li className={cx(emphasizePackage === 'mock-data' && 'emphasize')}>
-              <Link href="/docs/mock-data">
-                <a>mock-data</a>
-              </Link>
+              <Link href="/docs/mock-data">mock-data</Link>
               {!compact && <p>Lots of mock data sets to play with</p>}
             </li>
             <li className={cx(emphasizePackage === 'responsive' && 'emphasize')}>
-              <Link href="/docs/responsive">
-                <a>responsive</a>
-              </Link>
+              <Link href="/docs/responsive">responsive</Link>
               {!compact && <p>Utilities to make responsive visualizations easy</p>}
             </li>
             <li className={cx(emphasizePackage === 'point' && 'emphasize')}>
-              <Link href="/docs/point">
-                <a>point</a>
-              </Link>
+              <Link href="/docs/point">point</Link>
               {!compact && <p>A simple class to represent an x,y coordinate</p>}
             </li>
           </ul>
@@ -268,9 +196,7 @@ export default function PackageList({
             <HeaderElement>Umbrella package</HeaderElement>
             <ul>
               <li className={cx(emphasizePackage === 'visx' && 'emphasize')}>
-                <Link href="/docs/visx">
-                  <a>visx</a>
-                </Link>
+                <Link href="/docs/visx">visx</Link>
               </li>
             </ul>
           </div>

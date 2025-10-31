@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useRef } from 'react';
 import debounce from 'lodash/debounce';
 import { useTooltip } from '@visx/tooltip';
 import TooltipContext from '../context/TooltipContext';
-import { EventHandlerParams, TooltipContextType, TooltipData } from '../types';
+import type { EventHandlerParams, TooltipContextType, TooltipData } from '../types';
 import isValidNumber from '../typeguards/isValidNumber';
 
 type TooltipProviderProps = {

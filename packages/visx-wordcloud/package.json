@@ -32,9 +32,8 @@
     "react": "^16.8.0-0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0"
   },
   "dependencies": {
-    "@types/d3-cloud": "1.2.5",
     "@visx/group": "3.13.0-alpha.0",
-    "d3-cloud": "^1.2.5"
+    "d3-cloud": "^1.2.7"
   },
   "publishConfig": {
     "access": "public"

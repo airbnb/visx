@@ -94,6 +94,14 @@ describe('createScale()', () => {
     expect(scale('b')).toBe(1.9);
     expect(scale('c')).toBe(2.7);
   });
+  it('radial', () => {
+    const scale = createScale({
+      type: 'radial',
+      domain: [0, 100],
+      range: [0, Math.PI],
+    });
+    expect(scale(50)).toBeCloseTo(Math.PI / Math.sqrt(2));
+  });
   it('invalid type', () => {
     // @ts-expect-error
     expect(createScale({ type: 'invalid' })).toBeDefined();

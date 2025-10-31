@@ -1,11 +1,13 @@
 import React from 'react';
 import cx from 'classnames';
-import Line, { LineProps } from '@visx/shape/lib/shapes/Line';
+import type { LineProps } from '@visx/shape/lib/shapes/Line';
+import Line from '@visx/shape/lib/shapes/Line';
 import { Group } from '@visx/group';
-import { ScaleInput, getTicks, coerceNumber } from '@visx/scale';
+import type { ScaleInput } from '@visx/scale';
+import { getTicks, coerceNumber } from '@visx/scale';
 import { Point } from '@visx/point';
 
-import { CommonGridProps, GridScale } from '../types';
+import type { CommonGridProps, GridScale } from '../types';
 import polarToCartesian from '../utils/polarToCartesian';
 
 export type GridAngleProps<Scale extends GridScale> = CommonGridProps & {
@@ -32,7 +34,7 @@ export type GridAngleProps<Scale extends GridScale> = CommonGridProps & {
 
 export type AllGridAngleProps<Scale extends GridScale> = GridAngleProps<Scale> &
   Omit<
-    LineProps & Omit<React.SVGProps<SVGLineElement>, keyof LineProps>,
+    LineProps & Omit<React.SVGProps<SVGLineElement>, keyof LineProps | 'children'>,
     keyof GridAngleProps<Scale>
   >;
 
@@ -50,6 +52,7 @@ export default function GridAngle<Scale extends GridScale>({
   strokeWidth = 1,
   tickValues,
   top = 0,
+  children, // Explicitly extract children so it doesn't get spread to Line
   ...restProps
 }: AllGridAngleProps<Scale>) {
   const ticks = tickValues ?? getTicks(scale, numTicks);

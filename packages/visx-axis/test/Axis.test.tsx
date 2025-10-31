@@ -4,7 +4,8 @@ import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import { scaleBand, scaleLinear } from '@visx/scale';
-import { Axis, AxisRendererProps } from '../src';
+import { Axis } from '../src';
+import type { AxisRendererProps } from '../src';
 import { addMock, removeMock } from './svgMock';
 
 const axisProps = {

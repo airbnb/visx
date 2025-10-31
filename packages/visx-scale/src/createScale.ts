@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-redeclare */
-import { ScaleConfig, PickScaleConfigWithoutType, PickScaleConfig } from './types/ScaleConfig';
-import { DefaultThresholdInput, PickD3Scale, D3Scale } from './types/Scale';
-import { StringLike, DefaultOutput } from './types/Base';
+import type { ScaleConfig, PickScaleConfigWithoutType, PickScaleConfig } from './types/ScaleConfig';
+import type { DefaultThresholdInput, PickD3Scale, D3Scale } from './types/Scale';
+import type { StringLike, DefaultOutput } from './types/Base';
 import createLinearScale from './scales/linear';
 import createLogScale from './scales/log';
 import createPowScale from './scales/power';
@@ -16,6 +16,7 @@ import createThresholdScale from './scales/threshold';
 import createOrdinalScale from './scales/ordinal';
 import createPointScale from './scales/point';
 import createBandScale from './scales/band';
+import createRadialScale from './scales/radial';
 
 // Overload function for more strict typing, e.g.,
 // If the config is a linear config then a ScaleLinear will be returned
@@ -113,6 +114,12 @@ function createScale<
   Output = DefaultOutput,
   DiscreteInput extends StringLike = StringLike,
   ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput,
+>(config: PickScaleConfig<'radial', Output>): PickD3Scale<'radial', Output>;
+
+function createScale<
+  Output = DefaultOutput,
+  DiscreteInput extends StringLike = StringLike,
+  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput,
 >(
   config: ScaleConfig<Output, DiscreteInput, ThresholdInput>,
 ): D3Scale<Output, DiscreteInput, ThresholdInput>;
@@ -156,6 +163,8 @@ function createScale<
         return createPointScale(config);
       case 'band':
         return createBandScale(config);
+      case 'radial':
+        return createRadialScale(config);
       default:
     }
   }

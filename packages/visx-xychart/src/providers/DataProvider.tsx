@@ -1,15 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ScaleConfig, ScaleConfigToD3Scale } from '@visx/scale';
+import type { ScaleConfig, ScaleConfigToD3Scale } from '@visx/scale';
+import { scaleLinear } from '@visx/scale';
 import React, { useContext, useMemo } from 'react';
 import createOrdinalScale from '@visx/scale/lib/scales/ordinal';
-import { AxisScaleOutput } from '@visx/axis';
-import { ResizeObserverPolyfill } from '@visx/responsive/lib/types';
+import type { AxisScaleOutput } from '@visx/axis';
+import type { ResizeObserverPolyfill } from '@visx/responsive/lib/types';
 
-import { XYChartTheme } from '../types';
+import type { AxisScale, DataContextType, XYChartTheme } from '../types';
 import ThemeContext from '../context/ThemeContext';
 import DataContext from '../context/DataContext';
 import useDataRegistry from '../hooks/useDataRegistry';
-import useDimensions, { Dimensions } from '../hooks/useDimensions';
+import type { Dimensions } from '../hooks/useDimensions';
+import useDimensions from '../hooks/useDimensions';
 import useScales from '../hooks/useScales';
 import isDiscreteScale from '../utils/isDiscreteScale';
 
@@ -88,13 +90,13 @@ export default function DataProvider<
       ? isDiscreteScale(yScaleConfig) || yScaleConfig.type === 'time' || yScaleConfig.type === 'utc'
       : initialHorizontal;
 
-  const value = useMemo(
+  const value: DataContextType<AxisScale, AxisScale, Datum> = useMemo(
     () => ({
       dataRegistry,
       registerData: dataRegistry.registerData,
       unregisterData: dataRegistry.unregisterData,
-      xScale,
-      yScale,
+      xScale: xScale || scaleLinear(),
+      yScale: yScale || scaleLinear(),
       colorScale,
       theme,
       width,

@@ -1,5 +1,5 @@
 import { vi } from 'vitest';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import '@testing-library/jest-dom';
 import { render, waitFor } from '@testing-library/react';
 import {
@@ -126,10 +126,13 @@ describe('<BarGroup />', () => {
     const EventEmitter = () => {
       const emit = useEventEmitter();
       const { yScale } = useContext(DataContext);
+      const hasEmitted = useRef(false);
 
       useEffect(() => {
         // checking for yScale ensures stack data is registered and stacks are rendered
-        if (emit && yScale) {
+        if (emit && yScale && !hasEmitted.current) {
+          hasEmitted.current = true;
+
           // Get the SVG element to use as event target
           const svg = document.querySelector('svg');
 

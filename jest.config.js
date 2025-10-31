@@ -1,3 +1,4 @@
+/** @type {import('jest').Config} */
 module.exports = {
   bail: false,
   collectCoverageFrom: [
@@ -38,9 +39,10 @@ module.exports = {
   roots: ['<rootDir>/packages'],
   setupFiles: ['<rootDir>/config-jest/setup/shims.js', '<rootDir>/config-jest/setup/console.js'],
   testEnvironment: 'jsdom',
-  testURL: 'http://localhost',
-  timers: 'fake',
-  verbose: false,
+  testEnvironmentOptions: {
+    url: 'http://localhost',
+  },
+  verbose: true,
   testPathIgnorePatterns: ['<rootDir>/packages/visx-demo'],
   transformIgnorePatterns: [
     'node_modules/(?!(d3-(array|color|format|geo|interpolate|scale|time|time-format)|delaunator|internmap|robust-predicates)/)',

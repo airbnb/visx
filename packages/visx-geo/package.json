@@ -37,8 +37,8 @@
     "prop-types": "^15.5.10"
   },
   "devDependencies": {
-    "@types/topojson-client": "^3.0.0",
-    "topojson-client": "^3.0.0"
+    "@types/topojson-client": "^3.1.5",
+    "topojson-client": "^3.1.0"
   },
   "peerDependencies": {
     "react": "^16.3.0-0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0"

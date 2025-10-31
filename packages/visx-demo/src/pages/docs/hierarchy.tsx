@@ -1,18 +1,20 @@
 import React from 'react';
 import HierarchyReadme from '!!raw-loader!../../../../visx-hierarchy/Readme.md';
-import Cluster from '../../../../visx-hierarchy/src/hierarchies/Cluster';
-import Pack from '../../../../visx-hierarchy/src/hierarchies/Pack';
-import Partition from '../../../../visx-hierarchy/src/hierarchies/Partition';
-import Tree from '../../../../visx-hierarchy/src/hierarchies/Tree';
-import Treemap from '../../../../visx-hierarchy/src/hierarchies/Treemap';
+import * as HierarchyComponents from '../../../../visx-hierarchy/src';
 import DocPage from '../../components/DocPage';
+import { attachDocGenInfo } from '../../utils/getDocGenInfo';
 import PackTile from '../../components/Gallery/PackTile';
 import TreemapTile from '../../components/Gallery/TreemapTile';
 import DendrogramsTile from '../../components/Gallery/DendrogramsTile';
 import LinkTypesTile from '../../components/Gallery/LinkTypesTile';
 import TreesTile from '../../components/Gallery/TreesTile';
 
-const components = [Cluster, Pack, Partition, Tree, Treemap];
+// Attach documentation to components
+const componentsWithDocs = attachDocGenInfo('hierarchy', HierarchyComponents);
+
+const components = Object.values(componentsWithDocs).sort((a, b) =>
+  (a?.__docgenInfo?.displayName ?? '').localeCompare(b?.__docgenInfo?.displayName ?? ''),
+);
 
 const examples = [PackTile, TreemapTile, DendrogramsTile, LinkTypesTile, TreesTile];
 

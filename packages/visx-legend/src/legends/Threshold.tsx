@@ -1,7 +1,8 @@
 import React from 'react';
-import { PickD3Scale, ScaleInput } from '@visx/scale';
-import Legend, { LegendProps } from './Legend';
-import { LabelFormatterFactory } from '../types';
+import type { PickD3Scale, ScaleInput } from '@visx/scale';
+import type { LegendProps } from './Legend';
+import Legend from './Legend';
+import type { LabelFormatterFactory } from '../types';
 import identity from '../util/identity';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -10,8 +11,11 @@ type AnyThresholdScale = PickD3Scale<'threshold', any, any, any>;
 const formatZero = (label: unknown) => (label === 0 ? '0' : label || '');
 
 type TransformProps = {
+  /** The delimiter string to use between threshold values (e.g., '-' renders as '0 - 10'). */
   labelDelimiter?: string;
+  /** The prefix to use for the lower threshold label (e.g., '<' renders as '< 10'). */
   labelLower?: string;
+  /** The prefix to use for the upper threshold label (e.g., '>' renders as '> 100'). */
   labelUpper?: string;
 };
 
@@ -66,6 +70,11 @@ function defaultTransform<Scale extends AnyThresholdScale>({
   };
 }
 
+/**
+ * A Threshold legend component for threshold scales.
+ * Threshold scales map continuous input values to discrete output values based on threshold boundaries.
+ * This component displays the threshold ranges with customizable delimiters and labels.
+ */
 export default function Threshold<Scale extends AnyThresholdScale>({
   scale,
   domain: inputDomain,

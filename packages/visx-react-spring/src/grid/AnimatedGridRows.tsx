@@ -1,8 +1,9 @@
 import React from 'react';
-import GridRows, { GridRowsProps } from '@visx/grid/lib/grids/GridRows';
-import { GridScale } from '@visx/grid/lib/types';
+import type { GridRowsProps } from '@visx/grid/lib/grids/GridRows';
+import GridRows from '@visx/grid/lib/grids/GridRows';
+import type { GridScale } from '@visx/grid/lib/types';
 import AnimatedGridLines from './AnimatedGridLines';
-import { AnimationTrajectory } from '../types';
+import type { AnimationTrajectory } from '../types';
 
 export default function AnimatedGridRows<Scale extends GridScale>({
   scale,

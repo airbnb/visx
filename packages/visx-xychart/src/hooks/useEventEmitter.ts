@@ -1,4 +1,5 @@
-import { PointerEvent, FocusEvent, useCallback, useContext, useEffect, useRef } from 'react';
+import type { PointerEvent, FocusEvent } from 'react';
+import { useCallback, useContext, useEffect, useRef } from 'react';
 import { localPoint } from '@visx/event';
 import EventEmitterContext from '../context/EventEmitterContext';
 

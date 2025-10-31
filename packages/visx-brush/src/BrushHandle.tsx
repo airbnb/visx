@@ -1,8 +1,9 @@
 /* eslint react/jsx-handler-names: 0 */
 import React from 'react';
-import Drag, { HandlerArgs as DragArgs } from '@visx/drag/lib/Drag';
-import { BaseBrushState as BrushState, UpdateBrush } from './BaseBrush';
-import { BrushPageOffset, BrushingType, ResizeTriggerAreas } from './types';
+import type { HandlerArgs as DragArgs } from '@visx/drag/lib/Drag';
+import Drag from '@visx/drag/lib/Drag';
+import type { BaseBrushState as BrushState, UpdateBrush } from './BaseBrush';
+import type { BrushPageOffset, BrushingType, ResizeTriggerAreas } from './types';
 import { getPageCoordinates } from './utils';
 
 type HandleProps = {
@@ -102,6 +103,11 @@ export default class BrushHandle extends React.Component<BrushHandleProps> {
               y1: Math.max(move, end.y),
             },
           };
+        // BrushHandle skips corners use BrushCorner for those
+        case 'topLeft':
+        case 'topRight':
+        case 'bottomLeft':
+        case 'bottomRight':
         default:
           return prevBrush;
       }

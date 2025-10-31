@@ -15,7 +15,7 @@ jobs:
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
+        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
       - uses: actions/cache@v4.3.0
         id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
         with:
@@ -41,6 +41,9 @@ jobs:
         env:
           CI: true
 
+      - name: 📃 Generate docs
+        run: yarn docs:generate
+
       - name: ❤️ Run lint
         run: yarn lint
 
@@ -48,15 +51,6 @@ jobs:
         run: yarn build
         working-directory: './packages/visx-demo/'
         env:
-          NODE_OPTIONS: '--openssl-legacy-provider'
-
-      - name: 🦛 Run happo
-        run: yarn run happo-ci-github-actions
-        working-directory: './packages/visx-demo/'
-        env:
-          HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
-          HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
-          HAPPO_COMMAND: '../../node_modules/happo.io/build/cli.js'
           NODE_OPTIONS: '--openssl-legacy-provider'
 
       # @TODO

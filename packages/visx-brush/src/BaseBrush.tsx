@@ -1,12 +1,14 @@
 import React from 'react';
 import { Group } from '@visx/group';
-import Drag, { HandlerArgs as DragArgs } from '@visx/drag/lib/Drag';
+import type { HandlerArgs as DragArgs } from '@visx/drag/lib/Drag';
+import Drag from '@visx/drag/lib/Drag';
 
-import BrushHandle, { BrushHandleRenderProps } from './BrushHandle';
+import type { BrushHandleRenderProps } from './BrushHandle';
+import BrushHandle from './BrushHandle';
 import BrushCorner from './BrushCorner';
 import BrushSelection from './BrushSelection';
 import BrushOverlay from './BrushOverlay';
-import {
+import type {
   MarginShape,
   Point,
   BrushShape,
@@ -57,7 +59,7 @@ export type UpdateBrush =
   | ((prevState: Readonly<BaseBrushState>, props: Readonly<BaseBrushProps>) => BaseBrushState);
 
 export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrushState> {
-  private constructor(props: BaseBrushProps) {
+  constructor(props: BaseBrushProps) {
     super(props);
     const { initialBrushPosition } = props;
     const extent = initialBrushPosition

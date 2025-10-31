@@ -1,4 +1,4 @@
-import { ScaleTime } from '@visx/vendor/d3-scale';
+import type { ScaleTime } from '@visx/vendor/d3-scale';
 
 const TEST_TIME = new Date(Date.UTC(2020, 1, 2, 3, 4, 5));
 const TEST_FORMAT = '%Y-%m-%d %H:%M';

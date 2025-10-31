@@ -1,8 +1,8 @@
 /* eslint-disable no-redeclare */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { PickScaleConfigWithoutType, ScaleConfigWithoutType } from './types/ScaleConfig';
-import { DefaultThresholdInput, D3Scale, PickD3Scale } from './types/Scale';
-import { StringLike, DefaultOutput } from './types/Base';
+import type { PickScaleConfigWithoutType, ScaleConfigWithoutType } from './types/ScaleConfig';
+import type { DefaultThresholdInput, D3Scale, PickD3Scale } from './types/Scale';
+import type { StringLike, DefaultOutput } from './types/Base';
 import scaleOperator, { ALL_OPERATORS } from './operators/scaleOperator';
 
 const applyAllOperators = scaleOperator(...ALL_OPERATORS);
@@ -126,6 +126,15 @@ function updateScale<
   scale: PickD3Scale<'band', Output, DiscreteInput>,
   config: PickScaleConfigWithoutType<'band', Output, DiscreteInput>,
 ): PickD3Scale<'band', Output, DiscreteInput>;
+
+function updateScale<
+  Output = DefaultOutput,
+  DiscreteInput extends StringLike = StringLike,
+  ThresholdInput extends DefaultThresholdInput = DefaultThresholdInput,
+>(
+  scale: PickD3Scale<'radial', Output>,
+  config: PickScaleConfigWithoutType<'radial', Output>,
+): PickD3Scale<'radial', Output>;
 
 function updateScale<
   Output = DefaultOutput,

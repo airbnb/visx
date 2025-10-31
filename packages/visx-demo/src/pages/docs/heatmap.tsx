@@ -1,11 +1,16 @@
 import React from 'react';
 import HeatmapReadme from '!!raw-loader!../../../../visx-heatmap/Readme.md';
-import HeatmapRect from '../../../../visx-heatmap/src/heatmaps/HeatmapRect';
-import HeatmapCircle from '../../../../visx-heatmap/src/heatmaps/HeatmapCircle';
+import * as HeatmapComponents from '../../../../visx-heatmap/src';
 import DocPage from '../../components/DocPage';
+import { attachDocGenInfo } from '../../utils/getDocGenInfo';
 import HeatmapsTile from '../../components/Gallery/HeatmapsTile';
 
-const components = [HeatmapRect, HeatmapCircle];
+// Attach documentation to components
+const componentsWithDocs = attachDocGenInfo('heatmap', HeatmapComponents);
+
+const components = Object.values(componentsWithDocs).sort((a, b) =>
+  (a?.__docgenInfo?.displayName ?? '').localeCompare(b?.__docgenInfo?.displayName ?? ''),
+);
 
 const examples = [HeatmapsTile];
 

@@ -1,7 +1,8 @@
 import React from 'react';
 import cx from 'classnames';
 import { Group } from '@visx/group';
-import { pack as d3pack, HierarchyNode, HierarchyCircularNode } from 'd3-hierarchy';
+import type { HierarchyNode, HierarchyCircularNode } from 'd3-hierarchy';
+import { pack as d3pack } from 'd3-hierarchy';
 import DefaultNode from '../HierarchyDefaultNode';
 
 type PackProps<Datum> = {

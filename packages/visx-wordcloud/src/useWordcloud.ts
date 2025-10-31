@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import d3Cloud from 'd3-cloud';
-import { BaseDatum, WordcloudConfig } from './types';
+import type { BaseDatum, Cloud, CloudWord, WordcloudConfig } from './types';
 
 export default function useWordcloud<Datum extends BaseDatum>({
   width,
@@ -15,14 +15,14 @@ export default function useWordcloud<Datum extends BaseDatum>({
   spiral,
   words,
 }: WordcloudConfig<Datum>) {
-  const [cloudWords, setCloudWords] = useState<d3Cloud.Word[]>([]);
+  const [cloudWords, setCloudWords] = useState<CloudWord[]>([]);
 
   useEffect(() => {
     if (width === 0 || height === 0) {
       return;
     }
 
-    const layout = d3Cloud<Datum>();
+    const layout = d3Cloud() as Cloud<Datum>;
 
     layout.size([width, height]);
     layout.words(words);

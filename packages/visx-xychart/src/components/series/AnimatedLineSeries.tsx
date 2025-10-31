@@ -1,6 +1,7 @@
-import { AxisScale } from '@visx/axis';
+import type { AxisScale } from '@visx/axis';
 import React from 'react';
-import BaseLineSeries, { BaseLineSeriesProps } from './private/BaseLineSeries';
+import type { BaseLineSeriesProps } from './private/BaseLineSeries';
+import BaseLineSeries from './private/BaseLineSeries';
 import AnimatedPath from './private/AnimatedPath';
 
 export default function AnimatedLineSeries<
