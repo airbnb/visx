@@ -27,6 +27,8 @@ export type BaseAreaSeriesProps<
   renderLine?: boolean;
   /** Sets the curve factory (from @visx/curve or d3-curve) for the line generator. Defaults to curveLinear. */
   curve?: AreaProps<Datum>['curve'];
+  /** Given a datakey, returns its color. Falls back to theme color if unspecified or if a null-ish value is returned. */
+  colorAccessor?: (dataKey: string) => string | undefined | null;
   /** Props to be passed to the Line, if rendered. */
   lineProps?: Omit<
     LinePathProps<Datum> & React.SVGProps<SVGPathElement>,
@@ -39,6 +41,7 @@ export type BaseAreaSeriesProps<
 function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datum extends object>({
   PathComponent = 'path',
   curve,
+  colorAccessor,
   data,
   dataKey,
   lineProps,
@@ -132,7 +135,7 @@ function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
           <PathComponent
             className="visx-area"
             stroke="transparent"
-            fill={color}
+            fill={colorAccessor?.(dataKey) ?? color}
             strokeLinecap="round" // without this a datum surrounded by nulls will not be visible
             {...areaProps}
             d={path(data) || ''}
@@ -152,7 +155,7 @@ function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
             <PathComponent
               className="visx-line"
               fill="transparent"
-              stroke={color}
+              stroke={colorAccessor?.(dataKey) ?? color}
               strokeWidth={2}
               pointerEvents="none"
               strokeLinecap="round" // without this a datum surrounded by nulls will not be visible
