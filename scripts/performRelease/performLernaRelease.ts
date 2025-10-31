@@ -54,7 +54,8 @@ export default async function performLernaRelease(prsSinceLastTag: PR[]) {
       console.warn('The following stderr was generated during publishing:', stderr);
     }
   } catch (e) {
-    console.warn('The following error occurred during publishing. Exiting.', e.message);
+    const errorMessage = e instanceof Error ? e.message : String(e);
+    console.warn('The following error occurred during publishing. Exiting.', errorMessage);
     process.exit(1);
   }
 
