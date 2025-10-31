@@ -36,8 +36,8 @@ export default function inferScaleType<
   }
 
   if ('clamp' in scale) {
-    // Check for radial scale (has both unknown and clamp)
-    if ('unknown' in scale) {
+    // Radial scales don't have interpolate method (unlike linear/time/utc)
+    if (!('interpolate' in scale)) {
       return 'radial';
     }
     // Linear, Time or Utc scales
