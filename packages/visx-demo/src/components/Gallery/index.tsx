@@ -1,6 +1,4 @@
 import React from 'react';
-import cx from 'classnames';
-import Tilt from 'react-tilt';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -56,25 +54,21 @@ import exampleToVisxDependencyLookup, {
   visxPackages,
 } from '../../sandboxes/exampleToVisxDependencyLookup';
 
-const tiltOptions = { max: 8, scale: 1 };
-
 export const tiles = [
-  CurvesTile,
   BarsTile,
-  DelaunayTile,
-  DelaunayVoronoiTile,
   DotsTile,
   PatternsTile,
   AreaTile,
+  TreemapTile,
+  ZoomITile,
   StackedAreasTile,
   AxisTile,
   ChordTile,
   StreamGraphTile,
   LegendsTile,
+  CurvesTile,
   ThresholdTile,
   AnnotationTile,
-  TreemapTile,
-  ZoomITile,
   LineRadialTile,
   DragITile,
   BarGroupTile,
@@ -83,6 +77,8 @@ export const tiles = [
   BrushTile,
   BarStackTile,
   BarStackHorizontalTile,
+  DelaunayTile,
+  DelaunayVoronoiTile,
   DendrogramsTile,
   DragIITile,
   XYChartTile,
@@ -130,9 +126,7 @@ export default function Gallery() {
                 pathname: '/gallery',
                 query: routePackage === visxPackage ? undefined : { pkg: visxPackage },
               }}
-              className={cx('filter-button', {
-                emphasize: routePackage === visxPackage,
-              })}
+              className={`filter-button ${routePackage === visxPackage ? 'emphasize' : ''}`}
             >
               {`${visxPackage}`}
             </Link>
@@ -140,10 +134,8 @@ export default function Gallery() {
         </div>
         <div className="grid">
           {filteredTiles.map((Tile, i) => (
-            <Tilt key={`tile-${i}`} className="tilt" options={tiltOptions}>
-              {/* eslint-disable react/jsx-pascal-case */}
-              <Tile.default />
-            </Tilt>
+            /* eslint-disable react/jsx-pascal-case */
+            <Tile.default key={`tile-${i}`} />
           ))}
         </div>
       </div>
@@ -159,31 +151,38 @@ export default function Gallery() {
           overflow-x: hidden;
           padding-bottom: 40px;
         }
+        .tilt > a {
+          display: flex;
+          flex: 1;
+        }
         .filters {
           margin-right: 24px;
           width: 150px;
           flex-shrink: 0;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          a {
+            display: block;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            background: transparent;
+            padding: 0;
+            margin: 4px 4px 8px 0;
+            font-size: 16px;
+            line-height: 1em;
+            &.emphasize {
+              font-weight: 600;
+            }
+          }
         }
         h6 {
           margin: 0 4px 0 0;
         }
         .filter-label {
-          font-size: 16;
-          font-weight: 500;
-        }
-        .filter-button {
-          display: block;
-          cursor: pointer;
-          border: none;
-          outline: none;
-          background: transparent;
-          padding: 0;
-          margin: 4px 4px 12px 0;
-          font-size: 16px;
-          line-height: 1em;
-        }
-        .emphasize {
-          font-weight: bold;
+          font-size: 14px;
+          font-weight: 600;
         }
         @media (min-width: 800px) {
           .emphasize::before {

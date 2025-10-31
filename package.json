@@ -38,7 +38,7 @@
     "build": "yarn run build:vendor && yarn run babel && yarn run type",
     "build:sizes": "yarn run ts ./scripts/computeBuildSizes.ts",
     "build:release": "yarn run ts ./scripts/performRelease/index.ts",
-    "dev:demo": "yarn workspace @visx/demo dev",
+    "dev:demo": "yarn run docs:generate && yarn workspace @visx/demo dev",
     "check:sizes": "yarn run ts ./scripts/compareBuildSizes.ts",
     "clean": "rm -rf ./packages/**/{lib,esm}",
     "docs:generate": "yarn run ts ./scripts/generateDocs.ts",
