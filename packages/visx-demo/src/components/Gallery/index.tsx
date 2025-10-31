@@ -1,6 +1,4 @@
 import React from 'react';
-import cx from 'classnames';
-import Tilt from 'react-tilt';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -55,8 +53,6 @@ import type { VisxPackage } from '../../types';
 import exampleToVisxDependencyLookup, {
   visxPackages,
 } from '../../sandboxes/exampleToVisxDependencyLookup';
-
-const tiltOptions = { max: 8, scale: 1 };
 
 export const tiles = [
   BarsTile,
@@ -138,10 +134,8 @@ export default function Gallery() {
         </div>
         <div className="grid">
           {filteredTiles.map((Tile, i) => (
-            <Tilt key={`tile-${i}`} className="tilt" options={tiltOptions}>
-              {/* eslint-disable react/jsx-pascal-case */}
-              <Tile.default />
-            </Tilt>
+            /* eslint-disable react/jsx-pascal-case */
+            <Tile.default key={`tile-${i}`} />
           ))}
         </div>
       </div>
