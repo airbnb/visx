@@ -45,7 +45,13 @@ export default async function updateChangelog(prs: PR[], tagName: string) {
     }
   } catch (error) {
     console.log(`Could not update CHANGELOG.md from master. Aborting.`);
-    console.warn(error.message);
+    const message =
+      error instanceof Error
+        ? error.message
+        : typeof error === 'string'
+        ? error
+        : JSON.stringify(error);
+    console.warn(message);
     process.exit(1);
   }
 }
