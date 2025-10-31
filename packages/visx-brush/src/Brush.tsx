@@ -33,9 +33,9 @@ export type BrushProps = {
   /** Callback invoked on mouse up when a Brush size is being updated. */
   onBrushEnd?: (bounds: Bounds | null) => void;
   /** Callback invoked on mouse move in Brush stage when *not* dragging. */
-  onMouseMove?: BaseBrushProps['onMouseMove'];
+  onPointerMove?: BaseBrushProps['onPointerMove'];
   /** Callback invoked on mouse leave from Brush stage when *not* dragging. */
-  onMouseLeave?: BaseBrushProps['onMouseLeave'];
+  onPointerLeave?: BaseBrushProps['onPointerLeave'];
   /** Callback invoked on Brush stage click. */
   onClick?: BaseBrushProps['onClick'];
   /** Margin subtracted from Brush stage dimensions. */
@@ -99,8 +99,8 @@ class Brush extends Component<BrushProps> {
     onBrushEnd: null,
     disableDraggingSelection: false,
     resetOnEnd: false,
-    onMouseMove: null,
-    onMouseLeave: null,
+    onPointerMove: null,
+    onPointerLeave: null,
     onClick: null,
     useWindowMoveEvents: false,
     renderBrushHandles: null,
@@ -187,8 +187,8 @@ class Brush extends Component<BrushProps> {
       disableDraggingSelection,
       disableDraggingOverlay,
       resetOnEnd,
-      onMouseLeave,
-      onMouseMove,
+      onPointerLeave,
+      onPointerMove,
       onClick,
       handleSize,
       useWindowMoveEvents,
@@ -252,8 +252,8 @@ class Brush extends Component<BrushProps> {
         onBrushStart={this.handleBrushStart}
         onChange={this.handleChange}
         onClick={onClick}
-        onMouseLeave={onMouseLeave}
-        onMouseMove={onMouseMove}
+        onPointerLeave={onPointerLeave}
+        onPointerMove={onPointerMove}
         useWindowMoveEvents={useWindowMoveEvents}
         renderBrushHandle={renderBrushHandle}
       />
