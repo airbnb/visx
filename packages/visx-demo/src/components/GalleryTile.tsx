@@ -16,7 +16,13 @@ type Props<ExampleProps extends WidthAndHeight> = {
 };
 
 const renderLinkWrapper = (url: string | undefined, node: React.ReactNode) =>
-  url ? <Link href={url}>{node}</Link> : node;
+  url ? (
+    <Link href={url} style={{ display: 'block', flex: 1, minWidth: 0, height: '100%' }}>
+      {node}
+    </Link>
+  ) : (
+    node
+  );
 
 /**
  * hook which returns if the ref was ever visible.
