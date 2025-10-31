@@ -13,6 +13,7 @@ export type HtmlLabelProps = Pick<
   | 'anchorLineStroke'
   | 'className'
   | 'horizontalAnchor'
+  | 'pointerEvents'
   | 'resizeObserverPolyfill'
   | 'showAnchorLine'
   | 'verticalAnchor'
@@ -30,6 +31,7 @@ export default function HtmlLabel({
   className,
   containerStyle,
   horizontalAnchor: propsHorizontalAnchor,
+  pointerEvents = 'none',
   resizeObserverPolyfill,
   showAnchorLine = true,
   verticalAnchor: propsVerticalAnchor,
@@ -67,7 +69,7 @@ export default function HtmlLabel({
     <Group
       top={containerCoords.y}
       left={containerCoords.x}
-      pointerEvents="none"
+      pointerEvents={pointerEvents}
       className={cx('visx-annotationlabel', className)}
     >
       <foreignObject width={width} height={height} overflow="visible">
