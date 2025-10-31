@@ -34,6 +34,9 @@ jobs:
       - name: 🛠 Build packages
         run: yarn build
 
+      - name: 📃 Generate docs
+        run: yarn docs:generate
+
       - name: 📐 Commit package sizes
         if: github.repository_owner == 'airbnb'
         # note: `git diff-index --quiet HEAD`
