@@ -103,6 +103,7 @@ export default class BrushHandle extends React.Component<BrushHandleProps> {
               y1: Math.max(move, end.y),
             },
           };
+        // BrushHandle skips corners use BrushCorner for those
         case 'topLeft':
         case 'topRight':
         case 'bottomLeft':

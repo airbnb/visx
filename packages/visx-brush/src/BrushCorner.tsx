@@ -97,7 +97,7 @@ export default class BrushCorner extends React.Component<BrushCornerProps, Brush
               y1: Math.min(Math.max(moveY, start.y), prevBrush.bounds.y1),
             },
           };
-
+        // BrushCorner skips edges use BrushHandle for those
         case 'top':
         case 'right':
         case 'bottom':
