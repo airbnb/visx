@@ -48,43 +48,30 @@ module.exports = {
   overrides: [
     {
       files: [`*.test.${EXTS_GROUP}`],
-      plugins: ['jest'],
+      plugins: [],
       globals: {
+        // vitest globals
+        describe: 'readonly',
+        it: 'readonly',
+        test: 'readonly',
+        expect: 'readonly',
+        assert: 'readonly',
+        vitest: 'readonly',
+        vi: 'readonly',
+        beforeAll: 'readonly',
+        beforeEach: 'readonly',
+        afterAll: 'readonly',
+        afterEach: 'readonly',
+        // other globals
         jsdom: 'readonly',
       },
       env: {
-        jest: true,
         node: true,
       },
       rules: {
         'max-classes-per-file': 'off',
         'no-magic-numbers': 'off',
         'sort-keys': 'off',
-
-        // JEST
-        'jest/expect-expect': 'error',
-        'jest/no-alias-methods': 'error',
-        'jest/no-done-callback': 'error',
-        'jest/no-disabled-tests': 'error',
-        'jest/no-duplicate-hooks': 'error',
-        'jest/no-export': 'error',
-        'jest/no-focused-tests': 'error',
-        'jest/no-identical-title': 'error',
-        'jest/no-jasmine-globals': 'error',
-        'jest/no-standalone-expect': 'error',
-        'jest/no-test-prefixes': 'error',
-        'jest/no-test-return-statement': 'error',
-        'jest/prefer-hooks-on-top': 'error',
-        'jest/prefer-spy-on': 'error',
-        'jest/prefer-todo': 'error',
-        'jest/prefer-to-be': 'error',
-        'jest/prefer-to-contain': 'error',
-        'jest/prefer-to-have-length': 'error',
-        'jest/require-to-throw-message': 'error',
-        'jest/require-top-level-describe': 'error',
-        'jest/valid-describe-callback': 'error',
-        'jest/valid-expect': 'error',
-        'jest/valid-title': 'error',
 
         // REACT
         'react/function-component-definition': 'off',
