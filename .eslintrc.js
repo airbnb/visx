@@ -12,7 +12,6 @@ module.exports = {
       files: '*.test.{js,jsx,ts,tsx}',
       rules: {
         'import/no-extraneous-dependencies': 'off',
-        'jest/require-to-throw-message': 'off',
       },
     },
     {
