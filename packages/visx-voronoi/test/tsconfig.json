@@ -3,7 +3,8 @@
     "composite": false,
     "emitDeclarationOnly": false,
     "noEmit": true,
-    "rootDir": "."
+    "rootDir": ".",
+    "types": ["vitest/globals"]
   },
   "extends": "../../../tsconfig.options.json",
   "include": ["**/*", "../types/**/*", "../../../types/**/*"],

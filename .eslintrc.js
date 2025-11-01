@@ -10,6 +10,8 @@ module.exports = {
   overrides: [
     {
       files: '*.test.{js,jsx,ts,tsx}',
+      plugins: ['@vitest'],
+      extends: ['plugin:@vitest/legacy-recommended'],
       rules: {
         'import/no-extraneous-dependencies': 'off',
       },
