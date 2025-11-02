@@ -7,11 +7,11 @@ import { AnnotationLabel } from '../../src';
 import { addMock, removeMock } from '../mocks/svgMock';
 
 // Mock ResizeObserver
-const mockResizeObserver = vi.fn().mockImplementation(() => ({
-  observe: vi.fn(),
-  unobserve: vi.fn(),
-  disconnect: vi.fn(),
-}));
+class MockResizeObserver {
+  observe = vi.fn();
+  unobserve = vi.fn();
+  disconnect = vi.fn();
+}
 
 describe('<AnnotationLabel />', () => {
   const defaultProps = {
@@ -24,7 +24,7 @@ describe('<AnnotationLabel />', () => {
 
   beforeAll(() => {
     // Add ResizeObserver mock
-    vi.stubGlobal('ResizeObserver', mockResizeObserver);
+    vi.stubGlobal('ResizeObserver', MockResizeObserver);
     addMock();
   });
 
