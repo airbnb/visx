@@ -1,6 +1,7 @@
 const isProd = process.env.NODE_ENV === 'production';
 
 const nextConfig = {
+  output: 'export',
   basePath: isProd ? '/visx' : '',
   ...(isProd && { assetPrefix: '/visx/' }),
   typescript: {
@@ -11,44 +12,52 @@ const nextConfig = {
     // Don't run ESLint during builds (it's run at the root level)
     ignoreDuringBuilds: true,
   },
+  // Handle ESM packages that are imported by visx
   experimental: {
-    // note: this can be removed in future next versions
     esmExternals: 'loose',
   },
-  webpack: (config) => {
-    // add visx-*/src/* to be parsed by babel
-    // Find all rules that handle JS/TS files and add visx source files to their include
-    config.module.rules.forEach((rule) => {
-      // Check if this rule handles .tsx/.ts files
-      if (rule.test && (rule.test.test?.('.tsx') || rule.test.test?.('.ts'))) {
-        // Expand include to also handle visx packages' src directories
-        if (Array.isArray(rule.include)) {
-          rule.include.push(/visx-.*\/src/);
-        } else if (rule.include) {
-          rule.include = [rule.include, /visx-.*\/src/];
-        } else {
-          rule.include = /visx-.*\/src/;
-        }
-      }
-
-      // Also check nested rules
-      if (rule.oneOf) {
-        rule.oneOf.forEach((oneOfRule) => {
-          if (oneOfRule.test && (oneOfRule.test.test?.('.tsx') || oneOfRule.test.test?.('.ts'))) {
-            if (Array.isArray(oneOfRule.include)) {
-              oneOfRule.include.push(/visx-.*\/src/);
-            } else if (oneOfRule.include) {
-              oneOfRule.include = [oneOfRule.include, /visx-.*\/src/];
-            } else {
-              oneOfRule.include = /visx-.*\/src/;
-            }
-          }
-        });
-      }
-    });
-
-    return config;
-  },
+  // In Next.js 13+, use transpilePackages to transpile visx source files
+  // This is simpler and more reliable than custom webpack config
+  transpilePackages: [
+    '@visx/annotation',
+    '@visx/axis',
+    '@visx/bounds',
+    '@visx/brush',
+    '@visx/chord',
+    '@visx/clip-path',
+    '@visx/curve',
+    '@visx/delaunay',
+    '@visx/drag',
+    '@visx/event',
+    '@visx/geo',
+    '@visx/glyph',
+    '@visx/gradient',
+    '@visx/grid',
+    '@visx/group',
+    '@visx/heatmap',
+    '@visx/hierarchy',
+    '@visx/legend',
+    '@visx/marker',
+    '@visx/mock-data',
+    '@visx/network',
+    '@visx/pattern',
+    '@visx/point',
+    '@visx/react-spring',
+    '@visx/responsive',
+    '@visx/sankey',
+    '@visx/scale',
+    '@visx/shape',
+    '@visx/stats',
+    '@visx/text',
+    '@visx/threshold',
+    '@visx/tooltip',
+    '@visx/vendor',
+    '@visx/visx',
+    '@visx/voronoi',
+    '@visx/wordcloud',
+    '@visx/xychart',
+    '@visx/zoom',
+  ],
 };
 
 // eslint-disable-next-line no-undef
