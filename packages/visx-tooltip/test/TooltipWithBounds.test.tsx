@@ -22,10 +22,10 @@ describe('<TooltipWithBounds />', () => {
     Object.entries(defaultStyles).forEach(([key, value]) => {
       // colors will be converted to rgb
       if (key === 'backgroundColor' || key === 'color') {
-        expect(typeof computedStyle[key as any]).toBe('string');
+        expect(typeof computedStyle[key as keyof CSSStyleDeclaration]).toBe('string');
       } else {
         // For other styles, compare directly
-        expect(tooltip.style[key as any]).toBe(value);
+        expect(tooltip.style[key as keyof CSSStyleDeclaration]).toBe(value);
       }
     });
   });
