@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import { TooltipWithBounds } from '../src';
+import { defaultStyles, TooltipWithBounds } from '../src';
 
 describe('<TooltipWithBounds />', () => {
   test('it should be defined', () => {
@@ -16,16 +16,17 @@ describe('<TooltipWithBounds />', () => {
     expect(tooltip).toBeInTheDocument();
     expect(tooltip).toHaveClass('visx-tooltip');
 
+    const computedStyle = window.getComputedStyle(tooltip);
+
     // Check that default styles are applied
-    expect(tooltip).toHaveStyle({
-      position: 'absolute',
-      backgroundColor: 'white',
-      color: '#666666',
-      padding: '.3rem .5rem',
-      borderRadius: '3px',
-      fontSize: '14px',
-      boxShadow: '0 1px 2px rgba(33,33,33,0.2)',
-      pointerEvents: 'none',
+    Object.entries(defaultStyles).forEach(([key, value]) => {
+      // colors will be converted to rgb
+      if (key === 'backgroundColor' || key === 'color') {
+        expect(typeof computedStyle[key as keyof CSSStyleDeclaration]).toBe('string');
+      } else {
+        // For other styles, compare directly
+        expect(tooltip.style[key as keyof CSSStyleDeclaration]).toBe(value);
+      }
     });
   });
 

@@ -5,7 +5,7 @@ export default defineConfig({
   test: {
     name: '@visx/axis',
     globals: true,
-    environment: 'happy-dom',
+    environment: 'jsdom',
     setupFiles: [],
     coverage: {
       provider: 'v8',
