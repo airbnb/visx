@@ -3595,7 +3595,6 @@ __metadata:
     d3-scale-chromatic: "npm:^1.3.3"
     d3-shape: "npm:^1.0.6"
     lodash: "npm:^4.17.21"
-    markdown-loader: "npm:^5.1.0"
     next: "npm:^14.2.0"
     nprogress: "npm:^0.2.0"
     prismjs: "npm:^1.19.0"
@@ -8980,7 +8979,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"json5@npm:^1.0.1, json5@npm:^1.0.2":
+"json5@npm:^1.0.2":
   version: 1.0.2
   resolution: "json5@npm:1.0.2"
   dependencies:
@@ -9227,17 +9226,6 @@ __metadata:
     pify: "npm:^3.0.0"
     strip-bom: "npm:^3.0.0"
   checksum: 10c0/6b48f6a0256bdfcc8970be2c57f68f10acb2ee7e63709b386b2febb6ad3c86198f840889cdbe71d28f741cbaa2f23a7771206b138cd1bdd159564511ca37c1d5
-  languageName: node
-  linkType: hard
-
-"loader-utils@npm:^1.2.3":
-  version: 1.4.2
-  resolution: "loader-utils@npm:1.4.2"
-  dependencies:
-    big.js: "npm:^5.2.2"
-    emojis-list: "npm:^3.0.0"
-    json5: "npm:^1.0.1"
-  checksum: 10c0/2b726088b5526f7605615e3e28043ae9bbd2453f4a85898e1151f3c39dbf7a2b65d09f3996bc588d92ac7e717ded529d3e1ea3ea42c433393be84a58234a2f53
   languageName: node
   linkType: hard
 
@@ -9526,25 +9514,6 @@ __metadata:
   version: 4.3.0
   resolution: "map-obj@npm:4.3.0"
   checksum: 10c0/1c19e1c88513c8abdab25c316367154c6a0a6a0f77e3e8c391bb7c0e093aefed293f539d026dc013d86219e5e4c25f23b0003ea588be2101ccd757bacc12d43b
-  languageName: node
-  linkType: hard
-
-"markdown-loader@npm:^5.1.0":
-  version: 5.1.0
-  resolution: "markdown-loader@npm:5.1.0"
-  dependencies:
-    loader-utils: "npm:^1.2.3"
-    marked: "npm:^0.7.0"
-  checksum: 10c0/40f6cb8b11dbbcc6926aea80122498a4277b1eaf311eb3cd2f2ab825c646d5b4e289d781cf28e69bacae23157dfd4c85a74c177670f3142618e6754d89dd21d6
-  languageName: node
-  linkType: hard
-
-"marked@npm:^0.7.0":
-  version: 0.7.0
-  resolution: "marked@npm:0.7.0"
-  bin:
-    marked: ./bin/marked
-  checksum: 10c0/dc888ca89cfdab52ae46f198deef361c89639d064f47cc9627544142a39877cff953e796362259d6867deb05d18696f611522b2c948a1530117699ccff55a699
   languageName: node
   linkType: hard
 
