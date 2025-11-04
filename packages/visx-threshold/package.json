@@ -25,8 +25,8 @@
   "license": "MIT",
   "dependencies": {
     "@types/react": "*",
-    "@visx/clip-path": "3.13.0-alpha.0",
-    "@visx/shape": "3.13.0-alpha.0",
+    "@visx/clip-path": "workspace:*",
+    "@visx/shape": "workspace:*",
     "classnames": "^2.3.1"
   },
   "peerDependencies": {

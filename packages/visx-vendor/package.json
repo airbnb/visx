@@ -3,6 +3,9 @@
   "version": "3.12.0",
   "description": "vendored packages for visx",
   "sideEffects": false,
+  "installConfig": {
+    "hoistingLimits": "workspaces"
+  },
   "repository": "https://github.com/airbnb/visx",
   "keywords": [
     "visx",

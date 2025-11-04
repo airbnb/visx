@@ -35,5 +35,14 @@ webpack.config.js
 npm-shrinkwrap.json
 package-lock.json
 
+# Yarn 4
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+
 # Generated files
 packages/visx-demo/src/generated/

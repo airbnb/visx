@@ -33,11 +33,11 @@
     "react": "^16.0.0-0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0"
   },
   "dependencies": {
-    "@visx/drag": "3.13.0-alpha.0",
-    "@visx/event": "3.12.0",
-    "@visx/group": "3.13.0-alpha.0",
-    "@visx/scale": "3.12.0",
-    "@visx/shape": "3.13.0-alpha.0",
+    "@visx/drag": "workspace:*",
+    "@visx/event": "workspace:*",
+    "@visx/group": "workspace:*",
+    "@visx/scale": "workspace:*",
+    "@visx/shape": "workspace:*",
     "classnames": "^2.3.1"
   }
 }

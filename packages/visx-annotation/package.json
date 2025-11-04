@@ -32,9 +32,9 @@
   },
   "dependencies": {
     "@types/react": "*",
-    "@visx/drag": "3.13.0-alpha.0",
-    "@visx/group": "3.13.0-alpha.0",
-    "@visx/text": "3.13.2-alpha.0",
+    "@visx/drag": "workspace:*",
+    "@visx/group": "workspace:*",
+    "@visx/text": "workspace:*",
     "classnames": "^2.3.1",
     "react-use-measure": "^2.0.4"
   },

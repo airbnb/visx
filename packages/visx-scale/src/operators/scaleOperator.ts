@@ -43,7 +43,7 @@ export const ALL_OPERATORS = [
   'unknown',
 ] as const;
 
-type OperatorType = typeof ALL_OPERATORS[number];
+type OperatorType = (typeof ALL_OPERATORS)[number];
 
 // Use Record to enforce that all keys in OperatorType must exist.
 const operators: Record<OperatorType, typeof domain> = {

@@ -29,8 +29,8 @@
   "homepage": "https://github.com/airbnb/visx#readme",
   "dependencies": {
     "@types/react": "*",
-    "@visx/group": "3.13.0-alpha.0",
-    "@visx/shape": "3.13.0-alpha.0",
+    "@visx/group": "workspace:*",
+    "@visx/shape": "workspace:*",
     "classnames": "^2.3.1"
   },
   "peerDependencies": {

@@ -29,7 +29,7 @@
   "homepage": "https://github.com/airbnb/visx#readme",
   "dependencies": {
     "@types/react": "*",
-    "@visx/bounds": "3.13.1-alpha.0",
+    "@visx/bounds": "workspace:*",
     "classnames": "^2.3.1",
     "react-use-measure": "^2.0.4"
   },
