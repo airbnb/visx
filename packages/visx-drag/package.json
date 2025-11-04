@@ -36,7 +36,6 @@
   "dependencies": {
     "@types/react": "*",
     "@visx/event": "3.12.0",
-    "@visx/point": "3.12.0",
-    "prop-types": "^15.5.10"
+    "@visx/point": "3.12.0"
   }
 }

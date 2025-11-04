@@ -33,8 +33,7 @@
   },
   "dependencies": {
     "@types/react": "*",
-    "classnames": "^2.3.1",
-    "prop-types": "^15.6.2"
+    "classnames": "^2.3.1"
   },
   "publishConfig": {
     "access": "public"
