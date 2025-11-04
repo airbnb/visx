@@ -3119,15 +3119,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node-fetch@npm:1.6.9":
-  version: 1.6.9
-  resolution: "@types/node-fetch@npm:1.6.9"
-  dependencies:
-    "@types/node": "npm:*"
-  checksum: 10c0/b2b4760023b3d17db688135308d019d99ed189cb1b596286bd11c7eb640be3425f3d1b690349a5f24ec9d5c11cbabc82e85942ca707a10c51d86855881f8681e
-  languageName: node
-  linkType: hard
-
 "@types/node@npm:*":
   version: 24.10.0
   resolution: "@types/node@npm:24.10.0"
@@ -3792,7 +3783,6 @@ __metadata:
     "@testing-library/user-event": "npm:^13.5.0"
     "@types/jsdom": "npm:27.0.0"
     "@types/node": "npm:^22.10.2"
-    "@types/node-fetch": "npm:1.6.9"
     "@types/react": "npm:18.3.26"
     "@types/react-dom": "npm:18.3.7"
     "@typescript-eslint/eslint-plugin": "npm:^8.18.1"
@@ -3816,7 +3806,6 @@ __metadata:
     filesize: "npm:6.1.0"
     jsdom: "npm:27.0.0"
     lerna: "npm:^7.0.2"
-    node-fetch: "npm:2.6.1"
     prettier: "npm:^2.8.1"
     react: "npm:^16.0.0-0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0"
     react-dom: "npm:^16.0.0-0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0"
@@ -9913,13 +9902,6 @@ __metadata:
   dependencies:
     node-gyp: "npm:latest"
   checksum: 10c0/41f21c9d12318875a2c429befd06070ce367065a3ef02952cfd4ea17ef69fa14012732f510b82b226e99c254da8d671847ea018cad785f839a5366e02dd56302
-  languageName: node
-  linkType: hard
-
-"node-fetch@npm:2.6.1":
-  version: 2.6.1
-  resolution: "node-fetch@npm:2.6.1"
-  checksum: 10c0/c58586d121782df045681e29608f940be90c7d8c4cada29957c148cfcc5e2d81d74b690cf10ee6879ed055da7ea821450a74ff43f3bde651cf6c8a5f34a77e2a
   languageName: node
   linkType: hard
 
