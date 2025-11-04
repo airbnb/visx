@@ -116,7 +116,6 @@
     ]
   },
   "resolutions": {
-    "handlebars": "4.5.3",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "@types/react": "18.3.26",
