@@ -13,9 +13,12 @@ jobs:
         with:
           node-version: '22.21.1'
 
+      - name: Enable Corepack
+        run: corepack enable
+
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
-        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+        run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
       - uses: actions/cache@v4.3.0
         id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
         with:
@@ -25,7 +28,7 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - name: 📡 Install dependencies
-        run: yarn install --frozen-lockfile --ignore-engines
+        run: yarn install --immutable --ignore-engines
 
       - name: 🤖 Ensure TS references are up to date
         run: yarn type:update-refs && git diff --exit-code
