@@ -1,4 +1,3 @@
-import fetch from 'node-fetch';
 import fs from 'fs';
 import util from 'util';
 import childProcess from 'child_process';
