@@ -12,7 +12,7 @@
   ],
   "engines": {
     "node": ">=22.0.0",
-    "yarn": ">=1.17.0"
+    "yarn": ">=4.0.0"
   },
   "contributors": [
     {
@@ -99,7 +99,6 @@
     "fast-glob": "3.2.5",
     "filesize": "6.1.0",
     "jsdom": "27.0.0",
-    "husky": "^3.0.0",
     "lerna": "^7.0.2",
     "node-fetch": "2.6.1",
     "prettier": "^2.8.1",
@@ -110,13 +109,10 @@
     "typescript": "^5.7.0",
     "vitest": "4"
   },
-  "packageManager": "yarn@1.22.19",
+  "packageManager": "yarn@4.10.3",
   "workspaces": {
     "packages": [
       "./packages/*"
-    ],
-    "nohoist": [
-      "**/@visx/vendor/**"
     ]
   },
   "resolutions": {
