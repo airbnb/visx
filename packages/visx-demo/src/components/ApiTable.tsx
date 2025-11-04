@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import Markdown from 'react-markdown/with-html';
+import Markdown from 'react-markdown';
 import type { DocGenInfo, PropInfo, ParamInfo } from '../types';
 import { toExportName } from './util/format';
 import { getGitHubUrl } from '../utils/getGitHubUrl';
@@ -58,7 +58,7 @@ export default function ApiTable({ docgenInfo }: Props) {
       </h3>
       {description && (
         <div className="doc-description">
-          <Markdown source={description} />
+          <Markdown>{description}</Markdown>
         </div>
       )}
       {isFunction && parameters && parameters.length > 0 ? (
@@ -82,13 +82,13 @@ export default function ApiTable({ docgenInfo }: Props) {
                   )}
                 </div>
                 <div className="description">
-                  <Markdown
-                    source={`${param.description || ''}${
+                  <Markdown>
+                    {`${param.description || ''}${
                       param.defaultValue
                         ? `\n\nDefault \`${String(param.defaultValue.value) || '""'}\``
                         : ''
                     }`}
-                  />
+                  </Markdown>
                 </div>
               </div>
             );
@@ -119,13 +119,13 @@ export default function ApiTable({ docgenInfo }: Props) {
                 {prop.required && <span className="kind-badge required">required</span>}
               </div>
               <div className="description">
-                <Markdown
-                  source={`${prop.description}${
+                <Markdown>
+                  {`${prop.description}${
                     prop.defaultValue
                       ? `\n\nDefault \`${String(prop.defaultValue.value) || '""'}\``
                       : ''
                   }`}
-                />
+                </Markdown>
               </div>
             </div>
           );
