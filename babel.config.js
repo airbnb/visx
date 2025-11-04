@@ -16,7 +16,7 @@ const presets = [
   '@babel/preset-typescript',
 ];
 
-const plugins = ['babel-plugin-typescript-to-proptypes'];
+const plugins = [];
 
 const ignore = [
   'coverage/',
