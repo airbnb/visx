@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
-import type { SeriesPoint } from 'd3-shape';
-import { stack as d3stack } from 'd3-shape';
+import type { SeriesPoint } from '@visx/vendor/d3-shape';
+import { stack as d3stack } from '@visx/vendor/d3-shape';
 import { Group } from '@visx/group';
 import type { ScaleInput } from '@visx/scale';
 import type {

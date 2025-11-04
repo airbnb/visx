@@ -1,4 +1,4 @@
-import type { Area } from 'd3-shape';
+import type { Area } from '@visx/vendor/d3-shape';
 import type { ReactNode, Ref } from 'react';
 import type { AreaPathConfig } from './D3ShapeConfig';
 

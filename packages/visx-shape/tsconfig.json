@@ -23,6 +23,9 @@
     },
     {
       "path": "../visx-scale"
+    },
+    {
+      "path": "../visx-vendor"
     }
   ]
 }

@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { useContext, useEffect, useMemo } from 'react';
-import type { SeriesPoint } from 'd3-shape';
-import { stack as d3stack } from 'd3-shape';
+import type { SeriesPoint } from '@visx/vendor/d3-shape';
+import { stack as d3stack } from '@visx/vendor/d3-shape';
 import stackOffset from '@visx/shape/lib/util/stackOffset';
 import stackOrder from '@visx/shape/lib/util/stackOrder';
 import type { StackPathConfig } from '@visx/shape';

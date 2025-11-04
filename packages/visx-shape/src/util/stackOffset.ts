@@ -4,7 +4,7 @@ import {
   stackOffsetNone,
   stackOffsetSilhouette,
   stackOffsetWiggle,
-} from 'd3-shape';
+} from '@visx/vendor/d3-shape';
 
 export const STACK_OFFSETS = {
   expand: stackOffsetExpand,

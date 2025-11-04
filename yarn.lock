@@ -2959,7 +2959,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/d3-path@npm:^1, @types/d3-path@npm:^1.0.8":
+"@types/d3-path@npm:*, @types/d3-path@npm:3.1.1":
+  version: 3.1.1
+  resolution: "@types/d3-path@npm:3.1.1"
+  checksum: 10c0/2c36eb31ebaf2ce4712e793fd88087117976f7c4ed69cc2431825f999c8c77cca5cea286f3326432b770739ac6ccd5d04d851eb65e7a4dbcc10c982b49ad2c02
+  languageName: node
+  linkType: hard
+
+"@types/d3-path@npm:^1":
   version: 1.0.11
   resolution: "@types/d3-path@npm:1.0.11"
   checksum: 10c0/3353fe6c009b1d9e32aa5442787c0a1816120f83c73d6b4ba24d5d7c51472561e664e8541ac672cdca598f8c91879be14d5f7b66fba16f7c06afa45d992c4660
@@ -2998,7 +3005,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/d3-shape@npm:^1, @types/d3-shape@npm:^1.3.1, @types/d3-shape@npm:^1.3.2":
+"@types/d3-shape@npm:3.1.7":
+  version: 3.1.7
+  resolution: "@types/d3-shape@npm:3.1.7"
+  dependencies:
+    "@types/d3-path": "npm:*"
+  checksum: 10c0/38e59771c1c4c83b67aa1f941ce350410522a149d2175832fdc06396b2bb3b2c1a2dd549e0f8230f9f24296ee5641a515eaf10f55ee1ef6c4f83749e2dd7dcfd
+  languageName: node
+  linkType: hard
+
+"@types/d3-shape@npm:^1":
   version: 1.3.12
   resolution: "@types/d3-shape@npm:1.3.12"
   dependencies:
@@ -3525,8 +3541,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@visx/curve@workspace:packages/visx-curve"
   dependencies:
-    "@types/d3-shape": "npm:^1.3.1"
-    d3-shape: "npm:^1.0.6"
+    "@visx/vendor": "workspace:*"
   languageName: unknown
   linkType: soft
 
@@ -3649,11 +3664,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@visx/glyph@workspace:packages/visx-glyph"
   dependencies:
-    "@types/d3-shape": "npm:^1.3.1"
     "@types/react": "npm:*"
     "@visx/group": "workspace:*"
+    "@visx/vendor": "workspace:*"
     classnames: "npm:^2.3.1"
-    d3-shape: "npm:^1.2.0"
   peerDependencies:
     react: ^16.3.0-0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
   languageName: unknown
@@ -3873,9 +3887,9 @@ __metadata:
     "@types/d3-sankey": "npm:^0.12.4"
     "@types/react": "npm:*"
     "@visx/group": "workspace:*"
+    "@visx/vendor": "workspace:*"
     classnames: "npm:^2.3.1"
     d3-sankey: "npm:^0.12.3"
-    d3-shape: "npm:1.3.7"
   peerDependencies:
     react: ^16.3.0-0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
   languageName: unknown
@@ -3894,17 +3908,14 @@ __metadata:
   resolution: "@visx/shape@workspace:packages/visx-shape"
   dependencies:
     "@types/d3-hierarchy": "npm:^1.1.6"
-    "@types/d3-path": "npm:^1.0.8"
-    "@types/d3-shape": "npm:^1.3.1"
     "@types/lodash": "npm:^4.17.13"
     "@types/react": "npm:*"
     "@visx/curve": "workspace:*"
     "@visx/group": "workspace:*"
     "@visx/scale": "workspace:*"
+    "@visx/vendor": "workspace:*"
     classnames: "npm:^2.3.1"
     d3-hierarchy: "npm:^1.1.8"
-    d3-path: "npm:^1.0.5"
-    d3-shape: "npm:^1.2.0"
     lodash: "npm:^4.17.21"
   peerDependencies:
     react: ^16.3.0-0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
@@ -3915,12 +3926,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@visx/stats@workspace:packages/visx-stats"
   dependencies:
-    "@types/d3-shape": "npm:^1.3.2"
     "@types/react": "npm:*"
     "@visx/group": "workspace:*"
     "@visx/scale": "workspace:*"
+    "@visx/vendor": "workspace:*"
     classnames: "npm:^2.3.1"
-    d3-shape: "npm:^1.2.0"
   peerDependencies:
     react: ^16.3.0-0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
   languageName: unknown
@@ -3979,7 +3989,9 @@ __metadata:
     "@types/d3-format": "npm:3.0.1"
     "@types/d3-geo": "npm:3.1.0"
     "@types/d3-interpolate": "npm:3.0.1"
+    "@types/d3-path": "npm:3.1.1"
     "@types/d3-scale": "npm:4.0.2"
+    "@types/d3-shape": "npm:3.1.7"
     "@types/d3-time": "npm:3.0.0"
     "@types/d3-time-format": "npm:2.1.0"
     "@types/rimraf": "npm:^3.0.2"
@@ -3992,7 +4004,9 @@ __metadata:
     d3-format: "npm:3.1.0"
     d3-geo: "npm:3.1.0"
     d3-interpolate: "npm:3.0.1"
+    d3-path: "npm:3.1.0"
     d3-scale: "npm:4.0.2"
+    d3-shape: "npm:3.2.0"
     d3-time: "npm:3.1.0"
     d3-time-format: "npm:4.1.0"
     internmap: "npm:2.0.3"
@@ -4088,7 +4102,6 @@ __metadata:
     "@visx/voronoi": "workspace:*"
     classnames: "npm:^2.3.1"
     d3-interpolate-path: "npm:2.2.1"
-    d3-shape: "npm:^2.0.0"
     lodash: "npm:^4.17.21"
     mitt: "npm:^2.1.0"
   peerDependencies:
@@ -5817,17 +5830,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"d3-path@npm:1 - 2":
-  version: 2.0.0
-  resolution: "d3-path@npm:2.0.0"
-  checksum: 10c0/ef206f83c1123d4ad364c23b6fe877a7cd8afa76c30e13bd0588cd9b7c4ed4b577ebfd9499cdcac63268d7ae29c0a53ec38d6623a7c98585f3c118323e8f473f
-  languageName: node
-  linkType: hard
-
-"d3-path@npm:1, d3-path@npm:^1.0.5":
+"d3-path@npm:1":
   version: 1.0.9
   resolution: "d3-path@npm:1.0.9"
   checksum: 10c0/e35e84df5abc18091f585725b8235e1fa97efc287571585427d3a3597301e6c506dea56b11dfb3c06ca5858b3eb7f02c1bf4f6a716aa9eade01c41b92d497eb5
+  languageName: node
+  linkType: hard
+
+"d3-path@npm:3.1.0, d3-path@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "d3-path@npm:3.1.0"
+  checksum: 10c0/dc1d58ec87fa8319bd240cf7689995111a124b141428354e9637aa83059eb12e681f77187e0ada5dedfce346f7e3d1f903467ceb41b379bfd01cd8e31721f5da
   languageName: node
   linkType: hard
 
@@ -5871,21 +5884,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"d3-shape@npm:1.3.7, d3-shape@npm:^1.0.6, d3-shape@npm:^1.2.0":
+"d3-shape@npm:3.2.0":
+  version: 3.2.0
+  resolution: "d3-shape@npm:3.2.0"
+  dependencies:
+    d3-path: "npm:^3.1.0"
+  checksum: 10c0/f1c9d1f09926daaf6f6193ae3b4c4b5521e81da7d8902d24b38694517c7f527ce3c9a77a9d3a5722ad1e3ff355860b014557b450023d66a944eabf8cfde37132
+  languageName: node
+  linkType: hard
+
+"d3-shape@npm:^1.0.6, d3-shape@npm:^1.2.0":
   version: 1.3.7
   resolution: "d3-shape@npm:1.3.7"
   dependencies:
     d3-path: "npm:1"
   checksum: 10c0/548057ce59959815decb449f15632b08e2a1bdce208f9a37b5f98ec7629dda986c2356bc7582308405ce68aedae7d47b324df41507404df42afaf352907577ae
-  languageName: node
-  linkType: hard
-
-"d3-shape@npm:^2.0.0":
-  version: 2.1.0
-  resolution: "d3-shape@npm:2.1.0"
-  dependencies:
-    d3-path: "npm:1 - 2"
-  checksum: 10c0/d86c84322b0ccd550df93ec4986359548cb2c25c9fae326984a59d1caeeb40c78f62678bb93951eed65536bc2d8efa446b13386acb79875234dc79dbcf16dbd7
   languageName: node
   linkType: hard
 

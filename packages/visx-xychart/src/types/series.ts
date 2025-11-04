@@ -1,7 +1,7 @@
 import type { PointerEvent, FocusEvent, SVGProps } from 'react';
 import type { AxisScale } from '@visx/axis';
 import type { ScaleInput } from '@visx/scale';
-import type { Series, SeriesPoint } from 'd3-shape';
+import type { Series, SeriesPoint } from '@visx/vendor/d3-shape';
 
 /** Call signature of PointerEvent callback. */
 export type EventHandlerParams<Datum> = {

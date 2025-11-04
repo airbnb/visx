@@ -7,3 +7,7 @@
 /d3-*.js
 /internmap.js
 /*.d.ts
+
+# yarn files (monorepo uses root lockfile)
+/.yarn
+/yarn.lock

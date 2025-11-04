@@ -17,6 +17,9 @@
   "references": [
     {
       "path": "../visx-group"
+    },
+    {
+      "path": "../visx-vendor"
     }
   ]
 }

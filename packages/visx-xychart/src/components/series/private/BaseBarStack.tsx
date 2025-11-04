@@ -1,5 +1,5 @@
 import React, { useContext, useCallback } from 'react';
-import type { SeriesPoint } from 'd3-shape';
+import type { SeriesPoint } from '@visx/vendor/d3-shape';
 import type { PositionScale, StackPathConfig } from '@visx/shape/lib/types';
 import { getFirstItem, getSecondItem } from '@visx/shape/lib/util/accessors';
 import getBandwidth from '@visx/shape/lib/util/getBandwidth';

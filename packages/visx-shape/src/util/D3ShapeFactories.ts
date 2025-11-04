@@ -5,7 +5,7 @@ import {
   pie as d3Pie,
   radialLine as d3RadialLine,
   stack as d3Stack,
-} from 'd3-shape';
+} from '@visx/vendor/d3-shape';
 import setNumberOrNumberAccessor from './setNumberOrNumberAccessor';
 import type {
   ArcPathConfig,
@@ -73,11 +73,22 @@ export function pie<Datum>({
 }: PiePathConfig<Datum> = {}) {
   const path = d3Pie<Datum>();
 
-  // ts can't distinguish between these method overloads
-  if (sort === null) path.sort(sort);
-  else if (sort != null) path.sort(sort);
-  if (sortValues === null) path.sortValues(sortValues);
-  else if (sortValues != null) path.sortValues(sortValues);
+  // In d3-shape v3+, sortValues defaults to descending sort.
+  // To maintain visx's behavior of preserving input order by default,
+  // we explicitly set sortValues to null when neither sort nor sortValues is provided.
+  // Note: d3's pie generator clears sortValues when sort is set, and vice versa.
+  if (sortValues !== undefined) {
+    path.sortValues(sortValues);
+  } else if (sort === undefined) {
+    // Neither provided - disable sorting to preserve input order
+    path.sortValues(null);
+  } else if (sort === null) {
+    // explicit null: clear comparator
+    path.sort(null);
+  } else {
+    // here sort is narrowed to a comparator function
+    path.sort(sort);
+  }
 
   if (value != null) path.value(value);
 

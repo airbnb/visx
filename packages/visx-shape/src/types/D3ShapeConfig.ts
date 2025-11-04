@@ -1,4 +1,4 @@
-import type { CurveFactory, CurveFactoryLineOnly } from 'd3-shape';
+import type { CurveFactory, CurveFactoryLineOnly } from '@visx/vendor/d3-shape';
 import type { Accessor, AccessorForArrayItem } from './accessor';
 import type { STACK_OFFSETS } from '../util/stackOffset';
 import type { STACK_ORDERS } from '../util/stackOrder';
