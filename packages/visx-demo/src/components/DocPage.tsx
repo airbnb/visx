@@ -1,6 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import React from 'react';
-import Markdown from 'react-markdown/with-html';
+import Markdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
 
 import ApiTable from './ApiTable';
 import PackageList from './PackageList';
@@ -24,7 +25,7 @@ export default function DocPage({ components, examples, visxPackage, readme }: P
         </div>
         <div className="doc-content">
           <div className="doc-readme">
-            <Markdown escapeHtml={false} source={readme} />
+            <Markdown rehypePlugins={[rehypeRaw]}>{readme}</Markdown>
           </div>
           {examples && examples.length > 0 && (
             <>
