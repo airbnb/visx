@@ -60,7 +60,7 @@ jobs:
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          yarn logout
+          yarn npm logout
           npm config set '//registry.npmjs.org/:_authToken=${{ secrets.NPM_AUTH_TOKEN }}'
           yarn build:release
         env:
