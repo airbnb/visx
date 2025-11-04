@@ -21,23 +21,17 @@ _parent's_ bounding rect.
 
 Example usage with a `<Tooltip />` component
 
-```javascript
+```tsx
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withBoundingRects, withBoundingRectsProps } from '@visx/bounds';
+import { withBoundingRects, WithBoundingRectsProps } from '@visx/bounds';
 
-const propTypes = {
-  ...withBoundingRectsProps,
-  left: PropTypes.number.isRequired,
-  top: PropTypes.number.isRequired,
-  children: PropTypes.node,
+type TooltipProps = WithBoundingRectsProps & {
+  left: number;
+  top: number;
+  children?: React.ReactNode;
 };
 
-const defaultProps = {
-  children: null,
-};
-
-function Tooltip({ left: initialLeft, top: initialTop, rect, parentRect, children }) {
+function Tooltip({ left: initialLeft, top: initialTop, rect, parentRect, children }: TooltipProps) {
   let left = initialLeft;
   let top = initialTop;
 
@@ -48,9 +42,6 @@ function Tooltip({ left: initialLeft, top: initialTop, rect, parentRect, childre
 
   return <div style={{ top, left, ...myTheme }}>{children}</div>;
 }
-
-Tooltip.propTypes = propTypes;
-Tooltip.defaultProps = defaultProps;
 
 export default withBoundingRects(Tooltip);
 ```

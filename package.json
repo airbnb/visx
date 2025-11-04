@@ -85,7 +85,6 @@
     "@vitest/eslint-plugin": "^1.4.0",
     "@vitest/ui": "4",
     "airbnb-js-shims": "^2.2.1",
-    "babel-plugin-typescript-to-proptypes": "^2.0.0",
     "chalk": "4.1.0",
     "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19.0.4",

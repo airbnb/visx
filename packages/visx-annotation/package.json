@@ -36,7 +36,6 @@
     "@visx/group": "3.13.0-alpha.0",
     "@visx/text": "3.13.2-alpha.0",
     "classnames": "^2.3.1",
-    "prop-types": "^15.5.10",
     "react-use-measure": "^2.0.4"
   },
   "devDependencies": {

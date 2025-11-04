@@ -35,8 +35,7 @@
     "@types/d3-chord": "^1.0.9",
     "@types/react": "*",
     "classnames": "^2.3.1",
-    "d3-chord": "^1.0.4",
-    "prop-types": "^15.6.1"
+    "d3-chord": "^1.0.4"
   },
   "publishConfig": {
     "access": "public"

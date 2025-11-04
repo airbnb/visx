@@ -38,7 +38,6 @@
     "@types/react": "*",
     "@visx/group": "3.13.0-alpha.0",
     "classnames": "^2.3.1",
-    "d3-shape": "^1.2.0",
-    "prop-types": "^15.6.2"
+    "d3-shape": "^1.2.0"
   }
 }
