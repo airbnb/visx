@@ -27,30 +27,30 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
-      - name: 📡 Install dependencies
-        run: yarn install --immutable --ignore-engines
+      - name: Install dependencies
+        run: yarn install --immutable
 
-      - name: 🤖 Ensure TS references are up to date
+      - name: Ensure TS references are up to date
         run: yarn type:update-refs && git diff --exit-code
 
-      - name: 👀 Ensure we have no ESM-only dependencies
+      - name: Ensure we have no ESM-only dependencies
         run: yarn vendor-check
 
-      - name: 🛠 Build packages
+      - name: Build packages
         run: yarn build
 
-      - name: 🧪 Run tests
+      - name: Run tests
         run: yarn test
         env:
           CI: true
 
-      - name: 📃 Generate docs
+      - name: Generate docs
         run: yarn docs:generate
 
-      - name: ❤️ Run lint
+      - name: Run lint
         run: yarn lint
 
-      - name: ✨ Build visx site without failure
+      - name: Build visx site without failure
         run: yarn build
         working-directory: './packages/visx-demo/'
 
@@ -58,7 +58,7 @@ jobs:
       # this fails on forks, we need to update workflow event type to `pull_request_target`
       # but this needs security review
       # https://docs.github.com/en/actions/reference/events-that-trigger-workflows#pull_request_target
-      - name: 📐 Report package sizes
+      - name: Report package sizes
         run: yarn build:sizes && yarn check:sizes
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -31,16 +31,16 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
-      - name: 📡 Install dependencies
-        run: yarn install --immutable --ignore-engines
+      - name: Install dependencies
+        run: yarn install --immutable
 
-      - name: 🛠 Build packages
+      - name: Build packages
         run: yarn build
 
-      - name: 📃 Generate docs
+      - name: Generate docs
         run: yarn docs:generate
 
-      - name: 📐 Commit package sizes
+      - name: Commit package sizes
         if: github.repository_owner == 'airbnb'
         # note: `git diff-index --quiet HEAD`
         #       has exit code 0 if there are changes vs HEAD, else nothing to commit
@@ -52,7 +52,7 @@ jobs:
           git diff-index --quiet HEAD || git commit -m "build(${GITHUB_SHA}): auto-commit package sizes"
           git push
 
-      - name: 🚀 Release
+      - name: Release
         if: github.repository_owner == 'airbnb'
         # the following configurations are needed for lerna to
         #   - have git credentials for commiting tags
@@ -66,7 +66,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: 🎨 Build and deploy gallery
+      - name: Build and deploy gallery
         # below we
         # - setup git credentials provided via actions/checkout@v2
         # - initialize gh-pages-branch as an orphan branch so we don't build history
