@@ -4,7 +4,7 @@ import {
   stackOrderInsideOut,
   stackOrderNone,
   stackOrderReverse,
-} from 'd3-shape';
+} from '@visx/vendor/d3-shape';
 
 export const STACK_ORDERS = {
   ascending: stackOrderAscending,

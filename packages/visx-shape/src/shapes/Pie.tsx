@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { Group } from '@visx/group';
-import type { Arc as ArcType, PieArcDatum as PieArcDatumType, Pie as PieType } from 'd3-shape';
+import type { Arc as ArcType, PieArcDatum as PieArcDatumType, Pie as PieType } from '@visx/vendor/d3-shape';
 import type { $TSFIXME, AddSVGProps, ArcPathConfig, PiePathConfig } from '../types';
 import { arc as arcPath, pie as piePath } from '../util/D3ShapeFactories';
 

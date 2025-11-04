@@ -21,16 +21,13 @@
   "author": "@hshoff",
   "license": "MIT",
   "dependencies": {
-    "@types/d3-path": "^1.0.8",
-    "@types/d3-shape": "^1.3.1",
     "@types/lodash": "^4.17.13",
     "@types/react": "*",
     "@visx/curve": "workspace:*",
     "@visx/group": "workspace:*",
     "@visx/scale": "workspace:*",
+    "@visx/vendor": "workspace:*",
     "classnames": "^2.3.1",
-    "d3-path": "^1.0.5",
-    "d3-shape": "^1.2.0",
     "lodash": "^4.17.21"
   },
   "peerDependencies": {

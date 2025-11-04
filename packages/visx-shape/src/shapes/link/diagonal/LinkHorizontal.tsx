@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { linkHorizontal } from 'd3-shape';
+import { linkHorizontal } from '@visx/vendor/d3-shape';
 import type { SharedLinkProps, AccessorProps, AddSVGProps } from '../../../types';
 import { getY, getX, getSource, getTarget } from '../../../util/accessors';
 

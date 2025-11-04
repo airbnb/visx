@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import type { PickD3Scale, ContinuousDomainScaleType } from '@visx/scale';
 import { scaleLinear } from '@visx/scale';
-import { line, curveCardinal } from 'd3-shape';
+import { line, curveCardinal } from '@visx/vendor/d3-shape';
 import type { SharedProps } from './types';
 
 export type ViolinPlotProps<Datum extends object> = SharedProps & {

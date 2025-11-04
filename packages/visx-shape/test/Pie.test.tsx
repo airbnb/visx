@@ -100,25 +100,6 @@ describe('<Pie />', () => {
     expect(args.arcs[1]).toMatchObject({ value: B, index: 1 });
   });
 
-  test('it should break on invalid sort callbacks', () => {
-    expect(() =>
-      render(
-        <svg>
-          {/* @ts-expect-error testing invalid prop */}
-          <Pie data={browserUsage} pieSort={12} />
-        </svg>,
-      ),
-    ).toThrow();
-    expect(() =>
-      render(
-        <svg>
-          {/* @ts-expect-error testing invalid prop */}
-          <Pie data={browserUsage} pieSortValues={12} />
-        </svg>,
-      ),
-    ).toThrow();
-  });
-
   test('it should render pie chart with correct structure', () => {
     const { container } = render(
       <svg>

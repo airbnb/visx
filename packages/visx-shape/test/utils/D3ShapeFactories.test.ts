@@ -1,4 +1,4 @@
-import { curveBasis, stackOrderDescending, stackOffsetExpand } from 'd3-shape';
+import { curveBasis, stackOrderDescending, stackOffsetExpand } from '@visx/vendor/d3-shape';
 import { arc, area, pie, line, radialLine, stack } from '../../src/util/D3ShapeFactories';
 
 describe('D3ShapeFactories', () => {

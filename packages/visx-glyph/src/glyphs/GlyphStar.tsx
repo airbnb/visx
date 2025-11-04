@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
-import type { Symbol } from 'd3-shape';
-import { symbol, symbolStar } from 'd3-shape';
+import type { Symbol } from '@visx/vendor/d3-shape';
+import { symbol, symbolStar } from '@visx/vendor/d3-shape';
 import Glyph from './Glyph';
 
 export type GlyphStarProps<Datum> = {

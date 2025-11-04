@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import type { Line as LineType } from 'd3-shape';
+import type { Line as LineType } from '@visx/vendor/d3-shape';
 import type { AddSVGProps, LinePathConfig } from '../types';
 import { line } from '../util/D3ShapeFactories';
 
