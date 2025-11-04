@@ -31,8 +31,8 @@
   "dependencies": {
     "@types/geojson": "*",
     "@types/react": "*",
-    "@visx/group": "3.13.0-alpha.0",
-    "@visx/vendor": "3.12.0",
+    "@visx/group": "workspace:*",
+    "@visx/vendor": "workspace:*",
     "classnames": "^2.3.1"
   },
   "devDependencies": {

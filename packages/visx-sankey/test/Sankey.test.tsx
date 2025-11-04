@@ -11,7 +11,7 @@ const links = [
 ];
 const root = { nodes, links };
 
-const renderTest = (props: SankeyProps<typeof nodes[number], {}>) =>
+const renderTest = (props: SankeyProps<(typeof nodes)[number], {}>) =>
   render(
     <svg>
       <Sankey {...props} />

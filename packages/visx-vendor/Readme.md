@@ -11,9 +11,9 @@ which aims to solve the same problem.
 ## Vendored packages
 
 All vendored packages are listed as `dependencies` in the `package.json` of this package (note that
-the `yarn` `nohoist` option is set for this package to guarantee version specificity in this large
-monorepo where we may have mixed versions of `d3` packages). For each (non-types) package `<pkg>`,
-we generate the following:
+the `installConfig.hoistingLimits` option is set for this package to guarantee version specificity
+in this large monorepo where we may have mixed versions of `d3` packages). For each (non-types)
+package `<pkg>`, we generate the following:
 
 - an ESM version of the package in `esm/<pkg>.js`
 - a CJS version of the package in `lib/<pkg>.js`

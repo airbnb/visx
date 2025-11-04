@@ -248,7 +248,7 @@ function BaseAreaStack<XScale extends AxisScale, YScale extends AxisScale, Datum
       {captureFocusEvents &&
         stacks.map((_, i) => {
           // render in reverse stack order tab to top-values first
-          const stack: typeof stacks[number] = stacks[stacks.length - i - 1];
+          const stack: (typeof stacks)[number] = stacks[stacks.length - i - 1];
           return (
             <BaseGlyphSeries<any, any, AreaStackDatum>
               key={`glyphs-${stack.key}`}

@@ -31,7 +31,7 @@
   },
   "homepage": "https://github.com/airbnb/visx#readme",
   "dependencies": {
-    "@visx/vendor": "3.12.0"
+    "@visx/vendor": "workspace:*"
   },
   "publishConfig": {
     "access": "public"
