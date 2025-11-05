@@ -41,6 +41,7 @@
     "internmap": "2.0.3"
   },
   "devDependencies": {
+    "@babel/core": "^7.22.5",
     "@babel/plugin-transform-modules-commonjs": "^7.22.5",
     "@types/rimraf": "^3.0.2",
     "babel-plugin-module-resolver": "^5.0.0",

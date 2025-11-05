@@ -90,7 +90,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/core@npm:^7.26.0":
+"@babel/core@npm:^7.22.5, @babel/core@npm:^7.26.0":
   version: 7.28.5
   resolution: "@babel/core@npm:7.28.5"
   dependencies:
@@ -3561,10 +3561,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@visx/demo@workspace:packages/visx-demo"
   dependencies:
+    "@babel/core": "npm:^7.26.0"
     "@react-spring/web": "npm:^9.7.5"
     "@types/d3-scale-chromatic": "npm:^1.3.1"
     "@types/nprogress": "npm:^0.2.0"
     "@types/prismjs": "npm:^1.16.0"
+    "@types/react": "npm:^18.3.26"
     "@visx/annotation": "workspace:*"
     "@visx/axis": "workspace:*"
     "@visx/bounds": "workspace:*"
@@ -3982,6 +3984,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@visx/vendor@workspace:packages/visx-vendor"
   dependencies:
+    "@babel/core": "npm:^7.22.5"
     "@babel/plugin-transform-modules-commonjs": "npm:^7.22.5"
     "@types/d3-array": "npm:3.0.3"
     "@types/d3-color": "npm:3.1.0"

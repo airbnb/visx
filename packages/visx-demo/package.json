@@ -27,10 +27,12 @@
   ],
   "license": "MIT",
   "dependencies": {
+    "@babel/core": "^7.26.0",
     "@react-spring/web": "^9.7.5",
     "@types/d3-scale-chromatic": "^1.3.1",
     "@types/nprogress": "^0.2.0",
     "@types/prismjs": "^1.16.0",
+    "@types/react": "^18.3.26",
     "@visx/annotation": "workspace:*",
     "@visx/axis": "workspace:*",
     "@visx/bounds": "workspace:*",
