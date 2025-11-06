@@ -1,9 +1,5 @@
-const isProd = process.env.NODE_ENV === 'production';
-
 const nextConfig = {
   output: 'export',
-  basePath: isProd ? '/visx' : '',
-  ...(isProd && { assetPrefix: '/visx/' }),
   typescript: {
     // enable rendering when there are type errors
     ignoreBuildErrors: true,
