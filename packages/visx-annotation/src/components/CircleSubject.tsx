@@ -6,6 +6,10 @@ import AnnotationContext from '../context/AnnotationContext';
 export type CircleSubjectProps = Pick<AnnotationContextType, 'x' | 'y'> & {
   /** Optional className to apply to CircleSubject in addition to 'visx-annotation-subject'. */
   className?: string;
+  /** Allows you to customize the pointerEvents attribute on the `<circle>` element.
+   * 
+   * Default: `"none"` */
+  pointerEvents?: React.SVGAttributes<SVGCircleElement>['pointerEvents'];
   /** Color of CircleSubject. */
   stroke?: string;
   /** Radius of CircleSubject. */
@@ -16,6 +20,7 @@ export default function CircleSubject({
   className,
   x: propsX,
   y: propsY,
+  pointerEvents = 'none',
   stroke = '#222',
   radius = 16,
   ...restProps
@@ -30,7 +35,7 @@ export default function CircleSubject({
       cy={propsY || annotationContext.y}
       r={radius}
       fill="transparent"
-      pointerEvents="none"
+      pointerEvents={pointerEvents}
       stroke={stroke}
       {...restProps}
     />

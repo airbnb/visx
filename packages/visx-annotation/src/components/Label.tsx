@@ -23,6 +23,10 @@ export type LabelProps = {
   fontColor?: string;
   /** Whether the label is horizontally anchored to the start, middle, or end of its x position. */
   horizontalAnchor?: TextProps['textAnchor'];
+  /** Allows you to customize the pointerEvents attribute on the Group (`<g>`) wrapper of the Annotation.
+   * 
+   * Default: `"none"` */
+  pointerEvents?: React.SVGAttributes<SVGElement>['pointerEvents'];
   /** Optionally inject a ResizeObserver polyfill, else this *must* be globally available. */
   resizeObserverPolyfill?: UseMeasureOptions['polyfill'];
   /** Whether to render a line indicating label text anchor. */
@@ -77,6 +81,7 @@ export default function Label({
   className,
   fontColor = '#222',
   horizontalAnchor: propsHorizontalAnchor,
+  pointerEvents = 'none',
   resizeObserverPolyfill,
   showAnchorLine = true,
   showBackground = true,
@@ -192,7 +197,7 @@ export default function Label({
     <Group
       top={containerCoords.y}
       left={containerCoords.x}
-      pointerEvents="none"
+      pointerEvents={pointerEvents}
       className={cx('visx-annotationlabel', className)}
       opacity={titleBounds.height === 0 && subtitleBounds.height === 0 ? 0 : 1}
     >
