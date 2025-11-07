@@ -22,9 +22,9 @@ export type BrushSelectionProps = {
   onBrushStart?: (brush: DragArgs) => void;
   onBrushEnd?: (brush: BrushState) => void;
   disableDraggingSelection: boolean;
-  onMouseLeave: PointerHandler;
-  onMouseMove: PointerHandler;
-  onMouseUp: PointerHandler;
+  onPointerLeave: PointerHandler;
+  onPointerMove: PointerHandler;
+  onPointerUp: PointerHandler;
   onClick: PointerHandler;
   selectedBoxStyle: React.SVGProps<SVGRectElement>;
   isControlled?: boolean;
@@ -35,9 +35,9 @@ export default class BrushSelection extends React.Component<
   BrushSelectionProps & Omit<React.SVGProps<SVGRectElement>, keyof BrushSelectionProps>
 > {
   static defaultProps = {
-    onMouseLeave: null,
-    onMouseUp: null,
-    onMouseMove: null,
+    onPointerLeave: null,
+    onPointerUp: null,
+    onPointerMove: null,
     onClick: null,
   };
 
@@ -123,9 +123,9 @@ export default class BrushSelection extends React.Component<
       stageHeight,
       brush,
       disableDraggingSelection,
-      onMouseLeave,
-      onMouseMove,
-      onMouseUp,
+      onPointerLeave,
+      onPointerMove,
+      onPointerUp,
       onClick,
       selectedBoxStyle,
       isControlled,
@@ -163,17 +163,17 @@ export default class BrushSelection extends React.Component<
               className="visx-brush-selection"
               onPointerDown={disableDraggingSelection ? undefined : dragStart}
               onPointerLeave={(event) => {
-                if (onMouseLeave) onMouseLeave(event);
+                if (onPointerLeave) onPointerLeave(event);
               }}
               onPointerMove={(event) => {
                 dragMove(event);
-                if (onMouseMove) onMouseMove(event);
+                if (onPointerMove) onPointerMove(event);
               }}
               onPointerUp={(event) => {
                 if (!isControlled) {
                   dragEnd(event);
                 }
-                if (onMouseUp) onMouseUp(event);
+                if (onPointerUp) onPointerUp(event);
               }}
               onClick={(event) => {
                 if (onClick) onClick(event as React.PointerEvent<SVGRectElement>);

@@ -35,9 +35,9 @@ export type BaseBrushProps = {
   onBrushStart?: (start: BaseBrushState['start']) => void;
   onBrushEnd?: (state: BaseBrushState) => void;
   selectedBoxStyle: React.SVGProps<SVGRectElement>;
-  onMouseLeave?: (event: PointerHandlerEvent) => void;
-  onMouseUp?: (event: PointerHandlerEvent) => void;
-  onMouseMove?: (event: PointerHandlerEvent) => void;
+  onPointerLeave?: (event: PointerHandlerEvent) => void;
+  onPointerUp?: (event: PointerHandlerEvent) => void;
+  onPointerMove?: (event: PointerHandlerEvent) => void;
   onClick?: (event: PointerHandlerEvent) => void;
   clickSensitivity: number;
   disableDraggingSelection: boolean;
@@ -102,9 +102,9 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
     resizeTriggerAreas: ['left', 'right'],
     onBrushStart: null,
     onBrushEnd: null,
-    onMouseLeave: null,
-    onMouseUp: null,
-    onMouseMove: null,
+    onPointerLeave: null,
+    onPointerUp: null,
+    onPointerMove: null,
     onClick: null,
     disableDraggingSelection: false,
     disableDraggingOverlay: false,
@@ -574,9 +574,9 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
       left,
       width: stageWidth,
       height: stageHeight,
-      onMouseLeave,
-      onMouseUp,
-      onMouseMove,
+      onPointerLeave,
+      onPointerUp,
+      onPointerMove,
       onBrushEnd,
       onClick,
       resizeTriggerAreas,
@@ -632,15 +632,15 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
                   dragStart(event);
                 }}
                 onPointerLeave={(event: PointerHandlerEvent) => {
-                  if (onMouseLeave) onMouseLeave(event);
+                  if (onPointerLeave) onPointerLeave(event);
                 }}
                 onPointerMove={(event: PointerHandlerEvent) => {
-                  if (!isDragging && onMouseMove) onMouseMove(event);
+                  if (!isDragging && onPointerMove) onPointerMove(event);
                   if (isDragging) dragMove(event);
                 }}
                 onPointerUp={(event: PointerHandlerEvent) => {
                   this.mouseUpTime = Date.now();
-                  if (onMouseUp) onMouseUp(event);
+                  if (onPointerUp) onPointerUp(event);
                   dragEnd(event);
                 }}
                 style={{ cursor: 'crosshair' }}
@@ -661,9 +661,9 @@ export default class BaseBrush extends React.Component<BaseBrushProps, BaseBrush
             disableDraggingSelection={disableDraggingSelection}
             onBrushEnd={onBrushEnd}
             onBrushStart={this.handleBrushStart}
-            onMouseLeave={onMouseLeave}
-            onMouseMove={onMouseMove}
-            onMouseUp={onMouseUp}
+            onPointerLeave={onPointerLeave}
+            onPointerMove={onPointerMove}
+            onPointerUp={onPointerUp}
             onMoveSelectionChange={this.handleBrushingTypeChange}
             onClick={onClick}
             selectedBoxStyle={selectedBoxStyle}
