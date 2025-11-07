@@ -28,10 +28,19 @@ export function isMouseEvent(event?: EventType): event is MouseEvent {
   return !!event && 'clientX' in event;
 }
 
-// functional definition of event
-export function isEvent(event?: EventType | Element): event is EventType {
+function isNativeEvent(event: any): event is Event {
+  return event && typeof event === 'object' && 'target' in event && 'currentTarget' in event;
+}
+
+function isReactSyntheticEvent(event: any): event is React.SyntheticEvent {
   return (
-    !!event &&
-    (event instanceof Event || ('nativeEvent' in event && event.nativeEvent instanceof Event))
+    event &&
+    typeof event === 'object' &&
+    'nativeEvent' in event &&
+    isNativeEvent((event as React.SyntheticEvent).nativeEvent)
   );
+}
+
+export function isEvent(event?: EventType | Element): event is EventType {
+  return !!event && (isNativeEvent(event) || isReactSyntheticEvent(event));
 }

@@ -93,6 +93,22 @@ function defaultRenderGlyph<Datum extends object>(props: RenderTooltipGlyphProps
   return <DefaultGlyph {...props} />;
 }
 
+function getIframeOffsets(target) {
+  let offsetX = 0;
+  let offsetY = 0;
+  let currentWindow = target.ownerDocument.defaultView;
+
+  while (currentWindow && currentWindow.frameElement) {
+    const frameElement = currentWindow.frameElement;
+    const frameRect = frameElement.getBoundingClientRect();
+    offsetX += frameRect.left;
+    offsetY += frameRect.top;
+    currentWindow = currentWindow.parent;
+  }
+
+  return { x: offsetX, y: offsetY };
+}
+
 function TooltipInner<Datum extends object>({
   debounce,
   detectBounds,
@@ -132,15 +148,46 @@ function TooltipInner<Datum extends object>({
     zIndex,
   });
 
+  function getIframeOffsets(target) {
+    let offsetX = 0;
+    let offsetY = 0;
+    let currentWindow = target.ownerDocument.defaultView;
+
+    while (currentWindow && currentWindow.frameElement) {
+      const frameElement = currentWindow.frameElement;
+      const frameRect = frameElement.getBoundingClientRect();
+      offsetX += frameRect.left;
+      offsetY += frameRect.top;
+      currentWindow = currentWindow.parent;
+    }
+
+    return { x: offsetX, y: offsetY };
+  }
+
   // To correctly position itself in a Portal, the tooltip must know its container bounds
   // this is done by rendering an invisible node whose ref can be used to find its parentElement
   const setContainerRef = useCallback(
     (ownRef: HTMLElement | SVGElement | null) => {
-      containerRef(ownRef?.parentElement ?? null);
+      if (ownRef && ownRef.parentElement instanceof Element) {
+        const iframeOffsets = getIframeOffsets(ownRef);
+        const parentRect = ownRef.parentElement.getBoundingClientRect();
+        const adjustedContainer = {
+          ...ownRef.parentElement,
+          getBoundingClientRect: () => ({
+            ...parentRect,
+            x: parentRect.x + iframeOffsets.x,
+            y: parentRect.y + iframeOffsets.y,
+            left: parentRect.left + iframeOffsets.x,
+            top: parentRect.top + iframeOffsets.y,
+          }),
+        };
+        containerRef(adjustedContainer);
+      } else {
+        containerRef(null);
+      }
     },
     [containerRef],
   );
-
   const tooltipContent = tooltipContext?.tooltipOpen
     ? renderTooltip({ ...tooltipContext, colorScale })
     : null;
@@ -298,10 +345,9 @@ function TooltipInner<Datum extends object>({
               </svg>
             </TooltipInPortal>
           )}
-          {glyphProps.map(({ x, y, ...props }, i) => (
-            // We render glyps in a portal so that they can overflow the container if necessary
+          {glyphProps.map(({ key, x, y, ...props }) => (
             <TooltipInPortal
-              key={i}
+              key={key}
               className="visx-tooltip-glyph"
               left={x}
               top={y}
