@@ -2989,10 +2989,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/d3-scale-chromatic@npm:^1.3.1":
-  version: 1.5.4
-  resolution: "@types/d3-scale-chromatic@npm:1.5.4"
-  checksum: 10c0/f147d68b39f761704b01c69bea1912bba40dbec027ec8dcb1d1c2407765d80a32dfd123d66316d45c4e14b04107c9ec5015b1c51f054eeeb5a0ee294b9a4d721
+"@types/d3-scale-chromatic@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "@types/d3-scale-chromatic@npm:3.1.0"
+  checksum: 10c0/93c564e02d2e97a048e18fe8054e4a935335da6ab75a56c3df197beaa87e69122eef0dfbeb7794d4a444a00e52e3123514ee27cec084bd21f6425b7037828cc2
   languageName: node
   linkType: hard
 
@@ -3563,7 +3563,7 @@ __metadata:
   dependencies:
     "@babel/core": "npm:^7.26.0"
     "@react-spring/web": "npm:^9.7.5"
-    "@types/d3-scale-chromatic": "npm:^1.3.1"
+    "@types/d3-scale-chromatic": "npm:^3.1.0"
     "@types/nprogress": "npm:^0.2.0"
     "@types/prismjs": "npm:^1.16.0"
     "@types/react": "npm:^18.3.26"
@@ -3607,10 +3607,10 @@ __metadata:
     "@visx/zoom": "workspace:*"
     babel-loader: "npm:^8.2.2"
     classnames: "npm:^2.3.1"
-    d3-collection: "npm:^1.0.4"
-    d3-hierarchy: "npm:^1.1.4"
-    d3-scale-chromatic: "npm:^1.3.3"
-    d3-shape: "npm:^1.0.6"
+    d3-collection: "npm:^1.0.7"
+    d3-hierarchy: "npm:^3.1.2"
+    d3-scale-chromatic: "npm:^3.1.0"
+    d3-shape: "npm:^3.2.0"
     lodash: "npm:^4.17.21"
     next: "npm:^14.2.0"
     nprogress: "npm:^0.2.0"
@@ -5748,17 +5748,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"d3-collection@npm:^1.0.4":
+"d3-collection@npm:^1.0.7":
   version: 1.0.7
   resolution: "d3-collection@npm:1.0.7"
   checksum: 10c0/7a3c7f733ce4a1a02f46a96c7dd02f8e46a2fa83fc4195682fd33624d6a56fbda6388c86ff5d30799cc768cb63bffcdb216b45c51a8d6e0b23117db9c18bedb3
-  languageName: node
-  linkType: hard
-
-"d3-color@npm:1":
-  version: 1.4.1
-  resolution: "d3-color@npm:1.4.1"
-  checksum: 10c0/668721dedc1d7e84aa9b3c51ccbaa1facd92ae9303d86ea0d5d0cf589dab892bc4cc7e155696537ed43e8f053d3ad0dde86363e1a789bad800a786f2ede527d7
   languageName: node
   linkType: hard
 
@@ -5808,6 +5801,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"d3-hierarchy@npm:^3.1.2":
+  version: 3.1.2
+  resolution: "d3-hierarchy@npm:3.1.2"
+  checksum: 10c0/6dcdb480539644aa7fc0d72dfc7b03f99dfbcdf02714044e8c708577e0d5981deb9d3e99bbbb2d26422b55bcc342ac89a0fa2ea6c9d7302e2fc0951dd96f89cf
+  languageName: node
+  linkType: hard
+
 "d3-interpolate-path@npm:2.2.1":
   version: 2.2.1
   resolution: "d3-interpolate-path@npm:2.2.1"
@@ -5815,16 +5815,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"d3-interpolate@npm:1":
-  version: 1.4.0
-  resolution: "d3-interpolate@npm:1.4.0"
-  dependencies:
-    d3-color: "npm:1"
-  checksum: 10c0/33274a06d5969f7cf8477f490dd9bea6cf2f5e89da800e0db17e1b6663dfcc288ebc34ae85f891e83f59f87086e9468db0614281b9fe8ba50162d8a45149ed0f
-  languageName: node
-  linkType: hard
-
-"d3-interpolate@npm:1.2.0 - 3, d3-interpolate@npm:3.0.1":
+"d3-interpolate@npm:1 - 3, d3-interpolate@npm:1.2.0 - 3, d3-interpolate@npm:3.0.1":
   version: 3.0.1
   resolution: "d3-interpolate@npm:3.0.1"
   dependencies:
@@ -5864,13 +5855,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"d3-scale-chromatic@npm:^1.3.3":
-  version: 1.5.0
-  resolution: "d3-scale-chromatic@npm:1.5.0"
+"d3-scale-chromatic@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "d3-scale-chromatic@npm:3.1.0"
   dependencies:
-    d3-color: "npm:1"
-    d3-interpolate: "npm:1"
-  checksum: 10c0/162e63d95ff67f5c50ca55d47c172dfbc2eb0dcb437121fd8256961d747c7a10206b45b1789e7abe51f30a40295c216b78a9ccc06f74d89ef52197417a40811c
+    d3-color: "npm:1 - 3"
+    d3-interpolate: "npm:1 - 3"
+  checksum: 10c0/9a3f4671ab0b971f4a411b42180d7cf92bfe8e8584e637ce7e698d705e18d6d38efbd20ec64f60cc0dfe966c20d40fc172565bc28aaa2990c0a006360eed91af
   languageName: node
   linkType: hard
 
@@ -5887,7 +5878,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"d3-shape@npm:3.2.0":
+"d3-shape@npm:3.2.0, d3-shape@npm:^3.2.0":
   version: 3.2.0
   resolution: "d3-shape@npm:3.2.0"
   dependencies:
@@ -5896,7 +5887,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"d3-shape@npm:^1.0.6, d3-shape@npm:^1.2.0":
+"d3-shape@npm:^1.2.0":
   version: 1.3.7
   resolution: "d3-shape@npm:1.3.7"
   dependencies:
