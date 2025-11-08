@@ -92,6 +92,8 @@ jobs:
           yarn build
           mv -v out/* ../../gh-pages-root-dir/
           cd ../../gh-pages-root-dir/
+          touch CNAME
+          echo "visx.airbnb.tech" > CNAME
           git add .
           git commit -m "bot(${GITHUB_SHA}): build gh-pages"
           git push -f "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git" HEAD:gh-pages
