@@ -1,4 +1,3 @@
-import React from 'react';
 import cx from 'classnames';
 import type { AddSVGProps, BaseAreaProps } from '../types';
 import { area } from '../util/D3ShapeFactories';

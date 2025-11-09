@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Annotation as VisxAnnotation,
   EditableAnnotation as VisxEditableAnnotation,

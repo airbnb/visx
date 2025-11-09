@@ -96,5 +96,5 @@ export interface ProvidedZoom<ElementType> {
   /** Applies the inverse of the current transform matrix to the specified point. */
   applyInverseToPoint: ({ x, y }: Point) => Point;
   /** Ref to stick on element to attach all handlers automatically. */
-  containerRef: RefObject<ElementType>;
+  containerRef: RefObject<ElementType | null>;
 }

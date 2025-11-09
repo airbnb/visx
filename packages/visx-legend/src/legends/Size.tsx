@@ -1,4 +1,3 @@
-import React from 'react';
 import type { D3Scale } from '@visx/scale';
 import type { LegendProps } from './Legend';
 import Legend from './Legend';

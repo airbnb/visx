@@ -1,4 +1,3 @@
-import React from 'react';
 import type { TextProps } from '@visx/text';
 
 interface AnchorLineProps {

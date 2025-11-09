@@ -1,4 +1,3 @@
-import React from 'react';
 import type { AxisScale } from '@visx/axis';
 import { Axis as VisxAxis } from '@visx/axis';
 import type { BaseAxisProps } from './BaseAxis';

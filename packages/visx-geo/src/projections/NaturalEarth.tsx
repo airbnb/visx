@@ -1,4 +1,3 @@
-import React from 'react';
 import type { ProjectionProps } from './Projection';
 import Projection from './Projection';
 import type { GeoPermissibleObjects } from '../types';

@@ -70,22 +70,24 @@ export default function AnimatedGlyphs<
           color={color}
           opacity={opacity}
         >
-          {renderGlyph({
-            key,
-            datum: item.datum,
-            index: item.index,
-            x: 0,
-            y: 0,
-            size: item.size,
-            // currentColor doesn't work with url-based colors (pattern, gradient)
-            // otherwise currentColor allows us to animate the color of the <g /> element
-            color: colorHasUrl(item.color) ? item.color : 'currentColor',
-            onBlur,
-            onFocus,
-            onPointerMove,
-            onPointerOut,
-            onPointerUp,
-          })}
+          {
+            renderGlyph({
+              key,
+              datum: item.datum,
+              index: item.index,
+              x: 0,
+              y: 0,
+              size: item.size,
+              // currentColor doesn't work with url-based colors (pattern, gradient)
+              // otherwise currentColor allows us to animate the color of the <g /> element
+              color: colorHasUrl(item.color) ? item.color : 'currentColor',
+              onBlur,
+              onFocus,
+              onPointerMove,
+              onPointerOut,
+              onPointerUp,
+            }) as React.ReactNode
+          }
         </animated.g>
       ))}
     </>

@@ -1,4 +1,3 @@
-import React from 'react';
 import type { SpringValue } from '@react-spring/web';
 import { animated, useTransition, to } from '@react-spring/web';
 import cx from 'classnames';

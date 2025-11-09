@@ -1,7 +1,6 @@
-/* eslint react/no-did-mount-set-state: 0, react/no-find-dom-node: 0 */
+/* eslint react/no-did-mount-set-state: 0 */
 import type { ComponentClass } from 'react';
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 const emptyRect = {
   top: 0,
@@ -34,7 +33,7 @@ export default function withBoundingRects<Props extends object = {}>(
   return class WrappedComponent extends React.PureComponent<Props> {
     static displayName = `withBoundingRects(${BaseComponent.displayName || ''})`;
     node: HTMLElement | undefined | null;
-    nodeRef: React.RefObject<HTMLElement>;
+    nodeRef: React.RefObject<HTMLElement | null>;
     constructor(props: Props) {
       super(props);
       this.state = {
@@ -46,9 +45,7 @@ export default function withBoundingRects<Props extends object = {}>(
     }
 
     componentDidMount() {
-      this.node = this.nodeRef?.current
-        ? this.nodeRef.current
-        : (ReactDOM.findDOMNode(this) as HTMLElement);
+      this.node = this.nodeRef?.current || null;
       this.setState(() => this.getRects());
     }
 

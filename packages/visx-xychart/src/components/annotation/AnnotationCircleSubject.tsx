@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { CircleSubject as BaseCircleSubject } from '@visx/annotation';
 import type { CircleSubjectProps } from '@visx/annotation/lib/components/CircleSubject';
 import DataContext from '../../context/DataContext';

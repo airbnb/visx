@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { Connector as BaseConnector } from '@visx/annotation';
 import type { ConnectorProps as BaseConnectorProps } from '@visx/annotation/lib/components/Connector';
 import DataContext from '../../context/DataContext';

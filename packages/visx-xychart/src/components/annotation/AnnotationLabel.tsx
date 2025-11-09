@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { Label as BaseLabel } from '@visx/annotation';
 import type { LabelProps as BaseLabelProps } from '@visx/annotation/lib/components/Label';
 import DataContext from '../../context/DataContext';

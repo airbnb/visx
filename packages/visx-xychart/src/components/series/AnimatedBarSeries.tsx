@@ -1,5 +1,4 @@
 import type { AxisScale } from '@visx/axis';
-import React from 'react';
 import type { BaseBarSeriesProps } from './private/BaseBarSeries';
 import BaseBarSeries from './private/BaseBarSeries';
 import AnimatedBars from './private/AnimatedBars';

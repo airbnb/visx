@@ -1,4 +1,3 @@
-import React from 'react';
 import cx from 'classnames';
 import { linkRadial } from '@visx/vendor/d3-shape';
 import type { SharedLinkProps, RadialAccessorProps, AddSVGProps } from '../../../types';

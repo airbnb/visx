@@ -62,8 +62,8 @@ export default function EditableAnnotation({
 }: EditableAnnotationProps) {
   // chicken before the egg, we need these to reference drag state
   // in drag callbacks which are defined before useDrag() state is available
-  const subjectDragRef = useRef<UseDrag>();
-  const labelDragRef = useRef<UseDrag>();
+  const subjectDragRef = useRef<UseDrag | undefined>(undefined);
+  const labelDragRef = useRef<UseDrag | undefined>(undefined);
 
   const handleDragStart = useCallback(
     ({ event }: DragHandlerArgs) => {

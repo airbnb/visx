@@ -1,5 +1,4 @@
 import type { SVGProps } from 'react';
-import React from 'react';
 import { animated, useTransition } from '@react-spring/web';
 import type { GridScale, GridLines, CommonGridProps } from '@visx/grid/lib/types';
 import type { TransitionConfig } from '../spring-configs/useLineTransitionConfig';

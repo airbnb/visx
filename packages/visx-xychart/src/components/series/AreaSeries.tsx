@@ -1,5 +1,4 @@
 import type { AxisScale } from '@visx/axis';
-import React from 'react';
 import type { BaseAreaSeriesProps } from './private/BaseAreaSeries';
 import BaseAreaSeries from './private/BaseAreaSeries';
 

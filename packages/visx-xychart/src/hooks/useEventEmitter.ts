@@ -35,7 +35,7 @@ export default function useEventEmitter(
   allowedSources?: string[],
 ) {
   const emitter = useContext(EventEmitterContext);
-  const allowedSourcesRef = useRef<string[] | undefined>();
+  const allowedSourcesRef = useRef<string[] | undefined>(undefined);
   allowedSourcesRef.current = allowedSources; // use ref so allowedSources[] can change without creating new handlers
 
   // wrap emitter.emit so we can enforce stricter type signature

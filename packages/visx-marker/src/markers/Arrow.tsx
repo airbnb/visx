@@ -1,4 +1,3 @@
-import React from 'react';
 import type { MarkerComponentProps } from './Marker';
 import Marker from './Marker';
 

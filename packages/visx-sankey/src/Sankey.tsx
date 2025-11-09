@@ -1,5 +1,4 @@
 import type { ReactNode, SVGAttributes } from 'react';
-import React from 'react';
 import cx from 'classnames';
 import { Group } from '@visx/group';
 import type { SankeyExtraProperties, SankeyGraph, SankeyLink, SankeyNode } from 'd3-sankey';

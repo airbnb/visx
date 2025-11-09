@@ -1,4 +1,3 @@
-import React from 'react';
 import type { LinearGradientProps } from './LinearGradient';
 import LinearGradient from './LinearGradient';
 

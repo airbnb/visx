@@ -1,4 +1,3 @@
-import React from 'react';
 import type { PositionScale } from '@visx/shape/lib/types';
 import type { BaseBarStackProps } from './private/BaseBarStack';
 import BaseBarStack from './private/BaseBarStack';

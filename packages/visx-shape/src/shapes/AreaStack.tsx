@@ -1,4 +1,3 @@
-import React from 'react';
 import cx from 'classnames';
 import type { StackProps } from './Stack';
 import Stack from './Stack';

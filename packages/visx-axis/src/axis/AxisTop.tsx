@@ -1,4 +1,3 @@
-import React from 'react';
 import cx from 'classnames';
 import Axis from './Axis';
 import Orientation from '../constants/orientation';

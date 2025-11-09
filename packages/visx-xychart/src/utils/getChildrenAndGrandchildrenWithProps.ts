@@ -16,8 +16,8 @@ export default function getChildrenAndGrandchildrenWithProps<P extends object>(
 ): React.ReactElement<P>[] {
   return React.Children.toArray(children)
     .flatMap((child) => {
-      if (typeof child === 'object' && 'props' in child && child.props.children) {
-        return child.props.children;
+      if (isChildWithProps(child) && (child.props as any).children) {
+        return (child.props as any).children;
       }
       return child;
     })

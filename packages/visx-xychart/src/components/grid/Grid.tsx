@@ -1,4 +1,3 @@
-import React from 'react';
 import GridRows from '@visx/grid/lib/grids/GridRows';
 import GridColumns from '@visx/grid/lib/grids/GridColumns';
 import type { BaseGridProps } from './BaseGrid';

@@ -26,7 +26,16 @@ export default function GlyphSeries<
     }: GlyphsProps<XScale, YScale, Datum>) =>
       glyphs.map((glyph) => (
         <React.Fragment key={glyph.key}>
-          {renderGlyph({ ...glyph, onPointerMove, onPointerOut, onPointerUp, onFocus, onBlur })}
+          {
+            renderGlyph({
+              ...glyph,
+              onPointerMove,
+              onPointerOut,
+              onPointerUp,
+              onFocus,
+              onBlur,
+            }) as React.ReactNode
+          }
         </React.Fragment>
       )),
     [renderGlyph],
