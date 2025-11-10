@@ -31,6 +31,8 @@ module.exports = {
         'no-unused-vars': 'off',
 
         // IMPORT (Conflicts with TS patterns)
+        'no-duplicate-imports': 'off', // Disabled in favor of import/no-duplicates
+        'import/export': 'off', // TypeScript allows same name for type and value exports
         'import/extensions': [
           'error',
           'never',
@@ -40,6 +42,7 @@ module.exports = {
         ],
         'import/named': 'off',
         'import/no-cycle': 'off',
+        'import/no-duplicates': 'error', // Handles TS type/value namespace separation
         'import/no-named-as-default': 'off',
         'import/no-extraneous-dependencies': [
           'error',
@@ -80,6 +83,7 @@ module.exports = {
           'error',
           { assertionStyle: 'as', objectLiteralTypeAssertions: 'allow-as-parameter' },
         ],
+        '@typescript-eslint/consistent-type-exports': ['error', { fixMixedExportsWithInlineTypeSpecifier: true }],
         '@typescript-eslint/consistent-type-imports': ['error', { prefer: 'type-imports' }],
         '@typescript-eslint/explicit-function-return-type': 'off', // Allow inferrence
         '@typescript-eslint/func-call-spacing': ['error', 'never'],
