@@ -71,24 +71,33 @@ const INVISIBLE_STYLES: React.CSSProperties = {
   pointerEvents: 'none',
 };
 
-function DefaultGlyph<Datum extends object>(props: RenderTooltipGlyphProps<Datum>) {
+function DefaultGlyph<Datum extends object>({
+  x,
+  y,
+  size,
+  color,
+  glyphStyle,
+}: Omit<RenderTooltipGlyphProps<Datum>, 'key'>) {
   const { theme } = useContext(DataContext) || {};
 
   return (
     <circle
-      cx={props.x}
-      cy={props.y}
-      r={props.size}
-      fill={props.color}
+      cx={x}
+      cy={y}
+      r={size}
+      fill={color}
       stroke={theme?.backgroundColor}
       strokeWidth={1.5}
       paintOrder="fill"
-      {...props.glyphStyle}
+      {...glyphStyle}
     />
   );
 }
 
-function defaultRenderGlyph<Datum extends object>(props: RenderTooltipGlyphProps<Datum>) {
+function defaultRenderGlyph<Datum extends object>({
+  key,
+  ...props
+}: RenderTooltipGlyphProps<Datum>) {
   return <DefaultGlyph {...props} />;
 }
 
@@ -297,10 +306,10 @@ function TooltipInner<Datum extends object>({
               </svg>
             </TooltipInPortal>
           )}
-          {glyphProps.map(({ x, y, ...props }, i) => (
+          {glyphProps.map(({ key, x, y, ...props }) => (
             // We render glyps in a portal so that they can overflow the container if necessary
             <TooltipInPortal
-              key={i}
+              key={key}
               className="visx-tooltip-glyph"
               left={x}
               top={y}
@@ -309,7 +318,7 @@ function TooltipInner<Datum extends object>({
               detectBounds={false}
               style={TOOLTIP_NO_STYLE}
             >
-              <svg overflow="visible">{renderGlyph({ x: 0, y: 0, ...props })}</svg>
+              <svg overflow="visible">{renderGlyph({ key, x: 0, y: 0, ...props })}</svg>
             </TooltipInPortal>
           ))}
           <TooltipInPortal
