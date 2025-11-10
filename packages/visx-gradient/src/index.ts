@@ -10,3 +10,6 @@ export { default as GradientPurpleRed } from './gradients/GradientPurpleRed';
 export { default as GradientPurpleTeal } from './gradients/GradientPurpleTeal';
 export { default as GradientSteelPurple } from './gradients/GradientSteelPurple';
 export { default as GradientTealBlue } from './gradients/GradientTealBlue';
+
+export type { LinearGradientProps } from './gradients/LinearGradient';
+export type { RadialGradientProps } from './gradients/RadialGradient';

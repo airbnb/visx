@@ -1,4 +1,4 @@
-import React from 'react';
+import type { ReactNode, SVGProps } from 'react';
 
 export interface Props {
   /** Unique id for the `<marker>`. Should be unique across all page elements. */
@@ -18,10 +18,10 @@ export interface Props {
   /** The stroke width. constrained to a `number` type due to use in bounding box calculations */
   strokeWidth?: number;
   /** The <marker> contents. Typically one of: `<path>`, `<line>`, `<polyline>`, or `<polygon>` */
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
-export type MarkerProps = Props & Omit<React.SVGProps<SVGMarkerElement>, keyof Props>;
+export type MarkerProps = Props & Omit<SVGProps<SVGMarkerElement>, keyof Props>;
 export type MarkerComponentProps = Omit<MarkerProps, 'children'>;
 
 export default function Marker({

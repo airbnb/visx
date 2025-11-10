@@ -1,4 +1,3 @@
-import React from 'react';
 import type { LinkProvidedProps } from './types';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

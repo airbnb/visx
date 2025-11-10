@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { Axis } from '@visx/axis';
 import type { AxisProps, AxisScale, TicksRendererProps } from '@visx/axis';
 import AnimatedTicks from './AnimatedTicks';

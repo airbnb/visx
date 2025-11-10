@@ -1,4 +1,4 @@
-import React from 'react';
+import type { ReactNode, SVGProps } from 'react';
 import cx from 'classnames';
 import { Group } from '@visx/group';
 import type { GenericCell, ColorScale, OpacityScale } from '../types';
@@ -29,7 +29,7 @@ export type HeatmapCircleProps<ColumnDatum, BinDatum> = {
   /** className to apply to each heatmap circle element. */
   className?: string;
   /** Render function override, provided with heatmap. */
-  children?: (cells: CircleCell<ColumnDatum, BinDatum>[][]) => React.ReactNode;
+  children?: (cells: CircleCell<ColumnDatum, BinDatum>[][]) => ReactNode;
 };
 
 export type CircleCell<ColumnDatum, BinDatum> = GenericCell<ColumnDatum, BinDatum> & {
@@ -60,7 +60,7 @@ export default function HeatmapCircle<ColumnDatum, BinDatum>({
   ...restProps
 }: HeatmapCircleProps<ColumnDatum, BinDatum> &
   Omit<
-    React.SVGProps<SVGCircleElement>,
+    SVGProps<SVGCircleElement>,
     keyof HeatmapCircleProps<ColumnDatum, BinDatum> | 'r' | 'cx' | 'cy' | 'fill' | 'fillOpacity'
   >) {
   const innerRadius = radius - gap;

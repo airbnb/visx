@@ -1,4 +1,4 @@
-import React from 'react';
+import type { ComponentClass, FunctionComponent } from 'react';
 import { Group } from '@visx/group';
 import Links from './Links';
 import Nodes from './Nodes';
@@ -12,17 +12,17 @@ import type {
   NodeProvidedProps,
 } from './types';
 
-type Props<Link, Node> = {
+export type GraphProps<Link, Node> = {
   /** Graph to render nodes and links for. */
   graph?: GraphType<Link, Node>;
   /** Component for rendering a single Link. */
   linkComponent?:
-    | React.FunctionComponent<LinkProvidedProps<Link>>
-    | React.ComponentClass<LinkProvidedProps<Link>>;
+    | FunctionComponent<LinkProvidedProps<Link>>
+    | ComponentClass<LinkProvidedProps<Link>>;
   /** Component for rendering a single Node. */
   nodeComponent?:
-    | React.FunctionComponent<NodeProvidedProps<Node>>
-    | React.ComponentClass<NodeProvidedProps<Node>>;
+    | FunctionComponent<NodeProvidedProps<Node>>
+    | ComponentClass<NodeProvidedProps<Node>>;
   /** Top transform offset to apply to links and nodes. */
   top?: number;
   /** Left transform offset to apply to links and nodes. */
@@ -35,7 +35,7 @@ export default function Graph<Link = LinkType<DefaultNodeType>, Node = DefaultNo
   nodeComponent = DefaultNode,
   top,
   left,
-}: Props<Link, Node>) {
+}: GraphProps<Link, Node>) {
   return graph ? (
     <Group top={top} left={left}>
       <Links<Link> links={graph.links} linkComponent={linkComponent} />

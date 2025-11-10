@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { ScaleConfig, ScaleConfigToD3Scale } from '@visx/scale';
-import { scaleLinear } from '@visx/scale';
-import React, { useContext, useMemo } from 'react';
-import createOrdinalScale from '@visx/scale/lib/scales/ordinal';
+import { scaleLinear, scaleOrdinal as createOrdinalScale } from '@visx/scale';
+import { useContext, useMemo } from 'react';
+import type { ReactNode } from 'react';
 import type { AxisScaleOutput } from '@visx/axis';
-import type { ResizeObserverPolyfill } from '@visx/responsive/lib/types';
+import type { ResizeObserverPolyfill } from '@visx/responsive';
 
 import type { AxisScale, DataContextType, XYChartTheme } from '../types';
 import ThemeContext from '../context/ThemeContext';
@@ -29,7 +29,7 @@ export type DataProviderProps<
   /* y-scale configuration whose shape depends on scale type. */
   yScale: YScaleConfig;
   /* Any React children. */
-  children: React.ReactNode;
+  children: ReactNode;
   /* Determines whether Series will be plotted horizontally (e.g., horizontal bars). By default this will try to be inferred based on scale types. */
   horizontal?: boolean | 'auto';
   /**

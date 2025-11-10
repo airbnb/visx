@@ -1,13 +1,10 @@
-import type { SVGProps } from 'react';
-import React, { useCallback, useContext, useMemo } from 'react';
+import { Fragment, useCallback, useContext, useMemo } from 'react';
+import type { ReactElement, FC, SVGProps } from 'react';
 import type { AxisScale } from '@visx/axis';
 import type { SeriesPoint } from '@visx/vendor/d3-shape';
-import type { StackPathConfig } from '@visx/shape';
-import { LinePath } from '@visx/shape';
-import type { AreaProps } from '@visx/shape/lib/shapes/Area';
-import Area from '@visx/shape/lib/shapes/Area';
+import type { StackPathConfig, AreaProps } from '@visx/shape';
+import { LinePath, Area, getFirstItem, getSecondItem } from '@visx/shape';
 import { coerceNumber } from '@visx/scale';
-import { getFirstItem, getSecondItem } from '@visx/shape/lib/util/accessors';
 
 import type {
   CombinedStackData,
@@ -42,10 +39,10 @@ export type BaseAreaStackProps<
 > = {
   /** `AreaSeries` elements, note we can't strictly enforce this with TS yet. */
   children:
-    | React.ReactElement<AreaStackChildProps<XScale, YScale, Datum>>
-    | React.ReactElement<AreaStackChildProps<XScale, YScale, Datum>>[];
+    | ReactElement<AreaStackChildProps<XScale, YScale, Datum>>
+    | ReactElement<AreaStackChildProps<XScale, YScale, Datum>>[];
   /** Rendered component which is passed path props by BaseAreaStack after processing. */
-  PathComponent?: React.FC<Omit<React.SVGProps<SVGPathElement>, 'ref'>> | 'path';
+  PathComponent?: FC<Omit<SVGProps<SVGPathElement>, 'ref'>> | 'path';
   /** Sets the curve factory (from @visx/curve or d3-curve) for the line generator. Defaults to curveLinear. */
   curve?: AreaProps<Datum>['curve'];
   /** Whether to render a Line along value of the Area shape (area is fill only). */
@@ -122,9 +119,8 @@ function BaseAreaStack<XScale extends AxisScale, YScale extends AxisScale, Datum
   const stacks = useMemo(
     () =>
       stackedData.map((stack, stackIndex) => {
-        const areaSeries:
-          | React.ReactElement<BaseAreaSeriesProps<XScale, YScale, Datum>>
-          | undefined = seriesChildren.find((child) => child.props.dataKey === stack.key);
+        const areaSeries: ReactElement<BaseAreaSeriesProps<XScale, YScale, Datum>> | undefined =
+          seriesChildren.find((child) => child.props.dataKey === stack.key);
         const {
           data,
           dataKey,
@@ -186,14 +182,14 @@ function BaseAreaStack<XScale extends AxisScale, YScale extends AxisScale, Datum
     ({ glyphs }: GlyphsProps<XScale, YScale, AreaStackDatum>) =>
       captureFocusEvents
         ? glyphs.map((glyph) => (
-            <React.Fragment key={glyph.key}>
+            <Fragment key={glyph.key}>
               {defaultRenderGlyph({
                 ...glyph,
                 color: 'transparent',
                 onFocus: eventEmitters.onFocus,
                 onBlur: eventEmitters.onBlur,
               })}
-            </React.Fragment>
+            </Fragment>
           ))
         : null,
     [captureFocusEvents, eventEmitters.onFocus, eventEmitters.onBlur],

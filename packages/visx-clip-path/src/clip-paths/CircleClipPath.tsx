@@ -1,4 +1,4 @@
-import React from 'react';
+import type { SVGProps } from 'react';
 import ClipPath from './ClipPath';
 
 export type CircleClipPathProps = {
@@ -19,7 +19,7 @@ export default function CircleClipPath({
   cy,
   r,
   ...restProps
-}: CircleClipPathProps & Omit<React.SVGProps<SVGCircleElement>, keyof CircleClipPathProps>) {
+}: CircleClipPathProps & Omit<SVGProps<SVGCircleElement>, keyof CircleClipPathProps>) {
   return (
     <ClipPath id={id}>
       <circle cx={cx} cy={cy} r={r} {...restProps} />

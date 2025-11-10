@@ -1,4 +1,5 @@
-import React, { useMemo } from 'react';
+import { useMemo, Fragment } from 'react';
+import type { ReactNode, SVGProps } from 'react';
 import type { GetLineSegmentsConfig } from '../util/getSplitLineSegments';
 import getSplitLineSegments from '../util/getSplitLineSegments';
 import { line } from '../util/D3ShapeFactories';
@@ -16,14 +17,14 @@ const getY = (d: Point) => d.y || 0;
 export type SplitLinePathRenderer = (renderProps: {
   index: number;
   segment: { x: number; y: number }[];
-  styles?: Omit<React.SVGProps<SVGPathElement>, 'x' | 'y' | 'children'>;
-}) => React.ReactNode;
+  styles?: Omit<SVGProps<SVGPathElement>, 'x' | 'y' | 'children'>;
+}) => ReactNode;
 
 export type SplitLinePathProps<Datum> = {
   /** Array of data segments, where each segment will be a separate path in the rendered line. */
   segments: Datum[][];
   /** Styles to apply to each segment. If fewer styles are specified than the number of segments, they will be re-used. */
-  styles: Omit<React.SVGProps<SVGPathElement>, 'x' | 'y' | 'children'>[];
+  styles: Omit<SVGProps<SVGPathElement>, 'x' | 'y' | 'children'>[];
   /** Override render function which is passed the configured path generator as input. */
   children?: SplitLinePathRenderer;
   /** className applied to path element. */
@@ -70,9 +71,9 @@ export default function SplitLinePath<Datum>({
     <g>
       {splitLineSegments.map((segment, index) =>
         children ? (
-          <React.Fragment key={index}>
+          <Fragment key={index}>
             {children({ index, segment, styles: styles[index] || styles[index % styles.length] })}
-          </React.Fragment>
+          </Fragment>
         ) : (
           <LinePath
             key={index}

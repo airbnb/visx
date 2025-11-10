@@ -1,4 +1,5 @@
-import React, { useContext, useEffect, useMemo } from 'react';
+import { useContext, useEffect, useMemo } from 'react';
+import type { FC } from 'react';
 import type { AxisScale } from '@visx/axis';
 import DataContext from '../../../context/DataContext';
 import type { Bar, BarsProps, DataContextType, SeriesProps } from '../../../types';
@@ -15,7 +16,7 @@ export type BaseBarSeriesProps<
   Datum extends object,
 > = SeriesProps<XScale, YScale, Datum> & {
   /** Rendered component which is passed BarsProps by BaseBarSeries after processing. */
-  BarsComponent: React.FC<BarsProps<XScale, YScale>>;
+  BarsComponent: FC<BarsProps<XScale, YScale>>;
   /**
    * Specify bar padding when bar thickness does not come from a `band` scale.
    * Accepted values are [0, 1], 0 = no padding, 1 = no bar, defaults to 0.1.

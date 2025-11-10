@@ -53,6 +53,7 @@ module.exports = {
         'react/jsx-sort-props': 'off',
         'react/no-array-index-key': 'off',
         'react/no-children-prop': 'off',
+        'react/react-in-jsx-scope': 'off', // Not needed with automatic JSX transform (React 16.14+)
         'react/require-default-props': 'off',
         'react/sort-comp': 'off',
         'react/sort-prop-types': 'off',

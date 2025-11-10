@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import cx from 'classnames';
-import type { WithScreenSizeProvidedProps } from '@visx/responsive/lib/enhancers/withScreenSize';
-import withScreenSize from '@visx/responsive/lib/enhancers/withScreenSize';
+import type { WithScreenSizeProvidedProps } from '@visx/responsive';
+import { withScreenSize } from '@visx/responsive';
 import CodeSandboxLink from './CodeSandboxLink';
 import Page from './Page';
 import Codeblock from './Codeblock';

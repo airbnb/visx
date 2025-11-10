@@ -1,6 +1,6 @@
-import React, { useMemo, useContext } from 'react';
-import type { AxisScale, TickLabelProps } from '@visx/axis';
-import type { AxisProps as VxAxisProps } from '@visx/axis/lib/axis/Axis';
+import { useMemo, useContext } from 'react';
+import type { FC } from 'react';
+import type { AxisScale, TickLabelProps, AxisProps as VxAxisProps } from '@visx/axis';
 import type { ScaleInput } from '@visx/scale';
 import DataContext from '../../context/DataContext';
 
@@ -12,7 +12,7 @@ export type BaseAxisProps<Scale extends AxisScale> = Omit<
   orientation: NonNullable<VxAxisProps<Scale>['orientation']>;
 } & {
   /** Rendered component which is passed VxAxisProps by BaseAxis after processing. */
-  AxisComponent: React.FC<VxAxisProps<Scale>>;
+  AxisComponent: FC<VxAxisProps<Scale>>;
 };
 
 /**

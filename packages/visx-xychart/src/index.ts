@@ -52,4 +52,4 @@ export { default as buildChartTheme } from './theme/buildChartTheme';
 export { allColors, grayColors, defaultColors } from './theme/colors';
 
 // types
-export * from './types';
+export type * from './types';

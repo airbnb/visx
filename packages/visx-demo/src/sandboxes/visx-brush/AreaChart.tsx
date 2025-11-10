@@ -5,7 +5,7 @@ import type { AxisScale } from '@visx/axis';
 import { AxisLeft, AxisBottom } from '@visx/axis';
 import { LinearGradient } from '@visx/gradient';
 import { curveMonotoneX } from '@visx/curve';
-import type { AppleStock } from '@visx/mock-data/lib/mocks/appleStock';
+import type { AppleStock } from '@visx/mock-data';
 
 // Initialize some variables
 const axisColor = '#fff';

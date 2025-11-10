@@ -1,4 +1,4 @@
-import type { PositionScale } from '@visx/shape/lib/types';
+import type { PositionScale } from '@visx/shape';
 import type { ScaleTypeToD3Scale } from '@visx/scale';
 import type { NearestDatumArgs } from '../types';
 import findNearestDatumX from './findNearestDatumX';

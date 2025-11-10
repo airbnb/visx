@@ -1,4 +1,5 @@
-import React, { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback } from 'react';
+import type { ReactElement } from 'react';
 import { localPoint } from '@visx/event';
 import type { UserHandlers } from '@use-gesture/react';
 import { useGesture } from '@use-gesture/react';
@@ -17,8 +18,10 @@ import type {
   Translate,
   Scale,
   ScaleSignature,
-  ProvidedZoom,
   PinchDelta,
+  GenericWheelEvent,
+  InteractionEvent,
+  Zoom as ZoomType,
 } from './types';
 
 // default prop values
@@ -31,7 +34,7 @@ const defaultInitialTransformMatrix = {
   skewY: 0,
 };
 
-const defaultWheelDelta = (event: React.WheelEvent | WheelEvent) =>
+const defaultWheelDelta = (event: GenericWheelEvent) =>
   -event.deltaY > 0 ? { scaleX: 1.1, scaleY: 1.1 } : { scaleX: 0.9, scaleY: 0.9 };
 
 const defaultPinchDelta: PinchDelta = ({ offset: [s], lastOffset: [lastS] }) => ({
@@ -52,7 +55,7 @@ export type ZoomProps<ElementType> = {
    * A function that returns { scaleX,scaleY } factors to scale the matrix by.
    * Scale factors greater than 1 will increase (zoom in), less than 1 will decrease (zoom out).
    */
-  wheelDelta?: (event: React.WheelEvent | WheelEvent) => Scale;
+  wheelDelta?: (event: GenericWheelEvent) => Scale;
   /**
    * ```js
    *  pinchDelta(state)
@@ -94,13 +97,7 @@ export type ZoomProps<ElementType> = {
   constrain?: (transform: TransformMatrix, prevTransform: TransformMatrix) => TransformMatrix;
   /** Initial transform matrix to apply. */
   initialTransformMatrix?: TransformMatrix;
-  children: (zoom: ProvidedZoom<ElementType> & ZoomState) => React.ReactElement;
-};
-
-type ZoomState = {
-  initialTransformMatrix: TransformMatrix;
-  transformMatrix: TransformMatrix;
-  isDragging: boolean;
+  children: (zoom: ZoomType<ElementType>) => ReactElement;
 };
 
 function Zoom<ElementType extends Element>({
@@ -115,7 +112,7 @@ function Zoom<ElementType extends Element>({
   height,
   constrain,
   children,
-}: ZoomProps<ElementType>): React.ReactElement {
+}: ZoomProps<ElementType>): ReactElement {
   const containerRef = useRef<ElementType>(null);
   const matrixStateRef = useRef<TransformMatrix>(initialTransformMatrix);
 
@@ -224,7 +221,7 @@ function Zoom<ElementType extends Element>({
   }, [invert]);
 
   const dragStart = useCallback(
-    (event: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent | React.PointerEvent) => {
+    (event: InteractionEvent) => {
       const { translateX, translateY } = transformMatrix;
       setStartPoint(localPoint(event) || undefined);
       setStartTranslate({ translateX, translateY });
@@ -234,10 +231,7 @@ function Zoom<ElementType extends Element>({
   );
 
   const dragMove = useCallback(
-    (
-      event: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent | React.PointerEvent,
-      options?: { offsetX?: number; offsetY?: number },
-    ) => {
+    (event: InteractionEvent, options?: { offsetX?: number; offsetY?: number }) => {
       if (!isDragging || !startPoint || !startTranslate) return;
       const currentPoint = localPoint(event);
       const dx = currentPoint ? -(startPoint.x - currentPoint.x) : -startPoint.x;
@@ -262,7 +256,7 @@ function Zoom<ElementType extends Element>({
   }, []);
 
   const handleWheel = useCallback(
-    (event: React.WheelEvent | WheelEvent) => {
+    (event: GenericWheelEvent) => {
       event.preventDefault();
       const point = localPoint(event) || undefined;
       const { scaleX, scaleY } = wheelDelta!(event);
@@ -344,7 +338,7 @@ function Zoom<ElementType extends Element>({
     { target: containerRef, eventOptions: { passive: false }, drag: { filterTaps: true } },
   );
 
-  const zoom: ProvidedZoom<ElementType> & ZoomState = {
+  const zoom: ZoomType<ElementType> = {
     initialTransformMatrix,
     transformMatrix,
     isDragging,

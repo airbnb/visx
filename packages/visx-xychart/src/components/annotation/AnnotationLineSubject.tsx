@@ -1,6 +1,7 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
+import type { SVGProps } from 'react';
 import { LineSubject as BaseLineSubject } from '@visx/annotation';
-import type { LineSubjectProps } from '@visx/annotation/lib/components/LineSubject';
+import type { LineSubjectProps } from '@visx/annotation';
 import DataContext from '../../context/DataContext';
 
 export type AnnotationLineSubjectProps = Omit<LineSubjectProps, 'min' | 'max'> & {
@@ -13,8 +14,7 @@ export default function AnnotationLineSubject({
   min,
   max,
   ...props
-}: AnnotationLineSubjectProps &
-  Omit<React.SVGProps<SVGLineElement>, keyof AnnotationLineSubjectProps>) {
+}: AnnotationLineSubjectProps & Omit<SVGProps<SVGLineElement>, keyof AnnotationLineSubjectProps>) {
   const { theme, margin, innerHeight = 0, innerWidth = 0 } = useContext(DataContext);
   return (
     <BaseLineSubject

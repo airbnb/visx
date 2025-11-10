@@ -1,4 +1,4 @@
-import React from 'react';
+import type { ReactNode } from 'react';
 import cx from 'classnames';
 import { Group } from '@visx/group';
 
@@ -10,7 +10,7 @@ export type GlyphProps = {
   /** classname to apply to glyph g element container. */
   className?: string;
   /** Children to render. */
-  children?: React.ReactNode;
+  children?: ReactNode;
 };
 
 export default function Glyph({ top = 0, left = 0, className, children }: GlyphProps) {

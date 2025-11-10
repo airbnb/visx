@@ -1,10 +1,10 @@
-import React from 'react';
+import type { ReactNode } from 'react';
 import { Group } from '@visx/group';
 import type { BaseDatum, CloudWord, WordcloudConfig } from './types';
 import useWordcloud from './useWordcloud';
 
 export interface WordcloudProps<Datum extends BaseDatum> extends WordcloudConfig<Datum> {
-  children: (words: CloudWord[]) => React.ReactNode;
+  children: (words: CloudWord[]) => ReactNode;
 }
 
 export default function Wordcloud<Datum extends BaseDatum>(props: WordcloudProps<Datum>) {

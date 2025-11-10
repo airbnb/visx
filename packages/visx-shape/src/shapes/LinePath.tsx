@@ -1,4 +1,4 @@
-import React from 'react';
+import type { Ref, ReactNode } from 'react';
 import cx from 'classnames';
 import type { Line as LineType } from '@visx/vendor/d3-shape';
 import type { AddSVGProps, LinePathConfig } from '../types';
@@ -8,9 +8,9 @@ export type LinePathProps<Datum> = {
   /** Array of data for which to generate a line shape. */
   data?: Datum[];
   /** React RefObject passed to the path element. */
-  innerRef?: React.Ref<SVGPathElement>;
+  innerRef?: Ref<SVGPathElement>;
   /** Override render function which is passed the configured path generator as input. */
-  children?: (args: { path: LineType<Datum> }) => React.ReactNode;
+  children?: (args: { path: LineType<Datum> }) => ReactNode;
   /** Fill color of the path element. */
   fill?: string;
   /** className applied to path element. */

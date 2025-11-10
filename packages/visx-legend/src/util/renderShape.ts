@@ -1,4 +1,4 @@
-import React from 'react';
+import { cloneElement, createElement, isValidElement } from 'react';
 import RectShape from '../shapes/Rect';
 import CircleShape from '../shapes/Circle';
 import LineShape from '../shapes/Line';
@@ -50,18 +50,18 @@ export default function renderShape<Data, Output>({
 
   if (typeof shape === 'string') {
     if (shape === 'circle') {
-      return React.createElement(CircleShape, props);
+      return createElement(CircleShape, props);
     }
     if (shape === 'line') {
-      return React.createElement(LineShape, props);
+      return createElement(LineShape, props);
     }
-    return React.createElement(RectShape, props);
+    return createElement(RectShape, props);
   }
-  if (React.isValidElement(shape)) {
-    return React.cloneElement(shape, props);
+  if (isValidElement(shape)) {
+    return cloneElement(shape, props);
   }
   if (shape) {
-    return React.createElement(shape, props);
+    return createElement(shape, props);
   }
   return null;
 }

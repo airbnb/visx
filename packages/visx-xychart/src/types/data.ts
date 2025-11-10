@@ -1,5 +1,5 @@
 import type { AxisScale } from '@visx/axis';
-import type { ResizeObserverPolyfill } from '@visx/responsive/lib/types';
+import type { ResizeObserverPolyfill } from '@visx/responsive';
 import type { ScaleTypeToD3Scale, ScaleInput } from '@visx/scale';
 import type DataRegistry from '../classes/DataRegistry';
 import type { XYChartTheme } from './theme';

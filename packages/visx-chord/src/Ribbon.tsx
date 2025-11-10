@@ -1,4 +1,4 @@
-import React from 'react';
+import type { SVGProps } from 'react';
 import cx from 'classnames';
 import type { Chord, ChordSubgroup } from 'd3-chord';
 import { ribbon as d3ribbon } from 'd3-chord';
@@ -43,7 +43,7 @@ export default function Ribbon({
   children,
   className,
   ...restProps
-}: Omit<React.SVGProps<SVGPathElement>, keyof RibbonProps> & RibbonProps) {
+}: Omit<SVGProps<SVGPathElement>, keyof RibbonProps> & RibbonProps) {
   const ribbon = d3ribbon<unknown, Chord, ChordSubgroup>();
   if (source) ribbon.source(source);
   if (target) ribbon.target(target);

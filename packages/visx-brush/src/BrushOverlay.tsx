@@ -1,16 +1,16 @@
-import React from 'react';
+import type { CSSProperties, PointerEvent } from 'react';
 import { Bar } from '@visx/shape';
 
 type BrushOverlayProps = {
   width: number;
   height: number;
-  style?: React.CSSProperties;
-  onClick?: (event: React.PointerEvent<SVGRectElement>) => void;
-  onDoubleClick?: (event: React.PointerEvent<SVGRectElement>) => void;
-  onPointerDown?: (event: React.PointerEvent<SVGRectElement>) => void;
-  onPointerLeave?: (event: React.PointerEvent<SVGRectElement>) => void;
-  onPointerMove?: (event: React.PointerEvent<SVGRectElement>) => void;
-  onPointerUp?: (event: React.PointerEvent<SVGRectElement>) => void;
+  style?: CSSProperties;
+  onClick?: (event: PointerEvent<SVGRectElement>) => void;
+  onDoubleClick?: (event: PointerEvent<SVGRectElement>) => void;
+  onPointerDown?: (event: PointerEvent<SVGRectElement>) => void;
+  onPointerLeave?: (event: PointerEvent<SVGRectElement>) => void;
+  onPointerMove?: (event: PointerEvent<SVGRectElement>) => void;
+  onPointerUp?: (event: PointerEvent<SVGRectElement>) => void;
 };
 
 export default function BrushOverlay(props: BrushOverlayProps) {

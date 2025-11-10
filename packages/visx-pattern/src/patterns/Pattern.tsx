@@ -1,4 +1,4 @@
-import React from 'react';
+import type { ReactNode } from 'react';
 
 export type PatternProps = {
   /** Unique id of the pattern element. */
@@ -8,7 +8,7 @@ export type PatternProps = {
   /** Height of the pattern. */
   height: number;
   /** Children of pattern element to render. */
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 export default function Pattern({ id, width, height, children }: PatternProps) {

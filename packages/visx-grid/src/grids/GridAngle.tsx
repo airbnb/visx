@@ -1,7 +1,7 @@
-import React from 'react';
+import type { SVGProps } from 'react';
 import cx from 'classnames';
-import type { LineProps } from '@visx/shape/lib/shapes/Line';
-import Line from '@visx/shape/lib/shapes/Line';
+import type { LineProps } from '@visx/shape';
+import { Line } from '@visx/shape';
 import { Group } from '@visx/group';
 import type { ScaleInput } from '@visx/scale';
 import { getTicks, coerceNumber } from '@visx/scale';
@@ -34,7 +34,7 @@ export type GridAngleProps<Scale extends GridScale> = CommonGridProps & {
 
 export type AllGridAngleProps<Scale extends GridScale> = GridAngleProps<Scale> &
   Omit<
-    LineProps & Omit<React.SVGProps<SVGLineElement>, keyof LineProps | 'children'>,
+    LineProps & Omit<SVGProps<SVGLineElement>, keyof LineProps | 'children'>,
     keyof GridAngleProps<Scale>
   >;
 

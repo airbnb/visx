@@ -1,4 +1,3 @@
-import React from 'react';
 import cx from 'classnames';
 import type { PositionScale, AddSVGProps, BaseAreaProps } from '../types';
 import setNumOrAccessor from '../util/setNumberOrNumberAccessor';

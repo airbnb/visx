@@ -1,4 +1,5 @@
-import React from 'react';
+import { createElement } from 'react';
+import type { ReactNode, FunctionComponent, ComponentClass } from 'react';
 import cx from 'classnames';
 import { Group } from '@visx/group';
 import type { HierarchyNode, HierarchyPointNode, HierarchyPointLink } from 'd3-hierarchy';
@@ -13,7 +14,7 @@ export type TreeProps<Datum> = {
   /** The root hierarchy node from which to derive the tree layout. */
   root: HierarchyNode<Datum>;
   /** Render override function which is passed the computed cluster layout data. */
-  children?: (pack: HierarchyPointNode<Datum>) => React.ReactNode;
+  children?: (pack: HierarchyPointNode<Datum>) => ReactNode;
   /** top offset applied to the g element container. */
   top?: number;
   /** left offset applied to the g element container. */
@@ -39,12 +40,12 @@ export type TreeProps<Datum> = {
   separation?: (a: HierarchyPointNode<Datum>, b: HierarchyPointNode<Datum>) => number;
   /** Component which renders a single cluster link, passed the link object. */
   linkComponent?:
-    | React.FunctionComponent<LinkComponentProps<Datum>>
-    | React.ComponentClass<LinkComponentProps<Datum>>;
+    | FunctionComponent<LinkComponentProps<Datum>>
+    | ComponentClass<LinkComponentProps<Datum>>;
   /** Component which renders a single cluster node, passed the node object. */
   nodeComponent?:
-    | React.FunctionComponent<NodeComponentProps<Datum>>
-    | React.ComponentClass<NodeComponentProps<Datum>>;
+    | FunctionComponent<NodeComponentProps<Datum>>
+    | ComponentClass<NodeComponentProps<Datum>>;
 };
 
 export default function Tree<Datum>({
@@ -74,13 +75,13 @@ export default function Tree<Datum>({
         data
           .links()
           .map((link, i) => (
-            <Group key={`tree-link-${i}`}>{React.createElement(linkComponent, { link })}</Group>
+            <Group key={`tree-link-${i}`}>{createElement(linkComponent, { link })}</Group>
           ))}
       {nodeComponent &&
         data
           .descendants()
           .map((node, i) => (
-            <Group key={`tree-node-${i}`}>{React.createElement(nodeComponent, { node })}</Group>
+            <Group key={`tree-node-${i}`}>{createElement(nodeComponent, { node })}</Group>
           ))}
     </Group>
   );

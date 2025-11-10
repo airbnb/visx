@@ -1,5 +1,4 @@
 import type { AxisScale } from '@visx/axis';
-import React from 'react';
 import type { BaseLineSeriesProps } from './private/BaseLineSeries';
 import BaseLineSeries from './private/BaseLineSeries';
 import AnimatedPath from './private/AnimatedPath';

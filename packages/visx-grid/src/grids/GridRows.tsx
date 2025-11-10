@@ -1,7 +1,7 @@
-import React from 'react';
+import type { SVGProps } from 'react';
 import cx from 'classnames';
-import type { LineProps } from '@visx/shape/lib/shapes/Line';
-import Line from '@visx/shape/lib/shapes/Line';
+import { Line } from '@visx/shape';
+import type { LineProps } from '@visx/shape';
 import { Group } from '@visx/group';
 import { Point } from '@visx/point';
 import type { ScaleInput } from '@visx/scale';
@@ -22,10 +22,7 @@ export type GridRowsProps<Scale extends GridScale> = CommonGridProps & {
 };
 
 export type AllGridRowsProps<Scale extends GridScale> = GridRowsProps<Scale> &
-  Omit<
-    LineProps & Omit<React.SVGProps<SVGLineElement>, keyof LineProps>,
-    keyof GridRowsProps<Scale>
-  >;
+  Omit<LineProps & Omit<SVGProps<SVGLineElement>, keyof LineProps>, keyof GridRowsProps<Scale>>;
 
 export default function GridRows<Scale extends GridScale>({
   top = 0,

@@ -1,8 +1,8 @@
-import React from 'react';
+import type { ReactNode, Ref } from 'react';
 
 export type ScaleSVGProps = {
   /** Child SVG to scale, rendered as the child of the parent wrappers provided by this component `<div><svg>{children}</svg></div>`. */
-  children?: React.ReactNode;
+  children?: ReactNode;
   /** Width of the desired SVG. */
   width?: number | string;
   /** Height of the desired SVG. */
@@ -14,7 +14,7 @@ export type ScaleSVGProps = {
   /** Whether to preserve SVG aspect ratio. */
   preserveAspectRatio?: string;
   /** Ref to the parent `<svg />` used for scaling. */
-  innerRef?: React.Ref<SVGSVGElement>;
+  innerRef?: Ref<SVGSVGElement>;
 };
 
 export default function ScaleSVG({

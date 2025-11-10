@@ -3,7 +3,7 @@ import { chunk } from 'lodash';
 import { curveCardinal } from '@visx/curve';
 import { LinePath, SplitLinePath } from '@visx/shape';
 import { LinearGradient } from '@visx/gradient';
-import type { SplitLinePathRenderer } from '@visx/shape/lib/shapes/SplitLinePath';
+import type { SplitLinePathRenderer } from '@visx/shape';
 import generateSinSegments from './generateSinSegments';
 import generateSnakePath from './generateSnakePath';
 

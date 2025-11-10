@@ -6,3 +6,7 @@ export { default as NaturalEarth } from './projections/NaturalEarth';
 export { default as EqualEarth } from './projections/EqualEarth';
 export { default as CustomProjection } from './projections/CustomProjection';
 export { default as Graticule } from './graticule/Graticule';
+
+export type * from './types';
+export type { GraticuleProps } from './graticule/Graticule';
+export type { ProjectionProps } from './projections/Projection';

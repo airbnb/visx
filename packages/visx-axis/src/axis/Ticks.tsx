@@ -1,4 +1,3 @@
-import React from 'react';
 import cx from 'classnames';
 import { Line } from '@visx/shape';
 import { Group } from '@visx/group';

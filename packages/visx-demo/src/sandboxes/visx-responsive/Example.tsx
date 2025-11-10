@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ParentSize from '@visx/responsive/lib/components/ParentSize';
+import { ParentSize } from '@visx/responsive';
 
 import Lines from './Lines';
 

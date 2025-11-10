@@ -1,4 +1,5 @@
-import React from 'react';
+import { createElement } from 'react';
+import type { ReactNode, FunctionComponent, ComponentClass } from 'react';
 import cx from 'classnames';
 import { Group } from '@visx/group';
 import type { HierarchyNode, HierarchyRectangularNode } from 'd3-hierarchy';
@@ -11,7 +12,7 @@ export type PartitionProps<Datum> = {
   /** The root hierarchy node from which to derive the treemap layout. */
   root: HierarchyNode<Datum>;
   /** Render override function which is passed the computed partition layout data. */
-  children?: (pack: HierarchyRectangularNode<Datum>) => React.ReactNode;
+  children?: (pack: HierarchyRectangularNode<Datum>) => ReactNode;
   /** top offset applied to the g element container. */
   top?: number;
   /** left offset applied to the g element container. */
@@ -26,8 +27,8 @@ export type PartitionProps<Datum> = {
   padding?: number;
   /** Component which renders a single cluster node, passed the node object. */
   nodeComponent?:
-    | React.FunctionComponent<NodeComponentProps<Datum>>
-    | React.ComponentClass<NodeComponentProps<Datum>>;
+    | FunctionComponent<NodeComponentProps<Datum>>
+    | ComponentClass<NodeComponentProps<Datum>>;
 };
 
 export default function Partition<Datum>({
@@ -56,9 +57,7 @@ export default function Partition<Datum>({
         data
           .descendants()
           .map((node, i) => (
-            <Group key={`partition-node-${i}`}>
-              {React.createElement(nodeComponent, { node })}
-            </Group>
+            <Group key={`partition-node-${i}`}>{createElement(nodeComponent, { node })}</Group>
           ))}
     </Group>
   );

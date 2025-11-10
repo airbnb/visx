@@ -1,5 +1,6 @@
 import type { AxisScale } from '@visx/axis';
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
+import type { FC } from 'react';
 import type { GlyphProps, GlyphsProps } from '../../types';
 import AnimatedGlyphs from './private/AnimatedGlyphs';
 import type { BaseGlyphSeriesProps } from './private/BaseGlyphSeries';
@@ -14,7 +15,7 @@ export default function AnimatedGlyphSeries<
   renderGlyph = defaultRenderGlyph,
   ...props
 }: Omit<BaseGlyphSeriesProps<XScale, YScale, Datum>, 'renderGlyphs'> & {
-  renderGlyph?: React.FC<GlyphProps<Datum>>;
+  renderGlyph?: FC<GlyphProps<Datum>>;
 }) {
   const renderGlyphs = useCallback(
     (glyphsProps: GlyphsProps<XScale, YScale, Datum>) => (

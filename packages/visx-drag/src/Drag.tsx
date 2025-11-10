@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-handler-names */
-import React from 'react';
+import type { ReactNode } from 'react';
 import type { UseDrag, UseDragOptions, HandlerArgs as HandlerArgsType } from './useDrag';
 import useDrag from './useDrag';
 
@@ -7,7 +7,7 @@ export type HandlerArgs = HandlerArgsType;
 
 export type DragProps = UseDragOptions & {
   /** Children render function which is passed the state of dragging and callbacks for drag start/end/move. */
-  children: (args: UseDrag) => React.ReactNode;
+  children: (args: UseDrag) => ReactNode;
   /** Width of the drag container. */
   width: number;
   /** Height of the drag container. */

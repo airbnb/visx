@@ -1,4 +1,4 @@
-import type { AppleStock } from '@visx/mock-data/lib/mocks/appleStock';
+import type { AppleStock } from '@visx/mock-data';
 import { bisector } from '@visx/vendor/d3-array';
 import type { scaleLinear, scaleTime } from '@visx/scale';
 

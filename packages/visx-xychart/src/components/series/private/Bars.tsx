@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { AxisScale } from '@visx/axis';
 import { BarRounded } from '@visx/shape';
-import React from 'react';
 import type { BarsProps } from '../../../types';
 
 export default function Bars({

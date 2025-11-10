@@ -1,4 +1,5 @@
-import React, { useContext, useEffect, useMemo } from 'react';
+import { useContext, useEffect, useMemo } from 'react';
+import type { ReactNode } from 'react';
 import type { AxisScale } from '@visx/axis';
 import DataContext from '../../../context/DataContext';
 import type { DataContextType, GlyphProps, GlyphsProps, SeriesProps } from '../../../types';
@@ -17,7 +18,7 @@ export type BaseGlyphSeriesProps<
   /** The size of a `Glyph`, a `number` or a function which takes a `Datum` and returns a `number`. */
   size?: number | ((d: Datum) => number);
   /** Function which handles rendering glyphs. */
-  renderGlyphs: (glyphsProps: GlyphsProps<XScale, YScale, Datum>) => React.ReactNode;
+  renderGlyphs: (glyphsProps: GlyphsProps<XScale, YScale, Datum>) => ReactNode;
 };
 
 export function BaseGlyphSeries<

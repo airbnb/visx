@@ -1,5 +1,6 @@
-import React, { useContext, useMemo, useEffect, useCallback } from 'react';
-import type { PositionScale } from '@visx/shape/lib/types';
+import { useContext, useMemo, useEffect, useCallback } from 'react';
+import type { ReactElement, ReactNode, FC } from 'react';
+import type { PositionScale } from '@visx/shape';
 import { scaleBand } from '@visx/scale';
 import type { BaseBarSeriesProps } from './BaseBarSeries';
 import type {
@@ -25,13 +26,13 @@ export type BaseBarGroupProps<
   Datum extends object,
 > = {
   /** `BarSeries` elements */
-  children: React.ReactNode;
+  children: ReactNode;
   /** Group band scale padding, [0, 1] where 0 = no padding, 1 = no bar. */
   padding?: number;
   /** Comparator function to sort `dataKeys` within a bar group. By default the DOM rendering order of `BarGroup`s `children` is used. */
   sortBars?: (dataKeyA: string, dataKeyB: string) => number;
   /** Rendered component which is passed BarsProps by BaseBarGroup after processing. */
-  BarsComponent: React.FC<BarsProps<XScale, YScale>>;
+  BarsComponent: FC<BarsProps<XScale, YScale>>;
 } & Pick<
   SeriesProps<XScale, YScale, Datum>,
   | 'onPointerMove'
@@ -152,9 +153,8 @@ export default function BaseBarGroup<
     const getWidth = horizontal ? (d: Datum) => Math.abs(getLength(d)) : () => barThickness;
     const getHeight = horizontal ? () => barThickness : (d: Datum) => Math.abs(getLength(d));
     // get props from child BarSeries, if available
-    const childBarSeries:
-      | React.ReactElement<BaseBarSeriesProps<XScale, YScale, Datum>>
-      | undefined = barSeriesChildren.find((child) => child.props.dataKey === key);
+    const childBarSeries: ReactElement<BaseBarSeriesProps<XScale, YScale, Datum>> | undefined =
+      barSeriesChildren.find((child) => child.props.dataKey === key);
     const { colorAccessor, radius, radiusAll, radiusBottom, radiusLeft, radiusRight, radiusTop } =
       childBarSeries?.props || {};
 

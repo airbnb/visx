@@ -8,12 +8,9 @@ const nextConfig = {
     // Don't run ESLint during builds (it's run at the root level)
     ignoreDuringBuilds: true,
   },
-  // Handle ESM packages that are imported by visx
-  experimental: {
-    esmExternals: 'loose',
-  },
-  // In Next.js 13+, use transpilePackages to transpile visx source files
-  // This is simpler and more reliable than custom webpack config
+  // Transpile visx packages during production builds.
+  // TypeScript project references cause Next.js webpack to resolve to source files,
+  // so we need to transpile them with SWC (same as dev mode does automatically).
   transpilePackages: [
     '@visx/annotation',
     '@visx/axis',

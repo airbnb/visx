@@ -20,7 +20,7 @@ export type UseParentSizeConfig = {
 } & DebounceSettings;
 
 type UseParentSizeResult<T extends HTMLElement = HTMLDivElement> = ParentSizeState & {
-  parentRef: RefObject<T>;
+  parentRef: RefObject<T | null>;
   resize: (state: ParentSizeState) => void;
 };
 

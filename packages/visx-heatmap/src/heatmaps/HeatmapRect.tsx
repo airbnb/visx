@@ -1,4 +1,4 @@
-import React from 'react';
+import type { ReactNode, SVGProps } from 'react';
 import cx from 'classnames';
 import { Group } from '@visx/group';
 import type { GenericCell, ColorScale, OpacityScale } from '../types';
@@ -33,7 +33,7 @@ export type HeatmapRectProps<ColumnDatum, BinDatum> = {
   /** className to apply to each heatmap rect element. */
   className?: string;
   /** Render function override, provided with heatmap. */
-  children?: (cells: RectCell<ColumnDatum, BinDatum>[][]) => React.ReactNode;
+  children?: (cells: RectCell<ColumnDatum, BinDatum>[][]) => ReactNode;
 };
 
 export type RectCell<ColumnDatum, BinDatum> = GenericCell<ColumnDatum, BinDatum> & {
@@ -49,7 +49,7 @@ export type RectCell<ColumnDatum, BinDatum> = GenericCell<ColumnDatum, BinDatum>
 
 export type ComponentProps<ColumnDatum, BinDatum> = HeatmapRectProps<ColumnDatum, BinDatum> &
   Omit<
-    React.SVGProps<SVGRectElement>,
+    SVGProps<SVGRectElement>,
     | keyof HeatmapRectProps<ColumnDatum, BinDatum>
     | 'width'
     | 'height'

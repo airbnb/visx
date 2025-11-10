@@ -1,4 +1,4 @@
-import React from 'react';
+import type { SVGProps } from 'react';
 import cx from 'classnames';
 import Glyph from './Glyph';
 
@@ -22,7 +22,7 @@ export default function GlyphDot({
   left = 0,
   className,
   ...restProps
-}: GlyphDotProps & Omit<React.SVGProps<SVGCircleElement>, keyof GlyphDotProps>) {
+}: GlyphDotProps & Omit<SVGProps<SVGCircleElement>, keyof GlyphDotProps>) {
   return (
     <Glyph top={top} left={left}>
       <circle className={cx('visx-glyph-dot', className)} {...restProps} />

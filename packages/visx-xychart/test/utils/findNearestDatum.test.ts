@@ -1,6 +1,6 @@
 import type { AxisScale } from '@visx/axis';
 import { scaleBand, scaleLinear } from '@visx/scale';
-import type { PositionScale } from '@visx/shape/lib/types';
+import type { PositionScale } from '@visx/shape';
 
 import findNearestDatumX from '../../src/utils/findNearestDatumX';
 import findNearestDatumY from '../../src/utils/findNearestDatumY';

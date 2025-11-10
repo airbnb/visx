@@ -1,7 +1,8 @@
 /* eslint-disable react/jsx-handler-names */
-import React, { useCallback, useRef } from 'react';
-import type { UseDrag, HandlerArgs as DragHandlerArgs } from '@visx/drag/lib/useDrag';
-import useDrag from '@visx/drag/lib/useDrag';
+import { useCallback, useRef } from 'react';
+import type { SVGProps, ReactNode, MouseEvent, TouchEvent } from 'react';
+import type { UseDrag, HandlerArgs as DragHandlerArgs } from '@visx/drag';
+import { useDrag } from '@visx/drag';
 import type { AnnotationContextType } from '../types';
 import Annotation from './Annotation';
 
@@ -11,15 +12,15 @@ export type EditableAnnotationProps = Pick<AnnotationContextType, 'x' | 'y' | 'd
   /** Height of the possible drag canvas (e.g., SVG container). */
   height: number;
   /** Annotation children (Subject, Label, Connector) */
-  children: React.ReactNode;
+  children: ReactNode;
   /** Whether the Label position (dx, dy) is editable. */
   canEditLabel?: boolean;
   /** Whether the Subject position (x, y) is editable. */
   canEditSubject?: boolean;
   /** Optional circle props to set on the subject drag handle. */
-  subjectDragHandleProps?: React.SVGProps<SVGCircleElement>;
+  subjectDragHandleProps?: SVGProps<SVGCircleElement>;
   /** Optional circle props to set on the label drag handle. */
-  labelDragHandleProps?: React.SVGProps<SVGCircleElement>;
+  labelDragHandleProps?: SVGProps<SVGCircleElement>;
   /** Callback invoked on drag start. */
   onDragStart?: ({ x, y, dx, dy, event }: HandlerArgs) => void;
   /** Callback invoked on drag move. */
@@ -33,7 +34,7 @@ export type HandlerArgs = {
   y: number;
   dx: number;
   dy: number;
-  event: React.MouseEvent | React.TouchEvent;
+  event: MouseEvent | TouchEvent;
 };
 
 const defaultDragHandleProps = {
@@ -62,8 +63,8 @@ export default function EditableAnnotation({
 }: EditableAnnotationProps) {
   // chicken before the egg, we need these to reference drag state
   // in drag callbacks which are defined before useDrag() state is available
-  const subjectDragRef = useRef<UseDrag>();
-  const labelDragRef = useRef<UseDrag>();
+  const subjectDragRef = useRef<UseDrag | undefined>(undefined);
+  const labelDragRef = useRef<UseDrag | undefined>(undefined);
 
   const handleDragStart = useCallback(
     ({ event }: DragHandlerArgs) => {

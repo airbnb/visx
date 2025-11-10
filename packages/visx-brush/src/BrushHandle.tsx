@@ -1,7 +1,8 @@
 /* eslint react/jsx-handler-names: 0 */
-import React from 'react';
-import type { HandlerArgs as DragArgs } from '@visx/drag/lib/Drag';
-import Drag from '@visx/drag/lib/Drag';
+import { Component } from 'react';
+import type { ReactNode } from 'react';
+import type { HandlerArgs as DragArgs } from '@visx/drag';
+import { Drag } from '@visx/drag';
 import type { BaseBrushState as BrushState, UpdateBrush } from './BaseBrush';
 import type { BrushPageOffset, BrushingType, ResizeTriggerAreas } from './types';
 import { getPageCoordinates } from './utils';
@@ -25,7 +26,7 @@ export type BrushHandleProps = {
   isControlled?: boolean;
   isDragInProgress?: boolean;
   onBrushHandleChange?: (type?: BrushingType, options?: BrushPageOffset) => void;
-  renderBrushHandle?: (props: BrushHandleRenderProps) => React.ReactNode;
+  renderBrushHandle?: (props: BrushHandleRenderProps) => ReactNode;
 };
 
 export type BrushHandleRenderProps = HandleProps & {
@@ -35,7 +36,7 @@ export type BrushHandleRenderProps = HandleProps & {
 };
 
 /** BrushHandle's are placed along the bounds of the brush and handle Drag events which update the passed brush. */
-export default class BrushHandle extends React.Component<BrushHandleProps> {
+export default class BrushHandle extends Component<BrushHandleProps> {
   handleDragStart = (drag: DragArgs) => {
     const { onBrushHandleChange, type, onBrushStart } = this.props;
 

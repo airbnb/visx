@@ -1,7 +1,6 @@
-import React from 'react';
-import type { AxisScale } from '@visx/axis/lib/types';
-import VxAnimatedAxis from '@visx/react-spring/lib/axis/AnimatedAxis';
-import type { AnimationTrajectory } from '@visx/react-spring/lib/types';
+import type { AxisScale } from '@visx/axis';
+import { AnimatedAxis as VxAnimatedAxis } from '@visx/react-spring';
+import type { AnimationTrajectory } from '@visx/react-spring';
 import type { BaseAxisProps } from './BaseAxis';
 import BaseAxis from './BaseAxis';
 

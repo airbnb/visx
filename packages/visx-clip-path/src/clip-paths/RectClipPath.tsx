@@ -1,4 +1,4 @@
-import React from 'react';
+import type { SVGProps } from 'react';
 import ClipPath from './ClipPath';
 
 export type RectClipPathProps = {
@@ -21,7 +21,7 @@ export default function RectClipPath({
   width = 1,
   height = 1,
   ...restProps
-}: RectClipPathProps & Omit<React.SVGProps<SVGRectElement>, keyof RectClipPathProps>) {
+}: RectClipPathProps & Omit<SVGProps<SVGRectElement>, keyof RectClipPathProps>) {
   return (
     <ClipPath id={id}>
       <rect x={x} y={y} width={width} height={height} {...restProps} />

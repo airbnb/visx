@@ -1,7 +1,7 @@
 import React from 'react';
 import { Group } from '@visx/group';
-import type { LetterFrequency } from '@visx/mock-data/lib/mocks/letterFrequency';
-import letterFrequency from '@visx/mock-data/lib/mocks/letterFrequency';
+import type { LetterFrequency } from '@visx/mock-data';
+import { letterFrequency } from '@visx/mock-data';
 import { scaleLinear } from '@visx/scale';
 import { Point } from '@visx/point';
 import { Line, LineRadial } from '@visx/shape';

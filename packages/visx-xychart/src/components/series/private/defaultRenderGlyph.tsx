@@ -1,4 +1,3 @@
-import React from 'react';
 import type { GlyphProps } from '../../../types';
 
 export default function defaultRenderGlyph<Datum extends object>({

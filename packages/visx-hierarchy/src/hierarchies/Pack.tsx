@@ -1,15 +1,16 @@
-import React from 'react';
+import { createElement } from 'react';
+import type { ReactNode, FunctionComponent, ComponentClass } from 'react';
 import cx from 'classnames';
 import { Group } from '@visx/group';
 import type { HierarchyNode, HierarchyCircularNode } from 'd3-hierarchy';
 import { pack as d3pack } from 'd3-hierarchy';
 import DefaultNode from '../HierarchyDefaultNode';
 
-type PackProps<Datum> = {
+export type PackProps<Datum> = {
   /** The root hierarchy node from which to derive the pack layout. */
   root: HierarchyNode<Datum>;
   /** Render override function which is passed the computed pack layout data. */
-  children?: (pack: HierarchyCircularNode<Datum>) => React.ReactNode;
+  children?: (pack: HierarchyCircularNode<Datum>) => ReactNode;
   /** top offset applied to the g element container. */
   top?: number;
   /** left offset applied to the g element container. */
@@ -26,14 +27,14 @@ type PackProps<Datum> = {
   /** Sets the pack layout size to the defined [width, height]. */
   size?: [number, number];
   /**
-   * Sets this pack layout’s padding accessor to the specified number or function,
+   * Sets this pack layout's padding accessor to the specified number or function,
    * which determines approximate separation of nodes in the resulting pack.
    */
   padding?: number;
   /** Component which renders a single pack node, passed the node object. */
   nodeComponent?:
-    | React.FunctionComponent<NodeComponentProps<Datum>>
-    | React.ComponentClass<NodeComponentProps<Datum>>;
+    | FunctionComponent<NodeComponentProps<Datum>>
+    | ComponentClass<NodeComponentProps<Datum>>;
 };
 
 export type NodeComponentProps<Datum> = { node: HierarchyCircularNode<Datum> };
@@ -64,7 +65,7 @@ export default function Pack<Datum>({
         data
           .descendants()
           .map((node, i) => (
-            <Group key={`pack-node-${i}`}>{React.createElement(nodeComponent, { node })}</Group>
+            <Group key={`pack-node-${i}`}>{createElement(nodeComponent, { node })}</Group>
           ))}
     </Group>
   );

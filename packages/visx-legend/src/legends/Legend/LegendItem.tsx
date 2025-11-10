@@ -1,4 +1,4 @@
-import React from 'react';
+import type { ReactNode, HTMLProps } from 'react';
 import type { FlexDirection } from '../../types';
 
 export type LegendItemProps = {
@@ -9,7 +9,7 @@ export type LegendItemProps = {
   /** Margin around the legend item. */
   margin?: string | number;
   /** Child elements to render inside the legend item (typically LegendShape and LegendLabel). */
-  children?: React.ReactNode;
+  children?: ReactNode;
   /** CSS display property for the legend item. */
   display?: string;
 };
@@ -21,7 +21,7 @@ export default function LegendItem({
   display = 'flex',
   children,
   ...restProps
-}: LegendItemProps & Omit<React.HTMLProps<HTMLDivElement>, keyof LegendItemProps>) {
+}: LegendItemProps & Omit<HTMLProps<HTMLDivElement>, keyof LegendItemProps>) {
   return (
     <div
       className="visx-legend-item"

@@ -1,4 +1,4 @@
-import React from 'react';
+import type { ReactNode, SVGProps } from 'react';
 import cx from 'classnames';
 import type { Symbol } from '@visx/vendor/d3-shape';
 import { symbol, symbolSquare } from '@visx/vendor/d3-shape';
@@ -6,7 +6,7 @@ import Glyph from './Glyph';
 
 export type GlyphSquareProps<Datum> = {
   /** Render function override which is passed the configured path generator. */
-  children?: ({ path }: { path: Symbol<unknown, Datum> }) => React.ReactNode;
+  children?: ({ path }: { path: Symbol<unknown, Datum> }) => ReactNode;
   /** classname to apply to glyph path element. */
   className?: string;
   /** Top offset to apply to glyph g element container. */
@@ -24,7 +24,7 @@ export default function GlyphSquare<Datum = unknown>({
   left,
   size,
   ...restProps
-}: GlyphSquareProps<Datum> & Omit<React.SVGProps<SVGPathElement>, keyof GlyphSquareProps<Datum>>) {
+}: GlyphSquareProps<Datum> & Omit<SVGProps<SVGPathElement>, keyof GlyphSquareProps<Datum>>) {
   const path = symbol<Datum>();
   path.type(symbolSquare);
 

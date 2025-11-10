@@ -1,4 +1,3 @@
-import React from 'react';
 import Cross from './Cross';
 import type { MarkerComponentProps } from './Marker';
 

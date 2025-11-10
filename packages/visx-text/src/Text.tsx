@@ -1,4 +1,3 @@
-import React from 'react';
 import useText from './hooks/useText';
 import type { TextProps as TxtProps } from './types';
 

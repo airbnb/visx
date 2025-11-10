@@ -1,4 +1,4 @@
-import React from 'react';
+import type { HTMLAttributes, Ref, CSSProperties } from 'react';
 import type { WithBoundingRectsProps } from '@visx/bounds';
 import { withBoundingRects } from '@visx/bounds';
 
@@ -7,8 +7,8 @@ import Tooltip, { defaultStyles } from './Tooltip';
 import { TooltipPositionProvider } from '../context/TooltipPositionContext';
 
 export type TooltipWithBoundsProps = TooltipProps &
-  React.HTMLAttributes<HTMLDivElement> &
-  WithBoundingRectsProps & { nodeRef?: React.Ref<HTMLDivElement> };
+  HTMLAttributes<HTMLDivElement> &
+  WithBoundingRectsProps & { nodeRef?: Ref<HTMLDivElement> };
 
 function TooltipWithBounds({
   children,
@@ -24,7 +24,7 @@ function TooltipWithBounds({
   nodeRef,
   ...otherProps
 }: TooltipWithBoundsProps) {
-  let transform: React.CSSProperties['transform'];
+  let transform: CSSProperties['transform'];
   let placeTooltipLeft = false;
   let placeTooltipUp = false;
 

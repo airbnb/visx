@@ -1,5 +1,3 @@
-import React from 'react';
-
 export type NodeProps = {
   node: { x0: number; x1: number; y0: number; y1: number };
 };

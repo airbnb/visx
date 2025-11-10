@@ -1,8 +1,8 @@
-import React, { useContext, useCallback } from 'react';
+import { useContext, useCallback } from 'react';
+import type { ReactElement, FC } from 'react';
 import type { SeriesPoint } from '@visx/vendor/d3-shape';
-import type { PositionScale, StackPathConfig } from '@visx/shape/lib/types';
-import { getFirstItem, getSecondItem } from '@visx/shape/lib/util/accessors';
-import getBandwidth from '@visx/shape/lib/util/getBandwidth';
+import type { PositionScale, StackPathConfig } from '@visx/shape';
+import { getFirstItem, getSecondItem, getBandwidth } from '@visx/shape';
 
 import type { BaseBarSeriesProps } from './BaseBarSeries';
 import DataContext from '../../../context/DataContext';
@@ -36,10 +36,10 @@ export type BaseBarStackProps<
 > = {
   /** `BarSeries` elements, note we can't strictly enforce this with TS yet. */
   children:
-    | React.ReactElement<BarStackChildProps<XScale, YScale, Datum>>
-    | React.ReactElement<BarStackChildProps<XScale, YScale, Datum>>[];
+    | ReactElement<BarStackChildProps<XScale, YScale, Datum>>
+    | ReactElement<BarStackChildProps<XScale, YScale, Datum>>[];
   /** Rendered component which is passed BarsProps by BaseBarStack after processing. */
-  BarsComponent: React.FC<BarsProps<XScale, YScale>>;
+  BarsComponent: FC<BarsProps<XScale, YScale>>;
 } & Pick<StackPathConfig<Datum, string>, 'offset' | 'order'> &
   Pick<
     SeriesProps<XScale, YScale, Datum>,
@@ -153,9 +153,8 @@ function BaseBarStack<
       if (!entry) return null;
 
       // get props from child BarSeries, if available
-      const childBarSeries:
-        | React.ReactElement<BaseBarSeriesProps<XScale, YScale, Datum>>
-        | undefined = seriesChildren.find((child) => child.props.dataKey === barStack.key);
+      const childBarSeries: ReactElement<BaseBarSeriesProps<XScale, YScale, Datum>> | undefined =
+        seriesChildren.find((child) => child.props.dataKey === barStack.key);
       const { colorAccessor, radius, radiusAll, radiusBottom, radiusLeft, radiusRight, radiusTop } =
         childBarSeries?.props || {};
 

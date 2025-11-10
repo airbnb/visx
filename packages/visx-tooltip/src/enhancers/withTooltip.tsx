@@ -1,18 +1,17 @@
-import type { ReactElement, FunctionComponent } from 'react';
-import React from 'react';
+import type { ReactElement, FunctionComponent, HTMLProps, ComponentType } from 'react';
 
 import type { UseTooltipParams } from '../hooks/useTooltip';
 import useTooltip from '../hooks/useTooltip';
 
 export type WithTooltipProvidedProps<TooltipData> = UseTooltipParams<TooltipData>;
-type WithTooltipContainerProps = React.HTMLProps<HTMLDivElement>;
+type WithTooltipContainerProps = HTMLProps<HTMLDivElement>;
 type RenderTooltipContainer = (
   children: ReactElement,
   containerProps?: WithTooltipContainerProps,
 ) => ReactElement;
 
 export default function withTooltip<BaseComponentProps = {}, TooltipData = {}>(
-  BaseComponent: React.ComponentType<BaseComponentProps & WithTooltipProvidedProps<TooltipData>>,
+  BaseComponent: ComponentType<BaseComponentProps & WithTooltipProvidedProps<TooltipData>>,
   containerProps: WithTooltipContainerProps = {
     style: {
       position: 'relative',

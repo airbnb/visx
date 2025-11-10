@@ -1,4 +1,3 @@
-import React from 'react';
 import cx from 'classnames';
 import { Group } from '@visx/group';
 import { getTicks, coerceNumber } from '@visx/scale';

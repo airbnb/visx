@@ -16,3 +16,10 @@ export {
   treemapSlice,
   treemapSliceDice,
 } from 'd3-hierarchy';
+
+export type * from './types';
+export type { ClusterProps } from './hierarchies/Cluster';
+export type { PackProps } from './hierarchies/Pack';
+export type { PartitionProps } from './hierarchies/Partition';
+export type { TreeProps } from './hierarchies/Tree';
+export type { TreemapProps } from './hierarchies/Treemap';

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import ParentSize from '@visx/responsive/lib/components/ParentSize';
+import { ParentSize } from '@visx/responsive';
 import type { WidthAndHeight } from '../types';
 
 type Props<ExampleProps extends WidthAndHeight> = {
@@ -29,7 +29,7 @@ const renderLinkWrapper = (url: string | undefined, node: React.ReactNode) =>
  * used for better perf/not rendering all tiles on load.
  */
 function useEverVisible() {
-  const ref = useRef();
+  const ref = useRef<HTMLDivElement>(null);
   const [everVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -45,7 +45,7 @@ function useEverVisible() {
       },
     );
 
-    let curr;
+    let curr: HTMLDivElement;
     if (ref.current) {
       curr = ref.current;
       observer.observe(ref.current);

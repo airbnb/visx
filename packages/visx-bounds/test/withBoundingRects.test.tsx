@@ -36,6 +36,7 @@ type BoundingRectsComponentProps = {
   parentRect?: RectShape;
   getRects?: () => DOMRect;
   children?: ReactNode;
+  nodeRef?: React.RefObject<HTMLDivElement>;
   otherProps?: object;
 };
 
@@ -45,6 +46,7 @@ function BoundingRectsComponent({
   parentRect,
   getRects,
   children,
+  nodeRef,
   ...otherProps
 }: BoundingRectsComponentProps) {
   const parentRectStyle = {
@@ -63,7 +65,12 @@ function BoundingRectsComponent({
 
   return (
     <div data-testid="BoundingRectsComponentParent" style={parentRectStyle}>
-      <div data-testid="BoundingRectsComponent" style={rectStyle} onClick={() => getRects?.()}>
+      <div
+        ref={nodeRef}
+        data-testid="BoundingRectsComponent"
+        style={rectStyle}
+        onClick={() => getRects?.()}
+      >
         {children}
         {JSON.stringify(otherProps)}
       </div>

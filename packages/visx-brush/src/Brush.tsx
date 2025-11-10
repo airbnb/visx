@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
+import type { MutableRefObject, ReactNode, SVGProps } from 'react';
 import type { BaseBrushProps, BaseBrushState } from './BaseBrush';
 import BaseBrush from './BaseBrush';
 import type { BrushHandleRenderProps } from './BrushHandle';
@@ -17,7 +18,7 @@ const DEFAULT_COLOR = 'steelblue';
 
 export type BrushProps = {
   /** Style object for the Brush selection rect. */
-  selectedBoxStyle: React.SVGProps<SVGRectElement>;
+  selectedBoxStyle: SVGProps<SVGRectElement>;
   /** x-coordinate scale. */
   xScale: Scale;
   /** y-coordinate scale. */
@@ -61,11 +62,11 @@ export type BrushProps = {
   /** Size of Brush handles, applies to all `resizeTriggerAreas`. */
   handleSize: number;
   /** Reference to the BaseBrush component. */
-  innerRef?: React.MutableRefObject<BaseBrush | null>;
+  innerRef?: MutableRefObject<BaseBrush | null>;
   /** Prevent drag end on mouse leaving from brush stage. */
   useWindowMoveEvents?: boolean;
   /** Render function for custom brush handles. */
-  renderBrushHandle?: (props: BrushHandleRenderProps) => React.ReactNode;
+  renderBrushHandle?: (props: BrushHandleRenderProps) => ReactNode;
 };
 
 class Brush extends Component<BrushProps> {

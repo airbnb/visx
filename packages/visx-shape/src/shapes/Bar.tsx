@@ -1,4 +1,4 @@
-import React from 'react';
+import type { Ref } from 'react';
 import cx from 'classnames';
 import type { AddSVGProps } from '../types';
 
@@ -6,7 +6,7 @@ export type BarProps = {
   /** className to apply to rect element. */
   className?: string;
   /** reference to rect element. */
-  innerRef?: React.Ref<SVGRectElement>;
+  innerRef?: Ref<SVGRectElement>;
 };
 
 export default function Bar({
