@@ -1,18 +1,25 @@
 const esm = process.env.ESM;
 
 const envOptions = {
-  loose: true,
+  loose: false,
   modules: esm ? false : 'commonjs',
   shippedProposals: true,
   targets: {
-    ie: 11,
+    browsers: [
+      'chrome >= 108',
+      'edge >= 108',
+      'firefox >= 133',
+      'safari >= 15.6',
+      'ios_saf >= 15.6',
+      'samsung >= 27',
+    ],
   },
   bugfixes: false,
 };
 
 const presets = [
   ['@babel/preset-env', envOptions],
-  ['@babel/preset-react', { runtime: 'automatic' }],
+  ['@babel/preset-react', { runtime: 'automatic', useBuiltIns: true, useSpread: true }],
   '@babel/preset-typescript',
 ];
 
