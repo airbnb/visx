@@ -1,6 +1,6 @@
 {
   "name": "@visx/tooltip",
-  "version": "3.13.1-alpha.0",
+  "version": "4.0.0-alpha.0",
   "description": "visx tooltip",
   "sideEffects": false,
   "main": "lib/index.js",

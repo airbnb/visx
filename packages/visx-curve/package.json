@@ -1,6 +1,6 @@
 {
   "name": "@visx/curve",
-  "version": "3.12.0",
+  "version": "4.0.0-alpha.0",
   "description": "visx curve",
   "sideEffects": false,
   "main": "lib/index.js",

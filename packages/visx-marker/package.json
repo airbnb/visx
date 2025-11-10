@@ -1,6 +1,6 @@
 {
   "name": "@visx/marker",
-  "version": "3.13.0-alpha.0",
+  "version": "4.0.0-alpha.0",
   "description": "visx marker",
   "sideEffects": false,
   "main": "lib/index.js",
