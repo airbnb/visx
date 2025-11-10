@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 
 type LinearGradientOwnProps = {
   /** Unique id for the gradient. Should be unique across all page elements. */

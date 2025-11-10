@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import { Group } from '@visx/group';
 import type { GeoGraticuleGenerator } from '@visx/vendor/d3-geo';
 import { geoGraticule } from '@visx/vendor/d3-geo';

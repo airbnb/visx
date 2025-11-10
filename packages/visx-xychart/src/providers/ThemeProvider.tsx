@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import ThemeContext from '../context/ThemeContext';
 import type { XYChartTheme } from '../types';
 import lightTheme from '../theme/themes/light';

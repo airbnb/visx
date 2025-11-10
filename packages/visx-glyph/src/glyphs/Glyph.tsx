@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import cx from 'classnames';
 import { Group } from '@visx/group';
 

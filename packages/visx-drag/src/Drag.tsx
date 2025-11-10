@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-handler-names */
-import React from 'react';
+import type React from 'react';
 import type { UseDrag, UseDragOptions, HandlerArgs as HandlerArgsType } from './useDrag';
 import useDrag from './useDrag';
 

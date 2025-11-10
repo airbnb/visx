@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import cx from 'classnames';
 import type { Line as LineType } from '@visx/vendor/d3-shape';
 import type { AddSVGProps, LinePathConfig } from '../types';

@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 
 export interface Props {
   /** Unique id for the `<marker>`. Should be unique across all page elements. */

@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import cx from 'classnames';
 import { Arc } from '@visx/shape';
 import type { ArcProps } from '@visx/shape';

@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 
 export type LegendLabelOwnProps = {
   /** Horizontal alignment of the label text. Maps to CSS justify-content property. */

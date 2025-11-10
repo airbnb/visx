@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import cx from 'classnames';
 import type { PickD3Scale, ContinuousDomainScaleType } from '@visx/scale';
 import { scaleLinear } from '@visx/scale';

@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import cx from 'classnames';
 import type { Arc as ArcType } from '@visx/vendor/d3-shape';
 import type { $TSFIXME, AddSVGProps, ArcPathConfig } from '../types';

@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 
 export type ScaleSVGProps = {
   /** Child SVG to scale, rendered as the child of the parent wrappers provided by this component `<div><svg>{children}</svg></div>`. */

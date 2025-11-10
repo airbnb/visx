@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import type { Chords } from 'd3-chord';
 import { chord as d3chord } from 'd3-chord';
 

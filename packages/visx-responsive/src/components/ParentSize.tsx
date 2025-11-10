@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import type { ParentSizeState, UseParentSizeConfig } from '../hooks/useParentSize';
 import useParentSize from '../hooks/useParentSize';
 

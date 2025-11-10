@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 
 export type PatternProps = {
   /** Unique id of the pattern element. */

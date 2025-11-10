@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import type { WithBoundingRectsProps } from '@visx/bounds';
 import { withBoundingRects } from '@visx/bounds';
 

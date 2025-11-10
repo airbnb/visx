@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import cx from 'classnames';
 import { Line } from '@visx/shape';
 import type { LineProps } from '@visx/shape';

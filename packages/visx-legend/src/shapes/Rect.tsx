@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 
 export type ShapeRectProps = {
   /** The fill color for the rectangle. */

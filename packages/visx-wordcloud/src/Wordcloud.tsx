@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import { Group } from '@visx/group';
 import type { BaseDatum, CloudWord, WordcloudConfig } from './types';
 import useWordcloud from './useWordcloud';

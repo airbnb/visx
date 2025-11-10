@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import ClipPath from './ClipPath';
 
 export type RectClipPathProps = {

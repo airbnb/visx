@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import cx from 'classnames';
 import type { AnyD3Scale, ScaleInput } from '@visx/scale';
 import LegendItem from './LegendItem';
