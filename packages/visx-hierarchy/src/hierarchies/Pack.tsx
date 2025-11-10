@@ -5,7 +5,7 @@ import type { HierarchyNode, HierarchyCircularNode } from 'd3-hierarchy';
 import { pack as d3pack } from 'd3-hierarchy';
 import DefaultNode from '../HierarchyDefaultNode';
 
-type PackProps<Datum> = {
+export type PackProps<Datum> = {
   /** The root hierarchy node from which to derive the pack layout. */
   root: HierarchyNode<Datum>;
   /** Render override function which is passed the computed pack layout data. */
@@ -26,7 +26,7 @@ type PackProps<Datum> = {
   /** Sets the pack layout size to the defined [width, height]. */
   size?: [number, number];
   /**
-   * Sets this pack layout’s padding accessor to the specified number or function,
+   * Sets this pack layout's padding accessor to the specified number or function,
    * which determines approximate separation of nodes in the resulting pack.
    */
   padding?: number;

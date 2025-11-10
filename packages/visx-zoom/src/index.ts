@@ -10,3 +10,6 @@ export {
   multiplyMatrices,
   composeMatrices,
 } from './util/matrix';
+
+export type * from './types';
+export type { ZoomProps } from './Zoom';

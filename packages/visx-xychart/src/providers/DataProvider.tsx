@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { ScaleConfig, ScaleConfigToD3Scale } from '@visx/scale';
-import { scaleLinear } from '@visx/scale';
+import { scaleLinear, scaleOrdinal as createOrdinalScale } from '@visx/scale';
 import React, { useContext, useMemo } from 'react';
-import createOrdinalScale from '@visx/scale/lib/scales/ordinal';
 import type { AxisScaleOutput } from '@visx/axis';
-import type { ResizeObserverPolyfill } from '@visx/responsive/lib/types';
+import type { ResizeObserverPolyfill } from '@visx/responsive';
 
 import type { AxisScale, DataContextType, XYChartTheme } from '../types';
 import ThemeContext from '../context/ThemeContext';

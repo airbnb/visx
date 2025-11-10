@@ -1,11 +1,9 @@
 /* eslint-disable react/no-unstable-nested-components */
 import { useMemo } from 'react';
-import AnimatedGridRows from '@visx/react-spring/lib/grid/AnimatedGridRows';
-import AnimatedGridColumns from '@visx/react-spring/lib/grid/AnimatedGridColumns';
+import { AnimatedGridRows, AnimatedGridColumns } from '@visx/react-spring';
 import type { AnimationTrajectory } from '@visx/react-spring';
-import type { GridRowsProps } from '@visx/grid/lib/grids/GridRows';
+import type { GridRowsProps, GridColumnsProps } from '@visx/grid';
 import type { AxisScale } from '@visx/axis';
-import type { GridColumnsProps } from '@visx/grid/lib/grids/GridColumns';
 import type { BaseGridProps } from './BaseGrid';
 import BaseGrid from './BaseGrid';
 

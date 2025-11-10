@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react';
 import type React from 'react';
-import type { TextProps } from '@visx/text/lib/Text';
+import type { TextProps } from '@visx/text';
 
 export type HTMLTextStyles = React.HTMLAttributes<HTMLDivElement>['style'];
 

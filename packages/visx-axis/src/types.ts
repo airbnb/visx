@@ -1,5 +1,5 @@
 import type { D3Scale, NumberLike, ScaleInput, ValueOf } from '@visx/scale';
-import type { TextProps } from '@visx/text/lib/Text';
+import type { TextProps } from '@visx/text';
 import type { ReactNode, Ref, SVGProps } from 'react';
 import type Orientation from './constants/orientation';
 

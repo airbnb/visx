@@ -1,4 +1,4 @@
-import type { PositionScale } from '@visx/shape/lib/types';
+import type { PositionScale } from '@visx/shape';
 import type { BaseBarStackProps } from './private/BaseBarStack';
 import BaseBarStack from './private/BaseBarStack';
 import AnimatedBars from './private/AnimatedBars';

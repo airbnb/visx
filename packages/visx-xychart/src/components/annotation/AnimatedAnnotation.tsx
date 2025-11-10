@@ -4,11 +4,11 @@ import {
   Annotation as VisxAnnotation,
   EditableAnnotation as VisxEditableAnnotation,
 } from '@visx/annotation';
-import type { AnnotationProps as VisxAnnotationProps } from '@visx/annotation/lib/components/Annotation';
 import type {
+  AnnotationProps as VisxAnnotationProps,
   EditableAnnotationProps,
   EditableAnnotationProps as VisxEditableAnnotationProps,
-} from '@visx/annotation/lib/components/EditableAnnotation';
+} from '@visx/annotation';
 import type { AxisScale } from '@visx/axis';
 import type { BaseAnnotationProps } from './private/BaseAnnotation';
 import BaseAnnotation from './private/BaseAnnotation';

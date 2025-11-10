@@ -1,4 +1,4 @@
-import type { AxisScale } from '@visx/axis/lib/types';
+import type { AxisScale } from '@visx/axis';
 import type { BaseAreaStackProps } from './private/BaseAreaStack';
 import BaseAreaStack from './private/BaseAreaStack';
 import AnimatedPath from './private/AnimatedPath';

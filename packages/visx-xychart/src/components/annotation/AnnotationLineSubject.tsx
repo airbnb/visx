@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { LineSubject as BaseLineSubject } from '@visx/annotation';
-import type { LineSubjectProps } from '@visx/annotation/lib/components/LineSubject';
+import type { LineSubjectProps } from '@visx/annotation';
 import DataContext from '../../context/DataContext';
 
 export type AnnotationLineSubjectProps = Omit<LineSubjectProps, 'min' | 'max'> & {

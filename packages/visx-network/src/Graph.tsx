@@ -12,7 +12,7 @@ import type {
   NodeProvidedProps,
 } from './types';
 
-type Props<Link, Node> = {
+export type GraphProps<Link, Node> = {
   /** Graph to render nodes and links for. */
   graph?: GraphType<Link, Node>;
   /** Component for rendering a single Link. */
@@ -35,7 +35,7 @@ export default function Graph<Link = LinkType<DefaultNodeType>, Node = DefaultNo
   nodeComponent = DefaultNode,
   top,
   left,
-}: Props<Link, Node>) {
+}: GraphProps<Link, Node>) {
   return graph ? (
     <Group top={top} left={left}>
       <Links<Link> links={graph.links} linkComponent={linkComponent} />

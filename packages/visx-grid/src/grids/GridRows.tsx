@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
-import type { LineProps } from '@visx/shape/lib/shapes/Line';
-import Line from '@visx/shape/lib/shapes/Line';
+import { Line } from '@visx/shape';
+import type { LineProps } from '@visx/shape';
 import { Group } from '@visx/group';
 import { Point } from '@visx/point';
 import type { ScaleInput } from '@visx/scale';

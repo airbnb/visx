@@ -1,6 +1,6 @@
 import React, { useContext, useCallback, useMemo, useEffect } from 'react';
-import type { LinePathProps } from '@visx/shape/lib/shapes/LinePath';
-import LinePath from '@visx/shape/lib/shapes/LinePath';
+import type { LinePathProps } from '@visx/shape';
+import { LinePath } from '@visx/shape';
 import type { AxisScale } from '@visx/axis';
 import DataContext from '../../../context/DataContext';
 import type { DataContextType, GlyphsProps, SeriesProps } from '../../../types';

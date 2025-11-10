@@ -2,12 +2,9 @@ import type { SVGProps } from 'react';
 import React, { useCallback, useContext, useMemo } from 'react';
 import type { AxisScale } from '@visx/axis';
 import type { SeriesPoint } from '@visx/vendor/d3-shape';
-import type { StackPathConfig } from '@visx/shape';
-import { LinePath } from '@visx/shape';
-import type { AreaProps } from '@visx/shape/lib/shapes/Area';
-import Area from '@visx/shape/lib/shapes/Area';
+import type { StackPathConfig, AreaProps } from '@visx/shape';
+import { LinePath, Area, getFirstItem, getSecondItem } from '@visx/shape';
 import { coerceNumber } from '@visx/scale';
-import { getFirstItem, getSecondItem } from '@visx/shape/lib/util/accessors';
 
 import type {
   CombinedStackData,

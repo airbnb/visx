@@ -1,7 +1,7 @@
 import cx from 'classnames';
 import Pattern from './Pattern';
 
-type PathProps = {
+export type PatternPathProps = {
   /** Unique id for the pattern. */
   id: string;
   /** Width of the pattern element. */
@@ -41,7 +41,7 @@ export default function Path({
   shapeRendering = 'auto',
   background,
   className,
-}: PathProps) {
+}: PatternPathProps) {
   return (
     <Pattern id={id} width={width} height={height}>
       {!!background && <rect width={width} height={height} fill={background} />}

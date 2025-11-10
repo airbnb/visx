@@ -1,6 +1,5 @@
 import React, { useContext, useMemo } from 'react';
-import type { AnnotationProps } from '@visx/annotation/lib/components/Annotation';
-import type { EditableAnnotationProps } from '@visx/annotation/lib/components/EditableAnnotation';
+import type { AnnotationProps, EditableAnnotationProps } from '@visx/annotation';
 import type { ScaleInput } from '@visx/scale';
 import { coerceNumber } from '@visx/scale';
 import type { AxisScale } from '@visx/axis';

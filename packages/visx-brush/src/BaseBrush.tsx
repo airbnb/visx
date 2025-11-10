@@ -1,7 +1,7 @@
 import React from 'react';
 import { Group } from '@visx/group';
-import type { HandlerArgs as DragArgs } from '@visx/drag/lib/Drag';
-import Drag from '@visx/drag/lib/Drag';
+import type { HandlerArgs as DragArgs } from '@visx/drag';
+import { Drag } from '@visx/drag';
 
 import type { BrushHandleRenderProps } from './BrushHandle';
 import BrushHandle from './BrushHandle';

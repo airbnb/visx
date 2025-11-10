@@ -1,6 +1,5 @@
 import React, { useMemo, useContext } from 'react';
-import type { AxisScale, TickLabelProps } from '@visx/axis';
-import type { AxisProps as VxAxisProps } from '@visx/axis/lib/axis/Axis';
+import type { AxisScale, TickLabelProps, AxisProps as VxAxisProps } from '@visx/axis';
 import type { ScaleInput } from '@visx/scale';
 import DataContext from '../../context/DataContext';
 

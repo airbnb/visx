@@ -1,4 +1,4 @@
-import type { UseTooltipParams } from '@visx/tooltip/lib/hooks/useTooltip';
+import type { UseTooltipParams } from '@visx/tooltip';
 import type { EventHandlerParams } from './series';
 
 export type TooltipDatum<Datum extends object> = {

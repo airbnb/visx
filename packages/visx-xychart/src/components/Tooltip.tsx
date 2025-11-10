@@ -1,8 +1,7 @@
 import React, { useCallback, useContext, useEffect, useRef } from 'react';
 import { useTooltipInPortal, defaultStyles } from '@visx/tooltip';
-import type { TooltipProps as BaseTooltipProps } from '@visx/tooltip/lib/tooltips/Tooltip';
+import type { TooltipProps as BaseTooltipProps, UseTooltipPortalOptions } from '@visx/tooltip';
 import type { PickD3Scale } from '@visx/scale';
-import type { UseTooltipPortalOptions } from '@visx/tooltip/lib/hooks/useTooltipInPortal';
 
 import TooltipContext from '../context/TooltipContext';
 import DataContext from '../context/DataContext';

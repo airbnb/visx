@@ -1,4 +1,4 @@
-import type { MouseTouchOrPointerEvent } from '@visx/drag/lib/useDrag';
+import type { MouseTouchOrPointerEvent } from '@visx/drag';
 import type React from 'react';
 import type { Scale } from './types';
 

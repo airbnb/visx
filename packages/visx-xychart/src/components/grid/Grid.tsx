@@ -1,5 +1,4 @@
-import GridRows from '@visx/grid/lib/grids/GridRows';
-import GridColumns from '@visx/grid/lib/grids/GridColumns';
+import { GridRows, GridColumns } from '@visx/grid';
 import type { BaseGridProps } from './BaseGrid';
 import BaseGrid from './BaseGrid';
 

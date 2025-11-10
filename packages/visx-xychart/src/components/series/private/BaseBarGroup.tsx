@@ -1,5 +1,5 @@
 import React, { useContext, useMemo, useEffect, useCallback } from 'react';
-import type { PositionScale } from '@visx/shape/lib/types';
+import type { PositionScale } from '@visx/shape';
 import { scaleBand } from '@visx/scale';
 import type { BaseBarSeriesProps } from './BaseBarSeries';
 import type {

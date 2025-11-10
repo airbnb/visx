@@ -1,7 +1,7 @@
 /* eslint react/jsx-handler-names: 0 */
 import React from 'react';
-import type { HandlerArgs as DragArgs } from '@visx/drag/lib/Drag';
-import Drag from '@visx/drag/lib/Drag';
+import type { HandlerArgs as DragArgs } from '@visx/drag';
+import { Drag } from '@visx/drag';
 import type { BaseBrushState as BrushState, UpdateBrush } from './BaseBrush';
 import type { ResizeTriggerAreas } from './types';
 

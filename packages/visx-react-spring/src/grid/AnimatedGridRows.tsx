@@ -1,6 +1,5 @@
-import type { GridRowsProps } from '@visx/grid/lib/grids/GridRows';
-import GridRows from '@visx/grid/lib/grids/GridRows';
-import type { GridScale } from '@visx/grid/lib/types';
+import type { GridRowsProps, GridScale } from '@visx/grid';
+import { GridRows } from '@visx/grid';
 import AnimatedGridLines from './AnimatedGridLines';
 import type { AnimationTrajectory } from '../types';
 

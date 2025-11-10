@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { Area } from '@visx/shape';
-import type { AreaProps as AreaOwnProps } from '@visx/shape/lib/shapes/Area';
+import type { AreaProps as AreaOwnProps } from '@visx/shape';
 import { ClipPath } from '@visx/clip-path';
 
 type AreaProps<Datum> = AreaOwnProps<Datum> &

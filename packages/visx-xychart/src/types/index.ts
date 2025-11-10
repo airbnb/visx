@@ -1,6 +1,6 @@
-export * from './axis';
-export * from './data';
-export * from './event';
-export * from './series';
-export * from './theme';
-export * from './tooltip';
+export type * from './axis';
+export type * from './data';
+export type * from './event';
+export type * from './series';
+export type * from './theme';
+export type * from './tooltip';

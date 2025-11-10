@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-handler-names */
 import React, { useCallback, useRef } from 'react';
-import type { UseDrag, HandlerArgs as DragHandlerArgs } from '@visx/drag/lib/useDrag';
-import useDrag from '@visx/drag/lib/useDrag';
+import type { UseDrag, HandlerArgs as DragHandlerArgs } from '@visx/drag';
+import { useDrag } from '@visx/drag';
 import type { AnnotationContextType } from '../types';
 import Annotation from './Annotation';
 

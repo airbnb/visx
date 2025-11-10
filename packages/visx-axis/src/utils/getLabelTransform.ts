@@ -1,4 +1,4 @@
-import type { TextProps } from '@visx/text/lib/Text';
+import type { TextProps } from '@visx/text';
 import type { OrientationType } from '../constants/orientation';
 import Orientation from '../constants/orientation';
 import type { AxisScaleOutput } from '../types';

@@ -10,6 +10,13 @@
     "esm"
   ],
   "types": "lib/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./esm/index.js",
+      "require": "./lib/index.js"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/airbnb/visx.git"

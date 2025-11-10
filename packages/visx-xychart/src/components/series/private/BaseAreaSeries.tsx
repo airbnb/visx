@@ -1,9 +1,7 @@
 import React, { useContext, useCallback, useMemo, useEffect } from 'react';
 import type { AxisScale } from '@visx/axis';
-import type { AreaProps } from '@visx/shape/lib/shapes/Area';
-import Area from '@visx/shape/lib/shapes/Area';
-import type { LinePathProps } from '@visx/shape/lib/shapes/LinePath';
-import LinePath from '@visx/shape/lib/shapes/LinePath';
+import type { AreaProps, LinePathProps } from '@visx/shape';
+import { Area, LinePath } from '@visx/shape';
 import DataContext from '../../../context/DataContext';
 import type { DataContextType, GlyphsProps, SeriesProps } from '../../../types';
 import getScaledValueFactory from '../../../utils/getScaledValueFactory';

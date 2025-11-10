@@ -1,7 +1,5 @@
 import React, { useContext } from 'react';
-import type { CommonGridProps } from '@visx/grid/lib/types';
-import type { AllGridRowsProps } from '@visx/grid/lib/grids/GridRows';
-import type { GridColumnsProps } from '@visx/grid/lib/grids/GridColumns';
+import type { CommonGridProps, AllGridRowsProps, GridColumnsProps } from '@visx/grid';
 import type { AxisScale } from '@visx/axis';
 import DataContext from '../../context/DataContext';
 

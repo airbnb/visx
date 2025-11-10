@@ -12,9 +12,11 @@ export const STACK_OFFSETS = {
   none: stackOffsetNone,
   silhouette: stackOffsetSilhouette,
   wiggle: stackOffsetWiggle,
-};
+} as const;
 
-export const STACK_OFFSET_NAMES = Object.keys(STACK_OFFSETS);
+export type StackOffset = keyof typeof STACK_OFFSETS;
+
+export const STACK_OFFSET_NAMES = Object.keys(STACK_OFFSETS) as StackOffset[];
 
 export default function stackOffset(offset?: keyof typeof STACK_OFFSETS) {
   return (offset && STACK_OFFSETS[offset]) || STACK_OFFSETS.none;
