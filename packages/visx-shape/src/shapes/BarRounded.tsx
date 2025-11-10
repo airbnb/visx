@@ -1,4 +1,4 @@
-import type React from 'react';
+import type { ReactNode, Ref } from 'react';
 import cx from 'classnames';
 import type { AddSVGProps } from '../types';
 
@@ -6,7 +6,7 @@ export type BarRoundedProps = {
   /** className to apply to path element. */
   className?: string;
   /** reference to path element. */
-  innerRef?: React.Ref<SVGPathElement>;
+  innerRef?: Ref<SVGPathElement>;
   /** left position of the bar */
   x: number;
   /** top position of the bar */
@@ -36,7 +36,7 @@ export type BarRoundedProps = {
   /** apply corner radius to bottom right */
   bottomRight?: boolean;
   /** Optional children override. */
-  children?: ({ path }: { path: string }) => React.ReactNode;
+  children?: ({ path }: { path: string }) => ReactNode;
 };
 
 /** Hook that returns a BarRounded path. */

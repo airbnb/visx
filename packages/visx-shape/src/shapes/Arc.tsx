@@ -1,4 +1,4 @@
-import type React from 'react';
+import type { ReactNode, Ref } from 'react';
 import cx from 'classnames';
 import type { Arc as ArcType } from '@visx/vendor/d3-shape';
 import type { $TSFIXME, AddSVGProps, ArcPathConfig } from '../types';
@@ -10,9 +10,9 @@ export type ArcProps<Datum> = {
   /** A Datum for which to generate an arc. */
   data?: Datum;
   /** Override render function which is passed the configured arc generator as input. */
-  children?: (args: { path: ArcType<$TSFIXME, Datum> }) => React.ReactNode;
+  children?: (args: { path: ArcType<$TSFIXME, Datum> }) => ReactNode;
   /** React ref to the path element. */
-  innerRef?: React.Ref<SVGPathElement>;
+  innerRef?: Ref<SVGPathElement>;
 } & ArcPathConfig<Datum>;
 
 export default function Arc<Datum>({

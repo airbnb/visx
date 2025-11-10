@@ -1,11 +1,11 @@
-import type React from 'react';
+import type { SVGProps } from 'react';
 import cx from 'classnames';
 import { Area } from '@visx/shape';
 import type { AreaProps as AreaOwnProps } from '@visx/shape';
 import { ClipPath } from '@visx/clip-path';
 
 type AreaProps<Datum> = AreaOwnProps<Datum> &
-  Omit<React.SVGProps<SVGPathElement>, keyof AreaOwnProps<Datum>>;
+  Omit<SVGProps<SVGPathElement>, keyof AreaOwnProps<Datum>>;
 
 type NumberAccessor<Datum> = (datum: Datum, index: number, data: Datum[]) => number;
 

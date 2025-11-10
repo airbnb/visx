@@ -1,4 +1,5 @@
-import React, { useContext, useCallback, useMemo, useEffect } from 'react';
+import { Fragment, useContext, useCallback, useMemo, useEffect } from 'react';
+import type { FC, SVGProps } from 'react';
 import type { AxisScale } from '@visx/axis';
 import type { AreaProps, LinePathProps } from '@visx/shape';
 import { Area, LinePath } from '@visx/shape';
@@ -27,12 +28,12 @@ export type BaseAreaSeriesProps<
   curve?: AreaProps<Datum>['curve'];
   /** Props to be passed to the Line, if rendered. */
   lineProps?: Omit<
-    LinePathProps<Datum> & React.SVGProps<SVGPathElement>,
+    LinePathProps<Datum> & SVGProps<SVGPathElement>,
     'data' | 'x' | 'y' | 'children' | 'defined'
   >;
   /** Rendered component which is passed path props by BaseAreaSeries after processing. */
-  PathComponent?: React.FC<Omit<React.SVGProps<SVGPathElement>, 'ref'>> | 'path';
-} & Omit<React.SVGProps<SVGPathElement>, 'x' | 'y' | 'x0' | 'x1' | 'y0' | 'y1' | 'ref'>;
+  PathComponent?: FC<Omit<SVGProps<SVGPathElement>, 'ref'>> | 'path';
+} & Omit<SVGProps<SVGPathElement>, 'x' | 'y' | 'x0' | 'x1' | 'y0' | 'y1' | 'ref'>;
 
 function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datum extends object>({
   PathComponent = 'path',
@@ -110,14 +111,14 @@ function BaseAreaSeries<XScale extends AxisScale, YScale extends AxisScale, Datu
     ({ glyphs }: GlyphsProps<XScale, YScale, Datum>) =>
       captureFocusEvents
         ? glyphs.map((glyph) => (
-            <React.Fragment key={glyph.key}>
+            <Fragment key={glyph.key}>
               {defaultRenderGlyph({
                 ...glyph,
                 color: 'transparent',
                 onFocus: eventEmitters.onFocus,
                 onBlur: eventEmitters.onBlur,
               })}
-            </React.Fragment>
+            </Fragment>
           ))
         : null,
     [captureFocusEvents, eventEmitters.onFocus, eventEmitters.onBlur],

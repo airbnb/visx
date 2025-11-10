@@ -1,4 +1,4 @@
-import type React from 'react';
+import type { ReactNode, SVGProps } from 'react';
 import cx from 'classnames';
 import { Arc } from '@visx/shape';
 import type { ArcProps } from '@visx/shape';
@@ -43,12 +43,12 @@ export type GridRadialProps<Scale extends GridScale> = CommonGridProps & {
   /**
    * Child components to the Arc.
    */
-  children?: () => React.ReactNode;
+  children?: () => ReactNode;
 };
 
 export type AllGridRadialProps<Scale extends GridScale, Datum> = GridRadialProps<Scale> &
   Omit<
-    ArcProps<Datum> & Omit<React.SVGProps<SVGPathElement>, keyof ArcProps<Datum>>,
+    ArcProps<Datum> & Omit<SVGProps<SVGPathElement>, keyof ArcProps<Datum>>,
     keyof GridRadialProps<Scale>
   >;
 

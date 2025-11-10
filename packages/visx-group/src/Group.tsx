@@ -1,4 +1,4 @@
-import type React from 'react';
+import type { ReactNode, Ref, SVGProps } from 'react';
 import cx from 'classnames';
 
 export type GroupProps = {
@@ -10,9 +10,9 @@ export type GroupProps = {
   transform?: string;
   /** className to apply to `<g/>`. */
   className?: string;
-  children?: React.ReactNode;
+  children?: ReactNode;
   /** ref to underlying `<g/>`. */
-  innerRef?: React.Ref<SVGGElement>;
+  innerRef?: Ref<SVGGElement>;
 };
 
 export default function Group({
@@ -23,7 +23,7 @@ export default function Group({
   children,
   innerRef,
   ...restProps
-}: GroupProps & Omit<React.SVGProps<SVGGElement>, keyof GroupProps>) {
+}: GroupProps & Omit<SVGProps<SVGGElement>, keyof GroupProps>) {
   return (
     <g
       ref={innerRef}

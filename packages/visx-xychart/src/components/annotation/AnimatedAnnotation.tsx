@@ -1,4 +1,5 @@
-import React, { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
+import type { FC } from 'react';
 import { useSpring, animated, to } from '@react-spring/web';
 import {
   Annotation as VisxAnnotation,
@@ -28,7 +29,7 @@ function BaseAnimatedAnnotation({
   AnnotationComponent,
   ...props
 }: {
-  AnnotationComponent: React.FC<VisxAnnotationProps> | React.FC<VisxEditableAnnotationProps>;
+  AnnotationComponent: FC<VisxAnnotationProps> | FC<VisxEditableAnnotationProps>;
 } & VisxAnnotationProps &
   EditableAnnotationProps) {
   const lastXY = useRef({ x, y });

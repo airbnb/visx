@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext, type SVGProps } from 'react';
 import cx from 'classnames';
 import type { AnnotationContextType } from '../types';
 import AnnotationContext from '../context/AnnotationContext';
@@ -19,7 +19,7 @@ export default function CircleSubject({
   stroke = '#222',
   radius = 16,
   ...restProps
-}: CircleSubjectProps & Omit<React.SVGProps<SVGCircleElement>, keyof CircleSubjectProps>) {
+}: CircleSubjectProps & Omit<SVGProps<SVGCircleElement>, keyof CircleSubjectProps>) {
   // if props are provided, they take precedence over context
   const annotationContext = useContext(AnnotationContext);
 

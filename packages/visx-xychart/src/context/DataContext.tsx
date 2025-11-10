@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from 'react';
+import { createContext } from 'react';
 import type { AxisScale } from '@visx/axis';
 import type { DataContextType } from '../types';
 
@@ -32,6 +32,6 @@ export type InferDataContext<C extends AnyDataContext = AnyDataContext> = DataCo
   InferDatum<C>
 >;
 
-const DataContext = React.createContext<Partial<InferDataContext>>({});
+const DataContext = createContext<Partial<InferDataContext>>({});
 
 export default DataContext;

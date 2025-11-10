@@ -1,4 +1,4 @@
-import type React from 'react';
+import type { ReactNode, SVGProps } from 'react';
 import classnames from 'classnames';
 import { Group } from '@visx/group';
 import type { PickD3Scale, ContinuousDomainScaleType } from '@visx/scale';
@@ -43,21 +43,21 @@ export type BoxPlotProps = SharedProps & {
   /** Array of outlier values to be rendered. */
   outliers?: number[];
   /** Props to pass to the median glyph line. */
-  medianProps?: React.SVGProps<SVGLineElement>;
+  medianProps?: SVGProps<SVGLineElement>;
   /** Props to pass to the maximum glyph line. */
-  maxProps?: React.SVGProps<SVGLineElement>;
+  maxProps?: SVGProps<SVGLineElement>;
   /** Props to pass to the minimum glyph line. */
-  minProps?: React.SVGProps<SVGLineElement>;
+  minProps?: SVGProps<SVGLineElement>;
   /** Props to pass to the box glyph rect. */
-  boxProps?: React.SVGProps<SVGRectElement>;
+  boxProps?: SVGProps<SVGRectElement>;
   /** Props to pass to the outlier glyph circles. */
-  outlierProps?: React.SVGProps<SVGCircleElement>;
+  outlierProps?: SVGProps<SVGCircleElement>;
   /** Whether to render a container rect element (e.g., to capture mouse events). */
   container?: boolean;
   /** Props to pass to the container glyph rect if rendered. */
-  containerProps?: React.SVGProps<SVGRectElement>;
+  containerProps?: SVGProps<SVGRectElement>;
   /** Override render function to fully control the rendering of the BoxPlot glyph. */
-  children?: (childRenderProps: ChildRenderProps) => React.ReactNode;
+  children?: (childRenderProps: ChildRenderProps) => ReactNode;
 };
 
 export default function BoxPlot({

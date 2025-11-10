@@ -1,4 +1,5 @@
-import React, { useContext, useMemo } from 'react';
+import { useContext, useMemo } from 'react';
+import type { FC } from 'react';
 import type { AnnotationProps, EditableAnnotationProps } from '@visx/annotation';
 import type { ScaleInput } from '@visx/scale';
 import { coerceNumber } from '@visx/scale';
@@ -23,7 +24,7 @@ export type BaseAnnotationProps<
   | 'onDragStart'
 > & {
   /** Annotation component to render. */
-  AnnotationComponent: React.FC<AnnotationProps> | React.FC<EditableAnnotationProps>;
+  AnnotationComponent: FC<AnnotationProps> | FC<EditableAnnotationProps>;
   /** Key for series to which datum belongs (used for x/yAccessors). Alternatively xAccessor + yAccessor may be specified. */
   dataKey?: string;
   /** Datum to annotate, used for Annotation positioning. */

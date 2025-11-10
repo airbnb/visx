@@ -1,6 +1,6 @@
 /* eslint react/no-did-mount-set-state: 0 */
-import type { ComponentClass } from 'react';
-import React from 'react';
+import { PureComponent, createRef } from 'react';
+import type { ComponentClass, ComponentType, RefObject } from 'react';
 
 const emptyRect = {
   top: 0,
@@ -24,23 +24,23 @@ export type WithBoundingRectsProps = {
   getRects?: () => { rect: rectShape; parentRect: rectShape };
   rect?: rectShape;
   parentRect?: rectShape;
-  nodeRef?: React.RefObject<HTMLElement>;
+  nodeRef?: RefObject<HTMLElement>;
 };
 
 export default function withBoundingRects<Props extends object = {}>(
-  BaseComponent: React.ComponentType<Props>,
+  BaseComponent: ComponentType<Props>,
 ): ComponentClass<Props> {
-  return class WrappedComponent extends React.PureComponent<Props> {
+  return class WrappedComponent extends PureComponent<Props> {
     static displayName = `withBoundingRects(${BaseComponent.displayName || ''})`;
     node: HTMLElement | undefined | null;
-    nodeRef: React.RefObject<HTMLElement | null>;
+    nodeRef: RefObject<HTMLElement | null>;
     constructor(props: Props) {
       super(props);
       this.state = {
         rect: undefined,
         parentRect: undefined,
       };
-      this.nodeRef = React.createRef();
+      this.nodeRef = createRef();
       this.getRects = this.getRects.bind(this);
     }
 

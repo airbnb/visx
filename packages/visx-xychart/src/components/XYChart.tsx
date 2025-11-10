@@ -1,5 +1,6 @@
 /* eslint jsx-a11y/mouse-events-have-key-events: 'off', @typescript-eslint/no-explicit-any: 'off' */
-import React, { useContext, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
+import type { ReactNode, PointerEvent } from 'react';
 import { ParentSize } from '@visx/responsive';
 import type { ResizeObserverPolyfill } from '@visx/responsive';
 import type { AxisScaleOutput } from '@visx/axis';
@@ -38,7 +39,7 @@ export type XYChartProps<
   /** Margin to apply around the outside. */
   margin?: Margin;
   /** XYChart children (Series, Tooltip, etc.). */
-  children: React.ReactNode;
+  children: ReactNode;
   /** If DataContext is not available, XYChart will wrap itself in a DataProvider and set this as the theme. */
   theme?: DataProviderProps<XScaleConfig, YScaleConfig>['theme'];
   /** If DataContext is not available, XYChart will wrap itself in a DataProvider and set this as the xScale config. */
@@ -60,7 +61,7 @@ export type XYChartProps<
   /** Callback invoked for onPointerOut events for the nearest Datum to the PointerEvent _for each Series with pointerEvents={true}_. */
   onPointerOut?: (
     /** The PointerEvent. */
-    event: React.PointerEvent,
+    event: PointerEvent,
   ) => void;
   /** Callback invoked for onPointerUp events for the nearest Datum to the PointerEvent _for each Series with pointerEvents={true}_. */
   onPointerUp?: ({

@@ -1,15 +1,16 @@
-import React from 'react';
+import { PureComponent } from 'react';
+import type { ReactNode } from 'react';
 import ReactDOM from 'react-dom';
 
 export type PortalProps = {
   /** Optional z-index to set on the Portal. */
   zIndex?: number | string;
   /** Content to render in the Portal. */
-  children: NonNullable<React.ReactNode>;
+  children: NonNullable<ReactNode>;
 };
 
 /** Render within a portal using a declarative component API. */
-export default class Portal extends React.PureComponent<PortalProps> {
+export default class Portal extends PureComponent<PortalProps> {
   private node?: HTMLDivElement;
 
   componentWillUnmount() {

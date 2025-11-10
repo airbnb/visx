@@ -1,4 +1,5 @@
-import React, { useCallback, useContext, useEffect, useRef } from 'react';
+import { useCallback, useContext, useEffect, useRef } from 'react';
+import type { CSSProperties, SVGProps, ReactNode } from 'react';
 import { useTooltipInPortal, defaultStyles } from '@visx/tooltip';
 import type { TooltipProps as BaseTooltipProps, UseTooltipPortalOptions } from '@visx/tooltip';
 import type { PickD3Scale } from '@visx/scale';
@@ -10,7 +11,7 @@ import isValidNumber from '../typeguards/isValidNumber';
 import type { GlyphProps as RenderGlyphProps, TooltipContextType } from '../types';
 
 /** fontSize + lineHeight from default styles break precise location of crosshair, etc. */
-const TOOLTIP_NO_STYLE: React.CSSProperties = {
+const TOOLTIP_NO_STYLE: CSSProperties = {
   position: 'absolute',
   pointerEvents: 'none',
   fontSize: 0,
@@ -22,7 +23,7 @@ export type RenderTooltipParams<Datum extends object> = TooltipContextType<Datum
 };
 
 export interface RenderTooltipGlyphProps<Datum extends object> extends RenderGlyphProps<Datum> {
-  glyphStyle?: React.SVGProps<SVGCircleElement>;
+  glyphStyle?: SVGProps<SVGCircleElement>;
   isNearestDatum: boolean;
 }
 
@@ -32,9 +33,9 @@ export type TooltipProps<Datum extends object> = {
    * return value is non-null, its content is rendered inside the tooltip container.
    * Content will be rendered in an HTML parent.
    */
-  renderTooltip: (params: RenderTooltipParams<Datum>) => React.ReactNode;
+  renderTooltip: (params: RenderTooltipParams<Datum>) => ReactNode;
   /** Function which handles rendering glyphs. */
-  renderGlyph?: (params: RenderTooltipGlyphProps<Datum>) => React.ReactNode;
+  renderGlyph?: (params: RenderTooltipGlyphProps<Datum>) => ReactNode;
   /** Whether to snap tooltip + crosshair x-coord to the nearest Datum x-coord instead of the event x-coord. */
   snapTooltipToDatumX?: boolean;
   /** Whether to snap tooltip + crosshair y-coord to the nearest Datum y-coord instead of the event y-coord. */
@@ -48,11 +49,11 @@ export type TooltipProps<Datum extends object> = {
   /** Whether to show a glyph for the nearest Datum in each series. */
   showSeriesGlyphs?: boolean;
   /** Optional styles for the vertical crosshair, if visible. */
-  verticalCrosshairStyle?: React.SVGProps<SVGLineElement>;
+  verticalCrosshairStyle?: SVGProps<SVGLineElement>;
   /** Optional styles for the vertical crosshair, if visible. */
-  horizontalCrosshairStyle?: React.SVGProps<SVGLineElement>;
+  horizontalCrosshairStyle?: SVGProps<SVGLineElement>;
   /** Optional styles for the point, if visible. */
-  glyphStyle?: React.SVGProps<SVGCircleElement>;
+  glyphStyle?: SVGProps<SVGCircleElement>;
   /**
    * Tooltip depends on ResizeObserver, which may be polyfilled globally,
    * passed to XYChart, or injected into this component.
@@ -61,7 +62,7 @@ export type TooltipProps<Datum extends object> = {
 } & Omit<BaseTooltipProps, 'left' | 'top' | 'children'> &
   Pick<UseTooltipPortalOptions, 'debounce' | 'detectBounds' | 'scroll' | 'zIndex'>;
 
-const INVISIBLE_STYLES: React.CSSProperties = {
+const INVISIBLE_STYLES: CSSProperties = {
   position: 'absolute',
   left: 0,
   top: 0,

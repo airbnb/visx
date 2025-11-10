@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
+import type { SVGProps } from 'react';
 import cx from 'classnames';
 import AnnotationContext from '../context/AnnotationContext';
 
@@ -30,7 +31,7 @@ export default function LineSubject({
   max,
   stroke = '#222',
   ...restProps
-}: LineSubjectProps & Omit<React.SVGProps<SVGLineElement>, keyof LineSubjectProps>) {
+}: LineSubjectProps & Omit<SVGProps<SVGLineElement>, keyof LineSubjectProps>) {
   // if props are provided, they take precedence over context
   const annotationContext = useContext(AnnotationContext);
   const lineIsVertical = orientation === 'vertical';

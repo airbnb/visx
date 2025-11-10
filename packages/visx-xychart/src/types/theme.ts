@@ -1,10 +1,9 @@
-import type { CSSProperties } from 'react';
-import type React from 'react';
+import type { CSSProperties, HTMLAttributes, SVGAttributes } from 'react';
 import type { TextProps } from '@visx/text';
 
-export type HTMLTextStyles = React.HTMLAttributes<HTMLDivElement>['style'];
+export type HTMLTextStyles = HTMLAttributes<HTMLDivElement>['style'];
 
-export type LineStyles = Omit<React.SVGAttributes<SVGLineElement>, 'Key'>;
+export type LineStyles = Omit<SVGAttributes<SVGLineElement>, 'Key'>;
 
 export type GridStyles = CSSProperties;
 

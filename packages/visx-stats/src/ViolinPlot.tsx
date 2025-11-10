@@ -1,4 +1,4 @@
-import type React from 'react';
+import type { ReactNode, SVGProps } from 'react';
 import cx from 'classnames';
 import type { PickD3Scale, ContinuousDomainScaleType } from '@visx/scale';
 import { scaleLinear } from '@visx/scale';
@@ -17,7 +17,7 @@ export type ViolinPlotProps<Datum extends object> = SharedProps & {
   /** Width of the violin plot glyph. */
   width?: number;
   /** Override render function to fully control the rendering of the ViolinPlot glyph. */
-  children?: (providedProps: { path: string }) => React.ReactNode;
+  children?: (providedProps: { path: string }) => ReactNode;
 };
 
 const defaultCountAccessor = (d: { count?: unknown }) =>
@@ -37,7 +37,7 @@ export default function ViolinPlot<Datum extends object>({
   horizontal,
   children,
   ...restProps
-}: ViolinPlotProps<Datum> & Omit<React.SVGProps<SVGPathElement>, keyof ViolinPlotProps<Datum>>) {
+}: ViolinPlotProps<Datum> & Omit<SVGProps<SVGPathElement>, keyof ViolinPlotProps<Datum>>) {
   const center = (horizontal ? top : left) + width / 2;
   const binCounts = data.map((bin) => count(bin));
   const widthScale = scaleLinear<number>({

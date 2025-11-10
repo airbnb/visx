@@ -1,9 +1,10 @@
-import React from 'react';
+import { forwardRef } from 'react';
+import type { ReactNode, CSSProperties, HTMLAttributes } from 'react';
 import cx from 'classnames';
 
 export type TooltipProps = {
   /** Tooltip content. */
-  children?: React.ReactNode;
+  children?: ReactNode;
   /** Optional className to apply to the Tooltip in addition to `visx-tooltip`. */
   className?: string;
   /** The `left` position of the Tooltip. */
@@ -13,7 +14,7 @@ export type TooltipProps = {
   /** Offset the `top` position of the Tooltip by this margin. */
   offsetTop?: number;
   /** Styles to apply, unless `unstyled=true`. */
-  style?: React.CSSProperties;
+  style?: CSSProperties;
   /** The `top` position of the Tooltip. */
   top?: number;
   /**
@@ -31,7 +32,7 @@ export type TooltipProps = {
   unstyled?: boolean;
 };
 
-export const defaultStyles: React.CSSProperties = {
+export const defaultStyles: CSSProperties = {
   position: 'absolute',
   backgroundColor: 'white',
   color: '#666666',
@@ -43,10 +44,7 @@ export const defaultStyles: React.CSSProperties = {
   pointerEvents: 'none',
 };
 
-const Tooltip = React.forwardRef<
-  HTMLDivElement,
-  TooltipProps & React.HTMLAttributes<HTMLDivElement>
->(
+const Tooltip = forwardRef<HTMLDivElement, TooltipProps & HTMLAttributes<HTMLDivElement>>(
   (
     {
       className,

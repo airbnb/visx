@@ -1,4 +1,5 @@
-import React, { useContext, useMemo } from 'react';
+import { useContext, useMemo } from 'react';
+import type { ReactNode, CSSProperties } from 'react';
 import cx from 'classnames';
 import useMeasure from 'react-use-measure';
 import { Group } from '@visx/group';
@@ -20,9 +21,9 @@ export type HtmlLabelProps = Pick<
   | 'y'
 > & {
   /** Pass in a custom element as the label to style as you like. Renders inside a <foreignObject>, be aware that most non-browser SVG renderers will not render HTML <foreignObject>s. See: https://github.com/airbnb/visx/issues/1173#issuecomment-1014380545.  */
-  children?: React.ReactNode;
+  children?: ReactNode;
   /** Optional styles to apply to the HTML container. */
-  containerStyle?: React.CSSProperties;
+  containerStyle?: CSSProperties;
 };
 export default function HtmlLabel({
   anchorLineStroke = '#222',

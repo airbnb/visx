@@ -1,4 +1,5 @@
-import React, { useContext, useMemo } from 'react';
+import { useContext, useMemo } from 'react';
+import type { SVGProps, CSSProperties } from 'react';
 import cx from 'classnames';
 import { Group } from '@visx/group';
 import type { TextProps } from '@visx/text';
@@ -16,7 +17,7 @@ export type LabelProps = {
   /** Padding of text from background. */
   backgroundPadding?: number | { top?: number; right?: number; bottom?: number; left?: number };
   /** Additional props to be passed to background SVGRectElement. */
-  backgroundProps?: React.SVGProps<SVGRectElement>;
+  backgroundProps?: SVGProps<SVGRectElement>;
   /** Optional className to apply to container in addition to 'visx-annotation-label'. */
   className?: string;
   /** Color of title and subtitle text. */
@@ -176,7 +177,7 @@ export default function Label({
       fontFamily: titleFontFamily,
     }),
     [titleFontSize, titleFontWeight, titleFontFamily],
-  ) as React.CSSProperties;
+  ) as CSSProperties;
 
   const subtitleFontFamily = subtitleProps?.fontFamily;
   const subtitleStyle = useMemo(
@@ -186,7 +187,7 @@ export default function Label({
       fontFamily: subtitleFontFamily,
     }),
     [subtitleFontSize, subtitleFontWeight, subtitleFontFamily],
-  ) as React.CSSProperties;
+  ) as CSSProperties;
 
   return !title && !subtitle ? null : (
     <Group

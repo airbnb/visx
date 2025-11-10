@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext, type SVGProps } from 'react';
 import cx from 'classnames';
 import type { AnnotationContextType } from '../types';
 import AnnotationContext from '../context/AnnotationContext';
@@ -14,7 +14,7 @@ export type ConnectorProps = Pick<AnnotationContextType, 'x' | 'y' | 'dx' | 'dy'
   /** Color of the connector line. */
   stroke?: string;
   /** Optional additional props. */
-  pathProps?: React.SVGProps<SVGPathElement>;
+  pathProps?: SVGProps<SVGPathElement>;
 };
 
 export default function Connector({

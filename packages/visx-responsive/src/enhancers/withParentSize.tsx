@@ -1,5 +1,6 @@
 import debounce from 'lodash/debounce';
-import React from 'react';
+import { Component } from 'react';
+import type { ComponentType } from 'react';
 import type {
   DebounceSettings,
   Simplify,
@@ -33,11 +34,11 @@ type WithParentSizeComponentProps<P extends WithParentSizeProvidedProps> = Simpl
 >;
 
 export default function withParentSize<P extends WithParentSizeProvidedProps>(
-  BaseComponent: React.ComponentType<P>,
+  BaseComponent: ComponentType<P>,
   /** Optionally inject a ResizeObserver polyfill, else this *must* be globally available. */
   resizeObserverPolyfill?: ResizeObserverPolyfill,
-): React.ComponentType<WithParentSizeComponentProps<P>> {
-  return class WrappedComponent extends React.Component<
+): ComponentType<WithParentSizeComponentProps<P>> {
+  return class WrappedComponent extends Component<
     WithParentSizeComponentProps<P>,
     WithParentSizeState
   > {

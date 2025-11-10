@@ -1,4 +1,5 @@
-import React, { memo, useCallback, useRef } from 'react';
+import { memo, useCallback, useRef } from 'react';
+import type { SVGProps } from 'react';
 import { animated, useSpring } from '@react-spring/web';
 // @ts-expect-error no types
 import { interpolatePath } from 'd3-interpolate-path';
@@ -9,7 +10,7 @@ function AnimatedPath({
   stroke = 'transparent',
   fill = 'transparent',
   ...lineProps
-}: Omit<React.SVGProps<SVGPathElement>, 'ref'>) {
+}: Omit<SVGProps<SVGPathElement>, 'ref'>) {
   const previousD = useRef(d);
   // updating d in quick succession will ruin the animation because startD === endD.
   // debounce it slightly

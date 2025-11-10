@@ -1,4 +1,4 @@
-import type React from 'react';
+import type { Ref } from 'react';
 import cx from 'classnames';
 import type { AddSVGProps } from '../types';
 
@@ -6,7 +6,7 @@ export type CircleProps = {
   /** className to apply to circle element. */
   className?: string;
   /** reference to circle element. */
-  innerRef?: React.Ref<SVGCircleElement>;
+  innerRef?: Ref<SVGCircleElement>;
 };
 
 export default function Circle({

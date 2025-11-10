@@ -1,10 +1,10 @@
-import React, { useMemo } from 'react';
+import { useMemo, type ReactNode } from 'react';
 import AnnotationContext from '../context/AnnotationContext';
 import type { AnnotationContextType } from '../types';
 
 export type AnnotationProps = Pick<AnnotationContextType, 'x' | 'y' | 'dx' | 'dy'> & {
   /** Annotation children (Subject, Label, Connector) */
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 export default function Annotation({ x, y, dx, dy, children }: AnnotationProps) {

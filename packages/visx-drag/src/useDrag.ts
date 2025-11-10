@@ -1,4 +1,4 @@
-import type React from 'react';
+import type { MouseEvent, TouchEvent, PointerEvent } from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Point, subtractPoints, sumPoints } from '@visx/point';
 import { localPoint } from '@visx/event';
@@ -6,7 +6,7 @@ import useStateWithCallback from './util/useStateWithCallback';
 import restrictPoint from './util/restrictPoint';
 import useSamplesAlongPath from './util/useSamplesAlongPath';
 
-export type MouseTouchOrPointerEvent = React.MouseEvent | React.TouchEvent | React.PointerEvent;
+export type MouseTouchOrPointerEvent = MouseEvent | TouchEvent | PointerEvent;
 
 export type HandlerArgs = DragState & {
   /** Drag event. */

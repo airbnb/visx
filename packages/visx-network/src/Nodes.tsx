@@ -1,4 +1,5 @@
-import React from 'react';
+import { createElement } from 'react';
+import type { FunctionComponent, ComponentClass } from 'react';
 import cx from 'classnames';
 import { Group } from '@visx/group';
 
@@ -10,8 +11,8 @@ export type NodeProps<Node> = {
   nodes?: Node[];
   /** Component for rendering a single link. */
   nodeComponent:
-    | React.FunctionComponent<NodeProvidedProps<Node>>
-    | React.ComponentClass<NodeProvidedProps<Node>>;
+    | FunctionComponent<NodeProvidedProps<Node>>
+    | ComponentClass<NodeProvidedProps<Node>>;
   /** Classname to add to each node parent g element. */
   className?: string;
   /** Returns the center x coordinate of a node. */
@@ -36,7 +37,7 @@ export default function Nodes<Node>({
           left={x(node)}
           top={y(node)}
         >
-          {React.createElement(nodeComponent, { node })}
+          {createElement(nodeComponent, { node })}
         </Group>
       ))}
     </>

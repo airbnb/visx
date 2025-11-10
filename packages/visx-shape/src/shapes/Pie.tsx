@@ -1,4 +1,4 @@
-import type React from 'react';
+import type { ReactNode } from 'react';
 import cx from 'classnames';
 import { Group } from '@visx/group';
 import type {
@@ -29,7 +29,7 @@ export type PieProps<Datum> = {
   /** Array of data to generate a Pie for. */
   data?: Datum[];
   /** Optional render function invoked for each Datum to render something (e.g., a Label) at each pie centroid. */
-  centroid?: (xyCoords: [number, number], arc: PieArcDatum<Datum>) => React.ReactNode;
+  centroid?: (xyCoords: [number, number], arc: PieArcDatum<Datum>) => ReactNode;
   // These three fields are renamed
   /** Invoked for each datum, returns the value for a given Pie segment/arc datum. */
   pieValue?: PiePathConfig<Datum>['value'];
@@ -38,7 +38,7 @@ export type PieProps<Datum> = {
   /** Comparator function to sort arc *values*, overrides pieSort if defined. If pieSort and pieSortValues are null, arcs match input data order. */
   pieSortValues?: PiePathConfig<Datum>['sortValues'];
   /** Render function override which is passed the configured arc generator as input. */
-  children?: (provided: ProvidedProps<Datum>) => React.ReactNode;
+  children?: (provided: ProvidedProps<Datum>) => ReactNode;
   /** Optional accessor function to return the fill string value of a given arc. */
   fill?: string | StringAccessor<Datum>;
 } & Pick<PiePathConfig<Datum>, 'startAngle' | 'endAngle' | 'padAngle'> &

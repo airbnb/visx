@@ -1,4 +1,4 @@
-import type React from 'react';
+import type { ReactNode } from 'react';
 import type { Chords } from 'd3-chord';
 import { chord as d3chord } from 'd3-chord';
 
@@ -16,7 +16,7 @@ export type ChordProps = {
   /** Comparator used to sort the chords by their combined flow; this only affects the `z-order` of the chords. */
   sortChords?: DefaultSortComporator | null;
   /** Child render function, passed the configured chords. */
-  children: (chords: { chords: Chords }) => React.ReactNode;
+  children: (chords: { chords: Chords }) => ReactNode;
 };
 
 export default function Chord({

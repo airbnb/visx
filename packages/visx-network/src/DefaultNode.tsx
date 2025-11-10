@@ -1,4 +1,4 @@
-import type React from 'react';
+import type { SVGProps } from 'react';
 
 export type NodeProps = {
   cx?: number;
@@ -11,6 +11,6 @@ export default function DefaultNode({
   fill = '#21D4FD',
   node, // Accept but don't use the node prop
   ...rest
-}: NodeProps & Omit<React.SVGProps<SVGCircleElement>, keyof NodeProps>) {
+}: NodeProps & Omit<SVGProps<SVGCircleElement>, keyof NodeProps>) {
   return <circle r={r} fill={fill} {...rest} />;
 }

@@ -1,4 +1,5 @@
-import React, { useCallback, useEffect, useMemo, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
+import type { ReactNode } from 'react';
 import debounce from 'lodash/debounce';
 import { useTooltip } from '@visx/tooltip';
 import TooltipContext from '../context/TooltipContext';
@@ -8,7 +9,7 @@ import isValidNumber from '../typeguards/isValidNumber';
 type TooltipProviderProps = {
   /** Debounce time for when `hideTooltip` is invoked. */
   hideTooltipDebounceMs?: number;
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 /** Simple wrapper around useTooltip, to provide tooltip data via context. */

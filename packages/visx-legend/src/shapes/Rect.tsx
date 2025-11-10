@@ -1,4 +1,4 @@
-import type React from 'react';
+import type { CSSProperties } from 'react';
 
 export type ShapeRectProps = {
   /** The fill color for the rectangle. */
@@ -8,7 +8,7 @@ export type ShapeRectProps = {
   /** Height of the rectangle. */
   height?: string | number;
   /** Additional CSS styles to apply to the rectangle. */
-  style?: React.CSSProperties;
+  style?: CSSProperties;
 };
 
 export default function ShapeRect({ fill, width, height, style }: ShapeRectProps) {

@@ -7,6 +7,16 @@ import type {
   WheelEvent as ReactWheelEvent,
 } from 'react';
 
+export type GenericWheelEvent = ReactWheelEvent | WheelEvent;
+
+export type InteractionEvent =
+  | ReactMouseEvent
+  | ReactTouchEvent
+  | ReactPointerEvent
+  | MouseEvent
+  | TouchEvent
+  | PointerEvent;
+
 export interface TransformMatrix {
   scaleX: number;
   scaleY: number;
@@ -73,12 +83,9 @@ export interface ProvidedZoom<ElementType> {
   /** Callback for dragEnd, sets isDragging to false. */
   dragEnd: () => void;
   /** Callback for dragMove, results in a scale transform. */
-  dragMove: (
-    event: ReactMouseEvent | ReactTouchEvent | MouseEvent | TouchEvent,
-    options?: { offsetX?: number; offsetY?: number },
-  ) => void;
+  dragMove: (event: InteractionEvent, options?: { offsetX?: number; offsetY?: number }) => void;
   /** Callback for dragStart, sets isDragging to true.  */
-  dragStart: (event: ReactMouseEvent | ReactTouchEvent | MouseEvent | TouchEvent) => void;
+  dragStart: (event: InteractionEvent) => void;
   /**
    * Returns a string representation of the matrix transform:
    * matrix(${scaleX}, ${skewY}, ${skewX}, ${scaleY}, ${translateX}, ${translateY})
@@ -98,3 +105,16 @@ export interface ProvidedZoom<ElementType> {
   /** Ref to stick on element to attach all handlers automatically. */
   containerRef: RefObject<ElementType | null>;
 }
+
+/** Internal state properties exposed by the Zoom component. */
+export interface ZoomState {
+  /** The initial transform matrix specified by props. */
+  initialTransformMatrix: TransformMatrix;
+  /** The current transform matrix. */
+  transformMatrix: TransformMatrix;
+  /** Whether the user is currently dragging. */
+  isDragging: boolean;
+}
+
+/** Complete Zoom API including methods and state, passed to children render prop. */
+export type Zoom<ElementType> = ProvidedZoom<ElementType> & ZoomState;

@@ -1,5 +1,6 @@
 import type { AxisScale } from '@visx/axis';
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
+import type { ReactNode, FC } from 'react';
 import { useTransition, animated, to } from '@react-spring/web';
 import getScaleBaseline from '../../../utils/getScaleBaseline';
 import type { GlyphProps, GlyphsProps } from '../../../types';
@@ -54,7 +55,7 @@ export default function AnimatedGlyphs<
   onPointerUp,
 }: {
   // unanimated Glyph component
-  renderGlyph: React.FC<GlyphProps<Datum>>;
+  renderGlyph: FC<GlyphProps<Datum>>;
 } & GlyphsProps<XScale, YScale, Datum>) {
   const animatedGlyphs = useTransition(glyphs, {
     ...useAnimatedGlyphsConfig({ xScale, yScale, horizontal }),
@@ -86,7 +87,7 @@ export default function AnimatedGlyphs<
               onPointerMove,
               onPointerOut,
               onPointerUp,
-            }) as React.ReactNode
+            }) as ReactNode
           }
         </animated.g>
       ))}
