@@ -66,5 +66,12 @@
     "@visx/wordcloud": "workspace:*",
     "@visx/xychart": "workspace:*",
     "@visx/zoom": "workspace:*"
+  },
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./esm/index.js",
+      "require": "./lib/index.js"
+    }
   }
 }

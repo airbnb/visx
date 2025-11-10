@@ -39,5 +39,12 @@
     "@visx/scale": "workspace:*",
     "@visx/shape": "workspace:*",
     "classnames": "^2.3.1"
+  },
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./esm/index.js",
+      "require": "./lib/index.js"
+    }
   }
 }
