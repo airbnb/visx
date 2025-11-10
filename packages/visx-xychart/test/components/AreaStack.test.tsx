@@ -50,8 +50,8 @@ describe('<AreaStack />', () => {
       <DataProvider {...providerProps}>
         <svg>
           <AreaStack>
-            <AreaSeries dataKey={"area1"} {...series1} />
-            <AreaSeries dataKey={"area2"} {...series2} />
+            <AreaSeries dataKey={'area1'} {...series1} />
+            <AreaSeries dataKey={'area2'} {...series2} />
           </AreaStack>
         </svg>
       </DataProvider>,
@@ -65,8 +65,8 @@ describe('<AreaStack />', () => {
       <DataProvider {...providerProps}>
         <svg>
           <AreaStack renderLine>
-            <AreaSeries dataKey={"area1"} {...series1} />
-            <AreaSeries dataKey={"area2"} {...series2} />
+            <AreaSeries dataKey={'area1'} {...series1} />
+            <AreaSeries dataKey={'area2'} {...series2} />
           </AreaStack>
         </svg>
       </DataProvider>,
@@ -80,7 +80,7 @@ describe('<AreaStack />', () => {
       <DataProvider {...providerProps}>
         <svg>
           <AreaStack onFocus={() => {}}>
-            <AreaSeries dataKey={"area1"} {...series1} />
+            <AreaSeries dataKey={'area1'} {...series1} />
           </AreaStack>
         </svg>
       </DataProvider>,
@@ -101,9 +101,9 @@ describe('<AreaStack />', () => {
       <DataProvider {...providerProps}>
         <svg>
           <AreaStack>
-            <AreaSeries dataKey={"area1"} {...series1} />
+            <AreaSeries dataKey={'area1'} {...series1} />
             <AreaSeries
-              dataKey={"area2"}
+              dataKey={'area2'}
               {...series2}
               data={[
                 { x: 10, y: 5 },
@@ -178,8 +178,8 @@ describe('<AreaStack />', () => {
     setupTooltipTest(
       <>
         <AreaStack>
-          <AreaSeries dataKey={"area1"} {...series1} />
-          <AreaSeries dataKey={"area2"} {...series2} />
+          <AreaSeries dataKey={'area1'} {...series1} />
+          <AreaSeries dataKey={'area2'} {...series2} />
         </AreaStack>
         <EventEmitter />
       </>,
@@ -203,8 +203,8 @@ describe('<AnimatedAreaStack />', () => {
       <DataProvider {...providerProps}>
         <svg>
           <AnimatedAreaStack renderLine={false}>
-            <AreaSeries dataKey={"area1"} {...series1} />
-            <AreaSeries dataKey={"area2"} {...series2} />
+            <AreaSeries dataKey={'area1'} {...series1} />
+            <AreaSeries dataKey={'area2'} {...series2} />
           </AnimatedAreaStack>
         </svg>
       </DataProvider>,

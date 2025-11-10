@@ -21,9 +21,9 @@ describe('<GlyphSeries />', () => {
 
   it('should render a DefaultGlyph for each Datum', () => {
     const { container } = render(
-      <DataContext.Provider value={getDataContext({ key: "glyph", ...series })}>
+      <DataContext.Provider value={getDataContext({ key: 'glyph', ...series })}>
         <svg>
-          <GlyphSeries dataKey={"glyph"} {...series} />
+          <GlyphSeries dataKey={'glyph'} {...series} />
         </svg>
       </DataContext.Provider>,
     );
@@ -32,10 +32,10 @@ describe('<GlyphSeries />', () => {
 
   it('should use colorAccessor if passed', () => {
     const { container } = render(
-      <DataContext.Provider value={getDataContext({ key: "glyph", ...series })}>
+      <DataContext.Provider value={getDataContext({ key: 'glyph', ...series })}>
         <svg>
           <GlyphSeries
-            dataKey={"glyph"}
+            dataKey={'glyph'}
             {...series}
             colorAccessor={(_, i) => (i === 0 ? 'banana' : null)}
           />
@@ -49,9 +49,9 @@ describe('<GlyphSeries />', () => {
 
   it('should not render Glyphs if x or y is invalid', () => {
     const { container } = render(
-      <DataContext.Provider value={getDataContext({ key: "barMissingData", ...seriesMissingData })}>
+      <DataContext.Provider value={getDataContext({ key: 'barMissingData', ...seriesMissingData })}>
         <svg>
-          <GlyphSeries dataKey={"barMissingData"} {...seriesMissingData} />
+          <GlyphSeries dataKey={'barMissingData'} {...seriesMissingData} />
         </svg>
       </DataContext.Provider>,
     );
@@ -61,9 +61,9 @@ describe('<GlyphSeries />', () => {
   it('should render a custom Glyph for each Datum', () => {
     const customRenderGlyph = () => <rect className="custom-glyph" />;
     const { container } = render(
-      <DataContext.Provider value={getDataContext({ key: "glyph", ...series })}>
+      <DataContext.Provider value={getDataContext({ key: 'glyph', ...series })}>
         <svg>
-          <GlyphSeries dataKey={"glyph"} {...series} renderGlyph={customRenderGlyph} />
+          <GlyphSeries dataKey={'glyph'} {...series} renderGlyph={customRenderGlyph} />
         </svg>
       </DataContext.Provider>,
     );
@@ -123,12 +123,12 @@ describe('<GlyphSeries />', () => {
       const { dataRegistry } = useContext(DataContext);
       // GlyphSeries won't render until its data is registered
       // wait for that to emit the events
-      return dataRegistry?.get("glyph") ? <EventEmitter /> : null;
+      return dataRegistry?.get('glyph') ? <EventEmitter /> : null;
     };
 
     setupTooltipTest(
       <>
-        <GlyphSeries dataKey={"glyph"} {...series} />
+        <GlyphSeries dataKey={'glyph'} {...series} />
         <ConditionalEventEmitter />
       </>,
       { showTooltip, hideTooltip },
@@ -149,9 +149,9 @@ describe('<AnimatedGlyphSeries />', () => {
   });
   it('should render an animated.g for each datum', () => {
     const { container } = render(
-      <DataContext.Provider value={getDataContext({ key: "glyph", ...series })}>
+      <DataContext.Provider value={getDataContext({ key: 'glyph', ...series })}>
         <svg>
-          <AnimatedGlyphSeries dataKey={"glyph"} {...series} />
+          <AnimatedGlyphSeries dataKey={'glyph'} {...series} />
         </svg>
       </DataContext.Provider>,
     );

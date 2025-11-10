@@ -21,9 +21,9 @@ describe('<BarSeries />', () => {
 
   it('should render rects', () => {
     const { container } = render(
-      <DataContext.Provider value={getDataContext({ key: "bar", ...series })}>
+      <DataContext.Provider value={getDataContext({ key: 'bar', ...series })}>
         <svg>
-          <BarSeries dataKey={"bar"} {...series} />
+          <BarSeries dataKey={'bar'} {...series} />
         </svg>
       </DataContext.Provider>,
     );
@@ -32,9 +32,9 @@ describe('<BarSeries />', () => {
 
   it('should render rounded rects if radius is set', () => {
     const { container } = render(
-      <DataContext.Provider value={getDataContext({ key: "bar", ...series })}>
+      <DataContext.Provider value={getDataContext({ key: 'bar', ...series })}>
         <svg>
-          <BarSeries dataKey={"bar"} radiusAll radius={4} {...series} />
+          <BarSeries dataKey={'bar'} radiusAll radius={4} {...series} />
         </svg>
       </DataContext.Provider>,
     );
@@ -43,10 +43,10 @@ describe('<BarSeries />', () => {
 
   it('should use colorAccessor if passed', () => {
     const { container } = render(
-      <DataContext.Provider value={getDataContext({ key: "bar", ...series })}>
+      <DataContext.Provider value={getDataContext({ key: 'bar', ...series })}>
         <svg>
           <BarSeries
-            dataKey={"bar"}
+            dataKey={'bar'}
             {...series}
             colorAccessor={(_, i) => (i === 0 ? 'banana' : null)}
           />
@@ -60,9 +60,9 @@ describe('<BarSeries />', () => {
 
   it('should not render rects if x or y is invalid', () => {
     const { container } = render(
-      <DataContext.Provider value={getDataContext({ key: "barMissingData", ...seriesMissingData })}>
+      <DataContext.Provider value={getDataContext({ key: 'barMissingData', ...seriesMissingData })}>
         <svg>
-          <BarSeries dataKey={"barMissingData"} {...seriesMissingData} />
+          <BarSeries dataKey={'barMissingData'} {...seriesMissingData} />
         </svg>
       </DataContext.Provider>,
     );
@@ -122,12 +122,12 @@ describe('<BarSeries />', () => {
       const { dataRegistry } = useContext(DataContext);
       // BarSeries won't render until its data is registered
       // wait for that to emit the events
-      return dataRegistry?.get("bar") ? <EventEmitter /> : null;
+      return dataRegistry?.get('bar') ? <EventEmitter /> : null;
     };
 
     setupTooltipTest(
       <>
-        <BarSeries dataKey={"bar"} {...series} />
+        <BarSeries dataKey={'bar'} {...series} />
         <ConditionalEventEmitter />
       </>,
       { showTooltip, hideTooltip },
@@ -148,9 +148,9 @@ describe('<AnimatedBarSeries />', () => {
   });
   it('should render an animated.rect', () => {
     const { container } = render(
-      <DataContext.Provider value={getDataContext({ key: "bar", ...series })}>
+      <DataContext.Provider value={getDataContext({ key: 'bar', ...series })}>
         <svg>
-          <AnimatedBarSeries dataKey={"bar"} {...series} />
+          <AnimatedBarSeries dataKey={'bar'} {...series} />
         </svg>
       </DataContext.Provider>,
     );

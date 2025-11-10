@@ -9,7 +9,7 @@ type Props<ExampleProps extends WidthAndHeight> = {
   detailsStyles?: React.CSSProperties;
   exampleRenderer: React.ComponentClass<ExampleProps> | React.FunctionComponent<ExampleProps>;
   exampleProps?: Omit<ExampleProps, 'width' | 'height'> &
-  Partial<Pick<ExampleProps, 'width' | 'height'>>;
+    Partial<Pick<ExampleProps, 'width' | 'height'>>;
   exampleUrl?: string;
   tileStyles?: React.CSSProperties;
   title?: string;
